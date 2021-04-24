@@ -2,7 +2,7 @@
 # $FreeBSD: head/devel/py-isort/Makefile 432169 2017-01-22 22:27:54Z rene $
 
 PORTNAME=	isort
-PORTVERSION=	4.3.4
+PORTVERSION=	5.7.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,12 +13,14 @@ COMMENT=	Python import sorter utility
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PY_FUTURES}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR}
+USES=		python:3.6+
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
-USE_PYTHON=	autoplist concurrent distutils
-USES=		python
+
+OPTIONS_DEFINE=	COLORS
+COLORS_DESC=	Color output support
+
+COLORS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}colorama>=0.4.3<0.5.0:devel/py-colorama@${PY_FLAVOR}
 
 .include <bsd.port.mk>
