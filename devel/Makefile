@@ -812,7 +812,6 @@ SUBDIR += py-enum34
 SUBDIR += py-evdev
 SUBDIR += py-extras
 SUBDIR += py-fasteners
-SUBDIR += py-fileutils
 SUBDIR += py-fixtures
 SUBDIR += py-flake8
 SUBDIR += py-freezegun
