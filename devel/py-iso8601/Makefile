@@ -1,6 +1,4 @@
 # Created by: Kubilay Kocak <koobs@FreeBSD.org>
-# $FreeBSD: head/devel/py-iso8601/Makefile 412346 2016-04-01 14:00:51Z mat $
-# $MidnightBSD$
 
 PORTNAME=	iso8601
 PORTVERSION=	0.1.12
@@ -15,7 +13,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

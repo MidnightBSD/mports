@@ -1,6 +1,4 @@
 # Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-# $MidnightBSD$
-# $FreeBSD: head/net/libzapojit/Makefile 373636 2014-11-29 18:22:32Z tijl $
 
 PORTNAME=	libzapojit
 PORTVERSION=	0.0.3
@@ -14,12 +12,12 @@ COMMENT=	GLib/GObject wrapper for the Skydrive and Hotmail API
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
-LIB_DEPENDS=	libgoa-1.0.so:${PORTSDIR}/net/gnome-online-accounts \
-		libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib \
-		librest-0.7.so:${PORTSDIR}/devel/librest
+BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts \
+		libjson-glib-1.0.so:devel/json-glib \
+		librest-0.7.so:devel/librest
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:xz
 USE_GNOME=	gnomeprefix intltool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
