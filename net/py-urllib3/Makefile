@@ -1,6 +1,5 @@
 PORTNAME=	urllib3
-PORTVERSION=	1.25.7
-PORTREVISION=	1
+PORTVERSION=	1.25.11
 PORTEPOCH=	1
 CATEGORIES=	net python
 MASTER_SITES=	CHEESESHOP
@@ -12,7 +11,7 @@ COMMENT=	HTTP library with thread-safe connection pooling, file post, and more
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
@@ -27,7 +26,6 @@ SOCKS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pysocks>=1.5.6:net/py-pysocks@${PY_FLA
 SSL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}idna>=2.0:dns/py-idna@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}certifi>=0:security/py-certifi@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}cryptography>=1.3.4:security/py-cryptography@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}openssl>=0.14:security/py-openssl@${PY_FLAVOR} \
-			${PY_IPADDRESS}
+			${PYTHON_PKGNAMEPREFIX}openssl>=0.14:security/py-openssl@${PY_FLAVOR}
 
 .include <bsd.port.mk>
