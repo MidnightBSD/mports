@@ -1,6 +1,3 @@
-# $FreeBSD: head/devel/py-mccabe/Makefile 435160 2017-03-01 15:00:34Z amdmi3 $
-# $MidnightBSD$
-
 PORTNAME=	mccabe
 PORTVERSION=	0.6.1
 CATEGORIES=	devel python
@@ -15,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-runner>=0:devel/py-pytest-runner@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 

@@ -1,7 +1,7 @@
 # Created by: Alexander Botero-Lowry <alexbl@FreeBSD.org>
 
 PORTNAME=	magic
-PORTVERSION=	5.38
+PORTVERSION=	5.39
 CATEGORIES=	devel python
 MASTER_SITES=	ftp://ftp.astron.com/pub/file/ \
 		ftp://ftp.gw.com/mirrors/pub/unix/file/ \
@@ -14,7 +14,7 @@ COMMENT=	Python module for determining file type
 
 LICENSE=	bsd2
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 # both install module as magic.py

@@ -1,29 +1,25 @@
+# Created by: jessekempf@gmail.com
+
 PORTNAME=	mock
-PORTVERSION=	2.0.0
+PORTVERSION=	3.0.5
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Mock unit tests for Python
+COMMENT=	Rolling backport of unittest.mock for all Pythons
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=1.3:devel/py-pbr@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}six>=1.9:devel/py-six@${PY_FLAVOR}
-RUN_DEPENDS:=	${BUILD_DEPENDS}
-TESTS_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tox>0:devel/py-tox@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR}
+
+USES=		python:3.6+
+USE_GITHUB=	yes # tests not packages in PyPI sdist
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 NO_TEST=	yes
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
 
-.include <bsd.port.pre.mk>
+GH_ACCOUNT=	testing-cabal
 
-.if ${PYTHON_REL} < 3300
-RUN_DEPENDS+=  ${PYTHON_PKGNAMEPREFIX}funcsigs>=0:devel/py-funcsigs@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

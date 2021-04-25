@@ -846,7 +846,6 @@ SUBDIR += py-invoke
 SUBDIR += py-lxml
 SUBDIR += py-magic
 SUBDIR += py-mccabe
-SUBDIR += py-mimeparse
 SUBDIR += py-mock
 SUBDIR += py-monotonic
 SUBDIR += py-more-itertools
