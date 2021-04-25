@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	pbr
-PORTVERSION=	3.1.1
+PORTVERSION=	5.5.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +14,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR}
 
 NO_ARCH=	yes
 
-USES=		python shebangfix
+USES=		python:3.6+ shebangfix
 USE_PYTHON=	autoplist concurrent distutils
 SHEBANG_FILES=	pbr/tests/testpackage/setup.py
 
