@@ -1,9 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	ply
 PORTVERSION=	3.11
 CATEGORIES=	devel python
-MASTER_SITES=	http://www.dabeaz.com/ply/
+MASTER_SITES=	https://www.dabeaz.com/ply/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +9,7 @@ COMMENT=	Python Lex-Yacc
 
 LICENSE=	bsd3
 
-USES=		python
+USES=		python:2.7+
 USES+=		shebangfix
 USE_PYTHON=	autoplist concurrent distutils
 NO_ARCH=	yes
