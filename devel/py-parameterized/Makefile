@@ -1,5 +1,5 @@
 PORTNAME=	parameterized
-PORTVERSION=	0.7.1
+PORTVERSION=	0.8.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +10,7 @@ COMMENT=	Parameterized testing with any Python test framework
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python:3.7+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=yes

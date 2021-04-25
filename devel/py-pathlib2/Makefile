@@ -14,15 +14,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
 NO_TEST=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 3500
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}scandir>=0:sysutils/py-scandir@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

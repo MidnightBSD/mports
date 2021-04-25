@@ -856,7 +856,6 @@ SUBDIR += py-olefile
 SUBDIR += py-packaging
 SUBDIR += py-parameterized
 SUBDIR += py-parsedatetime
-SUBDIR += py-parsing
 SUBDIR += py-pathlib2
 SUBDIR += py-pbr
 SUBDIR += py-pyicu
