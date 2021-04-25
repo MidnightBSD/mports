@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Andrey Zonov <andrey@zonov.org>
 
 PORTNAME=	msgpack
-PORTVERSION=	0.5.6
+PORTVERSION=	1.0.2
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,11 +12,10 @@ COMMENT=	MessagePack (de)serializer for Python
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+USES=		python:3.6+
+USE_PYTHON=	autoplist concurrent cython distutils
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/msgpack/_packer.so
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/msgpack/_unpacker.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/msgpack/_cmsgpack*.so
 
 .include <bsd.port.mk>
