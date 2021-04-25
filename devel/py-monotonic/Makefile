@@ -10,7 +10,7 @@ COMMENT=	Python 3 monotonic time module for Python 2
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

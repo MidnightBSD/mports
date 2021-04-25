@@ -1,5 +1,5 @@
 PORTNAME=	more-itertools
-PORTVERSION=	4.2.0
+PORTVERSION=	8.7.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,12 +10,10 @@ COMMENT=	More routines for operating on iterables, beyond itertools
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.0.0:devel/py-six@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	distutils autoplist
+USES=		python:3.6+
+USE_PYTHON=	distutils concurrent autoplist
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+NO_TEST=	yes
 
 .include <bsd.port.mk>
