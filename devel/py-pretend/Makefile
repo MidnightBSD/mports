@@ -12,7 +12,7 @@ COMMENT=	Library for stubbing in Python
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 USE_GITHUB=	yes
