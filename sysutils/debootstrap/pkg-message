@@ -1,10 +1,14 @@
 [
 { type: install
   message: <<EOM
-To successfully create an installation of Debian GNU/kFreeBSD
-debootstrap requires the following kernel modules loaded:
+To successfully create an installation of Debian or Ubuntu
+debootstrap requires the following kernel modules to be loaded:
 
-fdescfs linprocfs linsysfs tmpfs
+linux64 fdescfs linprocfs linsysfs tmpfs
+
+To install Ubuntu 18.04 LTS (Bionic Beaver) into /compat/ubuntu, run as root:
+
+debootstrap bionic /compat/ubuntu
 EOM
 }
 ]
