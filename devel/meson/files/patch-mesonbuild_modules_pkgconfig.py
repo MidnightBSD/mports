@@ -1,6 +1,6 @@
---- mesonbuild/modules/pkgconfig.py.orig	2021-02-01 15:35:16.000000000 -0500
-+++ mesonbuild/modules/pkgconfig.py	2021-04-22 23:40:32.703473000 -0400
-@@ -530,7 +530,7 @@
+--- mesonbuild/modules/pkgconfig.py.orig	2021-02-01 20:35:16 UTC
++++ mesonbuild/modules/pkgconfig.py
+@@ -530,7 +530,7 @@ class PkgConfigModule(ExtensionModule):
          pcfile = filebase + '.pc'
          pkgroot = kwargs.get('install_dir', default_install_dir)
          if pkgroot is None:

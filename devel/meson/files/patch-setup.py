@@ -1,6 +1,6 @@
---- setup.py.orig	2021-01-06 10:39:48 UTC
+--- setup.py.orig	2021-02-01 20:35:16 UTC
 +++ setup.py
-@@ -40,7 +40,7 @@ packages = ['mesonbuild',
+@@ -41,7 +41,7 @@ packages = ['mesonbuild',
  data_files = []
  if sys.platform != 'win32':
      # Only useful on UNIX-like systems
