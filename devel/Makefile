@@ -853,7 +853,6 @@ SUBDIR += py-msgpack
 SUBDIR += py-nose
 SUBDIR += py-nose2
 SUBDIR += py-olefile
-SUBDIR += py-orbit
 SUBDIR += py-packaging
 SUBDIR += py-parameterized
 SUBDIR += py-parsedatetime
