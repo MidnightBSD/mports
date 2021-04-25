@@ -1,5 +1,5 @@
 PORTNAME=	lxml
-PORTVERSION=	4.3.4
+PORTVERSION=	4.6.2
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +10,7 @@ COMMENT=	Pythonic binding for the libxml2 and libxslt libraries
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
-USES=		compiler gnome python uniquefiles:dirs
+USES=		compiler gnome python:3.6+ uniquefiles:dirs
 USE_GNOME=	libxml2 libxslt
 USE_PYTHON=	autoplist concurrent distutils
 
@@ -21,9 +21,13 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
+# needed for test to work
+PYDISTUTILS_BUILD_TARGET=	build_ext
+PYDISTUTILS_BUILDARGS=	--inplace
+
 post-install:
-	${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} \
-	-name '*.so' -exec ${STRIP_CMD} {} +
+	@${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} \
+		-name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
@@ -32,8 +36,8 @@ post-install-DOCS-on:
 
 .include <bsd.port.pre.mk>
 
-# on gcc-based architectures, use modern GCC due to use of #pragma
-.if ${ARCH} == mips || ${ARCH} == mips64 || ${ARCH} == powerpc || ${ARCH} == powerpc64 || ${ARCH} == powerpcspe || ${ARCH} == sparc64
+# if using gcc, force modern GCC due to use of #pragma
+.if ${CHOSEN_COMPILER_TYPE} == gcc
 USE_GCC=	yes
 .endif
 
