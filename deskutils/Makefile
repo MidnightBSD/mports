@@ -56,7 +56,6 @@ SUBDIR += spice-gtk
 SUBDIR += systempreferences
 SUBDIR += toolboxkit
 SUBDIR += virt-manager
-SUBDIR += vnc2flv
 SUBDIR += xfce4-notifyd
 SUBDIR += xfce4-tumbler
 SUBDIR += xpad
