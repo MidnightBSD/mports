@@ -1,5 +1,5 @@
 PORTNAME=	gnome-backgrounds
-PORTVERSION=	3.28.0
+PORTVERSION=	3.38.0
 CATEGORIES=	x11-themes graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -12,12 +12,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
 
-BUILD_DEPENDS+=	ninja:devel/ninja \
-		python2.7:lang/python27 \
-		python3.7:lang/python37 \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py-setuptools@${PY_FLAVOR}
+BUILD_DEPENDS+=	ninja:devel/ninja
 
 NO_ARCH=	yes
-USES=		gettext meson python:2.7,build tar:xz
+USES=		gettext meson python:3.7,build tar:xz
 
 .include <bsd.port.mk>
