@@ -11,7 +11,7 @@ COMMENT=	Python library to parse and manage gettext catalogs
 
 LICENSE=	mit
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>
