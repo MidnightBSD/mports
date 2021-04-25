@@ -12,11 +12,6 @@ LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=0:devel/py-nose@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>=2.0.0:devel/py-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sure>0:devel/py-sure@${PY_FLAVOR}
 
 USES=		python:3.6+
 USE_PYTHON=	autoplist cython distutils
@@ -32,12 +27,11 @@ LIBEV_VARS_OFF=	PYDISTUTILS_BUILDARGS+=--no-libev PYDISTUTILS_INSTALLARGS+=--no-
 
 MURMUR3_VARS_OFF=	PYDISTUTILS_BUILDARGS+=--no-murmur3 PYDISTUTILS_INSTALLARGS+=--no-murmur3
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' | ${XARGS} ${STRIP_CMD}
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
