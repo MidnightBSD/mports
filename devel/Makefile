@@ -869,6 +869,7 @@ SUBDIR += py-pretend
 SUBDIR += py-protobuf
 SUBDIR += py-py
 SUBDIR += py-python-dbusmock
+SUBDIR += py-python-mimeparse
 SUBDIR += py-python-subunit
 SUBDIR += py-pyudev
 SUBDIR += py-pyasn1
