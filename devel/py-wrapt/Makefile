@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/py-wrapt/Makefile 432169 2017-01-22 22:27:54Z rene $
-
 PORTNAME=	wrapt
-PORTVERSION=	1.10.11
+PORTVERSION=	1.12.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +11,7 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_PYTHON=	autoplist concurrent distutils
-USES=		python
+USES=		python:3.6+
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/wrapt/_wrappers.so

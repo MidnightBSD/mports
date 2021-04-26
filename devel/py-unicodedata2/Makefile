@@ -12,7 +12,7 @@ COMMENT=	Unicodedata backport and updates
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 .include <bsd.port.mk>
