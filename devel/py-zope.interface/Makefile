@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	zope.interface
-PORTVERSION=	4.1.3
+PORTVERSION=	5.3.0
 CATEGORIES=	devel python zope
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +11,7 @@ COMMENT=	Interfaces for Python
 LICENSE=	zpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 post-install:
