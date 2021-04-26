@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -7,7 +5,7 @@ COMMENT=	Python bindings for version control system
 
 LICENSE=	agg
 
-USES+=		python
+USES+=		2.7+
 USE_PYTHON=	flavors py3kplist
 
 PORTREVISION_111=	0

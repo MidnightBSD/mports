@@ -1,6 +1,4 @@
 # Created by: Martin Wilke <miwi@FreeBSD.org>
-# $FreeBSD: head/devel/py-setuptools_hg/Makefile 372709 2014-11-18 09:37:31Z bapt $
-# $MidnightBSD$
 
 PORTNAME=	setuptools_hg
 PORTVERSION=	0.4
@@ -16,7 +14,7 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 .include <bsd.port.mk>

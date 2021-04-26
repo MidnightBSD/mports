@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	termcolor
 PORTVERSION=	1.1.0
 PORTREVISION=	1
@@ -12,7 +10,7 @@ COMMENT=	ANSII Color formatting for output in terminal
 
 LICENSE=	mit
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>

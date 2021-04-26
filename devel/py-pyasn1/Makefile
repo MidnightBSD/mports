@@ -1,8 +1,7 @@
 # Created by: Martin Jackson <mhjacks@swbell.net>
-# $FreeBSD: head/devel/py-pyasn1/Makefile 401899 2015-11-18 21:48:05Z rm $
 
 PORTNAME=	pyasn1
-PORTVERSION=	0.4.2
+PORTVERSION=	0.4.7
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +13,7 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 NO_ARCH=	yes
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 do-test:

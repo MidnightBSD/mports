@@ -1,7 +1,7 @@
 # Created by: vanilla@
 
 PORTNAME=	protobuf
-PORTVERSION=	3.11.3
+PORTVERSION=	3.14.0
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
@@ -15,7 +15,7 @@ LICENSE=	bsd3
 BUILD_DEPENDS=	protoc:devel/protobuf
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.9:devel/py-six@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 DO_MAKE_TEST=	${PYTHON_CMD} ${PYDISTUTILS_SETUP}

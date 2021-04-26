@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}toml>0:textproc/py-toml@${PY_FLAVOR}
 
-USES=		python
+USES=		python:2.7+
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
