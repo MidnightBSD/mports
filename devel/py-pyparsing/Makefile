@@ -1,5 +1,5 @@
 PORTNAME=	pyparsing
-PORTVERSION=	2.3.1
+PORTVERSION=	2.4.7
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +10,7 @@ COMMENT=	General parsing module for Python
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
