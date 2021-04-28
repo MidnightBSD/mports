@@ -187,6 +187,7 @@ SUBDIR += sshguard
 SUBDIR += sudo
 SUBDIR += tor
 SUBDIR += trousers
+SUBDIR += ubuntu-keyring
 SUBDIR += vlock
 SUBDIR += vnccrack
 SUBDIR += vpnc
