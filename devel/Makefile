@@ -903,6 +903,7 @@ SUBDIR += py-qt5-help
 SUBDIR += py-qt5-qscintilla2
 SUBDIR += py-qt5-test
 SUBDIR += py-ramlfications
+SUBDIR += py-readme-renderer
 SUBDIR += py-repoze.sphinx.autointerface
 SUBDIR += py-scripttest
 SUBDIR += py-setproctitle
