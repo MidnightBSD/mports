@@ -1,5 +1,5 @@
 PORTNAME=	cldr-emoji-annotation
-DISTVERSION=	36.12.120191002_0
+DISTVERSION=	37.0_13.0_0_2
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
