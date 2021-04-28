@@ -938,6 +938,7 @@ SUBDIR += py-ujson
 SUBDIR += py-unicodedata2
 SUBDIR += py-unittest2
 SUBDIR += py-virtualenv
+SUBDIR += py-wcwidth
 SUBDIR += py-wheel
 SUBDIR += py-wrapt
 SUBDIR += py-xdg
