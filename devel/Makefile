@@ -79,6 +79,7 @@ SUBDIR += e_dbus
 SUBDIR += efl
 SUBDIR += eggdbus
 SUBDIR += epm
+SUBDIR += erlang-unicode_util_compat
 SUBDIR += evdev-proto
 SUBDIR += fam
 SUBDIR += ffcall

@@ -10,6 +10,7 @@ SUBDIR += c-ares
 SUBDIR += ddclient
 SUBDIR += dnsmasq
 SUBDIR += doh-proxy
+SUBDIR += erlang-idna
 SUBDIR += idnkit
 SUBDIR += inadyn
 SUBDIR += knot2
