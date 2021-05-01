@@ -1,6 +1,4 @@
 # Created by: Simon Barner <barner@gmx.de>
-# $FreeBSD: head/devel/valgrind/Makefile 382021 2015-03-23 18:35:45Z bdrewery $
-# $MidnightBSD$
 
 PORTNAME=	valgrind
 PORTVERSION=	3.10.1.20160113
@@ -59,7 +57,7 @@ PORTDOCS=	html
 WRKSRC=		${WRKDIR}/${BB_ACCOUNT}-${BB_PROJECT}-${BB_COMMIT}
 
 CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL}
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4
 
 .include <bsd.mport.options.mk>
 
