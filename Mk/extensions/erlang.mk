@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # Handle Erlang related ports
 #
 # Feature:	erlang
@@ -23,7 +21,7 @@
 _INCLUDE_USES_ERLANG_MK=yes
 
 ERL_APP_NAME?=		${PORTNAME}
-ERL_APP_ROOT?=		${PREFIX}/lib/erlang/lib/${ERL_APP_NAME}-${PORTVERSION}
+ERL_APP_ROOT?=		${TRUE_PREFIX}/lib/erlang/lib/${ERL_APP_NAME}-${PORTVERSION}
 REBAR_CMD=		${LOCALBASE}/bin/rebar
 REBAR3_CMD=		${LOCALBASE}/bin/rebar3
 REBAR_PROFILE?=		default
@@ -75,61 +73,61 @@ post-patch-erlang:
 		${REINPLACE_CMD} -i '' -e 's/{ *vsn,.*}/{vsn, "${PORTVERSION}"}/' \
 			${WRKSRC}/ebin/${ERL_APP_NAME}.app; \
 	fi
-	@${GREP} -l "%%LOCALBASE%%" $$(${FIND} ${WRKSRC}) \
+	@${GREP} -l "%%LOCALBASE%%" $$(${FIND} ${WRKSRC} -type f) \
 		| ${XARGS} ${REINPLACE_CMD} -i '' -e "s@%%LOCALBASE%%@${LOCALBASE}@"
-	@${GREP} -l "%%PORTVERSION%%" $$(${FIND} ${WRKSRC}) \
+	@${GREP} -l "%%PORTVERSION%%" $$(${FIND} ${WRKSRC} -type f) \
 		| ${XARGS} ${REINPLACE_CMD} -i '' -e "s@%%PORTVERSION%%@${PORTVERSION}@"
 # Always try to build with the system version of rebar and rebar3
 	@if [ -f ${WRKSRC}/rebar.config ]; then \
 		${REINPLACE_CMD} -i '' -e "s@\./rebar3@${REBAR3_CMD}@; s@\./rebar@${REBAR_CMD}@" \
 			${WRKSRC}/rebar.config; \
 	fi
-	@${RM} ${WRKSRC}/src/*.orig ${WRKSRC}/include/*.orig
+	-${RM} ${WRKSRC}/src/*.orig ${WRKSRC}/include/*.orig
 
 .if !target(do-build)
 do-build:
 # This will cause calls to local rebar and rebar3 to fail; makes it easier to spot them
-	@${RM} ${WRKSRC}/rebar ${WRKSRC}/rebar3
+	-${RM} ${WRKSRC}/rebar ${WRKSRC}/rebar3
 .for target in ${REBAR_TARGETS}
 # Remove rebar.lock every time - it can be created again after each run of rebar3
-	@${RM} ${WRKSRC}/rebar.lock
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} REBAR_PROFILE=${REBAR_PROFILE} ${ERLANG_COMPILE} ${target}
+	-${RM} ${WRKSRC}/rebar.lock
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} REBAR_PROFILE=${REBAR_PROFILE} ${ERLANG_COMPILE} ${target}
 .endfor
 .endif # !target(do-build)
 
 .if !target(do-install)
 do-install:
-	@${MKDIR} ${STAGEDIR}${ERL_APP_ROOT}
-	@${MKDIR} ${STAGEDIR}${ERL_APP_ROOT}/src
-	cd ${WRKSRC}/src && ${COPYTREE_SHARE} \* ${STAGEDIR}${ERL_APP_ROOT}/src
-	@${MKDIR} ${STAGEDIR}${ERL_APP_ROOT}/ebin
+	@${MKDIR} ${FAKE_DESTDIR}${ERL_APP_ROOT}
+	@${MKDIR} ${FAKE_DESTDIR}${ERL_APP_ROOT}/src
+	cd ${WRKSRC}/src && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${ERL_APP_ROOT}/src
+	@${MKDIR} ${FAKE_DESTDIR}${ERL_APP_ROOT}/ebin
 .if ${erlang_ARGS:Mrebar3}
 	${INSTALL_DATA} ${WRKSRC}/_build/${ERL_BUILD_NAME}/lib/${ERL_APP_NAME}/ebin/* \
-		${STAGEDIR}${ERL_APP_ROOT}/ebin
+		${FAKE_DESTDIR}${ERL_APP_ROOT}/ebin
 .else
-	${INSTALL_DATA} ${WRKSRC}/ebin/* ${STAGEDIR}${ERL_APP_ROOT}/ebin
+	${INSTALL_DATA} ${WRKSRC}/ebin/* ${FAKE_DESTDIR}${ERL_APP_ROOT}/ebin
 .endif
 	if [ -d ${WRKSRC}/include ]; then \
-		${MKDIR} ${STAGEDIR}${ERL_APP_ROOT}/include; \
-		cd ${WRKSRC}/include && ${COPYTREE_SHARE} \* ${STAGEDIR}${ERL_APP_ROOT}/include; \
+		${MKDIR} ${FAKE_DESTDIR}${ERL_APP_ROOT}/include; \
+		cd ${WRKSRC}/include && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${ERL_APP_ROOT}/include; \
 	fi
 	if [ -d ${WRKSRC}/priv ]; then \
-		${MKDIR} ${STAGEDIR}${ERL_APP_ROOT}/priv; \
-		cd ${WRKSRC}/priv && ${COPYTREE_SHARE} \* ${STAGEDIR}${ERL_APP_ROOT}/priv; \
+		${MKDIR} ${FAKE_DESTDIR}${ERL_APP_ROOT}/priv; \
+		cd ${WRKSRC}/priv && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${ERL_APP_ROOT}/priv; \
 	fi
 .if ${ERL_DOCS} != ""
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for file in ${ERL_DOCS}
 	if [ -d "${WRKSRC}/${file}" ]; then \
-		cd ${WRKSRC} && ${COPYTREE_SHARE} ${file} ${STAGEDIR}${DOCSDIR}; \
+		cd ${WRKSRC} && ${COPYTREE_SHARE} ${file} ${DOCSDIR}; \
 	else \
-		${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}; \
 	fi
 .endfor
 .endif # .if ${ERL_DOCS} != ""
 .if ${REBAR_TARGETS:Mescriptize}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 .endif
 .endif # !target(do-install)
 
