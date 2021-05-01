@@ -989,6 +989,7 @@ SUBDIR += re2
 SUBDIR += re2c
 SUBDIR += readline
 SUBDIR += rebar
+SUBDIR += rebar3
 SUBDIR += rlog
 SUBDIR += ruby-gems
 SUBDIR += rubygem-concurrent-ruby
