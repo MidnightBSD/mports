@@ -152,7 +152,6 @@ SUBDIR += pinentry-tty
 SUBDIR += pulledpork
 SUBDIR += py-SecretStorage
 SUBDIR += py-acme
-SUBDIR += py-backports.ssl_match_hostname
 SUBDIR += py-bcrypt
 SUBDIR += py-certbot
 SUBDIR += py-certbot-apache
