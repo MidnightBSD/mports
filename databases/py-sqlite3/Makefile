@@ -17,7 +17,7 @@ LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 RUN_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 
-USES=		compiler:c11 python tar:xz
+USES=		compiler:c11 python:2.7+ tar:xz
 USE_PYTHON=	autoplist distutils allflavors
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
@@ -39,6 +39,6 @@ post-extract:
 .endif
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_LIBDIR}/lib-dynload/_sqlite3.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_LIBDIR}/lib-dynload/_sqlite3*.so
 
 .include <bsd.port.post.mk>
