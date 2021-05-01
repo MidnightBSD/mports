@@ -15,7 +15,7 @@ USES=		compiler ssl tar:tgz uidfix
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
-MAKE_ARGS+=	BINDIR=${PREFIX}/bin
+MAKE_ARGS+=	BINDIR=${FAKE_DESTDIR}${TRUE_PREFIX}/bin
 
 PLIST_FILES=	bin/bsdec2-image-upload
 
