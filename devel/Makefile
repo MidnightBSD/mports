@@ -134,6 +134,7 @@ SUBDIR += highlighterkit
 SUBDIR += hs-cabal-install
 SUBDIR += hs-haddock
 SUBDIR += hwloc
+SUBDIR += hwloc2
 SUBDIR += hyperscan
 SUBDIR += icu
 SUBDIR += imake
