@@ -218,6 +218,7 @@ SUBDIR += py-markupsafe
 SUBDIR += py-mistune
 SUBDIR += py-pygments
 SUBDIR += py-pygments-25
+SUBDIR += py-pyhamcrest
 SUBDIR += py-pyjade
 SUBDIR += py-pypa-docs-theme
 SUBDIR += py-pyphen
