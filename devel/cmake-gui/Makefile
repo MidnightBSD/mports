@@ -1,5 +1,5 @@
 PORTNAME=	cmake
-DISTVERSION=	3.19.5
+DISTVERSION=	3.19.6
 CATEGORIES=	devel
 MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-gui
@@ -8,6 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI for cmake
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
 BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
 LIB_DEPENDS=	libcurl.so:ftp/curl \
@@ -17,7 +18,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		librhash.so:security/rhash
 
 USES=		cmake:run,insource compiler:c++11-lang desktop-file-utils libarchive \
-		python:build shared-mime-info qt:5
+		shared-mime-info qt:5
 USE_QT=		core gui widgets buildtools_build qmake_build
 CMAKE_OFF=	BUILD_CursesDialog \
 		CMake_SPHINX_DEPEND_ON_EXECUTABLES
@@ -32,13 +33,7 @@ INSTALL_WRKSRC=	${WRKSRC}/Source/QtDialog
 
 DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
 
-.include <bsd.port.pre.mk>
-
-# CMake >= 3.1.0 needs libarchive3 because it calls
-# archive_entry_copy_sourcepath_w and archive_write_set_format_7zip.
-.if ${OSVERSION} < 9999
-LIB_DEPENDS+=	libarchive.so.13:archivers/libarchive
-.endif
+CXXFLAGS+=	-D__BSD_VISIBLE
 
 post-patch:
 	@(${FIND} ${WRKSRC}/Modules -name "*.cmake" -print0; \
@@ -53,4 +48,4 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/Utilities/Sphinx/man/cmake-gui.1 \
 		${STAGEDIR}${PREFIX}/man/man1
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

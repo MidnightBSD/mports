@@ -1,5 +1,5 @@
 PORTNAME=	cmake
-DISTVERSION=	3.19.5
+DISTVERSION=	3.19.6
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/Kitware/CMake/releases/download/v${DISTVERSION}/ \
@@ -36,6 +36,8 @@ MANPAGES_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_
 MANPAGES_CONFIGURE_ON=	--sphinx-man
 
 CONFLICTS_INSTALL=	cmake-modules-*
+
+CXXFLAGS+=	-D__BSD_VISIBLE
 
 .include <bsd.port.pre.mk>
 
