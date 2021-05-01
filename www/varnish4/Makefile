@@ -1,7 +1,7 @@
 PORTNAME=	varnish
-PORTVERSION=	4.1.10
+PORTVERSION=	4.1.11
 DISTVERSIONPREFIX=	varnish-
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMESUFFIX=	4
 
@@ -11,19 +11,18 @@ COMMENT=	High-performance HTTP accelerator
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	rst2man-${PYTHON_VER}:textproc/py-docutils@${PY_FLAVOR}
+BUILD_DEPENDS=	rst2man:textproc/py-docutils
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
 CONFLICTS=	varnish-2.* varnish-3.*
 
 USES=		autoreconf cpe gmake libedit libtool ncurses pathfix \
-		pkgconfig python:2.7,build readline shebangfix
+		pkgconfig python:build readline shebangfix
 SHEBANG_FILES=	lib/libvcc/vmodtool.py
-python_OLD_CMD=	/usr/bin/env python
 CPE_VENDOR=	varnish-cache
-CFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-I${LOCALBASE}/include -Wno-error
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--localstatedir=${PREFIX} --disable-tests --with-rst2man=${LOCALBASE}/bin/rst2man-${PYTHON_VER}
+CONFIGURE_ARGS=	--localstatedir=${PREFIX} --enable-tests
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 # magus
