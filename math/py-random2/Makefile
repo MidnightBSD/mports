@@ -1,0 +1,16 @@
+PORTNAME=	random2
+DISTVERSION=	1.0.1
+CATEGORIES=	math python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python 3 compatible Python 2 random module
+
+LICENSE=	python
+
+USES=		python:3.6+ zip
+USE_PYTHON=	distutils autoplist
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

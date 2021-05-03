@@ -53,6 +53,7 @@ SUBDIR += py-mpmath
 SUBDIR += py-numeric
 SUBDIR += py-numpy
 SUBDIR += py-pyclipper
+SUBDIR += py-random2
 SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5
