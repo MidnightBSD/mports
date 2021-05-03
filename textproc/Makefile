@@ -274,6 +274,7 @@ SUBDIR += sphinxsearch
 SUBDIR += teckit
 SUBDIR += texi2html
 SUBDIR += tidyp
+SUBDIR += tinyxml
 SUBDIR += txt2man
 SUBDIR += uchardet
 SUBDIR += unoconv

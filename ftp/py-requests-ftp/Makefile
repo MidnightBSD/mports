@@ -1,18 +1,17 @@
-PORTNAME=	bitcoin
-PORTVERSION=	1.1.42
-CATEGORIES=	finance python
+PORTNAME=	requests-ftp
+DISTVERSION=	0.3.1
+CATEGORIES=	ftp python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python Bitcoin Tools
+COMMENT=	FTP transport adapter for requests
 
-LICENSE=	mit
+LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python:3.6+
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
-NO_TEST=	yes
 
 .include <bsd.port.mk>

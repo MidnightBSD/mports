@@ -1,18 +1,15 @@
-PORTNAME=	bitcoin
-PORTVERSION=	1.1.42
-CATEGORIES=	finance python
+PORTNAME=	blessings
+PORTVERSION=	1.7
+CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python Bitcoin Tools
+COMMENT=	Thin wrapper around terminal coloring, styling, and positioning
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
-NO_ARCH=	yes
-NO_TEST=	yes
 
 .include <bsd.port.mk>

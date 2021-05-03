@@ -127,6 +127,7 @@ SUBDIR += py-avahi
 SUBDIR += py-ec2-cli-tools
 SUBDIR += py-ntplib
 SUBDIR += py-oauth2
+SUBDIR += py-pysendfile
 SUBDIR += py-pysocks
 SUBDIR += py-qt5-network
 SUBDIR += py-s3cmd
