@@ -67,6 +67,7 @@ SUBDIR += oolite
 SUBDIR += pvpgn
 SUBDIR += py-cbeams
 SUBDIR += py-fife
+SUBDIR += py-pychess
 SUBDIR += qqwing
 SUBDIR += qstat
 SUBDIR += quadra
