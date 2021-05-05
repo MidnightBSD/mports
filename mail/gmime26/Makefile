@@ -1,9 +1,7 @@
 # Created by: Kirill Ponomarew <ponomarew@oberon.net>
-# $MidnightBSD$
-# $FreeBSD: head/mail/gmime26/Makefile 375378 2014-12-24 00:14:11Z bofh $
 
 PORTNAME=	gmime
-PORTVERSION=	2.6.20
+PORTVERSION=	2.6.23
 CATEGORIES?=	mail
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX?=	26
@@ -13,38 +11,40 @@ COMMENT?=	Library (written in C) for parsing and creating messages using MIME
 
 LICENSE=	lgpl2.1
 
+LIB_DEPENDS=	libgpgme.so:security/gpgme \
+		libassuan.so:security/libassuan \
+		libgpg-error.so:security/libgpg-error
+
+USES=		gettext-runtime gmake gnome iconv libtool localbase pathfix pkgconfig tar:xz
+
 SLAVEDIRS=	mail/gmime26-sharp
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}26
-USES=		gmake iconv libtool pathfix pkgconfig tar:xz
 USE_GNOME+=	glib20
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+
+OPTIONS_DEFINE=	GINTRO VALA
+OPTIONS_SUB=	yes
+GINTRO_DESC=	Install GObject Introspection data
+VALA_DESC=	Install vala binding
+GINTRO_BUILD_DEPENDS=	gobject-introspection>=0.6.8:devel/gobject-introspection
+GINTRO_RUN_DEPENDS=	gobject-introspection>=0.6.8:devel/gobject-introspection
+GINTRO_CONFIGURE_ENABLE=introspection
+VALA_BUILD_DEPENDS=	vala>=0.20:lang/vala
+VALA_CONFIGURE_ENABLE=	vala
+VALA_IMPLIES=	GINTRO
+
 # www.freebsd.org/cgi/query-pr.cgi?pr=118092
 # Rename uudecode and uuencode to gmime-* to not conflict with userland
 # fix kept in case issue returns
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--enable-mono=no \
 		--program-transform-name="s/uuencode/gmime-uuencode/;s/uudecode/gmime-uudecode/;"
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-OPTIONS_DEFINE=	DOCS
-
-.include <bsd.mport.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/tests//' \
 		${WRKSRC}/Makefile.in
-
-.if ${PORT_OPTIONS:MDOCS}
-PORTDOCS=	*
-
-post-install:
-	@${MKDIR} ${DOCSDIR}
-.for i in docs/reference/html/*
-	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
-.endfor
-.endif
 
 .include <bsd.port.mk>

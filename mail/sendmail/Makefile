@@ -93,7 +93,7 @@ CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl2-8.*
 MAKE_PKGNAMES=	for i in "" +tls; do \
 	for j in "" +sasl2; do \
 	for k in "" +ldap; do \
-	for l in "" +db4 +db47 +db48 +db49; do \
+	for l in "" +db48 +db5 +db6; do \
 	echo "sendmail$${i}$${j}$${k}$${l}-8.*" ;\
 	done done done done
 
