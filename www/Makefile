@@ -139,7 +139,6 @@ SUBDIR += pmwiki
 SUBDIR += polipo
 SUBDIR += privoxy
 SUBDIR += py-aiohttp
-SUBDIR += py-aiohttp2
 SUBDIR += py-autobahn
 SUBDIR += py-beaker
 SUBDIR += py-beautifulsoup

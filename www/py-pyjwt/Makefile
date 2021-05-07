@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	pyjwt
-PORTVERSION=	1.4.0
+PORTVERSION=	1.7.1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +11,7 @@ COMMENT=	JSON Web Token implementation in Python
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils concurrent autoplist
 
 OPTIONS_DEFINE=	RSASSA

@@ -1,5 +1,5 @@
 PORTNAME=	multidict
-PORTVERSION=	4.7.5
+PORTVERSION=	5.1.0
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +10,7 @@ COMMENT=	Multidict implementation
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:3.4+
+USES=		python:3.6+
 USE_PYTHON=	autoplist cython distutils
 
 NO_TEST=	yes

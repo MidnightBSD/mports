@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	wsaccel
 PORTVERSION=	0.6.2
 CATEGORIES=	www python
@@ -11,7 +9,7 @@ COMMENT=	WebSocket Accelerator for ws4py and AutobahnPython
 
 LICENSE=	apache2
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 post-install:
