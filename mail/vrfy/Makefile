@@ -2,17 +2,16 @@
 
 PORTNAME=	vrfy
 PORTVERSION=	1.0
-PORTREVISION=	1
+DISTVERSIONPREFIX=v
+PORTREVISION=	2
 CATEGORIES=	mail
-MASTER_SITES=	http://jadawin.tuxaco.net/freebsd/
-DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Verify mail address
 
-LICENSE=	bsd2
+USE_GITHUB=	yes
+GH_ACCOUNT=	asxe
 
-WRKSRC=		${WRKDIR}
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" RES=""
 PLIST_FILES=	bin/vrfy man/man1/vrfy.1.gz
 

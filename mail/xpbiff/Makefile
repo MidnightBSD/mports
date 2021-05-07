@@ -13,7 +13,7 @@ COMMENT?=	Replacement for xbiff that handles popup window with mail header
 
 LICENSE=	other
 
-USES=		imake:noman
+USES=		imake:noman xorg
 USE_XORG=	xpm xaw xmu
 PLIST_FILES=	bin/xpbiff
 WRKSRC=		${WRKDIR}/xpbiff
