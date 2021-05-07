@@ -141,6 +141,7 @@ SUBDIR += opusfile
 SUBDIR += pavucontrol
 SUBDIR += portaudio
 SUBDIR += pulseaudio
+SUBDIR += py-gtts
 SUBDIR += py-mpd
 SUBDIR += py-mutagen
 SUBDIR += py-python-mpd2
