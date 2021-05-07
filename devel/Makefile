@@ -865,6 +865,7 @@ SUBDIR += py-parsedatetime
 SUBDIR += py-pathlib2
 SUBDIR += py-pbr
 SUBDIR += py-pyicu
+SUBDIR += py-pyinotify
 SUBDIR += py-pip
 SUBDIR += py-pluggy
 SUBDIR += py-ply
