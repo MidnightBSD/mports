@@ -1,11 +1,10 @@
 # Created by: Christer Edwards <christer.edwards@gmail.com>
-# $FreeBSD: head/sysutils/bastille/Makefile 543423 2020-07-25 15:16:32Z mikael $
 
 PORTNAME=	bastille
 PORTVERSION=	0.8.20210115
 CATEGORIES=	sysutils
 
-MAINTAINER=	christer.edwards@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jail automation framework
 
 LICENSE=	bsd3
