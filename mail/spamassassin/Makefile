@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	spamassassin
-PORTVERSION=	3.4.2
-PORTREVISION?=	0
+PORTVERSION=	3.4.5
 CATEGORIES?=	mail perl5
 MASTER_SITES=	APACHE/spamassassin/source CPAN/Mail
 DISTNAME=	Mail-SpamAssassin-${PORTVERSION}
@@ -86,8 +85,7 @@ GNUPG_RUN_DEPENDS=	gnupg1>=1.4.7:security/gnupg1
 GNUPG2_RUN_DEPENDS=	gpg2:security/gnupg
 MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:databases/p5-DBD-mysql
 PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
-PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor@py27
-PYZOR_USES=		python:2.7
+PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor
 RAZOR_RUN_DEPENDS=	razor-agents>=2.84:mail/razor-agents \
 			p5-Digest-SHA1>=2.13:security/p5-Digest-SHA1
 RLIMIT_RUN_DEPENDS=	p5-BSD-Resource>=1.2911:devel/p5-BSD-Resource
@@ -144,6 +142,7 @@ post-patch::
 		-e 's,B_CONFDIR)/v340.pre,B_CONFDIR)/v340.pre.sample,g' \
 		-e 's,B_CONFDIR)/v341.pre,B_CONFDIR)/v341.pre.sample,g' \
 		-e 's,B_CONFDIR)/v342.pre,B_CONFDIR)/v342.pre.sample,g' \
+		-e 's,B_CONFDIR)/v343.pre,B_CONFDIR)/v343.pre.sample,g' \
 		-e 's/require DBI/0/' \
 		${WRKSRC}/Makefile.PL
 	${REINPLACE_CMD} -e '/^CC =/d; \
