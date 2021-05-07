@@ -1,7 +1,5 @@
 #!/bin/sh
-#
-# $FreeBSD: head/mail/mailman/files/mailman.in 533159 2020-04-27 18:04:58Z mandree $
-#
+
 # PROVIDE: mailman
 # REQUIRE: LOGIN
 # KEYWORD: shutdown

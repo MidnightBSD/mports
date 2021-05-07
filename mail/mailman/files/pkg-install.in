@@ -1,6 +1,4 @@
 #! /bin/sh
-#
-# $FreeBSD: head/mail/mailman/files/pkg-install.in 532983 2020-04-25 22:41:21Z mandree $
 
 PATH=/bin:/usr/bin:/usr/sbin
 
