@@ -830,6 +830,7 @@ SUBDIR += py-google-i18n-address
 SUBDIR += py-gyp
 SUBDIR += py-hgtools
 SUBDIR += py-hypothesis
+SUBDIR += py-jeepney
 SUBDIR += py-jmespath
 SUBDIR += py-jsonref
 SUBDIR += py-kitchen
