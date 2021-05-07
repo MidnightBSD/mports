@@ -1,0 +1,22 @@
+# Created by: Yuri Victorovich <yuri@rawbw.com>
+
+PORTNAME=	rfc3986
+PORTVERSION=	1.4.0
+CATEGORIES=	www python
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python implementation of RFC 3986
+
+LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	sigmavirus24
+
+USES=		python:3.6+
+USE_PYTHON=	autoplist distutils
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

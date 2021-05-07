@@ -168,6 +168,7 @@ SUBDIR += py-requests-oauthlib
 SUBDIR += py-requests-toolbelt
 SUBDIR += py-requests-unixsocket
 SUBDIR += py-requests_ntlm
+SUBDIR += py-rfc3986
 SUBDIR += py-soupsieve
 SUBDIR += py-tornado
 SUBDIR += py-treq
