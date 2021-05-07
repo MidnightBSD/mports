@@ -1,7 +1,7 @@
 # Created by: Thomas Gellekum <tg@FreeBSD.org>
 
 PORTNAME=	reportlab
-PORTVERSION=	3.5.21
+PORTVERSION=	3.5.60
 CATEGORIES=	print python
 MASTER_SITES=	CHEESESHOP \
 		https://www.reportlab.com/ftp/
@@ -17,25 +17,26 @@ LICENSE=	bsd3
 
 RUN_DEPENDS=	${PY_PILLOW}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 CONFLICTS=	py*-reportlab[^3]-[^3].* \
 		py*-reportlab-[^3].*
 
 PFBFER_VERSION=	20180109
-PFBFER=	pfbfer-${PFBFER_VERSION}.zip
+PFBFER=		pfbfer-${PFBFER_VERSION}.zip
 
 MAKE_ENV=	PACKAGE_PATH="${REPORTLABDIR}"
 
 REPORTLABDIR=	${PYTHONPREFIX_SITELIBDIR}/reportlab
 DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
+PORTDOCS=	reportlab-userguide.pdf
 
 OPTIONS_DEFINE=	CJK FREETYPE DOCS
-OPTIONS_DEFAULT=	CJK FREETYPE
+OPTIONS_DEFAULT=CJK FREETYPE
 # XXX disable this 20190809 while linimon investigates why having it
 # enabled consumes all memory and swap during poudriere builds.
-OPTIONS_EXCLUDE_powerpc64=       DOCS
+OPTIONS_EXCLUDE_powerpc64=	DOCS
 CJK_DESC=	Adobe CMaps
 CJK_RUN_DEPENDS=	${LOCALBASE}/share/fonts/adobe-cmaps/ac15/cid2code.txt:print/adobe-cmaps
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
@@ -56,5 +57,12 @@ post-patch-DOCS-on:
 
 post-install:
 	-${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/reportlab/*/*.so
+
+post-install-DOCS-on:
+	@cd ${WRKSRC}/docs && ${PYTHON_CMD} genAll.py
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for i in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/docs/${i} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
 
 .include <bsd.port.mk>
