@@ -1,7 +1,7 @@
 # Created by: Jose Jachuf <jjachuf@gmail.com>
 
 PORTNAME=	PollyReports
-PORTVERSION=	1.7.7
+PORTVERSION=	1.8
 CATEGORIES=	print python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ COMMENT=	Band-oriented PDF report generation from database query
 LICENSE=	bsd2
 
 NO_ARCH=	yes
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 OPTIONS_DEFINE=	REPORTLAB

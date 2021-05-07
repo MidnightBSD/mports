@@ -1,7 +1,7 @@
 # Created by: Joseph Koshy <jkoshy@FreeBSD.org>
 
 PORTNAME=	fonttools
-PORTVERSION=	4.9.0
+PORTVERSION=	4.22.1
 CATEGORIES=	print python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python:3.6+ zip
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 MAKE_ENV=	FONTTOOLS_MANPATH="man"
 NO_ARCH=	yes
