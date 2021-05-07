@@ -1,5 +1,5 @@
 PORTNAME=	php80
-DISTVERSION=	8.0.3
+DISTVERSION=	8.0.5
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=   PHP/distributions
@@ -26,7 +26,7 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-password-argon2=${LOCALBASE} \
 		--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd10.4
 USES+=		autoreconf:build
 USE_GNOME=	libxml2
 
@@ -34,7 +34,7 @@ USE_GNOME=	libxml2
 LDFLAGS_i386=	-Wl,-z,notext
 
 OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG DTRACE IPV6 MYSQLND LINKTHR ZTS
-OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR DTRACE
+OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR
 OPTIONS_EXCLUDE_DragonFly=	DTRACE
 # ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
 OPTIONS_EXCLUDE_aarch64=	DTRACE
