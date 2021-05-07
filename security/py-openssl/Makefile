@@ -1,5 +1,5 @@
 PORTNAME=	openssl
-PORTVERSION=	19.0.0
+PORTVERSION=	19.1.0
 PORTREVISION=	0
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
@@ -17,18 +17,13 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=2.1.4:security/py-cryptography
 
 OPTIONS_DEFINE=	EXAMPLES
 
-USES=		cpe python
+USES=		cpe python:3.6+
 USE_PYTHON=	autoplist concurrent distutils pythonprefix
+
+NO_ARCH=	yes
+NO_TEST=	yes
 
 CPE_VENDOR=	jean-paul_calderone
 CPE_PRODUCT=	py${PORTNAME}
-
-PORTEXAMPLES=	*
-
-NO_TEST=	yes
-
-post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 
 .include <bsd.port.mk>

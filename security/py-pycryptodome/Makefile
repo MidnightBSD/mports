@@ -1,7 +1,7 @@
 # Created by: Yuri Victorovich <yuri@rawbw.com>
 
 PORTNAME=	pycryptodome
-DISTVERSION=	3.9.8
+DISTVERSION=	3.10.1
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	publicdom bsd2 apache2
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pycrypto
