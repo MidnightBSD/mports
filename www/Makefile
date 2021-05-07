@@ -148,6 +148,7 @@ SUBDIR += py-cssselect
 SUBDIR += py-cssutils
 SUBDIR += py-flup6
 SUBDIR += py-gunicorn
+SUBDIR += py-h2
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
 SUBDIR += py-hyperlink
