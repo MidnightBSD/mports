@@ -1,19 +1,21 @@
-You now need to add an alias to apache's httpd.conf pointing to
-%%SQUIRRELDIR%% in order to access SquirrelMail from
-your web browser, or create a VirtualHost with DocumentRoot set to
-that directory.
+[
+{ type: install
+  message: <<EOM
+To activate SquirrelMail, you must complete the following steps:
 
-For SquirrelMail to work properly you will need to make sure the
-following option is set in your php.ini file:
-file_uploads = On
+1) Set up a VirtualHost or an alias in httpd.conf that points to
+   %%SQUIRRELDIR%%
 
-If you have problems with SquirrelMail saying "you must login" after
-you just have, the following php.ini option may help:
-session.auto_start = 1
+2) Make sure the following is set in your php.ini:
+   file_uploads = On
 
-In order to do your administrative configuration you need to 
-cd %%SQUIRRELDIR%% && ./configure
-SquirrelMail will not work until this has been done. After this
-step is complete, and the config.php is created, plugin ports will
-properly auto activate.
+3) Configure your installation.
+   SQUIRRELMAIL WILL NOT WORK UNTIL THIS HAS BEEN DONE.
+   cd %%SQUIRRELDIR%% && ./configure
 
+4) It is best practice to change the data/user preference directory
+   (under General Options) to somewhere outside of
+   %%SQUIRRELDIR%%.
+EOM
+}
+]

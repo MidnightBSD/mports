@@ -1,4 +1,5 @@
 etc/periodic/daily/111.clean-squirrelmail
+%%SQUIRRELDIR%%/attach/.htaccess
 %%SQUIRRELDIR%%/class/.htaccess
 %%SQUIRRELDIR%%/class/deliver/Deliver.class.php
 %%SQUIRRELDIR%%/class/deliver/Deliver_IMAP.class.php
@@ -20,14 +21,13 @@ etc/periodic/daily/111.clean-squirrelmail
 %%SQUIRRELDIR%%/class/mime/SMimeMessage.class.php
 %%SQUIRRELDIR%%/class/mime/index.php
 %%SQUIRRELDIR%%/config/.htaccess
-%%SQUIRRELDIR%%/config/conf.pl
+@(,,755) %%SQUIRRELDIR%%/config/conf.pl
 %%SQUIRRELDIR%%/config/config_default.php
-@unexec if cmp -s %D%/www/squirrelmail/config/config_local.php %D%/www/squirrelmail/config/config_local.php.sample; then rm -f %D%/www/squirrelmail/config/config_local.php; fi
-%%SQUIRRELDIR%%/config/config_local.php.sample
+@sample %%SQUIRRELDIR%%/config/config_local.php.sample
 %%SQUIRRELDIR%%/config/index.php
 %%SQUIRRELDIR%%/configure
 %%SQUIRRELDIR%%/data/.htaccess
-%%SQUIRRELDIR%%/data/default_pref
+@sample %%SQUIRRELDIR%%/data/default_pref.sample
 %%SQUIRRELDIR%%/data/index.php
 %%SQUIRRELDIR%%/functions/.htaccess
 %%SQUIRRELDIR%%/functions/abook_database.php
@@ -135,6 +135,7 @@ etc/periodic/daily/111.clean-squirrelmail
 %%SQUIRRELDIR%%/images/senti.png
 %%SQUIRRELDIR%%/images/sm_logo.png
 %%SQUIRRELDIR%%/images/sort_none.png
+%%SQUIRRELDIR%%/images/spacer.png
 %%SQUIRRELDIR%%/images/up_pointer.png
 %%SQUIRRELDIR%%/include/.htaccess
 %%SQUIRRELDIR%%/include/index.php
@@ -234,6 +235,7 @@ etc/periodic/daily/111.clean-squirrelmail
 %%SQUIRRELDIR%%/plugins/squirrelspell/js/init.js
 %%SQUIRRELDIR%%/plugins/squirrelspell/modules/.htaccess
 %%SQUIRRELDIR%%/plugins/squirrelspell/modules/WHATISTHIS
+%%SQUIRRELDIR%%/plugins/squirrelspell/modules/change_main_options.mod
 %%SQUIRRELDIR%%/plugins/squirrelspell/modules/check_me.mod
 %%SQUIRRELDIR%%/plugins/squirrelspell/modules/crypto.mod
 %%SQUIRRELDIR%%/plugins/squirrelspell/modules/crypto_badkey.mod
@@ -268,6 +270,10 @@ etc/periodic/daily/111.clean-squirrelmail
 %%SQUIRRELDIR%%/po/mergepo
 %%SQUIRRELDIR%%/po/squirrelmail.pot
 %%SQUIRRELDIR%%/po/xgetpo
+%%SQUIRRELDIR%%/scripts/common.js
+%%SQUIRRELDIR%%/scripts/index.php
+%%SQUIRRELDIR%%/scripts/reload_page.js
+%%SQUIRRELDIR%%/scripts/remote_request.js
 %%SQUIRRELDIR%%/src/addrbook_popup.php
 %%SQUIRRELDIR%%/src/addrbook_search.php
 %%SQUIRRELDIR%%/src/addrbook_search_html.php
@@ -368,53 +374,94 @@ etc/periodic/daily/111.clean-squirrelmail
 %%SQUIRRELDIR%%/themes/simple_green_theme.php
 %%SQUIRRELDIR%%/themes/simple_purple.php
 %%SQUIRRELDIR%%/themes/slashdot_theme.php
+%%SQUIRRELDIR%%/themes/solarized_dark.php
+%%SQUIRRELDIR%%/themes/solarized_light.php
 %%SQUIRRELDIR%%/themes/spice_of_life.php
 %%SQUIRRELDIR%%/themes/spice_of_life_dark.php
 %%SQUIRRELDIR%%/themes/spice_of_life_lite.php
 %%SQUIRRELDIR%%/themes/techno_blue.php
 %%SQUIRRELDIR%%/themes/turquoise.php
 %%SQUIRRELDIR%%/themes/wood_theme.php
-@dirrm %%SQUIRRELDIR%%/themes/css
-@dirrm %%SQUIRRELDIR%%/themes
-@dirrm %%SQUIRRELDIR%%/src
-@dirrm %%SQUIRRELDIR%%/po
-@dirrm %%SQUIRRELDIR%%/plugins/translate
-@dirrm %%SQUIRRELDIR%%/plugins/test
-@dirrm %%SQUIRRELDIR%%/plugins/squirrelspell/modules
-@dirrm %%SQUIRRELDIR%%/plugins/squirrelspell/js
-@dirrm %%SQUIRRELDIR%%/plugins/squirrelspell
-@dirrm %%SQUIRRELDIR%%/plugins/spamcop
-@dirrm %%SQUIRRELDIR%%/plugins/sent_subfolders
-@dirrm %%SQUIRRELDIR%%/plugins/newmail/sounds
-@dirrm %%SQUIRRELDIR%%/plugins/newmail
-@dirrm %%SQUIRRELDIR%%/plugins/message_details
-@dirrm %%SQUIRRELDIR%%/plugins/mail_fetch
-@dirrm %%SQUIRRELDIR%%/plugins/listcommands
-@dirrm %%SQUIRRELDIR%%/plugins/info
-@dirrm %%SQUIRRELDIR%%/plugins/fortune
-@dirrm %%SQUIRRELDIR%%/plugins/filters/bulkquery
-@dirrm %%SQUIRRELDIR%%/plugins/filters
-@dirrm %%SQUIRRELDIR%%/plugins/demo
-@dirrm %%SQUIRRELDIR%%/plugins/delete_move_next
-@dirrm %%SQUIRRELDIR%%/plugins/calendar
-@dirrm %%SQUIRRELDIR%%/plugins/bug_report
-@dirrm %%SQUIRRELDIR%%/plugins/administrator
-@dirrmtry %%SQUIRRELDIR%%/plugins
-@dirrmtry %%SQUIRRELDIR%%/locale
-@dirrm %%SQUIRRELDIR%%/include/options
-@dirrm %%SQUIRRELDIR%%/include
-@dirrmtry %%SQUIRRELDIR%%/images
-@dirrm %%SQUIRRELDIR%%/help/en_US
-@dirrmtry %%SQUIRRELDIR%%/help
-@dirrm %%SQUIRRELDIR%%/functions/encode
-@dirrm %%SQUIRRELDIR%%/functions/decode
-@dirrm %%SQUIRRELDIR%%/functions
-@dirrm %%SQUIRRELDIR%%/data
-@dirrmtry %%SQUIRRELDIR%%/config
-@dirrm %%SQUIRRELDIR%%/class/mime
-@dirrm %%SQUIRRELDIR%%/class/helper
-@dirrm %%SQUIRRELDIR%%/class/deliver
-@dirrm %%SQUIRRELDIR%%/class
-@dirrmtry %%SQUIRRELDIR%%
-@dirrmtry etc/periodic/daily
-@dirrmtry etc/periodic
+%%PORTDOCS%%%%DOCSDIR%%/.htaccess
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/README.themes
+%%PORTDOCS%%%%DOCSDIR%%/ReleaseNotes
+%%PORTDOCS%%%%DOCSDIR%%/UPGRADE
+%%PORTDOCS%%%%DOCSDIR%%/authentication.txt
+%%PORTDOCS%%%%DOCSDIR%%/ie_ssl.txt
+%%PORTDOCS%%%%DOCSDIR%%/index.html
+%%PORTDOCS%%%%DOCSDIR%%/index.php
+%%PORTDOCS%%%%DOCSDIR%%/plugins/README.plugins
+%%PORTDOCS%%%%DOCSDIR%%/plugins/administrator/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/plugins/bug_report/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/calendar/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/delete_move_next/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/demo/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/plugins/demo/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/filters/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/filters/bulkquery/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/plugins/filters/bulkquery/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/fortune/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/info/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/listcommands/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/mail_fetch/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/newmail/HISTORY
+%%PORTDOCS%%%%DOCSDIR%%/plugins/newmail/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/spamcop/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/squirrelspell/CRYPTO
+%%PORTDOCS%%%%DOCSDIR%%/plugins/squirrelspell/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/plugins/squirrelspell/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/plugins/squirrelspell/PRIVACY
+%%PORTDOCS%%%%DOCSDIR%%/plugins/squirrelspell/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/squirrelspell/UPGRADING
+%%PORTDOCS%%%%DOCSDIR%%/plugins/test/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/plugins/test/README
+%%PORTDOCS%%%%DOCSDIR%%/plugins/translate/README
+%%PORTDOCS%%%%DOCSDIR%%/presets.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.2/Notes-1.2.0.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.2/Notes-1.2.1.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.2/Notes-1.2.2.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.2/Notes-1.2.3.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.2/Notes-1.2.4.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.2/Notes-1.2.5.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.2/Notes-1.2.6.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.3/Notes-1.3.0.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.3/Notes-1.3.1.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.3/Notes-1.3.2.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.0.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.1.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.10.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.10a.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.11.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.12.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.13.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.15.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.16.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.17.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.18.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.19.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.2.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.20-RC2.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.20.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.20RC1.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.21.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.22.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.3.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.3a.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.4.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.5.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.6.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.7.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.8.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.9.txt
+%%PORTDOCS%%%%DOCSDIR%%/release_notes_archive/1.4/Notes-1.4.9a.txt
+%%PORTDOCS%%%%DOCSDIR%%/russian_apache.txt
+%%PORTDOCS%%%%DOCSDIR%%/security.txt
+%%PORTDOCS%%%%DOCSDIR%%/translating.txt
+%%PORTDOCS%%%%DOCSDIR%%/translating_help.txt
+@dir(%%SMUSER%%,%%SMGROUP%%,0750) %%SQUIRRELDIR%%/data
+@dir(%%SMUSER%%,%%SMGROUP%%,0730) %%SQUIRRELDIR%%/attach

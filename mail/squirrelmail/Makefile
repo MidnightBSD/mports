@@ -1,108 +1,97 @@
-# $MidnightBSD$
+# Created by: Simon Dick <simond@irrelevant.org>
+# $FreeBSD$
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.22
-PORTREVISION=	2
+PORTVERSION=	20200422
 CATEGORIES=	mail www
-MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION}
-DISTNAME=	${PORTNAME}-webmail-${PORTVERSION}
+MASTER_SITES=	http://snapshots.squirrelmail.org/ \
+	http://freebsd.uzsolt.hu/src/
+PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
+DISTNAME=	${PORTNAME}-${PORTVERSION}_0200-SVN.stable
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Webmail system which accesses mail over IMAP
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/doc/COPYING
 
-USE_PHP=	session gettext mbstring pcre openssl xml
-WANT_PHP_WEB=	yes
+USES=		cpe gettext perl5 php:web,flavors tar:bzip2
+USE_PHP=	session hash gettext mbstring pcre openssl xml
+USE_PERL5=	run
 
-USES=		gettext tar:bzip2 cpe
+PORTSCOUT=	ignore:1
 
-.ifdef WITH_DATABASE
-RUN_DEPENDS+=	${PREFIX}/share/pear/DB.php:${PORTSDIR}/databases/pear-DB
-.endif
+NO_ARCH=	yes
 
-.ifdef WITH_LDAP
-USE_PHP+=	ldap
-.endif
+WRKSRC=		${WRKDIR}/${PORTNAME}.stable/${PORTNAME}
 
-.ifndef WITHOUT_WWWDIR
-SQUIRRELDIR?=	${PREFIX}/www/${PORTNAME}
-.else
-SQUIRRELDIR?=	${PREFIX}/${PORTNAME}
-.endif
+OPTIONS_DEFINE=	DATABASE LDAP DOCS
+DATABASE_DESC=	PDO database support (must also install a driver)
+
+DATABASE_USE=	PHP=pdo
+LDAP_USE=	PHP=ldap
+
+# if you were using WITHOUT_WWWDIR, use SQUIRRELDIR=${PREFIX}/squirrelmail
+SQUIRRELDIR?=	${WWWDIR}
+
+SMUSER?=	${WWWOWN}
+SMGROUP?=	${WWWGRP}
+USERS=		${SMUSER}
+GROUPS=		${SMGROUP}
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION} \
-		SQUIRRELDIR="${SQUIRRELDIR:S,^${PREFIX}/,,}"
+		SQUIRRELDIR="${SQUIRRELDIR:S,^${PREFIX}/,,}" \
+		SMUSER=${SMUSER} \
+		SMGROUP=${SMGROUP}
 
-SUB_FILES=	pkg-message pkg-install pkg-deinstall
-SUB_LIST=	SQUIRRELDIR=${SQUIRRELDIR}
+SUB_FILES=	pkg-message
+SUB_LIST=	SQUIRRELDIR=${SQUIRRELDIR} SMUSER=${SMUSER} SMGROUP=${SMGROUP}
 
-PORTDOCS=	*
-
-pre-everything::
-	@${ECHO_CMD} "SquirrelMail is installed into ${SQUIRRELDIR}"
-	@${ECHO_CMD} "To use the old location ${PREFIX}/${PORTNAME} define"
-	@${ECHO_CMD} "WITHOUT_WWWDIR when patching or installing"
-	@${ECHO_CMD}
-	@${ECHO_CMD} "Use WITH_LDAP to ensure PHP LDAP support is installed"
-	@${ECHO_CMD} "Use WITH_DATABASE to ensure PEAR framework for database support is installed"
-	@${ECHO_CMD} "   (note that this does not install the database specific PEAR support, e.g. MySQL)"
-	@${ECHO_CMD}
+CONFLICTS=	squirreloutlook-[0-9]*
 
 post-patch:
-.ifndef PATCH_DEBUG
-	@${RM} -f \
-		${WRKSRC}/class/deliver/Deliver.class.php.orig \
-		${WRKSRC}/config/config_default.php.orig \
-		${WRKSRC}/functions/global.php.orig \
-		${WRKSRC}/functions/i18n.php.orig \
-		${WRKSRC}/functions/imap_search.php.orig \
-		${WRKSRC}/src/addrbook_search_html.php.orig \
-		${WRKSRC}/src/compose.php.orig
-.endif
-	@${REINPLACE_CMD} -e 's|ispell|${LOCALBASE}/bin/ispell|g' \
+	@${REINPLACE_CMD} -e 's|ispell|${LOCALBASE}/bin/aspell|g' \
 		${WRKSRC}/plugins/squirrelspell/sqspell_config.php
 	@${REINPLACE_CMD} -e 's|/usr/bin/fortune|/usr/games/fortune|g' \
 		${WRKSRC}/plugins/fortune/fortune_functions.php
-	@${RM} ${WRKSRC}/plugins/squirrelspell/sqspell_config.php.bak \
-		${WRKSRC}/plugins/fortune/fortune_functions.php.bak
+	@${REINPLACE_CMD} -e 's|/var/local/squirrelmail|${SQUIRRELDIR}|g' \
+		${WRKSRC}/config/conf.pl ${WRKSRC}/config/config_default.php ${WRKSRC}/doc/INSTALL
 
-# Rearrange the documentation
 do-build:
-	@${MV} ${WRKSRC}/themes/README.themes ${WRKSRC}/doc/
-	@cd ${WRKSRC} ; for f in `${FIND} plugins -name "README*" -or \
-		-name INSTALL -or -name CHANGES -or -name HISTORY`; \
+	# Rearrange the documentation
+	@${MV} ${WRKSRC}/themes/README.themes ${WRKSRC}/doc
+	@(cd ${WRKSRC} && \
+		for f in `${FIND} -E plugins -regex \
+			'.*(README.*|INSTALL|HISTORY)'`; \
 		do \
-		${MKDIR} doc/`dirname $$f` ; \
-		${MV} $$f doc/`dirname $$f` ; \
-	done; \
-	${MV} doc/plugins/squirrelspell/doc/README doc/plugins/squirrelspell ; \
-	${RM} -rf doc/plugins/squirrelspell/doc ; \
-	${MV} plugins/squirrelspell/doc/* doc/plugins/squirrelspell ; \
-	${RM} -f doc/plugins/squirrelspell/index.php ; \
-	${RM} -rf plugins/squirrelspell/doc
-	@${FIND} ${WRKSRC} -name '*.orig' -delete
+			${MKDIR} doc/`dirname $$f`; \
+			${MV} $$f doc/`dirname $$f`; \
+		done)
+	@${MV} ${WRKSRC}/doc/plugins/squirrelspell/doc/README ${WRKSRC}/doc/plugins/squirrelspell
+	@${RM} -r ${WRKSRC}/doc/plugins/squirrelspell/doc
+	@${MV} ${WRKSRC}/plugins/squirrelspell/doc/* ${WRKSRC}/doc/plugins/squirrelspell
+	@${RM} ${WRKSRC}/doc/plugins/squirrelspell/index.php
+	@${RM} -r ${WRKSRC}/plugins/squirrelspell/doc
+
 	@${ECHO} "left_refresh=300" >> ${WRKSRC}/data/default_pref
 	@${MV} ${WRKSRC}/config/config_local.php ${WRKSRC}/config/config_local.php.sample
-
-pre-install:
-	@${ECHO} "Your umask should be lax while installing this. Like, 022 or something."
-	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+	@${MV} ${WRKSRC}/data/default_pref ${WRKSRC}/data/default_pref.sample
+	@${MKDIR} ${WRKSRC}/attach
+	@${CP} -p ${WRKSRC}/data/.htaccess ${WRKSRC}/attach/.htaccess
 
 do-install:
-	${MKDIR} ${PREFIX}/etc/periodic/daily
-	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${PREFIX}/etc/periodic/daily
-	${MKDIR} ${SQUIRRELDIR}
-	${INSTALL_DATA} ${WRKSRC}/index.php ${SQUIRRELDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/configure ${SQUIRRELDIR}
-.for DIR in class config data functions help images include locale plugins po src themes
-	cd ${WRKSRC} && ${FIND} ${DIR} | ${CPIO} -pdmu --quiet ${SQUIRRELDIR}
-.endfor
-	${CHOWN} -R ${WWWOWN}:${WWWGRP} ${SQUIRRELDIR}/data
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC}/doc && ${FIND} . | ${CPIO} -pdmu --quiet ${DOCSDIR}
-.endif
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily
+	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${STAGEDIR}${PREFIX}/etc/periodic/daily
+	@${MKDIR} ${STAGEDIR}${SQUIRRELDIR}
+	${INSTALL_DATA} ${WRKSRC}/index.php ${STAGEDIR}${SQUIRRELDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/configure ${STAGEDIR}${SQUIRRELDIR}
+	(cd ${WRKSRC} && \
+		${COPYTREE_SHARE} "attach class config data functions help images include locale plugins po scripts src themes" \
+			${STAGEDIR}${SQUIRRELDIR})
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
