@@ -152,6 +152,7 @@ SUBDIR += py-h2
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
 SUBDIR += py-hyperlink
+SUBDIR += py-priority
 SUBDIR += py-pyjwt
 SUBDIR += py-multidict
 SUBDIR += py-qt5-webchannel
