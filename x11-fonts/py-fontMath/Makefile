@@ -11,17 +11,11 @@ COMMENT=	Set of objects for performing math operations on font data
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/License.txt
 
-USES=		python zip
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=3.32.0:print/py-fonttools@${PY_FLAVOR}
+
+USES=		python:3.6+ zip
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 3600
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}fonttools3>=3.32.0:print/py-fonttools3@${PY_FLAVOR}
-.else
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}fonttools>=3.32.0:print/py-fonttools@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

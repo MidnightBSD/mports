@@ -1,7 +1,8 @@
 # Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 
 PORTNAME=	opentype-sanitizer
-PORTVERSION=	8.0.0.post2
+PORTVERSION=	8.1.3
+DISTVERSIONSUFFIX=	.post1
 CATEGORIES=	x11-fonts python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,14 +18,16 @@ RUN_DEPENDS=	ots-sanitize:x11-fonts/ots
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR}
 
 USES=		python:3.6+
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
+
+LDFLAGS+=	-lpython${PYTHON_VER}${PYTHON_ABIVER}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/src/python/ots/__init__.py
 	@${RM} -r ${WRKSRC}/src/c/
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/ots/ots-sanitize.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/ots/ots-sanitize*.so
 
 do-test:
 	cd ${WRKSRC}/ && ${PYTHON_CMD} -m pytest -v
