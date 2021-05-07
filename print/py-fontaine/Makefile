@@ -2,6 +2,7 @@
 
 PORTNAME=	fontaine
 PORTVERSION=	1.4.0
+PORTREVISION=	1
 CATEGORIES=	print python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -19,14 +20,14 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=0:print/py-fonttools@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}tabulate>=0:devel/py-tabulate@${PY_FLAVOR}
 
 USES=		python:3.6+
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 NO_TEST=	yes
 
 GH_ACCOUNT=	googlefonts
 GH_PROJECT=	pyfontaine
-GH_TUPLE=	freedesktop:fontconfig:2.12.6:freedesktop_fontconfig/fontaine/charsets/fontconfig
+GH_TUPLE=	freedesktop:fontconfig:2.13.93:freedesktop_fontconfig/fontaine/charsets/fontconfig
 USE_GITHUB=	yes
 
 post-patch:

@@ -1,7 +1,7 @@
 # Created by: Dave Cottlehuber <dch@skunkwerks.at>
 
 PORTNAME=	cairocffi
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 CATEGORIES=	graphics python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
