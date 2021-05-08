@@ -1,7 +1,7 @@
 # Created by: Wen Heping <wenheping@gmail.com>
 
 PORTNAME=	sympy
-PORTVERSION=	1.1.1
+PORTVERSION=	1.7.1
 CATEGORIES=	math python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	bsd3
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mpmath>=0.19:math/py-mpmath@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils concurrent autoplist
 NO_ARCH=	yes
 
