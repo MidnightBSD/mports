@@ -177,6 +177,7 @@ SUBDIR += py-soupsieve
 SUBDIR += py-tornado
 SUBDIR += py-treq
 SUBDIR += py-txrequests
+SUBDIR += py-webob
 SUBDIR += py-websocket-client
 SUBDIR += py-wsaccel
 SUBDIR += py-yarl
