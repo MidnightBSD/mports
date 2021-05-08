@@ -187,6 +187,7 @@ SUBDIR += poppler-qt5
 SUBDIR += poppler-utils
 SUBDIR += preview
 SUBDIR += price
+SUBDIR += py-PyOpenGL
 SUBDIR += py-cairo
 SUBDIR += py-cairocffi
 SUBDIR += py-cairosvg
