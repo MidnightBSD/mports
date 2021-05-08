@@ -49,6 +49,7 @@ SUBDIR += php80-bcmath
 SUBDIR += php80-gmp
 SUBDIR += py-MutatorMath
 SUBDIR += py-gmpy
+SUBDIR += py-matplotlib
 SUBDIR += py-mpmath
 SUBDIR += py-numeric
 SUBDIR += py-numpy
