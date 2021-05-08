@@ -1,7 +1,9 @@
+# Created by: Dirk Froemberg <dirk@FreeBSD.org>
+
 PORTNAME=	expat
-PORTVERSION=	2.2.8
+DISTVERSION=	2.3.0
 CATEGORIES=	textproc
-MASTER_SITES=	https://github.com/libexpat/libexpat/releases/download/R_${PORTVERSION:S|.|_|g}/
+MASTER_SITES=	https://github.com/libexpat/libexpat/releases/download/R_${DISTVERSION:S|.|_|g}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML 1.0 parser written in C
@@ -9,13 +11,24 @@ COMMENT=	XML 1.0 parser written in C
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-GNU_CONFIGURE=	yes
-USES=		libtool pathfix tar:bz2
+TEST_DEPENDS=	bash:shells/bash
+
+USES=		libtool pathfix python:test tar:xz
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--without-docbook
+GNU_CONFIGURE=	yes
+
+CONFIGURE_ARGS=	--without-docbook --without-examples
 INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS STATIC TEST
+OPTIONS_SUB=	yes
+
+STATIC_CONFIGURE_ENABLE=	static
+
+TEST_USES=	shebangfix
+SHEBANG_FILES=	test-driver-wrapper.sh tests/udiffer.py tests/xmltest.sh
+TEST_CONFIGURE_WITH=	tests
+TEST_TARGET=	check
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/xmlwf.1 ${MANPREFIX}/man/man1/
