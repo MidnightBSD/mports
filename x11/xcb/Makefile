@@ -1,6 +1,6 @@
 PORTNAME=	xcb
 PORTVERSION=	2.4
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11
 MASTER_SITES=	http://oldhome.schmorp.de/marc/data/ \
 		http://ftp.lyx.org/pub/pcg/marc/ \
