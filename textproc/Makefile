@@ -209,6 +209,7 @@ SUBDIR += py-chardet
 SUBDIR += py-cssselect2
 SUBDIR += py-docutils
 SUBDIR += py-genshi
+SUBDIR += py-googletrans
 SUBDIR += py-libxml2
 SUBDIR += py-m2r
 SUBDIR += py-mako

@@ -51,7 +51,6 @@ SUBDIR += py-MutatorMath
 SUBDIR += py-gmpy
 SUBDIR += py-matplotlib
 SUBDIR += py-mpmath
-SUBDIR += py-numeric
 SUBDIR += py-numpy
 SUBDIR += py-pyclipper
 SUBDIR += py-random2

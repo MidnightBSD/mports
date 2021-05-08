@@ -1,13 +1,16 @@
+# Created by: Tony Maher
+
 PORTNAME=	numpy
-PORTVERSION=	1.16.1
+PORTVERSION=	1.16.6
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	math python
 MASTER_SITES=	CHEESESHOP \
 		https://docs.scipy.org/doc/${PORTNAME}-${PORTVERSION}/:doc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		${PORTNAME}-ref-${PORTVERSION}.pdf:doc \
-		${PORTNAME}-user-${PORTVERSION}.pdf:doc
+		${PORTNAME}-ref-${PORTVERSION:R}.1.pdf:doc \
+		${PORTNAME}-user-${PORTVERSION:R}.1.pdf:doc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,10 +19,10 @@ COMMENT=	The New Numeric Extension to Python
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		fortran python zip
-USE_PYTHON=	allflavors autoplist concurrent cython distutils
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR}
 
-NO_TEST=	yes
+USES=		compiler:c11 fortran python:3.6+ zip
+USE_PYTHON=	allflavors autoplist concurrent cython distutils
 
 GCCLIBDIR_CMDS=	${FC} -print-file-name=libgfortran.so | ${SED} -e s/libgfortran.so//
 LDFLAGS+=	-shared
@@ -31,7 +34,7 @@ PORTDOCS=	*
 OPTIONS_DEFINE=		DOCS SUITESPARSE
 OPTIONS_SINGLE=		BLASLIB
 OPTIONS_SINGLE_BLASLIB=	ATLAS NETLIB OPENBLAS
-OPTIONS_DEFAULT=	NETLIB SUITESPARSE
+OPTIONS_DEFAULT=	OPENBLAS SUITESPARSE
 SUITESPARSE_DESC=	Use AMD and UMFPACK in SuiteSparse
 
 ATLAS_USES=		blaslapack:atlas
@@ -40,8 +43,10 @@ NETLIB_USES=		blaslapack:netlib
 NETLIB_VARS=		BLASLIBS="blas, cblas" BLASNAME=atlas LAPACKLIBS=lapack LIBRARIES=atlas_libs
 NETLIB_LIB_DEPENDS=	libcblas.so:math/cblas
 OPENBLAS_USES=		blaslapack:openblas
-OPENBLAS_VARS=		BLASLIBS="openblasp, gfortran" BLASNAME=openblas LAPACKLIBS="openblasp, gfortran" LIBRARIES=libraries
+OPENBLAS_VARS=		BLASLIBS="openblas, gfortran" BLASNAME=openblas LAPACKLIBS="openblas, gfortran" LIBRARIES=libraries
 SUITESPARSE_LIB_DEPENDS=libumfpack.so:math/suitesparse
+
+NO_TEST=      yes
 
 post-extract:
 	@${TOUCH} ${WRKSRC}/numpy/f2py/tests/src/temp
