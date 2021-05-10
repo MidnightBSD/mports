@@ -868,6 +868,7 @@ SUBDIR += py-pbr
 SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
 SUBDIR += py-pip
+SUBDIR += py-pip-api
 SUBDIR += py-pluggy
 SUBDIR += py-ply
 SUBDIR += py-pockets
