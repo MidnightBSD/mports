@@ -37,9 +37,9 @@ do-install:
 	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${WWWDIR}/config
 
 post-install:
-	${ECHO} "@sample ${ETCDIR}/kibana.yml.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/kibana.yml.sample" >> ${TMPPLIST}
 	${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(www,www) ${WWWDIR}/data" >> ${TMPPLIST}
 	${ECHO} "@dir ${WWWDIR}/plugins" >> ${TMPPLIST}
 
