@@ -5,7 +5,7 @@ PORTEPOCH=	2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Ninja is a small build system closest in spirit to Make
+COMMENT=	Small build system closest in spirit to Make
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -54,6 +54,7 @@ LINUX_DEFAULT?=		c7
 LLVM_DEFAULT?=		60
 LUA_DEFAULT?=		5.2
 MYSQL_DEFAULT?=		5.7
+NINJA_DEFAULT?=		ninja
 .if ${OSVERSION} < 200001
 PERL5_DEFAULT?=		5.28
 .else
@@ -61,10 +62,10 @@ PERL5_DEFAULT?=		5.32
 .endif
 PGSQL_DEFAULT?=		11
 PHP_DEFAULT?=		7.4
-PYTHON_DEFAULT?=	3.7
+PYTHON_DEFAULT?=	3.8
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.3, 3.4, 3.7
-PYTHON3_DEFAULT?=	3.7
+PYTHON3_DEFAULT?=	3.8
 # Possible values: 2.2, 2.3, 2.4, 2.6
 RUBY_DEFAULT?=		2.6
 # Possible values: rust, rust-bin
