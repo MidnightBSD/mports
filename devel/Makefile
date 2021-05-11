@@ -835,6 +835,7 @@ SUBDIR += py-google-i18n-address
 SUBDIR += py-gyp
 SUBDIR += py-hgtools
 SUBDIR += py-hypothesis
+SUBDIR += py-jaraco
 SUBDIR += py-jaraco.functools
 SUBDIR += py-jeepney
 SUBDIR += py-jmespath
