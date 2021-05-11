@@ -774,6 +774,7 @@ SUBDIR += py-async_timeout
 SUBDIR += py-atomiclong
 SUBDIR += py-atomicwrites
 SUBDIR += py-attrs
+SUBDIR += py-b2sdk
 SUBDIR += py-babel
 SUBDIR += py-backports
 SUBDIR += py-bcdoc
