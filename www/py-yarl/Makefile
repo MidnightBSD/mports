@@ -15,9 +15,20 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}multidict>=4.0:www/py-multidict@${PY_FLAVOR}
 
 USES=		python:3.5+
 USE_PYTHON=	autoplist distutils cython
+
 NO_TEST=	yes
 
-post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/yarl/_quoting.so
+pre-configure:
+	@rm ${WRKSRC}/yarl/_quoting_c.c
+	@cd ${WRKSRC}/yarl && ${PYTHON_CMD} -m cython -3 -o _quoting_c.c _quoting_c.pyx
 
-.include <bsd.port.mk>
+post-install:
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/yarl/_quoting_c*.so
+
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 3800
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>0:devel/py-typing-extensions@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>
