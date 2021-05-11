@@ -789,6 +789,7 @@ SUBDIR += py-buildbot-pkg
 SUBDIR += py-buildbot-waterfall-view
 SUBDIR += py-buildbot-worker
 SUBDIR += py-buildbot-www
+SUBDIR += py-cbor
 SUBDIR += py-cffi
 SUBDIR += py-characteristic
 SUBDIR += py-cheetah3
