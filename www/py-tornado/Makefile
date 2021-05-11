@@ -19,7 +19,7 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}tornado4 \
 			${PYTHON_PKGNAMEPREFIX}tornado6
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/tornado/speedups*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/tornado/speedups*.so
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} -m tornado.test.runtests
