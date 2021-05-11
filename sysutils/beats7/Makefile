@@ -313,6 +313,8 @@ PACKETBEAT_VARS=	CGO_CFLAGS+=-I/usr/include \
 			CGO_LDFLAGS+=-L/usr/lib \
 			GO_TARGETS+=packetbeat
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 post-extract:
