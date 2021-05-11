@@ -188,6 +188,7 @@ SUBDIR += poppler-utils
 SUBDIR += preview
 SUBDIR += price
 SUBDIR += py-PyOpenGL
+SUBDIR += py-beziers
 SUBDIR += py-cairo
 SUBDIR += py-cairocffi
 SUBDIR += py-cairosvg
