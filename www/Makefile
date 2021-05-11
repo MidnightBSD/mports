@@ -150,6 +150,7 @@ SUBDIR += py-cssutils
 SUBDIR += py-flup6
 SUBDIR += py-gunicorn
 SUBDIR += py-h2
+SUBDIR += py-hpack
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
 SUBDIR += py-httpx013
