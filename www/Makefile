@@ -153,6 +153,7 @@ SUBDIR += py-h2
 SUBDIR += py-hpack
 SUBDIR += py-hstspreload
 SUBDIR += py-html5lib
+SUBDIR += py-httpcore
 SUBDIR += py-httplib2
 SUBDIR += py-httpx013
 SUBDIR += py-hyperframe
