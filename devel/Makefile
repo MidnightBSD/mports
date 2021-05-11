@@ -907,6 +907,7 @@ SUBDIR += py-pytest-mock
 SUBDIR += py-pytest-runner
 SUBDIR += py-pytest-timeout
 SUBDIR += py-pytest-xdist
+SUBDIR += py-pytrie
 SUBDIR += py-pytz
 SUBDIR += py-qt5
 SUBDIR += py-qt5-core
