@@ -1,5 +1,5 @@
 PORTNAME=	cython
-PORTVERSION=	0.29.13
+PORTVERSION=	0.29.21
 PORTREVISION=	1
 CATEGORIES=	lang python
 MASTER_SITES=	CHEESESHOP
@@ -12,8 +12,8 @@ COMMENT=	Compiler for Writing C Extensions for the Python Language
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
-USE_PYTHON=	autoplist distutils concurrent allflavors
+USES=		compiler:c11 python:2.7+
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Cython \
