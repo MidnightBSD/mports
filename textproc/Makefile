@@ -221,6 +221,7 @@ SUBDIR += py-pygments
 SUBDIR += py-pygments-25
 SUBDIR += py-pyhamcrest
 SUBDIR += py-pyjade
+SUBDIR += py-pylons-sphinx-themes
 SUBDIR += py-pypa-docs-theme
 SUBDIR += py-pyphen
 SUBDIR += py-pystemmer
