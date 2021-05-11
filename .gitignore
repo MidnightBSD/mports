@@ -1,6 +1,10 @@
 /Distfiles
 /Packages
-/INDEX-*
+/INDEX-[0-9]*
 /*/*/work
 /*/*/work-*
 Tools/magus/bless/magus-bless
+*~
+*.rej
+*.orig
+*.sw[p-z]
