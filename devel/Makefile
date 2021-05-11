@@ -933,6 +933,7 @@ SUBDIR += py-simplejson
 SUBDIR += py-sip
 SUBDIR += py-six
 SUBDIR += py-smmap2
+SUBDIR += py-sniffio
 SUBDIR += py-sortedcontainers
 SUBDIR += py-stdnum
 SUBDIR += py-subversion
