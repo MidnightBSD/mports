@@ -881,6 +881,7 @@ SUBDIR += py-pkgconfig
 SUBDIR += py-pretend
 SUBDIR += py-protobuf
 SUBDIR += py-py
+SUBDIR += py-py-ubjson
 SUBDIR += py-python-dbusmock
 SUBDIR += py-python-mimeparse
 SUBDIR += py-python-subunit
