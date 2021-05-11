@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # Provide support for Python related ports. This includes detecting Python
 # interpreters, ports providing package and modules for python as well as
 # consumer ports requiring Python at build or run time.
@@ -250,7 +248,7 @@ _INCLUDE_USES_PYTHON_MK=	yes
 # What Python version and what Python interpreters are currently supported?
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-_PYTHON_VERSIONS=		2.7 3.7 3.8 	# preferred first
+_PYTHON_VERSIONS=		2.7 3.7 3.8 3.9 	# preferred first
 _PYTHON_PORTBRANCH=		2.7		# ${_PYTHON_VERSIONS:[1]}
 _PYTHON_BASECMD=		${LOCALBASE}/bin/python
 _PYTHON_RELPORTDIR=		lang/python
