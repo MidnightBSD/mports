@@ -1022,6 +1022,7 @@ SUBDIR += rubygem-svn2git
 SUBDIR += rust-analyzer
 SUBDIR += rust-bindgen
 SUBDIR += rust-cbindgen
+SUBDIR += samurai
 SUBDIR += sbt
 SUBDIR += scons
 SUBDIR += sdl12
