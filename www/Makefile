@@ -153,6 +153,7 @@ SUBDIR += py-h2
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
 SUBDIR += py-httpx013
+SUBDIR += py-hyperframe
 SUBDIR += py-hyperlink
 SUBDIR += py-priority
 SUBDIR += py-pyjwt
