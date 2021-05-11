@@ -930,6 +930,7 @@ EXTRACT_DEPENDS+=	unmakeself:archivers/unmakeself
 _TEST_LD=/usr/bin/ld
 .if defined(LLD_UNSAFE) && ${_TEST_LD:tA} == "/usr/bin/ld.lld"
 LDFLAGS+=       -fuse-ld=bfd
+BINARY_ALIAS+=  ld=${LD}
 .  if !defined(USE_BINUTILS)
 .    if exists(/usr/bin/ld.bfd)
 LD=     /usr/bin/ld.bfd
