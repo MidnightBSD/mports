@@ -1,7 +1,7 @@
 # Created by: Neil Blakey-Milner
 
 PORTNAME=	courier-imap
-PORTVERSION=	5.0.11
+PORTVERSION=	5.1.3
 PORTEPOCH=	2
 CATEGORIES=	mail
 MASTER_SITES=	SF/courier/imap/${PORTVERSION}
@@ -12,10 +12,9 @@ COMMENT=	IMAP (and POP3) server that provides access to Maildir mailboxes
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base
-RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base \
-		${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
+RUN_DEPENDS=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
 LIB_DEPENDS=	libcourier-unicode.so:devel/courier-unicode \
+		libcourierauth.so:security/courier-authlib-base \
 		libidn.so:dns/libidn
 
 USES=		compiler:c++11-lang gmake localbase:ldflags perl5 pkgconfig ssl \
@@ -27,7 +26,7 @@ CONFLICTS=	courier-[0-9]* imap-uw-[0-9]* panda-imap-[0-9]*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	REHASH=${SCRIPTDIR}/c_rehash
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 MAKE_ENV:=	${CONFIGURE_ENV}
 ALL_TARGET=	all makeimapaccess makedat
@@ -41,11 +40,11 @@ SUB_LIST=	CONFDIR=${CONFDIR}
 # WITH_SYSLOG_FACILITY:         The syslogfacility to use
 #
 
-OPTIONS_DEFINE=	FAM TRASHQUOTA GDBM IPV6 GNUTLS
-FAM_DESC=	Fam support for IDLE command
-TRASHQUOTA_DESC=	Include deleted mails in the quota
+OPTIONS_DEFINE= GDBM GNUTLS INOTIFY TRASHQUOTA IPV6
+
 GNUTLS_DESC=	Use GnuTLS instead of OpenSSL (Enables SNI)
-FAM_USES=	fam
+INOTIFY_DESC=	Inotify support for IDLE command
+TRASHQUOTA_DESC=	Include deleted mails in the quota
 
 .if exists(${.CURDIR}/../../security/courier-authlib/Makefile.opt)
 .include "${.CURDIR}/../../security/courier-authlib/Makefile.opt"
@@ -72,6 +71,8 @@ GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls \
 			libgcrypt.so:security/libgcrypt
 GNUTLS_CONFIGURE_WITH=	gnutls
 GNUTLS_USES=		pkgconfig
+
+INOTIFY_LIB_DEPENDS=	libinotify.so:devel/libinotify
 
 IPV6_CONFIGURE_OFF=	--without-ipv6
 
@@ -106,10 +107,6 @@ EXTRA_DOCS=	AUTHORS INSTALL NEWS \
 		libs/maildir/README.sharedfolders.txt \
 		libs/tcpd/README.couriertls \
 
-post-patch-FAM-off:
-	@${REINPLACE_CMD} -e 's|$$LIBFAM||g; s|HAVE_FAM|DO_NOT_HAVE_FAM|g' \
-		${WRKSRC}/libs/maildir/configure
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|^case x$$lockmethod in|${TEST} \&\& &|g' \
 		${WRKSRC}/libs/liblock/configure
@@ -118,6 +115,15 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|TLS_PROTOCOL=SSL3|TLS_PROTOCOL=SSL23|g' \
 		${WRKSRC}/libs/imap/pop3d-ssl.dist.in \
 		${WRKSRC}/libs/imap/imapd-ssl.dist.in
+
+post-patch-INOTIFY-on:
+	@${REINPLACE_CMD} -e 's|LIBS = @LIBS@|& ${LOCALBASE}/lib/libinotify.a /usr/lib/libpthread.a|' \
+		${WRKSRC}/libs/maildir/Makefile.in \
+		${WRKSRC}/libs/imap/Makefile.in
+
+post-configure-INOTIFY-on:
+	@${ECHO_CMD} '#define HAVE_INOTIFY_INIT 1' >>${WRKSRC}/libs/maildir/config.h
+	@${ECHO_CMD} '#define HAVE_INOTIFY_INIT1 1' >>${WRKSRC}/libs/maildir/config.h
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/makeimapaccess ${STAGEDIR}${PREFIX}/bin/

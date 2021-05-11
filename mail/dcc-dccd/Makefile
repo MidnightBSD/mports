@@ -66,6 +66,8 @@ IPV6_CONFIGURE_OFF=		--disable-IPv6
 PORTS_MILTER_BUILD_DEPENDS=	${LOCALBASE}/lib/libmilter.a:mail/libmilter
 PORTS_MILTER_CONFIGURE_ON=	--with-sendmail=yes
 
+CFLAGS+=	-fcommon
+
 ## User for DCC files and SUID binaries
 #
 DCCUSER?=	dcc

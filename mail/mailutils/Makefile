@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# Created by: Attila Nagy <bra@fsn.hu>
 
 PORTNAME=	mailutils
-PORTVERSION=	3.4
+PORTVERSION=	3.12
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	GNU GNU_ALPHA
 
@@ -10,50 +11,52 @@ COMMENT=	Utilities, daemons, and filters for processing e-mail
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libltdl.so:devel/libltdl
+LIB_DEPENDS=	libgc-threaded.so:devel/boehm-gc-threaded \
+		libltdl.so:devel/libltdl \
+		libunistring.so:devel/libunistring
+TEST_DEPENDS=	automake:devel/automake
 
-USES=		gmake libtool localbase readline tar:xz
+USES=		gmake iconv libtool localbase readline tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	comsatd imap4d pop3d
 INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
-PLIST_SUB+=	LIBVERSION=5.0.5 VERSION=${PORTVERSION}
+PLIST_SUB+=	LIBVERSION=8.0.0 LIBSUFX=8 VERSION=${PORTVERSION}
 
 INFO=		${PORTNAME}
 PORTDOCS=	AUTHORS ChangeLog NEWS README* THANKS TODO
 
-OPTIONS_DEFINE=		DEBUG DOCS EMACS GNUTLS GSSAPI GUILE MH NNTP NLS \
-			PAM PYTHON
+OPTIONS_DEFINE=		DOCS FRIBIDI GNUTLS GSSAPI GUILE MH NLS PAM PYTHON
 OPTIONS_DEFAULT=	GDBM GNUTLS PAM
 OPTIONS_MULTI=		DB
 OPTIONS_MULTI_DB=	BDB GDBM KYOTOCABINET LDAP MYSQL PGSQL TOKYOCABINET
 OPTIONS_SUB=		yes
 
-BDB_DESC=		Berkeley DB v4.8 support (last working one)
 DB_DESC=		Database configuration
-EMACS_DESC=		Emacs interface to MH (implies MH)
 KYOTOCABINET_DESC=	Kyoto Cabinet database support
 MH_DESC=		MH (Message Handling) system support
 TOKYOCABINET_DESC=	Tokyo Cabinet database support
 
-DEBUG_CONFIGURE_ON=	--enable-debug
-
-EMACS_USES=		emacs:build
-EMACS_IMPLIES=		MH
+FRIBIDI_LIB_DEPENDS=	libfribidi.so:converters/fribidi
+FRIBIDI_CONFIGURE_WITH=	fribidi
 
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_WITH=	gnutls
 
 GSSAPI_RUN_DEPENDS=	cyrus-sasl-gssapi>0:security/cyrus-sasl2-gssapi
+GSSAPI_USES=		ssl
 GSSAPI_CONFIGURE_WITH=	gssapi
 
-GUILE_LIB_DEPENDS=	libguile.so:lang/guile libgmp.so:math/gmp
+GUILE_LIB_DEPENDS=	libguile-2.2.so:lang/guile2 libgmp.so:math/gmp
+GUILE_USES=		makeinfo pkgconfig
 GUILE_CONFIGURE_WITH=	guile
 
+MH_CONFIGURE_ENV=	ac_cv_prog_EMACS=no
 MH_CONFIGURE_ENABLE=	mh
-
-NNTP_CONFIGURE_ENABLE=	nntp
+MH_USES=		emacs:noflavors
+MH_VARS=		EMACS_NO_DEPENDS=yes
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
@@ -61,14 +64,13 @@ NLS_CONFIGURE_ENABLE=	nls
 PAM_CONFIGURE_ENABLE=	pam
 
 PYTHON_BINARY_ALIAS=	python-config=python${PYTHON_VER}-config
-PYTHON_USES=		python:2.7
+PYTHON_USES=		python:3.0+
 PYTHON_CONFIGURE_ENABLE=python
 
-BDB_USES=		bdb:48
+BDB_USES=		bdb
 BDB_CONFIGURE_WITH=	berkeley-db
 BDB_CPPFLAGS=		-I${BDB_INCLUDE_DIR}
 BDB_LDFLAGS=		-L${BDB_LIB_DIR}
-INVALID_BDB_VER=	5+
 
 GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
 GDBM_CONFIGURE_WITH=	gdbm
@@ -88,16 +90,26 @@ PGSQL_CONFIGURE_WITH=	postgres
 TOKYOCABINET_LIB_DEPENDS=	libtokyocabinet.so:databases/tokyocabinet
 TOKYOCABINET_CONFIGURE_WITH=	tokyocabinet
 
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--enable-debug
+.endif
+
 post-patch:
+	@${REINPLACE_CMD} -e '/MU_AUTHLIBS=/s,-lldap,-llber &,' \
+		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e '/need_charset_alias=/s|true|false|' \
 		${WRKSRC}/lib/gnu/Makefile.in
 	@${REINPLACE_CMD} -e '/chown/,+1s|ch|#&|' \
-		${WRKSRC}/dotlock/Makefile.in \
-		${WRKSRC}/maidag/Makefile.in
+		${WRKSRC}/dotlock/Makefile.in ${WRKSRC}/mda/mda/Makefile.in
 	@${REINPLACE_CMD} -e 's,-E,& -P,' ${WRKSRC}/libmu_scm/Makefile.in
 
-post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+post-install-MH-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EMACS_SITE_LISPDIR}
+	${RLN} ${FAKE_DESTDIR}${DATADIR}/mh/mailutils-mh.el \
+		${FAKE_DESTDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
 
 .include <bsd.port.mk>
