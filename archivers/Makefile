@@ -61,6 +61,7 @@ SUBDIR += quazip
 SUBDIR += rar
 SUBDIR += rpm4
 SUBDIR += rpm2cpio
+SUBDIR += sharutils
 SUBDIR += snappy
 SUBDIR += snappy-java
 SUBDIR += squeeze
