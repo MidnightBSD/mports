@@ -77,9 +77,12 @@ SUBDIR += unzoo
 SUBDIR += upx
 SUBDIR += xar
 SUBDIR += zip
+SUBDIR += zipmix
 SUBDIR += zipper
 SUBDIR += zoo
+SUBDIR += zopfli
 SUBDIR += zstd
+SUBDIR += zstr
 SUBDIR += zutils
 
 .include <bsd.port.subdir.mk>
