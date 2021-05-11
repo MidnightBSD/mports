@@ -11,6 +11,8 @@ COMMENT=	Small C++ XML parser
 
 LICENSE=	zlib
 
+FAKE_OPTS=	trueprefix
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		compiler:c++11-lang uidfix
