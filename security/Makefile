@@ -163,6 +163,7 @@ SUBDIR += py-cryptography-vectors
 SUBDIR += py-docker-pycreds
 SUBDIR += py-ecdsa
 SUBDIR += py-fail2ban
+SUBDIR += py-itsdangerous
 SUBDIR += py-josepy
 SUBDIR += py-keyring
 SUBDIR += py-keyrings.alt

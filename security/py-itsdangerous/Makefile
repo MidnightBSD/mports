@@ -1,0 +1,23 @@
+# Created by: Olivier Duchateau
+
+PORTNAME=	itsdangerous
+PORTVERSION=	0.24
+CATEGORIES=	security python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Various helpers to pass data in untrusted environments
+
+LICENSE=	bsd3
+
+USES=		python:3.6+
+USE_PYTHON=	distutils autoplist
+
+NO_ARCH=	yes
+
+OPTIONS_DEFINE=	JSON
+
+JSON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}simplejson>=3.0:devel/py-simplejson@${PY_FLAVOR}
+
+.include <bsd.port.mk>
