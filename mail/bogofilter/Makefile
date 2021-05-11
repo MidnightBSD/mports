@@ -1,8 +1,8 @@
 # Created by: Matthias Andree <matthias.andree@gmx.de>
 
 PORTNAME=	bogofilter
-PORTVERSION=	1.2.5
-PORTREVISION?=	0
+DISTVERSION=	1.2.5
+PORTREVISION?=	1
 CATEGORIES?=	mail
 MASTER_SITES=	SF/bogofilter/bogofilter-stable/
 
@@ -21,7 +21,8 @@ OPTIONS_DEFAULT=	GSL UNICODE
 GSL_DESC=		Link with system-wide GSL dynamically (recommended)
 UNICODE_DESC=		Normalize tokens to Unicode (UTF-8) (recommended)
 
-CONFLICTS_INSTALL?=	bogofilter-sqlite-[0-9]* bogofilter-qdbm-[0-9]* bogofilter-tc-[0-9]* [a-z][a-z]-bogofilter-[0-9]*
+CONFLICTS_INSTALL?=	bogofilter-sqlite-[0-9]* bogofilter-tc-[0-9]* bogofilter-lmdb-[0-9]* \
+			bogofilter-kc-[0-9]*
 
 USES+=		cpe perl5 shebangfix tar:xz
 SHEBANG_FILES=	contrib/randomtrain.sh contrib/scramble.sh \
@@ -34,7 +35,7 @@ CPE_VENDOR=	bogofilter_project
 UNICODE_USES=	iconv
 UNICODE_CONFIGURE_ENABLE=	unicode
 GSL_LIB_DEPENDS=	libgsl.so:math/gsl
-GSL_CONFIGURE_ARGS_OFF=	--with-included-gsl
+GSL_CONFIGURE_OFF=	--with-included-gsl
 
 PORTDOCS=	*
 
@@ -56,13 +57,13 @@ INSTALL_TARGET=	install-strip prefix=${PREFIX} mandir=${MANPREFIX}/man
 post-patch:
 	${REINPLACE_CMD} -e 's/INTEGRITY_TESTS = t.lock1 t.lock3 t.valgrind/INTEGRITY_TESTS = t.lock1/' \
 		-e 's/ENVIRON_TESTS = t.abort/ENVIRON_TESTS =/' \
-		${WRKSRC}/src/tests/Makefile.am
+		${WRKSRC}/src/tests/Makefile.in
 
-# XXX: disable self-tests until issue with automake-1.13 is sorted out
-# post-build::
-# 	cd ${WRKSRC}/src && make check SHELL=${SH}
+post-build:
+	cd ${WRKSRC}/src && ${SETENV} SHELL=${SH} ${MAKE_CMD} ${TEST_TARGET} ${_MAKE_JOBS} SHELL=${SH} \
+		|| { r=$$? ; head -n30000 ${WRKSRC}/src/tests/test-suite.log ; exit $$r ; }
 
-post-install::
+post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/contrib
 .for i in html programmer xml
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/${i}
