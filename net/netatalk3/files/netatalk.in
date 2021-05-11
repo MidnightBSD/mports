@@ -1,7 +1,5 @@
 #!/bin/sh
-#
-# $FreeBSD: head/net/netatalk3/files/netatalk.in 398560 2015-10-04 01:23:32Z marcus $
-#
+
 # PROVIDE: netatalk
 # REQUIRE: DAEMON %%ZEROCONF%%
 # KEYWORD: shutdown
