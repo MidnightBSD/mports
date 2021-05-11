@@ -1,17 +1,20 @@
+# Created by: will
+
 PORTNAME=	viewvc
-DISTVERSION=	1.2.1
-PORTREVISION=	1
+DISTVERSION=	1.3.0-20201006
 CATEGORIES=	devel python
+PKGNAMEPREFIX=  ${PYTHON_PKGNAMEPREFIX}
+PKGNAMESUFFIX=  -devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
 
-CONFLICTS_INSTALL=      py[23][6-8]-viewvc-1.3*
-
 LICENSE=	bsd2
 
-USES=		cpe python:2.7
+USES=		cpe python:3.6+
+USE_PYTHON=	flavors
 USE_GITHUB=	yes
+GH_TAGNAME=	c93d9da79c31457ecb0a771ff52d28353dc6e878
 USE_RC_SUBR=	viewvc
 
 NO_BUILD=		yes
@@ -32,9 +35,11 @@ APACHE_USE=		APACHE_RUN=24+
 LIGHTTPD_RUN_DEPENDS=	lighttpd:www/lighttpd
 MODWSGI_RUN_DEPENDS=	${APACHE_PKGNAMEPREFIX}${PYTHON_PKGNAMEPREFIX}mod_wsgi>=4.4.13:www/mod_wsgi4@${PY_FLAVOR}
 
-SVN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}subversion-lts>=0:devel/py-subversion@${PY_FLAVOR}
+SVN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}subversion>=0:devel/py-subversion@${PY_FLAVOR}
 
 RUN_DEPENDS+=		${PY_PYGMENTS}
+
+CONFLICTS_INSTALL=      viewvc-1.[12].[0-9]*
 
 .include <bsd.mport.options.mk>
 
@@ -54,7 +59,8 @@ post-patch:
 	${REINPLACE_CMD} -e '/"${i}"/d' ${WRKSRC}/viewvc-install
 .endfor
 	${REINPLACE_CMD} -e 's/conf.dist/conf.sample/g' \
-		${WRKSRC}/viewvc-install
+		${WRKSRC}/viewvc-install \
+		${WRKSRC}/bin/standalone.py
 # to much files, use own shebangfix
 	${FIND} ${WRKSRC} -type f | ${GREP} -v -e 'png' -e 'images' \
 		| ${XARGS} ${SED} -i '' \
