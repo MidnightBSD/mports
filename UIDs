@@ -1,4 +1,3 @@
-# $MidnightBSD$
 # Please keep this file sorted by UID!
 # Please pick an empty slot when available and also consider base values from
 # /usr/src/etc/master.passwd
@@ -69,7 +68,7 @@ mythtv:*:119:119::0:0:MythTV pseudo-user:/nonexistent:/bin/sh
 pdns_recursor:*:120:120::0:0:pdns_recursor pseudo-user:/nonexistent:/usr/sbin/nologin
 otrs:*:121:121::0:0:OTRS Administrator:/usr/local/otrs:/bin/csh
 zabbix:*:122:122::0:0:Zabbix NMS:/nonexistent:/bin/sh
-_ntp:*:123:123::0:0:NTP Daemon:/var/empty:/usr/sbin/nologin
+ntpd:*:123:123::0:0:NTP Daemon:/var/db/ntp:/usr/sbin/nologin
 fetchmail:*:124:124::0:0:Fetchmail mail-retrieval daemon:/nonexistent:/usr/sbin/nologin
 postfix:*:125:125::0:0:Postfix Mail System:/var/spool/postfix:/usr/sbin/nologin
 synapse:*:126:141::0:0:Synapse Daemon:/nonexistent:/usr/sbin/nologin
@@ -178,7 +177,7 @@ osrm:*:228:228::0:0:osrm:/nonexistent:/usr/sbin/nologin
 carbon:*:230:230::0:0:osrm:/nonexistent:/usr/sbin/nologin
 foundationdb:*:231:231::0:0:foundationdb:/nonexistent:/usr/sbin/nologin
 archiva:*:232:232::0:0:Archiva Daemon User:/usr/local/archiva:/bin/sh
-# free: 233
+_ntp:*:233:233::0:0:NTP Daemon:/var/empty:/usr/sbin/nologin
 kafka:*:234:234::0:0:Apache Kafka user:/nonexistent:/usr/sbin/nologin
 openhab:*:235:235::0:0:openHAB user:/var/db/openhab2/home:/usr/sbin/nologin
 rspamd:*:236:236::0:0:rspamd pseudo-user:/nonexistent:/usr/sbin/nologin
@@ -214,15 +213,15 @@ sshout:*:265:265::0:0:Secure Shout Host Oriented Unified Talk:/var/db/sshout:/us
 step:*:266:266::0:0:Step CA:/nonexistent:/usr/sbin/nologin
 odoo:*:267:267::0:0:Odoo ERP:/nonexistent:/usr/sbin/nologin
 tenshi:*:268:268::0:0:Tenshi user:/var/lib/tenshi:/usr/sbin/nologin
-# free: 269
+dendrite:*:269:269::0:0:Dendrite user:/nonexistent:/usr/sbin/nologin
 _rpki-client:*:270:270::0:0:rpki-client user:/nonexistent:/usr/sbin/nologin
-# free: 271
-# free: 272
-# free: 273
-# free: 274
+signaling:*:271:271::0:0:Signaling server:/nonexistent:/usr/sbin/nologin
+gvm:*:272:272::0:0:Greenbone Vulnerability Management:/nonexistent:/usr/sbin/nologin
+seaweedfs:*:273:273::0:0:seaweedfs user:/var/db/seaweedfs:/usr/sbin/nologin
+usbmuxd:*:274:274::0:0:USB multiplexing daemon:/nonexistent:/usr/sbin/nologin
 hacluster:*:275:275::0:0:Heartbeat cluster user:/nonexistent:/usr/sbin/nologin
 frontbase:*:276:276::0:0:FrontBase Daemon:/usr/local/FrontBase/Databases:/bin/sh
-# free: 277
+unifi-poller:*:277:277::0:0:unifi-poller daemon:/nonexistent:/usr/sbin/nologin
 rtg:*:278:278::0:0:RTG daemon:/nonexistent:/usr/sbin/nologin
 mrtg:*:279:279::0:0:MRTG daemon:/nonexistent:/usr/sbin/nologin
 xymon:*:280:280::0:0:Xymon Monitor:/nonexistent:/usr/sbin/nologin
@@ -232,10 +231,10 @@ devmon:*:283:283::0:0:devmon monitor:/nonexistent:/usr/sbin/nologin
 vnstat:*:284:284::0:0:vnStat Network Monitor:/nonexistent:/usr/sbin/nologin
 exaddos:*:285:285::0:0:exaddos daemon user:/nonexistent:/usr/sbin/nologin
 rancid:*:286:286::0:0:RANCID daemon user:/usr/local/var/rancid:/bin/sh
-# free: 287
+webdis:*:287:287::0:0:webdis daemon user:/nonexistent:/usr/sbin/nologin
 ntopng:*:288:288::0:0:ntopng daemon user:/nonexistent:/usr/sbin/nologin
-# free: 289
-# free: 290
+victoria-metrics:*:289:289::0:0:VictoriaMetrics user:/nonexistent:/usr/sbin/nologin
+_gmid:*:290:290::0:0:gmid daemon user:/var/empty:/usr/sbin/nologin
 # free: 291
 # free: 292
 # free: 293
@@ -244,7 +243,7 @@ ntopng:*:288:288::0:0:ntopng daemon user:/nonexistent:/usr/sbin/nologin
 # free: 296
 # free: 297
 # free: 298
-# free: 299
+owncast:*:299:299::0:0:& daemon:/nonexistent:/usr/sbin/nologin
 backuppc:*:300:300::0:0:BackupPC pseudo-user:/nonexistent:/usr/sbin/nologin
 # free: 301
 netdata:*:302:302::0:0:NetData Daemon:/var/cache/netdata:/usr/sbin/nologin
