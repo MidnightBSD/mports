@@ -194,6 +194,7 @@ SUBDIR += py-cairocffi
 SUBDIR += py-cairosvg
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
+SUBDIR += py-png
 SUBDIR += py-pycha
 SUBDIR += py-pyqrcode
 SUBDIR += py-qt5-svg
