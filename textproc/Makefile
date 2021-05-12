@@ -230,6 +230,7 @@ SUBDIR += py-python-docs-theme
 SUBDIR += py-pytidylib
 SUBDIR += py-qt5-xml
 SUBDIR += py-qt5-xmlpatterns
+SUBDIR += py-regex
 SUBDIR += py-reno
 SUBDIR += py-scour
 SUBDIR += py-rdflib
