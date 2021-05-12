@@ -12,7 +12,7 @@ COMMENT=	HTTP/2 State-Machine based protocol implementation
 LICENSE=	mit
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hyperframe>=6.0:www/py-hyperframe@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}hpack>=4.0<5:www/py-hpack@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}hpack>=4.0:www/py-hpack@${PY_FLAVOR}
 
 USES?=		python:3.6+
 USE_PYTHON=	distutils autoplist
