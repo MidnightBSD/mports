@@ -23,7 +23,7 @@ OPTIONS_DEFINE=	DOCS
 NO_TEST=	yes
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/setproctitle.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/setproctitle*.so
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
