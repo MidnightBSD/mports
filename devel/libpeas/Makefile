@@ -37,6 +37,8 @@ OPTIONS_SUB=	yes
 DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
 DOCS_MESON_TRUE=	gtk_doc
 
+NO_TEST=	yes
+
 .if ${LIBPEAS_SLAVE} == python
 USES+=		python:3.6+
 USE_PYTHON=	flavors
