@@ -7,8 +7,10 @@ CATEGORIES=	devel
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ninja-compatible build tool written in C
 
-LICENSE=	apache mit
+LICENSE=	apache2 mit
 LICENSE_COMB=	multi
+LICENSE_FILE_apache2=	${WRKSRC}/LICENSE
+LICENSE_FILE_mit=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	michaelforney
