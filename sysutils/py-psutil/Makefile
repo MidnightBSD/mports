@@ -18,6 +18,6 @@ USE_PYTHON=	autoplist concurrent distutils
 USES=		python:3.6+
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/psutil/_psutil_bsd.so ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/psutil/_psutil_posix.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/psutil/_psutil_bsd*.so ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/psutil/_psutil_posix*.so
 
 .include <bsd.port.mk>
