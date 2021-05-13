@@ -25,6 +25,6 @@ DOCSDIR=	${PREFIX}/share/doc/py-libxml2
 EXAMPLESDIR=	${PREFIX}/share/examples/py-libxml2
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/libxml2mod.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/libxml2mod*.so
 
 .include "${MASTERDIR}/Makefile"
