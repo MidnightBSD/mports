@@ -98,8 +98,8 @@ pre-build-MANPAGES-off:
 post-install:
 			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtalloc.so
 .if !defined(NO_PYTHON)
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpytalloc-util.so
-			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/talloc.so
+			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpytalloc-util*.so
+			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/talloc*.so
 .endif
 
 .include <bsd.port.post.mk>
