@@ -15,6 +15,6 @@ USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/zope/interface/_zope_interface_coptimizations.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/zope/interface/_zope_interface_coptimizations*.so
 
 .include <bsd.port.mk>
