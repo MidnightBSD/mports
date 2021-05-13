@@ -20,7 +20,7 @@ USE_LOCALE=	en_US.UTF-8
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_scandir.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_scandir*.so
 
 
 .include <bsd.port.mk>
