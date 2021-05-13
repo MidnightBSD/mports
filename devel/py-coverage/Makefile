@@ -13,6 +13,6 @@ USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/coverage/tracer.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/coverage/tracer*.so
 
 .include <bsd.port.mk>
