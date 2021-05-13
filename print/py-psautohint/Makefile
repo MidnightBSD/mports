@@ -19,6 +19,6 @@ USE_PYTHON=	autoplist concurrent distutils
 NO_TEST=	yes
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/psautohint/_psautohint.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/psautohint/_psautohint*.so
 
 .include <bsd.port.mk>
