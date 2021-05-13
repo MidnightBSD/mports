@@ -1,6 +1,6 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.1
+DISTVERSION=	3.1.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,15 +13,13 @@ BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
 BUILD_DEPENDS_amd64=	nasm:devel/nasm
 BUILD_DEPENDS_i386=	nasm:devel/nasm
 
-USES=		cmake compiler:c++11-lib perl5
+USES=		cmake compiler:c++11-lib perl5 pkgconfig
 USE_GITHUB=	yes
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	jbeich # mirror
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	ENABLE_DOCS ENABLE_TESTS
-
-#USE_GCC=	7
 
 OPTIONS_DEFINE=	VMAF
 
