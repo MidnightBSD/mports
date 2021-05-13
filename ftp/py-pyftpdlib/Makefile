@@ -13,6 +13,7 @@ USES=		python:3.6+ shebangfix
 USE_PYTHON=	autoplist distutils
 SHEBANG_FILES=	demo/*.py
 NO_ARCH=	yes
+NO_TEST=	yes
 
 OPTIONS_DEFINE=		SENDFILE OPENSSL EXAMPLES
 OPTIONS_DEFAULT=	SENDFILE OPENSSL
@@ -28,8 +29,5 @@ PORTEXAMPLES=	*
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${CP} -R ${WRKSRC}/demo/ ${STAGEDIR}${EXAMPLESDIR}
-
-test: build
-	cd ${WRKSRC}/pyftpdlib && ${PYTHON_CMD} ${PYSETUP} test
 
 .include <bsd.port.mk>
