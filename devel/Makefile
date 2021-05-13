@@ -182,6 +182,7 @@ SUBDIR += libgee
 SUBDIR += libgit2
 SUBDIR += libgit2-glib
 SUBDIR += libglade2
+SUBDIR += libgnt
 SUBDIR += libgsf
 SUBDIR += libgtop
 SUBDIR += libgudev

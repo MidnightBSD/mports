@@ -1,5 +1,5 @@
 PORTNAME?=	libpurple
-PORTVERSION=	2.13.0
+PORTVERSION=	2.14.4
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -7,9 +7,10 @@ DISTNAME=	pidgin-${PORTVERSION}
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Backend library for the Pidgin multi-protocol messaging client
 
-LICENSE=	gpl2
+LICENSE=	gpl3
 
-USES+=		cpe gettext gmake gnome libtool localbase pathfix pkgconfig tar:bzip2
+USES+=		cpe gettext gmake gnome libtool localbase pathfix pkgconfig \
+		tar:bzip2
 USE_GNOME?=	gnomeprefix intltool glib20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
@@ -22,7 +23,7 @@ INSTALL_TARGET=	install-strip
 .if !defined(PIDGIN_SLAVE)
 # Pidgin slave ports that require the following functionality, must explicitly
 # set these macros themselves.
-USES+=		iconv python:2.7 shebangfix
+USES+=		iconv shebangfix
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	libpurple/purple-remote \
 		libpurple/purple-url-handler
@@ -42,9 +43,9 @@ OPTIONS_GROUP=		PROTOCOLS
 OPTIONS_RADIO=	TLS
 OPTIONS_RADIO_TLS=	NSS GNUTLS
 OPTIONS_GROUP_PROTOCOLS=BONJOUR GG SAMETIME SILC IRC JABBER \
-			NOVELL OSCAR QQ SIMPLE ZEPHYR
+			NOVELL QQ SIMPLE ZEPHYR
 OPTIONS_DEFAULT=	BONJOUR DBUS NSS GSTREAMER VV IDN GG IRC JABBER \
-			NOVELL OSCAR QQ SIMPLE ZEPHYR
+			NOVELL QQ SASL SIMPLE ZEPHYR
 BONJOUR_DESC=	mDNS support and Bonjour protocol
 GNUTLS_DESC=	Use GNUTLS for encryption support
 NSS_DESC=	Use Mozilla NSS for encryption support
@@ -57,7 +58,6 @@ GG_DESC=	The Gadu-Gadu chat protocol
 IRC_DESC=	The Internet Relay Chat protocol
 JABBER_DESC=	The Jabber/XMPP/Google Talk protocol
 NOVELL_DESC=	The Novell GroupWise chat protocol
-OSCAR_DESC=	The ICQ/Oscar protocol
 QQ_DESC=	The Tercent QQ chat protocol
 SIMPLE_DESC=	The SIMPLE chat protocol
 ZEPHYR_DESC=	The Zephyr chat protocol
@@ -73,8 +73,8 @@ PLIST_SUB+=	GTKUI="@comment not installed: "
 .endif
 
 .if defined(WITH_CONSOLEUI)
-OPTIONS_DEFINE+=NCURSES
-NCURSES_DESC=	Build with ncurses from ports
+USES+=		ncurses
+CONFIGURE_ARGS+=--with-ncurses-headers=${NCURSESINC}
 PLIST_SUB+=	CONSOLEUI=""
 .else
 PLIST_SUB+=	CONSOLEUI="@comment not installed: "
@@ -93,13 +93,6 @@ PLIST_SUB+=		TCL:=""
 .else
 CONFIGURE_ARGS+=	--disable-tcl
 PLIST_SUB+=		TCL:="@comment not installed: "
-.endif
-
-.if ${PORT_OPTIONS:MNCURSES}
-USES+=		ncurses:port
-CONFIGURE_ARGS+=--with-ncurses-headers=${LOCALBASE}/include/ncurses/
-.else
-USES+=		ncurses
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
@@ -122,14 +115,14 @@ USE_GNOME+=	gconf2
 GCONF_SCHEMAS=	purple.schemas
 .endif
 
-#.if defined(WITH_GTKUI)
-#USE_GNOME+=		evolutiondataserver
-#PLIST_SUB+=		EVO=""
-#CONFIGURE_ARGS+=	--enable-gevolution
-#.else
+.if defined(WITH_GTKUI)
+USE_GNOME+=		evolutiondataserver3
+PLIST_SUB+=		EVO=""
+CONFIGURE_ARGS+=	--enable-gevolution
+.else
 CONFIGURE_ARGS+=	--disable-gevolution
 PLIST_SUB+=		EVO="@comment not installed: "
-#.endif
+.endif
 
 .if ${PORT_OPTIONS:MGSTREAMER}
 USE_GSTREAMER1+=core good
@@ -186,6 +179,8 @@ PLIST_SUB+=		NSS="@comment "
 .if ${PORT_OPTIONS:MSASL}
 LIB_DEPENDS+=		libsasl2.so:security/cyrus-sasl2
 CONFIGURE_ARGS+=	--enable-cyrus-sasl
+.else
+CONFIGURE_ARGS+=	--disable-cyrus-sasl
 .endif
 
 .if ${PORT_OPTIONS:MBONJOUR}
@@ -204,12 +199,12 @@ CONFIGURE_ARGS+=	--disable-gtkspell
 .endif
 
 .if ${PORT_OPTIONS:MDBUS}
-USES+=			python
+USES+=			python:3.5+
 LIB_DEPENDS+=		libdbus-glib-1.so:devel/dbus-glib
 .if !defined(PIDGIN_SLAVE)
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dbus>=0:devel/py-dbus@${PY_FLAVOR}
 .endif
-CONFIGURE_ARGS+=	--enable-dbus --with-python=${PYTHON_CMD}
+CONFIGURE_ARGS+=	--enable-dbus --with-python3=${PYTHON_CMD}
 PLIST_SUB+=		DBUS=""
 .else
 CONFIGURE_ARGS+=	--disable-dbus
@@ -261,13 +256,6 @@ PLIST_SUB+=		NOVELL=""
 PRPL_MODULES:=		novell,${PRPL_MODULES}
 .else
 PLIST_SUB+=		NOVELL="@comment not installed: "
-.endif
-
-.if ${PORT_OPTIONS:MOSCAR}
-PLIST_SUB+=		OSCAR=""
-PRPL_MODULES:=		oscar,${PRPL_MODULES}
-.else
-PLIST_SUB+=		OSCAR="@comment not installed: "
 .endif
 
 #.if ${PORT_OPTIONS:MQQ}

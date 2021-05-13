@@ -1,12 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	finch
-PORTREVISION=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Finch multi-protocol messaging client (Console UI)
 
-LIB_DEPENDS=	libpurple.so:net-im/libpurple
+LIB_DEPENDS=	libpurple.so:net-im/libpurple \
+		libgnt.so:devel/libgnt
 
 MASTERDIR=	${.CURDIR}/../libpurple
 BUILD_WRKSRC=	${WRKSRC}/finch
