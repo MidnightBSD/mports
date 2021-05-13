@@ -35,6 +35,8 @@ MIMESUBDIRS=	application audio image inode message model multipart \
 
 BINARY_ALIAS=	xmlto=minixmlto
 
+NO_TEST=	yes
+
 post-patch:
 	${REINPLACE_CMD} 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/src/xdgmime/src/xdgmime.c \
