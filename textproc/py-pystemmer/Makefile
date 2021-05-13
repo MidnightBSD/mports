@@ -18,6 +18,6 @@ USES=		python:3.6+
 USE_PYTHON=	cython distutils autoplist
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Stemmer.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Stemmer*.so
 
 .include <bsd.port.mk>
