@@ -18,10 +18,9 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}tornado4 \
 			${PYTHON_PKGNAMEPREFIX}tornado5 \
 			${PYTHON_PKGNAMEPREFIX}tornado6
 
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/tornado/speedups*.so
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m tornado.test.runtests
 
 .include <bsd.port.mk>
