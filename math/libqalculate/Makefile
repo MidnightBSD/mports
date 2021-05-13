@@ -1,37 +1,37 @@
-# $MidnightBSD$
+# Created by: Sergey Akifyev <asa@agava.com>
 
 PORTNAME=	libqalculate
-PORTVERSION=	0.9.7
-PORTREVISION=	2
+PORTVERSION=	3.17.0
+PORTREVISION=	1
 CATEGORIES=	math
-MASTER_SITES=	SF/qalculate/${PORTNAME}/${PORTNAME}-${PORTVERSION}
+MASTER_SITES=	https://github.com/Qalculate/${PORTNAME}/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-purpose desktop calculator (backend library)
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libcln.so:${PORTSDIR}/math/cln
+LIB_DEPENDS=	libicuuc.so:devel/icu \
+		libcurl.so:ftp/curl \
+		libgmp.so:math/gmp \
+		libmpfr.so:math/mpfr
 
-USES=		pkgconfig pathfix gmake libtool gettext-tools
-USE_GNOME=	glib20 intltool libxml2
+USES=		compiler:c++14-lang gettext gmake gnome iconv libtool \
+		localbase ncurses pathfix pkgconfig readline:port
+USE_GNOME=	intltool libxml2
 USE_LDCONFIG=	yes
+
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
-NLS_USES=	gettext-runtime
-
-.include <bsd.mport.options.mk>
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e '/^SUBDIRS =/s|po ||g' ${WRKSRC}/Makefile.in
 
 post-patch:
-.if !${PORT_OPTIONS:MNLS}
-	@${REINPLACE_CMD} -e '/^SUBDIRS =/s|po ||g' ${WRKSRC}/Makefile.in
-.endif
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s|docs||g' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
