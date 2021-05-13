@@ -42,7 +42,7 @@ DEBUG_FLAGS=		-g -ggdb3 -O0
 PLIST_FILES+=		include/talloc.h \
 			lib/libtalloc.so \
 			lib/libtalloc.so.2 \
-			libdata/pkgconfig/talloc.pc
+			${PKGCONFIGDIR}/talloc.pc
 
 .if defined(NO_PYTHON)
 USES+=			python:build,test
@@ -51,10 +51,10 @@ CONFIGURE_ARGS+=	--disable-python
 USES+=			python:3.4+
 
 PLIST_FILES+=		include/pytalloc.h \
-			lib/libpytalloc-util.so \
-			lib/libpytalloc-util.so.2 \
-			${PYTHON_SITELIBDIR}/talloc.so \
-			libdata/pkgconfig/pytalloc-util.pc
+			lib/libpytalloc-util${PYTHON_EXT_SUFFIX}.so \
+			lib/libpytalloc-util${PYTHON_EXT_SUFFIX}.so.2 \
+			${PYTHON_SITELIBDIR}/talloc${PYTHON_EXT_SUFFIX}.so \
+			${PKGCONFIGDIR}/pytalloc-util${PYTHON_EXT_SUFFIX}.pc
 .endif
 
 .include <bsd.port.pre.mk>
