@@ -27,6 +27,6 @@ CFLAGS+=	-Wno-shift-negative-value
 .endif
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_cffi_backend.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_cffi_backend*.so
 
 .include <bsd.port.post.mk>
