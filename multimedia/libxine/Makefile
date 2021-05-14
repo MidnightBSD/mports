@@ -1,6 +1,6 @@
 PORTNAME=	xine
 DISTVERSION=	1.2.11
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-lib/${PORTVERSION}
 PKGNAMEPREFIX=	lib
@@ -123,6 +123,7 @@ PIXBUF_USE=			GNOME=gdkpixbuf2,glib20
 PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio
 PULSEAUDIO_CONFIGURE_WITH=	pulseaudio
 SDL_CONFIGURE_WITH=		sdl
+SDL_USES=			sdl
 SDL_USE=			SDL=sdl
 SFTP_LIB_DEPENDS=		libssh2.so:security/libssh2
 SFTP_CONFIGURE_ENABLE=		sftp
@@ -139,8 +140,7 @@ V4L_BUILD_DEPENDS=		v4l_compat>=1.0.20100321:multimedia/v4l_compat
 V4L_LIB_DEPENDS=		libv4l2.so:multimedia/libv4l
 V4L_CONFIGURE_ENABLE=		libv4l v4l v4l2
 W32DLL_CONFIGURE_ENABLE=	w32dll
-W32DLL_PLIST_FILES=		${PLUGINSDIR}/xineplug_decode_qt.so \
-				${PLUGINSDIR}/xineplug_decode_w32dll.so
+W32DLL_PLIST_FILES=		${PLUGINSDIR}/xineplug_decode_w32dll.so
 WAVPACK_LIB_DEPENDS=		libwavpack.so:audio/wavpack
 WAVPACK_CONFIGURE_WITH=		wavpack
 WAYLAND_LIB_DEPENDS=		libwayland-egl.so:graphics/wayland \
