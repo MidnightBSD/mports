@@ -51,4 +51,8 @@ post-install-DOCS-on:
 	${TAR} -C ${WRKSRC}/docs -cf - . | \
 	${TAR} --unlink -C ${FAKE_DESTDIR}${DOCSDIR} -xf -
 
+post-install:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/pygame/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/pygame/_sdl2/*.so
+
 .include <bsd.port.mk>
