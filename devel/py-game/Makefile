@@ -42,7 +42,7 @@ post-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 #Remove Un-needed macosx files
-	@${RM} -r ${WRKSRC}/examples/macosx
+	-${RM} -r ${WRKSRC}/examples/macosx
 	${TAR} -C ${WRKSRC}/examples -cf - . | \
 		${TAR} --unlink -C ${FAKE_DESTDIR}${EXAMPLESDIR} -xf -
 
