@@ -8,7 +8,7 @@ MASTER_SITES=	http://www.arschkrebs.de/postfix/${PORTNAME}/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A RRDtool frontend for Courier statistics
+COMMENT=	RRDtool frontend for Courier statistics
 
 LICENSE=	gpl
 

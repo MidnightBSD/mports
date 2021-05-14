@@ -1,5 +1,3 @@
 www/cgi-bin/couriergraph.cgi
 sbin/couriergraph.pl
-@dirrmtry www/cgi-bin
-@exec install -o %%COURIERGRAPH_USER%% -g %%COURIERGRAPH_GROUP%% -d %%DATADIR%%
-@unexec rm -rf %%DATADIR%%
+@dir(%%COURIERGRAPH_USER%%,%%COURIERGRAPH_GROUP%%,) %%DATADIR%%
