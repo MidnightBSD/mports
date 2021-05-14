@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	jpeg
-PORTVERSION=	8
-PORTREVISION=	8
+PORTVERSION=	9
+PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		http://sylvana.net/jpegcrop/:exif
@@ -20,7 +18,7 @@ LICENSE=	other
 CONFLICTS=	libjpeg-turbo-[0-9]*
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION2}
 
-DISTVERSION2=	8d
+DISTVERSION2=	9d
 USES=		libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
