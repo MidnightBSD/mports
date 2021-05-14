@@ -68,7 +68,8 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-src_gallium_drivers_vc4_Makefile.in
 .endif
 
 .if ${VULKAN_DRIVERS}
-BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR}
+# no longer available
+#BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR}
 USE_XORG+=		xcb xrandr
 .endif
 
