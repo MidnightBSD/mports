@@ -20,6 +20,8 @@ SLAVE_PORT?=	no
 
 USES=		meson pkgconfig tar:xz
 
+NO_TEST=	yes
+
 # this port doesn't work with py-gobject < 2.28.6_2, clungle below
 CONFLICTS=	py*-gtk-0* py*-gobject-2.*.[0-6] py*-gobject-2.*.[7-9] \
 		py*-gobject-2.*.6_1
