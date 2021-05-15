@@ -22,6 +22,6 @@ USE_GNOME=	cairo
 PLIST_SUB=	PORTVER=${PORTVERSION}
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/_cairo.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/_cairo*.so
 
 .include <bsd.port.mk>
