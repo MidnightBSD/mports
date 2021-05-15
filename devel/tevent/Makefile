@@ -54,10 +54,11 @@ PLIST_FILES+=		include/tevent.h \
 USES+=			python:build,test
 CONFIGURE_ARGS+=	--disable-python
 .else
-USES+=			python:3.7
+USES+=			python:3.7+
+USE_PYTHON=		py3kplist
 
-PLIST_FILES+=		lib/python3.7/site-packages/_tevent.so \
-			lib/python3.7/site-packages/tevent.py
+PLIST_FILES+=		lib/python${PYTHON_VER}/site-packages/_tevent${PYTHON_EXT_SUFFIX}.so \
+			lib/python${PYTHON_VER}/site-packages/tevent.py
 .endif
 
 .include <bsd.port.pre.mk>
@@ -91,7 +92,7 @@ pre-configure:
 post-install:
 			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtevent.so
 .if !defined(NO_PYTHON)
-			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_tevent.so
+			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_tevent*.so
 .endif
 
 .include <bsd.port.post.mk>
