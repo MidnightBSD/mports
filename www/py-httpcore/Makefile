@@ -13,7 +13,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}h11>=0<1:net/py-h11@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sniffio>=1.0<2:devel/py-sniffio@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}sniffio>=1.0:devel/py-sniffio@${PY_FLAVOR}
 
 USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
