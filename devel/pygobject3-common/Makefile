@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gobject
 PORTVERSION=	3.38.0
 PORTREVISION=	0
@@ -26,6 +24,8 @@ NO_TEST=	yes
 CONFLICTS=	py*-gtk-0* py*-gobject-2.*.[0-6] py*-gobject-2.*.[7-9] \
 		py*-gobject-2.*.6_1
 
+SKIP_FAKE_CHECK=.*\.py[co]
+
 PLIST_SUB=	ARCH=${ARCH} UNAME_R=${UNAME_R} VERSION=${PORTVERSION} \
 		OPSYS=${OPSYS:tl} UNAME_M=${UNAME_M}
 
@@ -40,11 +40,11 @@ USE_GNOME=	glib20:build introspection:build
 NO_BUILD=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/pygobject-3.0/
+	@${MKDIR} ${PREFIX}/include/pygobject-3.0/
 	${INSTALL_DATA} ${WRKSRC}/gi/pygobject.h \
-		${STAGEDIR}${PREFIX}/include/pygobject-3.0/pygobject.h
+		${PREFIX}/include/pygobject-3.0/pygobject.h
 	${INSTALL_DATA} ${WRKSRC}/_build/pygobject-3.0.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
+		${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
 .else
 PORTSCOUT=	ignore:1
 
@@ -61,11 +61,19 @@ BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
 .  endif
 
+PYTHON_CMD3=	${BINARY_LINKDIR}/python3
+
 post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/include/pygobject-3.0 \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
-	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
-	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+	@${RM} -r ${PREFIX}/include/pygobject-3.0 \
+		${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
+	cd ${PREFIX} && ${PYTHON_CMD3} ${PYTHON_LIBDIR}/compileall.py \
+		-d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
+	cd ${PREFIX} && ${PYTHON_CMD3} -O ${PYTHON_LIBDIR}/compileall.py \
+		-d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
+	cd ${PREFIX} && ${PYTHON_CMD3} ${PYTHON_LIBDIR}/compileall.py \
+		-d ${FAKE_DESTDIR}${PYSHAREDIR} -f ${PYSHAREDIR:S;${TRUE_PREFIX}/;;}
+	cd ${PREFIX} && ${PYTHON_CMD3} -O ${PYTHON_LIBDIR}/compileall.py \
+		-d ${FAKE_DESTDIR}${PYSHAREDIR} -f ${PYSHAREDIR:S;${TRUE_PREFIX}/;;}
 .endif
 
 .include <bsd.port.pre.mk>
