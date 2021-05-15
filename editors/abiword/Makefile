@@ -156,6 +156,9 @@ ABIWORD_PLUGINS+=	wpg wordperfect
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|glib/.*\.h>|glib.h>|g' \
+		${WRKSRC}/goffice-bits/goffice/app/goffice-app.h \
+		${WRKSRC}/src/af/util/xp/ut_go_file.h
 # The following substitutions ensure that plugins are linked with libabiword
 # from the work or stage directory instead of a previously installed library.
 # In pseudo code:
