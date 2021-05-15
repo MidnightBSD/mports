@@ -1,7 +1,7 @@
 # Created by: Johannes Dieterich <jmd@FreeBSD.org>
 
 PORTNAME=	gpu-firmware-kmod
-PORTVERSION=	g20200503
+PORTVERSION=	g20210330
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,9 +21,9 @@ USES=		kmod uidfix
 FAKE_OPTS=	trueprefix
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	FreeBSDDesktop
-GH_PROJECT=	kms-firmware
-GH_TAGNAME=	ea79130
+GH_ACCOUNT=	freebsd
+GH_PROJECT=	drm-kmod-firmware
+GH_TAGNAME=	df9e66d
 
 .include <bsd.port.pre.mk>
 
