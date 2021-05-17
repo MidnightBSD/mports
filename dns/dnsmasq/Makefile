@@ -1,12 +1,12 @@
 # Created by: Steven Honson
 
 PORTNAME=	dnsmasq
-DISTVERSION=	2.82
+DISTVERSION=	2.85
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	dns
-MASTER_SITES=	http://www.thekelleys.org.uk/dnsmasq/ \
-		LOCAL/mandree/
+MASTER_SITES=	https://www.thekelleys.org.uk/dnsmasq/ \
+		FREEBSD_LOCAL/mandree/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight DNS forwarder, DHCP, and TFTP server
@@ -31,6 +31,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 
 CONFLICTS_INSTALL=	dnsmasq-devel-*
 
+PATCH_STRIP=	-p1
 SUB_FILES=	pkg-message
 
 PORTDOCS=	CHANGELOG CHANGELOG.archive FAQ doc.html setup.html
