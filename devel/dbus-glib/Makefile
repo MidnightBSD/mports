@@ -8,10 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib bindings for the D-BUS messaging system
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libexpat.so:textproc/expat2
-RUN_DEPENDS+=	python2.7:lang/python27
 
 GNU_CONFIGURE=	yes
 USES=		cpe gettext gmake gnome libtool localbase pathfix pkgconfig
