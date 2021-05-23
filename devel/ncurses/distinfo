@@ -1,2 +1,3 @@
-SHA256 (ncurses/ncurses-5.9.tar.gz) = 9046298fb440324c9d4135ecea7879ffed8546dd1b58e59430ea07a4633f563b
-SIZE (ncurses/ncurses-5.9.tar.gz) = 2826473
+TIMESTAMP = 1618230890
+SHA256 (ncurses/ncurses-6.2-20210403.tgz) = 581f980063b1a75a0f8aa888af80e034d194e5c717303ccfadad47444dbb7ed6
+SIZE (ncurses/ncurses-6.2-20210403.tgz) = 3564520
