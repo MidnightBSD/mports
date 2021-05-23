@@ -1,17 +1,15 @@
-# $MidnightBSD$
-
 PORTNAME=	libusbmuxd
-PORTVERSION=	1.0.9
+PORTVERSION=	2.0.2
 CATEGORIES=	comms
-MASTER_SITES=	http://www.libimobiledevice.org/downloads/
+MASTER_SITES=	https://github.com/libimobiledevice/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Communication interface library for usbmuxd
 
-LICENSE=	lgpl2.1 lgpl3
-LICENSE_COMB=	dual
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libplist.so:${PORTSDIR}/devel/libplist
+LIB_DEPENDS=	libplist-2.0.so:devel/libplist
 
 CONFLICTS_INSTALL=usbmuxd-1.0.[6-8]
 
@@ -20,20 +18,20 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-PORTDOCS=	AUTHORS README
+PORTDOCS=	AUTHORS README.md
 
 OPTIONS_DEFINE=	DOCS INOTIFY
 
 INOTIFY_DESC=	Use inotify instead of polling (saves energy)
 
-INOTIFY_LIB_DEPENDS=	libinotify.so:${PORTSDIR}/devel/libinotify
+INOTIFY_LIB_DEPENDS=	libinotify.so:devel/libinotify
 # *_CONFIGURE_WITH can't be used as --with-inotify doesn't work.
 INOTIFY_CONFIGURE_OFF=	--without-inotify
 INOTIFY_CFLAGS=		-I${LOCALBASE}/include
 INOTIFY_LDFLAGS=	-L${LOCALBASE}/lib -linotify
 
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
