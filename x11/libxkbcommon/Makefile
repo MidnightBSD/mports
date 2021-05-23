@@ -1,5 +1,5 @@
 PORTNAME=	libxkbcommon
-PORTVERSION=	0.10.0
+PORTVERSION=	1.3.0
 CATEGORIES=	x11
 MASTER_SITES=	https://xkbcommon.org/download/
 DIST_SUBDIR=	xorg/lib
@@ -12,16 +12,27 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	xkeyboard-config>0:x11/xkeyboard-config
 
-USES=		bison meson pkgconfig tar:xz xorg
-USE_XORG=	xcb
+USES=		bison compiler:c11 gnome meson pkgconfig tar:xz
+USE_GNOME=	libxml2
+USE_LDCONFIG=	yes
 MESON_ARGS=	-Denable-docs=false \
-		-Denable-wayland=false \
-		-Dx-locale-root="${PREFIX}/lib/X11/locale"
+		-Dx-locale-root="${PREFIX}/lib/X11/locale" \
+		-Ddefault-rules=xorg
 
-NO_TEST=	yes
+OPTIONS_DEFINE=	EVDEV WAYLAND X11
+OPTIONS_DEFAULT=EVDEV WAYLAND X11
+OPTIONS_SUB=	yes
 
-.include <bsd.port.pre.mk>
+EVDEV_DESC=		Interactive debugger for XKB keymaps for evdev
+EVDEV_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
+EVDEV_USES=		localbase
 
-MESON_ARGS+=	-Ddefault-rules=xorg
+WAYLAND_BUILD_DEPENDS=	wayland-protocols>=1.12:graphics/wayland-protocols
+WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
+WAYLAND_MESON_TRUE=	enable-wayland
 
-.include <bsd.port.post.mk>
+X11_USES=	xorg
+X11_USE=	XORG=xcb
+X11_MESON_TRUE=	enable-x11
+
+.include <bsd.port.mk>
