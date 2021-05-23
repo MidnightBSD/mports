@@ -1,53 +1,57 @@
 PORTNAME=	libwmf
-PORTVERSION=	0.2.8.4
-PORTREVISION=	16
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.2.12
 CATEGORIES=	graphics
-MASTER_SITES=	SF/wvware/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library for converting Microsoft WMF (windows metafile)
 
-LICENSE=	gpl2 # or later
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png \
-		libfreetype.so:print/freetype2
+		libfreetype.so:print/freetype2 \
+		libgd.so:graphics/gd \
+		libexpat.so:textproc/expat2
 
-CONFLICTS?=	libwmf-nox11-[0-9]*
-
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-sys-gd=no \
-		--with-png=${LOCALBASE} --with-jpeg=${LOCALBASE} \
-		--with-gsfontdir=${LOCALBASE}/share/ghostscript/fonts
-INSTALL_TARGET=	install-strip
-USES=		gnome jpeg libtool
-USE_GNOME=	libxml2
+USES=		autoreconf:build jpeg libtool localbase pkgconfig
+USE_GITHUB=	yes
+GH_ACCOUNT=	caolanm
 USE_LDCONFIG=	yes
 
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-gsfontdir=${LOCALBASE}/share/ghostscript/fonts
+INSTALL_TARGET=	install-strip
+
 PORTDOCS=	*
+
+CONFLICTS?=	libwmf-nox11-[0-9]*
 
 OPTIONS_DEFINE=	X11 DOCS
 OPTIONS_DEFAULT=X11
 OPTIONS_SUB=	yes
 
+X11_USES=	xorg
 X11_USE=	XORG=x11
 X11_CONFIGURE_OFF=--with-x=no
 
-.include <bsd.mport.options.mk>
+pre-configure:
+	@(cd ${CONFIGURE_WRKSRC} && ${SETENV} AUTOHEADER="${TRUE}" \
+	 ${LOCALBASE}/bin/autoreconf -vif -Ipatches)
+
+post-configure:
+	@${REINPLACE_CMD} -e 's|autoheader|autoheader -Ipatches|g' \
+		${WRKSRC}/Makefile
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|src include fonts doc|src include fonts|g' \
-		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e \
 		's|@LIBWMF_GDK_PIXBUF_TRUE@|#|g ; \
 		 s|@LIBWMF_GDK_PIXBUF_FALSE@||g ; \
 		 s|: install-loaderLTLIBRARIES|:|g' ${WRKSRC}/src/Makefile.in
 
-post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	@${TAR} -C ${WRKSRC}/doc --exclude '*Makefile*' -cf - . | \
-		${TAR} -C ${DOCSDIR} --unlink -xf -
-.endif
+		${TAR} -C ${FAKE_DESTDIR}${DOCSDIR} --unlink -xf -
 
 .include <bsd.port.mk>
