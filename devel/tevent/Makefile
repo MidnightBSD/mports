@@ -93,6 +93,7 @@ post-install:
 			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtevent.so
 .if !defined(NO_PYTHON)
 			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_tevent*.so
+			${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 .endif
 
 .include <bsd.port.post.mk>
