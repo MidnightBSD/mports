@@ -1,6 +1,6 @@
---- setup.py.orig	2019-10-14 09:34:47.000000000 -0400
-+++ setup.py	2019-11-07 15:37:59.129951000 -0500
-@@ -1472,7 +1472,7 @@
+--- setup.py.orig	2021-05-03 05:47:56.000000000 -0400
++++ setup.py	2021-05-23 17:36:32.670873000 -0400
+@@ -1457,7 +1457,7 @@
              self.missing.extend(['resource', 'termios'])
  
          # Platform-specific libraries
@@ -9,3 +9,12 @@
              self.add(Extension('ossaudiodev', ['ossaudiodev.c']))
          elif not AIX:
              self.missing.append('ossaudiodev')
+@@ -2051,7 +2051,7 @@
+         undef_macros = []
+         if '--with-system-libmpdec' in sysconfig.get_config_var("CONFIG_ARGS"):
+             include_dirs = []
+-            libraries = [':libmpdec.so.2']
++            libraries = ['mpdec']
+             sources = ['_decimal/_decimal.c']
+             depends = ['_decimal/docstrings.h']
+         else:

@@ -26,6 +26,7 @@ SUBDIR += ldouble
 SUBDIR += libqalculate
 SUBDIR += metis
 SUBDIR += mpc
+SUBDIR += mpdecimal
 SUBDIR += mpfr
 SUBDIR += openblas
 SUBDIR += p5-Bit-Vector
