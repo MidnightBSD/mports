@@ -20,6 +20,7 @@ OPTIONS_DEFINE=	DOCS
 
 PORTSCOUT=	limit:^ming-
 
+CFLAGS+=	-fcommon # https://github.com/libming/libming/issues/55
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/ming
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
