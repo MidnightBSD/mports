@@ -1,7 +1,4 @@
 #!/bin/sh
-#
-# $FreeBSD: head/ftp/proftpd/files/proftpd.in 378282 2015-02-01 22:25:50Z mm $
-#
 
 # PROVIDE: proftpd
 # REQUIRE: DAEMON
