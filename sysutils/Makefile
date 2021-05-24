@@ -80,6 +80,7 @@ SUBDIR += hw-probe
 SUBDIR += isc-cron
 SUBDIR += jailme
 SUBDIR += javaservicewrapper
+SUBDIR += k9s
 SUBDIR += less
 SUBDIR += libcdio
 SUBDIR += libcdio-paranoia
