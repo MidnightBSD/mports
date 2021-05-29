@@ -1034,6 +1034,7 @@ SUBDIR += sdl12
 SUBDIR += sdl20
 SUBDIR += sigar
 SUBDIR += silc-toolkit
+SUBDIR += skalibs
 SUBDIR += slf4j
 SUBDIR += sonar-ant-task
 SUBDIR += sonar-scanner-cli
