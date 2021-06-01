@@ -1,7 +1,7 @@
 PORTNAME=	vulkan-headers
 DISTVERSIONPREFIX=sdk-
 DISTVERSION=	1.1.108.0
-CATEGORIES=	devel graphics
+CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Headers for the Vulkan graphics API

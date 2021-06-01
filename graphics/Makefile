@@ -221,6 +221,7 @@ SUBDIR += tesseract
 SUBDIR += tesseract-data
 SUBDIR += tiff
 SUBDIR += vigra
+SUBDIR += vulkan-headers
 SUBDIR += vulkan-loader
 SUBDIR += wayland
 SUBDIR += wayland-protocols

@@ -1067,7 +1067,6 @@ SUBDIR += uthash
 SUBDIR += valgrind
 SUBDIR += viewvc
 SUBDIR += viewvc-devel
-SUBDIR += vulkan-headers
 SUBDIR += websvn
 SUBDIR += wizardkit
 SUBDIR += woff2
