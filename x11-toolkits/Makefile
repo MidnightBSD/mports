@@ -15,6 +15,7 @@ SUBDIR += gtk-sharp20
 SUBDIR += gtk-sharp30
 SUBDIR += gtk20
 SUBDIR += gtk30
+SUBDIR += gtk40
 SUBDIR += gtkglext
 SUBDIR += gtkmm20
 SUBDIR += gtkmm24
