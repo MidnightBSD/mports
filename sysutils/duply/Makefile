@@ -2,7 +2,8 @@ PORTNAME=	duply
 PORTVERSION=	2.1
 PORTREVISION=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	https://duply.net/projects/ftplicity/files/latest/download/
+MASTER_SITES=	SF/ftplicity/duply%20%28simple%20duplicity%29/2.1.x/
+#MASTER_SITES=	https://duply.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.x/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,10 +12,10 @@ COMMENT=	Shell front end for the duplicity backup tool
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/gpl-2.0.txt
 
-RUN_DEPENDS=	duplicity:sysutils/duplicity@${PY_FLAVOR} \
+RUN_DEPENDS=	duplicity:sysutils/duplicity \
 		bash:shells/bash
 
-USES=		python:2.7 tar:tgz
+USES=		python tar:tgz
 
 NO_ARCH=	yes
 NO_BUILD=	yes
