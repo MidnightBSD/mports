@@ -1,7 +1,7 @@
 # Created by: Gerhard Häring <gh@ghaering.de>
 
 PORTNAME=	duplicity
-PORTVERSION=	0.8.17
+PORTVERSION=	0.8.19
 CATEGORIES=	sysutils
 MASTER_SITES=	https://code.launchpad.net/duplicity/0.8-series/${PORTVERSION}/+download/
 
@@ -86,6 +86,9 @@ post-install:
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+
+trim-duplicity-testing:
+	@${REINPLACE_CMD} '/\/testing\//d' ${TMPPLIST}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|g} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
