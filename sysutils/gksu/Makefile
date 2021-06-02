@@ -2,7 +2,7 @@
 
 PORTNAME=	gksu
 PORTVERSION=	2.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://people.debian.org/~kov/gksu/
 
