@@ -1,12 +1,11 @@
-# $MidnightBSD$
-
 PORTNAME=	extipl
 PORTVERSION=	5.04
 CATEGORIES=	sysutils
-MASTER_SITES=	SFJP/${PORTNAME}/2166
+MASTER_SITES=	OSDN/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Partition-selectable boot loader for IBM-PC/AT compatibles
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
