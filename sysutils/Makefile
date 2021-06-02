@@ -158,6 +158,7 @@ SUBDIR += sysrc
 SUBDIR += system-tools-backends
 SUBDIR += tarsnap
 SUBDIR += timemon
+SUBDIR += tmux
 SUBDIR += tracker
 SUBDIR += tracker-miners
 SUBDIR += ucspi-tcp
