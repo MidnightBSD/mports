@@ -77,6 +77,7 @@ SUBDIR += hal
 SUBDIR += hal-info
 SUBDIR += htop
 SUBDIR += hw-probe
+SUBDIR += hwstat
 SUBDIR += isc-cron
 SUBDIR += jailme
 SUBDIR += javaservicewrapper
