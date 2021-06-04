@@ -35,7 +35,6 @@ SUBDIR += devcpu-data
 SUBDIR += di
 SUBDIR += dirdiff
 SUBDIR += dmidecode
-SUBDIR += docker-freebsd
 SUBDIR += dtc
 SUBDIR += duplicity
 SUBDIR += duply
