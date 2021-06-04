@@ -1,30 +1,28 @@
-# $MidnightBSD$
-
 PORTNAME=	libplist
-PORTVERSION=	1.12
+PORTVERSION=	2.2.0
 PORTREVISION?=	0
-CATEGORIES?=	devel
-MASTER_SITES=	http://www.libimobiledevice.org/downloads/
+CATEGORIES=	devel
+MASTER_SITES=	https://github.com/libimobiledevice/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Library to handle Apple Property List format
 
-LICENSE?=	lgpl2.1
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
 
-SLAVE_PORT?=	no
-
-USES+=		compiler libtool pathfix pkgconfig tar:bzip2
+USES+=		autoreconf compiler gnome libtool pathfix pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+
+SLAVE_PORT?=	no
 
 .if ${SLAVE_PORT} == no
 
 USE_GNOME=	libxml2
 CONFIGURE_ARGS=	--without-cython
-MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	${LOCALBASE}/lib
 
-PORTDOCS=	AUTHORS NEWS README
+PORTDOCS=	AUTHORS NEWS README.md
 
 OPTIONS_DEFINE=	DOCS
 
