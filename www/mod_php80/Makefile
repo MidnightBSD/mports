@@ -1,9 +1,7 @@
-# $FreeBSD$
-
 CATEGORIES=	www devel
 PKGNAMEPREFIX=	mod_
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 
 PHP_PORT=	lang/php80
 MASTERDIR=	${.CURDIR}/../../${PHP_PORT}
