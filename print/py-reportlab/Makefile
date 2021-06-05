@@ -15,6 +15,7 @@ COMMENT=	Library to create PDF documents using the Python language
 
 LICENSE=	bsd3
 
+BUILD_DEPENDS+=	${PY_PILLOW}
 RUN_DEPENDS=	${PY_PILLOW}
 
 USES=		python:3.6+
@@ -50,7 +51,7 @@ post-patch:
 
 post-patch-DOCS-on:
 .for f in genAll.py userguide/genuserguide.py
-	@${REINPLACE_CMD} -e 's|%%STAGEDIR%%|${FAKE_DESTDIR}|' \
+	@${REINPLACE_CMD} -e 's|%%FAKE_DESTDIR%%|${FAKE_DESTDIR}|' \
 			  -e 's|%%PYTHON_SITELIBDIR%%|${PYTHON_SITELIBDIR}|' \
 				${WRKSRC}/docs/${f}
 .endfor
@@ -59,8 +60,8 @@ post-install:
 	-${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/reportlab/*/*.so
 
 post-install-DOCS-on:
-	@cd ${WRKSRC}/docs && ${PYTHON_CMD} genAll.py
-	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/docs && ${PYTHON_CMD} genAll.py
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for i in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/docs/${i} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
