@@ -35,4 +35,7 @@ X11_USES=	xorg
 X11_USE=	XORG=xcb
 X11_MESON_TRUE=	enable-x11
 
+# magus issue
+NO_TEST=	yes
+
 .include <bsd.port.mk>
