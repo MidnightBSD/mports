@@ -64,6 +64,8 @@ CONFLICTS=	php72-* php73-* php74-*
 
 DESTDIRNAME=	INSTALL_ROOT
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MMYSQLND}
