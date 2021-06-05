@@ -6,11 +6,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MIME types database from the freedesktop.org project
 
 LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING
+#LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gmake:devel/gmake \
 		itstool:textproc/itstool \
 		minixmlto>0.0.2:textproc/minixmlto
+
+WRKSRC=		${WRKDIR}/shared-mime-info-ef58b2b2f7ad4070171c6e45e3b3764daa3ff2c1
 
 USES=		gettext gnome localbase meson pathfix pkgconfig shebangfix tar:xz
 CONFIGURE_ARGS=	-Dupdate-mimedb=false \
