@@ -6,7 +6,7 @@
  def run(pagesize=None, verbose=0, outDir=None):
 -    import sys,os
 +    import sys,os,site
-+    site.addsitedir("%%STAGEDIR%%%%PYTHON_SITELIBDIR%%")
++    site.addsitedir("%%FAKE_DESTDIR%%%%PYTHON_SITELIBDIR%%")
      from reportlab.lib.utils import open_and_read, asUnicode
      cwd = os.getcwd()
      docsDir=os.path.dirname(os.path.dirname(sys.argv[0]) or cwd)

@@ -5,7 +5,7 @@
 -import os, sys, traceback
 +import os, sys, traceback, site
  def _genAll(verbose=1):
-+    site.addsitedir("%%STAGEDIR%%%%PYTHON_SITELIBDIR%%")
++    site.addsitedir("%%FAKE_DESTDIR%%%%PYTHON_SITELIBDIR%%")
      from reportlab.lib.testutils import setOutDir
      setOutDir(__name__)
      from reportlab.lib.testutils import testsFolder
