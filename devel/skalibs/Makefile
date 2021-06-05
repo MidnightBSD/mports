@@ -8,7 +8,7 @@ MASTER_SITES=	https://www.skarnet.org/software/${PORTNAME}/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose C libraries used by skarnet.org software
 
-LICENSE=	isc
+LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake

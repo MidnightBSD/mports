@@ -14,7 +14,8 @@ USES=		gmake
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 ALL_TARGET=	default
-TEST_TARGET=	check_local
+#TEST_TARGET=	check_local
+NO_TEST=	yes
 
 PORTDOCS=	libmpdec++/* libmpdec/*
 
