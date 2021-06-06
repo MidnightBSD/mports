@@ -41,6 +41,8 @@ CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc	\
 MAKE_JOBS_UNSAFE=yes
 INSTALL_TARGET=	install-strip
 
+NO_TEST=	yes
+
 OPTIONS_DEFINE=	ENGINE VALA GTK2 GTK3 GINTRO XIM EMOJI DOCS NLS WAYLAND
 OPTIONS_DEFAULT=	GTK2 GTK3 VALA GINTRO DCONF XIM ENGINE EMOJI
 OPTIONS_RADIO=	CONFIG
@@ -117,10 +119,7 @@ pre-configure:
 	cd ${CONFIGURE_WRKSRC} && gtkdocize --copy --flavour no-tmpl
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/xdg/autostart
-	${INSTALL_DATA} ${PATCHDIR}/ibus.desktop ${STAGEDIR}${PREFIX}/etc/xdg/autostart
-
-do-test:
-	${MAKE} -C ${WRKSRC}/src/tests check
+	${MKDIR} ${PREFIX}/etc/xdg/autostart
+	${INSTALL_DATA} ${PATCHDIR}/ibus.desktop ${PREFIX}/etc/xdg/autostart
 
 .include <bsd.port.post.mk>
