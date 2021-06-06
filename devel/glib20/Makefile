@@ -1,5 +1,5 @@
 PORTNAME=	glib
-DISTVERSION=	2.66.7
+DISTVERSION=	2.66.8
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -33,7 +33,7 @@ MESON_ARGS=	-Db_lundef=false \
 		-Dxattr=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-_LIBVERSION=	0.6600.7
+_LIBVERSION=	0.6600.8
 PLIST_SUB=	LIBVERSION=${_LIBVERSION}
 
 OPTIONS_DEFINE=	DEBUG FAM_ALTBACKEND MANPAGES NLS
@@ -57,10 +57,6 @@ MESON_ARGS+=	-Ddtrace=false
 MESON_ARGS+=	-Diconv=libc
 .else
 MESON_ARGS+=	-Diconv=external
-.endif
-
-.if ${ARCH} == powerpc64
-EXTRA_PATCHES=	${FILESDIR}/extra-arch-powerpc64
 .endif
 
 pre-configure-FAM_ALTBACKEND-on:
@@ -92,8 +88,8 @@ post-patch:
 CODEGENDIR=	${PREFIX}/share/glib-2.0/codegen
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/GConf/gsettings
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gio/modules
+	@${MKDIR} ${PREFIX}/share/GConf/gsettings
+	@${MKDIR} ${PREFIX}/lib/gio/modules
 # generates .py[co] files for installed modules
 # if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
 # with these files when module is imported from root user
@@ -104,10 +100,10 @@ post-install:
 	python${PYTHON_VER} -O ${PYTHON_LIBDIR}/compileall.py \
 		-d ${CODEGENDIR} -f ${CODEGENDIR:S;${PREFIX}/;;})
 	# install bash completion regardless if bash is present
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/bash-completion/completions
+	@${MKDIR} ${PREFIX}/share/bash-completion/completions
 .for file in gapplication gdbus gio gresource gsettings
 	${INSTALL_DATA} ${WRKSRC}/gio/completion/${file} \
-		${STAGEDIR}${PREFIX}/share/bash-completion/completions/
+		${PREFIX}/share/bash-completion/completions/
 .endfor
 	-${RM} -r ${PREFIX}/libexec/installed-tests
 
