@@ -1,2 +1,5 @@
 # Mk/Uses/python.mk includes this file, don't remove it!
-PYTHON_PORTVERSION=	2.7.18
+
+# Do not forget to update python documentation (lang/python-doc-*)
+# Run "make -C lang/python-doc-html makesum"
+PYTHON_DISTVERSION=	2.7.18

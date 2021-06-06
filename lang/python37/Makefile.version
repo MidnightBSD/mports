@@ -1,1 +1,5 @@
-PYTHON_PORTVERSION=	3.7.10
+# Mk/Uses/python.mk includes this file, don't remove it!
+
+# Do not forget to update python documentation (lang/python-doc-*)
+# Run "make -C lang/python-doc-html makesum"
+PYTHON_DISTVERSION=	3.7.10

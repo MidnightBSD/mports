@@ -1,9 +1,9 @@
 PORTNAME=	python27
-PORTVERSION=	${PYTHON_PORTVERSION}
+DISTVERSION=	${PYTHON_DISTVERSION}
 PORTREVISION=	1
 CATEGORIES=	lang python
-MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
-DISTNAME=	Python-${PORTVERSION}
+MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION}
+DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,7 +21,7 @@ GNU_CONFIGURE=	yes
 
 CPE_VENDOR=	python
 CPE_PRODUCT=	${CPE_VENDOR}
-CPE_VERSION=	${PORTVERSION}
+CPE_VERSION=	${DISTVERSION}
 
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ENV+=		ac_cv_opt_olimit_ok=no OPT=""				# Null out OPT to respect user CFLAGS and remove optimizations
@@ -34,7 +34,7 @@ MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 OSMAJOR=	${OSREL:C/([0-9]*).*/\1/}
 
 PLIST_SUB=		ABI=${ABIFLAGS} \
-			PORTVERSION=${PORTVERSION} \
+			PORTVERSION=${DISTVERSION} \
 			OSMAJOR=${OSMAJOR}		# For plat-freebsd* in pkg-plist. http://bugs.python.org/issue19554
 
 OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI PYMALLOC SEM THREADS
