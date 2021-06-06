@@ -32,7 +32,7 @@ USE_GCC=	yes
 .endif
 
 post-extract:
-.if ${PYTHON_REL} < 3000
+.if ${PYTHON_REL} < 30000
 	@${CP} ${FILESDIR}/setup.py ${WRKSRC}
 .else
 	@${CP} ${FILESDIR}/setup3.py ${WRKSRC}/setup.py

@@ -1,13 +1,10 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11-toolkits/py-tkinter/Makefile 326662 2013-09-07 17:21:55Z sunpoet $
-
 PORTNAME=	tkinter
-PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	2
+DISTVERSION=	${PYTHON_DISTVERSION}
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits python
-MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
+MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	Python-${PORTVERSION}
+DISTNAME=	Python-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings to the Tk widget set
@@ -15,20 +12,20 @@ COMMENT=	Python bindings to the Tk widget set
 LICENSE=	python
 
 USE_PYTHON=	distutils autoplist allflavors
-USES=		python tar:xz tk
+USES=		compiler:c11 python:2.7+ tar:xz tk
 
 CFLAGS+=	-I${LOCALBASE}/include/tcl8.6/generic/
 
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
-WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
+WRKSRC_SUBDIR=	Modules
 
 PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
 
 .include <bsd.port.pre.mk>
 
 post-extract:
-.if ${PYTHON_REL} < 3000
+.if ${PYTHON_REL} < 30000
 	@${SED} -e "s|%%TK_VER%%|${TK_VER}|" ${FILESDIR}/setup.py > ${WRKSRC}/setup.py
 .else
 	@${SED} -e "s|%%TK_VER%%|${TK_VER}|" ${FILESDIR}/setup3.py > ${WRKSRC}/setup.py

@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	pango
-PORTVERSION=	1.42.4
-PORTREVISION=	5
+PORTVERSION=	1.48.4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -23,25 +20,26 @@ RUN_DEPENDS=	xorg-fonts-truetype>0:x11-fonts/xorg-fonts-truetype \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 gettext gnome localbase meson pkgconfig tar:xz
+USES=		compiler:c11 gettext gnome localbase meson pkgconfig python:env tar:xz
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo glib20 introspection:build
 
 VERSION=	1.8.0
-LIBVERSION=	0.4200.3
+LIBVERSION=	0.4800.4
 PLIST_SUB+=     VERSION=${VERSION} LIBVERSION=${LIBVERSION}
 
 FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
 FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	X11 DOCS
+OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=X11
 
-DOCS_MESON_TRUE=	enable_docs
-DOCS_BUILD_DEPENDS=	gtk-doc>=0:textproc/gtk-doc
+#DOCS_MESON_TRUE=	gtk_doc
+#DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>=0:textproc/py-gi-docgen
+PLIST_SUB+=	PORTDOCS=@comment 
 
-X11_MESON_TRUE=	xft
+X11_MESON_ENABLED=	xft
 X11_USES=	xorg
 X11_USE=	XORG=x11,xft,xrender
 

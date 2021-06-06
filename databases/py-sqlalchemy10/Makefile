@@ -22,7 +22,7 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}sqlalchemy0[6789]* ${PYTHON_PKGNAMEPRE
 
 OPTIONS_DEFINE=		DOCS EXAMPLES
 OPTIONS_MULTI=		BACKEND
-OPTIONS_MULTI_BACKEND=	MSSQL MYSQL PGSQL SQLITE
+OPTIONS_MULTI_BACKEND=	MSSQL PGSQL SQLITE
 OPTIONS_DEFAULT=	SQLITE
 
 MSSQL_DESC=	MS SQL Server backend
@@ -34,34 +34,22 @@ SQLITE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_F
 PORTDOCS=		*
 PORTEXAMPLES=		*
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 3000
-MYSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}MySQLdb>=1.2.2:databases/py-MySQLdb@${PY_FLAVOR}
-#.else
-# At the moment databases/py-pymysql does not build with Python3
-# See https://github.com/petehunt/PyMySQL#python-3-0-support
-#MYSQL_RUN_DEPENDS+=	pymysql>=0.5:databases/py-pymysql@${PY_FLAVOR}
-.endif
-
 pre-build:
-.if ${PYTHON_REL} >= 3000
 	@${PY2TO3_CMD} ${PY2TO3_ARGS} ${WRKSRC}/lib
 	@${PY2TO3_CMD} ${PY2TO3_ARGS} ${WRKSRC}/doc
 	@${PY2TO3_CMD} ${PY2TO3_ARGS} ${WRKSRC}/examples
-.endif
 
 # C extensions are not supported with all versions of Python, so ignore
 # errors here if there are no .so files to strip.
 post-install:
-	-@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/sqlalchemy/*.so
+	-@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/sqlalchemy/*.so
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

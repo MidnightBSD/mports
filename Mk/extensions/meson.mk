@@ -23,7 +23,7 @@ _INCLUDE_USES_MESON_MK=	yes
 IGNORE=	Incorrect 'USES+= meson:${meson_ARGS}'. meson takes no arguments
 .endif
 
-BUILD_DEPENDS+=		python3.7:lang/python37 \
+BUILD_DEPENDS+=		python3.8:lang/python38 \
 			meson:devel/meson
 
 # meson uses ninja
