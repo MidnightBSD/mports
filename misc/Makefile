@@ -26,7 +26,6 @@ SUBDIR += gnome-icon-theme-extras
 SUBDIR += gnome-mime-data
 SUBDIR += gnome-user-docs
 SUBDIR += gnomehier
-SUBDIR += gnustep-examples
 SUBDIR += help2man
 SUBDIR += hicolor-icon-theme
 SUBDIR += iso-codes

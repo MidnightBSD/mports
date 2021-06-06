@@ -1,11 +1,10 @@
-# $FreeBSD$
-
 CATEGORIES=	net
 
 MASTERDIR=	${.CURDIR}/../../lang/php80
 
 PKGNAMESUFFIX=	-ldap
 
-TEST_TARGET=    test
+NO_TEST=	yes
+USE_LDAP=	yes
 
 .include "${MASTERDIR}/Makefile"

@@ -57,8 +57,9 @@ CONFIGURE_ARGS+=	--disable-python
 USES+=			python:3.7+
 USE_PYTHON=		py3kplist
 
-PLIST_FILES+=		lib/python${PYTHON_VER}/site-packages/_tevent${PYTHON_EXT_SUFFIX}.so \
-			lib/python${PYTHON_VER}/site-packages/tevent.py
+PLIST_FILES+=		${PYTHON_SITELIBDIR:S;${LOCALBASE}/;;}/_tevent${PYTHON_EXT_SUFFIX}.so \
+			${PYTHON_SITELIBDIR:S;${LOCALBASE}/;;}/tevent.py \
+			${PYTHON_SITELIBDIR:S;${LOCALBASE}/;;}/__pycache__/tevent.cpython-${PYTHON_SUFFIX}.pyc
 .endif
 
 .include <bsd.port.pre.mk>
