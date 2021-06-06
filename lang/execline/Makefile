@@ -8,7 +8,7 @@ MASTER_SITES=	https://www.skarnet.org/software/${PORTNAME}/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight non-interactive sh(1)-like scripting language
 
-LICENSE=	isc
+LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	skalibs>=2.10.0.0:devel/skalibs
