@@ -1,5 +1,5 @@
 PORTNAME=	gtk
-PORTVERSION=	2.24.32
+PORTVERSION=	2.24.33
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -15,10 +15,8 @@ LICENSE=	lgpl
 
 USES=		tar:xz
 
-.if !defined(REFERENCE_PORT)
-
-RUN_DEPENDS+=	update-mime-database:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+RUN_DEPENDS+=	update-mime-database:misc/shared-mime-info \
+		${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme
 
 USES+=		gettext gmake gnome libtool localbase:ldflags pathfix perl5 python:run pkgconfig xorg
 GNU_CONFIGURE=	yes
@@ -44,7 +42,7 @@ DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
 .include <bsd.mport.options.mk>
 
-PLIST_SUB+=	LIBGAILVER=18.0.1 LIBGVER=0.2400.32
+PLIST_SUB+=	LIBGAILVER=18.0.1 LIBGVER=0.2400.33
 
 post-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${GREP} -l lgmodule | \
@@ -66,5 +64,3 @@ post-install:
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/modules
 
 .include <bsd.port.mk>
-
-.endif

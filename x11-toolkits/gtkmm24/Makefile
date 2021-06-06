@@ -1,6 +1,6 @@
 PORTNAME=	gtkmm
 PORTVERSION=	2.24.5
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	24
@@ -15,9 +15,7 @@ USES+=		tar:xz
 
 PORTSCOUT=	ignore:1
 
-.if !defined(REFERENCE_PORT)
-
-BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
+BUILD_DEPENDS=	gm4:devel/m4
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
@@ -40,5 +38,3 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
-
-.endif

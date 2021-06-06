@@ -1,12 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	gtk-update-icon-cache
-PORTVERSION=	2.24.32
-PORTREVISION=	0
+PORTVERSION=	3.24.26
 CATEGORIES=	graphics
-MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
-DISTNAME=	gtk+-${PORTVERSION}
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk-update-icon-cache utility from the Gtk+ toolkit
@@ -14,36 +9,21 @@ COMMENT=	Gtk-update-icon-cache utility from the Gtk+ toolkit
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS+=	update-mime-database:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+USES=		gettext gnome meson pkgconfig
+USE_GNOME=	gdkpixbuf2
+USE_GITLAB=	yes
+GL_SITE=	https://gitlab.gnome.org
+GL_ACCOUNT=	Community/gentoo
+GL_COMMIT=	5d5d06c43e088b527a283d8eae37e9ef3ea0d7ea
 
-USES=		gettext gmake libtool pathfix perl5 pkgconfig tar:xz
-USE_PERL5=	build
-MAKE_JOBS_UNSAFE=	yes
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-USE_GNOME=	atk pango gdkpixbuf2 introspection:build
-USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
-		xcomposite
-PATCHDIR=	${.CURDIR}/../../x11-toolkits/gtk20/files
-CONFIGURE_ARGS=	--enable-static --with-xinput=yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-BUILD_WRKSRC=	${WRKSRC}/gtk
-ALL_TARGET=	${PORTNAME}
-PLIST_FILES=	bin/gtk-update-icon-cache
-#		man/man1/gtk-update-icon-cache.1.gz
+WRKSRC=		${WRKDIR}/gtk-update-icon-cache-5d5d06c43e088b527a283d8eae37e9ef3ea0d7ea/
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	MANPAGES
+OPTIONS_DEFAULT=MANPAGES
+OPTIONS_SUB=	yes
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|-DGDK_PIXBUF_DISABLE_DEPRECATED||g' \
-		${WRKSRC}/configure
+MANPAGES_BUILD_DEPENDS=	docbook-xsl>0:textproc/docbook-xsl \
+			xsltproc:textproc/libxslt
+MANPAGES_MESON_TRUE=	man-pages
 
-do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/gtk/gtk-update-icon-cache \
-		${PREFIX}/bin/
-#	@${INSTALL_MAN} ${WRKSRC}/docs/reference/gtk/gtk-update-icon-cache.1 \
-#		${PREFIX}/man/man1/
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

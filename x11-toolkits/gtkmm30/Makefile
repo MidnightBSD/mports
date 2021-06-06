@@ -1,7 +1,7 @@
 # Created by: Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
 
 PORTNAME=	gtkmm
-PORTVERSION=	3.22.2
+PORTVERSION=	3.24.2
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -16,8 +16,6 @@ LICENSE=	lgpl2.1
 USES+=		tar:xz
 
 PORTSCOUT=	limitw:1,even
-
-.if !defined(REFERENCE_PORT)
 
 USES+=		gettext gmake gnome libtool pathfix pkgconfig \
 		compiler:c++11-lang
@@ -36,5 +34,3 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
-
-.endif
