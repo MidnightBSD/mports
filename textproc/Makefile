@@ -233,6 +233,7 @@ SUBDIR += py-qt5-xmlpatterns
 SUBDIR += py-regex
 SUBDIR += py-reno
 SUBDIR += py-scour
+SUBDIR += py-smartypants
 SUBDIR += py-rdflib
 SUBDIR += py-recommonmark
 SUBDIR += py-snowballstemmer
