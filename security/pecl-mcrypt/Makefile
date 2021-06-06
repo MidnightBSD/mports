@@ -1,5 +1,5 @@
 PORTNAME=	mcrypt
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	security pear
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,5 +15,9 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 USES=	php:pecl
 
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
+post-patch:
+	${REINPLACE_CMD} -e 's/RETURN_FALSE$$/RETURN_FALSE;/g' ${WRKSRC}/mcrypt.c
+	${REINPLACE_CMD} -e 's/RETURN_TRUE$$/RETURN_TRUE;/g' ${WRKSRC}/mcrypt.c
 
 .include <bsd.port.mk>
