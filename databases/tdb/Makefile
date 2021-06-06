@@ -61,8 +61,8 @@ CONFIGURE_ARGS+=	--disable-python
 .else
 USES+=			python:3.4+
 
-PLIST_FILES+=		${PYTHON_SITELIBDIR}/tdb${PYTHON_EXT_SUFFIX}.so \
-			${PYTHON_SITELIBDIR}/_tdb_text.py
+PLIST_FILES+=		${PYTHON_SITELIBDIR:S;${PREFIX}/;;}/tdb${PYTHON_EXT_SUFFIX}.so \
+			${PYTHON_SITELIBDIR:S;${PREFIX}/;;}/_tdb_text.py
 .endif
 
 .include <bsd.port.pre.mk>
