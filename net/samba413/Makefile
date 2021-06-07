@@ -26,6 +26,7 @@ SAMBA4_VERSION=			4.13.7
 SAMBA4_DISTNAME=		${SAMBA4_BASENAME}-${SAMBA4_VERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alpha|}
 
 WRKSRC?=			${WRKDIR}/${DISTNAME}
+PLIST?=				${PKGDIR}/pkg-plist
 
 CPE_VENDOR=			samba
 CPE_PRODUCT=			samba
@@ -41,6 +42,8 @@ SAMBA4_LIBDIR=			${PREFIX}/lib/${SAMBA4_PORTNAME}
 SAMBA4_INCLUDEDIR=		${PREFIX}/include/${SAMBA4_PORTNAME}
 SAMBA4_CONFDIR=			${PREFIX}/etc
 SAMBA4_CONFIG=			smb4.conf
+SAMBA4_MODULES_CLASS=		auth bind9 gensec gpext idmap ldb nss_info \
+				pdb perfcount process_model service vfs
 
 CONFIGURE_ARGS+=		--mandir="${MANPREFIX}/man" \
 				--sysconfdir="${SAMBA4_CONFDIR}" \
@@ -101,8 +104,8 @@ OPTIONS_DEFAULT=		AD_DC ADS DOCS FAM LDAP \
 				QUOTAS SYSLOG UTMP PROFILE \
 				FRUIT GSSAPI_BUILTIN MDNSRESPONDER
 ##############################################################################
-AD_DC_DESC=			Active Directory Domain Controller
 ADS_DESC=			Active Directory client(implies LDAP)
+AD_DC_DESC=			Active Directory Domain Controller(implies PYTHON3)
 CLUSTER_DESC=			Clustering support
 DEVELOPER_DESC=			With developer framework(implies NTVFS)
 FAM_DESC=			File Alteration Monitor
@@ -275,10 +278,10 @@ FRUIT_PLIST_FILES+=		man/man8/vfs_fruit.8.gz
 GLUSTERFS_CONFIGURE_ENABLE=	glusterfs
 GLUSTERFS_LIB_DEPENDS=		libglusterfs.so:net/glusterfs
 GLUSTERFS_VARS=			SAMBA4_MODULES+=vfs_glusterfs
-GLUSTERFS_PLIST_FILES+=		man/man8/vfs_glusterfs.8.gz
-##############################################################################
-ZEROCONF_NONE_VARS=		MAKE_ENV+=ZEROCONF=none
+GLUSTERFS_PLIST_FILES=		man/man8/vfs_glusterfs.8.gz
 
+ZEROCONF_NONE_MAKE_ENV=		ZEROCONF=none
+##############################################################################
 AVAHI_CONFIGURE_ENABLE=		avahi
 AVAHI_LIB_DEPENDS=		libavahi-client.so:net/avahi-app
 AVAHI_VARS=			SAMBA4_SERVICES+=avahi_daemon
@@ -313,10 +316,19 @@ DEVELOPER_VARS_OFF=		GDB_CMD=true
 NTVFS_IMPLIES=			AD_DC
 NTVFS_CONFIGURE_WITH=		ntvfs-fileserver
 NTVFS_VARS=			SAMBA4_MODULES+=service_smb
-NTVFS_PLIST_FILES=		${SAMBA4_MODULEDIR}/service/smb.so \
-				lib/samba4/private/libntvfs-samba4.so
+NTVFS_PLIST_FILES=		lib/samba4/private/libntvfs-samba4.so
 ##############################################################################
+AD_DC_IMPLIES=			PYTHON3
+AD_DC_CONFIGURE_OFF=		--without-ad-dc
+AD_DC_BUILD_DEPENDS=		${SAMBA4_LMDB_DEPENDS}
+AD_DC_RUN_DEPENDS=		${SAMBA4_LMDB_DEPENDS}
+AD_DC_VARS=			PLIST+=${PKGDIR}/pkg-plist.ad_dc
+
+ADS_IMPLIES=			LDAP OPENLDAP
+ADS_CONFIGURE_WITH=		ads dnsupdate
+
 CLUSTER_CONFIGURE_WITH=		cluster-support
+CLUSTER_VARS=			PLIST+=${PKGDIR}/pkg-plist.cluster
 
 CUPS_CONFIGURE_ENABLE=		cups iprint
 CUPS_LIB_DEPENDS=		libcups.so:print/cups
@@ -340,8 +352,6 @@ SPOTLIGHT_USES=			bison gnome
 SPOTLIGHT_USE=			gnome=glib20
 
 SYSLOG_CONFIGURE_WITH=		syslog
-
-UTMP_CONFIGURE_WITH=		utmp
 
 AD_DC_CONFIGURE_OFF=		--without-ad-dc
 AD_DC_BUILD_DEPENDS=		${SAMBA4_LMDB_DEPENDS}
@@ -373,6 +383,22 @@ MANDOC_BUILD_DEPENDS=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textp
 				xsltproc:textproc/libxslt
 MANDOC_CONFIGURE_ENV_OFF=	XSLTPROC="true"
 
+PROFILE_CONFIGURE_WITH=		profiling-data
+
+QUOTAS_CONFIGURE_WITH=		quotas
+
+SPOTLIGHT_CONFIGURE_ENABLE=	spotlight
+SPOTLIGHT_BUILD_DEPENDS=	tracker>=1.4.1:sysutils/tracker
+SPOTLIGHT_RUN_DEPENDS=		tracker>=1.4.1:sysutils/tracker
+# ICU
+SPOTLIGHT_LIB_DEPENDS=		libicuuc.so:devel/icu
+SPOTLIGHT_USES=			bison gnome
+SPOTLIGHT_USE=			gnome=glib20
+
+SYSLOG_CONFIGURE_WITH=		syslog
+
+UTMP_CONFIGURE_WITH=		utmp
+
 ##############################################################################
 .include <bsd.mport.options.mk>
 ##############################################################################
@@ -402,15 +428,12 @@ SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry gpext_scripts
 				vfs_nfs4acl_xattr vfs_error_inject vfs_delay_inject
 .endif
 # Python bindings
-.if defined(NO_PYTHON)
+.if ! ${PORT_OPTIONS:MPYTHON3} || defined(NO_PYTHON)
 USES+=				python:build,test
 CONFIGURE_ARGS+=		--disable-python
-PLIST_SUB+=			SAMBA4_PYTHON="@comment "
-SUB_LIST+=			SAMBA4_PYTHON="@comment "
 .else
 USES+=				python:3.6+
-PLIST_SUB+=			SAMBA4_PYTHON=""
-SUB_LIST+=			SAMBA4_PYTHON=""
+PLIST+=				${PKGDIR}/pkg-plist.python
 # Don't cache Python modules
 CONFIGURE_ARGS+=		--nopycache
 MAKE_ENV+=			PYTHONDONTWRITEBYTECODE=1
@@ -442,9 +465,9 @@ SAMBA4_BUNDLED_LIBS+=		!pyldb !pyldb-util
 .	if ${PORT_OPTIONS:MAD_DC}
 RUN_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}dnspython>=1.15.0:dns/py-dnspython@${PY_FLAVOR}
 RUN_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}markdown>=2.6.11:textproc/py-markdown@${PY_FLAVOR}
-.			if ${PORT_OPTIONS:MGPGME}
+.		if ${PORT_OPTIONS:MGPGME}
 RUN_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}gpgme>=1.14.0:security/py-gpgme@${PY_FLAVOR}
-.			endif
+.		endif
 .	endif
 .endif
 
@@ -464,6 +487,11 @@ CONFIGURE_ARGS+=		--with-shared-modules="${SAMBA4_MODULES:C|-|_|:Q:C|(\\\\ )+|,|
 .for module in ${SAMBA4_MODULES}
 PLIST_FILES+=			${SAMBA4_MODULEDIR}/${module:C|_|/|:C|-|_|}.so
 .endfor
+
+.for module_class in ${SAMBA4_MODULES_CLASS}
+PLIST_DIRS+=			${SAMBA4_MODULEDIR}/${module_class}
+.endfor
+PLIST_DIRS+=			${SAMBA4_MODULEDIR}
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=		--verbose --enable-debug
@@ -486,7 +514,7 @@ CONFIGURE_ARGS+=		--accel-aes=none
 .	if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes && (${PORT_OPTIONS:MAD_DC} || ${PORT_OPTIONS:MDEVELOPER})
 # LMDB
 SAMBA4_LMDB_DEPENDS=		lmdb>=0.9.16:databases/lmdb
-PLIST_FILES+=			lib/samba4/private/libldb-mdb-int-samba4.so \
+PLIST_FILES+=			${SAMBA4_LIBDIR}/private/libldb-mdb-int-samba4.so \
 				${SAMBA4_MODULEDIR}/ldb/mdb.so
 .	endif
 .endif
@@ -495,7 +523,7 @@ PLIST_FILES+=			lib/samba4/private/libldb-mdb-int-samba4.so \
 PLIST_FILES+=			${SAMBA4_MODULEDIR}/krb5/winbind_krb5_localauth.so \
 				man/man8/winbind_krb5_localauth.8.gz
 .	if ${PORT_OPTIONS:MAD_DC}
-PLIST_FILES+=			lib/samba4/krb5/plugins/kdb/samba.so
+PLIST_FILES+=			${SAMBA4_LIBDIR}/krb5/plugins/kdb/samba.so
 .	endif
 .endif
 # for libexecinfo: (so that __builtin_frame_address() finds the top of the stack)
@@ -519,6 +547,7 @@ SHEBANG_FILES=			${PATCH_WRKSRC}/source4/scripting/bin/* ${PATCH_WRKSRC}/selftes
 SAMBA4_SUB=			SAMBA4_LOGDIR="${SAMBA4_LOGDIR}" \
 				SAMBA4_RUNDIR="${SAMBA4_RUNDIR}" \
 				SAMBA4_LOCKDIR="${SAMBA4_LOCKDIR}" \
+				SAMBA4_LIBDIR="${SAMBA4_LIBDIR}" \
 				SAMBA4_MODULEDIR="${SAMBA4_MODULEDIR}" \
 				SAMBA4_BINDDNSDIR="${SAMBA4_BINDDNSDIR}" \
 				SAMBA4_PRIVATEDIR="${SAMBA4_PRIVATEDIR}" \
@@ -549,9 +578,15 @@ post-patch:
 
 # Use threading (or multiprocessing) but not thread (renamed in python 3+).
 pre-configure:
-.if ! ${PORT_OPTIONS:MAD_DC} && ${PORT_OPTIONS:MNTVFS}
+.if !${PORT_OPTIONS:MAD_DC} && ${PORT_OPTIONS:MNTVFS}
 				@${ECHO_CMD}; \
 				${ECHO_MSG} "===>  NTVFS option requires AD_DC to be set"; \
+				${ECHO_CMD}; \
+				${FALSE}
+.endif
+.if (!${PORT_OPTIONS:MPYTHON3} || defined(NO_PYTHON)) && ${PORT_OPTIONS:MAD_DC}
+				@${ECHO_CMD}; \
+				${ECHO_MSG} "===>  AD_DC option requires PYTHON3 to be set"; \
 				${ECHO_CMD}; \
 				${FALSE}
 .endif
