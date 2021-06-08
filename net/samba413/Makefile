@@ -392,9 +392,8 @@ LIB_DEPENDS+=			libdbus-1.so:devel/dbus
 LIB_DEPENDS+=			libdbus-glib-1.so:devel/dbus-glib
 .endif
 
-SAMBA4_MODULES+=		vfs_freebsd
-
-SAMBA4_MODULES+=		idmap_nss idmap_autorid idmap_rid idmap_hash idmap_tdb idmap_tdb2 idmap_script \
+SAMBA4_MODULES+=		idmap_nss idmap_autorid \
+				idmap_rid idmap_hash idmap_tdb idmap_tdb2 idmap_script \
 				nss-info_hash
 # List of extra modules taken from RHEL build
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=197320
@@ -402,6 +401,20 @@ SAMBA4_MODULES+=		idmap_nss idmap_autorid idmap_rid idmap_hash idmap_tdb idmap_t
 SAMBA4_MODULES+=		idmap_ad idmap_rfc2307 nss-info_template \
 				nss-info_rfc2307 nss-info_sfu nss-info_sfu20
 .endif
+
+# This kind of special for this distribution
+SAMBA4_MODULES+=              vfs_freebsd
+
+SAMBA4_MODULES+=              vfs_acl_tdb vfs_acl_xattr vfs_aio_fork vfs_aio_pthread \
+                              vfs_audit vfs_cap vfs_catia vfs_commit vfs_crossrename \
+                              vfs_default_quota vfs_dirsort vfs_expand_msdfs \
+                              vfs_extd_audit vfs_fake_perms vfs_full_audit \
+                              vfs_linux_xfs_sgid vfs_media_harmony vfs_offline \
+                              vfs_preopen vfs_readahead vfs_readonly vfs_recycle \
+                              vfs_shadow_copy vfs_shadow_copy2 vfs_shell_snap \
+                              vfs_streams_depot vfs_streams_xattr vfs_syncops \
+                              vfs_time_audit vfs_unityed_media vfs_virusfilter \
+                              vfs_widelinks vfs_worm vfs_xattr_tdb vfs_zfsacl
 
 .if ${PORT_OPTIONS:MDEVELOPER}
 SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry \
