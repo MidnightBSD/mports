@@ -339,27 +339,6 @@ FAM_CONFIGURE_WITH=		fam
 GPGME_CONFIGURE_WITH=		gpgme
 GPGME_LIB_DEPENDS=		libgpgme.so:security/gpgme
 
-PROFILE_CONFIGURE_WITH=		profiling-data
-
-QUOTAS_CONFIGURE_WITH=		quotas
-
-SPOTLIGHT_CONFIGURE_ENABLE=	spotlight
-SPOTLIGHT_BUILD_DEPENDS=	tracker>=1.4.1:sysutils/tracker
-SPOTLIGHT_RUN_DEPENDS=		tracker>=1.4.1:sysutils/tracker
-# ICU
-SPOTLIGHT_LIB_DEPENDS+=		libicuuc.so:devel/icu
-SPOTLIGHT_USES=			bison gnome
-SPOTLIGHT_USE=			gnome=glib20
-
-SYSLOG_CONFIGURE_WITH=		syslog
-
-AD_DC_CONFIGURE_OFF=		--without-ad-dc
-AD_DC_BUILD_DEPENDS=		${SAMBA4_LMDB_DEPENDS}
-AD_DC_RUN_DEPENDS=		${SAMBA4_LMDB_DEPENDS}
-
-ADS_IMPLIES=			LDAP
-ADS_CONFIGURE_WITH=		ads dnsupdate
-
 LDAP_CONFIGURE_WITH=		ldap
 LDAP_CONFIGURE_ON=		--with-openldap=${LOCALBASE}
 LDAP_USE=			OPENLDAP=yes
@@ -415,16 +394,20 @@ LIB_DEPENDS+=			libdbus-glib-1.so:devel/dbus-glib
 
 SAMBA4_MODULES+=		vfs_freebsd
 
-SAMBA4_MODULES+=		idmap_nss idmap_autorid idmap_rid idmap_hash idmap_tdb idmap_tdb2 idmap_script nss-info_hash
+SAMBA4_MODULES+=		idmap_nss idmap_autorid idmap_rid idmap_hash idmap_tdb idmap_tdb2 idmap_script \
+				nss-info_hash
 # List of extra modules taken from RHEL build
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=197320
 .if ${PORT_OPTIONS:MADS}
-SAMBA4_MODULES+=		idmap_ad idmap_rfc2307 nss-info_template nss-info_rfc2307 nss-info_sfu nss-info_sfu20
+SAMBA4_MODULES+=		idmap_ad idmap_rfc2307 nss-info_template \
+				nss-info_rfc2307 nss-info_sfu nss-info_sfu20
 .endif
 
 .if ${PORT_OPTIONS:MDEVELOPER}
-SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry gpext_scripts perfcount_test \
-				vfs_fake_dfq vfs_skel_opaque vfs_skel_transparent vfs_shadow_copy_test vfs_fake_acls \
+SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry \
+				gpext_scripts perfcount_test vfs_fake_dfq \
+				vfs_skel_opaque vfs_skel_transparent \
+				vfs_shadow_copy_test vfs_fake_acls \
 				vfs_nfs4acl_xattr vfs_error_inject vfs_delay_inject
 .endif
 # Python bindings
