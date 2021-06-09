@@ -53,7 +53,6 @@ SUBDIR += libXxf86dga
 SUBDIR += libXxf86vm
 SUBDIR += libdmx
 SUBDIR += libexo
-SUBDIR += libgnome
 SUBDIR += libgnomekbd
 SUBDIR += libinput
 SUBDIR += libmatekbd

@@ -49,7 +49,6 @@ SUBDIR += libargon2
 SUBDIR += libassuan
 SUBDIR += libcryptui
 SUBDIR += libgcrypt
-SUBDIR += libgnomesu
 SUBDIR += libgnome-keyring
 SUBDIR += libgpg-error
 SUBDIR += libgsasl

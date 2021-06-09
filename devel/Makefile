@@ -286,7 +286,6 @@ SUBDIR += meson
 SUBDIR += mk-configure
 SUBDIR += mm
 SUBDIR += mono-addins
-SUBDIR += monodevelop
 SUBDIR += motor
 SUBDIR += msbuild
 SUBDIR += nasm
