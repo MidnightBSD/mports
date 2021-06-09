@@ -3535,7 +3535,7 @@ ${i:S/-//:tu}=	${WRKDIR}/${SUB_FILES:M${i}*}
 
 # Make tmp packaing list.  This is the top level target for the entire file.
 make-tmpplist:  generate-plist finish-tmpplist
-finish-tmpplist: add-plist-info add-plist-docs add-plist-post
+finish-tmpplist: add-plist-info add-plist-docs add-plist-data add-plist-post
 
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
@@ -3633,6 +3633,20 @@ add-plist-docs:
 .	else
 		@${DO_NADA}
 .	endif
+.endif
+
+.if !target(add-plist-data)
+.if defined(PORTDATA)
+add-plist-data:
+.for x in ${PORTDATA}
+	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
+	if [ ! -e ${FAKE_DESTDIR}${DATADIR}/${x} ]; then \
+		${ECHO_CMD} ${DATADIR}/${x} >> ${TMPPLIST}; \
+	fi;fi
+.endfor
+	@${FIND} -P ${PORTDATA:S/^/${FAKE_DESTDIR}${DATADIR}\//} ! -type d 2>/dev/null | \
+		${SED} -ne 's,^${FAKE_DESTDIR},,p' >> ${TMPPLIST}
+.endif
 .endif
 
 .if !target(add-plist-info)
