@@ -3541,7 +3541,7 @@ finish-tmpplist: add-plist-info add-plist-examples add-plist-docs add-plist-data
 # files exist.
 #
 
-PLIST_SUB_SANITIZED=   ${PLIST_SUB:N*_regex=*}
+PLIST_SUB_SANITIZED=	${PLIST_SUB:N*_regex=*}
 
 .if !target(generate-plist)
 generate-plist: ${WRKDIR}
@@ -3584,7 +3584,7 @@ generate-plist: ${WRKDIR}
 .	endfor
  
 .for dir in ${PLIST_DIRS}
-	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
+	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} -e 's,^,@dir ,' >> ${TMPPLIST}
 .endfor
 
 .if defined(USE_LINUX_PREFIX)
@@ -3636,8 +3636,8 @@ add-plist-docs:
 .endif
 
 .if !target(add-plist-examples)
-.if defined(PORTEXAMPLES) && !empty(PORT_OPTIONS:MEXAMPLES)
 add-plist-examples:
+.if defined(PORTEXAMPLES) && !empty(PORT_OPTIONS:MEXAMPLES)
 .for x in ${PORTEXAMPLES}
 	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
 	if [ ! -e ${FAKE_DESTDIR}${EXAMPLESDIR}/${x} ]; then \
