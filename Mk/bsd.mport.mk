@@ -3569,18 +3569,23 @@ generate-plist: ${WRKDIR}
 			@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
 .		endif
 .	endfor
-	@if [ -f ${PLIST} ]; then \
-		${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${PLIST} >> ${TMPPLIST}; \
+.if !empty(PLIST)
+.for f in ${PLIST}
+	@if [ -f "${f}" ]; then \
+		${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${f} >> ${TMPPLIST}; \
+		for i in owner group mode; do ${ECHO_CMD} "@$$i"; done >> ${TMPPLIST}; \
 	fi
+.endfor
+.endif
 .	for reinplace in ${PLIST_REINPLACE}
 .		if defined(PLIST_REINPLACE_${reinplace:tu})
 			@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:tu}}' ${TMPPLIST}
 .		endif
 .	endfor
  
-.	for dir in ${PLIST_DIRS}
-		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
-.	endfor
+.for dir in ${PLIST_DIRS}
+	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
+.endfor
 
 .if defined(USE_LINUX_PREFIX)
 .if defined(USE_LDCONFIG)
