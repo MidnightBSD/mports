@@ -86,7 +86,7 @@ lib/libxine.so.2.9.0
 %%PLUGINSDIR%%/xineplug_decode_spudvb.so
 %%PLUGINSDIR%%/xineplug_decode_spuhdmv.so
 %%PLUGINSDIR%%/xineplug_decode_to_spdif.so
-%%PLUGINSDIR%%/xineplug_decode_vdpau.so
+@comment %%PLUGINSDIR%%/xineplug_decode_vdpau.so
 %%PLUGINSDIR%%/xineplug_dmx_asf.so
 %%PLUGINSDIR%%/xineplug_dmx_audio.so
 %%PLUGINSDIR%%/xineplug_dmx_fli.so
@@ -114,7 +114,7 @@ lib/libxine.so.2.9.0
 %%V4L%%%%PLUGINSDIR%%/xineplug_inp_v4l.so
 %%V4L%%%%PLUGINSDIR%%/xineplug_inp_v4l2.so
 %%PLUGINSDIR%%/xineplug_inp_vcd.so
-%%PLUGINSDIR%%/xineplug_inp_vcdo.so
+@comment %%PLUGINSDIR%%/xineplug_inp_vcdo.so
 %%PLUGINSDIR%%/xineplug_nsf.so
 %%PLUGINSDIR%%/xineplug_sputext.so
 %%GNUTLS%%%%PLUGINSDIR%%/xineplug_tls_gnutls.so
@@ -130,7 +130,7 @@ lib/libxine.so.2.9.0
 %%PLUGINSDIR%%/xineplug_vo_out_raw.so
 %%SDL%%%%PLUGINSDIR%%/xineplug_vo_out_sdl.so
 %%VAAPI%%%%PLUGINSDIR%%/xineplug_vo_out_vaapi.so
-%%PLUGINSDIR%%/xineplug_vo_out_vdpau.so
+@comment %%PLUGINSDIR%%/xineplug_vo_out_vdpau.so
 %%PLUGINSDIR%%/xineplug_vo_out_xcbshm.so
 %%PLUGINSDIR%%/xineplug_vo_out_xcbxv.so
 %%PLUGINSDIR%%/xineplug_vo_out_xshm.so
