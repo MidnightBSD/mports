@@ -3650,8 +3650,8 @@ add-plist-examples:
 .endif
 
 .if !target(add-plist-data)
-.if defined(PORTDATA)
 add-plist-data:
+.if defined(PORTDATA)
 .for x in ${PORTDATA}
 	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
 	if [ ! -e ${FAKE_DESTDIR}${DATADIR}/${x} ]; then \
