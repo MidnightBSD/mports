@@ -543,8 +543,8 @@ SHEBANG_FILES=			${PATCH_WRKSRC}/source4/scripting/bin/* ${PATCH_WRKSRC}/selftes
 SAMBA4_SUB=			SAMBA4_LOGDIR="${SAMBA4_LOGDIR}" \
 				SAMBA4_RUNDIR="${SAMBA4_RUNDIR}" \
 				SAMBA4_LOCKDIR="${SAMBA4_LOCKDIR}" \
-				SAMBA4_LIBDIR="${SAMBA4_LIBDIR}" \
-				SAMBA4_MODULEDIR="${SAMBA4_MODULEDIR}" \
+				SAMBA4_LIBDIR="${SAMBA4_LIBDIR:S,^${PREFIX}/,,}" \
+				SAMBA4_MODULEDIR="${SAMBA4_MODULEDIR:S,^${PREFIX}/,,}" \
 				SAMBA4_BINDDNSDIR="${SAMBA4_BINDDNSDIR}" \
 				SAMBA4_PRIVATEDIR="${SAMBA4_PRIVATEDIR}" \
 				SAMBA4_CONFDIR="${SAMBA4_CONFDIR}" \
@@ -665,9 +665,9 @@ post-install: post-install-rm-junk post-install-fix-manpages
 					${INSTALL} -d -m 0755 "${SAMBA4_MODULEDIR}/${dir}"
 .endfor
 .if !defined(WITH_DEBUG)
-				-${FIND} ${FAKE_DESTDIR}${PREFIX}/bin ${FAKE_DESTDIR}${PREFIX}/sbin ${FAKE_DESTDIR}${PREFIX}/libexec \
+				-${FIND} ${PREFIX}/bin ${PREFIX}/sbin ${PREFIX}/libexec \
 					-type f -print0 | ${XARGS} -0 -n 1 -t ${STRIP_CMD}
-				-${FIND} ${FAKE_DESTDIR}${PREFIX}/lib -name '*.so*' \
+				-${FIND} ${PREFIX}/lib -name '*.so*' \
 					-type f -print0 | ${XARGS} -0 -n 1 -t ${STRIP_CMD}
 .endif
 
