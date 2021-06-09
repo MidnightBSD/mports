@@ -3699,7 +3699,7 @@ install-rc-script:
 			@${INSTALL} -d ${FAKE_DESTDIR}/etc/rc.d
 			@for i in ${USE_RCORDER}; do \
 				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}/etc/rc.d/$${i%.sh}; \
-				${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+				${ECHO_CMD} "@(root,wheel,0755) etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 			done
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 .		endif
@@ -3708,7 +3708,7 @@ install-rc-script:
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 			@for i in ${USE_RC_SUBR}; do \
 				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${PREFIX}/etc/rc.d/$${i%.sh}; \
-				${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+				${ECHO_CMD} "@(root,wheel,0755) etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 			done
 .		endif
 .	else
