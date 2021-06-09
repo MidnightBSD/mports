@@ -3540,14 +3540,17 @@ finish-tmpplist: add-plist-info add-plist-docs add-plist-post
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
 #
+
+PLIST_SUB_SANITIZED=   ${PLIST_SUB:N*_regex=*}
+
 .if !target(generate-plist)
-generate-plist:
+generate-plist: ${WRKDIR}
 	@${ECHO_MSG} "===>   Generating temporary packing list"
 	@${MKDIR} ${TMPPLIST:H}
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@>${TMPPLIST}
 	@for file in ${PLIST_FILES}; do \
-		${ECHO_CMD} $${file} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} >> ${TMPPLIST}; \
+		${ECHO_CMD} $${file} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} >> ${TMPPLIST}; \
 	done
 	@for man in ${__MANPAGES}; do \
 		${ECHO_CMD} $${man} >> ${TMPPLIST}; \
@@ -3567,7 +3570,7 @@ generate-plist:
 .		endif
 .	endfor
 	@if [ -f ${PLIST} ]; then \
-		${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${PLIST} >> ${TMPPLIST}; \
+		${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${PLIST} >> ${TMPPLIST}; \
 	fi
 .	for reinplace in ${PLIST_REINPLACE}
 .		if defined(PLIST_REINPLACE_${reinplace:tu})
@@ -3576,7 +3579,7 @@ generate-plist:
 .	endfor
  
 .	for dir in ${PLIST_DIRS}
-		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
+		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
 .	endfor
 
 .if defined(USE_LINUX_PREFIX)
