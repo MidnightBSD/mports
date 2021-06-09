@@ -3535,19 +3535,22 @@ ${i:S/-//:tu}=	${WRKDIR}/${SUB_FILES:M${i}*}
 
 # Make tmp packaing list.  This is the top level target for the entire file.
 make-tmpplist:  generate-plist finish-tmpplist
-finish-tmpplist: add-plist-info add-plist-docs add-plist-post
+finish-tmpplist: add-plist-info add-plist-examples add-plist-docs add-plist-data add-plist-post
 
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
 #
+
+PLIST_SUB_SANITIZED=   ${PLIST_SUB:N*_regex=*}
+
 .if !target(generate-plist)
-generate-plist:
+generate-plist: ${WRKDIR}
 	@${ECHO_MSG} "===>   Generating temporary packing list"
 	@${MKDIR} ${TMPPLIST:H}
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@>${TMPPLIST}
 	@for file in ${PLIST_FILES}; do \
-		${ECHO_CMD} $${file} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} >> ${TMPPLIST}; \
+		${ECHO_CMD} $${file} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} >> ${TMPPLIST}; \
 	done
 	@for man in ${__MANPAGES}; do \
 		${ECHO_CMD} $${man} >> ${TMPPLIST}; \
@@ -3566,18 +3569,23 @@ generate-plist:
 			@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
 .		endif
 .	endfor
-	@if [ -f ${PLIST} ]; then \
-		${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${PLIST} >> ${TMPPLIST}; \
+.if !empty(PLIST)
+.for f in ${PLIST}
+	@if [ -f "${f}" ]; then \
+		${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${f} >> ${TMPPLIST}; \
+		for i in owner group mode; do ${ECHO_CMD} "@$$i"; done >> ${TMPPLIST}; \
 	fi
+.endfor
+.endif
 .	for reinplace in ${PLIST_REINPLACE}
 .		if defined(PLIST_REINPLACE_${reinplace:tu})
 			@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:tu}}' ${TMPPLIST}
 .		endif
 .	endfor
  
-.	for dir in ${PLIST_DIRS}
-		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
-.	endfor
+.for dir in ${PLIST_DIRS}
+	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
+.endfor
 
 .if defined(USE_LINUX_PREFIX)
 .if defined(USE_LDCONFIG)
@@ -3625,6 +3633,34 @@ add-plist-docs:
 .	else
 		@${DO_NADA}
 .	endif
+.endif
+
+.if !target(add-plist-examples)
+.if defined(PORTEXAMPLES) && !empty(PORT_OPTIONS:MEXAMPLES)
+add-plist-examples:
+.for x in ${PORTEXAMPLES}
+	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
+	if [ ! -e ${FAKE_DESTDIR}${EXAMPLESDIR}/${x} ]; then \
+		${ECHO_CMD} ${EXAMPLESDIR}/${x} >> ${TMPPLIST}; \
+	fi;fi
+.endfor
+	@${FIND} -P ${PORTEXAMPLES:S/^/${FAKE_DESTDIR}${EXAMPLESDIR}\//} ! -type d 2>/dev/null | \
+		${SED} -ne 's,^${FAKE_DESTDIR},,p' >> ${TMPPLIST}
+.endif
+.endif
+
+.if !target(add-plist-data)
+.if defined(PORTDATA)
+add-plist-data:
+.for x in ${PORTDATA}
+	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
+	if [ ! -e ${FAKE_DESTDIR}${DATADIR}/${x} ]; then \
+		${ECHO_CMD} ${DATADIR}/${x} >> ${TMPPLIST}; \
+	fi;fi
+.endfor
+	@${FIND} -P ${PORTDATA:S/^/${FAKE_DESTDIR}${DATADIR}\//} ! -type d 2>/dev/null | \
+		${SED} -ne 's,^${FAKE_DESTDIR},,p' >> ${TMPPLIST}
+.endif
 .endif
 
 .if !target(add-plist-info)
@@ -3677,7 +3713,7 @@ install-rc-script:
 			@${INSTALL} -d ${FAKE_DESTDIR}/etc/rc.d
 			@for i in ${USE_RCORDER}; do \
 				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}/etc/rc.d/$${i%.sh}; \
-				${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+				${ECHO_CMD} "@(root,wheel,0755) etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 			done
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 .		endif
@@ -3686,7 +3722,7 @@ install-rc-script:
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 			@for i in ${USE_RC_SUBR}; do \
 				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${PREFIX}/etc/rc.d/$${i%.sh}; \
-				${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+				${ECHO_CMD} "@(root,wheel,0755) etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 			done
 .		endif
 .	else
