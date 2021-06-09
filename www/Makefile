@@ -26,7 +26,6 @@ SUBDIR += gstreamer1-plugins-neon
 SUBDIR += gtkhtml3
 SUBDIR += joomla3
 SUBDIR += libdom
-SUBDIR += libgtkhtml
 SUBDIR += libhubbub
 SUBDIR += libnghttp2
 SUBDIR += libsocialweb
