@@ -58,6 +58,7 @@ SUBDIR += libntlm
 SUBDIR += libotr
 SUBDIR += libpwquality
 SUBDIR += libressl
+SUBDIR += libretls
 SUBDIR += libsecret
 SUBDIR += libsodium
 SUBDIR += libssh
