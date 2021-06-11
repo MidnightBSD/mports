@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	quake3
 PORTVERSION=	1.32c
 PORTREVISION=	4
@@ -17,7 +15,7 @@ COMMENT=	Quake III Arena for Linux
 LICENSE=	Loki
 LICENSE_NAME=	Loki Software License
 LICENSE_FILE=	${WRKDIR}/Q3A_EULA.txt
-LICENSE_PERMS=
+LICENSE_PERMS=	auto-accept
 
 USES=		linux zip:infozip
 NO_WRKSUBDIR=	yes

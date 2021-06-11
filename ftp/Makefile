@@ -7,7 +7,6 @@ SUBDIR += ftpsync
 SUBDIR += gnustep-ftp
 SUBDIR += lftp
 SUBDIR += libfilezilla
-SUBDIR += linux-c6-curl
 SUBDIR += linux-c7-curl
 SUBDIR += multiget
 SUBDIR += ncftp3
