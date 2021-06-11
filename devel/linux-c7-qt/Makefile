@@ -1,7 +1,9 @@
+# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
+
 PORTNAME=	qt
 PORTVERSION=	4.8.7
-DISTVERSIONSUFFIX=	-3.el7_6
-PORTREVISION=	2
+DISTVERSIONSUFFIX=	-9.el7_9
+PORTREVISION=	4
 CATEGORIES=	devel linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,7 +18,6 @@ USE_LINUX_RPM=	yes
 
 CONFLICTS=	linux-c6-${PORTNAME}47-[0-9]*
 DATADIR=	${PREFIX}/usr/share/${PORTNAME}4
-DESCR=		${.CURDIR}/../../devel/linux-c6-qt47/pkg-descr
 
 OPTIONS_DEFINE=	DOCS
 
