@@ -31,7 +31,6 @@ SUBDIR += gscheme
 SUBDIR += guile
 SUBDIR += guile2
 SUBDIR += libobjc2
-SUBDIR += linux-c6-tcl85
 SUBDIR += linux-c7-tcl85
 SUBDIR += linux-dotnet-cli
 SUBDIR += linux-dotnet-runtime

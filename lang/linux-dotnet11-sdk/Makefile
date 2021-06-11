@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# Created by: David Naylor <dbn@FreeBSD.org>
 
 PORTNAME=	dotnet10-sdk
 DISTVERSION=	1.1.9

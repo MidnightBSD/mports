@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# Created by: David Naylor <dbn@FreeBSD.org>
 
 PORTNAME?=	dotnet11-runtime
 DISTNAME=	dotnet-centos-x64.${DISTVERSION}
