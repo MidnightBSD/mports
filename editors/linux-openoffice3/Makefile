@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	openoffice3
 PORTVERSION=	${OO_RELEASE}
 PORTREVISION=	2
