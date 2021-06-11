@@ -1,10 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	flac
-PORTVERSION=	1.3.1
-PORTREVISION=	2
+PORTVERSION=	1.3.3
 CATEGORIES=	audio
-MASTER_SITES=	http://downloads.xiph.org/releases/flac/
+MASTER_SITES=	https://downloads.xiph.org/releases/flac/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
@@ -15,12 +12,13 @@ LICENSE_FILE_bsd3=${WRKSRC}/COPYING.Xiph
 
 LIB_DEPENDS=	libogg.so:audio/libogg
 
-USES=		compiler:gcc-c++11-lib iconv libtool pathfix pkgconfig tar:xz
+USES=		autoreconf compiler:c11 iconv libtool pathfix pkgconfig tar:xz
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
-		--enable-sse \
+		--disable-sse \
+		--disable-vsx \
 		--with-ogg="${LOCALBASE}" \
 		--disable-doxygen-docs \
 		--disable-silent-rules \
@@ -38,7 +36,6 @@ BUILD_DEPENDS+=	nasm:devel/nasm
 .endif
 
 post-install:
-	cd ${PREFIX}/share/doc && ${MV} ${DISTNAME} flac
 	${REINPLACE_CMD} 's:%%PREFIX%%:${PREFIX}:' \
 	    ${PREFIX}/man/man1/flac.1
 	${RM} ${PREFIX}/man/man1/flac.1.bak

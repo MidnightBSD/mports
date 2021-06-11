@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# $FreeBSD: head/astro/boinc-setiathome/files/pkg-deinstall.in 459010 2018-01-14 22:26:08Z ler $
-
 if [ "$2" != "POST-DEINSTALL" ]; then
     exit 0
 fi

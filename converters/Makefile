@@ -4,6 +4,7 @@ SUBDIR += bsdconv
 SUBDIR += enca
 SUBDIR += fribidi
 SUBDIR += libiconv
+SUBDIR += linux-c7-fribidi
 SUBDIR += lua-json
 SUBDIR += mpack
 SUBDIR += o3read

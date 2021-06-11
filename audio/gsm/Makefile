@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/audio/gsm/Makefile,v 1.22 2006/08/11 20:55:54 sobomax Exp $
-
 PORTNAME=	gsm
 PORTVERSION=	1.0.13
 CATEGORIES=	audio

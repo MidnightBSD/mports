@@ -23,6 +23,7 @@ SUBDIR += liblz4
 SUBDIR += libmspack
 SUBDIR += libunrar
 SUBDIR += libzip
+SUBDIR += linux-c7-lz4
 SUBDIR += lzip
 SUBDIR += lzma
 SUBDIR += lzo2

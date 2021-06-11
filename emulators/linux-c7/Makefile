@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	linux-c7
 PORTVERSION=	${LINUX_DIST_VER}
 CATEGORIES=	emulators linux
@@ -49,7 +47,6 @@ RUN_DEPENDS=	linux-c7-libasyncns>0:dns/linux-c7-libasyncns \
 		linux-c7-libv4l>0:multimedia/linux-c7-libv4l \
 		linux-c7-cyrus-sasl-lib>0:security/linux-c7-cyrus-sasl2 \
 		linux-c7-libssh2>0:security/linux-c7-libssh2 \
-		linux-c7-openssl-libs>0:security/linux-c7-openssl \
 		linux-c7-gnutls>0:security/linux-c7-gnutls \
 		linux-c7-libgcrypt>0:security/linux-c7-libgcrypt \
 		linux-c7-nss>0:security/linux-c7-nss \
@@ -76,7 +73,7 @@ USES=		linux:c7
 
 .include <bsd.port.pre.mk>
 
-.if ${LINUX_ARCH} == x86_64
+.if ${ARCH} == amd64
 RUN_DEPENDS+=	linux-c7-sdl_image>0:graphics/linux-c7-sdl_image \
 		linux-c7-openal-soft>0:audio/linux-c7-openal-soft \
 		linux-c7-sdl20>0:devel/linux-c7-sdl20 \

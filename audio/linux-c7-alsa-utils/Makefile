@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
 
 PORTNAME=	alsa-utils
-PORTVERSION=	1.1.3
+PORTVERSION=	1.1.8
+DISTVERSIONSUFFIX=	-2.el7
 CATEGORIES=	audio linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,13 +10,12 @@ COMMENT=	Advanced Linux Sound Architecture utilities (Linux CentOS ${LINUX_DIST_
 
 LICENSE=	gpl3
 
-CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
-
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
-RPMVERSION=	2.el7
 USES=		linux:c7
 USE_LINUX=	alsalib alsa-plugins-oss
 USE_LINUX_RPM=	nolib
+
+CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
+DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
