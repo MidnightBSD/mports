@@ -38,7 +38,7 @@ CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-install:
 	${LN} -sf libGLX_mesa.so.0 \
