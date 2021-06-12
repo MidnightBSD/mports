@@ -1,18 +1,23 @@
-# $MidnightBSD$
+# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
 
 PORTNAME=	xorg-libs
 PORTVERSION=	7.7
-PORTREVISION=	1
+PORTREVISION=	9
 CATEGORIES=	x11 linux
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	xorg libraries
+COMMENT=	Xorg libraries (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	mit
 
+USES=		linux:c7
+USE_LDCONFIG=	yes
+USE_LINUX=	fontconfig
+USE_LINUX_RPM=	yes
+
 LIB_DISTNAMES=	libICE-1.0.9-9.el7 \
 		libSM-1.2.2-2.el7 \
-		libX11-1.6.7-2.el7 \
+		libX11-1.6.7-3.el7_9 \
 		libXScrnSaver-1.2.2-6.1.el7 \
 		libXau-1.0.8-2.1.el7 \
 		libXaw-1.0.13-4.el7 \
@@ -49,7 +54,7 @@ SHARE_DISTNAMES=libX11-common-1.6.7-2.el7 \
 		xkeyboard-config-2.24-1.el7
 SRC_DISTFILES=	libICE-1.0.9-9.el7${SRC_SUFX}:SOURCE \
 		libSM-1.2.2-2.el7${SRC_SUFX}:SOURCE \
-		libX11-1.6.7-2.el7${SRC_SUFX}:SOURCE \
+		libX11-1.6.7-3.el7_9${SRC_SUFX}:SOURCE \
 		libXScrnSaver-1.2.2-6.1.el7${SRC_SUFX}:SOURCE \
 		libXau-1.0.8-2.1.el7${SRC_SUFX}:SOURCE \
 		libXaw-1.0.13-4.el7${SRC_SUFX}:SOURCE \
@@ -84,11 +89,6 @@ SRC_DISTFILES=	libICE-1.0.9-9.el7${SRC_SUFX}:SOURCE \
 		xkeyboard-config-2.24-1.el7${SRC_SUFX}:SOURCE
 
 CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
-
-USES=		linux:c7
-USE_LDCONFIG=	yes
-USE_LINUX=	fontconfig
-USE_LINUX_RPM=	yes
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
