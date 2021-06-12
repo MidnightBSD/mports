@@ -35,6 +35,7 @@ SUBDIR += libwnck
 SUBDIR += libwnck3
 SUBDIR += libxfce4gui
 SUBDIR += linux-c7-gtk2
+SUBDIR += linux-c7-gtk3
 SUBDIR += linux-c7-openmotif
 SUBDIR += linux-c7-pango
 SUBDIR += linux-c7-qt-x11
