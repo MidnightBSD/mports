@@ -3,6 +3,7 @@
 PORTNAME=	xcb-util-image
 PORTVERSION=	0.4.0
 DISTVERSIONSUFFIX=	-2.el7
+PORTREVISION=	1
 CATEGORIES=	x11 linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,18 +13,11 @@ LICENSE=	mit
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
+USE_LINUX=	xcb-util xorglibs
 USE_LINUX_RPM=	yes
-SRC_DISTFILES=
 
 DESCR=		${.CURDIR:H}/${PORTNAME}/pkg-descr
-LIBDIR=		usr/lib${ARCH:S/i386//:S/amd64/64/}
-PLIST_FILES=	${LIBDIR}/libxcb-image.so.0.0.0 ${LIBDIR}/libxcb-image.so.0
 
-do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${LIBDIR}
-	${LN} ${WRKSRC}/${LIBDIR}/libxcb-image.so.0.0.0	\
-		${STAGEDIR}${PREFIX}/${LIBDIR}
-	${LN} -s libxcb-image.so.0.0.0	\
-		${STAGEDIR}${PREFIX}/${LIBDIR}/libxcb-image.so.0
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>
