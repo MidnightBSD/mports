@@ -40,7 +40,6 @@ SUBDIR += libotf
 SUBDIR += libpaper
 SUBDIR += libraqm
 SUBDIR += libspectre
-SUBDIR += linux-c6-cups-libs
 SUBDIR += linux-c7-cups-libs
 SUBDIR += linux-c7-freetype
 SUBDIR += linux-c7-harfbuzz
