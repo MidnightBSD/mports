@@ -1,7 +1,7 @@
-TIMESTAMP = 1562519810
-SHA256 (centos/qt-x11-4.8.7-3.el7_6.i686.rpm) = 2885818b2f864dacfd151425ba97ea714e95b91bf35fd0702e66f5cd36404631
-SIZE (centos/qt-x11-4.8.7-3.el7_6.i686.rpm) = 13370032
-SHA256 (centos/qt-x11-4.8.7-3.el7_6.x86_64.rpm) = e71a104ab63ceb47698f4d8ad6d6dd41b3f4ee7fbd7a54bc6334ef4fb257e755
-SIZE (centos/qt-x11-4.8.7-3.el7_6.x86_64.rpm) = 13109000
-SHA256 (centos/qt-4.8.7-3.el7_6.src.rpm) = 7a288c8123c88cfac90d4893e5deb401f6303c7e1bd57530af5a9e5b1c4715ef
-SIZE (centos/qt-4.8.7-3.el7_6.src.rpm) = 240443518
+TIMESTAMP = 1614799616
+SHA256 (centos/qt-x11-4.8.7-9.el7_9.i686.rpm) = 9311ccab42970f1272cfc018419932b0fb8fe37ba50649863fba7a09fcb64c4b
+SIZE (centos/qt-x11-4.8.7-9.el7_9.i686.rpm) = 13369988
+SHA256 (centos/qt-x11-4.8.7-9.el7_9.x86_64.rpm) = 051767c8b8b2c33280f93fb2f1f60e7d9bdd8f44678ca6c68f5e2e59986a7ef8
+SIZE (centos/qt-x11-4.8.7-9.el7_9.x86_64.rpm) = 13110304
+SHA256 (centos/qt-4.8.7-9.el7_9.src.rpm) = 1b13875acac35d32f4c3fd27678faf838b6057d76f24ba61b5022c270a900bca
+SIZE (centos/qt-4.8.7-9.el7_9.src.rpm) = 240448001
