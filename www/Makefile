@@ -34,7 +34,6 @@ SUBDIR += libwww
 SUBDIR += lighttpd
 SUBDIR += links
 SUBDIR += links1
-SUBDIR += linux-c6-qt47-webkit
 SUBDIR += linux-c7-qtwebkit
 SUBDIR += linux-libgtkembedmoz
 SUBDIR += linux-opera
