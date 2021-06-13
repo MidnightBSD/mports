@@ -364,6 +364,12 @@ UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 TMPDIR?=	/tmp
 .endif # defined(PACKAGE_BUILDING)
 
+.if defined(WITH_DEBUG_PORTS)
+.if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
+WITH_DEBUG=	yes
+.endif
+.endif
+
 # Respect TMPDIR passed via make.conf or similar and pass it down
 # to configure and make.
 .if defined(TMPDIR)
