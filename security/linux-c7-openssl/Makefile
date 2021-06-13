@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	openssl
 PORTVERSION=	1.0.2k
 CATEGORIES=	security linux
