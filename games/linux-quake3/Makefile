@@ -14,7 +14,7 @@ COMMENT=	Quake III Arena for Linux
 
 LICENSE=	Loki
 LICENSE_NAME=	Loki Software License
-LICENSE_FILE=	${WRKDIR}/Q3A_EULA.txt
+LICENSE_FILE=	${WRKSRC}/Q3A_EULA.txt
 LICENSE_PERMS=	auto-accept
 
 USES=		linux zip:infozip
@@ -28,22 +28,23 @@ OPTIONS_MULTI_TYPE=	CLIENT DEDICATED SMP
 OPTIONS_DEFINE=	DOCS
 OPTIONS_DEFAULT=	CLIENT DEDICATED SMP
 
+OPTIONS_SUB=	yes
+
 CLIENT_DESC=	Install client
 DEDICATED_DESC=	Install dedicated server
 SMP_DESC=	Install SMP (threaded) client
 
 PLIST_SUB+=	LIBDIR="${LIBDIR:S/${PREFIX}\///}"
-LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}
 
 LIBDIR=		${PREFIX}/libexec/${PKGNAMEPREFIX}${PORTNAME}
 Q3DATAFILE=	linuxq3apoint-1.32b-3.x86.run
 Q3PATCHFILE=	quake3-${PORTVERSION}.zip
 
 do-extract:
-	@${MKDIR} ${WRKDIR}
-	@cd ${WRKDIR} && ${TAIL} +356 ${_DISTDIR}/${Q3DATAFILE} | \
+	@${MKDIR} ${WRKSRC}
+	@cd ${WRKSRC} && ${TAIL} +356 ${_DISTDIR}/${Q3DATAFILE} | \
 		${TAR} zxf -
-	@${UNZIP_CMD} -qo ${_DISTDIR}/${Q3PATCHFILE} -d ${WRKDIR}
+	@${UNZIP_CMD} -qo ${_DISTDIR}/${Q3PATCHFILE} -d ${WRKSRC}
 
 post-extract:
 .for f in q3ded quake3.x86 quake3-smp.x86

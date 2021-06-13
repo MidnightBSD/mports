@@ -13,8 +13,8 @@ COMMENT=	Quake III Arena Demo
 
 LICENSE=        Loki
 LICENSE_NAME=   Loki Software License
-LICENSE_FILE=   ${WRKDIR}/Help/Q3A_EULA.txt
-LICENSE_PERMS=
+LICENSE_FILE=   ${WRKSRC}/Help/Q3A_EULA.txt
+LICENSE_PERMS=	auto-accept
 
 RESTRICTED=	no commerical redistribution
 
@@ -30,8 +30,8 @@ SUB_FILES=	q3demo
 OPTIONS_DEFINE=	DOCS
 
 do-extract:
-	@${MKDIR} ${WRKDIR}
-	@cd ${WRKDIR} && ${TAIL} +165 ${_DISTDIR}/${DISTNAME}${EXTRACT_SUFX} | \
+	@${MKDIR} ${WRKSRC}
+	@cd ${WRKSRC} && ${TAIL} +165 ${_DISTDIR}/${DISTNAME}${EXTRACT_SUFX} | \
 		${TAR} zxf -
 
 do-install:
