@@ -38,7 +38,7 @@ DISTDIR?=		${PORTSDIR}/Distfiles
 _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
 INDEXDIR?=		${PORTSDIR}
 SRC_BASE?=		/usr/src
-SCRIPTSDIR?=		${PORTSDIR}/Mk/scripts
+SCRIPTSDIR?=	${PORTSDIR}/Mk/scripts
 LIB_DIRS?=		/lib /usr/lib ${LOCALBASE}/lib
 NOTPHONY?=
 FLAVORS?=
@@ -90,7 +90,7 @@ WRAPPERSDIR?=		${PORTSDIR}/Mk/wrappers/
 
 .if defined(CROSS_TOOLCHAIN)
 .if !defined(CROSS_SYSROOT)
-IGNORE=		CROSS_SYSROOT should be defined
+IGNORE=	CROSS_SYSROOT should be defined
 .endif
 .include "${LOCALBASE}/share/toolchains/${CROSS_TOOLCHAIN}.mk"
 # Do not define CPP on purpose
@@ -99,7 +99,7 @@ HOSTCC:=	${CC}
 HOSTCXX:=	${CXX}
 .endif
 .if !defined(CC_FOR_BUILD)
-CC_FOR_BUILD:= ${HOSTCC}
+CC_FOR_BUILD:=	${HOSTCC}
 CXX_FOR_BUILD:=	${HOSTCXX}
 .endif
 CONFIGURE_ENV+= HOSTCC="${HOSTCC}" HOSTCXX="${HOSTCXX}" CC_FOR_BUILD="${CC_FOR_BUILD}" CXX_FOR_BUILD="${CXX_FOR_BUILD}"
@@ -112,7 +112,7 @@ ${_tool}=	${CROSS_BINUTILS_PREFIX}${_tool:tl}
 .endfor
 LD+=		--sysroot=${CROSS_SYSROOT}
 STRIP_CMD=	${CROSS_BINUTILS_PREFIX}strip
-# only bmake supports the below
+# only bmake supports the following
 STRIPBIN=	${STRIP_CMD}
 .export.env STRIPBIN
 .endif
@@ -181,7 +181,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 
 # Get the architecture
 .if !defined(ARCH)
-ARCH!=	${UNAME} -p   
+ARCH!=	${UNAME} -p
 .endif
 HOSTARCH:=	${ARCH}
 .if defined(CROSS_TOOLCHAIN)
@@ -205,7 +205,7 @@ _EXPORTED_VARS+=	PPC_ABI
 .error CROSS_SYSROOT does not include /usr/include/sys/param.h.
 .endif
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${CROSS_SYSROOT}/usr/include/sys/param.h
-_OSRELEASE!=	${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version / 100000, version / 1000 % 100) }' < /dev/null
+_OSRELEASE!= ${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version / 100000, version / 1000 % 100) }' < /dev/null
 .endif
 
 # Get the operating system type
@@ -237,9 +237,9 @@ _EXPORTED_VARS+=	OSVERSION
 
 .if (${OSVERSION} < 12000)
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
-				are guaranteed to build on this system. Please upgrade to a supported release.
+								are guaranteed to build on this system. Please upgrade to a supported release.
 . if defined(ALLOW_UNSUPPORTED_SYSTEM)
-WARNING+=		"${_UNSUPPORTED_SYSTEM_MESSAGE}"
+WARNING+=			"${_UNSUPPORTED_SYSTEM_MESSAGE}"
 . else
 show-unsupported-system-error:
 	@${ECHO_MSG} "/!\\ ERROR: /!\\"
@@ -254,7 +254,7 @@ show-unsupported-system-error:
 
 # TODO: portsnap build issue
 # Convert OSVERSION to major release number
-_OSVERSION_MAJOR=      ${OSVERSION:C/([0-9])([0-9][0-9])[0-9]{3}/\1/}
+_OSVERSION_MAJOR=	${OSVERSION:C/([0-9])([0-9][0-9])[0-9]{3}/\1/}
 # Sanity checks for chroot/jail building.
 # Skip if OSVERSION specified on cmdline for testing. Only works for bmake.
 .if !defined(INDEXING)
@@ -422,7 +422,7 @@ STRIP=	#none
 
 .include "${MPORTCOMPONENTS}/sanity.mk"
 
-_PREMKINCLUDED=		yes
+_PREMKINCLUDED=	yes
 
 .if defined(PORTVERSION)
 .if ${PORTVERSION:M*[-_,]*}x != x
