@@ -1,7 +1,9 @@
-# $MidnightBSD$
+# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
 
 PORTNAME=	openldap
 PORTVERSION=	2.4.44
+DISTVERSIONSUFFIX=	-22.el7
+PORTREVISION=	2
 CATEGORIES=	net linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,14 +11,13 @@ COMMENT=	LDAP libraries (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	openldap2.8
 
-CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
-
-DESCR=		${.CURDIR}/../${PORTNAME}24-server/pkg-descr
-RPMVERSION=	5.el7
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	cyrus-sasl2 nspr nss
 USE_LINUX_RPM=	yes
+
+CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
+DESCR=		${.CURDIR}/../${PORTNAME}24-server/pkg-descr
 
 OPTIONS_DEFINE=	DOCS
 
