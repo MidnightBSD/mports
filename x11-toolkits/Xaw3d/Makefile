@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Xaw3d
 PORTVERSION=	1.5E
 PORTREVISION=	7
@@ -11,39 +9,29 @@ COMMENT=	3-D Athena Widget set that looks like Motif
 
 LICENSE=	mit
 
-OPTIONS_DEFINE=	DOCS NLS
 WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
-USES=		imake
+USES=		gettext imake xorg
 USE_XORG=	x11 xext xmu xt sm ice xpm
 USE_LDCONFIG=	yes
 
-BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
+BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/config/Imake.tmpl:x11/xorg-cf-files
 
 SUB_FILES=	pkg-message
-XAWVER=		8.0
+XAWVER=		8
 SUB_LIST=	XAWVER="${XAWVER}"
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-PLIST_SUB+=	NLS="@comment "
-.endif
+OPTIONS_DEFINE=	DOCS
 
 post-extract:
 	@${MKDIR} ${WRKSRC}/X11/Xaw3d
 	@cd ${WRKSRC}/X11/Xaw3d; ${LN} -sf ../../*.h .
-.if ! ${PORT_OPTIONS:MNLS}
-	@${REINPLACE_CMD} -e '/LINTLIBS =/s/=.*/=/' \
-		-e '/#ifdef XawI18nDefines/s//#if 0/' \
-		${WRKSRC}/Imakefile
-.endif
 
 post-install:
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.XAW3D ${DOCSDIR}/
 	(cd ${PREFIX}/lib && ${LN} -sf libXaw3d.so.8 libXaw3d.so)
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libXaw3d.so
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.XAW3D ${FAKE_DESTDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>
