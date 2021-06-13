@@ -1,5 +1,5 @@
 PORTNAME=	nano
-PORTVERSION=	4.9.2
+PORTVERSION=	5.7
 CATEGORIES=	editors
 MASTER_SITES=	https://www.nano-editor.org/dist/v${PORTVERSION:R}/ GNU
 
@@ -9,7 +9,7 @@ COMMENT=	Nano's ANOther editor, an enhanced free Pico clone
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		charsetfix ncurses tar:xz
+USES=		charsetfix ncurses pkgconfig tar:xz
 
 CONFLICTS=	nano-devel-2*
 
