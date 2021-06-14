@@ -582,6 +582,7 @@ SUBDIR += p5-Sub-Info
 SUBDIR += p5-Sub-Install
 SUBDIR += p5-Sub-Quote
 SUBDIR += p5-Sub-Uplevel
+SUBDIR += p5-Sys-Mmap
 SUBDIR += p5-Task-Weaken
 SUBDIR += p5-Term-ANSIColor
 SUBDIR += p5-Term-ReadKey
