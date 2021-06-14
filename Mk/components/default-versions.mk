@@ -40,17 +40,8 @@ FPC_DEFAULT?=		3.0.4
 # Possible values: 4.9, 5, 6, 7
 GCC_DEFAULT?=		7
 GHOSTSCRIPT_DEFAULT?=	9
-.if ${OSVERSION} < 200000
-.if ${ARCH} == amd64
-# Possible values: c6, c6_64, c7
-LINUX_DEFAULT?=		c6_64
-.else
-# Possible values: c6
-LINUX_DEFAULT?=		c6
-.endif
-.else
+# Possible values: c7
 LINUX_DEFAULT?=		c7
-.endif
 LLVM_DEFAULT?=		60
 LUA_DEFAULT?=		5.2
 MYSQL_DEFAULT?=		5.7
