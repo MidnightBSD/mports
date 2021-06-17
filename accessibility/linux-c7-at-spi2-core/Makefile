@@ -6,7 +6,7 @@ CATEGORIES=	accessibility linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive technology service provider interface (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 
 RUN_DEPENDS=	at-spi2-core>=2.28.0:accessibility/at-spi2-core
 
