@@ -8,7 +8,7 @@ CATEGORIES=	graphics linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphic library for GTK+ (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
