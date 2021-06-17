@@ -13,10 +13,6 @@ LICENSE=	mit
 RUN_DEPENDS=	${XMLDIR}/docbook/4.2/catalog.xml:textproc/docbook-xml \
 		${XMLDIR}/sdocbook/1.1/catalog:textproc/sdocbook-xml
 
-.ifndef NOPORTDOCS
-DISTFILES+=	${PORTNAME}-doc-${PORTVERSION}${EXTRACT_SUFX}:doc
-.endif
-
 USES+=		tar:bzip2
 NO_BUILD=	yes
 

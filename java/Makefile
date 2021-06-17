@@ -63,6 +63,5 @@ SUBDIR += openjdk11-bin
 SUBDIR += openjdk13-bin
 SUBDIR += proguard
 SUBDIR += springframework
-SUBDIR += xdoclet
 
 .include <bsd.port.subdir.mk>
