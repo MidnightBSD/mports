@@ -23,19 +23,23 @@
 _INCLUDE_USES_NCURSES_MK=	yes
 
 .if empty(ncurses_ARGS)
-.  if !exists(${DESTDIR}/${LOCALBASE}/lib/libncurses.so) && exists(${DESTDIR}/usr/include/ncurses.h)
+.  if !exists(${DESTDIR}/${LOCALBASE}/lib/libncurses.so) && exists(${DESTDIR}/usr/lib/libncursesw.so)
 ncurses_ARGS=	base
-.  endif
+.  else
 ncurses_ARGS=	port
+.  endif
 .endif
 
 .if ${ncurses_ARGS} == base
 NCURSESBASE=	/usr
 NCURSESINC=	${NCURSESBASE}/include
+.if !exists(/usr/lib/libncursesw.so)
+NCURSES_IMPL=	ncurses
+.endif
 
 .  if exists(${LOCALBASE}/lib/libncurses.so)
 _USES_sanity+=        400:check-depends-ncurses
-check-depends::
+check-depends-ncurses:
 	@${ECHO_CMD} "Dependency error: this port wants the ncurses library from the MidnightBSD"
 	@${ECHO_CMD} "base system. You can't build against it, while a newer"
 	@${ECHO_CMD} "version is installed by a port."
@@ -73,5 +77,6 @@ LDFLAGS+=	-Wl,-rpath=${NCURSESRPATH}
 .endif
 
 NCURSESLIB=	${NCURSESBASE}/lib
+NCURSES_IMPL?=	ncursesw
 
 .endif
