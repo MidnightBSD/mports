@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # handle dependency on the ncurses port
 #
 # Feature:	ncurses
@@ -28,7 +26,7 @@ _INCLUDE_USES_NCURSES_MK=	yes
 .  if !exists(${DESTDIR}/${LOCALBASE}/lib/libncurses.so) && exists(${DESTDIR}/usr/include/ncurses.h)
 ncurses_ARGS=	base
 .  endif
-ncurses_ARGS?=	port
+ncurses_ARGS=	port
 .endif
 
 .if ${ncurses_ARGS} == base
@@ -59,7 +57,7 @@ NCURSES_SHLIBVER?=	${NCURSES_SHLIBFILE:E}
 .  endif
 
 NCURSES_PORT?=		devel/ncurses
-NCURSES_SHLIBVER?=	5
+NCURSES_SHLIBVER?=	6
 
 BUILD_DEPENDS+=		${LOCALBASE}/lib/libncurses.so.${NCURSES_SHLIBVER}:${NCURSES_PORT}
 RUN_DEPENDS+=		${LOCALBASE}/lib/libncurses.so.${NCURSES_SHLIBVER}:${NCURSES_PORT}
