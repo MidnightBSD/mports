@@ -1,10 +1,8 @@
 PORTNAME=	pcre
-PORTVERSION=	8.43
+PORTVERSION=	8.44
 CATEGORIES=	devel
-MASTER_SITES=	SF \
-		ftp://ftp.csx.cam.ac.uk/pub/software/programming/${PORTNAME}/ \
-		ftp://ftp.fu-berlin.de/unix/misc/${PORTNAME}/ \
-		ftp://ftp.tin.org/pub/libs/${PORTNAME}/
+MASTER_SITES=	https://ftp.pcre.org/pub/pcre/ \
+		SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Compatible Regular Expressions library
