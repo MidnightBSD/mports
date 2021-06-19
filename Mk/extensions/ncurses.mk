@@ -54,11 +54,16 @@ NCURSESBASE=	${LOCALBASE}
 NCURSESINC=	${LOCALBASE}/include/ncurses
 
 .  if !defined(NCURSES_PORT) && exists(${DESTDIR}/${LOCALBASE}/lib/libncurses.so)
+NCURSES_INSTALLED!=	${MPORT_CMD} which  ${LOCALBASE}/lib/libncurses.so || :
 
-NCURSES_PORT!=		grep "^@comment ORIGIN:" "${NCURSES_INSTALLED}" | ${CUT} -d : -f 2
-NCURSES_SHLIBFILE!=	grep -m 1 "^lib/libncurses.so." "${NCURSES_INSTALLED}"
-NCURSES_SHLIBVER?=	${NCURSES_SHLIBFILE:E}
 .  endif
+NCURSES_INSTALLED?=
+.if ${NCURSES_INSTALLED} != ""
+NCURSES_PORT=	devel/ncurses
+#NCURSES_SHLIBFILE!=	${MPORT_INFO} -q ${NCURSES_INSTALLED} | grep -m 1 "^/usr/local/lib/libncurses.so."
+#NCURSES_SHLIBVER?=	${NCURSES_SHLIBFILE:E}
+NCURSES_SHLIBVER?=	6
+.endif
 
 NCURSES_PORT?=		devel/ncurses
 NCURSES_SHLIBVER?=	6
