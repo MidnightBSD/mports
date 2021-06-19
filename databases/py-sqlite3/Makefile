@@ -1,17 +1,19 @@
+# Created by: Hye-Shik Chang
+
 PORTNAME=	sqlite3
-PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	5
+DISTVERSION=	${PYTHON_DISTVERSION}
+PORTREVISION=	6
 CATEGORIES=	databases python
-MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
+MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	Python-${PORTVERSION}
+DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standard Python binding to the SQLite3 library
 
 LICENSE=	python
-LICENSE_FILE=	${WRKDIR}/Python-${PORTVERSION}/LICENSE
+LICENSE_FILE=	${WRKDIR}/Python-${DISTVERSION}/LICENSE
 
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
@@ -21,15 +23,11 @@ USES=		compiler:c11 python:2.7+ tar:xz
 USE_PYTHON=	autoplist distutils allflavors
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
-WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
+WRKSRC_SUBDIR=	Modules
 
 PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 200000
-USE_GCC=	yes
-.endif
 
 post-extract:
 .if ${PYTHON_REL} < 30000

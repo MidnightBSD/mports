@@ -3,8 +3,6 @@
 #       python setup.py install
 #
 
-__version__ = "$MidnightBSD$"
-
 try:
     import distutils
     from distutils import sysconfig
