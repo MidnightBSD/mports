@@ -1,5 +1,5 @@
 PORTNAME=	libxslt
-PORTVERSION=	1.1.34
+DISTVERSION=	1.1.34
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	http://xmlsoft.org/sources/ \
 		https://mirror.umd.edu/xbmc/build-deps/sources/
@@ -9,8 +9,6 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The XSLT C library for GNOME
 
 LICENSE=	mit
-
-.if !defined(REFERENCE_PORT)
 
 USES+=		cpe gmake gnome localbase libtool pathfix
 CPE_VENDOR=	xmlsoft
@@ -43,5 +41,3 @@ post-patch:
 		${WRKSRC}/doc/Makefile.in
 
 .include <bsd.port.mk>
-
-.endif
