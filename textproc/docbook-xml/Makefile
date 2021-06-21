@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/docbook-xml/Makefile,v 1.24 2004/04/19 09:13:36 kris Exp $
-
 PORTNAME=	docbook
 PORTVERSION=	5.0
 PORTREVISION=	2
@@ -14,13 +11,13 @@ COMMENT=	DocBook XML DTD
 
 LICENSE=	unknown
 
-EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:${PORTSDIR}/archivers/libarchive
+EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:archivers/libarchive
 
-BUILD_DEPENDS=	${LOCALBASE}/share/xml/xmlcharent/catalog.xml:${PORTSDIR}/textproc/xmlcharent \
-		${XMLCATMGR_CMD}:${PORTSDIR}/textproc/xmlcatmgr \
-		${LOCALBASE}/bin/bsdtar:${PORTSDIR}/archivers/libarchive
-RUN_DEPENDS=	${LOCALBASE}/share/xml/xmlcharent/catalog.xml:${PORTSDIR}/textproc/xmlcharent \
-		${XMLCATMGR_CMD}:${PORTSDIR}/textproc/xmlcatmgr
+BUILD_DEPENDS=	${LOCALBASE}/share/xml/xmlcharent/catalog.xml:textproc/xmlcharent \
+		${XMLCATMGR_CMD}:textproc/xmlcatmgr \
+		${LOCALBASE}/bin/bsdtar:archivers/libarchive
+RUN_DEPENDS=	${LOCALBASE}/share/xml/xmlcharent/catalog.xml:textproc/xmlcharent \
+		${XMLCATMGR_CMD}:textproc/xmlcatmgr
 
 NO_BUILD=	yes
 

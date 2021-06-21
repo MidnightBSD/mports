@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	docbook
 PORTVERSION=	4.5
 PORTREVISION=	2
@@ -13,10 +11,10 @@ COMMENT=	DocBook SGML DTD
 
 LICENSE=	unknown
 
-EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:${PORTSDIR}/archivers/libarchive
+EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:archivers/libarchive
 
-RUN_DEPENDS=	${LOCALBASE}/${ISOCAT}:${PORTSDIR}/textproc/iso8879 \
-		${LOCALBASE}/${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+RUN_DEPENDS=	${LOCALBASE}/${ISOCAT}:textproc/iso8879 \
+		${LOCALBASE}/${XMLCATMGR}:textproc/xmlcatmgr
 
 NO_BUILD=	yes
 
