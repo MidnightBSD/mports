@@ -32,6 +32,10 @@ OPTIONS_DEFINE=	DOCS
 
 DOCS_DISTFILES=	docbook-xsl-doc-${PORTVERSION}${EXTRACT_SUFX}:doc
 
+XMLCAT=                share/xml/catalog.ports
+XMLCATMGR=      bin/xmlcatmgr
+PLIST_SUB=      XMLCATMGR=${XMLCATMGR} XMLCAT=${XMLCAT}
+
 do-install:
 	@${MKDIR} ${PREFIX}/share/xsl/docbook-ns
 	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/share/xsl/docbook-ns

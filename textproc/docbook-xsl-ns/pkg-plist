@@ -22,6 +22,8 @@ share/xsl/docbook-ns/assembly/topic-maker-chunk.xsl
 share/xsl/docbook-ns/assembly/topic-maker.xsl
 share/xsl/docbook-ns/build.xml
 @xmlcatmgr share/xsl/docbook-ns/catalog.xml
+@preunexec %D/%%XMLCATMGR%% -c %%XMLCAT%% remove nextCatalog share/xsl/docbook-ns/catalog.xml
+@postexec %D/%%XMLCATMGR%% -c %%XMLCAT%% add nextCatalog share/xsl/docbook-ns/catalog.xml
 share/xsl/docbook-ns/common/addns.xsl
 share/xsl/docbook-ns/common/af.xml
 share/xsl/docbook-ns/common/am.xml
