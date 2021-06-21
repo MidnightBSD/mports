@@ -66,6 +66,11 @@ TOOLS_VARS=		MODULES+=tools
 WEBSITE_VARS=		MODULES+=website
 XHTML11_VARS=		MODULES+=xhtml-1_1
 
+XMLCAT=		share/xml/catalog.ports
+XMLCATMGR=      bin/xmlcatmgr
+PLIST_SUB=      XMLCATMGR=${XMLCATMGR} XMLCAT=${XMLCAT}
+
+
 .include <bsd.mport.options.mk>
 
 post-extract:

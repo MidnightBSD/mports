@@ -16,6 +16,8 @@ share/xsl/docbook/VERSION
 share/xsl/docbook/VERSION.xsl
 share/xsl/docbook/build.xml
 @xmlcatmgr share/xsl/docbook/catalog.xml
+@preunexec %D/%%XMLCATMGR%% -c %%XMLCAT%% remove nextCatalog share/xsl/docbook-ns/catalog.xml
+@postexec %D/%%XMLCATMGR%% -c %%XMLCAT%% add nextCatalog share/xsl/docbook-ns/catalog.xml
 share/xsl/docbook/common/addns.xsl
 share/xsl/docbook/common/af.xml
 share/xsl/docbook/common/am.xml
