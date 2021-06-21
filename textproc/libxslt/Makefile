@@ -10,7 +10,9 @@ COMMENT?=	The XSLT C library for GNOME
 
 LICENSE=	mit
 
-USES+=		cpe gmake gnome localbase libtool pathfix
+#pkgconfig is necessary with newer libxml2 versions as xml2-config doesn't work
+
+USES+=		cpe gmake gnome localbase libtool pathfix pkgconfig
 CPE_VENDOR=	xmlsoft
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
