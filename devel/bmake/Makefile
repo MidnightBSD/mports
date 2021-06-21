@@ -1,7 +1,7 @@
 PORTNAME=	bmake
-PORTVERSION=	20201124
+PORTVERSION=	20210420
 CATEGORIES=	devel
-MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/sjg/
+MASTER_SITES=	https://ftp.netbsd.org/pub/NetBSD/misc/sjg/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable version of NetBSD 'make' utility
@@ -15,6 +15,9 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 MAKE_ENV+=	CONFIG_SITE=${CONFIG_SITE}
 
 NO_TEST=	yes
+.if defined(BATCH)|| defined(MAGUS)
+EXTRA_PATCHES=	${FILESDIR}/extrapatch-unit-tests_Makefile
+.endif
 
 post-patch:	.SILENT
 	${REINPLACE_CMD} 's/^\.Nx/NetBSD/' ${WRKDIR}/bmake/bmake.1
