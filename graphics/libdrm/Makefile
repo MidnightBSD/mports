@@ -46,6 +46,10 @@ MESON_ARGS+=	-Domap=false \
 		-Detnaviv=false \
 		-Dnouveau=false
 
+.if defined(MAGUS)
+NO_TESTS=	yes
+.endif
+
 .include <bsd.mport.options.mk>
 
 .if ${ARCH} == amd64 || ${ARCH} == i386
