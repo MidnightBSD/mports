@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	rclint
-PORTVERSION=	0.2.1
+PORTVERSION=	1.1.0
 CATEGORIES=	devel textproc python
 MASTER_SITES=	http://www.bayofrum.net/dist/rclint/	\
 		FREEBSD_LOCAL/crees/
@@ -11,9 +9,11 @@ COMMENT=	Checks rc scripts for style and common errors
 
 LICENSE=	bsd2
 
-NO_BUILD=	yes
+USES=		python:run shebangfix
+SHEBANG_FILES=	*.py
 
-USES=		python:run
+NO_ARCH=	yes
+NO_BUILD=	yes
 SUB_FILES=	${PORTNAME}
 SUB_LIST=	PYTHON_CMD=${PYTHON_CMD}
 
@@ -25,10 +25,8 @@ post-patch:
 		${WRKSRC}/${PORTNAME}.py
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}${DATADIR}
-.for f in ${PORTDATA}
-	${INSTALL_SCRIPT} ${WRKSRC}/$f ${FAKE_DESTDIR}${DATADIR}
-.endfor
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin
+	${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${PORTDATA:S,^,${WRKSRC}/,} ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
 
 .include <bsd.port.mk>
