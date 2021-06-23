@@ -46,9 +46,7 @@ MESON_ARGS+=	-Domap=false \
 		-Detnaviv=false \
 		-Dnouveau=false
 
-.if defined(MAGUS)
-NO_TESTS=	yes
-.endif
+NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
 
