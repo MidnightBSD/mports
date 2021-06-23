@@ -18,6 +18,7 @@ USE_PYTHON=	allflavors autoplist concurrent distutils
 
 MAKE_ENV+=	SETUPTOOLS_DISABLE_VERSIONED_EASY_INSTALL_SCRIPT=1
 NO_ARCH=	yes
+NO_TEST=	yes
 PYDISTUTILS_SETUP=	${PYSETUP}
 
 PLIST_FILES=	"@sample %%PYTHON_SITELIBDIR%%/easy-install.pth.dist %%PYTHON_SITELIBDIR%%/easy-install.pth"
@@ -38,9 +39,6 @@ SUB_LIST+=	PYTHON_VER=${PYTHON_VER}
 # pkg install -y py36-pytest py36-mock py36-pytest-fixture-config py36-pytest-virtualenv py36-paver
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/easy-install.pth.dist ${STAGEDIR}${PYTHON_SITELIBDIR}/
-
-do-test:
-	cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -v -rs
+	${INSTALL_DATA} ${FILESDIR}/easy-install.pth.dist ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/
 
 .include <bsd.port.post.mk>
