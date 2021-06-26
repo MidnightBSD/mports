@@ -1,7 +1,7 @@
 # Created by: Andreas Kohn <andreas@syndrom23.de>
 
 PORTNAME=	mate-notification-daemon
-PORTVERSION=	1.24.1
+PORTVERSION=	1.24.2
 CATEGORIES=	deskutils mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
