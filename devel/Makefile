@@ -104,6 +104,7 @@ SUBDIR += git
 SUBDIR += git-lfs
 SUBDIR += git-merge-changelog
 SUBDIR += git-sync
+SUBDIR += git-tools
 SUBDIR += github-backup-utils
 SUBDIR += glade
 SUBDIR += glib20
