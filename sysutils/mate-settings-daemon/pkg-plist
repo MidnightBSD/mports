@@ -41,10 +41,14 @@ lib/mate-settings-daemon/xrdb.mate-settings-plugin
 lib/mate-settings-daemon/xsettings.mate-settings-plugin
 libdata/pkgconfig/mate-settings-daemon.pc
 libexec/mate-settings-daemon
+libexec/msd-datetime-mechanism
 libexec/msd-locate-pointer
 man/man1/mate-settings-daemon.1.gz
+man/man1/msd-datetime-mechanism.1.gz
 man/man1/msd-locate-pointer.1.gz
 share/dbus-1/services/org.mate.SettingsDaemon.service
+share/dbus-1/system-services/org.mate.SettingsDaemon.DateTimeMechanism.service
+share/dbus-1/system.d/org.mate.SettingsDaemon.DateTimeMechanism.conf
 share/icons/hicolor/16x16/apps/msd-xrandr.png
 share/icons/hicolor/22x22/apps/msd-xrandr.png
 share/icons/hicolor/24x24/apps/msd-xrandr.png
@@ -180,4 +184,5 @@ share/mate-control-center/keybindings/50-accessibility.xml
 %%DATADIR%%/icons/hicolor/64x64/devices/kbd-scrolllock-off.png
 %%DATADIR%%/icons/hicolor/64x64/devices/kbd-scrolllock-on.png
 %%DATADIR%%/msd-a11y-preferences-dialog.ui
+share/polkit-1/actions/org.mate.settingsdaemon.datetimemechanism.policy
 @dir %%ETCDIR%%/xrandr

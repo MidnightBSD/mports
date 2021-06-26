@@ -1,7 +1,7 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	mate-panel
-PORTVERSION=	1.24.0
+PORTVERSION=	1.24.2
 CATEGORIES=	x11 mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
@@ -55,7 +55,8 @@ X11_USE= 			GNOME=libwnck3 XORG=x11,xau,xrandr
 X11_CONFIGURE_ENABLE=		x11
 X11_VARS=			GLIB_SCHEMAS+=org.mate.panel.applet.notification-area.gschema.xml \
 				GLIB_SCHEMAS+=org.mate.panel.applet.window-list.gschema.xml \
-				GLIB_SCHEMAS+=org.mate.panel.applet.workspace-switcher.gschema.xml
+				GLIB_SCHEMAS+=org.mate.panel.applet.workspace-switcher.gschema.xml \
+				GLIB_SCHEMAS+=org.mate.panel.applet.window-list-previews.gschema.xml
 X11_CONFIGURE_ENV_OFF=		WNCKLET_CFLAGS=" " WNCKLET_LIBS=" " \
 				XRANDR_CFLAGS=" " XRANDR_LIBS=" "
 
