@@ -158,6 +158,7 @@ SUBDIR += libIDL
 SUBDIR += libatomic_ops
 SUBDIR += libbonobo
 SUBDIR += libburn
+SUBDIR += libcbor
 SUBDIR += libccid
 SUBDIR += libclc
 SUBDIR += libconfig

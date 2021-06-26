@@ -48,6 +48,7 @@ SUBDIR += l0phtcrack
 SUBDIR += libargon2
 SUBDIR += libassuan
 SUBDIR += libcryptui
+SUBDIR += libfido2
 SUBDIR += libgcrypt
 SUBDIR += libgnome-keyring
 SUBDIR += libgpg-error
