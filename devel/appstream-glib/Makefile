@@ -43,4 +43,6 @@ MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
 			docbook-xsl>=0:textproc/docbook-xsl
 MANPAGES_USE=	GNOME=libxslt:build
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
