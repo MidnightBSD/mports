@@ -1,145 +1,145 @@
-libdata/pkgconfig/appstream-glib.pc
-libdata/pkgconfig/appstream-builder.pc
-man/man1/appstream-compose.1.gz
-man/man1/appstream-builder.1.gz
-man/man1/appstream-util.1.gz
-%%DOCSDIR%%/right-insensitive.png
-%%DOCSDIR%%/appstream-glib-AsFormat.html
-%%DOCSDIR%%/appstream-glib-as-enums.html
-%%DOCSDIR%%/appstream-glib-as-markup.html
-%%DOCSDIR%%/up.png
-%%DOCSDIR%%/index.html
-%%DOCSDIR%%/style.css
-%%DOCSDIR%%/appstream-glib-as-node.html
-%%DOCSDIR%%/appstream-glib-AsTranslation.html
-%%DOCSDIR%%/up-insensitive.png
-%%DOCSDIR%%/libappstream-glib.html
-%%DOCSDIR%%/appstream-glib-AsIcon.html
-%%DOCSDIR%%/home.png
-%%DOCSDIR%%/appstream-glib.devhelp2
-%%DOCSDIR%%/appstream-glib-AsProblem.html
-%%DOCSDIR%%/appstream-glib-AsApp.html
-%%DOCSDIR%%/appstream-glib-AsScreenshot.html
-%%DOCSDIR%%/left-insensitive.png
-%%DOCSDIR%%/appstream-glib-AsStore.html
-%%DOCSDIR%%/appstream-glib-AsContentRating.html
-%%DOCSDIR%%/appstream-glib-AsBundle.html
-%%DOCSDIR%%/left.png
-%%DOCSDIR%%/appstream-glib-AsRelease.html
-%%DOCSDIR%%/appstream-glib-as-utils.html
-%%DOCSDIR%%/appstream-glib-as-tag.html
-%%DOCSDIR%%/appstream-glib-AsLaunchable.html
-%%DOCSDIR%%/appstream-glib-AsChecksum.html
-%%DOCSDIR%%/right.png
-%%DOCSDIR%%/appstream-glib-AsProvide.html
-%%DOCSDIR%%/appstream-glib-AsImage.html
-%%DOCSDIR%%/appstream-glib-AsRequire.html
-share/installed-tests/appstream-glib/destdir-check.test
-share/installed-tests/appstream-glib/appdata-validate.test
-share/gir-1.0/AppStreamGlib-1.0.gir
-share/gir-1.0/AppStreamBuilder-1.0.gir
-share/locale/hu/LC_MESSAGES/appstream-glib.mo
-share/locale/es/LC_MESSAGES/appstream-glib.mo
-share/locale/pl/LC_MESSAGES/appstream-glib.mo
-share/locale/zh_TW/LC_MESSAGES/appstream-glib.mo
-share/locale/gl/LC_MESSAGES/appstream-glib.mo
-share/locale/zh_CN/LC_MESSAGES/appstream-glib.mo
-share/locale/fr/LC_MESSAGES/appstream-glib.mo
-share/locale/sr@latin/LC_MESSAGES/appstream-glib.mo
-share/locale/cs/LC_MESSAGES/appstream-glib.mo
-share/locale/lt/LC_MESSAGES/appstream-glib.mo
+bin/appstream-compose
+bin/appstream-util
+bin/appstream-builder
+share/gettext/its/appdata.its
+share/gettext/its/appdata.loc
+share/aclocal/appdata-xml.m4
+share/aclocal/appstream-xml.m4
 share/locale/ko/LC_MESSAGES/appstream-glib.mo
 share/locale/pt/LC_MESSAGES/appstream-glib.mo
-share/locale/fur/LC_MESSAGES/appstream-glib.mo
 share/locale/sv/LC_MESSAGES/appstream-glib.mo
 share/locale/fi/LC_MESSAGES/appstream-glib.mo
 share/locale/id/LC_MESSAGES/appstream-glib.mo
 share/locale/ru/LC_MESSAGES/appstream-glib.mo
+share/locale/sr@latin/LC_MESSAGES/appstream-glib.mo
 share/locale/uk/LC_MESSAGES/appstream-glib.mo
-share/locale/pt_BR/LC_MESSAGES/appstream-glib.mo
 share/locale/de/LC_MESSAGES/appstream-glib.mo
-share/locale/en_GB/LC_MESSAGES/appstream-glib.mo
+share/locale/pt_BR/LC_MESSAGES/appstream-glib.mo
 share/locale/sk/LC_MESSAGES/appstream-glib.mo
 share/locale/oc/LC_MESSAGES/appstream-glib.mo
 share/locale/tr/LC_MESSAGES/appstream-glib.mo
 share/locale/da/LC_MESSAGES/appstream-glib.mo
+share/locale/en_GB/LC_MESSAGES/appstream-glib.mo
 share/locale/it/LC_MESSAGES/appstream-glib.mo
 share/locale/ca/LC_MESSAGES/appstream-glib.mo
 share/locale/sr/LC_MESSAGES/appstream-glib.mo
 share/locale/sl/LC_MESSAGES/appstream-glib.mo
-share/aclocal/appdata-xml.m4
-share/aclocal/appstream-xml.m4
-share/gettext/its/appdata.its
-share/gettext/its/appdata.loc
-share/bash-completion/completions/appstream-util
+share/locale/hu/LC_MESSAGES/appstream-glib.mo
+share/locale/zh_TW/LC_MESSAGES/appstream-glib.mo
+share/locale/es/LC_MESSAGES/appstream-glib.mo
+share/locale/pl/LC_MESSAGES/appstream-glib.mo
+share/locale/gl/LC_MESSAGES/appstream-glib.mo
+share/locale/zh_CN/LC_MESSAGES/appstream-glib.mo
+share/locale/fur/LC_MESSAGES/appstream-glib.mo
+share/locale/fr/LC_MESSAGES/appstream-glib.mo
+share/locale/cs/LC_MESSAGES/appstream-glib.mo
+share/locale/lt/LC_MESSAGES/appstream-glib.mo
 share/bash-completion/completions/appstream-builder
-bin/appstream-builder
-bin/appstream-compose
-bin/appstream-util
-lib/asb-plugins-5/libasb_plugin_font.so
-lib/asb-plugins-5/libasb_plugin_desktop.so
-lib/asb-plugins-5/libasb_plugin_hardcoded.so
-lib/asb-plugins-5/libasb_plugin_appdata.so
-lib/asb-plugins-5/libasb_plugin_shell_extension.so
-lib/asb-plugins-5/libasb_plugin_gettext.so
-lib/asb-plugins-5/libasb_plugin_icon.so
-lib/libappstream-glib.so.8.0.10
-lib/libappstream-glib.so
-lib/girepository-1.0/AppStreamGlib-1.0.typelib
-lib/girepository-1.0/AppStreamBuilder-1.0.typelib
-lib/libappstream-builder.so.8.0.10
-lib/libappstream-builder.so
-lib/libappstream-builder.so.8
-lib/libappstream-glib.so.8
-include/libappstream-glib/as-review.h
-include/libappstream-glib/as-require.h
-include/libappstream-glib/as-launchable.h
-include/libappstream-glib/as-app-builder.h
-include/libappstream-glib/as-profile.h
-include/libappstream-glib/as-problem.h
-include/libappstream-glib/as-checksum.h
-include/libappstream-glib/as-agreement.h
-include/libappstream-glib/as-suggest.h
-include/libappstream-glib/as-markup.h
-include/libappstream-glib/as-icon.h
-include/libappstream-glib/as-version.h
-include/libappstream-glib/as-monitor.h
-include/libappstream-glib/as-inf.h
-include/libappstream-glib/as-agreement-section.h
-include/libappstream-glib/appstream-glib.h
-include/libappstream-glib/as-app.h
-include/libappstream-glib/as-image.h
-include/libappstream-glib/as-provide.h
-include/libappstream-glib/as-release.h
-include/libappstream-glib/as-node.h
-include/libappstream-glib/as-translation.h
-include/libappstream-glib/as-tag.h
-include/libappstream-glib/as-content-rating.h
-include/libappstream-glib/as-enums.h
-include/libappstream-glib/as-store.h
-include/libappstream-glib/as-screenshot.h
-include/libappstream-glib/as-utils.h
-include/libappstream-glib/as-format.h
-include/libappstream-glib/as-bundle.h
+share/bash-completion/completions/appstream-util
+%%DOCSDIR%%/appstream-glib-AsContentRating.html
+%%DOCSDIR%%/appstream-glib-as-markup.html
+%%DOCSDIR%%/appstream-glib-AsBundle.html
+%%DOCSDIR%%/style.css
+%%DOCSDIR%%/appstream-glib-AsLaunchable.html
+%%DOCSDIR%%/appstream-glib-AsStore.html
+%%DOCSDIR%%/right-insensitive.png
+%%DOCSDIR%%/left.png
+%%DOCSDIR%%/appstream-glib-AsIcon.html
+%%DOCSDIR%%/appstream-glib-AsScreenshot.html
+%%DOCSDIR%%/left-insensitive.png
+%%DOCSDIR%%/appstream-glib-AsImage.html
+%%DOCSDIR%%/appstream-glib-as-utils.html
+%%DOCSDIR%%/appstream-glib-AsProblem.html
+%%DOCSDIR%%/appstream-glib-as-node.html
+%%DOCSDIR%%/appstream-glib-AsFormat.html
+%%DOCSDIR%%/appstream-glib-AsRelease.html
+%%DOCSDIR%%/appstream-glib-AsChecksum.html
+%%DOCSDIR%%/libappstream-glib.html
+%%DOCSDIR%%/appstream-glib-as-enums.html
+%%DOCSDIR%%/appstream-glib.devhelp2
+%%DOCSDIR%%/appstream-glib-as-tag.html
+%%DOCSDIR%%/index.html
+%%DOCSDIR%%/up.png
+%%DOCSDIR%%/home.png
+%%DOCSDIR%%/appstream-glib-AsTranslation.html
+%%DOCSDIR%%/right.png
+%%DOCSDIR%%/appstream-glib-AsApp.html
+%%DOCSDIR%%/appstream-glib-AsRequire.html
+%%DOCSDIR%%/up-insensitive.png
+%%DOCSDIR%%/appstream-glib-AsProvide.html
+share/installed-tests/appstream-glib/appdata-validate.test
+share/installed-tests/appstream-glib/destdir-check.test
+share/gir-1.0/AppStreamGlib-1.0.gir
+share/gir-1.0/AppStreamBuilder-1.0.gir
 include/libappstream-builder/asb-app.h
 include/libappstream-builder/appstream-builder.h
+include/libappstream-glib/as-problem.h
+include/libappstream-glib/as-content-rating.h
+include/libappstream-glib/as-tag.h
+include/libappstream-glib/as-require.h
+include/libappstream-glib/as-review.h
+include/libappstream-glib/as-profile.h
+include/libappstream-glib/as-agreement-section.h
+include/libappstream-glib/as-app.h
+include/libappstream-glib/as-monitor.h
+include/libappstream-glib/as-app-builder.h
+include/libappstream-glib/as-node.h
+include/libappstream-glib/as-suggest.h
+include/libappstream-glib/as-version.h
+include/libappstream-glib/as-markup.h
+include/libappstream-glib/as-screenshot.h
+include/libappstream-glib/as-release.h
+include/libappstream-glib/as-image.h
+include/libappstream-glib/as-agreement.h
+include/libappstream-glib/as-provide.h
+include/libappstream-glib/as-launchable.h
+include/libappstream-glib/as-icon.h
+include/libappstream-glib/as-format.h
+include/libappstream-glib/as-utils.h
+include/libappstream-glib/appstream-glib.h
+include/libappstream-glib/as-bundle.h
+include/libappstream-glib/as-inf.h
+include/libappstream-glib/as-store.h
+include/libappstream-glib/as-checksum.h
+include/libappstream-glib/as-enums.h
+include/libappstream-glib/as-translation.h
+lib/libappstream-builder.so
+lib/girepository-1.0/AppStreamBuilder-1.0.typelib
+lib/girepository-1.0/AppStreamGlib-1.0.typelib
+lib/libappstream-glib.so
+lib/asb-plugins-5/libasb_plugin_font.so
+lib/asb-plugins-5/libasb_plugin_shell_extension.so
+lib/asb-plugins-5/libasb_plugin_appdata.so
+lib/asb-plugins-5/libasb_plugin_hardcoded.so
+lib/asb-plugins-5/libasb_plugin_desktop.so
+lib/asb-plugins-5/libasb_plugin_icon.so
+lib/asb-plugins-5/libasb_plugin_gettext.so
+lib/libappstream-glib.so.8.0.10
+lib/libappstream-glib.so.8
+lib/libappstream-builder.so.8.0.10
+lib/libappstream-builder.so.8
+libdata/pkgconfig/appstream-glib.pc
+libdata/pkgconfig/appstream-builder.pc
+man/man1/appstream-util.1.gz
+man/man1/appstream-compose.1.gz
+man/man1/appstream-builder.1.gz
+@dir share/gettext/its
+@dir share/gettext
+@dir share/locale/sr@latin/LC_MESSAGES
+@dir share/locale/sr@latin
+@dir share/locale/oc/LC_MESSAGES
+@dir share/locale/oc
+@dir share/locale/fur/LC_MESSAGES
+@dir share/locale/fur
+@dir share/bash-completion/completions
+@dir share/bash-completion
 @dir %%DOCSDIR%%
 @dir share/gtk-doc/html
 @dir share/gtk-doc
 @dir share/installed-tests/appstream-glib
 @dir share/installed-tests
 @dir share/gir-1.0
-@dir share/locale/sr@latin/LC_MESSAGES
-@dir share/locale/sr@latin
-@dir share/locale/fur/LC_MESSAGES
-@dir share/locale/fur
-@dir share/locale/oc/LC_MESSAGES
-@dir share/locale/oc
-@dir share/gettext/its
-@dir share/gettext
-@dir share/bash-completion/completions
-@dir share/bash-completion
-@dir lib/asb-plugins-5
-@dir lib/girepository-1.0
-@dir include/libappstream-glib
 @dir include/libappstream-builder
+@dir include/libappstream-glib
+@dir lib/girepository-1.0
+@dir lib/asb-plugins-5
