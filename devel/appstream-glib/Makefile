@@ -1,5 +1,5 @@
 PORTNAME=	appstream-glib
-PORTVERSION=	0.7.9
+PORTVERSION=	0.7.10
 CATEGORIES=	devel
 MASTER_SITES=	http://people.freedesktop.org/~hughsient/appstream-glib/releases/
 DIST_SUBDIR=	gnome
