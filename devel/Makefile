@@ -161,6 +161,7 @@ SUBDIR += libbonobo
 SUBDIR += libburn
 SUBDIR += libcbor
 SUBDIR += libccid
+SUBDIR += libcjson
 SUBDIR += libclc
 SUBDIR += libconfig
 SUBDIR += libconfuse
