@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # handle dependency on the readline port
 #
 # Feature:	readline
