@@ -1,60 +1,46 @@
-# $MidnightBSD$
+# Created by: Cyrille Lefevre <clefevre@citeweb.net>
 
 PORTNAME=	sed
-PORTVERSION=	4.2.2
+PORTVERSION=	4.8
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 PKGNAMEPREFIX=	g
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GNU stream editor
+COMMENT=	GNU stream editor
 
 LICENSE=	gpl3
 
-# Global variables
+USES=		charsetfix makeinfo tar:xz
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_ARGS+=--disable-nls
-USE_GMAKE=	yes
-INFO=		sed
+CONFIGURE_ARGS=	--program-prefix=g
+CONFIGURE_ENV+=	MAKEINFO="${MAKEINFO} --no-split"
+TEST_TARGET=	check
 
-# Local variables
-PATCH_SUBDIRS=	. doc lib sed
 DATADIR=	${PREFIX}/share/${PKGBASE}
-SAMP_FILES=	binary*.sed dc.sed
-EXAMPLESDIR=	${PREFIX}/share/examples/${PKGBASE}
-PORTDOCS=	AUTHORS BUGS COPYING COPYING.DOC NEWS README THANKS
 DOCSDIR=	${PREFIX}/share/doc/${PKGBASE}
+EXAMPLESDIR=	${PREFIX}/share/examples/${PKGBASE}
+INFO=		sed
+PORTDOCS=	AUTHORS BUGS ChangeLog ChangeLog-2014 NEWS README THANKS
+PORTEXAMPLES=	binary*.sed dc.sed
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	NLS DOCS EXAMPLES
+OPTIONS_SUB=	yes
+
+NLS_USES=	gettext iconv
+NLS_CONFIGURE_ENABLE=	nls
 
 post-patch:
 	@${REINPLACE_CMD} 's,^\* sed:,* GNU sed:,' \
 		${WRKSRC}/doc/config.texi
-	@${REINPLACE_CMD} "s|#include <alloca.h>||" ${WRKSRC}/lib/regex_internal.h
 
-post-configure:
-.for subdir in ${PATCH_SUBDIRS}
-	@${REINPLACE_CMD} -e 's|s,x,x,|s,^,g,|' \
-			  -e 's|^doc_DATA|#doc_DATA|' \
-		${WRKSRC}/${subdir}/Makefile
-.endfor
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
 
-post-install:
-	@${MKDIR} ${EXAMPLESDIR}
-.for f in ${SAMP_FILES}
-	@${INSTALL_DATA} ${WRKSRC}/testsuite/${f} ${EXAMPLESDIR}
-.endfor
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for f in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
-.endfor
-.endif
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${PORTEXAMPLES:S,^,${WRKSRC}/testsuite/,} \
+		${FAKE_DESTDIR}${EXAMPLESDIR}
 
-# Maintainer only
-test:
-	@cd ${WRKSRC}/testsuite; ${MAKE} check
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
