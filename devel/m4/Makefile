@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	m4
 PORTVERSION=	1.4.18
 PORTEPOCH=	1
@@ -16,33 +14,23 @@ USES=		makeinfo tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man \
 		--program-prefix=g
-
-OPTIONS=	LIBSIGSEGV "Use libsigsegv for better diagnostics" Off \
-		CHANGEWORD "Use change word" Off
-
-.include <bsd.mport.options.mk>
-
-.if defined(WITH_CHANGEWORD)
-CONFIGURE_ARGS+=	--enable-changeword
-.endif
-
-INFO=	m4
+CONFIGURE_ENV=	MAKEINFO="${MAKEINFO} --no-split"
 
 EXAMPLESDIR=	share/examples/gm4
+INFO=	m4
 
-.if defined(WITH_LIBSIGSEGV)
-LIB_DEPENDS+=	sigsegv:${PORTSDIR}/devel/libsigsegv
-CONFIGURE_ARGS+=	--with-libsigsegv-prefix=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=	--without-libsigsegv-prefix
-.endif
+OPTIONS_DEFINE=	LIBSIGSEGV EXAMPLES
+LIBSIGSEGV_DESC=Use alternative page fault handler (GNU libsigsegv)
 
-.include <bsd.port.pre.mk>
+LIBSIGSEGV_CONFIGURE_WITH=	libsigsegv-prefix=${LOCALBASE}
+LIBSIGSEGV_LIB_DEPENDS=		libsigsegv.so:devel/libsigsegv
 
-CONFIGURE_ENV+= MAKEINFO="makeinfo --no-split"
+post-patch:
+	@${REINPLACE_CMD} -e '/^* M4: / s|M4|G&|' ${WRKSRC}/doc/m4.texi
+	@${REINPLACE_CMD} -e '/^install-exec-am: / s| .*||' ${WRKSRC}/lib/Makefile.in
 
-post-install:
-	@${MKDIR} ${PREFIX}/${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/*.m4 ${PREFIX}/${EXAMPLESDIR}
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/*.m4 ${FAKE_DESTDIR}${PREFIX}/${EXAMPLESDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
