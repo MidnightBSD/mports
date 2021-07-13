@@ -1,45 +1,44 @@
-# $MidnightBSD$
+# Created by: Andrey Zakhvatov
 
 PORTNAME=	aalib
-PORTVERSION=	1.4.r5
-PORTREVISION=	6
+DISTVERSION=	1.4rc5
+PORTREVISION=	13
 CATEGORIES=	graphics
 MASTER_SITES=	SF/aa-project/aa-lib/1.4rc5
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/rc/}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An ascii art library
-LICENSE=	lgpl
+COMMENT=	ASCII art library
 
-LICENSE=	gpl2
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	X11
-
-USES=		libtool ncurses makeinfo
+USES=		libtool localbase makeinfo
 WRKSRC=		${WRKDIR}/${PORTNAME}-1.4.0
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INFO=		aalib
 
-.include <bsd.mport.options.mk>
+OPTIONS_MULTI=		DRIVERS
+OPTIONS_MULTI_DRIVERS=	X11 NCURSES SLANG
+OPTIONS_DEFAULT=	NCURSES
 
-.if ${PORT_OPTIONS:MX11}
-USE_XORG=	x11
-CONFIGURE_ARGS=	--x-includes="${LOCALBASE}/include" \
-		--x-libraries="${LOCALBASE}/lib"
-.else
-CONFIGURE_ARGS=	--with-x=no
-.endif
+DRIVERS_DESC=		Drives selection
+
+X11_USES=		xorg
+X11_USE=		XORG=x11
+X11_CONFIGURE_WITH=	x11-driver=yes
+NCURSES_USES=		ncurses
+NCURSES_CONFIGURE_WITH=	curses-driver=yes
+SLANG_LIB_DEPENDS=	libslang.so:devel/libslang2
+SLANG_CONFIGURE_WITH=	slang-driver=yes
 
 post-extract:
-	@${RM} -f ${WRKSRC}/doc/aalib.info*
+	@${RM} ${WRKSRC}/doc/aalib.info*
 
 post-patch:
-	@${RM} -f ${WRKSRC}/config.cache
+	-${RM} ${WRKSRC}/config.cache
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g; \
-		s|MAKEINFO=makeinfo|MAKEINFO="makeinfo --no-split"|g ; \
-		s|$${CONFIG_SHELL-/bin/sh} $$ac_aux_dir|$$ac_aux_dir|' \
+		s|MAKEINFO=makeinfo|MAKEINFO="${MAKEINFO} --no-split"|g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} \
 		-e 's|AC_DEFUN(AM_PATH_AALIB|AC_DEFUN([AM_PATH_AALIB]|g' \
@@ -48,6 +47,6 @@ post-patch:
 		| ${XARGS} ${REINPLACE_CMD} -e 's|<malloc.h>|<stdlib.h>|g'
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaa.so
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaa.so
 
 .include <bsd.port.mk>
