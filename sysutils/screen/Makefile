@@ -1,5 +1,6 @@
 PORTNAME=	screen
 PORTVERSION=	4.8.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.gnu.org/gnu/screen/ \
 		ftp://ftp.gnu.org/gnu/screen/ \
@@ -45,11 +46,9 @@ PLIST_SUB+=	MAN=""
 PLIST_SUB+=	MAN="@comment"
 .endif
 .if ${PORT_OPTIONS:MINFO}
-.if !exists(/usr/bin/install-info)
-RUN_DEPENDS+=	install-info:${PORTSDIR}/print/texinfo
-.endif
 INFO=		screen
 MAKE_ARGS+=	WITH_INFO=1
+USES+=		makeinfo
 .endif
 
 # Enables support for 256 colour xterm.  Note that you may need to
