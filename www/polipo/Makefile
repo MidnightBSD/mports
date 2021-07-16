@@ -8,6 +8,7 @@ COMMENT=	Small and fast caching web proxy
 
 LICENSE=	mit
 
+USES=		makeinfo
 USE_RC_SUBR=	polipo.sh
 
 .include <bsd.port.pre.mk>
