@@ -978,6 +978,7 @@ SUBDIR += py-zipp
 SUBDIR += py-zope.component
 SUBDIR += py-zope.event
 SUBDIR += py-zope.interface
+SUBDIR += py3c
 SUBDIR += pydbus-common
 SUBDIR += pygobject3-common
 SUBDIR += pylint
