@@ -1,6 +1,8 @@
+# Created by: Muhammad Moinur Rahman <5u623l20@gmail.com>
+
 PORTNAME=	guile
-PORTVERSION=	2.0.14
-PORTREVISION=	5
+PORTVERSION=	2.2.7
+PORTREVISION=	1
 CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	2
@@ -8,22 +10,22 @@ PKGNAMESUFFIX=	2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
 
-LICENSE=	lgpl2.1
-
-BROKEN_mips64=		fails to build: qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+LICENSE=	gpl3 lgpl3
+LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libltdl.so:devel/libltdl \
 		libunistring.so:devel/libunistring \
 		libffi.so:devel/libffi
 
+USES=		charsetfix compiler:c11 gmake iconv libtool makeinfo ncurses pathfix \
+		pkgconfig readline tar:lz
+USE_LDCONFIG=	yes
+
 CONFLICTS_INSTALL=	guile-[0-9]*
 
 MAKE_JOBS_UNSAFE=	yes
 
-USES=		charsetfix gmake iconv libtool makeinfo ncurses pathfix pkgconfig \
-		readline
-USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
@@ -53,6 +55,8 @@ post-patch:
 	  ${REINPLACE_CMD} -e 's|<malloc\.h>|<stdlib.h>|g' ${REINPLACE_FILES}
 	@${REINPLACE_CMD} -e 's|sys/time.h sys/timeb.h|sys/time.h |g' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|-i -e|-i.bak -e|' \
+		${WRKSRC}/libguile/Makefile.in
 
 post-patch-THREADS-on:
 	@${REINPLACE_CMD} -e 's|bdw-gc|bdw-gc-threaded|g' ${WRKSRC}/configure
