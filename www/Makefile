@@ -49,6 +49,7 @@ SUBDIR += minio-client
 SUBDIR += mod_auth_openid
 SUBDIR += mod_dav_svn
 SUBDIR += mod_dnssd
+SUBDIR += mod_evasive
 SUBDIR += mod_fastcgi
 SUBDIR += mod_perl2
 SUBDIR += mod_php73
