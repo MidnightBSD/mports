@@ -9,6 +9,7 @@ use lib qw(/home/mbsd/magus/mports/Tools/lib);
 
 use Magus;
 use CGI::Fast;
+use Scalar::Util 'looks_like_number';
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -108,6 +109,11 @@ sub main {
   }
 }
 
+sub is_number {
+  my $num = shift;
+  return looks_like_number($num) && $num !~ /inf|nan/i;
+}
+
 sub api_runs {
   my ($p) = @_;
 
@@ -138,6 +144,15 @@ sub api_run_port_stats {
   
   my $run    = $p->param('run');
   my $status = $p->param('status');
+
+  if (!is_number($run)) {
+        print $p->header(
+            -type => 'application/json',
+            -status => '400 Bad Request'
+        );
+        print "{}";
+        exit;
+  }
     
   my %details = (run => $run, status => $status);
   my @ports;
@@ -258,7 +273,7 @@ sub compare_runs {
   my $run_id1 = $p->param('run1');
   my $run_id2 = $p->param('run2');
 
-    if (!defined($run_id1) || !defined($run_id2)) {
+    if (!is_number($run_id1) || !is_number($run_id2)) {
 
             print $p->header(
                 -type=>'text/plain',
@@ -376,6 +391,16 @@ sub blockers {
 
 	my %objs;
 	my %blocking;
+
+    if (!is_number($run)) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        exit;
+    }
+
 	my $ports = Magus::Port->search(run => $run, status => 'untested');
 
     my $tmpl = template($p, "blockers.tmpl");
@@ -406,6 +431,15 @@ print $tmpl->output;
 
 sub run_page {
     my ($p, $run) = @_;
+
+    if (!is_number($run)) {
+	print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        exit;
+    }
 
     eval {
         $run = Magus::Run->retrieve($run) || die("No such run");
@@ -443,6 +477,15 @@ sub port_page {
   my ($p, $port) = @_;
   
   my $tmpl = template($p, "port.tmpl");
+
+    if (!is_number($port)) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        exit;
+    }
 
   eval { 
       $port = Magus::Port->retrieve($port) || die "No such port: $port";
@@ -528,6 +571,15 @@ sub port_page {
 
 sub machine_page {
   my ($p, $machine) = @_;
+
+    if (!is_number($machine)) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        exit;
+    }
 
     eval {
         $machine = Magus::Machine->retrieve($machine) || die "No such machine: $machine\n";
@@ -635,6 +687,15 @@ sub async_machine_events {
   
   my $run     = $p->param('run');
   my $machine = $p->param('machine');
+
+    if (!is_number($run) || !is_number($machine)) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        exit;
+    }
   
   my @events = map { {
     type       => $_->type,
@@ -665,6 +726,15 @@ sub async_run_port_stats {
   
   my $run    = $p->param('run');
   my $status = $p->param('status');
+
+    if (!is_number($run)) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        exit;
+    }
   
   my %details = (run => $run, status => $status);
   my @ports;
