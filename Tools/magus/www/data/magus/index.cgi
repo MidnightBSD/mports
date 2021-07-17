@@ -28,12 +28,14 @@ while (my $p = CGI::Fast->new) {
 	if ($@) {
 	  print "Content-Type: text/html\n\n";
       print <<END_OF_ERROR;
+              <!DOCTYPE html>
 	      <html>
 	      <head><title>Error</title></head>
 	      <body>
 	      <h1>Error</h1>
 	      <p>The following error occured:</p>
 	      <pre>$@</pre>
+              </body></html>
 END_OF_ERROR
 	}
 }
