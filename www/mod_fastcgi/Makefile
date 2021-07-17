@@ -1,20 +1,18 @@
-# $MidnightBSD$
-
 PORTNAME=	mod_fastcgi
-PORTVERSION=	2.4.7
-PORTREVISION=	2
+PORTVERSION=	2.4.7.1
 CATEGORIES=	www
-MASTER_SITES=	http://www.fastcgi.com/dist/ \
-		FREEBSD_LOCAL/ohauer
-DISTNAME=	mod_fastcgi-SNAP-0910052141
 DIST_SUBDIR=	apache2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Apache 2.2 fast-cgi module
+COMMENT=	Apache 2.4 fast-cgi module
 
 LICENSE=	other
 
-USE_APACHE=	22+
+USES=		apache:2.4+
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	FastCGI-Archives
+
 AP_FAST_BUILD=	yes
 AP_GENPLIST=	yes
 SRC_FILE=	*.c
@@ -22,8 +20,10 @@ PORTDOCS=	mod_fastcgi.html
 
 FAKE_OPTS=	prefixhack
 
-post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/docs/|} ${STAGEDIR}${DOCSDIR}
+OPTIONS_DEFINE=	DOCS
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/docs/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

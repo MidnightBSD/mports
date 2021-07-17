@@ -12,7 +12,7 @@ COMMENT=	Apache module to try to protect the HTTP Server from DoS/DDoS attacks
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		apache:2.2+
+USES=		apache:2.4+
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jzdziarski
