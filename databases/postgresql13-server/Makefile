@@ -1,8 +1,7 @@
 # Created by: Marc G. Fournier <scrappy@FreeBSD.org>
-# $FreeBSD$
 
 PORTNAME?=	postgresql
-DISTVERSION?=	13.1
+DISTVERSION?=	13.3
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
 PORTREVISION?=	0
@@ -100,7 +99,7 @@ DTRACE_INSTALL_TARGET=	install
 .if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
 OPTIONS_DEFINE+=	LLVM
 #OPTIONS_DEFAULT+=	LLVM
-BROKEN=		llvm support is currently broken
+#BROKEN=		llvm support is currently broken
 LLVM_DESC=		Build with support for JIT-compiling expressions
 .endif
 
