@@ -5,7 +5,7 @@
  
  			if (runningOnUnix) {
 -				if (Platform.IsMacOS || Platform.IsFreeBSD)
-+				if (Platform.IsMacOS || Platform.IsFreeBSD || Platform.isMidnightBSD)
++				if (Platform.IsMacOS || Platform.IsFreeBSD || Platform.IsMidnightBSD)
  					return new MacOsNetworkInterfaceAPI ();
  					
  				return new LinuxNetworkInterfaceAPI ();
