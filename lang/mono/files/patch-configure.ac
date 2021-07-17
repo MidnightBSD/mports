@@ -1,6 +1,6 @@
---- configure.ac.orig	2018-08-24 11:19:14.000000000 -0400
-+++ configure.ac	2020-11-19 13:51:40.851362000 -0500
-@@ -180,7 +180,7 @@
+--- configure.ac.orig	2018-08-24 15:19:14 UTC
++++ configure.ac
+@@ -180,7 +180,7 @@ case "$host" in
  		use_sigposix=yes
  		with_sgen_default_concurrent=yes
  		;;
@@ -9,7 +9,7 @@
  		if test "x$PTHREAD_CFLAGS" = "x"; then
  			CPPFLAGS="$CPPFLAGS -DGC_FREEBSD_THREADS"
  			libmono_cflags=
-@@ -1737,7 +1737,7 @@
+@@ -1737,7 +1737,7 @@ if test x$host_win32 = xno; then
  	AC_CHECK_LIB(socket, socket, LIBS="$LIBS -lsocket")
  
  	case "$host" in
@@ -18,7 +18,7 @@
  			dnl *****************************
  			dnl *** Checks for libinotify ***
  			dnl *****************************
-@@ -2122,7 +2122,7 @@
+@@ -2122,7 +2122,7 @@ if test x$host_win32 = xno; then
  			dnl Haiku has pthread in libroot (libc equiv)
  			AC_CHECK_LIB(pthread, main, LIBS="$LIBS")
  		;;
@@ -27,7 +27,7 @@
  			AC_CHECK_LIB(pthread, main, LIBS="$LIBS -pthread")
  		;;
  		*-*-*openbsd*)
-@@ -2702,7 +2702,7 @@
+@@ -2702,7 +2702,7 @@ if test x$host_win32 = xno; then
  	dnl *********************************
  	if test x$host_darwin = xno; then
  		AC_CHECK_HEADERS(sys/random.h)
@@ -36,7 +36,7 @@
  	fi
  else
  	dnl *********************************
-@@ -3297,7 +3297,9 @@
+@@ -3297,7 +3297,9 @@ case "$host" in
  			BTLS_SUPPORTED=yes
  			BTLS_PLATFORM=i386
  			;;
@@ -47,7 +47,7 @@
  		        ;;
  		esac
  		;;
-@@ -3321,7 +3323,9 @@
+@@ -3321,7 +3323,9 @@ case "$host" in
  			BTLS_PLATFORM=x86_64
  			boehm_supported=false
  			;;
@@ -58,7 +58,7 @@
  			;;
  		  mingw*)
  			;;
-@@ -3805,7 +3809,7 @@
+@@ -3805,7 +3809,7 @@ case "$host" in
  	INTL="libc.so.0.1"
  	X11="libX11.so.6"
  	;;
