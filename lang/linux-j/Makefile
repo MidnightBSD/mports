@@ -1,14 +1,15 @@
-# $MidnightBSD$
+# Created by: js@jeannot.org
 
 PORTNAME=	j
 PORTVERSION=	504b
+PORTREVISION=	4
 CATEGORIES=	lang linux java
 MASTER_SITES=	http://www.jsoftware.com/download/
 PKGNAMEPREFIX=	linux-
 DISTNAME=	j${PORTVERSION}_linux32
 DIST_SUBDIR=	${PKGNAMEPREFIX}${PORTNAME}/${PORTVERSION}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	General purpose programming language
 
 LICENSE=	JSoftware
@@ -18,7 +19,6 @@ LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror
 
 USES=		linux
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 
 ONLY_FOR_ARCHS=	i386 amd64
 
