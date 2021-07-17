@@ -1,11 +1,11 @@
 PORTNAME=	mono
 PORTVERSION=	5.10.1.57
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	https://download.mono-project.com/sources/mono/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
-MAINTAINER=	mono@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source implementation of .NET Development Framework
 
 LICENSE=	mit
