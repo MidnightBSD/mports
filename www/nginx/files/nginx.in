@@ -1,5 +1,4 @@
 #!/bin/sh
-# $FreeBSD: head/www/nginx/files/nginx.in 532746 2020-04-24 08:45:46Z joneum $
 
 # PROVIDE: nginx
 # REQUIRE: LOGIN cleanvar

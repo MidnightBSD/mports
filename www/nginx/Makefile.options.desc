@@ -1,5 +1,3 @@
-# $FreeBSD: head/www/nginx/Makefile.options.desc 523807 2020-01-22 13:26:55Z joneum $
-
 AJP_DESC=			3rd party ajp module
 ARRAYVAR_DESC=			3rd party array_var module
 AWS_AUTH_DESC=			3rd party aws auth module
