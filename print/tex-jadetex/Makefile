@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/tex-jadetex/Makefile 392534 2015-07-19 20:33:34Z hrs $
-
 PORTNAME=	jadetex
 PORTVERSION=	3.13
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/
 PKGNAMEPREFIX=	tex-

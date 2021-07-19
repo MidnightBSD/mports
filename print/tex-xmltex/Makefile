@@ -1,8 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/tex-xmltex/Makefile 392534 2015-07-19 20:33:34Z hrs $
-
 PORTNAME=	xmltex
 PORTVERSION=	1.9
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/
 PKGNAMEPREFIX=	tex-

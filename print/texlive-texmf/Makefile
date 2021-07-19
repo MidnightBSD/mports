@@ -1,18 +1,16 @@
-# $FreeBSD: head/print/texlive-texmf/Makefile 439220 2017-04-23 11:03:22Z miwi $
-
 PORTNAME=	texlive
 PORTVERSION=	20150523
 PORTREVISION=	4
 CATEGORIES=	print
 MASTER_SITES=	ftp://ftp.tug.org/historic/systems/texlive/2015/:texmf \
-		LOCAL/hrs:latex
+		FREEBSD_LOCAL/hrs:latex
 PKGNAMESUFFIX=	-texmf
 DISTFILES=	${PORTNAME}-${PORTVERSION}${PKGNAMESUFFIX}${EXTRACT_SUFX}:texmf \
 		latex-base-20150101.2${EXTRACT_SUFX}:latex
 DIST_SUBDIR=	TeX
 EXTRACT_ONLY=	latex-base-20150101.2${EXTRACT_SUFX}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeX Live Typesetting System, texmf Tree
 
 CONFLICTS_INSTALL=	texlive-base-201[234]* \

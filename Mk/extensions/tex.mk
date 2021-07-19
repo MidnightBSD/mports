@@ -1,4 +1,3 @@
-# $MidnightBSD$
 # $FreeBSD: head/Mk/bsd.tex.mk 373858 2014-12-04 02:30:05Z hrs $
 #
 # tex.mk - Common part for TeX related ports
@@ -224,18 +223,18 @@ ${_C}_DEPENDS+=	${TEX_${_C}_DEPENDS:O:u}
 .PHONY:	do-texhash
 do-texhash:
 . if !empty(USE_TEX:Mtexhash-bootstrap)
-	@${ECHO_CMD} "@exec ${LOCALBASE}/bin/mktexlsr " \
+	@${ECHO_CMD} "@postexec ${LOCALBASE}/bin/mktexlsr " \
 		"${TEXHASHDIRS:S,^,%D/,}" >> ${TMPPLIST}
 	@for D in ${TEXHASHDIRS}; do \
 		${ECHO_CMD} "@rmtry $$D/ls-R"; \
 		${ECHO_CMD} "@dir $$D"; \
 	done >> ${TMPPLIST}
 . else
-	@${ECHO_CMD} "@exec for D in ${TEXHASHDIRS:S,^,${PREFIX}/,}; do " \
+	@${ECHO_CMD} "@postexec for D in ${TEXHASHDIRS:S,^,${PREFIX}/,}; do " \
 		"if [ -r \$$D/ls-R ]; then " \
 			"${LOCALBASE}/bin/mktexlsr \$$D; " \
 		"fi; done" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec for D in ${TEXHASHDIRS:S,^,${PREFIX}/,}; do " \
+	@${ECHO_CMD} "@preunexec for D in ${TEXHASHDIRS:S,^,${PREFIX}/,}; do " \
 		"if [ -r \$$D/ls-R ]; then " \
 			"${LOCALBASE}/bin/mktexlsr \$$D; " \
 		"fi; done" >> ${TMPPLIST}
@@ -286,10 +285,10 @@ PLIST_DIRS=	${_PLIST_DIRS:O:u} ${TEXMFVARDIR}/web2c
 .if !empty(USE_TEX:Mupdmap)
 .PHONY:	do-updmap
 do-updmap:
-	@${ECHO_CMD} "@exec ${SETENV} PATH=${PATH}:${LOCALBASE}/bin " \
+	@${ECHO_CMD} "@postexec ${SETENV} PATH=${PATH}:${LOCALBASE}/bin " \
 		"TEXMFMAIN=${LOCALBASE}/${TEXMFDIR} " \
 		"${LOCALBASE}/bin/updmap-sys"  >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${SETENV} PATH=${PATH}:${LOCALBASE}/bin " \
+	@${ECHO_CMD} "@preunexec ${SETENV} PATH=${PATH}:${LOCALBASE}/bin " \
 		"TEXMFMAIN=${LOCALBASE}/${TEXMFDIR} " \
 		"${LOCALBASE}/bin/updmap-sys"  >> ${TMPPLIST}
 

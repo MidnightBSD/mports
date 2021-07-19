@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/docbook-utils/Makefile,v 1.6 2008/04/23 19:35:43 pav Exp $
-
 PORTNAME=	docbook-utils
 PORTVERSION=	0.6.14
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc
 MASTER_SITES=	SOURCEWARE/docbook-tools/new-trials/SOURCES
 
@@ -12,13 +9,13 @@ COMMENT=	Generates various output formats from DocBook SGML documents
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS+=	docbook-sgml>0:${PORTSDIR}/textproc/docbook-sgml \
-		dsssl-docbook-modular>0:${PORTSDIR}/textproc/dsssl-docbook-modular \
-		nsgmls:${PORTSDIR}/textproc/jade
-RUN_DEPENDS+=	dsssl-docbook-modular>0:${PORTSDIR}/textproc/dsssl-docbook-modular \
-		nsgmls:${PORTSDIR}/textproc/jade \
-		sgmlspl:${PORTSDIR}/textproc/p5-SGMLSpm \
-		lynx:${PORTSDIR}/www/lynx
+BUILD_DEPENDS+=	docbook-sgml>0:textproc/docbook-sgml \
+		dsssl-docbook-modular>0:textproc/dsssl-docbook-modular \
+		nsgmls:textproc/jade
+RUN_DEPENDS+=	dsssl-docbook-modular>0:textproc/dsssl-docbook-modular \
+		nsgmls:textproc/jade \
+		sgmlspl:textproc/p5-SGMLSpm \
+		lynx:www/lynx
 
 CONFLICTS=	docbook2X-*
 
@@ -31,6 +28,7 @@ SHEBANG_FILES=	bin/sgmldiff.in
 perl_OLD_CMD=	@perl_bindir@/perl
 
 PORTDOCS=	*
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/sgml/catalog|${PREFIX}/share/sgml/catalog|g' \

@@ -9,7 +9,8 @@ PKGNAMEPREFIX=	g
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU stream editor
 
-LICENSE=	gpl3
+LICENSE=	gpl3 gfdl
+LICENSE_COMB=	multi
 
 USES=		charsetfix makeinfo tar:xz
 GNU_CONFIGURE=	yes
@@ -29,6 +30,8 @@ OPTIONS_SUB=	yes
 
 NLS_USES=	gettext iconv
 NLS_CONFIGURE_ENABLE=	nls
+
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} 's,^\* sed:,* GNU sed:,' \
