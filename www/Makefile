@@ -28,7 +28,6 @@ SUBDIR += joomla3
 SUBDIR += libdom
 SUBDIR += libhubbub
 SUBDIR += libnghttp2
-SUBDIR += libsocialweb
 SUBDIR += libwpe
 SUBDIR += libwww
 SUBDIR += lighttpd
