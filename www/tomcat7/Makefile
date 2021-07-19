@@ -1,5 +1,5 @@
 PORTNAME=	tomcat
-PORTVERSION=	7.0.100
+PORTVERSION=	7.0.108
 CATEGORIES=	www java
 MASTER_SITES=	APACHE/tomcat/tomcat-7/v${PORTVERSION}/bin
 PKGNAMESUFFIX=	7
@@ -65,12 +65,12 @@ do-install:
 post-install:
 	@${RM} ${TOMCAT_HOME}/bin/*.bat
 	(cd ${TOMCAT_HOME}/conf &&\
-		for f in $$(find . -type f); do ${MV} $$f $$f.sample; done)
+		for f in $$(find . -type f -not -name '*.xsd'); do ${MV} $$f $$f.sample; done)
 
 post-install-HOST_MANAGER-on:
 	${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps
 	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
-		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/web.xml; do \
+		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/manager.xml host-manager/WEB-INF/web.xml; do \
 			${MV} $$f $$f.sample; done)
 
 post-install-HOST_MANAGER-off:

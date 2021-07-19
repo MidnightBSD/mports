@@ -1,11 +1,11 @@
 PORTNAME=	youtube_dl
-PORTVERSION=	2021.02.04
+PORTVERSION=	2021.06.06
 CATEGORIES=	www
 MASTER_SITES=	https://yt-dl.org/downloads/${PORTVERSION}/
 DISTNAME=	youtube-dl-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Program for downloading videos from YouTube.com
+COMMENT=	Program for downloading videos from various services
 
 LICENSE=	unlicense
 

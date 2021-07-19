@@ -1,5 +1,5 @@
 PORTNAME?=	lighttpd
-PORTVERSION=	1.4.55
+PORTVERSION=	1.4.59
 CATEGORIES?=	www
 MASTER_SITES?=	https://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -13,13 +13,14 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS+=	libpcre.so:devel/pcre
 
-GNU_CONFIGURE=	yes
-USES=		autoreconf gmake libtool localbase pkgconfig tar:xz
+USES=		autoreconf compiler:c11 gmake libtool localbase pkgconfig tar:xz
 USE_CSTD=	gnu99
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
 USES+=	cpe
 .endif
+
+GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd
 INSTALL_TARGET=	install-strip
@@ -32,32 +33,38 @@ PORTDOCS=	AUTHORS COPYING INSTALL NEWS README
 USE_RC_SUBR=	lighttpd
 REQUIRE=	LOGIN
 
-OPTIONS_DEFINE=	ATTR BZIP2 DOCS FAM GDBM IPV6 KRB5 LIBEV LUA MEMCACHED \
-		MYSQL LDAP OPENSSL SPAWNFCGI VALGRIND WEBDAV
+OPTIONS_DEFINE=	ATTR DBI DOCS GDBM IPV6 KRB5 LIBEV LUA MAXMINDDB MEMCACHED \
+		MYSQL NETTLE LDAP SPAWNFCGI VALGRIND WEBDAV ZSTD
+OPTIONS_GROUP=	SSL
+OPTIONS_GROUP_SSL=	OPENSSL GNUTLS MBEDTLS NSS WOLFSSL
 
-OPTIONS_DEFAULT=	LUA OPENSSL
+OPTIONS_DEFAULT=	NETTLE LUA OPENSSL
 OPTIONS_SUB=	yes
 
 ATTR_DESC=	extended attributes support
-BZIP2_DESC=	bzip2 support (mod_compress)
+DBI_DESC=	DBI authentication (mod_authn_dbi)
 GDBM_DESC=	gdbm storage (mod_trigger_b4_dl)
 KRB5_DESC=	Kerberos authentication (mod_authn_gssapi)
 LDAP_DESC=	LDAP authentication (mod_authn_ldap)
 LIBEV_DESC=	Fast events support via libev (disables kqueue)
 LUA_DESC=	lua support (mod_cml, mod_magnet)
+MAXMINDDB_DESC=	IP-based geolocation lookup (mod_maxminddb)
 MEMCACHED_DESC=	memcached storage (mod_trigger_b4_dl)
 MYSQL_DESC=	MySQL support (mod_authn_mysql, mod_mysql_vhost)
+NETTLE_DESC=	Crypto support from Nettle
 SPAWNFCGI_DESC=	Depend on spawn-fcgi utility
 VALGRIND_DESC=	valgrind support
 WEBDAV_DESC=	WebDAV support
+ZSTD_DESC=	mod_deflate support for zstd (Zstandard)
 
 ATTR_CONFIGURE_WITH=	attr
-BZIP2_CONFIGURE_WITH=	bzip2
-FAM_USES=		fam
-FAM_CONFIGURE_ON=	--with-fam
-FAM_CONFIGURE_ENV=	FAM_CFLAGS="-I${LOCALBASE}/include" FAM_LIBS="-L${LOCALBASE}/lib"
+DBI_CONFIGURE_WITH=	dbi=${LOCALBASE}
+DBI_LIB_DEPENDS=	libdbi.so:databases/libdbi
 GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
 GDBM_CONFIGURE_WITH=	gdbm
+GNUTLS_CONFIGURE_WITH=	gnutls=${LOCALBASE}
+GNUTLS_LIBS=		-lgnutls
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 KRB5_CONFIGURE_WITH=	krb5
 KRB5_CPPFLAGS=		${GSSAPICPPFLAGS}
@@ -72,11 +79,20 @@ LIBEV_LIB_DEPENDS=	libev.so:devel/libev
 LUA_USES=		lua
 LUA_CONFIGURE_WITH=	lua
 LUA_CONFIGURE_ENV=	LUA_CFLAGS="-I${LUA_INCDIR}" LUA_LIBS="-L${LUA_LIBDIR} -llua-${LUA_VER}"
+MAXMINDDB_CONFIGURE_WITH=	maxminddb=${LOCALBASE}
+MAXMINDDB_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
+MBEDTLS_CONFIGURE_WITH=	mbedtls=${LOCALBASE}
+MBEDTLS_LIB_DEPENDS=	libmbedtls.so:security/mbedtls
 MEMCACHED_LIB_DEPENDS=	libmemcached.so:databases/libmemcached
 MEMCACHED_CONFIGURE_WITH=memcached
 MYSQL_CONFIGURE_WITH=	mysql
 MYSQL_USES=		mysql
 MYSQL_VARS=		REQUIRE+=mysql
+NETTLE_CONFIGURE_WITH=	nettle=${LOCALBASE}
+NETTLE_LIB_DEPENDS=	libnettle.so:security/nettle
+NSS_CONFIGURE_WITH=	nss=${LOCALBASE}
+NSS_CPPFLAGS=		-I${LOCALBASE}/include/nspr
+NSS_LIB_DEPENDS=	libnss3.so:security/nss
 OPENSSL_USES=		ssl
 OPENSSL_CONFIGURE_WITH=	openssl
 OPENSSL_CONFIGURE_ON=	--with-openssl-includes=${OPENSSLINC} --with-openssl-libs=${OPENSSLLIB}
@@ -84,17 +100,21 @@ SPAWNFCGI_RUN_DEPENDS=	spawn-fcgi:www/spawn-fcgi
 VALGRIND_BUILD_DEPENDS=	valgrind:devel/valgrind
 VALGRIND_RUN_DEPENDS=	valgrind:devel/valgrind
 VALGRIND_CONFIGURE_WITH=valgrind
-WEBDAV_USE=		GNOME=libxml2
 WEBDAV_USES=		gnome
+WEBDAV_USE=		GNOME=libxml2
 WEBDAV_LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid \
 			libsqlite3.so:databases/sqlite3
 WEBDAV_CONFIGURE_WITH=	webdav-props webdav-locks
+WOLFSSL_CONFIGURE_WITH=	wolfssl=${LOCALBASE}
+WOLFSSL_LIB_DEPENDS=	libwolfssl.so:security/wolfssl
+ZSTD_CONFIGURE_WITH=	zstd
+ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 LIGHTTPD_CONF_FILES=	lighttpd.conf modules.conf
 
 LIGHTTPD_CONF_D_FILES=	access_log.conf \
 	auth.conf cgi.conf cml.conf \
-	compress.conf debug.conf dirlisting.conf \
+	debug.conf dirlisting.conf \
 	evhost.conf expire.conf fastcgi.conf \
 	magnet.conf mime.conf mysql_vhost.conf proxy.conf \
 	rrdtool.conf scgi.conf secdownload.conf \
@@ -159,8 +179,10 @@ post-install:
 	@${MKDIR} -m 0700 ${STAGEDIR}${CACHEDIR}
 	@${MKDIR} -m 0700 ${STAGEDIR}${HOMEDIR}/sockets
 	@${MKDIR} -m 0700 ${STAGEDIR}${LOGDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .endif # !defined(_BUILDING_LIGHTTPD_MODULE)
 

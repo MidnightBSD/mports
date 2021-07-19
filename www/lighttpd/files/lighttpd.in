@@ -1,7 +1,5 @@
 #!/bin/sh
-#
-# $FreeBSD: head/www/lighttpd/files/lighttpd.in 454615 2017-11-21 15:33:35Z arved $
-#
+
 # PROVIDE: lighttpd
 # REQUIRE: %%REQUIRE%%
 # KEYWORD: shutdown
