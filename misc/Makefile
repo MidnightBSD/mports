@@ -67,6 +67,7 @@ SUBDIR += shc
 SUBDIR += susv2
 SUBDIR += susv3
 SUBDIR += susv4
+SUBDIR += termatrix
 SUBDIR += tvbrowser
 SUBDIR += unclutter
 SUBDIR += unicode-emoji
