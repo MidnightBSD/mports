@@ -26,6 +26,8 @@ PLIST_SUB=	XMLCAT_RM="${XMLCAT_RM}" XMLCAT_ADD="${XMLCAT_ADD}" \
 		SGMLCAT_RM="${SGMLCAT_RM}" SGMLCAT_ADD="${SGMLCAT_ADD}" \
 		dir_DTD="${dir_DTD}"
 
+.include <bsd.port.pre.mk>
+
 dir_DTD=	share/xml/dtd/vuxml
 
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
@@ -46,6 +48,9 @@ CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 
 VUXML_FILE?=	${PKGDIR}/vuln.xml
 VUXML_FLAT_FILE?=	${PKGDIR}/vuln-flat.xml
+
+_YEAR!=	date +%Y
+VUXML_CURRENT_FILE?=	${PKGDIR}/vuln-${_YEAR}.xml
 
 .if defined(MAGUS)
 NO_TEST=	yes
@@ -73,8 +78,8 @@ do-test:
 	@${CP} ${.CURDIR}/vuln.xml ${WRKDIR}/test
 	@cd ${.CURDIR} && make validate PKGDIR=${WRKDIR}/test
 
-vuln-flat.xml: vuln.xml
-	xmllint -noent ${.ALLSRC} > ${.TARGET}
+${VUXML_FLAT_FILE}: ${VUXML_FILE} vuln-20??.xml
+	xmllint -noent ${.ALLSRC:[1]} > ${.TARGET}
 
 validate: tidy
 	@${SH} ${FILESDIR}/validate.sh "${VUXML_FLAT_FILE}"
@@ -99,7 +104,7 @@ validate: tidy
 	fi
 	${PYTHON_CMD} ${FILESDIR}/extra-validation.py ${VUXML_FLAT_FILE}
 
-tidy: vuln-flat.xml
+tidy: ${VUXML_FLAT_FILE}
 	@if [ ! -e ${LOCALBASE}/share/xml/dtd/vuxml/catalog.xml ]; \
 	then \
 		echo "Please install the VuXML port prior to running make validate/tidy."; \
@@ -108,9 +113,7 @@ tidy: vuln-flat.xml
 	${SH} ${FILESDIR}/tidy.sh "${FILESDIR}/tidy.xsl" "${VUXML_FLAT_FILE}" > "${VUXML_FILE}.tidy"
 
 newentry:
-	@${SH} ${FILESDIR}/newentry.sh "${VUXML_FILE}"
-
-.include <bsd.port.pre.mk>
+	@${SH} ${FILESDIR}/newentry.sh "${VUXML_CURRENT_FILE}"
 
 .if defined(VID) && !empty(VID)
 html: work/${VID}.html
