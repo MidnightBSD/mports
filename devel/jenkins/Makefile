@@ -1,7 +1,7 @@
 PORTNAME=	jenkins
-PORTVERSION=	2.291
+PORTVERSION=	2.303
 CATEGORIES=	devel java
-MASTER_SITES=	http://mirrors.jenkins-ci.org/war/${PORTVERSION}/
+MASTER_SITES=	http://mirrors.jenkins.io/war/${PORTVERSION}/
 DISTNAME=	jenkins
 EXTRACT_SUFX=	.war
 DIST_SUBDIR=	${PORTNAME}/${PORTVERSION}
