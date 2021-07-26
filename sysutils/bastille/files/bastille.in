@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Bastille jail startup script
-# $FreeBSD: head/sysutils/bastille/files/bastille.in 493313 2019-02-18 19:22:28Z pi $
 #
 # PROVIDE: bastille
 # REQUIRE: LOGIN

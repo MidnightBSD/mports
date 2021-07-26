@@ -1,7 +1,7 @@
 # Created by: Christer Edwards <christer.edwards@gmail.com>
 
 PORTNAME=	bastille
-PORTVERSION=	0.8.20210115
+PORTVERSION=	0.9.20210714
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +14,7 @@ FAKE_OPTS=	trueprefix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bastillebsd
-GH_TAGNAME=	113beb5
+GH_TAGNAME=	cc60df5
 
 NO_BUILD=	yes
 NO_ARCH=	yes
