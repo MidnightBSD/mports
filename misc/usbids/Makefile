@@ -1,5 +1,5 @@
 PORTNAME=	usbids
-PORTVERSION=	20210331
+PORTVERSION=	20210719
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ NO_BUILD=	yes
 
 PORTDATA=	usb.ids
 
-GH_TAGNAME=	2b801e3
+GH_TAGNAME=	0e7a9f9
 USE_GITHUB=	yes
 
 do-install:
