@@ -1,5 +1,5 @@
 PORTNAME=	xscreensaver
-PORTVERSION=	5.44
+PORTVERSION=	5.45
 CATEGORIES=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 
@@ -82,7 +82,7 @@ SUB_FILES=	xscreensaver-blank.desktop xscreensaver-lock.desktop \
 post-patch:
 	${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|g' \
 			-e 's|pkg_config --list-all|pkg_config --help|' \
-			${WRKSRC}/configure.in
+			${WRKSRC}/configure.ac
 	${REINPLACE_CMD} -e "s|/etc/pam.d|${PREFIX}/etc/pam.d|g" \
 		${WRKSRC}/driver/passwd-pam.c \
 		${WRKSRC}/driver/xscreensaver.man
