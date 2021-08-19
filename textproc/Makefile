@@ -240,6 +240,7 @@ SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
 SUBDIR += py-sphinx-argparse
 SUBDIR += py-sphinx-autoapi
+SUBDIR += py-sphinx-autodoc-typehints
 SUBDIR += py-sphinx-me
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-adadomain
