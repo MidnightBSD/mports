@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/net/miniupnpc/Makefile 376425 2015-01-06 13:59:35Z antoine $
-
 PORTNAME=	miniupnpc
-PORTVERSION=	1.9
+PORTVERSION=	2.2.0
 CATEGORIES?=	net
 MASTER_SITES=	http://miniupnp.free.fr/files/
 
@@ -30,7 +27,7 @@ USE_RC_SUBR=	miniupnpc
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/upnpc \
-		${PREFIX}/lib/libminiupnpc.so.10
+		${PREFIX}/lib/libminiupnpc.so.17
 .endif
 
 .include <bsd.port.post.mk>
