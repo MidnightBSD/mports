@@ -239,6 +239,7 @@ SUBDIR += py-snowballstemmer
 SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
 SUBDIR += py-sphinx-argparse
+SUBDIR += py-sphinx-autoapi
 SUBDIR += py-sphinx-me
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-adadomain
