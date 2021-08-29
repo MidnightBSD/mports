@@ -1,6 +1,6 @@
 PORTNAME=	slurm
-DISTVERSION=	19.05.1-2
-PORTREVISION=	3
+DISTVERSION=	20.02.7
+PORTREVISION=	0
 CATEGORIES=	sysutils python
 MASTER_SITES=	https://download.schedmd.com/slurm/
 PKGNAMESUFFIX=	-wlm
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libmunge.so:security/munge \
 		liblz4.so:archivers/liblz4
 
-USES=		compiler:c11 gmake gnome libtool lua pkgconfig python:build \
+USES=		compiler:c11 gmake gnome libtool localbase lua pkgconfig python:build \
 		readline shebangfix ssl tar:bz2
 USE_LDCONFIG=	yes
 #USE_PERL5=	configure
@@ -58,11 +58,12 @@ GUI_CONFIGURE_ENABLE=	glibtest gtktest x11
 #GTK2_CONFIGURE_ENV_OFF=	ac_gtk_test=no
 #GTK2_CONFIGURE_OFF=	--disable-gtktest
 
-HDF5_LIB_DEPENDS=	libhdf5.so:science/hdf5 \
+HDF5_LIB_DEPENDS=	libhdf5_cpp.so:science/hdf5 \
 			libsz.so:science/szip
 HDF5_CONFIGURE_WITH=	hdf5
+HDF5_CONFIGURE_ENV=	H5CC=${LOCALBASE}/bin/h5cc
 
-HWLOC_LIB_DEPENDS=	libhwloc.so:devel/hwloc
+HWLOC_LIB_DEPENDS=	libhwloc.so.15:devel/hwloc2
 HWLOC_CONFIGURE_WITH=	hwloc
 
 IPMI_LIB_DEPENDS=	libfreeipmi.so:sysutils/freeipmi
@@ -80,8 +81,8 @@ RRD_CONFIGURE_WITH=	rrdtool
 CONFIGURE_ARGS=	--without-ofed
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${DISTVERSION}
 
-CFLAGS+=	-I${WRKSRC}/slurm -I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lsysinfo -lkvm
+CFLAGS+=	-I${WRKSRC}/slurm -I${LOCALBASE}/include -fcommon
+LDFLAGS+=	-L${LOCALBASE}/lib -lsysinfo -lprocstat -fcommon
 
 # Hack around nonfunctional --disable-gtktest flag
 pre-configure-GUI-off:
@@ -94,7 +95,7 @@ pre-configure-GUI-off:
 pre-configure:
 	@${CP} ${FILESDIR}/pty.h ${WRKSRC}/slurm
 	@${REINPLACE_CMD} -e 's|sched_setaffinity|cpuset_setaffinity|g' \
-		${WRKSRC}/configure
+		-e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|/bin/mail|/usr/bin/mail|g' \
 		${WRKSRC}/src/common/read_config.h \
 		${WRKSRC}/contribs/seff/smail \
@@ -112,6 +113,7 @@ pre-configure:
 		${WRKSRC}/etc/slurm.conf.example
 
 	@${REINPLACE_CMD} -e 's|"/proc|"/compat/linux/proc|g' \
+		-e 's|(/proc)|(/compat/linux/proc)|g' \
 		${WRKSRC}/src/slurmd/slurmstepd/req.c \
 		${WRKSRC}/src/slurmd/slurmstepd/pdebug.c \
 		${WRKSRC}/src/slurmd/slurmd/get_mach_stat.c \
