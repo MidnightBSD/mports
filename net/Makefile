@@ -83,6 +83,7 @@ SUBDIR += openldap24-sasl-client
 SUBDIR += openldap24-server
 SUBDIR += openmpi
 SUBDIR += openntpd
+SUBDIR += openrsync
 SUBDIR += openslp
 SUBDIR += ortp
 SUBDIR += p5-GeoIP2
