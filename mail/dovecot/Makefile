@@ -1,5 +1,5 @@
 PORTNAME=	dovecot
-PORTVERSION=	2.3.13
+PORTVERSION=	2.3.15
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
@@ -18,10 +18,11 @@ GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd10.4 \
 		 --host=${MACHINE_ARCH}-portbld-freebsd10.4
 CONFIGURE_ARGS=	--localstatedir=/var \
-		--with-statedir=/var/db/dovecot \
-		--without-shadow \
+		--with-docs \
 		--with-ssl=openssl \
-		--with-docs
+		--with-statedir=/var/db/dovecot \
+		--with-shadow=no \
+		--with-systemd=no
 
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
 INSTALL_TARGET=	install-strip
@@ -29,7 +30,7 @@ INSTALL_TARGET=	install-strip
 USERS=		dovecot dovenull
 GROUPS=		${USERS}
 
-OPTIONS_DEFINE=	LIBSODIUM LIBWRAP LUA LZ4 DOCS EXAMPLES
+OPTIONS_DEFINE=	LIBSODIUM LIBUNWIND LIBWRAP LUA LZ4 DOCS EXAMPLES
 OPTIONS_DEFAULT=GSSAPI_NONE LIBWRAP
 OPTIONS_SUB=	yes
 
@@ -40,8 +41,6 @@ OPTIONS_GROUP_FTS=	ICU LUCENE SOLR TEXTCAT
 OPTIONS_SINGLE=		GSSAPI
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_NONE GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT
 
-LZ4_DESC=	LZ4 compression support
-
 DB_DESC=	Database support
 CDB_DESC=	CDB database support
 
@@ -49,7 +48,7 @@ FTS_DESC=	Full text search plugins
 ICU_DESC=	Use libicu for FTS unicode normalization
 LUCENE_DESC=	CLucene FTS support
 SOLR_DESC=	Solr FTS support
-TEXTCAT_DESC=	Libtextcat FTS support
+TEXTCAT_DESC=	Libexttextcat FTS support
 
 GSSAPI_NONE_DESC=	Build without GSSAPI support
 GSSAPI_BASE_DESC=	Use GSSAPI from base
@@ -57,9 +56,14 @@ GSSAPI_HEIMDAL_DESC=	Use Heimdal GSSAPI from security/heimdal
 GSSAPI_MIT_DESC=	Use MIT GSSAPI from security/krb5
 
 # General options
-LIBSODIUM_DESC=		support libsodium based crypts (ARGON2I/ARGON2ID)
+LIBSODIUM_DESC=		Support libsodium based crypts (ARGON2I/ARGON2ID)
 LIBSODIUM_LIB_DEPENDS=	libsodium.so:security/libsodium
 LIBSODIUM_CONFIGURE_WITH=	sodium
+
+LIBUNWIND_CONFIGURE_ON=		--with-libunwind=yes
+LIBUNWIND_CONFIGURE_OFF=	--with-libunwind=no
+LIBUNWIND_DESC=		Get backtraces using libunwind
+LIBUNWIND_LIB_DEPENDS=	libunwind.so:devel/libunwind
 
 LIBWRAP_CONFIGURE_WITH=	libwrap
 
