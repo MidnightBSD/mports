@@ -1,10 +1,7 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.1.0
+DISTVERSION=	3.1.1
 CATEGORIES=	multimedia
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	86874609267d.patch:-p1 # https://bugs.chromium.org/p/aomedia/issues/detail?id=3050
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AV1 reference encoder/decoder
@@ -35,5 +32,8 @@ post-patch:
 # Extract (snapshot) version from the port instead of CHANGELOG
 	@${REINPLACE_CMD} 's,$${AOM_ROOT}/CHANGELOG,${DISTVERSIONFULL:S/^v//},' \
 		${WRKSRC}/build/cmake/version.cmake
+
+post-install:
+	cd ${PREFIX}/lib && ${LN} -sf libaom.so.3 libaom.so.2
 
 .include <bsd.port.mk>
