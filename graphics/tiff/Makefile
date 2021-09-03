@@ -1,5 +1,5 @@
 PORTNAME=	tiff
-PORTVERSION=	4.1.0
+PORTVERSION=	4.3.0
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.osgeo.org/libtiff/
 
