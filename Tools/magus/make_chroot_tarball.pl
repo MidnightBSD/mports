@@ -60,7 +60,6 @@ my @files = qw(
   /boot/kernel
   /boot/loader
   /boot/loader.4th
-  /boot/loader.help
   /boot/loader.rc
   /boot/mbr
   /boot/modules
