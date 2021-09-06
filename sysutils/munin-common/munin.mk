@@ -1,6 +1,6 @@
-MUNIN_VERSION=	2.0.61
-MUNIN_SITES=	http://downloads.munin-monitoring.org/munin/stable/${MUNIN_VERSION}/
-DISTINFO_FILE=	${PORTSDIR}/sysutils/munin-common/distinfo
+MUNIN_VERSION=	2.0.67
+MUNIN_SITES=	SF/munin/stable/${MUNIN_VERSION}
+DISTINFO_FILE=	${.CURDIR}/../../sysutils/munin-common/distinfo
 PATCHDIR=	${.CURDIR}/../../sysutils/munin-common/files
 
 PORTSCOUT=	limit:^2\.0\.

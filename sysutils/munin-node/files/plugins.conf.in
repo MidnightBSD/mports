@@ -1,5 +1,3 @@
-# $FreeBSD: head/sysutils/munin-node/files/plugins.conf.in 431883 2017-01-19 15:45:22Z mat $
-#
 ######################################################################
 # This file is installed by the sysutils/munin-node port, you should #
 # not change it, you should create a local.conf file in the same     #
