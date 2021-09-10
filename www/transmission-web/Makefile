@@ -1,29 +1,15 @@
-# $MidnightBSD$
-
-PORTREVISION=	0
-CATEGORIES=	www net-p2p
+CATEGORIES=	www
 PKGNAMESUFFIX=	-web
+PORTREVISION=	1
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Fast and lightweight WebUI for Transmission BitTorrent client
-
-LICENSE=	gpl2
-
-DESCR=		${.CURDIR}/pkg-descr
-MASTERDIR=	${.CURDIR}/../../net-p2p/transmission-cli
-PLIST=		${NONEXISTENT}
-SLAVEPORT=	web
-
-PORTDATA=	web
-PORTDOCS=	*
-
+NO_ARCH=	yes
 NO_BUILD=	yes
+PORTDATA=	web
 
-post-extract:
-	@${FIND} ${WRKSRC}/web -name Makefile.* -delete
+MASTERDIR=	${.CURDIR}/../../net-p2p/transmission-cli
+DESCR=		${.CURDIR}/pkg-descr
+PLIST=		${NONEXISTENT}
 
-do-install:
-	@${MKDIR} ${DATADIR}/web
-	@(cd ${WRKSRC}/web && ${COPYTREE_SHARE} \* ${DATADIR}/web)
+SLAVEPORT=	web
 
 .include "${MASTERDIR}/Makefile"
