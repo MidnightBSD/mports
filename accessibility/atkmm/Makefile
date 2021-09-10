@@ -1,8 +1,8 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
 
 PORTNAME=	atkmm
-PORTVERSION=	2.24.2
-PORTREVISION=	4
+PORTVERSION=	2.28.0
+PORTREVISION=	0
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 
