@@ -9,7 +9,7 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail client for GNOME 3
 
-LICENSE=	bsd2  CC-BY-3.0 lgpl2.1
+LICENSE=	bsd2 ccasa3 lgpl2.1
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
