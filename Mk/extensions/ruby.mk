@@ -2,10 +2,6 @@
 # bsd.ruby.mk - Utility definitions for Ruby related ports.
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
-#
-# $MidnightBSD$ 
-# $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
-#
 
 .if !defined(_POST_MKINCLUDED) && !defined(Ruby_Pre_Include)
 
@@ -16,7 +12,7 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 # [variables that a user may define]
 #
 # RUBY_VER		- (See below)
-# RUBY_DEFAULT_VER	- Set to (e.g.) "2.2" if you want to refer to "ruby22"
+# RUBY_DEFAULT_VER	- Set to (e.g.) "2.6" if you want to refer to "ruby26"
 #			  just as "ruby".
 # RUBY_ARCH		- (See below)
 # RUBY_RD_HTML		- Define if you want HTML files generated from RD files.
@@ -166,47 +162,7 @@ RUBY?=			${LOCALBASE}/bin/${RUBY_NAME}
 .if defined(RUBY_VER)
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-. if ${RUBY_VER} == 2.2
-#
-# Ruby 2.2
-#
-RUBY_RELVERSION=	2.2.5
-RUBY_PORTREVISION=	0
-RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	0
-RUBY22=			""	# PLIST_SUB helpers
-
-. elif ${RUBY_VER} == 2.3
-#
-# Ruby 2.3
-#
-RUBY_RELVERSION=	2.3.1
-RUBY_PORTREVISION=	0
-RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	0
-RUBY23=			""	# PLIST_SUB helpers
-
-. elif ${RUBY_VER} == 2.4
-#
-# Ruby 2.4
-#
-RUBY_RELVERSION=	2.4.7
-RUBY_PORTREVISION=	0
-RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	0
-RUBY24=			""	# PLIST_SUB helpers
-
-. elif ${RUBY_VER} == 2.5
-#
-# Ruby 2.5
-#
-RUBY_RELVERSION=	2.5.1
-RUBY_PORTREVISION=	0
-RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	0
-RUBY25=			""	# PLIST_SUB helpers
-
-. elif ${RUBY_VER} == 2.6
+. if ${RUBY_VER} == 2.6
 #
 # Ruby 2.6
 #
@@ -222,17 +178,13 @@ RUBY26=                       ""      # PLIST_SUB helpers
 #
 # Other versions
 #
-IGNORE=	Only ruby 2.2 and 2.3, 2.4, 2.5, 2.6 are supported
+IGNORE=	Only ruby 2.6 are supported
 _INVALID_RUBY_VER=	1
 . endif
 .endif # defined(RUBY_VER)
 
 .if !defined(_INVALID_RUBY_VER)
 
-RUBY22?=		"@comment "
-RUBY23?=		"@comment "
-RUBY24?=		"@comment "
-RUBY25?=		"@comment "
 RUBY26?=		"@comment "
 
 .if defined(BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E})
@@ -372,11 +324,7 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_SUFFIX="${RUBY_SUFFIX}" \
 			RUBY_NAME="${RUBY_NAME}" \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
-			RUBY21=${RUBY21} \
-			RUBY22=${RUBY22} \
-			RUBY23=${RUBY23} \
-			RUBY24=${RUBY24} \
-			RUBY25=${RUBY25}
+			RUBY26=${RUBY26}
 
 .if defined(USE_RUBY_RDOC)
 MAKE_ENV+=	RUBY_RDOC=${RUBY_RDOC}

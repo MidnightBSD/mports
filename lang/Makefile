@@ -84,7 +84,6 @@ SUBDIR += python38
 SUBDIR += python39
 SUBDIR += python27
 SUBDIR += referenceassemblies-pcl
-SUBDIR += ruby24
 SUBDIR += ruby26
 SUBDIR += rust
 SUBDIR += rust-bin
