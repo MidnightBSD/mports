@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	irssi-themes
 PORTVERSION=	2016082001
 CATEGORIES=	x11-themes irc
@@ -12,8 +10,9 @@ COMMENT=	Collection of additional irssi themes
 
 LICENSE=	unknown
 
-RUN_DEPENDS=	irssi:${PORTSDIR}/irc/irssi
+RUN_DEPENDS=	irssi:irc/irssi
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 PLIST=		${WRKDIR}/pkg-plist
 

@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME?=	clearlooks
 PORTVERSION=	0.6.2
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-themes
 MASTER_SITES=	SF/clearlooks/clearlooks/clearlooks%20${PORTVERSION}
 
@@ -13,7 +11,7 @@ LICENSE=	unknown
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool pkgconfig tar:bzip2
+USES=		gnome libtool pkgconfig tar:bzip2
 USE_GNOME=	gtk20
 
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -55,7 +53,7 @@ CONFIGURE_ARGS+=	--enable-animation
 pre-everything::
 	@if [ -n "`${PKG_INFO} -xI '^gtk-engines2*[0-9]*'`" ]; then \
 		${ECHO_MSG} ; \
-		${ECHO_MSG} "Gnome/gtk-engine users should use x11-themes/clearlooks-themes instead" ; \
+		${ECHO_MSG} "Gnome/gtk-engine users should use ${PORTSDIR}/x11-themes/clearlooks-themes instead" ; \
 		${ECHO_MSG} ; \
 		${FALSE}; \
 	fi

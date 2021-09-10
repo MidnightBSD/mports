@@ -1,11 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	gtk-engines2
 PORTVERSION=	2.20.2
 PORTREVISION=	2
 CATEGORIES=	x11-themes
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
@@ -18,7 +15,7 @@ LICENSE=	gpl2
 CONFLICTS=	gtk-smooth-engine-[0-9]* clearlooks-[0-9]*
 
 USE_GNOME=	gtk20 intlhack
-USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -35,6 +32,6 @@ post-patch:
 		${WRKSRC}/engines/clearlooks/src/animation.c
 
 post-install:
-	@(cd ${WRKSRC}/po && ${GMAKE} install)
+	@(cd ${WRKSRC}/po && ${MAKE_CMD} install DESTDIR=${FAKE_DESTDIR})
 
 .include <bsd.port.mk>

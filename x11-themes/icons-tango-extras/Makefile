@@ -1,6 +1,6 @@
 PORTNAME=	icons-tango-extras
 PORTVERSION=	0.1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://tango.freedesktop.org/releases/ \
 		GENTOO
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libexec/icon-name-mapping:x11-themes/icon-naming-uti
 RUN_DEPENDS=	${LOCALBASE}/share/icons/Tango/16x16/actions/add.png:x11-themes/icons-tango
 
 GNU_CONFIGURE=	yes
-USES=		gmake pkgconfig
+USES=		gmake gnome pkgconfig
 USE_GNOME=	intlhack
 INSTALLS_ICONS=	yes
 
