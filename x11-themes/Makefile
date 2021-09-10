@@ -15,15 +15,18 @@ SUBDIR += icon-naming-utils
 SUBDIR += icons-tango
 SUBDIR += icons-tango-extras
 SUBDIR += irssi-themes
+SUBDIR += lumina-themes
+SUBDIR += matcha-gtk-themes
 SUBDIR += mate-backgrounds
 SUBDIR += mate-icon-theme
 SUBDIR += mate-themes
 SUBDIR += midnightbsd-backgrounds
 SUBDIR += qt5-style-plugins
+SUBDIR += sierra-gtk-themes
 SUBDIR += slim-themes
-SUBDIR += ubuntulooks
 SUBDIR += xcursor-themes
-SUBDIR += xfce-evolution 
 SUBDIR += xfce-icons-elementary
+SUBDIR += yaru-gtk-themes
+SUBDIR += yaru-icon-theme
 
 .include <bsd.port.subdir.mk>

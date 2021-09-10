@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	clearlooks
 PKGNAMESUFFIX+=	-themes
 

@@ -1,7 +1,5 @@
 #!/bin/sh
-#
-# $FreeBSD: head/devel/hadoop/files/secondarynamenode.in 360157 2014-07-02 08:52:14Z demon $
-#
+
 # PROVIDE: secondarynamenode
 # REQUIRE: LOGIN
 # KEYWORD: shutdown

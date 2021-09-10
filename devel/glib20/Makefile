@@ -1,6 +1,6 @@
 PORTNAME=	glib
-DISTVERSION=	2.66.8
-PORTREVISION=	1
+DISTVERSION=	2.68.4
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -27,13 +27,14 @@ USE_PERL5=	build
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Db_lundef=false \
 		-Dlibmount=disabled \
+		-Dlocalstatedir=/var \
 		-Dselinux=disabled \
 		-Dinstalled_tests=false \
 		-Ddefault_library=both \
 		-Dxattr=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-_LIBVERSION=	0.6600.8
+_LIBVERSION=	0.6800.4
 PLIST_SUB=	LIBVERSION=${_LIBVERSION}
 
 OPTIONS_DEFINE=	DEBUG FAM_ALTBACKEND MANPAGES NLS

@@ -7,6 +7,8 @@ COMMENT=	CPU clock speed/frequency daemon
 
 LICENSE=	iscl
 
+FAKE_OPTS=	trueprefix
+
 USES=		compiler:c++17-lang
 
 USE_GITHUB=	yes

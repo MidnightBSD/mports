@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-themes-extra
 PORTVERSION=	3.28
+PORTREVISION=	1
 CATEGORIES=	x11-themes gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3

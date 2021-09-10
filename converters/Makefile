@@ -3,6 +3,7 @@ COMMENT = Character code converters
 SUBDIR += bsdconv
 SUBDIR += enca
 SUBDIR += fribidi
+SUBDIR += libb64
 SUBDIR += libiconv
 SUBDIR += linux-c7-fribidi
 SUBDIR += lua-json
@@ -50,5 +51,6 @@ SUBDIR += recode
 SUBDIR += ruby-dump.rb
 SUBDIR += unix2dos
 SUBDIR += uulib
+SUBDIR += ytnef
 
 .include <bsd.port.subdir.mk>

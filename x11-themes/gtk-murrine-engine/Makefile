@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	murrine
 PORTVERSION=	0.98.2
+PORTREVISION=	1
 CATEGORIES=	x11-themes
 MASTER_SITES=	GNOME
 PKGNAMEPREFIX=	gtk-
@@ -12,7 +11,7 @@ COMMENT=	Murrine GTK+ 2.x cairo based engine
 
 LICENSE=	lgpl3
 
-USES=		gettext gmake libtool pkgconfig tar:xz
+USES=		gettext gmake gnome libtool pkgconfig tar:xz xorg
 USE_XORG=	pixman
 USE_GNOME=	gtk20 intltool intlhack
 USE_LDCONFIG=	yes
