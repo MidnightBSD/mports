@@ -1,5 +1,3 @@
-TIMESTAMP = 1630259991
-SHA256 (jbeich-aom-v3.1.1_GH0.tar.gz) = ce4c4cbec697586ff70446afbe4a5bf3dadfa39672d016d7874366e749e372ee
-SIZE (jbeich-aom-v3.1.1_GH0.tar.gz) = 4613064
-SHA256 (86874609267d.patch) = 6d70401e8cc9cd7a93a4091307f3a5e351b829f939410bb2a5b30ad64ca672ab
-SIZE (86874609267d.patch) = 1144
+TIMESTAMP = 1631385626
+SHA256 (jbeich-aom-v3.1.2_GH0.tar.gz) = aa1e6610b7abf37659ddc682feac4f50cfa01539a7bd9ed329d670b07e3c55d4
+SIZE (jbeich-aom-v3.1.2_GH0.tar.gz) = 4613689

@@ -1,33 +1,29 @@
-# $MidnightBSD$
+# Created by: pusto@web.de
 
 PORTNAME=	qhull
-PORTVERSION=	2012.1
-PORTREVISION=	1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	7.2.1
+PORTEPOCH=	1
 CATEGORIES=	math
-MASTER_SITES=	http://www.qhull.org/download/
-DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qhull computes convex hulls, Delaunay triangulations and halfspaces
+COMMENT=	Qhull computes convex hulls, Delaunay triangulations, and halfspaces
 
-LICENSE=	other
+LICENSE=	Qhull
+LICENSE_NAME=	Qhull License
+LICENSE_FILE=	${WRKSRC}/COPYING.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		cmake tar:tgz
+USES=		cmake
+USE_GITHUB=	yes
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-CONFLICTS=	qhull-1.0* afni-[0-9]* qhull5-*
+CONFLICTS=	qhull afni qhull5
 
 OPTIONS_DEFINE=	DOCS
 
-post-patch:
-	${REINPLACE_CMD} -e 's#share/man/man#man/man#g' \
-		${WRKSRC}/CMakeLists.txt
+PORTDOCS=	*
 
-.include <bsd.mport.options.mk>
-
-.if empty(PORT_OPTIONS:MDOCS)
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-CMakeLists.txt
-.endif
+DOCS_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-CMakeLists.txt
 
 .include <bsd.port.mk>
