@@ -1,15 +1,15 @@
---- meson.build.orig	2021-03-20 15:25:18.081550000 -0400
-+++ meson.build	2021-03-20 15:28:25.653941000 -0400
-@@ -426,7 +426,7 @@
+--- meson.build.orig	2021-08-02 06:19:41.682135000 -0400
++++ meson.build	2021-09-11 14:32:26.242320000 -0400
+@@ -409,7 +409,7 @@
  
- # on aarch64 error: -fstack-protector not supported for this target
- if host_machine.cpu_family() != 'aarch64'
--  if host_machine.system() in [ 'linux', 'freebsd', 'windows' ]
-+  if host_machine.system() in [ 'linux', 'freebsd', 'windows', 'midnightbsd' ]
-     # we prefer -fstack-protector-strong but fallback to -fstack-protector-all
-     fstack_cflags = cc.first_supported_argument([
-       '-fstack-protector-strong',
-@@ -712,6 +712,11 @@
+   # on aarch64 error: -fstack-protector not supported for this target
+   if host_machine.cpu_family() != 'aarch64'
+-    if host_machine.system() in [ 'linux', 'freebsd', 'windows' ]
++    if host_machine.system() in [ 'linux', 'freebsd', 'windows', 'midnightbsd' ]
+       # we prefer -fstack-protector-strong but fallback to -fstack-protector-all
+       fstack_cflags = cc.first_supported_argument([
+         '-fstack-protector-strong',
+@@ -625,6 +625,11 @@
    headers += 'libutil.h'
  endif
  
@@ -21,7 +21,7 @@
  foreach name : headers
    if cc.has_header(name)
      conf.set('WITH_@0@'.format(name.underscorify().to_upper()), 1)
-@@ -901,6 +906,11 @@
+@@ -798,6 +803,11 @@
    required_programs += 'ifconfig'
  endif
  
@@ -31,9 +31,18 @@
 +
 +
  foreach name : required_programs
-   prog = find_program(name, required: true, dirs: libvirt_sbin_path)
+   prog = find_program(name, dirs: libvirt_sbin_path)
    varname = name.underscorify()
-@@ -1058,6 +1068,8 @@
+@@ -862,7 +872,7 @@
+   xdr_dep = cc.find_library('portablexdr', required: false)
+ elif host_machine.system() == 'linux'
+   xdr_dep = dependency('libtirpc', required: false)
+-elif host_machine.system() in [ 'freebsd', 'darwin' ]
++elif host_machine.system() in [ 'freebsd', 'darwin', 'midnightbsd' ]
+   xdr_dep = cc.find_library('c', required: false)
+ else
+   xdr_dep = dependency('', required: false)
+@@ -995,6 +1005,8 @@
  # Check for BSD kvm (kernel memory interface)
  if host_machine.system() == 'freebsd'
    libkvm_dep = cc.find_library('kvm')
@@ -42,25 +51,7 @@
  else
    libkvm_dep = dependency('', required: false)
  endif
-@@ -1465,7 +1477,7 @@
-   endif
- endif
- 
--if host_machine.system() != 'freebsd'
-+if host_machine.system() not in [ 'freebsd',  'midnightbsd' ]
-   if not get_option('firewalld').disabled()
-     conf.set('WITH_FIREWALLD', 1)
-   endif
-@@ -1489,7 +1501,7 @@
- # build driver options
- 
- if get_option('driver_remote').enabled()
--  if not xdr_dep.found() and host_machine.system() not in [ 'freebsd', 'darwin' ]
-+  if not xdr_dep.found() and host_machine.system() not in [ 'freebsd', 'darwin', 'midnightbsd' ]
-     error('XDR is required for remote driver')
-   endif
-   conf.set('WITH_REMOTE', 1)
-@@ -1520,7 +1532,7 @@
+@@ -1456,7 +1468,7 @@
    endif
  endif
  
@@ -69,12 +60,12 @@
    bhyve_prog = find_program('bhyve', required: get_option('driver_bhyve'))
    bhyvectl_prog = find_program('bhyvectl', required: get_option('driver_bhyve'))
    bhyveload_prog = find_program('bhyveload', required: get_option('driver_bhyve'))
-@@ -1680,7 +1692,7 @@
+@@ -1659,7 +1671,7 @@
      endif
      conf.set_quoted('QEMU_MODDIR', qemu_moddir)
  
--    if host_machine.system() in ['freebsd', 'darwin']
-+    if host_machine.system() in ['freebsd', 'darwin', 'midnightbsd']
+-    if host_machine.system() in [ 'freebsd', 'darwin' ]
++    if host_machine.system() in [ 'freebsd', 'darwin', 'midnightbsd' ]
        default_qemu_user = 'root'
        default_qemu_group = 'wheel'
      else
