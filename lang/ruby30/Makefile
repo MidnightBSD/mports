@@ -130,7 +130,7 @@ RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]
 post-patch:
 # We get these from other ports
 .for d in bin/* ext/dbm ext/gdbm ext/win32* lib/bundler* libexec/bundler* man/bundle* man/erb.1 man/gemfile* man/irb.1 man/ri.1
-	@${RM} -r ${BUILD_WRKSRC}/${d}
+	-${RM} -r ${BUILD_WRKSRC}/${d}
 .endfor
 
 post-build:
@@ -177,10 +177,8 @@ post-install:
 . endfor
 .endif
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-                ${PREFIX}/bin/erb30 ${PREFIX}/bin/irb30 \
-                ${PREFIX}/bin/rdoc30 ${PREFIX}/bin/ri30 \
-                ${PREFIX}/lib/ruby/2.7/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
-                ${PREFIX}/libdata/pkgconfig/ruby-2.7.pc
+                ${PREFIX}/lib/ruby/3.0/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
+                ${PREFIX}/libdata/pkgconfig/ruby-3.0.pc
 
 
 post-install-DEBUG-off:
