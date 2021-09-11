@@ -9,7 +9,7 @@ MASTER_SITES=	RUBY/${MASTER_SITE_SUBDIR_RUBY}
 DISTNAME=	${RUBY_DISTNAME}
 DIST_SUBDIR=	ruby
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented interpreted scripting language
 
 LICENSE=	bsd2
@@ -32,7 +32,7 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
                 --with-bindir="${LOCALBASE}/bin" \
                 --with-sitedir="${LOCALBASE}/lib/ruby/site_ruby" \
                 --with-vendordir="${LOCALBASE}/lib/ruby/vendor_ruby" \
-                --with-rubyhdrdir="${LOCALBASE}/include/ruby-2.7/" \
+                --with-rubyhdrdir="${LOCALBASE}/include/ruby-3.0/" \
                 --with-rubylibprefix="${LOCALBASE}/lib/ruby" \
                 --docdir="${LOCALBASE}/share/doc/ruby26" \
                 --mandir="${LOCALBASE}/man" \
@@ -46,7 +46,7 @@ USE_LDCONFIG=	yes
 WRKSRC=		${RUBY_WRKSRC}
 MAKE_JOBS_UNSAFE=	yes
 
-RUBY_VER=		2.7
+RUBY_VER=		3.0
 USE_RUBY=		yes
 RUBY_NO_BUILD_DEPENDS=	yes
 RUBY_NO_RUN_DEPENDS=	yes
@@ -94,11 +94,11 @@ _SUF2=	,${PORTEPOCH}
 CONFIGURE_ARGS+=--disable-dtrace
 
 # keep in sync with all platforms where libunwind is available
-.if (${ARCH} == amd64 || ${ARCH} == i386)
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == armv7 || ${ARCH} == i386 || ${ARCH} == powerpc64 || ${ARCH} == powerpc64le
 LIB_DEPENDS+=	libunwind.so:devel/libunwind
 .endif
 
-.if (${ARCH} == powerpc || ${ARCH} == powerpc64)
+.if (defined(PPC_ABI) && ${PPC_ABI} == ELFv1) || ${ARCH} == powerpc
 USE_GCC=	yes
 .endif
 
@@ -107,19 +107,15 @@ CONFIGURE_ARGS+=--with-setjmp-type=_setjmp
 CONFIGURE_ENV+=	ac_cv_func__setjmp=yes
 .endif
 
-.if ${PORT_OPTIONS:MCAPIDOCS}
-MAKE_JOBS_UNSAFE=	yes
-.endif
-
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
 PLIST_SUB+=	IF_DEFAULT=""
 .else
-PKGNAMESUFFIX=	${RUBY_VER:C/\.//}
+PKGNAMESUFFIX=	${RUBY_SUFFIX}
 PLIST_SUB+=	IF_DEFAULT="@comment "
 .endif
 
-INSTALLED_SCRIPTS=	erb ruby
-INSTALLED_MANUALS=	erb ruby
+INSTALLED_SCRIPTS=	ruby
+INSTALLED_MANUALS=	ruby
 
 EXTSAMPLES=	bigdecimal/sample/*.rb
 
@@ -133,11 +129,8 @@ RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]
 
 post-patch:
 # We get these from other ports
-.for d in bin/bundle* bin/gem bin/*racc* bin/irb bin/rdoc bin/ri \
-	  lib/bundler* libexec/bundler* \
-	  man/bundle* man/gemfile* man/irb.1 man/ri.1 \
-	  ext/dbm ext/gdbm ext/win32ole
-	  	@${RM} -r ${BUILD_WRKSRC}/${d}
+.for d in bin/* ext/dbm ext/gdbm ext/win32* lib/bundler* libexec/bundler* man/bundle* man/erb.1 man/gemfile* man/irb.1 man/ri.1
+	@${RM} -r ${BUILD_WRKSRC}/${d}
 .endfor
 
 post-build:
@@ -155,36 +148,37 @@ post-build-CAPIDOCS-on:
 	@${FIND} ${WRKSRC}/doc -type d -empty -delete
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${RUBY_SITEARCHLIBDIR}
-	${MKDIR} ${STAGEDIR}${RUBY_VENDORARCHLIBDIR}
+	${MKDIR} ${RUBY_SITEARCHLIBDIR}
+	${MKDIR} ${RUBY_VENDORARCHLIBDIR}
 
 pre-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${RUBY_DOCDIR}
+	${MKDIR} ${FAKE_DESTDIR}${RUBY_DOCDIR}
 
 pre-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${RUBY_EXAMPLESDIR}
+	${MKDIR} ${FAKE_DESTDIR}${RUBY_EXAMPLESDIR}
 
 pre-install-RDOC-on:
-	${MKDIR} ${STAGEDIR}${RUBY_RIDIR}
-	${MKDIR} ${STAGEDIR}${RUBY_SITERIDIR}
+	${MKDIR} ${FAKE_DESTDIR}${RUBY_RIDIR}
+	${MKDIR} ${FAKE_DESTDIR}${RUBY_SITERIDIR}
 
 post-install:
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
 #
-# Link just installed "ruby" to "ruby27", etc.
+# Link just installed "ruby" to "ruby30", etc.
 #
 . for FILE in ${INSTALLED_SCRIPTS}
-	${LN} -fs ${FILE}${RUBY_SUFFIX} ${STAGEDIR}${PREFIX}/bin/${FILE}
+	${LN} -fs ${FILE}${RUBY_SUFFIX} ${PREFIX}/bin/${FILE}
 . endfor
 #
-# Link "ruby.1.gz" to "ruby27.1.gz", etc.
+# Link "ruby.1.gz" to "ruby30.1.gz", etc.
 #
 . for FILE in ${INSTALLED_MANUALS}
-	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${STAGEDIR}${MANPREFIX}/man/man1/${FILE}.1.gz
+	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${MANPREFIX}/man/man1/${FILE}.1.gz
 . endfor
 .endif
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-                ${PREFIX}/bin/erb27 \
+                ${PREFIX}/bin/erb30 ${PREFIX}/bin/irb30 \
+                ${PREFIX}/bin/rdoc30 ${PREFIX}/bin/ri30 \
                 ${PREFIX}/lib/ruby/2.7/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
                 ${PREFIX}/libdata/pkgconfig/ruby-2.7.pc
 
