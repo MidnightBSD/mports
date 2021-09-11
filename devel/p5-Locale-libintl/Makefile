@@ -1,7 +1,7 @@
 # Created by: Erwin Lansing <erwin@FreeBSD.org>
 
 PORTNAME=	Locale-libintl
-PORTVERSION=	1.31
+PORTVERSION=	1.32
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,7 +13,7 @@ COMMENT=	Internationalization library for Perl
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		iconv:translit perl5
+USES=		iconv:translit localbase perl5
 USE_PERL5=	configure
 
 OPTIONS_DEFINE=	NLS
