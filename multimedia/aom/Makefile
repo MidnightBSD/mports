@@ -1,6 +1,7 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.1.2
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,8 +11,8 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
-BUILD_DEPENDS_amd64=	nasm:devel/nasm
-BUILD_DEPENDS_i386=	nasm:devel/nasm
+BUILD_DEPENDS_amd64=	yasm:devel/yasm
+BUILD_DEPENDS_i386=	yasm:devel/yasm
 
 USES=		cmake compiler:c++11-lib perl5 pkgconfig
 USE_GITHUB=	yes
