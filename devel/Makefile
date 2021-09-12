@@ -112,6 +112,7 @@ SUBDIR += glibmm
 SUBDIR += glog
 SUBDIR += glslang
 SUBDIR += gmake
+SUBDIR += gn
 SUBDIR += gnome-common
 SUBDIR += gnome-js-common
 SUBDIR += gnome-vfs
