@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/mail/spamass-rules/Makefile 412348 2016-04-01 14:16:16Z mat $
-
 PORTNAME=	spamass-rules
-PORTVERSION=	20140707
+PORTVERSION=	20190101
 CATEGORIES=	mail
 MASTER_SITES=	http://www.ranner.eu/stuff/
 
@@ -11,7 +8,7 @@ COMMENT=	Custom rulesets for SpamAssassin
 
 LICENSE=	unknown
 
-RUN_DEPENDS=	spamc:${PORTSDIR}/mail/spamassassin
+RUN_DEPENDS=	spamc:mail/spamassassin
 
 USES=		tar:bzip2
 
@@ -30,7 +27,7 @@ LANG_DESC=		Catch spam written in...
 OPTIONS_GROUP_BLACKLIST=AHBL MALWARE MSPIKE NIXSPAM
 BLACKLIST=		DNS Blacklists
 
-OPTIONS_DEFAULT=	BOGUS_VIRUS DBRACKETS GERMAN GREEK MALWARE MIMEVLD MSPIKE NIXSPAM POLISH RANDOM TRIPWIRE WEEDS WEEDS2
+OPTIONS_DEFAULT=	BOGUS_VIRUS DBRACKETS MIMEVLD MSPIKE NIXSPAM RANDOM TRIPWIRE WEEDS WEEDS2
 
 AHBL_DESC=		AHBL Blacklist
 MALWARE_DESC=		Malware Patrol
@@ -71,12 +68,12 @@ DBRACKETS_CONF=		99_SMF_BRACKETS_TO.cf
 EVILNUMBERS_CONF=	evilnumbers.cf
 GERMAN_CONF=		70_zmi_german.cf
 GREEK_CONF=		gr_domain.cf
-MALWARE_CONF=		malwarepatrol.cf
+MALWARE_CONF=		99_malware_patrol_blocklist.cf
 MANGLED_CONF=		mangled.cf
 MIMEVLD_CONF=		mime_validate.cf
 MSPIKE_CONF=		10_dnsbl_mspike.cf
 NIXSPAM_CONF=		20_dnsbl_nixspam.cf
-POLISH_CONF=		sa_body_test_pl.cf
+POLISH_CONF=		25_body_tests_pl.cf
 RANDOM_CONF=		random.cf
 TRIPWIRE_CONF=		99_FVGT_Tripwire.cf
 WEEDS1_CONF=		weeds.cf
