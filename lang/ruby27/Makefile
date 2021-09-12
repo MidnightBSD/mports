@@ -1,3 +1,5 @@
+# Created by: Akinori MUSHA aka knu <knu@idaemons.org>
+
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
 PORTREVISION=	${RUBY_PORTREVISION}
@@ -7,7 +9,7 @@ MASTER_SITES=	RUBY/${MASTER_SITE_SUBDIR_RUBY}
 DISTNAME=	${RUBY_DISTNAME}
 DIST_SUBDIR=	ruby
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	ruby@FreeBSD.org
 COMMENT=	Object-oriented interpreted scripting language
 
 LICENSE=	bsd2
@@ -30,7 +32,7 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
                 --with-bindir="${LOCALBASE}/bin" \
                 --with-sitedir="${LOCALBASE}/lib/ruby/site_ruby" \
                 --with-vendordir="${LOCALBASE}/lib/ruby/vendor_ruby" \
-                --with-rubyhdrdir="${LOCALBASE}/include/ruby-2.6/" \
+                --with-rubyhdrdir="${LOCALBASE}/include/ruby-2.7/" \
                 --with-rubylibprefix="${LOCALBASE}/lib/ruby" \
                 --docdir="${LOCALBASE}/share/doc/ruby26" \
                 --mandir="${LOCALBASE}/man" \
@@ -44,7 +46,7 @@ USE_LDCONFIG=	yes
 WRKSRC=		${RUBY_WRKSRC}
 MAKE_JOBS_UNSAFE=	yes
 
-RUBY_VER=		2.6
+RUBY_VER=		2.7
 USE_RUBY=		yes
 RUBY_NO_BUILD_DEPENDS=	yes
 RUBY_NO_RUN_DEPENDS=	yes
@@ -116,8 +118,8 @@ PKGNAMESUFFIX=	${RUBY_VER:C/\.//}
 PLIST_SUB+=	IF_DEFAULT="@comment "
 .endif
 
-INSTALLED_SCRIPTS=	erb irb rdoc ri ruby
-INSTALLED_MANUALS=	erb irb ri ruby
+INSTALLED_SCRIPTS=	erb ruby
+INSTALLED_MANUALS=	erb ruby
 
 EXTSAMPLES=	bigdecimal/sample/*.rb
 
@@ -131,7 +133,9 @@ RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]
 
 post-patch:
 # We get these from other ports
-.for d in bin/bundle* lib/bundler*  libexec/bundler* man/bundle* bin/gem man/gemfile* \
+.for d in bin/bundle* bin/gem bin/*racc* bin/irb bin/rdoc bin/ri \
+	  lib/bundler* libexec/bundler* \
+	  man/bundle* man/gemfile* man/irb.1 man/ri.1 \
 	  ext/dbm ext/gdbm ext/win32ole
 	  	@${RM} -r ${BUILD_WRKSRC}/${d}
 .endfor
@@ -167,23 +171,22 @@ pre-install-RDOC-on:
 post-install:
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
 #
-# Link just installed "ruby" to "ruby26", etc.
+# Link just installed "ruby" to "ruby27", etc.
 #
 . for FILE in ${INSTALLED_SCRIPTS}
 	${LN} -fs ${FILE}${RUBY_SUFFIX} ${STAGEDIR}${PREFIX}/bin/${FILE}
 . endfor
 #
-# Link "ruby.1.gz" to "ruby26.1.gz", etc.
+# Link "ruby.1.gz" to "ruby27.1.gz", etc.
 #
 . for FILE in ${INSTALLED_MANUALS}
 	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${STAGEDIR}${MANPREFIX}/man/man1/${FILE}.1.gz
 . endfor
 .endif
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-                ${PREFIX}/bin/erb26 ${PREFIX}/bin/irb26 \
-                ${PREFIX}/bin/rdoc26 ${PREFIX}/bin/ri26 \
-                ${PREFIX}/lib/ruby/2.6/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
-                ${PREFIX}/libdata/pkgconfig/ruby-2.6.pc
+                ${PREFIX}/bin/erb27 \
+                ${PREFIX}/lib/ruby/2.7/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
+                ${PREFIX}/libdata/pkgconfig/ruby-2.7.pc
 
 
 post-install-DEBUG-off:
