@@ -12,7 +12,7 @@ COMMENT=	Sophisticated text editor for code, markup and prose
 
 LICENSE=        SUBLIMEHQ
 LICENSE_NAME=   End User License Agreement
-LICENSE_FILE=   ${FILESDIR}/LICENSE.txt
+LICENSE_TEXT=	"Software is licensed for evaluation only.  Purchase a license for continued use."
 LICENSE_PERMS=  dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
 INSTALLS_ICONS=	yes
