@@ -58,7 +58,7 @@ do-install:
 		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/_geeks3d_gputest_scores.csv \
 		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
-	${PRINTF} '#!/bin/sh\n\ncd ${PREFIX}/lib/${PORTNAME} || exit\
+	${PRINTF} '#!/bin/sh\n\ncd ${TRUE_PREFIX}/lib/${PORTNAME} || exit\
 		1\n\nexec ./GpuTest "$$@"\n' > \
 		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 	${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
