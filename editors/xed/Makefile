@@ -1,7 +1,7 @@
 # Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
 
 PORTNAME=	xed
-PORTVERSION=	3.0.0
+PORTVERSION=	3.0.2
 CATEGORIES=	editors gnome
 DIST_SUBDIR=	gnome
 
@@ -46,5 +46,7 @@ GSPELL_PLIST_FILES=	lib/xed/plugins/libspell.so \
 			lib/xed/plugins/spell.plugin \
 		${DATADIR_REL}/plugins/spell/xed-spell-setup-dialog.ui
 GSPELL_VARS=	GLIB_SCHEMAS+=org.x.editor.plugins.spell.gschema.xml
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
