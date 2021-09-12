@@ -1,26 +1,20 @@
---- src/CMakeLists.txt.orig	2015-02-28 03:52:19.000000000 +0300
-+++ src/CMakeLists.txt	2015-02-28 03:53:31.000000000 +0300
-@@ -201,22 +201,7 @@
- endif(ENABLE_GLES)
+diff --git src/CMakeLists.txt src/CMakeLists.txt
+index 9526e88f9..06cb0d604 100644
+--- src/CMakeLists.txt
++++ src/CMakeLists.txt
+@@ -758,7 +758,14 @@ else()
+ 		check_c_source_compiles("#ifndef __aarch64__\n#error\n#endif\nint main(){}" IS_AARCH64)
+ 		if(IS_AARCH64)
+ 			# Move text segment below LuaJIT's 47-bit limit (see issue #9367)
+-			SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Ttext-segment=0x200000000")
++			if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++				# XXX: lld linke needs another option; not sure how to check for lld specifically,
++				# so just checking for FreeBSD (which uses lld) for now. I'm also not sure if its
++				# equivalent replacement and haven't runtested it, but it at least builds
++				SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--image-base=0x200000000")
++			else()
++				SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Ttext-segment=0x200000000")
++			endif()
+ 		endif()
+ 	endif()
  
- if(USE_FREETYPE)
--	if(UNIX)
--		include(FindPkgConfig)
--		if(PKG_CONFIG_FOUND)
--			pkg_check_modules(FREETYPE QUIET freetype2)
--			if(FREETYPE_FOUND)
--				SET(FREETYPE_PKGCONFIG_FOUND TRUE)
--				SET(FREETYPE_LIBRARY ${FREETYPE_LIBRARIES})
--				# because cmake is idiotic
--				string(REPLACE ";" " " FREETYPE_CFLAGS_STR ${FREETYPE_CFLAGS})
--				string(REPLACE ";" " " FREETYPE_LDFLAGS_STR ${FREETYPE_LDFLAGS})
--			endif(FREETYPE_FOUND)
--		endif(PKG_CONFIG_FOUND)
--	endif(UNIX)
--	if(NOT FREETYPE_FOUND)
--		find_package(Freetype REQUIRED)
--	endif(NOT FREETYPE_FOUND)
-+	find_package(Freetype REQUIRED)
- 	set(CGUITTFONT_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cguittfont")
- 	set(CGUITTFONT_LIBRARY cguittfont)
- endif(USE_FREETYPE)
