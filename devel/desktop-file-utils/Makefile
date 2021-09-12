@@ -1,5 +1,5 @@
 PORTNAME=	desktop-file-utils
-PORTVERSION=	0.24
+PORTVERSION=	0.26
 CATEGORIES=	devel
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/releases/
 
@@ -7,12 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Couple of command line utilities for working with desktop entries
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gettext gmake gnome localbase:ldflags pkgconfig tar:xz
+USES=		compiler:c11 gettext meson gnome pkgconfig tar:xz
 USE_GNOME=	glib20
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-lispdir
-CONFIGURE_ENV=	EMACS="no" LIBS="-lintl"
 
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
@@ -21,21 +19,11 @@ PORT_MIMEDIRS=	${LOCALBASE}/share/applications
 
 MIMEDIRS=	${PORT_MIMEDIRS}
 
-RMDIRS=		${PORT_MIMEDIRS}
-
-post-patch:
-	@${SED} -e 's|%%MIMEDIRS%%|${MIMEDIRS}| ;\
-		s|%%RMDIRS%%|${RMDIRS}| ; \
-		s|%%PORT_MIMEDIRS%%|${PORT_MIMEDIRS}|' \
-		< ${FILESDIR}/pkg-deinstall.in > ${PKGDEINSTALL}
-	@${SED} -e 's|%%PORT_MIMEDIRS%%|${PORT_MIMEDIRS}|' \
-		< ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
+SUB_FILES=	pkg-deinstall pkg-install
+SUB_LIST=	MIMEDIRS="${MIMEDIRS}"
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/misc/desktop-entry-mode.el \
-	    	${PREFIX}/share/emacs/site-lisp/desktop-entry-mode.el
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
+		${STAGEDIR}${PREFIX}/share/emacs/site-lisp/desktop-entry-mode.el
 
 .include <bsd.port.mk>
