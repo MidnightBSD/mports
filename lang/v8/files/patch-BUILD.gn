@@ -1,0 +1,50 @@
+--- BUILD.gn.orig	2021-07-29 20:22:05 UTC
++++ BUILD.gn
+@@ -3250,7 +3250,7 @@ v8_header_set("v8_internal_headers") {
+ 
+     # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
+     # based on Darwin and thus POSIX-compliant to a similar degree.
+-    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd") {
++    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd" || target_os == "midnightbsd") {
+       sources += [ "src/trap-handler/handler-inside-posix.h" ]
+     }
+     if (is_win) {
+@@ -4148,7 +4148,7 @@ v8_source_set("v8_base_without_compiler"
+ 
+     # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
+     # based on Darwin and thus POSIX-compliant to a similar degree.
+-    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd") {
++    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd" || target_os == "midnightbsd") {
+       sources += [
+         "src/trap-handler/handler-inside-posix.cc",
+         "src/trap-handler/handler-outside-posix.cc",
+@@ -4667,7 +4667,7 @@ v8_component("v8_libbase") {
+     }
+   }
+ 
+-  if (is_linux || is_chromeos) {
++  if ((is_linux || is_chromeos) && !is_bsd) {
+     sources += [
+       "src/base/debug/stack_trace_posix.cc",
+       "src/base/platform/platform-linux.cc",
+@@ -4684,6 +4684,12 @@ v8_component("v8_libbase") {
+     ]
+ 
+     libs = [ "dl" ]
++  } else if (is_bsd) {
++    sources += [
++      "src/base/debug/stack_trace_posix.cc",
++      "src/base/platform/platform-freebsd.cc",
++    ]
++    libs = [ "rt", "execinfo" ]
+   } else if (is_android) {
+     if (current_toolchain == host_toolchain) {
+       libs = [
+@@ -5156,6 +5162,7 @@ if (v8_monolithic) {
+       ":v8_libplatform",
+       "//build/win:default_exe_manifest",
+     ]
++    libs = ["execinfo"]
+ 
+     configs = [ ":internal_config" ]
+   }

@@ -1,0 +1,11 @@
+--- buildtools/third_party/libc++/BUILD.gn.orig	2021-07-22 17:06:07 UTC
++++ buildtools/third_party/libc++/BUILD.gn
+@@ -14,7 +14,7 @@ config("config") {
+     # its implementation.
+     cflags += [ "-Wno-macro-redefined" ]
+   } else {
+-    cflags += [ "-fPIC" ]
++    cflags += [ "-fPIC", "-I/usr/local/include" ]
+   }
+ }
+ 
