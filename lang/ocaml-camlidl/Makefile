@@ -20,6 +20,8 @@ USE_OCAML=	yes
 
 MAKE_JOBS_UNSAFE=	yes
 
+NO_TEST=	yes
+
 DOCSDIR=	${PREFIX}/share/doc/ocaml/${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS
@@ -49,11 +51,5 @@ post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${GZCAT} ${_DISTDIR}/${PORTNAME}-${PORTVERSION}.doc.html.tar.gz \
 		| ${TAR} -C ${FAKE_DESTDIR}${DOCSDIR} -xf -
-
-test:
-	@${ECHO_CMD} "Testing IDL library"
-	@${REINPLACE_CMD} -e "s,^\(CCPP=\).*,\1${CXX},g" \
-		${WRKSRC}/tests/Makefile
-	cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${MAKE} all
 
 .include <bsd.port.mk>
