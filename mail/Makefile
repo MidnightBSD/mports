@@ -6,6 +6,7 @@ SUBDIR += addresses-goodies
 SUBDIR += alpine
 SUBDIR += bogofilter
 SUBDIR += cclient
+SUBDIR += claws-mail
 SUBDIR += courier
 SUBDIR += courier-imap
 SUBDIR += couriergraph
