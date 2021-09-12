@@ -2,7 +2,6 @@
 #
 # Feature:	readline
 # Usage:	USES=readline
-# Valid ARGS:	port
 #
 
 .if !defined(_INCLUDE_USES_READLINE_MK)

@@ -84,7 +84,7 @@ PLIST_SUB+=		LDAP="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MREADLINE}
-USES+=			readline:port
+USES+=			readline
 CONFIGURE_ARGS+=	--with-readline
 .endif
 
