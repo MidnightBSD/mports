@@ -12,7 +12,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		${_MAN_SOURCE}${EXTRACT_SUFX}:man
 _MAN_SOURCE=	${PORTNAME}-3.3.10
 
-MAINTAINER=	poprts@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	10 gigabit FreeBSD Base Driver for Intel(R) Network Connections
 
 MANPAGENAME=	ixgbe
