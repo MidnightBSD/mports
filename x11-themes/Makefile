@@ -1,6 +1,7 @@
 COMMENT = X11 themes
 
 SUBDIR += adwaita-icon-theme
+SUBDIR += claws-mail-themes
 SUBDIR += clearlooks
 SUBDIR += clearlooks-metacity
 SUBDIR += clearlooks-themes

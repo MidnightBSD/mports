@@ -1,4 +1,3 @@
-# $MidnightBSD$
 # Please see the file src/etc/mtree/README before making changes to this file.
 #
 
@@ -26,15 +25,11 @@
         X11
         ..
     ..
-    info
-    ..
     lib
+        debug
+        ..
         X11
             app-defaults
-            ..
-            fonts
-                local
-                ..
             ..
         ..
     ..
@@ -275,6 +270,10 @@
         ..
         applications
         ..
+        bash-completion
+            completions
+            ..
+        ..
         dict
         ..
         doc
@@ -286,6 +285,12 @@
             ..
         ..
         examples
+        ..
+        fish
+            vendor_completions.d
+            ..
+        ..
+        info
         ..
         java
             classes
@@ -645,6 +650,26 @@
                 ..
             ..
         ..
+        man
+            man1
+            ..
+            man2
+            ..
+            man3
+            ..
+            man4
+            ..
+            man5
+            ..
+            man6
+            ..
+            man7
+            ..
+            man8
+            ..
+            man9
+            ..
+        ..
         misc
         ..
         nls
@@ -956,6 +981,10 @@
         skel
         ..
         xml
+        ..
+        zsh
+            site-functions
+            ..
         ..
     ..
     tests
