@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-user-share
 PORTVERSION=	3.14.0
 PORTREVISION=	2
@@ -19,7 +17,7 @@ LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
 RUN_DEPENDS=	${LOCALBASE}/${APACHEMODDIR}/mod_dnssd.so:www/mod_dnssd \
 		console-kit-daemon:sysutils/consolekit2
 
-USES=		gettext gmake libtool pkgconfig tar:xz
+USES=		gettext gmake gnome libtool pkgconfig tar:xz xorg
 USE_APACHE=	22+
 USE_XORG=	sm
 USE_GNOME=	gnomeprefix gtk30 intlhack nautilus3
