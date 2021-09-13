@@ -23,7 +23,6 @@ SUBDIR += google-sitemapgen
 SUBDIR += googler
 SUBDIR += gstreamer-plugins-neon
 SUBDIR += gstreamer1-plugins-neon
-SUBDIR += gtkhtml3
 SUBDIR += joomla3
 SUBDIR += libdom
 SUBDIR += libhubbub
