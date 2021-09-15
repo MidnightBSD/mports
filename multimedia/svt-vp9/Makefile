@@ -1,11 +1,11 @@
-PORTNAME=	svt-hevc
+PORTNAME=	svt-vp9
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.5.1
+DISTVERSION=	0.3.0
 PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Scalable HEVC encoder
+COMMENT=	Scalable VP9 encoder
 
 LICENSE=	BSD2CLAUSE+PATENT
 LICENSE_GROUPS=	FSF OSI COPYFREE
@@ -22,8 +22,8 @@ USES=		cmake compiler:c11
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	OpenVisualCloud
-GH_PROJECT=	SVT-HEVC
-CMAKE_OFF=	NATIVE
+GH_PROJECT=	SVT-VP9
+CMAKE_OFF=	NATIVE YASM
 
 OPTIONS_DEFINE=	LTO
 OPTIONS_DEFAULT=LTO
@@ -36,9 +36,11 @@ LTO_LDFLAGS=		-fuse-ld=lld
 .endif
 
 post-patch:
-# Keep using nasm and drop vendor -O/-g
-	@${REINPLACE_CMD} -e '/find_program.*yasm/d' \
-		-Ee '/set.*(release|debug)_flags_to_test/,/\)/d' \
-		${WRKSRC}/CMakeLists.txt
+# Avoid conflict with standard types
+	@${GREP} -Flr '_T_DEFINED' ${WRKSRC} | ${XARGS} \
+		${REINPLACE_CMD} -i .types 's/_T_DEFINED/_DEFINED/'
+# Avoid platform whitelists for generic non-Windows code
+	@${GREP} --exclude='*/third_party/*' -Flr '__linux' ${WRKSRC} | ${XARGS} \
+		${REINPLACE_CMD} -i .opsys -E 's/__linux(__)?/__unix__/'
 
 .include <bsd.port.mk>

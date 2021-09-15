@@ -109,6 +109,7 @@ SUBDIR += schroedinger
 SUBDIR += smpeg
 SUBDIR += streamlink
 SUBDIR += svt-hevc
+SUBDIR += svt-vp9
 SUBDIR += totem
 SUBDIR += totem-pl-parser
 SUBDIR += v4l-utils
