@@ -108,6 +108,7 @@ SUBDIR += rtmpdump
 SUBDIR += schroedinger
 SUBDIR += smpeg
 SUBDIR += streamlink
+SUBDIR += svt-hevc
 SUBDIR += totem
 SUBDIR += totem-pl-parser
 SUBDIR += v4l-utils
