@@ -1,5 +1,5 @@
 PORTNAME=	libwpe
-PORTVERSION=	1.4.0.1
+PORTVERSION=	1.10.1
 CATEGORIES=	www
 MASTER_SITES=	https://wpewebkit.org/releases/
 
@@ -7,12 +7,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General-purpose library for WPE WebKit
 
 LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake compiler:c11 gl localbase:ldflags pkgconfig \
-		tar:xz
-
+USES=		compiler:c11 gl meson pkgconfig tar:xz
 USE_GL=		egl
 USE_LDCONFIG=	yes
 
