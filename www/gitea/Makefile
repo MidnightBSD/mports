@@ -1,6 +1,6 @@
 PORTNAME=	gitea
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.13.6
+DISTVERSION=	1.15.2
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/go-gitea/gitea/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 DISTNAME=	gitea-src-${DISTVERSION}
@@ -13,16 +13,18 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	git:devel/git
 
-USES=		gmake go:no_targets
+USES=		cpe gmake go:no_targets
 USE_RC_SUBR=	gitea
-NO_WRKSUBDIR=	yes
-PORTDATA=	*
 
 SUB_FILES+=	app.ini.sample
 SUB_LIST+=	GITUSER=${USERS}
 
+NO_WRKSUBDIR=	yes
+
 USERS=		git
 GROUPS=		git
+
+PORTDATA=	*
 
 OPTIONS_DEFINE=	BINDATA GIT_LFS PAM SQLITE
 OPTIONS_DEFAULT=	GIT_LFS PAM SQLITE
