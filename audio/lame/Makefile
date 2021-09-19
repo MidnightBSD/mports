@@ -1,6 +1,6 @@
 PORTNAME=	lame
 PORTVERSION=	3.100
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/3.100
 
@@ -10,10 +10,12 @@ COMMENT=	Fast MP3 encoder kit
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake iconv libtool
+USES=		cpe gmake iconv libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-nasm --enable-mp3rtp --disable-gtktest
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CPE_VENDOR=	lame_project
 
 DOC_FILES=	API LICENSE README TODO USAGE
 
