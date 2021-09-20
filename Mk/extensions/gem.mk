@@ -71,9 +71,9 @@ GEMFILES=	${DISTNAME}${EXTRACT_SUFX}
 RUBYGEM_ARGS=-l --no-update-sources --install-dir ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/gems/${RUBY_VER} --ignore-dependencies --bindir=${FAKE_DESTDIR}${TRUE_PREFIX}/bin
 
 .if ${PORT_OPTIONS:MDOCS}
-RUBYGEM_ARGS+=	--rdoc --ri
+RUBYGEM_ARGS+=	--document rdoc,ri
 .else
-RUBYGEM_ARGS+=	--no-rdoc --no-ri
+RUBYGEM_ARGS+=	--no-document
 .endif
 
 .if !target(do-extract)
@@ -101,7 +101,7 @@ do-build:
 
 .if !target(do-install)
 do-install:
-	(cd ${BUILD_WRKSRC}; ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} -- --build-args ${CONFIGURE_ARGS})
+	(cd ${BUILD_WRKSRC}; ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} ${CONFIGURE_ARGS})
 	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}/build_info/
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f \( -name mkmf.log -or -name gem_make.out \) -delete
@@ -116,7 +116,7 @@ do-install:
 .if empty(gem_ARGS:Mnoautoplist)
 _USES_install+=	820:gem-autoplist
 gem-autoplist:
-	@${ECHO} ${GEM_SPEC} >> ${TMPPLIST}
+	@${ECHO_CMD} ${GEM_SPEC} >> ${TMPPLIST}
 .if ${PORT_OPTIONS:MDOCS}
 	@${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${DOC_DIR} -type f -print | ${SED} -E -e \
 		's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST}
