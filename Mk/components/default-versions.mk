@@ -57,8 +57,8 @@ PYTHON_DEFAULT?=	3.8
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.7, 3.8, 3.9
 PYTHON3_DEFAULT?=	3.8
-# Possible values: 2.6
-RUBY_DEFAULT?=		2.6
+# Possible values: 2.6, 2.7, 3.0
+RUBY_DEFAULT?=		2.7
 # Possible values: rust, rust-bin
 RUST_DEFAULT?=		rust
 # Possible values: 4.13
