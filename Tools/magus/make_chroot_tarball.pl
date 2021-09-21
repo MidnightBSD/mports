@@ -99,6 +99,7 @@ my @files = qw(
   /var/heimdal
   /var/preserve
   /var/run/ppp
+  /var/run/os-release
   /var/tmp/vi.recover
   /var/unbound
   /var/yp/Makefile
