@@ -1,5 +1,6 @@
 PORTNAME=	etc_os-release
 PORTVERSION=	0.1
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	#
 DISTFILES=	#
@@ -25,8 +26,15 @@ CONTENTS=	'NAME=MidnightBSD\0'$\
 		'HOME_URL=https://midnightbsd.org/\0'$\
 		'BUG_REPORT_URL=https://bugreport.midnightbsd.org'
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 201001
+IGNORE=		/etc/os-release is present in base
+.endif
+
+
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc
 	${ECHO} -e ${CONTENTS} | ${XARGS} -0 -n 1 >> ${STAGEDIR}${PREFIX}/${PLIST_FILES}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
