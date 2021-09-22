@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	mDNSResponder
 PORTVERSION=	1096.0.2
 CATEGORIES=	dns net
@@ -12,7 +10,8 @@ COMMENT=	Apple mDNS responder - BSD nsswitch module
 LICENSE=    	apache2 bsd3
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
+# use base system version for now
+#LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
 
 CONFLICTS_INSTALL=	nss_mdns-[0-9]*
 
