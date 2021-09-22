@@ -1,5 +1,6 @@
 PORTNAME=	nmh
 PORTVERSION=	1.7.1
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	SAVANNAH
 
@@ -8,7 +9,7 @@ COMMENT=	Cleaned up MH mailer suite
 
 LICENSE=	bsd3
 
-USES=		cpe gmake iconv ncurses shebangfix
+USES=		cpe gmake iconv ncurses readline shebangfix
 SHEBANG_FILES=	docs/contrib/ml docs/contrib/replyfilter docs/contrib/vpick
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir=${PREFIX}/libexec/nmh \
