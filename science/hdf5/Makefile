@@ -30,7 +30,8 @@ CONFIGURE_ARGS=	--enable-hl \
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 USE_LDCONFIG=	yes
 
 PORTEXAMPLES=	*
