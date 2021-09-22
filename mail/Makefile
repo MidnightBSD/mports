@@ -5,6 +5,7 @@ SUBDIR += addresses
 SUBDIR += addresses-goodies
 SUBDIR += alpine
 SUBDIR += antivirus-milter
+SUBDIR += batv-milter
 SUBDIR += bogofilter
 SUBDIR += cclient
 SUBDIR += claws-mail
