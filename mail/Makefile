@@ -1,6 +1,7 @@
 COMMENT = Electronic mail utilities
 
 SUBDIR += abook
+SUBDIR += adcomplain
 SUBDIR += addresses
 SUBDIR += addresses-goodies
 SUBDIR += alpine
