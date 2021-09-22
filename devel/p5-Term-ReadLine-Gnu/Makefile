@@ -13,6 +13,8 @@ LICENSE_COMB=	dual
 USES=		perl5 readline
 USE_PERL5=	configure
 
+CONFIGURE_ARGS=	--prefix=${PREFIX}
+
 CFLAGS+=	${CPPFLAGS}
 
 NO_TEST=	yes
