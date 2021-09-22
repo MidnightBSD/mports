@@ -1,7 +1,7 @@
 # Created by: ijliao
 
 PORTNAME=	help2man
-PORTVERSION=	1.48.3
+PORTVERSION=	1.48.5
 CATEGORIES=	misc
 MASTER_SITES=	GNU
 
@@ -29,7 +29,7 @@ NLS_USES=		gettext
 NLS_VARS=		CONFIGURE_FAIL_MESSAGE="Rebuild lang/${PERL_PORT} and devel/p5-Locale-gettext manually before contacting maintainer."
 NLS_VARS_OFF=		NO_ARCH=yes
 
-.for lang in de es fr pl pt_BR sr sv ta uk zh_CN
+.for lang in de es fr pl pt_BR sr sv uk zh_CN
 NLS_INFO+=		help2man-${lang}
 .endfor
 
