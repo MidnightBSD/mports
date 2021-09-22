@@ -16,7 +16,7 @@ CPE_VENDOR=	transmissionbt
 CPE_PRODUCT=	transmission
 
 .if ${SLAVEPORT:Ncli}
-LICENSE+=	GPLv2+
+LICENSE+=	gpl2
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 .endif
