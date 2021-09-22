@@ -4,6 +4,7 @@ SUBDIR += abook
 SUBDIR += addresses
 SUBDIR += addresses-goodies
 SUBDIR += alpine
+SUBDIR += antivirus-milter
 SUBDIR += bogofilter
 SUBDIR += cclient
 SUBDIR += claws-mail
