@@ -18,6 +18,6 @@ PLIST_FILES=	bin/zssh bin/ztelnet \
 		man/man1/zssh.1.gz man/man1/ztelnet.1.gz
 
 post-configure:
-	@${REINPLACE_CMD} -e 's,^prefix.*,prefix = ${FAKE_DESTDIR}${PREFIX},g' ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e 's,^prefix.*,prefix = ${PREFIX},g' ${WRKSRC}/Makefile
 
 .include <bsd.port.mk>
