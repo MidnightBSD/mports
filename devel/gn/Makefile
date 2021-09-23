@@ -30,14 +30,13 @@ CONFIGURE_WRKSRC=	${WRKSRC}/out # --out-path breaks "make test"
 
 PLIST_FILES=	bin/${PORTNAME}
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} 's/"python3"/"${PYTHON_CMD:T}"/' \
 		${WRKSRC}/src/gn/exec_process_unittest.cc
 
 do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-
-do-test:
-	${TEST_WRKSRC}/gn_unittests
 
 .include <bsd.port.mk>
