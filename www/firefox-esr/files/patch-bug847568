@@ -121,39 +121,8 @@ index e06ae3457a47..93faa61594a3 100755
  if CONFIG['MOZ_WIDGET_TOOLKIT'] in ('gtk3', 'android'):
      CXXFLAGS += CONFIG['MOZ_CAIRO_CFLAGS']
      CXXFLAGS += CONFIG['CAIRO_FT_CFLAGS']
-diff --git gfx/skia/moz.build gfx/skia/moz.build
-index 2118677ca3a8..e4978b413784 100644
---- gfx/skia/moz.build
-+++ gfx/skia/moz.build
-@@ -822,6 +822,9 @@ if CONFIG['CC_TYPE'] in ('clang', 'clang-cl'):
-         '-Wno-unused-private-field',
-     ]
- 
-+if CONFIG['MOZ_SYSTEM_HARFBUZZ']:
-+    CXXFLAGS += CONFIG['MOZ_HARFBUZZ_CFLAGS']
-+
- if CONFIG['MOZ_WIDGET_TOOLKIT'] in ('gtk3', 'android'):
-     CXXFLAGS += CONFIG['MOZ_CAIRO_CFLAGS']
-     CXXFLAGS += CONFIG['CAIRO_FT_CFLAGS']
 diff --git gfx/thebes/moz.build gfx/thebes/moz.build
 index 56f1b9fe3f4b..0ac1100b0df3 100644
---- gfx/thebes/moz.build
-+++ gfx/thebes/moz.build
-@@ -288,7 +288,13 @@ if CONFIG['MOZ_WIDGET_TOOLKIT'] == 'gtk3':
- 
- LOCAL_INCLUDES += CONFIG['SKIA_INCLUDES']
- 
--DEFINES['GRAPHITE2_STATIC'] = True
-+if CONFIG['MOZ_SYSTEM_GRAPHITE2']:
-+    CXXFLAGS += CONFIG['MOZ_GRAPHITE2_CFLAGS']
-+else:
-+    DEFINES['GRAPHITE2_STATIC'] = True
-+
-+if CONFIG['MOZ_SYSTEM_HARFBUZZ']:
-+    CXXFLAGS += CONFIG['MOZ_HARFBUZZ_CFLAGS']
- 
- if CONFIG['CC_TYPE'] == 'clang':
-     # Suppress warnings from Skia header files.
 diff --git intl/unicharutil/util/moz.build intl/unicharutil/util/moz.build
 index cb1233c56d7e..06fb1f9f174b 100644
 --- intl/unicharutil/util/moz.build
@@ -177,38 +146,6 @@ index 79c26e3e7001..c4d93bc5f7dc 100644
 +
 +if CONFIG['MOZ_SYSTEM_HARFBUZZ']:
 +    CXXFLAGS += CONFIG['MOZ_HARFBUZZ_CFLAGS']
-diff --git old-configure.in old-configure.in
-index 95a58b634593..b614eef85c89 100644
---- old-configure.in
-+++ old-configure.in
-@@ -3951,6 +3951,27 @@ dnl ========================================================
- 
- AC_SUBST(MOZ_LINUX_32_SSE2_STARTUP_ERROR)
- 
-+dnl ========================================================
-+dnl Check for graphite2
-+dnl ========================================================
-+if test -n "$MOZ_SYSTEM_GRAPHITE2"; then
-+    dnl graphite2.pc has bogus version, check manually
-+    _SAVE_CFLAGS=$CFLAGS
-+    CFLAGS="$CFLAGS $MOZ_GRAPHITE2_CFLAGS"
-+    AC_TRY_COMPILE([ #include <graphite2/Font.h>
-+                     #define GR2_VERSION_REQUIRE(major,minor,bugfix)  \
-+                             ( GR2_VERSION_MAJOR * 10000 + GR2_VERSION_MINOR \
-+                               * 100 + GR2_VERSION_BUGFIX >= \
-+                               (major) * 10000 + (minor) * 100 + (bugfix) )
-+                   ], [
-+                     #if !GR2_VERSION_REQUIRE(1,3,12)
-+                     #error "Insufficient graphite2 version."
-+                     #endif
-+                   ], [],
-+                   [AC_MSG_ERROR([--with-system-graphite2 requested but no working libgraphite2 found])])
-+    CFLAGS=$_SAVE_CFLAGS
-+fi
-+
- dnl ========================================================
- dnl Check for pixman and cairo
- dnl ========================================================
 diff --git toolkit/library/moz.build toolkit/library/moz.build
 index 24f940e1ed7e..079a575adec3 100644
 --- toolkit/library/moz.build

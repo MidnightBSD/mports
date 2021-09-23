@@ -1,6 +1,6 @@
 PORTNAME=	firefox
 PORTVERSION=	${VER}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 
@@ -14,13 +14,13 @@ LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libvpx.so:multimedia/libvpx \
 		libevent.so:devel/libevent \
 		libstartup-notification-1.so:x11/startup-notification \
-		nspr>=4.25:devel/nspr \
-		nss>=3.51.1:security/nss \
-		icu>=61.1,1:devel/icu \
-		harfbuzz>=2.6.4:print/harfbuzz \
-		graphite2>=1.3.14:graphics/graphite2 \
-		png>=1.6.35:graphics/png \
-		ffmpeg:multimedia/ffmpeg \
+		libnspr4.so:devel/nspr \
+		libnss3.so:security/nss \
+		libicui18n.so.67:devel/icu \
+		libharfbuzz.so:print/harfbuzz \
+		libgraphite2.so.3:graphics/graphite2 \
+		libpng16.so:graphics/png \
+		libavcodec.so:multimedia/ffmpeg \
 		libffi.so:devel/libffi \
 		libpixman-1.so:x11/pixman \
 		libwebp.so:graphics/webp \
@@ -31,7 +31,7 @@ LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libdbus-glib-1.so:devel/dbus-glib \
 		libatk-1.0.so:accessibility/atk
 
-USES=		compiler:c++17-lang cpe gl gettext:runtime gmake gnome iconv jpeg localbase perl5 pkgconfig \
+USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
 		desktop-file-utils tar:xz
 CPE_VENDOR=	mozilla
 USE_GL=         gl
