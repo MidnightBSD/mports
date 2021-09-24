@@ -27,4 +27,7 @@ SIMD_MESON_OFF=	-Denable-mmx=false -Denable-sse=false \
 		-Denable-sse4_1=false -Denable-avx2=false \
 		-Denable-f16c=false
 
+# magus issue
+NO_TEST=	yes
+
 .include <bsd.port.mk>
