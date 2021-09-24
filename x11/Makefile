@@ -83,6 +83,7 @@ SUBDIR += mate-desktop
 SUBDIR += mate-menus
 SUBDIR += mate-panel
 SUBDIR += mate-session-manager
+SUBDIR += menu-cache
 SUBDIR += mkcomposecache
 SUBDIR += mlogind
 SUBDIR += numlockx
