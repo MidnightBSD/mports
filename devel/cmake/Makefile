@@ -1,5 +1,5 @@
 PORTNAME=	cmake
-DISTVERSION=	3.20.3
+DISTVERSION=	3.21.2
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/Kitware/CMake/releases/download/v${DISTVERSION}/ \
@@ -47,7 +47,11 @@ INSTALL_TARGET=	install/strip
 
 # CMake >= 3.1.0 needs libarchive3 because it calls
 # archive_entry_copy_sourcepath_w and archive_write_set_format_7zip.
-LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
+LIB_DEPENDS+=	libarchive.so.13:archivers/libarchive
+
+pre-configure:
+	@${CP} "${FILESDIR}/InitialCache.cmake" "${WRKSRC}/InitialCache.cmake"
+
 
 post-patch:
 	@${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
