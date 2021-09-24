@@ -1,12 +1,17 @@
 PORTNAME=	poppler-data
-PORTVERSION=	0.4.9
+DISTVERSION=	0.4.11
 CATEGORIES=	graphics
 MASTER_SITES=	http://poppler.freedesktop.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Poppler encoding data
 
-LICENSE=	agg
+LICENSE=	mit ADOBE gpl2
+LICENSE_COMB=	multi
+LICENSE_NAME_ADOBE=	Adobe Systems Incorporated license
+LICENSE_FILE_ADOBE=	${WRKSRC}/COPYING.adobe  # similar to BSD3CLAUSE
+LICENSE_FILE_gpl2=	${WRKSRC}/COPYING.gpl2
+LICENSE_PERMS_ADOBE=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		pathfix
 PATHFIX_MAKEFILEIN=Makefile
