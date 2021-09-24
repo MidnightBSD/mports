@@ -27,6 +27,7 @@ SUBDIR += phoronix-test-suite
 SUBDIR += raidtest
 SUBDIR += ramspeed
 SUBDIR += scimark2c
+SUBDIR += shellbench
 SUBDIR += siege
 SUBDIR += sysbench
 SUBDIR += unixbench
