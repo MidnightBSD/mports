@@ -1,5 +1,5 @@
 PORTNAME=	rdiscount
-PORTVERSION=	2.2.0.1
+PORTVERSION=	2.2.0.2
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
@@ -13,13 +13,15 @@ USES=		gem
 
 PLIST_FILES=	bin/rdiscount
 
+RUBY_VER_SHORT=            ${RUBY_VER:S/.//}
+
 pre-build:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/bin/
-	${LN} /usr/local/bin/ruby26 ${FAKE_DESTDIR}${PREFIX}/bin/ruby26
+	${LN} /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_VER_SHORT}
 
 post-fake:
 	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/bin/rdiscount \
-		${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/2.6/doc/rdiscount-2.2.0.1/rdoc/ext/Makefile.html
-	${RM} ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/2.6/doc/rdiscount-2.2.0.1/rdoc/ext/Makefile.html.bak
+		${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/rdiscount-${DISTVERSION}/rdoc/ext/Makefile.html
+	${RM} ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/rdiscount-${DISTVERSION}/rdoc/ext/Makefile.html.bak
 
 .include <bsd.port.mk>
