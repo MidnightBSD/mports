@@ -4,6 +4,7 @@ SUBDIR += caja
 SUBDIR += gentoo
 SUBDIR += nautilus
 SUBDIR += nemo
+SUBDIR += pcmanfm
 SUBDIR += sushi
 SUBDIR += thunar
 SUBDIR += thunar-vfs

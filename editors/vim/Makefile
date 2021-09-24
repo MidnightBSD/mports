@@ -146,6 +146,8 @@ TCL_CONFIGURE_ENABLE=	tclinterp
 TCL_CONFIGURE_WITH=	tclsh=tclsh${TCL_VER}
 TCL_USES=		tcl:85+
 
+.include <bsd.mport.options.mk>
+
 post-extract:
 	${INSTALL_DATA} ${FILESDIR}/vietnamese_viscii.vim ${WRKSRC}/runtime/keymap
 
@@ -155,7 +157,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-liconv|${ICONV_LIB}|g; s|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/src/auto/configure
 # Work around qa-check shebang error
-	@${REINPLACE_CMD} -e 1d ${WRKSRC}/runtime/tools/demoserver.py
+	@${REINPLACE_CMD} -e 1d ${WRKSRC}/runtime/tools/demoserver.py && \
+	${RM} ${WRKSRC}/runtime/tools/demoserver.py.bak
 
 post-configure:
 # Needed when devel/libsysinfo is installed:
