@@ -1,11 +1,11 @@
 PORTNAME=	vim
 PORTVERSION=	8.2.0345
-PORTREVISION=	1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Improved version of the vi editor
+COMMENT=	Improved version of the vi editor
 
 LICENSE=	VIM
 LICENSE_NAME=	VIM License
