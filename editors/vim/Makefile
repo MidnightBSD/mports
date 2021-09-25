@@ -1,7 +1,7 @@
 PORTNAME=	vim
 PORTVERSION=	8.2.0345
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,8 @@ CONFLICTS_INSTALL?=	vim-console vim-tiny
 USES=		cpe iconv ncurses pkgconfig shebangfix
 USE_GITHUB=	yes
 
-CONFIGURE_ARGS=	--enable-gui=${GUI} \
+CONFIGURE_ARGS=	--disable-canberra \
+		--enable-gui=${GUI} \
 		--enable-multibyte \
 		--with-tlib=ncurses
 MAKE_ARGS=	STRIP="${STRIP_CMD}" \
@@ -35,12 +36,12 @@ SHEBANG_FILES=	runtime/tools/demoserver.py runtime/tools/efm_perl.pl
 VIM_VER=	${PORTNAME}${PORTVERSION:R:S|.||g}
 
 # OPTIONS
-OPTIONS_DEFAULT=	CSCOPE DEFAULT_VIMRC EXUBERANT_CTAGS GTK2 PERL PYTHON2 RUBY
+OPTIONS_DEFAULT=	CSCOPE DEFAULT_VIMRC EXUBERANT_CTAGS GTK2 PERL PYTHON RUBY
 OPTIONS_DEFINE=		CSCOPE DEFAULT_VIMRC EXUBERANT_CTAGS NLS XTERM_SAVE
 OPTIONS_SINGLE=		UI
 OPTIONS_SINGLE_UI=	ATHENA CONSOLE GNOME GTK2 GTK3 MOTIF X11
 OPTIONS_GROUP=		LANGBIND
-OPTIONS_GROUP_LANGBIND=	LUA PERL PYTHON2 PYTHON3 RUBY SCHEME TCL
+OPTIONS_GROUP_LANGBIND=	LUA PERL PYTHON RUBY SCHEME TCL
 OPTIONS_SUB=		yes
 
 .if defined(CONSOLE)
@@ -126,14 +127,9 @@ LUA_USES=		lua
 PERL_CONFIGURE_ENABLE=	perlinterp
 PERL_USES=		perl5
 
-PYTHON2_CONFIGURE_ENABLE=	pythoninterp
-PYTHON2_CONFIGURE_WITH=	python-command=${LOCALBASE}/bin/python${PYTHON2_DEFAULT}
-PYTHON2_BUILD_DEPENDS=	python${PYTHON2_DEFAULT}:lang/python${PYTHON2_DEFAULT:S/.//}
-PYTHON2_RUN_DEPENDS=	${PYTHON2_BUILD_DEPENDS}
-
-PYTHON3_CONFIGURE_ENABLE=	python3interp
-PYTHON3_CONFIGURE_WITH=	python3-command=${PYTHON_CMD}
-PYTHON3_USES=		python:3.4+
+PYTHON_CONFIGURE_ENABLE=	python3interp
+PYTHON_CONFIGURE_WITH=	python3-command=${PYTHON_CMD}
+PYTHON_USES=		python:3.7+
 
 RUBY_CONFIGURE_ENABLE=	rubyinterp
 RUBY_USE=		RUBY=yes
@@ -144,7 +140,7 @@ SCHEME_RUN_DEPENDS=	${SCHEME_BUILD_DEPENDS}
 
 TCL_CONFIGURE_ENABLE=	tclinterp
 TCL_CONFIGURE_WITH=	tclsh=tclsh${TCL_VER}
-TCL_USES=		tcl:85+
+TCL_USES=		tcl:86+
 
 .include <bsd.mport.options.mk>
 
@@ -157,7 +153,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-liconv|${ICONV_LIB}|g; s|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/src/auto/configure
 # Work around qa-check shebang error
-	@${REINPLACE_CMD} -e 1d ${WRKSRC}/runtime/tools/demoserver.py && \
+	-${REINPLACE_CMD} -e 1d ${WRKSRC}/runtime/tools/demoserver.py && \
 	${RM} ${WRKSRC}/runtime/tools/demoserver.py.bak
 
 post-configure:
@@ -166,10 +162,10 @@ post-configure:
 
 .if !defined(TINY)
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/bin/ex
-	@${RM} ${STAGEDIR}${PREFIX}/bin/view
+	@${RM} ${PREFIX}/bin/ex
+	@${RM} ${PREFIX}/bin/view
 .for F in eview evim gview gvim gvimdiff rgview rgvim rview rvim vimdiff
-	${LN} -sf vim ${STAGEDIR}${PREFIX}/bin/$F
+	${LN} -sf vim ${PREFIX}/bin/$F
 .endfor
 
 # OPTIONS
