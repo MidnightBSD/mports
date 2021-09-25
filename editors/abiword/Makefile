@@ -1,6 +1,6 @@
 PORTNAME=	abiword
 PORTVERSION=	3.0.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/abiword/${PORTVERSION}/source/
 DIST_SUBDIR=	AbiWord
@@ -29,7 +29,7 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libwmf.so:graphics/libwmf
 RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSerif.ttf:x11-fonts/dejavu
 
-USES=		compiler:c++17-lang desktop-file-utils gmake gnome iconv jpeg \
+USES=		compiler:c++17-lang cpe desktop-file-utils gmake gnome iconv jpeg \
 		libtool pathfix pkgconfig readline
 USE_GNOME=	libxml2 cairo gtk30 librsvg2 libxslt
 USE_XORG+=	x11
@@ -41,6 +41,8 @@ CONFIGURE_ARGS=	--without-gnomevfs --enable-plugins="${ABIWORD_PLUGINS}" \
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
+
+CPE_VENDOR=	abisource
 
 PLIST_SUB+=	ABIVERSION=3.0
 
