@@ -6,9 +6,9 @@ CATEGORIES=	devel python
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
 
-CONFLICTS_INSTALL=      py[23][6-8]-viewvc-1.3*
-
 LICENSE=	bsd2
+
+CONFLICTS_INSTALL=      py[23][6-8]-viewvc-1.3*
 
 USES=		cpe python:2.7
 USE_GITHUB=	yes
