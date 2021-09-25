@@ -2,6 +2,7 @@
 
 PORTNAME=	zsh
 DISTVERSION=	5.8
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	https://www.zsh.org/pub/ \
 		SF \
@@ -10,7 +11,7 @@ MASTER_SITES=	https://www.zsh.org/pub/ \
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Z shell
+COMMENT=	Z shell
 
 LICENSE=	ZSH
 LICENSE_NAME=	ZSH license
@@ -19,7 +20,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 MAKE_JOBS_UNSAFE=	yes
 
-USES=		autoreconf iconv localbase:ldflags ncurses shebangfix tar:xz
+USES=		autoreconf cpe iconv localbase:ldflags ncurses shebangfix tar:xz
 
 SHEBANG_LANG=	zsh
 zsh_OLD_CMD=	zsh	# shebang appears as /bin/zsh and just zsh
@@ -118,7 +119,7 @@ post-install:
 	(${STAGEDIR}${PREFIX}/bin/zsh -fc ' \
 		setopt extendedglob nomark_dirs; \
 		cd ${STAGEDIR}/${DATADIR}/${ZSH_VER} ; \
-		rm -f functions/**/*.orig ; \
+		${RM} -f functions/**/*.orig ; \
 		for i in functions/**/*(/) ; do \
 			zcompile -U -M $$i.zwc $$i/*~*.zwc(^/) ; \
 			${CHMOD} 644 $$i.zwc ; \
