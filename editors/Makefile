@@ -18,7 +18,6 @@ SUBDIR += nano
 SUBDIR += nvi-devel
 SUBDIR += pico-alpine
 SUBDIR += vim
-SUBDIR += vim-console
 SUBDIR += xed
 SUBDIR += zile
 
