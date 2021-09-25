@@ -1,10 +1,9 @@
 # Created by: Jun-ichiro itojun Hagino <itojun@itojun.org>
-# $MidnightBSD$
 #
 # This port is self contained in the src directory.
 
 PORTNAME=	portlint
-PORTVERSION=	2.18.3
+PORTVERSION=	2.19.8
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
