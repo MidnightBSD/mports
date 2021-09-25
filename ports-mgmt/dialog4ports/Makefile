@@ -1,11 +1,9 @@
 PORTNAME=	dialog4ports
 PORTVERSION=	0.1.6
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	ports-mgmt
-MASTER_SITES=	http://m1cro.me/dialog4ports/ \
-		http://files.etoilebsd.net/dialog4ports/ \
+MASTER_SITES=	https://files.etoilebsd.net/dialog4ports/ \
 		http://mirror.shatow.net/freebsd/${PORTNAME}/ \
-		http://m1cro.me/dialog4ports/:dialog \
 		http://files.etoilebsd.net/dialog4ports/:dialog \
 		ftp://invisible-island.net/dialog/:dialog \
 		http://mirror.shatow.net/freebsd/${PORTNAME}/:dialog
@@ -22,7 +20,6 @@ FAKE_OPTS+=	trueprefix
 # CCACHE has options, so may need d4p, make d4p not ccache friendly
 # to avoid circular dependency
 NO_CCACHE=	yes
-MANCOMPRESSED=	yes
 MAKE_ENV+=	__MAKE_CONF=/dev/null SRCCONF=/dev/null
 
 .if !defined(D4P_SLAVE)
@@ -41,15 +38,15 @@ MAKE_ARGS+=	DEBUG_FLAGS="${DEBUG_FLAGS}"
 DIALOG4PORTS=	${WRKSRC}/dialog4ports
 .endif
 
-.if ${OSVERSION} < 4016 || defined(D4P_SLAVE)
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
+.if defined(D4P_SLAVE)
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		${DIALOGNAME}.tgz:dialog
 DIALOGNAME=	dialog-1.1-20120706
 
 MAKE_ENV+=	DIALOGSOURCES=${WRKDIR}/${DIALOGNAME}
 
 do-configure:
-	@cd ${WRKDIR}/${DIALOGNAME}; ./configure --build=${ARCH}-portbld-freebsd7.0
+	@cd ${WRKDIR}/${DIALOGNAME}; ./configure --build=${ARCH}-portbld-freebsd11.3
 
 .endif
 
