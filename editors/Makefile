@@ -17,6 +17,7 @@ SUBDIR += mousepad
 SUBDIR += nano
 SUBDIR += nvi-devel
 SUBDIR += pico-alpine
+SUBDIR += sublime-text4
 SUBDIR += vim
 SUBDIR += xed
 SUBDIR += zile
