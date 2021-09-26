@@ -219,5 +219,6 @@ SUBDIR += wpebackend-fdo
 SUBDIR += xsp
 SUBDIR += yuicompressor
 SUBDIR += zend-framework
+SUBDIR += zenphoto
 
 .include <bsd.port.subdir.mk>
