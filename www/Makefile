@@ -66,6 +66,7 @@ SUBDIR += npm
 SUBDIR += npm-node10
 SUBDIR += node
 SUBDIR += node10
+SUBDIR += node14
 SUBDIR += nspluginwrapper
 SUBDIR += p5-Apache-LogFormat-Compiler
 SUBDIR += p5-CGI-Ajax
