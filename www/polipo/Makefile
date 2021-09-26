@@ -51,6 +51,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/forbidden.sample ${FAKE_DESTDIR}${PCONFIGDIR}
 	${CHGRP} -R ${PGRP} ${FAKE_DESTDIR}${PCONFIGDIR}
 .if !defined(NO_PTEXINFO)
+	${MKDIR} ${PREFIX}/info
 	${INSTALL_DATA} ${WRKSRC}/polipo.info ${PREFIX}/info/
 .endif
 .if !defined(NOPORTDOCS)
