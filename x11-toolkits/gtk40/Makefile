@@ -99,7 +99,7 @@ X11_USES=		xorg
 X11_USE=		XORG=x11,xcomposite,xcursor,xdamage,xext,xfixes,xi,xinerama,xrandr,xrender
 
 pre-build:
-	@${RM} -r ${WRKSRC}/docs/gtk.info*
+	-${RM} -r ${WRKSRC}/docs/gtk.info*
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-4.0/engines
