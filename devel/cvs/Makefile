@@ -35,6 +35,7 @@ DESTDIRNAME=	NADA
 MAKE_ARGS=	DESTDIR=${FAKE_DESTDIR}${TRUE_PREFIX}
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/contrib
+	${MKDIR} ${PREFIX}/info
+	@${MKDIR} ${EXAMPLESDIR}/contrib
 
 .include <bsd.port.mk>
