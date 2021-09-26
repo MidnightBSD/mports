@@ -74,9 +74,12 @@ LDFLAGS+=      -fuse-ld=lld
 .endif
 
 .include <bsd.port.pre.mk>
+
+.if !exists(/etc/rc.d/os-release) && (${OSVERSION} < 201001)
 RUN_DEPENDS+=	etc_os-release>0:sysutils/etc_os-release
 post-patch:
 	@${REINPLACE_CMD}  -e 's|/etc/os-release|${LOCALBASE}/etc/os-release|g' \
 		${WRKSRC}/panels/common/cc-os-release.c
+.endif
 
 .include <bsd.port.post.mk>
