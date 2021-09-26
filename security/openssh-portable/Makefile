@@ -1,5 +1,5 @@
 PORTNAME=	openssh
-DISTVERSION=	8.6p1
+DISTVERSION=	8.7p1
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	security
@@ -16,7 +16,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel-*
 
-USES=			alias autoreconf compiler:c11 cpe localbase ncurses \
+USES=			autoreconf compiler:c11 cpe localbase ncurses \
 			pkgconfig ssl
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--prefix=${PREFIX} \
@@ -209,6 +209,9 @@ post-configure-XMSS-on:
 
 post-configure-BLACKLISTD-on:
 	@${ECHO_CMD} "#define USE_BLACKLIST 1" >> ${WRKSRC}/config.h
+
+pre-build:
+	${REINPLACE_CMD} -e 's|-Wno-error=format-truncation||g' ${WRKSRC}/Makefile
 
 post-install:
 	${MV} ${STAGEDIR}${ETCDIR}/moduli \
