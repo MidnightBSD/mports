@@ -84,16 +84,17 @@ post-build:
 	done
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/libexec/gnats
+	@${MKDIR} ${PREFIX}/libexec/gnats
+	${MKDIR} ${PREFIX}/info
 
 post-install:
 .if ${PORT_OPTIONS:MSERVER}
-	${MV} ${STAGEDIR}${ETCDIR}/databases.default \
-		${STAGEDIR}${ETCDIR}/databases.sample
-	${MV} ${STAGEDIR}${ETCDIR}/gnatsd.host_access.default \
-		${STAGEDIR}${ETCDIR}/gnatsd.host_access.sample
+	${MV} ${ETCDIR}/databases.default \
+		${ETCDIR}/databases.sample
+	${MV} ${ETCDIR}/gnatsd.host_access.default \
+		${ETCDIR}/gnatsd.host_access.sample
 .endif
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
 
 .include <bsd.port.mk>
