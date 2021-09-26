@@ -11,13 +11,14 @@ LICENSE_FILE=	${WRKSRC}/lib/node_modules/npm/LICENSE
 
 RUN_DEPENDS=	gmake:devel/gmake
 
-CONFLICTS_INSTALL?=	npm-node6 npm-node8 npm-node10
+CONFLICTS_INSTALL?=	npm-node10 npm-node14
 
 OPTIONS_SINGLE=	BACKEND
-OPTIONS_SINGLE_BACKEND=	NODE NODE10
+OPTIONS_SINGLE_BACKEND=	NODE NODE10 NODE14
 OPTIONS_DEFAULT=NODE
 NODE_DESC=	Use Node.js 15.x (www/node) as backend
 NODE10_DESC=	Use Node.js 10.x (www/node10) as backend
+NODE14_DESC=	Use Node.js 14.x (www/node14) as backend
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -32,6 +33,7 @@ SHEBANG_FILES=	lib/node_modules/npm/node_modules/node-gyp/gyp/samples/samples
 
 NODE_RUN_DEPENDS=	node>=0.8.0:www/node
 NODE10_RUN_DEPENDS=	node10>=0.8.0:www/node10
+NODE10_RUN_DEPENDS=	node14>=0.8.0:www/node14
 
 .include <bsd.port.pre.mk>
 
