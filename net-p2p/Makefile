@@ -8,6 +8,7 @@ SUBDIR += transmission
 SUBDIR += transmission-cli
 SUBDIR += transmission-daemon
 SUBDIR += transmission-gtk
+SUBDIR += transmission-utils
 SUBDIR += xnap
 
 .include <bsd.port.subdir.mk>
