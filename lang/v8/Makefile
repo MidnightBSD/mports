@@ -21,12 +21,12 @@ COMMENT=	Open source JavaScript engine by Google
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	binutils>=0:devel/binutils \
+BUILD_DEPENDS=	native-binutils>=0:devel/binutils@native \
 		gn:devel/gn \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR}
 LIB_DEPENDS=	libicudata.so:devel/icu
 
-USES=		cpe gnome ninja pkgconfig python:3.5+,build tar:xz
+USES=		compiler:c++17-lang cpe gnome ninja pkgconfig python:3.5+,build tar:xz
 USE_GNOME=	glib20
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
