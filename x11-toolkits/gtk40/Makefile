@@ -98,6 +98,8 @@ X11_MESON_TRUE=		x11-backend
 X11_USES=		xorg
 X11_USE=		XORG=x11,xcomposite,xcursor,xdamage,xext,xfixes,xi,xinerama,xrandr,xrender
 
+NO_TEST=	yes
+
 pre-build:
 	-${RM} -r ${WRKSRC}/docs/gtk.info*
 
