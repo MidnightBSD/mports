@@ -19,7 +19,7 @@ PLIST_FILES=	bin/ronn
 
 pre-build:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/bin/
-	${LN} /usr/local/bin/ruby26 ${FAKE_DESTDIR}${PREFIX}/bin/ruby26
+	${LN} ${RUBY} ${FAKE_DESTDIR}${RUBY}
 
 post-fake:
 	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/bin/ronn 
