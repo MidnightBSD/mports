@@ -19,7 +19,7 @@ LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 
-USES=		cmake compiler:c++11-lib libedit perl5 tar:xz \
+USES=		cmake compiler:c++11-lib cpe libedit perl5 tar:xz \
 		shebangfix
 _USES_PYTHON?=	python:3.6+,build
 USES+=		${_USES_PYTHON}
@@ -87,7 +87,7 @@ COMPILER_RT_DESC=	Sanitizer libraries
 COMPILER_RT_DISTFILES=	compiler-rt-${DISTVERSION}.src${EXTRACT_SUFX}
 COMPILER_RT_PLIST_FILES=${_COMPILER_RT_LIBS:S|^|${_CRTLIBDIR}/|} \
 			${_COMPILER_RT_BLACKLISTS:S|^|${_CRTBLDIR}/|}
-DOCS_BUILD_DEPENDS=	${PY_SPHINX} \
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}recommonmark>=0.0.20180530:textproc/py-recommonmark@${PY_FLAVOR}
 DOCS_CONFLICTS_BUILD=	commonmark-cmark-*
 DOCS_PORTDOCS=		llvm
@@ -108,8 +108,7 @@ LIT_VARS=		_USES_PYTHON=python:3.6+
 LLD_DESC=		Install lld, the LLVM linker
 LLD_DISTFILES=		lld-${DISTVERSION}.src${EXTRACT_SUFX}
 LLD_EXTRA_PATCHES=	${PATCHDIR}/lld
-LLDB_BUILD_DEPENDS=	swig:devel/swig \
-			${PY_ENUM34}
+LLDB_BUILD_DEPENDS=	swig:devel/swig
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_DISTFILES=		lldb-${DISTVERSION}.src${EXTRACT_SUFX}
 LLDB_EXTRA_PATCHES=	${PATCHDIR}/lldb
