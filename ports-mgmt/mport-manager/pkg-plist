@@ -1,4 +1,5 @@
 bin/mport-manager
 share/applications/mport-manager.desktop
-share/mport/icon.png
+share/pixmaps/mport-manager.png
+share/icons/hicolor/48x48/apps/mport-manager.png
 @dir share/mport

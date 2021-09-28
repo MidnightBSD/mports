@@ -1,0 +1,10 @@
+bin/scrot
+bin/scrot-area
+bin/scrot-delayed
+bin/scrot-full
+man/man1/scrot.1.gz
+share/applications/scrot.area.desktop
+share/applications/scrot.delayed.desktop
+share/applications/scrot.desktop
+share/pixmaps/scrot.png
+share/icons/hicolor/48x48/apps/scrot.png

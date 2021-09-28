@@ -29,4 +29,8 @@ pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/
 	${CP} ${FILESDIR}/mport-manager.desktop ${PREFIX}/share/applications/
 
+post-install:
+	${CP} ${WRKSRC}/icon.png ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/mport-manager.png
+	${CP} ${WRKSRC}/icon.png ${FAKE_DESTDIR}${TRUE_PREFIX}/share/pixmaps/mport-manager.png
+
 .include <bsd.port.mk>
