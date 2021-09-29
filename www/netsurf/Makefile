@@ -2,6 +2,7 @@
 
 PORTNAME=	netsurf
 PORTVERSION=	3.10
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://download.netsurf-browser.org/netsurf/releases/source/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -17,7 +18,7 @@ FAKE_OPTS=	trueprefix
 BUILD_DEPENDS=	duk:lang/duktape \
 		nsgenbind:devel/nsgenbind \
 		p5-HTML-Parser>=3.72:www/p5-HTML-Parser \
-		xxd:editors/vim-console
+		xxd:editors/vim
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpng.so:graphics/png \
 		libnsutils.so:devel/libnsutils \
