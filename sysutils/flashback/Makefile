@@ -3,7 +3,7 @@
 # Whom:			Lucas Holt <luke@MidnightBSD.org>
 
 PORTNAME=	flashback
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.3
 CATEGORIES=	sysutils
 
 MAINTAINER=	luke@MidnightBSD.org
