@@ -3,7 +3,7 @@
 # Whom:			Lucas Holt <luke@MidnightBSD.org>
 
 PORTNAME=	flashback
-PORTVERSION=	1.2.3
+PORTVERSION=	1.2.4
 CATEGORIES=	sysutils
 
 MAINTAINER=	luke@MidnightBSD.org
@@ -13,7 +13,6 @@ LICENSE=	bsd2
 
 USES=		gmake
 USE_GITHUB=     yes
-GH_COMMIT=      3eaed3f
 GH_PROJECT=     ${PORTNAME}
 GH_ACCOUNT=     laffer1
 
