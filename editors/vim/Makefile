@@ -1,5 +1,5 @@
 PORTNAME=	vim
-PORTVERSION=	8.2.3394
+PORTVERSION=	8.2.3403
 DISTVERSIONPREFIX=	v
 PORTREVISION=	0
 CATEGORIES=	editors
@@ -163,6 +163,8 @@ SCHEME_RUN_DEPENDS=	${SCHEME_BUILD_DEPENDS}
 TCL_CONFIGURE_ENABLE=	tclinterp
 TCL_CONFIGURE_WITH=	tclsh=tclsh${TCL_VER}
 TCL_USES=		tcl
+
+#.include <bsd.mport.options.mk>
 
 # Targets {{{1
 .include <bsd.port.pre.mk>
