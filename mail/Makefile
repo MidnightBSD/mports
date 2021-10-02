@@ -15,6 +15,7 @@ SUBDIR += claws-mail-archive
 SUBDIR += claws-mail-att_remover
 SUBDIR += claws-mail-attachwarner
 SUBDIR += claws-mail-clamd
+SUBDIR += claws-mail-gdata
 SUBDIR += claws-mail-spamassassin
 SUBDIR += claws-mail-vcalendar
 SUBDIR += courier
