@@ -15,6 +15,7 @@ SUBDIR += claws-mail-archive
 SUBDIR += claws-mail-att_remover
 SUBDIR += claws-mail-attachwarner
 SUBDIR += claws-mail-clamd
+SUBDIR += claws-mail-fetchinfo
 SUBDIR += claws-mail-gdata
 SUBDIR += claws-mail-notification
 SUBDIR += claws-mail-pdf_viewer
