@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libogg
-PORTVERSION=	1.3.2
-PORTREVISION=	2
+PORTVERSION=	1.3.5
 PORTEPOCH=	4
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/ogg/
@@ -19,7 +16,7 @@ GNU_CONFIGURE=	yes
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	cd ${PREFIX}/lib && ${LN} -s libogg.so.0.8.2 libogg.so.8
+	cd ${PREFIX}/lib && ${LN} -s libogg.so.0.8.5 libogg.so.8
 
 regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
