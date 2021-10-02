@@ -12,6 +12,7 @@ SUBDIR += cclient
 SUBDIR += claws-mail
 SUBDIR += claws-mail-address_keeper
 SUBDIR += claws-mail-archive
+SUBDIR += claws-mail-att_remover
 SUBDIR += courier
 SUBDIR += courier-imap
 SUBDIR += couriergraph
