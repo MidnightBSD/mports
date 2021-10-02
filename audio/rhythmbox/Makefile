@@ -1,6 +1,5 @@
 PORTNAME=	rhythmbox
-PORTVERSION=	3.4.2
-PORTREVISION=	3
+PORTVERSION=	3.4.4
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -82,9 +81,5 @@ PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAV
 post-patch:
 	@${REINPLACE_CMD} -e 's|{MOZILLA_PLUGINDIR|{MOZILLA_PLUGINDIR}|g' \
 		${WRKSRC}/configure
-
-# rbzeitgeist plugin needs py3-zeitgeist
-post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/lib/rhythmbox/plugins/rbzeitgeist
 
 .include <bsd.port.mk>
