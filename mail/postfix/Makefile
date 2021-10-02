@@ -5,7 +5,7 @@ DISTVERSION=	3.5.12
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	mail
-MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/ \
+MASTER_SITES=	http://ftp.porcupine.org/mirrors/postfix-release/ \
 		http://de.postfix.org/ftpmirror/ \
 		http://cdn.postfix.johnriley.me/mirrors/postfix-release/ \
 		http://www.artfiles.org/postfix.org/postfix-release/ \
