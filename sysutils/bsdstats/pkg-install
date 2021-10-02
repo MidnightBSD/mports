@@ -82,7 +82,7 @@ if [ "$2" = "POST-INSTALL" ]; then
         echo "your computer will be properly counted."
         echo ""
         if yesno "Would you like to activate reporting on reboot in /etc/rc.conf" ${BSDSTATS_REBOOT_REPORTING}; then
-            echo "bsdstats_enable=\"YES\"" >> /etc/rc.conf
+            /usr/sbin/sysrc bsdstats_enable=YES
         fi
     fi
 fi
