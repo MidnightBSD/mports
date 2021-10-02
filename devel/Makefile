@@ -131,6 +131,7 @@ SUBDIR += gsettings-desktop-schemas
 SUBDIR += gstreamer-plugins-gconf
 SUBDIR += gstreamer-plugins-gio
 SUBDIR += gstreamer1-plugins-soup
+SUBDIR += gumbo
 SUBDIR += gvfs
 SUBDIR += hadoop
 SUBDIR += highlighterkit
