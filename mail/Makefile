@@ -10,6 +10,7 @@ SUBDIR += batv-milter
 SUBDIR += bogofilter
 SUBDIR += cclient
 SUBDIR += claws-mail
+SUBDIR += claws-mail-address_keeper
 SUBDIR += courier
 SUBDIR += courier-imap
 SUBDIR += couriergraph
