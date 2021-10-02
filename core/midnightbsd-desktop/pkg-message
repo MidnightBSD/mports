@@ -1,0 +1,7 @@
+The MidnightBSD desktop environment is installed.
+
+be sure to run the following commands if this is your first time installing:
+
+sysrc dbus_enable=YES
+sysrc hald_enable=YES
+sysrc mlogind_enable=YES
