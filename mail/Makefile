@@ -14,6 +14,7 @@ SUBDIR += claws-mail-address_keeper
 SUBDIR += claws-mail-archive
 SUBDIR += claws-mail-att_remover
 SUBDIR += claws-mail-attachwarner
+SUBDIR += claws-mail-clamd
 SUBDIR += courier
 SUBDIR += courier-imap
 SUBDIR += couriergraph
