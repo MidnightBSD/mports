@@ -68,7 +68,7 @@ MAKE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
 _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
-                                   ${FAKE_DESTDIR}${TRUE_PREFIX} ${WRKDIR}/pkg ${BINARY_LINKDIR}
+			${FAKE_DESTDIR}${TRUE_PREFIX} ${WRKDIR}/pkg ${BINARY_LINKDIR}
 
 # Ensure .CURDIR contains an absolute path without a trailing slash.  Failed
 # builds can occur when PORTSDIR is a symbolic link, or with something like
@@ -354,8 +354,6 @@ GROUPS_BLACKLIST=	_dhcp _pflogd _ypldap audit authpf bin bind daemon dialer ftp 
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
 
-UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
-
 .endif  # end of options before pre-makefile starts
 
 # At least KDE needs TMPDIR for the package building,
@@ -422,6 +420,7 @@ STRIP=	#none
 
 .include "${MPORTCOMPONENTS}/default-versions.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
+# End of options section.
 
 # Start of pre-makefile section.
 .if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
@@ -455,7 +454,8 @@ _SUF2=	,${PORTEPOCH}
 PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
 PKGBASE=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGSUBNAME=	${PKGBASE}
-PKGNAME=	${PKGBASE}-${PKGVERSION}
+PKGNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PKGVERSION}
+PKGNAME_OLD=	${PKGBASE}-${PKGVERSION}
 DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 DISTVERSIONFULL=	${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
@@ -2139,9 +2139,8 @@ DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
 .if ((!defined(OPTIONS) && !defined(OPTIONS_DEFINE) && \
 	!defined(OPTIONS_SINGLE) && !defined(OPTIONS_MULTI)) \
 	&& !defined(OPTIONS_GROUP) && !defined(OPTIONS_RADIO) \
-	|| defined(CONFIG_DONE) || \
-	defined(PACKAGE_BUILDING) || defined(BATCH) || \
-	exists(${_OPTIONSFILE}) || exists(${_OPTIONSFILE}.local))
+	|| defined(CONFIG_DONE_${PKGBASE:tu}) || \
+	defined(PACKAGE_BUILDING) || defined(BATCH))
 _OPTIONS_OK=yes
 .endif
 
@@ -4003,6 +4002,356 @@ ${_t}:
 .endfor
 .endif
 PORTS_ENV_VARS+=	${_EXPORTED_VARS}
+
+.if !target(pre-check-config)
+pre-check-config:
+_CHECK_OPTIONS_NAMES=	OPTIONS_DEFINE OPTIONS_GROUP OPTIONS_MULTI \
+			OPTIONS_RADIO OPTIONS_SINGLE
+_CHECK_OPTIONS_NAMES+=	${OPTIONS_GROUP:S/^/OPTIONS_GROUP_/}
+_CHECK_OPTIONS_NAMES+=	${OPTIONS_MULTI:S/^/OPTIONS_MULTI_/}
+_CHECK_OPTIONS_NAMES+=	${OPTIONS_RADIO:S/^/OPTIONS_RADIO_/}
+_CHECK_OPTIONS_NAMES+=	${OPTIONS_SINGLE:S/^/OPTIONS_SINGLE_/}
+.for var in ${_CHECK_OPTIONS_NAMES}
+.  if defined(${var})
+.    for o in ${${var}}
+.      if ${o:C/[-_[:upper:][:digit:]]//g}
+OPTIONS_BAD_NAMES+=	${o}
+.      endif
+.    endfor
+.  endif
+.endfor
+.if defined(OPTIONS_BAD_NAMES) && !empty(OPTIONS_BAD_NAMES)
+DEV_WARNING+=	"These options name have characters outside of [-_A-Z0-9]:"
+DEV_WARNING+=	"${OPTIONS_BAD_NAMES:O:u}"
+.endif
+.for single in ${OPTIONS_SINGLE}
+.  for opt in ${OPTIONS_SINGLE_${single}}
+.    if empty(ALL_OPTIONS:M${single}) || !empty(PORT_OPTIONS:M${single})
+.      if !empty(PORT_OPTIONS:M${opt})
+OPTIONS_WRONG_SINGLE_${single}+=	${opt}
+.        if defined(OPTFOUND)
+OPTIONS_WRONG_SINGLE+=	${single}
+.        else
+OPTFOUND=	true
+.        endif
+.      endif
+.    else
+# if conditional and if the condition is unchecked, remove opt from the list of
+# set options
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+OPTNOCHECK=	true
+.    endif
+.  endfor
+.  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
+OPTIONS_WRONG_SINGLE+=	${single}
+.  endif
+.  undef OPTFOUND
+.  undef OPTNOCHECK
+.endfor
+.undef single
+
+.for radio in ${OPTIONS_RADIO}
+.  for opt in ${OPTIONS_RADIO_${radio}}
+.    if !empty(PORT_OPTIONS:M${opt})
+OPTIONS_WRONG_RADIO_${radio}+=	${opt}
+.      if defined(OPTFOUND)
+OPTIONS_WRONG_RADIO+=	${radio}
+.      else
+OPTFOUND=	true
+.      endif
+.    endif
+.  endfor
+.  undef OPTFOUND
+.endfor
+
+.for multi in ${OPTIONS_MULTI}
+.  for opt in ${OPTIONS_MULTI_${multi}}
+.    if empty(ALL_OPTIONS:M${multi}) || !empty(PORT_OPTIONS:M${multi})
+.      if !empty(PORT_OPTIONS:M${opt})
+OPTFOUND=	true
+.      endif
+.    else
+# if conditional and if the condition is unchecked, remove opt from the list of
+# set options
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+OPTNOCHECK=	true
+.    endif
+.  endfor
+.  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
+OPTIONS_WRONG_MULTI+=	${multi}
+.  endif
+.  undef OPTFOUND
+.  undef OPTNOCHECK
+.endfor
+.undef multi
+
+.for opt in ${PORT_OPTIONS}
+.  for conflict in ${${opt}_PREVENTS}
+.    if ${PORT_OPTIONS:M${conflict}}
+.      if empty(OPTIONS_WRONG_PREVENTS:M${opt})
+OPTIONS_WRONG_PREVENTS+=	${opt}
+.      endif
+OPTIONS_WRONG_PREVENTS_${opt}+=	${conflict}
+.    endif
+.  endfor
+.endfor
+.undef conflict
+.undef opt
+.endif #pre-check-config
+
+.if !target(_check-config)
+_check-config: pre-check-config
+.for multi in ${OPTIONS_WRONG_MULTI}
+	@${ECHO_MSG} "====> You must check at least one option in the ${multi} multi"
+.endfor
+.for single in ${OPTIONS_WRONG_SINGLE}
+	@${ECHO_MSG} "====> You must select one and only one option from the ${single} single"
+.if defined(OPTIONS_WRONG_SINGLE_${single})
+	@${ECHO_MSG} "=====> Only one of these must be defined: ${OPTIONS_WRONG_SINGLE_${single}}"
+.else
+	@${ECHO_MSG} "=====> No option was selected (and one must be)"
+.endif
+.endfor
+.for radio in ${OPTIONS_WRONG_RADIO}
+	@${ECHO_MSG} "====> You cannot select multiple options from the ${radio} radio"
+	@${ECHO_MSG} "=====> Only one of these must be defined: ${OPTIONS_WRONG_RADIO_${radio}}"
+.endfor
+.if defined(OPTIONS_WRONG_PREVENTS)
+	@${ECHO_MSG} "====> Two or more enabled options conflict with each other"
+.  for prevents in ${OPTIONS_WRONG_PREVENTS}
+	@${ECHO_MSG} "=====> Option ${prevents} conflicts with ${OPTIONS_WRONG_PREVENTS_${prevents}} (select only one)"
+.    if defined(${prevents}_PREVENTS_MSG)
+	@${ECHO_MSG} "======> ${${prevents}_PREVENTS_MSG}"
+.    endif
+.  endfor
+.endif
+.if !empty(OPTIONS_WRONG_MULTI) || !empty(OPTIONS_WRONG_SINGLE) || !empty(OPTIONS_WRONG_RADIO) || !empty(OPTIONS_WRONG_PREVENTS)
+_CHECK_CONFIG_ERROR=	true
+.endif
+.endif # _check-config
+
+.if !target(check-config)
+check-config: _check-config
+.if !empty(_CHECK_CONFIG_ERROR)
+	@${FALSE}
+.endif
+.endif # check-config
+
+.if !target(sanity-config)
+sanity-config: _check-config
+.if !empty(_CHECK_CONFIG_ERROR)
+	@echo -n "Config is invalid. Re-edit? [Y/n] "; \
+	read answer; \
+	case $$answer in \
+	[Nn]|[Nn][Oo]) \
+		exit 0; \
+	esac; \
+	cd ${.CURDIR} && ${MAKE} config
+.endif
+.endif # sanity-config
+
+.if !target(pre-config)
+pre-config:
+D4P_ENV=	PKGNAME="${PKGNAME}" \
+		PORT_OPTIONS="${PORT_OPTIONS}" \
+		ALL_OPTIONS="${ALL_OPTIONS}" \
+		OPTIONS_MULTI="${OPTIONS_MULTI}" \
+		OPTIONS_SINGLE="${OPTIONS_SINGLE}" \
+		OPTIONS_RADIO="${OPTIONS_RADIO}" \
+		OPTIONS_GROUP="${OPTIONS_GROUP}" \
+		NEW_OPTIONS="${NEW_OPTIONS}" \
+		DIALOG4PORTS="${DIALOG4PORTS}" \
+		PREFIX="${PREFIX}" \
+		LOCALBASE="${LOCALBASE}" \
+		PORTSDIR="${PORTSDIR}" \
+		MAKE="${MAKE}" \
+		D4PHEIGHT="${D4PHEIGHT}" \
+		D4PMINHEIGHT="${D4PMINHEIGHT}" \
+		D4PWIDTH="${D4PWIDTH}" \
+		D4PFULLSCREEN="${D4PFULLSCREEN}" \
+		D4PALIGNCENTER="${D4PALIGNCENTER}" \
+		D4PASCIILINES="${D4PASCIILINES}"
+.if exists(${PKGHELP})
+D4P_ENV+=	PKGHELP="${PKGHELP}"
+.endif
+.for opt in ${ALL_OPTIONS}
+D4P_ENV+=	 ${opt}_DESC=""${${opt}_DESC:Q}""
+.endfor
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+D4P_ENV+=	OPTIONS_${otype}_${m}="${OPTIONS_${otype}_${m}}" \
+		${m}_DESC=""${${m}_DESC:Q}""
+.    for opt in ${OPTIONS_${otype}_${m}}
+D4P_ENV+=	 ${opt}_DESC=""${${opt}_DESC:Q}""
+.    endfor
+.  endfor
+.endfor
+.undef m
+.undef otype
+.undef opt
+.endif # pre-config
+
+.if !target(do-config)
+do-config:
+.if empty(ALL_OPTIONS) && empty(OPTIONS_SINGLE) && empty(OPTIONS_MULTI) && empty(OPTIONS_RADIO) && empty(OPTIONS_GROUP)
+	@${ECHO_MSG} "===> No options to configure"
+.else
+	@optionsdir=${OPTIONS_FILE:H}; \
+	${MKDIR} $${optionsdir} 2> /dev/null || \
+	(${ECHO_MSG} "===> Cannot create $${optionsdir}, check permissions"; exit 1) ;
+	@TMPOPTIONSFILE=$$(mktemp -t portoptions); \
+	trap "${RM} $${TMPOPTIONSFILE}; exit 1" 1 2 3 5 10 13 15; \
+	${SETENV} ${D4P_ENV} ${SH} ${SCRIPTSDIR}/dialog4ports.sh $${TMPOPTIONSFILE} || { \
+		${RM} $${TMPOPTIONSFILE}; \
+		${ECHO_MSG} "===> Options unchanged"; \
+		exit 0; \
+	}; \
+	${ECHO_CMD}; \
+	if [ ! -e $${TMPOPTIONSFILE} ]; then \
+		${ECHO_MSG} "===> No user-specified options to save for ${PKGNAME}"; \
+		exit 0; \
+	fi; \
+	SELOPTIONS=$$(${CAT} $${TMPOPTIONSFILE}); \
+	${RM} $${TMPOPTIONSFILE}; \
+	TMPOPTIONSFILE=$$(mktemp -t portoptions); \
+	trap "${RM} $${TMPOPTIONSFILE}; exit 1" 1 2 3 5 10 13 15; \
+	${ECHO_CMD} "# This file is auto-generated by 'make config'." > $${TMPOPTIONSFILE}; \
+	${ECHO_CMD} "# Options for ${PKGNAME}" >> $${TMPOPTIONSFILE}; \
+	${ECHO_CMD} "_OPTIONS_READ=${PKGNAME}" >> $${TMPOPTIONSFILE}; \
+	${ECHO_CMD} "_FILE_COMPLETE_OPTIONS_LIST=${COMPLETE_OPTIONS_LIST}" >> $${TMPOPTIONSFILE}; \
+	for i in ${COMPLETE_OPTIONS_LIST}; do \
+		if ${ECHO_CMD} $${SELOPTIONS} | ${GREP} -qw $${i}; then \
+			${ECHO_CMD} "OPTIONS_FILE_SET+=$${i}" >> $${TMPOPTIONSFILE}; \
+		else \
+			${ECHO_CMD} "OPTIONS_FILE_UNSET+=$${i}" >> $${TMPOPTIONSFILE}; \
+		fi; \
+	done; \
+	${CAT} $${TMPOPTIONSFILE} > ${OPTIONS_FILE}; \
+	${RM} $${TMPOPTIONSFILE}
+	@cd ${.CURDIR} && ${MAKE} sanity-config
+.endif
+.endif # do-config
+
+.if !target(config)
+.if !defined(NO_DIALOG)
+config: pre-config do-config
+.else
+config:
+	@${ECHO_MSG} "===> Skipping 'config' as NO_DIALOG is defined"
+.endif
+.endif # config
+
+.if !target(config-recursive)
+config-recursive:
+	@${ECHO_MSG} "===> Setting user-specified options for ${PKGNAME} and dependencies";
+	@recursive_cmd="config-conditional"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
+.endif # config-recursive
+
+.if !target(config-conditional)
+config-conditional:
+.if !empty(NEW_OPTIONS)
+	@cd ${.CURDIR} && ${MAKE} config;
+.endif
+.endif # config-conditional
+
+.if !target(showconfig) && (make(*config*) || (!empty(.MAKEFLAGS:M-V) && !empty(.MAKEFLAGS:M*_DESC)))
+.include "${PORTSDIR}/Mk/components/options.desc.mk"
+MULTI_EOL=	: you have to choose at least one of them
+SINGLE_EOL=	: you have to select exactly one of them
+RADIO_EOL=	: you can only select none or one of them
+showconfig: check-config
+.if !empty(COMPLETE_OPTIONS_LIST)
+	@${ECHO_MSG} "===> The following configuration options are available for ${PKGNAME}":
+.for opt in ${ALL_OPTIONS}
+	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="on" ; ${ECHO_MSG} -n "     ${opt}=$${match:-off}"
+.  if !empty(${opt}_DESC)
+	@${ECHO_MSG} -n ": "${${opt}_DESC:Q}
+.  endif
+	@${ECHO_MSG} ""
+.endfor
+
+#multi and conditional multis
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+.    if empty(${m}_DESC)
+		@${ECHO_MSG} "====> Options available for the ${otype:tl} ${m}${${otype}_EOL}"
+.    else
+		@${ECHO_MSG} "====> ${${m}_DESC}${${otype}_EOL}"
+.    endif
+.    for opt in ${OPTIONS_${otype}_${m}}
+	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="on" ; ${ECHO_MSG} -n "     ${opt}=$${match:-off}"
+.      if !empty(${opt}_DESC)
+	@${ECHO_MSG} -n ": "${${opt}_DESC:Q}
+.      endif
+	@${ECHO_MSG} ""
+.    endfor
+.  endfor
+.endfor
+
+.undef otype
+.undef m
+.undef opt
+	@${ECHO_MSG} "===> Use 'make config' to modify these settings"
+.endif
+.endif # showconfig
+
+.if !target(showconfig-recursive)
+showconfig-recursive:
+	@${ECHO_MSG} "===> The following configuration options are available for ${PKGNAME} and its dependencies";
+	@recursive_cmd="showconfig"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
+.endif # showconfig-recursive
+
+.if !target(rmconfig)
+rmconfig:
+.if exists(${OPTIONS_FILE})
+	-@${ECHO_MSG} "===> Removing user-configured options for ${PKGNAME}"; \
+	optionsdir=${OPTIONS_FILE:H}; \
+	${RM} ${OPTIONS_FILE}; \
+	${RMDIR} $${optionsdir} 2>/dev/null || return 0;
+.else
+	@${ECHO_MSG} "===> No user-specified options configured for ${PKGNAME}"
+.endif
+.endif # rmconfig
+
+.if !target(rmconfig-recursive)
+rmconfig-recursive:
+	@${ECHO_MSG} "===> Removing user-specified options for ${PKGNAME} and its dependencies";
+	@recursive_cmd="rmconfig"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
+.endif # rmconfig-recursive
+
+.if !target(pretty-print-config)
+MULTI_START=	[
+MULTI_END=	]
+GROUP_START=	[
+GROUP_END=	]
+SINGLE_START=	(
+SINGLE_END=	)
+RADIO_START=	(
+RADIO_END=	)
+pretty-print-config:
+.for opt in ${ALL_OPTIONS}
+	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="+" ; ${ECHO_MSG} -n "$${match:--}${opt} "
+.endfor
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+	@${ECHO_MSG} -n "${m}${${otype}_START} "
+.    for opt in ${OPTIONS_${otype}_${m}}
+		@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="+" ; ${ECHO_MSG} -n "$${match:--}${opt} "
+.    endfor
+	@${ECHO_MSG} -n "${${otype}_END} "
+.  endfor
+.endfor
+.undef otype
+.undef m
+.undef opt
+	@${ECHO_MSG} ""
+.endif # pretty-print-config
 
 desktop-categories:
 	@${SETENV} \
