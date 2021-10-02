@@ -11,6 +11,7 @@ SUBDIR += bogofilter
 SUBDIR += cclient
 SUBDIR += claws-mail
 SUBDIR += claws-mail-address_keeper
+SUBDIR += claws-mail-archive
 SUBDIR += courier
 SUBDIR += courier-imap
 SUBDIR += couriergraph
