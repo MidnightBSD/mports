@@ -147,6 +147,7 @@ SUBDIR += jansson
 SUBDIR += jech-dht
 SUBDIR += jenkins
 SUBDIR += jenkins-lts
+SUBDIR += jetbrains-clion
 SUBDIR += jna
 SUBDIR += json-c
 SUBDIR += json-glib
