@@ -1,6 +1,5 @@
 PORTNAME=	msmtp
-PORTVERSION=	1.4.32
-PORTREVISION=	1
+PORTVERSION=	1.8.15
 CATEGORIES=	mail
 MASTER_SITES=	https://marlam.de/msmtp/releases/
 
@@ -10,79 +9,60 @@ COMMENT=	SMTP plugin for MUAs
 LICENSE=        gpl3
 
 GNU_CONFIGURE=	yes
-USES=		makeinfo pkgconfig tar:bzip2
+USES=		gmake makeinfo pkgconfig tar:xz
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INFO=	msmtp
 
-OPTIONS_DEFINE=	GSASL NLS IDN GNOMEKEYRING MSMTPQ
+OPTIONS_DEFINE=	DOCS GSASL NLS IDN LIBSECRET MSMTPD MSMTPQ
 OPTIONS_RADIO=	TLS
 OPTIONS_RADIO_TLS=	GNUTLS OPENSSL
-OPTIONS_DEFAULT=	MSMTPQ OPENSSL
+OPTIONS_DEFAULT=	GNUTLS MSMTPD MSMTPQ
+OPTIONS_SUB=	yes
 
 GSASL_DESC=	GSASL support
+LIBSECRET_DESC=	GNOME password management
+MSMTPD_DESC=	Include minimal SMTP server that pipes mails to msmtp
 MSMTPQ_DESC=	Install offline messaging scripts
 
-.include       <bsd.mport.options.mk>
+GSASL_CONFIGURE_WITH=	libgsasl
+GSASL_LIB_DEPENDS=	libgsasl.so:security/libgsasl
+IDN_CONFIGURE_WITH=	libidn
+IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
+LIBSECRET_CONFIGURE_WITH=	libsecret
+LIBSECRET_LIB_DEPENDS=	libsecret-1.so:security/libsecret
+MSMTPD_CONFIGURE_WITH=	msmtpd
+MSMTPQ_PORTDOCS=	README.msmtpq
+MSMTPQ_RUN_DEPENDS=	bash:shells/bash
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
-.if ${PORT_OPTIONS:MGNUTLS}
-LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
-CONFIGURE_ARGS+=	--with-ssl=gnutls
-.elif ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=	ssl
-CONFIGURE_ARGS+=	--with-ssl=openssl
-CONFIGURE_ENV+=		libssl_CFLAGS="-I${OPENSSLINC}" \
+GNUTLS_CONFIGURE_ON=	--with-tls=gnutls
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
+OPENSSL_USES=		ssl
+OPENSSL_CONFIGURE_ON=	--with-tls=openssl
+OPENSSL_CONFIGURE_ENV=	libssl_CFLAGS="-I${OPENSSLINC}" \
 			libssl_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"
-.else
-CONFIGURE_ARGS+=	--with-ssl=no
-.endif
+CERTSFILE=		${LOCALBASE}/share/certs/ca-root-nss.crt
+
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MGNUTLS} || ${PORT_OPTIONS:MOPENSSL}
-RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-.endif
-
-.if ${PORT_OPTIONS:MGSASL}
-LIB_DEPENDS+=	libgsasl.so:${PORTSDIR}/security/gsasl
-CONFIGURE_ARGS+=	--with-libgsasl
+RUN_DEPENDS+=	${CERTSFILE}:security/ca_root_nss
 .else
-CONFIGURE_ARGS+=	--without-libgsasl
+CONFIGURE_ARGS+=	--with-tls=no
 .endif
 
-.if ${PORT_OPTIONS:MIDN}
-LIB_DEPENDS+=	libidn.so:${PORTSDIR}/dns/libidn
-CONFIGURE_ARGS+=	--with-libidn
-.else
-CONFIGURE_ARGS+=	--without-libidn
-.endif
-
-.if ${PORT_OPTIONS:MGNOMEKEYRING}
-CONFIGURE_ARGS+=	--with-gnome-keyring
-LIB_DEPENDS+=	libgnome-keyring.so:${PORTSDIR}/security/gnome-keyring
-.else
-CONFIGURE_ARGS+=	--without-gnome-keyring
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=	--enable-nls
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
+post-extract:
+	@${REINPLACE_CMD} -e 's|/etc/ssl/certs/ca\\-certificates.crt|${CERTSFILE}|' \
+		${WRKSRC}/doc/msmtp.1
 
 .if ${PORT_OPTIONS:MMSMTPQ}
-PLIST_SUB+=	MSMTPQ=""
-
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtp-queue ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtpq ${PREFIX}/bin
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/scripts/msmtpq/README.msmtpq ${DOCSDIR}
-.else
-PLIST_SUB+=	MSMTPQ="@comment "
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtp-queue ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtpq ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/README.msmtpq ${STAGEDIR}${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
