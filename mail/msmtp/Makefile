@@ -1,10 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	msmtp
 PORTVERSION=	1.4.32
 PORTREVISION=	1
-CATEGORIES=	mail ipv6
-MASTER_SITES=	SF
+CATEGORIES=	mail
+MASTER_SITES=	https://marlam.de/msmtp/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SMTP plugin for MUAs
