@@ -66,7 +66,7 @@ lib/libatomic_ops.a
 lib/libatomic_ops_gpl.a
 libdata/pkgconfig/atomic_ops.pc
 %%PORTDOCS%%%%DOCSDIR%%/LICENSING.txt
-%%PORTDOCS%%%%DOCSDIR%%/README.txt
+%%PORTDOCS%%%%DOCSDIR%%/README_details.txt
 %%PORTDOCS%%%%DOCSDIR%%/README_malloc.txt
 %%PORTDOCS%%%%DOCSDIR%%/README_stack.txt
 %%PORTDOCS%%%%DOCSDIR%%/README_win32.txt
