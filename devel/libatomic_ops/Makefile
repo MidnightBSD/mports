@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libatomic_ops
-DISTVERSION=	7.4.0
-PORTREVISION=	1
+DISTVERSION=	7.4.16
 CATEGORIES=	devel
-MASTER_SITES=	http://www.hboehm.info/gc/gc_source/
+MASTER_SITES=	https://github.com/ivmai/libatomic_ops/releases/tag/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Atomic operations access library
