@@ -2,7 +2,6 @@ PORTNAME=	wget
 DISTVERSION=	1.21
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	GNU
-EXTRACT_SUFX=	.tar.lz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Retrieve files from the Net via HTTP(S) and FTP
@@ -15,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 NO_TEST=	yes
 
-USES=		charsetfix cpe iconv tar:xz
+USES=		charsetfix cpe iconv pkgconfig tar:lz
+USE_CSTD=	c99
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 OPTIONS_SUB=	yes
