@@ -1,6 +1,6 @@
 PORTNAME=	wget
 DISTVERSION=	1.21
-CATEGORIES=	ftp www ipv6
+CATEGORIES=	ftp www
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,12 +9,10 @@ COMMENT=	Retrieve files from the Net via HTTP(S) and FTP
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-#TEST_DEPENDS=	p5-HTTP-Daemon>=0:www/p5-HTTP-Daemon \
-#		p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
-
+# not magus friendly
 NO_TEST=	yes
 
-USES=		charsetfix cpe iconv pkgconfig tar:lz
+USES=		charsetfix cpe iconv localbase pkgconfig tar:lz
 USE_CSTD=	c99
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
@@ -70,7 +68,6 @@ CONFIGURE_ARGS+=--with-ssl=openssl --with-libssl-prefix=${OPENSSLBASE}
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 .elif ${PORT_OPTIONS:MGNUTLS}
-USES+=		pkgconfig
 LIB_DEPENDS+=	libgnutls.so:security/gnutls
 CONFIGURE_ARGS+=--with-ssl=gnutls
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -78,8 +75,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 .else
 CONFIGURE_ARGS+=--without-ssl
 .endif
-
-#TEST_TARGET=	check
 
 # Executed regardless of whether DOCS is ON or OFF.
 post-patch:
