@@ -1,5 +1,5 @@
 PORTNAME=	php74
-DISTVERSION=	7.4.19
+DISTVERSION=	7.4.23
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=   PHP/distributions
@@ -26,7 +26,7 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-password-argon2=${LOCALBASE} \
 		--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd11.4
 USES+=		autoreconf:build
 USE_GNOME=	libxml2
 
