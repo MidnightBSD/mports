@@ -1,5 +1,3 @@
-TIMESTAMP = 1632787809
-SHA256 (scrotextra.tgz) = 63674e6bc3b1b6dc0984ca8edded6c845eb616fff6a37eef939ee49f7004412a
-SIZE (scrotextra.tgz) = 4414
-SHA256 (resurrecting-open-source-projects-scrot-1.5_GH0.tar.gz) = 87afba3998aac097f13231f3b0452c21188bf4b5cc6ac0747693a1da1a0ae40f
-SIZE (resurrecting-open-source-projects-scrot-1.5_GH0.tar.gz) = 161495
+TIMESTAMP = 1633322634
+SHA256 (chrishutchinson-scrot-d93cccec_GL0.tar.gz) = bfdda53773897eb164f5ac80e7291a80a797204b7f36c35ce5d356328fb904ae
+SIZE (chrishutchinson-scrot-d93cccec_GL0.tar.gz) = 155165
