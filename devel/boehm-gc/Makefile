@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	gc
-PORTVERSION=	7.4.2
-PORTREVISION=	2
+PORTVERSION=	7.4.20
 CATEGORIES=	devel
-MASTER_SITES=	http://www.hboehm.info/gc/gc_source/
+MASTER_SITES=	https://github.com/ivmai/bdwgc/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	boehm-
 .ifdef GC_VARIANT
 PKGNAMESUFFIX=	-${GC_VARIANT}
@@ -38,7 +37,9 @@ INSTLIBS=	cord gc gccpp
 PLIST=		${NONEXISTENT}
 PLIST_FILES=	${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so,} \
 		${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so.1,} \
-		${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so.1.0.3,} \
+		lib/libcord-${GC_VARIANT}.so.1.2.2 \
+		lib/libgc-${GC_VARIANT}.so.1.2.6 \
+		lib/libgccpp-${GC_VARIANT}.so.1.2.1 \
 		libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
 RUN_DEPENDS+=	${LOCALBASE}/include/gc/gc.h:${PORTSDIR}/devel/boehm-gc
 . if ${GC_VARIANT} == "redirect"
