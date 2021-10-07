@@ -18,6 +18,7 @@ SUBDIR += claws-mail-clamd
 SUBDIR += claws-mail-fetchinfo
 SUBDIR += claws-mail-gdata
 SUBDIR += claws-mail-litehtml_viewer
+SUBDIR += claws-mail-mailmbox
 SUBDIR += claws-mail-notification
 SUBDIR += claws-mail-pdf_viewer
 SUBDIR += claws-mail-pgp
