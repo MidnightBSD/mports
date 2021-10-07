@@ -26,6 +26,7 @@ SUBDIR += claws-mail-notification
 SUBDIR += claws-mail-perl
 SUBDIR += claws-mail-pdf_viewer
 SUBDIR += claws-mail-pgp
+SUBDIR += claws-mail-spam_report
 SUBDIR += claws-mail-spamassassin
 SUBDIR += claws-mail-tnef_parse
 SUBDIR += claws-mail-vcalendar
