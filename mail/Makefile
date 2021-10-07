@@ -20,6 +20,7 @@ SUBDIR += claws-mail-gdata
 SUBDIR += claws-mail-libravatar
 SUBDIR += claws-mail-litehtml_viewer
 SUBDIR += claws-mail-mailmbox
+SUBDIR += claws-mail-managesieve
 SUBDIR += claws-mail-newmail
 SUBDIR += claws-mail-notification
 SUBDIR += claws-mail-pdf_viewer
