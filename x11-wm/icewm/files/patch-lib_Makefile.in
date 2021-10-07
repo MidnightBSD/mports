@@ -4,7 +4,7 @@
  	mailbox/newmail.xpm \
  	mailbox/nomail.xpm \
  	mailbox/unreadmail.xpm \
-+	taskbar/bsd-daemon.xpm \
++	taskbar/midnight.xpm \
  	taskbar/collapse.xpm \
  	taskbar/debian.xpm \
  	taskbar/desktop.xpm \
@@ -18,7 +18,7 @@
  	themes/Infadel2/rollupA.xpm \
  	themes/Infadel2/rollupI.xpm \
  	themes/Infadel2/snap.pcf \
-+	themes/Infadel2/taskbar/bsd-daemon.xpm \
++	themes/Infadel2/taskbar/midnight.xpm \
 +	themes/Infadel2/taskbar/icewm-logo.xpm \
  	themes/Infadel2/taskbar/linux.xpm \
  	themes/Infadel2/taskbar/start.xpm \

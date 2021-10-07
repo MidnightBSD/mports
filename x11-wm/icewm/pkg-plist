@@ -123,10 +123,18 @@ man/man5/icewm-winoptions.5.gz
 %%DATADIR%%/icons/run_32x32.xpm
 %%DATADIR%%/icons/save_16x16.png
 %%DATADIR%%/icons/save_32x32.png
+%%DATADIR%%/icons/setscreen12_32x32.png
+%%DATADIR%%/icons/setscreen12x_32x32.png
+%%DATADIR%%/icons/setscreen1_32x32.png
+%%DATADIR%%/icons/setscreen21_32x32.png
+%%DATADIR%%/icons/setscreen21x_32x32.png
+%%DATADIR%%/icons/setscreen2_32x32.png
 %%DATADIR%%/icons/settings_16x16.xpm
 %%DATADIR%%/icons/settings_32x32.xpm
 %%DATADIR%%/icons/shutdown_16x16.xpm
 %%DATADIR%%/icons/shutdown_32x32.xpm
+%%DATADIR%%/icons/suspend_16x16.xpm
+%%DATADIR%%/icons/suspend_32x32.xpm
 %%DATADIR%%/icons/themes_16x16.xpm
 %%DATADIR%%/icons/themes_32x32.xpm
 %%DATADIR%%/icons/vim_16x16.xpm
@@ -169,7 +177,7 @@ man/man5/icewm-winoptions.5.gz
 %%DATADIR%%/menu
 %%DATADIR%%/preferences
 %%DATADIR%%/programs
-%%DATADIR%%/taskbar/bsd-daemon.xpm
+%%DATADIR%%/taskbar/midnight.xpm
 %%DATADIR%%/taskbar/collapse.xpm
 %%DATADIR%%/taskbar/debian.xpm
 %%DATADIR%%/taskbar/desktop.xpm
@@ -345,7 +353,7 @@ man/man5/icewm-winoptions.5.gz
 %%DATADIR%%/themes/Infadel2/rollupA.xpm
 %%DATADIR%%/themes/Infadel2/rollupI.xpm
 %%DATADIR%%/themes/Infadel2/snap.pcf
-%%DATADIR%%/themes/Infadel2/taskbar/bsd-daemon.xpm
+%%DATADIR%%/themes/Infadel2/taskbar/midnight.xpm
 %%DATADIR%%/themes/Infadel2/taskbar/icewm-logo.xpm
 %%DATADIR%%/themes/Infadel2/taskbar/linux.xpm
 %%DATADIR%%/themes/Infadel2/taskbar/start.xpm
