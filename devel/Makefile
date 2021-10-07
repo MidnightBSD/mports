@@ -101,6 +101,7 @@ SUBDIR += gflags
 SUBDIR += gindent
 SUBDIR += gio-sharp
 SUBDIR += git
+SUBDIR += git-bug
 SUBDIR += git-lfs
 SUBDIR += git-merge-changelog
 SUBDIR += git-sync
