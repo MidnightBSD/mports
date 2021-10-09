@@ -216,14 +216,16 @@ post-configure:
 	${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/support/envvars-std
 
 post-install:
-	@${MKDIR} ${ETC_SUBDIRS:S|^|${STAGEDIR}${ETCDIR}/|}
-	${INSTALL_DATA} ${FILESDIR}/no-accf.conf ${STAGEDIR}${ETCDIR}/Includes/
+	@${MKDIR} ${ETC_SUBDIRS:S|^|${ETCDIR}/|}
+	${INSTALL_DATA} ${FILESDIR}/no-accf.conf ${ETCDIR}/Includes/
 # place for 3rd party module configuration
-	${INSTALL_DATA} ${FILESDIR}/README_modules.d ${STAGEDIR}${ETCDIR}/modules.d/
+	${INSTALL_DATA} ${FILESDIR}/README_modules.d ${ETCDIR}/modules.d/
 # strip returns an error for non binary files, but we have a big mix
-	-${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/* 2>/dev/null
-	-${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
-	-${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/apache24/mod_*.so
+	-${STRIP_CMD} ${PREFIX}/sbin/* 2>/dev/null
+	-${STRIP_CMD} ${PREFIX}/bin/*
+	-${STRIP_CMD} ${PREFIX}/libexec/apache24/mod_*.so
+# Remove files left behind by strip
+	${RM} ${DATADIR}/build/ecp.???????? 2>/dev/null
 
 post-install-LOG_FORENSIC-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/support/check_forensic ${FAKE_DESTDIR}${PREFIX}/sbin
