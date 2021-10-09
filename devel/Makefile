@@ -92,6 +92,7 @@ SUBDIR += gccmakedep
 SUBDIR += gconf2
 SUBDIR += gdb
 SUBDIR += geany
+SUBDIR += gengetopt
 SUBDIR += gettext
 SUBDIR += gettext-lint
 SUBDIR += gettext-msghack
