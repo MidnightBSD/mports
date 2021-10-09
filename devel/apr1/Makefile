@@ -1,6 +1,6 @@
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	APACHE/apr
 DISTFILES=	apr-${APR_VERSION}.tar.gz \
@@ -16,7 +16,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 USES=		iconv pathfix libtool cpe
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--build=${ARCH}-midnightbsd-freebsd10.4
+CONFIGURE_ARGS+=	--build=${ARCH}-midnightbsd-freebsd11.4
 
 APR_VERSION=	1.7.0
 APU_VERSION=	1.6.1
@@ -40,10 +40,10 @@ NSS_DESC=		NSS crypto driver
 SSL_DESC=		OpenSSL crypto driver
 
 # APR-Util Options
-BDB_USE=		BDB=5+
-GDBM_LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm
+BDB_USES=		bdb:5+
+GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
 LDAP_USE=		OPENLDAP=yes
-MYSQL_USE=		MYSQL=yes
+MYSQL_USES=		mysql
 NSS_LIB_DEPENDS=	libnss3.so:security/nss
 ODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
 PGSQL_USES=		pgsql
