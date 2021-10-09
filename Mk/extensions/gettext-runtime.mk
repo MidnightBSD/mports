@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Handle dependency on the gettext-runtime (libintl) port
 #

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/Mk/bsd.sanity.mk 368446 2014-09-18 12:31:24Z mat $
 
 .if defined(WITHOUT_NLS)

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/Mk/Uses/webplugin.mk 348308 2014-03-15 10:31:54Z gerald $
 #
 # Documentation and examples:

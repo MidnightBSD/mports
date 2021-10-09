@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/Mk/Uses/objc.mk 373004 2014-11-21 17:22:06Z antoine $
 #
 # Objective C support

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Handles common items for kernel module ports.
 #

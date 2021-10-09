@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Feature:	display
 # Usage:	USES=display or USES=display:ARGS

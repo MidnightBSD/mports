@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Provide support for CMake based projects
 #

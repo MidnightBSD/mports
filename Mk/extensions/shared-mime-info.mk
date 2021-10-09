@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # handle dependency depends on shared-mime-info and package regen
 #

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # efl.mk - Support for Enlightenment Foundation Libraries (EFL)
 #

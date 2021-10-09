@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+
 #
 # maintainer.mk
 #

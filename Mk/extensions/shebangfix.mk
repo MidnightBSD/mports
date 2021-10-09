@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Replace #! interpreters in scripts by what we actually have.
 #

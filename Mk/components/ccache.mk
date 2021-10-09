@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 COMMANDS_Include_MAINTAINER=	ports@midnightbsd.org
 

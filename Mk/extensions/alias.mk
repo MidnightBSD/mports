@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/Mk/Uses/alias.mk 371239 2014-10-20 07:33:00Z marino $
 #
 # Feature:      alias

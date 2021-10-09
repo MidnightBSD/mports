@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/Mk/bsd.options.desc.mk 363491 2014-07-30 16:15:54Z lme $
 #
 # READ BEFORE EDITING:

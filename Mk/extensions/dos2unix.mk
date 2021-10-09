@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Provide support to convert files from dos2unix
 #

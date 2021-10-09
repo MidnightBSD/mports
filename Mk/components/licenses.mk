@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 Licenses_Include_MAINTAINER=         ports@MidnightBSD.org
 

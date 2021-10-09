@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/Mk/Uses/metaport.mk 382933 2015-04-01 17:59:57Z bapt $
 #
 # Sets the default variables to handle metaports

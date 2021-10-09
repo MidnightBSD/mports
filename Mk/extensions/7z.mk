@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/Mk/Uses/7z.mk 430441 2017-01-03 07:24:49Z rene $
 #
 # Extract 7-Zip archives

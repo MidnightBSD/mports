@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # handle enforcing localbase in path
 #

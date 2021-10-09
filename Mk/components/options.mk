@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # options.mk -- The options component
 #

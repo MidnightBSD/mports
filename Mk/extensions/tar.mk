@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # handle tar archives
 #
 # Feature:	tar

@@ -1,5 +1,5 @@
 #!/bin/sh
-# $MidnightBSD$
+
 
 . ${dp_SCRIPTSDIR}/functions.sh
 
