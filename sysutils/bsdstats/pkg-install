@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD: mports/sysutils/bsdstats/pkg-install,v 1.2 2008/01/21 15:44:06 laffer1 Exp $
 # pkg-install : based off ${PORTSDIR}/mail/courier/files/pkg-install.in
 #
 

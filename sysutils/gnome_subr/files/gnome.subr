@@ -1,4 +1,3 @@
-# $MidnightBSD$
 
 # Add the following to /etc/rc.conf to start GNOME services (dbus,
 # hald, gdm, and so on) at boot time:

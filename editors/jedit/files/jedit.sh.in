@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD$
 
 # Java heap size, in megabytes
 JAVA_HEAP_SIZE=32
