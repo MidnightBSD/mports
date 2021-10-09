@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tali
 PORTVERSION=	3.22.0

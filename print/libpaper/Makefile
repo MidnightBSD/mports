@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libpaper
 PORTVERSION=	1.1.24.4

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	obconf
 PORTVERSION=	2.0.4

@@ -2,7 +2,7 @@
 # Date created:				Oct 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD$
+
 
 PORTNAME=	Email-MessageID
 PORTVERSION=	1.406

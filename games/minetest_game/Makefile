@@ -1,5 +1,5 @@
 # Created by: Dmitry Marakasov <amdmi3@FreeBSD.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/games/minetest_game/Makefile 392031 2015-07-14 15:58:52Z amdmi3 $
 
 PORTNAME=	minetest_game

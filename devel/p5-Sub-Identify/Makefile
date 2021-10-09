@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Sub-Identify
 PORTVERSION=	0.14

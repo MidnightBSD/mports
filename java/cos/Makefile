@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cos
 PORTVERSION=	2002.11.05

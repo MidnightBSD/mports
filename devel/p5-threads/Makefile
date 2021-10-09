@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	threads
 PORTVERSION=	2.21

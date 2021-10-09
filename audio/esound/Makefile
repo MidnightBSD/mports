@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/audio/esound/Makefile,v 1.62 2007/02/01 02:41:17 kris Exp $
 
 PORTNAME=	esound

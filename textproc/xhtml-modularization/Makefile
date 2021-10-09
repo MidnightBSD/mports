@@ -2,7 +2,7 @@
 # Date created:		March 27, 2008
 # Whom:			Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	xhtml-modularization

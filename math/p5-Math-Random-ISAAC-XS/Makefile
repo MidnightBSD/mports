@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Math-Random-ISAAC-XS
 PORTVERSION=	1.004

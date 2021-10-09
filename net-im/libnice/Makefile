@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libnice
 PORTVERSION=	0.1.13

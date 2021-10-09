@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/java/jai/Makefile,v 1.7 2008/03/24 05:18:55 glewis Exp $
 
 PORTNAME=	jai

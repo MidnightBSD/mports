@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/pccts/Makefile,v 1.28 2006/05/04 21:40:58 edwin Exp $
 
 PORTNAME=	pccts

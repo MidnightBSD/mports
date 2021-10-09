@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Device-Modem
 PORTVERSION=	1.57

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/x11-wm/libcompizconfig/Makefile,v 1.5 2008/04/19 17:55:55 miwi Exp $
 #
 

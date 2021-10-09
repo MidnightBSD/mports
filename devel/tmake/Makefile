@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/tmake/Makefile,v 1.16 2006/12/06 17:54:34 rafan Exp $
 
 PORTNAME=	tmake

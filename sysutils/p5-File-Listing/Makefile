@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	File-Listing
 PORTVERSION=	6.04

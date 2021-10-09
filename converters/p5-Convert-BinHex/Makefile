@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Convert-BinHex
 PORTVERSION=	1.125

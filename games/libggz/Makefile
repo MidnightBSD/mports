@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libggz
 PORTVERSION=	${GGZ_VERSION}

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	udns
 PORTVERSION=	0.4

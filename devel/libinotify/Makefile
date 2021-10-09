@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libinotify
 PORTVERSION=	20160505

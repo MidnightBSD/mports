@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/security/cyrus-sasl2-ldapdb/Makefile 409943 2016-03-02 14:13:45Z ume $
 
 PKGNAMESUFFIX=	-ldapdb

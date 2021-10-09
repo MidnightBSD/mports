@@ -2,7 +2,7 @@
 # Date created:		June 19, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/textproc/iso8879/Makefile,v 1.22 2005/06/13 20:54:18 glewis Exp $
 #
 

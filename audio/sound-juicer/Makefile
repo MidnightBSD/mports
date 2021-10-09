@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sound-juicer
 PORTVERSION=	3.18.1

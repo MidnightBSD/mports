@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	highlighterkit
 PORTVERSION=	0.1

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/textproc/fixrtf/Makefile,v 1.1 2006/03/16 07:50:15 delphij Exp $
 #
 # This port is self contained in the src directory.

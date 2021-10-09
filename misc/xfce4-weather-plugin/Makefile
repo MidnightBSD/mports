@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xfce4-weather-plugin
 PORTVERSION=	0.8.3

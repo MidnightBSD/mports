@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	asio
 DISTVERSION=	1.16.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	qstat
 PORTVERSION=	2.11

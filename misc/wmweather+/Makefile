@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wmweather+
 PORTVERSION=	2.15

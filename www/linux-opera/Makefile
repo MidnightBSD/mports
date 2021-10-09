@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}

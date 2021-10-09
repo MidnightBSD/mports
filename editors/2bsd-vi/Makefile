@@ -2,7 +2,7 @@
 # Date created:			2007-04-27
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	vi

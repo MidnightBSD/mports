@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Net-SSLeay
 PORTVERSION=	1.85

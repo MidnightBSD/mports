@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Text-Reform
 PORTVERSION=	1.20

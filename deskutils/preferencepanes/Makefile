@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/deskutils/preferencepanes/Makefile,v 1.1 2006/10/31 06:17:17 dinoex Exp $
-# $MidnightBSD$
+
 #
 
 PORTNAME=	preferencepanes

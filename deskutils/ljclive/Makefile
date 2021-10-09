@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ljclive
 PORTVERSION=	0.4.10

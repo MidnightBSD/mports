@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	redland
 PORTVERSION=	1.0.17

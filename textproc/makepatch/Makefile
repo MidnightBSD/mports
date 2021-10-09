@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	makepatch
 PORTVERSION=	2.05

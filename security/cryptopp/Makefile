@@ -1,6 +1,6 @@
 # Created by: George Reid <greid@ukug.uk.freebsd.org>
 # $FreeBSD: head/security/cryptopp/Makefile 449591 2017-09-10 20:55:38Z gerald $
-# $MidnightBSD$
+
 
 # Minor version bumps may not be ABI compatible and deskutils/cdcat
 # links to the static library, so bump PORTREVISION of dependent

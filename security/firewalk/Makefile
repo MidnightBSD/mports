@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/security/firewalk/Makefile,v 1.22 2007/01/31 14:09:53 pav Exp $
 
 PORTNAME=	firewalk

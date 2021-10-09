@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	hamcrest
 PORTVERSION=	1.3

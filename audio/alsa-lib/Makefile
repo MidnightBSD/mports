@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	alsa-lib
 PORTVERSION=	1.1.2

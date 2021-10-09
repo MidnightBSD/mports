@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libcdio
 PORTVERSION=	0.92

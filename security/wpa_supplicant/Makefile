@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/security/wpa_supplicant/Makefile 452263 2017-10-17 05:33:03Z cy $
 
 PORTNAME=	wpa_supplicant

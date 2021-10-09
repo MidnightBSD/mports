@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	linuxsampler
 DISTVERSION=	2.0.0

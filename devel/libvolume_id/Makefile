@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libvolume_id
 PORTVERSION=	0.81.1

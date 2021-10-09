@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5

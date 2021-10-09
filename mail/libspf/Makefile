@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/mail/libspf/Makefile,v 1.15 2010/12/04 07:32:30 ade Exp $
 
 PORTNAME=	libspf

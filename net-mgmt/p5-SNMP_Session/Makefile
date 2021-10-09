@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	SNMP_Session
 PORTVERSION=	1.13

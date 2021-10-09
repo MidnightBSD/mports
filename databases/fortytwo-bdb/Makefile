@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/databases/fortytwo-bdb/Makefile 390004 2015-06-17 22:44:59Z amdmi3 $
 
 PORTNAME=	bdb

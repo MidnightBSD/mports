@@ -1,5 +1,5 @@
 # Created by: Rusmir Dusko <nemysis@FreeBSD.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/textproc/unoconv/Makefile 374183 2014-12-07 10:01:36Z mva $
 
 PORTNAME=	unoconv

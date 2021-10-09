@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gpsd
 PORTVERSION=	3.20

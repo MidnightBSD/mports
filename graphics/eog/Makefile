@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	eog
 PORTVERSION=	3.28.4

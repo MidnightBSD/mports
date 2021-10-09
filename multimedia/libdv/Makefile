@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/multimedia/libdv/Makefile,v 1.36 2006/12/15 13:29:55 nork Exp $
 
 PORTNAME=	libdv

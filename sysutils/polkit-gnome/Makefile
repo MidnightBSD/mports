@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/sysutils/polkit-gnome/Makefile,v 1.6 2010/05/31 02:01:06 ade Exp $
 
 PORTNAME=	polkit-gnome

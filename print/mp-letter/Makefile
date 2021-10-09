@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/print/mp-letter/Makefile,v 1.25 2008/03/30 23:09:34 obrien Exp $
 
 PORTNAME=	mp-${PAPERSIZE}

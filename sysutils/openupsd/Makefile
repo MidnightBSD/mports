@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/sysutils/openupsd/Makefile,v 1.3 2005/12/01 16:50:07 tdb Exp $
 
 PORTNAME=	openupsd

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	schroedinger
 PORTVERSION=	1.0.11

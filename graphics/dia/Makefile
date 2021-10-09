@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dia
 PORTVERSION=	0.97.3

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xmlcatmgr
 PORTVERSION=	2.2

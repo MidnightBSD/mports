@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xfce4-artwork
 PORTVERSION=	0.0.4

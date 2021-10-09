@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/p5-Module-Pluggable/Makefile,v 1.22 2007/04/08 15:21:39 lth Exp $
 #
 

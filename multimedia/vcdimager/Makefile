@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/multimedia/vcdimager/Makefile,v 1.32 2006/06/09 18:59:20 ahze Exp $
 
 PORTNAME=	vcdimager

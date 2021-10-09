@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	yabasic
 PORTVERSION=	2.767

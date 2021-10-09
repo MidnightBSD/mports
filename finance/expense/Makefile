@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/finance/expense/Makefile 390002 2015-06-17 22:44:44Z amdmi3 $
 
 PORTNAME=	expense

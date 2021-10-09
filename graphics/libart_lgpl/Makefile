@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libart_lgpl
 PORTVERSION=	2.3.21

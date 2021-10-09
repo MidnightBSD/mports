@@ -2,7 +2,7 @@
 # Date created:				7 Nov 2007
 # Whom:	      				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	String-Approx

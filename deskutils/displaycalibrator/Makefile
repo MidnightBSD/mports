@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/deskutils/displaycalibrator/Makefile 390000 2015-06-17 22:44:38Z amdmi3 $
 
 PORTNAME=	displaycalibrator

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	rtc
 PORTVERSION=	2004.02.24.1

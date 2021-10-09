@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	junit
 PORTVERSION=	4.12

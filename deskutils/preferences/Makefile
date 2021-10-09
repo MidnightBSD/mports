@@ -1,5 +1,5 @@
 # $FreeBSD: ports/deskutils/preferences.app/Makefile,v 1.10 2006/03/19 04:35:43 dinoex Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	preferences
 PORTVERSION=	1.2.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	linuxlibertine
 PORTVERSION=	4.7.5

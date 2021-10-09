@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Crypt-OpenSSL-RSA
 PORTVERSION=	0.30

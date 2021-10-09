@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Class-DBI-AbstractSearch
 PORTVERSION=	0.07

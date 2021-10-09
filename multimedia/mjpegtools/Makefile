@@ -1,5 +1,5 @@
 # Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/multimedia/mjpegtools/Makefile 390310 2015-06-22 18:33:20Z antoine $
 
 PORTNAME=	mjpegtools

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	smap
 PORTVERSION=	0.5.0

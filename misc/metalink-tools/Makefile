@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	metalink
 PORTVERSION=	0.3.6

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xlockmore
 PORTVERSION=	5.43

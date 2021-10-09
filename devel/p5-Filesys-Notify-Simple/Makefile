@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/p5-Filesys-Notify-Simple/Makefile 373448 2014-11-26 13:08:24Z mat $
 
 PORTNAME=	Filesys-Notify-Simple

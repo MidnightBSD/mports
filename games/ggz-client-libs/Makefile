@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	ggz-client-libs

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/java/linux-oracle-jre18/Makefile 395449 2015-08-28 03:18:47Z glewis $
 
 PORTNAME=	jre

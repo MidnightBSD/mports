@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xephyr
 PORTREVISION=	0

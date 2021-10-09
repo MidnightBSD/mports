@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Sub-Install
 PORTVERSION=	0.925

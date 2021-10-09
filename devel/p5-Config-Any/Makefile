@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Config-Any
 PORTVERSION=	0.32

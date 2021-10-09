@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/www/linux-libgtkembedmoz/Makefile,v 1.1 2010/08/08 04:11:09 hrs Exp $
 
 PORTNAME=	libgtkembedmoz

@@ -1,6 +1,6 @@
 # Created by: Clement Laforet <clement@FreeBSD.org>
 # $FreeBSD: head/devel/hadoop/Makefile 421967 2016-09-13 00:49:12Z marino $
-# $MidnightBSD$
+
 
 PORTNAME=	hadoop
 PORTVERSION=	1.2.1

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libdockapp
 PORTVERSION=	0.6.2

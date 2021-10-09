@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wine-mono
 DISTVERSION=	0.0.8

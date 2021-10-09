@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zebra
 PORTVERSION=	0.95a

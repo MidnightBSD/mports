@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	bozohttpd
 PORTVERSION=	20130711

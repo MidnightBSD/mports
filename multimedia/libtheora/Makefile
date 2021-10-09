@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libtheora
 PORTVERSION=	1.1.1

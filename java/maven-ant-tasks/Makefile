@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/maven-ant-tasks/Makefile,v 1.8 2012/01/09 15:40:56 tabthorpe Exp $
 
 PORTNAME=	maven-ant-tasks

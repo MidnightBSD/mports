@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mc
 PORTVERSION=	4.8.13

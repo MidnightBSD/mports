@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	bass
 PORTVERSION=	1.2

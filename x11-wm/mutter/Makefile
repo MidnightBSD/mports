@@ -1,5 +1,5 @@
 # Created by: Pawel Worach <pawel.worach@gmail.com>
-# $MidnightBSD$
+
 # $FreeBSD: head/x11-wm/mutter/Makefile 382383 2015-03-27 09:24:39Z kwm $
 #   $MCom: ports/trunk/x11-wm/mutter/Makefile 20040 2014-11-03 17:21:59Z kwm $
 

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tcpreplay
 PORTVERSION=	4.1.1

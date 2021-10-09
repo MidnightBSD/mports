@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/py-isort/Makefile 432169 2017-01-22 22:27:54Z rene $
 
 PORTNAME=	isort

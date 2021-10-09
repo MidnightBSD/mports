@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	fvwm
 PORTVERSION=	2.6.6

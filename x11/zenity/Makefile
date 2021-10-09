@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zenity
 PORTVERSION=	3.28.1

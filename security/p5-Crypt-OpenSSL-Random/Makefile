@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Crypt-OpenSSL-Random
 PORTVERSION=	0.15

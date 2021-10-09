@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dirac
 PORTVERSION=	1.0.2

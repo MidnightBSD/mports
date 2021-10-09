@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	etpro
 PORTVERSION=	3.2.6

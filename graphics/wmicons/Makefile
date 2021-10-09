@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wmicons
 PORTVERSION=	1.0

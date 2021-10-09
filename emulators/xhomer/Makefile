@@ -2,7 +2,7 @@
 # Date created:			24 May 2006
 # Whom:				trasz
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/emulators/xhomer/Makefile,v 1.3 2007/04/13 13:03:46 trasz Exp $
 #
 

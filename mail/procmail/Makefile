@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	procmail
 PORTVERSION=	3.22

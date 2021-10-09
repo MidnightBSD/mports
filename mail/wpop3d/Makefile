@@ -2,7 +2,7 @@
 # Date created:   3 September 2006
 # Whom:           wintellect
 #
-# $MidnightBSD$
+
 
 PORTNAME=	wpop3d
 PORTVERSION=	1.2

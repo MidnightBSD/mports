@@ -2,7 +2,7 @@
 # Date created:				2006
 # Whom:					Adam Karim <archite@midnightbsd.org>
 #
-# $MidnightBSD$
+
 
 PORTNAME=	libao
 PORTVERSION=	1.2.0

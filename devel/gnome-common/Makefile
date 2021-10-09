@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnome-common
 PORTVERSION=	3.14.0

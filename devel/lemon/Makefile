@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lemon
 PORTVERSION=	1.69

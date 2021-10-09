@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zfs-replicate
 PORTVERSION=	0.7

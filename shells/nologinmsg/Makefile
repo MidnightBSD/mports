@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # The port is self contained in the src directory
 

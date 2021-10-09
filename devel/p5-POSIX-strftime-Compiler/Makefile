@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	POSIX-strftime-Compiler
 PORTVERSION=	0.41

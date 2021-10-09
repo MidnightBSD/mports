@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/x11/xcb-util-wm/Makefile,v 1.1 2012/01/15 12:46:11 garga Exp $
 
 PORTNAME=	xcb-util-wm

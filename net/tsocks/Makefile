@@ -2,7 +2,7 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 
 PORTNAME=	tsocks
 DISTVERSION=	1.8.b5

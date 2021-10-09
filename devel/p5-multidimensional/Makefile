@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/p5-multidimensional/Makefile 415663 2016-05-23 03:50:24Z sunpoet $
 
 PORTNAME=	multidimensional

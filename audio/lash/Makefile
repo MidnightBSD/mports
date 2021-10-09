@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lash
 PORTVERSION=	0.5.4

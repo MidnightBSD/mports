@@ -1,5 +1,5 @@
 # $FreeBSD: ports/games/pvpgn/Makefile,v 1.12 2008/05/30 15:42:54 miwi Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	pvpgn
 PORTVERSION=	1.8.5

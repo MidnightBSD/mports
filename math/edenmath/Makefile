@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	edenmath
 PORTVERSION=	1.1.1

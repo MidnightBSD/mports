@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Crypt-RC4
 PORTVERSION=	2.02

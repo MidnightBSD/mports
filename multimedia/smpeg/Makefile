@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	smpeg
 PORTVERSION=	0.4.4

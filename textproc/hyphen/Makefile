@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/textproc/hyphen/Makefile 370171 2014-10-06 13:45:10Z bapt $
 
 PORTNAME=	hyphen

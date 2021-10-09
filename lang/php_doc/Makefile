@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	php_doc
 PORTVERSION?=	20131017

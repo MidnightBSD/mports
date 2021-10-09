@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	crashplan
 DISTVERSION=	4.8.3

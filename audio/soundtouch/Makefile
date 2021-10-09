@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	soundtouch
 PORTVERSION=	1.9.2

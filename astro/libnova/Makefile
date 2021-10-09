@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libnova
 PORTVERSION=	0.15.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/print/tex-dvipsk/Makefile 392550 2015-07-20 06:34:44Z hrs $
 
 PORTNAME=	dvipsk

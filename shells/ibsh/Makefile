@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ibsh
 PORTVERSION=	0.3e

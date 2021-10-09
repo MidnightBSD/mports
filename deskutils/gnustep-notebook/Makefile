@@ -2,7 +2,7 @@
 # Date created:         3 Dec 2007
 # Whom:                 luke@midnightbsd.org
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/deskutils/gnustep-notebook/Makefile,v 1.5 2007/05/19 20:01:36 flz Exp $
 #
 

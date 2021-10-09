@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnustep-make
 PORTVERSION=	2.7.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	yelp
 PORTVERSION=	3.28.1

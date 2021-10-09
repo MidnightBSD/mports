@@ -1,5 +1,5 @@
 # Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-# $MidnightBSD$
+
 
 PORTNAME=	Crypt-OpenSSL-Guess
 PORTVERSION=	0.11

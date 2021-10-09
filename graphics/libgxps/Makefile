@@ -1,5 +1,5 @@
 # Created by: Gustau Perez <gustau.perez@gmail.com>
-# $MidnightBSD$
+
 # $FreeBSD: head/graphics/libgxps/Makefile 392537 2015-07-19 22:04:44Z bapt $
 
 PORTNAME=	libgxps

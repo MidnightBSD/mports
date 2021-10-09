@@ -2,7 +2,7 @@
 # Date created:				27 April 2008
 # Whom:					<smultron@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	vitetris

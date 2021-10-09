@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nttcp
 PORTVERSION=	1.47

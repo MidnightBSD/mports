@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	db
 PORTVERSION=	20160226

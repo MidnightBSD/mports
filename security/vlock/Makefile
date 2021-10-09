@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/security/vlock/Makefile,v 1.9 2008/06/19 19:35:54 pav Exp $
 
 PORTNAME=	vlock

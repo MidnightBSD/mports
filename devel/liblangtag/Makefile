@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/liblangtag/Makefile 393959 2015-08-11 18:31:18Z jkim $
 
 PORTNAME=	liblangtag

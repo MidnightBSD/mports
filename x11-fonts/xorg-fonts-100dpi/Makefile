@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xorg-fonts-100dpi
 PORTVERSION=	7.7

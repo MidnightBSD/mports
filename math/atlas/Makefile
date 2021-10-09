@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	atlas
 PORTVERSION=	3.8.4

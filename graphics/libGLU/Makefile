@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libGLU
 PORTVERSION=	9.0.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Class-XSAccessor
 PORTVERSION=	1.19

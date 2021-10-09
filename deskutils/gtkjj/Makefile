@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gtkjj
 PORTVERSION=	2.0.0

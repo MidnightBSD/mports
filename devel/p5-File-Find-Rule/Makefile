@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	File-Find-Rule
 PORTVERSION=	0.34

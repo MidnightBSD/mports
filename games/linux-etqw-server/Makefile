@@ -1,5 +1,5 @@
 # Created by: Ayumi M <ayu@commun.jp>
-# $MidnightBSD$
+
 # $FreeBSD: head/games/linux-etqw-server/Makefile 360937 2014-07-06 16:23:13Z vanilla $
 
 PORTNAME=	etqw

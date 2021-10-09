@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/p5-Getopt-ArgvFile/Makefile,v 1.7 2008/04/17 14:25:29 araujo Exp $
 
 PORTNAME=	Getopt-ArgvFile

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/graphics/gdchart/files/Makefile,v 1.3 2006/04/29 21:23:20 pav Exp $
 
 LIB=		gdc

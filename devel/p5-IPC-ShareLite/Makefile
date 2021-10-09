@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	IPC-ShareLite
 PORTVERSION=	0.17

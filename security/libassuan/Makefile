@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libassuan
 PORTVERSION=	2.5.1

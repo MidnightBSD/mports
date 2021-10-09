@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sqlparse
 PORTVERSION=	0.2.4

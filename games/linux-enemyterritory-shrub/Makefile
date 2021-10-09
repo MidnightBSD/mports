@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/games/linux-enemyterritory-shrub/Makefile,v 1.2 2006/05/31 01:43:26 alepulver Exp $
 
 PORTNAME=	shrub

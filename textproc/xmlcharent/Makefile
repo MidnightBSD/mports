@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/textproc/xmlcharent/Makefile,v 1.7 2006/07/14 16:32:39 hrs Exp $
 
 PORTNAME=	xmlcharent

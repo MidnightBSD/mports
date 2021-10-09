@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libcanberra
 PORTVERSION=	0.30

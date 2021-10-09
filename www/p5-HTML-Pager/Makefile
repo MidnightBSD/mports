@@ -1,5 +1,5 @@
 # $FreeBSD: ports/www/p5-HTML-Pager/Makefile,v 1.7 2003/10/24 14:15:29 erwin Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	HTML-Pager
 PORTVERSION=	0.03

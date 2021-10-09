@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	assimp
 DISTVERSIONPREFIX=	v

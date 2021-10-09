@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/shells/scponly/Makefile,v 1.36 2010/12/15 07:12:02 wen Exp $
 
 PORTNAME=	scponly

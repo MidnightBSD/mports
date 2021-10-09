@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jbigkit
 PORTVERSION=	2.1

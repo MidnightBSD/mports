@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Module-Install
 PORTVERSION=	1.18

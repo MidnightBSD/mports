@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tvbrowser
 PORTVERSION=	3.3.2

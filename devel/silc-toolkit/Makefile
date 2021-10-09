@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	silc-toolkit
 PORTVERSION=	1.1.12

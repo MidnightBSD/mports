@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xorg-fonts-cyrillic
 PORTVERSION=	7.7

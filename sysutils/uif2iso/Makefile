@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/sysutils/uif2iso/Makefile,v 1.3 2008/03/31 07:30:00 jadawin Exp $
 
 PORTNAME=	uif2iso

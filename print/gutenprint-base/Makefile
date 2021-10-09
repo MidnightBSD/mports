@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME?=	gutenprint
 PORTVERSION=	5.2.10

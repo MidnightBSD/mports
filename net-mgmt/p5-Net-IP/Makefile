@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Net-IP
 PORTVERSION=	1.26

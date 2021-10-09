@@ -1,6 +1,6 @@
 # Created by: kmoore@FreeBSD.org
 # $FreeBSD: head/sysutils/grub2-bhyve/Makefile 449591 2017-09-10 20:55:38Z gerald $
-# $MidnightBSD$
+
 
 PORTNAME=	grub2-bhyve
 DISTVERSIONPREFIX=	v

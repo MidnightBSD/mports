@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnumail
 PORTVERSION=	1.2.2

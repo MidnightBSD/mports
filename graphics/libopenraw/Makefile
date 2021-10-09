@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libopenraw
 PORTVERSION=	0.0.9

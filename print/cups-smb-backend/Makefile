@@ -1,6 +1,6 @@
 # Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
 # $FreeBSD: head/print/cups-smb-backend/Makefile 410825 2016-03-11 11:53:42Z tijl $
-# $MidnightBSD$
+
 
 PORTNAME=	cups-smb-backend
 PORTVERSION=	1.0

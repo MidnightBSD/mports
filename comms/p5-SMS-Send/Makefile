@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	SMS-Send
 PORTVERSION=	1.06

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/m17n-docs/Makefile,v 1.10 2010/02/04 04:02:35 pgollucci Exp $
 
 PORTNAME=	m17n-docs

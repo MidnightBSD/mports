@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	glclock
 DISTVERSION=	6.0b6.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	iagno
 PORTVERSION=	3.28.0

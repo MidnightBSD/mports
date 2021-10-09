@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tkshape
 PORTVERSION=	0.4

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zfs-snapshot-mgmt
 PORTVERSION=	20090201

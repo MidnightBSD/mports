@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zfs-periodic
 PORTVERSION=	1.0.20130213

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libgdiplus
 PORTVERSION=	3.12

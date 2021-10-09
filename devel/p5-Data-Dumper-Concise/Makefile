@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Data-Dumper-Concise
 PORTVERSION=	2.023

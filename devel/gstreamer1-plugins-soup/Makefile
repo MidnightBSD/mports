@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/gstreamer1-plugins-soup/Makefile 405242 2016-01-04 14:21:56Z kwm $
 
 PORTREVISION=	0

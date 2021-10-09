@@ -1,5 +1,5 @@
 # $FreeBSD: ports/security/vnccrack/Makefile,v 1.1 2006/08/20 12:09:31 itetcu Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	vnccrack
 PORTVERSION=	1.0.0

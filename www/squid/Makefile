@@ -2,7 +2,7 @@
 # Date created:		Tue Mar 27 14:56:08 CEST 2001
 # Whom:			Adrian Chadd <adrian@FreeBSD.org>
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/www/squid/Makefile,v 1.209 2008/04/05 00:46:55 beech Exp $
 #
 # Tunables not (yet) configurable via 'make config':

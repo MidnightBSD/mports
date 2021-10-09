@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mpack
 PORTVERSION=	1.6

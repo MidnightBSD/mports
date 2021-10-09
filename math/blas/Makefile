@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	blas
 PORTREVISION=	3

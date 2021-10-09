@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	iozone
 PORTVERSION=	2.01

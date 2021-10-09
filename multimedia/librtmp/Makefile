@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	librtmp
 PORTVERSION=	2.4.20190330

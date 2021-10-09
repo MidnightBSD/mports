@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	facile
 PORTVERSION=	1.1.3

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/x11-toolkits/gstreamer1-plugins-pango/Makefile 374874 2014-12-17 21:14:29Z antoine $
 
 PORTREVISION=	1

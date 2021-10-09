@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	orage
 PORTVERSION=	4.12.1

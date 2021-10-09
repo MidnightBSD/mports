@@ -1,5 +1,5 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/graphics/argyllcms/Makefile 393785 2015-08-09 12:55:19Z kwm $
 
 PORTNAME=	argyllcms

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	openbox
 PORTVERSION=	3.5.2

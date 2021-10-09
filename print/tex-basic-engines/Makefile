@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/print/tex-basic-engines/Makefile 392909 2015-07-26 06:57:26Z hrs $
 
 PORTNAME=	basic-engines

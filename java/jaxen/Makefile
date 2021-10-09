@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jaxen
 PORTVERSION=	1.0

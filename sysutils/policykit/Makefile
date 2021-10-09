@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	policykit
 PORTVERSION=	0.9

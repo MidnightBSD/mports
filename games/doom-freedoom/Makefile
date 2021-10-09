@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/games/doom-freedoom/Makefile,v 1.7 2008/03/10 16:05:05 alepulver Exp $
 
 PORTNAME=	freedoom

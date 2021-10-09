@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lmmon
 PORTVERSION=	0.65

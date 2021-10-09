@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/print/tex-ptexenc/Makefile 365637 2014-08-22 11:04:23Z hrs $
 
 PORTNAME=	ptexenc

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libuninum
 PORTVERSION=	2.7

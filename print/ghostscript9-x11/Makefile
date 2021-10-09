@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/print/ghostscript9-x11/Makefile 395047 2015-08-22 17:48:35Z hrs $
 
 PORTNAME=	ghostscript

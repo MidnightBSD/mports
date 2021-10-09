@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libcdio-paranoia
 PORTVERSION=	10.2+0.90+1

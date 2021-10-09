@@ -1,5 +1,5 @@
 # $FreeBSD: ports/multimedia/x264/Makefile,v 1.80 2010/11/30 09:50:46 mm Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	x264
 PORTVERSION=	0.${X264_BUILD}.${X264_REV}

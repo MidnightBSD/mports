@@ -1,6 +1,6 @@
 # Created by: thierry@pompo.net
 # $FreeBSD: head/textproc/libtextcat/Makefile 360343 2014-07-03 08:29:15Z tijl $
-# $MidnightBSD$
+
 
 PORTNAME=	libtextcat
 PORTVERSION=	2.2

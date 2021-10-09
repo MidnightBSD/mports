@@ -2,7 +2,7 @@
 # Date created:        January 21, 2008
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	bnc

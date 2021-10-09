@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/x11/libxfce4menu/Makefile,v 1.8 2010/05/31 15:34:46 oliver Exp $
 
 PORTNAME=	libxfce4menu

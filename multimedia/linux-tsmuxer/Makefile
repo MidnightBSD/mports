@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tsmuxer
 PORTVERSION=	1.10.6

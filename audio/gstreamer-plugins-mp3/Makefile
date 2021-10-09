@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gstreamer-plugins
 PORTVERSION=	0.10.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dejagnu
 PORTVERSION=	1.6.1

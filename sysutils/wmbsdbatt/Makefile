@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/sysutils/wmbsdbatt/Makefile,v 1.5 2006/07/27 06:33:44 edwin Exp $
 
 PORTNAME=	wmbsdbatt

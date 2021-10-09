@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/math/ldouble/Makefile,v 1.12 2008/04/19 17:51:56 miwi Exp $
 
 PORTNAME=	ldouble

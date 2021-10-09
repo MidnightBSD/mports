@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 CLIENT_ONLY=		yes
 

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Thunar
 PORTVERSION=	1.6.10

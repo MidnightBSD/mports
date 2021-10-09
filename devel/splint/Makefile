@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	splint
 PORTVERSION=	3.1.2

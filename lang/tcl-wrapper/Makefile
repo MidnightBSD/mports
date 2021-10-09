@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wrapper
 PORTVERSION=	1.1

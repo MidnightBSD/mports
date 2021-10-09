@@ -1,6 +1,6 @@
 # Created by: Gerrit Beine <gerrit.beine@gmx.de>
 # $FreeBSD: head/textproc/lucene/Makefile 386312 2015-05-14 10:15:04Z mat $
-# $MidnightBSD$
+
 
 PORTNAME=	lucene
 PORTVERSION=	3.6.2

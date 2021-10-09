@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	timidity
 PORTVERSION=	0.2i

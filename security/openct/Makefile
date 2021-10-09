@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	openct
 PORTVERSION=	0.6.20

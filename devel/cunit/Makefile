@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cunit
 PORTVERSION=	2.1.3

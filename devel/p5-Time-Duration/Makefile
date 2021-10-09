@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/p5-Time-Duration/Makefile 412346 2016-04-01 14:00:51Z mat $
 
 PORTNAME=	Time-Duration

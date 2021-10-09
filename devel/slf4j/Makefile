@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	slf4j
 PORTVERSION=	1.7.21

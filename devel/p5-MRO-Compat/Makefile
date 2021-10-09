@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/p5-MRO-Compat/Makefile,v 1.2 2007/07/20 07:26:00 lbr Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	MRO-Compat
 PORTVERSION=	0.13

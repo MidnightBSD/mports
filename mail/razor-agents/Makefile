@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.85

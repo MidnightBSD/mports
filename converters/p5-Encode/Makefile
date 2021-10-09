@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Encode
 PORTVERSION=	3.01

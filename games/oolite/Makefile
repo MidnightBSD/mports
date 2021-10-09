@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=		oolite
 PORTVERSION=		1.86

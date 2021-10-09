@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libgig
 DISTVERSION=	4.1.0

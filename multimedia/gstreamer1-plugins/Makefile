@@ -1,5 +1,5 @@
 # Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-# $MidnightBSD$
+
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}

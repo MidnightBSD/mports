@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/databases/libiodbc/Makefile,v 1.28 2007/01/17 17:18:11 itetcu Exp $
 #
 # Note:  The location of ${INIDIR} and the installed name of the "odbctest"

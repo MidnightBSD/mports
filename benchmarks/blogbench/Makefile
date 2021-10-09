@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	blogbench
 PORTVERSION=	1.1

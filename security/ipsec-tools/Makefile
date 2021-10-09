@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ipsec-tools
 PORTVERSION=	0.8.2

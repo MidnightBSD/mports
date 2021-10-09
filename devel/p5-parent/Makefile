@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/p5-parent/Makefile,v 1.8 2011/05/06 14:15:40 rafan Exp $
 
 PORTNAME=	parent

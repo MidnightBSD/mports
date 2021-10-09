@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lsof
 PORTVERSION=	4.92B

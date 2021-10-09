@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gedit-plugins
 PORTVERSION=	3.28.1

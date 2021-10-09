@@ -1,6 +1,6 @@
 # Created by: mm@FreeBSD.org
 # $FreeBSD: head/graphics/ImageMagick-nox11/Makefile 420009 2016-08-10 12:08:05Z kwm $
-# $MidnightBSD$
+
 
 PORTREVISION=	1
 

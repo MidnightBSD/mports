@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libsamplerate
 PORTVERSION=	0.1.9

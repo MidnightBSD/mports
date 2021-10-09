@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gtk-vnc
 PORTVERSION=	0.7.2

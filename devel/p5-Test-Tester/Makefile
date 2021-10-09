@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Test-Tester
 PORTVERSION=	0.10.9

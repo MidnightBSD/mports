@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/multimedia/cuse4bsd-kmod/Makefile 382254 2015-03-25 17:36:47Z marino $
 
 PORTNAME=	cuse4bsd-kmod

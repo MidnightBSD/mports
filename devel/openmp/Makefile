@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/openmp/Makefile 475857 2018-07-29 22:18:44Z gerald $
 
 PORTNAME=	openmp

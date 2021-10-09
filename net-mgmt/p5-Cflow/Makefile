@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Cflow
 PORTVERSION=	1.053

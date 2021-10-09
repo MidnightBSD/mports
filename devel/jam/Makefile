@@ -1,5 +1,5 @@
 # Created by: Jeffrey Hsu <hsu@FreeBSD.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/jam/Makefile 347405 2014-03-07 16:49:09Z bapt $
 
 PORTNAME=	jam

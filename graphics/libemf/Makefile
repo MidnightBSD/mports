@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/graphics/libemf/Makefile,v 1.12 2010/12/04 07:32:03 ade Exp $
 
 PORTNAME=	libEMF

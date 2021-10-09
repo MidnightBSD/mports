@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/games/linux-enemyterritory-tce/Makefile,v 1.5 2006/05/31 01:43:26 alepulver Exp $
 
 PORTNAME=	enemyterritory-tce

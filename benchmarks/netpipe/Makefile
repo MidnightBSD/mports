@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	NetPIPE
 PORTVERSION=	3.7.1

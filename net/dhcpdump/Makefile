@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dhcpdump
 PORTVERSION=	1.8

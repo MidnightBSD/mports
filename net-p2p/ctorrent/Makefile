@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ctorrent
 PORTVERSION=	3.3.2

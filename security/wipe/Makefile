@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wipe
 PORTVERSION=	2.3.1

@@ -1,5 +1,5 @@
 # Created by: Thomas Gellekum <tg@FreeBSD.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/games/gshisen/Makefile 383626 2015-04-09 07:44:41Z bapt $
 
 PORTNAME=	gshisen

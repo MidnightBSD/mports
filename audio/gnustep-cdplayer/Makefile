@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/audio/gnustep-cdplayer/Makefile,v 1.3 2007/01/31 18:17:49 dinoex Exp $
 
 PORTNAME=	cdplayer

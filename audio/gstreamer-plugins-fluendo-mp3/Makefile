@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/audio/gstreamer-plugins-fluendo-mp3/Makefile,v 1.4 2007/07/05 12:21:06 ahze Exp $
 
 PORTNAME=	gstreamer-plugins-fluendo-mp3

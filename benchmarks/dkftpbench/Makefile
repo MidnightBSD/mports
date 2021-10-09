@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dkftpbench
 PORTVERSION=	0.45

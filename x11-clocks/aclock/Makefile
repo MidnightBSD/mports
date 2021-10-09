@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	aclock
 PORTVERSION=	0.4.0

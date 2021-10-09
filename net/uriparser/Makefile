@@ -1,6 +1,6 @@
 # Created by: Ed Schouten <ed@FreeBSD.org>
 # $FreeBSD: head/net/uriparser/Makefile 400218 2015-10-27 07:33:47Z ed $
-# $MidnightBSD$
+
 
 PORTNAME=	uriparser
 PORTVERSION=	0.8.4

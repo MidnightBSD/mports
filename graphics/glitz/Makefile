@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/graphics/glitz/Makefile,v 1.10 2006/05/07 23:46:04 edwin Exp $
 
 PORTNAME=	glitz

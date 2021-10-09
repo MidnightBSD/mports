@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sdl_sound
 PORTVERSION=	1.0.3

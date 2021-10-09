@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nvidia-xconfig
 PORTVERSION=	310.14

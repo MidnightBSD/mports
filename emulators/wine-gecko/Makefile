@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wine-gecko
 DISTVERSION=	2.21

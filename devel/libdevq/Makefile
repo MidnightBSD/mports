@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libdevq
 PORTVERSION=	0.0.2

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	talksoup
 PORTVERSION=	1.1

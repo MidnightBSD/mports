@@ -3,7 +3,7 @@
 # Whom:                 Chris S.J. Peron <maneo@bsdpro.com>
 #
 # $FreeBSD: ports/net-mgmt/subcalc/Makefile,v 1.6 2004/12/10 05:50:16 csjp Exp $
-# $MidnightBSD$
+
 #
 
 PORTNAME=	subcalc

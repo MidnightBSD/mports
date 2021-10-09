@@ -1,5 +1,5 @@
 # Created by: Dave McKay <dave@mu.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/security/libcryptui/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	libcryptui

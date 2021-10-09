@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	opensp
 PORTVERSION=	1.5.2

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zsync
 PORTVERSION=	0.6.2

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	bouncycastle
 PORTVERSION=	1.45

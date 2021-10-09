@@ -1,6 +1,6 @@
 # Created by: ijliao
 # $FreeBSD: head/textproc/txt2man/Makefile 412349 2016-04-01 14:25:16Z mat $
-# $MidnightBSD$
+
 
 PORTNAME=	txt2man
 PORTVERSION=	1.5.6

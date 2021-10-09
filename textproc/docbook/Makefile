@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/textproc/docbook/Makefile,v 1.22 2007/01/15 15:11:11 alepulver Exp $
 
 PORTNAME=	docbook

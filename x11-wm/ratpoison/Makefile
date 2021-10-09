@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ratpoison
 PORTVERSION=	1.4.5

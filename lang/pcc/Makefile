@@ -2,7 +2,7 @@
 # Date created:			  May 12, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 
 PORTNAME=	pcc
 PORTVERSION=	1.0.0

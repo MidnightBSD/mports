@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	netperf
 PORTVERSION=	2.6.0

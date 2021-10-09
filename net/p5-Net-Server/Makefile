@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Net-Server
 PORTVERSION=	2.009

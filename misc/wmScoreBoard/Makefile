@@ -2,7 +2,7 @@
 # Date created:				Sun Jun 24 17:08:15 EDT 2001
 # Whom:					Patrick Li <pat@databits.net>
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/misc/wmScoreBoard/Makefile,v 1.6 2006/04/14 22:53:07 linimon Exp $
 #
 

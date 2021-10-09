@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	svndelta
 PORTVERSION=	1.0.6

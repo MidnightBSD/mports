@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gawk
 PORTVERSION=	4.1.3

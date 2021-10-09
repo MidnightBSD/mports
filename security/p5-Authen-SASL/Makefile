@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Authen-SASL
 PORTVERSION=	2.16

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	opencore-amr
 PORTVERSION=	0.1.3

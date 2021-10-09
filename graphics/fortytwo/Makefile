@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/graphics/fortytwo/Makefile 390003 2015-06-17 22:44:46Z amdmi3 $
 
 PORTNAME=	fortytwo

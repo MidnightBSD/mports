@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/graphics/liblqr-1/Makefile,v 1.13 2011/11/09 15:25:34 miwi Exp $
 
 PORTNAME=	liblqr-1

@@ -2,7 +2,7 @@
 # Date created:			20 Jan 2006
 # Whom:				Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/multimedia/gstreamer-plugins-ugly/Makefile,v 1.5 2007/06/19 12:55:05 ahze Exp $
 #
 

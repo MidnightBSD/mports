@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/devel/autoconf-wrapper/Makefile,v 1.3 2007/11/09 14:47:26 des Exp $
 
 PORTNAME?=	autoconf-wrapper

@@ -1,5 +1,5 @@
 # Created by: Ulrich Spoerlein <q@uni.de>
-# $MidnightBSD$
+
 # $FreeBSD: head/graphics/ocrad/Makefile 345412 2014-02-21 13:37:15Z ehaupt $
 
 PORTNAME=	ocrad

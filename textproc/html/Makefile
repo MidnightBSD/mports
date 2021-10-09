@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	html
 PORTVERSION=	4.01

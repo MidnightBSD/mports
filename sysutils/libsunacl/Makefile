@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libsunacl
 PORTVERSION=	1.0

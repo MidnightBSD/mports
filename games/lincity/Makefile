@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/games/lincity/Makefile,v 1.24 2007/05/19 20:06:46 flz Exp $
 
 PORTNAME=	lincity

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/converters/uulib/Makefile,v 1.35 2007/01/30 10:25:23 pav Exp $
 
 PORTNAME=	uulib

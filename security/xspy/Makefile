@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xspy
 PORTVERSION=	1.0c

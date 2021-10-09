@@ -1,6 +1,6 @@
 # Created by: Sergey Skvortsov <skv@protey.ru>
 # $FreeBSD: head/devel/p5-XSLoader/Makefile 449893 2017-09-15 08:58:46Z mat $
-# $MidnightBSD$
+
 
 PORTNAME=	XSLoader
 PORTVERSION=	0.24

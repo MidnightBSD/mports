@@ -2,7 +2,7 @@
 # Date created:         18 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/deskutils/toolboxkit/Makefile,v 1.4 2007/02/25 06:48:26 dinoex Exp $
 #
 

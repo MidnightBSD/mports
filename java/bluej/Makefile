@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	bluej
 PORTVERSION=	3.1.1

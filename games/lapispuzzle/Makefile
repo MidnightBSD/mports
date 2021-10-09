@@ -1,6 +1,6 @@
 # Created by: gurkan@phys.ethz.ch
 # $FreeBSD: head/games/lapispuzzle/Makefile 383626 2015-04-09 07:44:41Z bapt $
-# $MidnightBSD$
+
 
 PORTNAME=	lapispuzzle
 PORTVERSION=	1.2

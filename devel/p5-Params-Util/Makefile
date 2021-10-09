@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Params-Util
 PORTVERSION=	1.07

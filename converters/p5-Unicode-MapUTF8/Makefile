@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Unicode-MapUTF8
 PORTVERSION=	1.11

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	paje
 PORTVERSION=	1.97

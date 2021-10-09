@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	swell-foop
 PORTVERSION=	3.28.0

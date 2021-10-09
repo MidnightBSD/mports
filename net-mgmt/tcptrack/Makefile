@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tcptrack
 PORTVERSION=	1.4.2

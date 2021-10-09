@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libwnck
 PORTVERSION=	2.30.7

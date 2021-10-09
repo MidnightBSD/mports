@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xscreensaver-gnome-hacks
 PORTREVISION=	3

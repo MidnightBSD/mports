@@ -1,6 +1,6 @@
 # Created by: Steve Wills <swills@FreeBSD.org>
 # $FreeBSD: head/devel/p5-Lexical-SealRequireHints/Makefile 411386 2016-03-19 09:40:39Z wen $
-# $MidnightBSD$
+
 
 PORTNAME=	Lexical-SealRequireHints
 PORTVERSION=	0.010

@@ -1,5 +1,5 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-# $MidnightBSD$
+
 # $FreeBSD: head/textproc/gtkspell3/Makefile 384722 2015-04-25 09:37:20Z kwm $
 
 PORTNAME=	gtkspell3

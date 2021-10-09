@@ -1,5 +1,5 @@
 # Created by: Alexander Churanov <churanov.port.maintainer@gmail.com>
-# $MidnightBSD$
+
 
 PORTNAME=	boost-libs
 PORTREVISION=	1

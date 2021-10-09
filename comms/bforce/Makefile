@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	bforce
 PORTVERSION=	0.22.8

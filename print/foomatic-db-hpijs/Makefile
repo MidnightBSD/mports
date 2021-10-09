@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	foomatic-db-hpijs
 PORTVERSION=	1.4

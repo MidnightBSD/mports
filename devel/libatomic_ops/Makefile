@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libatomic_ops
 DISTVERSION=	7.4.16

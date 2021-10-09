@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xfce4-mpc-plugin
 PORTVERSION=	0.4.4

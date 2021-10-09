@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Tie-IxHash
 PORTVERSION=	1.22

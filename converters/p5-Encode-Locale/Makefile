@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Encode-Locale
 PORTVERSION=	1.05

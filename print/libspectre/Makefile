@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libspectre
 PORTVERSION=	0.2.8

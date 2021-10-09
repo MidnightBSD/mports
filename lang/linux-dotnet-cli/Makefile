@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dotnet-cli
 DISTNAME=	dotnet-runtime-${DISTVERSION}-linux-x64

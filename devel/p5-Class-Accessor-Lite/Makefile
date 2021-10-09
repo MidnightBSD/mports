@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/devel/p5-Class-Accessor-Lite/Makefile 449893 2017-09-15 08:58:46Z mat $
 
 PORTNAME=	Class-Accessor-Lite

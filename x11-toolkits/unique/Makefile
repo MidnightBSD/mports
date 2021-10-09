@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	unique
 PORTVERSION=	1.1.6

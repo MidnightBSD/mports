@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Crypt-RC6
 PORTVERSION=	1.0

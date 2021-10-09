@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libmad
 PORTVERSION=	0.15.1b
