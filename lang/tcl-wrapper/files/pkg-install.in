@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD$
 CP="%%CP%%"
 TX_CONF="%%TX_CONF_FULL%%"
 

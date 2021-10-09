@@ -3,7 +3,6 @@
 # Checks if the 'www' user and group exist. If they don't, then
 # an attempt is made to create both.
 #
-# $MidnightBSD$
 #
 
 # Make sure we're called during the 'make install' process

@@ -1,4 +1,3 @@
-# $MidnightBSD$
 
 OPTIONS_DEFINE=	NTPSNMPD \
 		SSL \

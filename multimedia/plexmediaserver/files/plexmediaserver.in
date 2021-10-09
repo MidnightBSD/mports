@@ -1,7 +1,6 @@
 #!/bin/sh
 # Created by: KalleDK <plexmaintainer@k-moeller.dk>
 #
-# $MidnightBSD$
 #
 # PROVIDE: %%PORTNAME%%
 # REQUIRE: LOGIN

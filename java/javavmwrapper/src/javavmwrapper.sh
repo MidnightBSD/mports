@@ -25,7 +25,6 @@
 # Greg Lewis
 # ----------------------------------------------------------------------------
 #
-# $MidnightBSD: mports/java/javavmwrapper/src/javavmwrapper.sh,v 1.3 2009/04/04 01:14:33 laffer1 Exp $
 #
 # MAINTAINER=ports@MidnightBSD.org
 
