@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD$
 
 # PROVIDE: htpdate
 # REQUIRE: NETWORKING syslogd

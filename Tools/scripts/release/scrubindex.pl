@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-# $FreeBSD: ports/Tools/scripts/release/scrubindex.pl,v 1.2 2004/06/08 21:57:01 murray Exp $
 
 die "$0 <pkgdir> <indexfile>\n" if ($#ARGV != 1);
 

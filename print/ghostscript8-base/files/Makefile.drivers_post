@@ -1,4 +1,3 @@
-# $FreeBSD: head/print/ghostscript8-base/files/Makefile.drivers_post 410825 2016-03-11 11:53:42Z tijl $
 # pre/postprocessing driver variables
 
 # dmprt specific

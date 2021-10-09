@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# $FreeBSD$
 #
 # PROVIDE: tcsd
 # REQUIRE: SERVERS tpmd

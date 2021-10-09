@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/security/clamav/files/clamav-milter.in 354141 2014-05-15 15:40:25Z garga $
 #
 
 # PROVIDE: clamav_milter

@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/sysutils/devcpu-data/files/microcode_update.in 459084 2018-01-15 17:05:37Z swills $
 #
 
 # PROVIDE:	microcode_update

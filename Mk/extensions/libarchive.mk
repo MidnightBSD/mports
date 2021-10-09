@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/libarchive.mk 392507 2015-07-19 14:36:00Z bapt $
 #
 # handle dependency on the libarchive port
 #

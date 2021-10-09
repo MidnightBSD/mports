@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/tcl.mk 454756 2017-11-23 12:11:41Z gahr $
 #
 # vim: ts=8 noexpandtab
 #

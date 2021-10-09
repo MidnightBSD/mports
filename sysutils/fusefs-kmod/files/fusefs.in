@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/sysutils/fusefs-kmod/files/fusefs.in 363947 2014-08-03 22:04:34Z pi $
 #
 # PROVIDE: fusefs
 # REQUIRE: sysctl

@@ -1,4 +1,3 @@
-# $FreeBSD: head/print/cups/files/cups 410825 2016-03-11 11:53:42Z tijl $
 
 auth	include	system
 account	include	system

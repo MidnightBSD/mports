@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/autoreconf.mk 369909 2014-10-03 15:33:39Z tijl $
 #
 # Run autoreconf in AUTORECONF_WRKSRC to update configure, Makefile.in and
 # other build scripts.

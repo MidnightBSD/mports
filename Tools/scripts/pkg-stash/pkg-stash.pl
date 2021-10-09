@@ -1,5 +1,4 @@
 #!/usr/bin/perl -wT
-# $FreeBSD: ports/Tools/scripts/pkg-stash/pkg-stash.pl,v 1.1 2003/01/08 15:40:08 roam Exp $
 
 use strict;
 

@@ -1,4 +1,3 @@
-# $FreeBSD: head/Mk/Uses/makeinfo.mk 520033 2019-12-13 13:48:55Z adamw $
 #
 # handle dependency on the makeinfo port
 #

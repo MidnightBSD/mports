@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# $FreeBSD: head/mail/py-postfix-mta-sts-resolver/files/mta_sts.in 522713 2020-01-11 21:50:45Z romain $
 #
 # PROVIDE: mta_sts
 # REQUIRE: DAEMON

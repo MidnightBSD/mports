@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/multimedia/ffmpeg0/files/ffserver0.in 329826 2013-10-08 19:24:30Z wg $
 #
 
 # PROVIDE: ffserver0

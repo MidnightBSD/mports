@@ -1,4 +1,3 @@
-# $FreeBSD: head/Mk/Uses/samba.mk 520186 2019-12-15 17:20:10Z rene $
 #
 # Handle dependency on samba
 #

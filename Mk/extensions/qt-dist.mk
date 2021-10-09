@@ -1,4 +1,3 @@
-# $FreeBSD: head/Mk/Uses/qt-dist.mk 502628 2019-05-25 20:02:55Z tcberner $
 #
 # There are three Qt related USES files with different access to Qt.
 #   - qmake: The port requires Qt's qmake to build -- creates the configure target

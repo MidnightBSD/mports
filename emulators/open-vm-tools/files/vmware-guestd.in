@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/emulators/open-vm-tools/files/vmware-guestd.in 436816 2017-03-24 14:43:24Z swills $
 #
 
 # PROVIDE: vmware-guestd

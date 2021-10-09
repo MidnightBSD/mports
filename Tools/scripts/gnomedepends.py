@@ -14,7 +14,6 @@
 # ----------------------------------------------------------------------------
 #
 # $MidnightBSD$
-# $FreeBSD: ports/Tools/scripts/gnomedepends.py,v 1.4 2005/01/09 10:21:17 krion Exp $
 #
 # MAINTAINER= ports@MidnightBSD.org
 #

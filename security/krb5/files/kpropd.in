@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# $FreeBSD: head/security/krb5/files/kpropd.in 351689 2014-04-21 15:55:07Z brd $
 #
 # PROVIDE: kpropd
 # REQUIRE: LOGIN

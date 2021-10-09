@@ -1,4 +1,3 @@
-# $FreeBSD: head/print/ghostscript9-base/files/Makefile.pcl3 395047 2015-08-22 17:48:35Z hrs $
 
 PORTDOCS+=	pcl3
 PORTDOC_FILES+= pcl3/NEWS pcl3/BUGS pcl3/README pcl3/gs-pcl3.html	\

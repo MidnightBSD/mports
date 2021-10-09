@@ -1,4 +1,3 @@
-# $FreeBSD: head/java/bootstrap-openjdk8/Makefile.update 455241 2017-12-01 01:41:29Z jkim $
 
 JDK_ARCH?=	${ARCH:C/armv.*/arm/:S/powerpc/ppc/}
 JDK_PORT?=	openjdk8

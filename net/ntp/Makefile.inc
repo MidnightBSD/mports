@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/net/ntp/Makefile.inc 374987 2014-12-20 00:41:16Z cy $
 
 OPTIONS_DEFINE=	NTPSNMPD \
 		SSL \

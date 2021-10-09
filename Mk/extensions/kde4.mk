@@ -1,4 +1,3 @@
-# $FreeBSD: head/Mk/bsd.kde4.mk 417328 2016-06-22 18:57:33Z pi $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
 

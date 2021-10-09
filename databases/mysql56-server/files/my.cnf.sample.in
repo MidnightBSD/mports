@@ -1,4 +1,3 @@
-# $FreeBSD$
 
 [client]
 port                            = 3306

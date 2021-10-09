@@ -1,4 +1,3 @@
-# $FreeBSD: head/print/cups/files/cups.conf.sample 411055 2016-03-14 11:40:58Z tijl $
 #
 # Allow members of group cups to access generic USB printer devices
 

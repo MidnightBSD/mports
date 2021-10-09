@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/textproc/elasticsearch6/files/elasticsearch.in 513796 2019-10-05 00:09:16Z glewis $
 #
 # PROVIDE: elasticsearch
 # REQUIRE: NETWORKING SERVERS

@@ -1,4 +1,3 @@
-# $FreeBSD: head/Mk/Uses/blaslapack.mk 434263 2017-02-17 03:10:55Z jbeich $
 #
 # Handle dependencies on Blas / Lapack
 #

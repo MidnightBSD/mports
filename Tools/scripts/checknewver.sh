@@ -13,7 +13,6 @@
 # ----------------------------------------------------------------------------
 #
 # $MidnightBSD$
-# $FreeBSD: ports/Tools/scripts/checknewver.sh,v 1.5 2003/12/17 10:28:32 demon Exp $
 #
 # MAINTAINER= ports@MidnightBSD.org
 

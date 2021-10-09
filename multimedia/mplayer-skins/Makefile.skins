@@ -1,6 +1,5 @@
 # This file lists the skins to not bloat Makefile
 #
-# $FreeBSD: head/multimedia/mplayer-skins/Makefile.skins 474399 2018-07-10 18:37:09Z riggs $
 #
 
 ABYSS_FILE=		Abyss-1.7

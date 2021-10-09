@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/dns/ddclient/files/ddclient_force.in 441283 2017-05-20 02:27:54Z asomers $
 #
 
 # If there is a global system configuration file, suck it in.

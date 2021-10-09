@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/devel/bugzilla44/Makefile.options 354456 2014-05-18 19:33:06Z eadler $
 
 OPTIONS_SUB=	yes
 

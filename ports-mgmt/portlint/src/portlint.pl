@@ -15,7 +15,6 @@
 # was removed.
 #
 # $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.11 2013/01/18 03:56:21 laffer1 Exp $
-# $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 #
 
 use strict;

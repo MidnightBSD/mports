@@ -1,6 +1,5 @@
 #!/bin/sh
 # MAINTAINER: rust@FreeBSD.org
-# $FreeBSD: head/Mk/Scripts/rust-compat11-canary.sh 522968 2020-01-13 18:36:04Z tobik $
 set -eu
 
 if [ "${OPSYS}" != FreeBSD ] || [ "${OSVERSION}" -lt 1200000 ]; then

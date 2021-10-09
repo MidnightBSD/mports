@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # $MidnightBSD$
-# $FreeBSD: ports/dns/bindgraph/files/bindgraph.in,v 1.1 2007/12/13 06:55:32 rafan Exp $
 #
 # PROVIDE: bindgraph
 # REQUIRE: DAEMON

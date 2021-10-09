@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/drupal.mk 372608 2014-11-15 17:05:44Z antoine $
 #
 # Support for Drupal ports and modules.
 #

@@ -1,7 +1,6 @@
 #!/usr/bin/perl -w
 
 #
-# $FreeBSD: ports/Tools/scripts/distinfochecker,v 1.2 2006/01/24 21:53:51 edwin Exp $
 #
 # Author: Edwin Groothuis <edwin@FreeBSD.org>
 #

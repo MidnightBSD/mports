@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/motif.mk 348308 2014-03-15 10:31:54Z gerald $
 #
 # handle dependency on motif
 #

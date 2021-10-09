@@ -9,7 +9,6 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
-# $FreeBSD: ports/Tools/scripts/chkdepschain.py,v 1.4 2005/01/09 10:21:17 krion Exp $
 #
 # MAINTAINER= sobomax@FreeBSD.org <- any unapproved commits to this file are
 #                                    highly discouraged!!!

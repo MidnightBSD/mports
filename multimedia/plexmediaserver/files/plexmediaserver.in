@@ -2,7 +2,6 @@
 # Created by: KalleDK <plexmaintainer@k-moeller.dk>
 #
 # $MidnightBSD$
-# $FreeBSD: head/multimedia/plexmediaserver/files/plexmediaserver.in 409168 2016-02-19 11:41:13Z feld $
 #
 # PROVIDE: %%PORTNAME%%
 # REQUIRE: LOGIN

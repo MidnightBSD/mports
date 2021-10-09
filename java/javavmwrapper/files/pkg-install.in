@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/java/javavmwrapper/files/pkg-install.in 508503 2019-08-10 19:28:18Z glewis $
 
 LOCALBASE=%%LOCALBASE%%
 

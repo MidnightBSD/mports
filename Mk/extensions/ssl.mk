@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/ssl.mk 439540 2017-04-27 12:14:29Z mat $
 #
 # Handle dependency on *ssl ports.
 #
