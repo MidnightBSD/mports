@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	alsa-plugins
 PORTVERSION=	1.1.1
