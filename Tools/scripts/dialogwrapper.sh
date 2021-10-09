@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $MidnightBSD$
+
 
 # dialog wrapper script
 

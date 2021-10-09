@@ -12,7 +12,7 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/Tools/scripts/checkcats.py,v 1.1 2001/12/11 10:49:51 sobomax Exp $
 #
 # MAINTAINER= ports@MidnightBSD.org
