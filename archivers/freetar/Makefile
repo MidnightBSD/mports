@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	freetar
 PORTVERSION=	0.9

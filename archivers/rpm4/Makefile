@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	rpm
 PORTVERSION=	4.15.1

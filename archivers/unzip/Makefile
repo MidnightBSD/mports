@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	unzip
 PORTVERSION=	6.0

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	yasr
 PORTVERSION=	0.6.9
 CATEGORIES=	accessibility

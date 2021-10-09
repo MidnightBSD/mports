@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnome-autoar
 PORTVERSION=	0.2.3

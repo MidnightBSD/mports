@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	unace
 PORTVERSION=	1.2b

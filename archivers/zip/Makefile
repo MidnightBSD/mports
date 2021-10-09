@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zip
 PORTVERSION=	3.0

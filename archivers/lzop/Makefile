@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lzop
 DISTVERSION=	1.04

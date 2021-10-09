@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	fastjar
 PORTVERSION=	0.93.20060808

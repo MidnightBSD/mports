@@ -2,7 +2,7 @@
 # Date created:				27 May 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/archivers/lcab/Makefile,v 1.2 2006/10/17 10:07:04 danfe Exp $
 #
 
