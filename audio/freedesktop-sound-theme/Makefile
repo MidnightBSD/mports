@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	freedesktop-sound-theme
 PORTVERSION=	0.8

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/databases/freetds/Makefile 369379 2014-09-27 08:31:58Z riggs $
 
 PORTNAME=	freetds

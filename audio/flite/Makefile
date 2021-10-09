@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	flite
 PORTVERSION=	1.4

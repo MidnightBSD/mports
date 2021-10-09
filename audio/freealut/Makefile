@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/audio/freealut/Makefile,v 1.9 2010/12/04 07:30:22 ade Exp $
 
 PORTNAME=	freealut
