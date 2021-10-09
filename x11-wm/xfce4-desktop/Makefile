@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xfce4-desktop
 PORTVERSION=	4.12.2
