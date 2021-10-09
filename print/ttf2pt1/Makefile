@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/print/ttf2pt1/Makefile,v 1.12 2006/12/20 17:40:36 rafan Exp $
 
 PORTNAME=	ttf2pt1
 PORTVERSION=	3.4.4

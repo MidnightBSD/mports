@@ -1,4 +1,3 @@
-# $FreeBSD: head/multimedia/plexwatch/Makefile 412348 2016-04-01 14:16:16Z mat $
 
 
 PORTNAME=	plexWatch

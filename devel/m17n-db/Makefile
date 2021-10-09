@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/m17n-db/Makefile,v 1.25 2011/08/11 19:19:17 kwm Exp $
 
 PORTNAME=	m17n-db
 PORTVERSION=	1.6.2

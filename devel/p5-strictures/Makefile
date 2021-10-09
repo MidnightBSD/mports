@@ -1,5 +1,4 @@
 # Created by: Wen Heping <wen@FreeBSD.org>
-# $FreeBSD: head/devel/p5-strictures/Makefile 413619 2016-04-19 01:09:38Z adamw $
 
 
 PORTNAME=	strictures

@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/www/p5-HTML-Tagset/Makefile,v 1.9 2005/11/09 13:44:24 lth Exp $
 
 PORTNAME=	HTML-Tagset
 PORTVERSION=	3.20

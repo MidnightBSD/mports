@@ -3,7 +3,6 @@
 # Whom:					Alexey Dokuchaev <danfe@regency.nsu.ru>
 #
 
-# $FreeBSD: ports/misc/wmjulia/Makefile,v 1.6 2004/02/05 20:37:36 trevor Exp $
 #
 
 PORTNAME=	wmjulia

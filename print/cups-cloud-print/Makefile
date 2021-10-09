@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/print/cups-cloud-print/Makefile 410825 2016-03-11 11:53:42Z tijl $
 
 PORTNAME=	cups-cloud-print
 PORTVERSION=	20140814.3

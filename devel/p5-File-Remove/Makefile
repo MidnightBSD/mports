@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/p5-File-Remove/Makefile,v 1.13 2008/02/14 07:46:26 ade Exp $
 
 PORTNAME=	File-Remove
 PORTVERSION=	1.57

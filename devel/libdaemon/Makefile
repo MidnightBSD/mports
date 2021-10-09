@@ -1,7 +1,6 @@
 # New ports collection makefile for:	libdaemon
 #
 
-# $FreeBSD: ports/devel/libdaemon/Makefile,v 1.5 2006/02/23 10:35:51 ade Exp $
 
 PORTNAME=	libdaemon
 PORTVERSION=	0.14

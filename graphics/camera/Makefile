@@ -1,5 +1,4 @@
 # Created by: gurkan@phys.ethz.ch
-# $FreeBSD: head/graphics/camera/Makefile 383626 2015-04-09 07:44:41Z bapt $
 
 
 PORTNAME=	camera

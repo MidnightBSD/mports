@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/p5-Filter/Makefile,v 1.27 2009/06/18 23:18:03 pgollucci Exp $
 
 PORTNAME=	Filter
 PORTVERSION=	1.57

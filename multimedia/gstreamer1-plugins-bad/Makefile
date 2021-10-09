@@ -1,5 +1,4 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
-# $FreeBSD: head/multimedia/gstreamer1-plugins-bad/Makefile 393429 2015-08-02 15:03:19Z tijl $
 #    $MCom: ports/multimedia/gstreamer1-plugins-bad/Makefile,v 1.4 2013/01/15 21:43:45 kwm Exp $
 
 PORTREVISION=	1

@@ -1,5 +1,4 @@
 # Created by: nils@guru.ims.uni-stuttgart.de
-# $FreeBSD: head/devel/dmake/Makefile 363399 2014-07-29 21:43:17Z adamw $
 
 
 PORTNAME=	dmake

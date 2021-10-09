@@ -1,5 +1,4 @@
 # Created by: Dominik Brettnacher <domi@saargate.de>
-# $FreeBSD: head/dns/p5-Net-LibIDN/Makefile 450679 2017-09-26 15:56:12Z sunpoet $
 
 
 PORTNAME=	Net-LibIDN

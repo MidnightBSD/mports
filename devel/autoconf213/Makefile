@@ -3,7 +3,6 @@
 # Whom:			torstenb@FreeBSD.org
 #
 
-# $FreeBSD: ports/devel/autoconf213/Makefile,v 1.62 2007/07/28 06:33:44 ade Exp $
 #
 
 PORTNAME=	autoconf

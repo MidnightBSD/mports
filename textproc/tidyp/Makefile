@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/textproc/tidyp/Makefile,v 1.1 2010/05/16 09:23:35 miwi Exp $
 
 PORTNAME=	tidyp
 PORTVERSION=	1.04

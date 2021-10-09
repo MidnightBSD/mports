@@ -3,7 +3,6 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 
-# $FreeBSD: ports/deskutils/gworkspace/Makefile,v 1.27 2006/09/01 17:12:26 dinoex Exp $
 #
 
 PORTNAME=	gworkspace

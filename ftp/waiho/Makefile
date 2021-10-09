@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/ftp/waiho/Makefile 383626 2015-04-09 07:44:41Z bapt $
 
 PORTNAME=	waiho
 PORTVERSION=	0.2

@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/misc/brs/Makefile,v 1.10 2005/10/20 20:13:42 vs Exp $
 
 PORTNAME=	brs
 PORTVERSION=	4.03

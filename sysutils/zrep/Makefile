@@ -1,4 +1,3 @@
-# $FreeBSD: head/sysutils/zrep/Makefile 517943 2019-11-19 08:17:31Z meta $
 
 PORTNAME=	zrep
 PORTVERSION=	1.8.0

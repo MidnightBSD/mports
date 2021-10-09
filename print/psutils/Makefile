@@ -1,6 +1,5 @@
 # Created by: Jean-Marc Zucconi <jmz@FreeBSD.org> and David O'Brien <obrien@FreeBSD.org>
 
-# $FreeBSD: head/print/psutils/Makefile 386312 2015-05-14 10:15:04Z mat $
 
 PORTNAME=	psutils
 PORTVERSION=	1.17

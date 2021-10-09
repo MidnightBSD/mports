@@ -1,5 +1,4 @@
 # Created by: Aragon Gouveia <aragon@phat.za.net>
-# $FreeBSD: head/audio/alsa-utils/Makefile 433954 2017-02-12 17:19:29Z jbeich $
 
 PORTNAME=	alsa-utils
 PORTVERSION=	1.1.2

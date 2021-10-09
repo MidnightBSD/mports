@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/shells/v7sh/files/Makefile,v 1.1 2004/06/22 08:24:18 pav Exp $
 
 PREFIX?=	/usr/local
 BINDIR?=	${PREFIX}/bin

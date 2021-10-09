@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
 
 PORTNAME=	openal
 PORTVERSION=	20060211

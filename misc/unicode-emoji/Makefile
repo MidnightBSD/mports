@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/misc/unicode-emoji/Makefile 469301 2018-05-07 17:23:47Z yuri $
 
 PORTNAME=	unicode-emoji
 DISTVERSION=	5.0

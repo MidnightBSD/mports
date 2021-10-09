@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/graphics/frei0r/Makefile,v 1.17 2011/11/09 15:25:34 miwi Exp $
 
 PORTNAME=	frei0r
 PORTVERSION=	1.6.1

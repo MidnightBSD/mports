@@ -1,5 +1,4 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $FreeBSD: head/devel/py-libpeas/Makefile 412346 2016-04-01 14:00:51Z mat $
 
 
 PORTREVISION=	0

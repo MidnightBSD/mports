@@ -1,5 +1,4 @@
 #
-# $FreeBSD: ports/emulators/extract-xiso/files/Makefile,v 1.2 2005/10/06 19:05:29 mnag Exp $
 #
 
 LIBFTP_DIR=libftp-5.0.1.modified.by.in

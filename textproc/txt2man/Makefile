@@ -1,5 +1,4 @@
 # Created by: ijliao
-# $FreeBSD: head/textproc/txt2man/Makefile 412349 2016-04-01 14:25:16Z mat $
 
 
 PORTNAME=	txt2man

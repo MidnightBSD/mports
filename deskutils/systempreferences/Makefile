@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/deskutils/systempreferences/Makefile 386312 2015-05-14 10:15:04Z mat $
 
 PORTNAME=	systempreferences
 PORTVERSION=	1.2.0

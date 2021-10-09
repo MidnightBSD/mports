@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/m17n-lib/Makefile,v 1.37 2011/08/11 19:19:17 kwm Exp $
 #
 
 PORTNAME=	m17n-lib

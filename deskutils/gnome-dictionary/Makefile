@@ -1,6 +1,5 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
-# $FreeBSD: head/deskutils/gnome-dictionary/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	gnome-dictionary
 PORTVERSION=	3.26.1

@@ -1,4 +1,3 @@
-# $FreeBSD: head/graphics/gstreamer1-plugins-webp/Makefile 375225 2014-12-22 10:22:38Z kwm $
 
 PORTREVISION=	0
 CATEGORIES=	graphics

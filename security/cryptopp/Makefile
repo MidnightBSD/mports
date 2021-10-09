@@ -1,5 +1,4 @@
 # Created by: George Reid <greid@ukug.uk.freebsd.org>
-# $FreeBSD: head/security/cryptopp/Makefile 449591 2017-09-10 20:55:38Z gerald $
 
 
 # Minor version bumps may not be ABI compatible and deskutils/cdcat

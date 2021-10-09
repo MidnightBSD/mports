@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/textproc/heirloom-doctools/Makefile 472699 2018-06-18 14:40:31Z linimon $
 
 PORTNAME=	heirloom-doctools
 PORTVERSION=	160308

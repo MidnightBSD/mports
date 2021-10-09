@@ -1,4 +1,3 @@
-# $FreeBSD: ports/devel/judy/Makefile,v 1.12 2008/05/13 09:36:54 skv Exp $
 
 
 PORTNAME=	Judy

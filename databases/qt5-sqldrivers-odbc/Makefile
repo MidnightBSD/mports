@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/databases/qt5-sqldrivers-odbc/Makefile 412346 2016-04-01 14:00:51Z mat $
 
 COMMENT=	Qt ${DB_DESC} plugin
 

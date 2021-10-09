@@ -1,4 +1,3 @@
-# $FreeBSD: ports/devel/p5-IPC-Signal/Makefile,v 1.2 2008/04/17 14:25:36 araujo Exp $
 
 
 PORTNAME=	IPC-Signal

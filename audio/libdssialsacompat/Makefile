@@ -1,4 +1,3 @@
-# $FreeBSD: ports/audio/libdssialsacompat/Makefile,v 1.5 2009/08/02 19:32:18 mezz Exp $
 
 
 PORTNAME=	libdssialsacompat

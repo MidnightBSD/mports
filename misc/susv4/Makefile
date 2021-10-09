@@ -1,5 +1,4 @@
 # Based on a port created by: Simon 'corecode' Schubert <corecode@corecode.ath.cx>
-# $FreeBSD: head/misc/susv4/Makefile 423486 2016-10-07 21:49:04Z mandree $
 
 
 PORTNAME=	susv4

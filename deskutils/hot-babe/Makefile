@@ -3,7 +3,6 @@
 # Whom:			Roman Bogorodskiy <bogorodskiy@inbox.ru>
 #
 
-# $FreeBSD: ports/deskutils/hot-babe/Makefile,v 1.10 2007/05/19 20:01:39 flz Exp $
 #
 
 PORTNAME=	hot-babe

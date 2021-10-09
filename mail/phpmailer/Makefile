@@ -1,5 +1,4 @@
 # Created by: Zhen REN <bg1tpt@gmail.com>
-# $FreeBSD: head/mail/phpmailer/Makefile 402885 2015-12-03 16:40:06Z amdmi3 $
 
 
 PORTNAME=	phpmailer

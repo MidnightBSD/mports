@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/multimedia/plexmediaserver/Makefile 421223 2016-09-01 14:13:35Z feld $
 
 PORTNAME=	plexmediaserver
 PORTVERSION?=	1.1.4.2757

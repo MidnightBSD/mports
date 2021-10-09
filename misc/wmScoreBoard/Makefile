@@ -3,7 +3,6 @@
 # Whom:					Patrick Li <pat@databits.net>
 #
 
-# $FreeBSD: ports/misc/wmScoreBoard/Makefile,v 1.6 2006/04/14 22:53:07 linimon Exp $
 #
 
 PORTNAME=	wmScoreBoard

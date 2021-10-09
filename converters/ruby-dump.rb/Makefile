@@ -3,7 +3,6 @@
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
 
-# $FreeBSD: ports/converters/ruby-dump.rb/Makefile,v 1.4 2005/11/11 01:17:20 linimon Exp $
 #
 
 PORTNAME=	dump.rb

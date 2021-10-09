@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/p5-Date-Manip/Makefile,v 1.25 2005/06/07 08:56:28 clsung Exp $
 
 PORTNAME=	Date-Manip
 PORTVERSION=	6.75

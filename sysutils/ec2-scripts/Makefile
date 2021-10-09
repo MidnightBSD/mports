@@ -1,5 +1,4 @@
 # Created by: Colin Percival
-# $FreeBSD: head/sysutils/ec2-scripts/Makefile 379591 2015-02-22 10:32:30Z cperciva $
 
 
 PORTNAME=	ec2-scripts

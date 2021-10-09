@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/sysutils/cdrdao/Makefile,v 1.62 2010/06/06 20:39:20 naddy Exp $
 
 PORTNAME?=	cdrdao
 PORTVERSION=	1.2.4

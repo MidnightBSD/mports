@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/games/linux-enemyterritory-etpub/Makefile,v 1.10 2008/02/19 13:20:30 alepulver Exp $
 
 PORTNAME=	etpub
 PORTVERSION=	0.8.1

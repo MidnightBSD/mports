@@ -1,5 +1,4 @@
 # Created by: Nikola Lecic <nikola.lecic@anthesphoria.net>
-# $FreeBSD: head/textproc/teckit/Makefile 365071 2014-08-16 10:05:45Z marino $
 
 
 PORTNAME=	teckit

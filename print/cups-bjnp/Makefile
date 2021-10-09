@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/print/cups-bjnp/Makefile 410825 2016-03-11 11:53:42Z tijl $
 
 PORTNAME=	cups-bjnp
 PORTVERSION=	2.0

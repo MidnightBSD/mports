@@ -1,5 +1,4 @@
 # Created by: Gabor Kovesdan
-# $FreeBSD: head/security/p5-Digest-Perl-MD5/Makefile 373448 2014-11-26 13:08:24Z mat $
 
 
 PORTNAME=	Digest-Perl-MD5

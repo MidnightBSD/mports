@@ -1,6 +1,5 @@
 # Created by: Grzegorz Blach <gblach@FreeBSD.org>
 
-# $FreeBSD: head/graphics/evas_generic_loaders-svg/Makefile 384128 2015-04-16 21:55:10Z bapt $
 
 PORTNAME=	svg
 PORTVERSION=	1.15.0

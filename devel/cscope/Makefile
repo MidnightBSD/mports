@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/cscope/Makefile,v 1.27 2006/11/01 11:23:29 miwi Exp $
 
 PORTNAME=	cscope
 PORTVERSION=	15.8a

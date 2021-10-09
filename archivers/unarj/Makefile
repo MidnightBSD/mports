@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/archivers/unarj/Makefile,v 1.22 2006/08/23 06:34:55 ache Exp $
 
 PORTNAME=	unarj
 PORTVERSION=	2.65

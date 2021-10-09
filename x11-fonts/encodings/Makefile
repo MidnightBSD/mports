@@ -1,4 +1,3 @@
-# $FreeBSD: ports/x11-fonts/encodings/Makefile,v 1.1 2007/05/19 20:29:09 flz Exp $
 
 
 PORTNAME=	encodings

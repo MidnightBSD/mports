@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/sysutils/screenie/Makefile,v 1.1 2007/03/26 21:20:12 ehaupt Exp $
 
 PORTNAME=	screenie
 PORTVERSION=	1.30.0

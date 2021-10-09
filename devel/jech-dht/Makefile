@@ -1,5 +1,4 @@
 # Created by: Mikhail Teterin <mi@aldan.algebra.com>
-# $FreeBSD: head/devel/jech-dht/Makefile 352975 2014-05-05 01:48:38Z mi $
 
 
 PORTNAME=	dht

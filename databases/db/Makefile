@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/databases/db/Makefile,v 1.32 2007/06/25 04:21:58 edwin Exp $
 
 PORTNAME=	db
 PORTVERSION=	1.14

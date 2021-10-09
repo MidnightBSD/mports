@@ -3,7 +3,6 @@
 # Whom:				Tilman Linneweh <arved@FreeBSD.org>
 #
 
-# $FreeBSD: ports/audio/ladspa/Makefile,v 1.11 2006/12/14 19:36:31 arved Exp $
 
 PORTNAME=	ladspa
 PORTVERSION=	1.13

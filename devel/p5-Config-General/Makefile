@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/p5-Config-General/Makefile,v 1.16 2007/02/25 07:55:16 rafan Exp $
 
 PORTNAME=	Config-General
 PORTVERSION=	2.63

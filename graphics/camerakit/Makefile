@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/graphics/camerakit/Makefile 389998 2015-06-17 22:44:29Z amdmi3 $
 
 PORTNAME=	camerakit
 PORTVERSION=	0.0.1

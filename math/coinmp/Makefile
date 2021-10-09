@@ -1,5 +1,4 @@
 # Created by: Pedro Giffuni
-# $FreeBSD: head/math/coinmp/Makefile 388541 2015-06-04 18:35:36Z robak $
 
 
 PORTNAME=	CoinMP

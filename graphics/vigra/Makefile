@@ -1,5 +1,4 @@
 # Created by: cartola (Carlos E. G. Carvalho)
-# $FreeBSD: head/graphics/vigra/Makefile 390310 2015-06-22 18:33:20Z antoine $
 
 
 PORTNAME=	vigra

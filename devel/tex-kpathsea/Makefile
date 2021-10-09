@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/devel/tex-kpathsea/Makefile 374714 2014-12-14 16:33:25Z hrs $
 
 PORTNAME=	kpathsea
 PORTVERSION=	6.2.1

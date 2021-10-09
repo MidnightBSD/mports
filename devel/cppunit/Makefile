@@ -1,5 +1,4 @@
 # Created by: Graeme Cross <gcross@netspace.net.au>
-# $FreeBSD: head/devel/cppunit/Makefile 378432 2015-02-04 23:43:10Z bapt $
 
 
 PORTNAME=	cppunit

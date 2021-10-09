@@ -1,4 +1,3 @@
-# $FreeBSD: head/multimedia/gstreamer1-plugins-hls/Makefile 392902 2015-07-25 19:59:35Z tijl $
 
 PORTREVISION=	0
 CATEGORIES=	multimedia

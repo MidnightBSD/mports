@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/devel/gnulib/Makefile 359172 2014-06-24 22:52:47Z bapt $
 
 PORTNAME=	gnulib
 PORTVERSION=	20140202

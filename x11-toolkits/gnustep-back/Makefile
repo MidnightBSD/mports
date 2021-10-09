@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 
 PORTNAME=	gnustep-back
 DISTVERSIONPREFIX=	back-

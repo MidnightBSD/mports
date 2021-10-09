@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
 
 PORTNAME=	gnome-vfs
 PORTVERSION=	2.24.4

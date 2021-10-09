@@ -1,4 +1,3 @@
-# $FreeBSD: ports/net/zillion/Makefile,v 1.1 2006/11/09 20:08:01 dinoex Exp $
 
 
 PORTNAME=	zillion

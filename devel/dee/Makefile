@@ -1,5 +1,4 @@
 # Created by: Olivier Duchateau
-# $FreeBSD: head/devel/dee/Makefile 387491 2015-05-26 16:47:02Z antoine $
 
 
 PORTNAME=	dee

@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/graphics/p5-GD-TextUtil/Makefile,v 1.13 2003/10/24 12:02:28 ijliao Exp $
 #
 
 PORTNAME=	GD-TextUtil

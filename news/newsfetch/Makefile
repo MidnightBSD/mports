@@ -3,7 +3,6 @@
 # Whom:			Jun-ichiro itojun Itoh <itojun@itojun.org>
 #
 
-# $FreeBSD: ports/news/newsfetch/Makefile,v 1.20 2005/11/11 20:41:17 pav Exp $
 #
 
 PORTNAME=	newsfetch

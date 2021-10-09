@@ -1,5 +1,4 @@
 # Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-# $FreeBSD: head/net-p2p/xnap/Makefile 405324 2016-01-06 01:16:11Z amdmi3 $
 
 
 PORTNAME=	XNap

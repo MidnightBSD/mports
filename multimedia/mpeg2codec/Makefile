@@ -1,6 +1,5 @@
 # New ports collection makefile for:	mpeg2codec
 #
-# $FreeBSD: ports/multimedia/mpeg2codec/Makefile,v 1.12 2005/04/24 08:03:31 ahze Exp $
 
 #
 

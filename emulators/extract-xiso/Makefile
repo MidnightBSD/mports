@@ -3,7 +3,6 @@
 # Whom:					king@v2project.com
 #
 
-# $FreeBSD: ports/emulators/extract-xiso/Makefile,v 1.6 2006/03/15 06:16:49 vanilla Exp $
 #
 
 PORTNAME=	extract-xiso

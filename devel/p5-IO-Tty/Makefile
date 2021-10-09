@@ -1,4 +1,3 @@
-# $FreeBSD: ports/devel/p5-IO-Tty/Makefile,v 1.16 2006/07/18 16:31:32 erwin Exp $
 
 
 PORTNAME=	IO-Tty

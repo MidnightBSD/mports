@@ -3,7 +3,6 @@
 # Whom:					nik@FreeBSD.org
 #
 
-# $FreeBSD: ports/games/quake3-data/Makefile,v 1.14 2007/05/19 20:07:23 flz Exp $
 #
 
 PORTNAME=	data

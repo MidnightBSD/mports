@@ -3,7 +3,6 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 
-# $FreeBSD: ports/deskutils/toolboxkit/Makefile,v 1.4 2007/02/25 06:48:26 dinoex Exp $
 #
 
 PORTNAME=	toolbox

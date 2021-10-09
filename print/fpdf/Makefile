@@ -1,5 +1,4 @@
 # Created by: Thierry Thomas <thierry@pompo.net>
-# $FreeBSD: head/print/fpdf/Makefile 413746 2016-04-21 16:43:14Z swills $
 
 
 PORTNAME=	fpdf

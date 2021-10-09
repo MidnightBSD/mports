@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/dns/pdnsd/Makefile,v 1.22 2007/09/08 14:55:27 gabor Exp $
 
 PORTNAME=	pdnsd
 PORTVERSION=	1.2.9a

@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/sysutils/bsd-splash-changer/Makefile,v 1.1 2006/06/17 23:53:15 alepulver Exp $
 #
 # This port is self contained.
 #

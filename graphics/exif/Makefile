@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/graphics/exif/Makefile,v 1.18 2012/02/07 07:24:15 miwi Exp $
 
 PORTNAME=	exif
 PORTVERSION=	0.6.21

@@ -3,7 +3,6 @@
 # Whom:					luke@MidnightBSD.org
 #
 
-# $FreeBSD: ports/net/nss_ldap/Makefile,v 1.22 2007/03/09 10:50:51 anray Exp $
 #
 
 PORTNAME=	nss_ldap

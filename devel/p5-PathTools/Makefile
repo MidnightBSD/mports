@@ -1,4 +1,3 @@
-# $FreeBSD: ports/devel/p5-PathTools/Makefile,v 1.27 2006/07/13 11:05:18 leeym Exp $
 
 
 PORTNAME=	PathTools

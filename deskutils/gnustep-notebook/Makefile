@@ -3,7 +3,6 @@
 # Whom:                 luke@midnightbsd.org
 #
 
-# $FreeBSD: ports/deskutils/gnustep-notebook/Makefile,v 1.5 2007/05/19 20:01:36 flz Exp $
 #
 
 PORTNAME=	notebook

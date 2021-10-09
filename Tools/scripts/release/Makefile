@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/Tools/scripts/release/Makefile,v 1.2 2002/06/01 22:44:50 will Exp $
 #
 # The purpose of this Makefile is to setup a standardized environment
 # for making package splits.  Basically, for each split the organization

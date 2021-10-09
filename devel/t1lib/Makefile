@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/t1lib/Makefile,v 1.33 2006/08/14 22:55:17 clsung Exp $
 
 PORTNAME=	t1lib
 PORTVERSION=	5.1.2

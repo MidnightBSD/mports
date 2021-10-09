@@ -1,5 +1,4 @@
 # Created by: Sebastian Schuetz <sschuetz@fhm.edu>
-# $FreeBSD: head/emulators/tpm-emulator/Makefile 415449 2016-05-18 13:53:45Z hrs $
 
 
 PORTNAME=	tpm-emulator

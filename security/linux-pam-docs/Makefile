@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/security/linux-pam-docs/Makefile,v 1.1 2003/10/10 06:06:13 edwin Exp $
 
 PORTNAME=	linux-pam-docs
 PORTVERSION=	1.1.3

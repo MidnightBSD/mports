@@ -1,4 +1,3 @@
-# $FreeBSD: ports/converters/p5-MIME-Base64/Makefile,v 1.41 2005/12/21 12:48:13 leeym Exp $
 
 
 PORTNAME=	MIME-Base64

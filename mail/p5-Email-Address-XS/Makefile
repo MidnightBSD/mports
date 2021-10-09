@@ -1,5 +1,4 @@
 # Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-# $FreeBSD: head/mail/p5-Email-Address-XS/Makefile 472914 2018-06-20 19:36:06Z sunpoet $
 
 
 PORTNAME=	Email-Address-XS

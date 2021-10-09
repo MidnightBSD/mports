@@ -1,7 +1,6 @@
 # New ports collection makefile for:	clive
 #
 
-# $FreeBSD: ports/multimedia/clive/Makefile,v 1.57 2011/03/06 19:06:32 culot Exp $
 
 PORTNAME=	clive
 PORTVERSION=	2.3.3

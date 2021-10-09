@@ -1,5 +1,4 @@
 # Created by: FreeBSD GNOME Team <gnome@freebsd.org>
-# $FreeBSD: head/sysutils/consolekit2/Makefile 447399 2017-08-05 10:58:48Z kwm $
 
 
 PORTNAME=	consolekit

@@ -1,5 +1,4 @@
 # Created by: Tobias Kortkamp <t@tobik.me>
-# $FreeBSD: head/java/intellij/Makefile 420699 2016-08-23 15:21:48Z bsam $
 
 
 # Based on the devel/intellij port from OpenBSD by

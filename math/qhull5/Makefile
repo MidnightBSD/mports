@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/math/qhull5/Makefile,v 1.18 2011/10/03 04:21:54 stephen Exp $
 
 PORTNAME=	qhull
 PORTVERSION=	1.0

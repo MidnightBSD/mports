@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/p5-File-HomeDir/Makefile,v 1.11 2007/01/10 06:27:25 leeym Exp $
 
 PORTNAME=	File-HomeDir
 PORTVERSION=	1.002

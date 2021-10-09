@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/games/grubik/Makefile 383626 2015-04-09 07:44:41Z bapt $
 
 PORTNAME=	grubik
 PORTVERSION=	0.1

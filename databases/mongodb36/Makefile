@@ -1,4 +1,3 @@
-# $FreeBSD: head/databases/mongodb36/Makefile 528736 2020-03-19 17:56:40Z pi $
 
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r

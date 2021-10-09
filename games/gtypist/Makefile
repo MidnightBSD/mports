@@ -3,7 +3,6 @@
 # Whom:		Christian Weisgerber <naddy@mips.inka.de>
 #
 
-# $FreeBSD: ports/games/gtypist/Makefile,v 1.17 2004/07/11 10:55:23 krion Exp $
 
 PORTNAME=	gtypist
 PORTVERSION=	2.9.5

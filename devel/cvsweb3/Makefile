@@ -3,7 +3,6 @@
 # Whom:			SADA Kenji <sada@FreeBSD.org>
 #
 
-# $FreeBSD: ports/devel/cvsweb3/Makefile,v 1.82 2006/01/23 07:04:09 linimon Exp $
 #
 
 PORTNAME=	cvsweb

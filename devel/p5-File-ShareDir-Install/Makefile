@@ -1,4 +1,3 @@
-# $FreeBSD: head/devel/p5-File-ShareDir-Install/Makefile 449893 2017-09-15 08:58:46Z mat $
 
 PORTNAME=	File-ShareDir-Install
 PORTVERSION=	0.13

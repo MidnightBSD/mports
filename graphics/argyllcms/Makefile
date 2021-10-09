@@ -1,6 +1,5 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
 
-# $FreeBSD: head/graphics/argyllcms/Makefile 393785 2015-08-09 12:55:19Z kwm $
 
 PORTNAME=	argyllcms
 PORTVERSION=	1.7.0

@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/x11/xfce4-conf/Makefile,v 1.11 2010/05/31 15:34:46 oliver Exp $
 
 PORTNAME=	xfce4-conf
 PORTVERSION=	4.12.0

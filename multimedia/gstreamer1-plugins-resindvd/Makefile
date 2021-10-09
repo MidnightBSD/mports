@@ -1,4 +1,3 @@
-# $FreeBSD: head/multimedia/gstreamer1-plugins-resindvd/Makefile 378342 2015-02-03 07:48:23Z martymac $
 
 PORTREVISION=	1
 CATEGORIES=	multimedia

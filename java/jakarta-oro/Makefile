@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/java/jakarta-oro/Makefile,v 1.11 2005/10/10 04:43:52 linimon Exp $
 
 PORTNAME=	jakarta-oro
 PORTVERSION=	2.0.8

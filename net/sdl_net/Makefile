@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/net/sdl_net/Makefile,v 1.24 2006/09/20 11:21:56 stas Exp $
 
 PORTNAME=	sdl_net
 PORTVERSION=	1.2.8

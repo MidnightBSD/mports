@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/liboobs/Makefile,v 1.6 2008/06/06 13:21:28 edwin Exp $
 
 
 PORTNAME=	liboobs

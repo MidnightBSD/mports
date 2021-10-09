@@ -3,7 +3,6 @@
 # Whom:				Michael Johnson <ahze@FreeBSD.org>
 #
 
-# $FreeBSD: ports/audio/gstreamer-plugins-faac/Makefile,v 1.7 2007/05/19 19:58:53 flz Exp $
 #
 
 PORTREVISION=	2

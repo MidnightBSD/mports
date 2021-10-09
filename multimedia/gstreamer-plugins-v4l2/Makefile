@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/multimedia/gstreamer-plugins-v4l2/Makefile,v 1.1 2010/03/31 10:40:29 kwm Exp $
 
 PORTREVISION=	0
 CATEGORIES=	multimedia

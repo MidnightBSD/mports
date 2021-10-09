@@ -3,7 +3,6 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 
-# $FreeBSD: ports/textproc/popup/Makefile,v 1.2 2007/01/31 18:18:09 dinoex Exp $
 #
 
 PORTNAME=	popup

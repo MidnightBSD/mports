@@ -1,5 +1,4 @@
 # Created by: Geoff Garside
-# $FreeBSD: head/net/rabbitmq-c/Makefile 384229 2015-04-18 15:14:57Z tijl $
 
 
 PORTNAME=	rabbitmq-c

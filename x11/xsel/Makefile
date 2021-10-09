@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/x11/xsel/Makefile,v 1.9 2009/01/23 16:28:24 flz Exp $
 
 PORTNAME=	xsel
 PORTVERSION=	0.04.1

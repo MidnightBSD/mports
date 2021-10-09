@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/graphics/sdl_gfx/Makefile,v 1.34 2007/10/28 12:01:32 shaun Exp $
 
 PORTNAME=	sdl_gfx
 PORTVERSION=	2.0.25

@@ -1,5 +1,4 @@
 # Created by: Oliver Heesakkers <dev2@heesakkers.info>
-# $FreeBSD: head/graphics/zbar/Makefile 462307 2018-02-19 11:10:43Z antoine $
 
 
 PORTNAME=	zbar

@@ -3,7 +3,6 @@
 # Whom:                 jmz
 #
 
-# $FreeBSD: ports/emulators/mtools/Makefile,v 1.62 2009/01/14 09:12:16 miwi Exp $
 
 PORTNAME=	mtools
 PORTVERSION=	4.0.10

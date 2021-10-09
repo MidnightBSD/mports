@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/x11/libxfce4util/Makefile,v 1.35 2008/06/06 14:09:04 edwin Exp $
 
 PORTNAME=	libxfce4util
 PORTVERSION=	4.12.1

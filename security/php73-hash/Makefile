@@ -1,4 +1,3 @@
-# $FreeBSD: head/security/php73-hash/Makefile 482202 2018-10-16 05:14:42Z joneum $
 
 CATEGORIES=	security
 

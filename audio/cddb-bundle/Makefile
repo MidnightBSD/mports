@@ -3,7 +3,6 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 
-# $FreeBSD: ports/audio/cddb-bundle/Makefile,v 1.3 2007/01/31 18:17:49 dinoex Exp $
 #
 
 PORTNAME=	cddb

@@ -1,5 +1,4 @@
 # Created by: Vasil Dimov <vd@datamax.bg>
-# $FreeBSD: head/devel/sparsehash/Makefile 424658 2016-10-25 22:28:22Z mat $
 
 
 PORTNAME=	sparsehash

@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/audio/libaacplus/Makefile 412344 2016-04-01 13:29:15Z mat $
 
 PORTNAME=	libaacplus
 PORTVERSION=	2.0.2

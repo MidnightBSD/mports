@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/devel/p5-indirect/Makefile 380209 2015-03-01 16:02:17Z adamw $
 
 PORTNAME=	indirect
 PORTVERSION=	0.33

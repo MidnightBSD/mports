@@ -1,5 +1,4 @@
 # Created by: Zhen REN <bg1tpt@gmail.com>
-# $FreeBSD: head/net/pear-Net_URL2/Makefile 402439 2015-11-26 12:04:00Z miwi $
 
 
 PORTNAME=	Net_URL2

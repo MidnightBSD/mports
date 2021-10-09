@@ -22,7 +22,6 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN	IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 #
-# $FreeBSD: head/emulators/rtc/files/Makefile 516983 2019-11-07 16:30:12Z rene $
 #
 
 SYS?=		/sys

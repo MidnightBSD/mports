@@ -1,5 +1,4 @@
 
-# $FreeBSD: head/misc/chef/Makefile 386312 2015-05-14 10:15:04Z mat $
 
 PORTNAME=	chef
 PORTVERSION=	19930426

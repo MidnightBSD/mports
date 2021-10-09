@@ -1,5 +1,4 @@
 # Created by: Tobias Kortkamp <t@tobik.me>
-# $FreeBSD: head/java/intellij-pty4j/Makefile 415356 2016-05-16 19:07:06Z bsam $
 
 
 PORTNAME=	intellij-pty4j

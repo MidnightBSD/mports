@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/devel/liboil/Makefile,v 1.25 2007/03/24 21:50:39 marcus Exp $
 
 PORTNAME=	liboil
 PORTVERSION=	0.3.17

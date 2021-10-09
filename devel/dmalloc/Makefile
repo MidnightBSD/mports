@@ -1,4 +1,3 @@
-# $FreeBSD: ports/devel/dmalloc/Makefile,v 1.15 2006/08/14 22:55:06 clsung Exp $
 
 
 PORTNAME=	dmalloc

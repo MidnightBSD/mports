@@ -1,5 +1,4 @@
 # Created by: mbr@FreeBSD.org
-# $FreeBSD: head/emulators/open-vm-tools/Makefile 412346 2016-04-01 14:00:51Z mat $
 
 PORTNAME=		open-vm-tools
 PORTVERSION=		${RELEASE_VER}

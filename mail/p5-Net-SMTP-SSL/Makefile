@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/mail/p5-Net-SMTP-SSL/Makefile,v 1.1 2008/06/22 22:45:10 wxs Exp $
 
 PORTNAME=	Net-SMTP-SSL
 PORTVERSION=	1.04

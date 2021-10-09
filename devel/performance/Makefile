@@ -3,7 +3,6 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 
-# $FreeBSD: ports/devel/performance/Makefile,v 1.4 2007/01/31 18:17:57 dinoex Exp $
 #
 
 PORTNAME=	performance

@@ -3,7 +3,6 @@
 # Whom:					bremner@unb.ca
 #
 
-# $FreeBSD: ports/mail/hashcash/Makefile,v 1.8 2006/05/29 20:55:52 pav Exp $
 #
 
 PORTNAME=	hashcash

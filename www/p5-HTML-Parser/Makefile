@@ -1,4 +1,3 @@
-# $FreeBSD: ports/www/p5-HTML-Parser/Makefile,v 1.59 2006/07/13 13:10:59 mat Exp $
 
 
 PORTNAME=	HTML-Parser

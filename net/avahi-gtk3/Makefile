@@ -1,5 +1,4 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
-# $FreeBSD: head/net/avahi-gtk3/Makefile 393404 2015-08-01 20:02:06Z kwm $
 
 
 PORTREVISION=	3

@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/net/ldapdiff/Makefile,v 1.16 2007/05/26 12:57:53 rafan Exp $
 
 PORTNAME=	ldapdiff
 PORTVERSION=	1.4.1

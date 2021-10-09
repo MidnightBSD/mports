@@ -3,7 +3,6 @@
 # Whom:				trasz
 #
 
-# $FreeBSD: ports/emulators/xhomer/Makefile,v 1.3 2007/04/13 13:03:46 trasz Exp $
 #
 
 PORTNAME=	xhomer

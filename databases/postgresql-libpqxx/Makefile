@@ -1,4 +1,3 @@
-# $FreeBSD: ports/databases/postgresql-libpqxx/Makefile,v 1.22 2006/08/09 10:36:43 girgen Exp $
 
 
 PORTNAME=	libpqxx

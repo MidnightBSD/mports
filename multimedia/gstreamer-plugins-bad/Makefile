@@ -1,5 +1,4 @@
 
-# $FreeBSD: ports/multimedia/gstreamer-plugins-bad/Makefile,v 1.10 2007/06/26 12:37:51 ahze Exp $
 
 CATEGORIES=	multimedia
 

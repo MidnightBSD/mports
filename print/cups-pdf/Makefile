@@ -1,5 +1,4 @@
 # Created by: Mark Reidel <ports@mark.reidel.info>
-# $FreeBSD: head/print/cups-pdf/Makefile 410825 2016-03-11 11:53:42Z tijl $
 
 
 PORTNAME=	cups-pdf

@@ -1,4 +1,3 @@
-# $FreeBSD: head/sysutils/bacula9-client-static/Makefile 448995 2017-08-30 18:11:06Z dvl $
 
 PORTNAME=	bacula
 PKGNAMESUFFIX=	9-client-static
