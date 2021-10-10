@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	portaudio
 DISTVERSION=	19_20140130

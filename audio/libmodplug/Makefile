@@ -2,7 +2,7 @@
 # Date created:		3 February 2004
 # Whom:			Emanuel Haupt <ehaupt@critical.ch>
 #
-# $MidnightBSD$
+
 # $FreeBSD: ports/audio/libmodplug/Makefile,v 1.10 2006/06/29 17:52:14 ehaupt Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	chu
 PORTVERSION=	0.1.29

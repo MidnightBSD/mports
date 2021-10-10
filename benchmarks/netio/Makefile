@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/benchmarks/netio/Makefile,v 1.5 2006/09/02 12:07:20 arved Exp $
 
 PORTNAME=	netio

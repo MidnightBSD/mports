@@ -2,7 +2,7 @@
 # Date created:			23 Nov 2007
 # Whom:				Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD$
+
 
 CATEGORIES=	audio
 

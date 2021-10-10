@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 
 PORTNAME=	efax-0.9a

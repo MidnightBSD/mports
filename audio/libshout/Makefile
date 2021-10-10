@@ -1,5 +1,5 @@
 # Created by: Zach Zurflu <zach@pabst.bendnet.com>
-# $MidnightBSD$
+
 # $FreeBSD: head/audio/libshout/Makefile 369830 2014-10-02 15:31:31Z sunpoet $
 
 PORTNAME=	libshout

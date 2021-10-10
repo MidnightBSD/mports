@@ -1,6 +1,6 @@
 # Created by: kwm@rainbow-runner.nl
 # $FreeBSD: head/audio/libtremor/Makefile 412344 2016-04-01 13:29:15Z mat $
-# $MidnightBSD$
+
 
 PORTNAME=	libtremor
 PORTVERSION=	1.2.1.s20150105

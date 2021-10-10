@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libmicro
 PORTVERSION=	0.4.1

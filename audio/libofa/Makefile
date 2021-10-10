@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3

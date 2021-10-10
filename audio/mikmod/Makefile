@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: ports/audio/mikmod/Makefile,v 1.29 2011/01/25 08:39:24 ehaupt Exp $
 
 PORTNAME=	mikmod

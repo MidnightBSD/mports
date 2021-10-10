@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	madplay
 PORTVERSION=	0.15.2b

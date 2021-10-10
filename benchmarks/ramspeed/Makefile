@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # $FreeBSD: head/benchmarks/ramspeed/Makefile 341993 2014-01-31 13:40:21Z pawel $
 
 PORTNAME=	ramspeed

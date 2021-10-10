@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	raidtest
 PORTVERSION=	1.3

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wmmixer
 PORTVERSION=	1.0b1

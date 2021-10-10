@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	acfax
 PORTVERSION=	0.981011

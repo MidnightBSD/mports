@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Device-Gsm
 PORTVERSION=	1.60

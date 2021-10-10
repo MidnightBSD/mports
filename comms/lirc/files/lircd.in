@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+
 #
 # PROVIDE: lircd
 # REQUIRE: DAEMON

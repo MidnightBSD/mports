@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	speex
 DISTVERSION=	1.2.0

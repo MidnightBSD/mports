@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	timemachine
 PORTVERSION=	0.3.3

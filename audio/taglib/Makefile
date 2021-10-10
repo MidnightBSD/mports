@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	taglib
 PORTVERSION=	1.9.1

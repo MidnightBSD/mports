@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lv2
 PORTVERSION=	1.16.0
