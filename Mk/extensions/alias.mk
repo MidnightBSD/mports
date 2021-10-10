@@ -9,7 +9,7 @@ _INCLUDE_USES_ALIAS_MK=    yes
 .if ${OPSYS} == MidnightBSD
 
 .if empty(alias_ARGS)
-CFLAGS+=	-D__FreeBSD__=11
+CFLAGS+=	-D__FreeBSD__=9
 .else
 .  if ${alias_ARGS} == 10 \
    || ${alias_ARGS} == 9 || ${alias_ARGS} == 11
