@@ -8,7 +8,7 @@
 
 .if !defined(_INCLUDE_USES_LIBARCHIVE_MK)
 _INCLUDE_USES_LIBARCHIVE_MK=	yes
-.include "${MPORTEXTENSIONS}/localbase.mk"
+_USES_POST+=	localbase
 
 LIB_DEPENDS+=	libarchive.so.13:archivers/libarchive
 .endif
