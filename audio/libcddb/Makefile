@@ -1,6 +1,3 @@
-
-# $FreeBSD: ports/audio/libcddb/Makefile,v 1.16 2006/06/09 18:00:28 ahze Exp $
-
 PORTNAME=	libcddb
 PORTVERSION=	1.3.2
 PORTREVISION=	3

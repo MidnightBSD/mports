@@ -1,5 +1,4 @@
 #!/bin/sh
-# $FreeBSD: ports/Tools/scripts/release/setup.sh,v 1.3 2002/05/16 03:24:44 will Exp $
 
 dir=$@
 if [ -z $dir ]; then

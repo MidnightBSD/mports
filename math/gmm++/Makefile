@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gmm++
 PORTVERSION=	4.2

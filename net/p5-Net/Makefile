@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Net
 PORTVERSION=	3.11

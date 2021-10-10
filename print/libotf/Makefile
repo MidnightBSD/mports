@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libotf
 PORTVERSION=	0.9.13

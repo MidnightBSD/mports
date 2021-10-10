@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	adobe-cmaps
 PORTVERSION=	20051217

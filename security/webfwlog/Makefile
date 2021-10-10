@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	webfwlog
 PORTVERSION=	1.00

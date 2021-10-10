@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME?=	tidy
 DISTVERSION=	090315-cvs

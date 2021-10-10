@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 CONFLICTS=	enscript-letter-* enscript-letterdj-*
 

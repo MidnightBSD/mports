@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gc
 PORTVERSION=	7.4.20

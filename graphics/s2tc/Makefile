@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	s2tc
 PORTVERSION=	1.0+20151228

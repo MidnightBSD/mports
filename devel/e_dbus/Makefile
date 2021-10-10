@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	e_dbus
 PORTVERSION=	1.7.10

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wmCalClock
 PORTVERSION=	1.26

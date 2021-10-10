@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	asclock
 PORTVERSION=	1.0

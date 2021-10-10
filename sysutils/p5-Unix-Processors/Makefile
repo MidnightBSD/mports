@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Unix-Processors
 PORTVERSION=	2.046

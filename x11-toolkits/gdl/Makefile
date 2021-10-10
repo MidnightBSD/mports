@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gdl
 PORTVERSION=	3.18.0

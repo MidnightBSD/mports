@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/multimedia/gmp-api/Makefile 392273 2015-07-16 06:05:59Z jbeich $
+
 
 PORTNAME=	gmp-api
 DISTVERSION=	58 # from config/milestone.txt of mozilla-central commit

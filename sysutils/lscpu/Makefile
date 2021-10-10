@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lscpu
 PORTVERSION=	1.2.0

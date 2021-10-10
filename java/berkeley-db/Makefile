@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	je
 PORTVERSION=	6.2.31

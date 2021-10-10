@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	newt
 PORTVERSION=	0.52.17

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nextgo
 PORTVERSION=	3.0

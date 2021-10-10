@@ -1,5 +1,5 @@
 # based on the OpenBSD port
-# $MidnightBSD$
+
 
 PORTNAME=	mcrypt
 PORTVERSION=	2.6.8

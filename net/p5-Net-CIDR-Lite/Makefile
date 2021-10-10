@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Net-CIDR-Lite
 PORTVERSION=	0.21

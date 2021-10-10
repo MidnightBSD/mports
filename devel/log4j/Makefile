@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	log4j
 PORTVERSION=	1.2.17

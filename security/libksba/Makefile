@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libksba
 PORTVERSION=	1.3.5

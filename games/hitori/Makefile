@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	hitori
 PORTVERSION=	3.22.4

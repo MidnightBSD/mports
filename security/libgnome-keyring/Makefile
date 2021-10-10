@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libgnome-keyring
 PORTVERSION=	3.12.0

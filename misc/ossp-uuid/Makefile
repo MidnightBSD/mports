@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	uuid
 PORTVERSION=	1.6.2

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	XML-Stream
 DISTVERSION=	1.24

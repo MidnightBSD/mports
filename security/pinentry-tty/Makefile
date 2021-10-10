@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pinentry
 PORTREVISION=	0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	spamd
 PORTVERSION=	4.9.1

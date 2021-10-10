@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Heap
 PORTVERSION=	0.80

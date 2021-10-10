@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Types-Serialiser
 PORTVERSION=	1.0

@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11/xcb-util-image/Makefile,v 1.1 2012/01/15 12:46:10 garga Exp $
+
 
 PORTNAME=	xcb-util-image
 PORTVERSION=	0.4.0

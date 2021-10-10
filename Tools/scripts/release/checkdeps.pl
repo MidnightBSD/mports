@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-# $FreeBSD: ports/Tools/scripts/release/checkdeps.pl,v 1.1 2002/03/27 00:45:47 will Exp $
 
 die "$0 <pkgdir> <indexfile>\n" if ($#ARGV != 1);
 

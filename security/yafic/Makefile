@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	yafic
 PORTVERSION=	1.2.2

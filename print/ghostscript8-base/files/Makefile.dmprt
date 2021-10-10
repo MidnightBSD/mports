@@ -1,4 +1,3 @@
-# $FreeBSD: head/print/ghostscript8-base/files/Makefile.dmprt 395047 2015-08-22 17:48:35Z hrs $
 
 post-install-dmprt:
 	cd ${FILESDIR} && \

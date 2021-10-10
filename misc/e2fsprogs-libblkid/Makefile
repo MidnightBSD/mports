@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # set PORTREVISION to avoid override by master port
 

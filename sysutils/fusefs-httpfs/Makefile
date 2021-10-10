@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	httpfs
 PORTVERSION=	2.${VERSION}

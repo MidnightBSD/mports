@@ -1,6 +1,5 @@
 # Created by: Wen Heping <wen@FreeBSD.org>
-# $FreeBSD: head/devel/p5-Package-Variant/Makefile 412346 2016-04-01 14:00:51Z mat $
-# $MidnightBSD$
+
 
 PORTNAME=	Package-Variant
 PORTVERSION=	1.003002

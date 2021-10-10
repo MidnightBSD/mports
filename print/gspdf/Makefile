@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gspdf
 PORTVERSION=	0.5

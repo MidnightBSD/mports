@@ -1,6 +1,3 @@
-
-# $FreeBSD: ports/astro/luna/Makefile,v 1.15 2006/05/03 05:14:05 edwin Exp $
-
 PORTNAME=	luna
 PORTVERSION=	1.9
 PORTREVISION=	1

@@ -1,5 +1,4 @@
-# $FreeBSD: head/textproc/p5-Text-ParseWords/Makefile 381105 2015-03-12 15:23:52Z sunpoet $
-# $MidnightBSD$
+
 
 PORTNAME=	Text-ParseWords
 PORTVERSION=	3.30

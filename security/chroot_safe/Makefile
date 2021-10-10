@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	chroot_safe
 PORTVERSION=	1.4

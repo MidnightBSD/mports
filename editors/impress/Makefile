@@ -1,5 +1,5 @@
 # Created by: Kris Kennaway <kris@FreeBSD.org>
-# $MidnightBSD$
+
 
 PORTNAME=	impress
 PORTVERSION=	1.1b9

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Test-NoWarnings
 PORTVERSION=	1.04

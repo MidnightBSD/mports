@@ -1,4 +1,4 @@
-# $MidnightBSD$ 
+ 
 
 PORTNAME=	Cisco-Reconfig
 PORTVERSION=	0.912

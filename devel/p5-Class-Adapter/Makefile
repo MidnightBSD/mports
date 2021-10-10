@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Class-Adapter
 PORTVERSION=	1.08

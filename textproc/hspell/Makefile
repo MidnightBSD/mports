@@ -1,6 +1,5 @@
 # Created by: Yonatan <onatan@gmail.com>
-# $FreeBSD: head/hebrew/hspell/Makefile 386312 2015-05-14 10:15:04Z mat $
-# $MidnightBSD$
+
 
 PORTNAME=	hspell
 PORTVERSION=	1.4

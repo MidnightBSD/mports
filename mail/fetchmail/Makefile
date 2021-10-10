@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # NOTE:  The fetchmailconf program (an interactive program for
 # writing .fetchmailrc files) requires Python, Tk, X11, etc.

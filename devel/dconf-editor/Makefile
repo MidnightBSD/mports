@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dconf-editor
 PORTVERSION=	3.22.1

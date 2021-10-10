@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lightsoff
 PORTVERSION=	3.28.0

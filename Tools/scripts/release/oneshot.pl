@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-# $FreeBSD: ports/Tools/scripts/release/oneshot.pl,v 1.2 2003/01/20 06:27:56 murray Exp $
 
 use File::Basename;
 use File::Find;

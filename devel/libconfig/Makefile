@@ -1,6 +1,5 @@
 # Created by: Nikos Ntarmos <ntarmos@ceid.upatras.gr>
-# $FreeBSD: head/devel/libconfig/Makefile 362605 2014-07-22 23:25:54Z amdmi3 $
-# $MidnightBSD$
+
 
 PORTNAME=	libconfig
 PORTVERSION=	1.4.9

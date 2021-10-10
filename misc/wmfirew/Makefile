@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wmfirew
 PORTVERSION=	0.20

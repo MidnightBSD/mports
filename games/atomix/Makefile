@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	atomix
 PORTVERSION=	3.22.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zfs-snapshot-clean
 PORTVERSION=	0.2.0

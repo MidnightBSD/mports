@@ -1,5 +1,5 @@
 # Created by: Toni Gundogdu <legatvs@gmail.com>
-# $MidnightBSD$
+
 
 PORTNAME=	quvi
 PORTVERSION=	0.4.2

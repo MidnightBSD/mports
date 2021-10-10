@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	t1utils
 PORTVERSION=	1.32

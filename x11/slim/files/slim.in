@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# $FreeBSD: head/x11/slim/files/slim.in 540725 2020-06-28 14:58:43Z jsm $
 #
 # PROVIDE: slim
 # REQUIRE: LOGIN dbus hald

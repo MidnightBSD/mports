@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Data-Compare
 PORTVERSION=	1.2200

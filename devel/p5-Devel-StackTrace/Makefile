@@ -1,5 +1,4 @@
-# $FreeBSD: ports/devel/p5-Devel-StackTrace/Makefile,v 1.21 2007/04/29 14:46:47 erwin Exp $
-# $MidnightBSD$
+
 #
 
 PORTNAME=	Devel-StackTrace

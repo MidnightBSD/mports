@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xfce4-wm-themes
 PORTVERSION=	4.10.0

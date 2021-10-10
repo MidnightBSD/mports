@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libunicode
 PORTVERSION=	0.4

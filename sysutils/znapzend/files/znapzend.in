@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/sysutils/znapzend/files/znapzend.in 475581 2018-07-28 14:53:38Z miwi $
 #
 
 # PROVIDE: znapzend

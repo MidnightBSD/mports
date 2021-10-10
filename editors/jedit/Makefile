@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jedit
 PORTVERSION=	5.3.0

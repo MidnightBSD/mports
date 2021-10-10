@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	moon-buggy
 PORTVERSION=	1.0.51

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ebook-tools
 PORTVERSION=	0.2.2

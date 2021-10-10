@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/devel/bcc/scripts/configure,v 1.2 1999/08/29 11:03:05 peter Exp $
 #
 # Author:		Jörg Wunsch <joerg@FreeBSD.org>
 # Date of creation:	Mar 26, 1995

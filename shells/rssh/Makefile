@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	rssh
 PORTVERSION=	2.3.4

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	opencdk
 PORTVERSION=	0.6.6

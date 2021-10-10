@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	slideshow
 PORTVERSION=	0.3.5

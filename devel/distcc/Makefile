@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	distcc
 PORTVERSION=	3.1

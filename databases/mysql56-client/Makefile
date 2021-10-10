@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mysql
 PKGNAMESUFFIX=	56-client

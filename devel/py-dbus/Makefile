@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTREVISION=	2
 

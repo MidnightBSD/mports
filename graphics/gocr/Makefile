@@ -1,5 +1,4 @@
-# $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	gocr
 PORTVERSION=	0.50

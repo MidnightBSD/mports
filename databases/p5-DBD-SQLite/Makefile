@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	DBD-SQLite
 PORTVERSION=	1.62

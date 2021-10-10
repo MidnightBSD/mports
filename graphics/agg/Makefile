@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	agg
 PORTVERSION=	2.5

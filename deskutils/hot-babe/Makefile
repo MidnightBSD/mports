@@ -2,8 +2,7 @@
 # Date created:		2004-11-06
 # Whom:			Roman Bogorodskiy <bogorodskiy@inbox.ru>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/deskutils/hot-babe/Makefile,v 1.10 2007/05/19 20:01:39 flz Exp $
+
 #
 
 PORTNAME=	hot-babe

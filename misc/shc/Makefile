@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	shc
 PORTVERSION=	3.8.9

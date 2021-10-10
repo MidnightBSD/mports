@@ -1,5 +1,4 @@
 # Created by: Oliver Lehmann
-# $FreeBSD: head/security/courier-authlib/Makefile.opt 555203 2020-11-15 12:31:00Z madpilot $
 
 # To depend on courier-authlib you might consider using this file by specifying 
 #

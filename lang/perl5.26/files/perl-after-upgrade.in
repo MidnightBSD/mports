@@ -6,7 +6,6 @@
 # this stuff is worth it, you can buy me a beer in return.   Anton Berezin
 # ----------------------------------------------------------------------------
 #
-# $FreeBSD: ports/lang/perl5.8/files/perl-after-upgrade,v 1.2 2006/02/20 20:24:36 tobez Exp $
 # $Id: perl-after-upgrade.in,v 1.1 2012-05-22 00:42:43 laffer1 Exp $
 #
 =pod

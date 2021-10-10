@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ldconfig_compat
 PORTVERSION=	1.0

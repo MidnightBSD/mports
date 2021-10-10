@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nautilus
 PORTVERSION=	3.28.1

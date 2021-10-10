@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/texlive-tlmgr/Makefile 392808 2015-07-24 09:35:07Z hrs $
+
 
 PORTNAME=	texlive
 PORTVERSION=	20150523

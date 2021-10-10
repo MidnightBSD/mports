@@ -1,5 +1,3 @@
-
-# $FreeBSD: head/Mk/Uses/waf.mk 383600 2015-04-08 18:32:18Z antoine $
 #
 # Provide support to use the waf building system
 #

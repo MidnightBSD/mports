@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libpci
 PORTVERSION=	3.2.1

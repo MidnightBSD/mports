@@ -1,4 +1,3 @@
-# $FreeBSD: head/www/gstreamer1-plugins-neon/Makefile 405242 2016-01-04 14:21:56Z kwm $
 
 PORTREVISION=	0
 CATEGORIES=	www

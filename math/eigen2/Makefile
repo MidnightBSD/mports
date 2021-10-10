@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/math/eigen2/Makefile,v 1.14 2010/08/03 17:51:23 makc Exp $
+
 
 PORTNAME=	eigen
 PORTVERSION=	2.0.17

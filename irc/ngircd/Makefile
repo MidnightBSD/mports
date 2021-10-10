@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ngircd
 PORTVERSION=	26.1

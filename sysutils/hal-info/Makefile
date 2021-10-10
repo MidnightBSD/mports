@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	hal-info
 PORTVERSION=	20091130

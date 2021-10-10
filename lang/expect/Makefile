@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	expect
 PORTVERSION=	5.45.4

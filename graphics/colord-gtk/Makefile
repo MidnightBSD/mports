@@ -1,6 +1,5 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/graphics/colord-gtk/Makefile 393607 2015-08-05 19:13:24Z kwm $
+
 
 PORTNAME=	colord-gtk
 PORTVERSION=	0.1.26

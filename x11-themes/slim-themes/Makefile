@@ -1,6 +1,4 @@
 # Created by: Eygene Ryabinkin <rea-fbsd@codelabs.ru>
-# $FreeBSD: head/x11-themes/slim-themes/Makefile 382730 2015-03-30 21:05:05Z bapt $
-
 
 PORTNAME=	slim-themes
 PORTVERSION=	1.0.1

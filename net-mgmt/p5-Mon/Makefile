@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Mon
 PORTVERSION=	0.11

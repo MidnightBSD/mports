@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	SDL
 PORTVERSION=	2.548

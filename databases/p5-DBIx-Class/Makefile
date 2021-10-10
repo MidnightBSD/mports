@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	DBIx-Class
 PORTVERSION=	0.082841

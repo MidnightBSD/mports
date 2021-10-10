@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gio-sharp
 PORTVERSION=	2.22.3

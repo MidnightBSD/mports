@@ -1,5 +1,4 @@
 # Created by: Dan Langille <dan@langille.org>
-# $FreeBSD: head/sysutils/bacula9-docs/Makefile 502489 2019-05-24 20:01:05Z dvl $
 
 PORTNAME=	bacula
 PORTVERSION=	9.4.3

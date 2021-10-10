@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	PadWalker
 PORTVERSION=	2.3

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Variable-Magic
 PORTVERSION=	0.62

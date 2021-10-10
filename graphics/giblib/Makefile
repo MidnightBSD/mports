@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	giblib
 PORTVERSION=	1.2.4

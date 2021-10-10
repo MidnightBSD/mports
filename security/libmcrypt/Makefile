@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libmcrypt
 PORTVERSION=	2.5.8

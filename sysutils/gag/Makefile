@@ -2,7 +2,7 @@
 # Date created:				31 Aug 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	gag

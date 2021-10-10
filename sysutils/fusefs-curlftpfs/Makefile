@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	curlftpfs
 PORTVERSION=	0.9.2

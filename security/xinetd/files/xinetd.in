@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/security/xinetd/files/xinetd.in,v 1.1 2006/07/12 05:51:47 sem Exp $
 #
 # PROVIDE: xinetd
 # REQUIRE: DAEMON

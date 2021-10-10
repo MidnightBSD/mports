@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/fortytwo-encore/Makefile 383626 2015-04-09 07:44:41Z bapt $
+
 
 PORTNAME=	encore
 PORTVERSION=	0.3.1

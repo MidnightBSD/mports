@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PKGNAMESUFFIX=	-hard
 

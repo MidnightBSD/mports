@@ -1,4 +1,3 @@
-# $FreeBSD: head/sysutils/devcpu-data/files/Makefile 470620 2018-05-22 15:09:38Z sbruno $
 
 INTEL_UCODE=	intel-ucode
 OUTPUT_DIR=	mcodes

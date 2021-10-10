@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	rdesktop
 PORTVERSION=	1.8.3

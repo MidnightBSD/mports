@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	transfig
 PORTVERSION=	3.2.5e

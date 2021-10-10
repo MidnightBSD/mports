@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/gworkspace-gwmetadata/Makefile 394508 2015-08-17 14:20:40Z mat $
+
 
 PORTNAME=	gworkspace
 PORTVERSION=	0.9.3

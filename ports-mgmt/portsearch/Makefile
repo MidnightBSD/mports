@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	portsearch
 PORTVERSION=	1.3.4

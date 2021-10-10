@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Class-MakeMethods
 PORTVERSION=	1.010

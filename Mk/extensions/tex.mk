@@ -1,4 +1,3 @@
-# $FreeBSD: head/Mk/bsd.tex.mk 373858 2014-12-04 02:30:05Z hrs $
 #
 # tex.mk - Common part for TeX related ports
 #

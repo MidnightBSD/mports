@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sysmon
 PORTVERSION=	0.93

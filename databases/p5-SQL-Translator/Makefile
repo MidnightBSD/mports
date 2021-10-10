@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	SQL-Translator
 PORTVERSION=	0.11021

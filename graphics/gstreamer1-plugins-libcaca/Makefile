@@ -1,4 +1,3 @@
-# $FreeBSD: head/graphics/gstreamer1-plugins-libcaca/Makefile 374804 2014-12-16 13:35:01Z kwm $
 
 PORTREVISION=	0
 CATEGORIES=	graphics

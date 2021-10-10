@@ -2,8 +2,7 @@
 # Date created:         28 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
-# $FreeBSD: ports/devel/performance/Makefile,v 1.4 2007/01/31 18:17:57 dinoex Exp $
+
 #
 
 PORTNAME=	performance

@@ -2,8 +2,7 @@
 # Date created:				1st March 2003
 # Whom:					nik@FreeBSD.org
 #
-# $MidnightBSD$
-# $FreeBSD: ports/games/quake3-data/Makefile,v 1.14 2007/05/19 20:07:23 flz Exp $
+
 #
 
 PORTNAME=	data

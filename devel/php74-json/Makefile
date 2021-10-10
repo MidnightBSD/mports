@@ -1,4 +1,3 @@
-# $FreeBSD: head/devel/php74-json/Makefile 512406 2019-09-20 12:21:11Z tz $
 
 CATEGORIES=	devel
 

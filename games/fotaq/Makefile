@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	fotaq
 PORTVERSION=	1.0

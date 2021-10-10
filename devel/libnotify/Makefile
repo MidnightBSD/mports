@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libnotify
 PORTVERSION=	0.7.7

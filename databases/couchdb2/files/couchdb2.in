@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# $FreeBSD: head/databases/couchdb2/files/couchdb2.in 497329 2019-03-30 19:10:50Z dch $
 #
 # PROVIDE: couchdb2
 # REQUIRE: LOGIN

@@ -1,6 +1,5 @@
 # Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/graphics/cenon/Makefile 383626 2015-04-09 07:44:41Z bapt $
+
 
 PORTNAME=	cenon
 PORTVERSION=	4.0.2

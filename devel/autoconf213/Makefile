@@ -2,8 +2,7 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD$
-# $FreeBSD: ports/devel/autoconf213/Makefile,v 1.62 2007/07/28 06:33:44 ade Exp $
+
 #
 
 PORTNAME=	autoconf

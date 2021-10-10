@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/emulators/open-vm-tools/files/vmware-kmod.in 516083 2019-10-30 16:10:41Z jpaetzel $
 #
 
 # PROVIDE: vmware-kmod

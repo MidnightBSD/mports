@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	struts
 PORTVERSION=	1.2.9

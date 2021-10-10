@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nvi
 PORTVERSION=	1.81.6

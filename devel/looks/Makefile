@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	looks
 DISTVERSION=	2_6_0

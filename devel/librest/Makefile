@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	rest
 PORTVERSION=	0.7.93

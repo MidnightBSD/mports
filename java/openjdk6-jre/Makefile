@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 CATEGORIES=	java devel
 PKGNAMESUFFIX=	-jre

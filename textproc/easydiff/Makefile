@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/easydiff/Makefile,v 1.8 2006/03/19 04:35:47 dinoex Exp $
+
 
 PORTNAME=	easydiff
 PORTVERSION=	0.4.0

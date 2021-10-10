@@ -1,6 +1,6 @@
 # created by:	Chris Hutchinson <midnightbsd@BSDforge.com>
 #
-# $MidnightBSD$
+
 PORTNAME=	filerunner
 PORTVERSION=	17.04.01.19
 CATEGORIES=	x11-fm tk

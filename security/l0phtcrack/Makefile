@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	l0phtcrack
 PORTVERSION=	1.5

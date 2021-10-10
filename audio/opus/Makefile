@@ -1,4 +1,3 @@
-# $FreeBSD: head/audio/opus/Makefile 388939 2015-06-09 14:24:41Z jbeich $
 
 PORTNAME=	opus
 PORTVERSION=	1.1

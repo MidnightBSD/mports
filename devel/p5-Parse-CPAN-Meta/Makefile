@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Parse-CPAN-Meta
 PORTVERSION=	1.44.14

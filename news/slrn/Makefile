@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	slrn
 PORTVERSION=	1.0.3a

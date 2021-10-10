@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	9base
 DISTVERSION=	b20100604

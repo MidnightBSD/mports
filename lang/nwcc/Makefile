@@ -2,7 +2,7 @@
 # Date created: 20. August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	nwcc

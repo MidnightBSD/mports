@@ -1,6 +1,4 @@
 # Created by: Matthias Andree <mandree@FreeBSD.org>
-# $FreeBSD: head/databases/db6/Makefile 447822 2017-08-12 10:24:46Z mandree $
-
 
 PORTNAME=	db6
 PORTVERSION=	6.2.32

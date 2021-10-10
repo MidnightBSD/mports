@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Mail-Sendmail
 PORTVERSION=	0.79

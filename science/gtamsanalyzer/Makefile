@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gtamsanalyzer
 PORTVERSION=	0.42

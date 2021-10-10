@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sshfs
 PORTVERSION=	2.8

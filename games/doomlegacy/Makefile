@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/games/doomlegacy/Makefile,v 1.15 2007/06/07 00:00:30 alepulver Exp $
+
 
 PORTNAME=	doomlegacy
 PORTVERSION=	1.45.2

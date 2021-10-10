@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	XML-Grove
 DISTVERSION=	0.46alpha

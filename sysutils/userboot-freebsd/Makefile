@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	userboot-freebsd
 PORTVERSION=	10.0

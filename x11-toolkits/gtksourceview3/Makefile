@@ -1,4 +1,3 @@
-# $FreeBSD: head/x11-toolkits/gtksourceview3/Makefile 487272 2018-12-12 01:35:33Z gerald $
 
 PORTNAME=	gtksourceview
 PORTVERSION=	3.24.8

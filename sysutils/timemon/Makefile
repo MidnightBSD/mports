@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	timemon
 PORTVERSION=	4.2

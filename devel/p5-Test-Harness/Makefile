@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Test-Harness
 PORTVERSION=	3.25

@@ -1,5 +1,4 @@
 #! /bin/sh
 #
-# $FreeBSD: head/devel/antlr/files/antlr.sh.in 518482 2019-11-26 21:46:12Z jkim $
 
 "%%LOCALBASE%%/bin/java" -classpath "%%JAVAJARDIR%%/antlr.jar" antlr.Tool "$@"

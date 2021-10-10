@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Set-IntSpan
 PORTVERSION=	1.19

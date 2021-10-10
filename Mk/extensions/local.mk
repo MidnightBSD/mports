@@ -6,9 +6,6 @@
 # Created by: Mark Linimon <linimon@FreeBSD.org>
 #
 
-# $FreeBSD: ports/Mk/bsd.local.mk,v 1.1 2006/01/21 17:37:01 krion Exp $
-#
-
 .if !defined(_POSTMKINCLUDED) && !defined(Local_Pre_Include)
 
 Local_Pre_Include=		local.mk

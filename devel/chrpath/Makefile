@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/chrpath/Makefile,v 1.4 2010/09/20 17:55:49 rene Exp $
+
 
 PORTNAME=	chrpath
 PORTVERSION=	0.16

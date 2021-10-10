@@ -14,7 +14,6 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
-# $FreeBSD: ports/Tools/scripts/distclean.sh,v 1.17 2003/04/18 13:52:50 sobomax Exp $
 #
 # MAINTAINER= sobomax@FreeBSD.org
 

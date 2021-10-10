@@ -3,9 +3,6 @@
 # Whom:			Emanuel Haupt <ehaupt@critical.ch>
 #
 
-# $FreeBSD: ports/audio/libmodplug/Makefile,v 1.10 2006/06/29 17:52:14 ehaupt Exp $
-#
-
 PORTNAME=	libmodplug
 PORTVERSION=	0.8.8.5
 PORTREVISION=	2

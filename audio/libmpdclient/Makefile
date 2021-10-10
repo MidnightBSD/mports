@@ -1,6 +1,4 @@
 # Created by: Grzegorz Blach <gblach@FreeBSD.org>
-# $FreeBSD: head/audio/libmpdclient/Makefile 394837 2015-08-20 07:11:37Z amdmi3 $
-
 
 PORTNAME=	libmpdclient
 PORTVERSION=	2.10

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	linuxdoc
 PORTVERSION=	1.1

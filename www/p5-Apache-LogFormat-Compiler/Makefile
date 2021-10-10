@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/www/p5-Apache-LogFormat-Compiler/Makefile 449893 2017-09-15 08:58:46Z mat $
+
 
 PORTNAME=	Apache-LogFormat-Compiler
 PORTVERSION=	0.35

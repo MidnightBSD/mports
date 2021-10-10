@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tradcpp
 PORTVERSION=	0.5.2

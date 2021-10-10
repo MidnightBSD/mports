@@ -2,8 +2,7 @@
 # Date created:		4 May 2004
 # Whom:			Brian Candler <B.Candler@pobox.com>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-SGMLSpm/Makefile,v 1.2 2005/11/13 05:13:28 lawrance Exp $
+
 #
 
 PORTNAME=	SGMLSpm

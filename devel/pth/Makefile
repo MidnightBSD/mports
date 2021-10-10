@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pth
 PORTVERSION=	2.0.7

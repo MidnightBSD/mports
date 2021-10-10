@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	MLDBM-Sync
 PORTVERSION=	0.30

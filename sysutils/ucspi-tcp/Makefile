@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ucspi-tcp
 PORTVERSION=	0.88

@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/sysutils/linux-crashplan/files/crashplan.in 371372 2014-10-23 00:36:47Z wg $
 
 # PROVIDE: crashplan
 # REQUIRE: DAEMON

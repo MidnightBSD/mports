@@ -2,7 +2,7 @@
 # Date created:			28 September 2006
 # Whom:				wintellect@bsdnexus.com
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	wmbinclock

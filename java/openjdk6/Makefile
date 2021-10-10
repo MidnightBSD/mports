@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	openjdk6
 PORTVERSION=	b40

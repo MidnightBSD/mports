@@ -1,6 +1,3 @@
-
-# $FreeBSD: head/net-im/purple-facebook/Makefile 462014 2018-02-16 13:46:32Z swills $
-
 PORTNAME=	purple-facebook
 PORTVERSION=	0.9.5
 CATEGORIES=	net-im

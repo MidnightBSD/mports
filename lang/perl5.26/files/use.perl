@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# $FreeBSD$
 
 LINK_USRBIN="%%LINK_USRBIN%%"
 : ${OSVERSION:=`/sbin/sysctl -n kern.osreldate`};

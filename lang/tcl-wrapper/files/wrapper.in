@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD$
 # Wrapper for the %%TX_PORT%% shell "%%TX_SHELL%%"
 
 %%TX_SHELL_U%%=

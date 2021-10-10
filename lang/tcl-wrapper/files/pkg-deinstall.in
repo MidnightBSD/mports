@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD$
 MD5="%%MD5%%"
 MD5SUM=
 RM="%%RM%%"

@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/texi2html/Makefile,v 1.22 2005/02/14 22:05:53 roam Exp $
+
 
 PORTNAME=	texi2html
 PORTVERSION=	5.0

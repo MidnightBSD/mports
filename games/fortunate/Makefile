@@ -2,8 +2,7 @@
 # Date created:         09 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
-# $FreeBSD: ports/games/fortunate/Makefile,v 1.2 2007/01/31 18:17:59 dinoex Exp $
+
 #
 
 PORTNAME=	fortunate

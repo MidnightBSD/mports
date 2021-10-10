@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gv
 PORTVERSION=	3.7.4

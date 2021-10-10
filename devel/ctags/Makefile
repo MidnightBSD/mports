@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ctags
 PORTVERSION=	5.8

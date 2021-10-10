@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gozer
 PORTVERSION=	0.7

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tinycdb
 PORTVERSION=	0.78

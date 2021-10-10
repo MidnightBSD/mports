@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	MLDBM
 PORTVERSION=	2.05

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cln
 PORTVERSION=	1.3.4

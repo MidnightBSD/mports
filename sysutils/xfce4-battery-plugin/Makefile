@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xfce4-battery-plugin
 PORTVERSION=	1.0.5

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	foldingathome
 PORTVERSION=	5.04

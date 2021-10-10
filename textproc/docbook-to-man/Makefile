@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	docbook-to-man
 PORTVERSION=	1.0

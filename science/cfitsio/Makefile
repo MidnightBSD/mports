@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cfitsio
 PORTVERSION=	3.100

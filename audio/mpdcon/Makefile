@@ -1,6 +1,3 @@
-
-# $FreeBSD: head/audio/mpdcon/Makefile 386312 2015-05-14 10:15:04Z mat $
-
 PORTNAME=	mpdcon
 PORTVERSION=	1.5.1
 PORTREVISION=	1

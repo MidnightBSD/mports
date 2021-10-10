@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	alisp
 PORTVERSION=	20060917

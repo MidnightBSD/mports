@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	websvn
 PORTVERSION=	2.3.3

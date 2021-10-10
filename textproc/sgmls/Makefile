@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sgmls
 PORTVERSION=	1.1.91

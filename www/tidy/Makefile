@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tidy4
 PORTVERSION=	20000804

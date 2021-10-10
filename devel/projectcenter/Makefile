@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	projectcenter
 PORTVERSION=	0.6.2

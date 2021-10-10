@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/emulators/aftp/Makefile,v 1.11 2004/02/05 20:37:08 trevor Exp $
+
 
 PORTNAME=	aftp
 PORTVERSION=	1.0

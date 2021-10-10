@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wv2
 PORTVERSION=	0.4.2

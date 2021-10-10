@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libvisual
 PORTVERSION=	0.4.0

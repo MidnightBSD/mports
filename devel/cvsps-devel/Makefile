@@ -3,7 +3,7 @@
 # Date Created:			Jan 4, 2008
 # Whom:				laffer1
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	cvsps

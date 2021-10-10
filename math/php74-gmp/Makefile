@@ -1,4 +1,3 @@
-# $FreeBSD: head/math/php74-gmp/Makefile 512406 2019-09-20 12:21:11Z tz $
 
 CATEGORIES=	math
 

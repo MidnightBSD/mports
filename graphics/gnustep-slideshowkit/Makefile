@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	slideshowkit
 PORTVERSION=	0.0.1

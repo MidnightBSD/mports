@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/sdocbook-xml/Makefile,v 1.7 2004/02/13 10:31:54 des Exp $
+
 
 PORTNAME=	sdocbook-xml
 PORTVERSION= 	1.1

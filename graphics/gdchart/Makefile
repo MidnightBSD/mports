@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/gdchart/Makefile,v 1.18 2007/05/19 20:09:09 flz Exp $
+
 
 PORTNAME=	gdchart
 PORTVERSION=	0.11.5

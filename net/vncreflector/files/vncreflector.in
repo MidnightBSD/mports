@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD: mports/net/vncreflector/files/vncreflector.sh.in,v 1.1 2008/02/02 01:54:45 laffer1 Exp $
 
 # PROVIDE: vncreflector
 # REQUIRE: DAEMON

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libdvdread
 PORTVERSION=	5.0.2

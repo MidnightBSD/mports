@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	aop
 PORTVERSION=	0.6

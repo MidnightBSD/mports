@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	htpdate
 PORTVERSION=	1.2.2

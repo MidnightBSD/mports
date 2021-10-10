@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTREVISION=	1
 PORTEPOCH=	0

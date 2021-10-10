@@ -2,8 +2,7 @@
 # Date created:				29 July 2006
 # Whom:					<maho@FreeBSD.org>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/java/java-gcj-compat/Makefile,v 1.6 2006/08/17 05:20:26 maho Exp $
+
 #
 
 PORTNAME=	java-gcj-compat

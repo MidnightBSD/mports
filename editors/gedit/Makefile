@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/editors/gedit/Makefile,v 1.66 2007/12/12 04:36:21 marcus Exp $
+
 
 PORTNAME=	gedit
 PORTVERSION=	3.28.1

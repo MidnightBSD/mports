@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	localedata
 PORTVERSION=	5.4

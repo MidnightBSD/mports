@@ -1,4 +1,4 @@
-# $MidnightBSD$ 
+ 
 
 PORTNAME=	obliterate
 PORTVERSION=	0.5

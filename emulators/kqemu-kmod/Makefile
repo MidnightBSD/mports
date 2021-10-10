@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	kqemu
 PORTVERSION=	1.3.0.p11

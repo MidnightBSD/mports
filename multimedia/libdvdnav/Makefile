@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libdvdnav
 PORTVERSION=	5.0.3

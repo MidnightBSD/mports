@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	File-Which
 PORTVERSION=	1.22

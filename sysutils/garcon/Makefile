@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	garcon
 PORTVERSION=	0.4.0

@@ -2,8 +2,7 @@
 # Date created:				2004-02-11
 # Whom:					Toni Viemerö <toni.viemero@iki.fi>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-PatchReader/Makefile,v 1.4 2004/08/12 12:47:58 mat Exp $
+
 #
 
 PORTNAME=	PatchReader

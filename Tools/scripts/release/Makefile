@@ -1,6 +1,4 @@
-
-# $FreeBSD: ports/Tools/scripts/release/Makefile,v 1.2 2002/06/01 22:44:50 will Exp $
-#
+# XXX: Is this still useful? We likely needed this for early 0.x releases only.
 # The purpose of this Makefile is to setup a standardized environment
 # for making package splits.  Basically, for each split the organization
 # looks like this:

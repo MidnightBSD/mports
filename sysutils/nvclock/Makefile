@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nvclock
 DISTVERSION=	0.8b4

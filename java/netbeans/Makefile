@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	netbeans
 PORTVERSION=	8.0.2

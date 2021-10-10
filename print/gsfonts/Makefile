@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gsfonts
 PORTVERSION=	8.11

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	plotutils
 PORTVERSION=	2.6

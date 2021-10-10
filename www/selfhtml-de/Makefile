@@ -1,5 +1,4 @@
-# $FreeBSD: ports/german/selfhtml/Makefile,v 1.6 2006/06/09 21:07:11 linimon Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	selfhtml
 PORTVERSION=	8.1.2

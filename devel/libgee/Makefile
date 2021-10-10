@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/libgee/Makefile,v 1.5 2011/02/28 12:01:51 kwm Exp $
+
 
 PORTNAME=	libgee
 PORTVERSION=	0.20.1

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	awstats
 PORTVERSION=	7.8

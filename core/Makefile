@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 COMMENT= Core MidnightBSD Infrastructure
 

@@ -1,6 +1,3 @@
-
-# $FreeBSD: ports/audio/libnjb/Makefile,v 1.7 2008/03/20 13:29:31 gahr Exp $
-
 PORTNAME=	libnjb
 PORTVERSION=	2.2.7
 PORTREVISION=	0

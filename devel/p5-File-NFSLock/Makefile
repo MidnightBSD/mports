@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	File-NFSLock
 PORTVERSION=	1.23

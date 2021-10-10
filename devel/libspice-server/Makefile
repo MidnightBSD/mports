@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libspice-server
 DISTVERSION=	0.14.0

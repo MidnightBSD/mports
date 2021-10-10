@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnugo
 PORTVERSION=	3.8

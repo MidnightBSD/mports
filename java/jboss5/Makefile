@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jboss
 PORTVERSION=	5.1.0.GA

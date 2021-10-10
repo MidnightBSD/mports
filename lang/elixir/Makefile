@@ -1,5 +1,4 @@
 # Created by: Li-Wen Hsu <lwhsu@FreeBSD.org>
-# $FreeBSD: head/lang/elixir/Makefile 533077 2020-04-26 16:44:41Z olgeni $
 
 PORTNAME=	elixir
 DISTVERSIONPREFIX=	v

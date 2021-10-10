@@ -1,4 +1,3 @@
-# $FreeBSD: head/databases/percona55-client/Makefile 455167 2017-11-30 06:13:34Z linimon $
 
 PORTNAME=	percona
 PKGNAMESUFFIX=	55-client

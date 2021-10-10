@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10

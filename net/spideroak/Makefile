@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	spideroak
 PORTVERSION=	6.0

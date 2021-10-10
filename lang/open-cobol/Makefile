@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.1

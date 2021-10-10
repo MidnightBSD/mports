@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gperf
 PORTVERSION=	3.0.3

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	qdbm
 PORTVERSION=	1.8.78

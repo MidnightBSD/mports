@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	eog-plugins
 PORTVERSION=	3.26.2

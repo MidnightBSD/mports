@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dbus
 PORTVERSION=	1.2.8

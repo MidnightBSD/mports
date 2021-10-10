@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libdvdcss
 PORTVERSION=	1.3.99

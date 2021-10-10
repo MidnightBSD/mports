@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Scalar-List-Utils
 PORTVERSION=	1.50

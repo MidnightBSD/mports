@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Module-ScanDeps
 PORTVERSION=	1.24

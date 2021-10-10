@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	spamassassin
 PORTVERSION=	3.4.5

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mesa-demos
 PORTVERSION=	8.4.0

@@ -1,4 +1,3 @@
-# $FreeBSD: head/sysutils/fusefs-kmod/Makefile 399346 2015-10-15 14:55:14Z mat $
 
 PORTNAME=	fusefs-kmod
 PORTVERSION=	0.263233

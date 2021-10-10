@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	SGML-Parser-OpenSP
 PORTVERSION=	0.994

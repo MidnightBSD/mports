@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	validator
 DISTVERSIONPREFIX=	${PORTNAME}-

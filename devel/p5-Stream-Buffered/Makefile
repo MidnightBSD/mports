@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/p5-Stream-Buffered/Makefile 449893 2017-09-15 08:58:46Z mat $
+
 
 PORTNAME=	Stream-Buffered
 PORTVERSION=	0.03

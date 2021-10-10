@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnome-icon-theme-extras
 PORTVERSION=	3.12.0

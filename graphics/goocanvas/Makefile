@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/goocanvas/Makefile,v 1.14 2010/12/04 07:31:58 ade Exp $
+
 
 PORTNAME=	goocanvas
 PORTVERSION=	1.0.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Throwable
 PORTVERSION=	0.200013

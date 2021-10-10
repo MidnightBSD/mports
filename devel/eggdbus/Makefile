@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	eggdbus
 PORTVERSION=	0.6

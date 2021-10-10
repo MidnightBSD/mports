@@ -2,7 +2,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 
 PORTNAME=	ulxmlrpcpp
 PORTVERSION=	1.7.5

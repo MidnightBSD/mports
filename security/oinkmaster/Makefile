@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	oinkmaster
 PORTVERSION=	2.0

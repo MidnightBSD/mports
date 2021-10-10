@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Data-JavaScript
 PORTVERSION=	1.13

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dotconf
 PORTVERSION=	1.3

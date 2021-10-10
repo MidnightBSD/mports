@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	NetAddr-IP
 PORTVERSION=	4.079

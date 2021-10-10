@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/multimedia/libfame/Makefile,v 1.23 2006/06/09 18:59:19 ahze Exp $
+
 
 PORTNAME=	libfame
 PORTVERSION=	0.9.1

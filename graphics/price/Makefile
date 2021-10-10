@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	price
 PORTVERSION=	1.3.0
