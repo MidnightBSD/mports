@@ -13,7 +13,8 @@ cd $PORT
 $EDITOR +$LINENUM Makefile
 
 if make FATAL_LICENSE_CHECK=1 check-license; then
-	svn ci -m "license" Makefile
+	git add Makefile
+	git commit -m "license"
 fi
 
 rm -r work/
