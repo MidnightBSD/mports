@@ -71,16 +71,16 @@ correct removal of GNOME shared directories. Usage is simple:
 	According to the contents of PLIST the port depends on the following GNOME
 	port(s):
 
-	/usr/ports/audio/gnomeaudio, for directories:
+	/usr/mports/audio/gnomeaudio, for directories:
         	share/gnome/sounds
 
-	/usr/ports/sysutils/gnomecontrolcenter, for directories:
+	/usr/mports/sysutils/gnomecontrolcenter, for directories:
         	share/gnome/apps
 
-	/usr/ports/x11/gnomecore, for directories:
+	/usr/mports/x11/gnomecore, for directories:
         	share/gnome/apps/Games
 
-	/usr/ports/x11/gnomelibs, for directories:
+	/usr/mports/x11/gnomelibs, for directories:
         	etc/sound/events
         	etc/sound
         	share/gnome/games
