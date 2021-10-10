@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.5.3

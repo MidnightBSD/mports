@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	telepathy-glib
 PORTVERSION=	0.24.1

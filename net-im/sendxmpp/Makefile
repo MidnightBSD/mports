@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sendxmpp
 PORTVERSION=	1.24

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	purple-discord
 PORTVERSION=	g20171227

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	finch
 

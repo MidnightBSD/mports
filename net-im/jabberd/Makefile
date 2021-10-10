@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jabberd
 PORTVERSION=	2.3.1
