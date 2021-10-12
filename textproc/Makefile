@@ -91,6 +91,7 @@ SUBDIR += luaexpat
 SUBDIR += lucene
 SUBDIR += makepatch
 SUBDIR += man2html
+SUBDIR += mantra
 SUBDIR += meld
 SUBDIR += minixmlto
 SUBDIR += mythes
