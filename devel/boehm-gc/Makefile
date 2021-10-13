@@ -1,7 +1,6 @@
 
-
 PORTNAME=	gc
-PORTVERSION=	7.4.20
+PORTVERSION=	8.0.6
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/ivmai/bdwgc/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	boehm-
@@ -25,7 +24,7 @@ CPE_VENDOR=	boehm-demers-weiser
 CPE_PRODUCT=	garbage_collector
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS=	--enable-cplusplus --disable-static
+CONFIGURE_ARGS=	--enable-cplusplus
 MAKE_JOBS_UNSAFE=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME:C/[a-z]$//}
@@ -37,9 +36,9 @@ INSTLIBS=	cord gc gccpp
 PLIST=		${NONEXISTENT}
 PLIST_FILES=	${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so,} \
 		${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so.1,} \
-		lib/libcord-${GC_VARIANT}.so.1.2.2 \
-		lib/libgc-${GC_VARIANT}.so.1.2.6 \
-		lib/libgccpp-${GC_VARIANT}.so.1.2.1 \
+		lib/libcord-${GC_VARIANT}.so.1.4.0 \
+		lib/libgc-${GC_VARIANT}.so.1.4.4 \
+		lib/libgccpp-${GC_VARIANT}.so.1.4.1 \
 		libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
 RUN_DEPENDS+=	${LOCALBASE}/include/gc/gc.h:${PORTSDIR}/devel/boehm-gc
 . if ${GC_VARIANT} == "redirect"
@@ -47,8 +46,6 @@ CONFIGURE_ARGS+=--disable-threads --enable-redirect-malloc
 . endif
 . if ${GC_VARIANT} == "threaded"
 CONFIGURE_ARGS+=--enable-threads=posix --disable-redirect-malloc
-OPTIONS_DEFINE+=PARALLEL_MARK
-PARALLEL_MARK_DESC=	Parallel-thread marking (faster for SMP)
 . endif
 .else
 CONFIGURE_ARGS+=--disable-threads --disable-redirect-malloc
@@ -57,21 +54,11 @@ PORTDOCS=	*
 .endif
 
 
-# no rule to get .lo from .S in subdirectory
-pre-build:
-	${LN} -sf ${WRKSRC}/src/sparc_mach_dep.S ${WRKSRC}
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=--enable-gc-debug
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+fulldebug
-.endif
-
-.if defined(GC_VARIANT) && ${GC_VARIANT} == "threaded"
-. if ${PORT_OPTIONS:MPARALLEL_MARK}
-CONFIGURE_ARGS+=--enable-parallel-mark
-. endif
 .endif
 
 .ifdef GC_VARIANT
