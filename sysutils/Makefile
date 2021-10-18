@@ -5,6 +5,7 @@ SUBDIR += LPRng
 SUBDIR += accountsservice
 SUBDIR += amazon-ssm-agent
 SUBDIR += apachetop
+SUBDIR += b43-fwcutter
 SUBDIR += bacula9-client
 SUBDIR += bacula9-docs
 SUBDIR += bacula9-server
