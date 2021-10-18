@@ -2,6 +2,7 @@ COMMENT = Networking tools
 
 SUBDIR += 44bsd-rdist
 SUBDIR += activemq
+SUBDIR += aquantia-atlantic-kmod
 SUBDIR += asio
 SUBDIR += avahi
 SUBDIR += avahi-app
