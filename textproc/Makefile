@@ -70,6 +70,7 @@ SUBDIR += librevenge
 SUBDIR += libsass
 SUBDIR += libtextcat
 SUBDIR += libtre
+SUBDIR += libucl
 SUBDIR += libuninameslist
 SUBDIR += libwapcaplet
 SUBDIR += libwpd
