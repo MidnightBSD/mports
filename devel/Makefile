@@ -23,6 +23,7 @@ SUBDIR += automake
 SUBDIR += autotools
 SUBDIR += awscli
 SUBDIR += b2
+SUBDIR += basu
 SUBDIR += binutils
 SUBDIR += bison
 SUBDIR += bmake

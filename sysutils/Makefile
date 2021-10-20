@@ -154,6 +154,7 @@ SUBDIR += restic
 SUBDIR += scan_ffs
 SUBDIR += screen
 SUBDIR += screenie
+SUBDIR += seatd
 SUBDIR += sg3_utils
 SUBDIR += slurm-wlm
 SUBDIR += smartmontools
