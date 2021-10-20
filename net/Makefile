@@ -159,6 +159,7 @@ SUBDIR += uhttpmock
 SUBDIR += ulxmlrpcpp
 SUBDIR += uriparser
 SUBDIR += vde2
+SUBDIR += vether-kmod
 SUBDIR += vinagre
 SUBDIR += vino
 SUBDIR += vncreflector
