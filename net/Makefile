@@ -71,6 +71,7 @@ SUBDIR += linux-c7-tcp_wrappers-libs
 SUBDIR += liveMedia
 SUBDIR += luasocket
 SUBDIR += mDNSResponder
+SUBDIR += malo-firmware-kmod
 SUBDIR += miniupnpc
 SUBDIR += nanomsg
 SUBDIR += netatalk3
