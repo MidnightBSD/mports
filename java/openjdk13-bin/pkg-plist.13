@@ -567,6 +567,8 @@ openjdk13/conf/security/java.policy
 openjdk13/include/classfile_constants.h
 openjdk13/include/freebsd/jawt_md.h
 openjdk13/include/freebsd/jni_md.h
+openjdk13/include/midnightbsd/jawt_md.h
+openjdk13/include/midnightbsd/jni_md.h
 openjdk13/include/jni.h
 openjdk13/include/jdwpTransport.h
 openjdk13/include/jawt.h

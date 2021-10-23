@@ -72,6 +72,7 @@ SUBDIR += distcc
 SUBDIR += dmake
 SUBDIR += dmalloc
 SUBDIR += dotconf
+SUBDIR += double-conversion
 SUBDIR += doxygen
 SUBDIR += dulwich
 SUBDIR += e2fsprogs-libss

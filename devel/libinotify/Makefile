@@ -1,8 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	libinotify
-PORTVERSION=	20160505
+PORTVERSION=	20180201
+PORTREVISION=	2
 CATEGORIES=	devel
+MASTER_SITES=	https://github.com/libinotify-kqueue/libinotify-kqueue/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kevent based inotify compatible library
@@ -11,16 +11,10 @@ LICENSE=	mit
 
 FAKE_OPTS=	trueprefix
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	libinotify-kqueue
-GH_PROJECT=	libinotify-kqueue
-GH_TAGNAME=	417e789
-
-WRKSRC=		${WRKDIR}/libinotify-kqueue-${GH_TAGNAME}
-
-USES=		autoreconf libtool
+USES=		libtool
+CONFIGURE_ARGS=	--enable-skip-subfiles=fusefs,smbfs
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
