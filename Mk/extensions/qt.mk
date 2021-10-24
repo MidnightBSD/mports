@@ -1,5 +1,3 @@
-# $FreeBSD: head/Mk/Uses/qt.mk 505150 2019-06-26 11:52:23Z rene $
-#
 # There are three Qt related USES files with different access to Qt.
 #   - qmake: The port requires Qt's qmake to build -- creates the configure target
 #            - auto includes qt.mk
@@ -22,7 +20,7 @@ _QT_MK_INCLUDED=	qt.mk
 
 # Qt versions currently supported by the framework.
 _QT_SUPPORTED?=		5
-QT5_VERSION?=		5.13.2
+QT5_VERSION?=		5.15.2
 
 # We accept the Qt version to be passed by either or all of the three mk files.
 .  if empty(qt_ARGS) && empty(qmake_ARGS) && empty(qt-dist_ARGS)
@@ -76,12 +74,16 @@ QT_QTCHOOSERDIR_REL?=	${QT_ETCDIR_REL}/qtchooser
 QT_MKSPECDIR_REL=	${QT_ARCHDIR_REL}/mkspecs
 _QT_LIBVER=		${_QT_VERSION:R:R}
 
+LCONVERT?=		${QT_BINDIR}/lconvert
 LRELEASE?=		${QT_BINDIR}/lrelease
 LUPDATE?=		${QT_BINDIR}/lupdate
 MOC?=			${QT_BINDIR}/moc
 RCC?=			${QT_BINDIR}/rcc
 UIC?=			${QT_BINDIR}/uic
 QMAKE?=			${QT_BINDIR}/qmake
+QCOLLECTIONGENERATOR?=	${QT_BINDIR}/qcollectiongenerator
+QHELPGENERATOR?=	${QT_BINDIR}/qhelpgenerator
+
 # Needed to redefine the qmake target for internal Qt configuration.
 _QMAKE?=		${QMAKE}
 QMAKESPECNAME?=		freebsd-${QMAKE_COMPILER}
@@ -134,8 +136,8 @@ _USE_QT_ALL=		assistant dbus declarative designer doc gui help \
 _USE_QT5_ONLY=		3d buildtools charts concurrent connectivity \
 			core datavis3d diag examples gamepad \
 			graphicaleffects location networkauth paths phonon4 plugininfo printsupport \
-			qdbus qdoc qdoc-data qev quickcontrols \
-			quickcontrols2 remoteobjects scxml sensors serialbus serialport speech \
+			qdbus qdoc qdoc-data qev quick3d quickcontrols quickcontrols2 \
+			quicktimeline remoteobjects scxml sensors serialbus serialport speech \
 			sql-tds uiplugin uitools virtualkeyboard wayland webchannel webglplugin \
 			webengine websockets websockets-qml webview widgets x11extras
 
@@ -146,6 +148,7 @@ qt-3d_LIB=		libQt${_QT_LIBVER}3DCore.so
 qt-assistant_PORT=	devel/${_QT_RELNAME}-assistant
 qt-assistant_PATH=	${LOCALBASE}/${QT_BINDIR_REL}/assistant
 
+# Always build with *this* version's buildtools
 qt-buildtools_PORT=	devel/${_QT_RELNAME}-buildtools
 qt-buildtools_PATH=	${LOCALBASE}/${QT_BINDIR_REL}/moc
 
@@ -251,14 +254,21 @@ qt-qdoc-data_PATH=	${LOCALBASE}/${QT_DOCDIR_REL}/global/config.qdocconf
 qt-qev_PORT=		x11/${_QT_RELNAME}-qev
 qt-qev_PATH=		${LOCALBASE}/${QT_BINDIR_REL}/qev
 
+# Always build with *this* version's qmake
 qt-qmake_PORT=		devel/${_QT_RELNAME}-qmake
 qt-qmake_PATH=		${LOCALBASE}/${QT_BINDIR_REL}/qmake
+
+qt-quick3d_PORT=	x11-toolkits/${_QT_RELNAME}-quick3d
+qt-quick3d_LIB=		libQt${_QT_LIBVER}Quick3D.so
 
 qt-quickcontrols_PORT=	x11-toolkits/${_QT_RELNAME}-quickcontrols
 qt-quickcontrols_PATH=	${LOCALBASE}/${QT_QMLDIR_REL}/QtQuick/Controls/qmldir
 
 qt-quickcontrols2_PORT=	x11-toolkits/${_QT_RELNAME}-quickcontrols2
 qt-quickcontrols2_LIB=	libQt${_QT_LIBVER}QuickControls2.so
+
+qt-quicktimeline_PORT=	x11-toolkits/${_QT_RELNAME}-quicktimeline
+qt-quicktimeline_PATH=	${LOCALBASE}/${QT_QMLDIR_REL}/QtQuick/Timeline/libqtquicktimelineplugin.so
 
 qt-remoteobjects_PORT=	devel/${_QT_RELNAME}-remoteobjects
 qt-remoteobjects_LIB=	libQt${_QT_LIBVER}RemoteObjects.so
