@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Hermes
 PORTVERSION=	1.3.3

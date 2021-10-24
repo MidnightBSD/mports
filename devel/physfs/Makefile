@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	physfs
 PORTVERSION=	2.0.3

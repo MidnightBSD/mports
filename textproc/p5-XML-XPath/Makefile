@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	XML-XPath
 PORTVERSION=	1.13

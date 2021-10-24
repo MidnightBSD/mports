@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/xpdfopen/Makefile 453381 2017-11-02 21:41:47Z olgeni $
+
 
 PORTNAME=	xpdfopen
 PORTVERSION=	0.86

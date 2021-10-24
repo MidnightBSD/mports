@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xvid
 PORTVERSION=	1.3.2

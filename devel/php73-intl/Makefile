@@ -1,4 +1,3 @@
-# $FreeBSD: head/devel/php73-intl/Makefile 513733 2019-10-03 20:35:29Z jbeich $
 
 PORTREVISION=	1
 CATEGORIES=	devel

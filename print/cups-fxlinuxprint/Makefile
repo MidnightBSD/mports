@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/cups-fxlinuxprint/Makefile 410825 2016-03-11 11:53:42Z tijl $
+
 
 PORTNAME=	fxlinuxprint
 PORTVERSION=	1.0.1

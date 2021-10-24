@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	namespace-clean
 PORTVERSION=	0.27

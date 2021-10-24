@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zipper
 PORTVERSION=	1.5

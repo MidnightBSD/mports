@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/wmweather/Makefile,v 1.18 2006/12/13 12:41:30 roam Exp $
+
 
 PORTNAME=	wmweather
 PORTVERSION=	2.4.3

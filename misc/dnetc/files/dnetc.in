@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/misc/dnetc/files/dnetc.in 362218 2014-07-18 16:34:58Z tdb $
 #
 # PROVIDE: dnetc
 # REQUIRE: LOGIN

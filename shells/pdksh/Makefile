@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pdksh
 PORTVERSION=	5.2.14p2

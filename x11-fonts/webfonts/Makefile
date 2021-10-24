@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	webfonts
 PORTVERSION=	0.30

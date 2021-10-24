@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libamrwb
 PORTVERSION=	11.0.0.0

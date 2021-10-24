@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gle
 PORTVERSION=	3.1.0

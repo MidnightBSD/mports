@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	v7sh
 PORTVERSION=	1.0

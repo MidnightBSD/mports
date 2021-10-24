@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	threads-shared
 PORTVERSION=	1.57

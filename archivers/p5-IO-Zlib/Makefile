@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	IO-Zlib
 PORTVERSION=	1.10

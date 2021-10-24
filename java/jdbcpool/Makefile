@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jdbcpool
 PORTVERSION=	0.99

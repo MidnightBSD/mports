@@ -1,5 +1,4 @@
 #!/bin/sh
-# $FreeBSD: head/multimedia/webcamd/files/webcamd.in 372594 2014-11-15 11:28:29Z nox $
 #
 # PROVIDE: webcamd
 # REQUIRE: FILESYSTEMS netif dbus

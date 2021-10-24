@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/evdev-proto/Makefile 487799 2018-12-19 14:44:12Z zeising $
+
 
 PORTNAME=	evdev-proto
 PORTVERSION=	5.3

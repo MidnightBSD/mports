@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jakarta-regexp
 PORTVERSION=	1.5

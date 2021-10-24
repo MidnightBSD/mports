@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Encode-JIS2K
 PORTVERSION=	0.03

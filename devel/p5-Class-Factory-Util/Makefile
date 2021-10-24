@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Class-Factory-Util
 PORTVERSION=	1.7

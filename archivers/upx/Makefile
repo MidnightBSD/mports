@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/upx/Makefile,v 1.12 2010/09/09 07:39:48 fjoe Exp $
+
 
 PORTNAME=	upx
 PORTVERSION=	3.91

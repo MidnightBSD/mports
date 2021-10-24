@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 BEFOREPORTMK=	yes
 

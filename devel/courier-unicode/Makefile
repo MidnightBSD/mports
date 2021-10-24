@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/courier-unicode/Makefile 481732 2018-10-10 11:54:58Z madpilot $
+
 
 PORTNAME=	courier-unicode
 PORTVERSION=	2.1

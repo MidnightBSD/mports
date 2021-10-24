@@ -1,5 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/gnustep.mk 383626 2015-04-09 07:44:41Z bapt $
 #
 # Handle GNUstep related ports
 #

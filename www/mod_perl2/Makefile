@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mod_perl
 PORTVERSION=	2.0.10

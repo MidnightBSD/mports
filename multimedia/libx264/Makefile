@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libx264
 PORTVERSION=	0.${X264_BUILD}.${X264_REV}

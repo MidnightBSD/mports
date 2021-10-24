@@ -1,7 +1,6 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
-# $FreeBSD: head/print/cups-pk-helper/Makefile 410825 2016-03-11 11:53:42Z tijl $
 #   $MCom: ports/print/cups-pk-helper/Makefile,v 1.1 2009/12/29 16:01:07 ahze Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	cups-pk-helper
 PORTVERSION=	0.2.5

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libtre
 PORTVERSION=	0.8.0

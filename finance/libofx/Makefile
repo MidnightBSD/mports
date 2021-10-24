@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libofx
 PORTVERSION=	0.9.15

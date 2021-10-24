@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	agrep
 PORTVERSION=	2.04

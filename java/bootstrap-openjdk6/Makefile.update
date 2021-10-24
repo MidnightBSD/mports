@@ -1,4 +1,3 @@
-# $FreeBSD: head/java/bootstrap-openjdk6/Makefile.update 450856 2017-09-28 18:46:04Z jkim $
 
 JDK_PORT?=	openjdk6
 JDK_ROOT?=	bootstrap-${JDK_PORT}

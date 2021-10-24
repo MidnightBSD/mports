@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD$
 
 # PROVIDE: scponlyc
 # REQUIRE: LOGIN cleanvar

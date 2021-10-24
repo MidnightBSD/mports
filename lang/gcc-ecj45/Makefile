@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gcc-ecj
 PORTVERSION=	4.5

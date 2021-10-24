@@ -1,5 +1,4 @@
 # Created by: Dirk Froemberg <dirk@FreeBSD.org>
-# $FreeBSD: head/sysutils/cdrtools/Makefile 446622 2017-07-25 20:11:28Z marius $
 
 ###########################################################################
 # This makefile was contributed by Marius Strobl.

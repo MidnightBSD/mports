@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	hal
 DISTVERSION=	0.5.14

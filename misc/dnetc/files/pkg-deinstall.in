@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/misc/dnetc/files/pkg-deinstall.in,v 1.1 2006/01/09 10:30:35 tdb Exp $
 
 if [ "$2" != "POST-DEINSTALL" ]; then
     exit 0

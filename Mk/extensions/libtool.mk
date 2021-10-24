@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Bring libtool scripts up to date.
 #

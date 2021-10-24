@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gzrecover
 PORTVERSION=	0.8

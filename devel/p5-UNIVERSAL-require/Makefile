@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-UNIVERSAL-require/Makefile,v 1.2 2006/11/29 01:09:56 kuriyama Exp $
+
 
 PORTNAME=	UNIVERSAL-require
 PORTVERSION=	0.18

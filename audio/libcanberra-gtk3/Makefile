@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTREVISION=	0
 CATEGORIES=	audio devel

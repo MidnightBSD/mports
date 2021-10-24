@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zfstools
 DISTVERSIONPREFIX=v

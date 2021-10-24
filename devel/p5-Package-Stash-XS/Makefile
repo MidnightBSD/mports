@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Package-Stash-XS
 PORTVERSION=	0.28

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Tie-Simple
 PORTVERSION=	1.04

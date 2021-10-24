@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Mail-Tools
 PORTVERSION=	2.19

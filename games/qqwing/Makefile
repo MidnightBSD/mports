@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	qqwing
 PORTVERSION=	1.3.4

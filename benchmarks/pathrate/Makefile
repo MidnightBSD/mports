@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pathrate
 PORTVERSION=	2.4.1

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	celt
 PORTVERSION=	0.11.3

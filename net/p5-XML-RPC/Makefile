@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	XML-RPC
 PORTVERSION=	0.9

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libmpeg2
 PORTVERSION=	0.5.1

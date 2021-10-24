@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # handle makeself archives
 #

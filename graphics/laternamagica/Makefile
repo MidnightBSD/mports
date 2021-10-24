@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	laternamagica
 PORTVERSION=	0.4

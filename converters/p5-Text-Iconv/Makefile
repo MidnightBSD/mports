@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Text-Iconv
 PORTVERSION=	1.7

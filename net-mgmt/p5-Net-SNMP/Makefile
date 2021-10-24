@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Net-SNMP
 PORTVERSION=	6.0.1

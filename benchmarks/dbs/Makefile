@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dbs
 PORTVERSION=	1.1.5

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	recode
 PORTVERSION=	3.6

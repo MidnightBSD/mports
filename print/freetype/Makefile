@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/print/freetype/Makefile,v 1.40 2007/01/26 15:46:46 shaun Exp $
+
 
 PORTNAME=	freetype
 PORTVERSION=	1.3.1

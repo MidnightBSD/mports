@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sane-backends
 PORTVERSION=	1.0.24

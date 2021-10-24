@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gtkperf
 PORTVERSION=	0.40

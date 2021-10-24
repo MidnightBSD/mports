@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sash
 PORTVERSION=	3.8

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	smbldap-tools
 PORTVERSION=	0.9.10

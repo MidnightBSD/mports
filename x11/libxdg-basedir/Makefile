@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libxdg-basedir
 PORTVERSION=	1.2.0

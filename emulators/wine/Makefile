@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wine
 DISTVERSION=	1.6.2

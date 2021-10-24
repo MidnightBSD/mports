@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	common-sense
 PORTVERSION=	3.74

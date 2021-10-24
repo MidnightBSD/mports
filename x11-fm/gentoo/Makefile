@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gentoo
 PORTVERSION=	0.20.7

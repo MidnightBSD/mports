@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/untar/Makefile,v 1.9 2007/08/04 11:40:38 gabor Exp $
+
 
 PORTNAME=	untar
 PORTVERSION=	1.4

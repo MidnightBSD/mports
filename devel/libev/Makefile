@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libev
 PORTVERSION=	4.24

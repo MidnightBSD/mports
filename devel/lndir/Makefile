@@ -2,7 +2,7 @@
 # Date Created:				16 Oct 2007
 # Whom:					Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	lndir

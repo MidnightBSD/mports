@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gtk-sharp-beans
 PORTVERSION=	2.14.1

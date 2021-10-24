@@ -2,7 +2,7 @@
 # Date created:				December 21, 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME?=	alpine

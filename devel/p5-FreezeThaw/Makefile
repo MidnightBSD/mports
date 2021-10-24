@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	FreezeThaw
 PORTVERSION=	0.50.01

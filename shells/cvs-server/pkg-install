@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD$
 
 CVSSERVER="${PKG_PREFIX-/usr/local}/bin/cvs_server"
 SHELLS="${PKG_DESTDIR-}/etc/shells"

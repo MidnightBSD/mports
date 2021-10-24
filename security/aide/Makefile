@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	aide
 PORTVERSION=	0.16.1

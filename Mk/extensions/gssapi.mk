@@ -1,5 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/gssapi.mk 373797 2014-12-02 23:45:15Z hrs $
 #
 # handle dependency on Kerberos port
 #

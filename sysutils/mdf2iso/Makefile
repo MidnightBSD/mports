@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mdf2iso
 PORTVERSION=	0.3.1

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libchamplain
 PORTVERSION=	0.12.16

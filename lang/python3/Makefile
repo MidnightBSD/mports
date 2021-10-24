@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	python3
 PORTVERSION=	3

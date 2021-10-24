@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD$
-# $FreeBSD: ports/java/javavmwrapper/pkg-deinstall,v 1.2 2006/06/03 17:32:24 glewis Exp $
 
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin
 

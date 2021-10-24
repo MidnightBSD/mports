@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	faad2
 PORTVERSION=	2.7

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gcr
 PORTVERSION=	3.28.0

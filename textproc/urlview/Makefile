@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	urlview
 PORTVERSION=	0.9

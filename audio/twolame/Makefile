@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	twolame
 PORTVERSION=	0.3.13

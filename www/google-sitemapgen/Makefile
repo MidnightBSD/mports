@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	google-sitemapgen
 PORTVERSION=	1.5

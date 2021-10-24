@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	djbfft
 PORTVERSION=	0.76

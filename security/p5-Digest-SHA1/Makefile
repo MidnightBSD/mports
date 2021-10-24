@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Digest-SHA1
 PORTVERSION=	2.13

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libmpd
 PORTVERSION=	11.8.17

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	httperf
 PORTVERSION=	0.9.0

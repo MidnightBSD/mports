@@ -1,15 +1,13 @@
-# $FreeBSD: head/databases/mongodb36/Makefile 528736 2020-03-19 17:56:40Z pi $
-
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
-DISTVERSION=	3.6.21
+DISTVERSION=	3.6.23
 CATEGORIES=	databases net
 MASTER_SITES=	https://fastdl.mongodb.org/src/ \
 		http://fastdl.mongodb.org/src/
 PKGNAMESUFFIX=	${PORTVERSION:R:S/.//}
 DISTNAME=	mongodb-src-${DISTVERSIONPREFIX}${DISTVERSION}
 
-MAINTAINER=	dev@dudu.ro
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed document-oriented "NoSQL" database
 
 # mongodb is SSPLv1, C++ driver is APACHE20
@@ -23,13 +21,12 @@ ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	"Only supported on amd64 and aarch64 (i386 deprecated in v3)"
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cheetah3>0:devel/py-cheetah3@${PY_FLAVOR} \
-		${PY_TYPING} \
 		${PYTHON_PKGNAMEPREFIX}yaml>=3.11:devel/py-yaml@${PY_FLAVOR}
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libpcre.so:devel/pcre \
 		libsnappy.so:archivers/snappy
 
-USES=		compiler:c++14-lang cpe python:3.5+,build scons shebangfix
+USES=		compiler:c++17-lang cpe python:3.7+,build scons shebangfix
 USE_RC_SUBR=	mongod
 
 CONFLICTS_BUILD=	mongo-cxx-driver
@@ -71,8 +68,11 @@ PORTSCOUT=	limitw:1,even
 
 CPE_PRODUCT=	mongodb
 
-pre-patch:
-#	${LN} -sf ${WRKSRC}/src/third_party/wiredtiger/build_freebsd ${WRKSRC}/src/third_party/wiredtiger/build_midnightbsd
+do-build:
+	cd ${WRKSRC} && ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET}
+
+do-install:
+	cd ${WRKSRC} && ${MAKE_CMD} ${MAKE_ARGS} install
 
 post-install:
 .for f in mongo mongod mongoperf mongos

@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/audio/wmsmixer/Makefile,v 1.9 2006/05/25 21:57:23 pav Exp $
-
 PORTNAME=	wmsmixer
 PORTVERSION=	0.5.1
 PORTREVISION=	4

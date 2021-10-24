@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Devel-ArgNames
 PORTVERSION=	0.03

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	autotools
 PORTVERSION=	20130627

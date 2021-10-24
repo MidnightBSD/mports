@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/gnome-js-common/Makefile,v 1.3 2010/05/31 01:58:12 ade Exp $
+
 
 PORTNAME=	gnome-js-common
 PORTVERSION=	0.1.2

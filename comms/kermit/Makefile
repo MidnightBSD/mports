@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	kermit
 PORTVERSION=	9.0.302

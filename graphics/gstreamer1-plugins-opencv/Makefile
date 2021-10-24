@@ -1,4 +1,3 @@
-# $FreeBSD: head/graphics/gstreamer1-plugins-opencv/Makefile 384092 2015-04-16 08:05:47Z kwm $
 
 PORTREVISION=	1
 CATEGORIES=	graphics

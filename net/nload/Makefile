@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nload
 PORTVERSION=	0.7.4

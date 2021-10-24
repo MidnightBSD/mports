@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/tex-web2c/Makefile 375598 2014-12-25 20:54:41Z bapt $
+
 
 PORTNAME=	web2c
 PORTVERSION=	20150521

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sgmlformat
 PORTVERSION=	1.7

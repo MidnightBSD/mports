@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	data
 PORTVERSION=	1.18

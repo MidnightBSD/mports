@@ -1,5 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/pear.mk 408861 2016-02-14 14:58:17Z miwi $
 #
 # Use the PHP Extension and Application Repository
 #

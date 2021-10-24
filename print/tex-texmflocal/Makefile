@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tex-texmflocal
 PORTVERSION=	1.9

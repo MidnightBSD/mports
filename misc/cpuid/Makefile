@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/cpuid/Makefile,v 1.14 2006/11/14 20:49:38 edwin Exp $
+
 
 PORTNAME=	cpuid
 PORTVERSION=	3.3

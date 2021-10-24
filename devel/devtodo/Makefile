@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/devtodo/Makefile,v 1.18 2006/05/04 21:40:31 edwin Exp $
+
 
 PORTNAME=	devtodo
 PORTVERSION=	0.1.20

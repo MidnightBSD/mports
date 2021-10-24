@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	battalion
 PORTVERSION=	1.4b

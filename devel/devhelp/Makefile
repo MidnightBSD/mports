@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	devhelp
 PORTVERSION=	3.16.1

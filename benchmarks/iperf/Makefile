@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	iperf
 PORTVERSION=	2.0.12

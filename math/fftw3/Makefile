@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	fftw3
 DISTVERSION=	3.3.8

@@ -2,7 +2,7 @@
 # Date created:				31 December 2006
 # Whom:					Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	libixp

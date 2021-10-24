@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	quadrapassel
 PORTVERSION=	3.22.0

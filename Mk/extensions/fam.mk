@@ -1,5 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/fam.mk 348308 2014-03-15 10:31:54Z gerald $
 #
 # Feature:	fam
 # Usage:	USES=fam or USES=fam:ARG

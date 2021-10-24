@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	scan_ffs
 PORTVERSION=	1.2

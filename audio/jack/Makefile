@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jack
 PORTVERSION=	0.124.1

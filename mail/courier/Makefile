@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	courier
 PORTVERSION=	0.65.3

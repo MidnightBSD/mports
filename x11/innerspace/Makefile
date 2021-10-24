@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	innerspace
 PORTVERSION=	0.2.0

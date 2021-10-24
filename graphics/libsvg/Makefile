@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libsvg
 PORTVERSION=	0.1.4

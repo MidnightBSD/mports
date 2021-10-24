@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tk
 PORTVERSION=	8.6.4

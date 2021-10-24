@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/net/ortp/Makefile,v 1.13 2007/03/25 16:47:00 pav Exp $
+
 
 PORTNAME=	ortp
 PORTVERSION=	0.25.0

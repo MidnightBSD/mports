@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mtdev
 PORTVERSION=	1.1.5

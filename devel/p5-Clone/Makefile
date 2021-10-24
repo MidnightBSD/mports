@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Clone
 PORTVERSION=	0.41

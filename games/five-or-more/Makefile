@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	five-or-more
 PORTVERSION=	3.28.0

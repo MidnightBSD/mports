@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD$
 #
 # PROVIDE: kqemu
 # KEYWORD: nojail

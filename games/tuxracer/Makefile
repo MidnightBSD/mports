@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61

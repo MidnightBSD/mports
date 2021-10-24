@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Email-Simple
 PORTVERSION=	2.216

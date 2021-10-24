@@ -1,5 +1,4 @@
-# $FreeBSD: ports/textproc/libwpd/Makefile,v 1.18 2006/02/23 10:39:24 ade Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	libwpd
 PORTVERSION=	0.9.9

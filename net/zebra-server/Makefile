@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zebra-server
 PORTVERSION=	2.0.55

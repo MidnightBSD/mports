@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dev86
 PORTVERSION=	0.16.20

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ntfs
 PORTVERSION=	2015.3.14

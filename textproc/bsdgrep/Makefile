@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	grep
 PORTVERSION=	20111002

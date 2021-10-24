@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	system-tools-backends
 PORTVERSION=	2.10.2

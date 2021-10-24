@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xdg
 PORTVERSION=	0.27

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 # Special bootstrapper to allow:
 #  - i386 specific port to be slave to ${PORTSDIR}/emulators/wine

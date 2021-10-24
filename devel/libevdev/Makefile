@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libevdev
 PORTVERSION=	1.5.9

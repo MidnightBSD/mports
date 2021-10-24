@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mc-light
 PORTVERSION=	4.1.40.p9

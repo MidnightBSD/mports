@@ -2,8 +2,7 @@
 # Date created:		19 Nov 2001
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-XML-SAX-Expat/Makefile,v 1.7 2007/01/28 14:53:50 skv Exp $
+
 #
 
 PORTNAME=	XML-SAX-Expat

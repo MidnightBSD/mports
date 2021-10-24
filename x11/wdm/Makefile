@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	wdm
 PORTVERSION=	1.28

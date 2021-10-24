@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pantomime
 PORTVERSION=	1.2.2

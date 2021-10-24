@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/p5-Image-Size/Makefile,v 1.37 2006/12/03 12:45:57 demon Exp $
+
 
 PORTNAME=	Image-Size
 PORTVERSION=	3.221

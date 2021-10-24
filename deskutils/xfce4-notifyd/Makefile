@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xfce4-notifyd
 PORTVERSION=	0.2.4

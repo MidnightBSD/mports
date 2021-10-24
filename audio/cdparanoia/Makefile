@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cdparanoia
 PORTVERSION=	3.9.8

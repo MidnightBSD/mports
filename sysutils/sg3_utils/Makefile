@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sg3_utils
 PORTVERSION=	1.42

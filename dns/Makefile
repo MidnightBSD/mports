@@ -41,6 +41,7 @@ SUBDIR += py-pycares
 SUBDIR += samba-nsupdate
 SUBDIR += udns
 SUBDIR += unbound
+SUBDIR += vhostcname
 SUBDIR += whoseip
 SUBDIR += zonenotify
 

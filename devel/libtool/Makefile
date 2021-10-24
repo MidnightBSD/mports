@@ -1,6 +1,5 @@
 # Created by: Motoyuki Kasahara <m-kasahr@sra.co.jp>
-# $FreeBSD: head/devel/libtool/Makefile 370099 2014-10-05 18:01:19Z tijl $
-# $MidnightBSD$
+
 
 PORTNAME=	libtool
 PORTREVISION=	3

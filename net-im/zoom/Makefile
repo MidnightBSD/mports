@@ -1,4 +1,3 @@
-# $FreeBSD: head/net-im/zoom/Makefile 548898 2020-09-18 18:09:28Z yuri $
 # based on yuri@freebsd.org's port
 
 PORTNAME=	zoom

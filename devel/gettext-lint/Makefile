@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/gettext-lint/Makefile 373636 2014-11-29 18:22:32Z tijl $
+
 
 PORTNAME=	gettext-lint
 PORTVERSION=	0.4

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gspell
 PORTVERSION=	1.8.1

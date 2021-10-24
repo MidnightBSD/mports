@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # 
-# $MidnightBSD$
+
 
 =head1 make_ftp_symlinks.pl mport_tree ftp_dir
 

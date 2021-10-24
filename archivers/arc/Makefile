@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	arc
 PORTVERSION=	5.21p

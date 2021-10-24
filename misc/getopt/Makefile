@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	getopt
 PORTVERSION=	1.1.6

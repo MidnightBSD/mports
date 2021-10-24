@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Provide support for CMake based projects
 #
@@ -16,6 +16,9 @@
 #				2) ports that set BUILD_- or INSTALL_WRKSRC to
 #				   something different than CONFIGURE_WRKSRC
 # run			add a runtime dependency on cmake
+# testing		add the test target based on ctest
+#			Additionally, CMAKE_TESTING_ON, CMAKE_TESTING_OFF, CMAKE_TESTING_ARGS, CMAKE_TESTING_TARGET
+#			can be defined to override the default values.
 #
 #
 # Additional variables that affect cmake behaviour:
@@ -44,7 +47,7 @@
 .if !defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_CMAKE_MK)
 _INCLUDE_USES_CMAKE_MK=	yes
 
-_valid_ARGS=		insource run noninja
+_valid_ARGS=		insource run noninja testing
 
 # Sanity check
 .for arg in ${cmake_ARGS}
@@ -139,8 +142,23 @@ do-configure:
 	@cd ${CONFIGURE_WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_SOURCE_PATH}
 .endif
 
-
+.if !target(do-test) && ${cmake_ARGS:Mtesting}
+CMAKE_TESTING_ON?=		BUILD_TESTING
+CMAKE_TESTING_TARGET?=		test
+# Handle the option-like CMAKE_TESTING_ON and CMAKE_TESTING_OFF lists.
+.for _bool_kind in ON OFF
+.  if defined(CMAKE_TESTING_${_bool_kind})
+CMAKE_TESTING_ARGS+=		${CMAKE_TESTING_${_bool_kind}:C/.*/-D&:BOOL=${_bool_kind}/}
+.  endif
+.endfor
+do-test:
+	@cd ${BUILD_WRKSRC} && \
+		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_TESTING_ARGS} ${CMAKE_SOURCE_PATH} && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${CMAKE_TESTING_TARGET}
 .endif
+
+.endif #!defined(_INCLUDE_USES_CMAKE_MK)
 
 #
 # make sure DESTDIRNAME is DESTDIR (qt4 does this another way, and may ports use both cmake 

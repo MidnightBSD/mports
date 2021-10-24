@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	unixODBC
 PORTVERSION=	2.3.4

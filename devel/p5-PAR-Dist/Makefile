@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	PAR-Dist
 PORTVERSION=	0.49

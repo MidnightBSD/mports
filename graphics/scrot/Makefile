@@ -1,6 +1,6 @@
 # created by:	Chris Hutchinson <midnightbsd@BSDforge.com>
 #
-# $MidnightBSD$
+
 PORTNAME=	scrot
 DISTVERSION=	1.7
 CATEGORIES=	graphics

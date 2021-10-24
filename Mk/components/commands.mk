@@ -3,7 +3,7 @@
 #
 # commands.mk - Common commands used within the ports infrastructure
 #
-# $MidnightBSD$
+
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org

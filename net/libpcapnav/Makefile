@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/net/libpcapnav/Makefile,v 1.11 2009/08/22 00:31:30 amdmi3 Exp $
+
 
 PORTNAME=	libpcapnav
 PORTVERSION=	0.8

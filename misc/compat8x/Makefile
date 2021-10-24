@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	compat8x
 PORTVERSION=	8.4.804000.20151116

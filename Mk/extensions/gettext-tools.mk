@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Handle dependency on the gettext-tools port
 #

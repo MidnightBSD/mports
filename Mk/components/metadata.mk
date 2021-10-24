@@ -2,7 +2,7 @@
 # of metadata, such as `describe` and `describe-yaml`
 #
 #
-# $MidnightBSD$
+
 #
 
 # This target generates an index entry suitable for aggregation into

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sdl_pango
 PORTVERSION=	0.1.2

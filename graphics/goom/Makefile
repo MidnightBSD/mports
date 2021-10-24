@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	goom
 PORTVERSION=	2k4.0

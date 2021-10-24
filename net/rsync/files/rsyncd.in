@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/net/rsync/files/rsyncd.in 367807 2014-09-10 09:36:24Z ehaupt $
 #
 
 # PROVIDE: %%NAME%%

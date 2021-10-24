@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 .if !defined(Ldap_Post_Include)
 

@@ -1,6 +1,4 @@
 # Created by: Alexandr Kovalenko <never@nevermind.kiev.ua>
-# $MidnightBSD$
-# $FreeBSD: head/converters/enca/Makefile 368437 2014-09-18 09:51:18Z tijl $
 
 PORTNAME=	enca
 PORTVERSION=	1.19

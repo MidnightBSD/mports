@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	fhourstones
 PORTVERSION=	3.1

@@ -2,7 +2,7 @@
 # Date created:         6 August 1997
 # Whom:                 wosch
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	dict-de

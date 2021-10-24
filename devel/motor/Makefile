@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	motor
 PORTVERSION=	3.4.0

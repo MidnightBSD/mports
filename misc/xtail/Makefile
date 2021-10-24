@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xtail
 PORTVERSION=	2.1

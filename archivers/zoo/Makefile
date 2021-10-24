@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/zoo/Makefile,v 1.13 2006/04/06 07:22:10 jmz Exp $
+
 
 PORTNAME=	zoo
 PORTVERSION=	2.10.1

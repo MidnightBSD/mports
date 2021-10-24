@@ -1,4 +1,3 @@
-# $MidnightBSD$
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \

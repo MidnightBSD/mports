@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	slim
 PORTVERSION=	1.3.6

@@ -2,7 +2,7 @@
 # Date Created:				13 April 2007
 # Whom:					wintellect <wintellect@bsdnexus.com>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	xdesktopwaves

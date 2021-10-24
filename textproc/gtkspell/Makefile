@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gtkspell
 PORTVERSION=	2.0.16

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	torrentzip
 PORTVERSION=	0.2

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	brasero
 PORTVERSION=	3.12.1

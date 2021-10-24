@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/xhtml/Makefile,v 1.11 2005/06/13 20:54:18 glewis Exp $
+
 
 PORTNAME=	xhtml
 PORTVERSION=	1.0.20020801

@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD$
 #
 
 PATH=/usr/sbin:/usr/bin:/bin ; export PATH

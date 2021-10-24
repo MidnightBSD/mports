@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Sys-Hostname-Long
 PORTVERSION=	1.5

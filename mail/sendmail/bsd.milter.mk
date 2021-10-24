@@ -2,7 +2,6 @@
 # Date created:		08 Nov 2006
 # Whom:			dinoex
 #
-# $FreeBSD: head/mail/sendmail/bsd.milter.mk 473663 2018-07-01 10:17:18Z dinoex $
 #
 # a port shall includes this file after bsd.ports.pre.mk
 # .include "${PORTSDIR}/${PKGCATEGORY}/sendmail/bsd.milter.mk"

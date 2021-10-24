@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	laudio
 PORTVERSION=	0.4

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	openjdk7-bin
 PORTVERSION=	7.111.01

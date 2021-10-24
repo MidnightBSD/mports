@@ -1,6 +1,6 @@
 package Mport::Globals;
 #
-# $MidnightBSD$
+
 #
 
 

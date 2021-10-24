@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	MooX-Types-MooseLike
 PORTVERSION=	0.29

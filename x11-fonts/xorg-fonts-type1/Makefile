@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xorg-fonts-type1
 PORTVERSION=	7.7

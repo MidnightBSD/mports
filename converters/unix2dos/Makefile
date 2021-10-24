@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	unix2dos
 PORTVERSION=	1.3

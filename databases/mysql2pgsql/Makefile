@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/databases/mysql2pgsql/Makefile 346108 2014-02-26 06:38:36Z ehaupt $
-
 PORTNAME=	mysql2pgsql
 PORTVERSION=	1.2
 CATEGORIES=	databases

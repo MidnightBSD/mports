@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	chmlib
 PORTVERSION=	0.40

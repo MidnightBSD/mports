@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	FCGI
 PORTVERSION=	0.78

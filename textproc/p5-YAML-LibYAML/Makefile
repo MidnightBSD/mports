@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	YAML-LibYAML
 DISTVERSION=	0.72

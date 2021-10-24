@@ -1,5 +1,4 @@
-# $FreeBSD: ports/german/phone/Makefile,v 1.15 2005/11/10 03:48:27 linimon Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	phone-de
 PORTVERSION=	1.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	Crypt-OpenSSL-Bignum
 PORTVERSION=	0.09

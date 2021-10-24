@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libyaml
 PORTVERSION=	0.2.5

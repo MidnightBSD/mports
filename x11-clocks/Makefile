@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 COMMENT = X11 clocks
 

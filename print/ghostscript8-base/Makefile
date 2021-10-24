@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ghostscript
 PORTVERSION=	8.71

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sqlite
 PORTVERSION=	2.8.17

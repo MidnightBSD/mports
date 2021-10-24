@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 # SSP Support
 
 SSP_Include_MAINTAINER=	ports@MidnightBSD.org

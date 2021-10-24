@@ -1,5 +1,4 @@
 # Created by: Eric Anholt <anholt@FreeBSD.org>
-# $FreeBSD: head/graphics/mesa-dri/Makefile 533793 2020-05-03 16:15:23Z zeising $
 
 PORTNAME=	mesa-dri
 PORTVERSION=	${MESAVERSION}

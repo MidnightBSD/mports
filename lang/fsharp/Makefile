@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	fsharp
 PORTVERSION=	4.0.1.15

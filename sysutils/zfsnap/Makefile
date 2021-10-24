@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zfsnap
 PORTVERSION=	1.11.1

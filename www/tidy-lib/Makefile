@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	tidy
 CATEGORIES=	www

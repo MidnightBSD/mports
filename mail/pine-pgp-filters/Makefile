@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pine-pgp-filters
 PORTVERSION=	1.8

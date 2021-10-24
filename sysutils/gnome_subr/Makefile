@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/gnome_subr/Makefile,v 1.1 2006/10/31 09:08:29 jylefort Exp $
+
 
 PORTNAME=	gnome_subr
 PORTVERSION=	1.0

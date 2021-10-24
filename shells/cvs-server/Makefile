@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cvs-server
 PORTVERSION=	20120307

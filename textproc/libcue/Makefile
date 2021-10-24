@@ -1,6 +1,5 @@
 # Created by: buganini@gmail.com
-# $MidnightBSD$
-# $FreeBSD: head/textproc/libcue/Makefile 368161 2014-09-14 07:54:27Z amdmi3 $
+
 
 PORTNAME=	libcue
 PORTVERSION=	1.4.0

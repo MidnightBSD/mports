@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libdatrie
 PORTVERSION=	0.2.8

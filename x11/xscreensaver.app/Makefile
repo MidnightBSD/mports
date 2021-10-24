@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	XScreenSaver.App
 PORTVERSION=	2.3

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/mono.mk 411970 2016-03-27 01:23:25Z bapt $
 #
 # mono (c#) support
 #

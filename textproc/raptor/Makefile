@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	raptor
 PORTVERSION=	1.4.21

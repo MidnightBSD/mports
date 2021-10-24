@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xinetd
 PORTVERSION=	2.3.15

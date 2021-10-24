@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xpad
 PORTVERSION=	4.5.0

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libdiscid
 PORTVERSION=	0.6.1

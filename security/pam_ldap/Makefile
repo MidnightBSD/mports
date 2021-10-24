@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pam_ldap
 PORTVERSION=	1.8.6

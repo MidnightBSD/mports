@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	linuxdoc-tools
 PORTVERSION=	0.9.71

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	remotedesk
 PORTVERSION=	0.1

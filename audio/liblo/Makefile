@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	liblo
 PORTVERSION=	0.28

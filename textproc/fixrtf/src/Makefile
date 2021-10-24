@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/fixrtf/src/Makefile,v 1.1 2006/03/16 07:50:15 delphij Exp $
+
 
 PROG=	fixrtf
 SRCS=	fixrtf.l

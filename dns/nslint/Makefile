@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	nslint
 PORTVERSION=	3.1

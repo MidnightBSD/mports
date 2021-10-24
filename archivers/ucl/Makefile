@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ucl
 PORTVERSION=	1.03

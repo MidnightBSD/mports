@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 MAINTAINER=	ports@MidnightBSD.org
 LICENSE=	unknown

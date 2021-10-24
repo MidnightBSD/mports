@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lttng-ust
 PORTVERSION=	2.9.0

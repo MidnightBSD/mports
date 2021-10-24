@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	dgen-sdl
 PORTVERSION=	1.33

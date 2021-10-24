@@ -1,4 +1,3 @@
-# $MidnightBSD: trunk/sysutils/ciso/Makefile 15462 2013-09-17 03:15:41Z laffer1 $
 
 PORTNAME=	ciso-maker
 PORTVERSION=	1.05

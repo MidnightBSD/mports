@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	bonnie
 PORTVERSION=	2.0.6

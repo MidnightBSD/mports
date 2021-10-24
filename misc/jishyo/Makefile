@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	jishyo
 PORTVERSION=	0.1

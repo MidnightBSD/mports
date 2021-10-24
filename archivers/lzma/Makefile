@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lzma
 PORTVERSION=	18.05

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	python
 PORTVERSION=	${PYTHON_DEFAULT}

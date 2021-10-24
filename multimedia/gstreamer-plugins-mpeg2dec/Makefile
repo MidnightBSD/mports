@@ -2,7 +2,7 @@
 # Date created:			Nov 23 2007
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 CATEGORIES=	multimedia

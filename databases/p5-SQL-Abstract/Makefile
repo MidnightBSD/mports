@@ -1,5 +1,4 @@
-# $FreeBSD: ports/databases/p5-SQL-Abstract/Makefile,v 1.9 2007/01/05 17:55:38 lbr Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	SQL-Abstract
 PORTVERSION=	1.86

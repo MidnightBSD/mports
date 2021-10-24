@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/p5-Hash-MultiValue/Makefile 449893 2017-09-15 08:58:46Z mat $
+
 
 PORTNAME=	Hash-MultiValue
 PORTVERSION=	0.16

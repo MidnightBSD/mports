@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	zthread
 PORTVERSION=	2.3.2

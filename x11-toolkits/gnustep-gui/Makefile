@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnustep-gui
 DISTVERSIONPREFIX=	gui-

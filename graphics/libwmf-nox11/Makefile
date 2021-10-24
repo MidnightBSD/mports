@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PKGNAMESUFFIX=	-nox11
 PORTSCOUT=	ignore:1

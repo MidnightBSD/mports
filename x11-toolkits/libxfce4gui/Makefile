@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libxfce4gui
 PORTVERSION=	4.10.0

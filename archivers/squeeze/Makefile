@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/squeeze/Makefile,v 1.6 2011/11/09 15:25:23 miwi Exp $
+
 
 PORTNAME=	squeeze
 PORTVERSION=	0.2.3

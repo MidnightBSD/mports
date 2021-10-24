@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	quadra
 PORTVERSION=	1.3.0

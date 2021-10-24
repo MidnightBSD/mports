@@ -39,6 +39,7 @@ SUBDIR += gnupg1
 SUBDIR += gnutls
 SUBDIR += gpgme
 SUBDIR += gsasl
+SUBDIR += horcrux
 SUBDIR += ipfilter2dshield
 SUBDIR += ipfw2dshield
 SUBDIR += ipsec-tools

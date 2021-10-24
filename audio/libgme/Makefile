@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/audio/libgme/Makefile 383870 2015-04-12 14:15:14Z danfe $
-
 PORTNAME=	libgme
 PORTVERSION=	0.6.1
 CATEGORIES=	audio

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/fortran.mk 454428 2017-11-18 13:09:56Z tijl $
 #
 # Fortran support
 #

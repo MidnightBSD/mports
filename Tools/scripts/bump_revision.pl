@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 
-# $FreeBSD: ports/Tools/scripts/bump_revision.pl,v 1.1 2005/04/12 09:22:59 flz Exp $
 
 #
 # MAINTAINER=	edwin@freebsd.org

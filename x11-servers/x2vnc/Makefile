@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	x2vnc
 PORTVERSION=	1.7.2

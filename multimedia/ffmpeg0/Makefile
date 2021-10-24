@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/multimedia/ffmpeg/Makefile,v 1.135 2011/08/22 21:14:34 mm Exp $
+
 
 PORTNAME=	ffmpeg
 PORTVERSION=	0.7.17

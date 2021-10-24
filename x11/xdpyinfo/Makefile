@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xdpyinfo
 PORTVERSION=	1.3.2

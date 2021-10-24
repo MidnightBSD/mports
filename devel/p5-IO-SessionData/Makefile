@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	IO-SessionData
 PORTVERSION=	1.03

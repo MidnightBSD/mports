@@ -2,8 +2,7 @@
 # Date created:         5 October 1994
 # Whom:                 jmz
 #
-# $MidnightBSD$
-# $FreeBSD: ports/emulators/mtools/Makefile,v 1.62 2009/01/14 09:12:16 miwi Exp $
+
 
 PORTNAME=	mtools
 PORTVERSION=	4.0.10

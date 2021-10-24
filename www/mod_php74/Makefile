@@ -1,4 +1,3 @@
-# $FreeBSD: head/www/mod_php74/Makefile 512406 2019-09-20 12:21:11Z tz $
 
 CATEGORIES=	www devel
 PKGNAMEPREFIX=	mod_

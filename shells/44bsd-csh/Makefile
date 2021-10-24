@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	44bsd-csh
 PORTVERSION=	20001106

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libIDL
 PORTVERSION=	0.8.14

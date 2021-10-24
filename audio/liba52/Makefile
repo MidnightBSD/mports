@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	liba52
 PORTVERSION=	0.7.4

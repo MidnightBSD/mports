@@ -123,6 +123,7 @@ SUBDIR += xcb
 SUBDIR += xcb-proto
 SUBDIR += xcb-util
 SUBDIR += xcb-util-cursor
+SUBDIR += xcb-util-errors
 SUBDIR += xcb-util-image
 SUBDIR += xcb-util-keysyms
 SUBDIR += xcb-util-renderutil

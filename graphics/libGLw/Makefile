@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libGLw
 PORTVERSION=	8.0.0

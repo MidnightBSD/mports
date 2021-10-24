@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	lrzsz
 PORTVERSION=	0.12.20

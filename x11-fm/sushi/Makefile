@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	sushi
 PORTVERSION=	3.28.3

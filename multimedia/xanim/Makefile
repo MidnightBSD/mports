@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xanim
 PORTVERSION=	2.92.0

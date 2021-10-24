@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 SUBDIR += accessibility
 SUBDIR += archivers

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	idnkit
 PORTVERSION=	1.0

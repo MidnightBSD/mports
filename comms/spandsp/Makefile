@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	spandsp
 PORTVERSION=	0.0.6

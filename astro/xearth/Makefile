@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xearth
 PORTVERSION=	1.2

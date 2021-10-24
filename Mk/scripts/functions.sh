@@ -1,5 +1,5 @@
 #!/bin/sh
-# $MidnightBSD$
+
 # This file for common functions used for port scripts.
 #
 # 

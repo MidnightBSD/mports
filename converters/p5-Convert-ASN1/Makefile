@@ -2,7 +2,7 @@
 # Date created:				May 30, 2008
 # Whom:	      				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	Convert-ASN1

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Handle gnu configure that does not properly support DESTDIR
 #

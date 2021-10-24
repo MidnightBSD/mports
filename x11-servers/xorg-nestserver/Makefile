@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xorg-nestserver
 PORTEPOCH=	2

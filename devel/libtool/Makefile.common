@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: head/devel/libtool/Makefile.common 370099 2014-10-05 18:01:19Z tijl $
 
 PORTVERSION=	2.4.6
 PORTREVISION?=	0 # Leave this zero. Set in Makefile instead.

@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/shells/psh/files/pkg-deinstall.in,v 1.2 2007/08/13 13:28:09 garga Exp $
 #
 
 PSH="%%PREFIX%%/bin/psh"

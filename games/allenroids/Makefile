@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 
 PORTNAME=	allenroids

@@ -3,8 +3,7 @@
 # Date created:			Jul 15, 2004
 # Whom:				ijliao
 #
-# $FreeBSD: ports/www/nanoblogger/Makefile,v 1.12 2008/06/15 18:46:30 jadawin Exp $
-# $MidnightBSD$
+
 
 PORTNAME=	nanoblogger
 PORTVERSION=	3.4.2

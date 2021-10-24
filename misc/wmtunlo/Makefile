@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/wmtunlo/Makefile,v 1.7 2004/05/16 23:45:05 adamw Exp $
+
 #
 
 PORTNAME=	wmtunlo

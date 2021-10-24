@@ -8,6 +8,7 @@ SUBDIR += compton
 SUBDIR += enlightenment
 SUBDIR += fluxbox
 SUBDIR += fvwm2
+SUBDIR += hikari
 SUBDIR += i3
 SUBDIR += icewm
 SUBDIR += libcompizconfig

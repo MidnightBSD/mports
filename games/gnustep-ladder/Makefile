@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ladder
 PORTVERSION=	1.0

@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11-wm/xfce4-wm/Makefile,v 1.46 2008/06/06 14:17:21 edwin Exp $
-
 PORTNAME=	xfce4-wm
 PORTVERSION=	4.12.3
 CATEGORIES=	x11-wm xfce

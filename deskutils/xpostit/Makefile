@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	xpostit
 PORTVERSION=	3.3.1

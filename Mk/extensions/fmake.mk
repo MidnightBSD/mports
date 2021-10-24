@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # Provide support to use the legacy FreeBSD make
 #

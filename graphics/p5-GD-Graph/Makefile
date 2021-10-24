@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	GD-Graph
 PORTVERSION=	1.54

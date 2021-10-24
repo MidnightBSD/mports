@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cvsps
 PORTVERSION=	2.1

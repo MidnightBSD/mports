@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	ufs_copy
 PORTVERSION=	20060921

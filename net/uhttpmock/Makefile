@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	uhttpmock
 PORTVERSION=	0.5.1

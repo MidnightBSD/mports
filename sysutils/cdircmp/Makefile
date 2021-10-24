@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	cdircmp
 PORTVERSION=	0.3

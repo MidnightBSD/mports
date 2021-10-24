@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	joe
 PORTVERSION=	4.6

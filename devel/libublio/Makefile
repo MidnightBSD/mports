@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libublio
 PORTVERSION=	20070103

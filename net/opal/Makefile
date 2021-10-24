@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	opal
 PORTVERSION=	3.10.10

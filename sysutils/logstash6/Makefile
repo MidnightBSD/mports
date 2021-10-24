@@ -1,5 +1,4 @@
 # Created by: Daniel Solsona <daniel@ish.com.au>, Guido Falsi <madpilot@FreeBSD.org>
-# $FreeBSD: head/sysutils/logstash6/Makefile 469572 2018-05-10 19:15:44Z feld $
 
 PORTNAME=	logstash
 PORTVERSION=	6.2.4

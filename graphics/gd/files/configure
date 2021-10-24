@@ -1,5 +1,4 @@
 #!/bin/sh
-# $FreeBSD: ports/graphics/gd/files/configure,v 1.1 2004/01/14 06:14:42 dinoex Exp $
 
 # The GD_FONTS environment variable can be set to specify the gzipped
 # tar-ball containing the fonts in bdf format and the bdf file names.

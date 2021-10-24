@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/sysutils/bacula9-server/files/bacula-sd.in 323486 2013-07-22 17:51:39Z rm $
 #
 # PROVIDE: bacula_sd
 # REQUIRE: DAEMON

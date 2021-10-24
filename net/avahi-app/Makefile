@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	avahi
 PORTVERSION=	0.6.31

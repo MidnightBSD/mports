@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	f2c
 PORTVERSION=	20060810

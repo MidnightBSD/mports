@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	poe
 PORTVERSION=	0.5.1

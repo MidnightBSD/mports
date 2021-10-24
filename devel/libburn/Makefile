@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libburn
 PORTVERSION=	1.4.8

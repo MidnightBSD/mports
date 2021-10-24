@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: head/www/aria2/files/aria2.in 372266 2014-11-07 14:23:50Z zi $
 # $MidnightBSD$
 
 # PROVIDE: aria2

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME?=	dotnet-sdk
 DISTVERSION?=	2.1.201

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	scrollkeeper
 PORTVERSION=	0.3.14

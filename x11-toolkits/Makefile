@@ -71,6 +71,7 @@ SUBDIR += tkshape
 SUBDIR += unique
 SUBDIR += vte
 SUBDIR += vte3
+SUBDIR += wlroots
 SUBDIR += wxgtk28
 SUBDIR += wxgtk28-common
 SUBDIR += wxgtk28-contrib

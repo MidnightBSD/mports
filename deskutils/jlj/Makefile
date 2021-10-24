@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/deskutils/jlj/Makefile,v 1.14 2006/09/30 18:05:59 bsam Exp $
+
 
 PORTNAME=	jlj
 PORTVERSION=	2.12

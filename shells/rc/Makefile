@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	rc
 PORTVERSION=	1.7.4

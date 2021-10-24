@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	skipfish
 PORTVERSION=	2.10b

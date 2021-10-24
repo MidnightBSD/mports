@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD$
 #
 # PROVIDE: atslogd
 # REQUIRE: mysql postgresql

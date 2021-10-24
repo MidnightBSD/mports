@@ -4,10 +4,6 @@ addport	- replacement for easy-import
 bump_revision.pl - Small script to bump the PORTREVISION variable of ports
                    which are depending on a port with a changed shared lib
                    version.
-consistency-check -  check whether all your ports are installed properly,
-                     what files have changed, and what new files there are.
-check-latest-link - search for duplicate LATEST_LINK values and send nag
-                    mails to the responsible maintainers
 checkcats.py - verify that master categories in all ports are correct and
                report any problems.
 checknewvers - checks for availability for a newest version of distfiles on
@@ -75,16 +71,16 @@ correct removal of GNOME shared directories. Usage is simple:
 	According to the contents of PLIST the port depends on the following GNOME
 	port(s):
 
-	/usr/ports/audio/gnomeaudio, for directories:
+	/usr/mports/audio/gnomeaudio, for directories:
         	share/gnome/sounds
 
-	/usr/ports/sysutils/gnomecontrolcenter, for directories:
+	/usr/mports/sysutils/gnomecontrolcenter, for directories:
         	share/gnome/apps
 
-	/usr/ports/x11/gnomecore, for directories:
+	/usr/mports/x11/gnomecore, for directories:
         	share/gnome/apps/Games
 
-	/usr/ports/x11/gnomelibs, for directories:
+	/usr/mports/x11/gnomelibs, for directories:
         	etc/sound/events
         	etc/sound
         	share/gnome/games
@@ -131,7 +127,7 @@ portsearch - A utility for searching the ports tree.
 		      fields. This option behaves differently to the other op-
 		      tions, see the EXAMPLES section
 
-	   -f file    Use the index file file instead of /usr/ports/INDEX
+	   -f file    Use the index file instead of /usr/mports/INDEX
 
      All searches are case-insensitive
 

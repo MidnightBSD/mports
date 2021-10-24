@@ -2,7 +2,7 @@
 # Date created:		Sept 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD$
+
 
 PORTNAME=	dhcp6
 PORTVERSION=	20080615.2

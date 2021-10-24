@@ -2,7 +2,7 @@
 # Date created:	8 March 2007
 # Whom:			Lucas Holt
 #
-# $MidnightBSD$
+
 #
 
 PORTNAME=	windowmaker-desktop

@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/games/gmastermind/Makefile 383626 2015-04-09 07:44:41Z bapt $
+
 
 PORTNAME=	gmastermind
 PORTVERSION=	0.6

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	netcat
 PORTVERSION=	1.10

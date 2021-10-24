@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 # handle dependency on the bison port
 #

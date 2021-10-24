@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	libunrar
 PORTVERSION=	3.9.10

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	mariadb
 PKGNAMESUFFIX=	55-client

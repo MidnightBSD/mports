@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	pgtop
 PORTVERSION=	0.05

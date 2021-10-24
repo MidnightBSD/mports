@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	rasqal
 PORTVERSION=	0.9.33

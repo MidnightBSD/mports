@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME?=	xscreensaver-gnome
 PORTVERSION=	5.12

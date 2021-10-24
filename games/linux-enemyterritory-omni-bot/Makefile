@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/games/linux-enemyterritory-omni-bot/Makefile,v 1.12 2008/02/19 13:20:31 alepulver Exp $
+
 
 PORTNAME=	omni-bot
 PORTVERSION=	0.66

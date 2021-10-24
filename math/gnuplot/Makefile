@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 PORTNAME=	gnuplot
 PORTVERSION=	4.6.6

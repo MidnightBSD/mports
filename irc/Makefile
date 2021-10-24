@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 #
 
     COMMENT = Internet Relay Chat utilities

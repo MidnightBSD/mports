@@ -1,4 +1,4 @@
-# $MidnightBSD$
+
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The wxWidgets GUI toolkit contributed libraries (common files)
