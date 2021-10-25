@@ -20,6 +20,7 @@ SUBDIR += qemu
 SUBDIR += rtc
 SUBDIR += tpm-emulator
 SUBDIR += vba
+SUBDIR += vice
 SUBDIR += vxtools
 SUBDIR += wine
 SUBDIR += wine-gecko
