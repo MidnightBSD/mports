@@ -1076,6 +1076,7 @@ SUBDIR += viewvc-devel
 SUBDIR += websvn
 SUBDIR += wizardkit
 SUBDIR += woff2
+SUBDIR += xa65
 SUBDIR += xdg-utils
 SUBDIR += xorg-macros
 SUBDIR += xxhash
