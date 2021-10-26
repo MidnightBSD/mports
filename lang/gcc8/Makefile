@@ -124,7 +124,7 @@ post-fake:
 	-${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
 
-.if ${ARCH} == amd64 ${PORT_OPTIONS:MMULTILIB}
+.if ${ARCH} == amd64 && ${PORT_OPTIONS:MMULTILIB}
 	${MKDIR} ${STAGEDIR}${TARGLIB32}
 	${MV} ${STAGEDIR}${PREFIX}/lib/lib32 ${STAGEDIR}${TARGLIB32}/gcc${SUFFIX}
 .endif
