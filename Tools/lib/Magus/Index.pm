@@ -43,7 +43,11 @@ sub sync {
   my $osversion;
   my %visited;
 
-  if ($osrel eq "1.3") {
+  if ($osrel eq "2.1") {
+    $osversion = 201001;
+  } elsif ($osrel eq "2.0") {
+    $osversion = 200000;
+  } elsif ($osrel eq "1.3") {
     $osversion = 103000;
   } elsif ($osrel eq "1.2") {
     $osversion = 102000;
@@ -52,7 +56,7 @@ sub sync {
   } elsif ($osrel eq "1.0") {
     $osversion = 100000;
   } else {
-    $osversion = 200000;
+    $osversion = 201001;
   }
   
   $root ||= "$Magus::Config{MasterDataDir}/$Magus::Config{MportsVcsDir}";
