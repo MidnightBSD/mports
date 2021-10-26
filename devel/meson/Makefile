@@ -1,6 +1,6 @@
 PORTNAME=	meson
-PORTVERSION=	0.57.1
-PORTREVISION=	1
+PORTVERSION=	0.59.2
+PORTREVISION=	0
 CATEGORIES=	devel python
 MASTER_SITES=	https://github.com/mesonbuild/${PORTNAME}/releases/download/${PORTVERSION}/
 
@@ -15,5 +15,6 @@ USE_PYTHON=	autoplist distutils noflavors
 SHEBANG_FILES=	mesonbuild/rewriter.py \
 		mesonbuild/scripts/cmake_run_ctgt.py
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
