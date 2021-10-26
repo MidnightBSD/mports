@@ -27,9 +27,9 @@ and it is much less likely to accidentally match the rule currently used
 by the method.
 
 Works around https://github.com/mesonbuild/meson/issues/4270.
---- mesonbuild/backend/backends.py.orig	2018-09-22 13:22:03 UTC
+--- mesonbuild/backend/backends.py.orig	2021-02-18 16:09:05 UTC
 +++ mesonbuild/backend/backends.py
-@@ -371,7 +371,7 @@ class Backend:
+@@ -572,7 +572,7 @@ class Backend:
          for dep in target.external_deps:
              if not isinstance(dep, (dependencies.ExternalLibrary, dependencies.PkgConfigDependency)):
                  continue
