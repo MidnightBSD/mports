@@ -14,7 +14,7 @@ USES=		compiler:c++0x tar:bzip2 xorg
 GNU_CONFIGURE=	yes
 USE_XORG=	ice sm x11 xft xinerama
 
-USE_GCC=6
+USE_GCC=	7
 
 PLIST_FILES=	bin/${PORTNAME} ${DATADIR_REL}/program_list
 PORTDOCS=	AUTHORS ChangeLog README
