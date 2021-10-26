@@ -50,10 +50,10 @@ CONFIGURE_ARGS+=	--disable-multilib
 
 .if ${ARCH} == amd64
 ARCH_64=
-CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
+CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
 .else
 ARCH_64=@comment
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 .endif
 
 LANGUAGES:=	c,c++,objc,fortran
@@ -121,16 +121,16 @@ full-regression-test: build
 
 post-fake:
 	${RM} -f ${PREFIX}/man/man7/*
-	-${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
+	-${RM} -fr ${FAKE_DESTDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
 
 .if ${ARCH} == amd64 && ${PORT_OPTIONS:MMULTILIB}
-	${MKDIR} ${STAGEDIR}${TARGLIB32}
-	${MV} ${STAGEDIR}${PREFIX}/lib/lib32 ${STAGEDIR}${TARGLIB32}/gcc${SUFFIX}
+	${MKDIR} ${FAKE_DESTDIR}${TARGLIB32}
+	${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/lib32 ${FAKE_DESTDIRDIR}${TARGLIB32}/gcc${SUFFIX}
 .endif
 
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${TARGLIB32:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
-	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
+	cd ${FAKE_DESTDIR}${TRUE_PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
 	fi
 .endfor
