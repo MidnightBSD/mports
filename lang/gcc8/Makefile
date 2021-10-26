@@ -6,7 +6,7 @@ MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU Compiler Collection 7
+COMMENT=	GNU Compiler Collection 8
 
 LICENSE=	gpl3
 
@@ -36,6 +36,8 @@ OPTIONS_DEFAULT=	BOOTSTRAP
 BOOTSTRAP_DESC=		Build using a full bootstrap
 
 .if exists(/usr/lib32/libc.so)
+OPTIONS_DEFINE_amd64+=                MULTILIB
+OPTIONS_DEFAULT_amd64+=       MULTILIB
 OPTIONS_DEFINE_powerpc64+=	MULTILIB
 OPTIONS_DEFAULT_powerpc64+=	MULTILIB
 MULTILIB_DESC=		Build support for 32-bit and 64-bit targets
@@ -122,7 +124,7 @@ post-fake:
 	-${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
 
-.if ${ARCH} == powerpc64 && ${PORT_OPTIONS:MMULTILIB}
+.if ${ARCH} == amd64 ${PORT_OPTIONS:MMULTILIB}
 	${MKDIR} ${STAGEDIR}${TARGLIB32}
 	${MV} ${STAGEDIR}${PREFIX}/lib/lib32 ${STAGEDIR}${TARGLIB32}/gcc${SUFFIX}
 .endif
