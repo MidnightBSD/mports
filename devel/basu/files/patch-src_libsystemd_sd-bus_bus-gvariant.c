@@ -4,7 +4,7 @@
  /* SPDX-License-Identifier: LGPL-2.1+ */
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #include <sys/endian.h>
  #endif
  
