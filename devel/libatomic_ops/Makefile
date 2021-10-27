@@ -1,9 +1,7 @@
-
-
 PORTNAME=	libatomic_ops
 DISTVERSION=	7.6.12
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/ivmai/libatomic_ops/releases/tag/v${DISTVERSION}/
+MASTER_SITES=	https://github.com/ivmai/libatomic_ops/releases/download/v7.6.12/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Atomic operations access library
