@@ -5,7 +5,7 @@
  #pragma once
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #include <machine/endian.h>
  #else
  #include <endian.h>
@@ -14,7 +14,7 @@
          BUS_LITTLE_ENDIAN   = 'l',
          BUS_BIG_ENDIAN      = 'B',
 -#if (defined(__FreeBSD__) && _BYTE_ORDER == _BIG_ENDIAN) || (defined(__linux__) && __BYTE_ORDER == __BIG_ENDIAN)
-+#if (defined(__MidnightBSD__) && _BYTE_ORDER == _BIG_ENDIAN) || (defined(__linux__) && __BYTE_ORDER == __BIG_ENDIAN)
++#if ( (defined(__MidnightBSD__) || defined(__FreeBSD__)) && _BYTE_ORDER == _BIG_ENDIAN) || (defined(__linux__) && __BYTE_ORDER == __BIG_ENDIAN)
          BUS_NATIVE_ENDIAN   = BUS_BIG_ENDIAN,
          BUS_REVERSE_ENDIAN  = BUS_LITTLE_ENDIAN
  #else
