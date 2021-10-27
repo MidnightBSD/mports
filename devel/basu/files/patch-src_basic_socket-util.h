@@ -5,7 +5,7 @@
  };
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  struct ucred {
          uint32_t pid;
          uint32_t uid;

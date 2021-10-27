@@ -4,8 +4,8 @@
                  0;                              \
          })
  
--#if defined(__MidnightBSD__) || defined(__FreeBSD__)
-+#ifdef __MidnightBSD__
+-#ifdef __FreeBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #define mempcpy __builtin_mempcpy
  #endif
  

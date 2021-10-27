@@ -5,7 +5,7 @@
  #endif
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #define ENOMEDIUM       (INT_MAX - 1)
  #define ENOPKG          (INT_MAX - 2)
  #define EUNATCH         (INT_MAX - 3)

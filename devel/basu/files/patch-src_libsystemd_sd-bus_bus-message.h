@@ -5,7 +5,7 @@
  #pragma once
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #include <sys/endian.h>
  #else
  #include <byteswap.h>
@@ -14,7 +14,7 @@
  }
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #define bswap_16 bswap16
  #define bswap_32 bswap32
  #define bswap_64 bswap64

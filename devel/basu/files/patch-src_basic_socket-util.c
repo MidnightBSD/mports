@@ -5,7 +5,7 @@
  #include "strv.h"
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #include <sys/ucred.h>
  #include <sys/un.h>
  #endif
@@ -14,7 +14,7 @@
  
  int getpeercred(int fd, struct ucred *ucred) {
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
          struct xucred cred;
          socklen_t len = sizeof cred;
          if (getsockopt(fd, 0, LOCAL_PEERCRED, &cred, &len) == -1) {
@@ -23,7 +23,7 @@
  
  int getpeersec(int fd, char **ret) {
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
          return -EOPNOTSUPP;
  #else
          _cleanup_free_ char *s = NULL;

@@ -5,7 +5,7 @@
  
  int memfd_set_sealed(int fd) {
 -#if defined(__FreeBSD__) && __FreeBSD__ < 13
-+#if defined(__MidnightBSD__)
++#if defined(__MidnightBSD__) || (defined(__FreeBSD__) && __FreeBSD__ < 13)
          return 0;
  #else
          int r;

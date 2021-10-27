@@ -5,7 +5,7 @@
          creds.gid = getgid();
  
 -#elif defined(__FreeBSD__)
-+#elif defined(__MidnightBSD__)
++#elif defined(__MidnightBSD__) || defined(__FreeBSD__)
  #define SOCKET_CRED_OPTION SCM_CREDS
          struct cmsgcred creds = { 0 };
  #else
@@ -14,7 +14,7 @@
          b->ucred_valid = true;
          return 0;
 -#elif defined(__FreeBSD__)
-+#elif defined(__MidnightBSD__)
++#elif defined(__MidnightBSD__) || defined(__FreeBSD__)
          if (cmsg->cmsg_level != SOL_SOCKET ||
              cmsg->cmsg_type != SCM_CREDS) {
                  return -ENOSYS;
@@ -23,7 +23,7 @@
  #if defined(__linux__)
                  char creds[CMSG_SPACE(sizeof(struct ucred))];
 -#elif defined(__FreeBSD__)
-+#elif defined(__MidnightBSD__)
++#elif defined(__MidnightBSD__) || defined(__FreeBSD__)
                  char creds[CMSG_SPACE(sizeof(struct cmsgcred))];
  #endif
          } control;
