@@ -39,7 +39,6 @@ SUBDIR += java-zoneinfo
 SUBDIR += javamail
 SUBDIR += javavmwrapper
 SUBDIR += jaxen
-SUBDIR += jboss5
 SUBDIR += jdbcpool
 SUBDIR += jdom
 SUBDIR += jikes
