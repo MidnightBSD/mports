@@ -13,4 +13,7 @@ USES=		cmake:testing compiler:c++11-lib python:3.4+,build
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
