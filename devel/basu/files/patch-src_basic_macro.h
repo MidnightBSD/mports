@@ -5,7 +5,7 @@
  #define ALIGN8(l) (((l) + 7) & ~7)
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #undef ALIGN
  #endif
  

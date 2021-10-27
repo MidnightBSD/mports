@@ -4,7 +4,7 @@
                  0;                              \
          })
  
--#ifdef __FreeBSD__
+-#if defined(__MidnightBSD__) || defined(__FreeBSD__)
 +#ifdef __MidnightBSD__
  #define mempcpy __builtin_mempcpy
  #endif

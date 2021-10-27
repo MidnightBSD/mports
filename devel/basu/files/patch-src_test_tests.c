@@ -5,7 +5,7 @@
  #include "tests.h"
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #define program_invocation_short_name getprogname()
  #endif
  
