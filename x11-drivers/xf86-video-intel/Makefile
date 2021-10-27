@@ -18,7 +18,7 @@ WRKSRC=		${WRKDIR}/xf86-video-intel-31486f40f8e8f8923ca0799aea84b58799754564
 
 LIB_DEPENDS=	libdrm_intel.so:graphics/libdrm
 
-USES=		cpe localbase xorg xorg-cat:driver
+USES=		cpe libtool localbase xorg xorg-cat:driver
 CPE_VENDOR=	x
 USE_GITLAB=	yes
 GL_COMMIT=	31486f40f8e8f8923ca0799aea84b58799754564
