@@ -5,7 +5,7 @@
  #pragma once
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #include <sys/endian.h>
  #else
  #include <endian.h>

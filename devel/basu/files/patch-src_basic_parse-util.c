@@ -5,7 +5,7 @@
  #include <string.h>
  
 -#ifdef __FreeBSD__
-+#ifdef __MidnightBSD__
++#if defined(__MidnightBSD__) || defined(__FreeBSD__)
  #include <xlocale.h>
  #endif
  
