@@ -37,4 +37,6 @@ MESON_ARGS=	-Da11y=true \
 
 PLIST_SUB=	VERSION=2.91
 
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+
 .include <bsd.port.mk>
