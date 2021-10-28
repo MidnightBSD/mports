@@ -110,7 +110,6 @@ MAKE_ENV+=	LANG="C" \
 MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 
 BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk7 \
-		${LOCALBASE}/openjdk6 \
 		${LOCALBASE}/bootstrap-openjdk6
 
 SECURITY_ICONS= security-icon-bw16.png \
