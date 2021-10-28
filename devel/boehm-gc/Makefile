@@ -1,4 +1,3 @@
-
 PORTNAME=	gc
 PORTVERSION=	8.0.6
 CATEGORIES=	devel
@@ -16,7 +15,7 @@ LICENSE_NAME=	Boehm-Demers-Weiser Garbage Collector License
 LICENSE_TEXT=	License can be found at http://www.hboehm.info/gc/license.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libatomic_ops.a:${PORTSDIR}/devel/libatomic_ops
+BUILD_DEPENDS=	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops
 
 GNU_CONFIGURE=	yes
 USES=		cpe libtool pathfix pkgconfig
@@ -24,7 +23,7 @@ CPE_VENDOR=	boehm-demers-weiser
 CPE_PRODUCT=	garbage_collector
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS=	--enable-cplusplus
+CONFIGURE_ARGS=	--enable-cplusplus --enable-static
 MAKE_JOBS_UNSAFE=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME:C/[a-z]$//}
@@ -40,7 +39,7 @@ PLIST_FILES=	${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so,} \
 		lib/libgc-${GC_VARIANT}.so.1.4.4 \
 		lib/libgccpp-${GC_VARIANT}.so.1.4.1 \
 		libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
-RUN_DEPENDS+=	${LOCALBASE}/include/gc/gc.h:${PORTSDIR}/devel/boehm-gc
+RUN_DEPENDS+=	${LOCALBASE}/include/gc/gc.h:devel/boehm-gc
 . if ${GC_VARIANT} == "redirect"
 CONFIGURE_ARGS+=--disable-threads --enable-redirect-malloc
 . endif
