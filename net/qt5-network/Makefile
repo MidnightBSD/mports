@@ -1,7 +1,7 @@
 PORTNAME=	network
 DISTVERSION=	${QT5_VERSION}
 PORTREVISION=	2
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +20,12 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 QT_DEFINES=	OPENSSL SSL
 QT_CONFIG=	openssl
+
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} == "base"
+BROKEN=               Qt5 requires Openssl 1.1.1, add DEFAULT_VERSIONS+=ssl=[openssl|libressl*] to /etc/make.conf
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
@@ -43,4 +49,4 @@ post-install:
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
