@@ -8,6 +8,8 @@ COMMENT=	CLI for previewing mandoc manual pages with live auto-reload in a pager
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 RUN_DEPENDS=	entr:sysutils/entr \
 		tmux:sysutils/tmux
 
