@@ -1,7 +1,7 @@
 # Created by: Pawel Worach <pawel.worach@gmail.com>
 
 PORTNAME=	gjs
-PORTVERSION=	1.52.4
+PORTVERSION=	1.52.5
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -24,5 +24,7 @@ CONFIGURE_ARGS=	--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 CONFIGURE_ARGS+=--disable-profiler
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+
+USE_GCC=	10+
 
 .include <bsd.port.mk>
