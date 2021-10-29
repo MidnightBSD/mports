@@ -20,4 +20,8 @@ USES=		compiler:c11 gperf meson python:build shebangfix
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	src/basic/generate-gperfs.py
 
+USE_GCC=	10+
+
+NO_TEST=	yes
+
 .include <bsd.port.mk>
