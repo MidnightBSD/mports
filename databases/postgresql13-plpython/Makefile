@@ -14,6 +14,7 @@ WANT_PGSQL=	server
 MASTERDIR=	${.CURDIR}/../postgresql${WANT_PGSQL_VER:S/.//}-server
 
 WANT_PGSQL_VER?=	13
+_WANT_PGSQL_VER=	13
 WANT_PYTHON_USE?=	python
 
 CONFIGURE_ARGS=	--with-python
