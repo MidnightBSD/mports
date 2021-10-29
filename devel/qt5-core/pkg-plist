@@ -759,3 +759,17 @@
 %%QT_MKSPECDIR%%/modules/qt_lib_core.pri
 %%QT_MKSPECDIR%%/modules/qt_lib_core_private.pri
 libdata/pkgconfig/Qt5Core.pc
+@dir %%QT_CMAKEDIR%%/Qt5
+@dir %%QT_CMAKEDIR%%/Qt5Core
+@dir %%QT_CMAKEDIR%%
+@dir %%QT_ARCHDIR%%/metatypes
+@dir %%QT_MKSPECDIR%%/modules
+@dir %%QT_MKSPECDIR%%
+@dir %%QT_BINDIR%%
+@dir %%QT_ARCHDIR%%
+@dir %%QT_INCDIR%%/QtCore/%%FULLVER%%/QtCore/private
+@dir %%QT_INCDIR%%/QtCore/%%FULLVER%%/QtCore
+@dir %%QT_INCDIR%%/QtCore/%%FULLVER%%
+@dir %%QT_INCDIR%%/QtCore/modules
+@dir %%QT_INCDIR%%/QtCore
+@dir %%QT_INCDIR%%
