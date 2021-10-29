@@ -6,15 +6,16 @@ PORTREVISION?=	0
 CATEGORIES=	databases tcl
 PKGNAMESUFFIX?=	${WANT_PGSQL_VER:S/.//}${COMPONENT}
 
-MAINTAINER=	pgsql@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for using Tcl to write SQL functions
 
-MASTERDIR=	${.CURDIR}/../../databases/postgresql${WANT_PGSQL_VER:S/.//}-server
+MASTERDIR=	${.CURDIR}/../../databases/postgresql14-server
 
 WANT_PGSQL_VER?=14
 
-USES+=		tcl pgsql:${WANT_PGSQL_VER}
+USES+=		tcl pgsql:14
 WANT_PGSQL=	server
+_WANT_PGSQL_VER=14
 
 CONFIGURE_ARGS=	--with-tcl --without-tk \
 		--with-tclconfig="${TCL_LIBDIR}" \
