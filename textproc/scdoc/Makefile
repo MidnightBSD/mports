@@ -9,6 +9,8 @@ COMMENT=	Small man page generator
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FAKE_OPTS=	trueprefix
+
 USES=		gmake
 MAKE_ENV=	PCDIR='$$(_INSTDIR)/libdata/pkgconfig'
 TEST_TARGET=	check
@@ -21,6 +23,6 @@ post-patch:
 	@${REINPLACE_CMD} '/-static/d' ${WRKSRC}/Makefile
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	@${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>
