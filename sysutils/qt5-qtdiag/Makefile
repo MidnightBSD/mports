@@ -12,7 +12,7 @@ LICENSE=	lgpl3
 USES=		compiler:c++11-lang qmake:outsource qt-dist:5,tools
 USE_QT=		core gui
 
-PLIST_FILES=	${QT_BINDIR_REL}/qtdiag
+QT_BINARIES=	yes
 
 # Similarly to x11/qt5-qev, it makes more sense to just run the build system
 # from the qtdiag directory. If we run it from the top of the source tree, it
