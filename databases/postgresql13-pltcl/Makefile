@@ -11,7 +11,8 @@ COMMENT=	Module for using Tcl to write SQL functions
 
 MASTERDIR=	${.CURDIR}/../../databases/postgresql13-server
 
-WANT_PGSQL_VER?=13
+WANT_PGSQL_VER=13
+_WANT_PGSQL_VER=13
 
 USES+=		tcl pgsql:13
 WANT_PGSQL=	server
