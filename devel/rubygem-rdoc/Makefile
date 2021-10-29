@@ -22,6 +22,7 @@ PLIST_FILES=	bin/rdoc bin/ri share/man/man1/ri.1.gz
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKSRC}/man/ri.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/rdoc ${PREFIX}/bin/ri
 
 .elif ${RUBY_VER} == 2.6
 # WIP: rdoc wrapper script is installed by ruby port so far, see bug 241554, 237833
