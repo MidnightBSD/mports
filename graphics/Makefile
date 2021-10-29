@@ -201,6 +201,7 @@ SUBDIR += qt5-imageformats
 SUBDIR += qt5-opengl
 SUBDIR += qt5-pixeltool
 SUBDIR += qt5-svg
+SUBDIR += qt5-wayland
 SUBDIR += s2tc
 SUBDIR += sane-backends
 SUBDIR += scr2png
