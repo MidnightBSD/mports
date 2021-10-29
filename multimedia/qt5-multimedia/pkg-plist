@@ -4,8 +4,6 @@
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qaudiohelpers_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qaudiosystempluginext_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qcamera_p.h
-%%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qdeclarativevideooutput_backend_p.h
-%%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qdeclarativevideooutput_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qimagevideobuffer_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qmediacontrol_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qmedianetworkplaylistprovider_p.h
@@ -29,16 +27,14 @@
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qmultimediautils_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qplaylistfileparser_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qsamplecache_p.h
-%%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qsgvideonode_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qsoundeffect_pulse_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qsoundeffect_qaudio_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qtmultimedia-config_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qtmultimediaglobal_p.h
-%%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qtmultimediaquickdefs_p.h
-%%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qvideoframe_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qvideoframeconversionhelper_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qvideooutputorientationhandler_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qvideosurfaceoutput_p.h
+%%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qvideosurfaces_p.h
 %%QT_INCDIR%%/QtMultimedia/%%FULLVER%%/QtMultimedia/private/qwavedecoder_p.h
 %%QT_INCDIR%%/QtMultimedia/QAbstractAudioDeviceInfo
 %%QT_INCDIR%%/QtMultimedia/QAbstractAudioInput
@@ -238,7 +234,6 @@
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstreamerbufferprobe_p.h
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstreamerbushelper_p.h
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstreamermessage_p.h
-%%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstreamermirtexturerenderer_p.h
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstreamerplayercontrol_p.h
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstreamerplayersession_p.h
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstreamervideoinputdevicecontrol_p.h
@@ -254,11 +249,15 @@
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstvideorendererplugin_p.h
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qgstvideorenderersink_p.h
 %%GSTREAMER%%%%QT_INCDIR%%/QtMultimediaGstTools/%%FULLVER%%/QtMultimediaGstTools/private/qvideosurfacegstsink_p.h
+%%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qdeclarativevideooutput_backend_p.h
+%%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qdeclarativevideooutput_p.h
 %%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qdeclarativevideooutput_render_p.h
 %%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qdeclarativevideooutput_window_p.h
+%%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qsgvideonode_p.h
 %%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qsgvideonode_rgb_p.h
 %%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qsgvideonode_texture_p.h
 %%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qsgvideonode_yuv_p.h
+%%QT_INCDIR%%/QtMultimediaQuick/%%FULLVER%%/QtMultimediaQuick/private/qtmultimediaquickdefs_p.h
 %%QT_INCDIR%%/QtMultimediaQuick/QtMultimediaQuick
 %%QT_INCDIR%%/QtMultimediaQuick/QtMultimediaQuickDepends
 %%QT_INCDIR%%/QtMultimediaQuick/QtMultimediaQuickVersion
@@ -280,8 +279,8 @@
 %%QT_INCDIR%%/QtMultimediaWidgets/qvideowidgetcontrol.h
 %%QT_CMAKEDIR%%/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfig.cmake
 %%QT_CMAKEDIR%%/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfigVersion.cmake
-%%QT_CMAKEDIR%%/Qt5MultimediaGstTools/Qt5MultimediaGstToolsConfig.cmake
-%%QT_CMAKEDIR%%/Qt5MultimediaGstTools/Qt5MultimediaGstToolsConfigVersion.cmake
+%%GSTREAMER%%%%QT_CMAKEDIR%%/Qt5MultimediaGstTools/Qt5MultimediaGstToolsConfig.cmake
+%%GSTREAMER%%%%QT_CMAKEDIR%%/Qt5MultimediaGstTools/Qt5MultimediaGstToolsConfigVersion.cmake
 %%QT_CMAKEDIR%%/Qt5MultimediaQuick/Qt5MultimediaQuickConfig.cmake
 %%QT_CMAKEDIR%%/Qt5MultimediaQuick/Qt5MultimediaQuickConfigVersion.cmake
 %%QT_CMAKEDIR%%/Qt5Multimedia/Qt5MultimediaConfig.cmake
@@ -340,10 +339,10 @@
 %%NO_GSTREAMER%%%%DEBUG%%%%QT_PLUGINDIR%%/mediaservice/libqtmedia_audioengine.so.debug
 %%QT_PLUGINDIR%%/playlistformats/libqtmultimedia_m3u.so
 %%DEBUG%%%%QT_PLUGINDIR%%/playlistformats/libqtmultimedia_m3u.so.debug
-@comment %%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so
-@comment %%OPENAL%%%%DEBUG%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so.debug
-@comment %%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/plugins.qmltypes
-@comment %%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/qmldir
+%%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so
+%%OPENAL%%%%DEBUG%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so.debug
+%%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/plugins.qmltypes
+%%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/qmldir
 %%QT_QMLDIR%%/QtMultimedia/Video.qml
 %%QT_QMLDIR%%/QtMultimedia/libdeclarative_multimedia.so
 %%DEBUG%%%%QT_QMLDIR%%/QtMultimedia/libdeclarative_multimedia.so.debug
