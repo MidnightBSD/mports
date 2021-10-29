@@ -38,11 +38,11 @@ FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
 # Possible values: 4.9, 5, 6, 7
-GCC_DEFAULT?=		7
+GCC_DEFAULT?=		8
 GHOSTSCRIPT_DEFAULT?=	9
 # Possible values: c7
 LINUX_DEFAULT?=		c7
-LLVM_DEFAULT?=		60
+LLVM_DEFAULT?=		70
 LUA_DEFAULT?=		5.2
 MYSQL_DEFAULT?=		5.7
 NINJA_DEFAULT?=		ninja

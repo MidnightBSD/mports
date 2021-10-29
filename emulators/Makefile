@@ -20,12 +20,12 @@ SUBDIR += qemu
 SUBDIR += rtc
 SUBDIR += tpm-emulator
 SUBDIR += vba
+SUBDIR += vice
 SUBDIR += vxtools
 SUBDIR += wine
 SUBDIR += wine-gecko
 SUBDIR += wine-mono
 SUBDIR += xhomer
-SUBDIR += yabause
 SUBDIR += zsnes
 
 .include <bsd.port.subdir.mk>

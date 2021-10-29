@@ -111,4 +111,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
 		${WRKSRC}/cmake/Modules/*.cmake
 
+pre-fake:
+	${MKDIR} ${PREFIX}/share/minetest/games/minetest_game
 .include <bsd.port.mk>

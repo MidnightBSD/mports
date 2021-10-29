@@ -69,4 +69,7 @@ DEBUG_FLAGS+=	-O0 -Wall -Wextra -g
 
 CONFLICTS=	ja-mh-[0-9]*
 
+post-install:
+ 	@${FIND} ${FAKE_DESTDIR}${ETCDIR} -type f -exec ${MV} {} {}-dist \;
+
 .include <bsd.port.mk>

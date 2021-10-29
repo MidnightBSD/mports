@@ -60,6 +60,7 @@ SUBDIR += libinput
 SUBDIR += libmatekbd
 SUBDIR += libwacom
 SUBDIR += libxcb
+SUBDIR += libxcvt
 SUBDIR += libxdg-basedir
 SUBDIR += libxfce4menu
 SUBDIR += libxfce4util
