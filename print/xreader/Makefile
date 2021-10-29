@@ -77,6 +77,8 @@ TIFF_MESON_OFF=		-Dtiff=false
 XPS_LIB_DEPENDS=	libgxps.so:graphics/libgxps
 XPS_MESON_OFF=		-Dxps=false
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e '/gdk\/gdkwayland\.h/d' \
 		${WRKSRC}/libdocument/ev-document-misc.h
