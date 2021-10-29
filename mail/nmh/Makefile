@@ -94,6 +94,6 @@ DEBUG_FLAGS+=	-O0 -Wall -Wextra -g
 CONFLICTS_INSTALL=	ja-mh-[0-9]* pixie-* p5-Dist-Joseki-*
 
 post-install:
-	@${FIND} ${FAKE_DESTDIR}${ETCDIR} -type f -exec ${MV} {} {}-dist \;
+	@${FIND} ${ETCDIR} -type f -exec ${MV} {} {}-dist \;
 
 .include <bsd.port.mk>
