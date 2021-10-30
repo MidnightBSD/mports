@@ -25,6 +25,7 @@ SUBDIR += php74-snmp
 SUBDIR += php80-snmp
 SUBDIR += prometheus-collectd-exporter
 SUBDIR += prometheus1
+SUBDIR += prometheus2
 SUBDIR += promscale
 SUBDIR += softflowd
 SUBDIR += subcalc
