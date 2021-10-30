@@ -66,7 +66,6 @@ SUBDIR += p5-Switch
 SUBDIR += p5-Try-Tiny
 SUBDIR += p5-ePerl
 SUBDIR += pcc
-SUBDIR += perl5.26
 SUBDIR += perl5.28
 SUBDIR += perl5.30
 SUBDIR += perl5.32
