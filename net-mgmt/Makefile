@@ -23,6 +23,7 @@ SUBDIR += p5-SNMP_Session
 SUBDIR += php73-snmp
 SUBDIR += php74-snmp
 SUBDIR += php80-snmp
+SUBDIR += prometheus-collectd-exporter
 SUBDIR += prometheus1
 SUBDIR += softflowd
 SUBDIR += subcalc
