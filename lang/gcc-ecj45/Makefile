@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gcc-ecj
 PORTVERSION=	4.5
 CATEGORIES=	lang java
@@ -11,7 +9,8 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Eclipse Java Compiler used to build GCC Java
-LICENSE=	unknown
+
+LICENSE=	epl
 
 NO_BUILD=	yes
 PLIST_FILES=	share/java/${DISTNAME}
