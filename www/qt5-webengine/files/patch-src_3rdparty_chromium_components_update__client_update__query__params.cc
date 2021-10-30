@@ -1,4 +1,4 @@
---- src/3rdparty/chromium/components/update_client/update_query_params.cc.orig	2018-11-13 18:25:11 UTC
+--- src/3rdparty/chromium/components/update_client/update_query_params.cc.orig	2019-11-27 21:12:25 UTC
 +++ src/3rdparty/chromium/components/update_client/update_query_params.cc
 @@ -38,6 +38,8 @@ const char kOs[] =
      "fuchsia";
