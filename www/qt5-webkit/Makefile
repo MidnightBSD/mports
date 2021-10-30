@@ -1,11 +1,15 @@
 PORTNAME=		webkit
-DISTVERSION=		5.212.0-alpha3
+DISTVERSION=		5.212.0-alpha4
+PORTREVISION=		6
 CATEGORIES=		www
 MASTER_SITES=		https://github.com/qt${PORTNAME}/qt${PORTNAME}/releases/download/${DISTNAME}/
 PKGNAMEPREFIX=		qt5-
 DISTNAME=		qt${PORTNAME}-${DISTVERSION}
 
-MAINTAINER=		ports@MidnightBSD>org
+PATCH_SITES=		https://github.com/qt${PORTNAME}/qt${PORTNAME}/commit/
+PATCHFILES+=		78360c01c796b6260bf828bc9c8a0ef73c5132fd.patch:-p1
+
+MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		QtWebKit with a more modern WebKit code base
 
 LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
@@ -15,14 +19,14 @@ LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
 			libwebp.so:graphics/webp \
 			libwoff2dec.so:devel/woff2
 
-USES=			bison cmake compiler:c++11-lang gperf jpeg \
-			pathfix perl5 pkgconfig python:2.7,build qt:5 sqlite:3 \
-			tar:xz
+USES=			bison cmake compiler:c++11-lang gnome gperf jpeg \
+			pathfix perl5 pkgconfig python:3.7+,build qt:5 sqlite:3 \
+			tar:xz xorg
 USE_GNOME=		glib20 libxml2 libxslt
 USE_PERL5=		build
 USE_QT=			core declarative gui location network opengl printsupport \
-			sensors testlib webchannel widgets \
-			buildtools_build qmake_build
+			sensors webchannel widgets \
+			buildtools_build declarative-test_build qmake_build testlib_build
 USE_RUBY=		yes
 USE_XORG=		x11 xcomposite xrender
 
@@ -54,5 +58,7 @@ GSTREAMER_LIB_DEPENDS=	libgstapp-1.0.so:multimedia/gstreamer1-plugins \
 			libgstbase-1.0.so:multimedia/gstreamer1
 GSTREAMER_USE=		GSTREAMER1=core
 GSTREAMER_CMAKE_OFF=	-DUSE_GSTREAMER:BOOL=OFF
+
+BINARY_ALIAS=		python3=${PYTHON_CMD}
 
 .include <bsd.port.mk>
