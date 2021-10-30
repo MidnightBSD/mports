@@ -1,0 +1,45 @@
+# Created by: Jev Björsell <ports@ecadlabs.com>
+
+PORTNAME=	prometheus
+PORTVERSION=	1.8.2
+DISTVERSIONPREFIX=	v
+CATEGORIES=	net-mgmt
+PKGNAMESUFFIX=	1
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Systems monitoring and alerting toolkit
+
+LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		cpe go
+USE_GITHUB=	yes
+GH_TUPLE=	golang:sys:fead79001313:golang_sys/vendor/golang.org/x/sys_fead79001313
+
+GO_PKGNAME=	github.com/${PORTNAME}/${PORTNAME}
+
+USE_RC_SUBR=	prometheus
+
+USERS=		prometheus
+GROUPS=		prometheus
+
+BUILD_USER?=	${USER}
+LD_FLAG_X_PREFIX=	-X ${GO_PKGNAME}/vendor/github.com/prometheus/common/version
+GO_BUILDFLAGS=	-ldflags "\
+		-s \
+		${LD_FLAG_X_PREFIX}.Version=${PORTVERSION} \
+		${LD_FLAG_X_PREFIX}.Revision=${PORTREVISION} \
+		${LD_FLAG_X_PREFIX}.Branch=release-${PORTVERSION:R} \
+		${LD_FLAG_X_PREFIX}.BuildUser=${BUILD_USER}"
+GO_TARGET=	./cmd/prometheus \
+		./cmd/promtool
+
+post-patch:
+	${RM} -r ${WRKSRC}/vendor/golang.org/x/sys
+	${MV} ${WRKSRC}/vendor/golang.org/x/sys_fead79001313 ${WRKSRC}/vendor/golang.org/x/sys
+
+post-install:
+	${INSTALL_DATA} ${WRKSRC}/documentation/examples/prometheus.yml ${FAKE_DESTDIR}${LOCALBASE}/etc/prometheus.yml.sample
+	${MKDIR} ${FAKE_DESTDIR}${DESTDIR}/var/db/prometheus
+
+.include <bsd.port.mk>
