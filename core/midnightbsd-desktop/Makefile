@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.6.0
+PORTVERSION=	2.6.2
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -13,6 +13,8 @@ LICENSE=	bsd2
 
 # needs firefox ?
 # gimp:${PORTSDIR}/graphics/gimp-app \
+
+USE_GSTREAMER1=	ogg theora vorbis
 
 RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		${LOCALBASE}/share/xsessions/xfce.desktop:x11-wm/xfce4 \
@@ -29,7 +31,8 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		mport-manager:ports-mgmt/mport-manager \
 		git:devel/git \
 		wifimgr:net-mgmt/wifimgr \
-		xscreensaver:x11/xscreensaver
+		xscreensaver:x11/xscreensaver \
+		gconftool-2:devel/gconf2
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
@@ -37,6 +40,7 @@ USE_PYTHON_RUN=	yes
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
 
-do-install:  # empty
+do-install:
+	${CP} ${FILESDIR}/xfce4-desktop.xml ${PREFIX}/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
 
 .include <bsd.port.mk>
