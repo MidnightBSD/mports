@@ -14,7 +14,7 @@ LIB_DEPENDS=	libdotconf.so:devel/dotconf \
 		libltdl.so:devel/libltdl \
 		libsndfile.so:audio/libsndfile
 
-USES=		alias autoreconf gettext gmake gnome libtool makeinfo pathfix pkgconfig
+USES=		autoreconf gettext gmake gnome libtool makeinfo pathfix pkgconfig
 USE_GNOME=	glib20 intltool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-espeak-ng=no \
