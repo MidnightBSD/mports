@@ -46,14 +46,14 @@ do-install:
 		${WRKSRC}/lib/pty4j-native \
 		${WRKSRC}/plugins/cwm-plugin/quiche-native \
 		${WRKSRC}/plugins/performanceTesting/bin
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
+	${MKDIR} ${DATADIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR} \
 		"! -name *\.bak ! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh")
-	@(cd ${WRKSRC} && ${COPYTREE_BIN} . ${STAGEDIR}${DATADIR} "-name *\.sh")
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/man/man1
-	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	@(cd ${WRKSRC} && ${COPYTREE_BIN} . ${DATADIR} "-name *\.sh")
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin/${PORTNAME}
+	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.1 ${PREFIX}/man/man1
+	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.desktop ${PREFIX}/share/applications/
 # Use fsnotifier replacement provided by java/intellij-fsnotifier
-	${ECHO} "idea.filewatcher.executable.path=${PREFIX}/intellij/bin/fsnotifier" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
+	${ECHO} "idea.filewatcher.executable.path=${TRUE_PREFIX}/intellij/bin/fsnotifier" >> ${DATADIR}/bin/idea.properties
 
 .include <bsd.port.mk>
