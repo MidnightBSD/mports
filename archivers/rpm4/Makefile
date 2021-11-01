@@ -1,5 +1,3 @@
-
-
 PORTNAME=	rpm
 PORTVERSION=	4.15.1
 PORTREVISION=	1
@@ -19,7 +17,7 @@ LIB_DEPENDS=	libpopt.so:devel/popt \
 RUN_DEPENDS=	bash:shells/bash \
 		gxargs:misc/findutils
 
-USES=		alias bdb compiler:openmp gmake iconv libarchive libtool \
+USES=		alias bdb compiler gmake iconv libarchive libtool \
 		lua:52+ pathfix pkgconfig shebangfix tar:bzip2
 USE_LDCONFIG=	yes
 
