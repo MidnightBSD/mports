@@ -810,7 +810,6 @@ SUBDIR += py-country
 SUBDIR += py-coverage
 SUBDIR += py-curio
 SUBDIR += py-cycler
-SUBDIR += py-dataclasses
 SUBDIR += py-datadog
 SUBDIR += py-dateutil
 SUBDIR += py-dbus
