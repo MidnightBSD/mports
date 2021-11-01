@@ -49,6 +49,7 @@ CONFIGURE_ARGS+=	--enable-ipv6 \
 			--localedir="${LOCALBASE}/share/locale" \
 			--disable-dependency-tracking \
 			DOS2UNIX=true
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 OPTIONS_DEFINE=	SDLSOUND ALSA PULSEAUDIO DOCS
 OPTIONS_SINGLE=	GUI
