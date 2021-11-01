@@ -314,3 +314,4 @@ share/vmware-tools/suspend-vm-default
 @dir %%DATADIR%%/scripts/vmware
 @dir %%DATADIR%%/tests
 @dir /etc/vmware-tools
+@preunexec %%PREFIX%%/bin/vmware-rpctool 'tools.set.version 0' 2>/dev/null || /usr/bin/true

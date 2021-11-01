@@ -1,24 +1,30 @@
 # Created by: mbr@FreeBSD.org
 
-PORTNAME=		open-vm-tools
-PORTVERSION=		${RELEASE_VER}
+PORTNAME=	open-vm-tools
+PORTVERSION=	${RELEASE_VER}
 DISTVERSIONPREFIX=	stable-
-PORTEPOCH=		2
-CATEGORIES=		emulators
+PORTEPOCH=	2
+CATEGORIES=	emulators
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT?=		Open VMware tools for MidnightBSD VMware guests
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT?=	Open VMware tools for MidnightBSD VMware guests
 
-LICENSE=		lgpl2.1
-LICENSE_FILE=		${WRKSRC}/COPYING
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-ONLY_FOR_ARCHS=		amd64 i386
+ONLY_FOR_ARCHS=	amd64 i386
 
-LIB_DEPENDS=		libmspack.so:archivers/libmspack \
-			libdnet.so:net/libdnet
+LIB_DEPENDS=	libmspack.so:archivers/libmspack \
+		libdnet.so:net/libdnet
 
-RELEASE_VER=          11.1.0
-BUILD_VER=            16036546
+RELEASE_VER=	11.1.0
+BUILD_VER=	16036546
+
+FLAVORS=			default nox11
+default_CONFLICTS_INSTALL=	open-vm-tools-nox11
+nox11_PKGNAMESUFFIX=		-nox11
+nox11_CONFLICTS_INSTALL=	open-vm-tools
+nox11_COMMENT=			(without X11)
 
 OPTIONS_DEFINE=		DOCS LIBNOTIFY OPENSSL X11
 OPTIONS_DEFAULT=	DOCS LIBNOTIFY OPENSSL X11
@@ -58,8 +64,6 @@ CONFIGURE_ARGS+=	--without-icu \
 			--disable-vgauth \
 			--sysconfdir=${PREFIX}/etc
 
-CONFLICTS+=		vmware-guestd[0-9]* vmware-tools[0-9]*
-
 USE_RC_SUBR=		vmware-guestd vmware-kmod
 
 INSTALL_TARGET=		install-strip
@@ -69,12 +73,6 @@ INSTALL_TARGET=		install-strip
 
 CFLAGS+=		-Wno-unknown-warning-option
 
-
-.if ${PORT_OPTIONS:MX11}
-CONFLICTS+=		open-vm-tools-nox11-[0-9]*
-.else
-CONFLICTS+=		open-vm-tools-[0-9]*
-.endif
 
 CONFIGURE_ENV+=		SYSDIR=${SRC_BASE}/sys
 
