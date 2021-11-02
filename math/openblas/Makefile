@@ -18,7 +18,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
 
-USES=		fortran gmake perl5 pkgconfig
+USES=		compiler:c11 fortran gmake perl5 pkgconfig
 
 CONFLICTS_INSTALL=	cblas lapacke
 
@@ -40,11 +40,7 @@ OPTIONS_DEFINE=			DYNAMIC_ARCH INTERFACE64 OPENMP
 OPTIONS_DEFAULT=		OPENMP
 OPTIONS_DEFINE_i386=		AVX AVX2
 OPTIONS_DEFINE_amd64=		AVX AVX2
-OPTIONS_EXCLUDE_powerpc64=	OPENMP
-OPTIONS_EXCLUDE_powerpc=	OPENMP
 OPTIONS_RADIO=	${OPTIONS_RADIO_${ARCH}}
-OPTIONS_RADIO_powerpc64=	POWER
-OPTIONS_RADIO_POWER=	POWER6 POWER8
 OPTIONS_SUB=	yes
 
 .if defined(BATCH) || defined(PACKAGE_BUILDING)
@@ -57,26 +53,8 @@ INTERFACE64_DESC=	Use 8 byte integers on 64-bit architectures
 OPENMP_DESC=		Use OpenMP for threading
 AVX_DESC=		Support Advanced Vector Extensions (AVX)
 AVX2_DESC=		Support Advanced Vector Extensions 2 (AVX2)
-POWER6_DESC=		Optimize for POWER6, instead of the default PPC970
-POWER8_DESC=		Optimize for POWER8, instead of the default PPC970
 
 .include <bsd.mport.options.mk>
-
-.if ${ARCH} == powerpc64
-USE_GCC=		yes
-.  if ${PORT_OPTIONS:MPOWER6}
-TARGET_CPU_ARCH=	POWER6
-.  elif ${PORT_OPTIONS:MPOWER8}
-TARGET_CPU_ARCH=	POWER8
-.else
-TARGET_CPU_ARCH=	PPC970
-.  endif
-.endif
-
-.if ${ARCH} == powerpc
-USE_GCC=		yes
-TARGET_CPU_ARCH=	PPCG4
-.endif
 
 MAXTHREADS?=	64
 
@@ -84,19 +62,7 @@ MAXTHREADS?=	64
 MANUAL_PACKAGE_BUILD=	Optimizes for the build machine.
 .endif
 
-.if ${PORT_OPTIONS:MOPENMP}
-USES+=		compiler:openmp
-.else
-USES+=		compiler:c11
-.endif
-
 .include <bsd.port.pre.mk>
-
-.if ${PORT_OPTIONS:MOPENMP}
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-USE_GCC=	yes
-.endif
-.endif
 
 post-extract:
 	cd ${DISTDIR}/${DIST_SUBDIR} ; \
