@@ -1,5 +1,3 @@
-
-
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.3.23
 PORTREVISION=	1
@@ -13,12 +11,12 @@ COMMENT=	Fast image processing tools based on ImageMagick
 
 LICENSE=	mit
 
-LIB_DEPENDS=	libjbig.so:${PORTSDIR}/graphics/jbigkit		\
-		libjasper.so:${PORTSDIR}/graphics/jasper	\
-		liblcms2.so:${PORTSDIR}/graphics/lcms2		\
-		libpng.so:${PORTSDIR}/graphics/png		\
-		libtiff.so:${PORTSDIR}/graphics/tiff		\
-		libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libjbig.so:graphics/jbigkit		\
+		libjasper.so:graphics/jasper	\
+		liblcms2.so:graphics/lcms2		\
+		libpng.so:graphics/png		\
+		libtiff.so:graphics/tiff		\
+		libfreetype.so:print/freetype2
 
 USES=		ghostscript iconv jpeg libtool tar:bzip2
 USE_GNOME=	libxml2
@@ -39,22 +37,22 @@ OPTIONS_DEFINE=		DOCS DPS FPX OPENMP Q8BIT SSE TESTS WEBP X11
 OPTIONS_DEFAULT=	OPENMP WEBP X11
 
 DPS_DESC=		Display Ghostscript support (must also select X11)
-FPX_LIB_DEPENDS+=	libfpx.so.[2-9]:${PORTSDIR}/graphics/libfpx
+FPX_LIB_DEPENDS+=	libfpx.so.[2-9]:graphics/libfpx
 FPX_CONFIGURE_WITH=	fpx
-OPENMP_USES=		compiler:openmp
+OPENMP_USES=		compiler
 OPENMP_CONFIGURE_ON=	--with-threads --enable-openmp --disable-openmp-slow
 OPENMP_CONFIGURE_OFF=	--without-threads --disable-openmp
 Q8BIT_DESC=		Use 8-bit pixels (speed) instead of 16 (quality)
-WEBP_LIB_DEPENDS=	libwebp.so:${PORTSDIR}/graphics/webp
+WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 WEBP_CONFIGURE_WITH=	webp
-X11_LIB_DEPENDS=	libwmflite.so:${PORTSDIR}/graphics/${LIBWMF_PORT}
+X11_LIB_DEPENDS=	libwmflite.so:graphics/${LIBWMF_PORT}
 X11_USE=		XORG=xext
 X11_CONFIGURE_WITH=	x
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MX11} && ${PORT_OPTIONS:MDPS}
-LIB_DEPENDS+=	libdps.so:${PORTSDIR}/x11/dgs
+LIB_DEPENDS+=	libdps.so:x11/dgs
 USE_XORG=	xt
 CONFIGURE_ARGS+=--with-dps
 .else
