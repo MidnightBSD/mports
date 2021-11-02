@@ -13,7 +13,6 @@ USES=		compiler:c++11-lang qmake:no_env qt-dist:5,base ssl
 USE_QT=		core buildtools_build
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	-no-gui -no-xcb
-USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
@@ -25,6 +24,10 @@ QT_CONFIG=	openssl
 
 .if ${SSL_DEFAULT} == "base"
 BROKEN=               Qt5 requires Openssl 1.1.1, add DEFAULT_VERSIONS+=ssl=[openssl|libressl*] to /etc/make.conf
+.endif
+# LibreSSL does not currently support BIO_ADDR in DTLSv1_listen()
+.if ${SSL_DEFAULT:Mlibressl*}
+CONFIGURE_ARGS+=	-no-feature-dtls
 .endif
 
 post-patch:
