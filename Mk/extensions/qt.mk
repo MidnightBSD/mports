@@ -173,6 +173,9 @@ qt-dbus_LIB=		libQt${_QT_LIBVER}DBus.so
 qt-declarative_PORT=	x11-toolkits/${_QT_RELNAME}-declarative
 qt-declarative_LIB=	libQt${_QT_LIBVER}Qml.so
 
+qt-declarative-test_PORT=	x11-toolkits/${_QT_RELNAME}-declarative-test
+qt-declarative-test_LIB=	libQt${_QT_LIBVER}QuickTest.so
+
 qt-designer_PORT=	devel/${_QT_RELNAME}-designer
 qt-designer_PATH=	${LOCALBASE}/${QT_BINDIR_REL}/designer
 
