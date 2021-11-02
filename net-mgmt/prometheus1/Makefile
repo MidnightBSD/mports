@@ -34,6 +34,8 @@ GO_BUILDFLAGS=	-ldflags "\
 GO_TARGET=	./cmd/prometheus \
 		./cmd/promtool
 
+NO_TEST=	yes
+
 post-patch:
 	${RM} -r ${WRKSRC}/vendor/golang.org/x/sys
 	${MV} ${WRKSRC}/vendor/golang.org/x/sys_fead79001313 ${WRKSRC}/vendor/golang.org/x/sys
