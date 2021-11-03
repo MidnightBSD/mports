@@ -1,7 +1,7 @@
-
+# Created by: Tom McLaughlin <tmclaugh@sdf.lonestar.org>
 
 PORTNAME=	libgdiplus
-PORTVERSION=	3.12
+PORTVERSION=	6.0.4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
@@ -9,21 +9,31 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GDI+ API for System.Windows.Forms in Mono
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
-		libgif.so:${PORTSDIR}/graphics/giflib \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libcairo.so:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS=	libtiff.so:graphics/tiff \
+		libgif.so:graphics/giflib \
+		libpng.so:graphics/png \
+		libfreetype.so:print/freetype2 \
+		libexif.so:graphics/libexif \
+		libfontconfig.so:x11-fonts/fontconfig
 
 GNU_CONFIGURE=	yes
-USES=		cpe gmake libtool:keepla pathfix pkgconfig
-USE_GNOME=	glib20
+USES=		cpe gettext-runtime gmake gnome jpeg libtool:keepla pathfix \
+		pkgconfig
+USE_GNOME=	cairo glib20 pango
 USE_LDCONFIG=	yes
-USE_XORG=	x11
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	mono-project
+
+OPTIONS_DEFINE=	X11
+OPTIONS_DEFAULT=X11
+
+X11_USES=	xorg
+X11_USE=	XORG=x11,xrender
+X11_CONFIGURE_OFF=	--without-x11
 
 PLIST_FILES=	lib/libgdiplus.a \
 		lib/libgdiplus.la \
