@@ -11,7 +11,7 @@ COMMENT=	Abstraction around libmpdclient
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-USES=		libtool pathfix pkgconfig
+USES=		gnome libtool pathfix pkgconfig
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 
