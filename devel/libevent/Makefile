@@ -1,8 +1,10 @@
+# Created by: Martin Matuska <mm@FreeBSD.org>
+
 PORTNAME=	libevent
-PORTVERSION=	2.1.11
-DISTVERSIONPREFIX=	release-
+DISTVERSION=	2.1.12
 DISTVERSIONSUFFIX=	-stable
 CATEGORIES=	devel
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/release-${DISTVERSION}${DISTVERSIONSUFFIX}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for executing callback functions on events or timeouts
@@ -10,22 +12,19 @@ COMMENT=	API for executing callback functions on events or timeouts
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	${GH_PROJECT}
-#GH_PROJECT=	${PORTNAME:S/2$//}
-WRKSRC=		${WRKDIR}/libevent-release-${PORTVERSION}-stable
-
+USES=		cpe libtool pathfix pkgconfig python:env shebangfix
+SHEBANG_FILES=	event_rpcgen.py
 GNU_CONFIGURE=	yes
-USES=		autoreconf libtool pathfix
-PATHFIX_MAKEFILEIN=Makefile.am
+CPE_VENDOR=	libevent_project
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	OPENSSL THREADS
 OPTIONS_DEFAULT=	OPENSSL THREADS
 OPTIONS_SUB=	yes
-INSTALL_TARGET=	install-strip
 
-OPENSSL_USE=	ssl=yes
+OPENSSL_USES=	ssl
 OPENSSL_CPPFLAGS=	-I${OPENSSLINC}
 OPENSSL_LDFLAGS=	-L${OPENSSLLIB}
 OPENSSL_CONFIGURE_ENABLE=	openssl
