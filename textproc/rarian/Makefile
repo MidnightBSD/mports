@@ -21,7 +21,7 @@ DOCBOOK_VERSION=4.2
 
 CONFLICTS=	scrollkeeper-[0-9]*
 
-USES=		gmake libtool pathfix python:3.7 tar:bzip2
+USES=		gmake gnome libtool pathfix python tar:bzip2
 USE_GNOME=	libxslt
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
