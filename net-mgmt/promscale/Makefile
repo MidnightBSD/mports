@@ -116,6 +116,8 @@ GO_TARGET=	./cmd/prom-migrator ./cmd/promscale
 PLIST_FILES=	bin/prom-migrator \
 		bin/promscale
 
+NO_TEST=	yes
+
 post-extract:
 	@${RM} -r ${WRKSRC}/vendor/github.com/moby/sys/mountinfo
 	@${RLN} ${WRKSRC_moby_sys_mountinfo}/mountinfo ${WRKSRC}/vendor/github.com/moby/sys/mountinfo
