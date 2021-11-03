@@ -1,25 +1,28 @@
 
 
 PORTNAME=	libdockapp
-PORTVERSION=	0.6.2
-PORTREVISION=	2
+PORTVERSION=	0.7.2
 CATEGORIES=	x11-wm
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	xride
+MASTER_SITES=	https://www.dockapps.net/download/
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Standard library for Window Maker dock apps
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	EXAMPLES
-OPTIONS_SUB=	yes
+BUILD_DEPENDS=	mkfontdir:x11-fonts/mkfontscale
 
-USES=		libtool tar:bzip2
+USES=		autoreconf fonts libtool pkgconfig xorg
 USE_LDCONFIG=	yes
-USE_XORG=	xext xpm
+USE_XORG=	fontutil x11 xext xpm
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-font --without-examples
+
+WRKSRC=		${WRKDIR}/dockapps-b9baa8f
+
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/X11/fonts/dockapp
