@@ -42,6 +42,7 @@ SUBDIR += lumina-fileinfo
 SUBDIR += lumina-fm
 SUBDIR += lumina-mediaplayer
 SUBDIR += lumina-notify
+SUBDIR += lumina-photo
 SUBDIR += lumina-screenshot
 SUBDIR += lumina-textedit
 SUBDIR += lumina-xdg-entry
