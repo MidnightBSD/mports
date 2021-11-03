@@ -1,19 +1,22 @@
 # Created by: buganini@gmail.com
 
-
 PORTNAME=	libcue
-PORTVERSION=	1.4.0
+PORTVERSION=	2.1.0
+DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
-MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CUE Sheet Parser Library
 
-LICENSE=	gpl2
+LICENSE=	bsd2 gpl2
+LICENSE_COMB=	multi
 
-GNU_CONFIGURE=	yes
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	lipnitsk
+
 USE_LDCONFIG=	yes
-USES=		gettext libtool pathfix tar:bzip2
-INSTALL_TARGET=	install-strip
+USES=		bison cmake pathfix
 
 .include <bsd.port.mk>
