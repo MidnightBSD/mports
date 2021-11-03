@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: dccm
 # REQUIRE: LOGIN
 # BEFORE: mail

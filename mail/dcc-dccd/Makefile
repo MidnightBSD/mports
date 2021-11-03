@@ -1,7 +1,7 @@
 # Created by: Dean Hollister <dean@odyssey.apana.org.au>
 
 PORTNAME=	dcc-dccd
-PORTVERSION=	2.3.167
+PORTVERSION=	2.3.168
 CATEGORIES=	mail
 MASTER_SITES=	https://www.dcc-servers.net/dcc/source/old/
 DISTNAME=	dcc-${PORTVERSION}
@@ -66,8 +66,6 @@ IPV6_CONFIGURE_OFF=		--disable-IPv6
 PORTS_MILTER_BUILD_DEPENDS=	${LOCALBASE}/lib/libmilter.a:mail/libmilter
 PORTS_MILTER_CONFIGURE_ON=	--with-sendmail=yes
 
-CFLAGS+=	-fcommon
-
 ## User for DCC files and SUID binaries
 #
 DCCUSER?=	dcc
@@ -99,8 +97,8 @@ PLIST_SUB+=	IFD_MILT="@comment "
 
 post-patch:
 	${REINPLACE_CMD} -e 's,md5.c ,,' ${WRKSRC}/clntlib/Makefile.in
-	${REINPLACE_CMD} -e 's,^\(BININSTALL.*\),\1 -s,p'	\
-			-e 's,^BIN\(INSTALL\s*=\s*.*\) -s$$,SCRIPT\1,' ${WRKSRC}/Makefile.inc.in
+	${REINPLACE_CMD} -E -e 's,^(BININSTALL.*),\1 -s,p' \
+			-e 's,^BIN(INSTALL[:space:]*=[:space:]*.*) -s$$,SCRIPT\1,' ${WRKSRC}/Makefile.inc.in
 	${REINPLACE_CMD} -e 's,BININSTALL,SCRIPTINSTALL,g'	\
 			${WRKSRC}/homedir/Makefile.in ${WRKSRC}/misc/Makefile.in
 
