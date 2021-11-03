@@ -4,8 +4,7 @@ PORTNAME=	libelf
 PORTVERSION=	0.8.13
 PORTREVISION=	3
 CATEGORIES=	devel
-MASTER_SITES=	http://www.mr511.de/software/ \
-		SUNSITE/libs
+MASTER_SITES=	NETBSD
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Public ELF file access library similar to libelf(3) in Solaris
