@@ -142,6 +142,7 @@ SUBDIR += mesa-demos
 SUBDIR += mesa-dri
 SUBDIR += mesa-libs
 SUBDIR += ming
+SUBDIR += mupdf
 SUBDIR += mypaint
 SUBDIR += mypaint-brushes
 SUBDIR += mypaint-brushes2
