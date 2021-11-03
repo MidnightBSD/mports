@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libggz
 PORTVERSION=	${GGZ_VERSION}
 PORTREVISION=	5
@@ -10,7 +8,7 @@ COMMENT=	The GGZ Gaming Zone - Base Library
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 
 USES=		libtool pathfix
 GNU_CONFIGURE=	yes
@@ -26,7 +24,7 @@ OPTIONS_DEFAULT=	OPENSSL
 OPTIONS_SINGLE=		TLS
 OPTIONS_SINGLE_TLS=	GNUTLS OPENSSL
 
-GNUTLS_LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_ARGS=	--with-tls=GnuTLS
 
 OPENSSL_USE=		OPENSSL=yes
