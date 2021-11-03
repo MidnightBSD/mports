@@ -1,13 +1,11 @@
 
 
 PORTNAME=	data
-PORTVERSION=	1.18
+PORTVERSION=	1.39
 CATEGORIES=	sysutils
-MASTER_SITES=	https://downloadmirror.intel.com/27945/eng/:intel \
-		FREEBSD_LOCAL/sbruno:amd
+MASTER_SITES=	FREEBSD_LOCAL/sbruno:amd
 PKGNAMEPREFIX=	devcpu-
-DISTFILES=	microcode-20180703.tgz:intel \
-		amd64-microcode.20180525.tar.xz:amd
+DISTFILES=	amd64-microcode.20191228.tar.xz:amd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intel and AMD CPUs microcode updates
@@ -17,11 +15,17 @@ LICENSE_NAME=	Intel Software License Agreement
 LICENSE_FILE=	${FILESDIR}/LICENSE
 LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	intel
+GH_PROJECT=	Intel-Linux-Processor-Microcode-Data-Files
+GH_TAGNAME=	microcode-20210608
+
 ONLY_FOR_ARCHS=	amd64 i386
 NO_ARCH=	yes
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/share/cpucontrol
+FWDIR=		/boot/firmware
 
 USE_RC_SUBR=	microcode_update
 
@@ -33,6 +37,8 @@ IGNORE=		Most Update to MidnightBSD 1.0 to use this.
 
 post-extract:
 	${CP} -p ${FILESDIR}/Makefile ${FILESDIR}/ucode-split.c ${WRKSRC}
+	${REINPLACE_CMD} 's|%%GH_TAGNAME%%|${GH_TAGNAME}|g' ${WRKSRC}/Makefile
+	${CAT} ${WRKSRC}/Intel-Linux-Processor-Microcode-Data-Files-${GH_TAGNAME}/intel-ucode/* ${WRKSRC}/Intel-Linux-Processor-Microcode-Data-Files-${GH_TAGNAME}/intel-ucode-with-caveats/* > ${WRKSRC}/intel-ucode.bin
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/
@@ -41,5 +47,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam16h.bin ${STAGEDIR}${DATADIR}/
 	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam17h.bin ${STAGEDIR}${DATADIR}/
 	${INSTALL_DATA} ${WRKSRC}/mcodes/* ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${FAKE_DESTDIR}${FWDIR}
+	${INSTALL_DATA} ${WRKSRC}/intel-ucode.bin ${FAKE_DESTDIR}${FWDIR}/
 
 .include <bsd.port.post.mk>

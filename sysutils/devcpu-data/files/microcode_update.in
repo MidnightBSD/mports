@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-#
 
 # PROVIDE:	microcode_update
 # REQUIRE:	root mountcritlocal
