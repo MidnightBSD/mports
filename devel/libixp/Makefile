@@ -1,9 +1,6 @@
 # New ports collection makefile for:	libixp
 # Date created:				31 December 2006
 # Whom:					Phil Pereira <phil@bsdnexus.com>
-#
-
-#
 
 PORTNAME=	libixp
 PORTVERSION=	0.5
@@ -13,7 +10,7 @@ MASTER_SITES=	http://dl.suckless.org/libs/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standalone client/server 9P library
 
-LICENSE=	unknown
+LICENSE=	mit
 
 USE_LDCONFIG=	yes
 CFLAGS+=	-I. -I${WRKSRC}/include -fPIC
