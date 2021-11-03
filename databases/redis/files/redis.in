@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-#
 
 # PROVIDE: redis
 # REQUIRE: LOGIN
