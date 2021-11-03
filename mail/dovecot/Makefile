@@ -1,5 +1,5 @@
 PORTNAME=	dovecot
-PORTVERSION=	2.3.15
+PORTVERSION=	2.3.16
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
@@ -68,7 +68,7 @@ LIBUNWIND_LIB_DEPENDS=	libunwind.so:devel/libunwind
 LIBWRAP_CONFIGURE_WITH=	libwrap
 
 LUA_CONFIGURE_WITH=	lua
-LUA_USES=		lua
+LUA_USES=		lua:51,53
 
 LZ4_CONFIGURE_WITH=	lz4
 LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
