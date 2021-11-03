@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	2.7
+PORTVERSION=	3.0
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,8 +14,8 @@ LIB_DEPENDS=	libpcre.so:devel/pcre \
 BUILD_DEPENDS=	ragel:devel/ragel
 RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
 
-USES=		cmake compiler:c11 gnome perl5 pkgconfig \
-		sqlite ssl
+USES=		cmake compiler:c++17-lang cpe gnome perl5 pkgconfig sqlite ssl
+CPE_VENDOR=	rspamd_project
 USE_LDCONFIG=	yes
 USE_PERL5=	build run
 USE_GNOME=	glib20
