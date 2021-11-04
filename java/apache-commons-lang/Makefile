@@ -13,8 +13,10 @@ COMMENT=	Apache library with helper utilities for the java.lang API
 LICENSE=	apache2
 
 USE_JAVA=	yes
+JAVA_VERSION=	8
 USE_ANT=	yes
 ALL_TARGET=	jar
+NO_ARCH=	yes
 
 JARFILE=	${PORTNAME}-${PORTVERSION}.jar
 DESTJARFILE=	${PORTNAME}.jar
