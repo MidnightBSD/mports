@@ -1,5 +1,5 @@
 PORTNAME=	automake
-PORTVERSION=	1.16.2
+PORTVERSION=	1.16.4
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -16,7 +16,9 @@ PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 USES=		cpe makeinfo perl5 tar:xz
 GNU_CONFIGURE=	yes
 MAKE_ENV+=	MAKEINFOFLAGS=--no-split
-INFO=		automake
+INFO=		automake automake-history
 CPE_VENDOR=	gnu
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>
