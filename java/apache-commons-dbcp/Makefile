@@ -1,7 +1,7 @@
 # Created by: Anton Yudin <toha@toha.org.ua>
 
 PORTNAME=	commons-dbcp
-PORTVERSION=	2.7.0
+PORTVERSION=	2.8.0
 CATEGORIES=	java databases
 MASTER_SITES=	APACHE_COMMONS_BINARIES
 PKGNAMEPREFIX=	apache-
@@ -17,7 +17,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/commons-pool.jar:java/apache-commons-pool
 OPTIONS_DEFINE=	DOCS
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.8
+JAVA_VERSION=	8
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}2-${PORTVERSION}
