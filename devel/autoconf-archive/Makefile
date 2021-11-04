@@ -11,7 +11,7 @@ COMMENT=	Set of useful GNU Autoconf macros
 LICENSE=	gpl3
 
 USES=		makeinfo tar:xz
-DISTDATE=	2017.09.28
+DISTDATE=	2019.01.06
 GNU_CONFIGURE=	yes
 INFO=		${PORTNAME}
 
