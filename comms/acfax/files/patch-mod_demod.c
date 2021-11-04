@@ -1,7 +1,5 @@
-$FreeBSD: ports/comms/acfax/files/patch-mod_demod.c,v 1.1 2002/06/08 04:53:25 petef Exp $
-
---- mod_demod.c.orig	Sat Jun  8 00:38:29 2002
-+++ mod_demod.c	Sat Jun  8 00:38:41 2002
+--- mod_demod.c.orig	1998-07-08 16:32:02 UTC
++++ mod_demod.c
 @@ -29,6 +29,8 @@
  #include <unistd.h>
  #include "mod_demod.h"
