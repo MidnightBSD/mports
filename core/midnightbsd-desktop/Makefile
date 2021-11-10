@@ -41,6 +41,7 @@ NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
 
 do-install:
+	${MKDIR} ${PREFIX}/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
 	${CP} ${FILESDIR}/xfce4-desktop.xml ${PREFIX}/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
 
 .include <bsd.port.mk>
