@@ -442,9 +442,9 @@ gnome-post-glib-schemas:
 	@for i in ${GLIB_SCHEMAS}; do \
 		${ECHO_CMD} "share/glib-2.0/schemas/$${i}" >> ${TMPPLIST}; \
 	done
-	@${ECHO_CMD} "@postexec glib-compile-schemas %D/share/glib-2.0/schemas > /dev/null || /usr/bin/true" \
+	@${ECHO_CMD} "@postexec ${LOCALBASE}/bin/glib-compile-schemas %D/share/glib-2.0/schemas > /dev/null || /usr/bin/true" \
 			>> ${TMPPLIST}; \
-	${ECHO_CMD} "@postunexec glib-compile-schemas %D/share/glib-2.0/schemas > /dev/null || /usr/bin/true" \
+	${ECHO_CMD} "@postunexec ${LOCALBASE}/bin/glib-compile-schemas %D/share/glib-2.0/schemas > /dev/null || /usr/bin/true" \
 			>> ${TMPPLIST};
 .endif
 
