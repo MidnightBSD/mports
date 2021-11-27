@@ -68,8 +68,8 @@ post-patch:
 		${WRKSRC}/web/ui/assets_vfadata.go
 
 post-install:
-	${MKDIR} ${FAKE_DESTDIR}${DESTDIR}${PROMETHEUS_CONSOLES_DIR}
-	${MKDIR} ${FAKE_DESTDIR}${DESTDIR}${PROMETHEUS_CONSOLE_LIBRARIES_DIR}
+	${MKDIR} ${FAKE_DESTDIR}${PROMETHEUS_CONSOLES_DIR}
+	${MKDIR} ${FAKE_DESTDIR}${PROMETHEUS_CONSOLE_LIBRARIES_DIR}
 	${INSTALL_DATA} \
 		${WRKSRC}/documentation/examples/prometheus.yml \
 		${FAKE_DESTDIR}${LOCALBASE}/etc/prometheus.yml.sample
