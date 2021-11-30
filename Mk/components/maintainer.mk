@@ -1,6 +1,4 @@
 #
-
-#
 # maintainer.mk
 #
 # Targets used by port maintainers.
@@ -87,6 +85,7 @@ makeplist:
 		done;
 		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
 .	endif
+	@${SED} -i '' -e '/extra:/d' ${GENPLIST}
 	@perl -mstrict -mwarnings -e '\
 		my $$raw = q`${PLIST_SUB}`; \
 		my %sub; \
