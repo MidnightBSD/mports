@@ -1,5 +1,6 @@
 PORTNAME=	mlogind
 PORTVERSION=	1.3.9
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
@@ -10,8 +11,7 @@ LICENSE=	gpl2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
-LIB_DEPENDS=	libdbus-1.so:devel/dbus \
-		libpng.so:graphics/png \
+LIB_DEPENDS=	libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
@@ -46,7 +46,8 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
 
 .if ${PORT_OPTIONS:MCONSOLEKIT}
 CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
-LIB_DEPENDS+=	libck-connector.so:sysutils/consolekit2
+LIB_DEPENDS+=	libdbus-1.so:devel/dbus \
+		libck-connector.so:sysutils/consolekit2
 .else
 CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
 .endif
