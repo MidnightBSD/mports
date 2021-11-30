@@ -81,6 +81,7 @@ SUBDIR += linux-c7-p11-kit
 SUBDIR += linux-c7-trousers
 SUBDIR += linux-pam-docs
 SUBDIR += logcheck
+SUBDIR += mbedtls
 SUBDIR += mcrypt
 SUBDIR += mhash
 SUBDIR += munge
