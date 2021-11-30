@@ -11,6 +11,7 @@ SUBDIR += cinnamon-screensaver
 SUBDIR += cinnamon-session
 SUBDIR += dmenu
 SUBDIR += editres
+SUBDIR += evilvte
 SUBDIR += fstobdf
 SUBDIR += gdm
 SUBDIR += gnome-desktop
