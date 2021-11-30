@@ -25,6 +25,7 @@ SUBDIR += wine
 SUBDIR += wine-gecko
 SUBDIR += wine-mono
 SUBDIR += xhomer
+SUBDIR += xnp2
 SUBDIR += zsnes
 
 .include <bsd.port.subdir.mk>
