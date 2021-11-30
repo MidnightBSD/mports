@@ -21,6 +21,7 @@ SUBDIR += pico-alpine
 SUBDIR += sublime-text4
 SUBDIR += vim
 SUBDIR += xed
+SUBDIR += xnedit
 SUBDIR += zile
 
 .include <bsd.port.subdir.mk>
