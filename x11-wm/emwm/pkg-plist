@@ -1,0 +1,6 @@
+bin/emwm
+etc/X11/system.emwmrc
+etc/X11/app-defaults/Emwm
+man/man1/emwm.1.gz
+@dir etc/X11/app-defaults
+@dir etc/X11

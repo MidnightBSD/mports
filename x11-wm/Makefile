@@ -5,6 +5,7 @@ SUBDIR += awesome
 SUBDIR += blackbox
 SUBDIR += compiz
 SUBDIR += compton
+SUBDIR += emwm
 SUBDIR += enlightenment
 SUBDIR += fluxbox
 SUBDIR += fvwm2
