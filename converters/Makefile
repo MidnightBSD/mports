@@ -4,6 +4,7 @@ SUBDIR += bsdconv
 SUBDIR += enca
 SUBDIR += fribidi
 SUBDIR += iconv
+SUBDIR += iconv-extra
 SUBDIR += libb64
 SUBDIR += libiconv
 SUBDIR += linux-c7-fribidi
