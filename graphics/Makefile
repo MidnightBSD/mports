@@ -229,6 +229,7 @@ SUBDIR += wayland
 SUBDIR += wayland-protocols
 SUBDIR += webp
 SUBDIR += wmicons
+SUBDIR += ximaging
 SUBDIR += xli
 SUBDIR += xv
 SUBDIR += xviewer
