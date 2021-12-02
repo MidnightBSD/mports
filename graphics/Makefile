@@ -71,6 +71,7 @@ SUBDIR += gstreamer1-plugins-libvisual
 SUBDIR += gstreamer1-plugins-opencv
 SUBDIR += gstreamer1-plugins-openjpeg
 SUBDIR += gstreamer1-plugins-png
+SUBDIR += gstreamer1-plugins-qt
 SUBDIR += gstreamer1-plugins-webp
 SUBDIR += gstreamer1-plugins-zbar
 SUBDIR += gtk-update-icon-cache
