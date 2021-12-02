@@ -55,7 +55,7 @@ NLS_CONFIGURE_ENABLE=	nls
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 200001
-USE_GCC=	6
+USE_GCC=	7
 .endif
 
 .if ${ARCH} == "i386" && ${COMPILER_TYPE} == "clang"
