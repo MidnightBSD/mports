@@ -53,6 +53,7 @@ SUBDIR += gstreamer1-plugins-ugly
 SUBDIR += gstreamer1-plugins-v4l2
 SUBDIR += gstreamer1-plugins-vpx
 SUBDIR += gstreamer1-plugins-x264
+SUBDIR += gstreamer1-qt
 SUBDIR += gstreamer1-vaapi
 SUBDIR += intel-media-sdk
 SUBDIR += libaacs
