@@ -148,6 +148,7 @@ SUBDIR += py-cssselect
 SUBDIR += py-cssutils
 SUBDIR += py-flask
 SUBDIR += py-flup6
+SUBDIR += py-google-api-python-client
 SUBDIR += py-gunicorn
 SUBDIR += py-h2
 SUBDIR += py-hpack

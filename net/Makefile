@@ -140,6 +140,7 @@ SUBDIR += py-s3cmd
 SUBDIR += py-s3transfer
 SUBDIR += py-speedtest-cli
 SUBDIR += py-twitter-tools
+SUBDIR += py-uritemplate
 SUBDIR += py-urllib3
 SUBDIR += qt5-network
 SUBDIR += qt5-networkauth
