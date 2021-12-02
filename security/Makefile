@@ -166,6 +166,7 @@ SUBDIR += py-josepy
 SUBDIR += py-keyring
 SUBDIR += py-keyrings.alt
 SUBDIR += py-ntlm-auth
+SUBDIR += py-oauth2client
 SUBDIR += py-oauthlib
 SUBDIR += py-openssl
 SUBDIR += py-paramiko
