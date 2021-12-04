@@ -7,7 +7,7 @@ DISTFILES=	# Nothing to fetch
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Regex Library
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 
 EXTRACT_DEPENDS=	gnulib>0:devel/gnulib
 
