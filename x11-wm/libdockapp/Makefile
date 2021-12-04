@@ -26,7 +26,7 @@ OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/X11/fonts/dockapp
-.for file in fonts.alias fonts.dir *.pcf.gz
+.for file in *.pcf.gz
 	${INSTALL_DATA} ${WRKSRC}/fonts/${file} ${PREFIX}/lib/X11/fonts/dockapp
 .endfor
 	@${MKDIR} ${EXAMPLESDIR}
