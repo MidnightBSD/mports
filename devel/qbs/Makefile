@@ -49,6 +49,6 @@ pre-configure:
 	${ECHO_CMD} 'QMAKE_LIBDIR_FLAGS = -L${CONFIGURE_WRKSRC}/lib' >> ${CONFIGURE_WRKSRC}/.qmake.cache
 
 post-install:
-	${RM} ${STAGEDIR}${DATADIR}/modules/bundle/update-specs.sh
+	-${RM} ${STAGEDIR}${DATADIR}/modules/bundle/update-specs.sh
 
 .include <bsd.port.mk>
