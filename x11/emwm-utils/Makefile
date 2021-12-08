@@ -12,9 +12,8 @@ COMMENT=		Collection of helper tools for emwm
 
 LICENSE=		mit
 
-USES=			motif pkgconfig tar:xz
-
-USES_XORG=	x11 xt xext xinerama xpm xscrnsaver
+USES=			motif pkgconfig tar:xz xorg
+USE_XORG=	x11 xt xext xinerama xpm xscrnsaver
 
 WRKSRC=		${WRKDIR}/utils
 
