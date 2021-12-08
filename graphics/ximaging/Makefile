@@ -11,9 +11,9 @@ COMMENT=		Motif-based image viewer ala xv
 
 LICENSE=		mit
 
-USES=			motif pkgconfig tar:xz
+USES=			motif pkgconfig tar:xz xorg
 
-USES_XORG=	x11 xt xext xinerama xpm xscrnsaver
+USE_XORG=	x11 xt xext xinerama xpm xscrnsaver
 
 WRKSRC=			${WRKDIR}/ximaging
 
