@@ -18,4 +18,7 @@ USES_XORG=	x11 xt xext xinerama xpm xscrnsaver
 
 WRKSRC=		${WRKDIR}/utils
 
+post-patch:
+	${LN} -sf ${WRKSRC}/mf/Makefile.FreeBSD ${WRKSRC}/mf/Makefile.MidnightBSD
+
 .include <bsd.port.mk>
