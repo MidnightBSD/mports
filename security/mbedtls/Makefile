@@ -15,12 +15,14 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	ARMmbed
 
 ALL_TARGET=	no_test
-TEST_TARGET=	test
 MAKE_ENV=	SHARED=1
 USES=		gmake tar:tgz
 USE_LDCONFIG=	yes
 
 CONFLICTS_INSTALL=	polarssl13-[0-9]*
+
+# magus
+NO_TEST=	yes
 
 post-patch:
 	@${RM} ${WRKSRC}/include/mbedtls/*.orig
