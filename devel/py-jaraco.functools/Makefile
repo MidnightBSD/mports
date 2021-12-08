@@ -26,7 +26,7 @@ NO_TEST=	yes
 POST_PLIST=	trim-jaraco-namespace
 
 post-install:
-	@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__init__.py*
+	-@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__init__.py*
 	-@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__pycache__/__init__.*
 	-@${RMDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__pycache__
 
