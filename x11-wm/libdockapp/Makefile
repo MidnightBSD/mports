@@ -25,9 +25,9 @@ WRKSRC=		${WRKDIR}/dockapps-b9baa8f
 OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
-	@${MKDIR} ${FAKE_DESTDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for file in *.pcf.gz
-	${INSTALL_DATA} ${WRKSRC}/fonts/${file} ${FAKE_DESTDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/${file} ${FONTSDIR}
 .endfor
 	@${MKDIR} ${EXAMPLESDIR}
 .for file in README
