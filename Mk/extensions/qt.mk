@@ -126,7 +126,7 @@ _USES_POST+=		qt
 _QT_MK_POST_INCLUDED=	qt.mk
 
 # The Qt components supported by qt.mk: list of shared, and version specific ones
-_USE_QT_ALL=		assistant dbus declarative designer doc gui help \
+_USE_QT_ALL=		assistant dbus declarative declarative-test designer doc gui help \
 			imageformats l10n linguist linguisttools multimedia \
 			network opengl pixeltool qdbusviewer qmake script \
 			scripttools sql sql-mysql sql-odbc sql-pgsql \
