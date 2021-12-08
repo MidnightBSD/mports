@@ -12,7 +12,7 @@ MASTER_SITES=	http://www.mupdf.com/downloads/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight PDF viewer and toolkit
 
-LICENSE=	apgl
+LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
