@@ -11,6 +11,8 @@ COMMENT=		Enhanced nedit with utf-8 support
 
 LICENSE=		gpl2
 
+LIB_DEPENDS=		libpcre.so:devel/pcre
+
 USES=			motif pkgconfig
 
 USES_XORG=		x11 xt xext
