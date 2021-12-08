@@ -34,11 +34,11 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/examples/${file} ${EXAMPLESDIR}
 .endfor
 	@${MKDIR} ${EXAMPLESDIR}/basic
-.for file in Imakefile README *.c *.xpm
+.for file in README *.c *.xpm
 	${INSTALL_DATA} ${WRKSRC}/examples/basic/${file} ${EXAMPLESDIR}/basic
 .endfor
 	@${MKDIR} ${EXAMPLESDIR}/rectangles
-.for file in Imakefile *.c
+.for file in *.c
 	${INSTALL_DATA} ${WRKSRC}/examples/rectangles/${file} ${EXAMPLESDIR}/rectangles
 .endfor
 
