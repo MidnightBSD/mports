@@ -38,6 +38,9 @@ SCREENCOPY_MAKE_ARGS=	WITH_SCREENCOPY=YES
 VIRTUALINPUT_MAKE_ARGS=	WITH_VIRTUAL_INPUT=YES
 X11_MAKE_ARGS=		WITH_XWAYLAND=YES
 
+post-patch:
+	${LN} -sf ${WRKSRC}/etc/pam.d/hikari-unlocker.FreeBSD  ${WRKSRC}/etc/pam.d/hikari-unlocker.MidnightBSD 
+
 post-install:
 .ifndef WITH_DEBUG
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/hikari
