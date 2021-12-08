@@ -34,6 +34,9 @@ MESON_ARGS=	-Dman=true \
 		-Dgtk_doc=false \
 		-Dvapi=true
 
+# magus
+NO_TEST=	yes
+
 post-install:
 	@${MKDIR} ${PREFIX}/etc/dconf/db
 	@${MKDIR} ${PREFIX}/etc/dconf/profile
