@@ -1,5 +1,5 @@
 PORTNAME=	webp
-PORTVERSION=	1.0.2
+PORTVERSION=	1.2.1
 CATEGORIES=	graphics
 MASTER_SITES=	http://downloads.webmproject.org/releases/webp/ \
 		https://storage.googleapis.com/downloads.webmproject.org/releases/webp/
@@ -9,28 +9,31 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google WebP image format conversion tool
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	libgif.so:graphics/giflib \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff
+
+USES=		compiler:c11 jpeg libtool localbase
+
+CONFIGURE_ARGS=	--enable-libwebpdecoder \
+		--enable-libwebpdemux  \
+		--enable-libwebpmux \
+		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 OPTIONS_DEFINE=	X11
 OPTIONS_SUB=	yes
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	-with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
-		--enable-libwebpdecoder \
-		--enable-libwebpdemux  \
-		--enable-libwebpmux
-USE_LDCONFIG=	yes
-USES=		compiler:c11 jpeg libtool
-
 X11_CONFIGURE_OFF=	build_vwebp=no
 X11_CONFIGURE_ON=	build_vwebp=yes
 X11_USE=		GL=glut
+X11_USES=		gl
 
 post-patch:
 	@${REINPLACE_CMD} '/build_vwebp=yes/d' ${WRKSRC}/configure
