@@ -66,6 +66,8 @@ NVIDIA_DESC=		EGLStream support for glamor on Xwayland
 NVIDIA_BUILD_DEPENDS=	egl-wayland>0:graphics/egl-wayland
 NVIDIA_MESON_TRUE=	xwayland_eglstream
 
+NO_TEST=	yes
+
 .ifdef GH_TUPLE
 post-install:
 # https://github.com/mesonbuild/meson/issues/2550
