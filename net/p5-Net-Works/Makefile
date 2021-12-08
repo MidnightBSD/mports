@@ -10,6 +10,9 @@ COMMENT=	APIs for IP addresses and networks
 
 LICENSE=	artistic2
 
+# p5-Math-Intl128 not compatible
+NOT_FOR_ARCHS=  armv6 i386
+
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-List-AllUtils>=0.03:devel/p5-List-AllUtils \
 		p5-Math-Int128>=0.07:math/p5-Math-Int128 \

@@ -12,6 +12,9 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+# p5-Math-Intl128 not compatible
+NOT_FOR_ARCHS=  armv6 i386
+
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Data-Dumper-Concise>=0:devel/p5-Data-Dumper-Concise \
 		p5-Data-IEEE754>=0:devel/p5-Data-IEEE754 \

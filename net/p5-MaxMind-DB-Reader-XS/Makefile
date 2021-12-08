@@ -11,6 +11,9 @@ COMMENT=	Fast XS implementation of MaxMind DB reader
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+# p5-Math-Intl128 not compatible
+NOT_FOR_ARCHS=  armv6 i386
+
 BUILD_DEPENDS=	${RUN_DEPENDS}
 LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
 RUN_DEPENDS=	p5-Math-Int128>=0:math/p5-Math-Int128 \
