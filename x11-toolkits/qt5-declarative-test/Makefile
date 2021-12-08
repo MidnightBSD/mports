@@ -26,4 +26,8 @@ post-patch:
 	${REINPLACE_CMD} 's,python,${PYTHON_CMD},g' \
 		${WRKSRC}/src/3rdparty/masm/masm.pri
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>
