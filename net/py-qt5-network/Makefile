@@ -5,13 +5,10 @@ CATEGORIES=	net devel python
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for the Qt5 toolkit, QtNetwork module
 
-BUILD_DEPENDS=	${PY_ENUM34}
-RUN_DEPENDS=	${PY_ENUM34}
-
 CONFIGURE_ARGS=	--enable QtNetwork
 PYQT_DIST=	yes
 
-USES=		python:3.5+ pyqt:5 qt:5
+USES=		python:3.7+ pyqt:5 qt:5
 USE_PYQT=	sip_build core_run
 USE_PYTHON=	concurrent flavors py3kplist
 USE_QT=		core network qmake_build
@@ -25,5 +22,8 @@ API_CONFIGURE_ON=	--qsci-api --qsci-api-destdir=${PYQT_APIDIR}
 API_CONFIGURE_OFF=	--no-qsci-api
 API_LIB_DEPENDS=	libqscintilla2_qt5.so:devel/qscintilla2-qt5
 DEBUG_CONFIGURE_ON=	--debug --trace
+
+post-install:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5/QtNetwork.so
 
 .include <bsd.port.mk>
