@@ -1,5 +1,5 @@
 PORTNAME=	polkit
-PORTVERSION=	0.114
+PORTVERSION=	0.115
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
