@@ -14,4 +14,8 @@ USE_QT=		core declarative \
 # tarball, which we need during the build.
 EXTRACT_AFTER_ARGS=	--no-same-owner --no-same-permissions
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>
