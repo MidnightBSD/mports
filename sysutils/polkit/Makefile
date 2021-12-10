@@ -1,7 +1,7 @@
 PORTNAME=	polkit
-PORTVERSION=	0.115
+PORTVERSION=	0.116
 CATEGORIES=	sysutils gnome
-MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
+MASTER_SITES=	https://www.freedesktop.org/software/polkit/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
@@ -10,15 +10,15 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
-		libmozjs-52.so:lang/spidermonkey52
+		libmozjs-60.so:lang/spidermonkey60
 RUN_DEPENDS=	dbus-launch:devel/dbus
 
 USERS=		polkitd
 GROUPS=		polkitd
 
 USES=		compiler:c++11-lib gettext gmake gnome libtool localbase \
-		pathfix pkgconfig
-USE_GNOME=	glib20 intlhack introspection:build
+		pathfix pkgconfig shebangfix
+USE_GNOME=	glib20 intltool introspection:build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc-html \
@@ -29,8 +29,8 @@ CONFIGURE_ARGS=	--disable-gtk-doc-html \
 		--with-polkitd-user=${USERS} \
 		--disable-static \
 		--disable-examples \
-		--disable-libsystemd-login \
-		--disable-libelogind \
+		--enable-libsystemd-login=no \
+		--enable-libelogind=no \
 		--disable-test \
 		--enable-introspection=yes \
 		--localstatedir=/var
