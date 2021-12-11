@@ -700,20 +700,16 @@ sub async_machine_events {
   my @events = map { {
     type       => $_->type,
     msg        => $_->msg,
-    port       => $_->port,
+    port       => $_->port->name,
     port_id    => $_->port->id,
-    run        => $_->port->run,
+    run        => $_->port->run->id,
     time       => $_->time,
   }} Magus::Event->search_by_run_and_machine($run, $machine);
   
-  my %details = (run => $run, machine => $machine);
+  my %details = (run => $run, machine => $machine, events => \@events);
   
-  my $tmpl = template($p, 'machine-events.tmpl');
-  $tmpl->param(events => \@events);
-
-  $details{html} = $tmpl->output;
-  
-  print $p->header(-type => 'text/plain'), encode_json(\%details);
+  my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed;
+  print $p->header(-type => 'application/json'), $coder->encode(\%details);
 }
 
 sub async_run_port_stats {
