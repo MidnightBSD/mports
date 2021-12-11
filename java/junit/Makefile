@@ -1,5 +1,3 @@
-
-
 PORTNAME=	junit
 PORTVERSION=	4.12
 CATEGORIES=	java devel
@@ -12,7 +10,7 @@ COMMENT=	Regression testing utility for use with the Java(TM) Language
 
 LICENSE=	other
 
-RUN_DEPENDS=	${JAVAJARDIR}/hamcrest.jar:${PORTSDIR}/java/hamcrest
+RUN_DEPENDS=	${JAVAJARDIR}/hamcrest.jar:java/hamcrest
 
 USE_JAVA=	yes
 NO_BUILD=	yes

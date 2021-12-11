@@ -1,7 +1,7 @@
 # Created by: Mikhail T. <michael@fun-box.ru>
 
 PORTNAME=	netty
-PORTVERSION=	4.1.44
+PORTVERSION=	4.1.46
 DISTVERSIONSUFFIX=	.Final
 CATEGORIES=	java devel
 MASTER_SITES=	http://dl.bintray.com/netty/downloads/
