@@ -1,5 +1,5 @@
 PORTNAME=	p11-kit
-PORTVERSION=	0.23.17
+PORTVERSION=	0.23.18
 CATEGORIES=	security devel
 MASTER_SITES=	https://github.com/p11-glue/p11-kit/releases/download/${PORTVERSION}/
 
