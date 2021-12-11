@@ -1,6 +1,15 @@
---- configure.orig	Wed Jun 12 11:31:31 2002
-+++ configure	Sat Mar 10 21:51:00 2007
-@@ -7612,8 +7612,11 @@
+--- configure.orig	2017-06-24 06:11:34 UTC
++++ configure
+@@ -15439,7 +15439,7 @@ if test "x$ac_cv_func_remove" = xyes; then :
+ 
+ fi
+ 
+-     if test "$ac_cv_func_remove" == yes ; then
++     if test "$ac_cv_func_remove" = yes ; then
+ 
+ $as_echo "#define unlink remove" >>confdefs.h
+ 
+@@ -16416,10 +16416,14 @@ $as_echo "no" >&6; }
      if test "x$withval" = "xyes"; then
        withval=$ssllib
        SSLINC=$sslinc
@@ -10,6 +19,9 @@
 +      LIBS="$LIBS -L$withval/lib -lssl -lcrypto"
      fi
 -    LIBS="$LIBS $withval"
-     cat > conftest.$ac_ext <<EOF
- #line 7619 "configure"
- #include "confdefs.h"
+     cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
++#include <openssl/ssl.h>
+ 
+ int
+ main ()
