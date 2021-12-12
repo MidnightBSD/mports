@@ -621,7 +621,7 @@ sub machine_page {
 sub machine_index {
   my ($p) = @_;
 
-  my @machines = Magus::Machine->retrieve_all({ order_by => 'id DESC' });
+  my @machines = Magus::Machine->retrieve_all({ order_by => 'osversion DESC, id' });
       
 
   my $tmpl = template($p, 'machines.tmpl');
