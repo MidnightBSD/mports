@@ -1,0 +1,33 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<section>
+  <div class="row-fluid">
+     <div class="col-md-10 col-md-offset-1">
+       <h2>Machine List</h2>
+
+       <table class="table table-striped table-bordered run-summary">
+<thead>
+<tr>
+	<th>ID</th>
+	<th>Name</th>
+	<th>Maintainer</th>
+	<th>Arch</th>
+	<th>OS</th>
+</tr>
+</thead>
+
+<TMPL_LOOP NAME="machines">
+<tr>
+	<td><a href="/magus/machines/<TMPL_VAR NAME="id">"><TMPL_VAR NAME="id"></a></td>
+	<td><TMPL_VAR NAME="name"></td>
+	<td><TMPL_VAR NAME="maintainer"></td>
+	<td><TMPL_VAR NAME="arch"></td>
+	<td><TMPL_VAR NAME="osversion"></td>
+</tr>
+</TMPL_LOOP>
+</table>
+    </div>
+  </div>
+</section>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

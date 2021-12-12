@@ -618,6 +618,22 @@ sub machine_page {
 }
 
 
+sub machine_index {
+  my ($p) = @_;
+
+  my @machines = Magus::Machine->retrieve_all({ order_by => 'id DESC' });
+      
+
+  my $tmpl = template($p, 'machines.tmpl');
+
+  $tmpl->param(
+    title      => 'Magus // Machines',
+    machines       => \@machines,
+  );
+
+  print $p->header, $tmpl->output;
+}
+
 sub search {
   my ($p, $query, $tmpl_params) = @_;
   
