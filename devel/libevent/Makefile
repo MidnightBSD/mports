@@ -17,7 +17,8 @@ SHEBANG_FILES=	event_rpcgen.py
 GNU_CONFIGURE=	yes
 CPE_VENDOR=	libevent_project
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=yes
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	OPENSSL THREADS
