@@ -151,7 +151,8 @@ console.log("run id is " + currentRunId);
   const statusIdCol = statusEl.querySelector("[data-status-id]");
   const statusName = statusEl.dataset.statusId;
 console.log("status name is " + statusName);
-  const fetchedEvents = showPorts(currentRunId, statusName);
+//  const fetchedEvents = showPorts(currentRunId, statusName);
+  const fetchedEvents = fetchRunDataByIdAndStatus(currentRunId, statusName);
 
   serializeEvents(fetchedEvents);
 };
@@ -166,61 +167,19 @@ function confirm_reset() {
   return confirm('Are you sure?');
 }
 
-/* TODO replace this code */
-var loader = new Image(220, 19);
-loader.src = '/magus/elements/ajax-loader.gif';
+async function fetchRunDataByIdAndStatus(runId, status) {
+  const tm = (new Date).getTime();
+  const response = await fetch(
+    `https://www.midnightbsd.org/magus/async/run-ports-list?run=${runId}&status=${status}&tm=${tm}`
+  );
+  stateProxy.isLoading = true;
 
-function showPorts(id, status) {
-	var td = document.getElementById("ports-display");
-	if (status.length == 0) {
-		td.style.display = 'none';
-		return false;
-	}
+  if (!response.ok) {
+    stateProxy.hasError = true;
+    const message = `Network Error: ${response.statusText}`;
+    throw new Error(message);
+  }
 
-	td.innerHTML = '<p style="text-align: center"><img src="' + loader.src + '" /></p>';
-	td.style.display = 'table-cell';
-
-	var url = '//www.midnightbsd.org/magus/async/run-ports-list?run=' + id + '&status=' + status + '&tm=' + (new Date).getTime();
-	sendAsycQuery(url, process_showPorts);
-	return false;
+  const data = await response.json();
+  return data;
 }
-
-
-function process_showPorts() {
-    // only if req shows "loaded"
-    if (req.readyState == 4) {
-        // only if "OK"
-        if (req.status == 200) {
-            var result = eval( "(" + req.responseText + ")" );
-            var td = document.getElementById("ports-display");
-	    td.innerHTML = result.html;	    
-        } else {
-            alert("There was a problem retrieving the data:\n" + req.statusText);
-        }
-    }
-}
-
-function sendAsycQuery(url, callback) {
-    // branch for native XMLHttpRequest object	
-    if (window.XMLHttpRequest) {
-        req = new XMLHttpRequest();
-        req.open("GET", url, true);
-        req.setRequestHeader('Content-type', 'application/x-json');
-        //req.setRequestHeader('Connection', 'close');
-        req.onreadystatechange = callback
-        req.send(null);
-    // branch for IE/Windows ActiveX version
-    } else if (window.ActiveXObject) {
-        req = new ActiveXObject("Microsoft.XMLHTTP");
-        if (req) {
-            req.open("GET", url + query, true);
-            req.onreadystatechange = callback;
-            req.setRequestHeader('Content-Type', 'application/x-json');
-           // req.setRequestHeader('Connection', 'close');
-            req.send(null);
-        }
-    } else {
-        return ' ';
-    }
-}
-

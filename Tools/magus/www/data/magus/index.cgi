@@ -748,7 +748,6 @@ sub async_run_port_stats {
         exit;
     }
   
-  my %details = (run => $run, status => $status);
   my @ports;
   
   if ($status eq 'ready') {
@@ -770,12 +769,19 @@ sub async_run_port_stats {
     can_reset => $_->can_reset eq 'active' ? 1 : 0,
   }} @ports;
                                   
-  my $tmpl = template($p, 'port-list.tmpl');
-  $tmpl->param(results => \@results);
+#  my $tmpl = template($p, 'port-list.tmpl');
+#  $tmpl->param(results => \@results);
 
-  $details{html} = $tmpl->output;
+#  $details{html} = $tmpl->output;
   
-  print $p->header(-type => 'text/plain'), encode_json(\%details);
+#  print $p->header(-type => 'application/json'), encode_json(\%details);
+
+
+  my %details = (run => $run, status => $status, events => \@results);
+   
+  my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed;
+  print $p->header(-type => 'application/json'), $coder->encode(\%details);
+
 }
   
 sub browse {
