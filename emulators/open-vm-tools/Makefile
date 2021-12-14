@@ -99,5 +99,6 @@ post-install:
 	${MKDIR} ${PREFIX}/share/open-vm-tools/scripts/
 	${MKDIR} ${PREFIX}/share/open-vm-tools/tests/
 	${MKDIR} ${PREFIX}/etc/rc.conf.d
+	${CP} ${FAKE_DESTDIR}/etc/pam.d/vmtoolsd ${PREFIX}/etc/pam.d/
 
 .include <bsd.port.post.mk>
