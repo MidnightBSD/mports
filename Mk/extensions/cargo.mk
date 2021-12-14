@@ -290,12 +290,13 @@ do-build:
 .if !target(do-install) && ${CARGO_INSTALL:tl} == "yes"
 do-install:
 .  for path in ${CARGO_INSTALL_PATH}
+# --no-track is not supported in rust 1.35 cargo
 	@${CARGO_CARGO_RUN} install \
-		--no-track \
 		--path "${path}" \
 		--root "${STAGEDIR}${PREFIX}" \
 		--verbose \
 		${CARGO_INSTALL_ARGS}
+	@${RM} -- "${PREFIX}/.crates.toml"
 .  endfor
 .endif
 
