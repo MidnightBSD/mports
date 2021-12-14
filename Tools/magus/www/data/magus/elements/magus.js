@@ -70,7 +70,7 @@ async function serializeEvents(data) {
       const td = document.createElement("td");
 
       // Add links to individual port pages by their id
-      if (title === "port_id") {
+      if (title === "port_id" || title === "id") {
         const a = document.createElement("a");
         a.innerText = event[title];
         a.href = `https://www.midnightbsd.org/magus/ports/${event[title]}`;
