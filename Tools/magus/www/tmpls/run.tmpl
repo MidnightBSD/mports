@@ -1,14 +1,5 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<script type="text/javascript">
-	window.onload = function () {
-		if (location.hash.length > 0) {
-			var status = location.hash.substr(1, location.hash.length);
-			showPorts(<TMPL_VAR NAME="id">, status);
-		}
-	};
-</script>
-
 <section>
   <div class="row-fluid">
      <div class="col-md-10 col-md-offset-1">
@@ -39,7 +30,7 @@
 	    <ul class="stats">
 	      <TMPL_LOOP NAME="status_stats">
 		<li>
-		    <a class="<TMPL_VAR NAME="status"> statuslinks" href="#<TMPL_VAR NAME="status">" data-status-id="<TMPL_VAR NAME="status">" ff="showPorts(<TMPL_VAR NAME="id">, '<TMPL_VAR NAME="status">');">	
+		    <a class="<TMPL_VAR NAME="status"> statuslinks" href="#<TMPL_VAR NAME="status">" data-status-id="<TMPL_VAR NAME="status">">	
 			<TMPL_VAR NAME="status"></a>:
 		    <TMPL_VAR NAME="count">
 		</li>
@@ -56,3 +47,15 @@
 </section>
 
 <TMPL_INCLUDE NAME="footer.tmpl">
+
+<script type="text/javascript">
+        window.onload = function () {
+                if (location.hash.length > 0) {
+                        var status = location.hash.substr(1, location.hash.length);
+
+			const fetchedEvents = fetchRunDataByIdAndStatus(<TMPL_VAR NAME="id">, status);
+  			serializeEvents(fetchedEvents);
+                }
+        };
+</script>
+
