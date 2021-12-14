@@ -147,7 +147,7 @@ const handleRunSelect = (event) => {
  * Listen to any 'change' events on our select menu for machine
  */
 if (
-  typeof eventDisplaySelectEl !== "undefined" ||
+  typeof eventDisplaySelectEl !== "undefined" &&
   eventDisplaySelectEl !== null
 ) {
   eventDisplaySelectEl.addEventListener("change", handleRunSelect);
