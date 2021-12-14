@@ -69,7 +69,16 @@ async function serializeEvents(data) {
     eventTableHeaderTitles.forEach((title) => {
       const td = document.createElement("td");
 
-      td.innerText = event[title];
+      // Add links to individual port pages by their id
+      if (title === "port_id") {
+        const a = document.createElement("a");
+        a.innerText = event[title];
+        a.href = `https://www.midnightbsd.org/magus/ports/${event[title]}`;
+        td.appendChild(a);
+      } else {
+        td.innerText = event[title];
+      }
+
       tr.appendChild(td);
     });
 
@@ -137,38 +146,40 @@ const handleRunSelect = (event) => {
 /**
  * Listen to any 'change' events on our select menu for machine
  */
-if (eventDisplaySelectEl != null)
-	eventDisplaySelectEl.addEventListener("change", handleRunSelect);
-
+if (
+  typeof eventDisplaySelectEl !== "undefined" ||
+  eventDisplaySelectEl !== null
+) {
+  eventDisplaySelectEl.addEventListener("change", handleRunSelect);
+}
 
 const handleRunStatusLinks = (event) => {
-console.log("handle run status links");
+  console.log("handle run status links");
   const statusEl = event.target;
   const parentRowEl = statusEl.closest("tr");
   const runIdCol = parentRowEl.querySelector("[data-run-id]");
   const currentRunId = runIdCol.dataset.runId;
-console.log("run id is " + currentRunId);
+  console.log("run id is " + currentRunId);
   const statusIdCol = statusEl.querySelector("[data-status-id]");
   const statusName = statusEl.dataset.statusId;
-console.log("status name is " + statusName);
-//  const fetchedEvents = showPorts(currentRunId, statusName);
+  console.log("status name is " + statusName);
+  //  const fetchedEvents = showPorts(currentRunId, statusName);
   const fetchedEvents = fetchRunDataByIdAndStatus(currentRunId, statusName);
 
   serializeEvents(fetchedEvents);
 };
 
-
-const statusLinks = document.querySelectorAll('.statuslinks');
-statusLinks.forEach(element => {
-	element.addEventListener("click",  handleRunStatusLinks);
+const statusLinks = document.querySelectorAll(".statuslinks");
+statusLinks.forEach((element) => {
+  element.addEventListener("click", handleRunStatusLinks);
 });
 
 function confirm_reset() {
-  return confirm('Are you sure?');
+  return confirm("Are you sure?");
 }
 
 async function fetchRunDataByIdAndStatus(runId, status) {
-  const tm = (new Date).getTime();
+  const tm = new Date().getTime();
   const response = await fetch(
     `https://www.midnightbsd.org/magus/async/run-ports-list?run=${runId}&status=${status}&tm=${tm}`
   );
