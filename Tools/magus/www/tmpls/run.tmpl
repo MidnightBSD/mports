@@ -29,7 +29,7 @@
 </thead>
 
 <tr>
-	<td><TMPL_VAR NAME="id"></td>
+	<td data-run-id="<TMPL_VAR NAME="id">"><TMPL_VAR NAME="id"></td>
 	<td><TMPL_VAR NAME="osversion"></td>
 	<td><TMPL_VAR NAME="arch"></td>
 	<td><a href="#" class="edit"><TMPL_VAR NAME="status"></a></td>
@@ -39,7 +39,7 @@
 	    <ul class="stats">
 	      <TMPL_LOOP NAME="status_stats">
 		<li>
-		    <a class="<TMPL_VAR NAME="status">" href="#<TMPL_VAR NAME="status">" onclick="showPorts(<TMPL_VAR NAME="id">, '<TMPL_VAR NAME="status">');">	
+		    <a class="<TMPL_VAR NAME="status"> statuslinks" href="#<TMPL_VAR NAME="status">" data-status-id="<TMPL_VAR NAME="status">" ff="showPorts(<TMPL_VAR NAME="id">, '<TMPL_VAR NAME="status">');">	
 			<TMPL_VAR NAME="status"></a>:
 		    <TMPL_VAR NAME="count">
 		</li>

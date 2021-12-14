@@ -135,12 +135,35 @@ const handleRunSelect = (event) => {
 };
 
 /**
- * Listen to any 'change' events on our select menu
+ * Listen to any 'change' events on our select menu for machine
  */
-eventDisplaySelectEl.addEventListener("change", handleRunSelect);
+if (eventDisplaySelectEl != null)
+	eventDisplaySelectEl.addEventListener("change", handleRunSelect);
+
+
+const handleRunStatusLinks = (event) => {
+console.log("handle run status links");
+  const statusEl = event.target;
+  const parentRowEl = statusEl.closest("tr");
+  const runIdCol = parentRowEl.querySelector("[data-run-id]");
+  const currentRunId = runIdCol.dataset.runId;
+console.log("run id is " + currentRunId);
+  const statusIdCol = statusEl.querySelector("[data-status-id]");
+  const statusName = statusEl.dataset.statusId;
+console.log("status name is " + statusName);
+  const fetchedEvents = showPorts(currentRunId, statusName);
+
+  serializeEvents(fetchedEvents);
+};
+
+
+const statusLinks = document.querySelectorAll('.statuslinks');
+statusLinks.forEach(element => {
+	element.addEventListener("click",  handleRunStatusLinks);
+});
 
 function confirm_reset() {
-  return confirm('Are you sure?')
+  return confirm('Are you sure?');
 }
 
 /* TODO replace this code */
@@ -162,6 +185,7 @@ function showPorts(id, status) {
 	return false;
 }
 
+
 function process_showPorts() {
     // only if req shows "loaded"
     if (req.readyState == 4) {
@@ -173,6 +197,7 @@ function process_showPorts() {
         } else {
             alert("There was a problem retrieving the data:\n" + req.statusText);
         }
+    }
 }
 
 function sendAsycQuery(url, callback) {
@@ -198,3 +223,4 @@ function sendAsycQuery(url, callback) {
         return ' ';
     }
 }
+
