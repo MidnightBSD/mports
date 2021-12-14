@@ -50,6 +50,8 @@ async function serializeEvents(data) {
   const fetchedData = await data;
   const fetchedEvents = fetchedData.events;
 
+  eventTableEl.setAttribute("class", "table table-striped result-list");
+
   // Establish list of table headings (i.e. columns)
   const eventTableHeaderTitles = Object.keys(fetchedEvents[0]);
 
@@ -74,6 +76,22 @@ async function serializeEvents(data) {
         const a = document.createElement("a");
         a.innerText = event[title];
         a.href = `https://www.midnightbsd.org/magus/ports/${event[title]}`;
+        td.appendChild(a);
+      } else if (title === "summary") {
+	tr.setAttribute("class", event[title]);
+        td.innerText = event[title];
+      } else if (title === "can_reset") {
+        const a = document.createElement("a");
+        a.innerText = "(Reset Port)";
+        a.href = `https://www.midnightbsd.org/magus/auth/reset_port.cgi?id=${event['id']}`;
+        a.addEventListener("click", function(event) {  
+            if (!confirm_reset()) {
+               event.preventDefault();
+            return false;  
+            }  else { 
+               return true;
+            }
+            });
         td.appendChild(a);
       } else {
         td.innerText = event[title];
