@@ -138,3 +138,8 @@ const handleRunSelect = (event) => {
  * Listen to any 'change' events on our select menu
  */
 eventDisplaySelectEl.addEventListener("change", handleRunSelect);
+
+function confirm_reset() {
+  return confirm('Are you sure?')
+}
+
