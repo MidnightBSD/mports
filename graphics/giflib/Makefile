@@ -1,5 +1,5 @@
 PORTNAME=	giflib
-PORTVERSION=	5.1.9
+PORTVERSION=	5.2.1
 PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}
@@ -26,6 +26,6 @@ do-install-DOCS-on:
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/*
-	${STRIP_CMD} --strip-unneeded ${PREFIX}/lib/libgif.so.7.1.0
+	${STRIP_CMD} --strip-unneeded ${PREFIX}/lib/libgif.so.7.2.0
 
 .include <bsd.port.mk>

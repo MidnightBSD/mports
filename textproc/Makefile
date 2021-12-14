@@ -97,6 +97,7 @@ SUBDIR += meld
 SUBDIR += minixmlto
 SUBDIR += mythes
 SUBDIR += openjade
+SUBDIR += opensearch
 SUBDIR += opensp
 SUBDIR += p5-HTML-Tidy
 SUBDIR += p5-Hash-Merge
