@@ -724,7 +724,7 @@ sub async_machine_events {
   
   my %details = (run => $run, machine => $machine, events => \@events);
   
-  my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed;
+  my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed->canonical;
   print $p->header(-type => 'application/json'), $coder->encode(\%details);
 }
 
@@ -779,7 +779,7 @@ sub async_run_port_stats {
 
   my %details = (run => $run, status => $status, events => \@results);
    
-  my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed;
+  my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed->canonical;
   print $p->header(-type => 'application/json'), $coder->encode(\%details);
 
 }
