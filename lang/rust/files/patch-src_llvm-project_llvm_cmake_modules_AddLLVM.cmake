@@ -1,5 +1,5 @@
---- src/llvm/cmake/modules/AddLLVM.cmake.orig	2020-09-01 15:32:40.531254000 -0400
-+++ src/llvm/cmake/modules/AddLLVM.cmake	2020-09-01 15:32:52.805906000 -0400
+--- src/llvm-project/llvm/cmake/modules/AddLLVM.cmake.orig	2020-09-01 15:32:40.531254000 -0400
++++ src/llvm-project/llvm/cmake/modules/AddLLVM.cmake	2020-09-01 15:32:52.805906000 -0400
 @@ -1586,7 +1586,7 @@
      set(_install_rpath "@loader_path/../lib" ${extra_libdir})
    elseif(UNIX)
