@@ -17,6 +17,8 @@ OPTIONS_DEFINE=	MC
 
 MC_DESC=	Install as mc
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MMC}
