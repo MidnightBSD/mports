@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-#
 
 case $2 in
 DEINSTALL)
