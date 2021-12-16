@@ -18,6 +18,7 @@ SUBDIR += firefox
 SUBDIR += firefox-esr
 SUBDIR += furl
 SUBDIR += gitea
+SUBDIR += glassfish
 SUBDIR += gnome-user-share
 SUBDIR += google-sitemapgen
 SUBDIR += googler

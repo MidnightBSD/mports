@@ -1,5 +1,4 @@
 #!/bin/csh
-#
 
 set JAVA = "%%LOCALBASE%%/bin/java"
 set LIBFILES = "%%LIBFILES%%"
