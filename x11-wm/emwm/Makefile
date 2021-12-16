@@ -12,7 +12,7 @@ COMMENT=		Enhanced Motif WM fork with multi-monitor and utf-8 support
 LICENSE=		lgpl2.1
 
 USES=			motif pkgconfig tar:xz xorg
-USE_XORG=	x11 xt xext xinerama xpm xscrnsaver
+USE_XORG=	x11 xt xext xinerama xpm xrandr xscrnsaver
 
 WRKSRC=		${WRKDIR}/emwm
 
