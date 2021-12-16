@@ -21,7 +21,7 @@ LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
 
 USES=			bison cmake compiler:c++11-lang gnome gperf jpeg \
 			pathfix perl5 pkgconfig python:3.7+,build qt:5 sqlite:3 \
-			tar:xz xorg
+			ssl tar:xz xorg
 USE_GNOME=		glib20 libxml2 libxslt
 USE_PERL5=		build
 USE_QT=			core declarative gui location network opengl printsupport \
@@ -61,4 +61,15 @@ GSTREAMER_CMAKE_OFF=	-DUSE_GSTREAMER:BOOL=OFF
 
 BINARY_ALIAS=		python3=${PYTHON_CMD}
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} == "base"
+BROKEN=               Qt5 requires Openssl 1.1.1, add DEFAULT_VERSIONS+=ssl=[openssl|libressl*] to /etc/make.conf
+.endif
+# LibreSSL does not currently support BIO_ADDR in DTLSv1_listen()
+.if ${SSL_DEFAULT:Mlibressl*}
+CONFIGURE_ARGS+=        -no-feature-dtls
+.endif
+
+
+.include <bsd.port.post.mk>
