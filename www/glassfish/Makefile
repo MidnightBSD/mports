@@ -17,8 +17,6 @@ USE_JAVA=	yes
 
 NO_BUILD=	yes
 
-CONFLICTS_INSTALL=	glassfish4
-
 WRKSRC=		${WRKDIR}/glassfish5
 DATADIR=	${PREFIX}/${PORTNAME}-${PORTVERSION}
 
