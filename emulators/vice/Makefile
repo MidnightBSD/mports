@@ -48,6 +48,8 @@ CONFIGURE_ARGS+=	--enable-ipv6 \
 			--infodir="${PREFIX}/${INFO_PATH}" \
 			--localedir="${LOCALBASE}/share/locale" \
 			--disable-dependency-tracking \
+			--host=${ARCH}-portbld-freebsd11.4 \
+			--build=${ARCH}-portbld-freebsd11.4 \
 			DOS2UNIX=true
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
