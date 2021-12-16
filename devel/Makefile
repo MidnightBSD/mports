@@ -1069,6 +1069,7 @@ SUBDIR += tex-kpathsea
 SUBDIR += tex-web2c
 SUBDIR += tmake
 SUBDIR += tradcpp
+SUBDIR += universal-ctags
 SUBDIR += upnp
 SUBDIR += utf8cpp
 SUBDIR += uthash
