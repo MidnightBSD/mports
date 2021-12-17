@@ -1074,7 +1074,6 @@ SUBDIR += upnp
 SUBDIR += utf8cpp
 SUBDIR += uthash
 SUBDIR += valgrind
-SUBDIR += viewvc
 SUBDIR += viewvc-devel
 SUBDIR += websvn
 SUBDIR += wizardkit
