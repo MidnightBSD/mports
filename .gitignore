@@ -1,6 +1,7 @@
 /Distfiles
 /Packages
 /INDEX-[0-9]*
+Makefile.local
 /*/*/work
 /*/*/work-*
 Tools/magus/bless/magus-bless
