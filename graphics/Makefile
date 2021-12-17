@@ -108,6 +108,7 @@ SUBDIR += liblqr-1
 SUBDIR += libmng
 SUBDIR += libmypaint
 SUBDIR += libopenraw
+SUBDIR += libosmesa
 SUBDIR += libplacebo
 SUBDIR += libpotrace
 SUBDIR += libqrencode
