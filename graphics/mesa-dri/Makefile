@@ -6,6 +6,8 @@ CATEGORIES=	graphics
 
 COMMENT=	OpenGL hardware acceleration drivers for DRI2+
 
+LICENSE=	mit
+
 USES=		xorg
 USE_XORG=	xorgproto x11 xdamage xext xfixes xshmfence xv xvmc
 
