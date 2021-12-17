@@ -44,6 +44,9 @@ CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--enable-mono=no \
 		--program-transform-name="s/uuencode/gmime-uuencode/;s/uudecode/gmime-uudecode/;"
 
+CPPFLAGS+=      -I${LOCALBASE}/include
+LDFLAGS+=       -L${LOCALBASE}/lib -liconv
+
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/tests//' \
 		${WRKSRC}/Makefile.in
