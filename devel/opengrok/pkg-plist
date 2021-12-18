@@ -285,3 +285,38 @@ bin/opengrok
 %%T%%/webapps/opengrok/status.jsp
 @group
 @owner
+@dir %%DATADIR%%/lib
+@dir %%DATADIR%%/etc
+@dir %%DATADIR%%
+@dir %%DOCSDIR%%
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/util
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/filter
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester/query
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester/model
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester/provider/filter
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester/provider/service/impl
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester/provider/service
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester/provider
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester/parser
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/suggester
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1/controller
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/v1
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api/error
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web/api
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok/web
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org/opengrok
+@dir %%T%%/webapps/opengrok/WEB-INF/classes/org
+@dir %%T%%/webapps/opengrok/WEB-INF/classes
+@dir %%T%%/webapps/opengrok/WEB-INF/tags
+@dir %%T%%/webapps/opengrok/WEB-INF/lib
+@dir %%T%%/webapps/opengrok/WEB-INF
+@dir %%T%%/webapps/opengrok/default/img
+@dir %%T%%/webapps/opengrok/default
+@dir %%T%%/webapps/opengrok/js
+@dir %%T%%/webapps/opengrok/META-INF/maven/org.opengrok/opengrok-web
+@dir %%T%%/webapps/opengrok/META-INF/maven/org.opengrok
+@dir %%T%%/webapps/opengrok/META-INF/maven
+@dir %%T%%/webapps/opengrok/META-INF
+@dir %%T%%/webapps/opengrok
+@dir %%T%%/webapps
+@dir %%T%%
