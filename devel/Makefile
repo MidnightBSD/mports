@@ -944,6 +944,7 @@ SUBDIR += py-ramlfications
 SUBDIR += py-raven
 SUBDIR += py-readme-renderer
 SUBDIR += py-repoze.sphinx.autointerface
+SUBDIR += py-resolvelib05
 SUBDIR += py-resource
 SUBDIR += py-scripttest
 SUBDIR += py-setproctitle
