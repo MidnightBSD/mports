@@ -163,6 +163,7 @@ SUBDIR += synergy
 SUBDIR += sysrc
 SUBDIR += system-tools-backends
 SUBDIR += tarsnap
+SUBDIR += tarsnap-gui
 SUBDIR += terraform
 SUBDIR += terraform-docs
 SUBDIR += terraform-provider-gridscale
