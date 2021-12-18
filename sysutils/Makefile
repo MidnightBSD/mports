@@ -167,6 +167,7 @@ SUBDIR += terraform
 SUBDIR += terraform-docs
 SUBDIR += terraform-provider-gridscale
 SUBDIR += terraform-provider-vultr
+SUBDIR += terraform-switcher
 SUBDIR += timemon
 SUBDIR += tmux
 SUBDIR += tracker
