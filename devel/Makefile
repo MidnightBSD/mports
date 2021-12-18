@@ -849,6 +849,7 @@ SUBDIR += py-jmespath
 SUBDIR += py-jsonform
 SUBDIR += py-jsonref
 SUBDIR += py-jsonschema
+SUBDIR += py-jsonsir
 SUBDIR += py-kitchen
 SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
