@@ -1,7 +1,7 @@
 PORTNAME=	zookeeper
-PORTVERSION=	3.5.5
+PORTVERSION=	3.7.0
 CATEGORIES=	devel
-MASTER_SITES=	APACHE/${PORTNAME}/current
+MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 PKGNAMEPREFIX=	lib
 DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
 
@@ -13,12 +13,17 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libcppunit.so:devel/cppunit
 
-USES=		autoreconf libtool pkgconfig
-
-GNU_CONFIGURE=	yes
+USES=		autoreconf cpe libtool pkgconfig
+CPE_VENDOR=	apache
 USE_LDCONFIG=	yes
 
+GNU_CONFIGURE=	yes
+
 WRKSRC=		${WRKDIR}/${DISTNAME}/zookeeper-client/zookeeper-client-c
+
+post-extract:
+	@${MKDIR} ${WRKSRC}/generated/
+	@cd ${FILESDIR} && ${CP} -p zookeeper.jute.* ${WRKSRC}/generated/
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/* ${STAGEDIR}${PREFIX}/lib/*.so
