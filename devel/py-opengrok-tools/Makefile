@@ -1,5 +1,5 @@
 PORTNAME=	opengrok-tools
-PORTVERSION=		1.3.16
+PORTVERSION=		1.7.0
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -26,7 +26,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	oracle
 GH_PROJECT=	opengrok
 
-BUILD_WRKSRC=	${WRKSRC}/opengrok-tools
+BUILD_WRKSRC=	${WRKSRC}/tools
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 .include <bsd.port.mk>
