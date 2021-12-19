@@ -1,8 +1,6 @@
-
-
 PORTNAME=	poe
 PORTVERSION=	0.5.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/Poe/files/
 DISTNAME=	Poe-${PORTVERSION}
@@ -12,7 +10,7 @@ COMMENT=	Vorbis comment editor for GNUstep
 
 LICENSE=	gpl2 # or later
 
-LIB_DEPENDS=	libvorbis.so:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS=	libvorbis.so:audio/libvorbis
 
 USES=		gnustep
 USE_GNUSTEP=	back build
