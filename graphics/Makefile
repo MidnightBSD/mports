@@ -232,6 +232,7 @@ SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += ximaging
 SUBDIR += xli
+SUBDIR += xpdf3
 SUBDIR += xv
 SUBDIR += xviewer
 SUBDIR += zbar
