@@ -1,5 +1,5 @@
 PORTNAME=	opengrok
-PORTVERSION=	1.4.9
+PORTVERSION=	1.5.12
 CATEGORIES=	devel java
 MASTER_SITES=	https://github.com/oracle/opengrok/releases/download/${PORTVERSION}/
 
@@ -25,7 +25,7 @@ RUN_DEPENDS=	uctags:devel/universal-ctags
 USES=		cpe
 CPE_VENDOR=	oracle
 USE_JAVA=	yes
-JAVA_VERSION=	1.8+
+JAVA_VERSION=	11+
 SHAREOWN=	www
 SHAREGRP=	www
 NO_BUILD=	yes
@@ -56,68 +56,73 @@ TOMCAT9_BUILD_DEPENDS=	${WEBAPP_HOME}/bin/bootstrap.jar:www/tomcat9
 TOMCAT9_RUN_DEPENDS=	${WEBAPP_HOME}/bin/bootstrap.jar:www/tomcat9
 
 JARFILE=	${DATADIR}/opengrok.jar
-LIBFILES=	hk2-api-2.6.1.jar \
-lucene-queryparser-8.6.2.jar \
-classgraph-4.8.69.jar \
-webjars-locator-core-0.46.jar \
+LIBFILES=	activation-1.1.1.jar \
+jaxb-impl-2.3.0.jar \
+jackson-module-jaxb-annotations-2.10.1.jar \
+jakarta.validation-api-2.0.2.jar \
+lucene-highlighter-8.8.0.jar \
+opengrok-1.5.12.jar \
+jersey-hk2-2.30.1.jar \
 LatencyUtils-2.0.3.jar \
 simpleclient-0.8.1.jar \
-jersey-server-2.30.1.jar \
-org.suigeneris.jrcs.rcs-0.4.2.jar \
-hibernate-validator-6.0.17.Final.jar \
-commons-compress-1.19.jar \
-jakarta.el-api-3.0.3.jar \
-lucene-analyzers-common-8.6.2.jar \
-jakarta.validation-api-2.0.2.jar \
-jersey-media-jaxb-2.30.1.jar \
-lucene-core-8.6.2.jar \
-jersey-media-json-jackson-2.30.1.jar \
-jersey-hk2-2.30.1.jar \
-org.suigeneris.jrcs.diff-0.4.2.jar \
-javassist-3.25.0-GA.jar \
-micrometer-registry-statsd-1.5.4.jar \
-jackson-module-jaxb-annotations-2.10.1.jar \
-jersey-client-2.30.1.jar \
-jakarta.el-3.0.2.jar \
-micrometer-registry-prometheus-1.5.4.jar \
-commons-lang3-3.9.jar \
-HdrHistogram-2.1.12.jar \
-jackson-annotations-2.10.1.jar \
-jackson-databind-2.10.1.jar \
-lucene-join-8.6.2.jar \
-jersey-common-2.30.1.jar \
-jakarta.activation-api-1.2.1.jar \
-ant-launcher-1.10.1.jar \
-jakarta.annotation-api-1.3.5.jar \
-cron-utils-7.0.2.jar \
-bcel-6.4.1.jar \
-jakarta.inject-2.6.1.jar \
-slf4j-api-1.7.29.jar \
 jakarta.xml.bind-api-2.3.2.jar \
-jaxb-impl-2.3.0.jar \
-activation-1.1.1.jar \
-jakarta.ws.rs-api-2.1.6.jar \
-hk2-locator-2.6.1.jar \
-jersey-bean-validation-2.30.1.jar \
-lucene-queries-8.6.2.jar \
-jboss-logging-3.3.2.Final.jar \
-lucene-highlighter-8.6.2.jar \
-lucene-sandbox-8.6.2.jar \
+ant-launcher-1.10.9.jar \
 jackson-core-2.10.0.jar \
-jaxb-api-2.3.0.jar \
-lucene-backward-codecs-8.6.2.jar \
-opengrok-1.4.9.jar \
-hk2-utils-2.6.1.jar \
+jboss-logging-3.3.2.Final.jar \
+bcel-6.4.1.jar \
+lucene-join-8.8.0.jar \
+jersey-client-2.30.1.jar \
 simpleclient_common-0.8.1.jar \
-ant-1.10.1.jar \
-aopalliance-repackaged-2.6.1.jar \
-jersey-entity-filtering-2.30.1.jar \
-lucene-memory-8.6.2.jar \
-lucene-suggest-8.6.2.jar \
-jaxb-core-2.3.0.jar \
-osgi-resource-locator-1.0.3.jar \
+lucene-backward-codecs-8.8.0.jar \
+hibernate-validator-6.0.17.Final.jar \
+ant-1.10.9.jar \
+commons-lang3-3.9.jar \
+hk2-api-2.6.1.jar \
 micrometer-core-1.5.4.jar \
-classmate-1.3.4.jar
+jersey-media-json-jackson-2.30.1.jar \
+classmate-1.3.4.jar \
+classgraph-4.8.69.jar \
+org.suigeneris.jrcs.diff-0.4.2.jar \
+jaxb-api-2.3.0.jar \
+jaxb-core-2.3.0.jar \
+hk2-utils-2.6.1.jar \
+lucene-suggest-8.8.0.jar \
+jersey-server-2.30.1.jar \
+lucene-queries-8.8.0.jar \
+lucene-sandbox-8.8.0.jar \
+micrometer-registry-statsd-1.5.4.jar \
+jakarta.el-api-3.0.3.jar \
+slf4j-api-1.7.29.jar \
+micrometer-registry-prometheus-1.5.4.jar \
+jersey-media-jaxb-2.30.1.jar \
+lucene-analyzers-common-8.8.0.jar \
+jersey-bean-validation-2.30.1.jar \
+osgi-resource-locator-1.0.3.jar \
+jakarta.activation-1.2.1.jar \
+annotations-20.1.0.jar \
+hk2-locator-2.6.1.jar \
+commons-compress-1.19.jar \
+javassist-3.25.0-GA.jar \
+javax.el-3.0.0.jar \
+jakarta.annotation-api-1.3.5.jar \
+org.suigeneris.jrcs.rcs-0.4.2.jar \
+jakarta.el-3.0.2.jar \
+jakarta.activation-api-1.2.1.jar \
+HdrHistogram-2.1.12.jar \
+jackson-databind-2.10.1.jar \
+jackson-annotations-2.10.1.jar \
+jersey-common-2.30.1.jar \
+cron-utils-9.1.3.jar \
+opengrok.jar \
+webjars-locator-core-0.46.jar \
+lucene-memory-8.8.0.jar \
+lucene-queryparser-8.8.0.jar \
+aopalliance-repackaged-2.6.1.jar \
+jakarta.inject-2.6.1.jar \
+lucene-core-8.8.0.jar \
+jersey-entity-filtering-2.30.1.jar \
+jakarta.ws.rs-api-2.1.6.jar
+
 
 WEBAPPS_DIR=	${WEBAPP_HOME:S|^${LOCALBASE}/||}/webapps
 
@@ -133,7 +138,7 @@ do-install:
 		${STAGEDIR}${PREFIX}/${WEBAPPS_DIR}/${PORTNAME})
 	(cd ${STAGEDIR}${PREFIX}/${WEBAPPS_DIR}/${PORTNAME}/WEB-INF && \
 		${MV} web.xml web.xml.sample)
-	${INSTALL_DATA} ${LIBFILES:S,^,${WRKSRC}/lib/lib/,} \
+	${INSTALL_DATA} ${LIBFILES:S,^,${WRKSRC}/lib/,} \
 		${STAGEDIR}${DATADIR}/lib/
 	${INSTALL_DATA} ${WRKSRC}/lib/opengrok.jar ${STAGEDIR}${DATADIR}/
 	${INSTALL_DATA} ${WRKSRC}/lib/source.war ${STAGEDIR}${DATADIR}/
