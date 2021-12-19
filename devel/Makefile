@@ -146,6 +146,7 @@ SUBDIR += hwloc2
 SUBDIR += hyperscan
 SUBDIR += icu
 SUBDIR += imake
+SUBDIR += isl
 SUBDIR += jam
 SUBDIR += jansson
 SUBDIR += jech-dht
