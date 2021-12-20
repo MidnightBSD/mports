@@ -116,6 +116,7 @@ SUBDIR += linuxsampler
 SUBDIR += lv2
 SUBDIR += madplay
 SUBDIR += mikmod
+SUBDIR += moc
 SUBDIR += mpdcon
 SUBDIR += mpg123
 SUBDIR += musescore

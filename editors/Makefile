@@ -19,6 +19,7 @@ SUBDIR += nano
 SUBDIR += nvi-devel
 SUBDIR += pico-alpine
 SUBDIR += sublime-text4
+SUBDIR += ted
 SUBDIR += vim
 SUBDIR += xed
 SUBDIR += xnedit

@@ -1,0 +1,5 @@
+share/licenses/bgs-0.8/catalog.mk
+share/licenses/bgs-0.8/mit
+share/licenses/bgs-0.8/LICENSE
+@dir share/licenses/bgs-0.8
+@dir share/licenses

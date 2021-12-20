@@ -3,6 +3,7 @@ COMMENT = Ports to support the X window system
 SUBDIR += appres
 SUBDIR += babl
 SUBDIR += beforelight
+SUBDIR += bgs
 SUBDIR += bitmap
 SUBDIR += cinnamon
 SUBDIR += cinnamon-desktop
