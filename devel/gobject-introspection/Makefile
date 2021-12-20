@@ -1,7 +1,7 @@
 # Created by: Alexander Logvinov <avl@FreeBSD.org>
 
 PORTNAME=	gobject-introspection
-PORTVERSION=	1.66.1
+DISTVERSION=	1.70.0
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
