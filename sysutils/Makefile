@@ -4,6 +4,7 @@ SUBDIR += 915resolution
 SUBDIR += LPRng
 SUBDIR += accountsservice
 SUBDIR += amazon-ssm-agent
+SUBDIR += ansible
 SUBDIR += apachetop
 SUBDIR += b43-fwcutter
 SUBDIR += bacula9-client
