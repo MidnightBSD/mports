@@ -1,8 +1,9 @@
 PORTNAME=	node
 DISTVERSIONPREFIX=	v
-DISTVERSION=	17.0.1
+DISTVERSION=	16.2.0
+PKGNAMESUFFIX=	16
 CATEGORIES=	www
-MASTER_SITES=	https://nodejs.org/dist/v${DISTVERSION}/
+MASTER_SITES=	http://nodejs.org/dist/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V8 JavaScript for client and server
@@ -11,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_SSL=		libressl libressl-devel
-BROKEN_SSL_REASON=	Node.js 17.x requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
+BROKEN_SSL_REASON=	Node.js 16.x requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
 ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 
 OPTIONS_DEFINE=		BUNDLED_SSL DOCS NLS
@@ -56,9 +57,9 @@ MAKE_ENV+=	CC.host=${CC} CFLAGS.host="${CFLAGS}" \
 		LINK.host=${CXX} LDFLAGS.host="${LDFLAGS}"
 
 BUILD_DEPENDS+=	brotli>=1.0.9,1:archivers/brotli \
-		c-ares>=1.17.2:dns/c-ares \
-		libuv>=1.42.0:devel/libuv \
-		libnghttp2>=1.45.1:www/libnghttp2 \
+		c-ares>=1.17.1:dns/c-ares \
+		libuv>=1.41.0:devel/libuv \
+		libnghttp2>=1.42.0:www/libnghttp2 \
 		objdump:devel/binutils
 LIB_DEPENDS+=	libbrotlidec.so:archivers/brotli \
 		libcares.so:dns/c-ares \
