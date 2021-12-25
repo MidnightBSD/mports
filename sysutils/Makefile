@@ -143,6 +143,7 @@ SUBDIR += polkit-qt
 SUBDIR += powerdxx
 SUBDIR += py-ansible-base
 SUBDIR += py-ansible-core
+SUBDIR += py-ansible-lint
 SUBDIR += py-ansible-runner
 SUBDIR += py-distro
 SUBDIR += py-docker
