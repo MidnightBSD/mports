@@ -529,14 +529,14 @@ _LOAD_${EXT:tu}_EXT=	yes
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux xorg fortran \
 		gcc fmake gmake bison local perl5 \
-		ada apache autotools bdb cabal cargo cmake cpe cran display dos2unix \
+		ada ansible apache autotools bdb cabal cargo cmake cpe cran display dos2unix \
 		efl eigen emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
 		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde4 \
 		ldap libarchive libedit libtool localbase lua \
 		metaport makeself meson mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt readline ruby samba scons sdl sqlite ssl \
-		tar tcl tk tex uniquefiles wx xfce zip 7z
+		tar tcl tk tex trigger uniquefiles wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
 .  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php")
