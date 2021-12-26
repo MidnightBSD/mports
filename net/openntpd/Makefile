@@ -1,6 +1,6 @@
 PORTNAME=	openntpd
 PORTVERSION=	6.8p1
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	2
 CATEGORIES=	net
 MASTER_SITES=	OPENBSD/OpenNTPD
@@ -43,9 +43,9 @@ post-install:
 .if ${SSL_DEFAULT:Mlibressl*}
 #	/* empty */
 
-# Drop after FreeBSD 11 EOL: requires libtls from LibreSSL
+# Drop after MidnightBSD 2.1 EOL: requires libtls from LibreSSL
 .elif ${SSL_DEFAULT:Mbase} && exists(/usr/include/openssl/ssl23.h)
-BUILD_DEPENDS+=		${NONEXISTENT}:security/libressl:stage
+BUILD_DEPENDS+=		${NONEXISTENT}:security/libressl:fake
 CPPFLAGS+=		-I${WRKDIR}/libressl/include
 LDFLAGS+=		-L${WRKDIR}/libressl/lib
 
