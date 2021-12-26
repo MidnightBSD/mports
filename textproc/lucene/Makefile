@@ -14,10 +14,10 @@ LICENSE=	apache2
 
 CONFLICTS=	lucene4-[0-9].*
 
-USES=		tar:tgz
+USES=		cpe tar:tgz
 USE_JAVA=	yes
 NO_BUILD=	yes
-JAVA_VERSION=	1.6+
+CPE_VENDOR=	apache
 
 OPTIONS_DEFINE=	CONTRIB DOCS EXAMPLES
 CONTRIB_DESC=	Install contributed jars
