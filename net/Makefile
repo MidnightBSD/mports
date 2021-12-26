@@ -146,6 +146,7 @@ SUBDIR += qt5-network
 SUBDIR += qt5-networkauth
 SUBDIR += rabbitmq
 SUBDIR += rabbitmq-c
+SUBDIR += rclone
 SUBDIR += rdesktop
 SUBDIR += remotedesk
 SUBDIR += rsync
