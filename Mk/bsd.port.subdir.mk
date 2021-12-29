@@ -1,7 +1,7 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
-# for building ports subdirectories.
+# for building mports subdirectories.
 #
 #
 # +++ variables +++
@@ -33,7 +33,7 @@
 #	tags
 #
 #	search:
-#		Search for ports using either 'make search key=<keyword>'
+#		Search for mports using either 'make search key=<keyword>'
 #		or 'make search name=<keyword>'.
 
 PORTSDIR?=		/usr/mports
@@ -50,7 +50,7 @@ INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 # Ensure .CURDIR contains an absolute path without a trailing slash.  Failed
 # builds can occur when PORTSDIR is a symbolic link, or with something like
-# make -C /usr/ports/category/port/.
+# make -C /usr/mports/category/port/.
 .CURDIR:=		${.CURDIR:tA}
 
 .include "${PORTSDIR}/Mk/components/commands.mk"
@@ -137,7 +137,7 @@ UID!=	${ID} -u
 .endif
 _EXPORTED_VARS+=	UID
 
-# local customization of the ports tree
+# local customization of the mports tree
 .sinclude "${.CURDIR}/Makefile.local"
 
 TARGETS+=	all
@@ -320,7 +320,7 @@ port-symlen:
 .if !target(readmes)
 .if defined(PORTSTOP)
 readmes: readme ${SUBDIR:S/^/_/:S/$/.readmes/}
-	@${ECHO_MSG} "===>   Creating README.html for all ports"
+	@${ECHO_MSG} "===>   Creating README.html for all mports"
 	@perl ${PORTSDIR}/Tools/make_readmes < ${INDEXDIR}/${INDEXFILE}
 .else
 readmes: readme
