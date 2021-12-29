@@ -1,7 +1,7 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	doh-proxy
-DISTVERSION=	0.1.19
+DISTVERSION=	0.1.21
 PORTREVISION=	1
 CATEGORIES=	dns
 
