@@ -2,7 +2,8 @@ PORTNAME=	c-ares
 PORTVERSION=	1.17.2
 PORTREVISION=	0
 CATEGORIES=	dns
-MASTER_SITES=	https://c-ares.haxx.se/download/ \
+MASTER_SITES=	https://c-ares.org/download/ \
+		https://c-ares.haxx.se/download/ \
 		ZI
 
 MAINTAINER=	ports@MidnightBSD.org

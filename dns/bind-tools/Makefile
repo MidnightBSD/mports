@@ -1,12 +1,18 @@
 # Define PORTREVISION in ${MASTERDIR}
+.ifdef BIND_TOOLS_DEVEL
+MASTERDIR=	${.CURDIR}/../../dns/bind9-devel
+
+PLIST=		${.CURDIR}/pkg-plist-devel
+.else
 MASTERDIR=	${.CURDIR}/../../dns/bind916
 
-DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
-PKGINSTALL=	/nonexistent
+INSTALL_WRKSRC=	${WRKSRC}/bin
+.endif
+DESCR=		${.CURDIR}/pkg-descr
 
 BIND_TOOLS_SLAVE=	YES
 
-INSTALL_WRKSRC=	${WRKSRC}/bin
+PORTSCOUT=	ignore:1
 
 .include "${MASTERDIR}/Makefile"
