@@ -1,0 +1,3 @@
+To setup openrasp for a spring boot app
+
+java -javaagent:"/usr/local/share/openrasp/rasp.jar" -jar springboot.jar

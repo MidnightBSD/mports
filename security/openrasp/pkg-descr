@@ -1,0 +1,5 @@
+OpenRASP directly integrates its protection engine into the application server by instrumentation. 
+
+It can monitor various events including database queries, file operations and network requests etc.
+
+WWW: https://github.com/baidu/openrasp
