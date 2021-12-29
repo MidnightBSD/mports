@@ -114,6 +114,7 @@ SUBDIR += libpotrace
 SUBDIR += libqrencode
 SUBDIR += libraw
 SUBDIR += librsvg2
+SUBDIR += librsvg2-rust
 SUBDIR += libnsbmp
 SUBDIR += libnsgif
 SUBDIR += libspiro
