@@ -17,6 +17,7 @@ while(<>) {
 	
 
 	$DESCR=~s|^\Q$PORT/\E||;
+	$PORT=~s|/usr/mports/||;
 	$PORT=~s|`pwd`||;
 
 	if($WEBSITE) {
