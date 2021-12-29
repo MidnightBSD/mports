@@ -25,6 +25,7 @@ USES=		compiler:c++17-lang gmake localbase pathfix pkgconfig python:build \
 USE_LDCONFIG=	yes
 SP_VER=		78
 HAS_CONFIGURE=	yes
+USE_GCC=	yes
 
 WRKSRC=			${WRKDIR}/firefox-${DISTVERSION}
 PATCH_WRKSRC=		${WRKDIR}/firefox-${DISTVERSION}/
@@ -72,12 +73,14 @@ CC=		${LOCALBASE}/bin/clang${LLVM_DEFAULT}
 CXX=		${LOCALBASE}/bin/clang++${LLVM_DEFAULT}
 BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 .if ${LLVM_DEFAULT:M[678]0}
-BROKEN=		LLVM 9.0 or higher required
+#BROKEN=		LLVM 9.0 or higher required
 .endif
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/js/moz.configure
+	${REINPLACE_CMD} -e 's|midnightbsd"\$UNAME_RELEASE"|freebsd11.4|g' \
+		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
 
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/lib/libjs_static.ajs
