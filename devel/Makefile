@@ -987,6 +987,7 @@ SUBDIR += py-typing-inspect
 SUBDIR += py-ujson
 SUBDIR += py-unicodedata2
 SUBDIR += py-unittest2
+SUBDIR += py-usb
 SUBDIR += py-virtualenv
 SUBDIR += py-wcwidth
 SUBDIR += py-websockets
