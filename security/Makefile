@@ -206,6 +206,7 @@ SUBDIR += xspy
 SUBDIR += yafic
 SUBDIR += ykclient
 SUBDIR += ykpers
+SUBDIR += yubico-piv-tool
 SUBDIR += yubikey-agent
 SUBDIR += zebedee
 
