@@ -1,25 +1,26 @@
+# Created by: Leo Vandewoestijne <freebsd@dns.company>
+
 PORTNAME=	knot
-DISTVERSION=	2.9.8
+DISTVERSION=	3.0.3
 CATEGORIES=	dns
 MASTER_SITES=	https://secure.nic.cz/files/knot-dns/ \
 		https://dns.company/downloads/knot-dns/
-PKGNAMESUFFIX?=	2
+PKGNAMESUFFIX?=	3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	High performance authoritative-only DNS server
+COMMENT=	High performance authoritative-only DNS server
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	knot-1.* knot1-[0-6].*
-
-BUILD_DEPENDS=	autoconf>=2.65:devel/autoconf \
-		gsed:textproc/gsed
-
+BUILD_DEPENDS=	gsed:textproc/gsed
 LIB_DEPENDS=	libgnutls.so:security/gnutls \
-		liblmdb.so:databases/lmdb
+		liblmdb.so:databases/lmdb \
+		libnghttp2.so:www/libnghttp2
 
-USES=		libtool localbase pkgconfig tar:xz
+USES=		alias autoreconf libtool localbase pkgconfig tar:xz
+
+CONFLICTS=	knot-1.* knot1-[0-6].* knot2-[0-9].*
 
 HAS_CONFIGURE=	yes
 BINARY_ALIAS=	sed=${LOCALBASE}/bin/gsed
@@ -30,10 +31,11 @@ CONFIGURE_ARGS=	--enable-recvmmsg=no \
 .if !defined(UTILS_ONLY) && !defined(LIB_ONLY)
 CONFIGURE_ARGS+=	--with-rundir=/var/run/knot \
 			--with-storage=/var/db/knot
+LIB_DEPENDS+=	liburcu.so:sysutils/liburcu
 USE_RC_SUBR=	${PORTNAME}
+#PLIST_FILES=	etc/rc.d/${PORTNAME}
 SUB_FILES=	pkg-message
 USES+=		libedit
-LIB_DEPENDS+=	liburcu.so:sysutils/liburcu
 .endif
 
 .if defined(UTILS_ONLY) || defined(LIB_ONLY)
@@ -52,7 +54,7 @@ USERS=		knot
 GROUPS=		knot
 SUB_LIST+=	USERS="${USERS}" GROUPS="${GROUPS}"
 
-PORTDOCS=	COPYING NEWS README
+PORTDOCS=	COPYING NEWS
 
 OPTIONS_DEFINE=			DNSTAP DOCS
 
@@ -69,6 +71,7 @@ DNSTAP_CONFIGURE_ENABLE=	dnstap
 DNSTAP_CONFIGURE_WITH=		module-dnstap=yes
 DNSTAP_LIB_DEPENDS=		libprotobuf-c.so:devel/protobuf-c \
 				libfstrm.so:devel/fstrm
+
 # XXX: because `kdig_CPPFLAGS += $(DNSTAP_CFLAGS)' line is missing from
 # `src/Makefile.am' file (and thus pre-generated `src/Makefile.in') which
 # should contain "$libfstrm_CFLAGS $libprotobuf_c_CFLAGS" set by configure
@@ -83,7 +86,7 @@ FASTPARSER_CONFIGURE_ENABLE=	fastparser
 
 IDN_CONFIGURE_WITH=		libidn
 IDN_CONFIGURE_OFF=		--without-libidn
-IDN_LIB_DEPENDS=		libidn2.so:dns/libidn2
+#IDN_LIB_DEPENDS=		libidn2.so:dns/libidn2
 
 MAXMINDDB_DESC=			Enable MaxMind for geodb module
 MAXMINDDB_LIB_DEPENDS=		libmaxminddb.so:net/libmaxminddb
@@ -93,7 +96,6 @@ MAXMINDDB_CONFIGURE_ENABLE=	maxminddb
 
 .if ${ARCH} == i386
 USES+=				autoreconf
-EXTRA_PATCHES+=			${PATCHDIR}/extrapatch-configure.ac
 .endif
 
 post-patch:
@@ -102,7 +104,7 @@ post-patch:
 		${WRKSRC}/src/Makefile.in
 	@${REINPLACE_CMD} 's|$$(INSTALL) -d $$(DESTDIR)/\@storage_dir\@|#$$(INSTALL) -d $$(DESTDIR)/\@storage_dir\@|' \
 		${WRKSRC}/src/Makefile.in
-	-${RM} -r ${WRKSRC}/src/zscanner/scanner.c
+	@${RM} -r ${WRKSRC}/src/zscanner/scanner.c
 .endif
 
 post-install:
