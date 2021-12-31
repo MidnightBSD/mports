@@ -213,22 +213,22 @@ do-build:
 
 do-install:
 	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py install --jobs=${MAKE_JOBS_NUMBER}
+		${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${PYTHON_CMD} x.py install --jobs=${MAKE_JOBS_NUMBER}
 # We autogenerate the plist file.  We do that, instead of the
 # regular pkg-plist, because several libraries have a computed
 # filename based on the absolute path of the source files.  As it
 # is user-specific, we cannot know their filename in advance.
-	-${RM} -r ${STAGEDIR}${DOCSDIR}/*.old \
-		${STAGEDIR}${DOCSDIR}/html/.lock \
-		${STAGEDIR}${DOCSDIR}/html/.stamp \
-		${STAGEDIR}${PREFIX}/lib/rustlib/install.log \
-		${STAGEDIR}${PREFIX}/lib/rustlib/manifest-* \
-		${STAGEDIR}${PREFIX}/lib/rustlib/uninstall.sh
-	@${FIND} ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${PREFIX}/lib \
-		${STAGEDIR}${PREFIX}/libexec -exec ${FILE} -i {} + | \
+	-${RM} -r ${DOCSDIR}/*.old \
+		${DOCSDIR}/html/.lock \
+		${DOCSDIR}/html/.stamp \
+		${PREFIX}/lib/rustlib/install.log \
+		${PREFIX}/lib/rustlib/manifest-* \
+		${PREFIX}/lib/rustlib/uninstall.sh
+	@${FIND} ${PREFIX}/bin ${PREFIX}/lib \
+		${PREFIX}/libexec -exec ${FILE} -i {} + | \
 		${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
-	@${FIND} ${STAGEDIR}${PREFIX} -not -type d | \
-		${SED} -E -e 's,^${STAGEDIR}${PREFIX}/,,' \
+	@${FIND} ${PREFIX} -not -type d | \
+		${SED} -E -e 's,^${FAKE_DESTDIR}${TRUE_PREFIX}/,,' \
 			-e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 post-install-DOCS-on:
