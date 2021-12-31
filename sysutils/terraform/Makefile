@@ -195,6 +195,8 @@ GH_TUPLE=	Azure:azure-sdk-for-go:v52.5.0:azure_azure_sdk_for_go/vendor/github.co
 
 PLIST_FILES=	bin/${PORTNAME}
 
+NO_TEST=	yes
+
 post-extract:
 	@${RM} -r ${WRKSRC}/vendor/cloud.google.com/go/storage
 	@${RLN} ${WRKSRC_googleapis_google_cloud_go_storage}/storage ${WRKSRC}/vendor/cloud.google.com/go/storage
