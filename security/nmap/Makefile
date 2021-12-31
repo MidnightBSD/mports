@@ -1,5 +1,5 @@
 PORTNAME=	nmap
-DISTVERSION=	7.70
+DISTVERSION=	7.91
 PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	https://nmap.org/dist/ \
@@ -12,8 +12,10 @@ COMMENT?=	Port scanning utility for large networks
 # https://nmap.org/book/man-legal.html
 # Install the nmap modified license because of
 # http://insecure.org/news/download-com-fiasco.html
-LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	NPSL
+LICENSE_NAME=	Nmap Public Source License
+LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror pkg-sell
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 .if !defined(MASTERDIR)
 
@@ -53,6 +55,15 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 # XXX limit results if we do a grep in the sources!
 post-extract:
 	@${RM} -r ${WRKSRC}/mswin32
+
+.if exists(/usr/lib/libibverbs.a)
+# Link with libibverbs is needed by static libpcap
+post-patch-PCAP-on:
+	@${REINPLACE_CMD} -E -e "s|(PCAP_LIBS=['\"].*)(['\"])$$|\1 -libverbs\2|" \
+		${WRKSRC}/configure \
+		${WRKSRC}/nping/configure \
+		${WRKSRC}/ncat/configure
+.endif
 
 post-configure:
 	@${REINPLACE_CMD} -e "s|^DESTDIR *=|& ${DESTDIR}|" ${WRKSRC}/Makefile
