@@ -1,15 +1,11 @@
---- src/bootstrap/native.rs.orig	2021-09-06 14:42:35.000000000 -0400
-+++ src/bootstrap/native.rs	2021-12-31 03:24:28.230834000 -0500
-@@ -380,6 +380,8 @@
-             cfg.define("CMAKE_SYSTEM_NAME", "NetBSD");
-         } else if target.contains("freebsd") {
-             cfg.define("CMAKE_SYSTEM_NAME", "FreeBSD");
-+        } else if target.contains("midnightbsd") {
-+            cfg.define("CMAKE_SYSTEM_NAME", "FreeBSD");
-         } else if target.contains("windows") {
-             cfg.define("CMAKE_SYSTEM_NAME", "Windows");
-         } else if target.contains("haiku") {
-@@ -561,26 +563,9 @@
+There seems to be some kind of race when using llvm-config-wrapper
+for building rust-lld.  Attempt to improve reliability of the build
+by not using it.  llvm-config-wrapper is a hack in the first place
+that is only really needed on Windows.
+
+--- src/bootstrap/native.rs.orig	2020-08-24 15:00:49 UTC
++++ src/bootstrap/native.rs
+@@ -517,26 +522,9 @@ impl Step for Lld {
          let mut cfg = cmake::Config::new(builder.src.join("src/llvm-project/lld"));
          configure_cmake(builder, target, &mut cfg, true);
  
@@ -37,11 +33,3 @@
              .define("LLVM_INCLUDE_TESTS", "OFF");
  
          // While we're using this horrible workaround to shim the execution of
-@@ -812,6 +797,7 @@
-         "x86_64-apple-darwin" => darwin_libs("osx", &["asan", "lsan", "tsan"]),
-         "x86_64-fuchsia" => common_libs("fuchsia", "x86_64", &["asan"]),
-         "x86_64-unknown-freebsd" => common_libs("freebsd", "x86_64", &["asan", "msan", "tsan"]),
-+        "x86_64-unknown-midnightbsd" => common_libs("freebsd", "x86_64", &["asan", "msan", "tsan"]),
-         "x86_64-unknown-linux-gnu" => {
-             common_libs("linux", "x86_64", &["asan", "lsan", "msan", "tsan"])
-         }
