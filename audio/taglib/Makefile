@@ -23,7 +23,7 @@ CMAKE_ON=	VISIBILITY_HIDDEN \
 		WITH_ASF \
 		WITH_MP4
 
-OPTIONS_DEFINE=	RCC STATIC TEST
+OPTIONS_DEFINE=	RCC STATIC
 OPTIONS_SUB=	yes
 
 # The official patches for this can be obtained from:
@@ -36,10 +36,7 @@ RCC_EXTRA_PATCHES=	${FILESDIR}/extrapatch-rcc
 
 STATIC_CMAKE_BOOL_OFF=	BUILD_SHARED_LIBS
 
-TEST_BUILD_DEPENDS=	cppunit-config:devel/cppunit
-TEST_CMAKE_BOOL=	BUILD_TESTS
-TEST_TARGET=		check
-TEST_IMPLIES=		STATIC
+NO_TEST=	yes
 
 post-patch-RCC-on:
 	@${REINPLACE_CMD} -e 's|-ltag|-ltag -lrcc|g' \
