@@ -1,5 +1,3 @@
-
-
 PORTNAME=	freedesktop-sound-theme
 PORTVERSION=	0.8
 CATEGORIES=	audio gnome
@@ -11,7 +9,7 @@ COMMENT=	Sound theme based on the FreeDesktop specification
 
 LICENSE=	unknown
 
-USES=		gettext-tools gmake tar:bzip2
+USES=		gettext-tools gmake gnome tar:bzip2
 USE_GNOME=	intlhack
 GNU_CONFIGURE=	yes
 
