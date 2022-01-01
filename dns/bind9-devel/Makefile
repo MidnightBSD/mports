@@ -174,6 +174,8 @@ START_LATE_SUB_LIST_OFF=	NAMED_BEFORE="SERVERS" \
 
 TCP_FASTOPEN_CONFIGURE_ENABLE=	tcp-fastopen
 
+WRKSRC=	${WRKDIR}/bind9-e112afa15668bd3b1baed59df2d21e01b46da15e
+
 .include <bsd.mport.options.mk>
 
 .if defined(WITH_DEBUG)
