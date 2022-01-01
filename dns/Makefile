@@ -10,6 +10,7 @@ SUBDIR += bindgraph
 SUBDIR += c-ares
 SUBDIR += ddclient
 SUBDIR += dnsmasq
+SUBDIR += dog
 SUBDIR += doh-proxy
 SUBDIR += erlang-idna
 SUBDIR += idnkit
