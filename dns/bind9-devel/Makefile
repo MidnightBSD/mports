@@ -36,7 +36,6 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 # EXPIRATION_DATE=	XXX-12-31
 
 LICENSE=	mpl
-LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=	libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2 \
