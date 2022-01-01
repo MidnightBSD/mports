@@ -17,6 +17,7 @@ SUBDIR += flite
 SUBDIR += fluidsynth
 SUBDIR += freealut
 SUBDIR += freedesktop-sound-theme
+SUBDIR += gnome-podcasts
 SUBDIR += gnustep-cdplayer
 SUBDIR += gsm
 SUBDIR += gsound
