@@ -1,5 +1,5 @@
 PORTNAME=	rust-analyzer
-DISTVERSION=	2020-05-04
+DISTVERSION=	2021-09-06
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,164 +10,161 @@ LICENSE_COMB=	dual
 
 USES=		cargo
 USE_GITHUB=	yes
-GH_TUPLE=	rust-lang:chalk:2c072cc830d04af5f10b390e6643327f85108282:chalkderive
-CARGO_CRATES=	aho-corasick-0.7.10 \
-		anyhow-1.0.28 \
+
+CARGO_CRATES=	addr2line-0.16.0 \
+		adler-1.0.2 \
+		always-assert-0.1.2 \
+		ansi_term-0.12.1 \
+		anyhow-1.0.43 \
 		anymap-0.12.1 \
-		arrayvec-0.5.1 \
+		arbitrary-1.0.2 \
+		arrayvec-0.7.1 \
 		atty-0.2.14 \
-		autocfg-1.0.0 \
-		backtrace-0.3.46 \
-		backtrace-sys-0.1.37 \
-		base64-0.12.0 \
-		bitflags-1.2.1 \
-		bstr-0.2.12 \
-		cargo_metadata-0.9.1 \
-		cc-1.0.52 \
-		cfg-if-0.1.10 \
-		clicolors-control-1.0.1 \
-		cloudabi-0.0.3 \
-		console-0.10.3 \
-		crossbeam-0.7.3 \
-		crossbeam-channel-0.4.2 \
-		crossbeam-deque-0.7.3 \
-		crossbeam-epoch-0.8.2 \
-		crossbeam-queue-0.2.1 \
-		crossbeam-utils-0.7.2 \
-		difference-2.0.0 \
-		drop_bomb-0.1.4 \
-		dtoa-0.4.5 \
-		either-1.5.3 \
-		ena-0.13.1 \
+		autocfg-1.0.1 \
+		backtrace-0.3.61 \
+		bitflags-1.3.2 \
+		camino-1.0.5 \
+		cargo-platform-0.1.2 \
+		cargo_metadata-0.14.0 \
+		cc-1.0.70 \
+		cfg-if-1.0.0 \
+		chalk-derive-0.70.0 \
+		chalk-ir-0.70.0 \
+		chalk-recursive-0.70.0 \
+		chalk-solve-0.70.0 \
+		countme-2.0.4 \
+		cov-mark-2.0.0-pre.1 \
+		crc32fast-1.2.1 \
+		crossbeam-channel-0.5.1 \
+		crossbeam-deque-0.8.1 \
+		crossbeam-epoch-0.9.5 \
+		crossbeam-utils-0.8.5 \
+		dashmap-4.0.2 \
+		derive_arbitrary-1.0.2 \
+		dissimilar-1.0.2 \
+		dot-0.1.4 \
+		drop_bomb-0.1.5 \
+		either-1.6.1 \
 		ena-0.14.0 \
-		encode_unicode-0.3.6 \
-		env_logger-0.7.1 \
-		filetime-0.2.9 \
-		fixedbitset-0.1.9 \
-		fnv-1.0.6 \
-		fs_extra-1.1.0 \
-		fsevent-0.4.0 \
-		fsevent-sys-2.0.1 \
-		fst-0.4.3 \
-		fuchsia-zircon-0.3.3 \
-		fuchsia-zircon-sys-0.3.3 \
-		getrandom-0.1.14 \
-		globset-0.4.5 \
-		goblin-0.2.1 \
-		heck-0.3.1 \
-		hermit-abi-0.1.12 \
-		idna-0.2.0 \
-		indexmap-1.3.2 \
-		inotify-0.7.0 \
-		inotify-sys-0.1.3 \
-		insta-0.16.0 \
-		iovec-0.1.4 \
-		itertools-0.9.0 \
-		itoa-0.4.5 \
-		jemalloc-ctl-0.3.3 \
-		jemalloc-sys-0.3.2 \
-		jemallocator-0.3.2 \
-		jod-thread-0.1.1 \
-		kernel32-sys-0.2.2 \
+		expect-test-1.1.0 \
+		filetime-0.2.15 \
+		fixedbitset-0.2.0 \
+		flate2-1.0.21 \
+		form_urlencoded-1.0.1 \
+		fs_extra-1.2.0 \
+		fsevent-sys-4.0.0 \
+		fst-0.4.7 \
+		gimli-0.25.0 \
+		hashbrown-0.11.2 \
+		heck-0.3.3 \
+		hermit-abi-0.1.19 \
+		home-0.5.3 \
+		idna-0.2.3 \
+		indexmap-1.7.0 \
+		inotify-0.9.3 \
+		inotify-sys-0.1.5 \
+		instant-0.1.10 \
+		itertools-0.10.1 \
+		itoa-0.4.8 \
+		jod-thread-0.1.2 \
+		kqueue-1.0.4 \
+		kqueue-sys-1.0.3 \
 		lazy_static-1.4.0 \
-		lazycell-1.2.1 \
-		libc-0.2.69 \
-		libloading-0.6.1 \
-		linked-hash-map-0.5.2 \
-		lock_api-0.3.4 \
-		log-0.4.8 \
-		lsp-server-0.3.1 \
-		lsp-types-0.74.1 \
-		matches-0.1.8 \
-		maybe-uninit-2.0.0 \
-		memchr-2.3.3 \
-		memmap-0.7.0 \
-		memoffset-0.5.4 \
-		mio-0.6.22 \
-		mio-extras-2.0.6 \
-		miow-0.2.1 \
-		net2-0.2.34 \
-		notify-4.0.15 \
+		libc-0.2.99 \
+		libloading-0.7.0 \
+		libmimalloc-sys-0.1.22 \
+		lock_api-0.4.5 \
+		log-0.4.14 \
+		lsp-server-0.5.2 \
+		lsp-types-0.89.2 \
+		matchers-0.0.1 \
+		matches-0.1.9 \
+		memchr-2.4.1 \
+		memmap2-0.3.1 \
+		memoffset-0.6.4 \
+		mimalloc-0.1.26 \
+		miniz_oxide-0.4.4 \
+		mio-0.7.13 \
+		miow-0.3.7 \
+		notify-5.0.0-pre.12 \
+		ntapi-0.3.6 \
 		num_cpus-1.13.0 \
-		once_cell-1.3.1 \
-		ordermap-0.3.5 \
-		parking_lot-0.10.2 \
-		parking_lot_core-0.7.2 \
-		paste-0.1.11 \
-		paste-impl-0.1.11 \
+		object-0.26.2 \
+		once_cell-1.8.0 \
+		oorandom-11.1.3 \
+		parking_lot-0.11.2 \
+		parking_lot_core-0.8.5 \
+		paste-1.0.5 \
 		percent-encoding-2.1.0 \
-		petgraph-0.4.13 \
-		pico-args-0.3.1 \
-		plain-0.2.3 \
-		ppv-lite86-0.2.6 \
-		proc-macro-hack-0.5.15 \
-		proc-macro2-1.0.10 \
-		quote-1.0.4 \
-		ra_vfs-0.6.0 \
-		rand-0.7.3 \
-		rand_chacha-0.2.2 \
-		rand_core-0.5.1 \
-		rand_hc-0.2.0 \
-		rand_pcg-0.2.1 \
-		rayon-1.3.0 \
-		rayon-core-1.7.0 \
-		redox_syscall-0.1.56 \
-		regex-1.3.7 \
-		regex-syntax-0.6.17 \
-		relative-path-1.0.0 \
-		remove_dir_all-0.5.2 \
-		rowan-0.10.0 \
-		rustc-ap-rustc_lexer-656.0.0 \
-		rustc-demangle-0.1.16 \
+		perf-event-0.4.7 \
+		perf-event-open-sys-1.0.1 \
+		petgraph-0.5.1 \
+		pin-project-lite-0.2.7 \
+		proc-macro2-1.0.29 \
+		pulldown-cmark-0.8.0 \
+		pulldown-cmark-to-cmark-6.0.2 \
+		quote-1.0.9 \
+		rayon-1.5.1 \
+		rayon-core-1.9.1 \
+		redox_syscall-0.2.10 \
+		regex-1.5.4 \
+		regex-automata-0.1.10 \
+		regex-syntax-0.6.25 \
+		rowan-0.13.2 \
+		rustc-ap-rustc_lexer-725.0.0 \
+		rustc-demangle-0.1.21 \
 		rustc-hash-1.1.0 \
-		ryu-1.0.4 \
-		salsa-0.14.1 \
-		salsa-macros-0.14.1 \
+		ryu-1.0.5 \
+		salsa-0.17.0-pre.1 \
+		salsa-macros-0.17.0-pre.1 \
 		same-file-1.0.6 \
 		scoped-tls-1.0.0 \
 		scopeguard-1.1.0 \
-		scroll-0.10.1 \
-		scroll_derive-0.10.1 \
-		semver-0.9.0 \
-		semver-parser-0.7.0 \
-		serde-1.0.106 \
-		serde_derive-1.0.106 \
-		serde_json-1.0.52 \
-		serde_repr-0.1.5 \
-		serde_yaml-0.8.11 \
-		slab-0.4.2 \
-		smallvec-1.4.0 \
-		smol_str-0.1.15 \
-		superslice-1.0.0 \
-		syn-1.0.18 \
-		synstructure-0.12.3 \
-		tempfile-3.1.0 \
-		terminal_size-0.1.12 \
-		termios-0.3.2 \
-		text-size-1.0.0 \
-		thin-dst-1.1.0 \
-		thread_local-1.0.1 \
-		threadpool-1.8.0 \
-		unicode-bidi-0.3.4 \
-		unicode-normalization-0.1.12 \
-		unicode-segmentation-1.6.0 \
-		unicode-xid-0.2.0 \
-		url-2.1.1 \
-		walkdir-2.3.1 \
-		wasi-0.9.0+wasi-snapshot-preview1 \
-		winapi-0.2.8 \
-		winapi-0.3.8 \
-		winapi-build-0.1.1 \
+		semver-1.0.4 \
+		serde-1.0.130 \
+		serde_derive-1.0.130 \
+		serde_json-1.0.67 \
+		serde_repr-0.1.7 \
+		sharded-slab-0.1.3 \
+		smallvec-1.6.1 \
+		smol_str-0.1.18 \
+		snap-1.0.5 \
+		syn-1.0.76 \
+		synstructure-0.12.5 \
+		termcolor-1.1.2 \
+		text-size-1.1.0 \
+		thread_local-1.1.3 \
+		threadpool-1.8.1 \
+		tikv-jemalloc-ctl-0.4.2 \
+		tikv-jemalloc-sys-0.4.2+5.2.1-patched.2 \
+		tikv-jemallocator-0.4.1 \
+		tinyvec-1.3.1 \
+		tinyvec_macros-0.1.0 \
+		tracing-0.1.26 \
+		tracing-attributes-0.1.15 \
+		tracing-core-0.1.19 \
+		tracing-log-0.1.2 \
+		tracing-subscriber-0.2.20 \
+		tracing-tree-0.1.9 \
+		ungrammar-1.14.4 \
+		unicase-2.6.0 \
+		unicode-bidi-0.3.6 \
+		unicode-normalization-0.1.19 \
+		unicode-segmentation-1.8.0 \
+		unicode-xid-0.2.2 \
+		url-2.2.2 \
+		version_check-0.9.3 \
+		walkdir-2.3.2 \
+		winapi-0.3.9 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
 		winapi-util-0.1.5 \
 		winapi-x86_64-pc-windows-gnu-0.4.0 \
-		ws2_32-sys-0.2.1 \
-		yaml-rust-0.4.3
+		write-json-0.1.2 \
+		xflags-0.2.3 \
+		xflags-macros-0.2.3 \
+		xshell-0.1.15 \
+		xshell-macros-0.1.15
 
-CARGO_USE_GITHUB=	yes
-CARGO_GIT_SUBDIR=	chalkderive:chalk-ir:chalk-ir \
-			chalkderive:chalk-rust-ir:chalk-rust-ir \
-			chalkderive:chalk-solve:chalk-solve
 CARGO_INSTALL_PATH=	crates/rust-analyzer
 
 # attempts to install rustup toolchains
@@ -179,7 +176,7 @@ PORTDOCS=	*
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rust-analyzer
+	${STRIP_CMD} ${PREFIX}/bin/rust-analyzer
 
 post-install-DOCS-on:
 	@cd ${WRKSRC}/docs && \
