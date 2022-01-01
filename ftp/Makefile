@@ -31,6 +31,7 @@ SUBDIR += weex
 SUBDIR += wget
 SUBDIR += wmget
 SUBDIR += wput
+SUBDIR += wzdftpd
 SUBDIR += yafc
 
 .include <bsd.port.subdir.mk>
