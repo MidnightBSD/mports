@@ -137,6 +137,8 @@ _GITEA_TUPLE=	goftp:server:v0.4.1:vendor/goftp.io/server
 
 PLIST_FILES=	bin/rclone
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .for account project tag subdir in ${_GITEA_TUPLE:S/:/ /g}
