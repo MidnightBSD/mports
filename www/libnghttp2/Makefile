@@ -1,5 +1,5 @@
 PORTNAME=	nghttp2
-PORTVERSION=	1.45.0
+PORTVERSION=	1.46.0
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/nghttp2/nghttp2/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	lib
@@ -11,7 +11,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 # should be c++14 but that breaks curl -> cmake -> llvm so we have a loop
-USES=		autoreconf compiler:c++11-lang libtool pathfix pkgconfig tar:xz
+USES=		autoreconf cpe compiler:c++11-lang libtool pathfix pkgconfig tar:xz
 
 CONFIGURE_ARGS=	--enable-lib-only
 GNU_CONFIGURE=	yes
