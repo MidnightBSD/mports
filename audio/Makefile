@@ -147,6 +147,7 @@ SUBDIR += sound-juicer
 SUBDIR += soundtouch
 SUBDIR += speex
 SUBDIR += speexdsp
+SUBDIR += spotify-qt
 SUBDIR += spotify-tui
 SUBDIR += spotifyd
 SUBDIR += taglib
