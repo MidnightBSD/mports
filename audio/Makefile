@@ -147,6 +147,7 @@ SUBDIR += sound-juicer
 SUBDIR += soundtouch
 SUBDIR += speex
 SUBDIR += speexdsp
+SUBDIR += spotify-tui
 SUBDIR += taglib
 SUBDIR += timemachine
 SUBDIR += timidity
