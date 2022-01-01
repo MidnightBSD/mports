@@ -23,6 +23,7 @@ SUBDIR += py-pyftpdlib
 SUBDIR += py-requests-ftp
 SUBDIR += py-sftp
 SUBDIR += py-tftpy
+SUBDIR += quftp
 SUBDIR += tnftp
 SUBDIR += tnftpd
 SUBDIR += waiho
