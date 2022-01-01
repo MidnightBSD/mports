@@ -12,6 +12,7 @@ SUBDIR += ddclient
 SUBDIR += dnsmasq
 SUBDIR += dog
 SUBDIR += doh-proxy
+SUBDIR += encrypted-dns-server
 SUBDIR += erlang-idna
 SUBDIR += idnkit
 SUBDIR += inadyn
