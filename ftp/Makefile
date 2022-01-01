@@ -29,6 +29,7 @@ SUBDIR += tnftpd
 SUBDIR += waiho
 SUBDIR += weex
 SUBDIR += wget
+SUBDIR += wmget
 SUBDIR += wput
 SUBDIR += yafc
 
