@@ -48,27 +48,27 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/config/${x} ${ETCDIR}/${x}.sample
 .endfor
 	${RM} -rf ${WRKSRC}/config
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${LOGSTASH_DIR})
-	${CHMOD} ${BINMODE} ${STAGEDIR}${LOGSTASH_DIR}/bin/*
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${LOGSTASH_DIR})
+	${CHMOD} ${BINMODE} ${LOGSTASH_DIR}/bin/*
 .for x in ${LOGSTASH_JRUBY_BIN_FILES}
-	${CHMOD} ${BINMODE} ${STAGEDIR}${LOGSTASH_DIR}/${LOGSTASH_JRUBY_SUBDIR}/${x}
+	${CHMOD} ${BINMODE} ${LOGSTASH_DIR}/${LOGSTASH_JRUBY_SUBDIR}/${x}
 .endfor
-	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${LOGSTASH_DIR}/config
+	${INSTALL} -lrs ${ETCDIR} ${LOGSTASH_DIR}/config
 
 post-install:
-	${ECHO} "@sample ${ETCDIR}/logstash.conf.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/logstash.conf.sample" >> ${TMPPLIST}
 .for x in ${LOGSTASH_CONF_FILES}
-	${ECHO} "@sample ${ETCDIR}/${x}.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/${x}.sample" >> ${TMPPLIST}
 .endfor
-	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/build_info
-	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/cache
-	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/doc
-	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/extensions
-	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/gems/manticore-0.6.4-java/spec/ssl
-	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/gems/redis-3.3.5/test/db
-	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/jruby/lib/ruby/gems/shared/cache
-	${FIND} -s ${STAGEDIR}${PREFIX}/logstash -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+	${RM} -rf ${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/build_info
+	${RM} -rf ${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/cache
+	${RM} -rf ${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/doc
+	${RM} -rf ${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/extensions
+	${RM} -rf ${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/gems/manticore-0.6.4-java/spec/ssl
+	${RM} -rf ${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/gems/redis-3.3.5/test/db
+	${RM} -rf ${PREFIX}/logstash/vendor/jruby/lib/ruby/gems/shared/cache
+	${FIND} -s ${PREFIX}/logstash -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(logstash,logstash,) logstash/data" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
