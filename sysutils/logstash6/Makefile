@@ -42,10 +42,10 @@ post-patch:
 
 do-install:
 	${FIND} ${WRKSRC} -name '*.bat' -delete
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${ETCDIR}
 .for x in ${LOGSTASH_CONF_FILES}
-	${INSTALL_DATA} ${WRKSRC}/config/${x} ${STAGEDIR}${ETCDIR}/${x}.sample
+	${INSTALL_DATA} ${WRKSRC}/config/${x} ${ETCDIR}/${x}.sample
 .endfor
 	${RM} -rf ${WRKSRC}/config
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${LOGSTASH_DIR})
