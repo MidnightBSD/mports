@@ -37,9 +37,9 @@ post-install:
 	cd ${WRKSRC} &&\
 		${MKDIR} ${STAGEDIR}${DOCSDIR}/html ${STAGEDIR}${DOCSDIR}/Scintilla &&\
 		${INSTALL_DATA} NEWS ${STAGEDIR}${DOCSDIR} &&\
-		${INSTALL_DATA} doc/html-Qt4Qt5/* ${STAGEDIR}${DOCSDIR}/html &&\
+		${INSTALL_DATA} doc/html/* ${STAGEDIR}${DOCSDIR}/html &&\
 		${INSTALL_DATA} doc/Scintilla/* ${STAGEDIR}${DOCSDIR}/Scintilla
-	cd ${WRKSRC}/example-Qt4Qt5 &&\
+	cd ${WRKSRC}/example &&\
 		${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/images &&\
 		${INSTALL_DATA} *.* ${STAGEDIR}${EXAMPLESDIR} &&\
 		${INSTALL_DATA} images/* ${STAGEDIR}${EXAMPLESDIR}/images
