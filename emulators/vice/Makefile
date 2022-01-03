@@ -104,7 +104,7 @@ pre-configure:
 .endif
 
 # workaround for xdg-desktop-menu
-pre-install-GTK3UI-on:
-	${MKDIR} ${FAKE_DESTDIR}/${PREFIX}/share/desktop-directories
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}/${TRUE_PREFIX}/share/desktop-directories
 
 .include <bsd.port.mk>
