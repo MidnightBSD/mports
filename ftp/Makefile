@@ -23,12 +23,16 @@ SUBDIR += py-pyftpdlib
 SUBDIR += py-requests-ftp
 SUBDIR += py-sftp
 SUBDIR += py-tftpy
+SUBDIR += quftp
 SUBDIR += tnftp
 SUBDIR += tnftpd
 SUBDIR += waiho
 SUBDIR += weex
 SUBDIR += wget
+SUBDIR += wmget
 SUBDIR += wput
+SUBDIR += wxdfast
+SUBDIR += wzdftpd
 SUBDIR += yafc
 
 .include <bsd.port.subdir.mk>

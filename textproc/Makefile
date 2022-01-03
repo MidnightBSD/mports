@@ -55,6 +55,7 @@ SUBDIR += intltool
 SUBDIR += iso8879
 SUBDIR += itstool
 SUBDIR += jade
+SUBDIR += jq
 SUBDIR += kibana6
 SUBDIR += kibana7
 SUBDIR += latex-service

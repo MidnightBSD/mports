@@ -47,7 +47,9 @@ CONFIGURE_ENV=	HOST_CC=${CC} HOST_CXX=${CXX}
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=x86_64-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=x86_64-portbld-freebsd11.4
+.else
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4
 .endif
 
 .if ${ARCH} == i386
