@@ -1,5 +1,6 @@
 COMMENT = Mathematics
 
+SUBDIR += Imath
 SUBDIR += R
 SUBDIR += atlas
 SUBDIR += blas
