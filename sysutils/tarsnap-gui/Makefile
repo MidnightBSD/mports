@@ -7,6 +7,8 @@ CATEGORIES=	sysutils
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross platform GUI for the Tarsnap command line client
 
+LICENSE=	bsd2
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	Tarsnap
 
