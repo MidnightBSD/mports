@@ -97,6 +97,7 @@ SUBDIR += mplayer-skins
 SUBDIR += openh264
 SUBDIR += phonon
 SUBDIR += phonon-gstreamer
+SUBDIR += pipewire
 SUBDIR += plexmediaserver
 SUBDIR += plexmediaserver-plexpass
 SUBDIR += plexwatch
