@@ -49,4 +49,7 @@ GH_TUPLE=	\
 
 PLIST_FILES=	bin/${PORTNAME}
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
