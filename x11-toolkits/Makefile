@@ -49,6 +49,7 @@ SUBDIR += p5-Tk
 SUBDIR += pango
 SUBDIR += pangomm
 SUBDIR += pangox-compat
+SUBDIR += py-qt5-chart
 SUBDIR += py-qt5-gui
 SUBDIR += py-qt5-quick
 SUBDIR += py-qt5-quickwidgets
