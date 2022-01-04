@@ -21,5 +21,7 @@ GH_ACCOUNT=	Gottox
 PLIST_FILES=	bin/bgs \
 		man/man1/bgs.1.gz
 
+post-install:
+	${STRIP_CMD} ${PREFIX}/bin/bgs
 
 .include <bsd.port.mk>

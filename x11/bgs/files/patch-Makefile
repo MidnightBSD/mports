@@ -1,0 +1,24 @@
+--- Makefile.orig	2022-01-04 06:32:05.259738000 -0500
++++ Makefile	2022-01-04 06:33:00.037108000 -0500
+@@ -42,15 +42,15 @@
+ 	@mkdir -p ${DESTDIR}${PREFIX}/bin
+ 	@cp -f bgs ${DESTDIR}${PREFIX}/bin
+ 	@chmod 755 ${DESTDIR}${PREFIX}/bin/bgs
+-	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
+-	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
+-	@sed "s/VERSION/${VERSION}/g" < bgs.1 > ${DESTDIR}${MANPREFIX}/man1/bgs.1
+-	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/bgs.1
++	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man/man1
++	@mkdir -p ${DESTDIR}${MANPREFIX}/man/man1
++	@sed "s/VERSION/${VERSION}/g" < bgs.1 > ${DESTDIR}${MANPREFIX}/man/man1/bgs.1
++	@chmod 644 ${DESTDIR}${MANPREFIX}/man/man1/bgs.1
+ 
+ uninstall:
+ 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
+ 	@rm -f ${DESTDIR}${PREFIX}/bin/bgs
+-	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
+-	@rm -f ${DESTDIR}${MANPREFIX}/man1/bgs.1
++	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man/man1
++	@rm -f ${DESTDIR}${MANPREFIX}/man/man1/bgs.1
+ 
+ .PHONY: all options clean dist install uninstall
