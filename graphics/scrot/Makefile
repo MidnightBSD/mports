@@ -26,10 +26,10 @@ GL_ACCOUNT=	chrishutchinson
 GL_PROJECT=	scrot
 GL_COMMIT=	d93cccec
 
-USES=		autoreconf desktop-file-utils xorg
+USES=		autoreconf desktop-file-utils pkgconfig xorg
 USE_CSTD=	c99
 GNU_CONFIGURE=	yes
-USE_XORG=	x11 xfixes xcomposite
+USE_XORG=	x11 xext xfixes xcomposite
 
 PORTDOCS=	AUTHORS ChangeLog README.md
 
