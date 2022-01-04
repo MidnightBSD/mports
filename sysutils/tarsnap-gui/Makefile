@@ -8,6 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross platform GUI for the Tarsnap command line client
 
 LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Tarsnap
