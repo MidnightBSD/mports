@@ -945,6 +945,7 @@ SUBDIR += py-qt5-positioning
 SUBDIR += py-qt5-qscintilla2
 SUBDIR += py-qt5-sip
 SUBDIR += py-qt5-test
+SUBDIR += py-qtbuilder
 SUBDIR += py-ramlfications
 SUBDIR += py-raven
 SUBDIR += py-readme-renderer
