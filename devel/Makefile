@@ -941,6 +941,7 @@ SUBDIR += py-qt5-designer
 SUBDIR += py-qt5-designerplugin
 SUBDIR += py-qt5-help
 SUBDIR += py-qt5-qscintilla2
+SUBDIR += py-qt5-sip
 SUBDIR += py-qt5-test
 SUBDIR += py-ramlfications
 SUBDIR += py-raven
