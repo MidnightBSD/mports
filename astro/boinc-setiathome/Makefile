@@ -23,7 +23,8 @@ RUN_DEPENDS=	boinc_client:net/boinc-client
 LIB_DEPENDS=	libfftw3f.so:math/fftw3-float
 
 USES=		autoreconf compiler:c++11-lang gmake gnome libtool pkgconfig \
-		tar:xz
+		tar:xz wx
+USE_WX=		2.8
 GNU_CONFIGURE=	yes
 
 CFLAGS+=	-O2 -I${LOCALBASE}/include/boinc -I${LOCALBASE}/include \
