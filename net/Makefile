@@ -136,6 +136,7 @@ SUBDIR += py-oauth2
 SUBDIR += py-pysendfile
 SUBDIR += py-pysocks
 SUBDIR += py-qt5-network
+SUBDIR += py-qt5-networkauth
 SUBDIR += py-s3cmd
 SUBDIR += py-s3transfer
 SUBDIR += py-speedtest-cli
