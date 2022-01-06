@@ -1,8 +1,6 @@
-
-
 PORTNAME=	alsa-lib
 PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.alsa-project.org/pub/lib/ \
 		GENTOO
@@ -19,8 +17,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_endian_h=no
 CONFIGURE_ARGS=	--with-pkgconfdir="\$${prefix}/libdata/pkgconfig"
 INSTALL_TARGET=	install-strip
-#TEST_ENV=	${MAKE_ENV} ALSA_CONFIG_PATH="${FILESDIR}/asound.conf.sample"
-#TEST_TARGET=	check
 NO_TEST=	yes
 CPPFLAGS+=	-I${FILESDIR}
 
@@ -28,9 +24,9 @@ OPTIONS_DEFINE=	PYTHON
 OPTIONS_SUB=	yes
 
 PYTHON_CONFIGURE_ENABLE=python
-PYTHON_USES=	python:2.7
+PYTHON_USES=	python
 
-post-patch:	.SILENT
+post-patch: 	.SILENT
 	${REINPLACE_CMD} -e '/LIBS/ { s/-ldl//g; s/-lrt//g; }' \
 		-e 's/python-config/${PYTHON_CMD:T}-config/g' \
 		-e '/pythonlibs/s/--libs/--ldflags/' \
@@ -42,6 +38,6 @@ post-patch:	.SILENT
 		${WRKSRC}/src/conf/alsa.conf
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/asound.conf.sample ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_DATA} ${FILESDIR}/asound.conf.sample ${PREFIX}/etc
 
 .include <bsd.port.mk>
