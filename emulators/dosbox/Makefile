@@ -2,7 +2,7 @@ PORTNAME=	dosbox
 DISTVERSION=	0.74-3
 PORTREVISION=	3
 CATEGORIES=	emulators
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emulator of a PC with DOS
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	libpng.so:graphics/png
 
 GNU_CONFIGURE=	yes
-USES=		sdl
+USES=		cpe sdl
 USE_SDL=	sdl net sound
 PORTDOCS=	NEWS README
 
