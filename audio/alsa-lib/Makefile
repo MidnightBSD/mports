@@ -11,11 +11,11 @@ COMMENT=	ALSA compatibility library
 LICENSE=	lgpl2.1
 
 USES=		cpe libtool:keepla tar:bzip2
-USE_LDCONFIG=	yes
 CPE_VENDOR=	alsa
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	ac_cv_header_endian_h=no
 CONFIGURE_ARGS=	--with-pkgconfdir="\$${prefix}/libdata/pkgconfig"
+CONFIGURE_ENV=	ac_cv_header_endian_h=no
 INSTALL_TARGET=	install-strip
 NO_TEST=	yes
 CPPFLAGS+=	-I${FILESDIR}
@@ -23,8 +23,8 @@ CPPFLAGS+=	-I${FILESDIR}
 OPTIONS_DEFINE=	PYTHON
 OPTIONS_SUB=	yes
 
-PYTHON_CONFIGURE_ENABLE=python
 PYTHON_USES=	python
+PYTHON_CONFIGURE_ENABLE=python
 
 post-patch: 	.SILENT
 	${REINPLACE_CMD} -e '/LIBS/ { s/-ldl//g; s/-lrt//g; }' \
