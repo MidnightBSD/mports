@@ -1,8 +1,6 @@
-
-
 PORTNAME=	libsvg
 PORTVERSION=	0.1.4
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/snapshots/
 
@@ -11,13 +9,12 @@ COMMENT=	Parser for SVG content in files or buffers
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libpng.so:graphics/png
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	libxml2
-USES=		iconv libtool pathfix pkgconfig
+USES=		gnome iconv jpeg libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 
