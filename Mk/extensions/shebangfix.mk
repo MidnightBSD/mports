@@ -1,4 +1,3 @@
-
 #
 # Replace #! interpreters in scripts by what we actually have.
 #
@@ -51,6 +50,10 @@ tk_CMD?=	${WISH}
 
 .if ${USES:Mpython*}
 python_CMD?=	${PYTHON_CMD}
+.endif
+
+.if ${USES:Mperl5*}
+perl_CMD?=	${PERL}
 .endif
 
 # Replace the same patterns for all langs and setup a default, that may have
