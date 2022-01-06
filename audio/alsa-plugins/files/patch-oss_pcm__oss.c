@@ -1,6 +1,6 @@
---- oss/pcm_oss.c.orig	2008-10-29 08:42:13.000000000 -0400
+--- oss/pcm_oss.c.orig	2016-03-31 13:11:29 UTC
 +++ oss/pcm_oss.c
-@@ -22,4 +22,8 @@
+@@ -22,7 +22,11 @@
  #include <sys/ioctl.h>
  #include <alsa/asoundlib.h>
  #include <alsa/pcm_external.h>
@@ -9,7 +9,10 @@
 +#else
 +#include <sys/soundcard.h>
 +#endif
-@@ -116,7 +120,7 @@ static int oss_drain(snd_pcm_ioplug_t *i
+ 
+ typedef struct snd_pcm_oss {
+ 	snd_pcm_ioplug_t io;
+@@ -116,7 +120,7 @@ static int oss_drain(snd_pcm_ioplug_t *io)
  	snd_pcm_oss_t *oss = io->private_data;
  
  	if (io->stream == SND_PCM_STREAM_PLAYBACK)
@@ -18,7 +21,7 @@
  	return 0;
  }
  
-@@ -125,7 +129,7 @@ static int oss_prepare(snd_pcm_ioplug_t 
+@@ -125,7 +129,7 @@ static int oss_prepare(snd_pcm_ioplug_t *io)
  	snd_pcm_oss_t *oss = io->private_data;
  	int tmp;
  

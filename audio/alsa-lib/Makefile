@@ -1,6 +1,5 @@
 PORTNAME=	alsa-lib
-PORTVERSION=	1.1.2
-PORTREVISION=	2
+PORTVERSION=	1.2.2
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.alsa-project.org/pub/lib/ \
 		GENTOO
@@ -11,7 +10,8 @@ COMMENT=	ALSA compatibility library
 LICENSE=	lgpl2.1
 
 USES=		cpe libtool:keepla tar:bzip2
-CPE_VENDOR=	alsa
+CPE_VENDOR=	alsa-project
+CPE_PRODUCT=	alsa
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-pkgconfdir="\$${prefix}/libdata/pkgconfig"
@@ -20,21 +20,15 @@ INSTALL_TARGET=	install-strip
 NO_TEST=	yes
 CPPFLAGS+=	-I${FILESDIR}
 
-OPTIONS_DEFINE=	PYTHON
-OPTIONS_SUB=	yes
+OPTIONS_DEFINE=		PYTHON
+OPTIONS_SUB=		yes
 
-PYTHON_USES=	python
-PYTHON_CONFIGURE_ENABLE=python
+PYTHON_USES=			gettext-runtime python
+PYTHON_CONFIGURE_ENABLE=	mixer-pymods python
+PYTHON_BINARY_ALIAS=		python3-config=${PYTHON_CMD:T}-config
 
-post-patch: 	.SILENT
-	${REINPLACE_CMD} -e '/LIBS/ { s/-ldl//g; s/-lrt//g; }' \
-		-e 's/python-config/${PYTHON_CMD:T}-config/g' \
-		-e '/pythonlibs/s/--libs/--ldflags/' \
-		-e '/_GNU_SOURCE/d' \
-		-e '/lt_cv_dlopen/s/-ldl//g' ${WRKSRC}/configure
-	${REINPLACE_CMD} '/LIBADD/s/-ldl//g' \
-		${WRKSRC}/modules/mixer/simple/Makefile.in
-	${REINPLACE_CMD} 's|/etc|${PREFIX}&|g' \
+post-patch:
+	@${REINPLACE_CMD} 's|%%PREFIX%%|${PREFIX}|g' \
 		${WRKSRC}/src/conf/alsa.conf
 
 post-install:
