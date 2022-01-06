@@ -48,10 +48,10 @@ post-patch:
 
 do-install:
 	${FIND} ${WRKSRC} -name '*.bat' -delete
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${ETCDIR}
 .for x in ${LOGSTASH_CONF_FILES}
-	${INSTALL_DATA} ${WRKSRC}/config/${x} ${STAGEDIR}${ETCDIR}/${x}.sample
+	${INSTALL_DATA} ${WRKSRC}/config/${x} ${ETCDIR}/${x}.sample
 .endfor
 	${RM} -rf ${WRKSRC}/config
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${LOGSTASH_HOME})
@@ -62,9 +62,9 @@ do-install:
 	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${LOGSTASH_HOME}/config
 
 post-install:
-	${ECHO} "@sample ${ETCDIR}/logstash.conf.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/logstash.conf.sample" >> ${TMPPLIST}
 .for x in ${LOGSTASH_CONF_FILES}
-	${ECHO} "@sample ${ETCDIR}/${x}.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/${x}.sample" >> ${TMPPLIST}
 .endfor
 	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/build_info" >> ${TMPPLIST}
 	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/cache" >> ${TMPPLIST}
@@ -72,8 +72,8 @@ post-install:
 	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/extensions" >> ${TMPPLIST}
 	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/gems/manticore-0.7.1-java/spec/ssl" >> ${TMPPLIST}
 	${ECHO} "@dir logstash/vendor/jruby/lib/ruby/gems/shared/cache" >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${PREFIX}/logstash -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/logstash -not -type d | ${SORT} | \
+		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(logstash,logstash,) logstash/data" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
