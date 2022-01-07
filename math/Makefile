@@ -62,5 +62,6 @@ SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5
 SUBDIR += suitesparse
+SUBDIR += xtensor
 
 .include <bsd.port.subdir.mk>
