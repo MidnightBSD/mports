@@ -70,20 +70,20 @@ post-patch:
 	${FIND} ${WRKSRC} -type f -name "*.bak" -delete
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${MAN1PREFIX}/man/man1
+	@${MKDIR} ${MAN1PREFIX}/man/man1
 	${INSTALL_MAN} ${WRKSRC}/docs/man/man1/*.1 \
-		${STAGEDIR}${MAN1PREFIX}/share/man/man1
+		${MAN1PREFIX}/share/man/man1
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/ansible.cfg ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/hosts ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/ansible.cfg ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/hosts ${FAKE_DESTDIR}${EXAMPLESDIR}
 
-post-stage:
+post-fake:
 	${FIND} ${STAGEDIR}${PREFIX}/bin -type l -name ansible-\* -lname ansible \
 		-execdir ${RLN} ansible-${PYTHON_VER} {} \;
 # USE_PYTHON=autoplist doesn't add this file to pkg-plist.
-	${RM} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
+	-${RM} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
 
 pre-test:
 # This one file does not get its paths replaced correctly in post-patch.
@@ -93,7 +93,7 @@ pre-test:
 	${REINPLACE_CMD} 's|/usr/bin/python|${PYTHON_CMD}|' \
 		${WRKSRC}/test/units/modules/test_async_wrapper.py
 # Disable some tests:
-# - Skip the SELinux tests, it's not present on FreeBSD.
+# - Skip the SELinux tests, it's not present
 	${RM} ${WRKSRC}/test/units/module_utils/basic/test_selinux.py
 # - Failure detecting that emojis are of width 2 instead of 1.
 	${RM} ${WRKSRC}/test/units/utils/test_display.py
