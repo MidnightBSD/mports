@@ -1,10 +1,9 @@
-
 PORTNAME=	core
 DISTVERSION=	${QT5_VERSION}
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt core non-graphical module
 
 LIB_DEPENDS=	libdouble-conversion.so:devel/double-conversion \
@@ -64,7 +63,7 @@ pre-build:
 post-install:
 # Allow qconfig.h to be customized by single ports.
 	${AWK} 'BEGIN{print "#include <QtCore/qconfig-modules.h>"}{print}' \
-		${STAGEDIR}${PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig.h > ${WRKDIR}/qconfig.h
+		${PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig.h > ${WRKDIR}/qconfig.h
 # Manually install qlalr
 	cd ${WRKSRC}/src/tools/qlalr && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} \
@@ -72,5 +71,8 @@ post-install:
 # Cleanup qconfig.h and remove stray '#define QT_NO_FOO'
 	${REINPLACE_CMD} "/#define QT_NO_/d" ${WRKDIR}/qconfig.h
 	${MV} ${WRKDIR}/qconfig.h ${PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig.h
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 
 .include <bsd.port.post.mk>
