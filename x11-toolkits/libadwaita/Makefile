@@ -27,4 +27,6 @@ OPTIONS_DEFINE=	DOCS
 DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
 DOCS_MESON_TRUE=	gtk_doc
 
+WRKSRC=		${WRKDIR}/libadwaita-8442d6097b36c17e87582525ceab3ce3d5bccd48
+
 .include <bsd.port.mk>
