@@ -94,9 +94,9 @@ pre-test:
 		${WRKSRC}/test/units/modules/test_async_wrapper.py
 # Disable some tests:
 # - Skip the SELinux tests, it's not present
-	${RM} ${WRKSRC}/test/units/module_utils/basic/test_selinux.py
+	-${RM} ${WRKSRC}/test/units/module_utils/basic/test_selinux.py
 # - Failure detecting that emojis are of width 2 instead of 1.
-	${RM} ${WRKSRC}/test/units/utils/test_display.py
+	-${RM} ${WRKSRC}/test/units/utils/test_display.py
 
 .include <bsd.port.mk>
 
