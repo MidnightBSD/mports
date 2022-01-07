@@ -12,4 +12,8 @@ USE_QT=		core network \
 		buildtools_build
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>

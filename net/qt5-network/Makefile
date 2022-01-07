@@ -51,5 +51,8 @@ post-install:
 	@cd ${WRKSRC}/src/plugins/bearer/generic && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 
 .include <bsd.port.post.mk>
