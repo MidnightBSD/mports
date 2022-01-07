@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USE_GITHUB=	yes
 GH_ACCOUNT=	Tarsnap
 
-USES=		compiler:c++11-lib gl qmake qt:5
+USES=		compiler:c++11-lib gl qmake qt:5 ssl
 USE_QT=		buildtools_build core gui network qmake_build sql sql-sqlite3 widgets
 USE_GL=		gl
 
