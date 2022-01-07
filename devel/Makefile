@@ -1101,6 +1101,7 @@ SUBDIR += woff2
 SUBDIR += xa65
 SUBDIR += xdg-utils
 SUBDIR += xorg-macros
+SUBDIR += xtl-quant-stack
 SUBDIR += xxhash
 SUBDIR += yajl
 SUBDIR += yasm
