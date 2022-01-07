@@ -9,9 +9,11 @@ LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	sassc:textproc/sassc \
-		valac:lang/vala
+		valac:lang/vala \
+		vulkan-headers>0:graphics/vulkan-headers
 LIB_DEPENDS=	libfribidi.so:converters/fribidi \
-		libgraphene-1.0.so:graphics/graphene
+		libgraphene-1.0.so:graphics/graphene \
+		libvulkan.so:graphics/vulkan-loader
 
 USES=		gettext gnome meson ninja pkgconfig
 USE_GITLAB=	yes
