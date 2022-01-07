@@ -295,6 +295,7 @@ SUBDIR += ncurses
 SUBDIR += newt
 SUBDIR += netsurf-buildsystem
 SUBDIR += ninja
+SUBDIR += nlohmann-json
 SUBDIR += npth
 SUBDIR += nsgenbind
 SUBDIR += nspr
