@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/license
 
 RUN_DEPENDS=	spotifyd:audio/spotifyd
 
-USES=		cmake compiler:c++11-lang qt:5
+USES=		cmake compiler:c++11-lang qt:5 ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	kraxarn
 USE_QT=		core dbus gui network svg widgets buildtools_build qmake_build
