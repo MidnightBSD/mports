@@ -46,11 +46,11 @@ _PLVER=		0
 
 post-install:
 .for l in libImath
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${l}-${_MAJORVER}.so
+	${STRIP_CMD} ${PREFIX}/lib/${l}-${_MAJORVER}.so
 .endfor
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 do-test:
 	cd ${BUILD_WRKSRC} && ctest -j ${MAKE_JOBS_NUMBER}
