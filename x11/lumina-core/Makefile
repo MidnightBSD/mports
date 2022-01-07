@@ -24,7 +24,7 @@ LIB_DEPENDS+=	libxcb-ewmh.so:x11/xcb-util-wm \
 		libxcb-util.so:x11/xcb-util \
 		libXcursor.so:x11/libXcursor
 
-USES=		compiler:c++11-lang gl qmake qt:5 xorg
+USES=		compiler:c++11-lang gl qmake qt:5 ssl xorg
 USE_GL=		gl
 USE_XORG=	x11 xdamage xcb
 USE_LDCONFIG=	yes
