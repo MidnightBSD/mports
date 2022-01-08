@@ -1,6 +1,6 @@
 PORTNAME=	smartmontools
-PORTVERSION=	7.1
-PORTREVISION=	1
+DISTVERSION=	7.2
+PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
@@ -11,27 +11,31 @@ LICENSE=	gpl2
 
 CONFLICTS=	smartmontools-devel-[0-9]*
 
-OPTIONS_DEFINE=	DOCS
+USES=		compiler:c++11-lib cpe shebangfix
+USE_RC_SUBR=	smartd
 
-USES=		compiler:c++11-lib gmake
+SHEBANG_FILES=	examplescripts/Example5
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-sample \
 		--with-gnupg=no \
 		--with-nvme-devicescan=yes \
-		--with-initscriptdir=${PREFIX}/etc/rc.d \
-		--with-update-smart-drivedb=no
+		--with-initscriptdir=${PREFIX}/etc/rc.d
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 SUB_FILES=	pkg-message smart
-USE_RC_SUBR=	smartd
 
 PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| install-initdDATA| |' ${WRKSRC}/Makefile.in
 
 post-install:
-	${MKDIR} ${PREFIX}/etc/periodic/daily
-	${INSTALL_SCRIPT} ${WRKDIR}/smart ${PREFIX}/etc/periodic/daily/smart
+	@${MKDIR} ${PREFIX}/etc/periodic/daily
+	${INSTALL_SCRIPT} ${WRKDIR}/smart \
+		${PREFIX}/etc/periodic/daily
+	${MV} ${DATADIR}/drivedb.h \
+		${DATADIR}/drivedb.h.sample
 
 .include <bsd.port.mk>

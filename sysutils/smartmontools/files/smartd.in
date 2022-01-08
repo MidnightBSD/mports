@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: smartd
 # REQUIRE: root ldconfig devfs syslogd mail
 # KEYWORD: shutdown nojail
