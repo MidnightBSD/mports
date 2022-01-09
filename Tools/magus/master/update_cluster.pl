@@ -112,7 +112,7 @@ sub update_vcs_dir {
   # let the magus group read and write.
   umask(0002);  
 
-  print "Deleteing $Magus::Config{MportsVcsDir}...";
+  print "Deleting $Magus::Config{MportsVcsDir}...";
   if (-d $Magus::Config{MportsVcsDir}) {
     rmtree($Magus::Config{MportsVcsDir})    || die "Couldn't rmtree $Magus::Config{'MportsVcsDir'}: $!\n";
   }
