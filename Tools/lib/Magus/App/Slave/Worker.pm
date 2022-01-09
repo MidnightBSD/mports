@@ -18,6 +18,7 @@ sub run {
 	$self->{port}->note_event(info => "Test Started");
 	$self->prep_chroot();
 	$self->inject_depends();
+    $self->inject_distfiles();
   	$self->run_test();
   	$self->{port}->note_event($self->{port}->status => "Test complete.");
   }; 
@@ -88,9 +89,31 @@ sub inject_pkgfile {
   if ($? != 0) {
     die "$cmd returned non-zero: $out\n";
   }
-}  
-                                                                                
-                                                             
+}
+
+sub inject_distfiles {
+  my ($self) = @_;
+
+  my $port = $self->{port};
+  my $chroot = $self->{chroot};
+  my $run  = $port->run->id;
+
+  foreach my $distfile ($port->distfiles) {
+    my $file = $distfile->filename;
+    my $dest = join('/', $chroot->root, $chroot->distfiles);
+    my $cmd = "/usr/bin/scp $Magus::Config{'DistfilesRoot'}/$run/$file $dest";
+
+    $self->log->debug("downloading: $run/$file");
+
+    my $out = `$cmd 2>&1`;
+
+    if ($? != 0) {
+      $self->log->debug("download failed: $run/$file $out");
+    }
+  }
+}
+
+
 sub run_test {
   my ($self) = @_;
   
@@ -148,9 +171,10 @@ sub run_test {
     
     if ($port->status eq 'pass' || $port->status eq 'warn') {
         $self->upload_pkgfile();
+        $self->upload_distfiles();
     }
   } else {
-    die "Child exited unexpectantly: $?\n";
+    die "Child exited unexpectedly: $?\n";
   }
 }  
 
@@ -194,9 +218,30 @@ sub upload_pkgfile {
   if ($? != 0 ) {
      die "$cmd returned non-zero: $out\n";
   }
-} 
-    
-    
+}
+
+sub upload_distfiles {
+  my ($self) = @_;
+  my ($port, $chroot) = ($self->{port}, $self->{chroot});
+  my $run  = $port->run->id;
+
+  foreach my $distfile ($port->distfiles) {
+    my $file = $distfile->filename;
+    my $from = join('/', $chroot->root, $chroot->distfiles, $file);
+
+    my $cmd = "/usr/bin/scp $from $Magus::Config{'DistfilesRoot'}/$run/$file";
+
+    $self->log->debug("uploading: $run/$file");
+
+    my $out = `$cmd 2>&1`;
+
+    if ($? != 0 ) {
+      $self->log->debug("upload failed: $run/$file $out");
+    }
+  }
+}
+
+
 sub log {
   return $_[0]->{logger};
 }    
