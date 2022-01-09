@@ -80,7 +80,10 @@ describe-yaml:
 			is_interactive => q(${IS_INTERACTIVE}) ? 1 : 0, \
 			restricted     => q(${RESTRICTED}) ? 1 : 0, \
 			flavor         => q(${FLAVOR}), \
-			flavors        => [qw(${FLAVORS})] \
+			flavors        => [qw(${FLAVORS})], \
+			distfiles      => [qw(${DISTFILES})], \
+			restricted_distfiles      => [qw(${RESTRICTED_FILES})], \
+			master_sites      => [qw(${MASTER_SITES})] \
 		); \
 		$$port{license} ||= undef; \
 		my %depends; \
