@@ -29,8 +29,6 @@ package Magus::Port;
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
 
-
-
 use strict;
 use warnings;
 
