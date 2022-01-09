@@ -40,7 +40,7 @@ using namespace pqxx;
 
 #include "sqlite3.h"
 
-const string DB_HOST = "70.91.226.203";
+const string DB_HOST = "db.midnightbsd.org";
 const string DB_DATABASE = "magus";
 
 /* SQLITE3 */
@@ -95,20 +95,20 @@ main(int argc, char *argv[])
     if (!R.empty()) 
     {
     
-            db = open_indexdb(runid);
-            create_indexdb(db);
+        db = open_indexdb(runid);
+        create_indexdb(db);
 
 	    for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
-            {
-	   	   string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
-                   asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
-                   fileHash = SHA256_File(filePath, NULL);
-                   if (fileHash == NULL)
-                   {
-                       fprintf(stderr, "Could not locate file %s\n", filePath);
-                       free(filePath);
-                       continue;
-                   }
+        {
+	   	     string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
+             asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
+             fileHash = SHA256_File(filePath, NULL);
+             if (fileHash == NULL)
+             {
+                   fprintf(stderr, "Could not locate file %s\n", filePath);
+                   free(filePath);
+                   continue;
+             }
 
 		   if (row[6].as(bool()))
 		   {
@@ -117,79 +117,83 @@ main(int argc, char *argv[])
 			continue;
 		   }
 
-                   if (ln.c_str()) 
-                   {
-                      if (sqlite3_prepare_v2(db, 
-                       "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash) VALUES(?,?,?,?,?,?)",
-                       -1, &stmt, 0) != SQLITE_OK)
-                       {
-                          errx(1, "Could not prepare statement");
-                       }
-                       sqlite3_bind_text(stmt, 1, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
-                       sqlite3_bind_text(stmt, 2, row[5].as(string()).c_str(), row[5].as(string()).length(), SQLITE_TRANSIENT);
-                       sqlite3_bind_text(stmt, 3, row[2].as(string()).c_str(), row[2].as(string()).length(), SQLITE_TRANSIENT);
-                       sqlite3_bind_text(stmt, 4, row[3].as(string()).c_str(), row[3].as(string()).length(), SQLITE_TRANSIENT);
-                       sqlite3_bind_text(stmt, 5, row[4].as(string()).c_str(), row[4].as(string()).length(), SQLITE_TRANSIENT);
-                       sqlite3_bind_text(stmt, 6, fileHash, strlen(fileHash), SQLITE_TRANSIENT);
+           if (ln.c_str())
+           {
+               if (sqlite3_prepare_v2(db,
+                   "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash) VALUES(?,?,?,?,?,?)",
+                   -1, &stmt, 0) != SQLITE_OK)
+               {
+                   errx(1, "Could not prepare statement");
+               }
+               sqlite3_bind_text(stmt, 1, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 2, row[5].as(string()).c_str(), row[5].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 3, row[2].as(string()).c_str(), row[2].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 4, row[3].as(string()).c_str(), row[3].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 5, row[4].as(string()).c_str(), row[4].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 6, fileHash, strlen(fileHash), SQLITE_TRANSIENT);
 
-                       if (sqlite3_step(stmt) != SQLITE_DONE)
-                          errx(1,"Could not execute query");
-                       sqlite3_reset(stmt);
-                       sqlite3_finalize(stmt);
-                       free(filePath);
-                       free(fileHash);
+               if (sqlite3_step(stmt) != SQLITE_DONE)
+                    errx(1,"Could not execute query");
+               sqlite3_reset(stmt);
+               sqlite3_finalize(stmt);
+               free(filePath);
+               free(fileHash);
 
-                      if (sqlite3_prepare_v2(db,
+               if (sqlite3_prepare_v2(db,
                        "INSERT INTO aliases (alias, pkg) VALUES(?,?)",
                        -1, &stmt, 0) != SQLITE_OK)
-                       {
-                          errx(1, "Could not prepare statement");
-                       }
-
-                       sqlite3_bind_text(stmt, 1, row[1].as(string()).c_str(), row[1].as(string()).length(), SQLITE_TRANSIENT);
-                       sqlite3_bind_text(stmt, 2, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT); 
-
-                       if (sqlite3_step(stmt) != SQLITE_DONE)
-                          errx(1,"Could not execute query");
-                       sqlite3_reset(stmt);
-                       sqlite3_finalize(stmt);
-
-                       puts(ln.c_str());
-
-			load_depends(db, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
-                   }
+               {
+                   errx(1, "Could not prepare statement");
                }
-               printf("\n"); 
-            }
+
+               sqlite3_bind_text(stmt, 1, row[1].as(string()).c_str(), row[1].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 2, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
+
+               if (sqlite3_step(stmt) != SQLITE_DONE)
+                   errx(1,"Could not execute query");
+               sqlite3_reset(stmt);
+               sqlite3_finalize(stmt);
+
+               puts(ln.c_str());
+
+			   load_depends(db, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
+           }
+        }
+        printf("\n");
+    }
 
 	    printf("Load the mirrors list\n");
 	    result R2(N.exec("SELECT country, url FROM mirrors order by country"));
 	    if (!R2.empty())
+        {
+		    for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
             {
-		   for (result::const_iterator c = R2.begin(); c != R2.end(); ++c) 
-                    {
-                         if (sqlite3_prepare_v2(db,
-                          "INSERT INTO mirrors (country, mirror) VALUES(?,?)",
-                           -1, &stmt, 0) != SQLITE_OK)
-                         {
-                             errx(1, "Could not prepare statement");
-                         }
-			string country = c[0].as(string());
-			cout << country << endl;
-			string url = c[1].as(string());
-			cout << url << endl;
-                         sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
-                         sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
+                if (sqlite3_prepare_v2(db,"INSERT INTO mirrors (country, mirror) VALUES(?,?)",  -1, &stmt, 0) != SQLITE_OK)
+                {
+                    errx(1, "Could not prepare statement");
+                }
+			    string country = c[0].as(string());
+			    cout << country << endl;
+			    string url = c[1].as(string());
+			    cout << url << endl;
+                sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
 
-                         if (sqlite3_step(stmt) != SQLITE_DONE)
-                             errx(1,"Could not execute query");
-                         sqlite3_reset(stmt);
-                         sqlite3_finalize(stmt);
-                    }
+                if (sqlite3_step(stmt) != SQLITE_DONE)
+                    errx(1,"Could not execute query");
+                sqlite3_reset(stmt);
+                sqlite3_finalize(stmt);
             }
+       }
 
-            close_indexdb(db);
-    
+       close_indexdb(db);
+
+    printf("Mark run blessed\n");
+    N.exec0(
+        "UPDATE runs "
+        "SET blessed = true, status = 'complete' "
+        "WHERE id = " + pqxx::to_string(runid));
+
     return 0;
 }
 
@@ -272,10 +276,10 @@ load_depends(sqlite3 *db, connection & C, int runid, const char *pkg_name, const
 	sprintf(query_def, "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s' and d.type in ('run','lib', 'pkg')",
 		runid, runid, pkg_name, version); 
 
-if (C.is_open()) {
-
-	nontransaction N(C);
-	result R(N.exec(string(query_def)));
+    if (C.is_open())
+    {
+	    nontransaction N(C);
+	    result R(N.exec(string(query_def)));
 
 		if (!R.empty()) 
 		{
