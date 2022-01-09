@@ -189,8 +189,62 @@ CREATE TABLE  "runs" (
    "status"   varchar(40) NOT NULL default 'inactive', 
    "created"   timestamp NOT NULL default CURRENT_TIMESTAMP, 
    primary key ("id")
-)  ;
+);
 
+
+--
+-- Table structure for table distfiles
+--
+
+DROP TABLE "distfiles" CASCADE\g
+DROP SEQUENCE "distfiles_id_seq" CASCADE ;
+
+CREATE SEQUENCE "distfiles_id_seq" ;
+
+CREATE TABLE "distfiles"
+(
+    "id"       integer DEFAULT nextval('"distfiles_id_seq"') NOT NULL,
+    "port"     int                                           NOT NULL,
+    "filename" varchar(256),
+    primary key ("id")
+);
+CREATE INDEX "distfiles_port_idx" ON "distfiles" USING btree ("port");
+
+--
+-- Table structure for table restricted_distfiles
+--
+
+DROP TABLE "restricted_distfiles" CASCADE\g
+DROP SEQUENCE "restricted_distfiles_id_seq" CASCADE ;
+
+CREATE SEQUENCE "restricted_distfiles_id_seq" ;
+
+CREATE TABLE "restricted_distfiles"
+(
+    "id"       integer DEFAULT nextval('"restricted_distfiles_id_seq"') NOT NULL,
+    "port"     int                                                      NOT NULL,
+    "filename" varchar(256),
+    primary key ("id")
+);
+CREATE INDEX "restricted_distfiles_port_idx" ON "restricted_distfiles" USING btree ("port");
+
+--
+-- Table structure for table master_sites
+--
+
+DROP TABLE "master_sites" CASCADE\g
+DROP SEQUENCE "master_sites_id_seq" CASCADE;
+
+CREATE SEQUENCE "master_sites_id_seq";
+
+CREATE TABLE "master_sites"
+(
+    "id"   integer DEFAULT nextval('"master_sites_id_seq"') NOT NULL,
+    "port" int                                              NOT NULL,
+    "url"  text,
+    primary key ("id")
+);
+CREATE INDEX "master_sites_port_idx" ON "master_sites" USING btree ("port");
 
 create VIEW ready_ports AS
     SELECT ports.id AS id,
@@ -224,5 +278,8 @@ ORDER BY priority desc, ports.name asc;
 alter table ports add foreign key (run) references runs(id);
 alter table port_categories add foreign key (category) references categories(id);
 alter table locks add foreign key (port) references ports(id);
+alter table distfiles add foreign key (port) references ports(id);
+alter table restricted_distfiles add foreign key (port) references ports(id);
+alter table master_sites add foreign key (port) references ports(id);
 
 
