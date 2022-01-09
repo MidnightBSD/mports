@@ -43,7 +43,9 @@ sub sync {
   my $osversion;
   my %visited;
 
-  if ($osrel eq "2.1") {
+  if ($osrel eq "2.2") {
+    $osversion = 202000;
+  } elsif ($osrel eq "2.1") {
     $osversion = 201001;
   } elsif ($osrel eq "2.0") {
     $osversion = 200000;
@@ -147,7 +149,28 @@ sub sync {
       pkgname     => $dump{pkgname},
       flavor      => $dump{flavor},
       default_flavor => 0,
-    }); 
+    });
+
+     for (@{$dump->{'master_sites'}}) {
+       Magus::MasterSite->insert({
+           run => $run,
+           url => $_
+       });
+     }
+
+     for (@{$dump->{'distfiles'}}) {
+       Magus::Distfile->insert({
+           run      => $run,
+           filename => $_
+       });
+     }
+
+     for (@{$dump->{'restricted_distfiles'}}) {
+       Magus::RestrictedDistfile->insert({
+           run      => $run,
+           filename => $_
+       });
+     }
 
     $depends{$port->id} = [];
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
