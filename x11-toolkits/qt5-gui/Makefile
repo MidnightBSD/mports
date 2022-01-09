@@ -1,6 +1,6 @@
 PORTNAME=	gui
 DISTVERSION=	${QT5_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits graphics
 PKGNAMEPREFIX=	qt5-
 
@@ -9,16 +9,17 @@ COMMENT=	Qt graphical user interface module
 
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	at-spi2-core>=0:accessibility/at-spi2-core \
-		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
 		${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
-		${LOCALBASE}/include/xf86drm.h:graphics/libdrm
+		${LOCALBASE}/include/xf86drm.h:graphics/libdrm \
+		at-spi2-core>=0:accessibility/at-spi2-core
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libevdev.so:devel/libevdev \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		libinput.so:x11/libinput \
+		libmtdev.so:devel/libmtdev \
 		libpng.so:graphics/png \
 		libxcb-icccm.so:x11/xcb-util-wm \
 		libxcb-image.so:x11/xcb-util-image \
@@ -27,6 +28,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libxcb.so:x11/libxcb \
 		libxkbcommon.so:x11/libxkbcommon
 RUN_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
+		${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri \
 		xdg-open:devel/xdg-utils
 
 USES=			compiler:c++11-lang gl gnome jpeg localbase \
