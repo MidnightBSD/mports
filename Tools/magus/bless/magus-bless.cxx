@@ -1,5 +1,5 @@
 /*-
-Copyright (C) 2008, 2010, 2011, 2013, 2014 Lucas Holt All rights reserved.
+Copyright (C) 2008, 2010, 2011, 2013, 2014, 2022 Lucas Holt All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -162,12 +162,12 @@ main(int argc, char *argv[])
         printf("\n");
     }
 
-	    printf("Load the mirrors list\n");
-	    result R2(N.exec("SELECT country, url FROM mirrors order by country"));
-	    if (!R2.empty())
+	printf("Load the mirrors list\n");
+	result R2(N.exec("SELECT country, url FROM mirrors order by country"));
+	if (!R2.empty())
         {
-		    for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
-            {
+		for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
+		{
                 if (sqlite3_prepare_v2(db,"INSERT INTO mirrors (country, mirror) VALUES(?,?)",  -1, &stmt, 0) != SQLITE_OK)
                 {
                     errx(1, "Could not prepare statement");
@@ -184,17 +184,17 @@ main(int argc, char *argv[])
                 sqlite3_reset(stmt);
                 sqlite3_finalize(stmt);
             }
-       }
+	}
 
-       close_indexdb(db);
+	close_indexdb(db);
 
-    printf("Mark run blessed\n");
-    N.exec0(
-        "UPDATE runs "
-        "SET blessed = true, status = 'complete' "
-        "WHERE id = " + pqxx::to_string(runid));
+	printf("Mark run blessed\n");
+	N.exec0(
+		"UPDATE runs "
+		"SET blessed = true, status = 'complete' "
+		"WHERE id = " + pqxx::to_string(runid));
 
-    return 0;
+	return 0;
 }
 
 sqlite3*
@@ -217,7 +217,8 @@ open_indexdb(int runid)
 void
 close_indexdb(sqlite3 *db)
 {
-    sqlite3_close(db);
+	sqlite3_exec(db, "VACUUM", 0, 0, 0);
+	sqlite3_close(db);
 }
 
 
