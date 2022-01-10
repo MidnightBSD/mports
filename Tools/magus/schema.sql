@@ -205,7 +205,7 @@ CREATE TABLE "distfiles"
 (
     "id"       integer DEFAULT nextval('"distfiles_id_seq"') NOT NULL,
     "port"     int                                           NOT NULL,
-    "filename" varchar(256),
+    "filename" varchar(2048),
     primary key ("id")
 );
 CREATE INDEX "distfiles_port_idx" ON "distfiles" USING btree ("port");
@@ -223,7 +223,7 @@ CREATE TABLE "restricted_distfiles"
 (
     "id"       integer DEFAULT nextval('"restricted_distfiles_id_seq"') NOT NULL,
     "port"     int                                                      NOT NULL,
-    "filename" varchar(256),
+    "filename" varchar(2048),
     primary key ("id")
 );
 CREATE INDEX "restricted_distfiles_port_idx" ON "restricted_distfiles" USING btree ("port");
