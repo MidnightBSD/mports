@@ -153,21 +153,21 @@ sub sync {
 
      for (@{$dump{'master_sites'}}) {
        Magus::MasterSite->insert({
-           run => $run,
+           port => $port->id,
            url => $_
        });
      }
 
      for (@{$dump{'distfiles'}}) {
        Magus::Distfile->insert({
-           run      => $run,
+           port      => $port->id,
            filename => $_
        });
      }
 
      for (@{$dump{'restricted_distfiles'}}) {
        Magus::RestrictedDistfile->insert({
-           run      => $run,
+           port      => $port->id,
            filename => $_
        });
      }
