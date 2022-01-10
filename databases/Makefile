@@ -82,6 +82,7 @@ SUBDIR += p5-Time-Piece-MySQL
 SUBDIR += pecl-redis
 SUBDIR += percona55-client
 SUBDIR += percona55-server
+SUBDIR += pgmodeler
 SUBDIR += pgtcl
 SUBDIR += pgtop
 SUBDIR += pgtune
@@ -201,6 +202,7 @@ SUBDIR += tdb1
 SUBDIR += tinycdb
 SUBDIR += tuning-primer
 SUBDIR += unixODBC
+SUBDIR += virtualpg
 SUBDIR += vsqlite
 
 .include <bsd.port.subdir.mk>
