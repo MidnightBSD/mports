@@ -44,6 +44,9 @@ _VER=		29
 _MINVER=	2
 _PLVER=		0
 
+#magus issues
+NO_TEST=	yes
+
 post-install:
 .for l in libImath
 	${STRIP_CMD} ${PREFIX}/lib/${l}-${_MAJORVER}.so
@@ -52,7 +55,7 @@ post-install:
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
-do-test:
-	cd ${BUILD_WRKSRC} && ctest -j ${MAKE_JOBS_NUMBER}
+#do-test:
+#	cd ${BUILD_WRKSRC} && ctest -j ${MAKE_JOBS_NUMBER}
 
 .include <bsd.port.mk>
