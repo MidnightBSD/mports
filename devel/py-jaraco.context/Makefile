@@ -1,7 +1,7 @@
 # Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 
 PORTNAME=	jaraco.context
-PORTVERSION=	4.0.0
+PORTVERSION=	4.1.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,9 +22,6 @@ NO_ARCH=	yes
 NO_TEST=	yes
 
 POST_PLIST=	trim-jaraco-namespace
-
-post-patch:
-	@${REINPLACE_CMD} -e '/jaraco.apt/d; /yg.lockfile/d' ${WRKSRC}/setup.cfg
 
 post-install:
 	-${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__init__.py*
