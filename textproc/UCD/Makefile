@@ -1,5 +1,5 @@
 PORTNAME=	UCD
-PORTVERSION=	13.0.0
+PORTVERSION=	14.0.0
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.unicode.org/Public/zipped/${PORTVERSION}/:src\
 		ftp://www.unicode.org/Public/zipped/${PORTVERSION}/:src	\
