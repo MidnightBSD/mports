@@ -1,7 +1,7 @@
 PORTNAME=	pgmodeler
-PORTVERSION=	0.9.3
+PORTVERSION=	0.9.4
 DISTVERSIONPREFIX=	v
-DISTVERSIONSUFFIX=	-beta
+#DISTVERSIONSUFFIX=	-beta
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +20,8 @@ USE_QT=		core gui network printsupport sql svg widgets testlib uitools \
 USE_XORG=	x11 xext
 
 USE_LDCONFIG=	yes
+
+LDFLAGS+=	-lexecinfo
 
 QMAKE_SOURCE_PATH=	${WRKSRC}/${PORTNAME}.pro
 
