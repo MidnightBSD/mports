@@ -85,7 +85,6 @@ sub sync {
     my $primaryFlavor = $dump{flavor};
     my $defaultFlavor = 0;
 
-
     my $port = Magus::Port->insert({ 
       run         => $run,
       name        => $dump{name}, 
@@ -98,6 +97,27 @@ sub sync {
       flavor      => $dump{flavor},
       default_flavor => 1,
     });     
+
+     for (@{$dump{'master_sites'}}) {
+       Magus::MasterSite->insert({
+           port => $port->id,
+           url => $_
+       });
+     }
+
+     for (@{$dump{'distfiles'}}) {
+       Magus::Distfile->insert({
+           port      => $port->id,
+           filename => $_
+       });
+     }
+
+     for (@{$dump{'restricted_distfiles'}}) {
+       Magus::RestrictedDistfile->insert({
+           port      => $port->id,
+           filename => $_
+       });
+     }
 
     $depends{$port->id} = [];
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
@@ -138,7 +158,7 @@ sub sync {
         next;
       }
       
-      $port = Magus::Port->insert({ 
+	$port = Magus::Port->insert({ 
       run         => $run,
       name        => $dump{name}, 
       version     => $dump{version},
