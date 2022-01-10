@@ -82,6 +82,7 @@ SUBDIR += p5-Time-Piece-MySQL
 SUBDIR += pecl-redis
 SUBDIR += percona55-client
 SUBDIR += percona55-server
+SUBDIR += pgmodeler
 SUBDIR += pgtcl
 SUBDIR += pgtop
 SUBDIR += pgtune
