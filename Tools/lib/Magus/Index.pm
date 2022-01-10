@@ -151,23 +151,23 @@ sub sync {
       default_flavor => 0,
     });
 
-     for (@{$dump->{'master_sites'}}) {
+     for (@{$dump{'master_sites'}}) {
        Magus::MasterSite->insert({
-           run => $run,
+           port => $port->id,
            url => $_
        });
      }
 
-     for (@{$dump->{'distfiles'}}) {
+     for (@{$dump{'distfiles'}}) {
        Magus::Distfile->insert({
-           run      => $run,
+           port      => $port->id,
            filename => $_
        });
      }
 
-     for (@{$dump->{'restricted_distfiles'}}) {
+     for (@{$dump{'restricted_distfiles'}}) {
        Magus::RestrictedDistfile->insert({
-           run      => $run,
+           port      => $port->id,
            filename => $_
        });
      }
