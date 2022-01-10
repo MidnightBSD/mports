@@ -95,10 +95,17 @@ DTRACE_CONFIGURE_ENABLE=dtrace
 DTRACE_LDFLAGS=		-lelf
 DTRACE_INSTALL_TARGET=	install
 
+.if ${DISTVERSION:C/([0-9]*).*/\1/} >= 14
+OPTIONS_DEFINE+=	LZ4
+OPTIONS_DEFAULT+=	LZ4
+LZ4_DESC=		Build with LZ4 compression support
+LZ4_CONFIGURE_WITH=	lz4
+LZ4_LIB_DEPENDS+=	liblz4.so:archivers/liblz4
+.endif
+
 .if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
 OPTIONS_DEFINE+=	LLVM
 #OPTIONS_DEFAULT+=	LLVM
-BROKEN=		llvm support is currently broken
 LLVM_DESC=		Build with support for JIT-compiling expressions
 .endif
 
@@ -240,26 +247,39 @@ RUN_DEPENDS+=		llvm-config${PG_LLVM_VERSION}:devel/llvm${PG_LLVM_VERSION}
 CONFIGURE_ENV+=		LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${PG_LLVM_VERSION}
 .endif
 
+# Convert LLVM_DEFAULT to COMPILER_VERSION format to make it
+# suitable for version comparison.
+.if ${LLVM_DEFAULT} >= 70 && ${LLVM_DEFAULT} <= 90
+LLVM_DEFAULT_VERSION=	${LLVM_DEFAULT}
+.else
+LLVM_DEFAULT_VERSION=	${LLVM_DEFAULT}0
+.endif
+
+# Convert COMPILER_VERSION to LLVM_DEFAULT format to make it
+# suitable for LLVM port name.
+# All supported BSD versions have Clang 10.0.1 or later.
+LLVM_PORT_SUFFIX=	${COMPILER_VERSION:C/.$//}
+
 # sync LLVM to the preferred compiler if possible
 # or else use a lower version compiler that is compatible
-.if ${COMPILER_VERSION} > ${LLVM_DEFAULT}
-# Highest LLVM version in ports:
-.  if ${COMPILER_VERSION} <= 11
-PG_LLVM_VERSION=${COMPILER_VERSION}
-PG_COMPILER_VERSION=${COMPILER_VERSION}
+.if ${COMPILER_VERSION} > ${LLVM_DEFAULT_VERSION}
+# LLVM versions in ports are, in order, 70, 80 90, 10, 11, 12... where 10 > 90. [sic]
+.  if ${LLVM_PORT_SUFFIX} < 70
+PG_LLVM_VERSION=${LLVM_PORT_SUFFIX}
+PG_COMPILER_VERSION=${LLVM_PORT_SUFFIX}
 .  else
 PG_LLVM_VERSION=11
 PG_COMPILER_VERSION=11
 .  endif
 .else
-PG_COMPILER_VERSION=${COMPILER_VERSION}
 PG_LLVM_VERSION=${LLVM_DEFAULT}
+PG_COMPILER_VERSION=${LLVM_PORT_SUFFIX}
 .endif
 
 .if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
 .  if defined(SERVER_ONLY) && ${PORT_OPTIONS:MLLVM}
 INSTALL_DIRS+=		src/backend/jit/llvm
-.    if ${COMPILER_VERSION} != ${PG_COMPILER_VERSION}
+.    if ${LLVM_PORT_SUFFIX} != ${PG_COMPILER_VERSION}
 LLVM_CONFIGURE_ARGS?=	CC=${LOCALBASE}/bin/clang${PG_COMPILER_VERSION}
 .    endif
 .  endif
@@ -292,6 +312,10 @@ post-patch:
 		-e '/m4_PACKAGE_VERSION/s/\[2\.6[0-9]\]/m4_defn([m4_PACKAGE_VERSION])/' \
 		-e '/icu/s/_57//' \
 		${WRKSRC}/configure.in
+.  elif defined(CLIENT_ONLY) && !defined(OPENSSL_PORT)
+	@${REINPLACE_CMD} \
+		-e '/^PKG_CONFIG_REQUIRES_PRIVATE = libssl libcrypto/d' \
+		${WRKSRC}/src/interfaces/libpq/Makefile
 .  endif
 
 do-install:
