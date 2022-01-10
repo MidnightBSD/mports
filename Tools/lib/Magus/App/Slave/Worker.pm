@@ -18,7 +18,7 @@ sub run {
 	$self->{port}->note_event(info => "Test Started");
 	$self->prep_chroot();
 	$self->inject_depends();
-    $self->inject_distfiles();
+	$self->inject_distfiles();
   	$self->run_test();
   	$self->{port}->note_event($self->{port}->status => "Test complete.");
   }; 
