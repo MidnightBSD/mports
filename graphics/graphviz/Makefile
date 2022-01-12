@@ -1,7 +1,7 @@
 # Created by: Thomas Gellekum <tg@FreeBSD.org>
 
 PORTNAME=	graphviz
-PORTVERSION=	2.44.0
+PORTVERSION=	2.44.1
 CATEGORIES=	graphics tk
 MASTER_SITES=	https://www2.graphviz.org/Packages/stable/portable_source/
 
@@ -20,12 +20,11 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 		libexpat.so:textproc/expat2 \
 		libgd.so:${GD_PORT}
 
-USES=		cpe pathfix shebangfix gmake bison pkgconfig \
+USES=		compiler:c++11-lang cpe pathfix shebangfix gmake bison pkgconfig \
 		libtool:keepla autoreconf localbase:ldflags jpeg \
 		tcl:build
 
 GNU_CONFIGURE=	yes
-# sincos is broken on armv6, see ports/220591
 CFLAGS_armv6=	-fno-builtin-sincos -fno-builtin-sin -fno-builtin-cos \
 		-fno-builtin-sincosf -fno-builtin-sinf -fno-builtin-cosf \
 		-fno-builtin-sincosl -fno-builtin-sinl -fno-builtin-cosl
@@ -48,7 +47,7 @@ FIX_TK_SCRIPT=	tclpkg/tcldot/demo/doted.tcl \
 		tclpkg/tclpathplan/demo/pathplan.tcl
 
 OPTIONS_DEFINE=	XPM DIGCOLA IPSEPCOLA ICONV NLS PANGOCAIRO POPPLER \
-		ANN GTS GTK2 GDK GDK_PIXBUF GNOMEUI SMYRNA DEVIL \
+		ANN GTS GTK2 GDK GDK_PIXBUF SMYRNA DEVIL \
 		GHOSTSCRIPT PERL PHP PYTHON RUBY LUA TCL TK GUILE GO \
 		NVTHREADS DOCS EXAMPLES
 OPTIONS_DEFAULT=	XPM DIGCOLA IPSEPCOLA ICONV PANGOCAIRO NVTHREADS
@@ -62,7 +61,6 @@ GTS_DESC=	GNU Triangulated Surface Library support
 GTK2_DESC=	gtk2 plugin (requires PANGOCAIRO)
 GDK_DESC=	gdk library support (requires GTK2)
 GDK_PIXBUF_DESC=gdk pixbuf support (requires GDK)
-GNOMEUI_DESC=	libgnomeui support
 SMYRNA_DESC=	SMYRNA graph viewer (requires GTK2)
 DEVIL_DESC=	devil plugin
 GHOSTSCRIPT_DESC=ghostscript plugin (requires PANGOCAIRO)
@@ -85,7 +83,6 @@ PANGOCAIRO_USES=gnome xorg
 PANGOCAIRO_USE=	GNOME=pango,cairo XORG=xrender,x11,xau,xdmcp
 GTK2_USES=	gnome xorg
 GTK2_USE=	XORG=sm,ice,xext,xinerama,xi,xrandr,xcursor,xfixes GNOME=gtk20
-GNOMEUI_USE=	GNOME=libgnomeui
 SMYRNA_USES=	gnome gl
 SMYRNA_USE=	GNOME=libglade2,pangox-compat,gdkpixbuf2 GL=glut,glu,gl
 GHOSTSCRIPT_USES=ghostscript
@@ -127,8 +124,6 @@ GTK2_IMPLIES=			PANGOCAIRO
 GDK_CONFIGURE_WITH=		gdk
 GDK_PIXBUF_CONFIGURE_WITH=	gdk-pixbuf
 GDK_PIXBUF_IMPLIES=		GTK2 GDK
-GNOMEUI_CONFIGURE_WITH=		gnomeui
-GNOMEUI_IMPLIES=		GTK2
 SMYRNA_CONFIGURE_OFF=		--with-glut=no
 SMYRNA_CONFIGURE_WITH=		smyrna glade gtkgl gtkglext
 SMYRNA_IMPLIES=			GTK2 GTS
@@ -202,10 +197,10 @@ CONFIGURE_ARGS+=	--without-libiconv-prefix
 .if ${PORT_OPTIONS:MPERL} || ${PORT_OPTIONS:MPHP} || ${PORT_OPTIONS:MPYTHON} || \
     ${PORT_OPTIONS:MRUBY} || ${PORT_OPTIONS:MLUA} || ${PORT_OPTIONS:MTCL} || \
     ${PORT_OPTIONS:MGUILE} || ${PORT_OPTIONS:MGO}
-BUILD_DEPENDS+=		swig3.0:devel/swig30
-RUN_DEPENDS+=		swig3.0:devel/swig30
+BUILD_DEPENDS+=		swig:devel/swig
+RUN_DEPENDS+=		swig:devel/swig
 CONFIGURE_ARGS+=	--enable-swig
-CONFIGURE_ENV+=		SWIG="${LOCALBASE}/bin/swig3.0"
+CONFIGURE_ENV+=		SWIG="${LOCALBASE}/bin/swig"
 .else
 CONFIGURE_ARGS+=	--disable-swig
 CONFIGURE_ENV+=		SWIG="/nonexistent"
