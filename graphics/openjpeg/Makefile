@@ -16,7 +16,7 @@ LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
 
 USE_LDCONFIG=	yes
 USES=		cmake cpe pkgconfig
-
+CPE_VENDOR=	uclouvain
 PLIST_SUB=	PORTVERSION=${PORTVERSION} VER=${PORTVERSION:R}
 
 GH_ACCOUNT=	uclouvain
