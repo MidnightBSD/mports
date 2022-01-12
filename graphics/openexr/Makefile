@@ -1,11 +1,6 @@
 PORTNAME=	openexr
-PORTVERSION=	2.3.0
-PORTREVISION=	1
+PORTVERSION=	3.1.1
 CATEGORIES=	graphics devel
-MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${PORTVERSION}/:dist \
-		FREEBSD_LOCAL/mandree/:test
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:dist \
-		${PORTNAME}-2.2.0-comp_dwa-test-images.tar.xz:test
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High dynamic-range (HDR) image file format
@@ -13,77 +8,62 @@ COMMENT=	High dynamic-range (HDR) image file format
 LICENSE=	bsd3
 
 # exact version required to avoid hard-to-debug issues
-LIB_DEPENDS=	libImath-2_3.so.24:graphics/ilmbase
+LIB_DEPENDS=	libImath-3_1.so.29:math/Imath
 
-WRKSRC=		${WRKDIR}/${DISTNAME}
+USES=		cmake compiler:c++14-lang pathfix pkgconfig
 
-USES=		compiler:c++14-lang gmake libtool pathfix pkgconfig
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-ilmbasetest --enable-imfexamples
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+USE_GITHUB=	yes
+GH_TUPLE=	AcademySoftwareFoundation:openexr:v${PORTVERSION}
+
 USE_LDCONFIG=	yes
-TEST_TARGET=	check
-
-CPPFLAGS+=	-I. -I../IlmImf
+CMAKE_ARGS+=	-DCMAKE_DEBUG_POSTFIX=
+CPPFLAGS+=	-I.
 # must be linked with -l{thr|pthread} explicitly
 LDFLAGS+=	-lpthread
+
+PATCH_STRIP=	-p0
+
+_MAJORVER=	3_1
+_VER=		30
+_MINVER=	1
+_PLVER=		0
+
+PLIST_SUB+=	MAJORVER=${_MAJORVER} \
+		VER=${_VER} \
+		MINVER=${_MINVER} \
+		PLVER=${_PLVER}
 
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-DOCSRCDIR1=	${WRKSRC}
-DOC_FILES1=	AUTHORS ChangeLog NEWS README.md
-
-DOCSRCDIR2=	${WRKSRC}/doc
-DOC_FILES2=	*.pdf
-
-OPTIONS_DEFINE=		DOCS EXAMPLES LARGE_STACK
-LARGE_STACK_DESC=	Enable sys-dependent large stack optimizations
-
+OPTIONS_DEFINE=	DOCS EXAMPLES
 OPTIONS_SUB=	yes
 
-LARGE_STACK_CONFIGURE_ENABLE=	large-stack
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == powerpc
-USE_GCC=	yes
-.endif
-
-MAJORVER=	2_3
-VER=		24
-
-PLIST_SUB+=	MAJORVER=${MAJORVER}
-PLIST_SUB+=	VER=${VER}
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|== x|= x|g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} \
-		-e 's|$$(datadir)/doc/OpenEXR-@OPENEXR_VERSION@/examples|$$(prefix)/share/examples/${PORTNAME}|' \
-		${WRKSRC}/IlmImfExamples/Makefile.in
-	@${REINPLACE_CMD} -e 's|$$(datadir)/doc/OpenEXR-@OPENEXR_VERSION@||' \
-		-e 's|$$(EXTRA_DIST)||' \
-		${WRKSRC}/doc/Makefile.am ${WRKSRC}/doc/Makefile.in
-
-post-install:
-	${STRIP_CMD} \
-		${STAGEDIR}${PREFIX}/lib/libIlmImf-${MAJORVER}.so.${VER} \
-		${STAGEDIR}${PREFIX}/lib/libIlmImfUtil-${MAJORVER}.so.${VER}
-
-post-install-EXAMPLES-on:
-	${MV} \
-		${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME}/examples/ ${FAKE_DESTDIR}${EXAMPLESDIR}
-	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME} 2>/dev/null || :
-
-post-install-EXAMPLES-off:
-	${RM} -R ${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME}/examples/
+_DOCSRCDIR1=	${WRKSRC}
+_DOCSRCDIR2=	${WRKSRC}/docs
+_DOC_FILES1=	CHANGES.md CONTRIBUTING.md GOVERNANCE.md LICENSE.md SECURITY.md \
+		CODE_OF_CONDUCT.md CONTRIBUTORS.md README.md
+_DOC_FILES2=	*.odt *.pdf
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${_DOC_FILES1:S|^|${_DOCSRCDIR1}/|} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${_DOC_FILES2:S|^|${_DOCSRCDIR2}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install-DOCS-off:
+	-${RM} ${FAKE_DESTDIR}${DOCSDIR:H}/OpenEXR/*.pdf
 	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME} 2>/dev/null || :
 
-.include <bsd.port.post.mk>
+post-install-EXAMPLES-on:
+	${MV} \
+		${FAKE_DESTDIR}${PREFIX}/share/doc/OpenEXR/examples/ ${FAKE_DESTDIR}${EXAMPLESDIR}
+	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/OpenEXR 2>/dev/null || :
+
+post-install-EXAMPLES-off:
+	-${RM} -R ${FAKE_DESTDIR}${PREFIX}/share/doc/OpenEXR/examples/
+	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/OpenEXR 2>/dev/null || :
+
+do-test:
+	cd ${BUILD_WRKSRC} && ctest -j ${MAKE_JOBS_NUMBER}
+
+.include <bsd.port.mk>
