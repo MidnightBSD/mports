@@ -2,7 +2,7 @@
 
 PORTNAME?=	gimp-app
 PORTVERSION=	2.10.20
-PORTREVISION=	9
+PORTREVISION=	10
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
@@ -56,6 +56,7 @@ NO_TEST=	yes
 TEST_ENV=	XAUTHORITY=${HOME}/.Xauthority
 .endif
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc/gimp \
+		--with-bug-report-url="https://bugreport.midnightbsd.org/" \
 		--disable-gtk-doc \
 		--without-linux-input \
 		--with-print \
@@ -71,8 +72,8 @@ CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc/gimp \
 		--enable-default-binary
 CONFIGURE_ENV=	GIMP_THREAD_LIBS=-lpthread
 LIBS+=		-lexecinfo -lm
+CPE_VENDOR=	gimp
 CPE_PRODUCT=	gimp
-CPE_VENDOR=	gnu
 
 SHEBANG_FILES=	plug-ins/pygimp/plug-ins/*.py
 
@@ -82,9 +83,9 @@ PLIST_SUB+=	LIBVER=0.1000.${PORTVERSION:E}
 
 USES+=		desktop-file-utils
 
-OPTIONS_DEFINE?=	AA GHOSTSCRIPT \
+OPTIONS_DEFINE?=	AALIB GHOSTSCRIPT \
 			LIBHEIF LIBMNG OPENEXR OPENJPEG SIMD WEBP WMF
-OPTIONS_DEFAULT=	AA LIBMNG OPENEXR OPENJPEG SIMD WEBP WMF
+OPTIONS_DEFAULT=	AALIB LIBMNG OPENEXR OPENJPEG SIMD WEBP WMF
 OPTIONS_SUB=		yes
 
 .endif
@@ -101,9 +102,9 @@ LIB_DEPENDS+=	libgimp-2.0.so:graphics/gimp-app
 
 DEBUG_CONFIGURE_ON=	--enable-debug
 
-AA_DESC=		Ascii-art Plug-in
-AA_LIB_DEPENDS=		libaa.so:graphics/aalib
-AA_CONFIGURE_WITH=	aa
+AALIB_DESC=		Ascii-art Plug-in
+AALIB_LIB_DEPENDS=	libaa.so:graphics/aalib
+AALIB_CONFIGURE_WITH=	aa
 
 LIBHEIF_DESC=		ISO/IEC 23008-12:2017 HEIF file format support
 LIBHEIF_LIB_DEPENDS=	libheif.so:graphics/libheif
@@ -116,8 +117,8 @@ LIBMNG_LIB_DEPENDS=	libmng.so:graphics/libmng
 LIBMNG_CONFIGURE_WITH=	libmng
 
 OPENEXR_CONFIGURE_WITH=	openexr
-OPENEXR_LIB_DEPENDS=	libIlmImf.so:graphics/openexr \
-			libIex.so:graphics/ilmbase
+OPENEXR_LIB_DEPENDS=	libImath.so:math/Imath \
+			libOpenEXR.so:graphics/openexr
 
 OPENJPEG_DESC=		Enhanced JPEG (jpeg2000) graphics support
 OPENJPEG_LIB_DEPENDS=	libopenjp2.so:graphics/openjpeg
@@ -130,7 +131,8 @@ SIMD_CONFIGURE_OFF=	--disable-mmx \
 WEBP_CONFIGURE_WITH=	webp
 WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 
-WMF_LIB_DEPENDS=	libwmf.so:graphics/libwmf
+WMF_LIB_DEPENDS=	libwmf.so:graphics/libwmf \
+			libexpat.so:textproc/expat2
 WMF_CONFIGURE_WITH=	wmf
 
 .endif
