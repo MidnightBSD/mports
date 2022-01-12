@@ -18,10 +18,10 @@ BUILD_DEPENDS=	netsurf-buildsystem>=1.5:devel/netsurf-buildsystem
 
 USES=		gmake
 USE_LDCONFIG=	yes
-MAKE_ENV=	COMPONENT_TYPE="lib-shared"
+MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnsgif.so
+	${STRIP_CMD} ${PREFIX}/lib/libnsgif.so
 
 .include <bsd.port.mk>
