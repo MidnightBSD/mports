@@ -1,7 +1,8 @@
 PORTNAME=	libuv
-PORTVERSION=	1.42.0
+DISTVERSION=	1.42.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
+MASTER_SITES=	https://dist.libuv.org/dist/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-platform support library with a focus on asynchronous I/O
@@ -11,11 +12,11 @@ LICENSE_NAME=	NODE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USE_GITHUB=	yes
+#USE_GITHUB=	yes
 
 USES=		autoreconf libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.3
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
