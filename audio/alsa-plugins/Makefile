@@ -14,7 +14,7 @@ LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	libasound.so:audio/alsa-lib
 
-USES=		alias libtool:keepla localbase pkgconfig tar:bzip2
+USES=		libtool:keepla localbase pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 MAKE_ARGS+=	RM="${RM}"
 EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
