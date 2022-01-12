@@ -1,5 +1,6 @@
 PORTNAME=	json-c
 PORTVERSION=	0.15
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://s3.amazonaws.com/json-c_releases/releases/ \
 		FREEBSD_LOCAL/sunpoet
@@ -20,6 +21,6 @@ USE_LDCONFIG=	yes
 CPE_VENDOR=	json-c_project
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/json_object_private.h ${STAGEDIR}${PREFIX}/include/json-c/
+	${INSTALL_DATA} ${WRKSRC}/json_object_private.h ${PREFIX}/include/json-c/
 
 .include <bsd.port.mk>
