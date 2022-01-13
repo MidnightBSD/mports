@@ -4,3 +4,4 @@
 %%GDM%%etc/gdm/Sessions/XFce4
 %%GDM%%@dirrmtry %%LOCALBASE%%/etc/gdm/Sessions
 %%GDM%%@dirrmtry %%LOCALBASE%%/etc/gdm
+@postexec /usr/bin/find %%LOCALBASE%%/share/icons -type d -depth 1 -exec %D/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null || /usr/bin/true
