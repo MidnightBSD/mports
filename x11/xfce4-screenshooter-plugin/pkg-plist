@@ -71,3 +71,9 @@ share/applications/xfce4-screenshooter.desktop
 share/metainfo/xfce4-screenshooter.appdata.xml
 share/xfce4/panel/plugins/screenshooter.desktop
 @postexec /usr/bin/find %%LOCALBASE%%/share/icons -type d -depth 1 -exec %D/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null || /usr/bin/true
+@dirrmtry share/xfce4/panel/plugins
+@dirrmtry share/xfce4/panel
+@dirrmtry share/xfce4
+@dirrmtry lib/xfce4/panel/plugins
+@dirrmtry lib/xfce4/panel
+@dirrmtry lib/xfce4
