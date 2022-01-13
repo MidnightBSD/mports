@@ -1,7 +1,7 @@
-
+# Created by: James Earl <jdearl@telus.net>
 
 PORTNAME=	libxfce4util
-PORTVERSION=	4.12.1
+PORTVERSION=	4.16.0
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
@@ -11,18 +11,32 @@ COMMENT=	Extension library for the Xfce desktop environment
 
 LICENSE=	gpl2
 
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-USES=		gmake libtool pathfix pkgconfig gettext-tools \
-	xfce tar:bzip2 perl5
-USE_GNOME=	glib20 intltool intlhack
+USES=		compiler:c11 gettext-tools gmake gnome libtool pathfix perl5 \
+		pkgconfig tar:bzip2 xfce
+USE_GNOME=	glib20 intltool
 USE_LDCONFIG=	yes
 
-CONFIGURE_ARGS=--without-html-dir
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--without-html-dir
 
-OPTIONS_DEFINE=	NLS
-OPTIONS_SUB=	yes
-NLS_USES=		gettext-runtime
+PORTSCOUT=	limitw:1,even
+
+OPTIONS_DEFINE=		GIR NLS VAPI
+OPTIONS_DEFAULT=	GIR VAPI
+OPTIONS_SUB=		yes
+
+GIR_DESC=		Use Gobject Introspection
+
+GIR_USE=		gnome=introspection:build
+GIR_CONFIGURE_ON=       --enable-introspection=yes
+GIR_CONFIGURE_OFF=      --enable-introspection=no
+
 NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext-runtime
+
+VAPI_BUILD_DEPENDS=	vapigen:lang/vala
+VAPI_CONFIGURE_ENABLE=	vala
+VAPI_IMPLIES=		GIR
 
 .include <bsd.port.mk>

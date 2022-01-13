@@ -1,41 +1,50 @@
 PORTNAME=	xfce4-wm
-PORTVERSION=	4.12.3
+PORTVERSION=	4.16.1
 CATEGORIES=	x11-wm xfce
-MASTER_SITES=	XFCE/src/xfce/xfwm4/${PORTVERSION:R}
-DISTNAME=	xfwm4-${PORTVERSION}
+MASTER_SITES=	XFCE
+DISTNAME=	xfwm4-${DISTVERSIONFULL}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Xfce window manager
+COMMENT=	Xfce's window manager
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	libepoxy.so:graphics/libepoxy
+
+USES=		compiler:c11 gettext-tools gmake gnome pkgconfig tar:bzip2 \
+		xfce xorg
+USE_GNOME=	cairo gtk30 intltool libwnck3
+USE_XFCE=	libmenu xfconf
+USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xi xinerama \
+		xorgproto xpresent xrandr xrender xres
 
 CONFIGURE_ARGS=	--enable-xsync \
 		--enable-render \
 		--enable-randr \
 		--enable-compositor \
+		--enable-xpresent \
 		--disable-kde-systray
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USES=		pkgconfig gmake gettext-tools xfce tar:bzip2
-USE_GNOME=	gtk20 intltool intlhack libwnck
-USE_LDCONFIG=	yes
-USE_XFCE=	libmenu
-USE_XORG=	x11 sm xcomposite xdamage xext xfixes xrandr xrender
 DATADIR=	${PREFIX}/share/xfwm4
 
-OPTIONS_DEFINE=		DRM NLS STARTUP
-OPTIONS_DEFAULT=	NLS STARTUP
-DRM_DESC=	Direct Rendering Module service
-STARTUP_DESC=	Startup notification
-DRM_LIB_DEPENDS=	libdrm.so:${PORTSDIR}/graphics/libdrm
-DRM_CONFIGURE_ENABLE=	libdrm
-NLS_USES=	gettext-runtime
+PORTSCOUT=	limitw:1,even
+
+OPTIONS_DEFINE=		NLS STARTUP
+OPTIONS_DEFAULT=	STARTUP
+OPTIONS_SUB=		yes
+
+STARTUP_DESC=		Startup notification
+
 NLS_CONFIGURE_ENABLE=	nls
-STARTUP_LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification
+NLS_USES=		gettext-runtime
+
 STARTUP_CONFIGURE_ENABLE=	startup-notification
-OPTIONS_SUB=	yes
+STARTUP_LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|Default|Greybird|' \
+		${WRKSRC}/settings-dialogs/xfwm4-settings.c
 
 .include <bsd.port.mk>

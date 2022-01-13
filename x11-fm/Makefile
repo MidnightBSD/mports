@@ -8,6 +8,5 @@ SUBDIR += nemo
 SUBDIR += pcmanfm
 SUBDIR += sushi
 SUBDIR += thunar
-SUBDIR += thunar-vfs
 
 .include <bsd.port.subdir.mk>

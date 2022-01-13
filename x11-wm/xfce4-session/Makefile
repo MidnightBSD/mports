@@ -1,43 +1,40 @@
-
-
 PORTNAME=	xfce4-session
-PORTVERSION=	4.12.1
-PORTREVISION=	1
+PORTVERSION=	4.16.0
 CATEGORIES=	x11-wm xfce
-MASTER_SITES=	XFCE/src/xfce/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Session manager for the Xfce 4 desktop environment
+COMMENT=	Xfce's session manager
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth
-RUN_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth \
-		console-kit-daemon:${PORTSDIR}/sysutils/consolekit2
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libupower-glib.so:${PORTSDIR}/sysutils/upower \
-		libpolkit-gobject-1.so:${PORTSDIR}/sysutils/polkit
+BUILD_DEPENDS=	iceauth:x11/iceauth
+RUN_DEPENDS=	iceauth:x11/iceauth \
+		console-kit-daemon:sysutils/consolekit2
+LIB_DEPENDS=	libupower-glib.so:sysutils/upower \
+		libpolkit-gobject-1.so:sysutils/polkit
+
+USES=		compiler:c11 gettext-tools gmake gnome libtool pathfix \
+		pkgconfig tar:bzip2 xfce xorg
+USE_GNOME=	cairo gtk30 glib20 intltool libwnck3
+USE_XFCE=	libexo xfconf
+USE_XORG=	ice sm x11
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USE_GNOME=	gtk20 glib20 intltool intlhack libwnck
-USES=		pathfix pkgconfig gmake libtool gettext-tools xfce tar:bzip2
-USE_LDCONFIG=	yes
-USE_XFCE=	libmenu
-USE_XORG=	x11 sm ice
-
-CONFIGURE_ARGS+=--enable-legacy-sm \
+CONFIGURE_ARGS=	--enable-legacy-sm \
 		--with-xsession-prefix=${PREFIX}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 SUB_FILES=	pkg-message
+INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	NLS
-NLS_USES=	gettext-runtime
+PORTSCOUT=	limitw:1,even
+
+OPTIONS_DEFINE=		NLS
+OPTIONS_SUB=		yes
+
 NLS_CONFIGURE_ENABLE=	nls
-OPTIONS_SUB=	yes
-
-PLIST_SUB=	VERSION="4.6"
+NLS_USES=		gettext-runtime
 
 .include <bsd.port.mk>

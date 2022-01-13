@@ -1,10 +1,8 @@
-
-
 PORTNAME=	xfce4-conf
-PORTVERSION=	4.12.0
+PORTVERSION=	4.16.0
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE
-DISTNAME=	xfconf-${PORTVERSION}
+DISTNAME=	xfconf-${DISTVERSIONFULL}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,28 +10,38 @@ COMMENT=	D-Bus-based configuration storage system
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	p5-XML-Parser>=2.41:${PORTSDIR}/textproc/p5-XML-Parser
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+BUILD_DEPENDS=	p5-XML-Parser>=2.44:textproc/p5-XML-Parser
 
-GNU_CONFIGURE=	yes
-USE_GNOME=	glib20 gtk20 intltool intlhack
+USES=		compiler:c11 gettext-tools gmake gnome libtool pathfix perl5 \
+		pkgconfig tar:bzip2 xfce xorg
+USE_GNOME=	glib20 intltool
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_XFCE=	libutil
 USE_XORG=	x11
-USES=		gmake libtool pathfix pkgconfig perl5 gettext-tools \
-	xfce tar:bzip2
 
-CONFIGURE_ARGS=--without-html-dir
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--without-html-dir \
+		--without-bash-completion-dir
 
-OPTIONS_DEFINE=		PERL NLS
-NLS_USES=	gettext-runtime
+PORTSCOUT=	limitw:1,even
+
+OPTIONS_DEFINE=		GIR NLS VAPI
+OPTIONS_DEFAULT=	GIR VAPI
+OPTIONS_SUB=		yes
+
+GIR_DESC=		Use Gobject Introspection
+
+GIR_USE=		gnome=introspection:build
+GIR_CONFIGURE_ON=	--enable-introspection=yes
+GIR_CONFIGURE_OFF=	--enable-introspection=no
+
 NLS_CONFIGURE_ENABLE=	nls
-PERL_BUILD_DEPENDS=	p5-ExtUtils-Depends>=0.304:${PORTSDIR}/devel/p5-ExtUtils-Depends \
-	p5-ExtUtils-PkgConfig>=1.15:${PORTSDIR}/devel/p5-ExtUtils-PkgConfig \
-	p5-Glib2>=1.280:${PORTSDIR}/devel/p5-Glib2
-PERL_USE=	perl5=run
-PERL_CONFIGURE_ENABLE=	perl-bindings
-OPTIONS_SUB=	yes
+NLS_USES=		gettext-runtime
+
+VAPI_BUILD_DEPENDS=	vapigen:lang/vala
+VAPI_CONFIGURE_ENABLE=	vala
+VAPI_IMPLIES=		GIR
 
 .include <bsd.port.mk>

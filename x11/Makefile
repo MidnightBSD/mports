@@ -46,6 +46,7 @@ SUBDIR += libXfixes
 SUBDIR += libXi
 SUBDIR += libXinerama
 SUBDIR += libXpm
+SUBDIR += libXpresent
 SUBDIR += libXrandr
 SUBDIR += libXrender
 SUBDIR += libXres

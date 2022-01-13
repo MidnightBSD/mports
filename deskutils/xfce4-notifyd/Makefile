@@ -1,10 +1,14 @@
-
+# Created by: Emanuel Haupt <ehaupt@FreeBSD.org>
+#
+# !!!NOTE!!! Update of x11-toolkits/gtk30 (specially >= 3.20.x) must be
+# accompanied by PORTREVISION bumps of this port.
+# Support of GTK+ is checked at compile time and themes directories too.
 
 PORTNAME=	xfce4-notifyd
-PORTVERSION=	0.2.4
-PORTREVISION=	1
+PORTVERSION=	0.6.2
+PORTREVISION=	2
 CATEGORIES=	deskutils xfce
-MASTER_SITES=	XFCE/src/apps/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE/apps
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,28 +16,22 @@ COMMENT=	Visually-appealing notification daemon for Xfce
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libnotify.so:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	libnotify.so:devel/libnotify
 
-USES=		gmake libtool pkgconfig gettext-tools xfce tar:bzip2
-GNU_CONFIGURE=	yes
-USE_GNOME=	gtk20 intltool intlhack
-USE_XFCE=	libmenu
+USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
+		tar:bzip2 xfce xorg
+USE_GNOME=	cairo glib20 gtk30 intltool
 INSTALLS_ICONS=	yes
-USE_XORG=	x11
+USE_XFCE=	libutil panel
+USE_XORG=	ice sm x11
+
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext-runtime
-CONFIGURE_ARGS+=--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-configure
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_USES=		gettext-runtime
+NLS_CONFIGURE_ENABLE=	nls
 
 .include <bsd.port.mk>

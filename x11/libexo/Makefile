@@ -1,5 +1,5 @@
 PORTNAME=	libexo
-PORTVERSION=	0.12.11
+PORTVERSION=	4.16.2
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE
 DISTNAME=	exo-${DISTVERSIONFULL}
@@ -10,6 +10,8 @@ COMMENT=	Application library for the Xfce desktop environment
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
@@ -29,12 +31,10 @@ INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--without-html-dir --disable-silent-rules
 
-OPTIONS_DEFINE=	GTK2 NLS
-OPTIONS_DEFAULT=	GTK2
-OPTIONS_SUB=	yes
+PORTSCOUT=	limitw:1,even
 
-GTK2_USE=	gnome=gtk20
-GTK2_CONFIGURE_ENABLE=	gtk2
+OPTIONS_DEFINE=	 NLS
+OPTIONS_SUB=	yes
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext-runtime

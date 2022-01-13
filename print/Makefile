@@ -84,7 +84,6 @@ SUBDIR += texlive-tlmgr
 SUBDIR += transfig
 SUBDIR += ttf2pt1
 SUBDIR += ttfautohint
-SUBDIR += xfce4-print
 SUBDIR += xpdfopen
 SUBDIR += xreader
 

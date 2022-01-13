@@ -9,6 +9,7 @@ SUBDIR += gnome-backgrounds
 SUBDIR += gnome-icon-theme-symbolic
 SUBDIR += gnome-themes
 SUBDIR += gnome-themes-extra
+SUBDIR += greybird-theme
 SUBDIR += gtk-engines2
 SUBDIR += gtk-murrine-engine
 SUBDIR += gtk-xfce-engine

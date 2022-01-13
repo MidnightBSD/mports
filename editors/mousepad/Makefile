@@ -1,5 +1,5 @@
 PORTNAME=	mousepad
-PORTVERSION=	0.4.2
+PORTVERSION=	0.5.6
 CATEGORIES=	editors xfce
 MASTER_SITES=	XFCE/apps
 DIST_SUBDIR=	xfce4
@@ -10,29 +10,31 @@ COMMENT=	Simple text editor for the Xfce Desktop
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libdbus-1.so:devel/dbus
+LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 
 USES=		desktop-file-utils gettext-tools gmake gnome libtool perl5 \
-		pkgconfig tar:bzip2
-USE_GNOME=	cairo gdkpixbuf2 glib20 intlhack intltool
-USE_XFCE=	xfconf
+		pkgconfig tar:bzip2 xfce
+USE_GNOME=	cairo dconf gdkpixbuf2 glib20 gtk30 gtksourceview3 intltool
+USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
+INSTALLS_ICONS=	yes
+INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.xfce.mousepad.gschema.xml
 
-OPTIONS_DEFINE=		GTK3 NLS
-OPTIONS_DEFAULT=	GTK3
+OPTIONS_DEFINE=		NLS SPELL
+OPTIONS_DEFAULT=	SPELL
 OPTIONS_SUB=		yes
 
-GTK3_CONFIGURE_ENABLE=	gtk3
-GTK3_USE=		gnome=gtk30,gtksourceview3,dconf
-GTK3_USE_OFF=		gnome=gtk20,gtksourceview2
-GTK3_USES=		xfce:gtk3
-GTK3_USES_OFF=		xfce
-GTK3_CFLAGS_OFF=	-I${LOCALBASE}/include/gio-unix-2.0
+SPELL_DESC=		Spell checking plugin
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext-runtime
+
+SPELL_CONFIGURE_ENABLE=	plugin-gspell
+SPELL_LIB_DEPENDS=	libgspell-1.so:textproc/gspell \
+			libenchant-2.so:textproc/enchant2
+SPELL_VARS=		GLIB_SCHEMAS+=org.xfce.mousepad.plugins.gspell.gschema.xml
 
 .include <bsd.port.mk>

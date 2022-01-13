@@ -50,7 +50,6 @@ SUBDIR += lumina-xdg-entry
 SUBDIR += mate-notification-daemon
 SUBDIR += menumaker
 SUBDIR += notification-daemon
-SUBDIR += orage
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
