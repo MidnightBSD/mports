@@ -150,6 +150,7 @@ SUBDIR += xev
 SUBDIR += xeyes
 SUBDIR += xf86dga
 SUBDIR += xfce4-conf
+SUBDIR += xfce4-screenshooter-plugin
 SUBDIR += xfce4-terminal
 SUBDIR += xfd
 SUBDIR += xgamma
