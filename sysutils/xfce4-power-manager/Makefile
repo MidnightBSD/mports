@@ -1,9 +1,9 @@
-
+# Created by: J.R. Oldroyd <fbsd@opal.com>
 
 PORTNAME=	xfce4-power-manager
-PORTVERSION=	1.5.2
+PORTVERSION=	4.16.0
 CATEGORIES=	sysutils xfce
-MASTER_SITES=	XFCE/src/xfce/${PORTNAME}/${PORTVERSION:R}/
+MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,21 +11,35 @@ COMMENT=	Power manager for the Xfce Desktop
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify \
-	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-	libpolkit-gobject-1.so:${PORTSDIR}/sysutils/polkit \
-	libupower-glib.so:${PORTSDIR}/sysutils/upower
+LIB_DEPENDS=	libnotify.so:devel/libnotify \
+		libupower-glib.so:sysutils/upower
+
+USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
+		tar:bzip2 xfce xorg
+USE_GNOME=	cairo glib20 gtk30 intltool
+USE_XFCE=	panel
+USE_XORG=	ice sm xrandr x11 xext xtst xscrnsaver
 
 GNU_CONFIGURE=	yes
-USES=		gettext gmake libtool pkgconfig tar:bzip2 xfce:gtk3
-USE_GNOME=	glib20 gtk30 intltool intlhack
-USE_XFCE=	panel
 INSTALLS_ICONS=	yes
-USE_XORG=	xrandr x11 xext xtst xscrnsaver
 CONFIGURE_ARGS=	--disable-network-manager \
 		--enable-polkit \
 		--enable-xfce4panel
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 INSTALL_TARGET=	install-strip
 
-.include <bsd.port.mk>
+PORTSCOUT=	limitw:1,even
+
+OPTIONS_DEFINE=		NLS
+OPTIONS_SUB=		yes
+
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext-runtime
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--enable-debug
+.endif
+
+.include <bsd.port.post.mk>
