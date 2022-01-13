@@ -1,5 +1,3 @@
-
-#
 # Handles common items for kernel module ports.
 #
 # MAINTAINER: ports@MidnightBSD.org
@@ -45,13 +43,13 @@ ${FAKE_DESTDIR}${KMODDIR}:
 
 post-install: kmod-post-install
 kmod-post-install:
-	${ECHO_CMD} "@exec /usr/sbin/kldxref ${KMODDIR}"  >> ${TMPPLIST}
-	${ECHO_CMD} "@unexec /usr/sbin/kldxref ${KMODDIR}" >> ${TMPPLIST}
+	${ECHO_CMD} "@exec /usr/sbin/kldxref ${KMODDIR:S/${FAKE_DESTDIR}//}"  >> ${TMPPLIST}
+	${ECHO_CMD} "@unexec /usr/sbin/kldxref ${KMODDIR:S/${FAKE_DESTDIR}//}" >> ${TMPPLIST}
 .if defined(NO_STAGE)
 	/usr/sbin/kldxref ${KMODDIR}
 .endif
 .if ${KMODDIR} != /boot/modules
-	${ECHO_CMD} "@unexec rmdir ${KMODDIR} 2>/dev/null || true" >> ${TMPPLIST}
+	${ECHO_CMD} "@unexec rmdir ${KMODDIR:S/${FAKE_DESTDIR}//} 2>/dev/null || true" >> ${TMPPLIST}
 .endif
 
 .endif
