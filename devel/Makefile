@@ -904,6 +904,7 @@ SUBDIR += py-protobuf
 SUBDIR += py-py
 SUBDIR += py-py-ubjson
 SUBDIR += py-python-dbusmock
+SUBDIR += py-python-distutils-extra
 SUBDIR += py-python-easyconfig
 SUBDIR += py-python-mimeparse
 SUBDIR += py-python-subunit
