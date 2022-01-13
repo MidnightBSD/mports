@@ -86,3 +86,4 @@ share/pixmaps/xfce4_xicon2.png
 share/pixmaps/xfce4_xicon3.png
 share/pixmaps/xfce4_xicon4.png
 share/pixmaps/xfdesktop/xfdesktop-fallback-icon.png
+@postexec /usr/bin/find %%LOCALBASE%%/share/icons -type d -depth 1 -exec %D/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null || /usr/bin/true
