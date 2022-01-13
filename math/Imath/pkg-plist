@@ -92,3 +92,7 @@ libdata/pkgconfig/Imath.pc
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/imath.so
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/imathnumpy.so
 %%PYTHON%%libdata/pkgconfig/PyImath.pc
+@dir lib/cmake/Imath
+@dir lib/cmake
+@dir include/Imath
+@dir %%DOCSDIR%%
