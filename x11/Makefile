@@ -1,5 +1,6 @@
 COMMENT = Ports to support the X window system
 
+SUBDIR += appmenu-registrar
 SUBDIR += appres
 SUBDIR += babl
 SUBDIR += beforelight
@@ -26,6 +27,7 @@ SUBDIR += gnome3
 SUBDIR += gnustep-app
 SUBDIR += gskrab
 SUBDIR += gsynaptics
+SUBDIR += gtk-app-menu
 SUBDIR += iceauth
 SUBDIR += ico
 SUBDIR += idesk
@@ -150,6 +152,7 @@ SUBDIR += xedit
 SUBDIR += xev
 SUBDIR += xeyes
 SUBDIR += xf86dga
+SUBDIR += xfce4-appmenu-plugin
 SUBDIR += xfce4-conf
 SUBDIR += xfce4-screenshooter-plugin
 SUBDIR += xfce4-terminal
