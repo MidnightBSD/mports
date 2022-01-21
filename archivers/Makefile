@@ -66,6 +66,7 @@ SUBDIR += sharutils
 SUBDIR += snappy
 SUBDIR += snappy-java
 SUBDIR += stuffit
+SUBDIR += thunar-archive-plugin
 SUBDIR += torrentzip
 SUBDIR += ucl
 SUBDIR += unace
