@@ -65,6 +65,7 @@ SUBDIR += rpm2cpio
 SUBDIR += sharutils
 SUBDIR += snappy
 SUBDIR += snappy-java
+SUBDIR += stuffit
 SUBDIR += torrentzip
 SUBDIR += ucl
 SUBDIR += unace
