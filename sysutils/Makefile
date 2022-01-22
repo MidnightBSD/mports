@@ -131,6 +131,7 @@ SUBDIR += p5-Probe-Perl
 SUBDIR += p5-Quota
 SUBDIR += p5-Sys-Hostname-Long
 SUBDIR += p5-Unix-Processors
+SUBDIR += patchelf
 SUBDIR += pcbsd-libsh
 SUBDIR += php73-fileinfo
 SUBDIR += php73-posix
