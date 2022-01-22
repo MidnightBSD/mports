@@ -203,7 +203,7 @@ open_indexdb(int runid)
     sqlite3 *db = NULL;
     char *filename = NULL;
 
-    asprintf(&filename, "magus-%d.db", runid);
+    asprintf(&filename, "index.db");
     if (filename == NULL)
     {
          errx(1, "Could not malloc filename");
