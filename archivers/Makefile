@@ -38,6 +38,7 @@ SUBDIR += p5-Compress-Raw-Zlib
 SUBDIR += p5-Gzip-Faster
 SUBDIR += p5-IO-Compress
 SUBDIR += p5-IO-Zlib
+SUBDIR += p7zip
 SUBDIR += pbzip2
 SUBDIR += php73-bz2
 SUBDIR += php73-phar
