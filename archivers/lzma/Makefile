@@ -1,7 +1,5 @@
-
-
 PORTNAME=	lzma
-PORTVERSION=	18.05
+PORTVERSION=	19.00
 CATEGORIES=	archivers
 MASTER_SITES=	SF/sevenzip/LZMA%20SDK/
 DISTNAME=	lzma${PORTVERSION:S/.//g}
@@ -9,7 +7,7 @@ DISTNAME=	lzma${PORTVERSION:S/.//g}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-ratio LZMA compressor
 
-LICENSE=	unknown
+LICENSE=	publicdom
 
 CONFLICTS=	lzmautils-[0-9]* xz-[0-9]*
 
