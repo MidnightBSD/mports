@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     if (argc != 6)
     {
-        cerr << "Usage: " << argv[0] << " <runid> <query_def> <db_user> <db_pass> <db_host>" << endl;
+        cerr << "Usage: " << argv[0] << " <runid> <db_user> <db_pass> <src> <dest>" << endl;
         return 1;
     }
 
