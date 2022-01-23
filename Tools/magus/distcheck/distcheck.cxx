@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg')) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
 				runid);
 
-		printf("List restricted distinfo files\n");
+		cout << "List restricted distinfo files" << endl;
 		result R2(N.exec(string(query_def)));
 		if (!R2.empty())
 		{
