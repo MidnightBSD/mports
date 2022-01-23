@@ -1,5 +1,5 @@
 /*-
-Copyright (C) 2008, 2010, 2011, 2013, 2014, 2022 Lucas Holt All rights reserved.
+Copyright (C) 2022 Lucas Holt All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -24,6 +24,8 @@ SUCH DAMAGE.
 */
 
 #include <iostream>
+#include <fstream>
+#include <filesystem>
 #include <pqxx/pqxx>
 #include <cstring>
 
@@ -36,153 +38,105 @@ using namespace pqxx;
 #include <err.h>
 
 #include <sys/types.h>
-#include <sha256.h>
 
 const string DB_HOST = "db.midnightbsd.org";
 const string DB_DATABASE = "magus";
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    char query_def[1000];
+    char query_def[3000];
     int runid;
-    char *fileHash;
-    char *filePath;
 
-    if (argc != 5)
+    if (argc != 6)
     {
-        fprintf( stderr, "Usage: %s <run id> <pg_user> <pg_pass> <files>\n", argv[0] );
-        exit(1);
+        cerr << "Usage: " << argv[0] << " <runid> <query_def> <db_user> <db_pass> <db_host>" << endl;
+        return 1;
     }
 
-    runid = atoi(argv[1]);
+    runid = std::stoi(string(argv[1]));
     if (runid < 1)
     {
-        fprintf( stderr, "Invalid run id %d\n", runid);
-        exit(1);
+        cerr << "Invalid run id" << endl;
+        return 1;
     }
 
     string connect_string = "dbname=magus user=" + string(argv[2]) + " password=" + string(argv[3]) + " hostaddr=" + DB_HOST + " port=5432";
     connection C(connect_string);
     connection C2(connect_string);
 
-    if (C.is_open()) {
-		cout << "We are connected to " << C.dbname() << endl;
-    } else {
-		cout << "We are not connected! Check username and password." << endl;
-		return -1;
+    if (C.is_open())
+    {
+        cout << "We are connected to " << C.dbname() << endl;
+    }
+    else
+    {
+        cout << "We are not connected! Check username and password." << endl;
+        return -1;
     }
 
     sprintf(query_def,
-      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version, restricted from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
-      runid);
+            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where p.run=475 AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+            runid);
 
     nontransaction N(C);
 
     result R(N.exec(string(query_def)));
 
-    if (!R.empty()) 
+    if (!R.empty())
     {
-    
-        db = open_indexdb(runid);
-        create_indexdb(db);
-
-	    for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
+        for (result::const_iterator row = R.begin(); row != R.end(); ++row)
         {
-	   	     string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
-             asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
-             fileHash = SHA256_File(filePath, NULL);
-             if (fileHash == NULL)
-             {
-                   fprintf(stderr, "Could not locate file %s\n", filePath);
-                   free(filePath);
-                   continue;
-             }
+            string name = c[0].as(string());
+            string license = c[2].as(string());
+            string filename = c[4].as(string());
 
-		   if (row[6].as(bool()))
-		   {
-			fprintf(stderr, "File %s is restricted and will be removed.\n", filePath);	
-			unlink(filePath);
-			continue;
-		   }
+            namespace fs = std::filesystem;
+            fs::path src{string(argv[4]) + "/" + filename};
+            if (!fs::exists(src))
+            {
+                cout << "File " << src << " does not exist" << endl;
+                continue;
+            }
 
-           if (ln.c_str())
-           {
-               if (sqlite3_prepare_v2(db,
-                   "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash) VALUES(?,?,?,?,?,?)",
-                   -1, &stmt, 0) != SQLITE_OK)
-               {
-                   errx(1, "Could not prepare statement");
-               }
-               sqlite3_bind_text(stmt, 1, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
-               sqlite3_bind_text(stmt, 2, row[5].as(string()).c_str(), row[5].as(string()).length(), SQLITE_TRANSIENT);
-               sqlite3_bind_text(stmt, 3, row[2].as(string()).c_str(), row[2].as(string()).length(), SQLITE_TRANSIENT);
-               sqlite3_bind_text(stmt, 4, row[3].as(string()).c_str(), row[3].as(string()).length(), SQLITE_TRANSIENT);
-               sqlite3_bind_text(stmt, 5, row[4].as(string()).c_str(), row[4].as(string()).length(), SQLITE_TRANSIENT);
-               sqlite3_bind_text(stmt, 6, fileHash, strlen(fileHash), SQLITE_TRANSIENT);
+            if (row[3].as(bool()))
+            {
+                cout << "File " << src << " is restricted; skipping file." << endl;
+                continue;
+            }
 
-               if (sqlite3_step(stmt) != SQLITE_DONE)
-                    errx(1,"Could not execute query");
-               sqlite3_reset(stmt);
-               sqlite3_finalize(stmt);
-               free(filePath);
-               free(fileHash);
-
-               if (sqlite3_prepare_v2(db,
-                       "INSERT INTO aliases (alias, pkg) VALUES(?,?)",
-                       -1, &stmt, 0) != SQLITE_OK)
-               {
-                   errx(1, "Could not prepare statement");
-               }
-
-               sqlite3_bind_text(stmt, 1, row[1].as(string()).c_str(), row[1].as(string()).length(), SQLITE_TRANSIENT);
-               sqlite3_bind_text(stmt, 2, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
-
-               if (sqlite3_step(stmt) != SQLITE_DONE)
-                   errx(1,"Could not execute query");
-               sqlite3_reset(stmt);
-               sqlite3_finalize(stmt);
-
-               puts(ln.c_str());
-
-			   load_depends(db, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
-           }
+            fs::path dest{string(argv[5]) + "/" + filename};
+            bool result = fs::copy_file(src, dest);
+            if (!result)
+            {
+                cout << "Failed to copy " << src << " to " << dest << endl;
+            } else {
+                cout << "Copied " << src << " to " << dest << endl;
+            }
         }
-        printf("\n");
     }
 
-	printf("Load the mirrors list\n");
-	result R2(N.exec("SELECT country, url FROM mirrors order by country"));
-	if (!R2.empty())
+    sprintf(query_def,
+            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg')) and p.run=475 AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+            runid);
+
+    printf("List restricted distinfo files\n");
+    result R2(N.exec(string(query_def)));
+    if (!R2.empty())
+    {
+        for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
         {
-		for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
-		{
-                if (sqlite3_prepare_v2(db,"INSERT INTO mirrors (country, mirror) VALUES(?,?)",  -1, &stmt, 0) != SQLITE_OK)
-                {
-                    errx(1, "Could not prepare statement");
-                }
-			    string country = c[0].as(string());
-			    cout << country << endl;
-			    string url = c[1].as(string());
-			    cout << url << endl;
-                sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
+            string name = c[0].as(string());
+            string license = c[2].as(string());
+            string filename = c[4].as(string());
 
-                if (sqlite3_step(stmt) != SQLITE_DONE)
-                    errx(1,"Could not execute query");
-                sqlite3_reset(stmt);
-                sqlite3_finalize(stmt);
+            namespace fs = std::filesystem;
+            fs::path f{string(argv[5]) + "/" + filename};
+            if (fs::exists(f))
+            {
+                cout << name << " license: " << license << "filename: " << filename << endl;
             }
-	}
+        }
+    }
 
-	close_indexdb(db);
-
-	printf("Mark run blessed\n");
-	N.exec0(
-		"UPDATE runs "
-		"SET blessed = true, status = 'complete' "
-		"WHERE id = " + pqxx::to_string(runid));
-
-	return 0;
+    return 0;
 }
-
