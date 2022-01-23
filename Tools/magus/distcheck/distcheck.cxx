@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     }
 
     sprintf(query_def,
-            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where p.run=475 AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
             runid);
 
     nontransaction N(C);
@@ -86,9 +86,9 @@ int main(int argc, char *argv[])
     {
         for (result::const_iterator row = R.begin(); row != R.end(); ++row)
         {
-            string name = c[0].as(string());
-            string license = c[2].as(string());
-            string filename = c[4].as(string());
+            string name = row[0].as(string());
+            string license = row[2].as(string());
+            string filename = row[4].as(string());
 
             namespace fs = std::filesystem;
             fs::path src{string(argv[4]) + "/" + filename};
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
     }
 
     sprintf(query_def,
-            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg')) and p.run=475 AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg')) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
             runid);
 
     printf("List restricted distinfo files\n");
