@@ -1,6 +1,6 @@
 CC=c++
-CFLAGS= -Wall -O2 -I/usr/local/include -std=c++17
-LDFLAGS=-L/usr/local/lib/  -lpqxx -lpq -lsqlite3 -lmd -pthread
+CFLAGS= -Wall -g -I/usr/local/include -std=c++17
+LDFLAGS=-L/usr/local/lib/  -lpqxx -lpq -lmd -pthread
 DESTDIR=
 PREFIX=	/usr/local
 

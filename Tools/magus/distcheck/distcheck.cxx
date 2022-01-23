@@ -39,28 +39,32 @@ using namespace pqxx;
 
 #include <sys/types.h>
 
-const string DB_HOST = "db.midnightbsd.org";
+const string DB_HOST = "70.91.226.203";
 const string DB_DATABASE = "magus";
 
 int main(int argc, char *argv[])
 {
-    char query_def[3000];
+    char query_def[1000];
     int runid;
 
     if (argc != 6)
     {
-        cerr << "Usage: " << argv[0] << " <runid> <db_user> <db_pass> <src> <dest>" << endl;
-        return 1;
+        std::cerr << "Usage: " << argv[0] << " <runid> <db_user> <db_pass> <src> <dest>" << endl;
+        exit(1);
     }
 
     runid = std::stoi(string(argv[1]));
     if (runid < 1)
     {
-        cerr << "Invalid run id" << endl;
-        return 1;
+        std::cerr << "Invalid run id" << endl;
+        exit (1);
     }
 
+	try
+	{
+ 
     string connect_string = "dbname=magus user=" + string(argv[2]) + " password=" + string(argv[3]) + " hostaddr=" + DB_HOST + " port=5432";
+   
     connection C(connect_string);
     connection C2(connect_string);
 
@@ -105,13 +109,17 @@ int main(int argc, char *argv[])
             }
 
             fs::path dest{string(argv[5]) + "/" + filename};
+		if (!fs::exists(dest)) {
             bool result = fs::copy_file(src, dest);
             if (!result)
             {
-                cout << "Failed to copy " << src << " to " << dest << endl;
+                cout << "Failed to copy source " << src << " to destination " << dest << endl;
             } else {
-                cout << "Copied " << src << " to " << dest << endl;
+                cout << "Copied source " << src << " to destination " << dest << endl;
             }
+		} else {
+			cout << "File " << dest << " already exists." << endl;
+		}
         }
     }
 
@@ -136,6 +144,10 @@ int main(int argc, char *argv[])
                 cout << name << " license: " << license << "filename: " << filename << endl;
             }
         }
+    }
+
+    } catch(std::exception const &error) {
+	std::cerr << error.what() << endl;
     }
 
     return 0;
