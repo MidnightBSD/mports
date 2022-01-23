@@ -8,7 +8,7 @@ CATEGORIES=	deskutils java
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Just Journal for Java blogging app
 
-LICENSE=	unknown
+LICENSE=	bsd2
 
 BUILD_DEPENDS+=	mvn:java/maven \
 		javavm:java/javavmwrapper
