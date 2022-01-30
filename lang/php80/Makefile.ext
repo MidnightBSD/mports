@@ -176,13 +176,9 @@ BUILD_DEPENDS=  re2c:devel/re2c
 .endif
 
 .if ${PHP_MODNAME} == "ldap"
-CONFIGURE_ARGS+=--with-ldap=${LOCALBASE}
+CONFIGURE_ARGS+=--with-ldap=${LOCALBASE} --with-ldap-sasl=${LOCALBASE}
 
 USE_OPENLDAP=	yes
-
-. ifdef(WANT_OPENLDAP_SASL)
-CONFIGURE_ARGS+=--with-ldap-sasl=${LOCALBASE}
-. endif
 .endif
 
 .if ${PHP_MODNAME} == "mbstring"
@@ -534,6 +530,16 @@ CONFIGURE_ARGS+=--with-onig=${LOCALBASE}
 .	else
 CONFIGURE_ARGS+=--disable-mbregex
 .	endif
+.endif
+
+.if ${PHP_MODNAME} == "openssl"
+post-fake:
+	@if ${PREFIX}/bin/php -m | grep openssl 2>/dev/null && ( [ ! -f ${PREFIX}/etc/php/ext-20-openssl.ini ] && [ ! -f ${PREFIX}/etc/php/ext-30-openssl.ini ] ); then \
+		${ECHO_CMD}; \
+		${ECHO_MSG} "===>  ${PKGNAME} "openssl module is already built with php base.; \
+		${ECHO_CMD}; \
+		${FALSE}; \
+	fi
 .endif
 
 .if ${PHP_MODNAME} == "openssl" || ${PHP_MODNAME} == "sqlite3"
