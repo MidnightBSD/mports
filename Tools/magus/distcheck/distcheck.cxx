@@ -44,111 +44,116 @@ const string DB_DATABASE = "magus";
 
 int main(int argc, char *argv[])
 {
-    char query_def[1000];
-    int runid;
+	char query_def[1000];
+	int runid;
 
-    if (argc != 6)
-    {
-        std::cerr << "Usage: " << argv[0] << " <runid> <db_user> <db_pass> <src> <dest>" << endl;
-        exit(1);
-    }
+	if (argc != 6)
+	{
+		std::cerr << "Usage: " << argv[0] << " <runid> <db_user> <db_pass> <src> <dest>" << endl;
+		exit(1);
+	}
 
-    runid = std::stoi(string(argv[1]));
-    if (runid < 1)
-    {
-        std::cerr << "Invalid run id" << endl;
-        exit (1);
-    }
+	runid = std::stoi(string(argv[1]));
+	if (runid < 1)
+	{
+		std::cerr << "Invalid run id" << endl;
+		exit(1);
+	}
 
 	try
 	{
- 
-    string connect_string = "dbname=magus user=" + string(argv[2]) + " password=" + string(argv[3]) + " hostaddr=" + DB_HOST + " port=5432";
-   
-    connection C(connect_string);
-    connection C2(connect_string);
+		string connect_string = "dbname=magus user=" + string(argv[2]) + " password=" + string(argv[3]) + " hostaddr=" + DB_HOST + " port=5432";
 
-    if (C.is_open())
-    {
-        cout << "We are connected to " << C.dbname() << endl;
-    }
-    else
-    {
-        cout << "We are not connected! Check username and password." << endl;
-        return -1;
-    }
+		connection C(connect_string);
+		connection C2(connect_string);
 
-    sprintf(query_def,
-            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
-            runid);
-
-    nontransaction N(C);
-
-    result R(N.exec(string(query_def)));
-
-    if (!R.empty())
-    {
-        for (result::const_iterator row = R.begin(); row != R.end(); ++row)
-        {
-            string name = row[0].as(string());
-            string license = row[2].as(string());
-            string filename = row[4].as(string());
-
-            namespace fs = std::filesystem;
-            fs::path src{string(argv[4]) + "/" + filename};
-            if (!fs::exists(src))
-            {
-                cout << "File " << src << " does not exist" << endl;
-                continue;
-            }
-
-            if (row[3].as(bool()))
-            {
-                cout << "File " << src << " is restricted; skipping file." << endl;
-                continue;
-            }
-
-            fs::path dest{string(argv[5]) + "/" + filename};
-		if (!fs::exists(dest)) {
-            bool result = fs::copy_file(src, dest);
-            if (!result)
-            {
-                cout << "Failed to copy source " << src << " to destination " << dest << endl;
-            } else {
-                cout << "Copied source " << src << " to destination " << dest << endl;
-            }
-		} else {
-			cout << "File " << dest << " already exists." << endl;
+		if (C.is_open())
+		{
+			cout << "We are connected to " << C.dbname() << endl;
 		}
-        }
-    }
+		else
+		{
+			cout << "We are not connected! Check username and password." << endl;
+			return -1;
+		}
 
-    sprintf(query_def,
-            "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg')) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
-            runid);
+		sprintf(query_def,
+				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+				runid);
 
-    printf("List restricted distinfo files\n");
-    result R2(N.exec(string(query_def)));
-    if (!R2.empty())
-    {
-        for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
-        {
-            string name = c[0].as(string());
-            string license = c[2].as(string());
-            string filename = c[4].as(string());
+		nontransaction N(C);
 
-            namespace fs = std::filesystem;
-            fs::path f{string(argv[5]) + "/" + filename};
-            if (fs::exists(f))
-            {
-                cout << name << " license: " << license << "filename: " << filename << endl;
-            }
-        }
-    }
+		result R(N.exec(string(query_def)));
 
-    } catch(std::exception const &error) {
-	std::cerr << error.what() << endl;
-    }
+		if (!R.empty())
+		{
+			for (result::const_iterator row = R.begin(); row != R.end(); ++row)
+			{
+				string name = row[0].as(string());
+				string license = row[2].as(string());
+				string filename = row[4].as(string());
 
-    return 0;
+				namespace fs = std::filesystem;
+				fs::path src{string(argv[4]) + "/" + filename};
+				if (!fs::exists(src))
+				{
+					cout << "File " << src << " does not exist" << endl;
+					continue;
+				}
+
+				if (row[3].as(bool()))
+				{
+					cout << "File " << src << " is restricted; skipping file." << endl;
+					continue;
+				}
+
+				fs::path dest{string(argv[5]) + "/" + filename};
+				if (!fs::exists(dest))
+				{
+					bool result = fs::copy_file(src, dest);
+					if (!result)
+					{
+						cout << "Failed to copy source " << src << " to destination " << dest << endl;
+					}
+					else
+					{
+						cout << "Copied source " << src << " to destination " << dest << endl;
+					}
+				}
+				else
+				{
+					cout << "File " << dest << " already exists." << endl;
+				}
+			}
+		}
+
+		sprintf(query_def,
+				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg')) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+				runid);
+
+		cout << "List restricted distinfo files" << endl;
+		result R2(N.exec(string(query_def)));
+		if (!R2.empty())
+		{
+			for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
+			{
+				string name = c[0].as(string());
+				string license = c[2].as(string());
+				string filename = c[4].as(string());
+
+				namespace fs = std::filesystem;
+				fs::path f{string(argv[5]) + "/" + filename};
+				if (fs::exists(f))
+				{
+					cout << name << " license: " << license << " filename: " << filename << endl;
+				}
+			}
+		}
+	}
+	catch (std::exception const &error)
+	{
+		std::cerr << error.what() << endl;
+	}
+
+	return 0;
 }
