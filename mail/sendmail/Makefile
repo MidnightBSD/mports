@@ -1,5 +1,5 @@
 PORTNAME=	sendmail
-PORTVERSION=	8.16.1
+PORTVERSION=	8.17.1
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 DISTNAME=	${PORTNAME}.${PORTVERSION}
@@ -20,12 +20,20 @@ USERS=		smmsp
 GROUPS=		smmsp
 
 USES=		cpe uidfix groff
+FMAKE_ARGS+=	UBINOWN=${UID} UBINGRP=${GID} \
+		SBINOWN=${UID} SBINGRP=${GID} \
+		GBINOWN=${UID} GBINGRP=${GID} \
+		MANOWN=${UID} MANGRP=${GID} \
+		CFOWN=${UID} CFGRP=${GID} \
+		MSPQOWN=${UID} \
+		LIBMODE=0644 UBINMODE=0755 GBINMODE=2755
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 WCONF=		${WRKSRC}/devtools/Site
 SITE=		${FILESDIR}/site.config.m4.pre4
 PLIST=		${WRKDIR}/.PLIST.more
 DOCS=		KNOWNBUGS LICENSE PGPKEYS README RELEASE_NOTES \
 		sendmail/TRACEFLAGS sendmail/SECURITY sendmail/TUNING
+SUB_FILES=	pkg-message
 LMAN1=		mailq.1 newaliases.1 vacation.1
 LMAN5=		aliases.5
 LMAN8=		sendmail.8 mailstats.8 makemap.8 praliases.8 smrsh.8 \
@@ -33,32 +41,41 @@ LMAN8=		sendmail.8 mailstats.8 makemap.8 praliases.8 smrsh.8 \
 SENDMAIL=	${PREFIX}/sbin/sendmail
 BASEMAIL=	/usr/libexec/sendmail/sendmail
 PLIST_SUB+=	PREFIX=${PREFIX:S=${PREFIX}/==} MANPREFIX=${MANPREFIX:S=$=/=:S=${PREFIX}==:S=^/==}
-PKGMESSAGE=	${WRKSRC}/pkg-message
 MILTER_SOVER?=	6
 
-OPTIONS_DEFINE?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD LDAP BDB \
-			SOCKETMAP CYRUSLOOKUP PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL DOCS
-OPTIONS_DEFAULT?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL
+OPTIONS_DEFINE?=	SHMEM SEM LA NIS IPV6 TLS DANE SASL SASLAUTHD LDAP \
+			BDB GDBM SOCKETMAP CYRUSLOOKUP BLACKLISTD SMTPUTF8 \
+			PICKY_HELO_CHECK MILTER DOCS
+OPTIONS_DEFAULT?=	SHMEM SEM LA NIS TLS DANE SASL SASLAUTHD BDB1 \
+			BLACKLISTD PICKY_HELO_CHECK MILTER
 NO_OPTIONS_SORT=yes
 SHMEM_DESC=		System V shared memory support
 LA_DESC=		load averages support
 TLS_DESC=		SMTP-TLS and SMTPS support
+DANE_DESC=		Enable DANE support
 SASLAUTHD_DESC=		SASLAUTHD support
-BDB_DESC=		Berkeley DB version 4 support
+BDB_DESC=		Berkeley DB version 4+ support
+GDBM_DESC=		GNU dbm library support (option COMPAT needed)
 SOCKETMAP_DESC=		Enable socketmap feature
+BLACKLISTD_DESC=	Enable blacklistd support
 CYRUSLOOKUP_DESC=	Enable cyruslookup feature
 PICKY_HELO_CHECK_DESC=	Enable picky HELO check
-MILTER_DESC=		Build libmilter
-MILTER_SHARED_DESC=	Build shared libmilter
-MILTER_POOL_DESC=	Enable milter thread pools
+MILTER_DESC=		Enable milter support
+SMTPUTF8_DESC=		Enable unicode address support
 
-BDB_USE=	BDB=yes
 TLS_USES=	ssl
-LDAP_USE=	OPENLDAP=yes
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
-SASLAUTHD_RUN_DEPENDS=	${LOCALBASE}/sbin/saslauthd:security/cyrus-sasl2-saslauthd
+SASLAUTHD_RUN_DEPENDS=	saslauthd:security/cyrus-sasl2-saslauthd
+DANE_IMPLIES=	TLS
+LDAP_USE=	OPENLDAP=yes
+LDAP_IMPLIES=	DANE
+BDB_USES=	bdb
+GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
+GDBM_CONFIGURE_WITH=	compat
+SMTPUTF8_LIB_DEPENDS=	libidn2.so:dns/libidn2 libicui18n.so:devel/icu
 
 .include <bsd.mport.options.mk>
+
 .if ${PORT_OPTIONS:MSHMEM} && !defined(BUILDING_INDEX)
 IPCCHECK!=	ipcrm -q 0 2>&1 || true
 .if ${IPCCHECK:Mimplemented}
@@ -98,7 +115,7 @@ MAKE_PKGNAMES=	for i in "" +tls; do \
 	done done done done
 
 ALL_PKGNAMES!=	${MAKE_PKGNAMES}
-CONFLICTS2!=	${MAKE_PKGNAMES} | grep -v "${PORTNAME}${PKGNAMESUFFIX:S|${PKGNAMESUFFIX2}||}-8."
+CONFLICTS2!=	${MAKE_PKGNAMES} | ${GREP} -v "${PORTNAME}${PKGNAMESUFFIX:S|${PKGNAMESUFFIX2}||}-8."
 CONFLICTS+=	${CONFLICTS2}
 
 # Build site.config.m4
@@ -108,17 +125,31 @@ SITE+=	${FILESDIR}/site.config.m4
 .if ${PORT_OPTIONS:MIPV6}
 SITE+=	${FILESDIR}/site.config.m4.ipv6
 .endif
+.if ${PORT_OPTIONS:MDANE}
+SITE+=	${FILESDIR}/site.config.m4.dane
+.endif
 .if ${PORT_OPTIONS:MSASL}
 SITE+=	${FILESDIR}/site.config.m4.sasl2
 .endif
 .if ${PORT_OPTIONS:MLDAP}
 SITE+=	${FILESDIR}/site.config.m4.ldap
 .endif
+.if ${PORT_OPTIONS:MBLACKLISTD}
+SITE+=	${FILESDIR}/site.config.m4.blacklistd
+.endif
+.if ${PORT_OPTIONS:MSMTPUTF8}
+SITE+=	${FILESDIR}/site.config.m4.smtputf8
+.endif
 .if ${PORT_OPTIONS:MMILTER}
 SITE+=	${FILESDIR}/site.config.m4.milter
 .endif
 .if ${PORT_OPTIONS:MTLS}
 USES+=	ssl
+.endif
+
+.if ${PORT_OPTIONS:MGDBM}
+LICENSE_PERMS=        dist-mirror dist-sell no-pkg-mirror no-pkg-sell auto-accept
+SITE+=        ${FILESDIR}/site.config.m4.gdbm
 .endif
 
 # install directly if no mailwrapper support
@@ -130,18 +161,7 @@ PLIST_SUB+=	ETCPORT="@comment "
 PLIST_SUB+=	ETCPORT=""
 .endif
 
-.if ${PORT_OPTIONS:MMILTER}
-.if ${PORT_OPTIONS:MMILTER_SHARED}
-PLIST_SUB+=	MILTER_SHARED=""
-PLIST_SUB+=	MILTER_SOVER=${MILTER_SOVER}
-MAKE_ENV+=	MILTER_SOVER=${MILTER_SOVER}
-.else
-PLIST_SUB+=	MILTER_SHARED="@comment "
-.endif
-.endif
-
-SED_SCRIPT=	-e "s|\`-pthread\'|\`${PTHREAD_LIBS}\'|" \
-		-e "s|\`-O\'|\`${CFLAGS}\'|" \
+SED_SCRIPT=	-e "s|\`-O'|\`${CFLAGS}'|" \
 		-e 's|%%CC%%|${CC}|' -e 's|%%LD%%|${LD}|'
 
 .if ! ${PORT_OPTIONS:MNIS}
@@ -149,19 +169,15 @@ SED_SCRIPT+=	-e "s;-DNIS ;;"
 .endif
 
 post-patch:
-	@${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
-		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
-		-e "s=%%PORTSDIR%%=${PORTSDIR}=g" \
-		${PKGDIR}/pkg-message > ${WRKSRC}/pkg-message
-.if ${PORT_OPTIONS:MMILTER} && ${PORT_OPTIONS:MMILTER_SHARED}
-	@${CP} -pR ${WRKSRC}/libmilter ${WRKSRC}/libsharedmilter
-	${CP} ${FILESDIR}/sharedlibrary.m4 \
-		${WRKSRC}/devtools/M4/UNIX/sharedlibrary.m4
-	${REINPLACE_CMD} -e 's=`library=`sharedlibrary=' \
-		${WRKSRC}/libsharedmilter/Makefile.m4
-.endif
+	@cd ${WRKSRC} && ${FIND} cf -type f -name "*.orig" -print0 | ${XARGS} -0 ${RM}
 
 do-configure:
+.if ${PORT_OPTIONS:MGDBM}
+	@(if [ ! -e "${LOCALBASE}/lib/libgdbm_compat.so" ] ; then \
+	  ${ECHO_MSG} "===> option COMPAT is missing in databases/gdbm."; \
+	  ${FALSE}; \
+	  fi)
+.endif
 	${REINPLACE_CMD} ${SED_SCRIPT} ${WRKSRC}/devtools/OS/FreeBSD
 	${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
 		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
@@ -204,30 +220,14 @@ do-configure:
 	'APPENDDEF(`confENVDEF'\'', `-DLA_TYPE=LA_ZERO'\'')' \
 		>> ${WCONF}/site.config.m4
 .endif
-.if ${PORT_OPTIONS:MMILTER} && ${PORT_OPTIONS:MMILTER_POOL} 
-	${ECHO_CMD} \
-	 'APPENDDEF(`conf_libmilter_ENVDEF'\'', `-DSM_CONF_POLL=1'\'')' \
-		>> ${WCONF}/site.config.m4
-	${ECHO_CMD} \
-	 'APPENDDEF(`conf_libmilter_ENVDEF'\'', `-D_FFR_WORKERS_POOL=1'\'')' \
-		>> ${WCONF}/site.config.m4
-.endif
 
 post-build:
-	(cd ${WRKSRC}/doc/op && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} op.txt)
-.if ${PORT_OPTIONS:MMILTER}
-	(cd ${BUILD_WRKSRC}/libmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
-.if ${PORT_OPTIONS:MMILTER_SHARED}
-	(cd ${BUILD_WRKSRC}/libsharedmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
-.endif
-.endif
-	${MKDIR} ${WRKDIR}/${FAKE_INSTALLDIR}/etc/mail
+	(cd ${WRKSRC}/doc/op && \
+	 ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} op.txt)
 
 pre-install:
+	${MKDIR} ${FAKE_DESTDIR}/etc/mail
 	@${CAT} ${PKGDIR}/pkg-plist >${PLIST}
-.if ${PORT_OPTIONS:MMILTER}
-	@${CAT} ${FILESDIR}/pkg-milter >>${PLIST}
-.endif
 	if ! pw groupshow smmsp; then pw groupadd smmsp -g 25; fi
 	if ! pw usershow smmsp; then pw useradd smmsp -g smmsp -u 25 \
 		-h - -d /nonexistent -s /nonexistent -c "Sendmail Queue"; fi
@@ -242,6 +242,12 @@ pre-install:
 	@${ECHO_CMD} "share/doc/sendmail/CYRUS_LOOKUP" >>${PLIST}
 .endif
 .endif
+	${MKDIR} ${PREFIX}/etc/mail
+	${SED} \
+	 -e "s=\([ 	]\)/.*$$=\\1${SENDMAIL}=" \
+	 ${FILESDIR}/mailer.conf \
+	 > ${PREFIX}/etc/mail/mailer.conf.sendmail
+	${REINPLACE_CMD} -e "s|${FAKE_DESTDIR}||g" ${PREFIX}/etc/mail/mailer.conf.sendmail
 
 # We want mail.local and rmail for our system.
 # the build install catmans only, we have to fix this.
@@ -250,21 +256,6 @@ post-install:
 	 ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} force-install)
 	(cd ${WRKSRC}/rmail && \
 	 ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} force-install)
-.if ${PORT_OPTIONS:MMILTER}
-	${MKDIR} ${PREFIX}/include/libmilter
-	${INSTALL_DATA} ${WRKSRC}/include/libmilter/mfapi.h \
-		${WRKSRC}/include/libmilter/mfdef.h \
-		${PREFIX}/include/libmilter/
-	${INSTALL_DATA} \
-	 ${WRKSRC}/obj.`${WRKSRC}/devtools/bin/Build -A`/libmilter/libmilter.a \
-	 ${PREFIX}/lib/
-.if ${PORT_OPTIONS:MMILTER_SHARED}
-	${INSTALL_SCRIPT} \
-	 ${WRKSRC}/obj.`${WRKSRC}/devtools/bin/Build -A`/libsharedmilter/libmilter.so \
-	 ${PREFIX}/lib/libmilter.so.${MILTER_SOVER}
-	${LN} -sf libmilter.so.${MILTER_SOVER} ${PREFIX}/lib/libmilter.so
-.endif
-.endif
 .for i in ${LMAN8}
 	@${RM} -f ${MANPREFIX}/man/cat8/${i} ${MANPREFIX}/man/cat8/${i}.gz
 	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man8
@@ -380,7 +371,7 @@ help:
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MTLS}
-.if !defined(WITH_OPENSSL_BASE)
+.if ${SSL_DEFAULT} != base
 SITE+=	${FILESDIR}/site.config.m4.ssl
 .endif
 SITE+=	${FILESDIR}/site.config.m4.tls
