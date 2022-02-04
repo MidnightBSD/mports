@@ -282,4 +282,17 @@ alter table distfiles add foreign key (port) references ports(id);
 alter table restricted_distfiles add foreign key (port) references ports(id);
 alter table master_sites add foreign key (port) references ports(id);
 
+create table mirrors
+(
+    id      integer default nextval('mirrors_id_seq'::regclass) not null
+        primary key,
+    country varchar(4)                                          not null,
+    url     varchar(255)                                        not null
+);
 
+comment on table mirrors is 'Package mirrors';
+
+alter table mirrors
+    owner to pgsql;
+
+grant delete, insert, references, select, trigger, truncate, update on mirrors to magus;
