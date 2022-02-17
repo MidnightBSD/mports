@@ -71,6 +71,7 @@ SUBDIR += node10
 SUBDIR += node14
 SUBDIR += node16
 SUBDIR += nspluginwrapper
+SUBDIR += otter-browser
 SUBDIR += p5-Apache-LogFormat-Compiler
 SUBDIR += p5-CGI-Ajax
 SUBDIR += p5-CGI-Compile
