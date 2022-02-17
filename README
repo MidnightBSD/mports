@@ -34,9 +34,6 @@ https://www.midnightbsd.org/magus/
 To create packages, one must use the magus software, which is included
 in Tools/magus Tools/lib and so on.  
 
-If you wish to contribute to mports, submit via github on
-https://github.com/MidnightBSD/mports
-
 NOTE:  This tree will GROW significantly in size during normal usage!
 The distribution tar files can and do accumulate in /usr/mports/Distfiles,
 and the individual mports will also use up lots of space in their work
@@ -45,6 +42,9 @@ building a given port.  /usr/mports/Distfiles can also be periodically
 cleaned without ill-effect.
 
 ## Contributing ##
+
+If you wish to contribute to mports, submit via github on
+https://github.com/MidnightBSD/mports
 
 Feel free to create a pull request to update any mports in this repository.  
 All contributions must be provided under the same BSD 2-clause license we use.
