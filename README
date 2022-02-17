@@ -44,3 +44,11 @@ subdirectories unless you remember to "make clean" after you're done
 building a given port.  /usr/mports/Distfiles can also be periodically
 cleaned without ill-effect.
 
+## Contributing ##
+
+Feel free to create a pull request to update any mports in this repository. 
+
+If you're looking for ways to contribute, try fixing problems listed in repology:
+https://repology.org/repository/mports/problems
+
+You can also submit bug reports about mports at https://bugreport.midnightbsd.org/
