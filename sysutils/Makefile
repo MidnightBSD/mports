@@ -83,6 +83,7 @@ SUBDIR += hal-info
 SUBDIR += htop
 SUBDIR += hw-probe
 SUBDIR += hwstat
+SUBDIR += ipdbtools
 SUBDIR += isc-cron
 SUBDIR += jailme
 SUBDIR += javaservicewrapper
