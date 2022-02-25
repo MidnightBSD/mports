@@ -22,12 +22,14 @@ RUN_DEPENDS+=   ${LOCALBASE}/bin/iconv:converters/libiconv
 USES=		iconv:wchar_t pkgconfig perl5 ssl
 USE_GITHUB=	yes
 
+CPE_VENDOR=	w3m_project
+
 GH_ACCOUNT=	tats
 GH_PROJECT=	w3m
-GH_TAGNAME=	97c7d9b
+GH_TAGNAME=	2b59b9e
 
 MAKE_JOBS_UNSAFE=	yes
-SNAPDATE=	20210206
+SNAPDATE=	20211026
 
 CONFLICTS?=	ja-w3m-0.5.* ja-w3m-img-0.5.* w3m-img-0.5.*
 GNU_CONFIGURE=	yes
@@ -55,7 +57,7 @@ OPTIONS_SUB=	yes
 INLINE_IMAGE_USES=	gnome xorg
 INLINE_IMAGE_USE=	xorg=x11 gnome=gtk20,gdkpixbuf2
 INLINE_IMAGE_CONFIGURE_ON=	--with-imagelib=gtk2 --enable-image=fb,x11
-INLINE_IMAGE_CONFIGURE_OFF=	--enable-image=no
+INLINE_IMAGE_CONFIGURE_OFF=	--enable-image=fb
 
 JAPANESE_CONFIGURE_ON=	--enable-japanese=U --with-migemo=yes
 
