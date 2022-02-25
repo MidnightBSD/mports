@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 
 # PROVIDE: apache24
 # REQUIRE: LOGIN cleanvar sshd

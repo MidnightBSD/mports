@@ -9,6 +9,8 @@ COMMENT=	Tools for IP based Geo-blocking and Geo-routing
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 USES=		compiler:c11
 USE_GITHUB=	yes
 GH_ACCOUNT=	cyclaero
