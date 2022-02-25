@@ -1,5 +1,3 @@
-/* $FreeBSD: ports/www/man2web/files/freebsd.h,v 1.1 2003/04/28 17:58:18 naddy Exp $ */
-
 /* default section entries that are used if configuration file is disabled*/
 #define SECTION_COUNT 9
 struct section_entry section_matrix[] = {
