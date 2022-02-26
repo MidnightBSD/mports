@@ -1,6 +1,6 @@
 PORTNAME=	ted
 PORTVERSION=	2.23
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	ftp://ftp.nluug.nl/pub/editors/ted/ \
 		http://fossies.org/linux/misc/
@@ -37,7 +37,14 @@ DOCSDIR=	${PREFIX}/share/doc/Ted
 AFMDIR=		${DATADIR}/afm
 INDDIR=		${DATADIR}/dfa
 
-OPTIONS_DEFINE= DOCS
+OPTIONS_DEFINE=	GTK2 DOCS
+GTK2_DESC=	Use GTK2 instead of MOTIF
+GTK2_USES=	gnome
+GTK2_USE=		GNOME=gtk20
+GTK2_CONFIGURE_ON=	--with-GTK
+GTK2_CPPFLAGS=		`pkg-config --cflags gtk+-2.0 | ${SED} -e 's|-I|-isystem |g'`
+GTK2_USES_OFF=		motif
+GTK2_CONFIGURE_OFF=	--with-MOTIF
 
 .include <bsd.port.pre.mk>
 
