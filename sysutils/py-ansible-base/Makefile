@@ -17,16 +17,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>0:security/py-cryptography@${PY
 		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}resolvelib05>0:devel/py-resolvelib05@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bcrypt>=0:security/py-bcrypt@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}boto3>0:www/py-boto3@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}passlib>0:security/py-passlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pycrypto>=0:security/py-pycrypto@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-mock>0:devel/py-pytest-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-xdist>0:devel/py-pytest-xdist@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR}
 
 USES=		ansible:env cpe gmake python:3.6+ shebangfix
 CPE_VENDOR=	redhat
@@ -35,13 +25,7 @@ USE_PYTHON=	autoplist concurrent distutils
 
 SHEBANG_REGEX=	[.]/test/.*[.]py
 
-TEST_ARGS=	VERSION=${DISTVERSION} \
-		PYTHON=${PYTHON_CMD} \
-		DATE=
-TEST_ENV=	PYTHON_VERSION=${PYTHON_VER} \
-		TEST_FLAGS=-vv
-TEST_TARGET=	tests
-
+NO_TEST=	yes
 CONFLICTS=	py*-ansible-core
 
 NO_ARCH=	yes
@@ -84,19 +68,6 @@ post-fake:
 		-execdir ${RLN} ansible-${PYTHON_VER} {} \;
 # USE_PYTHON=autoplist doesn't add this file to pkg-plist.
 	-${RM} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
-
-pre-test:
-# This one file does not get its paths replaced correctly in post-patch.
-	${REINPLACE_CMD} 's|"/etc"|"${ETCDIR:H}"|g' \
-		${WRKSRC}/test/units/playbook/test_helpers.py
-# This test constructs a Python script inline and uses an invalid path to it.
-	${REINPLACE_CMD} 's|/usr/bin/python|${PYTHON_CMD}|' \
-		${WRKSRC}/test/units/modules/test_async_wrapper.py
-# Disable some tests:
-# - Skip the SELinux tests, it's not present
-	-${RM} ${WRKSRC}/test/units/module_utils/basic/test_selinux.py
-# - Failure detecting that emojis are of width 2 instead of 1.
-	-${RM} ${WRKSRC}/test/units/utils/test_display.py
 
 .include <bsd.port.mk>
 
