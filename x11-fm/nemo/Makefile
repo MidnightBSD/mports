@@ -61,6 +61,8 @@ EXIF_MESON_TRUE=	exif
 TRACKER_LIB_DEPENDS=	libtracker-sparql-2.0.so:sysutils/tracker
 TRACKER_MESON_TRUE=	tracker
 
+NO_TEST=	yes
+
 post-patch:
 	# malloc.h is deprecated
 	@${REINPLACE_CMD} -e "/malloc.h/d" ${WRKSRC}/meson.build
