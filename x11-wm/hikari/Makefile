@@ -43,10 +43,10 @@ post-patch:
 
 post-install:
 .ifndef WITH_DEBUG
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/hikari
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/hikari-unlocker
+	-${STRIP_CMD} ${PREFIX}/bin/hikari
+	-${STRIP_CMD} ${PREFIX}/bin/hikari-unlocker
 .endif
-	${MV} ${STAGEDIR}${ETCDIR}/hikari.conf \
-		${STAGEDIR}${ETCDIR}/hikari.conf.sample
+	${MV} ${ETCDIR}/hikari.conf \
+		${ETCDIR}/hikari.conf.sample
 
 .include <bsd.port.mk>
