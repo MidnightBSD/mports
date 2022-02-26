@@ -1,2 +1,3 @@
-SHA256 (wine-1.6.2.tar.bz2) = f0ab9eede5a0ccacbf6e50682649f9377b9199e49cf55641f1787cf72405acbe
-SIZE (wine-1.6.2.tar.bz2) = 21252985
+TIMESTAMP = 1635407149
+SHA256 (wine-6.0.2.tar.xz) = dfe3c58ac785c07220e28f15b62299d76c24d256a67ad9bffd8aefa67b3dbb70
+SIZE (wine-6.0.2.tar.xz) = 24217772
