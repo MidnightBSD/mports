@@ -5,7 +5,7 @@
      return self._platform == 'haiku'
  
 +  def is_freebsd(self):
-+    return self._platform == 'freebsd'
++    return self._platform in ['freebsd','midnightbsd']
 +
    def is_posix(self):
      return self._platform in ['linux', 'freebsd', 'darwin', 'aix', 'openbsd', 'haiku']
