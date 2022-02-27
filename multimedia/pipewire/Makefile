@@ -72,6 +72,10 @@ post-extract:
 		${WRKSRC}/.gitlab-ci.yml
 .endif
 
+post-patch:
+	${REINPLACE_CMD} -e 's/freebsd/midnightbsd/g' \
+		${WRKSRC}/meson.build
+
 post-patch-MEDIASESSION-on:
 # alsa-seq is not supported & causes SIGSEGV with media session
 	@${REINPLACE_CMD} 's| alsa-seq|\ #alsa-seq|g' \
