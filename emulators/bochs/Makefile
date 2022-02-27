@@ -264,9 +264,6 @@ post-patch:
 		 s|(-lvgagl)$$|\1 @LDFLAGS@|' \
 		 ${WRKSRC}/gui/Makefile.in
 
-post-configure:
-	echo "#define BX_HAVE_LIBSAMPLERATE 0" >> ${WRKSRC}/config.h
-
 post-build:
 	@${LN} -sf .bochsrc ${WRKSRC}/bochsrc-sample.txt
 

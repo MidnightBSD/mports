@@ -3668,6 +3668,10 @@
 %%WWWDIR%%/client/root.html
 @owner %%MATTERMOSTD_USER%%
 @group %%MATTERMOSTD_GROUP%%
+@dir %%WWWDIR%%/client
 @dir %%WWWDIR%%/client/plugins
+@dir %%WWWDIR%%/client/images
+@dir %%WWWDIR%%/client/files
+@dir %%WWWDIR%%/client/emoji
 @owner
 @group
