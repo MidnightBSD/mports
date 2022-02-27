@@ -11,6 +11,8 @@ COMMENT=	Motif-based image viewer ala xv
 
 LICENSE=	mit
 
+LIB_DEPENDS+=	libtiff.so:graphics/tiff
+
 USES=		motif pkgconfig tar:xz xorg
 
 USE_XORG=	x11 xt xext xinerama xpm xscrnsaver
