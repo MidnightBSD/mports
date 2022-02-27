@@ -12,9 +12,6 @@ BUILD_DEPENDS=	nlohmann-json>0:devel/nlohmann-json \
 		xtl-quant-stack>0:devel/xtl-quant-stack
 RUN_DEPENDS=	nlohmann-json>0:devel/nlohmann-json \
 		xtl-quant-stack>0:devel/xtl-quant-stack
-TEST_DEPENDS=	nlohmann-json>0:devel/nlohmann-json \
-		xtl-quant-stack>0:devel/xtl-quant-stack \
-		googletest>0:devel/googletest
 
 USES=		cmake
 USE_GITHUB=	yes
@@ -22,12 +19,6 @@ GH_ACCOUNT=	xtensor-stack
 
 NO_BUILD=	yes
 NO_ARCH=	yes
-
-do-test: install # https://github.com/xtensor-stack/xtensor/issues/2466
-	@${RLN} ${FAKE_DESTDIR}${PREFIX}/include ${WRKSRC}/test/staged-include
-	@cd ${WRKSRC}/test && \
-		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} . && \
-		${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} && \
-		${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} xtest
+NO_TEST=	yes
 
 .include <bsd.port.mk>
