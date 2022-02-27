@@ -446,5 +446,6 @@
 @dirrm %%DATADIR%%/mods/fire
 @dirrm %%DATADIR%%/mods
 @dirrm %%DATADIR%%
+@dirrm share/minetest/games/minetest_game
 @dirrm share/minetest/games
 @dirrm share/minetest
