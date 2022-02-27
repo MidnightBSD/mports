@@ -11,6 +11,7 @@ SUBDIR += esound
 SUBDIR += espeak
 SUBDIR += faac
 SUBDIR += faad
+SUBDIR += faudio
 SUBDIR += fdk-aac
 SUBDIR += flac
 SUBDIR += flite
