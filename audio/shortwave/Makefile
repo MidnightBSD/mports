@@ -6,7 +6,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Listen to internet radio
 
 LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/COPYING.md
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
