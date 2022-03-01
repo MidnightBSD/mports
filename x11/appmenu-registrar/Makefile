@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Appmenu DBusMenu registrar
 
 LICENSE=	lgpl3
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libbamf3.so:sysutils/bamf
 BUILD_DEPENDS=	valac:lang/vala
