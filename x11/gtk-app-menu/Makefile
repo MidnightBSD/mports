@@ -10,7 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK module for putting application menubar in a global menubar
 
 LICENSE=	lgpl3
-LICENSE_FILE=	${WRKSRC}/subprojects/appmenu-gtk-module/LICENSE
 
 BUILD_DEPENDS=	valac:lang/vala
 LIB_DEPENDS=	libbamf3.so:sysutils/bamf
