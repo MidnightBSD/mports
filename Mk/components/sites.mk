@@ -25,7 +25,7 @@
 MASTER_SITE_LOCAL+= \
 	ftp://ftp3.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp1.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
-	ftp://mirror.sandyriver.net/midnightbsd/mports/distfiles/%SUBDIR%/ \
+	ftp://mirror2.sandyriver.net/midnightbsd/midnightbsd/mports/distfiles/%SUBDIR%/ \
 	https://discovery.midnightbsd.org/mports/distfiles/%SUBDIR%/ 
 
 MASTER_SITE_PORTS_JP+= \
