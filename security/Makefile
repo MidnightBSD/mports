@@ -192,6 +192,7 @@ SUBDIR += tor
 SUBDIR += trousers
 SUBDIR += ubuntu-keyring
 SUBDIR += vlock
+SUBDIR += vm-to-tor
 SUBDIR += vnccrack
 SUBDIR += vpnc
 SUBDIR += vuxml
