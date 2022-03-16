@@ -158,6 +158,7 @@ SUBDIR += smbldap-tools
 SUBDIR += spideroak
 SUBDIR += tigervnc-server
 SUBDIR += tigervnc-viewer
+SUBDIR += tiny-network-utilities
 SUBDIR += tshark
 SUBDIR += tsocks
 SUBDIR += uhttpmock
