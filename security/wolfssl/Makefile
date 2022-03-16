@@ -1,5 +1,5 @@
 PORTNAME=	wolfssl
-PORTVERSION=	4.6.0
+PORTVERSION=	5.1.1
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.wolfssl.com/ \
 		FREEBSD_LOCAL/fox
@@ -10,7 +10,7 @@ COMMENT=	Embedded SSL C-Library
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		libtool zip
+USES=		cpe libtool zip
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
