@@ -1052,6 +1052,7 @@ SUBDIR += rubygem-concurrent-ruby
 SUBDIR += rubygem-i18n
 SUBDIR += rubygem-mustache
 SUBDIR += rubygem-rdoc
+SUBDIR += rubygem-sigdump
 SUBDIR += rubygem-svn2git
 SUBDIR += rust-analyzer
 SUBDIR += rust-bindgen

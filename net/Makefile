@@ -46,6 +46,7 @@ SUBDIR += isc-dhcp44-relay
 SUBDIR += isc-dhcp44-server
 SUBDIR += jrdesktop
 SUBDIR += realtek-re-kmod
+SUBDIR += rubygem-serverengine
 SUBDIR += ldap2dns
 SUBDIR += ldapdiff
 SUBDIR += libdnet
