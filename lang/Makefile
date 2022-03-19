@@ -76,6 +76,7 @@ SUBDIR += php74
 SUBDIR += php74-extensions
 SUBDIR += php80
 SUBDIR += php80-extensions
+SUBDIR += php81
 SUBDIR += py-qt5-qml
 SUBDIR += python
 SUBDIR += python2
