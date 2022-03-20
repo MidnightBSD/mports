@@ -11,7 +11,7 @@ COMMENT=	"meta-port" to install PHP extensions
 USES=		php
 PHP_DEFAULT=	7.3
 PHP_VER=	73
-IGNORE_WITH_PHP=	71 72
+IGNORE_WITH_PHP=	74 80 81
 NO_BUILD=	yes
 NO_MTREE=	yes
 
