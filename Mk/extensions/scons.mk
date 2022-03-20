@@ -3,8 +3,6 @@
 # Feature:	scons
 # Usage:	USES=scons
 # Valid ARGS:	none
-#
-# MAINTAINER: python@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_SCONS_MK)
 _INCLUDE_USES_SCONS_MK=	yes
@@ -34,7 +32,7 @@ MAKE_ARGS+=	CC="${CC}" \
 		LIBPATH="${LIBPATH}" \
 		LINKFLAGS="${LINKFLAGS}" \
 		PKGCONFIGDIR="${PKGCONFIGDIR}" \
-		PREFIX="${PREFIX}" \
+		PREFIX="${TRUE_PREFIX}" \
 		destdir=${FAKE_DESTDIR}
 MAKE_CMD=	${SCONS}
 MAKE_FLAGS=	#
