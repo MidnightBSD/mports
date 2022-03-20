@@ -16,7 +16,7 @@ GH_ACCOUNT=	minetest
 
 NO_BUILD=	yes
 NO_ARCH=	yes
-DATADIR=	${PREFIX}/share/minetest/games/${PORTNAME}
+DATADIR=	${TRUE_PREFIX}/share/minetest/games/${PORTNAME}
 PORTDATA=	*
 PORTDOCS=	README.md game_api.txt schematic_tables.txt settingtypes.txt
 PORTEXAMPLES=	*
@@ -24,7 +24,7 @@ PORTEXAMPLES=	*
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} "game.conf menu mods" ${STAGEDIR}${DATADIR}/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} "game.conf menu mods" ${FAKE_DESTDIR}${DATADIR}/
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
