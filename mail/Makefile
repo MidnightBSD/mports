@@ -86,7 +86,6 @@ SUBDIR += p5-Mail-Tools
 SUBDIR += p5-Net-SMTP-SSL
 SUBDIR += panda-cclient
 SUBDIR += pantomime
-SUBDIR += php73-imap
 SUBDIR += php74-imap
 SUBDIR += php80-imap
 SUBDIR += php81-imap
