@@ -9,6 +9,8 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
+WRKSRC=	${WRKDIR}/Shortwave-9bfc5ee2d857035cf0d3c72e211b3d76b85d7414
+
 USES=		cargo gettext gnome meson pkgconfig python:build shebangfix sqlite ssl
 USE_GITHUB=	nodefault
 USE_GITLAB=	yes
