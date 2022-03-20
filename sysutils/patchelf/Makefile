@@ -19,4 +19,6 @@ TEST_TARGET=	check
 
 OPTIONS_DEFINE=	DOCS
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+
 .include <bsd.port.mk>
