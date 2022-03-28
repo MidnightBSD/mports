@@ -206,6 +206,7 @@ SUBDIR += py-enrich
 SUBDIR += py-genshi
 SUBDIR += py-gi-docgen
 SUBDIR += py-googletrans
+SUBDIR += py-hexdump
 SUBDIR += py-libxml2
 SUBDIR += py-m2r
 SUBDIR += py-mako
