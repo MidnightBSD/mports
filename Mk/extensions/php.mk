@@ -173,18 +173,18 @@ PHP_VER=	${FLAVOR:S/^php//}
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
 .    if ${PHP_VER} == 81
-PHP_EXT_DIR=	20210902
-PHP_EXT_INC=	hash json openssl pcre spl
+PHP_EXT_DIR=   20210902
+PHP_EXT_INC=    hash json openssl pcre spl
 .    elif ${PHP_VER} == 80
-PHP_EXT_DIR=	20200930
-PHP_EXT_INC=	hash json pcre spl
+PHP_EXT_DIR=   20200930
+PHP_EXT_INC=    hash json openssl pcre spl
 .    elif ${PHP_VER} == 74
-PHP_EXT_DIR=	20190902
-PHP_EXT_INC=	hash pcre spl
+PHP_EXT_DIR=   20190902
+PHP_EXT_INC=    hash pcre spl
 .    else
 # (rene) default to DEFAULT_VERSIONS
-PHP_EXT_DIR=	20190902
-PHP_EXT_INC=	hash pcre spl
+PHP_EXT_DIR=   20200930
+PHP_EXT_INC=    hash json openssl pcre spl
 .    endif
 
 # Try to figure out what the PHP_EXT_DIR should be WRT the
@@ -379,7 +379,7 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 # version specific components
 _USE_PHP_VER74=	${_USE_PHP_ALL} pdf
 _USE_PHP_VER80=	${_USE_PHP_ALL}
-_USE_PHP_VER80=	${_USE_PHP_ALL}
+_USE_PHP_VER81=	${_USE_PHP_ALL}
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
 bitset_DEPENDS=	math/pecl-bitset@${PHP_FLAVOR}
@@ -399,11 +399,9 @@ ftp_DEPENDS=	ftp/php${PHP_VER}-ftp
 gd_DEPENDS=	graphics/php${PHP_VER}-gd
 gettext_DEPENDS=devel/php${PHP_VER}-gettext
 gmp_DEPENDS=	math/php${PHP_VER}-gmp
-hash_DEPENDS=	security/php${PHP_VER}-hash
 iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 igbinary_DEPENDS=	converters/pecl-igbinary@${PHP_FLAVOR}
 imap_DEPENDS=	mail/php${PHP_VER}-imap
-interbase_DEPENDS=	databases/php${PHP_VER}-interbase
 intl_DEPENDS=	devel/php${PHP_VER}-intl
 .if ${PHP_VER} < 80
 json_DEPENDS=	devel/php${PHP_VER}-json
@@ -435,7 +433,6 @@ posix_DEPENDS=	sysutils/php${PHP_VER}-posix
 pspell_DEPENDS=	textproc/php${PHP_VER}-pspell
 radius_DEPENDS=	net/pecl-radius@${PHP_FLAVOR}
 readline_DEPENDS=	devel/php${PHP_VER}-readline
-recode_DEPENDS=	converters/php${PHP_VER}-recode
 redis_DEPENDS=	databases/pecl-redis@${PHP_FLAVOR}
 session_DEPENDS=www/php${PHP_VER}-session
 shmop_DEPENDS=	devel/php${PHP_VER}-shmop
@@ -451,7 +448,6 @@ sysvsem_DEPENDS=devel/php${PHP_VER}-sysvsem
 sysvshm_DEPENDS=devel/php${PHP_VER}-sysvshm
 tidy_DEPENDS=	www/php${PHP_VER}-tidy
 tokenizer_DEPENDS=	devel/php${PHP_VER}-tokenizer
-wddx_DEPENDS=	textproc/php${PHP_VER}-wddx
 xml_DEPENDS=	textproc/php${PHP_VER}-xml
 xmlreader_DEPENDS=	textproc/php${PHP_VER}-xmlreader
 .if ${PHP_VER} >= 80
