@@ -1,11 +1,7 @@
-
-
 PORTNAME=	xfce4-weather-plugin
-PORTVERSION=	0.8.3
-PORTREVISION=	1
+PORTVERSION=	0.11.0
 CATEGORIES=	misc xfce geography
-MASTER_SITES=	${MASTER_SITE_XFCE}
-MASTER_SITE_SUBDIR=src/panel-plugins/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,25 +11,25 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
 
-GNU_CONFIGURE=	yes
-INSTALLS_ICONS=	yes
-USES=		pkgconfig gettext gmake pathfix tar:bzip2
-USE_GNOME=	glib20 gtk20 intltool intlhack libxml2
-USE_XFCE=	libmenu libutil panel
+USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
+		tar:bzip2 xfce
+USE_GNOME=	cairo glib20 gtk30 intltool libxml2
+USE_XFCE=	panel
 USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
-OPTIONS_DEFINE=	UPOWER
-UPOWER_DESC=	Power state support
+OPTIONS_DEFINE=	NLS UPOWER
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
+UPOWER_DESC=	Power management tasks
 
-.if ${PORT_OPTIONS:MUPOWER}
-LIB_DEPENDS+=	libupower-glib.so:sysutils/upower
-CONFIGURE_ARGS+=--enable-upower
-.else
-CONFIGURE_ARGS+=--disable-upower
-.endif
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext-runtime
+
+UPOWER_LIB_DEPENDS=	libupower-glib.so:sysutils/upower
+UPOWER_CONFIGURE_ENABLE=upower
 
 .include <bsd.port.mk>
