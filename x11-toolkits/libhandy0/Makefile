@@ -23,4 +23,6 @@ GL_SITE=	https://source.puri.sm/
 GL_ACCOUNT=	Librem5
 GL_COMMIT=	7a193d7692c9c76a1a94f17c4d30b585f77d177c
 
+WRKSRC=		${WRKDIR}/libhandy-7a193d7692c9c76a1a94f17c4d30b585f77d177c
+
 .include <bsd.port.mk>
