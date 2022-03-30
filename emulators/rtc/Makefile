@@ -43,9 +43,6 @@ do-extract:
 		${FILESDIR}/${STARTUP} > ${WRKDIR}/${STARTUP}
 	@cd ${FILESDIR} && ${CP} Makefile *.[ch] ${WRKSRC}/
 
-pre-install:
-	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/modules
-
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/rtc.h ${PREFIX}/include/
 	${MKDIR} ${PREFIX}/share/examples/rtc
