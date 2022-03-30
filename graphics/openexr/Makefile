@@ -28,6 +28,8 @@ _VER=		30
 _MINVER=	1
 _PLVER=		0
 
+NO_TEST=	yes
+
 PLIST_SUB+=	MAJORVER=${_MAJORVER} \
 		VER=${_VER} \
 		MINVER=${_MINVER} \
@@ -62,8 +64,5 @@ post-install-EXAMPLES-on:
 post-install-EXAMPLES-off:
 	-${RM} -R ${FAKE_DESTDIR}${PREFIX}/share/doc/OpenEXR/examples/
 	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/OpenEXR 2>/dev/null || :
-
-do-test:
-	cd ${BUILD_WRKSRC} && ctest -j ${MAKE_JOBS_NUMBER}
 
 .include <bsd.port.mk>
