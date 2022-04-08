@@ -1,5 +1,6 @@
 PORTNAME=	sendmail
 PORTVERSION=	8.17.1
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 DISTNAME=	${PORTNAME}.${PORTVERSION}
@@ -298,27 +299,16 @@ post-install:
 
 mailer.base:
 	@${SED} \
-	-e "s=^sendmail[ 	]*/.*$$=sendmail	${BASEMAIL}=" \
-	-e "s=^send-mail[ 	]*/.*$$=send-mail	${BASEMAIL}=" \
-	-e "s=^mailq[ 	]*/.*$$=mailq		${BASEMAIL}=" \
-	-e "s=^newaliases[ 	]*/.*$$=newaliases	${BASEMAIL}=" \
-	-e "s=^hoststat[ 	]*/.*$$=hoststat	${BASEMAIL}=" \
-	-e "s=^purgestat[ 	]*/.*$$=purgestat	${BASEMAIL}=" \
-	 ${DESTDIR}/etc/mail/mailer.conf > ${DESTDIR}/etc/mail/mailer.conf.new
+	 -e "s=\([ 	]\)/.*$$=\\1${BASEMAIL}=" \
+	 ${FILESDIR}/mailer.conf > ${DESTDIR}/etc/mail/mailer.conf.new
 	${MV} ${DESTDIR}/etc/mail/mailer.conf.new \
 		${DESTDIR}/etc/mail/mailer.conf
 
 mailer.conf:
 	@${SED} \
-	-e "s=^sendmail[ 	]*/.*$$=sendmail	${SENDMAIL}=" \
-	-e "s=^send-mail[ 	]*/.*$$=send-mail	${SENDMAIL}=" \
-	-e "s=^mailq[ 	]*/.*$$=mailq		${SENDMAIL}=" \
-	-e "s=^newaliases[ 	]*/.*$$=newaliases	${SENDMAIL}=" \
-	-e "s=^hoststat[ 	]*/.*$$=hoststat	${SENDMAIL}=" \
-	-e "s=^purgestat[ 	]*/.*$$=purgestat	${SENDMAIL}=" \
-	 ${DESTDIR}/etc/mail/mailer.conf > ${DESTDIR}/etc/mail/mailer.conf.new
-	${MV} ${DESTDIR}/etc/mail/mailer.conf.new \
-		${DESTDIR}/etc/mail/mailer.conf
+	 -e "s=\([ 	]\)/.*$$=\\1${SENDMAIL}=" \
+	 ${FILESDIR}/mailer.conf \
+	 > ${DESTDIR}${PREFIX}/etc/mail/mailer.conf
 .endif
 
 # create sumbit.cf on older systems
