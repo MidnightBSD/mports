@@ -152,6 +152,7 @@ SUBDIR += spotify-qt
 SUBDIR += spotify-tui
 SUBDIR += spotifyd
 SUBDIR += taglib
+SUBDIR += teamspeak3-server
 SUBDIR += timemachine
 SUBDIR += timidity
 SUBDIR += twolame
