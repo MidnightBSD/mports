@@ -162,7 +162,6 @@ SUBDIR += webrtc-audio-processing0
 SUBDIR += wmmp3
 SUBDIR += wmmixer
 SUBDIR += wmsmixer
-SUBDIR += xfce4-mixer
 SUBDIR += xfce4-mpc-plugin
 SUBDIR += xfce4-pulseaudio-plugin
 
