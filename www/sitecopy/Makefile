@@ -2,7 +2,7 @@
 
 PORTNAME=	sitecopy
 PORTVERSION=	0.16.6
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	www
 MASTER_SITES=	http://www.manyfish.co.uk/${PORTNAME}/ \
 		GENTOO
@@ -40,7 +40,7 @@ CONFIGURE_ARGS+=	--with-ssl
 post-patch:
 	@${REINPLACE_CMD} -e 's|;;|;|g' \
 		${WRKSRC}/src/sitestore.c
-	@${REINPLACE_CMD} -e 's|25 26 27 28|& 29 30 31|g' \
+	@${REINPLACE_CMD} -e 's|25 26 27 28|& 29 30 31 32|g' \
 		${WRKSRC}/configure
 
 .include <bsd.port.mk>
