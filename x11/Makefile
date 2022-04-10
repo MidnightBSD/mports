@@ -158,6 +158,7 @@ SUBDIR += xfce4-conf
 SUBDIR += xfce4-screenshooter-plugin
 SUBDIR += xfce4-taskmanager
 SUBDIR += xfce4-terminal
+SUBDIR += xfce4-whiskermenu-plugin
 SUBDIR += xfd
 SUBDIR += xgamma
 SUBDIR += xgc
