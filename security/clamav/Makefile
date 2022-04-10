@@ -14,6 +14,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libjson-c.so:devel/json-c \
 		libmspack.so:archivers/libmspack \
 		libpcre2-8.so:devel/pcre2
+BUILD_DEPENDS+= ${LOCALBASE}/include/check.h:devel/check
 
 USES=		cmake cpe gnome iconv ncurses pkgconfig ssl
 USE_GNOME=	libxml2
