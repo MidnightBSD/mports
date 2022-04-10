@@ -58,6 +58,7 @@ SUBDIR += toolboxkit
 SUBDIR += virt-manager
 SUBDIR += xfce4-notifyd
 SUBDIR += xfce4-tumbler
+SUBDIR += xfce4-xkb-plugin
 SUBDIR += xpad
 SUBDIR += xpostit
 

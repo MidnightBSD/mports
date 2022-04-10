@@ -1102,6 +1102,7 @@ SUBDIR += wizardkit
 SUBDIR += woff2
 SUBDIR += xa65
 SUBDIR += xdg-utils
+SUBDIR += xfce4-dev-tools
 SUBDIR += xorg-macros
 SUBDIR += xtl-quant-stack
 SUBDIR += xxhash
