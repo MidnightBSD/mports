@@ -2,8 +2,9 @@ PORTNAME=	php74
 DISTVERSION=	7.4.28
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-MASTER_SITES=   PHP/distributions
+MASTER_SITES=	PHP
 DISTNAME=	php-${DISTVERSION}
+DIST_SUBDIR=	php
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
