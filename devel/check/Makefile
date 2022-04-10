@@ -1,7 +1,7 @@
 # Created by: mikeh@FreeBSD.org
 
 PORTNAME=	check
-PORTVERSION=	0.14.0
+PORTVERSION=	0.15.2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
