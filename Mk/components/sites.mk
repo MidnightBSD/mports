@@ -52,18 +52,16 @@ MASTER_SITE_ALSA+= \
 
 .if !defined(IGNORE_MASTER_SITE_APACHE)
 MASTER_SITE_APACHE+= \
-	https://www.apache.org/dist/%SUBDIR%/ \
-	https://archive.apache.org/dist/%SUBDIR%/ \
-	http://ftp.twaren.net/Unix/Web/apache/%SUBDIR%/ \
-	http://apache.mirror.uber.com.au/%SUBDIR%/ \
-	http://apache.spd.co.il/%SUBDIR%/ \
-	https://ftp.mirrorservice.org/sites/ftp.apache.org/%SUBDIR%/ \
-	https://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/%SUBDIR%/ \
-	ftp://mir1.ovh.net/ftp.apache.org/dist/%SUBDIR%/ \
-	ftp://ftp.forthnet.gr/pub/www/apache/%SUBDIR%/ \
-	ftp://xenia.sote.hu/pub/mirrors/www.apache.org/%SUBDIR%/ \
-	ftp://ftp.heanet.ie/mirrors/www.apache.org/dist/%SUBDIR%/ \
-	https://mirrors.ircam.fr/pub/apache/%SUBDIR%/
+	https://dlcdn.apache.org/%SUBDIR%/ \
+	https://mirror.netcologne.de/apache.org/%SUBDIR%/ \
+	https://ftp.wayne.edu/apache/%SUBDIR%/ \
+	https://mirror.its.dal.ca/apache/%SUBDIR%/ \
+	http://mirror.cogentco.com/pub/apache/%SUBDIR%/ \
+	http://mirror.navercorp.com/apache/%SUBDIR%/ \
+	http://ftp.kddi-research.jp/infosystems/apache/%SUBDIR%/ \
+	http://miroir.univ-lorraine.fr/apache/%SUBDIR%/ \
+	ftp://ftp.acc.umu.se/mirror/apache.org/%SUBDIR%/ \
+	ftp://ftp.nluug.nl/internet/apache/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_APACHE_COMMONS_BINARIES)
@@ -220,8 +218,8 @@ MASTER_SITE_EXIM+= \
 
 .if !defined(IGNORE_MASTER_SITE_CENTOS_LINUX)
 MASTER_SITE_CENTOS_LINUX+= \
-	http://mirror.centos.org/%SUBDIR%/:DEFAULT,amd64,i386 \
-	http://vault.centos.org/%SUBDIR%/:DEFAULT,amd64,i386,SOURCE
+	http://mirror.centos.org/%SUBDIR%/:DEFAULT,aarch64,amd64,i386 \
+	http://vault.centos.org/%SUBDIR%/:DEFAULT,aarch64,amd64,i386,SOURCE
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_EPEL)
@@ -236,8 +234,10 @@ MASTER_SITE_EPEL+= \
 
 .if !defined(IGNORE_MASTER_SITE_EPEL7)
 MASTER_SITE_EPEL7+= \
+	https://dl.fedoraproject.org/pub/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
 	https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
 	https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE \
+	http://dl.fedoraproject.org/pub/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
 	http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
 	http://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE
 .endif
@@ -282,7 +282,7 @@ MASTER_SITE_FREEBSD_LOCAL+=	\
 #
 # For the full list, see the Handbook:
 #
-#    http://www.FreeBSD.org/doc/en_US.ISO8859-1/books/handbook/mirrors-ftp.html
+#    https://docs.FreeBSD.org/en/books/handbook/mirrors/#mirrors-ftp
 #
 .if !defined(IGNORE_MASTER_SITE_FREEBSD_ORG)
 MASTER_SITE_FREEBSD_ORG+= \
@@ -445,6 +445,8 @@ GH_PROJECT:=	${GH_PROJECT_DEFAULT}
 GH_TAGNAME:=	${GH_TAGNAME_DEFAULT}
 GH_SUBDIR:=	${GH_SUBDIR_DEFAULT}
 .  if defined(GH_TAGNAME)
+# If you change either of the _SANITIZED or _EXTRACT variables, please keep the
+# changes in sync with the GH_TAGNAME_${_group}_* variables 50 lines below.
 GH_TAGNAME_SANITIZED=	${GH_TAGNAME:S,/,-,g}
 # GitHub silently converts tags starting with v to not have v in the filename
 # and extraction directory.  It also replaces + with -.
@@ -798,7 +800,6 @@ MASTER_SITE_KDE+= \
 	http://www-ftp.lip6.fr/pub/X11/kde/%SUBDIR%/ \
 	https://ftp-stud.hs-esslingen.de/Mirrors/ftp.kde.org/pub/kde/%SUBDIR%/ \
 	ftp://ftp.cronyx.ru/pub/mirror/kde/%SUBDIR%/ \
-	http://ftp.twaren.net/Unix/X/KDE/%SUBDIR%/ \
 	ftp://ftp.fu-berlin.de/pub/unix/X11/gui/kde/%SUBDIR%/ \
 	ftp://sunsite.informatik.rwth-aachen.de/pub/Linux/kde/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/X11/kde/%SUBDIR%/ \
@@ -818,7 +819,7 @@ MASTER_SITE_KDE+= \
 	http://ftp.fi.muni.cz/pub/kde/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/mirrors/ftp.kde.org/pub/kde/%SUBDIR%/ \
 	http://ftp.funet.fi/pub/mirrors/ftp.kde.org/pub/kde/%SUBDIR%/ \
-	http://kde.cs.nctu.edu.tw/%SUBDIR%/
+	https://kde.cs.nctu.edu.tw/ftp/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_LIBREOFFICE_DEV)
@@ -1040,9 +1041,12 @@ MASTER_SITE_PGSQL+= \
 	https://ftp.postgresql.org/pub/%SUBDIR%/
 .endif
 
+# Currently MyraCloud is blocking fetch. Hence add php Github distributions
+# untill it is fixed.
 .if !defined(IGNORE_MASTER_SITE_PHP)
 MASTER_SITE_PHP+= \
-	https://www.php.net/%SUBDIR%/
+	https://www.php.net/distributions/ \
+	https://raw.githubusercontent.com/php/web-php-distributions/master/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_PYTHON)
@@ -1181,12 +1185,11 @@ MASTER_SITE_TCLTK+= \
 
 .if !defined(IGNORE_MASTER_SITE_TEX_CTAN)
 MASTER_SITE_TEX_CTAN+= \
-	http://ctan.unsw.edu.au/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/CTAN/%SUBDIR%/ \
-	ftp://ctan.tug.org/tex-archive/%SUBDIR%/ \
-	ftp://ftp.dante.de/tex-archive/%SUBDIR%/ \
-	ftp://mirror.macomnet.net/pub/CTAN/%SUBDIR%/ \
-	ftp://ftp.funet.fi/pub/TeX/CTAN/%SUBDIR%/
+	https://ftp.math.utah.edu/pub/tex/historic/%SUBDIR%/ \
+	https://ftp.tu-chemnitz.de/pub/tug/historic/%SUBDIR%/ \
+	https://pi.kwarc.info/historic/%SUBDIR%/ \
+	https://mirrors.tuna.tsinghua.edu.cn/tex-historic-archive/%SUBDIR%/ \
+	https://mirror.nju.edu.cn/tex-historic/%SUBDIR%/
 .endif
 
 # Derived from: https://www.torproject.org/getinvolved/mirrors.html.en
