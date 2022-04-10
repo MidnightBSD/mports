@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/subprojects/appmenu-gtk-module/LICENSE
 BUILD_DEPENDS=	valac:lang/vala
 LIB_DEPENDS=	libbamf3.so:sysutils/bamf
 
+WRKSRC=	${WRKDIR}/vala-panel-appmenu-4e362c22ab3a23c98f13fb379c782786ee057cf6
+
 USES=	meson gnome pkgconfig
 
 MESON_ARGS=	-Dappmenu-gtk-module=enabled \

@@ -1,8 +1,9 @@
 # Created by: cartola (Carlos E. G. Carvalho)
 
-
 PORTNAME=	vigra
-DISTVERSION=	1.10.0
+DISTVERSIONPREFIX=v
+DISTVERSION=	1.11.1
+PORTREVISION=	20
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,92 +11,69 @@ COMMENT=	VIGRA stands for "Vision with Generic Algorithms"
 
 LICENSE=	mit
 
-USE_GITHUB=
+LIB_DEPENDS=	libImath.so:math/Imath \
+		libsz.so:science/szip
+
+USES=		cmake compiler:c++14-lang python:run shebangfix
+
+USE_GITHUB=	yes
 GH_ACCOUNT=     ukoethe
-GH_TAGNAME=     e6c21f3
+GH_TAGNAME=     8acd73a
+USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
-USES=		cmake
+CFLAGS+=	-I${LOCALBASE}/include/Imath
+
 CMAKE_ARGS=	-DDEPENDENCY_SEARCH_PREFIX:PATH=${LOCALBASE} \
 		-DDOCINSTALL:PATH=${DOCSDIR_REL}
 
-USE_LDCONFIG=	yes
+SHEBANG_FILES=	config/vigra-config.in
 
-OPTIONS_DEFINE=		HDF5 OPENEXR NUMPY DOCS
-OPTIONS_DEFAULT=	HDF5 OPENEXR
+OPTIONS_DEFINE=		HDF5 OPENEXR NUMPY DOCS FFTW
+OPTIONS_DEFAULT=	HDF5 OPENEXR FFTW ${OPTIONS_GROUP_IMAGEFORMATS}
+OPTIONS_GROUP=		IMAGEFORMATS
+OPTIONS_GROUP_IMAGEFORMATS=	PNG JPEG TIFF
+OPTIONS_SUB=		yes
+
+HDF5_CMAKE_BOOL=	WITH_HDF5
+HDF5_LIB_DEPENDS=	libhdf5.so:science/hdf5
+
+OPENEXR_CMAKE_BOOL=	WITH_OPENEXR
+OPENEXR_LIB_DEPENDS=	libOpenEXR.so:graphics/openexr
+
 NUMPY_DESC=		NumPy mathematical computing (USE Fortran/GCC47+)
+NUMPY_CMAKE_BOOL=	WITH_VIGRANUMPY
+NUMPY_USES=		compiler:gcc-c++11-lib python:build
+NUMPY_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR} \
+			${PYNUMPY}
+NUMPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR} \
+			${PYNUMPY}
+NUMPY_LIB_DEPENDS=	${PY_BOOST}
+# On FreeBSD < 11 libc++ lacks support for sized delete operators.
+# GCC dropped the builtin version of these operators in 6+ by
+# defaulting to gnu++14. Force c++11 instead.
+# For a more detailed discussion see:
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=219484
+NUMPY_CXXFLAGS=		-std=gnu++11
 
-.include <bsd.mport.options.mk>
+PNG_CMAKE_BOOL=		WITH_PNG
+PNG_LIB_DEPENDS=	libpng.so:graphics/png
 
-.if ${PORT_OPTIONS:MHDF5}
-CMAKE_ARGS+=	-DWITH_HDF5=1
-LIB_DEPENDS+=	libhdf5.so:${PORTSDIR}/science/hdf5
-.else
-CMAKE_ARGS+=	-DWITH_HDF5=0
-.endif
+JPEG_CMAKE_BOOL=	WITH_JPEG
+JPEG_USES=		jpeg
 
-.if ${PORT_OPTIONS:MOPENEXR}
-CMAKE_ARGS+=	-DWITH_OPENEXR=1
-LIB_DEPENDS+=	libIlmImf.so:${PORTSDIR}/graphics/openexr
-.else
-CMAKE_ARGS+=	-DWITH_OPENEXR=0
-.endif
+TIFF_CMAKE_BOOL=	WITH_TIFF
+TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
 
-.if ${PORT_OPTIONS:MNUMPY}
-# Should ignore Python3 since commit f51b0b5
-#CONFLICTS_BUILD=	python3*
-CMAKE_ARGS+=	-DWITH_VIGRANUMPY=1
-USES+=		compiler:gcc-c++11-lib python:2
-BUILD_DEPENDS+=	nosetests:${PORTSDIR}/devel/py-nose
-BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
-#BUILD_DEPENDS+=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
-LIB_DEPENDS+=	libboost_python.so:${PORTSDIR}/devel/boost-python-libs
-RUN_DEPENDS:=	${BUILD_DEPENDS}
-PLIST_SUB+=	PYTHON=""
-.else
-CMAKE_ARGS+=	-DWITH_VIGRANUMPY=0
-PLIST_SUB+=	PYTHON="@comment "
-.endif
+FFTW_CMAKE_BOOL=	WITH_FFTW
+FFTW_LIB_DEPENDS=	libfftw3.so:math/fftw3 \
+			libfftw3f.so:math/fftw3-float
 
-# Vigra's CMakeLists.txt does not support disabling those so we hook them
-# as dependencies here unconditionally (without OPTIONS=) even though if
-# they are not present then Vigra/CMake will do without them (they are not
-# mandatory).
-#
-# Notice that if you define e.g. WITHOUT_VIGRA_TIFF and graphics/tiff is
-# installed on your system, then the lib will be picked up by Vigra, the
-# dependency will not be recorded by the ports system and later deletion
-# of graphics/tiff will break Vigra. Only define WITHOUT_VIGRA_TIFF if you
-# do not have graphics/tiff installed and do not want TIFF support in Vigra.
-
-.if !defined(WITHOUT_VIGRA_TIFF)
-LIB_DEPENDS+=	libtiff.so:${PORTSDIR}/graphics/tiff
-.endif
-
-.if !defined(WITHOUT_VIGRA_JPEG)
-USES+=		jpeg
-.endif
-
-.if !defined(WITHOUT_VIGRA_PNG)
-LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
-.endif
-
-.if !defined(WITHOUT_VIGRA_FFTW)
-LIB_DEPENDS+=	libfftw3.so:${PORTSDIR}/math/fftw3
-LIB_DEPENDS+=	libfftw3f.so:${PORTSDIR}/math/fftw3-float
-.endif
-
-pre-everything::
-.if ${PORT_OPTIONS:MNUMPY}
+post-package-NUMPY-on:
 	@${ECHO} ""
 	@${ECHO} "* BEWARE!"
 	@${ECHO} "* Using py-NumPY implies Fortran and GCC 4.7+ as hard dependencies"
 	@${ECHO} "* and require all ports, depending on vigra, to set USE_GCC=yes"
 	@${ECHO} ""
-.endif
-
-post-patch:
-# FIXME: This is ugly
-	@${RM} ${WRKSRC}/include/vigra/*.orig
 
 .include <bsd.port.mk>

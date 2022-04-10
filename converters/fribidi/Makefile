@@ -1,9 +1,9 @@
 # Created by: ijliao
 
 PORTNAME=	fribidi
-PORTVERSION=	1.0.10
+DISTVERSION=	1.0.11
 CATEGORIES=	converters
-MASTER_SITES=	https://github.com/fribidi/fribidi/releases/download/v${PORTVERSION}/
+MASTER_SITES=	https://github.com/fribidi/fribidi/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Implementation of the Unicode Bidirectional Algorithm

@@ -11,6 +11,8 @@ COMMENT=	Appmenu DBusMenu registrar
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+WRKSRC=	${WRKDIR}/vala-panel-appmenu-4e362c22ab3a23c98f13fb379c782786ee057cf6
+
 LIB_DEPENDS=	libbamf3.so:sysutils/bamf
 BUILD_DEPENDS=	valac:lang/vala
 

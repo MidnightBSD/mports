@@ -1,5 +1,5 @@
 PORTNAME=	icu
-DISTVERSION=	69_1
+DISTVERSION=	71_1
 PORTREVISION?=	0 # keep for icu-lx
 PORTEPOCH?=	1
 CATEGORIES?=	devel
@@ -24,9 +24,12 @@ CONFIGURE_ARGS+=--with-data-packaging=archive \
 CPPFLAGS+=	-DICU_NO_USER_DATA_OVERRIDE
 MAKE_ARGS=	VERBOSE=1
 NO_TEST=	yes
-USES+=		compiler:c++11-lib gmake pathfix python:build tar:tgz
+USES+=		compiler:c++11-lib cpe gmake pathfix python:build tar:tgz
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/icu/source
+
+CPE_VENDOR=	${PORTNAME}-project
+CPE_PRODUCT=	international_components_for_unicode
 
 ICUMAJOR=	${PORTVERSION:C/\..*//}
 PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUVER=${PORTVERSION:C/r.?/1/}
@@ -35,6 +38,7 @@ PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUVER=${PORTVERSION:C/r.?/1/}
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/g* \
 		${STAGEDIR}${PREFIX}/bin/*conv \
+		${STAGEDIR}${PREFIX}/bin/icuexportdata \
 		${STAGEDIR}${PREFIX}/bin/icuinfo \
 		${STAGEDIR}${PREFIX}/bin/derb \
 		${STAGEDIR}${PREFIX}/bin/pkgdata

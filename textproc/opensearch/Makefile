@@ -1,7 +1,7 @@
 # Created by: Sven R <freebsd@hackacad.net>
 
 PORTNAME=	opensearch
-DISTVERSION=	1.2.1
+DISTVERSION=	1.2.4
 DISTVERSIONSUFFIX=	-linux-x64
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.opensearch.org/releases/bundle/${PORTNAME}/${PORTVERSION}/
@@ -78,10 +78,10 @@ do-install-PLUGINS-on:
 
 post-install:
 .for f in ${CONFIG_FILES}
-	${ECHO} "@sample ${ETCDIR}/${f}.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/${f}.sample" >> ${TMPPLIST}
 .endfor
-	${FIND} -s ${STAGEDIR}${PREFIX}/lib/opensearch -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/lib/opensearch -not -type d | ${SORT} | \
+		${SED} -e 's#^${FAKE_DESTDIR}${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir lib/opensearch/plugins" >> ${TMPPLIST}
 	${ECHO} "@dir libexec/opensearch" >> ${TMPPLIST}
 	${ECHO} "@dir(opensearch,opensearch,0755) ${ETCDIR}" >> ${TMPPLIST}

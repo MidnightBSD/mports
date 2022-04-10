@@ -37,4 +37,6 @@ CONFLICTS_INSTALL=	columns
 
 #SHEBANG_FILES=	autoopts/tpl/*.pl
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

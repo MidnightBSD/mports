@@ -1,5 +1,5 @@
 PORTNAME=	openssh
-DISTVERSION=	8.7p1
+DISTVERSION=	8.9p1
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	security
@@ -65,6 +65,8 @@ BLACKLISTD_DESC=	FreeBSD blacklistd(8) support
 
 OPTIONS_SUB=		yes
 
+PAM_EXTRA_PATCHES=	${FILESDIR}/extra-patch-pam-sshd_config
+
 TCP_WRAPPERS_EXTRA_PATCHES=${FILESDIR}/extra-patch-tcpwrappers
 
 LDNS_CONFIGURE_WITH=	ldns=${LOCALBASE}
@@ -100,21 +102,21 @@ PATCH_SITES+=	http://mirror.shatow.net/freebsd/${PORTNAME}/:DEFAULT,hpn,gsskex
 
 # Must add this patch before HPN due to conflicts
 .if ${PORT_OPTIONS:MKERB_GSSAPI} || ${FLAVOR:U} == gssapi
-BROKEN=	KERB_GSSAPI No patch for ${DISTVERSION} yet.
+#BROKEN=	KERB_GSSAPI No patch for ${DISTVERSION} yet.
 .  if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
 # Needed glue for applying HPN patch without conflict
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-hpn-gss-glue
 .  endif
 # - See https://sources.debian.org/data/main/o/openssh/ for which subdir to
 # pull from.
-GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-2
+GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-3
 # - Debian does not use a versioned filename so we trick fetch to make one for
 # us with the ?<anything>=/ trick.
 PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_SUBDIR}/debian/patches/gssapi.patch?dummy=/:gsskex
 # Bump this when updating the patch location
-GSSAPI_UPDATE_DATE=	20200607
+GSSAPI_UPDATE_DATE=	20220203
 PATCHFILES+=	openssh-${DISTVERSION}-gsskex-all-20141021-debian-rh-${GSSAPI_UPDATE_DATE}.patch:-p1:gsskex
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-sshconnect2.c
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-auth2-gss.c
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgssc.c
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgsss.c
 .endif
@@ -191,10 +193,15 @@ VERSION_ADDENDUM_DEFAULT?=	${OPSYS}-${PKGNAME}
 CFLAGS+=	${CFLAGS_${CHOSEN_COMPILER_TYPE}}
 CFLAGS_gcc=	-Wno-stringop-truncation -Wno-stringop-overflow
 
+SSH_ASKPASS_PATH?=	${LOCALBASE}/bin/ssh-askpass
+
 post-patch:
 	@${REINPLACE_CMD} \
 	    -e 's|install: \(.*\) host-key check-config|install: \1|g' \
 	    ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} \
+	    -e 's|$$[{(]libexecdir[})]/ssh-askpass|${SSH_ASKPASS_PATH}|' \
+	    ${WRKSRC}/Makefile.in ${WRKSRC}/configure.ac
 	@${REINPLACE_CMD} \
 	    -e 's|\(VersionAddendum\) none|\1 ${VERSION_ADDENDUM_DEFAULT}|' \
 	    ${WRKSRC}/sshd_config

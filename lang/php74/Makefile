@@ -1,9 +1,10 @@
 PORTNAME=	php74
-DISTVERSION=	7.4.27
+DISTVERSION=	7.4.28
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-MASTER_SITES=   PHP/distributions
+MASTER_SITES=	PHP
 DISTNAME=	php-${DISTVERSION}
+DIST_SUBDIR=	php
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
@@ -49,7 +50,7 @@ MYSQLND_DESC=	Build with MySQL Native Driver
 LINKTHR_DESC=	Link thread lib (for threaded extensions)
 ZTS_DESC=	Force Zend Thread Safety (ZTS) build
 
-CONFLICTS=	php71-* php72-* php73-*
+CONFLICTS=	php81-* php80-*
 
 DESTDIRNAME=	INSTALL_ROOT
 

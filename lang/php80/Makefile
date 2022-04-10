@@ -1,5 +1,5 @@
 PORTNAME=	php80
-DISTVERSION=	8.0.14
+DISTVERSION=	8.0.17
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP
@@ -13,6 +13,9 @@ LICENSE=	php
 
 USES+=		compiler:c11 tar:xz cpe gnome pkgconfig
 CPE_PRODUCT=	php
+
+CONFLICTS_INSTALL?=	php[0-9][0-9]${PKGNAMESUFFIX}
+
 NO_OPTIONS_SORT=yes
 
 .if !defined(PKGNAMESUFFIX)
@@ -60,8 +63,6 @@ PHPDBG_DESC=	Interactive PHP debugger
 MYSQLND_DESC=	Build with MySQL Native Driver
 LINKTHR_DESC=	Link thread lib (for threaded extensions)
 ZTS_DESC=	Force Zend Thread Safety (ZTS) build
-
-CONFLICTS=	php72-* php73-* php74-*
 
 DESTDIRNAME=	INSTALL_ROOT
 

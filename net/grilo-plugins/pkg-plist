@@ -5,7 +5,7 @@ lib/grilo-0.3/libgrlfilesystem.so
 lib/grilo-0.3/libgrlflickr.so
 lib/grilo-0.3/libgrlfreebox.so
 lib/grilo-0.3/libgrlgravatar.so
-lib/grilo-0.3/libgrljamendo.so
+@comment lib/grilo-0.3/libgrljamendo.so
 lib/grilo-0.3/libgrllocalmetadata.so
 lib/grilo-0.3/libgrlmagnatune.so
 lib/grilo-0.3/libgrlmetadatastore.so
@@ -17,7 +17,7 @@ lib/grilo-0.3/libgrlshoutcast.so
 @comment lib/grilo-0.3/libgrlthetvdb.so
 lib/grilo-0.3/libgrltmdb.so
 lib/grilo-0.3/libgrltracker.so
-lib/grilo-0.3/libgrlvimeo.so
+@comment lib/grilo-0.3/libgrlvimeo.so
 lib/grilo-0.3/libgrlyoutube.so
 libdata/pkgconfig/grilo-plugins-0.3.pc
 share/help/C/examples/example-tmdb.c
