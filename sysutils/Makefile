@@ -202,6 +202,7 @@ SUBDIR += xfce4-bsdcpufreq-plugin
 SUBDIR += xfce4-cpugraph-plugin
 SUBDIR += xfce4-diskperf-plugin
 SUBDIR += xfce4-fsguard-plugin
+SUBDIR += xfce4-genmon-plugin
 SUBDIR += xfce4-power-manager
 SUBDIR += xfce4-settings
 SUBDIR += xfce4-systemload-plugin
