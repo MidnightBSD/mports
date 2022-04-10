@@ -155,6 +155,7 @@ SUBDIR += xf86dga
 SUBDIR += xfce4-appmenu-plugin
 SUBDIR += xfce4-clipman-plugin
 SUBDIR += xfce4-conf
+SUBDIR += xfce4-dashboard
 SUBDIR += xfce4-screenshooter-plugin
 SUBDIR += xfce4-taskmanager
 SUBDIR += xfce4-terminal
