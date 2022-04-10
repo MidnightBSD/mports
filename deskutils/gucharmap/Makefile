@@ -15,7 +15,7 @@ COMMENT=	Unicode/ISO10646 character map and font viewer
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-WRKSRC=		${WRKDIR}/gucharmap-${GH_COMMIT}
+WRKSRC=		${WRKDIR}/gucharmap-${GL_COMMIT}
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
 		UCD>=0:textproc/UCD \
