@@ -10,7 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Podcast app for GNOME
 
 LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
@@ -26,6 +25,8 @@ GL_COMMIT=	c86f7bfdef7692bbf20f315a90450321f6ca9ce7
 SHEBANG_FILES=	scripts/cargo.sh scripts/compile-gschema.py
 MAKE_ENV=	${CARGO_ENV}
 GLIB_SCHEMAS=	org.gnome.Podcasts.gschema.xml
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${GL_COMMIT}
 
 CARGO_CRATES=	aho-corasick-0.7.18 \
 		ammonia-3.1.2 \
