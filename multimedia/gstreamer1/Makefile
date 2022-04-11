@@ -11,9 +11,10 @@ COMMENT=	Media applications framework
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		bison gettext gmake gnome libtool pathfix perl5 pkgconfig python tar:xz
+USES=		bison cpe gettext gmake gnome libtool pathfix perl5 pkgconfig python tar:xz
 USE_PERL5=	build
 USE_GNOME=	glib20 introspection:build
+CPE_VENDOR=   gstreamer_project
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-tests \
