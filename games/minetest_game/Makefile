@@ -17,9 +17,10 @@ GH_ACCOUNT=	minetest
 NO_BUILD=	yes
 NO_ARCH=	yes
 DATADIR=	${TRUE_PREFIX}/share/minetest/games/${PORTNAME}
-PORTDATA=	*
+#PORTDATA=	*
 PORTDOCS=	README.md game_api.txt schematic_tables.txt settingtypes.txt
-PORTEXAMPLES=	*
+#PORTEXAMPLES=	*
+PLIST_SUB+=	DATADIR=${DATADIR_REL}
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
