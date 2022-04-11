@@ -1,11 +1,10 @@
 # Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 
-
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
 # When chasing a shared library for a plug-in bump the PORTREVISION in the
 # plug-in port instead, like ${category}/gstreamer1-plugin-${PLUGIN}.
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	GNOME/sources/gst-plugins-base/${PORTVERSION:R}:base \
 		GNOME/sources/gst-plugins-good/${PORTVERSION:R}:good \
@@ -141,8 +140,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/dev/dvd|${DEFAULT_DVD_DEVICE}|g' \
 		${WRKSRC}/ext/resindvd/resindvdbin.c \
 		${WRKSRC}/ext/resindvd/resindvdsrc.c
-# Fix dependency on neon-0.31
-	${REINPLACE_CMD} -e '/neon/s|0.30.99|0.31.99|g' \
+# Fix dependency on neon-0.31 and 0.32
+	${REINPLACE_CMD} -e '/neon/s|0.30.99|0.32.99|g' \
 		${WRKSRC}/configure
 # Fix build against OpenCV 4.5.1
 	 ${REINPLACE_CMD} '/opencv/s|4\.2\.0|4.6.0|g' \
