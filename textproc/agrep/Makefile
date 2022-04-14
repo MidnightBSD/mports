@@ -1,5 +1,3 @@
-
-
 PORTNAME=	agrep
 PORTVERSION=	2.04
 PORTREVISION=	3
@@ -17,7 +15,7 @@ COMMENT=	Approximate grep (fast approximate pattern-matching tool)
 LICENSE=	agrep
 LICENSE_NAME=	agrep
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
-LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 NO_CDROM=	No redistribution for profit
 
