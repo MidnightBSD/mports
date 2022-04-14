@@ -1005,6 +1005,7 @@ SUBDIR += py-wrapt
 SUBDIR += py-xdg
 SUBDIR += py-xmltodict
 SUBDIR += py-yaml
+SUBDIR += py-yamllint
 SUBDIR += py-zipp
 SUBDIR += py-zope.component
 SUBDIR += py-zope.event
