@@ -1,8 +1,11 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.1.2
+DISTVERSION=	3.3.0
 PORTREVISION=	1
 CATEGORIES=	multimedia
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	b389ce89bdb6.patch:-p1 # unbreak JXL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AV1 reference encoder/decoder
@@ -11,10 +14,10 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
-BUILD_DEPENDS_amd64=	yasm:devel/yasm
-BUILD_DEPENDS_i386=	yasm:devel/yasm
+BUILD_DEPENDS_amd64=	nasm:devel/nasm
+BUILD_DEPENDS_i386=	nasm:devel/nasm
 
-USES=		cmake compiler:c++11-lib perl5 pkgconfig
+USES=		cmake compiler:c++11-lib perl5
 USE_GITHUB=	yes
 USE_PERL5=	build
 USE_LDCONFIG=	yes
@@ -22,11 +25,17 @@ GH_ACCOUNT=	jbeich # mirror
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	ENABLE_DOCS ENABLE_TESTS
 
-OPTIONS_DEFINE=	VMAF
+OPTIONS_DEFINE=	JXL VMAF
+OPTIONS_DEFAULT=JXL VMAF
+
+JXL_DESC=		Encoding tuning for Butteraugli
+JXL_LIB_DEPENDS=	libjxl.so:graphics/libjxl
+JXL_USES=		pkgconfig
+JXL_CMAKE_ON=		-DCONFIG_TUNE_BUTTERAUGLI:STRING=1
 
 VMAF_DESC=		Encoding tuning for VMAF
 VMAF_LIB_DEPENDS=	libvmaf.so:multimedia/vmaf
-VMAF_USES=		localbase:ldflags
+VMAF_USES=		pkgconfig
 VMAF_CMAKE_ON=		-DCONFIG_TUNE_VMAF:STRING=1
 
 post-patch:

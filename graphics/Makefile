@@ -103,6 +103,7 @@ SUBDIR += libgnomecanvas
 SUBDIR += libgphoto2
 SUBDIR += libgxps
 SUBDIR += libiptcdata
+SUBDIR += libjxl
 SUBDIR += liblqr-1
 SUBDIR += libmng
 SUBDIR += libmypaint
