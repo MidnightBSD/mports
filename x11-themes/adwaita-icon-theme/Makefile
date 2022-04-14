@@ -7,7 +7,8 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Symbolic Icons
 
-LICENSE=	lgpl3
+LICENSE=	lgpl3 CC-BY-SA-3.0
+LICENSE_COMB=	dual
 
 NO_ARCH=	yes
 USES=		gettext-tools gmake gnome pathfix pkgconfig tar:xz
