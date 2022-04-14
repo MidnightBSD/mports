@@ -1,5 +1,5 @@
 PORTNAME=	ansible-core
-DISTVERSION=	2.11.6
+DISTVERSION=	2.12.4
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,14 +16,14 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>0:security/py-cryptography@${PY
 		${PYTHON_PKGNAMEPREFIX}resolvelib05>=0.5.3<0.6:devel/py-resolvelib05@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR}
 
-USES=		ansible:env cpe gmake python:3.6+ shebangfix
+USES=		ansible:env cpe gmake python:3.8+ shebangfix
 CPE_VENDOR=	redhat
 CPE_PRODUCT=	ansible
 USE_PYTHON=	autoplist concurrent distutils
 
 SHEBANG_REGEX=	[.]/test/.*[.]py
 
-CONFLICTS=	py*-ansible-base
+CONFLICTS=	py*-ansible-base py*-ansible2 py-ansible-core211
 
 NO_ARCH=	yes
 NO_TEST=	yes
@@ -65,7 +65,7 @@ post-fake:
 	${FIND} ${FAKE_DESTDIR}${PREFIX}/bin -type l -name ansible-\* -lname ansible \
 		-execdir ${RLN} ansible-${PYTHON_VER} {} \;
 # USE_PYTHON=autoplist doesn't add this file to pkg-plist.
-	${RM} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
+	-${RM} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
 
 .include <bsd.port.mk>
 
