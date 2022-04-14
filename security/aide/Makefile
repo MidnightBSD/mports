@@ -1,12 +1,10 @@
-
-
 PORTNAME=	aide
-PORTVERSION=	0.16.1
+PORTVERSION=	0.17.4
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/aide/aide/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Replacement and extension for Tripwire
+COMMENT=	File and directory integrity checker
 
 LICENSE=	gpl2
 
