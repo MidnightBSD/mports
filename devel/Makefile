@@ -141,6 +141,7 @@ SUBDIR += gumbo
 SUBDIR += gvfs
 SUBDIR += hadoop
 SUBDIR += highlighterkit
+SUBDIR += highway
 SUBDIR += hs-cabal-install
 SUBDIR += hs-haddock
 SUBDIR += hwloc
