@@ -1,6 +1,6 @@
 COMMENT = Databases
 
-SUBDIR += adodb
+SUBDIR += adodb5
 SUBDIR += c3p0
 SUBDIR += cassandra3
 SUBDIR += cassandra4
