@@ -1,5 +1,5 @@
 PORTNAME=	apache-ant
-PORTVERSION=	1.10.9
+PORTVERSION=	1.10.12
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
 		FREEBSD_LOCAL/hq:man
