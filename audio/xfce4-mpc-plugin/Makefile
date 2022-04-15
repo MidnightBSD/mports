@@ -1,25 +1,32 @@
-
+# Created by: Martin Wilke (miwi@FreeBSD.org)
 
 PORTNAME=	xfce4-mpc-plugin
-PORTVERSION=	0.4.4
-PORTREVISION=	1
+PORTVERSION=	0.5.2
 CATEGORIES=	audio xfce
-MASTER_SITES=	${MASTER_SITE_XFCE}
-MASTER_SITE_SUBDIR=src/panel-plugins/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	MPC plugin for Xfce
+COMMENT=	Musicpd client plugin for the Xfce panel
 
-LICENSE=	other
+LICENSE=	iscl
 
-LIB_DEPENDS=	libmpd.so:${PORTSDIR}/audio/libmpd
-RUN_DEPENDS=	musicpd:${PORTSDIR}/audio/musicpd
+LIB_DEPENDS=	libmpd.so:audio/libmpd
+RUN_DEPENDS=	musicpd:audio/musicpd
+
+USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
+		tar:bzip2 xfce
+USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool
+USE_XFCE=	panel
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gettext gmake libtool pkgconfig tar:bzip2
-USE_GNOME=	gtk20 intltool intlhack
-USE_XFCE=	libexo libmenu panel
+CONFIGURE_ARGS+=	--with-libmpd=${LOCALBASE}
+
+OPTIONS_DEFINE=		NLS
+OPTIONS_SUB=		yes
+
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext-runtime
 
 .include <bsd.port.mk>
