@@ -103,7 +103,7 @@ pre-configure:
 .endif
 
 # workaround for xdg-desktop-menu
-pre-fake:
+post-build:
 	${MKDIR} ${FAKE_DESTDIR}/${TRUE_PREFIX}/share/desktop-directories
 
 .include <bsd.port.mk>

@@ -274,6 +274,8 @@
             completions
             ..
         ..
+        desktop-directories
+        ..
         dict
         ..
         doc
