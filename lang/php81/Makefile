@@ -30,7 +30,7 @@ CONFIGURE_ARGS+=	--disable-all \
 			--with-password-argon2=${LOCALBASE} \
 			--disable-dtrace
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
-#DESTDIRNAME=		INSTALL_ROOT
+DESTDIRNAME=		INSTALL_ROOT
 
 USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
