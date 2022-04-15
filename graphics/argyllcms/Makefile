@@ -2,10 +2,9 @@
 
 
 PORTNAME=	argyllcms
-PORTVERSION=	1.7.0
-PORTREVISION=	1
+PORTVERSION=	1.9.2
 CATEGORIES=	graphics
-MASTER_SITES=	http://www.argyllcms.com/
+MASTER_SITES=	https://www.argyllcms.com/
 DISTNAME=	Argyll_V${PORTVERSION}_src
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,12 +12,13 @@ COMMENT=	ICC compatible color management system
 
 LICENSE=	agpl
 
-BUILD_DEPENDS=	jam:${PORTSDIR}/devel/jam
-LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
+BUILD_DEPENDS=	jam:devel/jam
+LIB_DEPENDS=	libtiff.so:graphics/tiff \
+		libpng.so:graphics/png
 
 WRKSRC=		${WRKDIR}/Argyll_V${PORTVERSION}
 
-USES=		compiler:c11 cpe jpeg zip
+USES=		compiler:c11 cpe jpeg ssl xorg zip
 USE_XORG=	x11 xau xdmcp xext xinerama xrandr xscrnsaver xxf86vm
 
 post-patch:
