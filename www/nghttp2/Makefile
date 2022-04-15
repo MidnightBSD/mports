@@ -22,6 +22,7 @@ USES=		compiler:c++14-lang cpe gmake libtool localbase pathfix pkgconfig ssl tar
 CONFIGURE_ARGS=	--disable-python-bindings --with-jemalloc
 CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl"
+IGNORE_SSL=base
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_CXXSTD=	c++14
