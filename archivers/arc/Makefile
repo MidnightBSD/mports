@@ -1,13 +1,11 @@
-
-
 PORTNAME=	arc
-PORTVERSION=	5.21p
-PORTREVISION=	1
+PORTVERSION=	5.21q
 CATEGORIES=	archivers
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
+MASTER_SITES=	https://github.com/ani6al/arc/archive/5.21q/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create & extract files from DOS .ARC files
+
 LICENSE=	gpl2
 
 PLIST_FILES=	bin/arc bin/marc man/man1/arc.1.gz
