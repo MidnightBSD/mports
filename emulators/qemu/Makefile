@@ -143,12 +143,12 @@ post-configure:
 
 .if !target(post-install)
 post-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifup.sample ${STAGEDIR}${PREFIX}/etc
-	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifdown.sample ${STAGEDIR}${PREFIX}/etc
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/qemu-*
+	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifup.sample ${PREFIX}/etc
+	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifdown.sample ${PREFIX}/etc
+	@${STRIP_CMD} ${PREFIX}/bin/qemu-*
 
 post-install-DOCS-on:
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} docs ${STAGEDIR}${DOCSDIR}/)
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} docs ${FAKE_DESTDIR}${DOCSDIR}/)
 .endif
 
 .include <bsd.port.mk>
