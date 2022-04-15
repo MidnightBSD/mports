@@ -1,5 +1,5 @@
 PORTNAME=	googler
-PORTVERSION=	3.9
+PORTVERSION=	4.3.2
 DISTVERSIONPREFIX=	v
 PORTREVISION=	0
 CATEGORIES=	www
@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	xclip:x11/xclip
 
-USES=		python:3.3+ shebangfix
+USES=		python:3.7+ shebangfix
 SHEBANG_FILES=	googler
 USE_GITHUB=	yes
 GH_ACCOUNT=	jarun
