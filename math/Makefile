@@ -63,5 +63,6 @@ SUBDIR += qhull
 SUBDIR += qhull5
 SUBDIR += suitesparse
 SUBDIR += xtensor
+SUBDIR += zarray
 
 .include <bsd.port.subdir.mk>
