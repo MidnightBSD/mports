@@ -1,6 +1,6 @@
 PORTNAME=	python
 DISTVERSION=	${PYTHON_DISTVERSION}
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	lang python
 MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION}
 PKGNAMESUFFIX=	${PYTHON_SUFFIX}
@@ -47,8 +47,10 @@ PLIST_SUB=		ABI=${ABIFLAGS} \
 			XYZDOT=${DISTVERSION} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}
 
-OPTIONS_DEFINE=		DEBUG IPV6 NLS PYMALLOC
-OPTIONS_DEFAULT=	PYMALLOC
+OPTIONS_DEFINE=		DEBUG IPV6 LTO NLS PYMALLOC
+OPTIONS_DEFAULT=	LTO PYMALLOC
+OPTIONS_EXCLUDE_powerpc64=	LTO
+OPTIONS_EXCLUDE_riscv64=	LTO
 OPTIONS_RADIO=		HASH
 OPTIONS_RADIO_HASH=	FNV SIPHASH
 OPTIONS_SUB=		yes
@@ -65,6 +67,8 @@ SIPHASH_CONFIGURE_ON=	--with-hash-algorithm=siphash24
 
 DEBUG_CONFIGURE_WITH=	pydebug
 IPV6_CONFIGURE_ENABLE=	ipv6
+
+LTO_CONFIGURE_ON=	--with-lto
 
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3
@@ -115,11 +119,25 @@ post-patch:
 # which introduces hidden dependency and breaks build
 	@${REINPLACE_CMD} -e 's|uuid/uuid.h|ignore_&|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e '/find_library_file/ s|uuid|ignore_&|' ${WRKSRC}/setup.py
+# disable detection of multiarch as it breaks with clang >= 13, which adds a
+# major.minor version number in -print-multiarch output, confusing Python
+	@${REINPLACE_CMD} -e 's|^\( *MULTIARCH=\).*--print-multiarch.*|\1|' ${WRKSRC}/configure
+# Apply DISABLED_EXTENSIONS
+	@${ECHO_CMD} '*disabled*' > ${WRKSRC}/Modules/Setup.local
+.  for _module in ${DISABLED_EXTENSIONS}
+		@${ECHO_CMD} ${_module} >> ${WRKSRC}/Modules/Setup.local
+.  endfor
 
 post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
 	${RM} ${STAGEDIR}${PREFIX}/lib/libpython3.so						# Upstream Issue: https://bugs.python.org/issue17975
 .endif
+	${LN} -sf libpython${PYTHON_VER}${ABIFLAGS}.so.1.0 ${STAGEDIR}${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1
+# This code block exists for the qemu-user enabled cross build environment.
+# When using this environment, CC is not set to the default
+# of /usr/bin/cc and a cross-compile toolchain is used.  We need to hand
+# edit this so that the run time configuration for python matches what the
+# base system provides. 
 .if ${CC} == /nxb-bin/usr/bin/cc
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
 		${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_m_midnightbsd${OSREL:R}_.py
