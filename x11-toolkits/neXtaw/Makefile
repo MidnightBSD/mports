@@ -2,7 +2,7 @@
 
 PORTNAME=	neXtaw
 PORTVERSION=	0.15.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://siag.nu/pub/neXtaw/
 
@@ -20,7 +20,7 @@ USE_XORG=	xmu x11 xext
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so
+	@${STRIP_CMD} ${PREFIX}/lib/lib${PORTNAME}.so
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

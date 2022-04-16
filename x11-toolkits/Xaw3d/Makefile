@@ -1,6 +1,6 @@
 PORTNAME=	Xaw3d
 PORTVERSION=	1.5E
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://slackware.cs.utah.edu/pub/slackware/slackware64-13.1/source/x/xaw3d/
 

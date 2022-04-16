@@ -1,5 +1,5 @@
 PORTNAME=	fltk
-PORTVERSION=	1.3.5
+PORTVERSION=	1.3.8
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	https://www.fltk.org/pub/${PORTNAME}/${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
@@ -13,7 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		gl jpeg localbase pkgconfig tar:bz2 xorg
+USES=		cpe gl jpeg localbase pkgconfig tar:bz2 xorg
+CPE_VENDOR=	fltk_project
 USE_XORG=	x11 xcursor xext xfixes xft xinerama xrender
 USE_GL=		gl glu
 USE_LDCONFIG=	yes
@@ -26,10 +27,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	EXAMPLES
-
-post-extract:
-	@${MV} ${WRKSRC}/test/help.cxx ${WRKSRC}/test/help_dialog.cxx
-	@${MV} ${WRKSRC}/test/help-test.html ${WRKSRC}/test/help_dialog.html
 
 post-patch: .SILENT
 	prefix="${PREFIX}" ; plength=$$(($${#prefix}+10)) ; \

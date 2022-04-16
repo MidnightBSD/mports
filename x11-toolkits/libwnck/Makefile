@@ -1,6 +1,6 @@
 PORTNAME=	libwnck
 PORTVERSION=	2.30.7
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -9,17 +9,19 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library used for writing pagers and taskslists
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:xz
 
+PORTSCOUT=	ignore:1
+
+USES+=		bison gettext gmake gnome libtool localbase:ldflags \
+		pathfix pkgconfig xorg
 USE_XORG=	xres x11
-USE_GNOME=	gtk20 referencehack intlhack introspection
-USES+=		bison gettext gmake gnome libtool:keepla pathfix pkgconfig xorg
+USE_GNOME=	gtk20 intlhack introspection
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	STARTUP
