@@ -1,5 +1,5 @@
 PORTNAME=	xtensor
-DISTVERSION=	0.24.0
+DISTVERSION=	0.24.1
 CATEGORIES=	math
 
 MAINTAINER=	ports@MidnightBSD.org
