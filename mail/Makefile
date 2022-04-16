@@ -91,6 +91,7 @@ SUBDIR += php80-imap
 SUBDIR += php81-imap
 SUBDIR += phplist
 SUBDIR += phpmailer
+SUBDIR += phpmailer6
 SUBDIR += pine-pgp-filters
 SUBDIR += postfix
 SUBDIR += procmail
