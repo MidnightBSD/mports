@@ -1,14 +1,9 @@
 PORTNAME=	jpeg-turbo
-DISTVERSION=	2.1.1
-PORTREVISION?=	1
+DISTVERSION=	2.1.3
+PORTREVISION?=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/${DISTVERSION}
 DISTNAME=	lib${PORTNAME}-${DISTVERSION}
-
-PATCH_SITES=	https://github.com/libjpeg-turbo/libjpeg-turbo/commit/
-PATCHFILES=	173900b1cabb027495ae530c71250bcedc9925d5.patch:-p1 \
-		129f0cb76346ceede8f4d8d87dea8acb0809056c.patch:-p1 \
-		d401d6251412a2985810ffaffb90b448a6ee12a9.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	SIMD-accelerated JPEG codec which replaces libjpeg
@@ -39,11 +34,15 @@ OPTIONS_DEFINE=	DOCS
 BUILD_DEPENDS+=	nasm:devel/nasm
 .endif
 
+.if ${ARCH} == armv6
+CMAKE_OFF=	WITH_SIMD
+.endif
+
 .if ${SLAVE_PORT} == yes
 PLIST_SUB+=	JPEG="@comment " LIBTURBOJPEG=""
 .else
 CMAKE_OFF+=	WITH_TURBOJPEG
-CONFLICTS_INSTALL=	jpeg-[0-9]*
+CONFLICTS_INSTALL=	mozjpeg jpeg-[0-9]*
 PLIST_SUB+=	JPEG="" LIBTURBOJPEG="@comment "
 .endif
 

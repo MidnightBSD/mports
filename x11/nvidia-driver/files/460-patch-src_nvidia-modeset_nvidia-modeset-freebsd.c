@@ -1,9 +1,9 @@
 --- src/nvidia-modeset/nvidia-modeset-freebsd.c.orig	2018-08-21 23:09:28 UTC
 +++ src/nvidia-modeset/nvidia-modeset-freebsd.c
 @@ -25,6 +25,7 @@
- #include <sys/poll.h>
  #include <sys/file.h>
  #include <sys/proc.h>
+ #include <sys/stack.h>
 +#include <sys/sysproto.h>
  
  #include "nvkms-ioctl.h"
@@ -30,7 +30,7 @@
      if (ref_ptr) {
          mtx_init(&ref_ptr->lock, "nvkms-ref-ptr-lock", NULL, MTX_SPIN);
          // The ref_ptr owner counts as a reference on the ref_ptr itself.
-@@ -867,33 +869,31 @@ static int nvkms_poll(
+@@ -867,29 +869,31 @@ static int nvkms_poll(
   *************************************************************************/
  
  #if defined(NVKMS_SUPPORT_LINUX_COMPAT)
@@ -54,12 +54,8 @@
 -    u_long cmd;
 +    static const uint32_t dir[4] = { IOC_VOID, IOC_IN, IOC_OUT, IOC_INOUT };
  
--#if NV_FGET_HAS_CAP_RIGHTS_T_ARG
 -    cap_rights_t rights;
 -    status = fget(td, args->fd, cap_rights_init(&rights, CAP_IOCTL), &fp);
--#else
--    status = fget(td, args->fd, &fp);
--#endif
 -
 -    if (status != 0) {
 -        return status;

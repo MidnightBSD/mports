@@ -1,10 +1,8 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
-DISTVERSION=	304.137
+DISTVERSION=	470.103.01
 # Explicitly set PORTREVISION as it can be overridden by the master port
-PORTREVISION=	9
+PORTREVISION=	0
 
 MASTERDIR=	${.CURDIR}/../nvidia-driver
-PKGNAMESUFFIX=	-304
+PKGNAMESUFFIX=	-470
 
 .include "${MASTERDIR}/Makefile"
