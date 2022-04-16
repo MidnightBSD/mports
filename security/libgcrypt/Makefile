@@ -1,5 +1,5 @@
 PORTNAME=	libgcrypt
-PORTVERSION=	1.8.5
+DISTVERSION=	1.9.4
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -16,9 +16,9 @@ USES=		cpe libtool makeinfo tar:bzip2
 CPE_VENDOR=	gnupg
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-drng-support --enable-static=yes
+CONFIGURE_ARGS=	--disable-drng-support
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd10.4
+CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd11.4
 USE_LDCONFIG=	yes
 #TEST_TARGET=	check
 # magus issues
@@ -26,24 +26,30 @@ NO_TEST=	yes
 
 DOCS=		AUTHORS ChangeLog ChangeLog-2011 INSTALL NEWS THANKS TODO \
 		doc/HACKING doc/README.apichanges
-INFO=		gcrypt
 PORTDOCS=	*
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=		DOCS INFO STATIC
+OPTIONS_DEFAULT=	DOCS INFO STATIC
+OPTIONS_SUB=	yes
+
+INFO_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-no-info
+INFO_CONFIGURE_ENV=	MAKEINFO="${MAKEINFO} --no-split"
+INFO_INFO=		gcrypt
+INFO_USES=	makeinfo
+
+STATIC_CONFIGURE_ENABLE=	static
 
 .include <bsd.mport.options.mk>
-
-.if ${ARCH} == "powerpc"
-CONFIGURE_ARGS+=	--disable-asm
-.endif
 
 post-patch:
 	@${RM} ${WRKSRC}/doc/gcrypt.info*
 	@${REINPLACE_CMD} -e 's|ALIGN (3)|ALIGN (2)|g' ${WRKSRC}/mpi/i386/*.S
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}.so
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
+	@${STRIP_CMD} ${PREFIX}/lib/${PORTNAME}.so
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
