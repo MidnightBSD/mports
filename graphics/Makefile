@@ -99,6 +99,7 @@ SUBDIR += libemf
 SUBDIR += libepoxy
 SUBDIR += libexif
 SUBDIR += libfpx
+SUBDIR += libglnvd
 SUBDIR += libgnomecanvas
 SUBDIR += libgphoto2
 SUBDIR += libgxps
