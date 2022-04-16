@@ -1,7 +1,0 @@
-TIMESTAMP = 1620963986
-SHA256 (jpeg9d/jpegsrc.v9d.tar.gz) = 6c434a3be59f8f62425b2e3c077e785c9ce30ee5874ea1c270e843f273ba71ee
-SIZE (jpeg9d/jpegsrc.v9d.tar.gz) = 1070084
-SHA256 (jpeg9d/jpegexiforient.c) = bac06fcdbc6a5b6adfb5e65d5b90b88bf7d72849e21ab2d33b6900bd99200eec
-SIZE (jpeg9d/jpegexiforient.c) = 8531
-SHA256 (jpeg9d/exifautotran.txt) = d1d8302e4a76f83c725d65027ff5dfd788447cc245d387a91f01737e9f245c4c
-SIZE (jpeg9d/exifautotran.txt) = 684
