@@ -1,5 +1,7 @@
+
+
 PORTNAME=	gnustep-make
-PORTVERSION=	2.8.0
+PORTVERSION=	2.7.0
 CATEGORIES=	devel gnustep
 MASTER_SITES=	GNUSTEP/core
 
