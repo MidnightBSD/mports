@@ -125,6 +125,7 @@ SUBDIR += smproxy
 SUBDIR += startup-notification
 SUBDIR += terminal.app
 SUBDIR += viewres
+SUBDIR += virtualgl
 SUBDIR += wdm
 SUBDIR += windowmaker-desktop
 SUBDIR += x11perf
