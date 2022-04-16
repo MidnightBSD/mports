@@ -1,5 +1,5 @@
 PORTNAME=	p11-kit
-DISTVERSION=	0.24.0
+DISTVERSION=	0.24.1
 CATEGORIES=	security devel
 MASTER_SITES=	https://github.com/p11-glue/p11-kit/releases/download/${DISTVERSION}/
 
@@ -39,9 +39,7 @@ DOCS_MESON_TRUE=	gtk_doc
 MANPAGES_BUILD_DEPENDS=	xsltproc:textproc/libxslt
 MANPAGES_MESON_TRUE=	man
 
-#TEST_TARGET=	check
-# one test is failing... ugh
-NO_TEST=	yes
+TEST_MESON_TRUE=	test
 
 post-install:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
