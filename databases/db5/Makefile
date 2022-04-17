@@ -1,10 +1,8 @@
-
-
 PORTNAME=	db5
 PORTVERSION=	5.3.28
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases java
-MASTER_SITES=	http://download.oracle.com/berkeley-db/
+MASTER_SITES=	https://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
 #
 # the distfiles aren't named db5-* but db-*:
@@ -22,9 +20,8 @@ LICENSE_GROUPS=	FSF GPL OSI
 
 BDBVER=		${PORTVERSION:R}
 BDBMAJ=		${BDBVER:R}
-CONFIGURE_ARGS=	--enable-cxx --enable-stl \
+CONFIGURE_ARGS=	--enable-cxx --enable-stl --enable-dbm \
 		--enable-compat185 --enable-dump185 \
-		--disable-tcl \
 		--includedir=${PREFIX}/include/${PORTNAME} \
 		--libdir=${PREFIX}/lib/${PORTNAME} \
 		--bindir=${PREFIX}/bin/${PORTNAME} \
@@ -41,87 +38,75 @@ PLIST_SUB=	BDBMAJ=${BDBMAJ} BDBVER=${BDBVER}
 MAKE_ARGS+=	docdir=${DOCSDIR}
 CFLAGS+=	-Wall -Wextra
 
-OPTIONS_DEFINE=	CRYPTO L10N SQL JAVA DOCS
+OPTIONS_DEFINE=	CRYPTO DEBUG L10N JAVA TCL DOCS
 OPTIONS_DEFAULT=CRYPTO
+OPTIONS_SUB=	yes
 CRYPTO_DESC=	Cryptography support
 L10N_DESC=	Localization support (EXPERIMENTAL)
-SQL_DESC=	Enable SQL API (EXPERIMENTAL)
+
+PORTDOCS=	*
+
+DBLIBS=	libdb libdb_cxx libdb_stl
+
+DEBUG_CONFIGURE_ENABLE=	debug umrw
+CRYPTO_CONFIGURE_WITH=	cryptography=yes
+L10N_CONFIGURE_ENABLE=	localization
+JAVA_USE=		java
+# db5 is incompatible with openjdk8 and causes IllegalArgument
+# exceptions during build
+JAVA_VARS=		DBLIBS+=libdb_java JAVA_VERSION="1.7"
+JAVA_CONFIGURE_ENABLE=	java
+JAVA_CPPFLAGS=		-I"${JAVA_HOME}/include"
+JAVA_CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}" JAVACFLAGS="-Xlint:unchecked"
+TCL_CONFIGURE_ENABLE=	tcl
+TCL_USES=		tcl
+TCL_CONFIGURE_WITH=	tcl=${TCL_LIBDIR}
+TCL_VARS=		DBLIBS+=libdb_tcl
+DOCS_INSTALL_TARGET=	install_docs
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MDOCS}
-INSTALL_TARGET+=install_docs docdir=${DOCSDIR}
-PORTDOCS=	*
-.endif
-
-.if ${PORT_OPTIONS:MSQL}
-CONFIGURE_ARGS+=	--enable-sql_codegen --enable-sql
-PLIST_SUB+=	SQL=""
-libdb_sql=	libdb_sql
-.else
-PLIST_SUB+=	SQL="@comment "
-libdb_sql=
-.endif
-
-.if ${PORT_OPTIONS:MJAVA}
-USE_JAVA=	yes
-JAVA_VERSION=	1.6+
-CONFIGURE_ARGS+=	--enable-java
-CPPFLAGS+=	"-I${JAVA_HOME}/include"
-CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}"
-PLIST_SUB+=	JAVA=""
-libdb_java=	libdb_java
-.else
-PLIST_SUB+=	JAVA="@comment "
-libdb_java=
-.endif
-
-.if ${PORT_OPTIONS:MCRYPTO}
-CONFIGURE_ARGS+=	--with-cryptography=yes
-.else
-CONFIGURE_ARGS+=	--with-cryptography=no
-.endif
-
-.if ${PORT_OPTIONS:ML10N}
-CONFIGURE_ARGS+=	--enable-localization
-.endif
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug --enable-umrw
+.if ${ARCH} == aarch64 || ${ARCH:Marmv*}
+# db5 uses a deprecated instruction for mutexes on ARM, fbsd bug#197227
+# and also bug#205001
+CONFIGURE_ARGS+=	--enable-posixmutexes
+# force POSIX mutexes - the OS supports PTHREAD_PROCESS_SHARED
+CONFIGURE_ARGS+=	--with-mutex=POSIX/pthreads
 .endif
 
 post-patch:
-	${REINPLACE_CMD} -e '/^DOCLIST/{s/csharp//;}' ${WRKSRC}/../dist/Makefile.in
-	${REINPLACE_CMD} -Ee 's/[[:<:]]atomic_init[[:>:]]/db_atomic_init/g' ${WRKSRC}/../src/mp/mp* ${WRKSRC}/../src/mutex/mut_*
+	${REINPLACE_CMD} -i '' -e '/^DOCLIST/{s/csharp//;}' ${WRKSRC}/../dist/Makefile.in
+	${REINPLACE_CMD} -i '' -Ee 's/[[:<:]]atomic_init[[:>:]]/db_atomic_init/g' ${WRKSRC}/../src/mp/mp* ${WRKSRC}/../src/mutex/mut_*
 
 post-install:
-.for i in libdb libdb_cxx libdb_stl ${libdb_sql} ${libdb_java}
-#	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so.0
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/db5/db_*
+	${RM} -r ${STAGEDIR}${DOCSDIR}/bdb-sql
+.for i in ${DBLIBS}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so.0
 	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib
 	${LN} -s -f ${PORTNAME}/${i}-${BDBMAJ}.so ${STAGEDIR}${PREFIX}/lib
 	${LN} -s -f ${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib/${i}-${BDBVER}.so
 	${LN} -s -f ${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib/${i}-${BDBMAJ}.so.0
 	${LN} -s -f ${i}-${BDBVER}.a ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}.a
-	${CHMOD} a-w ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so.0 \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.a \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.la
 .endfor
 	cd ${STAGEDIR}${PREFIX}/bin/${PORTNAME}; \
 	for i in *; do ${LN} -s -f ${PORTNAME}/$$i ../$$i-${BDBVER} ; \
 		       ${LN} -s -f ${PORTNAME}/$$i ../$$i-${BDBMAJ} ; done
-.if ${PORT_OPTIONS:MDOCS}
-.for i in api_reference/TCL
-	${RM} -r -f ${STAGEDIR}${DOCSDIR}/${i}
-.endfor
-.if empty(PORT_OPTIONS:MJAVA)
-	${RM} -r -f ${STAGEDIR}${DOCSDIR}/java
+
+post-install-JAVA-off:
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/java
 .for i in gsg gsg_db_rep gsg_txn
-	${RM} -r -f ${STAGEDIR}${DOCSDIR}/${i}/JAVA
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/${i}/JAVA
 .endfor
-.endif
-.if empty(PORT_OPTIONS:MSQL)
-	${RM} -r -f ${STAGEDIR}${DOCSDIR}/bdb-sql
-.endif
-.endif
+
+post-install-TCL-on:
+	echo "package ifneeded Db_tcl ${BDBVER} \
+	      [list load [file join $$dir libdb_tcl-${BDBVER}.so]] \
+	     " > ${FAKE_DESTDIR}${PREFIX}/lib/${PORTNAME}/pkgIndex.tcl
+
+post-install-TCL-off:
+.for i in api_reference/TCL
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/${i}
+.endfor
 
 .include <bsd.port.mk>
