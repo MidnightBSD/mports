@@ -1,5 +1,5 @@
 PORTNAME?=	postgresql
-DISTVERSION?=	12.5
+DISTVERSION?=	12.10
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
 PORTREVISION?=	1
