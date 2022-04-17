@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	windowmaker-desktop
-PORTVERSION=	1.6
+PORTVERSION=	1.7
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -19,7 +19,7 @@ RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
 		wdm:x11/wdm \
 		wmBinClock:x11-clocks/wmbinclock \
 		wmCalClock:x11-clocks/wmcalclock \
-		wmmp3:audio/wmmp3 \
+		wmmp:audio/wmmp \
 		wmsmixer:audio/wmsmixer \
 		${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:graphics/wmicons \
 		wmweather+:misc/wmweather+ \
