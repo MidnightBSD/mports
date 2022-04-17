@@ -1,6 +1,6 @@
 PORTNAME=	phoronix-test-suite
 DISTVERSIONPREFIX=	v
-DISTVERSION=	10.0.1
+DISTVERSION=	10.8.2
 CATEGORIES=	benchmarks
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
@@ -35,6 +35,7 @@ SHEBANG_FILES=	ob-cache/test-profiles/pts/shadowofthetombraider-1.0.0/install.sh
 				ob-cache/test-profiles/pts/portal-1.1.1/pre_linux.sh \
 				deploy/docker/ubuntu-pts-docker-build.sh
 
+CONFLICTS_INSTALL=	phoronix-test-suite-php[0-9][0-9] # bin/phoronix-test-suite
 OPTIONS_DEFINE=	BASH_COMPLETIONS DOCS X11
 OPTIONS_DEFAULT=	X11
 OPTIONS_SUB=	yes
