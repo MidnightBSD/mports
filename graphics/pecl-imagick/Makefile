@@ -1,20 +1,17 @@
 # Created by: Andrey Slusar <anray@FreeBSD.org>
 
 PORTNAME=	imagick
-PORTVERSION=	3.4.4
+PORTVERSION=	3.5.1
 CATEGORIES=	graphics
-
-PATCH_SITES=	https://github.com/Imagick/imagick/commit/
-PATCHFILES+=	e1a8d8a99f8eeab13574fcba20c85660a210e350.diff:-p1 \
-		ef46023bfba719183a8dcf880c1aa14cf77c006c.diff:-p1 \
-		6160bd9617f6c4fc59b7db4ab77460ec085d3169.diff:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	PHP wrapper to the ImageMagick/GraphicsMagick library version 6
 
 LICENSE=	php
 
-USES=		php:pecl pkgconfig localbase
+USES=		cpe php:pecl pkgconfig localbase
+
+CPE_VENDOR=	php
 
 CONFLICTS_INSTALL?=	${PKGNAMEPREFIX}${PORTNAME}-im7-[0-9]*
 
