@@ -153,6 +153,7 @@ SUBDIR += spotify-tui
 SUBDIR += spotifyd
 SUBDIR += taglib
 SUBDIR += teamspeak3-server
+SUBDIR += thunar-media-tags-plugin
 SUBDIR += timemachine
 SUBDIR += timidity
 SUBDIR += twolame
