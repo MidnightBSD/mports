@@ -222,6 +222,7 @@ SUBDIR += webkit2-gtk3
 SUBDIR += weblint++
 SUBDIR += wordpress
 SUBDIR += wpebackend-fdo
+SUBDIR += xfce4-smartbookmark-plugin
 SUBDIR += xsp
 SUBDIR += yarn
 SUBDIR += yarn-node14

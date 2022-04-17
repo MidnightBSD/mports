@@ -305,6 +305,7 @@ SUBDIR += wv2
 SUBDIR += xalan-j
 SUBDIR += xerces-c3
 SUBDIR += xerces-j
+SUBDIR += xfce4-dict-plugin
 SUBDIR += xhtml
 SUBDIR += xhtml-basic
 SUBDIR += xhtml-modularization

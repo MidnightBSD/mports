@@ -56,6 +56,7 @@ SUBDIR += spice-gtk
 SUBDIR += systempreferences
 SUBDIR += toolboxkit
 SUBDIR += virt-manager
+SUBDIR += xfce4-notes-plugin
 SUBDIR += xfce4-notifyd
 SUBDIR += xfce4-tumbler
 SUBDIR += xfce4-xkb-plugin

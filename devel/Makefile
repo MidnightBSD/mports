@@ -1093,6 +1093,7 @@ SUBDIR += tevent
 SUBDIR += tevent1
 SUBDIR += tex-kpathsea
 SUBDIR += tex-web2c
+SUBDIR += thunar-vcs-plugin
 SUBDIR += tmake
 SUBDIR += tradcpp
 SUBDIR += universal-ctags

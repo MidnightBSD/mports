@@ -154,15 +154,18 @@ _GSTREAMER_PLUGINS+= \
 		dvdread \
 		editing-services \
 		gtk \
+		gtk4 \
 		hls \
 		kate \
 		kms \
 		libav \
 		libde265 \
 		lv2 \
+		mm \
 		modplug \
 		mpg123 \
 		mplex \
+		opencv \
 		openexr \
 		openh264 \
 		openjpeg \
@@ -482,7 +485,7 @@ libde265_IMPL=		bad
 mm_DEPENDS=	multimedia/gstreamermm
 mm_GST_PREFIX=	gstreamer
 mm_GST_SUFX=	# empty
-mm_GST_VERSION=	0.9.4
+mm_GST_VERSION=	1.10.0
 mm_IMPL=	#
 
 mpeg2dec_DEPENDS=	multimedia/gstreamer-plugins-mpeg2dec
@@ -588,6 +591,9 @@ ximagesrc_IMPL=		good
 
 gtk_DEPENDS=	x11-toolkits/gstreamer-plugins-gtk
 gtk_IMPL=	bad
+
+gtk4_DEPENDS=	x11-toolkits/gstreamer-plugins-gtk4
+gtk4_IMPL=	good
 
 pango_DEPENDS=	x11-toolkits/gstreamer-plugins-pango
 pango_IMPL=	#
