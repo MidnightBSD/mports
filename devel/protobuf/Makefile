@@ -1,6 +1,6 @@
 PORTNAME=	protobuf
-PORTVERSION=	3.9.2
-DISTVERSIONPREFIX=	all-
+PORTVERSION=	3.19.4
+DISTVERSIONPREFIX=	cpp-
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/protocolbuffers/protobuf/releases/download/v${PORTVERSION}/
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_sparc64=	fails to compile: no atomic ops available
 
-USES=		compiler:c++11-lang gmake libtool localbase pathfix pkgconfig
+USES=		compiler:c++11-lang cpe gmake libtool localbase pathfix pkgconfig
 
 CFLAGS+=	-D_THREAD_SAFE -DGOOGLE_PROTOBUF_NO_RTTI -I${WRKSRC}/src
 CONFIGURE_ENV=	CC_FOR_BUILD="${CC}" \
@@ -27,6 +27,7 @@ INSTALL_TARGET=	install-strip
 USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+CPE_VENDOR=	google
 NO_TEST=	yes
 
 post-patch:
