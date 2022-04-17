@@ -9,6 +9,7 @@ SUBDIR += couchdb
 SUBDIR += couchdb2
 SUBDIR += courier-authlib-userdb
 SUBDIR += db
+SUBDIR += db18
 SUBDIR += db48
 SUBDIR += db5
 SUBDIR += db6
