@@ -69,6 +69,7 @@ SUBDIR += fusefs-unionfs
 SUBDIR += gag
 SUBDIR += garcon
 SUBDIR += gconf-editor
+SUBDIR += gigolo
 SUBDIR += gksu
 SUBDIR += gnome-control-center
 SUBDIR += gnome-power-manager
