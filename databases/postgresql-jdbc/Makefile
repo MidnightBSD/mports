@@ -1,43 +1,28 @@
+# Created by: Palle Girgensohn <girgen@partitur.se>
+
 PORTNAME=	postgresql
-PORTVERSION=	9.2.1004
-DISTVERSIONSUFFIX=.src
+PORTVERSION=	42.3.3
 CATEGORIES=	databases java
 MASTER_SITES=	http://jdbc.postgresql.org/download/
 PKGNAMESUFFIX=	-jdbc
-DISTNAME=	${PORTNAME}${PKGNAMESUFFIX}-${DISTVERSION:C/.([0-9][0-9][0-9]*)/-\1/g}${DISTVERSIONSUFFIX}
+EXTRACT_SUFX=	.jar
+EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Java JDBC implementation for PostgreSQL
+COMMENT=	Java JDBC implementation for PostgreSQL
 
 LICENSE=	bsd3
 
-DIST_SUBDIR=	postgresql
-
-BUILD_DEPENDS+=	javavm:java/javavmwrapper 
-RUN_DEPENDS+=	javavm:java/javavmwrapper
-
-USE_ANT=	yes
 USE_JAVA=	yes
+JAVA_VERSION=	8+
 NO_ARCH=	yes
-
 PLIST_FILES=	%%JAVAJARDIR%%/postgresql.jar
-PORTDOCS=	*
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
-SUB_FILES=	pkg-message
 
-OPTIONS_DEFINE=	DOCS
-OPTIONS_SUB=	yes
+do-extract:
 
-post-patch:
-	${REINPLACE_CMD} 's,/usr/local/pgsql/share/java,${JAVAJARDIR},' ${WRKSRC}/README
-
-.include <bsd.mport.options.mk>
+do-build:
 
 do-install:
-	@ ${INSTALL_DATA} ${WRKSRC}/jars/postgresql.jar ${JAVAJARDIR}/postgresql.jar
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
+	${INSTALL_DATA} ${DISTDIR}/${DISTFILES} ${STAGEDIR}${JAVAJARDIR}/postgresql.jar
 
 .include <bsd.port.mk>
