@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: dhcrelay
 # REQUIRE: DAEMON
 # KEYWORD: shutdown
