@@ -203,6 +203,7 @@ SUBDIR += libgtop
 SUBDIR += libgudev
 SUBDIR += libical
 SUBDIR += libinotify
+SUBDIR += libisofs
 SUBDIR += libixp
 SUBDIR += liblangtag
 SUBDIR += liblockfile
