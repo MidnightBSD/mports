@@ -79,6 +79,7 @@ SUBDIR += py-qt5-qml
 SUBDIR += python
 SUBDIR += python2
 SUBDIR += python3
+SUBDIR += python310
 SUBDIR += python37
 SUBDIR += python38
 SUBDIR += python39
