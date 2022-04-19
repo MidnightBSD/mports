@@ -1,5 +1,5 @@
 PORTNAME=	npm
-PORTVERSION=	6.14.8
+PORTVERSION=	8.5.2
 CATEGORIES=	www
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
@@ -11,41 +11,18 @@ LICENSE_FILE=	${WRKSRC}/lib/node_modules/npm/LICENSE
 
 RUN_DEPENDS=	gmake:devel/gmake
 
-CONFLICTS_INSTALL?=	npm-node10 npm-node14
-
-OPTIONS_SINGLE=	BACKEND
-OPTIONS_SINGLE_BACKEND=	NODE NODE10 NODE14
-OPTIONS_DEFAULT=NODE
-NODE_DESC=	Use Node.js 15.x (www/node) as backend
-NODE10_DESC=	Use Node.js 10.x (www/node10) as backend
-NODE14_DESC=	Use Node.js 14.x (www/node14) as backend
+USES?=		nodejs:run
+USES+=		cpe python:3.7+ shebangfix tar:xz
 
 NO_ARCH=	yes
 NO_BUILD=	yes
 REINPLACE_ARGS=	-i ''
-USES=		cpe python:3.7+ shebangfix tar:xz
+
+CONFLICTS_INSTALL?=	npm-node14 npm-node16 npm-node17
 
 CPE_VENDOR=	npmjs
-CPE_PRODUCT=	node_packaged_modules
 
 SHEBANG_GLOB=	*.py
-SHEBANG_FILES=	lib/node_modules/npm/node_modules/node-gyp/gyp/samples/samples
-
-NODE_RUN_DEPENDS=	node>=0.8.0:www/node
-NODE10_RUN_DEPENDS=	node10>=0.8.0:www/node10
-NODE10_RUN_DEPENDS=	node14>=0.8.0:www/node14
-
-.include <bsd.port.pre.mk>
-
-.if ${PORT_OPTIONS:MNODE10}
-DEPRECATED=	Uses EOL Python 2.7 via www/node10
-EXPIRATION_DATE=2021-06-23
-.endif
-
-.if ${ARCH} == "i386"
-# Workaround for kernel bug 178881
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-bug-178881
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' ${WRKSRC}/etc/man.d/npm.conf
@@ -56,6 +33,6 @@ post-patch:
 do-install:
 	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/
 	${ECHO_CMD} 'python=${PYTHON_CMD}' > ${STAGEDIR}${PREFIX}/etc/npmrc
-	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -d ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp -f ${STAGEDIR}${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp
+	${PYTHON_CMD} -O -m compileall -d ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp -f ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

@@ -5,6 +5,8 @@ CONFLICTS_INSTALL=	npm
 OPTIONS_EXCLUDE=NODE
 OPTIONS_SLAVE=	NODE14
 
+nodejs:14,run
+
 MASTERDIR=	${.CURDIR}/../npm
 
 .include "${MASTERDIR}/Makefile"

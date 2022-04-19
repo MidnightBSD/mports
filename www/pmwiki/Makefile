@@ -1,19 +1,22 @@
+# Created by: Jin-Shan Tseng <tjs@cdpa.nsysu.edu.tw>
+
 PORTNAME=	pmwiki
-PORTVERSION=	2.2.141
+PORTVERSION=	2.3.2
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.pmwiki.org/pub/pmwiki/
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WikiWikiWeb clone using PHP
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/docs/COPYING.txt
 
 USES=		cpe tar:tgz php:web
 USE_PHP=	mbstring session
 
 NO_BUILD=	yes
+NO_ARCH=	yes
 
 PORTDOCS=	*
 

@@ -1,8 +1,8 @@
 PORTNAME=	wordpress
-DISTVERSION=	5.8.2
+DISTVERSION=	5.9.2
 PORTEPOCH=	1
 CATEGORIES=	www
-MASTER_SITES=	http://wordpress.org/
+MASTER_SITES=	https://wordpress.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	State-of-the-art semantic personal publishing platform
