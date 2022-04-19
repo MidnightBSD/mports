@@ -10,6 +10,8 @@ COMMENT=	Tool to manipulate X configuration files for the NVidia driver
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FAKE_OPTS=	trueprefix
+
 USES=		gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	NVIDIA
