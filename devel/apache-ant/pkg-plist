@@ -1571,7 +1571,6 @@ bin/ant
 %%DOCSDIR%%/manual/tutorial-writing-tasks-src.zip
 %%DOCSDIR%%/manual/sysclasspath.html
 %%DOCSDIR%%/manual/clonevm.html
-%%DOCSDIR%%/manual/Integration/jext-plugin.html
 %%DOCSDIR%%/manual/Integration/toolmenu.gif
 %%DOCSDIR%%/manual/Integration/remacc.gif
 %%DOCSDIR%%/manual/intro.html
