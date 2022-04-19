@@ -26,6 +26,8 @@ X11_USES=		xorg
 X11_USE=		XORG=x11,xext,xorgproto
 X11_MESON_ENABLED=	x11 glx
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 # Lots of software expects gl.pc even when it can build with EGL only

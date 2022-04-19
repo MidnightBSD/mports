@@ -42,6 +42,7 @@ SUBDIR += mathjax
 SUBDIR += mattermost-server
 SUBDIR += mattermost-webapp
 SUBDIR += mediawiki135
+SUBDIR += mediawiki137
 SUBDIR += midori
 SUBDIR += minio
 SUBDIR += minio-client

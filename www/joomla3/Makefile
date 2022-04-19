@@ -1,5 +1,5 @@
 PORTNAME=	joomla
-DISTVERSION=	3-9-6
+DISTVERSION=	3-9-24
 CATEGORIES=	www
 MASTER_SITES=	https://downloads.joomla.org/cms/joomla3/${DISTVERSION}/
 PKGNAMESUFFIX=	3
@@ -10,7 +10,9 @@ COMMENT=	Dynamic web content management system (CMS)
 
 LICENSE=	gpl2
 
-USES=		php:web tar:bz2 shebangfix
+USES=		cpe php:web tar:bz2 shebangfix
+CPE_VENDOR=	${PORTNAME}
+CPE_PRODUCT=	${PORTNAME}\!
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -26,12 +28,18 @@ SHEBANG_FILES=	libraries/vendor/leafo/lessphp/lessify
 
 SUB_FILES=	pkg-message
 
-USE_PHP=	gd json mbstring pcre pdf session simplexml xml zip zlib
+USE_PHP=	gd json mbstring pcre session simplexml xml zip zlib
 
 MYSQL_USE=	PHP=mysqli
 PGSQL_USE=	PHP=pgsql
 
 WWWDIR=		${PREFIX}/www/${PORTNAME}${PORTVERSION:R:R}
+
+.include <bsd.mport.options.mk>
+
+.if ${FLAVOR} != php80 && !defined(MAGUS)
+USE_PHP+=	pdf
+.endif
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}

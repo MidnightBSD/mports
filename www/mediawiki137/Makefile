@@ -1,23 +1,21 @@
 # Created by: Gerrit Beine <tux@pinguru.net>
 
 PORTNAME=	mediawiki
-PORTVERSION=	1.35.6
+PORTVERSION=	1.37.2
 CATEGORIES=	www
-MASTER_SITES=	http://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
-PKGNAMESUFFIX=	135${PHP_PKGNAMESUFFIX}
+MASTER_SITES=	https://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
+PKGNAMESUFFIX=	137${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wiki engine used by Wikipedia
 
 LICENSE=	gpl2
 
-CONFLICTS=	mediawiki13[1-4]-[0-9]*
+CONFLICTS=	mediawiki13[1-6]
 
 USES=		cpe php:flavors shebangfix
 SHEBANG_FILES=	maintenance/dev/*.sh \
-		maintenance/postgres/*.pl \
-		maintenance/storage/make-blobs \
-		includes/shell/limit.sh
+		maintenance/storage/make-blobs
 SHEBANG_LANG=	hhvm
 hhvm_OLD_CMD=	/usr/bin/hhvm
 hhvm_CMD=	${LOCALBASE}/bin/hhvm # not installed by anything yet
