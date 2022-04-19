@@ -1,7 +1,7 @@
 # Created by: Ashish SHUKLA <wahjava@gmail.com>
 
 PORTNAME=	PPIx-Regexp
-PORTVERSION=	0.074
+PORTVERSION=	0.084
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:WYANT

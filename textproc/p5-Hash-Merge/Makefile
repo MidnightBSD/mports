@@ -1,7 +1,7 @@
 # Created by: snowchyld
 
 PORTNAME=	Hash-Merge
-PORTVERSION=	0.300
+PORTVERSION=	0.302
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

@@ -1574,7 +1574,6 @@ bin/ant
 %%DOCSDIR%%/manual/Integration/jext-plugin.html
 %%DOCSDIR%%/manual/Integration/toolmenu.gif
 %%DOCSDIR%%/manual/Integration/remacc.gif
-%%DOCSDIR%%/manual/Integration/anttool1.gif
 %%DOCSDIR%%/manual/intro.html
 %%DOCSDIR%%/manual/toc.html
 %%DATADIR%%/lib/ant-jai.pom

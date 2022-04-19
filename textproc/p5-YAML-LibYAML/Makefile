@@ -1,7 +1,5 @@
-
-
 PORTNAME=	YAML-LibYAML
-DISTVERSION=	0.72
+DISTVERSION=	0.83
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -20,6 +18,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/YAML/XS/LibYAML/LibYAML.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/YAML/XS/LibYAML/LibYAML.so
 
 .include <bsd.port.mk>
