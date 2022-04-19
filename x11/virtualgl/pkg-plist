@@ -1,6 +1,6 @@
 %%AMD64%%VirtualGL/bin/.vglrun.vars64
 %%I386%%VirtualGL/bin/.vglrun.vars32
-VirtualGL/bin/eglinfo
+@comment VirtualGL/bin/eglinfo
 VirtualGL/bin/glreadtest
 VirtualGL/bin/glxinfo
 %%AMD64%%VirtualGL/bin/glxspheres64
