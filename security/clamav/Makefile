@@ -16,7 +16,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpcre2-8.so:devel/pcre2
 BUILD_DEPENDS+= ${LOCALBASE}/include/check.h:devel/check
 
-USES=		cmake cpe gnome iconv ncurses pkgconfig ssl
+USES=		cmake cpe gnome iconv ncurses pkgconfig python:build ssl
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
@@ -49,7 +49,7 @@ PLIST_SUB+=	CLAMAVGROUP=${_CLAMAVGROUP} \
 		LOGDIR=${_LOGDIR} \
 		RUNDIR=${_RUNDIR}
 
-OPTIONS_DEFINE=	ARC ARJ DOCS EXPERIMENTAL LHA MILTER STDERR UNRAR UNZOO
+OPTIONS_DEFINE=	ARC ARJ DOCS EXPERIMENTAL LHA MILTER STDERR TEST UNRAR UNZOO
 
 OPTIONS_DEFAULT=	ARC ARJ MILTER UNRAR UNZOO
 OPTIONS_SUB=		yes
@@ -60,6 +60,7 @@ EXPERIMENTAL_DESC=	Build experimental code
 LHA_DESC=		Enable lha archives support
 MILTER_DESC=		Compile the milter interface
 STDERR_DESC=		Print logs to stderr instead of stdout
+TESTS_DESC=		Build with test enabled (`make test` requires it)
 UNZOO_DESC=		Enable zoo archives support
 
 ARC_RUN_DEPENDS=		arc:archivers/arc
@@ -75,6 +76,9 @@ MILTER_USE+=			localbase
 .endif
 MILTER_CMAKE_BOOL=		ENABLE_MILTER
 STDERR_EXTRA_PATCHES=		${FILESDIR}/extra-patch-common_output.c
+TESTS_BUILD_DEPENDS=		${LOCALBASE}/include/check.h:devel/check
+TESTS_USES=			python:build
+TESTS_CMAKE_BOOL=		ENABLE_TESTS
 UNRAR_CMAKE_BOOL=		ENABLE_UNRAR
 UNZOO_RUN_DEPENDS=		unzoo:archivers/unzoo
 
