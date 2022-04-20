@@ -32,6 +32,8 @@ CONFIGURE_ARGS+=	--disable-all \
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 DESTDIRNAME=		INSTALL_ROOT
 
+NO_TEST=	yes
+
 USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
 

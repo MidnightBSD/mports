@@ -1,7 +1,7 @@
 PORTNAME=	apache-ant
 PORTVERSION=	1.10.12
 CATEGORIES=	devel java
-MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
+MASTER_SITES=	https://archive.apache.org/dist/ant/binaries/:bin \
 		FREEBSD_LOCAL/hq:man
 DISTFILES=	${ANT_DISTFILE}:bin \
 		${MANPAGE_DISTFILE}:man
@@ -16,7 +16,7 @@ RUN_DEPENDS=	classpath:${PORTSDIR}/java/javavmwrapper
 
 OPTIONS_DEFINE=	DOCS
 
-ANT_DISTFILE=	${PORTNAME}-${PORTVERSION}-bin.tar.bz2
+ANT_DISTFILE=	${PORTNAME}-${DISTVERSION}-bin.tar.bz2
 MANPAGE_DISTFILE=	${PORTNAME}-manpage-${MANPAGE_VERSION}.tgz
 MANPAGE_VERSION=	20030908
 USES=		tar:bzip2
@@ -30,8 +30,8 @@ READMES=	LICENSE README WHATSNEW
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDOCS}
-DISTFILES+=	${PORTNAME}-${PORTVERSION}-manual.tar.bz2:doc
-MASTER_SITES+=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/manual/:doc,}
+DISTFILES+=	${PORTNAME}-${DISTVERSION}-manual.tar.bz2:doc
+MASTER_SITES+=	https://archive.apache.org/dist/ant/manual/:doc
 PORTDOCS=	*
 .endif
 
@@ -54,7 +54,7 @@ do-install:
 
 .for d in etc lib
 	@${ECHO_MSG} -n ">> Installing data directory '${d}'..."
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} ${d} ${DATADIR}/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} ${d} ${STAGEDIR}${DATADIR}/
 	@${ECHO_MSG} " [ DONE ]"
 .endfor
 
@@ -67,11 +67,11 @@ do-install:
 	@${MKDIR} ${DOCSDIR}
 
 	@${ECHO_MSG} -n ">> Installing readme files..."
-	@${INSTALL_DATA} ${READMES:S|^|${WRKSRC}/|} ${DOCSDIR}
+	${INSTALL_DATA} ${READMES:S|^|${WRKSRC}/|} ${DOCSDIR}
 	@${ECHO_MSG} " [ DONE ]"
 
 	@${ECHO_MSG} -n ">> Installing documentation files..."
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} manual ${DOCSDIR}/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} manual ${DOCSDIR}/
 	@${ECHO_MSG} " [ DONE ]"
 .endif
 
