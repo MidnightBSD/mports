@@ -1,9 +1,6 @@
 # New ports collection makefile for: windowmaker-desktop
 # Date created:	8 March 2007
 # Whom:			Lucas Holt
-#
-
-#
 
 PORTNAME=	windowmaker-desktop
 PORTVERSION=	1.7
@@ -19,7 +16,7 @@ RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
 		wdm:x11/wdm \
 		wmBinClock:x11-clocks/wmbinclock \
 		wmCalClock:x11-clocks/wmcalclock \
-		wmmp:audio/wmmp \
+		WMmp:audio/wmmp \
 		wmsmixer:audio/wmsmixer \
 		${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:graphics/wmicons \
 		wmweather+:misc/wmweather+ \
