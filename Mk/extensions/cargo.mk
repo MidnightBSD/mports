@@ -111,7 +111,7 @@ RUSTDOC?=	${LOCALBASE}/bin/rustdoc
 CARGO_TARGET_DIR?=	${WRKDIR}/target
 
 # Default target platform (affects some RUSTFLAGS if passed)
-CARGO_BUILD_TARGET?=	${_CARGO_RUST_ARCH_${ARCH}:U${ARCH}}-unknown-freebsd11.4
+CARGO_BUILD_TARGET?=	${_CARGO_RUST_ARCH_${ARCH}:U${ARCH}}-unknown-freebsd
 
 _CARGO_RUST_ARCH_amd64=		x86_64
 _CARGO_RUST_ARCH_i386=		i686

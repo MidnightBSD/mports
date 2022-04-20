@@ -1446,7 +1446,6 @@ bin/ant
 %%DOCSDIR%%/manual/Tasks/property.html
 %%DOCSDIR%%/manual/Tasks/mimemail.html
 %%DOCSDIR%%/manual/Tasks/uptodate.html
-%%DOCSDIR%%/manual/Tasks/BorlandEJBTasks.html
 %%DOCSDIR%%/manual/Tasks/signjar.html
 %%DOCSDIR%%/manual/Tasks/replaceregexp.html
 %%DOCSDIR%%/manual/Tasks/image-classdiagram.gif
