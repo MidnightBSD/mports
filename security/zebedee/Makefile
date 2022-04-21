@@ -1,5 +1,3 @@
-
-
 PORTNAME=	zebedee
 PORTVERSION=	2.5.3
 CATEGORIES=	security

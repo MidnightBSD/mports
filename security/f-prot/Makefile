@@ -2,6 +2,7 @@
 
 PORTNAME=	f-prot
 PORTVERSION=	6.5.1.5927
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://ftp.i-scream.org/pub/ftp.f-prot.com/pub/bsd/
 DISTNAME=	fp-FreeBSD-x86_32-ws-${PORTVERSION}
@@ -9,9 +10,10 @@ DISTNAME=	fp-FreeBSD-x86_32-ws-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	F-Prot Antivirus for BSD Workstations
 
-LICENSE=	other
-
-RESTRICTED=	Free for personal users on personal workstations only
+LICENSE=	f-prot-license
+LICENSE_NAME=	f-prot
+LICENSE_TEXT=	Free for personal users on personal workstations only
+LICENSE_PERMS=	auto-accept
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 NO_BUILD=	yes

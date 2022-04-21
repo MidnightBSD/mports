@@ -1,7 +1,7 @@
 # Created by: Ryan Steinmetz <zi@FreeBSD.org>
 
 PORTNAME=	duo
-PORTVERSION=	1.11.4
+PORTVERSION=	1.12.0
 CATEGORIES=	security
 MASTER_SITES=	https://dl.duosecurity.com/ \
 		ZI
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 CONFIGURE_ARGS=	--with-pam=${PREFIX}/lib/security --sysconfdir=${PREFIX}/etc \
 		--docdir=${DOCSDIR} --includedir=${PREFIX}/include/${PORTNAME}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix ssl
 USE_LDCONFIG=	yes
