@@ -1,5 +1,5 @@
 PORTNAME=		openvpn
-DISTVERSION=		2.5.3
+DISTVERSION=		2.5.6
 PORTREVISION?=		0
 CATEGORIES=		security net
 MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
@@ -12,14 +12,14 @@ COMMENT?=		Secure IP/Ethernet tunnel daemon
 LICENSE=		gpl2
 LICENSE_FILE=		${WRKSRC}/COPYRIGHT.GPL
 
-USES=			cpe libtool localbase:ldflags pkgconfig shebangfix tar:xz
+USES=			cpe libtool localbase:ldflags pkgconfig shebangfix ssl tar:xz
 USE_RC_SUBR=		openvpn
 
 GNU_CONFIGURE=		yes
 SHEBANG_FILES=		sample/sample-scripts/verify-cn \
 			sample/sample-scripts/auth-pam.pl \
 			sample/sample-scripts/ucn.pl
-CONFIGURE_ARGS+=	--enable-strict
+CONFIGURE_ARGS+=	--enable-strict -with-crypto-library=openssl
 # avoid picking up CMAKE, we don't have cmocka in the tarballs.
 CONFIGURE_ENV+=		ac_cv_prog_CMAKE= CMAKE=
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
@@ -36,22 +36,22 @@ CONFLICTS_INSTALL?=	openvpn-2.[!5].* openvpn-[!2].* openvpn-beta-[0-9]* openvpn-
 
 SUB_FILES=		pkg-message openvpn-client
 
+USERS=			openvpn
+GROUPS=			openvpn
+
 PORTDOCS=		*
 PORTEXAMPLES=		*
 
-OPTIONS_DEFINE=		PKCS11 EASYRSA DOCS EXAMPLES X509ALTUSERNAME \
-			TEST LZ4 LZO SMALL TUNNELBLICK ASYNC_PUSH UNITTESTS
-OPTIONS_DEFAULT=	EASYRSA OPENSSL TEST LZ4 LZO
-OPTIONS_SINGLE=		SSL
-OPTIONS_SINGLE_SSL=	OPENSSL MBEDTLS
+OPTIONS_DEFINE=		ASYNC_PUSH DOCS EASYRSA EXAMPLES LZ4 LZO PKCS11 SMALL \
+			TEST UNITTESTS X509ALTUSERNAME
+OPTIONS_DEFAULT=	EASYRSA LZ4 LZO PKCS11 TEST
 ASYNC_PUSH_DESC=	Enable async-push support
 EASYRSA_DESC=		Install security/easy-rsa RSA helper package
-MBEDTLS_DESC=		SSL/TLS via mbedTLS (lacks TLS v1.3)
-PKCS11_DESC=		Use security/pkcs11-helper (OpenSSL only)
+LZO_DESC=		LZO compression (incompatible with LibreSSL)
+PKCS11_DESC=		Use security/pkcs11-helper
 SMALL_DESC=		Build a smaller executable with fewer features
-TUNNELBLICK_DESC=	Tunnelblick XOR scramble patch (READ HELP!)
 UNITTESTS_DESC=		Enable unit tests
-X509ALTUSERNAME_DESC=	Enable --x509-username-field (OpenSSL only)
+X509ALTUSERNAME_DESC=	Enable --x509-username-field
 
 ASYNC_PUSH_LIB_DEPENDS=	libinotify.so:devel/libinotify
 ASYNC_PUSH_CONFIGURE_ENABLE=	async-push
@@ -64,14 +64,6 @@ LZ4_CONFIGURE_ENABLE=	lz4
 LZO_LIB_DEPENDS+=	liblzo2.so:archivers/lzo2
 LZO_CONFIGURE_ENABLE=	lzo
 
-MBEDTLS_LIB_DEPENDS=	libmbedtls.so:security/mbedtls
-MBEDTLS_CONFIGURE_ON=	--with-crypto-library=mbedtls
-
-OPENSSL_USES=		ssl
-OPENSSL_CONFIGURE_ON=	--with-crypto-library=openssl
-
-PKCS11_PREVENTS=	MBEDTLS
-PKCS11_PREVENTS_MSG=	OpenVPN cannot use pkcs11-helper with mbedTLS. Disable PKCS11, or use OpenSSL instead
 PKCS11_LIB_DEPENDS=	libpkcs11-helper.so:security/pkcs11-helper
 PKCS11_CONFIGURE_ENABLE=	pkcs11
 
@@ -80,13 +72,9 @@ SMALL_CONFIGURE_ENABLE=	small
 TEST_ALL_TARGET=	check
 TEST_TEST_TARGET_OFF=	check
 
-TUNNELBLICK_EXTRA_PATCHES=	${FILESDIR}/extra-tunnelblick-openvpn_xorpatch:-p1
-
 UNITTESTS_BUILD_DEPENDS=	cmocka>=0:sysutils/cmocka
 UNITTESTS_CONFIGURE_ENABLE=	unit-tests
 
-X509ALTUSERNAME_PREVENTS=	MBEDTLS
-X509ALTUSERNAME_PREVENTS_MSG=	OpenVPN ${DISTVERSION} cannot use --x509-username-field with mbedTLS. Disable X509ALTUSERNAME, or use OpenSSL instead
 X509ALTUSERNAME_CONFIGURE_ENABLE=	x509-alt-username
 
 .ifdef (LOG_OPENVPN)
@@ -95,16 +83,30 @@ CFLAGS+=		-DLOG_OPENVPN=${LOG_OPENVPN}
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MMBEDTLS}
-_tlslibs=libmbedtls libmbedx509 libmbedcrypto
-.else
-# OpenSSL
-_tlslibs=libssl libcrypto
+.if ${PORT_OPTIONS:MLZO}
+IGNORE_SSL=libressl libressl-devel
+IGNORE_SSL_REASON=OpenVPN does not have permission to include LZO with LibreSSL. Compile against OpenSSL, or if your setups support it, disable LZO support
 .endif
 
 .if ! ${PORT_OPTIONS:MLZ4} && ! ${PORT_OPTIONS:MLZO}
 CONFIGURE_ARGS+=	--enable-comp-stub
 .endif
+
+.include <bsd.port.pre.mk>
+
+.if !empty(PORT_OPTIONS:MLZO) && !empty(SSL_DEFAULT:Nbase:Nopenssl*)
+# in-depth security net if Mk/Uses/ssl.mk changes
+pre-everything::
+	@${ECHO_CMD} >&2 "ERROR: OpenVPN is not licensed to combine LZO with other OpenSSL-licensed libraries than OpenSSL. Compile against OpenSSL, or if your setups support it, disable LZO support."
+	@${SHELL} -c 'exit 1'
+.endif
+
+post-patch:
+	${REINPLACE_CMD} -E -i '' -e 's/(user|group) nobody/\1 openvpn/' \
+		-e 's/"nobody"( after init)/"openvpn" \1/' \
+		${WRKSRC}/sample/sample-config-files/*.conf \
+		${WRKSRC}/sample/sample-config-files/xinetd-*-config \
+		${WRKSRC}/doc/man-sections/generic-options.rst
 
 pre-configure:
 .ifdef (LOG_OPENVPN)
@@ -132,6 +134,7 @@ post-configure:
 
 # sanity check that we don't inherit incompatible SSL libs through,
 # for instance, pkcs11-helper:
+_tlslibs=libssl libcrypto
 post-build:
 	@a=$$(LC_ALL=C ldd -f '%o\n' ${WRKSRC}/src/openvpn/openvpn \
 	|	${SORT} -u) ; set -- $$(for i in ${_tlslibs} ; do ${PRINTF} '%s\n' "$$a" | ${GREP} $${i}.so | wc -l ; done | ${SORT} -u) ;\
@@ -155,5 +158,6 @@ post-install-DOCS-on:
 post-install-EXAMPLES-on:
 	(cd ${WRKSRC}/sample && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${EXAMPLESDIR}/)
 	${CHMOD} ${BINMODE} ${FAKE_DESTDIR}${EXAMPLESDIR}/sample-scripts/*
+	-${RM} ${FAKE_DESTDIR}${EXAMPLESDIR}/sample-config-files/*.orig
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
