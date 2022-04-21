@@ -1,7 +1,7 @@
 # Created by: clsung@dragon2.net
 
 PORTNAME=	Glib
-PORTVERSION=	1.3292
+PORTVERSION=	1.3293
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN \
 		SF/gtk2-perl/${PORTNAME}/${PORTVERSION}

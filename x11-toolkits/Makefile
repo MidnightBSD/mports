@@ -44,6 +44,7 @@ SUBDIR += linux-c7-tk85
 SUBDIR += neXtaw
 SUBDIR += open-motif
 SUBDIR += p5-Gtk2
+SUBDIR += p5-Gtk3
 SUBDIR += p5-Pango
 SUBDIR += p5-Tk
 SUBDIR += pango
