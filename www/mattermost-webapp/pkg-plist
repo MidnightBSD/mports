@@ -3376,5 +3376,7 @@
 @owner %%MATTERMOSTD_USER%%
 @group %%MATTERMOSTD_GROUP%%
 @dir %%WWWDIR%%/client/plugins
+@dir %%WWWDIR%%/client/files
+@dir %%WWWDIR%%/client
 @owner
 @group
