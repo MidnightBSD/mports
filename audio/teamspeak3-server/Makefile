@@ -72,29 +72,29 @@ LOGDIR=	/var/log/teamspeak
 SHAREDIR=	${PREFIX}/share/teamspeak/server
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${SHAREDIR}
-	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${STAGEDIR}${SHAREDIR}
-	${INSTALL_DATA} ${WRKSRC}/LICENSE ${STAGEDIR}${SHAREDIR}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} "sql serverquerydocs" ${STAGEDIR}${SHAREDIR})
+	@${MKDIR} ${SHAREDIR}
+	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${SHAREDIR}
+	${INSTALL_DATA} ${WRKSRC}/LICENSE ${SHAREDIR}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} "sql serverquerydocs" ${SHAREDIR})
 
-	@${MKDIR} ${STAGEDIR}${LIBDIR}
-	${INSTALL_LIB} ${WRKSRC}/*.so ${STAGEDIR}${LIBDIR}
-	${INSTALL_LIB} ${WRKSRC}/redist/*.so* ${STAGEDIR}${LIBDIR}
+	@${MKDIR} ${LIBDIR}
+	${INSTALL_LIB} ${WRKSRC}/*.so ${LIBDIR}
+	${INSTALL_LIB} ${WRKSRC}/redist/*.so* ${LIBDIR}
 
 	${INSTALL_PROGRAM} ${WRKSRC}/ts3server \
-		${STAGEDIR}${LIBEXECDIR}/
+		${LIBEXECDIR}/
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .	for DOCFILE in ${PORTDOCS}
-		${INSTALL_DATA} ${WRKSRC}/doc/${DOCFILE} ${STAGEDIR}${DOCSDIR}
+		${INSTALL_DATA} ${WRKSRC}/doc/${DOCFILE} ${DOCSDIR}
 .	endfor
 
-	${INSTALL} -d ${STAGEDIR}${DBDIR}
-	${INSTALL} -d ${STAGEDIR}${LOGDIR}
-	${INSTALL} -d ${STAGEDIR}${ETCDIR}
+	${INSTALL} -d ${FAKE_DESTDIR}${DBDIR}
+	${INSTALL} -d ${FAKE_DESTDIR}${LOGDIR}
+	${INSTALL} -d ${ETCDIR}
 
 # Add link to serverquerydocs, this needs to be in the
 # same directory as chdir or help commands will fail.
-	${RLN} ${STAGEDIR}${SHAREDIR}/serverquerydocs ${STAGEDIR}${DBDIR}
+	${RLN} ${SHAREDIR}/serverquerydocs ${FAKE_DESTDIR}${DBDIR}
 
 .include <bsd.port.mk>
