@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-#
+
 # PROVIDE: inadyn
 # REQUIRE: NETWORKING
 # KEYWORD: shutdown
