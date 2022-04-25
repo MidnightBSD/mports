@@ -21,7 +21,6 @@
 # named_wait_host (str):	    Hostname to check if named_wait is enabled
 # named_auto_forward (str):	    Set up forwarders from /etc/resolv.conf
 # named_auto_forward_only (str):    Do "forward only" instead of "forward first"
-%%NATIVE_PKCS11%%# named_pkcs11_engine (str):	    Path to the PKCS#11 library to use.
 #
 
 . /etc/rc.subr
@@ -52,7 +51,6 @@ named_wait=${named_wait:-"NO"}
 named_wait_host=${named_wait_host:-"localhost"}
 named_auto_forward=${named_auto_forward:-"NO"}
 named_auto_forward_only=${named_auto_forward_only:-"NO"}
-%%NATIVE_PKCS11%%named_pkcs11_engine=${named_pkcs11_engine:-""}
 
 # Not configuration variables but having them here keeps rclint happy
 required_dirs="${named_chrootdir}"
@@ -140,19 +138,10 @@ chroot_autoupdate()
 		fi
 	fi
 
-	# The OpenSSL engines should be present in the chroot, named loads them
-	# after chrooting.
-	if [ -d ${_openssl_engines} ]; then
-		mkdir -p ${named_chrootdir}${_openssl_engines}
-		if can_mount nullfs ; then
-			mount -t nullfs ${_openssl_engines} ${named_chrootdir}${_openssl_engines}
-		else
-			warn "named chroot: cannot nullfs mount OpenSSL" \
-				"engines into the chroot, will copy the shared" \
-				"libraries instead."
-			cp -f ${_openssl_engines}/*.so ${named_chrootdir}${_openssl_engines}
-		fi
-	fi
+	# The OpenSSL engines and BIND9 plugins should be present in the
+	# chroot, named loads them after chrooting.
+	null_mount_or_copy ${_openssl_engines}
+	null_mount_or_copy %%PREFIX%%/lib/named
 
 	# Copy and/or update key files to the chroot /etc
 	#
@@ -236,13 +225,8 @@ named_stop()
 named_poststop()
 {
 	if [ -n "${named_chrootdir}" ]; then
-		# if using OpenSSL from ports, unmount OpenSSL engines, if they
-		# were not mounted but only copied, do nothing.
-		if [ -d ${_openssl_engines} ]; then
-			if can_mount nullfs; then
-				umount ${named_chrootdir}${_openssl_engines}
-			fi
-		fi
+		null_umount %%PREFIX%%/lib/named
+		null_umount ${_openssl_engines}
 		if [ -c ${named_chrootdir}/dev/null ]; then
 			# unmount /dev
 			if [ `${SYSCTL_N} security.jail.jailed` -eq 0 ]; then
@@ -268,6 +252,36 @@ can_mount()
 		return 0
 	fi
 	return 1
+}
+
+null_mount_or_copy()
+{
+	local dir
+	dir=$1
+
+	if [ -d ${dir} ]; then
+		mkdir -p ${named_chrootdir}${dir}
+		if can_mount nullfs ; then
+			mount -t nullfs ${dir} ${named_chrootdir}${dir}
+		else
+			warn "named chroot: cannot nullfs mount OpenSSL" \
+				"engines into the chroot, will copy the shared" \
+				"libraries instead."
+			cp -f ${dir}/*.so ${named_chrootdir}${dir}
+		fi
+	fi
+}
+
+null_umount()
+{
+	local dir
+	dir=$1
+
+	if [ -d ${dir} ]; then
+		if can_mount nullfs; then
+			umount ${named_chrootdir}${dir}
+		fi
+	fi
 }
 
 create_file()
@@ -318,16 +332,6 @@ named_prestart()
 
 	command_args="-u ${named_uid:=root} -c ${named_conf} ${command_args}"
 
-%%NATIVE_PKCS11%%	if [ -z "${named_pkcs11_engine}"]; then
-%%NATIVE_PKCS11%%		err 3 "named_pkcs11_engine has to be set to the PKCS#11 engine's library you want to use"
-%%NATIVE_PKCS11%%	elif [ ! -f ${named_pkcs11_engine} ]; then
-%%NATIVE_PKCS11%%		err 3 "named_pkcs11_engine the PKCS#11 engine's library you want to use doesn't exist"
-%%NATIVE_PKCS11%%	else
-%%NATIVE_PKCS11%%		mkdir -p ${named_chrootdir}${named_pkcs11_engine%/*}
-%%NATIVE_PKCS11%%		cp -p ${named_pkcs11_engine} ${named_chrootdir}${named_pkcs11_engine}
-%%NATIVE_PKCS11%%		command_args="-E ${named_pkcs11_engine} ${command_args}"
-%%NATIVE_PKCS11%%	fi
-
 	local line nsip firstns
 
 	# Is the user using a sandbox?
@@ -366,7 +370,7 @@ named_prestart()
 
 	local checkconf
 
-	checkconf="${_named_program_root}/sbin/named-checkconf"
+	checkconf="${_named_program_root}/bin/named-checkconf"
 	if ! checkyesno named_chroot_autoupdate && [ -n "${named_chrootdir}" ]; then
 		checkconf="${checkconf} -t ${named_chrootdir}"
 	fi
