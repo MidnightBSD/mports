@@ -1,5 +1,5 @@
 PORTNAME=	c-ares
-PORTVERSION=	1.17.2
+PORTVERSION=	1.18.1
 PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	https://c-ares.org/download/ \
