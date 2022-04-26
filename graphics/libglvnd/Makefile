@@ -27,6 +27,7 @@ X11_USE=		XORG=x11,xext,xorgproto
 X11_MESON_ENABLED=	x11 glx
 
 NO_TEST=	yes
+MESON_DISABLED=	tests
 
 .include <bsd.mport.options.mk>
 
