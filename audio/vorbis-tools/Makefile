@@ -1,8 +1,8 @@
 PORTNAME=	vorbis-tools
-PORTVERSION=	1.4.0
-PORTREVISION=	4
+PORTVERSION=	1.4.2
 CATEGORIES=	audio
-MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/
+MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/ \
+		https://ftp.osuosl.org/pub/xiph/releases/vorbis/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Play, encode, and manage Ogg Vorbis files
@@ -14,6 +14,8 @@ LIB_DEPENDS=	libao.so:audio/libao \
 		libcurl.so:ftp/curl \
 		libFLAC.so:audio/flac \
 		libkate.so:multimedia/libkate \
+		libogg.so:audio/libogg \
+		libopusfile.so:audio/opusfile \
 		libspeex.so:audio/speex \
 		libvorbis.so:audio/libvorbis
 
