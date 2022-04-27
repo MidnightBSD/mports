@@ -1,5 +1,5 @@
 PORTNAME=	xterm
-PORTVERSION=	370
+PORTVERSION=	372
 PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.invisible-island.net/xterm/:src1 \
