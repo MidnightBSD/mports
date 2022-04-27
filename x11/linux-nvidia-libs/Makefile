@@ -433,40 +433,40 @@ do-install:
 .endif
 	${REINPLACE_CMD} -E ${PLIST_RE:S/^/-e /} ${TMPPLIST}
 .for f d in ${LINUX_DATA}
-	${MKDIR} ${FAKE_DESTDIR}${LINUXBASE}${d}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${LINUXBASE}${d}
+	${MKDIR} ${LINUXBASE}${d}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${LINUXBASE}${d}
 .endfor
-	${MKDIR} ${FAKE_DESTDIR}${LINUXBASE}/usr/bin
+	${MKDIR} ${LINUXBASE}/usr/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/nvidia-bug-report.sh \
-		${FAKE_DESTDIR}${LINUXBASE}/usr/bin
+		${LINUXBASE}/usr/bin
 .for p in ${LINUX_PROGS}
-	${INSTALL_PROGRAM} ${WRKSRC}/${p} ${FAKE_DESTDIR}${LINUXBASE}/usr/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${p} ${LINUXBASE}/usr/bin
 .endfor
-	${MKDIR} ${FAKE_DESTDIR}${LINUXBASE}/usr/share/man/man1
+	${MKDIR} ${LINUXBASE}/usr/share/man/man1
 .for m in ${LINUX_MANS}
 	${INSTALL_MAN} ${WRKSRC}/${m}.1.gz \
-		${FAKE_DESTDIR}${LINUXBASE}/usr/share/man/man1
+		${LINUXBASE}/usr/share/man/man1
 .endfor
-	${MKDIR} ${FAKE_DESTDIR}${LINUXBASE}${LINUX_LIBDIR}/tls
-	${MKDIR} ${FAKE_DESTDIR}${LINUXBASE}${LINUX_LIBDIR}/vdpau
+	${MKDIR} ${LINUXBASE}${LINUX_LIBDIR}/tls
+	${MKDIR} ${LINUXBASE}${LINUX_LIBDIR}/vdpau
 .for l in ${LINUX_LIBS}
 	${INSTALL_LIB} ${WRKSRC}/${l} \
-		${FAKE_DESTDIR}${LINUXBASE}${LINUX_LIBDIR}/${l}
+		${LINUXBASE}${LINUX_LIBDIR}/${l}
 .endfor
 .for s t in ${LINUX_LINKS}
-	${RLN} ${FAKE_DESTDIR}${LINUXBASE}${LINUX_LIBDIR}/${s} \
-		${FAKE_DESTDIR}${LINUXBASE}${LINUX_LIBDIR}/${t}
+	${RLN} ${LINUXBASE}${LINUX_LIBDIR}/${s} \
+		${LINUXBASE}${LINUX_LIBDIR}/${t}
 .endfor
 .if ${ARCH} == amd64
-	${MKDIR} ${FAKE_DESTDIR}${LINUXBASE}/usr/lib/tls
-	${MKDIR} ${FAKE_DESTDIR}${LINUXBASE}/usr/lib/vdpau
+	${MKDIR} ${LINUXBASE}/usr/lib/tls
+	${MKDIR} ${LINUXBASE}/usr/lib/vdpau
 .for l in ${LINUX32_LIBS}
 	${INSTALL_LIB} ${WRKSRC}/32/${l} \
-		${FAKE_DESTDIR}${LINUXBASE}/usr/lib/${l}
+		${LINUXBASE}/usr/lib/${l}
 .endfor
 .for s t in ${LINUX32_LINKS}
-	${RLN} ${FAKE_DESTDIR}${LINUXBASE}/usr/lib/${s} \
-		${FAKE_DESTDIR}${LINUXBASE}/usr/lib/${t}
+	${RLN} ${LINUXBASE}/usr/lib/${s} \
+		${LINUXBASE}/usr/lib/${t}
 .endfor
 .endif
 
