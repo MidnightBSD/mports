@@ -218,6 +218,7 @@ SUBDIR += tomcat10
 SUBDIR += transmission-web
 SUBDIR += validator
 SUBDIR += varnish4
+SUBDIR += varnish6
 SUBDIR += w3m
 SUBDIR += webkit2-gtk3
 SUBDIR += weblint++
