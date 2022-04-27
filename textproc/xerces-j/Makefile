@@ -1,18 +1,19 @@
 PORTNAME=	xerces-j
-PORTVERSION=	2.12.0
+PORTVERSION=	2.12.2
 CATEGORIES=	textproc java
-MASTER_SITES=	${MASTER_SITE_APACHE}
-MASTER_SITE_SUBDIR=	xerces/j
+MASTER_SITES=	https://archive.apache.org/dist/xerces/j/binaries/
 DISTNAME=	Xerces-J-bin.${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML parser for Java
+
 LICENSE=	apache2
 
 CONFLICTS=	xml4j-4.*
 
 USE_JAVA=	yes
 NO_BUILD=	yes
+NO_ARCH=	yes
 
 WRKSRC=		${WRKDIR}/xerces-${PORTVERSION:S/./_/g}
 
@@ -23,6 +24,8 @@ JARFILES=	xercesImpl.jar xml-apis.jar
 
 PLIST_FILES=	${JARFILES:S,^,%%JAVAJARDIR%%/,}
 
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
 do-install:
 	@${ECHO_MSG} -n ">> Installing JAR files in ${JAVAJARDIR}..."
 .for JARFILE in ${JARFILES}
@@ -30,17 +33,13 @@ do-install:
 	@${ECHO_MSG} -n " ${JARFILE}"
 .endfor
 	@${ECHO_MSG} " [ DONE ]"
-.if !defined(NOPORTDOCS)
 	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
-	@${MKDIR} ${DOCSDIR}
-	@(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${DOCSDIR})
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${STAGEDIR}${DOCSDIR})
 	@${ECHO_MSG} " [ DONE ]"
-.endif
-.if !defined(NOPORTEXAMPLES)
 	@${ECHO_MSG} -n ">> Installing samples in ${EXAMPLESDIR}..."
-	@${MKDIR} ${EXAMPLESDIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} "data samples" ${EXAMPLESDIR})
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} "data samples" ${STAGEDIR}${EXAMPLESDIR})
 	@${ECHO_MSG} " [ DONE ]"
-.endif
 
 .include <bsd.port.mk>
