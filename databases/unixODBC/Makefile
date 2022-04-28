@@ -1,5 +1,5 @@
 PORTNAME=	unixODBC
-PORTVERSION=	2.3.5
+PORTVERSION=	2.3.9
 PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	http://www.unixodbc.org/
