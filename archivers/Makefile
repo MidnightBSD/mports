@@ -81,6 +81,7 @@ SUBDIR += xar
 SUBDIR += zip
 SUBDIR += zipmix
 SUBDIR += zipper
+SUBDIR += zlib-ng
 SUBDIR += zoo
 SUBDIR += zopfli
 SUBDIR += zstd
