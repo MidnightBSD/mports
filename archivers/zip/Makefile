@@ -1,5 +1,3 @@
-
-
 PORTNAME=	zip
 PORTVERSION=	3.0
 PORTREVISION=	1
@@ -13,6 +11,10 @@ COMMENT=	Create/update ZIP files compatible with PKZIP
 
 LICENSE=	infozip
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		cpe
+
+CPE_VENDOR=	info-zip_project
 
 OPTIONS_DEFINE=	DOCS
 
