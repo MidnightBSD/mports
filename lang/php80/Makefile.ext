@@ -184,7 +184,6 @@ USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=--with-ldap-sasl=${LOCALBASE}
 . endif
 .endif
-.endif
 
 .if ${PHP_MODNAME} == "mbstring"
 
