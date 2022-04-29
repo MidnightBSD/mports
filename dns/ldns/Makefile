@@ -1,8 +1,7 @@
 # Created by: Konstantin Saurbier <saurbier@math.uni-bielefeld.de>
 
 PORTNAME=	ldns
-PORTVERSION=	1.7.1
-PORTREVISION=	2
+PORTVERSION=	1.8.1
 CATEGORIES=	dns
 MASTER_SITES=	https://www.nlnetlabs.nl/downloads/ldns/ \
 		FREEBSD_LOCAL/ehaupt
