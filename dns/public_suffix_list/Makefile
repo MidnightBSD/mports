@@ -1,7 +1,7 @@
 # Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 
 PORTNAME=	public_suffix_list
-PORTVERSION=	20201029
+PORTVERSION=	20220331
 CATEGORIES=	dns
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ COMMENT=	Public Suffix List by Mozilla
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-SLAVEDIRS=	dns/p5-Mozilla-PublicSuffix dns/py-publicsuffix dns/py-publicsuffix2 dns/py-publicsuffixlist dns/rubygem-public_suffix dns/rubygem-public_suffix_service
+SLAVEDIRS=	dns/p5-Mozilla-PublicSuffix dns/py-publicsuffix dns/py-publicsuffix2 dns/py-publicsuffixlist dns/rubygem-public_suffix dns/rubygem-public_suffix_service www/py-adblock
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -20,7 +20,7 @@ PORTDATA=	public_suffix_list.dat \
 
 GH_ACCOUNT=	publicsuffix
 GH_PROJECT=	list
-GH_TAGNAME=	2f00f05
+GH_TAGNAME=	70a6c2f
 USE_GITHUB=	yes
 
 do-install:
