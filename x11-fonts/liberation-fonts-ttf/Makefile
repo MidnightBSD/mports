@@ -1,5 +1,5 @@
 PORTNAME=	liberation-fonts-ttf
-PORTVERSION=	2.1.0
+PORTVERSION=	2.1.5
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://github.com/liberationfonts/liberation-fonts/files/4178407
