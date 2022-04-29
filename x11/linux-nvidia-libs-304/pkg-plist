@@ -62,4 +62,3 @@ usr/lib/libcuda.so.%%SHLIB_VERSION%%
 @dir %%LINUXBASE%%/usr/share
 @dir %%LINUXBASE%%/usr
 @dir %%LINUXBASE%%
-
