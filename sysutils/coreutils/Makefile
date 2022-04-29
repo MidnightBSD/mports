@@ -21,6 +21,8 @@ CONFIGURE_ARGS=	--program-prefix=g	\
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib" FORCE_UNSAFE_CONFIGURE=1
 CPPFLAGS+=	"-I${LOCALBASE}/include"
 
+CONFLICTS_INSTALL=	gdu geneweb gexpr rubygem-god # bin/gdu bin/gexpr bin/god bin/gwc
+
 USES=		cpe gmake iconv charsetfix tar:xz
 USE_PERL5_BUILD=	yes # build - required for tests and man page generation
 USE_LDCONFIG=	yes
@@ -34,7 +36,7 @@ OPTIONS_DEFAULT=NLS
 OPTIONS_SUB=	yes
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=   nls
-GMP_LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
+GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 GMP_CONFIGURE_WITH=	gmp
 
 .include <bsd.mport.options.mk>
