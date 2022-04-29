@@ -143,6 +143,7 @@ SUBDIR += php81-sodium
 SUBDIR += pinentry
 SUBDIR += pinentry-gnome3
 SUBDIR += pinentry-tty
+SUBDIR += pkcs11-helper
 SUBDIR += pulledpork
 SUBDIR += py-SecretStorage
 SUBDIR += py-acme
