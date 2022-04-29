@@ -5,4 +5,6 @@ PORTREVISION=	0
 MASTERDIR=	${.CURDIR}/../linux-nvidia-libs
 PKGNAMESUFFIX=	-304
 
+PLIST=	${.CURDIR}/pkg-plist
+
 .include "${MASTERDIR}/Makefile"

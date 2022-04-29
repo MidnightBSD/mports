@@ -1,0 +1,65 @@
+@cwd %%LINUXBASE%%
+etc/OpenCL/vendors/nvidia.icd
+usr/share/man/man1/nvidia-settings.1.gz
+usr/share/man/man1/nvidia-cuda-proxy-control.1.gz
+usr/share/man/man1/nvidia-xconfig.1.gz
+usr/share/man/man1/nvidia-smi.1.gz
+usr/bin/nvidia-settings
+usr/bin/nvidia-smi
+usr/bin/nvidia-debugdump
+usr/bin/nvidia-bug-report.sh
+usr/bin/nvidia-xconfig
+usr/bin/nvidia-cuda-proxy-control
+usr/bin/nvidia-cuda-proxy-server
+usr/lib64/libnvidia-cfg.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-ml.so.%%SHLIB_VERSION%%
+usr/lib64/libXvMCNVIDIA.so.%%SHLIB_VERSION%%
+usr/lib64/libnvcuvid.so.%%SHLIB_VERSION%%
+usr/lib64/libcuda.so.%%SHLIB_VERSION%%
+usr/lib64/tls/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib64/libvdpau_nvidia.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-glcore.so.%%SHLIB_VERSION%%
+usr/lib64/libGL.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-compiler.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-opencl.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ml.so.%%SHLIB_VERSION%%
+usr/lib/tls/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-glcore.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-compiler.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-opencl.so.%%SHLIB_VERSION%%
+usr/lib/libcuda.so.1
+usr/lib/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ml.so.1
+usr/lib/libGL.so.%%SHLIB_VERSION%%
+usr/lib/libcuda.so
+usr/lib/libGL.so.1
+usr/lib/libvdpau_nvidia.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-opencl.so.1
+usr/lib/libnvidia-ml.so
+usr/lib/libcuda.so.%%SHLIB_VERSION%%
+@postexec %%LINUXBASE%%/sbin/ldconfig
+@postunexec %%LINUXBASE%%/sbin/ldconfig
+@dir %%LINUXBASE%%/etc/OpenCL/vendors
+@dir %%LINUXBASE%%/etc/OpenCL
+@dir %%LINUXBASE%%/etc/vulkan/icd.d
+@dir %%LINUXBASE%%/etc/vulkan
+@dir %%LINUXBASE%%/etc
+@dir %%LINUXBASE%%/usr/bin
+%%LINUX32%%@dir %%LINUXBASE%%/usr/lib/tls
+%%LINUX32%%@dir %%LINUXBASE%%/usr/lib/vdpau
+%%LINUX32%%@dir %%LINUXBASE%%/usr/lib
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%/tls
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%/vdpau
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%
+@dir %%LINUXBASE%%/usr/share/egl/egl_external_platform.d
+@dir %%LINUXBASE%%/usr/share/egl
+@dir %%LINUXBASE%%/usr/share/glvnd/egl_vendor.d
+@dir %%LINUXBASE%%/usr/share/glvnd
+@dir %%LINUXBASE%%/usr/share/man/man1
+@dir %%LINUXBASE%%/usr/share/man
+@dir %%LINUXBASE%%/usr/share/nvidia
+@dir %%LINUXBASE%%/usr/share
+@dir %%LINUXBASE%%/usr
+@dir %%LINUXBASE%%
+
