@@ -1,9 +1,7 @@
-
-
 PORTNAME=	soundtouch
-PORTVERSION=	1.9.2
+DISTVERSION=	2.3.1
 CATEGORIES=	audio
-MASTER_SITES=	http://www.surina.net/soundtouch/
+MASTER_SITES=	https://www.surina.net/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source audio processing library
@@ -12,39 +10,26 @@ LICENSE=	lgpl2.1
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-silent-rules
+USES=		cmake cpe
 USE_LDCONFIG=	yes
 
-USES=			autoreconf libtool pathfix
-PATHFIX_MAKEFILEIN=	Makefile.am
+CPE_VENDOR=	surina
 
-OPTIONS_DEFINE=	INTEGER_SAMPLES DOCS OPENMP
-OPTIONS_DEFAULT=	${MACHINE_CPU:tu:MSOFTFP:S/SOFTFP/INTEGER_SAMPLES/}
-OPTIONS_DEFINE_amd64=	SSE
-OPTIONS_DEFINE_i386=	SSE
-OPTIONS_DEFAULT_amd64=	SSE
-OPTIONS_DEFAULT_i386=	${MACHINE_CPU:tu:MSSE}
+CFLAGS_i386=	-DSOUNDTOUCH_DISABLE_X86_OPTIMIZATIONS
+
+CMAKE_ON=	BUILD_SHARED_LIBS
+
+OPTIONS_DEFINE=			INTEGER_SAMPLES OPTIMIZED_CFLAGS
+OPTIONS_DEFINE_i386=		OPENMP
+OPTIONS_DEFAULT=		${MACHINE_CPU:Msoftfp:C/.+/INTEGER_SAMPLES/}
+OPTIONS_DEFAULT_amd64=		OPENMP OPTIMIZED_CFLAGS
 
 INTEGER_SAMPLES_DESC=	Use integer sample format
-INTEGER_SAMPLES_CONFIGURE_ENABLE=	integer-samples
-OPENMP_CONFIGURE_ENABLE=openmp
-OPENMP_USES=		compiler:openmp
-SSE_CONFIGURE_ENABLE=	x86-optimizations
-SSE_USES=		compiler:c++11-lang
+NEON_DESC=		Use NEON instructions
 
-post-patch:
-	@${REINPLACE_CMD} -e \
-		'/^dist_doc_DATA/s|COPYING.TXT||' \
-		${WRKSRC}/Makefile.am
-	@${REINPLACE_CMD} -e \
-		's|^INCLUDES|AM_CPPFLAGS| ; \
-		 s|$$(prefix)/doc|$$(datadir)/doc|' \
-		${WRKSRC}/config/am_include.mk
-.for i in SoundStretch SoundTouch
-	@${REINPLACE_CMD} -e \
-		's|-O[0-9]||;s|-fcheck-new||' \
-		${WRKSRC}/source/${i}/Makefile.am
-.endfor
+INTEGER_SAMPLES_CMAKE_BOOL=	INTEGER_SAMPLES
+NEON_CMAKE_BOOL=		NEON
+OPENMP_CMAKE_BOOL=		OPENMP
+OPTIMIZED_CFLAGS_CFLAGS=	-Ofast
 
 .include <bsd.port.mk>
