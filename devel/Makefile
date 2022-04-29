@@ -726,6 +726,7 @@ SUBDIR += pcre
 SUBDIR += pcre2
 SUBDIR += pcsc-lite
 SUBDIR += pear
+SUBDIR += pear-Text_Diff
 SUBDIR += pecl-APCu
 SUBDIR += performance
 SUBDIR += php74-gettext
