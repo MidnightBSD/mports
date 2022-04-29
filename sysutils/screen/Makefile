@@ -1,50 +1,61 @@
 PORTNAME=	screen
-PORTVERSION=	4.8.0
-PORTREVISION=	1
+PORTVERSION=	4.9.0
 CATEGORIES=	sysutils
-MASTER_SITES=	http://ftp.gnu.org/gnu/screen/ \
+MASTER_SITES=	GNU \
 		ftp://ftp.gnu.org/gnu/screen/ \
 		ftp://gnu.mirror.iweb.com/screen/ \
 		http://gnu.mirror.iweb.com/screen/ \
 		http://mirror.sdunix.com/gnu/ \
 		ftp://mirrors.kernel.org/gnu/screen/ \
-		http://komquats.com/distfiles/ \
-		http://people.freebsd.org/~cy/distfiles/ \
-		GNU
+		http://cschubert.com/distfiles/ \
+		FREEBSD_LOCAL/cy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-screen window manager
 
 LICENSE=	gpl3
 
-OPTIONS_DEFINE=		INFO MAN NETHACK XTERM_256 SHOWENC SYSTEM_SCREENRC
-OPTIONS_DEFAULT=	INFO MAN NETHACK XTERM_256 SOCKETS SYSTEM_SCREENRC
-OPTIONS_SINGLE=		IPC
+OPTIONS_DEFINE=		INFO NETHACK XTERM_256 SYSTEM_SCREENRC MULTIUSER
+OPTIONS_DEFAULT=	INFO NETHACK XTERM_256 SOCKETS SYSTEM_SCREENRC \
+			NCURSES_DEFAULT MULTIUSER
+OPTIONS_SINGLE=		IPC NCURSES
 OPTIONS_SINGLE_IPC=	SOCKETS NAMED_PIPES
-INFO_DESC=		Build and install info documentation
-MAN_DESC=		Build and install man pages
+OPTIONS_SINGLE_NCURSES=	NCURSES_DEFAULT NCURSES_BASE NCURSES_PORT
 NETHACK_DESC=		Enable nethack-style messages
 XTERM_256_DESC=		Enable support for 256 colour xterm
-SHOWENC_DESC=		Show encoding on the status line
 SOCKETS_DESC=		Use new (4.2.1+) sockets for IPC (default)
 NAMED_PIPES_DESC=	Use legacy (4.0.3) named pipes for IPC (override)
 SYSTEM_SCREENRC_DESC=	Install system screenrc with helpful status line
+MULTIUSER_DESC=		Install setuid-root screen to support multiuser
+MULTIUSER_PLIST_SUB=	MULTISUID="@(,,4555) "
+MULTIUSER_PLIST_SUB_OFF=MULTISUID="@(,,0555) "
+NCURSES_DEFAULT_DESC=	Depend on ncurses (ports if installed, otherwise base)
+NCURSES_BASE_DESC=	Depend on ncurses in base
+NCURSES_PORT_DESC=	Depend on devel/ncurses in ports
+
+NCURSES_DEFAULT_USES=	ncurses
+NCURSES_BASE_USES=	ncurses:base
+NCURSES_PORT_USES=	ncurses:port
 
 OPTIONS_SUB=
 
-USES=		gmake cpe ncurses
+USES=		autoreconf:build gmake cpe
+MAKE_ARGS+=	WITH_MAN=1
 
 CPE_VENDOR=	gnu
 
 .include <bsd.mport.options.mk>
 
-GNU_CONFIGURE=	yes
-.if ${PORT_OPTIONS:MMAN}
-MAKE_ARGS+=	WITH_MAN=1
-PLIST_SUB+=	MAN=""
-.else
-PLIST_SUB+=	MAN="@comment"
+.if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386 || \
+    ${ARCH:Mpowerpc*}
+SSP_CFLAGS?=	-fno-stack-protector
 .endif
+
+GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CFLAGS+=	-I${NCURSESINC}
+LDFLAGS+=	-L${NCURSESLIB}
+
 .if ${PORT_OPTIONS:MINFO}
 INFO=		screen
 MAKE_ARGS+=	WITH_INFO=1
@@ -63,25 +74,21 @@ CFLAGS+=	-DCOLORS256
 CFLAGS+=	-DNONETHACK
 .endif
 
-# show encoding on the status line via option "showenc"
-.if ${PORT_OPTIONS:MSHOWENC}
-EXTRA_PATCHES+=	${FILESDIR}/opt-showencoding
-.endif
-
 post-patch:
 	-@${RM} ${WRKSRC}/doc/screen.info*
-	@${REINPLACE_CMD} -e 's|/dev/ptmx|/nonexistent|' ${WRKSRC}/configure
 
 # Bug 191029:	Users can choose whether to use sockets or named pipes.
-# 		Choose sockets if you don't know what the difference is.
-# 		Choose named pipes if your environment is heterogeneous,
+#		Choose sockets if you don't know what the difference is.
+#		Choose named pipes if your environment is heterogeneous,
 #		using both screen 4.0.3 and 4.2.1.
-.if ${PORT_OPTIONS:MNAMED_PIPES}
 # Bug 191017
-post-configure:
+
+pre-configure:
+	cd ${WRKSRC} && ./autogen.sh
+
+post-configure-NAMED_PIPES-on:
 	@${ECHO_CMD} '#define NAMEDPIPE 1' >> ${WRKSRC}/config.h
 	@${ECHO_CMD} User selected named pipes override set.
-.endif
 
 ETCDIR?=	${PREFIX}/etc
 
