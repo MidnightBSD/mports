@@ -14,6 +14,10 @@ LICENSE=	other
 # GCC_DEFAULT again below (the expression rewrites 4.9 to 49).
 RUN_DEPENDS=	gcc${GCC_DEFAULT:S/.//}:lang/gcc${GCC_DEFAULT:S/.//}
 
+USES=		cpe
+CPE_VENDOR=	gnu
+CPE_VERSION=	${GCC_DEFAULT}
+
 NO_ARCH=	yes
 NO_BUILD=	yes
 
