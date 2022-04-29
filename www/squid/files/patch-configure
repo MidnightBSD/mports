@@ -1,19 +1,31 @@
-Patch for Squid bug 2203:
-
---with-maxfd inadvertently unsets LDFLAGS.
---- configure.orig	2009-02-05 19:27:06.000000000 +0100
-+++ configure	2009-02-05 19:27:59.000000000 +0100
-@@ -27810,11 +27810,12 @@
+--- configure.orig	2021-12-07 14:11:12 UTC
++++ configure
+@@ -36683,8 +36683,10 @@ then :
+ #define `printf "%s\n" "HAVE_$ac_header" | $as_tr_cpp` 1
+ _ACEOF
  
+-else $as_nop
+-  BUILD_HELPER=""
++# XXX: On FreeBSD we have to do this to make NIS work
++# until https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=188247
++# is resolved.
++  BUILD_HELPER="NIS"
  fi
  
-+TLDFLAGS="$LDFLAGS"
-+
- if test -z "$SQUID_MAXFD"; then
+ done
+@@ -42604,6 +42606,7 @@ fi
  
- { $as_echo "$as_me:$LINENO: checking Maximum number of filedescriptors we can open" >&5
- $as_echo_n "checking Maximum number of filedescriptors we can open... " >&6; }
--TLDFLAGS="$LDFLAGS"
- case $host in
- i386-unknown-freebsd*)
-     if echo "$LDFLAGS" | grep -q pthread; then
+ ac_fn_cxx_check_type "$LINENO" "cpu_set_t" "ac_cv_type_cpu_set_t" "
+ #if HAVE_SCHED_H
++#define _WITH_CPU_SET_T
+ #include <sched.h>
+ #endif
+ 
+@@ -45611,6 +45614,7 @@ else $as_nop
+ #       include <sys/ioccom.h>
+ #       include <netinet/in.h>
+ #undef minor_t
++#       include <net/if.h>     /* IFNAMSIZ */
+ #       include <netinet/ip_compat.h>
+ #       include <netinet/ip_fil.h>
+ #       include <netinet/ip_nat.h>
