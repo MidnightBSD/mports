@@ -1,5 +1,5 @@
 PORTNAME=	tor
-DISTVERSION=	0.4.2.6
+DISTVERSION=	0.4.7.7
 CATEGORIES=	security net
 MASTER_SITES=	TOR
 
@@ -93,8 +93,8 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|lib/tor|db/tor|' \
 		${WRKSRC}/src/config/torrc.*.in \
-		${WRKSRC}/doc/tor.1.* \
-		${WRKSRC}/doc/tor.html.in
+		${WRKSRC}/doc/man/tor.1.* \
+		${WRKSRC}/doc/man/tor.html.in
 
 post-patch-STATIC_TOR-off:
 	@${REINPLACE_CMD} -e "s@-ltcmalloc@${LOCALBASE}/lib/libtcmalloc.so@" \

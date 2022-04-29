@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-#
+
 # PROVIDE: tor
 # REQUIRE: DAEMON FILESYSTEMS
 # BEFORE: LOGIN
