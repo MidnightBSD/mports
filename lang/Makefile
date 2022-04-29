@@ -80,6 +80,7 @@ SUBDIR += python
 SUBDIR += python2
 SUBDIR += python3
 SUBDIR += python310
+SUBDIR += python311
 SUBDIR += python37
 SUBDIR += python38
 SUBDIR += python39
