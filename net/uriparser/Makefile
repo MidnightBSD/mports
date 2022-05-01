@@ -17,9 +17,11 @@ USES=		cmake:noninja cpe pathfix tar:xz
 CPE_VENDOR=	uriparser_project
 USE_LDCONFIG=	yes
 
-CMAKE_OFF=	URIPARSER_BUILD_DOCS # will fetch prebuilds from the upstream, if DOCS is selected
+CMAKE_OFF=	URIPARSER_BUILD_TESTS URIPARSER_BUILD_DOCS # will fetch prebuilds from the upstream, if DOCS is selected
 
 TEST_TARGET=	test
+
+NO_TEST=	yes
 
 PLIST_SUB=	DISTVERSION=${DISTVERSION}
 PORTDOCS=	*
