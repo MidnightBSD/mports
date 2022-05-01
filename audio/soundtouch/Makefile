@@ -7,6 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source audio processing library
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.TXT
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
