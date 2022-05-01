@@ -9,7 +9,7 @@ COMMENT=	Open-source audio processing library
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING.TXT
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 USES=		cmake cpe
 USE_LDCONFIG=	yes
