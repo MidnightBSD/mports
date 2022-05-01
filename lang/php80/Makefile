@@ -27,32 +27,22 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
 		--with-libxml \
+		--with-openssl \
 		--with-password-argon2=${LOCALBASE} \
 		--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd10.4
-USES+=		autoreconf:build
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd11.4
+USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
+
+CPPFLAGS=	-I${LOCALBASE}/include
+LDFLAGS=	-L${OPENSSLLIB} -lcrypto -lssl
 
 # PR230207 Allow relocations against read-only segments (override lld default)
 LDFLAGS_i386=	-Wl,-z,notext
 
 OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG DTRACE IPV6 MYSQLND LINKTHR ZTS
 OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR
-OPTIONS_EXCLUDE_DragonFly=	DTRACE
-# ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
-OPTIONS_EXCLUDE_aarch64=	DTRACE
-# dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
-OPTIONS_EXCLUDE_armv6=		DTRACE
-OPTIONS_EXCLUDE_armv7=		DTRACE
-# Bug 197128:  No ASM code for MIPS/MIPS64, disable FPM
-OPTIONS_EXCLUDE_mips=		DTRACE FPM
-OPTIONS_EXCLUDE_mips64=		DTRACE FPM
-OPTIONS_EXCLUDE_powerpc=		DTRACE
-OPTIONS_EXCLUDE_powerpc64=		${OPTIONS_EXCLUDE_${ARCH}_${OSREL:R}}
-OPTIONS_EXCLUDE_powerpc64_11=	DTRACE
-OPTIONS_EXCLUDE_powerpc64_12=	DTRACE
-OPTIONS_EXCLUDE_sparc64=	DTRACE
 OPTIONS_SUB=	yes
 
 CLI_DESC=	Build CLI version
