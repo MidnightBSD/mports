@@ -12,7 +12,7 @@ COMMENT=	Java- and XML-based build tool, conceptually similar to make
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	classpath:${PORTSDIR}/java/javavmwrapper
+RUN_DEPENDS=	classpath:java/javavmwrapper
 
 OPTIONS_DEFINE=	DOCS
 
