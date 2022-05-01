@@ -11,20 +11,18 @@ LICENSE=	lgpl
 
 CONFLICTS=	libiodbc-[0-9]* virtuoso-*
 
-USES=		iconv
+USES=		cpe iconv libtool:keepla
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static --enable-shared \
 		--with-libiconv-prefix=${LOCALBASE}
+CONFIGURE_ENV=	ac_cv_header_msql_h=no
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
 
 PORTDOCS=	*
 
 post-patch:
-	@${REINPLACE_CMD} 's,$$LIBS $$THREADLIB,$$LIBS,;s,$$CFLAGS -pthread,$$CFLAGS,' \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's,@MSQL_TRUE@lib_LTLIBRARIES,#&,' \
-		${WRKSRC}/Drivers/MiniSQL/Makefile.in
+	@${REINPLACE_CMD} -e 's|\.ini$$|.ini.sample|' ${WRKSRC}/Makefile.in
 	touch ${WRKSRC}/Interix/config.sub
 
 post-install:
