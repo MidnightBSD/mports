@@ -269,6 +269,7 @@ SUBDIR += py-sphinxcontrib-websupport
 SUBDIR += py-sphinxcontrib-websupport11
 SUBDIR += py-tinycss2
 SUBDIR += py-toml
+SUBDIR += py-tomli
 SUBDIR += py-towncrier
 SUBDIR += py-typogrify
 SUBDIR += py-wcmatch
