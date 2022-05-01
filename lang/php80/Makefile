@@ -119,7 +119,10 @@ PLIST_SUB+=	SAPI_INC="@comment "
 .endif
 
 CONFIGURE_ENV+=	ac_cv_decimal_fp_supported="no" \
-		lt_cv_path_SED="sed"
+		lt_cv_path_SED="sed" \
+		OPENSSL_CFLAGS="-I${OPENSSLINC}" \
+		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl -lcrypto" \
+		PHP_OPENSSL=yes
 
 .if ${PORT_OPTIONS:MLINKTHR}
 LIBS+=		-lpthread
@@ -148,10 +151,10 @@ CONFIGURE_ARGS+=--disable-ipv6
 post-patch:
 	@${TOUCH} ${WRKSRC}/ext/php_config.h
 	@${REINPLACE_CMD} "s|^\(extension_dir\)|; \1|" ${WRKSRC}/php.ini-*
-.if ${PORT_OPTIONS:MFPM}
+
+post-patch-FPM-on:
 	@${REINPLACE_CMD} -e "s|^;\(pid\)|\1|;s|^;\(pm\.[a-z_]*_servers\)|\1|" \
 		${WRKSRC}/sapi/fpm/php-fpm.conf.in
-.endif
 
 pre-configure:
 	@(cd ${WRKSRC} && ${SETENV} MAKE=${MAKE_CMD} ./buildconf --force)
