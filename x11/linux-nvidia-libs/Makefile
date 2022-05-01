@@ -29,7 +29,7 @@ PLIST_RE=	# empty
 
 LINUX_LIBDIR=	/usr/lib${ARCH:S/i386//:S/amd//}
 
-LINUX_LIBS=	libcuda.so.${PORTVERSION} \
+LINUX_LIBS+=	libcuda.so.${PORTVERSION} \
 		libnvcuvid.so.${PORTVERSION} \
 		libnvidia-cfg.so.${PORTVERSION} \
 		libnvidia-compiler.so.${PORTVERSION} \
@@ -38,7 +38,7 @@ LINUX_LIBS=	libcuda.so.${PORTVERSION} \
 		libnvidia-opencl.so.${PORTVERSION} \
 		libnvidia-tls.so.${PORTVERSION} \
 		libvdpau_nvidia.so.${PORTVERSION}
-LINUX_LINKS=	libcuda.so.${PORTVERSION} libcuda.so.1 \
+LINUX_LINKS+=	libcuda.so.${PORTVERSION} libcuda.so.1 \
 		libcuda.so.${PORTVERSION} libcuda.so \
 		libnvcuvid.so.${PORTVERSION} libnvcuvid.so.1 \
 		libnvcuvid.so.${PORTVERSION} libnvcuvid.so \
@@ -48,7 +48,7 @@ LINUX_LINKS=	libcuda.so.${PORTVERSION} libcuda.so.1 \
 		libnvidia-ml.so.${PORTVERSION} libnvidia-ml.so \
 		libnvidia-opencl.so.${PORTVERSION} libnvidia-opencl.so.1 \
 		libvdpau_nvidia.so.${PORTVERSION} vdpau/libvdpau_nvidia.so.1
-LINUX32_LIBS=	libcuda.so.${PORTVERSION} \
+LINUX32_LIBS+=	libcuda.so.${PORTVERSION} \
 		libnvidia-compiler.so.${PORTVERSION} \
 		libnvidia-glcore.so.${PORTVERSION} \
 		libnvidia-ml.so.${PORTVERSION} \
@@ -269,7 +269,7 @@ PLIST_SUB+=	LINUXBASE=${LINUXBASE} \
 		LINUX_LIBDIR=${LINUX_LIBDIR} \
 		SHLIB_VERSION=${PORTVERSION}
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if ${NVVERSION} >= 390.042 && ${LINUX_DEFAULT} != c6
 USE_LINUX+=	libglvnd
@@ -384,6 +384,8 @@ PLIST_SUB+=	LINUX32=""
 .else
 PLIST_SUB+=	LINUX32="@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 do-extract:
 	@(cd ${WRKDIR} && ${SH} \
