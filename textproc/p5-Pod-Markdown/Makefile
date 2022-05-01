@@ -16,11 +16,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-URI>=0:net/p5-URI
-TEST_DEPENDS=	p5-Test-Differences>=0:devel/p5-Test-Differences
 
 USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
