@@ -17,8 +17,6 @@ PORTSCOUT=	site:https://github.com/FortAwesome/Font-Awesome/releases
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-SUB_FILES=	pkg-message
-
 PLIST_FILES=	${FONTSDIR}/Font\ Awesome\ 6\ Brands-Regular-400.otf \
 		${FONTSDIR}/Font\ Awesome\ 6\ Free-Regular-400.otf \
 		${FONTSDIR}/Font\ Awesome\ 6\ Free-Solid-900.otf
