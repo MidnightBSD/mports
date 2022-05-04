@@ -84,6 +84,7 @@ SUBDIR += logcheck
 SUBDIR += mbedtls
 SUBDIR += mcrypt
 SUBDIR += mhash
+SUBDIR += minisign
 SUBDIR += munge
 SUBDIR += nmap
 SUBDIR += nettle
