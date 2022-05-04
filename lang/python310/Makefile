@@ -120,11 +120,11 @@ PLIST_SUB+=	NO_NIS=""
 
 # Python 3.10 requires OpenSSL >= 1.1.1 (PEP 644), so with
 # libressl, some modules are not built
-.if ${SSL_DEFAULT:Mlibressl*}
+#.if ${SSL_DEFAULT:Mlibressl*}
 PLIST_SUB+=	SUPPORTED_OPENSSL="@comment "
-.else
-PLIST_SUB+=	SUPPORTED_OPENSSL=""
-.endif
+#.else
+#PLIST_SUB+=	SUPPORTED_OPENSSL=""
+#.endif
 
 post-patch:
 # disable the detection of includes and library from e2fsprogs-libuuid,
