@@ -1,42 +1,33 @@
---- build/config/compiler/BUILD.gn.orig	2021-07-22 17:06:07 UTC
+--- build/config/compiler/BUILD.gn.orig	2022-01-23 11:59:03 UTC
 +++ build/config/compiler/BUILD.gn
-@@ -144,7 +144,7 @@ declare_args() {
+@@ -140,7 +140,7 @@ declare_args() {
    #
-   # TODO(crbug.com/977230): Enabling this when 'use_xcode_clang' is true may
-   # call an old clang that doesn't support auto-init.
--  init_stack_vars = !is_android && !use_xcode_clang
-+  init_stack_vars = !is_android && !use_xcode_clang && !is_bsd
+   # TODO(crbug.com/1131993): Enabling this when 'is_android' is true breaks
+   # content_shell_test_apk on both ARM and x86.
+-  init_stack_vars = !is_android
++  init_stack_vars = !is_android && !is_bsd
  
    # This argument is to control whether enabling text section splitting in the
    # final binary. When enabled, the separated text sections with prefix
-@@ -347,7 +347,7 @@ config("compiler") {
+@@ -357,7 +357,7 @@ config("compiler") {
      }
  
      # Linker warnings.
--    if (fatal_linker_warnings && !is_apple && current_os != "aix") {
-+    if (fatal_linker_warnings && !is_apple && !is_bsd && current_os != "aix") {
+-    if (fatal_linker_warnings && !is_apple && current_os != "aix" &&
++    if (fatal_linker_warnings && !is_apple && !is_bsd && current_os != "aix" &&
+         current_os != "zos") {
        ldflags += [ "-Wl,--fatal-warnings" ]
      }
-     if (fatal_linker_warnings && is_apple) {
-@@ -442,7 +442,7 @@ config("compiler") {
- 
-     # Compiler instrumentation can introduce dependencies in DSOs to symbols in
-     # the executable they are loaded into, so they are unresolved at link-time.
--    if (!using_sanitizer) {
-+    if (!using_sanitizer && !is_bsd) {
-       ldflags += [
-         "-Wl,-z,defs",
-         "-Wl,--as-needed",
-@@ -532,7 +532,7 @@ config("compiler") {
+@@ -534,7 +534,7 @@ config("compiler") {
      ldflags += [ "-Wl,-z,keep-text-section-prefix" ]
    }
  
--  if (is_clang && !is_nacl && !use_xcode_clang) {
-+  if (is_clang && !is_nacl && !use_xcode_clang && !is_bsd) {
+-  if (is_clang && !is_nacl && current_os != "zos") {
++  if (is_clang && !is_nacl && !is_bsd && current_os != "zos") {
      cflags += [ "-fcrash-diagnostics-dir=" + clang_diagnostic_dir ]
  
      # TODO(hans): Remove this once Clang generates better optimized debug info
-@@ -863,7 +863,7 @@ config("compiler_cpu_abi") {
+@@ -917,7 +917,7 @@ config("compiler_cpu_abi") {
          cflags += [ "-mtune=$arm_tune" ]
        }
      } else if (current_cpu == "arm64") {
@@ -45,48 +36,66 @@
          cflags += [ "--target=aarch64-linux-gnu" ]
          ldflags += [ "--target=aarch64-linux-gnu" ]
        }
-@@ -1213,7 +1213,7 @@ config("compiler_deterministic") {
-       "-Xclang",
-       ".",
-     ]
+@@ -1238,7 +1238,7 @@ config("compiler_deterministic") {
+     # different build directory like "out/feature_a" and "out/feature_b" if
+     # we build same files with same compile flag.
+     # Other paths are already given in relative, no need to normalize them.
+-    if (is_nacl) {
++    if (is_nacl || is_bsd) {
+       # TODO(https://crbug.com/1231236): Use -ffile-compilation-dir= here.
+       cflags += [
+         "-Xclang",
+@@ -1251,7 +1251,7 @@ config("compiler_deterministic") {
+       # and -fcoverage-compilation-dir=.
+       cflags += [ "-ffile-compilation-dir=." ]
+     }
 -    if (!is_win) {
 +    if (!is_win && !is_bsd) {
        # We don't use clang -cc1as on Windows (yet? https://crbug.com/762167)
        asmflags = [ "-Wa,-fdebug-compilation-dir,." ]
      }
-@@ -1596,7 +1596,7 @@ config("default_warnings") {
-         cflags += [ "-Wno-nonportable-include-path" ]
-       }
+@@ -1502,7 +1502,7 @@ config("default_warnings") {
+       "-Wno-unneeded-internal-declaration",
+     ]
  
--      if (current_toolchain == host_toolchain || !use_xcode_clang) {
-+      if ((current_toolchain == host_toolchain || !use_xcode_clang) && !is_bsd) {
-         # Flags NaCl (Clang 3.7) and Xcode 9.2 (Clang clang-900.0.39.2) do not
-         # recognize.
-         cflags += [
-@@ -1849,7 +1849,7 @@ config("export_dynamic") {
- config("thin_archive") {
-   # The macOS and iOS default linker ld64 does not support reading thin
+-    if (!is_nacl || is_nacl_saigo) {
++    if ((!is_nacl || is_nacl_saigo) && !is_bsd) {
+       if (is_win) {
+         # TODO(thakis): https://crbug.com/617318
+         # Currently goma can not handle case sensitiveness for windows well.
+@@ -1791,7 +1791,7 @@ config("thin_archive") {
    # archives.
--  if ((is_posix && !is_nacl && (!is_apple || use_lld)) || is_fuchsia) {
-+  if ((is_posix && !is_nacl && (!is_apple || use_lld) && !is_bsd) || is_fuchsia) {
+   # TODO(crbug.com/1221615): Enable on is_apple if use_lld once that no longer
+   # confuses lldb.
+-  if ((is_posix && !is_nacl && !is_apple) || is_fuchsia) {
++  if ((is_posix && !is_nacl && !is_apple && !is_bsd) || is_fuchsia) {
      arflags = [ "-T" ]
    } else if (is_win && use_lld) {
      arflags = [ "/llvmlibthin" ]
-@@ -2383,7 +2383,7 @@ config("symbols") {
+@@ -2289,7 +2289,7 @@ config("symbols") {
      # flag, so we can use use -g1 for pnacl and nacl-clang compiles.
      # gcc nacl is is_nacl && !is_clang, pnacl and nacl-clang are && is_clang.
-     if (!is_nacl || is_clang) {
+     if ((!is_nacl || is_clang) && current_os != "zos") {
 -      cflags += [ "-g2" ]
 +      cflags += [ "-g0" ]
      }
  
-     # TODO(https://crbug.com/1050118): Investigate missing debug info on mac.
-@@ -2416,7 +2416,7 @@ config("symbols") {
-     # DWARF info may be corrupt; offsets in a range list entry are in different
+     if (!is_nacl && is_clang && !is_tsan && !is_asan &&
+@@ -2329,7 +2329,7 @@ config("symbols") {
      # sections" there.  Maybe just a bug in nacl_switch_32.S.
-     if (!is_apple && !is_nacl && current_cpu != "x86" &&
--        (use_gold || use_lld)) {
-+        (use_gold || use_lld) && !is_bsd) {
-       if (is_clang) {
-         # This flag enables the GNU-format pubnames and pubtypes sections,
-         # which lld needs in order to generate a correct GDB index.
+     _enable_gdb_index =
+         symbol_level == 2 && !is_apple && !is_nacl && current_cpu != "x86" &&
+-        current_os != "zos" && (use_gold || use_lld) &&
++        current_os != "zos" && (use_gold || use_lld) && !is_bsd &&
+         # Disable on non-fission 32-bit Android because it pushes
+         # libcomponents_unittests over the 4gb size limit.
+         !(is_android && !use_debug_fission && current_cpu != "x64" &&
+@@ -2347,7 +2347,7 @@ config("symbols") {
+   }
+ 
+   if (is_clang && (!is_nacl || is_nacl_saigo) && current_os != "zos") {
+-    if (is_apple) {
++    if (is_apple || is_bsd) {
+       # TODO(https://crbug.com/1050118): Investigate missing debug info on mac.
+       # Make sure we don't use constructor homing on mac.
+       cflags += [

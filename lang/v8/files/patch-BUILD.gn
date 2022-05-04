@@ -1,24 +1,24 @@
---- BUILD.gn.orig	2021-07-29 20:22:05 UTC
-+++ BUILD.gn
-@@ -3250,7 +3250,7 @@ v8_header_set("v8_internal_headers") {
- 
-     # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
-     # based on Darwin and thus POSIX-compliant to a similar degree.
--    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd") {
-+    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd" || target_os == "midnightbsd") {
-       sources += [ "src/trap-handler/handler-inside-posix.h" ]
-     }
-     if (is_win) {
-@@ -4148,7 +4148,7 @@ v8_source_set("v8_base_without_compiler"
- 
-     # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
-     # based on Darwin and thus POSIX-compliant to a similar degree.
--    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd") {
-+    if (is_linux || is_chromeos || is_mac || is_ios || target_os == "freebsd" || target_os == "midnightbsd") {
-       sources += [
-         "src/trap-handler/handler-inside-posix.cc",
-         "src/trap-handler/handler-outside-posix.cc",
-@@ -4667,7 +4667,7 @@ v8_component("v8_libbase") {
+--- BUILD.gn.orig	2022-04-13 14:41:48.000000000 -0400
++++ BUILD.gn	2022-05-02 16:12:03.442705000 -0400
+@@ -3629,7 +3629,7 @@
+       # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
+       # based on Darwin and thus POSIX-compliant to a similar degree.
+       if (is_linux || is_chromeos || is_mac || is_ios ||
+-          target_os == "freebsd") {
++          target_os == "freebsd"  || target_os == "midnightbsd") {
+         sources += [ "src/trap-handler/handler-inside-posix.h" ]
+       } else if (is_win) {
+         sources += [ "src/trap-handler/handler-inside-win.h" ]
+@@ -4569,7 +4569,7 @@
+       # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
+       # based on Darwin and thus POSIX-compliant to a similar degree.
+       if (is_linux || is_chromeos || is_mac || is_ios ||
+-          target_os == "freebsd") {
++          target_os == "freebsd"  || target_os == "midnightbsd") {
+         sources += [
+           "src/trap-handler/handler-inside-posix.cc",
+           "src/trap-handler/handler-outside-posix.cc",
+@@ -5156,7 +5156,7 @@
      }
    }
  
@@ -27,7 +27,7 @@
      sources += [
        "src/base/debug/stack_trace_posix.cc",
        "src/base/platform/platform-linux.cc",
-@@ -4684,6 +4684,12 @@ v8_component("v8_libbase") {
+@@ -5173,6 +5173,12 @@
      ]
  
      libs = [ "dl" ]
@@ -40,7 +40,7 @@
    } else if (is_android) {
      if (current_toolchain == host_toolchain) {
        libs = [
-@@ -5156,6 +5162,7 @@ if (v8_monolithic) {
+@@ -5684,6 +5690,7 @@
        ":v8_libplatform",
        "//build/win:default_exe_manifest",
      ]

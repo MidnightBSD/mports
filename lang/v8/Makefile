@@ -1,8 +1,8 @@
 # We follow the stable channel on https://omahaproxy.appspot.com/
-# https://chromium.googlesource.com/v8/v8/+/refs/heads/9.2-lkgr
+# https://chromium.googlesource.com/v8/v8/+/refs/heads/9.9-lkgr
 
 PORTNAME=	v8
-PORTVERSION=	9.2.230.22
+PORTVERSION=	10.0.139.15
 CATEGORIES=	lang
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet/v8/${PORTVERSION:R:R}
 DISTFILES=	build-${BUILD_REV}.tar.gz \
@@ -12,8 +12,8 @@ DISTFILES=	build-${BUILD_REV}.tar.gz \
 		googletest-${GOOGLETEST_REV}.tar.gz \
 		icu-${ICU_REV}.tar.gz \
 		zlib-${ZLIB_REV}.tar.gz
-EXTRACT_ONLY=	${DISTNAME}.tar.gz
 DIST_SUBDIR=	v8/${PORTVERSION:R:R}
+EXTRACT_ONLY=	${DISTNAME}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source JavaScript engine by Google
@@ -39,13 +39,15 @@ USE_GITHUB=	yes
 
 CPE_VENDOR=	google
 
-BUILD_REV=	4036cf1b17581f5668b487a25e252d56e0321a7f
-BUILDTOOLS_REV=	20b1d0fc13ebaa263a1248f08814f523a86e6bed
-CLANG_REV=	a38f01b956e091d5e698d2af484c81cd4e9a2a2d
-COMMON_REV=	d5bb24e5d9802c8c917fcaa4375d5239a586c168
-GOOGLETEST_REV=	23ef29555ef4789f555f1ba8c51b4c52975f0907
-ICU_REV=	f022e298b4f4a782486bb6d5ce6589c998b51fe2
-ZLIB_REV=	5b8d433953beb2a75a755ba321a3076b95f7cdb9
+CONFLICTS_INSTALL=	v8-beta
+
+BUILD_REV=	62a6377648eb82cff75e3a12f689400694fbbb63
+BUILDTOOLS_REV=	169eef5b952dea9b285bf1a0a7aff7518a3ed907
+CLANG_REV=	62e2cd966f93a27aab0953ce7c2d83ffd6bdfdcc
+COMMON_REV=	d115b033c4e53666b535cbd1985ffe60badad082
+GOOGLETEST_REV=	ea55f1f52c489535f0d3b583c81529762c9cb5ea
+ICU_REV=	b867f209e4b56b0a8c01aaaba3882ad41e438c4f
+ZLIB_REV=	9538f4194f6e5eff1bd59f2396ed9d05b1a8d801
 
 # Run "gn args --list out/Release" for all variables.
 # Some parts don't have use_system_* flag, and can be turned on/off by using
@@ -74,7 +76,7 @@ post-extract:
 post-patch:
 	@${REINPLACE_CMD} -i '' 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/build/toolchain/gcc_toolchain.gni ${WRKSRC}/buildtools/third_party/libc++/BUILD.gn
 	# https://github.com/klzgrad/naiveproxy/blob/master/src/build/config/gclient_args.gni
-	${ECHO_CMD} 'checkout_google_benchmark = false' > ${WRKSRC}/build/config/gclient_args.gni
+	@${ECHO_CMD} 'checkout_google_benchmark = false' > ${WRKSRC}/build/config/gclient_args.gni
 
 # Use ICU from ports and create needed directory
 pre-configure:
