@@ -12,19 +12,19 @@ _INCLUDE_BSD_DEFAULT_VERSIONS_MK=	yes
 LOCALBASE?=	/usr/local
 MPORT_CMD?=	/usr/sbin/mport
 
-.for lang in APACHE BDB COROSYNC EMACS FIREBIRD FORTRAN FPC GCC GHOSTSCRIPT GL \
+.  for lang in APACHE BDB COROSYNC EMACS FIREBIRD FORTRAN FPC GCC GHOSTSCRIPT GL \
 	IMAGEMAGICK JAVA LAZARUS LIBRSVG2 LINUX LLVM LUA MYSQL NINJA NODEJS PERL5 \
 	PGSQL PHP PYTHON PYTHON2 PYTHON3 RUBY RUST SAMBA SSL TCLTK VARNISH
-.if defined(${lang}_DEFAULT)
+.    if defined(${lang}_DEFAULT)
 ERROR+=	"The variable ${lang}_DEFAULT is set and it should only be defined through DEFAULT_VERSIONS+=${lang:tl}=${${lang}_DEFAULT} in /etc/make.conf"
-.endif
+.    endif
 #.undef ${lang}_DEFAULT
-.endfor
+.  endfor
 
-.for lang in ${DEFAULT_VERSIONS}
+.  for lang in ${DEFAULT_VERSIONS}
 _l=		${lang:C/=.*//g}
 ${_l:tu}_DEFAULT=	${lang:C/.*=//g}
-.endfor
+.  endfor
 
 # Possible values: 2.4
 APACHE_DEFAULT?=	2.4
@@ -112,7 +112,7 @@ check-makevars::
 .  endif
 # Make sure we have a default in the end
 SSL_DEFAULT?=	base
-.endif
+.  endif
 # Possible values: 8.5, 8.6, 8.7
 TCLTK_DEFAULT?=		8.6
 
