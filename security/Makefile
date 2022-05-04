@@ -182,6 +182,7 @@ SUBDIR += py-service_identity
 SUBDIR += rhash
 SUBDIR += seahorse
 SUBDIR += security-advisory-client
+SUBDIR += signify
 SUBDIR += skipfish
 SUBDIR += smap
 SUBDIR += snort
