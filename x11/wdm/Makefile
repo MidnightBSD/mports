@@ -1,10 +1,8 @@
-
-
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11 windowmaker
-MASTER_SITES=	http://voins.program.ru/wdm/:wdm \
+MASTER_SITES=	http://freebsd.nsu.ru/distfiles/wdm/:wdm GENTOO:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \
 		FREEBSD_LOCAL/tg:pic_small
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:wdm \
@@ -20,14 +18,12 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libWINGs.so:x11-wm/windowmaker
 
-NOT_FOR_ARCHS=	sparc64
-
 OPTIONS_DEFINE=	PAM
 OPTIONS_DEFAULT=	PAM
 OPTIONS_SUB=	yes
 
-USES=		gettext tar:bzip2
-USE_XORG=	x11 xmu
+USES=		gettext localbase tar:bzip2 xorg
+USE_XORG=	ice sm x11 xau xdmcp xext xinerama xmu
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	DEF_SERVER="${DEF_SERVER}" XRDB_PATH="${XRDB_PATH}"
 CONFIGURE_ARGS=	--with-logdir=/var/log \
@@ -42,8 +38,8 @@ CONFIGURE_ARGS=	--with-logdir=/var/log \
 		--with-defsystempath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin \
 		--with-wmlist=wmaker:afterstep:blackbox:ctwm:enlightenment:fvwm:fvwm2:fvwm95:olvwm:qvwm:tvtwm
 
-CPPFLAGS+=	-I${LOCALBASE}/include -DCSRG_BASED -DHAS_SETUSERCONTEXT
-LIBS+=		-L${LOCALBASE}/lib -lintl
+CPPFLAGS+=	-DCSRG_BASED -DHAS_SETUSERCONTEXT
+LIBS+=		-lintl
 
 DEF_SERVER?=	${LOCALBASE}/bin/X
 XRDB_PATH?=	${LOCALBASE}/bin/xrdb
