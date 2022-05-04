@@ -1,10 +1,8 @@
-
-
 PORTNAME=	docbook-to-man
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.oasis-open.org/docbook/tools/dtm/
+MASTER_SITES=	https://www.oasis-open.org/docbook/tools/dtm/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,48 +10,32 @@ COMMENT=	DocBook SGML DTD into nroff/troff -man macros converter
 
 LICENSE=	unknown
 
-RUN_DEPENDS=	docbook>0:${PORTSDIR}/textproc/docbook
+RUN_DEPENDS=	docbook>0:textproc/docbook
 
 FAKE_OPTS=	trueprefix
 
-.include <bsd.port.pre.mk>
+USES=		imake
 
-# Global variables
-#
+MAKE_JOBS_UNSAFE=	yes
 
 # There are two ports that satisfy the nsgmls requirement.
-# Jade is preferred.
+# Jade is preferred, but OpenJade can be selected if needed.
+OPTIONS_DEFINE=	OPENJADE
+OPENJADE_DESC=	Use OpenJade SGML/XML/DSSSL toolkit instead of Jade
 
-.if defined(WITH_OPENJADE)
-RUN_DEPENDS=	onsgmls:${PORTSDIR}/textproc/openjade
-.else
-RUN_DEPENDS=	nsgmls:${PORTSDIR}/textproc/jade
-.endif
+OPENJADE_RUN_DEPENDS=	onsgmls:textproc/openjade
+OPENJADE_RUN_DEPENDS_OFF=	nsgmls:textproc/jade
 
-USE_IMAKE=	yes
-XFREE86_HTML_MAN= no
-
-.if defined(WITH_OPENJADE)
-NSGMLS=		onsgmls
-.else
-NSGMLS=		nsgmls
-.endif
-
-# Post extract
-#
-
-post-extract: move-instant.1
-
-move-instant.1:
+post-extract:
 	@${MV} ${WRKSRC}/Doc/instant.1 ${WRKSRC}/Instant/oinstant.man
 
-# Post patch
-#
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' ${WRKSRC}/cmd/docbook-to-man.sh
 
-post-patch: patch-docbook-to-man
+post-patch-OPENJADE-off:
+	@${REINPLACE_CMD} -e 's|%%NSGMLS%%|nsgmls|' ${WRKSRC}/cmd/docbook-to-man.sh
 
-patch-docbook-to-man:
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|;s|%%NSGMLS%%|${NSGMLS}|' \
-		${WRKSRC}/cmd/docbook-to-man.sh
+post-patch-OPENJADE-on:
+	@${REINPLACE_CMD} -e 's|%%NSGMLS%%|onsgmls|' ${WRKSRC}/cmd/docbook-to-man.sh
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
