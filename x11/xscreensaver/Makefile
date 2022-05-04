@@ -1,5 +1,5 @@
 PORTNAME=	xscreensaver
-PORTVERSION=	5.45
+PORTVERSION=	6.02
 CATEGORIES=	x11
 MASTER_SITES=	https://www.jwz.org/xscreensaver/ \
 		https://ftp.osuosl.org/pub/blfs/conglomeration/xscreensaver/
