@@ -1,8 +1,8 @@
---- config.guess.orig	2009-02-09 01:55:38 -0500
-+++ config.guess	2009-02-09 01:56:56 -0500
-@@ -1324,6 +1324,15 @@
-     i*86:rdos:*:*)
- 	echo ${UNAME_MACHINE}-pc-rdos
+--- config.guess.orig	2020-04-05 14:59:54 UTC
++++ config.guess
+@@ -1403,6 +1403,15 @@ EOF
+     amd64:Isilon\ OneFS:*:*)
+ 	echo x86_64-unknown-onefs
  	exit ;;
 +    *:MidnightBSD:*:*)
 +        case ${UNAME_MACHINE} in
@@ -15,4 +15,4 @@
 +
  esac
  
- #echo '(No uname command or uname output not recognized.)' 1>&2
+ cat >&2 <<EOF

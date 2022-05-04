@@ -1,6 +1,6 @@
---- config.sub.orig	2018-09-09 13:45:32.597834000 -0400
-+++ config.sub	2018-09-09 13:45:44.783471000 -0400
-@@ -1399,7 +1399,7 @@
+--- config.sub.orig	2020-04-05 14:59:54 UTC
++++ config.sub
+@@ -1399,7 +1399,7 @@ case $os in
  	      | -morphos* | -superux* | -rtmk* | -rtmk-nova* | -windiss* \
  	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei* | -dragonfly* \
  	      | -skyos* | -haiku* | -rdos* | -toppers* | -drops* | -es* \

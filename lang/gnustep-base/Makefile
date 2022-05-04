@@ -3,7 +3,7 @@
 PORTNAME=	gnustep-base
 DISTVERSIONPREFIX=	base-
 DISTVERSION=	1_27_0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang devel gnustep
 
 MAINTAINER=	ports@MidnightBSD.org

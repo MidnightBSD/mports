@@ -1,6 +1,6 @@
---- configure.ac.orig	2009-02-09 02:03:06 -0500
-+++ configure.ac	2009-02-09 02:03:51 -0500
-@@ -110,7 +110,7 @@
+--- configure.ac.orig	2020-04-05 14:59:54 UTC
++++ configure.ac
+@@ -114,7 +114,7 @@ AC_SUBST(cc_bundle)
  # specific target_os options
  #--------------------------------------------------------------------
  case "$target_os" in
@@ -9,9 +9,9 @@
  	        INCLUDES="$INCLUDES -I/usr/local/include"
  		LIB_DIR="$LIB_DIR -L/usr/local/lib";;
    netbsd*)	INCLUDES="$INCLUDES -I/usr/pkg/include"
-@@ -1115,6 +1115,20 @@
-     AC_TRY_RUN([#include "config_thread.m"], objc_threaded="-lpcthread",
- 	objc_threaded="", objc_threaded="-lpcthread")
+@@ -1166,6 +1166,20 @@ elif test "`echo $host_os|sed 's/[[0-9]]
+           objc_threaded="works",
+ 	  objc_threaded="", objc_threaded="works")
    fi
 +elif test "`echo $host_os|sed 's/[[0-9]].*//'|sed s/elf//`" = midnightbsd; then
 +  LIBS="-pthread -lobjc"
@@ -29,4 +29,4 @@
 +  fi
  elif test "$MINGW32" = yes; then
    # Mingw doesn't need anything extra for threads
-   LIBS="-lobjc $LIBS"
+   LIBS="$OBJCRT $LIBS"

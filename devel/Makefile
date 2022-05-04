@@ -727,6 +727,7 @@ SUBDIR += pcre2
 SUBDIR += pcsc-lite
 SUBDIR += pear
 SUBDIR += pear-Text_Diff
+SUBDIR += pear-channel-geshi
 SUBDIR += pear-geshi
 SUBDIR += pecl-APCu
 SUBDIR += performance
