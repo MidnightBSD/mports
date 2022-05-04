@@ -1,7 +1,7 @@
-
-#
 # Include CPE information in package manifest as a CPE 2.3 formatted
-# string.  See http://scap.nist.gov/specifications/cpe/ for details.
+# string.
+# See https://csrc.nist.gov/projects/security-content-automation-protocol/specifications/cpe
+# for details.
 #
 # CPE_PART		Defaults to "a" for "application".
 # CPE_VENDOR		Defaults to same as ${CPE_PRODUCT} (below).
@@ -20,9 +20,9 @@
 _INCLUDE_USES_CPE_MK=    yes
 
 CPE_PART	?= a
-CPE_PRODUCT	?= ${PORTNAME}
+CPE_PRODUCT	?= ${PORTNAME:tl}
 CPE_VENDOR	?= ${CPE_PRODUCT}
-CPE_VERSION	?= ${PORTVERSION}
+CPE_VERSION	?= ${PORTVERSION:tl}
 CPE_UPDATE	?=
 CPE_EDITION	?=
 CPE_LANG	?=
