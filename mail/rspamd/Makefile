@@ -1,5 +1,6 @@
 PORTNAME=	rspamd
 PORTVERSION=	3.2
+PORTREVISION=	1
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -8,8 +9,8 @@ COMMENT=	Fast spam filtering system
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-LIB_DEPENDS=	libpcre.so:devel/pcre \
-		libicui18n.so:devel/icu \
+LIB_DEPENDS=	libicui18n.so:devel/icu \
+		libpcre2-8.so:devel/pcre2 \
 		libsodium.so:security/libsodium
 BUILD_DEPENDS=	ragel:devel/ragel
 RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
