@@ -979,6 +979,7 @@ SUBDIR += py-smmap2
 SUBDIR += py-sniffio
 SUBDIR += py-sortedcontainers
 SUBDIR += py-stdnum
+SUBDIR += py-subprocess-tee
 SUBDIR += py-subversion
 SUBDIR += py-sure
 SUBDIR += py-tabulate
