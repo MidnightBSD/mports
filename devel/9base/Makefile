@@ -1,8 +1,7 @@
 
 
 PORTNAME=	9base
-DISTVERSION=	b20100604
-PORTREVISION=	1
+PORTVERSION=	20170701
 CATEGORIES=	devel
 MASTER_SITES=	http://dl.suckless.org/tools/
 DISTNAME=	${PORTNAME}-6
@@ -11,20 +10,31 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of various original plan9 tools
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CFLAGS+=	-I. -c
-LDFLAGS+=	-L.
+ONLY_FOR_ARCHS=		amd64 i386 powerpc powerpc64 powerpc64le sparc64
+ONLY_FOR_ARCHS_REASON=	has low-level code unavailable for ${ARCH}
+
+USES=		cpe shebangfix
+CPE_VENDOR=	${PORTNAME}_project
+SHEBANG_FILES=	troff/tmac/sendcover \
+		troff/font/devutf/mkMAP
+SHEBANG_LANG=	rc
+rc_OLD_CMD=	${PREFIX}/bin/rc
+rc_CMD=		${PREFIX}/9/bin/rc
 MANPREFIX=	${PREFIX}/9
 MAKE_ARGS=	PREFIX="${PREFIX}/9" CC="${CC}" MANPREFIX="${MANPREFIX}/man" \
-		CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+		CFLAGS="${CFLAGS} -I. -c" LDFLAGS="${LDFLAGS} -L."
 MAKE_JOBS_UNSAFE=	yes
-APPS=		ascii awk basename bc cal cat cleanname cmp date dc du dd diff echo ed \
-		factor fortune fmt freq getflags grep hoc join look ls mk mkdir mtime pbd \
-		primes rc read sam sha1sum sed seq sleep sort split strings tail tee test \
-		touch tr troff unicode uniq unutf yacc
+
+# Fix build on current
+CFLAGS+=	-fcommon
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|PREFIX|"${PREFIX}/9"|' ${WRKSRC}/lib9/get9root.c
-	@${REINPLACE_CMD} -e '/OBJTYPE!=/s|!=.*|=${ARCH:S,i386,386,:S,amd64,x86_64,:S,sparc64,sun4u,}|' ${WRKSRC}/lib9/Makefile
+
+post-install:
+	@${FILE} ${STAGEDIR}${PREFIX}/9/bin/* | ${AWK} -F: '/ not stripped/{print $$1}' | \
+		${XARGS} ${STRIP_CMD}
 
 .include <bsd.port.mk>

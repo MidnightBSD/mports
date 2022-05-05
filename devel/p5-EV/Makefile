@@ -1,7 +1,7 @@
 # Created by: Vladimir Timofeev <vovkasm@gmail.com>
 
 PORTNAME=	EV
-PORTVERSION=	4.22
+PORTVERSION=	4.33
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
