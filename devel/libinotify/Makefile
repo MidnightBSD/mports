@@ -1,6 +1,5 @@
 PORTNAME=	libinotify
-PORTVERSION=	20180201
-PORTREVISION=	2
+PORTVERSION=	20211018
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/libinotify-kqueue/libinotify-kqueue/releases/download/${PORTVERSION}/
 
