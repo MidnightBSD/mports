@@ -129,7 +129,9 @@ sub api_runs {
      push(@runOut, {"blessed", $r->{blessed}, "status", $r->{status}, "created", $dt->strftime('%FT%TZ'),  "osversion", $r->{osversion}, "arch", $r->{arch}, "id", $r->{id}});
   }
 
-  print $p->header(-type => 'application/json');
+  print $p->header(
+	-type => 'application/json',
+	-Access-Control-Allow-Origin => '*');
 
   print encode_json(\@runOut);
 }
@@ -148,7 +150,8 @@ sub api_run_port_stats {
   if (!is_number($run)) {
         print $p->header(
             -type => 'application/json',
-            -status => '400 Bad Request'
+            -status => '400 Bad Request',
+            -Access-Control-Allow-Origin => '*'
         );
         print "{}";
         exit;
@@ -177,7 +180,7 @@ sub api_run_port_stats {
      });
   }
       
-  print $p->header(-type => 'application/json'), encode_json(\@results);
+  print $p->header(-type => 'application/json', -Access-Control-Allow-Origin => '*'), encode_json(\@results);
 }
 
 sub api_latest {
@@ -247,7 +250,7 @@ sub api_latest {
   $meta{num_packages} = scalar(%results);
   $meta{packages} = \%results;
     
-  print $p->header(-type => 'application/json'), encode_json(\%meta);
+  print $p->header(-type => 'application/json', -Access-Control-Allow-Origin => '*'), encode_json(\%meta);
 }
 
 
@@ -277,7 +280,8 @@ sub compare_runs {
 
             print $p->header(
                 -type=>'text/plain',
-                -status=> '400 Bad Request'
+                -status=> '400 Bad Request',
+                -Access-Control-Allow-Origin => '*'
             );
             print "One or more run ids missing.\n";
             exit;
@@ -395,7 +399,8 @@ sub blockers {
     if (!is_number($run)) {
         print $p->header(
             -type => 'text/plain',
-            -status => '400 Bad Request'
+            -status => '400 Bad Request',
+            -Access-Control-Allow-Origin => '*'
         );
         print "400 Bad Request\n";
         exit;
@@ -435,7 +440,8 @@ sub run_page {
     if (!is_number($run)) {
 	print $p->header(
             -type => 'text/plain',
-            -status => '400 Bad Request'
+            -status => '400 Bad Request',
+            -Access-Control-Allow-Origin => '*'
         );
         print "400 Bad Request\n";
         exit;
@@ -447,7 +453,8 @@ sub run_page {
     if ($@) {
         print $p->header(
             -type => 'text/plain',
-            -status => '404 Not Found'
+            -status => '404 Not Found',
+            -Access-Control-Allow-Origin => '*'
         );
         print "404 Not Found\n";
         exit;
@@ -481,7 +488,8 @@ sub port_page {
     if (!is_number($port)) {
         print $p->header(
             -type => 'text/plain',
-            -status => '400 Bad Request'
+            -status => '400 Bad Request',
+            -Access-Control-Allow-Origin => '*'
         );
         print "400 Bad Request\n";
         exit;
@@ -493,7 +501,8 @@ sub port_page {
   if ($@) {
       print $p->header(
               -type=>'text/plain',
-              -status=> '404 Not Found'
+              -status=> '404 Not Found',
+              -Access-Control-Allow-Origin => '*'
     );
     print "404 Not Found\n";
     exit;
@@ -575,7 +584,8 @@ sub machine_page {
     if (!is_number($machine)) {
         print $p->header(
             -type => 'text/plain',
-            -status => '400 Bad Request'
+            -status => '400 Bad Request',
+	    -Access-Control-Allow-Origin => '*'
         );
         print "400 Bad Request\n";
         exit;
@@ -587,7 +597,8 @@ sub machine_page {
     if ($@) {
         print $p->header(
             -type=>'text/plain',
-            -status=> '404 Not Found'
+            -status=> '404 Not Found',
+            -Access-Control-Allow-Origin => '*'
         );
         print "404 Not Found\n";
         exit;
@@ -707,7 +718,8 @@ sub async_machine_events {
     if (!is_number($run) || !is_number($machine)) {
         print $p->header(
             -type => 'text/plain',
-            -status => '400 Bad Request'
+            -status => '400 Bad Request',
+            -Access-Control-Allow-Origin => '*'
         );
         print "400 Bad Request\n";
         exit;
@@ -725,7 +737,7 @@ sub async_machine_events {
   my %details = (run => $run, machine => $machine, events => \@events);
   
   my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed->canonical;
-  print $p->header(-type => 'application/json'), $coder->encode(\%details);
+  print $p->header(-type => 'application/json', -Access-Control-Allow-Origin => '*'), $coder->encode(\%details);
 }
 
 sub async_run_port_stats {
@@ -742,7 +754,8 @@ sub async_run_port_stats {
     if (!is_number($run)) {
         print $p->header(
             -type => 'text/plain',
-            -status => '400 Bad Request'
+            -status => '400 Bad Request',
+            -Access-Control-Allow-Origin => '*'
         );
         print "400 Bad Request\n";
         exit;
@@ -774,13 +787,13 @@ sub async_run_port_stats {
 
 #  $details{html} = $tmpl->output;
   
-#  print $p->header(-type => 'application/json'), encode_json(\%details);
+#  print $p->header(-type => 'application/json', -Access-Control-Allow-Origin => '*'), encode_json(\%details);
 
 
   my %details = (run => $run, status => $status, events => \@results);
    
   my $coder = JSON::XS->new->utf8->pretty->allow_nonref->allow_blessed->canonical;
-  print $p->header(-type => 'application/json'), $coder->encode(\%details);
+  print $p->header(-type => 'application/json', -Access-Control-Allow-Origin => '*'), $coder->encode(\%details);
 
 }
   
@@ -802,7 +815,8 @@ sub browse {
     if ($@) {
         print $p->header(
             -type => 'text/plain',
-            -status => '404 Not Found'
+            -status => '404 Not Found',
+            -Access-Control-Allow-Origin => '*'
         );
         print "404 Not Found\n";
         exit;
