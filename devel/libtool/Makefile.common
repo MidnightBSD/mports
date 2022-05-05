@@ -1,6 +1,4 @@
-# $MidnightBSD$
-
-PORTVERSION=	2.4.6
+PORTVERSION=	2.4.7
 PORTREVISION?=	0 # Leave this zero. Set in Makefile instead.
 CATEGORIES=	devel
 MASTER_SITES=	GNU/libtool
