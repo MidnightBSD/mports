@@ -1,19 +1,19 @@
-
-
 PORTNAME=	libdevq
-PORTVERSION=	0.0.2
+PORTVERSION=	0.0.4
 CATEGORIES=	devel
-MASTER_SITES=	http://rainbow-runner.nl/freebsd/
+MASTER_SITES=	https://github.com/freebsd/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic Device Query and Monitor interface
 
-LICENSE=	mit
+LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
-USES=		libtool pathfix tar:xz
+USES=		autoreconf libtool pathfix tar:xz
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+
+PATHFIX_MAKEFILEIN=	Makefile.am
 
 OPTIONS_DEFINE=	PROGRAMS
 OPTIONS_SUB=	yes
