@@ -1,10 +1,13 @@
-
-
 PORTNAME=	libffi
-PORTVERSION=	3.2.1
-PORTREVISION=	1
+PORTVERSION=	3.3
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/${PORTNAME}
+
+PATCH_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/commit/
+PATCHFILES+=	01a75ed76ea7e57f1b7a5c183e2b1e890e6aa0fd.diff:-p1
+# This patch is for configure.ac.
+# A local patch against configure has been created in files/patch-configure.
+#PATCHFILES+=	8c50837f0b58ba5b2bcb1b424a2a4bfa01559fb2.diff:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foreign Function Interface
@@ -12,31 +15,21 @@ COMMENT=	Foreign Function Interface
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	runtest:${PORTSDIR}/misc/dejagnu
+TEST_DEPENDS=	runtest:misc/dejagnu
 
-USES=		libtool pathfix
+USES=		compiler:c11 cpe libtool pathfix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CPE_VENDOR=	libffi_project
 
-OPTIONS_DEFINE=	TESTS
-
-TESTS_DESC=		Include tools for test suite
-TESTS_BUILD_DEPENDS=	${TEST_DEPENDS}
-
+CONFIGURE_ARGS=	--disable-multi-os-directory
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 INSTALL_TARGET=	install-strip
 INFO=		libffi
-PLIST_SUB=	PORTVERSION=${PORTVERSION}
+TEST_TARGET=	check
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| -Wno-psabi||g' \
 		${WRKSRC}/testsuite/lib/libffi.exp
-
-post-install:
-	@${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffi.h ${PREFIX}/include/
-	@${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffitarget.h ${PREFIX}/include/
-
-regression-test: build
-	@(cd ${WRKSRC} && ${MAKE_CMD} check)
 
 .include <bsd.port.mk>
