@@ -1,6 +1,3 @@
-
-
-
 PORTNAME=	liboobs
 PORTVERSION=	3.0.0
 PORTREVISION=	2

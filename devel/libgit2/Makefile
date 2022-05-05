@@ -4,24 +4,27 @@
 # Tools/scripts/search_lib_depends_and_bump.sh devel/libgit2
 
 PORTNAME=	libgit2
-PORTVERSION=	1.0.0
-PORTREVISION=	1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.3.0
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/libgit2/libgit2/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable, pure C implementation of the Git core
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libpcre.so:devel/pcre
+LIB_DEPENDS=	libpcre2-8.so:devel/pcre2 \
+		libhttp_parser.so:www/http-parser
 
-USES=		cmake pkgconfig ssl
+USES=		cmake cpe pkgconfig ssl
+USE_GITHUB=	yes
 USE_LDCONFIG=	yes
+
+CMAKE_ARGS=	-DREGEX_BACKEND=pcre2 -DUSE_HTTP_PARSER=system
 CMAKE_OFF=	BUILD_CLAR
 
-PLIST_SUB=	PORTVERSION=${PORTVERSION} \
-		SHLIB_VER=${PORTVERSION:R}
+PLIST_SUB=	DISTVERSION=${DISTVERSION} \
+		SHLIB_VER=${DISTVERSION:R}
 
 OPTIONS_DEFINE=	SSH THREADS
 OPTIONS_DEFAULT=SSH THREADS
@@ -38,7 +41,7 @@ NO_TEST=	yes
 .if ${SSL_DEFAULT} == base
 post-patch:
 	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*openssl/ d" \
-		${WRKSRC}/cmake/Modules/SelectHTTPSBackend.cmake
+		${WRKSRC}/cmake/SelectHTTPSBackend.cmake
 .endif
 
 post-install:
