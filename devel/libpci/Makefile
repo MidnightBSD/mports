@@ -1,9 +1,7 @@
-
-
 PORTNAME=	libpci
-PORTVERSION=	3.2.1
+PORTVERSION=	3.8.0
 CATEGORIES=	devel
-MASTER_SITES=	ftp://atrey.karlin.mff.cuni.cz/pub/linux/pci/ \
+MASTER_SITES=	KERNEL_ORG/software/utils/pciutils \
 		FREEBSD_LOCAL/sunpoet
 DISTNAME=	pciutils-${PORTVERSION}
 
@@ -11,40 +9,43 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PCI configuration space I/O made easy
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
+RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids
+
+USES=		gmake tar:xz
 
 ALL_TARGET=	lib/libpci.a
-MAKE_ENV=	LANG=C
-USE_GMAKE=	yes
+CFLAGS+=	-fPIC
 USE_LDCONFIG=	yes
 
-PLIST_DIRS=	include/pci
-PLIST_FILES=	${LIBPCI_FILES} lib/libpci.so.3
+PLIST_FILES=	${LIBPCI_FILES} \
+		lib/libpci.so
+PORTDATA=	config.mk
 
-LIBPCI_FILES=	include/pci/config.h include/pci/header.h include/pci/pci.h \
-		include/pci/types.h lib/libpci.a lib/libpci.so \
+LIBPCI_FILES=	include/pci/config.h \
+		include/pci/header.h \
+		include/pci/pci.h \
+		include/pci/types.h \
+		lib/libpci.a \
+		lib/libpci.so.3 \
 		libdata/pkgconfig/libpci.pc
 
 post-patch:
 	@${LN} -s . ${WRKSRC}/lib/pci
-	@${REINPLACE_CMD} \
-		-e 's|^CC=.*$$|CC=${CC}|' \
-		-e 's|^CFLAGS=|CFLAGS+=|' \
-		-e 's|^IDSDIR=.*$$|IDSDIR=${PREFIX}/share/pciids|' \
-		-e 's|^OPT=.*$$|OPT=-fPIC|' \
-		-e 's|^PREFIX=.*$$|PREFIX=${PREFIX}|' \
-			${WRKSRC}/Makefile
-	@${REINPLACE_CMD} 's|^#include "|&pci/|' ${WRKSRC}/lib/pci.h
+
+do-configure:
+	@cd ${WRKSRC}/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} lib/config.h
 
 post-build:
-	cd ${WRKSRC}/lib/ && ${CC} ${CFLAGS} -shared *.o -lz -o libpci.so
+	@cd ${WRKSRC}/lib/ && ${CC} ${CFLAGS} ${STRIP} -Wl,-soname=libpci.so.3 -shared *.o -lz -o libpci.so.3
 
 do-install:
-	${MKDIR} ${PREFIX}/include/pci/
+	${MKDIR} ${STAGEDIR}${PREFIX}/include/pci/ ${STAGEDIR}${DATADIR}/
 .for file in ${LIBPCI_FILES}
-	${INSTALL_DATA} ${WRKSRC}/lib/${file:T} ${PREFIX}/${file}
+	${INSTALL_DATA} ${WRKSRC}/lib/${file:T} ${STAGEDIR}${PREFIX}/${file}
 .endfor
-	${LN} -fs libpci.so ${PREFIX}/lib/libpci.so.3
+	${LN} -fs libpci.so.3 ${STAGEDIR}${PREFIX}/lib/libpci.so
+	${INSTALL_DATA} ${WRKSRC}/lib/config.mk ${STAGEDIR}${DATADIR}/
 
 .include <bsd.port.mk>
