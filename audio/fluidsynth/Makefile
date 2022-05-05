@@ -1,6 +1,6 @@
 PORTNAME=	fluidsynth
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1.2
+DISTVERSION=	2.2.6
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,7 @@ COMMENT=	Real-time software synthesizer based on the SoundFont 2 specifications
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake gnome pkgconfig
+USES=		cmake cpe gnome pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	FluidSynth
 USE_GNOME=	glib20
