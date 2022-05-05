@@ -1,6 +1,6 @@
---- lib/Target/PowerPC/PPCTargetMachine.cpp.orig	2019-07-04 07:43:51 UTC
+--- lib/Target/PowerPC/PPCTargetMachine.cpp.orig	2020-12-18 19:57:38 UTC
 +++ lib/Target/PowerPC/PPCTargetMachine.cpp
-@@ -209,6 +209,20 @@ static PPCTargetMachine::PPCABI computeTargetABI(const
+@@ -212,6 +212,20 @@ static PPCTargetMachine::PPCABI computeT
    if (TT.isMacOSX())
      return PPCTargetMachine::PPC_ABI_UNKNOWN;
  

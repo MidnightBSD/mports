@@ -1,6 +1,6 @@
---- cmake/modules/AddSphinxTarget.cmake.orig
+--- cmake/modules/AddSphinxTarget.cmake.orig	2020-12-18 19:57:38 UTC
 +++ cmake/modules/AddSphinxTarget.cmake
-@@ -29,6 +29,8 @@
+@@ -34,6 +34,8 @@ function (add_sphinx_target builder proj
    endif()
  
    add_custom_target(${SPHINX_TARGET_NAME}
