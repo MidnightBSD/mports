@@ -1,7 +1,7 @@
 # Created by: ache
 
 PORTNAME=	URI
-PORTVERSION=	1.76
+PORTVERSION=	5.10
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,6 +11,7 @@ COMMENT=	Perl5 interface to Uniform Resource Identifier (URI) references
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	p5-Test-Needs>=0:devel/p5-Test-Needs
 
