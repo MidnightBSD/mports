@@ -1,31 +1,75 @@
+%%SITE_ARCH%%/auto/Mouse/Mouse.so
+%%SITE_ARCH%%/Squirrel.pm
 %%SITE_ARCH%%/Mouse.pm
-%%SITE_ARCH%%/Mouse/Exporter.pm
-%%SITE_ARCH%%/Mouse/Meta/Attribute.pm
-%%SITE_ARCH%%/Mouse/Meta/Class.pm
-%%SITE_ARCH%%/Mouse/Meta/Method.pm
-%%SITE_ARCH%%/Mouse/Meta/Method/Accessor.pm
-%%SITE_ARCH%%/Mouse/Meta/Method/Constructor.pm
-%%SITE_ARCH%%/Mouse/Meta/Method/Delegation.pm
-%%SITE_ARCH%%/Mouse/Meta/Method/Destructor.pm
-%%SITE_ARCH%%/Mouse/Meta/Module.pm
-%%SITE_ARCH%%/Mouse/Meta/Role.pm
-%%SITE_ARCH%%/Mouse/Meta/Role/Application.pm
-%%SITE_ARCH%%/Mouse/Meta/Role/Composite.pm
-%%SITE_ARCH%%/Mouse/Meta/Role/Method.pm
-%%SITE_ARCH%%/Mouse/Meta/TypeConstraint.pm
-%%SITE_ARCH%%/Mouse/Object.pm
-%%SITE_ARCH%%/Mouse/PurePerl.pm
-%%SITE_ARCH%%/Mouse/Role.pm
-%%SITE_ARCH%%/Mouse/Spec.pm
-%%SITE_ARCH%%/Mouse/Tiny.pm
-%%SITE_ARCH%%/Mouse/Tiny.pod
-%%SITE_ARCH%%/Mouse/TypeRegistry.pm
-%%SITE_ARCH%%/Mouse/Util.pm
+%%SITE_ARCH%%/Squirrel/Role.pm
+%%SITE_ARCH%%/ouse.pm
+%%SITE_ARCH%%/Mouse/XS.pod
 %%SITE_ARCH%%/Mouse/Util/MetaRole.pm
 %%SITE_ARCH%%/Mouse/Util/TypeConstraints.pm
-%%SITE_ARCH%%/Mouse/XS.pod
-%%SITE_ARCH%%/Squirrel.pm
-%%SITE_ARCH%%/Squirrel/Role.pm
+%%SITE_ARCH%%/Mouse/Exporter.pm
+%%SITE_ARCH%%/Mouse/Spec.pm
+%%SITE_ARCH%%/Mouse/Tiny.pod
+%%SITE_ARCH%%/Mouse/Util.pm
+%%SITE_ARCH%%/Mouse/Object.pm
+%%SITE_ARCH%%/Mouse/Tiny.pm
+%%SITE_ARCH%%/Mouse/PurePerl.pm
+%%SITE_ARCH%%/Mouse/Meta/Class.pm
+%%SITE_ARCH%%/Mouse/Meta/Role/Method.pm
+%%SITE_ARCH%%/Mouse/Meta/Role/Application.pm
+%%SITE_ARCH%%/Mouse/Meta/Role/Composite.pm
+%%SITE_ARCH%%/Mouse/Meta/Module.pm
+%%SITE_ARCH%%/Mouse/Meta/Attribute.pm
+%%SITE_ARCH%%/Mouse/Meta/TypeConstraint.pm
+%%SITE_ARCH%%/Mouse/Meta/Method/Constructor.pm
+%%SITE_ARCH%%/Mouse/Meta/Method/Accessor.pm
+%%SITE_ARCH%%/Mouse/Meta/Method/Destructor.pm
+%%SITE_ARCH%%/Mouse/Meta/Method/Delegation.pm
+%%SITE_ARCH%%/Mouse/Meta/Role.pm
+%%SITE_ARCH%%/Mouse/Meta/Method.pm
+%%SITE_ARCH%%/Mouse/TypeRegistry.pm
+%%SITE_ARCH%%/Mouse/Role.pm
 %%SITE_ARCH%%/Test/Mouse.pm
-%%SITE_ARCH%%/auto/Mouse/Mouse.so
-%%SITE_ARCH%%/ouse.pm
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::PurePerl.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/ouse.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Method::Delegation.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Class.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Attribute.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::XS.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Role.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Squirrel::Role.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::TypeConstraint.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Method::Constructor.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Method.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Role.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Test::Mouse.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Role::Application.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Role::Method.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Role::Composite.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Spec.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Module.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Method::Accessor.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Tiny.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Squirrel.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Util::MetaRole.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Util.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Meta::Method::Destructor.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::TypeRegistry.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Exporter.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Object.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Mouse::Util::TypeConstraints.3
+@dir %%SITE_ARCH%%/auto/Mouse
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%/Squirrel
+@dir %%SITE_ARCH%%/Mouse/Util
+@dir %%SITE_ARCH%%/Mouse/Meta/Role
+@dir %%SITE_ARCH%%/Mouse/Meta/Method
+@dir %%SITE_ARCH%%/Mouse/Meta
+@dir %%SITE_ARCH%%/Mouse
+@dir %%SITE_ARCH%%/Test
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
