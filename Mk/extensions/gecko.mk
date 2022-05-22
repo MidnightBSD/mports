@@ -331,7 +331,7 @@ MOZ_OPTIONS+=	--disable-v1-string-abi
 post-patch: gecko-post-patch
 
 gecko-post-patch:
-	@${RM} ${MOZCONFIG}
+	-${RM} ${MOZCONFIG}
 .if !defined(NOMOZCONFIG)
 .for arg in ${MOZ_OPTIONS}
 	@${ECHO_CMD} ac_add_options ${arg:Q} >> ${MOZCONFIG}
