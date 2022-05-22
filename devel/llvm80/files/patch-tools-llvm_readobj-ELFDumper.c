@@ -24,7 +24,7 @@
        OS << getGNUNoteTypeName(Type) << '\n';
        printGNUNote<ELFT>(OS, Type, Descriptor);
 -    } else if (Name == "FreeBSD") {
-+    } else if (Name == "FreeBSD") || (Name == "MidnightBSD") {
++    } else if (Name == "FreeBSD" || Name == "MidnightBSD") {
        OS << getFreeBSDNoteTypeName(Type) << '\n';
      } else if (Name == "AMD") {
        OS << getAMDNoteTypeName(Type) << '\n';
@@ -33,7 +33,7 @@
        W.printString("Type", getGNUNoteTypeName(Type));
        printGNUNoteLLVMStyle<ELFT>(Type, Descriptor, W);
 -    } else if (Name == "FreeBSD") {
-+    } else if (Name == "FreeBSD") || (Name == "MidnightBSD") {
++    } else if (Name == "FreeBSD" || Name == "MidnightBSD") {
        W.printString("Type", getFreeBSDNoteTypeName(Type));
      } else if (Name == "AMD") {
        W.printString("Type", getAMDNoteTypeName(Type));
