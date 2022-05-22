@@ -37,4 +37,6 @@ DOCS_BUILD_DEPENDS=	gtk-doc>0:textproc/gtk-doc
 DOCS_MESON_TRUE=	gtk_doc
 DOCSDIR=		${PREFIX}/share/gtk-doc/html/
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
