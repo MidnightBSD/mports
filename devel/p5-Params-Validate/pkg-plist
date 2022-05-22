@@ -6,8 +6,6 @@
 %%SITE_ARCH%%/Params/Validate.pm
 %%SITE_ARCH%%/Params/ValidatePP.pm
 %%SITE_ARCH%%/Params/ValidateXS.pm
-@dir share/licenses/p5-Params-Validate-1.29
-@dir share/licenses
 @dir %%SITE_PERL%%/%%PERL5_MAN3%%
 @dir %%SITE_PERL%%/man
 @dir %%SITE_ARCH%%/auto/Params/Validate/XS
