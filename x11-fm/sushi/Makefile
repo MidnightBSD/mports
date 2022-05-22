@@ -1,5 +1,3 @@
-
-
 PORTNAME=	sushi
 PORTVERSION=	3.28.3
 CATEGORIES=	x11-fm gnome
