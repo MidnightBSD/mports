@@ -68,6 +68,7 @@ SUBDIR += susv2
 SUBDIR += susv3
 SUBDIR += susv4
 SUBDIR += termatrix
+SUBDIR += terminfo-db
 SUBDIR += tvbrowser
 SUBDIR += unclutter
 SUBDIR += unicode-emoji
