@@ -3,7 +3,7 @@
 	type: install
 	message: <<EOM
 To get the terminfo database please install the terminfo-db package:
-pkg install terminfo-db
+mport install terminfo-db
 EOM
 }
 ]
