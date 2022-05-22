@@ -10,12 +10,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Podcast app for GNOME
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libhandy-1.so:x11-toolkits/libhandy
 
-USES=		cargo gettext gnome meson pkgconfig python:build shebangfix sqlite ssl
+USES=		cargo gettext gnome gstreamer meson pkgconfig python:build shebangfix sqlite ssl
 USE_GITLAB=	yes
 USE_GNOME=	gdkpixbuf2 gtk30
 USE_GSTREAMER1=	bad good libav
