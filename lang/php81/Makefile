@@ -606,4 +606,14 @@ post-extract:
 	@${CP} ${WRKSRC}/expat_compat.h ${WRKSRC}/ext/xml
 .endif
 .endif
+
+post-fake:
+	-${REINPLACE_CMD} -e 's/DragonFly/MidnightBSD/g' \
+		-e 's/dragonfly/midnightbsd/g' \
+		${FAKE_DESTDIR}${PREFIX}/lib/php/build/libtool.m4
+
+pre-build:
+	-${REINPLACE_CMD} -e 's/DragonFly/MidnightBSD/g' \
+		-e 's/dragonfly/midnightbsd/g' \
+		${WRKSRC}/ext/${PHP_MODNAME}/libtool
 .include <bsd.port.post.mk>
