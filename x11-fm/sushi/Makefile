@@ -12,7 +12,7 @@ COMMENT=	Tool similar to Gloobus Preview that provides quick file previews
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libgcr-3.so:security/gcr \
+LIB_DEPENDS=	libgcr-base-3.so:security/gcr \
 		libgjs.so:lang/gjs \
 		libclutter-gtk-1.0.so:graphics/clutter-gtk3 \
 		libclutter-gst-3.0.so:multimedia/clutter-gst3 \
@@ -24,7 +24,8 @@ LIB_DEPENDS=	libgcr-3.so:security/gcr \
 		libjson-glib-1.0.so:devel/json-glib \
 		libcogl.so:graphics/cogl \
 		libsoup-2.4.so:devel/libsoup \
-		libevdocument3.so:graphics/evince
+		libevdocument3.so:graphics/evince \
+		libepoxy.so:graphics/libepoxy
 RUN_DEPENDS=	nautilus:x11-fm/nautilus
 
 PORTSCOUT=	limitw:1,even
