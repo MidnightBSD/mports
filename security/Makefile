@@ -8,6 +8,7 @@ SUBDIR += blocklist-de-all
 SUBDIR += botan2
 SUBDIR += ca_root_nss
 SUBDIR += calife
+SUBDIR += cargo-audit
 SUBDIR += chroot_safe
 SUBDIR += clamav
 SUBDIR += clamav-unofficial-sigs

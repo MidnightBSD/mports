@@ -11,7 +11,7 @@ COMMENT=	Lightweight alternative to sudo
 
 LICENSE=	gpl2
 
-USES=		tar:xz
+USES=		cpe tar:xz
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc

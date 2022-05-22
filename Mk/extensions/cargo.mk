@@ -9,9 +9,9 @@
 .if !defined(_INCLUDE_USES_CARGO_MK)
 _INCLUDE_USES_CARGO_MK=	yes
 
-.if !empty(cargo_ARGS)
+.  if !empty(cargo_ARGS)
 IGNORE+=	USES=cargo takes no arguments
-.endif
+.  endif
 
 .sinclude "${MASTERDIR}/Makefile.crates"
 
@@ -36,15 +36,15 @@ CARGO_DIST_SUBDIR?=	rust/crates
 
 # Generate list of DISTFILES.
 # Prefer canonical file extension .crate going forward
-.if make(makesum)
+.  if make(makesum)
 CARGO_CRATE_EXT=	.crate
-.else
+.  else
 # If there is a rust/crates/*.tar.gz in distinfo keep using the old
 # extension.  We need to delay eval until the last moment for
 # DISTINFO_FILE.  We cache the command output to avoid multiple
 # slow grep runs for every CARGO_CRATE_EXT access.
 CARGO_CRATE_EXT=	${defined(_CARGO_CRATE_EXT_CACHE):?${_CARGO_CRATE_EXT_CACHE}:${:!if ${GREP} -q '\(${CARGO_DIST_SUBDIR}/.*\.tar\.gz\)' "${DISTINFO_FILE}" 2>/dev/null; then ${ECHO_CMD} .tar.gz; else ${ECHO_CMD} .crate; fi!:_=_CARGO_CRATE_EXT_CACHE}}
-.endif
+.  endif
 
 _CARGO_CRATES:=		${CARGO_CRATES:N*@git+*}
 _CARGO_GIT_SOURCES:=	${CARGO_CRATES:M*@git+*}
@@ -53,7 +53,7 @@ _CARGO_CRATES:=		${empty(_CARGO_CRATES):?:${_CARGO_CRATES:range:@i@$i ${_CARGO_C
 # split up crates into (index, crate, name, version) 4-tuples
 _CARGO_CRATES:=		${_CARGO_CRATES:C/^([-_a-zA-Z0-9]+)-([0-9].*)/\0 \1 \2/}
 
-.for _index _crate _name _version in ${_CARGO_CRATES}
+.  for _index _crate _name _version in ${_CARGO_CRATES}
 # Resolving CRATESIO alias is very inefficient with many MASTER_SITES, consume MASTER_SITE_CRATESIO directly
 MASTER_SITES+=	${MASTER_SITE_CRATESIO:S,%SUBDIR%,${_name}/${_version},:S,$,:_cargo_${_index},}
 DISTFILES+=	${CARGO_DIST_SUBDIR}/${_crate}${CARGO_CRATE_EXT}:_cargo_${_index}
@@ -63,7 +63,7 @@ WRKSRC_crate_${_name}=	${CARGO_VENDOR_DIR}/${_crate}
 # ...  also with version suffix in case of multiple versions of the
 # same crate
 WRKSRC_crate_${_crate}=	${CARGO_VENDOR_DIR}/${_crate}
-.endfor
+.  endfor
 
 _CARGO_AWK=	${AWK} -vCP="${CP}" -vFIND="${FIND}" -vGREP="${GREP}" \
 		-vCARGO_VENDOR_DIR="${CARGO_VENDOR_DIR}" \
@@ -72,11 +72,11 @@ _CARGO_AWK=	${AWK} -vCP="${CP}" -vFIND="${FIND}" -vGREP="${GREP}" \
 		-f${SCRIPTSDIR}/split-url.awk \
 		-f${SCRIPTSDIR}/cargo-crates-git-common.awk -f
 
-.if !empty(_CARGO_GIT_SOURCES)
-.  for _index _site _filename _wrksrc _crates in ${:!${_CARGO_AWK} ${SCRIPTSDIR}/cargo-crates-git-fetch.awk /dev/null!}
+.  if !empty(_CARGO_GIT_SOURCES)
+.    for _index _site _filename _wrksrc _crates in ${:!${_CARGO_AWK} ${SCRIPTSDIR}/cargo-crates-git-fetch.awk /dev/null!}
 MASTER_SITES+=	${_site}:_cargo_git${_index}
 DISTFILES+=	${_filename}:_cargo_git${_index}
-.    for _crate in ${_crates:S/,/ /g}
+.      for _crate in ${_crates:S/,/ /g}
 # Make sure the build dependencies checks below can work for git sourced crates too
 _CARGO_CRATES+=	@git ${_crate} ${_crate} @git
 
@@ -88,9 +88,9 @@ _CARGO_CRATES+=	@git ${_crate} ${_crate} @git
 # cannot set make variables at that point.  This is better than
 # nothing.
 WRKSRC_crate_${_crate}=	${WRKDIR}/${_wrksrc}
+.      endfor
 .    endfor
-.  endfor
-.endif
+.  endif
 
 # Build dependencies.
 
@@ -135,23 +135,23 @@ CARGO_ENV+= \
 	RUSTDOC=${RUSTDOC} \
 	RUSTFLAGS="${RUSTFLAGS} ${LDFLAGS:C/.+/-C link-arg=&/}"
 
-.if ${ARCH} != powerpc
+.  if ${ARCH} != powerpc
 CARGO_ENV+=	RUST_BACKTRACE=1
-.endif
+.  endif
 
 # Adjust -C target-cpu if -march/-mcpu is set by bsd.cpu.mk
-.if ${ARCH} == amd64 || ${ARCH} == i386
+.  if ${ARCH} == amd64 || ${ARCH} == i386
 RUSTFLAGS+=	${CFLAGS:M-march=*:S/-march=/-C target-cpu=/}
-.elif ${ARCH:Mpowerpc64*}
+.  elif ${ARCH:Mpowerpc*}
 RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/:S/power/pwr/}
-.else
+.  else
 RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/}
-.endif
+.  endif
 
-.if defined(PPC_ABI) && ${PPC_ABI} == ELFv1
+.  if defined(PPC_ABI) && ${PPC_ABI} == ELFv1
 USE_GCC?=	yes
 STRIP_CMD=	${LOCALBASE}/bin/strip # unsupported e_type with base strip
-.endif
+.  endif
 
 # Helper to shorten cargo calls.
 _CARGO_RUN=		${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${CARGO_ENV} ${CARGO}
@@ -174,40 +174,40 @@ CARGO_TEST?=	yes
 # might cause issues for users that for some reason space limit
 # their /tmp.  WRKDIR should have plenty of space.
 # Allow users and ports to still overwrite it.
-.if ${TMPDIR:U/tmp} == /tmp
+.  if ${TMPDIR:U/tmp} == /tmp
 TMPDIR=		${WRKDIR}
-.endif
+.  endif
 
 # Manage crate features.
-.if !empty(CARGO_FEATURES:M--no-default-features)
+.  if !empty(CARGO_FEATURES:M--no-default-features)
 CARGO_BUILD_ARGS+=	--no-default-features
 CARGO_INSTALL_ARGS+=	--no-default-features
 CARGO_TEST_ARGS+=	--no-default-features
-.endif
-.if !empty(CARGO_FEATURES:N--no-default-features)
+.  endif
+.  if !empty(CARGO_FEATURES:N--no-default-features)
 CARGO_BUILD_ARGS+=	--features='${CARGO_FEATURES:N--no-default-features}'
 CARGO_INSTALL_ARGS+=	--features='${CARGO_FEATURES:N--no-default-features}'
 CARGO_TEST_ARGS+=	--features='${CARGO_FEATURES:N--no-default-features}'
-.endif
+.  endif
 
-.if !defined(WITH_DEBUG)
+.  if !defined(WITH_DEBUG)
 CARGO_BUILD_ARGS+=	--release
 CARGO_TEST_ARGS+=	--release
-.else
+.  else
 CARGO_INSTALL_ARGS+=	--debug
-.endif
+.  endif
 
-.if ${CARGO_CRATES:Mcmake-[0-9]*}
+.  if ${_CARGO_CRATES:Mcmake}
 BUILD_DEPENDS+=	cmake:devel/cmake
-.endif
+.  endif
 
-.if ${CARGO_CRATES:Mgettext-sys-[0-9]*}
+.  if ${_CARGO_CRATES:Mgettext-sys}
 CARGO_ENV+=	GETTEXT_BIN_DIR=${LOCALBASE}/bin \
 		GETTEXT_INCLUDE_DIR=${LOCALBASE}/include \
 		GETTEXT_LIB_DIR=${LOCALBASE}/lib
-.endif
+.  endif
 
-.if ${CARGO_CRATES:Mjemalloc-sys-[0-9]*}
+.  if ${_CARGO_CRATES:Mjemalloc-sys}
 BUILD_DEPENDS+=	gmake:devel/gmake
 .endif
 
@@ -225,17 +225,17 @@ DEV_ERROR+=	"CARGO_CRATES=${libc} may be unstable on aarch64 or not build on arm
 .undef _libc_VER
 .endfor
 
-.if ${CARGO_CRATES:Mlibgit2-sys-[0-9]*}
+.  if ${_CARGO_CRATES:Mlibgit2-sys}
 # Use the system's libgit2 instead of building the bundled version
 CARGO_ENV+=	LIBGIT2_SYS_USE_PKG_CONFIG=1
-.endif
+.  endif
 
-.if ${CARGO_CRATES:Mlibssh2-sys-[0-9]*}
+.  if ${_CARGO_CRATES:Mlibssh2-sys}
 # Use the system's libssh2 instead of building the bundled version
 CARGO_ENV+=	LIBSSH2_SYS_USE_PKG_CONFIG=1
-.endif
+.  endif
 
-.if ${CARGO_CRATES:Monig_sys-[0-9]*}
+.  if ${_CARGO_CRATES:Monig_sys}
 # onig_sys always prefers the system library but will try to link
 # statically with it.  Since devel/oniguruma doesn't provide a static
 # library it'll link to libonig.so instead.  Strictly speaking setting
@@ -255,42 +255,42 @@ DEV_WARNING+=	"CARGO_CRATES=openssl-0.10.3 or older do not support OpenSSL 1.1.1
 .undef _openssl_VER
 .endif
 
-.if ${CARGO_CRATES:Mopenssl-src-[0-9]*}
+.  if ${_CARGO_CRATES:Mopenssl-src}
 DEV_WARNING+=	"Please make sure this port uses the system OpenSSL and consider removing CARGO_CRATES=${CARGO_CRATES:Mopenssl-src-[0-9]*} (a vendored copy of OpenSSL) from the build, e.g., by patching Cargo.toml appropriately."
-.endif
+.  endif
 
-.if ${CARGO_CRATES:Mopenssl-sys-[0-9]*}
+.  if ${_CARGO_CRATES:Mopenssl-sys}
 # Make sure that openssl-sys can find the correct version of OpenSSL
 CARGO_ENV+=	OPENSSL_LIB_DIR=${OPENSSLLIB} \
 		OPENSSL_INCLUDE_DIR=${OPENSSLINC}
-.endif
+.  endif
 
 .if ${CARGO_CRATES:Mpkg-config-[0-9]*}
 .include "${MPORTEXTENSIONS}/pkgconfig.mk"
 .endif
 
-.for _index _crate _name _version in ${_CARGO_CRATES}
+.  for _index _crate _name _version in ${_CARGO_CRATES}
 # Split up semantic version and try to sanitize it by removing
 # pre-release identifier (-) or build metadata (+)
-.  if ${_version:S/./ /:S/./ /:C/[-+].*//:_:[#]} == 3
-.    for _major _minor _patch in $_
+.    if ${_version:S/./ /:S/./ /:C/[-+].*//:_:[#]} == 3
+.      for _major _minor _patch in $_
 # FreeBSD 12.0 changed ABI: r318736 and r320043
 # https://github.com/rust-lang/libc/commit/78f93220d70e
 # https://github.com/rust-lang/libc/commit/969ad2b73cdc
-.      if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 38))
+.        if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 38))
 DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on FreeBSD 12.0. Consider updating to the latest version \(higher than 0.2.37\)."
-.      endif
-.      if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 49))
+.        endif
+.        if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 49))
 DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on aarch64 or not build on armv6, armv7, powerpc64. Consider updating to the latest version \(higher than 0.2.49\)."
-.      endif
+.        endif
 # FreeBSD 12.0 updated base OpenSSL in r339270:
 # https://github.com/sfackler/rust-openssl/commit/276577553501
-.      if ${_name} == openssl && !exists(${PATCHDIR}/patch-openssl-1.1.1) && ${_major} == 0 && (${_minor} < 10 || (${_minor} == 10 && ${_patch} < 4))
+.        if ${_name} == openssl && !exists(${PATCHDIR}/patch-openssl-1.1.1) && ${_major} == 0 && (${_minor} < 10 || (${_minor} == 10 && ${_patch} < 4))
 DEV_WARNING+=	"CARGO_CRATES=${_crate} does not support OpenSSL 1.1.1. Consider updating to the latest version \(higher than 0.10.3\)."
-.      endif
-.    endfor
-.  endif
-.endfor
+.        endif
+.      endfor
+.    endif
+.  endfor
 
 _USES_extract+=	600:cargo-extract
 cargo-extract:
@@ -298,8 +298,8 @@ cargo-extract:
 # the local crates directory.
 	@${ECHO_MSG} "===>  Moving crates to ${CARGO_VENDOR_DIR}"
 	@${MKDIR} ${CARGO_VENDOR_DIR}
-.for _index _crate _name _version in ${_CARGO_CRATES}
-.  if ${_index} != @git
+.  for _index _crate _name _version in ${_CARGO_CRATES}
+.    if ${_index} != @git
 	@${MV} ${WRKDIR}/${_crate} ${CARGO_VENDOR_DIR}/${_crate}
 	@${PRINTF} '{"package":"%s","files":{}}' \
 		$$(${SHA256} -q ${DISTDIR}/${CARGO_DIST_SUBDIR}/${_crate}${CARGO_CRATE_EXT}) \
@@ -308,10 +308,10 @@ cargo-extract:
 		${MV} ${CARGO_VENDOR_DIR}/${_crate}/Cargo.toml.orig \
 			${CARGO_VENDOR_DIR}/${_crate}/Cargo.toml.orig-cargo; \
 	fi
-.  endif
-.endfor
+.    endif
+.  endfor
 
-.if ${CARGO_CONFIGURE:tl} == "yes"
+.  if ${CARGO_CONFIGURE:tl} == "yes"
 _USES_configure+=	250:cargo-configure
 
 # configure hook.  Place a config file for overriding crates-io index
@@ -327,10 +327,10 @@ cargo-configure:
 	@${ECHO_CMD} "directory = '${CARGO_VENDOR_DIR}'" >> ${WRKDIR}/.cargo/config.toml
 	@${ECHO_CMD} "[source.crates-io]" >> ${WRKDIR}/.cargo/config.toml
 	@${ECHO_CMD} "replace-with = 'cargo'" >> ${WRKDIR}/.cargo/config.toml
-.if !empty(_CARGO_GIT_SOURCES)
+.    if !empty(_CARGO_GIT_SOURCES)
 	@${_CARGO_AWK} ${SCRIPTSDIR}/cargo-crates-git-configure.awk \
 		/dev/null >> ${WRKDIR}/.cargo/config.toml
-.endif
+.    endif
 	@${CAT} ${WRKDIR}/.cargo/config.toml
 	@if ! ${GREP} -qF '[profile.release]' ${CARGO_CARGOTOML}; then \
 		${ECHO_CMD} "" >> ${CARGO_CARGOTOML}; \
@@ -344,20 +344,20 @@ cargo-configure:
 		--verbose \
 		--verbose \
 		${CARGO_UPDATE_ARGS}
-.endif
+.  endif
 
-.if !target(do-build) && ${CARGO_BUILD:tl} == "yes"
+.  if !target(do-build) && ${CARGO_BUILD:tl} == "yes"
 do-build:
 	@${CARGO_CARGO_RUN} build \
 		--manifest-path ${CARGO_CARGOTOML} \
 		--verbose \
 		--verbose \
 		${CARGO_BUILD_ARGS}
-.endif
+.  endif
 
-.if !target(do-install) && ${CARGO_INSTALL:tl} == "yes"
+.  if !target(do-install) && ${CARGO_INSTALL:tl} == "yes"
 do-install:
-.  for path in ${CARGO_INSTALL_PATH}
+.    for path in ${CARGO_INSTALL_PATH}
 	@${CARGO_CARGO_RUN} install \
 		--no-track \
 		--path "${path}" \
@@ -365,21 +365,30 @@ do-install:
 		--verbose \
 		--verbose \
 		${CARGO_INSTALL_ARGS}
-.  endfor
-.endif
+.    endfor
+.  endif
 
-.if !target(do-test) && ${CARGO_TEST:tl} == "yes"
+.  if !target(do-test) && ${CARGO_TEST:tl} == "yes"
 do-test:
 	@${CARGO_CARGO_RUN} test \
 		--manifest-path ${CARGO_CARGOTOML} \
 		--verbose \
 		--verbose \
 		${CARGO_TEST_ARGS}
-.endif
+.  endif
 
 #
 # Helper targets for port maintainers
 #
+
+# cargo-audit generates a vulnerability report using
+# security/cargo-audit based on the crates in Cargo.lock.
+cargo-audit: configure
+	@if ! type cargo-audit > /dev/null 2>&1; then \
+		${ECHO_MSG} "===> Please install \"security/cargo-audit\""; exit 1; \
+	fi
+	@${ECHO_MSG} "===> Checking for vulnerable crates"
+	@${CARGO} audit --file ${CARGO_CARGOLOCK}
 
 # cargo-crates will output the crates list from Cargo.lock.  If there
 # is no Cargo.lock for some reason, try and generate it first.
@@ -409,13 +418,15 @@ cargo-crates-licenses: configure
 # cargo-crates-merge will in-place update CARGO_CRATES in the port
 # based on the crates list from Cargo.lock.  If there is no Cargo.lock
 # for some reason, try and generate it first.
-cargo-crates-merge: cargo-crates-generate-lockfile
+cargo-crates-merge:
 	@if ! type portedit > /dev/null 2>&1; then \
 		${ECHO_MSG} "===> Please install \"ports-mgmt/portfmt\""; exit 1; \
 	fi
+	@${MAKE} clean cargo-crates-generate-lockfile
 	@f="${MASTERDIR}/Makefile"; [ -r "${MASTERDIR}/Makefile.crates" ] && f="${MASTERDIR}/Makefile.crates"; \
 		${_CARGO_AWK} ${SCRIPTSDIR}/cargo-crates.awk ${CARGO_CARGOLOCK} | \
 			portedit merge -i $$f; \
-		${ECHO_MSG} "CARGO_CRATES in $$f was updated"
+		${MAKE} clean makesum; \
+		${ECHO_MSG} "${DISTINFO_FILE} and CARGO_CRATES in $$f were updated";
 
 .endif
