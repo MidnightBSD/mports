@@ -1,7 +1,7 @@
 # Created by: Dirk Froemberg <dirk@FreeBSD.org>
 
 PORTNAME=	openssl
-PORTVERSION=	1.1.1n
+PORTVERSION=	1.1.1o
 PORTEPOCH=	1
 PORTREVISION=	0
 CATEGORIES=	security devel
