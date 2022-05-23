@@ -17,11 +17,8 @@ Gstreamer_Pre_Include=		gstreamer.mk
 
 # Ports can use the following:
 #
-# For Gstreamer 0.10:
-#   USE_GSTREAMER=	lame faac ffmpeg
-#
-# For Gstreamer 1.x the same rules apply but instead of 
-#   USE_GSTREAMER=, USE_GSTREAMER1= is used.
+# For Gstreamer 1.x
+#   USE_GSTREAMER1= is used.
 #
 # If you want to use USE_GSTREAMER after <bsd.port.pre.mk>
 # you must follow one of the examples listed below
@@ -47,12 +44,6 @@ Gstreamer_Pre_Include=		gstreamer.mk
 # "Normal" dependencies and variables
 #
 
-GSTREAMER_PORT=		${PORTSDIR}/multimedia/gstreamer-plugins
-_GST_LIB_BASE=		${LOCALBASE}/lib/gstreamer-${GST_VERSION}
-GST_VERSION=		0.10
-GST_MINOR_VERSION=	.0
-GST_SHLIB_VERSION=	1
-
 GSTREAMER1_PORT=	${PORTSDIR}/multimedia/gstreamer1-plugins
 _GST1_LIB_BASE=		${LOCALBASE}/lib/gstreamer-${GST1_VERSION}
 GST1_VERSION=		1.4
@@ -61,7 +52,6 @@ GST1_SHLIB_VERSION=	0
 GST1_MINIMAL_VERSION=	.0
 
 # These are the current supported gstreamer-plugins modules:
-# Supported plugins by both 0.10 and 1.0.
 _GSTREAMER_PLUGINS= \
 		a52dec \
 		aalib \
@@ -113,36 +103,6 @@ _GSTREAMER_PLUGINS= \
 		wavpack \
 		x264
 
-# plugins only in 0.10
-.if defined(USE_GSTREAMER)
-_GSTREAMER_PLUGINS+= \
-		annodex \
-		bz2 \
-		cdaudio \
-		dvd \
-		ffmpeg \
-		fluendo-mp3 \
-		fluendo-mpegdemux \
-		gconf \
-		gio \
-		gnomevfs \
-		hal \
-		libpng \
-		mad \
-		mm \
-		mp3 \
-		nas \
-		python \
-		schroedinger \
-		spc \
-		sdl \
-		vdpau \
-		vp8 \
-		xvid
-.endif # USE_GSTREAMER
-
-# plugins only in 1.0
-.if defined(USE_GSTREAMER1)
 _GSTREAMER_PLUGINS+= \
 		aom \
 		assrender \
@@ -187,7 +147,6 @@ _GSTREAMER_PLUGINS+= \
 		ximagesrc \
 		zbar
 # vaapi
-.endif # USE_GSTREAMER1
 
 # other plugins
 _USE_GSTREAMER_ALL=	bad core good ugly yes ${_GSTREAMER_PLUGINS}
@@ -198,12 +157,9 @@ core_DEPENDS=	multimedia/gstreamer-plugins-core
 core_IMPL=	#
 
 yes_DEPENDS=	multimedia/gstreamer-plugins
-yes_NAME=	gstreamer-plugins
 yes_NAME10=	gstreamer1-plugins
 yes_GST_PREFIX=	# empty
 yes_IMPL=	# empty
-
-# XXX check if IMPL is correct for both 0.10 and 1.0
 
 #-- audio plugins section -------------------------------------------------#
 
@@ -603,41 +559,7 @@ pango_IMPL=	#
 .if defined(_POSTMKINCLUDED) && !defined(Gstreamer_Post_Include)
 Gstreamer_Post_Include=	bsd.gstreamer.mk
 
-.if (defined (USE_GSTREAMER) && defined(USE_GSTREAMER1))
-IGNORE=	USE_GSTREAMER and USE_GSTREAMER1 can't be used together
-.endif
-
 _GST_IMPL_LIST:=	#
-
-.if defined(USE_GSTREAMER)
-# update this with the gst 1.0 version below
-. for ext in ${USE_GSTREAMER}
-${ext}_GST_PREFIX?=	gstreamer-plugins-
-${ext}_GST_VERSION?=	${GST_VERSION}${GST_MINOR_VERSION}
-${ext}_NAME?=		${ext}
-.  if ${_USE_GSTREAMER_ALL:M${ext}}!= "" && exists(${PORTSDIR}/${${ext}_DEPENDS})
-_GST_BUILD_DEPENDS+=	${${ext}_GST_PREFIX}${${ext}_NAME}>=${${ext}_GST_VERSION}:${${ext}_DEPENDS}
-_GST_RUN_DEPENDS+=	${${ext}_GST_PREFIX}${${ext}_NAME}>=${${ext}_GST_VERSION}:${${ext}_DEPENDS}
-_GST_GST_IMPL_LIST+=	${${ext}_IMPL}
-.  else
-IGNORE=	cannot install: unknown gstreamer ${GST_VERSION} plugin -- ${ext}
-.  endif
-. endfor
-
-# everything wants this
-_GST_BUILD_DEPENDS+= gstreamer-plugins>=0:multimedia/gstreamer-plugins
-_GST_LIB_DEPENDS+=   libgstreamer-0.10.so:multimedia/gstreamer
-_GST_RUN_DEPENDS+=   gstreamer-plugins>=0:multimedia/gstreamer-plugins
-
-. for plugin in ${_GST_IMPL_LIST:O:u}
-_GST_BUILD_DEPENDS+=	gstreamer-plugins-${plugin}>=0:multimedia/gstreamer-plugins-${plugin}
-_GST_RUN_DEPENDS+=	gstreamer-plugins-${plugin}>=0:multimedia/gstreamer-plugins-${plugin}
-. endfor
-
-BUILD_DEPENDS+= ${_GST_BUILD_DEPENDS:O:u}
-LIB_DEPENDS+=   ${_GST_LIB_DEPENDS:O:u}
-RUN_DEPENDS+=   ${_GST_RUN_DEPENDS:O:u}
-.endif
 
 .if defined(USE_GSTREAMER1)
 . for ext in ${USE_GSTREAMER1}
@@ -673,5 +595,4 @@ LIB_DEPENDS+=	${_GST_LIB_DEPENDS:O:u}
 RUN_DEPENDS+=	${_GST_RUN_DEPENDS:O:u}
 .endif
 
-# The End
 .endif
