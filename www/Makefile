@@ -22,7 +22,6 @@ SUBDIR += glassfish
 SUBDIR += gnome-user-share
 SUBDIR += google-sitemapgen
 SUBDIR += googler
-SUBDIR += gstreamer-plugins-neon
 SUBDIR += gstreamer1-plugins-neon
 SUBDIR += http-parser
 SUBDIR += joomla3
