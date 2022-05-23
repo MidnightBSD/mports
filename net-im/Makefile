@@ -6,7 +6,6 @@ SUBDIR += finch
 SUBDIR += folks
 SUBDIR += jabberd
 SUBDIR += libnice
-SUBDIR += libnice-gst010
 SUBDIR += libnice-gst1
 SUBDIR += libpurple
 SUBDIR += libtelepathy
