@@ -1,16 +1,8 @@
 PORTNAME=	pipewire
-DISTVERSION=	0.3.31
+DISTVERSION=	0.3.51
 CATEGORIES=	multimedia
-
-PATCH_SITES=	https://gitlab.freedesktop.org/${PORTNAME}/${PORTNAME}/-/commit/
-PATCHFILES+=	91988acb6b6a.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/815
-PATCHFILES+=	d51634a2f1a7.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/816
-PATCHFILES+=	d6bb69f2bd88.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/816
-PATCHFILES+=	765bd417decc.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/816
-PATCHFILES+=	488150fac6c9.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/816
-PATCHFILES+=	2488e87fde51.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/852
-PATCHFILES+=	e41187d64345.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/906
-PATCHFILES+=	40cbcf288775.patch:-p1 # https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/906
+MASTER_SITES=	https://gitlab.freedesktop.org/pipewire/media-session/-/archive/${MEDIA_SESSION_VERSION}/:media_session
+DISTFILES=	media-session-${MEDIA_SESSION_VERSION}${EXTRACT_SUFX}:media_session
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Server and user space API to deal with multimedia pipelines
@@ -23,54 +15,72 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libdbus-1.so:devel/dbus \
 		libinotify.so:devel/libinotify \
 		libepoll-shim.so:devel/libepoll-shim \
+		libsndfile.so:audio/libsndfile \
 		libudev.so:devel/libudev-devd \
 		libwebrtc_audio_processing.so:audio/webrtc-audio-processing0
 
 USES=		compiler:c11 gettext-tools gnome localbase:ldflags meson \
-		pkgconfig python:3.6+,build
+		ncurses pkgconfig python:3.6+,build readline ssl
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	PipeWire
 
-OPTIONS_DEFINE=		GSTREAMER MANPAGES MEDIASESSION PULSEAUDIO VULKAN
-OPTIONS_DEFAULT=	GSTREAMER MANPAGES MEDIASESSION
+OPTIONS_DEFINE=		GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION PULSEAUDIO SDL VULKAN
+OPTIONS_DEFAULT=	GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION
 OPTIONS_SUB=	yes
 
+GSTREAMER_USES=		gstreamer
 GSTREAMER_MESON_ENABLED=gstreamer
-GSTREAMER_LIB_DEPENDS=	libgstreamer-1.0.so:multimedia/gstreamer1 \
-			libgstaudio-1.0.so:multimedia/gstreamer1-plugins
+GSTREAMER_LIB_DEPENDS= libgstreamer-1.0.so:multimedia/gstreamer1 \
+                       libgstaudio-1.0.so:multimedia/gstreamer1-plugins
+
+
+PIPEWIRE_JACK_DESC=		Build pipewire-jack
+PIPEWIRE_JACK_MESON_ENABLED=	pipewire-jack
 
 MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
 MANPAGES_MESON_ENABLED=	man
 
-MEDIASESSION_DESC=	Session manager support
-MEDIASESSION_MESON_ENABLED=	alsa pipewire-alsa media-session pw-cat
-MEDIASESSION_LIB_DEPENDS=	libsndfile.so:audio/libsndfile
+MEDIASESSION_DESC=		Session manager support
+MEDIASESSION_MESON_ENABLED=	alsa pipewire-alsa
+MEDIASESSION_MESON_ON=		-Dsession-managers=media-session
+MEDIASESSION_MESON_OFF=		-Dsession-managers=''
 
 PULSEAUDIO_MESON_ENABLED=	libpulse
 PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio \
 				libavahi-common.so:net/avahi-app \
 				libavahi-client.so:net/avahi-app
 
+SDL_MESON_ENABLED=	sdl2
+SDL_USES=		sdl
+SDL_USE=		sdl=sdl2
+
 VULKAN_DESC=		Enable Vulkan integration
 VULKAN_MESON_ENABLED=	vulkan
 VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 
-MESON_ARGS=	-D bluez5=disabled \
-		-D jack=disabled -D pipewire-jack=disabled \
+MEDIA_SESSION_VERSION=	0.4.1
+
+MESON_ARGS=	-D pw-cat=enabled \
+		-D v4l2=enabled \
+		-D raop=enabled \
+		-D bluez5=disabled \
+		-D jack=disabled \
 		-D systemd=disabled \
-		-D sdl2=disabled \
+		-D pipewire-v4l2=disabled \
 		-D udevrulesdir="${LOCALBASE}/lib/udev/rules.d"
 
-post-extract:
-.if defined(PATCHFILES) && ${PATCHFILES:Me41187d64345*}
-	@${REINPLACE_CMD} -e '/_TAG/s/06-02/07-06/' \
-		-e '/which/a'$$'\\\n      valgrind' \
-		${WRKSRC}/.gitlab-ci.yml
+# Fake pkg-config support before https://cgit.freebsd.org/src/commit/?id=396851c20aeb
+# but only if devel/ncurses isn't installed
+.if !exists(/usr/libdata/pkgconfig/ncursesw.pc)
+CONFIGURE_ENV+=	${ncurses_ARGS:Mbase:C/.+/PKG_CONFIG_PATH="${FILESDIR}"/}
 .endif
+
+post-extract:
+	${LN} -s ${WRKDIR}/media-session-${MEDIA_SESSION_VERSION} ${WRKSRC}/subprojects/media-session
 
 post-patch:
 	${REINPLACE_CMD} -e 's/freebsd/midnightbsd/g' \
@@ -79,9 +89,9 @@ post-patch:
 post-patch-MEDIASESSION-on:
 # alsa-seq is not supported & causes SIGSEGV with media session
 	@${REINPLACE_CMD} 's| alsa-seq|\ #alsa-seq|g' \
-		${WRKSRC}/src/daemon/media-session.d/media-session.conf
+		${WRKDIR}/media-session-${MEDIA_SESSION_VERSION}/media-session.d/media-session.conf
 # start media session by default
-	@${REINPLACE_CMD} '/manager_args/ s/@comment@//g' \
+	@${REINPLACE_CMD} '/manager_args/ s/@sm_comment@//g' \
 		${WRKSRC}/src/daemon/pipewire.conf.in
 
 .include <bsd.port.mk>
