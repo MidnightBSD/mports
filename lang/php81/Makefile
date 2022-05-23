@@ -16,6 +16,8 @@ PHP_VER=	81
 
 CONFLICTS_INSTALL?=	php[0-9][0-9]${PKGNAMESUFFIX}
 
+NO_TEST=	yes
+
 .if !defined(PKGNAMESUFFIX)
 LIB_DEPENDS=	libargon2.so:security/libargon2 \
 		libpcre2-8.so:devel/pcre2
@@ -31,8 +33,6 @@ CONFIGURE_ARGS+=	--disable-all \
 			--disable-dtrace
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 DESTDIRNAME=		INSTALL_ROOT
-
-NO_TEST=	yes
 
 USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
