@@ -1,6 +1,5 @@
 PORTNAME=	gtk
-PORTVERSION=	4.2.1
-PORTREVISION=	1
+PORTVERSION=	4.3.2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
@@ -15,6 +14,8 @@ PORTSCOUT=	limit:1,even
 
 BUILD_DEPENDS=	sassc>0:textproc/sassc
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff \
 		libfribidi.so:converters/fribidi \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
@@ -23,14 +24,14 @@ LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 RUN_DEPENDS=	hicolor-icon-theme>=0:misc/hicolor-icon-theme \
 		adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme
 
-USES=		compiler:c11 gettext gnome localbase meson ninja \
-		pathfix perl5 python:3.7+ pkgconfig tar:xz
+USES=		compiler:c11 cpe gettext gnome jpeg localbase meson \
+		ninja pathfix perl5 python:3.7+ pkgconfig tar:xz
+CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_GNOME=	atk cairo gdkpixbuf2 introspection:build pango \
 		librsvg2:run
 LDFLAGS+=	-lexecinfo
-INSTALLS_ICONS=	yes
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
@@ -61,7 +62,7 @@ COLORD_LIB_DEPENDS=	libcolord.so:graphics/colord
 COLORD_MESON_ENABLED=	colord
 
 CUPS_LIB_DEPENDS=	libcups.so:print/cups
-CUPS_MESON_ENABLED=	cups
+CUPS_MESON_ENABLED=	print-cups
 
 FFMPEG_DESC=		FFmpeg multimedia backend
 FFMPEG_MESON_ENABLED=	media-ffmpeg
@@ -75,6 +76,7 @@ GSTREAMER_USE=		GSTREAMER1=bad,gl
 VULKAN_DESC=		GDK Vulkan renderer backend
 VULKAN_BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
+VULKAN_RUN_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 VULKAN_MESON_ENABLED=	vulkan
 
 WAYLAND_DESC=		GDK Wayland backend
