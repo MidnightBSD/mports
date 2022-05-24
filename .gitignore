@@ -11,3 +11,4 @@ Tools/magus/distcheck/distcheck
 *.orig
 *.sw[p-z]
 README.html
+*.idea

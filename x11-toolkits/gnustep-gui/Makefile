@@ -1,6 +1,9 @@
+
+
 PORTNAME=	gnustep-gui
 DISTVERSIONPREFIX=	gui-
-DISTVERSION=	0_28_0
+DISTVERSION=	0_27_0
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
