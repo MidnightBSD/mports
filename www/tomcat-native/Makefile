@@ -1,7 +1,7 @@
 PORTNAME=	tomcat-native
-PORTVERSION=	1.2.31
+PORTVERSION=	1.2.32
 CATEGORIES=	www java
-MASTER_SITES=	APACHE/tomcat/tomcat-connectors/native/${PORTVERSION}/source
+MASTER_SITES=	https://archive.apache.org/dist/tomcat/tomcat-connectors/native/${PORTVERSION}/source/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,9 +24,9 @@ CONFIGURE_ARGS=	--with-apr=${LOCALBASE} \
 PLIST_FILES=	lib/libtcnative-1.a \
 		lib/libtcnative-1.so \
 		lib/libtcnative-1.so.0 \
-		lib/libtcnative-1.so.0.2.31
+		lib/libtcnative-1.so.0.2.32
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtcnative-1.so.0.2.31
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtcnative-1.so.0.2.32
 
 .include <bsd.port.mk>
