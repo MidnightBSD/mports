@@ -12,7 +12,8 @@ LICENSE=	bsd3
 BUILD_DEPENDS=	tpm-emulator>=0.7.4_1:emulators/tpm-emulator
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USES=		dos2unix autoreconf gmake iconv libtool pkgconfig ssl
+USES=		cpe dos2unix autoreconf gmake iconv libtool pkgconfig ssl
+CPE_VENDOR=	${PORTNAME}_project
 NO_WRKSUBDIR=	yes
 DOS2UNIX_GLOB=	*.h *.c
 USE_LDCONFIG=	YES
