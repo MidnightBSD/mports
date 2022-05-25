@@ -1,5 +1,5 @@
 PORTNAME=	sdl2
-PORTVERSION=	2.0.10
+PORTVERSION=	2.0.14
 CATEGORIES=	devel
 MASTER_SITES=	https://www.libsdl.org/release/
 DISTNAME=	SDL2-${PORTVERSION}
@@ -14,7 +14,7 @@ GNU_CONFIGURE=	yes
 USES=		gmake iconv libtool localbase:ldflags pathfix pkgconfig
 USE_LDCONFIG=	yes
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 CONFIGURE_ARGS+=	--disable-arts \
 			--enable-diskaudio \
 			--enable-dummyaudio \
