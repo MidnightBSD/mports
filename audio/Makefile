@@ -131,6 +131,7 @@ SUBDIR += rhythmbox
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
 SUBDIR += sdl2_mixer
+SUBDIR += sdl2_sound
 SUBDIR += shortwave
 SUBDIR += sndio
 SUBDIR += sonata

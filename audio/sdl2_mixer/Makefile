@@ -1,5 +1,6 @@
 PORTNAME=	sdl2_mixer
 PORTVERSION=	2.0.4
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://www.libsdl.org/projects/SDL_mixer/release/
 DISTNAME=	SDL2_mixer-${PORTVERSION}
@@ -8,6 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sample multi-channel audio mixer library
 
 LICENSE=	zlib
+LICENSE_FILE_ZLIB=${WRKSRC}/COPYING.txt
 
 USES=		gmake libtool localbase pathfix pkgconfig sdl
 USE_SDL=	sdl2
