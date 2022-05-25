@@ -1,7 +1,7 @@
 # Created by: Rodrigo Graeff <delphus@gmail.com>
 
 PORTNAME=	ytnef
-PORTVERSION=	1.9.3
+PORTVERSION=	2.0
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	converters mail

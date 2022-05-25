@@ -1,14 +1,16 @@
-bin/ytnef
-bin/ytnefprint
-bin/ytnefprocess
-include/mapi.h
-include/mapidefs.h
-include/mapitags.h
-include/tnef-errors.h
-include/tnef-types.h
-include/ytnef.h
 lib/libytnef.a
+lib/libytnef.so.0.0.0
 lib/libytnef.so
 lib/libytnef.so.0
-lib/libytnef.so.0.0.0
+include/ytnef.h
+include/mapitags.h
+include/tnef-errors.h
+include/mapidefs.h
+include/tnef-types.h
+include/mapi.h
+bin/ytnefprint
+bin/ytnef
+bin/ytnefprocess
+%%DOCSDIR%%/README.md
 libdata/pkgconfig/libytnef.pc
+@dir %%DOCSDIR%%
