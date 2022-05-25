@@ -1,40 +1,32 @@
 
 
 PORTNAME=	upx
-PORTVERSION=	3.91
-PORTREVISION=	0
+PORTVERSION=	3.96
+MASTER_SITES=	https://github.com/upx/upx/releases/download/v${PORTVERSION}/
 CATEGORIES=	archivers
-MASTER_SITES=	http://upx.sourceforge.net/download/\
-		SF/sevenzip/7-Zip/${LZMA_VER}:lzma
-DISTFILES=	${PORTNAME}-${PORTVERSION}-src${EXTRACT_SUFX}\
-		7z${LZMA_VER:S/.//g}${EXTRACT_SUFX}:lzma
+DISTVERSIONSUFFIX=	-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Ultimate Packer for eXecutables
+COMMENT=	Ultimate Packer for eXecutables
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libucl.so:${PORTSDIR}/archivers/ucl
+LIB_DEPENDS=	libucl.so:archivers/ucl
 
-LZMA_VER=	4.65
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-src
-USES=		gmake tar:bzip2
-USE_PERL5_BUILD=yes
-MAKE_ENV=	UPX_UCLDIR=${LOCALBASE}\
-		UPX_LZMADIR=${WRKDIR}\
+USES=		cpe gmake perl5 tar:xz
+USE_PERL5=	build
+
+MAKE_ENV=	UPX_UCLDIR=${LOCALBASE} \
 		target=freebsd
 
-PORTDOCS=	BUGS COPYING LICENSE NEWS PROJECTS README\
-		README.1ST README.SRC THANKS TODO
 PLIST_FILES=	bin/upx \
 		man/man1/upx.1.gz
 
-OPTIONS_DEFINE=	DOCS
+CPE_VENDOR=	upx_project
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/src/upx.out ${PREFIX}/bin/upx
-	@${INSTALL_MAN} ${WRKSRC}/doc/upx.1 ${MANPREFIX}/man/man1
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
+	${INSTALL_PROGRAM} ${WRKSRC}/src/upx.out ${PREFIX}/bin/upx
+	${INSTALL_MAN} ${WRKSRC}/doc/upx.1 ${PREFIX}/man/man1
 
 .include <bsd.port.mk>
