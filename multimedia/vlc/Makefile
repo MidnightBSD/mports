@@ -1,7 +1,7 @@
 # Created by: Brian Somers <brian@FreeBSD.org>
 
 PORTNAME=	vlc
-DISTVERSION=	3.0.11.1
+DISTVERSION=	3.0.17.4
 CATEGORIES=	multimedia audio net www
 MASTER_SITES=	http://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSION:S/a$//}/ \
 		http://ftp.snt.utwente.nl/pub/software/videolan/${PORTNAME}/${DISTVERSION:S/a$//}/ \
@@ -17,14 +17,18 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libidn.so:dns/libidn \
-		libmatroska.so:multimedia/libmatroska
+		libmatroska.so:multimedia/libmatroska \
+		libgpg-error.so:security/libgpg-error \
+ 		libebml.so:textproc/libebml
 BUILD_DEPENDS=	gsed:textproc/gsed \
 		ffmpeg>=3.4.1,1:multimedia/ffmpeg \
 		yasm:devel/yasm
 RUN_DEPENDS=	ffmpeg>=3.4.1,1:multimedia/ffmpeg
 
-USES=		compiler:c++11-lib desktop-file-utils gettext-tools gmake gnome \
-		iconv libtool localbase pathfix pkgconfig tar:xz
+USES=		compiler:c++11-lib cpe desktop-file-utils gettext-tools gmake gnome \
+		iconv:wchar_t libtool localbase pathfix pkgconfig tar:xz
+
+CPE_VENDOR=	videolan
 
 # VLC git (post 2.2.4) requires C++11 support and passes the appropriate flag
 # to the compiler. Until the port is updated, we explicitly pass -std=c++11 to
@@ -45,7 +49,7 @@ CONFIGURE_ARGS=	--enable-avcodec --enable-avformat --enable-dvbpsi \
 		--disable-alsa --disable-archive --disable-chromaprint --disable-crystalhd \
 		--disable-dc1394 --disable-decklink --disable-dsm \
 		--disable-dv1394 --disable-fdkaac --disable-gst-decode \
-		--disable-gles2 --disable-kai --disable-kva \
+		--disable-gles2 --disable-kai --disable-kva --disable-mpg123 \
 		--disable-vnc --disable-opencv --disable-projectm \
 		--disable-secret --disable-soxr --disable-telx \
 		--disable-tiger --disable-tremor --disable-udev \
@@ -310,7 +314,8 @@ SMB_CONFIGURE_ENABLE=	smbclient
 
 STREAM_CONFIGURE_ENABLE=sout
 
-SPEEX_LIB_DEPENDS=	libspeex.so:audio/speex
+SPEEX_LIB_DEPENDS=	libspeex.so:audio/speex \
+			libspeexdsp.so:audio/speexdsp
 SPEEX_CONFIGURE_ENABLE=	speex
 
 TAGLIB_LIB_DEPENDS=	libtag.so:audio/taglib
