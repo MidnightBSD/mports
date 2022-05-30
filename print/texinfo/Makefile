@@ -6,7 +6,7 @@ PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	print
 MASTER_SITES=	GNU \
-		LOCAL/sunpoet/texinfo:DEFAULT,local
+		FREEBSD_LOCAL/sunpoet/texinfo:DEFAULT,local
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		htmlxref.cnf-${HTMLXREF_CNF_RELDATE}:local \
 		texi2dvi-${TEXI2DVI_RELDATE}:local \

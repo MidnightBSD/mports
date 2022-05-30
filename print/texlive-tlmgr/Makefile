@@ -1,11 +1,9 @@
-
-
 PORTNAME=	texlive
 PORTVERSION=	20150523
 PORTREVISION=	2
 CATEGORIES=	print perl5
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/:tlmgr \
-		LOCAL/hrs:tlpkg
+		FREEBSD_LOCAL/hrs:tlpkg
 PKGNAMESUFFIX=	-tlmgr
 DISTFILES=	${PORTNAME}-${PORTVERSION}-extra${EXTRACT_SUFX}:tlmgr \
 		${PORTNAME}-20150521-source${EXTRACT_SUFX}:tlmgr \
