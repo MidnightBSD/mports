@@ -1,5 +1,3 @@
-
-
 PORTNAME=	tex-texmflocal
 PORTVERSION=	1.9
 PORTREVISION=	1
@@ -9,6 +7,7 @@ DISTFILES=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port that creates a site-local TEXMF directory
+
 LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
