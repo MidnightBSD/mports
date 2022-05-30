@@ -1,5 +1,3 @@
-
-
 PORTNAME=	basic-engines
 PORTVERSION=	20150521
 CATEGORIES=	print
@@ -13,7 +11,7 @@ COMMENT=	Basic TeX Engines
 
 LICENSE=	unknown
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
 
 USES=		pkgconfig libtool tar:xz
 USE_TEX=	kpathsea web2c>=20150521_1

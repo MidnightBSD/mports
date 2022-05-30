@@ -1,5 +1,3 @@
-
-
 PORTNAME=	dvipsk
 PORTVERSION=	5.995
 PORTREVISION=	1
@@ -17,7 +15,7 @@ COMMENT=	Convert a TeX DVI file to PostScript
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libpaper.so:${PORTSDIR}/print/libpaper
+LIB_DEPENDS=	libpaper.so:print/libpaper
 
 USES=		gmake tar:xz pkgconfig
 USE_TEX=	kpathsea web2c texmf texhash
