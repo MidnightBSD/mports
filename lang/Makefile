@@ -69,6 +69,7 @@ SUBDIR += pcc
 SUBDIR += perl5.28
 SUBDIR += perl5.30
 SUBDIR += perl5.32
+SUBDIR += perl5.36
 SUBDIR += php_doc
 SUBDIR += php74
 SUBDIR += php74-extensions
