@@ -1,5 +1,5 @@
 PORTNAME=	libvdpau
-PORTVERSION=	1.3
+PORTVERSION=	1.5
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +14,7 @@ USE_XORG=	x11 xext xorgproto
 USE_LDCONFIG=	yes
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	vdpau
-GL_COMMIT=	f57a9904c43ef5d726320c77baa91d0c38361ed4
+GL_COMMIT=	79f1506a3307d3275b0fdfb2e110c173f68e6f78
 MESON_ARGS=	-Ddocumentation=false
 
 post-patch:	.SILENT
