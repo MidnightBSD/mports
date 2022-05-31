@@ -94,6 +94,7 @@ SUBDIR += fstrm
 SUBDIR += gamin
 SUBDIR += gccmakedep
 SUBDIR += gconf2
+SUBDIR += gconfmm26
 SUBDIR += gdb
 SUBDIR += geany
 SUBDIR += gengetopt
