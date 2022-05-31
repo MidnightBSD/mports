@@ -1,5 +1,5 @@
 PORTNAME=	cmake
-DISTVERSION=	3.21.2
+DISTVERSION=	3.21.6
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/Kitware/CMake/releases/download/v${DISTVERSION}/ \
