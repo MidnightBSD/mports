@@ -1,7 +1,7 @@
 PORTNAME=	cairo
 DISTVERSION=	1.17.4
 PORTEPOCH=	3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	https://cairographics.org/releases/ \
 		https://cairographics.org/snapshots/
