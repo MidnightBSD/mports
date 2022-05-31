@@ -1,22 +1,42 @@
---- CMakeLists.txt.orig	2019-02-03 07:13:31 UTC
-+++ CMakeLists.txt
-@@ -71,6 +71,7 @@ option ( enable-dsound "compile DirectSound support (i
- option ( enable-winmidi "compile Windows MIDI support (if it is available)" on )
+--- CMakeLists.txt.orig	2022-05-31 14:26:02.202122000 -0400
++++ CMakeLists.txt	2022-05-31 14:27:55.967829000 -0400
+@@ -88,15 +88,16 @@
+ option ( enable-sdl2 "compile SDL2 audio support (if it is available)" on )
  option ( enable-pkgconfig "use pkg-config to locate fluidsynth's (mostly optional) dependencies" on )
  option ( enable-pulseaudio "compile PulseAudio support (if it is available)" on )
 +option ( enable-sndio "compile Sndio support (if it is available)" on )
  option ( enable-readline "compile readline lib line editing (if it is available)" on )
  option ( enable-threads "enable multi-threading support (such as parallel voice synthesis)" on )
+ option ( enable-openmp "enable OpenMP support (parallelization of soundfont decoding, vectorization of voice mixing, etc.)" on )
  
-@@ -481,6 +482,11 @@ else(NOT enable-pkgconfig)
-     else ( enable-pulseaudio )
+ # Platform specific options
+-if ( CMAKE_SYSTEM MATCHES "Linux|FreeBSD|DragonFly" )
++if ( CMAKE_SYSTEM MATCHES "Linux|FreeBSD|DragonFly|MidnightBSD" )
+     option ( enable-lash "compile LASH support (if it is available)" on )
+     option ( enable-alsa "compile ALSA support (if it is available)" on )
+-endif ( CMAKE_SYSTEM MATCHES "Linux|FreeBSD|DragonFly" )
++endif ( CMAKE_SYSTEM MATCHES "Linux|FreeBSD|DragonFly|MidnightBSD" )
+ 
+ if ( CMAKE_SYSTEM MATCHES "Linux" )
+     option ( enable-systemd "compile systemd support (if it is available)" on )
+@@ -114,7 +115,7 @@
+ endif ( CMAKE_SYSTEM MATCHES "OS2" )
+ 
+ # Initialize the library directory name suffix.
+-if (NOT MINGW AND NOT MSVC AND NOT CMAKE_SYSTEM_NAME MATCHES "FreeBSD|DragonFly")
++if (NOT MINGW AND NOT MSVC AND NOT CMAKE_SYSTEM_NAME MATCHES "MidnightBSD|FreeBSD|DragonFly")
+ if ( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+   set ( _init_lib_suffix "64" )
+ else ( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+@@ -562,6 +563,11 @@
      unset_pkg_config ( PULSE )
      endif ( enable-pulseaudio )
-+
+ 
 +    unset ( SNDIO_SUPPORT CACHE )
 +    if ( enable-sndio )
 +      set ( SNDIO_SUPPORT 1 )
 +    endif ( enable-sndio )
- 
++
      unset ( ALSA_SUPPORT CACHE )
      if ( enable-alsa )
+     pkg_check_modules ( ALSA alsa>=0.9.1 )

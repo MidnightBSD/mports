@@ -9,7 +9,7 @@ COMMENT=	Real-time software synthesizer based on the SoundFont 2 specifications
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake cpe gnome pkgconfig
+USES=		cmake cpe gnome pathfix pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	FluidSynth
 USE_GNOME=	glib20
