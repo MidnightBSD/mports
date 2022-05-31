@@ -82,6 +82,7 @@ SUBDIR += pecl-redis
 SUBDIR += percona55-client
 SUBDIR += percona55-server
 SUBDIR += percona57-client
+SUBDIR += percona57-pam-for-mysql
 SUBDIR += percona57-server
 SUBDIR += pgmodeler
 SUBDIR += pgtcl
