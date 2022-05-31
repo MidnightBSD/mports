@@ -16,4 +16,6 @@ GL_SITE=	https://foss.heptapod.net
 GL_ACCOUNT=	bsdutils
 GL_COMMIT=	1ac33a13d21b136dba7106baf3cd2be2434bf6f8
 
+WRKSRC=		${WRKDIR}/bsdisks-1ac33a13d21b136dba7106baf3cd2be2434bf6f8-1ac33a13d21b136dba7106baf3cd2be2434bf6f8
+
 .include <bsd.port.mk>
