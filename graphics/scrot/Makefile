@@ -43,7 +43,7 @@ BINFILES=	scrot-area scrot-delayed scrot-full
 # There should probably be a GitLab equivelent for ${GH_TAGNAME_SANITIZED}
 post-extract:
 	${MV} ${WRKDIR}/scrot-d93cccec-d93cccec9f753805ca79b23ceb4436132fbbd491 \
-	${WRKDIR}/scrot-d93cccec-d93cccec
+	${WRKDIR}/scrot-d93cccec
 
 post-install:
 	${CP} ${BINFILES:S|^|${WRKSRC}/contrib/|} ${PREFIX}/bin/
