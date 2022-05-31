@@ -75,3 +75,6 @@ lib/cmake/xtensor/xtensorConfig.cmake
 lib/cmake/xtensor/xtensorConfigVersion.cmake
 lib/cmake/xtensor/xtensorTargets.cmake
 libdata/pkgconfig/xtensor.pc
+@dir include/xtensor
+@dir lib/cmake/xtensor
+@dir lib/cmake
