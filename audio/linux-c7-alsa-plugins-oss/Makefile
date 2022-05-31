@@ -28,9 +28,10 @@ RPM_PATCHES=	alsa-plugins-1.1.6-post.patch \
 CONFIG_ARGS=	--disable-static --disable-mix --disable-usbstream \
 		--disable-arcamav --disable-jack --disable-pulseaudio \
 		--disable-samplerate --disable-libav --disable-a52 \
-		--disable-lavrate --disable-speexdsp --with-speex=no \
-		--build=${ARCH}-portbld-freebsd11.4 \
-		--host=${ARCH}-portbld-freebsd11.4
+		--disable-lavrate --disable-speexdsp --with-speex=no
+#		--build=${ARCH}-portbld-freebsd11.4 \
+#		--host=${ARCH}-portbld-freebsd11.4 \
+#		--target=${ARCH}-portbld-freebsd11.4
 CPPFLAGS+=	-DFREEBSD_OSS -DFREEBSD_OSS_USE_IO_PTR
 CFLAGS+=	--sysroot=${LINUXBASE}
 COMPAT32_CFLAGS_amd64=	-m32
@@ -98,15 +99,10 @@ do-build:
 
 do-install:
 .if !empty(COMPAT32_CFLAGS_${ARCH})
-	@(cd ${WRKSRC32} && ${SETENV} PATH=${LINUXBASE}/usr/bin \
-		${LOCALBASE}/bin/gmake install-strip \
-		DESTDIR=${FAKE_DESTDIR}${LINUXBASE})
-	${RM} -r ${FAKE_DESTDIR}${LINUXBASE}/usr/lib/alsa-lib/*.la
+	${MKDIR} ${LINUXBASE}/usr/lib/alsa-lib/
+	${CP} ${WRKDIR}/32/alsa-plugins-${DISTVERSION}/oss/.libs/*.so ${LINUXBASE}/usr/lib/alsa-lib/
 .endif
-	@(cd ${WRKSRC} && ${SETENV} PATH=${LINUXBASE}/usr/bin \
-		${LOCALBASE}/bin/gmake install-strip \
-		DESTDIR=${FAKE_DESTDIR}${LINUXBASE})
-	${RM} -r ${FAKE_DESTDIR}${LINUXBASE}${LIBDIR_${ARCH}}/alsa-lib/*.la
-	${RM} -r ${FAKE_DESTDIR}${LINUXBASE}/etc ${FAKE_DESTDIR}${LINUXBASE}/usr/share
+	${MKDIR} ${LINUXBASE}/${LIBDIR_${ARCH}}/alsa-lib/
+	${CP} ${WRKSRC}/oss/.libs/*.so ${LINUXBASE}/${LIBDIR_${ARCH}}/alsa-lib/
 
 .include <bsd.port.mk>
