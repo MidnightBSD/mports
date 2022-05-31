@@ -73,15 +73,15 @@ do-install:
 	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${STAGEDIR}${PREFIX}/lib/opensearch/lib/jna.jar
 
 do-install-PLUGINS-on:
-	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "plugins" ${STAGEDIR}${PREFIX}/lib/opensearch/)
-	(cd ${WRKSRC}/plugins/opensearch-security/tools && ${COPYTREE_BIN} "*.sh" ${STAGEDIR}${PREFIX}/lib/opensearch/plugins/opensearch-security/tools)
+	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "plugins" ${FAKE_DESTDIR}${PREFIX}/lib/opensearch/)
+	(cd ${WRKSRC}/plugins/opensearch-security/tools && ${COPYTREE_BIN} "*.sh" ${FAKE_DESTDIR}${PREFIX}/lib/opensearch/plugins/opensearch-security/tools)
 
 post-install:
 .for f in ${CONFIG_FILES}
 	${ECHO} "@sample ${ETCDIR_REL}/${f}.sample" >> ${TMPPLIST}
 .endfor
 	${FIND} -s ${PREFIX}/lib/opensearch -not -type d | ${SORT} | \
-		${SED} -e 's#^${FAKE_DESTDIR}${PREFIX}/##' >> ${TMPPLIST}
+		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir lib/opensearch/plugins" >> ${TMPPLIST}
 	${ECHO} "@dir libexec/opensearch" >> ${TMPPLIST}
 	${ECHO} "@dir(opensearch,opensearch,0755) ${ETCDIR}" >> ${TMPPLIST}
