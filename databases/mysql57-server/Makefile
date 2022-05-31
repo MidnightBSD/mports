@@ -1,5 +1,5 @@
 PORTNAME?=	mysql
-PORTVERSION=	5.7.33
+PORTVERSION=	5.7.38
 PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	MYSQL/MySQL-5.7
@@ -18,6 +18,7 @@ USES=		bison:build cmake:noninja compiler:c11 compiler:c++11-lib \
 		cpe groff:run libedit localbase perl5 shebangfix ssl
 
 #USE_GCC=	7
+CPE_VENDOR=	oracle
 
 USE_PERL5=	run
 
@@ -34,6 +35,8 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 
 CMAKE_BUILD_TYPE=	Release
 
+CFLAGS+=	-DNDEBUG
+CXXFLAGS+=	-DNDEBUG
 CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DINSTALL_LDCONFIGDIR="${LOCALBASE}/libdata/ldconfig" \
 		-DINSTALL_PKGCONFIGDIR="${LOCALBASE}/libdata/pkgconfig" \
