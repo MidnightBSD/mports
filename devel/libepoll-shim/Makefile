@@ -1,7 +1,8 @@
 # Created by: Johannes Lundberg <johalun0@gmail.com>
 
 PORTNAME=	libepoll-shim
-PORTVERSION=	0.0.20200602
+DISTVERSIONPREFIX=    v
+DISTVERSION=	0.0.20210418
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +16,8 @@ USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	jiixyj
 GH_PROJECT=	epoll-shim
-GH_TAGNAME=	3840e9c
+
+PLIST_SUB=    SHIM_EVENTFD="${exists(/usr/include/sys/eventfd.h):?@comment :}"
 
 CC=	clang70
 MAKE_ENV+=	CC=clang70
