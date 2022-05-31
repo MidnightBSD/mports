@@ -46,4 +46,6 @@ MESON_ARGS_clang_i386=	-Dstack_alignment=4
 
 pre-install-TEST-on: do-test
 
+post-install:
+	cd ${PREFIX}/lib/ &&  ${LN} -sf libdav1d.so.6 libdav1d.so.4
 .include <bsd.port.mk>
