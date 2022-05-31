@@ -6,12 +6,19 @@ COMMENT=	Documentation for libraries from boost.org
 
 LICENSE=	mit
 
+USES=	python:env shebangfix
+
 DOCSDIR=	${PREFIX}/share/doc/boost
 UNIQ=		/usr/bin/uniq
 
 NO_BUILD=	yes
 
 OPTIONS_DEFINE=	DOCS
+
+SHEBANG_GLOB=	*.py
+
+PORTDOCS=	*
+
 
 .include "${.CURDIR}/..//boost-all/common.mk"
 
