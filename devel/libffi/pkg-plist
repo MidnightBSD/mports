@@ -2,6 +2,7 @@ include/ffi.h
 include/ffitarget.h
 lib/libffi.a
 lib/libffi.so
+lib/libffi.so.6
 lib/libffi.so.8
 lib/libffi.so.8.1.0
 libdata/pkgconfig/libffi.pc

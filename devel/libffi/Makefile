@@ -26,4 +26,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's| -Wno-psabi||g' \
 		${WRKSRC}/testsuite/lib/libffi.exp
 
+post-install:
+	cd ${PREFIX}/lib && ${LN} -sf libffi.so.8 libffi.so.6
+
 .include <bsd.port.mk>
