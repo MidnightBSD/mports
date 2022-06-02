@@ -1,14 +1,12 @@
 PORTNAME=	libxml2
-DISTVERSION=	2.9.12
+DISTVERSION=	2.9.13
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
-MASTER_SITES=	http://xmlsoft.org/sources/
-DIST_SUBDIR=	gnome2
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${DISTVERSION:R}/
+DIST_SUBDIR=	gnome
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	XML parser library for GNOME
-
-.if !defined(REFERENCE_PORT)
 
 LICENSE=	mit TRIO
 LICENSE_COMB=	multi
@@ -17,60 +15,54 @@ LICENSE_FILE_MIT=	${WRKSRC}/COPYING
 LICENSE_FILE_TRIO=	${FILESDIR}/LICENSE.TRIO
 LICENSE_PERMS_TRIO=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-GNU_CONFIGURE=	yes
-USES+=		compiler cpe gmake iconv libtool pathfix pkgconfig shebangfix
+USES+=		cpe iconv libtool localbase pathfix pkgconfig tar:xz
 CPE_VENDOR=	xmlsoft
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS?=--with-iconv=${ICONV_PREFIX} \
-		--with-html-dir=${PREFIX}/share/doc \
-		--with-html-subdir=${PORTNAME} \
-		--without-icu \
-		--with-lzma=/usr \
-		--without-python
+
 INSTALL_TARGET=	install-strip
-SHEBANG_FILES=	*.py */*.py */*/*.py
+TEST_TARGET=	check
 
-PLIST_SUB+=	LIBVERSION=${PORTVERSION}
+PLIST_SUB+=	LIBVERSION=${DISTVERSION}
 
-.if !defined(MASTERDIR)
+# Don't build with Python support unless requested
+CONFIGURE_ARGS=		--with-html-dir=${PREFIX}/share/doc \
+			--with-html-subdir=${PORTNAME} \
+			--with-lzma=/usr \
+			--${LIBXML2_SLAVE:Dwith:Uwithout}-python${LIBXML2_SLAVE:D=${PYTHON_CMD}:U}
 
-OPTIONS_DEFINE=	SCHEMA VALID THREADS MEM_DEBUG XMLLINT_HIST THREAD_ALLOC
-OPTIONS_DEFAULT=SCHEMA VALID THREADS
-SCHEMA_DESC=	XML schema support
-SCHEMA_CONFIGURE_WITH=	schemas
-VALID_DESC=	Validation support
-VALID_CONFIGURE_OFF=	--without-valid
-THREADS_DESC=	Threads support
-THREADS_CONFIGURE_WITH=	threads
-MEM_DEBUG_DESC=	Memory debugging (DEVELOPERS ONLY!)
-MEM_DEBUG_CONFIGURE_WITH=	mem-debug
-XMLLINT_HIST_DESC=	History for xmllint
-XMLLINT_HIST_CONFIGURE_WITH=	history
+OPTIONS_DEFINE=	DOCS ICU MEM_DEBUG READLINE THREAD_ALLOC
+OPTIONS_DEFAULT=	READLINE
+OPTIONS_SUB=		yes
+
+MEM_DEBUG_DESC=		Memory debugging (DEVELOPERS ONLY!)
+READLINE_DESC=		History for xmllint
 THREAD_ALLOC_DESC=	Per-thread memory (DEVELOPERS ONLY!)
+
+ICU_LIB_DEPENDS=		libicudata.so:devel/icu
+ICU_CONFIGURE_WITH=		icu
+MEM_DEBUG_CONFIGURE_WITH=	mem-debug
+READLINE_LIB_DEPENDS=		libreadline.so:devel/readline
+READLINE_CONFIGURE_WITH=	history \
+				readline
 THREAD_ALLOC_CONFIGURE_WITH=	thread-alloc
 
-.endif # !defined(MASTERDIR)
-
 post-patch:
-.for d in . doc doc/devhelp doc/examples
-	@${REINPLACE_CMD} -e '/^install-data-am:/ s|install-data-local||' \
-		${WRKSRC}/${d}/Makefile.in
-.endfor
 .for f in catalog.c xmlcatalog.c xmllint.c doc/xmllint.1
 	@${REINPLACE_CMD} -e \
 		's|/etc/xml/catalog|${LOCALBASE}/share/xml/catalog|g; \
 		 s|/etc/sgml/catalog|${LOCALBASE}/share/sgml/catalog|g' \
 		${WRKSRC}/${f}
 .endfor
-.if exists(/usr/lib/libstdc++.so)
-	@${REINPLACE_CMD} -e 's/ -Wno-array-bounds//' ${WRKSRC}/configure
-.endif
 
-.if !defined(MASTERDIR)
+.if !defined(LIBXML2_SLAVE)
 post-install:
-	@${RM} -rf ${STAGEDIR}${PREFIX}/share/gtk-doc
+# Documentation should be in DOCSDIR
+	@${MV} ${STAGEDIR}${PREFIX}/share/gtk-doc/html/libxml2 \
+		${STAGEDIR}${DOCSDIR}/devhelp
+	@${RM} -r ${STAGEDIR}${PREFIX}/share/gtk-doc
+# Install remaining documentation that's not connected to autotools
+	${INSTALL_MAN} ${WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>
-
-.endif
