@@ -43,3 +43,10 @@
    # DragonFly does not have aout.  When/if they implement a new
    # versioning mechanism, adjust this.
    if test -x /usr/bin/objformat; then
+@@ -16914,7 +16914,7 @@ if test "x$ac_cv_lib_pthread_pthread_kill" = xyes; the
+            # On Solaris 10 or newer, this test is no longer needed, because
+            # libc contains the fully functional pthread functions.
+            case "$host_os" in
+-             solaris | solaris2.1-9 | solaris2.1-9.* | hpux*)
++             solaris | solaris2.1-9 | solaris2.1-9.* | hpux* | freebsd* | midnightbsd*)
+
