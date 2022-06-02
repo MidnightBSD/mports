@@ -11,6 +11,8 @@ COMMENT=	Standalone JavaScript based from Mozilla 78-esr
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+# must use 90 or better
+LLVM_DEFAULT=	90
 BUILD_DEPENDS=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
 		${LOCALBASE}/bin/python${PYTHON3_DEFAULT}:lang/python${PYTHON3_DEFAULT:S/.//g} \
 		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
@@ -25,7 +27,6 @@ USES=		compiler:c++17-lang gmake localbase pathfix pkgconfig python:build \
 USE_LDCONFIG=	yes
 SP_VER=		78
 HAS_CONFIGURE=	yes
-USE_GCC=	yes
 
 WRKSRC=			${WRKDIR}/firefox-${DISTVERSION}
 PATCH_WRKSRC=		${WRKDIR}/firefox-${DISTVERSION}/
@@ -73,7 +74,7 @@ CC=		${LOCALBASE}/bin/clang${LLVM_DEFAULT}
 CXX=		${LOCALBASE}/bin/clang++${LLVM_DEFAULT}
 BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 .if ${LLVM_DEFAULT:M[678]0}
-#BROKEN=		LLVM 9.0 or higher required
+BROKEN=		LLVM 9.0 or higher required
 .endif
 .endif
 
@@ -81,6 +82,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/js/moz.configure
 	${REINPLACE_CMD} -e 's|midnightbsd"\$UNAME_RELEASE"|freebsd11.4|g' \
 		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
+	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
+		${WRKSRC}/testing/mozbase/mozinfo/mozinfo/mozinfo.py
 
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/lib/libjs_static.ajs
