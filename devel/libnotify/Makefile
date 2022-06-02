@@ -1,7 +1,5 @@
-
-
 PORTNAME=	libnotify
-PORTVERSION=	0.7.7
+DISTVERSION=	0.7.12
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 
@@ -11,12 +9,17 @@ COMMENT=	Library for desktop notifications
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	intlhack glib20 gdkpixbuf2 introspection
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
+BUILD_DEPENDS=	xsltproc:textproc/libxslt \
+		docbook-xsl-ns>=0:textproc/docbook-xsl-ns
 
-CONFIGURE_ARGS=	--disable-tests
+USES=		gmake gnome libtool meson pkgconfig tar:xz
+USE_GNOME=	glib20 gdkpixbuf2 introspection:build
+USE_LDCONFIG=	yes
+
+MESON_ARGS=	-Dtests=false -Ddocbook_docs=disabled -Dgtk_doc=false
+
+post-patch:
+	${REINPLACE_CMD} -e "s#http:.*docbook.xsl#${LOCALBASE}/share/xsl/docbook-ns/manpages/docbook.xsl#g" \
+		${WRKSRC}/meson.build
 
 .include <bsd.port.mk>
