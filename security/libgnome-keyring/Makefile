@@ -1,8 +1,6 @@
-
-
 PORTNAME=	libgnome-keyring
 PORTVERSION=	3.12.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
@@ -11,17 +9,21 @@ COMMENT=	Program that keeps passwords and other secrets
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
-		libgcrypt.so:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libgcrypt.so:security/libgcrypt
 
 USE_GNOME=	glib20 gnomeprefix intlhack \
 		introspection:build
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-vala
 INSTALL_TARGET=	install-strip
+
+DOCSDIR=	${PREFIX}/share/doc/gnome-keyring
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>
