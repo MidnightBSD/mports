@@ -129,6 +129,7 @@ SUBDIR += slim
 SUBDIR += smproxy
 SUBDIR += startup-notification
 SUBDIR += terminal.app
+SUBDIR += tint
 SUBDIR += viewres
 SUBDIR += virtualgl
 SUBDIR += wdm
