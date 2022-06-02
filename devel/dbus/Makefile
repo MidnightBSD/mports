@@ -1,5 +1,5 @@
 PORTNAME=	dbus
-PORTVERSION=	1.12.20
+DISTVERSION=	1.14.0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -12,7 +12,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 PORTSCOUT=	limitw:1,even
 
-USES=		cpe gmake libtool localbase pathfix pkgconfig python:build shebangfix
+USES=		cpe gmake libtool localbase pathfix pkgconfig python:build shebangfix tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
@@ -20,7 +20,8 @@ CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
 		--disable-doxygen-docs \
 		--disable-selinux \
 		--disable-apparmor \
-		--disable-systemd
+		--disable-systemd \
+		--with-session-socket-dir=/tmp
 INSTALL_TARGET=	install-strip
 SHEBANG_FILES=	tools/GetAllMatchRules.py
 
@@ -47,8 +48,8 @@ X11_USE=	xorg=ice,sm,x11
 X11_CONFIGURE_WITH=	x
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/dbus/dbus-sysdeps-unix.c
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/dbus/dbus-sysdeps-util-unix.c
 	@${REINPLACE_CMD} '/^SUBDIRS =/s|test||' ${WRKSRC}/Makefile.in
 
 post-install:
