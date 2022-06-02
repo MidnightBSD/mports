@@ -20,7 +20,8 @@ CONFIGURE_ARGS=	--disable-multi-os-directory
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 INSTALL_TARGET=	install-strip
 INFO=		libffi
-TEST_TARGET=	check
+# magus
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| -Wno-psabi||g' \
