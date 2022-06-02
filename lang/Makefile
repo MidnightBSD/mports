@@ -96,6 +96,7 @@ SUBDIR += spidermonkey185
 SUBDIR += spidermonkey24
 SUBDIR += spidermonkey52
 SUBDIR += spidermonkey60
+SUBDIR += spidermonkey68
 SUBDIR += spidermonkey78
 SUBDIR += tcl-wrapper
 SUBDIR += tcl86
