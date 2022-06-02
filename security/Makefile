@@ -183,6 +183,7 @@ SUBDIR += py-pyclamd
 SUBDIR += py-pycrypto
 SUBDIR += py-pycryptodome
 SUBDIR += py-pynacl
+SUBDIR += py-python-pam
 SUBDIR += py-rsa
 SUBDIR += py-scramp
 SUBDIR += py-service_identity
