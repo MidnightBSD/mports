@@ -267,6 +267,7 @@ SUBDIR += py-sphinxcontrib-qthelp
 SUBDIR += py-sphinxcontrib-serializinghtml
 SUBDIR += py-sphinxcontrib-websupport
 SUBDIR += py-sphinxcontrib-websupport11
+SUBDIR += py-tinycss
 SUBDIR += py-tinycss2
 SUBDIR += py-toml
 SUBDIR += py-tomli
