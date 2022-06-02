@@ -1,5 +1,6 @@
 PORTNAME=	libsecret
-PORTVERSION=	0.20.4
+PORTVERSION=	0.20.5
+PORTREVISION=	1
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
@@ -8,17 +9,14 @@ COMMENT=	Library to access the secret service API
 
 LICENSE=	lgpl2.1
 
-BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
-		vala:lang/vala
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR} \
+		docbook-xsl>=0:textproc/docbook-xsl \
+		vala:lang/vala \
+		python3:lang/python3
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error
 
-USES=		gettext gmake gnome libtool localbase pathfix pkgconfig tar:xz
-USE_GNOME=	glib20 libxslt:build intltool \
-		introspection:build
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--enable-introspection
-INSTALL_TARGET=	install-strip
+USES=		gnome meson pkgconfig python:3.8+ tar:xz
+USE_GNOME=	glib20 intltool introspection:build libxslt:build
 
 .include <bsd.port.mk>
