@@ -178,7 +178,7 @@ PHP_VER=	${FLAVOR:S/^php//}
 .  if empty(PHP_EXT_DIR) || empty(PHP_EXT_INC) || \
 	(${FLAVOR:Mphp[0-9][0-9]} && ${FLAVOR} != ${FLAVORS:[1]})
 # When adding a version, please keep the comment in
-# Mk/bsd.default-versions.mk in sync.
+# Mk/components/default-versions.mk in sync.
 .    if ${PHP_VER} == 81
 PHP_EXT_DIR=   20210902
 PHP_EXT_INC=    hash json openssl pcre spl
@@ -378,13 +378,13 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		enchant exif ffi fileinfo filter ftp gd gettext gmp \
 		hash iconv igbinary imap intl json ldap mbstring mcrypt \
 		memcache memcached mysqli odbc opcache \
-		openssl pcntl pcre pdo pdo_dblib pdo_firebird pdo_mysql \
+		pcntl pcre pdo pdo_dblib pdo_firebird pdo_mysql \
 		pdo_odbc pdo_pgsql pdo_sqlite phar pgsql posix \
 		pspell radius readline redis session shmop simplexml snmp soap\
 		sockets sodium spl sqlite3 sysvmsg sysvsem sysvshm \
 		tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zip zlib
 # version specific components
-_USE_PHP_VER74=	${_USE_PHP_ALL} pdf
+_USE_PHP_VER74=	${_USE_PHP_ALL} openssl pdf
 _USE_PHP_VER80=	${_USE_PHP_ALL}
 _USE_PHP_VER81=	${_USE_PHP_ALL}
 
