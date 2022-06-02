@@ -1,9 +1,9 @@
 PORTNAME=	pinentry
 PORTREVISION=	0
 
-COMMENT=	Console version of the GnuPG password dialog
+COMMENT=	Qt 5 version of the GnuPG password dialog
 
-PINENTRY_GUI=	tty
+PINENTRY_GUI=	qt5
 
 MASTERDIR=	${.CURDIR}/../pinentry
 

@@ -1,7 +1,7 @@
 PORTNAME=	libassuan
 PORTVERSION=	2.5.5
 CATEGORIES=	security devel
-MASTER_SITES=	GNUPG/${PORTNAME}
+MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPC library used by GnuPG and gpgme
