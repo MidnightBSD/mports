@@ -1,5 +1,6 @@
 PORTNAME=	libgtop
 PORTVERSION=	2.40.0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,7 +18,7 @@ USES=		gettext gmake gnome libtool makeinfo pathfix perl5 \
 USE_GNOME=	gnomeprefix glib20 intlhack introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 LDFLAGS+=	-L${LOCALBASE}/lib -lutil
 INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--enable-introspection
