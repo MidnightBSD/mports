@@ -1,9 +1,8 @@
 # Created by: Alexander Logvinov <avl@FreeBSD.org>
 
 PORTNAME=	gobject-introspection
-DISTVERSION=	1.70.0
+DISTVERSION=	1.72.0
 PORTEPOCH=	1
-PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -20,7 +19,7 @@ LIB_DEPENDS=	libffi.so:devel/libffi
 
 PORTSCOUT=	limitw:1,even
 
-USES=		bison gettext gnome localbase meson pkgconfig python:3.4+ tar:xz
+USES=		bison gettext gnome localbase meson pkgconfig python:3.7+ tar:xz
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
