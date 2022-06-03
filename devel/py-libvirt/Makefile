@@ -1,7 +1,7 @@
 # Created by: Jason Helfman <jgh@FreeBSD.org>
 
 PORTNAME=	libvirt
-PORTVERSION=	7.1.0
+PORTVERSION=	8.3.0
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/python/ \
 		ftp://libvirt.org/libvirt/python/
@@ -15,8 +15,9 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libvirt.so:devel/libvirt
 
-USES=	pkgconfig python:3.6+ shebangfix
-SHEBANG_FILES=	generator.py sanitytest.py setup.py
+USES=		cpe pkgconfig python:3.6+ shebangfix
+CPE_VENDOR=	redhat
+SHEBANG_FILES=	generator.py setup.py
 USE_PYTHON=	distutils autoplist
 
 post-install:
