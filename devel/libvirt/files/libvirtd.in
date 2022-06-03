@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: libvirtd
 # REQUIRE: LOGIN virtlogd
 # KEYWORD: shutdown

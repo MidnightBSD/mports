@@ -1,6 +1,6 @@
---- meson.build.orig	2021-08-02 06:19:41.682135000 -0400
-+++ meson.build	2021-09-11 14:32:26.242320000 -0400
-@@ -409,7 +409,7 @@
+--- meson.build.orig	2022-05-02 07:33:03.000000000 -0400
++++ meson.build	2022-06-03 09:29:34.432669000 -0400
+@@ -410,7 +410,7 @@
  
    # on aarch64 error: -fstack-protector not supported for this target
    if host_machine.cpu_family() != 'aarch64'
@@ -9,7 +9,7 @@
        # we prefer -fstack-protector-strong but fallback to -fstack-protector-all
        fstack_cflags = cc.first_supported_argument([
          '-fstack-protector-strong',
-@@ -625,6 +625,11 @@
+@@ -622,6 +622,11 @@
    headers += 'libutil.h'
  endif
  
@@ -21,7 +21,7 @@
  foreach name : headers
    if cc.has_header(name)
      conf.set('WITH_@0@'.format(name.underscorify().to_upper()), 1)
-@@ -798,6 +803,11 @@
+@@ -795,6 +800,11 @@
    required_programs += 'ifconfig'
  endif
  
@@ -33,16 +33,16 @@
  foreach name : required_programs
    prog = find_program(name, dirs: libvirt_sbin_path)
    varname = name.underscorify()
-@@ -862,7 +872,7 @@
-   xdr_dep = cc.find_library('portablexdr', required: false)
- elif host_machine.system() == 'linux'
-   xdr_dep = dependency('libtirpc', required: false)
--elif host_machine.system() in [ 'freebsd', 'darwin' ]
-+elif host_machine.system() in [ 'freebsd', 'darwin', 'midnightbsd' ]
-   xdr_dep = cc.find_library('c', required: false)
- else
-   xdr_dep = dependency('', required: false)
-@@ -995,6 +1005,8 @@
+@@ -855,7 +865,7 @@
+     xdr_dep = cc.find_library('portablexdr', required: get_option('driver_remote'))
+   elif host_machine.system() == 'linux'
+     xdr_dep = dependency('libtirpc', required: get_option('driver_remote'))
+-  elif host_machine.system() in [ 'freebsd', 'darwin' ]
++  elif host_machine.system() in [ 'midnightbsd', 'freebsd', 'darwin' ]
+     xdr_dep = cc.find_library('c', required: get_option('driver_remote'))
+   else
+     xdr_dep = dependency('', required: false)
+@@ -988,6 +998,8 @@
  # Check for BSD kvm (kernel memory interface)
  if host_machine.system() == 'freebsd'
    libkvm_dep = cc.find_library('kvm')
@@ -51,7 +51,7 @@
  else
    libkvm_dep = dependency('', required: false)
  endif
-@@ -1456,7 +1468,7 @@
+@@ -1452,7 +1464,7 @@
    endif
  endif
  
@@ -60,12 +60,12 @@
    bhyve_prog = find_program('bhyve', required: get_option('driver_bhyve'))
    bhyvectl_prog = find_program('bhyvectl', required: get_option('driver_bhyve'))
    bhyveload_prog = find_program('bhyveload', required: get_option('driver_bhyve'))
-@@ -1659,7 +1671,7 @@
+@@ -1667,7 +1679,7 @@
+       error('Please specify both qemu_user and qemu_group or neither of them')
      endif
-     conf.set_quoted('QEMU_MODDIR', qemu_moddir)
- 
--    if host_machine.system() in [ 'freebsd', 'darwin' ]
-+    if host_machine.system() in [ 'freebsd', 'darwin', 'midnightbsd' ]
-       default_qemu_user = 'root'
-       default_qemu_group = 'wheel'
-     else
+     if qemu_user == '' and qemu_group == ''
+-      if host_machine.system() in [ 'freebsd', 'darwin' ]
++      if host_machine.system() in [ 'midnightbsd', 'freebsd', 'darwin' ]
+         qemu_user = 'root'
+         qemu_group = 'wheel'
+       else
