@@ -281,6 +281,7 @@ SUBDIR += raptor2
 SUBDIR += rarian
 SUBDIR += rasqal
 SUBDIR += redland
+SUBDIR += ripgrep
 SUBDIR += rubygem-asciidoctor
 SUBDIR += rubygem-rdiscount
 SUBDIR += rubygem-ronn

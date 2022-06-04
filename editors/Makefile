@@ -9,6 +9,7 @@ SUBDIR += gedit-plugins
 SUBDIR += impress
 SUBDIR += jedit
 SUBDIR += joe
+SUBDIR += jucipp
 SUBDIR += jupp
 SUBDIR += linux-openoffice3
 SUBDIR += linux-sublime
