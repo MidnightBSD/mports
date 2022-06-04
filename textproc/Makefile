@@ -152,6 +152,7 @@ SUBDIR += p5-XML-Filter-BufferText
 SUBDIR += p5-XML-Grove
 SUBDIR += p5-XML-Handler-YAWriter
 SUBDIR += p5-XML-LibXML
+SUBDIR += p5-XML-LibXSLT
 SUBDIR += p5-XML-NamespaceSupport
 SUBDIR += p5-XML-Parser
 SUBDIR += p5-XML-Parser-Lite
