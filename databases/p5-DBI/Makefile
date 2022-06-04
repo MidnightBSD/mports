@@ -1,5 +1,6 @@
 PORTNAME=	DBI
 PORTVERSION=	1.643
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,9 +16,9 @@ PROXY_DESC=	Build DBI::Proxy
 
 CONFLICTS=	p5-DBI-1.3*
 
-USES=		perl5 shebangfix
+USES=		cpe perl5 shebangfix
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
+CPE_VENDOR=	perl
 
 SHEBANG_FILES=	dbixs_rev.pl
 
