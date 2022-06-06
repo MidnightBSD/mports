@@ -966,6 +966,7 @@ SUBDIR += py-scripttest
 SUBDIR += py-setproctitle
 SUBDIR += py-setuptools
 SUBDIR += py-setuptools44
+SUBDIR += py-setuptools-git
 SUBDIR += py-setuptools_hg
 SUBDIR += py-setuptools_scm
 SUBDIR += py-setuptools_scm_git_archive
