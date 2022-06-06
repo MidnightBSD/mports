@@ -1,5 +1,5 @@
 PORTNAME=	php81
-DISTVERSION=	8.1.5
+DISTVERSION=	8.1.6
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -339,10 +339,14 @@ BUILD_DEPENDS=		re2c:devel/re2c
 .endif
 
 .if ${PHP_MODNAME} == "ldap"
-CONFIGURE_ARGS+=	--with-ldap-sasl=${LOCALBASE} \
-			--with-ldap=${LOCALBASE}
+CONFIGURE_ARGS+=	--with-ldap=${LOCALBASE}
 
 USE_OPENLDAP=	yes
+
+. ifdef(WANT_OPENLDAP_SASL)
+CONFIGURE_ARGS+=--with-ldap-sasl=${LOCALBASE}
+. endif
+
 .endif
 
 .if ${PHP_MODNAME} == "mbstring"
