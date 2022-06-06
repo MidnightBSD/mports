@@ -19,4 +19,7 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 USES=		gnome meson pkgconfig python:3.8+ tar:xz
 USE_GNOME=	glib20 intltool introspection:build libxslt:build
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
