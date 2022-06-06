@@ -27,7 +27,9 @@ LIB_DEPENDS=	libevent.so:devel/libevent \
 SLAVEDIRS=	databases/percona57-client \
 		databases/percona57-pam-for-mysql
 USES=		bison:build cmake:insource,noninja compiler:c11 \
-		cpe libedit localbase perl5 shebangfix ssl
+		cpe ldap libedit localbase perl5 shebangfix ssl
+
+USE_OPENLDAP=	yes
 
 MY_DBDIR=	/var/db/mysql
 MY_SECDIR=	/var/db/mysql_secure
