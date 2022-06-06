@@ -14,7 +14,7 @@
          DASM_ARCH="x86"
          ;;
 -      x86_64*)
-+      *x86_64*|amd64-*-freebsd*)
++      *x86_64*|amd64-*-freebsd*|amd64-*-midnightbsd*)
          DASM_FLAGS="-D X64=1"
          DASM_ARCH="x86"
          ;;
