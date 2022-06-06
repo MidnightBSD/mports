@@ -1,6 +1,5 @@
 PORTNAME=	gi-docgen
-PORTVERSION=	2021.5
-PORTREVISION=	1
+PORTVERSION=	2022.1
 CATEGORIES=	textproc python
 MASTER_SITES=	GNOME
 PKGNAMEPREFIX=  ${PYTHON_PKGNAMEPREFIX}
@@ -21,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}toml>0:textproc/py-toml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typogrify>0:textproc/py-typogrify@${PY_FLAVOR}
 
-USES=		python:3.6+
+USES=		python:3.7+
 USE_PYTHON= 	autoplist distutils
 
 NO_ARCH=	yes
