@@ -37,6 +37,9 @@ SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in \
 		tools/opt-viewer/opt-stats.py \
 		tools/opt-viewer/opt-viewer.py
 
+# magus temporary
+NO_TEST=	yes
+
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 
@@ -64,9 +67,11 @@ CXXFLAGS+=	-DNDEBUG
 OPTIONS_DEFINE=	BE_AMDGPU CLANG DOCS EXTRAS LIT LLD LLD_LINK LLDB PYCLANG
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT OPENMP
-OPTIONS_DEFAULT=	BE_AMDGPU BE_STANDARD CLANG EXTRAS LIT LLD LLD_LINK LLDB PYCLANG
-OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD OPENMP
-OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
+OPTIONS_DEFAULT=	BE_AMDGPU BE_STANDARD CLANG LIT LLD LLD_LINK
+# disabled until fixed
+#OPTIONS_DEFAULT=	BE_AMDGPU BE_STANDARD CLANG EXTRAS LIT LLD LLD_LINK LLDB PYCLANG
+#OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD OPENMP
+#OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
 OPTIONS_SINGLE=		BACKENDS
 OPTIONS_SINGLE_BACKENDS=BE_FREEBSD BE_NATIVE BE_STANDARD
 OPTIONS_SUB=	yes
@@ -495,14 +500,14 @@ post-install-LIT-on:
 post-install-LLD_LINK-on:
 	${LN} -s ld.lld ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/ld
 
-TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
-do-test:
-	if [ `${ID} -u` = 0 ]; then \
-		${CHOWN} -R nobody ${WRKSRC}/test; \
-		su -m nobody -c ${TEST_CMD}; \
-	else \
-		${SH} -c ${TEST_CMD}; \
-	fi
+#TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
+#do-test:
+#	if [ `${ID} -u` = 0 ]; then \
+#		${CHOWN} -R nobody ${WRKSRC}/test; \
+#		su -m nobody -c ${TEST_CMD}; \
+#	else \
+#		${SH} -c ${TEST_CMD}; \
+#	fi
 
 build-plist:
 	${RM} ${PLIST} ${PLIST}.tmp
