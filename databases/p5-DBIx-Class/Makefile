@@ -1,5 +1,3 @@
-
-
 PORTNAME=	DBIx-Class
 PORTVERSION=	0.082841
 CATEGORIES=	databases perl5
@@ -66,6 +64,9 @@ NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
 CONFIGURE_ENV=	DBICTEST_NO_SQLITE_CHECK=1
+
+# magus?
+NO_TEST=	yes
 
 SQLT_RUN_DEPENDS=	p5-SQL-Translator>=0.09.004:databases/p5-SQL-Translator
 
