@@ -13,15 +13,15 @@ LICENSE_FILE=	${WRKSRC:H}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	xxd:editors/vim \
-		${BUILD_DEPENDS_${ARCH}}
-BUILD_DEPENDS_amd64=	nasm:devel/nasm
-BUILD_DEPENDS_i386=	nasm:devel/nasm
+		nasm:devel/nasm
 
 USES=		compiler:c++11-lib meson
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	Netflix
 WRKSRC_SUBDIR=	lib${PORTNAME}
+
+NO_TEST=	yes
 
 post-install:
 # For legacy API consumers e.g., aom, x265
