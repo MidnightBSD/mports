@@ -1,5 +1,5 @@
 PORTNAME=	Data-Dumper
-PORTVERSION=	2.173
+PORTVERSION=	2.183
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,6 +14,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Data/Dumper/Dumper.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Data/Dumper/Dumper.so
 
 .include <bsd.port.mk>
