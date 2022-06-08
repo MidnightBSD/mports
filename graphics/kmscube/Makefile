@@ -27,6 +27,8 @@ GSTREAMER_USES=		gnome
 GSTREAMER_USE=		GNOME=glib20 GSTREAMER1=yes
 GSTREAMER_MESON_ENABLED=gstreamer
 
+WRKSRC=		${WRKDIR}/${PORTNAME}-${GL_COMMIT}-${GL_COMMIT}
+
 PNG_LIB_DEPENDS=	libpng.so:graphics/png
 
 post-patch-PNG-off:
