@@ -21,7 +21,7 @@ LICENSE_FILE_ZLIB=	${WRKSRC}/third_party/lodepng/LICENSE
 
 LIB_DEPENDS=	libbrotlienc.so:archivers/brotli \
 		libhwy.so:devel/highway
-TEST_DEPENDS=	googletest>0:devel/googletest
+#TEST_DEPENDS=	googletest>0:devel/googletest
 
 USES=		cmake:testing compiler:c++11-lib cpe localbase:ldflags pkgconfig shared-mime-info
 CPE_VENDOR=	${PORTNAME}_project
@@ -64,6 +64,9 @@ PIXBUF_USE=		GNOME=gdkpixbuf2
 
 PNG_LIB_DEPENDS=	libpng.so:graphics/png
 PNG_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_PNG
+
+# magus
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} 's,/usr,${LOCALBASE},' \
