@@ -48,6 +48,7 @@ SUBDIR += e2fsprogs
 SUBDIR += ec2-scripts
 SUBDIR += entr
 SUBDIR += etc_os-release
+SUBDIR += exa
 SUBDIR += extipl
 SUBDIR += ezjail
 SUBDIR += ffs2recov
