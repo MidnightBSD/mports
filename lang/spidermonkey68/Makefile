@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
 		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
 		autoconf-2.13:devel/autoconf213 \
-		rust-cbindgen>=0.8.7:devel/rust-cbindgen
+		rust-cbindgen>=0.8.7:devel/rust-cbindgen \
+		python3:lang/python3
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libicudata.so:devel/icu \
 		libnspr4.so:devel/nspr
