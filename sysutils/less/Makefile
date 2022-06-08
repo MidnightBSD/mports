@@ -1,13 +1,16 @@
 PORTNAME=	less
 PORTVERSION=	551
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.greenwoodsoftware.com/less/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Better pager utility
 
-LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	gpl3 mit
+LICENSE_COMB=	dual
+LICENSE_FILE_gpl3=	${WRKSRC}/COPYING
+LICENSE_FILE_mit=	${WRKSRC}/LICENSE
 
 USES=		cpe ncurses
 
@@ -25,21 +28,12 @@ OPTIONS_DEFINE=		COLORS PCRE
 OPTIONS_DEFAULT=	COLORS PCRE
 
 PCRE_USES=		localbase
+PCRE_CONFIGURE_ON=	--with-regex=pcre
 PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
+PCRE_LDFLAGS=		-L${LOCALBASE}/lib -lpcre
+PCRE_CONFIGURE_OFF=	--with-regex=posix
 
-COLORS_DESC=	Enable colors support via escape sequence
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MCOLORS}
-CPPFLAGS+=	-DCOLOR_LESS
-.endif
-
-.if ${PORT_OPTIONS:MPCRE}
-CONFIGURE_ARGS+=	--with-regex=pcre
-LDFLAGS+=		-L${LOCALBASE}/lib -lpcre
-.else
-CONFIGURE_ARGS+=	--with-regex=posix
-.endif
+COLORS_DESC=		Enable colors support via escape sequence
+COLORS_CPPFLAGS=	-DCOLOR_LESS
 
 .include <bsd.port.mk>
