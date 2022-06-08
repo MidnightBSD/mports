@@ -12,6 +12,7 @@ COMMENT=	GNOME Javascript binding
 LICENSE=	mpl gpl2 lgpl2.1 mit
 LICENSE_COMB=	multi
 
+BUILD_DEPENDS+=	cmake:devel/cmake
 LIB_DEPENDS=	libmozjs-68.so:lang/spidermonkey68 \
 		libffi.so:devel/libffi
 
