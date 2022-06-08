@@ -1,7 +1,7 @@
 # Created by: Pawel Worach <pawel.worach@gmail.com>
 
 PORTNAME=	gjs
-PORTVERSION=	1.63.3
+PORTVERSION=	1.66.0
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -13,7 +13,7 @@ LICENSE=	mpl gpl2 lgpl2.1 mit
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS+=	cmake:devel/cmake
-LIB_DEPENDS=	libmozjs-68.so:lang/spidermonkey68 \
+LIB_DEPENDS=	libmozjs-78.so:lang/spidermonkey78 \
 		libffi.so:devel/libffi
 
 USES=		compiler:c++11-lib gettext gnome libtool \
