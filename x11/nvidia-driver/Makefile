@@ -265,6 +265,11 @@ post-install: .SILENT
 .if defined(LIBGLDIR)
 	${REINPLACE_CMD} -e '/nvidia_icd\.json/d ; /nvidia_layers\.json/d ; /10_nvidia\.json/d' ${TMPPLIST}
 .endif
+
+.if ${NVVERSION:R} > 460 && ${NVVERSION:R} < 471
+	${REINPLACE_CMD} -e '/10_nvidia\.json/d ; \
+		/nvidia_icd\.json/d ; /nvidia_layers\.json/d' ${TMPPLIST}
+.endif
 .if ${NVVERSION:R} < 460
 	${REINPLACE_CMD} -e '/libnvidia-glvkspirv\.so/d ; \
 		/nvidia_icd\.json/d ; /nvidia_layers\.json/d' ${TMPPLIST}
