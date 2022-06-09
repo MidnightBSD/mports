@@ -1,0 +1,97 @@
+@cwd %%LINUXBASE%%
+etc/OpenCL/vendors/nvidia.icd
+usr/bin/nvidia-cuda-mps-server
+usr/bin/nvidia-cuda-mps-control
+usr/bin/nvidia-debugdump
+usr/bin/nvidia-smi
+usr/bin/nvidia-bug-report.sh
+usr/bin/nvidia-settings
+usr/bin/nvidia-xconfig
+usr/bin/nvidia-persistenced
+usr/lib64/libnvcuvid.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-glcore.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-fbc.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-ifr.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-eglcore.so.%%SHLIB_VERSION%%
+usr/lib64/libGL.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-ml.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-opencl.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-glsi.so.%%SHLIB_VERSION%%
+usr/lib64/tls/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib64/libGLESv2.so.%%SHLIB_VERSION%%
+usr/lib64/libvdpau_nvidia.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-compiler.so.%%SHLIB_VERSION%%
+usr/lib64/libGLESv1_CM.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-encode.so.%%SHLIB_VERSION%%
+usr/lib64/libEGL.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib64/libcuda.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-cfg.so.%%SHLIB_VERSION%%
+usr/lib/libnvcuvid.so.%%SHLIB_VERSION%%
+usr/lib/libnvcuvid.so.1
+usr/lib/libnvidia-glsi.so.%%SHLIB_VERSION%%
+usr/lib/libEGL.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-encode.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ml.so.1
+usr/lib/libEGL.so.1
+usr/lib/libGLESv2.so.2
+usr/lib/libnvidia-ifr.so.%%SHLIB_VERSION%%
+usr/lib/libcuda.so
+usr/lib/libGL.so.1
+usr/lib/libnvidia-fbc.so.%%SHLIB_VERSION%%
+usr/lib/libnvcuvid.so
+usr/lib/libGL.so.%%SHLIB_VERSION%%
+usr/lib/libcuda.so.1
+usr/lib/libGLESv1_CM.so.1
+usr/lib/libnvidia-ml.so
+usr/lib/libnvidia-fbc.so.1
+usr/lib/libnvidia-ml.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-encode.so.1
+usr/lib/libnvidia-glcore.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-encode.so
+usr/lib/libnvidia-opencl.so.1
+usr/lib/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib/tls/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib/libGLESv1_CM.so.%%SHLIB_VERSION%%
+usr/lib/libcuda.so.%%SHLIB_VERSION%%
+usr/lib/libvdpau_nvidia.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-eglcore.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ifr.so
+usr/lib/libnvidia-ifr.so.1
+usr/lib/libGLESv2.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-opencl.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-fbc.so
+usr/lib/libnvidia-compiler.so.%%SHLIB_VERSION%%
+usr/share/man/man1/nvidia-persistenced.1.gz
+usr/share/man/man1/nvidia-xconfig.1.gz
+usr/share/man/man1/nvidia-cuda-mps-control.1.gz
+usr/share/man/man1/nvidia-smi.1.gz
+usr/share/man/man1/nvidia-settings.1.gz
+usr/share/nvidia/nvidia-application-profiles-%%SHLIB_VERSION%%-rc
+usr/share/nvidia/monitoring.conf
+usr/share/nvidia/nvidia-application-profiles-%%SHLIB_VERSION%%-key-documentation
+usr/share/nvidia/pci.ids
+@postexec %%LINUXBASE%%/sbin/ldconfig
+@postunexec %%LINUXBASE%%/sbin/ldconfig
+@dir %%LINUXBASE%%/etc/OpenCL/vendors
+@dir %%LINUXBASE%%/etc/OpenCL
+@dir %%LINUXBASE%%/etc/vulkan/icd.d
+@dir %%LINUXBASE%%/etc/vulkan
+@dir %%LINUXBASE%%/etc
+@dir %%LINUXBASE%%/usr/bin
+%%LINUX32%%@dir %%LINUXBASE%%/usr/lib/tls
+%%LINUX32%%@dir %%LINUXBASE%%/usr/lib/vdpau
+%%LINUX32%%@dir %%LINUXBASE%%/usr/lib
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%/tls
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%/vdpau
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%
+@dir %%LINUXBASE%%/usr/share/egl/egl_external_platform.d
+@dir %%LINUXBASE%%/usr/share/egl
+@dir %%LINUXBASE%%/usr/share/glvnd/egl_vendor.d
+@dir %%LINUXBASE%%/usr/share/glvnd
+@dir %%LINUXBASE%%/usr/share/man/man1
+@dir %%LINUXBASE%%/usr/share/man
+@dir %%LINUXBASE%%/usr/share/nvidia
+@dir %%LINUXBASE%%/usr/share
+@dir %%LINUXBASE%%/usr
+@dir %%LINUXBASE%%
