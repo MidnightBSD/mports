@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gentoo
 PORTVERSION=	0.20.7
 CATEGORIES=	x11-fm
@@ -9,9 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk+ based, file manager inspired by DirectoryOpus
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GNOME=	gtk30
-USES=		gettext gmake pathfix pkgconfig
+USES=		gettext gmake gnome pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 
