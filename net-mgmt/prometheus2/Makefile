@@ -1,9 +1,11 @@
 PORTNAME=	prometheus
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.33.5
+DISTVERSION=	2.36.0
+PORTREVISION=	1
 CATEGORIES=	net-mgmt
-MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
-DISTFILES=	go.mod:gomod
+MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod \
+		https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/${DISTVERSIONFULL}/:ui
+DISTFILES=	go.mod:gomod ${PORTNAME}-web-ui-${DISTVERSION}.tar.gz:ui
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Systems monitoring and alerting toolkit
@@ -11,10 +13,11 @@ COMMENT=	Systems monitoring and alerting toolkit
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+PATCH_DEPENDS=	bash:shells/bash
+
 USES=		cpe gmake go:modules
 
 USE_GITHUB=	yes
-GH_TUPLE=	ports-assets:net-mgmt_prometheus2:${DISTVERSIONFULL}:assets
 USE_RC_SUBR=	prometheus
 
 GO_MODULE=	github.com/prometheus/prometheus
@@ -60,8 +63,10 @@ SOURCE_DATE_EPOCH_CMD=	date -ur $$(${GREP} TIMESTAMP ${DISTINFO_FILE} | ${SED} -
 			'+%Y%m%d-%T'
 
 post-patch:
-	@${LN} -s ${WRKSRC_assets}/web/ui/assets_vfsdata.go \
-		${WRKSRC}/web/ui/assets_vfadata.go
+	@${RM} -rf ${WRKSRC}/web/ui/static
+	# A symlink isn't good enough here, copy the entire static directory over
+	@${CP} -a ${WRKDIR}/static ${WRKSRC}/web/ui/static
+	@( cd ${WRKSRC} && ${WRKSRC}/scripts/compress_assets.sh )
 
 post-install:
 	${MKDIR} ${PREFIX}/${PROMETHEUS_CONSOLES_DIR}
