@@ -1,9 +1,9 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
 
 PORTNAME=	gnome-settings-daemon
-PORTVERSION=	3.38.1
+PORTVERSION=	42.2
 CATEGORIES=	sysutils gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,28 +12,28 @@ COMMENT=	GNOME 3 settings daemon
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
-		libcanberra-gtk3.so:audio/libcanberra-gtk3 \
-		libpolkit-gobject-1.so:sysutils/polkit \
-		libfontconfig.so:x11-fonts/fontconfig \
+LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
+		libcanberra.so:audio/libcanberra \
 		libcolord.so:graphics/colord \
-		liblcms2.so:graphics/lcms2 \
-		libpulse.so:audio/pulseaudio \
-		libnotify.so:devel/libnotify \
-		libgeoclue-2.so:net/geoclue \
-		libupower-glib.so:sysutils/upower \
-		libgeocode-glib.so:net/geocode-glib \
-		libgweather-3.so:net/libgweather \
 		libcups.so:print/cups \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libgeoclue-2.so:net/geoclue \
+		libgeocode-glib.so:net/geocode-glib \
+		libgweather-4.so:net/libgweather4 \
+		liblcms2.so:graphics/lcms2 \
+		libnotify.so:devel/libnotify \
+		libnspr4.so:devel/nspr \
 		libnss3.so:security/nss \
-		libnspr4.so:devel/nspr
+		libpolkit-gobject-1.so:sysutils/polkit \
+		libpulse.so:audio/pulseaudio \
+		libupower-glib.so:sysutils/upower
 
 PORTSCOUT=	limitw:1,even
 
 USE_XORG=	x11 xext xi xtst
 USE_GNOME=	cairo gnomedesktop3 gtk30
-USES=		gettext gnome localbase:ldflags meson perl5 \
-		pkgconfig python:3.6+,build tar:xz xorg
+USES=		gettext gnome localbase:ldflags meson perl5 pkgconfig \
+		python:3.6+,build tar:xz xorg
 USE_PERL5=	build
 INSTALLS_ICONS=	yes
 #		-Dnssdb_dir=${LOCALBASE}/share/certs/ca-root-nss.crt
