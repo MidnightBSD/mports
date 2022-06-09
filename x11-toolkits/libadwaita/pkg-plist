@@ -757,7 +757,7 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherTitle.view-switcher-enabled.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.WindowTitle.subtitle.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.WindowTitle.title.html
-%%PORTDOCS%%%%DOCSDIR%%-1/pygment.css
+@comment %%PORTDOCS%%%%DOCSDIR%%-1/pygment.css
 %%PORTDOCS%%%%DOCSDIR%%-1/search.js
 %%PORTDOCS%%%%DOCSDIR%%-1/signal.ActionRow.activated.html
 %%PORTDOCS%%%%DOCSDIR%%-1/signal.Carousel.page-changed.html
