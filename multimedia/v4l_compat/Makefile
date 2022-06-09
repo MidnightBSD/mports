@@ -1,5 +1,4 @@
 PORTNAME=	v4l_compat
-PORTREVISION=	1
 
 COMMENT=	Video4Linux IOCTL header files
 
@@ -13,6 +12,7 @@ PLIST=		${.CURDIR}/pkg-plist
 BASE_HEADERS= \
 	linux/cec.h \
 	linux/cec-funcs.h \
+	linux/const.h \
 	linux/dvb/audio.h \
 	linux/dvb/ca.h \
 	linux/dvb/dmx.h \
@@ -36,7 +36,7 @@ do-install:
 
 .for F in ${BASE_HEADERS}
 	${INSTALL_DATA} \
-		${WRKDIR}/webcamd-${WEBCAMDVERSION}/media_tree/include/uapi/${F} \
+		${LINUXDIR}/include/uapi/${F} \
 		${STAGEDIR}${PREFIX}/include/${F}
 .endfor
 
