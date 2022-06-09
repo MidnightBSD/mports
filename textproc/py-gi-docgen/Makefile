@@ -1,7 +1,7 @@
 PORTNAME=	gi-docgen
 PORTVERSION=	2022.1
 CATEGORIES=	textproc python
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 PKGNAMEPREFIX=  ${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}toml>0:textproc/py-toml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typogrify>0:textproc/py-typogrify@${PY_FLAVOR}
 
-USES=		python:3.7+
+USES=		python:3.7+ tar:xz
 USE_PYTHON= 	autoplist distutils
 
 NO_ARCH=	yes
