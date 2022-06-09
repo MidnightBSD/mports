@@ -37,18 +37,20 @@ USES=		gettext gnome localbase:ldflags meson perl5 \
 USE_PERL5=	build
 INSTALLS_ICONS=	yes
 #		-Dnssdb_dir=${LOCALBASE}/share/certs/ca-root-nss.crt
-MESON_ARGS=	-Dnssdb_dir=${LOCALBASE}/share/certs/ \
-		-Dalsa=false \
-		-Drfkill=false \
-		-Dnetwork_manager=false \
-		-Dsystemd=false \
-		-Dwwan=false \
+MESON_ARGS=	-Dalsa=false \
+		-Dcolord=false \
 		-Dcups=true \
-		-Dsmartcard=true
+		-Dnetwork_manager=false \
+		-Dnssdb_dir=${LOCALBASE}/share/certs/ \
+		-Drfkill=false \
+		-Dsmartcard=true \
+		-Dsystemd=false \
+		-Dwwan=false
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 # wayland doesn't build yet, undefined symbol
-MESON_ARGS+=	-Dwayland=false -Dgudev=false
+MESON_ARGS+=	-Dgudev=false \
+		-Dwayland=false
 #WAYLAND_MESON_TRUE=	wayland gudev
 #WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev \
 #			libwayland-client.so:graphics/wayland
