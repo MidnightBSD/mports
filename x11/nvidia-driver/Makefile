@@ -266,7 +266,8 @@ post-install: .SILENT
 	${REINPLACE_CMD} -e '/nvidia_icd\.json/d ; /nvidia_layers\.json/d ; /10_nvidia\.json/d' ${TMPPLIST}
 .endif
 
-.if ${NVVERSION:R} > 460 && ${NVVERSION:R} < 471
+# hack for newer drivers.
+.if ${NVVERSION:R} > 460
 	${REINPLACE_CMD} -e '/10_nvidia\.json/d ; \
 		/nvidia_icd\.json/d ; /nvidia_layers\.json/d' ${TMPPLIST}
 .endif
