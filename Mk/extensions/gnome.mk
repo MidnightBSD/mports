@@ -74,7 +74,7 @@ _USE_GNOME_ALL+= atk cairo \
 		libglade2 libgnomecanvas \
 		libgsf libidl librsvg2 libwnck \
 		libxml2 libxslt \
-		orbit2 pango pangox-compat \
+		pango pangox-compat \
 		vte
 
 # GNOME 3 components
@@ -85,7 +85,7 @@ _USE_GNOME_ALL+=dconf evolutiondataserver3 gnomecontrolcenter3 gnomedesktop3 \
 		pygobject3 vte3
 
 # GNOME 40 components
-_USE_GNOME_ALL+=gtk40 libadwaita
+_USE_GNOME_ALL+=gtk40 libadwaita gtksourceview5
 
 # C++ bindings
 _USE_GNOME_ALL+=atkmm cairomm gconfmm26 glibmm gtkmm24 \
@@ -194,9 +194,6 @@ GTK4_VERSION=		4.0.0
 libidl_LIB_DEPENDS=	libIDL-2.so:devel/libIDL
 libidl_USE_GNOME_IMPL=	glib20
 
-orbit2_LIB_DEPENDS=	libORBit-2.so:devel/ORBit2
-orbit2_USE_GNOME_IMPL=	libidl
-
 libglade2_LIB_DEPENDS=	libglade-2.0.so:devel/libglade2
 libglade2_USE_GNOME_IMPL=libxml2 gtk20
 
@@ -216,7 +213,7 @@ introspection_USE_GNOME_IMPL=	glib20
 introspection_MAKE_ENV=		GI_SCANNER_DISABLE_CACHE=1 XDG_CACHE_HOME=${WRKDIR}
 
 gconf2_LIB_DEPENDS=	libgconf-2.so:devel/gconf2
-gconf2_USE_GNOME_IMPL=	orbit2 libxml2 gtk20
+gconf2_USE_GNOME_IMPL=	libxml2
 
 libgnomecanvas_LIB_DEPENDS=	libgnomecanvas-2.so:graphics/libgnomecanvas
 libgnomecanvas_USE_GNOME_IMPL=	libglade2 libartlgpl2
@@ -251,7 +248,7 @@ librsvg2_BUILD_DEPENDS=	librsvg2>=0:graphics/librsvg2
 librsvg2_LIB_DEPENDS=	librsvg-2.so:graphics/librsvg2
 librsvg2_RUN_DEPENDS=	librsvg2>=0:graphics/librsvg2
 .endif
-librsvg2_USE_GNOME_IMPL=libgsf gdkpixbuf2 pango
+librsvg2_USE_GNOME_IMPL=gdkpixbuf2 pango
 
 nautilus3_LIB_DEPENDS=	libnautilus-extension.so:x11-fm/nautilus
 nautilus3_USE_GNOME_IMPL=gnomedesktop3 libxml2
@@ -276,6 +273,9 @@ gtksourceview3_USE_GNOME_IMPL=gtk30 libxml2
 
 gtksourceview4_LIB_DEPENDS=	libgtksourceview-4.so:x11-toolkits/gtksourceview4
 gtksourceview4_USE_GNOME_IMPL=gtk30 libxml2
+
+gtksourceview5_LIB_DEPENDS=	libgtksourceview-5.so:x11-toolkits/gtksourceview5
+gtksourceview5_USE_GNOME_IMPL=gtk40 libxml2
 
 libgsf_LIB_DEPENDS=	libgsf-1.so:devel/libgsf
 libgsf_USE_GNOME_IMPL=	glib20 libxml2

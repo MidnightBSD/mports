@@ -20,6 +20,7 @@ SUBDIR += gtkmm30
 SUBDIR += gtksourceview2
 SUBDIR += gtksourceview3
 SUBDIR += gtksourceview4
+SUBDIR += gtksourceview5
 SUBDIR += gtksourceviewmm3
 SUBDIR += irrlicht
 SUBDIR += libadwaita
