@@ -1,7 +1,7 @@
 # Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
 
 PORTNAME=	xreader
-PORTVERSION=	3.0.0
+PORTVERSION=	3.2.2
 CATEGORIES=	print gnome
 DIST_SUBDIR=	gnome
 
@@ -26,7 +26,7 @@ GLIB_SCHEMAS=	org.x.reader.gschema.xml
 INSTALLS_ICONS=	yes
 
 MATHJAX_DIR=	${LOCALBASE}/www/MathJax
-MESON_ARGS=	-Dtests=false
+#MESON_ARGS=	-Dtests=false
 
 OPTIONS_DEFINE=	DBUS DJVU DVI EPUB HELP KEYRING PDF PS T1LIB TIFF XPS
 OPTIONS_DEFAULT=	DBUS DJVU HELP KEYRING PDF TIFF XPS
