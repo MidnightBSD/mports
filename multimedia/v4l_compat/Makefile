@@ -1,5 +1,3 @@
-
-
 PORTNAME=	v4l_compat
 PORTREVISION=	1
 
