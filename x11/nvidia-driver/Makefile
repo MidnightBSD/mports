@@ -259,8 +259,12 @@ pre-install:
 
 post-install: .SILENT
 	${INSTALL_SCRIPT} ${WRKSRC}/obj/nvidia-bug-report.sh \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 # pkg-plist is already overbloated, so use these hacks instead of PLIST_SUB's
+# hack for nvidia-secondary
+.if defined(LIBGLDIR)
+	${REINPLACE_CMD} -e '/nvidia_icd\.json/d ; /nvidia_layers\.json/d ; /10_nvidia\.json/d' ${TMPPLIST}
+.endif
 .if ${NVVERSION:R} < 460
 	${REINPLACE_CMD} -e '/libnvidia-glvkspirv\.so/d ; \
 		/nvidia_icd\.json/d ; /nvidia_layers\.json/d' ${TMPPLIST}
@@ -333,18 +337,18 @@ post-install: .SILENT
 # Configuration of Nvidia as secondary GPU requires preserving libglvnd or mesa
 # libraries as default implementation; a libmap must not override in this case.
 .  if !defined(LIBGLDIR)
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/libmap.d/
+	@${MKDIR} ${PREFIX}/etc/libmap.d/
 	${INSTALL_DATA} ${WRKDIR}/nvidia.conf \
-		${STAGEDIR}${PREFIX}/etc/libmap.d/
+		${PREFIX}/etc/libmap.d/
 .  else
 # libgl proxies require a library path containing unrenamed lib*GL*.so
-	${MKDIR} ${STAGEDIR}${PREFIX}/${LIBGLDIR}
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libGL-NVIDIA.so.1 \
-		${STAGEDIR}${PREFIX}/${LIBGLDIR}/libGL.so.1
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libEGL-NVIDIA.so.1 \
-		${STAGEDIR}${PREFIX}/${LIBGLDIR}/libEGL.so.1
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libGLESv2-NVIDIA.so.2 \
-		${STAGEDIR}${PREFIX}/${LIBGLDIR}/libGLESv2.so.2
+	${MKDIR} ${PREFIX}/${LIBGLDIR}
+	${RLN} ${PREFIX}/lib/libGL-NVIDIA.so.1 \
+		${PREFIX}/${LIBGLDIR}/libGL.so.1
+	${RLN} ${PREFIX}/lib/libEGL-NVIDIA.so.1 \
+		${PREFIX}/${LIBGLDIR}/libEGL.so.1
+	${RLN} ${PREFIX}/lib/libGLESv2-NVIDIA.so.2 \
+		${PREFIX}/${LIBGLDIR}/libGLESv2.so.2
 .  endif
 # Configuration of Nvidia as secondary GPU requires preserving xorg-server's
 # libglx.so and moving Nvidia's glx to where it can be found by a secondary
