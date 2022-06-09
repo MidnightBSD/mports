@@ -1,5 +1,3 @@
- 
-
 PORTNAME=	gnustep
 PORTVERSION=	1.28.0
 CATEGORIES=	devel lang gnustep

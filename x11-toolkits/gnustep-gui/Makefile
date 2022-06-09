@@ -1,9 +1,7 @@
-
-
 PORTNAME=	gnustep-gui
 DISTVERSIONPREFIX=	gui-
-DISTVERSION=	0_27_0
-PORTREVISION=	6
+DISTVERSION=	0_29_0
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -36,6 +34,7 @@ CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
 CONFIGURE_ARGS+=	--with-x
 CONFIGURE_ARGS+=	--with-x-include=${LOCALBASE}/include
 CONFIGURE_ARGS+=	--with-x-include=${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--disable-icu	--disable-aspell
 
 MAKE_FLAGS+=	OPTFLAG="${CFLAGS}"
 
@@ -50,8 +49,8 @@ DOCS_BUILD_DEPENDS=	texi2html:textproc/texi2html \
 
 CUPS_CONFIGURE_ENABLE=		cups
 CUPS_LIB_DEPENDS+=	libcups.so:print/cups
-ASPELL_LIB_DEPENDS=	libaspell.so:textproc/aspell
-ASPELL_CONFIGURE_ENABLE=	aspell
+#ASPELL_LIB_DEPENDS=	libaspell.so:textproc/aspell
+#ASPELL_CONFIGURE_ENABLE=	aspell
 
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
@@ -64,9 +63,9 @@ pre-configure:
 	@${CP} ${GNUSTEP_PREFIX}/System/Library/Makefiles/${file} ${WRKSRC}
 .endfor
 
-do-build:
-	(cd ${WRKSRC}/;. ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
+#do-build:
+#	(cd ${WRKSRC}/;. ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+#		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 
 post-install-DOCS-off:
 	@${FIND} -d ${STAGEDIR}${PREFIX}/GNUstep/System/Library/Documentation -type d -empty -delete
