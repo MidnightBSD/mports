@@ -1,5 +1,6 @@
-#########################################################
-
+[
+{ type: install
+  message: <<EOM
 Simple config:
 
   LoadModule perl_module %%APACHEMODDIR%%/mod_perl.so
@@ -14,4 +15,8 @@ or online:
 
   http://perl.apache.org/docs/2.0/user/intro/start_fast.html
 
-#########################################################
+The module can be enabled in
+ %%APACHEETCDIR%%/modules.d/260_mod_perl.conf
+EOM
+}
+]

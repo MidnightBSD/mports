@@ -1,7 +1,5 @@
-
-
 PORTNAME=	mod_perl
-PORTVERSION=	2.0.10
+PORTVERSION=	2.0.12
 PORTEPOCH=	3
 CATEGORIES=	www perl5
 MASTER_SITES=	APACHE/perl
@@ -20,13 +18,14 @@ TEST_DEPENDS=	p5-CGI>=4.15:www/p5-CGI \
 
 SUB_FILES=	pkg-message
 SUB_LIST=	APACHEMODDIR=${APACHEMODDIR}
-USES=		cpe gmake perl5
+USES=		apache:2.4+ cpe gmake perl5
 USE_PERL5=	configure
 USE_APACHE=	24+
 USE_CSTD=	gnu89
 CPE_VENDOR=	apache
 
-CSTD=	c89
+APMOD_FILE=	260_${PORTNAME}.conf.sample
+PLIST_SUB+=	APMOD_FILE=${APMOD_FILE}
 
 # Using apxs in this way is problematic if apache2 is installed under a
 # different PREFIX than mod_perl2, because the mod_perl2 installation will

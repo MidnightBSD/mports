@@ -1,3 +1,4 @@
+@sample %%APACHEETCDIR%%/modules.d/%%APMOD_FILE%%
 bin/mp2bug
 %%APACHEINCLUDEDIR%%/modperl_apr_perlio.h
 %%APACHEINCLUDEDIR%%/modperl_xs_sv_convert.h
