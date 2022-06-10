@@ -179,6 +179,7 @@ include/samba4/wbclient.h
 %%SAMBA4_LIBDIR%%/private/libasn1util-samba4.so
 %%SAMBA4_LIBDIR%%/private/libauth-samba4.so
 %%SAMBA4_LIBDIR%%/private/libauth-unix-token-samba4.so
+%%SAMBA4_LIBDIR%%/private/libdcerpc-pkt-auth-samba4.so
 %%SAMBA4_LIBDIR%%/private/libauth4-samba4.so
 %%SAMBA4_LIBDIR%%/private/libauthkrb5-samba4.so
 %%SAMBA4_LIBDIR%%/private/libcli-cldap-samba4.so
