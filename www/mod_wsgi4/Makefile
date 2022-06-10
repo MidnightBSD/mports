@@ -1,5 +1,5 @@
 PORTNAME=	mod_wsgi
-PORTVERSION=	4.7.0
+PORTVERSION=	4.7.1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}${PYTHON_PKGNAMEPREFIX}
@@ -10,8 +10,9 @@ COMMENT=	Python WSGI adapter module for Apache
 LICENSE=	apache2
 
 #USE_APACHE=	24
-USES=		apache:2.4+ gettext python
+USES=		apache:2.4+ cpe gettext python
 USE_PYTHON=	flavors
+CPE_VENDOR=	modwsgi
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-apxs="${APXS}" --with-python="${PYTHON_CMD}"
