@@ -1,5 +1,5 @@
 PORTNAME=	appstream-glib
-PORTVERSION=	0.7.14
+PORTVERSION=	0.7.18
 CATEGORIES=	devel
 MASTER_SITES=	http://people.freedesktop.org/~hughsient/appstream-glib/releases/
 DIST_SUBDIR=	gnome
@@ -44,5 +44,7 @@ MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
 MANPAGES_USE=	GNOME=libxslt:build
 
 NO_TEST=	yes
+
+USE_GCC=	10
 
 .include <bsd.port.mk>

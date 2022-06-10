@@ -1,98 +1,183 @@
-bin/a2x
-bin/a2x.py
+%%PYTHON_SITELIBDIR%%/asciidoc/__main__.py
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/attrs%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/exceptions%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/plugin%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/__main__%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/api%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/message%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/exceptions%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/__metadata__%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/api%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/__main__%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/__metadata__%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/asciidoc%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/asciidoc%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/attrs%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/plugin%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/message%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/collections%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/utils%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/collections%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/a2x%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/a2x%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/utils%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/utils.py
+%%PYTHON_SITELIBDIR%%/asciidoc/message.py
+%%PYTHON_SITELIBDIR%%/asciidoc/blocks/table.py
+%%PYTHON_SITELIBDIR%%/asciidoc/blocks/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/blocks/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/blocks/__pycache__/table%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/blocks/__pycache__/table%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/blocks/__init__.py
+%%PYTHON_SITELIBDIR%%/asciidoc/a2x.py
+%%PYTHON_SITELIBDIR%%/asciidoc/plugin.py
+%%PYTHON_SITELIBDIR%%/asciidoc/attrs.py
+%%PYTHON_SITELIBDIR%%/asciidoc/exceptions.py
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-it.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-ru.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/stylesheets/docbook-xsl.css
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/stylesheets/xhtml11-quirks.css
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/stylesheets/toc2.css
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/stylesheets/pygments.css
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/stylesheets/slidy.css
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/stylesheets/asciidoc.css
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/html5.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-de.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/latex.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-fi.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/javascripts/ASCIIMathML.js
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/javascripts/asciidoc.js
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/javascripts/slidy.js
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/javascripts/LaTeXMathML.js
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/javascripts/toc.js
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-cs.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-el.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/html4.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-hu.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-ja.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/xhtml11-quirks.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-pl.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-id.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-uk.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook5.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-pt-BR.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/music/music2png.py
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/music/music-filter.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/music/music-filter-test.txt
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/music/__pycache__/music2png%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/music/__pycache__/music2png%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/graphviz/__pycache__/graphviz2png%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/graphviz/__pycache__/graphviz2png%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/graphviz/graphviz2png.py
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/graphviz/asciidoc-graphviz-sample.txt
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/graphviz/graphviz-filter.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/unwraplatex.py
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/__pycache__/unwraplatex%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/__pycache__/unwraplatex%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/source/source-highlight-filter-test.txt
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/source/source-highlight-filter.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code/code-filter.py
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code/__pycache__/code-filter%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code/__pycache__/code-filter%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code/code-filter.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code/code-filter-readme.txt
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code/code-filter-test.txt
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/latex/latex-filter.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/latex/latex2img.py
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/latex/__pycache__/latex2img%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/latex/__pycache__/latex2img%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-ro.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/next.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/note.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/important.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/tip.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/example.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/up.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/home.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/prev.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/caution.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/3.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/4.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/11.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/5.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/2.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/10.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/14.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/13.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/1.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/6.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/8.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/12.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/15.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/9.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts/7.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/warning.png
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/slidy.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-en.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-es.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/asciidoc.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-fr.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook45.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/xhtml11.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-nl.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-zh-CN.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-sv.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/text.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/lang-ca.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/help.conf
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/dblatex/asciidoc-dblatex.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/dblatex/dblatex-readme.txt
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/dblatex/asciidoc-dblatex.sty
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/xhtml.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/asciidoc-docbook-xsl.txt
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/epub.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/manpage.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/fo.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/common.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/text.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/chunked.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl/htmlhelp.xsl
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/themes/volnitsky/volnitsky.css
+%%PYTHON_SITELIBDIR%%/asciidoc/resources/themes/flask/flask.css
+%%PYTHON_SITELIBDIR%%/asciidoc/asciidoc.py
+%%PYTHON_SITELIBDIR%%/asciidoc/__init__.py
+%%PYTHON_SITELIBDIR%%/asciidoc/collections.py
+%%PYTHON_SITELIBDIR%%/asciidoc/api.py
+%%PYTHON_SITELIBDIR%%/asciidoc/__metadata__.py
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/PKG-INFO
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/dependency_links.txt
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/entry_points.txt
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/SOURCES.txt
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/top_level.txt
 bin/asciidoc
-bin/asciidoc.py
-@sample %%ETCDIR%%/asciidoc.conf.sample
-%%ETCDIR%%/dblatex/asciidoc-dblatex.sty
-%%ETCDIR%%/dblatex/asciidoc-dblatex.xsl
-%%ETCDIR%%/docbook-xsl/chunked.xsl
-%%ETCDIR%%/docbook-xsl/common.xsl
-%%ETCDIR%%/docbook-xsl/epub.xsl
-%%ETCDIR%%/docbook-xsl/fo.xsl
-%%ETCDIR%%/docbook-xsl/htmlhelp.xsl
-%%ETCDIR%%/docbook-xsl/manpage.xsl
-%%ETCDIR%%/docbook-xsl/text.xsl
-%%ETCDIR%%/docbook-xsl/xhtml.xsl
-@sample %%ETCDIR%%/docbook45.conf.sample
-@sample %%ETCDIR%%/docbook5.conf.sample
-@sample %%ETCDIR%%/filters/code/code-filter.conf.sample
-%%ETCDIR%%/filters/code/code-filter.py
-@sample %%ETCDIR%%/filters/graphviz/graphviz-filter.conf.sample
-%%ETCDIR%%/filters/graphviz/graphviz2png.py
-@sample %%ETCDIR%%/filters/latex/latex-filter.conf.sample
-%%ETCDIR%%/filters/latex/latex2img.py
-@sample %%ETCDIR%%/filters/music/music-filter.conf.sample
-%%ETCDIR%%/filters/music/music2png.py
-@sample %%ETCDIR%%/filters/source/source-highlight-filter.conf.sample
-%%ETCDIR%%/filters/unwraplatex.py
-@sample %%ETCDIR%%/help.conf.sample
-@sample %%ETCDIR%%/html4.conf.sample
-@sample %%ETCDIR%%/html5.conf.sample
-%%ETCDIR%%/images/icons/README
-%%ETCDIR%%/images/icons/callouts/1.png
-%%ETCDIR%%/images/icons/callouts/10.png
-%%ETCDIR%%/images/icons/callouts/11.png
-%%ETCDIR%%/images/icons/callouts/12.png
-%%ETCDIR%%/images/icons/callouts/13.png
-%%ETCDIR%%/images/icons/callouts/14.png
-%%ETCDIR%%/images/icons/callouts/15.png
-%%ETCDIR%%/images/icons/callouts/2.png
-%%ETCDIR%%/images/icons/callouts/3.png
-%%ETCDIR%%/images/icons/callouts/4.png
-%%ETCDIR%%/images/icons/callouts/5.png
-%%ETCDIR%%/images/icons/callouts/6.png
-%%ETCDIR%%/images/icons/callouts/7.png
-%%ETCDIR%%/images/icons/callouts/8.png
-%%ETCDIR%%/images/icons/callouts/9.png
-%%ETCDIR%%/images/icons/caution.png
-%%ETCDIR%%/images/icons/example.png
-%%ETCDIR%%/images/icons/home.png
-%%ETCDIR%%/images/icons/important.png
-%%ETCDIR%%/images/icons/next.png
-%%ETCDIR%%/images/icons/note.png
-%%ETCDIR%%/images/icons/prev.png
-%%ETCDIR%%/images/icons/tip.png
-%%ETCDIR%%/images/icons/up.png
-%%ETCDIR%%/images/icons/warning.png
-%%ETCDIR%%/javascripts/ASCIIMathML.js
-%%ETCDIR%%/javascripts/LaTeXMathML.js
-%%ETCDIR%%/javascripts/asciidoc.js
-%%ETCDIR%%/javascripts/slidy.js
-%%ETCDIR%%/javascripts/toc.js
-@sample %%ETCDIR%%/lang-ca.conf.sample
-@sample %%ETCDIR%%/lang-cs.conf.sample
-@sample %%ETCDIR%%/lang-de.conf.sample
-@sample %%ETCDIR%%/lang-el.conf.sample
-@sample %%ETCDIR%%/lang-en.conf.sample
-@sample %%ETCDIR%%/lang-es.conf.sample
-@sample %%ETCDIR%%/lang-fi.conf.sample
-@sample %%ETCDIR%%/lang-fr.conf.sample
-@sample %%ETCDIR%%/lang-hu.conf.sample
-@sample %%ETCDIR%%/lang-id.conf.sample
-@sample %%ETCDIR%%/lang-it.conf.sample
-@sample %%ETCDIR%%/lang-ja.conf.sample
-@sample %%ETCDIR%%/lang-nl.conf.sample
-@sample %%ETCDIR%%/lang-pl.conf.sample
-@sample %%ETCDIR%%/lang-pt-BR.conf.sample
-@sample %%ETCDIR%%/lang-ro.conf.sample
-@sample %%ETCDIR%%/lang-ru.conf.sample
-@sample %%ETCDIR%%/lang-sv.conf.sample
-@sample %%ETCDIR%%/lang-uk.conf.sample
-@sample %%ETCDIR%%/lang-zh-CN.conf.sample
-@sample %%ETCDIR%%/latex.conf.sample
-@sample %%ETCDIR%%/slidy.conf.sample
-%%ETCDIR%%/stylesheets/asciidoc.css
-%%ETCDIR%%/stylesheets/docbook-xsl.css
-%%ETCDIR%%/stylesheets/pygments.css
-%%ETCDIR%%/stylesheets/slidy.css
-%%ETCDIR%%/stylesheets/toc2.css
-%%ETCDIR%%/stylesheets/xhtml11-quirks.css
-@sample %%ETCDIR%%/text.conf.sample
-%%ETCDIR%%/themes/flask/flask.css
-%%ETCDIR%%/themes/volnitsky/volnitsky.css
-@sample %%ETCDIR%%/xhtml11.conf.sample
-@sample %%ETCDIR%%/xhtml11-quirks.conf.sample
-%%PYTHON_SITELIBDIR%%/asciidocapi.py
-man/man1/a2x.1.gz
-man/man1/asciidoc.1.gz
-man/man1/testasciidoc.1.gz
+bin/a2x
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/__pycache__
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/blocks/__pycache__
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/blocks
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/stylesheets
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/javascripts
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/music/__pycache__
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/music
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/graphviz/__pycache__
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/graphviz
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/__pycache__
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/source
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code/__pycache__
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/code
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/latex/__pycache__
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters/latex
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/filters
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/icons/callouts
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/icons
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/dblatex
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/docbook-xsl
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/themes/volnitsky
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/themes/flask
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources/themes
+@dir %%PYTHON_SITELIBDIR%%/asciidoc/resources
+@dir %%PYTHON_SITELIBDIR%%/asciidoc
+@dir %%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info
+@dir %%PYTHON_SITELIBDIR%%
+@dir %%PYTHON_LIBDIR%%
