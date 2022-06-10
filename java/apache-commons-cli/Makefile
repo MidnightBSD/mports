@@ -1,7 +1,7 @@
 # Created by: Ernst de Haan <znerd@FreeBSD.org>
 
 PORTNAME=	commons-cli
-PORTVERSION=	1.4
+PORTVERSION=	1.5.0
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE_COMMONS_BINARIES
 PKGNAMEPREFIX=	apache-
