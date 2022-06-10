@@ -1,5 +1,5 @@
 PORTNAME=	curl
-PORTVERSION=	7.82.0
+PORTVERSION=	7.83.1
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
