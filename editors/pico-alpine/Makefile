@@ -1,9 +1,6 @@
 # New ports collection makefile for:	pico-alpine
 # Date created:				December 21, 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-
-#
 
 PORTNAME=	pico-alpine
 PORTREVISION=	0
@@ -21,6 +18,7 @@ PLIST=		${.CURDIR}/pkg-plist
 PATCHDIR=			# To void equivalent in master port
 PKGMESSAGE=	/nonexistent	# To void equivalent in master port
 PKGINSTALL=	/nonexistent	# To void equivalent in master port
+CPE_PRODUCT=	alpine
 
 PICO_ALPINE_SLAVE=	yes
 
