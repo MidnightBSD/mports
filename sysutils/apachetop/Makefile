@@ -1,8 +1,7 @@
 # Created by: Sebastian Yepes F. <esn@x123.info>
 
 PORTNAME=	apachetop
-PORTVERSION=	0.18.4
-PORTREVISION=	1
+PORTVERSION=	0.19.7
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
