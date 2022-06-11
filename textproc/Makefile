@@ -289,6 +289,7 @@ SUBDIR += rubygem-ronn
 SUBDIR += sassc
 SUBDIR += scdoc
 SUBDIR += scim
+SUBDIR += scim-input-pad
 SUBDIR += scr2txt
 SUBDIR += scrollkeeper
 SUBDIR += sdocbook-xml
