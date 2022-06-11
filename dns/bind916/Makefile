@@ -201,6 +201,7 @@ post-patch:
 post-patch-PORTREVISION-on:
 	@${REINPLACE_CMD} -e '/EXTENSIONS/s#=$$#=_${PORTREVISION}#' \
 		${WRKSRC}/version
+.endif
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mtree
