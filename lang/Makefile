@@ -22,6 +22,7 @@ SUBDIR += gcc7
 SUBDIR += gcc8
 SUBDIR += gcc9
 SUBDIR += gcc10
+SUBDIR += gcc11
 SUBDIR += gcc-ecj45
 SUBDIR += ghc
 SUBDIR += gjs
