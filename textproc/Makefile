@@ -288,6 +288,7 @@ SUBDIR += rubygem-rdiscount
 SUBDIR += rubygem-ronn
 SUBDIR += sassc
 SUBDIR += scdoc
+SUBDIR += scim
 SUBDIR += scr2txt
 SUBDIR += scrollkeeper
 SUBDIR += sdocbook-xml
