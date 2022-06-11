@@ -2,7 +2,7 @@
 # 
 # Feature:	gl
 # Usage:	USES=gl
-#		USE_GL=egl gbm gl glesv2 glew glu glut glw
+#		USE_GL=egl gbm gl glesv1 glesv2 glew glu glut
 #		
 #		USE_GL specifies which GL components to add as dependencies.
 #		Not specifying USE_GL with USES=gl is an error.
@@ -15,12 +15,12 @@ _GL_egl_LIB_DEPENDS=		libEGL.so:graphics/mesa-libs
 _GL_gbm_LIB_DEPENDS=		libgbm.so:graphics/mesa-libs
 _GL_gl_LIB_DEPENDS=		libGL.so:graphics/mesa-libs
 _GL_gl_USE_XORG=		xorgproto
+_GL_glesv1_LIB_DEPENDS=		libGLESv1_CM.so:graphics/mesa-libs
 _GL_glesv2_LIB_DEPENDS=		libGLESv2.so:graphics/mesa-libs
 _GL_glew_LIB_DEPENDS=		libGLEW.so:graphics/glew
 _GL_glu_LIB_DEPENDS=		libGLU.so:graphics/libGLU
 _GL_glu_USE_XORG=		xorgproto
 _GL_glut_LIB_DEPENDS=		libglut.so:graphics/freeglut
-_GL_glw_LIB_DEPENDS=		libGLw.so:graphics/libGLw
 
 .if !empty(gl_ARGS)
 IGNORE=	USES=gl takes no arguments

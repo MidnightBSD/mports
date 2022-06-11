@@ -1,0 +1,69 @@
+--- meson.build.orig	2020-11-23 14:04:02.758137000 -0500
++++ meson.build	2022-06-11 13:59:18.186890000 -0400
+@@ -152,7 +152,7 @@
+ # Only build shared_glapi if at least one OpenGL API is enabled
+ with_shared_glapi = with_shared_glapi and with_any_opengl
+ 
+-system_has_kms_drm = ['openbsd', 'netbsd', 'freebsd', 'gnu/kfreebsd', 'dragonfly', 'linux', 'sunos'].contains(host_machine.system())
++system_has_kms_drm = ['openbsd', 'netbsd', 'midnightbsd', 'freebsd', 'gnu/kfreebsd', 'dragonfly', 'linux', 'sunos'].contains(host_machine.system())
+ 
+ dri_drivers = get_option('dri-drivers')
+ if dri_drivers.contains('auto')
+@@ -424,7 +424,7 @@
+ 
+ # Android uses emutls for versions <= P/28. For USE_ELF_TLS we need ELF TLS.
+ use_elf_tls = false
+-if not ['windows', 'freebsd', 'openbsd'].contains(host_machine.system()) and (not with_platform_android or get_option('platform-sdk-version') >= 29)
++if not ['windows', 'midnightsd', 'freebsd', 'openbsd'].contains(host_machine.system()) and (not with_platform_android or get_option('platform-sdk-version') >= 29)
+   pre_args += '-DUSE_ELF_TLS'
+   use_elf_tls = true
+ endif
+@@ -937,7 +937,7 @@
+ endif
+ 
+ # TODO: this is very incomplete
+-if ['linux', 'cygwin', 'gnu', 'freebsd', 'gnu/kfreebsd'].contains(host_machine.system())
++if ['linux', 'cygwin', 'gnu', 'midnightbsd', 'freebsd', 'gnu/kfreebsd'].contains(host_machine.system())
+   pre_args += '-D_GNU_SOURCE'
+ elif host_machine.system() == 'sunos'
+   pre_args += '-D__EXTENSIONS__'
+@@ -1108,9 +1108,9 @@
+ endif
+ 
+ # Check for GCC style atomics
+-dep_atomic = null_dep
++dep_atomic = cc.find_library('atomic', required : false)
+ 
+-if cc.compiles('''#include <stdint.h>
++if cc.links('''#include <stdint.h>
+                   int main() {
+                     struct {
+                       uint64_t *v;
+@@ -1119,26 +1119,9 @@
+                            (int)__atomic_add_fetch(x.v, (uint64_t)1, __ATOMIC_ACQ_REL);
+ 
+                   }''',
++	       dependencies : dep_atomic,
+                name : 'GCC atomic builtins')
+   pre_args += '-DUSE_GCC_ATOMIC_BUILTINS'
+-
+-  # Not all atomic calls can be turned into lock-free instructions, in which
+-  # GCC will make calls into the libatomic library. Check whether we need to
+-  # link with -latomic.
+-  #
+-  # This can happen for 64-bit atomic operations on 32-bit architectures such
+-  # as ARM.
+-  if not cc.links('''#include <stdint.h>
+-                     int main() {
+-                       struct {
+-                         uint64_t *v;
+-                       } x;
+-                       return (int)__atomic_load_n(x.v, __ATOMIC_ACQUIRE) &
+-                              (int)__atomic_add_fetch(x.v, (uint64_t)1, __ATOMIC_ACQ_REL);
+-                     }''',
+-                  name : 'GCC atomic builtins required -latomic')
+-    dep_atomic = cc.find_library('atomic')
+-  endif
+ endif
+ if not cc.links('''#include <stdint.h>
+                    uint64_t v;

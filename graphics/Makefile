@@ -86,7 +86,6 @@ SUBDIR += lcms
 SUBDIR += lcms2
 SUBDIR += leptonica
 SUBDIR += libGLU
-SUBDIR += libGLw
 SUBDIR += libart_lgpl
 SUBDIR += libcaca
 SUBDIR += libchamplain

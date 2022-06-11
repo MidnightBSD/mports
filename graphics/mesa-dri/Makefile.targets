@@ -1,32 +1,11 @@
 # this file holds common targets
 
+pre-configure:
+	${PRINTF} "[binaries]\nllvm-config = '${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}'" \
+	> ${WRKSRC}/llvm.ini
+
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|x86_64|amd64|' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|/etc/|${PREFIX}/etc/|g' \
+	${REINPLACE_CMD} -e '/SYSCONFDIR/ s|/etc|${PREFIX}/etc|g' \
+		-e '/DATADIR/ s|/usr/share|${PREFIX}/share|g' \
 		${WRKSRC}/src/util/xmlconfig.c
-
-pre-build: mesa-pre-build
-
-#custom targets so we can build parts of Mesa
-mesa-pre-build:
-# do propper gmake target.
-	@cd ${WRKSRC}/src && ${MAKE_CMD} ${FAKE_MAKEARGS} git_sha1.h libglsl_util.la
-	@cd ${WRKSRC}/src/mesa/drivers/dri/common/ && ${MAKE_CMD} ${FAKE_MAKEARGS}
-	@cd ${WRKSRC}/src/loader && ${MAKE_CMD} ${FAKE_MAKEARGS}
-# libloader.la
-
-.if defined(MESA_BUILD_WRKSRC)
-do-build:
-. for dir in ${MESA_BUILD_WRKSRC}
-	(cd ${WRKSRC}/${dir}; ${DO_MAKE_BUILD} ${ALL_TARGET};)
-. endfor
-.endif
-
-.if defined(MESA_INSTALL_WRKSRC)
-do-install:
-. for dir in ${MESA_INSTALL_WRKSRC}
-	(cd ${WRKSRC}/${dir} && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} \
-		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
-. endfor
-.endif
-

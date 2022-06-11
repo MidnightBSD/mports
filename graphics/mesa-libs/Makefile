@@ -6,41 +6,62 @@ CATEGORIES=	graphics
 
 COMMENT=	OpenGL libraries that support GLX and EGL clients
 
-LICENSE=	mit
+CONFLICTS_INSTALL=	libglvnd # include/GL/gl.h
 
-USES=		xorg
-USE_XORG=	xorgproto x11 xcb xdamage xext \
-		xfixes xshmfence xxf86vm
+OPTIONS_GROUP=			PLATFORM
+OPTIONS_GROUP_PLATFORM=		PLATFORM_X11 PLATFORM_WAYLAND
+PLATFORM_X11_DESC=		Enable X11 support for GBM/EGL
+PLATFORM_WAYLAND_DESC=		Enable Wayland support for GBM/EGL
+PLATFORM_WAYLAND_IMPLIES=	WAYLAND
 
-OPTIONS_DEFINE=	WAYLAND
-OPTIONS_DEFAULT=WAYLAND
+OPTIONS_DEFINE=	WAYLAND ZSTD
+OPTIONS_DEFAULT=WAYLAND PLATFORM_X11 PLATFORM_WAYLAND ZSTD
 OPTIONS_SUB=	yes
 
 WAYLAND_DESC=		Enable support for the Wayland platform in EGL
 WAYLAND_BUILD_DEPENDS=	wayland-protocols>=1.8:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland
+WAYLAND_IMPLIES=	PLATFORM_WAYLAND
+
+ZSTD_DESC=		Use ZSTD for shader cache
+ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
+ZSTD_MESON_ENABLED=	zstd
 
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
-CONFIGURE_ARGS+=	--with-dri-drivers="" --with-gallium-drivers=""
+MESON_ARGS+=	-Dgallium-drivers="" \
+		-Dgallium-vdpau=disabled \
+		-Dgallium-xvmc=disabled \
+		-Dgallium-omx=disabled \
+		-Dgallium-va=disabled \
+		-Dgallium-xa=disabled \
+		-Dgallium-nine=false \
+		-Dgallium-opencl=disabled \
+		-Dosmesa=none \
+		-Dtools="" \
+		-Degl=enabled \
+		-Dgbm=enabled \
+		-Dvulkan-drivers="" \
+		-Dprefer-iris=true
+# Building EGL and GBM requires a dri driver so add swrast
+MESON_ARGS+=	-Ddri-drivers="swrast"
 
-.if ${PORT_OPTIONS:MWAYLAND}
-CONFIGURE_ARGS+=	--with-platforms=x11,surfaceless,drm,wayland
+.if ${PORT_OPTIONS:MPLATFORM_X11}
+MESA_PLATFORMS+=	x11
+USE_XORG+=		xorgproto x11 xcb xdamage xext \
+			xfixes xshmfence xxf86vm xrandr
+PLIST_SUB+=		GLX=""
+.else
+MESON_ARGS+=	-Dglx=disabled
+PLIST_SUB+=	GLX="@comment "
 .endif
 
-MESA_BUILD_WRKSRC=	src/mapi src/util
-MESA_INSTALL_WRKSRC=	src/mapi
-
-.if ${PORT_OPTIONS:MWAYLAND}
-MESA_BUILD_WRKSRC+=	src/egl/wayland/wayland-drm
+.if ${PORT_OPTIONS:MPLATFORM_WAYLAND} && ${PORT_OPTIONS:MWAYLAND}
+MESA_PLATFORMS+=	wayland
 .endif
 
-MESA_BUILD_WRKSRC+=	src/gbm src/glx
-MESA_INSTALL_WRKSRC+=	src/gbm src/glx
-
-MESA_BUILD_WRKSRC+=	src/egl
-MESA_INSTALL_WRKSRC+=	src/egl
+MESON_ARGS+=	-Dplatforms="${MESA_PLATFORMS:ts,:tl}"
 
 .if ${ARCH} == "i386"
 # PR230239 Fix the build for i386 when WITH_LLD_IS_LD is set
@@ -50,9 +71,5 @@ USE_GCC=	yes
 .endif
 
 .include "${MASTERDIR}/Makefile.targets"
-
-post-install:
-	@cd ${WRKSRC}/src && ${SETENV} DESTDIR=${FAKE_DESTDIR} ${FAKE_MAKEENV} \
-		${MAKE_CMD} ${FAKE_MAKEARGS} install-pkgconfigDATA install-glHEADERS install-glxHEADERS
 
 .include <bsd.port.post.mk>

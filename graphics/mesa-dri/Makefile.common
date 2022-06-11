@@ -12,7 +12,7 @@
 MESAVERSION=	${MESABASEVERSION}${MESASUBVERSION:C/^(.)/.\1/}
 MESADISTVERSION=${MESABASEVERSION}${MESASUBVERSION:C/^(.)/-\1/}
 
-MESABASEVERSION=	18.3.2
+MESABASEVERSION=	20.2.3
 # if there is a subversion, don't include the '-' between 7.11-rc2.
 MESASUBVERSION=
 
@@ -27,10 +27,13 @@ MAINTAINER=	ports@MidnightBSD.org
 
 COMPONENT=	${PORTNAME:tl:C/^lib//:C/mesa-//}
 
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
+BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs \
+		${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR}
 LIB_DEPENDS+=	libexpat.so:textproc/expat2
 .if ${COMPONENT} != clover
-USES+=		xorg
+.if ${PORT_OPTIONS:MPLATFORM_X11}
+USES+=	xorg
+.endif
 .endif
 .if ${COMPONENT} != osmesa
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm
@@ -38,16 +41,21 @@ LIB_DEPENDS+=	libdrm.so:graphics/libdrm
 .if ${COMPONENT} != libs
 LIB_DEPENDS+=	libglapi.so:graphics/mesa-libs
 .endif
-.if ${ARCH} == amd64 || ${ARCH} == i386
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH} == powerpc64 || ${ARCH} == powerpc64le
 LIB_DEPENDS+=	libunwind.so:devel/libunwind
 .endif
 
-USES+=		compiler:c++11-lib bison gettext-tools gmake libtool \
-		localbase pathfix pkgconfig python:2.7,build shebangfix tar:xz
+USES+=		compiler:c++11-lib bison meson pathfix pkgconfig \
+		python:3.6+,build shebangfix tar:xz
+
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--enable-autotools
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd10.4
+
+.if ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
+# --build-id isn't supported by old GNU ld.bfd in base
+# Also ld.bfd have problems that seems related to --as-needed
+USE_BINUTILS=		yes
+LDFLAGS+=		-B${LOCALBASE}/bin
+.endif
 
 # only have one port to check with portscout.
 .if ${PORTNAME} != mesa-dri
@@ -58,7 +66,6 @@ python_OLD_CMD=	/usr/bin/env[[:space:]]python2 /usr/bin/python2 /bin/env[[:space
 SHEBANG_FILES=	src/gallium/*/*/*.py src/gallium/tools/trace/*.py \
 		src/gallium/drivers/svga/svgadump/svga_dump.py \
 		src/mapi/glapi/gen/*.py src/mapi/mapi_abi.py \
-		src/util/xmlpool/gen_xmlpool.py \
 		src/mesa/main/get_*.py src/util/format_srgb.py \
 		src/amd/*/*.py src/intel/genxml/gen_pack_header.py
 
@@ -70,34 +77,22 @@ PLIST=		${.CURDIR}/pkg-plist
 PKGHELP=	${.CURDIR}/pkg-help
 PKGINSTALL=	${.CURDIR}/pkg-install
 PKGDEINSTALL=	${.CURDIR}/pkg-deinstall
-INSTALL_TARGET=	install-strip
+
+.if ${COMPONENT} == clover
+EXTRA_PATCHES+= ${PATCHDIR}/extra-src_gallium_auxiliary_meson.build \
+		${PATCHDIR}/extra-src_gallium_auxiliary_vl_vl__stubs.c
+.endif
 
 .include <bsd.port.pre.mk>
 
-#.if ${LLVM_DEFAULT:S,-devel,990,} >= 90
-LLVM_DEFAULT=	40
-#.endif
+BINARY_ALIAS+=	python3=${PYTHON_VERSION}
 
-.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH:Marm*} || ${ARCH} == i386 || ${ARCH:Mmips*} || ${ARCH:Mpowerpc*}
-BUILD_DEPENDS+=	llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}
-#.if ${COMPONENT} != libs
-RUN_DEPENDS+=	llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}
-#.endif
-CONFIGURE_ENV+=	LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT} LLVM_LIBS="-lLLVM  -L${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
-LDFLAGS+=	-L${LOCALBASE}/llvm${LLVM_DEFAULT}/lib -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib  -lLLVM
-CONFIGURE_ARGS+=	--enable-llvm
-.else
-CONFIGURE_ARGS+=	--disable-llvm
+LLVM_DEFAULT=	10
+BUILD_DEPENDS+=	llvm-config${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+.if ${COMPONENT} != libs
+RUN_DEPENDS+=	llvm-config${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 .endif
 
-# There are issues that need to be fixed to use TLS model "initial-exec"
-# So stick with "global-dynamic"'s model for now. kan@ is working on a
-# patch for rtld. We might want to backport global-dynamic or
-# pthread_setspecific which it uses now by default. But since this
-# configure switch is going away ...
-# https://lists.freebsd.org/pipermail/freebsd-arch/2016-February/017699.html
-CONFIGURE_ARGS+=	--disable-glx-tls
-
-# we don't care about GLes v1
-CONFIGURE_ARGS+=	--disable-gles1
-
+MESON_ARGS+=	--native-file="${WRKSRC}/llvm.ini"
+LDFLAGS+=	-Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib
+MESON_ARGS+=	-Dllvm=enabled

@@ -1,10 +1,10 @@
 
 
 PORTNAME=	libGLU
-PORTVERSION=	9.0.0
-PORTREVISION=	3
+PORTVERSION=	9.0.1
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glu/
+MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glu/ \
+		https://mesa.freedesktop.org/archive/glu/
 DISTNAME=	glu-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +15,7 @@ LICENSE=	mit
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-static
 INSTALL_TARGET=	install-strip
-USES=		libtool pathfix pkgconfig tar:bzip2
+USES=		gl libtool pathfix pkgconfig tar:xz xorg
 USE_GL=		gl
 USE_LDCONFIG=	yes
 
