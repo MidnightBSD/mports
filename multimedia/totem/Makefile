@@ -1,10 +1,13 @@
 # Created by: Hendrik Scholz <hendrik@scholz.net>
 
 PORTNAME=	totem
-PORTVERSION=	3.38.0
+PORTVERSION=	3.38.2
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
+
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
+PATCHFILES+=	61e3a957cb73.patch:-p1 # https://gitlab.gnome.org/GNOME/totem/-/merge_requests/218
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gstreamer-based video player for the GNOME 3 Desktop
@@ -25,7 +28,6 @@ LIB_DEPENDS=	libgdata.so:devel/libgdata \
 		libpeas-1.0.so:devel/libpeas \
 		libjson-glib-1.0.so:devel/json-glib \
 		libgrilo-0.3.so:net/grilo \
-		libzeitgeist-2.0.so:sysutils/zeitgeist \
 		libtotem-plparser.so:multimedia/totem-pl-parser
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
 		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR} \
@@ -50,17 +52,6 @@ GLIB_SCHEMAS=	org.gnome.totem.enums.xml \
 		org.gnome.totem.gschema.xml \
 		org.gnome.totem.plugins.opensubtitles.gschema.xml \
 		org.gnome.totem.plugins.pythonconsole.gschema.xml
-
-# There is an upstream issue in meson which makes the build of totem
-# fail when using vala, due to badly created targets.
-# https://gitlab.gnome.org/GNOME/totem/issues/272
-# https://bugzilla.gnome.org/show_bug.cgi?id=786248
-# https://github.com/mesonbuild/meson/issues/1994
-# Until upstream fixes this, remove vala support from totem.
-MESON_ARGS=	-Denable-vala=no
-PLIST_SUB+=	VALA="@comment "
-
-NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
 
