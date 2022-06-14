@@ -28,7 +28,7 @@ LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 
-USES=		cmake compiler:c++11-lib cpe libedit perl5 tar:xz \
+USES=		cmake compiler:c++11-lib cpe libedit ninja perl5 tar:xz \
 		shebangfix
 _USES_PYTHON?=	python:3.6+,build
 USES+=		${_USES_PYTHON}
@@ -56,6 +56,7 @@ CMAKE_ARGS+=	-DLLVM_ENABLE_Z3_SOLVER=OFF
 CMAKE_ARGS+=	-DPython3_EXECUTABLE=${PYTHON_CMD}
 # LLVM likes to pick up ${LOCALBASE}/lib/libtinfo.so.*
 CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=OFF
+CMAKE_ARGS+=	-DCMAKE_CROSSCOMPILING=True  -DTARGET_ARCH=x86_64 -G "Ninja"
 
 # Disable assertions.  They should be disabled by cmake, but USES=cmake
 # overrides -DCMAKE_*_FLAGS_RELEASE.
@@ -301,7 +302,7 @@ PYCLANG_PATTERN=	(clang\/(__init__|cindex|enumerations).py)$$
 .include <bsd.port.pre.mk>
 .include "${.CURDIR}/Makefile.COMMANDS"
 
-_FREEBSD_BACKENDS=	AArch64 ARM Mips PowerPC RISCV Sparc X86
+_FREEBSD_BACKENDS=	AArch64 ARM Mips X86
 FREEBSD_BACKENDS=	${_FREEBSD_BACKENDS}
 .if ${ARCH} == amd64
 _NATIVE_BACKENDS=	X86
