@@ -98,6 +98,7 @@ SUBDIR += rtmpdump
 SUBDIR += schroedinger
 SUBDIR += smpeg
 SUBDIR += streamlink
+SUBDIR += svt-av1
 SUBDIR += svt-hevc
 SUBDIR += svt-vp9
 SUBDIR += totem
