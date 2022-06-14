@@ -1,7 +1,7 @@
 # Created by: John Marino <marino@FreeBSD.org>
 
 PORTNAME=	zstd
-PORTVERSION=	1.5.0
+PORTVERSION=	1.5.2
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${PORTVERSION}/
 
@@ -13,7 +13,7 @@ LICENSE_COMB=	dual
 
 TEST_DEPENDS=	gmd5sum:sysutils/coreutils
 
-USES=		meson pkgconfig python:3.4+,build shebangfix
+USES=		meson pkgconfig python:3.7+,build shebangfix
 
 MESON_ARGS=	-Ddefault_library=both
 USE_LDCONFIG=	yes
