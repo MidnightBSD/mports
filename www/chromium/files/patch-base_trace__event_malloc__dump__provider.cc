@@ -1,15 +1,15 @@
---- base/trace_event/malloc_dump_provider.cc.orig	2020-03-16 18:39:41 UTC
+--- base/trace_event/malloc_dump_provider.cc.orig	2021-05-12 22:05:40 UTC
 +++ base/trace_event/malloc_dump_provider.cc
-@@ -17,6 +17,8 @@
+@@ -20,6 +20,8 @@
  
- #if defined(OS_MACOSX)
+ #if defined(OS_APPLE)
  #include <malloc/malloc.h>
 +#elif defined(OS_BSD)
 +#include <stdlib.h>
  #else
  #include <malloc.h>
  #endif
-@@ -132,6 +134,9 @@ bool MallocDumpProvider::OnMemoryDump(const MemoryDump
+@@ -199,6 +201,9 @@ bool MallocDumpProvider::OnMemoryDump(const MemoryDump
    }
  #elif defined(OS_FUCHSIA)
  // TODO(fuchsia): Port, see https://crbug.com/706592.

@@ -1,20 +1,22 @@
---- base/base_switches.h.orig	2020-09-08 19:13:57 UTC
+--- base/base_switches.h.orig	2021-05-12 22:05:40 UTC
 +++ base/base_switches.h
-@@ -38,7 +38,7 @@ extern const char kDisableHighResTimer[];
- extern const char kDisableUsbKeyboardDetect[];
- #endif
+@@ -42,8 +42,8 @@ extern const char kDisableUsbKeyboardDetect[];
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
+ // of lacros-chrome is complete.
+-#if defined(OS_LINUX) && !BUILDFLAG(IS_CHROMEOS_ASH) && \
+-    !BUILDFLAG(IS_CHROMEOS_LACROS)
++#if defined(OS_BSD) || (defined(OS_LINUX) && !BUILDFLAG(IS_CHROMEOS_ASH) && \
++    !BUILDFLAG(IS_CHROMEOS_LACROS))
  extern const char kDisableDevShmUsage[];
  #endif
  
-@@ -52,7 +52,7 @@ extern const char kReachedCodeSamplingIntervalUs[];
- extern const char kOrderfileMemoryOptimization[];
+@@ -59,7 +59,7 @@ extern const char kEnableIdleTracing[];
+ extern const char kForceFieldTrialParams[];
  #endif
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if defined(OS_LINUX) || defined(OS_CHROMEOS)
++#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
  extern const char kEnableThreadInstructionCount[];
- #endif
  
+ // TODO(crbug.com/1176772): Remove kEnableCrashpad and IsCrashpadEnabled() when

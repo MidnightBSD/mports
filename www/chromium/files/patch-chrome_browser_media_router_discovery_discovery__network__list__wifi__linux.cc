@@ -1,4 +1,4 @@
---- chrome/browser/media/router/discovery/discovery_network_list_wifi_linux.cc.orig	2020-07-07 21:57:32 UTC
+--- chrome/browser/media/router/discovery/discovery_network_list_wifi_linux.cc.orig	2021-04-14 18:40:53 UTC
 +++ chrome/browser/media/router/discovery/discovery_network_list_wifi_linux.cc
 @@ -9,7 +9,11 @@
  #include <sys/socket.h>

@@ -1,11 +1,11 @@
---- content/utility/BUILD.gn.orig	2020-09-08 19:14:06 UTC
+--- content/utility/BUILD.gn.orig	2021-05-12 22:05:53 UTC
 +++ content/utility/BUILD.gn
-@@ -85,7 +85,7 @@ jumbo_source_set("utility") {
+@@ -94,7 +94,7 @@ source_set("utility") {
      deps += [ "//services/proxy_resolver:lib" ]
    }
  
--  if (is_linux) {
-+  if (is_linux && !is_bsd) {
-     deps += [ "//content/utility/speech:speech_recognition_sandbox_hook" ]
-   }
- 
+-  if (is_linux || is_chromeos) {
++  if ((is_linux || is_chromeos) && !is_bsd) {
+     deps += [
+       "//content/utility/speech:speech_recognition_sandbox_hook",
+       "//printing:printing_sandbox_hook",

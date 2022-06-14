@@ -1,4 +1,4 @@
---- extensions/common/feature_switch.cc.orig	2020-05-13 18:39:44 UTC
+--- extensions/common/feature_switch.cc.orig	2021-04-14 18:41:04 UTC
 +++ extensions/common/feature_switch.cc
 @@ -39,11 +39,11 @@ class CommonSwitches {
                           FeatureSwitch::DEFAULT_ENABLED),

@@ -1,4 +1,4 @@
---- third_party/perfetto/include/perfetto/base/thread_utils.h.orig	2020-09-08 19:20:00 UTC
+--- third_party/perfetto/include/perfetto/base/thread_utils.h.orig	2021-04-14 18:43:06 UTC
 +++ third_party/perfetto/include/perfetto/base/thread_utils.h
 @@ -35,6 +35,9 @@
  #else

@@ -1,6 +1,6 @@
---- services/device/time_zone_monitor/time_zone_monitor_linux.cc.orig	2020-03-16 18:39:54 UTC
+--- services/device/time_zone_monitor/time_zone_monitor_linux.cc.orig	2021-04-14 18:41:08 UTC
 +++ services/device/time_zone_monitor/time_zone_monitor_linux.cc
-@@ -127,7 +127,11 @@ class TimeZoneMonitorLinuxImpl
+@@ -125,7 +125,11 @@ class TimeZoneMonitorLinuxImpl
      // false positives are harmless, assuming the false positive rate is
      // reasonable.
      const char* const kFilesToWatch[] = {

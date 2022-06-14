@@ -1,20 +1,20 @@
---- chrome/browser/ui/views/download/download_item_view.cc.orig	2020-09-08 19:14:01 UTC
+--- chrome/browser/ui/views/download/download_item_view.cc.orig	2021-04-14 18:40:55 UTC
 +++ chrome/browser/ui/views/download/download_item_view.cc
-@@ -207,7 +207,7 @@ class TransparentButton : public views::Button {
- };
+@@ -188,7 +188,7 @@ bool UseNewWarnings() {
+ }
  
- int GetFilenameStyle(const views::StyledLabel& label) {
--#if !defined(OS_LINUX)
-+#if !defined(OS_LINUX) && !defined(OS_BSD)
-   if (base::FeatureList::IsEnabled(safe_browsing::kUseNewDownloadWarnings))
+ int GetFilenameStyle(const views::Label& label) {
+-#if !defined(OS_LINUX) && !defined(OS_CHROMEOS)
++#if !defined(OS_LINUX) && !defined(OS_CHROMEOS) && !defined(OS_BSD)
+   if (UseNewWarnings())
      return STYLE_EMPHASIZED;
  #endif
-@@ -276,7 +276,7 @@ DownloadItemView::DownloadItemView(DownloadUIModel::Do
-   open_button_ = AddChildView(std::move(open_button));
+@@ -196,7 +196,7 @@ int GetFilenameStyle(const views::Label& label) {
+ }
  
-   int file_name_style = views::style::STYLE_PRIMARY;
--#if !defined(OS_LINUX)
-+#if !defined(OS_LINUX) && !defined(OS_BSD)
-   if (base::FeatureList::IsEnabled(safe_browsing::kUseNewDownloadWarnings))
-     file_name_style = STYLE_EMPHASIZED;
+ int GetFilenameStyle(const views::StyledLabel& label) {
+-#if !defined(OS_LINUX) && !defined(OS_CHROMEOS)
++#if !defined(OS_LINUX) && !defined(OS_CHROMEOS) && !defined(OS_BSD)
+   if (UseNewWarnings())
+     return STYLE_EMPHASIZED;
  #endif

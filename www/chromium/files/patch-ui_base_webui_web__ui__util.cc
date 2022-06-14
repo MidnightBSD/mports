@@ -1,11 +1,11 @@
---- ui/base/webui/web_ui_util.cc.orig	2020-09-08 19:14:28 UTC
+--- ui/base/webui/web_ui_util.cc.orig	2021-04-14 18:41:37 UTC
 +++ ui/base/webui/web_ui_util.cc
-@@ -228,7 +228,7 @@ std::string GetFontFamily() {
+@@ -224,7 +224,7 @@ std::string GetFontFamily() {
  
- // TODO(dnicoara) Remove Ozone check when PlatformFont support is introduced
- // into Ozone: crbug.com/320050
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS) && !defined(USE_OZONE)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS) && !defined(USE_OZONE)
-   font_family = ui::ResourceBundle::GetSharedInstance().GetFont(
-       ui::ResourceBundle::BaseFont).GetFontName() + ", " + font_family;
- #endif
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
+ // of lacros-chrome is complete.
+-#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
++#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD)
+   std::string font_name = ui::ResourceBundle::GetSharedInstance()
+                               .GetFont(ui::ResourceBundle::BaseFont)
+                               .GetFontName();

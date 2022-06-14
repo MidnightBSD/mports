@@ -1,4 +1,4 @@
---- third_party/swiftshader/src/OpenGL/libGLES_CM/libGLES_CM.hpp.orig	2019-03-11 22:08:03 UTC
+--- third_party/swiftshader/src/OpenGL/libGLES_CM/libGLES_CM.hpp.orig	2021-04-14 18:43:08 UTC
 +++ third_party/swiftshader/src/OpenGL/libGLES_CM/libGLES_CM.hpp
 @@ -261,7 +261,7 @@ class LibGLES_CM (private)
  				#endif

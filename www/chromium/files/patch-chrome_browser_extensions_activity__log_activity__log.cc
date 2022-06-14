@@ -1,9 +1,9 @@
---- chrome/browser/extensions/activity_log/activity_log.cc.orig	2019-12-16 21:50:42 UTC
+--- chrome/browser/extensions/activity_log/activity_log.cc.orig	2021-04-14 18:40:53 UTC
 +++ chrome/browser/extensions/activity_log/activity_log.cc
-@@ -47,7 +47,11 @@
- #include "extensions/browser/extensions_browser_client.h"
+@@ -49,7 +49,11 @@
  #include "extensions/common/extension.h"
  #include "extensions/common/extension_messages.h"
+ #include "extensions/common/mojom/renderer.mojom.h"
 +#if defined(OS_BSD)
 +#include <re2/re2.h>
 +#else

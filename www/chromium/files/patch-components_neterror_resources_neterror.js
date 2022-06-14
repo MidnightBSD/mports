@@ -1,6 +1,6 @@
---- components/neterror/resources/neterror.js.orig	2020-09-08 19:14:03 UTC
+--- components/neterror/resources/neterror.js.orig	2021-04-14 18:40:59 UTC
 +++ components/neterror/resources/neterror.js
-@@ -204,7 +204,7 @@ function setUpCachedButton(buttonStrings) {
+@@ -144,7 +144,7 @@ function detailsButtonClick() {
  }
  
  let primaryControlOnLeft = true;

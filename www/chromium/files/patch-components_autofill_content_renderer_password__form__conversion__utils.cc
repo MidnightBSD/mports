@@ -1,6 +1,6 @@
---- components/autofill/content/renderer/password_form_conversion_utils.cc.orig	2020-09-08 19:14:03 UTC
+--- components/autofill/content/renderer/password_form_conversion_utils.cc.orig	2021-04-14 18:40:58 UTC
 +++ components/autofill/content/renderer/password_form_conversion_utils.cc
-@@ -19,7 +19,11 @@
+@@ -18,7 +18,11 @@
  #include "third_party/blink/public/web/web_form_control_element.h"
  #include "third_party/blink/public/web/web_input_element.h"
  #include "third_party/blink/public/web/web_local_frame.h"

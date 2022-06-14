@@ -1,6 +1,6 @@
---- base/numerics/safe_math_shared_impl.h.orig	2019-09-09 21:55:05 UTC
+--- base/numerics/safe_math_shared_impl.h.orig	2021-04-14 18:40:48 UTC
 +++ base/numerics/safe_math_shared_impl.h
-@@ -23,8 +23,7 @@
+@@ -24,8 +24,7 @@
  // Where available use builtin math overflow support on Clang and GCC.
  #elif !defined(__native_client__) &&                         \
        ((defined(__clang__) &&                                \

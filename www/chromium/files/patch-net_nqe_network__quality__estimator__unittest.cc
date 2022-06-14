@@ -1,11 +1,15 @@
---- net/nqe/network_quality_estimator_unittest.cc.orig	2020-03-16 18:39:54 UTC
+--- net/nqe/network_quality_estimator_unittest.cc.orig	2021-05-12 22:05:57 UTC
 +++ net/nqe/network_quality_estimator_unittest.cc
-@@ -2107,7 +2107,7 @@ TEST_F(NetworkQualityEstimatorTest, TestGlobalSocketWa
- // TestTCPSocketRTT requires kernel support for tcp_info struct, and so it is
- // enabled only on certain platforms.
+@@ -2097,9 +2097,9 @@ TEST_F(NetworkQualityEstimatorTest, TestGlobalSocketWa
  // ChromeOS is disabled due to crbug.com/986904
--#if (defined(TCP_INFO) || defined(OS_LINUX) || defined(OS_ANDROID)) && \
-+#if (defined(TCP_INFO) || defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_BSD)) && \
+ // TODO(crbug.com/1052397): Revisit once build flag switch of lacros-chrome is
+ // complete.
+-#if (defined(TCP_INFO) ||                                    \
+-     (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || \
+-     defined(OS_ANDROID)) &&                                 \
++#if (defined(TCP_INFO) ||                                                       \
++     (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD) || \
++     defined(OS_ANDROID)) &&                                                    \
      !defined(OS_CHROMEOS)
  #define MAYBE_TestTCPSocketRTT TestTCPSocketRTT
  #else

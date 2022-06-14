@@ -1,6 +1,6 @@
---- third_party/blink/renderer/platform/fonts/font_cache.cc.orig	2020-09-08 19:14:11 UTC
+--- third_party/blink/renderer/platform/fonts/font_cache.cc.orig	2021-05-12 22:06:01 UTC
 +++ third_party/blink/renderer/platform/fonts/font_cache.cc
-@@ -80,7 +80,7 @@ const char kColorEmojiLocale[] = "und-Zsye";
+@@ -84,7 +84,7 @@ extern const char kNotoColorEmojiCompat[] = "Noto Colo
  
  SkFontMgr* FontCache::static_font_manager_ = nullptr;
  
@@ -9,12 +9,12 @@
  float FontCache::device_scale_factor_ = 1.0;
  #endif
  
-@@ -120,7 +120,7 @@ FontCache::FontCache()
+@@ -124,7 +124,7 @@ FontCache::FontCache()
  FontPlatformData* FontCache::SystemFontPlatformData(
      const FontDescription& font_description) {
    const AtomicString& family = FontCache::SystemFontFamily();
--#if defined(OS_LINUX) || defined(OS_FUCHSIA)
-+#if defined(OS_LINUX) || defined(OS_FUCHSIA) || defined(OS_BSD)
+-#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_FUCHSIA)
++#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_FUCHSIA) || defined(OS_BSD)
    if (family.IsEmpty() || family == font_family_names::kSystemUi)
      return nullptr;
  #else

@@ -1,7 +1,7 @@
---- chrome/browser/search/search_suggest/search_suggest_service.cc.orig	2020-05-13 18:39:38 UTC
+--- chrome/browser/search/search_suggest/search_suggest_service.cc.orig	2021-04-14 18:40:55 UTC
 +++ chrome/browser/search/search_suggest/search_suggest_service.cc
 @@ -21,7 +21,11 @@
- #include "components/prefs/scoped_user_pref_update.h"
+ #include "components/search/ntp_features.h"
  #include "components/signin/public/identity_manager/accounts_in_cookie_jar_info.h"
  #include "components/signin/public/identity_manager/identity_manager.h"
 +#if defined(OS_BSD)

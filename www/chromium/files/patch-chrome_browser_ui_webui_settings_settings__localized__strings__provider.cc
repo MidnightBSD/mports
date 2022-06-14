@@ -1,11 +1,20 @@
---- chrome/browser/ui/webui/settings/settings_localized_strings_provider.cc.orig	2020-09-08 19:14:01 UTC
+--- chrome/browser/ui/webui/settings/settings_localized_strings_provider.cc.orig	2021-05-12 22:05:46 UTC
 +++ chrome/browser/ui/webui/settings/settings_localized_strings_provider.cc
-@@ -332,7 +332,7 @@ void AddAppearanceStrings(content::WebUIDataSource* ht
-     {"minimumFont", IDS_SETTINGS_MINIMUM_FONT_SIZE_LABEL},
-     {"tiny", IDS_SETTINGS_TINY_FONT_SIZE},
+@@ -338,7 +338,7 @@ void AddAppearanceStrings(content::WebUIDataSource* ht
      {"huge", IDS_SETTINGS_HUGE_FONT_SIZE},
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
+ // of lacros-chrome is complete.
+-#if defined(OS_LINUX) && !BUILDFLAG(IS_CHROMEOS_LACROS)
++#if (defined(OS_LINUX) && !BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD)
      {"systemTheme", IDS_SETTINGS_SYSTEM_THEME},
      {"useSystemTheme", IDS_SETTINGS_USE_SYSTEM_THEME},
      {"classicTheme", IDS_SETTINGS_CLASSIC_THEME},
+@@ -346,7 +346,7 @@ void AddAppearanceStrings(content::WebUIDataSource* ht
+ #else
+     {"resetToDefaultTheme", IDS_SETTINGS_RESET_TO_DEFAULT_THEME},
+ #endif
+-#if defined(OS_LINUX) && !BUILDFLAG(IS_CHROMEOS_LACROS)
++#if (defined(OS_LINUX) && !BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD)
+     {"showWindowDecorations", IDS_SHOW_WINDOW_DECORATIONS},
+ #endif
+ #if defined(OS_MAC)

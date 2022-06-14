@@ -1,4 +1,4 @@
---- printing/cups_config_helper.py.orig	2019-12-16 21:50:51 UTC
+--- printing/cups_config_helper.py.orig	2021-04-14 18:41:07 UTC
 +++ printing/cups_config_helper.py
 @@ -67,7 +67,7 @@ def main():
    mode = sys.argv[1]

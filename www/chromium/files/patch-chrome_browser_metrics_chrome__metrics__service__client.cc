@@ -1,25 +1,24 @@
---- chrome/browser/metrics/chrome_metrics_service_client.cc.orig	2020-09-08 19:14:00 UTC
+--- chrome/browser/metrics/chrome_metrics_service_client.cc.orig	2021-05-12 22:05:44 UTC
 +++ chrome/browser/metrics/chrome_metrics_service_client.cc
-@@ -685,11 +685,11 @@ void ChromeMetricsServiceClient::RegisterMetricsServic
- #endif  // defined(OS_WIN)
- 
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+@@ -711,10 +711,10 @@ void ChromeMetricsServiceClient::RegisterMetricsServic
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
+ // of lacros-chrome is complete.
+ #if defined(OS_WIN) || defined(OS_MAC) || \
+-    (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
++    (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD)
    metrics_service_->RegisterMetricsProvider(
        std::make_unique<DesktopPlatformFeaturesMetricsProvider>());
- #endif  //  defined(OS_WIN) || defined(OS_MACOSX) || \
--        // (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+        // (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+-#endif  // defined(OS_WIN) || defined(OS_MAC) || (defined(OS_LINUX) ||
++#endif  // defined(OS_WIN) || defined(OS_MAC) || (defined(OS_LINUX) || defined(OS_BSD) ||
+         // BUILDFLAG(IS_CHROMEOS_LACROS))
  
  #if BUILDFLAG(ENABLE_PLUGINS)
-   plugin_metrics_provider_ = new PluginMetricsProvider(local_state);
-@@ -951,7 +951,7 @@ bool ChromeMetricsServiceClient::RegisterForProfileEve
-   }
- #endif
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+@@ -1002,7 +1002,7 @@ bool ChromeMetricsServiceClient::RegisterForProfileEve
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
+ // of lacros-chrome is complete.
+ #if defined(OS_WIN) || defined(OS_MAC) || \
+-    (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
++    (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD)
    // This creates the DesktopProfileSessionDurationsServices if it didn't exist
    // already.
    metrics::DesktopProfileSessionDurationsServiceFactory::GetForBrowserContext(

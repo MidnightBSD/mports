@@ -1,6 +1,6 @@
---- extensions/renderer/bindings/api_binding_util.cc.orig	2020-07-07 21:57:38 UTC
+--- extensions/renderer/bindings/api_binding_util.cc.orig	2021-04-14 18:41:04 UTC
 +++ extensions/renderer/bindings/api_binding_util.cc
-@@ -130,6 +130,8 @@ std::string GetPlatformString() {
+@@ -131,6 +131,8 @@ std::string GetPlatformString() {
    return "mac";
  #elif defined(OS_WIN)
    return "win";

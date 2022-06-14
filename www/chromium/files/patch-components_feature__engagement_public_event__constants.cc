@@ -1,27 +1,28 @@
---- components/feature_engagement/public/event_constants.cc.orig	2020-09-08 19:14:03 UTC
+--- components/feature_engagement/public/event_constants.cc.orig	2021-05-12 22:05:49 UTC
 +++ components/feature_engagement/public/event_constants.cc
-@@ -12,12 +12,12 @@ namespace feature_engagement {
+@@ -10,13 +10,13 @@ namespace feature_engagement {
+ 
  namespace events {
  
- #if defined(OS_IOS) || defined(OS_WIN) || defined(OS_MACOSX) || \
--    defined(OS_LINUX) || defined(OS_CHROMEOS)
-+    defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || \
++#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) || \
+     defined(OS_CHROMEOS)
  const char kNewTabOpened[] = "new_tab_opened";
- #endif  // defined(OS_IOS) || defined(OS_WIN) || defined(OS_MACOSX) ||
--        // defined(OS_LINUX) || defined(OS_CHROMEOS)
-+        // defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) ||
++#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) ||
+         // defined(OS_CHROMEOS)
  
--#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD) || \
+-#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || \
++#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) || \
      defined(OS_CHROMEOS)
  const char kSixthTabOpened[] = "sixth_tab_opened";
  const char kTabGroupCreated[] = "tab_group_created";
-@@ -45,7 +45,7 @@ const char kIncognitoWindowOpened[] = "incognito_windo
- const char kIncognitoWindowSessionTimeMet[] =
-     "incognito_window_session_time_met";
- #endif  // BUILDFLAG(ENABLE_LEGACY_DESKTOP_IN_PRODUCT_HELP)
--#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD) ||
+@@ -39,7 +39,7 @@ const char kWebUITabStripClosed[] = "webui_tab_strip_c
+ const char kWebUITabStripOpened[] = "webui_tab_strip_opened";
+ 
+ const char kDesktopPwaInstalled[] = "desktop_pwa_installed";
+-#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) ||
++#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) ||
          // defined(OS_CHROMEOS)
  
  #if defined(OS_IOS)

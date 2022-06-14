@@ -1,4 +1,4 @@
---- base/debug/debugger_posix.cc.orig	2020-07-07 21:58:11 UTC
+--- base/debug/debugger_posix.cc.orig	2021-04-14 18:40:48 UTC
 +++ base/debug/debugger_posix.cc
 @@ -98,7 +98,7 @@ bool BeingDebugged() {
      KERN_PROC,

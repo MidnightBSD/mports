@@ -1,6 +1,6 @@
---- ui/webui/resources/js/cr.js.orig	2020-05-13 18:40:03 UTC
+--- ui/webui/resources/js/cr.js.orig	2021-04-14 18:41:39 UTC
 +++ ui/webui/resources/js/cr.js
-@@ -430,6 +430,11 @@ var cr = cr || function(global) {
+@@ -450,6 +450,11 @@ var cr = cr || function(global) {
      get isMac() {
        return /Mac/.test(navigator.platform);
      },

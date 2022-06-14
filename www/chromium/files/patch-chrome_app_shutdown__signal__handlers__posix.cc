@@ -1,4 +1,4 @@
---- chrome/app/shutdown_signal_handlers_posix.cc.orig	2019-04-30 22:22:32 UTC
+--- chrome/app/shutdown_signal_handlers_posix.cc.orig	2021-04-14 18:40:52 UTC
 +++ chrome/app/shutdown_signal_handlers_posix.cc
 @@ -186,12 +186,18 @@ void InstallShutdownSignalHandlers(
    g_pipe_pid = getpid();

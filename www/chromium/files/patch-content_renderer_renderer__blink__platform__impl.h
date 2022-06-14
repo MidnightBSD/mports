@@ -1,29 +1,38 @@
---- content/renderer/renderer_blink_platform_impl.h.orig	2020-09-08 19:14:05 UTC
+--- content/renderer/renderer_blink_platform_impl.h.orig	2021-05-12 22:05:53 UTC
 +++ content/renderer/renderer_blink_platform_impl.h
-@@ -30,7 +30,7 @@
+@@ -29,7 +29,7 @@
  #include "third_party/blink/public/mojom/cache_storage/cache_storage.mojom.h"
  #include "third_party/blink/public/mojom/loader/code_cache.mojom.h"
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if defined(OS_LINUX) || defined(OS_CHROMEOS)
++#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
  #include "components/services/font/public/cpp/font_loader.h"  // nogncheck
  #include "third_party/skia/include/core/SkRefCnt.h"           // nogncheck
  #endif
-@@ -218,7 +218,7 @@ class CONTENT_EXPORT RendererBlinkPlatformImpl : publi
+@@ -183,7 +183,7 @@ class CONTENT_EXPORT RendererBlinkPlatformImpl : publi
+       const blink::WebURL& top_document_web_url) override;
+   gpu::GpuMemoryBufferManager* GetGpuMemoryBufferManager() override;
+   blink::WebString ConvertIDNToUnicode(const blink::WebString& host) override;
+-#if defined(OS_LINUX) || defined(OS_CHROMEOS)
++#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+   void SetDisplayThreadPriority(base::PlatformThreadId thread_id) override;
+ #endif
+   blink::BlameContext* GetTopLevelBlameContext() override;
+@@ -230,7 +230,7 @@ class CONTENT_EXPORT RendererBlinkPlatformImpl : publi
    // Return the mojo interface for making CodeCache calls.
    blink::mojom::CodeCacheHost& GetCodeCacheHost();
  
--#if defined(OS_LINUX) || defined(OS_MACOSX)
-+#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_BSD)
+-#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC)
++#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || defined(OS_BSD)
    std::unique_ptr<blink::WebSandboxSupport> sandbox_support_;
  #endif
  
-@@ -239,7 +239,7 @@ class CONTENT_EXPORT RendererBlinkPlatformImpl : publi
+@@ -251,7 +251,7 @@ class CONTENT_EXPORT RendererBlinkPlatformImpl : publi
    mojo::PendingRemote<blink::mojom::CodeCacheHost> code_cache_host_remote_;
    mojo::SharedRemote<blink::mojom::CodeCacheHost> code_cache_host_;
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if defined(OS_LINUX) || defined(OS_CHROMEOS)
++#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
    sk_sp<font_service::FontLoader> font_loader_;
  #endif
  

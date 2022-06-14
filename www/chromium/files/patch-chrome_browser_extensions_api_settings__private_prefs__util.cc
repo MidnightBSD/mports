@@ -1,20 +1,20 @@
---- chrome/browser/extensions/api/settings_private/prefs_util.cc.orig	2020-09-08 19:13:59 UTC
+--- chrome/browser/extensions/api/settings_private/prefs_util.cc.orig	2021-05-12 22:05:44 UTC
 +++ chrome/browser/extensions/api/settings_private/prefs_util.cc
-@@ -163,7 +163,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetWhitelist
-   (*s_whitelist)[bookmarks::prefs::kShowBookmarkBar] =
-       settings_api::PrefType::PREF_TYPE_BOOLEAN;
+@@ -178,7 +178,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetAllowlist
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
-   (*s_whitelist)[::prefs::kUseCustomChromeFrame] =
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
+ // of lacros-chrome is complete.
+-#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
++#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD)
+   (*s_allowlist)[::prefs::kUseCustomChromeFrame] =
        settings_api::PrefType::PREF_TYPE_BOOLEAN;
  #endif
-@@ -173,7 +173,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetWhitelist
-   // Appearance settings.
-   (*s_whitelist)[::prefs::kCurrentThemeID] =
-       settings_api::PrefType::PREF_TYPE_STRING;
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_BSD) || defined(OS_LINUX)) && !defined(OS_CHROMEOS)
-   (*s_whitelist)[::prefs::kUsesSystemTheme] =
+@@ -192,7 +192,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetAllowlist
+       settings_api::PrefType::PREF_TYPE_NUMBER;
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
+ // of lacros-chrome is complete.
+-#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
++#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD)
+   (*s_allowlist)[::prefs::kUsesSystemTheme] =
        settings_api::PrefType::PREF_TYPE_BOOLEAN;
  #endif

@@ -1,11 +1,11 @@
---- third_party/blink/renderer/modules/peerconnection/webrtc_audio_renderer_test.cc.orig	2020-07-13 10:01:57 UTC
+--- third_party/blink/renderer/modules/peerconnection/webrtc_audio_renderer_test.cc.orig	2021-05-12 22:06:01 UTC
 +++ third_party/blink/renderer/modules/peerconnection/webrtc_audio_renderer_test.cc
-@@ -243,7 +243,7 @@ TEST_F(WebRtcAudioRendererTest, MultipleRenderers) {
- TEST_F(WebRtcAudioRendererTest, VerifySinkParameters) {
+@@ -286,7 +286,7 @@ TEST_F(MAYBE_WebRtcAudioRendererTest, DISABLED_Multipl
+ TEST_F(MAYBE_WebRtcAudioRendererTest, DISABLED_VerifySinkParameters) {
    SetupRenderer(kDefaultOutputDeviceId);
    renderer_proxy_->Start();
--#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_FUCHSIA)
-+#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_FUCHSIA) || defined(OS_BSD)
+-#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || \
++#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || defined(OS_BSD) || \
+     defined(OS_FUCHSIA)
    static const int kExpectedBufferSize = kHardwareSampleRate / 100;
  #elif defined(OS_ANDROID)
-   static const int kExpectedBufferSize = 2 * kHardwareSampleRate / 100;

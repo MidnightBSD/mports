@@ -1,17 +1,20 @@
---- base/allocator/partition_allocator/partition_alloc_unittest.cc.orig	2020-09-08 19:13:57 UTC
+--- base/allocator/partition_allocator/partition_alloc_unittest.cc.orig	2021-05-12 22:05:40 UTC
 +++ base/allocator/partition_allocator/partition_alloc_unittest.cc
-@@ -313,9 +313,13 @@ void FreeFullPage(PartitionRoot<base::internal::Thread
-   }
+@@ -1659,7 +1659,7 @@ TEST_F(PartitionAllocTest, LostFreeSlotSpansBug) {
+ // cause flake.
+ #if !defined(OS_WIN) &&            \
+     (!defined(ARCH_CPU_64_BITS) || \
+-     (defined(OS_POSIX) && !(defined(OS_APPLE) || defined(OS_ANDROID))))
++     (defined(OS_POSIX) && !(defined(OS_APPLE) || defined(OS_ANDROID) || defined(OS_BSD))))
+ 
+ // The following four tests wrap a called function in an expect death statement
+ // to perform their test, because they are non-hermetic. Specifically they are
+@@ -1710,7 +1710,7 @@ TEST_F(PartitionAllocDeathTest, DISABLED_RepeatedTryRe
  }
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- bool CheckPageInCore(void* ptr, bool in_core) {
-+#if defined(OS_BSD)
-+  char ret = 0;
-+#else
-   unsigned char ret = 0;
-+#endif
-   EXPECT_EQ(0, mincore(ptr, kSystemPageSize, &ret));
-   return in_core == (ret & 1);
- }
+ #endif  // !defined(ARCH_CPU_64_BITS) || (defined(OS_POSIX) &&
+-        // !(defined(OS_APPLE) || defined(OS_ANDROID)))
++        // !(defined(OS_APPLE) || defined(OS_ANDROID) || defined(OS_BSD)))
+ 
+ // Make sure that malloc(-1) dies.
+ // In the past, we had an integer overflow that would alias malloc(-1) to

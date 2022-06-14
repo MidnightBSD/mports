@@ -1,4 +1,4 @@
---- content/test/content_test_suite.cc.orig	2020-07-07 21:57:37 UTC
+--- content/test/content_test_suite.cc.orig	2021-04-14 18:41:03 UTC
 +++ content/test/content_test_suite.cc
 @@ -83,6 +83,7 @@ void ContentTestSuite::Initialize() {
    // to initialize GL, so don't do it here.
@@ -13,6 +13,6 @@
      gl::init::InitializeExtensionSettingsOneOffPlatform();
    }
 +#endif
-   testing::TestEventListeners& listeners =
-       testing::UnitTest::GetInstance()->listeners();
-   listeners.Append(new TestInitializationListener);
+   // TestEventListeners repeater event propagation is disabled in death test
+   // child process.
+   if (command_line->HasSwitch("gtest_internal_run_death_test")) {
