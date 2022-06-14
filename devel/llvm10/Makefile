@@ -1,7 +1,10 @@
+
 PORTNAME=	llvm
 DISTVERSION=	10.0.1
+PORTREVISION=	1
 CATEGORIES=	devel lang
-MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION}/
+MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/ \
+		https://${PRE_}releases.llvm.org/${LLVM_RELEASE}/${RCDIR}
 PKGNAMESUFFIX=	${LLVM_SUFFIX}
 DISTNAME=	${PORTNAME}-${DISTVERSION}.src
 DISTFILES=	${PORTNAME}-${DISTVERSION}.src${EXTRACT_SUFX}
@@ -19,6 +22,7 @@ LICENSE:=	${LICENSE:NARM}
 LLVM_RELEASE=	${DISTVERSION:C/rc.*//}
 LLVM_MAJOR=	${LLVM_RELEASE:C/\.[0-9]\.[0-9]$//}
 LLVM_SUFFIX=	${LLVM_MAJOR}
+PRE_=		${DISTVERSION:C/.*rc.*/pre/:N*[0-9]*}
 RCDIR=		${DISTVERSION:S/${LLVM_RELEASE}//:C|(rc.*)|\1/|}
 
 LLVM_DIR=	llvm${LLVM_SUFFIX}
@@ -57,6 +61,8 @@ CMAKE_ARGS+=	-DLLVM_ENABLE_Z3_SOLVER=OFF
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD} \
 		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDEDIR} \
 		-DPYTHON_LIBRARY=${LOCALBASE}/lib/lib${PYTHON_VERSION}${PYTHON_ABIVER}.so
+# LLVM likes to pick up ${LOCALBASE}/lib/libtinfo.so.*
+CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=OFF
 CMAKE_ARGS+=	-DCMAKE_CROSSCOMPILING=True  -DTARGET_ARCH=x86_64 -G "Ninja"
 
 # Disable assertions.  They should be disabled by cmake, but USES=cmake
@@ -90,14 +96,23 @@ CLANG_EXTRA_PATCHES=	${PATCHDIR}/clang
 CLANG_DISTFILES=	clang-${DISTVERSION}.src${EXTRACT_SUFX}
 CLANG_CMAKE_ON=		-DCLANG_DEFAULT_OPENMP_RUNTIME=libomp
 CLANG_PORTDOCS=		clang
+CLANG_PLIST_FILES=	share/toolchains/llvm${LLVM_SUFFIX}.mk
+CLANG_SUB_FILES=	xtoolchain.mk
+CLANG_SUB_LIST=		XCC=clang${LLVM_SUFFIX} \
+			XCXX=clang++${LLVM_SUFFIX} \
+			XCPP=clang-cpp${LLVM_SUFFIX} \
+			XLD=ld.lld${LLVM_SUFFIX} \
+			X_COMPILER_TYPE=clang
 CLANG_USE=		GNOME=libxml2
 COMPILER_RT_DESC=	Sanitizer libraries
 COMPILER_RT_DISTFILES=	compiler-rt-${DISTVERSION}.src${EXTRACT_SUFX}
+COMPILER_RT_EXTRA_PATCHES=	${PATCHDIR}/compiler-rt
+COMPILER_RT_CMAKE_ON=	-DCOMPILER_RT_INSTALL_PATH=${LLVM_PREFIX}/lib/clang/${LLVM_RELEASE}
 COMPILER_RT_PLIST_FILES=${_COMPILER_RT_LIBS:S|^|${_CRTLIBDIR}/|} \
 			${_COMPILER_RT_BLACKLISTS:S|^|${_CRTBLDIR}/|}
 DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}recommonmark>=0.0.20180530:textproc/py-recommonmark@${PY_FLAVOR}
-DOCS_CONFLICTS_BUILD=	commonmark-cmark
+DOCS_CONFLICTS_BUILD=	commonmark-cmark-*
 DOCS_PORTDOCS=		llvm
 DOCS_CMAKE_ON=		-DLLVM_ENABLE_SPHINX=ON \
 			-DSPHINX_EXECUTABLE=${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} \
@@ -115,10 +130,16 @@ LIT_DESC=		Install lit and FileCheck test tools
 LIT_VARS=		_USES_PYTHON=python:3.6+
 LLD_DESC=		Install lld, the LLVM linker
 LLD_DISTFILES=		lld-${DISTVERSION}.src${EXTRACT_SUFX}
-LLD_EXTRA_PATCHES=	${PATCHDIR}/lld
-LLD_LINK_DESC=		Link ld.lld to ld, so clang uses it
+LLD_LINK_DESC=		Link ld.lld as ld to clang uses it
 LLD_LINK_IMPLIES=	LLD
 LLDB_BUILD_DEPENDS=	swig:devel/swig
+LLDB_CMAKE_ON=		-DLUA_INCLUDE_DIR=${LOCALBASE}/include/lua${LUA_VER_STR} \
+			-DLUA_LIBRARY=${LOCALBASE}/lib/liblua-${LUA_VER}.so \
+			-DCURSES_INCLUDE_PATH=/usr/include \
+			-DCURSES_CURSES_LIBRARY=/usr/lib/libcurses.so \
+			-DCURSES_FORM_LIBRARY=/usr/lib/libform.so \
+			-DCURSES_NCURSES_LIBRARY=/usr/lib/libncurses.so \
+			-DPANEL_LIBRARIES=/usr/lib/libpanel.so
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_DISTFILES=		lldb-${DISTVERSION}.src${EXTRACT_SUFX}
 LLDB_EXTRA_PATCHES=	${PATCHDIR}/lldb
@@ -126,12 +147,12 @@ LLDB_IMPLIES=		CLANG
 LLDB_PORTDOCS=		lldb
 LLDB_VARS=		_USES_PYTHON=python:3.6+
 OPENMP_DESC=		Install libomp, the LLVM OpenMP runtime library
-OPENMP_EXTRA_PATCHES=	${PATCHDIR}/openmp
 OPENMP_DISTFILES=	openmp-${DISTVERSION}.src${EXTRACT_SUFX}
-PYCLANG_DESC=		Install python bindings to libclang
+OPENMP_EXTRA_PATCHES=	${PATCHDIR}/openmp
+PYCLANG_DESC=	Install python bindings to libclang
 PYCLANG_IMPLIES=	CLANG
-PYCLANG_VARS=		_USES_PYTHON=python:3.6+
-PYCLANG_CMAKE_ON=	-DCLANG_PYTHON_BINDINGS_VERSIONS=${PYTHON_VER}
+PYCLANG_VARS=	_USES_PYTHON=python:3.6+
+PYCLANG_CMAKE_ON= -DCLANG_PYTHON_BINDINGS_VERSIONS=${PYTHON_VER}
 
 .if defined(WITH_DEBUG)
 CMAKE_BUILD_TYPE=	RelWithDebInfo
@@ -161,6 +182,9 @@ EXTRAS_LIBS=	libclangApplyReplacements \
 		libclangChangeNamespace \
 		libclangDaemon \
 		libclangDoc \
+		libclangChangeNamespace \
+		libclangDaemon \
+		libclangDoc \
 		libclangIncludeFixer \
 		libclangMove \
 		libclangQuery \
@@ -174,7 +198,8 @@ EXTRAS_LIBS=	libclangApplyReplacements \
 		libclangTidyUtils \
 		libfindAllSymbols \
 		libmodernizeCore
-EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}
+EXTRAS_FILES=	index.js
+EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}|${EXTRAS_FILES:tW:C/  */|/g}
 
 .include <bsd.mport.options.mk>
 
@@ -206,7 +231,7 @@ USES+=		gnome
 .endif
 
 .if ${PORT_OPTIONS:MCOMPILER_RT}
-COMPILER_RT_PATTERN=	(_blacklist.txt|sanitizer|include.xray)
+COMPILER_RT_PATTERN=	(sanitizer|include.xray|include\/fuzzer|profile\/InstrProfData.inc)
 .endif
 
 .if ${PORT_OPTIONS:MEXTRAS}
@@ -229,7 +254,11 @@ PORTDOCS+=	lld
 
 .if ${PORT_OPTIONS:MLLDB}
 COMMANDS+=	${LLDB_COMMANDS}
+
+USES+=		lua
 .endif
+
+OPENMP_PATTERN=	libarcher|lib[ig]*omp|omp.h|ompt.h|omp-tools.h
 
 .if ${PORT_OPTIONS:MPYCLANG}
 PYCLANG_PATTERN=	(clang\/(__init__|cindex|enumerations).py)$$
@@ -243,8 +272,8 @@ _FREEBSD_BACKENDS=	AArch64 ARM X86
 FREEBSD_BACKENDS=	${_FREEBSD_BACKENDS}
 .if ${ARCH} == amd64
 _NATIVE_BACKENDS=	X86
-.elif ${ARCH} == aarch64
-_NATIVE_BACKENDS=	AArch64
+.elif ${ARCH} == arm64
+_NATIVE_BACKENDS=	AAarch64
 .elif ${ARCH:Marmv*}
 _NATIVE_BACKENDS=	ARM
 .elif ${ARCH} == i386
@@ -267,7 +296,7 @@ _BE_LIBS_COMMON=	CodeGen Desc Info
 _BE_LIBS_AArch64=	AsmParser Disassembler Utils
 _BE_LIBS_AMDGPU=	AsmParser Disassembler Utils
 _BE_LIBS_ARM=		AsmParser Disassembler Utils
-_BE_LIBS_BPF=		AsmParser Disassembler
+_BE_LIBS_BPF=		AsmParser Disassembler 
 _BE_LIBS_Hexagon=	AsmParser Disassembler
 _BE_LIBS_Lanai=		AsmParser Disassembler
 _BE_LIBS_MSP430=	AsmParser Disassembler
@@ -287,7 +316,7 @@ _BE_LIBS_${BE}+=	${_BE_LIBS_COMMON:S/^/${BE_ARCH}/} \
 .endfor
 BE_PATTERN=${_BE_LIBS_STANDARD:O:S/$/.a/:ts|}
 
-_CRTLIBDIR=	${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/lib/freebsd
+_CRTLIBDIR=	${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/lib/midnightbsd
 _CRTBLDIR=	${LLVM_DIR}/share
 .if ${ARCH} == "amd64"
 _COMPILER_RT_BLACKLISTS=	cfi_blacklist.txt
@@ -393,6 +422,13 @@ post-extract-LLDB-on:
 	${MV} ${WRKSRC_lldb} ${PATCH_WRKSRC}/tools/lldb
 
 post-extract-OPENMP-on:
+	# FreeBSD/aarch64 needs same va_list handling as Linux/aarch64
+	# see https://reviews.freebsd.org/D21167
+	${REINPLACE_CMD} -e 's/KMP_ARCH_AARCH64) && KMP_OS_LINUX/KMP_ARCH_AARCH64)/' \
+	    ${WRKSRC_openmp}/runtime/src/kmp.h \
+	    ${WRKSRC_openmp}/runtime/src/kmp_csupport.cpp \
+	    ${WRKSRC_openmp}/runtime/src/kmp_runtime.cpp \
+	    ${WRKSRC_openmp}/runtime/src/kmp_gsupport.cpp
 	${MV} ${WRKSRC_openmp} ${PATCH_WRKSRC}/projects/openmp
 
 post-patch:
@@ -454,25 +490,27 @@ post-install-DOCS-off:
 	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 .endif
 
-post-install-LLD-on:
-	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/BinaryFormat/WasmRelocs
-
 post-install-CLANG-on:
 	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/clang \
 	   ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/clang-cpp
 	${INSTALL_PROGRAM} ${WRKDIR}/.build/bin/clang-tblgen \
 	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/toolchains/
+	${INSTALL_DATA} ${WRKDIR}/xtoolchain.mk \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/toolchains/llvm${LLVM_SUFFIX}.mk
 
 post-install-COMPILER_RT-on:
 	cd ${WRKDIR}/compiler-rt-build && \
-	    ${MAKE_ENV} ${FAKE_MAKEENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
+		${MAKE_ENV} ${FAKE_MAKEENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .if ${ARCH} == "amd64"
 	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/libclang_rt*i386* ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/freebsd/libclang_rt*i386*
 .endif
-	-${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
-	-${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/* \
-	    ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
-	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/../freebsd
+	${CP} ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/* ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/../freebsd/
+#${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/clang/${DISTVERSION}/lib/midnightbsd/* \
+#	    ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
+#${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/clang/${DISTVERSION}/lib/midnightbsd/
 
 post-install-LIT-on:
 	${INSTALL_SCRIPT} ${PATCH_WRKSRC}/utils/lit/lit.py \
@@ -541,14 +579,13 @@ build-plist:
 	    -e 's|\([^0-9]\)${LLVM_MAJOR}\([^0-9]\)|\1%%LLVM_MAJOR%%\2|' \
 	    | ${SORT} >> ${PLIST}.tmp
 	${AWK} '{ \
-	    if ($$0 ~ /${CLANG_PATTERN}/ && $$0 !~ /(omp.h|ompt.h|${EXTRAS_PATTERN}|libclang_rt|${PYCLANG_PATTERN})/) {printf "%%%%CLANG%%%%"} \
+	    if ($$0 ~ /${CLANG_PATTERN}/ && $$0 !~ /(${OPENMP_PATTERN}|${EXTRAS_PATTERN}|libclang_rt|${PYCLANG_PATTERN})/) {printf "%%%%CLANG%%%%"} \
 	    if ($$0 ~ /${COMPILER_RT_PATTERN}/) \
 		{printf "%%%%COMPILER_RT%%%%"} \
 	    if ($$0 ~ /(${EXTRAS_PATTERN})/) {printf "%%%%EXTRAS%%%%"} \
-	    if ($$0 ~ /(lld|wasm-ld)/ && $$0 !~ /(lldb)/) {printf "%%%%LLD%%%%"} \
-	    if ($$0 ~ /(bin\/ld$$)/) {printf "%%%%LLD_LINK%%%%"} \
+	    if ($$0 ~ /(bin\/(ld|lld|wasm-ld))|liblld[^b]|\/lld\// && $$0 !~ /(lldb)/) {printf "%%%%LLD%%%%"} \
 	    if ($$0 ~ /(argdumper|lldb|six.py)/) {printf "%%%%LLDB%%%%"} \
-	    if ($$0 ~ /(lib.*omp|omp.h|ompt.h)/) {printf "%%%%OPENMP%%%%"} \
+	    if ($$0 ~ /(${OPENMP_PATTERN})/) {printf "%%%%OPENMP%%%%"} \
 	    if ($$0 ~ /(LLVMgold)/) {printf "%%%%GOLD%%%%"} \
 	    if ($$0 ~ /${PYCLANG_PATTERN}/) {printf "%%%%PYCLANG%%%%"} \
 	    if ($$0 !~ /(libclang_rt)/ && $$0 !~ /(${BE_PATTERN})$$/) {print}}' ${PLIST}.tmp >> ${PLIST}
