@@ -57,7 +57,6 @@ CMAKE_ARGS+=	-DLLVM_ENABLE_Z3_SOLVER=OFF
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD} \
 		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDEDIR} \
 		-DPYTHON_LIBRARY=${LOCALBASE}/lib/lib${PYTHON_VERSION}${PYTHON_ABIVER}.so
-CMAKE_ARGS+=	-DCMAKE_CROSSCOMPILING=True  -DTARGET_ARCH=x86_64 -G "Ninja"
 
 # Disable assertions.  They should be disabled by cmake, but USES=cmake
 # overrides -DCMAKE_*_FLAGS_RELEASE.
@@ -177,6 +176,13 @@ EXTRAS_LIBS=	libclangApplyReplacements \
 EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}
 
 .include <bsd.mport.options.mk>
+
+CMAKE_ARGS+=    -DCMAKE_CROSSCOMPILING=True
+.if ${ARCH} == "amd64"
+CMAKE_ARGS+=    -DTARGET_ARCH=x86_64 -G "Ninja"
+.else
+CMAKE_ARGS+=    -DTARGET_ARCH=${ARCH}
+.endif
 
 # keep in sync with /usr/src/lib/clang/clang.build.mk
 # ----------- start of sync block ------------------

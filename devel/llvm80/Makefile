@@ -19,7 +19,7 @@ LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 
-USES=		cmake compiler:c++11-lib cpe libedit perl5 tar:xz \
+USES=		cmake compiler:c++11-lib cpe libedit ninja perl5 tar:xz \
 		shebangfix
 _USES_PYTHON?=	python:3.6+,build
 USES+=		${_USES_PYTHON}
@@ -164,6 +164,13 @@ EXTRAS_LIBS=	libclangApplyReplacements \
 EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}
 
 .include <bsd.mport.options.mk>
+
+CMAKE_ARGS+=    -DCMAKE_CROSSCOMPILING=True
+.if ${ARCH} == "amd64"
+CMAKE_ARGS+=	-DTARGET_ARCH=x86_64 -G "Ninja"
+.else
+CMAKE_ARGS+=	-DTARGET_ARCH=${ARCH}
+.endif
 
 # keep in sync with /usr/src/lib/clang/clang.build.mk
 # ----------- start of sync block ------------------
