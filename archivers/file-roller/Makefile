@@ -1,5 +1,5 @@
 PORTNAME=	file-roller
-PORTVERSION=	3.28.1
+PORTVERSION=	3.42.0
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
@@ -13,18 +13,19 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
-		libnotify.so:devel/libnotify
+		libnotify.so:devel/libnotify \
+		libhandy-1.so:x11-toolkits/libhandy
 RUN_DEPENDS=	gtar:archivers/gtar
 
 PORTSCOUT=	limitw:1,even
 
-USES=		desktop-file-utils gettext gnome libarchive localbase \
+USES=		cpe desktop-file-utils gettext gnome libarchive localbase \
 		meson pkgconfig python:3.5+,build tar:xz
-USE_GNOME=	cairo gtk30
-INSTALLS_ICONS=	yes
+USE_GNOME=	cairo gdkpixbuf2 gtk30
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dpackagekit=false
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.FileRoller.gschema.xml
 
@@ -43,7 +44,6 @@ FORMATS_DESC=	Additional compression formats support
 ARJ_DESC=	ARJ archive support
 ARJ_RUN_DEPENDS=	arj:archivers/arj
 
-LZO_DESC=	LZO compression support
 LZO_RUN_DEPENDS=	lzop:archivers/lzop
 
 RAR_DESC=	RAR archive support
@@ -55,7 +55,7 @@ ZIP_RUN_DEPENDS=	zip:archivers/zip
 
 NAUTILUS_DESC=	Nautilus context menu actions
 NAUTILUS_USE=	GNOME=nautilus3
-NAUTILUS_MESON_TRUE=	nautilus-actions
+NAUTILUS_MESON_ENABLED=	nautilus-actions
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
