@@ -6,4 +6,4 @@ smaller and easier to work with than their purely Object based alternatives.
 Currently Commons Primitives is primarily composed of implementations of the
 java.util collections adapted for the primitive types.
 
-WWW: http://commons.apache.org/dormant/commons-primitives/
+WWW: https://commons.apache.org/dormant/commons-primitives/
