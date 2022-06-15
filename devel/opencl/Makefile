@@ -1,7 +1,7 @@
 # Created by: Oliver Hartmann <ohartman@zedat.fu-berlin.de>
 
 PORTNAME=	opencl
-PORTVERSION=	3.0
+PORTVERSION=	3.0.8
 CATEGORIES=	devel
 
 MAINTAINER=	poprts@MidnightBSD.org
@@ -20,18 +20,18 @@ GH_PROJECT=	OpenCL-Headers OpenCL-CLHPP:clhpp
 GH_TAGNAME=	${HEADER_TAG} ${CLHPP_TAG}:clhpp
 
 # the header releases don't have tags yet, so use git commit for now
-HEADER_TAG=	b04034a
-CLHPP_TAG=	64c206f	#  include missing CL/opencl.hpp
+HEADER_TAG=	v2021.06.30
+CLHPP_TAG=	v2.0.15	#  include missing CL/opencl.hpp
 
 NO_BUILD=	yes
 NO_ARCH=	yes
 
-WRKSRC=	${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME}/CL
+WRKSRC_SUBDIR=	CL
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/CL
-	${INSTALL_DATA} ${WRKSRC}/*.h ${STAGEDIR}${PREFIX}/include/CL
+	@${MKDIR} ${PREFIX}/include/CL
+	${INSTALL_DATA} ${WRKSRC}/*.h ${PREFIX}/include/CL
 	${INSTALL_DATA} ${WRKSRC_clhpp}/include/CL/*.hpp \
-		${STAGEDIR}${PREFIX}/include/CL
+		${PREFIX}/include/CL
 
 .include <bsd.port.mk>
