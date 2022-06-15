@@ -1,5 +1,3 @@
-
-
 PORTNAME=	cfitsio
 PORTVERSION=	3.100
 PORTREVISION=	1
@@ -14,7 +12,7 @@ COMMENT=	Library for reading and writing files in FITS data format
 LICENSE=	gpl2
 # worst case..
 
-LIB_DEPENDS=	libf2c.so:${PORTSDIR}/lang/f2c
+LIB_DEPENDS=	libf2c.so:lang/f2c
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
