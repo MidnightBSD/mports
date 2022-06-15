@@ -1,42 +1,37 @@
-
-
 PORTNAME=	kermit
-PORTVERSION=	9.0.302
-PORTREVISION=	1
+DISTVERSION=	10.0-beta04
 CATEGORIES=	comms ftp net
-MASTER_SITES=	ftp://kermit.columbia.edu/kermit/archives/ \
-		ftp://ftp.icm.edu.pl/pub/kermit/archives/
-DISTNAME=	cku${PORTVERSION:E}
+MASTER_SITES=	https://www.kermitproject.org/ftp/kermit/test/tar/ \
+		ftp://ftp.kermitproject.org/kermit/test/tar/
+DISTNAME=	cku${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Serial and network communications package
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING.TXT
 
 USES=		ssl
 NO_WRKSUBDIR=	yes
 MAKEFILE=	makefile
 ALL_TARGET=	freebsd9
-MAKE_ARGS=	CC2=${CC} SSLINC=-I${OPENSSLINC} SSLLIB=-L${OPENSSLLIB} HAVE_FBSD9='-DFREEBSD9' FREEBSD9=yes HAVE_UTMPX='-DHAVEUTMPX'
+MAKE_ARGS=	CC2="${CC}" SSLINC="-I${OPENSSLINC}" SSLLIB="-L${OPENSSLLIB}" HAVE_FBSD9='-DFREEBSD9' FREEBSD9=yes HAVE_UTMPX='-DHAVEUTMPX'
 
+PLIST_FILES=	bin/kermit man/man1/kermit.1.gz
 PORTDOCS=	*
-PORTEXAMPLES=	*
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,-O2 -pipe,${CFLAGS},' ${WRKSRC}/${MAKEFILE}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/wermit ${PREFIX}/bin/kermit
-	${INSTALL_MAN} ${WRKSRC}/ckuker.nr ${MANPREFIX}/man/man1/kermit.1
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.txt ${DOCSDIR}
-	${LN} -sf ckaaaa.txt ${DOCSDIR}/READ.ME
-.endif
-.if !defined(NOPORTEXAMPLES)
-	@${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/ckermit.ini ${EXAMPLESDIR}/dot.kermrc
-	${INSTALL_DATA} ${WRKSRC}/ckermod.ini ${EXAMPLESDIR}/dot.mykermrc
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/wermit ${STAGEDIR}${PREFIX}/bin/kermit
+	${INSTALL_MAN} ${WRKSRC}/ckuker.nr \
+		${STAGEDIR}${MANPREFIX}/man/man1/kermit.1
+
+do-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.TXT ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
