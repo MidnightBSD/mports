@@ -61,7 +61,6 @@ SUBDIR += flock
 SUBDIR += freecolor
 SUBDIR += fusefs-curlftpfs
 SUBDIR += fusefs-httpfs
-SUBDIR += fusefs-kmod
 SUBDIR += fusefs-libs
 SUBDIR += fusefs-libs3
 SUBDIR += fusefs-ntfs
