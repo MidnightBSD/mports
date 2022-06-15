@@ -1,7 +1,7 @@
 # Created by: Anton Yudin <toha@toha.org.ua>
 
 PORTNAME=	commons-pool
-PORTVERSION=	2.8.0
+PORTVERSION=	2.11.1
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE_COMMONS_BINARIES
 PKGNAMEPREFIX=	apache-
@@ -15,7 +15,7 @@ LICENSE=	apache2
 OPTIONS_DEFINE=	DOCS
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.8
+JAVA_VERSION=	8+
 NO_BUILD=	yes
 NO_ARCH=	yes
 

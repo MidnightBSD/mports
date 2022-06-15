@@ -1,9 +1,9 @@
 # Created by: Anton Yudin <toha@toha.org.ua>
 
 PORTNAME=	commons-dbcp
-PORTVERSION=	2.8.0
+PORTVERSION=	2.9.0
 CATEGORIES=	java databases
-MASTER_SITES=	APACHE_COMMONS_BINARIES
+MASTER_SITES=	https://archive.apache.org/dist/commons/dbcp/binaries/
 PKGNAMEPREFIX=	apache-
 DISTNAME=	${PORTNAME}2-${PORTVERSION}-bin
 
