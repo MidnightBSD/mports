@@ -1,7 +1,5 @@
-
-
 PORTNAME=	fftw3
-DISTVERSION=	3.3.8
+DISTVERSION=	3.3.10
 PORTREVISION?=	0
 CATEGORIES=	math
 MASTER_SITES=	http://www.fftw.org/ \
