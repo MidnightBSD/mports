@@ -23,7 +23,8 @@ USE_XORG=	x11 xext
 MESON_ARGS=	-Dinstalled_tests=false \
 		-Dcairo=enabled \
 		-Dreadline=enabled \
-		-Dprofiler=disabled
+		-Dprofiler=disabled \
+		-Dtests=false
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
@@ -32,5 +33,7 @@ GH_ACCOUNT=	linuxmint
 SHEBANG_GLOB=	*.py
 
 PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
