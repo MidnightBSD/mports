@@ -1,9 +1,11 @@
+# Created by: stas@FreeBSD.org
+
 PORTNAME=	libunwind
-PORTVERSION=	20201110	# This is the release date on https://download.savannah.gnu.org/releases/libunwind/
+PORTVERSION=	20211201	# This is the release date on https://download.savannah.gnu.org/releases/libunwind/
 CATEGORIES=	devel
 MASTER_SITES=	SAVANNAH \
 		https://github.com/libunwind/libunwind/releases/download/v${PORTVERSION}/
-DISTNAME=	${PORTNAME}-1.5.0
+DISTNAME=	${PORTNAME}-1.6.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic stack unwinding library
@@ -11,26 +13,31 @@ COMMENT=	Generic stack unwinding library
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-ONLY_FOR_ARCHS= aarch64 amd64 i386 powerpc64 powerpc64le
+USES=		compiler:c11 cpe libtool pathfix pkgconfig
 
-USES=		compiler:c11 libtool pathfix pkgconfig
-
-CFLAGS_powerpc64=	-maltivec
-CFLAGS_powerpc64le=	-maltivec
-CONFIGURE_ARGS=	ac_cv_path_LATEX2MAN=${TRUE}
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
+CONFIGURE_ARGS=	--disable-cxx-exceptions \
+		--disable-unwind-header \
+		ac_cv_path_LATEX2MAN=${TRUE}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-PLIST_SUB=	ARCH=${ARCH:S|i386|x86|:S|amd64|x86_64|:C|powerpc64.*|ppc64|}
+PLIST_SUB=	ARCH=${ARCH:S|amd64|x86_64|:C|armv.|arm|:S|i386|x86|:C|powerpc64.*|ppc64|}
 
-.include <bsd.port.pre.mk>
+CPE_VENDOR=	libunwind_project
 
-.if !${ARCH:Mpowerpc64*}
-PLIST_SUB+=	COREDUMP=""
-.else
+.include <bsd.mport.options.mk>
+
+.if ${ARCH:Mpowerpc64*}
 PLIST_SUB+=	COREDUMP="@comment "
+.else
+PLIST_SUB+=	COREDUMP=""
 .endif
 
-.include <bsd.port.post.mk>
+PLIST_FILES=	include/unwind.h
+
+post-install:
+	${INSTALL_DATA} ${FILESDIR}/unwind.h ${STAGEDIR}${PREFIX}/include
+
+.include <bsd.port.mk>
