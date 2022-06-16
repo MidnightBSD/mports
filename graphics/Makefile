@@ -229,6 +229,7 @@ SUBDIR += vigra
 SUBDIR += vkd3d
 SUBDIR += vulkan-headers
 SUBDIR += vulkan-loader
+SUBDIR += vulkan-tools
 SUBDIR += wayland
 SUBDIR += wayland-protocols
 SUBDIR += webp
