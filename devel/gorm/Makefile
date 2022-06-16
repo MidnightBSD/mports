@@ -1,9 +1,11 @@
-
-
 PORTNAME=	gorm
-PORTVERSION=	1.2.22
+PORTVERSION=	1.2.23
 CATEGORIES=	devel gnustep
-MASTER_SITES=	GNUSTEP/dev-apps
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	gnustep
+GH_PROJECT=	apps-gorm
+GH_TAGNAME=	04554d2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Object Relationship Modeller
