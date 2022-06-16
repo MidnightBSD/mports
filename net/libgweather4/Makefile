@@ -29,4 +29,6 @@ GLIB_SCHEMAS=	org.gnome.GWeather4.enums.xml \
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
