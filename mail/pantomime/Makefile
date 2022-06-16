@@ -1,10 +1,7 @@
-
-
 PORTNAME=	pantomime
-PORTVERSION=	1.2.2
-PORTREVISION=	1
+PORTVERSION=	1.3.0
 CATEGORIES=	mail gnustep
-MASTER_SITES=	http://download.gna.org/gnustep-nonfsf/
+MASTER_SITES=	SAVANNAH/gnustep-nonfsf/
 DISTNAME=	Pantomime-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +17,6 @@ USES=		gnustep iconv ssl
 USE_GNUSTEP=	back build
 USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
-DEFAULT_LIBVERSION=	1.2
+DEFAULT_LIBVERSION=	1.3
 
 .include <bsd.port.mk>
