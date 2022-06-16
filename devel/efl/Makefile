@@ -12,6 +12,8 @@ COMMENT=	Enlightenment Foundation Libraries
 LICENSE=	bsd2 lgpl2.1
 LICENSE_COMB=	multi
 
+FAKE_OPTS=	trueprefix
+
 BUILD_DEPENDS=	checkmk:devel/check
 LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libpng.so:graphics/png \
@@ -338,13 +340,13 @@ post-patch:
 	${REINPLACE_CMD} -e 's/dragonfly/midnightbsd/g' ${WRKSRC}/meson.build
 
 post-install:
-	#@${RM} -r ${STAGEDIR}${PREFIX}/share/gdb
-	@for i in `${FIND} ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${PREFIX}/lib -type f`; do \
+	#@${RM} -r ${PREFIX}/share/gdb
+	@for i in `${FIND} ${PREFIX}/bin ${PREFIX}/lib -type f`; do \
 		if ${FILE} $$i | ${GREP} -q "not stripped"; then ${STRIP_CMD} $$i; fi; \
 	done
 
 post-fake:
 	@${ECHO_CMD} "autogenerating plist";
-	@cd ${STAGEDIR}${PREFIX} && ${FIND} * -type f -or -type l >> ${TMPPLIST}
+	@cd ${PREFIX} && ${FIND} * -type f -or -type l >> ${TMPPLIST}
 
 .include <bsd.port.mk>
