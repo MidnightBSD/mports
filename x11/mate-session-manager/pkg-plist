@@ -98,6 +98,7 @@ share/locale/ks/LC_MESSAGES/mate-session-manager.mo
 share/locale/ku/LC_MESSAGES/mate-session-manager.mo
 share/locale/ku_IQ/LC_MESSAGES/mate-session-manager.mo
 share/locale/ky/LC_MESSAGES/mate-session-manager.mo
+share/locale/la/LC_MESSAGES/mate-session-manager.mo
 share/locale/li/LC_MESSAGES/mate-session-manager.mo
 share/locale/lo/LC_MESSAGES/mate-session-manager.mo
 share/locale/lt/LC_MESSAGES/mate-session-manager.mo
@@ -155,7 +156,7 @@ share/locale/zh_CN/LC_MESSAGES/mate-session-manager.mo
 share/locale/zh_HK/LC_MESSAGES/mate-session-manager.mo
 share/locale/zh_TW/LC_MESSAGES/mate-session-manager.mo
 share/locale/zu/LC_MESSAGES/mate-session-manager.mo
-%%DATADIR%%/hardware-compatibility
 %%DATADIR%%/gsm-inhibit-dialog.ui
+%%DATADIR%%/hardware-compatibility
 %%DATADIR%%/session-properties.ui
 share/xsessions/mate.desktop

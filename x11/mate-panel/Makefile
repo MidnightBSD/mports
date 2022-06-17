@@ -1,13 +1,11 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	mate-panel
-PORTVERSION=	1.24.2
+PORTVERSION=	1.26.2
+PORTEPOCH=	1
 CATEGORIES=	x11 mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
-
-PATCH_SITES=	https://github.com/mate-desktop/${PORTNAME}/commit/
-PATCHFILES+=	9f15be59faa7.patch:-p1 # https://github.com/mate-desktop/mate-panel/pull/1104
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Panel component for the MATE Desktop
@@ -55,7 +53,8 @@ X11_USE= 			GNOME=libwnck3 XORG=x11,xau,xrandr
 X11_CONFIGURE_ENABLE=		x11
 X11_VARS=			GLIB_SCHEMAS+=org.mate.panel.applet.notification-area.gschema.xml \
 				GLIB_SCHEMAS+=org.mate.panel.applet.window-list.gschema.xml \
-				GLIB_SCHEMAS+=org.mate.panel.applet.workspace-switcher.gschema.xml
+				GLIB_SCHEMAS+=org.mate.panel.applet.workspace-switcher.gschema.xml \
+				GLIB_SCHEMAS+=org.mate.panel.applet.window-list-previews.gschema.xml
 X11_CONFIGURE_ENV_OFF=		WNCKLET_CFLAGS=" " WNCKLET_LIBS=" " \
 				XRANDR_CFLAGS=" " XRANDR_LIBS=" "
 
