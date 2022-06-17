@@ -1,7 +1,7 @@
 PORTNAME=	midori
 PORTVERSION=	9.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www xfce
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +19,9 @@ LIB_DEPENDS=	libnotify.so:devel/libnotify \
 		libpeas-1.0.so:devel/libpeas \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 		libharfbuzz.so:print/harfbuzz
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss \
+		${LOCALBASE}/libexec/gsd-xsettings:sysutils/gnome-settings-daemon
+
 
 USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext gnome \
 		libarchive localbase:ldflags pkgconfig sqlite tar:bzip2
