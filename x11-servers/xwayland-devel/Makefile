@@ -71,10 +71,10 @@ NO_TEST=	yes
 .ifdef GH_TUPLE
 post-install:
 # https://github.com/mesonbuild/meson/issues/2550
-	@${RM} -r ${STAGEDIR}${PREFIX}/include/GL
-	@${RM} -r ${STAGEDIR}${PREFIX}/include/X11
-	@${RM} -r ${STAGEDIR}${PREFIX}/share/doc/xorgproto
-	@${RM} -r ${STAGEDIR}${PREFIX}/share/pkgconfig
+	-${RM} -r ${PREFIX}/include/GL
+	-${RM} -r ${PREFIX}/include/X11
+	-${RM} -r ${PREFIX}/share/doc/xorgproto
+	-${RM} -r ${PREFIX}/share/pkgconfig
 .endif
 
 .include <bsd.port.mk>
