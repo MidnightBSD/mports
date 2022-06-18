@@ -24,7 +24,8 @@ MESON_ARGS=	-Dinstalled_tests=false \
 		-Dcairo=enabled \
 		-Dreadline=enabled \
 		-Dprofiler=disabled \
-		-Denable_tests=false 
+		-Dskip_dbus_tests=true \
+		-Dskip_gtk_tests=true
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
