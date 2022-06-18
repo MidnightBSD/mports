@@ -7,8 +7,9 @@ include/dvdread/ifo_types.h
 include/dvdread/nav_print.h
 include/dvdread/nav_read.h
 include/dvdread/nav_types.h
+include/dvdread/version.h
 lib/libdvdread.a
 lib/libdvdread.so
-lib/libdvdread.so.4
-lib/libdvdread.so.4.2.0
+lib/libdvdread.so.8
+lib/libdvdread.so.8.0.0
 libdata/pkgconfig/dvdread.pc

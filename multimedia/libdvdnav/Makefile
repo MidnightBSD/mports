@@ -1,25 +1,23 @@
-
-
 PORTNAME=	libdvdnav
-PORTVERSION=	5.0.3
+PORTVERSION=	6.1.1
 CATEGORIES=	multimedia
-MASTER_SITES=	http://download.videolan.org/pub/videolan/libdvdnav/${PORTVERSION}/ \
-		http://dvdnav.mplayerhq.hu/releases/ \
-		http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
-		FREEBSD_LOCAL/martymac
+MASTER_SITES=	https://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	MPlayer version of the libdvdnav project
+COMMENT=	Videolan version of the libdvdnav project
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libdvdread.so:${PORTSDIR}/multimedia/libdvdread
+LIB_DEPENDS=	libdvdread.so:multimedia/libdvdread
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		tar:bzip2 gmake libtool pathfix pkgconfig
+USES=		libtool pathfix pkgconfig tar:bz2
+USE_CSTD=	c99
 USE_LDCONFIG=	yes
 
 PORTDOCS=	AUTHORS COPYING ChangeLog README TODO
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>
