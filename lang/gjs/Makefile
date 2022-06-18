@@ -27,7 +27,8 @@ MESON_ARGS=	-Dcairo=enabled \
 		-Dreadline=enabled \
 		-Dprofiler=disabled \
 		-Dinstalled_tests=false \
-		-Denable_tests=false
+		-Dskip_dbus_tests=true \
+		-Dskip_gtk_tests=true
 USE_LDCONFIG=	yes
 
 CONFIGURE_ENV=	PYTHONDONTWRITEBYTECODE=1
