@@ -1,13 +1,13 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	gnome-desktop
-PORTVERSION=	3.38.2
+PORTVERSION=	42.2
 CATEGORIES=	x11 gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Additional UI API for GNOME 3
+COMMENT=	Additional UI API for GNOME
 
 LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
@@ -23,14 +23,15 @@ RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		cantarell-fonts>=0:x11-fonts/cantarell-fonts \
 		xkeyboard-config>=0:x11/xkeyboard-config
 
-USES=		bison gettext gnome localbase:ldflags meson \
+USES=		bison cpe gettext gnome localbase:ldflags meson \
 		pkgconfig python:3.4+ tar:xz xorg
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool introspection:build
+USE_GNOME=	cairo gdkpixbuf2 gtk30 gtk40 intltool introspection:build
 USE_XORG=	x11
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dgnome_distributor="MidnightBSD GNOME Project" \
 		-Dudev=disabled \
 		-Dsystemd=disabled \
 		-Dgtk_doc=false
+CPE_VENDOR=	gnome
 
 .include <bsd.port.mk>
