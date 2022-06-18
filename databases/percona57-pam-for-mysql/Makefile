@@ -26,7 +26,7 @@ CMAKE_ARGS+=	-DWITH_PAM=1
 PLUGIN_ONLY=	yes
 
 do-install:
-	(cd ${WRKSRC}/plugin/percona-pam-for-mysql && ${MAKE} ${MAKE_ARGS} install)
+	(cd ${WRKSRC}/plugin/percona-pam-for-mysql && env ${FAKE_MAKEENV} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} install)
 	${INSTALL_DATA} ${FILESDIR}/pam.conf ${STAGEDIR}${PREFIX}/etc/pam.d/mysqld.sample
 
 .include "${MASTERDIR}/Makefile"
