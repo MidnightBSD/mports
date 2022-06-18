@@ -142,7 +142,6 @@ SUBDIR += php80-posix
 SUBDIR += php81-fileinfo
 SUBDIR += php81-posix
 SUBDIR += policykit
-SUBDIR += policykit-gnome
 SUBDIR += polkit
 SUBDIR += polkit-gnome
 SUBDIR += polkit-qt
