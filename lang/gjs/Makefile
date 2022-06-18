@@ -26,12 +26,15 @@ USE_XORG=	x11 xext
 MESON_ARGS=	-Dcairo=enabled \
 		-Dreadline=enabled \
 		-Dprofiler=disabled \
-		-Dinstalled_tests=false
+		-Dinstalled_tests=false \
+		-Denable_tests=false
 USE_LDCONFIG=	yes
 
 CONFIGURE_ENV=	PYTHONDONTWRITEBYTECODE=1
 MAKE_ENV=	PYTHONDONTWRITEBYTECODE=1
 
+.if !defined(MAGUS)
 USE_GCC=	10+
+.endif
 
 .include <bsd.port.mk>
