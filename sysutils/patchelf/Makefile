@@ -15,7 +15,7 @@ USES=		autoreconf compiler:c++11-lang gmake tar:bz2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}.20200827.8d3a16e
 
 GNU_CONFIGURE=	yes
-TEST_TARGET=	check
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS
 
