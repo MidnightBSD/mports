@@ -84,6 +84,8 @@ post-extract:
 
 post-patch:
 	${REINPLACE_CMD} -e 's/freebsd/midnightbsd/g' \
+		${WRKSRC}/src/pipewire/meson.build \
+		${WRKSRC}/subprojects/media-session/meson.build \
 		${WRKSRC}/meson.build
 
 post-patch-MEDIASESSION-on:
