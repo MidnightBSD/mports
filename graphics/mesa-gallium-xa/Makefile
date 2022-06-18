@@ -34,7 +34,7 @@ MESON_ARGS+=	-Ddri-drivers="" \
 		-Dglx=disabled \
 		-Dopengl=false \
 		-Dshared-glapi=disabled \
-		-Dosmesa=false
+		-Dosmesa="none"
 
 LDFLAGS_i386=		-Wl,-znotext
 
