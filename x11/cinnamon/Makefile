@@ -49,6 +49,7 @@ CPE_VENDOR=	linuxmint
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool introspection libxml2 pygobject3
 USE_XORG=	x11 xfixes
 USE_GL=		gl
+USE_GSTREAMER1=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
