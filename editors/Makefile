@@ -22,6 +22,7 @@ SUBDIR += sublime-text4
 SUBDIR += tea
 SUBDIR += ted
 SUBDIR += vim
+SUBDIR += xcoral
 SUBDIR += xed
 SUBDIR += xnedit
 SUBDIR += zile
