@@ -110,7 +110,7 @@ post-patch:
 		${WRKSRC}/data/PostSession.in \
 		${WRKSRC}/data/PreSession.in \
 		${WRKSRC}/data/Xsession.in
-	@${RM}	${WRKSRC}/data/applications/gdm-simple-greeter.desktop \
+	-${RM}	${WRKSRC}/data/applications/gdm-simple-greeter.desktop \
 		${WRKSRC}/data/applications/gdm-simple-greeter.desktop.in \
 		${WRKSRC}/data/applications/gnome-shell.desktop \
 
