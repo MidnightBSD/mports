@@ -53,6 +53,8 @@ GLIB_SCHEMAS=	org.gnome.totem.enums.xml \
 		org.gnome.totem.plugins.opensubtitles.gschema.xml \
 		org.gnome.totem.plugins.pythonconsole.gschema.xml
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 .if defined(WITH_DVD_DEVICE)
