@@ -165,7 +165,6 @@ SUBDIR += kyua
 SUBDIR += lemon
 SUBDIR += libIDL
 SUBDIR += libatomic_ops
-SUBDIR += libbonobo
 SUBDIR += libburn
 SUBDIR += libcbor
 SUBDIR += libccid
