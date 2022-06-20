@@ -325,5 +325,6 @@ SUBDIR += xmlto
 SUBDIR += ydiff
 SUBDIR += yelp-tools
 SUBDIR += yelp-xsl
+SUBDIR += yq
 
 .include <bsd.port.subdir.mk>
