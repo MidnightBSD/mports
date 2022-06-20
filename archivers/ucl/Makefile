@@ -1,8 +1,6 @@
-
-
 PORTNAME=	ucl
 PORTVERSION=	1.03
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/ucl/download/
 
@@ -18,6 +16,9 @@ USES=		libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared
+INSTALL_TARGET=	install-strip
+
+CONFLICTS_INSTALL=	libucl
 
 PORTDOCS=	AUTHORS NEWS README THANKS TODO
 
