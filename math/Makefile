@@ -62,6 +62,7 @@ SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5
 SUBDIR += suitesparse
+SUBDIR += tomsfastmath
 SUBDIR += xfce4-calculator-plugin
 SUBDIR += xtensor
 SUBDIR += zarray
