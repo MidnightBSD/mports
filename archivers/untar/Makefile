@@ -1,5 +1,3 @@
-
-
 PORTNAME=	untar
 PORTVERSION=	1.4
 PORTREVISION=	2
@@ -11,6 +9,7 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists/Extracts files from a "*.tgz" or "*.gz" archive
+
 LICENSE=        unknown
 
 MAKEFILE=	/usr/share/mk/bsd.prog.mk
