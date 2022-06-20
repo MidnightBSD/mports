@@ -775,6 +775,7 @@ SUBDIR += py-Jinja2
 SUBDIR += py-QtPy
 SUBDIR += py-apipkg
 SUBDIR += py-appdirs
+SUBDIR += py-argcomplete
 SUBDIR += py-arrow
 SUBDIR += py-asn1crypto
 SUBDIR += py-astroid
