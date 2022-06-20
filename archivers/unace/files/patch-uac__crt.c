@@ -1,7 +1,4 @@
-
-$FreeBSD: ports/archivers/unace/files/patch-uac__crt.c,v 1.1 2005/02/22 15:29:27 naddy Exp $
-
---- uac_crt.c.orig
+--- uac_crt.c.orig	1998-07-01 08:29:00 UTC
 +++ uac_crt.c
 @@ -33,12 +33,15 @@
  
@@ -22,7 +19,7 @@ $FreeBSD: ports/archivers/unace/files/patch-uac__crt.c,v 1.1 2005/02/22 15:29:27
     s[i] = 0;
  
     if (nopath)
-@@ -56,22 +59,72 @@
+@@ -56,22 +59,72 @@ CHAR *ace_fname(CHAR * s, thead * head, 
     }
  #endif
  

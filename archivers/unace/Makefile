@@ -1,18 +1,16 @@
-
-
 PORTNAME=	unace
 PORTVERSION=	1.2b
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_SUNSITE}
-MASTER_SITE_SUBDIR=	utils/compress
+MASTER_SITES=	SUNSITE/utils/compress
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extract, view & test ACE archives
 LICENSE=	unknown
 
 MAKE_JOBS_UNSAFE=	yes
-USE_GMAKE=	yes
+USES=		cpe gmake
+CPE_VENDOR=	winace
 ALL_TARGET=	clean unace
 PLIST_FILES=	bin/unace
 
