@@ -5,7 +5,7 @@ PORTVERSION=	3.0.8
 CATEGORIES=	devel
 
 MAINTAINER=	poprts@MidnightBSD.org
-COMMENT=	Open Computing Language (OpenCL) specifications V2.2 (header files)
+COMMENT=	Open Computing Language (OpenCL) specifications V3.0 (header files)
 
 LICENSE=	apache2
 
