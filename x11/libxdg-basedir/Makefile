@@ -1,6 +1,6 @@
 PORTNAME=	libxdg-basedir
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.2
+DISTVERSION=	1.2.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,8 @@ LICENSE=	mit
 USES=		autoreconf gmake libtool pathfix
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
-GH_ACCOUNT=	davmac314
+GH_ACCOUNT=	devnev
+GH_TAGNAME=	b978568d1b3ee04e8197f23ca4e3abdd372f85e1
 GNU_CONFIGURE=	yes
 TEST_TARGET=	check
 
