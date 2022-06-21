@@ -7,10 +7,7 @@ CATEGORIES=	devel
 MAINTAINER=	poprts@MidnightBSD.org
 COMMENT=	Open Computing Language (OpenCL) specifications V2.2 (header files)
 
-LICENSE=	OPENCL
-LICENSE_NAME=	BSD-esque license agreement
-LICENSE_TEXT=	License is included in each of the header files of this port
-LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE=	apache2
 
 CONFLICTS=	opencl-1.[0-2]
 
