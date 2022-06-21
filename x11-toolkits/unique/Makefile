@@ -1,5 +1,3 @@
-
-
 PORTNAME=	unique
 PORTVERSION=	1.1.6
 PORTREVISION=	7
@@ -12,7 +10,7 @@ COMMENT=	Library for single instance applications
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib
 
 USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
 USE_GNOME=	gtk20 gnomeprefix introspection:build
