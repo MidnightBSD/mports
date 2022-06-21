@@ -1,11 +1,11 @@
 # Created by: Kimura Fuyuki <fuyuki@mj.0038.net>
 
 PORTNAME=	bsh
-DISTVERSION=	2.0b6
+DISTVERSION=	2.1.0
 CATEGORIES=	lang java
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Java scripting language
+COMMENT=	Beanshell Java scripting language
 
 LICENSE=	apache2
 
@@ -18,6 +18,8 @@ JAVA_BUILD=	8
 
 USE_ANT=	yes
 ALL_TARGET=	jarall
+
+CONFLICTS_INSTALL=	schilyutils # bin/bsh
 
 SUB_FILES=	${PORTNAME}.sh
 SUB_LIST=	JARNAME=${PORTNAME}.jar

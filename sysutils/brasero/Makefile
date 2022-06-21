@@ -1,5 +1,3 @@
-
-
 PORTNAME=	brasero
 PORTVERSION=	3.12.1
 PORTREVISION=	1
@@ -9,14 +7,15 @@ DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD/DVD mastering tool for the GNOME desktop
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
-LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify \
-		libtotem-plparser.so:${PORTSDIR}/multimedia/totem-pl-parser \
-		libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3
-RUN_DEPENDS=	growisofs:${PORTSDIR}/sysutils/dvd+rw-tools \
-		cdrdao:${PORTSDIR}/sysutils/cdrdao
+BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libnotify.so:devel/libnotify \
+		libtotem-plparser.so:multimedia/totem-pl-parser \
+		libcanberra-gtk3.so:audio/libcanberra-gtk3
+RUN_DEPENDS=	growisofs:sysutils/dvd+rw-tools \
+		cdrdao:sysutils/cdrdao
 
 USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig \
 		shared-mime-info tar:xz
