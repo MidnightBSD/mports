@@ -1,9 +1,9 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	baobab
-PORTVERSION=	3.38.0
+PORTVERSION=	42.0
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,10 +16,11 @@ PORTSCOUT=	limitw:1,even
 
 BUILD_DEPENDS=	valac:lang/vala \
 		itstool:textproc/itstool
+LIB_DEPENDS=	libhandy-1.so:x11-toolkits/libhandy
 
 USES=		desktop-file-utils gettext gnome meson pkgconfig \
 		python:3.5+,build tar:xz
-USE_GNOME=	cairo gtk30
+USE_GNOME=	cairo gtk40 libadwaita
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 

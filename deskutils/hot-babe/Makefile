@@ -1,9 +1,6 @@
 # New ports collection makefile for:	hot-babe
 # Date created:		2004-11-06
 # Whom:			Roman Bogorodskiy <bogorodskiy@inbox.ru>
-#
-
-#
 
 PORTNAME=	hot-babe
 PORTVERSION=	0.2.2
@@ -16,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small utility which displays the system activity in a very special way
 LICENSE=	artistic
 
-USES=		pkgconfig tar:bzip2
+USES=		gnome pkgconfig tar:bzip2
 MAKE_ARGS+=	PREFIX="${PREFIX}" CC="${CC}"
 USE_GNOME=	gtk20
 

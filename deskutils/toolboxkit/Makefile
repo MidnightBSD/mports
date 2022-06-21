@@ -1,22 +1,19 @@
 # New ports collection makefile for:    toolbox
 # Date created:         18 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
-#
-
-#
 
 PORTNAME=	toolbox
 PORTVERSION=	0.8
 PORTREVISION=	3
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://ftp.azc.uam.mx/mirrors/gnu/savannah/files/toolbox/Release.pkg/0.8/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	dinoex
+		FREEBSD_LOCAL/dinoex
 PKGNAMESUFFIX=	kit${PKGNAMESUFFIX2}
 DISTNAME=	Toolbox-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Toolbox bundle for GNUstep
+
 LICENSE=        gpl2
 
 USES=           gnustep
