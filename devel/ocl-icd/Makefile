@@ -28,6 +28,7 @@ INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS+=--disable-official-khronos-headers \
 		--enable-custom-vendordir \
 		--enable-pthread-once
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 OPTIONS_DEFINE=	DOCS MANPAGES
 OPTIONS_DEFAULT=MANPAGES
@@ -35,6 +36,8 @@ OPTIONS_SUB=	yes
 
 MANPAGES_BUILD_DEPENDS=	xmlto:textproc/xmlto \
 			asciidoc:textproc/asciidoc
+
+USE_GCC=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/|${LOCALBASE}/etc/|g' \
