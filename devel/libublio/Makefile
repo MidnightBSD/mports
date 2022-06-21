@@ -1,32 +1,30 @@
-
-
 PORTNAME=	libublio
 PORTVERSION=	20070103
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	alepulver
+MASTER_SITES=	FREEBSD_LOCAL/mandree
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User space caching library
+
 LICENSE=	bsd3
 
+USES=		uidfix
 USE_LDCONFIG=	yes
 
 FAKE_OPTS=	trueprefix
 
-.if defined(NO_PROFILE) || defined(NOPROFILE)
-PLIST_SUB+=	PROFLIB="@comment "
-.else
-PLIST_SUB+=	PROFLIB=""
-.endif
+SUB_FILES=    libublio.pc
+SUB_LIST=     PREFIX=${TRUE_PREFIX} PORTVERSION=${PORTVERSION}
+
+OPTIONS_DEFINE=	DOCS
 
 post-extract:
 	@${CP} ${FILESDIR}/${MAKEFILE} ${WRKSRC}
 
 post-install:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
+	${INSTALL_DATA} ${WRKDIR}/libublio.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
