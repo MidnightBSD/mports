@@ -9,4 +9,4 @@ running instance, and also handling the startup notification side.
 Unique aims to replace the BaconMessageConnection code that has been copied
 by many projects and the code using Bonobo and D-Bus.
 
-WWW: http://live.gnome.org/LibUnique
+WWW: https://wiki.gnome.org/Attic/LibUnique
