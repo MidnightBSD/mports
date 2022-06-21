@@ -1,5 +1,5 @@
 PORTNAME=	cassandra
-DISTVERSION=	3.11.10
+DISTVERSION=	3.11.11
 CATEGORIES=	databases java
 MASTER_SITES=	FREEBSD_LOCAL/nc:repo
 PKGNAMESUFFIX=	3
@@ -13,18 +13,19 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
 
-USES=		python:3.6+
+USES=		cpe python:3.6+
 USE_ANT=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
+CPE_VENDOR=	apache
 
 USE_RC_SUBR=	cassandra
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
 GH_PROJECT=	cassandra
-GH_TAGNAME=	62fe1f7
+GH_TAGNAME=	0150ddc
 
 NO_TEST=	yes
 
@@ -75,6 +76,7 @@ SCRIPT_FILES=	cassandra \
 
 post-patch:
 	@${CHMOD} ug+x ${WRKSRC}/pylib/cassandra-cqlsh-tests.sh
+	@${REINPLACE_CMD} -e 's|$${user.home}/.m2/repository/|$${localm2}/|g' ${WRKSRC}/.build/build-resolver.xml
 
 do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.

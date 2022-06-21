@@ -1,0 +1,693 @@
+%%ETCDIR%%/jolokia-access.xml.sample
+%%ETCDIR%%/jetty-realm.properties.sample
+%%ETCDIR%%/jetty.xml.sample
+%%ETCDIR%%/credentials.properties.sample
+%%ETCDIR%%/broker.ks.sample
+%%ETCDIR%%/jmx.password.sample
+%%ETCDIR%%/jmx.access.sample
+%%ETCDIR%%/login.config.sample
+%%ETCDIR%%/activemq.xml.sample
+%%ETCDIR%%/credentials-enc.properties.sample
+%%ETCDIR%%/logging.properties.sample
+%%ETCDIR%%/broker.ts.sample
+%%ETCDIR%%/users.properties.sample
+%%ETCDIR%%/log4j2.properties.sample
+%%ETCDIR%%/java.security.sample
+%%ETCDIR%%/groups.properties.sample
+etc/rc.d/activemq
+%%EXAMPLESDIR%%/stomp/ruby/publisher.rb
+%%EXAMPLESDIR%%/stomp/ruby/catstomp.rb
+%%EXAMPLESDIR%%/stomp/ruby/readme.md
+%%EXAMPLESDIR%%/stomp/ruby/stompcat.rb
+%%EXAMPLESDIR%%/stomp/ruby/listener.rb
+%%EXAMPLESDIR%%/stomp/websocket/index.html
+%%EXAMPLESDIR%%/stomp/websocket/readme.md
+%%EXAMPLESDIR%%/stomp/websocket/js/stomp.js
+%%EXAMPLESDIR%%/stomp/websocket/js/jquery-3.4.1.min.js
+%%EXAMPLESDIR%%/stomp/websocket/css/bootstrap.min.css
+%%EXAMPLESDIR%%/stomp/websocket/css/bootstrap.min.responsive.css
+%%EXAMPLESDIR%%/stomp/websocket/img/glyphicons-halflings-white.png
+%%EXAMPLESDIR%%/stomp/websocket/img/glyphicons-halflings.png
+%%EXAMPLESDIR%%/stomp/python/stomppy/publisher.py
+%%EXAMPLESDIR%%/stomp/python/stomppy/readme.md
+%%EXAMPLESDIR%%/stomp/python/stomppy/listener.py
+%%EXAMPLESDIR%%/stomp/python/stompest/sync/publisher.py
+%%EXAMPLESDIR%%/stomp/python/stompest/sync/listener.py
+%%EXAMPLESDIR%%/stomp/python/stompest/sync/__init__.py
+%%EXAMPLESDIR%%/stomp/python/stompest/readme.md
+%%EXAMPLESDIR%%/stomp/python/stompest/async/__init__.py
+%%EXAMPLESDIR%%/stomp/python/stompest/async/listener.py
+%%EXAMPLESDIR%%/stomp/python/stompest/async/publisher.py
+%%EXAMPLESDIR%%/stomp/python/readme.md
+%%EXAMPLESDIR%%/stomp/cpp/readme.md
+%%EXAMPLESDIR%%/stomp/cpp/Publisher.cpp
+%%EXAMPLESDIR%%/stomp/cpp/Listener.cpp
+%%EXAMPLESDIR%%/stomp/perl/readme.md
+%%EXAMPLESDIR%%/stomp/perl/listener
+%%EXAMPLESDIR%%/stomp/perl/publisher
+%%EXAMPLESDIR%%/stomp/csharp/readme.md
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Listener/Listener.cs
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Listener/Listener.csproj
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Listener/NMSTracer.cs
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Listener/AssemblyInfo.cs
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Publisher/NMSTracer.cs
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Publisher/AssemblyInfo.cs
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Publisher/Publisher.csproj
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Publisher/Publisher.cs
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/ActiveMQExamples.sln
+%%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/ActiveMQExamples.userprefs
+%%EXAMPLESDIR%%/stomp/php/listener.php
+%%EXAMPLESDIR%%/stomp/php/readme.md
+%%EXAMPLESDIR%%/stomp/php/publisher.php
+%%EXAMPLESDIR%%/stomp/java/pom.xml
+%%EXAMPLESDIR%%/stomp/java/src/main/java/example/Listener.java
+%%EXAMPLESDIR%%/stomp/java/src/main/java/example/Publisher.java
+%%EXAMPLESDIR%%/stomp/java/readme.md
+%%EXAMPLESDIR%%/mqtt/java/readme.md
+%%EXAMPLESDIR%%/mqtt/java/src/main/java/example/Publisher.java
+%%EXAMPLESDIR%%/mqtt/java/src/main/java/example/Listener.java
+%%EXAMPLESDIR%%/mqtt/java/pom.xml
+%%EXAMPLESDIR%%/mqtt/websocket/css/bootstrap.min.css
+%%EXAMPLESDIR%%/mqtt/websocket/css/bootstrap.min.responsive.css
+%%EXAMPLESDIR%%/mqtt/websocket/img/glyphicons-halflings-white.png
+%%EXAMPLESDIR%%/mqtt/websocket/img/glyphicons-halflings.png
+%%EXAMPLESDIR%%/mqtt/websocket/readme.md
+%%EXAMPLESDIR%%/mqtt/websocket/index.html
+%%EXAMPLESDIR%%/mqtt/websocket/js/mqttws31.js
+%%EXAMPLESDIR%%/mqtt/websocket/js/jquery-3.4.1.min.js
+%%EXAMPLESDIR%%/amqp/java/readme.md
+%%EXAMPLESDIR%%/amqp/java/pom.xml
+%%EXAMPLESDIR%%/amqp/java/src/main/java/example/Listener.java
+%%EXAMPLESDIR%%/amqp/java/src/main/java/example/Publisher.java
+%%EXAMPLESDIR%%/amqp/python/content.py
+%%EXAMPLESDIR%%/amqp/python/address.py
+%%EXAMPLESDIR%%/amqp/python/readme.md
+%%EXAMPLESDIR%%/amqp/python/receiver.py
+%%EXAMPLESDIR%%/amqp/python/sender.py
+%%EXAMPLESDIR%%/conf/activemq-scalability.xml
+%%EXAMPLESDIR%%/conf/activemq-mqtt.xml
+%%EXAMPLESDIR%%/conf/resin-web.xml
+%%EXAMPLESDIR%%/conf/activemq-stomp.xml
+%%EXAMPLESDIR%%/conf/camel.xml
+%%EXAMPLESDIR%%/conf/activemq-static-network-broker1.xml
+%%EXAMPLESDIR%%/conf/activemq-dynamic-network-broker1.xml
+%%EXAMPLESDIR%%/conf/activemq-demo.xml
+%%EXAMPLESDIR%%/conf/jetty-demo.xml
+%%EXAMPLESDIR%%/conf/log4j2.properties
+%%EXAMPLESDIR%%/conf/web.xml
+%%EXAMPLESDIR%%/conf/activemq-specjms.xml
+%%EXAMPLESDIR%%/conf/activemq-jdbc.xml
+%%EXAMPLESDIR%%/conf/activemq.xml
+%%EXAMPLESDIR%%/conf/activemq-static-network-broker2.xml
+%%EXAMPLESDIR%%/conf/activemq-jdbc-performance.xml
+%%EXAMPLESDIR%%/conf/activemq-dynamic-network-broker2.xml
+%%EXAMPLESDIR%%/conf/activemq-security.xml
+%%EXAMPLESDIR%%/conf/activemq-throughput.xml
+%%EXAMPLESDIR%%/openwire/java/src/main/java/example/Publisher.java
+%%EXAMPLESDIR%%/openwire/java/src/main/java/example/Listener.java
+%%EXAMPLESDIR%%/openwire/java/pom.xml
+%%EXAMPLESDIR%%/openwire/java/readme.md
+%%EXAMPLESDIR%%/openwire/csharp/readme.md
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Publisher/AssemblyInfo.cs
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Publisher/Publisher.cs
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Publisher/Publisher.csproj
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Publisher/NMSTracer.cs
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/ActiveMQExamples.userprefs
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/ActiveMQExamples.sln
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Listener/AssemblyInfo.cs
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Listener/NMSTracer.cs
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Listener/Listener.csproj
+%%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Listener/Listener.cs
+%%EXAMPLESDIR%%/openwire/cpp/Listener.cpp
+%%EXAMPLESDIR%%/openwire/cpp/Publisher.cpp
+%%EXAMPLESDIR%%/openwire/cpp/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main/java/example/queue/exclusive/Producer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main/java/example/queue/exclusive/Consumer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src/main/java/example/composite/dest/Producer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src/main/java/example/composite/dest/Consumer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src/main/java/example/queue/selector/Producer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src/main/java/example/queue/selector/Consumer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/src/main/java/example/wildcard/Client.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/src/main/java/example/browser/Browser.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/src/main/java/example/browser/Producer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/src/main/java/example/transaction/Client.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main/java/example/queue/Producer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main/java/example/queue/Consumer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main/resources/log4j2.properties
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/src/main/java/example/tempdest/Consumer.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/src/main/java/example/tempdest/ProducerRequestReply.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/pom.xml
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src/main/java/example/topic/durable/Publisher.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src/main/java/example/topic/durable/Subscriber.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main/java/example/topic/Publisher.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main/java/example/topic/Subscriber.java
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main/resources/log4j2.properties
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/readme.md
+%%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/pom.xml
+%%DATADIR%%/webapps-demo/demo/style.css
+%%DATADIR%%/webapps-demo/demo/chat.css
+%%DATADIR%%/webapps-demo/demo/websocket/chat.css
+%%DATADIR%%/webapps-demo/demo/websocket/stomp.js
+%%DATADIR%%/webapps-demo/demo/websocket/index.html
+%%DATADIR%%/webapps-demo/demo/websocket/chat.js
+%%DATADIR%%/webapps-demo/demo/portfolio/portfolio.html
+%%DATADIR%%/webapps-demo/demo/portfolio/portfolio.js
+%%DATADIR%%/webapps-demo/demo/images/right-box-bottom.png
+%%DATADIR%%/webapps-demo/demo/images/left-box-right.png
+%%DATADIR%%/webapps-demo/demo/images/spacer.gif
+%%DATADIR%%/webapps-demo/demo/images/bottom-red-bar.png
+%%DATADIR%%/webapps-demo/demo/images/white-header-top.png
+%%DATADIR%%/webapps-demo/demo/images/checker-bg.png
+%%DATADIR%%/webapps-demo/demo/images/big-bullet.png
+%%DATADIR%%/webapps-demo/demo/images/content-left.png
+%%DATADIR%%/webapps-demo/demo/images/content-right.png
+%%DATADIR%%/webapps-demo/demo/images/right-box-top.png
+%%DATADIR%%/webapps-demo/demo/images/white-header-right.png
+%%DATADIR%%/webapps-demo/demo/images/black-footer-right.png
+%%DATADIR%%/webapps-demo/demo/images/feed_atom.png
+%%DATADIR%%/webapps-demo/demo/images/activemq-logo.png
+%%DATADIR%%/webapps-demo/demo/images/left-box-bottom.png
+%%DATADIR%%/webapps-demo/demo/images/feed_rss.png
+%%DATADIR%%/webapps-demo/demo/images/black-footer-bottom.png
+%%DATADIR%%/webapps-demo/demo/images/small-bullet-gray.png
+%%DATADIR%%/webapps-demo/demo/images/white-header-left.png
+%%DATADIR%%/webapps-demo/demo/images/small-bullet-red.png
+%%DATADIR%%/webapps-demo/demo/images/right-box-left.png
+%%DATADIR%%/webapps-demo/demo/images/left-box-top.png
+%%DATADIR%%/webapps-demo/demo/images/asf-logo.png
+%%DATADIR%%/webapps-demo/demo/images/top-red-bar.png
+%%DATADIR%%/webapps-demo/demo/images/oval-arrow.png
+%%DATADIR%%/webapps-demo/demo/images/black-footer-left.png
+%%DATADIR%%/webapps-demo/demo/META-INF/LICENSE
+%%DATADIR%%/webapps-demo/demo/META-INF/NOTICE
+%%DATADIR%%/webapps-demo/demo/test/assets/README
+%%DATADIR%%/webapps-demo/demo/test/assets/jsunittest.js
+%%DATADIR%%/webapps-demo/demo/test/assets/unittest.css
+%%DATADIR%%/webapps-demo/demo/test/amq_test.html
+%%DATADIR%%/webapps-demo/demo/WEB-INF/web.xml
+%%DATADIR%%/webapps-demo/demo/index.html
+%%DATADIR%%/webapps-demo/demo/styles/sorttable.css
+%%DATADIR%%/webapps-demo/demo/styles/prettify.css
+%%DATADIR%%/webapps-demo/demo/styles/type-settings.css
+%%DATADIR%%/webapps-demo/demo/styles/site.css
+%%DATADIR%%/webapps-demo/demo/chat.html
+%%DATADIR%%/webapps-demo/demo/js/prototype.js
+%%DATADIR%%/webapps-demo/demo/js/amq.js
+%%DATADIR%%/webapps-demo/demo/js/mochi/__package__.js
+%%DATADIR%%/webapps-demo/demo/js/mochi/MochiKit.js
+%%DATADIR%%/webapps-demo/demo/js/chat.js
+%%DATADIR%%/webapps-demo/demo/js/prettify.js
+%%DATADIR%%/webapps-demo/demo/js/amq_jquery_adapter.js
+%%DATADIR%%/webapps-demo/demo/js/dojo.js
+%%DATADIR%%/webapps-demo/demo/js/css.js
+%%DATADIR%%/webapps-demo/demo/js/standardista-table-sorting.js
+%%DATADIR%%/webapps-demo/demo/js/plotkit/SVG.js
+%%DATADIR%%/webapps-demo/demo/js/plotkit/SweetCanvas.js
+%%DATADIR%%/webapps-demo/demo/js/plotkit/Canvas.js
+%%DATADIR%%/webapps-demo/demo/js/plotkit/Base.js
+%%DATADIR%%/webapps-demo/demo/js/plotkit/iecanvas.htc
+%%DATADIR%%/webapps-demo/demo/js/plotkit/SweetSVG.js
+%%DATADIR%%/webapps-demo/demo/js/plotkit/dummy.svg
+%%DATADIR%%/webapps-demo/demo/js/plotkit/Layout.js
+%%DATADIR%%/webapps-demo/demo/js/common.js
+%%DATADIR%%/webapps-demo/demo/js/jquery-1.4.2.min.js
+%%DATADIR%%/webapps-demo/demo/js/amq_prototype_adapter.js
+%%DATADIR%%/webapps-demo/demo/js/amq_dojo_adapter.js
+%%DATADIR%%/webapps-demo/demo/mqtt/index.html
+%%DATADIR%%/webapps-demo/demo/mqtt/mqttws31.js
+%%DATADIR%%/webapps-demo/demo/mqtt/chat.js
+%%DATADIR%%/webapps-demo/demo/mqtt/chat.css
+%%DATADIR%%/webapps-demo/demo/send.html
+%%DATADIR%%/webapps/styles/prettify.css
+%%DATADIR%%/webapps/styles/type-settings.css
+%%DATADIR%%/webapps/styles/site.css
+%%DATADIR%%/webapps/styles/sorttable.css
+%%DATADIR%%/webapps/api/WEB-INF/web.xml
+%%DATADIR%%/webapps/favicon.ico
+%%DATADIR%%/webapps/admin/slave.jsp
+%%DATADIR%%/webapps/admin/styles/sorttable.css
+%%DATADIR%%/webapps/admin/styles/type-settings.css
+%%DATADIR%%/webapps/admin/styles/prettify.css
+%%DATADIR%%/webapps/admin/styles/site.css
+%%DATADIR%%/webapps/admin/send.jsp
+%%DATADIR%%/webapps/admin/decorators/footer.jsp
+%%DATADIR%%/webapps/admin/decorators/head.jsp
+%%DATADIR%%/webapps/admin/decorators/header.jsp
+%%DATADIR%%/webapps/admin/connections.jsp
+%%DATADIR%%/webapps/admin/403.html
+%%DATADIR%%/webapps/admin/500.html
+%%DATADIR%%/webapps/admin/queueProducers.jsp
+%%DATADIR%%/webapps/admin/queueGraph.jsp
+%%DATADIR%%/webapps/admin/browse.jsp
+%%DATADIR%%/webapps/admin/test/dummy.jsp
+%%DATADIR%%/webapps/admin/test/systemProperties.jsp
+%%DATADIR%%/webapps/admin/test/index.jsp
+%%DATADIR%%/webapps/admin/graph.jsp
+%%DATADIR%%/webapps/admin/message.jsp
+%%DATADIR%%/webapps/admin/subscribers.jsp
+%%DATADIR%%/webapps/admin/connection.jsp
+%%DATADIR%%/webapps/admin/404.html
+%%DATADIR%%/webapps/admin/topicSubscribers.jsp
+%%DATADIR%%/webapps/admin/topicProducers.jsp
+%%DATADIR%%/webapps/admin/xml/topics.jsp
+%%DATADIR%%/webapps/admin/xml/queues.jsp
+%%DATADIR%%/webapps/admin/xml/subscribers.jsp
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/filter/ApplicationContextFilter$1.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/filter/ApplicationContextFilter.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/filter/ApplicationContextFilter$2.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/handler/BindingBeanNameUrlHandlerMapping.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/DeleteSubscriber.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/RetryMessage.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/DeleteDestination.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/DeleteMessage.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/CreateSubscriber.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/PurgeDestination.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/ResumeDestination.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/CopyMessage.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/MoveMessage.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/PauseDestination.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/SendMessage.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/CreateDestination.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller/DeleteJob.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/config/OsgiConfiguration.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/WebConsoleStarter.class
+%%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/WebConsoleStarter$OsgiUtil.class
+%%DATADIR%%/webapps/admin/WEB-INF/webconsole-query.xml
+%%DATADIR%%/webapps/admin/WEB-INF/web.xml
+%%DATADIR%%/webapps/admin/WEB-INF/jspf/headertags.jspf
+%%DATADIR%%/webapps/admin/WEB-INF/webconsole-invm.xml
+%%DATADIR%%/webapps/admin/WEB-INF/webconsole-osgi.xml
+%%DATADIR%%/webapps/admin/WEB-INF/webconsole-embedded.xml
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/escape.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/short.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/checkbox.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/uri.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/text.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/option.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/tooltip.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/form/forEachMapEntry.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/jms/formatTimestamp.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/jms/forEachConnection.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/jms/forEachMessage.tag
+%%DATADIR%%/webapps/admin/WEB-INF/tags/jms/persistent.tag
+%%DATADIR%%/webapps/admin/WEB-INF/dispatcher-servlet.xml
+%%DATADIR%%/webapps/admin/WEB-INF/webconsole-jndi.xml
+%%DATADIR%%/webapps/admin/WEB-INF/webconsole-default.xml
+%%DATADIR%%/webapps/admin/WEB-INF/webconsole-properties.xml
+%%DATADIR%%/webapps/admin/images/black-footer-bottom.png
+%%DATADIR%%/webapps/admin/images/activemq-logo.png
+%%DATADIR%%/webapps/admin/images/checker-bg.png
+%%DATADIR%%/webapps/admin/images/white-header-right.png
+%%DATADIR%%/webapps/admin/images/feed_rss.png
+%%DATADIR%%/webapps/admin/images/white-header-left.png
+%%DATADIR%%/webapps/admin/images/big-bullet.png
+%%DATADIR%%/webapps/admin/images/small-bullet-gray.png
+%%DATADIR%%/webapps/admin/images/black-footer-right.png
+%%DATADIR%%/webapps/admin/images/right-box-left.png
+%%DATADIR%%/webapps/admin/images/feed_atom.png
+%%DATADIR%%/webapps/admin/images/spacer.gif
+%%DATADIR%%/webapps/admin/images/black-footer-left.png
+%%DATADIR%%/webapps/admin/images/left-box-top.png
+%%DATADIR%%/webapps/admin/images/small-bullet-red.png
+%%DATADIR%%/webapps/admin/images/asf-logo.png
+%%DATADIR%%/webapps/admin/images/left-box-bottom.png
+%%DATADIR%%/webapps/admin/images/content-left.png
+%%DATADIR%%/webapps/admin/images/content-right.png
+%%DATADIR%%/webapps/admin/images/top-red-bar.png
+%%DATADIR%%/webapps/admin/images/white-header-top.png
+%%DATADIR%%/webapps/admin/images/left-box-right.png
+%%DATADIR%%/webapps/admin/images/bottom-red-bar.png
+%%DATADIR%%/webapps/admin/images/right-box-bottom.png
+%%DATADIR%%/webapps/admin/images/right-box-top.png
+%%DATADIR%%/webapps/admin/images/oval-arrow.png
+%%DATADIR%%/webapps/admin/META-INF/LICENSE
+%%DATADIR%%/webapps/admin/META-INF/NOTICE
+%%DATADIR%%/webapps/admin/queueConsumers.jsp
+%%DATADIR%%/webapps/admin/logout.jsp
+%%DATADIR%%/webapps/admin/queues.jsp
+%%DATADIR%%/webapps/admin/js/css.js
+%%DATADIR%%/webapps/admin/js/prettify.js
+%%DATADIR%%/webapps/admin/js/plotkit/Canvas.js
+%%DATADIR%%/webapps/admin/js/plotkit/SVG.js
+%%DATADIR%%/webapps/admin/js/plotkit/SweetCanvas.js
+%%DATADIR%%/webapps/admin/js/plotkit/dummy.svg
+%%DATADIR%%/webapps/admin/js/plotkit/SweetSVG.js
+%%DATADIR%%/webapps/admin/js/plotkit/iecanvas.htc
+%%DATADIR%%/webapps/admin/js/plotkit/Base.js
+%%DATADIR%%/webapps/admin/js/plotkit/Layout.js
+%%DATADIR%%/webapps/admin/js/standardista-table-sorting.js
+%%DATADIR%%/webapps/admin/js/common.js
+%%DATADIR%%/webapps/admin/js/mochi/MochiKit.js
+%%DATADIR%%/webapps/admin/js/mochi/__package__.js
+%%DATADIR%%/webapps/admin/topics.jsp
+%%DATADIR%%/webapps/admin/login.html
+%%DATADIR%%/webapps/admin/scheduled.jsp
+%%DATADIR%%/webapps/admin/network.jsp
+%%DATADIR%%/webapps/admin/index.jsp
+%%DATADIR%%/webapps/index.html
+%%DATADIR%%/webapps/images/right-box-left.png
+%%DATADIR%%/webapps/images/big-bullet.png
+%%DATADIR%%/webapps/images/checker-bg.png
+%%DATADIR%%/webapps/images/small-bullet-red.png
+%%DATADIR%%/webapps/images/left-box-bottom.png
+%%DATADIR%%/webapps/images/left-box-top.png
+%%DATADIR%%/webapps/images/activemq-logo.png
+%%DATADIR%%/webapps/images/white-header-right.png
+%%DATADIR%%/webapps/images/top-red-bar.png
+%%DATADIR%%/webapps/images/black-footer-left.png
+%%DATADIR%%/webapps/images/asf-logo.png
+%%DATADIR%%/webapps/images/content-left.png
+%%DATADIR%%/webapps/images/black-footer-right.png
+%%DATADIR%%/webapps/images/right-box-top.png
+%%DATADIR%%/webapps/images/feed_rss.png
+%%DATADIR%%/webapps/images/white-header-left.png
+%%DATADIR%%/webapps/images/small-bullet-gray.png
+%%DATADIR%%/webapps/images/white-header-top.png
+%%DATADIR%%/webapps/images/content-right.png
+%%DATADIR%%/webapps/images/black-footer-bottom.png
+%%DATADIR%%/webapps/images/left-box-right.png
+%%DATADIR%%/webapps/images/feed_atom.png
+%%DATADIR%%/webapps/images/oval-arrow.png
+%%DATADIR%%/webapps/images/bottom-red-bar.png
+%%DATADIR%%/webapps/images/spacer.gif
+%%DATADIR%%/webapps/images/right-box-bottom.png
+%%DATADIR%%/lib/activemq-openwire-legacy-5.17.1.jar
+%%DATADIR%%/lib/geronimo-j2ee-management_1.1_spec-1.0.1.jar
+%%DATADIR%%/lib/javax.activation-api-1.2.0.jar
+%%DATADIR%%/lib/activemq-console-5.17.1.jar
+%%DATADIR%%/lib/jcl-over-slf4j-1.7.36.jar
+%%DATADIR%%/lib/slf4j-api-1.7.36.jar
+%%DATADIR%%/lib/jaxb-api-2.2.11.jar
+%%DATADIR%%/lib/activemq-web-5.17.1.jar
+%%DATADIR%%/lib/web/jetty-util-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/jetty-rewrite-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/jetty-xml-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/jetty-continuation-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/jdom2-2.0.6.1.jar
+%%DATADIR%%/lib/web/jetty-webapp-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/jetty-server-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/websocket-server-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/jetty-annotations-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/taglibs-standard-impl-1.2.5.jar
+%%DATADIR%%/lib/web/jetty-servlet-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/jetty-plus-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/apache-el-8.5.70.jar
+%%DATADIR%%/lib/web/jetty-http-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/tomcat-websocket-api-9.0.58.jar
+%%DATADIR%%/lib/web/jetty-security-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/tomcat-servlet-api-9.0.58.jar
+%%DATADIR%%/lib/web/jolokia-core-1.7.1.jar
+%%DATADIR%%/lib/web/jetty-io-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/geronimo-annotation_1.3_spec-1.0.jar
+%%DATADIR%%/lib/web/rome-1.18.0.jar
+%%DATADIR%%/lib/web/spring-web-5.3.19.jar
+%%DATADIR%%/lib/web/rome-utils-1.18.0.jar
+%%DATADIR%%/lib/web/apache-jsp-8.5.70.jar
+%%DATADIR%%/lib/web/spring-webmvc-5.3.19.jar
+%%DATADIR%%/lib/web/apache-jstl-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/websocket-servlet-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/asm-9.3.jar
+%%DATADIR%%/lib/web/apache-jsp-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/json-simple-1.1.1.jar
+%%DATADIR%%/lib/web/websocket-common-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/javax.security.auth.message-1.0.0.v201108011116.jar
+%%DATADIR%%/lib/web/websocket-api-9.4.46.v20220331.jar
+%%DATADIR%%/lib/web/ecj-3.17.0.jar
+%%DATADIR%%/lib/web/taglibs-standard-spec-1.2.5.jar
+%%DATADIR%%/lib/jaxb-runtime-2.2.11.jar
+%%DATADIR%%/lib/optional/activeio-core-3.1.4.jar
+%%DATADIR%%/lib/optional/activemq-log4j-appender-5.17.1.jar
+%%DATADIR%%/lib/optional/spring-expression-5.3.19.jar
+%%DATADIR%%/lib/optional/commons-beanutils-1.9.4.jar
+%%DATADIR%%/lib/optional/commons-pool2-2.11.1.jar
+%%DATADIR%%/lib/optional/jaxb2-basics-runtime-0.12.0.jar
+%%DATADIR%%/lib/optional/proton-j-0.33.10.jar
+%%DATADIR%%/lib/optional/commons-lang3-3.12.0.jar
+%%DATADIR%%/lib/optional/activemq-runtime-config-5.17.1.jar
+%%DATADIR%%/lib/optional/velocity-engine-core-2.3.jar
+%%DATADIR%%/lib/optional/spring-tx-5.3.19.jar
+%%DATADIR%%/lib/optional/spring-jms-5.3.19.jar
+%%DATADIR%%/lib/optional/spring-beans-5.3.19.jar
+%%DATADIR%%/lib/optional/commons-collections-3.2.2.jar
+%%DATADIR%%/lib/optional/log4j-core-2.17.2.jar
+%%DATADIR%%/lib/optional/activemq-amqp-5.17.1.jar
+%%DATADIR%%/lib/optional/jmdns-3.4.1.jar
+%%DATADIR%%/lib/optional/spring-core-5.3.19.jar
+%%DATADIR%%/lib/optional/httpclient-4.5.13.jar
+%%DATADIR%%/lib/optional/activemq-jdbc-store-5.17.1.jar
+%%DATADIR%%/lib/optional/httpcore-4.4.15.jar
+%%DATADIR%%/lib/optional/activemq-mqtt-5.17.1.jar
+%%DATADIR%%/lib/optional/activemq-stomp-5.17.1.jar
+%%DATADIR%%/lib/optional/log4j-slf4j-impl-2.17.2.jar
+%%DATADIR%%/lib/optional/geronimo-j2ee-connector_1.5_spec-2.0.0.jar
+%%DATADIR%%/lib/optional/org.apache.servicemix.bundles.josql-1.5_5.jar
+%%DATADIR%%/lib/optional/spring-context-5.3.19.jar
+%%DATADIR%%/lib/optional/commons-io-2.11.0.jar
+%%DATADIR%%/lib/optional/jettison-1.4.1.jar
+%%DATADIR%%/lib/optional/commons-codec-1.11.jar
+%%DATADIR%%/lib/optional/xstream-1.4.19.jar
+%%DATADIR%%/lib/optional/commons-dbcp2-2.9.0.jar
+%%DATADIR%%/lib/optional/log4j-api-2.17.2.jar
+%%DATADIR%%/lib/optional/shiro-core-1.9.0.jar
+%%DATADIR%%/lib/optional/spring-oxm-5.3.19.jar
+%%DATADIR%%/lib/optional/xpp3-1.1.4c.jar
+%%DATADIR%%/lib/optional/spring-aop-5.3.19.jar
+%%DATADIR%%/lib/optional/activemq-jms-pool-5.17.1.jar
+%%DATADIR%%/lib/optional/activemq-http-5.17.1.jar
+%%DATADIR%%/lib/optional/xbean-spring-4.21.jar
+%%DATADIR%%/lib/optional/activemq-pool-5.17.1.jar
+%%DATADIR%%/lib/optional/shiro-spring-1.9.0.jar
+%%DATADIR%%/lib/optional/jasypt-spring4-1.9.3.jar
+%%DATADIR%%/lib/optional/activemq-partition-5.17.1.jar
+%%DATADIR%%/lib/optional/activemq-shiro-5.17.1.jar
+%%DATADIR%%/lib/optional/jasypt-1.9.3.jar
+%%DATADIR%%/lib/jackson-annotations-2.13.2.jar
+%%DATADIR%%/lib/extra/mqtt-client-1.16.jar
+%%DATADIR%%/lib/activemq-rar.txt
+%%DATADIR%%/lib/activemq-spring-5.17.1.jar
+%%DATADIR%%/lib/activemq-broker-5.17.1.jar
+%%DATADIR%%/lib/activemq-jaas-5.17.1.jar
+%%DATADIR%%/lib/activemq-protobuf-1.1.jar
+%%DATADIR%%/lib/hawtbuf-1.11.jar
+%%DATADIR%%/lib/jaxb-core-2.2.11.jar
+%%DATADIR%%/lib/camel/camel-core-2.25.4.jar
+%%DATADIR%%/lib/camel/camel-jms-2.25.4.jar
+%%DATADIR%%/lib/camel/camel-spring-2.25.4.jar
+%%DATADIR%%/lib/geronimo-jta_1.1_spec-1.1.1.jar
+%%DATADIR%%/lib/activemq-client-5.17.1.jar
+%%DATADIR%%/lib/jackson-databind-2.13.2.2.jar
+%%DATADIR%%/lib/geronimo-jms_1.1_spec-1.1.1.jar
+%%DATADIR%%/lib/activemq-kahadb-store-5.17.1.jar
+%%DATADIR%%/lib/jackson-core-2.13.2.jar
+%%DATADIR%%/lib/istack-commons-runtime-3.0.11.jar
+%%DATADIR%%/bin/activemq
+%%DATADIR%%/bin/wrapper.jar
+%%DATADIR%%/bin/activemq.jar
+%%DATADIR%%/bin/activemq-diag
+%%DOCSDIR%%/NOTICE
+%%DOCSDIR%%/README.txt
+%%DOCSDIR%%/user-guide.html
+%%DOCSDIR%%/WebConsole-README.txt
+%%DOCSDIR%%/index.html
+share/licenses/activemq-5.17.1/apache2
+share/licenses/activemq-5.17.1/catalog.mk
+share/licenses/activemq-5.17.1/LICENSE
+bin/activemq
+bin/activemq-diag
+@dir %%ETCDIR%%
+@dir %%EXAMPLESDIR%%/stomp/ruby
+@dir %%EXAMPLESDIR%%/stomp/websocket/js
+@dir %%EXAMPLESDIR%%/stomp/websocket/css
+@dir %%EXAMPLESDIR%%/stomp/websocket/img
+@dir %%EXAMPLESDIR%%/stomp/websocket
+@dir %%EXAMPLESDIR%%/stomp/python/stomppy
+@dir %%EXAMPLESDIR%%/stomp/python/stompest/sync
+@dir %%EXAMPLESDIR%%/stomp/python/stompest/async
+@dir %%EXAMPLESDIR%%/stomp/python/stompest
+@dir %%EXAMPLESDIR%%/stomp/python
+@dir %%EXAMPLESDIR%%/stomp/cpp
+@dir %%EXAMPLESDIR%%/stomp/perl
+@dir %%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Listener
+@dir %%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples/Publisher
+@dir %%EXAMPLESDIR%%/stomp/csharp/ActiveMQExamples
+@dir %%EXAMPLESDIR%%/stomp/csharp
+@dir %%EXAMPLESDIR%%/stomp/php
+@dir %%EXAMPLESDIR%%/stomp/java/src/main/java/example
+@dir %%EXAMPLESDIR%%/stomp/java/src/main/java
+@dir %%EXAMPLESDIR%%/stomp/java/src/main
+@dir %%EXAMPLESDIR%%/stomp/java/src
+@dir %%EXAMPLESDIR%%/stomp/java
+@dir %%EXAMPLESDIR%%/stomp
+@dir %%EXAMPLESDIR%%/mqtt/java/src/main/java/example
+@dir %%EXAMPLESDIR%%/mqtt/java/src/main/java
+@dir %%EXAMPLESDIR%%/mqtt/java/src/main
+@dir %%EXAMPLESDIR%%/mqtt/java/src
+@dir %%EXAMPLESDIR%%/mqtt/java
+@dir %%EXAMPLESDIR%%/mqtt/websocket/css
+@dir %%EXAMPLESDIR%%/mqtt/websocket/img
+@dir %%EXAMPLESDIR%%/mqtt/websocket/js
+@dir %%EXAMPLESDIR%%/mqtt/websocket
+@dir %%EXAMPLESDIR%%/mqtt
+@dir %%EXAMPLESDIR%%/amqp/java/src/main/java/example
+@dir %%EXAMPLESDIR%%/amqp/java/src/main/java
+@dir %%EXAMPLESDIR%%/amqp/java/src/main
+@dir %%EXAMPLESDIR%%/amqp/java/src
+@dir %%EXAMPLESDIR%%/amqp/java
+@dir %%EXAMPLESDIR%%/amqp/python
+@dir %%EXAMPLESDIR%%/amqp
+@dir %%EXAMPLESDIR%%/conf
+@dir %%EXAMPLESDIR%%/openwire/java/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/java/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/java/src/main
+@dir %%EXAMPLESDIR%%/openwire/java/src
+@dir %%EXAMPLESDIR%%/openwire/java
+@dir %%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Publisher
+@dir %%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples/Listener
+@dir %%EXAMPLESDIR%%/openwire/csharp/ActiveMQExamples
+@dir %%EXAMPLESDIR%%/openwire/csharp
+@dir %%EXAMPLESDIR%%/openwire/cpp
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main/java/example/queue/exclusive
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main/java/example/queue
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-exclusive-consumer
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src/main/java/example/composite/dest
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src/main/java/example/composite
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-composite-destinations
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src/main/java/example/queue/selector
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src/main/java/example/queue
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue-selector
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/src/main/java/example/wildcard
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-wildcard-consumer
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/src/main/java/example/browser
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-message-browser
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/src/main/java/example/transaction
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-transaction
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main/java/example/queue
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main/resources
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-queue
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/src/main/java/example/tempdest
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-temp-destinations
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src/main/java/example/topic/durable
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src/main/java/example/topic
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-durable-sub
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main/java/example/topic
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main/java/example
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main/java
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main/resources
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src/main
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic/src
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios/jms-example-topic
+@dir %%EXAMPLESDIR%%/openwire/advanced-scenarios
+@dir %%EXAMPLESDIR%%/openwire
+@dir %%EXAMPLESDIR%%
+@dir %%DATADIR%%/webapps-demo/demo/websocket
+@dir %%DATADIR%%/webapps-demo/demo/portfolio
+@dir %%DATADIR%%/webapps-demo/demo/images
+@dir %%DATADIR%%/webapps-demo/demo/META-INF
+@dir %%DATADIR%%/webapps-demo/demo/test/assets
+@dir %%DATADIR%%/webapps-demo/demo/test
+@dir %%DATADIR%%/webapps-demo/demo/WEB-INF
+@dir %%DATADIR%%/webapps-demo/demo/styles
+@dir %%DATADIR%%/webapps-demo/demo/js/mochi
+@dir %%DATADIR%%/webapps-demo/demo/js/plotkit
+@dir %%DATADIR%%/webapps-demo/demo/js
+@dir %%DATADIR%%/webapps-demo/demo/mqtt
+@dir %%DATADIR%%/webapps-demo/demo
+@dir %%DATADIR%%/webapps-demo
+@dir %%DATADIR%%/webapps/styles
+@dir %%DATADIR%%/webapps/api/WEB-INF
+@dir %%DATADIR%%/webapps/api
+@dir %%DATADIR%%/webapps/admin/styles
+@dir %%DATADIR%%/webapps/admin/decorators
+@dir %%DATADIR%%/webapps/admin/test
+@dir %%DATADIR%%/webapps/admin/xml
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/filter
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/handler
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/controller
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web/config
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq/web
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache/activemq
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org/apache
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes/org
+@dir %%DATADIR%%/webapps/admin/WEB-INF/classes
+@dir %%DATADIR%%/webapps/admin/WEB-INF/jspf
+@dir %%DATADIR%%/webapps/admin/WEB-INF/tags/form
+@dir %%DATADIR%%/webapps/admin/WEB-INF/tags/jms
+@dir %%DATADIR%%/webapps/admin/WEB-INF/tags
+@dir %%DATADIR%%/webapps/admin/WEB-INF
+@dir %%DATADIR%%/webapps/admin/images
+@dir %%DATADIR%%/webapps/admin/META-INF
+@dir %%DATADIR%%/webapps/admin/js/plotkit
+@dir %%DATADIR%%/webapps/admin/js/mochi
+@dir %%DATADIR%%/webapps/admin/js
+@dir %%DATADIR%%/webapps/admin
+@dir %%DATADIR%%/webapps/images
+@dir %%DATADIR%%/webapps
+@dir %%DATADIR%%/lib/web
+@dir %%DATADIR%%/lib/optional
+@dir %%DATADIR%%/lib/extra
+@dir %%DATADIR%%/lib/camel
+@dir %%DATADIR%%/lib
+@dir %%DATADIR%%/conf
+@dir %%DATADIR%%/data
+@dir %%DATADIR%%/examples
+@dir %%DATADIR%%/docs
+@dir %%DATADIR%%/bin
+@dir %%DATADIR%%
+@dir %%DOCSDIR%%
+@dir share/licenses/activemq-5.17.1
+@dir share/licenses
