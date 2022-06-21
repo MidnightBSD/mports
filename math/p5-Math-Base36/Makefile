@@ -1,5 +1,5 @@
 PORTNAME=	Math-Base36
-PORTVERSION=	0.10
+PORTVERSION=	0.14
 CATEGORIES=	math perl5 converters
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -7,7 +7,9 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Encoding and decoding of base36 strings
 
-LICENSE=perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/README
 
 BUILD_DEPENDS=	p5-ExtUtils-MakeMaker>=6.59:devel/p5-ExtUtils-MakeMaker
 
