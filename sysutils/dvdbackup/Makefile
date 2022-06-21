@@ -1,8 +1,6 @@
-
-
 PORTNAME=	dvdbackup
 PORTVERSION=	0.4.2
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	sysutils multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -11,7 +9,7 @@ COMMENT=	Backup content from DVD to hard disk
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libdvdread.so:${PORTSDIR}/multimedia/libdvdread
+LIB_DEPENDS=	libdvdread.so:multimedia/libdvdread
 
 GNU_CONFIGURE=	yes
 USES=		gmake
@@ -24,27 +22,18 @@ PORTDOCS=	NEWS README
 DEFAULT_DVD_DEVICE?=	/dev/cd0
 
 OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=	--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 post-patch:
 	@${REINPLACE_CMD} "s|/dev/dvd|${DEFAULT_DVD_DEVICE}|g" \
 		${WRKSRC}/src/main.c ${WRKSRC}/po/*.po ${WRKSRC}/po/*.pot \
 		${WRKSRC}/README ${WRKSRC}/man/dvdbackup.1
 
-pre-configure:
-.if empty(PORT_OPTIONS:MDOCS)
+pre-configure-DOCS-off:
 	@${REINPLACE_CMD} 's|^install-data-am: .*|install-data-am: |' \
 		${WRKSRC}/Makefile.in
-.endif
 
 .include <bsd.port.mk>
