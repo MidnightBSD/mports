@@ -9,8 +9,6 @@ COMMENT=	Open Computing Language (OpenCL) specifications V3.0 (header files)
 
 LICENSE=	apache2
 
-CONFLICTS=	opencl-1.[0-2]
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	OpenCL-Headers OpenCL-CLHPP:clhpp

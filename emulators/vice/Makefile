@@ -37,7 +37,7 @@ USE_XORG=	xpm ice sm xext xv xt x11 xmu xxf86vm
 USE_XORG+=	xrender xinerama xi xrandr xcursor xcomposite xdamage xfixes
 HAS_CONFIGURE=	yes
 MAKE_ENV+=	MAKEINFOFLAGS="--no-split" \
-		XDG_DATA_DIRS=${STAGEDIR}${PREFIX}/share
+		XDG_DATA_DIRS=${FAKE_DESTDIR}${PREFIX}/share
 CFLAGS+=	-fcommon
 CONFIGURE_ARGS+=	--enable-ipv6 \
 			--enable-external-ffmpeg \
