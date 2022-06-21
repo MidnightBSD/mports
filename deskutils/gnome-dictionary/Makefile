@@ -1,11 +1,15 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
-
 PORTNAME=	gnome-dictionary
-PORTVERSION=	3.26.1
+PORTVERSION=	40.0
+PORTREVISION=	2
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome3
+
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
+PATCHFILES+=	87c026cfe4ac.patch:-p1 # meson 0.57
+PATCHFILES+=	cf3f8a67cd6f.patch:-p1 # https://gitlab.gnome.org/GNOME/gnome-dictionary/-/merge_requests/18
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 3 dictionary lookup application
@@ -15,8 +19,8 @@ LICENSE_COMB=		multi
 LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
 LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.libs
 
-BUILD_DEPENDS=	itstool:textproc/itstool \
-		docbook-xsl>=0:textproc/docbook-xsl
+BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
+		itstool:textproc/itstool
 
 PORTSCOUT=	limitw:1,even
 
