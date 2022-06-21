@@ -8,7 +8,6 @@ SUBDIR += jabberd
 SUBDIR += libnice
 SUBDIR += libnice-gst1
 SUBDIR += libpurple
-SUBDIR += libtelepathy
 SUBDIR += loudmouth
 SUBDIR += meanwhile
 SUBDIR += openfire
