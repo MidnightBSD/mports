@@ -1,10 +1,10 @@
 # Created by: Gustau Perez <gustau.perez@gmail.com>
 
 PORTNAME=	gnome-photos
-PORTVERSION=	3.38.0
-PORTREVISION=	1
+DISTVERSION=	42.0
+PORTREVISION=	2
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,29 +17,31 @@ OPTIONS_DEFINE=	DOCS
 
 BUILD_DEPENDS=	geoclue>=0:net/geoclue \
 		itstool:textproc/itstool
-LIB_DEPENDS=	libexempi.so:textproc/exempi \
-		libfribidi.so:converters/fribidi \
-		libgfbgraph-0.2.so:net/gfbgraph \
-		libgegl-0.4.so:graphics/gegl \
-		libgrilo-0.3.so:net/grilo \
+LIB_DEPENDS=	libbabl-0.1.so:x11/babl \
+		libdazzle-1.0.so:x11-toolkits/libdazzle \
+		libexempi.so:textproc/exempi \
 		libexiv2.so:graphics/exiv2 \
-		libgexiv2.so:graphics/gexiv2 \
-		libtracker-control-2.0.so:sysutils/tracker \
+		libfribidi.so:converters/fribidi \
+		libgdata.so:devel/libgdata \
+		libgegl-0.4.so:graphics/gegl \
 		libgeocode-glib.so:net/geocode-glib \
+		libgexiv2.so:graphics/gexiv2 \
+		libgfbgraph-0.2.so:net/gfbgraph \
 		libgjs.so:lang/gjs \
-		libbabl-0.1.so:x11/babl \
+		libgoa-1.0.so:net/gnome-online-accounts \
+		libgrilo-0.3.so:net/grilo \
+		libhandy-1.so:x11-toolkits/libhandy \
+		libjson-glib-1.0.so:devel/json-glib \
+		libpng.so:graphics/png \
 		librest-0.7.so:devel/librest \
 		libsoup-2.4.so:devel/libsoup \
-		libjson-glib-1.0.so:devel/json-glib \
-		libgoa-1.0.so:net/gnome-online-accounts \
-		libdazzle-1.0.so:x11-toolkits/libdazzle \
-		libpng.so:graphics/png \
-		libgdata.so:devel/libgdata
+		libtracker-sparql-3.0.so:sysutils/tracker3
 RUN_DEPENDS=	geoclue>=0:net/geoclue
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 gettext gnome jpeg localbase meson pkgconfig tar:xz
+USES=		compiler:c11 gettext gnome jpeg localbase meson pkgconfig \
+		tar:xz
 USE_GNOME=	cairo gnomedesktop3 gtk30 libxml2
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes

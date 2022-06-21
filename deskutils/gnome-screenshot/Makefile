@@ -1,13 +1,16 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	gnome-screenshot
-PORTVERSION=	3.38.0
+PORTVERSION=	41.0
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome3
 
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
+PATCHFILES+=	b60dad3c2536.patch:-p1 # https://gitlab.gnome.org/GNOME/gnome-screenshot/-/merge_requests/57
+
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME 3 utility for making picutures of your screen
+COMMENT=	GNOME 3 utility for making pictures of your screen
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
