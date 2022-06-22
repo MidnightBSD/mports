@@ -14,6 +14,7 @@ SUBDIR += avahi-libdns
 SUBDIR += boinc-client
 SUBDIR += bsdec2-image-upload
 SUBDIR += bwi-firmware-kmod
+SUBDIR += bwn-firmware-kmod
 SUBDIR += daq
 SUBDIR += dhcp6
 SUBDIR += dhcpdump
