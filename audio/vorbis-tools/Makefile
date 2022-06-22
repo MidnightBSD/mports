@@ -1,7 +1,7 @@
 PORTNAME=	vorbis-tools
 PORTVERSION=	1.4.2
 CATEGORIES=	audio
-MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/ \
+MASTER_SITES=	https://downloads.xiph.org/releases/vorbis/ \
 		https://ftp.osuosl.org/pub/xiph/releases/vorbis/
 
 MAINTAINER=	ports@MidnightBSD.org
