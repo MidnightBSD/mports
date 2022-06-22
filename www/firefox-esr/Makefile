@@ -25,7 +25,7 @@ BUILD_DEPENDS=	nspr>=4.21:devel/nspr \
 		libvpx>=1.5.0:multimedia/libvpx \
 		sqlite3>=3.28.0:databases/sqlite3 \
 		v4l_compat>0:multimedia/v4l_compat \
-		autoconf-2.13:devel/autoconf213 \
+		autoconf2.13:devel/autoconf2.13 \
 		nasm:devel/nasm \
 		zip:archivers/zip
 
@@ -58,8 +58,8 @@ post-patch:
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
 
 pre-configure:
-	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13)
-	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf-2.13)
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf2.13)
+	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf2.13)
 
 post-install:
 	${INSTALL_DATA} ${FIREFOX_DESKTOP} ${STAGEDIR}${PREFIX}/share/applications/
