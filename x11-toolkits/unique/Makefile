@@ -12,7 +12,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:bzip2
 USE_GNOME=	gtk20 gnomeprefix introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
