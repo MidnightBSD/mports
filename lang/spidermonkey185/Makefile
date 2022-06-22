@@ -2,7 +2,7 @@
 
 PORTNAME=		spidermonkey185
 PORTVERSION=		1.8.5
-PORTREVISION=		2
+PORTREVISION=		3
 CATEGORIES=		lang
 MASTER_SITES=		MOZILLA/js
 DISTNAME=		js185-1.0.0
@@ -14,7 +14,7 @@ LICENSE=		gpl2 mpl
 LICENSE_COMB=		dual
 
 BUILD_DEPENDS=		zip:archivers/zip \
-			autoconf-2.13:devel/autoconf213
+			autoconf-2.13:devel/autoconf2.13
 LIB_DEPENDS=		libnspr4.so:devel/nspr
 
 CONFLICTS=		njs-[0-9]*
