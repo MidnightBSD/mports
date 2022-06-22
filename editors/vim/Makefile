@@ -36,7 +36,7 @@ VIM_VER=	${PORTNAME}${PORTVERSION:R:S|.||g}
 # Flavors {{{1
 # FLAVORS are used to build various Vim GUIs. The default flavor (`vim') is
 # console-only.
-FLAVORS=	console athena gtk2 gtk3 motif x11 tiny
+FLAVORS=	console gtk2 gtk3 motif x11 tiny
 FLAVOR?=	${FLAVORS:[1]}
 # Register conflicts with all other flavors
 CONFLICTS_INSTALL=	${FLAVORS:N${FLAVOR}:S/^/vim-/}
@@ -55,13 +55,6 @@ PLIST_SUB+=	GUI="@comment " DESKTOP="@comment "
 GUI=		no
 CONFIGURE_ARGS+=--without-x
 PLIST=		${.CURDIR}/pkg-plist-tiny
-
-.elif ${FLAVOR:U} == athena
-GUI=		athena
-CONFIGURE_ARGS+=--enable-xim --enable-fontset
-PLIST_SUB+=	GUI="" DESKTOP="@comment "
-USES+=		xorg
-USE_XORG+=	ice sm x11 xaw xmu xpm xt
 
 .elif ${FLAVOR:U} == gtk2
 GUI=		gtk2
@@ -94,7 +87,7 @@ GUI=		no
 CONFIGURE_ARGS+=--enable-xim --enable-fontset --with-x
 PLIST_SUB+=	GUI="@comment " DESKTOP="@comment "
 USES+=		xorg
-USE_XORG=	ice sm x11 xt
+USE_XORG=	ice sm x11 xmu xpm xt
 .endif
 
 # Options {{{1
