@@ -186,6 +186,7 @@ SUBDIR += terraform-switcher
 SUBDIR += timemon
 SUBDIR += tmux
 SUBDIR += tracker
+SUBDIR += tracker3
 SUBDIR += tracker-miners
 SUBDIR += ucspi-tcp
 SUBDIR += uefi-edk2-bhyve
