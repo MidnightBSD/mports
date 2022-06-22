@@ -1,35 +1,36 @@
 # Created by: Zach Zurflu <zach@pabst.bendnet.com>
 
 PORTNAME=	libshout
-PORTVERSION=	2.3.1
+PORTVERSION=	2.4.6
 CATEGORIES=	audio net
-MASTER_SITES=	http://downloads.xiph.org/releases/${PORTNAME}/ \
-		FREEBSD_LOCAL/sunpoet
+MASTER_SITES=	https://downloads.xiph.org/releases/libshout/ \
+		https://ftp.osuosl.org/pub/xiph/releases/libshout/ \
+		LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Connect and transmit data to an Icecast media streaming server
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libspeex.so:${PORTSDIR}/audio/speex \
-		libtheora.so:${PORTSDIR}/multimedia/libtheora \
-		libvorbis.so:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS=	libogg.so:audio/libogg
 
-CONFLICTS=	libshout2-[0-9]*
-
-OPTIONS_DEFINE=	DOCS
+USES=		cpe gmake libtool pathfix pkgconfig ssl
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+LDFLAGS+=	-lcrypto
 USE_LDCONFIG=	yes
-USES=		gmake libtool pathfix pkgconfig
 
-PORTDOCS=	*
+OPTIONS_DEFINE=	DOCS SPEEX THEORA VORBIS
+OPTIONS_DEFAULT=SPEEX THEORA VORBIS
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|-ffast-math||g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|^Requires: |Requires.private: |' ${WRKSRC}/shout.pc.in
-	@${REINPLACE_CMD} -e '/^AM_CPPFLAGS = / s|^\(.*\) \(@XIPH_CPPFLAGS@\) \(.*\)$$|\1 \3 \2|' ${WRKSRC}/examples/Makefile.in
-	@${REINPLACE_CMD} -e 's|#ifdef IPV6_V6ONLY|#if defined(__BSD_VISIBLE) \&\& defined(IPV6_V6ONLY)|' ${WRKSRC}/src/net/sock.c
+SPEEX_CONFIGURE_ENABLE=	speex
+SPEEX_LIB_DEPENDS=	libspeex.so:audio/speex
+THEORA_CONFIGURE_ENABLE=theora
+THEORA_LIB_DEPENDS=	libtheora.so:multimedia/libtheora
+vorbis_CONFIGURE_ENABLE=vorbis
+VORBIS_LIB_DEPENDS=	libvorbis.so:audio/libvorbis
+
 
 .include <bsd.port.mk>
