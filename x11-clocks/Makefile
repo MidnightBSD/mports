@@ -2,6 +2,7 @@ COMMENT = X11 clocks
 
 SUBDIR += aclock
 SUBDIR += asclock
+SUBDIR += asclock-xlib
 SUBDIR += glclock
 SUBDIR += oclock
 SUBDIR += wmbinclock
