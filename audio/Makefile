@@ -146,6 +146,7 @@ SUBDIR += spotify-qt
 SUBDIR += spotify-tui
 SUBDIR += spotifyd
 SUBDIR += sratom
+SUBDIR += suil
 SUBDIR += taglib
 SUBDIR += teamspeak3-server
 SUBDIR += thunar-media-tags-plugin
