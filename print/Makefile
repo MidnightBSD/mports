@@ -12,6 +12,7 @@ SUBDIR += cups-pk-helper
 SUBDIR += cups-smb-backend
 SUBDIR += enscript-a4
 SUBDIR += enscript-letter
+SUBDIR += fig2dev
 SUBDIR += fontforge
 SUBDIR += foomatic-db
 SUBDIR += foomatic-db-engine
