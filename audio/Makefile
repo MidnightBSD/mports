@@ -81,7 +81,6 @@ SUBDIR += libmpdclient
 SUBDIR += libmusicbrainz5
 SUBDIR += libmysofa
 SUBDIR += libnjb
-SUBDIR += libofa
 SUBDIR += libogg
 SUBDIR += libsamplerate
 SUBDIR += libshout
