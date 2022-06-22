@@ -125,6 +125,7 @@ SUBDIR += opus
 SUBDIR += opusfile
 SUBDIR += pavucontrol
 SUBDIR += portaudio
+SUBDIR += portmidi
 SUBDIR += pulseaudio
 SUBDIR += py-gtts
 SUBDIR += py-mpd
