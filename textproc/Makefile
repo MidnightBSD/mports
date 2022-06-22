@@ -74,6 +74,7 @@ SUBDIR += libtextcat
 SUBDIR += libtre
 SUBDIR += libucl
 SUBDIR += libuninameslist
+SUBDIR += libvisio01
 SUBDIR += libwapcaplet
 SUBDIR += libwpd
 SUBDIR += libwpd010
