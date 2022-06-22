@@ -32,6 +32,5 @@ sbin/munged
 sbin/mungekey
 @dir %%ETCDIR%%
 @dir(,,711) /var/lib/munge
-@dir /var/lib
 @dir /var/run/munge
 @dir(,,700) /var/log/munge
