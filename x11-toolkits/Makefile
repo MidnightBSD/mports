@@ -83,6 +83,7 @@ SUBDIR += wxgtk28-common
 SUBDIR += wxgtk28-contrib
 SUBDIR += wxgtk28-contrib-common
 SUBDIR += wxgtk30
+SUBDIR += wxgtk31
 SUBDIR += xbae
 SUBDIR += xforms
 SUBDIR += xmhtml
