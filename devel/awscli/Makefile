@@ -1,5 +1,5 @@
 PORTNAME=	awscli
-PORTVERSION=	1.16.185
+PORTVERSION=	1.20.61
 CATEGORIES=	devel
 MASTER_SITES=	CHEESESHOP
 
@@ -7,6 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal Command Line Interface for Amazon Web Services
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.12.22:devel/py-botocore@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}colorama>=0.2.5:devel/py-colorama@${PY_FLAVOR} \
@@ -18,5 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.12.22:devel/py-botocore@${PY_FLA
 USES=		python
 USE_PYTHON=	autoplist distutils concurrent noflavors
 NO_ARCH=	yes
+
+SUB_FILES=	pkg-message
 
 .include <bsd.port.mk>

@@ -25,6 +25,7 @@ SUBDIR += autogen
 SUBDIR += automake
 SUBDIR += autotools
 SUBDIR += awscli
+SUBDIR += ayatana-ido
 SUBDIR += b2
 SUBDIR += basu
 SUBDIR += binutils
