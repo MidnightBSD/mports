@@ -76,6 +76,7 @@ SUBDIR += libucl
 SUBDIR += libuninameslist
 SUBDIR += libwapcaplet
 SUBDIR += libwpd
+SUBDIR += libwpd010
 SUBDIR += libxml++26
 SUBDIR += libxml2
 SUBDIR += libxslt
