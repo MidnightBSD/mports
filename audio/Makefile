@@ -153,6 +153,7 @@ SUBDIR += thunar-media-tags-plugin
 SUBDIR += timemachine
 SUBDIR += timidity
 SUBDIR += twolame
+SUBDIR += vamp-plugin-sdk
 SUBDIR += vorbis-tools
 SUBDIR += wavpack
 SUBDIR += webrtc-audio-processing
