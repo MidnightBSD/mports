@@ -1,10 +1,10 @@
 
 
 PORTNAME=	taglib
-DISTVERSIONPREFIX=	v
-DISTVERSION=	1.12-beta-1
-PORTREVISION=	1
+DISTVERSION=	1.12
 CATEGORIES=	audio
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/ \
+		https://taglib.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating ID3 tags and Ogg comments
@@ -15,8 +15,6 @@ LICENSE_FILE_MPL=	${WRKSRC}/COPYING.MPL
 
 USES=		cmake compiler:c++11-lang cpe pathfix
 USE_LDCONFIG=	yes
-
-USE_GITHUB=	yes
 
 CMAKE_ARGS=	-DCMAKE_CXX_VISIBILITY_PRESET=hidden
 CMAKE_ON=	VISIBILITY_HIDDEN \
