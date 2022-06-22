@@ -30,6 +30,7 @@ SUBDIR += cinnamon-control-center
 SUBDIR += cinnamon-settings-daemon
 SUBDIR += ciso-maker
 SUBDIR += cmocka
+SUBDIR += conan
 SUBDIR += consolekit2
 SUBDIR += consolehm
 SUBDIR += coreutils

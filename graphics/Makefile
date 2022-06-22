@@ -79,6 +79,7 @@ SUBDIR += gtk-update-icon-cache
 SUBDIR += icoutils
 SUBDIR += imageviewer
 SUBDIR += imlib2
+SUBDIR += inkscape
 SUBDIR += jasper
 SUBDIR += jbig2dec
 SUBDIR += jbigkit

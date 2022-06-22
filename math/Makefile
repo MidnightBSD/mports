@@ -24,6 +24,7 @@ SUBDIR += gnuplot
 SUBDIR += gsl
 SUBDIR += lapack
 SUBDIR += ldouble
+SUBDIR += lib2geom
 SUBDIR += libqalculate
 SUBDIR += metis
 SUBDIR += mpc
