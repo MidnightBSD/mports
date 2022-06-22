@@ -11,9 +11,11 @@ LICENSE_COMB=	multi
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		libtool pathfix
+USES=		cpe libtool pathfix
 
 OPTIONS_DEFINE=	DOCS
+
+CPE_VENDOR=	libatomic_ops_project
 
 .include <bsd.mport.options.mk>
 
