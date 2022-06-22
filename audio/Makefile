@@ -69,6 +69,7 @@ SUBDIR += libgig
 SUBDIR += libgpod
 SUBDIR += libgme
 SUBDIR += libid3tag
+SUBDIR += lilv
 SUBDIR += liblo
 SUBDIR += libmad
 SUBDIR += libmatemixer
