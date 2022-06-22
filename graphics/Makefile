@@ -91,6 +91,7 @@ SUBDIR += leptonica
 SUBDIR += libGLU
 SUBDIR += libart_lgpl
 SUBDIR += libcaca
+SUBDIR += libcdr01
 SUBDIR += libchamplain
 SUBDIR += libdmtx
 SUBDIR += libdrm
