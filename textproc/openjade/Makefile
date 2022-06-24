@@ -14,7 +14,7 @@ LIB_DEPENDS=	libosp.so:textproc/opensp
 RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
 USES=		gettext gmake libtool perl5
-USE_GCC=	7
+USE_GCC=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
