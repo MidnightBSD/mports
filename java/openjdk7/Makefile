@@ -1,86 +1,90 @@
+# Created by: Greg Lewis <glewis@FreeBSD.org>
+
 PORTNAME=	openjdk
-PORTVERSION=	${JDK_MAJOR_VERSION}.${PORT_MINOR_VERSION}.${PORT_BUILD_NUMBER}
-PORTREVISION=	6
+PORTVERSION=	${JDK_MAJOR_VERSION}.${JDK_UPDATE_VERSION}.${JDK_BUILD_NUMBER}.${BSD_JDK_VERSION}
+PORTEPOCH=	1
 CATEGORIES=	java devel
-MASTER_SITES=	http://download.java.net/openjdk/jdk${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}/promoted/b${JDK_BUILD_NUMBER}/ \
-		http://download.java.net/jaxp/1.4.5/:jaxp \
-		http://icedtea.classpath.org/download/drops/:jaxp \
-		http://download.java.net/glassfish/components/jax-ws/openjdk/jdk7/:jaxws \
-		http://icedtea.classpath.org/download/drops/:jaxws \
-		https://java.net/downloads/jax-ws/JDK7/:jaf \
-		http://icedtea.classpath.org/download/drops/:jaf \
-		${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:ant,}
-DISTFILES=	${JDK_SRC_DISTFILE}${EXTRACT_SUFX} \
-		${ANT_DISTFILE}${EXTRACT_SUFX}:ant
-EXTRACT_ONLY=	${JDK_SRC_DISTFILE}${EXTRACT_SUFX} \
-		${ANT_DISTFILE}${EXTRACT_SUFX}
+MASTER_SITES=	https://archive.apache.org/dist/ant/binaries/:ant
+DISTFILES=	${ANT_DISTFILE}${EXTRACT_SUFX}:ant
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Development Kit 7
 
 LICENSE=	gpl2
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+#WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		compiler dos2unix iconv gmake zip
+CPE_VENDOR=	oracle
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	battleblow
+GH_PROJECT=	jdk7u
+GH_TAGNAME=	jdk${JDK_MAJOR_VERSION}u${JDK_UPDATE_VERSION}-b${JDK_BUILD_NUMBER}.${BSD_JDK_VERSION}
+
+USES=		compiler cpe dos2unix iconv gmake
 # Even when not building with X11 support, openjdk7 requires Xrender, X11, and
 # Xt headers.
-X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/x11.pc:x11/libX11
-X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/xext.pc:x11/libXext
-X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/xrender.pc:x11/libXrender
-X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt
+X11_BUILD_DEPENDS_OFF+=	${LOCALBASE}/libdata/pkgconfig/x11.pc:x11/libX11
+X11_BUILD_DEPENDS_OFF+=	${LOCALBASE}/libdata/pkgconfig/xext.pc:x11/libXext
+X11_BUILD_DEPENDS_OFF+=	${LOCALBASE}/libdata/pkgconfig/xrender.pc:x11/libXrender
+X11_BUILD_DEPENDS_OFF+=	${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt
 # Add more X11 build deps and runtime deps when X11 is enabled
-X11_LIB_DEPENDS+=     libX11.so.6:x11/libX11
-X11_LIB_DEPENDS+=     libXext.so.6:x11/libXext
-X11_LIB_DEPENDS+=     libXi.so.6:x11/libXi
-X11_LIB_DEPENDS+=     libXrender.so.1:x11/libXrender
-X11_LIB_DEPENDS+=     libXt.so.6:x11-toolkits/libXt
-X11_LIB_DEPENDS+=     libXtst.so.6:x11/libXtst
-X11_MAKE_ENV_OFF=     BUILD_HEADLESS_ONLY=1
+X11_LIB_DEPENDS+=	libX11.so.6:x11/libX11
+X11_LIB_DEPENDS+=	libXext.so.6:x11/libXext
+X11_LIB_DEPENDS+=	libXi.so.6:x11/libXi
+X11_LIB_DEPENDS+=	libXrender.so.1:x11/libXrender
+X11_LIB_DEPENDS+=	libXt.so.6:x11-toolkits/libXt
+X11_LIB_DEPENDS+=	libXtst.so.6:x11/libXtst
+X11_MAKE_ENV_OFF=	BUILD_HEADLESS_ONLY=1
 
 MAKE_ARGS=	CC=${CC:Q} CXX=${CXX:Q} HOST_CC=${CC:Q}
-MAKE_JOBS_UNSAFE=	yes
-USE_GCC=	7
-CSTD=	gnu99
 
-OPTIONS_DEFINE=		DEBUG POLICY TZUPDATE
-OPTIONS_DEFAULT=	POLICY TZUPDATE
+OPTIONS_DEFINE=		POLICY TZUPDATE X11
+OPTIONS_DEFAULT=	POLICY TZUPDATE X11
 DEBUG_DESC=		Enable extra debugging info
 POLICY_DESC=		Install the Unlimited Strength Policy Files
 TZUPDATE_DESC=		Update the time zone data
 
-PORT_MINOR_VERSION=	25
-PORT_BUILD_NUMBER=	15
-JDK_MAJOR_VERSION=	7
-JDK_MINOR_VERSION=	6
-JDK_BUILD_NUMBER=	24
-JDK_BUILD_DATE=		09_aug_2012
-JDK_SRC_DISTFILE=	${PORTNAME}-${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}-fcs-src-b${JDK_BUILD_NUMBER}-${JDK_BUILD_DATE}
+JAVAVMS_COMMENT=	OpenJDK${JDK_MAJOR_VERSION}
 
-# Use our own version of ant to avoid circular dependencies
-ANT_VERSION=		1.9.4
+.if !defined(BUILD_JRE)
+OPTIONS_DEFINE+=	DEBUG
+INSTALLDIR=	${PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}
+.else
+JAVAVMS_COMMENT+=	JRE
+INSTALLDIR=	${PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}-jre
+.endif
+
+JDK_MAJOR_VERSION=	7
+JDK_UPDATE_VERSION=	261
+JDK_BUILD_NUMBER=	02
+BSD_JDK_VERSION=	1
+
+# Use our own version of ant because
+# a) this allows us to avoid circular dependencies
+# b) ant 10.x requires jdk 8+
+ANT_VERSION=		1.9.14
 ANT_DISTFILE=		apache-ant-${ANT_VERSION}-bin
 
-LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libasound.so:${PORTSDIR}/audio/alsa-lib
-BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip \
-		unzip:${PORTSDIR}/archivers/unzip \
-		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups
-RUN_DEPENDS+=	javavm:${PORTSDIR}/java/javavmwrapper \
-		${LOCALBASE}/share/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
+LIB_DEPENDS+=	libasound.so:audio/alsa-lib \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2
+BUILD_DEPENDS+=	zip:archivers/zip \
+		${UNZIP_CMD}:archivers/unzip \
+		${LOCALBASE}/include/cups/cups.h:print/cups
+RUN_DEPENDS+=	javavm:java/javavmwrapper \
+		dejavu>0:x11-fonts/dejavu
 
-USE_DOS2UNIX=	jdk/src/share/classes/com/sun/org/apache/xml/internal/security/resource/xmlsecurity_en.properties
+DOS2UNIX_FILES=	jdk/src/share/classes/com/sun/org/apache/xml/internal/security/resource/xmlsecurity_en.properties
 
 OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}
-INSTALLDIR=	${PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}
 
 NOPRECIOUSMAKEVARS=	yes
 
-FETCH_ARGS=	-Fpr
-MAKE_ENV+=	LANG="C" \
-		LC_ALL="C" \
-		JAVA_HOME="" \
+ONLY_FOR_ARCHS=	i386 amd64
+
+_MAKE_JOBS=	#
+MAKE_ENV+=	JAVA_HOME="" \
 		CLASSPATH="" \
 		LD_LIBRARY_PATH="" \
 		MAKEFLAGS="" \
@@ -102,9 +106,9 @@ MAKE_ENV+=	LANG="C" \
 		SKIP_DEBUG_BUILD="true" \
 		ZIP_DEBUGINFO_FILES=0 \
 		ENABLE_FULL_DEBUG_SYMBOLS=0 \
-		PTHREAD_LIBS="-lpthread" \
+		PTHREAD_LIBS="-pthread" \
 		MILESTONE="fcs" \
-		JDK_MICRO_VERSION="0_${PORT_MINOR_VERSION}" \
+		JDK_MICRO_VERSION="0_${JDK_UPDATE_VERSION}" \
 		BUILD_NUMBER="b${PORT_BUILD_NUMBER}"
 
 MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
@@ -112,28 +116,11 @@ MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk7 \
 		${LOCALBASE}/bootstrap-openjdk6
 
-SECURITY_ICONS= security-icon-bw16.png \
-		security-icon-bw24.png \
-		security-icon-bw32.png \
-		security-icon-bw48.png \
-		security-icon-interim16.png \
-		security-icon-interim24.png \
-		security-icon-interim32.png \
-		security-icon-interim48.png \
-		security-icon-yellow16.png \
-		security-icon-yellow24.png \
-		security-icon-yellow32.png \
-		security-icon-yellow48.png
+DEBUG_MAKE_ENV=	ALT_OBJCOPY=${NONEXISTENT}
+POLICY_MAKE_ENV=	UNLIMITED_CRYPTO=1
+TZUPDATE_RUN_DEPENDS=	java-zoneinfo>0:java/java-zoneinfo
 
 .include <bsd.mport.options.mk>
-
-.if empty(PORT_OPTIONS:MDEBUG)
-MAKE_ENV+=	ALT_OBJCOPY="/nonexistent"
-.endif
-
-.if ${PORT_OPTIONS:MTZUPDATE}
-RUN_DEPENDS+=  ${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
-.endif
 
 # do we have valid native jdk installed?
 .for BJDK in ${BOOTSTRAP_JDKS}
@@ -156,44 +143,38 @@ MAKE_ENV+=	LFLAGS="-Wl,-z,notext"
 .endif
 
 .if ${COMPILER_TYPE} == gcc
-MAKE_ENV+=    USE_PRECOMPILED_HEADER=0
+MAKE_ENV+=	USE_PRECOMPILED_HEADER=0
 .endif
 
 .if empty(ICONV_LIB)
-MAKE_ENV+=      EXTRA_CFLAGS=-DLIBICONV_PLUG
+ICONV_CPPFLAGS=	-DLIBICONV_PLUG
+.else
+ICONV_CPPFLAGS=	-I${LOCALBASE}/include
+ICONV_LDFLAGS=	-L${LOCALBASE}/lib ${ICONV_LIB}
 .endif
-
-post-extract: dos2unix
-	# Move icons to their new home.
-	@${MKDIR} ${WRKSRC}/jdk/src/share/classes/sun/awt/resources
-.for icon in ${SECURITY_ICONS}
-	@${MV} ${WRKSRC}/jdk/src/solaris/classes/sun/awt/X11/${icon} \
-		${WRKSRC}/jdk/src/share/classes/sun/awt/resources/
-.endfor
 
 post-patch:
 	@${REINPLACE_CMD} "s|%%LOCALBASE%%|${LOCALBASE}|" \
-		${WRKSRC}/hotspot/src/os/bsd/vm/os_bsd.cpp
-.if ${PORT_OPTIONS:MPOLICY}
-	@${REINPLACE_CMD} 's|build-policy install-limited|build-policy install-unlimited|' \
-		${WRKSRC}/jdk/make/javax/crypto/Makefile
-.endif
-.if empty(ICONV_LIB)
-	@${REINPLACE_CMD} 's| -liconv||' \
-		${WRKSRC}/Makefile \
+		${WRKSRC}/hotspot/src/os/bsd/vm/os_bsd.cpp \
+		${WRKSRC}/jdk/src/share/classes/com/sun/java/swing/plaf/gtk/Metacity.java
+	@${REINPLACE_CMD} -e 's|%%ICONV_CPPFLAGS%%|${ICONV_CPPFLAGS}|' \
+		-e 's|%%ICONV_LDFLAGS%%|${ICONV_LDFLAGS}|' \
 		${WRKSRC}/jdk/make/sun/splashscreen/Makefile \
 		${WRKSRC}/jdk/make/java/npt/Makefile \
 		${WRKSRC}/jdk/make/java/instrument/Makefile
-.endif
-	${REINPLACE_CMD} '' \
-		${WRKSRC}/jdk/src/share/classes/java/util/CurrencyData.properties
 
 .if ${PORT_OPTIONS:MTZUPDATE}
 pre-install:
 	@# Update time zones
-	@${RM} -rf ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib/zi
+.if !defined(BUILD_JRE)
+	@${RM} -r ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib/zi
 	@${LN} -s -f ${LOCALBASE}/share/java/zi \
-		${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib
+	    ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib
+.else
+	@${RM} -r ${WRKSRC}/build/${OPENJDK_OSARCH}/j2re-image/lib/zi
+	@${LN} -s -f ${LOCALBASE}/share/java/zi \
+	    ${WRKSRC}/build/${OPENJDK_OSARCH}/j2re-image/lib
+.endif
 .endif
 
 do-install:

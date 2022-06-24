@@ -1,0 +1,11 @@
+--- jdk/make/common/shared/Defs-bsd.gmk.orig	2022-06-24 12:18:07 UTC
++++ jdk/make/common/shared/Defs-bsd.gmk
+@@ -59,7 +59,7 @@ else
+   ifeq ($(OS_VENDOR), NetBSD)
+     X11_PATH = /usr/X11R7
+   else
+-    ifeq ($(OS_VENDOR), FreeBSD)
++    ifeq ($(OS_VENDOR), MidnightBSD)
+       X11_PATH = /usr/local
+     else
+       X11_PATH = /usr/X11R6

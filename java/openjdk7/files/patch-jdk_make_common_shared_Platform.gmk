@@ -1,0 +1,16 @@
+--- jdk/make/common/shared/Platform.gmk.orig	2022-06-24 12:17:59 UTC
++++ jdk/make/common/shared/Platform.gmk
+@@ -322,6 +322,13 @@ ifeq ($(SYSTEM_UNAME), FreeBSD)
+   REQUIRED_OS_VERSION = 6.0
+ endif
+ 
++ifeq ($(SYSTEM_UNAME), MidnightBSD)
++  PLATFORM = bsd
++  OS_NAME = midnightbsd
++  OS_VENDOR = MidnightBSD
++  REQUIRED_OS_VERSION = 0.1
++endif
++
+ ifeq ($(SYSTEM_UNAME), NetBSD)
+   PLATFORM = bsd
+   OS_NAME = netbsd
