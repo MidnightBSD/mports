@@ -3,6 +3,7 @@ COMMENT = Audio tools
 SUBDIR += alsa-lib
 SUBDIR += alsa-plugins
 SUBDIR += alsa-utils
+SUBDIR += audacity
 SUBDIR += cddb-bundle
 SUBDIR += cdparanoia
 SUBDIR += celt
