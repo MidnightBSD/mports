@@ -1,6 +1,6 @@
 PORTNAME=	advancemame
-PORTVERSION=	1.4
-PORTREVISION=	4
+PORTVERSION=	1.5
+PORTREVISION=	5
 CATEGORIES=	emulators
 MASTER_SITES=	https://github.com/amadvance/advancemame/releases/download/${DISTNAME}/
 
