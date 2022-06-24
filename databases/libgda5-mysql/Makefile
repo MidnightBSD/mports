@@ -1,5 +1,3 @@
-
-
 PORTREVISION=	0
 CATEGORIES=	databases gnome
 PKGNAMESUFFIX=	5-mysql
@@ -14,6 +12,6 @@ PLIST=		${.CURDIR}/pkg-plist
 
 LIBGDA5_SLAVE=	mysql
 
-USE_GCC=	7
+USE_GCC=	yes
 
 .include "${MASTERDIR}/Makefile"
