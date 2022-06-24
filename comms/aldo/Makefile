@@ -16,7 +16,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--includedir="${LOCALBASE}/include" \
 		--libdir="${LOCALBASE}/lib"
 USES=		compiler:c++0x gmake libtool tar:bzip2
-USE_GCC=	7
+USE_GCC=	yes
 
 PLIST_FILES=	bin/aldo \
 		man/man1/aldo.1.gz
