@@ -1,5 +1,6 @@
 PORTNAME=	scummvm
 PORTVERSION=	2.1.0
+PORTREVISION=	1
 CATEGORIES=	games emulators
 MASTER_SITES=	http://www.scummvm.org/frs/scummvm/${PORTVERSION}/
 
@@ -14,7 +15,7 @@ LIB_DEPENDS=	libtheoradec.so:multimedia/libtheora \
 		libmpeg2.so:multimedia/libmpeg2 \
 		libfreetype.so:print/freetype2
 
-USE_GCC=	7
+USE_GCC=	yes
 USES=		gmake gnome iconv jpeg sdl tar:xz
 HAS_CONFIGURE=	yes
 USE_SDL=	sdl2
