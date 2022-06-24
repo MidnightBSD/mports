@@ -8,7 +8,6 @@ SUBDIR += bochs
 SUBDIR += dgen-sdl
 SUBDIR += dosbox
 SUBDIR += extract-xiso
-SUBDIR += kqemu-kmod
 SUBDIR += linux-c7
 SUBDIR += linux_base-c7
 SUBDIR += mtools
