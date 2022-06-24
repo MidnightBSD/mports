@@ -1,6 +1,6 @@
 PORTNAME=	gnats
 PORTVERSION=	4.1.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	databases devel
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	4
@@ -11,8 +11,9 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USES=		cpe gmake makeinfo
-USE_GCC=	7
+USE_GCC=	yes
 USERS=		gnats
+
 CPE_VENDOR=	gnu
 
 PKGMESSAGE=	${WRKDIR}/pkg-message
