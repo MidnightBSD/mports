@@ -16,7 +16,7 @@ NO_BUILD=	yes
 USES=		gmake perl5 shebangfix
 USE_PERL5=	run
 SHEBANG_FILES=	bin/lcov bin/gendesc bin/genhtml bin/genpng bin/geninfo \
-		bin/*.pl bin/*.sh
+		bin/*.sh
 
 post-patch:
 	${REINPLACE_CMD} -e 's:$$(PREFIX)/share/man:$$(PREFIX)/man:' ${WRKSRC}/Makefile
