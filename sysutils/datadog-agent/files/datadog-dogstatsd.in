@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: datadog_dogstatsd
 # REQUIRE: LOGIN
 # KEYWORD: shutdown

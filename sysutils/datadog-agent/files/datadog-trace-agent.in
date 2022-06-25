@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: datadog_trace_agent
 # REQUIRE: LOGIN
 # KEYWORD: shutdown

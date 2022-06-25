@@ -327,9 +327,11 @@ PROCESS_ALL_TARGET=	./cmd/process-agent
 DOGSTATSD_ALL_TARGET=	./cmd/dogstatsd
 GO_TARGET=	${ALL_TARGET}
 
+NO_CCACHE=		yes
+
 USE_RC_SUBR=	${PORTNAME}
 
-CGO_CFLAGS=	-w -I${WRKSRC}/rtloader/include -I${WRKSRC}/rtloader/common
+CGO_CFLAGS=	-w -I. -I${WRKSRC}/rtloader/include -I${WRKSRC}/rtloader/common
 CGO_LDFLAGS=	-L${WRKSRC}/rtloader/rtloader
 GO_BUILDFLAGS=	-tags '${AGENT_BUILD_TAGS}' \
     -ldflags="-s -X 'github.com/DataDog/${GH_PROJECT}/pkg/version.AgentVersion=${DISTVERSION}' -X 'github.com/DataDog/${GH_PROJECT}/pkg/config.DefaultPython=3'"
