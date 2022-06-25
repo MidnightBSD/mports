@@ -7,7 +7,7 @@ MASTER_SITES=	https://golang.org/dl/ \
 		https://github.com/dmgk/go-bootstrap/releases/download/${BOOTSTRAP_TAG}/:bootstrap \
 		FREEBSD_LOCAL/dmgk:bootstrap
 DISTFILES=	go${DISTVERSION}.src.tar.gz \
-		go-${OPSYS:tl}-${GOARCH_${ARCH}}${GOARM_${ARCH}}-${BOOTSTRAP_TAG}.tar.xz:bootstrap
+		go-freebsd-${GOARCH_${ARCH}}${GOARM_${ARCH}}-${BOOTSTRAP_TAG}.tar.xz:bootstrap
 
 # Avoid conflicting patch files
 PATCHFILES=
