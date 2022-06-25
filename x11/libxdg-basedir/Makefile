@@ -14,7 +14,7 @@ USE_LDCONFIG=	yes
 GH_ACCOUNT=	devnev
 GH_TAGNAME=	b978568d1b3ee04e8197f23ca4e3abdd372f85e1
 GNU_CONFIGURE=	yes
-TEST_TARGET=	check
+NO_TEST=	yes
 
 pre-configure:
 	@${REINPLACE_CMD} -e 's|"etc"|"${PREFIX}/etc"|' \
