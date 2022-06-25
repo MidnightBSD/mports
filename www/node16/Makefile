@@ -1,6 +1,6 @@
 PORTNAME=	node
 DISTVERSIONPREFIX=	v
-DISTVERSION=	16.14.2
+DISTVERSION=	16.15.1
 PKGNAMESUFFIX=	16
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${DISTVERSION}/
@@ -15,8 +15,8 @@ BROKEN_SSL=		libressl libressl-devel
 BROKEN_SSL_REASON=	Node.js 16.x requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
 ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 
-OPTIONS_DEFINE=		BUNDLED_SSL DOCS NLS
-OPTIONS_DEFAULT=	BUNDLED_SSL
+OPTIONS_DEFINE=		BUNDLED_SSL COREPACK DOCS NLS
+OPTIONS_DEFAULT=	BUNDLED_SSL COREPACK
 OPTIONS_SUB=		yes
 
 BUNDLED_SSL_DESC=		Use node.js's bundled OpenSSL implementation
@@ -32,6 +32,9 @@ DTRACE_CONFIGURE_ON=	--with-dtrace
 
 USES=		compiler:c++11-lib gmake python:build pkgconfig \
 		localbase shebangfix
+
+COREPACK_DESC=		Build and install corepack package manager
+COREPACK_CONFIGURE_OFF=	--without-corepack
 
 HAS_CONFIGURE=	yes
 
