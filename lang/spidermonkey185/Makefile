@@ -14,7 +14,7 @@ LICENSE=		gpl2 mpl
 LICENSE_COMB=		dual
 
 BUILD_DEPENDS=		zip:archivers/zip \
-			autoconf-2.13:devel/autoconf2.13
+			autoconf2.13:devel/autoconf2.13
 LIB_DEPENDS=		libnspr4.so:devel/nspr
 
 CONFLICTS=		njs-[0-9]*
