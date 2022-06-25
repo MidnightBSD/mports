@@ -15,6 +15,8 @@ USES=		pkgconfig tar:bzip2 waf
 USE_CSTD=	c99
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 post-install:
