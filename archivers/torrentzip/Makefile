@@ -11,16 +11,16 @@ COMMENT=	Efficient way to prepare zipfiles for BitTorrent
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_AUTOTOOLS=	aclocal automake autoheader
-AUTOMAKE_ARGS=		-a
+USES=		autoreconf
+
+GNU_CONFIGURE=	yes
 
 WRKSRC=		${WRKDIR}/trrntzip
 
 PLIST_FILES=	bin/trrntzip
 PORTDOCS=	README
 
-run-autotools:: run-autotools-aclocal run-autotools-autoheader \
-		run-autotools-autoconf run-autotools-automake
+OPTIONS_DEFINE=	DOCS
 
 pre-install:
 	${MKDIR} ${DOCSDIR}
