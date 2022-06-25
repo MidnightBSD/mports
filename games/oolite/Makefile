@@ -1,9 +1,7 @@
-
-
 PORTNAME=		oolite
-PORTVERSION=		1.86
+PORTVERSION=		1.88
 CATEGORIES=		games gnustep
-MASTER_SITES=		https://github.com/OoliteProject/oolite/releases/download/1.86/
+MASTER_SITES=		https://github.com/OoliteProject/oolite/releases/download/1.88/
 DISTNAME=		${PORTNAME}-source-${PORTVERSION}
 DIST_SUBDIR=		oolite
 
@@ -22,12 +20,15 @@ LIB_DEPENDS=		libespeak.so:audio/espeak \
 			libpng.so:graphics/png \
 			libminizip.so:archivers/minizip
 
-USES=			gnustep openal:al perl5 python:build tar:bzip2
+USES=			gl gnustep openal:al perl5 python:3.5+,build sdl \
+			tar:bzip2 xorg
 USE_CXXSTD=		gnu++98
 USE_GL=			gl glu
 USE_SDL=		sdl
 USE_XORG=		x11
 USE_GNUSTEP=		base build
+
+MAKE_ENV=		ac_cv_path_PYTHON=${PYTHON_CMD}
 # Redefine DO_MAKE_BUILD, because current gnustep in USES overrides MAKEFILE
 # without possibility to change it, as it was done in the previous implementation
 DO_MAKE_BUILD=		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} Makefile ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g}
@@ -45,7 +46,7 @@ DATADIR=	${GNUSTEP_LOCAL_APPS}/oolite.app
 PORTDATA=	Resources
 PORTDOCS=	*.pdf CHANGELOG.TXT contributors.txt
 
-PLIST_FILES+=	bin/oolite %%DATADIR%%/oolite \
+PLIST_FILES+=	bin/oolite ${DATADIR}/oolite \
 		share/applications/oolite.desktop \
 		share/pixmaps/oolite-icon.png
 
@@ -54,6 +55,7 @@ OPTIONS_DEFINE=	DOCS
 BROKEN_aarch64=		fails to configure: error: These compiler flags are invalid: -O
 BROKEN_armv6=		fails to compile: your compiler does not follow the C++ specification for temporary object destruction order
 BROKEN_armv7=		fails to compile: your compiler does not follow the C++ specification for temporary object destruction order
+BROKEN_i386=		fails to compile: ../methodjit/MethodJIT.cpp:318:5: error: expected '(' after 'asm'
 
 post-patch: .SILENT
 	${REINPLACE_CMD} -e 's/GNUSTEP_USER_ROOT/GNUSTEP_LOCAL_ROOT/ ; \
