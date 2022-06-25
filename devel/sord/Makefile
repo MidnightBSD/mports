@@ -18,6 +18,8 @@ USES=		pkgconfig python:build tar:bzip2 waf
 USE_LDCONFIG=	yes
 PLIST_SUB=	VERSION=${PORTVERSION}
 
+NO_TEST=	yes
+
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/libsord-0.so.${PORTVERSION}
 	@${STRIP_CMD} ${PREFIX}/bin/sord_validate
