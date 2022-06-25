@@ -133,16 +133,7 @@ RUBY?=			${LOCALBASE}/bin/${RUBY_NAME}
 .if defined(RUBY_VER)
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-. if ${RUBY_VER} == 2.6
-#
-# Ruby 2.6
-#
-RUBY_VERSION=		2.6.8
-RUBY_PORTREVISION=	0
-RUBY_PORTEPOCH=		1
-RUBY26=			""	# PLIST_SUB helpers
-
-. elif ${RUBY_VER} == 2.7
+. if ${RUBY_VER} == 2.7
 #
 # Ruby 2.7
 #
