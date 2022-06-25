@@ -1,5 +1,5 @@
 PORTNAME=	sysconftool
-PORTVERSION=	0.17
+PORTVERSION=	0.19
 CATEGORIES=	devel
 MASTER_SITES=	SF/courier/${PORTNAME}/${PORTVERSION}
 
@@ -8,10 +8,8 @@ COMMENT=	Helps to install application configuration files
 
 LICENSE=	gpl3
 
-USES=		perl5 tar:bzip2
-GNu_CONFIGURE=	yes
-
-USE_AUTOTOOLS=	automake aclocal autoconf
+USES=		autoreconf perl5 tar:bzip2
+GNU_CONFIGURE=	yes
 
 pre-patch:
 	@${CP} ${TEMPLATES}/config.guess ${TEMPLATES}/config.sub ${WRKSRC}
