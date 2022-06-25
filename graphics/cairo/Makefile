@@ -30,8 +30,7 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
-		--disable-directfb \
+CONFIGURE_ARGS=	--disable-directfb \
 		--disable-gallium \
 		--disable-wgl \
 		--enable-tee
@@ -42,6 +41,9 @@ OPTIONS_DEFINE=	XCB GLIB X11 DOCS
 OPTIONS_DEFAULT=OPENGL XCB GLIB X11
 OPTIONS_SLAVE=	${ARCH:tu}
 OPTIONS_SUB=	yes
+
+DOCS_BUILD_DEPENDS=	gtkdocize:textproc/gtk-doc
+DOCS_CONFIGURE_ON=	--with-html-dir=${DOCSDIR}
 
 X11_USES=	xorg
 X11_USE=	xorg=x11,xext,xorgproto,xrender
@@ -91,5 +93,9 @@ post-patch:
 post-patch-DOCS-off:
 	@${REINPLACE_CMD} -e 's|public||g' \
 		${WRKSRC}/doc/Makefile.in
+	@${REINPLACE_CMD} '/^SUBDIRS/s/doc//' ${WRKSRC}/Makefile.am
+	@${REINPLACE_CMD} -e '/^GTK_DOC_CHECK/d' -e '/doc\/.*Makefile/d' \
+		${WRKSRC}/configure.ac
+
 
 .include <bsd.port.mk>
