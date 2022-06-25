@@ -1,5 +1,5 @@
 PORTNAME=	openmpi
-PORTVERSION=	4.1.1
+PORTVERSION=	4.1.3
 CATEGORIES=	net parallel
 MASTER_SITES=	http://www.open-mpi.org/software/ompi/v${PORTVERSION:R}/downloads/
 
@@ -36,6 +36,7 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX}/${MPIDIR} \
 			--program-prefix= \
 			--with-hwloc=external \
 			--with-libltdl \
+			--without-ofi \
 			--enable-mpi-fortran=usempi \
 			--enable-mpi-cxx \
 			--enable-cxx-exceptions \
@@ -105,6 +106,12 @@ SLURM_PLIST_FILES=	${MPIDIR}/lib/openmpi/mca_ess_slurm.la \
 
 .if ${FORTRAN_DEFAULT} == gfortran && ${GCC_DEFAULT} >= 10
 FCFLAGS+=	-fallow-argument-mismatch
+.endif
+
+.if ${ARCH} != aarch64 && ${ARCH} != amd64 && ${ARCH} != i386 && !${ARCH:Mpowerpc*}
+PLIST_SUB+=	NO_MCA_PATCHER_OVERWRITE="@comment "
+.else
+PLIST_SUB+=	NO_MCA_PATCHER_OVERWRITE=""
 .endif
 
 post-patch:
