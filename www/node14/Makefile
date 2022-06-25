@@ -1,6 +1,6 @@
 PORTNAME=	node
 DISTVERSIONPREFIX=	v
-DISTVERSION=	14.18.1
+DISTVERSION=	14.19.3
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${DISTVERSION}/
 PKGNAMESUFFIX=	14
@@ -18,14 +18,17 @@ ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 USES=		compiler:c++11-lib gmake python:2.7-3.9,build pkgconfig \
 		localbase shebangfix
 
-OPTIONS_DEFINE=		BUNDLED_SSL DOCS NLS
-OPTIONS_DEFAULT=	BUNDLED_SSL
+OPTIONS_DEFINE=		BUNDLED_SSL COREPACK DOCS NLS
+OPTIONS_DEFAULT=	BUNDLED_SSL COREPACK
 OPTIONS_SUB=		yes
 
 BUNDLED_SSL_DESC=		Use node.js's bundled OpenSSL implementation
 BUNDLED_SSL_USES_OFF=		ssl
 BUNDLED_SSL_CONFIGURE_OFF=	--shared-openssl --openssl-use-def-ca-store
 BUNDLED_SSL_RUN_DEPENDS_OFF=	ca_root_nss>=0:security/ca_root_nss
+
+COREPACK_DESC=		Build and install corepack package manager
+COREPACK_CONFIGURE_OFF=	--without-corepack
 
 NLS_CONFIGURE_ON=	--with-intl=system-icu
 NLS_BUILD_DEPENDS=	icu>=69.1:devel/icu
@@ -75,12 +78,10 @@ EXTRA_PATCHES=		${PATCHDIR}/extra-patch-common.gypi
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tools_v8__gypfiles_v8.gyp
 .endif
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200085
 BROKEN_SSL+=	base
-.endif
 
 .if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64
-CONFIGURE_ARGS+=--openssl-no-asm
+CONFIGURE_ARGS+=	--openssl-no-asm
 .endif
 
 post-patch:
