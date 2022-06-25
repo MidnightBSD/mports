@@ -1,7 +1,7 @@
 # Created by: Muhammad Moinur Rahman <bofh@FreeBSD.org>
 
 PORTNAME=	h11
-PORTVERSION=	0.12.0
+PORTVERSION=	0.13.0
 CATEGORIES=	net python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,14 +11,10 @@ COMMENT=	Pure-Python, bring-your-own-I/O implementation of HTTP/1.1
 
 LICENSE=	mit
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tox>0:devel/py-tox@${PY_FLAVOR}
-
 USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${LOCALBASE}/bin/tox -e ${PY_FLAVOR} --parallel 0
+NO_TEST=	yes
 
 .include <bsd.port.mk>
