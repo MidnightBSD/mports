@@ -1,6 +1,7 @@
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
-DISTVERSION=	21.3.8.20
+DISTVERSION=	24.3.4.2
+PORTREVISION=	0
 PORTEPOCH=	4
 CATEGORIES=	lang parallel java
 DIST_SUBDIR=	erlang
@@ -16,75 +17,96 @@ CPE_PRODUCT=	erlang/otp
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	erlang:otp,corba
 GH_PROJECT=	otp:otp corba:corba
-GH_TAGNAME=	4.5.2:corba
+GH_TAGNAME=	5.1:corba
 USE_PERL5=	build
 USE_RC_SUBR=	epmd
 
-WRKSRC=		${WRKSRC_otp}
-
 GNU_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=yes
+CONFIGURE_ARGS=	--enable-dirty-schedulers \
+		--enable-kernel-poll \
+		--enable-smp-support \
+		--enable-threads
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd11.4
+MAKE_ARGS=	all
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-
-OPTIONS_SUB=	yes
 SUB_FILES=	pkg-message
 SUB_LIST=	TOOLS_VSN=${TOOLS_VSN}
 
+WRKSRC=		${WRKSRC_otp}
+
 ERLANG_LIB=	${PORTNAME}
-EI_VSN=		3.11.3.1
-SNMP_VSN=	5.2.12
-TOOLS_VSN=	3.1.0.1
+EI_VSN=		5.2.2
+SNMP_VSN=	5.12
+TOOLS_VSN=	3.5.2
 
-# On Erlang 22, native code generation does not currently work for all modules
-# due to new BEAM instructions not supported by HiPE the native compiler.
-# Remove HIPE from OPTIONS_DEFAULT if this is still the case when the port is
-# upgraded to such version.
+OPTIONS_DEFINE=		CHUNKS CORBA DIRTY DTRACE FOP JAVA KQUEUE MANPAGES ODBC \
+			OPENSSL PDF SCTP SHARING WX
+OPTIONS_DEFAULT=	CHUNKS CORBA DIRTY DTRACE KQUEUE MANPAGES OPENSSL SCTP
 
-OPTIONS_DEFINE=	CORBA DIRTY FOP HIPE JAVA KQUEUE MANPAGES NATIVE ODBC OPENSSL PDF SCTP THREADS WX
-OPTIONS_DEFAULT=CORBA DIRTY HIPE KQUEUE MANPAGES OPENSSL SCTP THREADS
+.if !exists(/usr/sbin/dtrace)
+OPTIONS_EXCLUDE+=	DTRACE
+.endif
 
+OPTIONS_EXCLUDE_DragonFly=	SCTP
+# ld(1) fails to link probes: missing __dtrace_erlang___* symbols
+# see also https://reviews.freebsd.org/D22360
+OPTIONS_EXCLUDE_aarch64=	DTRACE
+OPTIONS_EXCLUDE_armv6=	DTRACE
+OPTIONS_EXCLUDE_armv7=	DTRACE
+OPTIONS_EXCLUDE_i386=	DTRACE
+OPTIONS_EXCLUDE_riscv64=	DTRACE
+OPTIONS_SUB=	yes
+
+CHUNKS_DESC=	Enable in-line documentation in Erlang console
 CORBA_DESC=	Enable Corba support
-DIRTY_DESC=	Enable Dirty schedulers
+DIRTY_DESC=	Enable dirty schedulers
 FOP_DESC=	Build full documentation with Apache FOP
-HIPE_DESC=	Build native HiPE compiler
 KQUEUE_DESC=	Enable Kernel Poll (kqueue) support
-NATIVE_DESC=	Enable native libraries
 PDF_DESC=	Build PDF documentation
 SCTP_DESC=	Enable SCTP support
+SHARING_DESC=	Enable term copy-and-share support
 WX_DESC=	Enable WX application
-
-FOP_PREVENTS=	MANPAGES
-NATIVE_IMPLIES=	HIPE
-PDF_IMPLIES=	FOP
 
 # If you run Erlang and get a message resembling "WARNING: number of
 # probes fixed does not match the number of defined probes (54 != 132,
 # respectively)" you probably misconfigured DTrace in some way.
 
-CONFIGURE_ENABLE=	smp-support
-
-DIRTY_CONFIGURE_ENABLE=	dirty-schedulers
-FOP_BUILD_DEPENDS=	fop:textproc/fop \
-			xsltproc:textproc/libxslt
-HIPE_CONFIGURE_ENABLE=	hipe
-JAVA_CONFIGURE_ENV=	ac_cv_prog_JAVAC="${JAVAC}"
-JAVA_CONFIGURE_WITH=	javac
-JAVA_VARS=		USE_JAVA=yes
-KQUEUE_CONFIGURE_ENABLE=kernel-poll
-MANPAGES_RUN_DEPENDS=	${LOCALBASE}/etc/man.d/erlang.conf:lang/erlang-man
-NATIVE_CONFIGURE_ENABLE=native-libs
-ODBC_CONFIGURE_WITH=	odbc
-ODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
-OPENSSL_CONFIGURE_WITH=	ssl=${OPENSSLBASE}
-OPENSSL_USES=		ssl
-SCTP_CONFIGURE_ENABLE=	sctp
-THREADS_CONFIGURE_ENABLE=	threads
-WX_CONFIGURE_WITH=	wx-config=${WX_CONFIG}
-WX_USES=		gl
-WX_VARS=		USE_WX=2.8+ WX_COMPS="wx contrib" USE_GL="gl glu"
+CHUNKS_MAKE_ARGS+=		DOC_TARGETS=chunks \
+				docs
+DIRTY_CONFIGURE_WITH=		dirty-schedulers
+DTRACE_CONFIGURE_WITH=		dynamic-trace=dtrace
+DTRACE_CFLAGS=			-fno-omit-frame-pointer
+DTRACE_VARS=			STRIP=""
+FOP_PREVENTS=			MANPAGES
+FOP_BUILD_DEPENDS=		fop:textproc/fop \
+				xsltproc:textproc/libxslt
+JAVA_CONFIGURE_WITH=		javac
+JAVA_CONFIGURE_ENV=		ac_cv_prog_JAVAC="${JAVAC}"
+JAVA_VARS=			USE_JAVA=yes
+KQUEUE_CONFIGURE_ENABLE=	kernel-poll
+MANPAGES_RUN_DEPENDS=		${LOCALBASE}/etc/man.d/erlang.conf:lang/erlang-man
+ODBC_LIB_DEPENDS=		libodbc.so:databases/unixODBC
+ODBC_USES=			localbase
+ODBC_CONFIGURE_WITH=		odbc
+ODBC_CFLAGS=			-I/usr/local/include
+ODBC_LDFLAGS=			-L/usr/local/lib
+OPENSSL_USES=			ssl
+OPENSSL_CONFIGURE_WITH=		ssl=${OPENSSLBASE}
+PDF_IMPLIES=			FOP
+SCTP_CONFIGURE_ENABLE=		sctp
+SHARING_CONFIGURE_ENABLE=	sharing-preserving
+WX_USES=			gl
+WX_CONFIGURE_WITH=		wx-config=${WX_CONFIG}
+WX_VARS=			USE_GL="gl glu" \
+				USE_WX=3.1+ \
+				WX_COMPS="wx"
 
 .include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 130
+# PR 258494
+CONFIGURE_ARGS+=	--disable-pgo
+.endif
 
 .if ${OPSYS} == FreeBSD
 CFLAGS+=	-DMAP_NORESERVE=0
