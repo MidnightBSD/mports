@@ -1,6 +1,6 @@
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
-DISTVERSION=	21.3.8.14
+DISTVERSION=	21.3.8.24
 # NB when bumping OTP versions also bump PORTREVISION in databases/couchdb2
 CATEGORIES=	lang parallel java
 PKGNAMESUFFIX=	-runtime21
@@ -13,7 +13,7 @@ LICENSE=	apache2
 
 BROKEN_sparc64=	Fails to build: error: fp_except undeclared
 
-USES=		autoreconf:build gmake ncurses perl5
+USES=		autoreconf:build,2.69 cpe gmake ncurses perl5
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	erlang:otp,corba
 GH_PROJECT=	otp:otp corba:corba
@@ -84,7 +84,7 @@ MAKE_ARGS+=	ARCH=arm
 .endif
 
 pre-configure:
-	@cd ${WRKSRC} && ./otp_build autoconf
+	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ./otp_build autoconf
 
 pre-configure-WX-off:
 	echo "disabled by port options" > ${WRKSRC}/lib/debugger/SKIP
