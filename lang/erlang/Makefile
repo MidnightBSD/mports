@@ -10,7 +10,9 @@ COMMENT=	Functional programming language from Ericsson
 
 LICENSE=	apache2
 
-USES=		autoreconf:build compiler:c11 gmake ncurses perl5
+USES=		autoreconf:build compiler:c11 cpe gmake ncurses perl5
+CPE_VENDOR=	erlang
+CPE_PRODUCT=	erlang/otp
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	erlang:otp,corba
 GH_PROJECT=	otp:otp corba:corba
