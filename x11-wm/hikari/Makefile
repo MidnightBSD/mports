@@ -9,6 +9,8 @@ COMMENT=	Stacking Wayland compositor with tiling capabilities
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		wayland-protocols>=1.14:graphics/wayland-protocols \
 		wlroots>=0.14.0<0.15.0:x11-toolkits/wlroots
@@ -46,7 +48,7 @@ post-install:
 	-${STRIP_CMD} ${PREFIX}/bin/hikari
 	-${STRIP_CMD} ${PREFIX}/bin/hikari-unlocker
 .endif
-	${MV} ${ETCDIR}/hikari.conf \
+	-${MV} ${ETCDIR}/hikari.conf \
 		${ETCDIR}/hikari.conf.sample
 
 .include <bsd.port.mk>
