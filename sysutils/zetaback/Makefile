@@ -8,9 +8,8 @@ COMMENT=	Zetaback ZFS backup and recovery management system
 
 LICENSE=	bsd3
 
-USES=		perl5
+USES=		autoreconf perl5
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf
 
 post-install:
 	@${TEST} ! -f ${PREFIX}/etc/zetaback.conf && ${CP} ${PREFIX}/etc/zetaback.conf.sample ${PREFIX}/etc/zetaback.conf; ${TRUE}
