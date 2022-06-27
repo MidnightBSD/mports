@@ -2,6 +2,7 @@
 
 PORTNAME=	wzdftpd
 PORTVERSION=	0.8.3
+PORTREVISION=	1
 CATEGORIES=	ftp
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-sources/${PORTNAME}-${PORTVERSION:R}
 
@@ -11,9 +12,9 @@ COMMENT=	Modular FTP server configurable online using SITE commands
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf gettext-tools libtool localbase pkgconfig
+USES=		autoreconf:2.69 cpe gettext-tools libtool localbase pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--sysconfdir=${ETCDIR} --without-pam --disable-bonjour
+CONFIGURE_ARGS=	--sysconfdir=${ETCDIR} --without-pam --disable-bonjour --disable-static
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
