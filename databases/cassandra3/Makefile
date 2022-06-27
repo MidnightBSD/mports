@@ -98,27 +98,27 @@ post-build:
 .for f in ${CONFIG_FILES}
 	@${MV} ${DIST_DIR}/conf/${f} ${DIST_DIR}/conf/${f}.sample
 .endfor
-	@${RM} ${DIST_DIR}/lib/licenses/sigar*
-	@${RMDIR} ${DIST_DIR}/lib/sigar-bin
+	-${RM} ${DIST_DIR}/lib/licenses/sigar*
+	-${RMDIR} ${DIST_DIR}/lib/sigar-bin
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 .for f in CHANGES LICENSE NEWS NOTICE
-	cd ${DIST_DIR} && ${INSTALL_DATA} ${f}.txt ${STAGEDIR}${DATADIR}/
+	cd ${DIST_DIR} && ${INSTALL_DATA} ${f}.txt ${DATADIR}/
 .endfor
 .for d in interface lib pylib tools
-	cd ${DIST_DIR} && ${COPYTREE_SHARE} ${d} ${STAGEDIR}${DATADIR}/ "! -path '*/bin/*'"
+	cd ${DIST_DIR} && ${COPYTREE_SHARE} ${d} ${DATADIR}/ "! -path '*/bin/*'"
 .endfor
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	cd ${DIST_DIR}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${ETCDIR}/
-	cd ${DIST_DIR} && ${COPYTREE_BIN} bin ${STAGEDIR}${DATADIR}
-	cd ${DIST_DIR} && ${INSTALL_DATA} bin/cassandra.in.sh ${STAGEDIR}${DATADIR}/bin/
-	cd ${DIST_DIR} && ${COPYTREE_BIN} tools/bin ${STAGEDIR}${DATADIR}/
-	cd ${DIST_DIR} && ${INSTALL_DATA} tools/bin/cassandra.in.sh ${STAGEDIR}${DATADIR}/tools/bin/
+	${MKDIR} ${ETCDIR}
+	cd ${DIST_DIR}/conf && ${COPYTREE_SHARE} . ${ETCDIR}/
+	cd ${DIST_DIR} && ${COPYTREE_BIN} bin ${DATADIR}
+	cd ${DIST_DIR} && ${INSTALL_DATA} bin/cassandra.in.sh ${DATADIR}/bin/
+	cd ${DIST_DIR} && ${COPYTREE_BIN} tools/bin ${DATADIR}/
+	cd ${DIST_DIR} && ${INSTALL_DATA} tools/bin/cassandra.in.sh ${DATADIR}/tools/bin/
 .for f in ${SCRIPT_FILES}
-	${RLN} ${STAGEDIR}${DATADIR}/bin/${f} ${STAGEDIR}${PREFIX}/bin/${f}
+	${RLN} ${STAGEDIR}${DATADIR}/bin/${f} ${PREFIX}/bin/${f}
 .endfor
-	${LN} -s ${JAVAJARDIR}/snappy-java.jar ${STAGEDIR}${DATADIR}/lib/snappy-java.jar
+	${LN} -s ${JAVAJARDIR}/snappy-java.jar ${DATADIR}/lib/snappy-java.jar
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
