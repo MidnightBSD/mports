@@ -15,7 +15,8 @@ LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 		libopus.so:audio/opus \
 		libva-x11.so:multimedia/libva
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyparsing>=2.0.1:devel/py-pyparsing@${PY_FLAVOR} \
-		spice-protocol>=0.12.15:devel/spice-protocol
+		spice-protocol>=0.12.15:devel/spice-protocol \
+		gtkdocize:textproc/gtk-doc
 RUN_DEPENDS=	spice-protocol>=0.12.15:devel/spice-protocol
 
 USES=		autoreconf compiler:c11 cpe gettext-tools gmake gnome jpeg \
