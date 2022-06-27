@@ -104,7 +104,7 @@ PLIST_SUB+=	SPARC="@comment "
 .endif
 
 pre-configure:
-	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13)
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf2.13)
 
 regression-test: build
 	@${ECHO_MSG} -n "===> Running jstests.py: "
