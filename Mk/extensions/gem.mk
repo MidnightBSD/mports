@@ -9,14 +9,14 @@
 
 _INCLUDE_USES_GEM_MK=        yes
 
-_valid_ARGS=			noautoplist
+_valid_ARGS=	noautoplist
 
 # Sanity check
-.for arg in ${gem_ARGS}
+.  for arg in ${gem_ARGS}
 .    if empty(_valid_ARGS:M${arg})
 IGNORE= Incorrect 'USES+= gem:${gem_ARGS}' usage: argument [${arg}] is not recognized
 .    endif
-.endfor
+.  endfor
 
 BUILD_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
 RUN_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
@@ -52,6 +52,7 @@ PLIST_SUB+=	PORTVERSION="${PORTVERSION}" \
 		CACHE_DIR="${CACHE_DIR}" \
 		SPEC_DIR="${SPEC_DIR}" \
 		EXT_DIR="${EXT_DIR}" \
+		PLUGINS_DIR="${PLUGINS_DIR}" \
 		PORT="${PORTNAME}-${PORTVERSION}" \
 		GEM_NAME="${GEM_NAME}" \
 		GEM_LIB_DIR="${GEM_LIB_DIR}" \
@@ -60,23 +61,23 @@ PLIST_SUB+=	PORTVERSION="${PORTVERSION}" \
 		GEM_CACHE="${GEM_CACHE}" \
 		EXTRACT_SUFX="${EXTRACT_SUFX}"
 
-RUBYGEMBIN=	${LOCALBASE}/bin/gem${RUBY_VER:S/.//}
+RUBYGEMBIN=	${LOCALBASE}/bin/gem
 
-. if defined(DISTFILES)
+.  if defined(DISTFILES)
 GEMFILES=	${DISTFILES:C/:[^:]+$//}
-. else
+.  else
 GEMFILES=	${DISTNAME}${EXTRACT_SUFX}
-. endif
+.  endif
 
 RUBYGEM_ARGS=-l --no-update-sources --install-dir ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/gems/${RUBY_VER} --ignore-dependencies --bindir=${FAKE_DESTDIR}${TRUE_PREFIX}/bin
 
-.if ${PORT_OPTIONS:MDOCS}
+.  if ${PORT_OPTIONS:MDOCS}
 RUBYGEM_ARGS+=	--document rdoc,ri
-.else
+.  else
 RUBYGEM_ARGS+=	--no-document
-.endif
+.  endif
 
-.if !target(do-extract)
+.  if !target(do-extract)
 do-extract:
 	@${SETENV} ${GEM_ENV} ${RUBYGEMBIN} unpack --target=${WRKDIR} ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES}
 	@(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} spec --ruby ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES} > ${GEMSPEC} ; then \
@@ -86,9 +87,9 @@ do-extract:
 			fi; \
 		${FALSE}; \
 		fi)
-.endif
+.  endif
 
-.if !target(do-build)
+.  if !target(do-build)
 do-build:
 	@(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} build --force ${GEMSPEC} ; then \
 		if [ -n "${BUILD_FAIL_MESSAGE}" ] ; then \
@@ -97,9 +98,9 @@ do-build:
 			fi; \
 		${FALSE}; \
 		fi)
-.endif
+.  endif
 
-.if !target(do-install)
+.  if !target(do-install)
 do-install:
 	(cd ${BUILD_WRKSRC}; ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} ${CONFIGURE_ARGS})
 	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}/build_info/
@@ -113,7 +114,7 @@ do-install:
 .endif
 .endif
 
-.if empty(gem_ARGS:Mnoautoplist)
+.  if empty(gem_ARGS:Mnoautoplist)
 _USES_install+=	820:gem-autoplist
 gem-autoplist:
 	@${ECHO_CMD} ${GEM_SPEC} >> ${TMPPLIST}
@@ -127,6 +128,6 @@ gem-autoplist:
 		${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${EXT_DIR} -type f -print | ${SED} -E -e \
 		's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST} ; \
 	fi
-.endif
+.  endif
 
 .endif

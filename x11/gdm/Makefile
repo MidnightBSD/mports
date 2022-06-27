@@ -115,46 +115,46 @@ post-patch:
 		${WRKSRC}/data/applications/gnome-shell.desktop \
 
 post-install:
-	${MV} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/custom.conf \
-		${FAKE_DESTDIR}${PREFIX}/etc/gdm/custom.conf.sample
-	${MV} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/PostSession/Default \
-		${FAKE_DESTDIR}${PREFIX}/etc/gdm/PostSession/Default.sample
-	${MV} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/PreSession/Default \
-		${FAKE_DESTDIR}${PREFIX}/etc/gdm/PreSession/Default.sample
-	${MV} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/Init/Default \
-		${FAKE_DESTDIR}${PREFIX}/etc/gdm/Init/Default.sample
-	${MV} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/Xsession \
-		${FAKE_DESTDIR}${PREFIX}/etc/gdm/Xsession.sample
-	${MV} ${FAKE_DESTDIR}${PREFIX}/etc/dbus-1/system.d/gdm.conf \
-		${FAKE_DESTDIR}${PREFIX}/etc/dbus-1/system.d/gdm.conf.sample
+	-${MV} ${PREFIX}/etc/gdm/custom.conf \
+		${PREFIX}/etc/gdm/custom.conf.sample
+	-${MV} ${PREFIX}/etc/gdm/PostSession/Default \
+		${PREFIX}/etc/gdm/PostSession/Default.sample
+	-${MV} ${PREFIX}/etc/gdm/PreSession/Default \
+		${PREFIX}/etc/gdm/PreSession/Default.sample
+	-${MV} ${PREFIX}/etc/gdm/Init/Default \
+		${PREFIX}/etc/gdm/Init/Default.sample
+	-${MV} ${PREFIX}/etc/gdm/Xsession \
+		${STAGEDIR}${PREFIX}/etc/gdm/Xsession.sample
+	-${MV} ${PREFIX}/etc/dbus-1/system.d/gdm.conf \
+		${PREFIX}/etc/dbus-1/system.d/gdm.conf.sample
 
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/xsessions
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/Sessions
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/dm/Sessions
+	${MKDIR} ${PREFIX}/share/xsessions
+	${MKDIR} ${PREFIX}/etc/gdm/Sessions
+	${MKDIR} ${PREFIX}/etc/dm/Sessions
 
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/home
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/gdm/home/.pulse/
+	${MKDIR} ${PREFIX}/etc/gdm/home
+	${MKDIR} ${PREFIX}/etc/gdm/home/.pulse/
 
 	${INSTALL_DATA} ${WRKDIR}/gdm-autologin \
-		${FAKE_DESTDIR}${PREFIX}/etc/pam.d/gdm-autologin.sample
+		${PREFIX}/etc/pam.d/gdm-autologin.sample
 	${INSTALL_DATA} ${WRKDIR}/gdm-launch-environment \
-		${FAKE_DESTDIR}${PREFIX}/etc/pam.d/gdm-launch-environment.sample
+		${PREFIX}/etc/pam.d/gdm-launch-environment.sample
 	${INSTALL_DATA} ${WRKDIR}/gdm-password \
-		${FAKE_DESTDIR}${PREFIX}/etc/pam.d/gdm-password.sample
+		${PREFIX}/etc/pam.d/gdm-password.sample
 
 	${INSTALL_DATA} ${WRKDIR}/client.conf \
-		${FAKE_DESTDIR}${PREFIX}/etc/gdm/home/.pulse/client.conf.sample
+		${PREFIX}/etc/gdm/home/.pulse/client.conf.sample
 
 	${INSTALL_DATA} ${WRKDIR}/locale.conf \
-		${FAKE_DESTDIR}${PREFIX}/etc/gdm/locale.conf.sample
+		${PREFIX}/etc/gdm/locale.conf.sample
 
 	${MKDIR} ${FAKE_DESTDIR}/var/cache/gdm
 	${MKDIR} ${FAKE_DESTDIR}/var/log/gdm
 	${MKDIR} ${FAKE_DESTDIR}/var/run/gdm
 	${MKDIR} ${FAKE_DESTDIR}/var/run/gdm/greeter
 
-	@${RM} ${FAKE_DESTDIR}${PREFIX}/lib/udev/rules.d/61-gdm.rules
-	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/lib/udev/rules.d
-	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/lib/udev
+	@${RM} ${PREFIX}/lib/udev/rules.d/61-gdm.rules
+	@${RMDIR} ${PREFIX}/lib/udev/rules.d
+	@${RMDIR} ${PREFIX}/lib/udev
 
 .include <bsd.port.mk>
