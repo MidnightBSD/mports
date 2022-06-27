@@ -53,6 +53,7 @@ CONFIGURE_ARGS=	--with-libpng=sys \
 		--enable-graphics_ctx \
 		--enable-compat28 \
 		--enable-compat30
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}" \
 		ac_cv_header_sys_inotify_h=no
 
