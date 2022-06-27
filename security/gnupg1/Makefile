@@ -17,14 +17,13 @@ USES=		charsetfix compiler cpe gmake readline tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-camellia \
 		--enable-noexecstack
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 CFLAGS+=	-fcommon
 
 INFO=		gnupg1
 DOCSDIR=	${PREFIX}/share/doc/gnupg1
 PORTDOCS=	*
 
-#TEST_TARGET=	check
 NO_TEST=	yes
 
 OPTIONS_DEFINE=	CURL DOCS LDAP ICONV LIBUSB NLS SUID_GPG
@@ -55,7 +54,7 @@ NLS_CONFIGURE_ENABLE=	nls
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 200001
-USE_GCC=	7
+USE_GCC=	yes
 .endif
 
 .if ${ARCH} == "i386" && ${COMPILER_TYPE} == "clang"
