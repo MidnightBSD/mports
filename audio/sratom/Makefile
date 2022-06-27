@@ -22,6 +22,8 @@ USE_LDCONFIG=	yes
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
+NO_TEST=	yes
+
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/libsratom-0.so.${PORTVERSION}
 
