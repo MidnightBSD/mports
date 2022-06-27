@@ -1,10 +1,8 @@
-
-
 PORTNAME=	libspice-server
 DISTVERSION=	0.14.0
 PORTREVISION=	3
 CATEGORIES=	devel
-MASTER_SITES=	https://www.spice-space.org/download/releases/
+MASTER_SITES=	https://www.spice-space.org/download/releases/spice-server/
 DISTNAME=	spice-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +11,8 @@ COMMENT=	Implements the server side of the SPICE protocol
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libopus.so:audio/opus
-BUILD_DEPENDS=	spice-protocol>=0.12.10:devel/spice-protocol
+BUILD_DEPENDS=	autoconf-archive>=0:devel/autoconf-archive \
+		spice-protocol>=0.12.10:devel/spice-protocol
 
 OPTIONS_DEFINE=		GSTREAMER LZ4 SASL STATISTICS
 OPTIONS_DEFAULT=	GSTREAMER LZ4 SASL
@@ -32,14 +31,15 @@ SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 
 STATISTICS_CONFIGURE_ENABLE=	statistics
 
-USES=		autoreconf compiler:c++11-lang gmake jpeg libtool \
-		localbase:ldflag pkgconfig python ssl tar:bzip2
+USES=		autoreconf:2.69 compiler:c++11-lang cpe gmake gnome jpeg \
+		libtool localbase:ldflag pkgconfig python ssl tar:bzip2 xorg
 
 USE_GNOME=	glib20
 USE_XORG=	pixman
 USE_LDCONFIG=	yes
 
-CPE_VENDOR=	redhat
+CPE_VENDOR=	spice_project
+CPE_PRODUCT=	spice
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-celt051 \
