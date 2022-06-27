@@ -1,5 +1,3 @@
-
-
 PORTNAME=	idesk
 PORTVERSION=	0.7.5
 PORTREVISION=	7
@@ -14,9 +12,8 @@ LICENSE=	bsd3
 LIB_DEPENDS=	libXft.so:x11-fonts/libXft \
 		libImlib2.so:graphics/imlib2
 
-USES=		gmake pkgconfig tar:bzip2
+USES=		autoreconf gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf
 
 OPTIONS_DEFINE=	SHAPE SN
 SHAPE_DESC=	Support of XShape extension
