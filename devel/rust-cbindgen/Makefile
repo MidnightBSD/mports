@@ -61,4 +61,6 @@ CARGO_CRATES=	atty-0.2.14 \
 		winapi-util-0.1.5 \
 		winapi-x86_64-pc-windows-gnu-0.4.0
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
