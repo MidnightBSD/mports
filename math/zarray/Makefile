@@ -21,11 +21,6 @@ GH_ACCOUNT=	xtensor-stack
 
 NO_BUILD=	yes
 NO_ARCH=	yes
-
-do-test: install
-	@cd ${WRKSRC}/test && \
-		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} . && \
-		${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} && \
-		${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} xtest
+NO_TEST=	yes
 
 .include <bsd.port.mk>
