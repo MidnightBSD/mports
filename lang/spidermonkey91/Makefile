@@ -86,6 +86,9 @@ post-patch:
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
 		${WRKSRC}/testing/mozbase/mozinfo/mozinfo/mozinfo.py
 
+pre-configure:
+	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf2.13)
+
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/lib/libjs_static.ajs
 	${LN} -fs libmozjs-${SP_VER}.so ${STAGEDIR}${PREFIX}/lib/libmozjs-${SP_VER}.so.1
