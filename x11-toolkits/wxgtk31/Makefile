@@ -111,6 +111,6 @@ post-build-NLS-on:
 	@${DO_MAKE_BUILD} allmo -C ${BUILD_WRKSRC}/locale
 
 post-install-NLS-on: # stray file: https://trac.wxwidgets.org/ticket/18147
-	@${RM} ${STAGEDIR}${PREFIX}/share/locale/it/LC_MESSAGES/wxmsw.mo
+	-${RM} ${FAKE_DESTDIR}${PREFIX}/share/locale/it/LC_MESSAGES/wxmsw.mo
 
 .include <bsd.port.post.mk>
