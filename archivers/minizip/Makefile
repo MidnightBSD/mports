@@ -9,7 +9,9 @@ COMMENT=	Zip library and programs from Zlib distribution
 
 LICENSE=	zlib
 
-USES=		autoreconf libtool pathfix tar:xz
+USES=		autoreconf cpe libtool pathfix tar:xz
+CPE_VENDOR=	minizip_project
+USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtoolize
 PATHFIX_MAKEFILEIN=	Makefile.am
 GNU_CONFIGURE=	yes
