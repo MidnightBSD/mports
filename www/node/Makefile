@@ -81,11 +81,6 @@ BROKEN_SSL+=	base
 CONFIGURE_ARGS+=--openssl-no-asm
 .endif
 
-.if ${OSVERSION} < 200000
-IGNORE=         is for MidnightBSD 2.0 and newer
-USE_GCC=	7+
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
 		${WRKSRC}/tools/v8_gypfiles/v8.gyp
