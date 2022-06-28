@@ -25,7 +25,7 @@ BUILD_DEPENDS=	gsed:textproc/gsed \
 		yasm:devel/yasm
 RUN_DEPENDS=	ffmpeg>=3.4.1,1:multimedia/ffmpeg
 
-USES=		compiler:c++11-lib cpe desktop-file-utils gettext-tools gmake gnome \
+USES=		compiler:c++17-lang cpe desktop-file-utils gettext-tools gmake gnome \
 		iconv:wchar_t libtool localbase pathfix pkgconfig tar:xz
 
 CPE_VENDOR=	videolan
@@ -34,7 +34,7 @@ CPE_VENDOR=	videolan
 # to the compiler. Until the port is updated, we explicitly pass -std=c++11 to
 # the compiler because Qt 5.7+ requires C++11 support, and FreeBSD 10's clang
 # does not default to C++11 mode.
-USE_CXXSTD=	c++11
+#USE_CXXSTD=	c++11
 
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
@@ -379,6 +379,13 @@ WITH_DVD_DEVICE?=/dev/cd0
 
 .if ${PORT_OPTIONS:MX11}
 INSTALLS_ICONS=	yes
+.endif
+
+.if ${PORT_OPTIONS:MDEBUG}
+WITH_DEBUG=yes
+CONFIGURE_ARGS+=--enable-debug --disable-optimizations
+CFLAGS+=-g -O0
+CXXFLAGS+=-g -O0
 .endif
 
 post-patch:
