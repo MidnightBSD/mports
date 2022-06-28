@@ -31,6 +31,8 @@ OPTIONS_DEFINE=		GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION PULSEAUDIO SDL VU
 OPTIONS_DEFAULT=	GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION
 OPTIONS_SUB=	yes
 
+BROKEN_SSL=	base
+
 GSTREAMER_USES=		gstreamer
 GSTREAMER_MESON_ENABLED=gstreamer
 GSTREAMER_LIB_DEPENDS= libgstreamer-1.0.so:multimedia/gstreamer1 \
@@ -82,7 +84,7 @@ CONFIGURE_ENV+=	${ncurses_ARGS:Mbase:C/.+/PKG_CONFIG_PATH="${FILESDIR}"/}
 post-extract:
 	${LN} -s ${WRKDIR}/media-session-${MEDIA_SESSION_VERSION} ${WRKSRC}/subprojects/media-session
 
-post-patch:
+foopost-patch:
 	${REINPLACE_CMD} -e 's/freebsd/midnightbsd/g' \
 		${WRKSRC}/src/pipewire/meson.build \
 		${WRKSRC}/subprojects/media-session/meson.build \
