@@ -8,9 +8,9 @@
 +        UNAME_PROCESSOR=`/usr/bin/uname -p`
 +        case ${UNAME_PROCESSOR} in
 +            amd64)
-+                echo x86_64-unknown-midnightbsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++                echo x86_64-unknown-freebsd11.4 ;;
 +            *)
-+                echo ${UNAME_PROCESSOR}-unknown-midnightbsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++                echo ${UNAME_PROCESSOR}-unknown-freebsd11.4 ;;
 +        esac
 +        exit ;;
      i*:CYGWIN*:*)
