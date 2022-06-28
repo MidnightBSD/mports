@@ -12,6 +12,12 @@ EXTRACT_ONLY=
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Broadcom AirForce IEEE 802.11 Firmware Kernel Module
 
+LICENSE=	other
+
+NO_CDROM=       Modified firmware, cannot be distributed
+RESTRICTED=     Redistribution of repackaged binaries not permitted
+
+
 BUILD_DEPENDS=	b43-fwcutter:sysutils/b43-fwcutter
 
 FIRMWARES=								\
@@ -56,8 +62,6 @@ KMODNAME_N=	${FWNAME_N}_ucode
 PLIST_SUB=	KMODNAME="${KMODNAME}" \
 		KMODNAME_LP="${KMODNAME_LP}" \
 		KMODNAME_N="${KMODNAME_N}"
-
-NO_PACKAGE=	this is a modified version of a restricted firmware
 
 USES=		kmod uidfix
 
