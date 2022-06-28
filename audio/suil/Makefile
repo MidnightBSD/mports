@@ -25,6 +25,8 @@ USE_LDCONFIG=	yes
 
 PLIST_SUB=	SUILVERSION=${PORTVERSION}
 
+NO_TEST=	yes
+
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/libsuil-0.so.${PORTVERSION}
 	@${STRIP_CMD} ${PREFIX}/lib/suil-0/*.so
