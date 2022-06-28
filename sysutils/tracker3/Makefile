@@ -29,7 +29,7 @@ MESON_ARGS=	-Dbash_completion=true \
 		-Ddocs=false \
 		-Dstemmer=disabled \
 		-Dsystemd_user_services=false \
-		-Dtest=false
+		-Dtests_tap_protocol=false
 
 DATADIR=	${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}
 BINARY_ALIAS=	python3=${PYTHON_CMD}
