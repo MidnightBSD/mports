@@ -1,13 +1,10 @@
 PORTNAME=	rebar3
-PORTVERSION=	3.14.3
+PORTVERSION=	3.19.0
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
-MASTER_SITES+=	FREEBSD_LOCAL/olgeni:deps \
-		http://olgeni.olgeni.com/~olgeni/distfiles/:deps \
-		https://repo.hex.pm/tarballs/:hex
-DISTFILES=	rebar3-cache-${PORTVERSION}${EXTRACT_SUFX}:deps
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} \
-		rebar3-cache-${PORTVERSION}${EXTRACT_SUFX}
+MASTER_SITES+=	https://repo.hex.pm/tarballs/:hex
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build tool for Erlang
@@ -21,48 +18,45 @@ RUN_DEPENDS=	${LOCALBASE}/bin/erl:lang/erlang
 OPTIONS_DEFINE=	BASH ZSH EXAMPLES
 OPTIONS_DEFAULT=BASH ZSH
 
+USES=		cpe
+CPE_VENDOR=	erlang
 USE_GITHUB=	yes
 GH_ACCOUNT=	erlang
 
 NO_ARCH=	yes
-PLIST_FILES=	bin/${PORTNAME}
+PLIST_FILES=	bin/${PORTNAME} \
+		man/man1/rebar3.1.gz
 PORTEXAMPLES=	rebar.config.sample
 
 BASH_PLIST_FILES=	share/bash-completion/completions/rebar3
 ZSH_PLIST_FILES=	share/zsh/site-functions/_rebar3
 
 # from rebar.config
-REBAR_DEPS=	bbmustache-1.10.0 \
-		certifi-2.5.2 \
+REBAR_DEPS=	bbmustache-1.12.2 \
+		certifi-2.8.0 \
 		cf-0.3.1 \
-		cth_readable-1.4.9 \
-		erlware_commons-1.3.1 \
+		cth_readable-1.5.1 \
+		erlware_commons-1.5.0 \
 		eunit_formatters-0.5.0 \
 		getopt-1.0.1 \
-		parse_trans-3.3.0 \
-		providers-1.8.1 \
-		relx-4.2.0 \
+		providers-1.9.0 \
+		relx-4.6.0 \
 		ssl_verify_fun-1.1.6
 
-.for _dep in ${REBAR_DEPS} ${REBAR_PLUGINS}
+.for _dep in ${REBAR_DEPS}
 DISTFILES+=	${_dep}.tar:hex
 .endfor
 
-# convenience target to rebuild the rebar3 cache file
-build-cache:
-	cd ${WRKDIR} && ${TAR} -c -v -z -f rebar3-cache-${PORTVERSION}${EXTRACT_SUFX} .cache
-
+# The '_checkouts' part is to avoid attempts to fetch files from the
+# network during the build.
 post-extract:
-	@${REINPLACE_CMD} -e 's/{ *vsn,.*}/{vsn, "${PORTVERSION}"}/' ${WRKSRC}/src/*.app.src
 .for _dep in ${REBAR_DEPS}
 	${MKDIR} ${WRKSRC}/_build/default/lib/${_dep:C/-.*//}
 	${TAR} xOf ${DISTDIR}/${_dep}.tar contents.tar.gz |\
 		${TAR} xfz - -C ${WRKSRC}/_build/default/lib/${_dep:C/-.*//}
-.endfor
-.for _dep in ${REBAR_PLUGINS}
-	${MKDIR} ${WRKSRC}/_build/default/plugins/${_dep:C/-.*//}
+	${MKDIR} ${WRKSRC}/_checkouts/${_dep:C/-.*//}
 	${TAR} xOf ${DISTDIR}/${_dep}.tar contents.tar.gz |\
-		${TAR} xfz - -C ${WRKSRC}/_build/default/plugins/${_dep:C/-.*//}
+		${TAR} xfz - -C ${WRKSRC}/_checkouts/${_dep:C/-.*//}
 .endfor
 	@${MKDIR} ${WRKSRC}/_build/bootstrap/lib
 	@${MKDIR} ${WRKSRC}/_build/bootstrap/plugins
@@ -78,7 +72,8 @@ do-build:
 	@cd ${WRKSRC} && HOME=${WRKDIR} ./bootstrap
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/manpages/*.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/
 
 do-install-BASH-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/bash-completion/completions
