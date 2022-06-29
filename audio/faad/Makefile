@@ -1,5 +1,3 @@
-
-
 PORTNAME=	faad2
 PORTVERSION=	2.7
 PORTREVISION=	3
@@ -12,8 +10,9 @@ COMMENT=	MPEG-2 and MPEG-4 AAC audio decoder
 
 LICENSE=	gpl2
 
-USES=		autoreconf gmake libtool tar:bzip2
-USE_AUTOTOOLS=	libtoolize
+USES=		autoreconf cpe gmake libtool tar:bzip2
+CPE_VENDOR=	audiocoding
+CPE_PRODUCT=	freeware_advanced_audio_decoder_2
 GNU_CONFIGURE=	yes
 USE_DOS2UNIX=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \

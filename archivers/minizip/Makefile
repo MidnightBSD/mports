@@ -12,7 +12,6 @@ LICENSE=	zlib
 USES=		autoreconf cpe libtool pathfix tar:xz
 CPE_VENDOR=	minizip_project
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtoolize
 PATHFIX_MAKEFILEIN=	Makefile.am
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-demos
