@@ -1,8 +1,5 @@
-
-
 PORTNAME=	rest
-PORTVERSION=	0.7.93
-PORTREVISION=	1
+PORTVERSION=	0.8.1
 CATEGORIES=	devel www
 MASTER_SITES=	GNOME
 
@@ -19,7 +16,8 @@ USES=		gmake gnome libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ca-certificates=${LOCALBASE}/share/certs/ca-root-nss.crt
 USE_LDCONFIG=	yes
-USE_GNOME=	glib20 intlhack libxml2 introspection:build
+USE_GNOME=	glib20 libxml2 introspection:build
+INSTALL_TARGET=	install-strip
 
 NO_TEST=	yes
 

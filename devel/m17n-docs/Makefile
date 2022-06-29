@@ -1,25 +1,19 @@
-
-
 PORTNAME=	m17n-docs
 PORTVERSION=	1.5.5
-CATEGORIES=	devel
+CATEGORIES=	devel textproc
 MASTER_SITES=	http://anthesphoria.net/FreeBSD/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The m17n library documentation
+
 LICENSE=	lgpl2.1
 
 NO_BUILD=	yes
 
-OPTIONS=	JAPANESE "Install Japanese documentation (HTML and PDF)" off
+OPTIONS_DEFINE=	JAPANESE
+JAPANESE_DESC=	Japanese documentation (HTML and PDF)
 
-.include <bsd.mport.options.mk>
-
-.if defined(WITH_JAPANESE)
-PLIST_SUB+=	JAPANESE=""
-.else
-PLIST_SUB+=	JAPANESE="@comment "
-.endif
+OPTIONS_SUB=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/m17n
 

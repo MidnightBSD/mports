@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libexecinfo
 PORTVERSION=	1.1
 PORTREVISION=	3

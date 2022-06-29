@@ -1,22 +1,22 @@
 PORTNAME=	m17n-lib
-PORTVERSION=	1.6.4
-CATEGORIES=	devel
-MASTER_SITES=	http://www.m17n.org/m17n-lib-download/ \
-		http://anthesphoria.net/FreeBSD/ports/distfiles/
+PORTVERSION=	1.8.0
+PORTREVISION=	4
+CATEGORIES=	devel textproc
+MASTER_SITES=	SAVANNAH/m17n
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for multilingual text handling
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	bison:devel/bison \
-		m17n-db>=1.6.2:devel/m17n-db
+BUILD_DEPENDS=	m17n-db>=1.8.0:devel/m17n-db
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libfribidi.so:converters/fribidi \
 		libgd.so:graphics/gd \
 		libotf.so:print/libotf
-RUN_DEPENDS=	m17n-db>=1.6.2:devel/m17n-db
+RUN_DEPENDS=	m17n-db>=1.8.0:devel/m17n-db
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -27,16 +27,17 @@ USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+
 CONFIGURE_ARGS=	--disable-nls
 BINARY_ALIAS=	freetype-config=true
 
 OPTIONS_DEFINE=	ANTHY ISPELL THAI
 
-.include <bsd.port.pre.mk>
+ANTHY_DESC=	Kana-Kanji conversion support via Anthy
+THAI_DESC=	Thai language support via libThai
 
-CONFIGURE_ARGS+=	--disable-nls
-
-CONFIGURE_ARGS+=	--without-anthy
+ANTHY_LIB_DEPENDS=	libanthy.so:japanese/anthy
+ANTHY_CONFIGURE_OFF=	--without-anthy
 
 ISPELL_BUILD_DEPENDS=	ispell:textproc/aspell-ispell
 ISPELL_RUN_DEPENDS=	ispell:textproc/aspell-ispell
@@ -49,5 +50,6 @@ post-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
 		's|$${libdir}/pkgconfig|$${prefix}/libdata/pkgconfig|g ; \
 		 s|-ldl||g'
+	@${FIND} ${WRKSRC} -name "Makefile.am" | ${XARGS} ${REINPLACE_CMD} -e 's|-ldl||g'
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

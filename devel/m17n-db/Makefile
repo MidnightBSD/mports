@@ -1,13 +1,10 @@
-
+# Created by: Kimura Fuyuki <fuyuki@hadaly.org>
 
 PORTNAME=	m17n-db
-PORTVERSION=	1.6.2
-PORTREVISION=	1
-CATEGORIES=	devel
-MASTER_SITES=	http://www.m17n.org/m17n-lib-download/:m17n \
-		http://anthesphoria.net/FreeBSD/ports/distfiles/:m17n \
-		${MASTER_SITE_GNU:S/$/:glibc/}
-MASTER_SITE_SUBDIR=	glibc/:glibc
+PORTVERSION=	1.8.0
+CATEGORIES=	devel textproc
+MASTER_SITES=	SAVANNAH/m17n:m17n \
+		GNU/glibc:glibc
 DISTFILES=	${M17N_DISTFILE}:m17n \
 		${GLIBC_DISTFILE}:glibc
 EXTRACT_ONLY=	${M17N_DISTFILE}
@@ -16,29 +13,31 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data files for the m17n library
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake pkgconfig
+OPTIONS_DEFINE=	NLS
+
+USES=		gmake pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-charmaps=${CHARMAPSDIR}
+NO_ARCH=	yes
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+OPTIONS_SUB=	yes
+NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 M17N_DISTFILE=	${DISTNAME}${EXTRACT_SUFX}
-GLIBC_VERSION=	2.3.6
+GLIBC_VERSION=	2.27
 GLIBC_DISTFILE=	glibc-${GLIBC_VERSION}.tar.bz2
 CHARMAPSDIR=	glibc-${GLIBC_VERSION}/localedata/charmaps
+
+M17N_DATADIR=	${PREFIX}/share/m17n
 
 post-extract:
 	cd ${WRKSRC}; ${TAR} xjf ${DISTDIR}/${GLIBC_DISTFILE} ${CHARMAPSDIR}
 
 post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
-		's|$${datadir}/pkgconfig|$${prefix}/libdata/pkgconfig|g'
+	@${REINPLACE_CMD} -E 's|(m17n_scriptdir = ).*|\1${PREFIX}/bin|' \
+		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
