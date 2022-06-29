@@ -991,12 +991,6 @@ Legal values are: gamin (default),fam
 
 If set to an unknown value, the port is marked IGNORE.
 
-=item USE_AUTOTOOLS
-
-If set, this port uses various GNU autotools (libtool, autoconf, autoheader,
-automake et al.) Loads the autotools extension. See autotools.mk for more
-details.
-
 =item USE_SCONS
 
 If set, this port uses the Python-based SCons build system.  Loads the scons
