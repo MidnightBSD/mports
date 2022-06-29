@@ -1,9 +1,9 @@
 # Created by: Dave McKay <dave@mu.org>
 
 PORTNAME=	seahorse
-PORTVERSION=	3.36.2
+PORTVERSION=	41.0
 CATEGORIES=	security gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,13 +17,13 @@ BUILD_DEPENDS=	gnupg>=2.1.4:security/gnupg \
 		valac:lang/vala
 LIB_DEPENDS=	libgcr-base-3.so:security/gcr \
 		libgpgme.so:security/gpgme \
-		libhandy-0.0.so:x11-toolkits/libhandy0 \
+		libhandy-1.so:x11-toolkits/libhandy \
 		libpwquality.so:security/libpwquality \
 		libsecret-1.so:security/libsecret \
 		libsoup-2.4.so:devel/libsoup
 RUN_DEPENDS=	gnupg>=2.1.4:security/gnupg
 
-USES=		gettext gnome localbase:ldflags meson pkgconfig \
+USES=		cpe gettext gnome localbase:ldflags meson pkgconfig \
 		python:3.5+,build tar:xz xorg
 USE_CSTD=	c99
 USE_GNOME=	gtk30
@@ -33,6 +33,7 @@ GLIB_SCHEMAS=	org.gnome.seahorse.gschema.xml \
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 USE_XORG=	sm
+CPE_VENDOR=	gnome
 
 MESON_ARGS=	-Dcheck-compatible-gpg=false \
 		-Dhkp-support=true \
