@@ -46,4 +46,6 @@ WEBKIT_MESON_ENABLED=	webkit2gtk
 WEBKIT_LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 			libwebkit2gtk-4.0.so:www/webkit2-gtk3
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
