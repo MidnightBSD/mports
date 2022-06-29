@@ -1,4 +1,8 @@
-Warning: This JDK may be unstable. 
+[
+{ type: install
+  message: <<EOM
+Warning: This JDK may be unstable. You are advised to use the native
+FreeBSD JDK 8, in ports/java/openjdk8.
 
 This Java VM will attempt to obtain some system information by
 accessing files in linux's procfs.  You must install the Linux
@@ -11,4 +15,7 @@ by adding the following line to your /etc/fstab file:
 and then, as root, executing the commands:
 
 kldload linprocfs
-mount /compat/linux/proc 
+mount /compat/linux/proc
+EOM
+}
+]
