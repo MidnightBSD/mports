@@ -31,7 +31,7 @@ OPTIONS_DEFINE=		GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION PULSEAUDIO SDL VU
 OPTIONS_DEFAULT=	GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION
 OPTIONS_SUB=	yes
 
-BROKEN_SSL=	base
+NO_TEST=	yes
 
 GSTREAMER_USES=		gstreamer
 GSTREAMER_MESON_ENABLED=gstreamer
@@ -66,9 +66,10 @@ VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 
 MEDIA_SESSION_VERSION=	0.4.1
 
+#raop should be enabled, but ssl issues on magus
 MESON_ARGS=	-D pw-cat=enabled \
 		-D v4l2=enabled \
-		-D raop=enabled \
+		-D raop=disabled \
 		-D bluez5=disabled \
 		-D jack=disabled \
 		-D systemd=disabled \
