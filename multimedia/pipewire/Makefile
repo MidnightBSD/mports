@@ -84,7 +84,7 @@ CONFIGURE_ENV+=	${ncurses_ARGS:Mbase:C/.+/PKG_CONFIG_PATH="${FILESDIR}"/}
 post-extract:
 	${LN} -s ${WRKDIR}/media-session-${MEDIA_SESSION_VERSION} ${WRKSRC}/subprojects/media-session
 
-foopost-patch:
+post-patch:
 	${REINPLACE_CMD} -e 's/freebsd/midnightbsd/g' \
 		${WRKSRC}/src/pipewire/meson.build \
 		${WRKSRC}/subprojects/media-session/meson.build \
