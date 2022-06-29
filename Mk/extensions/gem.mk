@@ -106,9 +106,12 @@ do-install:
 	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}/build_info/
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f \( -name mkmf.log -or -name gem_make.out \) -delete
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEM_LIB_DIR}/ext -type f -not -name '*.so' -delete 2> /dev/null || ${TRUE}
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEM_LIB_DIR}/ext -type d -empty -delete 2> /dev/null || ${TRUE}
 	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEM_LIB_DIR}/ext \
 		${FAKE_DESTDIR}${TRUE_PREFIX}/${CACHE_DIR} 2> /dev/null || ${TRUE}
 	${RMDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${EXT_DIR} 2> /dev/null || ${TRUE}
+	${RMDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${PLUGINS_DIR} 2> /dev/null || ${TRUE}
 .if !${PORT_OPTIONS:MDOCS}
 	-@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/${DOC_DIR}
 .endif

@@ -529,7 +529,7 @@ _LOAD_${EXT:tu}_EXT=	yes
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux xorg fortran \
 		gcc fmake gmake bison local perl5 \
-		ada ansible apache autotools bdb cabal cargo cmake cpe cran display dos2unix \
+		ada ansible apache bdb cabal cargo cmake cpe cran display dos2unix \
 		efl eigen emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
 		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde4 \
