@@ -1,6 +1,5 @@
 PORTNAME=	tnftpd
-PORTVERSION=	20130325
-PORTREVISION=	2
+PORTVERSION=	20200704
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
@@ -16,11 +15,7 @@ ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 4016
-CFLAGS+=	-DSUPPORT_UTMPX
-.else
-CFLAGS+=	-DSUPPORT_UTMP
-.endif
+CFLAGS+=	-DSUPPORT_UTMPX -fcommon
 
 PLIST_FILES=	libexec/tnftpd \
 		man/man5/ftpd.conf.5.gz man/man5/ftpusers.5.gz man/man8/tnftpd.8.gz
