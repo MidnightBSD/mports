@@ -1,39 +1,28 @@
 # Created by: Adam Weinberger <adamw@FreeBSD.org>
 
 PORTNAME=	glibmm
-PORTVERSION=	2.56.0
-PORTREVISION=	2
+PORTVERSION=	2.66.4
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ interfaces for glib2
 
 LICENSE=	lgpl2.1
 
-USES+=		tar:xz
-PORTSCOUT?=	limitw:1,even
-
-PLIST_SUB=	VERSION="2.4"
-
-.if !defined(REFERENCE_PORT)
-
-USES+=		compiler:c++11-lang gettext gmake gnome libtool pathfix perl5 \
-		pkgconfig
+USES=		compiler:c++11-lang gettext gnome meson pathfix perl5 \
+		pkgconfig python:3.7+,build shebangfix tar:xz
 USE_GNOME=	glib20 libsigc++20
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-documentation
-INSTALL_TARGET=	install-strip
-BINARY_WRAPPERS=	gm4
 
-post-patch:
-.for d in docs examples tests
-	@${REINPLACE_CMD} -e '/^SUBDIRS = /s/${d}//' ${WRKSRC}/Makefile.in
-.endfor
+SHEBANG_GLOB=	*.py
+
+MESON_ARGS=	-Dbuild-documentation=false
+
+# 2.68 and later are currently incompatible with consumers
+PORTSCOUT=	limit:^2\.66
+PLIST_SUB=	VERSION=2.4
 
 .include <bsd.port.mk>
-
-.endif
