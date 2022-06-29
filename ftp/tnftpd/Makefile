@@ -1,6 +1,6 @@
 PORTNAME=	tnftpd
 PORTVERSION=	20130325
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
@@ -11,7 +11,6 @@ LICENSE=	bsd4
 
 USES=		autoreconf libtool
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	aclocal automake
 AUTOMAKE_ARGS=	--add-missing
 ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
@@ -41,11 +40,11 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 .endif
-.if !defined(NOPORTEXAMPLES)
-	${MKDIR} ${EXAMPLESDIR}
+
+do-install-EXAMPLES-on:
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 .for f in ${PORTEXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${FAKE_DESTDIR}${EXAMPLESDIR}
 .endfor
-.endif
 
 .include <bsd.port.post.mk>
