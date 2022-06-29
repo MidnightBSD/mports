@@ -16,7 +16,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-ltdl-install --disable-dependency-tracking
 INSTALL_TARGET=	install-strip
 USES+=		libtool:keepla
-USE_AUTOTOOLS=	aclocal
 USE_LDCONFIG=	yes
 WRKSRC_SUBDIR=	libltdl
 
