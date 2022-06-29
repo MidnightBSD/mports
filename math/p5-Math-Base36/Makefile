@@ -16,4 +16,6 @@ BUILD_DEPENDS=	p5-ExtUtils-MakeMaker>=6.59:devel/p5-ExtUtils-MakeMaker
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
