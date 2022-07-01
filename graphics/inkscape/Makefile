@@ -11,7 +11,8 @@ COMMENT=	Full featured open source SVG editor
 LICENSE=	gpl2 gpl3 lgpl2.1 lgpl3 mpl
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	${LOCALBASE}/include/boost/concept_check.hpp:devel/boost-libs
+BUILD_DEPENDS=	${LOCALBASE}/include/boost/concept_check.hpp:devel/boost-libs \
+		${LOCALBASE}/bin/ps2pdf:print/ghostscript9-agpl-base
 LIB_DEPENDS=	libpopt.so:devel/popt \
 		libgc.so:devel/boehm-gc \
 		libgdl-3.so:x11-toolkits/gdl \
@@ -33,7 +34,7 @@ LIB_DEPENDS=	libpopt.so:devel/popt \
 RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scour>0:textproc/py-scour@${PY_FLAVOR} \
-		ps2pdf:print/ghostscript9-agpl-base \
+		${LOCALBASE}/bin/ps2pdf:print/ghostscript9-agpl-base \
 		fig2dev:print/fig2dev
 
 USES=		compiler:c++11-lib cmake cpe desktop-file-utils gnome \
@@ -48,7 +49,8 @@ DATETAG=	2022-05-15_dc2aedaf03
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}_${DATETAG}
 
 SHEBANG_FILES=	share/extensions/*.py share/extensions/genpofiles.sh \
-		share/templates/*.py man/fix-roff-punct
+		share/templates/*.py
+# man/fix-roff-punct
 
 OPTIONS_DEFINE=		OPENMP POPPLER SCRIBUS VISIO CDR DBUS WPG GVFS NLS
 OPTIONS_DEFAULT=	POPPLER VISIO CDR WPG GM
