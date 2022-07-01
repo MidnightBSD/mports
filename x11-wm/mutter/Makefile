@@ -38,7 +38,7 @@ RUN_DEPENDS=	zenity>=3.0.0:x11/zenity \
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c++0x gettext gl gnome localbase meson \
-		pkgconfig tar:xz xorg
+		pkgconfig ssl tar:xz xorg
 USE_GL=		egl gbm
 USE_GNOME=	cairo gdkpixbuf2 gnomedesktop3 introspection
 USE_XORG=	ice sm x11 xcb xcomposite xcursor xdamage xext xfixes \

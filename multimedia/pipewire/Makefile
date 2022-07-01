@@ -33,6 +33,7 @@ OPTIONS_SUB=	yes
 
 USE_OPENSSL_RPATH=yes
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libcrypto.so:security/openssl
+RUN_DEPENDS+=	${LOCALBASE}/lib/libcrypto.so:security/openssl
 NO_TEST=	yes
 
 GSTREAMER_USES=		gstreamer
