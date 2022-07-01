@@ -1,0 +1,29 @@
+--- meson.build.orig	2022-07-01 12:14:42.793757000 -0400
++++ meson.build	2022-07-01 12:15:05.311449000 -0400
+@@ -336,11 +336,11 @@
+ cdata.set('HAVE_WEBRTC', webrtc_dep.found())
+ 
+ # On FreeBSD, epoll-shim library is required for eventfd() and timerfd()
+-epoll_shim_dep = (build_machine.system() == 'freebsd'
++epoll_shim_dep = (build_machine.system() == 'midnightbsd'
+     ? dependency('epoll-shim', required: true)
+     : dependency('', required: false))
+ 
+-libinotify_dep = (build_machine.system() == 'freebsd'
++libinotify_dep = (build_machine.system() == 'midnightbsd'
+     ? dependency('libinotify', required: true)
+     : dependency('', required: false))
+ 
+@@ -355,10 +355,10 @@
+ alsa_dep = dependency('alsa', version : '>=1.1.7', required: need_alsa)
+ summary({'pipewire-alsa': alsa_dep.found()}, bool_yn: true)
+ 
+-if build_machine.system() == 'freebsd'
++if build_machine.system() == 'midnightbsd'
+ # On FreeBSD the OpenSSL library may come from base or a package.
+ # Check for a package first and fallback to the base library if we can't find it via pkgconfig
+-    openssl_lib = dependency('openssl', required: false)
++    openssl_lib = dependency('openssl', required: true)
+     if not openssl_lib.found()
+         openssl_lib = declare_dependency(link_args : [ '-lssl', '-lcrypto'])
+     endif
