@@ -3578,16 +3578,4 @@ share/icons/hicolor/symbolic/apps/org.inkscape.Inkscape-symbolic.svg
 %%NLS%%share/locale/vi/LC_MESSAGES/inkscape.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/inkscape.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/inkscape.mo
-share/man/de/man1/inkscape.1.gz
-share/man/de/man1/inkview.1.gz
-share/man/es/man1/inkview.1.gz
-share/man/fr/man1/inkscape.1.gz
-share/man/fr/man1/inkview.1.gz
-share/man/hr/man1/inkscape.1.gz
-share/man/hr/man1/inkview.1.gz
-share/man/hu/man1/inkscape.1.gz
-share/man/hu/man1/inkview.1.gz
-share/man/man1/inkscape.1.gz
-share/man/man1/inkview.1.gz
-share/man/pt_BR/man1/inkview.1.gz
 share/metainfo/org.inkscape.Inkscape.appdata.xml
