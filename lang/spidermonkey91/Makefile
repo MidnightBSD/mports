@@ -57,9 +57,9 @@ PLIST_SUB=	SP_VER=${SP_VER}
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd${OSREL}
-.elif ${ARCH} == powerpc
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-config_makefiles_rust.mk
+CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
+.else
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4
 .endif
 
 # Require newer Clang than what's in base system unless user opted out
@@ -92,7 +92,6 @@ pre-configure:
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/lib/libjs_static.ajs
 	${LN} -fs libmozjs-${SP_VER}.so ${STAGEDIR}${PREFIX}/lib/libmozjs-${SP_VER}.so.1
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/js${SP_VER}
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmozjs-${SP_VER}.*
 
 .include <bsd.port.post.mk>
