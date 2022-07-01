@@ -16,7 +16,8 @@ BUILD_DEPENDS=	zenity>=3.0.0:x11/zenity \
 		xkeyboard-config>=0:x11/xkeyboard-config \
 		gsettings-desktop-schemas>=3.4.0:devel/gsettings-desktop-schemas \
 		gnome-settings-daemon>0:sysutils/gnome-settings-daemon \
-		evdev-proto>0:devel/evdev-proto
+		evdev-proto>0:devel/evdev-proto \
+		${LOCALBASE}/lib/libcrypto.so:security/openssl
 LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification \
 		libfribidi.so:converters/fribidi \
 		libxkbcommon.so:x11/libxkbcommon \
@@ -33,7 +34,8 @@ LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification \
 RUN_DEPENDS=	zenity>=3.0.0:x11/zenity \
 		xkeyboard-config>=0:x11/xkeyboard-config \
 		gsettings-desktop-schemas>=3.4.0:devel/gsettings-desktop-schemas \
-		gnome-settings-daemon>0:sysutils/gnome-settings-daemon
+		gnome-settings-daemon>0:sysutils/gnome-settings-daemon \
+		${LOCALBASE}/lib/libcrypto.so:security/openssl
 
 PORTSCOUT=	limitw:1,even
 
