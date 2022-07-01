@@ -31,6 +31,8 @@ OPTIONS_DEFINE=		GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION PULSEAUDIO SDL VU
 OPTIONS_DEFAULT=	GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION
 OPTIONS_SUB=	yes
 
+USE_OPENSSL_RPATH=yes
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libcrypto.so:security/openssl
 NO_TEST=	yes
 
 GSTREAMER_USES=		gstreamer
@@ -98,5 +100,10 @@ post-patch-MEDIASESSION-on:
 # start media session by default
 	@${REINPLACE_CMD} '/manager_args/ s/@sm_comment@//g' \
 		${WRKSRC}/src/daemon/pipewire.conf.in
+
+do-test:
+	${ECHO} "no tests"
+	printenv
+
 
 .include <bsd.port.mk>
