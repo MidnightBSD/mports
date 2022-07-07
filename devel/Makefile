@@ -1088,6 +1088,7 @@ SUBDIR += slf4j
 SUBDIR += sonar-ant-task
 SUBDIR += sonar-scanner-cli
 SUBDIR += sonarqube
+SUBDIR += sonarqube-community
 SUBDIR += sord
 SUBDIR += sparsehash
 SUBDIR += spice-protocol
