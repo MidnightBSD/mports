@@ -7,7 +7,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v%20${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Astronomical Calculation Library
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf libtool
