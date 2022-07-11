@@ -1,2 +1,3 @@
-SHA256 (xorg/driver/xf86-video-cirrus-1.5.3.tar.bz2) = edc87b20a55259126b5239b5c1ef913419eab7ded0ed12ae9ae989460d7351ab
-SIZE (xorg/driver/xf86-video-cirrus-1.5.3.tar.bz2) = 338930
+TIMESTAMP = 1657548633
+SHA256 (xorg/driver/xf86-video-cirrus-1.6.0.tar.xz) = 0ef3fa0083de3d9a040f11b3af38598d8405f1165b908fdd6712c30038326401
+SIZE (xorg/driver/xf86-video-cirrus-1.6.0.tar.xz) = 303048
