@@ -21,6 +21,8 @@ USE_LDCONFIG=	yes
 
 CPE_VENDOR=	p11-kit_project
 
+USE_GCC=	yes
+
 MESON_ARGS=	-Dbash_completion=enabled \
 		-Dlibffi=enabled \
 		-Dnls=false \
