@@ -9,7 +9,7 @@ LICENSE=	zlib
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
-USES=		cmake:testing iconv pkgconfig ssl
+USES=		cmake:testing iconv:wchar_t pkgconfig ssl
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	zlib-ng
@@ -17,6 +17,8 @@ GH_ACCOUNT=	zlib-ng
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_ARGS=	-DMZ_PROJECT_SUFFIX=-ng \
 		-DCMAKE_INSTALL_INCLUDEDIR=${LOCALBASE}/include/minizip-ng
-CMAKE_TESTING_ON=	MZ_BUILD_TEST MZ_BUILD_UNIT_TEST
+#CMAKE_TESTING_ON=	MZ_BUILD_TEST MZ_BUILD_UNIT_TEST
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
