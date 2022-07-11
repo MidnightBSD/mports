@@ -13,7 +13,7 @@ COMMENT=	C++ interfaces for glib2
 LICENSE=	lgpl2.1
 
 USES=		compiler:c++11-lang gettext gnome meson pathfix perl5 \
-		pkgconfig python:3.7+,build shebangfix tar:xz
+		pkgconfig python:3.7+,build shebangfix ssl tar:xz
 USE_GNOME=	glib20 libsigc++20
 USE_LDCONFIG=	yes
 
@@ -25,6 +25,6 @@ MESON_ARGS=	-Dbuild-documentation=false
 PORTSCOUT=	limit:^2\.66
 PLIST_SUB=	VERSION=2.4
 
-NO_TEST=	yes
+#NO_TEST=	yes
 
 .include <bsd.port.mk>
