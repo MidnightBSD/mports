@@ -5,7 +5,7 @@ MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU Compiler Collection 10
+COMMENT=	GNU Compiler Collection 11
 
 LICENSE=	gpl3
 
