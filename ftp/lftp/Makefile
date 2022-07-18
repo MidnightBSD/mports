@@ -1,6 +1,6 @@
 PORTNAME=	lftp
-PORTVERSION=	4.8.4
-CATEGORIES=	ftp ipv6
+PORTVERSION=	4.9.2
+CATEGORIES=	ftp
 MASTER_SITES=	http://lftp.tech/ftp/ \
 		http://lftp.tech/ftp/old/ \
 		http://lftp.cybermirror.org/ \
@@ -19,8 +19,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libidn2.so:dns/libidn2
 
-USES=		charsetfix iconv libtool localbase readline shebangfix
+USES=		compiler:c++11-lang charsetfix cpe iconv libtool localbase \
+		readline shebangfix
 GNU_CONFIGURE=	yes
+CPE_VENDOR=	lftp_project
 
 PORTDOCS=	AUTHORS BUGS ChangeLog FAQ FEATURES INSTALL \
 		MIRRORS NEWS README README.debug-levels README.modules \
@@ -33,7 +35,7 @@ SHEBANG_FILES=	src/verify-file \
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_RADIO=	SSL
 OPTIONS_RADIO_SSL=	OPENSSL GNUTLS
-OPTIONS_DEFAULT=	SSL OPENSSL
+OPTIONS_DEFAULT=	OPENSSL
 OPTIONS_SUB=	yes
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
