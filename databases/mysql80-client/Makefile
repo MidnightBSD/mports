@@ -1,7 +1,7 @@
 # Created by: "Mahdi Mokhtari <mokhi64@gmail.com>"
 
 PORTNAME=	mysql
-PORTREVISION=	1
+PORTREVISION=	0
 PKGNAMESUFFIX=	80-client
 
 COMMENT=	Multithreaded SQL database (client)
@@ -44,5 +44,8 @@ post-install:
 	@${LN} -s libmysqlclient.a ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.a
 	@${LN} -s libmysqlclient.so ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so
 	@${LN} -s libmysqlclient.so.21 ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so.21
+.for f in ${MMAN1}
+	gzip ${PREFIX}/man/man1/${f}
+.endfor
 
 .include "${MASTERDIR}/Makefile"

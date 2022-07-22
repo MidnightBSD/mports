@@ -1,6 +1,6 @@
---- cmake/ssl.cmake.orig	2019-09-20 08:30:51 UTC
+--- cmake/ssl.cmake.orig	2021-12-17 16:07:27 UTC
 +++ cmake/ssl.cmake
-@@ -199,7 +199,7 @@ MACRO (MYSQL_CHECK_SSL)
+@@ -211,7 +211,7 @@ MACRO (MYSQL_CHECK_SSL)
        # Encoded as MNNFFPPS: major minor fix patch status
        FILE(STRINGS "${OPENSSL_INCLUDE_DIR}/openssl/opensslv.h"
          OPENSSL_VERSION_NUMBER
@@ -9,14 +9,15 @@
          )
        STRING(REGEX REPLACE
          "^.*OPENSSL_VERSION_NUMBER[\t ]+0x([0-9]).*$" "\\1"
-@@ -214,13 +214,14 @@ MACRO (MYSQL_CHECK_SSL)
+@@ -226,13 +226,14 @@ MACRO (MYSQL_CHECK_SSL)
          OPENSSL_FIX_VERSION "${OPENSSL_VERSION_NUMBER}"
          )
      ENDIF()
 -    IF("${OPENSSL_MAJOR_VERSION}.${OPENSSL_MINOR_VERSION}.${OPENSSL_FIX_VERSION}" VERSION_GREATER "1.1.0")
+-       ADD_DEFINITIONS(-DHAVE_TLSv13)
 +    CHECK_SYMBOL_EXISTS(TLS1_3_VERSION "openssl/tls1.h" HAVE_TLS1_3_VERSION)
 +    IF(HAVE_TLS1_3_VERSION)
-        ADD_DEFINITIONS(-DHAVE_TLSv13)
++       #ADD_DEFINITIONS(-DHAVE_TLSv13)
      ENDIF()
      IF(OPENSSL_INCLUDE_DIR AND
         OPENSSL_LIBRARY   AND

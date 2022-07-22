@@ -1,8 +1,8 @@
 # Created by: Mahdi Mokhtari <mokhi64@gmail.com>
 
 PORTNAME?=		mysql
-PORTVERSION=		8.0.22
-PORTREVISION?=		1
+PORTVERSION=		8.0.29
+PORTREVISION?=		0
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.0
 PKGNAMESUFFIX?=		80-server
@@ -16,10 +16,10 @@ LICENSE=		gpl2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
 
 SLAVEDIRS=	databases/mysql80-client
-USES=		bison:build cmake:noninja compiler:c++14-lang cpe \
+USES=		bison:build cmake:noninja compiler:c++17-lang cpe \
 		groff:run libedit localbase ncurses perl5 pkgconfig shebangfix ssl
 
-USE_CXXSTD=	c++14
+USE_CXXSTD=	c++17
 USE_PERL5=	run
 
 MY_DBDIR=	/var/db/mysql
@@ -32,6 +32,8 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		liblz4.so:archivers/liblz4 \
 		libzstd.so:archivers/zstd \
 		libprotobuf.so:devel/protobuf \
+		libfido2.so:security/libfido2 \
+		libhidapi.so:comms/hidapi \
 		${LIB_DEPENDS_${ARCH}}
 LIB_DEPENDS_aarch64=	libunwind.so:devel/libunwind
 LIB_DEPENDS_amd64=	libunwind.so:devel/libunwind
@@ -48,7 +50,7 @@ BUILD_DEPENDS_powerpc64=	libunwind>0:devel/libunwind
 BUILD_DEPENDS_powerpc64le=	libunwind>0:devel/libunwind
 
 CMAKE_BUILD_TYPE=	Release
-CFLAGS+=		-fPIC
+CFLAGS+=		-fPIC -DNDEBUG -malign-double
 
 CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DINSTALL_LDCONFIGDIR="${LOCALBASE}/libdata/ldconfig" \
@@ -80,7 +82,8 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DWITH_ZLIB=system \
 		-DWITH_ZSTD=system \
 		-DWITH_PROTOBUF=system \
-		-DWITH_SSL=${OPENSSLBASE} \
+		-DWITH_SSL=system \
+		-DWITH_AUTHENTICATION_FIDO=1 \
 		-DBUILD_BUNDLED_ZLIB=0 \
 		-DBUILD_BUNDLED_LZ4=0
 
@@ -134,6 +137,7 @@ MMAN8=		mysqld.8
 
 CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER="ON"
 CMAKE_ARGS+=	-DWITHOUT_CLIENTLIBS="ON"
+CMAKE_ARGS+=	-DWITH_UNIT_TESTS="OFF"
 
 OPTIONS_GROUP=		STORAGE
 OPTIONS_GROUP_STORAGE=	ARCHIVE BLACKHOLE EXAMPLE FEDERATED INNOBASE PARTITION PERFSCHEMA
@@ -173,7 +177,8 @@ FEDERATED_SUB_LIST_OFF+=	FEDER=""
 # which is broken on i386 due to different size of types and caused a
 # 'static_assert(alignof(T) <= alignof(std::max_align_t))' error
 .if ${ARCH} == i386
-CMAKE_ARGS+=	-DDISABLE_PSI_MEMORY=1
+#CMAKE_ARGS+=	-DDISABLE_PSI_MEMORY=1
+SSP_UNSAFE=	yes
 .endif
 
 SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "

@@ -1,0 +1,27 @@
+--- configure.ac.orig	2022-05-25 08:52:59.000000000 -0400
++++ configure.ac	2022-07-22 07:27:05.086980000 -0400
+@@ -76,7 +76,7 @@
+ 	threads="pthreads"
+ 	LIBS="${LIBS} -framework IOKit -framework CoreFoundation -framework AppKit"
+ 	;;
+-*-freebsd*)
++*-freebsd*|*-midnightbsd*)
+ 	AC_MSG_RESULT([ (FreeBSD back-end)])
+ 	AC_DEFINE(OS_FREEBSD, 1, [FreeBSD implementation])
+ 	AC_SUBST(OS_FREEBSD)
+@@ -84,13 +84,11 @@
+ 	os="freebsd"
+ 	threads="pthreads"
+ 
+-	CFLAGS="$CFLAGS -I/usr/local/include"
+-	LDFLAGS="$LDFLAGS -L/usr/local/lib"
+-	LIBS="${LIBS}"
+ 	PKG_CHECK_MODULES([libusb], [libusb-1.0 >= 1.0.9], true, [hidapi_lib_error libusb-1.0])
+ 	LIBS_LIBUSB_PRIVATE="${LIBS_LIBUSB_PRIVATE} $libusb_LIBS"
+ 	CFLAGS_LIBUSB="${CFLAGS_LIBUSB} $libusb_CFLAGS"
+-	AC_CHECK_LIB([iconv], [iconv_open], [LIBS_LIBUSB_PRIVATE="${LIBS_LIBUSB_PRIVATE} -liconv"], [hidapi_lib_error libiconv])
++	AM_ICONV
++	LIBS_LIBUSB_PRIVATE="${LIBS_LIBUSB_PRIVATE} ${LTLIBICONV}"
+ 	;;
+ *-kfreebsd*)
+ 	AC_MSG_RESULT([ (kFreeBSD back-end)])

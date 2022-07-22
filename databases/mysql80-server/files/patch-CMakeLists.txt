@@ -1,6 +1,15 @@
---- CMakeLists.txt.orig	2020-09-23 12:37:48 UTC
+--- CMakeLists.txt.orig	2021-12-17 16:07:27 UTC
 +++ CMakeLists.txt
-@@ -1417,10 +1417,10 @@ IF(WITH_AUTHENTICATION_LDAP)
+@@ -1665,7 +1665,7 @@ IF(LINUX AND KNOWN_CUSTOM_LIBRARIES)
+ ENDIF()
+ 
+ IF(WITH_AUTHENTICATION_LDAP)
+-  IF(LINUX AND KNOWN_CUSTOM_LIBRARIES)
++  IF(LINUX OR FREEBSD AND KNOWN_CUSTOM_LIBRARIES)
+     # LDAP / SASL / KERBEROS / SSL must all be "system" or "custom", not a mix.
+     IF(WITH_LDAP STREQUAL "system" OR
+         WITH_SASL STREQUAL "system" OR
+@@ -1714,10 +1714,10 @@ IF(WITH_AUTHENTICATION_KERBEROS)
    ENDIF()
  ENDIF()
  
@@ -14,9 +23,9 @@
  # Add lz4 library
  MYSQL_CHECK_LZ4()
  # Add icu library
-@@ -1520,7 +1520,9 @@ IF(WITH_UNIT_TESTS)
-   INCLUDE(googletest)
- ENDIF()
+@@ -1917,7 +1917,9 @@ ADD_CUSTOM_TARGET(plugin_all)
+ # Utility target to build every target added with MYSQL_ADD_COMPONENT.
+ ADD_CUSTOM_TARGET(component_all)
  
 -ADD_SUBDIRECTORY(include)
 +IF(NOT WITHOUT_CLIENTLIBS)
@@ -25,7 +34,7 @@
  ADD_SUBDIRECTORY(strings)
  ADD_SUBDIRECTORY(vio)
  ADD_SUBDIRECTORY(mysys)
-@@ -1562,12 +1564,17 @@ IF(WITH_UNIT_TESTS)
+@@ -1962,12 +1964,17 @@ IF(WITH_UNIT_TESTS)
    ADD_SUBDIRECTORY(unittest/mytap/t)
  ENDIF()
  
@@ -45,7 +54,7 @@
    ADD_SUBDIRECTORY(testclients)
    ADD_SUBDIRECTORY(sql)
  ENDIF()
-@@ -1590,11 +1597,11 @@ ENDIF()
+@@ -2020,11 +2027,11 @@ ENDIF()
  # scripts/mysql_config depends on client and server targets loaded above.
  # It is referenced by some of the directories below, so we insert it here.
  ADD_SUBDIRECTORY(scripts)
@@ -58,7 +67,7 @@
    IF(WITH_INTERNAL)
      ADD_SUBDIRECTORY(internal)
    ENDIF()
-@@ -1703,6 +1710,7 @@ IF(PACK_SEPARATE_COMPONENTS)
+@@ -2134,6 +2141,7 @@ IF(PACK_SEPARATE_COMPONENTS)
    SET(CPACK_COMPONENTS_GROUPING IGNORE)
  ENDIF()
  
@@ -66,7 +75,7 @@
  IF(UNIX)
    INSTALL(FILES
      Docs/mysql.info
-@@ -1737,6 +1745,7 @@ IF(NOT INSTALL_LAYOUT MATCHES "RPM")
+@@ -2168,6 +2176,7 @@ IF(NOT INSTALL_LAYOUT MATCHES "RPM")
      PATTERN "sp-imp-spec.txt" EXCLUDE
      PATTERN "README.build" EXCLUDE
    )
