@@ -1,7 +1,7 @@
 # Created by: Marc G. Fournier <scrappy@FreeBSD.org>
 
 PORTNAME?=	postgresql
-DISTVERSION?=	13.6
+DISTVERSION?=	13.7
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
 PORTREVISION?=	0
@@ -174,7 +174,8 @@ DEBUG_CONFIGURE_ENABLE=	debug
 PLIST_SUB+=		PG_USER=${PG_USER} \
 			PG_USER_regex=\b${PG_USER}\b \
 			PG_GROUP=${PG_GROUP} \
-			PG_GROUP_regex=\b${PG_GROUP}\b
+			PG_GROUP_regex=\b${PG_GROUP}\b \
+			PG_VERSION=13
 SUB_LIST+=		PG_GROUP=${PG_GROUP} \
 			PG_USER=${PG_USER} \
 			PG_UID=${PG_UID}
