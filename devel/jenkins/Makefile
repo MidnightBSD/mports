@@ -15,7 +15,7 @@ LICENSE=	mit
 CONFLICTS=	jenkins-lts-[0-9]*
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.8+
+JAVA_VERSION=	11+
 
 NO_BUILD=	yes
 
