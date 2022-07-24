@@ -24,19 +24,19 @@ PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
 
 .include <bsd.port.pre.mk>
 
+
+.if ${OSVERSION} < 200000
+IGNORE=	OS Not Supported
+.endif
+
 .if ${ARCH} == "amd64"
-.if ${OSVERSION} >= 200000
 VER=    11.0.7
 DISTFILES=	openjdk11-11.0.7+10.2_1.txz
 FBSD_PATH=	FreeBSD:11:amd64
 COMPONENT=.11
 .else
-IGNORE=	OS Not Supported
-.endif
-.else
-IGNORE=	architecture not supported
-VER=    8.181.13
-DISTFILES=      openjdk8-8.181.13.txz
+VER=    11.0.12
+DISTFILES=      openjdk11-11.0.12+7.1.pkg
 FBSD_PATH=      FreeBSD:11:i386
 COMPONENT=.11.${ARCH}
 .endif
