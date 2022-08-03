@@ -39,6 +39,7 @@ SUBDIR += public_suffix_list
 SUBDIR += py-aiodns
 SUBDIR += py-dns-lexicon
 SUBDIR += py-dnspython
+SUBDIR += py-dnspython1
 SUBDIR += py-idna
 SUBDIR += py-idna_ssl
 SUBDIR += py-ldns
