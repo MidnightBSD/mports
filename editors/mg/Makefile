@@ -1,5 +1,5 @@
 PORTNAME=	mg
-PORTVERSION=	6.6
+PORTVERSION=	7.0
 PORTEPOCH=	1
 CATEGORIES=	editors
 MASTER_SITES=	https://github.com/ibara/mg/releases/download/mg-${PORTVERSION}/
