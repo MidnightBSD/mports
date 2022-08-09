@@ -1,6 +1,6 @@
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	APACHE/apr
 DISTFILES=	apr-${APR_VERSION}.tar.gz \
@@ -11,6 +11,7 @@ COMMENT=	Apache Portability Library
 
 LICENSE=	apache2
 
+BUILD_DEPENDS+=	automake>=1.16.1:devel/automake
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 USES=		iconv pathfix libtool cpe
