@@ -1,53 +1,36 @@
-
-
 PORTNAME=	data
-PORTVERSION=	1.39
+PORTVERSION=	20220510
 CATEGORIES=	sysutils
-MASTER_SITES=	FREEBSD_LOCAL/sbruno:amd
+MASTER_SITES=	# none
 PKGNAMEPREFIX=	devcpu-
-DISTFILES=	amd64-microcode.20191228.tar.xz:amd
+DISTFILES=	# none
+EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Intel and AMD CPUs microcode updates
+COMMENT=	AMD and Intel CPUs microcode updates
 
-LICENSE=	EULA
-LICENSE_NAME=	Intel Software License Agreement
-LICENSE_FILE=	${FILESDIR}/LICENSE
-LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	intel
-GH_PROJECT=	Intel-Linux-Processor-Microcode-Data-Files
-GH_TAGNAME=	microcode-20210608
+LICENSE=	bsd2
 
 ONLY_FOR_ARCHS=	amd64 i386
-NO_ARCH=	yes
-NO_WRKSUBDIR=	yes
-
-DATADIR=	${PREFIX}/share/cpucontrol
-FWDIR=		/boot/firmware
 
 USE_RC_SUBR=	microcode_update
 
-.include <bsd.port.pre.mk>
+DATADIR=	${PREFIX}/share/cpucontrol
+NO_ARCH=	yes
+NO_BUILD=	yes
+NO_INSTALL=	yes
+SUB_FILES=	pkg-message
 
-.if ${OSVERSION} < 10000
-IGNORE=		Most Update to MidnightBSD 1.0 to use this.
-.endif
+NO_WRKSUBDIR=	yes
 
-post-extract:
-	${CP} -p ${FILESDIR}/Makefile ${FILESDIR}/ucode-split.c ${WRKSRC}
-	${REINPLACE_CMD} 's|%%GH_TAGNAME%%|${GH_TAGNAME}|g' ${WRKSRC}/Makefile
-	${CAT} ${WRKSRC}/Intel-Linux-Processor-Microcode-Data-Files-${GH_TAGNAME}/intel-ucode/* ${WRKSRC}/Intel-Linux-Processor-Microcode-Data-Files-${GH_TAGNAME}/intel-ucode-with-caveats/* > ${WRKSRC}/intel-ucode.bin
+OPTIONS_DEFAULT=	AMD INTEL
+OPTIONS_GROUP=		VENDOR
+OPTIONS_GROUP_VENDOR=	AMD INTEL
 
-do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd.bin ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam15h.bin ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam16h.bin ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam17h.bin ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/mcodes/* ${STAGEDIR}${DATADIR}/
-	${MKDIR} ${FAKE_DESTDIR}${FWDIR}
-	${INSTALL_DATA} ${WRKSRC}/intel-ucode.bin ${FAKE_DESTDIR}${FWDIR}/
+AMD_DESC=	Depend on sysutils/devcpu-data-amd
+INTEL_DESC=	Depend on sysutils/devcpu-data-intel
 
-.include <bsd.port.post.mk>
+AMD_RUN_DEPENDS=	${LOCALBASE}/share/cpucontrol/microcode_amd.bin:sysutils/devcpu-data-amd
+INTEL_RUN_DEPENDS=	/boot/firmware/intel-ucode.bin:sysutils/devcpu-data-intel
+
+.include <bsd.port.mk>
