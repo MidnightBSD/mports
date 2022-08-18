@@ -18,7 +18,7 @@ USE_RC_SUBR=	microcode_update
 DATADIR=	${PREFIX}/share/cpucontrol
 NO_ARCH=	yes
 NO_BUILD=	yes
-NO_INSTALL=	yes
+#NO_INSTALL=	yes
 SUB_FILES=	pkg-message
 
 NO_WRKSUBDIR=	yes
@@ -32,5 +32,9 @@ INTEL_DESC=	Depend on sysutils/devcpu-data-intel
 
 AMD_RUN_DEPENDS=	${LOCALBASE}/share/cpucontrol/microcode_amd.bin:sysutils/devcpu-data-amd
 INTEL_RUN_DEPENDS=	/boot/firmware/intel-ucode.bin:sysutils/devcpu-data-intel
+
+do-install:
+	${MKDIR} ${DATADIR}
+	${TOUCH} ${DATADIR}/installed
 
 .include <bsd.port.mk>
