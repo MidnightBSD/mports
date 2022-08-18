@@ -23,6 +23,7 @@ SUBDIR += netperf
 SUBDIR += netpipe
 SUBDIR += nttcp
 SUBDIR += pathrate
+SUBDIR += perftest
 SUBDIR += phoronix-test-suite
 SUBDIR += raidtest
 SUBDIR += ramspeed
