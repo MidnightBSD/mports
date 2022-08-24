@@ -1,9 +1,9 @@
 PORTNAME=	node
 DISTVERSIONPREFIX=	v
-DISTVERSION=	16.15.1
+DISTVERSION=	16.16.0
 PKGNAMESUFFIX=	16
 CATEGORIES=	www
-MASTER_SITES=	http://nodejs.org/dist/v${DISTVERSION}/
+MASTER_SITES=	https://nodejs.org/dist/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V8 JavaScript for client and server
