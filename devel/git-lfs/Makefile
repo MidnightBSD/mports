@@ -1,9 +1,11 @@
-PORTNAME=		git-lfs
+PORTNAME=	git-lfs
 DISTVERSIONPREFIX=	v
-DISTVERSION=		3.0.1
-CATEGORIES=		devel
+DISTVERSION=	3.0.2
+PORTREVISION=	4
+CATEGORIES=	devel
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	ports@MidightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Git extension for versioning large files
 
 LICENSE=	mit
@@ -12,15 +14,16 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 RUN_DEPENDS=	git:devel/git
 
 USES=		go:modules
-USE_GITHUB=	yes
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 OPTIONS_DEFINE=		MANPAGES
 OPTIONS_DEFAULT=	MANPAGES
 OPTIONS_SUB=		yes
 
-NO_TEST=	yes
-
 MANPAGES_BUILD_DEPENDS=	ronn:textproc/rubygem-ronn
+
+NO_TEST=	yes
 
 post-build-MANPAGES-on:
 	cd ${GO_WRKSRC}/docs/man && ${LOCALBASE}/bin/ronn -r *.ronn
