@@ -127,6 +127,7 @@ SUBDIR += git-subrepo
 SUBDIR += git-svn
 SUBDIR += git-sync
 SUBDIR += git-tools
+SUBDIR += gitg
 SUBDIR += github-backup-utils
 SUBDIR += glade
 SUBDIR += glib20
