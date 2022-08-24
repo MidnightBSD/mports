@@ -21,6 +21,7 @@ SUBDIR += colord-gtk
 SUBDIR += dia
 SUBDIR += djvulibre
 SUBDIR += drm-fbsd11.2-kmod
+SUBDIR += drm-fbsd12.0-kmod
 SUBDIR += egl-wayland
 SUBDIR += eglexternalplatform
 SUBDIR += eog
