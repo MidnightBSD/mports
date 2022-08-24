@@ -117,6 +117,7 @@ SUBDIR += git-cola
 SUBDIR += git-cvs
 SUBDIR += git-delta
 SUBDIR += git-extras
+SUBDIR += git-filter-repo
 SUBDIR += git-gui
 SUBDIR += git-lfs
 SUBDIR += git-merge-changelog
