@@ -934,6 +934,7 @@ SUBDIR += py-py-ubjson
 SUBDIR += py-python-dbusmock
 SUBDIR += py-python-distutils-extra
 SUBDIR += py-python-easyconfig
+SUBDIR += py-python-gitlab
 SUBDIR += py-python-mimeparse
 SUBDIR += py-python-subunit
 SUBDIR += py-pyudev
