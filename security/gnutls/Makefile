@@ -1,5 +1,5 @@
 PORTNAME=	gnutls
-PORTVERSION=	3.6.15
+PORTVERSION=	3.7.7
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
 
@@ -26,6 +26,10 @@ CONFIGURE_ARGS=	--disable-guile \
 		--with-system-priority-file=${PREFIX}/etc/gnutls/default-priorities \
 		--with-default-trust-store-file=${LOCALBASE}/share/certs/ca-root-nss.crt \
 		--with-trousers-lib=${LOCALBASE}/lib/libtspi.so.1 \
+		--without-brotli \
+		--without-zstd \
+		--without-tpm \
+		--without-tpm2 \
 		AUTOGEN=false \
 		ac_cv_type_max_align_t=yes
 LDFLAGS_i386=	-Wl,-z,notext
@@ -36,8 +40,8 @@ TEST_TARGET=	check
 # 32 bit test fail on magus. seems to be compiler related.
 NO_TEST=	yes
 
-OPTIONS_DEFINE=		DANE EXAMPLES IDN NLS P11KIT TPM
-OPTIONS_DEFAULT=	IDN P11KIT TPM
+OPTIONS_DEFINE=		DANE EXAMPLES IDN MAN3 NLS P11KIT
+OPTIONS_DEFAULT=	IDN MAN3 P11KIT
 OPTIONS_SUB=		yes
 
 DANE_DESC=		Certificate verification via DNSSEC
@@ -46,6 +50,8 @@ DANE_CONFIGURE_ENABLE=	libdane
 
 IDN_CONFIGURE_WITH=	idn
 IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
+
+MAN3_DESC=		Install API manpages (section 3)
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_CONFIGURE_OFF=	ac_cv_lib_intl_gettext=no
@@ -56,24 +62,16 @@ P11KIT_CONFIGURE_WITH=	p11-kit
 P11KIT_CONFIGURE_ON=	--with-default-trust-store-pkcs11="pkcs11:model=p11-kit-trust;manufacturer=PKCS%2311%20Kit"
 P11KIT_LIB_DEPENDS=	libp11-kit.so:security/p11-kit
 
-TPM_DESC=		Trusted Platform Module support
-TPM_CONFIGURE_WITH=	tpm
-TPM_LIB_DEPENDS=	libtspi.so:security/trousers
-
 INFO=		gnutls gnutls-guile
 
 .include <bsd.mport.options.mk>
-
-.if ${OSVERSION} < 200000
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-config.h.in
-.endif
 
 post-patch:
 	@${RM} ${WRKSRC}/doc/*.info*
 	@${REINPLACE_CMD} 's,/usr/share,${PREFIX}/share,' \
 		${WRKSRC}/doc/manpages/*.[13]
 	@${REINPLACE_CMD} -E 's,/etc/(gnutls|tpasswd),${PREFIX}&,g' \
-		${WRKSRC}/doc/cha-gtls-app.texi \
+		${WRKSRC}/doc/cha-config.texi \
 		${WRKSRC}/doc/gnutls-api.texi \
 		${WRKSRC}/doc/invoke-certtool.texi \
 		${WRKSRC}/doc/invoke-gnutls-cli.texi \
@@ -86,16 +84,20 @@ post-patch:
 		${WRKSRC}/doc/manpages/gnutls-serv.1 \
 		${WRKSRC}/doc/manpages/p11tool.1 \
 		${WRKSRC}/doc/manpages/srptool.1 \
+		${WRKSRC}/doc/srptool-examples.texi \
 		${WRKSRC}/lib/includes/gnutls/pkcs11.h \
 		${WRKSRC}/lib/pkcs11.c \
-		${WRKSRC}/src/p11tool-args.c.bak \
-		${WRKSRC}/src/srptool.c		
+		${WRKSRC}/src/p11tool-options.c \
+		${WRKSRC}/src/srptool.c
 	@${REINPLACE_CMD} \
 		's,/etc/pkcs11/modules,${PREFIX}/share/p11-kit/modules,' \
 		${WRKSRC}/doc/cha-tokens.texi \
 		${WRKSRC}/doc/invoke-p11tool.texi \
 		${WRKSRC}/doc/manpages/p11tool.1 \
-		${WRKSRC}/src/p11tool-args.c.bak
+		${WRKSRC}/src/p11tool-options.c
+# Bug 260078
+	@${REINPLACE_CMD} 's/-Wa,-march=all//' \
+		${WRKSRC}/lib/accelerated/aarch64/Makefile.in
 # Prevent regeneration.  The order is important.
 	@${TOUCH} ${WRKSRC}/doc/enums.texi \
 		${WRKSRC}/doc/invoke-gnutls-cli.texi \
