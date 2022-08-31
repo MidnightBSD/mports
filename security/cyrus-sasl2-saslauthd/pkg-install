@@ -1,7 +1,4 @@
 #!/bin/sh
-#
-#	$FreeBSD: head/security/cyrus-sasl2-saslauthd/pkg-install 340719 2014-01-22 15:52:06Z mat $
-#
 
 PKG_BATCH=${BATCH:=NO}
 PKG_PREFIX=${PKG_PREFIX:=/usr/local}
@@ -18,5 +15,6 @@ POST-INSTALL)
 	if [ "${PKG_BATCH}" = "NO" ]; then
 		sendmail_conf
 	fi
+	/usr/sbin/chown cyrus:mail /var/run/saslauthd
 	;;
 esac
