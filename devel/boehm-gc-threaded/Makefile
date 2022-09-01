@@ -8,9 +8,10 @@ LICENSE=	mit
 
 MASTERDIR=	${.CURDIR}/../boehm-gc
 DESCR=		${.CURDIR}/pkg-descr
+PLIST=		${.CURDIR}/pkg-plist
 
 GC_VARIANT=	threaded
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 .include "${MASTERDIR}/Makefile"
