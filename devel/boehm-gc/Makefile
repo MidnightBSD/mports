@@ -46,6 +46,7 @@ CONFIGURE_ARGS+=--disable-threads --enable-redirect-malloc
 . endif
 . if ${GC_VARIANT} == "threaded"
 CONFIGURE_ARGS+=--enable-threads=posix --disable-redirect-malloc
+PLIST_FILES+=	include/gc/gc_pthread_redirects.h
 . endif
 .else
 CONFIGURE_ARGS+=--disable-threads --disable-redirect-malloc
@@ -72,10 +73,12 @@ post-patch:
 		's,-lgc,-lgc-${GC_VARIANT},' ${WRKSRC}/bdw-gc.pc.in
 
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/include
-	${RM} -r ${STAGEDIR}${PREFIX}/share
-	${MV} ${STAGEDIR}${PREFIX}/libdata/pkgconfig/bdw-gc.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
+.if ${GC_VARIANT} == "redirect"
+	${RM} -r ${PREFIX}/include
+.endif
+	${RM} -r ${PREFIX}/share
+	${MV} ${PREFIX}/libdata/pkgconfig/bdw-gc.pc \
+		${PREFIX}/libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
 
 .else # ! GC_VARIANT
 
@@ -86,9 +89,9 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/gc.man ${STAGEDIR}${MAN3PREFIX}/man/man3/gc.3
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	${INSTALL_MAN} ${WRKSRC}/doc/gc.man ${MAN3PREFIX}/man/man3/gc.3
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR})
 
 .endif
 
