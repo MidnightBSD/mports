@@ -1,6 +1,5 @@
 PORTNAME=	gc
-PORTVERSION=	8.0.6
-PORTREVISION=	1
+PORTVERSION=	8.2.2
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/ivmai/bdwgc/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	boehm-
@@ -32,13 +31,14 @@ WRKSRC=		${WRKDIR}/${DISTNAME:C/[a-z]$//}
 OPTIONS_DEFINE=	DEBUG
 
 .ifdef GC_VARIANT
-INSTLIBS=	cord gc gccpp
+INSTLIBS=	cord gc gccpp gctba
 PLIST=		${NONEXISTENT}
 PLIST_FILES=	${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so,} \
 		${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so.1,} \
-		lib/libcord-${GC_VARIANT}.so.1.4.0 \
-		lib/libgc-${GC_VARIANT}.so.1.4.4 \
-		lib/libgccpp-${GC_VARIANT}.so.1.4.1 \
+		lib/libcord-${GC_VARIANT}.so.1.5.0 \
+		lib/libgc-${GC_VARIANT}.so.1.5.1 \
+		lib/libgccpp-${GC_VARIANT}.so.1.5.0 \
+		lib/libgctba-${GC_VARIANT}.so.1.5.0 \
 		libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
 RUN_DEPENDS+=	${LOCALBASE}/include/gc/gc.h:devel/boehm-gc
 . if ${GC_VARIANT} == "redirect"
@@ -66,6 +66,7 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's,libgc\.la,libgc-${GC_VARIANT}.la,g ; \
 		s,libgccpp\.la,libgccpp-${GC_VARIANT}.la,g ; \
+		s,libgctba\.la,libgctba-${GC_VARIANT}.la,g ; \
 		s,libcord\.la,libcord-${GC_VARIANT}.la,g' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e \
 		's,-lgc,-lgc-${GC_VARIANT},' ${WRKSRC}/bdw-gc.pc.in
