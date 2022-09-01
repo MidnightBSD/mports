@@ -11,7 +11,6 @@ include/gc/gc_disclaim.h
 include/gc/gc_gcj.h
 include/gc/gc_inline.h
 include/gc/gc_mark.h
-include/gc/gc_pthread_redirects.h
 include/gc/gc_tiny_fl.h
 include/gc/gc_typed.h
 include/gc/gc_version.h
