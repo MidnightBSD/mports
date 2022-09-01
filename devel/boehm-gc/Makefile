@@ -1,5 +1,6 @@
 PORTNAME=	gc
 PORTVERSION=	8.0.6
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/ivmai/bdwgc/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	boehm-
