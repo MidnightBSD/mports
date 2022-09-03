@@ -216,7 +216,7 @@ XWIDGETS_LIB_DEPENDS=		libsoup-2.4.so:devel/libsoup \
 XWIDGETS_USE=			XORG=xcomposite
 XWIDGETS_CONFIGURE_WITH=	xwidgets
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH:Mpowerpc64*}
 USE_GCC=	yes
