@@ -1,7 +1,6 @@
 PORTNAME=	vim
-PORTVERSION=	8.2.5172
+PORTVERSION=	9.0.0369
 DISTVERSIONPREFIX=	v
-PORTREVISION=	0
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -58,7 +57,6 @@ PLIST=		${.CURDIR}/pkg-plist-tiny
 
 .elif ${FLAVOR:U} == gtk2
 GUI=		gtk2
-INSTALLS_ICONS=	yes
 CONFIGURE_ARGS+=--enable-xim --enable-fontset
 PLIST_SUB+=	GUI="" DESKTOP=""
 USES+=		desktop-file-utils gnome xorg
@@ -67,7 +65,6 @@ USE_XORG=	ice sm x11 xpm xt
 
 .elif ${FLAVOR:U} == gtk3
 GUI=		gtk3
-INSTALLS_ICONS=	yes
 CONFIGURE_ARGS+=--enable-xim --enable-fontset
 PLIST_SUB+=	GUI="" DESKTOP=""
 USES+=		desktop-file-utils gnome xorg
@@ -83,8 +80,8 @@ USES+=		motif xorg
 USE_XORG=	ice sm x11 xmu xt
 
 .elif ${FLAVOR:U} == x11
-GUI=		no
-CONFIGURE_ARGS+=--enable-xim --enable-fontset --with-x
+GUI=		x11
+CONFIGURE_ARGS+=--with-x
 PLIST_SUB+=	GUI="@comment " DESKTOP="@comment "
 USES+=		xorg
 USE_XORG=	ice sm x11 xmu xpm xt
@@ -93,33 +90,28 @@ USE_XORG=	ice sm x11 xmu xpm xt
 # Options {{{1
 # The bulk of the OPTIONS are for normal (non-tiny) vim
 ### Make sure any new options are excluded below in CONSOLE/TINY
-OPTIONS_DEFAULT=	CTAGS_BASE DEFAULT_VIMRC PYTHON
-OPTIONS_DEFINE=		DEFAULT_VIMRC MAKE_JOBS NLS XTERM_SAVE
+OPTIONS_DEFAULT=	CTAGS_BASE PYTHON
+OPTIONS_DEFINE=		MAKE_JOBS NLS XTERM_SAVE
 OPTIONS_SINGLE=		CTAGS
 OPTIONS_SINGLE_CTAGS=	CTAGS_BASE CTAGS_EXUBERANT CTAGS_UNIVERSAL
 OPTIONS_GROUP=		LANGBIND
 OPTIONS_GROUP_LANGBIND=	LUA PERL PYTHON RUBY SCHEME TCL
 OPTIONS_SUB=		yes
 
-# vim-tiny excludes everything except CONSOLE, DEFAULT_VIMRC, MAKE_JOBS
+# vim-tiny excludes everything except CONSOLE, MAKE_JOBS
 .if ${FLAVOR:U} == tiny
-OPTIONS_EXCLUDE:=	${OPTIONS_DEFINE:NDEFAULT_VIMRC:NMAKE_JOBS} \
+OPTIONS_EXCLUDE:=	${OPTIONS_DEFINE:NMAKE_JOBS} \
 			${OPTIONS_SINGLE_UI:NCONSOLE} \
 			${OPTIONS_GROUP_LANGBIND} \
 			${OPTIONS_SINGLE_CTAGS}
 .endif
 
-DEFAULT_VIMRC_DESC=	Install bundled vimrc as default setting
 MAKE_JOBS_DESC=		Enable parallel build
 XTERM_SAVE_DESC=	Restore xterm screen after exit
 
 CTAGS_BASE_DESC=	Use system ctags
 CTAGS_EXUBERANT_DESC=	Use exctags instead of ctags
 CTAGS_UNIVERSAL_DESC=	Use uctags instead of ctags
-
-# BROKEN: ruby.h: error: wrong number of arguments specified for 'deprecated' attribute
-OPTIONS_EXCLUDE_powerpc64=	RUBY
-OPTIONS_EXCLUDE_powerpc64le=	RUBY
 
 # GENERAL OPTIONS
 CTAGS_EXUBERANT_RUN_DEPENDS=	exctags:devel/ctags
@@ -157,8 +149,6 @@ TCL_CONFIGURE_ENABLE=	tclinterp
 TCL_CONFIGURE_WITH=	tclsh=tclsh${TCL_VER}
 TCL_USES=		tcl
 
-#.include <bsd.mport.options.mk>
-
 # Targets {{{1
 .include <bsd.port.pre.mk>
 
@@ -170,36 +160,29 @@ post-extract:
 	${INSTALL_DATA} ${FILESDIR}/vietnamese_viscii.vim ${WRKSRC}/runtime/keymap
 
 post-patch:
-	@${ECHO_CMD} '#define SYS_VIMRC_FILE "'${ETCDIR}'/vimrc"' >> ${WRKSRC}/src/feature.h
-	@${ECHO_CMD} '#define SYS_GVIMRC_FILE "'${ETCDIR}'/gvimrc"' >> ${WRKSRC}/src/feature.h
-	@${REINPLACE_CMD} -e 's|-liconv|${ICONV_LIB}|g; s|/usr/local|${LOCALBASE}|g' \
+	${ECHO_CMD} 'source $$VIMRUNTIME/defaults_freebsd.vim' >> ${WRKSRC}/runtime/defaults.vim
+	${REINPLACE_CMD} -e 's|-liconv|${ICONV_LIB}|g; s|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/src/auto/configure
-# Work around qa-check shebang error
-	-${REINPLACE_CMD} -e 1d ${WRKSRC}/runtime/tools/demoserver.py && \
-	${RM} ${WRKSRC}/runtime/tools/demoserver.py.bak
 
 post-configure:
 # Needed when devel/libsysinfo is installed:
 	${REINPLACE_CMD} -e '/^#define HAVE_SYSINFO/ d' ${WRKSRC}/src/auto/config.h
 
-post-install-DEFAULT_VIMRC-on:
-	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/vimrc ${FAKE_DESTDIR}${ETCDIR}/vimrc.sample
-
 .if ${FLAVOR:U} == tiny
 do-install:
-	${MKDIR} ${DATADIR}/${VIM_VER}
+	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${VIM_VER}
 	${INSTALL_PROGRAM} ${WRKSRC}/src/vim ${PREFIX}/bin
-	${TOUCH} ${DATADIR}/${VIM_VER}/defaults.vim
+	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${DATADIR}/${VIM_VER}/defaults.vim
 	${INSTALL_MAN} ${WRKSRC}/runtime/doc/vim.1 ${MAN1PREFIX}/man/man1
 
 .else  # flavor != tiny
 post-install:
-	@${RM} ${PREFIX}/bin/ex
-	@${RM} ${PREFIX}/bin/view
-.for F in eview evim gview gvim gvimdiff rgview rgvim rview rvim vimdiff
+	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${DATADIR}/${VIM_VER}/
+	${RM} ${PREFIX}/bin/ex
+	${RM} ${PREFIX}/bin/view
+.  for F in eview evim gview gvim gvimdiff rgview rgvim rview rvim vimdiff
 	${LN} -sf vim ${PREFIX}/bin/$F
-.endfor
+.  endfor
 
 # OPTIONS
 post-patch-CTAGS_BASE-on:
@@ -223,8 +206,8 @@ post-patch-XTERM_SAVE-on:
 	${REINPLACE_CMD} -e '/FEAT_XTERM_SAVE/ s|.*|#define FEAT_XTERM_SAVE|' ${WRKSRC}/src/feature.h
 
 post-install-NLS-off:
-	@${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${VIM_VER}/lang
-	@${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${VIM_VER}/keymap
+	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${VIM_VER}/lang
+	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${VIM_VER}/keymap
 	${INSTALL_DATA} ${WRKSRC}/runtime/keymap/* ${FAKE_DESTDIR}${DATADIR}/${VIM_VER}/keymap
 .endif	#!defined(TINY)
 
