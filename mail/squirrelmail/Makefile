@@ -1,7 +1,7 @@
 # Created by: Simon Dick <simond@irrelevant.org>
 
 PORTNAME=	squirrelmail
-PORTVERSION=	20200422
+PORTVERSION=	20211024
 CATEGORIES=	mail www
 MASTER_SITES=	http://snapshots.squirrelmail.org/ \
 	http://freebsd.uzsolt.hu/src/
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/doc/COPYING
 
 USES=		cpe gettext perl5 php:web,flavors tar:bzip2
-USE_PHP=	session hash gettext mbstring pcre openssl xml
+USE_PHP=	gettext hash mbstring openssl pcre session xml
 USE_PERL5=	run
 
 PORTSCOUT=	ignore:1
