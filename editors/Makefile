@@ -4,6 +4,7 @@ SUBDIR += 2bsd-vi
 SUBDIR += abiword
 SUBDIR += abiword-docs
 SUBDIR += emacs
+SUBDIR += emacs-devel
 SUBDIR += gedit
 SUBDIR += gedit-plugins
 SUBDIR += impress
