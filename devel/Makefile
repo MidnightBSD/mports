@@ -59,6 +59,7 @@ SUBDIR += cscope
 SUBDIR += ctags
 SUBDIR += cunit
 SUBDIR += cvs
+SUBDIR += cvs-devel
 SUBDIR += cvsbook
 SUBDIR += cvschangelogbuilder
 SUBDIR += cvsgraph
