@@ -1,5 +1,5 @@
 PORTNAME=	ninja
-PORTVERSION=	1.10.2
+PORTVERSION=	1.11.1
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	2
 CATEGORIES=	devel
@@ -16,6 +16,8 @@ WRKSRC=		${WRKDIR}/ninja-${PORTVERSION}
 
 CONFLICTS=	irc/ninja-[0-9]*
 USES=		python
+
+PORTSCOUT=	limit:^1\.
 
 PLIST_FILES=	bin/ninja
 PORTDOCS=	README.md manual.asciidoc
