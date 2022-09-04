@@ -75,7 +75,8 @@ SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
 		contrib/credential/netrc/git-credential-netrc.perl \
 		contrib/buildsystems/generate contrib/contacts/git-contacts \
 		templates/hooks--fsmonitor-watchman.sample
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 
 CONFIGURE_ARGS=	--enable-pthreads=-pthread ac_cv_header_libcharset_h=no
 
