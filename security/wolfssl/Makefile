@@ -34,12 +34,14 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-static \
 		--enable-tls13 \
 		--enable-tls13-draft18
-TEST_TARGET=	check
 CFLAGS+=	-DWOLFSSL_ALT_NAMES
 PORTDOCS=	*
 OPTIONS_DEFINE=	DEBUG DOCS
 
 DEBUG_CONFIGURE_ON=	--enable-debug
+
+# magus
+NO_TEST=	yes
 
 post-configure:
 	@${REINPLACE_CMD} \
