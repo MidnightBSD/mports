@@ -2,6 +2,7 @@
 
 PORTNAME=	wayland
 PORTVERSION=	1.20.0
+PORTREVISION=	1
 CATEGORIES=	graphics wayland
 MASTER_SITES=	https://wayland.freedesktop.org/releases/
 
@@ -16,6 +17,8 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libepoll-shim.so:devel/libepoll-shim
 
 CFLAGS+=	"-I${LOCALBASE}/include/libepoll-shim"
+
+USE_GCC=	yes
 
 USES=		cpe gnome meson pkgconfig tar:xz
 USE_GNOME=	libxslt:build
