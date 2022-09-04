@@ -1,7 +1,7 @@
 # Created by: lesi@FreeBSD.org
 
 PORTNAME=	libdrm
-PORTVERSION=	2.4.106
+PORTVERSION=	2.4.112
 PORTEPOCH=	1
 CATEGORIES=	graphics x11
 MASTER_SITES=	https://dri.freedesktop.org/libdrm/
@@ -9,13 +9,15 @@ MASTER_SITES=	https://dri.freedesktop.org/libdrm/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Userspace interface to kernel Direct Rendering Module services
 
-PATCH_SITES=	https://gitlab.freedesktop.org/manu/drm/-/commit/
-PATCHFILES+=	e41ca0a00f88ef8.patch:-p1
+PATCH_SITES=	https://gitlab.freedesktop.org/mesa/${PORTNAME:S/lib//}/-/commit/
+PATCHFILES+=	7207431e466a.patch:-p1 # https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/193
 
 LICENSE=	mit
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess
+
+USE_GCC=yes
 
 USES=		gnome meson pkgconfig tar:xz
 USE_LDCONFIG=	yes
@@ -23,7 +25,7 @@ USE_LDCONFIG=	yes
 OPTIONS_DEFINE=	MANPAGES TESTS
 OPTIONS_SUB=	yes
 
-TESTS_DESC=	Install test programs (which are always built)
+TESTS_DESC=	Build and install test programs
 
 .if defined(PACKAGE_BUILDING)
 OPTIONS_DEFAULT+=	MANPAGES
@@ -80,7 +82,13 @@ PLIST_SUB+=	VMWGFX_DRIVERS="@comment "
 PLIST_SUB+=	ARM_DRIVERS=""
 PLIST_SUB+=	INTEL_DRIVER="@comment "
 PLIST_SUB+=	NOUVEAU_DRIVER="@comment "
-PLIST_SUB+=	RADEON_DRIVERS="@comment "
+PLIST_SUB+=	RADEON_DRIVERS=""
+PLIST_SUB+=	VMWGFX_DRIVERS="@comment "
+.elif ${ARCH} == riscv64
+PLIST_SUB+=	ARM_DRIVERS="@comment "
+PLIST_SUB+=	INTEL_DRIVER="@comment "
+PLIST_SUB+=	NOUVEAU_DRIVER="@comment "
+PLIST_SUB+=	RADEON_DRIVERS=""
 PLIST_SUB+=	VMWGFX_DRIVERS="@comment "
 .else
 PLIST_SUB+=	ARM_DRIVERS="@comment "
