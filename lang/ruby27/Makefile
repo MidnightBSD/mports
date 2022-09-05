@@ -9,10 +9,16 @@ MASTER_SITES=	RUBY/${MASTER_SITE_SUBDIR_RUBY}
 DISTNAME=	${RUBY_DISTNAME}
 DIST_SUBDIR=	ruby
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented interpreted scripting language
 
-LICENSE=	bsd2
+LICENSE=	bsd2 ruby
+LICENSE_COMB=	dual
+LICENSE_FILE_bsd2=${WRKSRC}/BSDL
+LICENSE_FILE_ruby=	${WRKSRC}/COPYING
+
+DEPRECATED=	Please migrate to newer versions. Ruby 2.7 will reach its EoL on April 12, 2023
+EXPIRATION_DATE=	2023-04-12
 
 # Using LIB_DEPENDS finds the libffi from gcc which causes problems
 BUILD_DEPENDS=	libffi>=0:devel/libffi
