@@ -1,10 +1,9 @@
 # Created by: Sergey Skvortsov <skv@protey.ru>
 
 PORTNAME=	redis
-DISTVERSION=	6.2.7
+DISTVERSION=	7.0.4
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
-PKGNAMESUFFIX=	62
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
@@ -14,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES+=		compiler:c11 cpe gmake
 CPE_VENDOR=	redislabs
+
+CONFLICTS_INSTALL=    redis-devel redis6 # etc/rc.d/redis
 
 OPTIONS_DEFINE=	JEMALLOC TESTS TLS TRIB
 OPTIONS_RADIO=	EXTLUA
@@ -31,6 +32,7 @@ MAKE_ENV=	V=yo OPTIMIZATION=
 
 JEMALLOC_MAKE_ENV=	USE_JEMALLOC=yes
 
+
 LUA_USES=		lua:51
 LUA_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.lua
 LUA_VARS=		_addflags=true
@@ -40,6 +42,7 @@ LUAJIT_BUILD_DEPENDS=	${LOCALBASE}/include/luajit-2.0/lua.h:lang/luajit
 LUAJIT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.luajit
 LUAJIT_VARS=		_addflags=true
 
+LUAJITOR_BROKEN=      Fails to link
 LUAJITOR_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
 LUAJITOR_BUILD_DEPENDS=	${LOCALBASE}/include/luajit-2.1/lua.h:lang/luajit-openresty
 LUAJITOR_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.luajit-or \
