@@ -1074,8 +1074,9 @@ USE_SUBMAKE=	yes
 
 #
 # These componenets include targets that may have been overwritten by the 
-# above extentions, so they are loaded here.
+# above extensions, so they are loaded here.
 #
+MAKE_CMD?=		${BSDMAKE}
 USE_MPORT_TOOLS=	yes
 .include "${MPORTCOMPONENTS}/fake/targets.mk"
 .include "${MPORTCOMPONENTS}/update.mk"
@@ -1124,7 +1125,6 @@ DISTINFO_FILE?=		${MASTERDIR}/distinfo
 
 MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
-MAKE_CMD?=		${BSDMAKE}
 MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 			DESTDIR=${DESTDIR} \
 			PREFIX=${PREFIX} \
