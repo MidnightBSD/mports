@@ -17,6 +17,7 @@ MAKE_CMD?=	/usr/bin/make
 AWK?=		/usr/bin/awk
 BASENAME?=	/usr/bin/basename
 BRANDELF?=	/usr/bin/brandelf
+BSDMAKE?=	/usr/bin/make
 BZCAT?=		/usr/bin/bzcat
 BZIP2_CMD?=	/usr/bin/bzip2
 CAT?=		/bin/cat
