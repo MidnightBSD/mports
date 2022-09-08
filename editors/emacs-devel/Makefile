@@ -218,10 +218,6 @@ XWIDGETS_CONFIGURE_WITH=	xwidgets
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH:Mpowerpc64*}
-USE_GCC=	yes
-.endif
-
 .if ${PORT_OPTIONS:MNATIVECOMP}
 NATIVECOMP_COMMENT_END=
 NATIVECOMP_COMMENT_START=
