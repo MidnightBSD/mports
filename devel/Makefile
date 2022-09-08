@@ -1148,6 +1148,7 @@ SUBDIR += uthash
 SUBDIR += valgrind
 SUBDIR += viewvc-devel
 SUBDIR += websvn
+SUBDIR += wininfo
 SUBDIR += wizardkit
 SUBDIR += woff2
 SUBDIR += xa65
