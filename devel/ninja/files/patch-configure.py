@@ -1,6 +1,6 @@
---- configure.py.orig	2019-05-07 21:03:31.268580000 -0400
-+++ configure.py	2019-05-07 21:15:42.452106000 -0400
-@@ -52,6 +52,8 @@
+--- configure.py.orig	2022-08-30 19:47:02 UTC
++++ configure.py
+@@ -52,6 +52,8 @@ class Platform(object):
              self._platform = 'solaris'
          elif self._platform.startswith('mingw'):
              self._platform = 'mingw'
@@ -9,7 +9,7 @@
          elif self._platform.startswith('win'):
              self._platform = 'msvc'
          elif self._platform.startswith('bitrig'):
-@@ -67,7 +69,7 @@
+@@ -69,7 +71,7 @@ class Platform(object):
      def known_platforms():
        return ['linux', 'darwin', 'freebsd', 'openbsd', 'solaris', 'sunos5',
                'mingw', 'msvc', 'gnukfreebsd', 'bitrig', 'netbsd', 'aix',
@@ -18,8 +18,8 @@
  
      def platform(self):
          return self._platform
-@@ -98,11 +100,11 @@
-         return self._platform == 'aix'
+@@ -103,11 +105,11 @@ class Platform(object):
+         return self._platform == 'os400' or os.uname().sysname.startswith('OS400')
  
      def uses_usr_local(self):
 -        return self._platform in ('freebsd', 'openbsd', 'bitrig', 'dragonfly', 'netbsd')
@@ -32,3 +32,12 @@
  
      def supports_ninja_browse(self):
          return (not self.is_windows()
+@@ -333,7 +335,7 @@ if platform.is_msvc():
+         cflags += ['/Ox', '/DNDEBUG', '/GL']
+         ldflags += ['/LTCG', '/OPT:REF', '/OPT:ICF']
+ else:
+-    cflags = ['-g', '-Wall', '-Wextra',
++    cflags = ['-Wall', '-Wextra',
+               '-Wno-deprecated',
+               '-Wno-missing-field-initializers',
+               '-Wno-unused-parameter',
