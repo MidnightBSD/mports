@@ -20,7 +20,7 @@ check_rcfile_fix_perms() {
 add_default_virtuals() {
     cat >>"$1" <<_EOF
 
-# This and the next three lines added by FreeBSD's post-install script
+# This and the next three lines added by BSD's post-install script
 DEFAULT_EMAIL_HOST="$(hostname -f)"
 DEFAULT_URL_HOST="$(hostname -f)"
 add_virtualhost(DEFAULT_URL_HOST, DEFAULT_EMAIL_HOST)

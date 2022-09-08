@@ -1,8 +1,8 @@
 # Created by: n_hibma@qubesoft.com
 
 PORTNAME=	mailman
-DISTVERSION=	2.1.34
-PORTREVISION=	0
+DISTVERSION=	2.1.39
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	GNU \
 		SF/${PORTNAME}/Mailman%202.1%20%28stable%29/${PORTVERSION} \
@@ -36,7 +36,7 @@ CONFIGURE_ARGS+=--with-python=${PYTHON_CMD} \
 		--with-mailhost=localhost \
 		--with-urlhost=localhost
 
-CONFLICTS=	ja-mailman-2.1.*
+CONFLICTS=	ja-mailman-2.1.* mailman*exim* mailman*postfix*
 
 # The Mailman port supports a number of variables that may be tweaked at
 # build time.  Getting the values of some of them right is crucial!
@@ -66,21 +66,23 @@ PORTDOCS=	ACKNOWLEDGMENTS BUGS FAQ INSTALL NEWS README README-I18N.en \
 		mailman-admin.txt \
 		mailman-install.txt \
 		mailman-member.txt \
-		FreeBSD-post-install-notes
+		MidnightBSD-post-install-notes
 
-OPTIONS_SINGLE=	MTA
+OPTIONS_SINGLE=		MTA
 OPTIONS_SINGLE_MTA=	COURIER EXIM4 OPENSMTPD POSTFIX SENDMAIL
-OPTIONS_DEFINE=	HTDIG NAMAZU2 NOMAILPWD NLS DOCS
+OPTIONS_DEFINE=		HTDIG NAMAZU2 NOMAILPWD NLS DOCS
 OPTIONS_DEFAULT=	SENDMAIL NOMAILPWD
-COURIER_DESC=	for use with courier
-EXIM4_DESC=	for use with exim4
-OPENSMTPD_DESC=	for use with opensmtpd - EXPERIMENTAL -
-POSTFIX_DESC=	for use with postfix
-SENDMAIL_DESC=	for use with sendmail
-HTDIG_DESC=	- EXPERIMENTAL - htdig integration patches
-NAMAZU2_DESC=	Make private archives searchable with namazu2
-NOMAILPWD_DESC=	Elide plaintext passwords from monthly reminders
-MTA_DESC=	Integrate with which MTA?
+COURIER_DESC=		for use with courier
+EXIM4_DESC=		for use with exim4
+EXIM4_RUN_DEPENDS=	exim>=0:mail/exim
+OPENSMTPD_DESC=		for use with opensmtpd - EXPERIMENTAL -
+POSTFIX_DESC=		for use with postfix
+POSTFIX_RUN_DEPENDS=	postfix:mail/postfix
+SENDMAIL_DESC=		for use with sendmail
+HTDIG_DESC=		- EXPERIMENTAL - htdig integration patches
+NAMAZU2_DESC=		Make private archives searchable with namazu2
+NOMAILPWD_DESC=		Elide plaintext passwords from monthly reminders
+MTA_DESC=		Integrate with which MTA?
 
 .include <bsd.mport.options.mk>
 
@@ -109,8 +111,6 @@ MAIL_GID?=	mail
 .endif
 
 .if ${PORT_OPTIONS:MPOSTFIX}
-BUILD_DEPENDS+=	postfix:mail/postfix
-RUN_DEPENDS+=	postfix:mail/postfix
 MAIL_GID?=	mailman
 EXTRA_PATCHES+=	${FILESDIR}/postfix-verp.diff
 .endif
@@ -124,7 +124,8 @@ MAIL_GID?=	_smtpd
 .endif
 
 .if ${PORT_OPTIONS:MHTDIG}
-PKGNAMESUFFIX+=	-with-htdig
+# no whitespace here!
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-with-htdig
 # how to create PATCHFILES:
 #X identify what is the version of msapiro's patches corresponding to the release.
 #X fetch http://bazaar.launchpad.net/~msapiro/mailman/htdig/tarball/1822
@@ -148,8 +149,8 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-Mailman-Cgi-private.py
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-mailpasswds
 .endif
 
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dnspython>=0:dns/py-dnspython@${PY_FLAVOR}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dnspython>=0:dns/py-dnspython@${PY_FLAVOR}
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dnspython1>=0:dns/py-dnspython1@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dnspython1>=0:dns/py-dnspython1@${PY_FLAVOR}
 
 pre-everything::
 	@${ECHO} ""
@@ -215,11 +216,11 @@ post-install:
 	    && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 	    -d ${MAILMANDIR}/${dir} ${dir})
 .endfor
-	-${RM} ${STAGEDIR}${MAILMANDIR}/pythonlib/*.egg-info
+	@${RM} ${STAGEDIR}${MAILMANDIR}/pythonlib/*.egg-info
 	@# mm_cfg.py is handled by pkg-plist, no need to archive a copy:
-	${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.py
-	${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.pyc
-	${MKDIR} ${STAGEDIR}${PREFIX}/${IMGDIR}
+	@${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.py
+	@${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.pyc
+	@${MKDIR} ${STAGEDIR}${PREFIX}/${IMGDIR}
 	${CP} -p ${STAGEDIR}${MAILMANDIR}/icons/* ${STAGEDIR}${PREFIX}/${IMGDIR}
 	${INSTALL_DATA} ${FILESDIR}/powerlogo.png \
 	  ${STAGEDIR}${PREFIX}/${IMGDIR}/
@@ -228,14 +229,14 @@ post-install:
 .if ${PORT_OPTIONS:MDOCS}
 	${CP} -R ${WRKSRC}/doc/* ${WRKSRC}/
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${FILESDIR}/FreeBSD-post-install-notes ${STAGEDIR}${DOCSDIR}
-.for docfile in ${PORTDOCS:NFreeBSD-post-install-notes}
+	${INSTALL_DATA} ${FILESDIR}/MidnightBSD-post-install-notes ${STAGEDIR}${DOCSDIR}
+.for docfile in ${PORTDOCS:NMidnightBSD-post-install-notes}
 	${INSTALL_DATA} ${WRKSRC}/${docfile} ${STAGEDIR}${DOCSDIR}
 .endfor
 .endif
-	${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 	${ECHO} "This marker file ensures that Python's upgrade-site-packages handles ${PKGNAME}." >${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/mailman-info.txt
-	${INSTALL_SCRIPT} ${PKGINSTALL} ${STAGEDIR}${MAILMANDIR}/bin/FreeBSD-post-install
+	${INSTALL_SCRIPT} ${PKGINSTALL} ${STAGEDIR}${MAILMANDIR}/bin/MidnightBSD-post-install
 	${MKDIR} ${STAGEDIR}${MAILMANDIR}/templates/site/en
 	${INSTALL_DATA} ${FILESDIR}/templates_site_README.txt ${STAGEDIR}${MAILMANDIR}/templates/site/README.txt
 

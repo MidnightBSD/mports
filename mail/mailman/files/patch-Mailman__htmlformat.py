@@ -4,7 +4,7 @@
  from mm_cfg import MAILMAN_URL
  PYTHON_URL  = 'http://www.python.org/'
  GNU_URL     = 'http://www.gnu.org/'
-+FREEBSD_URL = 'http://www.freebsd.org/'
++MIDNIGHTBSD_URL = 'http://www.midnightbsd.org/'
  
  # The names of the image logo files.  These are concatentated onto
  # mm_cfg.IMAGE_LOGOS (not urljoined).
@@ -22,7 +22,7 @@
 -        gnulink = '<img src="%s" alt="GNU\'s Not Unix" border=0>' % \
 -                  logo(GNU_HEAD)
 -        t.AddRow([mmlink, pylink, gnulink])
-+        freebsdlink = '<img src="%s" alt="Powered by FreeBSD" border=0>' % \
++        freebsdlink = '<img src="%s" alt="Powered by MidnightBSD" border=0>' % \
 +                 logo(FREEBSD_POWERED)
 +        t.AddRow([mmlink, pylink, freebsdlink])
      else:
@@ -33,7 +33,7 @@
          pylink = Link(PYTHON_URL, _('Python Powered'))
 -        gnulink = Link(GNU_URL, _("Gnu's Not Unix"))
 -        t.AddRow([mmlink, pylink, gnulink])
-+        freebsdlink = Link(FREEBSD_URL, "Powered by FreeBSD")
++        freebsdlink = Link(MIDNIGHTBSD_URL, "Powered by MidnightBSD")
 +        t.AddRow([mmlink, pylink, freebsdlink])
      return t
  

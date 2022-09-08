@@ -311,7 +311,7 @@
 @sample %%MMDIR%%/Mailman/mm_cfg.py.dist %%MMDIR%%/Mailman/mm_cfg.py
 %%MMDIR%%/Mailman/versions.py
 %%MMDIR%%/Mailman/versions.pyc
-%%MMDIR%%/bin/FreeBSD-post-install
+%%MMDIR%%/bin/MidnightBSD-post-install
 %%MMDIR%%/bin/add_members
 %%MMDIR%%/bin/arch
 %%MMDIR%%/bin/b4b5-archfix
@@ -2385,6 +2385,7 @@
 %%MMDIR%%/tests/bounces/simple_39.txt
 %%MMDIR%%/tests/bounces/simple_40.txt
 %%MMDIR%%/tests/bounces/simple_41.txt
+%%MMDIR%%/tests/bounces/simple_44.txt
 %%MMDIR%%/tests/bounces/sina_01.txt
 %%MMDIR%%/tests/bounces/smtp32_01.txt
 %%MMDIR%%/tests/bounces/smtp32_02.txt
@@ -2420,7 +2421,7 @@
 %%MMDIR%%/tests/test_security_mgr.py
 %%MMDIR%%/tests/test_smtp.py
 %%MMDIR%%/tests/testall.py
-@comment @(root,wheel,644) %%PYTHON_SITELIBDIR%%/mailman-info.txt
+@(root,wheel,644) %%PYTHON_SITELIBDIR%%/mailman-info.txt
 @dir(,,755) %%MMDIR%%/tests/msgs
 @dir(,,755) %%MMDIR%%/tests/bounces
 @dir(,,755) %%MMDIR%%/tests

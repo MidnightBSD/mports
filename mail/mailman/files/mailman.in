@@ -48,7 +48,7 @@ mailman_prestart() {
 	### check if site list is created
 	if test ! -d "%%MAILMANDIR%%/lists/mailman" ; then
 		err 78 $'The site-wide "mailman" mailing list has not been created.\n\
-  Please review %%DOCSDIR%%/FreeBSD-post-install-notes,\n\
+  Please review %%DOCSDIR%%/MidnightBSD-post-install-notes,\n\
   and section 4 onward of %%DOCSDIR%%/mailman-install.txt.'
 	fi
 
@@ -56,7 +56,7 @@ mailman_prestart() {
 	vhosts=$(PYTHONPATH="%%MAILMANDIR%%/bin" "%%PYTHON_CMD%%" -c 'import paths;from Mailman import mm_cfg;_x=dict(mm_cfg.VIRTUAL_HOSTS);print repr(_x);')
 	if [ "${vhosts}" = "{'localhost': 'localhost'}" ] ; then
 		warn 'No DEFAULT or virtual hosts configured.'
-		warn 'Review %%DOCSDIR%%/FreeBSD-post-install-notes #1 for instructions.'
+		warn 'Review %%DOCSDIR%%/MidnightBSD-post-install-notes #1 for instructions.'
 		if ! checkyesno mailman_run_localhost ; then
 			err 78 "Start of mailman refused due to insufficient configuration."
 		fi
