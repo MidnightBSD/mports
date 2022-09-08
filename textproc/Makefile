@@ -289,6 +289,7 @@ SUBDIR += py-tomli
 SUBDIR += py-towncrier
 SUBDIR += py-typogrify
 SUBDIR += py-wcmatch
+SUBDIR += py-zope.i18nmessageid
 SUBDIR += qt5-xml
 SUBDIR += qt5-xmlpatterns
 SUBDIR += raptor
