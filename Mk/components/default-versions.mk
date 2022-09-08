@@ -55,7 +55,7 @@ LIBRSVG2_DEFAULT?=    rust
 # Possible values: c7
 LINUX_DEFAULT?=		c7
 # Possible values: 60, 70, -devel (to be used when non-base compiler is required)
-LLVM_DEFAULT?=		70
+LLVM_DEFAULT?=		90
 LUA_DEFAULT?=		5.2
 # Possible values: 5.10, 5.20, 6.8
 MONO_DEFAULT=		5.10
