@@ -1,0 +1,8 @@
+When upgrading, there is a known bug with this port that it doesn't
+clean up after the old version.  If you have errors running meson,
+remove the old directory. 
+
+replace with the default python version you are using and the version 
+number of the old meson release.
+
+rm -rf /usr/local/lib/python3.8/site-packages/meson-0.63.1-py3.8.egg-info/
