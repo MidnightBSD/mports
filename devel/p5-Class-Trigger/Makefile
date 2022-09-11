@@ -1,6 +1,5 @@
 PORTNAME=	Class-Trigger
-PORTVERSION=	0.14
-PORTREVISION=	1
+PORTVERSION=	0.15
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,7 +10,8 @@ COMMENT=	Mixin to add / call inheritable triggers
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-IO-stringy>=0:devel/p5-IO-stringy
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-IO-Stringy>=0:devel/p5-IO-Stringy
 
 USES=		perl5
 USE_PERL5=	configure
