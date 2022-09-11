@@ -117,6 +117,7 @@ SUBDIR += p5-Crypt-OpenSSL-X509
 SUBDIR += p5-Crypt-RC4
 SUBDIR += p5-Crypt-RC5
 SUBDIR += p5-Crypt-RC6
+SUBDIR += p5-Crypt-SMIME
 SUBDIR += p5-Crypt-SSLeay
 SUBDIR += p5-Crypt-SmbHash
 SUBDIR += p5-Digest
