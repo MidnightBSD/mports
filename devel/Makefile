@@ -132,6 +132,7 @@ SUBDIR += git-sync
 SUBDIR += git-tools
 SUBDIR += gitg
 SUBDIR += github-backup-utils
+SUBDIR += githui
 SUBDIR += glade
 SUBDIR += glib20
 SUBDIR += glibmm
