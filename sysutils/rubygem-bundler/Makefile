@@ -1,12 +1,13 @@
 # Created by: Robert Gogolok <gogo@cs.uni-sb.de>
 
 PORTNAME=	bundler
-DISTVERSION=	2.3.6
+PORTVERSION=	2.3.32
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool that manages gem dependencies for Ruby applications
+WWW=		https://bundler.io/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md

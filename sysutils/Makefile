@@ -170,6 +170,7 @@ SUBDIR += qt5-qtpaths
 SUBDIR += qt5-qtplugininfo
 SUBDIR += restic
 SUBDIR += rubygem-bundler
+SUBDIR += rubygem-fluentd
 SUBDIR += scan_ffs
 SUBDIR += screen
 SUBDIR += screenie

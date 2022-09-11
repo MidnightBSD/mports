@@ -210,6 +210,7 @@ SUBDIR += qt5-websockets-qml
 SUBDIR += qt5-webview
 SUBDIR += rubygem-cgi
 SUBDIR += rubygem-hpricot
+SUBDIR += rubygem-webrick
 SUBDIR += serf
 SUBDIR += selfhtml-de
 SUBDIR += sitecopy
