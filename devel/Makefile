@@ -379,6 +379,7 @@ SUBDIR += p5-Class-Inspector
 SUBDIR += p5-Class-Load
 SUBDIR += p5-Class-Load-XS
 SUBDIR += p5-Class-MakeMethods
+SUBDIR += p5-Class-MethodMaker
 SUBDIR += p5-Class-Method-Modifiers
 SUBDIR += p5-Class-Singleton
 SUBDIR += p5-Class-Tiny
