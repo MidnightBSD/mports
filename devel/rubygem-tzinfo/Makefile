@@ -1,0 +1,21 @@
+# Created by: Rui Lopes (rgl ruilopes com)
+
+PORTNAME=	tzinfo
+PORTVERSION=	2.0.5
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Daylight-savings aware timezone support for Ruby
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+RUN_DEPENDS=	rubygem-concurrent-ruby>=1.0:devel/rubygem-concurrent-ruby
+
+USES=		gem
+USE_RUBY=	yes
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>
