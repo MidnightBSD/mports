@@ -103,6 +103,7 @@ SUBDIR += mythes
 SUBDIR += openjade
 SUBDIR += opensearch
 SUBDIR += opensp
+SUBDIR += p5-HTML-Format
 SUBDIR += p5-HTML-Tidy
 SUBDIR += p5-Hash-Merge
 SUBDIR += p5-Lingua-EN-Inflect
