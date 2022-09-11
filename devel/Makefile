@@ -1113,6 +1113,7 @@ SUBDIR += rubygem-i18n
 SUBDIR += rubygem-mustache
 SUBDIR += rubygem-rdoc
 SUBDIR += rubygem-sigdump
+SUBDIR += rubygem-strptime
 SUBDIR += rubygem-svn2git
 SUBDIR += rubygem-tzinfo
 SUBDIR += rubygem-tzinfo-data
