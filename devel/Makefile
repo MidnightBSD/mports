@@ -1114,6 +1114,7 @@ SUBDIR += rubygem-mustache
 SUBDIR += rubygem-rdoc
 SUBDIR += rubygem-sigdump
 SUBDIR += rubygem-svn2git
+SUBDIR += rubygem-yajl-ruby
 SUBDIR += rust-analyzer
 SUBDIR += rust-bindgen
 SUBDIR += rust-cbindgen
