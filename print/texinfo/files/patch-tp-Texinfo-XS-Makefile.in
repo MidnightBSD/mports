@@ -1,0 +1,11 @@
+--- tp/Texinfo/XS/Makefile.in.bak	2022-09-11 15:27:55.788652000 -0400
++++ tp/Texinfo/XS/Makefile.in	2022-09-11 15:29:36.033276000 -0400
+@@ -942,7 +942,7 @@
+ ######################## Gnulib ################################
+ 
+ ################### End Gnulib section #########################
+-AM_CPPFLAGS = -I$(srcdir) -I$(srcdir)/gnulib/lib \
++AM_CPPFLAGS = -I$(srcdir) -I/usr/local/include -I$(srcdir)/gnulib/lib \
+ 	-I$(builddir)/gnulib/lib -DDATADIR=\"$(datadir)\"
+ ACLOCAL_AMFLAGS = -I gnulib/m4
+ SUBDIRS = gnulib/lib

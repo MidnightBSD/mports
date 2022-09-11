@@ -1,8 +1,8 @@
 # Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 
 PORTNAME=	texinfo
-PORTVERSION=	6.7
-PORTREVISION=	4
+PORTVERSION=	6.8
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	print
 MASTER_SITES=	GNU \
@@ -16,6 +16,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Typeset documentation system with multiple format output
+WWW=		https://www.gnu.org/software/texinfo/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -29,11 +30,12 @@ RUN_DEPENDS=	p5-Locale-libintl>=0:devel/p5-Locale-libintl \
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
-USES=		charsetfix cpe gmake iconv libtool ncurses perl5 tar:xz
+USES=		charsetfix cpe gmake iconv:wchar_t libtool localbase ncurses perl5 tar:xz
 
 CONFIGURE_ARGS=	--with-external-libintl-perl \
 		--with-external-Text-Unidecode \
 		--with-external-Unicode-EastAsianWidth
+CONFIGURE_ENV=	PERL_EXT_CC="${CC}"
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip install-tex
 MAKE_ARGS=	PERL=${PERL} TEXMF=${LOCALBASE}/${TEXMFDIR}
@@ -42,9 +44,10 @@ USE_TEX=	yes
 
 INFO=		info-stnd texinfo
 
-HTMLXREF_CNF_RELDATE=	20200719
-TEXI2DVI_RELDATE=	20191018
-TEXINFO_TEX_RELDATE=	20200711
+# Use the date on https://ftp.gnu.org/gnu/texinfo/
+HTMLXREF_CNF_RELDATE=	20220110
+TEXI2DVI_RELDATE=	20220408
+TEXINFO_TEX_RELDATE=	20220409
 
 CPE_VENDOR=	gnu
 CPE_VERSION=	${PORTVERSION:R}
@@ -59,6 +62,9 @@ post-patch:
 	@${REINPLACE_CMD} -e '/rm -f $$(DESTDIR)/ s|$$| $$(DESTDIR)$$(xsdir)/XSParagraph.*|' ${WRKSRC}/tp/Texinfo/XS/Makefile.in
 	@${REINPLACE_CMD} -e 's|free (.*)|Safe&|' ${WRKSRC}/tp/Texinfo/XS/misc.c
 	@${REINPLACE_CMD} -e 's/tinfo/tinfow/g' ${WRKSRC}/configure
+
+post-configure:
+	(cd ${WRKSRC}; patch < ${FILESDIR}/extra-config.h)
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/util/htmlxref.cnf ${STAGEDIR}${DATADIR}
