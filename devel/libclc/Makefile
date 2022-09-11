@@ -43,7 +43,7 @@ do-configure:
 
 # Keep in sync with lang/clover
 .if ${LLVM_DEFAULT:C/[1-5]./&0/:S,-devel,990,} >= 90
-LLVM_DEFAULT=	80
+LLVM_DEFAULT=	70
 .endif
 
 .include <bsd.port.mk>
