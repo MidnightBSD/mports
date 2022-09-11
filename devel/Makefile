@@ -1048,6 +1048,7 @@ SUBDIR += py-unicodedata2
 SUBDIR += py-unittest2
 SUBDIR += py-usb
 SUBDIR += py-virtualenv
+SUBDIR += py-wadllib
 SUBDIR += py-wcwidth
 SUBDIR += py-websockets
 SUBDIR += py-wheel
