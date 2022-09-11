@@ -120,6 +120,7 @@ SUBDIR += p5-Crypt-RC6
 SUBDIR += p5-Crypt-SMIME
 SUBDIR += p5-Crypt-SSLeay
 SUBDIR += p5-Crypt-SmbHash
+SUBDIR += p5-Data-Password
 SUBDIR += p5-Digest
 SUBDIR += p5-Digest-BubbleBabble
 SUBDIR += p5-Digest-HMAC
