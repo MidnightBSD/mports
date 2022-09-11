@@ -153,6 +153,7 @@ SUBDIR += p5-Text-Tabs+Wrap
 SUBDIR += p5-Text-Template
 SUBDIR += p5-Text-WordDiff
 SUBDIR += p5-Unicode-EastAsianWidth
+SUBDIR += p5-Unicode-LineBreak
 SUBDIR += p5-XML-DOM
 SUBDIR += p5-XML-Filter-BufferText
 SUBDIR += p5-XML-Grove
