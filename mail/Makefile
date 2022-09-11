@@ -100,6 +100,7 @@ SUBDIR += py-aiosmtpd
 SUBDIR += py-authres
 SUBDIR += py-dkimpy
 SUBDIR += py-email-validator
+SUBDIR += py-flufl.bounce
 SUBDIR += py-fuglu
 SUBDIR += py-mail-parser
 SUBDIR += py-managesieve3

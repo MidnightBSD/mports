@@ -155,6 +155,7 @@ SUBDIR += py-bottle
 SUBDIR += py-cheroot
 SUBDIR += py-cssselect
 SUBDIR += py-cssutils
+SUBDIR += py-falcon
 SUBDIR += py-flask
 SUBDIR += py-flup6
 SUBDIR += py-google-api-python-client
