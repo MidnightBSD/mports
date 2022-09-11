@@ -1110,6 +1110,7 @@ SUBDIR += rlog
 SUBDIR += ruby-gems
 SUBDIR += rubygem-concurrent-ruby
 SUBDIR += rubygem-i18n
+SUBDIR += rubygem-msgpack
 SUBDIR += rubygem-mustache
 SUBDIR += rubygem-rdoc
 SUBDIR += rubygem-sigdump
