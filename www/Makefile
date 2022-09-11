@@ -43,6 +43,7 @@ SUBDIR += mattermost-server
 SUBDIR += mattermost-webapp
 SUBDIR += mediawiki135
 SUBDIR += mediawiki137
+SUBDIR += mhonarc
 SUBDIR += midori
 SUBDIR += minio
 SUBDIR += minio-client
