@@ -1,5 +1,3 @@
-
-
 SUBDIR += accessibility
 SUBDIR += archivers
 SUBDIR += astro
