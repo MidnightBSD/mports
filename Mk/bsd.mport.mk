@@ -712,36 +712,35 @@ WWWGRP?=	www
 # End of pre-makefile section.
 
 # Start of post-makefile section.
-.if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
+.  if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .if defined(_POSTMKINCLUDED)
 check-makefile::
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
 	@${FALSE}
-.endif
-
+.    endif
 
 _POSTMKINCLUDED=	yes
 
-.if defined(BUNDLE_LIBS)
+.    if defined(BUNDLE_LIBS)
 PKG_NOTES+=	no_provide_shlib
 PKG_NOTE_no_provide_shlib=	yes
-.endif
+.    endif
 
-.if defined(DEPRECATED)
+.    if defined(DEPRECATED)
 PKG_NOTES+=	deprecated
 PKG_NOTE_deprecated=${DEPRECATED}
-.endif
+.    endif
 
-.if defined(EXPIRATION_DATE)
+.    if defined(EXPIRATION_DATE)
 PKG_NOTES+=	expiration_date
 PKG_NOTE_expiration_date=	${EXPIRATION_DATE}
-.endif
+.    endif
 
-.if !empty(FLAVOR)
+.    if !empty(FLAVOR)
 PKG_NOTES+=	flavor
 PKG_NOTE_flavor=	${FLAVOR}
-.endif
+.    endif
 
 TEST_ARGS?=		${MAKE_ARGS}
 TEST_ENV?=		${MAKE_ENV}
@@ -761,19 +760,26 @@ PKG_ENV+=		PORTSDIR=${PORTSDIR}
 .undef NO_PACKAGE
 .endif
 
-.if empty(FLAVOR)
+.    if empty(FLAVOR)
 _WRKDIR=	work
-.else
+.    else
 _WRKDIR=	work-${FLAVOR}
-.endif
+.    endif
 
 WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/${_WRKDIR}
 BINARY_LINKDIR=	${WRKDIR}/.bin
 PATH:=			${BINARY_LINKDIR}:${PATH}
-.if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
+.    if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
 MAKE_ENV+=			PATH=${PATH}
 CONFIGURE_ENV+=		PATH=${PATH}
-.endif
+.    endif
+
+PKGCONFIG_LINKDIR=	${WRKDIR}/.pkgconfig
+PKGCONFIG_BASEDIR=	/usr/libdata/pkgconfig
+.    if !${MAKE_ENV:MPKG_CONFIG_LIBDIR=*} && !${CONFIGURE_ENV:MPKG_CONFIG_LIBDIR=*}
+MAKE_ENV+=			PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${LOCALBASE}/share/pkgconfig:${PKGCONFIG_BASEDIR}
+CONFIGURE_ENV+=		PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${LOCALBASE}/share/pkgconfig:${PKGCONFIG_BASEDIR}
+.    endif
 
 .    if !defined(IGNORE_MASTER_SITE_GITHUB) && defined(USE_GITHUB) && empty(USE_GITHUB:Mnodefault)
 .      if defined(WRKSRC)
