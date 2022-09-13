@@ -748,6 +748,14 @@ TEST_ENV?=		${MAKE_ENV}
 
 PKG_ENV+=		PORTSDIR=${PORTSDIR}
 
+.    if defined(CROSS_SYSROOT)
+PKG_ENV+=		ABI_FILE=${CROSS_SYSROOT}/bin/sh
+MAKE_ENV+=		NM=${NM} \
+				STRIPBIN=${STRIPBIN} \
+				PKG_CONFIG_SYSROOT_DIR="${CROSS_SYSROOT}"
+CONFIGURE_ENV+=	PKG_CONFIG_SYSROOT_DIR="${CROSS_SYSROOT}"
+.    endif
+
 # Integrate with the license auditing framework
 .if !defined (DISABLE_LICENSES)
 .include "${MPORTCOMPONENTS}/licenses.mk"
@@ -892,6 +900,10 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 
 # XXX PIE support to be added here
 MAKE_ENV+=	NO_PIE=yes
+# We will control debug files. Don't let builds that use /usr/share/mk
+# split out debutg symbols since the plist won't know to expect it.
+MAKE_ENV+=	MK_DEBUG_FILES=no
+MAKE_ENV+=	MK_KERNEL_SYMBOLS=no
 
 .if defined(NOPORTDOCS)
 PLIST_SUB+=	PORTDOCS="@comment "
