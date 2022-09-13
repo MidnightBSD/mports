@@ -2192,7 +2192,7 @@ check-makevars::
 	defined(PACKAGE_BUILDING) || defined(BATCH) || \
 	exists(${_OPTIONSFILE}) || exists(${_OPTIONSFILE}.local))
 _OPTIONS_OK=yes
-.endif
+.    endif
 
 ################################################################
 # The following are used to create easy dummy targets for
@@ -4370,8 +4370,8 @@ pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
 test: ${_TEST_DEP}
 .      if !defined(NO_TEST)
 test: ${_TEST_REAL_SEQ}
-.endif
-#.endif
+.      endif
+.    endif
 
 .endif
 # End of post-makefile section.
