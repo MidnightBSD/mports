@@ -626,9 +626,15 @@ ${v}+=	${${FLAVOR}_${v}}
 .      for v in BROKEN IGNORE
 .        if defined(${FLAVOR}_${v})
 ${v}=	flavor "${FLAVOR}" ${${FLAVOR}_${v}}
-.endif
-.endfor
-.endif # defined(${FLAVOR})
+.        endif
+.      endfor
+.      if defined(FLAVORS_SUB)
+PLIST_SUB+=	${FLAVORS:N${FLAVOR}:@v@${v:tu}="\@comment " NO_${v:tu}=""@}
+PLIST_SUB+=	${FLAVOR:tu}="" NO_${FLAVOR:tu}="@comment "
+SUB_LIST+=	${FLAVORS:N${FLAVOR}:@v@${v:tu}="\@comment " NO_${v:tu}=""@}
+SUB_LIST+=	${FLAVOR:tu}="" NO_${FLAVOR:tu}="@comment "
+.      endif
+.    endif # defined(${FLAVOR})
 
 .if defined(USE_GCPIO)
 EXTRACT_DEPENDS+=       gcpio:archivers/gcpio
