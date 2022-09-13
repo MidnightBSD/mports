@@ -75,7 +75,6 @@ _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
 # make -C /usr/mports/category/port/.
 .CURDIR:=		${.CURDIR:tA}
 
-
 # make sure bmake treats -V as expected
 .MAKE.EXPAND_VARIABLES= yes
 
@@ -89,27 +88,27 @@ WRAPPERSDIR?=		${PORTSDIR}/Mk/wrappers/
 .MAKEOVERRIDES:=	${.MAKEOVERRIDES:NFLAVOR}
 
 .if defined(CROSS_TOOLCHAIN)
-.if !defined(CROSS_SYSROOT)
+.  if !defined(CROSS_SYSROOT)
 IGNORE=	CROSS_SYSROOT should be defined
-.endif
+.  endif
 .include "${LOCALBASE}/share/toolchains/${CROSS_TOOLCHAIN}.mk"
 # Do not define CPP on purpose
-.if !defined(HOSTCC)
+.  if !defined(HOSTCC)
 HOSTCC:=	${CC}
 HOSTCXX:=	${CXX}
-.endif
-.if !defined(CC_FOR_BUILD)
+.  endif
+.  if !defined(CC_FOR_BUILD)
 CC_FOR_BUILD:=	${HOSTCC}
 CXX_FOR_BUILD:=	${HOSTCXX}
-.endif
+.  endif
 CONFIGURE_ENV+= HOSTCC="${HOSTCC}" HOSTCXX="${HOSTCXX}" CC_FOR_BUILD="${CC_FOR_BUILD}" CXX_FOR_BUILD="${CXX_FOR_BUILD}"
 
 CC=		${XCC} --sysroot=${CROSS_SYSROOT}
 CXX=		${XCXX} --sysroot=${CROSS_SYSROOT}
 CPP=		${XCPP} --sysroot=${CROSS_SYSROOT}
-.for _tool in AS AR LD NM OBJCOPY RANLIB SIZE STRINGS
+.  for _tool in AS AR LD NM OBJCOPY RANLIB SIZE STRINGS
 ${_tool}=	${CROSS_BINUTILS_PREFIX}${_tool:tl}
-.endfor
+.  endfor
 LD+=		--sysroot=${CROSS_SYSROOT}
 STRIP_CMD=	${CROSS_BINUTILS_PREFIX}strip
 # only bmake supports the following
@@ -173,35 +172,35 @@ _MANOWNGRP=
 .endif
 
 # Start of options section
-.if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
+.  if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
 
 
 # Get the default maintainer
 MAINTAINER?=	ports@MidnightBSD.org
 
 # Get the architecture
-.if !defined(ARCH)
+.    if !defined(ARCH)
 ARCH!=	${UNAME} -p
-.endif
+.    endif
 HOSTARCH:=	${ARCH}
-.if defined(CROSS_TOOLCHAIN)
+.    if defined(CROSS_TOOLCHAIN)
 ARCH=	${CROSS_TOOLCHAIN:C,-.*$,,}
-.endif
+.    endif
 _EXPORTED_VARS+=	ARCH
 
-.if ${ARCH} == powerpc64
-.  if !defined(PPC_ABI)
+.    if ${ARCH} == powerpc64
+.      if !defined(PPC_ABI)
 PPC_ABI!=	${CC} -dM -E - < /dev/null | ${AWK} '/_CALL_ELF/{print "ELFv"$$3}'
-.    if ${PPC_ABI} != ELFv2
+.        if ${PPC_ABI} != ELFv2
 PPC_ABI=	ELFv1
-.    endif
-.  endif
+.        endif
+.      endif
 _EXPORTED_VARS+=	PPC_ABI
-.endif
+.    endif
 
 # Get operating system versions for a cross build
-.if defined(CROSS_SYSROOT)
-.if !exists(${CROSS_SYSROOT}/usr/include/sys/param.h)
+.    if defined(CROSS_SYSROOT)
+.      if !exists(${CROSS_SYSROOT}/usr/include/sys/param.h)
 .error CROSS_SYSROOT does not include /usr/include/sys/param.h.
 .endif
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${CROSS_SYSROOT}/usr/include/sys/param.h
@@ -209,14 +208,14 @@ _OSRELEASE!= ${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version
 .endif
 
 # Get the operating system type
-.if !defined(OPSYS)
+.    if !defined(OPSYS)
 OPSYS!=	${UNAME} -s
-.endif
+.    endif
 _EXPORTED_VARS+=	OPSYS
 
-.if !defined(_OSRELEASE)
+.    if !defined(_OSRELEASE)
 _OSRELEASE!=	${UNAME} -r
-.endif
+.    endif
 _EXPORTED_VARS+=	_OSRELEASE
 
 # Get the operating system revision
@@ -231,16 +230,16 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < /
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
 .else
 .error Unable to determine OS version.  Either define OSVERSION, install /usr/include/sys/param.h or define SRC_BASE.
-.endif
-.endif
+.      endif
+.    endif
 _EXPORTED_VARS+=	OSVERSION
 
 .if (${OSVERSION} < 12000)
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
-. if defined(ALLOW_UNSUPPORTED_SYSTEM)
+.      if defined(ALLOW_UNSUPPORTED_SYSTEM)
 WARNING+=			"${_UNSUPPORTED_SYSTEM_MESSAGE}"
-. else
+.      else
 show-unsupported-system-error:
 	@${ECHO_MSG} "/!\\ ERROR: /!\\"
 	@${ECHO_MSG}
@@ -249,8 +248,8 @@ show-unsupported-system-error:
 	@${ECHO_MSG} "No support will be provided if you silence this message by defining ALLOW_UNSUPPORTED_SYSTEM." | ${FMT_80}
 	@${ECHO_MSG}
 	@${FALSE}
-. endif
-.endif
+.      endif
+.    endif
 
 # TODO: portsnap build issue
 # Convert OSVERSION to major release number
@@ -269,10 +268,10 @@ _OSVERSION_MAJOR=	${OSVERSION:C/([0-9])([0-9][0-9])[0-9]{3}/\1/}
 
 MASTERDIR?=	${.CURDIR}
 
-.if ${MASTERDIR} != ${.CURDIR}
+.    if ${MASTERDIR} != ${.CURDIR}
 SLAVE_PORT?=	yes
 MASTER_PORT?=${MASTERDIR:C/[^\/]+\/\.\.\///:C/[^\/]+\/\.\.\///:C/^.*\/([^\/]+\/[^\/]+)$/\\1/}
-.else
+.    else
 SLAVE_PORT?=	no
 MASTER_PORT?=
 .endif
@@ -306,31 +305,31 @@ PLIST_SUB+=     LIB32DIR=${LIB32DIR}
 # If they exist, include Makefile.inc, then architecture/operating
 # system specific Makefiles, then local Makefile.local.
 
-.if ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
+.    if ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
-.if exists(${MASTERDIR}/../Makefile.inc)
+.    if exists(${MASTERDIR}/../Makefile.inc)
 .include "${MASTERDIR}/../Makefile.inc"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
-.if exists(${MASTERDIR}/Makefile.${ARCH}-${OPSYS})
+.    if exists(${MASTERDIR}/Makefile.${ARCH}-${OPSYS})
 .include "${MASTERDIR}/Makefile.${ARCH}-${OPSYS}"
 USE_SUBMAKE=	yes
-.elif exists(${MASTERDIR}/Makefile.${OPSYS})
+.    elif exists(${MASTERDIR}/Makefile.${OPSYS})
 .include "${MASTERDIR}/Makefile.${OPSYS}"
 USE_SUBMAKE=	yes
-.elif exists(${MASTERDIR}/Makefile.${ARCH})
+.    elif exists(${MASTERDIR}/Makefile.${ARCH})
 .include "${MASTERDIR}/Makefile.${ARCH}"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
-.if exists(${MASTERDIR}/Makefile.local)
+.    if exists(${MASTERDIR}/Makefile.local)
 .include "${MASTERDIR}/Makefile.local"
 USE_SUBMAKE=	yes
-.elif ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/Makefile.local)
+.    elif ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/Makefile.local)
 .include "${.CURDIR}/Makefile.local"
 USE_SUBMAKE=	yes
 .endif
@@ -360,15 +359,15 @@ UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 # At least KDE needs TMPDIR for the package building,
 # so we're setting it to the known default value.
-.if defined(PACKAGE_BUILDING)
+.    if defined(PACKAGE_BUILDING)
 TMPDIR?=	/tmp
-.endif # defined(PACKAGE_BUILDING)
+.    endif # defined(PACKAGE_BUILDING)
 
-.if defined(WITH_DEBUG_PORTS)
-.if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
+.    if defined(WITH_DEBUG_PORTS)
+.      if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
 WITH_DEBUG=	yes
-.endif
-.endif
+.      endif
+.    endif
 
 # Respect TMPDIR passed via make.conf or similar and pass it down
 # to configure and make.
@@ -424,33 +423,33 @@ STRIP=	#none
 .include "${MPORTCOMPONENTS}/options.mk"
 
 # Start of pre-makefile section.
-.if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
+.  if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
 
 .include "${MPORTCOMPONENTS}/sanity.mk"
 
 _PREMKINCLUDED=	yes
 
-.if defined(PORTVERSION)
-.if ${PORTVERSION:M*[-_,]*}x != x
+.    if defined(PORTVERSION)
+.      if ${PORTVERSION:M*[-_,]*}x != x
 IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
-.endif
-.if defined(DISTVERSION)
-DEV_ERROR+=	"Defining both PORTVERSION and DISTVERSION is wrong, only set one and let the framework create the other one"
-.endif
+.      endif
+.      if defined(DISTVERSION)
+DEV_ERROR+=	"Defining both PORTVERSION and DISTVERSION is wrong, only set one, if necessary, set DISTNAME"
+.      endif
 DISTVERSION?=	${PORTVERSION:S/:/::/g}
-.elif defined(DISTVERSION)
+.    elif defined(DISTVERSION)
 PORTVERSION=	${DISTVERSION:tl:C/([a-z])[a-z]+/\1/g:C/([0-9])([a-z])/\1.\2/g:C/:(.)/\1/g:C/[^a-z0-9+]+/./g}
-.endif
+.    endif
 
 PORTREVISION?=	0
-.if ${PORTREVISION} != 0
+.    if ${PORTREVISION} != 0
 _SUF1=	_${PORTREVISION}
-.endif
+.    endif
 
 PORTEPOCH?=		0
-.if ${PORTEPOCH} != 0
+.    if ${PORTEPOCH} != 0
 _SUF2=	,${PORTEPOCH}
-.endif
+.    endif
 
 PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
 PKGBASE=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
@@ -482,7 +481,7 @@ FILESDIR?=              ${MASTERDIR}/files
 SCRIPTDIR?=             ${MASTERDIR}/scripts
 PKGDIR?=                ${MASTERDIR} 
 
-PKGCOMPATDIR?=	${LOCALBASE}/lib/compat/pkg
+PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 
 #
 # Handle the backwards compatibility stuff for extension loading
@@ -586,16 +585,16 @@ IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}.
 .  endif
 .endif
 
-.if !empty(FLAVORS) && empty(FLAVOR)
+.    if !empty(FLAVORS) && empty(FLAVOR)
 FLAVOR=	${FLAVORS:[1]}
-.endif
+.    endif
 
 # Reorder FLAVORS so the default is first if set by the port.
-.if empty(_FLAVOR) && !empty(FLAVORS) && !empty(FLAVOR)
+.    if empty(_FLAVOR) && !empty(FLAVORS) && !empty(FLAVOR)
 FLAVORS:=	${FLAVOR} ${FLAVORS:N${FLAVOR}}
-.endif
+.    endif
 
-.if !empty(FLAVOR) && !defined(_DID_FLAVORS_HELPERS)
+.    if !empty(FLAVOR) && !defined(_DID_FLAVORS_HELPERS)
 _DID_FLAVORS_HELPERS=	yes
 _FLAVOR_HELPERS_OVERRIDE=	DESCR PLIST PKGNAMEPREFIX PKGNAMESUFFIX
 _FLAVOR_HELPERS_APPEND=	 	CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL \
@@ -603,21 +602,21 @@ _FLAVOR_HELPERS_APPEND=	 	CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL \
 							FETCH_DEPENDS BUILD_DEPENDS LIB_DEPENDS \
 							RUN_DEPENDS TEST_DEPENDS
 # These overwrite the current value
-.for v in ${_FLAVOR_HELPERS_OVERRIDE}
-.if defined(${FLAVOR}_${v})
+.      for v in ${_FLAVOR_HELPERS_OVERRIDE}
+.        if defined(${FLAVOR}_${v})
 ${v}=	${${FLAVOR}_${v}}
-.endif
-.endfor
+.        endif
+.      endfor
 
 # These append to the current value
-.for v in ${_FLAVOR_HELPERS_APPEND}
-.if defined(${FLAVOR}_${v})
+.      for v in ${_FLAVOR_HELPERS_APPEND}
+.        if defined(${FLAVOR}_${v})
 ${v}+=	${${FLAVOR}_${v}}
-.endif
-.endfor
+.        endif
+.      endfor
 
-.for v in BROKEN IGNORE
-.if defined(${FLAVOR}_${v})
+.      for v in BROKEN IGNORE
+.        if defined(${FLAVOR}_${v})
 ${v}=	flavor "${FLAVOR}" ${${FLAVOR}_${v}}
 .endif
 .endfor
@@ -700,7 +699,7 @@ WWWGRP?=	www
 # End of pre-makefile section.
 
 # Start of post-makefile section.
-.if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
+.  if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .if defined(_POSTMKINCLUDED)
 check-makefile::
@@ -711,25 +710,25 @@ check-makefile::
 
 _POSTMKINCLUDED=	yes
 
-.if defined(BUNDLE_LIBS)
+.    if defined(BUNDLE_LIBS)
 PKG_NOTES+=	no_provide_shlib
 PKG_NOTE_no_provide_shlib=	yes
-.endif
+.    endif
 
-.if defined(DEPRECATED)
+.    if defined(DEPRECATED)
 PKG_NOTES+=	deprecated
 PKG_NOTE_deprecated=${DEPRECATED}
-.endif
+.    endif
 
-.if defined(EXPIRATION_DATE)
+.    if defined(EXPIRATION_DATE)
 PKG_NOTES+=	expiration_date
 PKG_NOTE_expiration_date=	${EXPIRATION_DATE}
-.endif
+.    endif
 
-.if !empty(FLAVOR)
+.    if !empty(FLAVOR)
 PKG_NOTES+=	flavor
 PKG_NOTE_flavor=	${FLAVOR}
-.endif
+.    endif
 
 TEST_ARGS?=		${MAKE_ARGS}
 TEST_ENV?=		${MAKE_ENV}
@@ -749,16 +748,16 @@ PKG_ENV+=		PORTSDIR=${PORTSDIR}
 .undef NO_PACKAGE
 .endif
 
-.if empty(FLAVOR)
+.    if empty(FLAVOR)
 _WRKDIR=	work
-.else
+.    else
 _WRKDIR=	work-${FLAVOR}
-.endif
+.    endif
 
 WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/${_WRKDIR}
 BINARY_LINKDIR=	${WRKDIR}/.bin
 PATH:=			${BINARY_LINKDIR}:${PATH}
-.if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
+.    if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
 MAKE_ENV+=			PATH=${PATH}
 CONFIGURE_ENV+=		PATH=${PATH}
 .endif
@@ -767,40 +766,40 @@ CONFIGURE_ENV+=		PATH=${PATH}
 .      if defined(WRKSRC)
 DEV_WARNING+=	"You are using USE_GITHUB and WRKSRC is set which is wrong.  Set GH_PROJECT correctly or set WRKSRC_SUBDIR and remove WRKSRC entirely."
 .      endif
-WRKSRC?=	${WRKDIR}/${GH_PROJECT_DEFAULT}-${GH_TAGNAME_EXTRACT}
+WRKSRC?=		${WRKDIR}/${GH_PROJECT_DEFAULT}-${GH_TAGNAME_EXTRACT}
 .    endif
 
 .    if !default(IGNORE_MASTER_SITE_GITLAB) && defined(USE_GITLAB) && empty(USE_GITLAB:Mnodefault)
 .      if defined(WRKSRC)
 DEV_WARNING+=	"You are using USE_GITLAB and WRKSRC is set which is wrong.  Set GL_PROJECT, GL_ACCOUNT correctly, and/or set WRKSRC_SUBDIR and remove WRKSRC entirely."
 .      endif
-WRKSRC?=	${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}
+WRKSRC?=		${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}
 .    endif
 
 # If the distname is not extracting into a specific subdirectory, have the
 # ports framework force extract into a subdirectory so that metadata files
 # do not get in the way of the build, and vice-versa.
-.if defined(NO_WRKSUBDIR)
+.    if defined(NO_WRKSUBDIR)
 # Some ports have DISTNAME=PORTNAME, and USE_RC_SUBR=PORTNAME, in those case,
 # the rc file will conflict with WRKSRC, as WRKSRC is artificial, make it the
 # most unlikely to conflict as we can.
 WRKSRC?=			${WRKDIR}/${PKGNAME}
 EXTRACT_WRKDIR:=		${WRKSRC}
-.else
+.    else
 WRKSRC?=		${WRKDIR}/${DISTNAME}
 EXTRACT_WRKDIR:=		${WRKDIR}
-.endif
-.if defined(WRKSRC_SUBDIR)
+.    endif
+.    if defined(WRKSRC_SUBDIR)
 WRKSRC:=		${WRKSRC}/${WRKSRC_SUBDIR}
-.endif
+.    endif
 
-.if defined(CONFIGURE_OUTSOURCE)
+.    if defined(CONFIGURE_OUTSOURCE)
 CONFIGURE_CMD?=		${WRKSRC}/${CONFIGURE_SCRIPT}
 CONFIGURE_WRKSRC?=	${WRKDIR}/.build
 BUILD_WRKSRC?=		${CONFIGURE_WRKSRC}
 INSTALL_WRKSRC?=	${CONFIGURE_WRKSRC}
 TEST_WRKSRC?=		${CONFIGURE_WRKSRC}
-.endif
+.    endif
 
 PATCH_WRKSRC?=	${WRKSRC}
 CONFIGURE_WRKSRC?=	${WRKSRC}
@@ -857,13 +856,13 @@ PLIST_REINPLACE_mode=s!^@mode \(.*\)!@exec chmod \1 %D
 # sub-configure will not # survive double space
 CFLAGS:=	${CFLAGS:C/ $//}
 
-.if defined(WITHOUT_CPU_CFLAGS)
-.if defined(_CPUCFLAGS)
-.if !empty(_CPUCFLAGS)
+.    if defined(WITHOUT_CPU_CFLAGS)
+.      if defined(_CPUCFLAGS)
+.        if !empty(_CPUCFLAGS)
 CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
-.endif
-.endif
-.endif
+.        endif
+.      endif
+.    endif
 
 .if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
 .if !defined(INSTALL_STRIPPED)
@@ -949,21 +948,21 @@ USE_BINUTILS=   yes
 .  endif
 .endif
 
-.if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
+.    if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
 	READELF SIZE STRINGS
 BINUTILS_NO_MAKE_ENV?=
-. for b in ${BINUTILS}
+.      for b in ${BINUTILS}
 ${b}=	${LOCALBASE}/bin/${b:C/PP/++/:tl}
-.  if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
+.        if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
 CONFIGURE_ENV+=	${b}="${${b}}"
-.  endif
-.  if ${BINUTILS_NO_MAKE_ENV:M${b}} == ""
+.        endif
+.        if ${BINUTILS_NO_MAKE_ENV:M${b}} == ""
 MAKE_ENV+=	${b}="${${b}}"
-.  endif
-. endfor
-.endif
+.        endif
+.      endfor
+.    endif
 
 .if defined(USE_OPENLDAP_VER)
 USE_OPENLDAP?=		yes
@@ -981,7 +980,7 @@ SUB_FILES+=	${USE_RCORDER}
 .endif
 .endif
 
-.if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
+.    if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
 USE_LDCONFIG=	${PREFIX}/lib
 .endif
 
@@ -1092,11 +1091,11 @@ RUN_DEPENDS+=	cdrecord:sysutils/cdrtools
 # be used to set or override the -i argument.  Any other use is considered
 # invalid.
 REINPLACE_ARGS?=	-i.bak
-.if defined(DEVELOPER)
-REINPLACE_CMD?=	${SETENV} WRKSRC=${WRKSRC} REWARNFILE=${REWARNFILE} ${SCRIPTSDIR}/sed_checked.sh
-.else
+.    if defined(DEVELOPER)
+REINPLACE_CMD?=	${SETENV} WRKSRC=${WRKSRC} REWARNFILE=${REWARNFILE} ${SH} ${SCRIPTSDIR}/sed_checked.sh
+.    else
 REINPLACE_CMD?=	${SED} ${REINPLACE_ARGS}
-.endif
+.    endif
 FRAMEWORK_REINPLACE_CMD?=	${SED} -i.bak
 
 # Names of cookies used to skip already completed stages
@@ -1111,6 +1110,10 @@ FAKE_COOKIE?=		${WRKDIR}/.fake_done.${PORTNAME}.${PREFIX:S/\//_/g}
 
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
+# In general, however, DO_NADA is a relic of the past in the ports
+# infrastructure, and most of its usage has been removed. If you need to define
+# a target with DO_NADA, then there is a high chance that the ports
+# infrastructure should be fixed instead.
 DO_NADA?=		${TRUE}
 
 # Use this as the first operand to always build dependency.
@@ -1138,16 +1141,18 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 # Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break
 # a lot of ports.
-.if !defined(WITHOUT_NO_STRICT_ALIASING)
-.if !empty(CFLAGS:M-O[23s]) && empty(CFLAGS:M-fno-strict-aliasing)
+.    if !defined(WITHOUT_NO_STRICT_ALIASING)
+.      if ${CC} != "icc"
+.        if empty(CFLAGS:M-fno-strict-aliasing)
 CFLAGS+=       -fno-strict-aliasing
-.endif
-.endif
+.        endif
+.      endif
+.    endif
 
-.for lang in C CXX
-.if defined(USE_${lang}STD)
+.    for lang in C CXX
+.      if defined(USE_${lang}STD)
 ${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
-.endif
+.      endif
 
 .if defined(${lang}FLAGS_${ARCH})
 ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
@@ -1155,23 +1160,23 @@ ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
 .endfor
 
 # Multiple make jobs support
-.if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
-_MAKE_JOBS=		#
+.    if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
+_MAKE_JOBS?=		#
 MAKE_JOBS_NUMBER=	1
-.else
-.if defined(MAKE_JOBS_NUMBER)
+.    else
+.      if defined(MAKE_JOBS_NUMBER)
 _MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
 .else
 _MAKE_JOBS_NUMBER!=	${SYSCTL} -n kern.smp.cpus
 .endif
 .if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
 MAKE_JOBS_NUMBER=	${MAKE_JOBS_NUMBER_LIMIT}
-.else
+.      else
 MAKE_JOBS_NUMBER=	${_MAKE_JOBS_NUMBER}
-.endif
+.      endif
 _MAKE_JOBS?=		-j${MAKE_JOBS_NUMBER}
 BUILD_FAIL_MESSAGE+=	Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reporting the failure to the maintainer.
-.endif
+.    endif
 
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
@@ -1185,11 +1190,17 @@ FETCH_REGET?=	1
 .endif
 FETCH_CMD?=		${FETCH_BINARY} ${FETCH_ARGS}
 
-.if defined(RANDOMIZE_MASTER_SITES) && exists(/usr/games/random)
+.    if defined(RANDOMIZE_MASTER_SITES)
+.      if exists(/usr/games/random)
 RANDOM_CMD?=	/usr/games/random
-RANDOM_ARGS?=	"-w -f -"
-_RANDOMIZE_SITES=	" |${RANDOM_CMD} ${RANDOM_ARGS}"
-.endif
+.      elif exists(/usr/bin/random)
+RANDOM_CMD?=	/usr/bin/random
+.      endif
+.      if defined(RANDOM_CMD) && !empty(RANDOM_CMD)
+RANDOM_ARGS?=	-w -f -
+_RANDOMIZE_SITES=	 ${RANDOM_CMD} ${RANDOM_ARGS}
+.      endif
+.    endif
 
 TOUCH?=			/usr/bin/touch
 TOUCH_FLAGS?=	-f
@@ -1198,7 +1209,7 @@ DISTORIG?=	.bak.orig
 PATCH?=			/usr/bin/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
-.if defined(PATCH_DEBUG)
+.    if defined(PATCH_DEBUG)
 PATCH_DEBUG_TMP=	yes
 PATCH_ARGS?=	-E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
@@ -1206,28 +1217,28 @@ PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
 PATCH_DEBUG_TMP=	no
 PATCH_ARGS?=	--forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward --quiet -E ${PATCH_DIST_STRIP}
-.endif
-.if !defined(QUIET)
+.    endif
+.    if !defined(QUIET)
 PATCH_SILENT=		PATCH_SILENT=yes
-.endif
-.if defined(BATCH)
+.    endif
+.    if defined(BATCH)
 PATCH_ARGS+=		--batch
 PATCH_DIST_ARGS+=	--batch
-.endif
+.    endif
 
 # Prevent breakage with VERSION_CONTROL=numbered
 PATCH_ARGS+=	-V simple
-PATCH_DIST_ARGS+=	-V simple
+PATCH_DIST_ARGS+=		-V simple
 
-.if defined(PATCH_CHECK_ONLY)
+.    if defined(PATCH_CHECK_ONLY)
 PATCH_ARGS+=	-C
 PATCH_DIST_ARGS+=	-C
-.endif
+.    endif
 
-.if ${PATCH} == "/usr/bin/patch"
+.    if ${PATCH} == "/usr/bin/patch"
 PATCH_ARGS+=	--suffix .orig
 PATCH_DIST_ARGS+=	--suffix .orig
-.endif
+.    endif
 
 TAR?=	/usr/bin/tar
 
@@ -1372,188 +1383,200 @@ _PATCH_SITES_DEFAULT?=
 # as per grouping rules (:something)
 # Organize _{MASTER,PATCH}_SITES_{DEFAULT,[^/:]+} according to grouping
 # rules (:something)
-.for _S in ${MASTER_SITES}
+.    for _S in ${MASTER_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/?:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP:C/[a-zA-Z0-9_]//g}
+check-makevars::
+				@${ECHO_MSG} "The ${_S} MASTER_SITES line has"
+				@${ECHO_MSG} "a group with invalid characters, only use [a-zA-Z0-9_]"
+				@${FALSE}
+.          endif
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your MASTER_SITES"
 				@${FALSE}
-.			endif
+.          endif
 _MASTER_SITES_${_group}+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.		endfor
-.	else
+.        endfor
+.      else
 _MASTER_SITES_DEFAULT+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.	endif
-.endfor
-.for _S in ${PATCH_SITES}
+.      endif
+.    endfor
+.    for _S in ${PATCH_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP:C/[a-zA-Z0-9_]//g}
+check-makevars::
+				@${ECHO_MSG} "The ${_S} PATCH_SITES line has"
+				@${ECHO_MSG} "a group with invalid characters, only use [a-zA-Z0-9_]"
+				@${FALSE}
+.          endif
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "The words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your PATCH_SITES"
 				@${FALSE}
-.			endif
+.          endif
 _PATCH_SITES_${_group}+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.		endfor
-.	else
+.        endfor
+.      else
 _PATCH_SITES_DEFAULT+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.	endif
-.endfor
+.      endif
+.    endfor
 
 # Feed internal _{MASTER,PATCH}_SITE_SUBDIR_n where n is a group designation
 # as per grouping rules (:something)
 # Organize _{MASTER,PATCH}_SITE_SUBDIR_{DEFAULT,[^/:]+} according to grouping
 # rules (:something)
-.for _S in ${MASTER_SITE_SUBDIR}
+.    for _S in ${MASTER_SITE_SUBDIR}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your MASTER_SITE_SUBDIR"
 				@${FALSE}
-.			endif
-.			if defined(_MASTER_SITES_${_group})
+.          endif
+.          if defined(_MASTER_SITES_${_group})
 _MASTER_SITE_SUBDIR_${_group}+= ${_S:C@^(.*)/:[^/:]+$@\1@}
-.			endif
-.		endfor
-.	else
-.		if defined(_MASTER_SITES_DEFAULT)
+.          endif
+.        endfor
+.      else
+.        if defined(_MASTER_SITES_DEFAULT)
 _MASTER_SITE_SUBDIR_DEFAULT+=	${_S:C@^(.*)/:[^/:]+$@\1@}
-.		endif
-.	endif
-.endfor
-.for _S in ${PATCH_SITE_SUBDIR}
+.        endif
+.      endif
+.    endfor
+.    for _S in ${PATCH_SITE_SUBDIR}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your PATCH_SITE_SUBDIR"
 				@${FALSE}
-.			endif
-.			if defined(_PATCH_SITES_${_group})
+.          endif
+.          if defined(_PATCH_SITES_${_group})
 _PATCH_SITE_SUBDIR_${_group}+= ${_S:C@^(.*)/:[^/:]+$@\1@}
-.			endif
-.		endfor
-.	else
-.		if defined(_PATCH_SITES_DEFAULT)
+.          endif
+.        endfor
+.      else
+.        if defined(_PATCH_SITES_DEFAULT)
 _PATCH_SITE_SUBDIR_DEFAULT+=	${_S:C@^(.*)/:[^/:]+$@\1@}
-.		endif
-.	endif
-.endfor
+.        endif
+.      endif
+.    endfor
 
 # Substitute subdirectory names
 # XXX simpler/faster solution but not the best space wise, suggestions please
-.for _S in ${MASTER_SITES}
+.    for _S in ${MASTER_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
-.			if !defined(_MASTER_SITE_SUBDIR_${_group})
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
+.          if !defined(_MASTER_SITE_SUBDIR_${_group})
 MASTER_SITES_TMP=	${_MASTER_SITES_${_group}:S^%SUBDIR%/^^}
-.			else
+.          else
 _S_TEMP_TEMP=		${_MASTER_SITES_${_group}:M*%SUBDIR%/*}
-.				if empty(_S_TEMP_TEMP)
+.            if empty(_S_TEMP_TEMP)
 MASTER_SITES_TMP=	${_MASTER_SITES_${_group}}
-.				else
+.            else
 MASTER_SITES_TMP=
-.					for site in ${_MASTER_SITES_${_group}}
+.              for site in ${_MASTER_SITES_${_group}}
 _S_TEMP_TEMP=	${site:M*%SUBDIR%/*}
-.						if empty(_S_TEMP_TEMP)
+.                if empty(_S_TEMP_TEMP)
 MASTER_SITES_TMP+=	${site}
-.						else
-.							for dir in ${_MASTER_SITE_SUBDIR_${_group}}
+.                else
+.                  for dir in ${_MASTER_SITE_SUBDIR_${_group}}
 MASTER_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.							endfor
-.						endif
-.					endfor
-.				endif
-.			endif
+.                  endfor
+.                endif
+.              endfor
+.            endif
+.          endif
 _MASTER_SITES_${_group}:=	${MASTER_SITES_TMP}
-.		endfor
-.	endif
-.endfor
-.if defined(_MASTER_SITE_SUBDIR_DEFAULT)
+.        endfor
+.      endif
+.    endfor
+.    if defined(_MASTER_SITE_SUBDIR_DEFAULT)
 _S_TEMP=	${_MASTER_SITES_DEFAULT:M*%SUBDIR%/*}
-.	if empty(_S_TEMP)
+.      if empty(_S_TEMP)
 MASTER_SITES_TMP=	${_MASTER_SITES_DEFAULT}
-.	else
+.      else
 MASTER_SITES_TMP=
-.		for site in ${_MASTER_SITES_DEFAULT}
+.        for site in ${_MASTER_SITES_DEFAULT}
 _S_TEMP_TEMP=		${site:M*%SUBDIR%/*}
-.			if empty(_S_TEMP_TEMP)
+.          if empty(_S_TEMP_TEMP)
 MASTER_SITES_TMP+=	${site}
-.			else
-.				for dir in ${_MASTER_SITE_SUBDIR_DEFAULT}
+.          else
+.            for dir in ${_MASTER_SITE_SUBDIR_DEFAULT}
 MASTER_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.				endfor
-.			endif
-.		endfor
-.	endif
-.else
+.            endfor
+.          endif
+.        endfor
+.      endif
+.    else
 MASTER_SITES_TMP=	${_MASTER_SITES_DEFAULT:S^%SUBDIR%/^^}
-.endif
+.    endif
 _MASTER_SITES_DEFAULT:=	${MASTER_SITES_TMP}
 MASTER_SITES_TMP=
-.for _S in ${PATCH_SITES}
+.    for _S in ${PATCH_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
-.			if !defined(_PATCH_SITE_SUBDIR_${_group})
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
+.          if !defined(_PATCH_SITE_SUBDIR_${_group})
 PATCH_SITES_TMP=	${_PATCH_SITES_${_group}:S^%SUBDIR%/^^}
-.			else
+.          else
 _S_TEMP_TEMP=		${_PATCH_SITES_${_group}:M*%SUBDIR%/*}
-.				if empty(_S_TEMP_TEMP)
+.            if empty(_S_TEMP_TEMP)
 PATCH_SITES_TMP=	${_PATCH_SITES_${_group}}
-.				else
+.            else
 PATCH_SITES_TMP=
-.					for site in ${_PATCH_SITES_${_group}}
+.              for site in ${_PATCH_SITES_${_group}}
 _S_TEMP_TEMP=	${site:M*%SUBDIR%/*}
-.						if empty(_S_TEMP_TEMP)
+.                if empty(_S_TEMP_TEMP)
 PATCH_SITES_TMP+=	${site}
-.						else
-.							for dir in ${_PATCH_SITE_SUBDIR_${_group}}
+.                else
+.                  for dir in ${_PATCH_SITE_SUBDIR_${_group}}
 PATCH_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.							endfor
-.						endif
-.					endfor
-.				endif
-.			endif
+.                  endfor
+.                endif
+.              endfor
+.            endif
+.          endif
 _PATCH_SITES_${_group}:=	${PATCH_SITES_TMP}
-.		endfor
-.	endif
-.endfor
-.if defined(_PATCH_SITE_SUBDIR_DEFAULT)
+.        endfor
+.      endif
+.    endfor
+.    if defined(_PATCH_SITE_SUBDIR_DEFAULT)
 _S_TEMP=	${_PATCH_SITES_DEFAULT:M*%SUBDIR%/*}
-.	if empty(_S_TEMP)
+.      if empty(_S_TEMP)
 PATCH_SITES_TMP=	${_PATCH_SITES_DEFAULT}
-.	else
+.      else
 PATCH_SITES_TMP=
-.		for site in ${_PATCH_SITES_DEFAULT}
+.        for site in ${_PATCH_SITES_DEFAULT}
 _S_TEMP_TEMP=		${site:M*%SUBDIR%/*}
-.			if empty(_S_TEMP_TEMP)
+.          if empty(_S_TEMP_TEMP)
 PATCH_SITES_TMP+=	${site}
-.			else
-.				for dir in ${_PATCH_SITE_SUBDIR_DEFAULT}
+.          else
+.            for dir in ${_PATCH_SITE_SUBDIR_DEFAULT}
 PATCH_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.				endfor
-.			endif
-.		endfor
-.	endif
-.else
+.            endfor
+.          endif
+.        endfor
+.      endif
+.    else
 PATCH_SITES_TMP=	${_PATCH_SITES_DEFAULT:S^%SUBDIR%/^^}
-.endif
+.    endif
 _PATCH_SITES_DEFAULT:=	${PATCH_SITES_TMP}
 PATCH_SITES_TMP=
 
@@ -1571,10 +1594,10 @@ MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP} \
 
 # If the user has MASTER_SITE_FREEBSD set, go to the FreeBSD repository
 # for everything, but don't search it twice by appending it to the end.
-.if defined(MASTER_SITE_FREEBSD)
+.    if defined(MASTER_SITE_FREEBSD)
 _MASTER_SITE_OVERRIDE:=	${MASTER_SITE_BACKUP}
 _MASTER_SITE_BACKUP:=	# empty
-.else
+.    else
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE}
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
 .endif
@@ -1587,47 +1610,47 @@ DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
 _MASTER_SITES_ALL=	${_MASTER_SITES_DEFAULT}
 _PATCH_SITES_ALL=	${_PATCH_SITES_DEFAULT}
 _G_TEMP=	DEFAULT
-.for _D in ${DISTFILES}
+.    for _D in ${DISTFILES}
 _D_TEMP=	${_D:S/^${_D:C/:[^:]+$//}//}
-.	if !empty(_D_TEMP)
-.		for _group in ${_D_TEMP:S/^://:S/,/ /g}
-.			if !defined(_MASTER_SITES_${_group})
+.      if !empty(_D_TEMP)
+.        for _group in ${_D_TEMP:S/^://:S/,/ /g}
+.          if !defined(_MASTER_SITES_${_group})
 _G_TEMP_TEMP=	${_G_TEMP:M/${_group}/}
-.				if empty(_G_TEMP_TEMP)
+.            if empty(_G_TEMP_TEMP)
 _G_TEMP+=	${_group}
 _MASTER_SITES_ALL+=	${_MASTER_SITES_${_group}}
-.				endif
-.			endif
-.		endfor
+.            endif
+.          endif
+.        endfor
 _DISTFILES+=	${_D:C/:[^:]+$//}
-.	else
+.      else
 _DISTFILES+=	${_D}
-.	endif
-.endfor
+.      endif
+.    endfor
 _G_TEMP=	DEFAULT
-.for _P in ${PATCHFILES}
+.    for _P in ${PATCHFILES}
 _P_TEMP=	${_P:C/:[^-:][^:]*$//}
 _P_groups=	${_P:S/^${_P:C/:[^:]+$//}//:S/^://}
 _P_file=	${_P_TEMP:C/:-[^:]+$//}
 _P_strip=	${_P_TEMP:S/^${_P_TEMP:C/:-[^:]*$//}//:S/^://}
-.	if !empty(_P_groups)
-.		for _group in ${_P_groups:S/,/ /g}
-.			if !defined(_PATCH_SITES_${_group})
+.      if !empty(_P_groups)
+.        for _group in ${_P_groups:S/,/ /g}
+.          if !defined(_PATCH_SITES_${_group})
 _G_TEMP_TEMP=	${_G_TEMP:M/${_group}/}
-.				if empty(_G_TEMP_TEMP)
+.            if empty(_G_TEMP_TEMP)
 _G_TEMP+=	${_group}
 _PATCH_SITES_ALL+=	${_PATCH_SITES_${_group}}
-.				endif
-.			endif
-.		endfor
-.	endif
+.            endif
+.          endif
+.        endfor
+.      endif
 _PATCHFILES:=	${_PATCHFILES} ${_P_file}
-.	if empty(_P_strip)
+.      if empty(_P_strip)
 _PATCHFILES2:=	${_PATCHFILES2} ${_P_file}
-.	else
+.      else
 _PATCHFILES2:=	${_PATCHFILES2} ${_P_file}:${_P_strip}
-.	endif
-.endfor
+.      endif
+.    endfor
 _P_groups=
 _P_file=
 _P_strip=
@@ -1643,9 +1666,9 @@ MASTER_SORT_REGEX?=
 MASTER_SORT_REGEX+=	${MASTER_SORT:S|.|\\.|g:S|^|://[^/]*|:S|$|/|}
 
 MASTER_SORT_AWK=	BEGIN { RS = " "; ORS = " "; IGNORECASE = 1 ; gl = "${MASTER_SORT_REGEX:S|\\|\\\\|g}"; }
-.for srt in ${MASTER_SORT_REGEX}
+.    for srt in ${MASTER_SORT_REGEX}
 MASTER_SORT_AWK+=	/${srt:S|/|\\/|g}/ { good["${srt:S|\\|\\\\|g}"] = good["${srt:S|\\|\\\\|g}"] " " $$0 ; next; }
-.endfor
+.    endfor
 MASTER_SORT_AWK+=	{ rest = rest " " $$0; } END { n=split(gl, gla); for(i=1;i<=n;i++) { print good[gla[i]]; } print rest; }
 
 SORTED_MASTER_SITES_DEFAULT_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-DEFAULT
@@ -1693,22 +1716,22 @@ patch-sites-${_group}:
 # Hackery to enable simple fetch targets with several dynamic MASTER_SITES
 #
 _MASTER_SITES_ENV=	_MASTER_SITES_DEFAULT=${_MASTER_SITES_DEFAULT:Q}
-.for _F in ${DISTFILES}
+.    for _F in ${DISTFILES}
 _F_TEMP=	${_F:S/^${_F:C/:[^:]+$//}//:S/^://}
-.	if !empty(_F_TEMP)
-.		for _group in ${_F_TEMP:S/,/ /g}
-.			if defined(_MASTER_SITES_${_group})
+.      if !empty(_F_TEMP)
+.        for _group in ${_F_TEMP:S/,/ /g}
+.          if defined(_MASTER_SITES_${_group})
 _MASTER_SITES_ENV+=	_MASTER_SITES_${_group}=${_MASTER_SITES_${_group}:Q}
-.			endif
-.		endfor
-.	endif
-.endfor
+.          endif
+.        endfor
+.      endif
+.    endfor
 _PATCH_SITES_ENV=	_PATCH_SITES_DEFAULT=${_PATCH_SITES_DEFAULT:Q}
-.for _F in ${PATCHFILES}
+.    for _F in ${PATCHFILES}
 _F_TEMP=	${_F:S/^${_F:C/:[^-:][^:]*$//}//:S/^://}
-.	if !empty(_F_TEMP)
-.		for _group in ${_F_TEMP:S/,/ /g}
-.			if defined(_PATCH_SITES_${_group})
+.      if !empty(_F_TEMP)
+.        for _group in ${_F_TEMP:S/,/ /g}
+.          if defined(_PATCH_SITES_${_group})
 _PATCH_SITES_ENV+=	_PATCH_SITES_${_group}=${_PATCH_SITES_${_group}:Q}
 .			endif
 .		endfor
@@ -1733,22 +1756,22 @@ patch-sites: patch-sites-DEFAULT
 CKSUMFILES=		${ALLFILES}
 
 # List of all files, with ${DIST_SUBDIR} in front.  Used for checksum.
-.if defined(DIST_SUBDIR)
-.if defined(CKSUMFILES) && ${CKSUMFILES}!=""
+.    if defined(DIST_SUBDIR)
+.      if defined(CKSUMFILES) && ${CKSUMFILES}!=""
 _CKSUMFILES?=	${CKSUMFILES:S/^/${DIST_SUBDIR}\//}
-.endif
-.else
+.      endif
+.    else
 _CKSUMFILES?=	${CKSUMFILES}
-.endif
+.    endif
 
 # This is what is actually going to be extracted, and is overridable
 #  by user.
 EXTRACT_ONLY?=	${_DISTFILES}
 
-.if !target(maintainer)
+.    if !target(maintainer)
 maintainer:
 	@${ECHO_CMD} "${MAINTAINER}"
-.endif
+.    endif
 
 .if !target(check-makefile)
 check-makefile::
@@ -1759,7 +1782,7 @@ check-makefile::
 check-categories:
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: CATEGORIES is mandatory."
 	@${FALSE}
-.else
+.    else
 
 VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology cad comms converters core databases \
@@ -1776,8 +1799,8 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	x11-toolkits x11-wm xfce zope
 
 check-categories:
-.for cat in ${CATEGORIES}
-.	if empty(VALID_CATEGORIES:M${cat})
+.      for cat in ${CATEGORIES}
+.        if empty(VALID_CATEGORIES:M${cat})
 		@${ECHO_MSG} "${PKGNAME}: Makefile error: category ${cat} not in list of valid categories."; \
 		${FALSE};
 .	endif
@@ -1796,7 +1819,9 @@ check-depends:
 
 PKGREPOSITORYSUBDIR?=	All
 PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
-
+.    if exists(${PACKAGES})
+PACKAGES:=	${PACKAGES:S/:/\:/g}
+_HAVE_PACKAGES=	yes
 PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
 
 
@@ -1820,19 +1845,19 @@ CONFIGURE_LOG?=		config.log
 CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer] and attach the \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\" including the output of the failure of your make command. Also, it might be a good idea to provide an overview of all packages installed on your system (e.g. an \`ls ${PKG_DBDIR}\`)."
 
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
-.if defined(GNU_CONFIGURE)
+.    if defined(GNU_CONFIGURE)
 # Maximum command line length
-.if !defined(CONFIGURE_MAX_CMD_LEN)
+.      if !defined(CONFIGURE_MAX_CMD_LEN)
 CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
-.endif
+.      endif
 _EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
-.if defined(CROSS_TOOLCHAIN)
+.      if defined(CROSS_TOOLCHAIN)
 CROSS_HOST=		${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
 CONFIGURE_ARGS+=	--host=${CROSS_HOST}
-.endif
+.      endif
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
@@ -1859,7 +1884,7 @@ SET_LATE_CONFIGURE_ARGS= \
 	else \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
 	fi ;
-.endif
+.    endif
 
 # Passed to most of script invocations
 SCRIPTS_ENV+=	CURDIR=${MASTERDIR} DISTDIR=${DISTDIR} \
@@ -1869,9 +1894,9 @@ SCRIPTS_ENV+=	CURDIR=${MASTERDIR} DISTDIR=${DISTDIR} \
 		  PREFIX=${PREFIX} LOCALBASE=${LOCALBASE} \
 		  DESTDIR=${DESTDIR} TARGETDIR=${DESTDIR}
 
-.if defined(BATCH)
+.    if defined(BATCH)
 SCRIPTS_ENV+=	BATCH=yes
-.endif
+.    endif
 
 # Manual Pages
 .include "${PORTSDIR}/Mk/components/man.mk"
@@ -1950,45 +1975,45 @@ _DESKTOPDIR_REL=
 ################################################################
 
 # Check the machine architectures
-.if defined(ONLY_FOR_ARCHS)
-.for __ARCH in ${ONLY_FOR_ARCHS}
-.if ${ARCH:M${__ARCH}} != ""
+.    if defined(ONLY_FOR_ARCHS)
+.      for __ARCH in ${ONLY_FOR_ARCHS}
+.        if ${ARCH:M${__ARCH}} != ""
 __ARCH_OK?=		1
-.endif
-.endfor
-.else
+.        endif
+.      endfor
+.    else
 __ARCH_OK?=		1
-.endif
+.    endif
 
-.if defined(NOT_FOR_ARCHS)
-.for __NARCH in ${NOT_FOR_ARCHS}
-.if ${ARCH:M${__NARCH}} != ""
+.    if defined(NOT_FOR_ARCHS)
+.      for __NARCH in ${NOT_FOR_ARCHS}
+.        if ${ARCH:M${__NARCH}} != ""
 .undef __ARCH_OK
-.endif
-.endfor
-.endif
+.        endif
+.      endfor
+.    endif
 
-.if !defined(__ARCH_OK)
-.if defined(ONLY_FOR_ARCHS)
+.    if !defined(__ARCH_OK)
+.      if defined(ONLY_FOR_ARCHS)
 IGNORE=		is only for ${ONLY_FOR_ARCHS:O},
-.else # defined(NOT_FOR_ARCHS)
+.      else # defined(NOT_FOR_ARCHS)
 IGNORE=		does not run on ${NOT_FOR_ARCHS:O},
-.endif
+.      endif
 IGNORE+=	while you are running ${ARCH}
 
-.if defined(ONLY_FOR_ARCHS_REASON_${ARCH})
+.      if defined(ONLY_FOR_ARCHS_REASON_${ARCH})
 IGNORE+=	(reason: ${ONLY_FOR_ARCHS_REASON_${ARCH}})
-.elif defined(ONLY_FOR_ARCHS_REASON)
+.      elif defined(ONLY_FOR_ARCHS_REASON)
 IGNORE+=	(reason: ${ONLY_FOR_ARCHS_REASON})
-.endif
+.      endif
 
-.if defined(NOT_FOR_ARCHS_REASON_${ARCH})
+.      if defined(NOT_FOR_ARCHS_REASON_${ARCH})
 IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON_${ARCH}})
-.elif defined(NOT_FOR_ARCHS_REASON)
+.      elif defined(NOT_FOR_ARCHS_REASON)
 IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON})
-.endif
+.      endif
 
-.endif
+.    endif
 
 # Check the user interaction and legal issues
 .if !defined(NO_IGNORE)
