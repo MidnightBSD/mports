@@ -271,10 +271,10 @@ _OSVERSION_MAJOR=	${OSVERSION:C/([0-9])([0-9][0-9])[0-9]{3}/\1/}
 
 MASTERDIR?=	${.CURDIR}
 
-.if ${MASTERDIR} != ${.CURDIR}
+.    if ${MASTERDIR} != ${.CURDIR}
 SLAVE_PORT?=	yes
 MASTER_PORT?=${MASTERDIR:C/[^\/]+\/\.\.\///:C/[^\/]+\/\.\.\///:C/^.*\/([^\/]+\/[^\/]+)$/\\1/}
-.else
+.    else
 SLAVE_PORT?=	no
 MASTER_PORT?=
 .endif
@@ -308,31 +308,31 @@ PLIST_SUB+=     LIB32DIR=${LIB32DIR}
 # If they exist, include Makefile.inc, then architecture/operating
 # system specific Makefiles, then local Makefile.local.
 
-.if ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
+.    if ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
-.if exists(${MASTERDIR}/../Makefile.inc)
+.    if exists(${MASTERDIR}/../Makefile.inc)
 .include "${MASTERDIR}/../Makefile.inc"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
-.if exists(${MASTERDIR}/Makefile.${ARCH}-${OPSYS})
+.    if exists(${MASTERDIR}/Makefile.${ARCH}-${OPSYS})
 .include "${MASTERDIR}/Makefile.${ARCH}-${OPSYS}"
 USE_SUBMAKE=	yes
-.elif exists(${MASTERDIR}/Makefile.${OPSYS})
+.    elif exists(${MASTERDIR}/Makefile.${OPSYS})
 .include "${MASTERDIR}/Makefile.${OPSYS}"
 USE_SUBMAKE=	yes
-.elif exists(${MASTERDIR}/Makefile.${ARCH})
+.    elif exists(${MASTERDIR}/Makefile.${ARCH})
 .include "${MASTERDIR}/Makefile.${ARCH}"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
-.if exists(${MASTERDIR}/Makefile.local)
+.    if exists(${MASTERDIR}/Makefile.local)
 .include "${MASTERDIR}/Makefile.local"
 USE_SUBMAKE=	yes
-.elif ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/Makefile.local)
+.    elif ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/Makefile.local)
 .include "${.CURDIR}/Makefile.local"
 USE_SUBMAKE=	yes
 .endif
@@ -362,15 +362,15 @@ UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 # At least KDE needs TMPDIR for the package building,
 # so we're setting it to the known default value.
-.if defined(PACKAGE_BUILDING)
+.    if defined(PACKAGE_BUILDING)
 TMPDIR?=	/tmp
-.endif # defined(PACKAGE_BUILDING)
+.    endif # defined(PACKAGE_BUILDING)
 
-.if defined(WITH_DEBUG_PORTS)
-.if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
+.    if defined(WITH_DEBUG_PORTS)
+.      if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
 WITH_DEBUG=	yes
-.endif
-.endif
+.      endif
+.    endif
 
 # Respect TMPDIR passed via make.conf or similar and pass it down
 # to configure and make.
