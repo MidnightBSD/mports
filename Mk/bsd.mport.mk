@@ -4092,8 +4092,8 @@ install-desktop-entries:
                         dp_MAKE="${MAKE}" \
                         dp_SED="${SED}" \
                         ${SH} ${SCRIPTSDIR}/install-desktop-entries.sh ${DESKTOP_ENTRIES}
-.endif
-.endif
+.      endif
+.    endif
 
 .if !target(install-desktop-entries)
 install-desktop-entries-lah:
@@ -4141,19 +4141,19 @@ install-desktop-entries-lah:
 .endif
 .endif
 
-.if !empty(BINARY_ALIAS)
-.if !target(create-binary-alias)
+.    if !empty(BINARY_ALIAS)
+.      if !target(create-binary-alias)
 create-binary-alias: ${BINARY_LINKDIR}
-.for target src in ${BINARY_ALIAS:C/=/ /}
+.        for target src in ${BINARY_ALIAS:C/=/ /}
 	@if srcpath=`which -- ${src}`; then \
 		${RLN} $${srcpath} ${BINARY_LINKDIR}/${target}; \
 	else \
 		${ECHO_MSG} "===>  Missing \"${src}\" to create a binary alias at \"${BINARY_LINKDIR}/${target}\""; \
 		${FALSE}; \
 	fi
-.endfor
-.endif
-.endif
+.        endfor
+.      endif
+.    endif
 
 .    if !empty(BINARY_WRAPPERS)
 .      if !target(create-binary-wrappers)
