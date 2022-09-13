@@ -27,7 +27,9 @@ LC_ALL=		C
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
 # by individual Makefiles or local system make configuration.
-PORTSDIR?=		/usr/mports
+_LIST_OF_WITH_FEATURES=	debug lto ssp
+_DEFAULT_WITH_FEATURES=	ssp
+PORTSDIR?=		/usr/ports
 LOCALBASE?=		/usr/local
 LINUXBASE?=		/compat/linux
 LOCALBASE_REL:=		${LOCALBASE}
@@ -89,27 +91,27 @@ WRAPPERSDIR?=		${PORTSDIR}/Mk/wrappers/
 .MAKEOVERRIDES:=	${.MAKEOVERRIDES:NFLAVOR}
 
 .if defined(CROSS_TOOLCHAIN)
-.if !defined(CROSS_SYSROOT)
+.  if !defined(CROSS_SYSROOT)
 IGNORE=	CROSS_SYSROOT should be defined
-.endif
+.  endif
 .include "${LOCALBASE}/share/toolchains/${CROSS_TOOLCHAIN}.mk"
 # Do not define CPP on purpose
-.if !defined(HOSTCC)
+.  if !defined(HOSTCC)
 HOSTCC:=	${CC}
 HOSTCXX:=	${CXX}
-.endif
-.if !defined(CC_FOR_BUILD)
+.  endif
+.  if !defined(CC_FOR_BUILD)
 CC_FOR_BUILD:=	${HOSTCC}
 CXX_FOR_BUILD:=	${HOSTCXX}
-.endif
+.  endif
 CONFIGURE_ENV+= HOSTCC="${HOSTCC}" HOSTCXX="${HOSTCXX}" CC_FOR_BUILD="${CC_FOR_BUILD}" CXX_FOR_BUILD="${CXX_FOR_BUILD}"
 
 CC=		${XCC} --sysroot=${CROSS_SYSROOT}
 CXX=		${XCXX} --sysroot=${CROSS_SYSROOT}
 CPP=		${XCPP} --sysroot=${CROSS_SYSROOT}
-.for _tool in AS AR LD NM OBJCOPY RANLIB SIZE STRINGS
+.  for _tool in AS AR LD NM OBJCOPY RANLIB SIZE STRINGS
 ${_tool}=	${CROSS_BINUTILS_PREFIX}${_tool:tl}
-.endfor
+.  endfor
 LD+=		--sysroot=${CROSS_SYSROOT}
 STRIP_CMD=	${CROSS_BINUTILS_PREFIX}strip
 # only bmake supports the following
@@ -173,7 +175,7 @@ _MANOWNGRP=
 .endif
 
 # Start of options section
-.if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
+.  if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
 
 
 # Get the default maintainer
@@ -182,41 +184,41 @@ MAINTAINER?=	ports@MidnightBSD.org
 # Get the architecture
 .if !defined(ARCH)
 ARCH!=	${UNAME} -p
-.endif
+.    endif
 HOSTARCH:=	${ARCH}
-.if defined(CROSS_TOOLCHAIN)
+.    if defined(CROSS_TOOLCHAIN)
 ARCH=	${CROSS_TOOLCHAIN:C,-.*$,,}
-.endif
+.    endif
 _EXPORTED_VARS+=	ARCH
 
-.if ${ARCH} == powerpc64
-.  if !defined(PPC_ABI)
+.    if ${ARCH} == powerpc64
+.      if !defined(PPC_ABI)
 PPC_ABI!=	${CC} -dM -E - < /dev/null | ${AWK} '/_CALL_ELF/{print "ELFv"$$3}'
-.    if ${PPC_ABI} != ELFv2
+.        if ${PPC_ABI} != ELFv2
 PPC_ABI=	ELFv1
-.    endif
-.  endif
+.        endif
+.      endif
 _EXPORTED_VARS+=	PPC_ABI
-.endif
+.    endif
 
 # Get operating system versions for a cross build
-.if defined(CROSS_SYSROOT)
-.if !exists(${CROSS_SYSROOT}/usr/include/sys/param.h)
+.    if defined(CROSS_SYSROOT)
+.      if !exists(${CROSS_SYSROOT}/usr/include/sys/param.h)
 .error CROSS_SYSROOT does not include /usr/include/sys/param.h.
 .endif
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${CROSS_SYSROOT}/usr/include/sys/param.h
 _OSRELEASE!= ${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version / 100000, version / 1000 % 100) }' < /dev/null
-.endif
+.    endif
 
 # Get the operating system type
-.if !defined(OPSYS)
+.    if !defined(OPSYS)
 OPSYS!=	${UNAME} -s
-.endif
+.    endif
 _EXPORTED_VARS+=	OPSYS
 
-.if !defined(_OSRELEASE)
+.    if !defined(_OSRELEASE)
 _OSRELEASE!=	${UNAME} -r
-.endif
+.    endif
 _EXPORTED_VARS+=	_OSRELEASE
 
 # Get the operating system revision
@@ -231,16 +233,16 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < /
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
 .else
 .error Unable to determine OS version.  Either define OSVERSION, install /usr/include/sys/param.h or define SRC_BASE.
-.endif
-.endif
+.      endif
+.    endif
 _EXPORTED_VARS+=	OSVERSION
 
 .if (${OSVERSION} < 12000)
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
-. if defined(ALLOW_UNSUPPORTED_SYSTEM)
+.      if defined(ALLOW_UNSUPPORTED_SYSTEM)
 WARNING+=			"${_UNSUPPORTED_SYSTEM_MESSAGE}"
-. else
+.      else
 show-unsupported-system-error:
 	@${ECHO_MSG} "/!\\ ERROR: /!\\"
 	@${ECHO_MSG}
@@ -249,8 +251,8 @@ show-unsupported-system-error:
 	@${ECHO_MSG} "No support will be provided if you silence this message by defining ALLOW_UNSUPPORTED_SYSTEM." | ${FMT_80}
 	@${ECHO_MSG}
 	@${FALSE}
-. endif
-.endif
+.      endif
+.    endif
 
 # TODO: portsnap build issue
 # Convert OSVERSION to major release number
