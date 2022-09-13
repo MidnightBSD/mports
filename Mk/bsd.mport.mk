@@ -225,12 +225,12 @@ OSREL?=	${_OSRELEASE:C/-.*//}
 _EXPORTED_VARS+=	OSREL
 
 # Get __MidnightBSD_version
-.if !defined(OSVERSION)
-.if exists(/usr/include/sys/param.h)
+.    if !defined(OSVERSION)
+.      if exists(/usr/include/sys/param.h)
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < /usr/include/sys/param.h
-.elif exists(${SRC_BASE}/sys/sys/param.h)
+.      elif exists(${SRC_BASE}/sys/sys/param.h)
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
-.else
+.      else
 .error Unable to determine OS version.  Either define OSVERSION, install /usr/include/sys/param.h or define SRC_BASE.
 .      endif
 .    endif
