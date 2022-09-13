@@ -3151,7 +3151,7 @@ fetch-list:
 _CHECKSUM_INIT_ENV= \
 	dp_SHA256=${SHA256}
 
-.if !target(makesum)
+.    if !target(makesum)
 # Some port change the options with OPTIONS_*_FORCE when make(makesum) to be
 # able to add all distfiles in one go.
 # For this to work, we need to call the do-fetch script directly here so that
@@ -3170,11 +3170,11 @@ makesum: check-sanity
 			dp_ECHO_MSG='${ECHO_MSG}' \
 			dp_SCRIPTSDIR='${SCRIPTSDIR}' \
 			${SH} ${SCRIPTSDIR}/makesum.sh ${DISTFILES:C/.*/'&'/}
-.endif
+.    endif
 
-.if !target(checksum)
+.    if !target(checksum)
 checksum: fetch
-.if !empty(_CKSUMFILES) && !defined(NO_CHECKSUM)
+.      if !empty(_CKSUMFILES) && !defined(NO_CHECKSUM)
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
 			dp_CHECKSUM_ALGORITHMS='${CHECKSUM_ALGORITHMS:tu}' \
@@ -3190,8 +3190,8 @@ checksum: fetch
 			dp_DISABLE_SIZE='${DISABLE_SIZE}' \
 			dp_NO_CHECKSUM='${NO_CHECKSUM}' \
 			${SH} ${SCRIPTSDIR}/checksum.sh ${_CKSUMFILES:C/.*/'&'/}
-.endif
-.endif
+.      endif
+.    endif
 
 # Some port's archives contains files modes that are a bit too restrictive for
 # some usage.  For example:
@@ -3203,6 +3203,7 @@ checksum: fetch
 # executable bit on.
 extract-fixup-modes:
 	@${CHMOD} -R u+w,a+rX ${WRKDIR}
+
 ################################################################
 # The special package-building targets
 # You probably won't need to touch these
@@ -3210,14 +3211,14 @@ extract-fixup-modes:
 
 # Nobody should want to override this unless PKGNAME is simply bogus.
 
-.if !target(package-name)
+.    if !target(package-name)
 package-name:
 	@${ECHO_CMD} ${PKGNAME}
-.endif
+.    endif
 
 # Build a package but don't check the package cookie
 
-.if !target(repackage)
+.    if !target(repackage)
 repackage: pre-repackage package
 
 pre-repackage:
@@ -3236,10 +3237,10 @@ package-noinstall:
 # Dependency checking
 ################################################################
 
-.if !target(depends)
+.    if !target(depends)
 depends: pkg-depends extract-depends patch-depends lib-depends fetch-depends build-depends run-depends
 
-.for deptype in PKG EXTRACT PATCH FETCH BUILD LIB RUN TEST
+.      for deptype in PKG EXTRACT PATCH FETCH BUILD LIB RUN TEST
 ${deptype:tl}-depends:
 .if defined(${deptype}_DEPENDS) && !defined(NO_DEPENDS)
 	@${SETENV} \
@@ -3268,17 +3269,17 @@ ${deptype:tl}-depends:
 .endif
 .endfor
 
-.endif
+.    endif
 
 # Dependency lists: both build and runtime, recursive.  Print out directory names.
 
 _UNIFIED_DEPENDS=${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS} ${RUN_DEPENDS} ${TEST_DEPENDS}
 _DEPEND_SPECIALS=	${_UNIFIED_DEPENDS:M*\:*\:*:C,^[^:]*:([^:]*):.*$,\1,}
 
-.for d in ${_UNIFIED_DEPENDS:M*\:/*}
+.    for d in ${_UNIFIED_DEPENDS:M*\:/*}
 _PORTSDIR_STR=	$${PORTSDIR}/
 DEV_WARNING+=	"It looks like the ${d} depends line has an absolute port origin, make sure to remove \$${_PORTSDIR_STR} from it."
-.endfor
+.    endfor
 
 all-depends-list:
 	@${ALL-DEPENDS-LIST}
@@ -3307,6 +3308,8 @@ _FLAVOR_RECURSIVE_SH= \
 		(cd $$dir; ${SETENV} FLAVOR=$${flavor} ${MAKE} $${recursive_cmd}); \
 	done
 
+# This script is shared among several dependency list variables.  See file for
+# usage.
 DEPENDS-LIST= \
 	${SETENV} \
 			PORTSDIR="${PORTSDIR}" \
@@ -3327,36 +3330,36 @@ TEST-DEPENDS-LIST=			${DEPENDS-LIST} ${TEST_DEPENDS:Q}
 CLEAN-DEPENDS-LIST=			${DEPENDS-LIST} -wr ${_UNIFIED_DEPENDS:Q} 
 CLEAN-DEPENDS-LIMITED-LIST=	${DEPENDS-LIST} -w ${_UNIFIED_DEPENDS:Q}
 
-.if !target(clean-depends)
+.    if !target(clean-depends)
 clean-depends:
 	@for dir in $$(${CLEAN-DEPENDS-LIST}); do \
 		(cd $$dir; ${MAKE} NOCLEANDEPENDS=yes clean); \
 	done
-.endif
+.    endif
 
-.if !target(limited-clean-depends)
+.    if !target(limited-clean-depends)
 limited-clean-depends:
 	@for dir in $$(${CLEAN-DEPENDS-LIMITED-LIST}); do \
 		(cd $$dir; ${MAKE} NOCLEANDEPENDS=yes clean); \
 	done
-.endif
+.    endif
 
-.if !target(deinstall-depends)
+.    if !target(deinstall-depends)
 deinstall-depends:
 	@recursive_cmd="deinstall"; \
 	    recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
-.endif
+.    endif
 
-.if !target(fetch-specials)
+.    if !target(fetch-specials)
 fetch-specials:
 	@${ECHO_MSG} "===> Fetching all distfiles required by ${PKGNAME} for building"
 	@recursive_cmd="fetch"; \
 	    recursive_dirs="${_DEPEND_SPECIALS}"; \
 		${_FLAVOR_RECURSIVE_SH}
-.endif
+.    endif
 
-.if !target(fetch-recursive)
+.    if !target(fetch-recursive)
 fetch-recursive:
 	@${ECHO_MSG} "===> Fetching all distfiles for ${PKGNAME} and dependencies"
 	@recursive_cmd="fetch"; \
@@ -3364,12 +3367,12 @@ fetch-recursive:
 		${_FLAVOR_RECURSIVE_SH}
 .endif
 
-.if !target(fetch-recursive-list)
+.    if !target(fetch-recursive-list)
 fetch-recursive-list:
 	@recursive_cmd="fetch-list"; \
 	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
-.endif
+.    endif
 
 # Used by fetch-required and fetch-required list, this script looks
 # at each of the dependencies. If 3 items are specified in the tuple,
@@ -3404,64 +3407,64 @@ FETCH_LIST?=	for i in $$deps; do \
 		echo cd $$dir; cd $$dir; ${MAKE} $$targ; \
 	done
 
-.if !target(fetch-required)
+.    if !target(fetch-required)
 fetch-required: fetch
-.if defined(NO_DEPENDS)
+.      if defined(NO_DEPENDS)
 	@${ECHO_MSG} "===> NO_DEPENDS is set, not fetching any other distfiles for ${PKGNAME}"
-.else
+.      else
 	@${ECHO_MSG} "===> Fetching all required distfiles for ${PKGNAME} and dependencies"
-.for deptype in EXTRACT PATCH FETCH BUILD RUN
-.if defined(${deptype}_DEPENDS)
+.        for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
+.          if defined(${deptype}_DEPENDS)
 	@targ=fetch; deps="${${deptype}_DEPENDS}"; ${FETCH_LIST}
-.endif
-.endfor
-.endif
+.          endif
+.        endfor
+.      endif
 
-.endif
+.    endif
 
-.if !target(fetch-required-list)
+.    if !target(fetch-required-list)
 fetch-required-list: fetch-list
-.if !defined(NO_DEPENDS)
-.for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
-.if defined(${deptype}_DEPENDS)
+.      if !defined(NO_DEPENDS)
+.        for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
+.          if defined(${deptype}_DEPENDS)
 	@targ=fetch-list; deps="${${deptype}_DEPENDS}"; ${FETCH_LIST}
-.endif
-.endfor
-.endif
-.endif
+.          endif
+.        endfor
+.      endif
+.    endif
 
-.if !target(checksum-recursive)
+.    if !target(checksum-recursive)
 checksum-recursive:
 	@${ECHO_MSG} "===> Fetching and checking checksums for ${PKGNAME} and dependencies"
 	@recursive_cmd="checksum"; \
 	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
-.endif
+.    endif
 
 # Dependency lists: build and runtime.  Print out directory names.
 
 build-depends-list:
 .if defined(EXTRACT_DEPENDS) || defined(PATCH_DEPENDS) || defined(FETCH_DEPENDS) || defined(BUILD_DEPENDS) || defined(LIB_DEPENDS)
 	@${BUILD-DEPENDS-LIST}
-.endif
+.    endif
 
 run-depends-list:
-.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
+.    if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@${RUN-DEPENDS-LIST}
-.endif
+.    endif
 
 test-depends-list:
-.if defined(TEST_DEPENDS)
+.    if defined(TEST_DEPENDS)
 	@${TEST-DEPENDS-LIST}
-.endif
+.    endif
 
 # Package (recursive runtime) dependency list.  Print out both directory names
 # and package names.
 
 package-depends-list:
-.if defined(CHILD_DEPENDS) || defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
+.    if defined(CHILD_DEPENDS) || defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@${PACKAGE-DEPENDS-LIST}
-.endif
+.    endif
 
 _LIB_RUN_DEPENDS=	${LIB_DEPENDS} ${RUN_DEPENDS}
 # the mport binary tools only store the the first tier of the depenancy
@@ -3491,7 +3494,7 @@ PACKAGE-DEPENDS-LIST?= \
 				${ECHO_CMD} "$$dir $$meta $$version" | ${AWK} '{print $$2 " " $$1 " " $$3 " " $$4}'; \
 			fi; \
 		else \
-			${ECHO_MSG} "\"$$dir\" non-existent -- dependency list incomplete" >&2; \
+			${ECHO_MSG} "${PKGNAME}: \"$$dir\" non-existent -- dependency list incomplete" >&2; \
 		fi; \
 	done
 
@@ -3502,6 +3505,7 @@ package-depends:
 
 
 # Build packages for port and dependencies
+
 package-recursive: package
 	@for dir in $$(${ALL-DEPENDS-LIST}); do \
 		(cd $$dir; ${MAKE} package); \
@@ -3548,11 +3552,10 @@ finish-tmpplist: add-plist-info add-plist-examples add-plist-docs add-plist-data
 
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
-#
 
 PLIST_SUB_SANITIZED=	${PLIST_SUB:N*_regex=*}
 
-.if !target(generate-plist)
+.    if !target(generate-plist)
 generate-plist: ${WRKDIR}
 	@${ECHO_MSG} "===>   Generating temporary packing list"
 	@${MKDIR} ${TMPPLIST:H}
@@ -3969,20 +3972,20 @@ fake-qa:
 .endif
 
 pretty-flavors-package-names: .PHONY
-.if empty(FLAVORS)
+.    if empty(FLAVORS)
 	@${ECHO_CMD} "no flavor: ${PKGNAME}"
-.else
-.for f in ${FLAVORS}
+.    else
+.      for f in ${FLAVORS}
 	@${ECHO_CMD} -n "${f}: "
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -V PKGNAME
-.endfor
-.endif
+.      endfor
+.    endif
 
 flavors-package-names: .PHONY
-.if empty(FLAVORS)
+.    if empty(FLAVORS)
 	@${ECHO_CMD} "${PKGNAME}"
-.else
-.for f in ${FLAVORS}
+.    else
+.      for f in ${FLAVORS}
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -V PKGNAME
 .endfor
 .endif
@@ -3991,20 +3994,20 @@ flavors-package-names: .PHONY
 # one they can override this.  This is just to catch people who've gotten into
 # the habit of typing `make depend all install' as a matter of course.
 # Same goes for tags
-.for _t in depend tags
-.if !target(${_t})
+.    for _t in depend tags
+.      if !target(${_t})
 ${_t}:
-.endif
-.endfor
+.      endif
+.    endfor
 
-.if !defined(NOPRECIOUSMAKEVARS)
+.    if !defined(NOPRECIOUSMAKEVARS)
 # These won't change, so we can pass them through the environment
-.for var in ${_EXPORTED_VARS}
-.if empty(.MAKEFLAGS:M${var}=*) && !empty(${var})
+.      for var in ${_EXPORTED_VARS}
+.        if empty(.MAKEFLAGS:M${var}=*) && !empty(${var})
 .MAKEFLAGS:	${var}=${${var}:Q}
-.endif
-.endfor
-.endif
+.        endif
+.      endfor
+.    endif
 PORTS_ENV_VARS+=	${_EXPORTED_VARS}
 
 desktop-categories:
@@ -4016,7 +4019,7 @@ desktop-categories:
                         dp_TR="${TR}" \
                         ${SH} ${SCRIPTSDIR}/desktop-categories.sh
 
-.if defined(DESKTOP_ENTRIES)
+.    if defined(DESKTOP_ENTRIES)
 check-desktop-entries:
 	@${SETENV} \
 		dp_CURDIR="${.CURDIR}" \
@@ -4098,7 +4101,7 @@ install-desktop-entries-lah:
 .if !empty(BINARY_ALIAS)
 .if !target(create-binary-alias)
 create-binary-alias: ${BINARY_LINKDIR}
-.for target src in ${BINARY_ALIAS:C/=/ /}
+.        for target src in ${BINARY_ALIAS:C/=/ /}
 	@if srcpath=`which -- ${src}`; then \
 		${RLN} $${srcpath} ${BINARY_LINKDIR}/${target}; \
 	else \
@@ -4109,10 +4112,10 @@ create-binary-alias: ${BINARY_LINKDIR}
 .endif
 .endif
 
-.if !empty(BINARY_WRAPPERS)
-.if !target(create-binary-wrappers)
-create-binary-wrappers: ${BINARY_LINKDIR} 
-.for bin in ${BINARY_WRAPPERS}
+.    if !empty(BINARY_WRAPPERS)
+.      if !target(create-binary-wrappers)
+create-binary-wrappers: ${BINARY_LINKDIR}
+.        for bin in ${BINARY_WRAPPERS}
 	@${INSTALL_SCRIPT} ${WRAPPERSDIR}/${bin} ${BINARY_LINKDIR}
 .endfor
 .endif
@@ -4214,40 +4217,40 @@ _UPDATE_SEQ=	100:update-message 150:check-for-older-installed 500:do-update 700:
 
 
 # Enforce order for -jN builds
-.for _t in ${_TARGETS_STAGES}
+.    for _t in ${_TARGETS_STAGES}
 # Check if the port need to change the default order of some targets...
-.  if defined(TARGET_ORDER_OVERRIDE)
+.      if defined(TARGET_ORDER_OVERRIDE)
 _tmp_seq:=
-.    for _entry in ${_${_t}_SEQ}
+.        for _entry in ${_${_t}_SEQ}
 # for _target because :M${_target} does not work with fmake
-.      for _target in ${_entry:C/^[0-9]+://}
-.        if ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
+.          for _target in ${_entry:C/^[0-9]+://}
+.            if ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
 _tmp_seq:=	${_tmp_seq} ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
-.        else
+.            else
 _tmp_seq:=	${_tmp_seq} ${_entry}
+.            endif
+.          endfor
+.        endfor
+_${_t}_SEQ:=	${_tmp_seq}
+.      endif
+.      for s in ${_${_t}_SEQ:O:C/^[0-9]+://}
+.        if target(${s})
+.          if ! ${NOTPHONY:M${s}}
+_PHONY_TARGETS+= ${s}
+.          endif
+_${_t}_REAL_SEQ+=	${s}
 .        endif
 .      endfor
-.    endfor
-_${_t}_SEQ:=	${_tmp_seq}
-.  endif
-.  for s in ${_${_t}_SEQ:O:C/^[0-9]+://}
-.    if target(${s})
-.      if ! ${NOTPHONY:M${s}}
+.      for s in ${_${_t}_SUSEQ:O:C/^[0-9]+://}
+.        if target(${s})
+.          if ! ${NOTPHONY:M${s}}
 _PHONY_TARGETS+= ${s}
-.      endif
-_${_t}_REAL_SEQ+=	${s}
-.    endif
-.  endfor
-.  for s in ${_${_t}_SUSEQ:O:C/^[0-9]+://}
-.    if target(${s})
-.      if ! ${NOTPHONY:M${s}}
-_PHONY_TARGETS+= ${s}
-.       endif
+.          endif
 _${_t}_REAL_SUSEQ+=	${s}
-.    endif
-.  endfor
+.        endif
+.      endfor
 .ORDER: ${_${_t}_DEP} ${_${_t}_REAL_SEQ}
-.endfor
+.    endfor
 
 # Define all of the main targets which depend on a sequence of other targets.
 # See above *_SEQ and *_DEP. The _DEP will run before this defined target is
@@ -4260,69 +4263,69 @@ _${_t}_REAL_SUSEQ+=	${s}
 # to depend on the *_DEP and execute the *_SEQ.
 # If options are required, execute config-conditional and then re-execute the
 # target noting that config is no longer needed.
-.if !target(${target}) && defined(_OPTIONS_OK)
+.      if !target(${target}) && defined(_OPTIONS_OK)
 _PHONY_TARGETS+= ${target}
 ${target}: ${${target:tu}_COOKIE}
-.elif !target(${target})
+.      elif !target(${target})
 ${target}: config-conditional
 	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${PKGBASE:tu}=1 ${${target:tu}_COOKIE}
-.elif target(${target}) && defined(IGNORE)
-.endif
+.      elif target(${target}) && defined(IGNORE)
+.      endif
 
-.if !exists(${${target:tu}_COOKIE})
+.      if !exists(${${target:tu}_COOKIE})
 
 # Define the real target behavior. Depend on the target's *_DEP. Execute
 # the target's *_SEQ. Also handle su and USE_SUBMAKE needs.
-.if ${UID} != 0 && defined(_${target:tu}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
-.  if defined(USE_SUBMAKE)
+.        if ${UID} != 0 && defined(_${target:tu}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
+.          if defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
 	@cd ${.CURDIR} && ${MAKE} ${_${target:tu}_REAL_SEQ}
-.  else  # !USE_SUBMAKE
+.          else  # !USE_SUBMAKE
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ}
-.  endif # USE_SUBMAKE
+.          endif # USE_SUBMAKE
 	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
 	@cd ${.CURDIR} && \
 		${SU_CMD} "${MAKE} ${_${target:tu}_REAL_SUSEQ}"
 	@${ECHO_MSG} "===>  Returning to user credentials"
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.else # No SU needed
-.  if defined(USE_SUBMAKE)
+.        else # No SU needed
+.          if defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
 	@cd ${.CURDIR} && \
 		${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  else # !USE_SUBMAKE
+.          else # !USE_SUBMAKE
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  endif # USE_SUBMAKE
-.endif # SU needed
+.          endif # USE_SUBMAKE
+.        endif # SU needed
 
-.else # exists(cookie)
+.      else # exists(cookie)
 ${${target:tu}_COOKIE}::
 	@if [ ! -e ${.TARGET} ]; then \
 		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
 	fi
-.endif # !exists(cookie)
+.      endif # !exists(cookie)
 
-.endfor # foreach(targets)
+.    endfor # foreach(targets)
 
 .PHONY: ${_PHONY_TARGETS} check-sanity fetch pkg
 
-.if !target(check-sanity)
+.    if !target(check-sanity)
 check-sanity: ${_SANITY_REAL_SEQ}
-.endif
+.    endif
 
-.if !target(fetch)
+.    if !target(fetch)
 fetch: ${_FETCH_DEP} ${_FETCH_REAL_SEQ}
-.endif
+.    endif
 
-.if !target(pkg)
+.    if !target(pkg)
 pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
-.endif
+.    endif
 
-#.if !target(test)
+.    if !target(test)
 test: ${_TEST_DEP}
-.if !defined(NO_TEST)
+.      if !defined(NO_TEST)
 test: ${_TEST_REAL_SEQ}
 .endif
 #.endif
