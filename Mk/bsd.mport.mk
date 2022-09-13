@@ -664,40 +664,18 @@ DATADIR?=				${PREFIX}/usr/share/${PORTNAME}
 DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}
 NO_LICENSES_INSTALL=	yes
 NO_MTREE=				yes
-.endif
-
+.    endif
 
 # These do some path checks if DESTDIR is set correctly.
 # You can force skipping these test by defining IGNORE_PATH_CHECKS
-.if !defined(IGNORE_PATH_CHECKS)
-.if (${PREFIX:C,(^.).*,\1,} != "/")
+.    if !defined(IGNORE_PATH_CHECKS)
+.      if ! ${PREFIX:M/*}
 .BEGIN:
 	@${ECHO_MSG} "PREFIX must be defined as an absolute path so that when 'make'"
 	@${ECHO_MSG} "is invoked in the work area PREFIX points to the right place."
 	@${FALSE}
-.endif
-.if defined(DESTDIR)
-.if (${DESTDIR:C,(^.).*,\1,} != "/")
-.if ${DESTDIR} == "/"
-.BEGIN:
-	@${ECHO_MSG} "You can't set DESTDIR to /. Please re-run make with"
-	@${ECHO_MSG} "DESTDIR unset."
-	@${FALSE}
-.else
-.BEGIN:
-	@${ECHO_MSG} "DESTDIR must be defined as an absolute path so that when 'make'"
-	@${ECHO_MSG} "is invoked in the work area DESTDIR points to the right place."
-	@${FALSE}
-.endif
-.endif
-.if (${DESTDIR:C,^.*(/)$$,\1,} == "/")
-.BEGIN:
-	@${ECHO_MSG} "DESTDIR can't have a trailing slash. Please remove the trailing"
-	@${ECHO_MSG} "slash and re-run 'make'"
-	@${FALSE}
-.endif
-.endif
-.endif
+.      endif
+.    endif
 
 #
 # One of the includes may have changed CPIO
