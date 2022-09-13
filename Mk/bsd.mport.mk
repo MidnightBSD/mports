@@ -2170,8 +2170,14 @@ DEPENDS_TARGET+=	cached-install
 .if defined(DEPENDS_CLEAN)
 DEPENDS_TARGET+=	clean
 DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
-.endif
-.endif
+.      endif
+.    endif
+
+.    if defined(USE_GITLAB) && !${USE_GITLAB:Mnodefault} && empty(GL_COMMIT_DEFAULT)
+check-makevars::
+	@${ECHO_MSG} "GL_COMMIT is a required 40 character hash for use USE_GITLAB"
+	@${FALSE}
+.    endif
 
 ################################################################
 #
