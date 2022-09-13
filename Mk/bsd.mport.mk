@@ -991,16 +991,9 @@ USE_OPENLDAP?=		yes
 WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
 .endif
 
-.if defined(USE_RC_SUBR) || defined(USE_RCORDER)
-RC_SUBR=	/etc/rc.subr
-SUB_LIST+=	RC_SUBR=${RC_SUBR}
-.if defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
+.    if defined(USE_RC_SUBR)
 SUB_FILES+=	${USE_RC_SUBR}
-.endif
-.if defined(USE_RCORDER)
-SUB_FILES+=	${USE_RCORDER}
-.endif
-.endif
+.    endif
 
 .    if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
 USE_LDCONFIG=	${PREFIX}/lib
@@ -1048,7 +1041,7 @@ EXTENSIONS+=	local
 .endif
 .for odir in ${OVERLAYS}
 .sinclude "${odir}/Mk/bsd.overlay.mk"
-.endfor
+.    endfor
 
 .if defined(XORG_CAT)
 EXTENSIONS+=xorg
@@ -1090,7 +1083,7 @@ CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .if exists(${PORTSDIR}/../Makefile.inc)
 .include "${PORTSDIR}/../Makefile.inc"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
 #
 # These componenets include targets that may have been overwritten by the 
@@ -1175,10 +1168,10 @@ CFLAGS+=       -fno-strict-aliasing
 ${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
 .      endif
 
-.if defined(${lang}FLAGS_${ARCH})
 ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
-.endif
-.endfor
+.    endfor
+
+LDFLAGS+=	${LDFLAGS_${ARCH}}
 
 # Multiple make jobs support
 .    if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
@@ -1270,23 +1263,9 @@ PATCH_DIST_ARGS+=	--suffix .orig
 TAR?=	/usr/bin/tar
 
 # EXTRACT_SUFX is defined in .pre.mk section
-.if defined(USE_LHA)
-EXTRACT_CMD?=		${LHA_CMD}
-EXTRACT_BEFORE_ARGS?=	xfqw=${WRKDIR}
-EXTRACT_AFTER_ARGS?=
-.elif defined(USE_MAKESELF)
-EXTRACT_CMD?=		${UNMAKESELF_CMD}
-EXTRACT_BEFORE_ARGS?=
-EXTRACT_AFTER_ARGS?=
-.else
 EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
-.if defined(EXTRACT_PRESERVE_OWNERSHIP)
-EXTRACT_AFTER_ARGS?=
-.else
 EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
-.endif
-.endif
 
 
 # Determine whether or not we can use rootly owner/group functions.
@@ -1934,18 +1913,18 @@ INFO_PATH?=	share/info
 INFO_PATH?=	info
 .endif
 
-.if defined(INFO)
+.    if defined(INFO)
 RUN_DEPENDS+=	indexinfo:print/indexinfo
 
-. for D in ${INFO:H}
+.      for D in ${INFO:H}
 RD:=	${D}
-.  if ${RD} != "."
-.   if !defined(INFO_SUBDIR)
+.        if ${RD} != "."
+.          if !defined(INFO_SUBDIR)
 INFO_SUBDIR:=	${RD}
-.   elif ${INFO_SUBDIR} != ${RD}
+.          elif ${INFO_SUBDIR} != ${RD}
 BROKEN=		only one subdirectory in INFO is allowed
-.   endif
-.  endif
+.          endif
+.        endif
 .undef RD
 . endfor
 .endif
@@ -2046,63 +2025,63 @@ IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON})
 .if !defined(NO_IGNORE)
 .if (defined(IS_INTERACTIVE) && defined(BATCH))
 IGNORE=		is an interactive port
-.elif (!defined(IS_INTERACTIVE) && defined(INTERACTIVE))
+.      elif (!defined(IS_INTERACTIVE) && defined(INTERACTIVE))
 IGNORE=		is not an interactive port
-.elif (defined(NO_CDROM) && defined(FOR_CDROM))
+.      elif (defined(NO_CDROM) && defined(FOR_CDROM))
 IGNORE=		may not be placed on a CDROM: ${NO_CDROM}
-.elif (defined(RESTRICTED) && defined(NO_RESTRICTED))
+.      elif (defined(RESTRICTED) && defined(NO_RESTRICTED))
 IGNORE=		is restricted: ${RESTRICTED}
 .elif defined(IGNORE_${ARCH})
 IGNORE=		${IGNORE_${ARCH}}
-.elif defined(IGNORE_${OPSYS}_${OSREL:R}_${ARCH})
+.      elif defined(IGNORE_${OPSYS}_${OSREL:R}_${ARCH})
 IGNORE=		${IGNORE_${OPSYS}_${OSREL:R}_${ARCH}}
-.elif defined(IGNORE_${OPSYS}_${OSREL:R})
+.      elif defined(IGNORE_${OPSYS}_${OSREL:R})
 IGNORE=		${IGNORE_${OPSYS}_${OSREL:R}}
-.elif defined(IGNORE_${OPSYS})
+.      elif defined(IGNORE_${OPSYS})
 IGNORE=		${IGNORE_${OPSYS}}
-.elif defined(BROKEN)
-.if !defined(TRYBROKEN)
+.      elif defined(BROKEN)
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken: ${BROKEN}
-.endif
-.elif defined(BROKEN_${ARCH})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${ARCH})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${ARCH}: ${BROKEN_${ARCH}}
-.endif
-.elif defined(BROKEN_${OPSYS}_${OSREL:R}_${ARCH})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${OPSYS}_${OSREL:R}_${ARCH})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${OPSYS} ${OSREL} ${ARCH}: ${BROKEN_${OPSYS}_${OSREL:R}_${ARCH}}
-.endif
-.elif defined(BROKEN_${OPSYS}_${OSREL:R})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${OPSYS}_${OSREL:R})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${OPSYS} ${OSREL}: ${BROKEN_${OPSYS}_${OSREL:R}}
-.endif
-.elif defined(BROKEN_${OPSYS})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${OPSYS})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${OPSYS}: ${BROKEN_${OPSYS}}
-.endif
-.elif defined(FORBIDDEN)
+.        endif
+.      elif defined(FORBIDDEN)
 IGNORE=		is forbidden: ${FORBIDDEN}
-.endif
+.      endif
 
 # Define the text to be output to LEGAL
-.if defined(LEGAL_TEXT)
+.      if defined(LEGAL_TEXT)
 LEGAL= ${LEGAL_TEXT}
-.elif defined(RESTRICTED)
+.      elif defined(RESTRICTED)
 LEGAL= ${RESTRICTED}
-.elif defined(NO_CDROM)
+.      elif defined(NO_CDROM)
 LEGAL= ${NO_CDROM}
-.elif defined(NO_PACKAGE) && ! defined(LEGAL_PACKAGE)
+.      elif defined(NO_PACKAGE) && ! defined(LEGAL_PACKAGE)
 LEGAL= ${NO_PACKAGE}
-.endif
+.      endif
 
-.if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
+.      if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
 IGNORE=		has to be built manually: ${MANUAL_PACKAGE_BUILD}
 clean:
 	@${IGNORECMD}
-.endif
+.      endif
 
-.if defined(IGNORE)
-.if defined(IGNORE_SILENT)
+.      if defined(IGNORE)
+.        if defined(IGNORE_SILENT)
 IGNORECMD=	${DO_NADA}
 .else
 IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
@@ -2111,50 +2090,59 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 _TARGETS=	check-sanity pkg fetch checksum extract patch configure all build \
 		fake install reinstall test package 
 
-.for target in ${_TARGETS}
-.if !target(${target})
+.        for target in ${_TARGETS}
+.          if !target(${target})
 ${target}:
 	@${IGNORECMD}
-.if defined(INSTALLS_DEPENDS)
+.            if defined(INSTALLS_DEPENDS)
 	@${FALSE}
-.endif
-.endif
-.endfor
+.            endif
+.          endif
+.        endfor
 
-.endif
+.      endif
 
-.endif
+.    endif # !defined(NO_IGNORE)
 
-.if defined(IGNORE) || defined(NO_PACKAGE)
-ignorelist: package-name
-.else
 ignorelist:
-	@${DO_NADA}
-.endif
+.    if defined(IGNORE) || defined(NO_PACKAGE)
+ignorelist: package-name
+.    endif
+
+ignorelist-verbose:
+.    if defined(IGNORE)
+	@${ECHO_CMD} "${PKGNAME}|IGNORE: "${IGNORE:Q}
+.    elif defined(NO_PACKAGE)
+	@${ECHO_CMD} "${PKGNAME}|NO_PACKAGE: "${NO_PACKAGE:Q}
+.    endif
 
 ################################################################
 # Clean directories for ftp or CDROM.
 ################################################################
 
-.if defined(RESTRICTED)
+.    if !defined(LICENSE)
+
+.      if defined(RESTRICTED)
 clean-restricted:	delete-distfiles delete-package
 clean-restricted-list: delete-distfiles-list delete-package-list
 RESTRICTED_FILES?=	${_DISTFILES} ${_PATCHFILES}
-.else
+.      else
 clean-restricted:
 clean-restricted-list:
-.endif
+.      endif
 
-.if defined(NO_CDROM)
+.      if defined(NO_CDROM)
 clean-for-cdrom:	delete-distfiles delete-package
 clean-for-cdrom-list:	delete-distfiles-list delete-package-list
 RESTRICTED_FILES?=	${_DISTFILES} ${_PATCHFILES}
-.else
+.      else
 clean-for-cdrom:
 clean-for-cdrom-list:
-.endif
+.      endif
 
-.if defined(ALL_HOOK)
+.    endif # !defined(LICENSE)
+
+.    if defined(ALL_HOOK)
 all:
 	@cd ${.CURDIR} && ${SETENV} CURDIR=${.CURDIR} DISTNAME=${DISTNAME} \
 	  DISTDIR=${DISTDIR} WRKDIR=${WRKDIR} WRKSRC=${WRKSRC} \
@@ -2163,18 +2151,18 @@ all:
 	  DEPENDS="${DEPENDS}" BUILD_DEPENDS="${BUILD_DEPENDS}" \
 	  RUN_DEPENDS="${RUN_DEPENDS}" CONFLICTS="${CONFLICTS}" \
 	${ALL_HOOK}
-.endif
+.    endif
 
 .if !target(all)
 all: build
 .endif
 
-.if !defined(DEPENDS_TARGET)
-.if defined(DEPENDS_PRECLEAN)
+.    if !defined(DEPENDS_TARGET)
+.      if defined(DEPENDS_PRECLEAN)
 DEPENDS_TARGET=	clean
 DEPENDS_ARGS=	NOCLEANDEPENDS=yes
-.endif
-.if make(reinstall)
+.      endif
+.      if make(reinstall)
 DEPENDS_TARGET+=	reinstall
 .else
 DEPENDS_TARGET+=	cached-install
