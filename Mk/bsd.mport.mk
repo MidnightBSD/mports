@@ -903,10 +903,6 @@ INSTALL_TARGET:=	${INSTALL_TARGET:S/^install-strip$/install/g}
 .endif
 .endif
 
-.if defined(WITH_SSP) || defined(WITH_SSP_PORTS)
-.include "${PORTSDIR}/Mk/components/ssp.mk"
-.endif
-
 # XXX PIE support to be added here
 MAKE_ENV+=	NO_PIE=yes
 
