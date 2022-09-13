@@ -224,7 +224,7 @@ afterinstall: realinstall
 realinstall: beforeinstall ${SUBDIR:S/^/_/:S/$/.realinstall/}
 .endif
 
-IGNOREDIR=	Mk Licenses Packages Templates Tools Distfiles pkg Keywords 
+IGNOREDIR=	Mk Packages Templates Tools Distfiles pkg Keywords 
 
 .if !target(checksubdirs)
 .if defined(PORTSTOP)
