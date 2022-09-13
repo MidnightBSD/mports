@@ -902,8 +902,8 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 
 # XXX PIE support to be added here
 MAKE_ENV+=	NO_PIE=yes
-# We will control debug files. Don't let builds that use /usr/share/mk
-# split out debutg symbols since the plist won't know to expect it.
+# We will control debug files.  Don't let builds that use /usr/share/mk
+# split out debug symbols since the plist won't know to expect it.
 MAKE_ENV+=	MK_DEBUG_FILES=no
 MAKE_ENV+=	MK_KERNEL_SYMBOLS=no
 
@@ -956,20 +956,19 @@ EXTRACT_DEPENDS+=	lha:archivers/lha
 EXTRACT_DEPENDS+=	unmakeself:archivers/unmakeself
 .endif
 
-_TEST_LD=/usr/bin/ld
-.if defined(LLD_UNSAFE) && ${_TEST_LD:tA} == "/usr/bin/ld.lld"
-LDFLAGS+=       -fuse-ld=bfd
-BINARY_ALIAS+=  ld=${LD}
-.  if !defined(USE_BINUTILS)
-.    if exists(/usr/bin/ld.bfd)
-LD=     /usr/bin/ld.bfd
-CONFIGURE_ENV+= LD=${LD}
-MAKE_ENV+=      LD=${LD}
-.    else
-USE_BINUTILS=   yes
+.    if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
+LDFLAGS+=	-fuse-ld=bfd
+BINARY_ALIAS+=	ld=${LD}
+.      if !defined(USE_BINUTILS)
+.        if exists(/usr/bin/ld.bfd)
+LD=	/usr/bin/ld.bfd
+CONFIGURE_ENV+=	LD=${LD}
+MAKE_ENV+=	LD=${LD}
+.        else
+USE_BINUTILS=	yes
+.        endif
+.      endif
 .    endif
-.  endif
-.endif
 
 .    if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
