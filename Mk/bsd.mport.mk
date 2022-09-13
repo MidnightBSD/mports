@@ -1003,11 +1003,10 @@ SUB_FILES+=	${USE_RCORDER}
 
 .    if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
 USE_LDCONFIG=	${PREFIX}/lib
-.endif
-
-.if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:tl} == "yes"
+.    endif
+.    if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:tl} == "yes"
 IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
-.endif
+.    endif
 
 # required by mport.create MPORT_CREATE_ARGS
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
