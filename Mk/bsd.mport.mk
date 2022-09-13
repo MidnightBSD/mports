@@ -278,7 +278,7 @@ MASTER_PORT?=${MASTERDIR:C/[^\/]+\/\.\.\///:C/[^\/]+\/\.\.\///:C/^.*\/([^\/]+\/[
 .    else
 SLAVE_PORT?=	no
 MASTER_PORT?=
-.endif
+.    endif
 
 # Check the compatibility layer for amd64
 
@@ -336,7 +336,7 @@ USE_SUBMAKE=	yes
 .    elif ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/Makefile.local)
 .include "${.CURDIR}/Makefile.local"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
 # where 'make config' records user configuration options
 PORT_DBDIR?=	/var/db/ports
