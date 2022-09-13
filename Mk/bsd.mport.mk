@@ -618,9 +618,15 @@ ${v}+=	${${FLAVOR}_${v}}
 .      for v in BROKEN IGNORE
 .        if defined(${FLAVOR}_${v})
 ${v}=	flavor "${FLAVOR}" ${${FLAVOR}_${v}}
-.endif
-.endfor
-.endif # defined(${FLAVOR})
+.        endif
+.      endfor
+.      if defined(FLAVORS_SUB)
+PLIST_SUB+=	${FLAVORS:N${FLAVOR}:@v@${v:tu}="\@comment " NO_${v:tu}=""@}
+PLIST_SUB+=	${FLAVOR:tu}="" NO_${FLAVOR:tu}="@comment "
+SUB_LIST+=	${FLAVORS:N${FLAVOR}:@v@${v:tu}="\@comment " NO_${v:tu}=""@}
+SUB_LIST+=	${FLAVOR:tu}="" NO_${FLAVOR:tu}="@comment "
+.      endif
+.    endif # defined(${FLAVOR})
 
 .if defined(USE_GCPIO)
 EXTRACT_DEPENDS+=       gcpio:archivers/gcpio
@@ -701,12 +707,10 @@ WWWGRP?=	www
 # Start of post-makefile section.
 .  if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
-.if defined(_POSTMKINCLUDED)
-check-makefile::
-	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
+.    if defined(_POSTMKINCLUDED)
+DEV_ERROR+=	"${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
 	@${FALSE}
-.endif
-
+.    endif
 
 _POSTMKINCLUDED=	yes
 
@@ -760,7 +764,14 @@ PATH:=			${BINARY_LINKDIR}:${PATH}
 .    if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
 MAKE_ENV+=			PATH=${PATH}
 CONFIGURE_ENV+=		PATH=${PATH}
-.endif
+.    endif
+
+PKGCONFIG_LINKDIR=	${WRKDIR}/.pkgconfig
+PKGCONFIG_BASEDIR=	/usr/libdata/pkgconfig
+.    if !${MAKE_ENV:MPKG_CONFIG_LIBDIR=*} && !${CONFIGURE_ENV:MPKG_CONFIG_LIBDIR=*}
+MAKE_ENV+=			PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${LOCALBASE}/share/pkgconfig:${PKGCONFIG_BASEDIR}
+CONFIGURE_ENV+=		PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${LOCALBASE}/share/pkgconfig:${PKGCONFIG_BASEDIR}
+.    endif
 
 .    if !defined(IGNORE_MASTER_SITE_GITHUB) && defined(USE_GITHUB) && empty(USE_GITHUB:Mnodefault)
 .      if defined(WRKSRC)
