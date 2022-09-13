@@ -890,19 +890,6 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .      endif
 .    endfor
 
-.if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
-.if !defined(INSTALL_STRIPPED)
-STRIP=	#none
-MAKE_ENV+=	DONTSTRIP=yes
-STRIP_CMD=	${TRUE}
-.endif
-DEBUG_FLAGS?=	-g
-CFLAGS:=	${CFLAGS:N-O*:N-fno-strict*} ${DEBUG_FLAGS}
-.if defined(INSTALL_TARGET)
-INSTALL_TARGET:=	${INSTALL_TARGET:S/^install-strip$/install/g}
-.endif
-.endif
-
 # XXX PIE support to be added here
 MAKE_ENV+=	NO_PIE=yes
 
