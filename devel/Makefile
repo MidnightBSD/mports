@@ -612,6 +612,7 @@ SUBDIR += p5-Spiffy
 SUBDIR += p5-Storable
 SUBDIR += p5-Stream-Buffered
 SUBDIR += p5-String-Approx
+SUBDIR += p5-String-CRC32
 SUBDIR += p5-String-Ediff
 SUBDIR += p5-Struct-Dumb
 SUBDIR += p5-Sub-Exporter
