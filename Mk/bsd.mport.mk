@@ -4160,9 +4160,9 @@ create-binary-alias: ${BINARY_LINKDIR}
 create-binary-wrappers: ${BINARY_LINKDIR}
 .        for bin in ${BINARY_WRAPPERS}
 	@${INSTALL_SCRIPT} ${WRAPPERSDIR}/${bin} ${BINARY_LINKDIR}
-.endfor
-.endif
-.endif
+.        endfor
+.      endif
+.    endif
 
 ########################################################################################
 # Order of targets run for each stage of the build.
@@ -4191,7 +4191,6 @@ _FETCH_SEQ=		150:fetch-depends 300:pre-fetch 450:pre-fetch-script \
 				500:do-fetch 550:fetch-specials 700:post-fetch \
 				850:post-fetch-script \
 				${_OPTIONS_fetch} ${_USES_fetch}
-
 _EXTRACT_DEP=	fetch
 _EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum 150:extract-depends \
 				190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
@@ -4199,21 +4198,18 @@ _EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum 150:ext
 				700:post-extract 850:post-extract-script \
 				999:extract-fixup-modes \
 				${_OPTIONS_extract} ${_USES_extract} ${_SITES_extract}
-
 _PATCH_DEP=		extract
 _PATCH_SEQ=		050:ask-license 100:patch-message \
 				150:patch-depends \
 				300:pre-patch 450:pre-patch-script 500:do-patch \
 				700:post-patch 850:post-patch-script \
 				${_OPTIONS_patch} ${_USES_patch}
-
 _CONFIGURE_DEP=	patch
 _CONFIGURE_SEQ=	150:build-depends 151:lib-depends 160:create-binary-alias 200:configure-message \
 				300:pre-configure 450:pre-configure-script \
 				460:run-autotools 490:do-autoreconf 491:patch-libtool \
 				500:do-configure 700:post-configure 850:post-configure-script \
 				${_OPTIONS_configure} ${_USES_configure}
-
 _BUILD_DEP=		configure
 _BUILD_SEQ=		100:build-message 300:pre-build 450:pre-build-script \
 			500:do-build 700:post-build 850:post-build-script \
