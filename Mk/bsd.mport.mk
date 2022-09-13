@@ -206,7 +206,7 @@ _EXPORTED_VARS+=	PPC_ABI
 .    if defined(CROSS_SYSROOT)
 .      if !exists(${CROSS_SYSROOT}/usr/include/sys/param.h)
 .error CROSS_SYSROOT does not include /usr/include/sys/param.h.
-.endif
+.      endif
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${CROSS_SYSROOT}/usr/include/sys/param.h
 _OSRELEASE!= ${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version / 100000, version / 1000 % 100) }' < /dev/null
 .    endif
