@@ -2922,10 +2922,10 @@ pretty-print-www-site:
 #
 # Special target to verify patches
 
-.if !target(checkpatch)
+.    if !target(checkpatch)
 checkpatch:
-	@cd ${.CURDIR} && ${MAKE} PATCH_CHECK_ONLY=yes ${_PATCH_DEP} ${_PATCH_REAL_SEQ}
-.endif
+	@cd ${.CURDIR} && ${MAKE} ${PATCH_SILENT} PATCH_CHECK_ONLY=yes ${_PATCH_DEP} ${_PATCH_REAL_SEQ}
+.    endif
 
 # Reinstall
 #
@@ -2969,7 +2969,7 @@ deinstall:
 
 # Cleaning up
 
-.if !target(do-clean)
+.    if !target(do-clean)
 do-clean:
 	@if [ -d ${WRKDIR} ]; then \
 		if [ -w ${WRKDIR} ]; then \
@@ -2978,58 +2978,58 @@ do-clean:
 			${ECHO_MSG} "===>   ${WRKDIR} not writable, skipping"; \
 		fi; \
 	fi
-.endif
+.    endif
 
-.if !target(clean)
+.    if !target(clean)
 pre-clean: clean-msg
 clean-msg:
 	@${ECHO_MSG} "===>  Cleaning for ${PKGNAME}"
 
-.if empty(FLAVORS)
+.      if empty(FLAVORS)
 CLEAN_DEPENDENCIES=
-.if !defined(NOCLEANDEPENDS)
+.        if !defined(NOCLEANDEPENDS)
 CLEAN_DEPENDENCIES+=	limited-clean-depends-noflavor
 limited-clean-depends-noflavor:
 	@cd ${.CURDIR} && ${MAKE} limited-clean-depends
-.endif
-.if target(pre-clean)
+.        endif
+.        if target(pre-clean)
 CLEAN_DEPENDENCIES+=	pre-clean-noflavor
 pre-clean-noflavor:
 	@cd ${.CURDIR} && ${SETENV} ${MAKE} pre-clean
-.endif
+.        endif
 CLEAN_DEPENDENCIES+=	do-clean-noflavor
 do-clean-noflavor:
 	@cd ${.CURDIR} && ${SETENV} ${MAKE} do-clean
-.if target(post-clean)
+.        if target(post-clean)
 CLEAN_DEPENDENCIES+=	post-clean-noflavor
 post-clean-noflavor:
 	@cd ${.CURDIR} &&  ${SETENV} ${MAKE} post-clean
-.endif
+.        endif
 .ORDER: ${CLEAN_DEPENDENCIES}
 clean: ${CLEAN_DEPENDENCIES}
-.endif
+.      endif
 
-.if !empty(_FLAVOR)
+.      if !empty(_FLAVOR)
 _CLEANFLAVORS=	${_FLAVOR}
-.else
+.      else
 _CLEANFLAVORS=	${FLAVORS}
-.endif
-.for _f in ${_CLEANFLAVORS}
+.      endif
+.      for _f in ${_CLEANFLAVORS}
 CLEAN_DEPENDENCIES=
-.if !defined(NOCLEANDEPENDS)
+.        if !defined(NOCLEANDEPENDS)
 CLEAN_DEPENDENCIES+=	limited-clean-depends-${_f}
 limited-clean-depends-${_f}:
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} limited-clean-depends
-.endif
-.if target(pre-clean)
+.        endif
+.        if target(pre-clean)
 CLEAN_DEPENDENCIES+=	pre-clean-${_f}
 pre-clean-${_f}:
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} pre-clean
-.endif
+.        endif
 CLEAN_DEPENDENCIES+=	do-clean-${_f}
 do-clean-${_f}:
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} do-clean
-.if target(post-clean)
+.        if target(post-clean)
 CLEAN_DEPENDENCIES+=	post-clean-${_f}
 post-clean-${_f}:
 	@cd ${.CURDIR} &&  ${SETENV} FLAVOR=${_f} ${MAKE} post-clean
@@ -3047,9 +3047,9 @@ pre-distclean:
 .if !target(distclean)
 distclean: clean
 	@cd ${.CURDIR} && ${MAKE} delete-distfiles RESTRICTED_FILES="${_DISTFILES:Q} ${_PATCHFILES:Q}"
-.endif
+.    endif
 
-.if !target(delete-distfiles)
+.    if !target(delete-distfiles)
 delete-distfiles:
 	@${ECHO_MSG} "===>  Deleting distfiles for ${PKGNAME}"
 	@(if [ "X${RESTRICTED_FILES}" != "X" -a -d ${_DISTDIR} ]; then \
@@ -3062,10 +3062,10 @@ delete-distfiles:
 			fi; \
 		done; \
 	fi)
-.if defined(DIST_SUBDIR)
+.      if defined(DIST_SUBDIR)
 	-@${RMDIR} ${_DISTDIR} >/dev/null 2>&1 || ${TRUE}
-.endif
-.endif
+.      endif
+.    endif
 
 .if !target(delete-distfiles-list)
 delete-distfiles-list:
@@ -3079,7 +3079,7 @@ delete-distfiles-list:
 			fi; \
 		done; \
 	fi
-.if defined(DIST_SUBDIR)
+.      if defined(DIST_SUBDIR)
 	@${ECHO_CMD} "${RMDIR} ${_DISTDIR} 2>/dev/null || ${TRUE}"
 .endif
 .endif
@@ -3383,7 +3383,7 @@ fetch-recursive:
 	@recursive_cmd="fetch"; \
 	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
-.endif
+.    endif
 
 .    if !target(fetch-recursive-list)
 fetch-recursive-list:
@@ -3462,7 +3462,7 @@ checksum-recursive:
 # Dependency lists: build and runtime.  Print out directory names.
 
 build-depends-list:
-.if defined(EXTRACT_DEPENDS) || defined(PATCH_DEPENDS) || defined(FETCH_DEPENDS) || defined(BUILD_DEPENDS) || defined(LIB_DEPENDS)
+.    if defined(PKG_DEPENDS) || defined(EXTRACT_DEPENDS) || defined(PATCH_DEPENDS) || defined(FETCH_DEPENDS) || defined(BUILD_DEPENDS) || defined(LIB_DEPENDS)
 	@${BUILD-DEPENDS-LIST}
 .    endif
 
