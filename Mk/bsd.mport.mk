@@ -1900,18 +1900,18 @@ INFO_PATH?=	share/info
 INFO_PATH?=	info
 .endif
 
-.if defined(INFO)
+.    if defined(INFO)
 RUN_DEPENDS+=	indexinfo:print/indexinfo
 
-. for D in ${INFO:H}
+.      for D in ${INFO:H}
 RD:=	${D}
-.  if ${RD} != "."
-.   if !defined(INFO_SUBDIR)
+.        if ${RD} != "."
+.          if !defined(INFO_SUBDIR)
 INFO_SUBDIR:=	${RD}
-.   elif ${INFO_SUBDIR} != ${RD}
+.          elif ${INFO_SUBDIR} != ${RD}
 BROKEN=		only one subdirectory in INFO is allowed
-.   endif
-.  endif
+.          endif
+.        endif
 .undef RD
 . endfor
 .endif
@@ -1968,107 +1968,107 @@ _DESKTOPDIR_REL=
 ################################################################
 
 # Check the machine architectures
-.if defined(ONLY_FOR_ARCHS)
-.for __ARCH in ${ONLY_FOR_ARCHS}
-.if ${ARCH:M${__ARCH}} != ""
+.    if defined(ONLY_FOR_ARCHS)
+.      for __ARCH in ${ONLY_FOR_ARCHS}
+.        if ${ARCH:M${__ARCH}} != ""
 __ARCH_OK?=		1
-.endif
-.endfor
-.else
+.        endif
+.      endfor
+.    else
 __ARCH_OK?=		1
-.endif
+.    endif
 
-.if defined(NOT_FOR_ARCHS)
-.for __NARCH in ${NOT_FOR_ARCHS}
-.if ${ARCH:M${__NARCH}} != ""
+.    if defined(NOT_FOR_ARCHS)
+.      for __NARCH in ${NOT_FOR_ARCHS}
+.        if ${ARCH:M${__NARCH}} != ""
 .undef __ARCH_OK
-.endif
-.endfor
-.endif
+.        endif
+.      endfor
+.    endif
 
-.if !defined(__ARCH_OK)
-.if defined(ONLY_FOR_ARCHS)
+.    if !defined(__ARCH_OK)
+.      if defined(ONLY_FOR_ARCHS)
 IGNORE=		is only for ${ONLY_FOR_ARCHS:O},
-.else # defined(NOT_FOR_ARCHS)
+.      else # defined(NOT_FOR_ARCHS)
 IGNORE=		does not run on ${NOT_FOR_ARCHS:O},
-.endif
+.      endif
 IGNORE+=	while you are running ${ARCH}
 
-.if defined(ONLY_FOR_ARCHS_REASON_${ARCH})
+.      if defined(ONLY_FOR_ARCHS_REASON_${ARCH})
 IGNORE+=	(reason: ${ONLY_FOR_ARCHS_REASON_${ARCH}})
-.elif defined(ONLY_FOR_ARCHS_REASON)
+.      elif defined(ONLY_FOR_ARCHS_REASON)
 IGNORE+=	(reason: ${ONLY_FOR_ARCHS_REASON})
-.endif
+.      endif
 
-.if defined(NOT_FOR_ARCHS_REASON_${ARCH})
+.      if defined(NOT_FOR_ARCHS_REASON_${ARCH})
 IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON_${ARCH}})
-.elif defined(NOT_FOR_ARCHS_REASON)
+.      elif defined(NOT_FOR_ARCHS_REASON)
 IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON})
-.endif
+.      endif
 
-.endif
+.    endif
 
 # Check the user interaction and legal issues
 .if !defined(NO_IGNORE)
 .if (defined(IS_INTERACTIVE) && defined(BATCH))
 IGNORE=		is an interactive port
-.elif (!defined(IS_INTERACTIVE) && defined(INTERACTIVE))
+.      elif (!defined(IS_INTERACTIVE) && defined(INTERACTIVE))
 IGNORE=		is not an interactive port
-.elif (defined(NO_CDROM) && defined(FOR_CDROM))
+.      elif (defined(NO_CDROM) && defined(FOR_CDROM))
 IGNORE=		may not be placed on a CDROM: ${NO_CDROM}
-.elif (defined(RESTRICTED) && defined(NO_RESTRICTED))
+.      elif (defined(RESTRICTED) && defined(NO_RESTRICTED))
 IGNORE=		is restricted: ${RESTRICTED}
 .elif defined(IGNORE_${ARCH})
 IGNORE=		${IGNORE_${ARCH}}
-.elif defined(IGNORE_${OPSYS}_${OSREL:R}_${ARCH})
+.      elif defined(IGNORE_${OPSYS}_${OSREL:R}_${ARCH})
 IGNORE=		${IGNORE_${OPSYS}_${OSREL:R}_${ARCH}}
-.elif defined(IGNORE_${OPSYS}_${OSREL:R})
+.      elif defined(IGNORE_${OPSYS}_${OSREL:R})
 IGNORE=		${IGNORE_${OPSYS}_${OSREL:R}}
-.elif defined(IGNORE_${OPSYS})
+.      elif defined(IGNORE_${OPSYS})
 IGNORE=		${IGNORE_${OPSYS}}
-.elif defined(BROKEN)
-.if !defined(TRYBROKEN)
+.      elif defined(BROKEN)
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken: ${BROKEN}
-.endif
-.elif defined(BROKEN_${ARCH})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${ARCH})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${ARCH}: ${BROKEN_${ARCH}}
-.endif
-.elif defined(BROKEN_${OPSYS}_${OSREL:R}_${ARCH})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${OPSYS}_${OSREL:R}_${ARCH})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${OPSYS} ${OSREL} ${ARCH}: ${BROKEN_${OPSYS}_${OSREL:R}_${ARCH}}
-.endif
-.elif defined(BROKEN_${OPSYS}_${OSREL:R})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${OPSYS}_${OSREL:R})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${OPSYS} ${OSREL}: ${BROKEN_${OPSYS}_${OSREL:R}}
-.endif
-.elif defined(BROKEN_${OPSYS})
-.if !defined(TRYBROKEN)
+.        endif
+.      elif defined(BROKEN_${OPSYS})
+.        if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${OPSYS}: ${BROKEN_${OPSYS}}
-.endif
-.elif defined(FORBIDDEN)
+.        endif
+.      elif defined(FORBIDDEN)
 IGNORE=		is forbidden: ${FORBIDDEN}
-.endif
+.      endif
 
 # Define the text to be output to LEGAL
-.if defined(LEGAL_TEXT)
+.      if defined(LEGAL_TEXT)
 LEGAL= ${LEGAL_TEXT}
-.elif defined(RESTRICTED)
+.      elif defined(RESTRICTED)
 LEGAL= ${RESTRICTED}
-.elif defined(NO_CDROM)
+.      elif defined(NO_CDROM)
 LEGAL= ${NO_CDROM}
-.elif defined(NO_PACKAGE) && ! defined(LEGAL_PACKAGE)
+.      elif defined(NO_PACKAGE) && ! defined(LEGAL_PACKAGE)
 LEGAL= ${NO_PACKAGE}
-.endif
+.      endif
 
-.if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
+.      if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
 IGNORE=		has to be built manually: ${MANUAL_PACKAGE_BUILD}
 clean:
 	@${IGNORECMD}
-.endif
+.      endif
 
-.if defined(IGNORE)
-.if defined(IGNORE_SILENT)
+.      if defined(IGNORE)
+.        if defined(IGNORE_SILENT)
 IGNORECMD=	${DO_NADA}
 .else
 IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
@@ -2077,19 +2077,19 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 _TARGETS=	check-sanity pkg fetch checksum extract patch configure all build \
 		fake install reinstall test package 
 
-.for target in ${_TARGETS}
-.if !target(${target})
+.        for target in ${_TARGETS}
+.          if !target(${target})
 ${target}:
 	@${IGNORECMD}
-.if defined(INSTALLS_DEPENDS)
+.            if defined(INSTALLS_DEPENDS)
 	@${FALSE}
-.endif
-.endif
-.endfor
+.            endif
+.          endif
+.        endfor
 
-.endif
+.      endif
 
-.endif
+.    endif # !defined(NO_IGNORE)
 
 .if defined(IGNORE) || defined(NO_PACKAGE)
 ignorelist: package-name
@@ -2102,25 +2102,29 @@ ignorelist:
 # Clean directories for ftp or CDROM.
 ################################################################
 
-.if defined(RESTRICTED)
+.    if !defined(LICENSE)
+
+.      if defined(RESTRICTED)
 clean-restricted:	delete-distfiles delete-package
 clean-restricted-list: delete-distfiles-list delete-package-list
 RESTRICTED_FILES?=	${_DISTFILES} ${_PATCHFILES}
-.else
+.      else
 clean-restricted:
 clean-restricted-list:
-.endif
+.      endif
 
-.if defined(NO_CDROM)
+.      if defined(NO_CDROM)
 clean-for-cdrom:	delete-distfiles delete-package
 clean-for-cdrom-list:	delete-distfiles-list delete-package-list
 RESTRICTED_FILES?=	${_DISTFILES} ${_PATCHFILES}
-.else
+.      else
 clean-for-cdrom:
 clean-for-cdrom-list:
-.endif
+.      endif
 
-.if defined(ALL_HOOK)
+.    endif # !defined(LICENSE)
+
+.    if defined(ALL_HOOK)
 all:
 	@cd ${.CURDIR} && ${SETENV} CURDIR=${.CURDIR} DISTNAME=${DISTNAME} \
 	  DISTDIR=${DISTDIR} WRKDIR=${WRKDIR} WRKSRC=${WRKSRC} \
@@ -2129,7 +2133,7 @@ all:
 	  DEPENDS="${DEPENDS}" BUILD_DEPENDS="${BUILD_DEPENDS}" \
 	  RUN_DEPENDS="${RUN_DEPENDS}" CONFLICTS="${CONFLICTS}" \
 	${ALL_HOOK}
-.endif
+.    endif
 
 .if !target(all)
 all: build
