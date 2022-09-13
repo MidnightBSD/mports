@@ -1857,7 +1857,7 @@ CONFIGURE_TARGET:=	${CONFIGURE_TARGET:S/--build=//}
 CONFIGURE_LOG?=		config.log
 
 # A default message to print if do-configure fails.
-CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer] and attach the \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\" including the output of the failure of your make command. Also, it might be a good idea to provide an overview of all packages installed on your system (e.g. a mport list)."
+CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer] and attach the \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\" including the output of the failure of your make command. Also, it might be a good idea to provide an overview of all packages installed on your system (e.g. a ${PKG_INFO} -Ea)."
 
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
 .    if defined(GNU_CONFIGURE)
@@ -4149,10 +4149,10 @@ create-binary-alias: ${BINARY_LINKDIR}
 .endif
 .endif
 
-.if !empty(BINARY_WRAPPERS)
-.if !target(create-binary-wrappers)
-create-binary-wrappers: ${BINARY_LINKDIR} 
-.for bin in ${BINARY_WRAPPERS}
+.    if !empty(BINARY_WRAPPERS)
+.      if !target(create-binary-wrappers)
+create-binary-wrappers: ${BINARY_LINKDIR}
+.        for bin in ${BINARY_WRAPPERS}
 	@${INSTALL_SCRIPT} ${WRAPPERSDIR}/${bin} ${BINARY_LINKDIR}
 .endfor
 .endif
