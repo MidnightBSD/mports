@@ -27,8 +27,8 @@ LC_ALL=		C
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
 # by individual Makefiles or local system make configuration.
-_LIST_OF_WITH_FEATURES= debug lto ssp
-_DEFAULT_WITH_FEATURES= ssp
+_LIST_OF_WITH_FEATURES=	debug lto ssp
+_DEFAULT_WITH_FEATURES=	ssp
 PORTSDIR?=		/usr/mports
 LOCALBASE?=		/usr/local
 LINUXBASE?=		/compat/linux
@@ -70,7 +70,8 @@ MAKE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
 _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
-                                   ${FAKE_DESTDIR}${TRUE_PREFIX} ${WRKDIR}/pkg ${BINARY_LINKDIR}
+			${FAKE_DESTDIR}${TRUE_PREFIX} ${WRKDIR}/pkg ${BINARY_LINKDIR} \
+			${PKGCONFIG_LINKDIR}
 
 # Ensure .CURDIR contains an absolute path without a trailing slash.  Failed
 # builds can occur when PORTSDIR is a symbolic link, or with something like
