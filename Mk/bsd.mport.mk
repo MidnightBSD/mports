@@ -431,14 +431,14 @@ STRIP=	#none
 .include "${MPORTCOMPONENTS}/options.mk"
 
 # Start of pre-makefile section.
-.if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
+.  if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
 
 .include "${MPORTCOMPONENTS}/sanity.mk"
 
 _PREMKINCLUDED=	yes
 
-.if defined(PORTVERSION)
-.if ${PORTVERSION:M*[-_,]*}x != x
+.    if defined(PORTVERSION)
+.      if ${PORTVERSION:M*[-_,]*}x != x
 IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
 .endif
 .if defined(DISTVERSION)
@@ -450,14 +450,14 @@ PORTVERSION=	${DISTVERSION:tl:C/([a-z])[a-z]+/\1/g:C/([0-9])([a-z])/\1.\2/g:C/:(
 .endif
 
 PORTREVISION?=	0
-.if ${PORTREVISION} != 0
+.    if ${PORTREVISION} != 0
 _SUF1=	_${PORTREVISION}
-.endif
+.    endif
 
 PORTEPOCH?=		0
-.if ${PORTEPOCH} != 0
+.    if ${PORTEPOCH} != 0
 _SUF2=	,${PORTEPOCH}
-.endif
+.    endif
 
 PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
 PKGBASE=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
