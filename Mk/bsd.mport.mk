@@ -1739,10 +1739,10 @@ _F_TEMP=	${_F:S/^${_F:C/:[^-:][^:]*$//}//:S/^://}
 .        for _group in ${_F_TEMP:S/,/ /g}
 .          if defined(_PATCH_SITES_${_group})
 _PATCH_SITES_ENV+=	_PATCH_SITES_${_group}=${_PATCH_SITES_${_group}:Q}
-.			endif
-.		endfor
-.	endif
-.endfor
+.          endif
+.        endfor
+.      endif
+.    endfor
 
 master-sites-ALL:
 	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_MASTER_SITES_ALL}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
