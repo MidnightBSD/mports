@@ -490,6 +490,10 @@ PKGDIR?=                ${MASTERDIR}
 
 PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 
+.    for odir in ${OVERLAYS}
+.sinclude "${odir}/Mk/bsd.overlay.mk"
+.    endfor
+
 #
 # Handle the backwards compatibility stuff for extension loading
 #
