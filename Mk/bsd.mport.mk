@@ -372,6 +372,11 @@ WITH_DEBUG=	yes
 .      endif
 .    endif
 
+.    if defined(USE_LTO)
+WITH_LTO=	${USE_LTO}
+WARNINGS+=	USE_LTO is deprecated in favor of WITH_LTO
+.    endif
+
 # Respect TMPDIR passed via make.conf or similar and pass it down
 # to configure and make.
 .if defined(TMPDIR)
