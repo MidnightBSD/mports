@@ -209,7 +209,7 @@ _EXPORTED_VARS+=	PPC_ABI
 .endif
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${CROSS_SYSROOT}/usr/include/sys/param.h
 _OSRELEASE!= ${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version / 100000, version / 1000 % 100) }' < /dev/null
-.endif
+.    endif
 
 # Get the operating system type
 .    if !defined(OPSYS)
@@ -575,24 +575,24 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .if !empty(FLAVORS)
 .  if ${FLAVORS:Mall}
 DEV_ERROR+=		"FLAVORS cannot contain 'all', it is a reserved value"
-.  endif
-.  for f in ${FLAVORS}
-.    if ${f:C/[[:lower:][:digit:]_]//g}
+.      endif
+.      for f in ${FLAVORS}
+.        if ${f:C/[[:lower:][:digit:]_]//g}
 _BAD_FLAVOR_NAMES+=		${f}
-.    endif
-.  endfor
-.  if !empty(_BAD_FLAVOR_NAMES)
+.        endif
+.      endfor
+.      if !empty(_BAD_FLAVOR_NAMES)
 DEV_ERROR+=		"FLAVORS contains flavors that are not all [a-z0-9_]: ${_BAD_FLAVOR_NAMES}"
-.  endif
-.endif
+.      endif
+.    endif
 
-.if !empty(FLAVOR)
-.  if empty(FLAVORS)
-IGNORE=	FLAVOR is defined (to ${FLAVOR}) while this port does not have FLAVORS.
-.  elif ! ${FLAVORS:M${FLAVOR}}
-IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}.
-.  endif
-.endif
+.    if !empty(FLAVOR)
+.      if empty(FLAVORS)
+IGNORE=	FLAVOR is defined (to ${FLAVOR}) while this port does not have FLAVORS
+.      elif ! ${FLAVORS:M${FLAVOR}}
+IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}
+.      endif
+.    endif
 
 .    if !empty(FLAVORS) && empty(FLAVOR)
 FLAVOR=	${FLAVORS:[1]}
@@ -1175,10 +1175,14 @@ MAKE_JOBS_NUMBER=	1
 .    else
 .      if defined(MAKE_JOBS_NUMBER)
 _MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
-.else
-_MAKE_JOBS_NUMBER!=	${SYSCTL} -n kern.smp.cpus
-.endif
-.if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
+.      else
+.        if !defined(_SMP_CPUS)
+_SMP_CPUS!=		${SYSCTL} -n kern.smp.cpus
+.        endif
+_EXPORTED_VARS+=	_SMP_CPUS
+_MAKE_JOBS_NUMBER=	${_SMP_CPUS}
+.      endif
+.      if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
 MAKE_JOBS_NUMBER=	${MAKE_JOBS_NUMBER_LIMIT}
 .      else
 MAKE_JOBS_NUMBER=	${_MAKE_JOBS_NUMBER}
@@ -1190,7 +1194,9 @@ BUILD_FAIL_MESSAGE+=	Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reportin
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
 
+.    if !make(makesum)
 FETCH_ENV?=		SSL_NO_VERIFY_PEER=1 SSL_NO_VERIFY_HOSTNAME=1
+.    endif
 FETCH_BINARY?=	/usr/bin/fetch
 FETCH_ARGS?=	-Fpr
 FETCH_REGET?=	1
@@ -1803,9 +1809,9 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	print python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
 	tcl textproc tk \
-	ukrainian vietnamese windowmaker wayland www \
+	ukrainian vietnamese wayland windowmaker www \
 	x11 x11-clocks x11-drivers x11-fm x11-fonts x11-servers x11-themes \
-	x11-toolkits x11-wm xfce zope
+	x11-toolkits x11-wm xfce zope base
 
 check-categories:
 .      for cat in ${CATEGORIES}
@@ -1851,7 +1857,7 @@ CONFIGURE_TARGET:=	${CONFIGURE_TARGET:S/--build=//}
 CONFIGURE_LOG?=		config.log
 
 # A default message to print if do-configure fails.
-CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer] and attach the \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\" including the output of the failure of your make command. Also, it might be a good idea to provide an overview of all packages installed on your system (e.g. an \`ls ${PKG_DBDIR}\`)."
+CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer] and attach the \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\" including the output of the failure of your make command. Also, it might be a good idea to provide an overview of all packages installed on your system (e.g. a mport list)."
 
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
 .    if defined(GNU_CONFIGURE)
@@ -4050,7 +4056,7 @@ desktop-categories:
                         dp_TR="${TR}" \
                         ${SH} ${SCRIPTSDIR}/desktop-categories.sh
 
-.if defined(DESKTOP_ENTRIES)
+.    if defined(DESKTOP_ENTRIES)
 check-desktop-entries:
 	@${SETENV} \
 		dp_CURDIR="${.CURDIR}" \
@@ -4067,8 +4073,8 @@ check-desktop-entries:
 		${SH} ${SCRIPTSDIR}/check-desktop-entries.sh ${DESKTOP_ENTRIES}
 .endif
 
-.if !target(install-desktop-entries)
-.if defined(DESKTOP_ENTRIES)
+.    if !target(install-desktop-entries)
+.      if defined(DESKTOP_ENTRIES)
 install-desktop-entries:
 	@${SETENV} \
                         dp_CURDIR="${.CURDIR}" \
@@ -4248,40 +4254,40 @@ _UPDATE_SEQ=	100:update-message 150:check-for-older-installed 500:do-update 700:
 
 
 # Enforce order for -jN builds
-.for _t in ${_TARGETS_STAGES}
+.    for _t in ${_TARGETS_STAGES}
 # Check if the port need to change the default order of some targets...
-.  if defined(TARGET_ORDER_OVERRIDE)
+.      if defined(TARGET_ORDER_OVERRIDE)
 _tmp_seq:=
-.    for _entry in ${_${_t}_SEQ}
+.        for _entry in ${_${_t}_SEQ}
 # for _target because :M${_target} does not work with fmake
-.      for _target in ${_entry:C/^[0-9]+://}
-.        if ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
+.          for _target in ${_entry:C/^[0-9]+://}
+.            if ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
 _tmp_seq:=	${_tmp_seq} ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
-.        else
+.            else
 _tmp_seq:=	${_tmp_seq} ${_entry}
+.            endif
+.          endfor
+.        endfor
+_${_t}_SEQ:=	${_tmp_seq}
+.      endif
+.      for s in ${_${_t}_SEQ:O:C/^[0-9]+://}
+.        if target(${s})
+.          if ! ${NOTPHONY:M${s}}
+_PHONY_TARGETS+= ${s}
+.          endif
+_${_t}_REAL_SEQ+=	${s}
 .        endif
 .      endfor
-.    endfor
-_${_t}_SEQ:=	${_tmp_seq}
-.  endif
-.  for s in ${_${_t}_SEQ:O:C/^[0-9]+://}
-.    if target(${s})
-.      if ! ${NOTPHONY:M${s}}
+.      for s in ${_${_t}_SUSEQ:O:C/^[0-9]+://}
+.        if target(${s})
+.          if ! ${NOTPHONY:M${s}}
 _PHONY_TARGETS+= ${s}
-.      endif
-_${_t}_REAL_SEQ+=	${s}
-.    endif
-.  endfor
-.  for s in ${_${_t}_SUSEQ:O:C/^[0-9]+://}
-.    if target(${s})
-.      if ! ${NOTPHONY:M${s}}
-_PHONY_TARGETS+= ${s}
-.       endif
+.          endif
 _${_t}_REAL_SUSEQ+=	${s}
-.    endif
-.  endfor
+.        endif
+.      endfor
 .ORDER: ${_${_t}_DEP} ${_${_t}_REAL_SEQ}
-.endfor
+.    endfor
 
 # Define all of the main targets which depend on a sequence of other targets.
 # See above *_SEQ and *_DEP. The _DEP will run before this defined target is
@@ -4294,69 +4300,69 @@ _${_t}_REAL_SUSEQ+=	${s}
 # to depend on the *_DEP and execute the *_SEQ.
 # If options are required, execute config-conditional and then re-execute the
 # target noting that config is no longer needed.
-.if !target(${target}) && defined(_OPTIONS_OK)
+.      if !target(${target}) && defined(_OPTIONS_OK)
 _PHONY_TARGETS+= ${target}
 ${target}: ${${target:tu}_COOKIE}
-.elif !target(${target})
+.      elif !target(${target})
 ${target}: config-conditional
 	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${PKGBASE:tu}=1 ${${target:tu}_COOKIE}
-.elif target(${target}) && defined(IGNORE)
-.endif
+.      elif target(${target}) && defined(IGNORE)
+.      endif
 
-.if !exists(${${target:tu}_COOKIE})
+.      if !exists(${${target:tu}_COOKIE})
 
 # Define the real target behavior. Depend on the target's *_DEP. Execute
 # the target's *_SEQ. Also handle su and USE_SUBMAKE needs.
-.if ${UID} != 0 && defined(_${target:tu}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
-.  if defined(USE_SUBMAKE)
+.        if ${UID} != 0 && defined(_${target:tu}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
+.          if defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
 	@cd ${.CURDIR} && ${MAKE} ${_${target:tu}_REAL_SEQ}
-.  else  # !USE_SUBMAKE
+.          else  # !USE_SUBMAKE
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ}
-.  endif # USE_SUBMAKE
+.          endif # USE_SUBMAKE
 	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
 	@cd ${.CURDIR} && \
 		${SU_CMD} "${MAKE} ${_${target:tu}_REAL_SUSEQ}"
 	@${ECHO_MSG} "===>  Returning to user credentials"
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.else # No SU needed
-.  if defined(USE_SUBMAKE)
+.        else # No SU needed
+.          if defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
 	@cd ${.CURDIR} && \
 		${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  else # !USE_SUBMAKE
+.          else # !USE_SUBMAKE
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  endif # USE_SUBMAKE
-.endif # SU needed
+.          endif # USE_SUBMAKE
+.        endif # SU needed
 
-.else # exists(cookie)
+.      else # exists(cookie)
 ${${target:tu}_COOKIE}::
 	@if [ ! -e ${.TARGET} ]; then \
 		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
 	fi
-.endif # !exists(cookie)
+.      endif # !exists(cookie)
 
-.endfor # foreach(targets)
+.    endfor # foreach(targets)
 
 .PHONY: ${_PHONY_TARGETS} check-sanity fetch pkg
 
-.if !target(check-sanity)
+.    if !target(check-sanity)
 check-sanity: ${_SANITY_REAL_SEQ}
-.endif
+.    endif
 
-.if !target(fetch)
+.    if !target(fetch)
 fetch: ${_FETCH_DEP} ${_FETCH_REAL_SEQ}
-.endif
+.    endif
 
-.if !target(pkg)
+.    if !target(pkg)
 pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
-.endif
+.    endif
 
-#.if !target(test)
+.    if !target(test)
 test: ${_TEST_DEP}
-.if !defined(NO_TEST)
+.      if !defined(NO_TEST)
 test: ${_TEST_REAL_SEQ}
 .endif
 #.endif
