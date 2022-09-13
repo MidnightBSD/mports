@@ -561,7 +561,7 @@ _USES_${target}?=
 # Loading features - USES directive
 .for f in ${USES}
 _f:=		${f:C/\:.*//}
-.if !defined(${_f}_ARGS)
+.      if !defined(${_f}_ARGS)
 ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
 .endfor
@@ -574,35 +574,35 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .if !empty(FLAVORS)
 .  if ${FLAVORS:Mall}
 DEV_ERROR+=		"FLAVORS cannot contain 'all', it is a reserved value"
-.  endif
-.  for f in ${FLAVORS}
-.    if ${f:C/[[:lower:][:digit:]_]//g}
+.      endif
+.      for f in ${FLAVORS}
+.        if ${f:C/[[:lower:][:digit:]_]//g}
 _BAD_FLAVOR_NAMES+=		${f}
-.    endif
-.  endfor
-.  if !empty(_BAD_FLAVOR_NAMES)
+.        endif
+.      endfor
+.      if !empty(_BAD_FLAVOR_NAMES)
 DEV_ERROR+=		"FLAVORS contains flavors that are not all [a-z0-9_]: ${_BAD_FLAVOR_NAMES}"
-.  endif
-.endif
+.      endif
+.    endif
 
-.if !empty(FLAVOR)
-.  if empty(FLAVORS)
-IGNORE=	FLAVOR is defined (to ${FLAVOR}) while this port does not have FLAVORS.
-.  elif ! ${FLAVORS:M${FLAVOR}}
-IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}.
-.  endif
-.endif
+.    if !empty(FLAVOR)
+.      if empty(FLAVORS)
+IGNORE=	FLAVOR is defined (to ${FLAVOR}) while this port does not have FLAVORS
+.      elif ! ${FLAVORS:M${FLAVOR}}
+IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}
+.      endif
+.    endif
 
-.if !empty(FLAVORS) && empty(FLAVOR)
+.    if !empty(FLAVORS) && empty(FLAVOR)
 FLAVOR=	${FLAVORS:[1]}
-.endif
+.    endif
 
 # Reorder FLAVORS so the default is first if set by the port.
-.if empty(_FLAVOR) && !empty(FLAVORS) && !empty(FLAVOR)
+.    if empty(_FLAVOR) && !empty(FLAVORS) && !empty(FLAVOR)
 FLAVORS:=	${FLAVOR} ${FLAVORS:N${FLAVOR}}
-.endif
+.    endif
 
-.if !empty(FLAVOR) && !defined(_DID_FLAVORS_HELPERS)
+.    if !empty(FLAVOR) && !defined(_DID_FLAVORS_HELPERS)
 _DID_FLAVORS_HELPERS=	yes
 _FLAVOR_HELPERS_OVERRIDE=	DESCR PLIST PKGNAMEPREFIX PKGNAMESUFFIX
 _FLAVOR_HELPERS_APPEND=	 	CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL \
@@ -610,21 +610,21 @@ _FLAVOR_HELPERS_APPEND=	 	CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL \
 							FETCH_DEPENDS BUILD_DEPENDS LIB_DEPENDS \
 							RUN_DEPENDS TEST_DEPENDS
 # These overwrite the current value
-.for v in ${_FLAVOR_HELPERS_OVERRIDE}
-.if defined(${FLAVOR}_${v})
+.      for v in ${_FLAVOR_HELPERS_OVERRIDE}
+.        if defined(${FLAVOR}_${v})
 ${v}=	${${FLAVOR}_${v}}
-.endif
-.endfor
+.        endif
+.      endfor
 
 # These append to the current value
-.for v in ${_FLAVOR_HELPERS_APPEND}
-.if defined(${FLAVOR}_${v})
+.      for v in ${_FLAVOR_HELPERS_APPEND}
+.        if defined(${FLAVOR}_${v})
 ${v}+=	${${FLAVOR}_${v}}
-.endif
-.endfor
+.        endif
+.      endfor
 
-.for v in BROKEN IGNORE
-.if defined(${FLAVOR}_${v})
+.      for v in BROKEN IGNORE
+.        if defined(${FLAVOR}_${v})
 ${v}=	flavor "${FLAVOR}" ${${FLAVOR}_${v}}
 .endif
 .endfor
@@ -654,8 +654,7 @@ DATADIR?=				${PREFIX}/usr/share/${PORTNAME}
 DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}
 NO_LICENSES_INSTALL=	yes
 NO_MTREE=				yes
-.endif
-
+.    endif
 
 # These do some path checks if DESTDIR is set correctly.
 # You can force skipping these test by defining IGNORE_PATH_CHECKS
