@@ -4323,7 +4323,7 @@ fetch: ${_FETCH_DEP} ${_FETCH_REAL_SEQ}
 pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
 .    endif
 
-.    if !target(test)
+#.    if !target(test)
 test: ${_TEST_DEP}
 .      if !defined(NO_TEST)
 test: ${_TEST_REAL_SEQ}
