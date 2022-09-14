@@ -5,11 +5,14 @@ MASTER_SITES=	http://www.pps.univ-paris-diderot.fr/~jch/software/files/polipo/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small and fast caching web proxy
+WWW=		http://www.pps.jussieu.fr/~jch/software/polipo/
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		makeinfo
-USE_RC_SUBR=	polipo.sh
+USES=		cpe makeinfo
+CPE_VENDOR=	${PORTNAME}_project
+USE_RC_SUBR=	polipo
 
 .include <bsd.port.pre.mk>
 
