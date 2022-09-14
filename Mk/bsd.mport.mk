@@ -1477,102 +1477,102 @@ _PATCH_SITE_SUBDIR_DEFAULT+=	${_S:C@^(.*)/:[^/:]+$@\1@}
 # XXX simpler/faster solution but not the best space wise, suggestions please
 .    for _S in ${MASTER_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
-.			if !defined(_MASTER_SITE_SUBDIR_${_group})
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
+.          if !defined(_MASTER_SITE_SUBDIR_${_group})
 MASTER_SITES_TMP=	${_MASTER_SITES_${_group}:S^%SUBDIR%/^^}
-.			else
+.          else
 _S_TEMP_TEMP=		${_MASTER_SITES_${_group}:M*%SUBDIR%/*}
-.				if empty(_S_TEMP_TEMP)
+.            if empty(_S_TEMP_TEMP)
 MASTER_SITES_TMP=	${_MASTER_SITES_${_group}}
-.				else
+.            else
 MASTER_SITES_TMP=
-.					for site in ${_MASTER_SITES_${_group}}
+.              for site in ${_MASTER_SITES_${_group}}
 _S_TEMP_TEMP=	${site:M*%SUBDIR%/*}
-.						if empty(_S_TEMP_TEMP)
+.                if empty(_S_TEMP_TEMP)
 MASTER_SITES_TMP+=	${site}
-.						else
-.							for dir in ${_MASTER_SITE_SUBDIR_${_group}}
+.                else
+.                  for dir in ${_MASTER_SITE_SUBDIR_${_group}}
 MASTER_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.							endfor
-.						endif
-.					endfor
-.				endif
-.			endif
+.                  endfor
+.                endif
+.              endfor
+.            endif
+.          endif
 _MASTER_SITES_${_group}:=	${MASTER_SITES_TMP}
-.		endfor
-.	endif
-.endfor
-.if defined(_MASTER_SITE_SUBDIR_DEFAULT)
+.        endfor
+.      endif
+.    endfor
+.    if defined(_MASTER_SITE_SUBDIR_DEFAULT)
 _S_TEMP=	${_MASTER_SITES_DEFAULT:M*%SUBDIR%/*}
-.	if empty(_S_TEMP)
+.      if empty(_S_TEMP)
 MASTER_SITES_TMP=	${_MASTER_SITES_DEFAULT}
-.	else
+.      else
 MASTER_SITES_TMP=
-.		for site in ${_MASTER_SITES_DEFAULT}
+.        for site in ${_MASTER_SITES_DEFAULT}
 _S_TEMP_TEMP=		${site:M*%SUBDIR%/*}
-.			if empty(_S_TEMP_TEMP)
+.          if empty(_S_TEMP_TEMP)
 MASTER_SITES_TMP+=	${site}
-.			else
-.				for dir in ${_MASTER_SITE_SUBDIR_DEFAULT}
+.          else
+.            for dir in ${_MASTER_SITE_SUBDIR_DEFAULT}
 MASTER_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.				endfor
-.			endif
-.		endfor
-.	endif
-.else
+.            endfor
+.          endif
+.        endfor
+.      endif
+.    else
 MASTER_SITES_TMP=	${_MASTER_SITES_DEFAULT:S^%SUBDIR%/^^}
-.endif
+.    endif
 _MASTER_SITES_DEFAULT:=	${MASTER_SITES_TMP}
 MASTER_SITES_TMP=
-.for _S in ${PATCH_SITES}
+.    for _S in ${PATCH_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
-.			if !defined(_PATCH_SITE_SUBDIR_${_group})
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
+.          if !defined(_PATCH_SITE_SUBDIR_${_group})
 PATCH_SITES_TMP=	${_PATCH_SITES_${_group}:S^%SUBDIR%/^^}
-.			else
+.          else
 _S_TEMP_TEMP=		${_PATCH_SITES_${_group}:M*%SUBDIR%/*}
-.				if empty(_S_TEMP_TEMP)
+.            if empty(_S_TEMP_TEMP)
 PATCH_SITES_TMP=	${_PATCH_SITES_${_group}}
-.				else
+.            else
 PATCH_SITES_TMP=
-.					for site in ${_PATCH_SITES_${_group}}
+.              for site in ${_PATCH_SITES_${_group}}
 _S_TEMP_TEMP=	${site:M*%SUBDIR%/*}
-.						if empty(_S_TEMP_TEMP)
+.                if empty(_S_TEMP_TEMP)
 PATCH_SITES_TMP+=	${site}
-.						else
-.							for dir in ${_PATCH_SITE_SUBDIR_${_group}}
+.                else
+.                  for dir in ${_PATCH_SITE_SUBDIR_${_group}}
 PATCH_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.							endfor
-.						endif
-.					endfor
-.				endif
-.			endif
+.                  endfor
+.                endif
+.              endfor
+.            endif
+.          endif
 _PATCH_SITES_${_group}:=	${PATCH_SITES_TMP}
-.		endfor
-.	endif
-.endfor
-.if defined(_PATCH_SITE_SUBDIR_DEFAULT)
+.        endfor
+.      endif
+.    endfor
+.    if defined(_PATCH_SITE_SUBDIR_DEFAULT)
 _S_TEMP=	${_PATCH_SITES_DEFAULT:M*%SUBDIR%/*}
-.	if empty(_S_TEMP)
+.      if empty(_S_TEMP)
 PATCH_SITES_TMP=	${_PATCH_SITES_DEFAULT}
-.	else
+.      else
 PATCH_SITES_TMP=
-.		for site in ${_PATCH_SITES_DEFAULT}
+.        for site in ${_PATCH_SITES_DEFAULT}
 _S_TEMP_TEMP=		${site:M*%SUBDIR%/*}
-.			if empty(_S_TEMP_TEMP)
+.          if empty(_S_TEMP_TEMP)
 PATCH_SITES_TMP+=	${site}
-.			else
-.				for dir in ${_PATCH_SITE_SUBDIR_DEFAULT}
+.          else
+.            for dir in ${_PATCH_SITE_SUBDIR_DEFAULT}
 PATCH_SITES_TMP+=	${site:S^%SUBDIR%^\${dir}^}
-.				endfor
-.			endif
-.		endfor
-.	endif
-.else
+.            endfor
+.          endif
+.        endfor
+.      endif
+.    else
 PATCH_SITES_TMP=	${_PATCH_SITES_DEFAULT:S^%SUBDIR%/^^}
-.endif
+.    endif
 _PATCH_SITES_DEFAULT:=	${PATCH_SITES_TMP}
 PATCH_SITES_TMP=
 
@@ -1593,7 +1593,7 @@ MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP} \
 .if defined(MASTER_SITE_FREEBSD)
 _MASTER_SITE_OVERRIDE:=	${MASTER_SITE_BACKUP}
 _MASTER_SITE_BACKUP:=	# empty
-.else
+.    else
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE}
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
 .endif
@@ -1606,47 +1606,47 @@ DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
 _MASTER_SITES_ALL=	${_MASTER_SITES_DEFAULT}
 _PATCH_SITES_ALL=	${_PATCH_SITES_DEFAULT}
 _G_TEMP=	DEFAULT
-.for _D in ${DISTFILES}
+.    for _D in ${DISTFILES}
 _D_TEMP=	${_D:S/^${_D:C/:[^:]+$//}//}
-.	if !empty(_D_TEMP)
-.		for _group in ${_D_TEMP:S/^://:S/,/ /g}
-.			if !defined(_MASTER_SITES_${_group})
+.      if !empty(_D_TEMP)
+.        for _group in ${_D_TEMP:S/^://:S/,/ /g}
+.          if !defined(_MASTER_SITES_${_group})
 _G_TEMP_TEMP=	${_G_TEMP:M/${_group}/}
-.				if empty(_G_TEMP_TEMP)
+.            if empty(_G_TEMP_TEMP)
 _G_TEMP+=	${_group}
 _MASTER_SITES_ALL+=	${_MASTER_SITES_${_group}}
-.				endif
-.			endif
-.		endfor
+.            endif
+.          endif
+.        endfor
 _DISTFILES+=	${_D:C/:[^:]+$//}
-.	else
+.      else
 _DISTFILES+=	${_D}
-.	endif
-.endfor
+.      endif
+.    endfor
 _G_TEMP=	DEFAULT
-.for _P in ${PATCHFILES}
+.    for _P in ${PATCHFILES}
 _P_TEMP=	${_P:C/:[^-:][^:]*$//}
 _P_groups=	${_P:S/^${_P:C/:[^:]+$//}//:S/^://}
 _P_file=	${_P_TEMP:C/:-[^:]+$//}
 _P_strip=	${_P_TEMP:S/^${_P_TEMP:C/:-[^:]*$//}//:S/^://}
-.	if !empty(_P_groups)
-.		for _group in ${_P_groups:S/,/ /g}
-.			if !defined(_PATCH_SITES_${_group})
+.      if !empty(_P_groups)
+.        for _group in ${_P_groups:S/,/ /g}
+.          if !defined(_PATCH_SITES_${_group})
 _G_TEMP_TEMP=	${_G_TEMP:M/${_group}/}
-.				if empty(_G_TEMP_TEMP)
+.            if empty(_G_TEMP_TEMP)
 _G_TEMP+=	${_group}
 _PATCH_SITES_ALL+=	${_PATCH_SITES_${_group}}
-.				endif
-.			endif
-.		endfor
-.	endif
+.            endif
+.          endif
+.        endfor
+.      endif
 _PATCHFILES:=	${_PATCHFILES} ${_P_file}
-.	if empty(_P_strip)
+.      if empty(_P_strip)
 _PATCHFILES2:=	${_PATCHFILES2} ${_P_file}
-.	else
+.      else
 _PATCHFILES2:=	${_PATCHFILES2} ${_P_file}:${_P_strip}
-.	endif
-.endfor
+.      endif
+.    endfor
 _P_groups=
 _P_file=
 _P_strip=
