@@ -440,14 +440,14 @@ _PREMKINCLUDED=	yes
 .    if defined(PORTVERSION)
 .      if ${PORTVERSION:M*[-_,]*}x != x
 IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
-.endif
-.if defined(DISTVERSION)
-DEV_ERROR+=	"Defining both PORTVERSION and DISTVERSION is wrong, only set one and let the framework create the other one"
-.endif
+.      endif
+.      if defined(DISTVERSION)
+DEV_ERROR+=	"Defining both PORTVERSION and DISTVERSION is wrong, only set one, if necessary, set DISTNAME"
+.      endif
 DISTVERSION?=	${PORTVERSION:S/:/::/g}
-.elif defined(DISTVERSION)
+.    elif defined(DISTVERSION)
 PORTVERSION=	${DISTVERSION:tl:C/([a-z])[a-z]+/\1/g:C/([0-9])([a-z])/\1.\2/g:C/:(.)/\1/g:C/[^a-z0-9+]+/./g}
-.endif
+.    endif
 
 PORTREVISION?=	0
 .    if ${PORTREVISION} != 0
@@ -556,7 +556,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 # setup empty variables for USES targets
 .for target in sanity fetch extract patch configure build install test package fake
 _USES_${target}?=
-.endfor
+.    endfor
 
 # Loading features - USES directive
 .for f in ${USES}
@@ -785,40 +785,40 @@ CONFIGURE_ENV+=		PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkg
 .      if defined(WRKSRC)
 DEV_WARNING+=	"You are using USE_GITHUB and WRKSRC is set which is wrong.  Set GH_PROJECT correctly or set WRKSRC_SUBDIR and remove WRKSRC entirely."
 .      endif
-WRKSRC?=	${WRKDIR}/${GH_PROJECT_DEFAULT}-${GH_TAGNAME_EXTRACT}
+WRKSRC?=		${WRKDIR}/${GH_PROJECT_DEFAULT}-${GH_TAGNAME_EXTRACT}
 .    endif
 
 .    if !default(IGNORE_MASTER_SITE_GITLAB) && defined(USE_GITLAB) && empty(USE_GITLAB:Mnodefault)
 .      if defined(WRKSRC)
 DEV_WARNING+=	"You are using USE_GITLAB and WRKSRC is set which is wrong.  Set GL_PROJECT, GL_ACCOUNT correctly, and/or set WRKSRC_SUBDIR and remove WRKSRC entirely."
 .      endif
-WRKSRC?=	${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}
+WRKSRC?=		${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}
 .    endif
 
 # If the distname is not extracting into a specific subdirectory, have the
 # ports framework force extract into a subdirectory so that metadata files
 # do not get in the way of the build, and vice-versa.
-.if defined(NO_WRKSUBDIR)
+.    if defined(NO_WRKSUBDIR)
 # Some ports have DISTNAME=PORTNAME, and USE_RC_SUBR=PORTNAME, in those case,
 # the rc file will conflict with WRKSRC, as WRKSRC is artificial, make it the
 # most unlikely to conflict as we can.
 WRKSRC?=			${WRKDIR}/${PKGNAME}
 EXTRACT_WRKDIR:=		${WRKSRC}
-.else
+.    else
 WRKSRC?=		${WRKDIR}/${DISTNAME}
 EXTRACT_WRKDIR:=		${WRKDIR}
-.endif
-.if defined(WRKSRC_SUBDIR)
+.    endif
+.    if defined(WRKSRC_SUBDIR)
 WRKSRC:=		${WRKSRC}/${WRKSRC_SUBDIR}
-.endif
+.    endif
 
-.if defined(CONFIGURE_OUTSOURCE)
+.    if defined(CONFIGURE_OUTSOURCE)
 CONFIGURE_CMD?=		${WRKSRC}/${CONFIGURE_SCRIPT}
 CONFIGURE_WRKSRC?=	${WRKDIR}/.build
 BUILD_WRKSRC?=		${CONFIGURE_WRKSRC}
 INSTALL_WRKSRC?=	${CONFIGURE_WRKSRC}
 TEST_WRKSRC?=		${CONFIGURE_WRKSRC}
-.endif
+.    endif
 
 PATCH_WRKSRC?=	${WRKSRC}
 CONFIGURE_WRKSRC?=	${WRKSRC}
@@ -1099,11 +1099,11 @@ RUN_DEPENDS+=	cdrecord:sysutils/cdrtools
 # be used to set or override the -i argument.  Any other use is considered
 # invalid.
 REINPLACE_ARGS?=	-i.bak
-.if defined(DEVELOPER)
-REINPLACE_CMD?=	${SETENV} WRKSRC=${WRKSRC} REWARNFILE=${REWARNFILE} ${SCRIPTSDIR}/sed_checked.sh
-.else
+.    if defined(DEVELOPER)
+REINPLACE_CMD?=	${SETENV} WRKSRC=${WRKSRC} REWARNFILE=${REWARNFILE} ${SH} ${SCRIPTSDIR}/sed_checked.sh
+.    else
 REINPLACE_CMD?=	${SED} ${REINPLACE_ARGS}
-.endif
+.    endif
 FRAMEWORK_REINPLACE_CMD?=	${SED} -i.bak
 
 # Names of cookies used to skip already completed stages
@@ -1205,7 +1205,7 @@ DISTORIG?=	.bak.orig
 PATCH?=			/usr/bin/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
-.if defined(PATCH_DEBUG)
+.    if defined(PATCH_DEBUG)
 PATCH_DEBUG_TMP=	yes
 PATCH_ARGS?=	-E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
@@ -1213,28 +1213,28 @@ PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
 PATCH_DEBUG_TMP=	no
 PATCH_ARGS?=	--forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward --quiet -E ${PATCH_DIST_STRIP}
-.endif
-.if !defined(QUIET)
+.    endif
+.    if !defined(QUIET)
 PATCH_SILENT=		PATCH_SILENT=yes
-.endif
-.if defined(BATCH)
+.    endif
+.    if defined(BATCH)
 PATCH_ARGS+=		--batch
 PATCH_DIST_ARGS+=	--batch
-.endif
+.    endif
 
 # Prevent breakage with VERSION_CONTROL=numbered
 PATCH_ARGS+=	-V simple
-PATCH_DIST_ARGS+=	-V simple
+PATCH_DIST_ARGS+=		-V simple
 
-.if defined(PATCH_CHECK_ONLY)
+.    if defined(PATCH_CHECK_ONLY)
 PATCH_ARGS+=	-C
 PATCH_DIST_ARGS+=	-C
-.endif
+.    endif
 
-.if ${PATCH} == "/usr/bin/patch"
+.    if ${PATCH} == "/usr/bin/patch"
 PATCH_ARGS+=	--suffix .orig
 PATCH_DIST_ARGS+=	--suffix .orig
-.endif
+.    endif
 
 TAR?=	/usr/bin/tar
 
@@ -1379,91 +1379,103 @@ _PATCH_SITES_DEFAULT?=
 # as per grouping rules (:something)
 # Organize _{MASTER,PATCH}_SITES_{DEFAULT,[^/:]+} according to grouping
 # rules (:something)
-.for _S in ${MASTER_SITES}
+.    for _S in ${MASTER_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/?:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP:C/[a-zA-Z0-9_]//g}
+check-makevars::
+				@${ECHO_MSG} "The ${_S} MASTER_SITES line has"
+				@${ECHO_MSG} "a group with invalid characters, only use [a-zA-Z0-9_]"
+				@${FALSE}
+.          endif
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your MASTER_SITES"
 				@${FALSE}
-.			endif
+.          endif
 _MASTER_SITES_${_group}+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.		endfor
-.	else
+.        endfor
+.      else
 _MASTER_SITES_DEFAULT+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.	endif
-.endfor
-.for _S in ${PATCH_SITES}
+.      endif
+.    endfor
+.    for _S in ${PATCH_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP:C/[a-zA-Z0-9_]//g}
+check-makevars::
+				@${ECHO_MSG} "The ${_S} PATCH_SITES line has"
+				@${ECHO_MSG} "a group with invalid characters, only use [a-zA-Z0-9_]"
+				@${FALSE}
+.          endif
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "The words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your PATCH_SITES"
 				@${FALSE}
-.			endif
+.          endif
 _PATCH_SITES_${_group}+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.		endfor
-.	else
+.        endfor
+.      else
 _PATCH_SITES_DEFAULT+=	${_S:C@^(.*/):[^/:]+$@\1@}
-.	endif
-.endfor
+.      endif
+.    endfor
 
 # Feed internal _{MASTER,PATCH}_SITE_SUBDIR_n where n is a group designation
 # as per grouping rules (:something)
 # Organize _{MASTER,PATCH}_SITE_SUBDIR_{DEFAULT,[^/:]+} according to grouping
 # rules (:something)
-.for _S in ${MASTER_SITE_SUBDIR}
+.    for _S in ${MASTER_SITE_SUBDIR}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your MASTER_SITE_SUBDIR"
 				@${FALSE}
-.			endif
-.			if defined(_MASTER_SITES_${_group})
+.          endif
+.          if defined(_MASTER_SITES_${_group})
 _MASTER_SITE_SUBDIR_${_group}+= ${_S:C@^(.*)/:[^/:]+$@\1@}
-.			endif
-.		endfor
-.	else
-.		if defined(_MASTER_SITES_DEFAULT)
+.          endif
+.        endfor
+.      else
+.        if defined(_MASTER_SITES_DEFAULT)
 _MASTER_SITE_SUBDIR_DEFAULT+=	${_S:C@^(.*)/:[^/:]+$@\1@}
-.		endif
-.	endif
-.endfor
-.for _S in ${PATCH_SITE_SUBDIR}
+.        endif
+.      endif
+.    endfor
+.    for _S in ${PATCH_SITE_SUBDIR}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/,/ /g}
+.      if !empty(_S_TEMP)
+.        for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
-.			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
+.          if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
 				@${ECHO_MSG} "used in group definitions. Please fix your PATCH_SITE_SUBDIR"
 				@${FALSE}
-.			endif
-.			if defined(_PATCH_SITES_${_group})
+.          endif
+.          if defined(_PATCH_SITES_${_group})
 _PATCH_SITE_SUBDIR_${_group}+= ${_S:C@^(.*)/:[^/:]+$@\1@}
-.			endif
-.		endfor
-.	else
-.		if defined(_PATCH_SITES_DEFAULT)
+.          endif
+.        endfor
+.      else
+.        if defined(_PATCH_SITES_DEFAULT)
 _PATCH_SITE_SUBDIR_DEFAULT+=	${_S:C@^(.*)/:[^/:]+$@\1@}
-.		endif
-.	endif
-.endfor
+.        endif
+.      endif
+.    endfor
 
 # Substitute subdirectory names
 # XXX simpler/faster solution but not the best space wise, suggestions please
-.for _S in ${MASTER_SITES}
+.    for _S in ${MASTER_SITES}
 _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
 .	if !empty(_S_TEMP)
 .		for _group in ${_S_TEMP:S/,/ /g}
