@@ -8,6 +8,7 @@ PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simpler web photo gallery
+WWW=		https://www.zenphoto.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
