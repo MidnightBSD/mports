@@ -84,7 +84,8 @@ describe-yaml:
 			flavors        => [qw(${FLAVORS})], \
 			distfiles      => [qw(${DISTFILES})], \
 			restricted_distfiles      => [qw(${RESTRICTED_FILES})], \
-			master_sites      => [qw(${MASTER_SITES})] \
+			master_sites   => [qw(${MASTER_SITES})] \
+			www            => [qw(${WWW})] \
 		); \
 		$$port{license} ||= undef; \
 		my %depends; \
