@@ -2139,12 +2139,12 @@ all:
 all: build
 .endif
 
-.if !defined(DEPENDS_TARGET)
-.if defined(DEPENDS_PRECLEAN)
+.    if !defined(DEPENDS_TARGET)
+.      if defined(DEPENDS_PRECLEAN)
 DEPENDS_TARGET=	clean
 DEPENDS_ARGS=	NOCLEANDEPENDS=yes
-.endif
-.if make(reinstall)
+.      endif
+.      if make(reinstall)
 DEPENDS_TARGET+=	reinstall
 .else
 DEPENDS_TARGET+=	cached-install
@@ -2168,7 +2168,7 @@ DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
 	defined(PACKAGE_BUILDING) || defined(BATCH) || \
 	exists(${_OPTIONSFILE}) || exists(${_OPTIONSFILE}.local))
 _OPTIONS_OK=yes
-.endif
+.    endif
 
 ################################################################
 # The following are used to create easy dummy targets for
@@ -2186,7 +2186,7 @@ checksum: fetch
 .endif
 
 # Disable build
-.if defined(NO_BUILD) && !target(build)
+.    if defined(NO_BUILD) && !target(build)
 build: configure
 	@${TOUCH} ${TOUCH_FLAGS} ${BUILD_COOKIE}
 .endif
@@ -2210,7 +2210,7 @@ do-test:
 .endif
 
 # Disable package
-.if defined(NO_PACKAGE) && !target(package)
+.    if defined(NO_PACKAGE) && !target(package)
 package:
 .if defined(IGNORE_SILENT)
 	@${DO_NADA}
@@ -2267,12 +2267,12 @@ check-deprecated:
 	@${ECHO_MSG}
 	@${ECHO_MSG} ${DEPRECATED:Q}.
 	@${ECHO_MSG}
-.if defined(EXPIRATION_DATE)
+.        if defined(EXPIRATION_DATE)
 	@${ECHO_MSG} "It is scheduled to be removed on or after ${EXPIRATION_DATE}."
 	@${ECHO_MSG}
-.endif
-.endif
-.endif
+.        endif
+.      endif
+.    endif
 
 # Check if the port is listed in the vulnerability database
 
@@ -2332,23 +2332,23 @@ _DO_FETCH_ENV= \
 			dp_RANDOMIZE_SITES='${_RANDOMIZE_SITES}' \
 			dp_SCRIPTSDIR='${SCRIPTSDIR}' \
 			dp_TARGET='${.TARGET}'
-.if defined(DEVELOPER)
+.    if defined(DEVELOPER)
 _DO_FETCH_ENV+= dp_DEVELOPER=yes
-.else
+.    else
 _DO_FETCH_ENV+= dp_DEVELOPER=
-.endif
+.    endif
 
 # Fetch
 
-.if !target(do-fetch)
+.    if !target(do-fetch)
 do-fetch:
 .if !empty(DISTFILES)
 	@${SETENV} \
 			${_DO_FETCH_ENV} ${_MASTER_SITES_ENV} \
 			dp_SITE_FLAVOR=MASTER \
 			${SH} ${SCRIPTSDIR}/do-fetch.sh ${DISTFILES:C/.*/'&'/}
-.endif
-.if defined(PATCHFILES) && !empty(PATCHFILES)
+.      endif
+.      if defined(PATCHFILES) && !empty(PATCHFILES)
 	@${SETENV} \
 			${_DO_FETCH_ENV} ${_PATCH_SITES_ENV} \
 			dp_SITE_FLAVOR=PATCH \
@@ -2361,11 +2361,12 @@ do-fetch:
 clean-wrkdir:
 	@${RM} -rf ${WRKDIR}
 
-.if !target(do-extract)
+.    if !target(do-extract)
 do-extract: ${EXTRACT_WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
 		if ! (cd ${EXTRACT_WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
 		then \
+			${ECHO_MSG} "===>  Failed to extract \"${_DISTDIR}/$$file\"."; \
 			exit 1; \
 		fi; \
 	done
@@ -2386,7 +2387,7 @@ _SLEEP=sleep
 
 # Patch
 
-.if !target(do-patch)
+.    if !target(do-patch)
 do-patch:
 	@${SETENV} \
 			dp_BZCAT="${BZCAT}" \
@@ -2412,7 +2413,7 @@ do-patch:
 			dp_UNZIP_NATIVE_CMD="${UNZIP_NATIVE_CMD}" \
 			dp_XZCAT="${XZCAT}" \
 			${SH} ${SCRIPTSDIR}/do-patch.sh
-.endif
+.    endif
 
 .if !target(run-autotools)
 run-autotools:
@@ -2421,13 +2422,13 @@ run-autotools:
 
 # Configure
 
-.if !target(do-configure)
+.    if !target(do-configure)
 do-configure:
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
 		cd ${.CURDIR} && ${SETENV} ${SCRIPTS_ENV} ${SH} \
 		  ${SCRIPTDIR}/configure; \
 	fi
-.if defined(GNU_CONFIGURE)
+.      if defined(GNU_CONFIGURE)
 	@CONFIG_GUESS_DIRS=$$(${FIND} ${WRKDIR} -name config.guess -o -name config.sub \
 		| ${XARGS} -n 1 ${DIRNAME}); \
 	for _D in $${CONFIG_GUESS_DIRS}; do \
@@ -2438,8 +2439,8 @@ do-configure:
 		${CP} -f ${TEMPLATES}/config.sub $${_D}/config.sub; \
 		${CHMOD} a+rx $${_D}/config.sub; \
 	done
-.endif
-.if defined(HAS_CONFIGURE)
+.      endif
+.      if defined(HAS_CONFIGURE)
 	@${MKDIR} ${CONFIGURE_WRKSRC}
 	@(cd ${CONFIGURE_WRKSRC} && \
 	    ${SET_LATE_CONFIGURE_ARGS} \
@@ -2475,7 +2476,7 @@ do-build:
 			fi; \
 		${FALSE}; \
 		fi)
-.endif
+.    endif
 
 # Check conflicts
 
@@ -2683,7 +2684,7 @@ check-umask:
 		${ECHO_MSG} "      If this is not desired, set it to an appropriate value"; \
 		${ECHO_MSG} "      and install this port again by \`\`make reinstall''."; \
 	fi
-.endif
+.    endif
 
 .if !target(install-mtree)
 install-mtree:
@@ -2859,6 +2860,14 @@ security-check:
 
 
 
+################################################################
+# Skeleton targets start here
+#
+# You shouldn't have to change these.  Either add the pre-* or
+# post-* targets/scripts or redefine the do-* targets.  These
+# targets don't do anything other than checking for cookies and
+# call the necessary targets/scripts.
+################################################################
 
 extract-message:
 	@${ECHO_MSG} -e "\033[1m===>  Extracting for ${PKGNAME}\033[0m"
@@ -2907,16 +2916,14 @@ ${stage}-${name}-script:
 .endfor
 .endfor
 
-
-.if !target(pretty-print-www-site)
+.    if !target(pretty-print-www-site)
 pretty-print-www-site:
-	@www_site=$$(cd ${.CURDIR} && ${MAKE} www-site); \
-	if [ -n "$${www_site}" ]; then \
+	@if [ -n "${_WWW}" ]; then \
 		${ECHO_MSG} -n " and/or visit the "; \
-		${ECHO_MSG} -n "<a href=\"$${www_site}\">web site</a>"; \
-		${ECHO_MSG} " for futher informations"; \
+		${ECHO_MSG} -n "<a href=\"${_WWW}\">web site</a>"; \
+		${ECHO_MSG} " for further information"; \
 	fi
-.endif
+.    endif
 
 ################################################################
 # Some more targets supplied for users' convenience
@@ -2935,7 +2942,7 @@ checkpatch:
 #
 # Special target to re-run install
 
-.if !target(reinstall)
+.    if !target(reinstall)
 reinstall:
 	@${RM} -f ${INSTALL_COOKIE} 
 	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} -DFORCE_PKG_REGISTER install
@@ -2955,7 +2962,7 @@ refake:
 #
 # Special target to remove installation
 
-.if !target(deinstall)
+.    if !target(deinstall)
 deinstall:
 .if !defined(DESTDIR)
 	@${ECHO_MSG} "===>  Deinstalling for ${PKGBASE}"
@@ -3037,11 +3044,11 @@ do-clean-${_f}:
 CLEAN_DEPENDENCIES+=	post-clean-${_f}
 post-clean-${_f}:
 	@cd ${.CURDIR} &&  ${SETENV} FLAVOR=${_f} ${MAKE} post-clean
-.endif
+.        endif
 .ORDER: ${CLEAN_DEPENDENCIES}
 clean: ${CLEAN_DEPENDENCIES}
-.endfor
-.endif
+.      endfor
+.    endif
 
 .if !target(pre-distclean)
 pre-distclean:
@@ -3071,7 +3078,7 @@ delete-distfiles:
 .      endif
 .    endif
 
-.if !target(delete-distfiles-list)
+.    if !target(delete-distfiles-list)
 delete-distfiles-list:
 	@${ECHO_CMD} "# ${PKGNAME}"
 	@if [ "X${RESTRICTED_FILES}" != "X" ]; then \
@@ -3182,7 +3189,9 @@ _CHECKSUM_INIT_ENV= \
 # checksum and sizes checks.
 makesum: check-sanity
 	@cd ${.CURDIR} && ${MAKE} fetch NO_CHECKSUM=yes \
-			DISABLE_SIZE=yes DISTFILES="${DISTFILES}"
+			DISABLE_SIZE=yes DISTFILES="${DISTFILES}" \
+			MASTER_SITES="${MASTER_SITES}" \
+			PATCH_SITES="${PATCH_SITES}"
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
 			dp_CHECKSUM_ALGORITHMS='${CHECKSUM_ALGORITHMS:tu}' \
@@ -3264,7 +3273,7 @@ depends: pkg-depends extract-depends patch-depends lib-depends fetch-depends bui
 
 .      for deptype in PKG EXTRACT PATCH FETCH BUILD LIB RUN TEST
 ${deptype:tl}-depends:
-.if defined(${deptype}_DEPENDS) && !defined(NO_DEPENDS)
+.        if defined(${deptype}_DEPENDS) && !defined(NO_DEPENDS)
 	@${SETENV} \
                 dp_RAWDEPENDS="${${deptype}_DEPENDS}" \
                 dp_DEPTYPE="${deptype}_DEPENDS" \
@@ -3285,11 +3294,11 @@ ${deptype:tl}-depends:
                 dp_SCRIPTSDIR="${SCRIPTSDIR}" \
                 PORTSDIR="${PORTSDIR}" \
 		dp_OVERLAYS="${OVERLAYS}" \
-                dp_MAKE="${MAKE}" \
-                dp_MAKEFLAGS='${.MAKEFLAGS}' \
-                ${SH} ${SCRIPTSDIR}/do-depends.sh
-.endif
-.endfor
+		dp_MAKE="${MAKE}" \
+		dp_MAKEFLAGS='${.MAKEFLAGS}' \
+		${SH} ${SCRIPTSDIR}/do-depends.sh
+.        endif
+.      endfor
 
 .    endif
 
@@ -3348,8 +3357,7 @@ MISSING-DEPENDS-LIST=		${DEPENDS-LIST} -m ${_UNIFIED_DEPENDS:Q}
 BUILD-DEPENDS-LIST=			${DEPENDS-LIST} "${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS}"
 RUN-DEPENDS-LIST=			${DEPENDS-LIST} "${LIB_DEPENDS} ${RUN_DEPENDS}"
 TEST-DEPENDS-LIST=			${DEPENDS-LIST} ${TEST_DEPENDS:Q}
-
-CLEAN-DEPENDS-LIST=			${DEPENDS-LIST} -wr ${_UNIFIED_DEPENDS:Q} 
+CLEAN-DEPENDS-LIST=			${DEPENDS-LIST} -wr ${_UNIFIED_DEPENDS:Q}
 CLEAN-DEPENDS-LIMITED-LIST=	${DEPENDS-LIST} -w ${_UNIFIED_DEPENDS:Q}
 
 .    if !target(clean-depends)
