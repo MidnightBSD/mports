@@ -182,7 +182,7 @@ _MANOWNGRP=
 MAINTAINER?=	ports@MidnightBSD.org
 
 # Get the architecture
-.if !defined(ARCH)
+.    if !defined(ARCH)
 ARCH!=	${UNAME} -p
 .    endif
 HOSTARCH:=	${ARCH}
@@ -226,12 +226,12 @@ OSREL?=	${_OSRELEASE:C/-.*//}
 _EXPORTED_VARS+=	OSREL
 
 # Get __MidnightBSD_version
-.if !defined(OSVERSION)
-.if exists(/usr/include/sys/param.h)
+.    if !defined(OSVERSION)
+.      if exists(/usr/include/sys/param.h)
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < /usr/include/sys/param.h
-.elif exists(${SRC_BASE}/sys/sys/param.h)
+.      elif exists(${SRC_BASE}/sys/sys/param.h)
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
-.else
+.      else
 .error Unable to determine OS version.  Either define OSVERSION, install /usr/include/sys/param.h or define SRC_BASE.
 .      endif
 .    endif
@@ -259,15 +259,15 @@ show-unsupported-system-error:
 _OSVERSION_MAJOR=	${OSVERSION:C/([0-9])([0-9][0-9])[0-9]{3}/\1/}
 # Sanity checks for chroot/jail building.
 # Skip if OSVERSION specified on cmdline for testing. Only works for bmake.
-.if !defined(INDEXING)
-.if !defined(.MAKEOVERRIDES) || !${.MAKEOVERRIDES:MOSVERSION}
+.    if !defined(INDEXING)
+.      if !defined(.MAKEOVERRIDES) || !${.MAKEOVERRIDES:MOSVERSION}
 #.if ${_OSVERSION_MAJOR} != ${_OSRELEASE:R:R}
 #.error UNAME_r (${_OSRELEASE}) and OSVERSION (${OSVERSION}) do not agree on major version number.
 #.elif ${_OSVERSION_MAJOR} != ${OSREL:R:R}
 #.error OSREL (${OSREL}) and OSVERSION (${OSVERSION}) do not agree on major version number.
 #.endif
-.endif
-.endif
+.      endif
+.    endif
 
 MASTERDIR?=	${.CURDIR}
 
@@ -281,28 +281,28 @@ MASTER_PORT?=
 
 # Check the compatibility layer for amd64
 
-.if ${ARCH} == "amd64"
-.if exists(/usr/lib32)
+.    if ${ARCH} == "amd64"
+.      if exists(/usr/lib32)
 HAVE_COMPAT_IA32_LIBS?=  YES
-.endif
-.if !defined(HAVE_COMPAT_IA32_KERN)
+.      endif
+.      if !defined(HAVE_COMPAT_IA32_KERN)
 HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -a compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi
-.endif
-.endif
+.      endif
+.    endif
 
-.if defined(IA32_BINARY_PORT) && ${ARCH} != "i386"
-.if ${ARCH} == "amd64"
-.if !defined(HAVE_COMPAT_IA32_KERN)
+.    if defined(IA32_BINARY_PORT) && ${ARCH} != "i386"
+.      if ${ARCH} == "amd64"
+.        if !defined(HAVE_COMPAT_IA32_KERN)
 IGNORE= you need a kernel with compiled-in IA32 compatibility to use this port.
-.elif !defined(HAVE_COMPAT_IA32_LIBS)
+.        elif !defined(HAVE_COMPAT_IA32_LIBS)
 IGNORE= you need the 32-bit libraries installed under /usr/lib32 to use this port.
-.endif
+.        endif
 _LDCONFIG_FLAGS=-32
 LIB32DIR=	lib32
-.else
+.      else
 IGNORE= you have to use i386 (or compatible) platform to use this port.
-.endif
-.endif
+.      endif
+.    endif
 PLIST_SUB+=     LIB32DIR=${LIB32DIR}
 
 # If they exist, include Makefile.inc, then architecture/operating
@@ -335,7 +335,7 @@ USE_SUBMAKE=	yes
 .    elif ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/Makefile.local)
 .include "${.CURDIR}/Makefile.local"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
 # where 'make config' records user configuration options
 PORT_DBDIR?=	/var/db/ports
@@ -374,15 +374,15 @@ WITH_DEBUG=	yes
 
 .    if defined(USE_LTO)
 WITH_LTO=	${USE_LTO}
-WARNINGS+=	USE_LTO is deprecated in favor of WITH_LTO
+WARNING+=	USE_LTO is deprecated in favor of WITH_LTO
 .    endif
 
 # Respect TMPDIR passed via make.conf or similar and pass it down
 # to configure and make.
-.if defined(TMPDIR)
+.    if defined(TMPDIR)
 MAKE_ENV+=	TMPDIR="${TMPDIR}"
 CONFIGURE_ENV+=	TMPDIR="${TMPDIR}"
-.endif # defined(TMPDIR)
+.    endif # defined(TMPDIR)
 
 QA_ENV+=                FAKE_DESTDIR=${FAKE_DESTDIR} \
                                 PREFIX=${TRUE_PREFIX} \
@@ -406,26 +406,26 @@ QA_ENV+=                FAKE_DESTDIR=${FAKE_DESTDIR} \
                                 NO_ARCH=${NO_ARCH} \
                                 "NO_ARCH_IGNORE=${NO_ARCH_IGNORE}" \
                                 USE_RUBY=${USE_RUBY}
-.if !empty(USES:Mssl)
+.    if !empty(USES:Mssl)
 QA_ENV+=                USESSSL=yes
-.endif
-.if !empty(USES:Mdesktop-file-utils)
+.    endif
+.    if !empty(USES:Mdesktop-file-utils)
 QA_ENV+=                USESDESKTOPFILEUTILS=yes
-.endif
-.if !empty(USES:Mlibtool*)
+.    endif
+.    if !empty(USES:Mlibtool*)
 QA_ENV+=                USESLIBTOOL=yes
-.endif
-.if !empty(USES:Mshared-mime-info)
+.    endif
+.    if !empty(USES:Mshared-mime-info)
 QA_ENV+=                USESSHAREDMIMEINFO=yes
-.endif
-.if !empty(USES:Mterminfo)
+.    endif
+.    if !empty(USES:Mterminfo)
 QA_ENV+=                USESTERMINFO=yes
-.endif
+.    endif
 
 # Reset value from bsd.own.mk.
-.if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)
+.    if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)
 STRIP=	#none
-.endif
+.    endif
 
 .include "${MPORTCOMPONENTS}/default-versions.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
@@ -1778,7 +1778,7 @@ check-makefile::
 check-categories:
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: CATEGORIES is mandatory."
 	@${FALSE}
-.else
+.    else
 
 VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology cad comms converters core databases \
@@ -1790,9 +1790,9 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	print python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
 	tcl textproc tk \
-	ukrainian vietnamese windowmaker wayland www \
+	ukrainian vietnamese wayland windowmaker www \
 	x11 x11-clocks x11-drivers x11-fm x11-fonts x11-servers x11-themes \
-	x11-toolkits x11-wm xfce zope
+	x11-toolkits x11-wm xfce zope base
 
 check-categories:
 .for cat in ${CATEGORIES}
@@ -1839,19 +1839,19 @@ CONFIGURE_LOG?=		config.log
 CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer] and attach the \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\" including the output of the failure of your make command. Also, it might be a good idea to provide an overview of all packages installed on your system (e.g. an \`ls ${PKG_DBDIR}\`)."
 
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
-.if defined(GNU_CONFIGURE)
+.    if defined(GNU_CONFIGURE)
 # Maximum command line length
-.if !defined(CONFIGURE_MAX_CMD_LEN)
+.      if !defined(CONFIGURE_MAX_CMD_LEN)
 CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
-.endif
+.      endif
 _EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
-.if defined(CROSS_TOOLCHAIN)
+.      if defined(CROSS_TOOLCHAIN)
 CROSS_HOST=		${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
 CONFIGURE_ARGS+=	--host=${CROSS_HOST}
-.endif
+.      endif
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
@@ -1878,7 +1878,7 @@ SET_LATE_CONFIGURE_ARGS= \
 	else \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
 	fi ;
-.endif
+.    endif
 
 # Passed to most of script invocations
 SCRIPTS_ENV+=	CURDIR=${MASTERDIR} DISTDIR=${DISTDIR} \
@@ -1888,9 +1888,9 @@ SCRIPTS_ENV+=	CURDIR=${MASTERDIR} DISTDIR=${DISTDIR} \
 		  PREFIX=${PREFIX} LOCALBASE=${LOCALBASE} \
 		  DESTDIR=${DESTDIR} TARGETDIR=${DESTDIR}
 
-.if defined(BATCH)
+.    if defined(BATCH)
 SCRIPTS_ENV+=	BATCH=yes
-.endif
+.    endif
 
 # Manual Pages
 .include "${PORTSDIR}/Mk/components/man.mk"
@@ -2092,12 +2092,17 @@ ${target}:
 
 .    endif # !defined(NO_IGNORE)
 
-.if defined(IGNORE) || defined(NO_PACKAGE)
-ignorelist: package-name
-.else
 ignorelist:
-	@${DO_NADA}
-.endif
+.    if defined(IGNORE) || defined(NO_PACKAGE)
+ignorelist: package-name
+.    endif
+
+ignorelist-verbose:
+.    if defined(IGNORE)
+	@${ECHO_CMD} "${PKGNAME}|IGNORE: "${IGNORE:Q}
+.    elif defined(NO_PACKAGE)
+	@${ECHO_CMD} "${PKGNAME}|NO_PACKAGE: "${NO_PACKAGE:Q}
+.    endif
 
 ################################################################
 # Clean directories for ftp or CDROM.
