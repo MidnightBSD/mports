@@ -565,20 +565,21 @@ _USES_${target}?=
 .    endfor
 
 # Loading features - USES directive
-.for f in ${USES}
+.    for f in ${USES}
 _f:=		${f:C/\:.*//}
 .      if !defined(${_f}_ARGS)
 ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
-.endif
-.endfor
-.for f in ${USES}
-#.if !defined(USE_${f:tu})
+.      endif
+.    endfor
+.    for f in ${USES}
+#.     if !defined(USE_${f:tu})
 #USE_${f:tu}=yes
-#.endif
+#.     endif
 .include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
-.endfor
-.if !empty(FLAVORS)
-.  if ${FLAVORS:Mall}
+.    endfor
+
+.    if !empty(FLAVORS)
+.      if ${FLAVORS:Mall}
 DEV_ERROR+=		"FLAVORS cannot contain 'all', it is a reserved value"
 .      endif
 .      for f in ${FLAVORS}
@@ -718,7 +719,7 @@ WWWGRP?=	www
 # End of pre-makefile section.
 
 # Start of post-makefile section.
-.if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
+.  if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .    if defined(_POSTMKINCLUDED)
 check-makefile::
@@ -897,6 +898,11 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 
 # XXX PIE support to be added here
 MAKE_ENV+=	NO_PIE=yes
+
+# We will control debug files. Don't let builds that use /usr/share/mk
+# # split out debug symbols since the plist won't know to expect it.
+MAKE_ENV+=	MK_DEBUG_FILES=no
+MAKE_ENV+=	MK_KERNEL_SYMBOLS=no
 
 .if defined(NOPORTDOCS)
 PLIST_SUB+=	PORTDOCS="@comment "
