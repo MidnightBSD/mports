@@ -110,7 +110,7 @@ www-site:
 .if exists(${DESCR})
 	@${AWK} '$$1 ~ /^WWW:/ {print $$2}' ${DESCR} | ${HEAD} -1
 .else
-	@${ECHO_CMD}
+	@${ECHO_CMD} ${_WWW}
 .endif
 
 .if !target(readmes)
