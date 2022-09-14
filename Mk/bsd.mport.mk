@@ -1662,9 +1662,9 @@ MASTER_SORT_REGEX?=
 MASTER_SORT_REGEX+=	${MASTER_SORT:S|.|\\.|g:S|^|://[^/]*|:S|$|/|}
 
 MASTER_SORT_AWK=	BEGIN { RS = " "; ORS = " "; IGNORECASE = 1 ; gl = "${MASTER_SORT_REGEX:S|\\|\\\\|g}"; }
-.for srt in ${MASTER_SORT_REGEX}
+.    for srt in ${MASTER_SORT_REGEX}
 MASTER_SORT_AWK+=	/${srt:S|/|\\/|g}/ { good["${srt:S|\\|\\\\|g}"] = good["${srt:S|\\|\\\\|g}"] " " $$0 ; next; }
-.endfor
+.    endfor
 MASTER_SORT_AWK+=	{ rest = rest " " $$0; } END { n=split(gl, gla); for(i=1;i<=n;i++) { print good[gla[i]]; } print rest; }
 
 SORTED_MASTER_SITES_DEFAULT_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-DEFAULT
@@ -1712,22 +1712,22 @@ patch-sites-${_group}:
 # Hackery to enable simple fetch targets with several dynamic MASTER_SITES
 #
 _MASTER_SITES_ENV=	_MASTER_SITES_DEFAULT=${_MASTER_SITES_DEFAULT:Q}
-.for _F in ${DISTFILES}
+.    for _F in ${DISTFILES}
 _F_TEMP=	${_F:S/^${_F:C/:[^:]+$//}//:S/^://}
-.	if !empty(_F_TEMP)
-.		for _group in ${_F_TEMP:S/,/ /g}
-.			if defined(_MASTER_SITES_${_group})
+.      if !empty(_F_TEMP)
+.        for _group in ${_F_TEMP:S/,/ /g}
+.          if defined(_MASTER_SITES_${_group})
 _MASTER_SITES_ENV+=	_MASTER_SITES_${_group}=${_MASTER_SITES_${_group}:Q}
-.			endif
-.		endfor
-.	endif
-.endfor
+.          endif
+.        endfor
+.      endif
+.    endfor
 _PATCH_SITES_ENV=	_PATCH_SITES_DEFAULT=${_PATCH_SITES_DEFAULT:Q}
-.for _F in ${PATCHFILES}
+.    for _F in ${PATCHFILES}
 _F_TEMP=	${_F:S/^${_F:C/:[^-:][^:]*$//}//:S/^://}
-.	if !empty(_F_TEMP)
-.		for _group in ${_F_TEMP:S/,/ /g}
-.			if defined(_PATCH_SITES_${_group})
+.      if !empty(_F_TEMP)
+.        for _group in ${_F_TEMP:S/,/ /g}
+.          if defined(_PATCH_SITES_${_group})
 _PATCH_SITES_ENV+=	_PATCH_SITES_${_group}=${_PATCH_SITES_${_group}:Q}
 .			endif
 .		endfor
@@ -1752,22 +1752,22 @@ patch-sites: patch-sites-DEFAULT
 CKSUMFILES=		${ALLFILES}
 
 # List of all files, with ${DIST_SUBDIR} in front.  Used for checksum.
-.if defined(DIST_SUBDIR)
-.if defined(CKSUMFILES) && ${CKSUMFILES}!=""
+.    if defined(DIST_SUBDIR)
+.      if defined(CKSUMFILES) && ${CKSUMFILES}!=""
 _CKSUMFILES?=	${CKSUMFILES:S/^/${DIST_SUBDIR}\//}
-.endif
-.else
+.      endif
+.    else
 _CKSUMFILES?=	${CKSUMFILES}
-.endif
+.    endif
 
 # This is what is actually going to be extracted, and is overridable
 #  by user.
 EXTRACT_ONLY?=	${_DISTFILES}
 
-.if !target(maintainer)
+.    if !target(maintainer)
 maintainer:
 	@${ECHO_CMD} "${MAINTAINER}"
-.endif
+.    endif
 
 .if !target(check-makefile)
 check-makefile::
