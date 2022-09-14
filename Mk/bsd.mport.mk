@@ -875,30 +875,19 @@ PLIST_REINPLACE_mode=s!^@mode \(.*\)!@exec chmod \1 %D
 # sub-configure will not # survive double space
 CFLAGS:=	${CFLAGS:C/ $//}
 
-.if defined(WITHOUT_CPU_CFLAGS)
-.if defined(_CPUCFLAGS)
-.if !empty(_CPUCFLAGS)
+.    if defined(WITHOUT_CPU_CFLAGS)
+.      if defined(_CPUCFLAGS)
+.        if !empty(_CPUCFLAGS)
 CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
-.endif
-.endif
-.endif
+.        endif
+.      endif
+.    endif
 
-.if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
-.if !defined(INSTALL_STRIPPED)
-STRIP=	#none
-MAKE_ENV+=	DONTSTRIP=yes
-STRIP_CMD=	${TRUE}
-.endif
-DEBUG_FLAGS?=	-g
-CFLAGS:=	${CFLAGS:N-O*:N-fno-strict*} ${DEBUG_FLAGS}
-.if defined(INSTALL_TARGET)
-INSTALL_TARGET:=	${INSTALL_TARGET:S/^install-strip$/install/g}
-.endif
-.endif
-
-.if defined(WITH_SSP) || defined(WITH_SSP_PORTS)
-.include "${PORTSDIR}/Mk/components/ssp.mk"
-.endif
+.    for f in ${_LIST_OF_WITH_FEATURES}
+.      if defined(WITH_${f:tu}) || ( ${_DEFAULT_WITH_FEATURES:M${f}} &&  !defined(WITHOUT_${f:tu}) )
+.include "${PORTSDIR}/Mk/features/$f.mk"
+.      endif
+.    endfor
 
 # XXX PIE support to be added here
 MAKE_ENV+=	NO_PIE=yes
@@ -3627,7 +3616,7 @@ generate-plist: ${WRKDIR}
  
 .for dir in ${PLIST_DIRS}
 	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} -e 's,^,@dir ,' >> ${TMPPLIST}
-.endfor
+.      endfor
 
 .if defined(USE_LINUX_PREFIX)
 .if defined(USE_LDCONFIG)
