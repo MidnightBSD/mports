@@ -17,8 +17,13 @@ COMMENT=	AudioProcessing module from WebRTC project
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	cmake:devel/cmake
+BUILD_DEPENDS=	cmake:devel/cmake \
+		clang90:devel/llvm90
 LIB_DEPENDS=	libabsl_strings.so:devel/abseil
+
+# MidnightBSD 2.2 linker does not work with this port
+CC=clang90
+CXX=clang++90
 
 USES=		compiler:c++17-lang meson
 USE_LDCONFIG=	yes
