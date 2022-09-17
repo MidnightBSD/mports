@@ -1,6 +1,6 @@
 PORTNAME=	meson
-PORTVERSION=	0.63.2
-PORTREVISION=	1
+PORTVERSION=	0.60.3
+PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	https://github.com/mesonbuild/${PORTNAME}/releases/download/${PORTVERSION}/
 
