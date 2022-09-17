@@ -6,6 +6,7 @@ DIST_SUBDIR=	xorg/lib
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Keymap handling library for toolkits and window systems
+WWW=		https://xkbcommon.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -17,7 +18,8 @@ USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Denable-docs=false \
 		-Dx-locale-root="${PREFIX}/lib/X11/locale" \
-		-Ddefault-rules=xorg
+		-Ddefault-rules=xorg \
+		${MESON_ARGS_${OPSYS}_${OSREL:R}}
 CPE_VENDOR=	xkbcommon
 
 OPTIONS_DEFINE=	EVDEV WAYLAND X11
