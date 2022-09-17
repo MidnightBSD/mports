@@ -6,6 +6,7 @@ MASTER_SITES=	https://github.com/mesonbuild/${PORTNAME}/releases/download/${PORT
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance build system
+WWW=		https://mesonbuild.com/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
