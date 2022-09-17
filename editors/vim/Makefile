@@ -1,10 +1,11 @@
 PORTNAME=	vim
-PORTVERSION=	9.0.0369
+PORTVERSION=	9.0.0379
 DISTVERSIONPREFIX=	v
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Improved version of the vi editor (${FLAVOR:U} flavor)
+WWW=		https://www.vim.org/
 
 LICENSE=	VIM
 LICENSE_NAME=	VIM License
