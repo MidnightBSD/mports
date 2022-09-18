@@ -9,6 +9,7 @@ DISTNAME=	PyYAML-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python YAML parser
+WWW=		https://pyyaml.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
