@@ -616,6 +616,8 @@ add-plist-pymod:
 		-e 's|^\(share/man/.*man[0-9]\)/\(.*\.[0-9]\)$$|\1/\2.gz|' \
 		-e 's|[[:alnum:]|[:space:]]*/\.\./*||g; s|/\./|/|g' \
 		${_PYTHONPKGLIST} | ${SORT} >> ${TMPPLIST}
+		@cd ${FAKE_DESTDIR}${TRUE_PREFIX}/${_RELLIBDIR}; \
+		${FIND} -d . -type d ! -name .  | ${SED} -e 's:^\./:@dirrmtry ${_RELLIBDIR}/:' >> ${TMPPLIST};
 
 .else
 .if ${PYTHON_REL} >= 30200 && defined(_PYTHON_FEATURE_PY3KPLIST)
