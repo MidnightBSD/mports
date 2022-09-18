@@ -1,27 +1,27 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
 PORTNAME=	vala
-PORTVERSION=	0.48.23
+DISTVERSION=	${_VALA_VERSION}
 PORTEPOCH=	1
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programming language and compiler that converts Vala code into C code
+WWW=		https://wiki.gnome.org/Projects/Vala
 
 LICENSE=	lgpl2.1
 
 PORTSCOUT=	limitw:1,even
 
 USES=		bison cpe gettext-runtime gmake gnome libtool \
-		localbase pathfix pkgconfig tar:xz
+		localbase pathfix pkgconfig tar:xz\
+		vala:no_depend
 USE_GNOME=	glib20 gnomeprefix libxslt:build
+CPE_VENDOR=	gnome
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-valadoc
 INSTALL_TARGET=	install-strip
-CPE_VENDOR=	gnome
 
-PLIST_SUB=	VERSION=${PORTVERSION:R}
+PLIST_SUB=	VALA_LIB_VERSION=${_VALA_LIB_VERSION}
 
 .include <bsd.port.mk>

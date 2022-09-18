@@ -5,11 +5,12 @@
 
 PORTNAME=	libgit2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.1
+DISTVERSION=	1.3.2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable, pure C implementation of the Git core
+WWW=		https://libgit2.github.com/
 
 LICENSE=	gpl2
 
