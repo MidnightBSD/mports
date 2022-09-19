@@ -23,7 +23,7 @@ CONFIGURE_ARGS=	${CONFIGURE_ARGS_${CHOSEN_COMPILER_TYPE}}
 CONFIGURE_ARGS_gcc=	--libs="-L${PREFIX}/lib/gcc${GCC_DEFAULT} `mysql_config --libs | ${SED} 's/-pthread //'`"
 USE_PERL5=	configure
 
-USE_GCC=	7
+USE_GCC=	8
 
 NO_TEST=	yes
 
