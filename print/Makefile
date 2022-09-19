@@ -85,6 +85,7 @@ SUBDIR += texlive-tlmgr
 SUBDIR += transfig
 SUBDIR += ttf2pt1
 SUBDIR += ttfautohint
+SUBDIR += xmbibtex
 SUBDIR += xpdfopen
 SUBDIR += xreader
 SUBDIR += xtexsh
