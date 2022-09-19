@@ -1,13 +1,11 @@
-
-
 PORTNAME=	MRO-Compat
-PORTVERSION=	0.13
+PORTVERSION=	0.15
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:HAARG
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Add mro::* interface compatibility for Perls < 5.9.5
 
 LICENSE=	artistic gpl
