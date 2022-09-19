@@ -1,6 +1,5 @@
 PORTNAME=	mpc
-PORTVERSION=	1.1.0
-PORTREVISION=	1
+PORTVERSION=	1.2.1
 CATEGORIES=	math devel
 MASTER_SITES=	GNU
 
@@ -16,13 +15,13 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gmp=${LOCALBASE} \
 		--with-mpfr=${LOCALBASE}
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 USES=		libtool
 
 INFO=		mpc
 PLIST_FILES=	include/mpc.h \
-		lib/libmpc.a lib/libmpc.so lib/libmpc.so.3 lib/libmpc.so.3.1.0
+		lib/libmpc.a lib/libmpc.so lib/libmpc.so.3 lib/libmpc.so.3.2.1
 
 .include <bsd.port.mk>

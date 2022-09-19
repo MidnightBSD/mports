@@ -18,7 +18,7 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--infodir=${PREFIX}/info \
 		--mandir=${PREFIX}/man \
 		--enable-cxx
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 MAKE_JOBS_UNSAFE=yes
 USE_LDCONFIG=	yes
 
