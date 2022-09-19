@@ -920,6 +920,7 @@ SUBDIR += py-logfury
 SUBDIR += py-importlib-metadata
 SUBDIR += py-importlib-resources
 SUBDIR += py-incremental
+SUBDIR += py-iniconfig
 SUBDIR += py-ipaddr
 SUBDIR += py-iso8601
 SUBDIR += py-isodate
