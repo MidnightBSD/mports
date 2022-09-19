@@ -1,7 +1,5 @@
-# Created by: Lars Balker Rasmussen <lbr@FreeBSD.org>
-
 PORTNAME=	Algorithm-C3
-PORTVERSION=	0.10
+PORTVERSION=	0.11
 PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
