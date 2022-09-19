@@ -11,7 +11,7 @@ LICENSE=	lgpl3
 OPTIONS_DEFINE=	CPU_OPTS
 CPU_OPTS_DESC=	Enable assembly optimizations for your CPU
 
-USES=		libtool makeinfo tar:xz
+USES=		cpe libtool makeinfo tar:xz
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
@@ -21,6 +21,8 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 MAKE_JOBS_UNSAFE=yes
 USE_LDCONFIG=	yes
+
+CPE_VENDOR=	gmplib
 
 INFO=		gmp
 
