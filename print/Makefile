@@ -87,6 +87,7 @@ SUBDIR += ttf2pt1
 SUBDIR += ttfautohint
 SUBDIR += xpdfopen
 SUBDIR += xreader
+SUBDIR += xtexsh
 SUBDIR += yatex
 
 .include <bsd.port.subdir.mk>
