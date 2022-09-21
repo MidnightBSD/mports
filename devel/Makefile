@@ -958,6 +958,7 @@ SUBDIR += py-python-editor
 SUBDIR += py-pip
 SUBDIR += py-pip-api
 SUBDIR += py-pluggy
+SUBDIR += py-pluggy0
 SUBDIR += py-pluginbase
 SUBDIR += py-ply
 SUBDIR += py-pockets

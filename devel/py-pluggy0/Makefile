@@ -1,8 +1,9 @@
 PORTNAME=	pluggy
-PORTVERSION=	1.0.0
+PORTVERSION=	0.13.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+PKGNAMESUFFIX=	0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Plugin and hook calling mechanisms for Python
@@ -14,9 +15,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${PY_FLAVOR}
 
 USES=		python:3.6+
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils pytest4
 
 NO_ARCH=	yes
+TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
+
+PORTSCOUT=	limit:^0\.
 
 .include <bsd.port.pre.mk>
 
