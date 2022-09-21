@@ -454,6 +454,7 @@ SUBDIR += p5-Exception-Class
 SUBDIR += p5-Exporter-Lite
 SUBDIR += p5-Exporter-Tiny
 SUBDIR += p5-ExtUtils-CBuilder
+SUBDIR += p5-ExtUtils-CChecker
 SUBDIR += p5-ExtUtils-Config
 SUBDIR += p5-ExtUtils-Depends
 SUBDIR += p5-ExtUtils-Helpers
