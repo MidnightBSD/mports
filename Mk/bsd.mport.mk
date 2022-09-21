@@ -29,7 +29,7 @@ LC_ALL=		C
 # by individual Makefiles or local system make configuration.
 _LIST_OF_WITH_FEATURES=	debug lto ssp
 _DEFAULT_WITH_FEATURES=	ssp
-PORTSDIR?=		/usr/ports
+PORTSDIR?=		/usr/mports
 LOCALBASE?=		/usr/local
 LINUXBASE?=		/compat/linux
 LOCALBASE_REL:=		${LOCALBASE}
