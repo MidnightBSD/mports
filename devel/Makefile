@@ -1135,6 +1135,7 @@ SUBDIR += rubygem-rdoc
 SUBDIR += rubygem-sigdump
 SUBDIR += rubygem-strptime
 SUBDIR += rubygem-svn2git
+SUBDIR += rubygem-thread_safe
 SUBDIR += rubygem-tzinfo
 SUBDIR += rubygem-tzinfo-data
 SUBDIR += rubygem-tzinfo1
