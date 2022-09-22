@@ -52,7 +52,7 @@ HPACK_LIB_DEPENDS=	libjansson.so:devel/jansson
 
 .if ${OSVERSION} < 200000
 # stupid thing won't link with system compiler
-USE_GCC=7
+USE_GCC=8
 .endif
 
 post-patch:
