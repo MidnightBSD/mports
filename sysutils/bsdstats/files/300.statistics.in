@@ -1,11 +1,9 @@
-#!/bin/mksh -
-#
-#
+#!/bin/sh -
 
 #
 # options
 #
-CURR_VERSION="6.1"
+CURR_VERSION="%%VERSION%%"
 USE_TOR=NO
 DO_LOG_NET_TRAFFIC=0
 
@@ -25,22 +23,10 @@ WC=/usr/bin/wc
 MV=/bin/mv
 RM=/bin/rm
 case $(${UNAME}) in
-  FreeBSD)
-    UMASK=/usr/bin/umask
-    OPENSSL=/usr/bin/openssl
-    CHOWN=/usr/sbin/chown
-    NC=/usr/bin/nc
-    ;;
   OpenBSD)
     UMASK=/usr/bin/umask
     OPENSSL=/usr/sbin/openssl
     CHOWN=/sbin/chown
-    NC=/usr/bin/nc
-    ;;
-  DragonFly)
-    UMASK=/usr/bin/umask
-    OPENSSL=/usr/bin/openssl
-    CHOWN=/usr/sbin/chown
     NC=/usr/bin/nc
     ;;
   NetBSD)
@@ -81,6 +67,9 @@ fi
 #
 # global values
 #
+monthly_statistics_enable=${monthly_statistics_enable:-"NO"}
+monthly_statistics_report_devices=${monthly_statistics_report_devices:-"YES"}
+monthly_statistics_report_ports=${monthly_statistics_report_ports:-"YES"}
 checkin_server=${monthly_statistics_checkin_server:-"rpt.bsdstats.org"}
 bsdstats_log=${monthly_statistics_logfile:-"/var/log/bsdstats"}
 id_token_file='/var/db/bsdstats'
@@ -162,7 +151,7 @@ do_http_request() {
   if [ -n "${body}" ]; then txt="${txt}${CR}${NL}Content-Length: ${#body}"; fi
   txt="${txt}${CR}${NL}${CR}${NL}${body}"
 
-  resp=$(echo "${txt}" | nlog "out" | ${NC} ${nc_host} ${nc_port} | nlog "in" 2>/dev/null)
+  resp=$(echo "${txt}" | nlog "out" | ${NC} -w ${timeout} ${nc_host} ${nc_port} | nlog "in" 2>/dev/null)
   if [ $? -ne 0 ]; then
     if [ ${do_log} -ne 0 ]; then
       log "FAIL" "Failed to send data to the host ${nc_host}:${nc_port}, is network or host down?"
@@ -391,13 +380,21 @@ get_mports() {
 
 report_ports() {
   case $(${UNAME}) in
-    FreeBSD|DragonFly)
+    FreeBSD|DragonFly|MidnightBSD)
       local query_string=""
-      # Detect pkgng
-      if [ -e /var/db/pkg/local.sqlite ]; then
-        # Use pkgng
-        query_string="${query_string}$(pkg info -o "*" | ${SED} -E -e 's/\+/%2b/g' -e 's/,/%2c/g' -e 's/^([^ ]+) +([^\/]+)\/.+$/\&port[]=\2:\1/g' | tr -d '\n')"
+      # Detect mport or pkgng
+      if [ -e /var/db/mport/master.db ]; then
+            report_uri="/scripts/report_ports.php"
+            query_string="${query_string}$( get_mports | ${SED} -E -e 's/\+/%2b/g' -e 's/,/%2c/g' -e 's/^([^ ]+) +([^\/]+)\/.+$/\&port[]=\2:\1/g' | tr -d '\n')"
+      elif [ -e /var/db/pkg/local.sqlite ]; then
+            report_uri="/scripts/report_ports_v2.php"
+            if [ -f %%PREFIX%%/etc/bsdstats.conf -a "0" = "0`grep ^all-ports /usr/local/etc/bsdstats.conf`" ]; then
+              query_string=$( pkg query %n:%v:%o | fgrep -f %%PREFIX%%/etc/bsdstats.conf | awk -F\/ '{print $1}' | sed -E -e 's/\+/%2b/g' -e 's/,/%2c/g' | awk '{printf"&port[]=%s", $1}' )
+            else
+              query_string=$( pkg query %n:%v:%o | awk -F\/ '{print $1}' | sed -E -e 's/\+/%2b/g' -e 's/,/%2c/g' | awk '{printf"&port[]=%s", $1}' )
+            fi
       else
+        report_uri="/scripts/report_ports.php"
     #-----BEGIN LEGACY: to delete when FreeBSD with pkg_ tools is out of support period (!!! don't forget to clarify what does DragonFly use before removing !!!) -----
         # Use obsolete pkg_* tools
         local line
@@ -410,17 +407,7 @@ report_ports() {
     #-----END LEGACY-----
       fi
       echo_begin "Posting port statistics to ${checkin_server_description}"
-      do_http_request_check_status "POST" "/scripts/report_ports.php" \
-        "token=${TOKEN}&key=${KEY}${query_string}" "application/x-www-form-urlencoded" "ports submission"
-      echo_end_success
-      log "INFO" "Posted port statistics to ${checkin_server_description}"
-      ;;
-    MidnightBSD)
-      local query_string=""
-      query_string="${query_string}$(get_mports | ${SED} -E -e 's/\+/%2b/g' -e 's/,/%2c/g' -e 's/^([^ ]+) +([^\/]+)\/.+$/\&port[]=\2:\1/g' | tr -d '\n')"
-      
-      echo_begin "Posting port statistics to ${checkin_server_description}"
-      do_http_request_check_status "POST" "/scripts/report_ports.php" \
+      do_http_request_check_status "POST" $report_uri \
         "token=${TOKEN}&key=${KEY}${query_string}" "application/x-www-form-urlencoded" "ports submission"
       echo_end_success
       log "INFO" "Posted port statistics to ${checkin_server_description}"
@@ -541,27 +528,14 @@ report_all() {
        report_devices
        report_cpu
        ;;
-    [Nn][Oo])
-       echo "Posting monthly device/CPU statistics disabled"
-       echo "    set monthly_statistics_report_devices=\"YES\" in $periodic_conf"
-       ;;
     *)
-       # opt-out for devices
-       report_devices
-       report_cpu
        ;;
   esac
   case "$monthly_statistics_report_ports" in
     [Yy][Ee][Ss])
       report_ports
       ;;
-    [Nn][Oo])
-      echo "Posting monthly ports statistics disabled"
-      echo "    set monthly_statistics_report_ports=\"YES\" in $periodic_conf"
-      ;;
     *)
-      # opt-out for ports
-      report_ports
       ;;
   esac
   # end
@@ -579,14 +553,7 @@ case "$monthly_statistics_enable" in
     # explicitly enabled: report it
     report_all "$1"
     ;;
-  [Nn][Oo])
-    echo "Posting monthly OS statistics disabled"
-    echo "    set monthly_statistics_enable=\"YES\" in $periodic_conf"
-    rc=1
-    ;;
   *)
-    # opt-out: we report when user has BSDstats installed, and user didn't say "NO"
-    report_all "$1"
     ;;
 esac
 
