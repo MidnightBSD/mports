@@ -1,24 +1,27 @@
 PORTNAME=	cups
-PORTVERSION=	2.3.3
+PORTVERSION=	2.4.2
 DISTVERSIONPREFIX=v
 CATEGORIES=	print
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System
+WWW=		https://github.com/OpenPrinting/cups
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CONFLICTS=	LPRng-[0-9]*
-
-MAKE_JOBS_UNSAFE=yes
+USES=		compiler:c++11-lang cpe gmake iconv localbase pkgconfig
+CPE_VENDOR=	linuxfoundation
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	apple
+GH_ACCOUNT=	OpenPrinting
+
+CONFLICTS=	LPRng
 
 DESTDIRNAME=	DSTROOT
 GNU_CONFIGURE=	yes
 #CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-CONFIGURE_ARGS=	\
+CONFIGURE_ARGS=	--enable-relro \
 		--disable-gssapi					\
 		--disable-launchd					\
 		--disable-systemd					\
@@ -34,10 +37,9 @@ CONFIGURE_ARGS=	\
 		--with-pam-module="unix"				\
 		--with-dnssd-libs=/usr/lib				\
 		--with-dnssd-includes=/usr/include			\
+		--without-ondemand					\
 		ac_cv_path_JAVA= ac_cv_path_PERL= ac_cv_path_PHPCGI=	\
 		ac_cv_path_PHP= ac_cv_path_PYTHON=
-USES=		compiler:c++11-lang cpe gmake iconv localbase pkgconfig
-CPE_VENDOR=	apple
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	cupsd
 
@@ -49,11 +51,7 @@ OPTIONS_DEFAULT=	AVAHI DBUS GNUTLS LIBPAPER
 OPTIONS_SUB=		yes
 
 AVAHI_LIB_DEPENDS=	libavahi-client.so:net/avahi-app
-AVAHI_RUN_DEPENDS=	gnome_subr>=0:sysutils/gnome_subr
-AVAHI_BUILD_DEPENDS=	gnome_subr>=0:sysutils/gnome_subr
-AVAHI_CONFIGURE_ENABLE=	avahi
-AVAHI_CONFIGURE_ON=	--disable-dnssd
-AVAHI_CONFIGURE_OFF=	--enable-dnssd
+AVAHI_CONFIGURE_WITH=	dnssd=avahi
 AVAHI_SUB_LIST=		AVAHI_DAEMON=avahi_daemon
 AVAHI_SUB_LIST_OFF=	AVAHI_DAEMON=
 
@@ -63,8 +61,7 @@ DBUS_SUB_LIST=		DBUS_DAEMON=dbus
 DBUS_SUB_LIST_OFF=	DBUS_DAEMON=
 
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
-GNUTLS_CONFIGURE_ON=	--enable-gnutls
-GNUTLS_CONFIGURE_OFF=	--disable-ssl
+GNUTLS_CONFIGURE_WITH=	tls=gnutls
 
 IPPTOOL_DESC=		Internet Printing Protocol testing tool
 
@@ -114,16 +111,14 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|\.default|.sample|'\
 		${WRKSRC}/cgi-bin/admin.c\
 		${WRKSRC}/conf/Makefile
-.if !empty(ARCH:Mpowerpc*)
-	@${REINPLACE_CMD} -e 's|@PIEFLAGS@||g' ${WRKSRC}/Makedefs.in
-.endif
 
 post-patch-DOCS-off:
 # Link to online documentation.
 	@${FIND} ${WRKSRC}/doc ${WRKSRC}/templates -type f -exec ${SED} -i '' \
-		-e 's|[Hh][Rr][Ee][Ff]="/*help/\([{"]\)|href="https://www.cups.org/documentation.html\1|g' \
-		-e '/have_gssapi/s|[Hh][Rr][Ee][Ff]="/*help/|href="https\\://www.cups.org/doc/|g' \
-		-e 's|[Hh][Rr][Ee][Ff]="/*help/|href="https://www.cups.org/doc/|g' {} +
+		-e 's|[Hh][Rr][Ee][Ff]="/*help/{[^"]*"|href="https://openprinting.github.io/cups/#DOCUMENTATION|g' \
+		-e 's|[Hh][Rr][Ee][Ff]="/*help/"|href="https://openprinting.github.io/cups/#DOCUMENTATION|g' \
+		-e '/have_gssapi/s|[Hh][Rr][Ee][Ff]="/*help/|href="https\\://openprinting.github.io/cups/doc/|g' \
+		-e 's|[Hh][Rr][Ee][Ff]="/*help/|href="https://openprinting.github.io/cups/doc/|g' {} +
 
 post-install:
 	${LN} -sf lpr ${STAGEDIR}${PREFIX}/bin/lpr-cups

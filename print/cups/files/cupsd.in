@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-#
+
 # PROVIDE: cupsd
 # REQUIRE: DAEMON %%DBUS_DAEMON%% %%AVAHI_DAEMON%%
 # KEYWORD: shutdown
