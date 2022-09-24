@@ -5,6 +5,7 @@ CATEGORIES=	sysutils net www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Datadog Agent: collect metrics and events from your systems and apps
+WWW=		https://www.datadoghq.com/
 
 LICENSE=	bsd4
 LICENSE_FILE=	${WRKSRC}/LICENSE
