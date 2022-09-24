@@ -1,7 +1,7 @@
 # Created by: Alexander Novitsky <alecn2002@yandex.ru>
 
 PORTNAME=	gems
-PORTVERSION=	3.3.21
+PORTVERSION=	3.3.22
 CATEGORIES=	devel ruby
 MASTER_SITES=	https://rubygems.org/rubygems/
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
@@ -10,6 +10,7 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Package management framework for the Ruby language
+WWW=		https://rubygems.org/
 
 LICENSE=	mit ruby
 LICENSE_COMB=	dual
@@ -44,7 +45,8 @@ PLIST_SUB=	GEMS_DIR="${GEMS_DIR}" \
 		CACHE_DIR="${CACHE_DIR}" \
 		PLUGINS_DIR="${PLUGINS_DIR}" \
 		SPEC_DIR="${SPEC_DIR}" \
-		EXT_DIR="${EXT_DIR}"
+		EXT_DIR="${EXT_DIR}" \
+		RUBY_VER_SHORT=${RUBY_VER_SHORT}
 
 CPE_VENDOR=	rubygems
 CPE_PRODUCT=	rubygems
