@@ -923,6 +923,7 @@ SUBDIR += py-linecache2
 SUBDIR += py-llfuse
 SUBDIR += py-lockfile
 SUBDIR += py-logfury
+SUBDIR += py-logutils
 SUBDIR += py-importlib-metadata
 SUBDIR += py-importlib-resources
 SUBDIR += py-incremental
