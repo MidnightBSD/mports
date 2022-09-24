@@ -14,6 +14,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mailing list manager with user-friendly web front-end
+WWW=		https://www.list.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/gnu-COPYING-GPL
@@ -216,7 +217,7 @@ post-install:
 	    && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 	    -d ${MAILMANDIR}/${dir} ${dir})
 .endfor
-	@${RM} ${STAGEDIR}${MAILMANDIR}/pythonlib/*.egg-info
+	-${RM} ${MAILMANDIR}/pythonlib/*.egg-info
 	@# mm_cfg.py is handled by pkg-plist, no need to archive a copy:
 	@${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.py
 	@${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.pyc
