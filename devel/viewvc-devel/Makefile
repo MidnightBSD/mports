@@ -8,6 +8,7 @@ PKGNAMESUFFIX=  -devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
+WWW=		https://www.viewvc.org/
 
 LICENSE=	bsd2
 
