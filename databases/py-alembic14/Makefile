@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	14
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database migration tool for SQLAlchemy (1.4.X branch)
+WWW=		https://alembic.zzzcomputing.com/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -25,9 +26,7 @@ USE_PYTHON=	autoplist concurrent distutils
 CONFLICTS_INSTALL=	py*-alembic* # lib/python3.8/site-packages/alembic/__init__.py'
 
 NO_ARCH=	yes
+NO_TEST=	yes
 PORTSCOUT=	limit:^1\.4\.
-
-do-test:
-	@cd ${WRKSRC} && ${LOCALBASE}/bin/tox -e ${PY_FLAVOR}
 
 .include <bsd.port.mk>
