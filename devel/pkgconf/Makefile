@@ -8,6 +8,7 @@ MASTER_SITES=	https://distfiles.dereferenced.org/pkgconf/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to help to configure compiler and linker flags
+WWW=		https://git.sr.ht/~kaniini/pkgconf
 
 LICENSE=	iscl
 
