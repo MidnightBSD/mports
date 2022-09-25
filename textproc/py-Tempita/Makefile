@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small text templating language
+WWW=		https://pythonpaste.org/tempita/
 
 LICENSE=	mit
 
