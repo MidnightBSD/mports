@@ -1,11 +1,12 @@
 PORTNAME=	phpmailer
-PORTVERSION=	6.6.0
+PORTVERSION=	6.6.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	mail
 PKGNAMESUFFIX=	6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full Featured Email Transfer Class for PHP
+WWW=		https://github.com/PHPMailer/PHPMailer
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
