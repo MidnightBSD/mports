@@ -1,13 +1,13 @@
-# Created by: Nicola Vitale <nivit@email.it>
-
 PORTNAME=	Genshi
 PORTVERSION=	0.7.3
+PORTREVISION=	1
 CATEGORIES=	textproc www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Toolkit for generation of output for the web
+WWW=		https://genshi.edgewall.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
