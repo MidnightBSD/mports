@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide routine to transform a HTML page into a MIME mail
+WWW=		https://metacpan.org/release/MIME-Lite-HTML
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
@@ -21,5 +22,7 @@ RUN_DEPENDS=	p5-HTML-Parser>=0:www/p5-HTML-Parser \
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
