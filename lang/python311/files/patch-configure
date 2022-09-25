@@ -1,6 +1,6 @@
---- configure.orig	2022-04-05 15:54:03.000000000 -0400
-+++ configure	2022-04-28 22:54:34.617805000 -0400
-@@ -6090,7 +6090,7 @@
+--- configure.orig	2022-08-05 10:45:18.000000000 -0400
++++ configure	2022-09-25 11:02:16.287195000 -0400
+@@ -6135,7 +6135,7 @@
  # else
  #   error unknown platform triplet
  # endif
@@ -9,16 +9,16 @@
  # if defined(__LP64__)
          x86_64-kfreebsd-gnu
  # elif defined(__i386__)
-@@ -6146,7 +6146,7 @@
- case $ac_sys_system in #(
-   Darwin*) :
-     MULTIARCH="" ;; #(
--  FreeBSD*) :
-+  FreeBSD*|MidnightBSD*) :
+@@ -6194,7 +6194,7 @@
+   FreeBSD*) :
      MULTIARCH="" ;; #(
    *) :
-     MULTIARCH=$($CC --print-multiarch 2>/dev/null)
-@@ -6597,7 +6597,7 @@
+-    MULTIARCH=$($CC --print-multiarch 2>/dev/null)
++    MULTIARCH=
+  ;;
+ esac
+ 
+@@ -6730,7 +6730,7 @@
  	      PY3LIBRARY=libpython3.so
  	  fi
            ;;
@@ -27,7 +27,16 @@
  	  LDLIBRARY='libpython$(LDVERSION).so'
  	  BLDLIBRARY='-L. -lpython$(LDVERSION)'
  	  RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-@@ -10516,7 +10516,7 @@
+@@ -7474,7 +7474,7 @@
+ 
+ if test "$Py_LTO" = 'true' ; then
+   case $CC in
+-    *clang*)
++    *clang*|cc)
+             LDFLAGS_NOLTO="-fno-lto"
+ 
+       if test -n "$ac_tool_prefix"; then
+@@ -10715,7 +10715,7 @@
  	Linux*|GNU*|QNX*|VxWorks*|Haiku*)
  		LDSHARED='$(CC) -shared'
  		LDCXXSHARED='$(CXX) -shared';;
@@ -36,7 +45,7 @@
  		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
  		then
  			LDSHARED='$(CC) -shared'
-@@ -10605,7 +10605,7 @@
+@@ -10804,7 +10804,7 @@
  			CCSHARED="-fPIC"
  
  fi;;
@@ -45,16 +54,52 @@
  	Haiku*) CCSHARED="-fPIC";;
  	OpenUNIX*|UnixWare*)
  		if test "$GCC" = "yes"
-@@ -10666,7 +10666,7 @@
+@@ -10865,7 +10865,7 @@
  	OpenUNIX*|UnixWare*) LINKFORSHARED="-Wl,-Bexport";;
  	SCO_SV*) LINKFORSHARED="-Wl,-Bexport";;
  	ReliantUNIX*) LINKFORSHARED="-W1 -Blargedynsym";;
 -	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
-+	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*|MidnightBSD*)
++	MidnightBSD*|FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
  		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
  		then
  			LINKFORSHARED="-Wl,--export-dynamic"
-@@ -13099,7 +13099,7 @@
+@@ -11183,9 +11183,9 @@
+ 
+         CPPFLAGS="$CPPFLAGS $LIBUUID_CFLAGS"
+         LDFLAGS="$LDFLAGS $LIBUUID_LIBS"
+-        for ac_header in uuid/uuid.h
++        for ac_header in ignore_uuid/uuid.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
++  ac_fn_c_check_header_mongrel "$LINENO" "ignore_uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
+ if test "x$ac_cv_header_uuid_uuid_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_UUID_UUID_H 1
+@@ -11312,9 +11312,9 @@
+ 
+         CPPFLAGS="$CPPFLAGS $LIBUUID_CFLAGS"
+         LDFLAGS="$LDFLAGS $LIBUUID_LIBS"
+-        for ac_header in uuid/uuid.h
++        for ac_header in ignore_uuid/uuid.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
++  ac_fn_c_check_header_mongrel "$LINENO" "ignore_uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
+ if test "x$ac_cv_header_uuid_uuid_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_UUID_UUID_H 1
+@@ -11447,9 +11447,9 @@
+ 
+ if test "x$have_uuid" = xmissing; then :
+ 
+-  for ac_header in uuid/uuid.h
++  for ac_header in ignore_uuid/uuid.h
+ do :
+-  ac_fn_c_check_header_mongrel "$LINENO" "uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
++  ac_fn_c_check_header_mongrel "$LINENO" "ignore_uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
+ if test "x$ac_cv_header_uuid_uuid_h" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_UUID_UUID_H 1
+@@ -13315,7 +13315,7 @@
  fi
  
  case $ac_sys_system in #(
@@ -63,12 +108,12 @@
  
      if test -n "$PKG_CONFIG" && \
      { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"x11\""; } >&5
-@@ -22400,7 +22400,7 @@
+@@ -23352,7 +23352,7 @@
      py_cv_module__scproxy=n/a
      py_cv_module_nis=n/a
   ;; #(
--  FreeBSD*/*) :
-+  MidnightBSD*/*|FreeBSD*/*) :
+-  FreeBSD*) :
++  MidnightBSD*|FreeBSD*) :
  
  
      py_cv_module__scproxy=n/a
