@@ -1,11 +1,12 @@
 PORTNAME=	libpotrace
-PORTVERSION=	1.12
+PORTVERSION=	1.16
 CATEGORIES=	graphics
 MASTER_SITES=	SF/potrace/${PORTVERSION}
 DISTNAME=	potrace-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for transforming bitmaps into vector graphics
+WWW=		http://potrace.sourceforge.net
 
 LICENSE=	gpl2
 
@@ -18,7 +19,7 @@ PLIST_FILES=	include/potracelib.h \
 		lib/libpotrace.a \
 		lib/libpotrace.so \
 		lib/libpotrace.so.0 \
-		lib/libpotrace.so.0.0.2
+		lib/libpotrace.so.0.0.6
 
 OPTIONS_DEFINE=	METRIC A4
 OPTIONS_DEFAULT=METRIC A4
