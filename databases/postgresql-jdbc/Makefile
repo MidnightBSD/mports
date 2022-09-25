@@ -1,7 +1,5 @@
-# Created by: Palle Girgensohn <girgen@partitur.se>
-
 PORTNAME=	postgresql
-PORTVERSION=	42.3.3
+PORTVERSION=	42.4.2
 CATEGORIES=	databases java
 MASTER_SITES=	http://jdbc.postgresql.org/download/
 PKGNAMESUFFIX=	-jdbc
@@ -10,6 +8,7 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java JDBC implementation for PostgreSQL
+WWW=		https://jdbc.postgresql.org/
 
 LICENSE=	bsd3
 
