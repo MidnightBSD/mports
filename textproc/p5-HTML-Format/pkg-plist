@@ -1,10 +1,20 @@
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatMarkdown.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatPS.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::Formatter.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatRTF.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatText.3
+%%SITE_PERL%%/HTML/Formatter.pm
+%%SITE_PERL%%/HTML/FormatText.pm
 %%SITE_PERL%%/HTML/FormatMarkdown.pm
 %%SITE_PERL%%/HTML/FormatPS.pm
 %%SITE_PERL%%/HTML/FormatRTF.pm
-%%SITE_PERL%%/HTML/FormatText.pm
-%%SITE_PERL%%/HTML/Formatter.pm
-%%PERL5_MAN3%%/HTML::FormatMarkdown.3.gz
-%%PERL5_MAN3%%/HTML::FormatPS.3.gz
-%%PERL5_MAN3%%/HTML::FormatRTF.3.gz
-%%PERL5_MAN3%%/HTML::FormatText.3.gz
-%%PERL5_MAN3%%/HTML::Formatter.3.gz
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/HTML
+@dir %%SITE_ARCH%%/auto/HTML/Format
+@dir %%SITE_ARCH%%/auto/HTML
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
