@@ -9,6 +9,7 @@ DISTNAME=	py${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python PNG encoder/decoder
+WWW=		https://github.com/drj11/pypng
 
 LICENSE=	mit
 
