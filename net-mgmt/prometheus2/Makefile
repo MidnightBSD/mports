@@ -9,6 +9,7 @@ DISTFILES=	go.mod:gomod ${PORTNAME}-web-ui-${DISTVERSION}.tar.gz:ui
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Systems monitoring and alerting toolkit
+WWW=		https://prometheus.io/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
