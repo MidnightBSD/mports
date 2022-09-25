@@ -7,6 +7,7 @@ DISTNAME=	PyJWT-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON Web Token implementation in Python
+WWW=		https://github.com/jpadilla/pyjwt
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
