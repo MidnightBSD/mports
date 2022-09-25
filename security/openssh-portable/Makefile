@@ -1,5 +1,5 @@
 PORTNAME=	openssh
-DISTVERSION=	8.9p1
+DISTVERSION=	9.0p1
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	security
@@ -8,6 +8,7 @@ PKGNAMESUFFIX?=	-portable
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The portable version of OpenBSD's OpenSSH
+WWW=		https://www.openssh.com/portable.html
 
 LICENSE=	OPENSSH
 LICENSE_NAME=	OpenSSH Licenses
@@ -16,7 +17,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel-*
 
-USES=			autoreconf compiler:c11 cpe localbase ncurses \
+USES=			alias autoreconf compiler:c11 cpe localbase ncurses \
 			pkgconfig ssl
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--prefix=${PREFIX} \
@@ -89,8 +90,6 @@ BSM_CONFIGURE_ON=	--with-audit=bsm
 FIDO_U2F_LIB_DEPENDS=	libfido2.so:security/libfido2
 FIDO_U2F_CONFIGURE_ON=	--with-security-key-builtin
 FIDO_U2F_CONFIGURE_OFF=	--disable-security-key
-# Until https://reviews.freebsd.org/D27289 is committed
-FIDO_U2F_EXTRA_PATCHES=	${FILESDIR}/extra-patch-libfido2-configure.ac
 
 BLACKLISTD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-blacklistd
 
@@ -109,7 +108,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-hpn-gss-glue
 .  endif
 # - See https://sources.debian.org/data/main/o/openssh/ for which subdir to
 # pull from.
-GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-3
+GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-1
 # - Debian does not use a versioned filename so we trick fetch to make one for
 # us with the ?<anything>=/ trick.
 PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_SUBDIR}/debian/patches/gssapi.patch?dummy=/:gsskex
