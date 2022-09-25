@@ -1,11 +1,12 @@
 PORTNAME?=	libpurple
-PORTVERSION=	2.14.4
+PORTVERSION=	2.14.10
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Backend library for the Pidgin multi-protocol messaging client
+WWW=		https://www.pidgin.im/
 
 LICENSE=	gpl3
 
@@ -17,7 +18,9 @@ CONFIGURE_ARGS?=--disable-gtkui \
 		--disable-consoleui \
 		--with-dynamic-prpls=${PRPL_MODULES:S/,$//} \
 		--enable-static \
-		--disable-nm
+		--disable-nm \
+		--with-system-ssl-certs=/usr/share/certs/trusted \
+		--disable-schemas-install
 INSTALL_TARGET=	install-strip
 
 .if !defined(PIDGIN_SLAVE)
@@ -58,10 +61,11 @@ GG_DESC=	The Gadu-Gadu chat protocol
 IRC_DESC=	The Internet Relay Chat protocol
 JABBER_DESC=	The Jabber/XMPP/Google Talk protocol
 NOVELL_DESC=	The Novell GroupWise chat protocol
-QQ_DESC=	The Tercent QQ chat protocol
+QQ_DESC=	The Tencent QQ chat protocol
 SIMPLE_DESC=	The SIMPLE chat protocol
 ZEPHYR_DESC=	The Zephyr chat protocol
 
+PLIST_SUB+=	SHLIB_VERSION=${PORTVERSION:R:E}.${PORTVERSION:E}
 .if defined(WITH_GTKUI)
 OPTIONS_DEFINE+=	GTKSPELL CAP
 OPTIONS_DEFAULT+=	GTKSPELL CAP
@@ -110,11 +114,6 @@ PLIST_SUB+=		PERL:="@comment not installed: " \
 			PERLMAN:="@comment not installed: "
 .endif
 
-.if defined(WITH_GTKUI) && !defined(PIDGIN_SLAVE)
-USE_GNOME+=	gconf2
-GCONF_SCHEMAS=	purple.schemas
-.endif
-
 .if defined(WITH_GTKUI)
 USE_GNOME+=		evolutiondataserver3
 PLIST_SUB+=		EVO=""
@@ -125,14 +124,15 @@ PLIST_SUB+=		EVO="@comment not installed: "
 .endif
 
 .if ${PORT_OPTIONS:MGSTREAMER}
-USE_GSTREAMER1+=core good
+USES+=		gstreamer
+USE_GSTREAMER+=core good
 .else
 CONFIGURE_ARGS+=--disable-gstreamer
 .endif
 
 .if ${PORT_OPTIONS:MVV} && ${PORT_OPTIONS:MGSTREAMER}
 LIB_DEPENDS+=	libfarstream-0.2.so:net-im/farstream
-USE_GSTREAMER1+=v4l2
+USE_GSTREAMER+=v4l2
 PLIST_SUB+=	VV=""
 .else
 CONFIGURE_ARGS+=--disable-vv
@@ -291,8 +291,6 @@ post-patch:
 .if defined(PIDGIN_SLAVE)
 	@${FIND} ${BUILD_WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
 		's|$$(top_builddir)/libpurple/libpurple.la|-lpurple|'
-	@${REINPLACE_CMD} -e 's|gconftool-2|gconftool-disabled|g' \
-		${WRKSRC}/configure
 .endif
 
 .if !defined(PIDGIN_SLAVE) && ${PORT_OPTIONS:MPERL}
