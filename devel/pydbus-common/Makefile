@@ -1,7 +1,5 @@
-
-
 PORTNAME=	dbus
-PORTVERSION=	1.2.8
+DISTVERSION=	1.3.2
 PORTREVISION?=	0
 CATEGORIES=	devel gnome python
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-python/
@@ -11,6 +9,7 @@ DISTNAME=	dbus-python-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Common files for the Python bindings for the D-BUS messaging system
+WWW=		https://dbus.freedesktop.org/doc/dbus-python/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -28,7 +27,9 @@ CONFIGURE_ARGS=	--docdir=${DOCSDIR} \
 INSTALL_TARGET=	install-strip
 
 .if ${SLAVE_PORT} == no
-USES+=		python:2.7,build
+USES+=		python:build
+
+NO_ARCH=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/py-${PORTNAME}
 EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
@@ -38,7 +39,8 @@ OPTIONS_DEFINE=	HTMLDOCS DOCS EXAMPLES
 HTMLDOCS_DESC=	build html documentation
 HTMLDOCS_IMPLIES=	DOCS
 HTMLDOCS_CONFIGURE_ENABLE=	documentation
-HTMLDOCS_BUILD_DEPENDS=		sphinx-build:textproc/py-sphinx
+HTMLDOCS_BUILD_DEPENDS=		sphinx-build:textproc/py-sphinx \
+				${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
 
 post-patch-DOCS-on:
 	@${REINPLACE_CMD} -e 's|HEADERS install-dist_docDATA|HEADERS|g ; \
@@ -67,7 +69,7 @@ do-install-HTMLDOCS-on:
 LIB_DEPENDS+=	libdbus-glib-1.so:devel/dbus-glib
 RUN_DEPENDS+=	pydbus-common>=0:devel/pydbus-common
 USE_LDCONFIG=	yes
-USES+=		python
+USES+=		python:3.6+
 USE_PYTHON=	flavors py3kplist
 
 post-install:
