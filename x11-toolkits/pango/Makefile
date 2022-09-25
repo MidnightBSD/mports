@@ -1,5 +1,5 @@
 PORTNAME=	pango
-PORTVERSION=	1.50.7
+PORTVERSION=	1.50.9
 PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -7,6 +7,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source framework for the layout and rendering of i18n text
+WWW=		https://www.pango.org/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -27,7 +28,7 @@ USE_GNOME=	cairo glib20 introspection:build
 CPE_VENDOR=	gnome
 
 VERSION=	1.8.0
-LIBVERSION=	0.5000.7
+LIBVERSION=	0.5000.9
 PLIST_SUB+=     VERSION=${VERSION} LIBVERSION=${LIBVERSION}
 
 FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
