@@ -1,22 +1,22 @@
-# Created by: fenner
-
 PORTNAME=	gtk-doc
 DISTVERSION=	1.33.2
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Code documentation system, originally for GTK+
+WWW=		https://www.gtk.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${PY_PYGMENTS} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=0:textproc/py-pygments@${PY_FLAVOR} \
 		docbook-xml>0:textproc/docbook-xml \
 		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
 		itstool:textproc/itstool \
 		yelp-tools>=0:textproc/yelp-tools
-RUN_DEPENDS=	${PY_PYGMENTS} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=0:textproc/py-pygments@${PY_FLAVOR} \
 		docbook-xml>0:textproc/docbook-xml \
 		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl
 
