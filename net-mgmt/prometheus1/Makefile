@@ -8,6 +8,7 @@ PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Systems monitoring and alerting toolkit
+WWW=		https://prometheus.io/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
