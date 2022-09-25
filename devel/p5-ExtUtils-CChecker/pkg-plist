@@ -1,2 +1,12 @@
 %%SITE_PERL%%/ExtUtils/CChecker.pm
-%%PERL5_MAN3%%/ExtUtils::CChecker.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/ExtUtils::CChecker.3
+@dir %%SITE_ARCH%%/auto/ExtUtils/CChecker
+@dir %%SITE_ARCH%%/auto/ExtUtils
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/ExtUtils
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
