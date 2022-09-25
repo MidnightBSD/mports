@@ -6,8 +6,10 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Indents and reformats Perl scripts to make them easier to read
+WWW=		https://metacpan.org/release/Perl-Tidy
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		perl5
 USE_PERL5=	configure
