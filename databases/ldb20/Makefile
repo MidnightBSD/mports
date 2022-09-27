@@ -8,6 +8,7 @@ PKGNAMESUFFIX?=		20
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		LDAP-like embedded database
+WWW=		https://ldb.samba.org/
 
 LICENSE=		gpl3
 
@@ -106,7 +107,7 @@ BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/do
 USES+=			python:build,test
 CONFIGURE_ARGS+=	--disable-python
 .else
-USES+=			python:3.4+
+USES+=			gettext-runtime python:3.6+
 
 PLIST_FILES+=		include/pyldb.h \
 			lib/libpyldb-util.so \
