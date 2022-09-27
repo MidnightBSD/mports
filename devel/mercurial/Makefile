@@ -1,12 +1,13 @@
 # Created by: Andreas Kohn
 
 PORTNAME=	mercurial
-PORTVERSION=	6.2.1
+PORTVERSION=	6.2.2
 CATEGORIES=	devel python
 MASTER_SITES=	https://www.mercurial-scm.org/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, lightweight source control management system
+WWW=		https://www.mercurial-scm.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
