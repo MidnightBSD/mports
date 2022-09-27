@@ -54,7 +54,6 @@ SUBDIR += py-fontbakery
 SUBDIR += py-fonttools
 SUBDIR += py-fonttools3
 SUBDIR += py-fpdf
-SUBDIR += py-pdf
 SUBDIR += py-pdf2
 SUBDIR += py-pollyreports
 SUBDIR += py-preppy
