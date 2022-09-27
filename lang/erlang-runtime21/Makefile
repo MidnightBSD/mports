@@ -8,12 +8,11 @@ DIST_SUBDIR=	erlang
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language from Ericsson
+WWW=		https://www.erlang.org/
 
 LICENSE=	apache2
 
-BROKEN_sparc64=	Fails to build: error: fp_except undeclared
-
-USES=		autoreconf:build,2.69 cpe gmake ncurses perl5
+USES=		compiler autoreconf:build,2.69 cpe gmake ncurses perl5
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	erlang:otp,corba
 GH_PROJECT=	otp:otp corba:corba
@@ -26,8 +25,9 @@ WRKSRC=		${WRKSRC_otp}
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=yes
 
-CONFIGURE_ARGS+=	 --without-dynamic-trace
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_ARGS=		--enable-smp-support
+CONFIGURE_ARGS+=	--without-dynamic-trace
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 SUB_FILES=	pkg-message
 SUB_LIST=	ERLANG_LIB=${ERLANG_LIB}
@@ -36,7 +36,6 @@ ERLANG_LIB=	${PORTNAME}${PORTVERSION:C/\..*//}
 
 OPTIONS_DEFINE=	CORBA DIRTY HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP THREADS WX
 OPTIONS_DEFAULT=CORBA DIRTY HIPE KQUEUE OPENSSL SCTP THREADS
-OPTIONS_EXCLUDE_powerpc64=	HIPE ${OPTIONS_EXCLUDE_${ARCH}_${OSREL:R}}
 
 CORBA_DESC=	Enable Corba support
 DIRTY_DESC=	Enable Dirty schedulers
@@ -69,9 +68,13 @@ SCTP_CONFIGURE_ENABLE=	sctp
 THREADS_CONFIGURE_ENABLE=	threads
 WX_CONFIGURE_WITH=	wx-config=${WX_CONFIG}
 WX_USES=		gl
-WX_VARS=		USE_WX=2.8+ WX_COMPS="wx contrib" USE_GL="gl glu"
+WX_VARS=		USE_WX=3.1+ WX_COMPS="wx contrib" USE_GL="gl glu"
 
 .include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 130
+CONFIGURE_ARGS+=	--disable-pgo
+.endif
 
 CFLAGS+=	-DMAP_NORESERVE=0
 

@@ -139,28 +139,28 @@ test: build
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/php.ini-development ${WRKSRC}/php.ini-production \
-		${WRKDIR}/php.conf ${STAGEDIR}/${PREFIX}/etc
+		${WRKDIR}/php.conf ${PREFIX}/etc
 
 post-install-CLI-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/php
+	${STRIP_CMD} ${FAKE_DESTDIR}/${PREFIX}/bin/php
 
 post-install-CGI-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/php-cgi
+	${STRIP_CMD} ${FAKE_DESTDIR}/${PREFIX}/bin/php-cgi
 
 post-install-EMBED-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/libphp.so
+	${STRIP_CMD} ${FAKE_DESTDIR}/${PREFIX}/lib/libphp.so
 
 post-install-FPM-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/sbin/php-fpm
+	${STRIP_CMD} ${FAKE_DESTDIR}/${PREFIX}/sbin/php-fpm
 
 post-install-PHPDBG-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/phpdbg
+	${STRIP_CMD} ${FAKE_DESTDIR}/${PREFIX}/bin/phpdbg
 
 .else
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}
+	${MKDIR} ${PREFIX}/${APACHEMODDIR}
 	${INSTALL_LIB} ${WRKSRC}/libs/${MODULENAME}.so \
-		${STAGEDIR}${PREFIX}/${APACHEMODDIR}
+		${PREFIX}/${APACHEMODDIR}
 .endif
 
 .else
