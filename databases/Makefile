@@ -19,7 +19,6 @@ SUBDIR += gdbm
 SUBDIR += gnats4
 SUBDIR += gom
 SUBDIR += hiredis
-SUBDIR += ldb14
 SUBDIR += ldb15
 SUBDIR += ldb20
 SUBDIR += leveldb
