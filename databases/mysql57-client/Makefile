@@ -35,14 +35,14 @@ OPTIONS_GROUP_PLUGINS=	SASLCLIENT
 SASLCLIENT_DESC=	SASL client plugin module
 SASLCLIENT_CMAKE_BOOL=	WITH_AUTHENTICATION_LDAP
 SASLCLIENT_LIB_DEPENDS=		libsasl2.so:security/cyrus-sasl2
-SASLCLIENT_BUILD_DEPENDS=	${LOCALBASE}/include/lber.h:net/openldap24-client
 SASLCLIENT_USE=		OPENLDAP=yes
+SASLCLIENT_USES=	ldap
 OPTIONS_DEFAULT+=	SASLCLIENT
 
 # issue 166367: adding symlinks for back-compatibility with ${lib}_r
 post-install:
-	@${LN} -s libmysqlclient.a ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.a
-	@${LN} -s libmysqlclient.so ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so
-	@${LN} -s libmysqlclient.so.20 ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so.20
+	@${LN} -s libmysqlclient.a ${PREFIX}/lib/mysql/libmysqlclient_r.a
+	@${LN} -s libmysqlclient.so ${PREFIX}/lib/mysql/libmysqlclient_r.so
+	@${LN} -s libmysqlclient.so.20 ${PREFIX}/lib/mysql/libmysqlclient_r.so.20
 
 .include "${MASTERDIR}/Makefile"
