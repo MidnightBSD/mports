@@ -157,7 +157,7 @@ RUBY30=			""	# PLIST_SUB helpers
 #
 # Other versions
 #
-IGNORE=	Only ruby 2.6, 2.7 and 3.0 are supported
+IGNORE=	Only ruby 2.7 and 3.0 are supported
 _INVALID_RUBY_VER=	1
 . endif
 .endif # defined(RUBY_VER)
