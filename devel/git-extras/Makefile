@@ -8,6 +8,7 @@ COMMENT=	Sub-commands for repo summary, repl, changelog population, and more
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	bash:shells/bash \
 		git:devel/git
 
