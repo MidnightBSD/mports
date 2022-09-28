@@ -67,7 +67,8 @@ post-install:
 	${MKDIR} ${PREFIX}/${APACHEMODDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/src/modules/perl/mod_perl.so \
 		${PREFIX}/${APACHEMODDIR}/mod_perl.so
-	${INSTALL_DATA} ${WRKDIR}/${APMOD_FILE} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
+	${MKDIR} ${PREFIX}/${APACHEETCDIR}/modules.d
+	${INSTALL_DATA} ${WRKDIR}/${APMOD_FILE} ${PREFIX}/${APACHEETCDIR}/modules.d
 
 	${APXS} -e -A -n perl ${PREFIX}/${APACHEMODDIR}/mod_perl.so
 
