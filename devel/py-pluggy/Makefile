@@ -14,9 +14,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${PY_FLAVOR}
 
 USES=		python:3.6+
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+# circular depends on py-pytest
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
