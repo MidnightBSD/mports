@@ -5,6 +5,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	git filter-repo is a versatile tool for rewriting history
+WWW=		https://github.com/newren/git-filter-repo
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING.mit
@@ -43,8 +44,8 @@ post-extract:
 
 do-install:
 	cd ${WRKSRC}; \
-	${MKDIR} ${STAGEDIR}/${PREFIX}/libexec/git-core; \
-	${MKDIR} ${STAGEDIR}/${PYTHON_SITELIBDIR}; \
-	${MAKE} prefix=${STAGEDIR}/${PREFIX} pythondir=${STAGEDIR}/${PYTHON_SITELIBDIR} install
+	${MKDIR} ${PREFIX}/libexec/git-core; \
+	${MKDIR} ${FAKE_DESTDIR}/${PYTHON_SITELIBDIR}; \
+	${MAKE} prefix=${FAKE_DESTDIR}/${TRUE_PREFIX} pythondir=${FAKE_DESTDIR}/${PYTHON_SITELIBDIR} install
 
 .include <bsd.port.mk>
