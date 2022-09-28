@@ -9,6 +9,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python module to validate VAT numbers
+WWW=		http://code.google.com/p/vatnumber/
 
 LICENSE=	gpl3
 
