@@ -95,6 +95,7 @@ SUBDIR += referenceassemblies-pcl
 SUBDIR += ruby27
 SUBDIR += ruby30
 SUBDIR += ruby31
+SUBDIR += ruby32
 SUBDIR += rust
 SUBDIR += rust-bin
 SUBDIR += scala
