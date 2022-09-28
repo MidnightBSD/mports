@@ -654,6 +654,7 @@ SUBDIR += p5-Test-Class
 SUBDIR += p5-Test-ClassAPI
 SUBDIR += p5-Test-CleanNamespaces
 SUBDIR += p5-Test-Deep
+SUBDIR += p5-Test-Dependencies
 SUBDIR += p5-Test-DependentModules
 SUBDIR += p5-Test-Differences
 SUBDIR += p5-Test-EOL
