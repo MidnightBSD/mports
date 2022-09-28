@@ -6,11 +6,12 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy mail library to parse, compose and send emails
+WWW=		https://www.magiksys.net/pyzmail
 
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
+USES=		dos2unix python:3.6+
 USE_PYTHON=	autoplist distutils
 
 NO_BUILD=	yes
