@@ -508,6 +508,7 @@ SUBDIR += p5-IO-SessionData
 SUBDIR += p5-IO-String
 SUBDIR += p5-IO-Stringy
 SUBDIR += p5-IO-Tty
+SUBDIR += p5-IPC-Cmd
 SUBDIR += p5-IPC-Run
 SUBDIR += p5-IPC-Run3
 SUBDIR += p5-IPC-ShareLite
