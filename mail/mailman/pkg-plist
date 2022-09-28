@@ -2421,7 +2421,6 @@
 %%MMDIR%%/tests/test_security_mgr.py
 %%MMDIR%%/tests/test_smtp.py
 %%MMDIR%%/tests/testall.py
-@(root,wheel,644) %%PYTHON_SITELIBDIR%%/mailman-info.txt
 @dir(,,755) %%MMDIR%%/tests/msgs
 @dir(,,755) %%MMDIR%%/tests/bounces
 @dir(,,755) %%MMDIR%%/tests
