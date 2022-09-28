@@ -6,23 +6,28 @@ MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Python Cryptography Toolkit
+COMMENT=	Python Cryptography Toolkit
+WWW=		https://pycrypto.org
 
 LICENSE=	publicdom
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pycryptodome-*
+DEPRECATED=	Unmaintained, obsolete, and contains security vulnerabilities. Use security/py-pycryptodome instead
+EXPIRATION_DATE=2022-12-30
 
-USES=		python:3.6+
+USES=		cpe python:3.6-3.10
 USE_PYTHON=	distutils autoplist
+
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pycryptodome
+
+CPE_VENDOR=	dlitz
+
+OPTIONSFILE?=         ${PORT_DBDIR}/py-${PORTNAME}/options
 
 GNU_CONFIGURE=	yes
 
 OPTIONS_DEFINE=		GMP
 OPTIONS_DEFAULT=	GMP
-GMP_DESC=	Use GMP for faster DSA/RSA operations
-
-OPTIONSFILE?=		${PORT_DBDIR}/py-${PORTNAME}/options
 
 GMP_DESC=		Use GMP for faster DSA/RSA operations
 GMP_CONFIGURE_WITH=	gmp
@@ -36,7 +41,7 @@ pre-patch:
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Crypto/*/*.so
 
-regression-test: build
+do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
