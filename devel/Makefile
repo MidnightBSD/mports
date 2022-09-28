@@ -1062,7 +1062,6 @@ SUBDIR += py-testscenarios
 SUBDIR += py-testtools
 SUBDIR += py-tox
 SUBDIR += py-traceback2
-SUBDIR += py-trollius
 SUBDIR += py-ttystatus
 SUBDIR += py-twine
 SUBDIR += py-twine1
