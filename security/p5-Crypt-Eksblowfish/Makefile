@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for the Eksblowfish block cipher
+WWW=		https://metacpan.org/release/Crypt-Eksblowfish
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
