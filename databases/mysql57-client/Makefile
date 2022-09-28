@@ -6,9 +6,6 @@ COMMENT=	Multithreaded SQL database (client)
 
 LICENSE+=	lgpl2.1
 
-BROKEN_powerpc64=	does not build: reports unsupported compiler
-BROKEN_sparc64=		does not build: reports unsupported compiler
-
 MASTERDIR=	${.CURDIR}/../mysql57-server
 
 PKGMESSAGE=	${.CURDIR}/pkg-message
@@ -38,7 +35,8 @@ OPTIONS_GROUP_PLUGINS=	SASLCLIENT
 SASLCLIENT_DESC=	SASL client plugin module
 SASLCLIENT_CMAKE_BOOL=	WITH_AUTHENTICATION_LDAP
 SASLCLIENT_LIB_DEPENDS=		libsasl2.so:security/cyrus-sasl2
-SASLCLIENT_BUILD_DEPENDS=	${LOCALBASE}/include/lber.h:net/openldap24-sasl-client
+SASLCLIENT_BUILD_DEPENDS=	${LOCALBASE}/include/lber.h:net/openldap24-client
+SASLCLIENT_USE=		OPENLDAP=yes
 OPTIONS_DEFAULT+=	SASLCLIENT
 
 # issue 166367: adding symlinks for back-compatibility with ${lib}_r
