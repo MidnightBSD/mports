@@ -7,8 +7,10 @@ PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embeds a Perl interpreter in the Apache server
+WWW=		https://perl.apache.org/
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	p5-BSD-Resource>=0:devel/p5-BSD-Resource
 RUN_DEPENDS:=	${BUILD_DEPENDS}
@@ -16,7 +18,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 TEST_DEPENDS=	p5-CGI>=4.15:www/p5-CGI \
 		p5-libwww>=6.13:www/p5-libwww
 
-SUB_FILES=	pkg-message
+SUB_FILES=	pkg-message ${APMOD_FILE}
 SUB_LIST=	APACHEMODDIR=${APACHEMODDIR}
 USES=		apache:2.4+ cpe gmake perl5
 USE_PERL5=	configure
@@ -65,6 +67,7 @@ post-install:
 	${MKDIR} ${PREFIX}/${APACHEMODDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/src/modules/perl/mod_perl.so \
 		${PREFIX}/${APACHEMODDIR}/mod_perl.so
+	${INSTALL_DATA} ${WRKDIR}/${APMOD_FILE} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
 
 	${APXS} -e -A -n perl ${PREFIX}/${APACHEMODDIR}/mod_perl.so
 
