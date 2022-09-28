@@ -1,22 +1,24 @@
 PORTNAME=	mistune
-PORTVERSION=	0.8.4
-PORTREVISION=	1
+PORTVERSION=	2.0.4
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fastest markdown parser in pure Python
+WWW=		https://github.com/lepture/mistune
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR}
+USES=		cpe python:3.6+
+USE_PYTHON=	autoplist concurrent distutils unittest
 
-USES=		python:3.6+
-USE_PYTHON=	autoplist distutils
+NO_ARCH=	yes
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+CPE_VENDOR=	mistune_project
+
+post-patch:
+	@${CP} ${FILESDIR}/setup.py ${WRKSRC}/
 
 .include <bsd.port.mk>
