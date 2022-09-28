@@ -5,13 +5,14 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scans log files and bans IP that makes too many password failures
+WWW=		https://www.fail2ban.org/wiki/index.php/Main_Page
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
-USES=		python:3.6+,patch shebangfix
+USES=		cpe python:3.6+,patch shebangfix
 USE_GITHUB=	yes
 USE_PYTHON=	autoplist distutils
 USE_RC_SUBR=	fail2ban
