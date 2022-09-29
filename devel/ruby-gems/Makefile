@@ -23,7 +23,7 @@ USES=		cpe tar:tgz
 USE_RUBY=	yes
 
 GEMS_BASE_DIR=	lib/ruby/gems/${RUBY_VER}
-GEMS_ENV=	DONT_USE_BUNDLER_FOR_GEMDEPS=true GEM_HOME=${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}
+GEMS_ENV=	GEM_HOME=${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}
 NO_ARCH=	yes
 NO_BUILD=	yes
 RUBY_SETUP=	setup.rb
@@ -78,6 +78,7 @@ do-install:
 	cd ${WRKSRC}/ && ${SETENV} ${GEMS_ENV} ${RUBY} ${RUBY_SETUP} ${RUBY_SETUP_OPTIONS}
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/gem ${PREFIX}/bin/gem${RUBY_VER_SHORT}
 	${LN} -sf gem${RUBY_SUFFIX} ${STAGEDIR}${PREFIX}/bin/gem
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/gem${RUBY_VER_SHORT}
 
 # Find all RDOC and RI files
 post-install-DOCS-on:
