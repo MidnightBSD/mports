@@ -829,7 +829,6 @@ SUBDIR += py-argcomplete
 SUBDIR += py-arrow
 SUBDIR += py-asn1crypto
 SUBDIR += py-astroid
-SUBDIR += py-asyncio
 SUBDIR += py-async_generator
 SUBDIR += py-async_timeout
 SUBDIR += py-atomiclong
