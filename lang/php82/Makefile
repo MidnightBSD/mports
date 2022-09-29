@@ -29,7 +29,8 @@ CONFIGURE_ARGS+=	--disable-all \
 			--with-layout=GNU \
 			--with-libxml \
 			--with-openssl \
-			--with-password-argon2=${LOCALBASE}
+			--with-password-argon2=${LOCALBASE} \
+			--disable-dtrace
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 DESTDIRNAME=		INSTALL_ROOT
 
@@ -62,7 +63,6 @@ CGI_VARS=		PHP_SAPI+=cgi
 CLI_CONFIGURE_OFF=	--disable-cli
 CLI_VARS=		PHP_SAPI+=cli
 DEBUG_CONFIGURE_ON=	--enable-debug
-DTRACE_CONFIGURE_ON=	--enable-dtrace
 EMBED_CONFIGURE_ON=	--enable-embed
 EMBED_VARS=		PHP_SAPI+=embed
 FPM_CONFIGURE_ON=	--enable-fpm \
