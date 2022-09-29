@@ -37,7 +37,8 @@ NO_ARCH=	YES
 NO_LATEST_LINK=	YES
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/fluentd/plugin
+	${MKDIR} ${PREFIX}/etc/fluentd/plugin
 	${CP} ${WRKSRC}/fluent.conf.sample ${STAGEDIR}${PREFIX}/etc/fluentd/
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/fluent*
 
 .include <bsd.port.mk>
