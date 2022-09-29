@@ -103,6 +103,7 @@ do-build:
 
 .  if !target(do-install)
 do-install:
+	(cd ${PREFIX}/bin && ln -sf ${RUBY_WITH_SUFFIX$}) 
 	(cd ${BUILD_WRKSRC}; ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} ${CONFIGURE_ARGS})
 	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}/build_info/
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
@@ -125,6 +126,8 @@ gem-autoplist:
 .if ${PORT_OPTIONS:MDOCS}
 	@${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${DOC_DIR} -type f -print | ${SED} -E -e \
 		's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST}
+
+	${FIND} ${FAKE_DESTDIR}${PREFIX}/${DOC_DIR} -type f -exec ${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' {} +
 .endif
 	@${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEM_LIB_DIR} -type f -print | ${SED} -E -e \
 		's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST}
