@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	INI style configuration file parser
+WWW=		https://pypi.org/project/configparser/
 
 LICENSE=	mit
 

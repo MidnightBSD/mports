@@ -229,10 +229,10 @@ post-install:
 	  ${STAGEDIR}${MAILMANDIR}/icons/
 .if ${PORT_OPTIONS:MDOCS}
 	${CP} -R ${WRKSRC}/doc/* ${WRKSRC}/
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${FILESDIR}/MidnightBSD-post-install-notes ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${FILESDIR}/MidnightBSD-post-install-notes ${DOCSDIR}
 .for docfile in ${PORTDOCS:NMidnightBSD-post-install-notes}
-	${INSTALL_DATA} ${WRKSRC}/${docfile} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${docfile} ${DOCSDIR}
 .endfor
 .endif
 	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
