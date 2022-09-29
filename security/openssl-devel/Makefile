@@ -37,20 +37,18 @@ OPTIONS_GROUP_MODULES=	FIPS LEGACY
 OPTIONS_DEFINE_i386=	I386
 OPTIONS_GROUP_PROTOCOLS=NEXTPROTONEG SCTP SSL3 TLS1 TLS1_1 TLS1_2
 
-OPTIONS_DEFINE=	ASYNC CRYPTODEV CT KTLS MAN3 RFC3779 SHARED ZLIB
+OPTIONS_DEFINE=	ASYNC CRYPTODEV CT MAN3 RFC3779 SHARED ZLIB
 
-OPTIONS_DEFAULT=ASM ASYNC CT DES EC FIPS GOST KTLS MAN3 MD4 NEXTPROTONEG \
+OPTIONS_DEFAULT=ASM ASYNC CT DES EC FIPS GOST MAN3 MD4 NEXTPROTONEG \
 		RC2 RC4 RMD160 SCTP SHARED SSE2 THREADS TLS1 TLS1_1 TLS1_2
-
-OPTIONS_EXCLUDE=${${OSVERSION} < 1300042:?KTLS:} \
-		${${OSVERSION} > 1300000:?CRYPTODEV:}
 
 OPTIONS_GROUP_OPTIMIZE_amd64=	EC
 
 .if ${MACHINE_ARCH} == "amd64"
 OPTIONS_GROUP_OPTIMIZE+=	EC
-.elif ${MACHINE_ARCH} == "mips64el"
-OPTIONS_GROUP_OPTIMIZE+=	EC
+CONFIGURE_ARGS+=	"BSD-x86_64"
+.else
+CONFIGURE_ARGS+=	"BSD-x86-elf"
 .endif
 
 OPTIONS_SUB=	yes
@@ -68,7 +66,6 @@ GOST_DESC=	GOST (Russian standard)
 HASHES_DESC=	Hash Function Support
 I386_DESC=	i386 (instead of i486+)
 IDEA_DESC=	International Data Encryption Algorithm
-KTLS_DESC=	Use in-kernel TLS (FreeBSD >13)
 LEGACY_DESC=	Older algorithms
 MAN3_DESC=	Install API manpages (section 3, 7)
 MD2_DESC=	MD2 (obsolete) (requires LEGACY)
@@ -96,7 +93,7 @@ TLS1_2_DESC=	TLSv1.2
 WEAK-SSL-CIPHERS_DESC=	Weak cipher support (unsafe)
 
 # Upstream default disabled options
-.for _option in fips md2 ktls rc5 sctp ssl3 weak-ssl-ciphers zlib
+.for _option in fips md2 rc5 sctp ssl3 weak-ssl-ciphers zlib
 ${_option:tu}_CONFIGURE_ON=	enable-${_option}
 .endfor
 
@@ -115,7 +112,6 @@ TLS1_1_IMPLIES=	TLS1_2
 EC_CONFIGURE_ON=	enable-ec_nistp_64_gcc_128
 FIPS_VARS=		shlibs+=lib/ossl-modules/fips.so
 I386_CONFIGURE_ON=	386
-KTLS_EXTRA_PATCHES=	${FILESDIR}/extra-patch-ktls
 LEGACY_VARS=		shlibs+=lib/ossl-modules/legacy.so
 MAN3_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-util_find-doc-nits
 SHARED_MAKE_ENV=	SHLIBVER=${OPENSSL_SHLIBVER}
