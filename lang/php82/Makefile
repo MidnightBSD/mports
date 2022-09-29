@@ -178,8 +178,6 @@ PLIST=		${NONEXISTENT}
 
 EXTRACT_AFTER_ARGS?=	${EXTSUBDIR}
 
-TEST_TARGET=	test
-
 .if ${PHP_MODNAME} == "bcmath"
 CONFIGURE_ARGS+=	--enable-bcmath
 
