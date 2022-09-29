@@ -171,10 +171,10 @@ post-configure:
 
 .if ${FLAVOR:U} == tiny
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${VIM_VER}
+	${MKDIR} ${DATADIR}/${VIM_VER}
 	${INSTALL_PROGRAM} ${WRKSRC}/src/vim ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/runtime/defaults.vim ${DATADIR}/${VIM_VER}
-	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${DATADIR}/${VIM_VER}/defaults.vim
+	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${DATADIR}/${VIM_VER}
 	${INSTALL_MAN} ${WRKSRC}/runtime/doc/vim.1 ${MAN1PREFIX}/man/man1
 
 .else  # flavor != tiny
