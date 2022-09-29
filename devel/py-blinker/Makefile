@@ -14,8 +14,9 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 USES=		python:3.7+
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
