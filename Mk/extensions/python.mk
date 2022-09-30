@@ -17,7 +17,7 @@
 #		Examples:
 #
 #			USES=python:2.7		# Supports Python 2.7 Only
-#			USES=python:3.7+	# Supports Python 3.7 or later
+#			USES=python:3.8+	# Supports Python 3.8 or later
 #			USES=python:3.7-3.9	# Supports Python 3.7 to 3.9
 #			USES=python:-3.8	# Supports Python up to 3.8
 #			USES=python		# Supports 3.7+
@@ -204,7 +204,7 @@
 #			  interpreter, e.g. 2, 3, ...
 #
 # PYTHON_VER		- The major-minor release version of the chosen Python
-#			  interpreter, e.g. 2.7, 3.7, ...
+#			  interpreter, e.g. 2.7, 3.8, ...
 #
 # PYTHON_ABIVER		- Additional ABI flags set by the chosen Python
 #			  interpreter, e.g. md
@@ -275,7 +275,7 @@ _INCLUDE_USES_PYTHON_MK=	yes
 # What Python version and what Python interpreters are currently supported?
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-_PYTHON_VERSIONS=		3.9 3.8 3.7 3.10 3.11 2.7 # preferred first
+_PYTHON_VERSIONS=		3.9 3.8 3.10 3.11 2.7 # preferred first
 _PYTHON_PORTBRANCH=		3.9		# ${_PYTHON_VERSIONS:[1]}
 _PYTHON_BASECMD=		${LOCALBASE}/bin/python
 _PYTHON_RELPORTDIR=		lang/python
@@ -358,13 +358,13 @@ DEV_WARNING+=		"lang/python27 reached End of Life and will be removed somewhere 
 .  elif ${_PYTHON_ARGS} == 2
 DEV_ERROR+=		"USES=python:2 is no longer supported, use USES=python:2.7"
 .  elif ${_PYTHON_ARGS} == 3
-DEV_ERROR+=		"USES=python:3 is no longer supported, use USES=python:3.7+ or an appropriate version range"
+DEV_ERROR+=		"USES=python:3 is no longer supported, use USES=python:3.8+ or an appropriate version range"
 .  endif  # ${_PYTHON_ARGS} == 2.7
 
 _PYTHON_VERSION:=	${PYTHON_DEFAULT}
 
 .  if empty(_PYTHON_ARGS)
-_PYTHON_ARGS=	3.7+
+_PYTHON_ARGS=	3.8+
 .  endif
 
 # Validate Python version whether it meets the version restriction.
@@ -466,7 +466,7 @@ PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 # To avoid having dependencies with @ and empty flavor:
 # _PYTHON_VERSION is either set by (first that matches):
 # - If using Python flavors, from the current Python flavor
-# - If using a version restriction (USES=python:3.7+), from the first
+# - If using a version restriction (USES=python:3.8+), from the first
 #   acceptable default Python version.
 # - From PYTHON_DEFAULT
 PY_FLAVOR=	py${_PYTHON_VERSION:S/.//}
