@@ -1,5 +1,5 @@
 PORTNAME=	cython
-PORTVERSION=	0.29.30
+PORTVERSION=	0.29.32
 CATEGORIES=	lang python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -7,6 +7,7 @@ DISTNAME=	Cython-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiler for Writing C Extensions for the Python Language
+WWW=		https://cython.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
