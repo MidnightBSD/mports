@@ -6,7 +6,8 @@ PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	math python
 MASTER_SITES=	CHEESESHOP \
-		https://docs.scipy.org/doc/${PORTNAME}-${PORTVERSION}/:doc
+		https://docs.scipy.org/doc/${PORTNAME}-${PORTVERSION}/:doc \
+		https://numpy.org/doc/${PORTVERSION:R}/:doc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		${PORTNAME}-ref-${PORTVERSION:R}.1.pdf:doc \
@@ -15,13 +16,14 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The New Numeric Extension to Python
+WWW=		https://www.numpy.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR}
 
-USES=		compiler:c11 fortran python:3.6+ zip
+USES=		compiler:c11 fortran python:3.8-3.10 zip
 USE_PYTHON=	allflavors autoplist concurrent cython distutils
 
 GCCLIBDIR_CMDS=	${FC} -print-file-name=libgfortran.so | ${SED} -e s/libgfortran.so//
