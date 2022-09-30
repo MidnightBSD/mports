@@ -9,8 +9,6 @@ WWW=		https://centos.org
 LICENSE=	agg
 
 NO_BUILD=       yes                                                             
-NO_MTREE=       yes                                                             
-NO_INSTALL=     yes 
 
 RUN_DEPENDS=	linux-c7-libasyncns>0:dns/linux-c7-libasyncns \
 		linux-c7-tk85>0:x11-toolkits/linux-c7-tk85 \
@@ -70,7 +68,7 @@ RUN_DEPENDS=	linux-c7-libasyncns>0:dns/linux-c7-libasyncns \
 		linux-c7-pixman>0:x11/linux-c7-pixman \
 		linux-c7-jasper-libs>0:graphics/linux-c7-jasper
 
-USES=		linux:c7
+USES=		linux:c7 metaport
 
 .include <bsd.port.pre.mk>
 
@@ -82,5 +80,10 @@ RUN_DEPENDS+=	linux-c7-sdl_image>0:graphics/linux-c7-sdl_image \
 		linux-c7-sdl_ttf>0:graphics/linux-c7-sdl_ttf \
 		linux-c7-qtwebkit>0:www/linux-c7-qtwebkit
 .endif
+
+do-install:
+	${MKDIR} ${FAKE_DESTDIR}/compat/linux
+	${MKDIR} ${PREFIX}/share/c7
+	${TOUCH} ${PREFIX}/share/c7/.installed
 
 .include <bsd.port.post.mk>
