@@ -4,6 +4,7 @@ CATEGORIES=	emulators linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port for all things CentOS ${LINUX_DIST_VER}
+WWW=		https://centos.org
 
 LICENSE=	agg
 
