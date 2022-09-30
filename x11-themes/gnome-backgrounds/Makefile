@@ -17,6 +17,6 @@ PORTSCOUT=	limitw:1,even
 BUILD_DEPENDS+=	ninja:devel/ninja
 
 NO_ARCH=	yes
-USES=		gettext meson python:3.7,build tar:xz
+USES=		gettext meson python:3.9,build tar:xz
 
 .include <bsd.port.mk>
