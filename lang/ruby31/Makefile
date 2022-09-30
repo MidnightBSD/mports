@@ -10,10 +10,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented interpreted scripting language
 WWW=		https://www.ruby-lang.org/en/
 
-LICENSE=	bsd2 RUBY
+LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 LICENSE_FILE_bsd2=	${WRKSRC}/BSDL
-LICENSE_FILE_RUBY=	${WRKSRC}/COPYING
+LICENSE_FILE_ruby=	${WRKSRC}/COPYING
 
 # Using LIB_DEPENDS finds the libffi from gcc which causes problems
 BUILD_DEPENDS=	libffi>=0:devel/libffi
