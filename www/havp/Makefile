@@ -4,6 +4,7 @@ CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP Antivirus Proxy
+WWW=		https://www.havp.org/
 
 LIB_DEPENDS=	libclamav.so:security/clamav
 
