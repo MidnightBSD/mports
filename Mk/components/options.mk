@@ -6,6 +6,10 @@
 .if !defined(OPTIONSMKINCLUDED) && !defined(AFTERPORTMK)
 OPTIONSMKINCLUDED=	options.mk
 
+.if defined(USE_PYTHON)
+OPTIONSFILE=         ${PORT_DBDIR}/py-${PORTNAME}/options
+.endif
+
 OPTIONS_NAME?=	${PKGORIGIN:S/\//_/}
 OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
 _OPTIONSFILE!=	${ECHO_CMD} "${OPTIONSFILE}"
