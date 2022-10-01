@@ -28,7 +28,10 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography-vectors>=${PORTVERSION}:securi
 EXTRA_PATCHES=  ${PATCHDIR}/openssl102u
 
 USES=		compiler:env cpe python:3.6+ ssl
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_TEST=	yes
+#magus isuses, don't use pytest now
 
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
