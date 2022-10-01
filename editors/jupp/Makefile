@@ -8,6 +8,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The editor which sucks less
+WWW=		 http://www.mirbsd.org/jupp.htm
 
 LICENSE=	gpl
 
