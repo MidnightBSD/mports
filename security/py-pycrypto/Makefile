@@ -35,13 +35,12 @@ GMP_CPPFLAGS=		-I${LOCALBASE}/include
 GMP_LDFLAGS=		-L${LOCALBASE}/lib
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 
+NO_TEST=	yes
+
 pre-patch:
 	@${REINPLACE_CMD} -e "s|%%LOCALBASE%%|${LOCALBASE}|" ${WRKSRC}/setup.py
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Crypto/*/*.so
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
