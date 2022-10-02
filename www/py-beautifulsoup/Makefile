@@ -1,7 +1,5 @@
-# Created by: Mike Meyer
-
 PORTNAME=	beautifulsoup
-PORTVERSION=	4.9.3
+PORTVERSION=	4.11.1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,6 +7,7 @@ DISTNAME=	beautifulsoup4-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML/XML Parser for Python
+WWW=		https://www.crummy.com/software/BeautifulSoup/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
