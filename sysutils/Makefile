@@ -123,6 +123,7 @@ SUBDIR += mdf2iso
 SUBDIR += memtest86
 SUBDIR += monit
 SUBDIR += munin-common
+SUBDIR += munin-contrib
 SUBDIR += munin-master
 SUBDIR += munin-node
 SUBDIR += nvclock
