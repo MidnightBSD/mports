@@ -1,6 +1,6 @@
---- deps/mozilla/js/src/configure.orig	2014-05-17 17:57:43 UTC
-+++ deps/mozilla/js/src/configure
-@@ -6490,10 +6490,10 @@ case "$host" in
+--- deps/mozilla/js/src/configure.orig	2014-05-17 13:57:43.000000000 -0400
++++ deps/mozilla/js/src/configure	2022-10-02 09:30:33.110826000 -0400
+@@ -6490,10 +6490,10 @@
      ;;
  esac
  
@@ -14,13 +14,67 @@
  _python_res=$?
  
  if test "$_python_res" != 0; then
-@@ -9547,7 +9547,8 @@ fi
+@@ -6802,7 +6802,7 @@
+     MOZ_FIX_LINK_PATHS='-Wl,-executable_path,$(LIBXUL_DIST)/bin'
+     ;;
+ 
+-*-freebsd*)
++*-freebsd*|*-midnightbsd*)
+     if test `test -x /usr/bin/objformat && /usr/bin/objformat || echo elf` != "elf"; then
+ 	DLL_SUFFIX=".so.1.0"
+ 	DSO_LDOPTS="-shared"
+@@ -8189,7 +8189,7 @@
+ EOF
+ 
+     ;;
+-*-freebsd*|*-kfreebsd*)
++*-freebsd*|*-kfreebsd*|*midnightbsd*)
+     cat >> confdefs.h <<\EOF
+ #define AVMPLUS_UNIX 1
+ EOF
+@@ -9547,7 +9547,8 @@
  
  echo "$ac_t""$ac_cv_have_visibility_builtin_bug" 1>&6
          if test "$ac_cv_have_visibility_builtin_bug" = "no" -a \
 -                "$ac_cv_have_visibility_class_bug" = "no"; then
 +                "$ac_cv_have_visibility_class_bug" = "no" -a \
-+		"$OS_ARCH" != "FreeBSD" ; then
++		"$OS_ARCH" != "MidnightBSD" "$OS_ARCH" != "FreeBSD" ; then
            VISIBILITY_FLAGS='-I$(DIST)/system_wrappers_js -include $(topsrcdir)/config/gcc_hidden.h'
            WRAP_SYSTEM_INCLUDES=1
            STL_FLAGS='-I$(DIST)/stl_wrappers'
+@@ -9732,7 +9733,7 @@
+ fi
+ 
+ case "$target_os" in
+-freebsd*)
++freebsd*|midnightbsd*)
+ # for stuff like -lXshm
+     CPPFLAGS="${CPPFLAGS} ${X_CFLAGS}"
+     ;;
+@@ -10913,7 +10914,7 @@
+ 		if test -z "`egrep -i '(unrecognize|unknown)' conftest.out | grep pthread`" -a -z "`egrep -i '(error|incorrect)' conftest.out`" ; then
+ 			ac_cv_have_dash_pthread=yes
+ 	        case "$target_os" in
+-	        freebsd*)
++	        freebsd*|midnightbsd*)
+ # Freebsd doesn't use -pthread for compiles, it uses them for linking
+                 ;;
+ 	        *)
+@@ -10944,7 +10945,7 @@
+     fi
+ 
+ 	case "$target" in
+-	    *-*-freebsd*)
++	    *-*-freebsd*|*-*-midnightbsd*)
+ 			cat >> confdefs.h <<\EOF
+ #define _REENTRANT 1
+ EOF
+@@ -13754,7 +13755,7 @@
+ EOF
+ 
+     ;;
+-  *-*freebsd*)
++  *-*freebsd*|midnightbsd*)
+     cat >> confdefs.h <<\EOF
+ #define MOZ_MEMORY_BSD 1
+ EOF

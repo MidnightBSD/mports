@@ -70,6 +70,8 @@ post-patch: .SILENT
 # Change value of the SAVEDIR define
 	${REINPLACE_CMD} -e 's|oolite-saves|\.oolite-saves|' \
 		${WRKSRC}/src/Core/NSFileManagerOOExtensions.h
+	${CP} ${PORTSDIR}/Templates/config.guess ${WRKSRC}/deps/mozilla/js/src/build/autoconf
+	${CP} ${PORTSDIR}/Templates/config.sub ${WRKSRC}/deps/mozilla/js/src/build/autoconf
 
 do-install:
 	(cd ${RELEASEDIR} && ${COPYTREE_SHARE} "${PORTDATA}" ${STAGEDIR}${DATADIR})
