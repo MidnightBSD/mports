@@ -9,6 +9,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for making charts with Python
+WWW=		https://bitbucket.org/lgs/pycha
 
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
