@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	15
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source JPEG 2000 codec
+WWW=		https://www.openjpeg.org/
 
 LICENSE=	bsd2
 
@@ -25,6 +26,8 @@ PORTDOCS=	CHANGES LICENSE
 GH_ACCOUNT=	uclouvain
 GH_TAGNAME=	version.${PORTVERSION}
 USE_GITHUB=	yes
+
+CPE_VENDOR=	uclouvain
 
 WRKSRC=		${WRKDIR}/openjpeg-version.1.5.2
 
