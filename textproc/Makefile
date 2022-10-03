@@ -242,6 +242,7 @@ SUBDIR += py-markdown
 SUBDIR += py-markdown2
 SUBDIR += py-markupsafe
 SUBDIR += py-mistune
+SUBDIR += py-mistune0
 SUBDIR += py-pyaml
 SUBDIR += py-pygments
 SUBDIR += py-pygments-25
