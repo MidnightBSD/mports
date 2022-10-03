@@ -1,13 +1,12 @@
 PORTNAME=	texlive
-PORTVERSION=	20150523
-PORTREVISION=	2
+PORTVERSION=	${TEXLIVE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	print perl5
-MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/:tlmgr \
-		FREEBSD_LOCAL/hrs:tlpkg
+MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}/
 PKGNAMESUFFIX=	-tlmgr
-DISTFILES=	${PORTNAME}-${PORTVERSION}-extra${EXTRACT_SUFX}:tlmgr \
-		${PORTNAME}-20150521-source${EXTRACT_SUFX}:tlmgr \
-		${TLPKG_FILE}.xz:tlpkg
+DISTFILES=	${PORTNAME}-${PORTVERSION}-extra${EXTRACT_SUFX} \
+		${PORTNAME}-${PORTVERSION}-source${EXTRACT_SUFX} \
+		${TLPKG_FILE}.tar.gz
 DIST_SUBDIR=	TeX
 EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}-extra${EXTRACT_SUFX}
 
@@ -16,42 +15,44 @@ COMMENT=	TeXLive manager modules
 
 LICENSE=	publicdom
 
-RUN_DEPENDS=	tex-kpathsea>=6.2.1_1:devel/tex-kpathsea
+RUN_DEPENDS=	tex-kpathsea>=6.3.3:devel/tex-kpathsea
 
-CONFLICTS=	texlive-infra-[0-9]* texlive-base-20150521_[12345]
-
-USES=		perl5 tar:xz
+USES=		cpe perl5 tar:xz
+CPE_VENDOR=	tug
 USE_PERL5=	run
 USE_TEX=	kpathsea
 PATCH_WRKSRC=	${WRKDIR}
 NO_BUILD=	yes
 
-TLPKG_FILE=	${PORTNAME}-20150924.tlpdb
-EXTRACT_AFTER_ARGS_SOURCE= \
-	| ${TAR} -xf - -C ${WRKDIR} \
-	    --no-same-permission --no-same-owner \
-	    ${PORTNAME}-20150521-source/texk/texlive/linked_scripts/texlive
+TLPKG_FILE=			${PORTNAME}-${PORTVERSION}-tlpdb-full
+EXTRACT_AFTER_ARGS_SOURCE=	| ${TAR} -xf - -C ${WRKDIR} \
+				--no-same-permission --no-same-owner \
+				${PORTNAME}-${PORTVERSION}-source/texk/texlive/linked_scripts/texlive
+
+PATCH_WRKSRC=	${WRKDIR}
 
 post-extract:
-	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-20150521-source${EXTRACT_SUFX} \
+	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${PORTVERSION}-source${EXTRACT_SUFX} \
 	    ${EXTRACT_AFTER_ARGS_SOURCE}
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/scripts/texlive
 	${INSTALL_SCRIPT} \
-	    ${WRKDIR}/${PORTNAME}-20150521-source/texk/texlive/linked_scripts/texlive/tlmgr.pl \
+	    ${WRKDIR}/${PORTNAME}-${PORTVERSION}-source/texk/texlive/linked_scripts/texlive/tlmgr.pl \
 	    ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/scripts/texlive
 	cd ${STAGEDIR}${PREFIX}/bin && \
 	    ${LN} -s ../${TEXMFDISTDIR}/scripts/texlive/tlmgr.pl tlmgr
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/TeXLive
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}-${PORTVERSION}-extra/tlpkg/TeXLive/*.pm \
 	    ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/TeXLive
+	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}-${PORTVERSION}-extra/tlpkg/TeXLive/trans.pl \
+	    ${PREFIX}/${SITE_PERL_REL}/TeXLive
 	@${MKDIR} ${PREFIX}/${TEXMFDISTDIR}
 	${TOUCH} ${PREFIX}/${TEXMFDISTDIR}/.texlive-tlmgr
 	${MKDIR} ${FAKE_DESTDIR}/var/db/tlpkg
 	${TOUCH} ${FAKE_DESTDIR}/var/db/tlpkg/tlmgr.log
-	xzcat ${DISTDIR}/${DIST_SUBDIR}/${TLPKG_FILE}.xz \
-	    > ${FAKE_DESTDIR}/var/db/tlpkg/texlive.tlpdb
+	${TAR} -xf ${DISTDIR}/${DIST_SUBDIR}/${TLPKG_FILE}.tar.gz -C \
+	    ${FAKE_DESTDIR}/var/db/tlpkg/ texlive.tlpdb
 	${INSTALL_DATA} ${LOCALBASE}/share/texmf-dist/web2c/texmf.cnf \
 	    ${FAKE_DESTDIR}/var/db/tlpkg
 	${MKDIR} ${FAKE_DESTDIR}/var/db/tlpkg/backups
