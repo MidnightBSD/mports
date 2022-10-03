@@ -81,6 +81,7 @@ SUBDIR += p5-MIME-Lite
 SUBDIR += p5-MIME-Lite-HTML
 SUBDIR += p5-MIME-Tools
 SUBDIR += p5-MIME-Types
+SUBDIR += p5-Mail-AuthenticationResults
 SUBDIR += p5-Mail-DKIM
 SUBDIR += p5-Mail-DomainKeys
 SUBDIR += p5-Mail-SPF
