@@ -5,6 +5,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal UI for git
+WWW=		https://github.com/extrawurst/gitui
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
