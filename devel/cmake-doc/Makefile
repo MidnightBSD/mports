@@ -1,11 +1,12 @@
 PORTNAME=	cmake
-DISTVERSION=	3.23.0
+DISTVERSION=	3.23.3
 CATEGORIES=	devel
 MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-doc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML and Qt Creator helpfiles for CMake
+WWW=		https://www.cmake.org
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/Copyright.txt
