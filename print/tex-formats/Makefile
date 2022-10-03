@@ -12,6 +12,9 @@ WWW=		https://tug.org/texlive/
 
 LICENSE=	unknown
 
+# seems to need a perl module included with this port to build
+BUILD_DEPENDS+=	texlive-tlmgr>0:print/texlive-tlmgr
+
 USE_TEX=	basic fmtutil texhash texmf web2c
 TEXHASHDIRS=	${TEXMFVARDIR}
 TEX_FORMATS=	amstex context csplain eplain latex-bin metafont mex mptopdf \
