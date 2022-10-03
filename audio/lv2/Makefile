@@ -1,5 +1,3 @@
-
-
 PORTNAME=	lv2
 PORTVERSION=	1.18.2
 CATEGORIES=	audio
@@ -7,6 +5,7 @@ MASTER_SITES=	https://lv2plug.in/spec/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open standard for audio plugins (successor to LADSPA)
+WWW=          https://lv2plug.in/
 
 LICENSE=	iscl mit
 LICENSE_COMB=	multi
@@ -40,9 +39,11 @@ EXAMPLES_USES=		pkgconfig gnome
 EXAMPLES_USE=		GNOME=atk,cairo,gdkpixbuf2,glib20,gtk20,pango
 EXAMPLES_CONFIGURE_OFF=	--no-plugins
 
+NO_TEST=	yes
+
 post-install:
 # Waf doesn't have built-in strip support
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/${PORTNAME} \
+	@${FIND} ${PREFIX}/lib/${PORTNAME} \
 		-name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
