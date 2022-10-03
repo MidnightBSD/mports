@@ -1,5 +1,5 @@
 PORTNAME=	jpeg-turbo
-DISTVERSION=	2.1.3
+DISTVERSION=	2.1.4
 PORTREVISION?=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/${DISTVERSION}
@@ -7,6 +7,7 @@ DISTNAME=	lib${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	SIMD-accelerated JPEG codec which replaces libjpeg
+WWW?=		https://libjpeg-turbo.org/
 
 LICENSE=	bsd3 IJG zlib
 LICENSE_COMB=	multi
