@@ -22,7 +22,7 @@ PY_DEPENDS=	\
 		${PYTHON_PKGNAMEPREFIX}patch-ng>=1.17.4:devel/py-patch-ng@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pluginbase>=0.5:devel/py-pluginbase@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pygments>=2.0:textproc/py-pygments@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyjwt>=2.4.0:www/py-pyjwt@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyjwt>=2.0.1:www/py-pyjwt@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.25:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>=1.10.0:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
