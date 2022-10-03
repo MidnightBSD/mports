@@ -10,6 +10,7 @@ LICENSE_FILE=	${WRKSRC}/License
 
 RUN_DEPENDS=	bash:shells/bash \
 		git:devel/git
+BUILD_DEPENDS+=	${RUN_DEPENDS}
 
 USES=		gmake
 
