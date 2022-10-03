@@ -1,13 +1,13 @@
-# Created by: Wen Heping <wenheping@gmail.com>
 
 PORTNAME=	relatorio
-PORTVERSION=	0.9.2
+PORTVERSION=	0.10.1
 CATEGORIES=	print python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Templating library able to output odt and pdf files
+WWW=		https://hg.tryton.org/relatorio
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
