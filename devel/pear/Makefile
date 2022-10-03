@@ -19,6 +19,7 @@ NO_ARCH=	yes
 NO_TEST=	yes
 
 USE_PHP=	pcre:build xml:build zlib:build
+IGNORE_WITH_PHP=82
 
 PEARDIR=	${PREFIX}/share/pear
 
