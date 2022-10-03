@@ -6,6 +6,7 @@ DISTNAME=	ProjectCenter-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development environment for GNUstep
+WWW=		http://www.gnustep.org/experience/ProjectCenter.html
 
 LICENSE=	gpl2
 
