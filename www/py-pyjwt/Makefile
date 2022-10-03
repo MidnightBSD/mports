@@ -25,6 +25,6 @@ CPE_VENDOR=	pyjwt_project
 OPTIONS_DEFINE=	CRYPTO
 OPTIONS_DEFAULT=CRYPTO
 
-CRYPTO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>0:security/py-cryptography@${PY_FLAVOR}
+CRYPTO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=3.1:security/py-cryptography@${PY_FLAVOR}
 
 .include <bsd.port.mk>
