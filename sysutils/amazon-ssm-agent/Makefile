@@ -1,9 +1,11 @@
 PORTNAME=	amazon-ssm-agent
 PORTVERSION=	2.3.1205.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Amazon Simple Systems Manager Agent
+WWW=		https://github.com/aws/amazon-ssm-agent
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
