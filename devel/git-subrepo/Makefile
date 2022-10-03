@@ -20,6 +20,6 @@ GH_ACCOUNT=	ingydotnet
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-MAKE_ARGS=	INSTALL_MAN1="\$${DESTDIR}\$${MANPREFIX}/man/man1"
+MAKE_ARGS=	INSTALL_MAN1="\$${MANPREFIX}/man/man1"
 
 .include <bsd.port.mk>
