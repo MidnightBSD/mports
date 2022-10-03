@@ -24,6 +24,8 @@ USE_LDCONFIG=	yes
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
+NO_TEST=	yes
+
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/liblilv-0.so.${PORTVERSION}
 	@${STRIP_CMD} ${PREFIX}/bin/lilv-bench
