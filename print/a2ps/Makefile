@@ -1,11 +1,12 @@
 PORTNAME=	a2ps
 PORTVERSION=	4.13b
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	print
 MASTER_SITES=	GNU FREEBSD_LOCAL/hrs/a2ps/:i18n
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Formats an ASCII file for printing on a postscript printer
+WWW=		https://www.gnu.org/software/a2ps/
 
 LICENSE=	gpl2
 
@@ -73,13 +74,6 @@ post-configure:
 .endif
 
 post-install:
-.if ${PORT_OPTIONS:MEMACS}
-	${MKDIR} ${PREFIX}/lib/xemacs/site-lisp
-	${LN} -sf ${PREFIX}/share/emacs/site-lisp/a2ps-print.el \
-		  ${PREFIX}/lib/xemacs/site-lisp/a2ps-print.el
-	${LN} -sf ${PREFIX}/share/emacs/site-lisp/a2ps.el \
-		  ${PREFIX}/lib/xemacs/site-lisp/a2ps.el
-.endif
 	cd ${WRKSRC}/doc && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${.MAKEFLAGS} ${MAKE_ARGS} ${INSTALL_TARGET}
 	${RM} -f ${PREFIX}/lib/liba2ps.la
