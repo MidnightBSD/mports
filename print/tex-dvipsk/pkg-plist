@@ -5696,8 +5696,6 @@
 %%TEXMFDISTDIR%%/doc/dvips/dvips.html
 bin/afm2tfm
 bin/dvips
-info/dvips.info
-info/dir
 man/man1/afm2tfm.1.gz
 man/man1/dvips.1.gz
 @dir %%TEXMFDISTDIR%%/tex/generic/dvips
@@ -6278,4 +6276,3 @@ man/man1/dvips.1.gz
 @dir %%TEXMFDISTDIR%%/doc/dvips
 @dir %%TEXMFDISTDIR%%/doc
 @dir %%TEXMFDISTDIR%%
-@dir info
