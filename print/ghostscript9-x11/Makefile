@@ -1,5 +1,3 @@
-
-
 PORTNAME=	ghostscript
 PORTVERSION=	9.06
 PORTREVISION=	11
@@ -11,6 +9,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ghostscript 9.x PostScript interpreter, X11 support
+WWW=		https://www.cs.wisc.edu/~ghost/doc/GPL/index.htm
 
 LICENSE=	gpl3
 
@@ -21,9 +20,10 @@ CONFLICTS_INSTALL= \
 		ghostscript9-agpl-[0-9]* \
 		ghostscript9-agpl-nox11-[0-9]*
 
-USES=		autoreconf ghostscript:9 gmake tar:bzip2
+USES=		autoreconf cpe ghostscript:9 gmake tar:bzip2 xorg
 USE_LDCONFIG=	yes
 USE_XORG=	ice sm x11 xext xt
+CPE_VENDOR=	artifex
 EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 GNU_CONFIGURE=	yes
 MAKE_ENV=	CFLAGS_STANDARD="${CFLAGS}" \
