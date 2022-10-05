@@ -12,6 +12,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ghostscript 9.x PostScript interpreter, base part
+WWW=		https://www.cs.wisc.edu/~ghost/doc/GPL/index.htm
 
 LICENSE=	gpl3
 
@@ -32,8 +33,9 @@ CONFLICTS_INSTALL= \
 		ghostscript9-agpl-[0-9]* \
 		ghostscript9-agpl-nox11-[0-9]*
 
-USES=		autoreconf gmake jpeg pkgconfig:build tar:bzip2
+USES=		autoreconf cpe gmake jpeg pkgconfig:build tar:bzip2
 USE_LDCONFIG=	yes
+CPE_VENDOR=	artifex
 EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 DATADIR=	${PREFIX}/share/${PORTNAME}/${PORTVERSION}
 GNU_CONFIGURE=	yes
