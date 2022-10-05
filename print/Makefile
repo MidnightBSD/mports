@@ -79,6 +79,7 @@ SUBDIR += tex-texmflocal
 SUBDIR += tex-xmltex
 SUBDIR += texinfo
 SUBDIR += texlive-base
+SUBDIR += texlive-docs
 SUBDIR += texlive-texmf
 SUBDIR += texlive-tlmgr
 SUBDIR += transfig
