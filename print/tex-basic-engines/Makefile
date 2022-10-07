@@ -10,6 +10,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic TeX Engines
 WWW=		https://tug.org/texlive/
 
+LICENSE=	other
+
 LIB_DEPENDS=	libpng.so:graphics/png
 
 USES=		libtool localbase pkgconfig tar:xz

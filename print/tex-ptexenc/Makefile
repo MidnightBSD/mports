@@ -1,10 +1,9 @@
 PORTNAME=	ptexenc
-PORTVERSION=	1.3.3
-PORTREVISION=	0
+PORTVERSION=	1.3.9
 CATEGORIES=	print
-MASTER_SITES=	TEX_CTAN/systems/texlive/Source/
+MASTER_SITES=	TEX_CTAN/systems/texlive/Source/${TEXLIVE_YEAR}
 PKGNAMEPREFIX=	tex-
-DISTNAME=	texlive-20150521-source
+DISTNAME=	texlive-${TEXLIVE_VERSION}-source
 DIST_SUBDIR=	TeX
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +12,7 @@ COMMENT=	Library for Japanese pTeX and its tools
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USES=		iconv libtool pkgconfig tar:xz
+USES=		iconv libtool pathfix pkgconfig tar:xz
 USE_TEX=	kpathsea
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${DISTNAME}/texk/ptexenc
