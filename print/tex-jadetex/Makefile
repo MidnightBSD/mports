@@ -1,15 +1,16 @@
 PORTNAME=	jadetex
 PORTVERSION=	3.13
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	print
-MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/
+MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}/
 PKGNAMEPREFIX=	tex-
-DISTNAME=	texlive-20150523-texmf
+DISTNAME=	texlive-${TEXLIVE_VERSION}-texmf
 DIST_SUBDIR=	TeX
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeX backend for Jade, DSSSL processor for SGML/XML documents
+WWW=		http://jadetex.sourceforge.net/
 
 LICENSE=	gpl2
 
