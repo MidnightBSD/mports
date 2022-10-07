@@ -71,6 +71,7 @@ SUBDIR += qpdf
 SUBDIR += qt5-printsupport
 SUBDIR += t1utils
 SUBDIR += tex-basic-engines
+SUBDIR += tex-dvipdfmx
 SUBDIR += tex-dvipsk
 SUBDIR += tex-formats
 SUBDIR += tex-jadetex
