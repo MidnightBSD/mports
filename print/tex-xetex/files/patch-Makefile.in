@@ -1,0 +1,67 @@
+--- Makefile.in.orig	2021-02-17 11:40:54 UTC
++++ Makefile.in
+@@ -117,6 +117,7 @@ EXTRA_PROGRAMS = $(am__EXEEXT_1) tex$(EXEEXT) mf$(EXEE
+ 	luahbtex$(EXEEXT) luajithbtex$(EXEEXT) xetex$(EXEEXT) \
+ 	$(am__EXEEXT_4) aleph$(EXEEXT) synctex$(EXEEXT) \
+ 	md5main$(EXEEXT)
++inst_bin_PROGRAMS = xetex$(EXEEXT)
+ bin_PROGRAMS = tangle$(EXEEXT) ctangle$(EXEEXT) $(am__EXEEXT_5) \
+ 	ctie$(EXEEXT) cweave$(EXEEXT) ctwill$(EXEEXT) \
+ 	ctwill-refsort$(EXEEXT) ctwill-twinx$(EXEEXT) tie$(EXEEXT) \
+@@ -3004,7 +3005,8 @@ PIXMAN_INCLUDES = @PIXMAN_INCLUDES@
+ PIXMAN_LIBS = @PIXMAN_LIBS@
+ PKG_CONFIG = @PKG_CONFIG@
+ PPLIB_DEPEND = @PPLIB_DEPEND@
+-PPLIB_INCLUDES = @PPLIB_INCLUDES@
++PPLIB_INCLUDES = -I@top_srcdir@/../../libs/pplib/pplib-src/src/util \
++	-I@top_srcdir@/../../libs/pplib/pplib-src/src
+ PPLIB_LIBS = @PPLIB_LIBS@
+ PTEXENC_DEPEND = @PTEXENC_DEPEND@
+ PTEXENC_INCLUDES = @PTEXENC_INCLUDES@
+@@ -3108,7 +3110,7 @@ AM_CFLAGS = $(WARNING_CFLAGS)
+ AM_CXXFLAGS = ## $(WARNING_CXXFLAGS)
+ AM_OBJCXXFLAGS = ## $(WARNING_OBJCXXFLAGS)
+ version = $(WEB2CVERSION)
+-SUBDIRS = doc lib man web2c . window omegafonts otps
++SUBDIRS = .
+ proglib = lib/lib.a
+ 
+ #EXTRA_LIBRARIES += libluasocket.a liblua53socket.a libluajitsocket.a
+@@ -5555,9 +5557,9 @@ silent-sh: $(top_builddir)/config.status $(srcdir)/sil
+ 	cd $(top_builddir) && $(SHELL) ./config.status $@
+ synctexdir/synctex.pc: $(top_builddir)/config.status $(top_srcdir)/synctexdir/synctex.pc.in
+ 	cd $(top_builddir) && $(SHELL) ./config.status $@
+-install-binPROGRAMS: $(bin_PROGRAMS)
++install-binPROGRAMS: $(inst_bin_PROGRAMS)
+ 	@$(NORMAL_INSTALL)
+-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
++	@list='$(inst_bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+ 	if test -n "$$list"; then \
+ 	  echo " $(MKDIR_P) '$(DESTDIR)$(bindir)'"; \
+ 	  $(MKDIR_P) "$(DESTDIR)$(bindir)" || exit 1; \
+@@ -5587,7 +5589,7 @@ install-binPROGRAMS: $(bin_PROGRAMS)
+ 
+ uninstall-binPROGRAMS:
+ 	@$(NORMAL_UNINSTALL)
+-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
++	@list='$(inst_bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+ 	files=`for p in $$list; do echo "$$p"; done | \
+ 	  sed -e 'h;s,^.*/,,;s/$(EXEEXT)$$//;$(transform)' \
+ 	      -e 's/$$/$(EXEEXT)/' \
+@@ -19270,7 +19272,7 @@ install-data: install-data-recursive
+ uninstall: uninstall-recursive
+ 
+ install-am: all-am
+-	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
++	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am
+ 
+ installcheck: installcheck-recursive
+ install-strip:
+@@ -20184,7 +20186,6 @@ install-dvi-am:
+ install-exec-am: install-binPROGRAMS install-libLIBRARIES \
+ 	install-libLTLIBRARIES
+ 	@$(NORMAL_INSTALL)
+-	$(MAKE) $(AM_MAKEFLAGS) install-exec-hook
+ install-html: install-html-recursive
+ 
+ install-html-am:

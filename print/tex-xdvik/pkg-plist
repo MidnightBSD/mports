@@ -1,0 +1,8 @@
+bin/xdvi
+bin/xdvi-motif
+man/man1/xdvi.1.gz
+share/applications/xdvi.desktop
+%%TEXMFDISTDIR%%/xdvi/XDvi
+%%TEXMFDISTDIR%%/dvips/xdvi/config.xdvi
+%%TEXMFDISTDIR%%/xdvi/pixmap/toolbar.xpm
+%%TEXMFDISTDIR%%/xdvi/pixmap/toolbar2.xpm

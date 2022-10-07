@@ -1185,6 +1185,7 @@ SUBDIR += tevent1
 SUBDIR += tex-kpathsea
 SUBDIR += tex-libtexlua
 SUBDIR += tex-libtexluajit
+SUBDIR += tex-synctex
 SUBDIR += tex-web2c
 SUBDIR += thunar-vcs-plugin
 SUBDIR += tmake
