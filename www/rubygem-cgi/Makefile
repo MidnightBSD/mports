@@ -5,6 +5,7 @@ MASTER_SITES=	RG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Support for the Common Gateway Interface protocol
+WWW=		https://github.com/ruby/cgi
 
 LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
