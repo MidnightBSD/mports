@@ -1,10 +1,12 @@
---- Makefile.orig	2018-10-06 02:29:08 UTC
-+++ Makefile
-@@ -3,7 +3,7 @@ BINPREFIX ?= "$(PREFIX)/bin"
+--- Makefile.orig	2022-04-22 04:32:01.000000000 -0400
++++ Makefile	2022-10-07 16:45:00.206783000 -0400
+@@ -2,8 +2,8 @@
+ BINPREFIX ?= "$(PREFIX)/bin"
  
  OS = $(shell uname)
- ifeq ($(OS), FreeBSD)
+-ifeq ($(OS), FreeBSD)
 -	MANPREFIX ?= "$(PREFIX)/man/man1"
++ifeq ($(OS), MidnightBSD)
 +	MANPREFIX = "$(PREFIX)/man/man1"
  else
  	MANPREFIX ?= "$(PREFIX)/share/man/man1"
