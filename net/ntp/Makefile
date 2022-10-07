@@ -9,6 +9,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/P/p/:S/.r/-RC/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Network Time Protocol Distribution
+WWW=		https://www.ntp.org/
 
 LICENSE=	other
 
