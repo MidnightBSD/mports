@@ -144,6 +144,8 @@ OPTIONS_DEFINE=		BASH
 OPTIONS_DEFAULT=	BASH
 BASH_PLIST_FILES=	etc/bash_completion.d/_delta.bash
 
+NO_TEST=	yes
+
 do-install-BASH-on:
 	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/etc/bash_completion.d
 	${INSTALL_DATA} ${WRKSRC}/etc/completion/completion.bash \
