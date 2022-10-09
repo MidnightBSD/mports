@@ -112,6 +112,7 @@ SUBDIR += nvidia-secondary-driver
 SUBDIR += nvidia-secondary-driver-390
 SUBDIR += nvidia-settings
 SUBDIR += nvidia-xconfig
+SUBDIR += openrgb
 SUBDIR += pixman
 SUBDIR += py-python-xapp
 SUBDIR += py-qt5-opengl
