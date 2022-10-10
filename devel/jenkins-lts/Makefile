@@ -1,7 +1,7 @@
 PORTNAME=	jenkins
-PORTVERSION=	2.346.1
+PORTVERSION=	2.361.1
 CATEGORIES=	devel java
-MASTER_SITES=	http://mirrors.jenkins.io/war-stable/${PORTVERSION}/
+MASTER_SITES=	https://get.jenkins.io/war-stable/${PORTVERSION}/
 PKGNAMESUFFIX=	-lts
 DISTNAME=	jenkins
 EXTRACT_SUFX=	.war
@@ -14,7 +14,7 @@ COMMENT=	Open-source continuous integration server
 LICENSE=	mit
 
 CONFLICTS=	jenkins-[0-9]*
-USE_JAVA=	1.8+
+USE_JAVA=	11+
 
 NO_BUILD=	yes
 
