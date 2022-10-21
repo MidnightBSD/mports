@@ -1,5 +1,3 @@
-
-
 COMMENT = Games
 
 SUBDIR += aisleriot
@@ -8,6 +6,7 @@ SUBDIR += aop
 SUBDIR += atomix
 SUBDIR += bass
 SUBDIR += battalion
+SUBDIR += bsdgames
 SUBDIR += cowsay
 SUBDIR += doom-data
 SUBDIR += doom-freedoom
