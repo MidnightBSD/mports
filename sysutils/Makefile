@@ -18,6 +18,7 @@ SUBDIR += beats7
 SUBDIR += bhyve-firmware
 SUBDIR += brasero
 SUBDIR += bsd-splash-changer
+SUBDIR += bsdfetch
 SUBDIR += bsdinfo
 SUBDIR += bsdisks
 SUBDIR += bsdstats
