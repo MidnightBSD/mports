@@ -116,6 +116,14 @@ post-patch:
 # which introduces hidden dependency and breaks build
 	@${REINPLACE_CMD} -e 's|uuid/uuid.h|ignore_&|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e '/find_library_file/ s|uuid|ignore_&|' ${WRKSRC}/setup.py
+# disable detection of multiarch as it breaks with clang >= 13, which adds a
+# major.minor version number in -print-multiarch output, confusing Python
+	@${REINPLACE_CMD} -e 's|^\( *MULTIARCH=\).*--print-multiarch.*|\1|' ${WRKSRC}/configure
+# Apply DISABLED_EXTENSIONS
+	@${ECHO_CMD} '*disabled*' > ${WRKSRC}/Modules/Setup.local
+.  for _module in ${DISABLED_EXTENSIONS}
+		@${ECHO_CMD} ${_module} >> ${WRKSRC}/Modules/Setup.local
+.  endfor
 
 post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
