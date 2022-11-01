@@ -4,7 +4,9 @@ CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple utility to display system-based information
-WWW=		https://github.com/jhx0/bsdfetch			
+WWW=		https://github.com/jhx0/bsdfetch
+
+LICENSE=	iscl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jhx0

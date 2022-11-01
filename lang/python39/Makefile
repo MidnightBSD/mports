@@ -104,10 +104,6 @@ PLIST_FILES+=	bin/python${PYTHON_VER}${ABIFLAGS} \
 BROKEN=		You must use libffi from ports on i386. Enable the LIBFFI option
 .endif
 
-.if ${ARCH} == sparc64
-CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
-.endif
-
 .if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS)
 PLIST_SUB+=	NO_NIS="@comment "
 DISABLED_EXTENSIONS+=	nis
