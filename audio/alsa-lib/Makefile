@@ -1,15 +1,21 @@
 PORTNAME=	alsa-lib
 PORTVERSION=	1.2.2
+PORTREVISION=	2
+DISTVERSIONPREFIX=	v
 CATEGORIES=	audio
-MASTER_SITES=	ftp://ftp.alsa-project.org/pub/lib/ \
-		GENTOO
+MASTER_SITES=	GH
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	alsa-project
+GH_PROJECT=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library
+WWW=		https://www.alsa-project.org/
 
 LICENSE=	lgpl2.1
 
-USES=		cpe libtool:keepla tar:bzip2
+USES=		autoreconf cpe libtool:keepla tar:bzip2
 CPE_VENDOR=	alsa-project
 CPE_PRODUCT=	alsa
 USE_LDCONFIG=	yes
