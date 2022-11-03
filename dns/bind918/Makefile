@@ -19,6 +19,7 @@ PKGNAMESUFFIX=	918
 DISTNAME=	${PORTNAME}-${ISCVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
+WWW=		https://www.isc.org/bind/
 .if defined(BIND_TOOLS_SLAVE)
 COMMENT=	Command line tools from BIND: delv, dig, host, nslookup...
 .else
@@ -43,7 +44,7 @@ RUN_DEPENDS=	bind-tools>0:dns/bind-tools
 
 USES=		autoreconf compiler:c11 cpe libedit libtool pkgconfig ssl tar:xz
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.18.5
+ISCVERSION=	9.18.8
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
@@ -81,7 +82,7 @@ MAKE_JOBS_UNSAFE=	yes
 OPTIONS_DEFAULT=	GSSAPI_NONE IDN JSON LMDB MANPAGES \
 			TCP_FASTOPEN DNSTAP
 OPTIONS_DEFINE=		DNSTAP DOCS FIXED_RRSET GEOIP IDN JSON LARGE_FILE LMDB \
-			MANPAGES OVERRIDECACHE PORTREVISION QUERYTRACE \
+			MANPAGES OVERRIDECACHE QUERYTRACE \
 			START_LATE TCP_FASTOPEN
 
 OPTIONS_SINGLE=		GSSAPI
@@ -89,7 +90,7 @@ OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 
 .if defined(BIND_TOOLS_SLAVE)
 OPTIONS_EXCLUDE=	DNSTAP DOCS GEOIP LMDB \
-			OVERRIDECACHE PORTREVISION QUERYTRACE START_LATE \
+			OVERRIDECACHE QUERYTRACE START_LATE \
 			TCP_FASTOPEN
 .endif	# BIND_TOOLS_SLAVE
 
@@ -104,7 +105,6 @@ GSSAPI_NONE_DESC=	Disable
 LARGE_FILE_DESC=	64-bit file support
 LMDB_DESC=		Use LMDB for zone management
 OVERRIDECACHE_DESC=	Use the override-cache patch
-PORTREVISION_DESC=	Show PORTREVISION in the version string
 QUERYTRACE_DESC=	Enable the very verbose query tracelogging
 START_LATE_DESC=	Start BIND late in the boot process (see help)
 TCP_FASTOPEN_DESC=	RFC 7413 support
@@ -195,11 +195,6 @@ post-patch:
 .endfor
 
 .if !defined(BIND_TOOLS_SLAVE)
-.  if ${PORTREVISION:N0}
-post-patch-PORTREVISION-on:
-	@${REINPLACE_CMD} '/^m4_define.*bind_VERSION_EXTRA/s#)#_${PORTREVISION})#' \
-		${WRKSRC}/configure.ac
-.  endif
 
 post-install:
 	${MKDIR} ${PREFIX}/etc/mtree
