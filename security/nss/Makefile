@@ -5,6 +5,7 @@ MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RT
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries to support development of security-enabled applications
+WWW=		https://developer.mozilla.org/docs/Mozilla/Projects/NSS
 
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/COPYING
