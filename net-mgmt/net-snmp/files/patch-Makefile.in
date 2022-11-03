@@ -1,10 +1,19 @@
---- Makefile.in.orig	2021-02-16 16:15:57.889197000 -0500
-+++ Makefile.in	2021-02-16 16:16:15.349475000 -0500
-@@ -25,6 +25,7 @@
+--- Makefile.in.orig	2021-05-25 18:19:35.000000000 -0400
++++ Makefile.in	2022-11-03 16:00:38.198510000 -0400
+@@ -19,6 +19,7 @@
+ INCLUDESUBDIR=system
+ INCLUDESUBDIRHEADERS= aix.h bsd.h bsdi3.h bsdi4.h bsdi.h cygwin.h \
+ 	darwin.h dragonfly.h dynix.h \
++	midnightbsd.h midnightbsd1.h midnightbsd2.h midnightbsd3.h \
+ 	freebsd2.h freebsd3.h freebsd4.h freebsd5.h freebsd6.h \
+ 	freebsd7.h freebsd8.h freebsd9.h freebsd10.h freebsd11.h \
  	freebsd12.h freebsd13.h freebsd14.h freebsd.h \
- 	generic.h \
- 	hpux.h irix.h linux.h mingw32.h mingw32msvc.h mips.h \
-+	midnightbsd.h midnightbsd1.h midnightbsd2.h \
- 	netbsd.h nto-qnx6.h osf5.h \
- 	openbsd.h openbsd6.h openbsd5.h openbsd4.h \
- 	solaris2.3.h solaris2.4.h solaris2.5.h solaris2.6.h \
+@@ -234,7 +235,7 @@
+         fi
+ 
+ pythoninstall:
+-	@(dir=`pwd`; cd python; $(PYMAKE) install --basedir=$$dir --root=$(DESTDIR) --prefix=$(prefix)) ; \
++	@(dir=`pwd`; cd python; $(PYMAKE) install --basedir=$$dir --root=$(DESTDIR) --prefix=$(prefix) ${PYDISTUTILS_INSTALLARGS}); \
+         if test $$? != 0 ; then \
+            exit 1 ; \
+         fi
