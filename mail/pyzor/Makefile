@@ -1,11 +1,17 @@
 PORTNAME=	pyzor
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	mail python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
+PATCH_SITES=	https://github.com/SpamExperts/pyzor/commit/
+PATCHFILES=	67b471dd168db9468548aef3ffadca9554164ac0.diff:-p1 \
+		6332a429ed415187599ecce7d8a169ee19f0bbe5.diff:-p1
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collaborative, networked system to detect and block spam
+WWW=		https://github.com/SpamExperts/pyzor
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
