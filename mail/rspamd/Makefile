@@ -1,10 +1,10 @@
 PORTNAME=	rspamd
-PORTVERSION=	3.2
-PORTREVISION=	1
+PORTVERSION=	3.3
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast spam filtering system
+WWW=		https://rspamd.com/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
