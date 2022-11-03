@@ -1,5 +1,5 @@
 PORTNAME=	nss
-PORTVERSION=	3.79
+PORTVERSION=	3.80
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -32,7 +32,6 @@ MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib" \
 		NSS_DISABLE_GTESTS=1 \
 		NSS_USE_SYSTEM_SQLITE=1
 CFLAGS+=	-I${LOCALBASE}/include/nspr  -Wno-everything
-#CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 NO_TEST=	yes
 
