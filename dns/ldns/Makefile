@@ -8,6 +8,7 @@ MASTER_SITES=	https://www.nlnetlabs.nl/downloads/ldns/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for programs conforming to DNS RFCs and drafts
+WWW=		https://www.nlnetlabs.nl/projects/ldns/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
