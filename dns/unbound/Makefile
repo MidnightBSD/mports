@@ -1,13 +1,13 @@
 # Created by: Sergey Matveychuk <sem@FreeBSD.org>
 
 PORTNAME=	unbound
-DISTVERSION=	1.16.2
+DISTVERSION=	1.17.0
 CATEGORIES=	dns
-MASTER_SITES=	https://www.nlnetlabs.nl/downloads/unbound/ \
-		https://distfiles.crux.guru/
+MASTER_SITES=	https://www.nlnetlabs.nl/downloads/unbound/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Validating, recursive, and caching DNS resolver
+WWW=		https://www.nlnetlabs.nl/projects/unbound
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
