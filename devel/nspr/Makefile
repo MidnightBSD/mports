@@ -1,13 +1,15 @@
 PORTNAME=	nspr
-DISTVERSION=	4.34
+DISTVERSION=	4.35
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/v${PORTVERSION}/src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Platform-neutral API for system level and libc like functions
+WWW=		https://developer.mozilla.org/docs/Mozilla/Projects/NSPR
 
 LICENSE=	lgpl gpl2 mpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cpe gmake pathfix
 CPE_VENDOR=	mozilla
