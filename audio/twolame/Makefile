@@ -1,21 +1,19 @@
-
-
 PORTNAME=	twolame
-PORTVERSION=	0.3.13
-PORTREVISION=	2
+PORTVERSION=	0.4.0
 CATEGORIES=	audio
 MASTER_SITES=	SF \
 		http://www.ecs.soton.ac.uk/~njh/twolame/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG Audio Layer 2 encoder
+WWW=		http://twolame.sf.net/
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libsndfile.so:${PORTSDIR}/audio/libsndfile \
-		libFLAC.so:${PORTSDIR}/audio/flac \
-		libvorbis.so:${PORTSDIR}/audio/libvorbis \
-		libogg.so:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	libsndfile.so:audio/libsndfile \
+		libFLAC.so:audio/flac \
+		libvorbis.so:audio/libvorbis \
+		libogg.so:audio/libogg
 
 USES=		gmake pathfix pkgconfig libtool
 USE_LDCONFIG=	yes
