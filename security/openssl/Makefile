@@ -1,7 +1,5 @@
-# Created by: Dirk Froemberg <dirk@FreeBSD.org>
-
 PORTNAME=	openssl
-PORTVERSION=	1.1.1q
+PORTVERSION=	1.1.1s
 PORTEPOCH=	1
 PORTREVISION=	0
 CATEGORIES=	security devel
@@ -10,6 +8,7 @@ MASTER_SITES=	https://www.openssl.org/source/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TLSv1.3 capable SSL and crypto library
+WWW=		https://www.openssl.org/
 
 LICENSE=        openssl
 LICENSE_NAME=   OpenSSL License
