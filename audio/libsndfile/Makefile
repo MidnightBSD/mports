@@ -1,10 +1,14 @@
 PORTNAME=	libsndfile
-DISTVERSION=	1.0.30
+DISTVERSION=	1.0.31
 CATEGORIES=	audio
-MASTER_SITES=	https://github.com/erikd/${PORTNAME}/releases/download/v${DISTVERSION}/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
+
+PATCH_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/commit/
+PATCHFILES=	cc342f9e45315f9f3de12ae493bc6b3a2bd0a0b1.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reading and writing files containing sampled sound (like WAV or AIFF)
+WWW=		http://www.mega-nerd.com/libsndfile/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -36,13 +40,9 @@ EXTERNAL_LIB_DEPENDS=	libFLAC.so:audio/flac \
 			libopus.so:audio/opus \
 			libvorbis.so:audio/libvorbis
 
-MANPAGES_CMAKE_ON=	-DINSTALL_MANPAGES:BOOL=ON
-MANPAGES_CMAKE_OFF=	-DINSTALL_MANPAGES:BOOL=OFF
-
+MANPAGES_CMAKE_BOOL=	INSTALL_MANPAGES
 STATIC_CMAKE_OFF=	-DBUILD_SHARED_LIBS:BOOL=ON
-
-TEST_CMAKE_ON=	-DBUILD_TESTING:BOOL=ON
-TEST_CMAKE_OFF=	-DBUILD_TESTING:BOOL=OFF
+TEST_CMAKE_BOOL=	BUILD_TESTING
 
 .include <bsd.mport.options.mk>
 
