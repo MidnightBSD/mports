@@ -120,7 +120,7 @@ main(int argc, char *argv[])
            if (ln.c_str())
            {
                if (sqlite3_prepare_v2(db,
-                   "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash) VALUES(?,?,?,?,?,?)",
+                   "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash, type) VALUES(?,?,?,?,?,?,?)",
                    -1, &stmt, 0) != SQLITE_OK)
                {
                    errx(1, "Could not prepare statement");
@@ -131,6 +131,7 @@ main(int argc, char *argv[])
                sqlite3_bind_text(stmt, 4, row[3].as(string()).c_str(), row[3].as(string()).length(), SQLITE_TRANSIENT);
                sqlite3_bind_text(stmt, 5, row[4].as(string()).c_str(), row[4].as(string()).length(), SQLITE_TRANSIENT);
                sqlite3_bind_text(stmt, 6, fileHash, strlen(fileHash), SQLITE_TRANSIENT);
+               sqlite3_bind_int(stmt, 7, 0); // TODO: handle system packages?
 
                if (sqlite3_step(stmt) != SQLITE_DONE)
                     errx(1,"Could not execute query");
@@ -260,7 +261,7 @@ create_indexdb(sqlite3 *db)
 {
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
 	exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
-	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL, type int NOT NULL");
 	exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
