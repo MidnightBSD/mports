@@ -1,11 +1,12 @@
 PORTNAME=	lame
 PORTVERSION=	3.100
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/3.100
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast MP3 encoder kit
+WWW=		http://lame.sourceforge.net/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -19,7 +20,12 @@ CPE_VENDOR=	lame_project
 
 DOC_FILES=	API LICENSE README TODO USAGE
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS SNDFILE
+OPTIONS_DEFAULT=DOCS
+
+SNDFILE_CONFIGURE_ON=	--with-fileio=sndfile
+SNDFILE_CONFIGURE_OFF=	--with-fileio=lame
+SNDFILE_LIB_DEPENDS=	libsndfile.so:audio/libsndfile
 
 .include <bsd.port.pre.mk>
 

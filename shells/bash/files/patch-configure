@@ -1,28 +1,11 @@
---- configure.orig	2020-12-04 09:05:14.000000000 -0500
-+++ configure	2020-12-27 12:34:09.529067000 -0500
-@@ -8157,7 +8157,7 @@
-     # need special flags to disable these optimizations. For example, the
-     # definition of 'errno' in <errno.h>.
-     case "$host_os" in
--      aix* | freebsd*) CPPFLAGS="$CPPFLAGS -D_THREAD_SAFE" ;;
-+      aix* | freebsd* | midnightbsd*) CPPFLAGS="$CPPFLAGS -D_THREAD_SAFE" ;;
-       solaris*) CPPFLAGS="$CPPFLAGS -D_REENTRANT" ;;
-     esac
-   fi
-@@ -20413,7 +20413,7 @@
-  ;;
- 		esac ;;
- netbsd*|openbsd*)	LOCAL_CFLAGS="-DDEV_FD_STAT_BROKEN" ;;
--freebsd*)	LOCAL_CFLAGS='-DHEREDOC_PIPESIZE=4096' ;;
-+freebsd*|midnightbsd*)	LOCAL_CFLAGS='-DHEREDOC_PIPESIZE=4096' ;;
- *qnx[67]*)	LOCAL_LIBS="-lncurses" ;;
- *qnx*)		LOCAL_CFLAGS="-Dqnx -F -3s" LOCAL_LDFLAGS="-3s" LOCAL_LIBS="-lunix -lncurses" ;;
- powerux*)	LOCAL_LIBS="-lgen" ;;
-@@ -20437,6 +20437,7 @@
- 		fi ;;
- freebsdelf*)	LOCAL_LDFLAGS=-rdynamic ;;	# allow dynamic loading
- dragonfly*)	LOCAL_LDFLAGS=-rdynamic ;;	# allow dynamic loading
-+midnightbsd*)   LOCAL_LDFLAGS=-rdynamic ;;      # allow dynamic loading
- esac
+--- configure.orig	2022-09-23 14:13:22 UTC
++++ configure
+@@ -20443,7 +20443,7 @@ fi
  
- case "$host_cpu" in
+ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $bash_cv_func_strtoimax" >&5
+ printf "%s\n" "$bash_cv_func_strtoimax" >&6; }
+-if test $bash_cv_func_strtoimax = yes; then
++if test $bash_cv_func_strtoimax = no ; then
+ case " $LIBOBJS " in
+   *" strtoimax.$ac_objext "* ) ;;
+   *) LIBOBJS="$LIBOBJS strtoimax.$ac_objext"
