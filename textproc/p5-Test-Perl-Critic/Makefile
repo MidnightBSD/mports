@@ -8,6 +8,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Use Perl::Critic in test programs
+WWW=		https://metacpan.org/release/Test-Perl-Critic
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
