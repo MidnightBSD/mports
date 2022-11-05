@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Many-Core Engine for Perl providing parallel processing capabilities
+WWW=		https://metacpan.org/release/MCE
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
