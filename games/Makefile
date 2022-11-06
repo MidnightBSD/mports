@@ -1,6 +1,7 @@
 COMMENT = Games
 
 SUBDIR += 2048
+SUBDIR += 2048-qt
 SUBDIR += aisleriot
 SUBDIR += allenroids
 SUBDIR += aop
