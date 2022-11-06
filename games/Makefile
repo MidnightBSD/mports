@@ -86,6 +86,7 @@ SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth
 SUBDIR += xminesweep
+SUBDIR += zaz
 SUBDIR += zdoom
 SUBDIR += zhlt
 SUBDIR += zoom
