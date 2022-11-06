@@ -1,46 +1,58 @@
 PORTNAME=	freetds
-PORTVERSION=	0.95.8
-PORTREVISION=	0
+PORTVERSION=	1.3.13
 PORTEPOCH=	1
 CATEGORIES=	databases
-MASTER_SITES=	ftp://ftp.freetds.org/pub/freetds/stable/
+MASTER_SITES=	https://www.freetds.org/files/stable/ \
+		ftp://ftp.freetds.org/pub/freetds/stable/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sybase/Microsoft TDS protocol library
+WWW=		http://www.freetds.org/
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 
-TDS_VER?=	5.0
+USES=		autoreconf cpe gettext gmake iconv libtool:keepla pkgconfig \
+		readline tar:bzip2
+USE_LDCONFIG=	yes
 
-USES=		autoreconf iconv gmake libtool:keepla pkgconfig readline tar:bzip2
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-msdblib \
+		--enable-sybase-compat \
+		--sysconfdir=${ETCDIR} \
+		--with-tdsver=${TDS_VER}
+
+INSTALL_TARGET=	install-strip
+
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 LIBS+=		-lgcrypt -lpthread
-CONFIGURE_ARGS=	--with-tdsver=${TDS_VER} --sysconfdir=${ETCDIR} \
-	       	--enable-sybase-compat --enable-msdblib
-USE_LDCONFIG=	yes
-INSTALL_TARGET=	install-strip
+
+CONFLICTS=	freetds-devel
 
 PORTDOCS=	*
 
-OPTIONS_DEFINE=		DOCS
-OPTIONS_SINGLE=		SSL
-OPTIONS_SINGLE_SSL=	OPENSSL GNUTLS
-OPTIONS_DEFAULT=	OPENSSL
-OPTIONS_RADIO=		ODBC
-OPTIONS_RADIO_ODBC=	IODBC UNIXODBC
-OPENSSL_USE=		OPENSSL=yes
-OPENSSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
-GNUTLS_LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
+OPTIONS_DEFINE=		DOCS MARS
+OPTIONS_DEFAULT=	MARS OPENSSL UNIXODBC
+OPTIONS_SINGLE=		ODBC SSL
+OPTIONS_SINGLE_ODBC=	IODBC UNIXODBC
+OPTIONS_SINGLE_SSL=	GNUTLS OPENSSL
+
+MARS_DESC=	Enable MARS code (Experimental)
+
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_ON=	--with-gnutls
-IODBC_LIB_DEPENDS=	libiodbc.so:${PORTSDIR}/databases/libiodbc
+IODBC_LIB_DEPENDS=	libiodbc.so:databases/libiodbc
 IODBC_CONFIGURE_ON=	--with-iodbc=${LOCALBASE}
 IODBC_CPPFLAGS=		-I${LOCALBASE}/include/libiodbc
-UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
+MARS_CONFIGURE_ON=	--enable-mars
+OPENSSL_USES=		ssl
+OPENSSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
+UNIXODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
 UNIXODBC_CONFIGURE_ON=	--with-unixodbc=${LOCALBASE}
+
+TDS_VER?=	7.4
 
 .include <bsd.mport.options.mk>
 
@@ -56,16 +68,17 @@ post-extract:
 	@cd ${WRKSRC}/src/pool && ${LN} -s pool.conf pool.conf.sample
 
 post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.am" | ${XARGS} ${REINPLACE_CMD} -e \
-		's|<malloc.h>|<stdlib.h>| ; \
-		 s|/freetds.conf|/freetds.conf.sample|g ; \
+	@${REINPLACE_CMD} -e 's|/freetds.conf|/freetds.conf.sample|g ; \
 		 s|/locales.conf|/locales.conf.sample|g ; \
-		 s|/pool.conf|/pool.conf.sample|g ; \
-		 s| common.h||g'
-	@${REINPLACE_CMD} -e 's|\(\$with_iodbc/include\)|\1/libiodbc|g' \
+		 s| common.h||g' \
+		 ${WRKSRC}/Makefile.am
+	@${REINPLACE_CMD} -e 's|/pool.conf|/pool.conf.sample|g' \
+		 ${WRKSRC}/src/pool/Makefile.am
+	@${REINPLACE_CMD} -e 's|\($$with_iodbc/include\)|\1/libiodbc|g ; \
+		 s| odbcss.h||g' \
 		${WRKSRC}/configure.ac
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/interfaces ${ETCDIR}/interfaces.sample
+	${INSTALL_DATA} ${WRKSRC}/interfaces ${STAGEDIR}${ETCDIR}/interfaces.sample
 
 .include <bsd.port.mk>
