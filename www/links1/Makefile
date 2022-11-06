@@ -1,5 +1,5 @@
 PORTNAME=	links
-PORTVERSION=	1.03
+PORTVERSION=	1.04
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.jikos.cz/~mikulas/links/download/
@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
+WWW=		http://www.jikos.cz/~mikulas/links/
 
 LICENSE=	gpl2
 
