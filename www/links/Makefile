@@ -1,11 +1,12 @@
 PORTNAME=	links
-DISTVERSION=	2.26
+DISTVERSION=	2.28
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://links.twibright.com/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
+WWW=		http://links.twibright.com/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,13 +19,13 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ssl --without-pmshell --without-atheos \
 		--without-gpm --without-fb --without-windows
 
-USES=		cpe localbase:ldflags ssl gettext-runtime
+USES=		cpe localbase:ldflags ssl gettext-runtime tar:bzip2
 
 CPE_VENDOR=	twibright
 
 PLIST_FILES=	bin/links man/man1/links.1.gz
 
-OPTIONS_DEFINE=	BROTLI CIPHERSTRING DIRECTFB IPV6 NLS SVG SVGALIB THREADS TRANS \
+OPTIONS_DEFINE=	BROTLI CIPHERSTRING DIRECTFB IPV6 SVG SVGALIB THREADS TRANS \
 		UTF8 X11
 OPTIONS_DEFAULT=	UTF8 X11
 
@@ -39,9 +40,6 @@ DIRECTFB_LIB_DEPENDS=	libdirectfb.so:devel/directfb
 DIRECTFB_CONFIGURE_WITH=directfb
 
 IPV6_CONFIGURE_WITH=	ipv6
-
-NLS_USES=		gettext-runtime
-NLS_CONFIGURE_ENABLE=	gettext-runtime
 
 SVG_CONFIGURE_WITH=	librsvg
 SVG_USES=		gnome
