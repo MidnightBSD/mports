@@ -6,6 +6,7 @@ MASTER_SITES=	SOURCEWARE/binutils/releases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU binary tools
+WWW=		https://www.gnu.org/software/binutils/
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi

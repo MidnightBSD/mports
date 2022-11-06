@@ -11,6 +11,8 @@ LICENSE=	bsd3
 
 USES=		ncurses tar:xz uidfix
 
+FAKE_OPTS=	trueprefix
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	pianojockl
 
