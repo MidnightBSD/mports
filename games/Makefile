@@ -10,6 +10,7 @@ SUBDIR += bass
 SUBDIR += battalion
 SUBDIR += bsdgames
 SUBDIR += cowsay
+SUBDIR += craft
 SUBDIR += doom-data
 SUBDIR += doom-freedoom
 SUBDIR += doomlegacy
