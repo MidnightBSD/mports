@@ -6,6 +6,7 @@ SUBDIR += bsh
 SUBDIR += cjs
 SUBDIR += cython
 SUBDIR += duktape
+SUBDIR += duktape-lib
 SUBDIR += elixir
 SUBDIR += erlang
 SUBDIR += erlang-man

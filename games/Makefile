@@ -65,6 +65,7 @@ SUBDIR += nethack36
 SUBDIR += nethack36-nox11
 SUBDIR += nextgo
 SUBDIR += oolite
+SUBDIR += openra
 SUBDIR += pvpgn
 SUBDIR += py-cbeams
 SUBDIR += py-fife
