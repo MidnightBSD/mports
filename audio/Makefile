@@ -90,6 +90,7 @@ SUBDIR += libsndfile
 SUBDIR += libsoxr
 SUBDIR += libtremor
 SUBDIR += libvorbis
+SUBDIR += libxmp
 SUBDIR += linux-c7-alsa-lib
 SUBDIR += linux-c7-alsa-lib-devel
 SUBDIR += linux-c7-alsa-plugins-oss
