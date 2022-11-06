@@ -1,6 +1,6 @@
---- ./arc.h.orig	Tue Aug 10 23:03:24 1999
-+++ ./arc.h	Tue Aug 10 23:01:55 1999
-@@ -106,7 +106,7 @@
+--- arc.h.orig	2013-06-27 02:00:19 UTC
++++ arc.h
+@@ -104,7 +104,7 @@ extern char     tmpchr[2];	/* Temporary
  #if	GEMDOS
  extern int      hold;		/* hold screen before exiting */
  #endif

@@ -7,6 +7,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create & extract files from DOS .ARC files
 
 LICENSE=	gpl2
+WWW=		https://github.com/ani6al/arc
+
+CONFLICTS_INSTALL= arcanist-php[0-9][0-9]
 
 PLIST_FILES=	bin/arc bin/marc man/man1/arc.1.gz
 PORTDOCS=	Arc521.doc
