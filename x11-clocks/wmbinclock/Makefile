@@ -1,9 +1,6 @@
 # New ports collection makefile for:	wmBinClock
 # Date created:			28 September 2006
 # Whom:				wintellect@bsdnexus.com
-#
-
-#
 
 PORTNAME=	wmbinclock
 PORTVERSION=	0.51
@@ -11,6 +8,7 @@ CATEGORIES=	x11-clocks windowmaker
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Binary clock in a windowmaker applet
+WWW=		http://www.inxsoft.net/wmbinclock/
 
 LICENSE=	gpl2 bsd3
 LICENSE_COMB=	dual
@@ -20,8 +18,8 @@ GH_ACCOUNT=	engerim42
 
 PLIST_FILES=	bin/wmBinClock
 
-USES=		gmake
-USE_XORG=	xpm x11
+USES=		gmake xorg
+USE_XORG=	xpm xext x11
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|#include <values.h>||' ${WRKSRC}/wmBinClock.c
