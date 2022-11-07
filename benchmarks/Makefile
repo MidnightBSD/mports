@@ -31,6 +31,7 @@ SUBDIR += ramspeed
 SUBDIR += scimark2c
 SUBDIR += shellbench
 SUBDIR += siege
+SUBDIR += slowloris
 SUBDIR += sysbench
 SUBDIR += unixbench
 SUBDIR += vkpeak
