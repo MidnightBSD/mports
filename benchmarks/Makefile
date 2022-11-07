@@ -33,6 +33,7 @@ SUBDIR += shellbench
 SUBDIR += siege
 SUBDIR += sysbench
 SUBDIR += unixbench
+SUBDIR += vkpeak
 SUBDIR += webbench
 SUBDIR += wrk
 
