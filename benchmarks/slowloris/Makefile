@@ -7,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-bandwidth, yet greedy and poisonous HTTP client
 WWW=		http://ha.ckers.org/slowloris/
 
+LICENSE=	other
+
 RUN_DEPENDS=	p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
 
 NO_ARCH=	yes
