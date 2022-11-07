@@ -1,17 +1,19 @@
-# Created by: jmz
-
 PORTNAME=	iozone
-DISTVERSION=	3_487
+DISTVERSION=	3_493
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.iozone.org/src/current/
 DISTNAME=	${PORTNAME}${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Sequential File I/O
+WWW=		https://www.iozone.org
 
-LICENSE=	unknown
+LICENSE=	IOZONE
+LICENSE_NAME=	Iozone license
+LICENSE_FILE=	${WRKDIR}/${DISTNAME}/docs/License.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		gmake tar
+USES=		gmake tar:tgz
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/src/current
 
