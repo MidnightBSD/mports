@@ -1,5 +1,6 @@
 COMMENT = Benchmarking tools
 
+SUBDIR += autobench
 SUBDIR += blogbench
 SUBDIR += bonnie
 SUBDIR += compiler-benchmark
