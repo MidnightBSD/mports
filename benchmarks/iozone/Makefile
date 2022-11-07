@@ -37,6 +37,9 @@ post-patch-SSH-on:
 	@${REINPLACE_CMD} -e 's|shell\,\"rsh\"|shell\,\"ssh\"|' \
 		${WRKSRC}/iozone.c
 
+pre-build:
+	@cd ${WRKSRC} && ${GMAKE} clean
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/iozone ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKDIR}/${DISTNAME}/docs/iozone.1 \
