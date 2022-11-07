@@ -1,17 +1,16 @@
-
-
 PORTNAME=	httperf
-PORTVERSION=	0.9.0
-PORTREVISION=	2
+PORTVERSION=	0.9.1
 CATEGORIES=	benchmarks www
-MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for measuring webserver performance
+WWW=		https://github.com/httperf/httperf
 
 LICENSE=        gpl2
 
-USES=		gmake ssl
+USES=		autoreconf gmake libtool ssl
+USE_GITHUB=	yes
+GH_TAGNAME=	568322e
 GNU_CONFIGURE=	yes
 MAKE_ARGS=	LIBUTIL_OBJS=ssl_writev.o \
 		exec_prefix=${PREFIX}
