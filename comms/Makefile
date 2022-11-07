@@ -1,13 +1,14 @@
 COMMENT = Communication utilities
 
 SUBDIR += acfax
+SUBDIR += airspy
 SUBDIR += aldo
 SUBDIR += atslog
 SUBDIR += bforce
 SUBDIR += bforce-kst
 SUBDIR += chu
 SUBDIR += comserv
-SUBDIR += efax
+SUBDIR += hamlib
 SUBDIR += hidapi
 SUBDIR += iwmbt-firmware
 SUBDIR += kermit
