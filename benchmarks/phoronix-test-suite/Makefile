@@ -1,11 +1,12 @@
 PORTNAME=	phoronix-test-suite
 DISTVERSIONPREFIX=	v
-DISTVERSION=	10.8.3
+DISTVERSION=	10.8.4
 CATEGORIES=	benchmarks
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Phoronix Benchmarking Suite
+WWW=		https://www.phoronix-test-suite.com
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
