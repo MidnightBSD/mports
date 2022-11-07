@@ -12,8 +12,12 @@ EXTRACT_ONLY=	Cyberbit.ZIP
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Cyberbit TrueType font that covers Unicode 2.0
+WWW=		http://www.bitstream.com/
 
-LICENSE=	other
+LICENSE=	CYBERBIT
+LICENSE_NAME=	CYBERBIT
+LICENSE_TEXT=	Redistribution not permitted; single user license only
+LICENSE_PERMS=	auto-accept
 
 RESTRICTED=	Redistribution not permitted; single user license only
 
