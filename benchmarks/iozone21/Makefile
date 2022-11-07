@@ -1,5 +1,3 @@
-
-
 PORTNAME=	iozone
 PORTVERSION=	2.01
 CATEGORIES=	benchmarks
@@ -9,6 +7,7 @@ PKGNAMESUFFIX=	21
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Sequential File I/O (older version)
+WWW=		https://www.iozone.org/
 
 LICENSE=	other
 
