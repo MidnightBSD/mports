@@ -98,7 +98,7 @@ main(int argc, char *argv[])
         db = open_indexdb(runid);
         create_indexdb(db);
 
-	    for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
+	for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
         {
 	   	     string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
              asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
@@ -157,7 +157,7 @@ main(int argc, char *argv[])
 
                puts(ln.c_str());
 
-			   load_depends(db, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
+               load_depends(db, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
            }
         }
         printf("\n");
@@ -261,7 +261,7 @@ create_indexdb(sqlite3 *db)
 {
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
 	exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
-	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL, type int NOT NULL");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL, type int NOT NULL)");
 	exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
