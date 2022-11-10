@@ -217,6 +217,7 @@ SUBDIR += libevdev
 SUBDIR += libevent
 SUBDIR += libexecinfo
 SUBDIR += libffi
+SUBDIR += libfmt
 SUBDIR += libftdi
 SUBDIR += libgdata
 SUBDIR += libgee
