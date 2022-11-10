@@ -405,6 +405,7 @@ SUBDIR += p5-Config-Tiny
 SUBDIR += p5-ConfigReader-Simple
 SUBDIR += p5-Context-Preserve
 SUBDIR += p5-Contextual-Return
+SUBDIR += p5-Curses
 SUBDIR += p5-Cwd-Guard
 SUBDIR += p5-Data-Compare
 SUBDIR += p5-Data-Dump
