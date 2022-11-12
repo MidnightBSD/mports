@@ -1,5 +1,5 @@
 PORTNAME=	usbids
-PORTVERSION=	20211224
+PORTVERSION=	20220520
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,11 +13,11 @@ NO_BUILD=	yes
 
 PORTDATA=	usb.ids
 
-GH_TAGNAME=	51d8ad8
+GH_TAGNAME=	a5edeaf
 USE_GITHUB=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/usb.ids ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/usb.ids ${DATADIR}/
 
 .include <bsd.port.mk>
