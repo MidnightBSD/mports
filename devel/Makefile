@@ -882,6 +882,7 @@ SUBDIR += py-ddt
 SUBDIR += py-decorator
 SUBDIR += py-defusedxml
 SUBDIR += py-deprecation
+SUBDIR += py-dill
 SUBDIR += py-docopt
 SUBDIR += py-entrypoints
 SUBDIR += py-enum34
