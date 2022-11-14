@@ -967,6 +967,7 @@ SUBDIR += py-pyrsistent
 SUBDIR += py-python-editor
 SUBDIR += py-pip
 SUBDIR += py-pip-api
+SUBDIR += py-platformdirs
 SUBDIR += py-pluggy
 SUBDIR += py-pluggy0
 SUBDIR += py-pluginbase
