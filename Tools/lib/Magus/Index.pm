@@ -43,8 +43,10 @@ sub sync {
   my $osversion;
   my %visited;
 
-  if ($osrel eq "3.0") {
-    $osversion = 300000;
+  if ($osrel eq "3.1") {
+    $osversion = 301000;
+  } elsif ($osrel eq "3.0") {
+    $osversion = 300005;
   } elsif ($osrel eq "2.2") {
     $osversion = 202000;
   } elsif ($osrel eq "2.1") {
