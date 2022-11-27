@@ -84,6 +84,7 @@ SUBDIR += tex-xmltex
 SUBDIR += texinfo
 SUBDIR += texlive-base
 SUBDIR += texlive-docs
+SUBDIR += texlive-full
 SUBDIR += texlive-texmf-source
 SUBDIR += texlive-texmf
 SUBDIR += texlive-tlmgr
