@@ -47,6 +47,7 @@ SUBDIR += py-py3dns
 SUBDIR += py-pycares
 SUBDIR += py-tldextract
 SUBDIR += samba-nsupdate
+SUBDIR += sleuth
 SUBDIR += udns
 SUBDIR += unbound
 SUBDIR += vhostcname
