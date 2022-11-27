@@ -105,6 +105,7 @@ SUBDIR += p5-MaxMind-DB-Reader-XS
 SUBDIR += p5-MaxMind-DB-Writer
 SUBDIR += p5-Net
 SUBDIR += p5-Net-CIDR-Lite
+SUBDIR += p5-Net-FTP-File
 SUBDIR += p5-Net-HTTP
 SUBDIR += p5-Net-Libdnet
 SUBDIR += p5-Net-RabbitMQ
