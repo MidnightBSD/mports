@@ -135,6 +135,7 @@ SUBDIR += py-mpd
 SUBDIR += py-mutagen
 SUBDIR += py-python-mpd2
 SUBDIR += rhythmbox
+SUBDIR += sdl_audiolib
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
 SUBDIR += sdl2_mixer
