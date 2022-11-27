@@ -1,20 +1,11 @@
-_LICENSE_LIST= 	apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
+_LICENSE_LIST= 	apsl2 apsl1 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
-		mit modula3 mpl ncsa npl nvidia NONE openldap2.8 opera owl OFL10 OFL11 \
-		perl pgsql php python ruby sgi subversion unlicense \
+		mit modula3 ncsa npl nvidia NONE openldap2.8 opera owl OFL10 OFL11 \
+		pgsql python ruby sgi subversion unlicense \
 		WTFPL1 WTFPL x11 zlib zpl2.1 \
 		publicdom unknown other agg restricted \
 		ccasa3
-
-# Create commons variants
-_LICENSE_LIST= CC0-1.0 \
-                                CC-BY-1.0 CC-BY-2.0 CC-BY-2.5 CC-BY-3.0 CC-BY-4.0 \
-                                CC-BY-ND-1.0 CC-BY-ND-2.0 CC-BY-ND-2.5 CC-BY-ND-3.0 CC-BY-ND-4.0 \
-                                CC-BY-NC-1.0 CC-BY-NC-2.0 CC-BY-NC-2.5 CC-BY-NC-3.0 CC-BY-NC-4.0 \
-                                CC-BY-NC-ND-1.0 CC-BY-NC-ND-2.0 CC-BY-NC-ND-2.5 CC-BY-NC-ND-3.0 CC-BY-NC-ND-4.0 \
-                                CC-BY-NC-SA-1.0 CC-BY-NC-SA-2.0 CC-BY-NC-SA-2.5 CC-BY-NC-SA-3.0 CC-BY-NC-SA-4.0 \
-                                CC-BY-SA-1.0 CC-BY-SA-2.0 CC-BY-SA-2.5 CC-BY-SA-3.0 CC-BY-SA-4.0
 
 # GNU family
 _LICENSE_LIST+= agpl gpl gpl2 gpl3 gpl3rle lgpl lgpl2.1 lgpl3
@@ -23,6 +14,26 @@ _LICENSE_LIST+= agpl+ gpl+ gpl2+ gpl3+ gpl3rle+ lgpl+ lgpl2.1+ lgpl3+
 # BSD family
 _LICENSE_LIST+= bsd bsd0 bsd1 bsd2 bsd3 bsd4
 
+# Apache family
+_LICENSE_LIST+= apache1 apache1.1 apache2
+
+# Artistic family
+_LICENSE_LIST+= artistic artistic2 perl
+
+# PHP family
+_LICENSE_LIST+= php PHP202 PHP30 PHP301
+
+# MPL family
+_LICENSE_LIST+= mpl MPL10 MPL11 MPL20
+
+# Create commons variants
+_LICENSE_LIST+= CC0-1.0 \
+                                CC-BY-1.0 CC-BY-2.0 CC-BY-2.5 CC-BY-3.0 CC-BY-4.0 \
+                                CC-BY-ND-1.0 CC-BY-ND-2.0 CC-BY-ND-2.5 CC-BY-ND-3.0 CC-BY-ND-4.0 \
+                                CC-BY-NC-1.0 CC-BY-NC-2.0 CC-BY-NC-2.5 CC-BY-NC-3.0 CC-BY-NC-4.0 \
+                                CC-BY-NC-ND-1.0 CC-BY-NC-ND-2.0 CC-BY-NC-ND-2.5 CC-BY-NC-ND-3.0 CC-BY-NC-ND-4.0 \
+                                CC-BY-NC-SA-1.0 CC-BY-NC-SA-2.0 CC-BY-NC-SA-2.5 CC-BY-NC-SA-3.0 CC-BY-NC-SA-4.0 \
+                                CC-BY-SA-1.0 CC-BY-SA-2.0 CC-BY-SA-2.5 CC-BY-SA-3.0 CC-BY-SA-4.0
 
 # List of groups (only names must be present)
 
@@ -299,6 +310,15 @@ _LICENSE_GROUPS_modula3=
 _LICENSE_NAME_mpl=	Mozilla Public License
 _LICENSE_GROUPS_mpl=	FSF OSI
 
+_LICENSE_NAME_MPL10=	Mozilla Public License version 1.0
+_LICENSE_GROUPS_MPL10=	FSF OSI
+
+_LICENSE_NAME_MPL11=	Mozilla Public License version 1.1
+_LICENSE_GROUPS_MPL11=	FSF OSI
+
+_LICENSE_NAME_MPL20=	Mozilla Public License version 2.0
+_LICENSE_GROUPS_MPL20=	FSF OSI
+
 _LICENSE_NAME_ncsa=     University of Illinois/NCSA Open Source License
 _LICENSE_GROUPS_ncsa=   COPYFREE FSF GPL OSI
 
@@ -328,10 +348,19 @@ _LICENSE_NAME_owl=	Open Works License (owl.apotheon.org)
 _LICENSE_GROUPS_owl=	COPYFREE
 
 _LICENSE_NAME_pgsql=	PostgreSQL Licence
-_LICENSE_GROUPS_pgsql=     FSF GPL OSI COPYFREE
+_LICENSE_GROUPS_pgsql=	FSF GPL OSI COPYFREE
 
 _LICENSE_NAME_php=	PHP License version 3.01
 _LICENSE_GROUPS_php=	FSF OSI
+
+_LICENSE_NAME_PHP202=	PHP License version 2.02
+_LICENSE_GROUPS_PHP202=	FSF OSI
+
+_LICENSE_NAME_PHP30=	PHP License version 3.0
+_LICENSE_GROUPS_PHP30=	FSF OSI
+
+_LICENSE_NAME_PHP301=	PHP License version 3.01
+_LICENSE_GROUPS_PHP301=	FSF OSI
 
 _LICENSE_NAME_publicdom=	Public Domain
 _LICENSE_GROUPS_publicdom=
