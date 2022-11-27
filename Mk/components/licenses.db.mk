@@ -1,5 +1,4 @@
-_LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 bsd1 \
-		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
+_LICENSE_LIST= 	apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
 		mit modula3 mpl ncsa npl nvidia NONE openldap2.8 opera owl OFL10 OFL11 \
@@ -9,13 +8,21 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 bsd1 \
 		ccasa3
 
 # Create commons variants
-_LICENSES+= CC0-1.0 \
+_LICENSE_LIST= CC0-1.0 \
                                 CC-BY-1.0 CC-BY-2.0 CC-BY-2.5 CC-BY-3.0 CC-BY-4.0 \
                                 CC-BY-ND-1.0 CC-BY-ND-2.0 CC-BY-ND-2.5 CC-BY-ND-3.0 CC-BY-ND-4.0 \
                                 CC-BY-NC-1.0 CC-BY-NC-2.0 CC-BY-NC-2.5 CC-BY-NC-3.0 CC-BY-NC-4.0 \
                                 CC-BY-NC-ND-1.0 CC-BY-NC-ND-2.0 CC-BY-NC-ND-2.5 CC-BY-NC-ND-3.0 CC-BY-NC-ND-4.0 \
                                 CC-BY-NC-SA-1.0 CC-BY-NC-SA-2.0 CC-BY-NC-SA-2.5 CC-BY-NC-SA-3.0 CC-BY-NC-SA-4.0 \
                                 CC-BY-SA-1.0 CC-BY-SA-2.0 CC-BY-SA-2.5 CC-BY-SA-3.0 CC-BY-SA-4.0
+
+# GNU family
+_LICENSE_LIST+= agpl gpl gpl2 gpl3 gpl3rle lgpl lgpl2.1 lgpl3
+_LICENSE_LIST+= agpl+ gpl+ gpl2+ gpl3+ gpl3rle+ lgpl+ lgpl2.1+ lgpl3+
+
+# BSD family
+_LICENSE_LIST+= bsd bsd0 bsd1 bsd2 bsd3 bsd4
+
 
 # List of groups (only names must be present)
 
@@ -49,6 +56,8 @@ _LICENSE_GROUPS_agg=
 
 _LICENSE_NAME_agpl=	GNU Affero General Public License version 3
 _LICENSE_GROUPS_agpl=	FSF GPL OSI
+_LICENSE_NAME_apgl+ =       ${_LICENSE_NAME_agpl} (or later)
+_LICENSE_GROUPS_agpl+ =     ${_LICENSE_GROUPS_agpl}
 
 _LICENSE_NAME_apache1=	Apache License 1.0
 _LICENSE_GROUPS_apache1=	FSF
@@ -73,6 +82,12 @@ _LICENSE_GROUPS_bdb=
 
 _LICENSE_NAME_boost=	Boost Software License
 _LICENSE_GROUPS_boost=	FSF OSI COPYFREE
+
+_LICENSE_NAME_bsd=	BSD license Generic Version (deprecated)
+_LICENSE_GROUPS_bsd=	FSF OSI COPYFREE
+
+_LICENSE_NAME_bsd0=	BSD Zero Clause License
+_LICENSE_GROUPS_bsd0=	OSI
  
 _LICENSE_NAME_bsd1=	BSD 1-clause License
 _LICENSE_GROUPS_bsd1=	COPYFREE
@@ -199,12 +214,24 @@ _LICENSE_GROUPS_gfdl=	FSF
 
 _LICENSE_NAME_gpl=	GNU General Public License version 1
 _LICENSE_GROUPS_gpl=	FSF GPL OSI
+_LICENSE_NAME_gpl+ =	${_LICENSE_NAME_gpl} (or later)
+_LICENSE_GROUPS_gpl+ =	${_LICENSE_GROUPS_gpl}
 
 _LICENSE_NAME_gpl2=	GNU General Public License version 2
 _LICENSE_GROUPS_gpl2=	FSF GPL OSI
+_LICENSE_NAME_gpl2+ =	${_LICENSE_NAME_gpl2} (or later)
+_LICENSE_GROUPS_gpl2+ =	${_LICENSE_GROUPS_gpl2}
 
 _LICENSE_NAME_gpl3=	GNU General Public License version 3
 _LICENSE_GROUPS_gpl3=	FSF GPL OSI
+_LICENSE_NAME_gpl3+ =	${_LICENSE_NAME_gpl3} (or later)
+_LICENSE_GROUPS_gpl3+ =	${_LICENSE_GROUPS_gpl3}
+
+_LICENSE_NAME_gpl3rle=	GNU GPL version 3 Runtime Library Exception
+_LICENSE_GROUPS_gpl3rle=	FSF GPL OSI
+
+_LICENSE_NAME_gpl3rle+ =	${_LICENSE_NAME_gpl3rle} (or later)
+_LICENSE_GROUPS_gpl3rle+ =	${_LICENSE_GROUPS_gpl3rle}
 
 _LICENSE_NAME_ibm=	IBM License
 _LICENSE_GROUPS_ibm=
@@ -217,15 +244,23 @@ _LICENSE_GROUPS_iscl=	FSF GPL OSI COPYFREE
 
 _LICENSE_NAME_lgpl=	GNU Library General Public License generic depricated
 _LICENSE_GROUPS_lgpl=	FSF GPL OSI
+_LICENSE_NAME_lgpl+ =	${_LICENSE_NAME_lgpl} (or later)
+_LICENSE_GROUPS_lgpl+ =	${_LICENSE_GROUPS_lgpl}
 
 _LICENSE_NAME_lgpl20=	GNU Library General Public License version 2.0
 _LICENSE_GROUPS_lgpl20=	FSF GPL OSI
+_LICENSE_NAME_lgpl20+ =	${_LICENSE_NAME_lgpl20} (or later)
+_LICENSE_GROUPS_lgpl20+ =	${_LICENSE_GROUPS_lgpl20}
 
 _LICENSE_NAME_lgpl2.1=	GNU Lesser General Public License version 2.1
 _LICENSE_GROUPS_lgpl2.1=	FSF GPL OSI
+_LICENSE_NAME_lgpl2.1+ =	${_LICENSE_NAME_lgpl2.1} (or later)
+_LICENSE_GROUPS_lgpl2.1+ =	${_LICENSE_GROUPS_lgpl2.1}
 
 _LICENSE_NAME_lgpl3=	GNU Lesser General Public License version 3
 _LICENSE_GROUPS_lgpl3=	FSF GPL OSI
+_LICENSE_NAME_lgpl3+ =	${_LICENSE_NAME_lgpl3} (or later)
+_LICENSE_GROUPS_lgpl3+ =	${_LICENSE_GROUPS_lgpl3}
 
 _LICENSE_NAME_lppl1=	LaTeX Project Public License version 1.0
 _LICENSE_GROUPS_lppl1=	FSF OSI
@@ -330,7 +365,7 @@ _LICENSE_GROUPS_zpl2.1=  GPL OSI
 
 # Set default permissions if not defined
 
-.for lic in ${_LICENSES}
+.for lic in ${_LICENSE_LIST}
 .	if !defined(_LICENSE_PERMS_${lic})
 _LICENSE_PERMS_${lic}=	${_LICENSE_PERMS_DEFAULT}
 .	endif
