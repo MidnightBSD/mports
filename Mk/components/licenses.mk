@@ -542,12 +542,12 @@ ${_LICENSE_COOKIE}:
 		"$$(${CAT} ${_LICENSE_FILE})" 21 76
 
 .        elif ${_LICENSE_COMB} == "dual"
-	@${RM} ${_LICENSE_ASK_DATA}
+	@${RM} -f ${_LICENSE_ASK_DATA}
 .          for lic in ${_LICENSE_TO_ASK}
 	@${ECHO_CMD} "${lic}:${_LICENSE_FILE_${lic}}" >> ${_LICENSE_ASK_DATA}
 .          endfor
 	@menu_cmd="${DIALOG} --hline \"This port requires you to accept at least one license\" --menu \"License for ${PKGNAME} (dual)\" 21 70 15"; \
-	trap '${RM} $$tmpfile' EXIT INT TERM; \
+	trap '${RM} -f $$tmpfile' EXIT INT TERM; \
 	tmpfile=$$(mktemp -t portlicenses); \
 	for lic in ${_LICENSE_TO_ASK}; do \
 		menu_cmd="$${menu_cmd} VIEW_$${lic} \"View the license $${lic}\" USE_$${lic} \"Accept the license $${lic}\""; \
@@ -568,12 +568,12 @@ ${_LICENSE_COOKIE}:
 	done
 
 .        elif ${_LICENSE_COMB} == "multi"
-	@${RM} ${_LICENSE_ASK_DATA}
+	@${RM} -f ${_LICENSE_ASK_DATA}
 .          for lic in ${_LICENSE_TO_ASK}
 	@${ECHO_CMD} "${lic}:${_LICENSE_FILE_${lic}}" >> ${_LICENSE_ASK_DATA}
 .          endfor
 	@menu_cmd="${DIALOG} --hline \"This port requires you to accept all mentioned licenses\" --menu \"License for ${PKGNAME} (multi)\" 21 70 15"; \
-	trap '${RM} $$tmpfile' EXIT INT TERM; \
+	trap '${RM} -f $$tmpfile' EXIT INT TERM; \
 	tmpfile=$$(mktemp -t portlicenses); \
 	for lic in ${_LICENSE_TO_ASK}; do \
 		menu_cmd="$${menu_cmd} VIEW_$${lic} \"View the license $${lic}\""; \
@@ -619,12 +619,12 @@ ${_LICENSE_COOKIE}:
 	@${ECHO_MSG}
 	@exit 1
 .      endif
-	@${RM} ${_LICENSE_ASK_DATA}
+	@${RM} -f ${_LICENSE_ASK_DATA}
 .    endif
 
 # Create report and catalog
 .    if !defined(NO_LICENSES_INSTALL)
-	@${RM} ${_LICENSE_CATALOG_TMP} ${_LICENSE_REPORT_TMP}
+	@${RM} -f ${_LICENSE_CATALOG_TMP} ${_LICENSE_REPORT_TMP}
 .      if ${_LICENSE_COMB} == "single"
 # Catalog
 .        for var in _LICENSE _LICENSE_NAME _LICENSE_PERMS _LICENSE_GROUPS _LICENSE_DISTFILES
