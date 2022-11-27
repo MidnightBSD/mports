@@ -83,6 +83,7 @@ SUBDIR += libmusicbrainz5
 SUBDIR += libmysofa
 SUBDIR += libnjb
 SUBDIR += libogg
+SUBDIR += libopenmpt
 SUBDIR += libsamplerate
 SUBDIR += libshout
 SUBDIR += libsidplay
