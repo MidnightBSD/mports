@@ -1,5 +1,3 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	whoseip
 PORTVERSION=	1.00
 CATEGORIES=	dns perl5
@@ -8,6 +6,7 @@ MASTER_SITES=	ftp://download.gnu.org.ua/pub/release/dnstools/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get information about IP addresses: country code and network
+WWW=		https://man.gnu.org.ua/manpage/?1+whoseip
 
 LICENSE=	gpl3
 
