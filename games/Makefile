@@ -11,6 +11,7 @@ SUBDIR += battalion
 SUBDIR += bsdgames
 SUBDIR += cowsay
 SUBDIR += craft
+SUBDIR += devilutionX
 SUBDIR += doom-data
 SUBDIR += doom-freedoom
 SUBDIR += doomlegacy
