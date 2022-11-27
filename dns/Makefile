@@ -52,6 +52,7 @@ SUBDIR += udns
 SUBDIR += unbound
 SUBDIR += vhostcname
 SUBDIR += whoseip
+SUBDIR += zkt
 SUBDIR += zonenotify
 
 .include <bsd.port.subdir.mk>
