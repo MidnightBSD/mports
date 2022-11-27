@@ -1,5 +1,3 @@
-
-
 PORTNAME=	udns
 PORTVERSION=	0.4
 PORTREVISION=	1
@@ -8,6 +6,7 @@ MASTER_SITES=	http://www.corpit.ru/mjt/udns/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DNS resolver library with sync and async queries
+WWW=		https://www.corpit.ru/mjt/udns.html
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING.LGPL
