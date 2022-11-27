@@ -1162,6 +1162,7 @@ SUBDIR += sdl20
 SUBDIR += serd
 SUBDIR += sigar
 SUBDIR += silc-toolkit
+SUBDIR += simpleini
 SUBDIR += skalibs
 SUBDIR += slf4j
 SUBDIR += sonar-ant-task
