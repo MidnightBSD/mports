@@ -33,6 +33,7 @@ SUBDIR += qt5-serialport
 SUBDIR += spandsp
 SUBDIR += tits
 SUBDIR += usbmuxd
+SUBDIR += yfklog
 SUBDIR += zssh
 
 .include <bsd.port.subdir.mk>
