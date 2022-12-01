@@ -965,6 +965,7 @@ SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
 SUBDIR += py-pyrsistent
 SUBDIR += py-python-editor
+SUBDIR += py-pid
 SUBDIR += py-pip
 SUBDIR += py-pip-api
 SUBDIR += py-platformdirs
