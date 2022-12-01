@@ -234,6 +234,7 @@ SUBDIR += zfsnap
 SUBDIR += zfstools
 SUBDIR += znapzend
 SUBDIR += zrep
+SUBDIR += ztop
 SUBDIR += zxfer
 SUBDIR += zyggy
 
