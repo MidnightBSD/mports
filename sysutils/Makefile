@@ -10,6 +10,7 @@ SUBDIR += b43-fwcutter
 SUBDIR += bacula9-client
 SUBDIR += bacula9-docs
 SUBDIR += bacula9-server
+SUBDIR += backuppc
 SUBDIR += bamf
 SUBDIR += batmon
 SUBDIR += battmond
