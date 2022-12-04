@@ -200,7 +200,6 @@ SUBDIR += security-advisory-client
 SUBDIR += sig2dot
 SUBDIR += signify
 SUBDIR += skipfish
-SUBDIR += smap
 SUBDIR += snort
 SUBDIR += sshguard
 SUBDIR += sudo
