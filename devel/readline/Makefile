@@ -1,15 +1,14 @@
-# Created by: Frank Laszlo <laszlof@vonostingroup.com>
-
 PORTNAME=	readline
 PORTVERSION=	8.1.${PATCHLEVEL}
 CATEGORIES=	devel
 MASTER_SITES=	GNU
-DISTNAME=	${PORTNAME}-${PORTVERSION:R}
+#DISTNAME=	${PORTNAME}-${PORTVERSION:R}
 
 PATCH_SITES=	GNU/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}-patches
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for editing command lines as they are typed
+WWW=		https://tiswww.case.edu/php/chet/readline/rltop.html
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -27,13 +26,13 @@ CPE_VENDOR=	gnu
 CPE_VERSION=	${PORTVERSION:R}
 
 # https://ftp.gnu.org/gnu/readline/readline-8.1-patches/
-PATCHES=	1
+PATCHES=	1 2
 .if defined(PATCHES)
 CPE_UPDATE=	${PATCHLEVEL}
 PATCHLEVEL=	${PATCHES:O:[-1]}
-.for patch in ${PATCHES}
-PATCHFILES+=	${PORTNAME}${PORTVERSION:R:S|.||}-${patch:S|^|00|:S|.*(...)$|\1|}
-.endfor
+#.for patch in ${PATCHES}
+#PATCHFILES+=	${PORTNAME}${PORTVERSION:R:S|.||}-${patch:S|^|00|:S|.*(...)$|\1|}
+#.endfor
 .else
 PATCHLEVEL=	0
 .endif
