@@ -1,18 +1,17 @@
-
-
 PORTNAME=	lincity
 PORTVERSION=	1.13.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/Lincity%20Development%20Source/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rich city simulation game for X
+WWW=		http://lincity.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
 
 USES=		gmake
 GNU_CONFIGURE=	yes
@@ -25,7 +24,7 @@ OPTIONS_SUB=	yes
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=	gettext
 
-SVGALIB_LIB_DEPENDS=	libvga.so:${PORTSDIR}/graphics/svgalib
+SVGALIB_LIB_DEPENDS=	libvga.so:graphics/svgalib
 SVGALIB_CONFIGURE_ON=	--without-x
 SVGALIB_CONFIGURE_OFF=	--without-svga
 
@@ -34,7 +33,8 @@ SVGALIB_CONFIGURE_OFF=	--without-svga
 .if ${PORT_OPTIONS:MSVGALIB}
 PLIST_SUB+=	PROG="bin/lincity"
 .else
-USE_XORG=	sm xext
+USES+=		xorg
+USE_XORG=	ice sm x11 xext
 PLIST_SUB+=	PROG="bin/xlincity"
 .endif
 
