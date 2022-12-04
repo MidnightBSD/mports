@@ -121,6 +121,7 @@ SUBDIR += mate-control-center
 SUBDIR += mate-polkit
 SUBDIR += mate-settings-daemon
 SUBDIR += mcelog
+SUBDIR += mcron
 SUBDIR += mdf2iso
 SUBDIR += memtest86
 SUBDIR += monit
