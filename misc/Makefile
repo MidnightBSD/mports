@@ -81,7 +81,6 @@ SUBDIR += wmfirew
 SUBDIR += wmjulia
 SUBDIR += wmpal
 SUBDIR += wmtunlo
-SUBDIR += wmweather
 SUBDIR += wmweather+
 SUBDIR += xfce4-appfinder
 SUBDIR += xfce4-artwork
