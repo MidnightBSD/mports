@@ -1,13 +1,10 @@
 # New ports collection makefile for:	LPRng
 # Date created:		January 21, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
-#
-
-#
 
 PORTNAME=	LPRng
 PORTVERSION=	3.8.C
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	sysutils print
 MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}
@@ -15,6 +12,7 @@ DISTNAME=	${PORTNAME:tl}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enhanced Printer Spooler
+WWW=		http://lprng.sourceforge.net/
 
 LICENSE=	artistic gpl2
 LICENSE_COMB=	dual
@@ -34,6 +32,8 @@ USE_RC_SUBR=	${PORTNAME:tl}
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+CFLAGS+=	-fcommon
 
 SUB_FILES=	pkg-message
 
