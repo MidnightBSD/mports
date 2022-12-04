@@ -1,59 +1,64 @@
-# Created by: @BABOLO <.@babolo.ru>
-
 PORTNAME=	flow-tools
-PORTVERSION=	0.68
-PORTREVISION=	10
+PORTVERSION=	0.68.6
+DISTVERSIONPREFIX=	v
+PORTREVISION=	4
 CATEGORIES=	net-mgmt
-MASTER_SITES=	ftp://ftp.eng.oar.net/pub/flow-tools/
 
-MAINTAINER=	ports@MidnightBSD>org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Suite of tools and library to work with netflow data
+WWW=		https://github.com/5u623l20/flow-tools/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	skipv:0.411
-
-OPTIONS_DEFINE=	MYSQL OPENSSL PGSQL
-
-USES=		python:run shebangfix
-SHEBANG_FILES=	bin/flow-*
-USE_CSTD=	gnu89
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--localstatedir="${PREFIX}"
-MAKE_ARGS=	AM_CFLAGS="${CFLAGS}"
-
-SUB_FILES=	pkg-install pkg-deinstall
-SUB_LIST=	FLOW_CAPTURE_SPOOL="${FLOW_CAPTURE_SPOOL}" \
-		FLOW_CAPTURE_USER="${FLOW_CAPTURE_USER}" \
-		FLOW_CAPTURE_GROUP="${FLOW_CAPTURE_GROUP}" \
-		FLOW_CAPTURE_UID="${FLOW_CAPTURE_UID}" \
-		FLOW_CAPTURE_GID="${FLOW_CAPTURE_GID}" \
-		FLOW_CAPTURE_PIDDIR="${FLOW_CAPTURE_PIDDIR}"
+USES=		autoreconf libtool:keepla python:patch shebangfix
+USE_GITHUB=	yes
+USE_LDCONFIG=	yes
 USE_RC_SUBR=	flow_capture flow_fanout
+
+GH_ACCOUNT=	5u623l20
+GH_TAGNAME=	2ca53f5
+
+SHEBANG_FILES=	bin/flow-*
+GNU_CONFIGURE=	yes
+
+SUB_LIST=	FLOW_CAPTURE_PIDDIR="${FLOW_CAPTURE_PIDDIR}" \
+		FLOW_CAPTURE_SPOOL="${FLOW_CAPTURE_SPOOL}"
+
+USERS=		flowtools
+GROUPS=		flowtools
 
 VARDIR?=		/var
 FLOW_CAPTURE_SPOOL=	${VARDIR}/db/flows
-FLOW_CAPTURE_USER=	flowtools
-FLOW_CAPTURE_GROUP=	flowtools
-FLOW_CAPTURE_UID=	174
-FLOW_CAPTURE_GID=	174
 FLOW_CAPTURE_PIDDIR=	${VARDIR}/run/flow-capture
 
-PGSQL_CONFIGURE_ON=	--with-pgsql="${LOCALBASE}"
-PGSQL_USES=		pgsql
-MYSQL_CONFIGURE_ON=	--with-mysql="${LOCALBASE}"
+OPTIONS_DEFINE=	MYSQL OPENSSL PGSQL
+
+PY2TO3_CMD=	${LOCALBASE}/bin/2to3-${PYTHON_VER}
+PY2TO3_ARGS=	--fix=all --no-diffs --nobackups --verbose --write
+
 MYSQL_USES=		mysql
-OPENSSL_CONFIGURE_ON=	--with-openssl="${OPENSSLBASE}"
+MYSQL_CONFIGURE_ON=	--with-mysql="${LOCALBASE}"
 OPENSSL_USES=		ssl
+OPENSSL_CONFIGURE_ON=	--with-openssl="${OPENSSLBASE}"
+PGSQL_USES=		pgsql
+PGSQL_CONFIGURE_ON=	--with-postgresql
+PGSQL_CONFIGURE_OFF=	--with-postgresql=no
+
+.include <bsd.port.pre.mk>
 
 post-patch:
-	${REINPLACE_CMD}\
-	 -e 's|@localstatedir@/sym/|${PREFIX}/share/flow-tools/|' \
-	 -e 's|@localstatedir@/cfg/|${PREFIX}/etc/flow-tools/|' \
-	  ${WRKSRC}/docs/flow-*.1.in ${WRKSRC}/docs/flow-*.html.in
+.if ${PYTHON_MAJOR_VER} >= 3
+	${PY2TO3_CMD} ${PY2TO3_ARGS} ${WRKSRC}/bin/flow-*
+.endif
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/docs/*.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/
+	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/libft.so.0.0.0
 
-.include <bsd.port.mk>
+post-stage:
+.for f in asn.sym filter.cfg ip-prot.sym ip-type.sym map.cfg mask.cfg stat.cfg \
+	tag.cfg tag.sym tcp-port.sym xlate.cfg
+	@${MV} ${STAGEDIR}${ETCDIR}/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
+.endfor
+
+.include <bsd.port.post.mk>

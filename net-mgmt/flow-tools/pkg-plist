@@ -22,18 +22,24 @@ bin/flow-split
 bin/flow-stat
 bin/flow-tag
 bin/flow-xlate
-etc/flow-tools/filter.cfg
-etc/flow-tools/map.cfg
-etc/flow-tools/mask.cfg
-etc/flow-tools/stat.cfg
-etc/flow-tools/tag.cfg
-etc/flow-tools/xlate.cfg
-include/ftconfig.h
+@sample %%ETCDIR%%/asn.sym.sample
+@sample %%ETCDIR%%/filter.cfg.sample
+@sample %%ETCDIR%%/ip-prot.sym.sample
+@sample %%ETCDIR%%/ip-type.sym.sample
+@sample %%ETCDIR%%/map.cfg.sample
+@sample %%ETCDIR%%/mask.cfg.sample
+@sample %%ETCDIR%%/stat.cfg.sample
+@sample %%ETCDIR%%/tag.cfg.sample
+@sample %%ETCDIR%%/tag.sym.sample
+@sample %%ETCDIR%%/tcp-port.sym.sample
+@sample %%ETCDIR%%/xlate.cfg.sample
 include/ftlib.h
-include/ftpaths.h
 include/ftqueue.h
-include/radix.h
 lib/libft.a
+lib/libft.la
+lib/libft.so
+lib/libft.so.0
+lib/libft.so.0.0.0
 man/man1/flow-capture.1.gz
 man/man1/flow-cat.1.gz
 man/man1/flow-dscan.1.gz
@@ -60,8 +66,7 @@ man/man1/flow-xlate.1.gz
 man/man1/flow-rptfmt.1.gz
 man/man1/flow-log2rrd.1.gz
 man/man1/flow-rpt2rrd.1.gz
-%%DATADIR%%/asn.sym
-%%DATADIR%%/ip-prot.sym
-%%DATADIR%%/ip-type.sym
-%%DATADIR%%/tag.sym
-%%DATADIR%%/tcp-port.sym
+%%DATADIR%%/asn2c
+%%DATADIR%%/gasn
+%%DATADIR%%/gprot
+%%DATADIR%%/gserv
