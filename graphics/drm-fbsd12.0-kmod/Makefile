@@ -17,6 +17,8 @@ RUN_DEPENDS=	gpu-firmware-kmod>=g20180319:graphics/gpu-firmware-kmod
 
 OPTIONS_DEFINE=	DEBUG
 
+FAKE_OPTS=	trueprefix
+
 USES=		kmod uidfix compiler:c++11-lang
 
 USE_GITHUB=	yes

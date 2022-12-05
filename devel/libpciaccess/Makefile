@@ -12,7 +12,7 @@ BUILD_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids
 
 CONFIGURE_ARGS=	--with-pciids-path=${LOCALBASE}/share/pciids
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 USES=		xorg xorg-cat:lib
 INSTALL_TARGET=	install-strip
