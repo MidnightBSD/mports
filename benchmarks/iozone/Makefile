@@ -1,12 +1,12 @@
 PORTNAME=	iozone
-DISTVERSION=	3_493
+DISTVERSION=	3_494
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.iozone.org/src/current/
 DISTNAME=	${PORTNAME}${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Sequential File I/O
-WWW=		https://www.iozone.org
+WWW=		https://www.iozone.org/
 
 LICENSE=	IOZONE
 LICENSE_NAME=	Iozone license
