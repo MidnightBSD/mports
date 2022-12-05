@@ -1,5 +1,5 @@
 PORTNAME=	fail2ban
-PORTVERSION=	0.11.2
+PORTVERSION=	1.0.2
 CATEGORIES=	security python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
-USES=		cpe python:3.6+,patch shebangfix
+USES=		cpe python:3.6+,patch,run shebangfix
 USE_GITHUB=	yes
 USE_PYTHON=	autoplist distutils
 USE_RC_SUBR=	fail2ban
