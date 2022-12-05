@@ -83,6 +83,7 @@ SUBDIR += unzip
 SUBDIR += unzoo
 SUBDIR += upx
 SUBDIR += xar
+SUBDIR += xdms
 SUBDIR += xmill
 SUBDIR += xpk
 SUBDIR += zchunk
