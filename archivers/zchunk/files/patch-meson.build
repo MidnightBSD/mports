@@ -1,0 +1,34 @@
+--- meson.build.orig	2022-09-16 16:35:16.000000000 -0400
++++ meson.build	2022-12-05 10:32:42.697242000 -0500
+@@ -18,6 +18,10 @@
+     add_project_arguments('-DFREEBSD', language : 'c')
+ endif
+ 
++if build_machine.system() == 'midnightbsd'
++    add_project_arguments('-DFREEBSD', language : 'c')
++endif
++
+ # zstd dependency
+ if build_machine.system() == 'windows'
+     zstd_dep = dependency('zstd', modules: 'zstd::libzstd_shared', required : get_option('with-zstd'), fallback: ['zstd', 'libzstd_dep'])
+@@ -43,10 +47,19 @@
+ if build_machine.system() == 'windows'
+     openssl_dep = dependency('openssl', modules : ['OpenSSL::SSL', 'OpenSSL::Crypto'], required : get_option('with-openssl'))
+ else
+-    openssl_dep = dependency('openssl', required : get_option('with-openssl'))
++    openssl_dep = dependency('openssl', required : false)
+ endif
+ if openssl_dep.found()
+     add_project_arguments('-DZCHUNK_OPENSSL', language : 'c')
++else
++    openssl_dep = [
++        cc.find_library('ssl', required: get_option('with-openssl')),
++        cc.find_library('crypto', required: get_option('with-openssl'))
++    ]
++    openssl_dep = openssl_dep[0]
++    if openssl_dep.found()
++        add_project_arguments('-DZCHUNK_OPENSSL', language : 'c')
++    endif
+ endif
+ 
+ # includes
