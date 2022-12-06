@@ -1,7 +1,7 @@
 PORTNAME=	xset
-PORTVERSION=	1.2.4
-PORTREVISION=	3
+PORTVERSION=	1.2.5
 CATEGORIES=	x11
+DISTFILES=      ${PORTNAME}-${PORTVERSION}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User preference utility for X
@@ -9,7 +9,7 @@ COMMENT=	User preference utility for X
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		xorg xorg-cat:app
+USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	xmuu x11 xext
 CONFIGURE_ARGS=	--without-xf86misc \
 		--without-fontcache
