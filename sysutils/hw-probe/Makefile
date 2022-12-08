@@ -1,11 +1,10 @@
 PORTNAME=	hw-probe
-DISTVERSION=	1.6beta2
-PORTREVISION=	1
+PORTVERSION=	1.6.5
 CATEGORIES=	sysutils
-#DISTFILES=	hw-probe-1.6-beta_GH0.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Probe for hardware, check operability, and finding drivers
+WWW=		https://bsd-hardware.info/
 
 LICENSE=	lgpl2.1 bsd4
 LICENSE_COMB=	dual
@@ -21,8 +20,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxhw
-GH_PROJECT=	hw-probe 
-GH_TAGNAME=	d1de28b
 
 NO_BUILD=	yes
 
