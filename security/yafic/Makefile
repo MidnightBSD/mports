@@ -1,5 +1,3 @@
-
-
 PORTNAME=	yafic
 PORTVERSION=	1.2.2
 PORTREVISION=	1
@@ -8,6 +6,8 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet Another File Integrity Checker, similar to Tripwire
+WWW=		http://philosophysw.com/software/yafic/
+
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
