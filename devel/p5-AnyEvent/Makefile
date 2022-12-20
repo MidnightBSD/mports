@@ -9,15 +9,15 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide framework for multiple event loops
+WWW=		https://metacpan.org/release/AnyEvent
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
-
-TEST_DEPENDS=	p5-Net-SSLeay>=0:security/p5-Net-SSLeay
 
 USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
