@@ -93,7 +93,6 @@ SUBDIR += epm
 SUBDIR += erlang-unicode_util_compat
 SUBDIR += evdev-proto
 SUBDIR += fam
-SUBDIR += ffcall
 SUBDIR += fifechan
 SUBDIR += fmake
 SUBDIR += fortytwo-encore
