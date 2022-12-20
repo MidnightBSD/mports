@@ -12,6 +12,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake localbase perl5 tar:xz
 
+BUILD_DEPENDS+=	indexinfo:print/indexinfo
+
 GNU_CONFIGURE=	yes
 
 INFO=		help2man
@@ -28,7 +30,7 @@ NLS_USES=		gettext
 NLS_VARS=		CONFIGURE_FAIL_MESSAGE="Rebuild lang/${PERL_PORT} and devel/p5-Locale-gettext manually before contacting maintainer."
 NLS_VARS_OFF=		NO_ARCH=yes
 
-.for lang in de es fr pl pt_BR ro sr sv ta uk zh_CN
+.for lang in de es fr pl pt_BR ro sr sv uk zh_CN
 NLS_INFO+=		help2man-${lang}
 .endfor
 
