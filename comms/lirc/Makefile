@@ -1,12 +1,16 @@
 PORTNAME=	lirc
 PORTVERSION=	0.9.0
-PORTREVISION=	7
+PORTREVISION=	8
 PORTEPOCH=	1
 CATEGORIES=	comms
 MASTER_SITES=	SF/${PORTNAME}/LIRC/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux Infrared Remote Control
+WWW=		https://www.lirc.org/
+
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
@@ -26,8 +30,8 @@ PORTEXAMPLES=	remotes
 SUB_FILES=	pkg-message lircd.conf
 
 OPTIONS_DEFINE=	MINIMAL DEBUG UARTLIRC DOCS EXAMPLES
-OPTIONS_DEFINE_i386=	SMODE2 # requires svgalib which is...
-OPTIONS_DEFINE_amd64=	SMODE2 # ...only available on x86
+OPTIONS_DEFINE_i386=	SMODE2
+OPTIONS_DEFINE_amd64=	SMODE2
 OPTIONS_SUB=	yes
 
 MINIMAL_DESC=	Build with minimal dependencies
