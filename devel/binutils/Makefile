@@ -1,6 +1,6 @@
 PORTNAME=	binutils
 PORTVERSION=	2.33.1
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/binutils/releases
 
@@ -52,21 +52,31 @@ PKGNAMEPREFIX=	${FLAVOR:C/_/-/g}-
 PLIST=		${PKGDIR}/pkg-plist-${FLAVOR:C/_/-/g}
 
 .if ${PKGNAMEPREFIX:M*-*-}
-BUTARGET?=	${PKGNAMEPREFIX}${OPSYS:tl}${OSREL}
+.if ${OSVERSION} < 300000
+BUTARGET?=	${PKGNAMEPREFIX}freebsd11.4
 .else
-BUTARGET?=	${PKGNAMEPREFIX}unknown-${OPSYS:tl}${OSREL}
+BUTARGET?=	${PKGNAMEPREFIX}freebsd12.3
+.endif
+.else
+.if ${OSVERSION} < 300000
+BUTARGET?=	${PKGNAMEPREFIX}unknown-freebsd11.4
+.else
+BUTARGET?=	${PKGNAMEPREFIX}unknown-freebsd12.3
+.endif
 .endif
 PLIST_SUB=	BUTARGET=${BUTARGET}
 OPTIONS_EXCLUDE=	NLS
 INFO_PATH=	${PKGNAMEPREFIX:S/-$//}/share/info
 
 .if ${FLAVOR} == aarch64
-BROKEN_mips=		fails to configure: error: C compiler cannot create executables
-BROKEN_mips64=		fails to configure: error: C compiler cannot create executables
 .elif ${FLAVOR} == aarch64_none_elf || ${FLAVOR} == arm_none_eabi || ${FLAVOR} == riscv64_none_elf || ${FLAVOR} == mingw32 || ${FLAVOR} == avr || ${FLAVOR} == riscv32_unknown_elf
 BUTARGET=	${FLAVOR:C/_/-/g}
 .elif ${FLAVOR} == amd64
-BUTARGET=	x86_64-unknown-${OPSYS:tl}${OSREL}
+.if ${OSVERSION} < 300000
+BUTARGET=	x86_64-unknown-freebsd11.4
+.else
+BUTARGET=	x86_64-unknown-freebsd12.3
+.endif
 .endif
 
 CONFIGURE_ARGS+=	--disable-shared \
@@ -117,11 +127,17 @@ PLIST_SUB+=	GOLD="@comment "
 
 CONFIGURE_ARGS+=      --disable-initfini-array
 .if ${ARCH} == amd64
+.if ${OSVERSION} < 300000
 CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
-.elif ${ARCH} == powerpcspe
-CONFIGURE_TARGET=	powerpc-portbld-freebsd11.4
 .else
+CONFIGURE_TARGET=	x86_64-portbld-freebsd12.3
+.endif
+.else
+.if ${OSVERSION} < 300000
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+.else
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.3
+.endif
 .endif
 
 post-patch:
@@ -130,27 +146,27 @@ post-patch:
 post-install:
 .if ${FLAVOR} == native
 	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${PREFIX}/include/
-	@${FIND} -ds ${STAGEDIR}${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
+	@${FIND} -ds ${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
 		${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}
-	-${RM} ${STAGEDIR}${PREFIX}/include/ansidecl.h
+	-${RM} ${PREFIX}/include/ansidecl.h
 	${REINPLACE_CMD} '/#include "ansidecl.h"/d' ${PREFIX}/include/bfd.h
 .else
 .if ${PKGNAMEPREFIX:S/-$//} != ${BUTARGET}
 	${RM} -r ${PREFIX}/${PKGNAMEPREFIX:S/-$//}
 .endif
-	-${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
-	@if [ -d ${STAGEDIR}${PREFIX}/${INFO_PATH:H} ] ; then rm -rf ${STAGEDIR}${PREFIX}/${INFO_PATH:H}; fi
+	-${RM} ${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
+	@if [ -d ${PREFIX}/${INFO_PATH:H} ] ; then rm -rf ${PREFIX}/${INFO_PATH:H}; fi
 	${LN} -fs ../../bin/${BUTARGET}-size ${PREFIX}/${BUTARGET}/bin/size
 .endif
 .for tool in ${BUREMOVE}
-	-${RM} ${STAGEDIR}${PREFIX}/bin/${BUTARGET}-${tool} \
-	    ${STAGEDIR}${PREFIX}/bin/${tool} \
-	    ${STAGEDIR}${MANPREFIX}/man/man1/${BUTARGET}-${tool}.1 \
-	    ${STAGEDIR}${MANPREFIX}/man/man1/${tool}.1 \
-	    ${STAGEDIR}${PREFIX}/${BUTARGET}/bin/${tool}
+	-${RM} ${PREFIX}/bin/${BUTARGET}-${tool} \
+	    ${PREFIX}/bin/${tool} \
+	    ${MANPREFIX}/man/man1/${BUTARGET}-${tool}.1 \
+	    ${MANPREFIX}/man/man1/${tool}.1 \
+	    ${PREFIX}/${BUTARGET}/bin/${tool}
 .endfor
 .if defined(BUREMOVE) && ${BUREMOVE:Mld}
-	-${RM} -r ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts
+	-${RM} -r ${PREFIX}/${BUTARGET}/lib/ldscripts
 .endif
 
 .include <bsd.port.post.mk>
