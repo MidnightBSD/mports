@@ -1,7 +1,5 @@
 #!/bin/sh
-#
 
-#
 # PROVIDE: lircd
 # REQUIRE: DAEMON
 #
