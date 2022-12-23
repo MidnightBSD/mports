@@ -47,22 +47,22 @@ STATIC_LDFLAGS+=	-all-static
 
 aarch64_COMMENT=	GNU binutils for ${FLAVOR} development
 
+.include <bsd.mport.options.mk>
+
+.if ${OSVERSION} < 300000
+FTARGET=freebsd11.4
+.else
+FTARGET=freebsd12.3
+.endif
+
 .if ${FLAVOR} != native
 PKGNAMEPREFIX=	${FLAVOR:C/_/-/g}-
 PLIST=		${PKGDIR}/pkg-plist-${FLAVOR:C/_/-/g}
 
 .if ${PKGNAMEPREFIX:M*-*-}
-.if ${OSVERSION} < 300000
-BUTARGET?=	${PKGNAMEPREFIX}freebsd11.4
+BUTARGET?=	${PKGNAMEPREFIX}${FTARGET}
 .else
-BUTARGET?=	${PKGNAMEPREFIX}freebsd12.3
-.endif
-.else
-.if ${OSVERSION} < 300000
-BUTARGET?=	${PKGNAMEPREFIX}unknown-freebsd11.4
-.else
-BUTARGET?=	${PKGNAMEPREFIX}unknown-freebsd12.3
-.endif
+BUTARGET?=	${PKGNAMEPREFIX}unknown-${FTARGET}
 .endif
 PLIST_SUB=	BUTARGET=${BUTARGET}
 OPTIONS_EXCLUDE=	NLS
@@ -72,11 +72,7 @@ INFO_PATH=	${PKGNAMEPREFIX:S/-$//}/share/info
 .elif ${FLAVOR} == aarch64_none_elf || ${FLAVOR} == arm_none_eabi || ${FLAVOR} == riscv64_none_elf || ${FLAVOR} == mingw32 || ${FLAVOR} == avr || ${FLAVOR} == riscv32_unknown_elf
 BUTARGET=	${FLAVOR:C/_/-/g}
 .elif ${FLAVOR} == amd64
-.if ${OSVERSION} < 300000
-BUTARGET=	x86_64-unknown-freebsd11.4
-.else
-BUTARGET=	x86_64-unknown-freebsd12.3
-.endif
+BUTARGET=	x86_64-unknown-${FTARGET}
 .endif
 
 CONFIGURE_ARGS+=	--disable-shared \
