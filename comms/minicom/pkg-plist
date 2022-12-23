@@ -2,6 +2,7 @@ bin/minicom
 bin/xminicom
 bin/runscript
 bin/ascii-xfr
+@dir %%ETCDIR%%
 man/man1/minicom.1.gz
 man/man1/runscript.1.gz
 man/man1/ascii-xfr.1.gz
@@ -21,14 +22,12 @@ man/man1/xminicom.1.gz
 %%NLS%%share/locale/pt_BR/LC_MESSAGES/minicom.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/minicom.mo
 %%NLS%%share/locale/rw/LC_MESSAGES/minicom.mo
+%%NLS%%share/locale/sr/LC_MESSAGES/minicom.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/minicom.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/minicom.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/minicom.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/minicom.mo
-@exec if [ ! -d %D/etc/minicom ] ; then /bin/mkdir -p %D/etc/minicom ; fi
-@exec /usr/sbin/chown uucp %D/etc/minicom
-@dirrmtry etc/minicom
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
-%%PORTDOCS%%%%DOCSDIR%%/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/doc/Announce-1.78
 %%PORTDOCS%%%%DOCSDIR%%/doc/Announce-1.82
@@ -72,12 +71,3 @@ man/man1/xminicom.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/extras/terminfo/README
 %%PORTDOCS%%%%DOCSDIR%%/extras/terminfo/minicom
 %%PORTDOCS%%%%DOCSDIR%%/extras/unixlogin
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/doc
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/extras/linux
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/extras/tables
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/extras/termcap
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/extras/terminfo
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/extras
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-%%NLS%%@dirrmtry share/locale/rw/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/rw

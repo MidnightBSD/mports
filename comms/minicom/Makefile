@@ -1,60 +1,49 @@
 PORTNAME=	minicom
-PORTVERSION=	2.7.1
+PORTVERSION=	2.8
 CATEGORIES=	comms
-MASTER_SITES=	http://fossies.org/linux/misc/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An MS-DOS Telix serial communication program "workalike"
+COMMENT=	MS-DOS Telix serial communication program "workalike"
+WWW=		https://salsa.debian.org/minicom-team/minicom/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	lrz:comms/lrzsz
 
-OPTIONS_DEFINE=	DOCS NLS LRZSZ
-OPTIONS_DEFAULT=LRZSZ
-
-USES=		iconv
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+USES=		cpe iconv localbase ncurses
+CPE_VENDOR=	minicom_project
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--enable-dfl-baud=57600 \
-			--sysconfdir=${PREFIX}/etc/minicom \
-			--enable-lock-dir=/var/spool/lock \
-			--enable-dfl-port=/dev/cuau0
-MAKE_ARGS+=	LIBS+="-liconv -lcurses"
+CONFIGURE_ARGS=	--enable-dfl-baud=57600 \
+		--enable-dfl-port=/dev/cuau0 \
+		--enable-lock-dir=/var/spool/lock \
+		--sysconfdir=${PREFIX}/etc/minicom
+LIBS+=		${ICONV_LIB} -lncurses
 
-.include <bsd.mport.options.mk>
+USE_GITLAB=	yes
+GL_SITE=	https://salsa.debian.org/
+GL_ACCOUNT=	minicom-team
+GL_COMMIT=	1fb24b4f8e22e5580da9e8d453d8e5c3a18aed6c
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=		DOCS NLS
+OPTIONS_SUB=		yes
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 post-patch:
 	${REINPLACE_CMD} -e "s@/usr/local/bin/@${LOCALBASE}/bin/@; \
 		s@/sz@/lsz@;s@/sb@/lsb@;s@/sx@/lsx@;s@/rz@/lrz@; \
 		s@/rb@/lrb@;s@/rx@/lrx@" ${WRKSRC}/src/rwconf.c
-	${REINPLACE_CMD} -E -e "s@^(SUBDIRS = .*) intl@\1@" \
-		${WRKSRC}/Makefile.in
 
 post-install:
-	${CHOWN} uucp:dialer ${PREFIX}/bin/minicom
-	${CHMOD} 4511 ${PREFIX}/bin/minicom
-	${INSTALL} -d -o root -g wheel -m 0755 ${PREFIX}/etc/minicom
-	${CHOWN} uucp ${PREFIX}/etc/minicom
-.if ${PORT_OPTIONS:MDOCS}
-	${INSTALL} -d -o root -g wheel -m 0755 ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/AUTHORS ${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/COPYING ${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${DOCSDIR}/
+	${MKDIR} ${ETCDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/AUTHORS ${FAKE_DESTDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${FAKE_DESTDIR}${DOCSDIR}/
 	(umask 022 && cd ${WRKSRC} && ${TAR} --exclude '*/Makefile*' \
 		 --exclude '*.orig' -chf - extras doc | ${TAR}  -xf - -C \
-		${DOCSDIR})
-.endif
+		${FAKE_DESTDIR}${DOCSDIR})
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
