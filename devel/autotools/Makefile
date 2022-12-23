@@ -20,6 +20,7 @@ NO_BUILD=	yes
 NO_FETCH=	yes
 
 do-install:
-	@${ECHO_CMD} "Placeholder file" > ${PREFIX}/${PLIST_FILES}
+	${MKDIR} ${PREFIX}/share
+	@${ECHO_CMD} "Placeholder file" > ${PREFIX}/share/${PORTNAME}
 
 .include <bsd.port.mk>
