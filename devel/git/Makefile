@@ -1,5 +1,5 @@
 PORTNAME=	git
-DISTVERSION=	2.37.2
+DISTVERSION=	2.38.1
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -8,19 +8,9 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${DISTVERSION}${EXTRACT_SUFX}
 
-# these patches are required for gitlab (gitaly)
-# without the patches repositories got broken
-PATCH_SITES=	https://gitlab.com/gitlab-org/gitaly/-/raw/master/_support/git-patches/v2.37.1.gl1/
-PATCHFILES=	0001-refs-extract-packed_refs_delete_refs-to-allow-contro.patch \
-		0002-refs-allow-passing-flags-when-beginning-transactions.patch \
-		0003-refs-allow-skipping-the-reference-transaction-hook.patch \
-		0004-refs-demonstrate-excessive-execution-of-the-referenc.patch \
-		0005-refs-do-not-execute-reference-transaction-hook-on-pa.patch \
-		0006-refs-skip-hooks-when-deleting-uncovered-packed-refs.patch
-PATCH_DIST_STRIP=	-p1
-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Distributed source code management tool ${COMMENT_${FLAVOR}}
+WWW=		https://git-scm.com/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -118,6 +108,7 @@ PERL_MAKE_ARGS_OFF=	NO_PERL=1
 
 GITWEB_IMPLIES=		PERL
 GITWEB_RUN_DEPENDS=	p5-CGI>=0:www/p5-CGI
+GITWEB_MAKE_ARGS_OFF=	NO_GITWEB=1
 
 PCRE2_LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 PCRE2_CONFIGURE_WITH=	libpcre
@@ -218,7 +209,6 @@ post-patch:
 	@${REINPLACE_CMD} -e '/git-cvsexportcommit.perl/d; \
 		/git-cvsimport.perl/d; \
 		/git-cvsserver.perl/d; \
-		/documented,gitcvs-migration/d; \
 		s/git-cvsserver//' \
 		${WRKSRC}/Makefile
 .endif
@@ -239,9 +229,7 @@ post-patch-CONTRIB-on:
 	@${REINPLACE_CMD} -e "s,/usr/bin/perl,${PERL}," \
 		${WRKSRC}/contrib/diff-highlight/Makefile
 
-post-patch-GITWEB-off:
-	@${REINPLACE_CMD} -e '/$$(MAKE) -C gitweb install/d' \
-		${WRKSRC}/Makefile
+post-patch-GITWEB-on:
 	@${REINPLACE_CMD} -e "s,/usr/bin/perl,${PERL}," \
 		${WRKSRC}/t/lib-gitweb.sh
 
