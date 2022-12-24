@@ -198,7 +198,13 @@ TARGET_ABI=	-gnueabi
 TARGET_ABI=
 .endif
 
-CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-freebsd11.4${TARGET_ABI}
+.if ${OSVERSION} < 300000
+FTARGET=freebsd11.4
+.else
+FTARGET=freebsd12.3
+.endif
+
+CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${FTARGET}${TARGET_ABI}
 # ----------- end of sync block --------------------
 
 .if ${PORT_OPTIONS:MCLANG}
