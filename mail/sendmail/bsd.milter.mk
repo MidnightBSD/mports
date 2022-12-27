@@ -2,7 +2,6 @@
 # Date created:		08 Nov 2006
 # Whom:			dinoex
 #
-#
 # a port shall includes this file after bsd.ports.pre.mk
 # .include "${PORTSDIR}/${PKGCATEGORY}/sendmail/bsd.milter.mk"
 #
