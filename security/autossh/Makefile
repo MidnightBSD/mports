@@ -1,18 +1,22 @@
 PORTNAME=	autossh
 PORTVERSION=	1.4g
-PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.harding.motd.ca/autossh/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically restart SSH sessions and tunnels
+WWW=		https://www.harding.motd.ca/autossh/
 
-LICENSE=	other
+LICENSE=	bsd3
 
 USES=		tar:tgz
+
 GNU_CONFIGURE=	yes
 
 PORTDOCS=	CHANGES README
+
+# Fix build with clang11
+CFLAGS+=	-fcommon
 
 OPTIONS_DEFINE=	DOCS SSH_PORTABLE
 
