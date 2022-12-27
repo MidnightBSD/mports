@@ -5,8 +5,11 @@ MASTER_SITES=	FREEBSD_LOCAL/des
 PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
-MAINTAINER=	des@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience package to install the FreeBSD compat10x libraries
+
+LICENSE=        bsd2 bsd3 bsd4
+LICENSE_COMB=   multi
 
 USES=		tar:xz
 NO_BUILD=	yes

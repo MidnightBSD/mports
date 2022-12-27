@@ -1,12 +1,12 @@
-PORTNAME=	compat9x
-PORTVERSION=	9.3.903000.20170608
+PORTNAME=	compat11x
+PORTVERSION=	11.2.1102000.20181014
 CATEGORIES=	misc
 MASTER_SITES=	FREEBSD_LOCAL/des
 PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Convenience package to install the FreeBSD compat9x libraries
+COMMENT=	Convenience package to install the compat11x libraries
 
 LICENSE=	bsd2 bsd3 bsd4
 LICENSE_COMB=	multi
@@ -21,8 +21,8 @@ USE_LDCONFIG=	${TARGET_DIR}
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 100001
-IGNORE=         is for MidnightBSD 1.0 and newer
+.if ${OSVERSION} < 300000
+IGNORE=		is for MidnightBSD 3.0 and newer
 .endif
 
 .if ${ARCH} == amd64
