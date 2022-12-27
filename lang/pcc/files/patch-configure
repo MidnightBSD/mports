@@ -1,10 +1,10 @@
---- configure.orig	2010-10-31 18:20:51.000000000 +0000
-+++ configure	2010-11-07 15:22:25.000000000 +0000
-@@ -1960,7 +1960,7 @@
- 	esac
+--- configure.orig	2014-12-06 04:35:51.000000000 -0500
++++ configure	2022-12-27 00:35:49.025382000 -0500
+@@ -2404,6 +2404,8 @@
  	case "$target_cpu" in
- 	    i386) targmach=i386 ;;
--	    x86_64) targmach=amd64 ;;
+ 	    i?86) targmach=i386 ;;
+ 	    sparc64) targmach=sparc64 endian=big ;;
++	    x86_64) targmach=amd64 ;;
 +	    amd64) targmach=amd64 ;;
  	esac
  	;;

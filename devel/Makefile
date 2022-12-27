@@ -761,6 +761,7 @@ SUBDIR += p5-threads-shared
 SUBDIR += p5-version
 SUBDIR += patch
 SUBDIR += pccts
+SUBDIR += pcc-libs
 SUBDIR += pcre
 SUBDIR += pcre2
 SUBDIR += pcsc-lite
