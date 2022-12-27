@@ -1,7 +1,5 @@
-# Created by: Ryan Steinmetz <zi@FreeBSD.org>
-
 PORTNAME=	dhcp
-ISCVERSION=	4.4.2-P1
+ISCVERSION=	4.4.3-P1
 PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
 PORTREVISION=	${DHCP_PORTREVISION}
 CATEGORIES=	net
@@ -13,10 +11,13 @@ DISTNAME=	${PORTNAME}-${ISCVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	ISC Dynamic Host Configuration Protocol server
+WWW=		https://www.isc.org/dhcp/
 
 LICENSE=	mpl
 
-USES=		gmake
+USES=		cpe gmake
+
+CPE_VENDOR=	isc
 
 PORTREVISION_SERVER=	0
 PORTREVISION_CLIENT=	0
@@ -58,7 +59,7 @@ GROUPS=		dhcpd
 
 MAN_COMPRESSED=	no
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 CPPFLAGS+=	-D_PATH_DHCLIENT_SCRIPT='\"${TRUE_PREFIX}/sbin/dhclient-script\"' -D_PATH_DHCLIENT_CONF='\"${TRUE_PREFIX}/etc/dhclient.conf\"' -D_PATH_DHCPD_CONF='\"${TRUE_PREFIX}/etc/dhcpd.conf\"'
 SCRIPTS_ENV+=	PKG_PREFIX=${TRUE_PREFIX}
 
@@ -94,6 +95,7 @@ LDAP_USE=			OPENLDAP
 LDAP_USES=			shebangfix
 LDAP_SSL_USES=			ssl
 LDAP_SSL_VARS=			LIBS+=-lssl
+LDAP_IMPLIES=			IPV6
 IPV6_CONFIGURE_ENABLE=		dhcpv6
 DHCP4O6_CONFIGURE_ENABLE=	dhcpv4o6
 BIND_SYMBOLS_USES=		perl5
