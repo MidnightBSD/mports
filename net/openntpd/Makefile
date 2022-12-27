@@ -1,18 +1,19 @@
 PORTNAME=	openntpd
 PORTVERSION=	6.8p1
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	2
 CATEGORIES=	net
 MASTER_SITES=	OPENBSD/OpenNTPD
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Time Protocol (NTP) daemon
+WWW=		https://www.openntpd.org/
 
 LICENSE=	iscl
 
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 
-USES=		localbase ssl
+USES=		cpe localbase ssl
 
 CONFLICTS=	ntp ntp-devel ntpsec
 
@@ -44,7 +45,7 @@ post-install:
 #	/* empty */
 
 # Drop after MidnightBSD 2.1 EOL: requires libtls from LibreSSL
-.elif ${SSL_DEFAULT:Mbase} && exists(/usr/include/openssl/ssl23.h)
+.elif ${SSL_DEFAULT:Mbase} && exists(/usr/include/openssl/ssl23.h) && ${OSVERSION} < 300000
 BUILD_DEPENDS+=		${NONEXISTENT}:security/libressl:fake
 CPPFLAGS+=		-I${WRKDIR}/libressl/include
 LDFLAGS+=		-L${WRKDIR}/libressl/lib
