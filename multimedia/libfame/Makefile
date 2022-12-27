@@ -1,25 +1,31 @@
-
-
 PORTNAME=	libfame
 PORTVERSION=	0.9.1
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/fame/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Video encoding library
+WWW=		http://fame.sourceforge.net/
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		libtool
+USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool
-USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	MMX
 OPTIONS_DEFAULT=MMX
 
 MMX_CONFIGURE_ENABLE=	mmx
+
+.include <bsd.mport.options.mk>
+.if ${ARCH} == "i386"
+MAKE_ARGS=	CFLAGS="${CLFAGS}" CC="${CC}"
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} \

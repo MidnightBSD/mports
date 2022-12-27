@@ -1,11 +1,12 @@
 PORTNAME=	openh264
-PORTVERSION=	2.1.1
 DISTVERSIONPREFIX=v
+DISTVERSION=	2.3.0
 PORTEPOCH=	2
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cisco implementation of H.264 codec
+WWW=		https://www.openh264.org/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -13,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USE_GITHUB=	yes
 GH_ACCOUNT=	cisco
 
-USES=		compiler cpe gmake
+USES=		cpe gmake
 CPE_VENDOR=	cisco
 USE_LDCONFIG=	yes
 MAKE_ARGS=	PREFIX="${TRUE_PREFIX}" \
@@ -41,7 +42,8 @@ PLUGINS_USES=	webplugin:gecko
 WEBPLUGIN_NAME=	gmp-gmp${PORTNAME}
 WEBPLUGIN_FILES=gmp${PORTNAME}.info libgmp${PORTNAME}.so
 SUB_FILES+=	gmp${PORTNAME}.js
-SUB_LIST+=	PORTVERSION=${PORTVERSION} TIMESTAMP="`date +%s`"
+SUB_LIST+=	PORTVERSION=${PORTVERSION} \
+		TIMESTAMP="`${AWK} '/TIMESTAMP/ { print $$$$$$$$$3 }' ${DISTINFO_FILE}`"
 
 TEST_BUILD_DEPENDS=googletest>=1.6.0:devel/googletest
 TEST_CFLAGS=	-I${LOCALBASE}/include
