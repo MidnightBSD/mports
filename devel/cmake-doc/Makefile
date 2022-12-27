@@ -1,7 +1,6 @@
 PORTNAME=	cmake
-DISTVERSION=	3.23.3
+DISTVERSION=	${_CMAKE_VERSION}
 CATEGORIES=	devel
-MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-doc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
 BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
 
-DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
+DISTINFO_FILE=	${.CURDIR}/../cmake-core/distinfo
 
 NO_ARCH=	yes
 USES=		cmake qt:5

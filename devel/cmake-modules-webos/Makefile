@@ -4,6 +4,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CMake modules needed to build WebOS components
+WWW=		https://freewebos.github.io/
 
 LICENSE=	apache2
 
