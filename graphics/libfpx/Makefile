@@ -1,6 +1,6 @@
 PORTNAME=	libfpx
 DISTVERSION=	1.3.1-10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	\
 		http://www.imagemagick.org/download/delegates/	\
@@ -13,12 +13,14 @@ MASTER_SITES=	\
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library routines for working with Flashpix images
+WWW=		https://www.i3a.org/
 
 LICENSE=	other
 
 FAKE_OPTS=	trueprefix
+CPE_VENDOR=	libfpx_project
 
-USES=		tar:xz uidfix
+USES=		cpe tar:xz uidfix
 USE_LDCONFIG=	yes
 MAKEFILE=	${FILESDIR}/Makefile.bsd
 
