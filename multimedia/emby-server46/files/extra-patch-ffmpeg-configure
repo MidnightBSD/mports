@@ -1,0 +1,11 @@
+--- configure.orig	2021-02-20 00:45:55.530455000 -0500
++++ configure	2021-02-20 00:46:19.841099000 -0500
+@@ -5062,6 +5062,8 @@
+         ;;
+     freebsd)
+         ;;
++    midnightbsd)
++        ;;
+     bsd/os)
+         add_extralibs -lpoll -lgnugetopt
+         strip="strip -d"

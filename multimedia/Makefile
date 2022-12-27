@@ -11,6 +11,7 @@ SUBDIR += cuse4bsd-kmod
 SUBDIR += dav1d
 SUBDIR += dirac
 SUBDIR += emby-server
+SUBDIR += emby-server46
 SUBDIR += ffmpeg
 SUBDIR += ffmpeg0
 SUBDIR += gmp-api
