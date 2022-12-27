@@ -1,8 +1,6 @@
 # Ports collection makefile for:  pcc
 # Date created:			  May 12, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
-#
-
 
 PORTNAME=	pcc
 PORTVERSION=	1.0.0
@@ -16,15 +14,21 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Portable C Compiler
-LICENSE=	bsd4
-#it's a mix of several BSD licenses, and we'll go worst case.
+WWW=		http://pcc.ludd.ltu.se/
+
+LICENSE=	BSDCOMPATIBLE bsd2 bsd3
+LICENSE_COMB=	multi
+LICENSE_NAME_BSDCOMPATIBLE=	BSD-style compatible licenses
+LICENSE_TEXT_BSDCOMPATIBLE=	The license: BSDCOMPATIBLE (${LICENSE_NAME_BSDCOMPATIBLE}),\
+	please read from the web: http://pcc.ludd.ltu.se/licenses/
+LICENSE_PERMS_BSDCOMPATIBLE=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 MAKE_JOBS_UNSAFE=yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	YACC=${YACC}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 USE_GMAKE=	yes
 CONFIGURE_ARGS+=--mandir=${PREFIX}/man
 
