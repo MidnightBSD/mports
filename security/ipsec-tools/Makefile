@@ -1,5 +1,3 @@
-
-
 PORTNAME=	ipsec-tools
 PORTVERSION=	0.8.2
 PORTREVISION=	0
@@ -8,8 +6,9 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KAME racoon IKE daemon, ipsec-tools version
+WWW=		http://ipsec-tools.sourceforge.net/
 
-LICENSE=	unknown
+LICENSE=	bsd3
 
 CONFLICTS=	racoon-[0-9]*
 
