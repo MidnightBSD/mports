@@ -10,7 +10,7 @@ DISTFILES=	${DISTNAME}.zip \
 		ffmpeg-${FFVERSION}.tar.gz \
 		license.docx
 DIST_SUBDIR=	${PORTNAME}
-EXTRACT_ONLY=	${DISTNAME}.zip ffdetect_4.0.2_x64_freebsd.tar.xz \
+EXTRACT_ONLY=	${DISTNAME}.zip ffdetect-${FFVERSION}-x64_freebsd12.tar.xz \
 		ffmpeg-${FFVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -114,6 +114,12 @@ X11_USE=		xorg=x11
 
 FFVERSION=	2020_05_23
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 300000
+IGNORE=         is for MidnightBSD 3.0 and newer
+.endif
+
 pre-patch:
 	cd ${WRKSRC} && ${PATCH} < ${FILESDIR}/extra-patch-ffmpeg-configure 
 
@@ -127,4 +133,4 @@ do-install:
 	(${INSTALL_PROGRAM} ${WRKSRC}/ffmpeg ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
 	(${INSTALL_PROGRAM} ${WRKSRC}/ffprobe ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
