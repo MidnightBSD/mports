@@ -1,11 +1,10 @@
-# Created by: mikeh@FreeBSD.org
-
 PORTNAME=	check
 PORTVERSION=	0.15.2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unit test framework for C
+WWW=		https://libcheck.github.io/check/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
