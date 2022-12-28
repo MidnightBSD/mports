@@ -1,5 +1,3 @@
-# Created by: Sergey A. Osokin <osa@FreeBSD.org>
-
 PORTNAME=	libraw
 PORTVERSION=	0.20.2
 CATEGORIES=	graphics
@@ -8,6 +6,7 @@ DISTNAME=	LibRaw-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating raw images
+WWW=		https://www.libraw.org/
 
 LICENSE=	lgpl2.1 cddl
 LICENSE_COMB=	dual
