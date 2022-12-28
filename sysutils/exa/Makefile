@@ -5,6 +5,7 @@ CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modern replacement for ls
+WWW=		https://the.exa.website/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENCE
