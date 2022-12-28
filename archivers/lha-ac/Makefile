@@ -1,33 +1,42 @@
 PORTNAME=	lha
-PORTVERSION=	1.14i
-PORTREVISION=	11
+PORTVERSION=	1.14i.20211125
 CATEGORIES=	archivers
-MASTER_SITES=	OSDN/lha
-PKGNAMESUFFIX=	-ac${PKGNAMESUFFIX2}
-DISTNAME=	${PORTNAME}-${PORTVERSION}-ac20050924p1
+PKGNAMESUFFIX=	-ac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive files using LZSS and Huffman compression (.lzh files)
+WWW=		https://lha.osdn.jp
 
-LICENSE=        lha
-LICENSE_NAME=   lha license
-LICENSE_PERMS=  dist-mirror pkg-mirror
-LICENSE_TEXT=   Custom license with advanced notification required for CD distribution.
+LICENSE=	LHA
+LICENSE_NAME=	LHA
+LICENSE_TEXT=	No redistribution allowed
+LICENSE_PERMS=	auto-accept
 
-PLIST_FILES=	bin/lha \
-		man/ja/man1/lha-ac.1.gz
-#PLIST_DIRS=	man/ja/man1
-GNU_CONFIGURE=	yes
+USES=		autoreconf cpe
+CPE_VENDOR=	tsugio_okamoto
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	jca02266
+GH_TAGNAME=	release-${PORTVERSION:E}
 
 RESTRICTED=	no permission to redistribute
 
-OPTIONS_DEFINE=	NLS
+GNU_CONFIGURE=	yes
+
+TEST_TARGET=	check
+
+PLIST_FILES=	bin/lha-ac \
+		man/ja/man1/lha-ac.1.gz \
+		man/man1/lha-ac.1.gz
+
+OPTIONS_DEFINE=		NLS
 NLS_CONFIGURE_ON=	--enable-multibyte-filename=auto
 NLS_CONFIGURE_OFF=	--disable-multibyte-filename
 
 do-install:
 	-${MKDIR} ${MANPREFIX}/man/ja/man1
-	${INSTALL_PROGRAM} ${WRKSRC}/src/lha ${PREFIX}/bin/lha
+	${INSTALL_PROGRAM} ${WRKSRC}/src/lha ${PREFIX}/bin/lha-ac
+	${INSTALL_MAN} ${WRKSRC}/man/lha.1 ${MANPREFIX}/man/man1/lha-ac.1
 	${INSTALL_MAN} ${WRKSRC}/man/lha.n ${MANPREFIX}/man/ja/man1/lha-ac.1
 
 .include <bsd.port.mk>
