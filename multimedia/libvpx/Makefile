@@ -2,22 +2,27 @@
 
 PORTNAME=	libvpx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.0
+DISTVERSION=	1.12.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VP8/VP9 reference encoder/decoder
+WWW=		https://www.webmproject.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	nasm:devel/nasm
+BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
+BUILD_DEPENDS_amd64=	nasm:devel/nasm
+BUILD_DEPENDS_armv6=	as:devel/binutils
+BUILD_DEPENDS_armv7=	as:devel/binutils
+BUILD_DEPENDS_i386=	nasm:devel/nasm
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	webmproject
 
 USES=		compiler:c++11-lib cpe gmake perl5 shebangfix
-CPE_VENDOR=	john_koleszar
+CPE_VENDOR=	webmproject
 HAS_CONFIGURE=	yes
 USE_PERL5=	build
 USE_LDCONFIG=	yes
