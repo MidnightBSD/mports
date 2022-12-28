@@ -1,5 +1,5 @@
 PORTNAME=	openexr
-PORTVERSION=	3.1.2
+PORTVERSION=	3.1.5
 CATEGORIES=	graphics devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -25,8 +25,8 @@ PATCH_STRIP=	-p0
 
 _MAJORVER=	3_1
 _VER=		30
-_MINVER=	2
-_PLVER=		0
+_MINVER=	5
+_PLVER=		1
 
 NO_TEST=	yes
 
