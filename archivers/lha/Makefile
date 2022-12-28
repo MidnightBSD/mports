@@ -1,5 +1,3 @@
-
-
 PORTNAME=	lha
 PORTVERSION=	1.14i
 PORTREVISION=	9
@@ -9,13 +7,17 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive files using LZSS and Huffman compression (.lzh files)
+WWW=		http://www2m.biglobe.ne.jp/~dolphin/lha/lha.htm
 
 LICENSE=	lha
 LICENSE_NAME=	lha license
-LICENSE_PERMS=	dist-mirror pkg-mirror
-LICENSE_TEXT=	Custom license with advanced notification required for CD distribution.
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
+LICENSE_FILE=	${FILESDIR}/LICENSE
 
 NO_CDROM=	requires advanced notification for cdrom distribution
+
+USES=		cpe
+CPE_VENDOR=	tsugio_okamoto
 
 MANLANG=	ja
 PLIST_FILES=	bin/lha
