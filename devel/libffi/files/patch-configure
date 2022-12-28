@@ -1,24 +1,6 @@
---- configure.orig	2019-11-23 08:59:04.000000000 -0500
-+++ configure	2022-05-05 04:37:39.406604000 -0400
-@@ -5829,7 +5829,7 @@
-     lt_cv_sys_max_cmd_len=8192;
-     ;;
- 
--  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
-+  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd* | midnightbsd*)
-     # This has been around since 386BSD, at least.  Likely further.
-     if test -x /sbin/sysctl; then
-       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
-@@ -6240,7 +6240,7 @@
-   lt_cv_deplibs_check_method=pass_all
-   ;;
- 
--freebsd* | dragonfly*)
-+freebsd* | dragonfly* | midnightbsd*)
-   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
-     case $host_cpu in
-     i*86 )
-@@ -9963,7 +9963,7 @@
+--- configure.orig	2022-09-19 12:22:23.000000000 -0400
++++ configure	2022-12-28 11:21:27.036421000 -0500
+@@ -10946,7 +10946,7 @@
    hardcode_minus_L=no
    hardcode_shlibpath_var=unsupported
    inherit_rpath=no
@@ -27,25 +9,7 @@
    module_cmds=
    module_expsym_cmds=
    old_archive_from_new_cmds=
-@@ -10766,7 +10766,7 @@
-       ;;
- 
-     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
--    freebsd* | dragonfly*)
-+    freebsd* | dragonfly* | midnightbsd*)
-       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
-       hardcode_libdir_flag_spec='-R$libdir'
-       hardcode_direct=yes
-@@ -11811,7 +11811,7 @@
-   shlibpath_var=LD_LIBRARY_PATH
-   ;;
- 
--freebsd* | dragonfly*)
-+freebsd* | dragonfly* | midnightbsd*)
-   # DragonFly does not have aout.  When/if they implement a new
-   # versioning mechanism, adjust this.
-   if test -x /usr/bin/objformat; then
-@@ -11824,13 +11824,13 @@
+@@ -12817,13 +12817,13 @@
    fi
    version_type=freebsd-$objformat
    case $version_type in
@@ -61,16 +25,7 @@
        library_names_spec='$libname$release$shared_ext$versuffix $libname$shared_ext$versuffix'
        need_version=yes
        ;;
-@@ -12960,7 +12960,7 @@
- old_striplib=
- { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether stripping libraries is possible" >&5
- $as_echo_n "checking whether stripping libraries is possible... " >&6; }
--if test -n "$STRIP" && $STRIP -V 2>&1 | $GREP "GNU strip" >/dev/null; then
-+if test -n "$STRIP" && $STRIP -V 2>&1 | $GREP "strip" >/dev/null; then
-   test -z "$old_striplib" && old_striplib="$STRIP --strip-debug"
-   test -z "$striplib" && striplib="$STRIP --strip-unneeded"
-   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-@@ -13212,7 +13212,7 @@
+@@ -14218,7 +14218,7 @@
  inherit_rpath_CXX=no
  module_cmds_CXX=
  module_expsym_cmds_CXX=
@@ -79,30 +34,3 @@
  old_archive_cmds_CXX=$old_archive_cmds
  reload_flag_CXX=$reload_flag
  reload_cmds_CXX=$reload_cmds
-@@ -13912,7 +13912,7 @@
-         archive_cmds_need_lc_CXX=no
-         ;;
- 
--      freebsd* | dragonfly*)
-+      freebsd* | dragonfly* | midnightbsd*)
-         # FreeBSD 3 and later use GNU C++ and GNU ld with standard ELF
-         # conventions
-         ld_shlibs_CXX=yes
-@@ -14852,7 +14852,7 @@
- 	    ;;
- 	esac
- 	;;
--      freebsd* | dragonfly*)
-+      freebsd* | dragonfly* | midnightbsd*)
- 	# FreeBSD uses GNU C++
- 	;;
-       hpux9* | hpux10* | hpux11*)
-@@ -15776,7 +15776,7 @@
-   shlibpath_var=LD_LIBRARY_PATH
-   ;;
- 
--freebsd* | dragonfly*)
-+freebsd* | dragonfly* | midnightbsd*)
-   # DragonFly does not have aout.  When/if they implement a new
-   # versioning mechanism, adjust this.
-   if test -x /usr/bin/objformat; then
