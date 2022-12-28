@@ -6,6 +6,7 @@ MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VisualBasic.NET support for Mono
+WWW=		http://www.mono-project.com/VisualBasic.NET
 
 LICENSE=        lgpl mit
 LICENSE_COMB=   dual
