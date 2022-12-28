@@ -1,6 +1,7 @@
 COMMENT = Multimedia software
 
 SUBDIR += aom
+SUBDIR += aribb24
 SUBDIR += assimp
 SUBDIR += cheese
 SUBDIR += clive
