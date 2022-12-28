@@ -1,9 +1,14 @@
 PORTNAME=	dav1d
 DISTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	multimedia
+
+PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
+PATCHFILES+=	5e5b7a04fde7.patch:-p1 # https://code.videolan.org/videolan/dav1d/-/merge_requests/1357
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small and fast AV1 decoder
+WWW=		https://code.videolan.org/videolan/dav1d
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING

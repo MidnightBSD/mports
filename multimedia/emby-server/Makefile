@@ -24,6 +24,7 @@ LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	nasm:devel/nasm
+#		libdav1d.so:multimedia/dav1d \
 LIB_DEPENDS=	libass.so:multimedia/libass \
 		libdrm.so:graphics/libdrm \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -100,14 +101,11 @@ CONFIGURE_ARGS=	--cc="${CC}" \
 		--enable-vaapi \
 		--enable-version3
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
-OPTIONS_DEFINE=		LAME SMB X11
-OPTIONS_DEFAULT=	LAME SMB X11
+OPTIONS_DEFINE=		LAME X11
+OPTIONS_DEFAULT=	LAME X11
 
 LAME_LIB_DEPENDS=	libmp3lame.so:audio/lame
 LAME_CONFIGURE_ENABLE=	libmp3lame
-
-SMB_USES=		samba:lib
-SMB_CONFIGURE_ENABLE=	libsmbclient
 
 X11_LIB_DEPENDS=	libMagickWand-6.so:graphics/ImageMagick6
 X11_LIB_DEPENDS_OFF=	libMagickWand-6.so:graphics/ImageMagick6-nox11
