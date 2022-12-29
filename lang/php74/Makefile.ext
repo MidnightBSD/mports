@@ -13,7 +13,7 @@ PLIST=		${NONEXISTENT}
 EXTRACT_AFTER_ARGS?=	${EXTSUBDIR}
 NO_TEST=	yes
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 .if ${PHP_MODNAME} == "bcmath"
 CONFIGURE_ARGS+=--enable-bcmath

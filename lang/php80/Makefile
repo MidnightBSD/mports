@@ -1,5 +1,5 @@
 PORTNAME=	php80
-DISTVERSION=	8.0.22
+DISTVERSION=	8.0.26
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP
@@ -8,6 +8,7 @@ DIST_SUBDIR=	php
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
+WWW=		https://www.php.net/
 
 LICENSE=	php
 

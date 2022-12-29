@@ -1,5 +1,5 @@
 PORTNAME=	php74
-DISTVERSION=	7.4.29
+DISTVERSION=	7.4.33
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP
@@ -8,8 +8,11 @@ DIST_SUBDIR=	php
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
+WWW=		https://www.php.net/
 
 LICENSE=	php
+
+DEPRECATED=Upstream Security Support ends on 2022-11-28
 
 USES+=		compiler:c11 tar:xz cpe gnome pkgconfig
 CPE_PRODUCT=	php
