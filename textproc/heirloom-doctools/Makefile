@@ -1,19 +1,20 @@
-
-
 PORTNAME=	heirloom-doctools
 PORTVERSION=	160308
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable and enhanced troff, nroff, and related utilities
+WWW=		https://n-t-roff.github.io/heirloom/doctools.html
 
 LICENSE=	cddl
-
-BROKEN_powerpc64=	fails to package: Unable to access file pub/utf-8: No such file or directory
 
 USES=		gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	n-t-roff
+
+CONFLICTS_INSTALL=	grap groff ja-groff util-linux # bin/col bin/eqn bin/grap bin/indxbib
+
 ALL_TARGET=	#empty
 MAKE_ARGS+=	INSTALL="${INSTALL}" \
 		BINDIR=${BINDIR} \
@@ -28,6 +29,7 @@ MAKE_ARGS+=	INSTALL="${INSTALL}" \
 		REFDIR=${REFDIR} \
 		ROOT=${FAKE_DESTDIR}
 MAKEFILE=	makefile
+CFLAGS+=	-fcommon
 PLIST_SUB=	LIBEXECDIR=libexec/${PORTNAME}
 
 MACDIR?=	${DATADIR}/tmac
