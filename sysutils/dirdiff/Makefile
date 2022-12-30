@@ -1,13 +1,12 @@
-
-
 PORTNAME=	dirdiff
 PORTVERSION=	2.1
 PORTREVISION=	5
 CATEGORIES=	sysutils tcl tk
-MASTER_SITES=	ftp://ftp.samba.org/pub/paulus/
+MASTER_SITES=	https://ftp.samba.org/pub/paulus/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical diff tool
+WWW=		http://freecode.com/projects/dirdiff/
 
 LICENSE=	gpl2 # (or later)
 LICENSE_FILE=	${WRKSRC}/COPYING
