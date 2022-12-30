@@ -1,5 +1,5 @@
 PORTNAME=	bsdfetch
-PORTVERSION=	0.9
+PORTVERSION=	1.0.4
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ LICENSE=	iscl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jhx0
-GH_TAGNAME=	9840c31
+GH_TAGNAME=	b1e9d2a
 
 PLIST_FILES+=	bin/bsdfetch
 
