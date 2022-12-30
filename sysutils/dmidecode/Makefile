@@ -1,10 +1,11 @@
 PORTNAME=	dmidecode
-PORTVERSION=	3.3
+PORTVERSION=	3.4
 CATEGORIES=	sysutils
 MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for dumping DMI (SMBIOS) contents in human-readable format
+WWW=		https://www.nongnu.org/dmidecode/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
