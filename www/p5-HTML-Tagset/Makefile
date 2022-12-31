@@ -1,5 +1,3 @@
-
-
 PORTNAME=	HTML-Tagset
 PORTVERSION=	3.20
 PORTREVISION=	1
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful data table in parsing HTML
+WWW=		https://metacpan.org/release/HTML-Tagset
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

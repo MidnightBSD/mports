@@ -1,16 +1,18 @@
 PORTNAME=	CGI
-PORTVERSION=	4.47
+PORTVERSION=	4.54
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Handle Common Gateway Interface requests and responses
+WWW=		https://metacpan.org/release/CGI
 
 LICENSE=	artistic2 gpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	p5-HTML-Parser>=3.69:www/p5-HTML-Parser
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-HTML-Parser>=3.69:www/p5-HTML-Parser
 TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep \
 		p5-Test-NoWarnings>=0:devel/p5-Test-NoWarnings \
@@ -23,8 +25,6 @@ PORTSCOUT=	limit:^[0-9\.]*$$
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
-
-PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	EXAMPLES
 
