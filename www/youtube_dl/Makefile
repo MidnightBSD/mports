@@ -7,6 +7,7 @@ DISTNAME=	youtube-dl-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program for downloading videos from various services
+WWW=		https://yt-dl.org/
 
 LICENSE=	unlicense
 
