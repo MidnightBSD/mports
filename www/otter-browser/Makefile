@@ -9,11 +9,12 @@ DISTVERSIONPREFIX=	v
 #   intentional
 #
 # PORTVERSION=	1.0.01.1
-DISTVERSION=	1.0.02
+DISTVERSION=	1.0.03
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Browser based on Qt 5
+ WWW=		https://otter-browser.org/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
