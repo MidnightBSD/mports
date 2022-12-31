@@ -10,6 +10,7 @@ COMMENT=	Opensource MPEG-4 codec, based on OpenDivx
 WWW=		http://www.xvid.org/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKDIR}/xvidcore/LICENSE
 
 USES=		cpe gmake tar:bz2
 GNU_CONFIGURE=	yes
