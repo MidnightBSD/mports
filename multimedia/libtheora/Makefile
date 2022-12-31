@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libtheora
 PORTVERSION=	1.1.1
 PORTREVISION=	7
@@ -9,6 +7,7 @@ MASTER_SITES=	https://downloads.xiph.org/releases/theora/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Theora video codec for the Ogg multimedia streaming system
+WWW=		https://www.theora.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
