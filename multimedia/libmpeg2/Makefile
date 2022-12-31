@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libmpeg2
 PORTVERSION=	0.5.1
 PORTREVISION=	1
@@ -8,6 +6,7 @@ MASTER_SITES=	http://libmpeg2.sourceforge.net/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free library for decoding mpeg-2 and mpeg-1 video streams
+WWW=		http://libmpeg2.sourceforge.net/
 
 LICENSE=	gpl2
 
@@ -22,8 +21,10 @@ PORTDOCS=	libmpeg2.txt README
 OPTIONS_DEFINE=	DOCS SDL X11
 
 SDL_USE=	SDL=yes
+SDL_USES=	sdl
 SDL_CONFIGURE_ENABLE=	sdl
-X11_USE=	XORG=sm,xv
+X11_USES=	xorg
+X11_USE=	XORG=x11,xext,sm,ice,xv
 X11_CONFIGURE_WITH=	x
 
 .include <bsd.mport.options.mk>
