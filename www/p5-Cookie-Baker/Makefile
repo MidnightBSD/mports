@@ -1,11 +1,12 @@
 PORTNAME=	Cookie-Baker
-PORTVERSION=	0.09
+PORTVERSION=	0.11
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for cookie string generator/parser
+WWW=		https://metacpan.org/release/Cookie-Baker
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
