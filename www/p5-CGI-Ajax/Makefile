@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for writing AJAX/DHTML-based web apps
+WWW=		https://metacpan.org/release/CGI-Ajax
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
