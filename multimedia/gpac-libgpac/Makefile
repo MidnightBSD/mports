@@ -1,25 +1,28 @@
 PORTNAME=	gpac
-PORTVERSION=	0.5.0
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.0.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia
-MASTER_SITES=	SF/${PORTNAME}/GPAC/GPAC%20${PORTVERSION}
 PKGNAMESUFFIX=	-libgpac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gpac MPEG-4 Systems library and headers
+WWW=		http://gpac.sourceforge.net/
 
 LICENSE=	lgpl2.1
 
-WRKSRC=		${WRKDIR}/gpac
+BUILD_DEPENDS=	bash:shells/bash
+
 ALL_TARGET=	lib
 INSTALL_TARGET=	install-lib
-USES=		gmake dos2unix
-USE_GMAKE=	yes
+USES=		cpe gmake dos2unix shebangfix
+SHEBANG_FILES=	check_revision.sh
+bash_OLD_CMD+=	/bin/sh
+USE_GITHUB=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 DOS2UNIX_FILES=	src/utils/os_config_init.c
-
-MAKE_JOBS_UNSAFE=yes
 
 OPTIONS_DEFINE=	IPV6 JPEG OPENGL SSL PNG XVIDEO
 OPTIONS_DEFAULT=	JPEG SSL PNG
@@ -29,6 +32,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS=	--prefix="${PREFIX}" --cc="${CC}" --X11-path="${LOCALBASE}" \
 		--extra-cflags="${CFLAGS}" --extra-ldflags="${LDFLAGS}" \
+		--static-modules \
 		--enable-pic \
 		--disable-wx \
 		--use-js=no --use-a52=no --use-faad=no --use-ffmpeg=no \
@@ -37,6 +41,7 @@ CONFIGURE_ARGS=	--prefix="${PREFIX}" --cc="${CC}" --X11-path="${LOCALBASE}" \
 
 SSL_USES=		ssl
 SSL_CONFIGURE_ENABLE=	ssl
+OPENGL_USES=	gl
 OPENGL_USE=	GL=gl GL=glu
 OPENGL_CONFIGURE_ENABLE=3d
 XVIDEO_LIB_DEPENDS=	libXv.so:x11/libXv
@@ -48,6 +53,10 @@ JPEG_CONFIGURE_OFF=	--use-jpeg=no
 PNG_LIB_DEPENDS=	libpng.so:graphics/png
 PNG_CONFIGURE_ON=	--use-png=local
 PNG_CONFIGURE_OFF=	--use-png=no
+
+post-patch:
+	${REINPLACE_CMD} -e 's|s/\.\*\\(\[0-9\]\\)\\+\$$/\\1/|s/^[^0-9]*//| ;\
+		/CFLAGS=/s/-O3//' ${WRKSRC}/configure
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/gpac.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig

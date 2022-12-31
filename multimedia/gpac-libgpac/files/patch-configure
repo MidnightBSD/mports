@@ -1,6 +1,6 @@
---- configure.bak	2012-05-25 08:05:57.000000000 -0400
-+++ configure	2019-09-04 09:45:37.921250000 -0400
-@@ -493,7 +493,7 @@
+--- configure.orig	2020-06-16 12:17:17.000000000 -0400
++++ configure	2022-12-31 15:32:38.608119000 -0500
+@@ -538,7 +538,7 @@
          extralibs="$extralibs -lsocket -lnsl"
          ;;
  
@@ -9,7 +9,7 @@
          make="gmake"
          LDFLAGS="$LDFLAGS -export-dynamic"
          CFLAGS="$CFLAGS -pthread"
-@@ -612,7 +612,7 @@
+@@ -708,7 +708,7 @@
  
  #GCC opt
  if test "$no_gcc_opt" = "no"; then
@@ -18,16 +18,3 @@
  else
      CFLAGS="-O0 $CFLAGS"
  fi
-@@ -2123,9 +2123,9 @@
- echo "#define GPAC_CONFIGURATION \"$GPAC_CONFIGURATION\"" >> $TMPH
- 
- version="`grep '#define GPAC_VERSION ' \"$source_path/include/gpac/tools.h\" | cut -d '"' -f 2`"
--version_major=`grep '#define GPAC_VERSION_MAJOR ' $source_path/include/gpac/tools.h | sed -e 's/.*\([0-9]\)\+$/\1/'`
--version_minor=`grep '#define GPAC_VERSION_MINOR ' $source_path/include/gpac/tools.h | sed -e 's/.*\([0-9]\)\+$/\1/'`
--version_micro=`grep '#define GPAC_VERSION_MICRO ' $source_path/include/gpac/tools.h | sed -e 's/.*\([0-9]\)\+$/\1/'`
-+version_major=`grep '#define GPAC_VERSION_MAJOR ' $source_path/include/gpac/tools.h | sed -e 's/^[^0-9]*//'`
-+version_minor=`grep '#define GPAC_VERSION_MINOR ' $source_path/include/gpac/tools.h | sed -e 's/^[^0-9]*//'`
-+version_micro=`grep '#define GPAC_VERSION_MICRO ' $source_path/include/gpac/tools.h | sed -e 's/^[^0-9]*//'`
- soname_version="${version_major}.${version_minor}.${version_micro}"
- 
- if [ -d ".svn" ]; then
