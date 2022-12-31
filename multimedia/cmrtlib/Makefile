@@ -5,6 +5,7 @@ CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C for Metal Runtime
+WWW=		https://01.org/intel-media-for-linux
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC:H}/LICENSE.md
