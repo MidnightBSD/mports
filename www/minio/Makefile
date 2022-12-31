@@ -1,12 +1,15 @@
 PORTNAME=	minio
 PORTVERSION=	${GH_TAGNAME:S/RELEASE.//:S/Z//:S/T/-/:S/-/./g}
+PORTREVISION=	1
 CATEGORIES=	www
 DIST_SUBDIR=	minio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Amazon S3 compatible object storage server
+WWW=		https://minio.io/
 
-LICENSE=	agpl
+LICENSE=	agpl apache2
+LICENSE_COMB=	multi
 
 USES=		compiler cpe go:modules
 
@@ -161,7 +164,7 @@ GH_TUPLE=	${PORTNAME}:${PORTNAME}:${GHTAG}:DEFAULT \
 		minio:colorjson:v1.0.1:minio_colorjson/vendor/github.com/minio/colorjson \
 		minio:console:v0.13.1:minio_console/vendor/github.com/minio/console \
 		minio:csvparser:v1.0.0:minio_csvparser/vendor/github.com/minio/csvparser \
-		minio:direct-csi:f7776f7961bf:minio_direct_csi/vendor/github.com/minio/direct-csi \
+		minio:directpv:f7776f7961bf:minio_direct_csi/vendor/github.com/minio/direct-csi \
 		minio:filepath:v1.0.0:minio_filepath/vendor/github.com/minio/filepath \
 		minio:highwayhash:v1.0.2:minio_highwayhash/vendor/github.com/minio/highwayhash \
 		minio:kes:v0.14.0:minio_kes/vendor/github.com/minio/kes \
@@ -238,10 +241,6 @@ GH_TUPLE=	${PORTNAME}:${PORTNAME}:${GHTAG}:DEFAULT \
 
                 # Errors found during processing:
                 #       tag v4.0.0 doesn't seem to exist in decred/dcrd
-
-pre-extract:
-	${MKDIR} ${WRKDIR}
-	${LN} -sf ${WRKDIR}/directpv-f7776f7961bf ${WRKDIR}/direct-csi-f7776f7961bf
 
 post-extract:
 	@${RM} -r ${WRKSRC}/vendor/cloud.google.com/go/storage

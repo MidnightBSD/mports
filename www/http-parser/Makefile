@@ -7,6 +7,7 @@ CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP request/response parser written in C
+WWW=		https://github.com/nodejs/http-parser
 
 LICENSE=	mit
 
