@@ -6,6 +6,7 @@ CATEGORIES=	www xfce
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser using WebKit browser engine
+WWW=		https://www.midori-browser.org/
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	multi

@@ -1,5 +1,3 @@
-# Created by: Xavier Beaudouin <kiwi@oav.net>
-
 PORTNAME=	mod_evasive
 PORTVERSION=	1.10.1
 PORTREVISION=	2
@@ -8,6 +6,7 @@ DIST_SUBDIR=	apache2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache module to try to protect the HTTP Server from DoS/DDoS attacks
+WWW=		https://github.com/jzdziarski/mod_evasive
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE

@@ -1,4 +1,3 @@
-
 PORTNAME=	llvm
 DISTVERSION=	10.0.1
 PORTREVISION=	1
@@ -11,6 +10,7 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.src${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LLVM and Clang
+WWW=		https://llvm.org/
 
 .include "${.CURDIR}/../llvm-devel/Makefile.LICENSE"
 LICENSE+=	LLVM2
