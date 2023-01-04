@@ -1,23 +1,19 @@
-
-
 PORTNAME=	xearth
 PORTVERSION=	1.2
 PORTREVISION=	0
 CATEGORIES=	astro geography
-MASTER_SITES=	http://seis.bris.ac.uk/~mexas/ \
-		FREEBSD_LOCAL/madpilot/xearth
+MASTER_SITES=	FREEBSD_LOCAL/madpilot/xearth
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set the root window to the image of earth
+WWW=		https://xearth.org/
 
-LICENSE=	mit_restricted
-LICENSE_NAME=	mit with patents
-LICENSE_TEXT=	MIT license with patents
-LICENSE_PERMS=	# perms?
+LICENSE=	Xearth
+LICENSE_NAME=	Xearth license
+LICENSE_FILE=	${WRKSRC}/README
+LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
-RESTRICTED=	patents?
-
-USES=		tar:xz
+USES=		tar:xz xorg
 USE_XORG=	x11 xext sm ice xt
 
 do-install:
