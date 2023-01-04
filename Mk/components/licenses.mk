@@ -460,7 +460,7 @@ clean-for-cdrom-list:
 
 # Check variables are correctly defined and print status up to here
 
-.    if ${_LICENSE_STATUS} == "ask" && defined(BATCH)
+.    if ${_LICENSE_STATUS} == "ask" && defined(BATCH) && !defined(MAGUS)
 IGNORE=		License ${_LICENSE} needs confirmation, but BATCH is defined
 .    endif
 
