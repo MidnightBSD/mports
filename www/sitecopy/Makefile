@@ -20,6 +20,8 @@ GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--with-neon --with-libxml2
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+
 OPTIONS_DEFINE=	NLS
 
 .include <bsd.mport.options.mk>
@@ -42,8 +44,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|;;|;|g' \
 		${WRKSRC}/src/sitestore.c
 	@${REINPLACE_CMD} -e 's|25 26 27 28|& 29 30 31 32|g' \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e '/#define ksize_t /d' \
 		${WRKSRC}/configure
 
 .include <bsd.port.mk>
