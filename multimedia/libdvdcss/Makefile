@@ -5,6 +5,7 @@ MASTER_SITES=	https://download.videolan.org/pub/${PORTNAME}/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable abstraction library for DVD decryption
+WWW=		https://www.videolan.org/developers/libdvdcss.html
 
 LICENSE=	gpl2 DMCA
 LICENSE_COMB=	multi

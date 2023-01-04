@@ -5,8 +5,10 @@ MASTER_SITES=	https://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSI
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Videolan version of the libdvdnav project
+WWW=		https://www.videolan.org/developers/libdvdnav.html
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libdvdread.so:multimedia/libdvdread
 

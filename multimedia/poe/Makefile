@@ -7,8 +7,9 @@ DISTNAME=	Poe-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vorbis comment editor for GNUstep
+WWW=		https://www.eskimo.com/~pburns/Poe/
 
-LICENSE=	gpl2 # or later
+LICENSE=	gpl2+
 
 LIB_DEPENDS=	libvorbis.so:audio/libvorbis
 
