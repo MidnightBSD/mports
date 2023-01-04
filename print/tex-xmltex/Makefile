@@ -23,8 +23,15 @@ EXTRACT_FILES= \
 	texmf-dist/tex/xmltex \
 	texmf-dist/doc/otherformats/xmltex
 NO_WRKSRC=	yes
+NO_ARCH=	yes
 NO_BUILD=	yes
 TEX_FORMATS=	xmltex
+
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+DISABLE_SIZE=	yes
+.endif
 
 pre-install:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
