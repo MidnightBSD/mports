@@ -1,58 +1,39 @@
-bin/pdfxmltex
-bin/xmltex
-%%TEXMFVARDIR%%/web2c/pdftex/xmltex.log
-%%TEXMFVARDIR%%/web2c/pdftex/pdfxmltex.fmt
-%%TEXMFVARDIR%%/web2c/pdftex/pdfxmltex.log
-%%TEXMFVARDIR%%/web2c/pdftex/xmltex.fmt
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/englishutf8.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testascii.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/langtest.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/russiankoi8.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testsec.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.xsl
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/readme.txt
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/portugeselatin1.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testascii.tex
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.tex
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/russianutf8.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testascii.cfg
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testsec.tex
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/englishutf16.xml
-%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.html
+%%TEXMFDISTDIR%%/tex/xmltex/base/iso-8859-1.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/base/utf-16.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/base/iso-8859-2.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/base/xmltex.cfg
+%%TEXMFDISTDIR%%/tex/xmltex/base/xmltex.tex
+%%TEXMFDISTDIR%%/tex/xmltex/base/langtest.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/base/koi8-r.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/base/mathml2.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/base/sec.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/base/windows-1250.xmt
 %%TEXMFDISTDIR%%/tex/xmltex/xmltexconfig/pdfxmltex.ini
 %%TEXMFDISTDIR%%/tex/xmltex/xmltexconfig/xmltex.ini
-%%TEXMFDISTDIR%%/tex/xmltex/passivetex/teislides.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/passivetex/ucharacters.sty
-%%TEXMFDISTDIR%%/tex/xmltex/passivetex/fotex.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/passivetex/fotex.sty
 %%TEXMFDISTDIR%%/tex/xmltex/passivetex/mlnames.sty
-%%TEXMFDISTDIR%%/tex/xmltex/passivetex/teixml.sty
+%%TEXMFDISTDIR%%/tex/xmltex/passivetex/teislides.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/passivetex/fotex.xmt
+%%TEXMFDISTDIR%%/tex/xmltex/passivetex/ucharacters.sty
 %%TEXMFDISTDIR%%/tex/xmltex/passivetex/unicode.sty
 %%TEXMFDISTDIR%%/tex/xmltex/passivetex/teiprintslides.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/passivetex/teixmlslides.sty
-%%TEXMFDISTDIR%%/tex/xmltex/passivetex/dummyels.sty
 %%TEXMFDISTDIR%%/tex/xmltex/passivetex/tei.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/mathml2.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/iso-8859-2.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/iso-8859-1.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/windows-1250.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/xmltex.tex
-%%TEXMFDISTDIR%%/tex/xmltex/base/utf-16.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/sec.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/langtest.xmt
-%%TEXMFDISTDIR%%/tex/xmltex/base/xmltex.cfg
-%%TEXMFDISTDIR%%/tex/xmltex/base/koi8-r.xmt
-@dir %%TEXMFVARDIR%%/web2c/pdftex
-@dir %%TEXMFVARDIR%%/web2c
-@dir %%TEXMFVARDIR%%
-@dir %%TEXMFDISTDIR%%/doc/otherformats/xmltex/base
-@dir %%TEXMFDISTDIR%%/doc/otherformats/xmltex
-@dir %%TEXMFDISTDIR%%/doc/otherformats
-@dir %%TEXMFDISTDIR%%/doc
-@dir %%TEXMFDISTDIR%%/tex/xmltex/xmltexconfig
-@dir %%TEXMFDISTDIR%%/tex/xmltex/passivetex
-@dir %%TEXMFDISTDIR%%/tex/xmltex/base
-@dir %%TEXMFDISTDIR%%/tex/xmltex
-@dir %%TEXMFDISTDIR%%/tex
-@dir %%TEXMFDISTDIR%%
+%%TEXMFDISTDIR%%/tex/xmltex/passivetex/teixml.sty
+%%TEXMFDISTDIR%%/tex/xmltex/passivetex/dummyels.sty
+%%TEXMFDISTDIR%%/tex/xmltex/passivetex/teixmlslides.sty
+%%TEXMFDISTDIR%%/tex/xmltex/passivetex/fotex.sty
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/readme.txt
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.xsl
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.html
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testsec.tex
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/englishutf8.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/russianutf8.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testascii.cfg
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testascii.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testascii.tex
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/russiankoi8.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/manual.tex
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/englishutf16.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/portugeselatin1.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/langtest.xml
+%%TEXMFDISTDIR%%/doc/otherformats/xmltex/base/testsec.xml

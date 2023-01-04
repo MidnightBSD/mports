@@ -13,7 +13,7 @@ COMMENT=	Non-validating XML parser, written in TeX
 
 LICENSE=	unknown
 
-USES=		tar:xz
+USES=		tar:xz tex
 USE_TEX=	texmf pdftex fmtutil
 TEXHASHDIRS=	${TEXMFDISTDIR}
 EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${PREFIX}/share \
