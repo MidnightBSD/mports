@@ -6,6 +6,7 @@ MASTER_SITES=	https://aklv.github.io/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows files to be extracted from ARJ archives
+WWW=		http://www.arjsoftware.com/
 
 LICENSE=	unarj
 LICENSE_NAME=	unarj license
