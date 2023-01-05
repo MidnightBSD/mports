@@ -1,11 +1,13 @@
 PORTNAME=	curl
-PORTVERSION=	7.85.0
+PORTVERSION=	7.87.0
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
+WWW=		https://curl.se/ \
+		https://github.com/curl/curl
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -14,6 +16,7 @@ USES=		cpe libtool localbase pathfix perl5 shebangfix tar:xz
 USE_PERL5=	build
 
 CONFIGURE_ARGS=	--disable-werror \
+		--enable-headers-api \
 		--with-fish-functions-dir=${LOCALBASE}/share/fish/completions \
 		--with-zsh-functions-dir=${LOCALBASE}/share/zsh/site-functions
 CONFIGURE_ENV=	LOCALBASE=${LOCALBASE} \
@@ -33,13 +36,13 @@ OPTIONS_GROUP=	PROTOCOL
 OPTIONS_RADIO=	SSL
 OPTIONS_SINGLE=	GSSAPI RESOLV
 OPTIONS_GROUP_PROTOCOL=	DICT FTP GOPHER HTTP HTTP2 IMAP LDAP LDAPS LIBSSH2 MQTT POP3 RTMP RTSP SMB SMTP TELNET TFTP
-OPTIONS_RADIO_SSL=	GNUTLS NSS OPENSSL WOLFSSL
+OPTIONS_RADIO_SSL=	GNUTLS OPENSSL WOLFSSL
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 OPTIONS_SINGLE_RESOLV=	CARES THREADED_RESOLVER
 OPTIONS_DEFAULT=ALTSVC CA_BUNDLE COOKIES GSSAPI_${${SSL_DEFAULT} == base :?BASE :NONE} DICT FTP GOPHER HTTP HTTP2 IMAP LIBSSH2 NTLM OPENSSL POP3 PROXY RTSP SMTP STATIC TELNET TFTP THREADED_RESOLVER TLS_SRP
 OPTIONS_SUB=	yes
 ALTSVC_DESC=	HTTP Alternative Services support
-CA_BUNDLE_DESC=	Enable CA bundle for OpenSSL/GnuTLS/mbedTLS
+CA_BUNDLE_DESC=	Enable CA bundle for OpenSSL/GnuTLS
 COOKIES_DESC=	Cookies support
 CURL_DEBUG_DESC=cURL debug memory tracking
 DICT_DESC=	DICT (RFC 2229) support
@@ -107,10 +110,6 @@ LDAPS_CONFIGURE_ENABLE=	ldaps
 LIBSSH2_CONFIGURE_WITH=	libssh2
 LIBSSH2_LIB_DEPENDS=	libssh2.so:security/libssh2
 MQTT_CONFIGURE_ENABLE=	mqtt
-NSS_CONFIGURE_WITH=	nss
-NSS_LIB_DEPENDS=	libnss3.so:security/nss \
-			libnspr4.so:devel/nspr
-NSS_USES=		pkgconfig
 NTLM_CONFIGURE_ENABLE=	ntlm
 OPENSSL_CONFIGURE_WITH=	ssl=${OPENSSLBASE}
 OPENSSL_CPPFLAGS=	-I${OPENSSLINC}
@@ -146,7 +145,7 @@ CONFIGURE_ARGS+=--with-ca-fallback
 IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
 .endif
 
-.if ${PORT_OPTIONS:MLDAPS} && !${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MNSS} && !${PORT_OPTIONS:MOPENSSL} && !${PORT_OPTIONS:MWOLFSSL}
+.if ${PORT_OPTIONS:MLDAPS} && !${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MOPENSSL} && !${PORT_OPTIONS:MWOLFSSL}
 IGNORE=		only supports LDAPS with SSL
 .endif
 
@@ -171,6 +170,6 @@ post-install-DOCS-on:
 
 post-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README.md Makefile.example makefile* *.c *.cpp ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} Makefile.example Makefile.mk README.md *.c *.cpp ${FAKE_DESTDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.post.mk>
