@@ -20,6 +20,8 @@ luajitor_PKGNAMESUFFIX=	-luajit-openresty
 luajit_CONFLICTS_INSTALL=	${PORTNAME}-luajit-openresty
 luajitor_CONFLICTS_INSTALL=	${PORTNAME}-luajit
 
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
+
 USES=		gmake ssl
 USE_CSTD=	c99
 LLD_UNSAFE=	yes
