@@ -6,6 +6,7 @@ DISTNAME=	FileZilla_${PORTVERSION}_src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and reliable cross-platform FTP, FTPS, and SFTP client
+WWW=		https://filezilla-project.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

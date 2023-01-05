@@ -1,10 +1,11 @@
 PORTNAME=	ftpcopy
 PORTVERSION=	0.6.7
-CATEGORIES=	ftp ipv6
+CATEGORIES=	ftp
 MASTER_SITES=	http://www.ohse.de/uwe/ftpcopy/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line ftp tools for listing and mirroring
+WWW=		https://www.ohse.de/uwe/ftpcopy.html
 
 LICENSE=	gpl2
 

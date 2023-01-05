@@ -301,7 +301,11 @@ _LICENSE_STATUS?=	accepted
 .        if ${_LICENSE_PERMS:Mauto-accept} != "" && !defined(LICENSES_ASK)
 _LICENSE_STATUS?=	accepted
 .        endif
+.	if !defined(MAGUS)
 _LICENSE_STATUS?=	ask
+.	else
+_LICENSE_STATUS?=	accepted
+.	endif
 .      endfor
 
 .    else
@@ -323,7 +327,11 @@ _LICENSE_STATUS_${lic}?=	accepted
 .        if ${_LICENSE_PERMS_${lic}:Mauto-accept} != "" && !defined(LICENSES_ASK)
 _LICENSE_STATUS_${lic}?=	accepted
 .        endif
+.	if !defined(MAGUS)
 _LICENSE_STATUS_${lic}?=	ask
+.	else
+_LICENSE_STATUS_${lic}?=	accepted
+.	endif
 .      endfor
 .    endif
 
