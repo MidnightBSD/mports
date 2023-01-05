@@ -5,6 +5,7 @@ CATEGORIES=	benchmarks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of tests for RDMA micro-benchmark
+WWW=		https://github.com/linux-rdma/perftest/
 
 LICENSE=	lgpl2.1 bsd2
 LICENSE_COMB=	dual
