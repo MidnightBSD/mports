@@ -16,7 +16,7 @@ LICENSE=	unknown
 USES=		tar:xz tex
 USE_TEX=	texmf pdftex fmtutil
 TEXHASHDIRS=	${TEXMFDISTDIR}
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${PREFIX}/share \
+EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner \
 		${EXTRACT_FILES:S,^,${DISTNAME}/,}
 EXTRACT_FILES= \
@@ -39,11 +39,9 @@ pre-install:
 
 do-install:  do-texhash do-fmtutil
 
-post-install:
+post-fake:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-		${PREFIX}/share/texmf-var/web2c/pdftex/xmltex.log \
-		${PREFIX}/share/texmf-var/web2c/pdftex/xmltex.fmt \
-		${PREFIX}/share/texmf-var/web2c/pdftex/pdfxmltex.log \
-		${PREFIX}/share/texmf-var/web2c/pdftex/pdfxmltex.fmt
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/xmltex.log \
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/pdfxmltex.log \
 
 .include <bsd.port.mk>

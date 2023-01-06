@@ -7,6 +7,7 @@ DISTNAME=	make-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU version of 'make' utility
+WWW=		https://www.gnu.org/software/make/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
