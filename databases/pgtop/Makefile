@@ -6,6 +6,7 @@ MASTER_SITE_SUBDIR=	CPAN:COSIMO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display PostgreSQL performance info like top(1)
+WWW=		https://metacpan.org/release/COSIMO/pgtop-0.05
 
 LICENSE=	gpl2
 
