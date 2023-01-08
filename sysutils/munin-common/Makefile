@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	-common
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common components between a munin node and server
+WWW=		https://munin-monitoring.org/
 
 LICENSE=	gpl2
 

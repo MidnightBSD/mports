@@ -1,5 +1,3 @@
-# Created by: Lupe Christoph <lupe@lupe-christoph.de>
-
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
 CATEGORIES=	sysutils perl5
@@ -8,6 +6,7 @@ PKGNAMESUFFIX=	-master
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collector part of Munin
+WWW=		https://munin-monitoring.org/
 
 LICENSE=	gpl2
 

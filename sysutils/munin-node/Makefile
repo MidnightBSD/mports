@@ -6,15 +6,16 @@ PKGNAMESUFFIX=	-node
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Node-specific part of Munin
+WWW=		https://munin-monitoring.org/
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	p5-Module-Build>=0:devel/p5-Module-Build \
+BUILD_DEPENDS=	bash:shells/bash \
+		p5-Module-Build>=0:devel/p5-Module-Build \
 		p5-DateTime-HiRes>=0:devel/p5-DateTime-HiRes \
 		p5-Log-Log4perl>=0:devel/p5-Log-Log4perl \
 		munin-common>=${MUNIN_VERSION}:sysutils/munin-common \
-		p5-Net-Server>=0:net/p5-Net-Server \
-		bash:shells/bash
+		p5-Net-Server>=0:net/p5-Net-Server
 RUN_DEPENDS=	p5-Cache-Cache>=0:devel/p5-Cache-Cache \
 		p5-DateTime-HiRes>=0:devel/p5-DateTime-HiRes \
 		p5-Log-Log4perl>=0:devel/p5-Log-Log4perl \
@@ -44,13 +45,6 @@ PERL_DESC=	Include all Perl modules (adds dependencies)
 JAVA_DESC=	Include JAVA plugins
 PYTHON_DESC=	Include Python plugins
 
-SNMP_BUILD_DEPENDS=	p5-Net-SNMP>=0:net-mgmt/p5-Net-SNMP
-SNMP_RUN_DEPENDS=	p5-Net-SNMP>=0:net-mgmt/p5-Net-SNMP
-PERL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
-		p5-Net-DNS>=0:dns/p5-Net-DNS \
-		p5-Net-IP>=0:net-mgmt/p5-Net-IP \
-		p5-XML-Parser>=0:textproc/p5-XML-Parser \
-		p5-XML-LibXML>=0:textproc/p5-XML-LibXML
 PYTHON_USES=	python
 JAVA_USE=	java=yes
 JAVA_INSTALL_TARGET=	install-plugins-java
@@ -61,6 +55,17 @@ SUB_FILES=	pkg-message plugins.conf
 USE_RC_SUBR=	munin-asyncd munin-node
 
 PORTSCOUT=	ignore:1
+
+PYTHON_USES=	python
+
+PERL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
+		p5-Net-DNS>=0:dns/p5-Net-DNS \
+		p5-Net-IP>=0:net-mgmt/p5-Net-IP \
+		p5-XML-Parser>=0:textproc/p5-XML-Parser \
+		p5-XML-LibXML>=0:textproc/p5-XML-LibXML
+
+SNMP_BUILD_DEPENDS=	p5-Net-SNMP>=0:net-mgmt/p5-Net-SNMP
+SNMP_RUN_DEPENDS=	p5-Net-SNMP>=0:net-mgmt/p5-Net-SNMP
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \

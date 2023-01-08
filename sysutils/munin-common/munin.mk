@@ -1,4 +1,4 @@
-MUNIN_VERSION=	2.0.67
+MUNIN_VERSION=	2.0.69
 MUNIN_SITES=	SF/munin/stable/${MUNIN_VERSION}
 DISTINFO_FILE=	${.CURDIR}/../../sysutils/munin-common/distinfo
 PATCHDIR=	${.CURDIR}/../../sysutils/munin-common/files
