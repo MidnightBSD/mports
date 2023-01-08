@@ -1,17 +1,16 @@
-
-
 PORTNAME=	libunistring
-PORTVERSION=	0.9.10
+DISTVERSION=	1.1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unicode string library
+WWW=		https://www.gnu.org/software/libunistring/
 
-LICENSE=	gpl3 lgpl3
-LICENSE_COMB=	dual
+LICENSE=	gfdl gpl3 lgpl3+
+LICENSE_COMB=	multi
 
-USES=		charsetfix gmake iconv libtool
+USES=		charsetfix gmake iconv libtool tar:xz
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
