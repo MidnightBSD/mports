@@ -1,11 +1,12 @@
 PORTNAME=		tdb
-PORTVERSION=		1.4.3
+PORTVERSION=		1.4.4
 PORTEPOCH=		1
 CATEGORIES=		databases
 MASTER_SITES=		SAMBA
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Trivial Database
+WWW=		https://tdb.samba.org/
 
 LICENSE=		gpl3
 
