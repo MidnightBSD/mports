@@ -1,5 +1,3 @@
-# Created by: Loïc BARTOLETTI <lbartoletti@FreeBSD.org>
-
 PORTNAME=	virtualpg
 PORTVERSION=	2.0.1
 CATEGORIES=	databases
@@ -7,9 +5,11 @@ MASTER_SITES=	http://www.gaia-gis.it/gaia-sins/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Loadable dynamic extension to both SQLite and SpatiaLite
+WWW=		https://www.gaia-gis.it/fossil/virtualpg/index
 
 LICENSE=	mpl lgpl2.1 gpl2
 LICENSE_COMB=	dual
+LICENSE_FILE_mpl=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 USES=		gmake iconv pathfix pkgconfig libtool pgsql sqlite

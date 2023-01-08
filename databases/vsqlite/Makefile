@@ -1,11 +1,11 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	vsqlite
 PORTVERSION=	0.3.13
+PORTREVISION=	1
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Well designed and portable SQLite3 Wrapper for C++
+WWW=		https://github.com/vinzenz/vsqlite--
 
 LICENSE=	bsd3
 
