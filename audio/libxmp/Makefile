@@ -22,5 +22,6 @@ PLIST_FILES=	include/xmp.h \
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/libxmp.so.${PORTVERSION}
+	${CP} ${WRKSRC}/libxmp.pc ${PREFIX}/libdata/pkgconfig/libxmp.pc
 
 .include <bsd.port.mk>
