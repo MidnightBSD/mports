@@ -1,10 +1,11 @@
 PORTNAME=	gnutls
-PORTVERSION=	3.7.7
+PORTVERSION=	3.7.8
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
+WWW=		https://gnutls.org/
 
 LICENSE=	gpl3 lgpl2.1
 LICENSE_COMB=	multi
