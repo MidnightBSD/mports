@@ -5,6 +5,7 @@ MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose crypto library based on code used in GnuPG
+WWW=		https://www.gnupg.org/software/libgcrypt/index.html
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi

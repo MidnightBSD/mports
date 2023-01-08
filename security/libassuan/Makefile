@@ -5,6 +5,7 @@ MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPC library used by GnuPG and gpgme
+WWW=		https://gnupg.org/related_software/libassuan/index.en.html
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
