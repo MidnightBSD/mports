@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU Privacy Guard
+WWW=		https://www.gnupg.org/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
