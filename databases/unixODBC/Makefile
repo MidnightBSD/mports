@@ -1,13 +1,18 @@
 PORTNAME=	unixODBC
-PORTVERSION=	2.3.9
+PORTVERSION=	2.3.11
 PORTREVISION=	0
 CATEGORIES=	databases
-MASTER_SITES=	http://www.unixodbc.org/
+MASTER_SITES=	http://www.unixodbc.org/ \
+		ftp://ftp.unixodbc.org/pub/unixODBC/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ODBC library suite for Unix
+WWW=		http://www.unixodbc.org/
 
-LICENSE=	lgpl
+LICENSE=	gpl2 lgpl2.1
+LICENSE_COMB=	multi
+
+OPTIONS_DEFINE=	DOCS
 
 CONFLICTS=	libiodbc-[0-9]* virtuoso-*
 
@@ -16,7 +21,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static --enable-shared \
 		--with-libiconv-prefix=${LOCALBASE}
 CONFIGURE_ENV=	ac_cv_header_msql_h=no
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 USE_LDCONFIG=	yes
 
 PORTDOCS=	*
@@ -26,15 +31,8 @@ post-patch:
 	touch ${WRKSRC}/Interix/config.sub
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${TAR} -C ${WRKSRC}/doc --exclude '*Makefile*' -cf - . \
-		| ${TAR} -C ${DOCSDIR} --unlink -xf -
-.if !defined(INSTALL_AS_USER)
-	@${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
-	${FIND} ${DOCSDIR} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
-	${FIND} ${DOCSDIR} -type f -print0 | ${XARGS} -0 ${CHMOD} 644
-.endif
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} \
+	    "-not -name 'Makefile*'"
 
 .include <bsd.port.mk>
