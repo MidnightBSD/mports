@@ -1,14 +1,13 @@
-# Created by: timur@FreeBSD.org
-
 PORTNAME=			${SAMBA4_BASENAME}413
 PORTVERSION=			${SAMBA4_VERSION}
-PORTREVISION=			0
+PORTREVISION=			4
 CATEGORIES?=			net
 MASTER_SITES=			SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=			${SAMBA4_DISTNAME}
 
 MAINTAINER=			ports@MidnightSD.org
 COMMENT=			Free SMB/CIFS and AD/DC server and client for Unix
+WWW=				https://www.samba.org/
 
 LICENSE=			gpl3
 LICENSE_FILE=			${WRKSRC}/COPYING
@@ -18,7 +17,9 @@ CONFLICTS_INSTALL?=		samba4-4.0.* samba4[1-9]-4.* samba41[0-24-9]-4.1* p5-Parse-
 
 USES=				cpe
 
-EXTRA_PATCHES+=			${PATCHDIR}/0001-Zfs-provision-1.patch:-p1
+EXTRA_PATCHES+=			${PATCHDIR}/0001-Zfs-provision-1.patch:-p1 \
+				${PATCHDIR}/0001-Compact-and-simplify-modules-build-and-config-genera.patch:-p1 \
+				${PATCHDIR}/CVE-2022-3437-des3-overflow-v4a-4.12.patch:-p1
 
 SAMBA4_BASENAME=		samba
 SAMBA4_PORTNAME=		${SAMBA4_BASENAME}4
@@ -98,7 +99,7 @@ OPTIONS_SINGLE_GSSAPI=		GSSAPI_BUILTIN GSSAPI_MIT
 OPTIONS_SINGLE_ZEROCONF=	ZEROCONF_NONE AVAHI MDNSRESPONDER
 
 OPTIONS_RADIO=			DNS
-OPTIONS_RADIO_DNS=		NSUPDATE BIND911 BIND916
+OPTIONS_RADIO_DNS=		NSUPDATE BIND918 BIND916
 # Make those default options
 OPTIONS_DEFAULT=		AD_DC ADS DOCS FAM LDAP \
 				PROFILE PYTHON3 QUOTAS SYSLOG UTMP \
@@ -131,8 +132,9 @@ ZEROCONF_DESC=			Zero configuration networking
 ZEROCONF_NONE_DESC=		Zeroconf support is absent
 
 DNS_DESC=			DNS frontend
-BIND911_DESC=			Use Bind 9.11 as AD DC DNS server frontend
 BIND916_DESC=			Use Bind 9.16 as AD DC DNS server frontend
+BIND918_DESC=			Use Bind 9.18 as AD DC DNS server frontend
+
 NSUPDATE_DESC=			Use samba NSUPDATE utility for AD DC
 ##############################################################################
 # XXX: Unconditional dependencies which can't be switched off(if present in
@@ -290,8 +292,8 @@ MDNSRESPONDER_CONFIGURE_ENABLE=	dnssd
 MDNSRESPONDER_VARS=		SAMBA4_SERVICES+=mdnsd
 MDNSRESPONDER_LDFLAGS+=         -Ddns_sd
 ##############################################################################
-BIND911_RUN_DEPENDS=		bind911>=9.11.0.0:dns/bind911
 BIND916_RUN_DEPENDS=		bind916>=9.16.0.0:dns/bind916
+BIND918_RUN_DEPENDS=		bind918>=9.18.0.0:dns/bind918
 NSUPDATE_RUN_DEPENDS=		samba-nsupdate:dns/samba-nsupdate
 ##############################################################################
 MEMORY_DEBUG_IMPLIES=		DEBUG
