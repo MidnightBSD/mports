@@ -1,10 +1,11 @@
 PORTNAME=	gnupg
-PORTVERSION=	2.2.19
+DISTVERSION=	2.3.8
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Complete and free PGP implementation
+WWW=		https://www.gnupg.org/
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
@@ -16,43 +17,64 @@ LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libgpg-error.so:security/libgpg-error \
 		libksba.so:security/libksba \
 		libnpth.so:devel/npth
-BUILD_DEPENDS=	libassuan>=2.5.1:security/libassuan \
-		libgpg-error>=1.16:security/libgpg-error
 RUN_DEPENDS=	pinentry:security/pinentry
 
-CONFLICTS=	gnupg-2.0.* dirmngr-[0-9]*
+USES=		compiler:c11 cpe gmake iconv makeinfo pkgconfig readline sqlite tar:bzip2
+
+CONFLICTS=	dirmngr
 CPE_VENDOR=	gnupg
 
-USES=		compiler:c11 cpe gmake iconv pkgconfig readline sqlite tar:bzip2
-CONFIGURE_ARGS=	--disable-ntbtls --disable-wks-tools \
-		--enable-gpg-is-gpg2 --enable-symcryptrun --disable-scdaemon
+CONFIGURE_ARGS=	--disable-ntbtls --enable-gpg-is-gpg2
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 INFO=		gnupg
 TEST_TARGET=	check
+TEST_ARGS=	TESTARGS=--parallel
 
-OPTIONS_DEFINE=	GNUTLS LDAP NLS DOCS SUID_GPG
-OPTIONS_DEFAULT=GNUTLS 
-NO_OPTIONS_SORT=yes
+OPTIONS_DEFINE=	DOCS GNUTLS LARGE_RSA LDAP NLS SCDAEMON SUID_GPG WKS_SERVER
+OPTIONS_DEFAULT=GNUTLS SCDAEMON WKS_SERVER
 OPTIONS_SUB=	yes
 
+LARGE_RSA_DESC=	Enable support for 8192-bit RSA keys
 LDAP_DESC=	LDAP keyserver interface
-SUID_GPG_DESC=	Install GPG with suid
-# In jail, SUID is required to avoid warning
-# (security.bsd.unprivileged_mlock sysctl is not used in jail).
+SCDAEMON_DESC=	Enable Smartcard daemon (with libusb)
+SUID_GPG_DESC=	Install GPG as SUID root
+WKS_SERVER_DESC=Install the Web Key Service server
 
 GNUTLS_CONFIGURE_ENABLE=gnutls
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 
+LARGE_RSA_CONFIGURE_ENABLE=	large-secmem
+
 LDAP_CONFIGURE_WITH=	ldap=${LOCALBASE}
 LDAP_LIBS=		-L${LOCALBASE}/lib
 LDAP_USE=		OPENLDAP=yes
-LDAP_USES=		readline
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
 
+SCDAEMON_CONFIGURE_ENABLE=	scdaemon
+
+WKS_SERVER_CONFIGURE_ENABLE=	wks-tools
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MGNUTLS} && ${PORT_OPTIONS:MLDAP}
+PLIST_SUB+=	DIRMNGRLDAP=""
+.else
+PLIST_SUB+=	DIRMNGRLDAP="@comment "
+.endif
+
+# Touch the texinfo files to force makeinfo to run.  This fixes Linuxisms in
+# the paths in the man pages.
+pre-build:
+	${TOUCH} ${WRKSRC}/doc/*.texi
+
 post-install:
-	@${MV} ${STAGEDIR}${DATADIR}/help*.txt ${STAGEDIR}${DOCSDIR}
+	${MV} ${STAGEDIR}${PREFIX}/bin/gpgsplit ${STAGEDIR}${PREFIX}/bin/gpgsplit2
+	${MV} ${STAGEDIR}${DATADIR}/help*.txt ${STAGEDIR}${DOCSDIR}
+
+# Necessary because of --enable-gpg-is-gpg2
+pre-test:
+	${LN} -s gpg ${WRKSRC}/bin/gpg2
 
 .include <bsd.port.mk>
