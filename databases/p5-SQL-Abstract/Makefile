@@ -1,7 +1,5 @@
-
-
 PORTNAME=	SQL-Abstract
-PORTVERSION=	1.86
+PORTVERSION=	2.000001
 PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to generate SQL from Perl data structures
+WWW=		https://metacpan.org/release/SQL-Abstract
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

@@ -1,11 +1,12 @@
 PORTNAME=	DBIx-Class
-PORTVERSION=	0.082841
+PORTVERSION=	0.082843
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensible and flexible object <-> relational mapper
+WWW=		https://metacpan.org/release/DBIx-Class
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
@@ -20,14 +21,13 @@ BUILD_DEPENDS=	p5-Class-Accessor-Grouped>=0.10012:devel/p5-Class-Accessor-Groupe
 		p5-DBI>=1.57:databases/p5-DBI \
 		p5-Data-Compare>=1.2200:devel/p5-Data-Compare \
 		p5-Data-Dumper-Concise>=2.020:devel/p5-Data-Dumper-Concise \
-		p5-Data-Page>=2.00:databases/p5-Data-Page \
 		p5-Devel-GlobalDestruction>=0.09:devel/p5-Devel-GlobalDestruction \
 		p5-Hash-Merge>=0.12:textproc/p5-Hash-Merge \
 		p5-MRO-Compat>=0.09:devel/p5-MRO-Compat \
 		p5-Module-Find>=0.07:devel/p5-Module-Find \
 		p5-Moo>=2:devel/p5-Moo \
 		p5-Path-Class>=0.18:devel/p5-Path-Class \
-		p5-SQL-Abstract>=1.81:databases/p5-SQL-Abstract \
+		p5-SQL-Abstract-Classic>=1.91:databases/p5-SQL-Abstract-Classic \
 		p5-Scope-Guard>=0.03:devel/p5-Scope-Guard \
 		p5-Sub-Name>=0.04:devel/p5-Sub-Name \
 		p5-Try-Tiny>=0.07:lang/p5-Try-Tiny \

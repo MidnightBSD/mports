@@ -1,20 +1,20 @@
 PORTNAME=	DBI
 PORTVERSION=	1.643
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The perl5 Database Interface.  Required for DBD::* modules
+COMMENT=	Perl5 Database Interface, required for DBD::* modules
+WWW=		https://metacpan.org/release/DBI
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 OPTIONS_DEFINE=	PROXY
 PROXY_DESC=	Build DBI::Proxy
-
-CONFLICTS=	p5-DBI-1.3*
 
 USES=		cpe perl5 shebangfix
 USE_PERL5=	configure
