@@ -7,7 +7,7 @@ DISTFILES=	#empty
 EXTRACT_ONLY=	#empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Formats for Basic TeX engines and the latex command
+COMMENT=	Formats for basic TeX engines and the latex command
 WWW=		https://tug.org/texlive/
 
 LICENSE=	unknown
