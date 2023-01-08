@@ -73,6 +73,7 @@ SUBDIR += p5-MLDBM
 SUBDIR += p5-MLDBM-Sync
 SUBDIR += p5-Pg
 SUBDIR += p5-SQL-Abstract
+SUBDIR += p5-SQL-Abstract-Classic
 SUBDIR += p5-SQL-Abstract-Limit
 SUBDIR += p5-SQL-Statement
 SUBDIR += p5-SQL-Translator
