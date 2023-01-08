@@ -7,6 +7,8 @@ DISTNAME=	${PORTNAME:S/lib//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Routines to access raw VBI capture devices
+WWW=		http://zapping.sourceforge.net/doc/libzvbi/
+
 LICENSE=	gpl2
 
 LIB_DEPENDS+=	libpng.so:graphics/png \
