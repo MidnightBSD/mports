@@ -1,10 +1,11 @@
 PORTNAME=	libgpg-error
-PORTVERSION=	1.45
+PORTVERSION=	1.46
 CATEGORIES=	security devel
 MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common error values for all GnuPG components
+WWW=		https://www.gnupg.org/software/libgpg-error/
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
@@ -18,7 +19,8 @@ CPE_VENDOR=	gnupg
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
 CPP+=			-P
-CONFIGURE_ARGS=		--enable-static=yes
+CONFIGURE_ARGS=		--enable-static=yes \
+			--enable-install-gpg-error-config
 INSTALL_TARGET=		install-strip
 DOCS=		AUTHORS ChangeLog NEWS README
 INFO=		gpgrt
