@@ -1,13 +1,16 @@
 PORTNAME=	gcc
 PORTVERSION=	10.4.0
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 10
+WWW=		https://gcc.gnu.org
 
-LICENSE=	gpl3
+LICENSE=	gpl3 gpl3rle
+LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
@@ -30,13 +33,14 @@ SSP_UNSAFE=	yes
 CFLAGS:=	${CFLAGS:N-mretpoline}
 CXXFLAGS:=	${CXXFLAGS:N-mretpoline}
 
-OPTIONS_DEFINE=		BOOTSTRAP
+OPTIONS_DEFINE=		BOOTSTRAP GRAPHITE
 OPTIONS_DEFAULT=	BOOTSTRAP
 BOOTSTRAP_DESC=		Build using a full bootstrap
+GRAPHITE_DESC=		Support for Graphite loop optimizations
 
 .if exists(/usr/lib32/libc.so)
-OPTIONS_DEFINE_amd64+=                MULTILIB
-OPTIONS_DEFAULT_amd64+=       MULTILIB
+OPTIONS_DEFINE_amd64+=		MULTILIB
+OPTIONS_DEFAULT_amd64+=		MULTILIB
 OPTIONS_DEFINE_powerpc64+=	MULTILIB
 OPTIONS_DEFAULT_powerpc64+=	MULTILIB
 MULTILIB_DESC=		Build support for 32-bit and 64-bit targets
@@ -73,6 +77,7 @@ BINMODE=	755
 .endif
 CONFIGURE_ARGS+=--disable-nls \
 		--enable-gnu-indirect-function \
+		--enable-plugin \
 		--libdir=${TARGLIB} \
 		--libexecdir=${LIBEXEC} \
 		--program-suffix=${SUFFIX} \
@@ -103,6 +108,11 @@ INFO+=		gcc${SUFFIX}/libquadmath \
 SUB_FILES=	pkg-message
 SUB_LIST+=	TARGLIB=${TARGLIB}
 
+.if ${PORT_OPTIONS:MGRAPHITE}
+LIB_DEPENDS+=	libisl.so:devel/isl
+CONFIGURE_ARGS+=--with-isl=${LOCALBASE}
+.endif
+
 CONFIGURE_ARGS+=--enable-languages=${LANGUAGES}
 
 pre-everything::
@@ -124,8 +134,8 @@ post-fake:
 	# Add target libraries and include files to packaging list.
 
 .if ${ARCH} == amd64 && ${PORT_OPTIONS:MMULTILIB}
-	${MKDIR} ${FAKE_DESTDIR}${TARGLIB32}
-	${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/lib32 ${FAKE_DESTDIRDIR}${TARGLIB32}/gcc${SUFFIX}
+	-${MKDIR} ${FAKE_DESTDIR}${TARGLIB32}
+	-${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/lib32 ${FAKE_DESTDIRDIR}${TARGLIB32}/gcc${SUFFIX}
 .endif
 
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${TARGLIB32:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
