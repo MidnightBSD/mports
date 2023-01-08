@@ -2,7 +2,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	3
 PORTREVISION=	1
 
-COMMENT=	Python bindings for GObject
+COMMENT=	Python ${PYTHON_VER} bindings for GObject
 
 SLAVE_PORT=	python
 

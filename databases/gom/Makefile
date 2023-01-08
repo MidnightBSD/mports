@@ -1,10 +1,11 @@
 PORTNAME=	gom
-PORTVERSION=	0.3.3
+PORTVERSION=	0.4
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GObject Data Mapper
+WWW=		https://wiki.gnome.org/Projects/Gom
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
