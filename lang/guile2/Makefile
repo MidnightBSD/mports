@@ -1,14 +1,13 @@
-# Created by: Muhammad Moinur Rahman <5u623l20@gmail.com>
-
 PORTNAME=	guile
 PORTVERSION=	2.2.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
+WWW=		https://www.gnu.org/software/guile/
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
@@ -18,11 +17,13 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 		libunistring.so:devel/libunistring \
 		libffi.so:devel/libffi
 
-USES=		charsetfix compiler:c11 gmake iconv libtool makeinfo ncurses pathfix \
+USES=		charsetfix compiler:c11 cpe gmake iconv libtool makeinfo ncurses pathfix \
 		pkgconfig readline tar:lz
 USE_LDCONFIG=	yes
 
-CONFLICTS_INSTALL=	guile-[0-9]*
+CPE_VENDOR=	gnu
+
+CONFLICTS_INSTALL=	guile guile1
 
 MAKE_JOBS_UNSAFE=	yes
 
