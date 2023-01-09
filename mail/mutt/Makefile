@@ -1,10 +1,9 @@
 PORTNAME=	mutt
 DISTVERSION=	1.13.4
+PORTREVISION=	1
 CATEGORIES+=	mail
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
-		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
 		https://bitbucket.org/mutt/mutt/downloads/ \
-		ftp://ftp.demon.co.uk/pub/mirrors/mutt/ \
 		http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 		http://www2.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv
 DIST_SUBDIR=	mutt
@@ -17,6 +16,7 @@ PATCH_SITES+=	http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small but powerful text based program for read/writing e-mail
+WWW=		http://www.mutt.org/
 
 LICENSE=	gpl2
 
