@@ -6,6 +6,7 @@ CATEGORIES=	archivers devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic-purpose lossless compression algorithm
+WWW=		https://github.com/google/brotli
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
