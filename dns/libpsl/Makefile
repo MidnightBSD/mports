@@ -1,22 +1,21 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	libpsl
 PORTVERSION=	0.21.1
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	https://github.com/rockdaboot/libpsl/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library to handle the Public Suffix List
+WWW=		https://github.com/rockdaboot/libpsl
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	public_suffix_list>=0:dns/public_suffix_list \
-		xsltproc:textproc/libxslt
+BUILD_DEPENDS=	public_suffix_list>=0:dns/public_suffix_list
 
 USES=		libtool localbase:ldflags pathfix pkgconfig python:build shebangfix tar:lz
 
-CONFIGURE_ARGS=	--enable-man \
+CONFIGURE_ARGS=	--disable-man \
 		--with-psl-file=${LOCALBASE}/share/public_suffix_list/public_suffix_list.dat \
 		--with-psl-testfile=${LOCALBASE}/share/public_suffix_list/test_psl.txt
 GNU_CONFIGURE=	yes
