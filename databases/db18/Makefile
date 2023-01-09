@@ -1,5 +1,3 @@
-# Created by: Matthias Andree <mandree@FreeBSD.org>
-
 PORTNAME=	db18
 PORTVERSION=	18.1.40
 CATEGORIES=	databases java
@@ -12,6 +10,7 @@ DIST_SUBDIR=	bdb
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Oracle Berkeley DB, Release ${BDBVER}
+WWW=		https://www.oracle.com/database/berkeley-db/
 
 LICENSE=	agpl bsd3 UPL10
 LICENSE_COMB=	multi

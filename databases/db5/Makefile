@@ -1,6 +1,6 @@
 PORTNAME=	db5
 PORTVERSION=	5.3.28
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	databases java
 MASTER_SITES=	https://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
@@ -9,8 +9,11 @@ PKGNAMEPREFIX?=
 DISTNAME=	db-${PORTVERSION}
 DIST_SUBDIR=	bdb
 
+DEPRECATED=	EOLd, potential security issues, maybe use db18 instead
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Oracle Berkeley DB, revision ${BDBVER}
+WWW=		https://www.oracle.com/database/berkeley-db/db.html
 
 LICENSE=	SLEEPYCAT
 LICENSE_NAME=	Sleepycat
