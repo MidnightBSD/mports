@@ -1,13 +1,12 @@
-# Created by: Olli Hauer
-
 PORTNAME=	pulledpork
-PORTVERSION=	0.7.3
+PORTVERSION=	0.7.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
 MASTER_SITES=	GHL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Script to update snort-2.8+ rules
+WWW=		https://github.com/shirkdog/pulledpork/
 
 LICENSE=	gpl2
 

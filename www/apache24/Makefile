@@ -1,5 +1,6 @@
 PORTNAME=	apache24
 PORTVERSION=	2.4.54
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	APACHE_HTTPD
 DISTNAME=	httpd-${PORTVERSION}
@@ -7,13 +8,14 @@ DIST_SUBDIR=	apache24
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version 2.4.x of Apache web server
+WWW=		https://httpd.apache.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libapr-1.so:devel/apr1 \
-		libpcre.so:devel/pcre
+		libpcre2-8.so:devel/pcre2
 
 USES=		apache:server,2.4 autoreconf compiler:c11 cpe iconv libtool perl5 tar:bzip2
 USE_PERL5=	run

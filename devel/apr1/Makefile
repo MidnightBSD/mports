@@ -8,6 +8,7 @@ DISTFILES=	apr-${APR_VERSION}.tar.gz \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Portability Library
+WWW=		https://apr.apache.org/
 
 LICENSE=	apache2
 
