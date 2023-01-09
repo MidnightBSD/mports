@@ -2709,20 +2709,21 @@ check-umask:
 install-mtree:
 .endif
 
-
-.if !defined(DISABLE_SECURITY_CHECK)
-.if !target(security-check)
-.if !defined(OLD_SECURITY_CHECK)
-
-security-check:
+.    if !defined(DISABLE_SECURITY_CHECK)
+.      if !target(security-check)
+security-check: ${TMPPLIST}
 # Scan PLIST for:
 #   1.  setugid files
 #   2.  accept()/recvfrom() which indicates network listening capability
 #   3.  insecure functions (gets/mktemp/tempnam/[XXX])
 #   4.  startup scripts, in conjunction with 2.
 #   5.  world-writable files/dirs
-#
-	-@${RM} -f ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable ${WRKDIR}/.PLIST.objdump; \
+# 
+#  The ${NONEXISTENT} argument of ${READELF} is there so that there are always
+#  at least two file arguments, and forces it to always output the "File: foo"
+#  header lines.
+# 
+	-@${RM} ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable ${WRKDIR}/.PLIST.readelf; \
 	${AWK} -v prefix='${PREFIX}' ' \
 		match($$0, /^@cwd /) { prefix = substr($$0, RSTART + RLENGTH); if (prefix == "/") prefix=""; next; } \
 		/^@/ { next; } \
@@ -2735,147 +2736,23 @@ security-check:
 	| ${XARGS} -0 -J % ${FIND} % -prune -perm -0002 \! -type l 2> /dev/null > ${WRKDIR}/.PLIST.writable; \
 	${TR} '\n' '\0' < ${WRKDIR}/.PLIST.flattened \
 	| ${XARGS} -0 -J % ${FIND} % -prune ! -type l -type f -print0 2> /dev/null \
-	| ${XARGS} -0 -n 1 ${OBJDUMP} -R 2> /dev/null > ${WRKDIR}/.PLIST.objdump; \
+	| ${XARGS} -0 ${READELF} -r ${NONEXISTENT} 2> /dev/null > ${WRKDIR}/.PLIST.readelf; \
 	if \
-		! ${AWK} -v audit="$${PORTS_AUDIT}" -v destdir="${DESTDIR}" -f ${PORTSDIR}/Tools/scripts/security-check.awk \
-		  ${WRKDIR}/.PLIST.flattened ${WRKDIR}/.PLIST.objdump ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable; \
+		! ${AWK} -v audit="$${PORTS_AUDIT}" -f ${SCRIPTSDIR}/security-check.awk \
+		${WRKDIR}/.PLIST.flattened ${WRKDIR}/.PLIST.readelf ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable; \
 	then \
-		www_site=$$(cd ${.CURDIR} && ${MAKE} www-site); \
-	    if [ ! -z "$${www_site}" ]; then \
+		if [ ! -z "${_WWW}" ]; then \
 			${ECHO_MSG}; \
 			${ECHO_MSG} "      For more information, and contact details about the security"; \
 			${ECHO_MSG} "      status of this software, see the following webpage: "; \
-			${ECHO_MSG} "$${www_site}"; \
+			${ECHO_MSG} "${_WWW}"; \
 		fi; \
 	fi
-
-
-.else # i.e. defined(OLD_SECURITY_CHECK)
-
-security-check:
-# Scan PLIST for:
-#   1.  setugid files
-#   2.  accept()/recvfrom() which indicates network listening capability
-#   3.  insecure functions (gets/mktemp/tempnam/[XXX])
-#   4.  startup scripts, in conjunction with 2.
-#   5.  world-writable files/dirs
-#
-	-@${RM} -f ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.stupid \
-		${WRKDIR}/.PLIST.network ${WRKDIR}/.PLIST.writable; \
-	if [ -n "$$PORTS_AUDIT" ]; then \
-		stupid_functions_regexp=' (gets|mktemp|tempnam|tmpnam|strcpy|strcat|sprintf)$$'; \
-	else \
-		stupid_functions_regexp=' (gets|mktemp|tempnam|tmpnam)$$'; \
-	fi; \
-	for i in `${GREP} -v '^@' ${TMPPLIST}`; do \
-		if [ ! -L "${PREFIX}/$$i" -a -f "${PREFIX}/$$i" ]; then \
-			${OBJDUMP} -R ${PREFIX}/$$i > \
-				${WRKDIR}/.PLIST.objdump 2> /dev/null; \
-			if [ -s ${WRKDIR}/.PLIST.objdump ] ; then \
-				${EGREP} " $$stupid_functions_regexp" \
-					${WRKDIR}/.PLIST.objdump | ${AWK} '{print " " $$3}' | ${TR} -d '\n' \
-					> ${WRKDIR}/.PLIST.stupid; \
-				if [ -n "`${EGREP} ' (accept|recvfrom)$$' ${WRKDIR}/.PLIST.objdump`" ] ; then \
-					if [ -s ${WRKDIR}/.PLIST.stupid ]; then \
-						${ECHO_MSG} -n "${PREFIX}/$$i (USES POSSIBLY INSECURE FUNCTIONS:" >> ${WRKDIR}/.PLIST.network; \
-						${CAT} ${WRKDIR}/.PLIST.stupid >> ${WRKDIR}/.PLIST.network; \
-						${ECHO_CMD} ")" >> ${WRKDIR}/.PLIST.network; \
-					else \
-						${ECHO_CMD} ${PREFIX}/$$i >> ${WRKDIR}/.PLIST.network; \
-					fi; \
-				fi; \
-			fi; \
-			if [ -n "`${FIND} ${PREFIX}/$$i -prune \( -perm -4000 -o -perm -2000 \) \( -perm -0010 -o -perm -0001 \) 2>/dev/null`" ]; then \
-				if [ -s ${WRKDIR}/.PLIST.stupid ]; then \
-					${ECHO_MSG} -n "${PREFIX}/$$i (USES POSSIBLY INSECURE FUNCTIONS:" >> ${WRKDIR}/.PLIST.setuid; \
-					${CAT} ${WRKDIR}/.PLIST.stupid >> ${WRKDIR}/.PLIST.setuid; \
-					${ECHO_CMD} ")" >> ${WRKDIR}/.PLIST.setuid; \
-				else \
-					${ECHO_CMD} ${PREFIX}/$$i >> ${WRKDIR}/.PLIST.setuid; \
-				fi; \
-			fi; \
-		fi; \
-		if [ ! -L "${PREFIX}/$$i" ]; then \
-			if [ -n "`${FIND} ${PREFIX}/$$i -prune -perm -0002 \! -type l 2>/dev/null`" ]; then \
-				 ${ECHO_CMD} ${PREFIX}/$$i >> ${WRKDIR}/.PLIST.writable; \
-			fi; \
-		fi; \
-	done; \
-	${GREP} '^etc/rc.d/' ${TMPPLIST} > ${WRKDIR}/.PLIST.startup; \
-	if [ -s ${WRKDIR}/.PLIST.setuid -o -s ${WRKDIR}/.PLIST.network -o -s ${WRKDIR}/.PLIST.writable ]; then \
-		if [ -n "$$PORTS_AUDIT" ]; then \
-			if [ -z "${DESTDIR}" ] ; then \
-				${ECHO_MSG} "===>  SECURITY REPORT (PARANOID MODE): "; \
-			else \
-				${ECHO_MSG} "===>  SECURITY REPORT FOR ${DESTDIR} (PARANOID MODE): "; \
-			fi; \
-		else \
-			if [ -z "${DESTDIR}" ] ; then \
-				${ECHO_MSG} "===>  SECURITY REPORT: "; \
-			else \
-				${ECHO_MSG} "===>  SECURITY REPORT FOR ${DESTDIR}: "; \
-			fi; \
-		fi; \
-		if [ -s ${WRKDIR}/.PLIST.setuid ] ; then \
-			if [ -z "${DESTDIR}" ] ; then \
-				${ECHO_MSG} "      This port has installed the following binaries,"; \
-			else \
-				${ECHO_MSG} "      This port has installed the following binaries into ${DESTDIR},"; \
-			fi; \
-			${ECHO_MSG} "      which execute with increased privileges."; \
-			${CAT} ${WRKDIR}/.PLIST.setuid; \
-			${ECHO_MSG}; \
-		fi; \
-		if [ -s ${WRKDIR}/.PLIST.network ] ; then \
-			if [ -z "${DESTDIR}" ] ; then \
-				${ECHO_MSG} "      This port has installed the following files, which may act as network"; \
-				${ECHO_MSG} "      servers and may therefore pose a remote security risk to the system."; \
-			else \
-				${ECHO_MSG} "      This port has installed the following files into ${DESTDIR}, which may"; \
-				${ECHO_MSG} "      act as network servers and may therefore pose a remote security risk to"; \
-				${ECHO_MSG} "      the system."; \
-			fi; \
-			${CAT} ${WRKDIR}/.PLIST.network; \
-			${ECHO_MSG}; \
-			if [ -s ${WRKDIR}/.PLIST.startup ] ; then \
-				if [ -z "${DESTDIR}" ] ; then \
-					${ECHO_MSG} "      This port has installed the following startup scripts,"; \
-				else \
-					${ECHO_MSG} "      This port has installed the following startup scripts into ${DESTDIR},"; \
-				fi; \
-				${ECHO_MSG} "      which may cause these network services to be started at boot time."; \
-				${SED} s,^,${PREFIX}/, < ${WRKDIR}/.PLIST.startup; \
-				${ECHO_MSG}; \
-			fi; \
-		fi; \
-		if [ -s ${WRKDIR}/.PLIST.writable ] ; then \
-			if [ -z "${DESTDIR}" ] ; then \
-				${ECHO_MSG} "      This port has installed the following world-writable files/directories."; \
-			else \
-				${ECHO_MSG} "      This port has installed the following world-writable files/directories"; \
-				${ECHO_MSG} "      into ${DESTDIR}."; \
-			fi; \
-			${CAT} ${WRKDIR}/.PLIST.writable; \
-			${ECHO_MSG}; \
-		fi; \
-		${ECHO_MSG} "      If there are vulnerabilities in these programs there may be a security"; \
-		${ECHO_MSG} "      risk to the system. The FreeBSD Project makes no guarantee about the"; \
-		${ECHO_MSG} "      security of ports included in the Ports Collection."; \
-		${ECHO_MSG} "      Please type 'make deinstall' to deinstall the port if this is a concern."; \
-		www_site=$$(cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} www-site); \
-	    if [ ! -z "$${www_site}" ]; then \
-			${ECHO_MSG}; \
-			${ECHO_MSG} "      For more information, and contact details about the security"; \
-			${ECHO_MSG} "      status of this software, see the following webpage: "; \
-			${ECHO_MSG} "$${www_site}"; \
-		fi; \
-	fi
-.endif # !defined(OLD_SECURITY_CHECK)
-.endif
-.else # i.e. defined(DISABLE_SECURITY_CHECK)
+.      endif
+.    else # i.e. defined(DISABLE_SECURITY_CHECK)
 security-check:
 	@${ECHO_MSG} "      WARNING: Security check has been disabled."
-.endif # !defined(DISABLE_SECURITY_CHECK)
+.    endif # !defined(DISABLE_SECURITY_CHECK)
 
 
 
