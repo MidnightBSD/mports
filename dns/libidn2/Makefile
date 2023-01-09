@@ -1,12 +1,12 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	libidn2
-PORTVERSION=	2.3.2
+PORTVERSION=	2.3.4
 CATEGORIES=	dns
 MASTER_SITES=	GNU/libidn
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of IDNA2008 internationalized domain names
+WWW=		https://www.gnu.org/software/libidn/\#libidn2 \
+		https://gitlab.com/libidn/libidn2
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
