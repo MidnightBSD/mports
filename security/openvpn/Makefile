@@ -1,5 +1,5 @@
 PORTNAME=		openvpn
-DISTVERSION=		2.5.7
+DISTVERSION=		2.5.8
 PORTREVISION?=		0
 CATEGORIES=		security net
 MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
@@ -8,6 +8,7 @@ MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT?=		Secure IP/Ethernet tunnel daemon
+WWW=		https://openvpn.net/community/
 
 LICENSE=		gpl2
 LICENSE_FILE=		${WRKSRC}/COPYRIGHT.GPL
@@ -22,7 +23,7 @@ SHEBANG_FILES=		sample/sample-scripts/verify-cn \
 CONFIGURE_ARGS+=	--enable-strict -with-crypto-library=openssl
 # avoid picking up CMAKE, we don't have cmocka in the tarballs.
 CONFIGURE_ENV+=		ac_cv_prog_CMAKE= CMAKE=
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 # let OpenVPN's configure script pick up the requisite libraries,
 # but do not break the plugin build if an older version is installed
