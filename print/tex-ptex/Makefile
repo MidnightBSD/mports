@@ -1,7 +1,7 @@
 PORTNAME=	ptex
 PORTVERSION=	3.6
 PORTREVISION=	2
-CATEGORIES=	japanese print
+CATEGORIES=	print japanese
 MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}/
 PKGNAMEPREFIX=	ja-tex-
 DISTNAME=	texlive-${TEXLIVE_VERSION}-source
