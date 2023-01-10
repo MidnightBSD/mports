@@ -1,5 +1,6 @@
 PORTNAME=	hw-probe
 PORTVERSION=	1.6.5
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,7 @@ LICENSE_COMB=	dual
 
 RUN_DEPENDS+=	dmidecode:sysutils/dmidecode \
 		hwstat:sysutils/hwstat \
+		lsblk:sysutils/lsblk \
 		lscpu:sysutils/lscpu \
 		smartctl:sysutils/smartmontools \
 		cpuid:misc/cpuid \
