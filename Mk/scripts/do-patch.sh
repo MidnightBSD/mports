@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -o pipefail
 
 . "${dp_SCRIPTSDIR}/functions.sh"
 
