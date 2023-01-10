@@ -71,6 +71,12 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 MAKE_JOBS_UNSAFE=	yes
 TEX_FORMATS=	luatex
 
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+DISABLE_SIZE=   yes
+.endif
+
 # buildenv and dumpenv in Makefile uses hard-coded TEXMFCNF.
 post-extract:
 	@${FIND} ${WRKSRC} -name '*.orig' -delete

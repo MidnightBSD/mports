@@ -48,6 +48,12 @@ PLIST_FILES=	bin/afm2tfm \
 		man/man1/afm2tfm.1.gz \
 		man/man1/dvips.1.gz
 
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+DISABLE_SIZE=   yes
+.endif
+
 pre-install:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/texlive-${TEXLIVE_VERSION}-texmf${EXTRACT_SUFX} \
 		${EXTRACT_AFTER_ARGS_TEXMF}

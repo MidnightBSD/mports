@@ -27,4 +27,10 @@ LIBS+=		-L${ICONV_PREFIX}/lib ${ICONV_LIB}
 CPPFLAGS+=	-I${ICONV_PREFIX}/include
 INSTALL_TARGET=	install-strip
 
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+DISABLE_SIZE=   yes
+.endif
+
 .include <bsd.port.mk>
