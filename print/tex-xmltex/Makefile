@@ -1,6 +1,6 @@
 PORTNAME=	xmltex
 PORTVERSION=	1.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}/
 PKGNAMEPREFIX=	tex-
@@ -33,15 +33,14 @@ TEX_FORMATS=	xmltex
 DISABLE_SIZE=	yes
 .endif
 
-pre-install:
+do-install:
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
 	    ${EXTRACT_AFTER_ARGS}
 
-do-install:  do-texhash do-fmtutil
-
 post-fake:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/xmltex.log \
-		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/pdfxmltex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/pdftex/xmltex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/pdftex/pdfxmltex.log \
 
 .include <bsd.port.mk>

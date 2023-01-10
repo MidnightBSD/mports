@@ -248,28 +248,28 @@ do-fmtutil-$F:
 	${TEST} -n '${TEX_FORMAT_${F:tu}}'
 	${PRINTF} "%s\t#$F\n" ${TEX_FORMAT_${F:tu}} \
 	    > ${WRKDIR}/fmtutil.cnf
-	${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFVARDIR}/web2c \
-	    ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/web2c
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${TEXMFVARDIR}/web2c \
+	    ${FAKE_DESTDIR}${PREFIX}/${TEXMFDISTDIR}/web2c
 	${LN} -f -s ${LOCALBASE}/${TEXMFDISTDIR}/web2c/texmf.cnf \
-	    ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/web2c/texmf.cnf
-	${LOCALBASE}/bin/mktexlsr ${TEXHASHDIRS:S,^,${STAGEDIR}${PREFIX}/,}
+	    ${FAKE_DESTDIR}${PREFIX}/${TEXMFDISTDIR}/web2c/texmf.cnf
+	${LOCALBASE}/bin/mktexlsr ${TEXHASHDIRS:S,^,${FAKE_DESTDIR}${PREFIX}/,}
 	${CAT} ${WRKDIR}/fmtutil.cnf | \
 		while read format dum; do \
-		${SETENV} PATH=${STAGEDIR}${PREFIX}/bin:${PATH}:${LOCALBASE}/bin \
-		    TEXMFDIST=${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}:${LOCALBASE}/${TEXMFDISTDIR} \
+		${SETENV} PATH=${FAKE_DESTDIR}${PREFIX}/bin:${PATH}:${LOCALBASE}/bin \
+		    TEXMFDIST=${FAKE_DESTDIR}${PREFIX}/${TEXMFDISTDIR}:${LOCALBASE}/${TEXMFDISTDIR} \
 		    ${LOCALBASE}/bin/fmtutil-sys \
 			--byfmt $$format \
-			--fmtdir ${STAGEDIR}${PREFIX}/${TEXMFVARDIR}/web2c \
+			--fmtdir ${FAKE_DESTDIR}${PREFIX}/${TEXMFVARDIR}/web2c \
 			--cnffile ${WRKDIR}/fmtutil.cnf; \
 		done
 	# XXX
-	#cd ${STAGEDIR}${PREFIX}/${TEXMFVARDIR}/web2c && \
+	#cd ${FAKE_DESTDIR}${PREFIX}/${TEXMFVARDIR}/web2c && \
 	#	${FIND} . -name "*.log" | ${XARGS} \
-	#	    ${REINPLACE_CMD:S/.bak/ ""/} "s,${STAGEDIR},,g"
-	${RM} ${TEXHASHDIRS:S,^,${STAGEDIR}${PREFIX}/,:S,$,/ls-R,} \
-	    ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/web2c/texmf.cnf
-	${RMDIR} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/web2c || ${TRUE}
-	${RMDIR} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR} || ${TRUE}
+	#	    ${REINPLACE_CMD:S/.bak/ ""/} "s,${FAKE_DESTDIR},,g"
+	${RM} ${TEXHASHDIRS:S,^,${FAKE_DESTDIR}${PREFIX}/,:S,$,/ls-R,} \
+	    ${FAKE_DESTDIR}${PREFIX}/${TEXMFDISTDIR}/web2c/texmf.cnf
+	${RMDIR} ${FAKE_DESTDIR}${PREFIX}/${TEXMFDISTDIR}/web2c || ${TRUE}
+	${RMDIR} ${FAKE_DESTDIR}${PREFIX}/${TEXMFDISTDIR} || ${TRUE}
 _PLIST_FILES+=	${TEX_FORMAT_${F:tu}_FILES}
 _PLIST_DIRS+=${TEX_FORMAT_${F:tu}_DIRS}
 _PLIST_FILES+=	${TEX_FORMAT_${F:tu}_BIN}
@@ -302,7 +302,7 @@ TEX_FORMAT_AMSTEX_BIN= \
 TEX_FORMAT_AMSTEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-amstex:
-	${LN} -fs pdftex ${STAGEDIR}${PREFIX}/bin/amstex
+	${LN} -fs pdftex ${FAKE_DESTDIR}${PREFIX}/bin/amstex
 
 TEX_FORMAT_CONTEXT?= \
 	"cont-en pdftex cont-usr.tex -8bit *cont-en.mkii"
@@ -331,7 +331,7 @@ TEX_FORMAT_CSPLAIN_BIN= \
 TEX_FORMAT_CSPLAIN_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-csplain:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/csplain
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/csplain
 
 TEX_FORMAT_EPLAIN?= \
 	"eplain pdftex language.dat -translate-file=cp227.tcx *eplain.ini"
@@ -343,7 +343,7 @@ TEX_FORMAT_EPLAIN_BIN= \
 TEX_FORMAT_EPLAIN_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-eplain:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/eplain
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/eplain
 
 TEX_FORMAT_JADETEX?= \
 	"jadetex pdftex language.dat *jadetex.ini" \
@@ -359,8 +359,8 @@ TEX_FORMAT_JADETEX_BIN= \
 TEX_FORMAT_JADETEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-jadetex:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/jadetex
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/pdfjadetex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/jadetex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/pdfjadetex
 
 TEX_FORMAT_LATEX-BIN?= \
 	"latex pdftex language.dat -translate-file=cp227.tcx *latex.ini" \
@@ -376,8 +376,8 @@ TEX_FORMAT_LATEX-BIN_BIN= \
 TEX_FORMAT_LATEX-BIN_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-latex-bin:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/latex
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/pdflatex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/latex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/pdflatex
 
 TEX_FORMAT_LUATEX?= \
 	"luatex luatex language.def,language.dat.lua luatex.ini" \
@@ -415,14 +415,14 @@ TEX_FORMAT_LUATEX_DIRS=	\
 	${TEXMFVARDIR}/web2c/luatex \
 	${TEXMFVARDIR}/web2c/luajittex
 post-install-luatex:
-	${LN} -sf luatex ${STAGEDIR}${PREFIX}/bin/dviluatex
-	${LN} -sf luatex ${STAGEDIR}${PREFIX}/bin/dvilualatex
-	${LN} -sf luatex ${STAGEDIR}${PREFIX}/bin/lualatex
-	${LN} -sf luatex ${STAGEDIR}${PREFIX}/bin/lualollipop
-	${LN} -sf luatex ${STAGEDIR}${PREFIX}/bin/texlua
-	${LN} -sf luatex ${STAGEDIR}${PREFIX}/bin/texluac
-	${LN} -sf luajittex ${STAGEDIR}${PREFIX}/bin/texluajit
-	${LN} -sf luajittex ${STAGEDIR}${PREFIX}/bin/texluajitc
+	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/dviluatex
+	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/dvilualatex
+	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/lualatex
+	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/lualollipop
+	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/texlua
+	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/texluac
+	${LN} -sf luajittex ${FAKE_DESTDIR}${PREFIX}/bin/texluajit
+	${LN} -sf luajittex ${FAKE_DESTDIR}${PREFIX}/bin/texluajitc
 
 TEX_FORMAT_LOLLIPOP?= \
 	"lollipop pdftex - -translate-file=cp227.tcx *lollipop.ini"
@@ -434,7 +434,7 @@ TEX_FORMAT_LOLLIPOP_BIN= \
 TEX_FORMAT_LOLLIPOP_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-lollipop-bin:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/lollipop
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/lollipop
 
 TEX_FORMAT_METAFONT?= \
 	"mf mf-nowin - -translate-file=cp227.tcx mf.ini"
@@ -464,9 +464,9 @@ TEX_FORMAT_MEX_BIN= \
 TEX_FORMAT_MEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-mex:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/mex
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/pdfmex
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/utf8mex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/mex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/pdfmex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/utf8mex
 
 TEX_FORMAT_MLTEX?= \
 	"mllatex pdftex language.dat -translate-file=cp227.tcx -mltex mllatex.ini" \
@@ -482,8 +482,8 @@ TEX_FORMAT_MLTEX_BIN= \
 TEX_FORMAT_MLTEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-mltex:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/mltex
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/mllatex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/mltex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/mllatex
 
 TEX_FORMAT_MPTOPDF?= \
 	"mptopdf pdftex - -translate-file=cp227.tcx mptopdf.tex"
@@ -512,8 +512,8 @@ TEX_FORMAT_PDFTEX_BIN= \
 TEX_FORMAT_PDFTEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-pdftex:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/pdfetex
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/etex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/pdfetex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/etex
 
 TEX_FORMAT_PTEX?= \
 	"ptex ptex - ptex.ini" \
@@ -542,7 +542,7 @@ TEX_FORMAT_PTEX_DIRS= \
 	${TEXMFVARDIR}/web2c/ptex \
 	${TEXMFVARDIR}/web2c/eptex
 post-install-ptex:
-	${LN} -sf eptex ${STAGEDIR}${PREFIX}/bin/platex
+	${LN} -sf eptex ${FAKE_DESTDIR}${PREFIX}/bin/platex
 
 TEX_FORMAT_TEX?= \
 	"tex tex - tex.ini"
@@ -564,7 +564,7 @@ TEX_FORMAT_TEXSIS_BIN= \
 TEX_FORMAT_TEXSIS_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-texsis:
-	${LN} -sf pdftex ${STAGEDIR}${PREFIX}/bin/texsis
+	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/texsis
 
 TEX_FORMAT_UPTEX?= \
 	"uptex uptex - uptex.ini" \
@@ -585,7 +585,7 @@ TEX_FORMAT_UPTEX_DIRS=	\
 	${TEXMFVARDIR}/web2c/euptex \
 	${TEXMFVARDIR}/web2c/uptex
 post-install-uptex:
-	${LN} -sf euptex ${STAGEDIR}${PREFIX}/bin/uplatex
+	${LN} -sf euptex ${FAKE_DESTDIR}${PREFIX}/bin/uplatex
 
 TEX_FORMAT_XETEX?= \
 	"xetex xetex language.def -etex xetex.ini" \
@@ -611,8 +611,8 @@ TEX_FORMAT_XETEX_BIN=	\
 TEX_FORMAT_XETEX_DIRS=	\
 	${TEXMFVARDIR}/web2c/xetex
 post-install-xetex:
-	${LN} -sf xetex ${STAGEDIR}${PREFIX}/bin/xelatex
-	${LN} -sf xetex ${STAGEDIR}${PREFIX}/bin/xelollipop
+	${LN} -sf xetex ${FAKE_DESTDIR}${PREFIX}/bin/xelatex
+	${LN} -sf xetex ${FAKE_DESTDIR}${PREFIX}/bin/xelollipop
 
 TEX_FORMAT_XMLTEX?= \
 	"xmltex pdftex language.dat *xmltex.ini" \
@@ -628,6 +628,6 @@ TEX_FORMAT_XMLTEX_BIN= \
 TEX_FORMAT_XMLTEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-xmltex:
-	${LN} -sf pdftex ${PREFIX}/bin/xmltex
-	${LN} -sf pdftex ${PREFIX}/bin/pdfxmltex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/xmltex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/pdfxmltex
 .endif
