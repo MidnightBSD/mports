@@ -1190,7 +1190,6 @@ SUBDIR += talloc1
 SUBDIR += tbb
 SUBDIR += tcllib
 SUBDIR += tevent
-SUBDIR += tevent1
 SUBDIR += tex-kpathsea
 SUBDIR += tex-libtexlua
 SUBDIR += tex-libtexluajit
