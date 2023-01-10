@@ -114,6 +114,7 @@ SUBDIR += lmmon
 SUBDIR += lockfile-progs
 SUBDIR += logstash6
 SUBDIR += logstash7
+SUBDIR += lsblk
 SUBDIR += lscpu
 SUBDIR += lsof
 SUBDIR += lttng-ust
