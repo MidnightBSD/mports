@@ -29,6 +29,12 @@ EXCLUDE_FILES=	\*/doc/man texmf-dist/doc/aleph texmf-dist/doc/lualatex \
 
 NO_ARCH=	yes
 
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+DISABLE_SIZE=   yes
+.endif
+
 do-extract:
 	@${MKDIR} ${WRKDIR}
 
