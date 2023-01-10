@@ -6,8 +6,10 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use library for strong hashes such as MD5 and SHA1
+WWW=		http://mhash.sourceforge.net/
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:bzip2 libtool
 USE_LDCONFIG=	yes

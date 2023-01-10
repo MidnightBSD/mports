@@ -1,9 +1,6 @@
-# based on the OpenBSD port
-
-
 PORTNAME=	mcrypt
 PORTVERSION=	2.6.8
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/MCrypt/${PORTVERSION} \
 		ftp://argeas.cs-net.gr/pub/unix/mcrypt/attic/ \
@@ -12,17 +9,25 @@ MASTER_SITES=	SF/${PORTNAME}/MCrypt/${PORTVERSION} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for crypt(1)
+WWW=		http://mcrypt.sourceforge.net/
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libmcrypt.so:security/libmcrypt \
 		libmhash.so:security/mhash
 
-USES=		gettext
+USES=		cpe
+
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lintl
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-static --with-catgets
+
+OPTIONS_DEFINE=	DOCS NLS EXAMPLES
+OPTIONS_SUB=	yes
+NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 post-patch:
 	${REINPLACE_CMD} -e '/malloc\.h/d' ${WRKSRC}/src/rfc2440.c
