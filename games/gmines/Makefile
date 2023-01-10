@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gmines
 PORTVERSION=	0.2
 PORTREVISION=	2
@@ -9,8 +7,9 @@ DISTNAME=	GMines-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Well-known minesweeper game for GNUstep
+WWW=		https://gap.nongnu.org/gmines/
 
-LICENSE=	gpl2 # or later
+LICENSE=	gpl2+
 
 USES=		gnustep
 USE_GNUSTEP=	back build

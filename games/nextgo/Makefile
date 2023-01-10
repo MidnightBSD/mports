@@ -1,14 +1,13 @@
-
-
 PORTNAME=	nextgo
 PORTVERSION=	3.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	NeXTGo-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	classic Go game for OPENSTEP/GNUstep
+COMMENT=	Classic Go game for OPENSTEP/GNUstep
+WWW=		https://www.nongnu.org/gap/nextgo/index.html
 
 LICENSE=	gpl
 LICENSE_FILE=	${WRKSRC}/COPYING
