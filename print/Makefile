@@ -75,6 +75,7 @@ SUBDIR += tex-dvipsk
 SUBDIR += tex-formats
 SUBDIR += tex-jadetex
 SUBDIR += tex-luatex
+SUBDIR += tex-ptex
 SUBDIR += tex-ptexenc
 SUBDIR += tex-xdvik
 SUBDIR += tex-xetex

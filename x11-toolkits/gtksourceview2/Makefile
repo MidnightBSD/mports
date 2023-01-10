@@ -7,7 +7,7 @@ DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Widget that adds syntax highlighting to the GtkTextView
+COMMENT=	Widget that adds syntax highlighting to GtkTextView
 
 LICENSE=	gpl2
 
