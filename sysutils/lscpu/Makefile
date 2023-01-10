@@ -1,16 +1,12 @@
-
-
 PORTNAME=	lscpu
 PORTVERSION=	1.2.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display information about the CPU architecture
+WWW=		https://github.com/NanXiao/lscpu
 
 LICENSE=	bsd3
-
-ONLY_FOR_ARCHS=	amd64 i386
-ONLY_FOR_ARCHS_REASON=	unconditionally invokes x86-specific code
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	NanXiao
