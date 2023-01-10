@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development environment for GNUstep
 WWW=		http://www.gnustep.org/experience/ProjectCenter.html
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 BROKEN=		fails to link: libProjectCenter.so: undefined reference to __objc_ivar_offset_NSView._tracking_rects
 
