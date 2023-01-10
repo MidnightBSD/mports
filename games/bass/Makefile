@@ -1,17 +1,14 @@
-
-
 PORTNAME=	bass
 PORTVERSION=	1.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	games
-MASTER_SITES=	http://de2.eu.scummvm.net/extras/Beneath%20a%20Steel%20Sky/ \
-		http://de1.eu.scummvm.net/extras/Beneath%20a%20Steel%20Sky/ \
-		http://at1.eu.scummvm.net/extras/Beneath%20a%20Steel%20Sky/ \
-		http://lt1.eu.scummvm.net/extras/Beneath%20a%20Steel%20Sky/
+MASTER_SITES=	SF/scummvm/extras/Beneath%20a%20Steel%20Sky/ \
+		https://downloads.scummvm.org/frs/extras/Beneath%20a%20Steel%20Sky/
 DISTNAME=	bass-cd-1.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Beneath a Steel Sky: a post-apocalyptic futuristic graphical adventure
+WWW=		https://www.scummvm.org/games/ #games-sky
 
 LICENSE=	bass
 LICENSE_NAME=	no name
@@ -20,13 +17,13 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 RUN_DEPENDS=	scummvm:games/scummvm
 
-USES=		zip
+USES=		desktop-file-utils zip
 
 NO_BUILD=	yes
 NO_ARCH=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
-SUB_FILES=	pkg-message
+SUB_FILES=	bass.desktop
 
 OPTIONS_DEFINE=	DOCS
 
@@ -35,6 +32,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/sky.dnr ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/sky.dsk ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/sky.cpt ${DATADIR}
+	${INSTALL_DATA} ${WRKDIR}/bass.desktop ${PREFIX}/share/applications
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/readme.txt ${DOCSDIR}
 
