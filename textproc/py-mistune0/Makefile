@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fastest markdown parser in pure Python
 WWW=		https://github.com/lepture/mistune
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cpe python:3.6+
