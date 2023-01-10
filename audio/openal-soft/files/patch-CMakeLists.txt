@@ -1,22 +1,25 @@
---- CMakeLists.txt.orig	2011-02-15 21:05:40.000000000 +0100
-+++ CMakeLists.txt	2011-02-17 21:52:49.000000000 +0100
-@@ -270,10 +270,6 @@
+--- CMakeLists.txt.orig	2020-11-04 10:00:35 UTC
++++ CMakeLists.txt
+@@ -1394,19 +1394,19 @@ endif()
  
-     CHECK_LIBRARY_EXISTS(pthread pthread_setschedparam "" HAVE_PTHREAD_SETSCHEDPARAM)
+ if(ALSOFT_INSTALL_CONFIG)
+     install(FILES alsoftrc.sample
+-        DESTINATION ${CMAKE_INSTALL_DATADIR}/openal)
++        DESTINATION ${CMAKE_INSTALL_DATADIR}/openal-soft)
+     message(STATUS "Installing sample configuration")
+ endif()
  
--    CHECK_LIBRARY_EXISTS(rt clock_gettime "" HAVE_LIBRT)
--    IF(HAVE_LIBRT)
--        SET(EXTRA_LIBS rt ${EXTRA_LIBS})
--    ENDIF()
- ENDIF()
+ if(ALSOFT_INSTALL_HRTF_DATA)
+     install(DIRECTORY hrtf
+-        DESTINATION ${CMAKE_INSTALL_DATADIR}/openal)
++        DESTINATION ${CMAKE_INSTALL_DATADIR}/openal-soft)
+     message(STATUS "Installing HRTF data files")
+ endif()
  
- # Check for a 64-bit type
-@@ -502,7 +498,7 @@
-         DESTINATION include/AL
- )
- INSTALL(FILES "${OpenAL_BINARY_DIR}/openal.pc"
--        DESTINATION "lib${LIB_SUFFIX}/pkgconfig")
-+        DESTINATION "libdata/pkgconfig")
- 
- 
- MESSAGE(STATUS "")
+ if(ALSOFT_INSTALL_AMBDEC_PRESETS)
+     install(DIRECTORY presets
+-        DESTINATION ${CMAKE_INSTALL_DATADIR}/openal)
++        DESTINATION ${CMAKE_INSTALL_DATADIR}/openal-soft)
+     message(STATUS "Installing AmbDec presets")
+ endif()
+ message(STATUS "")
