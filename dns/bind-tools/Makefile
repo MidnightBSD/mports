@@ -1,4 +1,5 @@
 # Define PORTREVISION in ${MASTERDIR}
+
 .ifdef BIND_TOOLS_DEVEL
 MASTERDIR=	${.CURDIR}/../../dns/bind9-devel
 
@@ -7,7 +8,6 @@ PLIST=		${.CURDIR}/pkg-plist-devel
 MASTERDIR=	${.CURDIR}/../../dns/bind918
 
 PLIST=		${.CURDIR}/pkg-plist
-#INSTALL_WRKSRC=	${WRKSRC}/bin
 .endif
 DESCR=		${.CURDIR}/pkg-descr
 

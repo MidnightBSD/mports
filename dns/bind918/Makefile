@@ -4,10 +4,10 @@ PORTNAME=	bind
 PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
-PORTREVISION=	1
+PORTREVISION=	0
 .else
 # dns/bind918 here
-PORTREVISION=	1
+PORTREVISION=	0
 .endif
 CATEGORIES=	dns net
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
@@ -44,7 +44,7 @@ RUN_DEPENDS=	bind-tools>0:dns/bind-tools
 
 USES=		autoreconf compiler:c11 cpe libedit libtool pkgconfig ssl tar:xz
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.18.8
+ISCVERSION=	9.18.10
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
@@ -175,6 +175,10 @@ CONFIGURE_ARGS+=	--enable-developer \
 USES+=			perl5
 USE_PERL5=		build
 BUILD_DEPENDS+=		cmocka>0:sysutils/cmocka
+.endif
+
+.if !${PORT_OPTIONS:MMANPAGES} && !${PORT_OPTIONS:MDOCS}
+CONFIGURE_ENV+=	ac_cv_path_SPHINX_BUILD=:
 .endif
 
 .include <bsd.port.pre.mk>
