@@ -1,15 +1,12 @@
 # New ports collection makefile for:	gag
 # Date created:				31 Aug 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-
-#
 
 PORTNAME=	gag
-PORTVERSION=	4.9
+PORTVERSION=	4.10
 CATEGORIES=	sysutils
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}_${PORTVERSION}
-DISTNAME=	${PORTNAME}_${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}+${PORTVERSION}
+DISTNAME=	${PORTNAME}4_10
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Boot Manager
@@ -20,7 +17,7 @@ NO_BUILD=	yes
 
 # security/gag
 CONFLICTS=	gag-2*
-NO_LATEST_LINK=	yes
+WRKSRC=		${WRKDIR}/gag4.10/
 
 do-install:
 	@${MKDIR} ${DATADIR}
