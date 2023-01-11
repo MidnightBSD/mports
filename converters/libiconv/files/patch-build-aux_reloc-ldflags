@@ -1,20 +1,11 @@
---- build-aux/reloc-ldflags.orig	2020-09-29 16:25:04 UTC
-+++ build-aux/reloc-ldflags
-@@ -56,7 +56,7 @@ esac
- origin_token=
- case "$host_os" in
-   linux* | gnu* | kfreebsd* | \
--  freebsd* | dragonfly* | \
-+  midnightbsd* | freebsd* | dragonfly* | \
-   netbsd* | \
-   openbsd* | \
-   solaris* | \
-@@ -105,7 +105,7 @@ if test -n "$origin_token"; then
+--- build-aux/reloc-ldflags.orig	2022-02-12 07:28:36.000000000 -0500
++++ build-aux/reloc-ldflags	2023-01-10 23:15:01.455606000 -0500
+@@ -107,7 +107,7 @@
      case "$host_os" in
        # At least some versions of FreeBSD, DragonFly, and OpenBSD need the
        # linker option "-z origin". See <https://lekensteyn.nl/rpath.html>.
 -      freebsd* | dragonfly* | openbsd*)
 +      midnightbsd* | freebsd* | dragonfly* | openbsd*)
-         echo "-Wl,-z,origin -Wl,-rpath,$rpath" ;;
-       *)
-         echo "-Wl,-rpath,$rpath" ;;
+         rpath_options="-Wl,-z,origin $rpath_options" ;;
+     esac
+     echo "$rpath_options"

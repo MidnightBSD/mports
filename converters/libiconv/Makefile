@@ -1,11 +1,11 @@
 PORTNAME=	libiconv
-PORTVERSION=	1.16
-PORTREVISION=	1
+PORTVERSION=	1.17
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Character set conversion library
+WWW=		https://www.gnu.org/software/libiconv/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING

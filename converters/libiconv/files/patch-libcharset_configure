@@ -1,31 +1,6 @@
---- libcharset/configure.orig	2019-04-26 15:00:11.000000000 -0400
-+++ libcharset/configure	2021-11-27 14:57:05.253659000 -0500
-@@ -4309,7 +4309,7 @@
-     lt_cv_sys_max_cmd_len=8192;
-     ;;
- 
--  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
-+  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd* | midnightbsd*)
-     # This has been around since 386BSD, at least.  Likely further.
-     if test -x /sbin/sysctl; then
-       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
-@@ -4717,13 +4717,13 @@
-   lt_cv_deplibs_check_method=pass_all
-   ;;
- 
--freebsd* | dragonfly*)
-+freebsd* | dragonfly* | midnightbsd*)
-   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
-     case $host_cpu in
-     i*86 )
-       # Not sure whether the presence of OpenBSD here was a mistake.
-       # Let's accept both of them until this is cleared up.
--      lt_cv_deplibs_check_method='file_magic (FreeBSD|OpenBSD|DragonFly)/i[3-9]86 (compact )?demand paged shared library'
-+      lt_cv_deplibs_check_method='file_magic (FreeBSD|OpenBSD|DragonFly|MidnightBSD)/i[3-9]86 (compact )?demand paged shared library'
-       lt_cv_file_magic_cmd=/usr/bin/file
-       lt_cv_file_magic_test_file=`echo /usr/lib/libc.so.*`
-       ;;
-@@ -5446,7 +5446,7 @@
+--- libcharset/configure.orig	2022-05-15 08:59:11.000000000 -0400
++++ libcharset/configure	2023-01-10 23:16:30.598492000 -0500
+@@ -6212,7 +6212,7 @@
  
  
  
@@ -34,25 +9,7 @@
  do
    # Extract the first word of "$ac_prog", so it can be a program name with args.
  set dummy $ac_prog; ac_word=$2
-@@ -9301,7 +9301,7 @@
-       ;;
- 
-     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
--    freebsd* | dragonfly*)
-+    freebsd* | dragonfly* | midnightbsd*)
-       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
-       hardcode_libdir_flag_spec='-R$libdir'
-       hardcode_direct=yes
-@@ -10346,7 +10346,7 @@
-   shlibpath_var=LD_LIBRARY_PATH
-   ;;
- 
--freebsd* | dragonfly*)
-+freebsd* | dragonfly* | midnightbsd*)
-   # DragonFly does not have aout.  When/if they implement a new
-   # versioning mechanism, adjust this.
-   if test -x /usr/bin/objformat; then
-@@ -10359,13 +10359,13 @@
+@@ -11250,13 +11250,13 @@
    fi
    version_type=freebsd-$objformat
    case $version_type in
@@ -68,15 +25,12 @@
        library_names_spec='$libname$release$shared_ext$versuffix $libname$shared_ext$versuffix'
        need_version=yes
        ;;
-@@ -11902,9 +11902,9 @@
-         fi
-         ;;
-       # FreeBSD >= 7.3, DragonFly >= 3.0: yes.
--      freebsd | freebsd[1-7] | freebsd[1-6].* | freebsd7.[0-2]) ;;
-+      midnightbsd| freebsd | freebsd[1-7] | freebsd[1-6].* | freebsd7.[0-2]) ;;
-       dragonfly | dragonfly[1-2] | dragonfly[1-2].*) ;;
--      freebsd* | dragonfly*) use_elf_origin_trick=yes ;;
-+      midnightbsd* | freebsd* | dragonfly*) use_elf_origin_trick=yes ;;
-       # NetBSD >= 8.0: yes.
-       netbsd | netbsd[1-7] | netbsd[1-7].*) ;;
-       netbsdelf | netbsdelf[1-7] | netbsdelf[1-7].*) ;;
+@@ -12408,7 +12408,7 @@
+       { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ printf "%s\n" "yes" >&6; }
+       ;;
+-    freebsd*)
++    midnightbsd*|freebsd*)
+       if $STRIP -V 2>&1 | $GREP "elftoolchain" >/dev/null; then
+         old_striplib="$STRIP --strip-debug"
+         striplib="$STRIP --strip-unneeded"
