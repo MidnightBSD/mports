@@ -1,11 +1,10 @@
-# Created by: Sebastian Yepes F. <esn@x123.info>
-
 PORTNAME=	apachetop
-PORTVERSION=	0.19.7
+DISTVERSION=	0.19.7
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache realtime log stats
+WWW=		https://github.com/tessus/apachetop
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -14,8 +13,9 @@ USES=		autoreconf:2.69 cpe ncurses readline
 USE_GITHUB=	yes
 GH_ACCOUNT=	tessus
 
-HAS_CONFIGURE=	yes
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--mandir=${PREFIX}/man
+CONFIGURE_ENV+=	NCURSES_CFLAGS="-I${NCURSESINC}" NCURSES_LIBS="-lncursesw"
 
 PLIST_FILES=	bin/${PORTNAME} man/man1/${PORTNAME}.1.gz
 
