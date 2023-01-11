@@ -205,7 +205,6 @@ SUBDIR += uefi-edk2-bhyve-csm
 SUBDIR += ufs_copy
 SUBDIR += uif2iso
 SUBDIR += upower
-SUBDIR += upsd
 SUBDIR += userboot-freebsd
 SUBDIR += vm-bhyve
 SUBDIR += vpnc-scripts
