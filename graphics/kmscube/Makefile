@@ -1,9 +1,10 @@
 PORTNAME=	kmscube
-PORTVERSION=	s20201028
+PORTVERSION=	s20220902
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Example KMS/GBM/EGL application
+WWW=		https://gitlab.freedesktop.org/mesa/kmscube
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -15,7 +16,7 @@ USE_GITLAB=	yes
 USE_GL=		egl gbm glesv2
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	mesa
-GL_COMMIT=	e6386d1b99366ea7559438c0d3abd2ae2d6d61ac
+GL_COMMIT=	3bf6ee1a02334386d87cfe356c3bfb0b24e1fed8
 PLIST_FILES=	bin/${PORTNAME} \
 		bin/texturator \
 		${NULL}
@@ -23,11 +24,11 @@ PLIST_FILES=	bin/${PORTNAME} \
 OPTIONS_DEFINE=	GSTREAMER PNG
 OPTIONS_DEFAULT=PNG
 
-GSTREAMER_USES=		gnome
+GSTREAMER_USES=		gnome gstreamer
 GSTREAMER_USE=		GNOME=glib20 GSTREAMER1=yes
 GSTREAMER_MESON_ENABLED=gstreamer
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GL_COMMIT}-${GL_COMMIT}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${GL_COMMIT}
 
 PNG_LIB_DEPENDS=	libpng.so:graphics/png
 
