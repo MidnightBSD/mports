@@ -1,16 +1,17 @@
 PORTNAME=	hunspell
-PORTVERSION=	1.7.0
+PORTVERSION=	1.7.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Improved spell-checker for Hungarian and other languages
+WWW=		https://hunspell.github.io/
 
 LICENSE=	gpl2 lgpl2.1 mpl
 LICENSE_COMB=	dual
 
-CONFLICTS_INSTALL=	tinker-[0-9]*
+CONFLICTS_INSTALL=	tinker
 CONFIGURE_ARGS=	--disable-nls ${ICONV_CONFIGURE_ARG} --with-readline --with-ui
 GNU_CONFIGURE=	yes
 USES=		autoreconf compiler:c++11-lib cpe gettext-tools libtool:keepla \
