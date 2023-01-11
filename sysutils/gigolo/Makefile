@@ -7,6 +7,7 @@ MASTER_SITES=	XFCE/apps
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Frontend to easily manage filesystem connections
+WWW=		https://docs.xfce.org/apps/gigolo/start
 
 LICENSE=	gpl2
 

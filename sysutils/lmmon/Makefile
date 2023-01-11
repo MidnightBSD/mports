@@ -1,5 +1,3 @@
-
-
 PORTNAME=	lmmon
 PORTVERSION=	0.65
 PORTREVISION=	1
@@ -8,8 +6,8 @@ MASTER_SITES=	FREEBSD_LOCAL/bf
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display information gathered from MB power management controller
-LICENSE=	bsd2
 
+LICENSE=	bsd2
 
 USES=		ncurses uidfix
 GNU_CONFIGURE=	yes
