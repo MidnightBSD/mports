@@ -1,15 +1,16 @@
 PORTNAME=	patch
 PORTVERSION=	2.7.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNU DEBIAN_POOL:dp
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		${PORTNAME}_${PORTVERSION}-6.debian${EXTRACT_SUFX}:dp
+		${PORTNAME}_${PORTVERSION}-7.debian${EXTRACT_SUFX}:dp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU patch utility
+WWW=		https://savannah.gnu.org/projects/patch/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 EXTRA_PATCHES=	${WRKDIR}/debian/patches/[^0]*.patch \
 		${WRKDIR}/debian/patches/0*.patch
