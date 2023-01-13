@@ -5,6 +5,7 @@ MASTER_SITES=	https://developers.yubico.com/yubico-c/Releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for decrypting and parsing YubiKey One-Time Passwords
+WWW=		https://developers.yubico.com/yubico-c/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
