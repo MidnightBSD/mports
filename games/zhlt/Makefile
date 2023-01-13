@@ -6,6 +6,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION:S/.//}f-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Zoner's Half-Life compile tools
+WWW=		http://zhlt.info/
 
 LICENSE=	other
 

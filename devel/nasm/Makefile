@@ -1,15 +1,15 @@
 # Created by: Murray Stokely <murray@cdrom.com>
 
 PORTNAME=	nasm
-PORTVERSION=	2.15.05
+PORTVERSION=	2.16.01
 PORTEPOCH=	1
-PORTREVISION=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	https://www.nasm.us/pub/nasm/releasebuilds/${PORTVERSION}/ \
 		https://mirror.sobukus.de/files/src/nasm/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General-purpose multi-platform x86 and amd64 assembler
+WWW=		https://www.nasm.us/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -22,12 +22,10 @@ MAKE_ARGS+=	INSTALLROOT=${FAKE_DESTDIR}
 INSTALL_TARGET=	install #needed for RDOFF_INSTALL_TARGET
 CPE_VENDOR=	nasm
 CPE_PRODUCT=	netwide_assembler
+USE_PERL5=	build
 
-OPTIONS_DEFINE=	RDOFF DOCS
+OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
-
-RDOFF_DESC=		Install tools to handle RDOFF object files
-RDOFF_INSTALL_TARGET=	install_rdf
 
 DOCS_DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}-xdoc${EXTRACT_SUFX}
 PORTDOCS=	*

@@ -6,6 +6,7 @@ MASTER_SITES=	https://www.tortall.net/projects/yasm/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Complete rewrite of the NASM assembler
+WWW=		https://yasm.tortall.net/
 
 LICENSE=	bsd3
 

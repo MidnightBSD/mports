@@ -1,5 +1,6 @@
 PORTNAME=	zdoom
 PORTVERSION=	2.8.1
+PORTREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -33,7 +34,7 @@ CXXFLAGS+=	-DSHARE_DIR=\\\"${DATADIR}\\\"
 DESKTOP_ENTRIES=	"ZDoom" "" "${PORTNAME}" "${PORTNAME}" "Game;Shooter;" ""
 
 PLIST_FILES=	bin/${PORTNAME} \
-		${DATADIR}/${PORTNAME}.pk3 \
+		share/doom/zdoom/${PORTNAME}.pk3 \
 		share/pixmaps/${PORTNAME}.xpm
 
 OPTIONS_DEFINE=	FLUIDSYNTH
@@ -45,6 +46,10 @@ FLUIDSYNTH_CMAKE_BOOL=	WITH_FLUIDSYNTH
 
 .include "${.CURDIR}/../doom-data/Makefile.include"
 .include <bsd.mport.options.mk>
+
+.if ${ARCH} != amd64 && ${ARCH} != i386
+CMAKE_ARGS+=	-DNO_ASM:BOOL=ON
+.endif
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
