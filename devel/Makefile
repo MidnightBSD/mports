@@ -347,6 +347,7 @@ SUBDIR += p5-AnyEvent-I3
 SUBDIR += p5-App-cpanminus 
 SUBDIR += p5-AppConfig
 SUBDIR += p5-B-C
+SUBDIR += p5-B-COW
 SUBDIR += p5-B-Flags
 SUBDIR += p5-B-Hooks-EndOfScope
 SUBDIR += p5-B-Hooks-OP-Check

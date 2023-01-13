@@ -6,6 +6,7 @@ MASTER_SITES=	http://tx97.net/pub/distfiles/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LALR(1) parser generator. Similar in function to yacc and bison
+WWW=		https://www.hwaci.com/sw/lemon/
 
 LICENSE=	publicdom
 
