@@ -1,11 +1,12 @@
 PORTNAME=	libtasn1
-PORTVERSION=	4.18.0
+PORTVERSION=	4.19.0
 CATEGORIES=	security
 MASTER_SITES=	GNU \
 		GNUPG/gnutls/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library
+WWW=		https://www.gnu.org/software/libtasn1/
 
 LICENSE=	lgpl2.1 gpl3
 LICENSE_COMB=	multi
