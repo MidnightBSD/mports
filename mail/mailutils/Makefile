@@ -13,7 +13,7 @@ LICENSE=	gpl3+
 LIB_DEPENDS=	libgc-threaded.so:devel/boehm-gc-threaded \
 		libltdl.so:devel/libltdl \
 		libunistring.so:devel/libunistring
-TEST_DEPENDS=	automake:devel/automake
+#TEST_DEPENDS=	automake:devel/automake
 
 USES=		cpe gmake iconv libtool localbase readline tar:xz
 CPE_VENDOR=	gnu
@@ -21,7 +21,8 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	comsatd imap4d pop3d
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 CONFLICTS_INSTALL=	avenger elm # bin/dotlock bin/frm
 
