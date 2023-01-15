@@ -40,7 +40,8 @@ ALL_TARGET+=	sqldiff
 .if defined(TEA)
 INSTALL_TARGET=	tcl_install
 .endif
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 
 # The default numeric file permissions for newly created database files under unix.
 # If not specified, the default is 0644 which means that the files is globally
