@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2023-01-15 01:35:42.971936000 -0500
++++ CMakeLists.txt	2023-01-15 01:36:01.098638000 -0500
+@@ -16,7 +16,7 @@
+     set(USING_GCC "YES")
+ endif()
+ 
+-if("${CMAKE_SYSTEM_NAME}" MATCHES "FreeBSD" OR "${CMAKE_SYSTEM_NAME}" MATCHES "NetBSD")
++if("${CMAKE_SYSTEM_NAME}" MATCHES "FreeBSD" OR "${CMAKE_SYSTEM_NAME}" MATCHES "MidnightBSD")
+     set(BSD "YES")
+ endif()
+ 
