@@ -189,6 +189,7 @@ SUBDIR += zebra
 SUBDIR += zebra-server
 SUBDIR += zerotier
 SUBDIR += zillion
+SUBDIR += zmap
 SUBDIR += zsync
 
 .include <bsd.port.subdir.mk>
