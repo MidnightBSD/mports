@@ -1,7 +1,5 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/SQL::Abstract::Limit.3
+%%PERL5_MAN3%%/SQL::Abstract::Limit.3.gz
 %%SITE_PERL%%/SQL/Abstract/Limit.pm
-@dir share/licenses/p5-SQL-Abstract-Limit-0.141_2
-@dir share/licenses
 @dir %%SITE_PERL%%/%%PERL5_MAN3%%
 @dir %%SITE_PERL%%/man
 @dir %%SITE_PERL%%/SQL/Abstract
