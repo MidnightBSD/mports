@@ -228,6 +228,7 @@ SUBDIR += py-Tempita
 SUBDIR += py-alabaster
 SUBDIR += py-bracex
 SUBDIR += py-chardet
+SUBDIR += py-charset-normalizer
 SUBDIR += py-cssselect2
 SUBDIR += py-docutils
 SUBDIR += py-enrich
