@@ -1,20 +1,20 @@
 PORTNAME=	UCD
-PORTVERSION=	14.0.0
+PORTVERSION=	15.0.0
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.unicode.org/Public/zipped/${PORTVERSION}/:src\
-		ftp://www.unicode.org/Public/zipped/${PORTVERSION}/:src	\
-		https://www.unicode.org/:lic
+MASTER_SITES=	https://www.unicode.org/Public/zipped/${DISTVERSION}/:src	\
+		https://raw.githubusercontent.com/unicode-org/unihan-database/0da97601945f29dbd34ebc1a2f3bbd28bf3f8462/:lic
 DISTFILES=	${PORTNAME}.zip:src	\
-		license.txt:lic
+		LICENSE.md:lic
 DIST_SUBDIR=	unicode-${PORTNAME}/${DISTVERSION}
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unicode Character Database
+WWW=		https://unicode.org/ucd/
 
 LICENSE=	Unicode_License_Agreement
 LICENSE_NAME=	Unicode License Agreement
-LICENSE_FILE=	${_DISTDIR}/license.txt
+LICENSE_FILE=	${_DISTDIR}/LICENSE.md
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 OPTIONS_DEFINE=	HAN
