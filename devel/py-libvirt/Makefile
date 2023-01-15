@@ -1,7 +1,5 @@
-# Created by: Jason Helfman <jgh@FreeBSD.org>
-
 PORTNAME=	libvirt
-PORTVERSION=	8.3.0
+PORTVERSION=	8.10.0
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/python/ \
 		ftp://libvirt.org/libvirt/python/
@@ -10,6 +8,7 @@ DISTNAME=	${PORTNAME}-python-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for Libvirt virtualization API
+WWW=		https://libvirt.org/python.html
 
 LICENSE=	gpl2
 
