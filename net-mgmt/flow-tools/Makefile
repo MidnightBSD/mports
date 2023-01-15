@@ -55,10 +55,10 @@ post-patch:
 post-install:
 	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/libft.so.0.0.0
 
-post-stage:
+post-fake:
 .for f in asn.sym filter.cfg ip-prot.sym ip-type.sym map.cfg mask.cfg stat.cfg \
 	tag.cfg tag.sym tcp-port.sym xlate.cfg
-	@${MV} ${STAGEDIR}${ETCDIR}/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
+	@${MV} ${FAKE_DESTDIR}${ETCDIR}/${f} ${FAKE_DESTDIR}${ETCDIR}/${f}.sample
 .endfor
 
 .include <bsd.port.post.mk>
