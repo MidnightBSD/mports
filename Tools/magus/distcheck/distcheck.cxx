@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 				fs::path f{string(argv[5]) + "/" + filename};
 				if (fs::exists(f))
 				{
-					cout << name << " license: " << license << " filename: " << filename << endl;
+					cout << name << " , license: " << license << " , filename: " << filename << endl;
 				}
 			}
 		}
