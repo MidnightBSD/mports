@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libicuuc.so:devel/icu \
 		libgnutls.so:security/gnutls
 
-USES=		gnome iconv libtool ncurses pathfix pkgconfig readline \
+USES=		gnome iconv libtool ncurses pathfix localbase:ldflags pkgconfig readline \
 		shebangfix tcl
 SHEBANG_FILES=	src/yaz-asncomp
 GNU_CONFIGURE=	yes
@@ -24,7 +24,6 @@ MAKE_JOBS_UNSAFE=	yes
 CONFIGURE_ARGS=	--enable-shared --with-iconv=${ICONV_PREFIX} \
 		--with-xml2=${LOCALBASE} --with-xslt=${LOCALBASE} \
 		--with-icu=${LOCALBASE} --enable-tcpd
-LDFLAGS+=	-L${LOCALBASE}/lib
 LIBS+=		-lexecinfo
 
 PORTDOCS=	*
