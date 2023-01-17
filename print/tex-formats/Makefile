@@ -27,6 +27,6 @@ post-extract:
 	mkdir ${WRKSRC}
 	mkdir ${FAKE_DESTDIR}
 
-do-install: do-texhash do-fmtutil
+do-install:
 
 .include <bsd.port.mk>
