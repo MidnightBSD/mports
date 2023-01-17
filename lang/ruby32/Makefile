@@ -41,9 +41,9 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
                 --with-bindir="${LOCALBASE}/bin" \
                 --with-sitedir="${LOCALBASE}/lib/ruby/site_ruby" \
                 --with-vendordir="${LOCALBASE}/lib/ruby/vendor_ruby" \
-                --with-rubyhdrdir="${LOCALBASE}/include/ruby-3.0/" \
+                --with-rubyhdrdir="${LOCALBASE}/include/ruby-3.2/" \
                 --with-rubylibprefix="${LOCALBASE}/lib/ruby" \
-                --docdir="${LOCALBASE}/share/doc/ruby26" \
+                --docdir="${LOCALBASE}/share/doc/ruby32" \
                 --mandir="${LOCALBASE}/man" \
                --with-destdir=${FAKE_DESTDIR}
 CONFIGURE_ENV=	debugflags=
