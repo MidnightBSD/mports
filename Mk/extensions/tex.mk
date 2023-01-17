@@ -302,7 +302,7 @@ TEX_FORMAT_AMSTEX_BIN= \
 TEX_FORMAT_AMSTEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-amstex:
-	${LN} -fs pdftex ${FAKE_DESTDIR}${PREFIX}/bin/amstex
+	${LN} -fs pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/amstex
 
 TEX_FORMAT_CONTEXT?= \
 	"cont-en pdftex cont-usr.tex -8bit *cont-en.mkii"
