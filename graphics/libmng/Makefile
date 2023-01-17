@@ -7,6 +7,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-devel/${PORTVERSION} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiple-image Network Graphics (MNG) reference library
+WWW=		https://www.libmng.com/
 
 LICENSE=	bsd3
 
