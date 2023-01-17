@@ -41,9 +41,9 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
                 --with-bindir="${LOCALBASE}/bin" \
                 --with-sitedir="${LOCALBASE}/lib/ruby/site_ruby" \
                 --with-vendordir="${LOCALBASE}/lib/ruby/vendor_ruby" \
-                --with-rubyhdrdir="${LOCALBASE}/include/ruby-3.0/" \
+                --with-rubyhdrdir="${LOCALBASE}/include/ruby-3.1/" \
                 --with-rubylibprefix="${LOCALBASE}/lib/ruby" \
-                --docdir="${LOCALBASE}/share/doc/ruby26" \
+                --docdir="${LOCALBASE}/share/doc/ruby31" \
                 --mandir="${LOCALBASE}/man" \
                --with-destdir=${FAKE_DESTDIR}
 CONFIGURE_ENV=	debugflags=
@@ -135,6 +135,8 @@ EXTDOCS=	readline/README ripper/README stringio/README.md \
 RB_SET_CONF_VAR=	${SH} -c \
 			'${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]]*=[[:space:]]*)(\(?)(.*)(\)?),\1\2$$1\4," ${WRKSRC}/rbconfig.rb' \
 			--
+
+OSMAJOR=        ${OSREL:C/\..*//}
 
 post-patch:
 # We get these from other ports
