@@ -5,6 +5,7 @@ MASTER_SITES=	RG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, Enjoyable HTML Parser for Ruby
+WWW=		https://github.com/hpricot/hpricot
 
 LICENSE=	mit
 
@@ -15,7 +16,7 @@ RUBY_VER_SHORT=            ${RUBY_VER:S/.//}
 
 pre-build:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/bin/
-	${LN} /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_VER_SHORT}
+	${LN} -sf /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_VER_SHORT}
 
 post-fake:
 	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/hpricot-0.8.6/rdoc/ext/fast_xs/Makefile.html \

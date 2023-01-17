@@ -5,8 +5,10 @@ MASTER_SITES=	RG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast Markdown converter for ruby based on discount
+WWW=		https://dafoster.net/projects/rdiscount/
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_RUBY=	yes
 USES=		gem
@@ -17,7 +19,7 @@ RUBY_VER_SHORT=            ${RUBY_VER:S/.//}
 
 pre-build:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/bin/
-	${LN} /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_VER_SHORT}
+	${LN} -sf /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_VER_SHORT}
 
 post-fake:
 	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/bin/rdiscount \

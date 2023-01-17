@@ -127,6 +127,7 @@ SUBDIR += opencore-amr
 SUBDIR += opus
 SUBDIR += opusfile
 SUBDIR += pavucontrol
+SUBDIR += pcaudiolib
 SUBDIR += portaudio
 SUBDIR += portmidi
 SUBDIR += pulseaudio

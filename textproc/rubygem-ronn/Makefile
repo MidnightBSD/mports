@@ -5,8 +5,10 @@ MASTER_SITES=	RG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Builds manuals
+WWW=		https://rtomayko.github.io/ronn/
 
-LICENSE=	other
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	rubygem-hpricot>=0.8.2:www/rubygem-hpricot \
 		rubygem-rdiscount>=1.5.8:textproc/rubygem-rdiscount \
@@ -19,7 +21,7 @@ PLIST_FILES=	bin/ronn
 
 pre-build:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/bin/
-	${LN} ${RUBY} ${FAKE_DESTDIR}${RUBY}
+	${LN} -sf ${RUBY} ${FAKE_DESTDIR}${RUBY}
 
 post-fake:
 	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/bin/ronn 
