@@ -10,6 +10,7 @@ SUBDIR += celt
 SUBDIR += chromaprint
 SUBDIR += esound
 SUBDIR += espeak
+SUBDIR += espeak-ng
 SUBDIR += faac
 SUBDIR += faad
 SUBDIR += faudio
