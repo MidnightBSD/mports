@@ -12,7 +12,7 @@ BUILD_DEPENDS=	git>0:devel/git \
 		hidapi>0:comms/hidapi \
 		mbedtls>0:security/mbedtls \
 		qt5-qmake>0:devel/qt5-qmake
-LIB_DEPENDS=	libGL.so:graphics/libglvnd \
+LIB_DEPENDS=	libOpenGL.so:graphics/libglvnd \
 		libhidapi.so:comms/hidapi \
 		libmbedcrypto.so:security/mbedtls \
 		libmbedtls.so:security/mbedtls \
