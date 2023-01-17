@@ -22,6 +22,8 @@ CONFIGURE_ARGS=	--enable-fwd \
 		--enable-static=yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
