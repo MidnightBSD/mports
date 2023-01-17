@@ -1,9 +1,11 @@
 PORTNAME=	compton
 PORTVERSION=	20160907
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Feature-rich compositing window manager for X11
+WWW=		https://github.com/chjj/compton
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
