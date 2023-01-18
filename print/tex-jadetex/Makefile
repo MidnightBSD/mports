@@ -14,7 +14,7 @@ WWW=		http://jadetex.sourceforge.net/
 
 LICENSE=	gpl2
 
-USES=		tar:xz
+USES=		tar:xz tex
 USE_TEX=	texmf pdftex xmltex fmtutil
 TEXHASHDIRS=	${TEXMFDISTDIR} ${TEXMFVARDIR}
 EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
@@ -27,6 +27,12 @@ EXTRACT_FILES= \
 NO_WRKSRC=	yes
 NO_BUILD=	yes
 TEX_FORMATS=	jadetex
+
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+DISABLE_SIZE=   yes
+.endif
 
 pre-install:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share
