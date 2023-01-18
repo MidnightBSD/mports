@@ -98,6 +98,13 @@ pre-install:
 	${REINPLACE_CMD} -i '' -e 's|/bin/bash|${TRUE_PREFIX}/bin/bash|' \
 		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/lualatex/wallcalendar/doc/examples/diff-cal.sh
 
+post-fake:
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luajittex/luajittex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luatex/dviluatex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luatex/luatex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luatex/pdfcsplain.log
+
 post-install:
 	${FIND} -s ${STAGEDIR}${PREFIX}/share/texmf-dist -not -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
