@@ -70,6 +70,12 @@ CONFIGURE_ARGS+=--with-system-$L \
 MAKE_JOBS_UNSAFE=	yes
 TEX_FORMATS=	ptex uptex
 
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+DISABLE_SIZE=   yes
+.endif
+
 post-extract:
 	@${FIND} ${WRKSRC} -name '*.orig' -delete
 
