@@ -343,7 +343,7 @@ TEX_FORMAT_EPLAIN_BIN= \
 TEX_FORMAT_EPLAIN_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-eplain:
-	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/eplain
+	${LN} -sf pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/eplain
 
 TEX_FORMAT_JADETEX?= \
 	"jadetex pdftex language.dat *jadetex.ini" \
@@ -359,8 +359,8 @@ TEX_FORMAT_JADETEX_BIN= \
 TEX_FORMAT_JADETEX_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-jadetex:
-	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/jadetex
-	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/pdfjadetex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/jadetex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/pdfjadetex
 
 TEX_FORMAT_LATEX-BIN?= \
 	"latex pdftex language.dat -translate-file=cp227.tcx *latex.ini" \
@@ -376,8 +376,8 @@ TEX_FORMAT_LATEX-BIN_BIN= \
 TEX_FORMAT_LATEX-BIN_DIRS= \
 	${TEXMFVARDIR}/web2c/pdftex
 post-install-latex-bin:
-	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/latex
-	${LN} -sf pdftex ${FAKE_DESTDIR}${PREFIX}/bin/pdflatex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/latex
+	${LN} -sf pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/pdflatex
 
 TEX_FORMAT_LUATEX?= \
 	"luatex luatex language.def,language.dat.lua luatex.ini" \
