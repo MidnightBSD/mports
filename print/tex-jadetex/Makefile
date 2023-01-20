@@ -34,14 +34,14 @@ TEX_FORMATS=	jadetex
 DISABLE_SIZE=   yes
 .endif
 
-pre-install:
+do-install:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
 	    ${EXTRACT_AFTER_ARGS}
 
-do-install: do-texhash do-fmtutil
+post-fake:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-		${PREFIX}/share/texmf-var/web2c/pdftex/jadetex.log \
-		${PREFIX}/share/texmf-var/web2c/pdftex/pdfjadetex.log
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/jadetex.log \
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/pdfjadetex.log
 
 .include <bsd.port.mk>
