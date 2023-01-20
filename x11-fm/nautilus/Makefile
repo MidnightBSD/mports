@@ -1,35 +1,40 @@
 PORTNAME=	nautilus
-PORTVERSION=	3.28.1
-PORTREVISION=	2
+PORTVERSION=	42.2
 CATEGORIES=	x11-fm gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager for the GNOME desktop
+WWW=		https://wiki.gnome.org/Apps/Nautilus
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libgnome-autoar-0.so:archivers/gnome-autoar \
-		libgexiv2.so:graphics/gexiv2 \
-		libtracker-sparql-2.0.so:sysutils/tracker
+LIB_DEPENDS=	libgexiv2.so:graphics/gexiv2 \
+		libgnome-autoar-0.so:archivers/gnome-autoar \
+		libhandy-1.so:x11-toolkits/libhandy \
+		libportal.so:deskutils/libportal \
+		libtotem.so:multimedia/totem \
+		libtracker-sparql-3.0.so:sysutils/tracker3
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 cpe desktop-file-utils gettext gnome \
-		localbase meson pkgconfig python:3.4+,build tar:xz
+USES=		compiler:c11 cpe desktop-file-utils gettext gnome gstreamer localbase meson \
+		pkgconfig python:3.6+,build tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 gnomedesktop3
-INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 USE_XORG=	x11
 MESON_ARGS=	-Dpackagekit=false \
 		-Dselinux=false
-CPE_VENDOR=	gnome
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.nautilus.gschema.xml
 
-NO_TEST=	yes
+OPTIONS_DEFINE=		GVFS
+OPTIONS_DEFAULT=	GVFS
+
+GVFS_USE=	GNOME=gvfs
 
 .include <bsd.port.mk>
