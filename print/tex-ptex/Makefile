@@ -22,7 +22,7 @@ EXTRACT_FILES=	build-aux \
 		libs/xpdf \
 		texk/web2c
 EXTRACT_AFTER_ARGS_TEXMF= \
-	| ${TAR} -xf - -C ${FAKE_DESTDIR}${PREFIX}/share \
+	| ${TAR} -xf - -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
 	    --strip-components 1 --no-same-permission --no-same-owner \
 	    ${EXTRACT_FILES_TEXMF:S,^,${DISTNAME_TEXMF}/,}
 DISTNAME_TEXMF=	texlive-${TEXLIVE_VERSION}-texmf
