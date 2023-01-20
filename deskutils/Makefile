@@ -35,6 +35,7 @@ SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
 SUBDIR += jlj
+SUBDIR += libportal
 SUBDIR += ljclive
 SUBDIR += lumina-archiver
 SUBDIR += lumina-calculator
