@@ -8,7 +8,7 @@ PORTREVISION=	0
 .else
 # XXX: correct version
 # dns/bind9xx here
-PORTREVISION=	0
+PORTREVISION=	1
 .endif
 CATEGORIES=	dns net
 # XXX: put the ISC master_site
@@ -29,6 +29,7 @@ COMMENT=	Command line tools from BIND: delv, dig, host, nslookup...
 .else
 COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 .endif
+WWW=		https://www.isc.org/bind/
 
 # Uncomment when bind9xx comes of age. +3 years if ESV, +1year otherwise, see
 # https://kb.isc.org/docs/aa-00896
@@ -36,6 +37,7 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 # EXPIRATION_DATE=	XXX-12-31
 
 LICENSE=	mpl
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=	libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2 \
@@ -62,7 +64,7 @@ CPE_VERSION=	${ISCVERSION:C/-.*//}
 CPE_UPDATE=	${ISCVERSION:C/.*-//:tl}
 .endif
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GL_COMMIT}-${GL_COMMIT}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${GL_COMMIT}
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-linux-caps \
