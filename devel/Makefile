@@ -258,6 +258,7 @@ SUBDIR += libsigsegv
 SUBDIR += libslang2
 SUBDIR += libspice-server
 SUBDIR += libsoup
+SUBDIR += libsoup3
 SUBDIR += libstatgrab
 SUBDIR += libsysinfo
 SUBDIR += libtextstyle
