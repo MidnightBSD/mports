@@ -1,12 +1,11 @@
-
-
 PORTNAME=	libspectre
-PORTVERSION=	0.2.8
+PORTVERSION=	0.2.11
 CATEGORIES=	print
 MASTER_SITES=	http://libspectre.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small library for rendering Postscript documents
+WWW=		https://www.freedesktop.org/wiki/Software/libspectre/
 
 LICENSE=	gpl2
 

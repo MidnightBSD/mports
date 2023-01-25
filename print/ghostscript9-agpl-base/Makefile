@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	9-agpl-base
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PostScript and PDF interpreter
+WWW=		https://ghostscript.com/
 
 LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
