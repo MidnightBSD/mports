@@ -22,17 +22,14 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libjbig2dec.so:graphics/jbig2dec \
 		libpaper.so:print/libpaper \
 		libpng.so:graphics/png \
-		libtiff.so:graphics/tiff \
-		libcups.so:print/cups
+		libtiff.so:graphics/tiff
 RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:print/gsfonts
 
 CONFLICTS_INSTALL=	ghostscript*-base # CHECK
 
 USES=		autoreconf cpe gmake pkgconfig shebangfix tar:xz
 USE_LDCONFIG=	yes
-
 CPE_VENDOR=	artifex
-
 SHEBANG_FILES=	${WRKSRC}/lib/fixmswrd.pl
 EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 GNU_CONFIGURE=	yes
@@ -68,8 +65,8 @@ PLIST_SUB=	SHLIB_VER="${PORTVERSION:R}" \
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-OPTIONS_DEFINE=	DOCS CAIRO FONTCONFIG ICONV
-OPTIONS_DEFAULT=DOCS CAIRO FONTCONFIG ICONV
+OPTIONS_DEFINE=	DOCS CAIRO CUPS FONTCONFIG ICONV
+OPTIONS_DEFAULT=CAIRO CUPS FONTCONFIG ICONV
 OPTIONS_SUB=	yes
 FONTCONFIG_DESC=Enable fontconfig support
 FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
@@ -135,14 +132,16 @@ pre-install:
 	    gs_statd.ps.orig gs_ttf.ps.orig pdf_font.ps.orig
 	${MKDIR} ${STAGEDIR}${DATADIR}
 
-post-install: post-install-docs
+post-install-DOCS-on: post-install-docs
 	${MKDIR} ${WRKSRC}/contrib/japanese
 	${INSTALL_DATA} ${WRKSRC}/contrib/japanese/doc/* \
 	    ${WRKSRC}/contrib/japanese
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC}/contrib && \
 	    ${TAR} -cf - ${PORTDOC_FILES} | \
-	    (cd ${STAGEDIR}${DOCSDIR} && ${TAR} -xof -)
+	    (cd ${FAKE_DESTDIR}${DOCSDIR} && ${TAR} -xof -)
+
+post-install:
 	${INSTALL_DATA} ${WRKSRC}/lib/FAPIcidfmap \
 	    ${WRKSRC}/lib/FAPIconfig ${WRKSRC}/lib/FAPIfontmap \
 	    ${STAGEDIR}${DATADIR}/Resource/Init

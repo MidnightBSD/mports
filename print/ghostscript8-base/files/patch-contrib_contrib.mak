@@ -1,6 +1,6 @@
---- contrib/contrib.mak.orig	2012-06-13 01:22:12.000000000 +0900
-+++ contrib/contrib.mak	2012-06-13 01:22:40.000000000 +0900
-@@ -956,7 +956,7 @@
+--- contrib/contrib.mak.orig	2009-07-27 16:59:50 UTC
++++ contrib/contrib.mak
+@@ -956,7 +956,7 @@ $(DD)dmprt.dev : $(dmprt_) $(DD)page.dev
  $(GLOBJ)gdevdmpr.$(OBJ) : $(JAPSRC)gdevdmpr.c $(JAPSRC)dviprlib.h $(PDEVH)
  	$(GLCC) $(O_)$@ $(C_) $(JAPSRC)gdevdmpr.c
  

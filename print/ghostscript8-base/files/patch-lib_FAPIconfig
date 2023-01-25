@@ -1,5 +1,5 @@
---- lib/FAPIconfig.orig	2008-03-04 06:50:24.000000000 +0900
-+++ lib/FAPIconfig	2008-03-04 06:51:30.000000000 +0900
+--- lib/FAPIconfig.orig	2006-06-20 16:31:15 UTC
++++ lib/FAPIconfig
 @@ -2,10 +2,14 @@
  % $Id: FAPIconfig 6870 2006-06-20 16:31:15Z leonardo $
  % This is configuration file for FAPI client.

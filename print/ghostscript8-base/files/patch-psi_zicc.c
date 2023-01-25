@@ -1,8 +1,8 @@
---- psi/zicc.c
-+++ psi/zicc.c	2008-02-05 16:11:59.000000000 +0000
-@@ -77,6 +77,9 @@ zseticcspace(i_ctx_t * i_ctx_p)
-     dict_find_string(op, "N", &pnval);
-     ncomps = pnval->value.intval;
+--- psi/zicc.c.orig	2009-01-21 15:34:55 UTC
++++ psi/zicc.c
+@@ -161,6 +161,9 @@ zseticcspace(i_ctx_t * i_ctx_p)
+     if (2*ncomps > sizeof(range_buff)/sizeof(range_buff[0]))
+         return_error(e_rangecheck);
  
 +    if (2*ncomps > sizeof(range_buff)/sizeof(float))
 +	return_error(e_rangecheck);

@@ -1,5 +1,5 @@
---- Resource/Init/cidfmap.orig	2008-08-08 13:22:38.000000000 +0900
-+++ Resource/Init/cidfmap	2009-12-20 03:03:17.000000000 +0900
+--- Resource/Init/cidfmap.orig	2008-08-08 04:22:38 UTC
++++ Resource/Init/cidfmap
 @@ -26,3 +26,64 @@
  %   /ShinGo-Bold   /HeiseiKakuGo-W5 ;
  %   /Ryumin-Medium << /FileType /TrueType /Path (H:/AuxFiles/Fonts/BATANG.TTC) /SubfontID 3 /CSI [(Japan1) 2] >> ;
