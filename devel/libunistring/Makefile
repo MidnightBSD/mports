@@ -10,7 +10,8 @@ WWW=		https://www.gnu.org/software/libunistring/
 LICENSE=	gfdl gpl3 lgpl3+
 LICENSE_COMB=	multi
 
-USES=		charsetfix gmake iconv libtool tar:xz
+USES=		charsetfix cpe gmake iconv libtool tar:xz
+CPE_VENDOR=	gnu
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
