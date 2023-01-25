@@ -37,7 +37,7 @@ EXTRACT_FILES=	build-aux \
 		libs/xpdf \
 		texk/web2c
 EXTRACT_AFTER_ARGS_TEXMF= \
-	| ${TAR} -xf - -C ${STAGEDIR}${PREFIX}/share \
+	| ${TAR} -xf - -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner \
 		${EXTRACT_FILES_TEXMF:S,^,${DISTNAME_TEXMF}/,}
 DISTNAME_TEXMF=	texlive-${TEXLIVE_VERSION}-texmf
@@ -97,21 +97,21 @@ pre-configure:
 		${MAKE}
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share
+	${MKDIR} ${PREFIX}/share
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/texlive-${TEXLIVE_VERSION}-texmf${EXTRACT_SUFX} \
 		${EXTRACT_AFTER_ARGS_TEXMF}
 
 post-fake:
 	${REINPLACE_CMD} -i '' -e 's|/usr/bin/env python|${PYTHON_CMD}|g' \
-		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/dkun-0.3.py \
-		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/dkun-0.4.py \
-		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/undk-0.6.py \
-		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/unldk-0.2.py
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/dkun-0.3.py \
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/dkun-0.4.py \
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/undk-0.6.py \
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/unldk-0.2.py
 	${REINPLACE_CMD} -i '' -e 's|/usr/bin/perl|${PERL}|g' \
-		${STAGEDIR}${PREFIX}/share/texmf-dist/source/xelatex/arabxetex/makemaps.pl
-	${FIND} -s ${STAGEDIR}${PREFIX}/share/texmf-dist -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${PREFIX}/share/texmf-dist -type d -empty | ${SORT} -r | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/source/xelatex/arabxetex/makemaps.pl
+	${FIND} -s ${FAKE_DESTDIR}${PREFIX}/share/texmf-dist -not -type d | ${SORT} | \
+		${SED} -e 's#^${FAKE_DESTDIR}${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${FAKE_DESTDIR}${PREFIX}/share/texmf-dist -type d -empty | ${SORT} -r | \
+		${SED} -e 's#^${FAKE_DESTDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
 
 .include <bsd.port.mk>
