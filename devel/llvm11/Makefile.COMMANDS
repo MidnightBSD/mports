@@ -1,4 +1,3 @@
-
 LLVM_COMMANDS=	\
 		bugpoint \
 		dsymutil \
