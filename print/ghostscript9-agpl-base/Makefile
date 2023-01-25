@@ -1,7 +1,8 @@
 PORTNAME=	ghostscript
-PORTVERSION=	9.52
+PORTVERSION=	9.56.1
+PORTREVISION=	7
 CATEGORIES=	print
-MASTER_SITES=	https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${PORTVERSION:S/.//}/
+MASTER_SITES=	https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${PORTVERSION:S/.//g}/
 PKGNAMESUFFIX=	9-agpl-base
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,20 +17,20 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libidn.so:dns/libidn \
 		libjbig2dec.so:graphics/jbig2dec \
+		libopenjp2.so:graphics/openjpeg \
 		libpaper.so:print/libpaper \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 RUN_DEPENDS=	poppler-data>=0.4.9:graphics/poppler-data
 
 USES=		cpe gmake iconv jpeg localbase pkgconfig tar:xz
-USE_CSTD=	gnu99
 USE_LDCONFIG=	yes
 
 CONFLICTS_INSTALL= \
-		ghostscript[789]-[0-9]* \
-		ghostscript[789]-nox11-[0-9]* \
-		ghostscript9-agpl-[0-9]* \
-		ghostscript9-agpl-nox11-[0-9]*
+		ghostscript[789] \
+		ghostscript[789]-nox11 \
+		ghostscript9-agpl \
+		ghostscript9-agpl-nox11
 CPE_VENDOR=	artifex
 DATADIR=	${PREFIX}/share/${PORTNAME}/${PORTVERSION}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}/${PORTVERSION}
@@ -50,6 +51,7 @@ CONFIGURE_ARGS=	--disable-compile-inits \
 		--enable-dynamic \
 		--enable-fontconfig \
 		--enable-freetype \
+		--enable-openjpeg \
 		--with-drivers=ALL \
 		--with-fontpath=${LOCALBASE}/share/fonts \
 		--with-jbig2dec \
@@ -60,10 +62,11 @@ CONFIGURE_ARGS=	--disable-compile-inits \
 		--without-x
 ALL_TARGET=	so
 INSTALL_TARGET=	soinstall
-PLIST_SUB=	GS_VERSION="${PORTVERSION}"
+PLIST_SUB=	GS_VERSION="${PORTVERSION:C/.[0-9]$//}" \
+		PORTVERSION="${PORTVERSION}"
 
-OPTIONS_DEFINE=	DOCS CUPS IJS JPEG2000
-OPTIONS_DEFAULT=CUPS
+OPTIONS_DEFINE=	DOCS CUPS IJS
+OPTIONS_DEFAULT=DOCS CUPS
 OPTIONS_SUB=	yes
 
 CUPS_CONFIGURE_ENABLE=	cups
@@ -72,9 +75,6 @@ CUPS_LIB_DEPENDS=	libcupsimage.so:print/cups
 IJS_CONFIGURE_WITH=	ijs
 IJS_DESC=		Support libijs based Ghostscript devices
 IJS_LIB_DEPENDS=	libijs.so:print/libijs
-
-JPEG2000_CONFIGURE_ENABLE=	openjpeg
-JPEG2000_LIB_DEPENDS=	libopenjp2.so:graphics/openjpeg
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/bin/gsc ${STAGEDIR}${PREFIX}/bin/gs
