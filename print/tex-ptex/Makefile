@@ -109,4 +109,13 @@ post-install:
 	${FIND} -s ${PREFIX}/share -type d -empty | ${SORT} -r | \
 		${SED} -e 's#^${PREFIX}/#@dir #' >> ${TMPPLIST}
 
+post-fake:
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/eptex/platex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/eptex/ptex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/euptex/euptex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/euptex/uplatex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/ptex/ptex.log \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/uptex/uptex.log 
+
 .include <bsd.port.mk>
