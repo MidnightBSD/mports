@@ -1,8 +1,6 @@
-
-
 PORTNAME=	ghostscript
 PORTVERSION=	8.71
-PORTREVISION=	20
+PORTREVISION=	21
 CATEGORIES=	print
 MASTER_SITES=	http://downloads.ghostscript.com/public/:gs_srcs \
 		SF/ghostscript/GPL%20Ghostscript/${PORTVERSION}:gs_srcs \
@@ -14,28 +12,27 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ghostscript 8.x PostScript interpreter, base part
+WWW=		https://www.cs.wisc.edu/~ghost/doc/GPL/index.htm
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libjasper.so:${PORTSDIR}/graphics/jasper \
-		libjbig2dec.so:${PORTSDIR}/graphics/jbig2dec \
-		libpaper.so:${PORTSDIR}/print/libpaper \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff \
-		libcups.so:${PORTSDIR}/print/cups
-RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
+LIB_DEPENDS=	libexpat.so:textproc/expat2 \
+		libfreetype.so:print/freetype2 \
+		libjasper.so:graphics/jasper \
+		libjbig2dec.so:graphics/jbig2dec \
+		libpaper.so:print/libpaper \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff \
+		libcups.so:print/cups
+RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:print/gsfonts
 
-CONFLICTS_INSTALL= \
-		gambc-[0-9]* \
-		ghostscript[789]-[0-9]* \
-		ghostscript[789]-nox11-[0-9]* \
-		ghostscript9-agpl-[0-9]* \
-		ghostscript9-agpl-nox11-[0-9]*
+CONFLICTS_INSTALL=	ghostscript*-base # CHECK
 
-USES=		autoreconf gmake pkgconfig shebangfix tar:xz
+USES=		autoreconf cpe gmake pkgconfig shebangfix tar:xz
 USE_LDCONFIG=	yes
+
+CPE_VENDOR=	artifex
+
 SHEBANG_FILES=	${WRKSRC}/lib/fixmswrd.pl
 EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 GNU_CONFIGURE=	yes
@@ -75,7 +72,7 @@ OPTIONS_DEFINE=	DOCS CAIRO FONTCONFIG ICONV
 OPTIONS_DEFAULT=DOCS CAIRO FONTCONFIG ICONV
 OPTIONS_SUB=	yes
 FONTCONFIG_DESC=Enable fontconfig support
-FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
 FONTCONFIG_CONFIGURE_ENABLE=	fontconfig
 NO_OPTIONS_SORT=yes
 
