@@ -200,10 +200,3 @@ share/locale/zh_TW/LC_MESSAGES/gucharmap.mo
 share/metainfo/gucharmap.metainfo.xml
 share/vala/vapi/gucharmap-2.90.deps
 share/vala/vapi/gucharmap-2.90.vapi
-@dir share/help/ca/gucharmap/figures
-@dir share/help/en_GB/gucharmap/figures
-@dir share/help/gl/gucharmap/figures
-@dir share/help/oc/gucharmap/figures
-@dir share/help/ru/gucharmap/figures
-@dir share/help/sl/gucharmap/figures
-@dir share/help/vi/gucharmap/figures
