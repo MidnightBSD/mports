@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Emacs modes for Git-related files
+WWW=		https://github.com/magit/git-modes
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
