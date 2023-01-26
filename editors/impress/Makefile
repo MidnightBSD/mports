@@ -1,6 +1,3 @@
-# Created by: Kris Kennaway <kris@FreeBSD.org>
-
-
 PORTNAME=	impress
 PORTVERSION=	1.1b9
 PORTREVISION=	3
@@ -10,6 +7,7 @@ DISTNAME=	imp${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Publishing and presentation tool
+WWW=		https://www.ntlug.org/~ccox/impress/
 
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
