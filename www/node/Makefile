@@ -1,6 +1,6 @@
 PORTNAME=	node
 DISTVERSIONPREFIX=	v
-DISTVERSION=	18.2.0
+DISTVERSION=	18.12.1
 CATEGORIES=	www
 MASTER_SITES=	https://nodejs.org/dist/v${DISTVERSION}/
 
@@ -69,10 +69,6 @@ LIB_DEPENDS+=	libbrotlidec.so:archivers/brotli \
 
 .if (defined(PPC_ABI) && ${PPC_ABI} == ELFv2) || ${ARCH} == powerpc64le
 EXTRA_PATCHES=		${PATCHDIR}/extra-patch-common.gypi
-.endif
-
-.if ${ARCH} == armv6 || ${ARCH} == armv7
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tools_v8__gypfiles_v8.gyp
 .endif
 
 BROKEN_SSL+=	base
