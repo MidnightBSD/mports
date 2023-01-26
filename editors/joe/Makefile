@@ -1,5 +1,3 @@
-
-
 PORTNAME=	joe
 PORTVERSION=	4.6
 CATEGORIES=	editors
@@ -7,6 +5,7 @@ MASTER_SITES=	SF/joe-editor/JOE%20sources/joe-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Joe's Own Editor
+WWW=		https://sourceforge.net/projects/joe-editor/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

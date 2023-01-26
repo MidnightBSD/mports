@@ -93,11 +93,11 @@ share/java/jedit/keymaps/jEdit_keys.props
 %%MACROS%%share/java/jedit/macros/Misc/Display_Character_Code.bsh
 %%MACROS%%share/java/jedit/macros/Misc/Display_Shortcuts.bsh
 %%MACROS%%share/java/jedit/macros/Misc/Evaluate_Buffer_in_BeanShell.bsh
-%%MACROS%%share/java/jedit/macros/Misc/Generate Encodings List.bsh
-%%MACROS%%share/java/jedit/macros/Misc/Generate Modes List.bsh
+%%MACROS%%share/java/jedit/macros/Misc/Generate_Encodings_List.bsh
+%%MACROS%%share/java/jedit/macros/Misc/Generate_Modes_List.bsh
 %%MACROS%%share/java/jedit/macros/Misc/Hex_Convert.bsh
 %%MACROS%%share/java/jedit/macros/Misc/HyperSearch_Results_to_Buffer.bsh
-%%MACROS%%share/java/jedit/macros/Misc/Insert Plugins List.bsh
+%%MACROS%%share/java/jedit/macros/Misc/Insert_Plugins_List.bsh
 %%MACROS%%share/java/jedit/macros/Misc/Make_Bug_Report.bsh
 %%MACROS%%share/java/jedit/macros/Misc/Run_Script.bsh
 %%MACROS%%share/java/jedit/macros/Misc/Show_Threads.bsh
@@ -117,6 +117,7 @@ share/java/jedit/keymaps/jEdit_keys.props
 %%MACROS%%share/java/jedit/macros/Text/Reverse_Lines.bsh
 %%MACROS%%share/java/jedit/macros/Text/Reverse_Selection.bsh
 %%MACROS%%share/java/jedit/macros/Text/Single_Space_Buffer.bsh
+share/java/jedit/macros/Misc/Debug_ScreenLines.bsh
 share/java/jedit/modes/actionscript.xml
 share/java/jedit/modes/ada.xml
 share/java/jedit/modes/ada95.xml
@@ -131,6 +132,7 @@ share/java/jedit/modes/asp.xml
 share/java/jedit/modes/aspect-j.xml
 share/java/jedit/modes/assembly-agc.xml
 share/java/jedit/modes/assembly-ags.xml
+share/java/jedit/modes/assembly-arm32.xml
 share/java/jedit/modes/assembly-m68k.xml
 share/java/jedit/modes/assembly-macro32.xml
 share/java/jedit/modes/assembly-mcs51.xml
@@ -167,6 +169,7 @@ share/java/jedit/modes/dart.xml
 share/java/jedit/modes/django.xml
 share/java/jedit/modes/dot.xml
 share/java/jedit/modes/doxygen.xml
+share/java/jedit/modes/drawj2d.xml
 share/java/jedit/modes/dsssl.xml
 share/java/jedit/modes/eiffel.xml
 share/java/jedit/modes/embperl.xml
@@ -180,6 +183,7 @@ share/java/jedit/modes/foxpro.xml
 share/java/jedit/modes/freemarker.xml
 share/java/jedit/modes/gcbasic.xml
 share/java/jedit/modes/gettext.xml
+share/java/jedit/modes/gherkin.xml
 share/java/jedit/modes/gnuplot.xml
 share/java/jedit/modes/go.xml
 share/java/jedit/modes/gradle.xml
@@ -187,6 +191,7 @@ share/java/jedit/modes/groovy.xml
 share/java/jedit/modes/haskell.xml
 share/java/jedit/modes/haxe.xml
 share/java/jedit/modes/hex.xml
+share/java/jedit/modes/hl7v2.xml
 share/java/jedit/modes/hlsl.xml
 share/java/jedit/modes/htaccess.xml
 share/java/jedit/modes/html.xml
@@ -205,6 +210,7 @@ share/java/jedit/modes/java.xml
 share/java/jedit/modes/javacc.xml
 share/java/jedit/modes/javafx.xml
 share/java/jedit/modes/javascript.xml
+share/java/jedit/modes/java-module-info.xml
 share/java/jedit/modes/jcl.xml
 share/java/jedit/modes/jedit-actions.xml
 share/java/jedit/modes/jflex.xml
@@ -222,12 +228,14 @@ share/java/jedit/modes/logs.xml
 share/java/jedit/modes/logtalk.xml
 share/java/jedit/modes/lotos.xml
 share/java/jedit/modes/lua.xml
+share/java/jedit/modes/m4.xml
 share/java/jedit/modes/macroscheduler.xml
 share/java/jedit/modes/mail.xml
 share/java/jedit/modes/makefile.xml
 share/java/jedit/modes/maple.xml
 share/java/jedit/modes/markdown.xml
 share/java/jedit/modes/maven.xml
+share/java/jedit/modes/mavscript.xml
 share/java/jedit/modes/ml.xml
 share/java/jedit/modes/modula3.xml
 share/java/jedit/modes/moin.xml
@@ -245,6 +253,7 @@ share/java/jedit/modes/objective-c.xml
 share/java/jedit/modes/objectrexx.xml
 share/java/jedit/modes/occam.xml
 share/java/jedit/modes/omnimark.xml
+share/java/jedit/modes/opensips.xml
 share/java/jedit/modes/osql.xml
 share/java/jedit/modes/outline.xml
 share/java/jedit/modes/pascal.xml
@@ -256,6 +265,7 @@ share/java/jedit/modes/pike.xml
 share/java/jedit/modes/pl-sql.xml
 share/java/jedit/modes/pl1.xml
 share/java/jedit/modes/plaintex.xml
+share/java/jedit/modes/plantuml.xml
 share/java/jedit/modes/pop11.xml
 share/java/jedit/modes/postscript.xml
 share/java/jedit/modes/povray.xml
@@ -265,6 +275,7 @@ share/java/jedit/modes/powershell.xml
 share/java/jedit/modes/progress.xml
 share/java/jedit/modes/prolog.xml
 share/java/jedit/modes/props.xml
+share/java/jedit/modes/proto.xml
 share/java/jedit/modes/psp.xml
 share/java/jedit/modes/ptl.xml
 share/java/jedit/modes/pure.xml
@@ -296,6 +307,7 @@ share/java/jedit/modes/sgml.xml
 share/java/jedit/modes/shellscript.xml
 share/java/jedit/modes/shtml.xml
 share/java/jedit/modes/sip.xml
+share/java/jedit/modes/sipp.xml
 share/java/jedit/modes/slate.xml
 share/java/jedit/modes/slax.xml
 share/java/jedit/modes/smalltalk.xml
@@ -308,6 +320,7 @@ share/java/jedit/modes/squidconf.xml
 share/java/jedit/modes/ssharp.xml
 share/java/jedit/modes/stata.xml
 share/java/jedit/modes/svn-commit.xml
+share/java/jedit/modes/swift.xml
 share/java/jedit/modes/swig.xml
 share/java/jedit/modes/tcl.xml
 share/java/jedit/modes/tex.xml
@@ -331,6 +344,7 @@ share/java/jedit/modes/verilog.xml
 share/java/jedit/modes/vhdl.xml
 share/java/jedit/modes/visualbasic.xml
 share/java/jedit/modes/vrml2.xml
+share/java/jedit/modes/wellknowntext.xml
 share/java/jedit/modes/xml.xml
 share/java/jedit/modes/xq.xml
 share/java/jedit/modes/xsl.xml
