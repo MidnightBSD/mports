@@ -61,6 +61,7 @@ SUBDIR += libamrwb
 SUBDIR += libao
 SUBDIR += libaudiofile
 SUBDIR += libcanberra
+SUBDIR += libcanberra-gtk2
 SUBDIR += libcanberra-gtk3
 SUBDIR += libcdaudio
 SUBDIR += libcddb
