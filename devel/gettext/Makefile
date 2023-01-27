@@ -3,6 +3,7 @@ PORTREVISION=	0
 DISTFILES=
 
 COMMENT=	GNU gettext meta package
+WWW=		https://www.gnu.org/software/gettext/
 
 LICENSE=	gpl3
 

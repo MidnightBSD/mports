@@ -1,7 +1,8 @@
 PORTNAME=	gettext-runtime
-PORTREVISION=	1
+PORTREVISION=	0
 
 COMMENT=	GNU gettext runtime libraries and programs
+WWW=		https://www.gnu.org/software/gettext/
 
 LICENSE=	lgpl2.1 gpl3
 LICENSE_COMB=	multi
