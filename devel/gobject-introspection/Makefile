@@ -1,5 +1,5 @@
 PORTNAME=	gobject-introspection
-DISTVERSION=	1.72.0
+DISTVERSION=	1.74.0
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -33,5 +33,8 @@ post-fake:
 		"${FAKE_DESTDIR}${PREFIX}/lib/${PORTNAME}"
 	@${PYTHON_CMD} -O -m compileall -d ${PREFIX}/lib/${PORTNAME} \
 		"${FAKE_DESTDIR}${PREFIX}/lib/${PORTNAME}"
+
+post-install:
+	@${RM} ${STAGEDIR}${PREFIX}/lib/gobject-introspection/giscanner/doctemplates/*/meson.build*
 
 .include <bsd.port.mk>
