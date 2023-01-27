@@ -544,12 +544,12 @@ post-install-LIT-on:
 	${INSTALL_DATA} ${WRKSRC}/utils/lit/lit/formats/*.py \
 			${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/formats
 	${INSTALL_PROGRAM} ${WRKDIR}/.build/bin/FileCheck \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/FileCheck \
-	    ${STAGEDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
+	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/
+	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/FileCheck \
+	    ${FAKE_DESTDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
 
 post-install-LLD-on:
-	${LN} -s ld.lld ${STAGEDIR}${LLVM_PREFIX}/bin/ld
+	${LN} -s ld.lld ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/ld
 
 TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 do-test:
