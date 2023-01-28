@@ -40,6 +40,7 @@ SUBDIR += gstreamer1-plugins-msdk
 SUBDIR += gstreamer1-plugins-qt
 SUBDIR += gstreamer1-plugins-resindvd
 SUBDIR += gstreamer1-plugins-rtmp
+SUBDIR += gstreamer1-plugins-svt-vp9
 SUBDIR += gstreamer1-plugins-theora
 SUBDIR += gstreamer1-plugins-ttml
 SUBDIR += gstreamer1-plugins-ugly
