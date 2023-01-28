@@ -24,8 +24,6 @@ DVD_DESC=	Include DVD related plugins
 
 .include <bsd.mport.options.mk>
 
-USE_GSTREAMER+=	plugins
-
 # Audio plugins
 USE_GSTREAMER+=	mpg123 ogg vorbis
 
