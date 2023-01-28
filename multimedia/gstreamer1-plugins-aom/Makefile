@@ -1,16 +1,15 @@
 PORTREVISION=	0
 CATEGORIES=	multimedia
 
-COMMENT=	GStreamer theora plugin
+COMMENT=	GStreamer (libaom) plugin
 
-GST_PLUGIN=	theora
-DIST=		base
+GST_PLUGIN=	aom
+DIST=		bad
 
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
 
 PLIST=  ${.CURDIR}/pkg-plist
 
-LIB_DEPENDS+= libtheora.so:multimedia/libtheora \
-	libogg.so:audio/libogg
+LIB_DEPENDS=   libaom.so:multimedia/aom
 
 .include "${MASTERDIR}/Makefile"

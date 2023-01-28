@@ -1,12 +1,20 @@
-
 PORTREVISION=	0
 CATEGORIES=	multimedia
 
-COMMENT=	Gstreamer mpeg encoder plugin
+COMMENT=	GStreamer mpeg encoder plugin
+
+BROKEN_armv6=		fails to compile: 'format_codes.h' file not found
+BROKEN_armv7=		fails to compile: 'format_codes.h' file not found
 
 GST_PLUGIN=	mpeg2enc
 DIST=		bad
 
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
+
+PLIST=  ${.CURDIR}/pkg-plist
+
+LIB_DEPENDS= libmjpegutils.so:multimedia/mjpegtools
+
+MESON_ARGS+=	-Dgpl=enabled
 
 .include "${MASTERDIR}/Makefile"
