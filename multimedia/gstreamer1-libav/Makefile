@@ -4,7 +4,7 @@ CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-libav/
 DISTNAME=	gst-libav-${PORTVERSION}
 
-MAINTAINER=	multimedia@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in with many audio/video decoders/encoders
 WWW=		https://gstreamer.freedesktop.org/
 
@@ -31,7 +31,7 @@ FFMPEG_BUILD_DEPENDS_OFF=	nasm:devel/nasm
 FFMPEG_MAKE_ENV_OFF=	V=1
 FFMPEG_VARS_OFF+=	NOPRECIOUSMAKEVARS=yes # ARCH
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if empty(PORT_OPTIONS:MFFMPEG)
 LDFLAGS_aarch64=	-Wl,-z,notext
