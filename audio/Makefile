@@ -11,6 +11,7 @@ SUBDIR += chromaprint
 SUBDIR += esound
 SUBDIR += espeak
 SUBDIR += espeak-ng
+SUBDIR += exaile
 SUBDIR += faac
 SUBDIR += faad
 SUBDIR += faudio
