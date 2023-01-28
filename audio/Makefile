@@ -40,6 +40,7 @@ SUBDIR += gstreamer1-plugins-flite
 SUBDIR += gstreamer1-plugins-gme
 SUBDIR += gstreamer1-plugins-gsm
 SUBDIR += gstreamer1-plugins-jack
+SUBDIR += gstreamer1-plugins-ladspa
 SUBDIR += gstreamer1-plugins-lame
 SUBDIR += gstreamer1-plugins-mad
 SUBDIR += gstreamer1-plugins-modplug
