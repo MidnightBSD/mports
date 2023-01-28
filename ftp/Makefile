@@ -5,6 +5,7 @@ SUBDIR += filezilla
 SUBDIR += ftpcopy
 SUBDIR += ftpsync
 SUBDIR += gnustep-ftp
+SUBDIR += gstreamer1-plugins-curl
 SUBDIR += lftp
 SUBDIR += libfilezilla
 SUBDIR += linux-c7-curl
