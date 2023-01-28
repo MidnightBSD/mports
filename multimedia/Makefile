@@ -40,6 +40,7 @@ SUBDIR += gstreamer1-plugins-msdk
 SUBDIR += gstreamer1-plugins-qt
 SUBDIR += gstreamer1-plugins-resindvd
 SUBDIR += gstreamer1-plugins-rtmp
+SUBDIR += gstreamer1-plugins-smoothstreaming
 SUBDIR += gstreamer1-plugins-svt-av1
 SUBDIR += gstreamer1-plugins-svt-hevc
 SUBDIR += gstreamer1-plugins-svt-vp9
