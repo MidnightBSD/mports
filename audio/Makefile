@@ -48,6 +48,7 @@ SUBDIR += gstreamer1-plugins-modplug
 SUBDIR += gstreamer1-plugins-mpg123
 SUBDIR += gstreamer1-plugins-musepack
 SUBDIR += gstreamer1-plugins-ogg
+SUBDIR += gstreamer1-plugins-openmpt
 SUBDIR += gstreamer1-plugins-opus
 SUBDIR += gstreamer1-plugins-pulse
 SUBDIR += gstreamer1-plugins-shout2
