@@ -524,10 +524,6 @@ _LOAD_APACHE_EXT=	yes
 _LOAD_GNOME_EXT=	yes
 .endif
 
-.if defined(USE_GSTREAMER1)
-_LOAD_GSTREAMER_EXT=	yes
-.endif
-
 .if defined(USE_LDAP)
 _LOAD_LDAP_EXT=	yes
 .endif

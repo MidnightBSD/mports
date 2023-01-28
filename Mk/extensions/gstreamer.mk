@@ -18,13 +18,13 @@ _GST_VER_SUPPORTED=	1
 _GST_VER_DEFAULT=	1
 _GST_VER=		#
 .  for ver in ${_GST_VER_SUPPORTED:O:u}
-.    if ${gstreamer_ARGS:M${ver}}
+#.    if ${gstreamer_ARGS:M${ver}}
 .      if empty(_GST_VER)
 _GST_VER=	${ver}
 .      else
 INGORE=	Incorrect USES=gstreamer:${gstramer_ARGS} - multiple versions defined
 .      endif
-.    endif
+#.    endif
 .  endfor
 
 .  if empty(_GST_VER)
@@ -399,7 +399,8 @@ _GST_LIB_DEPENDS=	#
 USE_GSTREAMER?=		#
 # everything wants this
 USE_GSTREAMER+=		libgstreamer
-.  if ${PORTDIRNAME} != gstreamer${_GST_VER}-plugins
+.if !defined(${PKGNAMESUFFIX}) || ${PKGNAMESUFFIX} != "1-plugins"
+#.  if ${PORTDIRNAME} != gstreamer${_GST_VER}-plugins
 USE_GSTREAMER+=		plugins
 .  endif
 

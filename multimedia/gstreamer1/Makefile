@@ -1,32 +1,25 @@
 PORTNAME=	gstreamer
-PORTVERSION=	1.16.2
+PORTVERSION=	1.20.5
 CATEGORIES=	multimedia
-MASTER_SITES=	GNOME \
-		http://gstreamer.freedesktop.org/src/gstreamer/
+MASTER_SITES=	https://gstreamer.freedesktop.org/src/gstreamer/
 PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Media applications framework
+WWW=		https://gstreamer.freedesktop.org/
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		bison cpe gettext gmake gnome libtool pathfix perl5 pkgconfig python tar:xz
-USE_PERL5=	build
-USE_GNOME=	glib20 introspection:build
-CPE_VENDOR=   gstreamer_project
+USES=		bison libtool gnome meson ninja pkgconfig python:3.8+,build shebangfix tar:xz
+USE_GNOME=     glib20 introspection:build
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-tests \
-		--disable-examples \
-		--disable-failing-tests \
-		--disable-fatal-warnings \
-		--disable-gtk-doc
-CONFIGURE_ENV=	ac_cv_func_register_printf_function="no"
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
-INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	-D tests=disabled \
+	-D examples=disabled \
+	-D dbghelp=disabled \
+	-D doc=disabled
 PLIST_SUB=	VERSION=${GST10_VERSION} \
-		SOVERSION=0.1602.0
+		SOVERSION=0.2005.0
 
 USE_LDCONFIG=	yes
 GST10_VERSION=	1.0
@@ -44,10 +37,16 @@ OPTIONS_DEFINE_i386=		LIBUNWIND
 OPTIONS_DEFFAULT_i386=		LIBUNWIND
 
 NLS_USES=	gettext
-NLS_CONFIGURE_ENABLE=	nls
+NLS_MESON_ENABLED=      nls
 
 LIBUNWIND_DESC=		Libunwind is optionally used by the leaks tracer
 LIBUNWIND_LIB_DEPENDS=	libunwind.so:devel/libunwind
-LIBUNWIND_CONFIGURE_WITH=	unwind
+LIBUNWIND_MESON_ENABLED=        libunwind
+
+SHEBANG_FILES=  gst/parse/get_flex_version.py \
+	scripts/extract-release-date-from-doap-file.py \
+	docs/gst-plugins-doc-cache-generator.py
+python_OLD_CMD= "/usr/bin/env python3"
+python_CMD=     ${SETENV} ${PYTHON_VERSION}
 
 .include <bsd.port.mk>
