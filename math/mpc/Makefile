@@ -5,6 +5,7 @@ MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of complex numbers with arbitrarily high precision
+WWW=		https://www.multiprecision.org/mpc/
 
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
