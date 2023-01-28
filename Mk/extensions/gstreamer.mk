@@ -396,9 +396,15 @@ gst-pango_IMPL=		#
 _GST_BR_DEPENDS=	#
 _GST_LIB_DEPENDS=	#
 
+.endif
+
+.if !defined(_POSTMKINCLUDED) && !defined(Gstreamer_Post_Include)
+Gstreamer_Post_Include= gstreamer.mk
+
 USE_GSTREAMER?=		#
 # everything wants this
 USE_GSTREAMER+=		libgstreamer
+
 .  if ${PORTDIRNAME} != gstreamer${_GST_VER}-plugins
 USE_GSTREAMER+=		plugins
 .  endif
