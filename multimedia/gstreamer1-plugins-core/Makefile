@@ -1,23 +1,22 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
 PORTNAME=	gstreamer1-plugins-core
-PORTVERSION=	1.16
-PORTREVISION=	0
+PORTVERSION=	1.20.5
 CATEGORIES=	multimedia audio
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Core set of typical audio and video gstreamer-plugins
+COMMENT=	Core set of typical audio and video GStreamer plugins
+WWW=		http://gstreamer.net
 
 LICENSE=	gpl2
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 GST_DIR=	lib/gstreamer-1.0
 PLIST_FILES=	${GST_DIR}/.gstreamer-plugins-core.keep
 
-USE_GSTREAMER1=yes
+USES=		gstreamer
 
 OPTIONS_DEFINE=	DVD
 OPTIONS_DEFAULT=DVD
@@ -25,21 +24,23 @@ DVD_DESC=	Include DVD related plugins
 
 .include <bsd.mport.options.mk>
 
+USE_GSTREAMER+=	plugins
+
 # Audio plugins
-USE_GSTREAMER1+=	mpg123 ogg vorbis
+USE_GSTREAMER+=	mpg123 ogg vorbis
 
 # Graphics plugins
-USE_GSTREAMER1+=	png
+USE_GSTREAMER+=	png
 
 # Misc plugins
-USE_GSTREAMER1+=	pango
+USE_GSTREAMER+=	pango
 
 # Multimedia plugins
-USE_GSTREAMER1+=	libav good theora
+USE_GSTREAMER+=	libav good theora
 
 .if ${PORT_OPTIONS:MDVD}
 # dvd related plugins plugins
-USE_GSTREAMER1+=	a52dec dvdread resindvd dts
+USE_GSTREAMER+=	a52dec dvdread resindvd dts
 .endif
 
 do-install:
