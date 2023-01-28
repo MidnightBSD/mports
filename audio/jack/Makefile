@@ -1,76 +1,67 @@
-
-
-PORTNAME=	jack
-PORTVERSION=	0.124.1
-PORTREVISION=	2
+PORTNAME=	jackit
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.9.21
 CATEGORIES=	audio
-MASTER_SITES=	http://jackaudio.org/downloads/
-DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low latency audio server
+WWW=		https://jackaudio.org/
 
-LICENSE=	gpl2 lgpl2.1
+LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libsndfile.so:${PORTSDIR}/audio/libsndfile \
-		libsamplerate.so:${PORTSDIR}/audio/libsamplerate \
-		libcelt0.so:${PORTSDIR}/audio/celt \
-		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
+LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate \
+		libsysinfo.so:devel/libsysinfo
 
-GNU_CONFIGURE=	yes
+USES=		compiler:c11 pkgconfig python:3.4+ shebangfix waf
 USE_LDCONFIG=	yes
-USES=		gmake pathfix pkgconfig libtool
-USE_BDB=	48+
+USE_RC_SUBR=	jackd
 
-CONFIGURE_ARGS=	--disable-portaudio \
-		--with-default-tmpdir=/tmp
+USE_GITHUB=	yes
+GH_ACCOUNT=	jackaudio
+GH_PROJECT=	jack2
 
-CFLAGS+=	-I${BDB_INCLUDE_DIR}
+CFLAGS+=	-fPIC
 CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib -L${BDB_LIB_DIR}
-INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	ALSA DOXYGEN READLINE
-OPTIONS_DEFAULT=READLINE
-OPTIONS_SUB=	yes
+SHEBANG_FILES=	dbus/jack_control
+SHEBANG_LANG=	python3
 
-ALSA_LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
-ALSA_CONFIGURE_ENABLE=	alsa
+CONFIGURE_ARGS=	--celt=no --sndfile=no --samplerate=yes \
+		--readline=no --example-tools=no
 
-READLINE_USES=		readline
+OPTIONS_DEFINE=		ALSA DBUS OPUS PROFILING
+OPTIONS_DEFAULT=	DBUS OPUS
+OPTIONS_SUB=		yes
 
-.include <bsd.mport.options.mk>
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+ALSA_CONFIGURE_OFF=	--alsa=no
+ALSA_CONFIGURE_ON=	--alsa=yes
 
-.if ${PORT_OPTIONS:MDOXYGEN}
-BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+DBUS_CONFIGURE_ON=	--dbus --classic --autostart=dbus
+DBUS_LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+			libexpat.so:textproc/expat2
+DBUS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>0:devel/py-dbus@${PY_FLAVOR}
+
+OPUS_LIB_DEPENDS=	libopus.so:audio/opus
+OPUS_CONFIGURE_ON=	--opus=yes
+OPUS_CONFIGURE_OFF=	--opus=no
+
+PROFILING_DESC=		Build with profiling information
+PROFILING_CONFIGURE_ON=	--profile
+
+.include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MDBUS}
+PLIST_SUB+=	CLASSIC="@comment "
 .else
-CONFIGURE_ENV+=	ac_cv_prog_HAVE_DOXYGEN="false"
+PLIST_SUB+=	CLASSIC=""
 .endif
 
-.if ! ${PORT_OPTIONS:MREADLINE}
-CONFIGURE_ENV+=	ac_cv_lib_readline_readline=no \
-		ac_cv_header_readline_chardefs_h=no
-.endif
+post-install:
+	@cd ${STAGEDIR}${PREFIX} && ${STRIP_CMD} \
+		lib/libjack*.so \
+		lib/jack/*.so \
+		$$(ls bin/* | ${GREP} -v jack_control)
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|define USE_MLOCK|undef USE_MLOCK|' \
-		-e 's|alloca.h||' \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e "s,-lpthread,-pthread," \
-		${WRKSRC}/configure ${WRKSRC}/libjack/Makefile.in \
-		${WRKSRC}/jackd/Makefile.in \
-		${WRKSRC}/example-clients/Makefile.in ${WRKSRC}/jack.pc.in
-	@${REINPLACE_CMD} -e "s,-lrt,," ${WRKSRC}/libjack/Makefile.in \
-		${WRKSRC}/jackd/Makefile.in \
-		${WRKSRC}/example-clients/Makefile.in
-	@${REINPLACE_CMD} -e "s,-ldl,," ${WRKSRC}/jackd/Makefile.in \
-		${WRKSRC}/example-clients/Makefile.in
-	@${REINPLACE_CMD} -e 's|md5sum|md5 -q|g' \
-		${WRKSRC}/jackd/Makefile.in
-	@${RM} -f ${WRKSRC}/doc/reference/html/*
-
-post-build:
-	@${RM} -f ${WRKSRC}/doc/reference/html/dir__2F*
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

@@ -1,0 +1,11 @@
+--- wscript.orig	2023-01-28 16:51:38.254395000 -0500
++++ wscript	2023-01-28 16:52:11.946927000 -0500
+@@ -232,7 +232,7 @@
+     platforms = [
+         # ('KEY, 'Human readable name', ['strings', 'to', 'check', 'for'])
+         ('IS_LINUX',   'Linux',   ['gnu0', 'gnukfreebsd', 'linux', 'posix']),
+-        ('IS_FREEBSD', 'FreeBSD', ['freebsd']),
++        ('IS_FREEBSD', 'FreeBSD', ['freebsd', 'midnightbsd']),
+         ('IS_MACOSX',  'MacOS X', ['darwin']),
+         ('IS_SUN',     'SunOS',   ['sunos']),
+         ('IS_WINDOWS', 'Windows', ['cygwin', 'msys', 'win32'])
