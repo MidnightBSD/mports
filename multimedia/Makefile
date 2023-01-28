@@ -26,6 +26,7 @@ SUBDIR += gstreamer1-plugins-aom
 SUBDIR += gstreamer1-plugins-assrender
 SUBDIR += gstreamer1-plugins-bad
 SUBDIR += gstreamer1-plugins-core
+SUBDIR += gstreamer1-plugins-dash
 SUBDIR += gstreamer1-plugins-dts
 SUBDIR += gstreamer1-plugins-dv
 SUBDIR += gstreamer1-plugins-dvdread
