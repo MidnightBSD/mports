@@ -68,6 +68,7 @@ SUBDIR += libepubgen
 SUBDIR += libexttextcat
 SUBDIR += libgepub
 SUBDIR += libkmfl
+SUBDIR += liblrdf
 SUBDIR += librevenge
 SUBDIR += libsass
 SUBDIR += libtextcat
