@@ -1,11 +1,10 @@
-# Created by: Nicolas Herry <nicolasherry@gmail.com>
-
 PORTNAME=	wmmp
 PORTVERSION=	0.12.6
 CATEGORIES=	audio windowmaker
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dockable musicpd client applet for Window Maker
+WWW=		https://github.com/yogsothoth/wmmp
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
