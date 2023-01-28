@@ -8,6 +8,7 @@ PATCHFILES+=	6614bb62ecbe.patch:-p1 # https://gitlab.gnome.org/World/podcasts/-/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Podcast app for GNOME
+WWW=		https://gitlab.gnome.org/World/podcasts
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -19,7 +20,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 USES=		cargo gettext gnome gstreamer meson pkgconfig python:build shebangfix sqlite ssl
 USE_GITLAB=	yes
 USE_GNOME=	gdkpixbuf2 gtk30
-USE_GSTREAMER1=	bad good libav
+USE_GSTREAMER=	bad good libav
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	World
 GL_COMMIT=	c86f7bfdef7692bbf20f315a90450321f6ca9ce7
