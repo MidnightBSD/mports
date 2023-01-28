@@ -41,6 +41,7 @@ SUBDIR += gstreamer1-plugins-qt
 SUBDIR += gstreamer1-plugins-resindvd
 SUBDIR += gstreamer1-plugins-rtmp
 SUBDIR += gstreamer1-plugins-theora
+SUBDIR += gstreamer1-plugins-ttml
 SUBDIR += gstreamer1-plugins-ugly
 SUBDIR += gstreamer1-plugins-v4l2
 SUBDIR += gstreamer1-plugins-vpx
