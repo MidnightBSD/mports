@@ -399,7 +399,7 @@ _GST_LIB_DEPENDS=	#
 USE_GSTREAMER?=		#
 # everything wants this
 USE_GSTREAMER+=		libgstreamer
-.if ${PKGNAMESUFFIX} != "1-plugins"
+.if !defined(${PKGNAMESUFFIX}) || ${PKGNAMESUFFIX} != "1-plugins"
 #.  if ${PORTDIRNAME} != gstreamer${_GST_VER}-plugins
 USE_GSTREAMER+=		plugins
 .  endif
