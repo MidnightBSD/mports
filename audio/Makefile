@@ -42,6 +42,7 @@ SUBDIR += gstreamer1-plugins-gsm
 SUBDIR += gstreamer1-plugins-jack
 SUBDIR += gstreamer1-plugins-ladspa
 SUBDIR += gstreamer1-plugins-lame
+SUBDIR += gstreamer1-plugins-lv2
 SUBDIR += gstreamer1-plugins-mad
 SUBDIR += gstreamer1-plugins-modplug
 SUBDIR += gstreamer1-plugins-mpg123
