@@ -36,6 +36,7 @@ SUBDIR += gstreamer1-plugins-hls
 SUBDIR += gstreamer1-plugins-kate
 SUBDIR += gstreamer1-plugins-mpeg2dec
 SUBDIR += gstreamer1-plugins-mpeg2enc
+SUBDIR += gstreamer1-plugins-msdk
 SUBDIR += gstreamer1-plugins-qt
 SUBDIR += gstreamer1-plugins-resindvd
 SUBDIR += gstreamer1-plugins-rtmp
