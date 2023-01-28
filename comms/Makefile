@@ -8,6 +8,7 @@ SUBDIR += bforce
 SUBDIR += bforce-kst
 SUBDIR += chu
 SUBDIR += comserv
+SUBDIR += gstreamer1-plugins-spandsp
 SUBDIR += hamlib
 SUBDIR += hidapi
 SUBDIR += iwmbt-firmware
