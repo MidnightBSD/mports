@@ -1,18 +1,17 @@
-
-
 PORTNAME=	chroot_safe
 PORTVERSION=	1.4
 PORTREVISION=	2
 CATEGORIES=	security sysutils
 MASTER_SITES=	SF/chrootsafe/${PORTNAME}/${PORTVERSION}
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to chroot softwares easily
+WWW=		https://sourceforge.net/projects/chrootsafe/
 
 LICENSE=	mit
 
-GNU_CONFIGURE=	YES
+USES=		tar:tgz
+GNU_CONFIGURE=	yes
 
 PLIST_FILES=	sbin/chroot_safe libexec/chroot_safe/chroot_safe.so \
 		man/man1/chroot_safe.1.gz
