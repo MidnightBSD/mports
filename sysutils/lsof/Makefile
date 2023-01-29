@@ -1,5 +1,5 @@
 PORTNAME=	lsof
-DISTVERSION=	4.94.0
+DISTVERSION=	4.95.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
