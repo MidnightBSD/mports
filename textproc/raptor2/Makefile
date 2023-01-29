@@ -1,12 +1,13 @@
 PORTNAME=	raptor2
 PORTVERSION=	2.0.15
-PORTREVISION=	2
+PORTREVISION=	24
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.librdf.org/source/ \
 		SF/librdf/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF Parser Toolkit for Redland
+WWW=		https://librdf.org/raptor/
 
 LICENSE=	apache2 gpl2 gpl3 lgpl2.1
 LICENSE_COMB=	dual
