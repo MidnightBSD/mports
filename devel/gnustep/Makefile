@@ -7,6 +7,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Objective-C libraries based on the OpenStep standard
+WWW=		http://www.gnustep.org/
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi

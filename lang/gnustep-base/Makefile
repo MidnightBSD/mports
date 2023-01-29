@@ -7,6 +7,7 @@ CATEGORIES=	lang devel gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
+WWW=		http://www.gnustep.org/
 
 LICENSE=	gpl lgpl
 LICENSE_COMB=	multi
