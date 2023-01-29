@@ -1,8 +1,6 @@
-# Created by: Thomas Gellekum <tg@FreeBSD.org>
-
 PORTNAME=	gnustep-base
 DISTVERSIONPREFIX=	base-
-DISTVERSION=	1_28_0
+DISTVERSION=	1_29_0
 CATEGORIES=	lang devel gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
