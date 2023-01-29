@@ -254,6 +254,7 @@ SUBDIR += xpdf3
 SUBDIR += xv
 SUBDIR += xviewer
 SUBDIR += zbar
+SUBDIR += zint
 SUBDIR += zphoto
 
 .include <bsd.port.subdir.mk>
