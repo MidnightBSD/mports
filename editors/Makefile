@@ -20,6 +20,7 @@ SUBDIR += mg
 SUBDIR += mousepad
 SUBDIR += nano
 SUBDIR += nvi-devel
+SUBDIR += openoffice-4
 SUBDIR += pico-alpine
 SUBDIR += slime
 SUBDIR += tea

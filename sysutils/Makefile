@@ -84,6 +84,7 @@ SUBDIR += gnome-system-monitor
 SUBDIR += gnome_subr
 SUBDIR += graylog
 SUBDIR += grub2-bhyve
+SUBDIR += gstreamer1-plugins-cdio
 SUBDIR += hal
 SUBDIR += hal-info
 SUBDIR += htop
