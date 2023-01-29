@@ -1,5 +1,3 @@
-
-
 PORTNAME=	imageviewer
 PORTVERSION=	0.6.3
 PORTREVISION=	2
@@ -11,6 +9,7 @@ DISTNAME=	ImageViewer-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Image Viewer
+WWW=		https://www.nice.ch/~phip/softcorner.html
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
