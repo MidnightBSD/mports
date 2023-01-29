@@ -58,6 +58,7 @@ SUBDIR += gstreamer1-qt
 SUBDIR += gstreamer1-rtsp-server
 SUBDIR += gstreamer1-vaapi
 SUBDIR += gstreamer1-validate
+SUBDIR += gstreamermm
 SUBDIR += intel-media-sdk
 SUBDIR += libaacs
 SUBDIR += libass
