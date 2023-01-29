@@ -34,6 +34,7 @@ SUBDIR += gnome-online-accounts
 SUBDIR += gnome-online-miners
 SUBDIR += grilo
 SUBDIR += grilo-plugins
+SUBDIR += gstreamer1-plugins-srtp
 SUBDIR += gtk-vnc
 SUBDIR += hostapd
 SUBDIR += hping
