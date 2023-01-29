@@ -40,6 +40,7 @@ SUBDIR += gnupg1
 SUBDIR += gnutls
 SUBDIR += gpgme
 SUBDIR += gsasl
+SUBDIR += gstreamer1-plugins-dtls
 SUBDIR += horcrux
 SUBDIR += ipfilter2dshield
 SUBDIR += ipfw2dshield
