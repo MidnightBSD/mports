@@ -1,5 +1,6 @@
 PORTNAME=	IPC-ShareLite
 PORTVERSION=	0.17
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,7 +15,9 @@ LICENSE_COMB=	dual
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/IPC/ShareLite/ShareLite.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/IPC/ShareLite/ShareLite.so
 
 .include <bsd.port.mk>
