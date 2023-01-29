@@ -1,5 +1,5 @@
 PORTNAME=	lsof
-DISTVERSION=	4.93.2
+DISTVERSION=	4.94.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +19,7 @@ HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
 CONFIGURE_ENV=	LSOF_CC="${CC}"  FREEBSD_SYS="${SRC_BASE}/sys"
-
+LDFLAGS+=	-lutil
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} > 300000
