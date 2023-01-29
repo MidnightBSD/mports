@@ -1,7 +1,7 @@
---- configure.orig	2018-11-23 15:50:12.590006000 -0500
-+++ configure	2018-11-23 15:51:15.353080000 -0500
-@@ -6704,13 +6704,15 @@
-     PR_MD_CSRCS=dgux.c
+--- configure.orig	2022-09-12 11:40:15 UTC
++++ configure
+@@ -6563,13 +6563,15 @@ tools are selected during the Xcode/Deve
+     fi
      ;;
  
 -*-freebsd*)
@@ -17,7 +17,7 @@
  
      $as_echo "#define HAVE_BSD_FLOCK 1" >>confdefs.h
  
-@@ -8334,7 +8336,7 @@
+@@ -7936,7 +7938,7 @@ $as_echo_n "checking whether ${CC-cc} ac
  	if test -z "`egrep -i '(unrecognize|unknown)' conftest.out | grep pthread`" && test -z "`egrep -i '(error|incorrect)' conftest.out`" ; then
  	    ac_cv_have_dash_pthread=yes
  		case "$target_os" in
@@ -26,7 +26,7 @@
  # Freebsd doesn't use -pthread for compiles, it uses them for linking
              ;;
  	    *)
-@@ -8372,7 +8374,7 @@
+@@ -7974,7 +7976,7 @@ $as_echo "$ac_cv_have_dash_pthreads" >&6
              _PTHREAD_LDFLAGS=
          fi
  	    ;;
@@ -35,7 +35,7 @@
  	    $as_echo "#define _REENTRANT 1" >>confdefs.h
  
  	    $as_echo "#define _THREAD_SAFE 1" >>confdefs.h
-@@ -8462,7 +8464,7 @@
+@@ -8064,7 +8066,7 @@ case "$target" in
  
      fi
      ;;
