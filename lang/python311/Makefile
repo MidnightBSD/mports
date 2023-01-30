@@ -33,7 +33,8 @@ PYTHON_SUFFIX=		${PYTHON_VER:S/.//g}
 DISABLED_EXTENSIONS=	_sqlite3 _tkinter _gdbm
 CONFIGURE_ARGS+=	--enable-shared --without-ensurepip \
 			--with-system-ffi
-CONFIGURE_ENV+=		OPT="" # Null out OPT to respect user CFLAGS and remove optimizations
+CONFIGURE_ENV+=		ax_cv_c_float_words_bigendian=no
+CONFIGURE_ENV+=		OPT="" # Null out OPT to respect user CFLAGS and remove optimizations 
 
 INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 
@@ -52,7 +53,7 @@ PLIST_SUB=		ABI=${ABIFLAGS} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-freebsd* in pkg-plist. https://bugs.python.org/issue19554
 
 OPTIONS_DEFINE=		DEBUG IPV6 LIBMPDEC LTO NLS PYMALLOC
-OPTIONS_DEFAULT=	LIBMPDEC LTO PYMALLOC
+OPTIONS_DEFAULT=	LIBMPDEC PYMALLOC
 OPTIONS_EXCLUDE_powerpc64=	LTO
 OPTIONS_EXCLUDE_riscv64=	LTO
 OPTIONS_RADIO=		HASH
