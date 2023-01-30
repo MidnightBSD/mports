@@ -4,13 +4,16 @@
 
 PORTNAME=	libixp
 PORTVERSION=	0.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://dl.suckless.org/libs/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standalone client/server 9P library
+WWW=		https://libs.suckless.org/deprecated/libixp/
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/libixp/LICENSE
 
 USE_LDCONFIG=	yes
 CFLAGS+=	-I. -I${WRKSRC}/include -fPIC
