@@ -1,14 +1,15 @@
-# Created by: Nosov Artem <chip-set@mail.ru>
-
 PORTNAME=	wput
 PORTVERSION=	0.6.2
+PORTREVISION=	1
 CATEGORIES=	ftp
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Upload files or directories to FTP server with resume support
+WWW=		http://wput.sourceforge.net/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTDOCS=	ABOUT-NLS COPYING ChangeLog INSTALL TODO
 PORTEXAMPLES=	USAGE.examples USAGE.resumehandling USAGE.urlhandling \
@@ -35,10 +36,11 @@ pre-configure:
 		${WRKSRC}/src/socketlib.c
 
 post-install:
-	${INSTALL_MAN}	${WRKSRC}/doc/*.1 ${STAGEDIR}${MANPREFIX}/man/man1/
-	@${INSTALL} -d ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
-	@${INSTALL} -d ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${PORTEXAMPLES:S,^,${WRKSRC}/doc/,} ${STAGEDIR}${EXAMPLESDIR}
+	${STRIP_CMD} ${PREFIX}/bin/wput
+	${INSTALL_MAN}	${WRKSRC}/doc/*.1 ${MANPREFIX}/man/man1/
+	@${INSTALL} -d ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
+	@${INSTALL} -d ${EXAMPLESDIR}
+	${INSTALL_DATA} ${PORTEXAMPLES:S,^,${WRKSRC}/doc/,} ${EXAMPLESDIR}
 
 .include <bsd.port.mk>
