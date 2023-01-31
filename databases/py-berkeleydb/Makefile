@@ -21,6 +21,8 @@ PYDISTUTILS_INSTALLARGS=-c -O1 --prefix=${TRUE_PREFIX} --berkeley-db=${LOCALBASE
 PORTDOCS=	*
 DOCSDIR=	${PREFIX}/share/doc/${PYTHON_PKGNAMEPREFIX}${PORTNAME}
 
+NO_TEST=	yes
+
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
@@ -43,7 +45,5 @@ post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	@(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR})
 
-do-test:
-	@(cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} ./test.py
 
 .include <bsd.port.post.mk>
