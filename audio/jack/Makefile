@@ -50,6 +50,8 @@ OPUS_CONFIGURE_OFF=	--opus=no
 PROFILING_DESC=		Build with profiling information
 PROFILING_CONFIGURE_ON=	--profile
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MDBUS}
