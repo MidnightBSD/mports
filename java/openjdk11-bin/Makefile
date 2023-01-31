@@ -29,16 +29,30 @@ PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
 IGNORE=	OS Not Supported
 .endif
 
+.if ${OSVERSION} > 300000
 .if ${ARCH} == "amd64"
-VER=    11.0.7
+VER=	11.0.17
+DISTFILES=	openjdk11-11.0.17+8.1_1~906dd87924.pkg
+FBSD_PATH=	FreeBSD:12:amd64
+COMPONENT=.12
+.else
+VER=	11.0.12
+DISTFILES=      openjdk11-11.0.12+7.1.pkg
+FBSD_PATH=      FreeBSD:11:i386
+COMPONENT=.11.${ARCH}
+.endif
+.else
+.if ${ARCH} == "amd64"
+VER=	11.0.7
 DISTFILES=	openjdk11-11.0.7+10.2_1.txz
 FBSD_PATH=	FreeBSD:11:amd64
 COMPONENT=.11
 .else
-VER=    11.0.12
+VER=	11.0.12
 DISTFILES=      openjdk11-11.0.12+7.1.pkg
 FBSD_PATH=      FreeBSD:11:i386
 COMPONENT=.11.${ARCH}
+.endif
 .endif
 
 do-install:
