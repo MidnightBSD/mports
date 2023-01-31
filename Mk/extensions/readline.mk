@@ -12,9 +12,9 @@ IGNORE= Incorrect 'USES+= readline:${readline_ARGS}' readline takes no arguments
 .endif
 
 # magus freaks out because system readline is 8
-BUILD_DEPENDS+=		/usr/local/lib/libreadline.so.8.1:devel/readline
-RUN_DEPENDS+=		/usr/local/lib/libreadline.so.8.1:devel/readline
-LIB_DEPENDS+=		libreadline.so.8.1:devel/readline
+BUILD_DEPENDS+=		/usr/local/lib/libreadline.so.8.2:devel/readline
+RUN_DEPENDS+=		/usr/local/lib/libreadline.so.8.2:devel/readline
+LIB_DEPENDS+=		libreadline.so.8.2:devel/readline
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 
