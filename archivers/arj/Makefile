@@ -13,6 +13,8 @@ WWW=		http://arj.sourceforge.net/
 
 LICENSE=	gpl2
 
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
+
 IGNORE_PATCHES=	002_no_remove_static_const.patch  \
 		doc_refer_robert_k_jung.patch \
 		gnu_build_cross.patch \
