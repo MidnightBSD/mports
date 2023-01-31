@@ -11,6 +11,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Z shell
+WWW=		https://www.zsh.org/
 
 LICENSE=	ZSH
 LICENSE_NAME=	ZSH license
