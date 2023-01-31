@@ -1,8 +1,6 @@
 # Ports collection makefile for: wpop3d
 # Date created:   3 September 2006
 # Whom:           wintellect
-#
-
 
 PORTNAME=	wpop3d
 PORTVERSION=	1.2
@@ -14,6 +12,8 @@ MAINTAINER=	wintellect@bsdnexus.com
 COMMENT=	pop3 server for retrieval of remote mail on a UNIX system
 
 LICENSE=	bsd2
+
+USES=		common
 
 GNU_CONFIGURE=	yes
 
