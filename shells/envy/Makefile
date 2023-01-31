@@ -1,11 +1,12 @@
 PORTNAME=	envy
 DISTVERSIONPREFIX=v
 DISTVERSION=	0.1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	shells
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shell helper that automatically sets and unsets environment variables
+WWW=		https://github.com/wojas/envy
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
