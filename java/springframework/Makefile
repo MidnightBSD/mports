@@ -6,6 +6,7 @@ DISTNAME=	spring-framework-${PORTVERSION}.RELEASE-dist
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Spring Framework for Java
+WWW=		https://www.springframework.org/
 
 LICENSE=	apache2
 
@@ -14,7 +15,6 @@ WRKSRC=		${WRKDIR}/spring-framework-${PORTVERSION}.RELEASE
 NO_BUILD=	yes
 USE_JAVA=	yes
 USES=		zip
-JAVA_VERSION=	1.6+
 
 OPTIONS_DEFINE=	DOCS RESRCS
 RESRCS_DESC=	Install resource files
