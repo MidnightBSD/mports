@@ -45,6 +45,7 @@ SUBDIR += jikes
 SUBDIR += junit
 SUBDIR += linux-oracle-jdk18
 SUBDIR += linux-oracle-jre18
+SUBDIR += linux-oracle-serverjre10
 SUBDIR += maven-ant-tasks
 SUBDIR += maven-wrapper
 SUBDIR += maven
