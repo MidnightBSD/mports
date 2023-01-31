@@ -1,5 +1,3 @@
-
-
 PORTNAME=	bluej
 PORTVERSION=	3.1.1
 CATEGORIES=	java editors
@@ -10,6 +8,7 @@ EXTRACT_SUFX=	.jar
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated Java environment designed for introductory teaching
+WWW=		https://www.bluej.org/
 
 LICENSE=	gpl2 cddl mit bsd3
 LICENSE_COMB=	multi
@@ -17,7 +16,7 @@ LICENSE_COMB=	multi
 NO_BUILD=	yes
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_VERSION=	1.7+
 SUB_FILES=	bluej
 
 post-extract:
