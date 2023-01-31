@@ -1,5 +1,5 @@
 PORTNAME=		bash
-PATCHLEVEL=		2
+PATCHLEVEL=		15
 PORTVERSION=		5.2.${PATCHLEVEL:S/^0//g}
 PORTREVISION?=		0
 CATEGORIES=		shells
@@ -17,7 +17,7 @@ MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		GNU Project's Bourne Again SHell
 WWW=			https://www.gnu.org/software/bash/
 
-LICENSE=		gpl3
+LICENSE=		gpl3+
 LICENSE_FILE=		${WRKSRC}/COPYING
 
 USES=			bison cpe iconv makeinfo pathfix localbase
@@ -51,7 +51,7 @@ HELP_CONFIGURE_ENABLE=	help-builtin
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 
-PORTS_READLINE_BROKEN=	needs a newer version of devel/readline, disable PORTS_READLINE and retry
+PORTS_READLINE_BUILD_DEPENDS=	readline>=8.2:devel/readline
 PORTS_READLINE_USES=	readline
 PORTS_READLINE_CONFIGURE_WITH=	installed-readline
 
