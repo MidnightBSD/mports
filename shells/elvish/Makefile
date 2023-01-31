@@ -5,6 +5,7 @@ CATEGORIES=	shells
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Elvish = Expressive Programming Language + Versatile Interactive Shell
+WWW=		https://elv.sh/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
