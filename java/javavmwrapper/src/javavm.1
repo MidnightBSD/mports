@@ -23,8 +23,6 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.\" $FreeBSD: head/java/javavmwrapper/src/javavm.1 518486 2019-11-27 00:56:24Z glewis $
-.\"
 .Dd November 12, 2019
 .Os
 .Dt JAVAVM 1
@@ -100,8 +98,6 @@ A space delimited list of Java VM vendors.
 The selected Java VM must have been released by one of the vendors in the list.
 .Pp
 Currently allowed vendors are
-.Ql bsdjava ,
-.Ql freebsd ,
 .Ql openjdk ,
 .Ql oracle ,
 and
@@ -133,8 +129,18 @@ Currently allowed versions are
 .Ql 12 ,
 .Ql 12+ ,
 .Ql 13 ,
+.Ql 13+ ,
+.Ql 14 ,
+.Ql 14+ ,
+.Ql 15 ,
+.Ql 15+ ,
+.Ql 16 ,
+.Ql 16+ ,
+.Ql 17 ,
+.Ql 17+ ,
+.Ql 18 ,
 and
-.Ql 13+ .
+.Ql 18+ .
 .It Ev JAVAVM_OPTS
 The contents of this environment variable will be passed to the invoked
 Java VM as options.

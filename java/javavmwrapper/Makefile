@@ -1,7 +1,7 @@
 # This port is self contained in the src directory.
 
 PORTNAME=	javavmwrapper
-PORTVERSION=	2.7.5
+PORTVERSION=	2.7.9
 CATEGORIES=	java
 MASTER_SITES=	# none
 DISTFILES=	# none

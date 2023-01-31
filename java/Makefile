@@ -59,6 +59,7 @@ SUBDIR += openjdk8
 SUBDIR += openjdk8-bin
 SUBDIR += openjdk11-bin
 SUBDIR += openjdk13-bin
+SUBDIR += openjdk17-bin
 SUBDIR += proguard
 SUBDIR += springframework
 
