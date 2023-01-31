@@ -6,6 +6,7 @@ SUBDIR += gdl
 SUBDIR += gnome-pty-helper
 SUBDIR += gnustep-back
 SUBDIR += gnustep-gui
+SUBDIR += gstreamer1-plugins-gtk
 SUBDIR += gstreamer1-plugins-pango
 SUBDIR += gtk-layer-shell
 SUBDIR += gtk-sharp-beans
