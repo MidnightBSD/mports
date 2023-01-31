@@ -1,5 +1,3 @@
- 
-
 PORTNAME=	osh
 DISTVERSION=	20150115
 CATEGORIES=	shells
@@ -7,6 +5,7 @@ MASTER_SITES=	http://v6shell.org/src/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the UNIX 6th Edition shell
+WWW=		http://v6shell.org/
 
 LICENSE=	bsd4
 
