@@ -1,5 +1,3 @@
-$FreeBSD: ports/shells/44bsd-csh/files/patch-proc.c,v 1.1 2002/06/16 08:58:07 kris Exp $
-
 --- proc.c	Tue Jun  4 20:07:29 2002
 +++ proc.c	Tue Jun  4 20:14:09 2002
 @@ -89,13 +89,13 @@
