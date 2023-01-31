@@ -1,4 +1,4 @@
-The Boehm-Demers-Weiser garbage collection package, for C and C++ -
+The Boehm-Weiser garbage collection package, for C and C++ -
 garbage collection and memory leak detection libraries.
 
 A garbage collector is something which automatically frees malloc'd
@@ -13,5 +13,3 @@ to use garbage collection, though leak detection should work without
 such source code modifications.  See the man page and header files.
 
 ps: garbage collection is addictive.
-
-WWW: https://www.hboehm.info/gc/
