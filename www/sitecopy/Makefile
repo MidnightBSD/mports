@@ -20,11 +20,15 @@ GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--with-neon --with-libxml2
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
-
 OPTIONS_DEFINE=	NLS
 
 .include <bsd.mport.options.mk>
+
+.if ${OSVERSION} >= 300000
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+.else
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+.endif
 
 .if ${PORT_OPTIONS:MNLS}
 LIBS+=		-lintl
