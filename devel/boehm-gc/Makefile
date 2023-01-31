@@ -1,5 +1,6 @@
 PORTNAME=	gc
 PORTVERSION=	8.2.2
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/ivmai/bdwgc/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	boehm-
@@ -9,6 +10,7 @@ PKGNAMESUFFIX=	-${GC_VARIANT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Garbage collection and memory leak detection for C and C++
+WWW=		https://www.hboehm.info/gc/
 
 LICENSE=	BDWGC
 LICENSE_NAME=	Boehm-Demers-Weiser Garbage Collector License
@@ -23,7 +25,7 @@ CPE_VENDOR=	boehm-demers-weiser
 CPE_PRODUCT=	garbage_collector
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS=	--enable-cplusplus --enable-static
+CONFIGURE_ARGS=	--enable-cplusplus --enable-mmap --enable-static
 MAKE_JOBS_UNSAFE=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME:C/[a-z]$//}

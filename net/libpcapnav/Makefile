@@ -1,12 +1,12 @@
-
-
 PORTNAME=	libpcapnav
 PORTVERSION=	0.8
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	SF/netdude/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	libpcap wrapper library
+WWW=		http://netdude.sourceforge.net/
 
 LICENSE=	mit
 
@@ -16,11 +16,12 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
+PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|DOC_MODULE = pcapnav|DOC_MODULE =|' \
-	${WRKSRC}/docs/Makefile.in
-.if defined(NOPORTDOCS)
-	@${REINPLACE_CMD} -e 's|docs||' ${WRKSRC}/Makefile.in
-.endif
+		${WRKSRC}/docs/Makefile.in
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	guile
 PORTVERSION=	2.2.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	2
@@ -58,6 +58,7 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|-i -e|-i.bak -e|' \
 		${WRKSRC}/libguile/Makefile.in
+	-${RM} -r ${WRKSRC}/prebuilt/32-bit-big-endian
 
 post-patch-THREADS-on:
 	@${REINPLACE_CMD} -e 's|bdw-gc|bdw-gc-threaded|g' ${WRKSRC}/configure
