@@ -1,19 +1,20 @@
-# Created by: Alexander Churanov <churanov.port.maintainer@gmail.com>
-
-
 PORTNAME=	boost-libs
 PORTREVISION=	1
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-PATCHDIR=	../boost-libs/files
+PATCHDIR=	${.CURDIR}/../boost-libs/files
 
 COMMENT=	Framework for interfacing Python and C++
+WWW=		https://www.boost.org/
+
+LICENSE=	boost
+LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 BUILD_DEPENDS=	bjam:devel/boost-jam \
 		${PYNUMPY}
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
 
-USES=		python:3.8-3.10
+USES=		python:3.8+
 USE_PYTHON=	flavors
 
 OPTIONS_DEFINE=	DEBUG OPTIMIZED_CFLAGS

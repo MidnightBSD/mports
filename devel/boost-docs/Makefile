@@ -1,16 +1,16 @@
-# Created by: Alexander Churanov <churanov.port.maintainer@gmail.com>
-
-
 PORTNAME=	boost-docs
 COMMENT=	Documentation for libraries from boost.org
+WWW=		https://www.boost.org/
 
-LICENSE=	mit
+LICENSE=	boost
+LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 USES=	python:env shebangfix
 
 DOCSDIR=	${PREFIX}/share/doc/boost
 UNIQ=		/usr/bin/uniq
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 OPTIONS_DEFINE=	DOCS
@@ -19,8 +19,7 @@ SHEBANG_GLOB=	*.py
 
 PORTDOCS=	*
 
-
-.include "${.CURDIR}/..//boost-all/common.mk"
+.include "${.CURDIR}/../boost-all/common.mk"
 
 do-install:
 # Documentation & examples

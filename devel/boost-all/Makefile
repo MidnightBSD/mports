@@ -1,6 +1,3 @@
-# Created by: Alexander Churanov <churanov.port.maintainer@gmail.com>
-
-
 PORTNAME=	boost-all
 MASTER_SITES=   #
 DISTFILES=      #
@@ -9,6 +6,7 @@ EXTRACT_ONLY=   #
 NO_BUILD=	yes
 
 COMMENT?=	The "meta-port" for boost libraries
+WWW=		https://www.boost.org/
 
 OPTIONS_DEFINE=	JAM LIBRARIES PYTHON DOCS
 OPTIONS_DEFAULT=	JAM LIBRARIES
