@@ -67,6 +67,7 @@ SUBDIR += libpcap
 SUBDIR += libpcapnav
 SUBDIR += libproxy
 SUBDIR += librsync
+SUBDIR += libsrtp2
 SUBDIR += libutp
 SUBDIR += libvncserver
 SUBDIR += libzapojit
