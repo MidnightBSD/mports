@@ -154,13 +154,17 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 .		endif
 
 # The complete list of Java versions, os and vendors supported.
-__JAVA_VERSION_LIST=	6 7 8 11 12 13
+__JAVA_VERSION_LIST=	6 7 8 11 12 13 17 18
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
 _JAVA_OS_LIST=			native freebsd linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava sun oracle openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_18_INFO=	PORT=java/openjdk18-bin			HOME=${LOCALBASE}/openjdk18 \
+											VERSION=18	OS=freebsd	VENDOR=openjdk
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_17_INFO=	PORT=java/openjdk17-bin			HOME=${LOCALBASE}/openjdk17 \
+											VERSION=17	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_13_INFO=	PORT=java/openjdk13-bin			HOME=${LOCALBASE}/openjdk13 \
 											VERSION=13	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_11_INFO=	PORT=java/openjdk11-bin			HOME=${LOCALBASE}/openjdk11 \
@@ -173,6 +177,10 @@ _JAVA_PORT_FREEBSD_OPENJDK_JDK_7_INFO=	PORT=java/openjdk7-bin			HOME=${LOCALBASE
 											VERSION=7	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_6_INFO=		PORT=java/openjdk6			HOME=${LOCALBASE}/openjdk6 \
 											VERSION=6	OS=native	VENDOR=openjdk
+_JAVA_PORT_NATIVE_OPENJDK_JDK_17_INFO=		PORT=java/openjdk17			HOME=${LOCALBASE}/openjdk17 \
+											VERSION=17	OS=native	VENDOR=openjdk
+_JAVA_PORT_NATIVE_OPENJDK_JDK_18_INFO=		PORT=java/openjdk18			HOME=${LOCALBASE}/openjdk18 \
+											VERSION=18	OS=native	VENDOR=openjdk
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_6_INFO=		PORT=java/jdk16					HOME=${LOCALBASE}/jdk1.6.0 \
 											VERSION=6	OS=native	VENDOR=bsdjava
 _JAVA_PORT_LINUX_SUN_JDK_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE}/linux-sun-jdk1.6.0 \
@@ -197,7 +205,9 @@ _JAVA_OS_freebsd=	FreeBSD
 _JAVA_PREFERRED_PORTS+= JAVA_PORT_FREEBSD_OPENJDK_JDK_8
 
 # List all JDK ports
-__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_13 \
+__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_18 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_17 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_13 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_11 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_7 \
@@ -285,7 +295,7 @@ JAVA_RUN=	jre
 .		undef _JAVA_PORTS_INSTALLED
 .		undef _JAVA_PORTS_POSSIBLE
 .		if defined(JAVA_VERSION)
-_JAVA_VERSION=	${JAVA_VERSION:S/1.6+/1.6 1.7+/:S/1.7+/1.7 1.8+/:S/1.8+/1.8 11+/:S/1.6/6/:S/1.7/7/:S/1.8/8/:S/7+/7 8+/:S/8+/8 11+/:S/11+/11 12+/:S/12+/12 13+/:S/13+/13/}
+_JAVA_VERSION=	${JAVA_VERSION:S/1.6+/1.6 1.7+/:S/1.7+/1.7 1.8+/:S/1.8+/1.8 11+/:S/1.6/6/:S/1.7/7/:S/1.8/8/:S/7+/7 8+/:S/8+/8 11+/:S/11+/11 12+/:S/12+/12 13+/:S/13+/13/ 17+/:S/^17+/17 18+/:S/^18+/18/}
 .		else
 _JAVA_VERSION=	${__JAVA_VERSION_LIST}
 .		endif
