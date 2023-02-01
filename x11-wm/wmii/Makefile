@@ -1,18 +1,20 @@
-
-
 PORTNAME=	wmii
 DISTVERSION=	3.6	# this is stable version; for 3.9.x, use -devel port
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://dl.suckless.org/wmii/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic, minimalist window manager for X11
+WWW=		http://wmii.suckless.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libixp.so:devel/libixp
 RUN_DEPENDS=	dmenu:x11/dmenu
+
+USES=		xorg
 
 CONFLICTS=	wmii-devel-[0-9]*
 
