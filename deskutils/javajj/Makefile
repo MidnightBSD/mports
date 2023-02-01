@@ -20,7 +20,6 @@ GH_PROJECT=	justjournal-client-java
 
 USES=		tar:bzip2
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 
 WRKSRC=		${WRKDIR}/justjournal-client-java-${PORTVERSION}
 
