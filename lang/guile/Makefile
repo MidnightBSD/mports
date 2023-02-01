@@ -1,7 +1,5 @@
-# Created by: jseger@FreeBSD.org
-
 PORTNAME=	guile
-PORTVERSION=	3.0.7
+PORTVERSION=	3.0.8
 CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
 
@@ -16,13 +14,15 @@ LIB_DEPENDS=	libffi.so:devel/libffi \
 		libltdl.so:devel/libltdl \
 		libunistring.so:devel/libunistring
 
-USES=		charsetfix compiler:c11 cpe gmake iconv libtool makeinfo pathfix pkgconfig \
+NOT_FOR_ARCHS=	i386
+
+USES=		charsetfix compiler:gcc-c++11-lib cpe gmake iconv libtool makeinfo pathfix pkgconfig \
 	readline tar:lz
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	gnu
 
-CONFLICTS_INSTALL=	guile1-[0-9]* guile2-[0-9]*
+CONFLICTS_INSTALL=	guile1 guile2
 
 MAKE_JOBS_UNSAFE=	yes
 
