@@ -6,14 +6,15 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}.bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for augmenting JDBC drivers with JNDI-bindable DataSources
+WWW=		https://www.mchange.com/projects/c3p0/
 
 LICENSE=	lgpl2.1 epl
 LICENSE_COMB=	dual
 
-USES=		tar:tgz
+USES=		cpe tar:tgz
+CPE_VENDOR=	mchange
 USE_JAVA=	yes
 NO_BUILD=	yes
-JAVA_VERSION=	1.6+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS
