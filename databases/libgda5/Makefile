@@ -1,29 +1,31 @@
 PORTNAME=	libgda
-PORTVERSION?=	5.2.5
-PORTREVISION?=	0
+DISTVERSION?=	5.2.10
+PORTREVISION=	2
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX?=	5
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Provides uniform access to different kinds of data sources
+WWW=		https://www.gnome-db.org/
 
-LICENSE=	unknown
+LICENSE=	gpl2+ lgpl+
+LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl+ =	${WRKSRC}/COPYING.LIB
 
-USES=		python readline shebangfix tar:xz
+USES=		cpe python readline shebangfix tar:xz
+CPE_VENDOR=	gnome
 LIBGDA5_SLAVE?=	no
 SHEBANG_FILES=	libgda-report/RML/*/*.py
-
-.if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libsecret-1.so:security/libsecret \
 		libsoup-2.4.so:devel/libsoup \
-		libjson-glib-1.0.so:devel/json-glib
 
 USES+=		gettext gmake gnome libtool localbase pathfix pkgconfig
-USE_GNOME=	glib20 libxslt intlhack introspection:build referencehack
+USE_GNOME=	glib20 libxslt intlhack introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
@@ -36,7 +38,7 @@ CONFIGURE_ARGS=	--without-oracle \
 .include <bsd.mport.options.mk>
 
 VERSION=	5.0
-PLIST_SUB=	VERSION=${VERSION}
+PLIST_SUB+=	VERSION=${VERSION}
 
 .if ${LIBGDA5_SLAVE}!="no"
 USE_GNOME+=	libgda5
@@ -91,7 +93,6 @@ CONFIGURE_ARGS+=	--without-mdb
 
 .if ${LIBGDA5_SLAVE}==jdbc
 USE_JAVA=		yes
-JAVA_VERSION=		1.6+
 JAVA_VENDOR=		bsdjava openjdk
 CFLAGS+=		-I${JAVA_HOME}/include -I${JAVA_HOME}/include/freebsd
 .else
@@ -110,13 +111,14 @@ post-patch:
 		${WRKSRC}/providers/bdb/gda-bdb-provider.c \
 		${WRKSRC}/providers/bdb/gda-bdb-test.c
 .if ${LIBGDA5_SLAVE} == jdbc
-	@${REINPLACE_CMD} -e 's|lib/amd64|lib/${ARCH}|g' \
+	@${REINPLACE_CMD} -e 's|lib/amd64|lib/${ARCH:S/powerpc64/ppc64/}|g' \
 		${WRKSRC}/getsp.java
 .endif
 .if ${LIBGDA5_SLAVE}!="no"
 	@${FIND} ${WRKSRC} -name Makefile.in -exec ${REINPLACE_CMD} \
 		-e 's|$$(top_builddir)/libgda/libgda-5.0.la|-lgda-5.0|g' \
 		-e 's|../libgda/libgda-5.0.la|-lgda-5.0|g' \
+		-e '/LIBS =/s|-lgda-5.0|gda-5.0|g' \
 		{} \;
 .endif
 
@@ -150,4 +152,3 @@ post-install:
 .endif
 
 .include <bsd.port.mk>
-.endif
