@@ -25,6 +25,7 @@ SUBDIR += ratpoison
 SUBDIR += twm
 SUBDIR += windowmaker
 SUBDIR += wmii
+SUBDIR += wmii-devel
 SUBDIR += xcompmgr
 SUBDIR += xfce4
 SUBDIR += xfce4-desktop
