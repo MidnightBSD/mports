@@ -1,5 +1,3 @@
-
-
 PORTNAME=	slf4j
 PORTVERSION=	1.7.21
 CATEGORIES=	devel java
@@ -7,10 +5,13 @@ MASTER_SITES=	http://www.slf4j.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple facade or abstraction for various logging frameworks
+WWW=		https://www.slf4j.org/
 
-LICENSE=	other
+LICENSE=	mit
 
-USE_JAVA=	1.6+
+USES=		cpe
+CPE_VENDOR=	qos
+USE_JAVA=	YES
 NO_BUILD=	YES
 
 JARFILES=	slf4j-migrator.jar \
