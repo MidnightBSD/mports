@@ -1,5 +1,3 @@
-
-
 PORTNAME=	netbeans
 PORTVERSION=	8.0.2
 PORTREVISION=	1
@@ -7,6 +5,7 @@ CATEGORIES=	java devel
 MASTER_SITES=	http://download.netbeans.org/netbeans/${PORTVERSION}/final/zip/ \
     		http://dlc.sun.com.edgesuite.net/netbeans/${PORTVERSION}/final/zip/
 DISTNAME=	netbeans-${PORTVERSION}-201411181905
+PKGNAMESUFFIX=	8
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-featured integrated environment for Java
