@@ -79,7 +79,7 @@ PLIST_SUB+=		GJDOC="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MGMP}
-LIB_DEPENDS+=		libgmp.so:${PORTSDIR}/math/gmp
+LIB_DEPENDS+=		libgmp.so:math/gmp
 CONFIGURE_ARGS+=	--with-gmp=${LOCALBASE}
 PLIST_SUB+=		GMP=""
 .else
@@ -104,7 +104,7 @@ IGNORE=you need to enable the Gtk+ AWT peer in order to use Cairo based Graphics
 PLIST_SUB+=		QT4="@comment "
 
 .if !defined(WITH_GCJ) && (${ARCH} == "amd64" || ${ARCH} == "i386")
-BUILD_DEPENDS+=		${LOCALBASE}/bootstrap-openjdk8/bin/javac:${PORTSDIR}/java/bootstrap-openjdk8
+BUILD_DEPENDS+=		${LOCALBASE}/bootstrap-openjdk8/bin/javac:java/bootstrap-openjdk8
 JAR?=			${LOCALBASE}/bootstrap-openjdk8/bin/jar
 JAVA?=			${LOCALBASE}/bootstrap-openjdk8/bin/java
 JAVAC?=			${LOCALBASE}/bootstrap-openjdk8/bin/javac
