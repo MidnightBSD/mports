@@ -1,7 +1,6 @@
-
-
 PORTNAME=	cos
 PORTVERSION=	2002.11.05
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	java devel
 MASTER_SITES=	http://www.servlets.com/cos/ \
@@ -10,14 +9,17 @@ DISTNAME=	${PORTNAME}-05Nov2002
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The O\'Reilly package of utility classes for servlet developers
+WWW=		http://www.servlets.com/cos/index.html
 
-LICENSE=	other
+LICENSE=	cos
+LICENSE_NAME=	cos
+LICENSE_TEXT=	Special conditions apply for commercial use, see licence
+LICENSE_PERMS=	auto-accept
 
 USES=		zip
 NO_WRKSUBDIR=	yes
 USE_JAVA=	yes
 NO_BUILD=	yes
-RESTRICTED=	Special conditions apply for commercial use, see licence
 DATAFILES=	readme.txt license.txt doc
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 
