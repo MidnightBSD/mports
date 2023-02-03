@@ -7,6 +7,7 @@ CATEGORIES=	java mail
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reference Implementation of JSR 919
+WWW=		https://javaee.github.io/javamail/
 
 LICENSE=	gpl2 cddl
 LICENSE_COMB=	dual
