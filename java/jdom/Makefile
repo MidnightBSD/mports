@@ -6,6 +6,7 @@ MASTER_SITES=	http://www.jdom.org/dist/source/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java library for accessing and manipulating XML documents
+WWW=		http://www.jdom.org/
 
 LICENSE=	other
 # very simliar to bsd license.
@@ -13,7 +14,7 @@ LICENSE=	other
 RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:java/jaxen
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_VERSION=	7+
 USE_ANT=	yes
 
 ALL_TARGET=	package
