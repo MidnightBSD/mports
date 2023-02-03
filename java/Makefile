@@ -10,7 +10,6 @@ SUBDIR += apache-commons-lang
 SUBDIR += apache-commons-lang3
 SUBDIR += apache-commons-logging
 SUBDIR += apache-commons-pool
-SUBDIR += apache-commons-primitives
 SUBDIR += berkeley-db
 SUBDIR += bluej
 SUBDIR += bootstrap-openjdk6
