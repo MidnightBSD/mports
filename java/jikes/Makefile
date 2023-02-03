@@ -6,6 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}/Jikes/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java source to byte-code compiler made available by IBM
+WWW=		http://jikes.sf.net/
 
 LICENSE=	other
 
