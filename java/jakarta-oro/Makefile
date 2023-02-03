@@ -1,5 +1,3 @@
-
-
 PORTNAME=	jakarta-oro
 PORTVERSION=	2.0.8
 CATEGORIES=	java
@@ -7,12 +5,13 @@ MASTER_SITES=	http://archive.apache.org/dist/jakarta/oro/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl/awk/sh regular expressions for Java
+WWW=		https://jakarta.apache.org/oro/
+
 LICENSE=	apache1.1
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
+BUILD_DEPENDS=	${LOCALBASE}/bin/ant:devel/apache-ant
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 
 PLIST=	${WRKDIR}/PLIST
 
