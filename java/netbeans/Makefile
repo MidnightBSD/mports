@@ -1,51 +1,53 @@
-
-
 PORTNAME=	netbeans
-PORTVERSION=	8.0.2
-PORTREVISION=	1
+DISTVERSION=	16
 CATEGORIES=	java devel
-MASTER_SITES=	http://download.netbeans.org/netbeans/${PORTVERSION}/final/zip/ \
-    		http://dlc.sun.com.edgesuite.net/netbeans/${PORTVERSION}/final/zip/
-DISTNAME=	netbeans-${PORTVERSION}-201411181905
+MASTER_SITES=	APACHE/netbeans/netbeans/${PORTVERSION}/
+DISTNAME=	netbeans-${DISTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A full-featured integrated environment for Java
+COMMENT=	Modular, standards-based integrated development environment
+WWW=		https://netbeans.apache.org/
 
-LICENSE=	cddl gpl2
-LICENSE_COMB=	dual
+LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		shebangfix zip
+USES=		cpe shebangfix zip
+
+CPE_VENDOR=	apache
+
+USE_JAVA=	yes
+JAVA_VERSION=	11 17
+NO_BUILD=	yes
+
 SHEBANG_FILES=	extide/ant/bin/antRun.pl \
 		extide/ant/bin/complete-ant-cmd.pl \
 		extide/ant/bin/runant.pl \
 		extide/ant/bin/runant.py
-USE_JAVA=	yes
-JAVA_VERSION=	1.7+
-NO_BUILD=	yes
+
+python_OLD_CMD=	/usr/bin/python
+python_CMD=	${LOCALBASE}/bin/python${PYTHON_DEFAULT}
 
 WRKSRC=		${WRKDIR}/netbeans
 DATADIR=	${PREFIX}/${PORTNAME}-${PORTVERSION}
 
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
-DESKTOP_ENTRIES="NetBeans" \
-		"NetBeans IDE" \
+DESKTOP_ENTRIES="Apache NetBeans" \
+		"Apache NetBeans IDE (incubating)" \
 		${DATADIR}/nb/netbeans.png \
-		${PORTNAME}-${PORTVERSION} \
+		${PORTNAME} \
 		"Development;" \
 		false
 
 post-patch:
-	@${REINPLACE_CMD} -i "" -e '57s|#||;57s|/path/to/jdk|${JAVA_HOME}|' \
+	@${REINPLACE_CMD} -i '' -e '77s|#||;77s|/path/to/jdk|${JAVA_HOME}|' \
 	    ${WRKSRC}/etc/netbeans.conf
 	@${FIND} ${WRKSRC} -name "*.orig" -delete
 
 do-install:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${DATADIR}
-	${CHMOD} ${BINMODE} ${STAGEDIR}${DATADIR}/bin/netbeans
-	${LN} -sf ${DATADIR}/bin/netbeans ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-${PORTVERSION}
-
-post-install:
-	${FIND} ${STAGEDIR}${DATADIR} -type f -ipath "*/bin/*" | ${XARGS} ${CHMOD} ${BINMODE}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${DATADIR}
+	cd ${STAGEDIR}${PREFIX} && ${LN} -sf ../${PORTNAME}-${PORTVERSION}/bin/netbeans bin/${PORTNAME}
+	cd ${STAGEDIR}${PREFIX} && ${LN} -sf ../${PORTNAME}-${PORTVERSION}/bin/netbeans bin/${PORTNAME}-${PORTVERSION}
+	${RM} -rf ${STAGEDIR}${DATADIR}/profiler/lib/deployed/jdk16/linux-arm*
 
 .include <bsd.port.mk>
