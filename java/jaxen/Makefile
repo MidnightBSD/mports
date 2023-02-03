@@ -1,5 +1,3 @@
-
-
 PORTNAME=	jaxen
 PORTVERSION=	1.0
 PORTREVISION=	4
@@ -9,19 +7,20 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-FCS
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java XPath Engine
+WWW=		https://jaxen.org
+
 LICENSE=	bsd4
 
 USE_JAVA=	YES
-JAVA_VERSION=	1.6+
 NO_BUILD=	YES
 
 JARFILES=	jaxen-core.jar jaxen-dom.jar jaxen-dom4j.jar jaxen-exml.jar jaxen-full.jar jaxen-jdom.jar lib/saxpath.jar
 PLIST_FILES+=	${JARFILES:S,^lib/,,:S,^,%%JAVAJARDIR%%/,}
 
-.if !defined(NOPORTDOCS)
 DOCS=		default.css download.html faq.html index.html javadoc status.html style
 PORTDOCS=	LICENSE ${DOCS}
-.endif
+
+OPTIONS_DEFINE=	DOCS
 
 do-install:
 	@${ECHO_MSG} -n ">> Installing JAR files in ${JAVAJARDIR}..."
