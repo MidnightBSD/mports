@@ -32,7 +32,6 @@ SUBDIR += jakarta-commons-lang
 SUBDIR += jakarta-commons-logging
 SUBDIR += jakarta-commons-primitives
 SUBDIR += jakarta-oro
-SUBDIR += jakarta-struts
 SUBDIR += jamvm
 SUBDIR += java-zoneinfo
 SUBDIR += javamail
