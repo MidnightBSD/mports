@@ -1,5 +1,3 @@
-
-
 PORTNAME=	maven-ant-tasks
 PORTVERSION=	2.1.3
 CATEGORIES=	java devel
@@ -13,9 +11,9 @@ COMMENT=	Allows Maven's artifact handling to be used from within an Ant build
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	ant:${PORTSDIR}/devel/apache-ant
+RUN_DEPENDS=	ant:devel/apache-ant
 
-USE_JAVA=	1.6+
+USE_JAVA=	yes
 
 NO_BUILD=	yes
 
