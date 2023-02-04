@@ -1,33 +1,33 @@
-
-
 PORTNAME=	tvbrowser
-PORTVERSION=	3.3.2
+PORTVERSION=	4.2.7
 CATEGORIES=	misc java
-MASTER_SITES=	SF/${PORTNAME}/TV-Browser%20Releases%20%28Java%206%20and%20higher%29/${PORTVERSION}/
+MASTER_SITES=	SF/${PORTNAME}/TV-Browser%20Releases%20%28Java%2011%20and%20higher%29/${PORTVERSION}/
 DISTNAME=	${PORTNAME}_${PORTVERSION}_bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Digital TV and radio guide
+WWW=		https://www.tvbrowser.org
 
-LICENSE=	gpl2
+LICENSE=	gpl3
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-USE_LDCONFIG=	yes
-NO_BUILD=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_VERSION=	11+
+
+NO_BUILD=	yes
 SUB_FILES=	tvbrowser
 
-DESKTOP_ENTRIES="TV-Browser" \
-		"A digital TV guide" \
-		"${DATADIR}/imgs/tvbrowser128.png" \
-		"tvbrowser" \
-		"Application;Video;AudioVideo;TV;" \
-		true
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 do-install:
-	@cd ${WRKSRC} && ${FIND} . -type d -exec ${MKDIR} "${DATADIR}/{}" \;
-	@cd ${WRKSRC} && ${FIND} . -type f -exec ${INSTALL_DATA} "{}" "${DATADIR}/{}" \;
-	@${INSTALL_SCRIPT} ${WRKDIR}/tvbrowser ${PREFIX}/bin
+	@${REINPLACE_CMD} -e "s/${PORTNAME}\.sh/${PORTNAME}/" \
+		${WRKSRC}/${PORTNAME}.desktop
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop \
+		${STAGEDIR}${PREFIX}/share/applications/
+	@${RM} ${WRKSRC}/${PORTNAME}.desktop ${WRKSRC}/${PORTNAME}.desktop.bak
+	@cd ${WRKSRC} && ${FIND} . -type d -exec \
+		${MKDIR} "${STAGEDIR}${DATADIR}/{}" \;
+	@cd ${WRKSRC} && ${FIND} . -type f -exec \
+		${INSTALL_DATA} {} "${STAGEDIR}${DATADIR}/{}" \;
+	${INSTALL_SCRIPT} ${WRKDIR}/tvbrowser ${STAGEDIR}${PREFIX}/bin
 
 .include <bsd.port.mk>
