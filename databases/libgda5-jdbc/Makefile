@@ -1,5 +1,3 @@
-
-
 PORTREVISION=	0
 CATEGORIES=	databases gnome
 PKGNAMESUFFIX=	5-jdbc
