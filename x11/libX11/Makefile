@@ -1,20 +1,23 @@
 PORTNAME=	libX11
-PORTVERSION=	1.7.2
+DISTVERSION=	1.8.4
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11
+DISTFILES=	${DISTNAME}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 library
+WWW=		https://www.freedesktop.org/Software/xlibs
 
 LICENSE=	mit
 
-USES=		cpe perl5 xorg xorg-cat:lib
+USES=		cpe xorg xorg-cat:lib tar:xz
 USE_XORG=	xau xdmcp xtrans xorgproto xcb
-USE_PERL5=	build
 CPE_VENDOR=	x
 
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
 			--without-xmlto \
+			--with-perl=no \
 			--disable-specs
 CONFIGURE_ENV+=	ac_cv_path_PS2PDF=""
 INSTALL_TARGET=	install-strip
