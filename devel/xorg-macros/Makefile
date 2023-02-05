@@ -5,6 +5,7 @@ DISTNAME=	util-macros-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org development aclocal macros
+WWW=		https://cgit.freedesktop.org/xorg/util/macros/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

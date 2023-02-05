@@ -1,10 +1,11 @@
 PORTNAME=	libXt
-PORTVERSION=	1.2.0
+DISTVERSION=	1.2.1
 PORTEPOCH=	1
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Toolkit library
+WWW=		https://www.freedesktop.org/wiki/Software/xlibs/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
