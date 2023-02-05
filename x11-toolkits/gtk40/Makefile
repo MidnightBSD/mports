@@ -7,6 +7,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
+WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl
 
@@ -51,7 +52,7 @@ LDFLAGS+=	-fuse-ld=lld
 
 OPTIONS_DEFINE=	CUPS COLORD DEBUG BROADWAY FFMPEG \
 		GSTREAMER VULKAN WAYLAND X11
-OPTIONS_DEFAULT=CUPS COLORD BROADWAY VULKAN WAYLAND X11
+OPTIONS_DEFAULT=CUPS COLORD BROADWAY GSTREAMER VULKAN WAYLAND X11
 OPTIONS_SUB=	yes
 
 BROADWAY_DESC=	Enable GDK Broadway backend for showing GTK+ in the webbrowser using HTML5 and web sockets.
@@ -71,7 +72,8 @@ FFMPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
 
 GSTREAMER_DESC=		GStreamer multimedia backend
 GSTREAMER_MESON_ENABLED=media-gstreamer
-GSTREAMER_USE=		GSTREAMER1=bad,gl
+GSTREAMER_USES=		gstreamer
+GSTREAMER_USE=		GSTREAMER=bad,gl
 
 VULKAN_DESC=		GDK Vulkan renderer backend
 VULKAN_BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
