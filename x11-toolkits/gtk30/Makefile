@@ -1,9 +1,8 @@
-# Created by: Vanilla I. Shu <vanilla@MinJe.com.TW>
 # Please keep gtk30 in sync with the following x11-themes ports:
 # adwaita-icon-theme, gnome-themes-standard and mate-themes
 
 PORTNAME=	gtk
-PORTVERSION=	3.24.33
+PORTVERSION=	3.24.34
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMESUFFIX=	3
@@ -12,8 +11,9 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
+WWW=		https://www.gtk.org/
 
-LICENSE=	lgpl3
+LICENSE=	lgpl
 
 PORTSCOUT=	limit:1,even
 
@@ -38,7 +38,7 @@ CPPFLAGS+=	-fno-omit-frame-pointer
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.2404.29
+LIBVERSION=	0.2404.30
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
