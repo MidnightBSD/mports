@@ -10,10 +10,13 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
+WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl
 
-USES=		tar:xz
+USES=		cpe tar:xz
+
+CPE_VENDOR=	gnome
 
 RUN_DEPENDS+=	update-mime-database:misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme
