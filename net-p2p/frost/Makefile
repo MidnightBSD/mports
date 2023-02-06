@@ -1,9 +1,6 @@
-# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-
-
 PORTNAME=	frost
 PORTVERSION=	1.2.0.20090314
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	net-p2p java
 MASTER_SITES=	SF/jtc${PORTNAME}/${PORTNAME}/14-Mar-2009
@@ -11,12 +8,12 @@ DISTNAME=	${PORTNAME}-14-Mar-2009
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Freenet client that provides messenger and file services
+WWW=		http://jtcfrost.sourceforge.net/
 
 LICENSE=	other
 
 USES=		zip
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 JAVA_RUN=	yes
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
@@ -25,7 +22,6 @@ PLIST_SUB=	JAR_DIR=${JAR_DIR}
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS
-
 
 JAVAVM=		${LOCALBASE}/bin/java
 JAR_DIR=	${JAVAJARDIR:S,^${PREFIX}/,,}/${PORTNAME}
@@ -61,11 +57,8 @@ DESKTOP_ENTRIES=	"Frost" "Freenet Client" \
 			"frost" "P2P;Network;Java;" \
 			false
 
-pre-everything::
-
 post-patch:
 	@${SED} -e "s|%%PREFIX%%|${PREFIX}|; \
-		s|%%JAVA_VERSION%%|${JAVA_VERSION}|; \
 		s|%%JAVAVM%%|${JAVAVM}|; \
 		s|%%JAR_DIR%%|${JAR_DIR}|; \
 		s|%%JAR_FILE%%|${JAR_FILE}|; \
