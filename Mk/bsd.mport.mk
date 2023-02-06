@@ -496,6 +496,8 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .sinclude "${odir}/Mk/bsd.overlay.mk"
 .    endfor
 
+_PORTDIRNAME=   ${.CURDIR:T}
+PORTDIRNAME?=   ${_PORTDIRNAME}
 
 #
 # Handle the backwards compatibility stuff for extension loading
@@ -842,8 +844,8 @@ TMPGUCMD?=	${WRKDIR}/.PLIST.gucmd
 .for _CATEGORY in ${CATEGORIES}
 PKGCATEGORY?=	${_CATEGORY}
 .endfor
-_PORTDIRNAME=	${.CURDIR:T}
-PORTDIRNAME?=	${_PORTDIRNAME}
+#_PORTDIRNAME=	${.CURDIR:T}
+#PORTDIRNAME?=	${_PORTDIRNAME}
 PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
 
