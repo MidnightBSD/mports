@@ -1,5 +1,3 @@
-
-
 PORTNAME=	jrdesktop
 PORTVERSION=	0.3.1.0
 CATEGORIES=	net java
@@ -10,11 +8,11 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	View and/or control a remote PC
+ WWW=		http://jrdesktop.sourceforge.net/
 
 LICENSE=	gpl3
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 SUB_FILES=	jrdesktop
