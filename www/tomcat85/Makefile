@@ -1,5 +1,5 @@
 PORTNAME=	tomcat
-PORTVERSION=	8.5.79
+PORTVERSION=	8.5.84
 CATEGORIES=	www java
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/([0-9])(.*)/\1/}/v${PORTVERSION}/bin
 PKGNAMESUFFIX=	85
@@ -7,6 +7,7 @@ DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source Java web server by Apache, 8.5.x branch
+WWW=		https://tomcat.apache.org/
 
 LICENSE=	apache2
 
