@@ -1,12 +1,14 @@
 PORTNAME=	gitea
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.16.8
+DISTVERSION=	1.18.0
 CATEGORIES=	www
-MASTER_SITES=	https://github.com/go-gitea/gitea/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
+MASTER_SITES=	https://github.com/go-gitea/gitea/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/ \
+		https://dl.gitea.io/gitea/${DISTVERSION}/
 DISTNAME=	gitea-src-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compact self-hosted Git service
+WWW=		https://gitea.io/en-US/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -16,6 +18,7 @@ RUN_DEPENDS=	git:devel/git
 USES=		cpe gmake go:no_targets
 USE_RC_SUBR=	gitea
 
+EXTRACT_AFTER_ARGS=	--strip-components 1 # since 1.17.0, archive includes gitea-src-VERSION directory
 SUB_FILES+=	app.ini.sample
 SUB_LIST+=	GITUSER=${USERS}
 
