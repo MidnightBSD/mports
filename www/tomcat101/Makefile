@@ -1,15 +1,12 @@
 PORTNAME=	tomcat
-PORTVERSION=	10.0.27
+DISTVERSION=	10.1.4
 CATEGORIES=	www java
-MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/([0-9]+)(.*)/\1/}/v${PORTVERSION}/bin
-PKGNAMESUFFIX=	10
-DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
-
-DEPRECATED=	EOLd, potential security issues (https://tomcat.apache.org/tomcat-10.0-eol.html), use www/tomcat101 instead
-EXPIRATION_DATE=2023-06-30
+MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${DISTVERSION:C/([0-9]+)(.*)/\1/}/v${DISTVERSION}/bin
+PKGNAMESUFFIX=	101
+DISTNAME=	apache-${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Open-source Java web server by Apache, 10.0.x branch
+COMMENT=	Open-source Java web server by Apache, 10.1.x branch
 WWW=		https://tomcat.apache.org/
 
 LICENSE=	apache2
@@ -19,7 +16,7 @@ RUN_DEPENDS=	jsvc:devel/apache-commons-daemon
 USES=		cpe
 CPE_VENDOR=	apache
 USE_JAVA=	yes
-JAVA_VERSION=	8+
+JAVA_VERSION=	11+
 USE_RC_SUBR=	${PKGBASE:C/-/_/}
 
 NO_ARCH=	yes
