@@ -1,21 +1,20 @@
 PORTNAME=	codeigniter
-PORTVERSION=	3.1.11
+PORTVERSION=	3.1.13
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for developing PHP web applications
+WWW=		https://codeigniter.com/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.txt
 
-USES=		php:web
+USES=		cpe php:web
 USE_PHP=	mcrypt pcre session
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bcit-ci
 GH_PROJECT=	CodeIgniter
-
-CONFLICTS=	codeigniter-1.[0-9]* codeigniter22-2.[0-9]*
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -39,10 +38,8 @@ CI_CONF_FILES=	application/config/autoload.php \
 		application/config/user_agents.php \
 		index.php
 
-OPTIONS_DEFINE=	APACHE DOCS MSSQL MYSQLI ODBC PGSQL SQLITE
+OPTIONS_DEFINE=	APACHE MSSQL MYSQLI ODBC PGSQL SQLITE
 OPTIONS_SUB=	yes
-
-SUB_FILES=	pkg-message
 
 APACHE_DESC=	Configure for Apache-2.x
 MSSQL_DESC=	Install MSSQL support for PHP
@@ -53,17 +50,11 @@ SQLITE_DESC=	Install SQLite support for PHP
 
 APACHE_SUB_FILES=	codeigniter.conf
 APACHE_USES=	apache:run
-DOCS_VARS=	SUB_LIST+=HASHMARK=
-DOCS_VARS_OFF=	SUB_LIST+=HASHMARK=\#
 MSSQL_USE=	PHP=mssql
 MYSQLI_USE=	PHP=mysqli
 ODBC_USE=	PHP=odbc
 PGSQL_USE=	PHP=pgsql
 SQLITE_USE=	PHP=sqlite3
-
-post-patch:
-	@${RM} ${WRKSRC}/user_guide/.buildinfo
-	@${MV} ${WRKSRC}/readme.rst ${WRKSRC}/user_guide/readme.rst
 
 do-install:
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "application index.php system" ${STAGEDIR}${WWWDIR}
@@ -74,8 +65,5 @@ do-install:
 do-install-APACHE-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${APACHEETCDIR}/Includes
 	${INSTALL_DATA} ${WRKDIR}/codeigniter.conf ${FAKE_DESTDIR}${PREFIX}/${APACHEETCDIR}/Includes/codeigniter.conf
-
-do-install-DOCS-on:
-	cd ${WRKSRC}/user_guide && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
