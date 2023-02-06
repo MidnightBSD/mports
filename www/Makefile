@@ -227,7 +227,6 @@ SUBDIR += tidy-devel
 SUBDIR += tidy-html5
 SUBDIR += tidy-lib
 SUBDIR += tomcat-native
-SUBDIR += tomcat7
 SUBDIR += tomcat85
 SUBDIR += tomcat9
 SUBDIR += tomcat10
