@@ -7,12 +7,15 @@ DISTNAME=	Joomla_${DISTVERSION}-Stable-Full_Package.tar.bz2?format=bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic web content management system (CMS)
+WWW=		https://www.joomla.org/
 
 LICENSE=	gpl2
 
 USES=		cpe php:web tar:bz2 shebangfix
 CPE_VENDOR=	${PORTNAME}
 CPE_PRODUCT=	${PORTNAME}\!
+
+CONFLICTS_INSTALL=	joomla
 
 NO_ARCH=	yes
 NO_BUILD=	yes
