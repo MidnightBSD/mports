@@ -20,6 +20,7 @@ SUBDIR += sendxmpp
 SUBDIR += slack-term
 SUBDIR += ssh-chat
 SUBDIR += telegram-cli
+SUBDIR += telegram-purple
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-logger
 SUBDIR += zoom
