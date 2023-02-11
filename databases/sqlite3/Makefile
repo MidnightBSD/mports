@@ -1,5 +1,5 @@
 PORTNAME=	sqlite3
-DISTVERSION=	3.39.0
+DISTVERSION=	3.40.0
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://www.sqlite.org/2022/ http://www2.sqlite.org/2022/ http://www3.sqlite.org/2022/
@@ -7,6 +7,7 @@ DISTNAME=	sqlite-autoconf-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SQL database engine in a C library
+WWW=		https://www.sqlite3.org/
 
 LICENSE=	publicdom
 
