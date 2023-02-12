@@ -1,6 +1,5 @@
 PORTNAME=	less
-PORTVERSION=	551
-PORTREVISION=	1
+PORTVERSION=	563
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.greenwoodsoftware.com/less/
 
