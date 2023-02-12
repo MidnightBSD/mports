@@ -6,6 +6,7 @@ MASTER_SITES=	http://www.greenwoodsoftware.com/less/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Better pager utility
+WWW=		https://www.greenwoodsoftware.com/less/
 
 LICENSE=	gpl3 mit
 LICENSE_COMB=	dual
