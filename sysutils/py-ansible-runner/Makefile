@@ -1,11 +1,12 @@
 PORTNAME=	ansible-runner
-DISTVERSION=	2.0.2
+DISTVERSION=	2.3.1
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensible embeddable ansible job runner
+WWW=		https://ansible-runner.readthedocs.io/
 
 LICENSE=	apache2
 
