@@ -1,16 +1,16 @@
 PORTNAME=	mod_wsgi
-PORTVERSION=	4.9.2
+DISTVERSION=	4.9.2
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python WSGI adapter module for Apache
+WWW=		https://www.modwsgi.org/
 
 LICENSE=	apache2
 
-#USE_APACHE=	24
-USES=		apache:2.4+ cpe gettext python
+USES=		apache:2.4+ cpe gettext python:3.6-3.11
 USE_PYTHON=	flavors
 CPE_VENDOR=	modwsgi
 

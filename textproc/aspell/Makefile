@@ -5,6 +5,7 @@ MASTER_SITES=	GNU/aspell
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spelling checker with better suggestion logic than ispell
+WWW=		http://aspell.net/
 
 LICENSE=	lgpl2.1
 
