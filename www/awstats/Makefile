@@ -1,13 +1,12 @@
-
-
 PORTNAME=	awstats
-PORTVERSION=	7.8
+PORTVERSION=	7.9
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/AWStats/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free real-time logfile analyzer to get advanced web statistics
+WWW=		https://www.awstats.org/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/docs/LICENSE.TXT
