@@ -1,11 +1,12 @@
 PORTNAME=	dovecot
-PORTVERSION=	2.3.19.1
+PORTVERSION=	2.3.20
 PORTREVISION=	0
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure, fast and powerful IMAP and POP3 server
+WWW=		https://www.dovecot.org/
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
