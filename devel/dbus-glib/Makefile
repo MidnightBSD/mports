@@ -6,6 +6,7 @@ MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib bindings for the D-BUS messaging system
+WWW=		https://www.freedesktop.org/wiki/Software/DBusBindings/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
