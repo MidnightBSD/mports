@@ -1,16 +1,15 @@
-# Created by: erich@rrnet.com
-
 PORTNAME=	sudo
-PORTVERSION=	1.9.8
+PORTVERSION=	1.9.12p1
 CATEGORIES=	security
 MASTER_SITES=	SUDO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
+WWW=		https://www.sudo.ws/
 
 LICENSE=	sudo
 LICENSE_NAME=	Sudo license
-LICENSE_FILE=	${WRKSRC}/doc/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		cpe libtool
@@ -117,7 +116,7 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/sudo_logsrvd
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/sudo_sendlog
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/visudo
-.for f in audit_json.so group_file.so libsudo_util.so sample_approval.so sudoers.so system_group.so
+.for f in audit_json.so group_file.so libsudo_util.so sudoers.so system_group.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/sudo/${f}
 .endfor
 
