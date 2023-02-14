@@ -1,5 +1,5 @@
 PORTNAME=	drupal9
-PORTVERSION=	9.2.6
+PORTVERSION=	9.5.0
 CATEGORIES=	www
 MASTER_SITES=	http://ftp.drupal.org/files/projects/
 DISTNAME=	drupal-${PORTVERSION}
@@ -7,8 +7,9 @@ DIST_SUBDIR=	drupal
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database driven web content management system (CMS)
+WWW=		https://www.drupal.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 USES=		php:web shebangfix
 USE_PHP=	dom filter gd hash json mbstring opcache pcre pdo session \

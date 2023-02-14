@@ -1,5 +1,5 @@
 PORTNAME=	drupal7
-DISTVERSION=	7.82
+DISTVERSION=	7.92
 CATEGORIES=	www
 MASTER_SITES=	http://ftp.drupal.org/files/projects/
 DISTNAME=	drupal-${PORTVERSION}
@@ -7,8 +7,9 @@ DIST_SUBDIR=	drupal
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database driven web content management system (CMS)
+WWW=		https://www.drupal.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		drupal:7 php:web shebangfix
