@@ -1,10 +1,11 @@
 PORTNAME=	xxhash
-PORTVERSION=	0.8.0
+PORTVERSION=	0.8.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extremely fast non-cryptographic hash algorithm
+WWW=		https://cyan4973.github.io/xxHash/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE

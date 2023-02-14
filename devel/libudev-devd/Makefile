@@ -5,6 +5,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	libudev-compatible interface for devd
+WWW=		https://github.com/wulf7/libudev-devd
 
 LICENSE=	bsd2
 
@@ -28,6 +29,6 @@ OPTIONS_DEFINE=	GPL
 
 GPL_DESC=	Enable GPL-licensed code
 GPL_MESON_TRUE=	enable-gpl
-GPL_VARS=	LICENSE+=lgpl2.1 LICENSE_COMB=multi
+GPL_VARS=	LICENSE+=lgpl2.1+ LICENSE_COMB=multi
 
 .include <bsd.port.mk>

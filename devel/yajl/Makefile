@@ -5,6 +5,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable JSON parsing and serialization library in ANSI C
+WWW=		http://lloyd.github.com/yajl/
 
 LICENSE=	iscl
 

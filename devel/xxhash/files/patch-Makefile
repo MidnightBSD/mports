@@ -1,15 +1,15 @@
---- Makefile.orig	2020-12-09 05:55:16.282484000 -0500
-+++ Makefile	2020-12-09 05:55:44.202503000 -0500
-@@ -369,7 +369,7 @@
+--- Makefile.orig	2021-11-29 13:34:10.000000000 -0500
++++ Makefile	2023-02-14 17:05:56.079085000 -0500
+@@ -417,7 +417,7 @@
  # =========================================================
  # make install is validated only for the following targets
  # =========================================================
--ifneq (,$(filter Linux Darwin GNU/kFreeBSD GNU OpenBSD FreeBSD NetBSD DragonFly SunOS CYGWIN% , $(UNAME)))
-+ifneq (,$(filter Linux Darwin GNU/kFreeBSD GNU MidnightBSD OpenBSD FreeBSD NetBSD DragonFly SunOS CYGWIN% , $(UNAME)))
+-ifneq (,$(filter Linux Darwin GNU/kFreeBSD GNU Haiku OpenBSD FreeBSD NetBSD DragonFly SunOS CYGWIN% , $(UNAME)))
++ifneq (,$(filter Linux Darwin GNU/kFreeBSD GNU Haiku OpenBSD FreeBSD MidnightBSD NetBSD DragonFly SunOS CYGWIN% , $(UNAME)))
  
  DESTDIR     ?=
  # directory variables: GNU conventions prefer lowercase
-@@ -389,13 +389,13 @@
+@@ -437,13 +437,13 @@
  mandir      ?= $(datarootdir)/man
  man1dir     ?= $(mandir)/man1
  

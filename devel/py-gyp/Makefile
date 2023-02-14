@@ -5,6 +5,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build System That Generates Other Build Systems
+WWW=		https://gyp.gsrc.io/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE

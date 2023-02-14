@@ -1,19 +1,16 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	libpeas
 PORTVERSION=	1.26.0
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Next evolution of the Gedit plugins engine
+WWW=		http://live.gnome.org/libpeas
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BUILD_DEPENDS=	valac:lang/vala
 
 LIBPEAS_SLAVE?=	no
 
@@ -24,7 +21,7 @@ LIB_DEPENDS+=	libpeas-1.0.so:devel/libpeas
 PORTSCOUT=	ignore:1
 .endif
 
-USES=		cpe gettext gnome meson pkgconfig tar:xz
+USES=		cpe gettext gnome meson pkgconfig tar:xz vala:build
 USE_GNOME=	cairo gtk30 intlhack introspection
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
