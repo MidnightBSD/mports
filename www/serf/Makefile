@@ -9,6 +9,7 @@ PATCH_SITES=	https://salsa.debian.org/jamessan/serf/-/raw/f6a5256b2de696c2527524
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Serf HTTP client library
+WWW=		https://serf.apache.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -17,6 +18,8 @@ LIB_DEPENDS+=	libapr-1.so:devel/apr1
 
 USES=		scons ssl tar:bzip2 cpe
 USE_LDCONFIG=	yes
+
+CPE_VENDOR=	serf_project
 
 OPTIONS_DEFINE=		DOCS
 OPTIONS_RADIO=		KERBEROS
