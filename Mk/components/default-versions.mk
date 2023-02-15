@@ -80,7 +80,7 @@ PYTHON2_DEFAULT?=	2.7
 PYTHON3_DEFAULT?=	3.8
 # Possible values: 2.7, 3.0, 3.1, 3.2
 RUBY_DEFAULT?=		3.0
-# Possible values: rust, rust-bin
+# Possible values: rust, rust-bin, rust166-bin
 RUST_DEFAULT?=		rust
 # Possible values: 4.13
 SAMBA_DEFAULT?=		4.13
