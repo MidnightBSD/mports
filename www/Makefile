@@ -241,6 +241,7 @@ SUBDIR += varnish6
 SUBDIR += varnish7
 SUBDIR += w3m
 SUBDIR += webkit2-gtk3
+SUBDIR += webkit2-gtk4
 SUBDIR += weblint++
 SUBDIR += wordpress
 SUBDIR += wpebackend-fdo
