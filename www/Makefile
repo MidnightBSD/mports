@@ -19,6 +19,7 @@ SUBDIR += firefox-esr
 SUBDIR += furl
 SUBDIR += gitea
 SUBDIR += glassfish
+SUBDIR += glassfish4
 SUBDIR += gnome-user-share
 SUBDIR += google-sitemapgen
 SUBDIR += googler
@@ -252,5 +253,6 @@ SUBDIR += yarn-node17
 SUBDIR += yuicompressor
 SUBDIR += zend-framework
 SUBDIR += zenphoto
+SUBDIR += zola
 
 .include <bsd.port.subdir.mk>

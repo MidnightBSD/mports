@@ -1,23 +1,20 @@
 PORTNAME=	glassfish
-PORTVERSION=	5.1.0
-PORTREVISION=	1
+PORTVERSION=	4.1
 CATEGORIES=	www java
-MASTER_SITES=	ECLIPSE/glassfish
-PKGNAMEPREFIX=	eclipse-
+MASTER_SITES=	http://dlc.sun.com.edgesuite.net/glassfish/${PORTVERSION}/release/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Eclipse Jakarta EE Platform
-WWW=		https://projects.eclipse.org/projects/ee4j.glassfish
+COMMENT=	Reference implementation of the Java EE application server
+WWW=		https://glassfish.java.net/
 
-LICENSE=	epl
+LICENSE=        cddl
 
-USES=		zip
+USES=		cpe zip
+CPE_VENDOR=	oracle
 USE_JAVA=	yes
-
 NO_BUILD=	yes
-CONFLICTS_INSTALL=	glassfish4
 
-WRKSRC=		${WRKDIR}/glassfish5
+WRKSRC=		${WRKDIR}/glassfish4
 DATADIR=	${PREFIX}/${PORTNAME}-${PORTVERSION}
 
 # Since we USE_JAVA, we propagate the received JAVA_HOME variable to the
@@ -25,8 +22,10 @@ DATADIR=	${PREFIX}/${PORTNAME}-${PORTVERSION}
 SUB_LIST=	GLASSFISHVERSION=${PORTVERSION} \
 		JAVA_HOME=${JAVA_HOME}
 
+DOWNLOAD_URL=	http://dlc.sun.com.edgesuite.net/glassfish/${PORTVERSION}/release/
+
 USE_RC_SUBR=	glassfish
-GLASSFISH_BIN_FILES=	appclient appclient.js asadmin capture-schema capture-schema.1m jspc package-appclient schemagen startserv stopserv wscompile wsdeploy wsgen wsimport xjc
+GLASSFISH_BIN_FILES=	appclient asadmin capture-schema jspc package-appclient schemagen startserv stopserv wscompile wsdeploy wsgen wsimport xjc
 
 .include <bsd.port.pre.mk>
 
