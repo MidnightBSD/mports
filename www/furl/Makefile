@@ -3,9 +3,8 @@
 # Whom:					Phil Pereira <phil@bsdnexus.com>
 
 PORTNAME=	furl
-PORTVERSION=	2.1
+PORTVERSION=	3.0
 CATEGORIES=	www
-#MASTER_SITES=	http://www.gumbynet.org.uk/software/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to display the HTTP headers returned by web-servers
@@ -18,7 +17,7 @@ CONFIGURE_TARGET=       ${MACHINE_ARCH}-portbld-midnightbsd${OSREL}
 USE_GITHUB=     yes
 GH_ACCOUNT=     bingos
 GH_PROJECT=     ${PORTNAME}
-GH_TAGNAME=	e5c824f
+GH_TAGNAME=	38f66d0
 
 WRKSRC=	${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
