@@ -6,6 +6,7 @@ MASTER_SITES=	https://www.clamav.net/downloads/production/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source (GPL) anti-virus engine (Regular Feature Release)
+WWW=		https://www.clamav.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
