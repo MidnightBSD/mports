@@ -1,5 +1,3 @@
-# Created by: nectar@FreeBSD.org
-
 PORTNAME=		krb5
 PORTVERSION=		1.13.2
 PORTREVISION=		3
@@ -13,10 +11,11 @@ PATCH_DIST_STRIP=	-p2
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Authentication system developed at MIT, successor to Kerberos IV
+WWW=			http://web.mit.edu/kerberos/
 
 LICENSE=		mit
 
-BUILD_DEPENDS=		gm4:${PORTSDIR}/devel/m4
+BUILD_DEPENDS=		gm4:devel/m4
 
 CONFLICTS=		heimdal-[0-9]* srp-[0-9]* krb5-maint-11[0-9]-[0-9]*
 
