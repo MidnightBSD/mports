@@ -41,6 +41,7 @@ SUBDIR += gnutls
 SUBDIR += gpgme
 SUBDIR += gsasl
 SUBDIR += gstreamer1-plugins-dtls
+SUBDIR += heimdal
 SUBDIR += horcrux
 SUBDIR += ipfilter2dshield
 SUBDIR += ipfw2dshield
