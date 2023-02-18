@@ -49,6 +49,13 @@ PORTDOCS=	7zC.txt 7zFormat.txt Methods.txt \
 
 OPTIONS_DEFINE=	DOCS
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 300000
+IGNORE= Requires MidnightBSD 3.0 or higher
+.endif
+
+
 post-patch:
 	${ECHO_CMD} > ${WRKSRC}/CPP/7zip/warn_clang.mak
 
@@ -61,4 +68,4 @@ do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR} && \
 	${INSTALL_DATA} ${PORTDOCS:C,^,${WRKSRC}/DOC/,} ${FAKE_DESTDIR}${DOCSDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
