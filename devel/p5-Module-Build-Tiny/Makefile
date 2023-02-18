@@ -1,5 +1,3 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	Module-Build-Tiny
 PORTVERSION=	0.039
 PORTREVISION=	2
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tiny replacement for Module::Build
+WWW=		https://metacpan.org/release/Module-Build-Tiny
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
