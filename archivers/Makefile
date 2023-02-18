@@ -1,5 +1,6 @@
 COMMENT = Archivers
 
+SUBDIR += 7-zip
 SUBDIR += arc
 SUBDIR += arj
 SUBDIR += brotli
