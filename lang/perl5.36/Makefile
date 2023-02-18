@@ -7,6 +7,7 @@ DIST_SUBDIR=	perl
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
+WWW=		https://www.perl.org/
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
