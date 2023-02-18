@@ -2,11 +2,13 @@ PORTNAME=	php82
 DISTVERSION=	8.2.0beta2
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-MASTER_SITES=	https://downloads.php.net/~sergey/
+MASTER_SITES=	https://downloads.php.net/~sergey/ \
+		PHP/distributions
 DISTNAME=	php-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language (8.2.X branch)
+WWW=		https://www.php.net/
 
 LICENSE=	php
 
