@@ -1,5 +1,3 @@
-# Created by: Dmitry Sivachenko <dima@Chg.RU>
-
 PORTNAME=	Locale-gettext
 PORTVERSION=	1.07
 CATEGORIES=	devel perl5
@@ -9,6 +7,7 @@ DISTNAME=	${PORTNAME:C/.*-//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Message handling functions
+WWW=		https://metacpan.org/release/gettext
 
 LICENSE=	artistic gpl2
 LICENSE_COMB=	dual
@@ -20,6 +19,6 @@ USES=		gettext perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Locale/gettext/gettext.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Locale/gettext/gettext.so
 
 .include <bsd.port.mk>
