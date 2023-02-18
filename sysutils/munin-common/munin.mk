@@ -1,9 +1,7 @@
-MUNIN_VERSION=	2.0.69
+MUNIN_VERSION=	2.0.72
 MUNIN_SITES=	SF/munin/stable/${MUNIN_VERSION}
 DISTINFO_FILE=	${.CURDIR}/../../sysutils/munin-common/distinfo
 PATCHDIR=	${.CURDIR}/../../sysutils/munin-common/files
-
-PORTSCOUT=	limit:^2\.0\.
 
 DBDIR?=		/var/${PORTNAME}
 DBDIRNODE?=	/var/${PORTNAME}

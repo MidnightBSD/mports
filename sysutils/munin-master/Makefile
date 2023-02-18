@@ -51,11 +51,12 @@ PORTSCOUT=	ignore:1
 
 post-install:
 	(cd ${WRKSRC}/build/doc; \
-		${INSTALL_MAN} munin.conf.5 ${STAGEDIR}${MAN5PREFIX}/man/man5; \
-		${INSTALL_MAN} munin-cron.8 munin-graph.8 munin-html.8 munin-limits.8 munin-update.8 ${STAGEDIR}${MAN8PREFIX}/man/man8; \
+		${INSTALL_MAN} munin.conf.5 ${MAN5PREFIX}/man/man5; \
+		${INSTALL_MAN} munin-cron.8 munin-graph.8 munin-html.8 munin-limits.8 munin-update.8 ${MAN8PREFIX}/man/man8; \
 	)
-	(cd ${STAGEDIR}${ETCDIR}; for i in `find . -type f`; do mv $$i $$i.sample; done)
-	${MV} ${STAGEDIR}${WWWDIR}/.htaccess ${STAGEDIR}${WWWDIR}/.htaccess.sample
-	${INSTALL_DATA} ${FILESDIR}/newsyslog ${STAGEDIR}${ETCDIR}/munin-master.newsyslog
+	(cd ${ETCDIR}; for i in `find . -type f`; do mv $$i $$i.sample; done)
+	${MV} ${WWWDIR}/.htaccess ${WWWDIR}/.htaccess.sample
+	${INSTALL_DATA} ${FILESDIR}/newsyslog ${ETCDIR}/munin-master.newsyslog
+	${INSTALL_DATA} ${FILESDIR}/cron ${ETCDIR}/munin-master.cron
 
 .include <bsd.port.mk>

@@ -14,7 +14,6 @@ BUILD_DEPENDS=	p5-Module-Build>=0:devel/p5-Module-Build \
 		p5-Net-SSLeay>=0:security/p5-Net-SSLeay
 RUN_DEPENDS=	p5-Net-SSLeay>=0:security/p5-Net-SSLeay
 
-#FAKE_OPTS=	prefixhack
 USES=		perl5 gmake cpe
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/.r/rc/}
 
@@ -22,6 +21,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/.r/rc/}
 
 ALL_TARGET=	build-common
 INSTALL_TARGET=	DATADIR=${FAKE_DESTDIR}/${DATADIR} install-common
+NO_ARCH=	yes
 
 post-install:
 	@${MKDIR} ${LOGDIR} ${STATEDIR} ${SPOOLDIR}
