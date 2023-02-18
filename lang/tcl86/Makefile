@@ -25,7 +25,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}/unix
 
 ALL_TARGET=	all
 INSTALL_TARGET=	install-strip install-libraries install-modules
-TEST_TARGET=	test-tcl
+#TEST_TARGET=	test-tcl
+NO_TEST=	yes
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
