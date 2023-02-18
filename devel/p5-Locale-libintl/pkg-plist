@@ -149,7 +149,7 @@
 %%SITE_PERL%%/Locale/gettext_xs.pod
 %%SITE_PERL%%/Locale/libintlFAQ.pod
 %%NLS%%%%SITE_ARCH%%/auto/Locale/gettext_xs/gettext_xs.so
-%%PERL5_MAN3%%/Locale::Messages.3.gz
+@comment %%PERL5_MAN3%%/Locale::Messages.3.gz
 %%PERL5_MAN3%%/Locale::Recode.3.gz
 %%PERL5_MAN3%%/Locale::Recode::_Aliases.3.gz
 %%PERL5_MAN3%%/Locale::Recode::_Conversions.3.gz
