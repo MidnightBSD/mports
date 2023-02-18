@@ -7,6 +7,7 @@ DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C client interface to Zookeeper server
+WWW=		https://zookeeper.apache.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
