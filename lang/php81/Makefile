@@ -1,5 +1,5 @@
 PORTNAME=	php81
-DISTVERSION=	8.1.14
+DISTVERSION=	8.1.16
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -7,8 +7,9 @@ DISTNAME=	php-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language (8.1.X branch)
+WWW=		https://www.php.net/
 
-LICENSE=	php
+LICENSE=	PHP301
 
 USES+=		compiler:c11 cpe gnome pkgconfig tar:xz
 CPE_PRODUCT=	php
