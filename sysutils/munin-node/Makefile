@@ -67,6 +67,11 @@ PERL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
 SNMP_BUILD_DEPENDS=	p5-Net-SNMP>=0:net-mgmt/p5-Net-SNMP
 SNMP_RUN_DEPENDS=	p5-Net-SNMP>=0:net-mgmt/p5-Net-SNMP
 
+bash_CMD=${LOCALBASE}/bin/bash
+ruby_CMD=${LOCALBASE}/bin/ruby
+java_CMD=${LOCALBASE}/bin/java
+
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
 		${WRKSRC}/node/sbin/munin-node \
@@ -75,8 +80,8 @@ post-patch:
 	@${REINPLACE_CMD} \
 		-e 's|^\(BASH[[:space:]]*:=\).*|\1 ${bash_CMD}|' \
 		-e 's|^\(JAVARUN[[:space:]]*:=\).*|\1 ${java_CMD}|' \
-		-e 's|^\(PERL[[:space:]]*:=\).*|\1 ${perl_CMD}|' \
-		-e 's|^\(PYTHON[[:space:]]*:=\).*|\1 ${python_CMD}|' \
+		-e 's|^\(PERL[[:space:]]*:=\).*|\1 ${PERL}|' \
+		-e 's|^\(PYTHON[[:space:]]*:=\).*|\1 ${PYTHON_CMD}|' \
 		-e 's|^\(RUBY[[:space:]]*:=\).*|\1 ${ruby_CMD}|' \
 		${WRKSRC}/Makefile.config
 	@${FIND} ${WRKSRC}/node/sbin -type f -name "*.orig" -delete
