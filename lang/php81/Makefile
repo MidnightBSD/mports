@@ -342,6 +342,7 @@ BUILD_DEPENDS=		re2c:devel/re2c
 CONFIGURE_ARGS+=	--with-ldap=${LOCALBASE}
 
 USE_OPENLDAP=	yes
+USES+=		ldap
 
 . ifdef(WANT_OPENLDAP_SASL)
 CONFIGURE_ARGS+=--with-ldap-sasl=${LOCALBASE}
