@@ -9,15 +9,20 @@ MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 WWW=		https://www.perl.org/
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE_artistic=	${WRKSRC}/Artistic
+LICENSE_FILE_gpl+ =	${WRKSRC}/Copying
+
+#DEPRECATED=  Support end three years after .0 release, please upgrade to a more recent version of Perl
+#EXPIRATION_DATE=2025-05-28
 
 PERL_VERSION=	${PORTVERSION}
 PERL_VER=	${PORTVERSION} 
 
 PERL_NO_DEPENDS=	yes
 
-USES=			perl5 tar:xz
+USES=			cpe perl5 tar:xz
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
