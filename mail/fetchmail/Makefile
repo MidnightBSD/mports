@@ -122,8 +122,4 @@ post-install:
 		${CHMOD} 600 ${PREFIX}/etc/fetchmailrc ; \
 	fi
 
-	@${ECHO_CMD} ""
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_CMD} ""
-
 .include <bsd.port.mk>
