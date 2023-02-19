@@ -1,17 +1,20 @@
 PORTNAME=	werkzeug
-PORTVERSION=	1.0.1
+PORTVERSION=	2.2.2
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	Werkzeug-${DISTVERSION}
+DISTNAME=	Werkzeug-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python utilities collection for building WSGI applications
+WWW=		https://palletsprojects.com/p/werkzeug/ \
+		https://github.com/pallets/werkzeug
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}openssl>=16.0:security/py-openssl@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}openssl>=16.0:security/py-openssl@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}markupsafe>=2.1.1:textproc/py-markupsafe@${PY_FLAVOR}
 
 USES=		cpe python:3.7+
 USE_PYTHON=	autoplist concurrent distutils
