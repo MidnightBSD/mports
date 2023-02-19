@@ -1,18 +1,17 @@
-
-
 PORTNAME=	libslang2
 PORTVERSION=	2.3.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.jedsoft.org/releases/slang/
 DISTNAME=	slang-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Routines for rapid alpha-numeric terminal applications development
+WWW=		https://www.jedsoft.org/slang/
 
 LICENSE=        gpl2     
 
-USES=		tar:bzip2
+USES=		ncurses tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
@@ -22,6 +21,8 @@ CONFIGURE_ARGS+=--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 
 ALL_TARGET=	all static
 INSTALL_TARGET=	install install-static
+
+LDFLAGS+=		-lncurses
 
 DOCSDIR=	${PREFIX}/share/doc/slang
 DATADIR=	${PREFIX}/share/slsh
@@ -35,12 +36,12 @@ ONIG_DESC=	Oniguruma support
 PORTDOCS=	*
 
 PCRE_CONFIGURE_WITH=	pcre
-PCRE_LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
+PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
 PNG_CONFIGURE_WITH=	png
-PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+PNG_LIB_DEPENDS=	libpng.so:graphics/png
 ICONV_USES=		iconv
 ONIG_CONFIGURE_WITH=	onig
-ONIG_LIB_DEPENDS=	libonig.so:${PORTSDIR}/devel/oniguruma4
+ONIG_LIB_DEPENDS=	libonig.so:devel/oniguruma4
 
 .include <bsd.port.pre.mk>
 
