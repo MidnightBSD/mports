@@ -1,12 +1,13 @@
 PORTNAME=	game
-DISTVERSION=	2.0.1
+DISTVERSION=	2.1.2
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	py${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module designed to write games in Python
+WWW=		https://www.pygame.org/news
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/docs/LGPL.txt
