@@ -16,6 +16,7 @@ PATCHFILES=	fetchmail-6.3.26-ssl-backport.patch:-p1:fedora
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
+WWW=		https://www.fetchmail.info/
 
 LICENSE=	gpl2+
 
@@ -29,7 +30,7 @@ USE_RC_SUBR=	fetchmail
 FETCHMAILRC=	${PREFIX}/etc/fetchmailrc
 SUB_FILES=	pkg-message
 
-USES=		gmake ssl tar:xz
+USES=		cpe gmake ssl tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-opie --enable-RPA --enable-SDPS \
 		--without-hesiod --enable-fallback=no \
