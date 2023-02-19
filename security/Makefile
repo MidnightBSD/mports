@@ -197,6 +197,7 @@ SUBDIR += py-python-pam
 SUBDIR += py-rsa
 SUBDIR += py-scramp
 SUBDIR += py-service_identity
+SUBDIR += py-trustme
 SUBDIR += rhash
 SUBDIR += seahorse
 SUBDIR += secure_delete
