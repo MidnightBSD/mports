@@ -1138,11 +1138,6 @@ MASTER_SITE_TOR+= \
 		https://www.torservers.net/mirrors/torproject.org/dist/%SUBDIR%/
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_TUCOWS)
-MASTER_SITE_TUCOWS+= \
-	http://iinets.linux.tucows.com/files/%SUBDIR%/
-.endif
-
 .if !defined(IGNORE_MASTER_SITE_WINDOWMAKER)
 MASTER_SITE_WINDOWMAKER+= \
 	ftp://ftp.windowmaker.info/pub/%SUBDIR%/ \
