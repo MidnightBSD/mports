@@ -1,5 +1,3 @@
-# Created by: Gustau Perez <gustau.perez@gmail.com>
-
 PORTNAME=	geary
 PORTVERSION=	40.0
 CATEGORIES=	mail gnome
@@ -7,13 +5,13 @@ MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Mail client for GNOME 3
+COMMENT=	Mail client for GNOME
+WWW=		https://wiki.gnome.org/Apps/Geary
 
 LICENSE=	bsd2 ccasa3 lgpl2.1
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	itstool:textproc/itstool \
-		vapigen:lang/vala
+BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libappstream-glib.so:devel/appstream-glib \
 		libcanberra.so:audio/libcanberra \
 		libenchant-2.so:textproc/enchant2 \
@@ -35,8 +33,9 @@ LIB_DEPENDS=	libappstream-glib.so:devel/appstream-glib \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 		libytnef.so:converters/ytnef
 
-USES=		compiler:c11 desktop-file-utils gettext gnome meson pkgconfig \
-		python:3.5+,build shebangfix sqlite tar:xz
+USES=		compiler:c11 cpe desktop-file-utils gettext gnome meson pkgconfig \
+		python:3.5+,build shebangfix sqlite tar:xz vala:build
+CPE_VENDOR=	gnome
 USE_GNOME=	cairo gsound gtk30 libxml2
 GLIB_SCHEMAS=	org.gnome.Geary.gschema.xml
 INSTALLS_ICONS=	yes
