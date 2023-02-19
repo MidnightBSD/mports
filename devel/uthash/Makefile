@@ -1,10 +1,11 @@
 PORTNAME=	uthash
-PORTVERSION=	2.1.0
+PORTVERSION=	2.3.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	hash table for C structures
+WWW=		http://uthash.sourceforge.net/
 
 LICENSE=	bsd1
 LICENSE_FILE=	${WRKSRC}/LICENSE
