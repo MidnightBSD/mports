@@ -2,12 +2,11 @@ PORTNAME=	netcat
 PORTVERSION=	1.10
 PORTREVISION=	3
 CATEGORIES=	net
-MASTER_SITES=	ftp://coast.cs.purdue.edu/pub/tools/unix/netutils/netcat/  \
-		ftp://ftp.cuhk.edu.hk/pub/packages/security/purdue/netutils/netcat/  \
-		http://www.planetmirror.com/pub/lprng/TOOLS/
-DISTNAME=	nc110
+MASTER_SITES=	SF/${DISTNAME}/unix%20netcat%20${PORTVERSION}%20by%20_Hobbit_/%5BUnnamed%20release%5D
+DISTNAME=	nc${PORTVERSION:S/.//}
 
-PATCH_SITES=	ftp://sith.mimuw.edu.pl/pub/users/baggins/IPv6/
+#PATCH_SITES=	ftp://sith.mimuw.edu.pl/pub/users/baggins/IPv6/
+PATCH_SITES=	GENTOO
 PATCHFILES=	nc-v6-20000918.patch.gz
 PATCH_DIST_STRIP=	-p1
 
@@ -22,38 +21,34 @@ USES=		tar:tgz
 NO_WRKSUBDIR=	yes
 ALL_TARGET=	freebsd
 
-OPTIONS=	IPV6 "enable IPv6 support" on \
-		TELNET "enable TELNET support" on \
-		GAPING "enable GAPING_SECURITY_HOLE support" on
+CFLAGS+=	-DFREEBSD
+LDFLAGS+=	-static
 
-PLIST_FILES=	bin/netcat man/man1/netcat.1.gz
 PORTDOCS=	README
+PLIST_FILES=	bin/netcat man/man1/netcat.1.gz
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	IPV6 TELNET GAPING DOCS
+OPTIONS_DEFAULT=TELNET GAPING
+TELNET_DESC=	Enable TELNET support
+GAPING_DESC=	Enable GAPING_SECURITY_HOLE support
 
-.if defined (WITH_IPV6)
-XFLAGS+=	-DIPV6
-.endif
-
-.if defined (WITH_TELNET)
-XFLAGS+=	-DTELNET
-.endif
-
-.if defined (WITH_GAPING)
-XFLAGS+=	-DGAPING_SECURITY_HOLE
-.endif
-
-MAKE_ENV=	XFLAGS="${XFLAGS}"
+IPV6_CFLAGS=	-DINET6
+TELNET_CFLAGS=	-DTELNET
+GAPING_CFLAGS=	-DGAPING_SECURITY_HOLE
 
 post-patch:
-	${SED} -e 's|%%DOCSDIR%%|${DOCSDIR}|g' ${FILESDIR}/nc.1 > ${WRKDIR}/${PORTNAME}.1
+	@${SED} -e 's|%%DOCSDIR%%|${DOCSDIR}|g' ${FILESDIR}/nc.1 \
+		> ${WRKDIR}/${PORTNAME}.1
+
+do-build:
+	cd ${WRKSRC} && ${CC} ${CFLAGS} ${PORTNAME}.c -o ${PORTNAME} ${LDFLAGS}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/nc ${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${WRKDIR}/${PORTNAME}.1 ${PREFIX}/man/man1
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKDIR}/${PORTNAME}.1 ${MANPREFIX}/man/man1
 
-.include <bsd.port.post.mk>
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>
