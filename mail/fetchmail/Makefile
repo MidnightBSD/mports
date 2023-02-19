@@ -1,4 +1,3 @@
-
 #
 # NOTE:  The fetchmailconf program (an interactive program for
 # writing .fetchmailrc files) requires Python, Tk, X11, etc.
@@ -18,9 +17,9 @@ PATCHFILES=	fetchmail-6.3.26-ssl-backport.patch:-p1:fedora
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
 # Note USERS can only contain a single word as parts below rely on that.
 USERS=	${PORTNAME}
@@ -57,7 +56,7 @@ CONFIGURE_ARGS+=	--enable-POP2
 
 .if ${PORT_OPTIONS:MX11}
 USE_PYTHON_RUN=	yes
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tkinter>=0:${PORTSDIR}/x11-toolkits/py-tkinter
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tkinter>=0:x11-toolkits/py-tkinter
 PLIST_SUB+=	X11="" NOX11="@comment "
 .else
 CONFIGURE_ARGS+=	PYTHON=:
