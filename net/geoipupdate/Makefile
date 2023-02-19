@@ -1,12 +1,11 @@
-# Created by: adamw
-
 PORTNAME=	geoipupdate
-PORTVERSION=	4.7.1
+PORTVERSION=	4.10.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net geography
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fetch the latest copies of the GeoIP2 databases
+WWW=		https://github.com/maxmind/geoipupdate
 
 LICENSE=	apache2 mit
 LICENSE_COMB=	dual
