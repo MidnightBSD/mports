@@ -17,5 +17,3 @@ Features:
 - Integrates with external tools: JIRA, Mantis, LDAP, Fortify, etc.
 - Is expandable with the use of plugins.
 - Implements the SQALE methodology to compute technical debt.
-
-WWW: http://www.sonarqube.org/

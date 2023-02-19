@@ -1,5 +1,3 @@
-# Created by: Dusan Vejnovic <freebsd@dussan.org>
-
 PORTNAME=	sonarqube
 PORTVERSION=	6.2
 CATEGORIES=	devel www java
@@ -7,6 +5,7 @@ MASTER_SITES=	http://sonarsource.bintray.com/Distribution/sonarqube/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Platform for continuous inspection of code quality
+WWW=		 http://www.sonarqube.org/
 
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
