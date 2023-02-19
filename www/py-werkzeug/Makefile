@@ -1,9 +1,7 @@
-# Created by: Moggie <moggie@elasticmind.net>
-
 PORTNAME=	werkzeug
 PORTVERSION=	1.0.1
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	Werkzeug-${DISTVERSION}
 
@@ -15,8 +13,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}openssl>=16.0:security/py-openssl@${PY_FLAVOR}
 
-USES=		python:3.6+
+USES=		cpe python:3.7+
 USE_PYTHON=	autoplist concurrent distutils
+CPE_VENDOR=	palletsprojects
 
 NO_ARCH=	yes
 
