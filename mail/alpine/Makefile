@@ -9,6 +9,7 @@ MASTER_SITES=	https://repo.or.cz/alpine.git/snapshot/${GIT_COMMIT}${EXTRACT_SUFX
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail and news client descended from Pine
+WWW?=		https://alpineapp.email/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -69,7 +70,7 @@ LDAP_CFLAGS=			-I${LOCALBASE}/include
 LDAP_LDFLAGS=			-L${LOCALBASE}/lib
 
 # Option MAILDIR
-MAILDIR_PATCH_SITES=		http://alpine.x10host.com/alpine/patches/alpine-2.25/
+MAILDIR_PATCH_SITES=		https://alpineapp.email/alpine/patches/alpine-2.26/
 MAILDIR_PATCHFILES+=		maildir.patch.gz:-p1
 
 # Option MOUSE
