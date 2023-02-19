@@ -1,125 +1,104 @@
-#
-# NOTE:  The fetchmailconf program (an interactive program for
-# writing .fetchmailrc files) requires Python, Tk, X11, etc.
-#
-# The fetchmail program itself does not need Python, but if you
-# want fetchmailconf to work, define the X11 option.
-
-PORTNAME=	fetchmail
-PORTVERSION=	6.3.26
-PORTREVISION=	1
-CATEGORIES=	mail ipv6
-MASTER_SITES=	SF/${PORTNAME}/branch_6.3/ \
-		http://mandree.home.pages.de/${PORTNAME}/
-PATCH_SITES=	https://src.fedoraproject.org/rpms/fetchmail/raw/master/f/:fedora
-PATCHFILES=	fetchmail-6.3.26-ssl-backport.patch:-p1:fedora
+PORTNAME?=	fetchmail
+DISTVERSION=	6.4.36
+PORTREVISION?=	0
+CATEGORIES=	mail
+MASTER_SITES=	SF/fetchmail/branch_6.4/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
+COMMENT?=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
 WWW=		https://www.fetchmail.info/
 
 LICENSE=	gpl2+
 
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
-
-# Note USERS can only contain a single word as parts below rely on that.
-USERS=	${PORTNAME}
-GROUPS=	${USERS}
+.if empty(MASTERDIR)
+USES=		cpe gmake tar:xz
+IGNORE_SSL=	libressl libressl-devel
+IGNORE_SSL_REASON=	incompatible license/no GPLv2 clause 2b exception for LibreSSL
 
 USE_RC_SUBR=	fetchmail
-FETCHMAILRC=	${PREFIX}/etc/fetchmailrc
-SUB_FILES=	pkg-message
 
-USES=		cpe gmake ssl tar:xz
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-opie --enable-RPA --enable-SDPS \
-		--without-hesiod --enable-fallback=no \
-		--with-ssl=${OPENSSLBASE}
 
-LDFLAGS+=	-L${LOCALBASE}/lib
+# the added PYTHON=: suppresses python builds,
+# see ../../mail/fetchmailconf/ for the configuration tool
+CONFIGURE_ARGS=	--enable-fallback=no \
+		--enable-RPA \
+		--enable-SDPS \
+		--without-hesiod \
+		PYTHON=:
 
-OPTIONS_DEFINE=	X11 NLS NTLM GSSAPI
-OPTIONS_DEFAULT=	GSSAPI
-X11_DESC=	Python/Tkinter dependencies for ``fetchmailconf''
-NTLM_DESC=	Build in support for NTLM/MSN authentication
-GSSAPI_DESC=	Build GSSAPI/Kerberos 5 support
+# -Wl,--as-needed suppresses unneeded library references,
+# for instance, libcom_err.so on GSSAPI_NONE builds:
+LDFLAGS+=	-L${LOCALBASE}/lib -Wl,--as-needed
 
-PORTDOCS=	FAQ FEATURES NEWS NOTES README README.SSL \
-		design-notes.html fetchmail-FAQ.html fetchmail-features.html \
-		esrs-design-notes.html
+PATCH_STRIP=	-p1
+SUB_FILES=	pkg-message
+USERS=		${PORTNAME}
+GROUPS=		${USERS}
 
-.include <bsd.mport.options.mk>
+PORTDOCS=	FAQ FEATURES NEWS NOTES OLDNEWS README README.SSL \
+		README.SSL-SERVER design-notes.html esrs-design-notes.html \
+		fetchmail-FAQ.html fetchmail-features.html todo.html
 
-# Pop2 is obsolete
-.if defined(WITH_POP2)
-CONFIGURE_ARGS+=	--enable-POP2
+OPTIONS_DEFINE=		CA_BUNDLE DOCS NLS
+OPTIONS_DEFAULT=	CA_BUNDLE GSSAPI_BASE OPENSSL
+OPTIONS_SINGLE=		GSSAPI TLS
+OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
+OPTIONS_SINGLE_TLS=	OPENSSL WOLFSSL
+
+OPTIONS_SUB=	yes
+
+CA_BUNDLE_DESC=		Install CA bundle for OpenSSL
+CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+
+GSSAPI_BASE_USES=		gssapi
+GSSAPI_BASE_CONFIGURE_ON=	${GSSAPI_CONFIGURE_ARGS} \
+				--with-gssapi=${GSSAPIBASEDIR}
+GSSAPI_HEIMDAL_USES=		gssapi:heimdal
+GSSAPI_HEIMDAL_CONFIGURE_ON=	${GSSAPI_CONFIGURE_ARGS} \
+				--with-gssapi=${GSSAPIBASEDIR}
+GSSAPI_MIT_USES=		gssapi:mit
+GSSAPI_MIT_CONFIGURE_ON=	${GSSAPI_CONFIGURE_ARGS} \
+				--with-kerberos5=${GSSAPIBASEDIR}
+GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
+
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+
+OPENSSL_CONFIGURE_WITH=	ssl=${OPENSSLBASE}
+
+WOLFSSL_LIB_DEPENDS=	libwolfssl.so:security/wolfssl
+WOLFSSL_USES_OFF=	ssl
+WOLFSSL_CONFIGURE_ON=	WOLFSSL_TRUST_FILE=${LOCALBASE}/share/certs/ca-root-nss.crt
+WOLFSSL_CONFIGURE_WITH=	wolfssl=${LOCALBASE}
+
+post-patch:
+	@${REINPLACE_CMD} -e 's,krb5_des_string_to_key,krb5int_des_init_state,g' ${WRKSRC}/configure
+.if !exists(/usr/lib/libcom_err.so)
+	@${REINPLACE_CMD} -e "s,-lcom_err,,g" ${WRKSRC}/configure
 .endif
 
-.if ${PORT_OPTIONS:MX11}
-USE_PYTHON_RUN=	yes
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tkinter>=0:x11-toolkits/py-tkinter
-PLIST_SUB+=	X11="" NOX11="@comment "
-.else
-CONFIGURE_ARGS+=	PYTHON=:
-SUB_FILES+=	fetchmailconf
-PLIST_SUB+=	X11="@comment " NOX11=""
 .endif
 
-.if ${PORT_OPTIONS:MNLS}
-CONFIGURE_ARGS+=	--enable-nls
-PLIST_SUB+=	NLS=""
-USES+=		gettext
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGSSAPI}
-.if !defined(KRB5_HOME)
-.if exists(${LOCALBASE}/lib/libkrb5.a)
-KRB5_HOME=	${LOCALBASE}
-.elif exists(/usr/lib/libkrb5.a)
-KRB5_HOME=	/usr
-.endif
-.endif
-
-.if defined(KRB5_HOME) && !exists(${KRB5_HOME}/lib/libkrb5.a)
-BROKEN=	KRB5_HOME is set but doesn\'t provide lib/libkrb5.a
-.endif
-
-.if defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libkrb5.a)
-CONFIGURE_ARGS+=	--with-gssapi=${KRB5_HOME}
-.endif
-.endif
-
-.if ${PORT_OPTIONS:MNTLM}
-CONFIGURE_ARGS+=	--enable-NTLM
-PORTDOCS+=	README.NTLM
-.endif
-
-pre-patch:
-	@${REINPLACE_CMD} -e "s,^#!/usr/bin/env python,#!${LOCALBASE}/bin/python,g" \
-		${WRKSRC}/fetchmailconf.py
-
+.if empty(MASTERDIR)
 post-build:
-	@${MAKE} -C ${WRKSRC} check
+	${MAKE_CMD} -C ${WRKSRC} check ; { r=$$? ; ( set -x ; ${CAT} "${WRKSRC}/test-suite.log" ) ; exit $$r ; }
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	${INSTALL} -d ${STAGEDIR}/var/run/fetchmail
+	${INSTALL_DATA} ${FILESDIR}/fetchmailrc.sample \
+		${STAGEDIR}${PREFIX}/etc/fetchmailrc.sample
+	${RM} ${STAGEDIR}${PREFIX}/bin/fetchmailconf
+	${RM} ${STAGEDIR}${PREFIX}/man/man1/fetchmailconf.1*
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
+
 .endif
 
-.if empty(PORT_OPTIONS:MX11)
-	${INSTALL_SCRIPT} ${WRKDIR}/fetchmailconf ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/fetchmailconf.py ${PREFIX}/libexec
-.endif
-	${MKDIR} -m 0755 "/var/run/${PORTNAME}"
-	${CHOWN} "${USERS}:${GROUPS}" "/var/run/${PORTNAME}"
-	${INSTALL} -m 644 -o ${USERS} -g ${GROUPS} ${FILESDIR}/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc.sample
-	if [ ! -f ${PREFIX}/etc/fetchmailrc ]; then \
-		${CP} -p ${PREFIX}/etc/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc ; \
-		${CHMOD} 600 ${PREFIX}/etc/fetchmailrc ; \
-	fi
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+CONFIGURE_ARGS+=	--enable-opie
+
+.include <bsd.port.post.mk>
