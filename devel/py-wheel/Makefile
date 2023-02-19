@@ -1,15 +1,17 @@
-# Created by: Nicola Vitale <nivit@FreeBSD.org>
-
 PORTNAME=	wheel
-PORTVERSION=	0.36.2
+PORTVERSION=	0.38.4
 CATEGORIES=	devel
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Built-package format for Python
+WWW=		https://github.com/pypa/wheel
 
 LICENSE=	mit
+
+EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
+NO_ARCH=	yes
 
 OPTIONS_DEFINE=	PIP SIGNATURE
 
