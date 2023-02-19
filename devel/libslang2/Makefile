@@ -1,6 +1,5 @@
 PORTNAME=	libslang2
-PORTVERSION=	2.3.0
-PORTREVISION=	1
+PORTVERSION=	2.3.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.jedsoft.org/releases/slang/
 DISTNAME=	slang-${PORTVERSION}
@@ -41,7 +40,7 @@ PNG_CONFIGURE_WITH=	png
 PNG_LIB_DEPENDS=	libpng.so:graphics/png
 ICONV_USES=		iconv
 ONIG_CONFIGURE_WITH=	onig
-ONIG_LIB_DEPENDS=	libonig.so:devel/oniguruma4
+ONIG_LIB_DEPENDS=	libonig.so:devel/oniguruma
 
 .include <bsd.port.pre.mk>
 
@@ -52,11 +51,6 @@ CONFIGURE_ARGS+=	--without-iconv
 post-patch:
 	@${REINPLACE_CMD} -E 's,doc/slsh,doc/slang/v\@slang_major_version\@,' \
 		${WRKSRC}/slsh/Makefile.in
-	@${REINPLACE_CMD} -e 's, install[_-]docs,,g; /MKINSDIR.*DEST_SLSH_DOC_DIR/d' \
-		${WRKSRC}/src/Makefile.in \
-		${WRKSRC}/slsh/Makefile.in
-	@${REINPLACE_CMD} -e 's,INSTALL_MODULE,INSTALL_LIB,g' \
-		${WRKSRC}/modules/Makefile.in
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
