@@ -754,20 +754,6 @@ MASTER_SITE_MOZILLA_ADDONS+= \
 	http://kyoto-mz-dl.sinet.ad.jp/pub/mozilla.org/%SUBDIR%/
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_MPLAYERHQ)
-MASTER_SITE_MPLAYERHQ+= \
-	http://www.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	https://www1.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	http://www2.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	http://www3.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	http://www4.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	http://www5.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	ftp://ftp.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	ftp://ftp1.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	ftp://ftp4.mplayerhq.hu/MPlayer/%SUBDIR%/ \
-	ftp://ftp5.mplayerhq.hu/MPlayer/%SUBDIR%/
-.endif
-
 .if !defined(IGNORE_MASTER_SITE_MYSQL)
 MASTER_SITE_MYSQL+= \
 	ftp://ftp.fi.muni.cz/pub/mysql/Downloads/%SUBDIR%/ \
@@ -973,17 +959,6 @@ MASTER_SITE_QT+= \
 	http://www.nic.funet.fi/pub/mirrors/download.qt-project.org/%SUBDIR%/ \
 	http://qtmirror.ics.com/pub/qtproject/%SUBDIR%/ \
 	https://ftp.jaist.ac.jp/pub/qtproject/%SUBDIR%/
-.endif
-
-.if !defined(IGNORE_MASTER_SITE_REDHAT_LINUX)
-MASTER_SITE_REDHAT_LINUX+= \
-	http://mirrors.usc.edu/pub/linux/distributions/redhat/redhat/linux/%SUBDIR%/ \
-	http://www.gtlib.gatech.edu/pub/redhat/linux/%SUBDIR%/ \
-	ftp://mirror.cs.wisc.edu/pub/mirrors/linux/redhat/%SUBDIR%/ \
-	ftp://ftp.nluug.nl/site/ftp.redhat.com/redhat/linux/%SUBDIR%/ \
-	ftp://ftp.icm.edu.pl/pub/linux/redhat/linux/%SUBDIR%/ \
-	ftp://ftp.riken.go.jp/pub/Linux/redhat/linux/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/pub/Linux/packages/RedHat/redhat/linux/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_RUBY)
