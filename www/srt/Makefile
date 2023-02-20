@@ -45,7 +45,7 @@ MBEDTLS_LIB_DEPENDS=		libmbedtls.so:security/mbedtls
 post-install-OPENSSL-on:
 	# fix .pc files
 	@${REINPLACE_CMD} -e 's|Requires.private: openssl libcrypto|Requires.private:|; s|Libs.private:.*|& -lssl -lcrypto|' \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/srt.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/haisrt.pc
+		${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/srt.pc \
+		${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/haisrt.pc
 
 .include <bsd.port.mk>
