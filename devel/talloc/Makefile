@@ -1,61 +1,50 @@
-PORTNAME=		talloc
-PORTVERSION=		2.3.1
-PORTREVISION=		0
-CATEGORIES=		devel
-MASTER_SITES=		SAMBA
+PORTNAME=			talloc
+DISTVERSION=			2.3.4
+PORTREVISION=			0
+CATEGORIES=			devel
+MASTER_SITES=			SAMBA
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		Hierarchical pool based memory allocator
+MAINTAINER=			ports@MidnightBSD.org
+COMMENT=			Hierarchical pool based memory allocator
+WWW=		https://talloc.samba.org/
 
 LICENSE=		lgpl3
 
-IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be built with THREADS support
-
 CONFLICTS_INSTALL=	talloc1-*
 
-#FLAVORS=		default nopython
-#nopython_PKGNAMESUFFIX=	-nopython
-#nopython_CONFLICTS=	talloc
-#default_CONFLICTS=	talloc-nopython
+USES=				compiler pkgconfig shebangfix waf
+USE_LDCONFIG=			yes
+SHEBANG_GLOB=                 *.py
+WAF_CMD=			buildtools/bin/waf
+CONFIGURE_LOG=			bin/config.log
 
-USES=			compiler pkgconfig waf
-USE_LDCONFIG=		yes
-WAF_CMD=		buildtools/bin/waf
-CONFIGURE_LOG=		bin/config.log
+PKGCONFIGDIR?=			${PREFIX}/libdata/pkgconfig
+PLIST_SUB+=			PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
-PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
+CONFIGURE_ARGS+=		--mandir=${MANPREFIX}/man \
+				--disable-rpath \
+				--disable-rpath-install \
+				--bundled-libraries=NONE \
+				--builtin-libraries=replace \
+				--without-gettext
+CONFIGURE_ENV=			PYTHONHASHSEED=1
+MAKE_ENV=			PYTHONHASHSEED=1
 
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
-			--disable-rpath \
-			--without-gettext
+OPTIONS_DEFINE=			MANPAGES DEBUG PYTHON
+OPTIONS_DEFAULT=		PYTHON
+OPTIONS_SUB=			yes
 
-OPTIONS_DEFINE=		MANPAGES DEBUG
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
+
+PYTHON_USES=                  gettext-runtime python:3.6+
+PYTHON_USES_OFF=              python:build,test
+PYTHON_CONFIGURE_OFF=         --disable-python
 
 DEBUG_CONFIGURE_ON=	--verbose --enable-debug
 DEBUG_MAKE_ARGS=	--verbose
 DEBUG_FLAGS=		-g -ggdb3 -O0
 
 .include <bsd.mport.options.mk>
-
-PLIST_FILES+=		include/talloc.h \
-			lib/libtalloc.so \
-			lib/libtalloc.so.2 \
-			${PKGCONFIGDIR}/talloc.pc
-
-.if defined(NO_PYTHON)
-USES+=			python:build,test
-CONFIGURE_ARGS+=	--disable-python
-.else
-USES+=			python:3.4+
-
-PLIST_FILES+=		include/pytalloc.h \
-			lib/libpytalloc-util${PYTHON_EXT_SUFFIX}.so \
-			lib/libpytalloc-util${PYTHON_EXT_SUFFIX}.so.2 \
-			${PYTHON_SITELIBDIR}/talloc${PYTHON_EXT_SUFFIX}.so \
-			${PKGCONFIGDIR}/pytalloc-util${PYTHON_EXT_SUFFIX}.pc
-.endif
 
 .include <bsd.port.pre.mk>
 
@@ -72,34 +61,19 @@ CFLAGS+=		-fno-color-diagnostics
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
-TALLOC_MAN3=		man/man3/talloc.3.gz
-
-PLIST_FILES+=		${TALLOC_MAN3}
-
 post-patch:
 			@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${PKGCONFIGDIR}|g' \
 				${BUILD_WRKSRC}/wscript
 
-# Use threading (or multiprocessing) but not thread (renamed in python 3+).
-pre-configure:
-			@if ! ${PYTHON_CMD} -c "import multiprocessing;" 2>/dev/null; then \
-				${ECHO_CMD}; \
-				${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE_NONTHREAD_PYTHON:Q}.; \
-				${ECHO_CMD}; \
-				${FALSE}; \
-			fi
-
 pre-build-MANPAGES-off:
 			-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
-.for man in ${TALLOC_MAN3}
-			${INSTALL_MAN} ${FILESDIR}/`basename ${man} .gz` ${BUILD_WRKSRC}/bin/default/man
-.endfor
+			${INSTALL_MAN} ${FILESDIR}/talloc.3 ${BUILD_WRKSRC}/bin/default/man
 
 post-install:
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtalloc.so
-.if !defined(NO_PYTHON)
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpytalloc-util*.so
+			${STRIP_CMD} ${PREFIX}/lib/libtalloc.so
+
+post-install-PYTHON-on:
+			${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libpytalloc-util*.so
 			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/talloc*.so
-.endif
 
 .include <bsd.port.post.mk>
