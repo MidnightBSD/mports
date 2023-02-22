@@ -1,5 +1,5 @@
 PORTNAME=	xterm
-PORTVERSION=	372
+PORTVERSION=	373
 PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.invisible-island.net/xterm/:src1 \
@@ -12,11 +12,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal emulator for the X Window System
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	x11iraf-[0-9]*
 
 USES=		cpe localbase ncurses tar:tgz xorg
-USE_XORG=	xft xmu xt x11 xext xpm ice
+USE_XORG=	ice xft xmu xt x11 xext xpm xt
 GNU_CONFIGURE=	yes
 CPE_VENDOR=	invisible-island
 
