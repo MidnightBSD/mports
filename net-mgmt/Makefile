@@ -20,7 +20,6 @@ SUBDIR += p5-Net-SNMP
 SUBDIR += p5-NetAddr-IP
 SUBDIR += p5-NSNMP
 SUBDIR += p5-SNMP_Session
-SUBDIR += php74-snmp
 SUBDIR += php80-snmp
 SUBDIR += php81-snmp
 SUBDIR += prometheus-collectd-exporter
