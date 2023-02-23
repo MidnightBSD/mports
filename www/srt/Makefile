@@ -10,6 +10,7 @@ WWW=		https://www.srtalliance.org/
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	git:devel/git
 RUN_DEPENDS=	bash:shells/bash
 
 USES=		cmake:testing compiler:c++11-lang shebangfix
