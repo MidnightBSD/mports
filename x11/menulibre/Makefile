@@ -1,11 +1,12 @@
 PORTNAME=	menulibre
-PORTVERSION=	2.2.3
+PORTVERSION=	2.3.0
 DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	x11
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced menu editor
+WWW=		https://bluesabre.org/projects/menulibre/
 
 LICENSE=	gpl3
 
