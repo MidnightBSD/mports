@@ -6,6 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}wm/${PORTNAME}wm/Blackbox%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small and fast window manager for X11R6
+WWW=		http://blackboxwm.sourceforge.net/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
