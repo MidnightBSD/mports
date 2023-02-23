@@ -1,9 +1,11 @@
 PORTNAME=	pciids
-PORTVERSION=	20221028
+PORTVERSION=	20230126
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database of all known IDs used in PCI devices
+WWW=		https://pci-ids.ucw.cz/ \
+		https://github.com/pciutils/pciids
 
 LICENSE=	bsd3 gpl2 gpl3
 LICENSE_COMB=	dual
@@ -15,7 +17,7 @@ PLIST_FILES=	%%DATADIR%%/pci.ids
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 GH_ACCOUNT=	pciutils
-GH_TAGNAME=	c7929c0
+GH_TAGNAME=	3cddb9f
 USE_GITHUB=	yes
 
 do-install:
