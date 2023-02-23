@@ -1,5 +1,6 @@
 PORTNAME=	zmap
 PORTVERSION=	2.1.1
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 
@@ -34,8 +35,8 @@ JSON_LIB_DEPENDS=	libjson-c.so:devel/json-c
 JSON_CMAKE_BOOL=	WITH_JSON
 
 post-patch:
-	@${REINPLACE_CMD} -i '' -e 's|/etc/zmap|${LOCALBASE}/etc/zmap|g' -e 's|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/CMakeLists.txt
+#	@${REINPLACE_CMD} -i '' -e 's|/etc/zmap|${LOCALBASE}/etc/zmap|g' -e 's|/usr/local|${LOCALBASE}|g' \
+#		${WRKSRC}/CMakeLists.txt
 	@${REINPLACE_CMD} -i '' -e 's|share/man/man1|man/man1|g' \
 		${WRKSRC}/src/CMakeLists.txt
 	@${REINPLACE_CMD} -i '' -e 's|/etc/zmap/zmap.conf|${LOCALBASE}/etc/zmap/zmap.conf|g' \
