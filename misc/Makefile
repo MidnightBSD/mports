@@ -53,7 +53,6 @@ SUBDIR += p5-Software-License-CCpack
 SUBDIR += patchutils
 SUBDIR += pciids
 SUBDIR += phone-de
-SUBDIR += php74-calendar
 SUBDIR += php80-calendar
 SUBDIR += php81-calendar
 SUBDIR += py-pexpect
