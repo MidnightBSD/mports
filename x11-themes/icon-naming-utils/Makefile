@@ -3,10 +3,10 @@ PORTVERSION=	0.8.90
 PORTREVISION=	1
 CATEGORIES=	x11-themes
 MASTER_SITES=	GENTOO
-MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utilities of the Tango project
+WWW=		http://tango-project.org/
 
 LICENSE=	gpl2
 

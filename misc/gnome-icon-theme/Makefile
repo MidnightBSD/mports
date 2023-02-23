@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gnome-icon-theme
 PORTVERSION=	3.12.0
 PORTREVISION=	1
@@ -10,18 +8,22 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of icons for the GNOME desktop
 
-LICENSE=	gpl2
+LICENSE=	lgpl3 CC-BY-SA-3.0
+LICENSE_COMB=	dual
+LICENSE_FILE_lgpl3=	${WRKSRC}/COPYING_LGPL
+LICENSE_FILE_CC-BY-SA-3.0=	${WRKSRC}/COPYING_CCBYSA3
 
-BUILD_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
-		icon-naming-utils>=0.8.7:${PORTSDIR}/x11-themes/icon-naming-utils
-RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
-		gnome-icon-theme-symbolic>=0:${PORTSDIR}/x11-themes/gnome-icon-theme-symbolic
+BUILD_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme \
+		icon-naming-utils>=0.8.7:x11-themes/icon-naming-utils
+RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme \
+		gnome-icon-theme-symbolic>=0:x11-themes/gnome-icon-theme-symbolic
 
 GNU_CONFIGURE=	yes
-USES=		gettext-tools gmake pathfix pkgconfig tar:xz
+USES=		gettext-tools gmake gnome localbase pathfix pkgconfig tar:xz
 USE_GNOME=	intlhack
 INSTALLS_ICONS=	yes
 CONFIGURE_ARGS=	--enable-icon-mapping
+CONFIGURE_ENV=	ac_cv_path_GTK_UPDATE_ICON_CACHE=/usr/bin/true
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
