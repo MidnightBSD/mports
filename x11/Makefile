@@ -30,6 +30,7 @@ SUBDIR += gstreamer1-plugins-x
 SUBDIR += gstreamer1-plugins-ximagesrc
 SUBDIR += gsynaptics
 SUBDIR += gtk-app-menu
+SUBDIR += i3lock-color
 SUBDIR += iceauth
 SUBDIR += ico
 SUBDIR += idesk
