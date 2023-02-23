@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use v5.28;
+use v5.36;
 use strict;
 use warnings;
 use feature qw(signatures);
@@ -10,6 +10,7 @@ use lib qw(/home/mbsd/magus/mports/Tools/lib);
 use Magus;
 use CGI::Fast;
 use Scalar::Util 'looks_like_number';
+use String::Clean::XSS;
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -638,7 +639,7 @@ sub machine_index {
 sub search {
   my ($p, $query, $tmpl_params) = @_;
   
-  $query  ||= $p->param('q');
+  $query  ||= clean_XSS($p->param('q'));
   my $origq = $query;
   my %where;
   while ($query =~ s/(\S+):(\S+)//) {
@@ -685,8 +686,8 @@ sub search {
 
   my $tmpl = template($p, 'list.tmpl');
 
-  $tmpl->param(results => \@results, title => "Search Results for &quot;$origq&quot;", count => scalar @results);
-  
+  $tmpl->param(results => \@results, title => "Search Results for &quot;$origq&quot;", count => scalar @results, query => $query);
+ 
   if ($tmpl_params) {
     $tmpl->param(%$tmpl_params);
   }
