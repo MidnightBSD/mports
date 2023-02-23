@@ -1,13 +1,12 @@
-# Created by: Dennis Herrmann <dhn@FreeBSD.org>
-
 PORTNAME=	i3
-DISTVERSION=	4.19
+DISTVERSION=	4.22
 CATEGORIES=	x11-wm
 MASTER_SITES=	https://i3wm.org/downloads/ \
 		http://i3wm.org/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Improved dynamic tiling window manager
+WWW=		https://i3wm.org
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -16,7 +15,7 @@ BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libev.so:devel/libev \
 		libpangocairo-1.0.so:x11-toolkits/pango \
-		libpcre.so:devel/pcre \
+		libpcre2-8.so:devel/pcre2 \
 		libstartup-notification-1.so:x11/startup-notification \
 		libxcb-cursor.so:x11/xcb-util-cursor \
 		libxcb-icccm.so:x11/xcb-util-wm \
@@ -29,7 +28,9 @@ RUN_DEPENDS=	p5-AnyEvent-I3>=0:devel/p5-AnyEvent-I3 \
 		p5-IPC-Run>=0:devel/p5-IPC-Run \
 		p5-Try-Tiny>=0:lang/p5-Try-Tiny
 
-USES=		compiler:c11 iconv localbase:ldflags meson perl5 pkgconfig tar:xz xorg
+USES=		compiler:c11 gnome iconv localbase:ldflags meson perl5 \
+		pkgconfig tar:xz xorg
+USE_GNOME=	glib20
 USE_XORG=	xcb
 MESON_ARGS=	-Ddocs=false \
 		-Dmans=false
