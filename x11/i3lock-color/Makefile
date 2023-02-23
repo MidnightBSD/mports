@@ -46,8 +46,8 @@ DOC_FILES=	CHANGELOG README.md
 DOCS_PLIST_FILES=	${DOC_FILES:S|^|${DOCSDIR_REL}/|}
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}/usr/local/bin/i3lock
-	@${RM} ${FAKE_DESTDIR}/usr/local/etc/pam.d/i3lock
+	@${STRIP_CMD} ${FAKE_DESTDIR}/${LOCALBASE}/bin/i3lock
+	@${RM} ${FAKE_DESTDIR}/${LOCALBASE}/etc/pam.d/i3lock
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
