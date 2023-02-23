@@ -692,7 +692,7 @@ sub search {
     $tmpl->param(%$tmpl_params);
   }
   
-  print $p->header, $tmpl->output;
+  print $p->header(-status=>200,-type=> 'text/html', -'X-XSS-Protection'=> '1; mode=block'), $tmpl->output;
 }
 
 sub async_machine_events {
