@@ -8,8 +8,10 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MIME and Application database for GNOME
+WWW=		https://www.gnome.org/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gettext gmake gnome localbase pathfix tar:bzip2
 USE_GNOME=	gnomeprefix intlhack
