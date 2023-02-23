@@ -1,39 +1,42 @@
-
-
 PORTNAME=	fvwm
-PORTVERSION=	2.6.6
+PORTVERSION=	2.6.9
 CATEGORIES=	x11-wm
-MASTER_SITES=	https://github.com/fvwmorg/fvwm/releases/download/version-2_6_6/ \
-		http://www.fvwm.org/generated/icon_download/
+MASTER_SITES=	https://github.com/fvwmorg/fvwm/releases/download/${PORTVERSION}/ \
+		http://fvwm.sourceforge.net/generated/icon_download/ \
+		http://cschubert.com/distfiles/ \
+		FREEBSD_LOCAL/cy
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Popular virtual window manager for X
+WWW=		https://www.fvwm.org/
 
 LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
 
-RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
-		p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
-LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libfreetype.so:${PORTSDIR}/print/freetype2
+RUN_DEPENDS=	gm4:devel/m4 \
+		p5-XML-Parser>=0:textproc/p5-XML-Parser
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2
 
 # Other ports this port cannot coexist with
-CONFLICTS?=	fvwm-1.* fvwm-2.[457].*
+CONFLICTS_INSTALL=	fvwm3
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-mandoc --without-gnome --disable-gtk
-USES=		gmake perl5 pkgconfig gettext readline
+CONFIGURE_ARGS=	--disable-mandoc --without-gnome --disable-gtk \
+		--without-rplay-library \
+		ac_cv_path_PYTHON=${PYTHON_CMD}
+USES=		cpe gmake gnome perl5 pkgconfig python:3.4+ gettext readline xorg
 USE_XORG=	xcursor xft xinerama xpm xrender x11 ice xext
 USE_GNOME=	cairo
+CFLAGS=		-Wno-int-conversion
 
-OPTIONS_DEFINE=	ICONS ICONV STROKE RPLAY SESSION_MGMT PNG SVG BIDI NLS
+OPTIONS_DEFINE=	ICONS ICONV STROKE SESSION_MGMT PNG SVG BIDI NLS
 OPTIONS_DEFAULT=ICONS ICONV SESSION_MGMT PNG
 OPTIONS_SUB=	yes
 
 STROKE_DESC=		support for mouse gestures
-RPLAY_DESC=		RPlay support in FvwmEvent
 SESSION_MGMT_DESC=	Session Management support
 BIDI_DESC=		Asian bi-directional text support
 
@@ -47,25 +50,20 @@ DISTFILES+=	${FVWM_ICONS}.tar.bz2
 .endif
 
 .if ${PORT_OPTIONS:MICONV}
+CONFIGURE_ARGS+=	--with-iconv-library=${LOCALBASE}/lib \
+			--with-iconv-includes=${LOCALBASE}/include \
+			--enable-iconv
 USES+=			iconv
 .else
 CONFIGURE_ARGS+=	--disable-iconv
 .endif
 
 .if ${PORT_OPTIONS:MSTROKE}
-LIB_DEPENDS+=	libstroke.so:${PORTSDIR}/devel/libstroke
+LIB_DEPENDS+=	libstroke.so:devel/libstroke
 CONFIGURE_ARGS+=	--with-stroke-library=${LOCALBASE}/lib \
 			--with-stroke-includes=${LOCALBASE}/include
 .else
 CONFIGURE_ARGS+=	--without-stroke-library
-.endif
-
-.if ${PORT_OPTIONS:MRPLAY}
-LIB_DEPENDS+=	librplay.so:${PORTSDIR}/audio/rplay
-CONFIGURE_ARGS+=	--with-rplay-library=${LOCALBASE}/lib \
-			--with-rplay-includes=${LOCALBASE}/include
-.else
-CONFIGURE_ARGS+=	--without-rplay-library
 .endif
 
 .if ${PORT_OPTIONS:MSESSION_MGMT}
@@ -75,7 +73,7 @@ CONFIGURE_ARGS+=	--disable-sm
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libpng.so:graphics/png
 CONFIGURE_ARGS+=	--with-png-includes=${LOCALBASE}/include \
 			--with-png-library=${LOCALBASE}/lib
 .else
@@ -89,7 +87,7 @@ CONFIGURE_ARGS+=	--disable-rsvg
 .endif
 
 .if ${PORT_OPTIONS:MBIDI}
-LIB_DEPENDS+=	libfribidi.so:${PORTSDIR}/converters/fribidi
+LIB_DEPENDS+=	libfribidi.so:converters/fribidi
 CONFIGURE_ARGS+=	--enable-bidi \
 			--with-bidi-bindir=${LOCALBASE}/bin
 .else
@@ -105,13 +103,6 @@ CONFIGURE_ARGS+=	--disable-nls
 
 .include <bsd.port.pre.mk>
 
-.if empty(ICONV_LIB)
-CONFIGURE_ARGS+=--without-iconv-library
-.else
-CONFIGURE_ARGS+=--with-iconv-library=${ICONV_PREFIX}/lib \
-		--with-iconv-includes=${ICONV_PREFIX}/include
-.endif
-
 .if ${PORT_OPTIONS:MICONS}
 post-extract:
 	@${MKDIR} ${WRKDIR}/icons
@@ -121,10 +112,18 @@ post-extract:
 post-patch:
 	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' \
 		${WRKSRC}/modules/FvwmM4/FvwmM4.c
+	@${REINPLACE_CMD} -e 's,/etc/,${LOCALBASE}/etc/,g' \
+		${WRKSRC}/bin/fvwm-menu-desktop.in
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/sample.fvwmrc/system.fvwm2rc \
-		${STAGEDIR}${PREFIX}/etc/system.fvwm2rc.sample
+	${INSTALL_DATA} ${FILESDIR}/system.fvwm2rc \
+		${STAGEDIR}${PREFIX}/etc/system.fvwm2rc.dist
+	${INSTALL_MAN} ${WRKSRC}/doc/fvwm/fvwm.1 \
+		${STAGEDIR}${PREFIX}/man/man1/fvwm.1
+	${INSTALL_MAN} ${WRKSRC}/doc/fvwm/fvwm.1 \
+		${STAGEDIR}${PREFIX}/man/man1/fvwm2.1
+	${GZIP_CMD} ${STAGEDIR}${PREFIX}/man/man1/fvwm.1 \
+		${STAGEDIR}${PREFIX}/man/man1/fvwm2.1
 .if ${PORT_OPTIONS:MICONS}
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/fvwm/pixmaps
 	${INSTALL_DATA} ${WRKDIR}/icons/${FVWM_ICONS}/*.xpm \
