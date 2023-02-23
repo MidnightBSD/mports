@@ -32,5 +32,6 @@ SUBDIR += xfce4-desktop
 SUBDIR += xfce4-panel
 SUBDIR += xfce4-session
 SUBDIR += xfce4-wm
+SUBDIR += yeahwm
 
 .include <bsd.port.subdir.mk>
