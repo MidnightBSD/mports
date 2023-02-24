@@ -1,11 +1,12 @@
 PORTNAME=	docutils
-PORTVERSION=	0.17.1
+PORTVERSION=	0.19
 CATEGORIES=	textproc python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Documentation Utilities
+WWW=		https://docutils.sourceforge.io/
 
 LICENSE=	bsd2 gpl3 publicdom python
 LICENSE_COMB=	multi
