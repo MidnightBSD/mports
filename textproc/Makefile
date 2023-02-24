@@ -285,6 +285,7 @@ SUBDIR += py-tinycss
 SUBDIR += py-tinycss2
 SUBDIR += py-toml
 SUBDIR += py-tomli
+SUBDIR += py-tomli-w
 SUBDIR += py-tomlkit
 SUBDIR += py-towncrier
 SUBDIR += py-typogrify
