@@ -17,6 +17,7 @@ SUBDIR += bootstrap-openjdk8
 SUBDIR += bootstrap-openjdk11
 SUBDIR += bootstrap-openjdk17
 SUBDIR += bouncycastle
+SUBDIR += bouncycastle15
 SUBDIR += classpath
 SUBDIR += cos
 SUBDIR += eclipse
