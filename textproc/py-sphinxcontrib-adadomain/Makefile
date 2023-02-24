@@ -1,14 +1,13 @@
-# Created by: John Marino <marino@FreeBSD.org>
-
 PORTNAME=	sphinxcontrib-adadomain
 PORTVERSION=	0.2
 PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx Adadomain Extension
+WWW=		https://bitbucket.org/tkoskine/sphinxcontrib-adadomain
 
 LICENSE=	bsd2
 

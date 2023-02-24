@@ -1,11 +1,12 @@
 PORTNAME=	sphinxcontrib-websupport
 PORTVERSION=	1.2.4
-CATEGORIES=	textproc
-MASTER_SITES=	CHEESESHOP
+CATEGORIES=	textproc python
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx API for Web Apps
+WWW=		https://github.com/sphinx-doc/sphinxcontrib-websupport
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
