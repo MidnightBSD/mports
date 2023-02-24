@@ -1,11 +1,13 @@
 PORTNAME=	sphinxcontrib-fulltoc
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx Fulltoc Extension
+WWW=		https://pypi.org/project/sphinxcontrib-fulltoc/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE

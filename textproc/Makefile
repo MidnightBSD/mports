@@ -268,6 +268,7 @@ SUBDIR += py-sphinx-me
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-adadomain
 SUBDIR += py-sphinxcontrib-applehelp
+SUBDIR += py-sphinxcontrib-autoprogram
 SUBDIR += py-sphinxcontrib-bitbucket
 SUBDIR += py-sphinxcontrib-devhelp
 SUBDIR += py-sphinxcontrib-fulltoc
