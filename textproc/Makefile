@@ -277,6 +277,7 @@ SUBDIR += py-sphinxcontrib-devhelp
 SUBDIR += py-sphinxcontrib-fulltoc
 SUBDIR += py-sphinxcontrib-htmlhelp
 SUBDIR += py-sphinxcontrib-httpdomain
+SUBDIR += py-sphinxcontrib-issuetracker
 SUBDIR += py-sphinxcontrib-jsmath
 SUBDIR += py-sphinxcontrib-napoleon
 SUBDIR += py-sphinxcontrib-newsfeed
