@@ -43,6 +43,8 @@ GNUTLS_LIB_DEPENDS=		libgnutls.so:security/gnutls \
 MBEDTLS_CMAKE_ON=		-DUSE_ENCLIB=mbedtls
 MBEDTLS_LIB_DEPENDS=		libmbedtls.so:security/mbedtls
 
+NO_TEST=	yes
+
 post-install-OPENSSL-on:
 	# fix .pc files
 	@${REINPLACE_CMD} -e 's|Requires.private: openssl libcrypto|Requires.private:|; s|Libs.private:.*|& -lssl -lcrypto|' \
