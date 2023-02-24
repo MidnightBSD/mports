@@ -1,14 +1,13 @@
-# Created by: Nicola Vitale <nivit@FreeBSD.org>
-
 PORTNAME=	sphinxcontrib-bitbucket
 PORTVERSION=	1.0
 PORTREVISION=	2
 CATEGORIES=	textproc python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx/BitBucket integration
+WWW=		http://www.doughellmann.com/projects/sphinxcontrib-bitbucket/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -20,6 +19,5 @@ USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes
-NO_TEST=	yes
 
 .include <bsd.port.mk>
