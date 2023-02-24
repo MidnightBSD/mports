@@ -1,27 +1,28 @@
 PORTNAME=	Jinja2
-PORTVERSION=	2.11.2
-PORTREVISION=	1
+DISTVERSION=	3.1.2
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX?=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Fast and easy to use stand-alone template engine
+WWW=		https://jinja.palletsprojects.com/en/3.1.x/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markupsafe>=0.23:textproc/py-markupsafe@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markupsafe>=0.23:textproc/py-markupsafe@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markupsafe>=2.0.0:textproc/py-markupsafe@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markupsafe>=2.0.0:textproc/py-markupsafe@${PY_FLAVOR}
 
 NO_ARCH=	yes
 .if empty(PKGNAMESUFFIX)
-USES=		python:2.7+
+USES=		cpe python
 USE_PYTHON=	autoplist distutils
+CPE_VENDOR=	pocoo
 .endif
 .if ${PKGNAMESUFFIX} == -doc
-USES=		gmake python:3.6+
+USES=		gmake python:3.7+
 USE_PYTHON=	flavors
 .endif
 
@@ -31,7 +32,7 @@ OPTIONS_DEFINE?=	BABEL EXAMPLES
 OPTIONS_DEFAULT?=	BABEL
 BABEL_DESC=		Enable Babel extension
 
-BABEL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Babel>=1.3:devel/py-babel@${PY_FLAVOR}
+BABEL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Babel>=2.7:devel/py-babel@${PY_FLAVOR}
 
 PY2TO3_CMD=	${LOCALBASE}/bin/2to3-${PYTHON_VER}
 PY2TO3_ARGS=	--fix=all --no-diffs --nobackups --verbose --write
@@ -39,7 +40,7 @@ PY2TO3_ARGS=	--fix=all --no-diffs --nobackups --verbose --write
 .include <bsd.port.pre.mk>
 
 .if ${PKGNAMESUFFIX} == "-doc"
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}Pallets-Sphinx-Themes>=1.2.3:textproc/py-pallets-sphinx-themes@${PY_FLAVOR} \
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}Pallets-Sphinx-Themes>=2.0.2:textproc/py-pallets-sphinx-themes@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}importlib-metadata>=0.23:devel/py-importlib-metadata@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-issues>=1.2.0:textproc/py-sphinx-issues@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx>=1.1.3:textproc/py-sphinx@${PY_FLAVOR} \
