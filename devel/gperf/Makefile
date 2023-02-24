@@ -1,26 +1,24 @@
-
-
 PORTNAME=	gperf
-PORTVERSION=	3.0.3
-PORTREVISION=	3
+PORTVERSION=	3.1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates perfect hash functions for sets of keywords
+WWW=		https://www.gnu.org/software/gperf/
 
-LICENSE=	gpl2
+LICENSE=	gpl3+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
+CONFLICTS=	ace+tao
 MAKE_JOBS_UNSAFE=	yes
 
+USES=		cpe
+CPE_VENDOR=	${CPE_PRODUCT}_project
+CPE_PRODUCT=	${PORTNAME}tools
 GNU_CONFIGURE=	yes
-
-INFO=		gperf
 CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
-
-regression-test: test
-
-test:	build
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
+INFO=		gperf
+TEST_TARGET=	check
 
 .include <bsd.port.mk>
