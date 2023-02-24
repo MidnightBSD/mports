@@ -7,6 +7,7 @@ MASTER_SITES=	https://nodejs.org/dist/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V8 JavaScript for client and server
+WWW=		https://nodejs.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
