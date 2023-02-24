@@ -1,0 +1,21 @@
+PORTNAME=	sphinxcontrib-log-cabinet
+PORTVERSION=	1.0.1
+CATEGORIES=	textproc
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Organize changelog directives in Sphinx docs
+WWW=		https://github.com/davidism/sphinxcontrib-log-cabinet
+
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR}
+
+USES=		python:3.6+
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>
