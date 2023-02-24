@@ -1,5 +1,5 @@
 %%SITE_PERL%%/HTTP/Headers/Fast.pm
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Headers::Fast.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Headers::Fast.3.gz
 @dir %%SITE_PERL%%/HTTP/Headers
 @dir %%SITE_PERL%%/HTTP
 @dir %%SITE_PERL%%/%%PERL5_MAN3%%
