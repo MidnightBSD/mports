@@ -1,20 +1,19 @@
-
-
 PORTNAME=	hyphen
 PORTVERSION=	2.8.8
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/hunspell/Hyphen/${PORTVERSION:R}/
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for high quality hyphenation and justification
+WWW=		https://github.com/hunspell/hyphen
 
-LICENSE=	lgpl2.1 lgpl3 mpl
+LICENSE=	lgpl2.1+ MPL11
 LICENSE_COMB=	dual
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LGPL
+LICENSE_FILE_MPL11=	${WRKSRC}/COPYING.MPL
 
-BUILD_DEPENDS=	gawk:${PORTSDIR}/lang/gawk
-
-CONFIGURE_ENV=	ac_cv_prog_AWK=gawk
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix perl5 shebangfix
 USE_LDCONFIG=	yes
