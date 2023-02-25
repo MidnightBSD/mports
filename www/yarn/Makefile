@@ -6,6 +6,7 @@ MASTER_SITES=	https://yarnpkg.com/downloads/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Package manager for node, alternative to npm
+WWW=		https://classic.yarnpkg.com/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
