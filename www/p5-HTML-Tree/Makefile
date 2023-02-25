@@ -1,5 +1,3 @@
-# Created by: Dmitry Sivachenko <dima@Chg.RU>
-
 PORTNAME=	HTML-Tree
 PORTVERSION=	5.07
 CATEGORIES=	www perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of modules to manipulate HTML syntax trees
+WWW=		https://metacpan.org/release/HTML-Tree
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
