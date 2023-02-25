@@ -1,5 +1,5 @@
 PORTNAME=	CGI
-PORTVERSION=	4.54
+PORTVERSION=	4.55
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,8 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-HTML-Parser>=3.69:www/p5-HTML-Parser
-TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep \
-		p5-Test-NoWarnings>=0:devel/p5-Test-NoWarnings \
+TEST_DEPENDS=	p5-Test-NoWarnings>=0:devel/p5-Test-NoWarnings \
 		p5-Test-Warn>=0:devel/p5-Test-Warn
 
 CONFLICTS_INSTALL=	p5-CGI.pm-[1-3]*
