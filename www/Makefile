@@ -76,6 +76,7 @@ SUBDIR += npm-node17
 SUBDIR += node
 SUBDIR += node14
 SUBDIR += node16
+SUBDIR += node18
 SUBDIR += nspluginwrapper
 SUBDIR += otter-browser
 SUBDIR += p5-Apache-LogFormat-Compiler
