@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module to format HTML to text or PS
+WWW=		https://metacpan.org/release/NIGELM/HTML-Format-2.12
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

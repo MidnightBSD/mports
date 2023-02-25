@@ -1,8 +1,8 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatMarkdown.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatPS.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::Formatter.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatRTF.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatText.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatMarkdown.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatPS.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::Formatter.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatRTF.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTML::FormatText.3.gz
 %%SITE_PERL%%/HTML/Formatter.pm
 %%SITE_PERL%%/HTML/FormatText.pm
 %%SITE_PERL%%/HTML/FormatMarkdown.pm
