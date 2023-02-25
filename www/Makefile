@@ -249,6 +249,7 @@ SUBDIR += yarn
 SUBDIR += yarn-node14
 SUBDIR += yarn-node16
 SUBDIR += yarn-node17
+SUBDIR += yarn-node18
 SUBDIR += yuicompressor
 SUBDIR += zend-framework
 SUBDIR += zenphoto
