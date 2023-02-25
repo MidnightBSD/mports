@@ -1,15 +1,16 @@
 PORTNAME=	HTML-Form
-PORTVERSION=	6.03
-PORTREVISION=	1
+PORTVERSION=	6.10
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Class that represents an HTML form element
+WWW=		https://metacpan.org/release/HTML-Form
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-HTML-Parser>=0:www/p5-HTML-Parser \
