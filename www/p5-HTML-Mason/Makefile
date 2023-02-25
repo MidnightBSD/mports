@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance, dynamic web site authoring system
+WWW=		https://metacpan.org/release/HTML-Mason
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
