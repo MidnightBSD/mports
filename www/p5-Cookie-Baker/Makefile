@@ -5,11 +5,12 @@ MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Perl extension for cookie string generator/parser
+COMMENT=	Cookie string generator/parser
 WWW=		https://metacpan.org/release/Cookie-Baker
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	p5-URI>0:net/p5-URI
 BUILD_DEPENDS=	${RUN_DEPENDS}
