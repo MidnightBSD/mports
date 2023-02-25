@@ -1,14 +1,15 @@
 PORTNAME=	HTML-Mason
-PORTVERSION=	1.58
+PORTVERSION=	1.59
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance, dynamic web site authoring system
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Cache-Cache>=1:devel/p5-Cache-Cache \
