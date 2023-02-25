@@ -1,12 +1,13 @@
 PORTNAME=	node
 DISTVERSIONPREFIX=	v
-DISTVERSION=	14.19.3
+DISTVERSION=	14.21.1
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${DISTVERSION}/
 PKGNAMESUFFIX=	14
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V8 JavaScript for client and server
+WWW=		https://nodejs.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
