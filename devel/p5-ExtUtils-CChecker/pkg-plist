@@ -1,5 +1,5 @@
 %%SITE_PERL%%/ExtUtils/CChecker.pm
-%%SITE_PERL%%/%%PERL5_MAN3%%/ExtUtils::CChecker.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/ExtUtils::CChecker.3.gz
 @dir %%SITE_ARCH%%/auto/ExtUtils/CChecker
 @dir %%SITE_ARCH%%/auto/ExtUtils
 @dir %%SITE_ARCH%%/auto
