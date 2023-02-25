@@ -73,6 +73,7 @@ SUBDIR += npm
 SUBDIR += npm-node14
 SUBDIR += npm-node16
 SUBDIR += npm-node17
+SUBDIR += npm-node18
 SUBDIR += node
 SUBDIR += node14
 SUBDIR += node16
