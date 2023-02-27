@@ -27,5 +27,6 @@ SUBDIR += scponly
 SUBDIR += tcshrc
 SUBDIR += v7sh
 SUBDIR += zsh
+SUBDIR += zsh-autosuggestions
 
 .include <bsd.port.subdir.mk>
