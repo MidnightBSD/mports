@@ -6,6 +6,7 @@ DISTNAME=	moin-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python clone of WikiWiki
+WWW=		https://moinmo.in/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/docs/licenses/COPYING
