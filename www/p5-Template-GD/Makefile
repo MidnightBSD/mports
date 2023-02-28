@@ -1,14 +1,13 @@
-# Created by: Greg Larkin <glarkin@FreeBSD.org>
-
 PORTNAME=	Template-GD
 PORTVERSION=	2.66
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Template Toolkit plugin to interface with GD modules
+WWW=		https://metacpan.org/release/Template-GD
 
 LICENSE=	gpl artistic
 LICENSE_COMB=	dual
