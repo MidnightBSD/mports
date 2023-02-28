@@ -1,2 +1,15 @@
+%%SITE_PERL%%/%%PERL5_MAN3%%/String::Tagged::Terminal.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/String::Tagged::Terminal::Win32Console.3.gz
 %%SITE_PERL%%/String/Tagged/Terminal.pm
 %%SITE_PERL%%/String/Tagged/Terminal/Win32Console.pm
+@dir %%SITE_ARCH%%/auto/String/Tagged/Terminal
+@dir %%SITE_ARCH%%/auto/String/Tagged
+@dir %%SITE_ARCH%%/auto/String
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/String/Tagged/Terminal
+@dir %%SITE_PERL%%/String/Tagged
+@dir %%SITE_PERL%%/String
+@dir %%SITE_PERL%%
