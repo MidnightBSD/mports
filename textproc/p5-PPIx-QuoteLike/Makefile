@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse Perl string literals and string-literal-like things
 WWW=		https://metacpan.org/release/PPIx-QuoteLike
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE_artistic=	${WRKSRC}/LICENSES/Artistic
 LICENSE_FILE_gpl=	${WRKSRC}/LICENSES/Copying
