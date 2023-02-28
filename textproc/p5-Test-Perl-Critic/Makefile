@@ -1,5 +1,3 @@
-# Created by: chinsan
-
 PORTNAME=	Test-Perl-Critic
 PORTVERSION=	1.04
 CATEGORIES=	textproc perl5
@@ -10,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Use Perl::Critic in test programs
 WWW=		https://metacpan.org/release/Test-Perl-Critic
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
