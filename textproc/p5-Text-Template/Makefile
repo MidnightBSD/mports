@@ -1,13 +1,14 @@
 PORTNAME=	Text-Template
-PORTVERSION=	1.60
+PORTVERSION=	1.61
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Expand template text with embedded Perl
+WWW=		https://metacpan.org/release/Text-Template
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
