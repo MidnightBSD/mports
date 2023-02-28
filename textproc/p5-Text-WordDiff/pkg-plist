@@ -1,4 +1,17 @@
-%%SITE_PERL%%/Text/WordDiff.pm
+%%SITE_PERL%%/Text/WordDiff/HTMLTwoLines.pm
 %%SITE_PERL%%/Text/WordDiff/ANSIColor.pm
 %%SITE_PERL%%/Text/WordDiff/HTML.pm
-%%SITE_PERL%%/Text/WordDiff/HTMLTwoLines.pm
+%%SITE_PERL%%/Text/WordDiff.pm
+%%SITE_PERL%%/%%PERL5_MAN3%%/Text::WordDiff::ANSIColor.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/Text::WordDiff::HTMLTwoLines.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/Text::WordDiff::HTML.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/Text::WordDiff.3.gz
+@dir %%SITE_PERL%%/Text/WordDiff
+@dir %%SITE_PERL%%/Text
+@dir %%SITE_ARCH%%/auto/Text/WordDiff
+@dir %%SITE_ARCH%%/auto/Text
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
