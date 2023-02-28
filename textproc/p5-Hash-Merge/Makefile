@@ -1,5 +1,3 @@
-# Created by: snowchyld
-
 PORTNAME=	Hash-Merge
 PORTVERSION=	0.302
 CATEGORIES=	textproc perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Merges hashes
+WWW=		https://metacpan.org/release/Hash-Merge
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
