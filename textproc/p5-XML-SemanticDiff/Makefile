@@ -6,10 +6,11 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for comparing XML documents
+WWW=		https://metacpan.org/release/XML-SemanticDiff
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
-LICENSE_FILE_ART10=	${WRKSRC}/LICENSE
+LICENSE_FILE_artistic=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser

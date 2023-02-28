@@ -1,5 +1,3 @@
-# Created by: Andrew <andrew@ugh.net.au>
-
 PORTNAME=	XML-Simple
 PORTVERSION=	2.25
 CATEGORIES=	textproc perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Trivial API for reading and writing XML (esp config files)
+WWW=		https://www.mclean.net.nz/
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
