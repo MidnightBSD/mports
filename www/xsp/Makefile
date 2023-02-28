@@ -5,6 +5,7 @@ MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mono based web server
+WWW=		https://www.mono-project.com/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,6 +19,6 @@ CONFIGURE_ENV=	ac_cv_path_GMCS=${LOCALBASE}/bin/mcs
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${XSP_DOCROOT}
+	${MKDIR} ${XSP_DOCROOT}
 
 .include <bsd.port.mk>

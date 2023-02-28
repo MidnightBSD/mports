@@ -10,6 +10,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Yahoo! JavaScript and CSS Compressor
+WWW=		https://yui.github.io/yuicompressor/
 
 LICENSE=	bsd3 mpl
 LICENSE_COMB=	multi
