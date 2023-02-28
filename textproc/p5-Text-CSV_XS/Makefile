@@ -1,5 +1,5 @@
 PORTNAME=	Text-CSV_XS
-DISTVERSION=	1.48
+DISTVERSION=	1.49
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:HMBRAND
@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Comma-separated values manipulation routines
+WWW=		https://metacpan.org/release/Text-CSV_XS
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/README
 
