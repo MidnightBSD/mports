@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Encode::Encoding subclass that detects the encoding of data
+WWW=		https://metacpan.org/release/Encode-Detect
 
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
