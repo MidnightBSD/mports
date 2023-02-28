@@ -14,6 +14,7 @@ SUBDIR += dirac
 SUBDIR += emby-server
 SUBDIR += emby-server46
 SUBDIR += ffmpeg
+SUBDIR += ffmpegthumbnailer
 SUBDIR += ffmpeg0
 SUBDIR += gmp-api
 SUBDIR += gpac-libgpac
