@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for JHash hash algorithm
+WWW=		https://metacpan.org/release/Digest-JHash
 
 LICENSE=	artistic2
 
