@@ -12,6 +12,5 @@ LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	YES
 
 .include <bsd.port.mk>
