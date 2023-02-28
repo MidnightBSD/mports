@@ -1,16 +1,14 @@
-
-
 PORTNAME=	File-Listing
-PORTVERSION=	6.04
-PORTREVISION=	1
+PORTVERSION=	6.15
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse directory listings
+WWW=		https://metacpan.org/release/File-Listing
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-HTTP-Date>=6:www/p5-HTTP-Date

@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Unix-Processors
 PORTVERSION=	2.046
 CATEGORIES=	sysutils perl5
@@ -8,12 +6,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface to processor (CPU) information
+WWW=		https://metacpan.org/release/Unix-Processors
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

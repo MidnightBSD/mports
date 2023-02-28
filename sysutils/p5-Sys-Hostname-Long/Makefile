@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Sys-Hostname-Long
 PORTVERSION=	1.5
 PORTREVISION=	1
@@ -9,13 +7,13 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Try every conceivable way to get full hostname
+WWW=		https://metacpan.org/release/Sys-Hostname-Long
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=	perl5
 USE_PERL5=	configure
 NO_ARCH=	yes
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
