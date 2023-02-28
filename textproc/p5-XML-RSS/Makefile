@@ -1,5 +1,3 @@
-# Created by: Ade Lovett <ade@FreeBSD.org>
-
 PORTNAME=	XML-RSS
 PORTVERSION=	1.62
 CATEGORIES=	textproc perl5
@@ -8,9 +6,10 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to manage RDF Site Summary (RSS) files
+WWW=		https://metacpan.org/release/XML-RSS
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS} \
 		p5-Test-Manifest>=0.9:devel/p5-Test-Manifest
