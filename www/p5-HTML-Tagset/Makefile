@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful data table in parsing HTML
 WWW=		https://metacpan.org/release/HTML-Tagset
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes
