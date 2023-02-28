@@ -1,5 +1,5 @@
 PORTNAME=	oniguruma
-DISTVERSION=	6.9.6
+DISTVERSION=	6.9.7.1
 CATEGORIES=	devel textproc
 MASTER_SITES=	https://github.com/kkos/${PORTNAME}/releases/download/v${DISTVERSION}/
 DISTNAME=	onig-${DISTVERSION}
@@ -9,6 +9,8 @@ COMMENT=	Regular expressions library compatible with POSIX/GNU/Perl
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+WRKSRC=		${WRKDIR}/onig-6.9.7
 
 USES=			autoreconf pathfix libtool  # configure provided in the tarball breaks: https://github.com/kkos/oniguruma/issues/73
 GNU_CONFIGURE=		yes
