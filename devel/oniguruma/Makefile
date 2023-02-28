@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/onig-6.9.7
 
-USES=			autoreconf pathfix libtool  # configure provided in the tarball breaks: https://github.com/kkos/oniguruma/issues/73
+USES=			autoreconf cpe pathfix libtool  # configure provided in the tarball breaks: https://github.com/kkos/oniguruma/issues/73
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--disable-static --enable-posix-api=yes
 PATHFIX_MAKEFILEIN=	Makefile.am
@@ -20,6 +20,7 @@ USE_LDCONFIG=		yes
 INSTALL_TARGET=		install-strip
 TEST_WRKSRC=		${WRKSRC}/test
 TEST_TARGET=		test
+CPE_VENDOR=		oniguruma_project
 
 OPTIONS_DEFINE=			STATISTICS DOCS EXAMPLES
 STATISTICS_DESC=		Take matching time statistical data (debug feature)
