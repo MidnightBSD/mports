@@ -1,5 +1,5 @@
 PORTNAME=	libwww
-PORTVERSION=	6.52
+PORTVERSION=	6.67
 DISTVERSIONPREFIX=	perl-
 CATEGORIES=	www devel perl5
 MASTER_SITES=	CPAN
@@ -8,8 +8,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 library for WWW access
+WWW=		https://metacpan.org/release/libwww-perl
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
@@ -19,16 +20,16 @@ RUN_DEPENDS=	p5-Authen-NTLM>=1.02:security/p5-Authen-NTLM \
 		p5-File-Listing>=6:sysutils/p5-File-Listing \
 		p5-HTML-Parser>=0:www/p5-HTML-Parser \
 		p5-HTTP-Cookies>=6:www/p5-HTTP-Cookies \
-		p5-HTTP-Daemon>=6:www/p5-HTTP-Daemon \
 		p5-HTTP-Date>=6:www/p5-HTTP-Date \
-		p5-HTTP-Message>=6:www/p5-HTTP-Message \
+		p5-HTTP-Message>=6.07:www/p5-HTTP-Message \
 		p5-HTTP-Negotiate>=6:www/p5-HTTP-Negotiate \
 		p5-LWP-MediaTypes>=6:www/p5-LWP-MediaTypes \
 		p5-Net-HTTP>=6.18:net/p5-Net-HTTP \
 		p5-Try-Tiny>=0:lang/p5-Try-Tiny \
 		p5-URI>=1.10:net/p5-URI \
 		p5-WWW-RobotRules>=6:www/p5-WWW-RobotRules
-TEST_DEPENDS=	p5-Test-Fatal>=0:devel/p5-Test-Fatal \
+TEST_DEPENDS=	p5-HTTP-Daemon>=6.12:www/p5-HTTP-Daemon \
+		p5-Test-Fatal>=0:devel/p5-Test-Fatal \
 		p5-Test-Needs>=0:devel/p5-Test-Needs \
 		p5-Test-RequiresInternet>=0:devel/p5-Test-RequiresInternet
 
