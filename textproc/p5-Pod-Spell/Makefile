@@ -1,11 +1,12 @@
 PORTNAME=	Pod-Spell
-PORTVERSION=	1.20
+PORTVERSION=	1.25
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Formatter for spellchecking Pod
+WWW=		https://metacpan.org/release/Pod-Spell
 
 LICENSE=	artistic2
 
@@ -13,11 +14,7 @@ BUILD_DEPENDS=	${RUN_DEPENDS} \
 		p5-File-ShareDir-Install>=0.06:devel/p5-File-ShareDir-Install
 RUN_DEPENDS=	p5-Class-Tiny>=0:devel/p5-Class-Tiny \
 		p5-File-ShareDir>=0:devel/p5-File-ShareDir \
-		p5-Lingua-EN-Inflect>=0:textproc/p5-Lingua-EN-Inflect \
-		p5-Path-Tiny>=0:devel/p5-Path-Tiny \
-		p5-Pod-Escapes>=1.01:textproc/p5-Pod-Escapes
-TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep \
-		p5-Pod-Parser>=0:textproc/p5-Pod-Parser
+		p5-Lingua-EN-Inflect>=0:textproc/p5-Lingua-EN-Inflect
 
 NO_ARCH=	yes
 USES=		perl5
