@@ -246,6 +246,7 @@ SUBDIR += varnish4
 SUBDIR += varnish6
 SUBDIR += varnish7
 SUBDIR += w3m
+SUBDIR += webinject
 SUBDIR += webkit2-gtk3
 SUBDIR += webkit2-gtk4
 SUBDIR += weblint++
