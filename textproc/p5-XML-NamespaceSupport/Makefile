@@ -1,5 +1,3 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
-
 PORTNAME=	XML-NamespaceSupport
 PORTVERSION=	1.12
 CATEGORIES=	textproc perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple generic namespace support class
+WWW=		https://metacpan.org/release/XML-NamespaceSupport
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
