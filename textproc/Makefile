@@ -320,6 +320,7 @@ SUBDIR += sdocbook-xml
 SUBDIR += sgmlformat
 SUBDIR += sgmls
 SUBDIR += snowballstemmer
+SUBDIR += source-highlight
 SUBDIR += sphinxsearch
 SUBDIR += teckit
 SUBDIR += texi2html
