@@ -13,6 +13,7 @@ LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
+RUN_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so
 
 EXAMPLESDIR=	${PREFIX}/share/examples/mandoc
 
