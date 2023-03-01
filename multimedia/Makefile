@@ -4,7 +4,6 @@ SUBDIR += aom
 SUBDIR += aribb24
 SUBDIR += assimp
 SUBDIR += cheese
-SUBDIR += clive
 SUBDIR += clutter-gst
 SUBDIR += clutter-gst3
 SUBDIR += cmrtlib
