@@ -100,6 +100,7 @@ SUBDIR += ortp
 SUBDIR += p5-GeoIP2
 SUBDIR += p5-IO-Socket-INET6
 SUBDIR += p5-IO-Socket-IP
+SUBDIR += p5-IO-Socket-Socks
 SUBDIR += p5-IP-Country
 SUBDIR += p5-MaxMind-DB-Common
 SUBDIR += p5-MaxMind-DB-Reader
