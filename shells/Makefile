@@ -33,5 +33,6 @@ SUBDIR += zsh-antigen
 SUBDIR += zsh-autosuggestions
 SUBDIR += zsh-completions
 SUBDIR += zsh-navigation-tools
+SUBDIR += zsh-syntax-highlighting
 
 .include <bsd.port.subdir.mk>
