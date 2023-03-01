@@ -492,6 +492,9 @@ PKGDIR?=                ${MASTERDIR}
 
 PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 
+.    if defined(USE_LOCAL_MK)
+.include "${PORTSDIR}/Mk/bsd.local.mk"
+.    endif
 .    for odir in ${OVERLAYS}
 .sinclude "${odir}/Mk/bsd.overlay.mk"
 .    endfor
