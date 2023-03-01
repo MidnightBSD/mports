@@ -1,5 +1,3 @@
-# Created by: mat
-
 PORTNAME=	DateTime-HiRes
 PORTVERSION=	0.01
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create DateTime objects with sub-second current time resolution
+WWW=		https://metacpan.org/release/DateTime-HiRes
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
