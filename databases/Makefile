@@ -120,6 +120,7 @@ SUBDIR += php82-pdo_pgsql
 SUBDIR += php82-pdo_sqlite
 SUBDIR += php82-pgsql
 SUBDIR += php82-sqlite3
+SUBDIR += phpliteadmin
 SUBDIR += phpmyadmin
 SUBDIR += phpmyadmin5
 SUBDIR += phppgadmin

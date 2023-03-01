@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	5${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of PHP-scripts to manage MySQL over the web
+WWW=		https://www.phpmyadmin.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
