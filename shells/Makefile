@@ -27,6 +27,7 @@ SUBDIR += scponly
 SUBDIR += tcshrc
 SUBDIR += v7sh
 SUBDIR += zsh
+SUBDIR += zsh-antigen
 SUBDIR += zsh-autosuggestions
 SUBDIR += zsh-completions
 SUBDIR += zsh-navigation-tools
