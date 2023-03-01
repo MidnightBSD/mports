@@ -28,5 +28,6 @@ SUBDIR += tcshrc
 SUBDIR += v7sh
 SUBDIR += zsh
 SUBDIR += zsh-autosuggestions
+SUBDIR += zsh-navigation-tools
 
 .include <bsd.port.subdir.mk>
