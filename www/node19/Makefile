@@ -15,7 +15,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_SSL=	libressl libressl-devel
 BROKEN_SSL_REASON=	Node.js ${PORTVERSION:R:R}.x requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
-ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386
 
 BUILD_DEPENDS=	brotli>=1.0.9,1:archivers/brotli \
 		c-ares>=1.17.2:dns/c-ares \
@@ -66,7 +65,9 @@ NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
 
 .include <bsd.mport.options.mk>
 
+.if ${OSVERSION} < 300000
 BROKEN_SSL+=	base
+.endif
 
 .if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64
 CONFIGURE_ARGS+=--openssl-no-asm

@@ -67,7 +67,9 @@ NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
 
 .include <bsd.mport.options.mk>
 
-BROKEN_SSL+=	base
+.if ${OSVERSION} < 300000
+BROKEN_SSL+=    base
+.endif
 
 .if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64
 CONFIGURE_ARGS+=--openssl-no-asm
