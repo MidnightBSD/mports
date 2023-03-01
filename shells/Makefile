@@ -26,6 +26,7 @@ SUBDIR += sash
 SUBDIR += scponly
 SUBDIR += tcshrc
 SUBDIR += v7sh
+SUBDIR += xonsh
 SUBDIR += yash
 SUBDIR += zsh
 SUBDIR += zsh-antigen
