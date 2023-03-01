@@ -1,4 +1,4 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/DateTime::Calendar::Mayan.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/DateTime::Calendar::Mayan.3.gz
 %%SITE_PERL%%/DateTime/Calendar/Mayan.pod
 %%SITE_PERL%%/DateTime/Calendar/Mayan.pm
 @dir %%SITE_ARCH%%/auto/DateTime/Calendar/Mayan
