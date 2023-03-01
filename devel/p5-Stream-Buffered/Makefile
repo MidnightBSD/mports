@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Stream-Buffered
 PORTVERSION=	0.03
 PORTREVISION=	1
@@ -9,13 +7,13 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for temporary buffer to save bytes
+WWW=		https://metacpan.org/release/Stream-Buffered
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
 NO_ARCH=	YES
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
