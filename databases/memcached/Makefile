@@ -1,17 +1,15 @@
 PORTNAME=	memcached
-PORTVERSION=	1.6.7
+PORTVERSION=	1.6.14
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
 		GENTOO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance distributed memory object cache system
+WWW=		https://memcached.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN_mips=		fails to link: failed to merge target specific data of file /usr/lib/dtrace/drti.o
-BROKEN_mips64=		fails to link: failed to merge target specific data of file /usr/lib/dtrace/drti.o
 
 BUILD_DEPENDS=	as:devel/binutils
 LIB_DEPENDS=	libevent.so:devel/libevent
