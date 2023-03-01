@@ -32,7 +32,7 @@ _OPTIONS_TARGETS=	fetch:300:pre fetch:500:do fetch:700:post \
 			configure:300:pre configure:500:do configure:700:post \
 			build:300:pre build:500:do build:700:post \
 			install:300:pre install:500:do install:700:post  \
-			test:300:pre test:500:do test:700:post \
+			test:300:pre test:500:do test:700:post  \
 			package:300:pre package:500:do package:700:post \
 			fake:800:post
 
@@ -66,11 +66,11 @@ PORT_OPTIONS+=	TEST
 PORT_OPTIONS+=	IPV6
 
 # Add per arch options
-.for opt in ${OPTIONS_DEFINE_${ARCH}}
-.if empty(OPTIONS_DEFINE:M${opt})
+.  for opt in ${OPTIONS_DEFINE_${ARCH}}
+.    if empty(OPTIONS_DEFINE:M${opt})
 OPTIONS_DEFINE+=	${opt}
-.endif
-.endfor
+.    endif
+.  endfor
 
 # Add per arch defaults
 OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
@@ -79,24 +79,24 @@ _ALL_EXCLUDE=	${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} \
 		${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${OPSYS}} \
 		${OPTIONS_EXCLUDE_${OPSYS}_${OSREL:R}}
 
-.for opt in ${OPTIONS_DEFINE:O:u}
-.  if !${_ALL_EXCLUDE:M${opt}}
-.    for opt_implied in ${${opt}_IMPLIES}
-.       if ${_ALL_EXCLUDE:M${opt_implied}}
+.  for opt in ${OPTIONS_DEFINE:O:u}
+.    if !${_ALL_EXCLUDE:M${opt}}
+.      for opt_implied in ${${opt}_IMPLIES}
+.        if ${_ALL_EXCLUDE:M${opt_implied}}
 _ALL_EXCLUDE+=	${opt}
-.       endif
-.    endfor
-.  endif
-.endfor
+.        endif
+.      endfor
+.    endif
+.  endfor
 
 
 # Remove options the port maintainer doesn't want
-.for opt in ${_ALL_EXCLUDE:O:u}
-OPTIONS_DEFAULT:=      ${OPTIONS_DEFAULT:N${opt}}
-OPTIONS_DEFINE:=       ${OPTIONS_DEFINE:N${opt}}
-PORT_OPTIONS:=         ${PORT_OPTIONS:N${opt}}
-.  for otype in SINGLE RADIO MULTI GROUP
-.    for m in ${OPTIONS_${otype}}
+.  for opt in ${_ALL_EXCLUDE:O:u}
+OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:N${opt}}
+OPTIONS_DEFINE:=	${OPTIONS_DEFINE:N${opt}}
+PORT_OPTIONS:=		${PORT_OPTIONS:N${opt}}
+.    for otype in SINGLE RADIO MULTI GROUP
+.      for m in ${OPTIONS_${otype}}
 OPTIONS_${otype}_${m}:=	${OPTIONS_${otype}_${m}:N${opt}}
 .    endfor
 .  endfor
