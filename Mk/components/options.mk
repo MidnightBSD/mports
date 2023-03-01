@@ -89,7 +89,6 @@ _ALL_EXCLUDE+=	${opt}
 .    endif
 .  endfor
 
-
 # Remove options the port maintainer doesn't want
 .  for opt in ${_ALL_EXCLUDE:O:u}
 OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:N${opt}}
@@ -113,56 +112,56 @@ OPTIONS_${otype}:=	${OPTIONS_${otype}:N${m}}
 .endfor
 
 # Sort options
-ALL_OPTIONS:=		${OPTIONS_DEFINE:O:u}
+ALL_OPTIONS:=	${OPTIONS_DEFINE:O:u}
 OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:O:u}
 
 # complete list
-COMPLETE_OPTIONS_LIST= ${ALL_OPTIONS}
-.for otype in SINGLE RADIO MULTI GROUP
-.  for m in ${OPTIONS_${otype}}
+COMPLETE_OPTIONS_LIST=	${ALL_OPTIONS}
+.  for otype in SINGLE RADIO MULTI GROUP
+.    for m in ${OPTIONS_${otype}}
 COMPLETE_OPTIONS_LIST+=	${OPTIONS_${otype}_${m}}
 .  endfor
-.endfor
+.  endfor
 
 ## Now create the list of activated options
-.if defined(OPTIONS_OVERRIDE)
+.  if defined(OPTIONS_OVERRIDE)
 # Special case $OPTIONS_OVERRIDE; if it is defined forget about anything done
 # before
 NEW_OPTIONS=
 PORT_OPTIONS:=	${OPTIONS_OVERRIDE}
-.else
+.  else
 NEW_OPTIONS=	${COMPLETE_OPTIONS_LIST}
 
 ## Set default options defined by the port maintainer
 PORT_OPTIONS+=	${OPTIONS_DEFAULT}
 
 ## Set system-wide defined options (set by user in make.conf)
-.  for opt in ${OPTIONS_SET}
-.    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
+.    for opt in ${OPTIONS_SET}
+.      if !empty(COMPLETE_OPTIONS_LIST:M${opt})
 PORT_OPTIONS+=	${opt}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.    endif
-.  endfor
+.      endif
+.    endfor
 
 ## Remove the options excluded system-wide (set by user in make.conf)
-.  for opt in ${OPTIONS_UNSET}
+.    for opt in ${OPTIONS_UNSET}
 PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.  endfor
+.    endfor
 
 ## Set the options specified per-port (set by user in make.conf)
-.  for opt in ${${UNIQUENAME}_SET}
-.    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
+.    for opt in ${${UNIQUENAME}_SET}
+.      if !empty(COMPLETE_OPTIONS_LIST:M${opt})
 PORT_OPTIONS+=	${opt}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.    endif
-.  endfor
+.      endif
+.    endfor
 
 ## Unset the options excluded per-port (set by user in make.conf)
-.  for opt in ${${OPTIONS_NAME}_UNSET}
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
+.    for opt in ${${OPTIONS_NAME}_UNSET}
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.  endfor
+.    endfor
 
 ## options files (from dialog)
 .  if exists(${OPTIONSFILE}) && !make(rmconfig)
@@ -189,12 +188,12 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 .endfor
 
 _OPTIONS_UNIQUENAME=	${PKGNAMEPREFIX}${PORTNAME}
-.for _k in SET UNSET SET_FORCE UNSET_FORCE
-.if defined(${_OPTIONS_UNIQUENAME}_${_k})
+.    for _k in SET UNSET SET_FORCE UNSET_FORCE
+.      if defined(${_OPTIONS_UNIQUENAME}_${_k})
 WARNING+=	"You are using ${_OPTIONS_UNIQUENAME}_${_k} which is not supported any more, use:"
 WARNING+=	"${OPTIONS_NAME}_${_k}=	${${_OPTIONS_UNIQUENAME}_${_k}}"
-.endif
-.endfor
+.      endif
+.    endfor
 
 .if defined(OPTIONS_WARNINGS)
 WARNING+=	"You are using the following deprecated options: ${OPTIONS_WARNINGS}"
@@ -227,10 +226,10 @@ NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
 .  endfor
 PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 
-.for opt in ${OPTIONS_FILE_UNSET}
+.  for opt in ${OPTIONS_FILE_UNSET}
 PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
-.endfor
+.  endfor
 
 .endif
 .endif
@@ -276,13 +275,13 @@ WITH_DEBUG=	yes
 WITHOUT_NLS=    yes
 .endif
 
-.if defined(NO_OPTIONS_SORT)
+.  if defined(NO_OPTIONS_SORT)
 ALL_OPTIONS=	${OPTIONS_DEFINE}
-.endif
+.  endif
 
-.for target in ${_OPTIONS_TARGETS:C/:.*//:u}
+.  for target in ${_OPTIONS_TARGETS:C/:.*//:u}
 _OPTIONS_${target}?=
-.endfor
+.  endfor
 
 ### to be removed once old OPTIONS disappear
 .for opt in ${ALL_OPTIONS}
@@ -306,165 +305,165 @@ ONETIMERUNTHROUGH=	yes
 # PLIST_SUB
 PLIST_SUB?=
 SUB_LIST?=
-.  if defined(OPTIONS_SUB)
-.    if ! ${PLIST_SUB:M${opt}=*}
-.      if ${PORT_OPTIONS:M${opt}}
+.    if defined(OPTIONS_SUB)
+.      if ! ${PLIST_SUB:M${opt}=*}
+.        if ${PORT_OPTIONS:M${opt}}
 PLIST_SUB:=	${PLIST_SUB} ${opt}="" NO_${opt}="@comment "
-.      else
+.        else
 PLIST_SUB:=	${PLIST_SUB} ${opt}="@comment " NO_${opt}=""
+.        endif
 .      endif
-.    endif
-.    if ! ${SUB_LIST:M${opt}=*}
-.      if ${PORT_OPTIONS:M${opt}}
+.      if ! ${SUB_LIST:M${opt}=*}
+.        if ${PORT_OPTIONS:M${opt}}
 SUB_LIST:=	${SUB_LIST} ${opt}="" NO_${opt}="@comment "
-.      else
+.        else
 SUB_LIST:=	${SUB_LIST} ${opt}="@comment " NO_${opt}=""
 .      endif
 .    endif
 .  endif
 
-.  if ${PORT_OPTIONS:M${opt}}
-.    if defined(${opt}_USE)
-.      for option in ${${opt}_USE}
+.    if ${PORT_OPTIONS:M${opt}}
+.      if defined(${opt}_USE)
+.        for option in ${${opt}_USE}
 _u=		${option:C/=.*//g}
 USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
-.      endfor
-.    endif
-.    if defined(${opt}_VARS)
-.      for var in ${${opt}_VARS:C/=.*//:O:u}
+.        endfor
+.      endif
+.      if defined(${opt}_VARS)
+.        for var in ${${opt}_VARS:C/=.*//:O:u}
 _u=			${var}
-.        if ${_u:M*+}
+.          if ${_u:M*+}
 ${_u:C/.$//:tu}+=	${${opt}_VARS:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
-.        else
+.          else
 ${_u:tu}=		${${opt}_VARS:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
+.          endif
+.        endfor
+.      endif
+.      if defined(${opt}_CONFIGURE_ENABLE)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--enable-/}
+.      endif
+.      if defined(${opt}_CONFIGURE_WITH)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--with-/}
+.      endif
+.      if defined(${opt}_CMAKE_BOOL)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=true/}
+.      endif
+.      if defined(${opt}_CMAKE_BOOL_OFF)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=false/}
+.      endif
+.      if defined(${opt}_MESON_TRUE)
+MESON_ARGS+=		${${opt}_MESON_TRUE:C/.*/-D&=true/}
+.      endif
+.      if defined(${opt}_MESON_FALSE)
+MESON_ARGS+=		${${opt}_MESON_FALSE:C/.*/-D&=false/}
+.      endif
+.      if defined(${opt}_MESON_YES)
+MESON_ARGS+=		${${opt}_MESON_YES:C/.*/-D&=yes/}
+.      endif
+.      if defined(${opt}_MESON_NO)
+MESON_ARGS+=		${${opt}_MESON_NO:C/.*/-D&=no/}
+.      endif
+.      if defined(${opt}_MESON_ENABLED)
+MESON_ARGS+=		${${opt}_MESON_ENABLED:C/.*/-D&=enabled/}
+.      endif
+.      if defined(${opt}_MESON_DISABLED)
+MESON_ARGS+=		${${opt}_MESON_DISABLED:C/.*/-D&=disabled/}
+.      endif
+.      if defined(${opt}_CABAL_FLAGS)
+CABAL_FLAGS+=	${${opt}_CABAL_FLAGS}
+.      endif
+.      for configure in CONFIGURE CMAKE MESON QMAKE
+.        if defined(${opt}_${configure}_ON)
+${configure}_ARGS+=	${${opt}_${configure}_ON}
 .        endif
 .      endfor
-.    endif
-.    if defined(${opt}_CONFIGURE_ENABLE)
-CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--enable-/}
-.    endif
-.    if defined(${opt}_CONFIGURE_WITH)
-CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--with-/}
-.    endif
-.    if defined(${opt}_CMAKE_BOOL)
-CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=true/}
-.    endif
-.    if defined(${opt}_CMAKE_BOOL_OFF)
-CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=false/}
-.    endif
-.    if defined(${opt}_MESON_TRUE)
-MESON_ARGS+=		${${opt}_MESON_TRUE:C/.*/-D&=true/}
-.    endif
-.    if defined(${opt}_MESON_FALSE)
-MESON_ARGS+=		${${opt}_MESON_FALSE:C/.*/-D&=false/}
-.    endif
-.    if defined(${opt}_MESON_YES)
-MESON_ARGS+=		${${opt}_MESON_YES:C/.*/-D&=yes/}
-.    endif
-.    if defined(${opt}_MESON_NO)
-MESON_ARGS+=          ${${opt}_MESON_NO:C/.*/-D&=no/}
-.    endif
-.    if defined(${opt}_MESON_ENABLED)
-MESON_ARGS+=		${${opt}_MESON_ENABLED:C/.*/-D&=enabled/}
-.    endif
-.    if defined(${opt}_MESON_DISABLED)
-MESON_ARGS+=		${${opt}_MESON_DISABLED:C/.*/-D&=disabled/}
-.    endif
-.    if defined(${opt}_CABAL_FLAGS)
-CABAL_FLAGS+=	${${opt}_CABAL_FLAGS}
-.    endif
-.    for configure in CONFIGURE CMAKE MESON QMAKE
-.      if defined(${opt}_${configure}_ON)
-${configure}_ARGS+=	${${opt}_${configure}_ON}
-.      endif
-.    endfor
-.    for flags in ${_OPTIONS_FLAGS}
-.      if defined(${opt}_${flags})
+.      for flags in ${_OPTIONS_FLAGS}
+.        if defined(${opt}_${flags})
 ${flags}+=	${${opt}_${flags}}
-.      endif
-.    endfor
-.    for deptype in ${_OPTIONS_DEPENDS}
-.      if defined(${opt}_${deptype}_DEPENDS)
+.        endif
+.      endfor
+.      for deptype in ${_OPTIONS_DEPENDS}
+.        if defined(${opt}_${deptype}_DEPENDS)
 ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
-.      endif
-.    endfor
-.    for target in ${_OPTIONS_TARGETS}
+.        endif
+.      endfor
+.      for target in ${_OPTIONS_TARGETS}
 _target=	${target:C/:.*//}
 _prio=		${target:C/.*:(.*):.*/\1/}
 _type=		${target:C/.*://}
 _OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}-on
-.    endfor
-.  else
-.    if defined(${opt}_USE_OFF)
-.      for option in ${${opt}_USE_OFF}
+.      endfor
+.    else
+.      if defined(${opt}_USE_OFF)
+.        for option in ${${opt}_USE_OFF}
 _u=		${option:C/=.*//g}
 USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
-.      endfor
-.    endif
-.    if defined(${opt}_VARS_OFF)
-.      for var in ${${opt}_VARS_OFF:C/=.*//:O:u}
+.        endfor
+.      endif
+.      if defined(${opt}_VARS_OFF)
+.        for var in ${${opt}_VARS_OFF:C/=.*//:O:u}
 _u=			${var}
-.        if ${_u:M*+}
+.          if ${_u:M*+}
 ${_u:C/.$//:tu}+=	${${opt}_VARS_OFF:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
-.        else
+.          else
 ${_u:tu}=		${${opt}_VARS_OFF:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
+.          endif
+.        endfor
+.      endif
+.      if defined(${opt}_CONFIGURE_ENABLE)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--disable-/:C/=.*//}
+.      endif
+.      if defined(${opt}_CONFIGURE_WITH)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--without-/:C/=.*//}
+.      endif
+.      if defined(${opt}_CMAKE_BOOL)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=false/}
+.      endif
+.      if defined(${opt}_CMAKE_BOOL_OFF)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=true/}
+.      endif
+.      if defined(${opt}_MESON_TRUE)
+MESON_ARGS+=		${${opt}_MESON_TRUE:C/.*/-D&=false/}
+.      endif
+.      if defined(${opt}_MESON_FALSE)
+MESON_ARGS+=		${${opt}_MESON_FALSE:C/.*/-D&=true/}
+.      endif
+.      if defined(${opt}_MESON_YES)
+MESON_ARGS+=		${${opt}_MESON_YES:C/.*/-D&=no/}
+.      endif
+.      if defined(${opt}_MESON_NO)
+MESON_ARGS+=		${${opt}_MESON_NO:C/.*/-D&=yes/}
+.      endif
+.      if defined(${opt}_MESON_ENABLED)
+MESON_ARGS+=		${${opt}_MESON_ENABLED:C/.*/-D&=disabled/}
+.      endif
+.      if defined(${opt}_MESON_DISABLED)
+MESON_ARGS+=		${${opt}_MESON_DISABLED:C/.*/-D&=enabled/}
+.      endif
+.      if defined(${opt}_CABAL_FLAGS)
+CABAL_FLAGS+=	-${${opt}_CABAL_FLAGS}
+.      endif
+.      for configure in CONFIGURE CMAKE MESON QMAKE
+.        if defined(${opt}_${configure}_OFF)
+${configure}_ARGS+=	${${opt}_${configure}_OFF}
 .        endif
 .      endfor
-.    endif
-.    if defined(${opt}_CONFIGURE_ENABLE)
-CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--disable-/:C/=.*//}
-.    endif
-.    if defined(${opt}_CONFIGURE_WITH)
-CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--without-/:C/=.*//}
-.    endif
-.    if defined(${opt}_CMAKE_BOOL)
-CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=false/}
-.    endif
-.    if defined(${opt}_CMAKE_BOOL_OFF)
-CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=true/}
-.    endif
-.    if defined(${opt}_MESON_TRUE)
-MESON_ARGS+=		${${opt}_MESON_TRUE:C/.*/-D&=false/}
-.    endif
-.    if defined(${opt}_MESON_FALSE)
-MESON_ARGS+=		${${opt}_MESON_FALSE:C/.*/-D&=true/}
-.    endif
-.    if defined(${opt}_MESON_YES)
-MESON_ARGS+=		${${opt}_MESON_YES:C/.*/-D&=no/}
-.    endif
-.    if defined(${opt}_MESON_NO)
-MESON_ARGS+=		${${opt}_MESON_NO:C/.*/-D&=yes/}
-.    endif
-.    if defined(${opt}_MESON_ENABLED)
-MESON_ARGS+=		${${opt}_MESON_ENABLED:C/.*/-D&=disabled/}
-.    endif
-.    if defined(${opt}_MESON_DISABLED)
-MESON_ARGS+=		${${opt}_MESON_DISABLED:C/.*/-D&=enabled/}
-.    endif
-.    if defined(${opt}_CABAL_FLAGS)
-CABAL_FLAGS+=	-${${opt}_CABAL_FLAGS}
-.    endif
-.    for configure in CONFIGURE CMAKE MESON QMAKE
-.      if defined(${opt}_${configure}_OFF)
-${configure}_ARGS+=	${${opt}_${configure}_OFF}
-.      endif
-.    endfor
-.    for flags in ${_OPTIONS_FLAGS}
-.      if defined(${opt}_${flags}_OFF)
+.      for flags in ${_OPTIONS_FLAGS}
+.        if defined(${opt}_${flags}_OFF)
 ${flags}+=	${${opt}_${flags}_OFF}
-.      endif
-.    endfor
-.    for deptype in ${_OPTIONS_DEPENDS}
-.      if defined(${opt}_${deptype}_DEPENDS_OFF)
+.        endif
+.      endfor
+.      for deptype in ${_OPTIONS_DEPENDS}
+.        if defined(${opt}_${deptype}_DEPENDS_OFF)
 ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS_OFF}
-.      endif
-.    endfor
-.    for target in ${_OPTIONS_TARGETS}
+.        endif
+.      endfor
+.      for target in ${_OPTIONS_TARGETS}
 _target=	${target:C/:.*//}
 _prio=		${target:C/.*:(.*):.*/\1/}
 _type=		${target:C/.*://}
 _OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}-off
-.    endfor
+.      endfor
 .  endif
 .endfor
 
