@@ -110,6 +110,7 @@ SUBDIR += libglvnd
 SUBDIR += libgnomecanvas
 SUBDIR += libgphoto2
 SUBDIR += libgxps
+SUBDIR += libheif
 SUBDIR += libiptcdata
 SUBDIR += libjpeg-turbo
 SUBDIR += libjxl
