@@ -451,6 +451,7 @@ SUBDIR += p5-Devel-CheckBin
 SUBDIR += p5-Devel-CheckCompiler
 SUBDIR += p5-Devel-CheckLib
 SUBDIR += p5-Devel-Cycle
+SUBDIR += p5-Devel-Declare
 SUBDIR += p5-Devel-GlobalDestruction
 SUBDIR += p5-Devel-LexAlias
 SUBDIR += p5-Devel-MAT
