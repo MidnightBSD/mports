@@ -1,14 +1,14 @@
 %%SITE_PERL%%/IO/Socket/IP.pm
-%%SITE_PERL%%/%%PERL5_MAN3%%/IO::Socket::IP.3
-@dir %%SITE_PERL%%/IO/Socket
-@dir %%SITE_PERL%%/IO
-@dir %%SITE_PERL%%/%%PERL5_MAN3%%
-@dir %%SITE_PERL%%/man
-@dir %%SITE_ARCH%%/auto/IO/Socket/IP
-@dir %%SITE_ARCH%%/auto/IO/Socket
-@dir %%SITE_ARCH%%/auto/IO
-@dir %%SITE_ARCH%%/auto
-@dir %%SITE_ARCH%%
-@dir %%SITE_PERL%%
-@dir lib/perl5/site_perl
-@dir lib/perl5
+%%SITE_PERL%%/%%PERL5_MAN3%%/IO::Socket::IP.3.gz
+@dirrmtry %%SITE_PERL%%/IO/Socket
+@dirrmtry %%SITE_PERL%%/IO
+@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
+@dirrmtry %%SITE_PERL%%/man
+@dirrmtry %%SITE_ARCH%%/auto/IO/Socket/IP
+@dirrmtry %%SITE_ARCH%%/auto/IO/Socket
+@dirrmtry %%SITE_ARCH%%/auto/IO
+@dirrmtry %%SITE_ARCH%%/auto
+@dirrmtry %%SITE_ARCH%%
+@dirrmtry %%SITE_PERL%%
+@dirrmtry lib/perl5/site_perl
+@dirrmtry lib/perl5
