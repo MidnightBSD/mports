@@ -1,5 +1,3 @@
-# Created by: Mark Felder <feld@FreeBSD.org>
-
 PORTNAME?=	percona
 DISTVERSION=	5.7.37-40
 PORTREVISION?=	0
@@ -13,6 +11,7 @@ DISTFILES=	percona-server-${DISTVERSION}${EXTRACT_SUFX}:percona \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
+WWW?=		https://www.percona.com/software/percona-server
 
 LICENSE?=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
