@@ -22,6 +22,15 @@ _OPTIONS_FLAGS=	ALL_TARGET BROKEN CABAL_EXECUTABLES CATEGORIES CFLAGS CONFIGURE_
 		PLIST_SUB PORTDOCS PORTEXAMPLES SUB_FILES SUB_LIST \
 		TEST_TARGET USE_CABAL USES BINARY_ALIAS
 _OPTIONS_DEPENDS=	PKG FETCH EXTRACT PATCH BUILD LIB RUN TEST
+_ALL_OPTIONS_HELPERS=	${_OPTIONS_DEPENDS:S/$/_DEPENDS/} \
+			${_OPTIONS_DEPENDS:S/$/_DEPENDS_OFF/} \
+			${_OPTIONS_FLAGS:S/$/_OFF/} ${_OPTIONS_FLAGS} \
+			CABAL_FLAGS CMAKE_BOOL CMAKE_BOOL_OFF CMAKE_OFF CMAKE_ON \
+			CONFIGURE_ENABLE CONFIGURE_OFF CONFIGURE_ON \
+			CONFIGURE_WITH IMPLIES MESON_ARGS MESON_DISABLED \
+			MESON_ENABLED MESON_FALSE MESON_OFF MESON_ON MESON_TRUE \
+			PREVENTS PREVENTS_MSG QMAKE_OFF QMAKE_ON USE USE_OFF \
+			VARS VARS_OFF
 
 # The format here is target_family:priority:target-type
 _OPTIONS_TARGETS=	fetch:300:pre fetch:500:do fetch:700:post \
@@ -33,35 +42,6 @@ _OPTIONS_TARGETS=	fetch:300:pre fetch:500:do fetch:700:post \
 			test:300:pre test:500:do test:700:post  \
 			package:300:pre package:500:do package:700:post \
 			fake:800:post
-
-# Set the default values for the global options
-.if !defined(NOPORTDOCS) || defined(PACKAGE_BUILDING)
-PORT_OPTIONS+=	DOCS
-.else
-OPTIONS_WARNINGS+=		"NOPORTDOCS"
-WITHOUT+=			DOCS
-OPTIONS_WARNINGS_UNSET+=	DOCS
-.endif
-
-.if !defined(WITHOUT_NLS) || defined(PACKAGE_BUILDING)
-PORT_OPTIONS+=	NLS
-.else
-WITHOUT+=		NLS
-.endif
-
-.if !defined(NOPORTEXAMPLES) || defined(PACKAGE_BUILDING)
-PORT_OPTIONS+=	EXAMPLES
-.else
-OPTIONS_WARNINGS+=		"NOPORTEXAMPLES"
-WITHOUT+=			EXAMPLES
-OPTIONS_WARNINGS_UNSET+=	EXAMPLES
-.endif
-
-.if defined(DEVELOPER)
-PORT_OPTIONS+=	TEST
-.endif
-
-PORT_OPTIONS+=	IPV6
 
 # Add per arch options
 .  for opt in ${OPTIONS_DEFINE_${ARCH}}
@@ -87,27 +67,27 @@ _ALL_EXCLUDE+=	${opt}
 .    endif
 .  endfor
 
-# Remove options the port maintainer doesn't want
+# Remove options the port maintainer doesn't want, part 1
 .  for opt in ${_ALL_EXCLUDE:O:u}
 OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:N${opt}}
 OPTIONS_DEFINE:=	${OPTIONS_DEFINE:N${opt}}
-PORT_OPTIONS:=		${PORT_OPTIONS:N${opt}}
+#PORT_OPTIONS:=		${PORT_OPTIONS:N${opt}}
 .    for otype in SINGLE RADIO MULTI GROUP
 .      for m in ${OPTIONS_${otype}}
 OPTIONS_${otype}_${m}:=	${OPTIONS_${otype}_${m}:N${opt}}
+.      endfor
 .    endfor
 .  endfor
-.endfor
 
 # Remove empty SINGLE/GROUP/RADIO/MULTI
 # Can be empty because of exclude/slaves
-.for otype in SINGLE RADIO MULTI GROUP
-.  for m in ${OPTIONS_${otype}}
-.    if empty(OPTIONS_${otype}_${m})
+.  for otype in SINGLE RADIO MULTI GROUP
+.    for m in ${OPTIONS_${otype}}
+.      if empty(OPTIONS_${otype}_${m})
 OPTIONS_${otype}:=	${OPTIONS_${otype}:N${m}}
-.    endif
+.      endif
+.    endfor
 .  endfor
-.endfor
 
 # Sort options
 ALL_OPTIONS:=	${OPTIONS_DEFINE:O:u}
@@ -118,7 +98,19 @@ COMPLETE_OPTIONS_LIST=	${ALL_OPTIONS}
 .  for otype in SINGLE RADIO MULTI GROUP
 .    for m in ${OPTIONS_${otype}}
 COMPLETE_OPTIONS_LIST+=	${OPTIONS_${otype}_${m}}
+.    endfor
 .  endfor
+
+# Some options are always enabled by default.
+.  for _opt in DOCS NLS EXAMPLES IPV6
+.    if ${COMPLETE_OPTIONS_LIST:M${_opt}}
+PORT_OPTIONS+=	${_opt}
+.    endif
+.  endfor
+
+# Remove options the port maintainer doesn't want, part 2
+.  for opt in ${_ALL_EXCLUDE:O:u}
+PORT_OPTIONS:=		${PORT_OPTIONS:N${opt}}
 .  endfor
 
 ## Now create the list of activated options
@@ -148,7 +140,7 @@ NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .    endfor
 
 ## Set the options specified per-port (set by user in make.conf)
-.    for opt in ${${UNIQUENAME}_SET}
+.    for opt in ${${OPTIONS_NAME}_SET}
 .      if !empty(COMPLETE_OPTIONS_LIST:M${opt})
 PORT_OPTIONS+=	${opt}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
@@ -162,28 +154,10 @@ NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .    endfor
 
 ## options files (from dialog)
-.  if exists(${OPTIONS_FILE}) && !make(rmconfig)
+.    if exists(${OPTIONS_FILE}) && !make(rmconfig)
 .  include "${OPTIONS_FILE}"
-.  endif
-.  if exists(${OPTIONS_FILE}.local)
-.  include "${OPTIONS_FILE}.local"
-.  endif
-
-.if !defined(PACKAGE_BUILDING)
-### convert WITH and WITHOUT found in make.conf or reloaded from old OPTIONS_FILE
-# XXX once WITH_DEBUG is not magic any more, do remove the :NDEBUG from here.
-.for opt in ${ALL_OPTIONS:NDEBUG}
-.if defined(WITH_${opt})
-OPTIONS_WARNINGS+=	"WITH_${opt}"
-OPTIONS_WARNINGS_SET+=	${opt}
-PORT_OPTIONS+=  ${opt}
-.endif
-.if defined(WITHOUT_${opt})
-OPTIONS_WARNINGS+=	"WITHOUT_${opt}"
-OPTIONS_WARNINGS_UNSET+=	${opt}
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
-.endif
-.endfor
+.    endif
+.  sinclude "${OPTIONS_FILE}.local"
 
 _OPTIONS_UNIQUENAME=	${PKGNAMEPREFIX}${PORTNAME}
 .    for _k in SET UNSET SET_FORCE UNSET_FORCE
@@ -193,58 +167,98 @@ WARNING+=	"${OPTIONS_NAME}_${_k}=	${${_OPTIONS_UNIQUENAME}_${_k}}"
 .      endif
 .    endfor
 
-.if defined(OPTIONS_WARNINGS)
-WARNING+=	"You are using the following deprecated options: ${OPTIONS_WARNINGS}"
-WARNING+=	"If you added them on the command line, you should replace them by"
-WARNING+=	"WITH=\"${OPTIONS_WARNINGS_SET}\" WITHOUT=\"${OPTIONS_WARNINGS_UNSET}\""
-WARNING+=	""
-WARNING+=	"If they are global options set in your make.conf, you should replace them with:"
-.if defined(OPTIONS_WARNINGS_SET)
-WARNING+=	"OPTIONS_SET=${OPTIONS_WARNINGS_SET}"
-.endif
-.if defined(OPTIONS_WARNINGS_UNSET)
-WARNING+=	"OPTIONS_UNSET=${OPTIONS_WARNINGS_UNSET}"
-.endif
-WARNING+=	""
-WARNING+=	"If they are local to this port, you should use:"
-.if defined(OPTIONS_WARNINGS_SET)
-WARNING+=	"${OPTIONS_NAME}_SET=${OPTIONS_WARNINGS_SET}"
-.endif
-.if defined(OPTIONS_WARNINGS_UNSET)
-WARNING+=	"${OPTIONS_NAME}_UNSET=${OPTIONS_WARNINGS_UNSET}"
-.endif
-.endif
-
 ## Finish by using the options set by the port config dialog, if any
-.  for opt in ${OPTIONS_FILE_SET}
+.    for opt in ${OPTIONS_FILE_SET}
+.      if !empty(COMPLETE_OPTIONS_LIST:M${opt})
+PORT_OPTIONS+=	${opt}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
+.      endif
+.    endfor
+
+.    for opt in ${OPTIONS_FILE_UNSET}
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
+.    endfor
+
+.  endif
+
+## FORCE
+## Set system-wide defined options (set by user in make.conf)
+.  for opt in ${OPTIONS_SET_FORCE}
 .    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
-PORT_OPTIONS+=  ${opt}
-NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
+PORT_OPTIONS+=	${opt}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .    endif
 .  endfor
-PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 
-.  for opt in ${OPTIONS_FILE_UNSET}
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
-NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
+## Remove the options excluded system-wide (set by user in make.conf)
+.  for opt in ${OPTIONS_UNSET_FORCE}
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .  endfor
 
-.endif
-.endif
+## Set the options specified per-port (set by user in make.conf)
+.  for opt in ${${OPTIONS_NAME}_SET_FORCE}
+.    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
+PORT_OPTIONS+=	${opt}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
+.    endif
+.  endfor
+
+## Unset the options excluded per-port (set by user in make.conf)
+.  for opt in ${${OPTIONS_NAME}_UNSET_FORCE}
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
+.  endfor
+
 
 ## Cmdline always win over the rest
-.for opt in ${WITH}
-.  if !empty(COMPLETE_OPTIONS_LIST:M${opt})
-PORT_OPTIONS+=  ${opt}
-NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
-.  endif
-.endfor
-PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
+.  for opt in ${WITH}
+.    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
+PORT_OPTIONS+=	${opt}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
+.    endif
+.  endfor
 
-.for opt in ${WITHOUT}
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
-NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
-.endfor
+.  for opt in ${WITHOUT}
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
+.  endfor
+
+## Enable options implied by other options
+# _PREVENTS is handled in bsd.port.mk:pre-check-config
+## 1) Build dependency chain in A.B format:
+_DEPCHAIN=
+.  for opt in ${COMPLETE_OPTIONS_LIST}
+.    for o in ${${opt}_IMPLIES}
+_DEPCHAIN+=	${opt}.$o
+.    endfor
+.  endfor
+## 2) Check each dependency pair and if LHS is in PORT_OPTIONS then add RHS.
+##    All of RHS of "RHS.*" (i.e. indirect dependency) are also added for
+##    fast convergence.
+_PORT_OPTIONS:=	${PORT_OPTIONS}
+.  for _count in _0 ${COMPLETE_OPTIONS_LIST}
+count=	${_count}
+### Check if all of the nested dependency are resolved already.
+.    if ${count} == _0 || ${_PORT_OPTIONS} != ${PORT_OPTIONS}
+PORT_OPTIONS:=	${_PORT_OPTIONS}
+.      for dc in ${_DEPCHAIN}
+.        for opt in ${_PORT_OPTIONS}
+_opt=${opt}
+### Add all of direct and indirect dependency only if
+### they are not in ${PORT_OPTIONS}.
+.          if !empty(_opt:M${dc:R})
+.            for d in ${dc:E} ${_DEPCHAIN:M${dc:E}.*:E}
+.              if empty(_PORT_OPTIONS:M$d)
+_PORT_OPTIONS+=	$d
+.              endif
+.            endfor
+.          endif
+.        endfor
+.      endfor
+.    endif
+.  endfor
 
 # Finally, add options required by slave ports
 PORT_OPTIONS+=	${OPTIONS_SLAVE}
@@ -255,23 +269,16 @@ PORT_OPTIONS:=	${PORT_OPTIONS:O:u}
 _REALLY_ALL_POSSIBLE_OPTIONS:=	${COMPLETE_OPTIONS_LIST} ${_ALL_EXCLUDE}
 _REALLY_ALL_POSSIBLE_OPTIONS:=	${_REALLY_ALL_POSSIBLE_OPTIONS:O:u}
 
-## Now some compatibility
-.if empty(PORT_OPTIONS:MDOCS)
-NOPORTDOCS=     yes
-.endif
-
-.if empty(PORT_OPTIONS:MEXAMPLES)
-NOPORTEXAMPLES= yes
-.endif
-
-.if ${PORT_OPTIONS:MDEBUG}
-WITH_DEBUG=	yes
-.endif
-
-# TODO: deprecated
-.if empty(PORT_OPTIONS:MNLS)
-WITHOUT_NLS=    yes
-.endif
+# Handle PORTDOCS and PORTEXAMPLES
+.  for _type in DOCS EXAMPLES
+.    if !empty(_REALLY_ALL_POSSIBLE_OPTIONS:M${_type})
+.      if empty(PORT_OPTIONS:M${_type})
+PLIST_SUB+=		PORT${_type}="@comment "
+.      else
+PLIST_SUB+=		PORT${_type}=""
+.      endif
+.    endif
+.  endfor
 
 .  if defined(NO_OPTIONS_SORT)
 ALL_OPTIONS=	${OPTIONS_DEFINE}
@@ -281,25 +288,7 @@ ALL_OPTIONS=	${OPTIONS_DEFINE}
 _OPTIONS_${target}?=
 .  endfor
 
-### to be removed once old OPTIONS disappear
-.for opt in ${ALL_OPTIONS}
-.if empty(PORT_OPTIONS:M${opt})
-.   if !defined(WITH_${opt}) && !defined(WITHOUT_${opt})
-WITHOUT_${opt}:=        true
-.   endif
-.else
-.   if !defined(WITH_${opt}) && !defined(WITHOUT_${opt})
-WITH_${opt}:=  true
-.   endif
-.endif
-.      undef opt
-.endfor
-.endif
-###
-
-.if !defined(ONETIMERUNTHROUGH)
-ONETIMERUNTHROUGH=	yes
-.for opt in ${COMPLETE_OPTIONS_LIST} ${_ALL_EXCLUDE:O:u}
+.  for opt in ${_REALLY_ALL_POSSIBLE_OPTIONS}
 # PLIST_SUB
 PLIST_SUB?=
 SUB_LIST?=
@@ -316,15 +305,15 @@ PLIST_SUB:=	${PLIST_SUB} ${opt}="@comment " NO_${opt}=""
 SUB_LIST:=	${SUB_LIST} ${opt}="" NO_${opt}="@comment "
 .        else
 SUB_LIST:=	${SUB_LIST} ${opt}="@comment " NO_${opt}=""
+.        endif
 .      endif
 .    endif
-.  endif
 
 .    if ${PORT_OPTIONS:M${opt}}
 .      if defined(${opt}_USE)
-.        for option in ${${opt}_USE}
-_u=		${option:C/=.*//g}
-USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
+.        for option in ${${opt}_USE:C/=.*//:O:u}
+_u=		${option}
+USE_${_u:tu}+=	${${opt}_USE:M${option}=*:C/.*=//g:C/,/ /g}
 .        endfor
 .      endif
 .      if defined(${opt}_VARS)
@@ -393,9 +382,9 @@ _OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}
 .      endfor
 .    else
 .      if defined(${opt}_USE_OFF)
-.        for option in ${${opt}_USE_OFF}
-_u=		${option:C/=.*//g}
-USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
+.        for option in ${${opt}_USE_OFF:C/=.*//:O:u}
+_u=		${option}
+USE_${_u:tu}+=	${${opt}_USE_OFF:M${option}=*:C/.*=//g:C/,/ /g}
 .        endfor
 .      endif
 .      if defined(${opt}_VARS_OFF)
@@ -424,7 +413,7 @@ CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=true/}
 MESON_ARGS+=		${${opt}_MESON_TRUE:C/.*/-D&=false/}
 .      endif
 .      if defined(${opt}_MESON_FALSE)
-MESON_ARGS+=		${${opt}_MESON_FALSE:C/.*/-D&=true/}
+MESON_ARGS+=            ${${opt}_MESON_FALSE:C/.*/-D&=true/}
 .      endif
 .      if defined(${opt}_MESON_YES)
 MESON_ARGS+=		${${opt}_MESON_YES:C/.*/-D&=no/}
@@ -462,95 +451,36 @@ _prio=		${target:C/.*:(.*):.*/\1/}
 _type=		${target:C/.*://}
 _OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}-off
 .      endfor
-.  endif
-.endfor
+.    endif
+.  endfor
 
-.undef (SELECTED_OPTIONS)
-.undef (DESELECTED_OPTIONS)
-.for opt in ${ALL_OPTIONS}
-.  if ${PORT_OPTIONS:M${opt}}
-SELECTED_OPTIONS:=	${opt} ${SELECTED_OPTIONS}
-.  else
-DESELECTED_OPTIONS:=	${opt} ${DESELECTED_OPTIONS}
-.  endif
-.endfor
-.for otype in MULTI GROUP SINGLE RADIO
-.  for m in ${OPTIONS_${otype}}
-.    for opt in ${OPTIONS_${otype}_${m}}
-.      if ${PORT_OPTIONS:M${opt}}
-SELECTED_OPTIONS:=	${opt} ${SELECTED_OPTIONS}
-.      else
-DESELECTED_OPTIONS:=	${opt} ${DESELECTED_OPTIONS}
+# Collect which options helpers are defined at this point for
+# bsd.sanity.mk later to make sure no other options helper is
+# defined after bsd.port.options.mk.
+_OPTIONS_HELPERS_SEEN=
+.  for opt in ${_REALLY_ALL_POSSIBLE_OPTIONS}
+.    for helper in ${_ALL_OPTIONS_HELPERS}
+.      if defined(${opt}_${helper})
+_OPTIONS_HELPERS_SEEN+=	${opt}_${helper}
 .      endif
 .    endfor
 .  endfor
-.endfor
 
-.endif #onetime run through
-
-.if defined(_POSTMKINCLUDED)
-
-.if !target(pre-check-config)
-pre-check-config:
-.for single in ${OPTIONS_SINGLE}
-.  for opt in ${OPTIONS_SINGLE_${single}}
-.    if empty(ALL_OPTIONS:M${single}) || !empty(PORT_OPTIONS:M${single})
-.      if !empty(PORT_OPTIONS:M${opt})
-.        if defined(OPTFOUND)
-OPTIONS_WRONG_SINGLE+=  ${single}
-.        else
-OPTFOUND=       true
-.        endif
-.      endif
-.    else
-# if conditional and if the condition is unchecked, remove opt from the list of
-# set options
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
-OPTNOCHECK=     true
-.    endif
+.undef (SELECTED_OPTIONS)
+.undef (DESELECTED_OPTIONS)
+# Wait to expand PORT_OPTIONS until the last moment in case something modifies
+# the selected OPTIONS after bsd.mport.options.mk is included.  This uses
+# bmake's :@ for loop.
+_SELECTED_OPTIONS=	${ALL_OPTIONS:@opt@${PORT_OPTIONS:M${opt}}@}
+_DESELECTED_OPTIONS=	${ALL_OPTIONS:@opt@${"${PORT_OPTIONS:M${opt}}":?:${opt}}@}
+.  for otype in MULTI GROUP SINGLE RADIO
+.    for m in ${OPTIONS_${otype}}
+_SELECTED_OPTIONS+=	${OPTIONS_${otype}_${m}:@opt@${PORT_OPTIONS:M${opt}}@}
+_DESELECTED_OPTIONS+=	${OPTIONS_${otype}_${m}:@opt@${"${PORT_OPTIONS:M${opt}}":?:${opt}}@}
+.    endfor
 .  endfor
-.  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
-OPTIONS_WRONG_SINGLE+=  ${single}
-.  endif
-.  undef OPTFOUND
-.  undef OPTNOCHECK
-.endfor
-.undef single
-
-.for radio in ${OPTIONS_RADIO}
-.  for opt in ${OPTIONS_RADIO_${radio}}
-.    if !empty(PORT_OPTIONS:M${opt})
-.      if defined(OPTFOUND)
-OPTIONS_WRONG_RADIO+=   ${radio}
-.      else
-OPTFOUND=       true
-.      endif
-.    endif
-.  endfor
-.  undef OPTFOUND
-.endfor
-.for multi in ${OPTIONS_MULTI}
-.  for opt in ${OPTIONS_MULTI_${multi}}
-.    if empty(ALL_OPTIONS:M${multi}) || !empty(PORT_OPTIONS:M${multi})
-.      if !empty(PORT_OPTIONS:M${opt})
-OPTFOUND=       true
-.      endif
-.    else
-# if conditional and if the condition is unchecked, remove opt from the list of
-# set options
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
-OPTNOCHECK=     true
-.    endif
-.  endfor
-.  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
-OPTIONS_WRONG_MULTI+=   ${multi}
-.  endif
-.  undef OPTFOUND
-.  undef OPTNOCHECK
-.endfor
-.undef multi
-.undef opt
-.endif #pre-check-config
+SELECTED_OPTIONS=	${_SELECTED_OPTIONS:O:u}
+DESELECTED_OPTIONS=	${_DESELECTED_OPTIONS:O:u}
 
 .if !target(check-config)
 check-config: _check-config
