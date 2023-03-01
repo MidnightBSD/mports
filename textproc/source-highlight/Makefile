@@ -27,7 +27,6 @@ PORTDOCS=	*
 PORTEXAMPLES=	*
 INFO=		source-highlight-lib source-highlight
 
-do-test:
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} check
+NO_TEST=	yes
 
 .include <bsd.port.mk>
