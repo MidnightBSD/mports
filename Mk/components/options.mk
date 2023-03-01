@@ -1,5 +1,3 @@
-
-#
 # options.mk -- The options component
 #
 
@@ -7,12 +5,12 @@
 OPTIONSMKINCLUDED=	options.mk
 
 .if defined(USE_PYTHON)
-OPTIONSFILE=         ${PORT_DBDIR}/py-${PORTNAME}/options
+OPTIONS_FILE=         ${PORT_DBDIR}/py-${PORTNAME}/options
 .endif
 
 OPTIONS_NAME?=	${PKGORIGIN:S/\//_/}
-OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
-_OPTIONSFILE!=	${ECHO_CMD} "${OPTIONSFILE}"
+OPTIONS_FILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
+_OPTIONSFILE!=	${ECHO_CMD} "${OPTIONS_FILE}"
 
 _OPTIONS_FLAGS=	ALL_TARGET BROKEN CABAL_EXECUTABLES CATEGORIES CFLAGS CONFIGURE_ENV \
 		CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL CPPFLAGS CXXFLAGS \
@@ -164,15 +162,15 @@ NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .    endfor
 
 ## options files (from dialog)
-.  if exists(${OPTIONSFILE}) && !make(rmconfig)
-.  include "${OPTIONSFILE}"
+.  if exists(${OPTIONS_FILE}) && !make(rmconfig)
+.  include "${OPTIONS_FILE}"
 .  endif
-.  if exists(${OPTIONSFILE}.local)
-.  include "${OPTIONSFILE}.local"
+.  if exists(${OPTIONS_FILE}.local)
+.  include "${OPTIONS_FILE}.local"
 .  endif
 
 .if !defined(PACKAGE_BUILDING)
-### convert WITH and WITHOUT found in make.conf or reloaded from old optionsfile
+### convert WITH and WITHOUT found in make.conf or reloaded from old OPTIONS_FILE
 # XXX once WITH_DEBUG is not magic any more, do remove the :NDEBUG from here.
 .for opt in ${ALL_OPTIONS:NDEBUG}
 .if defined(WITH_${opt})
@@ -654,13 +652,13 @@ do-config:
 	@${ECHO_MSG} "===> No options to configure"
 .else
 .if ${UID} != 0 && !defined(INSTALL_AS_USER)
-	@optionsdir=${OPTIONSFILE}; optionsdir=$${optionsdir%/*}; \
+	@optionsdir=${OPTIONS_FILE}; optionsdir=$${optionsdir%/*}; \
 	${ECHO_MSG} "===>  Switching to root credentials to create $${optionsdir}"; \
 	(${SU_CMD} "${SH} -c \"${MKDIR} $${optionsdir} 2> /dev/null\"") || \
 	(${ECHO_MSG} "===> Cannot create $${optionsdir}, check permissions"; exit 1); \
 	${ECHO_MSG} "===>  Returning to user credentials"
 .else
-	@(optionsdir=${OPTIONSFILE}; optionsdir=$${optionsdir%/*}; \
+	@(optionsdir=${OPTIONS_FILE}; optionsdir=$${optionsdir%/*}; \
 	${MKDIR} $${optionsdir} 2> /dev/null) || \
 	(${ECHO_MSG} "===> Cannot create $${optionsdir}, check permissions"; exit 1)
 .endif
@@ -692,11 +690,11 @@ do-config:
 		fi; \
 	done; \
 	if [ ${UID} != 0 -a "x${INSTALL_AS_USER}" = "x" ]; then \
-		${ECHO_MSG} "===>  Switching to root credentials to write ${OPTIONSFILE}"; \
-		${SU_CMD} "${CAT} $${TMPOPTIONSFILE} > ${OPTIONSFILE}"; \
+		${ECHO_MSG} "===>  Switching to root credentials to write ${OPTIONS_FILE}"; \
+		${SU_CMD} "${CAT} $${TMPOPTIONSFILE} > ${OPTIONS_FILE}"; \
 		${ECHO_MSG} "===>  Returning to user credentials"; \
         else \
-		${CAT} $${TMPOPTIONSFILE} > ${OPTIONSFILE}; \
+		${CAT} $${TMPOPTIONSFILE} > ${OPTIONS_FILE}; \
 	fi; \
 	${RM} -f $${TMPOPTIONSFILE}
 	@cd ${.CURDIR} && ${MAKE} sanity-config
@@ -828,16 +826,16 @@ showconfig-recursive:
 
 .if !target(rmconfig)
 rmconfig:
-.if exists(${OPTIONSFILE})
+.if exists(${OPTIONS_FILE})
 	-@${ECHO_MSG} "===> Removing user-configured options for ${PKGNAME}"; \
-	optionsdir=${OPTIONSFILE}; optionsdir=$${optionsdir%/*}; \
+	optionsdir=${OPTIONS_FILE}; optionsdir=$${optionsdir%/*}; \
 	if [ ${UID} != 0 -a "x${INSTALL_AS_USER}" = "x" ]; then \
-		${ECHO_MSG} "===> Switching to root credentials to remove ${OPTIONSFILE} and $${optionsdir}"; \
-		${SU_CMD} "${RM} -f ${OPTIONSFILE} ; \
+		${ECHO_MSG} "===> Switching to root credentials to remove ${OPTIONS_FILE} and $${optionsdir}"; \
+		${SU_CMD} "${RM} -f ${OPTIONS_FILE} ; \
 			${RMDIR} $${optionsdir}"; \
 		${ECHO_MSG} "===> Returning to user credentials"; \
 	else \
-		${RM} -f ${OPTIONSFILE}; \
+		${RM} -f ${OPTIONS_FILE}; \
 		${RMDIR} $${optionsdir} 2>/dev/null || return 0; \
 	fi
 .else
