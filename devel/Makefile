@@ -829,6 +829,7 @@ SUBDIR += ptlib
 SUBDIR += py-Automat
 SUBDIR += py-Jinja2
 SUBDIR += py-QtPy
+SUBDIR += py-amalgamate
 SUBDIR += py-anyio
 SUBDIR += py-apipkg
 SUBDIR += py-appdirs
