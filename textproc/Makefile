@@ -240,6 +240,7 @@ SUBDIR += py-mistune0
 SUBDIR += py-parso
 SUBDIR += py-pyaml
 SUBDIR += py-pybtex
+SUBDIR += py-pybtex-docutils
 SUBDIR += py-pygments
 SUBDIR += py-pygments-25
 SUBDIR += py-pyhamcrest
