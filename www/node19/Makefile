@@ -54,7 +54,6 @@ SHEBANG_FILES=	deps/v8/third_party/inspector_protocol/*.py \
 		tools/inspector_protocol/*.py
 
 OPTIONS_DEFINE=	BUNDLED_SSL DOCS NLS
-OPTIONS_DEFAULT=DTRACE
 OPTIONS_SUB=	yes
 BUNDLED_SSL_DESC=	Use bundled OpenSSL implementation from node.js
 
