@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
 WWW?=		https://www.percona.com/software/percona-server
 
-LICENSE?=	gpl2
+LICENSE?=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CPE_VENDOR=	percona
@@ -88,6 +88,7 @@ USES+=		libedit
 # For building plugins (percona-pam-for-mysql, etc)
 # Currently do nothing special
 USES+=		libedit
+LIB_DEPENDS+=	libcurl.so:ftp/curl
 .else
 LIB_DEPENDS+=	libcurl.so:ftp/curl
 
