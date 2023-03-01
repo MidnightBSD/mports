@@ -482,6 +482,72 @@ _DESELECTED_OPTIONS+=	${OPTIONS_${otype}_${m}:@opt@${"${PORT_OPTIONS:M${opt}}":?
 SELECTED_OPTIONS=	${_SELECTED_OPTIONS:O:u}
 DESELECTED_OPTIONS=	${_DESELECTED_OPTIONS:O:u}
 
+.endif #onetime run through
+
+.if defined(_POSTMKINCLUDED)
+
+.if !target(pre-check-config)
+pre-check-config:
+.for single in ${OPTIONS_SINGLE}
+.  for opt in ${OPTIONS_SINGLE_${single}}
+.    if empty(ALL_OPTIONS:M${single}) || !empty(PORT_OPTIONS:M${single})
+.      if !empty(PORT_OPTIONS:M${opt})
+.        if defined(OPTFOUND)
+OPTIONS_WRONG_SINGLE+=  ${single}
+.        else
+OPTFOUND=       true
+.        endif
+.      endif
+.    else
+# if conditional and if the condition is unchecked, remove opt from the list of
+# set options
+PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
+OPTNOCHECK=     true
+.    endif
+.  endfor
+.  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
+OPTIONS_WRONG_SINGLE+=  ${single}
+.  endif
+.  undef OPTFOUND
+.  undef OPTNOCHECK
+.endfor
+.undef single
+
+.for radio in ${OPTIONS_RADIO}
+.  for opt in ${OPTIONS_RADIO_${radio}}
+.    if !empty(PORT_OPTIONS:M${opt})
+.      if defined(OPTFOUND)
+OPTIONS_WRONG_RADIO+=   ${radio}
+.      else
+OPTFOUND=       true
+.      endif
+.    endif
+.  endfor
+.  undef OPTFOUND
+.endfor
+.for multi in ${OPTIONS_MULTI}
+.  for opt in ${OPTIONS_MULTI_${multi}}
+.    if empty(ALL_OPTIONS:M${multi}) || !empty(PORT_OPTIONS:M${multi})
+.      if !empty(PORT_OPTIONS:M${opt})
+OPTFOUND=       true
+.      endif
+.    else
+# if conditional and if the condition is unchecked, remove opt from the list of
+# set options
+PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
+OPTNOCHECK=     true
+.    endif
+.  endfor
+.  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
+OPTIONS_WRONG_MULTI+=   ${multi}
+.  endif
+.  undef OPTFOUND
+.  undef OPTNOCHECK
+.endfor
+.undef multi
+.undef opt
+.endif #pre-check-config
+
 .if !target(check-config)
 check-config: _check-config
 .if !empty(_CHECK_CONFIG_ERROR)
