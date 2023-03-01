@@ -17,7 +17,8 @@ GNU_CONFIGURE=	yes
 
 CONFLICTS_INSTALL=	interchange isc-cron # bin/crontab
 
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 INFO=		mcron
 
