@@ -10,6 +10,7 @@ MASTER_SITES=	https://files.etoilebsd.net/dialog4ports/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Console Interface to configure ports
+WWW=		https://bitbucket.org/m1cro/d4p/
 
 LICENSE=	bsd2
 
@@ -46,7 +47,7 @@ DIALOGNAME=	dialog-1.1-20120706
 MAKE_ENV+=	DIALOGSOURCES=${WRKDIR}/${DIALOGNAME}
 
 do-configure:
-	@cd ${WRKDIR}/${DIALOGNAME}; ./configure --build=${ARCH}-portbld-freebsd11.3
+	@cd ${WRKDIR}/${DIALOGNAME}; ./configure --build=${ARCH}-portbld-freebsd11.4
 
 .endif
 
