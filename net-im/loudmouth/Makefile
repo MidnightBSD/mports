@@ -1,24 +1,26 @@
-
-
 PORTNAME=	loudmouth
-PORTVERSION=	1.5.3
-CATEGORIES=	net-im gnome
-MASTER_SITES=	GNOME
+DISTVERSION=	1.5.4
+CATEGORIES=	net-im
+MASTER_SITES=	https://mcabber.com/files/loudmouth/ \
+		http://www.lilotux.net/~mikael/mcabber/files/loudmouth/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight Jabber client library
+WWW=		https://mcabber.com/
 
-LICENSE=	gpl2
+LICENSE=	lgpl2.1+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libidn.so:dns/libidn
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:bzip2
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc --disable-rebuilds \
  		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-Wno-deprecated-declarations
 LDFLAGS+=	-Wl,-Bsymbolic -L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
@@ -29,18 +31,15 @@ OPTIONS_RADIO_SSL=	GNUTLS OPENSSL
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MGNUTLS}
-LIB_DEPENDS+=	libgnutls.so:security/gnutls
-RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
-.endif
 
-.if ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=	ssl
-CONFIGURE_ARGS+=--with-ssl=openssl
-RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
-.endif
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
+GNUTLS_CONFIGURE_ON=	--with-ssl=gnutls
 
-.if !${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MOPENSSL}
+OPENSSL_USES=		ssl
+OPENSSL_CONFIGURE_ON=	--with-ssl=openssl
+OPENSSL_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+
+.if empty(PORT_OPTIONS:MGNUTLS) && empty(PORT_OPTIONS:MOPENSSL)
 CONFIGURE_ARGS+=--without-ssl
 .endif
 
