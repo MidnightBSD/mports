@@ -1,7 +1,7 @@
 PORTNAME=	eog
-PORTVERSION=	3.38.2
+PORTVERSION=	40.3
 CATEGORIES=	graphics gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	https://download.gnome.org/core/40/40.4/sources/
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
