@@ -1,5 +1,3 @@
-
-
 PORTNAME=	eog
 PORTVERSION=	3.28.4
 CATEGORIES=	graphics gnome
@@ -8,6 +6,7 @@ DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Eye Of Gnome image viewer
+WWW=		https://wiki.gnome.org/Apps/EyeOfGnome
 
 LICENSE=	gpl2
 
