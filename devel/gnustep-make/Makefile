@@ -1,7 +1,8 @@
 PORTNAME=	gnustep-make
-PORTVERSION=	2.9.0
+PORTVERSION=	2.9.1
 CATEGORIES=	devel gnustep
-MASTER_SITES=	GNUSTEP/core
+MASTER_SITES=	GNUSTEP/core \
+		https://github.com/gnustep/tools-make/releases/download/make-2_9_1/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep makefile package
