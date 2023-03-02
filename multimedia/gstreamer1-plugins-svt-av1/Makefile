@@ -9,7 +9,6 @@ COMMENT=	GStreamer (svt-av1) plugin
 WWW=		https://01.org/svt
 
 LICENSE=	lgpl2.1+
-LICENSE_FILE=	${_LICENSE_STORE}/LGPL21
 
 LIB_DEPENDS=	libSvtAv1Enc.so:multimedia/svt-av1
 
