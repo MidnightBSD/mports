@@ -1,5 +1,5 @@
 PORTNAME=	libnice
-PORTVERSION=	0.1.13
+PORTVERSION=	0.1.19
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://nice.freedesktop.org/releases/
 
@@ -10,36 +10,26 @@ WWW=		https://nice.freedesktop.org
 LICENSE=	lgpl mpl
 LICENSE_COMB=	dual
 
-USES=		gettext gmake gnome libtool pathfix pkgconfig
+LIB_DEPENDS?=	libgnutls.so:security/gnutls
+
+USES=		gettext gmake gnome libtool localbase:ldflags pathfix pkgconfig meson python
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20 introspection:build
-GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_GETIFADDRS
-LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-DHAVE_GETIFADDRS
 INSTALL_TARGET=	install-strip
 
-.if !defined(LIBNICE_SLAVE)
 OPTIONS_DEFINE=	GUPNP
+GUPNP_MESON_ENABLED=	gupnp
 GUPNP_DESC=	UPnP IGD port mapping support
 GUPNP_LIB_DEPENDS+=	libgupnp-igd-1.0.so:net/gupnp-igd
-GUPNP_CONFIGURE_ENABLE=	gupnp
-.endif
 
-#.include <bsd.port.options.mk>
+MESON_ARGS+=-Dtests=disabled -Dgtk_doc=disabled
 
 .if defined(LIBNICE_SLAVE)
-. if ${LIBNICE_SLAVE}==gstreamer1
 USES+=		gstreamer
-CONFIGURE_ARGS+=--with-gstreamer --without-gstreamer-0.10
-. endif
+MESON_ARGS+=-Dgstreamer=enabled
 .else
-CONFIGURE_ARGS=	--without-gstreamer --without-gstreamer-0.10
+MESON_ARGS+=-Dgstreamer=disabled
 .endif
 
-post-patch:
-	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
-	    	's|-Wno-missing-field-initializers|#|g'
-	@${REINPLACE_CMD} -e 's|-Werror||g' ${WRKSRC}/configure
-
 .include <bsd.port.mk>
-
