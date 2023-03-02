@@ -1,25 +1,23 @@
-
-
 PORTNAME=	purple-discord
-PORTVERSION=	g20171227
+PORTVERSION=	g20210729
 CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Discord plugin for libpurple
+WWW=		https://github.com/EionRobb/purple-discord
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libpurple.so:net-im/libpurple \
-		libjson-glib-1.0.so:devel/json-glib
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
+		libpurple.so:net-im/libpurple
 
-WRKSRC=		${WRKDIR}/purple-discord-9b7c3ad
-
-USES=		dos2unix gettext gmake gnome pkgconfig
+USES=		dos2unix gettext gmake gnome magick:6,build pkgconfig
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	EionRobb
-GH_TAGNAME=	9b7c3ad
+GH_TAGNAME=	6c5a778
 
 DOS2UNIX_FILES=	Makefile
 
