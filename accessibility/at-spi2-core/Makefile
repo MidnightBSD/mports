@@ -1,13 +1,12 @@
-# Created by: Maxim Sobolev <sobomax@FreeBSD.org>
-
 PORTNAME=	at-spi2-core
-PORTVERSION=	2.36.0
+PORTVERSION=	2.44.1
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive Technology Service Provider Interface
+WWW=		https://gitlab.gnome.org/GNOME/at-spi2-core
 
 LICENSE=	lgpl2.1
 
@@ -21,10 +20,7 @@ USE_GNOME=	glib20 introspection:build
 USE_XORG=	ice sm x11 xi xtst xext
 USE_LDCONFIG=	yes
 
-# magus
-NO_TEST=	yes
-
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
+	${RM} -r ${PREFIX}/lib/systemd
 
 .include <bsd.port.mk>

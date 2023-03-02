@@ -1,5 +1,3 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	atkmm
 PORTVERSION=	2.28.0
 PORTREVISION=	0
@@ -8,8 +6,9 @@ MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for ATK API library
+WWW=		https://www.gtkmm.org/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
