@@ -1,0 +1,11 @@
+--- ext/sctp/usrsctp/meson.build.orig	2023-03-02 18:06:45 UTC
++++ ext/sctp/usrsctp/meson.build
+@@ -59,7 +59,7 @@ if system in ['linux', 'android']
+     compile_args += [
+         '-D_GNU_SOURCE',
+     ]
+-elif system == 'freebsd'
++elif system in ['freebsd','midnightbsd']
+     compile_args += [compiler.get_supported_arguments([
+             '-Wno-address-of-packed-member',
+         ])]
