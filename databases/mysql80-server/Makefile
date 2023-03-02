@@ -173,6 +173,11 @@ FEDERATED_SUB_LIST_OFF+=	FEDER=""
 
 .include <bsd.mport.options.mk>
 
+.if (${OSVERSION} < 300000)
+# force openssl from mports.
+SSL_DEFAULT=    openssl
+.endif
+
 # Since 8.0.20 release innodb engine uses new memory alligned allocator
 # which is broken on i386 due to different size of types and caused a
 # 'static_assert(alignof(T) <= alignof(std::max_align_t))' error
