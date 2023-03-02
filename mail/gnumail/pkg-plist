@@ -55,7 +55,7 @@ GNUstep/System/Applications/GNUMail.app/Resources/English.lproj/PreferencesWindo
 GNUstep/System/Applications/GNUMail.app/Resources/French.lproj/Localizable.strings
 GNUstep/System/Applications/GNUMail.app/Resources/GNUMail.desktop
 GNUstep/System/Applications/GNUMail.app/Resources/GNUMail.tiff
-GNUstep/System/Applications/GNUMail.app/Resources/GNUMail_128.tiff
+GNUstep/System/Applications/GNUMail.app/Resources/GNUMail_512.tiff
 GNUstep/System/Applications/GNUMail.app/Resources/GNUMail_Full.tiff
 GNUstep/System/Applications/GNUMail.app/Resources/GNUMail_big.tiff
 GNUstep/System/Applications/GNUMail.app/Resources/German.lproj/Localizable.strings
@@ -267,12 +267,12 @@ GNUstep/System/Library/Frameworks/GNUMail.framework/Resources
 GNUstep/System/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/GNUMail
 GNUstep/System/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/Resources/Info-gnustep.plist
 GNUstep/System/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/libGNUMail.so
-GNUstep/System/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/libGNUMail.so.1.2.3
+GNUstep/System/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/libGNUMail.so.1.4.0
 GNUstep/System/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/libGNUMail.so.%%MAJORVERSION%%
 GNUstep/System/Library/Frameworks/GNUMail.framework/Versions/Current
 GNUstep/System/Library/Frameworks/GNUMail.framework/libGNUMail.so
 GNUstep/System/Library/Headers/GNUMail
 GNUstep/System/Library/Libraries/libGNUMail.so
 GNUstep/System/Library/Libraries/libGNUMail.so.%%MAJORVERSION%%
-GNUstep/System/Library/Libraries/libGNUMail.so.1.2.3
+GNUstep/System/Library/Libraries/libGNUMail.so.1.4.0
 GNUstep/System/Tools/GNUMail
