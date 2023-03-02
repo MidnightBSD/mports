@@ -116,3 +116,6 @@ BUILD_DEPENDS+=	v4l_compat>=1.0.20100321:multimedia/v4l_compat \
 
 LIB_DEPENDS+=libnice.so:net-im/libnice
 
+.if (${OSVERSION} < 300000)
+BROKEN_SSL=	base
+.endif
