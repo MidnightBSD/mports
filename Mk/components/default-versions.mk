@@ -45,7 +45,7 @@ GCC_DEFAULT?=		10
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
 # Possible values: 7, 8, 9, agpl
-GHOSTSCRIPT_DEFAULT?=	9
+GHOSTSCRIPT_DEFAULT?=	agpl
 # Possible values: 1.17, 1.18, 1.19-devel
 GO_DEFAULT?=            1.18
 # Possible values: 7, 8, 11, 13, 17, 18
