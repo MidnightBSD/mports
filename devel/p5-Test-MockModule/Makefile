@@ -1,13 +1,13 @@
-# Created by: Lars Thegler <lth@FreeBSD.org>
-
 PORTNAME=	Test-MockModule
-PORTVERSION=	0.16
+PORTVERSION=	0.177.0
+DISTVERSIONPREFIX=	v
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Override subroutines in a module for unit testing
+WWW=		https://metacpan.org/release/Test-MockModule
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
