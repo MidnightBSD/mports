@@ -1,11 +1,11 @@
 PORTNAME=	cmake
-DISTVERSION=	3.23.3
+DISTVERSION=	${_CMAKE_VERSION}
 CATEGORIES=	devel
-MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-gui
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI for cmake
+WWW=		https://www.cmake.org
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/Copyright.txt
@@ -31,7 +31,7 @@ CMAKE_ARGS=	-DCMAKE_DATA_DIR:STRING="/${DATADIR_REL}" \
 ALL_TARGET=	cmake-gui documentation
 INSTALL_WRKSRC=	${WRKSRC}/Source/QtDialog
 
-DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
+DISTINFO_FILE=	${.CURDIR}/../cmake-core/distinfo
 
 CXXFLAGS+=	-D__BSD_VISIBLE
 
