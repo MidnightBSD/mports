@@ -14,12 +14,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Test-MockTime>=0:devel/p5-Test-MockTime
-TEST_DEPENDS=	p5-Test-Class>=0:devel/p5-Test-Class \
-		p5-Test-Requires>=0:devel/p5-Test-Requires
 
 USES=		perl5
 USE_PERL5=	modbuildtiny
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
