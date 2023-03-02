@@ -1,2 +1,14 @@
 %%SITE_PERL%%/Test/MockTime/HiRes.pm
-%%PERL5_MAN3%%/Test::MockTime::HiRes.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/Test::MockTime::HiRes.3.gz
+@dirrmtry %%SITE_PERL%%/Test/MockTime
+@dirrmtry %%SITE_PERL%%/Test
+@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
+@dirrmtry %%SITE_PERL%%/man
+@dirrmtry %%SITE_ARCH%%/auto/Test/MockTime/HiRes
+@dirrmtry %%SITE_ARCH%%/auto/Test/MockTime
+@dirrmtry %%SITE_ARCH%%/auto/Test
+@dirrmtry %%SITE_ARCH%%/auto
+@dirrmtry %%SITE_ARCH%%
+@dirrmtry %%SITE_PERL%%
+@dirrmtry lib/perl5/site_perl
+@dirrmtry lib/perl5
