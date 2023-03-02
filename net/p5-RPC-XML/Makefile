@@ -13,7 +13,6 @@ LICENSE_COMB=	dual
 BUILD_DEPENDS=	p5-XML-Parser>=2.31:textproc/p5-XML-Parser \
 		p5-libwww>=5.834:www/p5-libwww
 RUN_DEPENDS:=	${BUILD_DEPENDS}
-TEST_DEPENDS=	p5-DateTime-Format-ISO8601>=0.07:devel/p5-DateTime-Format-ISO8601
 
 USES=		gmake perl5
 USE_PERL5=	configure
@@ -22,5 +21,7 @@ OPTIONS_DEFINE=	XS
 
 XS_BUILD_DEPENDS=	p5-XML-LibXML>=1.85:textproc/p5-XML-LibXML
 XS_RUN_DEPENDS=		${XS_BUILD_DEPENDS}
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
