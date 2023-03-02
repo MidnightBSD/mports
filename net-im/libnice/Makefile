@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libnice
 PORTVERSION=	0.1.13
 CATEGORIES=	net-im devel
@@ -7,11 +5,12 @@ MASTER_SITES=	http://nice.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and transmitter that implements ICE-19
+WWW=		https://nice.freedesktop.org
 
 LICENSE=	lgpl mpl
 LICENSE_COMB=	dual
 
-USES=		gettext gmake libtool pathfix pkgconfig
+USES=		gettext gmake gnome libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20 introspection:build
 GNU_CONFIGURE=	yes
@@ -22,19 +21,15 @@ INSTALL_TARGET=	install-strip
 .if !defined(LIBNICE_SLAVE)
 OPTIONS_DEFINE=	GUPNP
 GUPNP_DESC=	UPnP IGD port mapping support
-GUPNP_LIB_DEPENDS+=	libgupnp-igd-1.0.so:${PORTSDIR}/net/gupnp-igd
+GUPNP_LIB_DEPENDS+=	libgupnp-igd-1.0.so:net/gupnp-igd
 GUPNP_CONFIGURE_ENABLE=	gupnp
 .endif
 
 #.include <bsd.port.options.mk>
 
 .if defined(LIBNICE_SLAVE)
-. if ${LIBNICE_SLAVE}==gstreamer010
-USE_GSTREAMER=	yes
-CONFIGURE_ARGS+=--without-gstreamer --with-gstreamer-0.10
-. endif
 . if ${LIBNICE_SLAVE}==gstreamer1
-USE_GSTREAMER1=	yes
+USES+=		gstreamer
 CONFIGURE_ARGS+=--with-gstreamer --without-gstreamer-0.10
 . endif
 .else

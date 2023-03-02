@@ -1,12 +1,10 @@
-
-
 PORTREVISION=	0
 PKGNAMESUFFIX=	-gst1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer 1 plugin from libnice
 
-LIB_DEPENDS=	libnice.so:${PORTSDIR}/net-im/libnice
+LIB_DEPENDS=	libnice.so:net-im/libnice
 
 MASTERDIR=	${.CURDIR}/../libnice
 DESCR=		${.CURDIR}/pkg-descr
