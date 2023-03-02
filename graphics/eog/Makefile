@@ -1,5 +1,5 @@
 PORTNAME=	eog
-PORTVERSION=	3.28.4
+PORTVERSION=	3.38.0
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -29,6 +29,8 @@ GLIB_SCHEMAS=	org.gnome.eog.enums.xml \
 		org.gnome.eog.gschema.xml
 
 PLIST_SUB+=	VERSION=3.0
+
+MESON_ARGS=	-Dlibportal=false
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	EXIF EXEMPI
