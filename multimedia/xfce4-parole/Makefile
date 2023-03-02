@@ -1,13 +1,13 @@
-# Created by: Martin Wilke <miwi@FreeBSD.org>
-
 PORTNAME=	parole
 PORTVERSION=	4.16.0
+PORTREVISION=	1
 CATEGORIES=	multimedia xfce
 MASTER_SITES=	XFCE/apps
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight media player for Xfce4 based on GStreamer
+WWW=		https://docs.xfce.org/apps/parole/introduction
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -19,9 +19,9 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 RUN_DEPENDS=	xdg-screensaver:devel/xdg-utils
 
 USES=		compiler:c++11-lang desktop-file-utils gettext-tools \
-		gmake gnome libtool pkgconfig tar:bzip2 xfce xorg
+		gmake gnome gstreamer libtool pkgconfig tar:bzip2 xfce xorg
 USE_GNOME=	cairo gtk30 glib20 intltool
-USE_GSTREAMER1=	core faad flac wavpack rtmp x
+USE_GSTREAMER=	core faad flac wavpack rtmp x
 USE_XFCE=	panel
 USE_XORG=	ice sm x11
 
@@ -39,12 +39,12 @@ OPTIONS_GROUP_GST_PLUG=	CDDA HTTP
 OPTIONS_DEFAULT=	HTTP
 OPTIONS_SUB=		yes
 
-CDDA_USE=		gstreamer1=cdparanoia
+CDDA_USE=		gstreamer=cdparanoia
 
 GST_PLUG_DESC=		Additional GStreamer plugins
 
 HTTP_DESC=		HTTP streaming (libsoup)
-HTTP_USE=		gstreamer1=soup
+HTTP_USE=		gstreamer=soup
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext-runtime
