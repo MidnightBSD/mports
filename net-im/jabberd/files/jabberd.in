@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # PROVIDE: jabberd
 # REQUIRE: %%REQUIRE%%
 # KEYWORD: shutdown
