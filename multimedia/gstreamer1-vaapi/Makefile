@@ -34,4 +34,6 @@ WAYLAND_MESON_OFF=	-Dwith_wayland=no
 WAYLAND_LIB_DEPENDS=	libva-wayland.so:multimedia/libva \
 			libwayland-client.so:graphics/wayland
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
