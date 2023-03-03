@@ -1,0 +1,26 @@
+--- plugins/node.d/smart_.in.orig	2023-03-03 21:24:57 UTC
++++ plugins/node.d/smart_.in
+@@ -404,6 +404,23 @@ def find_smart_drives():
+                     continue
+         except Exception as exc:
+             verboselog('Failed to list FreeBSD disks: {}'.format(exc))
++    elif os.uname()[0] == "MidnightBSD":
++        try:
++            sysctl_kerndisks = os.popen('sysctl kern.disks')
++            kerndisks = sysctl_kerndisks.readline().strip()
++            for drive in kerndisks.split()[1:]:
++                if drive[:2] in ['md', 'cd', 'fd']:
++                    # Ignore Memory Disks, CD-ROM drives and Floppy
++                    continue
++                try:
++                    verboselog('Trying '+drive+'...')
++                    parsed_data = read_values(drive)
++                    if not parsed_data.has_failed and not parsed_data.is_empty:
++                        drives.append(drive)
++                except Exception:
++                    continue
++        except Exception as exc:
++            verboselog('Failed to list MidnightBSD disks: {}'.format(exc))
+     elif os.uname()[0] == "Darwin":
+         try:
+             from glob import glob
