@@ -49,10 +49,10 @@ MAKE_ENV+=    __FreeBSD__=10 __FreeBSD__version=1004501
 .include "Makefile.options"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
+	-${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
 		-e '/^Icon/s/=.*/=${FIREFOX_ICON:R}/' \
 		${FIREFOX_DESKTOP}
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+	-${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
 
 pre-configure:
