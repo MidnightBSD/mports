@@ -52,7 +52,7 @@ CMAKE_ARGS+=	-DNO_ASM:BOOL=ON
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${PREFIX}/share/doom/zdoom
 	${INSTALL_PROGRAM} ${CONFIGURE_WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/${PORTNAME}.pk3 ${PREFIX}/share/doom/zdoom
 	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.xpm ${PREFIX}/share/pixmaps
