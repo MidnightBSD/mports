@@ -188,10 +188,10 @@ MOZ_OPTIONS+=	\
 
 # API keys from www/chromium 
 # http://www.chromium.org/developers/how-tos/api-keys
-# Note: these are for FreeBSD use ONLY. For your own distribution,
+# Note: these are for MidnightBSD use ONLY. For your own distribution,
 # please get your own set of keys.
-MOZ_EXPORT+=	MOZ_GOOGLE_LOCATION_SERVICE_API_KEY=AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8
-MOZ_EXPORT+=	MOZ_GOOGLE_SAFEBROWSING_API_KEY=AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8
+MOZ_EXPORT+=	MOZ_GOOGLE_LOCATION_SERVICE_API_KEY=AIzaSyC4CVcPIcQRgKU_aDmitQwNZNmuC_qbvUE
+MOZ_EXPORT+=	MOZ_GOOGLE_SAFEBROWSING_API_KEY=AIzaSyBMs0inLS2_py6ghVHKCGHYTshLrTp82pQ
 
 .if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
 CFLAGS+=		-O3
@@ -317,13 +317,6 @@ USE_BINUTILS=	# intel-gcm.s
 CFLAGS+=	-B${LOCALBASE}/bin
 LDFLAGS+=	-B${LOCALBASE}/bin
 . endif
-.elif ${ARCH:Mpowerpc*}
-. if ${ARCH} == "powerpc64"
-MOZ_EXPORT+=	UNAME_m="${ARCH}"
-. endif
-.elif ${ARCH} == "sparc64"
-# Work around miscompilation/mislinkage of the sCanonicalVTable hacks.
-MOZ_OPTIONS+=	--disable-v1-string-abi
 .endif
 
 .else # bsd.port.post.mk
@@ -384,9 +377,9 @@ post-install-script: gecko-create-plist
 
 gecko-create-plist:
 # Create the plist
-	${RM} ${PLISTF}
+	-${RM} ${PLISTF}
 .for dir in ${MOZILLA_PLIST_DIRS}
-	@cd ${STAGEDIR}${PREFIX}/${dir} && ${FIND} -H -s * ! -type d | \
+	@cd ${FAKE_DESTDIR}${TRUE_PREFIX}/${dir} && ${FIND} -H -s * ! -type d | \
 		${SED} -e 's|^|${dir}/|' >> ${PLISTF}
 .endfor
 	${CAT} ${PLISTF} | ${SORT} >> ${TMPPLIST}
