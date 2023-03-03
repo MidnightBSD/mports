@@ -37,4 +37,6 @@ OPTIONS_DEFAULT=	GVFS
 
 GVFS_USE=	GNOME=gvfs
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
