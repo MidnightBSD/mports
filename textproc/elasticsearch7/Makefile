@@ -31,7 +31,7 @@ SHEBANG_FILES=	bin/elasticsearch bin/elasticsearch-certgen \
 		bin/elasticsearch-users bin/x-pack-env bin/x-pack-security-env \
 		bin/x-pack-watcher-env
 
-CONFLICTS=	elasticsearch6
+CONFLICTS=	elasticsearch6 elasticsearch8
 
 NO_ARCH=	yes
 NO_BUILD=	yes
