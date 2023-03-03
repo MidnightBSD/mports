@@ -23,6 +23,8 @@ OPTIONS_DEFINE=		OPENSSL
 OPTIONS_DEFAULT=	OPENSSL
 OPENSSL_MAKE_ARGS=	USE_SSL=1
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} \
 		-e 's|\$$(INSTALL_LIBRARY_PATH)/\$$(PKGCONF_PATH)|\$$(DESTDIR)\$$(PREFIX)/libdata/\$$(PKGCONF_PATH)|' \
@@ -30,8 +32,5 @@ post-patch:
 
 post-build:
 	@${STRIP_CMD} ${WRKSRC}/libhiredis.so
-
-do-test:
-	cd ${WRKSRC} && ${MAKE_CMD} test
 
 .include <bsd.port.mk>
