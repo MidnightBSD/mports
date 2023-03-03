@@ -1,23 +1,21 @@
 PORTREVISION=	0
 CATEGORIES=	net
-PKGNAMESUFFIX=	-libdns
+PKGNAMESUFFIX=	-qt5
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	mDNSResponder compatibility from Avahi
-
-LICENSE=	lgpl
+COMMENT=	Qt 5 bindings to the Avahi mDNS system
 
 LIB_DEPENDS=	libavahi-common.so:net/avahi-app
 
 MASTERDIR=	${.CURDIR}/../avahi-app
-BUILD_WRKSRC=	${WRKSRC}/avahi-compat-libdns_sd
+BUILD_WRKSRC=	${WRKSRC}/avahi-qt
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
-AVAHI_SLAVE=	libdns
-AVAHI_PKGCONFIG=avahi-compat-libdns_sd.pc
-
-CONFLICTS=	mDNSResponder-[0-9]*
+AVAHI_SLAVE=	qt5
+USES=		compiler:c++11-lang qt:5
+USE_QT=		core buildtools:build
+AVAHI_PKGCONFIG=avahi-qt5.pc
 
 .include "${MASTERDIR}/Makefile"
