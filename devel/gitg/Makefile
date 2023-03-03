@@ -45,6 +45,8 @@ PYTHON_USES=	python:3.2+
 PYTHON_MESON_TRUE=	python
 PYTHON_USE=	GNOME=pygobject3
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|0.27.0|0.28.0|g' \
 		${WRKSRC}/meson.build
