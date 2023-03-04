@@ -31,7 +31,7 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 # DEPRECATED=	End of life, please migrate to a newer version of BIND9
 # EXPIRATION_DATE=	2023-12-31
 
-LICENSE=	mpl20
+LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libuv.so:devel/libuv \
