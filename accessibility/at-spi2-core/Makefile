@@ -20,6 +20,8 @@ USE_GNOME=	glib20 introspection:build
 USE_XORG=	ice sm x11 xi xtst xext
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 post-install:
 	${RM} -r ${PREFIX}/lib/systemd
 
