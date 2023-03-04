@@ -17,7 +17,9 @@ USES=		gettext gmake gnome libtool pathfix pkgconfig tar:bzip2
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-gtk-doc --disable-rebuilds \
+CONFIGURE_ARGS=	--disable-gtk-doc \
+		--disable-rebuilds \
+		--with-compile-warnings=no \
  		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 CPPFLAGS+=	-I${LOCALBASE}/include
 CFLAGS+=	-Wno-deprecated-declarations
@@ -25,7 +27,6 @@ LDFLAGS+=	-Wl,-Bsymbolic -L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS
-OPTIONS_DEFAULT=GNUTLS
 OPTIONS_RADIO=	SSL
 OPTIONS_RADIO_SSL=	GNUTLS OPENSSL
 
