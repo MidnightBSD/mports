@@ -6,6 +6,7 @@ MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience functions for the Render extension
+WWW=		https://xcb.freedesktop.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -16,7 +17,7 @@ USES=		gmake xorg xorg-cat:lib
 USE_XORG=	xcb
 INSTALL_TARGET=	install-strip
 
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
 
 post-patch:
 	@${REINPLACE_CMD} -e \
