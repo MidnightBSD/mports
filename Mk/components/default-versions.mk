@@ -58,7 +58,8 @@ LIBRSVG2_DEFAULT?=    rust
 LINUX_DEFAULT?=		c7
 # Possible values: 60, 70, -devel (to be used when non-base compiler is required)
 LLVM_DEFAULT?=		90
-LUA_DEFAULT?=		5.2
+LUA_DEFAULT?=		5.4
+LUAJIT_DEFAULT?=        luajit-devel
 # Possible values: 5.10, 5.20, 6.8
 MONO_DEFAULT=		5.10
 # Possible values: 5.5, 5.6, 5.7, 8.0, 10.3m, 10.4m, 10.5m, 5.5p, 5.6p, 5.7p, 5.6w, 5.7w
