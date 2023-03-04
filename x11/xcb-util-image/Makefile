@@ -1,5 +1,3 @@
-
-
 PORTNAME=	xcb-util-image
 PORTVERSION=	0.4.0
 PORTREVISION=	1
@@ -8,12 +6,14 @@ MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of Xlib's XImage and XShmImage functions
+WWW=		https://xcb.freedesktop.org/
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libxcb-util.so:${PORTSDIR}/x11/xcb-util
+LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
-USES=		gmake pkgconfig tar:bzip2
+USES=		gmake pkgconfig xorg xorg-cat:lib
 USE_LDCONFIG=	yes
 USE_XORG=	xcb xorg-macros
 
