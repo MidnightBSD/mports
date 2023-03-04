@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gnuplot
 PORTVERSION=	4.6.6
 CATEGORIES=	math graphics
@@ -7,8 +5,12 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line driven graphing utility
+WWW=		http://www.gnuplot.info/
 
-LICENSE=	other
+LICENSE=	Gnuplot
+LICENSE_NAME=	Gnuplot license
+LICENSE_FILE=	${WRKSRC}/Copyright
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 USES=		iconv lua pkgconfig readline
 USE_TEX=	kpathsea
