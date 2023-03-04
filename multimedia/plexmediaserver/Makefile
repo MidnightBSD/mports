@@ -47,8 +47,8 @@ post-patch:
 do-install:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR})
 	# Python fix for older releases of Plex
-	@${LN} -s ${DATADIR}/libpython2.7.so.1 ${DATADIR}/libpython2.7.so
+	(cd ${DATADIR} && ${LN} -s libpython2.7.so.1 libpython2.7.so)
 	# Workaround for space in binary name
-	cd ${DATADIR} && ${LN} -s Plex\ Media\ Server Plex_Media_Server
+	(cd $${DATADIR} && ${LN} -s Plex\ Media\ Server Plex_Media_Server)
 
 .include <bsd.port.post.mk>
