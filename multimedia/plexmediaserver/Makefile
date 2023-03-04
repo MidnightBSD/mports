@@ -1,5 +1,5 @@
 PORTNAME=	plexmediaserver
-PORTVERSION?=	1.2.7.2987
+PORTVERSION?=	1.3.3.3148
 PORTREVISION?=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://downloads.plex.tv/plex-media-server/${PORTVERSION}-${PLEX_BUILD}/
@@ -11,7 +11,7 @@ COMMENT=	Plex Media Server component
 LICENSE=	other
 
 USES=		cpe tar:bzip2
-PLEX_BUILD?=	1bef33a
+PLEX_BUILD?=	b38628e
 NO_BUILD=	yes
 WRKSRC=	${WRKDIR}/PlexMediaServer-${PORTVERSION}-${PLEX_BUILD}
 
