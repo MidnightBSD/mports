@@ -1,13 +1,15 @@
 PORTNAME=	wx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.1.5
+DISTVERSION=	3.2.1
 CATEGORIES=	x11-toolkits
+MASTER_SITES=	https://github.com/wxWidgets/wxWidgets/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	${_SHORT_WX_VER}-${FLAVOR}
+DISTNAME=	wxWidgets-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI toolkit (wxWidgets) with ${FLAVOR:S/k/&+/:tu} bindings
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/docs/gpl.txt
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
@@ -17,19 +19,18 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libharfbuzz.so:print/harfbuzz \
 		libjbig.so:graphics/jbigkit \
 		libnotify.so:devel/libnotify \
+		libpcre2-32.so:devel/pcre2 \
 		libpng.so:graphics/png \
 		libsecret-1.so:security/libsecret \
 		libsoup-2.4.so:devel/libsoup \
 		libtiff.so:graphics/tiff \
 		libwayland-egl.so:graphics/wayland
 
-USES=		compiler:c++11-lib gl gmake gnome iconv jpeg localbase \
-		pkgconfig xorg
-USE_GITHUB=	yes
-GH_ACCOUNT=	wxWidgets
-GH_PROJECT=	wxWidgets
-GH_TUPLE=	wxWidgets:Catch:ee4acb6:wxWidgets_Catch/3rdparty/catch
+FLAVORS=	gtk3 gtk2
+FLAVOR?=	${FLAVORS:[1]}
 
+USES=		compiler:c++11-lib gl gmake gnome iconv jpeg localbase \
+		pkgconfig tar:bz2 xorg
 GNU_CONFIGURE=	yes
 USE_XORG=	x11 sm xxf86vm xtst
 USE_GL=		gl glu
@@ -39,6 +40,8 @@ USE_CXXSTD=	c++11
 CONFIGURE_ARGS=	--with-libpng=sys \
 		--with-libjpeg=sys \
 		--with-libtiff=sys \
+		--with-liblzma \
+		--with-nanosvg \
 		--with-zlib=sys \
 		--with-expat=sys \
 		--with-opengl \
@@ -53,9 +56,9 @@ CONFIGURE_ARGS=	--with-libpng=sys \
 		--enable-graphics_ctx \
 		--enable-compat28 \
 		--enable-compat30
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}" \
 		ac_cv_header_sys_inotify_h=no
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
 
 OPTIONS_DEFINE=		GSTREAMER MSPACK NLS
 OPTIONS_DEFAULT=	GSTREAMER MSPACK
@@ -73,9 +76,6 @@ MSPACK_LIB_DEPENDS=		libmspack.so:archivers/libmspack
 
 WEBKIT_CONFIGURE_ENABLE=	webview
 WEBKIT_LIB_DEPENDS=		libwebkit2gtk-4.0.so:www/webkit2-gtk3
-
-FLAVORS=	gtk3 gtk2
-FLAVOR?=	${FLAVORS:[1]}
 
 .if ${FLAVOR} == gtk3
 USE_GNOME+=	gtk30
@@ -110,7 +110,7 @@ CONFIGURE_ARGS+=--disable-precomp-headers
 post-build-NLS-on:
 	@${DO_MAKE_BUILD} allmo -C ${BUILD_WRKSRC}/locale
 
-post-install-NLS-on: # stray file: https://trac.wxwidgets.org/ticket/18147
-	-${RM} ${FAKE_DESTDIR}${PREFIX}/share/locale/it/LC_MESSAGES/wxmsw.mo
+post-install:
+	@${RM} ${PREFIX}/bin/wxrc
 
 .include <bsd.port.post.mk>
