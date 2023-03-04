@@ -5,6 +5,7 @@ MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XCB cursor library
+WWW=		https://xcb.freedesktop.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
