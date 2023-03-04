@@ -1,10 +1,11 @@
 PORTNAME=	gnuplot
-PORTVERSION=	4.6.6
+PORTVERSION=	5.4.1
+PORTREVISION=	1
 CATEGORIES=	math graphics
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Command-line driven graphing utility
+COMMENT?=	Command-line driven graphing utility
 WWW=		http://www.gnuplot.info/
 
 LICENSE=	Gnuplot
@@ -12,71 +13,68 @@ LICENSE_NAME=	Gnuplot license
 LICENSE_FILE=	${WRKSRC}/Copyright
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
-USES=		iconv lua pkgconfig readline
-USE_TEX=	kpathsea
+CONFLICTS_INSTALL?=	gnuplot-lite
+
+USES+=		compiler:c++11-lang cpe groff iconv pkgconfig readline
+CPE_VENDOR=	gnuplot_project
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
-CONFIGURE_ENV=	LUA_VER="${LUA_VER}"
-CONFIGURE_ARGS+=--with-lasergnu \
-		--with-readline=gnu \
-		--with-kpsexpand \
+CONFIGURE_ARGS+=--with-readline=gnu \
 		--without-linux-vga \
 		--without-lisp-files \
 		--without-tutorial \
 		--with-bitmap-terminals \
+		--with-qt=no
+
+.if defined(LITE)
+CONFIGURE_ARGS+=--disable-x11-mbfonts \
+		--disable-x11-external \
+		--disable-wxwidgets \
+		--without-x \
+		--without-ggi \
+		--without-gd \
+		--without-caca \
+		--without-wx \
+		--without-gpic \
+		--without-mif \
+		--without-cairo \
+		--without-lua \
+		--without-latex \
+		--without-kpsexpand
+PLIST_SUB+=	X11="@comment "
+.else
+USES+=		gnome jpeg lua:53 ncurses tex xorg
+USE_TEX=	kpathsea
+USE_GNOME+=	atk cairo gtk30 gdkpixbuf2
+USE_WX=		3.0+
+USE_XORG+=	x11
+LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz \
+		libgd.so:graphics/gd \
+		libpng.so:graphics/png \
+		libwebp.so:graphics/webp \
+		libtiff.so:graphics/tiff
+CONFIGURE_ARGS+=--with-gd=${LOCALBASE} \
+		--with-gpic \
+		--with-mif \
+		--with-kpsexpand \
 		--with-latex \
 		ac_cv_prog_KPSEXPAND=${LOCALBASE}/bin/kpsexpand \
 		ac_cv_prog_PLAINTEX=${LOCALBASE}/bin/tex \
 		ac_cv_prog_LATEX=${LOCALBASE}/bin/latex \
 		ac_cv_prog_PDFLATEX=${LOCALBASE}/bin/pdflatex
+PLIST_SUB+=	X11=""
+.endif
+
+TEST_TARGET=	check
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-NO_TEST=	yes
-
-OPTIONS_DEFINE=	CAIRO DOCS EXAMPLES GD GRIDBOX PDF PLOT THINSPLINES WX X11
+OPTIONS_DEFINE=	DOCS EXAMPLES GRIDBOX
 GRIDBOX_DESC=		Use the gridbox optimization for hidden3d
-PLOT_DESC=		Enable plot support
-THINSPLINES_DESC=	Enable thin plate splines for grids in dgrid3d
-WX_DESC=		wxWidgets (formerly wxWindows) support
-
-OPTIONS_DEFAULT=CAIRO GD PLOT WX X11
-OPTIONS_SUB=	yes
-
-CAIRO_LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo
-CAIRO_USE=	GNOME=pango
-CAIRO_CONFIGURE_WITH=	cairo
-
-GD_LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd
-GD_CONFIGURE_ON=	--with-gd=${LOCALBASE}
-GD_CONFIGURE_OFF+=	--without-gd
 
 GRIDBOX_CONFIGURE_OFF=	--disable-h3d-quadtree --enable-h3d-gridbox
-
-PDF_LIB_DEPENDS=	libpdf.so:${PORTSDIR}/print/pdflib
-PDF_CONFIGURE_ON=	--with-pdf=${LOCALBASE}
-PDF_CONFIGURE_OFF=	--without-pdf
-
-PLOT_USE=		XORG=xaw,xmu,xt,xext
-PLOT_LIB_DEPENDS=	libplot.so:${PORTSDIR}/graphics/plotutils
-PLOT_CONFIGURE_ON=	--with-plot=${LOCALBASE}
-PLOT_CONFIGURE_OFF=	--without-plot
-
-THINSPLINES_CONFIGURE_ENABLE=	thin-splines
-
-X11_USE=	XORG=x11
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MWX}
-# Version 3.x of WX currently cause gnuplot to crash.
-# Do not update without this without testing.
-USE_WX=			2.8
-WX_UNICODE=		yes
-WX_CONF_ARGS=		absolute
-.else
-CONFIGURE_ARGS+=	--disable-wxwidgets
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e \
@@ -86,20 +84,27 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's|luaL_checkint(|(int)luaL_checkinteger(|' ${WRKSRC}/term/lua.trm
 
-.if ${PORT_OPTIONS:MDOCS}
-post-build:
+post-build-DOCS-on:
 	@cd ${WRKSRC}/docs && ${MAKE} groff
-.endif
+
+pre-install:
+	${MKDIR} ${DATADIR}/5.4 ; \
+		${INSTALL_DATA} ${WRKSRC}/share/gnuplotrc \
+		${DATADIR}/5.4/gnuplotrc.sample
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/src/lasergnu ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/demo && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/psdoc
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	cd ${WRKSRC}/demo && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/psdoc
 	cd ${WRKSRC}/docs && ${INSTALL_DATA} gnuplot.txt gnuplot.dvi \
-		gnuplot.ps ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/docs/psdoc && ${INSTALL_DATA} README ps_* ${STAGEDIR}${DOCSDIR}/psdoc
+		gnuplot.ps ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/docs/psdoc && ${INSTALL_DATA} README ps_* ${FAKE_DESTDIR}${DOCSDIR}/psdoc
+
+.if defined(LITE)
+post-fake:
+	@cd ${FAKE_DESTDIR}${PREFIX} && ${RMDIR} libexec/gnuplot/5.4 libexec/gnuplot
 .endif
 
 .include <bsd.port.mk>
