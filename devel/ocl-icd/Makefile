@@ -1,5 +1,3 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	ocl-icd
 DISTVERSIONPREFIX=	v
 PORTVERSION=	2.3.1
@@ -7,6 +5,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenCL Installable Client Driver
+WWW=		https://github.com/OCL-dev/ocl-icd
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
