@@ -8,6 +8,7 @@ SUBDIR += bochs
 SUBDIR += dgen-sdl
 SUBDIR += dosbox
 SUBDIR += extract-xiso
+SUBDIR += gearsystem
 SUBDIR += higan
 SUBDIR += linux-c7
 SUBDIR += linux_base-c7
