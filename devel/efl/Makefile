@@ -1,5 +1,3 @@
-# Created by: Grzegorz Blach <gblach@FreeBSD.org>
-
 PORTNAME=	efl
 DISTVERSION=	1.25.1
 CATEGORIES=	devel
@@ -8,6 +6,7 @@ DIST_SUBDIR=	enlightenment
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enlightenment Foundation Libraries
+WWW=		https://docs.enlightenment.org/efl/current/
 
 LICENSE=	bsd2 lgpl2.1
 LICENSE_COMB=	multi
@@ -128,7 +127,8 @@ WAYLAND_LDFLAGS=		-lepoll-shim
 WAYLAND_MESON_TRUE=		wl
 WAYLAND_BROKEN=			Wayland bits compile but don't yet work at runtime
 
-GSTREAMER_USE=			GSTREAMER1=core
+GSTREAMER_USES=			gstreamer
+GSTREAMER_USE=			GSTREAMER=core
 GSTREAMER_MESON_TRUE=		gstreamer
 
 V4L_BUILD_DEPENDS=		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
