@@ -12,10 +12,13 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx Full-Text Search Engine
+WWW=		https://sphinxsearch.com/
 
 LICENSE=	gpl2
 
 USES=		compiler:c++11-lang
+
+CONFLICTS_INSTALL=	mnogosearch # bin/indexer
 
 BUILD_DEPENDS=	gsed:textproc/gsed
 # If expat is present on the system and configure finds it, it will
