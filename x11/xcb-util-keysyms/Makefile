@@ -11,7 +11,7 @@ LICENSE=	mit
 
 LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
-USES=		gmake pkgconfig tar:bzip2 xorg
+USES=		gmake pkgconfig tar:bzip2 xorg xorg-cat:lib
 USE_LDCONFIG=	yes
 USE_XORG=	xcb xorg-macros
 CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
