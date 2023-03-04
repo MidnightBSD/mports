@@ -1,10 +1,11 @@
 PORTNAME=	libxcb
-PORTVERSION=	1.14
-CATEGORIES=	x11 python
+PORTVERSION=	1.15
+CATEGORIES=	x11
 MASTER_SITES=	https://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The X protocol C-language Binding (XCB) library
+WWW=		https://xcb.freedesktop.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
