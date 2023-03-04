@@ -1,13 +1,13 @@
 %%SITE_ARCH%%/Params/Classify.pm
 %%SITE_ARCH%%/auto/Params/Classify/Classify.so
-%%SITE_PERL%%/%%PERL5_MAN3%%/Params::Classify.3
-@dir %%SITE_ARCH%%/Params
-@dir %%SITE_ARCH%%/auto/Params/Classify
-@dir %%SITE_ARCH%%/auto/Params
-@dir %%SITE_ARCH%%/auto
-@dir %%SITE_ARCH%%
-@dir %%SITE_PERL%%/%%PERL5_MAN3%%
-@dir %%SITE_PERL%%/man
-@dir %%SITE_PERL%%
-@dir lib/perl5/site_perl
-@dir lib/perl5
+%%SITE_PERL%%/%%PERL5_MAN3%%/Params::Classify.3.gz
+@dirrmtry %%SITE_ARCH%%/Params
+@dirrmtry %%SITE_ARCH%%/auto/Params/Classify
+@dirrmtry %%SITE_ARCH%%/auto/Params
+@dirrmtry %%SITE_ARCH%%/auto
+@dirrmtry %%SITE_ARCH%%
+@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
+@dirrmtry %%SITE_PERL%%/man
+@dirrmtry %%SITE_PERL%%
+@dirrmtry lib/perl5/site_perl
+@dirrmtry lib/perl5
