@@ -1,9 +1,12 @@
 PORTNAME=	luajit
 DISTVERSION=	2.0.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	https://luajit.org/download/
 DISTNAME=	LuaJIT-${DISTVERSION}
+
+PATCH_SITES=	https://github.com/LuaJIT/LuaJIT/commit/
+PATCHFILES=	a4f4f5b83564a1075bea0ac7c1fd8768be1caff7.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Just-In-Time Compiler for Lua
@@ -21,7 +24,7 @@ PTHREAD_DESC=	with pthread support
 CONFLICTS_INSTALL=    luajit-openresty
 
 WRKSRC=		${WRKDIR}/LuaJIT-${DISTVERSION}
-USES=		cpe gmake
+USES=		compiler cpe gmake
 USE_LDCONFIG=	yes
 
 MAKE_ARGS=	CC=${CC} CCOPT= CCOPT_x86=
