@@ -1,11 +1,12 @@
 PORTNAME=	pkginfo
-DISTVERSION=	1.7.0
+DISTVERSION=	1.8.3
 CATEGORIES=	sysutils python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Query metadatdata from sdists / bdists / installed packages
+WWW=		https://pypi.org/project/pkginfo/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
