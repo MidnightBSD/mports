@@ -1,11 +1,10 @@
-# Created by: David Mackay <davidjx8p@gmail.com>
-
 PORTNAME=	virtualgl
 DISTVERSION=	3.0
 CATEGORIES=	x11 graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Redirects commands from an OpenGL app to another X server
+WWW=		https://www.virtualgl.org
 
 LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk \
 		libturbojpeg.so:graphics/libjpeg-turbo \
