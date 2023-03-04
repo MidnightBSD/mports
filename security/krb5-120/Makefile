@@ -99,15 +99,15 @@ PDF_DOC_DIR=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/doc/pdf
 .include <bsd.port.pre.mk>
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/krb5
-	@${SED} "s|%%PREFIX%%|${PREFIX}|" ${FILESDIR}/kdc.in > ${STAGEDIR}${PREFIX}/sbin/kdc; \
-	${CHMOD} +x ${STAGEDIR}${PREFIX}/sbin/kdc
+	@${MKDIR} ${PREFIX}/share/doc/krb5
+	@${SED} "s|%%PREFIX%%|${TRUE_PREFIX}|" ${FILESDIR}/kdc.in > ${PREFIX}/sbin/kdc; \
+	${CHMOD} +x ${PREFIX}/sbin/kdc
 # html documentation
 .if ${PORT_OPTIONS:MKRB5_PDF}
 	pdf_files=`${FIND} ${PDF_DOC_DIR} ! -type d`
 	pdf_dirs=`${FIND} ${PDF_DOC_DIR} -type d`
 	for i in $${pdf_dirs}; do \
-		${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/krb5/$${i}; \
+		${MKDIR} ${PREFIX}/share/doc/krb5/$${i}; \
 	done; \
 	for i in $${pdf_files}; do \
 		${INSTALL_DATA} $${pdf} ${PREFIX}/share/doc/krb5/$${i}; \
