@@ -1,25 +1,24 @@
 PORTNAME=	gnome-mines
-PORTVERSION=	3.36.1
+PORTVERSION=	40.1
 CATEGORIES=	games gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome minesweeper
+WWW=		https://wiki.gnome.org/Apps/Mines
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vala:lang/vala \
-		itstool:textproc/itstool
+BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libgnome-games-support-1.so:games/libgnome-games-support \
 		libgee-0.8.so:devel/libgee
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python:3.6+,build tar:xz
+USES=		gettext gnome localbase meson pkgconfig python:3.6+,build tar:xz vala:build
 USE_GNOME=	gtk30 librsvg2
-INSTALLS_ICONS=	yes
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 GLIB_SCHEMAS=	org.gnome.Mines.gschema.xml
