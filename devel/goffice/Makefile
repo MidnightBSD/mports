@@ -1,11 +1,12 @@
 PORTNAME=	goffice
-PORTVERSION=	0.10.48
+PORTVERSION=	0.10.53
 PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib/GTK+ set of document centric objects and utilities
+WWW=		http://live.gnome.org/libgoffice
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -26,8 +27,9 @@ CONFIGURE_ARGS=	--with-lasem=no --with-config-backend=gsettings \
 		--enable-compile-warnings=no \
 		--enable-introspection
 USE_PERL5=	build
+#SHEBANG_FILES=	${WRKSRC}/tools/introspection-identifier-filter
 
-PLIST_SUB=	VERSION=${PORTVERSION} SHORT_VER=${PORTVERSION:R}
+PLIST_SUB=	VERSION=${PORTVERSION} SHORT_VER=${PORTVERSION:R} LIB_VER=${PORTVERSION:E}
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/goffice/${SHORT_VER}/plugins
