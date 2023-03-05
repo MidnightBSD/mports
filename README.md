@@ -53,3 +53,5 @@ If you're looking for ways to contribute, try fixing problems listed in repology
 https://repology.org/repository/mports/problems
 
 You can also submit bug reports about mports at https://bugreport.midnightbsd.org/
+
+[![Repository status](https://repology.org/badge/repository-big/mports.svg)](https://repology.org/repository/mports)
