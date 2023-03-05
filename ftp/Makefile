@@ -1,5 +1,6 @@
 COMMENT = File Transfer Protocol 
 
+SUBDIR += axel
 SUBDIR += curl
 SUBDIR += filezilla
 SUBDIR += ftpcopy
