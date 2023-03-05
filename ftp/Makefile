@@ -9,7 +9,6 @@ SUBDIR += gstreamer1-plugins-curl
 SUBDIR += lftp
 SUBDIR += libfilezilla
 SUBDIR += linux-c7-curl
-SUBDIR += multiget
 SUBDIR += ncftp3
 SUBDIR += php80-curl
 SUBDIR += php80-ftp
