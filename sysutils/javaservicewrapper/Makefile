@@ -6,14 +6,13 @@ DISTNAME=	wrapper_${PORTVERSION}_src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSW enables a Java application to be run as a Unix daemon
+WWW=		https://wrapper.tanukisoftware.org/
 
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
-ONLY_FOR_ARCHS=	amd64 i386
-
 USES=		gmake iconv
-USE_JAVA=	1.8+
+USE_JAVA=	8+
 USE_ANT=	yes
 USE_LDCONFIG=	${PREFIX}/lib/javaservicewrapper/lib
 
