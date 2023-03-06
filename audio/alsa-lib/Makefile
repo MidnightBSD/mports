@@ -25,6 +25,7 @@ CONFIGURE_ENV=	ac_cv_header_endian_h=no
 INSTALL_TARGET=	install-strip
 NO_TEST=	yes
 CPPFLAGS+=	-I${FILESDIR}
+CFLAGS+=	-Wno-unknown-attributes
 
 OPTIONS_DEFINE=		PYTHON
 OPTIONS_SUB=		yes
