@@ -43,6 +43,7 @@ include/snort/dynamic_preproc/cpuclock.h
 include/snort/dynamic_preproc/file_api.h
 include/snort/dynamic_preproc/idle_processing.h
 include/snort/dynamic_preproc/ipv6_port.h
+include/snort/dynamic_preproc/memory_stats.h
 include/snort/dynamic_preproc/mempool.h
 include/snort/dynamic_preproc/mpse_methods.h
 include/snort/dynamic_preproc/obfuscation.h
@@ -79,6 +80,7 @@ include/snort/dynamic_preproc/sfrt_flat.h
 include/snort/dynamic_preproc/sfrt_flat_dir.h
 include/snort/dynamic_preproc/sfrt_trie.h
 include/snort/dynamic_preproc/sidechannel_define.h
+include/snort/dynamic_preproc/smtp_api.h
 include/snort/dynamic_preproc/snort_bounds.h
 include/snort/dynamic_preproc/snort_debug.h
 include/snort/dynamic_preproc/ssl.h
@@ -144,6 +146,10 @@ lib/snort_dynamicpreprocessor/libsf_reputation_preproc.a
 lib/snort_dynamicpreprocessor/libsf_reputation_preproc.so
 lib/snort_dynamicpreprocessor/libsf_reputation_preproc.so.0
 lib/snort_dynamicpreprocessor/libsf_reputation_preproc.so.0.0.0
+lib/snort_dynamicpreprocessor/libsf_s7commplus_preproc.a
+lib/snort_dynamicpreprocessor/libsf_s7commplus_preproc.so
+lib/snort_dynamicpreprocessor/libsf_s7commplus_preproc.so.0
+lib/snort_dynamicpreprocessor/libsf_s7commplus_preproc.so.0.0.0
 lib/snort_dynamicpreprocessor/libsf_sdf_preproc.a
 lib/snort_dynamicpreprocessor/libsf_sdf_preproc.so
 lib/snort_dynamicpreprocessor/libsf_sdf_preproc.so.0
@@ -248,6 +254,7 @@ src/snort_dynamicsrc/event.h
 src/snort_dynamicsrc/file_api.h
 src/snort_dynamicsrc/file_mail_common.h
 src/snort_dynamicsrc/idle_processing.h
+src/snort_dynamicsrc/memory_stats.h
 src/snort_dynamicsrc/mpse_methods.h
 src/snort_dynamicsrc/obfuscation.h
 src/snort_dynamicsrc/pcap_pkthdr32.h
@@ -314,7 +321,7 @@ src/snort_dynamicsrc/stream_api.h
 src/snort_dynamicsrc/treenodes.h
 src/snort_dynamicsrc/util_unfold.c
 src/snort_dynamicsrc/util_unfold.h
-@unexec rmdir "/var/log/snort" >/dev/null 2>&1 || :
+@postunexec rmdir "/var/log/snort" >/dev/null 2>&1 || :
 @dir src/snort_dynamicsrc
 @dir src
 %%PORTDOCS%%@dir %%DOCSDIR%%
@@ -327,3 +334,4 @@ src/snort_dynamicsrc/util_unfold.h
 @dir etc/snort/rules
 @dir etc/snort/preproc_rules
 @dir etc/snort
+@dir /var/log/snort

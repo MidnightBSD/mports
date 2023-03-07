@@ -1,13 +1,14 @@
 PORTNAME=	snort
-PORTVERSION=	2.9.15
+PORTVERSION=	2.9.20
 CATEGORIES=	security
 MASTER_SITES=	https://snort.org/downloads/snort/ \
-		ZI
+		https://snort.org/downloads/archive/snort/
 
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight network intrusion detection system
+WWW=		https://www.snort.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -74,8 +75,8 @@ FILEINSPECT_CONFIGURE_ENABLE=	file-inspect
 
 BARNYARD_RUN_DEPENDS=	barnyard2:security/barnyard2
 PULLEDPORK_RUN_DEPENDS=	pulledpork.pl:security/pulledpork
-APPID_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
-APPID_CONFIGURE_ENV+=	luajit_CFLAGS="-I${LOCALBASE}/include/luajit-2.0" \
+APPID_USES=		luajit
+APPID_CONFIGURE_ENV+=	luajit_CFLAGS="-I${LUAJIT_INCDIR}" \
 			luajit_LIBS="-L${LOCALBASE}/lib -lluajit-5.1"
 
 .include <bsd.mport.options.mk>
