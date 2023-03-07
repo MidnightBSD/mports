@@ -409,8 +409,8 @@ do-install:
 	   ${FIND} . -not -type d | ${SORT} | \
 	   ${SED} -e 's,^\.,${EXAMPLESDIR_REL}/${BEATMOD}.modules.d,' >> ${TMPPLIST}; \
 	   ${MKDIR} ${STAGEDIR}${ETCDIR}/${BEATMOD}.modules.d && \
-	   echo "The modules.d files are now in ${EXAMPLESDIR}/${BEATMOD}.modules.d" > \
-	     ${STAGEDIR}${ETCDIR}/${BEATMOD}.modules.d/README; \
+	   echo "The modules.d files are now in ${LOCALBASE}/${EXAMPLESDIR_REL}/${BEATMOD}.modules.d" > \
+	     ${ETCDIR}/${BEATMOD}.modules.d/README; \
 	   echo ${ETCDIR_REL}/${BEATMOD}.modules.d/README >> ${TMPPLIST}; \
 	 fi)
 	(MONITORSD_SRC=${WRKDIR}/${BEATMOD}-${DISTVERSION}-darwin-x86_64/monitors.d; \
@@ -424,7 +424,7 @@ do-install:
 	   ${FIND} . -not -type d | ${SORT} | \
 	   ${SED} -e 's,^\.,${EXAMPLESDIR_REL}/${BEATMOD}.monitors.d,' >> ${TMPPLIST}; \
 	   ${MKDIR} ${STAGEDIR}${ETCDIR}/${BEATMOD}.monitors.d && \
-	   echo "The monitors.d files are now in ${EXAMPLESDIR}/${BEATMOD}.monitors.d" > \
+	   echo "The monitors.d files are now in ${LOCALBASE}/${EXAMPLESDIR_REL}/${BEATMOD}.monitors.d" > \
 	     ${STAGEDIR}${ETCDIR}/${BEATMOD}.monitors.d/README; \
 	   echo ${ETCDIR_REL}/${BEATMOD}.monitors.d/README >> ${TMPPLIST}; \
 	 fi)
