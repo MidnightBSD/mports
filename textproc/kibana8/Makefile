@@ -7,11 +7,11 @@ MASTER_SITES=	https://artifacts.elastic.co/downloads/kibana/ \
 PKGNAMESUFFIX=	8
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	elastic@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Browser based analytics and search interface to ElasticSearch
 WWW=		https://www.elastic.co/products/kibana
 
-LICENSE=	APACHE20
+LICENSE=	apache2
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node16
 LIB_DEPENDS=	libre2.so:devel/re2 \
