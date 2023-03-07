@@ -440,5 +440,9 @@ do-install:
 	   ${SED} -e 's,^\.,${DATADIR_REL}/${BEATMOD}/kibana,' >> ${TMPPLIST}; \
 	 fi)
 .endfor
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${PREFIX}/etc/beats/filebeat.modules.d/README \
+		${PREFIX}/etc/beats/heartbeat.monitors.d/README \
+		${PREFIX}/etc/beats/metricbeat.modules.d/README \
 
 .include <bsd.port.mk>
