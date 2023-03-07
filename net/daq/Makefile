@@ -7,6 +7,7 @@ MASTER_SITES=	https://snort.org/downloads/snortplus/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data Acquisition abstraction library for snort 2.9+
+WWW=		https://www.snort.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
