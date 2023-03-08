@@ -38,6 +38,7 @@ SUBDIR += ftgl
 SUBDIR += gd
 SUBDIR += gdchart
 SUBDIR += gdk-pixbuf2
+SUBDIR += geeqie
 SUBDIR += gegl
 SUBDIR += gexiv2
 SUBDIR += giblib
