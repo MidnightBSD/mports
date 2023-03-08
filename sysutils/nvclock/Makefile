@@ -1,5 +1,3 @@
-
-
 PORTNAME=	nvclock
 DISTVERSION=	0.8b4
 PORTREVISION=	3
@@ -9,6 +7,7 @@ DISTNAME=	nvclock${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	nVidia graphic card status and overclocking tool
+WWW=		https://www.linuxhardware.org/nvclock/
 
 LICENSE=	gpl2
 
@@ -46,5 +45,8 @@ post-patch:
 		${WRKSRC}/src/qt/Makefile.in
 	@${REINPLACE_CMD} 's/-lnvcontrol/& @X11_LIBS@/' \
 		${WRKSRC}/src/gtk/Makefile.in
+# Fix the build with -fno-common (for Clang 11 and GCC 10)
+	@${REINPLACE_CMD} '/option_list/s,^,extern ,' \
+		${WRKSRC}/src/nvcontrol/nvcontrol.h
 
 .include <bsd.port.mk>
