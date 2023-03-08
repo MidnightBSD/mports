@@ -1,5 +1,3 @@
-# Created by: Roman Bogorodskiy
-
 PORTNAME=	wzdftpd
 PORTVERSION=	0.8.3
 PORTREVISION=	1
@@ -8,8 +6,9 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-sources/${PORTNAME}-${PORTVERSION:R}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modular FTP server configurable online using SITE commands
+WWW=		https://sourceforge.net/projects/wzdftpd/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf:2.69 cpe gettext-tools libtool localbase pkgconfig
