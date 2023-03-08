@@ -1,104 +1,151 @@
 PORTNAME=	distcc
-PORTVERSION=	3.1
-PORTREVISION=	4
+DISTVERSIONPREFIX=	v
+DISTVERSION=	3.3.5
+PORTREVISION=	0
 CATEGORIES=	devel
-MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Distribute compilation of C(++) code acrosss machines on a network
+COMMENT=	Distribute compilation of C(++) code across machines on a network
 WWW=		https://distcc.github.io/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${LOCALBASE}/lib/libiberty.a:devel/gnulibiberty
 LIB_DEPENDS=	libpopt.so:devel/popt
 
-USES=		gmake tar:bzip2
+USES=		alias autoreconf cpe gmake libtool localbase pkgconfig
+USE_GITHUB=	yes
+USE_RC_SUBR=	distccd
+
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-gprof --disable-Werror
-WANT_GNOME=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
-DISTCCD_PIDFILE=/var/run/distccd.pid
-USE_RC_SUBR=	distccd.sh
-SUB_LIST=	DISTCCD_PIDFILE=${DISTCCD_PIDFILE}
+CONFIGURE_ARGS=	--disable-Werror \
+		--sysconfdir=${ETCDIR} \
+		CC="${CC}" \
+		PTHREAD_CC="${CC}"
 
-OPTIONS=	GNOME	"Build GUI monitor based on GNOME"	Off \
-		GTK	"Build GUI monitor based on GTK"	Off \
-		RFC2553 "Enable IPv6 support"	Off \
-		AVAHI "Enable Avahi Zeroconf/mDNS/Bonjour support"	Off \
-		COMPILER_LINKS	"Create symlinks to distcc"	On
+TEST_TARGET=	check
 
-.include <bsd.port.pre.mk>
+ETCDIR=		${PREFIX}/etc
 
-.if defined(WITHOUT_AVAHI)
-CONFIGURE_ARGS+=	--without-avahi
-.else
-LIB_DEPENDS+=	libavahi-glib.so:${PORTSDIR}/net/avahi-app
-.endif
+SUB_FILES=	pkg-message
+SUB_LIST=	DISTCCD_PIDFILE=/var/run/distccd.pid
 
-.if defined(WITHOUT_RFC2553)
-CONFIGURE_ARGS+=	--disable-rfc2553
-.else
-CONFIGURE_ARGS+=	--enable-rfc2553
-.endif
+USERS=		distcc
+GROUPS=		distcc
 
-.if defined(WITH_COMPILER_LINKS)
+PLIST_FILES=	${_BIN_FILES:S|^|bin/|} \
+		${_CONFIG_FILES:S|^|${ETCDIR}/${PORTNAME}/|} \
+		${_DISTCC_COMPILERS:S|^|${CCLINKDIR}/|} \
+		${_MAN_FILES:S|^|man/man1/|:S|$|.gz|} \
+		${_SBIN_FILES:S|^|sbin/|} \
+		etc/default/distcc
+
+OPTIONS_DEFINE=		AVAHI CLANGLINK DOCS IPV6 LLVMLINK PUMP GUI
+
+CLANGLINK_DESC=	Create clang compiler links if clang is installed
+GUI_DESC=	Build GUI distcc monitor
+LLVMLINK_DESC=	Create llvm compiler links if llvm is installed
+PUMP_DESC=	Distribute compilation as well as preprocessing to distcc servers
+
+AVAHI_LIB_DEPENDS=	libavahi-client.so:net/avahi-app
+AVAHI_CONFIGURE_WITH=	avahi
+DOCS_PLIST_FILES+=	${_DOC_FILES:S|^|${DOCSDIR_REL}/|} \
+			${_README_FILES:S|^|${DOCSDIR_REL}/|}
+GUI_USES=		gnome
+GUI_USE=		GNOME=gtk20
+GUI_CONFIGURE_WITH=	gtk
+IPV6_CONFIGURE_ENABLE=	rfc2553
+PUMP_USES=		python:3.6+
+PUMP_CONFIGURE_ENABLE=	pump-mode
+PUMP_PLIST_FILES=	${PYTHON_SITELIBDIR}/include_server-${PORTVERSION}-py${PYTHON_VER}.egg-info \
+			${PYTHON_SITELIBDIR}/include_server/basics.py \
+			${PYTHON_SITELIBDIR}/include_server/basics_test.py \
+			${PYTHON_SITELIBDIR}/include_server/c_extensions_test.py \
+			${PYTHON_SITELIBDIR}/include_server/cache_basics.py \
+			${PYTHON_SITELIBDIR}/include_server/compiler_defaults.py \
+			${PYTHON_SITELIBDIR}/include_server/compress_files.py \
+			${PYTHON_SITELIBDIR}/include_server/distcc_pump_c_extensions.cpython-${PYTHON_SUFFIX}.so \
+			${PYTHON_SITELIBDIR}/include_server/include_analyzer.py \
+			${PYTHON_SITELIBDIR}/include_server/include_analyzer_memoizing_node.py \
+			${PYTHON_SITELIBDIR}/include_server/include_analyzer_memoizing_node_test.py \
+			${PYTHON_SITELIBDIR}/include_server/include_analyzer_test.py \
+			${PYTHON_SITELIBDIR}/include_server/include_server.py \
+			${PYTHON_SITELIBDIR}/include_server/include_server_test.py \
+			${PYTHON_SITELIBDIR}/include_server/macro_eval.py \
+			${PYTHON_SITELIBDIR}/include_server/macro_eval_test.py \
+			${PYTHON_SITELIBDIR}/include_server/mirror_path.py \
+			${PYTHON_SITELIBDIR}/include_server/mirror_path_test.py \
+			${PYTHON_SITELIBDIR}/include_server/parse_command.py \
+			${PYTHON_SITELIBDIR}/include_server/parse_command_test.py \
+			${PYTHON_SITELIBDIR}/include_server/parse_file.py \
+			${PYTHON_SITELIBDIR}/include_server/parse_file_test.py \
+			${PYTHON_SITELIBDIR}/include_server/run.py \
+			${PYTHON_SITELIBDIR}/include_server/setup.py \
+			${PYTHON_SITELIBDIR}/include_server/statistics.py
+
+# Leave CCLINKDIR without a leading underscore as it is a variable, which could
+# be set by the user.
 CCLINKDIR?=		libexec/distcc
-PLIST_DIRS=		${CCLINKDIR}
-GNU_COMPILERS=		34 42 44 -ooo
-DISTCC_COMPILERS=	cc c++ gcc g++ ${GNU_COMPILERS:S|^|gcc|} ${GNU_COMPILERS:S|^|g++|}
-DISTCC_COMPILERS+=	clang clang++ llvm-gcc llvm-c++ llvm-g++
+_DISTCC_COMPILERS=	CC c++ cc
+
+_CONFIG_FILES=	clients.allow commands.allow.sh hosts
+_BIN_FILES=	distcc distccmon-text lsdistcc
+_DOC_FILES=	protocol-1.txt protocol-2.txt protocol-3.txt \
+		protocol-3-impl.txt protocol-gssapi.txt reporting-bugs.txt \
+		status-1.txt survey.txt
+_MAN_FILES=	distcc.1 distccd.1 distccmon-text.1 include_server.1 lsdistcc.1 \
+		pump.1
+_README_FILES=	AUTHORS COPYING INSTALL NEWS README README.pump TODO
+_SBIN_FILES=	distccd
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MCLANGLINK}
+CLANG_COMPILERS=	-devel 31 32 33 34 35 36 37 38 39
+_DISTCC_COMPILERS+=	clang++ clang ${CLANG_COMPILERS:S|^|clang++|} \
+			${CLANG_COMPILERS:S|^|clang|}
+.endif
+GNU_COMPILERS=		34 42 43 44 45 46 47 48 49 5
+_DISTCC_COMPILERS+=	gcc g++ ${GNU_COMPILERS:S|^|g++|} \
+			${GNU_COMPILERS:S|^|gcc|}
 .if ${ARCH} == "i386"
-DISTCC_COMPILERS+=	icc icpc
+_DISTCC_COMPILERS+=	icc icpc
 .endif
-.if defined(EXTRA_COMPILERS)
-DISTCC_COMPILERS+=	${EXTRA_COMPILERS}
+.if ${PORT_OPTIONS:MLLVMLINK}
+_DISTCC_COMPILERS+=	llvm-c++ llvm-g++ llvm-gcc
 .endif
-PLIST_FILES+=		${DISTCC_COMPILERS:S|^|${CCLINKDIR}/|}
+_DISTCC_COMPILERS+=	${EXTRA_COMPILERS}
+
+.if ${PORT_OPTIONS:MGTUI}
+PKGNAMESUFFIX=	-gtk
+_BIN_FILES+=	distccmon-gnome
+PLIST_FILES+=	${DESKTOPDIR}/distccmon-gnome.desktop \
+		share/pixmaps/distccmon-gnome-icon.png
 .endif
 
-.if defined(WITH_GNOME)
-USE_GNOME=		libgnomeui
-CONFIGURE_ARGS+=	--with-gnome
-PKGNAMESUFFIX=		-gnome
-PLIST_SUB+=		WITH_GNOME=""
-.elif defined(WITH_GTK)
-USE_GNOME=		gtk20
-CONFIGURE_ARGS+=	--with-gtk
-PKGNAMESUFFIX=		-gtk
-PLIST_SUB+=		WITH_GNOME=""
-.else
-PLIST_SUB+=		WITH_GNOME="@comment "
-.endif
+post-patch-GUI-on:
+	${REINPLACE_CMD} -e 's|PKGDATADIR "|"${PREFIX}/share/pixmaps|' \
+	    ${WRKSRC}/src/mon-gnome.c
 
-DOC_FILES=	AUTHORS INSTALL NEWS README \
-		doc/protocol-1.txt doc/status-1.txt \
-		doc/protocol-2.txt doc/reporting-bugs.txt
-
-do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/distcc ${PREFIX}/bin
-	@${INSTALL_PROGRAM} ${WRKSRC}/distccmon-text ${PREFIX}/bin
-.if defined(WITH_GNOME) || defined(WITH_GTK)
-	@${INSTALL_PROGRAM} ${WRKSRC}/distccmon-gnome ${PREFIX}/bin
+.if ${PORT_OPTIONS:MPUMP}
+_BIN_FILES+=	pump
 .endif
-	@${INSTALL_PROGRAM} ${WRKSRC}/distccd ${PREFIX}/sbin
 
 post-install:
-	@${TOUCH} ${DISTCCD_PIDFILE}
-.if defined(WITH_COMPILER_LINKS)
 	@${MKDIR} ${PREFIX}/${CCLINKDIR}
-.for link in ${DISTCC_COMPILERS}
-	${LN} -sf ${PREFIX}/bin/distcc ${PREFIX}/${CCLINKDIR}/${link}
+.for link in ${_DISTCC_COMPILERS}
+	@${LN} ${PREFIX}/bin/distcc \
+	    ${PREFIX}/${CCLINKDIR}/${link}
 .endfor
-.endif
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for FILE in ${DOC_FILES}
-	@${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
-.endfor
-.endif
-.for f in distcc.1 distccd.1 distccmon-text.1
-	@${INSTALL_MAN} ${WRKSRC}/man/${f} ${MANPREFIX}/man/man1
-.endfor
+	${RM} -rf ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/*/__pycache__
+	${RM} -rf ${PREFIX}/${DOCSDIR_REL}/example
 
-.include <bsd.port.post.mk>
+post-install-PUMP-on:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/include_server/distcc_pump_c_extensions.cpython-${PYTHON_SUFFIX}.so
+
+post-install-PUMP-off:
+	-${RM} ${FAKE_DESTDIR}${PUMP_PLIST_FILES}
+	-${RM} ${FAKE_DESTDIR}/bin/pump
+
+.include <bsd.port.mk>

@@ -1,4 +1,3 @@
-SHA256 (distcc-3.1.tar.bz2) = f55dbafd76bed3ce57e1bbcdab1329227808890d90f4c724fcd2d53f934ddd89
-SIZE (distcc-3.1.tar.bz2) = 588820
-SHA256 (distcc-avahi-080101.patch) = 4e506a8a2299af18839c443b8665ea4fe4492bf3ecae010d262406c01509058e
-SIZE (distcc-avahi-080101.patch) = 387519
+TIMESTAMP = 1615549770
+SHA256 (distcc-distcc-v3.3.5_GH0.tar.gz) = 13a4b3ce49dfc853a3de550f6ccac583413946b3a2fa778ddf503a9edc8059b0
+SIZE (distcc-distcc-v3.3.5_GH0.tar.gz) = 1002090
