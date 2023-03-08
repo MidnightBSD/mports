@@ -93,7 +93,7 @@ do-install:
 	${MKDIR} ${WWWDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${ETCDIR}/kibana.yml.sample
 	(cd ${WRKSRC} && \
-		${RM} -r config node optimize && \
+		-${RM} -r config node optimize && \
 		${COPYTREE_SHARE} . ${WWWDIR} && \
 		${COPYTREE_BIN} bin ${WWWDIR})
 	${INSTALL} -lrs ${ETCDIR} ${WWWDIR}/config
