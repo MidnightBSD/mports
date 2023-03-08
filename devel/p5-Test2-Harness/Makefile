@@ -1,5 +1,3 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	Test2-Harness
 PORTVERSION=	0.001069
 CATEGORIES=	devel perl5
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test2 Harness designed for the Test2 event system
+WWW=		https://metacpan.org/release/Test2-Harness
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
@@ -26,5 +25,6 @@ RUN_DEPENDS=	p5-Data-UUID>=1.148:devel/p5-Data-UUID \
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
+NO_TEST=	yes
 
 .include <bsd.port.mk>
