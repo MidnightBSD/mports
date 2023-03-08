@@ -161,6 +161,7 @@ SUBDIR += rabbitmq
 SUBDIR += rabbitmq-c
 SUBDIR += rclone
 SUBDIR += rdesktop
+SUBDIR += remmina
 SUBDIR += remotedesk
 SUBDIR += rsync
 SUBDIR += samba413
