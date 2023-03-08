@@ -17,7 +17,7 @@ USES=		gmake pkgconfig xorg xorg-cat:lib
 USE_LDCONFIG=	yes
 USE_XORG=	xcb xorg-macros
 
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
 GNU_CONFIGURE=	yes
 
 post-patch:
