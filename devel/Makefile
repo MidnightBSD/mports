@@ -151,6 +151,7 @@ SUBDIR += gmake
 SUBDIR += gn
 SUBDIR += gnome-common
 SUBDIR += gnulib
+SUBDIR += gnulibiberty
 SUBDIR += gnustep
 SUBDIR += gnustep-make
 SUBDIR += go-bindata
