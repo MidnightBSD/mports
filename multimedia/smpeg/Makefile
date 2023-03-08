@@ -1,14 +1,12 @@
-
-
 PORTNAME=	smpeg
 PORTVERSION=	0.4.4
 PORTREVISION=	10
 CATEGORIES=	multimedia
-MASTER_SITES=	ftp://sunsite.auc.dk/pub/os/linux/loki/open-source/smpeg/ \
-		GENTOO
+MASTER_SITES=	GENTOO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free MPEG1 video player library with sound support
+WWW=		https://www.lokigames.com/development/smpeg.php3
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -27,7 +25,7 @@ CONFIGURE_ARGS=	--disable-opengl-player \
 		--disable-gtk-player \
 		--enable-mmx
 CFLAGS+=	${CFLAGS_${CHOSEN_COMPILER_TYPE}}
-CFLAGS_clang=	-Wno-error-narrowing
+CFLAGS_clang=	-Wno-error-narrowing -Wno-c++11-narrowing
 LDFLAGS_i386=	-Wl,-znotext
 MAKE_ARGS=	LIBTOOL=${LOCALBASE}/bin/libtool
 INSTALL_TARGET=	install-strip
