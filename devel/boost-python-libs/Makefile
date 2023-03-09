@@ -14,7 +14,7 @@ BUILD_DEPENDS=	bjam:devel/boost-jam \
 		${PYNUMPY}
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
 
-USES=		python:3.8+
+USES=		python:3.8-3.11
 USE_PYTHON=	flavors
 
 OPTIONS_DEFINE=	DEBUG OPTIMIZED_CFLAGS
