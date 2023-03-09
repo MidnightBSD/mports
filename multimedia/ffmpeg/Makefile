@@ -1,13 +1,12 @@
-# Created by: Martin Matuska <mm@FreeBSD.org>
-
 PORTNAME=	ffmpeg
-PORTVERSION=	4.4.2
+PORTVERSION=	4.4.3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio net
 MASTER_SITES=	https://ffmpeg.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Realtime audio/video encoder/converter and streaming server
+WWW=		https://ffmpeg.org/
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
