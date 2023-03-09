@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO/IEC 23008-12:2017 HEIF file format de- and encoder
 WWW=		https://github.com/strukturag/libheif
 
-LICENSE=	gpl3
+LICENSE=	lgpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cmake compiler:c++11-lang cpe gettext-runtime gnome \
