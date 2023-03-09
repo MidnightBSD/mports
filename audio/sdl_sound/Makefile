@@ -15,10 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		libtool localbase sdl
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--program-prefix="" \
-			--build=${ARCH}-portbld-freebsd11.4 \
-			--host=${ARCH}-portbld-freebsd11.4 \
-			--target=${ARCH}-portbld-freebsd11.4
+CONFIGURE_ARGS=	--program-prefix="" 
 USE_SDL=	sdl
 INSTALL_TARGET=	install-strip
 
