@@ -1,13 +1,12 @@
-
-
 PORTNAME=	liba52
 PORTVERSION=	0.7.4
 CATEGORIES=	audio
-MASTER_SITES=	http://liba52.sourceforge.net/files/
+MASTER_SITES=	https://liba52.sourceforge.net/files/
 DISTNAME=	a52dec-${PORTVERSION:S/.b/b/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free library for decoding ATSC A/52 streams, aka AC-3
+WWW=		https://liba52.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
