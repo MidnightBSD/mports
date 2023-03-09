@@ -5,6 +5,7 @@ MASTER_SITES=	https://github.com/aide/aide/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File and directory integrity checker
+WWW=		https://aide.github.io/
 
 LICENSE=	gpl2
 
