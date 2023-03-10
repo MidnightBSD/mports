@@ -29,6 +29,7 @@ SUBDIR += ghostscript9-x11
 SUBDIR += gimp-gutenprint
 SUBDIR += gsfonts
 SUBDIR += gspdf
+SUBDIR += gutenprint
 SUBDIR += gutenprint-base
 SUBDIR += gv
 SUBDIR += harfbuzz
