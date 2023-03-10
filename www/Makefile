@@ -163,6 +163,7 @@ SUBDIR += py-beautifulsoup
 SUBDIR += py-bleach
 SUBDIR += py-boto3
 SUBDIR += py-bottle
+SUBDIR += py-cachecontrol
 SUBDIR += py-cheroot
 SUBDIR += py-cssselect
 SUBDIR += py-cssutils
