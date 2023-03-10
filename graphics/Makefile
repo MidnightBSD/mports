@@ -43,6 +43,7 @@ SUBDIR += gexiv2
 SUBDIR += giblib
 SUBDIR += giflib
 SUBDIR += gifsicle
+SUBDIR += gimp
 SUBDIR += gimp-app
 SUBDIR += gle
 SUBDIR += glew
