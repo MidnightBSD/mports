@@ -1,100 +1,70 @@
-PORTNAME?=	gutenprint
-PORTVERSION=	5.2.10
+PORTNAME=	gutenprint
+PORTVERSION=	5.3.4
 CATEGORIES=	print
-MASTER_SITES=	SF/gimp-print/gutenprint-5.2/${PORTVERSION}
-PKGNAMESUFFIX?=	-base
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GutenPrint Printer Driver
+COMMENT=	Gutenprint Printer Drivers
+WWW=		http://gimp-print.sourceforge.net/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	gimp-print-[0-9]*
-
-USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
-USE_GNOME=	gtk20
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=--with-gimp=no --with-gimp2=no
+CONFIGURE_ARGS=	--disable-static --enable-cups-ppds \
+		--enable-cups-1_2-enhancements \
+		--enable-simplified-cups-ppds \
+		--disable-globalized-cups-ppds \
+		--enable-cups-level3-ppds \
+		--disable-translated-cups-ppds
+INSTALL_TARGET=	install-strip
+USES=		compiler:c11 cpe gettext gmake libtool pathfix perl5 pkgconfig \
+		tar:xz
+CPE_VENDOR=	${PORTNAME}_project
+
+OPTIONS_DEFINE=		DOCS NLS
+OPTIONS_SUB=		yes
+DOCS_CONFIGURE_WITH=	doc
+NLS_CONFIGURE_ENABLE=	nls
+
+.if !defined(GUT_SLAVE)
+LIB_DEPENDS+=	libcupsimage.so:print/cups
+RUN_DEPENDS+=	${LOCALBASE}/libexec/cups/filter/gstoraster:print/cups-filters
+CONFIGURE_ARGS+=--disable-libgutenprintui2 --without-gimp2 \
+		--with-cups=${PREFIX} \
+		--with-cups-config=${PREFIX}/bin/cups-config
+USES+=		iconv
 USE_LDCONFIG=	yes
-
-CPPFLAGS+=	-I${LOCALBASE}/include -I${PREFIX}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -L${PREFIX}/lib
-
-.include <bsd.port.pre.mk>
-
-.if ${SLAVE_PORT}=="yes"
-LIB_DEPENDS+=	libgutenprintui2.so:${PORTSDIR}/print/gutenprint-base
-PKG_CONFIG?=	${LOCALBASE}/bin/pkg-config
-GUTENPRINTUI2_LIBS=`${PKG_CONFIG} --libs gutenprintui2`
-.endif
-
-.if defined(GUT_SLAVE) && ${GUT_SLAVE}=="gimp"
-LIB_DEPENDS+=	libgimp-2.0.so:${PORTSDIR}/graphics/gimp-app \
-		libgutenprint.so:${PORTSDIR}/print/gutenprint-base
-CONFIGURE_ARGS=--with-gimp2=yes # Override CONFIGURE_ARGS
+.else
+LIB_DEPENDS+=	libgutenprint.so:print/gutenprint
+MAKE_ARGS+=	GUTENPRINT_LIBS='`$$(PKG_CONFIG) --libs gutenprint`'
+.if ${GUT_SLAVE} == "gimp"
+USES+=		gnome
+USE_GNOME+=	cairo gdkpixbuf2
+LIB_DEPENDS+=	libbabl-0.1.so:x11/babl \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libgegl-0.4.so:graphics/gegl \
+		libgimp-2.0.so:graphics/gimp-app \
+		libjson-glib-1.0.so:devel/json-glib
+CONFIGURE_ARGS+=--enable-libgutenprintui2 --with-gimp2
 BUILD_WRKSRC=	${WRKSRC}/src/gimp2
 INSTALL_WRKSRC=	${WRKSRC}/src/gimp2
-.else
-CONFIGURE_ARGS+=--without-gimp2
+USE_GNOME+=	gtk20
 .endif
-
-.if defined(GUT_SLAVE) && ${GUT_SLAVE}=="cups"
-LIB_DEPENDS+=	libcups.so:${PORTSDIR}/print/cups-client \
-		libcupsimage.so:${PORTSDIR}/print/cups-image
-RUN_DEPENDS+=	espgs:${PORTSDIR}/print/cups-pstoraster
-CONFIGURE_ARGS+=	--with-cups=${PREFIX} \
-			--enable-cups-ppds \
-			--enable-cups-level3-ppds
-BUILD_WRKSRC=	${WRKSRC}/src/cups
-INSTALL_WRKSRC=	${WRKSRC}/src/cups
-.else
-CONFIGURE_ARGS+=	--without-cups
-.endif
-
-.if defined(GUT_SLAVE) && ${GUT_SLAVE}=="ijs"
-LIB_DEPENDS+=	libijs.so:${PORTSDIR}/print/libijs
-CONFIGURE_ARGS+=--with-ijs=yes
-BUILD_WRKSRC=	${WRKSRC}/src/ghost
-INSTALL_WRKSRC=	${WRKSRC}/src/ghost
-.else
-CONFIGURE_ARGS+=--without-ghostscript
-.endif
-
-.if defined(GUT_SLAVE) && ${GUT_SLAVE}=="foomatic"
-BUILD_DEPENDS+=	foomatic-combo-xml:${PORTSDIR}/print/foomatic-db-engine
-RUN_DEPENDS+=	foomatic-combo-xml:${PORTSDIR}/print/foomatic-db-engine \
-		${LOCALBASE}/share/cups/model/foomatic-db-ppds:${PORTSDIR}/print/foomatic-db
-CONFIGURE_ARGS+=--with-foomatic=yes --with-foomatic3=yes
-BUILD_WRKSRC=	${WRKSRC}/src/foomatic
-INSTALL_WRKSRC=	${WRKSRC}/src/foomatic
-.else
-CONFIGURE_ARGS+=--without-foomatic
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/bin/lpstat|${LOCALBASE}/bin/lpstat|' \
 		${WRKSRC}/src/gutenprintui2/plist.c
-.if ${SLAVE_PORT}=="no" || ${GUT_SLAVE}!="cups"
-	@${REINPLACE_CMD} -e 's|cups	||' ${WRKSRC}/src/Makefile.in
-.endif
-.if ${SLAVE_PORT}=="yes"
-	@${REINPLACE_CMD} -e 's|= escputil.1|= |' ${WRKSRC}/man/Makefile.in
-.endif
-	@${REINPLACE_CMD} -e 's|%%GUTENPRINTUI2_LIBS%%|${GUTENPRINTUI2_LIBS}|' \
+	@${REINPLACE_CMD} -e '/DEPENDENCIES/s/$$(GUTENPRINT_LIBS)//' \
 		${WRKSRC}/src/gimp2/Makefile.in
-	@${REINPLACE_CMD} -e 's|$$libdir/gimp/1.2/plug-ins||g' \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|= $$(pkglibdir)|= ${PREFIX}/libexec/cups|' \
-		${WRKSRC}/src/cups/Makefile.in
-
-pre-build:
-.if defined(GUT_SLAVE) && (${GUT_SLAVE}=="foomatic" || ${GUT_SLAVE}=="cups")
-	@(cd ${WRKSRC}/src/xml && ${MAKE})
-.endif
 
 post-install:
-.if ${SLAVE_PORT}=="yes"
-	@(cd ${WRKSRC}/man && ${GMAKE} ${INSTALL_TARGET})
+.if defined(GUT_SLAVE) && ${GUT_SLAVE} == "gimp"
+	@(cd ${WRKSRC}/src/gutenprintui2 && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
+		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
+.else
+	@(test -d ${FAKE_DESTDIR}/${DATADIR}/doc/reference-html && ${RMDIR} ${FAKE_DESTDIR}/${DATADIR}/doc/reference-html || :)
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
