@@ -1,5 +1,3 @@
-
-
 PORTNAME?=	gutenprint
 PORTVERSION=	5.2.10
 CATEGORIES=	print
