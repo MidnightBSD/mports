@@ -100,6 +100,7 @@ SUBDIR += ruby32
 SUBDIR += rust
 SUBDIR += rust-bin
 SUBDIR += rust166-bin
+SUBDIR += rust167
 SUBDIR += scala
 SUBDIR += spidermonkey185
 SUBDIR += spidermonkey24
