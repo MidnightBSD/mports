@@ -1,10 +1,11 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.5.0
+DISTVERSION=	3.6.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AV1 reference encoder/decoder
+WWW=		https://aomedia.org/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
