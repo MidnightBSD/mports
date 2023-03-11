@@ -7,6 +7,7 @@ MASTER_SITES=	http://www.chiark.greenend.org.uk/~ian/adns/ftp/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy to use asynchronous-capable DNS client library and utilities
+WWW=		https://www.chiark.greenend.org.uk/~ian/adns/
 
 LICENSE=	gpl3
 
@@ -42,7 +43,7 @@ post-install-DOCS-on:
 
 post-install:
 .for f in ${TOSTRIP}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${f}
+	${STRIP_CMD} ${PREFIX}/${f}
 .endfor
 
 .include <bsd.port.mk>
