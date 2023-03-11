@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Class-DBI-AbstractSearch
 PORTVERSION=	0.07
 CATEGORIES=	databases perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Abstract Class::DBI SQL with SQL::Abstract
+WWW=		https://metacpan.org/release/Class-DBI-AbstractSearch
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	${SITE_PERL}/Class/DBI.pm:databases/p5-Class-DBI \
@@ -19,6 +18,5 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
