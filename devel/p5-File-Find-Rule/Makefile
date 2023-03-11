@@ -1,5 +1,3 @@
-
-
 PORTNAME=	File-Find-Rule
 PORTVERSION=	0.34
 CATEGORIES=	devel perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Alternative interface to File::Find
+WWW=		https://metacpan.org/release/File-Find-Rule
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -19,6 +18,5 @@ RUN_DEPENDS=	p5-Number-Compare>=0:math/p5-Number-Compare \
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
