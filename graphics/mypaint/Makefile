@@ -1,9 +1,6 @@
-# Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
-
 PORTNAME=	mypaint
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.0.0
-PORTREVISION=	1
+DISTVERSION=	2.0.1
 CATEGORIES=	graphics
 
 PATCH_SITES=	https://github.com/garynthompson/${PORTNAME}/commit/
@@ -12,6 +9,7 @@ PATCHFILES=	94c623b788462fadb3e292b918edc4e90adf4faa.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast painting/scribbling program
+WWW=		http://mypaint.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
