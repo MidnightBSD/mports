@@ -844,4 +844,3 @@ openjdk8/LICENSE
 @dir openjdk8
 @postexec /usr/local/bin/registervm '/usr/local/openjdk8/bin/java'
 @preunexec /usr/local/bin/unregistervm '/usr/local/openjdk8/bin/java'
-        
