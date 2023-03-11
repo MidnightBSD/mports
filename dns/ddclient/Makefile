@@ -1,5 +1,3 @@
-# Created by: Dirk Froemberg <dirk@FreeBSD.org>
-
 PORTNAME=	ddclient
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.9.1
@@ -7,8 +5,9 @@ CATEGORIES=	dns
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update dynamic DNS entries
+WWW=		https://github.com/ddclient/ddclient
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	p5-Data-Validate-IP>0:net-mgmt/p5-Data-Validate-IP
