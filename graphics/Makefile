@@ -46,6 +46,7 @@ SUBDIR += giflib
 SUBDIR += gifsicle
 SUBDIR += gimp
 SUBDIR += gimp-app
+SUBDIR += gimp-data-extras
 SUBDIR += gle
 SUBDIR += glew
 SUBDIR += glitz
