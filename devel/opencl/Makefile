@@ -1,7 +1,5 @@
-# Created by: Oliver Hartmann <ohartman@zedat.fu-berlin.de>
-
 PORTNAME=	opencl
-PORTVERSION=	3.0.8
+PORTVERSION=	3.0.12
 CATEGORIES=	devel
 
 MAINTAINER=	poprts@MidnightBSD.org
@@ -15,8 +13,8 @@ GH_PROJECT=	OpenCL-Headers OpenCL-CLHPP:clhpp
 GH_TAGNAME=	${HEADER_TAG} ${CLHPP_TAG}:clhpp
 
 # the header releases don't have tags yet, so use git commit for now
-HEADER_TAG=	v2021.06.30
-CLHPP_TAG=	v2.0.15	#  include missing CL/opencl.hpp
+HEADER_TAG=	v2022.09.30
+CLHPP_TAG=	v2022.09.30	#  include missing CL/opencl.hpp
 
 NO_BUILD=	yes
 NO_ARCH=	yes

@@ -1,5 +1,3 @@
-# Created by: GreenDog <fiziologus@gmail.com>
-
 PORTNAME=	lua
 PORTVERSION=	5.2.4
 PORTREVISION=	1
@@ -9,10 +7,11 @@ PKGNAMESUFFIX=	52
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, compilable scripting language providing easy access to C code
+WWW=		https://www.lua.org/
 
 LICENSE=	mit
 
-USES=		libedit lua:core,52
+USES=		cpe libedit lua:core,52
 USE_LDCONFIG=	yes
 
 FAKE_OPTS=	prefixhack

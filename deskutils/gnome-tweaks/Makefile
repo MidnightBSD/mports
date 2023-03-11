@@ -1,21 +1,16 @@
-# Created by: Jeremy Messenger <mezz@FreeBSD.org>
-
 PORTNAME=	gnome-tweaks
-PORTVERSION=	40.0
-PORTREVISION=	3
+PORTVERSION=	40.10
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES+=	56f39dc7d04a.patch:-p1 # https://gitlab.gnome.org/GNOME/gnome-tweaks/-/merge_requests/86
-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows to tweak some hidden settings in GNOME3
+WWW=		https://gitlab.gnome.org/GNOME/gnome-tweaks
 
-LICENSE=	CC0-1.0 gpl3
+LICENSE=	CC0-1.0 gpl3+
 LICENSE_COMB=	multi
 LICENSE_FILE_CC0-1.0=	${WRKSRC}/LICENSES/CC0-1.0
-LICENSE_FILE_gpl3 =	${WRKSRC}/LICENSES/GPL-3.0
+LICENSE_FILE_gpl3+ =	${WRKSRC}/LICENSES/GPL-3.0
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 LIB_DEPENDS=	libhandy-1.so:x11-toolkits/libhandy
@@ -37,8 +32,8 @@ PORTSCOUT=	limitw:1,even
 # if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
 # with these files when module is imported from root user
 post-install:
-	@${FIND} ${STAGEDIR}${PREFIX} -name \*.pyc -delete
-	(cd ${STAGEDIR}${PREFIX} && \
+	@${FIND} ${PREFIX} -name \*.pyc -delete
+	(cd ${PREFIX} && \
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \

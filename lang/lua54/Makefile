@@ -1,17 +1,18 @@
 PORTNAME=	lua
-DISTVERSION=	5.4.3
+DISTVERSION=	5.4.4
 CATEGORIES=	lang
 MASTER_SITES=	https://www.lua.org/ftp/
 PKGNAMESUFFIX=	54
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Powerful, efficient, lightweight, embeddable scripting language
+WWW=		https://www.lua.org/
 
 LICENSE=	mit
 
 FAKE_OPTS=	prefixhack
 
-USES=		lua:core,54
+USES=		cpe lua:core,54
 USE_LDCONFIG=	yes
 
 # Overriding __MAKE_CONF makes sure that we don't re-parse

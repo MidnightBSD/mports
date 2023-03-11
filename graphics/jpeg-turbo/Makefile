@@ -1,5 +1,5 @@
 PORTNAME=	jpeg-turbo
-DISTVERSION=	2.1.4
+DISTVERSION=	2.1.5.1
 PORTREVISION?=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/${DISTVERSION}
@@ -18,16 +18,21 @@ LICENSE_FILE_IJG=	${WRKSRC}/README.ijg
 LICENSE_FILE_zlib=	${WRKSRC}/LICENSE.md
 LICENSE_PERMS_IJG=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		cmake cpe
+USES=		cmake cpe pathfix
 USE_LDCONFIG=	yes
-CMAKE_ON=	WITH_JPEG8
+
 CPE_PRODUCT=	libjpeg-turbo
 TEST_TARGET=	test
 
 PORTDOCS=	*
 DOCSDIR=	${PREFIX}/share/doc/libjpeg-turbo
 
-OPTIONS_DEFINE=	DOCS
+CMAKE_ON=	WITH_JPEG8
+
+OPTIONS_DEFINE=		DOCS OPTIMIZED_CFLAGS
+OPTIONS_DEFAULT=	OPTIMIZED_CFLAGS
+
+OPTIMIZED_CFLAGS_CFLAGS=	-O3
 
 .include <bsd.mport.options.mk>
 

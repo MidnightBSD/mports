@@ -6,6 +6,7 @@ CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Find processes that need restarting after an upgrade
+WWW=		https://github.com/Freaky/checkrestart
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

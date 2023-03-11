@@ -1,12 +1,15 @@
-# Created by: Jason Helfman <jgh@FreeBSD.org>
-
 PORTNAME=	virt-viewer
-PORTVERSION=	10.0
+PORTVERSION=	11.0
+PORTREVISION=	2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://virt-manager.org/download/sources/${PORTNAME}/
 
+PATCH_SITES=	https://gitlab.com/${PORTNAME}/${PORTNAME}/-/commit/
+PATCHFILES+=	41cc016278e7.patch:-p1 # https://gitlab.com/virt-viewer/virt-viewer/-/merge_requests/117
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides a graphical viewer for a guest OS display
+WWW=		https://virt-manager.org/
 
 LICENSE=	gpl2
 

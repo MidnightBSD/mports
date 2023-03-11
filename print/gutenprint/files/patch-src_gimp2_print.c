@@ -1,6 +1,7 @@
---- src/gimp2/print.c.orig	2019-03-10 16:27:46 UTC
-+++ src/gimp2/print.c
-@@ -114,8 +114,8 @@ stpui_get_thumbnail_data_function(void *
+--- src/gimp2/print.c.orig	2023-03-05 16:39:18.726997000 +0100
++++ src/gimp2/print.c	2023-03-05 16:39:46.126948000 +0100
+@@ -114,8 +114,8 @@
+
  {
    if (gimp_thumbnail_data)
      g_free(gimp_thumbnail_data);

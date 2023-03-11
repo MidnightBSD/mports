@@ -1,5 +1,3 @@
-# Created by: Tim Bishop <tim@bishnet.net>
-
 PORTNAME=	f-prot
 PORTVERSION=	6.5.1.5927
 PORTREVISION=	1
@@ -9,6 +7,7 @@ DISTNAME=	fp-FreeBSD-x86_32-ws-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	F-Prot Antivirus for BSD Workstations
+WWW=		https://www.f-prot.com/
 
 LICENSE=	f-prot-license
 LICENSE_NAME=	f-prot

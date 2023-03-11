@@ -1,11 +1,12 @@
 PORTNAME=	certbot-nginx
 PORTVERSION=	${ACME_VERSION}
 CATEGORIES=	security python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NGINX plugin for Certbot
+WWW=		https://github.com/certbot/certbot
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

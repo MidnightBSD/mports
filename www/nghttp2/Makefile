@@ -55,6 +55,12 @@ HPACK_LIB_DEPENDS=	libjansson.so:devel/jansson
 USE_GCC=8
 .endif
 
+.if (${OSVERSION} < 300000)
+# force openssl from mports.
+SSL_DEFAULT=    openssl
+.endif
+
+
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| lib||' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|$$[({]top_builddir[})]/lib/libnghttp2.la|-lnghttp2|' ${WRKSRC}/*/Makefile.in

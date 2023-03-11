@@ -1,21 +1,20 @@
 PORTNAME=	xf86-video-qxl
 DISTVERSION=	0.1.5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org X server -- QXL display driver
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 
-DEPRECATED=	uses deprecated version of python
-EXPIRATION_DATE=	2020-09-15
-
 BUILD_DEPENDS=	spice-protocol>=0.12.10:devel/spice-protocol \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
-LIB_DEPENDS=	libspice-server.so:devel/libspice-server
+LIB_DEPENDS=	libspice-server.so:devel/libspice-server \
+		libudev.so:devel/libudev-devd
 
-USES=		localbase:ldflags pkgconfig python:2.7 shebangfix xorg \
+USES=		localbase:ldflags pkgconfig python shebangfix xorg \
 		xorg-cat:driver
 USE_XORG=	xfont
 
@@ -27,8 +26,8 @@ SHEBANG_FILES=	scripts/Xspice
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
+	${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
 	${INSTALL_DATA} ${WRKSRC}/examples/spiceqxl.xorg.conf.example \
-		${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d/spiceqxl.xorg.conf.example
+		${PREFIX}/etc/X11/xorg.conf.d/spiceqxl.xorg.conf.example
 
 .include <bsd.port.mk>

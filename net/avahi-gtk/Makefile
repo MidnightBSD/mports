@@ -1,15 +1,18 @@
-
-
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	net
 PKGNAMESUFFIX=	-gtk
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk+ tools and bindings to the Avahi mDNS system
-LICENSE=	lgpl
 
-LIB_DEPENDS=	libavahi-common.so:${PORTSDIR}/net/avahi-app
-RUN_DEPENDS=	avahi-header>=0.6:${PORTSDIR}/net/avahi-header
+LICENSE=	lgpl2.1+
+
+LIB_DEPENDS=	libavahi-common.so:net/avahi-app \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libgdbm.so:databases/gdbm \
+		libharfbuzz.so:print/harfbuzz
+RUN_DEPENDS=	avahi-header>=0.6:net/avahi-header
 
 MASTERDIR=	${.CURDIR}/../avahi-app
 BUILD_WRKSRC=	${WRKSRC}/avahi-ui
@@ -20,20 +23,18 @@ PLIST=		${.CURDIR}/pkg-plist
 AVAHI_SLAVE=	gtk
 AVAHI_PKGCONFIG=avahi-ui.pc
 
-MANPAGES=	bssh.1
+USE_GNOME+=	atk cairo gdkpixbuf2 gtk20 pango
 
-USE_GNOME+=	libglade2
+do-build:
+	@${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-common
+	@${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-client
+	@${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-glib
+	@${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-ui libavahi-ui.la
 
-post-build:
-	@(cd ${WRKSRC}/avahi-discover-standalone; \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${ALL_TARGET})
+do-install:
+	@(cd ${WRKSRC}/avahi-ui; ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-libLTLIBRARIES)
 
 post-install:
-	@(cd ${WRKSRC}/avahi-discover-standalone; \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
-	${LN} -sf man/man1/bssh.1 ${PREFIX}/man/man1/bvnc.1
-	${LN} -sf man/man1/bssh.1 ${PREFIX}/man/man1/bshell.1
 	@${STRIP_CMD} ${PREFIX}/lib/libavahi-ui.so.0
-
 
 .include "${MASTERDIR}/Makefile"

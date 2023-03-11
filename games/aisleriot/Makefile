@@ -1,16 +1,11 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	aisleriot
-DISTVERSION=	3.22.19
+DISTVERSION=	3.22.25
 CATEGORIES=	games gnome
-MASTER_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/archive/${PORTVERSION}/
-DIST_SUBDIR=	gnome3
-
-#PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-#PATCHFILES+=	4bf6fcf5c804.patch:-p1 # https://gitlab.gnome.org/GNOME/aisleriot/-/issues/916
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of patience games written in guile scheme
+WWW=		https://wiki.gnome.org/Apps/Aisleriot
 
 LICENSE=	gpl3
 
@@ -21,13 +16,18 @@ LIB_DEPENDS=	libguile-2.2.so:lang/guile2 \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libgc-threaded.so:devel/boehm-gc-threaded
 
-CONFLICTS_INSTALL=	sol-[0-9]*
+CONFLICTS_INSTALL=	sol
 PORTSCOUT=	limitw:1,even
 
 USES=		desktop-file-utils gettext meson gnome pkgconfig \
 		python:build,3.6+ shebangfix xorg
+USE_GITLAB=	yes
 USE_GNOME=	cairo gtk30 intlhack librsvg2 libxml2:build
 USE_XORG=	x11
+
+GL_SITE=	https://gitlab.gnome.org/
+GL_ACCOUNT=	GNOME
+GL_COMMIT=	8a4542d2f44ee1425a56ac7595ed51449ae0290e
 
 MESON_ARGS=	-Dtheme_kde=false
 SHEBANG_FILES=	data/icons/meson_updateiconcache.py \
@@ -36,7 +36,5 @@ SHEBANG_FILES=	data/icons/meson_updateiconcache.py \
 		src/meson_gconf.py
 
 GLIB_SCHEMAS=	org.gnome.Patience.WindowState.gschema.xml
-
-INSTALLS_ICONS=	yes
 
 .include <bsd.port.mk>

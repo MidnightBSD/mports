@@ -1,5 +1,3 @@
-
-
 PORTNAME=	sendxmpp
 PORTVERSION=	1.24
 DISTVERSIONPREFIX=	v
@@ -8,6 +6,7 @@ CATEGORIES=	net-im perl5
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl-script to send xmpp (jabber) messages
+WWW=		https://sendxmpp.hostname.sk/
 
 LICENSE=	gpl2
 

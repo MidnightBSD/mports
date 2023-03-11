@@ -6,6 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backup content from DVD to hard disk
+WWW=		http://dvdbackup.sourceforge.net/
 
 LICENSE=	gpl3
 

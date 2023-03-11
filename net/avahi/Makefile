@@ -1,8 +1,6 @@
-
-
 PORTNAME=	avahi
-PORTVERSION=	0.6.31
-PORTREVISION?=	1
+PORTVERSION=	0.8
+PORTREVISION?=	0
 MASTER_SITES=   # none
 CATEGORIES?=	net dns
 DISTFILES=      # none
@@ -10,26 +8,27 @@ EXTRACT_ONLY=   # none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"meta-port" for the Avahi service discovery suite
+WWW=		https://www.avahi.org/
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1+
 
-RUN_DEPENDS=	avahi-app>=0.6.31:${PORTSDIR}/net/avahi-app
+RUN_DEPENDS=	avahi-app>=0.8:net/avahi-app
 
 NO_BUILD=       yes
 NO_MTREE=       yes
 
-OPTIONS_DEFINE=	AUTOIPD GTK MONO QT4 PYTHON
-OPTIONS_DEFAULT=AUTOIPD GTK
+OPTIONS_DEFINE=       AUTOIPD GTK2 GTK3 MONO QT5 PYTHON
+OPTIONS_DEFAULT=AUTOIPD GTK3
 AUTOIPD_DESC=	IPv4LL network address configuration daemon
-GTK_DESC=	Gtk+ tools and bindings
 LIBDNS_DESC=	Apple's mDNSResponder compatibility library
 
-AUTOIPD_RUN_DEPENDS=	avahi-autoipd:${PORTSDIR}/net/avahi-autoipd
-GTK_RUN_DEPENDS=	avahi-discover-standalone:${PORTSDIR}/net/avahi-gtk
-#LIBDNS_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/avahi-compat-libdns_sd.pc:${PORTSDIR}/net/avahi-libdns
-MONO_RUN_DEPENDS=	${LOCALBASE}/lib/mono/avahi-sharp/avahi-sharp.dll:${PORTSDIR}/net/avahi-sharp
-QT4_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/avahi-qt4.pc:${PORTSDIR}/net/avahi-qt4
-PYTHON_RUN_DEPENDS=	avahi-bookmarks:${PORTSDIR}/net/py-avahi
+AUTOIPD_RUN_DEPENDS=	avahi-autoipd:net/avahi-autoipd
+GTK2_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/avahi-ui.pc:net/avahi-gtk
+GTK3_RUN_DEPENDS=	avahi-discover-standalone:net/avahi-gtk3
+#LIBDNS_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/avahi-compat-libdns_sd.pc:net/avahi-libdns
+MONO_RUN_DEPENDS=	${LOCALBASE}/lib/mono/avahi-sharp/avahi-sharp.dll:net/avahi-sharp
+QT5_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/avahi-qt5.pc:net/avahi-qt5
+PYTHON_RUN_DEPENDS=	avahi-bookmarks:net/py-avahi
 
 do-install: build
 	@${DO_NADA}

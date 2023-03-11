@@ -1,5 +1,3 @@
-# Created by: Alan Eldridge <alane@FreeBSD.org>
-
 PORTNAME=	firefox
 DISTVERSION=	68.8.0
 PORTEPOCH=	1
@@ -51,10 +49,10 @@ MAKE_ENV+=    __FreeBSD__=10 __FreeBSD__version=1004501
 .include "Makefile.options"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
+	-${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
 		-e '/^Icon/s/=.*/=${FIREFOX_ICON:R}/' \
 		${FIREFOX_DESKTOP}
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+	-${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
 
 pre-configure:
@@ -62,8 +60,8 @@ pre-configure:
 	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf2.13)
 
 post-install:
-	${INSTALL_DATA} ${FIREFOX_DESKTOP} ${STAGEDIR}${PREFIX}/share/applications/
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
-	${LN} -sf ${FIREFOX_ICON_SRC} ${STAGEDIR}${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+	${INSTALL_DATA} ${FIREFOX_DESKTOP} ${PREFIX}/share/applications/
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
 
 .include <bsd.port.mk>

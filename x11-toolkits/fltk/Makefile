@@ -6,6 +6,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform C++ graphical user interface toolkit
+WWW=		https://www.fltk.org/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING

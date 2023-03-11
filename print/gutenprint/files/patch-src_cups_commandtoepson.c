@@ -1,5 +1,6 @@
---- src/cups/commandtoepson.c.orig	2018-01-28 02:32:45 UTC
-+++ src/cups/commandtoepson.c
+--- src/cups/commandtoepson.c.orig	2023-03-05 16:52:54.260430000 +0100
++++ src/cups/commandtoepson.c	2023-03-05 17:46:05.937425000 +0100
+
 @@ -25,12 +25,14 @@
   * Include necessary headers...
   */

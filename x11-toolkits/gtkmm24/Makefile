@@ -8,6 +8,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for Gtk+
+WWW=		https://www.gtkmm.org/
 
 LICENSE=	lgpl
 

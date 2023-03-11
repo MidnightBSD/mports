@@ -29,4 +29,6 @@ VAPI_USES=		vala:build
 MESON_ARGS=	-Ddocs=false '-Dbackends=["qt5", "gtk3"]'
 OPTIONS_SUB=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

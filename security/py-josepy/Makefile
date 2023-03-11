@@ -1,11 +1,12 @@
 PORTNAME=	josepy
-PORTVERSION=	1.5.0
+PORTVERSION=	1.9.0
 CATEGORIES=	security python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JOSE protocol implementation in Python
+WWW=		https://josepy.readthedocs.io/en/latest/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

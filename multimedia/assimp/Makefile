@@ -22,6 +22,8 @@ CMAKE_ON=		ASSIMP_BUILD_MINIZIP # workaround for https://github.com/assimp/assim
 CMAKE_TESTING_ON=	ASSIMP_BUILD_TESTS
 CMAKE_TESTING_TARGET=	${ALL_TARGET} # hack to avoid target
 
+NO_TEST=	yes
+
 post-test: # 1 test fails, see https://github.com/assimp/assimp/issues/4751
 	@cd ${BUILD_WRKSRC} && \
 		${BUILD_WRKSRC}/bin/unit

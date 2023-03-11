@@ -1,0 +1,11 @@
+--- server/vglserver_config.orig	2023-03-04 17:29:31 UTC
++++ server/vglserver_config
+@@ -25,7 +25,7 @@ BACKEND=glx
+ GID=
+ GROUPADD=/usr/sbin/groupadd
+ if [ ! -x $GROUPADD ]; then GROUPADD=groupadd; fi
+-if [ "`uname -s`" = "FreeBSD" ]; then
++if [ "`uname -s`" = "MidnightBSD" ]; then
+ 	GROUPADD="pw groupadd"
+ fi
+ LSMOD=/sbin/lsmod

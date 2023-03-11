@@ -1,11 +1,12 @@
 PORTNAME=	libpqxx
-PORTVERSION=	7.2.1
+PORTVERSION=	7.3.1
 CATEGORIES=	databases
 PKGNAMEPREFIX=	postgresql-
 DIST_SUBDIR=	postgresql
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	New C++ interface for PostgreSQL
+WWW=		http://pqxx.org/
 
 LICENSE=        bsd3
 

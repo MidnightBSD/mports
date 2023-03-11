@@ -5,6 +5,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Speech server for Festival Lite used by yasr and Emacspeak
+WWW=		http://eflite.sourceforge.net/
 
 BUILD_DEPENDS=	flite:audio/flite
 RUN_DEPENDS=	flite:audio/flite

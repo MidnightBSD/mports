@@ -45,7 +45,7 @@ GCC_DEFAULT?=		10
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
 # Possible values: 7, 8, 9, agpl
-GHOSTSCRIPT_DEFAULT?=	9
+GHOSTSCRIPT_DEFAULT?=	agpl
 # Possible values: 1.17, 1.18, 1.19-devel
 GO_DEFAULT?=            1.18
 # Possible values: 7, 8, 11, 13, 17, 18
@@ -58,7 +58,8 @@ LIBRSVG2_DEFAULT?=    rust
 LINUX_DEFAULT?=		c7
 # Possible values: 60, 70, -devel (to be used when non-base compiler is required)
 LLVM_DEFAULT?=		90
-LUA_DEFAULT?=		5.2
+LUA_DEFAULT?=		5.4
+LUAJIT_DEFAULT?=        luajit-devel
 # Possible values: 5.10, 5.20, 6.8
 MONO_DEFAULT=		5.10
 # Possible values: 5.5, 5.6, 5.7, 8.0, 10.3m, 10.4m, 10.5m, 5.5p, 5.6p, 5.7p, 5.6w, 5.7w
@@ -82,8 +83,12 @@ PYTHON2_DEFAULT?=	2.7
 PYTHON3_DEFAULT?=	3.8
 # Possible values: 2.7, 3.0, 3.1, 3.2
 RUBY_DEFAULT?=		3.0
-# Possible values: rust, rust-bin, rust166-bin
+# Possible values: rust, rust167, rust-bin, rust166-bin
+.if ${OSVERSION} < 300001
 RUST_DEFAULT?=		rust
+.else
+RUST_DEFAULT?=		rust167
+.endif
 # Possible values: 4.13
 SAMBA_DEFAULT?=		4.13
 # Possible values: base, openssl, libressl, libressl-devel

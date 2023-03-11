@@ -6,6 +6,7 @@ MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Firefox for FreeBSD
+WWW=		https://www.mozilla.com/firefox
 
 LICENSE=	mpl gpl2
 LICENSE_COMB=	dual

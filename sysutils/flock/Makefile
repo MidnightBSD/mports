@@ -1,5 +1,3 @@
-# Created by: Andrey Zonov <andrey@zonov.org>
-
 PORTNAME=	flock
 PORTVERPREFIX=	2.37
 PORTVERSION=	${PORTVERPREFIX}.2
@@ -9,6 +7,7 @@ DISTNAME=	util-linux-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manage locks from shell scripts
+WWW=		https://www.kernel.org/pub/linux/utils/util-linux/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

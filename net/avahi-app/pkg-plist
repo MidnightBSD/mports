@@ -7,13 +7,9 @@ bin/avahi-resolve
 bin/avahi-resolve-address
 bin/avahi-resolve-host-name
 bin/avahi-set-host-name
-@unexec if cmp -s %D/etc/avahi/avahi-daemon.conf %D/etc/avahi/avahi-daemon.conf.dist; then rm -f %D/etc/avahi/avahi-daemon.conf; fi
-etc/avahi/avahi-daemon.conf.dist
-@exec [ -f %B/avahi-daemon.conf ] || cp %B/%f %B/avahi-daemon.conf
+@sample etc/avahi/avahi-daemon.conf.sample
 etc/avahi/avahi-dnsconfd.action
-@unexec if cmp -s %D/etc/avahi/hosts %D/etc/avahi/hosts.dist; then rm -f %D/etc/avahi/hosts; fi
-etc/avahi/hosts.dist
-@exec [ -f %B/hosts ] || cp %B/%f %B/hosts
+@sample etc/avahi/hosts.sample
 etc/avahi/services/sftp-ssh.service
 etc/avahi/services/ssh.service
 etc/dbus-1/system.d/avahi-dbus.conf
@@ -70,30 +66,28 @@ include/avahi-gobject/ga-error.h
 include/avahi-gobject/ga-record-browser.h
 include/avahi-gobject/ga-service-browser.h
 include/avahi-gobject/ga-service-resolver.h
+include/avahi-libevent/libevent-watch.h
 lib/avahi/.keep
 lib/girepository-1.0/Avahi-0.6.typelib
 lib/girepository-1.0/AvahiCore-0.6.typelib
-lib/libavahi-client.a
 lib/libavahi-client.so
 lib/libavahi-client.so.3
 lib/libavahi-client.so.3.2.9
-lib/libavahi-common.a
 lib/libavahi-common.so
 lib/libavahi-common.so.3
-lib/libavahi-common.so.3.5.3
-lib/libavahi-core.a
+lib/libavahi-common.so.3.5.4
 lib/libavahi-core.so
 lib/libavahi-core.so.7
-lib/libavahi-core.so.7.0.2
-lib/libavahi-glib.a
+lib/libavahi-core.so.7.1.0
 lib/libavahi-glib.so
 lib/libavahi-glib.so.1
 lib/libavahi-glib.so.1.0.2
-lib/libavahi-gobject.a
 lib/libavahi-gobject.so
 lib/libavahi-gobject.so.0
-lib/libavahi-gobject.so.0.0.4
-lib/libhowl.a
+lib/libavahi-gobject.so.0.0.5
+lib/libavahi-libevent.so
+lib/libavahi-libevent.so.1
+lib/libavahi-libevent.so.1.0.0
 lib/libhowl.so
 lib/libhowl.so.0
 lib/libhowl.so.0.0.0
@@ -102,6 +96,7 @@ libdata/pkgconfig/avahi-compat-howl.pc
 libdata/pkgconfig/avahi-core.pc
 libdata/pkgconfig/avahi-glib.pc
 libdata/pkgconfig/avahi-gobject.pc
+libdata/pkgconfig/avahi-libevent.pc
 man/man1/avahi-browse-domains.1.gz
 man/man1/avahi-browse.1.gz
 man/man1/avahi-publish-address.1.gz
@@ -120,7 +115,6 @@ man/man8/avahi-dnsconfd.action.8.gz
 sbin/avahi-daemon
 sbin/avahi-dnsconfd
 %%DATADIR%%/avahi-service.dtd
-%%DATADIR%%/service-types
 share/dbus-1/interfaces/org.freedesktop.Avahi.AddressResolver.xml
 share/dbus-1/interfaces/org.freedesktop.Avahi.DomainBrowser.xml
 share/dbus-1/interfaces/org.freedesktop.Avahi.EntryGroup.xml
@@ -133,6 +127,8 @@ share/dbus-1/interfaces/org.freedesktop.Avahi.ServiceTypeBrowser.xml
 share/dbus-1/system-services/org.freedesktop.Avahi.service
 share/gir-1.0/Avahi-0.6.gir
 share/gir-1.0/AvahiCore-0.6.gir
+share/locale/ach/LC_MESSAGES/avahi.mo
+share/locale/ar/LC_MESSAGES/avahi.mo
 share/locale/bg/LC_MESSAGES/avahi.mo
 share/locale/ca/LC_MESSAGES/avahi.mo
 share/locale/cs/LC_MESSAGES/avahi.mo
@@ -143,7 +139,10 @@ share/locale/en_AU/LC_MESSAGES/avahi.mo
 share/locale/en_CA/LC_MESSAGES/avahi.mo
 share/locale/en_GB/LC_MESSAGES/avahi.mo
 share/locale/en_NZ/LC_MESSAGES/avahi.mo
+share/locale/eo/LC_MESSAGES/avahi.mo
+share/locale/et/LC_MESSAGES/avahi.mo
 share/locale/es/LC_MESSAGES/avahi.mo
+share/locale/fa/LC_MESSAGES/avahi.mo
 share/locale/fi/LC_MESSAGES/avahi.mo
 share/locale/fo/LC_MESSAGES/avahi.mo
 share/locale/fr/LC_MESSAGES/avahi.mo
@@ -153,16 +152,21 @@ share/locale/hu/LC_MESSAGES/avahi.mo
 share/locale/id/LC_MESSAGES/avahi.mo
 share/locale/it/LC_MESSAGES/avahi.mo
 share/locale/ja/LC_MESSAGES/avahi.mo
+share/locale/ko/LC_MESSAGES/avahi.mo
+share/locale/lv/LC_MESSAGES/avahi.mo
 share/locale/ms/LC_MESSAGES/avahi.mo
 share/locale/nl/LC_MESSAGES/avahi.mo
+share/locale/oc/LC_MESSAGES/avahi.mo
 share/locale/pl/LC_MESSAGES/avahi.mo
 share/locale/pt_BR/LC_MESSAGES/avahi.mo
 share/locale/ro/LC_MESSAGES/avahi.mo
 share/locale/ru/LC_MESSAGES/avahi.mo
+share/locale/sk/LC_MESSAGES/avahi.mo
 share/locale/sl/LC_MESSAGES/avahi.mo
 share/locale/sr/LC_MESSAGES/avahi.mo
 share/locale/sv/LC_MESSAGES/avahi.mo
 share/locale/sr@latin/LC_MESSAGES/avahi.mo
+share/locale/tr/LC_MESSAGES/avahi.mo
 share/locale/uk/LC_MESSAGES/avahi.mo
 share/locale/zh_CN/LC_MESSAGES/avahi.mo
 share/locale/zh_TW/LC_MESSAGES/avahi.mo

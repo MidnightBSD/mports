@@ -1,9 +1,11 @@
 PORTNAME=	libXtst
 PORTVERSION=	1.2.3
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Test extension
+WWW=		https://www.freedesktop.org/Software/xorg
 
 LICENSE=	mit
 

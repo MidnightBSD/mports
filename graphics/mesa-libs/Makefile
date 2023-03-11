@@ -1,10 +1,9 @@
-# Created by: Eric Anholt <anholt@FreeBSD.org>
-
 PORTNAME=	mesa-libs
 PORTVERSION=	${MESAVERSION}
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL libraries that support GLX and EGL clients
+WWW=		https://www.mesa3d.org/
 
 CONFLICTS_INSTALL=	libglvnd # include/GL/gl.h
 

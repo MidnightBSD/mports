@@ -1,10 +1,8 @@
-
-
 PORTNAME=	plexmediaserver
-PORTVERSION?=	1.1.4.2757
+PORTVERSION?=	1.3.3.3148
 PORTREVISION?=	0
 CATEGORIES=	multimedia
-MASTER_SITES=	https://downloads.plexapp.com/plex-media-server/${PORTVERSION}-${PLEX_BUILD}/
+MASTER_SITES=	https://downloads.plex.tv/plex-media-server/${PORTVERSION}-${PLEX_BUILD}/
 DISTNAME=	PlexMediaServer-${PORTVERSION}-${PLEX_BUILD}-freebsd-${ARCH}
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -13,12 +11,12 @@ COMMENT=	Plex Media Server component
 LICENSE=	other
 
 USES=		cpe tar:bzip2
-PLEX_BUILD?=	24ffd60
+PLEX_BUILD?=	b38628e
 NO_BUILD=	yes
 WRKSRC=	${WRKDIR}/PlexMediaServer-${PORTVERSION}-${PLEX_BUILD}
 
 CPE_VENDOR=	plex
-CPE_PRODUCT=	plex_media_server
+CPE_PRODUCT=	media_server
 CPE_VERSION=	${PORTVERSION:R}
 
 USE_RC_SUBR?=	${PORTNAME}
@@ -49,8 +47,8 @@ post-patch:
 do-install:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR})
 	# Python fix for older releases of Plex
-	@${LN} -s ${DATADIR}/libpython2.7.so.1 ${DATADIR}/libpython2.7.so
+	(cd ${DATADIR} && ${LN} -s libpython2.7.so.1 libpython2.7.so)
 	# Workaround for space in binary name
-	cd ${DATADIR} && ${LN} -s Plex\ Media\ Server Plex_Media_Server
+	(cd $${DATADIR} && ${LN} -s Plex\ Media\ Server Plex_Media_Server)
 
 .include <bsd.port.post.mk>

@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Drop-in replacement for IO::Socket::INET supporting IPv4 and IPv6
+WWW=		https://metacpan.org/release/IO-Socket-IP
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-Test-Pod>=1:devel/p5-Test-Pod

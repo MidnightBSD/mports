@@ -6,10 +6,11 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source implementation of the Lotus Sametime protocol
+WWW=		http://meanwhile.sourceforge.net/
 
 LICENSE=	lgpl
 
-USES=		gmake libtool pathfix pkgconfig
+USES=		gmake gnome libtool pathfix pkgconfig
 USE_GCC=	yes
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes

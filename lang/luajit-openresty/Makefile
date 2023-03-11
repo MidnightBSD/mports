@@ -1,26 +1,27 @@
-# Created by: Martin Matuska <mm@FreeBSD.org>
-
 PORTNAME=	luajit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1-20200102
+DISTVERSION=	2.1-20230119
 CATEGORIES=	lang
 PKGNAMESUFFIX=	-openresty
 
+PATCH_SITES=	https://github.com/openresty/luajit2/commit/
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Just-In-Time Compiler for Lua (OpenResty branch)
+WWW=		https://github.com/openresty/luajit2
 
 LICENSE=	mit publicdom
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-FAKE_OPTS=    trueprefix
+IGNORE_riscv64=		fails to compile: lj_arch.h:73:2: No support for this architecture (yet)
 
-USES=		gmake
+USES=		cpe gmake
 
-CONFLICTS_INSTALL=	luajit
+CONFLICTS_INSTALL=	luajit luajit-devel
 
 USE_LDCONFIG=	yes
-MAKE_ARGS=	CC=${CC}
+MAKE_ARGS=	CC=${CC} Q=
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	openresty
@@ -33,11 +34,9 @@ PLIST_SUB+=	VERSION=${LUAJIT_VERSION} SOVERSION=${LUAJIT_SOVERSION}
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH:Mpowerpc*} || ${ARCH:Mmips*} || ${ARCH:Msparc*}
-USE_GCC=yes
-.endif
-
 post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-${LUAJIT_VERSION}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libluajit-5.1.so.${LUAJIT_SOVERSION}
 	${LN} -sf ${PORTNAME}-${LUAJIT_VERSION} \
 		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 	${INSTALL_MAN} ${WRKSRC}/etc/luajit.1 ${STAGEDIR}${MAN1PREFIX}/man/man1

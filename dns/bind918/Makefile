@@ -32,7 +32,7 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 # EXPIRATION_DATE=	2023-12-31
 
 LICENSE=	mpl
-LICENSE_FILE=	${WRKSRC}/COPYRIGHT
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2 \
@@ -44,7 +44,7 @@ RUN_DEPENDS=	bind-tools>0:dns/bind-tools
 
 USES=		autoreconf compiler:c11 cpe libedit libtool pkgconfig ssl tar:xz
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.18.11
+ISCVERSION=	9.18.12
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}

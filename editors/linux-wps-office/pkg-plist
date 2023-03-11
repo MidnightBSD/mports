@@ -3627,12 +3627,12 @@
 %%LINUXBASE%%/opt/kingsoft/wps-office/office6/wpsd
 %%LINUXBASE%%/opt/kingsoft/wps-office/office6/wpsoffice
 %%LINUXBASE%%/opt/kingsoft/wps-office/office6/wpspdf
-%%LINUXBASE%%/opt/kingsoft/wps-office/templates/DOC 文档.doc
-%%LINUXBASE%%/opt/kingsoft/wps-office/templates/DOCX 文档.docx
-%%LINUXBASE%%/opt/kingsoft/wps-office/templates/PPT 演示文稿.ppt
-%%LINUXBASE%%/opt/kingsoft/wps-office/templates/PPTX 演示文稿.pptx
-%%LINUXBASE%%/opt/kingsoft/wps-office/templates/XLS 工作表.xls
-%%LINUXBASE%%/opt/kingsoft/wps-office/templates/XLSX 工作表.xlsx
+@comment %%LINUXBASE%%/opt/kingsoft/wps-office/templates/DOC 文档.doc
+@comment %%LINUXBASE%%/opt/kingsoft/wps-office/templates/DOCX 文档.docx
+@comment %%LINUXBASE%%/opt/kingsoft/wps-office/templates/PPT 演示文稿.ppt
+@comment %%LINUXBASE%%/opt/kingsoft/wps-office/templates/PPTX 演示文稿.pptx
+@comment %%LINUXBASE%%/opt/kingsoft/wps-office/templates/XLS 工作表.xls
+@comment %%LINUXBASE%%/opt/kingsoft/wps-office/templates/XLSX 工作表.xlsx
 bin/et
 bin/wpp
 bin/wps

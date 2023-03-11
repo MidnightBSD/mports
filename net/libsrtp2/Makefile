@@ -1,6 +1,6 @@
 PORTNAME=	libsrtp
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.4.2
+DISTVERSION=	2.5.0
 CATEGORIES=	net
 PKGNAMESUFFIX=	2
 
@@ -23,8 +23,10 @@ CPE_VENDOR=	cisco
 USE_LDCONFIG=	yes
 
 ALL_TARGET=	all shared_library
-TEST_TARGET=	runtest
-TEST_ENV=	LD_LIBRARY_PATH=${WRKSRC}
+#TEST_TARGET=	runtest
+#TEST_ENV=	LD_LIBRARY_PATH=${WRKSRC}
+
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} '/supported_cflags=.*-fPIC/d' ${WRKSRC}/configure

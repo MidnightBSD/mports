@@ -1,11 +1,12 @@
 PORTNAME=	gnustep-gui
 DISTVERSIONPREFIX=	gui-
-DISTVERSION=	0_29_0
-PORTREVISION=	0
+DISTVERSION=	0_28_0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI library
+WWW=		http://www.gnustep.org/
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi

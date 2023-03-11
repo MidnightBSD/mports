@@ -6,13 +6,13 @@ MASTER_SITE_SUBDIR=	CPAN:ROBIN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	PadWalker - play with Perl lexical variables
+COMMENT=	play with Perl lexical variables
+WWW=		https://metacpan.org/release/PadWalker
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
