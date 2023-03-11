@@ -1,5 +1,5 @@
 PORTNAME=	aide
-PORTVERSION=	0.17.4
+PORTVERSION=	0.18.1
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/aide/aide/releases/download/v${PORTVERSION}/
 
@@ -10,13 +10,14 @@ WWW=		https://aide.github.io/
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libmhash.so:security/mhash \
-		libpcre.so:devel/pcre
+		libpcre2-8.so:devel/pcre2
 
 USES=		bison gmake localbase
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-mhash \
+CONFIGURE_ARGS+=--with-mhash=/usr/local/lib \
 		--with-zlib \
+		--mandir=${MANPREFIX}/man \
 		--with-config_file=${PREFIX}/etc/aide.conf
 CONFIGURE_ENV=	YACC="bison -y"
 

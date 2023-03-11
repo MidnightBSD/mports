@@ -22,7 +22,7 @@ PORTDOCS=	example.c skid2-authentication
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmhash.so
+	@${STRIP_CMD} ${PREFIX}/lib/libmhash.so
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
