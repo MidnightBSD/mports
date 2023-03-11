@@ -123,6 +123,7 @@ SUBDIR += p5-HTTP-Server-Simple
 SUBDIR += p5-HTTP-Server-Simple-PSGI
 SUBDIR += p5-HTTP-SimpleLinkChecker
 SUBDIR += p5-HTTP-Size
+SUBDIR += p5-HTTP-Tiny-Multipart
 SUBDIR += p5-LWP-MediaTypes
 SUBDIR += p5-LWP-Online
 SUBDIR += p5-LWP-Protocol-http10

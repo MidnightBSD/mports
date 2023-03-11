@@ -75,6 +75,7 @@ SUBDIR += p5-Email-Outlook-Message
 SUBDIR += p5-Email-Send
 SUBDIR += p5-Email-Sender
 SUBDIR += p5-Email-Simple
+SUBDIR += p5-Email-Stuffer
 SUBDIR += p5-MIME-Charset
 SUBDIR += p5-MIME-EncWords
 SUBDIR += p5-MIME-Lite

@@ -496,6 +496,7 @@ SUBDIR += p5-File-Slurp
 SUBDIR += p5-File-Slurper
 SUBDIR += p5-File-Tail
 SUBDIR += p5-File-Temp
+SUBDIR += p5-File-Type
 SUBDIR += p5-File-chdir
 SUBDIR += p5-File-pushd
 SUBDIR += p5-FileHandle-Fmode
