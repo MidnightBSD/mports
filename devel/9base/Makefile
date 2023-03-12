@@ -6,6 +6,7 @@ DISTNAME=	${PORTNAME}-6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of various original plan9 tools
+WWW=		https://tools.suckless.org/9base
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
