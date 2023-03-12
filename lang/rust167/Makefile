@@ -225,7 +225,7 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
 do-install:
-	${RM} -r ${WRKDIR}/_extractdist
+	-${RM} -r ${WRKDIR}/_extractdist
 .for _c in ${_COMPONENTS}
 	${MKDIR} ${WRKDIR}/_extractdist
 	${TAR} xf ${WRKDIR}/_build/dist/${_c}.tar.xz -C ${WRKDIR}/_extractdist
@@ -234,14 +234,14 @@ do-install:
 		--docdir="${DOCSDIR}" \
 		--mandir="${PREFIX}/share/man" \
 		--prefix="${PREFIX}"
-	${RM} -r ${WRKDIR}/_extractdist
+	-${RM} -r ${WRKDIR}/_extractdist
 .endfor
 
 # We autogenerate the plist file.  We do that, instead of the
 # regular pkg-plist, because several libraries have a computed
 # filename based on the absolute path of the source files.  As it
 # is user-specific, we cannot know their filename in advance.
-	@${RM}	${DOCSDIR}/*.old \
+	-${RM}	${DOCSDIR}/*.old \
 		${PREFIX}/lib/rustlib/components \
 		${PREFIX}/lib/rustlib/install.log \
 		${PREFIX}/lib/rustlib/manifest-* \
