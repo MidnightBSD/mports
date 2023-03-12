@@ -42,6 +42,7 @@ COMPONENT=	.9
 VER=    8.352.08
 DISTFILES=	openjdk8-8.352.08.1_1~e6b55cb93c.pkg
 FBSD_PATH=      FreeBSD:12:i386
+COMPONENT=.12.${ARCH}
 .else
 VER=    8.181.13
 DISTFILES=      openjdk8-8.181.13.txz
