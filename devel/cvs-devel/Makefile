@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPv6 enabled cvs.  You can use IPv6 connection when using pserver
+WWW=		https://www.cvshome.org/
 
 CONFLICTS=	cvs cvs+ipv6
 
