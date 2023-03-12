@@ -12,6 +12,7 @@ DISTFILES?=	${NIGHTLY_DATE:D${NIGHTLY_DATE}/}${DISTNAME}${EXTRACT_SUFX}:src \
 		${_RUST_STD_BOOTSTRAP}${EXTRACT_SUFX}:bootstrap \
 		${_CARGO_BOOTSTRAP}${EXTRACT_SUFX}:bootstrap
 DIST_SUBDIR?=	rust
+PKGNAMESUFFIX=	167
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Language with a focus on memory safety and concurrency
