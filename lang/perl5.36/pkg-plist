@@ -267,10 +267,6 @@ bin/xsubpp
 bin/zipdetails
 bin/piconv
 bin/instmodsh
-share/licenses/perl-%%PERL_VER%%/LICENSE
-share/licenses/perl-%%PERL_VER%%/artistic
-share/licenses/perl-%%PERL_VER%%/gpl
-share/licenses/perl-%%PERL_VER%%/catalog.mk
 lib/libperl.so
 %%PRIV_LIB%%/User/pwent.pm
 %%PRIV_LIB%%/User/grent.pm
@@ -2487,9 +2483,6 @@ lib/libperl.so
 %%PRIV_LIB%%/I18N/LangTags.pm
 %%PRIV_LIB%%/I18N/Collate.pm
 %%PRIV_LIB%%/DBM_Filter.pm
-@dir share/licenses/perl-threaded-%%PERL_VER%%
-@dir share/licenses/perl-%%PERL_VER%%
-@dir share/licenses
 @dir %%SITE_ARCH%%
 @dir %%SITE_PERL%%
 @dir lib/perl5/site_perl
