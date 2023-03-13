@@ -4,8 +4,6 @@
 # Feature:	makeinfo
 # Usage:	USES=makeinfo
 # Valid ARGS:	none
-#
-# MAINTAINER: portmgr@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_MAKEINFO_MK)
 _INCLUDE_USES_MAKEINFO_MK=	yes
