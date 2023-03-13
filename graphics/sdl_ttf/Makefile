@@ -7,24 +7,23 @@ DISTNAME=	SDL_ttf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to use TrueType fonts to render text in SDL applications
+WWW=		https://www.libsdl.org/projects/SDL_ttf/
 
 LICENSE=	zlib
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
-USES=		gmake iconv libtool pathfix pkgconfig sdl xorg
+USES=		gmake iconv gl libtool pathfix pkgconfig sdl xorg
 USE_SDL=	sdl
 USE_XORG=	x11 xorgproto
+USE_GL=		gl glu
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -liconv
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=		OPENGL
-OPTIONS_DEFAULT=	OPENGL
-
-OPENGL_USES=	gl
-OPENGL_USE=	GL=glu
+BINARY_ALIAS=	freetype-config=true
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/.libs/glfont ${STAGEDIR}${PREFIX}/bin
