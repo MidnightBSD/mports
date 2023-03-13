@@ -12,12 +12,16 @@ LICENSE=	gpl2
 
 CONFLICTS=	openjdk8-1.8*
 
-USES=		tar:xz
+USES=		tar:xz xorg
+USE_XORG=	x11 xext xi xrender xt xtst
 ONLY_FOR_ARCH=	amd64 i386
 NO_BUILD=	yes
 
 DISTINFO_FILE=  ${.CURDIR}/distinfo.${ARCH}
 
+LIB_DEPENDS=    libfontconfig.so:x11-fonts/fontconfig \
+                libfreetype.so:print/freetype2 \
+                libinotify.so:devel/libinotify
 RUN_DEPENDS+=	javavm:java/javavmwrapper \
 		dejavu>=2.35:x11-fonts/dejavu
 
