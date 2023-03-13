@@ -2,10 +2,11 @@ PORTNAME=	scummvm
 PORTVERSION=	2.1.0
 PORTREVISION=	1
 CATEGORIES=	games emulators
-MASTER_SITES=	http://www.scummvm.org/frs/scummvm/${PORTVERSION}/
+MASTER_SITES=	https://downloads.scummvm.org/frs/${PORTNAME}/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interpreter for several adventure games
+WWW=		https://www.scummvm.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -16,7 +17,9 @@ LIB_DEPENDS=	libtheoradec.so:multimedia/libtheora \
 		libfreetype.so:print/freetype2
 
 USE_GCC=	yes
-USES=		gmake gnome iconv jpeg sdl tar:xz
+USES=		cpe gl gmake gnome iconv jpeg \
+		localbase:ldflags pkgconfig sdl tar:xz
+USE_GL=		gl glew
 HAS_CONFIGURE=	yes
 USE_SDL=	sdl2
 INSTALLS_ICONS=	yes
