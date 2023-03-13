@@ -136,6 +136,8 @@ RB_SET_CONF_VAR=	${SH} -c \
 			'${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]]*=[[:space:]]*)(\(?)(.*)(\)?),\1\2$$1\4," ${WRKSRC}/rbconfig.rb' \
 			--
 
+OSMAJOR=        ${OSREL:C/\..*//}
+
 post-patch:
 # We get these from other ports
 .for d in bin/* ext/dbm ext/gdbm ext/win32* lib/bundler* libexec/bundler* \
