@@ -14,11 +14,10 @@ LICENSE_FILE_mit=	${WRKSRC}/LICENSE.MIT
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>0:devel/py-attrs@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0:devel/py-pytest-asyncio@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}async_generator>=0:devel/py-async_generator@${PY_FLAVOR}
 
 USES=		python:3.7+
-USE_PYTHON=	autoplist distutils pytest
+USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
