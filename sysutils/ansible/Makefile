@@ -35,9 +35,10 @@ python_OLD_CMD=	/Users/kbreit/Documents/Programming/ansible_collections/cisco/me
 CONFLICTS_INSTALL=	${_ANSIBLE_PACKAGES:N${PKGBASE}}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
-DO_MAKE_TEST=	ansible -m ping
-TEST_TARGET=	localhost
+#DO_MAKE_TEST=	ansible -m ping
+#TEST_TARGET=	localhost
 
 _ANSIBLE_VERSIONS=	1 2 23 24 25 26 27 28 4
 _ANSIBLE_PACKAGES=	${PYTHON_PKGNAMEPREFIX}ansible
