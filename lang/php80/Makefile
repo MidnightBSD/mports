@@ -32,7 +32,6 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-password-argon2=${LOCALBASE} \
 		--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd11.4
 USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
 
@@ -147,6 +146,12 @@ PLIST_SUB+=	DTRACE="@comment "
 
 .if empty(PORT_OPTIONS:MIPV6)
 CONFIGURE_ARGS+=--disable-ipv6
+.endif
+
+.if ${OSVERSION} <= 202003
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+.else
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 .endif
 
 post-patch:

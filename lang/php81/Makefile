@@ -32,7 +32,6 @@ CONFIGURE_ARGS+=	--disable-all \
 			--with-openssl \
 			--with-password-argon2=${LOCALBASE} \
 			--disable-dtrace
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 DESTDIRNAME=		INSTALL_ROOT
 
 USES+=		autoreconf:build ssl
@@ -108,6 +107,12 @@ CONFIGURE_ARGS+=	--enable-phpdbg-debug
 PLIST_SUB+=	SAPI_INC=""
 .else
 PLIST_SUB+=	SAPI_INC="@comment "
+.endif
+
+.if ${OSVERSION} <= 202003
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
+.else
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
 .endif
 
 CONFIGURE_ENV+=	ac_cv_decimal_fp_supported="no" \
@@ -601,6 +606,12 @@ USES+=			pkgconfig
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} <= 202003
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
+.else
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
+.endif
+
 .if ${PHP_MODNAME} == "sqlite3" || ${PHP_MODNAME} == "zlib"
 post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
@@ -622,4 +633,5 @@ pre-build:
 	-${REINPLACE_CMD} -e 's/DragonFly/MidnightBSD/g' \
 		-e 's/dragonfly/midnightbsd/g' \
 		${WRKSRC}/ext/${PHP_MODNAME}/libtool
+
 .include <bsd.port.post.mk>
