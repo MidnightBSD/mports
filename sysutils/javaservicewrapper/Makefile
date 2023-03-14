@@ -29,6 +29,12 @@ MAKE_ARGS+=	-Dbits=32
 CFLAGS+=	-fPIC
 .endif
 
+.if ${JAVA_PORT_VERSION} >= 15
+PLIST_SUB+=	JS_ENGINE="@comment "
+.else
+PLIST_SUB+=	JS_ENGINE=""
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|gcc|${CC} ${CFLAGS}| ; \
 			s|/usr/local|${ICONV_PREFIX}|g ; \
