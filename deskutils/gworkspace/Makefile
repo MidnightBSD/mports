@@ -1,17 +1,13 @@
-# New ports collection makefile for:    gworkspace
-# Date created:         04 Feb 2003
-# Whom:                 dirk.meyer@dinoex.sub.org
-
 PORTNAME=	gworkspace
-PORTVERSION=	0.9.4
+PORTVERSION=	1.0.0
 CATEGORIES=	deskutils gnustep
-#MASTER_SITES=	http://www.gnustep.it/enrico/gworkspace/
 MASTER_SITES=	GNUSTEP/usr-apps
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep workspace manager
+WWW=		http://www.gnustep.it/enrico/gworkspace/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 USES=		gnustep
 USE_GNUSTEP=	back build
