@@ -3128,7 +3128,7 @@ PATCH_SITES PATCHFILES PATCH_DIST_STRIP
 
 	&checkearlier($file, $tmp, @varnames);
 	&checkorder('MAINTAINER', $tmp, $file, qw(
-MAINTAINER COMMENT
+MAINTAINER COMMENT WWW
 	));
 
 	$tmp = "\n" . $tmp;
@@ -3181,7 +3181,7 @@ MAINTAINER COMMENT
 	$idx++;
 
 	push(@varnames, qw(
-MAINTAINER COMMENT
+MAINTAINER COMMENT WWW
 	));
 
 	#
