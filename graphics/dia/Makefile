@@ -1,8 +1,6 @@
-
-
 PORTNAME=	dia
 PORTVERSION=	0.97.3
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
@@ -10,6 +8,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Diagram creation program, similar to Visio
+WWW=		https://live.gnome.org/Dia
 
 LICENSE=	gpl2
 
@@ -17,7 +16,7 @@ OPTIONS_DEFINE=	DOCS
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		desktop-file-utils gettext gmake gnome libtool pathfix \
+USES=		cpe desktop-file-utils gettext gmake gnome libtool pathfix \
 		pkgconfig tar:xz
 USE_GNOME=	gtk20 gnomeprefix libxslt libartlgpl2 intlhack
 INSTALLS_ICONS=	yes
@@ -27,6 +26,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib `pkg-config --libs gmodule-2.0`
 CONFIGURE_ARGS=	--disable-gnome
 INSTALL_TARGET=	install-strip
+CPE_VENDOR=	gnome
 
 DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl
 .include <bsd.mport.options.mk>
