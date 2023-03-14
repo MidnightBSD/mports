@@ -19,8 +19,9 @@ CMAKE_OFF=	ALSOFT_BACKEND_ALSA ALSOFT_DLOPEN ALSOFT_EXAMPLES \
 CMAKE_ON=	ALSOFT_BACKEND_WAVE
 
 # do not link with librt and libdl.
-LDFLAGS+=	-Wl,--as-needed -fuse-ld=bfd
+LDFLAGS+=	-Wl,--as-needed
 LDFLAGS_i386=	-Wl,-z,notext
+LLD_UNSAFE=     yes
 
 PLIST_SUB=	SOVERSION=${PORTVERSION}
 
