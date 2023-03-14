@@ -1,103 +1,120 @@
 PORTNAME=	x264
 PORTVERSION=	0.${X264_BUILD}.${X264_REV}
+PORTREVISION?=	0
 CATEGORIES=	multimedia
-MASTER_SITES=	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/ \
-		http://samples.mplayerhq.hu/yuv4mpeg2/:pgo
-DISTNAME=	${PORTNAME}-snapshot-${X264_SNAPSHOT}-2245-stable
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+MASTER_SITES=	https://samples.mplayerhq.hu/yuv4mpeg2/:pgo
 DIST_SUBDIR=	x264
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	H.264/MPEG-4 AVC Video Encoding (Front End CLI)
+COMMENT?=	H.264/MPEG-4 AVC Video Encoding (Front End CLI)
 WWW=		https://www.videolan.org/x264.html
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	yasm>=1.2.0:devel/yasm \
-		bash:shells/bash
-LIB_DEPENDS=	libx264.so:multimedia/libx264
+BUILD_DEPENDS=	bash:shells/bash
+LIB_DEPENDS?=	libx264.so:multimedia/libx264
 
-X264_BUILD=	142
-X264_REV=	2455
-X264_COMMIT=	021c0dc6c95c1bc239c9db78a80dd85fc856a4dd
-X264_GITVER=	${X264_COMMIT:C/^(.......).*$/\1/g}
-X264_SNAPSHOT=	20140827
+X264_BUILD=	164
+X264_REV=	3095
+X264_GITVER=	${GL_COMMIT:C/^(.{7}).*/\1/}
 
-USES=		gmake pkgconfig tar:bzip2
+USES?=		pkgconfig
+USES+=		compiler:c11 gmake localbase shebangfix
+USE_GITLAB=	yes
 USE_LDCONFIG=	yes
+GL_SITE=	https://code.videolan.org
+GL_ACCOUNT=	videolan
+GL_COMMIT=	baee400fa9ced6f5481a728138fed6e867b0ff7f
 HAS_CONFIGURE=	yes
+CONFIGURE_ARGS+=       --host=${ARCH}-portbld-freebsd11.4
+SHEBANG_FILES=	configure
+PLIST_FILES?=	bin/x264
 
-OPTIONS_DEFINE=		ASM DEBUG GCC GPAC LAVF PGO
-OPTIONS_DEFAULT=	ASM GPAC
+OPTIONS_DEFINE+=	BASH DEBUG FFMS LAVF PGO SWSCALE
+OPTIONS_RADIO+=		MP4
+OPTIONS_RADIO_MP4+=	GPAC LSMASH
+OPTIONS_DEFAULT+=	BASH FFMS LAVF LSMASH SWSCALE
 
-GCC_DESC=		Use current GCC
-GPAC_DESC=		MPEG-4 output support
-LAVF_DESC=		libav* format input/output support (requires FFmpeg)
-
-ASM_CONFIGURE_OFF=	--disable-asm
-DEBUG_CONFIGURE_ON=	--enable-debug
-GPAC_LIB_DEPENDS=	libgpac.so:multimedia/gpac-libgpac
-GPAC_CONFIGURE_OFF=	--disable-gpac
-LAVF_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
-			libavformat.so:multimedia/ffmpeg \
-			libavutil.so:multimedia/ffmpeg \
-			libswscale.so:multimedia/ffmpeg
-LAVF_CONFIGURE_OFF=	--disable-swscale --disable-lavf
-
-CONFIGURE_ARGS+=	--extra-cflags="-I${LOCALBASE}/include" \
-			--extra-ldflags="-L${LOCALBASE}/lib" \
-			--disable-opencl \
-			--system-libx264 \
-			--host=${ARCH}-freebsd9.1
-
-CFLAGS_armv6+=		-mcpu=arm1136jf-s
-
-PLIST_FILES=	bin/x264
-PLIST_SUB+=	X264_BUILD=${X264_BUILD}
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MGCC}
-USE_GCC=	yes
-.elif ${PORT_OPTIONS:MPGO}
-USE_GCC=	any
+.if make(makesum) # for optional distfiles
+.MAKEFLAGS:	WITH="${OPTIONS_DEFINE}"
 .endif
 
-.if ${PORT_OPTIONS:MPGO}
+FFMS_DESC=		FFmpeg Source input support
+GPAC_DESC=		GPAC library support
+LAVF_DESC=		libav* format input support (requires FFmpeg)
+LSMASH_DESC=		L-SMASH library support
+MP4_DESC=		MPEG-4 output
+SWSCALE_DESC=		Resize video filter
+
+BASH_BUILD_DEPENDS=	bash-completion>0:shells/bash-completion
+BASH_RUN_DEPENDS=	bash-completion>0:shells/bash-completion
+BASH_CONFIGURE_ENABLE=	bashcompletion
+BASH_PLIST_FILES=	share/bash-completion/completions/x264
+
+DEBUG_CONFIGURE_ENABLE=	debug
+DEBUG_CONFIGURE_OFF=	--enable-strip
+
+FFMS_LIB_DEPENDS=	libffms2.so:multimedia/ffms2
+FFMS_CONFIGURE_ENABLE=	ffms
+FFMS_IMPLIES=		SWSCALE
+
+GPAC_LIB_DEPENDS=	libgpac.so:multimedia/gpac-libgpac
+GPAC_CONFIGURE_ENABLE=	gpac
+
+LAVF_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
+			libavformat.so:multimedia/ffmpeg \
+			libavutil.so:multimedia/ffmpeg
+LAVF_CONFIGURE_ENABLE=	lavf
+LAVF_IMPLIES=		SWSCALE
+
+LSMASH_LIB_DEPENDS=	liblsmash.so:multimedia/l-smash
+LSMASH_CONFIGURE_ENABLE=lsmash
+
+PGO_DISTFILES=		${Y4M_VIDEO_DISTFILE}:pgo
+PGO_MAKE_ENV=		VIDS="${WRKDIR}/${Y4M_VIDEO}"
+PGO_ALL_TARGET=		fprofiled
 # y4m sample video
 Y4M_VIDEO=		example.y4m
 Y4M_VIDEO_DISTFILE=	example.y4m.bz2
+PGO_VARS=		USE_GCC=yes \
+			LICENSE+=PGO LICENSE_COMB=multi
 
-DISTFILES+=	${Y4M_VIDEO_DISTFILE}:pgo
-ALL_TARGET=	fprofiled
-MAKE_ENV+=	VIDS="${WRKDIR}/${Y4M_VIDEO}"
+# ${Y4M_VIDEO_DISTFILE} file may not be mirrored
+LICENSE_NAME_PGO=	PGO
+LICENSE_DISTFILES_PGO=	${Y4M_VIDEO_DISTFILE}
+LICENSE_PERMS_PGO=	auto-accept
 
-RESTRICTED=		${Y4M_VIDEO_DISTFILE} file may not be mirrored
-RESTRICTED_FILES=	${Y4M_VIDEO_DISTFILE}
-.endif
+SWSCALE_LIB_DEPENDS=	libavutil.so:multimedia/ffmpeg \
+			libswscale.so:multimedia/ffmpeg
+SWSCALE_CONFIGURE_ENABLE=	swscale
 
-post-extract:
-.if ${PORT_OPTIONS:MPGO}
-	@( cd ${WRKDIR} && ${BZIP2_CMD} -dc ${DISTDIR}/${DIST_SUBDIR}/${Y4M_VIDEO_DISTFILE} > ${Y4M_VIDEO} )
-.endif
+CONFIGURE_ARGS?=	--system-libx264
+CONFIGURE_ARGS+=	--prefix="${PREFIX}" \
+			--extra-cflags="${CPPFLAGS} ${CFLAGS}" \
+			--extra-ldflags="${LDFLAGS}"
+
+post-extract-PGO-on:
+	@${BZIP2_CMD} -dc ${DISTDIR}/${DIST_SUBDIR}/${Y4M_VIDEO_DISTFILE} \
+		>${WRKDIR}/${Y4M_VIDEO}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|; \
-		s|/bin/bash|${LOCALBASE}/bin/bash|; \
+	@${REINPLACE_CMD} -e ' \
 		s|gpac_static|gpac|g' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|bash|sh|; \
+	@${REINPLACE_CMD} -e ' \
+		s|bash|sh|; \
 		s|VER="x"|VER="${X264_REV} ${X264_GITVER}"|; \
 		s|VERSION=""|VERSION=" r${X264_REV} ${X264_GITVER}"|' \
 		${WRKSRC}/version.sh
 	${CP} ${PORTSDIR}/Templates/config.guess ${WRKSRC}/
+#	${CP} ${PORTSDIR}/Templates/config.sub ${WRKSRC}/
+	${CHMOD} 755 ${WRKSRC}/config.*
 
+.if !target(pre-build)
 pre-build:
 	@(${RM} ${WRKSRC}/x264_config.h)
-
-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/x264
+.endif
 
 .include <bsd.port.mk>
