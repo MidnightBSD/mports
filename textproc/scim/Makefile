@@ -1,18 +1,18 @@
-# Created by: Jie Gao	<gaoj@cpsc.ucalgary.ca>
-
 PORTNAME=	scim
 PORTVERSION=	1.4.9
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Smart Common Input Method platform
+WWW=		https://github.com/scim-im/scim
 
 LICENSE=	lgpl2.1
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		compiler:c++11-lang gettext gmake gnome iconv libtool pathfix \
+USES=		compiler:c++11-lang gettext gmake gnome iconv:wchar_t libtool pathfix \
 		pkgconfig xorg
 USE_GNOME=	gtk20 intlhack
 USE_XORG=	x11 xpm
