@@ -17,6 +17,7 @@ USE_OPENAL=	al
 USE_LDCONFIG=	yes
 LDFLAGS_i386=	-Wl,-znotext
 INSTALL_TARGET=	install-strip
+LLD_UNSAFE=     yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
