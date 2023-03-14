@@ -25,9 +25,9 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/GrabScores.excite ${PREFIX}/bin
 
 do-install-DOCS-on:
-	@${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for docs in BUGS CHANGES HINTS README
-	@${INSTALL_DATA} ${WRKSRC}/../${docs} ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/../${docs} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>
