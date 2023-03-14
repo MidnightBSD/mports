@@ -1,10 +1,11 @@
 PORTNAME=	mport-manager
 PORTVERSION=	0.2.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Graphical Package Manager for MidnightBSD
+WWW=		https://github.com/laffer1/mport-manager
 
 LICENSE=	bsd2
 
