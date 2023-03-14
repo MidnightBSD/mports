@@ -1174,6 +1174,8 @@ ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
 .endif
 .endfor
 
+LDFLAGS+=       ${LDFLAGS_${ARCH}}
+
 # Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
 _MAKE_JOBS=		#
