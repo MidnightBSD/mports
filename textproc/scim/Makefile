@@ -12,14 +12,14 @@ LICENSE=	lgpl2.1
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		compiler:c++11-lang gettext gmake gnome iconv:wchar_t libtool pathfix \
+USES=		compiler:c++11-lang gettext gmake gnome iconv libtool pathfix \
 		pkgconfig xorg
 USE_GNOME=	gtk20 intlhack
 USE_XORG=	x11 xpm
 USE_LDCONFIG=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include -D__STDC_ISO_10646__
-LIBS+=		-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib -liconv
 
 post-patch:
 	@${REINPLACE_CMD} 's/-lstdc++//'				\
