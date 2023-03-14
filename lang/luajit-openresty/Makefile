@@ -14,7 +14,7 @@ LICENSE=	mit publicdom
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-IGNORE_riscv64=		fails to compile: lj_arch.h:73:2: No support for this architecture (yet)
+FAKE_OPTS=	trueprefix
 
 USES=		cpe gmake
 
@@ -35,10 +35,10 @@ PLIST_SUB+=	VERSION=${LUAJIT_VERSION} SOVERSION=${LUAJIT_SOVERSION}
 .include <bsd.mport.options.mk>
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-${LUAJIT_VERSION}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libluajit-5.1.so.${LUAJIT_SOVERSION}
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}-${LUAJIT_VERSION}
+	${STRIP_CMD} ${PREFIX}/lib/libluajit-5.1.so.${LUAJIT_SOVERSION}
 	${LN} -sf ${PORTNAME}-${LUAJIT_VERSION} \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${WRKSRC}/etc/luajit.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+		${PREFIX}/bin/${PORTNAME}
+	${INSTALL_MAN} ${WRKSRC}/etc/luajit.1 ${MAN1PREFIX}/man/man1
 
 .include <bsd.port.mk>
