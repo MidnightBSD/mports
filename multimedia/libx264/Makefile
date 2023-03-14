@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libx264
 PORTVERSION=	0.${X264_BUILD}.${X264_REV}
 CATEGORIES=	multimedia
@@ -16,8 +14,8 @@ COMMENT=	Library for encoding H.264/MPEG-4 AVC video
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	yasm>=1.2.0:${PORTSDIR}/devel/yasm \
-		bash:${PORTSDIR}/shells/bash
+BUILD_DEPENDS=	yasm>=1.2.0:devel/yasm \
+		bash:shells/bash
 
 X264_BUILD=	142
 X264_REV=	2455

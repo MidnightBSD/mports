@@ -1,5 +1,3 @@
-
-
 PORTNAME=	x264
 PORTVERSION=	0.${X264_BUILD}.${X264_REV}
 CATEGORIES=	multimedia
@@ -11,14 +9,15 @@ DIST_SUBDIR=	x264
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Front-end for encoding H.264/MPEG-4 AVC video
+COMMENT=	H.264/MPEG-4 AVC Video Encoding (Front End CLI)
+WWW=		https://www.videolan.org/x264.html
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	yasm>=1.2.0:${PORTSDIR}/devel/yasm \
-		bash:${PORTSDIR}/shells/bash
-LIB_DEPENDS=	libx264.so:${PORTSDIR}/multimedia/libx264
+BUILD_DEPENDS=	yasm>=1.2.0:devel/yasm \
+		bash:shells/bash
+LIB_DEPENDS=	libx264.so:multimedia/libx264
 
 X264_BUILD=	142
 X264_REV=	2455
@@ -39,12 +38,12 @@ LAVF_DESC=		libav* format input/output support (requires FFmpeg)
 
 ASM_CONFIGURE_OFF=	--disable-asm
 DEBUG_CONFIGURE_ON=	--enable-debug
-GPAC_LIB_DEPENDS=	libgpac.so:${PORTSDIR}/multimedia/gpac-libgpac
+GPAC_LIB_DEPENDS=	libgpac.so:multimedia/gpac-libgpac
 GPAC_CONFIGURE_OFF=	--disable-gpac
-LAVF_LIB_DEPENDS=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg \
-			libavformat.so:${PORTSDIR}/multimedia/ffmpeg \
-			libavutil.so:${PORTSDIR}/multimedia/ffmpeg \
-			libswscale.so:${PORTSDIR}/multimedia/ffmpeg
+LAVF_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
+			libavformat.so:multimedia/ffmpeg \
+			libavutil.so:multimedia/ffmpeg \
+			libswscale.so:multimedia/ffmpeg
 LAVF_CONFIGURE_OFF=	--disable-swscale --disable-lavf
 
 CONFIGURE_ARGS+=	--extra-cflags="-I${LOCALBASE}/include" \
