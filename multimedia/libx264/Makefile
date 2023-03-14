@@ -10,6 +10,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for encoding H.264/MPEG-4 AVC video
+WWW=            https://www.videolan.org/x264.html
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
