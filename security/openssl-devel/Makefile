@@ -176,7 +176,7 @@ post-install-SHARED-off:
 	${RMDIR} ${FAKE_DESTDIR}${PREFIX}/lib/engines-12
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/openssl
+	${STRIP_CMD} ${PREFIX}/bin/openssl
 
 post-install-MAN3-on:
 	( cd ${FAKE_DESTDIR}/${PREFIX} ; find man/man3 -not -type d ; \
