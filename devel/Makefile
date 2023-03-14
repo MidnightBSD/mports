@@ -322,6 +322,7 @@ SUBDIR += mage
 SUBDIR += makedepend
 SUBDIR += mercurial
 SUBDIR += meson
+SUBDIR += midnightbsd-dev-scripts
 SUBDIR += mk-configure
 SUBDIR += mm
 SUBDIR += mono-addins

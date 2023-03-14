@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use Cwd;
+
+if (@ARGV > 0) {
+	my $dest;
+	my $dir = cwd;
+	$dest = $ARGV[0];
+	if ($dest !~ /$dir/) {
+		$dest = $dir . '/' .$dest;
+	}
+	$dest =~ s|/usr/src|/usr/freebsd|g ;
+	print "$dest\n";	
+	
+	system("diff $ARGV[0] $dest");
+} else {
+	print STDERR "missing file";
+	exit(1);
+}
