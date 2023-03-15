@@ -1,10 +1,9 @@
 PORTNAME=	asclock
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-clocks afterstep
 MASTER_SITES=	XCONTRIB/applications
 DISTNAME=	${PORTNAME}
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Afterstep clock with some language extensions
@@ -13,7 +12,7 @@ LICENSE=	bsd2
 
 CONFLICTS=	asclock-gtk-[0-9]* asclock-xlib-[0-9]*
 
-USES=		imake
+USES=		imake tar:tgz xorg
 USE_XORG=	xpm xext x11
 PLIST_FILES=	bin/asclock man/man1/asclock.1.gz
 
