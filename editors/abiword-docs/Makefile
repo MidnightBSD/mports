@@ -1,13 +1,14 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
 PORTNAME=	abiword-docs
-PORTVERSION=	3.0.1
+PORTVERSION=	3.0.2
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/abiword/${PORTVERSION}/source/
 DIST_SUBDIR=	AbiWord
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AbiWord help files
+WWW=		https://www.abisource.com/
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-3.0.1
 
 BUILD_DEPENDS=	abiword:editors/abiword
 RUN_DEPENDS=	abiword:editors/abiword
