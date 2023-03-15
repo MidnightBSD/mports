@@ -1,17 +1,14 @@
-
-
 PORTNAME=	asio
-DISTVERSION=	1.16.0
+DISTVERSION=	1.24.0
 CATEGORIES=	net devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20(Stable)/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform C++ library for network and low-level I/O programming
+WWW=		https://think-async.com/Asio/
 
-LICENSE=	other
+LICENSE=	boost
 LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
-
-RUN_DEPENDS=	${LOCALBASE}/include/boost/chrono/system_clocks.hpp:devel/boost-libs
 
 USES=		tar:bz2
 
