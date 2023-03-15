@@ -987,6 +987,7 @@ SUBDIR += py-patch-ng
 SUBDIR += py-pathlib2
 SUBDIR += py-pathspec
 SUBDIR += py-pbr
+SUBDIR += py-phx-class-registry
 SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
 SUBDIR += py-pyproject_hooks
