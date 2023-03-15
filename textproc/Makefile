@@ -263,6 +263,7 @@ SUBDIR += py-scour
 SUBDIR += py-smartypants
 SUBDIR += py-rdflib
 SUBDIR += py-recommonmark
+SUBDIR += py-rst2ansi
 SUBDIR += py-snowballstemmer
 SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
