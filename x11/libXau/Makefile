@@ -4,6 +4,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Authentication Protocol library for X11
+WWW=		https://www.freedesktop.org/wiki/Software/xlibs/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
