@@ -44,6 +44,7 @@ SUBDIR += boxfort
 SUBDIR += bugzilla44
 SUBDIR += bugzilla50
 SUBDIR += bullet
+SUBDIR += cargo-c
 SUBDIR += compiler-rt
 SUBDIR += cgit
 SUBDIR += check
