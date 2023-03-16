@@ -1,10 +1,12 @@
 PORTNAME=	augeas
 PORTVERSION=	1.12.0
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.augeas.net/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configuration editing tool
+WWW=		https://augeas.net/
 
 LICENSE=	lgpl2.1
 
