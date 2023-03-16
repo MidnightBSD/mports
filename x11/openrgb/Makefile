@@ -1,5 +1,5 @@
 PORTNAME=	openrgb
-PORTVERSION=	0.7.20220505
+PORTVERSION=	0.8
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ BUILD_DEPENDS=	git>0:devel/git \
 		hidapi>0:comms/hidapi \
 		mbedtls>0:security/mbedtls \
 		qt5-qmake>0:devel/qt5-qmake
-LIB_DEPENDS=	libOpenGL.so:graphics/libglvnd \
+LIB_DEPENDS=	libGL.so:graphics/libglvnd \
 		libhidapi.so:comms/hidapi \
 		libmbedcrypto.so:security/mbedtls \
 		libmbedtls.so:security/mbedtls \
@@ -23,10 +23,10 @@ USES=		gmake gl qmake qt:5
 USE_GITLAB=	yes
 GL_ACCOUNT=	CalcProgrammer1
 GL_PROJECT=	OpenRGB
-GL_COMMIT=	817d5d55dfb2baf932effe9fec9c557ad1529eb9
+GL_COMMIT=	fb88964b8e514cdf4eb22da314e13f8db06a3636
 
 USE_GL=		gl
-USE_QT=		buildtools core gui widgets
+USE_QT=		buildtools core gui linguisttools widgets
 
 PLIST_FILES=	bin/openrgb
 
