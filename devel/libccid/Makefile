@@ -1,12 +1,11 @@
-# Created by: arved
-
 PORTNAME=	ccid
-PORTVERSION=	1.4.36
+PORTVERSION=	1.5.1
 CATEGORIES=	devel
 MASTER_SITES=	https://ccid.apdu.fr/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic driver for USB CCID and ICCD
+WWW=		https://ccid.apdu.fr/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -20,7 +19,7 @@ USE_PERL5=	build
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-usbdropdir=${PREFIX}/lib/pcsc/drivers \
 		--enable-ccidtwindir=${PREFIX}/lib/pcsc/drivers/serial
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 INSTALL_TARGET=	install-strip
 
