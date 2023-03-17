@@ -135,22 +135,13 @@ CARGO_ENV+= \
 	RUSTDOC=${RUSTDOC} \
 	RUSTFLAGS="${RUSTFLAGS} ${LDFLAGS:C/.+/-C link-arg=&/}"
 
-.  if ${ARCH} != powerpc
 CARGO_ENV+=	RUST_BACKTRACE=1
-.  endif
 
 # Adjust -C target-cpu if -march/-mcpu is set by bsd.cpu.mk
 .  if ${ARCH} == amd64 || ${ARCH} == i386
 RUSTFLAGS+=	${CFLAGS:M-march=*:S/-march=/-C target-cpu=/}
-.  elif ${ARCH:Mpowerpc*}
-RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/:S/power/pwr/}
 .  else
 RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/}
-.  endif
-
-.  if defined(PPC_ABI) && ${PPC_ABI} == ELFv1
-USE_GCC?=	yes
-STRIP_CMD=	${LOCALBASE}/bin/strip # unsupported e_type with base strip
 .  endif
 
 # Helper to shorten cargo calls.
@@ -217,10 +208,10 @@ BUILD_DEPENDS+=	gmake:devel/gmake
 # https://github.com/rust-lang/libc/commit/969ad2b73cdc
 _libc_VER=	${libc:C/.*-//}
 . if ${_libc_VER:R:R} == 0 && (${_libc_VER:R:E} < 2 || ${_libc_VER:R:E} == 2 && ${_libc_VER:E} < 38)
-DEV_ERROR+=	"CARGO_CRATES=${libc} may be unstable on FreeBSD 12.0. Consider updating to the latest version \(higher than 0.2.37\)."
+DEV_ERROR+=	"CARGO_CRATES=${libc} may be unstable on MidnightBSD 3.0. Consider updating to the latest version \(higher than 0.2.37\)."
 . endif
 . if ${_libc_VER:R:R} == 0 && (${_libc_VER:R:E} < 2 || ${_libc_VER:R:E} == 2 && ${_libc_VER:E} < 49)
-DEV_ERROR+=	"CARGO_CRATES=${libc} may be unstable on aarch64 or not build on armv6, armv7, powerpc64. Consider updating to the latest version \(higher than 0.2.49\)."
+DEV_ERROR+=	"CARGO_CRATES=${libc} may be unstable on aarch64 or not build on armv6, armv7. Consider updating to the latest version \(higher than 0.2.49\)."
 . endif
 .undef _libc_VER
 .endfor
@@ -278,10 +269,10 @@ CARGO_ENV+=	OPENSSL_LIB_DIR=${OPENSSLLIB} \
 # https://github.com/rust-lang/libc/commit/78f93220d70e
 # https://github.com/rust-lang/libc/commit/969ad2b73cdc
 .        if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 38))
-DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on FreeBSD 12.0. Consider updating to the latest version \(higher than 0.2.37\)."
+DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on MidnightBSD 3.0. Consider updating to the latest version \(higher than 0.2.37\)."
 .        endif
 .        if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 49))
-DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on aarch64 or not build on armv6, armv7, powerpc64. Consider updating to the latest version \(higher than 0.2.49\)."
+DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on aarch64 or not build on armv6, armv7. Consider updating to the latest version \(higher than 0.2.49\)."
 .        endif
 # FreeBSD 12.0 updated base OpenSSL in r339270:
 # https://github.com/sfackler/rust-openssl/commit/276577553501
@@ -361,7 +352,7 @@ do-install:
 	@${CARGO_CARGO_RUN} install \
 		--no-track \
 		--path "${path}" \
-		--root "${STAGEDIR}${PREFIX}" \
+		--root "${PREFIX}" \
 		--verbose \
 		--verbose \
 		${CARGO_INSTALL_ARGS}
