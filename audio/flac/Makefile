@@ -1,10 +1,11 @@
 PORTNAME=	flac
-PORTVERSION=	1.3.4
+PORTVERSION=	1.4.2
 CATEGORIES=	audio
 MASTER_SITES=	https://downloads.xiph.org/releases/flac/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
+WWW=		https://www.xiph.org/flac/
 
 LICENSE=	bsd3 gpl2 lgpl2.1
 LICENSE_COMB=	multi
@@ -12,35 +13,28 @@ LICENSE_FILE_bsd3=${WRKSRC}/COPYING.Xiph
 
 LIB_DEPENDS=	libogg.so:audio/libogg
 
-USES=		autoreconf compiler:c11 iconv libtool pathfix pkgconfig tar:xz
+USES=		compiler:c11 cpe iconv libtool pathfix pkgconfig tar:xz
+
+CPE_VENDOR=	flac_project
+
+# Preserve UTF-8 filenames in test/flac-to-flac-metadata-test-files/.
+# They are referenced by the test suite.
+EXTRACT_CMD=	${SETENV} LC_ALL=C.UTF-8 ${TAR}
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
-		--disable-sse \
-		--disable-vsx \
 		--with-ogg="${LOCALBASE}" \
 		--disable-doxygen-docs \
-		--disable-silent-rules \
 		--disable-thorough-tests \
 		--disable-xmms-plugin
-INSTALL_TARGET= install-strip
-
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
-.if ${ARCH} == "i386"
-BUILD_DEPENDS+=	nasm:devel/nasm
-.endif
+CONFIGURE_ARGS+=--disable-vsx
 
-post-install:
-	${REINPLACE_CMD} 's:%%PREFIX%%:${PREFIX}:' \
-	    ${PREFIX}/man/man1/flac.1
-	${RM} ${PREFIX}/man/man1/flac.1.bak
-
-regression-test: build
-	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
