@@ -1,6 +1,3 @@
-# Created by: Colin Percival
-
-
 PORTNAME=	ec2-scripts
 PORTVERSION=	1.10
 CATEGORIES=	sysutils
@@ -9,8 +6,10 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Startup scripts for FreeBSD/EC2 environment
+WWW=		https://www.daemonology.net/freebsd-on-ec2/
 
 LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 OPTIONS_DEFINE=	NOFIRSTBOOT
 NOFIRSTBOOT_DESC=	Use old (pre-firstboot support) version of scripts
