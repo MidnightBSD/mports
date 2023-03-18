@@ -131,6 +131,13 @@ EXTRA_PATCHES+=		${PATCHDIR}/no-hardlinks
 IGNORE=	fails to build with qemu-user-static
 .endif
 
+
+.if ${ARCH} == "amd64"
+_inst_COMPONENTS= cargo-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd clippy-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd  rustc-dev-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rustfmt-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rust-analysis-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rust-std-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rust-src-1.67.1-dev rust-analysis-1.67.1-dev-wasm32-unknown-unknown rust-std-1.67.1-dev-wasm32-unknown-unknown rls-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd
+.else 
+_inst_COMPONENTS= cargo-1.67.1-dev-i686-unknown-freebsd clippy-1.67.1-dev-i686-unknown-freebsd  rustc-dev-1.67.1-dev-i686-unknown-freebsd rustfmt-1.67.1-dev-i686-unknown-freebsd rust-analysis-1.67.1-dev-i686-unknown-freebsd rust-std-1.67.1-dev-i686-unknown-freebsd rust-src-1.67.1-dev rust-analysis-1.67.1-dev-wasm32-unknown-unknown rust-std-1.67.1-dev-wasm32-unknown-unknown rls-1.67.1-dev-i686-unknown-freebsd
+.endif 
+
 .if make(makesum)
 DISTFILES:=	${DISTFILES:M*\:src} \
 		${ONLY_FOR_ARCHS:O:@_arch@${:!${MAKE} ARCH=${_arch} -V'DISTFILES:N*\:src'!}@}
@@ -207,7 +214,7 @@ do-build:
 
 do-install:
 	-${RM} -r ${WRKDIR}/_extractdist
-.for _c in ${_COMPONENTS}
+.for _c in ${_inst_COMPONENTS}
 	${MKDIR} ${WRKDIR}/_extractdist
 	${TAR} xf ${WRKDIR}/_build/dist/${_c}.tar.xz -C ${WRKDIR}/_extractdist
 	cd ${WRKDIR}/_extractdist/${_c} && \
