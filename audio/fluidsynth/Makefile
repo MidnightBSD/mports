@@ -5,6 +5,7 @@ CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Real-time software synthesizer based on the SoundFont 2 specifications
+WWW=		https://www.fluidsynth.org/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
