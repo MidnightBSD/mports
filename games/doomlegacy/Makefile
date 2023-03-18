@@ -1,5 +1,3 @@
-
-
 PORTNAME=	doomlegacy
 PORTVERSION=	1.45.2
 PORTEPOCH=	1
@@ -11,11 +9,12 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Improved and extended version of Doom
+WWW=		http://doomlegacy.sourceforge.net/
 
 LICENSE=	gpl2
 
-USES=		gmake tar:bzip2
-USE_GL=		glu
+USES=		gl gmake sdl tar:bzip2
+USE_GL=		gl glu
 USE_SDL=	mixer sdl
 
 CFLAGS+=	-DSVN_REV=\\\"1139\\\"
@@ -31,7 +30,7 @@ OPTIONS_DEFINE+=	IPX
 IPX_DESC=	IPX protocol support
 .endif
 
-ASM_BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
+ASM_BUILD_DEPENDS=	nasm:devel/nasm
 ASM_MAKE_ENV=		USEASM=1 OLD_DEPENDENCIES=1
 
 .include <bsd.mport.options.mk>
