@@ -1,11 +1,11 @@
 PORTNAME=	Andika
-DISTVERSION=	5.000
-PORTREVISION=	3
+DISTVERSION=	6.101
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://software.sil.org/downloads/r/andika/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Andika TrueType fonts
+WWW=		https://software.sil.org/andika/
 
 LICENSE=	OFL11
 LICENSE_FILE=	${WRKSRC}/OFL.txt
@@ -15,19 +15,20 @@ USES=		fonts zip
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-PLIST_FILES=	${FONTSDIR}/Andika-R.ttf
-
 SUB_FILES=	pkg-message
-
-DOCSLIST=	FONTLOG.txt OFL-FAQ.txt README.txt documentation/Andika-features.odt documentation/Andika-features.pdf documentation/DOCUMENTATION.txt
-PORTDOCS=	${DOCSLIST:C,^.*/,,}
 
 OPTIONS_DEFINE=	DOCS
 
+_DOCSLIST=	FONTLOG.txt OFL-FAQ.txt README.txt
+
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOCSLIST:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/documentation
+	(cd ${WRKSRC}/documentation && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}/documentation)
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/documentation/source
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${_DOCSLIST} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
