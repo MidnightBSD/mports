@@ -5,6 +5,7 @@ DISTFILES=      ${PORTNAME}-${PORTVERSION}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org Bigelow Holmes Lucida TypeWriter 75dpi font
+WWW=		https://www.x.org/
 
 LICENSE=	unknown
 
