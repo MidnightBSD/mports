@@ -1,16 +1,18 @@
-
-
 PORTREVISION=	0
 CATEGORIES=	misc devel
 PKGNAMESUFFIX=	-libuuid
 
 COMMENT=	UUID library from e2fsprogs package
 
+LICENSE=	bsd3
+LICENSE_FILE=	${INSTALL_WRKSRC}/COPYING
+
 CONFLICTS=	ossp-uuid-[0-9]*
 
-CONFIGURE_ARGS=	--enable-elf-shlibs
+CONFIGURE_ARGS=	--enable-elf-shlibs --enable-libuuid
 
 WITHOUT_NLS=	yes
+OPTIONS_EXCLUDE=	NLS
 OPTIONSFILE=	# works around optionsNG trouble
 MASTERDIR=	${.CURDIR}/../../sysutils/e2fsprogs
 MAKE_ARGS=	LIB_SUBDIRS=lib/uuid
