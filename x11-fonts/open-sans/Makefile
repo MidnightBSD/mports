@@ -1,5 +1,3 @@
-# Created by: Florian Limberger <flo@snakeoilproductions.net>
-
 PORTNAME=	open-sans
 PORTVERSION=	20180831
 CATEGORIES=	x11-fonts
@@ -10,6 +8,7 @@ DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Clean and modern sans-serif typeface
+WWW=		https://www.opensans.com
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/Apache\ License.txt
@@ -21,7 +20,7 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>
