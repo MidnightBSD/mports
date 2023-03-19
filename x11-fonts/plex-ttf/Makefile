@@ -1,10 +1,11 @@
 PORTNAME=	plex-ttf
-DISTVERSION=	6.0.0
+DISTVERSION=	6.2.0
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://github.com/IBM/plex/releases/download/v${DISTVERSION}/TrueType${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IBM's signature typeface
+WWW=		https://github.com/IBM/plex
 
 LICENSE=	OFL11
 LICENSE_FILE=	${WRKSRC}/TrueType/IBM-Plex-Mono/license.txt
@@ -15,8 +16,8 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	${FIND} ${WRKSRC} -name *.ttf -type f \
-		-exec ${INSTALL_DATA} {} ${STAGEDIR}${FONTSDIR} \;
+		-exec ${INSTALL_DATA} {} ${FONTSDIR} \;
 
 .include <bsd.port.mk>
