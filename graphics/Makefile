@@ -233,6 +233,7 @@ SUBDIR += sdl_ttf
 SUBDIR += sdl2_gfx
 SUBDIR += sdl2_image
 SUBDIR += sdl2_ttf
+SUBDIR += sekrit-twc-zimg
 SUBDIR += shaderc
 SUBDIR += silgraphite
 SUBDIR += svgalib
