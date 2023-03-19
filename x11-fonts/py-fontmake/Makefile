@@ -2,11 +2,12 @@ PORTNAME=	fontmake
 PORTVERSION=	1.8.0
 PORTREVISION=	3
 CATEGORIES=	x11-fonts python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compile fonts from sources to binary
+WWW=		https://github.com/googlei18n/fontmake
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
