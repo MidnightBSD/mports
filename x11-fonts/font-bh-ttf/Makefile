@@ -5,6 +5,7 @@ DISTFILES=	font-bh-ttf-1.0.4.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org Bigelow & Holmes TTF font
+WWW=		https://www.x.org/
 
 LICENSE=	unknown
 
