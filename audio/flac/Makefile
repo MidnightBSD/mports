@@ -37,4 +37,12 @@ OPTIONS_DEFINE=	DOCS
 
 CONFIGURE_ARGS+=--disable-vsx
 
+# test_libFLAC:
+# "iterator claims file is writable when tester thinks it should not be"
+.if ${UID} == 0
+do-test:
+	@${ECHO_MSG} "The tests cannot be run as root, skipping."
+.endif
+
+
 .include <bsd.port.post.mk>
