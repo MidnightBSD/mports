@@ -7,7 +7,7 @@ MASTER_SITES=	KERNEL_ORG/linux/kernel/people/tytso/${PORTNAME}/v${PORTVERSION}
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Utilities & library to manipulate ext2/3/4 filesystems
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 USES=		cpe gmake makeinfo pkgconfig tar:xz
 CPE_VENDOR=	e2fsprogs_project
