@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	-caladea
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Font created by Google for ChromeOS to replace MS Cambria
+WWW=		https://code.google.com/p/chromium/issues/detail?id=168879
 
 LICENSE=	apache2
 
