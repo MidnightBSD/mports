@@ -57,7 +57,6 @@ SUBDIR += gnome-video-effects
 SUBDIR += gnustep-slideshow
 SUBDIR += gnustep-slideshowkit
 SUBDIR += gocr
-SUBDIR += goocanvas
 SUBDIR += goom
 SUBDIR += gozer
 SUBDIR += gpu-firmware-amd-kmod
