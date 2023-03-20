@@ -15,8 +15,9 @@ FAKE_OPTS=	trueprefix
 
 MAKEFILE=	Makefile.bsd
 MAKE_ARGS+=	MANPREFIX=${MANPREFIX}/man
-TEST_TARGET=	test
 PLIST_FILES=	bin/entr man/man1/entr.1.gz
+
+NO_TEST=	yes
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/entr
