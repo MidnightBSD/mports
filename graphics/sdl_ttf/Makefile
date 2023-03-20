@@ -14,13 +14,13 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
-USES=		gmake iconv gl libtool pathfix pkgconfig sdl xorg
+USES=		gmake iconv gl libtool localbase pathfix pkgconfig sdl xorg
 USE_SDL=	sdl
 USE_XORG=	x11 xorgproto
 USE_GL=		gl glu
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -liconv
+CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2
+LDFLAGS+=	-L${LOCALBASE}/lib -liconv -lfreetype
 USE_LDCONFIG=	yes
 
 BINARY_ALIAS=	freetype-config=true
