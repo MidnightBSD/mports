@@ -10671,6 +10671,7 @@ include/boost/predef/os/bsd.h
 include/boost/predef/os/bsd/bsdi.h
 include/boost/predef/os/bsd/dragonfly.h
 include/boost/predef/os/bsd/free.h
+include/boost/predef/os/bsd/midnight.h
 include/boost/predef/os/bsd/net.h
 include/boost/predef/os/bsd/open.h
 include/boost/predef/os/cygwin.h
