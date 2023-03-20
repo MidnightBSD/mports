@@ -6,6 +6,7 @@ MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of Adobe XMP SDK to work on UNIX
+WWW=		http://libopenraw.freedesktop.org/wiki/Exempi
 
 LICENSE=	bsd3
 
@@ -17,6 +18,8 @@ CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
+
+NO_TEST=	yes
 
 pre-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} NOCONFIGURE=1 ./autogen.sh
