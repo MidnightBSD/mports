@@ -18,6 +18,7 @@ CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	--enable-unittest=no
 
 NO_TEST=	yes
 
