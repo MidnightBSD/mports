@@ -1,6 +1,6 @@
 PORTNAME=	rust
 PORTVERSION?=	1.67.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://dev-static.rust-lang.org/dist/:src \
@@ -131,13 +131,6 @@ EXTRA_PATCHES+=		${PATCHDIR}/no-hardlinks
 IGNORE=	fails to build with qemu-user-static
 .endif
 
-
-.if ${ARCH} == "amd64"
-_inst_COMPONENTS= cargo-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd clippy-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd  rustc-dev-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rustfmt-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rust-analysis-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rust-std-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd rust-src-1.67.1-dev rust-analysis-1.67.1-dev-wasm32-unknown-unknown rust-std-1.67.1-dev-wasm32-unknown-unknown rls-1.67.1-dev-${_RUST_ARCH_amd64}-unknown-freebsd
-.else 
-_inst_COMPONENTS= cargo-1.67.1-dev-i686-unknown-freebsd clippy-1.67.1-dev-i686-unknown-freebsd  rustc-dev-1.67.1-dev-i686-unknown-freebsd rustfmt-1.67.1-dev-i686-unknown-freebsd rust-analysis-1.67.1-dev-i686-unknown-freebsd rust-std-1.67.1-dev-i686-unknown-freebsd rust-src-1.67.1-dev rust-analysis-1.67.1-dev-wasm32-unknown-unknown rust-std-1.67.1-dev-wasm32-unknown-unknown rls-1.67.1-dev-i686-unknown-freebsd
-.endif 
-
 .if make(makesum)
 DISTFILES:=	${DISTFILES:M*\:src} \
 		${ONLY_FOR_ARCHS:O:@_arch@${:!${MAKE} ARCH=${_arch} -V'DISTFILES:N*\:src'!}@}
@@ -213,34 +206,24 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
 do-install:
-	-${RM} -r ${WRKDIR}/_extractdist
-.for _c in ${_inst_COMPONENTS}
-	${MKDIR} ${WRKDIR}/_extractdist
-	${TAR} xf ${WRKDIR}/_build/dist/${_c}.tar.xz -C ${WRKDIR}/_extractdist
-	cd ${WRKDIR}/_extractdist/${_c} && \
-		${SH} install.sh \
-		--docdir="${DOCSDIR}" \
-		--mandir="${PREFIX}/share/man" \
-		--prefix="${PREFIX}"
-	-${RM} -r ${WRKDIR}/_extractdist
-.endfor
-
+	@cd ${WRKSRC} && \
+                ${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${PYTHON_CMD} x.py install --jobs=${MAKE_JOBS_NUMBER}
 # We autogenerate the plist file.  We do that, instead of the
 # regular pkg-plist, because several libraries have a computed
 # filename based on the absolute path of the source files.  As it
 # is user-specific, we cannot know their filename in advance.
-	-${RM}	${DOCSDIR}/*.old \
-		${PREFIX}/lib/rustlib/components \
-		${PREFIX}/lib/rustlib/install.log \
-		${PREFIX}/lib/rustlib/manifest-* \
-		${PREFIX}/lib/rustlib/rust-installer-version \
-		${PREFIX}/lib/rustlib/uninstall.sh
+	-${RM} -r ${DOCSDIR}/*.old \
+                ${DOCSDIR}/html/.lock \
+                ${DOCSDIR}/html/.stamp \
+                ${PREFIX}/lib/rustlib/install.log \
+                ${PREFIX}/lib/rustlib/manifest-* \
+                ${PREFIX}/lib/rustlib/uninstall.sh
 	@${FIND} ${PREFIX}/bin ${PREFIX}/lib \
-		${PREFIX}/libexec -exec ${FILE} -i {} + | \
-		${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
+                ${PREFIX}/libexec -exec ${FILE} -i {} + | \
+                ${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
 	@${FIND} ${PREFIX} -not -type d | \
-		${SED} -E -e 's,^${FAKE_DESTDIR}${TRUE_PREFIX}/,,' \
-			-e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
+                ${SED} -E -e 's,^${FAKE_DESTDIR}${TRUE_PREFIX}/,,' \
+                        -e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 post-install-DOCS-on:
 # Ignore any left behind empty directories in case some docs fail
