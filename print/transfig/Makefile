@@ -1,5 +1,3 @@
-
-
 PORTNAME=	transfig
 PORTVERSION=	3.2.5e
 PORTREVISION=	4
@@ -10,12 +8,19 @@ DISTNAME=	${PORTNAME}.${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools to convert Xfig .fig files
 
+LICENSE=	transfig
+LICENSE_NAME=	Transfig License
+LICENSE_FILE=	${FILESDIR}/LICENSE
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
+
 RUN_DEPENDS=	ppmtogif:graphics/netpbm
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		ghostscript:run imake
+USES=		ghostscript:run imake xorg
 CFLAGS+=	-Wno-return-type
 USE_XORG=	xpm
+
+CONFLICTS_INSTALL=	fig2dev
 
 MAKE_ARGS+=	INSTALLFLAGS="${COPY}" \
 		INSTPGMFLAGS="${STRIP}" \
