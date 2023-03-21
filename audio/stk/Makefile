@@ -18,7 +18,7 @@ USE_LDCONFIG=	yes
 DOS2UNIX_GLOB=	*.cpp *.h
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-jack --with-oss
+CONFIGURE_ARGS=	--with-jack --with-oss --disable-realtime
 
 MAKE_ARGS=	RAWWAVES=${DATADIR}/rawwaves/
 
@@ -26,7 +26,7 @@ LDFLAGS+=	-pthread
 
 post-install:
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} rawwaves ${DATADIR}
-	@${RM} ${DATADIR}/rawwaves/._* ${DATADIR}/rawwaves/*.c
+	-${RM} ${DATADIR}/rawwaves/._* ${DATADIR}/rawwaves/*.c
 	@${STRIP_CMD} ${PREFIX}/lib/libstk-${PORTVERSION}.so
 
 .include <bsd.port.mk>
