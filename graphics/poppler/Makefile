@@ -79,7 +79,7 @@ BINARY_ALIAS+=		python3=${PYTHON_CMD}
 .  elif ${_SLAVE_PORT} == qt5
 USES+=			qt:5
 USE_QT=			core gui widgets xml \
-			buildtools_build qmake:build testlib_build
+			buildtools_build qmake_build testlib_build
 .  elif ${_SLAVE_PORT} == utils
 LIB_DEPENDS+=		libpoppler-glib.so:graphics/poppler-glib
 USES+=			gnome
