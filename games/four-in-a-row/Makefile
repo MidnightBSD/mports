@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Make lines of the same color
 WWW=		https://wiki.gnome.org/Apps/Four-in-a-row
 
-LICENSE=	gppl2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
