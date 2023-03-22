@@ -1,12 +1,11 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
-
 PORTNAME=	redis
-DISTVERSION=	7.0.5
+DISTVERSION=	7.0.10
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
+WWW=		https://redis.io/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
