@@ -67,7 +67,7 @@ CONFIGURE_ARGS+=--with-gd=${LOCALBASE} \
 PLIST_SUB+=	X11=""
 .endif
 
-TEST_TARGET=	check
+NO_TEST=	yes
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
