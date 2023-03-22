@@ -14,7 +14,7 @@ BUILD_DEPENDS=	spice-protocol>=0.12.10:devel/spice-protocol \
 LIB_DEPENDS=	libspice-server.so:devel/libspice-server \
 		libudev.so:devel/libudev-devd
 
-USES=		localbase:ldflags pkgconfig python shebangfix xorg \
+USES=		localbase:ldflags pkgconfig python shebangfix ssl xorg \
 		xorg-cat:driver
 USE_XORG=	xfont
 
