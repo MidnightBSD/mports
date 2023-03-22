@@ -343,7 +343,6 @@ SUBDIR += onetbb
 SUBDIR += oniguruma
 SUBDIR += opencl
 SUBDIR += opengrok
-SUBDIR += openmp
 SUBDIR += orc
 SUBDIR += p4
 SUBDIR += p5-Algorithm-C3
