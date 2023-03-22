@@ -5,6 +5,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org openChrome display driver
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
