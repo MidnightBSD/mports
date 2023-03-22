@@ -54,7 +54,6 @@ SUBDIR += e2fsprogs
 SUBDIR += ebsnvme-id
 SUBDIR += ec2-scripts
 SUBDIR += entr
-SUBDIR += etc_os-release
 SUBDIR += exa
 SUBDIR += extipl
 SUBDIR += ezjail
