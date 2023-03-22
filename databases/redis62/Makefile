@@ -1,13 +1,12 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
-
 PORTNAME=	redis
-DISTVERSION=	6.2.7
+DISTVERSION=	6.2.11
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 PKGNAMESUFFIX=	62
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
+WWW=		https://redis.io/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
