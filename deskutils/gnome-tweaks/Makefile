@@ -32,7 +32,7 @@ PORTSCOUT=	limitw:1,even
 # if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
 # with these files when module is imported from root user
 post-install:
-	@${FIND} ${PREFIX} -name \*.pyc -delete
+	${FIND} ${PREFIX} -name \*.pyc -delete
 	(cd ${PREFIX} && \
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
