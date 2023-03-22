@@ -44,7 +44,7 @@ post-patch: .SILENT
 .endif
 
 pre-build:
-	${ECHO_CMD} CC_ENVIRONMENT=1 OS=${OPSYS:tu} | \
+	${ECHO_CMD} CC_ENVIRONMENT=1 OS=FREEBSD | \
 		${XARGS} -n 1 >> ${BUILD_WRKSRC}/make_options
 	${MAKE_CMD} -C ${BUILD_WRKSRC} dirs
 	${MAKE_CMD} -C ${BUILD_WRKSRC} depend
