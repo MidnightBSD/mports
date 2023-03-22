@@ -1,14 +1,13 @@
-# Created by: Gustau Perez <gustau.perez@gmail.com>
-
 PORTNAME=	gnome-photos
 DISTVERSION=	42.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Photo application for GNOME 3
+COMMENT=	Photo application for GNOME
+WWW=		https://wiki.gnome.org/Design/Apps/Photos
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -42,7 +41,7 @@ PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gnome jpeg localbase meson pkgconfig \
 		tar:xz
-USE_GNOME=	cairo gnomedesktop3 gtk30 libxml2
+USE_GNOME=	cairo gdkpixbuf2 gnomedesktop3 gtk30 libxml2
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 
@@ -50,5 +49,10 @@ GLIB_SCHEMAS=	org.gnome.photos.gschema.xml
 MESON_ARGS=	--buildtype plain
 
 NO_TEST=	yes
+
+post-patch:
+	@${REINPLACE_CMD} -e "s,'babl','babl-0.1'," \
+		${WRKSRC}/meson.build
+
 
 .include <bsd.port.mk>
