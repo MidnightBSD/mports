@@ -1,6 +1,6 @@
 PORTNAME=	efl
 DISTVERSION=	1.26.3
-CATEGORIES=	devel enlightenment
+CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 DIST_SUBDIR=	enlightenment
 
@@ -230,6 +230,6 @@ post-install:
 
 post-fake:
 	@${ECHO_CMD} "autogenerating plist";
-	@cd ${PREFIX} && ${FIND} * -type f -or -type l >> ${TMPPLIST}
+	@cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${FIND} * -type f -or -type l >> ${TMPPLIST}
 
 .include <bsd.port.mk>
