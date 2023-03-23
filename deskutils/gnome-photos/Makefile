@@ -1,6 +1,5 @@
 PORTNAME=	gnome-photos
-DISTVERSION=	42.0
-PORTREVISION=	3
+DISTVERSION=	43.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
@@ -23,7 +22,7 @@ LIB_DEPENDS=	libbabl-0.1.so:x11/babl \
 		libfribidi.so:converters/fribidi \
 		libgdata.so:devel/libgdata \
 		libgegl-0.4.so:graphics/gegl \
-		libgeocode-glib.so:net/geocode-glib \
+		libgeocode-glib-2.so:net/geocode-glib2 \
 		libgexiv2.so:graphics/gexiv2 \
 		libgfbgraph-0.2.so:net/gfbgraph \
 		libgjs.so:lang/gjs \
@@ -32,6 +31,8 @@ LIB_DEPENDS=	libbabl-0.1.so:x11/babl \
 		libhandy-1.so:x11-toolkits/libhandy \
 		libjson-glib-1.0.so:devel/json-glib \
 		libpng.so:graphics/png \
+		libportal.so:deskutils/libportal \
+		libportal-gtk3.so:deskutils/libportal-gtk3 \
 		librest-0.7.so:devel/librest \
 		libsoup-2.4.so:devel/libsoup \
 		libtracker-sparql-3.0.so:sysutils/tracker3
