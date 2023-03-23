@@ -205,6 +205,8 @@ EFL_BINDINGS=		${LUA_BINDING} ${CXX_BINDING}
 
 MESON_ARGS+=		-Dbindings="${EFL_BINDINGS:ts,}"
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 # Work-around build failure, which is caused by subtle problem in lld and -as-needed flag
