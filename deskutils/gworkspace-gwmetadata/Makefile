@@ -27,8 +27,6 @@ DEFAULT_LIBVERSION=	0.1.0
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
 post-patch:
-	${CP} ${WRKSRC}/gmds/mdextractor/Extractors/JpegExtractor/GNUmakefile.in \
-		${WRKSRC}/gmds/mdextractor/Extractors/JpegExtractor/GNUmakefile
 	${CP} ${FILESDIR}/Preferences-GNUmakefile \
 		${WRKSRC}/Preferences/GNUmakefile
 	${CP} ${FILESDIR}/MDFinder-GNUmakefile \
