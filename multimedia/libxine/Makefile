@@ -1,6 +1,6 @@
 PORTNAME=	xine
-DISTVERSION=	1.2.11
-PORTREVISION=	3
+DISTVERSION=	1.2.12
+PORTREVISION=	5
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-lib/${PORTVERSION}
 PKGNAMEPREFIX=	lib
@@ -8,8 +8,9 @@ DISTNAME=	${PORTNAME}-lib-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for xine multimedia player
+WWW=		https://www.xine-project.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libFLAC.so:audio/flac \
@@ -33,7 +34,8 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libvpx.so:multimedia/libvpx \
 		libiso9660.so:sysutils/libcdio \
 		libogg.so:audio/libogg \
-		libdvdnav.so:multimedia/libdvdnav
+		libdvdnav.so:multimedia/libdvdnav \
+		libwayland-client.so:graphics/wayland
 
 USES=		compiler cpe gl gmake gnome iconv libtool:keepla jpeg \
 		localbase pathfix perl5 pkgconfig tar:xz xorg
@@ -60,7 +62,7 @@ CFLAGS_i386=	-fomit-frame-pointer
 DOCSDIR=	${PREFIX}/share/doc/xine-lib
 # Please sync with XINE_PLUGINSDIR in multimedia/xine
 # and multimedia/vdr-plugin-xineliboutput
-PLUGINSDIR=	lib/xine/plugins/2.9
+PLUGINSDIR=	lib/xine/plugins/2.10
 PLIST_SUB=	PLUGINSDIR="${PLUGINSDIR}"
 
 OPTIONS_DEFINE=		AALIB ALSA AOM CACA DAV1D DOCS DMX_IMAGE DVB \
@@ -98,7 +100,7 @@ DVB_BUILD_DEPENDS=		v4l_compat>=1.0.20100321:multimedia/v4l_compat
 DVB_CONFIGURE_ENABLE=		dvb
 GNUTLS_LIB_DEPENDS=		libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_ON=		--enable-tls
-IMAGEMAGICK_LIB_DEPENDS=	libMagickWand-${IMAGEMAGICK_DEFAULT}.so:graphics/ImageMagick${IMAGEMAGICK_DEFAULT}
+IMAGEMAGICK_USES=		magick
 IMAGEMAGICK_CONFIGURE_WITH=	imagemagick
 IMAGEMAGICK_IMPLIES=		DMX_IMAGE
 IPV6_CONFIGURE_ENABLE=		ipv6
@@ -168,6 +170,8 @@ pre-configure-GNUTLS-off:
 		${WRKSRC}/configure
 
 post-patch:
+	@${REINPLACE_CMD} -e '/xine_set_flags/s/XINE_PROTECTED//' \
+		${WRKSRC}/include/xine.h
 .if ${COMPILER_TYPE} == "clang"
 	@${REINPLACE_CMD} -e 's|-fno-rename-registers||' \
 		${WRKSRC}/src/libw32dll/Makefile.in
