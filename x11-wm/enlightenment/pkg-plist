@@ -178,8 +178,8 @@ include/enlightenment/e_zone.h
 include/enlightenment/e_zoomap.h
 include/enlightenment/evry_api.h
 include/enlightenment/evry_types.h
-lib/data/pkgconfig/enlightenment.pc
-lib/data/pkgconfig/everything.pc
+lib/pkgconfig/enlightenment.pc
+lib/pkgconfig/everything.pc
 lib/enlightenment/modules/appmenu/e-module-appmenu.edj
 lib/enlightenment/modules/appmenu/%%ENLIGHTENMENT_ARCH%%/module.so
 lib/enlightenment/modules/appmenu/module.desktop
