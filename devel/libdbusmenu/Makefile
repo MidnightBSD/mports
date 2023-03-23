@@ -1,5 +1,3 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	libdbusmenu
 PORTVERSION=	16.04.0
 PORTREVISION=	3
@@ -9,17 +7,18 @@ MASTER_SITES=	https://launchpadlibrarian.net/243440794/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib and Gtk Implementation of the DBusMenu protocol
+WWW=		https://launchpad.net/libdbusmenu
 
 LICENSE=	gpl3 lgpl3 lgpl2.1
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	vapigen:lang/vala
-LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
+		libharfbuzz.so:print/harfbuzz
 
 GNU_CONFIGURE=	yes
 USES=		compiler gettext-tools:build,run gmake gnome libtool pathfix \
-		pkgconfig python:run shebangfix xorg
-USE_GNOME=	glib20 intltool intlhack libxslt \
+		pkgconfig python:run shebangfix vala:build xorg
+USE_GNOME=	cairo gdkpixbuf2 glib20 intltool intlhack libxslt \
 		introspection:build gtk30
 USE_XORG=	x11
 USE_LDCONFIG=	yes
