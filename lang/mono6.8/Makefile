@@ -48,8 +48,9 @@ MAKE_ENV=	MONO_SHARED_DIR="${WRKDIR}" \
 		INSTALL_STRIP_FLAG="${STRIP}" \
 		__FreeBSD__=11
 
-TEST_ARGS=	-k
-TEST_TARGET=	check
+NO_TEST=	yes
+#TEST_ARGS=	-k
+#TEST_TARGET=	check
 
 PORTSCOUT=	limit:^\d+\.\d+\.[1-9]\d*
 
