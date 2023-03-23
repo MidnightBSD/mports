@@ -1,53 +1,55 @@
 PORTNAME=	enlightenment
-PORTVERSION=	0.22.4
+PORTVERSION=	0.25.4
 PORTEPOCH=	2
-CATEGORIES=	x11-wm
+CATEGORIES=	x11-wm enlightenment
 MASTER_SITES=	http://download.enlightenment.org/rel/apps/${PORTNAME}/
 DIST_SUBDIR=	enlightenment
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Artistic X window manager
+COMMENT=	Artistic and fast X window manager
+WWW=		https://www.enlightenment.org/
 
 LICENSE=	bsd2
 
 LIB_DEPENDS=	libefl.so:devel/efl \
-		libxcb-keysyms.so:x11/xcb-util-keysyms
+		libpulse.so:audio/pulseaudio
 
-BROKEN_sparc64=		Does not install on sparc64: signal 10
-
-GNU_CONFIGURE=	yes
-USES=		autoreconf compiler:c11 desktop-file-utils gettext-tools \
-		gmake iconv libtool pathfix pkgconfig tar:xz
+USES=		compiler:c11 cpe desktop-file-utils gettext-tools gnome \
+		localbase:ldflags meson ninja iconv libtool pathfix pkgconfig \
+		tar:xz xorg
 USE_XORG=	xcb
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-SUB_FILES=	pkg-message
 
-CONFIGURE_ARGS=	--with-profile=MEDIUM_PC \
-		--disable-connman --disable-bluez4 \
-		--disable-device-udev --disable-mount-udisks \
-		--host=${ARCH}-portbld-freebsd10.4 \
-		--build=${ARCH}-portbld-freebsd10.4 \
-		--target=${ARCH}-portbld-freebsd10.4
+MESON_ARGS=	-Dsystemd=false -Ddevice-udev=false \
+		-Dmount-udisks=false -Dmount-eeze=false -Dbluez5=false \
+		-Delput=false -Dgesture-recognition=false
 
-.include "Makefile.plist"
-
-OPTIONS_DEFINE=		NLS
-OPTIONS_GROUP=		MIXER
-OPTIONS_GROUP_MIXER=	ALSA PULSEAUDIO
-OPTIONS_DEFAULT=	ALSA
+OPTIONS_DEFINE=		NLS EXIF
+OPTIONS_DEFAULT=	NLS EXIF
 OPTIONS_SUB=		yes
 
-NLS_USES=		gettext-runtime
-NLS_CONFIGURE_ENABLE=	nls
+EXIF_DESC=		Exif metadata display support
 
-ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
-PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
-# why is setuid deactivated? "enlightenment_ckpasswd" i.e. does not work without setuid
-#post-patch:
-#	@${REINPLACE_CMD} -e \
-#		's/\(setuid_root_mode = a=rx,u+x\)s/\1/g' \
-#		${WRKSRC}/src/bin/Makefile.mk \
-#		${WRKSRC}/src/modules/Makefile_cpufreq.mk
-#
+NLS_USES=		gettext-runtime
+NLS_MESON_TRUE=		nls
+
+EXIF_LIB_DEPENDS=	libexif.so:graphics/libexif
+EXIF_MESON_TRUE=	libexif
+
+# MESON normalizes ${ARCH} so we cannot use it 'AS IS' without conversion
+CURRENT_ARCH=	${ARCH}
+.if ${CURRENT_ARCH} == amd64
+ENLIGHTENMENT_ARCH=	${OPSYS:tl}-x86_64
+.elif ${CURRENT_ARCH} == i386
+ENLIGHTENMENT_ARCH=	${OPSYS:tl}-x86
+.elif ${CURRENT_ARCH:Marmv?}
+ENLIGHTENMENT_ARCH=	${OPSYS:tl}-arm
+.else
+ENLIGHTENMENT_ARCH=	${OPSYS:tl}-${CURRENT_ARCH}
+.endif
+
+ENLIGHTENMENT_VERSION=	0.25.4
+PLIST_SUB=              ENLIGHTENMENT_ARCH=${ENLIGHTENMENT_ARCH}-${ENLIGHTENMENT_VERSION}
+
 .include <bsd.port.mk>
