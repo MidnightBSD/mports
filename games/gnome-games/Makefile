@@ -24,7 +24,6 @@ RUN_DEPENDS=	five-or-more:games/five-or-more \
 		gnome-nibbles:games/gnome-nibbles \
 		gnome-robots:games/gnome-robots \
 		gnome-sudoku:games/gnome-sudoku \
-		gnome-taquin:games/gnome-taquin \
 		gnome-tetravex:games/gnome-tetravex \
 		hitori:games/hitori \
 		iagno:games/iagno \
