@@ -73,7 +73,7 @@ usr/bin/nvidia-cuda-mps-control
 %%LINUX32%%usr/lib64/libnvidia-ml.so.%%SHLIB_VERSION%%
 %%LINUX32%%usr/lib64/libnvidia-ifr.so.%%SHLIB_VERSION%%
 %%LINUX32%%usr/lib64/libnvidia-encode.so.%%SHLIB_VERSION%%
-%%LINUX32%% usr/lib64/libnvidia-fbc.so.%%SHLIB_VERSION%%
+%%LINUX32%%usr/lib64/libnvidia-fbc.so.%%SHLIB_VERSION%%
 %%LINUX32%%usr/lib64/libnvidia-eglcore.so.%%SHLIB_VERSION%%
 %%LINUX32%%usr/lib64/libnvidia-gtk2.so.%%SHLIB_VERSION%%
 %%LINUX32%%usr/lib64/libnvidia-egl-wayland.so.1.0.2
