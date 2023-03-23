@@ -1,6 +1,5 @@
 PORTNAME=	mport-manager
-PORTVERSION=	0.2.0
-PORTREVISION=	1
+PORTVERSION=	0.2.1
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -18,7 +17,7 @@ USE_GITHUB=     yes
 GH_PROJECT=     mport-manager
 GH_ACCOUNT=     laffer1
 GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      b7486c0
+GH_COMMIT=      e28950d
 USE_CSTD=       c99
 
 USE_XORG=	x11
