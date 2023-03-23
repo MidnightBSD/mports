@@ -27,6 +27,7 @@ SUBDIR += fping
 SUBDIR += freerdp
 SUBDIR += geoclue
 SUBDIR += geocode-glib
+SUBDIR += geocode-glib2
 SUBDIR += geoipupdate
 SUBDIR += gfbgraph
 SUBDIR += glib-networking
