@@ -1,7 +1,7 @@
 PORTNAME=	cairo
 DISTVERSION=	1.17.4
 PORTEPOCH=	3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	https://cairographics.org/releases/ \
 		https://cairographics.org/snapshots/
@@ -11,6 +11,7 @@ PATCHFILES=	ebbaebdec12878836fc84d31c59ee324e67abc05.patch:-p1 # cairo-script-in
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library with cross-device output support
+WWW=		https://www.cairographics.org/
 
 LICENSE=	lgpl2.1 mpl
 LICENSE_COMB=	dual
