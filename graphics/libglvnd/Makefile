@@ -30,9 +30,11 @@ X11_MESON_ENABLED=	x11 glx
 NO_TEST=	yes
 MESON_DISABLED=	tests
 
-USE_GCC=	yes
-
 .include <bsd.mport.options.mk>
+
+.if ${OSVERSION} < 300000
+USE_GCC=	yes
+.endif
 
 # Lots of software expects gl.pc even when it can build with EGL only
 post-install-X11-off:
