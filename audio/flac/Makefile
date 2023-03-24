@@ -1,5 +1,6 @@
 PORTNAME=	flac
 PORTVERSION=	1.4.2
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://downloads.xiph.org/releases/flac/
 
@@ -7,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
 WWW=		https://www.xiph.org/flac/
 
-LICENSE=	bsd3 gpl2 lgpl2.1
+LICENSE=	bsd3 gpl2 gfdl lgpl2.1
 LICENSE_COMB=	multi
 LICENSE_FILE_bsd3=${WRKSRC}/COPYING.Xiph
 
@@ -36,6 +37,9 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.port.pre.mk>
 
 CONFIGURE_ARGS+=--disable-vsx
+
+post-install:
+	cd ${PREFIX}/lib && ${LN} -sf libFLAC.so.12 libFLAC.so.8
 
 # test_libFLAC:
 # "iterator claims file is writable when tester thinks it should not be"
