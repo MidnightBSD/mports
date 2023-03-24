@@ -1,8 +1,6 @@
-# Created by: Ashish SHUKLA <ashish@FreeBSD.org>
-
 PORTNAME=	libvpx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.12.0
+DISTVERSION=	1.13.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -51,5 +49,6 @@ post-patch:
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/vpx*
 	@${STRIP_CMD} ${PREFIX}/lib/libvpx.so.*.*.*
+	cd ${PREFIX}/lib && ${LN} -sf libvpx.so.8 libvpx.so.6
 
 .include <bsd.port.mk>
