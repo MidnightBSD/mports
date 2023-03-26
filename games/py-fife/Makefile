@@ -1,14 +1,13 @@
-# Created by: GreenDog <fiziologus@gmail.com>
-
 PORTNAME=	fife
 PORTVERSION=	0.4.2
+PORTREVISION=	1
 CATEGORIES=	games
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flexible Isometric Free Engine
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 LIB_DEPENDS=	libvorbisfile.so:audio/libvorbis \
