@@ -1,10 +1,9 @@
-
-
 PORTNAME=	xscreensaver-gnome-hacks
-PORTREVISION=	3
+PORTREVISION=	4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Screensaver modules for use with xscreensaver and gnome-screensaver
+
 LICENSE=	agg
 
 MASTERDIR=	${.CURDIR}/../xscreensaver-gnome
