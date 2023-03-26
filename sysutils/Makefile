@@ -51,6 +51,7 @@ SUBDIR += duply
 SUBDIR += dvd+rw-tools
 SUBDIR += dvdbackup
 SUBDIR += e2fsprogs
+SUBDIR += e2fsprogs-core
 SUBDIR += ebsnvme-id
 SUBDIR += ec2-scripts
 SUBDIR += entr
