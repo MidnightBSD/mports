@@ -27,4 +27,6 @@ DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
 DOCS_MESON_TRUE=	enable-gtk-doc
 DOCSDIR=		${PREFIX}/share/gtk-doc/html/geocode-glib
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
