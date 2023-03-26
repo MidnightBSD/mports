@@ -1,5 +1,5 @@
 PORTNAME=	help
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org
