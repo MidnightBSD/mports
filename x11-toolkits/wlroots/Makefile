@@ -12,13 +12,16 @@ COMMENT=	Modular Wayland compositor library
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	wayland-protocols>=1.21:graphics/wayland-protocols
+BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
+		wayland>=1.18:graphics/wayland \
+		wayland-protocols>=1.17:graphics/wayland-protocols
 LIB_DEPENDS=	libudev.so:devel/libudev-devd \
 		libdrm.so:graphics/libdrm \
 		libwayland-server.so:graphics/wayland \
 		libseat.so:sysutils/seatd \
 		libinput.so:x11/libinput \
 		libxkbcommon.so:x11/libxkbcommon
+RUN_DEPENDS=	libudev-devd>=0.4.1:devel/libudev-devd
 
 USES=		compiler:c11 gl meson pkgconfig xorg
 USE_GITHUB=	yes
@@ -79,6 +82,7 @@ VULKAN_BUILD_DEPENDS=	glslangValidator:graphics/glslang \
 			vulkan-headers>0:graphics/vulkan-headers
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 VULKAN_RUN_DEPENDS=	mesa-dri>0:graphics/mesa-dri
+VULKAN_USES=		localbase # Silence -Werror=undef in <vulkan/vulkan_core.h>
 VULKAN_VARS=		RENDERERS+=vulkan
 VULKAN_PLIST_FILES=	include/wlr/types/wlr_drm.h \
 			%%VULKAN%%include/wlr/render/vulkan.h
@@ -86,8 +90,7 @@ VULKAN_PLIST_FILES=	include/wlr/types/wlr_drm.h \
 X11_LIB_DEPENDS=	libxcb-errors.so:x11/xcb-util-errors \
 			libxcb-render-util.so:x11/xcb-util-renderutil \
 			libxcb-icccm.so:x11/xcb-util-wm
-X11_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
-			xwayland-devel>0:x11-servers/xwayland-devel
+X11_BUILD_DEPENDS=	xwayland-devel>0:x11-servers/xwayland-devel
 X11_RUN_DEPENDS=	xwayland-devel>0:x11-servers/xwayland-devel
 X11_USE=		XORG=xcb
 X11_MESON_ENABLED=	x11-backend xwayland
