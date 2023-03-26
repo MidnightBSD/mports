@@ -1,5 +1,5 @@
 PORTNAME=	webkitwidgets
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www devel python
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,5 +24,8 @@ API_CONFIGURE_ON=	--qsci-api --qsci-api-destdir=${PYQT_APIDIR}
 API_CONFIGURE_OFF=	--no-qsci-api
 API_LIB_DEPENDS=	libqscintilla2_qt5.so:devel/qscintilla2-qt5
 DEBUG_CONFIGURE_ON=	--debug --trace
+
+post-install:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5/QtWebKitWidgets.so
 
 .include <bsd.port.mk>
