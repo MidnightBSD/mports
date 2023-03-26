@@ -1,5 +1,6 @@
 PORTNAME=	libglvnd
 DISTVERSION=	1.6.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
