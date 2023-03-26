@@ -1,5 +1,6 @@
 PORTNAME=	xorg-vfbserver
 PORTEPOCH=	1
+PORTREVISION=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X virtual framebuffer server from X.Org
