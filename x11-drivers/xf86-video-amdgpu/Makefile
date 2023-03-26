@@ -2,7 +2,7 @@
 
 PORTNAME=	xf86-video-amdgpu
 PORTVERSION=	19.1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
