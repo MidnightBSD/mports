@@ -1,7 +1,6 @@
-# Created by: Jean-Yves Lefort <jylefort@brutele.be>
-
 PORTNAME=	tea
 PORTVERSION=	60.7.0
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
