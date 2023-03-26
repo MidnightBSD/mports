@@ -1,6 +1,6 @@
 PORTNAME=	tarsnap-gui
 PORTVERSION=	1.0.2
-PORTREVISION=	4
+PORTREVISION=	5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -20,6 +20,6 @@ USE_GL=		gl
 PLIST_FILES=	bin/tarsnap-gui
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tarsnap-gui ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tarsnap-gui ${PREFIX}/bin
 
 .include <bsd.port.mk>
