@@ -1,7 +1,6 @@
-# Created by: gahr
-
 PORTNAME=	libosmesa
 PORTVERSION=	${MESAVERSION}
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 COMMENT=	Off-Screen Mesa implementation of the OpenGL API
@@ -41,6 +40,7 @@ MESON_ARGS+=	-Dosmesa=classic
 .else
 MESON_ARGS+=	-Dosmesa=gallium
 .endif
+MESON_ARGS+=	-Dosmesa=true
 
 .include "${MASTERDIR}/Makefile.targets"
 
