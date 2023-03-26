@@ -1,5 +1,5 @@
 PORTNAME=	webkit
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www devel python
 
 MAINTAINER=	ports@MidnightBSD.org
