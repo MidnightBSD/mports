@@ -1,5 +1,5 @@
 PORTNAME=	designerplugin
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org

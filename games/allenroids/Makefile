@@ -1,8 +1,6 @@
-
-#
-
 PORTNAME=	allenroids
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://www.integrity.com/homes/tomandkaren/Allenroids/files/Linux/ \
 		http://people.midnightbsd.org/~laffer1/
