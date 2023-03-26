@@ -1,5 +1,5 @@
 PORTNAME=	printsupport
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print python
 
 MAINTAINER=	ports@MidnightBSD.org
