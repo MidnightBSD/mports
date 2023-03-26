@@ -1,21 +1,50 @@
---- configure.orig	2016-04-28 17:55:03 UTC
-+++ configure
-@@ -2380,7 +2380,7 @@ case $_host_os in
- 		append_var LDFLAGS "-L$DEVKITPRO/libnds/lib"
+--- configure.orig	2020-09-13 17:05:37.000000000 -0400
++++ configure	2023-03-26 12:24:30.563324000 -0400
+@@ -2947,7 +2947,7 @@
+ 		append_var LIBS "-specs=ds_arm9.specs"
  		append_var LIBS "-lnds9"
  		;;
--	freebsd*)
-+	dragonfly*|freebsd*|midnightbsd*)
+-	freebsd* | openbsd*)
++	midnightbsd* | freebsd* | openbsd*)
  		append_var LDFLAGS "-L/usr/local/lib"
  		append_var CXXFLAGS "-I/usr/local/include"
  		;;
-@@ -3259,6 +3259,9 @@ case $_host_os in
- 	android | beos* | bsd* | darwin* | freebsd* | gnu* | gph-linux | haiku* | hpux* | iphone | ios7 | irix*| k*bsd*-gnu* | linux* | maemo | mint* | netbsd* | openbsd* | solaris* | sunos* | uclinux* | webos)
- 		_posix=yes
+@@ -3917,7 +3917,10 @@
+ 	amigaos* | cygwin* | dreamcast | ds | gamecube | mingw* | morphos | n64 | ps3 | psp2 | psp | riscos | wii)
+ 		_posix=no
  		;;
-+	dragonfly*|midnightbsd*)
+-	3ds | android | androidsdl | beos* | bsd* | darwin* | freebsd* | gnu* | gph-linux | haiku* | hpux* | iphone | ios7 | irix*| k*bsd*-gnu* | linux* | maemo | mint* | netbsd* | openbsd* | solaris* | sunos* | switch | uclinux*)
++	3ds | android | androidsdl | beos* | bsd* | darwin* | midnightbsd* | freebsd* | gnu* | gph-linux | haiku* | hpux* | iphone | ios7 | irix*| k*bsd*-gnu* | linux* | maemo | mint* | netbsd* | openbsd* | solaris* | sunos* | switch | uclinux*)
 +		_posix=yes
 +		;;
- 	os2-emx*)
- 		_posix=yes	# FIXME: Really???
++	dragonfly*|midnightbsd*)
+ 		_posix=yes
  		;;
+ 	os2-emx*)
+@@ -4059,7 +4062,7 @@
+ PLUGIN_LDFLAGS		+= -Wl,-T$(srcdir)/backends/plugins/ds/plugin.ld -mthumb-interwork -mfloat-abi=soft
+ '
+ 		;;
+-	freebsd* | openbsd*)
++	midnightbsd* | freebsd* | openbsd*)
+ 		_plugin_prefix="lib"
+ 		_plugin_suffix=".so"
+ 		append_var CXXFLAGS "-fPIC"
+@@ -4248,7 +4251,7 @@
+ EOF
+ 			cc_check -lsapi -lole32 && _tts=yes
+ 			;;
+-		linux* | freebsd* | openbsd*)
++		linux* | midnightbsd* | freebsd* | openbsd*)
+ 			cat > $TMPC << EOF
+ #include <speech-dispatcher/libspeechd.h>
+ int main(void) { return 0; }
+@@ -5593,7 +5596,7 @@
+ 	echo "no"
+ else
+ 	case $_host_os in
+-	linux* | freebsd* | openbsd*)
++	linux* | midnightbsd* | freebsd* | openbsd*)
+ 		echo "speech dispatcher"
+ 		_tts=yes
+ 		define_in_config_if_yes $_tts 'USE_SPEECH_DISPATCHER'

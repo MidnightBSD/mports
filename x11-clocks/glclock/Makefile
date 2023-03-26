@@ -1,8 +1,6 @@
-
-
 PORTNAME=	glclock
 DISTVERSION=	6.0b6.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-clocks
 MASTER_SITES=	http://www.daionet.gr.jp/~masa/archives/
 
@@ -11,6 +9,7 @@ COMMENT=	OpenGL spinning pocket watch demo and benchmark utility
 
 LICENSE=	unknown
 
+USES=		gl xorg
 USE_XORG=	xi xmu xext x11
 USE_GL=		gl glu glut
 MAKEFILE=	makefile

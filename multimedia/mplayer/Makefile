@@ -1,7 +1,6 @@
-# Created by: Thomas E. Zander with help from Vladimir Kushnir
-
 PORTNAME=	mplayer
 PORTVERSION=	${MPLAYER_PORT_VERSION}.${MPLAYER_SNAPSHOT_DATE:S/-//g}
+PORTREVISION=	1
 CATEGORIES=	multimedia audio
 
 MAINTAINER=	ports@MidnightBSD.org
