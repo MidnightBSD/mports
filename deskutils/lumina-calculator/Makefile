@@ -1,6 +1,6 @@
 PORTNAME=	lumina-calculator
 DISTVERSION=	1.6.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 
 MAINTAINER=	ports@MidnightBSD.org
