@@ -1,5 +1,5 @@
 PORTNAME=	firefox
-DISTVERSION=	68.8.0
+DISTVERSION=	78.12.0
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source \
@@ -37,14 +37,14 @@ USES=		tar:xz
 MOZILLA=        browser                                                                                                                                                   
 MOZILLA_NAME=   Browser                                                                                                                                                   
 MOZ_OPTIONS=    --program-transform-name='s/firefox/${MOZILLA}/'                                                                                                          
-
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
 FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/${MOZILLA}-snap/${MOZILLA}.desktop
 MOZ_OPTIONS=	--enable-application=browser \
 		--disable-official-branding
 
-MAKE_ENV+=    __FreeBSD__=10 __FreeBSD__version=1004501
+MAKE_ENV+=    __FreeBSD__=12 __FreeBSD__version=1203501
 
 .include "Makefile.options"
 
