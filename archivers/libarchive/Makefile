@@ -4,6 +4,9 @@ PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	https://libarchive.org/downloads/
 
+PATCH_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/commit/
+PATCHFILES=	bff38efe8c110469c5080d387bec62a6ca15b1a5.patch:-p1
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to create and read several streaming archive formats
 
