@@ -33,10 +33,12 @@ PORTSCOUT=	limitw:1,even
 # with these files when module is imported from root user
 post-install:
 	${FIND} ${PREFIX} -name \*.pyc -delete
-	(cd ${PREFIX} && \
+
+	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && \
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		-d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
+                -d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
+                -d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
+	-${RM} -r ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/gps/__pycache__
 
 .include <bsd.port.mk>
