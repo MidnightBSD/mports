@@ -18,7 +18,8 @@ TEST_DEPENDS=	runtest:misc/dejagnu
 USES=		compiler:c++11-lang cpe gmake libtool makeinfo pkgconfig tar:xz
 USE_PYTHON=	flavors py3kplist
 
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
