@@ -44,11 +44,11 @@ post-patch:
 	# Newer versions of Plex ship a duplicate file; we'll just symlink
 	${RM} ${WRKSRC}/libpython2.7.so
 
-do-install:
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR})
+do-fake:
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}/${DATADIR})
 	# Python fix for older releases of Plex
-	(cd ${DATADIR} && ${LN} -s libpython2.7.so.1 libpython2.7.so)
+	(cd ${FAKE_DESTDIR}${DATADIR} && ${LN} -sf libpython2.7.so.1 libpython2.7.so)
 	# Workaround for space in binary name
-	(cd $${DATADIR} && ${LN} -s Plex\ Media\ Server Plex_Media_Server)
+	(cd ${FAKE_DESTDIR}${DATADIR} && ${LN} -sf Plex\ Media\ Server Plex_Media_Server)
 
 .include <bsd.port.post.mk>
