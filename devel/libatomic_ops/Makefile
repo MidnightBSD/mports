@@ -1,5 +1,5 @@
 PORTNAME=	libatomic_ops
-DISTVERSION=	7.6.14
+DISTVERSION=	7.8.0
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/ivmai/libatomic_ops/releases/download/v${DISTVERSION}/
 
@@ -26,11 +26,11 @@ post-patch:
 .if ${PORT_OPTIONS:MDOCS}
 # Fix documentation installation directory
 	@${REINPLACE_CMD} -e 's,pkgdata,pkgdoc,g ; s,(datadir.*,(docdir),' \
-		${WRKSRC}/doc/Makefile.in
+		${WRKSRC}/Makefile.in
 .else
 # If documentation is not wanted, just disable it instead of fixing
 	@${REINPLACE_CMD} -E 's,: (un)?install-dist_pkgdataDATA,:,' \
-		${WRKSRC}/doc/Makefile.in
+		${WRKSRC}/Makefile.in
 .endif
 
 .include <bsd.port.mk>
