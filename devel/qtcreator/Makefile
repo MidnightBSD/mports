@@ -90,7 +90,7 @@ EXPIRATION_DATE=2021-06-23
 .endif
 
 .if ${LLVM_DEFAULT:C/[1-5]./&0/:S,-devel,990,} >= 90
-LLVM_DEFAULT=	80
+LLVM_DEFAULT=	70
 .endif
 
 .if ${LLVM_DEFAULT} == 10
