@@ -1,7 +1,5 @@
-
-
 PORTNAME=	libchamplain
-PORTVERSION=	0.12.16
+PORTVERSION=	0.12.20
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
@@ -17,14 +15,12 @@ LIB_DEPENDS=	libcogl.so:graphics/cogl \
 		libjson-glib-1.0.so:devel/json-glib \
 		libsoup-2.4.so:devel/libsoup
 
-USES=		gettext-runtime gl gmake gnome libtool localbase pathfix \
-		pkgconfig sqlite tar:xz xorg
+USES=		gettext-runtime gl gnome libtool localbase pathfix \
+		pkgconfig meson sqlite tar:xz vala:build xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build
 USE_GL=		egl
 USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--enable-gtk-doc-html=no
 INSTALL_TARGET=	install-strip
 
 PLIST_SUB=	VERSION=0.12

@@ -1,5 +1,5 @@
 PORTNAME=	sensors
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	comms devel python
 
 MAINTAINER=	ports@MidnightBSD.org
