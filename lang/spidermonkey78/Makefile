@@ -33,7 +33,8 @@ PATCH_WRKSRC=		${WRKDIR}/firefox-${DISTVERSION}/
 CONFIGURE_OUTSOURCE=	yes
 CONFIGURE_SCRIPT=	../firefox-${DISTVERSION}/js/src/configure
 
-CONFIGURE_ARGS=	--disable-debug \
+CONFIGURE_ARGS=	--enable-application=js \
+		--disable-debug \
 		--disable-debug-symbols \
 		--disable-gold \
 		--disable-jemalloc \
@@ -84,6 +85,8 @@ post-patch:
 		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
 		${WRKSRC}/testing/mozbase/mozinfo/mozinfo/mozinfo.py
+	@${FIND} ${WRKSRC}/build/pymake ${WRKSRC}/python/mozbuild -name *.py -exec \
+		${REINPLACE_CMD} "s|'rU'|'r'|g" {} \;
 
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/lib/libjs_static.ajs
