@@ -308,6 +308,7 @@ SUBDIR += llvm70
 SUBDIR += llvm90
 SUBDIR += llvm10
 SUBDIR += llvm11
+SUBDIR += llvm12
 SUBDIR += llvm-devel
 SUBDIR += lndir
 SUBDIR += log4j

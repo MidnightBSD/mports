@@ -85,6 +85,8 @@ post-patch:
 		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
 		${WRKSRC}/testing/mozbase/mozinfo/mozinfo/mozinfo.py
+	@${FIND} ${WRKSRC}/python/mozbuild -name *.py -exec \
+		${REINPLACE_CMD} 's|"rU"|"r"|g' {} \;
 
 pre-configure:
 	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf2.13)
