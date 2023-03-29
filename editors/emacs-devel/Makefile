@@ -68,14 +68,14 @@ SUB_LIST=	EMACS_VER=${DISTVERSION:R} \
 		NATIVECOMP_COMMENT_END=${NATIVECOMP_COMMENT_END} \
 		NATIVECOMP_COMMENT_START=${NATIVECOMP_COMMENT_START}
 
-INFO=		auth autotype bovine calc ccmode cl dbus dired-x ebrowse ede \
-		ediff edt efaq eieio eintr elisp emacs emacs-gnutls emacs-mime \
-		epa erc ert eshell eudc eww flymake forms gnus htmlfontify \
-		idlwave ido info mairix-el message mh-e modus-themes newsticker \
-		nxml-mode octave-mode org pcl-cvs pgg rcirc reftex remember \
-		sasl sc semantic ses sieve smtpmail speedbar srecode todo-mode \
-		tramp transient url vhdl-mode vip viper vtable widget wisent \
-		woman
+#INFO=		auth autotype bovine calc ccmode cl dbus dired-x ebrowse ede \
+#		ediff edt efaq eieio eintr elisp emacs emacs-gnutls emacs-mime \
+#		epa erc ert eshell eudc eww flymake forms gnus htmlfontify \
+#		idlwave ido info mairix-el message mh-e modus-themes newsticker \
+#		nxml-mode octave-mode org pcl-cvs pgg rcirc reftex remember \
+#		sasl sc semantic ses sieve smtpmail speedbar srecode todo-mode \
+#		tramp transient url vhdl-mode vip viper vtable widget wisent \
+#		woman
 INFO_PATH=	${DATADIR_REL}/info
 PLIST_SUB=	EMACS_VER=${DISTVERSION:R} \
 		GNU_HOST=${CONFIGURE_TARGET}
