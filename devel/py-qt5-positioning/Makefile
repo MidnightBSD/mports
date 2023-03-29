@@ -1,5 +1,5 @@
 PORTNAME=	positioning
-PORTVERSION=	1
+PORTVERSION=	2
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org
