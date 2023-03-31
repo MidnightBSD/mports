@@ -45,8 +45,6 @@
 #
 #		Setting KDE_INVENT is the equivalent of a handful of USE_GITLAB
 #		and related settings.
-#
-# 
 
 .if !defined(_INCLUDE_USES_KDE_MK)
 _INCLUDE_USES_KDE_MK=	yes
@@ -54,7 +52,8 @@ _INCLUDE_USES_KDE_MK=	yes
 _KDE_SUPPORTED=		5
 
 .  if empty(kde_ARGS)
-IGNORE=	kde needs a version (${_KDE_SUPPORTED})
+kde_ARGS=	5
+#IGNORE=	kde needs a version (${_KDE_SUPPORTED})
 .  endif
 
 .  for ver in ${_KDE_SUPPORTED:O:u}
