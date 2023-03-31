@@ -133,6 +133,7 @@ SUBDIR += munin-common
 SUBDIR += munin-contrib
 SUBDIR += munin-master
 SUBDIR += munin-node
+SUBDIR += ncdu
 SUBDIR += neofetch
 SUBDIR += nvclock
 SUBDIR += obliterate
