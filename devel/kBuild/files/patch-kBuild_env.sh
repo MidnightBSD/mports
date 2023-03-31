@@ -4,7 +4,7 @@
              KBUILD_HOST=linux
              ;;
  
-+        MidnightBSD)
++        MidnightBSD|midnightbsd|MIDNIGHTBSD)
 +            KBUILD_HOST=freebsd
 +            ;;
 +
