@@ -297,7 +297,7 @@ post-install:
 	${MV} ${STAGEDIR}${MANPREFIX}/man/man1/compile_et.1 ${STAGEDIR}${MANPREFIX}/man/man1/e2fsprogs-compile_et.1
 	${MKDIR} ${STAGEDIR}${DATADIR}/et/
 	${MV} ${STAGEDIR}${PREFIX}/share/et/* ${STAGEDIR}${DATADIR}/et/
-	${REINPLACE_CMD} -e 's}^DIR=.*$$}DIR=${DATADIR}/et}' -i '' ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
+	${REINPLACE_CMD} -e 's}^DIR=.*$$}DIR=${TRUE_PREFIX}/${DATADIR_REL}/et}' -i '' ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
 	${RMDIR} ${STAGEDIR}${PREFIX}/share/et
 	${MV} -f ${STAGEDIR}${MANPREFIX}/man/man3/com_err.3 \
 		 ${STAGEDIR}${MANPREFIX}/man/man3/e2fsprogs-com_err.3
