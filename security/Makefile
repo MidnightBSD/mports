@@ -210,6 +210,7 @@ SUBDIR += sudo
 SUBDIR += tor
 SUBDIR += trousers
 SUBDIR += ubuntu-keyring
+SUBDIR += unix-selfauth-helper
 SUBDIR += vlock
 SUBDIR += vm-to-tor
 SUBDIR += vnccrack
