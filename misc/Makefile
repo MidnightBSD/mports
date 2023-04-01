@@ -77,7 +77,6 @@ SUBDIR += unicode-emoji
 SUBDIR += usbids
 SUBDIR += wmScoreBoard
 SUBDIR += wmcalendar
-SUBDIR += wmfirew
 SUBDIR += wmjulia
 SUBDIR += wmpal
 SUBDIR += wmtunlo
