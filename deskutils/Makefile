@@ -11,7 +11,6 @@ SUBDIR += gnome-characters
 SUBDIR += gnome-clocks
 SUBDIR += gnome-contacts
 SUBDIR += gnome-dictionary
-SUBDIR += gnome-documents
 SUBDIR += gnome-font-viewer
 SUBDIR += gnome-maps
 SUBDIR += gnome-photos
