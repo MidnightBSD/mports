@@ -54,6 +54,7 @@ ENLIGHTENMENT_VERSION=	0.25.4
 PLIST_SUB=              ENLIGHTENMENT_ARCH=${ENLIGHTENMENT_ARCH}-${ENLIGHTENMENT_VERSION}
 
 post-install:
+	${MKDIR} ${PREFIX}/lib/pkgconfig
 	${CP} ${PREFIX}/lib/data/pkgconfig/* ${PREFIX}/lib/pkgconfig/
 
 .include <bsd.port.mk>
