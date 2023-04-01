@@ -53,4 +53,7 @@ ENLIGHTENMENT_ARCH=	${OPSYS:tl}-${CURRENT_ARCH:S|amd64|x86_64|}
 ENLIGHTENMENT_VERSION=	0.25.4
 PLIST_SUB=              ENLIGHTENMENT_ARCH=${ENLIGHTENMENT_ARCH}-${ENLIGHTENMENT_VERSION}
 
+post-install:
+	${CP} ${PREFIX}/lib/data/pkgconfig/* ${PREFIX}/lib/pkgconfig/
+
 .include <bsd.port.mk>
