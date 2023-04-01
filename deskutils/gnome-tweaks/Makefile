@@ -34,10 +34,9 @@ PORTSCOUT=	limitw:1,even
 post-install:
 	${FIND} ${PREFIX} -name \*.pyc -delete
 
-	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && \
-	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-                -d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
-	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-                -d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
+	${PYTHON_CMD:S,${FAKE_DESTDIR},,} ${PYTHON_LIBDIR}/compileall.py \
+		-f -d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/gtweak \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/gtweak
+
 
 .include <bsd.port.mk>
