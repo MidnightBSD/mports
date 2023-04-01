@@ -37,7 +37,6 @@ SUBDIR += localedata
 SUBDIR += mate-user-guide
 SUBDIR += mbuffer
 SUBDIR += mc
-SUBDIR += mc-light
 SUBDIR += metalink-tools
 SUBDIR += mime-support
 SUBDIR += mirmon

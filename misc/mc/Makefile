@@ -1,5 +1,3 @@
-
-
 PORTNAME=	mc
 PORTVERSION=	4.8.13
 PORTREVISION=	1
@@ -13,10 +11,11 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Midnight Commander, a free Norton Commander Clone
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
-LIB_DEPENDS=	libssh2.so:${PORTSDIR}/security/libssh2
+LIB_DEPENDS=	libssh2.so:security/libssh2
 
 CONFLICTS=	mc-light-4*
 
@@ -50,7 +49,7 @@ ICONV_CONFIGURE_ENABLE=	charset
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
 
-SLANG_LIB_DEPENDS=	libslang.so:${PORTSDIR}/devel/libslang2
+SLANG_LIB_DEPENDS=	libslang.so:devel/libslang2
 
 SMB_CONFIGURE_ENABLE=	vfs-smb
 SMB_CONFIGURE_ON=	--with-smb-configdir=${LOCALBASE}/etc \
