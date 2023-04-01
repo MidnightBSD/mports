@@ -1,5 +1,5 @@
 PORTNAME=	a2ps
-PORTVERSION=	4.14
+PORTVERSION=	4.15.3
 CATEGORIES=	print
 MASTER_SITES=	GNU FREEBSD_LOCAL/hrs/a2ps/:i18n
 
@@ -7,18 +7,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Formats an ASCII file for printing on a postscript printer
 WWW=		https://www.gnu.org/software/a2ps/
 
-LICENSE=	gpl2
+LICENSE=	gpl3
 
-LIB_DEPENDS=	libpaper.so:print/libpaper
+LIB_DEPENDS=	libgc.so:devel/boehm-gc \
+		libpaper.so:print/libpaper
 
-USES=		cpe perl5
+USES=		cpe perl5 gperf pkgconfig localbase gmake
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 INFO=		a2ps ogonkify regex
-WRKSRC=		${WRKDIR}/${PORTNAME}-4.14
 I18N_PACKAGE=	i18n-fonts-0.1
-CPE_VENDOR=	gnu
 
 CONFIGURE_ARGS=	--with-medium=libpaper --sharedstatedir=${PREFIX}/share \
 	--sysconfdir=${PREFIX}/etc --datadir=${PREFIX}/share \
@@ -31,7 +29,6 @@ RUN_DEPENDS+=	${LOCALBASE}/etc/papersize:print/papersize-default-a4
 .endif
 
 OPTIONS_DEFINE=NLS I18N EMACS
-OPTIONS_DEFAULT=NLS
 NO_OPTIONS_SORT=yes
 OPTIONS_SUB=	yes
 EMACS_DESC=Enable Emacs support
@@ -39,8 +36,9 @@ I18N_DESC=Enable I18N support
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
-EMACS_USES=		emacs:build
+EMACS_USES=		emacs:noflavors
 EMACS_CONFIGURE_ON=	--with-lispdir=${LOCALBASE}/${EMACS_SITE_LISPDIR}
+EMACS_CONFIGURE_OFF=	--without-emacs --without-lispdir
 
 .include <bsd.mport.options.mk>
 
@@ -52,7 +50,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's|^DESTDIR|#DESTDIR|' \
 		`${FIND} ${WRKSRC} -name "Makefile.in"`
 
-.if ${PORT_OPTIONS:MI18N}
+.if ${PORT_OPTIONS:MI18N} || make(makesum) || defined(FETCH_ALL)
 #DISTFILES+=	${I18N_PACKAGE}${EXTRACT_SUFX}:i18n
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${I18N_PACKAGE}${EXTRACT_SUFX}:i18n
 
@@ -73,6 +71,13 @@ post-configure:
 .endif
 
 post-install:
+.if ${PORT_OPTIONS:MEMACS}
+	${MKDIR} ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp
+	${LN} -sf ${PREFIX}/share/emacs/site-lisp/a2ps-print.el \
+		  ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/a2ps-print.el
+	${LN} -sf ${PREFIX}/share/emacs/site-lisp/a2ps.el \
+		  ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/a2ps.el
+.endif
 	cd ${WRKSRC}/doc && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${.MAKEFLAGS} ${MAKE_ARGS} ${INSTALL_TARGET}
 	${RM} -f ${PREFIX}/lib/liba2ps.la
