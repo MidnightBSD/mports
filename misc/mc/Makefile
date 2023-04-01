@@ -1,108 +1,95 @@
 PORTNAME=	mc
-PORTVERSION=	4.8.13
-PORTREVISION=	1
+PORTVERSION=	4.8.28
 CATEGORIES=	misc shells
 MASTER_SITES=	http://ftp.midnight-commander.org/ \
-		http://ftp.osuosl.org/pub/midnightcommander/ \
-		SF/nemysisfreebsdp/misc/:icons
-DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
-		${PORTNAME}.png:icons
-EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
+		https://ftp.osuosl.org/pub/midnightcommander/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Midnight Commander, a free Norton Commander Clone
-LICENSE_FILE=	${WRKSRC}/COPYING
+WWW=          https://midnight-commander.org/
 
 LICENSE=	gpl3+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libssh2.so:security/libssh2
+RUN_DEPENDS=	zip:archivers/zip
 
-CONFLICTS=	mc-light-4*
+.if ${:!diff --version 2>/dev/null | grep -c GNU\ diffutils || :!} < 1
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_diffviewer_ydiff.c
+RUN_DEPENDS+=	gdiff:textproc/diffutils
+.endif
 
-USES=		gmake shebangfix perl5 pkgconfig tar:xz libtool
-SHEBANG_FILES=	misc/mcedit.menu.in configure configure.ac \
-		${WRKSRC}/src/vfs/extfs/helpers/Makefile.in \
-		${WRKSRC}/src/vfs/extfs/helpers/s3+.in \
-		${WRKSRC}/src/vfs/extfs/helpers/uc1541.in
+USES=		gmake gnome libtool perl5 pkgconfig python shebangfix tar:xz
+SHEBANG_FILES=	${WRKSRC}/src/vfs/extfs/helpers/s3+.in \
+		${WRKSRC}/src/vfs/extfs/helpers/uc1541
 python_OLD_CMD=	@PYTHON@
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	ZIP=${ZIP_CMD} UNZIP=${UNZIP_CMD}
+CONFIGURE_ENV=	ZIP=${LOCALBASE}/bin/zip UNZIP=${UNZIP_NATIVE_CMD}
 
-OPTIONS_DEFINE=	DOCS EDITOR ICONV NLS SMB SUBSHELL X11
+PORTDOCS=	AUTHORS FAQ HACKING MAINTAINERS NEWS README *.txt
 
+OPTIONS_DEFINE=	ASPELL DOCS EDITOR EXTATTR ICONV NLS SFTP SUBSHELL X11
+OPTIONS_DEFAULT=	EDITOR ICONV SFTP SLANG SUBSHELL X11
 OPTIONS_SINGLE=	SCREEN
 OPTIONS_SINGLE_SCREEN=	SLANG NCURSES
-
-OPTIONS_DEFAULT=	EDITOR ICONV SLANG SMB SUBSHELL X11
-
-EDITOR_DESC=	Build with internal editor
-SUBSHELL_DESC=	Build with subshell support
-
 OPTIONS_SUB=	yes
 
+ASPELL_DESC=	Aspell support for internal editor
+EDITOR_DESC=	Build with internal text editor
+EXTATTR_DESC=	Extended filesystem attributes support
+SCREEN_DESC=	Screen library
+SFTP_DESC=	Support for SFTP (via libssh)
+SUBSHELL_DESC=	Build with subshell support
+
+ASPELL_LIB_DEPENDS=	libaspell.so:textproc/aspell
+ASPELL_CONFIGURE_ENABLE=aspell
+
 EDITOR_CONFIGURE_WITH=	internal-edit
+
+EXTATTR_LIB_DEPENDS=	libe2p.so:sysutils/e2fsprogs-core
 
 ICONV_USES=		iconv
 ICONV_CONFIGURE_ENABLE=	charset
 
-NLS_CONFIGURE_ENABLE=	nls
+NCURSES_CONFIGURE_ON=	--with-screen=ncurses
+NCURSES_CFLAGS+=	-DNCURSES_WIDECHAR
+
+NLS_CONFIGURE_ON=	--with-libintl-prefix=${LOCALBASE}
+NLS_CONFIGURE_OFF=	--disable-nls
 NLS_USES=		gettext
 
+SFTP_LIB_DEPENDS=	libssh2.so:security/libssh2
+SFTP_CONFIGURE_ENABLE=	vfs-sftp
+
 SLANG_LIB_DEPENDS=	libslang.so:devel/libslang2
+SLANG_CONFIGURE_ON=	--with-screen=slang
 
-SMB_CONFIGURE_ENABLE=	vfs-smb
-SMB_CONFIGURE_ON=	--with-smb-configdir=${LOCALBASE}/etc \
-			--with-smb-codepagedir=${LOCALBASE}/etc/codepages
+SUBSHELL_CONFIGURE_WITH=subshell
+SUBSHELL_SUB_FILES=	pkg-message
 
-SUBSHELL_CONFIGURE_WITH=	subshell
-
-X11_CONFIGURE_ENABLE=	x
-
-SUB_FILES=	pkg-message
-
-PORTDOCS=	*
-
-DOCSRCDIR1=	${WRKSRC}
-DOC_FILES1=	AUTHORS NEWS README
-
-DOCSRCDIR2=	${WRKSRC}/doc
-DOCSDIR2=	${DOCSDIR}/doc
-DOC_FILES2=	FAQ HACKING MAINTAINERS *.txt
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-.endif
-
-.if${PORT_OPTIONS:MX11}
-USE_XORG=	x11 xext
-.endif
-
-.if ${PORT_OPTIONS:MSLANG}
-CONFIGURE_ARGS+=--with-screen=slang --with-slang-includes=${LOCALBASE}/include
-.endif
-
-.if ${PORT_OPTIONS:MNCURSES}
-CONFIGURE_ARGS+=--with-screen=ncurses
-.endif
+X11_CONFIGURE_WITH=	x
+X11_USES=		xorg
+X11_USE=		xorg=x11,xext
+X11_VARS=		CONFLICTS_INSTALL=mc-nox11
+X11_VARS_OFF=		CONFLICTS_INSTALL=mc PKGNAMESUFFIX=-nox11
 
 post-patch:
-	${REINPLACE_CMD} -e 's|missing-parameter-type|unused-variable|; \
-		s|but-set-variable|variable|' \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|SUBDIRS = intl|SUBDIRS =|' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|clang||' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|x$$UNRAR_VERSION.*x|$$UNRAR_VERSION -ge |' \
+		${WRKSRC}/src/vfs/extfs/helpers/urar.in
 
-post-install:
-	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/
-	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.desktop ${STAGEDIR}${DESKTOPDIR}
+post-patch-EXTATTR-off:
+	@${REINPLACE_CMD} -e '/found_e2p=/s|yes|disabled|; /e2p library/ \
+		{ s| or|,|; s|)|&, or disabled|; }' ${WRKSRC}/configure
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR2}
-	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${STAGEDIR}${DOCSDIR2}
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${LN} -sf ../${PORTDOCS:[1]} ${WRKSRC}/doc
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+post-install-X11-on:
+	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.png \
+		${FAKE_DESTDIR}${PREFIX}/share/pixmaps/
+	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.desktop ${FAKE_DESTDIR}${DESKTOPDIR}
 
 .include <bsd.port.mk>
