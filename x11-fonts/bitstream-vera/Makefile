@@ -10,7 +10,10 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera TrueType font collection
 
-LICENSE=	unknown
+LICENSE=	BITSTREAM_VERA
+LICENSE_NAME=	Bitstream Vera Fonts Copyright
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT.TXT
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	fc-cache:x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:x11-fonts/fontconfig
