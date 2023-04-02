@@ -1,7 +1,7 @@
 PORTNAME=	libadwaita
-PORTVERSION=	1.1.0
-PORTREVISION=	1
+PORTVERSION=	1.1.5
 CATEGORIES=	x11-toolkits
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Building blocks for modern GNOME applications
@@ -15,11 +15,7 @@ LIB_DEPENDS=	libfribidi.so:converters/fribidi \
 		libgraphene-1.0.so:graphics/graphene
 
 USES=		gettext gnome meson ninja pkgconfig vala:build
-USE_GITLAB=	yes
 USE_GNOME=	cairo gdkpixbuf2 gtk40 introspection:build
-GL_SITE=	https://gitlab.gnome.org
-GL_ACCOUNT=	GNOME
-GL_COMMIT=	0e57660217829b3f905f20e1c53aaf42c2302882
 
 PORTSCOUT=	limit:1,even
 
@@ -27,8 +23,6 @@ OPTIONS_DEFINE=	DOCS
 
 DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
 DOCS_MESON_TRUE=	gtk_doc
-
-WRKSRC=		${WRKDIR}/libadwaita-${GL_COMMIT}
 
 NO_TEST=	yes
 
