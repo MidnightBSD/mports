@@ -623,6 +623,7 @@ SUBDIR += p5-PerlIO-utf8_strict
 SUBDIR += p5-Pod-Coverage
 SUBDIR += p5-Pod-Coverage-TrustPod
 SUBDIR += p5-Pod-Tests
+SUBDIR += p5-Proc-Queue
 SUBDIR += p5-Proc-WaitStat
 SUBDIR += p5-ReadLine-Perl
 SUBDIR += p5-Readonly
