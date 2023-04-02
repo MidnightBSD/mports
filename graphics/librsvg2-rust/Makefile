@@ -1,7 +1,5 @@
-# Created by: Ade Lovett <ade@FreeBSD.org>
-
 PORTNAME=	librsvg
-PORTVERSION=	2.50.3
+PORTVERSION=	2.52.0
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2-rust
@@ -9,10 +7,11 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for parsing and rendering SVG vector-graphic files
+WWW=		https://live.gnome.org/LibRsvg
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${RUST_DEFAULT}>=1.34.0:lang/${RUST_DEFAULT} \
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.52.0:lang/${RUST_DEFAULT} \
 		valac:lang/vala
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig \
