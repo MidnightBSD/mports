@@ -169,7 +169,6 @@ SUBDIR += gsettings-desktop-schemas
 SUBDIR += gstreamer1-plugins-soup
 SUBDIR += gumbo
 SUBDIR += gvfs
-SUBDIR += hadoop
 SUBDIR += highlighterkit
 SUBDIR += highway
 SUBDIR += hs-cabal-install
