@@ -187,4 +187,5 @@ databases/php73-pdo_firebird|databases/php74-pdo_firebird|2022-01-26|Has expired
 misc/php73-calendar|misc/php74-calendar|2022-01-26|Has expired: Security support ended on 2021-12-06
 mail/php73-imap|mail/php74-imap|2022-01-26|Has expired: Security support ended on 2021-12-06
 net/php73-sockets|net/php74-sockets|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/hadoop||2023-04-02|Broken with modern openssl
 
