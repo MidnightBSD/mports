@@ -13,7 +13,8 @@ WWW=		https://www.videolan.org/x264.html
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	bash:shells/bash
+BUILD_DEPENDS=	bash:shells/bash \
+		nasm>=2.13:devel/nasm
 LIB_DEPENDS?=	libx264.so:multimedia/libx264
 
 X264_BUILD=	164
