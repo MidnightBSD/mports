@@ -35,7 +35,7 @@ CONFIGURE_ARGS+=--disable-lua \
 # --with-expat-dir="${LOCALBASE}"
 CONFIGURE_ENV+=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl" \
-		OSRELEASE=1103509
+		OSRELEASE=${OSRELEASE}
 
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
@@ -46,6 +46,12 @@ BSDVIDEO_DESC=	BSD video support
 DEBUG_DESC=	Install debug library
 
 .include <bsd.mport.options.mk>
+
+.if ${OSVERSION} > 300000
+OSRELEASE=1203509
+.else
+OSRELEASE=1103509
+.endif
 
 .if ${SSL_DEFAULT} == openssl
 EXTRA_PATCHES+= ${FILESDIR}/extra-patch-src_ptclib_pssl.cxx-openssl111
