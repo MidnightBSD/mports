@@ -118,6 +118,7 @@ post-build-DOCS-on:
 	fi
 
 post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}
 	${INSTALL_DATA} ${WRKSRC}/doc/_build/texinfo/VapourSynth.info \
 		${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}
 	(cd ${WRKSRC}/doc/_build/html && ${COPYTREE_SHARE} \
