@@ -1,5 +1,5 @@
 PORTNAME=	mport
-PORTVERSION=	2.2.9
+PORTVERSION=	2.2.9.1
 PORTREVISION=	0
 CATEGORIES=	ports-mgmt sysutils
 
@@ -18,5 +18,7 @@ GH_TAGNAME=     ${PORTVERSION}
 USE_CSTD=       c99
 
 PREFIX=	/usr
+
+MPORT_INSTALL= 	${FAKE_DESTDIR}/usr/libexec/mport.install
 
 .include <bsd.port.mk>
