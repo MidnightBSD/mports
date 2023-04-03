@@ -76,6 +76,7 @@ ASS_DESC=			Subtitles rendering via libass
 ASS_LIB_DEPENDS=		libavcodec.so:multimedia/ffmpeg \
 				libass.so:multimedia/libass
 ASS_USES=			iconv
+ASS_LDFLAGS=			-liconv -L${LOCALBASE}/lib
 ASS_CONFIGURE_ENABLE=		subtext
 
 EEDI3_DESC=			Very slow edge directed interpolation
