@@ -250,4 +250,4 @@ devel/php74-sysvshm|devel/php80-sysvshm|2022-12-25|Has expired: Security support
 devel/php74-gettext|devel/php80-gettext|2022-12-25|Has expired: Security support ended on 2022-11-22
 devel/php74-readline|devel/php80-readline|2022-12-25|Has expired: Security support ended on 2022-11-22
 devel/hadoop||2023-04-02|Broken with modern openssl
-
+p5-IO-stringy|p5-IO-Stringy|2023-04-02|Renamed
