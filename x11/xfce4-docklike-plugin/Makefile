@@ -1,10 +1,12 @@
 PORTNAME=		xfce4-docklike-plugin
-PORTVERSION=		0.3.0
-DISTVERSIONPREFIX=	v
+PORTVERSION=		0.4.0
+DISTVERSIONPREFIX=	${PORTNAME}
+PORTREVISION=	1
 CATEGORIES=		x11 xfce
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Modern, minimalist taskbar for Xfce
+WWW=		https://gitlab.xfce.org/panel-plugins/xfce4-docklike-plugin
 
 LICENSE=		gpl3
 
@@ -18,9 +20,9 @@ USES=			gettext-tools gmake gnome libtool pkgconfig xfce \
 WRKSRC=	${WRKDIR}/${PORTNAME}-${GL_COMMIT}
 
 USE_GITLAB=		yes
-GL_SITE=		https://gitlab.xfce.org/
+GL_SITE=		https://gitlab.xfce.org
 GL_ACCOUNT=		panel-plugins
-GL_COMMIT=		61d043bf4c34b97e68ddeea808a7c1d8d3f63061
+GL_COMMIT=		e6831250e5ca792f31ef4b493b1a92020fe1ab6b
 
 GNU_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	autogen.sh
