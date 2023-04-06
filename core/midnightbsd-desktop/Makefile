@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.6.2
+PORTVERSION=	2.6.3
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -32,7 +32,8 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		git:devel/git \
 		wifimgr:net-mgmt/wifimgr \
 		xscreensaver:x11/xscreensaver \
-		gconftool-2:devel/gconf2
+		gconftool-2:devel/gconf2 \
+		dialog4ports:ports-mgmt/dialog4ports
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
