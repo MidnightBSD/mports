@@ -6,6 +6,7 @@ DISTNAME=	SDL2_ttf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to use TrueType fonts to render text in SDL applications
+WWW=		https://github.com/libsdl-org/SDL_ttf
 
 LICENSE=	zlib
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
