@@ -142,6 +142,7 @@ SUBDIR += p5-WWW-Mechanize
 SUBDIR += p5-WWW-RobotRules
 SUBDIR += p5-libapreq2
 SUBDIR += p5-libwww
+SUBDIR += palemoon
 SUBDIR += pear-HTTP_Request
 SUBDIR += php80-opcache
 SUBDIR += php80-session
