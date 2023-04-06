@@ -1,12 +1,11 @@
-# Created by: dchapes@ddm.on.ca
-
 PORTNAME=	vice
-PORTVERSION=	3.6.1
+PORTVERSION=	3.7.1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/vice-emu/releases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emulator for Commodore C64, C128, VIC20, PET, and CBM-II
+WWW=		https://vice-emu.sourceforge.io/
 
 LICENSE=	gpl2 ROM
 LICENSE_COMB=	multi
@@ -61,11 +60,11 @@ SDLUI2_DESC=	use SDL2 user interface
 SDLSOUND_DESC=	build with SDL2 sound system support
 
 GTK3UI_USES=			desktop-file-utils
-GTK3UI_CONFIGURE_ENABLE=	native-gtk3ui desktop-files
+GTK3UI_CONFIGURE_ENABLE=	gtk3ui desktop-files
 GTK3UI_BUILD_DEPENDS=		bash:shells/bash
 SDLUI2_USES=			sdl
 SDLUI2_USE=			SDL=sdl2 SDL=image2
-SDLUI2_CONFIGURE_ENABLE=	sdlui2
+SDLUI2_CONFIGURE_ENABLE=	sdl2ui
 SDLSOUND_USES=			sdl
 SDLSOUND_USE=			SDL=sdl2
 SDLSOUND_CONFIGURE_ON=		--with-sdlsound
