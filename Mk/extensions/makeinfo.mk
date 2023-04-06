@@ -14,6 +14,7 @@ IGNORE=	USES=makeinfo - expects no arguments
 
 # Depend specifically on makeinfo from ports
 BUILD_DEPENDS+=	${LOCALBASE}/bin/makeinfo:print/texinfo
+RUN_DEPENDS+=	${LOCALBASE}/bin/makeinfo:print/texinfo
 MAKEINFO?=	${LOCALBASE}/bin/makeinfo
 
 .endif
