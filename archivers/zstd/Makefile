@@ -1,5 +1,5 @@
 PORTNAME=	zstd
-PORTVERSION=	1.5.4
+PORTVERSION=	1.5.5
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${PORTVERSION}/
 
