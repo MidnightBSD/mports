@@ -55,6 +55,7 @@ SUBDIR += php82-phar
 SUBDIR += php82-zip
 SUBDIR += php82-zlib
 SUBDIR += py-borgbackup
+SUBDIR += py-brotli
 SUBDIR += py-brotlipy
 SUBDIR += py-bz2file
 SUBDIR += py-lz4
