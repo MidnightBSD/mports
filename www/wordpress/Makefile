@@ -1,5 +1,5 @@
 PORTNAME=	wordpress
-DISTVERSION=	6.0
+DISTVERSION=	6.1.1
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	https://wordpress.org/
@@ -7,7 +7,7 @@ MASTER_SITES=	https://wordpress.org/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	State-of-the-art semantic personal publishing platform
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 NO_ARCH=	yes
 NO_BUILD=	yes
