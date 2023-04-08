@@ -46,6 +46,7 @@ SUBDIR += gtkspell
 SUBDIR += gtkspell3
 SUBDIR += heirloom-doctools
 SUBDIR += highlight
+SUBDIR += hs-pandoc
 SUBDIR += hspell
 SUBDIR += html
 SUBDIR += html2text
