@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	137${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wiki engine used by Wikipedia
+WWW=		http://www.mediawiki.org/
 
 LICENSE=	gpl2
 
