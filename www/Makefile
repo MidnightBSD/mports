@@ -264,6 +264,7 @@ SUBDIR += yarn-node14
 SUBDIR += yarn-node16
 SUBDIR += yarn-node18
 SUBDIR += yarn-node19
+SUBDIR += yt-dlp
 SUBDIR += ytdl
 SUBDIR += yuicompressor
 SUBDIR += zend-framework
