@@ -192,6 +192,7 @@ SUBDIR += py-passlib
 SUBDIR += py-pyclamd
 SUBDIR += py-pycrypto
 SUBDIR += py-pycryptodome
+SUBDIR += py-pycryptodomex
 SUBDIR += py-pynacl
 SUBDIR += py-python-pam
 SUBDIR += py-rsa
