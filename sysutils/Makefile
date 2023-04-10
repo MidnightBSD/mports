@@ -66,6 +66,7 @@ SUBDIR += flashback
 SUBDIR += flock
 SUBDIR += freecolor
 SUBDIR += fusefs-curlftpfs
+SUBDIR += fusefs-ext2
 SUBDIR += fusefs-httpfs
 SUBDIR += fusefs-libs
 SUBDIR += fusefs-libs3
