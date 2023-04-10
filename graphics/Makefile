@@ -35,6 +35,7 @@ SUBDIR += fortytwo
 SUBDIR += freeglut
 SUBDIR += frei0r
 SUBDIR += ftgl
+SUBDIR += fusefs-gphotofs
 SUBDIR += gd
 SUBDIR += gdchart
 SUBDIR += gdk-pixbuf2
