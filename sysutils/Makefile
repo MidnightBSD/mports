@@ -45,6 +45,7 @@ SUBDIR += devcpu-data-intel
 SUBDIR += di
 SUBDIR += dirdiff
 SUBDIR += dmidecode
+SUBDIR += dsbmd
 SUBDIR += dtc
 SUBDIR += duplicity
 SUBDIR += duply
