@@ -1,27 +1,26 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	dconf
 PORTVERSION=	0.40.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DISTNAME=	dconf-${PORTVERSION}
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configuration database system for GNOME
+WWW=		https://wiki.gnome.org/Projects/dconf
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vala>=0.18.1:lang/vala \
-		docbook-xsl>=0:textproc/docbook-xsl \
-		${LOCALBASE}/libdata/pkgconfig/bash-completion.pc:shells/bash-completion
+BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
+		${LOCALBASE}/libdata/pkgconfig/bash-completion.pc:shells/bash-completion \
+		binutils>=0:devel/binutils
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python:3.6+,build tar:xz
+USES=		gettext gnome localbase meson pkgconfig python:3.6+,build tar:xz vala:build
 USE_CSTD=	c99
 USE_GNOME=	glib20 libxslt:build
 USE_LDCONFIG=	yes
