@@ -1,5 +1,3 @@
-# Created by: Alexander Kuehn <freebsd@nagilum.org>
-
 PORTNAME=	zopfli
 PORTVERSION=	1.0.3
 DISTVERSIONPREFIX=	zopfli-
@@ -8,6 +6,7 @@ CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Zopfli Compression Algorithm
+WWW=		https://github.com/google/zopfli
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
