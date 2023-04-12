@@ -3,7 +3,7 @@ DISTVERSION=	3.0.5
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
-PKGNAMESUFFIX=	-devel
+PKGNAMESUFFIX=	30
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TLSv1.3 capable SSL and crypto library
