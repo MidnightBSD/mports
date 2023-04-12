@@ -22,6 +22,8 @@ COMMENT=	Language with a focus on memory safety and concurrency
 LICENSE=	apache2 mit
 LICENSE_COMB=	dual
 
+BROKEN_MidnightBSD_3.0=         requires 2.x
+
 FAKE_OPTS=	trueprefix
 NO_TEST=	yes
 

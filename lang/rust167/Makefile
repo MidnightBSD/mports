@@ -23,6 +23,9 @@ LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
+BROKEN_MidnightBSD_2.1=		requires 3.x
+BROKEN_MidnightBSD_2.2=		requires 3.x
+
 FAKE_OPTS=    trueprefix
 NO_TEST=      yes
 
