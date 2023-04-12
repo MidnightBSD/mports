@@ -1,13 +1,14 @@
 PORTNAME=	wolfssl
-PORTVERSION=	5.4.0
+PORTVERSION=	5.6.0
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.wolfssl.com/ \
 		FREEBSD_LOCAL/fox
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embedded SSL C-Library
+WWW=		https://www.wolfssl.com/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe libtool zip
