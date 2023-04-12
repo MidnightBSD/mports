@@ -1,5 +1,3 @@
-# Created by: Nathan Ahlstrom <nra@FreeBSD.org>
-
 PORTNAME=	stuffit
 PORTVERSION=	5.2.0.611
 CATEGORIES=	archivers linux
@@ -9,6 +7,7 @@ DISTNAME=	stuffit520.611linux-i386
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stuffit Archive Creator and Expander
+WWW=		https://my.smithmicro.com/unix/stuffit/
 
 LICENSE=	STUFFIT
 LICENSE_NAME=	STUFFIT
