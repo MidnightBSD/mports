@@ -101,6 +101,7 @@ SUBDIR += openssh-askpass
 SUBDIR += openssh-portable
 SUBDIR += openssl
 SUBDIR += openssl30
+SUBDIR += openssl31
 SUBDIR += openvpn
 SUBDIR += owasp-dependency-check
 SUBDIR += p11-kit
