@@ -1,7 +1,5 @@
-# Created by: Simon Dick <simond@irrelevant.org>
-
 PORTNAME=	squirrelmail
-PORTVERSION=	20211024
+PORTVERSION=	20230207
 CATEGORIES=	mail www
 MASTER_SITES=	http://snapshots.squirrelmail.org/ \
 	http://freebsd.uzsolt.hu/src/
@@ -11,8 +9,9 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Webmail system which accesses mail over IMAP
+WWW=		https://www.squirrelmail.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/doc/COPYING
 
 USES=		cpe gettext perl5 php:web,flavors tar:bzip2
