@@ -1,5 +1,5 @@
 PORTNAME=	security-advisory-client
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	security
 
 MAINTAINER=	luke@midnightbsd.org
@@ -15,9 +15,9 @@ RUN_DEPENDS+=	p5-LWP-Protocol-https>=0:www/p5-LWP-Protocol-https \
 WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_GITHUB=     yes
 GH_PROJECT=     security-advisory-client
-GH_ACCOUNT=     laffer1
+GH_ACCOUNT=     midnightbsd
 GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      853ee15
+#GH_COMMIT=      853ee15
 
 NO_BUILD=	yes
 
