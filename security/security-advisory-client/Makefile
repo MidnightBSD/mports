@@ -1,5 +1,5 @@
 PORTNAME=	security-advisory-client
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.6
 CATEGORIES=	security
 
 MAINTAINER=	luke@midnightbsd.org
@@ -10,14 +10,15 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS+=	p5-LWP-Protocol-https>=0:www/p5-LWP-Protocol-https \
 		p5-JSON>=0:converters/p5-JSON \
-		p5-version>=0:devel/p5-version
+		p5-version>=0:devel/p5-version \
+		p5-Try-Tiny>=0:lang/p5-Try-Tiny \
+		p5-URI-Encode>=0:www/p5-URI-Encode
 
 WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_GITHUB=     yes
 GH_PROJECT=     security-advisory-client
 GH_ACCOUNT=     midnightbsd
 GH_TAGNAME=     ${PORTVERSION}
-#GH_COMMIT=      853ee15
 
 NO_BUILD=	yes
 
