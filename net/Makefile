@@ -54,6 +54,7 @@ SUBDIR += jrdesktop
 SUBDIR += realtek-re-kmod
 SUBDIR += rubygem-http_parser.rb
 SUBDIR += rubygem-serverengine
+SUBDIR += rubygem-uri
 SUBDIR += ldap2dns
 SUBDIR += ldapdiff
 SUBDIR += libdnet
