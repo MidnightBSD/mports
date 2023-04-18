@@ -99,6 +99,7 @@ sub sync {
       www         => $dump{www},
       pkgname     => $dump{pkgname},
       flavor      => $dump{flavor},
+      cpe         => $dump{cpe},
       default_flavor => 1,
     });     
 
