@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.6.3
+PORTVERSION=	2.6.4
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -12,7 +12,7 @@ COMMENT=        MidnightBSD desktop environment
 LICENSE=	bsd2
 
 # needs firefox ?
-# gimp:${PORTSDIR}/graphics/gimp-app \
+# gimp:graphics/gimp-app \
 
 USE_GSTREAMER1=	ogg theora vorbis
 
@@ -33,7 +33,8 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		wifimgr:net-mgmt/wifimgr \
 		xscreensaver:x11/xscreensaver \
 		gconftool-2:devel/gconf2 \
-		dialog4ports:ports-mgmt/dialog4ports
+		dialog4ports:ports-mgmt/dialog4ports \
+		evolution>=0:mail/evolution
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
