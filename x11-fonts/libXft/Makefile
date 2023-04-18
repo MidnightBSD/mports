@@ -1,5 +1,5 @@
 PORTNAME=	libXft
-DISTVERSION=	2.3.7
+DISTVERSION=	2.3.8
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
