@@ -6,8 +6,9 @@ CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google Search, Google Site Search, Google News from the terminal
+WWW=		https://github.com/jarun/googler
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	xclip:x11/xclip
