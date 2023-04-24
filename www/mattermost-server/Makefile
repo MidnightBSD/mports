@@ -1,11 +1,11 @@
 PORTNAME=	mattermost-server
-PORTVERSION=	6.4.2
-PORTREVISION=	1
+PORTVERSION=	6.4.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source Slack-alternative in Golang and React
+WWW=		https://mattermost.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
