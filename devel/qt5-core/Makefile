@@ -39,9 +39,6 @@ MORE_WRKSRCS=	src/tools/bootstrap src/corelib src/tools/qlalr
 
 .include <bsd.port.pre.mk>
 
-.if !exists(/etc/rc.d/os-release) && (${OSVERSION} < 201001)
-RUN_DEPENDS+=	etc_os-release>0:sysutils/etc_os-release
-.endif
 post-patch:
 	${REINPLACE_CMD}  -e '/readEtcFile/s|/etc/os-release|${LOCALBASE}/etc/os-release|g' \
 		${WRKSRC}/src/corelib/global/qglobal.cpp
