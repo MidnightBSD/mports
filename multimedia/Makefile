@@ -72,7 +72,6 @@ SUBDIR += libdvdcss
 SUBDIR += libdvdnav
 SUBDIR += libdvdread
 SUBDIR += libfame
-SUBDIR += libkate
 SUBDIR += libmatroska
 SUBDIR += libmediaart
 SUBDIR += libmpeg2
