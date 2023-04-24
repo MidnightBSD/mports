@@ -9,8 +9,9 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network file distribution/synchronization utility
+WWW=		https://rsync.samba.org/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
