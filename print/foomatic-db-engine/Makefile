@@ -1,12 +1,9 @@
-PORTNAME=	engine
-PORTVERSION=	4.0.12
+PORTNAME=	foomatic-db-engine
+PORTVERSION=	4.0.13
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	print
-MASTER_SITES=	http://www.openprinting.org/download/foomatic/ \
-		FREEBSD_LOCAL/acm/foomatic
-PKGNAMEPREFIX=	foomatic-db-
-DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
-DIST_SUBDIR=	foomatic
+MASTER_SITES=	http://www.openprinting.org/download/foomatic/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foomatic database engine
@@ -16,8 +13,8 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
-USE_GNOME=	libxml2
 USES=		gmake gnome perl5
+USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 PLIST_SUB+=	SITE_PERL=${SITE_PERL_REL}
 CONFIGURE_ENV=	PERL=${PERL} LIBDIR=${PREFIX}/share/foomatic/ \
@@ -34,8 +31,7 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		"s,/usr/local/bin:,${PREFIX}/bin:,g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e \
-		"/ln -sf foo/ s,foomatic-ppdfile,$$\(BINDIR\)/foomatic-ppdfile," \
-		-e "/if \[ -d/ s,LIB_CUPS,PREFIX," ${WRKSRC}/Makefile.in
+		"/if \[ -d/ s,LIB_CUPS,PREFIX," ${WRKSRC}/Makefile.in
 
 post-install:
 	cpdup -i0 ${FAKE_DESTDIR}/usr/lib ${PREFIX}/lib
