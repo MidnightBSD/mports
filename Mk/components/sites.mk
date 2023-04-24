@@ -665,12 +665,6 @@ MASTER_SITE_GNU_ALPHA+= \
 	https://alpha-gnu-org.ip-connect.vn.ua/%SUBDIR%/
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_GOOGLE_CODE)
-PROJECTHOST?=	${PORTNAME}
-MASTER_SITE_GOOGLE_CODE+= \
-	http://${PROJECTHOST}.googlecode.com/files/
-.endif
-
 .if !defined(IGNORE_MASTER_SITE_HACKAGE)
 MASTER_SITE_HACKAGE+= \
 	https://hackage.haskell.org/package/ \
