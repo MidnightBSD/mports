@@ -3,21 +3,21 @@ PORTVERSION=	4.0.12
 PORTEPOCH=	2
 CATEGORIES=	print
 MASTER_SITES=	http://www.openprinting.org/download/foomatic/ \
-		GOOGLE_CODE \
-		LOCAL/acm/foomatic
+		FREEBSD_LOCAL/acm/foomatic
 PKGNAMEPREFIX=	foomatic-db-
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
 DIST_SUBDIR=	foomatic
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foomatic database engine
+WWW=		https://www.linuxprinting.org/foomatic.html
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libcurl.so:ftp/curl
 
 USE_GNOME=	libxml2
-USES=		gmake perl5
+USES=		gmake gnome perl5
 GNU_CONFIGURE=	yes
 PLIST_SUB+=	SITE_PERL=${SITE_PERL_REL}
 CONFIGURE_ENV=	PERL=${PERL} LIBDIR=${PREFIX}/share/foomatic/ \
