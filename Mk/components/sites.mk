@@ -671,6 +671,12 @@ MASTER_SITE_GOOGLE_CODE+= \
 	http://${PROJECTHOST}.googlecode.com/files/
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_HACKAGE)
+MASTER_SITE_HACKAGE+= \
+	https://hackage.haskell.org/package/ \
+	http://hackage.haskell.org/package/
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_HORDE)
 MASTER_SITE_HORDE+= \
 	https://ftp.horde.org/pub/%SUBDIR%/ \
@@ -869,7 +875,7 @@ FETCH_ARGS+=	--user-agent=curl/7.68.0
 
 .if !defined(IGNORE_MASTER_SITE_OSSP)
 MASTER_SITE_OSSP+= \
-	ftp://ftp.ossp.org/pkg/%SUBDIR%/ \
+	http://ftp.ntua.gr/pub/utils/ossp/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/utils/ossp/%SUBDIR%/
 .endif
 
