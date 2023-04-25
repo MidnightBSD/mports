@@ -96,6 +96,7 @@ SUBDIR += erlang-unicode_util_compat
 SUBDIR += evdev-proto
 SUBDIR += fam
 SUBDIR += fifechan
+SUBDIR += flatbuffers
 SUBDIR += fmake
 SUBDIR += fortytwo-encore
 SUBDIR += fstrm
