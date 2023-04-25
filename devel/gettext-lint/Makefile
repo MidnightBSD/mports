@@ -1,12 +1,12 @@
-
-
 PORTNAME=	gettext-lint
 PORTVERSION=	0.4
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Check the validity and consistency of PO and POT files
+WWW=		http://gettext-lint.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
