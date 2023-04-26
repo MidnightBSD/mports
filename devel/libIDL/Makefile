@@ -1,14 +1,13 @@
-
-
 PORTNAME=	libIDL
 PORTVERSION=	0.8.14
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for creating trees of CORBA IDL files
+WWW=		https://www.gnome.org/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
