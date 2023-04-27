@@ -12,6 +12,8 @@ WWW=		https://github.com/yt-dlp/yt-dlp
 LICENSE=	unlicense
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	prefixhack
+
 PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}brotli>0:archivers/py-brotli@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}certifi>0:security/py-certifi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mutagen>0:audio/py-mutagen@${PY_FLAVOR} \
