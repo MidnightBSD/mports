@@ -87,7 +87,6 @@ SUBDIR += dotconf
 SUBDIR += double-conversion
 SUBDIR += doxygen
 SUBDIR += dulwich
-SUBDIR += e2fsprogs-libss
 SUBDIR += e_dbus
 SUBDIR += efl
 SUBDIR += eggdbus
