@@ -1,13 +1,12 @@
-# Created by: Matthias Petermann <matthias@petermann-it.de>
-
 PORTNAME=	elementary
-PORTVERSION=	0.15.2
+PORTVERSION=	0.17
 DISTVERSIONPREFIX=v
 CATEGORIES=	x11-themes xfce
 PKGNAMEPREFIX=	xfce-icons-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Elementary icons, extended and maintained for Xfce
+WWW=		https://github.com/shimmerproject/elementary-xfce
 
 LICENSE=	gpl2
 
