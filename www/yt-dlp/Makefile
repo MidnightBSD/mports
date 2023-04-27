@@ -42,6 +42,6 @@ SYMLINK_DESC=		Install youtube-dl symbolic link for executable
 SYMLINK_CONFLICTS=	youtube_dl
 
 post-install-SYMLINK-on:
-	@${RLN} ${STAGEDIR}${PREFIX}/bin/yt-dlp ${STAGEDIR}${PREFIX}/bin/youtube-dl
+	@${RLN} ${FAKE_DESTDIR}${PREFIX}/bin/yt-dlp ${FAKE_DESTDIR}${PREFIX}/bin/youtube-dl
 
 .include <bsd.port.mk>
