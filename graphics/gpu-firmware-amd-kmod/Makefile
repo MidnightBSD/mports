@@ -1,11 +1,10 @@
-# Created by: Emmanuel Vadot <manu@FreeBSD.org>
-
 PORTNAME=	gpu-firmware-amd-kmod
-PORTVERSION=	20220511
+PORTVERSION=	20230210
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Firmware modules for ${FLAVOR} AMD GPUs
+WWW=		https://github.com/freebsd/drm-kmod-firmware
 
 LICENSE=	AMD
 LICENSE_NAME=	AMD firmware license (amdgpu/radeon)
@@ -13,7 +12,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.radeon
 LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
 PKGNAMESUFFIX=	-${FLAVOR:C/_/-/g}
-FLAVORS=	banks \
+FLAVORS=	aldebaran \
+		arcturus \
+		banks \
+		beige_goby \
 		bonaire \
 		carrizo \
 		fiji \
@@ -43,14 +45,15 @@ FLAVORS=	banks \
 		vega12 \
 		vega20 \
 		vegam \
-		verde
+		verde \
+		yellow_carp
 
 USES=		kmod uidfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
 GH_PROJECT=	drm-kmod-firmware
-GH_TAGNAME=	20220511
+GH_TAGNAME=	20230210_3
 
 MAKE_ENV=	KMODS="amdgpukmsfw"
 MAKE_ENV+=	AMDGPUKMODS="${FLAVOR}"
