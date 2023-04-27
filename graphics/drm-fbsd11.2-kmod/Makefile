@@ -16,8 +16,6 @@ BROKEN_MidnightBSD_3.0=      too new
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64
 
-RUN_DEPENDS=	gpu-firmware-kmod>=g20180319:graphics/gpu-firmware-kmod
-
 OPTIONS_DEFINE=	DEBUG
 
 USES=		kmod uidfix
