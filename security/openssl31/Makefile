@@ -128,8 +128,10 @@ SHLIBS=			lib/engines-${OPENSSL_SHLIBVER}/loader_attic.so
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == riscv64
-CONFIGURE_ARGS+=	BSD-riscv64
+.if ${ARCH} == i386
+CONFIGURE_ARGS+=	BSD-x86-elf
+.else
+CONFIGURE_ARGS+=	BSD-x86_64
 .endif
 
 .include <bsd.port.pre.mk>
@@ -145,10 +147,6 @@ OPENSSLDIR?=	${PREFIX}/openssl
 PLIST_SUB+=	OPENSSLDIR=${OPENSSLDIR:S=^${PREFIX}/==}
 
 .include "version.mk"
-
-.if ${PORT_OPTIONS:MASM}
-BROKEN_sparc64=	option ASM generates illegal instructions
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -Ee 's|^MANDIR=.*$$|MANDIR=$$(INSTALLTOP)/man|' \
