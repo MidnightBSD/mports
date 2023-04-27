@@ -1,5 +1,3 @@
-# Created by: Johannes Dieterich <jmd@FreeBSD.org>
-
 PORTNAME=	gpu-firmware-kmod
 PORTVERSION=	20220511
 PORTEPOCH=	1
@@ -7,6 +5,7 @@ CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Firmware modules for the drm-kmod drivers
+WWW=		https://github.com/freebsd/drm-kmod
 
 LICENSE=	bsd2
 
@@ -69,7 +68,6 @@ RUN_DEPENDS+=	gpu-firmware-intel-kmod-skylake>0:graphics/gpu-firmware-intel-kmod
 		gpu-firmware-intel-kmod-rocketlake>0:graphics/gpu-firmware-intel-kmod@rocketlake
 .endif
 
-.if ${ARCH} != powerpc64
 RUN_DEPENDS+=	gpu-firmware-amd-kmod-banks>0:graphics/gpu-firmware-amd-kmod@banks \
 		gpu-firmware-amd-kmod-bonaire>0:graphics/gpu-firmware-amd-kmod@bonaire \
 		gpu-firmware-amd-kmod-carrizo>0:graphics/gpu-firmware-amd-kmod@carrizo \
@@ -101,12 +99,9 @@ RUN_DEPENDS+=	gpu-firmware-amd-kmod-banks>0:graphics/gpu-firmware-amd-kmod@banks
 		gpu-firmware-amd-kmod-vega20>0:graphics/gpu-firmware-amd-kmod@vega20 \
 		gpu-firmware-amd-kmod-vegam>0:graphics/gpu-firmware-amd-kmod@vegam \
 		gpu-firmware-amd-kmod-verde>0:graphics/gpu-firmware-amd-kmod@verde
-.if ${OSVERSION} >= 1301000
-RUN_DEPENDS+=	gpu-firmware-amd-kmod-green-sardine>0:graphics/gpu-firmware-amd-kmod@green_sardine \
-		gpu-firmware-amd-kmod-sienna-cichlid>0:graphics/gpu-firmware-amd-kmod@sienna_cichlid
-.endif
-.endif
 
-do-install:   # empty
+do-install:
+	${MKDIR} ${PREFIX}/share/gpu/
+	${TOUCH} ${PREFIX}/share/gpu/.install
 
 .include <bsd.port.post.mk>
