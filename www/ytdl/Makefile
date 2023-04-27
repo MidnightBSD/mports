@@ -35,4 +35,6 @@ GO_TARGET=	./cmd/${PORTNAME}
 
 PLIST_FILES=	bin/${PORTNAME}
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
