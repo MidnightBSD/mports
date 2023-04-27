@@ -1,5 +1,6 @@
 PORTNAME=	gpu-firmware-kmod
-PORTVERSION=	20220511
+PORTVERSION=	20230210
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	graphics
 
@@ -61,14 +62,19 @@ RUN_DEPENDS+=	gpu-firmware-intel-kmod-skylake>0:graphics/gpu-firmware-intel-kmod
 		gpu-firmware-intel-kmod-broxton>0:graphics/gpu-firmware-intel-kmod@broxton \
 		gpu-firmware-intel-kmod-kabylake>0:graphics/gpu-firmware-intel-kmod@kabylake \
 		gpu-firmware-intel-kmod-geminilake>0:graphics/gpu-firmware-intel-kmod@geminilake \
-		gpu-firmware-intel-kmod-coffeelake>0:graphics/gpu-firmware-intel-kmod@coffeelake \
+		gpu-firmware-intel-kmod-cannonlake>0:graphics/gpu-firmware-intel-kmod@cannonlake \
 		gpu-firmware-intel-kmod-icelake>0:graphics/gpu-firmware-intel-kmod@icelake \
 		gpu-firmware-intel-kmod-elkhartlake>0:graphics/gpu-firmware-intel-kmod@elkhartlake \
 		gpu-firmware-intel-kmod-tigerlake>0:graphics/gpu-firmware-intel-kmod@tigerlake \
-		gpu-firmware-intel-kmod-rocketlake>0:graphics/gpu-firmware-intel-kmod@rocketlake
+		gpu-firmware-intel-kmod-rocketlake>0:graphics/gpu-firmware-intel-kmod@rocketlake \
+		gpu-firmware-intel-kmod-dg1>0:graphics/gpu-firmware-intel-kmod@dg1 \
+		gpu-firmware-intel-kmod-alderlake>0:graphics/gpu-firmware-intel-kmod@alderlake
 .endif
 
-RUN_DEPENDS+=	gpu-firmware-amd-kmod-banks>0:graphics/gpu-firmware-amd-kmod@banks \
+RUN_DEPENDS+=	gpu-firmware-amd-kmod-aldebaran>0:graphics/gpu-firmware-amd-kmod@aldebaran \
+		gpu-firmware-amd-kmod-arcturus>0:graphics/gpu-firmware-amd-kmod@arcturus \
+		gpu-firmware-amd-kmod-banks>0:graphics/gpu-firmware-amd-kmod@banks \
+		gpu-firmware-amd-kmod-beige-goby>0:graphics/gpu-firmware-amd-kmod@beige_goby \
 		gpu-firmware-amd-kmod-bonaire>0:graphics/gpu-firmware-amd-kmod@bonaire \
 		gpu-firmware-amd-kmod-carrizo>0:graphics/gpu-firmware-amd-kmod@carrizo \
 		gpu-firmware-amd-kmod-fiji>0:graphics/gpu-firmware-amd-kmod@fiji \
@@ -98,7 +104,8 @@ RUN_DEPENDS+=	gpu-firmware-amd-kmod-banks>0:graphics/gpu-firmware-amd-kmod@banks
 		gpu-firmware-amd-kmod-vega12>0:graphics/gpu-firmware-amd-kmod@vega12 \
 		gpu-firmware-amd-kmod-vega20>0:graphics/gpu-firmware-amd-kmod@vega20 \
 		gpu-firmware-amd-kmod-vegam>0:graphics/gpu-firmware-amd-kmod@vegam \
-		gpu-firmware-amd-kmod-verde>0:graphics/gpu-firmware-amd-kmod@verde
+		gpu-firmware-amd-kmod-verde>0:graphics/gpu-firmware-amd-kmod@verde \
+		gpu-firmware-amd-kmod-yellow-carp>0:graphics/gpu-firmware-amd-kmod@yellow_carp
 
 do-install:
 	${MKDIR} ${PREFIX}/share/gpu/
