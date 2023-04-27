@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
 		${LOCALBASE}/libdata/pkgconfig/bash-completion.pc:shells/bash-completion \
-		binutils>=0:devel/binutils
+		${LOCALBASE}/bin/as:devel/binutils
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
 PORTSCOUT=	limitw:1,even
