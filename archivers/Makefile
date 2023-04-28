@@ -20,6 +20,7 @@ SUBDIR += lcab
 SUBDIR += lha
 SUBDIR += lha-ac
 SUBDIR += libarchive
+SUBDIR += libdeflate
 SUBDIR += liblz4
 SUBDIR += libmspack
 SUBDIR += libunrar
