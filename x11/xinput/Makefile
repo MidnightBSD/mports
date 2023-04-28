@@ -4,8 +4,10 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Very useful utility for configuring and testing XInput devices
+WWW=		http://ftp.x.org/contrib/utilities/xinput.README
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		xorg xorg-cat:app
 USE_XORG=	xorgproto x11 xi xext xrandr xinerama
