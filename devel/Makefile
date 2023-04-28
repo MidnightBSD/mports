@@ -883,6 +883,7 @@ SUBDIR += py-characteristic
 SUBDIR += py-cheetah3
 SUBDIR += py-cliapp
 SUBDIR += py-click
+SUBDIR += py-click-default-group
 SUBDIR += py-cmdtest
 SUBDIR += py-colorama
 SUBDIR += py-commandlines
