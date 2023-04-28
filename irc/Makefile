@@ -9,6 +9,7 @@ SUBDIR += simpleirc
 SUBDIR += sirc
 SUBDIR += talksoup
 SUBDIR += znc
+SUBDIR += znc-clientbuffer
 SUBDIR += znc-push
 
 .include <bsd.port.subdir.mk>
