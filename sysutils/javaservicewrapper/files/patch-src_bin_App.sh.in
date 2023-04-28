@@ -1,15 +1,6 @@
---- src/bin/App.sh.in.orig	2023-03-06 03:06:46 UTC
-+++ src/bin/App.sh.in
-@@ -1147,7 +1147,7 @@ getpid() {
-                     # The ps statement below looks for the specific wrapper command running as
-                     #  the pid.  If it is not found then the pid file is considered to be stale.
-                     case "$DIST_OS" in
--                        'freebsd')
-+                        'freebsd'|midnightbsd)
-                             pidtest=`$PS_BIN -p $pid -o args | tail -1`
-                             if [ "X$pidtest" = "XCOMMAND" ]
-                             then 
-@@ -2013,6 +2013,10 @@ checkInstalled() {
+--- src/bin/App.sh.in.orig	2023-04-28 17:56:25.979536000 -0400
++++ src/bin/App.sh.in	2023-04-28 17:58:19.892184000 -0400
+@@ -601,6 +601,10 @@
          if [ -f "/etc/rc.d/$APP_NAME" -o -L "/etc/rc.d/$APP_NAME" ] ; then
              installedStatus=$SERVICE_INSTALLED_DEFAULT
          fi
@@ -20,10 +11,22 @@
      elif [ "$DIST_OS" = "macosx" ] ; then
          if [ -f "/Library/LaunchDaemons/${APP_PLIST}" -o -L "/Library/LaunchDaemons/${APP_PLIST}" ] ; then
              installedStatus=$SERVICE_INSTALLED_DEFAULT
-@@ -2195,6 +2199,43 @@ installdaemon() {
-         if [ $installedStatus -ne $SERVICE_NOT_INSTALLED ] ; then
-             eval echo `gettext ' The $APP_LONG_NAME daemon is already installed.'`
-         else
+@@ -1545,7 +1549,7 @@
+                     # The ps statement below looks for the specific wrapper command running as
+                     #  the pid.  If it is not found then the pid file is considered to be stale.
+                     case "$DIST_OS" in
+-                        'freebsd')
++                        'freebsd'|'midnightbsd')
+                             pidtest=`$PS_BIN -p $pid -o args | tail -1`
+                             if [ "X$pidtest" = "XCOMMAND" ]
+                             then 
+@@ -2575,6 +2579,43 @@
+         fi
+     elif [ "$DIST_OS" = "freebsd" ] ; then
+         eval echo `gettext 'Detected FreeBSD:'`
++        if [ $installedStatus -ne $SERVICE_NOT_INSTALLED ] ; then
++            eval echo `gettext ' The $APP_LONG_NAME daemon is already installed.'`
++        else
 +            eval echo `gettext ' Installing the $APP_LONG_NAME daemon...'`
 +            sed -i.bak "/${APP_NAME}_enable=\"YES\"/d" /etc/rc.conf
 +            if [ -f "${REALDIR}/${APP_NAME}.install" ] ; then
@@ -58,9 +61,6 @@
 +        fi
 +    elif [ "$DIST_OS" = "midnightbsd" ] ; then
 +        eval echo `gettext 'Detected MidnightBSD:'`
-+        if [ $installedStatus -ne $SERVICE_NOT_INSTALLED ] ; then
-+            eval echo `gettext ' The $APP_LONG_NAME daemon is already installed.'`
-+        else
-             eval echo `gettext ' Installing the $APP_LONG_NAME daemon...'`
-             sed -i.bak "/${APP_NAME}_enable=\"YES\"/d" /etc/rc.conf
-             if [ -f "${REALDIR}/${APP_NAME}.install" ] ; then
+         if [ $installedStatus -ne $SERVICE_NOT_INSTALLED ] ; then
+             eval echo `gettext ' The $APP_LONG_NAME daemon is already installed.'`
+         else

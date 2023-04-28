@@ -1,5 +1,5 @@
 PORTNAME=	javaservicewrapper
-PORTVERSION=	3.5.44
+PORTVERSION=	3.5.53
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://wrapper.tanukisoftware.com/download/${PORTVERSION}/
 DISTNAME=	wrapper_${PORTVERSION}_src
@@ -32,11 +32,11 @@ CFLAGS+=	-fPIC
 
 .include <bsd.port.pre.mk>
 
-.if ${JAVA_PORT_VERSION} >= 15
+#.if ${JAVA_PORT_VERSION} >= 15
 PLIST_SUB+=	JS_ENGINE="@comment "
-.else
-PLIST_SUB+=	JS_ENGINE=""
-.endif
+#.else
+#PLIST_SUB+=	JS_ENGINE=""
+#.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|gcc|${CC} ${CFLAGS}| ; \

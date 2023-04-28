@@ -112,6 +112,8 @@ bin/javaservicewrapper
 %%DATADIR%%/test/logstdoutstderrdetached.conf
 %%DATADIR%%/test/longrunningbackgroundthreads
 %%DATADIR%%/test/longrunningbackgroundthreads.conf
+%%DATADIR%%/test/longrunningwithshutdownhook
+%%DATADIR%%/test/longrunningwithshutdownhook.conf
 %%DATADIR%%/test/memory
 %%DATADIR%%/test/memory.conf
 %%DATADIR%%/test/nestedwrapperlistener
@@ -149,6 +151,10 @@ bin/javaservicewrapper
 %%DATADIR%%/test/simplewrapperlistener.conf
 %%DATADIR%%/test/slowstop
 %%DATADIR%%/test/slowstop.conf
+%%DATADIR%%/test/startstopstopandreturnwhilestarting
+%%DATADIR%%/test/startstopstopandreturnwhilestarting.conf
+%%DATADIR%%/test/startstopstopwhilestarting
+%%DATADIR%%/test/startstopstopwhilestarting.conf
 %%DATADIR%%/test/stopwhilestarting
 %%DATADIR%%/test/stopwhilestarting.conf
 %%DATADIR%%/test/stopwhilestartingforcestop
