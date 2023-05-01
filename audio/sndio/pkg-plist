@@ -3,7 +3,7 @@ bin/midicat
 bin/sndiod
 include/sndio.h
 lib/libsndio.so
-lib/libsndio.so.6.1
+lib/libsndio.so.7.2
 man/man1/aucat.1.gz
 man/man1/midicat.1.gz
 man/man3/mio_close.3.gz
@@ -33,3 +33,4 @@ man/man3/sio_stop.3.gz
 man/man3/sio_write.3.gz
 man/man7/sndio.7.gz
 man/man8/sndiod.8.gz
+libdata/pkgconfig/sndio.pc
