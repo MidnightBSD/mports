@@ -42,18 +42,26 @@ USES=		tar:xz
 MOZILLA=        browser                                                                                                                                                   
 MOZILLA_NAME=   Browser                                                                                                                                                   
 #MOZ_OPTIONS=    --program-transform-name='s/firefox/${MOZILLA}/'                                                                                                          
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.3
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
 FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/${MOZILLA}-snap/${MOZILLA}.desktop
 MOZ_OPTIONS+=	--enable-application=browser \
+		--enable-install-strip \
+		--enable-optimize \
+		--enable-strip \
+		--enable-libproxy \
 		--disable-official-branding \
 		--disable-webrtc \
 		--disable-tests \
 		--disable-updater \
 		--disable-hardening \
 		--without-wasm-sandboxed-libraries \
-		--disable-dtrace
+		--disable-debug \
+		--disable-debug-symbols \
+		--disable-profiling \
+		--disable-dtrace \
+		--disable-crashreporter
 
 MAKE_ENV+=    __FreeBSD__=12 __FreeBSD__version=1203501
 
@@ -70,6 +78,11 @@ post-patch:
 		${FIREFOX_DESKTOP}
 	-${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
+	# disable SCTP
+	${REINPLACE_CMD} -e 's|MOZ_SCTP|MOZ_DISABLE_SCTP|' \
+		${WRKSRC}/netwerk/moz.build
+	${REINPLACE_CMD} -e 's/"files":{[^}]*}/"files":{}/' \
+		 ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
 
 pre-configure:
 	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf2.13)
