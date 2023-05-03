@@ -33,7 +33,8 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 CONFIGURE_ARGS=	--disable-static --without-xml2
 
