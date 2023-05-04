@@ -328,7 +328,6 @@ SUBDIR += scdoc
 SUBDIR += scim
 SUBDIR += scim-input-pad
 SUBDIR += scr2txt
-SUBDIR += scrollkeeper
 SUBDIR += sdocbook-xml
 SUBDIR += sgmlformat
 SUBDIR += sgmls
