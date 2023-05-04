@@ -253,3 +253,4 @@ devel/hadoop||2023-04-02|Broken with modern openssl
 devel/p5-IO-stringy|devel/p5-IO-Stringy|2023-04-02|Renamed
 dns/knot2|dns/knot3|2023-04-05|knot2 EOL
 chat/xchat||2023-04-28|EOL app
+textproc/scrollkeeper||2023-05-4|No longer used and fails to build
