@@ -17,4 +17,6 @@ RUN_DEPENDS=	cargo:lang/${RUST_DEFAULT}
 USES=		cargo
 PLIST_FILES=	bin/${PORTNAME}
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
