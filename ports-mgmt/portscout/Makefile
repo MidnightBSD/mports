@@ -58,7 +58,7 @@ pre-install:
 	@${REINPLACE_CMD} -e "s#^\(templates .*\)/etc#\1/share#"	\
 	                  -e "s#^prefix\( *= *\).*#prefix\1${PREFIX}#"	\
 	                  ${WRKSRC}/portscout.conf
-	@${REINPLACE_CMD} -e "s#^\(.*PREFIX.*=> *\)'.*'#\1'${PREFIX}'#"	\
+	@${REINPLACE_CMD} -e "s#^\(.*PREFIX.*=> *\)'.*'#\1'${TRUE_PREFIX}'#"	\
 	                  ${WRKSRC}/Portscout/Const.pm
 	@${MV} ${WRKSRC}/docs/*.* ${WRKSRC}
 
