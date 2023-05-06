@@ -11,7 +11,6 @@ share/applications/scummvm.desktop
 %%PORTDOCS%%%%DOCSDIR%%/NEWS.md
 %%PORTDOCS%%%%DOCSDIR%%/README.md
 share/icons/hicolor/scalable/apps/scummvm.svg
-share/man/man6/scummvm.6.gz
 share/metainfo/scummvm.appdata.xml
 share/pixmaps/scummvm.xpm
 %%DATADIR%%/access.dat
