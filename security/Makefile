@@ -11,6 +11,7 @@ SUBDIR += calife
 SUBDIR += cargo-audit
 SUBDIR += chroot_safe
 SUBDIR += clamav
+SUBDIR += clamav-lts
 SUBDIR += clamav-unofficial-sigs
 SUBDIR += clamd-stream-client
 SUBDIR += clamfs
