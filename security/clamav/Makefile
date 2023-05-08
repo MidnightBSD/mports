@@ -1,5 +1,5 @@
 PORTNAME=	clamav
-DISTVERSION=	0.104.4
+DISTVERSION=	1.0.1
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.clamav.net/downloads/production/
@@ -11,13 +11,13 @@ WWW=		https://www.clamav.net/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.56.0:lang/${RUST_DEFAULT}
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libjson-c.so:devel/json-c \
 		libmspack.so:archivers/libmspack \
 		libpcre2-8.so:devel/pcre2
-BUILD_DEPENDS+= ${LOCALBASE}/include/check.h:devel/check
 
-USES=		cmake cpe gnome iconv ncurses pkgconfig python:build ssl
+USES=		cmake cpe gnome iconv ncurses pkgconfig ssl
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
@@ -50,7 +50,7 @@ PLIST_SUB+=	CLAMAVGROUP=${_CLAMAVGROUP} \
 		LOGDIR=${_LOGDIR} \
 		RUNDIR=${_RUNDIR}
 
-OPTIONS_DEFINE=	ARC ARJ DOCS EXPERIMENTAL LHA MILTER STDERR TEST UNRAR UNZOO
+OPTIONS_DEFINE=	ARC ARJ DOCS EXPERIMENTAL LHA MILTER STDERR UNRAR UNZOO
 
 OPTIONS_DEFAULT=	ARC ARJ MILTER UNRAR UNZOO
 OPTIONS_SUB=		yes
@@ -116,9 +116,9 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/clamav-config.h ${PREFIX}/include
-	${MKDIR} ${_DBDIR} \
-		  ${_LOGDIR} \
-		  ${_RUNDIR}
+	@${MKDIR} ${STAGEDIR}${_DBDIR} \
+		  ${STAGEDIR}${_LOGDIR} \
+		  ${STAGEDIR}${_RUNDIR}
 
 post-install-DOCS-on:
 	${MV} ${FAKE_DESTDIR}${PREFIX}/share/doc/ClamAV ${FAKE_DESTDIR}${DOCSDIR}
