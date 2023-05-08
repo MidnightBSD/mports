@@ -1,14 +1,14 @@
-# Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
-
 PORTNAME=	clamtk
 PORTVERSION=	6.14
+PORTREVISION=	1
 DISTVERSIONPREFIX=v
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK front-end for Clam Antivirus
+WWW=		https://dave-theunsub.github.io/clamtk/
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	p5-Locale-gettext>=1.05:devel/p5-Locale-gettext \
