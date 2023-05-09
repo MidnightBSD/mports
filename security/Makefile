@@ -211,6 +211,7 @@ SUBDIR += snort
 SUBDIR += sshguard
 SUBDIR += sudo
 SUBDIR += tor
+SUBDIR += trivy
 SUBDIR += trousers
 SUBDIR += ubuntu-keyring
 SUBDIR += unix-selfauth-helper
