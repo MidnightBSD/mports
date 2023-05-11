@@ -6,4 +6,4 @@ big picture of the evolution of a cvs project. While cvs tracks revision
 information, it is often difficult to see what changes were committed
 'atomically' to the repository.
 
-WWW: http://cvsps.sourceforge.net/
+WWW: https://cvsps.sourceforge.net/
