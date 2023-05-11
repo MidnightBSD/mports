@@ -2,11 +2,11 @@ PORTNAME=	exempi
 DISTVERSION=	2.5.2
 PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	http://libopenraw.freedesktop.org/download/
+MASTER_SITES=	https://libopenraw.freedesktop.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of Adobe XMP SDK to work on UNIX
-WWW=		http://libopenraw.freedesktop.org/wiki/Exempi
+WWW=		https://libopenraw.freedesktop.org/wiki/Exempi
 
 LICENSE=	bsd3
 
