@@ -10,7 +10,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Improved and extended version of Doom
-WWW=		http://doomlegacy.sourceforge.net/
+WWW=		https://doomlegacy.sourceforge.net/
 
 LICENSE=	gpl2
 
