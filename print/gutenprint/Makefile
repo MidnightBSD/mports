@@ -4,7 +4,7 @@ CATEGORIES=	print
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gutenprint Printer Drivers
-WWW=		http://gimp-print.sourceforge.net/
+WWW=		https://gimp-print.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
