@@ -5,7 +5,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Expect-like tool for pure shell
-WWW=		http://empty.sourceforge.net/
+WWW=		https://empty.sourceforge.net/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
