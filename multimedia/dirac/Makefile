@@ -6,7 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-codec/Dirac-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source video codec from the BBC
-WWW=		http://dirac.sourceforge.net/
+WWW=		https://dirac.sourceforge.net/
 
 LICENSE=	mpl
 
