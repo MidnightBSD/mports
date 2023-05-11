@@ -6,7 +6,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source implementation of the GLUT library
-WWW=		http://freeglut.sourceforge.net/
+WWW=		https://freeglut.sourceforge.net/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -8,7 +8,7 @@ DISTNAME=	${PORTNAME}-14-Mar-2009
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Freenet client that provides messenger and file services
-WWW=		http://jtcfrost.sourceforge.net/
+WWW=		https://jtcfrost.sourceforge.net/
 
 LICENSE=	other
 

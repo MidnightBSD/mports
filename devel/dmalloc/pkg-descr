@@ -5,4 +5,4 @@ runtime.  These facilities include such things as memory-leak
 tracking, fence-post write detection, file/line number reporting, and
 general logging of statistics.  Online documentation is available at:
 
-WWW: http://dmalloc.com/
+WWW: https://dmalloc.com/

@@ -12,7 +12,7 @@ DISTNAME=	ex-${PORTVERSION}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	The original vi editor
-WWW=		http://ex-vi.sourceforge.net/
+WWW=		https://ex-vi.sourceforge.net/
 
 LICENSE=	bsd4
 LICENSE_FILE=	${WRKSRC}/LICENSE

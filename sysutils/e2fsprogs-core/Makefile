@@ -6,7 +6,7 @@ MASTER_SITES=	KERNEL_ORG/linux/kernel/people/tytso/${PORTNAME}/v${PORTVERSION}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Utilities & library to manipulate ext2/3/4 filesystems
-WWW=		http://e2fsprogs.sourceforge.net/
+WWW=		https://e2fsprogs.sourceforge.net/
 
 LICENSE?=	gpl2+
 .if !defined(_no_license_file)

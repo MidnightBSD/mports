@@ -5,7 +5,7 @@ CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quasar DV codec (libdv) is a software codec for DV video
-WWW=		http://libdv.sourceforge.net/
+WWW=		https://libdv.sourceforge.net/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING

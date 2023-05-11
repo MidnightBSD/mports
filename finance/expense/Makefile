@@ -4,7 +4,7 @@ PORTNAME=	expense
 PORTVERSION=	0.1
 PORTREVISION=	1
 CATEGORIES=	finance gnustep
-MASTER_SITES=	http://www.eskimo.com/~pburns/Expense/files/
+MASTER_SITES=	https://www.eskimo.com/~pburns/Expense/files/
 DISTNAME=	Expense-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
