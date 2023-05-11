@@ -6,7 +6,7 @@ MASTER_SITES=	SF/fame/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Video encoding library
-WWW=		https://fame.sourceforge.net/
+WWW=		http://fame.sourceforge.net/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
