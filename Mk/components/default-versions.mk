@@ -63,7 +63,7 @@ LUAJIT_DEFAULT?=        luajit-devel
 # Possible values: 5.10, 5.20, 6.8
 MONO_DEFAULT=		5.10
 # Possible values: 5.5, 5.6, 5.7, 8.0, 10.3m, 10.4m, 10.5m, 5.5p, 5.6p, 5.7p, 5.6w, 5.7w
-MYSQL_DEFAULT?=		5.7
+MYSQL_DEFAULT?=		8.0
 # Possible values: ninja, samurai
 NINJA_DEFAULT?=		ninja
 .if ${OSVERSION} < 200001
@@ -73,8 +73,8 @@ PERL5_DEFAULT?=		5.32
 .endif
 # Possible values: 10, 11, 12, 13, 14
 PGSQL_DEFAULT?=		13
-# Possible values: 7.4, 8.0, 8.1
-PHP_DEFAULT?=		8.0
+# Possible values: 8.0, 8.1, 8.2
+PHP_DEFAULT?=		8.1
 # Possible values: 2.7, 3.7, 3.8, 3.9, 3.10, 3.11
 PYTHON_DEFAULT?=	3.9
 # Possible values: 2.7
@@ -125,8 +125,8 @@ SSL_DEFAULT?=	base
 # Possible values: 8.5, 8.6, 8.7
 TCLTK_DEFAULT?=		8.6
 
-# Possible values: 4, 6
-VARNISH_DEFAULT?=	4
+# Possible values: 4, 6, 7
+VARNISH_DEFAULT?=	6
 
 # Possible value: 14, 16, 17, lts, current
 NODEJS_DEFAULT?=    lts
