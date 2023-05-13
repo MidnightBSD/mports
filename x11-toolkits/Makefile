@@ -85,5 +85,6 @@ SUBDIR += wxgtk32
 SUBDIR += xbae
 SUBDIR += xforms
 SUBDIR += xmhtml
+SUBDIR += xwallpaper
 
 .include <bsd.port.subdir.mk>
