@@ -35,6 +35,7 @@ SUBDIR += libsexy
 SUBDIR += libunique3
 SUBDIR += libwnck
 SUBDIR += libwnck3
+SUBDIR += libxaw3dxft
 SUBDIR += linux-c7-gtk2
 SUBDIR += linux-c7-gtk3
 SUBDIR += linux-c7-openmotif
