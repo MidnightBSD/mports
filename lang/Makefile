@@ -4,6 +4,7 @@ SUBDIR += alisp
 SUBDIR += bcc
 SUBDIR += bsh
 SUBDIR += cjs
+SUBDIR += clover
 SUBDIR += cython
 SUBDIR += duktape
 SUBDIR += duktape-lib
