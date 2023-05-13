@@ -1,7 +1,6 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	libclc
 DISTVERSION=	0.4.0.20190527
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -42,8 +41,6 @@ do-configure:
 .include <bsd.mport.options.mk>
 
 # Keep in sync with lang/clover
-.if ${LLVM_DEFAULT:C/[1-5]./&0/:S,-devel,990,} >= 90
-LLVM_DEFAULT=	70
-.endif
+LLVM_DEFAULT=	10
 
 .include <bsd.port.mk>
