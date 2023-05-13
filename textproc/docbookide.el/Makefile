@@ -3,7 +3,7 @@
 PORTNAME=	docbookide.el
 PORTVERSION=	0.1
 CATEGORIES=	textproc elisp
-MASTER_SITES=	http://nwalsh.com/emacs/docbookide/
+MASTER_SITES=	https://nwalsh.com/emacs/docbookide/
 DISTNAME=	docbookide01
 
 MAINTAINER=	ports@MidnightBSD.org

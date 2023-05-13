@@ -5,7 +5,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for audio processing plugins
-WWW=		http://dssi.sourceforge.net/
+WWW=		https://dssi.sourceforge.net/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING

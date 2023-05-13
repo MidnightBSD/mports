@@ -8,7 +8,7 @@ DISTNAME=	${PORTNAME}_v${PORTVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nintendo multi-system emulator
-WWW=		http://byuu.org/higan/
+WWW=		https://byuu.org/higan/
 
 # has gplv3 source files
 LICENSE=	gpl3

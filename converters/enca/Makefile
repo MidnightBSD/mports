@@ -3,7 +3,7 @@
 PORTNAME=	enca
 PORTVERSION=	1.19
 CATEGORIES=	converters textproc russian ukrainian
-MASTER_SITES=	http://dl.cihar.com/enca/
+MASTER_SITES=	https://dl.cihar.com/enca/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Detect encoding of text files

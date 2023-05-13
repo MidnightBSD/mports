@@ -5,4 +5,4 @@ run-time mechanism to determine whether a certain extension is supported
 by the driver or not. OpenGL core and extension functionality is exposed
 via a single header file.
 
-WWW: http://glew.sourceforge.net/
+WWW: https://glew.sourceforge.net/
