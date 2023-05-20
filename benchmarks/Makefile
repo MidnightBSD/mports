@@ -33,6 +33,7 @@ SUBDIR += shellbench
 SUBDIR += siege
 SUBDIR += slowloris
 SUBDIR += sysbench
+SUBDIR += ttcp
 SUBDIR += unixbench
 SUBDIR += vkpeak
 SUBDIR += webbench
