@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@FreeBSD.org>
-
 PORTNAME=	exo
 PORTVERSION=	2
 CATEGORIES=	x11-fonts
@@ -7,6 +5,7 @@ MASTER_SITES=	http://ndiscovered.com/archives/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Geometric sans serif font with a technological feel
+WWW=		http://www.ndiscovered.com/
 
 LICENSE=	OFL11
 
