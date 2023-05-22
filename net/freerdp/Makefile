@@ -1,5 +1,5 @@
 PORTNAME=	freerdp
-DISTVERSION=	2.4.0
+DISTVERSION=	2.4.1
 PORTREVISION=	0
 CATEGORIES=	net comms
 MASTER_SITES=   https://pub.freerdp.com/releases/ \
@@ -22,8 +22,6 @@ LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib	\
 
 USES=		cmake compiler:c++11-lib cpe gettext gnome localbase pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
-
-CPE_VENDOR=	freerdp_project
 
 PATCHVERSION=	${PORTVERSION}
 MAJORVERSION=	${PORTVERSION:R:R}
