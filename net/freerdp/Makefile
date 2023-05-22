@@ -7,6 +7,7 @@ MASTER_SITES=   https://pub.freerdp.com/releases/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free implementation of Remote Desktop Protocol
+WWW=		https://www.freerdp.com/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
