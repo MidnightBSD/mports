@@ -1,5 +1,5 @@
 PORTNAME=	mDNSResponder
-PORTVERSION=	1310.80.1
+PORTVERSION=	1790.80.10
 CATEGORIES=	net dns
 MASTER_SITES=	https://opensource.apple.com/tarballs/mDNSResponder/
 
@@ -25,6 +25,7 @@ MAKE_ARGS=	LDCONFIG=${TRUE} LOCALBASE=${PREFIX} MAN_PATH=${PREFIX}/man STRIP=${S
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	mdnsd mdnsresponderposix
+WRKSRC=		${WRKDIR}/mDNSResponder-mDNSResponder-${PORTVERSION}
 
 CPE_VENDOR=	apple
 CPE_PRODUCT=	${PORTNAME:tl}
