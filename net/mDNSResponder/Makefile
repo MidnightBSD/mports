@@ -1,5 +1,3 @@
-# Created by: Alfred Perlstein <alfred@FreeBSD.org>
-
 PORTNAME=	mDNSResponder
 PORTVERSION=	1310.80.1
 CATEGORIES=	net dns
@@ -7,6 +5,8 @@ MASTER_SITES=	https://opensource.apple.com/tarballs/mDNSResponder/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bonjour (zero-configuration networking) by Apple
+WWW=		https://developer.apple.com/bonjour/ \
+		https://github.com/apple-oss-distributions/mDNSResponder
 
 LICENSE=	apache2 bsd3
 LICENSE_COMB=	dual
