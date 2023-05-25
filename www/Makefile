@@ -226,6 +226,7 @@ SUBDIR += qt5-webkit
 SUBDIR += qt5-websockets
 SUBDIR += qt5-websockets-qml
 SUBDIR += qt5-webview
+SUBDIR += raphael
 SUBDIR += rubygem-cgi
 SUBDIR += rubygem-hpricot
 SUBDIR += rubygem-webrick

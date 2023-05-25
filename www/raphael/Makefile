@@ -1,17 +1,15 @@
-PORTNAME=	midori
-PORTVERSION=	9.0
-DISTVERSIONPREFIX=	v
-PORTREVISION=	4
-CATEGORIES=	www xfce
+PORTNAME=	raphael
+PORTVERSION=	9.1
+CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser using WebKit browser engine
-WWW=		https://www.midori-browser.org/
+WWW=		https://github.com/midnightbsd/raphael
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	multi
 
-CONFLICTS_INSTALL=	raphael
+CONFLICTS_INSTALL=	midori
 
 BUILD_DEPENDS=	valac:lang/vala
 LIB_DEPENDS=	libnotify.so:devel/libnotify \
@@ -30,7 +28,6 @@ USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext gnome \
 		libarchive localbase:ldflags pkgconfig sqlite tar:bzip2
 USE_GNOME=	cairo glib20 gtk30 intltool introspection librsvg2:build \
 		libxml2
-CPE_VENDOR=	midori-browser
 
 CFLAGS+=	-Wno-return-type
 CMAKE_ARGS=	-DUSE_APIDOCS:BOOL=OFF
@@ -41,8 +38,9 @@ USE_LDCONFIG=	yes
 PLIST_SUB=	VERSION="${PORTVERSION:R}"
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	midori-browser
-GH_PROJECT=	core
+GH_ACCOUNT=	midnightbsd
+GH_PROJECT=	raphael
+GH_TAGNAME=	fe3098b6e2355a308503a22e862951ce3ab48596
 
 OPTIONS_DEFINE=		ZEITGEIST
 OPTIONS_SUB=		yes
