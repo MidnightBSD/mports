@@ -1,5 +1,5 @@
 bin/raphael
-lib/girepository-1.0/Midori-0.6.typelib
+lib/girepository-1.0/Raphael-0.6.typelib
 lib/libraphael-core.so
 lib/libraphael-core.so.0.6
 lib/libraphael-core.so.0
@@ -18,7 +18,7 @@ lib/raphael/libweb-extensions.so
 lib/raphael/libsession.so
 lib/raphael/statusbar-features.plugin
 lib/raphael/libadblock.so
-share/gir-1.0/Midori-0.6.gir
+share/gir-1.0/Raphael-0.6.gir
 share/locale/sl/LC_MESSAGES/raphael.mo
 share/locale/ast/LC_MESSAGES/raphael.mo
 share/locale/ta/LC_MESSAGES/raphael.mo
