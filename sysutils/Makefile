@@ -212,6 +212,7 @@ SUBDIR += ufs_copy
 SUBDIR += uif2iso
 SUBDIR += upower
 SUBDIR += userboot-freebsd
+SUBDIR += vixie-cron
 SUBDIR += vm-bhyve
 SUBDIR += vpnc-scripts
 SUBDIR += wmbsdbatt
