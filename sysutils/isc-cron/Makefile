@@ -11,6 +11,8 @@ COMMENT=	ISC Cron, former Vixie Cron
 
 LICENSE=	iscl
 
+CONFLICTS_INSTALL=	vixie-cron
+
 WRKSRC=		${WRKDIR}
 SUB_FILES=	pkg-message
 PLIST_FILES=	sbin/cron \
