@@ -1,5 +1,5 @@
 PORTNAME=	antlr3
-PORTVERSION=	3.5.2
+PORTVERSION=	3.5.3
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.antlr3.org/download/
 DISTNAME=	antlr-${PORTVERSION}-complete
