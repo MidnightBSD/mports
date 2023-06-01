@@ -89,6 +89,7 @@ SUBDIR += netatalk3
 SUBDIR += netcat
 SUBDIR += netclasses
 SUBDIR += nload
+SUBDIR += norm
 SUBDIR += nss_ldap
 SUBDIR += ntp
 SUBDIR += opal
