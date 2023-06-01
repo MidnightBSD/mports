@@ -1,13 +1,13 @@
-# Created by: Timothy Beyer <beyert@cs.ucr.edu>
-
 PORTNAME=	doh-proxy
-DISTVERSION=	0.9.3
+DISTVERSION=	0.9.8
+PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	CRATESIO
 DISTFILES=	${CARGO_DIST_SUBDIR}/${DISTNAME}${CARGO_CRATE_EXT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DNS-over-HTTP server proxy
+WWW=		https://github.com/DNSCrypt/doh-server
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
