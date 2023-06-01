@@ -6,6 +6,7 @@ MASTER_SITES=	https://www.antlr2.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ANother Tool for Language Recognition
+WWW=		https://www.antlr2.org/
 
 LICENSE=	publicdom
 LICENSE_FILE= ${WRKSRC}/LICENSE.txt
