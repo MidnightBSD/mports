@@ -1,7 +1,5 @@
-# Created by: Ying-Chieh Liao <ijliao@FreeBSD.org>
-
 PORTNAME=	librsync
-PORTVERSION=	2.3.1
+PORTVERSION=	2.3.2
 CATEGORIES=	net devel
 MASTER_SITES=	https://github.com/librsync/librsync/releases/download/v${PORTVERSION}/
 
@@ -13,8 +11,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpopt.so:devel/popt
 
-USES=		cmake compiler:c11 perl5
+USES=		cmake compiler:c11 cpe perl5
 USE_PERL5=	test
+CPE_VENDOR=	librsync_project
 
 TEST_TARGET=	check
 USE_LDCONFIG=	yes
