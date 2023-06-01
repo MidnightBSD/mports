@@ -1,5 +1,3 @@
-
-
 PORTNAME=	idnkit
 PORTVERSION=	1.0
 PORTREVISION=	6
@@ -9,6 +7,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to handle internationalized domain names
+WWW=		https://www.nic.ad.jp/ja/idn/idnkit/download/
 
 LICENSE=	JPNIC
 LICENSE_NAME=	Japan Network Information Center license
