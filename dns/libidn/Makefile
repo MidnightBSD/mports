@@ -1,10 +1,11 @@
 PORTNAME=	libidn
-DISTVERSION=	1.35
+DISTVERSION=	1.38
 CATEGORIES=	dns
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internationalized Domain Names command line tool
+WWW=		https://www.gnu.org/software/libidn/
 
 LICENSE=	gpl2 lgpl3
 LICENSE_COMB=	dual
@@ -26,10 +27,6 @@ OPTIONS_SUB=	yes
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
-
-post-patch:
-	@${REINPLACE_CMD} -e '/^Libs.private:/s/$$/ @LTLIBINTL@/' \
-		${WRKSRC}/libidn.pc.in
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
