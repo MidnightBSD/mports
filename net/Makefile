@@ -98,6 +98,7 @@ SUBDIR += openldap25-client
 SUBDIR += openldap25-server
 SUBDIR += openmpi
 SUBDIR += openntpd
+SUBDIR += openpgm
 SUBDIR += openrsync
 SUBDIR += openslp
 SUBDIR += ortp
