@@ -5,8 +5,9 @@ MASTER_SITES=	https://github.com/librsync/librsync/releases/download/v${PORTVERS
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for delta compression of streams
+WWW=		https://github.com/librsync/librsync
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpopt.so:devel/popt
