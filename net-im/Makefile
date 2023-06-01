@@ -8,6 +8,7 @@ SUBDIR += jabberd
 SUBDIR += libnice
 SUBDIR += libnice-gst1
 SUBDIR += libpurple
+SUBDIR += libsignal-client
 SUBDIR += loudmouth
 SUBDIR += meanwhile
 SUBDIR += openfire
@@ -23,6 +24,7 @@ SUBDIR += telegram-cli
 SUBDIR += telegram-purple
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-logger
+SUBDIR += zkgroup
 SUBDIR += zoom
 
 .include <bsd.port.subdir.mk>
