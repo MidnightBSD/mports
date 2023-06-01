@@ -75,6 +75,7 @@ SUBDIR += libsrtp2
 SUBDIR += libutp
 SUBDIR += libvncserver
 SUBDIR += libzapojit
+SUBDIR += libzmq4
 SUBDIR += liferea
 SUBDIR += linux-c7-avahi-libs
 SUBDIR += linux-c7-openldap
