@@ -18,6 +18,7 @@ SUBDIR += pidgin-twitter
 SUBDIR += purple-discord
 SUBDIR += purple-facebook
 SUBDIR += sendxmpp
+SUBDIR += signal-cli
 SUBDIR += slack-term
 SUBDIR += ssh-chat
 SUBDIR += telegram-cli
