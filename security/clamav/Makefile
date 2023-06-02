@@ -11,7 +11,8 @@ WWW=		https://www.clamav.net/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
-BUILD_DEPENDS=	${RUST_DEFAULT}>=1.56.0:lang/${RUST_DEFAULT}
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.56.0:lang/${RUST_DEFAULT} \
+		${LOCALBASE}/include/check.h:devel/check
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libjson-c.so:devel/json-c \
 		libmspack.so:archivers/libmspack \
