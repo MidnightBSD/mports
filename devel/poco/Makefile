@@ -14,7 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libexpat.so:textproc/expat2
 
-USE_GCC=	12+
 USES=		cmake compiler:c++14-lang cpe localbase pkgconfig tar:bz2
 USE_LDCONFIG=	yes
 
