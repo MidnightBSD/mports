@@ -1,0 +1,12 @@
+--- Foundation/CMakeLists.txt.orig	2023-06-02 17:02:50.361971000 -0400
++++ Foundation/CMakeLists.txt	2023-06-02 17:03:17.051957000 -0400
+@@ -156,6 +156,9 @@
+ 			elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
+ 				target_compile_definitions(Foundation PUBLIC POCO_HAVE_FD_POLL)
+ 				target_link_libraries(Foundation PUBLIC pthread ${CMAKE_DL_LIBS} rt)
++			elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "MidnightBSD")
++				target_compile_definitions(Foundation PUBLIC POCO_HAVE_FD_POLL)
++				target_link_libraries(Foundation PUBLIC pthread ${CMAKE_DL_LIBS} rt)
+ 			elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "AIX")
+ 				target_compile_definitions(Foundation PUBLIC _XOPEN_SOURCE=500 POCO_HAVE_FD_POLL)
+ 				target_link_libraries(Foundation PUBLIC pthread ${CMAKE_DL_LIBS} rt)
