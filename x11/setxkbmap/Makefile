@@ -1,5 +1,6 @@
 PORTNAME=	setxkbmap
 PORTVERSION=	1.3.4
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +11,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:xz xorg xorg-cat:app
-USE_XORG=	xkbfile x11
+USE_XORG=	xkbfile x11 xrandr
 
 CONFIGURE_ARGS=	--with-xkb-config-root=${LOCALBASE}/share/X11/xkb
 
