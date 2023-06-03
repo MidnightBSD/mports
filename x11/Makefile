@@ -229,6 +229,7 @@ SUBDIR += xtitle
 SUBDIR += xtrans
 SUBDIR += xvidtune
 SUBDIR += xvinfo
+SUBDIR += xwatchwin
 SUBDIR += xwd
 SUBDIR += xwininfo
 SUBDIR += xwud
