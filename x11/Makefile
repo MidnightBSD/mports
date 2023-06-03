@@ -232,6 +232,7 @@ SUBDIR += xvinfo
 SUBDIR += xwatchwin
 SUBDIR += xwd
 SUBDIR += xwininfo
+SUBDIR += xwit
 SUBDIR += xwud
 SUBDIR += xxkb
 SUBDIR += xzoom
