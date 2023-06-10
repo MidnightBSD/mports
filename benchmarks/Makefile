@@ -14,6 +14,7 @@ SUBDIR += httperf
 SUBDIR += iozone
 SUBDIR += iozone21
 SUBDIR += iperf
+SUBDIR += iperf3
 SUBDIR += libmicro
 SUBDIR += linux-gputest
 SUBDIR += linux-vdbench
