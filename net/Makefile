@@ -44,6 +44,7 @@ SUBDIR += hping
 SUBDIR += htpdate
 SUBDIR += ilbc
 SUBDIR += intel-em-kmod
+SUBDIR += intel-iavf-kmod
 SUBDIR += intel-ix-kmod
 SUBIDR += intel-ixl-kmod
 SUBDIR += isboot-kmod
