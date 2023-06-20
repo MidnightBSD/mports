@@ -96,6 +96,7 @@ SUBDIR += htop
 SUBDIR += hw-probe
 SUBDIR += hwstat
 SUBDIR += incron
+SUBDIR += intel-nvmupdate-10g
 SUBDIR += ipdbtools
 SUBDIR += isc-cron
 SUBDIR += jailme
