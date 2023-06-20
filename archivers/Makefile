@@ -5,6 +5,7 @@ SUBDIR += arc
 SUBDIR += arj
 SUBDIR += brotli
 SUBDIR += bzip2
+SUBDIR += bzip3
 SUBDIR += cabextract
 SUBDIR += deb2targz
 SUBDIR += fastjar
