@@ -1,7 +1,6 @@
-# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-
 PORTNAME=	cinnamon
 PORTVERSION=	4.8.6
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 DIST_SUBDIR=	gnome
 

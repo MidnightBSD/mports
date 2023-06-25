@@ -1,31 +1,30 @@
-
-
 PORTNAME=	jabberd
-PORTVERSION=	2.3.1
-PORTREVISION=	2
+PORTVERSION=	2.7.0
 CATEGORIES=	net-im
 MASTER_SITES=	https://github.com/jabberd2/jabberd2/releases/download/${PORTNAME}-${DISTVERSION}/ \
 		FREEBSD_LOCAL/matthew/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online presence and instant messaging server
+WWW=		https://jabberd2.org/
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
-		libidn.so:${PORTSDIR}/dns/libidn \
-		libudns.so:${PORTSDIR}/dns/udns
+LIB_DEPENDS=	libexpat.so:textproc/expat2 \
+		libgsasl.so:security/libgsasl \
+		libidn.so:dns/libidn \
+		libudns.so:dns/udns
+
+USES=		autoreconf compiler:c11 iconv libtool perl5 pkgconfig \
+		ssl tar:xz
 
 OPTIONS_DEFINE=	MYSQL PGSQL LDAP BDB SQLITE PAM PIPE ANON FS DEBUG REQUIRES \
 		DOCS SUPERSEDED EXPERIMENTAL
-OPTIONS_SINGLE=	SASL
-OPTIONS_SINGLE_SASL=	CYRUS GSASL
-OPTIONS_DEFAULT=MYSQL DEBUG GSASL
+OPTIONS_DEFAULT=MYSQL DEBUG
 OPTIONS_SUB=	yes
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		compiler:c11 iconv libtool perl5 tar:xz ssl
 USE_PERL5=	run
 USE_RC_SUBR=	jabberd
 USE_LDCONFIG=	${PREFIX}/lib/jabberd
@@ -33,6 +32,7 @@ CONFIGURE_ARGS=	--localstatedir=/var \
 		--sysconfdir=${PREFIX}/etc/jabberd \
 		--enable-ssl --enable-mio=kqueue \
 		--disable-tests \
+		--with-sasl=gsasl \
 		--with-extra-include-path="${LOCALBASE}/include ${EIP}" \
 		--with-extra-library-path="${LOCALBASE}/lib ${ELP}"
 
@@ -70,16 +70,17 @@ PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_ENABLE=	pgsql
 
 SQLITE_CONFIGURE_ENABLE=sqlite
-SQLITE_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
+SQLITE_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 
-MYSQL_USE=		MYSQL=yes
+MYSQL_USES=		mysql
 MYSQL_CONFIGURE_ENABLE=	mysql
+MYSQL_VARS=	IGNORE_WITH_MYSQL=80
 
-BDB_USE=		BDB=41+
+BDB_USES=		bdb
 BDB_CONFIGURE_ENABLE=	db
 BDB_CONFIGURE_ON=	--oldincludedir=/nonexistant
 
-LDAP_USE=		OPENLDAP=yes
+LDAP_USES=		ldap
 LDAP_CONFIGURE_ENABLE=	ldap
 
 FS_CONFIGURE_ENABLE=	fs
@@ -92,14 +93,6 @@ PIPE_DESC=		Enable pipe (auth/reg)
 
 ANON_CONFIGURE_ENABLE=	anon
 ANON_DESC=		Enable anonymous (auth/reg)
-
-CYRUS_CONFIGURE_ON=	--with-sasl=cyrus
-CYRUS_DESC=		Use Cyrus SASL backend (not supported)
-CYRUS_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
-
-GSASL_CONFIGURE_ON=	--with-sasl=gsasl
-GSASL_DESC=		Use GSASL backend
-GSASL_LIB_DEPENDS=	libgsasl.so:${PORTSDIR}/security/gsasl
 
 SUPERSEDED_CONFIGURE_ENABLE=	superseded
 SUPERSEDED_DESC=	Enable superseded features (ns_TIME)
@@ -142,25 +135,19 @@ post-patch:
 	router.xml s2s.xml sm.xml templates/roster.xml
 	@${MV} ${WRKSRC}/etc/${FILE}.dist.in ${WRKSRC}/etc/${FILE}.sample.in
 .endfor
-	@${REINPLACE_CMD} -e 's|%%PERL%%|${PERL}|g' \
-		${WRKSRC}/tools/jabberd.in
-.if ${PORT_OPTIONS:MCYRUS}
-	@${REINPLACE_CMD} -e '/^#error /d' \
-		${WRKSRC}/sx/sasl_cyrus.c
-.endif
 
 post-install:
 .for DIR in db logs pid
-	@${MKDIR} ${STAGEDIR}${JABBER_RUNDIR}/${DIR}
+	@${MKDIR} ${JABBER_RUNDIR}/${DIR}
 .endfor
-	@${CHMOD} -R go= ${STAGEDIR}${JABBER_RUNDIR}
+	@${CHMOD} -R go= ${JABBER_RUNDIR}
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for FILE in ${DOCFILES}
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
 .endfor
 .for FILE in db-setup.mysql db-setup.pgsql db-setup.sqlite
-	${INSTALL_DATA} ${WRKSRC}/tools/${FILE} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/tools/${FILE} ${DOCSDIR}
 .endfor
 .endif
 

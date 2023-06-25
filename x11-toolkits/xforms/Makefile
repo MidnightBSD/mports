@@ -1,11 +1,13 @@
 PORTNAME=	xforms
 DISTVERSION=	1.2.4
 PORTEPOCH=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits graphics
 MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical user interface toolkit for X Window System
+WWW=		http://xforms-toolkit.org/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB

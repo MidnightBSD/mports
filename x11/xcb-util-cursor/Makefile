@@ -5,6 +5,7 @@ MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XCB cursor library
+WWW=		https://xcb.freedesktop.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -20,6 +21,8 @@ RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-util.pc:x11/xcb-util \
 USES=		gmake gperf xorg xorg-cat:lib
 USE_XORG=	xcb
 INSTALL_TARGET=	install-strip
+
+SSP_UNSAFE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e \

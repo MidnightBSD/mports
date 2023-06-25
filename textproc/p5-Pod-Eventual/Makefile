@@ -1,14 +1,16 @@
 PORTNAME=	Pod-Eventual
-PORTVERSION=	0.094002
+PORTVERSION=	0.094003
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read a POD document as a series of trivial events
+WWW=		https://metacpan.org/release/Pod-Eventual
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Mixin-Linewise>=0.102:devel/p5-Mixin-Linewise

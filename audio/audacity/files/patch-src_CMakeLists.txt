@@ -1,4 +1,4 @@
---- src/CMakeLists.txt.orig	2021-10-28 09:14:30 UTC
+--- src/CMakeLists.txt.orig	2021-12-22 15:35:36 UTC
 +++ src/CMakeLists.txt
 @@ -38,7 +38,7 @@ elseif( GIT_FOUND )
  else()
@@ -9,3 +9,18 @@
  endif()
  
  # Handle Audio Units option
+@@ -1086,10 +1086,10 @@ list( APPEND LIBRARIES
+       $<$<BOOL:${USE_SBSMS}>:libsbsms>
+       $<$<BOOL:${USE_SOUNDTOUCH}>:soundtouch>
+       $<$<BOOL:${USE_VAMP}>:libvamp>
+-      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GLIB>
+-      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GTK>
+-      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:z>
+-      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:pthread>
++      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GLIB>
++      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GTK>
++      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:z>
++      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:pthread>
+ )
+ 
+ set( BUILDING_AUDACITY YES )

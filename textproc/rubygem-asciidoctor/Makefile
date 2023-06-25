@@ -1,10 +1,11 @@
 PORTNAME=	asciidoctor
-PORTVERSION=	2.0.16
+PORTVERSION=	2.0.20
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, open source text processor and publishing toolchain
+WWW=		https://asciidoctor.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

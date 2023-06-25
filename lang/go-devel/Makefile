@@ -1,7 +1,5 @@
-# Created by: Devon H. O'Dell <devon.odell@gmail.com>
-
 PORTNAME=	go
-DISTVERSION?=	g20220802
+DISTVERSION?=	g20230104
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES?=	https://github.com/dmgk/go-bootstrap/releases/download/${BOOTSTRAP_TAG}/:bootstrap \
@@ -34,7 +32,8 @@ CPE_VENDOR=	golang
 .ifndef MASTERDIR
 USE_GITHUB=	yes
 GH_ACCOUNT=	golang
-GH_TAGNAME=	43456202a1e55da55666fac9d56ace7654a65b64
+# go 1.20rc2
+GH_TAGNAME=	32593a91927dbb891e00a5a94abb04105f6a8aa8
 .endif
 
 SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
@@ -90,6 +89,8 @@ do-install:
 		pkg/obj pkg/bootstrap pkg/freebsd_${GOARCH_${ARCH}}/cmd
 	@${MKDIR} ${PREFIX}/go${GO_SUFFIX}
 	@${CP} -a ${WRKSRC}/* ${PREFIX}/go${GO_SUFFIX}
+	@${STRIP_CMD} ${PREFIX}/go${GO_SUFFIX}/bin/*
+	@${STRIP_CMD} ${PREFIX}/go${GO_SUFFIX}/pkg/tool/freebsd_${GOARCH_${ARCH}}/*
 .for f in go gofmt
 	${LN} -sf ../go${GO_SUFFIX}/bin/${f} ${PREFIX}/bin/${f}${GO_SUFFIX}
 	@${ECHO_CMD} bin/${f}${GO_SUFFIX} >> ${TMPPLIST}

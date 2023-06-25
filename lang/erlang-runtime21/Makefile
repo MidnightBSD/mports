@@ -19,6 +19,9 @@ GH_PROJECT=	otp:otp corba:corba
 GH_TAGNAME=	4.5.2:corba
 USE_PERL5=	build
 
+CPE_VENDOR=	erlang
+CPE_PRODUCT=	erlang/otp
+
 DATADIR=        ${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}
 WRKSRC=		${WRKSRC_otp}
 

@@ -1,0 +1,20 @@
+--- server/CMakeLists.txt.orig	2023-03-04 17:29:23 UTC
++++ server/CMakeLists.txt
+@@ -36,7 +36,7 @@ if(VGL_FAKEXCB)
+ endif()
+ 
+ set(DEFAULT_VGL_FAKEOPENCL 0)
+-if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD" OR CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+ 	set(DEFAULT_VGL_FAKEOPENCL 1)
+ endif()
+ option(VGL_FAKEOPENCL "Interpose enough of the OpenCL API to make OpenCL/OpenGL interoperability work"
+@@ -51,7 +51,7 @@ if(VGL_FAKEOPENCL)
+ endif()
+ 
+ set(DEFAULT_VGL_EGLBACKEND 0)
+-if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD" OR CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+ 	set(DEFAULT_VGL_EGLBACKEND 1)
+ endif()
+ option(VGL_EGLBACKEND "Include the EGL back end, which allows the VirtualGL Faker to be used without a 3D X server"

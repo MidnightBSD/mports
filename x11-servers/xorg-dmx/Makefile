@@ -1,7 +1,5 @@
-
-
 PORTNAME=	xorg-dmx
-PORTREVISION=	1
+PORTREVISION=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Multihead X from X.Org

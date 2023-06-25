@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Strip scripting constructs out of HTML
+WWW=		https://metacpan.org/release/HTML-StripScripts
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

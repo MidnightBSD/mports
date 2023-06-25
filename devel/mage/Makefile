@@ -1,11 +1,12 @@
 PORTNAME=	mage
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.11.0
+DISTVERSION=	1.14.0
 PORTEPOCH=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line make-like build tool using Go as input files
+WWW=		https://magefile.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE

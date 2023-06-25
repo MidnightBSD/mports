@@ -1,5 +1,3 @@
-# Created by: Olivier Duchateau <duchateau.olivier@gmail.com>
-
 PORTNAME=	xfce4-mount-plugin
 PORTVERSION=	1.1.5
 CATEGORIES=	sysutils xfce
@@ -8,6 +6,7 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mount and umount utility for the Xfce4 panel
+WWW=		https://goodies.xfce.org/projects/panel-plugins/xfce4-mount-plugin
 
 LICENSE=	gpl2
 

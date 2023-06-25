@@ -1,53 +1,74 @@
-# Created by: Nikolay Pavlov <qpadla@gmail.com>
-
 PORTNAME=	openfire
-PORTVERSION=	4.2.3
-PORTREVISION=	0
+DISTVERSIONPREFIX=	v
+DISTVERSION=	4.7.4
 PORTEPOCH=	1
 CATEGORIES=	net-im java
-MASTER_SITES=	https://github.com/igniterealtime/${PORTNAME}/releases/download/v${PORTVERSION}/
-DISTNAME=	${PORTNAME}_src_${PORTVERSION:S/./_/g}
+
+MASTER_SITES=	FREEBSD_LOCAL/fernape:maven
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enterprise instant messaging server
+WWW=		https://www.igniterealtime.org/projects/openfire/index.jsp
 
 LICENSE=	apache2
-LICENSE_FILE=	${WRKSRC}/LICENSE.html
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	slf4j>=1.7.7:devel/slf4j
+BUILD_DEPENDS=	mvn:java/maven
 
-OPTIONS_DEFINE=	DOCS PLUGINS
-OPTIONS_DEFAULT=PLUGINS
-OPTIONS_SUB=	yes
-PLUGINS_DESC=	Install bundled plugins
-
-USES=		cpe dos2unix
-DOS2UNIX_FILES=	src/java/org/jivesoftware/openfire/server/ServerDialback.java
-USE_LDCONFIG=	yes
-USE_ANT=	yes
-USE_JAVA=	yes
-JAVA_VERSION=	1.8
-NO_ARCH=	yes
-
+USES=		cpe
 CPE_VENDOR=	igniterealtime
+USE_GITHUB=	YES
+GH_ACCOUNT=	igniterealtime
+GH_PROJECT=	Openfire
+USE_JAVA=	yes
+JAVA_VERSION=	1.8+
 
-ALL_TARGET=	${PORTNAME}
 USE_RC_SUBR=	${PORTNAME}
+NO_ARCH=	yes
 SUB_FILES+=	pkg-message
 
-WRKSRC=		${WRKDIR}/${PORTNAME}_src
-BUILD_WRKSRC=	${WRKSRC}/build
-INSTALL_WRKSRC=	${WRKSRC}/target/${PORTNAME}
+INSTALL_WRKSRC=	${WRKSRC}/distribution/target/distribution-base/
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
-PORTDOCS=	*
 VARLOG=		/var/log/${PORTNAME}
 VARDB=		/var/db/${PORTNAME}
 USERS=		${PORTNAME}
 GROUPS=		${USERS}
-PLIST_SUB+=	VARLOG=${VARLOG} \
-		VARDB=${VARDB}
+PLIST_SUB+=	VARDB=${VARDB} \
+		VARLOG=${VARLOG}
 
-PLUGINS_ALL_TARGET=	plugins
+OPTIONS_DEFINE=		DOCS TEST
+OPTIONS_DEFAULT=	MAVEN_LOCAL
+OPTIONS_SINGLE=		MAVEN
+OPTIONS_SINGLE_MAVEN=	MAVEN_LOCAL MAVEN_ONLINE
+
+MAVEN_DESC=		Source of Maven build plugins
+MAVEN_LOCAL_DESC=	Use prefetch plugins from FreeBSD repository
+MAVEN_ONLINE_DESC=	Download last plugins during build process and store them into ~/.m2
+
+MAVEN_LOCAL_DISTFILES=	FreeBSD-${PORTNAME}-${PORTVERSION}-maven-repository.tar.gz:maven
+
+MVN=		mvn
+MVN_TARGET=	package
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MTEST}
+MVN_OPTS=	-DskipTests=false
+.else
+MVN_OPTS=	-DskipTests=true
+.endif
+
+.if ${PORT_OPTIONS:MMAVEN_LOCAL}
+MVN_OPTS+=	-o -Dmaven.repo.local=${WRKDIR}/m2
+.endif
+
+.if ${PORT_OPTIONS:MMAVEN_ONLINE}
+MVN_OPTS+=	-U
+.endif
+
+do-build:
+	${ECHO_CMD} "cd ${WRKSRC} && ${MVN} ${MVN_OPTS} ${MVN_TARGET}"
+	@(cd ${WRKSRC} && ${MVN} ${MVN_OPTS} ${MVN_TARGET})
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}/lib
@@ -56,14 +77,13 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${VARLOG}
 
 	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 *.jar ${STAGEDIR}${DATADIR}/lib)
-	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 log4j.xml ${STAGEDIR}${DATADIR}/lib)
+	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 log4j2.xml ${STAGEDIR}${DATADIR}/lib)
 
 	(cd ${INSTALL_WRKSRC}/resources && \
 	    ${FIND} . \! -path ./security\* \! -path ./nativeAuth\* | \
 	    ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} \
 	        ${STAGEDIR}${DATADIR}/resources)
 
-#	always install admin interface
 	(cd ${INSTALL_WRKSRC}/plugins/admin && ${FIND} . \
 	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DATADIR}/plugins/admin)
 
@@ -73,20 +93,18 @@ do-install:
 	${LN} -sf ${VARLOG} ${STAGEDIR}${DATADIR}/logs
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/${PORTNAME}.xml \
 		${STAGEDIR}${ETCDIR}/${PORTNAME}.xml.sample
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/security.xml \
+		${STAGEDIR}${ETCDIR}/security.xml.sample
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/crowd.properties \
+		${STAGEDIR}${ETCDIR}/crowd.properties.sample
 	${INSTALL} -m 600 ${INSTALL_WRKSRC}/resources/security/truststore \
 		${STAGEDIR}${ETCDIR}/truststore.sample
 	${INSTALL} -m 600 ${INSTALL_WRKSRC}/resources/security/keystore \
 		${STAGEDIR}${ETCDIR}/keystore.sample
-	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/security.xml \
-		${STAGEDIR}${ETCDIR}/security.xml.sample
-
-do-install-PLUGINS-on:
-	(cd ${INSTALL_WRKSRC}/plugins && ${FIND} . \
-	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${FAKE_DESTDIR}${DATADIR}/plugins)
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	(cd ${WRKSRC}/documentation/docs && ${FIND} . \! -path ./javadoc\* \
+	(cd ${INSTALL_WRKSRC}/documentation && ${FIND} . \
 	| ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${FAKE_DESTDIR}${DOCSDIR} > /dev/null 2>&1 )
 
 .include <bsd.port.mk>

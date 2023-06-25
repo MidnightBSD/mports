@@ -1,13 +1,14 @@
 PORTNAME=	HTTP-Entity-Parser
-PORTVERSION=	0.21
+PORTVERSION=	0.25
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PSGI compliant HTTP Entity Parser
+WWW=		https://search.mcpan.org/dist/HTTP-Entity-Parser/
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

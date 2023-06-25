@@ -1,5 +1,3 @@
-# Created by: jesper
-
 PORTNAME=	Digest-BubbleBabble
 PORTVERSION=	0.02
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to a fingerprint in "bubble babble" format
+WWW=		https://metacpan.org/release/Digest-BubbleBabble
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

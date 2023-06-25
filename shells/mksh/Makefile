@@ -2,7 +2,7 @@ PORTNAME=	mksh
 DISTVERSION=	R59c
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
-		http://pub.allbsd.org/MirOS/dist/mir/mksh/
+		https://pub.allbsd.org/MirOS/dist/mir/mksh/
 		
 DISTFILES=	${PORTNAME}-${DISTVERSION}.tgz
 

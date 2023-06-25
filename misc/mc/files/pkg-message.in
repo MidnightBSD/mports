@@ -1,14 +1,17 @@
-===============================================================================
+[
+{ type: install
+  message: <<EOM
+Midnight Commander was built with subshell support, which works with most
+popular shells, e.g. bash(1), dash(1), tcsh(1), zsh(1), but not sh(1) due
+to its lack of "precmd" or equivalent hooks which mc(1) needs to read the
+subshell's current directory.
 
-Midnight Commander has been installed.
+  $ env SHELL=/bin/sh mc
+  common.c: unimplemented subshell type 1
+  read (subshell_pty...): No such file or directory (2)
 
-If you have problems, please reinstall Midnight Commander
-
-cd /usr/ports/misc/mc && make deinstall clean reinstall
-
-For Screen it is best to use the default Option SLANG, with NCURSES
-you can have worse graphics.
-
-Have fun!
-
-===============================================================================
+Please either use more advanced interactive shell, or start mc(1) with -u
+(--nosubshell) switch if you're confined to /bin/sh for some reason.
+EOM
+}
+]

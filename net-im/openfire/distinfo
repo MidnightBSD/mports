@@ -1,3 +1,5 @@
-TIMESTAMP = 1529481893
-SHA256 (openfire_src_4_2_3.tar.gz) = 9a901bcd06920ccb5b417517db029a4a20b775d49aa39d918a996d4aaf47430c
-SIZE (openfire_src_4_2_3.tar.gz) = 113557155
+TIMESTAMP = 1673634902
+SHA256 (igniterealtime-Openfire-v4.7.4_GH0.tar.gz) = 5eb22e165d1de0a1e601efbd356266a6823fafc866b684500ec90af1ba764ab9
+SIZE (igniterealtime-Openfire-v4.7.4_GH0.tar.gz) = 7421427
+SHA256 (FreeBSD-openfire-4.7.4-maven-repository.tar.gz) = 3d1ecdc816d006a4fcc04ff5200b37b20d7a5d20dd689f9f92141137a8332d6b
+SIZE (FreeBSD-openfire-4.7.4-maven-repository.tar.gz) = 256366555

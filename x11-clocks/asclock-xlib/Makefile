@@ -1,7 +1,8 @@
 PORTNAME=	asclock-xlib
-PORTVERSION=	2.0.11
+PORTVERSION=	2.0.12
 CATEGORIES=	x11-clocks
-MASTER_SITES=	FREEBSD_LOCAL/kuriyama
+MASTER_SITES=	http://gentoo.osuosl.org/distfiles/
+DISTFILES=	asclock-${PORTVERSION}.tar.gz
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	New flavor of asclock
@@ -12,7 +13,7 @@ CONFLICTS_INSTALL=	asclock
 
 MAKE_JOBS_UNSAFE=	yes
 
-WRKSRC=		${WRKDIR}/asclock-xlib
+WRKSRC=		${WRKDIR}/asclock-${PORTVERSION}
 USES=		imake xorg
 USE_XORG=	xpm x11
 

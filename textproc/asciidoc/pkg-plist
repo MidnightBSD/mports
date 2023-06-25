@@ -1,3 +1,4 @@
+share/man/man1/a2x.1.gz
 %%PYTHON_SITELIBDIR%%/asciidoc/__main__.py
 %%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/attrs%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/asciidoc/__pycache__/exceptions%%PYTHON_EXT_SUFFIX%%.pyc

@@ -1,16 +1,13 @@
-# New ports collection makefile for:   gcpio
-# Date created:         30 Jul 2007
-# Whom:                 Lucas Holt <luke@MidnightBSD.org>
-
 PORTNAME=	cpio
-PORTVERSION=	2.13
+PORTVERSION=	2.14
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 PKGNAMEPREFIX=	g
 
-MAINTAINER=	luke@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU copy-in/out (cpio)
+WWW=		https://www.gnu.org/software/cpio/
 
 LICENSE=	gpl3
 

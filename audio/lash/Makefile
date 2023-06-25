@@ -1,5 +1,3 @@
-
-
 PORTNAME=	lash
 PORTVERSION=	0.5.4
 PORTREVISION=	2
@@ -8,6 +6,7 @@ MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session management system for JACK audio applications
+WWW=		https://www.nongnu.org/lash/
 
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
@@ -21,7 +20,7 @@ LIB_DEPENDS=	libjack.so:audio/jack \
 OPTIONS_DEFINE=	READLINE DOCS
 OPTIONS_DEFAULT=READLINE
 
-USES=		gmake pathfix pkgconfig libtool
+USES=		gmake gnome pathfix pkgconfig libtool
 USE_GNOME=	gtk20 libxml2 gdkpixbuf2 cairo
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alsa-midi
@@ -30,7 +29,7 @@ LIBS=		-luuid
 INSTALL_TARGET=	install-strip
 
 CPPFLAGS+=	-I${LOCALBASE}/include/dssi -I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS+=	-L${LOCALBASE}/lib -pthread
 
 .include <bsd.mport.options.mk>
 

@@ -6,6 +6,7 @@ MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Firefox for FreeBSD
+WWW=		https://www.mozilla.com/firefox
 
 LICENSE=	mpl gpl2
 LICENSE_COMB=	dual
@@ -29,7 +30,9 @@ LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libpci.so:devel/libpci \
 		libdbus-1.so:devel/dbus \
 		libdbus-glib-1.so:devel/dbus-glib \
-		libatk-1.0.so:accessibility/atk
+		libatk-1.0.so:accessibility/atk \
+		libaom.so:multimedia/aom \
+		libdav1d.so:multimedia/dav1d
 
 USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
 		desktop-file-utils tar:xz
@@ -46,12 +49,14 @@ NO_BUILD=	yes
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-.if ${OSVERSION} >= 200000
+.if ${OSVERSION} >= 300000
+VER=	111
+DISTFILES=	firefox-111.0.1_1%2C2~4372c9f4c3.pkg
+COMPONENT=.12
+.elif ${OSVERSION} >= 200000
 VER=    80
 DISTFILES=      firefox-80.0.1,2.txz
 COMPONENT=.11
-LIB_DEPENDS+=	libaom.so:multimedia/aom \
-		libdav1d.so:multimedia/dav1d
 .else
 VER=    63
 DISTFILES=      firefox-63.0_3,1.txz

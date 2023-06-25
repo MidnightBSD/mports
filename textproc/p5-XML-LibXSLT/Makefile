@@ -1,5 +1,3 @@
-# Created by: Dom Mitchell <dom@happygiraffe.net>
-
 PORTNAME=	XML-LibXSLT
 PORTVERSION=	2.002000
 CATEGORIES=	textproc perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl interface to the GNOME XSLT library
+WWW=		https://metacpan.org/release/XML-LibXSLT
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

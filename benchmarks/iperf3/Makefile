@@ -1,0 +1,40 @@
+PORTNAME=	iperf
+DISTVERSION=	3.13
+CATEGORIES=	benchmarks
+MASTER_SITES=	https://downloads.es.net/pub/iperf/
+PKGNAMESUFFIX=	3
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Improved tool to measure TCP and UDP bandwidth
+WWW=		https://software.es.net/iperf/
+
+LICENSE=	bsd3 mit
+LICENSE_COMB=	multi
+
+USES=		cpe libtool ssl
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+
+CPE_VENDOR=	iperf_project
+
+PORTDOCS=	README.md RELNOTES.md
+
+# Set ${DOCSDIR} to avoid conflict with benchmarks/iperf ${DOCSDIR}
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
+
+OPTIONS_DEFINE=	DOCS STATIC
+OPTIONS_SUB=	yes
+
+STATIC_CONFIGURE_ENABLE=	static
+
+post-patch:
+# Don't build stuff that we're not going to install.  Among other
+# things this means we're not going to try to build profiled objects
+# and/or executables.
+	@${REINPLACE_CMD} -e '/^PROGRAMS /s/\$$(noinst_PROGRAMS)//' ${WRKSRC}/src/Makefile.in
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
+
+.include <bsd.port.mk>

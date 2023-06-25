@@ -1,7 +1,5 @@
-# Created by: Tom Judge <tj@FreeBSD.org>
-
 PORTNAME=	kibana
-PORTVERSION=	7.17.3
+PORTVERSION=	7.17.9
 DISTVERSIONSUFFIX=	-darwin-x86_64
 CATEGORIES=	textproc www
 MASTER_SITES=	https://artifacts.elastic.co/downloads/kibana/ \
@@ -11,6 +9,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Browser based analytics and search interface to ElasticSearch
+WWW=		https://www.elastic.co/products/kibana
 
 LICENSE=	apache2
 
@@ -25,7 +24,7 @@ USE_GITHUB=	nodefault
 GH_TUPLE=	nodejs:nan:v${_NODE_NAN_VER}:node_nan \
 		uhop:node-re2:${_NODE_RE2_VER}:node_re2
 
-CONFLICTS=	kibana[6]*
+CONFLICTS=	kibana8
 
 WWWDIR=		${PREFIX}/www/${PORTNAME}${PKGNAMESUFFIX}
 USE_RC_SUBR=	${PORTNAME}
@@ -36,9 +35,9 @@ SUB_LIST+=	PKGNAMESUFFIX=${PKGNAMESUFFIX} \
 
 #######################################################################
 # Set node-nan version here
-_NODE_NAN_VER=	2.15.0
+_NODE_NAN_VER=	2.17.0
 # Set node-re version here
-_NODE_RE2_VER=	1.17.4
+_NODE_RE2_VER=	1.18.0
 #######################################################################
 
 _NODECMD=	${LOCALBASE}/bin/node --version
@@ -48,6 +47,9 @@ _RE2DIR=	${WRKDIR}/node-re2-${_NODE_RE2_VER}
 
 # Extra patch files must be updated whenever node-re2 changes
 _RE2PATCHES=	${PATCHDIR}/extra-node-re2-binding-gyp.patch
+
+post-extract:
+	${RM} -rf ${WRKSRC}/node
 
 post-patch:
 	${FIND} -s ${WRKSRC}/node_modules -type d -empty -delete

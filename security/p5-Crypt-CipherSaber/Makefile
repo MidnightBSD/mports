@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module providing an OO interface to CipherSaber encryption
+WWW=		https://metacpan.org/release/Crypt-CipherSaber
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-Test-Warn>=0.30:devel/p5-Test-Warn

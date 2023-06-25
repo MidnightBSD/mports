@@ -1,10 +1,10 @@
 PORTNAME=	git-cinnabar
-DISTVERSION=	0.5.10
-PORTREVISION=	1
+DISTVERSION=	0.5.11
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Git remote helper to interact with Mercurial repositories
+WWW=		https://github.com/glandium/git-cinnabar
 
 LICENSE=	gpl2
 

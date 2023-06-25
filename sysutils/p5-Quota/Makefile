@@ -1,5 +1,3 @@
-# Created by: will
-
 PORTNAME=	Quota
 PORTVERSION=	1.8.2
 CATEGORIES=	sysutils perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module that provides access to filesystem quotas
+WWW=		https://metacpan.org/release/Quota
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

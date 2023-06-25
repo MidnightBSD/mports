@@ -3,12 +3,13 @@ PORTVERSION=	${MAJOR_VER}.${SNAPSHOT_VER:S/.//g}
 PORTREVISION=	10
 CATEGORIES=	devel
 MASTER_SITES=	http://archive.ubuntu.com/ubuntu/pool/main/libd/${PORTNAME}/ \
-		LOCAL/tcberner/${PORTNAME}/${PORTVERSION}
+		FREEBSD_LOCAL/tcberner/${PORTNAME}/${PORTVERSION}
 PKGNAMESUFFIX=	5
 DISTNAME=	${PORTNAME}_${MAJOR_VER}+${SNAPSHOT_VER}.orig
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt5 implementation of the DBusMenu protocol
+WWW=		https://launchpad.net/libdbusmenu-qt
 
 LICENSE=	lgpl
 

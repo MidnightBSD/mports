@@ -1,12 +1,13 @@
 PORTNAME=	afterstep
 PORTVERSION=	2.2.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm afterstep
 MASTER_SITES=	AFTERSTEP/stable
 DISTNAME=	AfterStep-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window manager originally based on the Bowman NeXTstep clone
+WWW=		http://www.afterstep.org/
 
 LICENSE=	mit
 

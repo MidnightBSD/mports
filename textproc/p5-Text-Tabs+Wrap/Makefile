@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Line wrapping to form simple paragraphs
+WWW=		https://metacpan.org/release/Text-Tabs+Wrap
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

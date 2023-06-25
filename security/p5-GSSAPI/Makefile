@@ -1,16 +1,15 @@
-# Created by: Anton Berezin <tobez@FreeBSD.org>
-
 PORTNAME=	GSSAPI
 PORTVERSION=	0.28
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN/LWP/AGROLMS
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension providing access to the GSSAPIv2 library
+WWW=		https://metacpan.org/release/GSSAPI
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

@@ -8,8 +8,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Checks if process has access to the web
+WWW=		https://metacpan.org/release/LWP-Online
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 RUN_DEPENDS+=	p5-libwww>=5.805:www/p5-libwww \

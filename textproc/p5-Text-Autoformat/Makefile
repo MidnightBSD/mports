@@ -9,6 +9,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/0\.(000)$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatic and manual text wrapping and reformating formatting
+WWW=		https://metacpan.org/release/Text-Autoformat
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

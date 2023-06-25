@@ -1,10 +1,11 @@
 PORTNAME=	cassandra-cpp-driver
-PORTVERSION=	2.15.1
+PORTVERSION=	2.16.2
 PORTREVISION=	0
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DataStax C/C++ Driver for Apache Cassandra
+WWW=		https://datastax.github.io/cpp-driver/
 
 LICENSE=	apache2
 

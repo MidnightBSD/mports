@@ -1,5 +1,3 @@
-
-
 PORTNAME=	lcms
 PORTVERSION=	1.19
 PORTREVISION=	3
@@ -10,6 +8,7 @@ MASTER_SITES=	SF \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Light Color Management System -- a color management library
+WWW=		https://www.littlecms.com/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -24,9 +23,12 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 USE_LDCONFIG=	yes
-USES=		libtool localbase:ldflags pathfix
+USES=		cpe libtool localbase:ldflags pathfix
 
 PORTDOCS=	*
+
+CPE_VENDOR=	littlecms
+CPE_PRODUCT=	little_cms_color_engine
 
 JPEGICC_CONFIGURE_WITH=	jpeg
 JPEGICC_USES=		jpeg

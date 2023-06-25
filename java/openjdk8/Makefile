@@ -173,7 +173,7 @@ BOOTSTRAPJDKDIR=	${BJDK}
 .endfor
 
 # if no valid jdk found, set dependency
-.if !defined(BOOTSTRAPJDKDIR)
+.if !defined(BOOTSTRAPJDKDIR) || defined(MAGUS) || defined(INDEXING)
 BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk8
 BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/bootstrap-openjdk8
 .endif

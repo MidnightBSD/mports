@@ -1,13 +1,12 @@
-# Created by: Yasuhiro KIMURA <yasu@utahime.org>
-
 PORTNAME=	lockfile-progs
-PORTVERSION=	0.1.18
+DISTVERSION=	0.1.19
 CATEGORIES=	sysutils
 MASTER_SITES=	DEBIAN_POOL
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programs for locking and unlocking files and mailboxes
+WWW=		https://tracker.debian.org/pkg/lockfile-progs
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

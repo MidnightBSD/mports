@@ -1,19 +1,15 @@
-# Created by: Jeffrey Hsu <hsu@FreeBSD.org>
-
-
 PORTNAME=	jam
-PORTVERSION=	2.5
+PORTVERSION=	2.6
 CATEGORIES=	devel
-MASTER_SITES=	ftp://ftp.perforce.com/jam/
+MASTER_SITES=	https://swarm.workshop.perforce.com/projects/perforce_software-jam/download/main/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build utility like make(1)
+WWW=		https://www.perforce.com/jam/jam.html
 
 LICENSE=	other
 
 OPTIONS_DEFINE=	DOCS
-NO_WRKSUBDIR=	yes
-WRKSRC=		${WRKDIR}
 USES=		zip
 
 do-install:

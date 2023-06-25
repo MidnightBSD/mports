@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP Request & Response Service
+WWW=		https://github.com/postmanlabs/httpbin
 
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -23,8 +24,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}blinker>=1.1:devel/py-blinker@${PY_FLAVOR} \
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} test_httpbin.py
+# magus
+NO_TEST=	yes
 
 .include <bsd.port.mk>

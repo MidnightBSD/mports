@@ -1,6 +1,6 @@
 PORTNAME=	compton
 PORTVERSION=	20160907
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +14,8 @@ RUN_DEPENDS=	xprop:x11/xprop \
 		xwininfo:x11/xwininfo
 
 FAKE_OPTS+=	trueprefix
+
+CONFLICTS_INSTALL=	picom # bin/compton
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	chjj

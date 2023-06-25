@@ -1,6 +1,3 @@
-# Created by: Sebastian Schuetz <sschuetz@fhm.edu>
-
-
 PORTNAME=	tpm-emulator
 PORTVERSION=	0.7.4
 PORTREVISION=	2
@@ -10,6 +7,7 @@ DISTNAME=	${PORTNAME:S,-,_,}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Trusted Platform Module (TPM) emulator
+WWW=		http://tpm-emulator.berlios.de/
 
 LICENSE=	gpl2
 
@@ -28,7 +26,7 @@ SUB_LIST=	USERS="${USERS}" GROUPS="${GROUPS}"
 PLIST_SUB=	USERS="${USERS}" GROUPS="${GROUPS}"
 
 post-install:
-	@${MKDIR} ${STAGEDIR}/var/run/tpm
-	@${MKDIR} ${STAGEDIR}${PREFIX}/var/db/tpm
+	@${MKDIR} ${FAKE_DESTDIR}/var/run/tpm
+	@${MKDIR} ${PREFIX}/var/db/tpm
 
 .include <bsd.port.mk>

@@ -1,10 +1,10 @@
---- src/pcm/pcm_direct.c.orig	2016-03-31 13:10:39 UTC
+--- src/pcm/pcm_direct.c.orig	2020-02-19 09:35:39 UTC
 +++ src/pcm/pcm_direct.c
 @@ -44,12 +44,17 @@
   *
   */
   
-+#if !defined(__MidnightBSD__) && !defined(__DragonFly__) && !defined(__OpenBSD__) \
++#if !(defined(__MidnightBSD__) && __MidnightBSD__ < 3) && !defined(__DragonFly__) && !defined(__OpenBSD__) \
 +  && !(defined(__FreeBSD__) && __FreeBSD__ < 12)
  union semun {
  	int              val;    /* Value for SETVAL */

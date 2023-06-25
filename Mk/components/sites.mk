@@ -265,7 +265,7 @@ MASTER_SITE_GCC+= \
 
 .if !defined(IGNORE_MASTER_SITE_GENTOO)
 MASTER_SITE_GENTOO+= \
-	http://gentoo.mirrors.pair.com/%SUBDIR%/ \
+	http://gentoo.mirrors.tera-byte.com/%SUBDIR%/ \
 	http://mirrors.tds.net/pub/gentoo/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/www.ibiblio.org/gentoo/%SUBDIR%/ \
 	http://ftp.snt.utwente.nl/pub/os/linux/gentoo/%SUBDIR%/ \
@@ -665,10 +665,10 @@ MASTER_SITE_GNU_ALPHA+= \
 	https://alpha-gnu-org.ip-connect.vn.ua/%SUBDIR%/
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_GOOGLE_CODE)
-PROJECTHOST?=	${PORTNAME}
-MASTER_SITE_GOOGLE_CODE+= \
-	http://${PROJECTHOST}.googlecode.com/files/
+.if !defined(IGNORE_MASTER_SITE_HACKAGE)
+MASTER_SITE_HACKAGE+= \
+	https://hackage.haskell.org/package/ \
+	http://hackage.haskell.org/package/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_HORDE)
@@ -869,7 +869,7 @@ FETCH_ARGS+=	--user-agent=curl/7.68.0
 
 .if !defined(IGNORE_MASTER_SITE_OSSP)
 MASTER_SITE_OSSP+= \
-	ftp://ftp.ossp.org/pkg/%SUBDIR%/ \
+	http://ftp.ntua.gr/pub/utils/ossp/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/utils/ossp/%SUBDIR%/
 .endif
 

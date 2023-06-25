@@ -9,7 +9,7 @@ include/tld.h
 lib/libidn.a
 lib/libidn.so
 lib/libidn.so.12
-lib/libidn.so.12.6.0
+lib/libidn.so.12.6.3
 libdata/pkgconfig/libidn.pc
 man/man1/idn.1.gz
 man/man3/idn_free.3.gz

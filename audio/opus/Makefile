@@ -1,11 +1,12 @@
 PORTNAME=	opus
-PORTVERSION=	1.3.1
+PORTVERSION=	1.4
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/opus/ \
 		MOZILLA/opus
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IETF audio codec
+WWW=		https://opus-codec.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING

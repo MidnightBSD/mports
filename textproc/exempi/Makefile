@@ -2,10 +2,11 @@ PORTNAME=	exempi
 DISTVERSION=	2.5.2
 PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	http://libopenraw.freedesktop.org/download/
+MASTER_SITES=	https://libopenraw.freedesktop.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of Adobe XMP SDK to work on UNIX
+WWW=		https://libopenraw.freedesktop.org/wiki/Exempi
 
 LICENSE=	bsd3
 
@@ -17,6 +18,9 @@ CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	--enable-unittest=no
+
+NO_TEST=	yes
 
 pre-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} NOCONFIGURE=1 ./autogen.sh

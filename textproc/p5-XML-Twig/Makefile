@@ -1,5 +1,3 @@
-# Created by: Johann Visagie <wjv@FreeBSD.org>
-
 PORTNAME=	XML-Twig
 PORTVERSION=	3.52
 CATEGORIES=	textproc perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Process huge XML documents by chunks via a tree interface
+WWW=		https://metacpan.org/release/XML-Twig
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

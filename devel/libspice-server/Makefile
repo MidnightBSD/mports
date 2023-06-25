@@ -6,6 +6,7 @@ DISTNAME=	spice-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implements the server side of the SPICE protocol
+WWW=		https://spice-space.org/
 
 LICENSE=	gpl2
 
@@ -17,9 +18,9 @@ OPTIONS_DEFINE=		GSTREAMER LZ4 SASL STATISTICS
 OPTIONS_DEFAULT=	GSTREAMER LZ4 SASL
 STATISTICS_DESC=	Statistic code
 
+GSTREAMER_USES=			gstreamer
 GSTREAMER_CONFIGURE_ON=		--enable-gstreamer=1.0
 GSTREAMER_CONFIGURE_OFF=	--enable-gstreamer=no
-GSTREAMER_USE=			gstreamer1=yes
 GSTREAMER_LIB_DEPENDS=		liborc-0.4.so:devel/orc
 
 LZ4_CONFIGURE_ENABLE=	lz4

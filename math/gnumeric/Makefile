@@ -1,13 +1,12 @@
-# Created by: Yukihiro Nakai <Nakai@technologist.com>
-
 PORTNAME=	gnumeric
-PORTVERSION=	1.12.48
+PORTVERSION=	1.12.52
 CATEGORIES=	math gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME spreadsheet program
+WWW=		http://www.gnumeric.org
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

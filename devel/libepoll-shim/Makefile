@@ -1,8 +1,7 @@
-# Created by: Johannes Lundberg <johalun0@gmail.com>
-
 PORTNAME=	libepoll-shim
 DISTVERSIONPREFIX=    v
 DISTVERSION=	0.0.20210418
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,9 +18,9 @@ GH_PROJECT=	epoll-shim
 
 PLIST_SUB=    SHIM_EVENTFD="${exists(/usr/include/sys/eventfd.h):?@comment :}"
 
-CC=	clang70
-MAKE_ENV+=	CC=clang70
-LLVM_DEFAULT=   70                                                                                                                                                        
+CC=	clang10
+MAKE_ENV+=	CC=clang10
+LLVM_DEFAULT=   10
 BUILD_DEPENDS+= llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
 RUN_DEPENDS+=   llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
 CONFIGURE_ENV+= LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}                                                                                                   

@@ -1,16 +1,14 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
-
 PORTNAME=	Test-Taint
-PORTVERSION=	1.06
-PORTREVISION=	1
+PORTVERSION=	1.08
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools to test taintedness
+WWW=		https://metacpan.org/release/Test-Taint
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

@@ -1,5 +1,6 @@
 COMMENT = File Transfer Protocol 
 
+SUBDIR += axel
 SUBDIR += curl
 SUBDIR += filezilla
 SUBDIR += ftpcopy
@@ -9,7 +10,6 @@ SUBDIR += gstreamer1-plugins-curl
 SUBDIR += lftp
 SUBDIR += libfilezilla
 SUBDIR += linux-c7-curl
-SUBDIR += multiget
 SUBDIR += ncftp3
 SUBDIR += php80-curl
 SUBDIR += php80-ftp
@@ -32,7 +32,6 @@ SUBDIR += weex
 SUBDIR += wget
 SUBDIR += wmget
 SUBDIR += wput
-SUBDIR += wxdfast
 SUBDIR += wzdftpd
 SUBDIR += yafc
 

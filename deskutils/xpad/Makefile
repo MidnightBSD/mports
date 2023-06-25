@@ -1,12 +1,12 @@
-
-
 PORTNAME=	xpad
 PORTVERSION=	5.8.0
+PORTREVISION=	1
 CATEGORIES=	deskutils
 MASTER_SITES=	https://launchpad.net/${PORTNAME}/trunk/${PORTVERSION}/+download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Virtual note-pad system for your X11 desktop
+WWW=		https://launchpad.net/xpad/trunk
 
 LICENSE=	gpl3
 

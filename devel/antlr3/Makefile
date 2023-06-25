@@ -1,7 +1,5 @@
-# Created by: Takumi Takahashi <takumiiinn@gmail.com>
-
 PORTNAME=	antlr3
-PORTVERSION=	3.5.2
+PORTVERSION=	3.5.3
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.antlr3.org/download/
 DISTNAME=	antlr-${PORTVERSION}-complete
@@ -10,6 +8,7 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ANother Tool for Language Recognition
+WWW=		https://www.antlr3.org/
 
 LICENSE=	bsd3
 

@@ -17,7 +17,7 @@ USES=		emacs gmake
 USE_GITHUB=	yes
 
 ALL_TARGET=	all contrib-compile doc-slime.info
-INFO=		slime
+#INFO=		slime
 NO_ARCH=	yes
 PORTDOCS=	CONTRIBUTING.md NEWS PROBLEMS README.md
 SUB_FILES=	pkg-message

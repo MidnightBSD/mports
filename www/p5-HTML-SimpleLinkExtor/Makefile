@@ -1,15 +1,14 @@
-# Created by: Andrey Chernov <ache@FreeBSD.org>
-
 PORTNAME=	HTML-SimpleLinkExtor
-PORTVERSION=	1.272
+PORTVERSION=	1.273
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This is a simple HTML link extractor
+WWW=		https://metacpan.org/release/HTML-SimpleLinkExtor
 
-LICENSE=	artistic
+LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

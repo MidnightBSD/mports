@@ -4,7 +4,7 @@
  # define SM_CONF_SHM	1
  #endif /* SM_CONF_SHM */
  #ifndef SM_CONF_SEM
-+#if __FreeBSD_version < 1200059
++#if (__FreeBSD_version < 1200059) || (__MidnightBSD_version <  300000)
  # define SM_CONF_SEM	1
 +#else
 +# define SM_CONF_SEM	2

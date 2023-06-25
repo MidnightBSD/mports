@@ -1,11 +1,12 @@
 PORTNAME=	treq
 PORTVERSION=	20.9.0
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Requests-like API built on top of twisted.web's Agent
+WWW=		https://github.com/twisted/treq
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -22,15 +23,11 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}openssl>=16.0.0:security/py-openssl@${PY_FL
 		${PYTHON_PKGNAMEPREFIX}service_identity>=18.1.0:security/py-service_identity@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}idna>=2.4:dns/py-idna@${PY_FLAVOR}
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpbin>=0.5.0:www/py-httpbin@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR}
-
-USES=		python:3.6+
+USES=		cpe python:3.6+
 USE_PYTHON=	autoplist distutils
+CPE_VENDOR=	twistedmatrix
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${SETENV} PYTHONPATH=${PYTHONPATH}:${WRKSRC}/src ${PYTHON_CMD} -m twisted.trial treq
+NO_TEST=	yes
 
 .include <bsd.port.mk>

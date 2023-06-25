@@ -1,5 +1,5 @@
 PORTNAME?=	postgresql
-DISTVERSION?=	13.9
+DISTVERSION?=	13.10
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
 PORTREVISION?=	0
@@ -176,7 +176,8 @@ PLIST_SUB+=		PG_USER=${PG_USER} \
 			PG_VERSION=13
 SUB_LIST+=		PG_GROUP=${PG_GROUP} \
 			PG_USER=${PG_USER} \
-			PG_UID=${PG_UID}
+			PG_UID=${PG_UID} \
+			PG_VERSION=13
 
 .include <bsd.mport.options.mk>
 

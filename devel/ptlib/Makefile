@@ -6,6 +6,7 @@ MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross platform C++ library, used by OPAL
+WWW=		http://www.opalvoip.org
 
 LICENSE=	mpl
 
@@ -33,9 +34,8 @@ CONFIGURE_ARGS+=--disable-lua \
 
 # --with-expat-dir="${LOCALBASE}"
 CONFIGURE_ENV+=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
-		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl"
-
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl" \
+		OSRELEASE=${OSRELEASE}
 
 OPTIONS_DEFINE=	BSDVIDEO DEBUG ODBC ALSA JABBER V4L SDL LDAP PULSEAUDIO
 OPTIONS_DEFAULT=BSDVIDEO SDL V4L JABBER
@@ -44,6 +44,14 @@ BSDVIDEO_DESC=	BSD video support
 DEBUG_DESC=	Install debug library
 
 .include <bsd.mport.options.mk>
+
+.if ${OSVERSION} > 300000
+OSRELEASE=1203507
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+.else
+OSRELEASE=1103509
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+.endif
 
 .if ${SSL_DEFAULT} == openssl
 EXTRA_PATCHES+= ${FILESDIR}/extra-patch-src_ptclib_pssl.cxx-openssl111

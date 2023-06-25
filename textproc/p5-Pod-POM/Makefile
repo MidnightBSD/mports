@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Pod-POM
 PORTVERSION=	2.01
 CATEGORIES=	textproc perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	POD Object Model
+WWW=		https://metacpan.org/release/Pod-POM
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

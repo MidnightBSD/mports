@@ -1,8 +1,5 @@
-
-
 PORTNAME=	xdpyinfo
-PORTVERSION=	1.3.2
-PORTREVISION=	2
+PORTVERSION=	1.3.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +7,7 @@ COMMENT=	Display information utility for X
 
 LICENSE=	mit
 
-USES=		xorg xorg-cat:app
+USES=		tar:xz xorg xorg-cat:app
 USE_XORG=	dmx x11 xcb xcomposite xext xinerama xorgproto xrender \
 		xtst xxf86dga xxf86vm
 

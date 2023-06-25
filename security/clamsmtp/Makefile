@@ -1,14 +1,12 @@
-# Created by: Cheng-Lung Sung <clsung@dragon2.net>
-
 PORTNAME=	clamsmtp
 PORTVERSION=	1.10
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	security
-MASTER_SITES=	https://jarasoft.net/clamsmtp/
-DISTFILES=	${DISTNAME:S/-/_/}.orig${EXTRACT_SUFX}
+MASTER_SITES=	http://thewalter.net/stef/software/clamsmtp/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ClamAV anti-virus SMTP Filter
+WWW=		http://thewalter.net/stef/software/clamsmtp/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING

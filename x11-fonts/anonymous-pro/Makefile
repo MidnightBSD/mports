@@ -1,5 +1,3 @@
-# Created by: Norberto Lopes <nlopes.ml@gmail.com>
-
 PORTNAME=	anonymous-pro
 PORTVERSION=	1.002
 CATEGORIES=	x11-fonts
@@ -8,6 +6,7 @@ DISTNAME=	AnonymousPro-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fixed width sans designed especially for coders
+WWW=		https://www.ms-studio.com/FontSales/anonymouspro.html
 
 LICENSE=	OFL11
 
@@ -21,9 +20,9 @@ WRKSRC=		${WRKDIR}/${DISTNAME}.001
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.txt ${STAGEDIR}${DOCSDIR}
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.txt ${DOCSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

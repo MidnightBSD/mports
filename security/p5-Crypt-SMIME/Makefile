@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	S/MIME message signing, verification, encryption and decryption
+WWW=		https://metacpan.org/release/Crypt-SMIME
 
 LICENSE=	artistic
 

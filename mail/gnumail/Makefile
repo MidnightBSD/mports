@@ -1,18 +1,14 @@
-
-
 PORTNAME=	gnumail
-PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTVERSION=	1.4.0
 CATEGORIES=	mail gnustep
 MASTER_SITES=	SAVANNAH/gnustep-nonfsf/
 DISTNAME=	GNUMail-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep mail client
+WWW=		https://www.nongnu.org/gnustep-nonfsf/gnumail/index.html
 
 LICENSE=	gpl2
-
-BROKEN=		does not link: Framework/GNUMail/GNUMail.framework/Versions/Current/./libGNUMail.so: undefined reference to __objc_ivar_offset_NSWindow._delegate.
 
 LIB_DEPENDS=	libPantomime.so:mail/pantomime \
 		libAddresses.so:mail/addresses

@@ -1,5 +1,3 @@
-# Created by: Cheng-Lung Sung <clsung@FreeBSD.org>
-
 PORTNAME=	Pod-Markdown
 PORTVERSION=	3.300
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module to convert POD to Markdown
+WWW=		https://metacpan.org/release/Pod-Markdown
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

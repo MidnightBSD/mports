@@ -1,11 +1,16 @@
 PORTNAME=	libarchive
-PORTVERSION=	3.5.2
+DISTVERSION=	3.6.2
 PORTEPOCH=	1
 CATEGORIES=	archivers
-MASTER_SITES=	https://libarchive.org/downloads/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/ \
+		https://libarchive.org/downloads/
+
+PATCH_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/commit/
+PATCHFILES=	1f35c466aaa9444335a1b854b0b7223b0d2346c2.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to create and read several streaming archive formats
+WWW=		https://libarchive.org/
 
 LICENSE=	bsd2 bsd3 publicdom
 LICENSE_COMB=	multi
@@ -14,35 +19,33 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 OPTIONS_DEFINE=	LZ4 LZO ZSTD
-OPTIONS_DEFAULT=LZ4 OPENSSL
+OPTIONS_DEFAULT=LZ4 ZSTD OPENSSL
 
-OPTIONS_RADIO+=	CRYPTO
+OPTIONS_RADIO=	CRYPTO
 OPTIONS_RADIO_CRYPTO=	OPENSSL MBEDTLS NETTLE
 
 CRYPTO_DESC=	Crypto and hashing support
-LZ4_DESC=	Support lz4 compression via liblz4
-LZO_DESC=	Support lzo compression via liblzo2
-MBEDTLS_DESC=	Crypto support from mbedTLS
-NETTLE_DESC=	Crypto support from Nettle
-OPENSSL_DESC=	Crypto support from OpenSSL
-ZSTD_DESC=      Support zstd compression
+NETTLE_DESC=	Crypto support via Nettle
 
-USES=		cpe iconv libtool localbase:ldflags pathfix
+USES=		autoreconf cpe iconv libtool localbase:ldflags pathfix \
+		pkgconfig tar:xz
 GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-CONFIGURE_ARGS=	--without-xml2
+INSTALL_TARGET=	install-strip
+#TEST_TARGET=	check
+NO_TEST=	yes
+
+CONFIGURE_ARGS=	--disable-static --without-xml2
 
 PLIST_FILES=	bin/bsdcat \
 		bin/bsdcpio \
 		bin/bsdtar \
 		include/archive.h \
 		include/archive_entry.h \
-		lib/libarchive.a \
 		lib/libarchive.so \
 		lib/libarchive.so.13 \
-		lib/libarchive.so.1${PORTVERSION} \
+		lib/libarchive.so.1${DISTVERSION} \
 		libdata/pkgconfig/libarchive.pc \
 		man/man1/bsdcat.1.gz \
 		man/man1/bsdcpio.1.gz \
@@ -91,32 +94,37 @@ PLIST_FILES=	bin/bsdcat \
 
 LZO_LIB_DEPENDS=	liblzo2.so:archivers/lzo2
 LZO_CONFIGURE_WITH=	lzo2
+
 LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
 LZ4_CONFIGURE_WITH=	lz4
+
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 ZSTD_CONFIGURE_WITH=	zstd
 
 NETTLE_LIB_DEPENDS=	libnettle.so:security/nettle
 NETTLE_CONFIGURE_WITH=	nettle
+
 OPENSSL_USES=		ssl
 OPENSSL_CONFIGURE_WITH=	openssl
 OPENSSL_CONFIGURE_OFF=	--without-openssl
+
 MBEDTLS_LIB_DEPENDS=	libmbedtls.so:security/mbedtls
 MBEDTLS_CONFIGURE_WITH=	mbedtls
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 9005
-CONFIGURE_ENV+=	ac_cv_lzma_has_mt=no \
-		ac_cv_archive_acl_freebsd=no \
-		ac_cv_archive_acl_freebsd_nfs4=no
-CONFIGURE_ARGS+=	--disable-acl
-.endif
-
 .if empty(ICONV_LIB)
 CONFIGURE_ENV+=	ac_cv_header_localcharset_h=no \
 		ac_cv_func_locale_charset=no \
 		ac_cv_lib_charset_locale_charset=no
+.endif
+
+# Prior to 1301508 we didn't ship openssl.pc which libarchive now excepts
+# so we need to use the old approach on older versions of FreeBSD
+# which is not to define Requires.private in libarchive.pc
+
+.if ${PORT_OPTIONS:MOPENSSL}
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-pkgconfig-compat
 .endif
 
 .include <bsd.port.post.mk>

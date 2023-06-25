@@ -1,7 +1,5 @@
-# Created by: Florent Thoumie <flz@FreeBSD.org>
-
 PORTNAME=	chromium
-PORTVERSION=	91.0.4472.114
+PORTVERSION=	91.0.4472.164
 CATEGORIES=	www java
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
 		FREEBSD_LOCAL/rene/chromium/:fonts
@@ -120,11 +118,11 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 # use_system_minigbm
 GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild --skip-generate-buildfiles
 
-# FreeBSD Chromium Api Key
+# MidnightBSD Chromium Api Key
 # Set up Google API keys, see http://www.chromium.org/developers/how-tos/api-keys .
-# Note: these are for FreeBSD use ONLY. For your own distribution,
+# Note: these are for MidnightBSD use ONLY. For your own distribution,
 # please get your own set of keys.
-GN_ARGS+=	google_api_key="AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8"
+GN_ARGS+=	google_api_key="AIzaSyC4CVcPIcQRgKU_aDmitQwNZNmuC_qbvUE"
 
 SUB_FILES=	chromium-browser.desktop chrome
 SUB_LIST+=	COMMENT="${COMMENT}"

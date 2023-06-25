@@ -1,16 +1,15 @@
-
-
 PORTNAME=	SGML-Parser-OpenSP
 PORTVERSION=	0.994
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse SGML documents using OpenSP
+WWW=		https://metacpan.org/release/SGML-Parser-OpenSP
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	onsgmls:textproc/opensp \

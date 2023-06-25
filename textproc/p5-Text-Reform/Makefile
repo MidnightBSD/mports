@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Text-Reform
 PORTVERSION=	1.20
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manual text wrapping and reformatting
+WWW=		https://metacpan.org/release/Text-Reform
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

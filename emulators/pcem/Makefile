@@ -1,11 +1,13 @@
 PORTNAME=	pcem
 DISTVERSION=	14
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://bitbucket.org/pcem_emulator/pcem/get/
 DISTNAME=	faf5d6423060
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PC/PC-Compatible low-level emulator striving for accuracy
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LICENSE=	gpl2
 

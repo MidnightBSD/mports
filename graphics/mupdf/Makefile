@@ -1,9 +1,7 @@
-# Created by: Martin Dieringer <martin.dieringer@gmx.de>
-
 PORTNAME=	mupdf
 DISTVERSION=	1.18.0
 DISTVERSIONSUFFIX=	-source
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.mupdf.com/downloads/ \

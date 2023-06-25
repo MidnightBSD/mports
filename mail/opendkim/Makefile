@@ -1,7 +1,6 @@
-# Created by: Hirohisa Yamaguchi <umq@ueo.co.jp>
-
 PORTNAME=	opendkim
 PORTVERSION=	2.10.3
+PORTREVISION=	1
 CATEGORIES=	mail security
 MASTER_SITES=	SF/${PORTNAME} \
 		SF/${PORTNAME}/Previous%20Releases \
@@ -9,6 +8,7 @@ MASTER_SITES=	SF/${PORTNAME} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DKIM library and milter implementation
+WWW=		http://opendkim.org/
 
 LICENSE=	bsd3 SENDMAIL
 LICENSE_COMB=	multi
@@ -20,7 +20,7 @@ LICENSE_PERMS_SENDMAIL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 GNU_CONFIGURE=	yes
 NO_OPTIONS_SORT=yes
-USES=		autoreconf libtool perl5 pkgconfig shebangfix ssl
+USES=		autoreconf cpe libtool perl5 pkgconfig shebangfix ssl
 USE_PERL5=	run
 SHEBANG_FILES=	opendkim/opendkim-genkey* reputation/opendkim-* stats/opendkim-* \
 		reprrd/opendkim-reprrdimport*

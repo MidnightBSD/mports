@@ -1,0 +1,74 @@
+palemoon/libnspr4.so
+palemoon/palemoon.res
+palemoon/browser/icons/mozicon128.png
+palemoon/browser/defaults/profile/chrome/userChrome-example.css
+palemoon/browser/defaults/profile/chrome/userContent-example.css
+palemoon/browser/components/libbrowsercomps.so
+palemoon/browser/components/components.manifest
+palemoon/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+palemoon/browser/searchplugins/yahoo.xml
+palemoon/browser/searchplugins/ekoru.xml
+palemoon/browser/searchplugins/wikipedia.xml
+palemoon/browser/searchplugins/duckduckgo-palemoon.xml
+palemoon/browser/searchplugins/mojeek.xml
+palemoon/browser/searchplugins/ecosia.xml
+palemoon/browser/searchplugins/twitter.xml
+palemoon/browser/searchplugins/bing.xml
+palemoon/browser/chrome/icons/default/default48.png
+palemoon/browser/chrome/icons/default/default32.png
+palemoon/browser/chrome/icons/default/default16.png
+palemoon/browser/ua-update.json
+palemoon/browser/chrome.manifest
+palemoon/browser/blocklist.xml
+palemoon/browser/palemoon.res
+palemoon/libsoftokn3.chk
+palemoon/libfreebl3.so
+palemoon/palemoon
+palemoon/defaults/pref/channel-prefs.js
+palemoon/libnssckbi.so
+palemoon/chrome.manifest
+palemoon/removed-files
+palemoon/libfreebl3.chk
+palemoon/libnssutil3.so
+palemoon/libnss3.so
+palemoon/icudt63l.dat
+palemoon/plugin-container
+palemoon/platform.ini
+palemoon/liblgpllibs.so
+palemoon/run-mozilla.sh
+palemoon/libmozavutil.so
+palemoon/palemoon-bin
+palemoon/libssl3.so
+palemoon/libxul.so
+palemoon/application.ini
+palemoon/precomplete
+palemoon/fonts/TwemojiMozilla.ttf
+palemoon/dictionaries/en-US.dic
+palemoon/dictionaries/en-US.aff
+palemoon/license.txt
+palemoon/libplds4.so
+palemoon/libmozavcodec.so
+palemoon/gtk2/libmozgtk.so
+palemoon/libmozsqlite3.so
+palemoon/libsoftokn3.so
+palemoon/libplc4.so
+palemoon/libsmime3.so
+palemoon/libmozgtk.so
+palemoon/dependentlibs.list
+@dir palemoon/browser/icons
+@dir palemoon/browser/defaults/profile/chrome
+@dir palemoon/browser/defaults/profile
+@dir palemoon/browser/defaults
+@dir palemoon/browser/components
+@dir palemoon/browser/extensions
+@dir palemoon/browser/searchplugins
+@dir palemoon/browser/chrome/icons/default
+@dir palemoon/browser/chrome/icons
+@dir palemoon/browser/chrome
+@dir palemoon/browser
+@dir palemoon/defaults/pref
+@dir palemoon/defaults
+@dir palemoon/fonts
+@dir palemoon/dictionaries
+@dir palemoon/gtk2
+@dir palemoon

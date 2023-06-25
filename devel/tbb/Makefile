@@ -1,17 +1,13 @@
-# Created by: Arun Sharma <arun@sharma-home.net>
-
 PORTNAME=	tbb
 PORTVERSION=	2020.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Library that provides thread building blocks
+COMMENT=	Library that provides thread building blocks (Legacy Version)
+WWW=		https://threadingbuildingblocks.org
 
 LICENSE=	apache2
-
-ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc powerpc64 powerpc64le powerpcspe
-ONLY_FOR_ARCHS_REASON=	has not been ported to this platform
 
 USES=	compiler gmake tar:tgz
 

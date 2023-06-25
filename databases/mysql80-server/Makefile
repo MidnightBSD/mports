@@ -1,6 +1,6 @@
 PORTNAME?=		mysql
-PORTVERSION=		8.0.31
-PORTREVISION?=		0
+PORTVERSION=		8.0.32
+PORTREVISION?=		1
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.0
 PKGNAMESUFFIX?=		80-server
@@ -173,6 +173,11 @@ FEDERATED_SUB_LIST_OFF+=	FEDER=""
 
 .include <bsd.mport.options.mk>
 
+.if (${OSVERSION} < 300000)
+# force openssl from mports.
+SSL_DEFAULT=    openssl
+.endif
+
 # Since 8.0.20 release innodb engine uses new memory alligned allocator
 # which is broken on i386 due to different size of types and caused a
 # 'static_assert(alignof(T) <= alignof(std::max_align_t))' error
@@ -181,7 +186,11 @@ FEDERATED_SUB_LIST_OFF+=	FEDER=""
 SSP_UNSAFE=	yes
 .endif
 
+.if ${OSVERSION} >= 300000
+SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
+.else
 SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
+.endif
 
 .include <bsd.port.pre.mk>
 

@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functions for managing FastCGI applications
+WWW=		https://metacpan.org/release/FCGI-ProcManager
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -1,19 +1,20 @@
 PORTNAME=	LWP-Protocol-https
-PORTVERSION=	6.07
-PORTREVISION=	2
+PORTVERSION=	6.10
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide https support for LWP::UserAgent
+WWW=		https://metacpan.org/release/LWP-Protocol-https
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-IO-Socket-SSL>=1.54:security/p5-IO-Socket-SSL \
-		p5-Mozilla-CA>=20110101:www/p5-Mozilla-CA \
+		p5-Mozilla-CA>=20180117:www/p5-Mozilla-CA \
 		p5-Net-HTTP>=6:net/p5-Net-HTTP \
 		p5-libwww>=6.06:www/p5-libwww
 

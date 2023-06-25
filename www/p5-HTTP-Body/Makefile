@@ -1,5 +1,3 @@
-# Created by: Lars Balker Rasmussen <lbr@FreeBSD.org>
-
 PORTNAME=	HTTP-Body
 PORTVERSION=	1.22
 CATEGORIES=	www perl5
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP Body Parser
+WWW=		https://metacpan.org/release/HTTP-Body
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

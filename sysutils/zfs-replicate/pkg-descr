@@ -1,4 +1,2 @@
-zfs-replicate makes migrating a few filesystems and many 
-snapshots to a new zpool more easier.
-
-WWW: http://blogs.sun.com/constantin/entry/useful_zfs_snapshot_replicator_script
+Simple script to replicate zfs volumes between hosts
+(or between pools on the same host) via incremental snapshots.

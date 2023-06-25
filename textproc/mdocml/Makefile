@@ -1,5 +1,5 @@
 PORTNAME=	mdocml
-PORTVERSION=	1.14.5
+PORTVERSION=	1.14.6
 CATEGORIES=	textproc
 MASTER_SITES=	http://mdocml.bsd.lv/snapshots/ \
 		FREEBSD_LOCAL/uqs
@@ -13,6 +13,7 @@ LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
+RUN_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 
 EXAMPLESDIR=	${PREFIX}/share/examples/mandoc
 

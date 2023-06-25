@@ -1,21 +1,19 @@
 PORTNAME=	pbr
-PORTVERSION=	5.5.0
+PORTVERSION=	5.11.1
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Build Reasonableness
+WWW=		https://github.com/openstack-dev/pbr
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR}
+USES=		python:3.6+
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
-
-USES=		python:3.6+ shebangfix
-USE_PYTHON=	autoplist concurrent distutils
-SHEBANG_FILES=	pbr/tests/testpackage/setup.py
 
 .include <bsd.port.mk>

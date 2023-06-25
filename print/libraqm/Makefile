@@ -1,24 +1,28 @@
 PORTNAME=	libraqm
-PORTVERSION=	0.6.0
+DISTVERSION=	0.9.0
 CATEGORIES=	print
-MASTER_SITES=	https://github.com/HOST-Oman/libraqm/releases/download/v${PORTVERSION}/
-DISTNAME=	raqm-${PORTVERSION}
+MASTER_SITES=	https://github.com/HOST-Oman/${PORTNAME}/releases/download/v${DISTVERSION}/
+DISTNAME=	raqm-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that encapsulates complex text layout logic
+WWW=		https://github.com/HOST-Oman/libraqm
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfribidi.so:converters/fribidi \
 		libharfbuzz.so:print/harfbuzz \
 		libfreetype.so:print/freetype2
 
-USES=		gmake libtool pkgconfig
+USES=		meson pkgconfig python:3.7+,test tar:xz
 
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-INSTALL_TARGET=	install-strip
 
 NO_TEST=	yes
+
+OPTIONS_DEFINE=		DOCS
+DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
+DOCS_MESON_TRUE=	docs
 
 .include <bsd.port.mk>

@@ -1,5 +1,3 @@
-# Created by: Sergey Skvortsov <skv@FreeBSD.org>
-
 PORTNAME=	XML-Filter-BufferText
 PORTVERSION=	1.01
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Filter to put all characters() in one event
+WWW=		https://metacpan.org/release/XML-Filter-BufferText
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

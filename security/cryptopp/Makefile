@@ -1,13 +1,12 @@
-# Created by: George Reid <greid@ukug.uk.freebsd.org>
-
 PORTNAME=	cryptopp
-PORTVERSION=	8.6.0
+PORTVERSION=	8.7.0
 CATEGORIES=	security
 MASTER_SITES=	http://www.cryptopp.com/
 DISTNAME=	cryptopp${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free C++ class library of Cryptographic Primitives
+WWW=		https://www.cryptopp.com/
 
 LICENSE=	boost
 LICENSE_FILE=	${WRKSRC}/License.txt

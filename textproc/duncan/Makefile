@@ -1,12 +1,12 @@
 PORTNAME=	duncan
-PORTVERSION=	0.3
-PORTREVISION=	0
+PORTVERSION=	0.4
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/Dictionaries/files/
 DISTNAME=	Duncan-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	English to Thai dictionary for GNUstep
+WWW=		https://www.eskimo.com/~pburns/Dictionaries/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

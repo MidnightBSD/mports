@@ -34,6 +34,7 @@ DIFF?=		/usr/bin/diff
 DIRNAME?=	/usr/bin/dirname
 DOAS?=		/usr/bin/doas
 EGREP?=		/usr/bin/egrep
+ELFCTL?=	/usr/bin/elfctl
 EXPR?=		/bin/expr
 FALSE?=		false				# Shell builtin
 FILE?=		/usr/bin/file

@@ -6,6 +6,7 @@ CATEGORIES=	dns net
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line DNS client
+WWW=		https://dns.lookup.dog/
 
 LICENSE=	EUPL
 LICENSE_NAME=	European Union Public Licence V. 1.2

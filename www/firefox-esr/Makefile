@@ -1,16 +1,16 @@
-# Created by: Alan Eldridge <alane@FreeBSD.org>
-
 PORTNAME=	firefox
-DISTVERSION=	68.8.0
+DISTVERSION=	102.9.0
+PORTREVISION=	0
 PORTEPOCH=	1
-CATEGORIES=	www
-MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source \
-		MOZILLA/firefox/candidates/${DISTVERSION}esr-candidates/build2/source
+CATEGORIES=	www wayland
+MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}esr-candidates/build2/source
 PKGNAMESUFFIX=	-esr
 DISTFILES=	${DISTNAME}esr.source${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
+WWW=		https://www.mozilla.com/firefox
 
 LICENSE=	mpl gpl2
 LICENSE_COMB=	dual
@@ -19,51 +19,78 @@ BUILD_DEPENDS=	nspr>=4.21:devel/nspr \
 		nss>=3.44.3:security/nss \
 		icu>=63.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
-		harfbuzz>=2.4.0:print/harfbuzz \
-		graphite2>=1.3.13:graphics/graphite2 \
-		png>=1.6.35:graphics/png \
-		libvpx>=1.5.0:multimedia/libvpx \
-		sqlite3>=3.28.0:databases/sqlite3 \
+		harfbuzz>=4.1.0:print/harfbuzz \
+		graphite2>=1.3.14:graphics/graphite2 \
+		png>=1.6.37:graphics/png \
+		dav1d>=1.0.0:multimedia/dav1d \
+		libvpx>=1.11.0:multimedia/libvpx \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		v4l_compat>0:multimedia/v4l_compat \
 		autoconf2.13:devel/autoconf2.13 \
 		nasm:devel/nasm \
+		yasm:devel/yasm \
 		zip:archivers/zip
 
 USE_GECKO=	gecko
 CPE_PRODUCT=	${PORTNAME}_esr
 CONFLICTS_INSTALL=	firefox
-USE_MOZILLA=	-vpx
+USE_MOZILLA=	-sqlite
+CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include"
 
 USES=		tar:xz
 
 MOZILLA=        browser                                                                                                                                                   
 MOZILLA_NAME=   Browser                                                                                                                                                   
-MOZ_OPTIONS=    --program-transform-name='s/firefox/${MOZILLA}/'                                                                                                          
-
+#MOZ_OPTIONS=    --program-transform-name='s/firefox/${MOZILLA}/'                                                                                                          
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.3
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
 FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/${MOZILLA}-snap/${MOZILLA}.desktop
-MOZ_OPTIONS=	--enable-application=browser \
-		--disable-official-branding
+MOZ_OPTIONS+=	--enable-application=browser \
+		--enable-install-strip \
+		--enable-optimize \
+		--enable-strip \
+		--enable-libproxy \
+		--disable-official-branding \
+		--disable-webrtc \
+		--disable-tests \
+		--disable-updater \
+		--disable-hardening \
+		--without-wasm-sandboxed-libraries \
+		--disable-debug \
+		--disable-debug-symbols \
+		--disable-profiling \
+		--disable-dtrace \
+		--disable-crashreporter
 
-MAKE_ENV+=    __FreeBSD__=10 __FreeBSD__version=1004501
+MAKE_ENV+=    __FreeBSD__=12 __FreeBSD__version=1203501
 
 .include "Makefile.options"
 
+#BUILD_DEPENDS+= ${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx \
+#		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc \
+#		${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/clang/${LLVM_VERSION}/lib/wasi/libclang_rt.builtins-wasm32.a:devel/wasi-compiler-rt${LLVM_DEFAULT}
+#MOZ_OPTIONS+=	--with-wasi-sysroot=${LOCALBASE}/share/wasi-sysroot
+
 post-patch:
-	@${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
+	-${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
 		-e '/^Icon/s/=.*/=${FIREFOX_ICON:R}/' \
 		${FIREFOX_DESKTOP}
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+	-${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
+	# disable SCTP
+	${REINPLACE_CMD} -e 's|MOZ_SCTP|MOZ_DISABLE_SCTP|' \
+		${WRKSRC}/netwerk/moz.build
+	${REINPLACE_CMD} -e 's/"files":{[^}]*}/"files":{}/' \
+		 ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
 
 pre-configure:
 	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf2.13)
 	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf2.13)
 
 post-install:
-	${INSTALL_DATA} ${FIREFOX_DESKTOP} ${STAGEDIR}${PREFIX}/share/applications/
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
-	${LN} -sf ${FIREFOX_ICON_SRC} ${STAGEDIR}${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+	${INSTALL_DATA} ${FIREFOX_DESKTOP} ${PREFIX}/share/applications/
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
 
 .include <bsd.port.mk>

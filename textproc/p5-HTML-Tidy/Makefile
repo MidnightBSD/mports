@@ -1,5 +1,3 @@
-# Created by: mat
-
 PORTNAME=	HTML-Tidy
 PORTVERSION=	1.60
 CATEGORIES=	textproc www perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web validation in a Perl object using tidy
+WWW=		https://metacpan.org/release/HTML-Tidy
 
 LICENSE=	artistic2
 
@@ -28,7 +27,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/Makefile.PL
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/HTML/Tidy/Tidy.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/HTML/Tidy/Tidy.so
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

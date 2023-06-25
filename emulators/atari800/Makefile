@@ -1,5 +1,6 @@
 PORTNAME=	atari800
 PORTVERSION=	3.1.0
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	ftp://ftpmirror.uk/freebsd-ports/atari800/ \
 		SF/${PORTNAME}/ROM/Original%20XL%20ROM:x \
@@ -10,8 +11,13 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Atari 8-bit computer emulator
+WWW=		http://atari800.sourceforge.net/
 
-LICENSE=	gpl2
+LICENSE=	GPLv2 ROM
+LICENSE_COMB=	multi
+LICENSE_NAME_ROM=	Copyrighted ROMs
+LICENSE_TEXT_ROM=	xf25 contains copyright ROMs and cannot be distributed.
+LICENSE_PERMS_ROM=	auto-accept
 
 BUILD_DEPENDS=	${UNZIP_CMD}:archivers/unzip
 LIB_DEPENDS=	libpng.so:graphics/png
@@ -20,7 +26,7 @@ RESTRICTED=	xf25 contains copyright ROMs and cannot be distributed.
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/src
 
-USES=		gmake
+USES=		cpe gmake
 GNU_CONFIGURE=	yes
 NO_OPTIONS_SORT=yes
 

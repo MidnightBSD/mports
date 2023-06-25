@@ -1,6 +1,7 @@
 COMMENT = Miscellaneous utilities
 
 SUBDIR += brs
+SUBDIR += buffer
 SUBDIR += chef
 SUBDIR += chmlib
 SUBDIR += cinnamon-translations
@@ -36,7 +37,6 @@ SUBDIR += localedata
 SUBDIR += mate-user-guide
 SUBDIR += mbuffer
 SUBDIR += mc
-SUBDIR += mc-light
 SUBDIR += metalink-tools
 SUBDIR += mime-support
 SUBDIR += mirmon
@@ -76,7 +76,6 @@ SUBDIR += unicode-emoji
 SUBDIR += usbids
 SUBDIR += wmScoreBoard
 SUBDIR += wmcalendar
-SUBDIR += wmfirew
 SUBDIR += wmjulia
 SUBDIR += wmpal
 SUBDIR += wmtunlo

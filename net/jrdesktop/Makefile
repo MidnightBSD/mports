@@ -8,7 +8,7 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	View and/or control a remote PC
- WWW=		http://jrdesktop.sourceforge.net/
+WWW=		https://jrdesktop.sourceforge.net/
 
 LICENSE=	gpl3
 

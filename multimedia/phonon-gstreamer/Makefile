@@ -1,5 +1,6 @@
 PORTNAME=	phonon
 DISTVERSION=	4.10.0
+PORTREVISION=	1
 CATEGORIES=	multimedia kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTNAME}-backend-${PHONON_PLUGIN}/${DISTVERSION}
 DISTNAME=	${PORTNAME}-backend-${PHONON_PLUGIN}-${DISTVERSION}
@@ -11,7 +12,7 @@ COMMENT=	GStreamer backend for Phonon
 
 LICENSE=	lgpl2.1
 
-USES=		cmake compiler:c++11-lang gl gnome kde:5 pkgconfig qt:5 tar:xz
+USES=		cmake compiler:c++11-lang gl gnome kde:5 pkgconfig qt:5 tar:xz xorg
 USE_GL=		gl
 USE_GNOME=	glib20 libxml2
 USE_GSTREAMER1=	yes

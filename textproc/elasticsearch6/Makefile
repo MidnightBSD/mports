@@ -14,7 +14,7 @@ BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	bash>0:shells/bash \
 		jna>0:devel/jna
 
-CONFLICTS=	elasticsearch-[0-9]* elasticsearch2-[0-9]* elasticsearch5-[0-9]* elasticsearch7*
+CONFLICTS=	elasticsearch7* elasticsearch8
 
 USES=		cpe shebangfix
 NO_ARCH=	yes

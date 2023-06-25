@@ -1,5 +1,3 @@
-# Created by: Yuan-Chung Hsiao <ychsiao@ychsiao.org>
-
 PORTNAME=	YAML-Tiny
 PORTVERSION=	1.73
 CATEGORIES=	textproc perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read/Write YAML files with as little code as possible
+WWW=		https://metacpan.org/release/YAML-Tiny
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

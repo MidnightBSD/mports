@@ -1,103 +1,88 @@
-# Created by: Andrew Thompson <thompsa@FreeBSD.org>
-
 PORTNAME=	webcamd
-PORTVERSION=	5.7.1.1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	5.17.1.2
+PORTREVISION=	1
 CATEGORIES=	multimedia
-MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
-		http://home.selasky.org/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of Linux USB webcam and DVB drivers into userspace
+WWW=		https://github.com/hselasky/webcamd
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	v4l_compat>=1.0.20100321:${PORTSDIR}/multimedia/v4l_compat
-LIB_DEPENDS=	libv4l1.so:${PORTSDIR}/multimedia/libv4l
+BUILD_DEPENDS=	v4l_compat>=1.0.20100321:multimedia/v4l_compat
+LIB_DEPENDS=	libv4l1.so:multimedia/libv4l
 
 FAKE_OPTS=	trueprefix
 
 USES=		pkgconfig tar:bzip2 uidfix
+MAKE_ARGS=	LIBDIR="${LOCALBASE}/lib" HAVE_CUSE="YES"
 USE_RC_SUBR=	webcamd
-USE_LDCONFIG=	yes
+SUB_FILES=	webcamd.conf
 
-LIBDIR=		${TRUE_PREFIX}/lib
+USE_GITHUB=	yes
+GH_ACCOUNT=	hselasky
+GH_PROJECT=	${PORTNAME}
+GH_TUPLE=	torvalds:linux:v5.17-rc1:linux/media_tree \
+		swills:v4l2loopback:8ab6a12:v4l2loopback/contrib/v4l2loopback
 
-OPTIONS_DEFINE=	CUSE DEBUG HAL VT_CLIENT VT_SERVER DVB INPUT RADIO WEBCAM
-OPTIONS_DEFAULT=CUSE DVB HAL INPUT RADIO WEBCAM
-CUSE_DESC=	Use CUSE and not CUSE4BSD (MidnightBSD2+ only)
-HAL_DESC=	Build with HAL and DBUS support
-DEBUG_DESC=	Build with debugging support
+OPTIONS_DEFINE=	DEBUG VT_CLIENT VT_SERVER DVB INPUT KEYBOARD MOUSE RADIO WEBCAM V4L2LOOPBACK
+OPTIONS_DEFAULT=DVB INPUT RADIO WEBCAM V4L2LOOPBACK
+
+#
+# 32-bit compatibility support is mostly useful for
+# platforms using 32-bit applications:
+#
+OPTIONS_DEFINE_amd64=		COMPAT32
+OPTIONS_DEFAULT_amd64=		COMPAT32
+
+COMPAT32_DESC=	Enable 32-bit compatibility support
+COMPAT32_MAKE_ARGS=	HAVE_COMPAT32="YES"
+
+DEBUG_MAKE_ARGS=	HAVE_DEBUG="YES"
+
 VT_CLIENT_DESC=	Build with vTuner client support
+VT_CLIENT_MAKE_ARGS=	HAVE_VTUNER_CLIENT="YES"
+
 VT_SERVER_DESC=	Build with vTuner server support
+VT_SERVER_MAKE_ARGS=	HAVE_VTUNER_SERVER="YES"
 
 DVB_DESC=	Build with USB DVB support (DVB-X, analog TV, ...)
+DVB_MAKE_ARGS=		HAVE_DVB_DRV="YES"
+
 INPUT_DESC=	Build with USB input support (tablet, joystick, HID, IR, ...)
+INPUT_MAKE_ARGS=	HAVE_INPUT_DRV="YES"
+
+KEYBOARD_DESC=	Build with USB keyboard support
+KEYBOARD_MAKE_ARGS=	HAVE_KEYBOARD_DRV="YES"
+
+MOUSE_DESC=	Build with USB mouse support
+MOUSE_MAKE_ARGS=	HAVE_MOUSE_DRV="YES"
+
 RADIO_DESC=	Build with USB radio support
+RADIO_MAKE_ARGS=	HAVE_RADIO_DRV="YES"
+
 WEBCAM_DESC=	Build with USB webcam support (UVC, gspca, ...)
+WEBCAM_MAKE_ARGS=	HAVE_WEBCAM_DRV="YES"
+
+V4L2LOOPBACK_DESC=	Build with V4L2 loopback support
+V4L2LOOPBACK_MAKE_ARGS=	HAVE_V4L2LOOPBACK_DRV="YES"
 
 USERS=		webcamd
 GROUPS=		webcamd
 
-.include <bsd.port.pre.mk>
-
 MAKE_ARGS+=	HAVE_MAN="YES"
 MAKE_ARGS+=	PTHREAD_LIBS="-lpthread"
 
-.if ${PORT_OPTIONS:MCUSE} || ${OSVERSION} > 200000
-MAKE_ARGS+=	HAVE_CUSE="YES"
-LIBCUSE=	/usr/lib/libcuse.so
-.else
-BUILD_DEPENDS+=	cuse4bsd-kmod>=0.1.31:multimedia/cuse4bsd-kmod
-LIB_DEPENDS+=	libcuse4bsd.so:multimedia/cuse4bsd-kmod
-LIBCUSE=	${LIBDIR}/libcuse4bsd.so
-.endif
+WEBCAMDDIR=	${WRKDIR}/webcamd-${DISTVERSION}
+LINUXDIR=	${WRKDIR}/linux-*
 
-.if ${PORT_OPTIONS:MDVB}
-MAKE_ARGS+=	HAVE_DVB_DRV="YES"
-.endif
-
-.if ${PORT_OPTIONS:MINPUT}
-MAKE_ARGS+=	HAVE_INPUT_DRV="YES"
-.endif
-
-.if ${PORT_OPTIONS:MRADIO}
-MAKE_ARGS+=	HAVE_RADIO_DRV="YES"
-.endif
-
-.if ${PORT_OPTIONS:MWEBCAM}
-MAKE_ARGS+=	HAVE_WEBCAM_DRV="YES"
-.endif
-
-.if ${PORT_OPTIONS:MHAL}
-MAKE_ARGS+=	HAVE_HAL="YES"
-LIBHAL=		${LIBDIR}/libhal.so:${LIBDIR}/libdbus-1.so:
-LIB_DEPENDS+=	libhal.so:sysutils/hal
-LIB_DEPENDS+=	libdbus-1.so:devel/dbus
-.else
-LIBHAL=
-.endif
-
-.if ${PORT_OPTIONS:MVT_CLIENT}
-MAKE_ARGS+=	HAVE_VTUNER_CLIENT="YES"
-.endif
-
-.if ${PORT_OPTIONS:MVT_SERVER}
-MAKE_ARGS+=	HAVE_VTUNER_SERVER="YES"
-.endif
-
-.if ${PORT_OPTIONS:MDEBUG}
-MAKE_ARGS+=	HAVE_DEBUG="YES"
-.endif
-
-#
-# This step is optional
-#
 do-configure:
-	${MAKE} -C${WRKSRC}/tools/linux_make
-	${MAKE} ${MAKE_ARGS} configure -C${WRKSRC}
+	${MAKE} -C${WEBCAMDDIR}/tools/linux_make
+	${MAKE} ${MAKE_ARGS} configure -C${WEBCAMDDIR}
 
 post-patch:
-	@(cd ${WRKSRC}/patches && ${SH} ./do_patch.sh)
+	@(cd ${WEBCAMDDIR}/patches && ${SH} ./do_patch.sh)
 
 pre-install:
 	${SED} -i .orig \
@@ -112,4 +97,4 @@ post-install:
 		< ${FILESDIR}/webcamd.conf.in > ${WRKDIR}/webcamd.conf
 	${INSTALL_DATA} "${WRKDIR}/webcamd.conf" ${PREFIX}/etc/devd
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

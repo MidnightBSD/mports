@@ -1,5 +1,3 @@
-
-
 PORTNAME=	HTML-Table
 PORTVERSION=	2.08a
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate HTML tables for CGI scripts
+WWW=		http://www.chime.ucl.ac.uk/~rmhiajp/htmltable/index.htm
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 PORTSCOUT=	skipv:2.08

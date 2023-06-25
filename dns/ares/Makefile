@@ -7,6 +7,7 @@ MASTER_SITES=	ZI \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Asynchronous DNS resolver library
+WWW=		https://github.com/mit-athena/libares/
 
 LICENSE=	unknown
 

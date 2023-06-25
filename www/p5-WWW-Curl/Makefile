@@ -1,14 +1,13 @@
-# Created by: Chris Larsen <darth@vader.dk>
-
 PORTNAME=	WWW-Curl
 PORTVERSION=	4.17
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www ftp perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension interface for libcurl
+WWW=		https://metacpan.org/release/WWW-Curl
 
 LICENSE=	mit
 
@@ -22,6 +21,6 @@ USES=		perl5
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/WWW/Curl/Curl.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/WWW/Curl/Curl.so
 
 .include <bsd.port.mk>

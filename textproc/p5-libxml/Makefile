@@ -1,5 +1,3 @@
-# Created by: Johann Visagie <johann@egenetics.com>
-
 PORTNAME=	libxml
 PORTVERSION=	0.08
 PORTREVISION=	1
@@ -10,8 +8,9 @@ DISTNAME=	libxml-perl-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of Perl5 modules for working with XML
+WWW=		https://metacpan.org/release/libxml-perl
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

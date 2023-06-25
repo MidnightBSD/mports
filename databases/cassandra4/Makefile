@@ -14,6 +14,7 @@ EXTRACT_ONLY=	${DISTNAME}.tar.gz \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Highly scalable distributed database
+WWW=		https://cassandra.apache.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

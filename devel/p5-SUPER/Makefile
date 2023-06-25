@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module control superclass method dispatch
+WWW=		https://metacpan.org/release/SUPER
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual

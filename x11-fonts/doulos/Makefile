@@ -1,5 +1,3 @@
-# Created by: bf <bf@FreeBSD.org>
-
 PORTNAME=	DoulosSIL
 PORTVERSION=	4.112
 CATEGORIES=	x11-fonts

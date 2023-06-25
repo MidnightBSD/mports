@@ -49,5 +49,9 @@ post-patch:
 		${WRKSRC}/src/sitestore.c
 	@${REINPLACE_CMD} -e 's|25 26 27 28|& 29 30 31 32|g' \
 		${WRKSRC}/configure
+.if ${OSVERSION} >= 300000
+	@${REINPLACE_CMD} -e '/#define ksize_t /d' \
+		${WRKSRC}/configure
+.endif
 
 .include <bsd.port.mk>

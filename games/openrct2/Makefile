@@ -1,13 +1,13 @@
 PORTNAME=	openrct2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.4.2
+DISTVERSION=	0.4.3
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source re-implementation of RollerCoaster Tycoon 2
 WWW=		https://openrct2.io/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/licence.txt
 
 BUILD_DEPENDS=	nlohmann-json>0:devel/nlohmann-json
@@ -28,7 +28,7 @@ USES=		cmake compiler:c++17-lang desktop-file-utils gnome gl iconv \
 USE_GITHUB=	yes
 GH_ACCOUNT=	OpenRCT2
 GH_PROJECT=	OpenRCT2
-GH_TUPLE=	OpenRCT2:objects:v1.3.5:objects \
+GH_TUPLE=	OpenRCT2:objects:v1.3.7:objects \
 		OpenRCT2:title-sequences:v0.4.0:title_sequences
 USE_GL=		gl
 USE_LDCONFIG=	yes

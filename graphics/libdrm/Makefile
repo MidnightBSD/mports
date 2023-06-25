@@ -1,7 +1,5 @@
-# Created by: lesi@FreeBSD.org
-
 PORTNAME=	libdrm
-PORTVERSION=	2.4.112
+PORTVERSION=	2.4.115
 PORTEPOCH=	1
 CATEGORIES=	graphics x11
 MASTER_SITES=	https://dri.freedesktop.org/libdrm/
@@ -12,15 +10,20 @@ COMMENT=	Userspace interface to kernel Direct Rendering Module services
 PATCH_SITES=	https://gitlab.freedesktop.org/mesa/${PORTNAME:S/lib//}/-/commit/
 PATCHFILES+=	7207431e466a.patch:-p1 # https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/193
 
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Userspace interface to kernel Direct Rendering Module services
+WWW=		https://dri.freedesktop.org/
+
 LICENSE=	mit
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess
 
-USE_GCC=yes
+#USE_GCC=	yes
+NO_TEST=	yes
 
 USES=		gnome meson pkgconfig tar:xz
 USE_LDCONFIG=	yes
+MESON_ARGS=	-Dvalgrind=disabled
 
 OPTIONS_DEFINE=	MANPAGES TESTS
 OPTIONS_SUB=	yes
@@ -32,32 +35,30 @@ OPTIONS_DEFAULT+=	MANPAGES
 .endif
 
 MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
-MANPAGES_MESON_TRUE=	man-pages
+MANPAGES_MESON_ENABLED=	man-pages
 
 TESTS_MESON_TRUE=	install-test-programs
 
 # avoid circular dependency in case cairo supports OpenGL (cairo->mesa-libs->libdrm->cairo)
-CONFIGURE_ARGS+=	-Dcairo-tests=false
+CONFIGURE_ARGS+=	-Dcairo-tests=disabled
 
 # Disable some targets known to not work on BSD
-MESON_ARGS+=	-Domap=false \
-		-Dexynos=false \
-		-Dfreedreno=false \
+MESON_ARGS+=	-Domap=disabled \
+		-Dexynos=disabled \
+		-Dfreedreno=disabled \
 		-Dfreedreno-kgsl=false \
-		-Dvc4=false \
-		-Detnaviv=false \
-		-Dnouveau=false
-
-NO_TEST=	yes
+		-Dvc4=disabled \
+		-Detnaviv=disabled \
+		-Dnouveau=disabled
 
 .include <bsd.mport.options.mk>
 
 .if ${ARCH} == amd64 || ${ARCH} == i386
-MESON_ARGS+=	-Dvmwgfx=true \
-		-Dintel=true
+MESON_ARGS+=	-Dvmwgfx=enabled \
+		-Dintel=enabled
 .else
-MESON_ARGS+=	-Dvmwgfx=false \
-		-Dintel=false
+MESON_ARGS+=	-Dvmwgfx=disabled \
+		-Dintel=disabled
 .endif
 
 .if ${ARCH} == amd64 || ${ARCH} == i386

@@ -1,10 +1,10 @@
 PORTNAME=	gconf-editor
 PORTVERSION=	3.0.1
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gconf database editor for the GNOME 3 environment

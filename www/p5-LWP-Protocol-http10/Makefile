@@ -1,14 +1,15 @@
 PORTNAME=	LWP-Protocol-http10
 PORTVERSION=	6.03
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Legacy HTTP/1.0 support for LWP
+WWW=		https://metacpan.org/release/LWP-Protocol-http10
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

@@ -1,13 +1,12 @@
-# Created by: Green Dog <fiziologus@gmail.com>
-
 PORTNAME=	fifechan
 PORTVERSION=	0.1.5
+PORTREVISION=	1
 CATEGORIES=	devel games
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, efficient C++ GUI library designed for games
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 USES=		cmake

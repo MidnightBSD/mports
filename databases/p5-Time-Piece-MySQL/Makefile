@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Time::Piece::MySQL - Adds MySQL-specific methods to Time::Piece
+WWW=		https://metacpan.org/release/Time-Piece-MySQL
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes

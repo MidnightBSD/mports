@@ -1,4 +1,4 @@
---- configure.ac.orig	2020-09-29 22:36:51 UTC
+--- configure.ac.orig	2023-02-14 11:05:44 UTC
 +++ configure.ac
 @@ -55,6 +55,7 @@ AH_BOTTOM([
  
@@ -8,7 +8,16 @@
  #endif /* PHP_CONFIG_H */
  ])
  
-@@ -262,7 +263,6 @@ sinclude(Zend/Zend.m4)
+@@ -242,7 +243,7 @@ dnl Disable PIC mode by default where it
+ dnl the performance hit from the lost register.
+ AC_MSG_CHECKING([whether to force non-PIC code in shared modules])
+ case $host_alias in
+-  i?86-*-linux*|i?86-*-freebsd*)
++  i?86-*-linux*|i?86-*-freebsd*|i?86-*-midnightbsd*)
+     if test "${with_pic+set}" != "set" || test "$with_pic" = "no"; then
+       with_pic=no
+       AC_MSG_RESULT(yes)
+@@ -273,7 +274,6 @@ sinclude(Zend/Zend.m4)
  
  dnl ----------------------------------------------------------------------------
  
@@ -16,7 +25,16 @@
  PHP_HELP_SEPARATOR([SAPI modules:])
  PHP_SHLIB_SUFFIX_NAMES
  PHP_BUILD_PROGRAM
-@@ -602,7 +602,7 @@ memmem \
+@@ -535,7 +535,7 @@ dnl Fix for these systems is already inc
+ dnl
+ dnl At least some versions of FreeBSD seem to have buggy ifunc support, see
+ dnl bug #77284. Conservatively don't use ifuncs on FreeBSD.
+-AS_CASE([$host_alias], [*-*-*android*|*-*-*uclibc*|*-*-*musl*|*freebsd*|*openbsd*], [true], [
++AS_CASE([$host_alias], [*-*-*android*|*-*-*uclibc*|*-*-*musl*|*midnightbsd*|*freebsd*|*openbsd*], [true], [
+   AX_GCC_FUNC_ATTRIBUTE([ifunc])
+   AX_GCC_FUNC_ATTRIBUTE([target])
+ ])
+@@ -613,7 +613,7 @@ memmem \
  AX_FUNC_WHICH_GETHOSTBYNAME_R
  
  dnl Some systems (like OpenSolaris) do not have nanosleep in libc.
@@ -25,7 +43,7 @@
  
  dnl Haiku does not have network api in libc.
  PHP_CHECK_FUNC_LIB(setsockopt, network)
-@@ -1244,7 +1244,7 @@ EXPANDED_SYSCONFDIR=`eval echo $sysconfd
+@@ -1262,7 +1262,7 @@ EXPANDED_SYSCONFDIR=`eval echo $sysconfd
  EXPANDED_DATADIR=$datadir
  EXPANDED_PHP_CONFIG_FILE_PATH=`eval echo "$PHP_CONFIG_FILE_PATH"`
  EXPANDED_PHP_CONFIG_FILE_SCAN_DIR=`eval echo "$PHP_CONFIG_FILE_SCAN_DIR"`
@@ -34,7 +52,7 @@
  
  exec_prefix=$old_exec_prefix
  libdir=$old_libdir
-@@ -1431,7 +1431,7 @@ PHP_SUBST(all_targets)
+@@ -1449,7 +1449,7 @@ PHP_SUBST(all_targets)
  PHP_SUBST(install_targets)
  PHP_SUBST(install_binary_targets)
  

@@ -5,7 +5,7 @@ PORTVERSION=	2.0.6
 PORTREVISION=	1
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.acnc.com/benchmarks/ \
-		http://www.textuality.com/bonnie/
+		https://www.textuality.com/bonnie/
 DISTNAME=	bonnie
 
 MAINTAINER=	ports@MidnightBSD.org

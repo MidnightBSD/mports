@@ -1,5 +1,3 @@
-# Created by: Kapil Chowksey <kchowksey@hss.hns.com>
-
 PORTNAME=	gindent
 DISTVERSION=	2.2.12
 PORTREVISION=	1
@@ -9,8 +7,9 @@ DISTNAME=	indent-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C source code reformatter
+WWW=		https://www.gnu.org/software/indent/indent.html
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=	groff:run localbase:ldflags makeinfo

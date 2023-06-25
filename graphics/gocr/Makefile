@@ -1,8 +1,5 @@
-
-
 PORTNAME=	gocr
-PORTVERSION=	0.50
-PORTREVISION=	2
+PORTVERSION=	0.52
 CATEGORIES=	graphics
 MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
@@ -11,7 +8,7 @@ COMMENT=	OCR (Optical Character Recognition) program
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libnetpbm.so:${PORTSDIR}/graphics/netpbm
+LIB_DEPENDS=	libnetpbm.so:graphics/netpbm
 
 USES=		gmake
 GNU_CONFIGURE=	yes
@@ -33,28 +30,25 @@ DOC_FILES2=	*.dtd *.xml *.html *.txt *.fig *.png
 OPTIONS_DEFINE=	X11 DOCS
 OPTIONS_DEFAULT=	X11
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MX11}
-USES+=		tk
-PLIST_FILES+=	bin/gocr.tcl
-.endif
+X11_USES=		tk
+X11_PLIST_FILES=	bin/gocr.tcl
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@LIBS@|-L${LOCALBASE}/lib @LIBS@|g' ${WRKSRC}/src/Makefile.in
-.if !  ${PORT_OPTIONS:MX11}
+
+post-patch-X11-off:
 	@${REINPLACE_CMD} -e '/gocr.tcl/d' ${WRKSRC}/src/Makefile.in
-.else
+	
+post-patch-X11-on:
 	@${REINPLACE_CMD} -e 's|exec wish|exec ${WISH}|' ${WRKSRC}/bin/gocr.tcl
-.endif
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/gocr
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${DOCSDIR}
-	@${MKDIR} ${DOCSDIR2}
-	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${DOCSDIR2}
-.endif
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${FAKE_DESTDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR2}
+	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${FAKE_DESTDIR}${DOCSDIR2}
 
 .include <bsd.port.mk>

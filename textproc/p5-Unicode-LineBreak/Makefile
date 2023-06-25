@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unicode-LineBreak package
+WWW=		https://metacpan.org/release/Unicode-LineBreak
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -29,6 +30,6 @@ THAI_LIB_DEPENDS=	libthai.so:devel/libthai
 THAI_CONFIGURE_OFF=	--disable-libthai
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Unicode/LineBreak/LineBreak.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Unicode/LineBreak/LineBreak.so
 
 .include <bsd.port.mk>

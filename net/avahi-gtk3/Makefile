@@ -1,17 +1,16 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
-
-PORTREVISION=	3
+PORTREVISION=	0
 CATEGORIES=	net
 PKGNAMESUFFIX=	-gtk3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk+ 3 library to the Avahi mDNS system
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1+
 
-LIB_DEPENDS=	libavahi-common.so:${PORTSDIR}/net/avahi-app
-RUN_DEPENDS=	avahi-header>=0.6:${PORTSDIR}/net/avahi-header
+LIB_DEPENDS=	libavahi-common.so:net/avahi-app \
+		libgdbm.so:databases/gdbm \
+		libharfbuzz.so:print/harfbuzz
+RUN_DEPENDS=	avahi-header>=0.8:net/avahi-header
 
 MASTERDIR=	${.CURDIR}/../avahi-app
 BUILD_WRKSRC=	${WRKSRC}/avahi-ui
@@ -22,15 +21,21 @@ PLIST=		${.CURDIR}/pkg-plist
 AVAHI_SLAVE=	gtk3
 AVAHI_PKGCONFIG=avahi-ui-gtk3.pc
 
-USE_GNOME+=	gtk30
+USE_GNOME+=	cairo gdkpixbuf2 gtk30
 
 do-build:
-	@(cd ${WRKSRC}/avahi-ui; ${MAKE_CMD} libavahi-ui-gtk3.la)
+	${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-common
+	${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-client
+	${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-glib
+	${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-ui libavahi-ui-gtk3.la
+	${DO_MAKE_BUILD} -C ${WRKSRC}/avahi-discover-standalone
 
 do-install:
-	@(cd ${WRKSRC}/avahi-ui; ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-libLTLIBRARIES)
+	@(cd ${WRKSRC}/avahi-discover-standalone; ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-binPROGRAMS install-interfacesDATA)
+#	@(cd ${WRKSRC}/avahi-ui; ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-libLTLIBRARIES)
+	@(cd ${WRKSRC}/avahi-ui; ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-binPROGRAMS install-desktopDATA install-exec-local)
 
 post-install:
-	@${RMDIR} ${PREFIX}/etc/avahi
+	@${STRIP_CMD} ${PREFIX}/lib/libavahi-ui-gtk3.so
 
 .include "${MASTERDIR}/Makefile"

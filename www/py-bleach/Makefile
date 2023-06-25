@@ -1,30 +1,33 @@
-# Created by: Kubilay Kocak <koobs@FreeBSD.org>
-
 PORTNAME=	bleach
-PORTVERSION=	3.1.5
+PORTVERSION=	5.0.1
+PORTREVISION=	1
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy safelist-based HTML-sanitizing tool
+WWW=		https://github.com/mozilla/bleach
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.9.0:devel/py-six@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}webencodings>0:converters/py-webencodings@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}webencodings>=0:converters/py-webencodings@${PY_FLAVOR}
 
-USES=		python:3.6+
-USE_PYTHON=	autoplist distutils
+USES=		cpe python:3.7+ shebangfix
+USE_PYTHON=	autoplist concurrent distutils pytest
 
 NO_ARCH=	yes
-NO_TEST=	yes
 
-# This is a development script
-# TODO: Remove from sdist (via MANIFEST.ini)
-post-extract:
-	${RM} ${WRKSRC}/bleach/_vendor/pip_install_vendor.sh
+CPE_VENDOR=	mozilla
+
+SHEBANG_FILES=	bleach/_vendor/vendor_install.sh
+
+OPTIONS_DEFINE=	CSS
+OPTIONS_DEFAULT=CSS
+CSS_DESC=	CSS support
+
+CSS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tinycss2>=1.1.0<1.3:textproc/py-tinycss2@${PY_FLAVOR}
 
 .include <bsd.port.mk>

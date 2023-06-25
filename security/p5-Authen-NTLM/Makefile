@@ -1,5 +1,3 @@
-# Created by: James Thomason <james@divide.org>
-
 PORTNAME=	Authen-NTLM
 PORTVERSION=	1.09
 PORTREVISION=	1
@@ -10,8 +8,9 @@ DISTNAME=	${PORTNAME:C/.*-//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 NTLM authentication module
+WWW=		https://metacpan.org/release/NTLM
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Digest-HMAC>=0:security/p5-Digest-HMAC

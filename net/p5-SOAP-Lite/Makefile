@@ -1,5 +1,3 @@
-# Created by: vanilla
-
 PORTNAME=	SOAP-Lite
 PORTVERSION=	1.27
 CATEGORIES=	net perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client and server side SOAP implementation
+WWW=		https://metacpan.org/release/SOAP-Lite
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
@@ -35,6 +34,7 @@ INSTALL_TARGET=	pure_install
 USES=		perl5 shebangfix
 USE_PERL5=	configure
 NO_ARCH=	yes
+NO_TEST=	yes
 
 SHEBANG_FILES=	bin/SOAPsh.pl
 perl_OLD_CMD=	.*perl

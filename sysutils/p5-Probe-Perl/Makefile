@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Information about the currently running perl
+WWW=		https://metacpan.org/release/Probe-Perl
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes

@@ -5,4 +5,4 @@ It is designed to support the full specification, and includes support
 for object finalisation, Soft/Weak/Phantom References, class-unloading,
 the Java Native Interface (JNI) and the Reflection API.
 
-WWW: http://jamvm.sourceforge.net/
+WWW: https://jamvm.sourceforge.net/

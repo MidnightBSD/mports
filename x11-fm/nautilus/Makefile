@@ -15,6 +15,7 @@ LIB_DEPENDS=	libgexiv2.so:graphics/gexiv2 \
 		libgnome-autoar-0.so:archivers/gnome-autoar \
 		libhandy-1.so:x11-toolkits/libhandy \
 		libportal.so:deskutils/libportal \
+		libportal-gtk3.so:deskutils/libportal-gtk3 \
 		libtotem.so:multimedia/totem \
 		libtracker-sparql-3.0.so:sysutils/tracker3
 
@@ -36,5 +37,7 @@ OPTIONS_DEFINE=		GVFS
 OPTIONS_DEFAULT=	GVFS
 
 GVFS_USE=	GNOME=gvfs
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

@@ -1,5 +1,3 @@
-# Created by: Anton Berezin <tobez@FreeBSD.org>
-
 PORTNAME=	HTML-Lint
 PORTVERSION=	2.32
 CATEGORIES=	www perl5
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML::Lint - check for HTML errors in a string or file
+WWW=		https://metacpan.org/release/HTML-Lint
 
-LICENSE=	artistic
+LICENSE=	artistic2
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-HTML-Tagset>0:www/p5-HTML-Tagset \

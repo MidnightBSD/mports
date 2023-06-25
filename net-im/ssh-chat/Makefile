@@ -1,10 +1,11 @@
 PORTNAME=	ssh-chat
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9
+DISTVERSION=	1.10.1
 CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Chat over SSH
+WWW=		https://github.com/shazow/ssh-chat
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -15,12 +16,12 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	shazow
 GH_TUPLE=	\
 		alexcesaro:log:61e686294e58:alexcesaro_log/vendor/github.com/alexcesaro/log \
-		golang:crypto:b7391e95e576:golang_crypto/vendor/golang.org/x/crypto \
-		golang:sys:f7bb7a8bee54:golang_sys/vendor/golang.org/x/sys \
-		golang:text:v0.3.2:golang_text/vendor/golang.org/x/text \
-		howeyc:gopass:bf9dde6d0d2c:howeyc_gopass/vendor/github.com/howeyc/gopass \
+		golang:crypto:9e8e0b390897:golang_crypto/vendor/golang.org/x/crypto \
+		golang:sys:35f3e6cf4a65:golang_sys/vendor/golang.org/x/sys \
+		golang:text:v0.3.4:golang_text/vendor/golang.org/x/text \
+		howeyc:gopass:7cb4b85ec19c:howeyc_gopass/vendor/github.com/howeyc/gopass \
 		jessevdk:go-flags:v1.4.0:jessevdk_go_flags/vendor/github.com/jessevdk/go-flags \
-		shazow:rateio:e8e00881e5c1:shazow_rateio/vendor/github.com/shazow/rateio
+		shazow:rateio:4461efc8bdc4:shazow_rateio/vendor/github.com/shazow/rateio
 GO_TARGET=	./cmd/${PORTNAME}
 
 PLIST_FILES=	bin/${PORTNAME}

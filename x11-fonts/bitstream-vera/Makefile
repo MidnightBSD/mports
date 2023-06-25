@@ -1,16 +1,19 @@
 PORTNAME=	bitstream-vera
 PORTVERSION=	1.10
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-fonts
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/ttf-${PORTNAME}/1.10
+MASTER_SITES=	GNOME/sources/ttf-${PORTNAME}/${PORTVERSION}
 DISTNAME=	ttf-${PORTNAME}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera TrueType font collection
+WWW=		https://www.gnome.org/fonts/
 
-LICENSE=	unknown
+LICENSE=	BITSTREAM_VERA
+LICENSE_NAME=	Bitstream Vera Fonts Copyright
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT.TXT
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	fc-cache:x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:x11-fonts/fontconfig
@@ -28,7 +31,6 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 #
 
 FONTNAME=	${PORTNAME}
-FONTSDIR?=	${PREFIX}/lib/X11/fonts/${FONTNAME}
 
 OPTIONS_DEFINE=	DOCS
 

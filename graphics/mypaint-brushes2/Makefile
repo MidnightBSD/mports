@@ -6,8 +6,9 @@ PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Brushes used by MyPaint and other software using libmypaint
+WWW=		https://github.com/mypaint/mypaint-brushes
 
-LICENSE=	other
+LICENSE=	CC0-1.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf pathfix gmake

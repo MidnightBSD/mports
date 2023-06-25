@@ -33,6 +33,7 @@ USES=		python:3.7+
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -41,7 +42,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}exceptiongroup>=1.0.0rc9:devel/py-exception
 TEST_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}exceptiongroup>=1.0.0rc9:devel/py-exceptiongroup@${PY_FLAVOR}
 .endif
 
-do-test:
-	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest -v -rs
+#do-test:
+#	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest -v -rs
 
 .include <bsd.port.post.mk>

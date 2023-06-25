@@ -106,7 +106,7 @@ lib/wzdftpd/modules/libwzd_debug.so
 %%PERL%%lib/perl5/%%PERL_VER%%/man/man3/wzdftpd.3.gz
 lib/wzdftpd/modules/libwzd_sfv.so
 %%TCL%%lib/wzdftpd/modules/libwzd_tcl.so
-%%ZEROCONF%%lib/wzdftpd/modules/libwzd_zeroconf.so
+%%AVAHI%%lib/wzdftpd/modules/libwzd_zeroconf.so
 libdata/pkgconfig/wzdftpd.pc
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog

@@ -1,12 +1,5 @@
-PKGNAMESUFFIX=	-node14
+USES=		nodejs:14,run
 
-CONFLICTS_INSTALL=	npm
-
-OPTIONS_EXCLUDE=NODE
-OPTIONS_SLAVE=	NODE14
-
-nodejs:14,run
-
-MASTERDIR=	${.CURDIR}/../npm
+MASTERDIR=	${.CURDIR}/../npm-node18
 
 .include "${MASTERDIR}/Makefile"

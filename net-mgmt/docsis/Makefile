@@ -5,8 +5,9 @@ CATEGORIES=	net-mgmt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DOCSIS(tm) binary configuration file encoder/decoder
+WWW=		https://github.com/rlaager/docsis
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 BUILD_DEPENDS=	gm4:devel/m4 \
 		flex:textproc/flex

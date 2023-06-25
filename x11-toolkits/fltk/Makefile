@@ -1,11 +1,13 @@
 PORTNAME=	fltk
 PORTVERSION=	1.3.8
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	https://www.fltk.org/pub/${PORTNAME}/${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform C++ graphical user interface toolkit
+WWW=		https://www.fltk.org/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING

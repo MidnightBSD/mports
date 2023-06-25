@@ -1,8 +1,6 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	dashboard
 PORTVERSION=	0.8.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE/apps
 PKGNAMEPREFIX=	xfce4-

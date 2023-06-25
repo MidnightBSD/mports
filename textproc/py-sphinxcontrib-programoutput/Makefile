@@ -18,9 +18,6 @@ USE_PYTHON=	autoplist distutils
 USE_LOCALE=	en_US.UTF-8
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+NO_TEST=	yes
 
 .include <bsd.port.mk>

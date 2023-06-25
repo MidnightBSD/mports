@@ -1,5 +1,3 @@
-# Created by: GreenDog <fiziologus@gmail.com>
-
 PORTNAME=	lua
 DISTVERSION=	5.3.6
 CATEGORIES=	lang
@@ -8,10 +6,11 @@ PKGNAMESUFFIX=	53
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Powerful, efficient, lightweight, embeddable scripting language
+WWW=		https://www.lua.org/
 
 LICENSE=	mit
 
-USES=		lua:core,53
+USES=		cpe lua:core,53
 USE_LDCONFIG=	yes
 
 FAKE_OPTS=	prefixhack

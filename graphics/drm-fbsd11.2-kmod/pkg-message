@@ -16,6 +16,9 @@ Please ensure that all users requiring graphics are members of the
 
 Older generations are supported by the legacy kms modules (radeonkms / 
 i915kms) in base or by installing graphics/drm-legacy-kmod.
+
+You will need to install firmware for newer GPUs using one of the 
+gpu-firmware-kmod ports
 EOM
 }
 ]

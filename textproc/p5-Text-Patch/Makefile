@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to patch text with given patch
+WWW=		https://metacpan.org/release/Text-Patch
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

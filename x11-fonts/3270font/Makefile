@@ -1,13 +1,13 @@
 PORTNAME=	3270font
-DISTVERSIONPREFIX=	v.
-DISTVERSION=	2.1.0
+DISTVERSIONPREFIX=	v
+DISTVERSION=	2.3.1
 CATEGORIES=	x11-fonts
-MASTER_SITES=	https://${PORTNAME}.s3.amazonaws.com/ \
-		https://github.com/rbanffy/${PORTNAME}/releases/download/${DISTVERSIONFULL}/
-DISTNAME=	3270_fonts_fba25eb
+MASTER_SITES=	https://github.com/rbanffy/${PORTNAME}/releases/download/${DISTVERSIONFULL}/
+DISTNAME=	3270_fonts_3b8f2fb
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IBM 3270 font for the nostalgic
+WWW=		https://github.com/rbanffy/3270font
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
@@ -21,8 +21,8 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	(cd ${WRKSRC} && \
-	${COPYTREE_SHARE} . ${STAGEDIR}${FONTSDIR} "! -name LICENSE.txt")
+	${COPYTREE_SHARE} . ${FONTSDIR} "! -name LICENSE.txt")
 
 .include <bsd.port.mk>

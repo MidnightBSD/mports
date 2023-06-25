@@ -1,7 +1,5 @@
-# Created by: Leo Vandewoestijne <freebsd@dns.company>
-
 PORTNAME=	knot
-DISTVERSION=	3.1.2
+DISTVERSION=	3.2.6
 CATEGORIES=	dns
 MASTER_SITES=	https://secure.nic.cz/files/knot-dns/ \
 		https://dns.company/downloads/knot-dns/
@@ -9,6 +7,7 @@ PKGNAMESUFFIX?=	3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance authoritative-only DNS server
+WWW=		https://www.knot-dns.cz/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING

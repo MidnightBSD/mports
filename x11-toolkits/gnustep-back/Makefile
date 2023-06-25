@@ -1,10 +1,12 @@
 PORTNAME=	gnustep-back
 DISTVERSIONPREFIX=	back-
-DISTVERSION=	0_29_0
+DISTVERSION=	0_30_0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI backend
+WWW=		http://www.gnustep.org/
 
 LICENSE_COMB=	multi
 LICENSE=	gpl3 lgpl3

@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Crypt-RC6
 PORTVERSION=	1.0
 PORTREVISION=	1
@@ -15,6 +13,5 @@ LICENSE_COMB=	dual
 
 USES=		perl5 dos2unix
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

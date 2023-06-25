@@ -1,45 +1,39 @@
 PORTNAME=	youtube_dl
-DISTVERSION=	2021.12.17
+PORTVERSION=	2023.03.14
 CATEGORIES=	www
-MASTER_SITES=	https://github.com/ytdl-org/youtube-dl/releases/download/${DISTVERSION}/ \
-		https://yt-dl.org/downloads/${DISTVERSION}/
-DISTNAME=	youtube-dl-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program for downloading videos from various services
 WWW=		https://yt-dl.org/
 
 LICENSE=	unlicense
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-FAKE_OPTS+=	trueprefix
+BUILD_DEPENDS=	pandoc:textproc/hs-pandoc
 
-BUILD_DEPENDS=	zip:archivers/zip
-
-ALL_TARGET=	youtube-dl
-MAKE_ARGS=	PYTHON=${PYTHON_CMD}
 USES=		gmake python
-NO_ARCH=	yes
-WRKSRC=		${WRKDIR}/youtube-dl
 
-OPTIONS_DEFINE=	BASH FISH RTMPDUMP FFMPEG ZSH
-OPTIONS_DEFAULT=BASH FISH RTMPDUMP ZSH
-OPTIONS_SUB=	yes
-FISH_DESC=	Install programmable completions for Fish
-RTMPDUMP_DESC=	Use RTMPDUMP to download rtmp video streams
+USE_GITHUB=	yes
+GH_ACCOUNT=	ytdl-org
+GH_PROJECT=	youtube-dl
+GH_TAGNAME=	6fece0a
+
+MAKE_ARGS=	PYTHON=${PYTHON_CMD}
+ALL_TARGET=	youtube-dl
+NO_ARCH=	yes
 
 PLIST_FILES=	bin/youtube-dl \
+		etc/bash_completion.d/youtube-dl.sh \
 		man/man1/youtube-dl.1.gz \
-		%%BASH%%etc/bash_completion.d/youtube-dl.sh \
-		%%ZSH%%share/zsh/site-functions/_youtube-dl
+		share/fish/vendor_completions.d/youtube-dl.fish \
+		share/zsh/site-functions/_youtube-dl
 
-FFMPEG_RUN_DEPENDS=	${LOCALBASE}/bin/ffprobe:multimedia/ffmpeg
-RTMPDUMP_RUN_DEPENDS=	${LOCALBASE}/bin/rtmpdump:multimedia/rtmpdump
+OPTIONS_DEFINE=		FFMPEG RTMPDUMP
+OPTIONS_DEFAULT=	RTMPDUMP
 
-post-extract:
-	@# remove tarball provided version, build our own
-	@${RM} -f ${WRKSRC}/youtube-dl
+RTMPDUMP_DESC=	Use rtmpdump to download rtmp video streams
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|python devscripts/|${PYTHON_CMD} devscripts/|' ${WRKSRC}/Makefile
+FFMPEG_RUN_DEPENDS=	ffprobe:multimedia/ffmpeg
+RTMPDUMP_RUN_DEPENDS=	rtmpdump:multimedia/rtmpdump
 
 .include <bsd.port.mk>

@@ -14,9 +14,19 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_SSL=		libressl libressl-devel
 BROKEN_SSL_REASON=	Node.js 14.x LTS requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
-ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 
-USES=		compiler:c++11-lib gmake python:2.7-3.9,build pkgconfig \
+
+BUILD_DEPENDS+=	brotli>=1.0.9,1:archivers/brotli \
+		c-ares>=1.17.1:dns/c-ares \
+		libuv>=1.41.0:devel/libuv \
+		libnghttp2>=1.42.0:www/libnghttp2 \
+		objdump:devel/binutils
+LIB_DEPENDS+=	libbrotlidec.so:archivers/brotli \
+		libcares.so:dns/c-ares\
+		libuv.so:devel/libuv \
+		libnghttp2.so:www/libnghttp2
+
+USES=		compiler:c++11-lib gmake python:2.7-3.10,build pkgconfig \
 		localbase shebangfix
 
 OPTIONS_DEFINE=		BUNDLED_SSL COREPACK DOCS NLS
@@ -59,27 +69,15 @@ MAKE_ENV+=	CC.host=${CC} CFLAGS.host="${CFLAGS}" \
 		CXX.host=${CXX} CXXFLAGS.host="${CXXFLAGS}" \
 		LINK.host=${CXX} LDFLAGS.host="${LDFLAGS}"
 
-BUILD_DEPENDS+=	brotli>=1.0.9,1:archivers/brotli \
-		c-ares>=1.17.1:dns/c-ares \
-		libuv>=1.41.0:devel/libuv \
-		libnghttp2>=1.42.0:www/libnghttp2 \
-		objdump:devel/binutils
-LIB_DEPENDS+=	libbrotlidec.so:archivers/brotli \
-		libcares.so:dns/c-ares\
-		libuv.so:devel/libuv \
-		libnghttp2.so:www/libnghttp2
-
 .include <bsd.mport.options.mk>
-
-.if (defined(PPC_ABI) && ${PPC_ABI} == ELFv2) || ${ARCH} == powerpc64le
-EXTRA_PATCHES=		${PATCHDIR}/extra-patch-common.gypi
-.endif
 
 .if ${ARCH} == armv6 || ${ARCH} == armv7
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tools_v8__gypfiles_v8.gyp
 .endif
 
-BROKEN_SSL+=	base
+.if ${OSVERSION} < 300000
+BROKEN_SSL+=    base
+.endif
 
 .if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64
 CONFIGURE_ARGS+=	--openssl-no-asm

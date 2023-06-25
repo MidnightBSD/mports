@@ -1,5 +1,3 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
-
 PORTNAME=	XML-SAX-Writer
 PORTVERSION=	0.57
 CATEGORIES=	textproc perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SAX2 XML Writer
+WWW=		https://metacpan.org/release/XML-SAX-Writer
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get information from Excel file
+WWW=		https://metacpan.org/release/Spreadsheet-ParseExcel
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
@@ -23,11 +24,12 @@ NO_ARCH=	yes
 
 OPTIONS_DEFINE=	EXAMPLES
 
-post-install:
-	@${ECHO_MSG} "===>   Installing examples for ${PKGNAME}"
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/Excel
-	${INSTALL_DATA} ${WRKSRC}/sample/README ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/sample/*.pl ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/sample/Excel/* ${STAGEDIR}${EXAMPLESDIR}/Excel
+PORTEXAMPLES=	*
+
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/Excel
+	${INSTALL_DATA} ${WRKSRC}/sample/README ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/sample/*.pl ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/sample/Excel/* ${FAKE_DESTDIR}${EXAMPLESDIR}/Excel
 
 .include <bsd.port.mk>

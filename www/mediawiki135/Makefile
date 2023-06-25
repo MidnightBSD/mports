@@ -1,13 +1,12 @@
-# Created by: Gerrit Beine <tux@pinguru.net>
-
 PORTNAME=	mediawiki
-PORTVERSION=	1.35.6
+PORTVERSION=	1.35.9
 CATEGORIES=	www
 MASTER_SITES=	http://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
 PKGNAMESUFFIX=	135${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wiki engine used by Wikipedia
+WWW=		https://www.mediawiki.org/
 
 LICENSE=	gpl2
 

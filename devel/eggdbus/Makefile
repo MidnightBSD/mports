@@ -4,7 +4,7 @@ PORTNAME=	eggdbus
 PORTVERSION=	0.6
 PORTREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	http://hal.freedesktop.org/releases/
+MASTER_SITES=	https://hal.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	D-Bus bindings for GObject

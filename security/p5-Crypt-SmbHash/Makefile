@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module implementing lanman and nt md4 hash functions
+WWW=		https://metacpan.org/release/Crypt-SmbHash
 
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual

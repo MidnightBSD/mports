@@ -1,5 +1,3 @@
-# Created by: Frederic Culot <culot@FreeBSD.org>
-
 PORTNAME=	HTTP-Negotiate
 PORTVERSION=	6.01
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the HTTP content negotiation algorithm
+WWW=		https://metacpan.org/release/HTTP-Negotiate
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

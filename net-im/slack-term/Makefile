@@ -6,6 +6,7 @@ CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Slack client for your terminal
+WWW=		https://github.com/erroneousboat/slack-term
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

@@ -1,13 +1,14 @@
 PORTNAME=	DateTime-Format-MySQL
-PORTVERSION=	0.06
+PORTVERSION=	0.0701
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse and format MySQL dates and times
+WWW=		https://metacpan.org/release/DateTime-Format-MySQL
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

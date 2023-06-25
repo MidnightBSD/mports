@@ -1,17 +1,19 @@
 PORTNAME=	webengine
-DISTVERSION=	5.12.1
-PORTREVISION=	1
+DISTVERSION=	${PYQT_VERSION}
 CATEGORIES=	www devel python
-MASTER_SITES=	RIVERBANK/PyQtWebEngine/${DISTVERSION}
+MASTER_SITES=	https://pypi.python.org/packages/source/P/PyQtWebEngine/
 PKGNAMEPREFIX=	${PYQT_PY_RELNAME}-
-DISTNAME=	PyQtWebEngine_gpl-${DISTVERSION}
+DISTNAME=	PyQtWebEngine-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for the Qt5 toolkit, QtWebEngine module
 
 LICENSE=	gpl3
 
-USES=		gl python:3.7+ pyqt:5 qt:5
+DEPRECATED=	Uses EOL Python 2.7 via www/qt5-webengine
+EXPIRATION_DATE=2023-06-23
+
+USES=		gl python:3.5+ pyqt:5 qt:5
 USE_GL=		gl
 USE_PYQT=	sip_build core gui network printsupport webchannel
 USE_PYTHON=	concurrent flavors py3kplist
@@ -39,6 +41,9 @@ PLIST_SUB=		PYQT_WEBENGINE_VERSION=${DISTVERSION}
 
 post-install-DEBUG-off:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/PyQt5/QtWebEngine*.so
+
+post-patch:
+	${REINPLACE_CMD} -e "s/sip-module/sip-module-${PYTHON_VER}/" ${WRKSRC}/configure.py
 
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \

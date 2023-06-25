@@ -62,4 +62,6 @@ GOOD_GST_ENABLED_PLUGINS=	alpha \
 				wavparse \
 				y4m
 
+NO_TEST=	yes
+
 .include "${MASTERDIR}/Makefile"

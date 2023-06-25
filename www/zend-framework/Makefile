@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for developing PHP web applications
+WWW=		https://framework.zend.com/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

@@ -127,7 +127,6 @@ lib/mysql/libmysqlclient.so.20
 lib/mysql/libperconaserverclient.a
 lib/mysql/libperconaserverclient.so
 lib/mysql/libperconaserverclient.so.20
-lib/mysql/libperconaserverclient.so.20.3.24
 %%SASLCLIENT%%lib/mysql/plugin/authentication_ldap_sasl_client.so
 libdata/pkgconfig/mysqlclient.pc
 libdata/pkgconfig/perconaserverclient.pc

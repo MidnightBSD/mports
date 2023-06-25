@@ -1,7 +1,3 @@
-# Created by: mm@FreeBSD.org
-
-
-PORTREVISION=	1
 
 # the SVG and PANGO plugins need X11
 OPTIONS_EXCLUDE=	X11 SVG PANGO

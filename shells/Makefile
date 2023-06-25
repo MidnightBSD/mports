@@ -26,6 +26,13 @@ SUBDIR += sash
 SUBDIR += scponly
 SUBDIR += tcshrc
 SUBDIR += v7sh
+SUBDIR += xonsh
+SUBDIR += yash
 SUBDIR += zsh
+SUBDIR += zsh-antigen
+SUBDIR += zsh-autosuggestions
+SUBDIR += zsh-completions
+SUBDIR += zsh-navigation-tools
+SUBDIR += zsh-syntax-highlighting
 
 .include <bsd.port.subdir.mk>

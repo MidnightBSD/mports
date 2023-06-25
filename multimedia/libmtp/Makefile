@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Media Transfer Protocol (MTP) library
 WWW=		http://libmtp.sourceforge.net/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 
 CONFLICTS_INSTALL=libosmo-sccp-[0-9]* # lib/libmtp.a
 

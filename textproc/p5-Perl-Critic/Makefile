@@ -1,15 +1,14 @@
-# Created by: ijliao
-
 PORTNAME=	Perl-Critic
-PORTVERSION=	1.140
+PORTVERSION=	1.148
 CATEGORIES=	textproc devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Critique Perl source for style and standards
+WWW=		https://metacpan.org/release/Perl-Critic
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
@@ -18,8 +17,7 @@ RUN_DEPENDS=	p5-B-Keywords>=1.05:devel/p5-B-Keywords \
 		p5-Config-Tiny>=2:devel/p5-Config-Tiny \
 		p5-Exception-Class>=1.23:devel/p5-Exception-Class \
 		p5-File-Which>=0:sysutils/p5-File-Which \
-		p5-IO-String>=0:devel/p5-IO-String \
-		p5-List-MoreUtils>=0.19:lang/p5-List-MoreUtils \
+		p5-List-SomeUtils>=0.55:devel/p5-List-SomeUtils \
 		p5-Module-Pluggable>=3.1:devel/p5-Module-Pluggable \
 		p5-PPI>=1.265:textproc/p5-PPI \
 		p5-PPIx-QuoteLike>=0:textproc/p5-PPIx-QuoteLike \
@@ -29,12 +27,12 @@ RUN_DEPENDS=	p5-B-Keywords>=1.05:devel/p5-B-Keywords \
 		p5-Pod-Spell>=1:textproc/p5-Pod-Spell \
 		p5-Readonly>=2:devel/p5-Readonly \
 		p5-String-Format>=1.13:textproc/p5-String-Format \
-		p5-Task-Weaken>=0:devel/p5-Task-Weaken \
-		${P5_POD_PARSER}
+		p5-Pod-Parser>=0:textproc/p5-Pod-Parser
+
+USES=		perl5
+USE_PERL5=	modbuild
 
 NO_ARCH=	yes
 NO_TEST=	yes
-USES=		perl5
-USE_PERL5=	modbuild
 
 .include <bsd.port.mk>

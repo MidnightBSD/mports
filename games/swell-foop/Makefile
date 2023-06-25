@@ -1,30 +1,27 @@
-
-
 PORTNAME=	swell-foop
-PORTVERSION=	3.28.0
+PORTVERSION=	41.1
 CATEGORIES=	games gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome swell-foop
+WWW=		https://wiki.gnome.org/Swell%20Foop
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vala:lang/vala \
-		itstool:textproc/itstool
+BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libclutter-1.0.so:graphics/clutter \
-		libclutter-gtk-1.0.so:graphics/clutter-gtk3
+		libclutter-gtk-1.0.so:graphics/clutter-gtk3 \
+		libgnome-games-support-1.so:games/libgnome-games-support
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson \
-		pkgconfig python:3.6+,build tar:xz
+USES=		gettext gnome localbase meson pkgconfig python:3.6+,build \
+		tar:xz vala:build
 USE_GNOME=	gtk30
-INSTALLS_ICONS=	yes
+GLIB_SCHEMAS=	org.gnome.SwellFoop.gschema.xml
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
-
-GLIB_SCHEMAS=	org.gnome.swell-foop.gschema.xml
 
 .include <bsd.port.mk>

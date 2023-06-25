@@ -1,7 +1,5 @@
-# Created by: Mark Felder <feld@FreeBSD.org>
-
 PORTNAME?=	percona
-DISTVERSION=	5.7.37-40
+DISTVERSION=	5.7.40-43
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	http://www.percona.com/downloads/Percona-Server-5.7/Percona-Server-${DISTVERSION}/source/tarball/:percona \
@@ -13,8 +11,9 @@ DISTFILES=	percona-server-${DISTVERSION}${EXTRACT_SUFX}:percona \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
+WWW?=		https://www.percona.com/software/percona-server
 
-LICENSE?=	gpl2
+LICENSE?=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CPE_VENDOR=	percona
@@ -89,6 +88,7 @@ USES+=		libedit
 # For building plugins (percona-pam-for-mysql, etc)
 # Currently do nothing special
 USES+=		libedit
+LIB_DEPENDS+=	libcurl.so:ftp/curl
 .else
 LIB_DEPENDS+=	libcurl.so:ftp/curl
 

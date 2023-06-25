@@ -1,15 +1,14 @@
-# Created by: Aaron Dalton <aaron@FreeBSD.org>
-
 PORTNAME=	HTTP-Size
-PORTVERSION=	1.151
+PORTVERSION=	1.153
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get the byte size of an internet resource
+WWW=		https://metacpan.org/release/HTTP-Size
 
-LICENSE=	artistic
+LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

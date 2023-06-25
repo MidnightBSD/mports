@@ -1,5 +1,3 @@
-# Created by: Kubilay Kocak <koobs@FreeBSD.org>
-
 PORTNAME=	certbot
 PORTVERSION=	${ACME_VERSION}
 PORTEPOCH=	1
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Let's Encrypt client #'
+WWW=		https://github.com/certbot/certbot
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

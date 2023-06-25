@@ -1,5 +1,3 @@
-
-
 PORTNAME=	XML-Stream
 DISTVERSION=	1.24
 CATEGORIES=	textproc perl5
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML::Stream provides you with access to XML Stream
+WWW=		https://metacpan.org/release/XML-Stream
 
 LICENSE=	lgpl2.1
 

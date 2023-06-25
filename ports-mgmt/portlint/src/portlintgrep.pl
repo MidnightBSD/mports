@@ -3,7 +3,7 @@
 # Copyright (c) 2003 Oliver Eikemeier. All rights reserved.
 #
 # BSD licensed.
-# $MidnightBSD$
+#
 
 #
 # List all the ports with FATAL errors:

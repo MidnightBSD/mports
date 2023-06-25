@@ -1,10 +1,11 @@
 PORTNAME=	fluidsynth
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.6
+DISTVERSION=	2.3.1
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Real-time software synthesizer based on the SoundFont 2 specifications
+WWW=		https://www.fluidsynth.org/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE

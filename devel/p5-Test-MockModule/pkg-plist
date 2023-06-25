@@ -1,5 +1,5 @@
 %%SITE_PERL%%/Test/MockModule.pm
-%%SITE_PERL%%/%%PERL5_MAN3%%/Test::MockModule.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Test::MockModule.3.gz
 @dir %%SITE_PERL%%/Test
 @dir %%SITE_ARCH%%/auto/Test/MockModule
 @dir %%SITE_ARCH%%/auto/Test

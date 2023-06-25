@@ -11,6 +11,8 @@ COMMENT=        Language with a focus on memory safety and concurrency (FreeBSD 
 LICENSE=        apache2 mit
 LICENSE_COMB=   dual
 
+BROKEN_MidnightBSD_2.2=         requires 3.x
+
 USES=		pkgconfig python:3.3+,build ssl tar:xz
 ONLY_FOR_ARCH=	amd64
 NO_BUILD=	yes
@@ -24,10 +26,6 @@ LIB_DEPENDS=    libcurl.so:ftp/curl \
 PLIST=          ${PKGDIR}/pkg-plist
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 300000
-IGNORE= OS Not Supported
-.endif
 
 .if ${ARCH} == "amd64"
 FBSD_PATH=	FreeBSD:12:amd64

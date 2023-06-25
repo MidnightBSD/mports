@@ -4,8 +4,10 @@ PORTREVISION=	5
 CATEGORIES=	databases devel
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	4
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNATS, the GNU Problem Report Management System
+WWW=		https://www.gnu.org/software/gnats/
 
 LICENSE=	gpl2
 

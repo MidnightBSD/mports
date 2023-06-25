@@ -1,5 +1,5 @@
 PORTNAME=	babl
-PORTVERSION=	0.1.96
+PORTVERSION=	0.1.102
 CATEGORIES=	x11
 MASTER_SITES=	GIMP
 
@@ -27,7 +27,7 @@ SIMD_MESON_OFF=	-Denable-mmx=false -Denable-sse=false \
 		-Denable-sse2=false -Denable-sse4_1=false \
 		-Denable-avx2=false -Denable-f16c=false
 
-BABL_SHLIB=	0.195.1
+BABL_SHLIB=	0.201.1
 BABL_VER=	0.1
 PLIST_SUB+=	BABL_SHLIB=${BABL_SHLIB} BABL_VER=${BABL_VER}
 
