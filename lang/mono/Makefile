@@ -7,6 +7,7 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source implementation of .NET Development Framework
+WWW=		https://www.mono-project.com/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
