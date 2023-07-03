@@ -1,9 +1,9 @@
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
 DISTVERSION=	25.3.2.3
-PORTEPOCH=	4
 PORTREVISION=	0
 CATEGORIES=	lang parallel java
+PKGNAMESUFFIX=	-runtime25
 DIST_SUBDIR=	erlang
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ WWW=		https://www.erlang.org/
 
 LICENSE=	apache2
 
-USES=		autoreconf:build compiler:c11 cpe gmake ncurses perl5
+USES=		compiler cpe gmake ncurses perl5
 CPE_VENDOR=	erlang
 CPE_PRODUCT=	erlang/otp
 USE_GITHUB=	nodefault
@@ -20,29 +20,26 @@ GH_ACCOUNT=	erlang:otp,corba
 GH_PROJECT=	otp:otp corba:corba
 GH_TAGNAME=	5.1:corba
 USE_PERL5=	build
-USE_RC_SUBR=	epmd
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-dirty-schedulers \
 		--enable-kernel-poll \
 		--enable-smp-support \
 		--enable-threads
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 MAKE_ARGS=	all
 
+DATADIR=	${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}
 SUB_FILES=	pkg-message
-SUB_LIST=	TOOLS_VSN=${TOOLS_VSN}
+SUB_LIST=	ERLANG_LIB=${ERLANG_LIB}
 
 WRKSRC=		${WRKSRC_otp}
 
-ERLANG_LIB=	${PORTNAME}
-EI_VSN=		5.3.2
-SNMP_VSN=	5.13.5
-TOOLS_VSN=	3.5.3
+ERLANG_LIB=	${PORTNAME}${PORTVERSION:C/\..*//}
 
-OPTIONS_DEFINE=		CHUNKS CORBA DIRTY DTRACE FOP JAVA KQUEUE MANPAGES ODBC \
-			OPENSSL PDF SCTP SHARING WX
-OPTIONS_DEFAULT=	CHUNKS CORBA DIRTY DTRACE KQUEUE MANPAGES OPENSSL SCTP
+OPTIONS_DEFINE=		CHUNKS CORBA DTRACE JAVA KQUEUE ODBC OPENSSL SCTP \
+			SHARING WX
+OPTIONS_DEFAULT=	CHUNKS CORBA DTRACE KQUEUE OPENSSL SCTP SHARING
 
 .if !exists(/usr/sbin/dtrace)
 OPTIONS_EXCLUDE+=	DTRACE
@@ -56,14 +53,10 @@ OPTIONS_EXCLUDE_armv6=	DTRACE
 OPTIONS_EXCLUDE_armv7=	DTRACE
 OPTIONS_EXCLUDE_i386=	DTRACE
 OPTIONS_EXCLUDE_riscv64=	DTRACE
-OPTIONS_SUB=	yes
 
 CHUNKS_DESC=	Enable in-line documentation in Erlang console
 CORBA_DESC=	Enable Corba support
-DIRTY_DESC=	Enable dirty schedulers
-FOP_DESC=	Build full documentation with Apache FOP
 KQUEUE_DESC=	Enable Kernel Poll (kqueue) support
-PDF_DESC=	Build PDF documentation
 SCTP_DESC=	Enable SCTP support
 SHARING_DESC=	Enable term copy-and-share support
 WX_DESC=	Enable WX application
@@ -72,20 +65,14 @@ WX_DESC=	Enable WX application
 # probes fixed does not match the number of defined probes (54 != 132,
 # respectively)" you probably misconfigured DTrace in some way.
 
-CHUNKS_MAKE_ARGS+=		DOC_TARGETS=chunks \
-				docs
-DIRTY_CONFIGURE_WITH=		dirty-schedulers
+CHUNKS_MAKE_ARGS+=		docs DOC_TARGETS=chunks
 DTRACE_CONFIGURE_WITH=		dynamic-trace=dtrace
 DTRACE_CFLAGS=			-fno-omit-frame-pointer
 DTRACE_VARS=			STRIP=""
-FOP_PREVENTS=			MANPAGES
-FOP_BUILD_DEPENDS=		fop:textproc/fop \
-				xsltproc:textproc/libxslt
 JAVA_CONFIGURE_WITH=		javac
 JAVA_CONFIGURE_ENV=		ac_cv_prog_JAVAC="${JAVAC}"
 JAVA_VARS=			USE_JAVA=yes
 KQUEUE_CONFIGURE_ENABLE=	kernel-poll
-MANPAGES_RUN_DEPENDS=		${LOCALBASE}/etc/man.d/erlang.conf:lang/erlang-man
 ODBC_LIB_DEPENDS=		libodbc.so:databases/unixODBC
 ODBC_USES=			localbase
 ODBC_CONFIGURE_WITH=		odbc
@@ -93,7 +80,6 @@ ODBC_CFLAGS=			-I/usr/local/include
 ODBC_LDFLAGS=			-L/usr/local/lib
 OPENSSL_USES=			ssl
 OPENSSL_CONFIGURE_WITH=		ssl=${OPENSSLBASE}
-PDF_IMPLIES=			FOP
 SCTP_CONFIGURE_ENABLE=		sctp
 SHARING_CONFIGURE_ENABLE=	sharing-preserving
 WX_USES=			gl
@@ -121,18 +107,6 @@ MAKE_ARGS+=	ARCH=x86
 MAKE_ARGS+=	ARCH=arm
 .endif
 
-pre-configure:
-	@if [ ! $$(${CAT} ${WRKSRC}/lib/erl_interface/vsn.mk | ${GREP} "EI_VSN *=" | ${CUT} -w -f3) = ${EI_VSN} ]; then \
-		${ECHO_MSG} "===>  EI_VSN (${EI_VSN}) in Makefile does not match value in lib/erl_interface/vsn.mk"; exit 1; \
-	fi
-	@if [ ! $$(${CAT} ${WRKSRC}/lib/tools/vsn.mk | ${GREP} "TOOLS_VSN *=" | ${CUT} -w -f3) = ${TOOLS_VSN} ]; then \
-		${ECHO_MSG} "===>  TOOLS_VSN (${TOOLS_VSN}) in Makefile does not match value in lib/tools/vsn.mk"; exit 1; \
-	fi
-	@if [ ! $$(${CAT} ${WRKSRC}/lib/snmp/vsn.mk | ${GREP} -E "SNMP_VSN *=" | ${CUT} -w -f3) = ${SNMP_VSN} ]; then \
-		${ECHO_MSG} "===>  SNMP_VSN (${SNMP_VSN}) in Makefile does not match value in lib/snmp/vsn.mk"; exit 1; \
-	fi
-	@cd ${WRKSRC} && ./otp_build autoconf
-
 pre-configure-WX-off:
 	echo "disabled by port options" > ${WRKSRC}/lib/debugger/SKIP
 	echo "disabled by port options" > ${WRKSRC}/lib/et/SKIP
@@ -140,38 +114,15 @@ pre-configure-WX-off:
 	echo "disabled by port options" > ${WRKSRC}/lib/wx/SKIP
 
 post-configure-ODBC-on:
-	${RM} ${WRKSRC}/lib/odbc/SKIP
+	-${RM} ${WRKSRC}/lib/odbc/SKIP
 
 post-configure-ODBC-off:
 	echo "disabled by port options" > ${WRKSRC}/lib/odbc/SKIP
-
-pre-build-NATIVE-on:
-	@cd ${WRKSRC} && ${MAKE_CMD} clean
 
 post-build-CORBA-on:
 	cd ${WRKSRC_corba} && \
 		${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
 		${MAKE_CMD}
-
-# The man-pages are put (in spite of FreeBSD's port convention) in a private
-# subdir. This is to avoid cluttering up the man page name space. Also the
-# Erlang man pages are more of internal documentation using the man format than
-# actual system man pages. (erl.1 and epmd.1 perhaps being the exception).
-
-post-build-FOP-on:
-	@cd ${WRKSRC} && \
-		${MAKE_CMD} docs
-.if ${PORT_OPTIONS:MCORBA}
-	cd ${WRKSRC_corba} && \
-		${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
-		${MAKE_CMD} docs
-.endif
-
-post-install:
-	${LN} -sf ../lib/${ERLANG_LIB}/lib/erl_interface-${EI_VSN}/bin/erl_call \
-		${PREFIX}/bin/erl_call
-	${LN} -sf ../lib/${ERLANG_LIB}/lib/snmp-${SNMP_VSN}/bin/snmpc \
-		${PREFIX}/bin/snmpc
 
 post-install-CORBA-on:
 	cd ${WRKSRC_corba} && \
@@ -184,26 +135,6 @@ post-install-DTRACE-on:
 		${WRKSRC}/lib/runtime_tools/c_src/*.d \
 		${WRKSRC}/lib/runtime_tools/examples/*.d \
 		${FAKE_DESTDIR}${DATADIR}/dtrace
-
-post-install-FOP-on:
-	@${ECHO_CMD} "MANPATH ${PREFIX}/lib/erlang/man" > ${WRKDIR}/erlang.conf
-	${INSTALL_DATA} ${WRKDIR}/erlang.conf ${FAKE_DESTDIR}${PREFIX}/etc/man.d/erlang.conf
-	for SECTION in 1 3 4 6 7; do \
-		${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/erlang/man/man$${SECTION}; \
-	  	${FIND} ${WRKSRC}/erts ${WRKSRC}/lib -type f | ${GREP} doc/man$${SECTION} \
-			| ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${PREFIX}/lib/erlang/man/man$${SECTION}; \
-	done
-.if ${PORT_OPTIONS:MCORBA}
-	${FIND} ${WRKSRC_corba}/lib -type f | ${GREP} doc/man3 \
-		| ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${PREFIX}/lib/erlang/man/man3
-.endif
-
-post-install-PDF-on:
-	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${FIND} ${WRKSRC} -name \*.pdf | ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${DOCSDIR}
-.if ${PORT_OPTIONS:MCORBA}
-	${FIND} ${WRKSRC_corba} -name \*.pdf | ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${DOCSDIR}
-.endif
 
 post-install-JAVA-off:
 	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/jinterface-*
@@ -223,12 +154,11 @@ post-install-WX-off:
 	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/wx-*
 
 post-fake:
-	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/${ERLANG_LIB}/* -type d -empty -delete
-	@cd ${FAKE_DESTDIR}${TRUE_PREFIX}; ${FIND} lib/${ERLANG_LIB}/* ${DATADIR_REL}/* -type f -o -type l \
-		| ${SORT} >> ${TMPPLIST}
-	if [ -d ${DOCSDIR} ]; then \
-		@cd ${FAKE_DESTDIR}${TRUE_PREFIX}; ${FIND} ${DOCSDIR_REL}/* -name \*.pdf \
-			| ${SORT} >> ${TMPPLIST}; \
-	fi
+	${FIND} ${FAKE_DESTDIR}${PREFIX}/lib/${ERLANG_LIB}/* -type d -empty \
+		-delete
+	@cd ${FAKE_DESTDIR}${PREFIX}; \
+		${FIND} lib/${ERLANG_LIB}/* ${DATADIR_REL}/* -type f -o \
+		-type l | \
+		${SORT} >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>
