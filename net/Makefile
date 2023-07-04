@@ -13,6 +13,7 @@ SUBDIR += avahi-header
 SUBDIR += avahi-libdns
 SUBDIR += avahi-qt5
 SUBDIR += avahi-sharp
+SUBDIR += bmon
 SUBDIR += boinc-client
 SUBDIR += bsdec2-image-upload
 SUBDIR += bwi-firmware-kmod
