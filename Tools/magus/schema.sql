@@ -247,6 +247,28 @@ CREATE TABLE "master_sites"
 );
 CREATE INDEX "master_sites_port_idx" ON "master_sites" USING btree ("port");
 
+--
+-- Table structure for table moved
+--
+
+DROP TABLE "moved" CASCADE\g
+DROP SEQUENCE "moved_id_seq" CASCADE;
+
+CREATE SEQUENCE "moved_id_seq";
+
+CREATE TABLE "moved"
+(
+    "id"       integer DEFAULT nextval('"moved_id_seq"') NOT NULL,
+    "run"      int                                       NOT NULL,
+    "port"     varchar(128)                              NOT NULL,
+    "moved_to" varchar(128)                              NULL,
+    "date"     timestamp NULL,
+    "why"      text                                      NULL,
+    primary key ("id")
+);
+CREATE INDEX "moved_port_idx" ON "moved" USING btree ("port");
+CREATE INDEX "moved_run_idx" ON "moved" USING btree ("run");
+
 create VIEW ready_ports AS
     SELECT ports.id AS id,
            ports.run AS run,
@@ -282,11 +304,11 @@ alter table locks add foreign key (port) references ports(id);
 alter table distfiles add foreign key (port) references ports(id);
 alter table restricted_distfiles add foreign key (port) references ports(id);
 alter table master_sites add foreign key (port) references ports(id);
+alter table moved add foreign key (run) references runs(id);
 
 create table mirrors
 (
-    id      integer default nextval('mirrors_id_seq'::regclass) not null
-        primary key,
+    id      integer default nextval('mirrors_id_seq'::regclass) not null primary key,
     country varchar(4)                                          not null,
     url     varchar(255)                                        not null
 );
