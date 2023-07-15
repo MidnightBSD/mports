@@ -23,6 +23,7 @@ use Magus::Log ();
 use Magus::Distfile ();
 use Magus::RestrictedDistfile ();
 use Magus::MasterSite ();
+use Magus::Moved ();
 
 use Mport::Globals   ();
 our $Machine;
