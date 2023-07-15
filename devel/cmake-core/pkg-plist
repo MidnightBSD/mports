@@ -301,7 +301,6 @@ share/vim/vimfiles/syntax/cmake.vim
 %%DATADIR%%/Help/module/CPackIFWConfigureFile.rst
 %%DATADIR%%/Help/module/CPackNSIS.rst
 %%DATADIR%%/Help/module/CPackNuGet.rst
-%%DATADIR%%/Help/module/CPackPackageMaker.rst
 %%DATADIR%%/Help/module/CPackProductBuild.rst
 %%DATADIR%%/Help/module/CPackRPM.rst
 %%DATADIR%%/Help/module/CPackWIX.rst
