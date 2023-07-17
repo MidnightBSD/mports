@@ -73,6 +73,7 @@ SUBDIR += fusefs-httpfs
 SUBDIR += fusefs-jmtpfs
 SUBDIR += fusefs-libs
 SUBDIR += fusefs-libs3
+SUBDIR += fusefs-lkl
 SUBDIR += fusefs-ntfs
 SUBDIR += fusefs-s3fs
 SUBDIR += fusefs-sshfs
