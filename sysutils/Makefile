@@ -236,6 +236,7 @@ SUBDIR += xfce4-power-manager
 SUBDIR += xfce4-settings
 SUBDIR += xfce4-systemload-plugin
 SUBDIR += xfce4-wavelan-plugin
+SUBDIR += xfsprogs
 SUBDIR += xosview
 SUBDIR += zeitgeist
 SUBDIR += zetaback
