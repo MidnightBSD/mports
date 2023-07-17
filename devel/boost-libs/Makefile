@@ -36,12 +36,7 @@ ALL_TARGET=	stage
 .include <bsd.port.pre.mk>
 
 pre-build:
-.if ${OSVERSION} > 300000
-	${RM} -r ${WRKSRC}/libs/test
-PLIST_SUB+= BROKE=@comment
-.else
 PLIST_SUB+= BROKE=""
-.endif
 
 do-install:
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \

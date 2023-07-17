@@ -13,7 +13,7 @@ MAKE_CMD=	./build.sh
 ALL_TARGET=	${CHOSEN_COMPILER_TYPE} ${WITH_DEBUG:D--debug}
 MAKE_FLAGS=	#
 _MAKE_JOBS=	#
-MAKEFILE=	#
+MAKEFILE=	--cxx="${CXX}" --cxxflags="${CXXFLAGS:N-O*}"
 
 USES=		compiler:c++11-lang
 
