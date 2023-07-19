@@ -1,6 +1,6 @@
 PORTNAME=	uitools
 DISTVERSION=	${QT5_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
@@ -12,5 +12,9 @@ USE_QT=		core gui uiplugin widgets buildtools_build
 
 BUILD_WRKSRC=	${WRKSRC}/src/designer/src/${PORTNAME}
 INSTALL_WRKSRC=	${WRKSRC}/src/designer/src/${PORTNAME}
+
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5UiTools/Qt5UiToolsConfig.cmake
 
 .include <bsd.port.mk>
