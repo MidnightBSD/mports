@@ -7,8 +7,11 @@ MASTER_SITES=	https://BSDforge.com/projects/source/x11-wm/compiz/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
 
-LICENSE=	gpl2 lgpl2.1 mit
+LICENSE=	gpl2+ lgpl2.1+ mit
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING.GPL
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LGPL
+LICENSE_FILE_mit=	${WRKSRC}/COPYING.MIT
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libgtop-2.0.so:devel/libgtop \

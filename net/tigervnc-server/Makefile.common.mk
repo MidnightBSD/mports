@@ -5,7 +5,7 @@ CATEGORIES=	net x11-servers
 
 MAINTAINER?=	ports@MidnightBSD.org
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENCE.TXT
 
 USES+=		cmake:insource,noninja

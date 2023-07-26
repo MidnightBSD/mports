@@ -546,8 +546,8 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		ada ansible apache bdb cabal cargo cmake cpe cran display dos2unix \
 		efl eigen emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
-		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde4 \
-		ldap libarchive libedit libtool localbase lua \
+		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde \
+		ldap libarchive libedit libtool llvm localbase lua \
 		metaport makeself meson mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt readline ruby samba scons sdl sqlite ssl \
 		tar tcl tk tex trigger uniquefiles wx xfce zip 7z
@@ -1012,37 +1012,6 @@ IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 # required by mport.create MPORT_CREATE_ARGS
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
-_GL_gbm_LIB_DEPENDS=		libgbm.so:graphics/mesa-libs
-_GL_glesv2_BUILD_DEPENDS=	${LOCALBASE}/lib/libGLESv2.so:graphics/mesa-libs
-_GL_glesv2_RUN_DEPENDS=		${LOCALBASE}/lib/libGLESv2.so:graphics/mesa-libs
-_GL_egl_BUILD_DEPENDS=		${LOCALBASE}/lib/libEGL.so:graphics/mesa-libs
-_GL_egl_RUN_DEPENDS=		${LOCALBASE}/lib/libEGL.so:graphics/mesa-libs
-_GL_gl_BUILD_DEPENDS=		${LOCALBASE}/lib/libGL.so:graphics/mesa-libs
-_GL_gl_RUN_DEPENDS=		${LOCALBASE}/lib/libGL.so:graphics/mesa-libs
-_GL_gl_USE_XORG=		xorgproto
-_GL_glew_LIB_DEPENDS=		libGLEW.so:graphics/glew
-_GL_glu_LIB_DEPENDS=		libGLU.so:graphics/libGLU
-_GL_glu_USE_XORG=		xorgproto
-_GL_glw_LIB_DEPENDS=		libGLw.so:graphics/libGLw
-_GL_glut_LIB_DEPENDS=		libglut.so:graphics/freeglut
-
-.if defined(USE_GL)
-. if ${USE_GL:tl} == "yes"
-USE_GL=		glu
-. endif
-. for _component in ${USE_GL}
-.  if !defined(_GL_${_component}_LIB_DEPENDS) && \
-		!defined(_GL_${_component}_RUN_DEPENDS)
-IGNORE=		uses unknown GL component
-.   else
-USE_XORG+=	${_GL_${_component}_USE_XORG}
-BUILD_DEPENDS+=	${_GL_${_component}_BUILD_DEPENDS}
-LIB_DEPENDS+=	${_GL_${_component}_LIB_DEPENDS}
-RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
-.  endif
-. endfor
-.endif
-
 .if defined(USE_LOCAL_MK)
 EXTENSIONS+=	local
 .endif
@@ -1173,6 +1142,8 @@ ${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
 ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
 .endif
 .endfor
+
+LDFLAGS+=       ${LDFLAGS_${ARCH}}
 
 # Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)

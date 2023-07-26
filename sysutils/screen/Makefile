@@ -12,6 +12,7 @@ MASTER_SITES=	GNU \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-screen window manager
+WWW=		https://www.gnu.org/software/screen/
 
 LICENSE=	gpl3
 

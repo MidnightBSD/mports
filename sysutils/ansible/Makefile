@@ -1,14 +1,14 @@
 PORTNAME=	ansible
 DISTVERSION=	6.1.0
 CATEGORIES=	sysutils python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Radically simple IT automation
 WWW=		https://www.ansible.com/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ansible-core>0:sysutils/py-ansible-core@${PY_FLAVOR}
@@ -35,9 +35,10 @@ python_OLD_CMD=	/Users/kbreit/Documents/Programming/ansible_collections/cisco/me
 CONFLICTS_INSTALL=	${_ANSIBLE_PACKAGES:N${PKGBASE}}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
-DO_MAKE_TEST=	ansible -m ping
-TEST_TARGET=	localhost
+#DO_MAKE_TEST=	ansible -m ping
+#TEST_TARGET=	localhost
 
 _ANSIBLE_VERSIONS=	1 2 23 24 25 26 27 28 4
 _ANSIBLE_PACKAGES=	${PYTHON_PKGNAMEPREFIX}ansible

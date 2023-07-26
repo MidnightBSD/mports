@@ -1,5 +1,5 @@
 PORTNAME=	nss
-PORTVERSION=	3.82
+PORTVERSION=	3.89
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -76,6 +76,8 @@ post-patch:
 		${XARGS} ${REINPLACE_CMD} -e 's|"nspr.h"|<nspr.h>|'
 	${FIND} ${WRKSRC}/tests -name '*.sh' | ${XARGS} ${GREP} -l -F '/bin/bash' | \
 		${XARGS} ${REINPLACE_CMD} -e 's|#! */bin/bash|#!${SH}|'
+	${REINPLACE_CMD} -e 's/FreeBSD/FreeBSD MidnightBSD/g' \
+		${WRKSRC}/coreconf/config.mk
 
 do-install:
 	${MKDIR} ${PREFIX}/include/nss ${PREFIX}/lib

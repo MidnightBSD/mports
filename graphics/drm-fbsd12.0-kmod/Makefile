@@ -1,19 +1,17 @@
-# Created by: Johannes Dieterich <jmd@FreeBSD.org>
-
 PORTNAME=	drm-fbsd12.0-kmod
 PORTVERSION=	4.16.g20220126
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DRM modules for the linuxkpi-based KMS components
+WWW=		https://github.com/freebsd/drm-kmod
 
 LICENSE=	bsd2 mit gpl2
 LICENSE_COMB=	multi
 
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64 and i386
-
-RUN_DEPENDS=	gpu-firmware-kmod>=g20180319:graphics/gpu-firmware-kmod
 
 OPTIONS_DEFINE=	DEBUG
 

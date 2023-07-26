@@ -5,8 +5,9 @@ MASTER_SITES=	SF/${PORTNAME:tl}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif widget set for displaying HTML 3.2 documents
+WWW=		https://sourceforge.net/projects/xmhtml/
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libpng.so:graphics/png

@@ -29,6 +29,7 @@ SUBDIR += glm
 SUBDIR += gmm++
 SUBDIR += gmp
 SUBDIR += gnome-calculator
+SUBDIR += gnubc
 SUBDIR += gnumeric
 SUBDIR += gnuplot
 SUBDIR += gsl

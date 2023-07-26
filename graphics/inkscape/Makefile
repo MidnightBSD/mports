@@ -1,13 +1,17 @@
 PORTNAME=	inkscape
 DISTVERSION=	1.2.2
+PORTREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
+
+PATCH_SITES=	https://gitlab.com/${PORTNAME}/${PORTNAME}/-/commit/
+PATCHFILES+=	781e29cd3538.patch:-p1 # https://gitlab.com/inkscape/inkscape/-/merge_requests/5111
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full featured open source SVG editor
 WWW=		https://inkscape.org
 
-LICENSE=	gpl2 gpl3 lgpl2.1 lgpl3 mpl
+LICENSE=	gpl2+ gpl3+ lgpl2.1+ lgpl3+ MPL11
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS+=	p5-XML-Parser>=0:textproc/p5-XML-Parser

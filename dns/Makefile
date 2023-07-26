@@ -16,7 +16,6 @@ SUBDIR += encrypted-dns-server
 SUBDIR += erlang-idna
 SUBDIR += idnkit
 SUBDIR += inadyn
-SUBDIR += knot2
 SUBDIR += knot3
 SUBDIR += knot3-lib
 SUBDIR += ldns

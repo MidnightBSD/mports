@@ -1,11 +1,11 @@
 PORTNAME=	curl
-PORTVERSION=	7.88.1
+PORTVERSION=	8.1.2
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Command line tool and library for transferring data with URLs
 WWW=		https://curl.se/ \
 		https://github.com/curl/curl
 
@@ -16,15 +16,22 @@ USES=		cpe libtool localbase pathfix perl5 shebangfix tar:xz
 USE_PERL5=	build
 
 CONFIGURE_ARGS=	--disable-werror \
+		--enable-dateparse \
+		--enable-dnsshuffle \
 		--enable-headers-api \
+		--enable-hsts \
+		--enable-http-auth \
+		--enable-mime \
+		--enable-netrc \
+		--enable-openssl-auto-load-config \
+		--enable-progress-meter \
 		--with-fish-functions-dir=${LOCALBASE}/share/fish/completions \
 		--with-zsh-functions-dir=${LOCALBASE}/share/zsh/site-functions
 CONFIGURE_ENV=	LOCALBASE=${LOCALBASE} \
 		ac_cv_func_SSLv2_client_method=no
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-#TEST_TARGET=	test
-NO_TEST=	yes
+TEST_TARGET=	test
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	haxx
@@ -35,11 +42,11 @@ OPTIONS_DEFINE=	ALTSVC BROTLI CA_BUNDLE COOKIES CURL_DEBUG DEBUG DOCS EXAMPLES I
 OPTIONS_GROUP=	PROTOCOL
 OPTIONS_RADIO=	SSL
 OPTIONS_SINGLE=	GSSAPI RESOLV
-OPTIONS_GROUP_PROTOCOL=	DICT FTP GOPHER HTTP HTTP2 IMAP LDAP LDAPS LIBSSH2 MQTT POP3 RTMP RTSP SMB SMTP TELNET TFTP
+OPTIONS_GROUP_PROTOCOL=	DICT FTP GOPHER HTTP HTTP2 IMAP LDAP LDAPS LIBSSH LIBSSH2 MQTT POP3 RTMP RTSP SMB SMTP TELNET TFTP WEBSOCKET
 OPTIONS_RADIO_SSL=	GNUTLS OPENSSL WOLFSSL
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 OPTIONS_SINGLE_RESOLV=	CARES THREADED_RESOLVER
-OPTIONS_DEFAULT=ALTSVC CA_BUNDLE COOKIES GSSAPI_${${SSL_DEFAULT} == base :?BASE :NONE} DICT FTP GOPHER HTTP HTTP2 IMAP LIBSSH2 NTLM OPENSSL POP3 PROXY RTSP SMTP STATIC TELNET TFTP THREADED_RESOLVER TLS_SRP
+OPTIONS_DEFAULT=ALTSVC CA_BUNDLE COOKIES GSSAPI_${${SSL_DEFAULT} == base :?BASE :NONE} DICT FTP GOPHER HTTP HTTP2 IMAP LIBSSH2 NTLM OPENSSL POP3 PROXY PSL RTSP SMTP STATIC TELNET TFTP THREADED_RESOLVER TLS_SRP
 OPTIONS_SUB=	yes
 ALTSVC_DESC=	HTTP Alternative Services support
 CA_BUNDLE_DESC=	Enable CA bundle for OpenSSL/GnuTLS
@@ -51,6 +58,8 @@ HTTP2_DESC=	HTTP/2 support (requires HTTP)
 HTTP2_IMPLIES=	HTTP
 IMAP_DESC=	IMAP/IMAPS support
 LDAPS_IMPLIES=	LDAP
+LIBSSH_DESC=	SCP/SFTP support via libssh (requires OPENSSL)
+LIBSSH_IMPLIES=	OPENSSL
 LIBSSH2_DESC=	SCP/SFTP support via libssh2 (requires OPENSSL)
 LIBSSH2_IMPLIES=OPENSSL
 MQTT_DESC=	MQTT support
@@ -62,6 +71,7 @@ SMB_DESC=	SMB/CIFS support
 SMTP_DESC=	SMTP/SMTPS support
 THREADED_RESOLVER_DESC=	Threaded DNS resolver
 TLS_SRP_DESC=	TLS-SRP (Secure Remote Password) support
+WEBSOCKET_DESC=	WebSocket support (experimental)
 
 ALTSVC_CONFIGURE_ENABLE=alt-svc
 BROTLI_CONFIGURE_WITH=	brotli
@@ -105,13 +115,15 @@ IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
 IMAP_CONFIGURE_ENABLE=	imap
 IPV6_CONFIGURE_ENABLE=	ipv6
 LDAP_CONFIGURE_ENABLE=	ldap
-LDAP_USE=		OPENLDAP=yes
+LDAP_USES=		ldap
 LDAPS_CONFIGURE_ENABLE=	ldaps
+LIBSSH_CONFIGURE_WITH=	libssh
+LIBSSH_LIB_DEPENDS=	libssh.so:security/libssh
 LIBSSH2_CONFIGURE_WITH=	libssh2
 LIBSSH2_LIB_DEPENDS=	libssh2.so:security/libssh2
 MQTT_CONFIGURE_ENABLE=	mqtt
 NTLM_CONFIGURE_ENABLE=	ntlm
-OPENSSL_CONFIGURE_WITH=	ssl=${OPENSSLBASE}
+OPENSSL_CONFIGURE_WITH=	openssl=${OPENSSLBASE}
 OPENSSL_CPPFLAGS=	-I${OPENSSLINC}
 OPENSSL_LDFLAGS=	-L${OPENSSLLIB}
 OPENSSL_USES=		ssl
@@ -130,6 +142,7 @@ TELNET_CONFIGURE_ENABLE=telnet
 TFTP_CONFIGURE_ENABLE=	tftp
 THREADED_RESOLVER_CONFIGURE_ENABLE=	pthreads threaded-resolver
 TLS_SRP_CONFIGURE_ENABLE=	tls-srp
+WEBSOCKET_CONFIGURE_ENABLE=	websockets
 WOLFSSL_CONFIGURE_WITH=	wolfssl
 WOLFSSL_LIB_DEPENDS=	libwolfssl.so:security/wolfssl
 ZSTD_CONFIGURE_WITH=	zstd
@@ -149,19 +162,8 @@ IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
 IGNORE=		only supports LDAPS with SSL
 .endif
 
-.if ${PORT_OPTIONS:MGSSAPI_BASE} && exists(${LOCALBASE}/lib/libkrb5support.so)
-BROKEN=		The GSSAPI_BASE option is selected, but you have krb5 installed. \
-		This is incompatible. In order to build, either select GSSAPI_MIT, \
-		or temporarily deinstall krb5 to build curl, or build in poudriere
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e '/^SUBDIRS = / s|$$| docs scripts|; /^DIST_SUBDIRS = / s| docs scripts||; /cd docs &&/d' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|\(flags_dbg_off=\)".*"|\1""|; s|\(flags_opt_off=\)".*"|\1""|' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|include <gssapi.h>|include <gssapi/gssapi.h>|' ${WRKSRC}/lib/urldata.h
-
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${STAGEDIR}${PREFIX}/share/aclocal/
+	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${PREFIX}/share/aclocal/
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/ ${FAKE_DESTDIR}${DOCSDIR}/libcurl/

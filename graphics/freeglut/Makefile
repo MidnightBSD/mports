@@ -1,21 +1,21 @@
 PORTNAME=	freeglut
-PORTVERSION=	3.0.0
-PORTREVISION=	2
+PORTVERSION=	3.2.1
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	open source implementation of the GLUT library
+COMMENT=	Open source implementation of the GLUT library
+WWW=		https://freeglut.sourceforge.net/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake:insource pathfix
+USES=		cmake:insource gl localbase:ldflags pathfix xorg
 USE_LDCONFIG=	yes
-USE_XORG=	ice x11 xi xrandr
+USE_XORG=	ice x11 xi xrandr xxf86vm
 USE_GL=		gl glu
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lusbhid -lm
+LDFLAGS+=	-lusbhid -lm
 INSTALL_TARGET=	install/strip
 
 DOCS=	download.html freeglut.html freeglut_logo.png		\

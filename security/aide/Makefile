@@ -12,7 +12,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	libmhash.so:security/mhash \
 		libpcre2-8.so:devel/pcre2
 
-USES=		bison gmake localbase
+USES=		bison gmake localbase pkgconfig
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash=/usr/local/lib \

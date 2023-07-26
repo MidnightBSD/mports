@@ -37,8 +37,8 @@ sub build {
     local $dbh->{AutoCommit} = 0;
   
     eval {
-      my $sth = $dbh->prepare("INSERT INTO ports (name, version, description, pkgname, license) VALUES (?,?,?,?,?)");
-      $sth->execute(@port{qw(name version description pkgname license)});
+      my $sth = $dbh->prepare("INSERT INTO ports (name, version, description, pkgname, license, flavor, cpe) VALUES (?,?,?,?,?,?,?)");
+      $sth->execute(@port{qw(name version description pkgname license flavor cpe)});
       $sth->finish;
   
       $class->insert_depends(\%port, $dbh);
@@ -112,7 +112,8 @@ CREATE TABLE ports (
   status varchar(32) not null default 'untested',
   updated timestamp without time zone not null default now(),
   restricted boolean not null default false,
-  flavor varchar(128)
+  flavor varchar(128),
+  cpe varchar(200)
 )
 END_O_SQL
   $dbh->do(<<END_O_SQL);

@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dictionary/spellchecking framework
+WWW=		https://abiword.github.io/enchant/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB

@@ -1,11 +1,10 @@
-# Created by: Bruce M. Simpson <bms@FreeBSD.org>
-
 PORTNAME=	nss_mdns
 PORTVERSION=	0.14.1.20200624
 CATEGORIES=	dns
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NSS module implementing multicast DNS name resolution
+WWW=		https://github.com/lathiat/nss-mdns
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -29,8 +28,6 @@ CONFLICTS_INSTALL=	mDNSResponder_nss-[0-9]*
 
 # TODO: Print a message about the etc directory used for mdns.allow
 # being relative to ${PREFIX}.
-PLIST_FILES=	${INSTALLED_MODULES:C/^/lib\//:C/$/.so.1/} \
-		${INSTALLED_MODULES:C/^/lib\//:C/$/.so/}
 PORTDOCS=	README.md
 
 OPTIONS_DEFINE=	DOCS
@@ -41,11 +38,11 @@ INSTALLED_MODULES=	nss_mdns nss_mdns_minimal \
 
 post-install:
 .for INSTALLED_MODULE in ${INSTALLED_MODULES}
-	${LN} -s ${INSTALLED_MODULE}.so.1 ${STAGEDIR}${PREFIX}/lib/${INSTALLED_MODULE}.so
+	${LN} -sf lib${INSTALLED_MODULE}.so.2 ${PREFIX}/lib/${INSTALLED_MODULE}.so
 .endfor
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/
-	${INSTALL_DATA} ${INSTALL_WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

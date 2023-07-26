@@ -4,7 +4,7 @@ CATEGORIES=	print
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gutenprint Printer Drivers
-WWW=		http://gimp-print.sourceforge.net/
+WWW=		https://gimp-print.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -61,8 +61,8 @@ post-patch:
 
 post-install:
 .if defined(GUT_SLAVE) && ${GUT_SLAVE} == "gimp"
-	@(cd ${WRKSRC}/src/gutenprintui2 && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
-		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
+	@(cd ${WRKSRC}/src/gutenprintui2 && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} \
+		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 .else
 	@(test -d ${FAKE_DESTDIR}/${DATADIR}/doc/reference-html && ${RMDIR} ${FAKE_DESTDIR}/${DATADIR}/doc/reference-html || :)
 .endif

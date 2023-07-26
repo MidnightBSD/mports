@@ -15,16 +15,6 @@ IGNORE=	USES=desktop-file-utils does not require args
 BUILD_DEPENDS+=	update-desktop-database:devel/desktop-file-utils
 RUN_DEPENDS+=	update-desktop-database:devel/desktop-file-utils
 
-# bolt our post-install target to post-install
-post-install: desktop-file-post-install
-
-desktop-file-post-install:
-# run for port post-install
-	@-update-desktop-database
-# plist entries for packages.
-	@${ECHO_CMD} "@postexec ${LOCALBASE}/bin/update-desktop-database > /dev/null || /usr/bin/true" \
-		>> ${TMPPLIST}; \
-	${ECHO_CMD} "@postunexec ${LOCALBASE}/bin/update-desktop-database > /dev/null || /usr/bin/true" \
-		>> ${TMPPLIST}
-
+# needs mport 2.2.0
+PLIST_FILES+=	"@desktop-file-utils"
 .endif

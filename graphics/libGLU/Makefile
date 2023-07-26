@@ -1,7 +1,5 @@
-
-
 PORTNAME=	libGLU
-PORTVERSION=	9.0.1
+PORTVERSION=	9.0.2
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glu/ \
 		https://mesa.freedesktop.org/archive/glu/
@@ -12,11 +10,11 @@ COMMENT=	OpenGL utility library
 
 LICENSE=	mit
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-static
-INSTALL_TARGET=	install-strip
-USES=		gl libtool pathfix pkgconfig tar:xz xorg
-USE_GL=		gl
+USES=		gl meson pkgconfig tar:xz
+
+USE_GL=		opengl
 USE_LDCONFIG=	yes
+
+MESON_ARGS=	-Ddefault_library=shared
 
 .include <bsd.port.mk>

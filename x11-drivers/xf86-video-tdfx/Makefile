@@ -1,5 +1,6 @@
 PORTNAME=	xf86-video-tdfx
 PORTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org

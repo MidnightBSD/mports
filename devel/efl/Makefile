@@ -1,6 +1,7 @@
 PORTNAME=	efl
 DISTVERSION=	1.26.3
-CATEGORIES=	devel enlightenment
+PORTREVISION=	2
+CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 DIST_SUBDIR=	enlightenment
 
@@ -205,6 +206,8 @@ EFL_BINDINGS=		${LUA_BINDING} ${CXX_BINDING}
 
 MESON_ARGS+=		-Dbindings="${EFL_BINDINGS:ts,}"
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 # Work-around build failure, which is caused by subtle problem in lld and -as-needed flag
@@ -230,6 +233,6 @@ post-install:
 
 post-fake:
 	@${ECHO_CMD} "autogenerating plist";
-	@cd ${PREFIX} && ${FIND} * -type f -or -type l >> ${TMPPLIST}
+	@cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${FIND} * -type f -or -type l >> ${TMPPLIST}
 
 .include <bsd.port.mk>

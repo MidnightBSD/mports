@@ -1,7 +1,6 @@
-# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-
 PORTNAME=	muffin
 PORTVERSION=	4.8.0
+PORTREVISION=	1
 CATEGORIES=	x11-wm gnome
 DIST_SUBDIR=	gnome
 

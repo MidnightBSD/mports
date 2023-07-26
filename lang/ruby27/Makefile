@@ -1,5 +1,3 @@
-# Created by: Akinori MUSHA aka knu <knu@idaemons.org>
-
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
 PORTREVISION=	${RUBY_PORTREVISION}
@@ -11,6 +9,7 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented interpreted scripting language
+WW=		https://www.ruby-lang.org/en/
 
 LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual

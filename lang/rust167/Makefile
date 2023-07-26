@@ -1,6 +1,6 @@
 PORTNAME=	rust
 PORTVERSION?=	1.67.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://dev-static.rust-lang.org/dist/:src \
@@ -22,6 +22,9 @@ LICENSE=	apache2 mit
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
+
+BROKEN_MidnightBSD_2.1=		requires 3.x
+BROKEN_MidnightBSD_2.2=		requires 3.x
 
 FAKE_OPTS=    trueprefix
 NO_TEST=      yes
@@ -187,32 +190,12 @@ do-configure:
 	@${ECHO_CMD} 'ccache=false' >> ${WRKSRC}/config.toml
 .endif
 	@${ECHO_CMD} 'ninja=true' >> ${WRKSRC}/config.toml
-.if ${ARCH} == powerpc
-# Rust doesn't call the system compiler with the full version of the target.
-# This makes powerpc miscompile due to the secure-plt ABI change.
-# Additionally, force using ld.bfd to work around a linking problem in rustc_mir
-	@${PRINTF} '#!/bin/sh\nexec ${CC} "$$@" --target=powerpc-unknown-freebsd13.0' > ${WRKDIR}/cc-wrapper
-	@${CHMOD} +x ${WRKDIR}/cc-wrapper
-	@${PRINTF} '#!/bin/sh\nexec ${CXX} "$$@" --target=powerpc-unknown-freebsd13.0' > ${WRKDIR}/cxx-wrapper
-	@${CHMOD} +x ${WRKDIR}/cxx-wrapper
-	@${PRINTF} '#!/bin/sh\nexec ${CC} -fuse-ld=bfd "$$@" --target=powerpc-unknown-freebsd13.0' > ${WRKDIR}/ld-wrapper
-	@${CHMOD} +x ${WRKDIR}/ld-wrapper
-.endif
 .for _target in ${_RUST_TARGETS}
 	@${ECHO_CMD} '[target.${_target}]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'ar="${AR}"' >> ${WRKSRC}/config.toml
-.if ${ARCH} == powerpc
-	@${ECHO_CMD} 'cc="${WRKDIR}/cc-wrapper"' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'cxx="${WRKDIR}/cxx-wrapper"' >> ${WRKSRC}/config.toml
-.else
 	@${ECHO_CMD} 'cc="${CC}"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'cxx="${CXX}"' >> ${WRKSRC}/config.toml
-.endif
-.if ${ARCH} == powerpc
-	@${ECHO_CMD} 'linker="${WRKDIR}/ld-wrapper"' >> ${WRKSRC}/config.toml
-.else
 	@${ECHO_CMD} 'linker="${CC}"' >> ${WRKSRC}/config.toml
-.endif
 .endfor
 	@${ECHO_CMD} '[dist]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'src-tarball=false' >> ${WRKSRC}/config.toml
@@ -226,34 +209,24 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
 do-install:
-	-${RM} -r ${WRKDIR}/_extractdist
-.for _c in ${_COMPONENTS}
-	${MKDIR} ${WRKDIR}/_extractdist
-	${TAR} xf ${WRKDIR}/_build/dist/${_c}.tar.xz -C ${WRKDIR}/_extractdist
-	cd ${WRKDIR}/_extractdist/${_c} && \
-		${SH} install.sh \
-		--docdir="${DOCSDIR}" \
-		--mandir="${PREFIX}/share/man" \
-		--prefix="${PREFIX}"
-	-${RM} -r ${WRKDIR}/_extractdist
-.endfor
-
+	@cd ${WRKSRC} && \
+                ${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${PYTHON_CMD} x.py install --jobs=${MAKE_JOBS_NUMBER}
 # We autogenerate the plist file.  We do that, instead of the
 # regular pkg-plist, because several libraries have a computed
 # filename based on the absolute path of the source files.  As it
 # is user-specific, we cannot know their filename in advance.
-	-${RM}	${DOCSDIR}/*.old \
-		${PREFIX}/lib/rustlib/components \
-		${PREFIX}/lib/rustlib/install.log \
-		${PREFIX}/lib/rustlib/manifest-* \
-		${PREFIX}/lib/rustlib/rust-installer-version \
-		${PREFIX}/lib/rustlib/uninstall.sh
+	-${RM} -r ${DOCSDIR}/*.old \
+                ${DOCSDIR}/html/.lock \
+                ${DOCSDIR}/html/.stamp \
+                ${PREFIX}/lib/rustlib/install.log \
+                ${PREFIX}/lib/rustlib/manifest-* \
+                ${PREFIX}/lib/rustlib/uninstall.sh
 	@${FIND} ${PREFIX}/bin ${PREFIX}/lib \
-		${PREFIX}/libexec -exec ${FILE} -i {} + | \
-		${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
+                ${PREFIX}/libexec -exec ${FILE} -i {} + | \
+                ${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
 	@${FIND} ${PREFIX} -not -type d | \
-		${SED} -E -e 's,^${FAKE_DESTDIR}${TRUE_PREFIX}/,,' \
-			-e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
+                ${SED} -E -e 's,^${FAKE_DESTDIR}${TRUE_PREFIX}/,,' \
+                        -e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 post-install-DOCS-on:
 # Ignore any left behind empty directories in case some docs fail

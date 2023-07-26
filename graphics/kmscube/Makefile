@@ -1,5 +1,6 @@
 PORTNAME=	kmscube
-PORTVERSION=	s20220902
+PORTVERSION=	s20201028
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,7 +17,7 @@ USE_GITLAB=	yes
 USE_GL=		egl gbm glesv2
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	mesa
-GL_COMMIT=	3bf6ee1a02334386d87cfe356c3bfb0b24e1fed8
+GL_COMMIT=	e6386d1b99366ea7559438c0d3abd2ae2d6d61ac
 PLIST_FILES=	bin/${PORTNAME} \
 		bin/texturator \
 		${NULL}

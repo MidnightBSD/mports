@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	01
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and tools for parsing the visio file format structure
+WWW=		https://wiki.documentfoundation.org/DLP/Libraries/libvisio
 
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/COPYING.MPL

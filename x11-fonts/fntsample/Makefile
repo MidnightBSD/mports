@@ -1,15 +1,14 @@
-# Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
-
 PORTNAME=	fntsample
-PORTVERSION=	5.3
+PORTVERSION=	5.4
 DISTVERSIONPREFIX=	release/
 CATEGORIES=	x11-fonts
-MASTER_SITES=	https://unicode.org/Public/12.1.0/ucd/:unidata
+MASTER_SITES=	https://unicode.org/Public/14.0.0/ucd/:unidata
 DISTFILES=	Blocks.txt:unidata
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Show Unicode coverage of a font
+WWW=		https://github.com/eugmes/fntsample
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING

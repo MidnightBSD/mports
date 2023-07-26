@@ -43,7 +43,9 @@ sub sync {
   my $osversion;
   my %visited;
 
-  if ($osrel eq "3.1") {
+  if ($osrel eq "3.2") {
+    $osversion = 302000;
+  } elsif ($osrel eq "3.1") {
     $osversion = 301000;
   } elsif ($osrel eq "3.0") {
     $osversion = 300005;
@@ -99,6 +101,7 @@ sub sync {
       www         => $dump{www},
       pkgname     => $dump{pkgname},
       flavor      => $dump{flavor},
+      cpe         => $dump{cpe},
       default_flavor => 1,
     });     
 
@@ -258,8 +261,36 @@ sub sync {
       });    
     }    
   }
+
+  print "Building MOVED list... \n";
+  moved_list($run, $root);
   
   print "done.\n";
+}
+
+sub moved_list {
+  my ($run, $root) = @_;
+
+  my $fh;
+  my %result;
+  open($fh, $root . "/MOVED") || die "failed to read MOVED file: $!";
+  while (my $line = <$fh>) {
+    chomp $line;
+    # skip comments and blank lines
+    next if $line =~ /^\#/ || $line =~ /^\s*$/ || $line =~ /^\+/;
+    #split each line into array
+    my ($port, $moved_to, $date, $why) = split(/|/, $line);
+    
+    next unless defined $port;
+
+	  $port = Magus::Moved->insert({ 
+      run         => $run,
+      port => $port,
+      moved_to => $moved_to,
+      date => $date,
+      why => $why,
+    });
+  }
 }
 
 

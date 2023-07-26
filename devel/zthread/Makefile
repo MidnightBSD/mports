@@ -1,5 +1,3 @@
-
-
 PORTNAME=	zthread
 PORTVERSION=	2.3.2
 PORTREVISION=	5
@@ -9,6 +7,7 @@ DISTNAME=	ZThread-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Platform-independent object-oriented C++ threading library
+WWW=		http://zthread.sourceforge.net/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -22,7 +22,6 @@ USES=		compiler:c++14-lang cpe gmake libtool localbase pathfix pkgconfig ssl tar
 CONFIGURE_ARGS=	--disable-python-bindings --with-jemalloc
 CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl"
-IGNORE_SSL=base
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_CXXSTD=	c++14
@@ -58,6 +57,7 @@ USE_GCC=8
 .if (${OSVERSION} < 300000)
 # force openssl from mports.
 SSL_DEFAULT=    openssl
+IGNORE_SSL=base
 .endif
 
 

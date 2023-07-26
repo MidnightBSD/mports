@@ -176,7 +176,8 @@ PLIST_SUB+=		PG_USER=${PG_USER} \
 			PG_VERSION=13
 SUB_LIST+=		PG_GROUP=${PG_GROUP} \
 			PG_USER=${PG_USER} \
-			PG_UID=${PG_UID}
+			PG_UID=${PG_UID} \
+			PG_VERSION=13
 
 .include <bsd.mport.options.mk>
 

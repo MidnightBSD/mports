@@ -1,5 +1,5 @@
 PORTNAME=	serialport
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	comms devel python
 
 MAINTAINER=	ports@MidnightBSD.org

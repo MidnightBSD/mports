@@ -1,0 +1,29 @@
+--- wscript.orig	2023-06-01 19:51:20 UTC
++++ wscript
+@@ -26,7 +26,7 @@ top = '.'
+ # Directory where build files are placed
+ out = 'build'
+ 
+-# System waf is running on: linux, darwin (Mac OSX), freebsd, windows, etc.
++# System waf is running on: linux, darwin (Mac OSX), midnightbsd, freebsd, windows, etc.
+ system = platform.system().lower()
+ 
+ def options(ctx):
+@@ -38,7 +38,7 @@ def configure(ctx):
+     # Use this USE variable to add flags to NORM's compilation
+     ctx.env.USE_BUILD_NORM += ['BUILD_NORM', 'protolib']
+ 
+-    if system in ('linux', 'darwin', 'freebsd'):
++    if system in ('linux', 'darwin', 'freebsd', 'midnightbsd'):
+         ctx.env.DEFINES_BUILD_NORM += ['ECN_SUPPORT']
+ 
+     if system == 'windows':
+@@ -114,7 +114,7 @@ def build(ctx):
+         posted = True,
+     )
+ 
+-    if system in ('linux', 'darwin', 'freebsd'):
++    if system in ('linux', 'darwin', 'freebsd', 'midnightbsd'):
+         normapp.source.append('src/unix/unixPostProcess.cpp')
+ 
+     if system == 'windows':

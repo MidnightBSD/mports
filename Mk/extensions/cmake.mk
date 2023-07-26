@@ -48,7 +48,7 @@ _INCLUDE_USES_CMAKE_MK=	yes
 
 _valid_ARGS=		insource run noninja testing _internal
 
-_CMAKE_VERSION=		3.23.5
+_CMAKE_VERSION=		3.24.3
 
 # Sanity check
 .  for arg in ${cmake_ARGS}

@@ -175,7 +175,8 @@ sub api_run_port_stats {
     can_reset => $port->{can_reset} eq 'active' ? 1 : 0,
     description => $port->description,
     license => $port->license,
-    www => $port->www
+    www => $port->www,
+    cpe => $port->cpe
      });
   }
       
@@ -237,7 +238,8 @@ sub api_latest {
           licenses => [ split(' ', $port->license) ],
           homepages => [$port->www],
           categories => \@cats,
-          subpackages => \@subpackages
+          subpackages => \@subpackages,
+          cpe => $port->cpe
          };
        }
     }
@@ -519,7 +521,8 @@ sub port_page {
     can_reset => $port->can_reset? 1 : 0,
     fail      => $port->status eq "fail",
     pass      => $port->status eq "pass",
-    warn      => $port->status eq "warn"
+    warn      => $port->status eq "warn",
+    cpe       => $port->cpe
   );
   
   my @events = map { { 

@@ -1,5 +1,5 @@
 PORTNAME=	javaservicewrapper
-PORTVERSION=	3.5.44
+PORTVERSION=	3.5.53
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://wrapper.tanukisoftware.com/download/${PORTVERSION}/
 DISTNAME=	wrapper_${PORTVERSION}_src
@@ -12,7 +12,8 @@ LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
 USES=		gmake iconv
-USE_JAVA=	8+
+USE_JAVA=	yes
+JAVA_VERSION=	8+
 USE_ANT=	yes
 USE_LDCONFIG=	${PREFIX}/lib/javaservicewrapper/lib
 
@@ -28,6 +29,14 @@ MAKE_ARGS+=	-Dbits=64
 MAKE_ARGS+=	-Dbits=32
 CFLAGS+=	-fPIC
 .endif
+
+.include <bsd.port.pre.mk>
+
+#.if ${JAVA_PORT_VERSION} >= 15
+PLIST_SUB+=	JS_ENGINE="@comment "
+#.else
+#PLIST_SUB+=	JS_ENGINE=""
+#.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|gcc|${CC} ${CFLAGS}| ; \
@@ -48,4 +57,4 @@ do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/* ${FAKE_DESTDIR}${DOCSDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

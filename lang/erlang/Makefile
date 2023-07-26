@@ -1,13 +1,14 @@
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
-DISTVERSION=	24.3.4.2
-PORTREVISION=	0
+DISTVERSION=	25.3.2.3
 PORTEPOCH=	4
+PORTREVISION=	0
 CATEGORIES=	lang parallel java
 DIST_SUBDIR=	erlang
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language from Ericsson
+WWW=		https://www.erlang.org/
 
 LICENSE=	apache2
 
@@ -35,9 +36,9 @@ SUB_LIST=	TOOLS_VSN=${TOOLS_VSN}
 WRKSRC=		${WRKSRC_otp}
 
 ERLANG_LIB=	${PORTNAME}
-EI_VSN=		5.2.2
-SNMP_VSN=	5.12
-TOOLS_VSN=	3.5.2
+EI_VSN=		5.3.2
+SNMP_VSN=	5.13.5
+TOOLS_VSN=	3.5.3
 
 OPTIONS_DEFINE=		CHUNKS CORBA DIRTY DTRACE FOP JAVA KQUEUE MANPAGES ODBC \
 			OPENSSL PDF SCTP SHARING WX
@@ -98,7 +99,7 @@ SHARING_CONFIGURE_ENABLE=	sharing-preserving
 WX_USES=			gl
 WX_CONFIGURE_WITH=		wx-config=${WX_CONFIG}
 WX_VARS=			USE_GL="gl glu" \
-				USE_WX=3.1+ \
+				USE_WX=3.2+ \
 				WX_COMPS="wx"
 
 .include <bsd.port.pre.mk>
@@ -141,17 +142,16 @@ pre-configure-WX-off:
 post-configure-ODBC-on:
 	${RM} ${WRKSRC}/lib/odbc/SKIP
 
+post-configure-ODBC-off:
+	echo "disabled by port options" > ${WRKSRC}/lib/odbc/SKIP
+
 pre-build-NATIVE-on:
 	@cd ${WRKSRC} && ${MAKE_CMD} clean
 
 post-build-CORBA-on:
-	cd ${WRKSRC_corba} \
-		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} ${MAKE_CMD}
-
-post-install-CORBA-on:
-	cd ${WRKSRC_corba} \
-		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
-			${MAKE_CMD} release RELEASE_ROOT=${FAKE_DESTDIR}${PREFIX}/lib/${ERLANG_LIB}
+	cd ${WRKSRC_corba} && \
+		${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
+		${MAKE_CMD}
 
 # The man-pages are put (in spite of FreeBSD's port convention) in a private
 # subdir. This is to avoid cluttering up the man page name space. Also the
@@ -159,15 +159,31 @@ post-install-CORBA-on:
 # actual system man pages. (erl.1 and epmd.1 perhaps being the exception).
 
 post-build-FOP-on:
-	@cd ${WRKSRC} && ${MAKE_CMD} docs
+	@cd ${WRKSRC} && \
+		${MAKE_CMD} docs
 .if ${PORT_OPTIONS:MCORBA}
-	cd ${WRKSRC_corba} \
-		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} ${MAKE_CMD} docs
+	cd ${WRKSRC_corba} && \
+		${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
+		${MAKE_CMD} docs
 .endif
 
 post-install:
-	${LN} -sf ../lib/${ERLANG_LIB}/lib/erl_interface-${EI_VSN}/bin/erl_call ${PREFIX}/bin/erl_call
-	${LN} -sf ../lib/${ERLANG_LIB}/lib/snmp-${SNMP_VSN}/bin/snmpc ${PREFIX}/bin/snmpc
+	${LN} -sf ../lib/${ERLANG_LIB}/lib/erl_interface-${EI_VSN}/bin/erl_call \
+		${PREFIX}/bin/erl_call
+	${LN} -sf ../lib/${ERLANG_LIB}/lib/snmp-${SNMP_VSN}/bin/snmpc \
+		${PREFIX}/bin/snmpc
+
+post-install-CORBA-on:
+	cd ${WRKSRC_corba} && \
+		${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
+		${MAKE_CMD} release RELEASE_ROOT=${FAKE_DESTDIR}${PREFIX}/lib/${ERLANG_LIB}
+
+post-install-DTRACE-on:
+	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/dtrace
+	${INSTALL_DATA} ${WRKSRC}/erts/emulator/beam/*.d \
+		${WRKSRC}/lib/runtime_tools/c_src/*.d \
+		${WRKSRC}/lib/runtime_tools/examples/*.d \
+		${FAKE_DESTDIR}${DATADIR}/dtrace
 
 post-install-FOP-on:
 	@${ECHO_CMD} "MANPATH ${PREFIX}/lib/erlang/man" > ${WRKDIR}/erlang.conf
@@ -190,7 +206,7 @@ post-install-PDF-on:
 .endif
 
 post-install-JAVA-off:
-	-1${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/jinterface-*
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/jinterface-*
 
 post-install-ODBC-off:
 	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/odbc-*

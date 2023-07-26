@@ -1,13 +1,14 @@
 PORTNAME=	libbind
 PORTVERSION=	6.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	dns net
 MASTER_SITES=	ISC/libbind/${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standard C resolver library
+WWW=		https://www.isc.org/software/libbind
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
@@ -16,7 +17,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --with-randomdev=/dev/random
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 USES=		groff
 
 OPTIONS_DEFINE=	IPV6 THREADS

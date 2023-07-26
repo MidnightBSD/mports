@@ -2,8 +2,10 @@
 { type: install
   message: <<EOM
 Known issues:
+- On MidnightBSD 2.* kernel needs to be rebuilt with EVDEV_SUPPORT
+- On MidnightBSD 2.* drm-kmod needs https://github.com/FreeBSDDesktop/kms-drm/pull/213
 - NVIDIA may be affected by https://github.com/aritger/eglstreams-kms-example/issues/7
-- VULKAN currently requires vulkan-validation-layers
+- VULKAN currently requires mesa-devel and vulkan-validation-layers
 EOM
 }
 ]

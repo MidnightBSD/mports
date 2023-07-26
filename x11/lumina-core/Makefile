@@ -1,9 +1,7 @@
-# Created by: Ken Moore <ken@pcbsd.org>
-
 PORTNAME=	lumina-core
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.6.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -9,8 +9,11 @@ MAINTAINER=	ports@MidnighBSD.org
 COMMENT=	Opensource MPEG-4 codec, based on OpenDivx
 WWW=		http://www.xvid.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKDIR}/xvidcore/LICENSE
+
+# weird magus dependency need on 3.x. not sure what is up here
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 
 USES=		cpe gmake tar:bz2
 GNU_CONFIGURE=	yes

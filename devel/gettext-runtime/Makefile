@@ -4,10 +4,10 @@ PORTREVISION=	0
 COMMENT=	GNU gettext runtime libraries and programs
 WWW=		https://www.gnu.org/software/gettext/
 
-LICENSE=	lgpl2.1 gpl3
+LICENSE=	lgpl2.1+ gpl3+
 LICENSE_COMB=	multi
-LICENSE_FILE_lgpl2.1 =	${WRKSRC}/intl/COPYING.LIB
-LICENSE_FILE_gpl3 =	${WRKSRC}/../COPYING
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/intl/COPYING.LIB
+LICENSE_FILE_gpl3+ =	${WRKSRC}/../COPYING
 
 .include "${.CURDIR}/../gettext/Makefile.common"
 

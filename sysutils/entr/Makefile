@@ -1,10 +1,11 @@
 PORTNAME=	entr
-PORTVERSION=	5.1
+PORTVERSION=	5.3
 CATEGORIES=	sysutils
-MASTER_SITES=	http://entrproject.org/code/
+MASTER_SITES=	https://eradman.com/entrproject/code/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Runs arbitrary commands when files change
+WWW=		https://eradman.com/entrproject
 
 LICENSE=	iscl bsd2
 LICENSE_COMB=	dual
@@ -14,11 +15,12 @@ FAKE_OPTS=	trueprefix
 
 MAKEFILE=	Makefile.bsd
 MAKE_ARGS+=	MANPREFIX=${MANPREFIX}/man
-TEST_TARGET=	test
 PLIST_FILES=	bin/entr man/man1/entr.1.gz
 
+NO_TEST=	yes
+
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/entr
+	@${STRIP_CMD} ${PREFIX}/bin/entr
 	${MV} ${PREFIX}/man1/entr.1 ${PREFIX}/man/man1/entr.1
 
 .include <bsd.port.mk>

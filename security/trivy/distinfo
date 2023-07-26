@@ -1,0 +1,3 @@
+TIMESTAMP = 1683640028
+SHA256 (trivy_0.41.0_FreeBSD-64bit.tar.gz) = c9c18cd681bc46ef52de2af5dfdfa29a5360b451ff26747779701c858b670892
+SIZE (trivy_0.41.0_FreeBSD-64bit.tar.gz) = 50415299

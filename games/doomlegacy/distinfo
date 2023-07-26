@@ -1,4 +1,5 @@
-SHA256 (doomlegacy_1.45.2_source.tar.bz2) = 092c23418974062a516df4c21ccd8c7d6187755220ba518475935ea5b2688fb9
-SIZE (doomlegacy_1.45.2_source.tar.bz2) = 2076653
-SHA256 (doomlegacy_1.45.2_common.zip) = 509bac4a05e55a9640846d64d43a0371eaed06ff82a9c4a0d8d564d35a9aec28
-SIZE (doomlegacy_1.45.2_common.zip) = 941784
+TIMESTAMP = 1671410365
+SHA256 (doomlegacy_1.48.12_source.tar.bz2) = 8378e69730ae8fa57596b0c78d24d158618b90dabe9597793b5bd077324b5c44
+SIZE (doomlegacy_1.48.12_source.tar.bz2) = 2572064
+SHA256 (doomlegacy_1.48.12_common.zip) = 94cec77e7674b4c80d3f05812335918030056b33889c08d0389c6fffa28f368b
+SIZE (doomlegacy_1.48.12_common.zip) = 1055689

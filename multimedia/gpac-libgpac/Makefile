@@ -8,7 +8,7 @@ PKGNAMESUFFIX=	-libgpac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gpac MPEG-4 Systems library and headers
-WWW=		http://gpac.sourceforge.net/
+WWW=		https://gpac.sourceforge.net/
 
 LICENSE=	lgpl2.1
 

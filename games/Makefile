@@ -69,6 +69,7 @@ SUBDIR += nextgo
 SUBDIR += oolite
 SUBDIR += openra
 SUBDIR += openrct2
+SUBDIR += pinball
 SUBDIR += pvpgn
 SUBDIR += py-cbeams
 SUBDIR += py-fife

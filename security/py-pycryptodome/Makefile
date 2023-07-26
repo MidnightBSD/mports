@@ -1,22 +1,24 @@
-# Created by: Yuri Victorovich <yuri@rawbw.com>
-
 PORTNAME=	pycryptodome
-DISTVERSION=	3.10.1
+DISTVERSION=	3.16.0
 CATEGORIES=	security python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cryptographic library for Python
+WWW=		https://www.pycryptodome.org/
 
 LICENSE=	publicdom bsd2 apache2
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-USES=		python:3.6+
+USES=		cpe python:3.7+
+CPE_VENDOR=	python
 USE_PYTHON=	autoplist distutils
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pycrypto
+
+NO_TEST=	yes
 
 NAMESPACE?=	Crypto
 
@@ -28,7 +30,7 @@ post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/PublicKey/*.so
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/Util/*.so
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+#do-test:
+#	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>

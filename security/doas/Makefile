@@ -1,9 +1,10 @@
 PORTNAME=	doas
-PORTVERSION=	6.3p6
+PORTVERSION=	6.3p9
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple sudo alternative to run commands as another user
+WWW=		https://github.com/slicer69/doas/
 
 LICENSE=	bsd2 iscl
 LICENSE_COMB=	multi

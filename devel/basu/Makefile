@@ -1,24 +1,18 @@
 PORTNAME=	basu
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.0
-PORTREVISION=	1
+DISTVERSION=	0.2.1
 CATEGORIES=	devel
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	928a746f7ebd.patch:-p1 # https://github.com/emersion/basu/pull/35
-PATCHFILES+=	4277dfe8077c.patch:-p1 # https://github.com/emersion/basu/pull/35
-PATCHFILES+=	f12a4efd8cb7.patch:-p1 # https://github.com/emersion/basu/pull/40
+MASTER_SITES=	https://git.sr.ht/~emersion/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	sd-bus library, extracted from systemd
+WWW=		https://sr.ht/~emersion/basu/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE.LGPL2.1
 
 USES=		compiler:c11 gperf meson python:build shebangfix
-USE_GITHUB=	yes
 USE_LDCONFIG=	yes
-GH_ACCOUNT=	emersion
 SHEBANG_FILES=	src/basic/generate-gperfs.py
 
 USE_GCC=	10+

@@ -2,15 +2,16 @@
 
 PORTNAME=	kBuild
 DISTVERSION=	${KBUILD_VERSION}
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	devel
 MASTER_SITES=	FREEBSD_LOCAL/jkim
 DISTNAME=	${PORTNAME}-${DISTVERSION}r3127-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Makefile framework
+WWW=		https://svn.netlabs.org/kbuild
 
-LICENSE=	gpl3 bsd3
+LICENSE=	gpl3+ bsd3
 LICENSE_COMB=	multi
 
 NOT_FOR_ARCHS=		aarch64 armv6 armv7 mips mips64

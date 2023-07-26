@@ -1,13 +1,12 @@
-# Created by: Bartek Rutkowski <ports@robakdesign.com>
-
 PORTNAME=	click
-PORTVERSION=	7.1.2
+PORTVERSION=	8.1.3
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python package for creating command line interfaces
+WWW=		https://github.com/pallets/click
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
@@ -18,4 +17,10 @@ USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
 NO_TEST=	yes
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 31000
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=3.6.0:devel/py-importlib-metadata@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>

@@ -8,8 +8,6 @@ WWW=		https://www.boost.org/
 LICENSE=	boost
 LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
-BROKEN_sparc64=	https://github.com/boostorg/context/commit/f2ef6326b6ed
-
 BUILD_DEPENDS+=	bjam:devel/boost-jam
 
 OPTIONS_DEFINE=		DEBUG OPTIMIZED_CFLAGS
@@ -35,6 +33,11 @@ MAKE_ARGS+=	${MAKE_ARGS_${CHOSEN_COMPILER_TYPE}}
 MAKE_ARGS_gcc=	xdll-path=${_GCC_RUNTIME}
 ALL_TARGET=	stage
 
+.include <bsd.port.pre.mk>
+
+pre-build:
+PLIST_SUB+= BROKE=""
+
 do-install:
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_ARGS:NDESTDIR=*:S,^--prefix=,&${STAGEDIR},} ${INSTALL_TARGET}
@@ -58,4 +61,4 @@ post-install:
 		-e "s|%%PYTHON_LIBDIR%%|${PYTHON_LIBDIR}|g" \
 		-e "s|%%PYTHON_VERSION%%|${PYTHON_VERSION}|g" ${PKGMESSAGE}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

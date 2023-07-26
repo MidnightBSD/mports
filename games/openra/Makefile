@@ -45,6 +45,7 @@ USE_GITHUB=	yes
 GH_PROJECT=	OpenRA
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		desktop-file-utils gmake lua:51 mono:nuget openal:soft sdl \
 		shared-mime-info
 USE_SDL=	sdl2

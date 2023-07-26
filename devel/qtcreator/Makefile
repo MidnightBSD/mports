@@ -1,5 +1,6 @@
 PORTNAME=	qtcreator
-DISTVERSION=	4.9.2
+DISTVERSION=	4.13.3
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/qtcreator/${DISTVERSION:R}/${DISTVERSION}
 DISTNAME=	qt-creator-opensource-src-${DISTVERSION}
@@ -8,23 +9,24 @@ DIST_SUBDIR=	KDE/Qt/qtcreator
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ and QML IDE for Qt development
 
-LICENSE=	gpl3
+LICENSE=	QtGPL
+LICENSE_GROUPS_QtGPL=	GPL
+LICENSE_NAME=	GPLv3 with Qt Company GPL Exception 1.0
+LICENSE_FILE=	${WRKSRC}/LICENSE.GPL3-EXCEPT
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 # depend on the split out qbs
 LIB_DEPENDS=	libqbscore.so:devel/qbs
 BUILD_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
 RUN_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
 
-USES=		compiler:c++14-lang gl python:2.7 qmake qt:5 shebangfix tar:xz
+USES=		compiler:c++14-lang gl python qmake qt:5 shebangfix tar:xz
 USE_LDCONFIG=	${LOCALBASE}/lib/${PORTNAME}
 USE_GL=		gl
 USE_QT=		buildtools concurrent core declarative designer gui help \
 		linguist location network printsupport qdoc qmake \
 		quickcontrols script script serialport sql svg webchannel \
 		widgets xml xmlpatterns
-
-CXXFLAGS_powerpc=	-maltivec
-CXXFLAGS_powerpc64=	-maltivec
 
 # be paranoid and do not extract qbs (devel/qbs) copy from source tree
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/src/shared/qbs'
@@ -38,7 +40,7 @@ QMAKE_ARGS+=	QTC_PREFIX=${PREFIX} LLVM_INSTALL_DIR=${PREFIX}/llvm${LLVM_DEFAULT}
 DESKTOP_ENTRIES="Qt Creator" "" "QtProject-qtcreator" \
 		"${PREFIX}/bin/${PORTNAME}" "Development;Qt;" true
 
-BROKEN_aarch64=		fails to build: invokes x86 asm
+PORTDOCS=		*
 
 OPTIONS_DEFINE=		DOCS EXAMPLES QTWEBENGINE
 OPTIONS_SUB=		yes
@@ -72,7 +74,6 @@ SHEBANG_FILES=		tests/system/tools/objectsToTable.py \
 			scripts/packagePlugins.py \
 			scripts/ninjawrapper.py \
 			scripts/checkInstalledFiles.py \
-			scripts/generateClangTidyChecks.py \
 			scripts/createDistPackage.py \
 			scripts/createDevPackage.py \
 			scripts/deployqt.py \
@@ -83,10 +84,17 @@ SHEBANG_FILES=		tests/system/tools/objectsToTable.py \
 
 .include <bsd.port.pre.mk>
 
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-PLIST_SUB+=	GCC=""
-.else
-PLIST_SUB+=	GCC="@comment "
+.if ${PORT_OPTIONS:MWEBENGINE}
+DEPRECATED=	Uses EOL Python 2.7 via www/qt5-webengine
+EXPIRATION_DATE=2021-06-23
+.endif
+
+.if ${LLVM_DEFAULT:C/[1-5]./&0/:S,-devel,990,} >= 90
+LLVM_DEFAULT=	70
+.endif
+
+.if ${LLVM_DEFAULT} == 10
+EXTRA_PATCHES=	${PATCHDIR}/llvm10_patch-src_shared_clang_clang__installation.pri
 .endif
 
 post-patch:
@@ -109,5 +117,11 @@ pre-configure:
 # occurrences of ${WRKSRC}/lib from .pc and .prl files when installing them.
 # See QTBUG-40825 and ports bugs 194088, 195105 and 198720.
 	${ECHO_CMD} 'QMAKE_LIBDIR_FLAGS = -L${WRKSRC}/lib' >> ${WRKSRC}/.qmake.cache
+
+post-fake:
+# There is **one** qmldir file that is staged, which gets stripped.
+# Since it's a text file, strip complains / falls over, but it does
+# leave a 0-size file behind. That in turn trips up check-plist.
+	${RM} ${FAKE_DESTDIR}/${TRUE_PREFIX}/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioTheme/ecp.*
 
 .include <bsd.port.post.mk>

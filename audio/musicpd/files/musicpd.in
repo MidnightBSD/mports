@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: musicpd
 # REQUIRE: mixer LOGIN avahi_daemon oss
 # KEYWORD: shutdown

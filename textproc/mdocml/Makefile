@@ -1,5 +1,5 @@
 PORTNAME=	mdocml
-PORTVERSION=	1.14.5
+PORTVERSION=	1.14.6
 CATEGORIES=	textproc
 MASTER_SITES=	http://mdocml.bsd.lv/snapshots/ \
 		FREEBSD_LOCAL/uqs

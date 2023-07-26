@@ -1,11 +1,12 @@
 PORTNAME=	brotlipy
 PORTVERSION=	0.7.0
 CATEGORIES=	archivers python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python binding to the Brotli library
+WWW=		https://github.com/python-hyper/brotlicffi
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

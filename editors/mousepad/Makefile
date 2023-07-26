@@ -1,11 +1,12 @@
 PORTNAME=	mousepad
-PORTVERSION=	0.5.6
+PORTVERSION=	0.6.0
 CATEGORIES=	editors xfce
 MASTER_SITES=	XFCE/apps
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple text editor for the Xfce Desktop
+WWW=		https://git.xfce.org/apps/mousepad/about/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -1,24 +1,24 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	packaging
-PORTVERSION=	20.9
+PORTVERSION=	23.1
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Core utilities for Python packages
+WWW=		https://github.com/pypa/packaging
 
 LICENSE=	apache2 bsd2
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE
 LICENSE_FILE_bsd2=${WRKSRC}/LICENSE.BSD
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyparsing>=2.0.2:devel/py-pyparsing@${PY_FLAVOR}
-
-USES=		python:3.6+
-USE_PYTHON=	autoplist concurrent distutils
+USES=		python
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+PEP517_BUILD_CMD=	${PYTHON_CMD} -m flit_core.wheel
+PEP517_BUILD_DEPEND=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.3:devel/py-flit-core@${PY_FLAVOR}
 
 .include <bsd.port.mk>

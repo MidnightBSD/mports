@@ -1,9 +1,10 @@
 PORTNAME=	flops
-PORTVERSION=	2.1
+PORTVERSION=	2.2
 CATEGORIES=	benchmarks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Floating point benchmark to give your MFLOPS rating
+WWW=		https://performance.netlib.org/performance/html/flops.html
 
 LICENSE=	unknown
 

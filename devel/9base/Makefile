@@ -1,11 +1,13 @@
 PORTNAME=	9base
-PORTVERSION=	20170701
+PORTVERSION=	6
+PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://dl.suckless.org/tools/
 DISTNAME=	${PORTNAME}-6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of various original plan9 tools
+WWW=		https://tools.suckless.org/9base
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

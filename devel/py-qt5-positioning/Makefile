@@ -1,4 +1,5 @@
 PORTNAME=	positioning
+PORTVERSION=	2
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -25,4 +26,5 @@ DEBUG_CONFIGURE_ON=	--debug --trace
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5/QtPositioning.so
+
 .include <bsd.port.mk>

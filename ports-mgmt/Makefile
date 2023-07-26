@@ -8,6 +8,7 @@ SUBDIR += mport
 SUBDIR += mport-manager
 SUBDIR += portfmt
 SUBDIR += portlint
+SUBDIR += portscout
 SUBDIR += portsearch
 
 .include <bsd.port.subdir.mk>

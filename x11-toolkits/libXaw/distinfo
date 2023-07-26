@@ -1,3 +1,3 @@
-TIMESTAMP = 1650136696
-SHA256 (xorg/lib/libXaw-1.0.14.tar.bz2) = 76aef98ea3df92615faec28004b5ce4e5c6855e716fa16de40c32030722a6f8e
-SIZE (xorg/lib/libXaw-1.0.14.tar.bz2) = 690994
+TIMESTAMP = 1678976238
+SHA256 (xorg/lib/libXaw-1.0.15.tar.xz) = ab35f70fde9fb02cc71b342f654846a74328b74cb3a0703c02d20eddb212754a
+SIZE (xorg/lib/libXaw-1.0.15.tar.xz) = 589832

@@ -1,5 +1,6 @@
 PORTNAME=	remoteobjects
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	11
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
@@ -11,5 +12,6 @@ USE_GL=		gl
 USE_QT=		core declarative network \
 		buildtools_build
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
+QT_BINARIES=	yes
 
 .include <bsd.port.mk>

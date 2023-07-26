@@ -1,4 +1,2 @@
 mport-manager is a graphical package manager for MidnightBSD. It uses
 libmport to manage installed packages.
-
-WWW: http://github.com/laffer1/mport-manager

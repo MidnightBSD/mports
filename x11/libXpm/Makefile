@@ -1,15 +1,18 @@
 PORTNAME=	libXpm
-PORTVERSION=	3.5.13
+PORTVERSION=	3.5.16
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Pixmap library
+WWW=		https://www.freedesktop.org/Software/xlibs
 
 LICENSE=	mit
 
-USES=		xorg xorg-cat:lib
+USES=		cpe tar:xz xorg xorg-cat:lib
 USE_XORG=	xorgproto x11 xext xt
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+CPE_VENDOR=	libxpm_project
 
 OPTIONS_DEFINE=		NLS
 NLS_USES=		gettext

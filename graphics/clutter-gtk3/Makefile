@@ -1,7 +1,6 @@
-# Created by: Martin Wilke <miwi@FreeBSD.org>
-
 PORTNAME=	clutter-gtk
 PORTVERSION=	1.8.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3

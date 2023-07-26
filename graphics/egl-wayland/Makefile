@@ -1,5 +1,6 @@
 PORTNAME=	egl-wayland
 DISTVERSION=	1.1.10
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org

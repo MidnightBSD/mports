@@ -46,8 +46,8 @@ GCC_DEFAULT?=		10
 GL_DEFAULT?=		mesa-libs
 # Possible values: 7, 8, 9, agpl
 GHOSTSCRIPT_DEFAULT?=	agpl
-# Possible values: 1.17, 1.18, 1.19-devel
-GO_DEFAULT?=            1.18
+# Possible values: 1.17, 1.18, 1.19, 1.20, 1.21-devel
+GO_DEFAULT?=            1.19
 # Possible values: 7, 8, 11, 13, 17, 18
 JAVA_DEFAULT?=          8
 # Possible values: 6, 6-nox11, 7, 7-nox11
@@ -57,13 +57,13 @@ LIBRSVG2_DEFAULT?=    rust
 # Possible values: c7
 LINUX_DEFAULT?=		c7
 # Possible values: 60, 70, -devel (to be used when non-base compiler is required)
-LLVM_DEFAULT?=		90
+LLVM_DEFAULT?=		11
 LUA_DEFAULT?=		5.4
 LUAJIT_DEFAULT?=        luajit-devel
 # Possible values: 5.10, 5.20, 6.8
 MONO_DEFAULT=		5.10
 # Possible values: 5.5, 5.6, 5.7, 8.0, 10.3m, 10.4m, 10.5m, 5.5p, 5.6p, 5.7p, 5.6w, 5.7w
-MYSQL_DEFAULT?=		5.7
+MYSQL_DEFAULT?=		8.0
 # Possible values: ninja, samurai
 NINJA_DEFAULT?=		ninja
 .if ${OSVERSION} < 200001
@@ -73,21 +73,21 @@ PERL5_DEFAULT?=		5.32
 .endif
 # Possible values: 10, 11, 12, 13, 14
 PGSQL_DEFAULT?=		13
-# Possible values: 7.4, 8.0, 8.1
-PHP_DEFAULT?=		8.0
+# Possible values: 8.0, 8.1, 8.2
+PHP_DEFAULT?=		8.1
 # Possible values: 2.7, 3.7, 3.8, 3.9, 3.10, 3.11
 PYTHON_DEFAULT?=	3.9
 # Possible values: 2.7
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.7, 3.8, 3.9, 3.10, 3.11
-PYTHON3_DEFAULT?=	3.8
+PYTHON3_DEFAULT?=	3.9
 # Possible values: 2.7, 3.0, 3.1, 3.2
 RUBY_DEFAULT?=		3.0
-# Possible values: rust, rust167, rust-bin, rust166-bin
+# Possible values: rust, rust167, rust168, rust-bin, rust166-bin
 .if ${OSVERSION} < 300001
 RUST_DEFAULT?=		rust
 .else
-RUST_DEFAULT?=		rust167
+RUST_DEFAULT?=		rust168
 .endif
 # Possible values: 4.13
 SAMBA_DEFAULT?=		4.13
@@ -125,8 +125,8 @@ SSL_DEFAULT?=	base
 # Possible values: 8.5, 8.6, 8.7
 TCLTK_DEFAULT?=		8.6
 
-# Possible values: 4, 6
-VARNISH_DEFAULT?=	4
+# Possible values: 4, 6, 7
+VARNISH_DEFAULT?=	6
 
 # Possible value: 14, 16, 17, lts, current
 NODEJS_DEFAULT?=    lts

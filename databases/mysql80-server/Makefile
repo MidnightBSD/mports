@@ -1,6 +1,6 @@
 PORTNAME?=		mysql
 PORTVERSION=		8.0.32
-PORTREVISION?=		0
+PORTREVISION?=		1
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.0
 PKGNAMESUFFIX?=		80-server
@@ -186,7 +186,11 @@ SSL_DEFAULT=    openssl
 SSP_UNSAFE=	yes
 .endif
 
+.if ${OSVERSION} >= 300000
+SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
+.else
 SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
+.endif
 
 .include <bsd.port.pre.mk>
 

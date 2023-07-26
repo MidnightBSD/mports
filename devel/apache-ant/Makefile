@@ -1,5 +1,5 @@
 PORTNAME=	apache-ant
-PORTVERSION=	1.10.12
+PORTVERSION=	1.10.13
 CATEGORIES=	devel java
 MASTER_SITES=	https://archive.apache.org/dist/ant/binaries/:bin \
 		FREEBSD_LOCAL/hq:man
@@ -9,6 +9,7 @@ EXTRACT_ONLY=	${ANT_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java- and XML-based build tool, conceptually similar to make
+WWW=		https://ant.apache.org/
 
 LICENSE=	apache2
 

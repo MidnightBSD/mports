@@ -1,0 +1,11 @@
+--- netwerk/wifi/moz.build.orig	2023-05-01 18:10:47.265081000 -0400
++++ netwerk/wifi/moz.build	2023-05-01 18:11:01.352198000 -0400
+@@ -28,7 +28,7 @@
+     # bssidData and rssi. These are APIs that were removed in 10.7, so we need
+     # to accept the warnings when targeting the newer SDKs.
+     SOURCES["osx_corewlan.mm"].flags += ["-Wno-error=objc-method-access"]
+-elif CONFIG["OS_ARCH"] in ("DragonFly", "FreeBSD"):
++elif CONFIG["OS_ARCH"] in ("DragonFly", "FreeBSD", "MidnightBSD"):
+     UNIFIED_SOURCES += [
+         "nsWifiScannerFreeBSD.cpp",
+     ]

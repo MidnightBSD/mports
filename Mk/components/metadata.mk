@@ -85,7 +85,8 @@ describe-yaml:
 			distfiles      => [qw(${DISTFILES})], \
 			restricted_distfiles      => [qw(${RESTRICTED_FILES})], \
 			master_sites   => [qw(${MASTER_SITES})], \
-			www            => q(${WWW}) \
+			www            => q(${WWW}), \
+			cpe            => q(${CPE_STR}) \
 		); \
 		$$port{license} ||= undef; \
 		my %depends; \

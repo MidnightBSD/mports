@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 
 # PROVIDE: mdnsresponderposix
 # REQUIRE: DAEMON

@@ -1,11 +1,10 @@
-# Created by: Emmanuel Vadot <manu@FreeBSD.org>
-
 PORTNAME=	gpu-firmware-radeon-kmod
 PORTVERSION=	20220511
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Firmware modules for ${FLAVOR} Radeon GPUs
+WWW=		https://github.com/freebsd/drm-kmod-firmware
 
 LICENSE=	RADEON
 LICENSE_NAME=	Radeon firmware license (i915)

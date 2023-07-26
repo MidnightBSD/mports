@@ -7,7 +7,7 @@ MASTER_SITES=	https://www.freetds.org/files/stable/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sybase/Microsoft TDS protocol library
-WWW=		http://www.freetds.org/
+WWW=		https://www.freetds.org/
 
 LICENSE=	gpl2
 

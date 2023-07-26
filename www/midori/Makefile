@@ -11,6 +11,8 @@ WWW=		https://www.midori-browser.org/
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	multi
 
+CONFLICTS_INSTALL=	raphael
+
 BUILD_DEPENDS=	valac:lang/vala
 LIB_DEPENDS=	libnotify.so:devel/libnotify \
 		libjson-glib-1.0.so:devel/json-glib \

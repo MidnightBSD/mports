@@ -1,5 +1,3 @@
-# Created by: Sergey Kozlov <sergey.kozlov@intel.com>
-
 PORTNAME?=	ixl
 PORTVERSION?=	1.12.2
 PORTREVISION?=	0
@@ -12,6 +10,7 @@ PKGNAMESUFFIX=	-kmod
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	40 gigabit FreeBSD Base Driver for Intel(R) Network Connections
+WWW=		https://downloadcenter.intel.com
 
 LICENSE=	bsd2
 
@@ -28,7 +27,7 @@ NETMAP_OFF_DESC=	Disable netmap(4) support unconditionally
 NETMAP_ON_CFLAGS=	-DDEV_NETMAP
 NETMAP_OFF_CFLAGS=	-UDEV_NETMAP
 
-WRKSRC_SUBDIR=	src
+WRKSRC_SUBDIR?=	src
 
 SUB_FILES=	pkg-message
 SUB_LIST=	PORTNAME=${PORTNAME}

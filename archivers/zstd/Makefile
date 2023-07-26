@@ -1,12 +1,12 @@
-# Created by: John Marino <marino@FreeBSD.org>
-
 PORTNAME=	zstd
-PORTVERSION=	1.5.2
+PORTVERSION=	1.5.5
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast real-time compression algorithm
+WWW=		https://facebook.github.io/zstd/ \
+		https://github.com/facebook/zstd
 
 LICENSE=	bsd3 gpl2
 LICENSE_COMB=	dual

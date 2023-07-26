@@ -13,8 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libicuuc.so:devel/icu \
 		libgnutls.so:security/gnutls
 
-USES=		gnome iconv libtool ncurses pathfix localbase:ldflags pkgconfig readline \
-		shebangfix tcl
+USES=		gnome iconv libtool ncurses pathfix localbase:ldflags \
+		pkgconfig readline shebangfix tcl
 SHEBANG_FILES=	src/yaz-asncomp
 GNU_CONFIGURE=	yes
 USE_GNOME=	libxml2 libxslt

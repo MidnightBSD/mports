@@ -1,10 +1,11 @@
 PORTNAME=	xf86-video-openchrome
 PORTVERSION=	0.6.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org openChrome display driver
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

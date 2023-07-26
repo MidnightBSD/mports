@@ -1,9 +1,7 @@
-# Created by: Jun-ichiro itojun Hagino <itojun@itojun.org>
-#
 # This port is self contained in the src directory.
 
 PORTNAME=	portlint
-PORTVERSION=	2.19.8
+PORTVERSION=	2.20.0
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -18,6 +16,7 @@ LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
 
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/src
+USES=		perl5
 USE_PERL5_RUN=	yes
 
 SRC=		${.CURDIR}/src

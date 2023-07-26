@@ -1,18 +1,18 @@
 PORTNAME=	awesome
 PORTVERSION=	4.3
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	x11-wm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Highly configurable, next generation framework window manager
+WWW=		https://awesomewm.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	convert:graphics/ImageMagick6 \
-		${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
+BUILD_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
 RUN_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR} \
 		bash:shells/bash
 LIB_DEPENDS=	libcairo.so:graphics/cairo \
@@ -27,7 +27,7 @@ LIB_DEPENDS=	libcairo.so:graphics/cairo \
 
 CONFLICTS_INSTALL=	awesome3-[0-9]*
 
-USES=		cmake compiler:c11 gettext gnome iconv pkgconfig lua \
+USES=		cmake compiler:c11 gettext gnome iconv magick:build pkgconfig lua:-53 \
 		shebangfix xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	awesomewm
@@ -61,5 +61,7 @@ post-patch:
 	# Ref https://github.com/awesomeWM/awesome/issues/1377
 	@${REINPLACE_CMD} -e "/COMMAND lua/ s,lua,${LUA_CMD}," \
 		${WRKSRC}/awesomeConfig.cmake
+	@${REINPLACE_CMD} -e "s/-export-dynamic/\"-Xlinker -E\"/" \
+		${WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.post.mk>

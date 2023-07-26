@@ -1,15 +1,14 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	gnome-control-center
-PORTVERSION=	42.1
+PORTVERSION=	42.2
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Control center for GNOME 3 project
+COMMENT=	Control center for GNOME desktop
+WWW=		https://www.gnome.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gnome-settings-daemon>=3.4.0:sysutils/gnome-settings-daemon \
@@ -42,7 +41,7 @@ RUN_DEPENDS=	cantarell-fonts>=0:x11-fonts/cantarell-fonts \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c++11-lib gettext gnome localbase:ldflags meson \
+USES=		compiler:c++11-lib gettext gnome gstreamer localbase:ldflags meson \
 		pkgconfig python:3.6+,build samba:lib tar:xz xorg
 USE_GNOME=	cairo gnomedesktop3 gsound libxml2
 USE_XORG=	x11 xi
@@ -64,13 +63,4 @@ WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
 LDFLAGS+=      -fuse-ld=lld
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if !exists(/etc/rc.d/os-release) && (${OSVERSION} < 201001)
-RUN_DEPENDS+=	etc_os-release>0:sysutils/etc_os-release
-post-patch:
-	@${REINPLACE_CMD}  -e 's|/etc/os-release|${LOCALBASE}/etc/os-release|g' \
-		${WRKSRC}/panels/common/cc-os-release.c
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

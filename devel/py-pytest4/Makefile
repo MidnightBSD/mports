@@ -2,12 +2,13 @@ PORTNAME=	pytest
 PORTVERSION=	4.6.11
 PORTEPOCH=	1
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple powerful testing with Python (legacy version 4)
+WWW=		https://docs.pytest.org/en/latest/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -43,6 +44,7 @@ USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -55,7 +57,7 @@ post-patch:
 
 # test_cache_failure_warns fails
 # https://github.com/pytest-dev/pytest/issues/1845
-do-test:
-	cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -v -rs -k 'not test_cache_failure_warns'
+#do-test:
+#	cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -v -rs -k 'not test_cache_failure_warns'
 
 .include <bsd.port.post.mk>

@@ -1,14 +1,12 @@
-
-
 PORTNAME=	es
-PORTVERSION=	0.9.b1
-PORTREVISION=	6
+PORTVERSION=	0.9.2
 CATEGORIES=	shells
-MASTER_SITES=	ftp://ftp.sys.toronto.edu/pub/es/
-DISTNAME=	es-0.9-beta1
+MASTER_SITES=	https://github.com/wryun/es-shell/releases/download/v0.9.2/
+DISTNAME=	es-0.9.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensible shell, derived from plan9's rc
+WWW=		http://wryun.github.io/es-shell/
 
 LICENSE=	other
 
@@ -20,6 +18,6 @@ CONFIGURE_ARGS= --with-readline
 CFLAGS:=	${CFLAGS:N-O*}
 ALL_TARGET=	es
 
-PLIST_FILES=	bin/es man/man1/es.1.gz
+NO_WRKSUBDIR=	yes
 
 .include <bsd.port.mk>

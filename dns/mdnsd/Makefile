@@ -8,6 +8,7 @@ CATEGORIES=	dns
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advertise a service via Rendezvous
+WWW=		https://github.com/Pro/mdnsd/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE

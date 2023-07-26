@@ -1,23 +1,28 @@
-
-
 PORTNAME=	libotf
-PORTVERSION=	0.9.13
-PORTREVISION=	3
-CATEGORIES=	print devel
+DISTVERSION=	0.9.16
+CATEGORIES=	print devel textproc
 MASTER_SITES=	SAVANNAH/m17n
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for handling OpenType fonts
+WWW=		https://www.nongnu.org/m17n/
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libfreetype.so:print/freetype2
 
-USES=		pathfix pkgconfig libtool:keepla
-USE_XORG=	x11 xt xaw xmu
+USES=		autoreconf pathfix pkgconfig libtool:keepla
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
 INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
+
+OPTIONS_DEFINE=	X11
+OPTIONS_DEFAULT=X11
+OPTIONS_SUB=	yes
+
+X11_USES=		localbase xorg
+X11_USE=		XORG=ice,sm,x11,xaw,xt,xmu
+X11_CONFIGURE_WITH=	x
 
 .include <bsd.port.mk>

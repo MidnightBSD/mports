@@ -1,5 +1,3 @@
-
-
 PORTNAME=	nslint
 PORTVERSION=	3.1
 PORTREVISION=	1
@@ -10,6 +8,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/.a/a/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perform consistency checks on DNS zone files
+WWW=		https://ee.lbl.gov/ftp.html
 
 LICENSE=	bsd4
 #not exactly, but it contains the advertising clause.

@@ -1,14 +1,13 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
-
 PORTNAME=	argyllcms
 PORTVERSION=	1.9.2
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.argyllcms.com/
 DISTNAME=	Argyll_V${PORTVERSION}_src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ICC compatible color management system
+WWW=		https://www.argyllcms.com/
 
 LICENSE=	agpl
 
@@ -25,12 +24,12 @@ post-patch:
 	@${REINPLACE_CMD} 's:711:755:g' ${WRKSRC}/Jambase
 
 do-build:
-	@cd ${WRKSRC} && ${MAKE_ENV} jam -q -fJambase -j${MAKE_JOBS_NUMBER}
+	@cd ${WRKSRC} && ${MAKE_ENV} jam -dx -q -fJambase -j${MAKE_JOBS_NUMBER}
 
 do-install:
-	@cd ${WRKSRC} && ${SETENV} DESTDIR=${FAKE_DESTDIR} PREFIX=${TRUE_PREFIX} \
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} PREFIX=${TRUE_PREFIX} \
 		REFSUBDIR=share/argyll/ref \
-		jam -q -fJambase -j${MAKE_JOBS_NUMBER} install
+		jam -dx -q -fJambase -j${MAKE_JOBS_NUMBER} install
 	@${MV} ${STAGEDIR}${PREFIX}/bin/License.txt \
 		${STAGEDIR}${PREFIX}/share/argyll/
 

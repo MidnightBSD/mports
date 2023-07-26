@@ -5,11 +5,12 @@ MASTER_SITES=	http://www.cabextract.org.uk/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program to extract Microsoft cabinet (.CAB) files
+WWW=		https://www.cabextract.org.uk/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cpe
+USES=		cpe iconv
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/cabextract \

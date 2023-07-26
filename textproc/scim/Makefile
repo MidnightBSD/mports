@@ -1,12 +1,12 @@
-# Created by: Jie Gao	<gaoj@cpsc.ucalgary.ca>
-
 PORTNAME=	scim
 PORTVERSION=	1.4.9
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Smart Common Input Method platform
+WWW=		https://github.com/scim-im/scim
 
 LICENSE=	lgpl2.1
 
@@ -19,7 +19,7 @@ USE_XORG=	x11 xpm
 USE_LDCONFIG=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include -D__STDC_ISO_10646__
-LIBS+=		-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib -liconv
 
 post-patch:
 	@${REINPLACE_CMD} 's/-lstdc++//'				\

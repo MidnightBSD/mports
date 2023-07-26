@@ -3,7 +3,7 @@
 PORTNAME=	gio-sharp
 PORTVERSION=	2.22.3
 CATEGORIES=	devel
-MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
+MASTER_SITES=	https://download.mono-project.com/sources/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GIO bindings not available in gtk-sharp

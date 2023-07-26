@@ -1,5 +1,6 @@
 PORTNAME=	higan
 PORTVERSION=	106
+PORTREVISION=	1
 CATEGORIES=	emulators games
 MASTER_SITES=	http://download.byuu.org/ \
 		http://www.cyberbotx.com/higan/
@@ -7,7 +8,7 @@ DISTNAME=	${PORTNAME}_v${PORTVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nintendo multi-system emulator
-WWW=		http://byuu.org/higan/
+WWW=		https://byuu.org/higan/
 
 # has gplv3 source files
 LICENSE=	gpl3
