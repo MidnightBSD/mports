@@ -1,7 +1,5 @@
-# Created by: Tony Shadwick <tshadwick@oss-solutions.com>
-
 PORTNAME=	htop
-DISTVERSION=	3.0.4
+DISTVERSION=	3.2.2
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
