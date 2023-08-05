@@ -279,7 +279,7 @@ sub moved_list {
     # skip comments and blank lines
     next if $line =~ /^\#/ || $line =~ /^\s*$/ || $line =~ /^\+/;
     #split each line into array
-    my ($port, $moved_to, $date, $why) = split(/|/, $line);
+    my ($port, $moved_to, $date, $why) = split(/\|/, $line);
     
     next unless defined $port;
 
