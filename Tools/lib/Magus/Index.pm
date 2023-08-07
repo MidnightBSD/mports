@@ -283,6 +283,8 @@ sub moved_list {
     
     next unless defined $port;
 
+    print "Adding MOVED entry: $port $moved_to $date $why \n";
+
     if (defined($date) && length($date)) {
 	  $port = Magus::Moved->insert({ 
       run         => $run,
@@ -292,12 +294,13 @@ sub moved_list {
       why => $why,
     });
     } else  {
-	  $port = Magus::Moved->insert({ 
-      run         => $run,
-      port => $port,
-      moved_to => $moved_to,
-      why => $why,
-    });
+      $port = Magus::Moved->insert({ 
+	run  => $run,
+	port => $port,
+	moved_to => $moved_to,
+	date => undef,
+	why => $why,
+      });
     }
   }
 }
