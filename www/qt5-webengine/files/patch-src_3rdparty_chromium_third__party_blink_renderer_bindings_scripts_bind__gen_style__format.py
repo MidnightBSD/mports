@@ -4,7 +4,7 @@
      elif sys.platform.startswith(("cygwin", "win")):
          platform = "win"
          exe_suffix = ".exe"
-+    elif sys.platform.startswith("freebsd", "midnightbsd"):
++    elif sys.platform.startswith(("freebsd", "midnightbsd")):
 +        platform = "freebsd"
 +        exe_suffix = ""
      else:
