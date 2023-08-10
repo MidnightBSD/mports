@@ -15,6 +15,8 @@ USE_LDCONFIG=	yes
 
 FAKE_OPTS=	prefixhack
 
+ LL_TARGET=bsd
+
 # Overriding __MAKE_CONF makes sure that we don't re-parse
 # /etc/make.conf during do-build, which would jeopardize the build
 # if, for instance, the user set CFLAGS=mumble
