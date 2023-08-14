@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
 WWW=		http://www.jikos.cz/~mikulas/links/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 GNU_CONFIGURE=	yes
 
