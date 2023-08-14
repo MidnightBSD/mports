@@ -1,5 +1,5 @@
 PORTNAME=	squid
-DISTVERSION=	5.5
+DISTVERSION=	5.9
 CATEGORIES=	www
 MASTER_SITES=	http://www2.pl.squid-cache.org/Versions/v5/ \
 		http://www1.il.squid-cache.org/Versions/v5/ \
@@ -18,6 +18,7 @@ PATCH_SITE_SUBDIR=	Versions/v5/changesets
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP Caching Proxy
+WWW=		http://www.squid-cache.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
