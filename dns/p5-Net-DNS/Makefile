@@ -1,7 +1,5 @@
-# Created by: James FitzGibbon <jfitz@FreeBSD.org>
-
 PORTNAME=	Net-DNS
-PORTVERSION=	1.28
+PORTVERSION=	1.39
 PORTEPOCH=	1
 CATEGORIES=	dns net perl5
 MASTER_SITES=	CPAN
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to the DNS resolver, and dynamic updates
+WWW=		https://metacpan.org/release/Net-DNS
 
 LICENSE=	mit
 

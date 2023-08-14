@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programmable DNS resolver for off-line testing
+WWW=		https://metacpan.org/release/Net-DNS-Resolver-Programmable
 
-LICENSE=	artistic gpl2
+LICENSE=	artistic gpl2+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

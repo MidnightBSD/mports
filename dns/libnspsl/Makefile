@@ -6,6 +6,7 @@ EXTRACT_SUFX=	-src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NetSurf public suffix list handling
+WWW=		https://www.netsurf-browser.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

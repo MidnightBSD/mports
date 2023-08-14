@@ -1,7 +1,7 @@
 PORTNAME=	dog
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.1.0
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	dns net
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,6 +12,9 @@ LICENSE=	EUPL
 LICENSE_NAME=	European Union Public Licence V. 1.2
 LICENSE_FILE=	${WRKSRC}/LICENCE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+BROKEN_SSL=	openssl30 openssl31
+BROKEN_SSL_REASON=	Fails to detect OpenSSL 3.0.0 and later
 
 USES=		cargo ssl
 USE_GITHUB=	yes
