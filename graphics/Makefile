@@ -100,6 +100,7 @@ SUBDIR += lcms2
 SUBDIR += leptonica
 SUBDIR += libGLU
 SUBDIR += libart_lgpl
+SUBDIR += libavif
 SUBDIR += libcaca
 SUBDIR += libcdr01
 SUBDIR += libchamplain

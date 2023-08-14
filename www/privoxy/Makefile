@@ -1,5 +1,5 @@
 PORTNAME=	privoxy
-PORTVERSION=	3.0.33
+PORTVERSION=	3.0.34
 CATEGORIES=	www
 MASTER_SITES=	https://www.privoxy.org/sf-download-mirror/Sources/${PORTVERSION}%20(stable)/ \
 		SF/ijbswa/Sources/${PORTVERSION}%20%28stable%29
@@ -7,6 +7,7 @@ DISTNAME=	privoxy-${PORTVERSION}-stable-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Privoxy is a web proxy with advanced filtering capabilities
+WWW=		https://www.privoxy.org/
 
 LICENSE=	gpl2
 
