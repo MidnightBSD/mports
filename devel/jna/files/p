@@ -1,0 +1,22 @@
+1,3c1,3
+< --- native/Makefile.orig	2018-10-07 17:48:55.000000000 -0400
+< +++ native/Makefile	2020-09-19 14:37:49.382748000 -0400
+< @@ -39,12 +39,15 @@
+---
+> --- native/Makefile.orig	2021-02-08 18:49:25.000000000 +0000
+> +++ native/Makefile	2021-03-06 13:25:34.083392000 +0000
+> @@ -39,6 +39,8 @@
+24c17
+< +CINCLUDES+=-I/usr/local/include
+---
+> +CINCLUDES+=-I%%LOCALBASE%%/include
+32c25
+< @@ -337,11 +343,11 @@
+---
+> @@ -356,11 +361,11 @@
+36,37c29,30
+< -	    LOC_CC_OPTS=-Wno-unknown-warning-option -Werror -Wno-clobbered -Wno-unused-variable
+< +	    LOC_CC_OPTS=-Wno-unused-variable
+---
+> -	    LOC_CC_OPTS=-Wno-unknown-warning-option -Werror -Wno-clobbered -Wno-unused-variable -Wno-alloca-larger-than
+> +	    LOC_CC_OPTS=-Wno-unused-variable 
