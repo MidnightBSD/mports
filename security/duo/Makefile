@@ -1,7 +1,5 @@
-# Created by: Ryan Steinmetz <zi@FreeBSD.org>
-
 PORTNAME=	duo
-PORTVERSION=	1.12.0
+PORTVERSION=	2.0.1
 CATEGORIES=	security
 MASTER_SITES=	https://dl.duosecurity.com/ \
 		ZI
@@ -9,12 +7,13 @@ DISTNAME=	${PORTNAME}_unix-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Duo unix integration package
+WWW=		https://duosecurity.com
 
 LICENSE=	gpl2
 
 CONFIGURE_ARGS=	--with-pam=${PREFIX}/lib/security --sysconfdir=${PREFIX}/etc \
 		--docdir=${DOCSDIR} --includedir=${PREFIX}/include/${PORTNAME}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix ssl
 USE_LDCONFIG=	yes
@@ -31,10 +30,10 @@ post-patch:
 		${WRKSRC}/login_duo/login_duo.8
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/security/pam_duo.so
+	@${STRIP_CMD} ${PREFIX}/lib/security/pam_duo.so
 	${INSTALL_DATA} ${WRKSRC}/login_duo/login_duo.conf \
-		${STAGEDIR}${PREFIX}/etc/login_duo.conf.sample
+		${PREFIX}/etc/login_duo.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/pam_duo/pam_duo.conf \
-		${STAGEDIR}${PREFIX}/etc/pam_duo.conf.sample
+		${PREFIX}/etc/pam_duo.conf.sample
 
 .include <bsd.port.mk>
