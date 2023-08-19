@@ -3,7 +3,7 @@ PORTVERSION=	3.40.0
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
