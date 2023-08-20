@@ -997,6 +997,7 @@ SUBDIR += py-pyinotify
 SUBDIR += py-pyproject_hooks
 SUBDIR += py-pyrsistent
 SUBDIR += py-python-editor
+SUBDIR += py-python-magic
 SUBDIR += py-pid
 SUBDIR += py-pip
 SUBDIR += py-pip-api

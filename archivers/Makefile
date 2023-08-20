@@ -60,6 +60,7 @@ SUBDIR += py-borgbackup
 SUBDIR += py-brotli
 SUBDIR += py-brotlipy
 SUBDIR += py-bz2file
+SUBDIR += py-libarchive-c
 SUBDIR += py-lz4
 SUBDIR += py-lzma
 SUBDIR += py-rarfile
