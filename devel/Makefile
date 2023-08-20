@@ -165,6 +165,7 @@ SUBDIR += gperf
 SUBDIR += gradle
 SUBDIR += gradle6
 SUBDIR += gradle62
+SUBDIR += gradle761
 SUBDIR += gsettings-desktop-schemas
 SUBDIR += gstreamer1-plugins-soup
 SUBDIR += gumbo
