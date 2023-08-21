@@ -163,39 +163,69 @@ main(int argc, char *argv[])
         printf("\n");
     }
 
-	printf("Load the mirrors list\n");
-	result R2(N.exec("SELECT country, url FROM mirrors order by country"));
-	if (!R2.empty())
+    printf("Load the mirrors list\n");
+    result R2(N.exec("SELECT country, url FROM mirrors order by country"));
+    if (!R2.empty())
+    {
+        for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
         {
-		for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
-		{
-                if (sqlite3_prepare_v2(db,"INSERT INTO mirrors (country, mirror) VALUES(?,?)",  -1, &stmt, 0) != SQLITE_OK)
-                {
-                    errx(1, "Could not prepare statement");
-                }
-			    string country = c[0].as(string());
-			    cout << country << endl;
-			    string url = c[1].as(string());
-			    cout << url << endl;
-                sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
+           if (sqlite3_prepare_v2(db, "INSERT INTO mirrors (country, mirror) VALUES(?,?)", -1, &stmt, 0) != SQLITE_OK)
+           {
+               errx(1, "Could not prepare statement");
+           }
+           string country = c[0].as(string());
+           cout << country << endl;
+           string url = c[1].as(string());
+           cout << url << endl;
+           sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
 
-                if (sqlite3_step(stmt) != SQLITE_DONE)
-                    errx(1,"Could not execute query");
-                sqlite3_reset(stmt);
-                sqlite3_finalize(stmt);
-            }
-	}
+           if (sqlite3_step(stmt) != SQLITE_DONE)
+               errx(1, "Could not execute query");
+           sqlite3_reset(stmt);
+           sqlite3_finalize(stmt);
+        }
+    }
 
-	close_indexdb(db);
+    printf("Load the MOVED list\n");
+    sprintf(query_def, "SELECT port, moved_to, why, date FROM moved where run=%d order by id", runid);
+    result R3(N.exec(string(query_def)));
+    if (!R3.empty())
+    {
+        for (result::const_iterator c = R3.begin(); c != R3.end(); ++c)
+        {
+           if (sqlite3_prepare_v2(db, "INSERT INTO moved (port, moved_to, why, date) VALUES(?,?,?,?)", -1, &stmt, 0) != SQLITE_OK)
+           {
+               errx(1, "Could not prepare statement");
+           }
+           string port = c[0].as(string());
+           cout << port << endl;
+           string moved_to = c[1].as(string());
+           cout << moved_to << endl;
+           string why = c[2].as(string());
+           string date = c[3].as(string());
+           sqlite3_bind_text(stmt, 1, port.c_str(), port.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 2, moved_to.c_str(), moved_to.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 3, why.c_str(), why.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 4, date.c_str(), date.length(), SQLITE_TRANSIENT);
 
-	printf("Mark run blessed\n");
-	N.exec0(
-		"UPDATE runs "
-		"SET blessed = true, status = 'complete' "
-		"WHERE id = " + pqxx::to_string(runid));
+           if (sqlite3_step(stmt) != SQLITE_DONE)
+               errx(1, "Could not execute query");
+           sqlite3_reset(stmt);
+           sqlite3_finalize(stmt);
+        }
+    }
 
-	return 0;
+    close_indexdb(db);
+
+    printf("Mark run blessed\n");
+    N.exec0(
+        "UPDATE runs "
+        "SET blessed = true, status = 'complete' "
+        "WHERE id = " +
+        pqxx::to_string(runid));
+
+    return 0;
 }
 
 sqlite3*
@@ -265,6 +295,7 @@ create_indexdb(sqlite3 *db)
 	exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
+  exec_indexdb(db, "CREATE TABLE IF NOT EXISTS moved (port text NOT NULL, moved_to text, why text, date text");
 }
 
 void
