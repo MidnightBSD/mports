@@ -7,7 +7,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Next evolution of the Gedit plugins engine
-WWW=		http://live.gnome.org/libpeas
+WWW=		https://wiki.gnome.org/Projects/Libpeas
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
