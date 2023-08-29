@@ -6,7 +6,6 @@ CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK front-end for Clam Antivirus
-WWW=		https://dave-theunsub.github.io/clamtk/
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
