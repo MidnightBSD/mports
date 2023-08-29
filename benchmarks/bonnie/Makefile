@@ -1,5 +1,3 @@
-
-
 PORTNAME=	bonnie
 PORTVERSION=	2.0.6
 PORTREVISION=	1
@@ -10,6 +8,7 @@ DISTNAME=	bonnie
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Filesystem I/O
+WWW=		https://www.textuality.com/bonnie/
 
 LICENSE=	other
 
