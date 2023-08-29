@@ -9,6 +9,7 @@ PATCHFILES+=	aa0bf5b13078.patch:-p1 # https://github.com/linuxmint/cinnamon/pull
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fork of GNOME Shell with layout similar to GNOME 2
+WWW=		https://github.com/linuxmint/cinnamon
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
