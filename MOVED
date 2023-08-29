@@ -257,3 +257,9 @@ textproc/scrollkeeper||2023-05-4|No longer used and fails to build
 mod_perl2|ap24-mod_perl2||Apache version specific
 www/spdylay||2023-08-22|Has expired: SPDY is deprecated, use HTTP/2 instead
 x11-toolkits/libsexy||2023-08-29|Depends on EOLed gtk+20, not depended on in the ports tree
+multimedia/quvi09||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/quvi||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi09||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi-scripts09||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi-scripts||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
