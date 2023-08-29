@@ -1,4 +1,3 @@
-
 #
 # This port is self contained.
 #
@@ -11,9 +10,11 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Boot Splash Image Changer
+WWW=		https://mato.gamato.org/freebsd/
+
 LICENSE=	unknown
 
-USE_RC_SUBR=	change_splash.sh
+USE_RC_SUBR=	change_splash
 NO_BUILD=	yes
 SUB_FILES=	pkg-message
 
