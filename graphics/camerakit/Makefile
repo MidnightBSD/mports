@@ -1,18 +1,17 @@
-
-
 PORTNAME=	camerakit
 PORTVERSION=	0.0.1
 PORTREVISION=	1
 CATEGORIES=	graphics gnustep
-MASTER_SITES=	http://download.gna.org/gsimageapps/
+MASTER_SITES=	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/
 DISTNAME=	CameraKit-20041011
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework that allows to access digital cameras
+WWW=            https://github.com/gsimageapps/Camera
 
-LICENSE=	unknown
+LICENSE=	gpl2+
 
-LIB_DEPENDS=	libgphoto2.so:${PORTSDIR}/graphics/libgphoto2
+LIB_DEPENDS=	libgphoto2.so:graphics/libgphoto2
 
 USES=		tar:bzip2 gnustep
 USE_GNUSTEP=	build back
