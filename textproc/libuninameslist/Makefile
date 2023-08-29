@@ -1,24 +1,29 @@
-
-
 PORTNAME=	libuninameslist
-PORTVERSION=	20091231
-PORTREVISION=	2
+DISTVERSION=	20221022
 CATEGORIES=	textproc
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}%20sources/Unicode_5.2-${PORTVERSION}
+MASTER_SITES=	https://github.com/fontforge/${PORTNAME}/releases/download/${DISTVERSION}/
+DISTNAME=	${PORTNAME}-dist-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of Unicode annotation data
+WWW=		https://github.com/fontforge/libuninameslist
 
-LICENSE=	gpl2
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
-
-USES=		gmake tar:bzip2 libtool
-GNU_CONFIGURE=	yes
-ALL_TARGET=	both
+USES=		libtool
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
 
-post-install:
-	${STRIP_CMD} ${PREFIX}/lib/*.so
+INSTALL_TARGET=	install-strip
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
+
+OPTIONS_DEFINE=	FRENCH
+OPTIONS_DEFAULT=FRENCH
+OPTIONS_SUB=yes
+
+FRENCH_DESC=	Build French library
+FRENCH_CONFIGURE_ENABLE=	frenchlib
 
 .include <bsd.port.mk>
