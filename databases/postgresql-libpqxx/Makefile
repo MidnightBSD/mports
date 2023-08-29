@@ -6,7 +6,7 @@ DIST_SUBDIR=	postgresql
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	New C++ interface for PostgreSQL
-WWW=		http://pqxx.org/
+WWW=		https://pqxx.org/
 
 LICENSE=        bsd3
 
