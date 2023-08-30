@@ -1,25 +1,21 @@
-# New ports collection makefile for:   libmodplug
-# Date created:		3 February 2004
-# Whom:			Emanuel Haupt <ehaupt@critical.ch>
-#
-
 PORTNAME=	libmodplug
-PORTVERSION=	0.8.8.5
-PORTREVISION=	2
+PORTVERSION=	0.8.9.1.r461
 CATEGORIES=	audio
-MASTER_SITES=	SF/modplug-xmms/${PORTNAME}/${PORTVERSION} LOCAL/ehaupt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ModPlug mod-like music shared libraries
+WWW=		http://modplug-xmms.sourceforge.net/
+
 LICENSE=	publicdom
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake pathfix pkgconfig libtool
-INSTALL_TARGET=	install-strip
+USES=		cmake cpe
+CPE_VENDOR=	konstanty_bialkowski
+USE_GITHUB=	yes
+GH_ACCOUNT=	ShiftMediaProject
+GH_PROJECT=	modplug
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
 
-post-patch:
-	@${REINPLACE_CMD} -e '/^CXXFLAGS=/d' \
-		${WRKSRC}/configure
+CMAKE_ARGS=	-DBUILD_SHARED_LIBS:BOOL=ON
 
 .include <bsd.port.mk>
