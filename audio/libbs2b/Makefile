@@ -5,7 +5,7 @@ MASTER_SITES=	SF/bs2b/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bauer Stereophonic-to-Binaural DSP
-WWW=		http://bs2b.sourceforge.net/
+WWW=		https://bs2b.sourceforge.net/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
