@@ -13,11 +13,11 @@ bin/activemq-diag
 @sample %%ETCDIR%%/jetty.xml.sample
 @sample %%ETCDIR%%/jmx.access.sample
 @sample %%ETCDIR%%/jmx.password.sample
+@sample %%ETCDIR%%/jolokia-access.xml.sample
+@sample %%ETCDIR%%/log4j2.properties.sample
 @sample %%ETCDIR%%/logging.properties.sample
 @sample %%ETCDIR%%/login.config.sample
 @sample %%ETCDIR%%/users.properties.sample
-@sample %%ETCDIR%%/jolokia-access.xml.sample
-@sample %%ETCDIR%%/log4j2.properties.sample
 @dir(,,0750) /var/db/activemq
 @group
 @owner
