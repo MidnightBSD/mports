@@ -5,7 +5,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Media Transfer Protocol (MTP) library
-WWW=		http://libmtp.sourceforge.net/
+WWW=		https://libmtp.sourceforge.net/
 
 LICENSE=	lgpl2.1+
 
