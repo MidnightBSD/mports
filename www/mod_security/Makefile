@@ -1,13 +1,13 @@
 PORTNAME=	mod_security
-PORTVERSION=	2.9.3
-PORTREVISION=	1
+PORTVERSION=	2.9.6
 CATEGORIES=	www security
-MASTER_SITES=	http://www.modsecurity.org/tarball/${PORTVERSION}/
+MASTER_SITES=	https://github.com/SpiderLabs/ModSecurity/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 DISTNAME=	${PORTNAME:S/_//:S/2//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intrusion detection and prevention engine
+WWW=		https://www.modsecurity.org/
 
 LICENSE=	apache2
 
@@ -22,7 +22,7 @@ USES=		apache:2.4 bdb gnome perl5 pkgconfig
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 AP_INC=		${LOCALBASE}/include/libxml2
 AP_LIB=		${LOCALBASE}/lib
