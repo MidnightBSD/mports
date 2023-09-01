@@ -24,9 +24,11 @@ PLIST_SUB=	VERSION=1.0 SOVERSION=0.2005.0
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
+NO_TEST=	yes
+
 post-install:
 	${MKDIR} ${PREFIX}/share/bash-completion/completions
 	${INSTALL_SCRIPT} ${WRKSRC}/data/completions/ges-launch-1.0 \
-	${STAGEDIR}${PREFIX}/share/bash-completion/completions/
+	${PREFIX}/share/bash-completion/completions/
 
 .include <bsd.port.mk>

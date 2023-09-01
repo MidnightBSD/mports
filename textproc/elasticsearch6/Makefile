@@ -1,5 +1,5 @@
 PORTNAME=	elasticsearch
-PORTVERSION=	6.8.16
+PORTVERSION=	6.8.21
 PORTREVISION=	0
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.elastic.co/downloads/${PORTNAME}/

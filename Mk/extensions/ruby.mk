@@ -11,7 +11,7 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 # [variables that a user may define]
 #
 # RUBY_VER		- (See below)
-# RUBY_DEFAULT_VER	- Set to (e.g.) "2.7" if you want to refer to "ruby27"
+# RUBY_DEFAULT_VER	- Set to (e.g.) "3.0" if you want to refer to "ruby30"
 #			  just as "ruby".
 # RUBY_ARCH		- (See below)
 #
@@ -131,15 +131,7 @@ RUBY?=			${LOCALBASE}/bin/ruby${RUBY_SUFFIX}
 .    if defined(RUBY_VER)
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-.      if ${RUBY_VER} == 2.7
-#
-# Ruby 2.7
-#
-RUBY_DISTVERSION=	2.7.7
-RUBY_PORTREVISION=	2
-RUBY_PORTEPOCH=		1
-
-.      elif ${RUBY_VER} == 3.0
+.      if ${RUBY_VER} == 3.0
 #
 # Ruby 3.0
 #
@@ -168,7 +160,7 @@ RUBY_PORTEPOCH=		1
 #
 # Other versions
 #
-IGNORE=	Only ruby 2.7, 3.0, 3.1 and 3.2 are supported
+IGNORE=	Only ruby 3.0, 3.1 and 3.2 are supported
 _INVALID_RUBY_VER=	1
 .      endif
 RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
@@ -176,7 +168,6 @@ RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
 
 .    if !defined(_INVALID_RUBY_VER)
 
-RUBY27?=		"@comment "
 RUBY30?=		"@comment "
 RUBY31?=		"@comment "
 RUBY32?=		"@comment "
@@ -280,7 +271,6 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_ARCH="${RUBY_ARCH}" \
 			RUBY_SUFFIX="${RUBY_SUFFIX}" \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
-			RUBY27=${RUBY27} \
 			RUBY30=${RUBY30} \
 			RUBY31=${RUBY31} \
 			RUBY32=${RUBY32}

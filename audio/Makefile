@@ -68,7 +68,6 @@ SUBDIR += ladspa
 SUBDIR += lame
 SUBDIR += lash
 SUBDIR += liba52
-SUBDIR += libaacplus
 SUBDIR += libamrwb
 SUBDIR += libao
 SUBDIR += libaudiofile

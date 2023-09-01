@@ -1,5 +1,5 @@
 PORTNAME=	milter-greylist
-PORTVERSION=	4.6.2
+PORTVERSION=	4.6.4
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/ \
 		http://fossies.org/unix/privat/

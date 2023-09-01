@@ -8,7 +8,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standard C resolver library
-WWW=		https://www.isc.org/software/libbind
+WWW=		https://wiki.netbsd.org/individual-software-releases/netresolv/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT

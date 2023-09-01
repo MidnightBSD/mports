@@ -4,7 +4,6 @@ SUBDIR += autobench
 SUBDIR += blogbench
 SUBDIR += bonnie
 SUBDIR += compiler-benchmark
-SUBDIR += dbs
 SUBDIR += dkftpbench
 SUBDIR += fhourstones
 SUBDIR += flops

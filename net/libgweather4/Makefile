@@ -1,5 +1,6 @@
 PORTNAME=	libgweather
-PORTVERSION=	4.0.0
+PORTVERSION=	4.2.0
+PORTREVISION=	1
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:R}
@@ -8,19 +9,19 @@ PKGNAMESUFFIX=	4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to access online weather information
+WWW=		https://www.gnome.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen \
-		vala:lang/vala
-LIB_DEPENDS=	libgeocode-glib.so:net/geocode-glib \
-		libsoup-2.4.so:devel/libsoup
+BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
+LIB_DEPENDS=	libgeocode-glib-2.so:net/geocode-glib2 \
+		libsoup-3.0.so:devel/libsoup3
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python:3.6+,build \
-		shebangfix tar:xz
+USES=		gettext gnome localbase meson pkgconfig python:build \
+		shebangfix tar:xz vala:build
 USE_GNOME=	gtk30 libxml2 pygobject3 introspection:build
 USE_LDCONFIG=	yes
 

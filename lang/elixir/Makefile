@@ -21,7 +21,7 @@ USES=		gmake
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	elixir-lang
-
+CONFLICTS=	elixir-devel # bin/elixir bin/elixirc bin/iex
 USE_LOCALE=	en_US.UTF-8
 ALL_TARGET=	# empty
 REINPLACE_ARGS=	-i ""
@@ -31,10 +31,7 @@ OPTIONS_SUB=	yes
 MAKE_ENV=	MAN_PREFIX=${PREFIX}/man \
 		PATH="${LOCALBASE}/lib/erlang/bin:${PATH}"
 
-OPTIONS_DEFINE=	SRC DOCS
-OPTIONS_DEFAULT=SRC
-
-SRC_DESC=	Install source code
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
@@ -45,7 +42,7 @@ post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKDIR}/doc/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR}
 
-post-install-SRC-on:
+post-install:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib
 	cd ${WRKSRC}/lib/ && for lib in *; do \
 		${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \

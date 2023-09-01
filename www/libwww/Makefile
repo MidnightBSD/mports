@@ -7,6 +7,7 @@ DISTNAME=	w3c-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The W3C Reference Library
+WWW=		https://www.w3.org/Library/
 
 LICENSE=	w3cipr
 LICENSE_NAME=	W3C IPR SOFTWARE NOTICE
@@ -15,13 +16,14 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
-USES=		gmake libtool localbase perl5 ssl tar:tgz
+USES=		cpe gmake libtool localbase perl5 ssl tar:tgz
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --with-zlib --with-ssl=${OPENSSLBASE}
+CPE_VENDOR=	w3c
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	${STRIP_CMD} ${PREFIX}/lib/*.so
 
 .include <bsd.port.mk>

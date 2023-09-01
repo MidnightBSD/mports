@@ -6,7 +6,6 @@ PKGNAMEPREFIX=	coin-or-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	COIN-OR stochastic models
-WWW=		https://www.coin-or.org/
 
 LICENSE=	epl
 

@@ -279,10 +279,13 @@ sub moved_list {
     # skip comments and blank lines
     next if $line =~ /^\#/ || $line =~ /^\s*$/ || $line =~ /^\+/;
     #split each line into array
-    my ($port, $moved_to, $date, $why) = split(/|/, $line);
+    my ($port, $moved_to, $date, $why) = split(/\|/, $line);
     
     next unless defined $port;
 
+    print "Adding MOVED entry: $port $moved_to $date $why \n";
+
+    if (defined($date) && length($date)) {
 	  $port = Magus::Moved->insert({ 
       run         => $run,
       port => $port,
@@ -290,6 +293,15 @@ sub moved_list {
       date => $date,
       why => $why,
     });
+    } else  {
+      $port = Magus::Moved->insert({ 
+	run  => $run,
+	port => $port,
+	moved_to => $moved_to,
+	date => undef,
+	why => $why,
+      });
+    }
   }
 }
 
