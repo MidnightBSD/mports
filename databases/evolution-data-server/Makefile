@@ -1,5 +1,3 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	evolution-data-server
 DISTVERSION=	3.38.4
 CATEGORIES=	databases gnome
@@ -8,6 +6,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data backends for the Evolution integrated mail/PIM suite
+WWW=		https://wiki.gnome.org/Apps/Evolution
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
