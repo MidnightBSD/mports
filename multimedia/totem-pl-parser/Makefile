@@ -1,7 +1,5 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
 PORTNAME=	totem-pl-parser
-PORTVERSION=	3.26.5
+PORTVERSION=	3.26.6
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -21,15 +19,6 @@ USES=		gettext gnome libarchive localbase:ldflags meson pkgconfig tar:xz
 USE_GNOME=	glib20 introspection:build libxml2
 USE_LDCONFIG=	yes
 
-OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	QUVI
-OPTIONS_DEFAULT=QUVI
-
-QUVI_DESC=	Flash media stream URL support
-QUVI_MESON_YES=	enable-quvi
-QUVI_LIB_DEPENDS=	libquvi-0.9.so:multimedia/libquvi09
-
-#magus
 NO_TEST=	yes
 
 .include <bsd.port.mk>

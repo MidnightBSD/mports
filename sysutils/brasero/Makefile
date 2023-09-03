@@ -1,11 +1,13 @@
 PORTNAME=	brasero
 PORTVERSION=	3.12.3
+PORTREVISION=	1
 CATEGORIES=	sysutils audio multimedia gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD/DVD mastering tool for the GNOME desktop
+WWW=		https://projects.gnome.org/brasero/
 
 LICENSE=	gpl2
 

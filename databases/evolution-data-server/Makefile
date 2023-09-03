@@ -17,6 +17,7 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libgcr-base-3.so:security/gcr \
 		libgoa-1.0.so:net/gnome-online-accounts \
 		libgdata.so:devel/libgdata \
+		libharfbuzz.so:print/harfbuzz \
 		libical.so:devel/libical \
 		libnss3.so:security/nss \
 		libicudata.so:devel/icu \
