@@ -1,6 +1,5 @@
 PORTNAME=	k9s
-PORTVERSION=	0.24.10
-PORTREVISION=	1
+PORTVERSION=	0.27.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -18,5 +17,7 @@ GO_BUILDFLAGS=	-ldflags="-X github.com/derailed/k9s/cmd.version=${PORTVERSION} \
 		-X github.com/derailed/k9s/cmd.commit="""
 
 PLIST_FILES=	bin/${PORTNAME}
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

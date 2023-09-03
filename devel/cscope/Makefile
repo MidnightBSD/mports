@@ -5,6 +5,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interactive C program browser
+WWW=		https://cscope.sourceforge.net/
 
 LICENSE=	bsd3
 

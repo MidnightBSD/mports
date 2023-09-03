@@ -1,16 +1,16 @@
-
-
 PORTNAME=	mp4v2
-PORTVERSION=	2.0.0
+PORTVERSION=	2.1.3
 CATEGORIES=	multimedia
-MASTER_SITES=	GENTOO
+MASTER_SITES=	https://github.com/enzo1982/mp4v2/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and tools to read, create, and modify mp4 files
+WWW=		http://mp4v2.org/
 
-LICENSE=	mpl
+LICENSE=	MPL11
 
 USES=		compiler:features cpe gmake libtool tar:bzip2
+
 CPE_VENDOR=	mp4v2_project
 
 MAKEFILE=	GNUmakefile

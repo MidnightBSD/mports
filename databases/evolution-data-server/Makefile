@@ -1,5 +1,3 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	evolution-data-server
 DISTVERSION=	3.38.4
 CATEGORIES=	databases gnome
@@ -8,6 +6,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data backends for the Evolution integrated mail/PIM suite
+WWW=		https://wiki.gnome.org/Apps/Evolution
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,6 +17,7 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libgcr-base-3.so:security/gcr \
 		libgoa-1.0.so:net/gnome-online-accounts \
 		libgdata.so:devel/libgdata \
+		libharfbuzz.so:print/harfbuzz \
 		libical.so:devel/libical \
 		libnss3.so:security/nss \
 		libicudata.so:devel/icu \
@@ -31,11 +31,13 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		bdb:5 cmake compiler:c++11-lib gettext gnome gperf \
+USES=		bdb:5 cmake compiler:c++11-lib cpe gettext gnome gperf \
 		iconv localbase pathfix pkgconfig python:3.6+,build\
-		sqlite tar:xz
+		sqlite tar:xz xorg
 USE_CXXSTD=	gnu++11
 USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool introspection:build libxml2
+USE_XORG=	x11
+CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DENABLE_VALA_BINDINGS=ON \

@@ -14,7 +14,7 @@ CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Browser based on Qt 5
- WWW=		https://otter-browser.org/
+WWW=		https://otter-browser.org/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING

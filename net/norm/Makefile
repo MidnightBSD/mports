@@ -24,6 +24,8 @@ USE_LDCONFIG=	yes
 PLIST_FILES=	include/normApi.h lib/libnorm.so lib/libnorm.so.1 \
 		lib/libnorm.so.1.0.0
 
+NO_TEST=	yes
+
 post-extract:
 	${CP} ${DISTDIR}/waf-2.0.19 ${WRKSRC}/waf
 

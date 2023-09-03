@@ -6,7 +6,7 @@ MASTER_SITES=	SF/netdude/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	libpcap wrapper library
-WWW=		http://netdude.sourceforge.net/
+WWW=		https://netdude.sourceforge.net/
 
 LICENSE=	mit
 

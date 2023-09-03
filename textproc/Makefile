@@ -181,6 +181,7 @@ SUBDIR += p5-XML-TreePP
 SUBDIR += p5-XML-Twig
 SUBDIR += p5-XML-Writer
 SUBDIR += p5-XML-XPath
+SUBDIR += p5-XString
 SUBDIR += p5-YAML
 SUBDIR += p5-YAML-LibYAML
 SUBDIR += p5-YAML-Tiny

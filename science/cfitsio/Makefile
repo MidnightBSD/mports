@@ -1,46 +1,48 @@
 PORTNAME=	cfitsio
-PORTVERSION=	3.100
-PORTREVISION=	1
+PORTVERSION=	4.2.0
 CATEGORIES=	science astro
-MASTER_SITES=	ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/ \
-		ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/oldvers/
-DISTNAME=	${PORTNAME}${PORTVERSION:S/.//}
+MASTER_SITES=	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/ \
+		https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/oldvers/ \
+		ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/ \
+		ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/oldvers/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for reading and writing files in FITS data format
+WWW=		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/
 
 LICENSE=	gpl2
-# worst case..
 
-LIB_DEPENDS=	libf2c.so:lang/f2c
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libf2c.so:lang/f2c
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+USES=		cpe localbase pkgconfig
 
-USES=		pkgconfig
+ALL_TARGET=	libcfitsio.a shared
+CONFIGURE_ARGS=	ac_cv_prog_FC=f2c --enable-reentrant --with-bzip2=/usr
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	ac_cv_prog_FC="f2c"
-ALL_TARGET=	shared
 USE_LDCONFIG=	yes
 
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
+
+CPE_VENDOR=	nasa
+
+OPTIONS_DEFINE=	DOCS
+
 post-patch:
-	@${GREP} -lR "<malloc.\h>" ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -e \
-		's|<malloc\.h>|<stdlib.h>|g'
-	@${REINPLACE_CMD} -e 's|="\.so"|=".so.0"|g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|<malloc.h>|<stdlib.h>|' ${WRKSRC}/*.[chl]
 
 do-install:
-.for file in drvrsmem.h fitsio.h fitsio2.h longnam.h
-	${INSTALL_DATA} ${WRKSRC}/${file} ${PREFIX}/include
-.endfor
-.for f in libcfitsio.so.0
-	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/lib
-.endfor
-	@${LN} -sf libcfitsio.so.0 ${PREFIX}/lib/libcfitsio.so
-.for f in cfitsio.pc
-	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/libdata/pkgconfig
-.endfor
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.doc ${DOCSDIR}
-.endif
+	cd ${WRKSRC}/ && ${INSTALL_DATA} drvrsmem.h fitsio.h fitsio2.h longnam.h ${STAGEDIR}${PREFIX}/include/
+	${INSTALL_DATA} ${WRKSRC}/libcfitsio.a ${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_LIB} ${WRKSRC}/libcfitsio.so.10.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_DATA} ${WRKSRC}/cfitsio.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
+	${LN} -fs libcfitsio.so.10.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libcfitsio.so.10
+	${LN} -fs libcfitsio.so.10.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libcfitsio.so
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/*.doc ${FAKE_DESTDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>

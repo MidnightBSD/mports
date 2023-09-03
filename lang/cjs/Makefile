@@ -7,6 +7,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JavaScript bindings based on gobject-introspection
+WWW=		https://github.com/linuxmint/cinnamon
 
 LICENSE=		mit lgpl
 LICENSE_COMB=		dual

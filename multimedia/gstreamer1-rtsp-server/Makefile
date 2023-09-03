@@ -16,6 +16,8 @@ USE_LDCONFIG=	yes
 USE_GNOME=	glib20 introspection:build
 USE_GSTREAMER=	good bad
 
+NO_TEST=	yes
+
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 PLIST_SUB=	VERSION=1.0 SOVERSION=0.2005.0

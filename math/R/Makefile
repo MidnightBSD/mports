@@ -1,7 +1,5 @@
-# Created by: Maurice Castro <maurice@serc.rmit.edu.au>
-
 PORTNAME=	R
-DISTVERSION=	4.0.3
+DISTVERSION=	4.3.1
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${PORTVERSION:C|\..*||}
 
@@ -13,7 +11,8 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	texi2any:print/texinfo
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpcre2-8.so:devel/pcre2
-RUN_DEPENDS=	gmake:devel/gmake # R packages may require GNU make
+RUN_DEPENDS=	cmake:devel/cmake-core \
+		gmake:devel/gmake # R packages may require GNU make
 
 USES=		compiler:c++11-lang gmake iconv libtool localbase pathfix perl5 \
 		readline
@@ -29,7 +28,7 @@ INSTALL_TARGET=	install-strip
 PLIST_SUB=	FULLVER=${DISTVERSION} MAJORVER=${_MAJORVER}
 
 OPTIONS_DEFINE=		ICU INFO LDOUBLE LETTER MEMPROF NLS RPROF X11
-OPTIONS_DEFINE_amd64=	FLANG OPENMP
+OPTIONS_DEFINE_amd64=	OPENMP
 OPTIONS_DEFINE_i386=	OPENMP
 OPTIONS_DEFAULT=	CAIROPANGO GHOSTSCRIPT ICU INFO JPEG LDOUBLE PNG RBLAS \
 			RPROF TCLTK TIFF X11
@@ -44,7 +43,6 @@ OPTIONS_SUB=		YES
 
 ATLAS_DESC=		ATLAS BLAS implementation
 CAIROPANGO_DESC=	Cairo graphics device and Pango multi-language text
-FLANG_DESC=		Use experimental flang Fortran compiler
 GHOSTSCRIPT_DESC=	Graphics device for bitmap files via Ghostscript
 JPEG_DESC=		JPEG graphics device
 LDOUBLE_DESC=		Long double data type
@@ -65,9 +63,6 @@ CAIROPANGO_IMPLIES=		X11
 CAIROPANGO_USES=		gettext gnome jpeg pkgconfig
 CAIROPANGO_USE=			GNOME=cairo,pango
 CAIROPANGO_CONFIGURE_WITH=	cairo
-FLANG_PREVENTS=			ATLAS NETLIB OPENBLAS
-FLANG_LIB_DEPENDS=		libpgmath.so:math/libpgmath
-FLANG_USES=			fortran:flang
 GHOSTSCRIPT_IMPLIES=		X11
 GHOSTSCRIPT_USES=		ghostscript
 ICU_LIB_DEPENDS=		libicui18n.so:devel/icu
@@ -103,6 +98,7 @@ RPROF_CONFIGURE_ENABLE=		R-profiling
 TCLTK_IMPLIES=			X11
 TCLTK_USES=			tcl tk
 TCLTK_CONFIGURE_WITH=		tcltk
+TEXDOCS_USES=			tex
 TEXDOCS_USE=			TEX=dvipsk:build,kpathsea:build,pdftex:build
 .for i in KPSEWHICH MAKEINDEX PDFLATEX PDFTEX TEX TEXI2DVI
 TEXDOCS_CONFIGURE_ENV_OFF+=	ac_cv_path_${i}=""
@@ -119,9 +115,7 @@ _MAJORVER=	${DISTVERSION:R:R}
 
 .include <bsd.mport.options.mk>
 
-.if ! ${PORT_OPTIONS:MFLANG}
 USES+=		fortran
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|/usr/local|${LOCALBASE}|g" ${WRKSRC}/configure

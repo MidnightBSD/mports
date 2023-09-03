@@ -1,12 +1,13 @@
 PORTNAME=	mono
 PORTVERSION=	5.10.1.57
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	lang
 MASTER_SITES=	https://download.mono-project.com/sources/mono/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source implementation of .NET Development Framework
+WWW=		https://www.mono-project.com/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -15,7 +16,8 @@ ONLY_FOR_ARCHS=		amd64 armv6 armv7 i386 powerpc
 
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		bash:shells/bash \
-		cmake>0:devel/cmake
+		cmake>0:devel/cmake \
+		python2.7:lang/python27
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
 		libgettextlib.so:devel/gettext-tools
 RUN_DEPENDS=	${PY_PILLOW} \

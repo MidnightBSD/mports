@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libvisual
 PORTVERSION=	0.4.0
 PORTREVISION=	2
@@ -9,6 +7,7 @@ PKGNAMESUFFIX=	04
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstraction library that sits between apps and visual plugin
+WWW=		https://libvisual.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

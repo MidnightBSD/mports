@@ -1,5 +1,3 @@
-# Created by: Yen-Ming Lee <leeym@FreeBSD.org>
-
 PORTNAME=	antiword
 PORTVERSION=	0.37
 CATEGORIES=	textproc
@@ -8,7 +6,7 @@ MASTER_SITES=	http://www.winfield.demon.nl/linux/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application for displaying Microsoft(R) Word documents
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/Docs/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/share/ghostscript/fonts/n022003l.afm:print/gsfonts

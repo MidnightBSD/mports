@@ -1,7 +1,5 @@
-# Created by: Alexander Novitsky <alecn2002@yandex.ru>
-
 PORTNAME=	gems
-PORTVERSION=	3.3.22
+PORTVERSION=	3.4.17
 CATEGORIES=	devel ruby
 MASTER_SITES=	https://rubygems.org/rubygems/
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
@@ -57,7 +55,6 @@ DOCS_VARS_OFF=	RUBY_SETUP_OPTIONS+="--no-ri --no-rdoc"
 
 post-extract:
 	@${RM} -r ${WRKSRC}/bundler
-	@${RM} -r ${WRKSRC}/lib/rubygems/ssl_certs
 	@${FIND} ${WRKSRC} -name .document -delete
 
 post-patch:

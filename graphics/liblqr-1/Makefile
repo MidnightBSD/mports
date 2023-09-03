@@ -1,22 +1,21 @@
-
-
 PORTNAME=	liblqr-1
-DISTVERSION=	0.4.1
-PORTREVISION=	3
+PORTVERSION=	0.4.2
 CATEGORIES=	graphics
 MASTER_SITES=	http://liblqr.wdfiles.com/local--files/en:download-page/ \
 		http://mirror.amdmi3.ru/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy to use C/C++ seam carving library
+WWW=		https://liblqr.wikidot.com/
 
-LICENSE=	gpl3
+LICENSE=	lgpl3
+LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
 
+USES=		gettext gmake gnome libtool pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
-USES=		tar:bzip2 gettext gmake pkgconfig libtool
 USE_GNOME=	glib20
-USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
 
 # Use GNU89 inline semantics
 USE_CSTD=	gnu89
@@ -24,23 +23,15 @@ USE_CSTD=	gnu89
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	EXAMPLES HTMLDOCS
+OPTIONS_SUB=	yes
 HTMLDOCS_DESC=	Build and install HTML documentation
 
-.include <bsd.mport.options.mk>
+EXAMPLES_SUB_FILES=	pkg-message
+EXAMPLES_SUB_LIST=	PORTSDIR=${PORTSDIR}
 
-.if ${PORT_OPTIONS:MEXAMPLES}
-SUB_FILES=	pkg-message
-SUB_LIST=	PORTSDIR=${PORTSDIR}
-.endif
-
-.if ${PORT_OPTIONS:MHTMLDOCS}
-BUILD_DEPENDS+=	${LOCALBASE}/bin/xsltproc:${PORTSDIR}/textproc/libxslt \
-		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
-		${LOCALBASE}/share/xml/docbook/4.5:${PORTSDIR}/textproc/docbook-xml
-PLIST_SUB=	HTMLDOCS=""
-.else
-PLIST_SUB=	HTMLDOCS="@comment "
-.endif
+HTMLDOCS_BUILD_DEPENDS=	xsltproc:textproc/libxslt \
+			${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
+			docbook-xml>0:textproc/docbook-xml
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^lqr_pkgconfigdir/ s|$$(libdir)|$${exec_prefix}/libdata|' \
@@ -50,17 +41,15 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr.*docbookx.dtd|${LOCALBASE}/share/xml/docbook/4.5/docbookx.dtd|' \
 		${WRKSRC}/docs/liblqr_manual.docbook
 
-.if ${PORT_OPTIONS:MHTMLDOCS}
-post-build:
+post-build-HTMLDOCS-on:
 	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} ${MAKE} html
-.endif
 
-post-install:
-.if ${PORT_OPTIONS:MHTMLDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${STAGEDIR}${DOCSDIR}
-.endif
+post-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}
+
+post-install-HTMLDOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

@@ -29,6 +29,7 @@ PATCH_DIST_STRIP= -p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD/DVD/BluRay and ISO-9660 image creation and extraction tools
+WWW=		http://cdrtools.sourceforge.net/private/cdrecord.html
 
 LICENSE=	bsd2 cddl gpl2 lgpl2.1
 LICENSE_COMB=	multi
