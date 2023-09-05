@@ -2,8 +2,7 @@ PORTNAME=	pkgconf
 PORTVERSION=	1.8.1
 PORTEPOCH=	1
 CATEGORIES=	devel
-MASTER_SITES=	https://distfiles.dereferenced.org/pkgconf/ \
-		http://files.etoilebsd.net/pkgconf/
+MASTER_SITES=	https://distfiles.ariadne.space/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to help to configure compiler and linker flags

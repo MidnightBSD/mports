@@ -1,5 +1,3 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	runner
 PORTVERSION=	1.1
 PORTREVISION=	1
@@ -9,7 +7,7 @@ MASTER_SITES=	http://www.boomerangsworld.de/cms/tools/downloads/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast program launch menu for X Window System
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 USES=		compiler:c++0x tar:bzip2 xorg
 GNU_CONFIGURE=	yes

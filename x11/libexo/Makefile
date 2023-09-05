@@ -1,5 +1,6 @@
 PORTNAME=	libexo
-PORTVERSION=	4.16.2
+PORTVERSION=	4.18.0
+PORTREVISION=	1
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE
 DISTNAME=	exo-${DISTVERSIONFULL}
@@ -7,6 +8,7 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application library for the Xfce desktop environment
+WWW=		https://www.xfce.org/
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
@@ -14,20 +16,20 @@ LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
 LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2
+		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz
 BUILD_DEPENDS=	p5-URI>=1.70:net/p5-URI
 RUN_DEPENDS=	p5-URI>=1.70:net/p5-URI
 
-USES=		compiler:c11 desktop-file-utils gettext-tools gmake gnome \
-		libtool pathfix perl5 pkgconfig tar:bzip2 xfce xorg
-USE_GNOME=	cairo glib20 gtk30 intltool
+USES=		compiler:c11 gettext-tools gmake gnome libtool pathfix \
+		perl5 pkgconfig tar:bzip2 xfce xorg
+USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool
 USE_LDCONFIG=	yes
 USE_XFCE=	libmenu
 USE_XORG=	ice sm x11
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 GNU_CONFIGURE=	yes
-INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--without-html-dir --disable-silent-rules
 
