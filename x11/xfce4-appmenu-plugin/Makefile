@@ -14,11 +14,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 WRKSRC=	${WRKDIR}/vala-panel-appmenu-4e362c22ab3a23c98f13fb379c782786ee057cf6
 
 LIB_DEPENDS=	libbamf3.so:sysutils/bamf
-BUILD_DEPENDS=	valac:lang/vala
 RUN_DEPENDS=	appmenu-registrar>=0:x11/appmenu-registrar \
 		appmenu-gtk-module>=0:x11/gtk-app-menu
 
-USES=	meson gnome xfce pkgconfig gettext
+USES=	meson gnome xfce pkgconfig gettext vala:build
 
 MESON_ARGS=	-Dvalapanel=disabled \
 		-Dxfce=enabled \
