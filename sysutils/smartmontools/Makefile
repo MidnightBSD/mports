@@ -1,13 +1,14 @@
 PORTNAME=	smartmontools
-DISTVERSION=	7.2
+DISTVERSION=	7.4
 PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	S.M.A.R.T. disk monitoring tools
+WWW=		https://www.smartmontools.org
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 CONFLICTS=	smartmontools-devel-[0-9]*
 
@@ -21,7 +22,7 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--with-gnupg=no \
 		--with-nvme-devicescan=yes \
 		--with-initscriptdir=${PREFIX}/etc/rc.d
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 SUB_FILES=	pkg-message smart
 
 PORTDOCS=	*
