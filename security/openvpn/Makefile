@@ -1,5 +1,5 @@
 PORTNAME=		openvpn
-DISTVERSION=		2.5.8
+DISTVERSION=		2.6.0
 PORTREVISION?=		0
 CATEGORIES=		security net
 MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
@@ -8,32 +8,28 @@ MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT?=		Secure IP/Ethernet tunnel daemon
-WWW=		https://openvpn.net/community/
+WWW=			https://openvpn.net/community/
 
 LICENSE=		gpl2
 LICENSE_FILE=		${WRKSRC}/COPYRIGHT.GPL
 
-USES=			cpe libtool localbase:ldflags pkgconfig shebangfix ssl tar:xz
+BUILD_DEPENDS+=		cmocka>=0:sysutils/cmocka \
+			rst2man:textproc/py-docutils@${PY_FLAVOR}
+
+USES=			cpe libtool localbase:ldflags pkgconfig python:build shebangfix ssl
 USE_RC_SUBR=		openvpn
 
+SHEBANG_FILES=		sample/sample-scripts/auth-pam.pl \
+			sample/sample-scripts/totpauth.py \
+			sample/sample-scripts/ucn.pl \
+			sample/sample-scripts/verify-cn
+
 GNU_CONFIGURE=		yes
-SHEBANG_FILES=		sample/sample-scripts/verify-cn \
-			sample/sample-scripts/auth-pam.pl \
-			sample/sample-scripts/ucn.pl
-CONFIGURE_ARGS+=	--enable-strict -with-crypto-library=openssl
-# avoid picking up CMAKE, we don't have cmocka in the tarballs.
-CONFIGURE_ENV+=		ac_cv_prog_CMAKE= CMAKE=
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
-
-# let OpenVPN's configure script pick up the requisite libraries,
-# but do not break the plugin build if an older version is installed
-CPPFLAGS+=		-I${WRKSRC}/include -I${LOCALBASE}/include
-LDFLAGS+=		-L${LOCALBASE}/lib -Wl,--as-needed
-
+CONFIGURE_ARGS+=	--enable-strict --with-crypto-library=openssl
 # set PLUGIN_LIBDIR so that unqualified plugin paths are found:
 CONFIGURE_ENV+=		PLUGINDIR="${PREFIX}/lib/openvpn/plugins"
 
-CONFLICTS_INSTALL?=	openvpn-2.[!5].* openvpn-[!2].* openvpn-beta-[0-9]* openvpn-devel-[0-9]* openvpn-mbedtls-[0-9]*
+CONFLICTS_INSTALL?=	openvpn-2* openvpn-devel openvpn-mbedtls
 
 SUB_FILES=		pkg-message openvpn-client
 
@@ -49,7 +45,7 @@ OPTIONS_DEFAULT=	EASYRSA LZ4 LZO PKCS11 TEST
 ASYNC_PUSH_DESC=	Enable async-push support
 EASYRSA_DESC=		Install security/easy-rsa RSA helper package
 LZO_DESC=		LZO compression (incompatible with LibreSSL)
-PKCS11_DESC=		Use security/pkcs11-helper
+PKCS11_DESC=		Use security/pkcs11-helper, needs same SSL lib!
 SMALL_DESC=		Build a smaller executable with fewer features
 UNITTESTS_DESC=		Enable unit tests
 X509ALTUSERNAME_DESC=	Enable --x509-username-field
@@ -106,10 +102,12 @@ post-patch:
 	${REINPLACE_CMD} -E -i '' -e 's/(user|group) nobody/\1 openvpn/' \
 		-e 's/"nobody"( after init)/"openvpn" \1/' \
 		${WRKSRC}/sample/sample-config-files/*.conf \
-		${WRKSRC}/sample/sample-config-files/xinetd-*-config \
 		${WRKSRC}/doc/man-sections/generic-options.rst
 
 pre-configure:
+	# just too many of sign-compare; bitwise-instead-of-logical was audited and is intentional,
+	# and unused-function affects test---these are developer-side warnings, not relevant on end systems
+	${REINPLACE_CMD} 's/-Wsign-compare/-Wno-unknown-warning-option -Wno-sign-compare -Wno-bitwise-instead-of-logical -Wno-unused-function/' ${WRKSRC}/configure
 .ifdef (LOG_OPENVPN)
 	@${ECHO} "Building with LOG_OPENVPN=${LOG_OPENVPN}"
 .else
@@ -126,12 +124,13 @@ pre-configure:
 	@${ECHO} "### Do not report bugs without fixes/patches unless the issue ###"
 	@${ECHO} "### can be reproduced with a released OpenSSL version.        ###"
 	@${ECHO} "### --------------------------------------------------------- ###"
+	@sleep 10
 .endif
 
 post-configure:
 	${REINPLACE_CMD} '/^CFLAGS =/s/$$/ -fPIC/' \
-	    ${WRKSRC}/src/plugins/auth-pam/Makefile \
-	    ${WRKSRC}/src/plugins/down-root/Makefile
+	 	${WRKSRC}/src/plugins/auth-pam/Makefile \
+	 	${WRKSRC}/src/plugins/down-root/Makefile
 
 # sanity check that we don't inherit incompatible SSL libs through,
 # for instance, pkcs11-helper:
@@ -139,14 +138,13 @@ _tlslibs=libssl libcrypto
 post-build:
 	@a=$$(LC_ALL=C ldd -f '%o\n' ${WRKSRC}/src/openvpn/openvpn \
 	|	${SORT} -u) ; set -- $$(for i in ${_tlslibs} ; do ${PRINTF} '%s\n' "$$a" | ${GREP} $${i}.so | wc -l ; done | ${SORT} -u) ;\
-	if test "$$*" != "1" ; then ${ECHO_CMD} >&2 "${.CURDIR} FAILED: either of ${_tlslibs} libraries linked multiple times" ; ${PRINTF} '%s\n' "$$a"; ${RM} ${BUILD_COOKIE} ; ( set -x ; ldd -a ${WRKSRC}/src/openvpn/openvpn ) ; exit 1 ; fi
+	if test "$$*" != "1" ; then ( set -x ; ldd -a ${WRKSRC}/src/openvpn/openvpn ) ; ${PRINTF} '%s\n' "$$a" ; ${ECHO_CMD} >&2 "${.CURDIR} FAILED: either of ${_tlslibs} libraries linked multiple times" ; ${RM} ${BUILD_COOKIE} ; exit 1 ; fi
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-auth-pam.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-down-root.so
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.up ${STAGEDIR}${PREFIX}/libexec/openvpn-client.up
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.down ${STAGEDIR}${PREFIX}/libexec/openvpn-client.down
-	@${REINPLACE_CMD} 's|resolvconf -p -a|resolvconf -a|' ${STAGEDIR}${PREFIX}/libexec/openvpn-client.up
 	${INSTALL_SCRIPT} ${WRKDIR}/openvpn-client ${STAGEDIR}${PREFIX}/sbin/openvpn-client
 	${MKDIR} ${STAGEDIR}${PREFIX}/include
 

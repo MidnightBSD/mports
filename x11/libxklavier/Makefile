@@ -15,7 +15,7 @@ RUN_DEPENDS=	xkbcomp:x11/xkbcomp \
     		iso-codes>=0:misc/iso-codes
 
 USE_XORG=	x11 xkbfile
-USES=		gmake gnome libtool pathfix pkgconfig tar:xz
+USES=		gmake gnome libtool pathfix pkgconfig tar:xz xorg
 USE_GNOME=	libxml2 glib20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

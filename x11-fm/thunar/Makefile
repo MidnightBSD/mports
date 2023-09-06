@@ -1,25 +1,28 @@
 PORTNAME=	thunar
-DISTVERSION=	4.16.9
+DISTVERSION=	4.18.6
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Xfce file manager
+WWW=		https://docs.xfce.org/xfce/thunar/Start
 
 LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
 LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
 LICENSE_FILE_lgpl=	${WRKSRC}/COPYING.LIB
 
-LIB_DEPENDS=	libtumbler-1.so:deskutils/xfce4-tumbler
+LIB_DEPENDS=	libtumbler-1.so:deskutils/xfce4-tumbler \
+		libharfbuzz.so:print/harfbuzz \
+		libpcre2-8.so:devel/pcre2
 RUN_DEPENDS=	pkexec:sysutils/polkit
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-tools gmake gnome \
 		libtool pathfix perl5 pkgconfig tar:bzip2 xfce xorg
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool
 USE_LDCONFIG=	yes
-USE_XFCE=	libexo
+USE_XFCE=	libexo xfconf
 USE_XORG=	ice sm x11
 
 CPE_VENDOR=	xfce
@@ -27,7 +30,6 @@ CPE_VENDOR=	xfce
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-gio-unix \
 		--disable-gudev
-INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
 PORTSCOUT=	limitw:1,even

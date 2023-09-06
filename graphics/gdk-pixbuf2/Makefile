@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphic library for GTK+
 WWW=		https://developer.gnome.org/gdk-pixbuf/
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe gettext gnome localbase:ldflags meson pkgconfig \
