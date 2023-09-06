@@ -1,6 +1,6 @@
 PORTNAME=	tracker-miners
 PORTVERSION=	2.3.5
-PÖRTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 
@@ -32,11 +32,12 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 PORTSCOUT=	limitw:1,even
 
 USES=		gettext gnome jpeg localbase:ldflags meson \
-		pathfix pkgconfig python:3.4+,build sqlite tar:xz vala:build
+		pathfix pkgconfig python:build sqlite tar:xz vala:build
 USE_GNOME=	cairo intltool libgsf libxml2
 INSTALLS_ICONS=	yes
 
 MESON_ARGS=	-Dsystemd_user_services=no \
+		-Diso=disabled \
 		-Dcharset_detection=icu \
 #		-Dbattery_detection=hal
 

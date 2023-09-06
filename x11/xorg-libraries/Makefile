@@ -8,6 +8,7 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org libraries meta-port
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 
