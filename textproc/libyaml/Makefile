@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libyaml
 PORTVERSION=	0.2.5
 CATEGORIES=	textproc
@@ -8,6 +6,7 @@ DISTNAME=	yaml-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	YAML 1.1 parser and emitter written in C
+WWW=		https://pyyaml.org/wiki/LibYAML
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/License
