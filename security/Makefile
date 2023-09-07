@@ -175,6 +175,7 @@ SUBDIR += py-certbot-dns-route53
 SUBDIR += py-certbot-nginx
 SUBDIR += py-certifi
 SUBDIR += py-cryptography
+SUBDIR += py-cryptography-legacy
 SUBDIR += py-cryptography-vectors
 SUBDIR += py-docker-pycreds
 SUBDIR += py-ecdsa
