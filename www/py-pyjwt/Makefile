@@ -1,7 +1,7 @@
 PORTNAME=	pyjwt
-PORTVERSION=	2.0.1
+PORTVERSION=	2.7.0
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	PyJWT-${PORTVERSION}
 
@@ -11,6 +11,9 @@ WWW=		https://github.com/jpadilla/pyjwt
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		cpe python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
@@ -25,6 +28,6 @@ CPE_VENDOR=	pyjwt_project
 OPTIONS_DEFINE=	CRYPTO
 OPTIONS_DEFAULT=CRYPTO
 
-CRYPTO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=3.1:security/py-cryptography@${PY_FLAVOR}
+CRYPTO_USES=	 pycryptography:run
 
 .include <bsd.port.mk>
