@@ -270,3 +270,5 @@ lang/ruby27|lang/ruby30|2023-08-30|Please migrate to newer versions. Ruby 2.7 wi
 www/py-WebTest|www/py-webtest|2023-09-07|Use lowercase PORTNAME and path
 devel/liboobs||2023-09-08|Gnome dependency not used anymore
 x11/gnome3|x11/gnome|2023-09-08|GNOME has moved past version 3. Prepare for update
+sysutils/hal||2023-09-08|Has been abandonned upstream long ago, replacement have now hit the ports tree almost everywhere
+sysutils/hal-info||2023-09-08|Has no use without hal which has been removed

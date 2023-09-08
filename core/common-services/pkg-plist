@@ -1,4 +1,2 @@
-@comment $MidnightBSD$
 @postexec sysrc dbus_enable=YES
-@postexec sysrc hald_enable=YES
 @postexec sysrc mlogind_enable=YES
