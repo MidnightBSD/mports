@@ -1,6 +1,6 @@
 PORTNAME?=	xorg-server
 PORTVERSION?=	1.20.14
-PORTREVISION?=	4
+PORTREVISION?=	5
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -71,17 +71,10 @@ PLIST=		${.CURDIR}/pkg-plist
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 200000
-LIB_DEPENDS+=   libhal.so:sysutils/hal
-CONFIGURE_ARGS+=        --enable-config-hal --disable-config-devd
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-EXTRA_PATCHES+=         ${FILESDIR}/extra-patch-config_devd_1.c
-.else
 CONFIGURE_ARGS+=        --disable-config-hal --enable-config-devd
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-config_devd_2.c \
 			${FILESDIR}/extra-patch-config_Makefile.in
-.endif
 
 .if ${SSL_DEFAULT} == base
 # The reason why I use this is cause openssl from base doesn't install a .pc file
