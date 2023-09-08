@@ -246,7 +246,6 @@ SUBDIR += libmtdev
 SUBDIR += libnotify
 SUBDIR += libnsutils
 SUBDIR += liboil
-SUBDIR += liboobs
 SUBDIR += libopkele
 SUBDIR += libosinfo
 SUBDIR += libparserutils
