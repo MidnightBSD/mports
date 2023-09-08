@@ -17,8 +17,8 @@ USES=		cpe iconv libtool pkgconfig ssl
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd11.4 \
-		 --host=${MACHINE_ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd12.4 \
+		 --host=${MACHINE_ARCH}-portbld-freebsd12.4
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-docs \
 		--with-ssl=openssl \
