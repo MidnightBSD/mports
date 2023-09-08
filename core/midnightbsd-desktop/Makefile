@@ -2,6 +2,7 @@
 
 PORTNAME=	midnightbsd-desktop
 PORTVERSION=	2.6.4
+PORTREVISION=	1
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
