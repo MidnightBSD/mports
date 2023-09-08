@@ -1,12 +1,13 @@
-PORTNAME=	gnome3
+PORTNAME=	gnome
 PORTVERSION=	3.36
+PORTREVISION=	2
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	"meta-port" for the GNOME 3 integrated X11 desktop
+COMMENT?=	"meta-port" for the GNOME integrated X11 desktop
 
 FLAVORS=	full lite
 FLAVOR?=	full
@@ -26,12 +27,11 @@ RUN_DEPENDS?=	dconf-editor:devel/dconf-editor \
 		sushi>=0:x11-fm/sushi \
 		nautilus>=3.0.0:x11-fm/nautilus \
 		${LOCALBASE}/share/fonts/bitstream-vera/Vera.ttf:x11-fonts/bitstream-vera \
-		${LOCALBASE}/share/hal/fdi/information/10freedesktop/10-camera-ptp.fdi:sysutils/hal-info \
 		yelp>=3.0.0:x11/yelp \
 		zenity>=3.0.0:x11/zenity \
 		seahorse>=3.0.0:security/seahorse \
 		gnome-control-center>=3.0.0:sysutils/gnome-control-center \
-		${LOCALBASE}/share/gnome-background-properties/gnome-backgrounds.xml:x11-themes/gnome-backgrounds \
+		gnome-backgrounds>=0:x11-themes/gnome-backgrounds \
 		caribou>=0:accessibility/caribou \
 		${LOCALBASE}/share/sounds/freedesktop/index.theme:audio/freedesktop-sound-theme
 
