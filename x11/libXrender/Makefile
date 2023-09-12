@@ -8,7 +8,9 @@ COMMENT=	X Render extension library
 
 LICENSE=	mit
 
-USES=		xorg xorg-cat:lib
+USES=		cpe xorg xorg-cat:lib
 USE_XORG=	x11 xorgproto
+
+CPE_VENDOR=	x.org
 
 .include <bsd.port.mk>
