@@ -5,6 +5,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org void input driver
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 

@@ -1,12 +1,14 @@
 PORTNAME=	xf86-video-geode
 PORTVERSION=	2.11.20
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org geode display driver
+WWW=		https://www.x.org/
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		xorg-cat:driver
 

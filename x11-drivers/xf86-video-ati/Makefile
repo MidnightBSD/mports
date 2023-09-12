@@ -13,6 +13,8 @@ PATCHFILES+=	4d84cf438e7f1bebf0053035ef0292e9fed257d1.diff:-p1
 PATCHFILES+=	c0eb5dbd9c1db6b6d5b1574bcd8c584170d7ab54.diff:-p1
 PATCHFILES+=	3845392426e9798c1fb2a6fc5e97bf5dfd5c443d.diff:-p1
 
+EXTRA_PATCHES=        ${FILESDIR}/0001_dont_set_sourcevalidate_pointer_to_null.diff:-p1
+
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 

@@ -1,5 +1,6 @@
 PORTNAME=	xf86-input-synaptics
 PORTVERSION=	1.9.2
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.xz
 
@@ -13,6 +14,7 @@ USES=		pathfix xorg xorg-cat:driver tar:xz
 USE_XORG=	x11 xtst
 
 OPTIONS_DEFINE=	EVDEV
+OPTIONS_DEFAULT=	EVDEV
 EVDEV_DESC=	Use evdev for input events (requires kernel support)
 
 EVDEV_CONFIGURE_ENV=	BUILD_EVENTCOMM=yes

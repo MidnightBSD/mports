@@ -1,5 +1,5 @@
 PORTNAME=	libXi
-PORTVERSION=	1.7.10
+DISTVERSION=	1.8
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -11,8 +11,7 @@ LICENSE=	mit
 USE_XORG=	x11 xext xfixes xorgproto
 INSTALL_TARGET=	install-strip
 USES+=	cpe xorg xorg-cat:lib
-CPE_PRODUCT=	libxi
-CPE_VENDOR=	x
+CPE_VENDOR=	x.org
 
 CONFIGURE_ARGS+=--disable-docs \
 		--disable-specs \
