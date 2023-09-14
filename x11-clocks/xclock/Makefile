@@ -4,6 +4,7 @@ CATEGORIES=	x11-clocks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analog and digital clock for X
+WWW=		https://www.freedesktop.org/Software/xapps
 
 LICENSE=	mit
 

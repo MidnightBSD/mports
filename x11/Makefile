@@ -60,7 +60,6 @@ SUBDIR += libXv
 SUBDIR += libXvMC
 SUBDIR += libXxf86dga
 SUBDIR += libXxf86vm
-SUBDIR += libdmx
 SUBDIR += libexo
 SUBDIR += libfm
 SUBDIR += libfm-extra

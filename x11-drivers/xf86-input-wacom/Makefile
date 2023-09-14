@@ -1,13 +1,14 @@
 PORTNAME=	xf86-input-wacom
 PORTVERSION=	0.39.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 MASTER_SITES=	https://github.com/linuxwacom/${PORTNAME}/releases/download/${DISTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org legacy Wacom tablet driver
+WWW=		https://linuxwacom.github.io/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 RUN_DEPENDS=	webcamd>=3.1.0.1:multimedia/webcamd
@@ -36,8 +37,8 @@ post-patch:
 		${WRKSRC}/configure
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
+	${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
 	${INSTALL_DATA} ${FILESDIR}/wacom.conf.sample \
-		${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
+		${PREFIX}/etc/X11/xorg.conf.d
 
 .include <bsd.port.mk>

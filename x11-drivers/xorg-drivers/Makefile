@@ -1,6 +1,6 @@
 PORTNAME=	xorg-drivers
 PORTVERSION=	7.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-drivers
 MASTER_SITES=  # none
 DISTFILES=     # none
@@ -8,6 +8,7 @@ EXTRACT_ONLY=  # none
 
 MAINTAINER=	portsMidnightBSD.org
 COMMENT=	X.org drivers meta-port
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 
@@ -33,7 +34,6 @@ VIDEO_DRIVERS=		apm \
 			chips \
 			cirrus \
 			dummy \
-			glint \
 			i128 \
 			i740 \
 			mach64 \
@@ -43,13 +43,13 @@ VIDEO_DRIVERS=		apm \
 			openchrome \
 			r128 \
 			rendition \
-			s3 \
+			s3virge \
 			savage \
 			scfb \
 			siliconmotion \
 			sis \
 			tdfx \
-			trident \
+			tseng \
 			vesa \
 			voodoo
 
@@ -66,13 +66,13 @@ ${a:tu}_DESC=		Install ${a} ${type} driver
 .endfor
 
 OPTIONS_DEFINE_amd64=	AMDGPU ATI INTEL VMMOUSE VMWARE
-OPTIONS_DEFAULT_amd64=	ATI INTEL NV VMWARE VESA
+OPTIONS_DEFAULT_amd64=	VESA
 
 OPTIONS_DEFINE_i386:=	${OPTIONS_DEFINE_amd64} GEODE
 OPTIONS_DEFAULT_i386:=	${OPTIONS_DEFAULT_amd64}
 
 AMDGPU_DESC=		Install amdgpu video driver
-ATI_DESC=		Install ati (radeon) video driver 
+ATI_DESC=		Install ati (radeon) video driver
 GEODE_DESC=		Install geode video driver
 INTEL_DESC=		Install intel video driver
 VMMOUSE_DESC=		Install vmmouse input driver
