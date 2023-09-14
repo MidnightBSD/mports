@@ -6,6 +6,7 @@ DISTFILES=      ${PORTNAME}-${PORTVERSION}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session Management library for X11
+WWW=		https://www.freedesktop.org/Software/xlibs
 
 LICENSE=	mit
 

@@ -4,6 +4,7 @@ CATEGORIES=	x11-servers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program to link multiple X servers together
+WWW=		https://github.com/dottedmag/x2x
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

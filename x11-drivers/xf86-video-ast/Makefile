@@ -1,10 +1,11 @@
 PORTNAME=	xf86-video-ast
 PORTVERSION=	1.1.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org ASPEED display driver
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

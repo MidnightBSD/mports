@@ -1,5 +1,6 @@
 PORTNAME=	libxcb
 PORTVERSION=	1.15
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	https://xcb.freedesktop.org/dist/
 

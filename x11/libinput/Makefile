@@ -1,11 +1,11 @@
 PORTNAME=	libinput
-DISTVERSION=	1.19.1
-PORTREVISION=	1
+DISTVERSION=	1.24.0
 CATEGORIES=	x11
-MASTER_SITES=	https://freedesktop.org/software/${PORTNAME}/
+DISTFILES=	libinput-${DISTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic input library
+WWW=		https://www.freedesktop.org/wiki/Software/libinput/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -17,14 +17,18 @@ LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libudev.so:devel/libudev-devd \
 		libmtdev.so:devel/libmtdev
 
-USES=		localbase meson pkgconfig python:run shebangfix tar:xz
+USES=		cpe localbase meson pkgconfig python:run shebangfix
 USE_LDCONFIG=	yes
 
-MESON_ARGS+=	-Ddocumentation=false -Dtests=false
+#USE_GITLAB=	yes
+#GL_SITE=	https://gitlab.freedesktop.org
+
+CPE_VENDOR=	freedesktop
 
 NO_TEST=	yes
 
-python_OLD_CMD=	"/usr/bin/env python3"
+MESON_ARGS=	-Ddocumentation=false -Dtests=false
+
 SHEBANG_FILES=	tools/libinput-analyze-per-slot-delta.py \
 		tools/libinput-analyze-recording.py \
 		tools/libinput-analyze-touch-down-state.py \
@@ -33,6 +37,7 @@ SHEBANG_FILES=	tools/libinput-analyze-per-slot-delta.py \
 		tools/libinput-measure-touchpad-pressure.py \
 		tools/libinput-measure-touchpad-size.py \
 		tools/libinput-measure-touchpad-tap.py \
+		tools/libinput-list-kernel-devices.py \
 		tools/libinput-replay.py
 # The following files are not installed, but might be
 # run as part of the test suite.
@@ -46,8 +51,9 @@ OPTIONS_SUB=	yes
 DEBUG_GUI_DESC=	Build the GUI event viewer
 LIBWACOM_DESC=	Libwacom support
 
-DEBUG_GUI_USES=		gnome
-DEBUG_GUI_USE=		GNOME=gtk30,glib20,cairo
+DEBUG_GUI_USES=		gnome xorg
+DEBUG_GUI_USE=		GNOME=gtk30,glib20,cairo xorg=x11
+DEBUG_GUI_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 DEBUG_GUI_MESON_TRUE=	debug-gui
 LIBWACOM_LIB_DEPENDS=	libwacom.so:x11/libwacom
 LIBWACOM_MESON_TRUE=	libwacom

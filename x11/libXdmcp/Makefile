@@ -4,11 +4,14 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Display Manager Control Protocol library
+WWW=		https://www.freedesktop.org/Software/xlibs
 
 LICENSE=	mit
 
-USES=		xorg xorg-cat:lib
+USES=		cpe xorg xorg-cat:lib
 USE_XORG=	xorgproto:both
+
+CPE_VENDOR=	x.org
 
 CONFIGURE_ARGS+=--disable-docs --without-xmlto
 

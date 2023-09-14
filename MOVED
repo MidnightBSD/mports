@@ -272,3 +272,8 @@ devel/liboobs||2023-09-08|Gnome dependency not used anymore
 x11/gnome3|x11/gnome|2023-09-08|GNOME has moved past version 3. Prepare for update
 sysutils/hal||2023-09-08|Has been abandonned upstream long ago, replacement have now hit the ports tree almost everywhere
 sysutils/hal-info||2023-09-08|Has no use without hal which has been removed
+x11-servers/xephyr|x11-servers/xorg-server@xephyr|2022-08-02|Merged into flavorized version
+x11-servers/xorg-nestserver|x11-servers/xorg-server@xnest|2022-08-02|Merged into the flavorized version
+x11-servers/xorg-vfbserver|x11-servers/xorg-server@xvfb|2022-08-02|Merged into the flavorized version
+x11-servers/xorg-dmx||2022-08-02|Discontinued upstream
+x11/libdmx||2023-04-25|Upstream removed support for Xdmx server

@@ -1,10 +1,11 @@
 PORTNAME=	xf86-input-evdev
 PORTVERSION=	2.10.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org event device input driver
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
