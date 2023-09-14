@@ -3494,7 +3494,7 @@ generate-plist: ${WRKDIR}
 .		endif
 .	endfor
  
-.for dir in ${PLIST_DIRS}
+.      for dir in ${PLIST_DIRS}
 	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} -e 's,^,@dir ,' >> ${TMPPLIST}
 .      endfor
 
