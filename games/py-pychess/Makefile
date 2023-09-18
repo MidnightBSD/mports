@@ -5,7 +5,7 @@ MASTER_SITES=	https://github.com/pychess/pychess/releases/download/${PORTVERSION
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK chess client written in Python
-WWW=		https://www.pychess.org/
+WWW=		https://github.com/pychess/pychess
 
 LICENSE=	gpl3
 
@@ -17,15 +17,13 @@ COMMON_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pexpect>0:misc/py-pexpect@${PY_FLAVOR} \
 RUN_DEPENDS=	${COMMON_DEPENDS}
 BUILD_DEPENDS=	${COMMON_DEPENDS}
 
-USES=		desktop-file-utils display:configure gettext gnome gstreamer python:3.3+
+USES=		desktop-file-utils display:configure gettext gnome gstreamer python
 # DISPLAY must be set at all steps:
 .for t in build install stage
 _USES_$t+=	${_USES_configure}
 .endfor
-USE_GSTREAMER1=	yes
 USE_PYTHON=	distutils autoplist
 USE_GNOME=	gtksourceview3:run glib20 gtk30 librsvg2 introspection
-INSTALLS_ICONS=	yes
 PYDISTUTILS_INSTALLNOSINGLE=	nope
 
 .include <bsd.port.mk>

@@ -1,5 +1,3 @@
-
-#
 # Feature:	display
 # Usage:	USES=display or USES=display:ARGS
 # Valid ARGS:	install (default, implicit), any target
@@ -10,12 +8,12 @@
 .if !defined(_INCLUDE_USES_DISPLAY_MK)
 _INCLUDE_USES_DISPLAY_MK=	yes
 
-.if empty(display_ARGS)
+.  if empty(display_ARGS)
 display_ARGS=	install
-.endif
+.  endif
 
-.if !defined(DISPLAY)
-BUILD_DEPENDS+=	Xvfb:x11-servers/xorg-vfbserver \
+.  if !defined(DISPLAY)
+BUILD_DEPENDS+=	Xvfb:x11-servers/xorg-server@xvfb \
 	${LOCALBASE}/share/fonts/misc/8x13O.pcf.gz:x11-fonts/xorg-fonts-miscbitmaps \
 	${LOCALBASE}/share/fonts/misc/fonts.alias:x11-fonts/font-alias \
 	${LOCALBASE}/share/X11/xkb/rules/base:x11/xkeyboard-config \
@@ -32,5 +30,5 @@ start-display:
 stop-display:
 	pkill -15 -F ${XVFBPIDFILE}
 
-.endif
+.  endif
 .endif
