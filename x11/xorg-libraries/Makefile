@@ -1,6 +1,6 @@
 PORTNAME=	xorg-libraries
 PORTVERSION=	7.7
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -15,8 +15,7 @@ LICENSE=	mit
 NO_BUILD=	yes
 NO_MTREE=	yes
 
-RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/dmx.pc:x11/libdmx \
-		${LOCALBASE}/libdata/pkgconfig/fontenc.pc:x11-fonts/libfontenc \
+RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/fontenc.pc:x11-fonts/libfontenc \
 		${LOCALBASE}/libdata/pkgconfig/ice.pc:x11/libICE \
 		${LOCALBASE}/libdata/pkgconfig/libfs.pc:x11-fonts/libFS \
 		${LOCALBASE}/libdata/pkgconfig/pixman-1.pc:x11/pixman \
