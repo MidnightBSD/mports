@@ -1,5 +1,5 @@
 PORTNAME=	jenkins
-PORTVERSION=	2.387.3
+PORTVERSION=	2.401.3
 CATEGORIES=	devel java
 MASTER_SITES=	https://get.jenkins.io/war-stable/${PORTVERSION}/
 PKGNAMESUFFIX=	-lts
@@ -10,6 +10,7 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source continuous integration server
+WWW=		https://jenkins.io/
 
 LICENSE=	mit
 
