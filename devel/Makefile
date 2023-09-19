@@ -28,6 +28,7 @@ SUBDIR += ayatana-ido
 SUBDIR += b2
 SUBDIR += basu
 SUBDIR += benchmark
+SUBDIR += bglibs
 SUBDIR += binutils
 SUBDIR += bison
 SUBDIR += bmake
