@@ -1,8 +1,9 @@
 PORTNAME=	opensearch
-DISTVERSION=	2.8.0
+DISTVERSION=	1.3.10
 DISTVERSIONSUFFIX=	-linux-x64
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.opensearch.org/releases/bundle/${PORTNAME}/${DISTVERSION}/
+PKGNAMESUFFIX=	13
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full-text search engine for Java
@@ -14,7 +15,7 @@ BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	bash>0:shells/bash \
 		jna>0:devel/jna
 
-CONFLICTS=	opensearch13
+CONFLICTS=	opensearch
 
 USES=		cpe shebangfix
 USE_JAVA=	yes
@@ -41,8 +42,6 @@ OPTIONS_DEFAULT=PLUGINS
 CONFIG_FILES=	opensearch.yml jvm.options log4j2.properties
 
 PLUGINS_CONFIG_FILES?= \
-		opensearch-notifications-core/notifications-core.yml \
-		opensearch-notifications/notifications.yml \
 		opensearch-observability/observability.yml \
 		opensearch-performance-analyzer/agent-stats-metadata \
 		opensearch-performance-analyzer/log4j2.xml \
@@ -50,26 +49,10 @@ PLUGINS_CONFIG_FILES?= \
 		opensearch-performance-analyzer/performance-analyzer.properties \
 		opensearch-performance-analyzer/plugin-stats-metadata \
 		opensearch-performance-analyzer/rca.conf \
-		opensearch-performance-analyzer/rca_idle_cluster_manager.conf \
-		opensearch-performance-analyzer/rca_cluster_manager.conf \
+		opensearch-performance-analyzer/rca_idle_master.conf \
+		opensearch-performance-analyzer/rca_master.conf \
 		opensearch-performance-analyzer/supervisord.conf \
 		opensearch-reports-scheduler/reports-scheduler.yml \
-		opensearch-security/action_groups.yml \
-		opensearch-security/allowlist.yml \
-		opensearch-security/audit.yml \
-		opensearch-security/config.yml \
-		opensearch-security/internal_users.yml \
-		opensearch-security/nodes_dn.yml \
-		opensearch-security/roles.yml \
-		opensearch-security/roles_mapping.yml \
-		opensearch-security/tenants.yml \
-		opensearch-security/whitelist.yml
-
-# Upstream provide some *.example files.  These are also copied as sample filse
-# but we do not register them as @sample to avoid installing filse that needs
-# to be tuned a site specific way.
-PLUGINS_SAMPLE_CONFIG_FILES= \
-		opensearch-security/opensearch.yml
 
 BINS=		opensearch opensearch-cli opensearch-env \
 		opensearch-env-from-file opensearch-keystore \
@@ -89,35 +72,27 @@ post-patch:
 	${RM} ${WRKSRC}/lib/jna-*.jar
 
 do-install:
-	${MKDIR} ${PREFIX}/etc/opensearch
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/opensearch
 .for f in ${CONFIG_FILES}
-	${INSTALL} ${WRKSRC}/config/${f} ${ETCDIR}/${f}.sample
+	${INSTALL} ${WRKSRC}/config/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
 .endfor
-	${MKDIR} ${PREFIX}/lib/opensearch/bin
+	${MKDIR} ${STAGEDIR}${PREFIX}/lib/opensearch/bin
 .for f in ${BINS}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${PREFIX}/lib/opensearch/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${STAGEDIR}${PREFIX}/lib/opensearch/bin
 .endfor
-	${MKDIR} ${PREFIX}/lib/opensearch/extensions
-	${MKDIR} ${PREFIX}/lib/opensearch/lib
-	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "lib modules" ${PREFIX}/lib/opensearch/)
-	${MKDIR} ${PREFIX}/libexec/opensearch
-	${INSTALL} -lrs ${ETCDIR} ${PREFIX}/lib/opensearch/config
-	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${PREFIX}/lib/opensearch/lib/jna.jar
+	${MKDIR} ${STAGEDIR}${PREFIX}/lib/opensearch/lib
+	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "lib modules" ${STAGEDIR}${PREFIX}/lib/opensearch/)
+	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/opensearch
+	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${PREFIX}/lib/opensearch/config
+	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${STAGEDIR}${PREFIX}/lib/opensearch/lib/jna.jar
 
 do-install-PLUGINS-on:
-	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/opensearch-notifications-core \
-		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-notifications \
-		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-observability \
-		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-performance-analyzer \
-		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-reports-scheduler \
-		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-security
+	${MKDIR} ${STAGEDIR}${ETCDIR}/opensearch-observability \
+		 ${STAGEDIR}${ETCDIR}/opensearch-performance-analyzer \
+		 ${STAGEDIR}${ETCDIR}/opensearch-reports-scheduler
 .for f in ${PLUGINS_CONFIG_FILES}
-	${INSTALL} ${WRKSRC}/config/${f} ${FAKE_DESTDIR}${ETCDIR}/${f}.sample
+	${INSTALL} ${WRKSRC}/config/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
 	${ECHO} "@sample ${ETCDIR}/${f}.sample" >> ${TMPPLIST}
-.endfor
-.for f in ${PLUGINS_SAMPLE_CONFIG_FILES}
-	${INSTALL} ${WRKSRC}/config/${f}.example ${FAKE_DESTDIR}${ETCDIR}/${f}.sample
-	${ECHO} "${ETCDIR}/${f}.sample" >> ${TMPPLIST}
 .endfor
 	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "plugins" ${FAKE_DESTDIR}${PREFIX}/lib/opensearch/)
 	(cd ${WRKSRC}/plugins/opensearch-security/tools && ${COPYTREE_BIN} "*.sh" ${FAKE_DESTDIR}${PREFIX}/lib/opensearch/plugins/opensearch-security/tools)
@@ -128,11 +103,8 @@ post-install:
 .endfor
 	${FIND} -s ${PREFIX}/lib/opensearch -not -type d | ${SORT} | \
 		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' >> ${TMPPLIST}
-	${ECHO} "@dir lib/opensearch/extensions" >> ${TMPPLIST}
-.if ${PORT_OPTIONS:MPLUGINS}
 	${ECHO} "@dir lib/opensearch/plugins" >> ${TMPPLIST}
-.endif
 	${ECHO} "@dir libexec/opensearch" >> ${TMPPLIST}
-	${ECHO} "@dir(opensearch,opensearch,0755) ${ETCDIR_REL}" >> ${TMPPLIST}
+	${ECHO} "@dir(opensearch,opensearch,0755) ${ETCDIR}" >> ${TMPPLIST}
 
 .include <bsd.port.mk>

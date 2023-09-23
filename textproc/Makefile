@@ -107,6 +107,7 @@ SUBDIR += minixmlto
 SUBDIR += mythes
 SUBDIR += openjade
 SUBDIR += opensearch
+SUBDIR += opensearch13
 SUBDIR += opensp
 SUBDIR += p5-HTML-Format
 SUBDIR += p5-HTML-Tidy
