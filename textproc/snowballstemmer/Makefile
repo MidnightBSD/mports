@@ -1,10 +1,11 @@
 PORTNAME=	snowballstemmer
-PORTVERSION=	2.1.0
+PORTVERSION=	2.2.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Snowball stemmer library for C
+WWW=		https://snowballstem.org/
 
 LICENSE=	bsd3
 
