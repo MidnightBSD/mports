@@ -126,6 +126,7 @@ SUBDIR += lmmon
 SUBDIR += lockfile-progs
 SUBDIR += logstash6
 SUBDIR += logstash7
+SUBDIR += logstash8
 SUBDIR += lsblk
 SUBDIR += lscpu
 SUBDIR += lsof

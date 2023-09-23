@@ -1,17 +1,17 @@
 PORTNAME=	logstash
-PORTVERSION=	7.17.11
+PORTVERSION=	8.8.2
 DISTVERSIONSUFFIX=	-darwin-x86_64
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://artifacts.elastic.co/downloads/logstash/
-PKGNAMESUFFIX=	7
+PKGNAMESUFFIX=	8
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Server-side data ingestion and transformation tool
+COMMENT=	Server-side data ingestion and transformation tool (8.x version)
 WWW=		https://www.elastic.co/products/logstash
 
 LICENSE=	apache2
 
-ONLY_FOR_ARCHS= aarch64 amd64
+ONLY_FOR_ARCHS=	aarch64 amd64
 
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
@@ -19,18 +19,19 @@ USES=		cpe shebangfix
 
 CPE_VENDOR=	elastic
 USE_JAVA=	yes
-JAVA_VERSION=	11+
+JAVA_VERSION=	17+
 JAVA_RUN=	yes
 USE_RC_SUBR=	logstash
 
 SHEBANG_FILES=	bin/*
 
-CONFLICTS=	logstash6 logstash8
+CONFLICTS=	logstash6 logstash7
 
 NO_BUILD=	yes
 
-PORTSCOUT=	limit:^7
+PORTSCOUT=	limit:^8
 
+SUB_FILES=	pkg-message
 SUB_LIST=	JAVA_HOME=${JAVA_HOME} \
 		LOGSTASH_HOME=${LOGSTASH_HOME}
 
@@ -43,7 +44,7 @@ LOGSTASH_CONF_FILES=		jvm.options log4j2.properties logstash.yml \
 				pipelines.yml startup.options
 LOGSTASH_HOME?=			${PREFIX}/${PORTNAME}
 LOGSTASH_JRUBY_BIN_FILES=	ast gem irb jgem jirb jirb_swing jruby \
-				jruby.bash jruby.sh jrubyc rake rdoc ri testrb
+				jruby.bash jruby.sh jrubyc rake rdoc ri
 LOGSTASH_JRUBY_SUBDIR=		vendor/jruby/bin
 
 post-extract:
@@ -55,10 +56,10 @@ post-patch:
 
 do-install:
 	${FIND} ${WRKSRC} -name '*.bat' -delete
-	${MKDIR} ${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${ETCDIR}
+	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${STAGEDIR}${ETCDIR}
 .for x in ${LOGSTASH_CONF_FILES}
-	${INSTALL_DATA} ${WRKSRC}/config/${x} ${ETCDIR}/${x}.sample
+	${INSTALL_DATA} ${WRKSRC}/config/${x} ${STAGEDIR}${ETCDIR}/${x}.sample
 .endfor
 	${RM} -rf ${WRKSRC}/config
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${LOGSTASH_HOME})
@@ -66,13 +67,15 @@ do-install:
 .for x in ${LOGSTASH_JRUBY_BIN_FILES}
 	${CHMOD} ${BINMODE} ${STAGEDIR}${LOGSTASH_HOME}/${LOGSTASH_JRUBY_SUBDIR}/${x}
 .endfor
-	${FIND} ${STAGEDIR}${LOGSTASH_HOME}/vendor/bundle/jruby/2.5.0/gems \
-        	${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/ruby/gems/shared/gems \
+	${FIND} ${STAGEDIR}${LOGSTASH_HOME}/vendor/bundle/jruby/2.6.0/gems \
+	        ${STAGEDIR}${LOGSTASH_HOME}/vendor/bundle/jruby/2.6.0/plugins \
+		${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/ruby/gems/shared/gems \
 		-type d -empty -delete
 	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${LOGSTASH_HOME}/config
 	${RM} -rf ${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/jni
+	${RM} -rf ${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/tmp
 	${MKDIR} ${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/jni
-	(cd ${WRKSRC}/vendor/jruby/lib/jni && \
+	(cd ${WRKSRC}/vendor/jruby/tmp/lib/jni && \
 	 ${COPYTREE_SHARE} ${ARCH:S/amd64/x86_64/}-FreeBSD \
 	 ${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/jni)
 
@@ -81,12 +84,12 @@ post-install:
 .for x in ${LOGSTASH_CONF_FILES}
 	${ECHO} "@sample ${ETCDIR_REL}/${x}.sample" >> ${TMPPLIST}
 .endfor
-	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/build_info" >> ${TMPPLIST}
-	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/cache" >> ${TMPPLIST}
-	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/doc" >> ${TMPPLIST}
-	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/extensions" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.6.0/build_info" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.6.0/cache" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.6.0/doc" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.6.0/extensions" >> ${TMPPLIST}
 	${ECHO} "@dir logstash/vendor/jruby/lib/ruby/gems/shared/cache" >> ${TMPPLIST}
-	${FIND} -s ${PREFIX}/logstash -not -type d | ${SORT} | \
+	${FIND} -s ${STAGEDIR}${LOGSTASH_HOME} -not -type d | ${SORT} | \
 		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(logstash,logstash,) logstash/data" >> ${TMPPLIST}
 
