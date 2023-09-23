@@ -23,6 +23,7 @@ SUBDIR += courierpassd
 SUBDIR += courieruserinfo
 SUBDIR += cracklib
 SUBDIR += cryptopp
+SUBDIR += cvm
 SUBDIR += cyrus-sasl2
 SUBDIR += cyrus-sasl2-ldapdb
 SUBDIR += cyrus-sasl2-saslauthd
