@@ -1246,6 +1246,7 @@ SUBDIR += xorg-macros
 SUBDIR += xtl-quant-stack
 SUBDIR += xxhash
 SUBDIR += yajl
+SUBDIR += yaml-cpp
 SUBDIR += yasm
 SUBDIR += zookeeper
 SUBDIR += zthread
