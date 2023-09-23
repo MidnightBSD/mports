@@ -1,5 +1,3 @@
-# Created by: Palle Girgensohn <girgen@FreeBSD.org>
-
 PORTNAME=	beats
 PORTVERSION=	6.8.16
 DISTVERSIONPREFIX=v

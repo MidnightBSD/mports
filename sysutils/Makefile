@@ -16,6 +16,7 @@ SUBDIR += batmon
 SUBDIR += battmond
 SUBDIR += beats6
 SUBDIR += beats7
+SUBDIR += beats8
 SUBDIR += bhyve-firmware
 SUBDIR += brasero
 SUBDIR += bsd-splash-changer
