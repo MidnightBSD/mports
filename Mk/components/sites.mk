@@ -23,11 +23,11 @@
 # Where to put distfiles that don't have any other master site
 .if !defined(IGNORE_MASTER_SITE_LOCAL)
 MASTER_SITE_LOCAL+= \
-	ftp://ftp3.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	https://mirror2.sandyriver.net/pub/midnightbsd/mports/distfiles/%SUBDIR%/ \
 	https://discovery.midnightbsd.org/mports/distfiles/%SUBDIR%/  \
 	https://archer.midnightbsd.org/ftp/mports/distfiles/%SUBDIR%/  \
 	https://ftp1.midnightbsd.org/mports/distfiles/%SUBDIR%/ \
+	ftp://ftp3.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp1.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/
 
 MASTER_SITE_PORTS_JP+= \
