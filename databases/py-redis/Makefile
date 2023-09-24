@@ -1,28 +1,35 @@
-# Created by: Cheng-Lung Sung <clsung@FreeBSD.org>
-
 PORTNAME=	redis
-PORTVERSION=	3.5.3
+PORTVERSION=	4.6.0
 CATEGORIES=	databases python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python client for Redis key-value store
+WWW=		https://github.com/redis/redis-py
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:3.6+
-USE_PYTHON=	distutils autoplist concurrent
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR} \
+		redis-server:databases/redis
 
-OPTIONS_DEFINE=	HIREDIS
-
-HIREDIS_DESC=	High performance response parser (via hiredis)
-
-HIREDIS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hiredis>=0.1.3:databases/py-hiredis@${PY_FLAVOR}
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils pytest
 
 NO_ARCH=	yes
-NO_TEST=	yes
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}redis2
 
-.include <bsd.port.mk>
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}redis[0-9]
+
+OPTIONS_DEFINE=	HIREDIS
+HIREDIS_DESC=	High performance response parser
+
+HIREDIS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hiredis>=1.0.0:databases/py-hiredis@${PY_FLAVOR}
+
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} <= 31102
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}async_timeout>=4.0.2:devel/py-async_timeout@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>
