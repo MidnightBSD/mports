@@ -4,6 +4,7 @@ CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Datadog Agent Integrations
+WWW=		https://www.datadoghq.com/
 
 LICENSE=	bsd4
 LICENSE_FILE=	${WRKSRC}/LICENSE
