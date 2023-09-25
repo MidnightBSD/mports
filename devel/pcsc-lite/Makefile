@@ -1,23 +1,26 @@
 PORTNAME=	pcsc-lite
-PORTVERSION=	1.8.24
+PORTVERSION=	2.0.0
 CATEGORIES=	devel security
 MASTER_SITES=	https://pcsclite.apdu.fr/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Middleware library to access a smart card using SCard API (PC/SC)
+WWW=		https://pcsclite.apdu.fr/
 
-LICENSE=	bsd3 gpl3
+LICENSE=	bsd3 gpl3+
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		libtool pathfix perl5 pkgconfig python:build shebangfix tar:bzip2
+USES=		libtool pathfix perl5 pkgconfig python shebangfix tar:bzip2
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_RC_SUBR=	pcscd
+PYTHON_NO_DEPENDS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-libsystemd \
-		--enable-usbdropdir=${PREFIX}/lib/pcsc/drivers/
+		--enable-usbdropdir=${PREFIX}/lib/pcsc/drivers/ \
+		--enable-ipcdir=/var/run
 
 INSTALL_TARGET=	install-strip
 SHEBANG_FILES=	src/spy/pcsc-spy
@@ -29,17 +32,6 @@ OPTIONS_GROUP_FEATURES=	FILTER
 FEATURES_DESC=		Default features knobs
 FILTER_DESC=		Control (Ignore or Extend) reader names reported by PCSC
 FILTER_CONFIGURE_ENABLE=	filter
-
-post-patch:
-	${REINPLACE_CMD} -e "s,^datadir,#datadir,; s,^data_DATA,#data_DATA," \
-		${WRKSRC}/doc/Makefile.in
-	${REINPLACE_CMD} -e "s,libusb-1.0/libusb.h,libusb.h,; \
-		s,libusb_strerror(ret),ret," ${WRKSRC}/configure \
-			${WRKSRC}/src/hotplug_libusb.c
-	${REINPLACE_CMD} -e "s,-ldl,," ${WRKSRC}/src/spy/Makefile.in
-
-post-patch-DOCS-off:
-	${REINPLACE_CMD} -e '/^install-data-am: / s|install-docDATA||' ${WRKSRC}/doc/Makefile.in
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/pcsc/drivers

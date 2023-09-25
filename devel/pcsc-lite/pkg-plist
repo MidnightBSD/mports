@@ -13,13 +13,14 @@ lib/libpcscspy.so.0
 lib/libpcscspy.so.0.0.0
 libdata/pkgconfig/libpcsclite.pc
 sbin/pcscd
-%%PORTDOCS%%%%DOCSDIR%%/README.DAEMON
 %%PORTDOCS%%%%DOCSDIR%%/README.polkit
+%%PORTDOCS%%%%DOCSDIR%%/install_spy.sh
+%%PORTDOCS%%%%DOCSDIR%%/uninstall_spy.sh
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/Makefile.am
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/Makefile.in
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/pcsc_demo.c
 man/man1/pcsc-spy.1.gz
 man/man5/reader.conf.5.gz
 man/man8/pcscd.8.gz
-@dir lib/pcsc/services
-@dir lib/pcsc/drivers
+@dirrmtry lib/pcsc/services
+@dirrmtry lib/pcsc/drivers
