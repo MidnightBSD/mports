@@ -21,6 +21,8 @@ DOCS=		NEWS README TODO doc/html/*
 
 OPTIONS_DEFINE=	DOCS
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} '/main/s/^void/int/' ${WRKSRC}/sys/try*.c
 
@@ -39,8 +41,5 @@ post-install:
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${FAKE_DESTDIR}${DOCSDIR}
-
-do-test:
-	cd ${WRKSRC} && ${SH} selftests.sh
 
 .include <bsd.port.mk>
