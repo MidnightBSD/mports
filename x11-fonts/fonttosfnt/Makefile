@@ -1,9 +1,10 @@
 PORTNAME=	fonttosfnt
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.2
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrap a bitmap font in a sftn wrapper
+WWW=		https://www.x.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
