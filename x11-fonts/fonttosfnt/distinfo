@@ -1,3 +1,3 @@
-TIMESTAMP = 1695904000
-SHA256 (xorg/app/fonttosfnt-1.2.2.tar.bz2) = 1a1bb4ef25856dea7de3d491ae7231493225b400bee0f6a1f949017ffd203a64
-SIZE (xorg/app/fonttosfnt-1.2.2.tar.bz2) = 146855
+TIMESTAMP = 1695904052
+SHA256 (xorg/app/fonttosfnt-1.2.3.tar.xz) = aa7a93f240cbd0f5cdfe6be7c1b934b4f74d23de6257883a9f1b4bf21d7d61af
+SIZE (xorg/app/fonttosfnt-1.2.3.tar.xz) = 140068

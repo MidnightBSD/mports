@@ -1,5 +1,5 @@
 PORTNAME=	fonttosfnt
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.3
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
-USES=		xorg xorg-cat:app
+USES=		tar:xz xorg xorg-cat:app
 USE_XORG=	xorgproto fontenc
 
 PLIST_FILES=	bin/fonttosfnt man/man1/fonttosfnt.1.gz
