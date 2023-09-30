@@ -368,8 +368,8 @@ man/man8/rspamd.8.gz
 %%DATADIR%%/www/safari-pinned-tab.svg
 @owner rspamd
 @group rspamd
-@dir /var/db/rspamd
-@dir /var/log/rspamd
-@dir /var/run/rspamd
+@dirrmtry /var/db/rspamd
+@dirrmtry /var/log/rspamd
+@dirrmtry /var/run/rspamd
 @owner
 @group
