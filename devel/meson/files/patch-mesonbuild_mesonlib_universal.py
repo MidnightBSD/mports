@@ -1,5 +1,5 @@
---- mesonbuild/mesonlib/universal.py.orig	2022-08-13 08:48:38 UTC
-+++ mesonbuild/mesonlib/universal.py
+--- mesonbuild/utils/universal.py.orig	2022-08-13 08:48:38 UTC
++++ mesonbuild/utils/universal.py
 @@ -111,6 +111,7 @@ __all__ = [
      'is_hurd',
      'is_irix',
