@@ -1,10 +1,11 @@
 PORTNAME=	mlogind
 PORTVERSION=	1.3.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	MidnightBSD Graphical login manager for X11
+WWW=		http://github.com/laffer1/mlogind
 
 LICENSE=	gpl2
 
@@ -15,7 +16,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		cmake jpeg pkgconfig
+USES=		cmake compiler:c++11-lang cpe jpeg pkgconfig xorg
 USE_GITHUB=     yes
 GH_PROJECT=     mlogind
 GH_ACCOUNT=     midnightbsd
