@@ -9,6 +9,7 @@ PATCHFILES=	5cfd42c386d3adae6d211fbb4011179c3c141b04.diff:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lua bindings to libraries using GObject-Introspection
+WWW=		https://github.com/pavouk/lgi
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

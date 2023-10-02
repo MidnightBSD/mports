@@ -112,6 +112,7 @@ SUBDIR += spidermonkey78
 SUBDIR += spidermonkey91
 SUBDIR += tcl-wrapper
 SUBDIR += tcl86
+SUBDIR += tolua
 SUBDIR += v8
 SUBDIR += vala
 SUBDIR += yabasic
