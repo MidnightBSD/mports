@@ -1,14 +1,13 @@
-
-
 PORTNAME=	slim
 PORTVERSION=	1.3.6
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
 		SF/slim.berlios
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Graphical login manager for X11, derived from Login.app
+WWW=		https://sourceforge.net/projects/slim.berlios/
 
 LICENSE=	gpl2
 
@@ -18,7 +17,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		cmake jpeg pkgconfig
+USES=		cmake compiler:c++11-lang cpe jpeg pkgconfig xorg
+CPE_VENDOR=	berlios
 USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrandr \
 		xrender xt
 USE_RC_SUBR=	slim
@@ -49,9 +49,10 @@ PLIST_SUB+=	PAM="@comment "
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
 .endif
 
-CONSOLEKIT_CMAKE_ON=    -DUSE_CONSOLEKIT=yes
-CONSOLEKIT_LIB_DEPENDS= libck-connector.so:sysutils/consolekit2
-CONSOLEKIT_CMAKE_OFF=   -DUSE_CONSOLEKIT=no
+CONSOLEKIT_CMAKE_ON=	-DUSE_CONSOLEKIT=yes
+CONSOLEKIT_LIB_DEPENDS=	libck-connector.so:sysutils/consolekit2 \
+			libdbus-1.so:devel/dbus
+CONSOLEKIT_CMAKE_OFF=	-DUSE_CONSOLEKIT=no
 
 post-patch:
 	@${CP} ${WRKSRC}/slim.conf ${WRKSRC}/slim.conf.sample
