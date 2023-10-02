@@ -114,6 +114,7 @@ SUBDIR += tcl-wrapper
 SUBDIR += tcl86
 SUBDIR += tolua
 SUBDIR += tolua++
+SUBDIR += v
 SUBDIR += v8
 SUBDIR += vala
 SUBDIR += yabasic
