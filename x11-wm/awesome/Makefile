@@ -1,6 +1,6 @@
 PORTNAME=	awesome
 PORTVERSION=	4.3
-PORTREVISION=	2
+PORTREVISION=	3
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	x11-wm
@@ -36,7 +36,7 @@ CMAKE_ARGS=	-DSYSCONFDIR=${PREFIX}/etc \
 		-DAWESOME_MAN_PATH=${MANPREFIX}/man \
 		-DGENERATE_DOC=OFF \
 		-DLUA_INCLUDE_DIR=${LUA_INCDIR}
-USE_GNOME=	glib20 pango gdkpixbuf2
+USE_GNOME=	glib20 pango gdkpixbuf2 librsvg2
 USE_XORG=	pixman x11 xau xcb xdmcp xext xft xinerama xrandr xrender \
 		xorgproto
 
