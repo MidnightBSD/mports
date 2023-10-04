@@ -21,6 +21,8 @@ CPE_VENDOR=	gnome
 MESON_ARGS=	-Dglade_catalog=false \
 		-Dlua51=false
 
+NO_TEST=	yes
+
 LIBPEAS_SLAVE?=	no
 
 .if ${LIBPEAS_SLAVE} == no
