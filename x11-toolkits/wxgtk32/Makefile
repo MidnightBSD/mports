@@ -9,6 +9,7 @@ DISTNAME=	wxWidgets-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI toolkit (wxWidgets) with ${FLAVOR:S/k/&+/:tu} bindings
+WWW=		https://www.wxwidgets.org/
 
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/docs/gpl.txt
@@ -59,7 +60,7 @@ CONFIGURE_ARGS=	--with-libpng=sys \
 		--enable-compat30
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}" \
 		ac_cv_header_sys_inotify_h=no
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
 
 OPTIONS_DEFINE=		GSTREAMER MSPACK NLS
 OPTIONS_DEFAULT=	GSTREAMER MSPACK

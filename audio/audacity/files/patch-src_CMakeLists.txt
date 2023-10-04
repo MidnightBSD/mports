@@ -1,26 +1,13 @@
---- src/CMakeLists.txt.orig	2021-12-22 15:35:36 UTC
-+++ src/CMakeLists.txt
-@@ -38,7 +38,7 @@ elseif( GIT_FOUND )
- else()
-    # No Git installed and no version data is available.
-    # Generate an empty file and let AboutDialog do the rest
--   file( TOUCH "${_PRVDIR}/RevisionIdent.h" )
-+   file( WRITE "${_PRVDIR}/RevisionIdent.h" "\n" )
- endif()
- 
- # Handle Audio Units option
-@@ -1086,10 +1086,10 @@ list( APPEND LIBRARIES
+--- src/CMakeLists.txt.orig	2023-06-08 09:17:02.000000000 -0400
++++ src/CMakeLists.txt	2023-10-04 11:20:50.109053000 -0400
+@@ -1166,8 +1166,8 @@
        $<$<BOOL:${USE_SBSMS}>:libsbsms>
        $<$<BOOL:${USE_SOUNDTOUCH}>:soundtouch>
        $<$<BOOL:${USE_VAMP}>:libvamp>
 -      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GLIB>
 -      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GTK>
--      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:z>
--      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:pthread>
 +      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GLIB>
 +      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GTK>
-+      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:z>
-+      $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:pthread>
+       $<$<TARGET_EXISTS:Threads::Threads>:Threads::Threads>
  )
  
- set( BUILDING_AUDACITY YES )
