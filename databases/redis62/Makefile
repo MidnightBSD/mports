@@ -1,5 +1,5 @@
 PORTNAME=	redis
-DISTVERSION=	6.2.11
+DISTVERSION=	6.2.13
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 PKGNAMESUFFIX=	62
@@ -30,10 +30,12 @@ MAKE_ENV=	V=yo OPTIMIZATION=
 
 JEMALLOC_MAKE_ENV=	USE_JEMALLOC=yes
 
+LUA_BROKEN=		Fails to link
 LUA_USES=		lua:51
 LUA_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.lua
 LUA_VARS=		_addflags=true
 
+LUAJIT_BROKEN=		Fails to link
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
 LUAJIT_BUILD_DEPENDS=	${LOCALBASE}/include/luajit-2.0/lua.h:lang/luajit
 LUAJIT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.luajit
@@ -73,7 +75,7 @@ NO_TEST=	yes
 
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
-CONFLICTS?=	redis4-4.* redis5-5.* redis-devel-6.*
+CONFLICTS_INSTALL=	redis redis-devel redis6 redis70 # etc/rc.d/redis
 
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \
