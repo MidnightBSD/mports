@@ -1,13 +1,11 @@
-# Created by: kwm@FreeBSD.org
-
 PORTNAME=	wayland
-PORTVERSION=	1.20.0
-PORTREVISION=	1
-CATEGORIES=	graphics wayland
-MASTER_SITES=	https://wayland.freedesktop.org/releases/
+DISTVERSION=	1.22.0
+CATEGORIES=	graphics
+MASTER_SITES=	https://gitlab.freedesktop.org/${PORTNAME}/${PORTNAME}/-/releases/${DISTVERSION}/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Wayland composite "server"
+COMMENT=	Core Wayland window system code and protocol
+WWW=		https://wayland.freedesktop.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,7 +16,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 
 CFLAGS+=	"-I${LOCALBASE}/include/libepoll-shim"
 
-USE_GCC=	yes
+#USE_GCC=	yes
 
 USES=		cpe gnome meson pkgconfig tar:xz
 USE_GNOME=	libxslt:build

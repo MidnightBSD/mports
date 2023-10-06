@@ -16,21 +16,23 @@ CONFLICTS=	pwlib-1.*
 
 USES=		autoreconf:build bison compiler:c11 gmake localbase:ldflags \
 		pathfix pkgconfig ssl tar:xz
-GNU_CONFIGURE=	yes
+BROKEN_SSL=	openssl30 openssl31
+BROKEN_SSL_REASON=	Uses OpenSSL 3.0.0 deprecated BIO_s_file_internal
+
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
 NO_TEST=	yes
 
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--enable-audio \
+		--disable-lua \
+		--disable-sasl \
 		--enable-ipv6 \
 		--enable-exceptions \
 		--enable-oss \
 		--enable-plugins
-
-CONFIGURE_ARGS+=--disable-lua \
-		--disable-sasl
 
 # --with-expat-dir="${LOCALBASE}"
 CONFIGURE_ENV+=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
@@ -39,6 +41,7 @@ CONFIGURE_ENV+=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 
 OPTIONS_DEFINE=	BSDVIDEO DEBUG ODBC ALSA JABBER V4L SDL LDAP PULSEAUDIO
 OPTIONS_DEFAULT=BSDVIDEO SDL V4L JABBER
+OPTIONS_SUB=	yes
 
 BSDVIDEO_DESC=	BSD video support
 DEBUG_DESC=	Install debug library
@@ -74,25 +77,21 @@ ALL_TARGET=	optshared
 PLIST_SUB+=	DEBUG="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MPULSEAUDIO}
-LIB_DEPENDS+=	libpulse.so:audio/pulseaudio
-CONFIGURE_ARGS+=--enable-pulse
-PLIST_SUB+=	PULSEAUDIO=""
-.else
-CONFIGURE_ARGS+=--disable-pulse
-PLIST_SUB+=	PULSEAUDIO="@comment "
-.endif
+ODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
+ODBC_CONFIGURE_ENABLE=	odbc
+PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
+PULSEAUDIO_CONFIGURE_ENABLE=pulse
+SDL_USES=		sdl
+SDL_USE=	SDL=sdl
+SDL_CONFIGURE_ENABLE=sdl
+V4L_BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat
+V4L_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
+V4L_CONFIGURE_ENABLE=	v4l v4l2
+V4L_VARS=	PTLIB_VIDEO=1
 
 .if ${PORT_OPTIONS:MJABBER}
 CONFIGURE_ARGS+=--enable-jabber
 PLLIB_VIDEO=1
-.endif
-
-.if ${PORT_OPTIONS:MODBC}
-LIB_DEPENDS+=	libodbc.so:databases/unixODBC
-CONFIGURE_ARGS+=--enable-odbc
-.else
-CONFIGURE_ARGS+=--disable-odbc
 .endif
 
 .if ${PORT_OPTIONS:MALSA}
@@ -113,31 +112,12 @@ CONFIGURE_ARGS+=--disable-bsdvideo
 PLIST_SUB+=	BSDVIDEO="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MV4L}
-BUILD_DEPENDS+=	v4l_compat>=0:multimedia/v4l_compat
-LIB_DEPENDS+=	libv4l2.so:multimedia/libv4l
-CONFIGURE_ARGS+=--enable-v4l --enable-v4l2
-PLIST_SUB+=	V4L=""
-PTLIB_VIDEO=1
-.else
-CONFIGURE_ARGS+=--disable-v4l --disable-v4l2
-PLIST_SUB+=	V4L="@comment "
-.endif
-
 .if defined(PTLIB_VIDEO)
 CONFIGURE_ARGS+=--enable-video --enable-vidfile
 PLIST_SUB+=	VIDEODIR=""
 .else
 CONFIGURE_ARGS+=--disable-video --disable-vidfile
 PLIST_SUB+=	VIDEODIR="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MSDL}
-USES+=		sdl
-USE_SDL+=	sdl
-CONFIGURE_ARGS+=--enable-sdl
-.else
-CONFIGURE_ARGS+=--disable-sdl
 .endif
 
 .if ${PORT_OPTIONS:MLDAP}
@@ -175,8 +155,20 @@ CONFIGURE_ARGS+=	--disable-dc
 #PLIST_SUB+=	DC1394="@comment "
 #.endif
 
+.include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 160
+CPPFLAGS+=	-Dregister= -Wno-error=dynamic-exception-spec
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's/RTF_WASCLONED/0x20000/' ${WRKSRC}/src/ptlib/unix/socket.cxx
+.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 160
+	@${REINPLACE_CMD} -e 's|auto_ptr|unique_ptr|' \
+		${WRKSRC}/include/ptlib/psharedptr.h
+	@${REINPLACE_CMD} -e 's|public binary_function|public __binary_function|' \
+		${WRKSRC}/include/ptlib/pprocess.h
+.endif
 
 pre-configure:
 	(cd ${WRKSRC}/plugins/ && ${AUTORECONF} -fi)
@@ -184,13 +176,13 @@ pre-configure:
 post-install:
 	${LN} -sf libpt.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PVERSION_MAJOR}
 	${LN} -sf libpt.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PVERSION_MINOR}
-.if ${PORT_OPTIONS:MDEBUG}
-	${LN} -sf libpt_d.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt_d.so.${PVERSION_MAJOR}
-	${LN} -sf libpt_d.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt_d.so.${PVERSION_MINOR}
-.endif
 	@${CHMOD} 0755 ${STAGEDIR}${PREFIX}/lib/libpt.so.${PORTVERSION} \
 		${STAGEDIR}${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PORTVERSION}
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
 
-.include <bsd.port.mk>
+post-install-DEBUG-on:
+	${LN} -sf libpt_d.so.${PORTVERSION} ${FAKE_DESTDIR}${PREFIX}/lib/libpt_d.so.${PVERSION_MAJOR}
+	${LN} -sf libpt_d.so.${PORTVERSION} ${FAKE_DESTDIR}${PREFIX}/lib/libpt_d.so.${PVERSION_MINOR}
+
+.include <bsd.port.post.mk>

@@ -55,7 +55,6 @@ MASTER_SITE_ALSA+= \
 .if !defined(IGNORE_MASTER_SITE_APACHE)
 MASTER_SITE_APACHE+= \
 	https://dlcdn.apache.org/%SUBDIR%/ \
-	https://mirror.netcologne.de/apache.org/%SUBDIR%/ \
 	https://ftp.wayne.edu/apache/%SUBDIR%/ \
 	https://mirror.its.dal.ca/apache/%SUBDIR%/ \
 	http://mirror.cogentco.com/pub/apache/%SUBDIR%/ \
@@ -117,7 +116,6 @@ MASTER_SITE_CRAN+= \
 	http://camoruco.ing.uc.edu.ve/cran/%SUBDIR%/ \
 	https://mirror.las.iastate.edu/CRAN/%SUBDIR%/ \
 	https://cran.ma.imperial.ac.uk/%SUBDIR%/ \
-	https://cran.gis-lab.info/%SUBDIR%/ \
 	https://cran.ism.ac.jp/%SUBDIR%/
 .endif
 
@@ -237,7 +235,7 @@ MASTER_SITE_FREEBSD_LOCAL+=	\
 #
 .if !defined(IGNORE_MASTER_SITE_FREEBSD_ORG)
 MASTER_SITE_FREEBSD_ORG+= \
-	https://download.FreeBSD.org/pub/FreeBSD/%SUBDIR%/ \
+	https://download.FreeBSD.org/%SUBDIR%/ \
 	ftp://ftp.FreeBSD.org/pub/FreeBSD/%SUBDIR%/ \
 	ftp://ftp.se.FreeBSD.org/pub/FreeBSD/%SUBDIR%/ \
 	ftp://ftp.jp.FreeBSD.org/pub/FreeBSD/%SUBDIR%/ \
@@ -323,10 +321,10 @@ IGNORE?=	Using master as GH_TAGNAME is invalid. \
 .    if defined(GH_TUPLE)
 .      for _tuple in ${GH_TUPLE}
 _t_tmp=${_tuple}
-.        if ${_t_tmp:C@^([^:]*):([^:]*):([^:]*)((:[^:/]*)?)((/.*)?)@\4@:S/://:C/[a-zA-Z0-9_]//g}
+.        if ${_t_tmp:C@^([^:]*):([^:]*):([^:]*)((:[^:/]*)?)((/.*)?)@\4@:S/://:C/[a-zA-Z0-9_.+-]//g}
 check-makevars::
 	@${ECHO_MSG} "The ${_tuple} GH_TUPLE line has"
-	@${ECHO_MSG} "a tag containing something else than [a-zA-Z0-9_]"
+	@${ECHO_MSG} "a tag containing something else than [a-zA-Z0-9_.+-]"
 	@${FALSE}
 .        endif
 .      endfor
@@ -460,6 +458,15 @@ WWW?=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/
 .  endif # defined(USE_GITHUB)
 .endif # !defined(IGNORE_MASTER_SITE_GITHUB)
 
+# Keep this before USE_GITLAB
+# first try to detect when fetch was called by makesum, which passes
+# MASTER_SITES and would cause a bogus warning here.
+.if !(make(fetch) && !empty(NO_CHECKSUM) && !empty(DISABLE_SIZE))
+.  if !empty(MASTER_SITES:M*//*/*/*/-/archive/${DISTVERSIONFULL}/)
+DEV_WARNING+=	"MASTER_SITES contains ${MASTER_SITES:M*//*/*/*/-/archive/${DISTVERSIONFULL}/}, please use USE_GITLAB instead."
+.  endif
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_GITLAB)
 #
 # In order to use GitLab your port must define USE_GITLAB and the following
@@ -474,34 +481,40 @@ WWW?=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/
 # GL_PROJECT    - name of the project on GitLab
 #                 default: ${PORTNAME}
 #
-# GL_COMMIT     - the commit hash of the repository, must be the full hash and
-#                 is a required variable for GitLab.
+# GL_TAGNAME    - name of the tag to download (2.0.1, hash, ...)
+#                 Using the name of a branch here is incorrect. It is
+#                 possible to do GL_TAGNAME= GIT_HASH to do a snapshot.
+#                 default: ${DISTVERSIONFULL}
 #
 # GL_SUBDIR     - directory relative to WRKSRC where to move this distfile's
 #                 content after extracting.
 #
-# GL_TUPLE      - above shortened to [site[:port][/webroot]:]account:project:commit:group[/subdir]
+# GL_TUPLE      - above shortened to [site[:port][/webroot]:]account:project:tagname:group[/subdir]
 #
 .  if defined(USE_GITLAB)
+.    if !defined(GL_TAGNAME) && defined(GL_COMMIT)
+GL_TAGNAME=	${GL_COMMIT}
+DEV_WARNING+=	"GL_COMMIT is deprecated, please use GL_TAGNAME instead"
+.    endif
 .    if defined(GL_TUPLE)
 .      for _tuple in ${GL_TUPLE}
-.        if ${_tuple:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\7@:S/^://:C/[a-f0-9]{40}//g}
+.        if ${_tuple:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\7@:S/^://:C/[a-zA-Z0-9_.+-]//g}
 check-makevars::
 	@${ECHO_MSG} "The ${_tuple}"
-	@${ECHO_MSG} "GL_TUPLE is improperly formatted or, the commit"
-	@${ECHO_MSG} "section contains something other than [a-f0-9]"
+	@${ECHO_MSG} "GL_TUPLE is improperly formatted or, the tagname"
+	@${ECHO_MSG} "section contains something other than [a-zA-Z0-9_.+-]"
 	@${FALSE}
 .        endif
 .      endfor
 GL_SITE+=	${GL_TUPLE:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\1\8@:S@::@:@}
 GL_ACCOUNT+=	${GL_TUPLE:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\5\8@}
 GL_PROJECT+=	${GL_TUPLE:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\6\8@}
-GL_COMMIT+=	${GL_TUPLE:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\7\8@}
+GL_TAGNAME+=	${GL_TUPLE:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\7\8@}
 GL_SUBDIR+=	${GL_TUPLE:C@^(([^:]*://[^:/]*(:[0-9]{1,5})?(/[^:]*[^/])?:)?)([^:]*):([^:]*):([^:]*)(:[^:/]*)((/.*)?)@\9\8@:M/*:S/^\///}
 .    endif
 
 .    if empty(USE_GITLAB:Mnodefault)
-MASTER_SITES+=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/archive/${GL_COMMIT}.tar.gz?dummy=/
+MASTER_SITES+=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/archive/${GL_TAGNAME:C@^[a-f0-9]{40}$@\0.tar.gz?dummy=@}/
 .    endif
 GL_SITE_DEFAULT=	https://gitlab.com
 GL_SITE?=	${GL_SITE_DEFAULT}
@@ -509,8 +522,10 @@ GL_ACCOUNT_DEFAULT=	${PORTNAME}
 GL_ACCOUNT?=	${GL_ACCOUNT_DEFAULT}
 GL_PROJECT_DEFAULT=	${PORTNAME}
 GL_PROJECT?=	${GL_PROJECT_DEFAULT}
+GL_TAGNAME_DEFAULT=	${DISTVERSIONFULL}
+GL_TAGNAME?=	${GL_TAGNAME_DEFAULT}
 _GITLAB_GROUPS=	DEFAULT
-.    for _gl_v in GL_SITE GL_ACCOUNT GL_PROJECT GL_COMMIT GL_SUBDIR
+.    for _gl_v in GL_SITE GL_ACCOUNT GL_PROJECT GL_TAGNAME GL_SUBDIR
 .      for _v_ex in ${${_gl_v}}
 _GL_GROUPS=	${_v_ex:S/^${_v_ex:C@:[^/:]+$@@}//:S/^://}
 .        if !empty(_GL_GROUPS)
@@ -534,18 +549,24 @@ ${_gl_v}_DEFAULT=	${_v_ex:C@^(.*):[^/:]+$@\1@}
 GL_SITE:=	${GL_SITE_DEFAULT}
 GL_ACCOUNT:=	${GL_ACCOUNT_DEFAULT}
 GL_PROJECT:=	${GL_PROJECT_DEFAULT}
-GL_COMMIT:=	${GL_COMMIT_DEFAULT}
+GL_TAGNAME:=	${GL_TAGNAME_DEFAULT}
 GL_SUBDIR:=	${GL_SUBDIR_DEFAULT}
 
 _GITLAB_REV=	0
 
-_GITLAB_EXTRACT_SUFX=	.tar.gz
+_GITLAB_EXTRACT_SUFX=		.tar.gz
+_GITLAB_TAG_EXTRACT_SUFX=	.tar.bz2
 
 _GITLAB_CLONE_DIR?=	${WRKDIR}/git-clone
 _PORTS_DIRECTORIES+=	${_GITLAB_CLONE_DIR}
 .    if !${USE_GITLAB:Mnodefault}
-DISTNAME:=	${GL_ACCOUNT}-${GL_PROJECT}-${GL_COMMIT}_GL${_GITLAB_REV}
+.      if ${GL_TAGNAME:C/^[a-f0-9]{40}$//}
+DISTNAME:=	${GL_PROJECT}-${GL_TAGNAME}
+DISTFILES+=	${DISTNAME}${_GITLAB_TAG_EXTRACT_SUFX}
+.      else
+DISTNAME:=	${GL_ACCOUNT}-${GL_PROJECT}-${GL_TAGNAME}_GL${_GITLAB_REV}
 DISTFILES+=	${DISTNAME}${_GITLAB_EXTRACT_SUFX}
+.      endif
 git-clone: git-clone-DEFAULT
 git-clone-DEFAULT: ${_GITLAB_CLONE_DIR}
 	@git clone ${GL_SITE_DEFAULT}/${GL_ACCOUNT_DEFAULT}/${GL_PROJECT_DEFAULT}.git ${_GITLAB_CLONE_DIR}/${GL_PROJECT_DEFAULT}
@@ -567,12 +588,18 @@ GL_SITE_${_group}=	${GL_SITE_DEFAULT}
 GL_ACCOUNT_${_group}?=	${GL_ACCOUNT_DEFAULT}
 GL_PROJECT_${_group}?=	${GL_PROJECT_DEFAULT}
 
-_GL_TUPLE_OUT:=	${_GL_TUPLE_OUT} ${GL_SITE_${_group}}:${GL_ACCOUNT_${_group}}:${GL_PROJECT_${_group}}:${GL_COMMIT_${_group}}:${_group}/${GL_SUBDIR_${_group}}
-DISTNAME_${_group}:=	${GL_ACCOUNT_${_group}}-${GL_PROJECT_${_group}}-${GL_COMMIT_${_group}}_GL${_GITLAB_REV}
+_GL_TUPLE_OUT:=	${_GL_TUPLE_OUT} ${GL_SITE_${_group}}:${GL_ACCOUNT_${_group}}:${GL_PROJECT_${_group}}:${GL_TAGNAME_${_group}}:${_group}/${GL_SUBDIR_${_group}}
+.        if ${GL_TAGNAME_${_group}:C/^[a-f0-9]{40}$//}
+DISTNAME_${_group}:=	${GL_PROJECT_${_group}}-${GL_TAGNAME_${_group}}
+DISTFILE_${_group}:=	${DISTNAME_${_group}}${_GITLAB_TAG_EXTRACT_SUFX}
+MASTER_SITES:=	${MASTER_SITES} ${GL_SITE_${_group}}/${GL_ACCOUNT_${_group}}/${GL_PROJECT_${_group}}/-/archive/${GL_TAGNAME_${_group}}/:${_group}
+.        else
+DISTNAME_${_group}:=	${GL_ACCOUNT_${_group}}-${GL_PROJECT_${_group}}-${GL_TAGNAME_${_group}}_GL${_GITLAB_REV}
 DISTFILE_${_group}:=	${DISTNAME_${_group}}${_GITLAB_EXTRACT_SUFX}
+MASTER_SITES:=	${MASTER_SITES} ${GL_SITE_${_group}}/${GL_ACCOUNT_${_group}}/${GL_PROJECT_${_group}}/-/archive/${GL_TAGNAME_${_group}}.tar.gz?dummy=/:${_group}
+.        endif
 DISTFILES:=	${DISTFILES} ${DISTFILE_${_group}}:${_group}
-MASTER_SITES:=	${MASTER_SITES} ${GL_SITE_${_group}}/${GL_ACCOUNT_${_group}}/${GL_PROJECT_${_group}}/-/archive/${GL_COMMIT_${_group}}.tar.gz?dummy=/:${_group}
-WRKSRC_${_group}:=	${WRKDIR}/${GL_PROJECT_${_group}}-${GL_COMMIT_${_group}}
+WRKSRC_${_group}:=	${WRKDIR}/${GL_PROJECT_${_group}}-${GL_TAGNAME_${_group}}
 .        if !empty(GL_SUBDIR_${_group})
 _SITES_extract:=	${_SITES_extract} 690:post-extract-gl-${_group}
 post-extract-gl-${_group}:
@@ -611,9 +638,6 @@ MASTER_SITE_GNOME+= \
 .if !defined(IGNORE_MASTER_SITE_GIMP)
 MASTER_SITE_GIMP+= \
 	http://gimp.mirrors.hoobly.com/pub/%SUBDIR%/ \
-	http://gimper.net/downloads/pub/%SUBDIR%/ \
-	http://mirror.hessmo.com/gimp/pub/%SUBDIR%/ \
-	http://de-mirror.gimper.net/pub/%SUBDIR%/ \
 	http://gimp.afri.cc/pub/%SUBDIR%/ \
 	https://download.gimp.org/pub/%SUBDIR%/
 .endif
@@ -626,7 +650,6 @@ MASTER_SITE_GNU+= \
 	https://www.nic.funet.fi/pub/gnu/gnu/%SUBDIR%/ \
 	http://mirror.navercorp.com/gnu/%SUBDIR%/ \
 	http://ftp.halifax.rwth-aachen.de/gnu/%SUBDIR%/ \
-	http://download.xs4all.nl/gnu/%SUBDIR%/ \
 	http://ftp.kddilabs.jp/GNU/gnu/%SUBDIR%/ \
 	ftp://mirrors.rit.edu/gnu/%SUBDIR%/ \
 	ftp://ftp.fu-berlin.de/unix/gnu/%SUBDIR%/ \
@@ -712,8 +735,6 @@ MASTER_SITE_ISC+= \
 	ftp://ftp.funet.fi/pub/mirrors/ftp.isc.org/isc/%SUBDIR%/
 .endif
 
-# List:		http://download.kde.org/extra/mirrors.html
-# Updated:	2012-10-26
 .if !defined(IGNORE_MASTER_SITE_KDE)
 MASTER_SITE_KDE+= \
 	https://download.kde.org/%SUBDIR%/
@@ -751,7 +772,6 @@ MASTER_SITE_MOZILLA+= \
 
 .if !defined(IGNORE_MASTER_SITE_MOZILLA_ADDONS)
 MASTER_SITE_MOZILLA_ADDONS+= \
-	https://addons.cdn.mozilla.net/user-media/%SUBDIR%/ \
 	http://kyoto-mz-dl.sinet.ad.jp/pub/mozilla.org/%SUBDIR%/
 .endif
 
@@ -759,7 +779,6 @@ MASTER_SITE_MOZILLA_ADDONS+= \
 MASTER_SITE_MYSQL+= \
 	ftp://ftp.fi.muni.cz/pub/mysql/Downloads/%SUBDIR%/ \
 	ftp://ftp.gwdg.de/pub/misc/mysql/Downloads/%SUBDIR%/ \
-	ftp://ftp.ntua.gr/pub/databases/mysql/Downloads/%SUBDIR%/ \
 	https://dev.mysql.com/get/Downloads/%SUBDIR%/
 .endif
 
@@ -796,11 +815,11 @@ MASTER_SITE_NVIDIA+= \
 .if !defined(IGNORE_MASTER_SITE_OPENBSD)
 MASTER_SITE_OPENBSD+= \
 	https://cdn.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
+	https://cloudflare.cdn.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
 	https://ftp.OpenBSD.org/pub/OpenBSD/%SUBDIR%/ \
 	https://ftp.eu.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
-	https://ftp3.usa.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
+	https://ftp.usa.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
 	https://mirror.leaseweb.com/pub/OpenBSD/%SUBDIR%/ \
-	https://openbsd.hk/pub/OpenBSD/%SUBDIR%/ \
 	https://mirror.aarnet.edu.au/pub/OpenBSD/%SUBDIR%/
 .endif
 
@@ -1062,6 +1081,11 @@ MASTER_SITE_TCLTK+= \
 	ftp://ftp.funet.fi/pub/languages/tcl/tcl/%SUBDIR%/
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_TEX)
+MASTER_SITE_TEX+= \
+	https://mirror.ctan.org/%SUBDIR%/
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_TEX_CTAN)
 MASTER_SITE_TEX_CTAN+= \
 	https://ftp.tu-chemnitz.de/pub/tug/historic/%SUBDIR%/ \
@@ -1157,7 +1181,6 @@ MASTER_SITE_XORG+= \
 MASTER_SITE_KERNEL_ORG+= \
 	https://cdn.kernel.org/pub/%SUBDIR%/ \
 	https://www.kernel.org/pub/%SUBDIR%/ \
-	https://download.xs4all.nl/ftp.kernel.org/pub/%SUBDIR%/ \
 	https://mirrors.mit.edu/kernel/%SUBDIR%/ \
 	http://ftp.nara.wide.ad.jp/pub/kernel.org/%SUBDIR%/ \
 	http://ftp.yandex.ru/pub/%SUBDIR%/ \

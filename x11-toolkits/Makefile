@@ -26,6 +26,7 @@ SUBDIR += gtksourceviewmm3
 SUBDIR += irrlicht
 SUBDIR += libadwaita
 SUBDIR += libdazzle
+SUBDIR += libdecor
 SUBDIR += libXaw
 SUBDIR += libXmu
 SUBDIR += libXt
