@@ -5,7 +5,7 @@ MASTER_SITES=	NETLIB/f2c
 DISTFILES=	${SIMPLEDIST} libf2c.zip src.tgz
 DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	fortran@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fortran-to-C converter and its run-time libraries
 WWW=		https://www.netlib.org/
 
@@ -63,19 +63,19 @@ do-build:
 	${MV} ${WRKSRC}/libf2c/libf2c.so ${WRKSRC}/libf2c/libf2c.so.${LIBVER}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/f2c ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/src/f2c.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_MAN} ${WRKSRC}/src/f2c.1t ${STAGEDIR}${MAN1PREFIX}/man/man1/f2c.1
-	${INSTALL_DATA} ${WRKSRC}/libf2c/libf2c.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_LIB} ${WRKSRC}/libf2c/libf2c.so.${LIBVER} ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf libf2c.so.${LIBVER} ${STAGEDIR}${PREFIX}/lib/libf2c.so
+	${INSTALL_PROGRAM} ${WRKSRC}/src/f2c ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/src/f2c.h ${PREFIX}/include
+	${INSTALL_MAN} ${WRKSRC}/src/f2c.1t ${MAN1PREFIX}/man/man1/f2c.1
+	${INSTALL_DATA} ${WRKSRC}/libf2c/libf2c.a ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/libf2c/libf2c.so.${LIBVER} ${PREFIX}/lib
+	${LN} -sf libf2c.so.${LIBVER} ${PREFIX}/lib/libf2c.so
 
 do-install-DOCS-on:
 	${CP} ${WRKSRC}/libf2c/README ${WRKSRC}/README_libf2c
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 do-install-FC-on:
-	${INSTALL_SCRIPT} ${WRKSRC}/fc ${STAGEDIR}${PREFIX}/bin/${FCNAME}
+	${INSTALL_SCRIPT} ${WRKSRC}/fc ${FAKE_DESTDIR}${PREFIX}/bin/${FCNAME}
 
 .include <bsd.port.mk>
