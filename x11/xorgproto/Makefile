@@ -1,9 +1,10 @@
 PORTNAME=	xorgproto
-PORTVERSION=	2021.5
+DISTVERSION=	2022.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	xorg protocol headers
+COMMENT=	X Window System unified protocol definitions
+WWW=		https://gitlab.freedesktop.org/xorg/proto/xorgproto
 
 LICENSE=	mit
 
