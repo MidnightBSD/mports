@@ -123,6 +123,9 @@ USE_RC_SUBR=	sa-spamd
 
 ALL_TARGET=	all spamc/libspamc.so
 
+# wants spamd running with tests and does not work on magus
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MSSL}
@@ -164,19 +167,19 @@ post-patch::
 
 pre-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_LIB} ${WRKSRC}/spamc/libspamc.so ${STAGEDIR}${PREFIX}/lib/libspamc.so.0
-	${LN} -sf libspamc.so.0 ${STAGEDIR}${PREFIX}/lib/libspamc.so
+	${INSTALL_LIB} ${WRKSRC}/spamc/libspamc.so ${PREFIX}/lib/libspamc.so.0
+	${LN} -sf libspamc.so.0 ${PREFIX}/lib/libspamc.so
 .if ${PORT_OPTIONS:MSSL}
-	${INSTALL_LIB} ${WRKSRC}/spamc/libsslspamc.so ${STAGEDIR}${PREFIX}/lib/libsslspamc.so.0
-	${LN} -sf libsslspamc.so.0 ${STAGEDIR}${PREFIX}/lib/libsslspamc.so
+	${INSTALL_LIB} ${WRKSRC}/spamc/libsslspamc.so ${PREFIX}/lib/libsslspamc.so.0
+	${LN} -sf libsslspamc.so.0 ${PREFIX}/lib/libsslspamc.so
 .endif
-	${INSTALL_DATA} ${WRKSRC}/spamc/libspamc.h ${STAGEDIR}${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/spamc/libspamc.h ${PREFIX}/include
 
 post-install::
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/spamc
-	@${MKDIR} ${STAGEDIR}/var/lib/spamassassin ${STAGEDIR}${DBDIR}/spamassassin ${STAGEDIR}/var/run/spamd
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} "sql ldap" ${STAGEDIR}${DOCSDIR})
+	${STRIP_CMD} ${PREFIX}/bin/spamc
+	@${MKDIR} ${FAKE_DESTDIR}/var/lib/spamassassin ${FAKE_DESTDIR}${DBDIR}/spamassassin ${FAKE_DESTDIR}/var/run/spamd
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} "sql ldap" ${DOCSDIR})
 
 .include <bsd.port.post.mk>
