@@ -11,7 +11,7 @@ LICENSE=	publicdom
 
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cmake cpe python:3.6+,test shebangfix tar:xz
+USES=		cmake cpe python:test shebangfix tar:xz
 
 NO_TEST=	yes
 #TEST_TARGET=	check
