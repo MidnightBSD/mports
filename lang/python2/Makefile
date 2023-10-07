@@ -1,19 +1,21 @@
-
-
 PORTNAME=	python2
 PORTVERSION=	2
-PORTREVISION=	3
-CATEGORIES=	lang python ipv6
+PORTREVISION=	4
+CATEGORIES=	lang python
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"meta-port" for version 2 of the Python interpreter
+WWW=		https://www.python.org/
 
 LICENSE=	bsd2
 
-USES=		python:run
+DEPRECATED=	EOLed upstream
+EXPIRATION_DATE=	2020-12-31
+
+USES=		python:2.7,run
 PYTHON_VERSION=	python${PYTHON2_DEFAULT}
 NO_BUILD=	yes
 

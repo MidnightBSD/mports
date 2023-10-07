@@ -1,5 +1,3 @@
-
-
 PORTNAME=	python3
 PORTVERSION=	3
 PORTREVISION=	1
@@ -9,12 +7,12 @@ DISTFILES=
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	"meta-port" for version 3 of the Python interpreter
+COMMENT=	Meta-port for the Python interpreter 3.x
+WWW=		https://www.python.org/
 
 LICENSE=	bsd2
 
 USES=		python:run
-PYTHON_VERSION=	python${PYTHON3_DEFAULT}
 NO_BUILD=	yes
 
 PLIST_FILES=	bin/2to3-${PYTHON_MAJOR_VER} \
