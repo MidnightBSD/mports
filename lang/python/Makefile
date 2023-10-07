@@ -1,18 +1,19 @@
-
-
 PORTNAME=	python
 PORTVERSION=	${PYTHON_DEFAULT}
 PORTREVISION=	3
 PORTEPOCH=	2
-CATEGORIES=	lang python ipv6
+CATEGORIES=	lang python
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"meta-port" for the default version of Python interpreter
+WWW=		https://www.python.org/
 
 LICENSE=	python
+
+RUN_DEPENDS=	python${PYTHON_MAJOR_VER}:lang/python${PYTHON_MAJOR_VER}
 
 USES=		python:run
 NO_ARCH=	yes
@@ -25,12 +26,6 @@ PLIST_FILES=	bin/2to3 \
 		bin/python-config
 
 .include <bsd.port.pre.mk>
-
-.if ${PYTHON_MAJOR_VER} == 2
-RUN_DEPENDS+=	python2:${PORTSDIR}/lang/python2
-.elif ${PYTHON_MAJOR_VER} == 3
-RUN_DEPENDS+=	python3:${PORTSDIR}/lang/python3
-.endif
 
 do-install:
 	${LN} -sf python${PYTHON_MAJOR_VER} ${PREFIX}/bin/python
