@@ -1,6 +1,6 @@
 PORTNAME=	xorg
 PORTVERSION=	7.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -8,6 +8,7 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org complete distribution metaport
+WWW=		https://www.x.org/
 
 LICENSE=	agg
 
@@ -22,23 +23,17 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:x11/xbitmaps \
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.mport.options.mk>
-
-# doc
-.if ${PORT_OPTIONS:MDOCS}
-RUN_DEPENDS+=	${LOCALBASE}/share/doc/xorg-docs/README.xml:x11/xorg-docs
-.endif
+DOCS_RUN_DEPENDS+=	${LOCALBASE}/share/doc/xorg-docs/README.xml:x11/xorg-docs
 
 # app, lib, font, driver
-RUN_DEPENDS+=	${LOCALBASE}/libdata/xorg/apps:x11/xorg-apps \
-		${LOCALBASE}/libdata/xorg/libraries:x11/xorg-libraries \
-		${LOCALBASE}/libdata/xorg/fonts:x11-fonts/xorg-fonts \
-		${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers
+RUN_DEPENDS+=	xorg-apps>0:x11/xorg-apps \
+		xorg-libraries>0:x11/xorg-libraries \
+		xorg-fonts>0:x11-fonts/xorg-fonts \
+		xorg-drivers>0:x11-drivers/xorg-drivers
 
 .if defined(XORG_COMPLETE)
-RUN_DEPENDS+=	Xnest:x11-servers/xorg-nestserver \
-		Xdmx:x11-servers/xorg-dmx \
-		Xvfb:x11-servers/xorg-vfbserver
+RUN_DEPENDS+=	Xnest:x11-servers/xorg-server@xnest \
+		Xvfb:x11-servers/xorg-server@xvfb
 .endif
 
 do-install:	# empty
