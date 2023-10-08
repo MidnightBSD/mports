@@ -24,7 +24,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		${LOCALBASE}/share/backgrounds/midnightbsd/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
 		midori:www/midori \
 		common-services>=1.0:core/common-services \
-		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server \
+		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server@xorg \
 		${LOCALBASE}/libdata/xorg/apps:x11/xorg-apps \
 		${LOCALBASE}/libdata/xorg/libraries:x11/xorg-libraries \
 		${LOCALBASE}/libdata/xorg/fonts:x11-fonts/xorg-fonts \
