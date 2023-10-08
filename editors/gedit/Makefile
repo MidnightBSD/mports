@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gedit
 PORTVERSION=	3.28.1
 CATEGORIES=	editors gnome
