@@ -38,7 +38,7 @@ bin/zsh-%%ZSH_VER%%
 %%NO_STATIC%%lib/zsh/%%ZSH_VER%%/zsh/zpty.so
 %%NO_STATIC%%lib/zsh/%%ZSH_VER%%/zsh/zselect.so
 %%NO_STATIC%%lib/zsh/%%ZSH_VER%%/zsh/zutil.so
-@dir %%DATADIR%%/site-functions
+@dirrmtry %%DATADIR%%/site-functions
 %%DATADIR%%/%%ZSH_VER%%/functions/Calendar.zwc
 %%DATADIR%%/%%ZSH_VER%%/functions/Calendar/after
 %%DATADIR%%/%%ZSH_VER%%/functions/Calendar/age
