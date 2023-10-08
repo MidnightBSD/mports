@@ -19,7 +19,7 @@ NO_MTREE=	yes
 
 VIDEO_DRIVER?=	vesa
 
-RUN_DEPENDS+=	${LOCALBASE}/bin/Xorg:x11-servers/xorg-server \
+RUN_DEPENDS+=	${LOCALBASE}/bin/Xorg:x11-servers/xorg-server@xorg \
 		${LOCALBASE}/lib/xorg/modules/input/mouse_drv.so:x11-drivers/xf86-input-mouse \
 		${LOCALBASE}/lib/xorg/modules/input/kbd_drv.so:x11-drivers/xf86-input-keyboard \
 		${LOCALBASE}/bin/xinit:x11/xinit \
