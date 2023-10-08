@@ -59,6 +59,7 @@ SUBDIR += luajit-devel
 SUBDIR += luajit-openresty
 SUBDIR += mawk
 SUBDIR += mono
+SUBDIR += mono5.10
 SUBDIR += mono5.20
 SUBDIR += mono-basic
 SUBDIR += mono6.8

@@ -18,18 +18,18 @@
 #
 #			USES=python:2.7		# Supports Python 2.7 Only
 #			USES=python:3.8+	# Supports Python 3.8 or later
-#			USES=python:3.7-3.9	# Supports Python 3.7 to 3.9
+#			USES=python:3.8-3.10	# Supports Python 3.8 to 3.10
 #			USES=python:-3.8	# Supports Python up to 3.8
-#			USES=python		# Supports 3.7+
+#			USES=python		# Supports 3.8+
 #
 # NOTE:	<version-spec> should be as specific as possible, matching the versions
 #	upstream declares support for, without being incorrect. In particular,
-#	USES=python *without* a <version-spec> means 3.7+,
+#	USES=python *without* a <version-spec> means 3.8+,
 #	including unreleased versions, which is probably incorrect.
 #
 #	Not specifying a <version-spec> should only be used when a more specific
 #	<version-spec> cannot be specified due to syntax limitations, for
-#	example: 2.7,3.7-3.8, but even in this case, X.Y+ (2.7+), or -X.Y (-3.7)
+#	example: 2.7,3.8-3.9, but even in this case, X.Y+ (2.7+), or -X.Y (-3.8)
 #	is preferred and likely more correct.
 #
 # patch		Python is needed at patch time. Adds dependency to PATCH_DEPENDS.
@@ -50,7 +50,7 @@
 # Exported variables:
 #
 # PYTHON_VERSION	- The chosen Python interpreter including the version,
-#			  e.g. python2.7, python3.5, etc.
+#			  e.g. python2.7, python3.8, etc.
 #
 # Variables, which can be set by the port:
 #
@@ -82,9 +82,19 @@
 #			  prefix-less original name, e.g.
 #			  bin/foo-2.7 --> bin/foo.
 #
+#	cryptography_build
+#			- Depend on security/cryptography at build-time.
+#
+#	cryptography	- Depend on security/cryptography at run-time.
+#
+#	cryptography_test
+#			- Depend on security/cryptography at test-time.
+#
 #	cython		- Depend on lang/cython at build-time.
 #
 #	cython_run	- Depend on lang/cython at run-time.
+#
+#	cython_test	- Depend on lang/cython for tests.
 #
 #	flavors		- Force creation of flavors for Python 2 and 3 default
 #			  versions, where applicable.
@@ -138,6 +148,22 @@
 #			  version number (used for dependencies).
 #			  default: ${PYTHONBASE}/bin/${PYTHON_VERSION}
 #
+# PEP517_BUILD_CMD	- Command sequence for a PEP-517 build frontend that builds a wheel.
+#			  default: ${PYTHON_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
+#
+# PEP517_BUILD_DEPEND	- Port needed to execute ${PEP517_BUILD_CMD}.
+#			  default: ${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR}
+#
+# PEP517_BUILD_CONFIG_SETTING
+#			- Options for the build backend. Must include -C or --config-setting per option.
+#			  default: <empty>
+#
+# PEP517_INSTALL_CMD	- Command sequence for a PEP-517 install frontend that installs a wheel.
+#			  default: ${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
+#
+# PEP517_INSTALL_DEPEND	- Port needed to execute ${PEP517_INSTALL_CMD}.
+#			  default: ${PYTHON_PKGNAMEPREFIX}installer>=0:devel/py-installer@${PY_FLAVOR}
+#
 # PYSETUP		- Name of the setup script used by the distutils
 #			  package.
 #			  default: setup.py
@@ -178,18 +204,6 @@
 #			- Canonical name for egg-info.
 #			  default: ${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}.egg-info
 #
-# PEP517_BUILD_CMD	- Command sequence for a PEP-517 build frontend that builds a wheel.
-#			  default: ${PYTHON_CMD} -m build -n -w
-#
-# PEP517_BUILD_DEPEND	- Port needed to execute ${PEP517_BUILD_CMD}.
-#			  default: ${PYTHON_PKGNAMEPREFIX}build>0:devel/py-build@${PY_FLAVOR}
-#
-# PEP517_INSTALL_CMD	- Command sequence for a PEP-517 install frontend that installs a wheel.
-#			  default: ${PYTHON_CMD} -m installer -d ${STAGEDIR} --no-compile-bytecode ${BUILD_WRKSRC}/dist/${PORTNAME:C/[-_]+/_/g}-${PORTVERSION}-*.whl
-#
-# PEP517_INSTALL_DEPEND	- Port needed to execute ${PEP517_INSTALL_CMD}.
-#			  default: ${PYTHON_PKGNAMEPREFIX}installer>0:devel/py-installer@${PY_FLAVOR}
-#
 # PYTEST_BROKEN_TESTS	- Lists of 'pytest -k' patterns to skip tests which
 #			  require fixing.
 #			  default: <empty>
@@ -209,10 +223,10 @@
 # PYTHON_PORTSDIR	- The port directory of the chosen Python interpreter
 #
 # PYTHON_REL		- The release number of the chosen Python interpreter
-#			  without dots, e.g. 20706, 30401, ...
+#			  without dots, e.g. 20706, 30801, ...
 #
 # PYTHON_SUFFIX		- The major-minor release number of the chosen Python
-#			  interpreter without dots, e.g. 27, 36, ...
+#			  interpreter without dots, e.g. 27, 38, ...
 #			  Used for prefixes and suffixes.
 #
 # PYTHON_MAJOR_VER	- The major release version of the chosen Python
@@ -278,6 +292,15 @@
 # PYDISTUTILS_INSTALLNOSINGLE
 #			- Deprecated without replacement
 #
+# Dependency lines of selected Python modules:
+#
+# PY_SETUPTOOLS			- setuptools port based on USE_PYTHON=distutils
+# PYGAME			- pygame port
+# PYNUMPY			- NumPy port
+# PY_MERCURIAL			- mercurial port, PKGNAME varies based on default
+#				  Python version
+# PY_BOOST			- Boost Python libraries port
+#
 # The following variables may be set by the user:
 #
 # PYTEST_ENABLE_ALL_TESTS	- Enable tests skipped by PYTEST_BROKEN_TESTS
@@ -299,10 +322,29 @@ _PYTHON_BASECMD=		${LOCALBASE:S;^${FAKE_DESTDIR};;}/bin/python
 _PYTHON_RELPORTDIR=		lang/python
 
 # List all valid USE_PYTHON features here
-_VALID_PYTHON_FEATURES=	allflavors autoplist concurrent cython cython_run \
-			distutils flavors noegginfo noflavors nose nose2 \
-			optsuffix pep517 py3kplist pytest pytest4 pythonprefix \
-			unittest unittest2
+_VALID_PYTHON_FEATURES=	allflavors \
+			autoplist \
+			concurrent \
+			cryptography_build \
+			cryptography \
+			cryptography_test \
+			cython \
+			cython_run \
+			cython_test \
+			distutils \
+			flavors \
+			noegginfo \
+			noflavors \
+			nose \
+			nose2 \
+			optsuffix \
+			pep517 \
+			py3kplist \
+			pytest \
+			pytest4 \
+			pythonprefix \
+			unittest \
+			unittest2
 _INVALID_PYTHON_FEATURES=
 .  for var in ${USE_PYTHON}
 .    if empty(_VALID_PYTHON_FEATURES:M${var})
@@ -373,10 +415,6 @@ _PYTHON_RUN_DEP=	yes
 _PYTHON_TEST_DEP=	yes
 .  endif
 
-.  if ${PYTHON2_DEFAULT} != ${PYTHON_DEFAULT} && ${PYTHON3_DEFAULT} != ${PYTHON_DEFAULT}
-WARNING+=	"PYTHON_DEFAULT must be a version present in PYTHON2_DEFAULT or PYTHON3_DEFAULT, if you want more Python flavors, set BUILD_ALL_PYTHON_FLAVORS in your make.conf"
-.  endif
-
 .  if ${_PYTHON_ARGS} == 2.7
 DEV_WARNING+=		"lang/python27 reached End of Life and will be removed somewhere in the future, please convert to a modern version of python"
 .  elif ${_PYTHON_ARGS} == 2
@@ -420,7 +458,7 @@ _PYTHON_VERSION_NONSUPPORTED=	${_PYTHON_VERSION_MAXIMUM} at most
 # If we have an unsupported version of Python, try another.
 .  if defined(_PYTHON_VERSION_NONSUPPORTED)
 .undef _PYTHON_VERSION
-.    for ver in ${PYTHON2_DEFAULT} ${PYTHON3_DEFAULT} ${_PYTHON_VERSIONS}
+.    for ver in ${PYTHON_DEFAULT} ${PYTHON2_DEFAULT} ${_PYTHON_VERSIONS}
 __VER=		${ver}
 .      if !defined(_PYTHON_VERSION) && \
 	!(!empty(_PYTHON_VERSION_MINIMUM) && ( \
@@ -438,7 +476,7 @@ IGNORE=		needs an unsupported version of Python
 # Automatically generates FLAVORS if empty
 .  if empty(FLAVORS) && defined(_PYTHON_FEATURE_FLAVORS)
 .  undef _VALID_PYTHON_VERSIONS
-.    for ver in ${PYTHON_DEFAULT} ${PYTHON2_DEFAULT} ${PYTHON3_DEFAULT} ${_PYTHON_VERSIONS}
+.    for ver in ${PYTHON_DEFAULT} ${PYTHON2_DEFAULT} ${_PYTHON_VERSIONS}
 __VER=		${ver}
 .      if !(!empty(_PYTHON_VERSION_MINIMUM) && ( \
 		${__VER:${_VC}} < ${_PYTHON_VERSION_MINIMUM:${_VC}})) && \
@@ -460,7 +498,7 @@ _ALL_PYTHON_FLAVORS=	${_PYTHON_VERSIONS:S/.//:S/^/py/}
 .    if defined(BUILD_ALL_PYTHON_FLAVORS) || defined(_PYTHON_FEATURE_ALLFLAVORS)
 FLAVORS=	${_ALL_PYTHON_FLAVORS}
 .    else
-.      for _v in ${PYTHON_DEFAULT} ${PYTHON2_DEFAULT} ${PYTHON3_DEFAULT}
+.      for _v in ${PYTHON_DEFAULT} ${PYTHON2_DEFAULT}
 _f=	py${_v:S/.//}
 .        if ${_ALL_PYTHON_FLAVORS:M${_f}} && !${FLAVORS:M${_f}}
 .          if !empty(FLAVORS)
@@ -510,19 +548,16 @@ PYTHON_PORTSDIR=	${_PYTHON_RELPORTDIR}${PYTHON_SUFFIX}
 .include "${PORTSDIR}/${PYTHON_PORTSDIR}/Makefile.version"
 .  endif
 # Create a 5 integer version string, prefixing 0 to the minor and patch
-# tokens if it's a single character. Only use the the first 3 tokens of
+# tokens if it's a single character. Only use the first 3 tokens of
 # PORTVERSION to support pre-release versions (rc3, alpha4, etc) of
 # any Python port (lang/pythonXY)
 PYTHON_REL=	${PYTHON_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/:C/\.([0-9])$/.0\1/:C/\.([0-9]\.[0-9]+)/.0\1/:S/.//g}
 
 # Might be overridden by calling ports
 PYTHON_CMD?=		${_PYTHON_BASECMD}${_PYTHON_VERSION}
-.  if ${PYTHON_VER} != 2.7
+.  if ${PYTHON_MAJOR_VER} > 2
 .    if exists(${PYTHON_CMD}-config)
 PYTHON_ABIVER!=		${PYTHON_CMD}-config --abiflags
-.    elif ${PYTHON_REL} < 30800
-# Default ABI flags for lang/python37 port
-PYTHON_ABIVER=		m
 .    endif
 .  endif
 
@@ -532,7 +567,7 @@ PYTHON_EXT_SUFFIX=	.cpython-${PYTHON_SUFFIX}
 PYTHON_EXT_SUFFIX=	# empty
 .  endif
 
-.  if ${PYTHON_MAJOR_VER} == 2
+.  if ${PYTHON_MAJOR_VER} < 3
 DEPRECATED?=	Uses Python 2.7 which is EOLed upstream
 .  endif
 
@@ -569,12 +604,36 @@ _PYTHONPKGLIST=	${WRKDIR}/.PLIST.pymodtmp
 # - it uses USE_PYTHON=distutils
 #
 
+# cryptography* support
+.  if ${PYCRYPTOGRAPHY_DEFAULT} == rust
+CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=41.0.4,1:security/py-cryptography@${PY_FLAVOR}
+.  else
+CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography-legacy>=3.4.8_1,1:security/py-cryptography-legacy@${PY_FLAVOR}
+.  endif
+
+.  if defined(_PYTHON_FEATURE_CRYPTOGRAPHY_BUILD)
+BUILD_DEPENDS+=	${CRYPTOGRAPHY_DEPENDS}
+.  endif
+
+.  if defined(_PYTHON_FEATURE_CRYPTOGRAPHY)
+RUN_DEPENDS+=	${CRYPTOGRAPHY_DEPENDS}
+.  endif
+
+.  if defined(_PYTHON_FEATURE_CRYPTOGRAPHY_TEST)
+TEST_DEPENDS+=	${CRYPTOGRAPHY_DEPENDS}
+.  endif
+
+# cython* support
 .  if defined(_PYTHON_FEATURE_CYTHON)
 BUILD_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
 .  endif
 
 .  if defined(_PYTHON_FEATURE_CYTHON_RUN)
 RUN_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
+.  endif
+
+.  if defined(_PYTHON_FEATURE_CYTHON_TEST)
+TEST_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
 .  endif
 
 .  if defined(_PYTHON_FEATURE_CONCURRENT)
@@ -621,7 +680,7 @@ RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools>=63.1.0:devel/py-setuptools@${P
 .  endif
 
 .  if defined(_PYTHON_FEATURE_PEP517)
-.    if ${PYTHON_VER} == 2.7
+.    if ${PYTHON_MAJOR_VER} < 3
 DEV_ERROR+=		"USES=python:2.7 is incompatible with USE_PYTHON=pep517"
 .    endif
 .    if defined(_PYTHON_FEATURE_DISTUTILS)
@@ -659,10 +718,10 @@ PYDISTUTILS_EGGINFO?=	${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_
 PYDISTUTILS_EGGINFODIR?=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 # PEP-517 support
-PEP517_BUILD_CMD?=	${PYTHON_CMD} -m build -n -w
-PEP517_BUILD_DEPEND?=	${PYTHON_PKGNAMEPREFIX}build>0:devel/py-build@${PY_FLAVOR}
-PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer -d ${FAKE_DESTDIR} --no-compile-bytecode ${BUILD_WRKSRC}/dist/${PORTNAME:C/[-_]+/_/g}-${PORTVERSION}-*.whl
-PEP517_INSTALL_DEPEND?=	${PYTHON_PKGNAMEPREFIX}installer>0:devel/py-installer@${PY_FLAVOR}
+PEP517_BUILD_CMD?=	${PYTHON_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
+PEP517_BUILD_DEPEND?=	${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR}
+PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
+PEP517_INSTALL_DEPEND?=	${PYTHON_PKGNAMEPREFIX}installer>=0:devel/py-installer@${PY_FLAVOR}
 
 # nose support
 .  if defined(_PYTHON_FEATURE_NOSE)
@@ -757,14 +816,26 @@ CONFIGURE_ENV+=	PYTHON="${PYTHON_CMD}"
 # By default CMake picks up the highest available version of Python package.
 # Enforce the version required by the port or the default.
 CMAKE_ARGS+=	-DPython_ADDITIONAL_VERSIONS=${PYTHON_VER}
+CMAKE_ARGS+=	-DPython_EXECUTABLE:FILEPATH="${PYTHON_CMD}"
+CMAKE_ARGS+=	-DPython${PYTHON_MAJOR_VER}_EXECUTABLE:FILEPATH="${PYTHON_CMD}"
 
 # Python 3rd-party modules
 PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:devel/py-game@${PY_FLAVOR}
 PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
-# Common Python modules that can be needed but only for some versions of Python.
-.  if ${PYTHON_REL} < 30500
+.  if defined(_PYTHON_FEATURE_DISTUTILS)
+.    if ${PYTHON_MAJOR_VER} < 3
+PY_SETUPTOOLS=	${PYTHON_PKGNAMEPREFIX}setuptools44>0:devel/py-setuptools44@${PY_FLAVOR}
+.    else
+#PY_SETUPTOOLS=	${PYTHON_PKGNAMEPREFIX}setuptools58>0:devel/py-setuptools58@${PY_FLAVOR}
+PY_SETUPTOOLS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
+.    endif
 .  else
+PY_SETUPTOOLS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
+.  endif
+
+# Common Python modules that can be needed but only for some versions of Python.
+.  if ${PYTHON_REL} >= 30000
 PY_PILLOW=	${PYTHON_PKGNAMEPREFIX}pillow>=7.0.0:graphics/py-pillow@${PY_FLAVOR}
 .  endif
 
@@ -811,7 +882,7 @@ PLIST_SUB+=	PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
 		PYTHON_EXT_SUFFIX=${PYTHON_EXT_SUFFIX} \
 		PYTHON_VER=${PYTHON_VER} \
 		PYTHON_VERSION=${PYTHON_VERSION}
-.  if ${PYTHON_REL} < 30000
+.  if ${PYTHON_MAJOR_VER} < 3
 SUB_LIST+=	PYTHON2="" PYTHON3="@comment "
 PLIST_SUB+=	PYTHON2="" PYTHON3="@comment "
 .  else
@@ -872,10 +943,22 @@ do-build:
 do-install:
 	@${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PEP517_INSTALL_CMD}
-	@${SED} -e 's|^|${PYTHONPREFIX_SITELIBDIR}/|' \
+	@${PYTHON_CMD} -B ${PORTSDIR}/Mk/Scripts/strip_RECORD.py \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
+	@${REINPLACE_CMD} \
+		-e '/\.pyc$$/d' \
+		-e 's|^|${PYTHONPREFIX_SITELIBDIR}/|' \
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../etc/|etc/|' \
 		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../bin/|bin/|' \
-		-e 's|\,.*$$||' \
-		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C/[-_]+/_/g}-${PORTVERSION}.dist-info/RECORD >> ${_PYTHONPKGLIST}
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../include/|include/|' \
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../lib/|lib/|' \
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../libdata/|libdata/|' \
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../libexec/|libexec/|' \
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../man/|man/|' \
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../sbin/|sbin/|' \
+		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../share/|share/|' \
+			${_PYTHONPKGLIST}
+	@cd ${FAKE_DESTDIR}${PREFIX} && ${FIND} lib -name '*.pyc' >> ${_PYTHONPKGLIST}
 .    endif
 .  endif # defined(_PYTHON_FEATURE_PEP517)
 

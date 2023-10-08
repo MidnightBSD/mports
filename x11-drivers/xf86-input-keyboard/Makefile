@@ -11,6 +11,6 @@ WWW=		https://www.x.org/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		xorg-cat:driver tar:xz
+USES=		tar:xz xorg-cat:driver
 
 .include <bsd.port.mk>
