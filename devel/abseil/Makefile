@@ -1,7 +1,5 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	abseil
-PORTVERSION=	20220623.0
+PORTVERSION=	20230125.3
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +8,7 @@ WWW=		https://abseil.io/
 
 LICENSE=	apache2
 
-USES=		cmake compiler:c++11-lang
+USES=		cmake compiler:c++17-lang
 USE_GITHUB=	yes
 GH_PROJECT=	${PORTNAME}-cpp
 
