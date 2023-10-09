@@ -1,11 +1,12 @@
 PORTNAME=	aldo
 PORTVERSION=	0.7.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Morse code training program
+WWW=		https://www.nongnu.org/aldo/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -13,9 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libao.so:audio/libao
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--includedir="${LOCALBASE}/include" \
-		--libdir="${LOCALBASE}/lib"
-USES=		compiler:c++0x gmake libtool tar:bzip2
+USES=		compiler:c++0x gmake libtool localbase tar:bzip2
 USE_GCC=	yes
 
 PLIST_FILES=	bin/aldo \

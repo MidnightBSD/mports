@@ -9,7 +9,7 @@ MASTER_SITES=	http://distfiles.alpinelinux.org/distfiles/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High Quality Rendering Engine for C++
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/copying
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2

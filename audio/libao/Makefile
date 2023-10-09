@@ -4,13 +4,14 @@
 
 PORTNAME=	libao
 PORTVERSION=	1.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	https://downloads.xiph.org/releases/ao/ \
 		https://ftp.osuosl.org/pub/xiph/releases/ao/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable audio output library
+WWW=		https://www.xiph.org/ao/
 
 LICENSE=	gpl2
 
@@ -22,6 +23,7 @@ CONFIGURE_ARGS=	--enable-static \
 		--disable-alsa \
 		--disable-arts \
 		--disable-esd
+INSTALL_TARGET=	install-strip
 # do not install
 MAKE_ARGS=	ckport_DATA=""
 
