@@ -1080,6 +1080,7 @@ SUBDIR += py-setuptools44
 SUBDIR += py-setuptools-git
 SUBDIR += py-setuptools_hg
 SUBDIR += py-setuptools_scm
+SUBDIR += py-setuptools_scm7
 SUBDIR += py-setuptools_scm_git_archive
 SUBDIR += py-simplejson
 SUBDIR += py-sip
