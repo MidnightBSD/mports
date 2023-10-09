@@ -1,6 +1,6 @@
 PORTNAME=	amazon-ssm-agent
 PORTVERSION=	2.3.1205.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,6 +17,8 @@ USES=		go
 USE_GITHUB=	yes
 GH_ACCOUNT=	aws
 GH_SUBDIR=	src/github.com/aws/amazon-ssm-agent
+GH_TUPLE=	creack:pty:v1.1.18:pty \
+		golang:sys:v0.6.0:sys
 
 GO_BUILDFLAGS=	-ldflags "-s -w"
 GO_TARGET=	./agent:${PREFIX}/sbin/amazon-ssm-agent \
