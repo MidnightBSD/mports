@@ -1,18 +1,18 @@
 PORTNAME=	adodb
-PORTVERSION=	5.22.2
+PORTVERSION=	5.22.6
 DISTVERSIONPREFIX=	v
 CATEGORIES=	databases www
 PKGNAMESUFFIX=	5${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database library for PHP
+WWW=		http://adodb.org/
 
-LICENSE=	bsd3 lgpl2.1
+LICENSE=	bsd3 lgpl2.1+
 LICENSE_COMB=	dual
 
 USES=		cpe php:flavors
 CPE_VENDOR=	${PORTNAME}_project
-USE_PHP=	pcre
 
 USE_GITHUB=	yes
 GH_PROJECT=	ADOdb
