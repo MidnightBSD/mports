@@ -1,12 +1,13 @@
 # Created by: mp39590@gmail.com
 
 PORTNAME=	acsccid
-PORTVERSION=	1.1.8
+PORTVERSION=	1.1.10
 CATEGORIES=	devel
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PC/SC driver for CS CCID smart card readers
+WWW=		https://www.acs.com.hk/en/driver/4/acr38-smart-card-reader/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -19,7 +20,7 @@ PLIST_FILES=	lib/pcsc/drivers/ifd-acsccid.bundle/Contents/${OPSYS}/libacsccid.so
 		lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Info.plist
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/${OPSYS}/libacsccid.so
