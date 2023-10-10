@@ -72,7 +72,7 @@ PERL5_DEFAULT?=		5.28
 PERL5_DEFAULT?=		5.32
 .endif
 # Possible values: 10, 11, 12, 13, 14
-PGSQL_DEFAULT?=		13
+PGSQL_DEFAULT?=		14
 # Possible values: 8.0, 8.1, 8.2
 PHP_DEFAULT?=		8.1
 # Possible values: rust, legacy
