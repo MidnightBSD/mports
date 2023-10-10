@@ -5,15 +5,17 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kitchen contains a cornucopia of useful code
+WWW=		https://pypi.org/project/kitchen/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python:3.6+
+USES=		python
 USE_GITHUB=	yes
 GH_ACCOUNT=	fedora-infra
 USE_PYTHON=	distutils autoplist
 
+NO_ARCH=	yes
 NO_TEST=	yes
 
 .include <bsd.port.mk>

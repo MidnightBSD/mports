@@ -1,21 +1,25 @@
-# Created by: Andrey Zonov <andrey@zonov.org>
-
 PORTNAME=	msgpack
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.7
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MessagePack (de)serializer for Python
+WWW=		https://msgpack.org/ \
+		https://github.com/msgpack/msgpack-python
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python:3.6+
-USE_PYTHON=	autoplist concurrent cython distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython>=0.29.30<0.30:lang/cython@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=35.0.2:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent cython pep517
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/msgpack/_cmsgpack*.so
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
