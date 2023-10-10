@@ -5,8 +5,9 @@ MASTER_SITES=	https://www.freedesktop.org/software/polkit/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
+WWW=		https://gitlab.freedesktop.org/polkit/polkit
 
-LICENSE=	gpl2
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
