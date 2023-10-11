@@ -5,7 +5,7 @@
 
 PORTNAME=	libgit2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.2
+DISTVERSION=	1.6.4
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,12 +17,18 @@ LICENSE=	gpl2
 LIB_DEPENDS=	libpcre2-8.so:devel/pcre2 \
 		libhttp_parser.so:www/http-parser
 
-USES=		cmake cpe pkgconfig ssl
+USES=		cmake:testing cpe pkgconfig python:build ssl
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 
-CMAKE_ARGS=	-DREGEX_BACKEND=pcre2 -DUSE_HTTP_PARSER=system
-CMAKE_OFF=	BUILD_CLAR
+CMAKE_TESTING_ON=	BUILD_TESTS
+
+CMAKE_ARGS=	-DREGEX_BACKEND=pcre2 -DUSE_HTTP_PARSER=system \
+		-DCMAKE_CTEST_ARGUMENTS="-E;'invasive|online'" \
+		-DOPENSSL_ROOT_DIR=${OPENSSLBASE} \
+		-DOPENSSL_ENGINES_DIR=${ENGINESDIR}
+
+CMAKE_OFF=	BUILD_TESTS
 
 PLIST_SUB=	DISTVERSION=${DISTVERSION} \
 		SHLIB_VER=${DISTVERSION:R}
@@ -35,8 +41,6 @@ SSH_LIB_DEPENDS=	libssh2.so:security/libssh2
 SSH_CMAKE_BOOL=		USE_SSH
 THREADS_CMAKE_BOOL=	THREADSAFE
 
-NO_TEST=	yes
-
 .include <bsd.port.pre.mk>
 
 .if ${SSL_DEFAULT} == base
@@ -44,8 +48,5 @@ post-patch:
 	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*openssl/ d" \
 		${WRKSRC}/cmake/SelectHTTPSBackend.cmake
 .endif
-
-post-install:
-	cd ${PREFIX}/lib/; ${LN} -sf libgit2.so.${PORTVERSION} libgit2.so.27
 
 .include <bsd.port.post.mk>
