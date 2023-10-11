@@ -5,15 +5,17 @@ MASTER_SITES=	http://www.arda.homeunix.net/software-downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User account information retrieval utility
+WWW=		http://www.arda.homeunix.net/store/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
 
 GNU_CONFIGURE=	yes
 USES=		gmake localbase
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd12.4
 
 PORTDOCS=	AUTHORS ChangeLog INSTALL NEWS README
 

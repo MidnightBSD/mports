@@ -6,8 +6,9 @@ MASTER_SITES=	http://www.arda.homeunix.net/software-downloads/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User authentication and password changing daemon utility
+WWW=		http://www.arda.homeunix.net/store/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base

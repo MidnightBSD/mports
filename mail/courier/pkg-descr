@@ -16,8 +16,6 @@ features:
  * Mailboxes can be accessed via POP3, IMAP, SMAP, and HTTP.
  * A faxmail gateway that forwards E-mail messages via fax.
  * Courier includes a mailing list manager.
- * PAM, LDAP, PostgreSQL, or MySQL authentication. 
+ * PAM, LDAP, PostgreSQL, or MySQL authentication.
  * Authenticated SMTP.
  * Integrated mail filtering.
-
-WWW: http://www.Courier-MTA.org/

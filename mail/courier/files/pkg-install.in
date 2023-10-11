@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-#
 
 PKG_PREFIX=${PKG_PREFIX:=/usr/local}
 

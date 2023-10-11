@@ -1,13 +1,12 @@
-# Created by: Neil Blakey-Milner
-
 PORTNAME=	courier-imap
-PORTVERSION=	5.1.3
+PORTVERSION=	5.2.5
 PORTEPOCH=	2
 CATEGORIES=	mail
 MASTER_SITES=	SF/courier/imap/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IMAP (and POP3) server that provides access to Maildir mailboxes
+WWW=		https://www.courier-mta.org/imap/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -15,18 +14,19 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 RUN_DEPENDS=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
 LIB_DEPENDS=	libcourier-unicode.so:devel/courier-unicode \
 		libcourierauth.so:security/courier-authlib-base \
-		libidn.so:dns/libidn
+		libidn2.so:dns/libidn2 \
+		libpcre2-8.so:devel/pcre2
 
 USES=		compiler:c++11-lang gmake localbase:ldflags perl5 pkgconfig ssl \
 		tar:bzip2
 USE_RC_SUBR=	courier-imap-imapd courier-imap-imapd-ssl \
 		courier-imap-pop3d courier-imap-pop3d-ssl
 
-CONFLICTS=	courier-[0-9]* imap-uw-[0-9]* panda-imap-[0-9]*
+CONFLICTS=	courier imap-uw panda-imap
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	REHASH=${SCRIPTDIR}/c_rehash
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 MAKE_ENV:=	${CONFIGURE_ENV}
 ALL_TARGET=	all makeimapaccess makedat
@@ -40,7 +40,7 @@ SUB_LIST=	CONFDIR=${CONFDIR}
 # WITH_SYSLOG_FACILITY:         The syslogfacility to use
 #
 
-OPTIONS_DEFINE= GDBM GNUTLS INOTIFY TRASHQUOTA IPV6
+OPTIONS_DEFINE=	GDBM GNUTLS INOTIFY IPV6 TRASHQUOTA
 
 GNUTLS_DESC=	Use GnuTLS instead of OpenSSL (Enables SNI)
 INOTIFY_DESC=	Inotify support for IDLE command
@@ -64,8 +64,7 @@ CONFIGURE_ARGS=	--sysconfdir=${CONFDIR} \
 		--enable-unicode \
 		--disable-root-check \
 		--with-locking-method=fcntl \
-		--with-notice=unicode \
-		COURIERAUTHCONFIG=${PREFIX}/bin/courierauthconfig
+		--with-notice=unicode
 
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls \
 			libgcrypt.so:security/libgcrypt
@@ -99,7 +98,6 @@ CONFIGURE_ARGS+=--with-db=db  --with-userdb=${USERDB}
 
 EXTRA_DOCS=	AUTHORS INSTALL NEWS \
 		libs/imap/ChangeLog \
-		libs/imap/README \
 		libs/imap/README.proxy \
 		libs/maildir/README.imapkeywords.html \
 		libs/maildir/README.maildirfilter.html \
@@ -111,10 +109,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|^case x$$lockmethod in|${TEST} \&\& &|g' \
 		${WRKSRC}/libs/liblock/configure
 	@${REINPLACE_CMD} -e 's|%%INSTALL_MAN%%|${INSTALL_MAN}|' \
+		-e 's|@LN_S@|${RLN}|' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|TLS_PROTOCOL=SSL3|TLS_PROTOCOL=SSL23|g' \
-		${WRKSRC}/libs/imap/pop3d-ssl.dist.in \
-		${WRKSRC}/libs/imap/imapd-ssl.dist.in
 
 post-patch-INOTIFY-on:
 	@${REINPLACE_CMD} -e 's|LIBS = @LIBS@|& ${LOCALBASE}/lib/libinotify.a /usr/lib/libpthread.a|' \

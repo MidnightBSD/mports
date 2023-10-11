@@ -1,5 +1,3 @@
-# Created by: Xavier Beaudouin <kiwi@oav.net>
-
 PORTNAME=	couriergraph
 PORTVERSION=	20060202
 PORTREVISION=	6
@@ -9,6 +7,7 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RRDtool frontend for Courier statistics
+WWW=		https://www.arschkrebs.de/postfix/couriergraph/
 
 LICENSE=	gpl
 
