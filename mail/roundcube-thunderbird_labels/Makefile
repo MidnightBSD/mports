@@ -43,7 +43,6 @@ do-install:
 	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PLUGINDIR}
 	cd ${STAGEDIR}${PLUGINDIR} && \
 		${MV} config.inc.php.dist config.inc.php.sample && \
-		${RM} coffee2js.sh docs/_config.yml && \
-		${RM} -r coffeescripts
+		${RM} docs/_config.yml 
 
 .include <bsd.port.mk>
