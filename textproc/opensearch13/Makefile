@@ -74,7 +74,7 @@ post-patch:
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/opensearch
 .for f in ${CONFIG_FILES}
-	${INSTALL} ${WRKSRC}/config/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
+	${INSTALL} ${WRKSRC}/config/${f} ${PREFIX}/${ETCDIR_REL}/${f}.sample
 .endfor
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/opensearch/bin
 .for f in ${BINS}
@@ -87,12 +87,12 @@ do-install:
 	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${STAGEDIR}${PREFIX}/lib/opensearch/lib/jna.jar
 
 do-install-PLUGINS-on:
-	${MKDIR} ${STAGEDIR}${ETCDIR}/opensearch-observability \
-		 ${STAGEDIR}${ETCDIR}/opensearch-performance-analyzer \
-		 ${STAGEDIR}${ETCDIR}/opensearch-reports-scheduler
+	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/opensearch-observability \
+		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-performance-analyzer \
+		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-reports-scheduler
 .for f in ${PLUGINS_CONFIG_FILES}
-	${INSTALL} ${WRKSRC}/config/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
-	${ECHO} "@sample ${ETCDIR}/${f}.sample" >> ${TMPPLIST}
+	${INSTALL} ${WRKSRC}/config/${f} ${FAKE_DESTDIR}${ETCDIR}/${f}.sample
+	${ECHO} "@sample ${ETCDIR_REL}/${f}.sample" >> ${TMPPLIST}
 .endfor
 	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "plugins" ${FAKE_DESTDIR}${PREFIX}/lib/opensearch/)
 	(cd ${WRKSRC}/plugins/opensearch-security/tools && ${COPYTREE_BIN} "*.sh" ${FAKE_DESTDIR}${PREFIX}/lib/opensearch/plugins/opensearch-security/tools)
