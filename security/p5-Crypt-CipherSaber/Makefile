@@ -11,9 +11,12 @@ WWW=		https://metacpan.org/release/Crypt-CipherSaber
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
-TEST_DEPENDS=	p5-Test-Warn>=0.30:devel/p5-Test-Warn
+#TEST_DEPENDS=	p5-Test-Warn>=0.30:devel/p5-Test-Warn
 
 USES=		perl5
 USE_PERL5=	configure
+
+# not magus safe
+NO_TEST=	yes
 
 .include <bsd.port.mk>
