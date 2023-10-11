@@ -1,5 +1,5 @@
 PORTNAME=	bzip3
-PORTVERSION=	1.3.1
+PORTVERSION=	1.3.2
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/kspalaiologos/${PORTNAME}/releases/download/${PORTVERSION}/
 
