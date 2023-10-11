@@ -1,9 +1,10 @@
 PORTNAME=	opensc
-DISTVERSION=	0.22.0
+DISTVERSION=	0.23.0
 CATEGORIES=	security devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries and utilities to access smart cards
+WWW=		https://github.com/OpenSC/OpenSC/wiki
 
 LICENSE=	lgpl2.1
 
