@@ -958,7 +958,7 @@ do-install:
 		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../sbin/|sbin/|' \
 		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../share/|share/|' \
 			${_PYTHONPKGLIST}
-	@cd ${FAKE_DESTDIR}${PREFIX} && ${FIND} lib -name '*.pyc' >> ${_PYTHONPKGLIST}
+	@cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${FIND} lib -name '*.pyc' >> ${_PYTHONPKGLIST}
 .    endif
 .  endif # defined(_PYTHON_FEATURE_PEP517)
 
