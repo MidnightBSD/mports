@@ -1,5 +1,5 @@
 PORTNAME=	gucharmap
-PORTVERSION=	15.0.0
+PORTVERSION=	15.1.0
 CATEGORIES=	deskutils gnome
 #MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,10 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unicode/ISO10646 character map and font viewer
 WWW=		https://wiki.gnome.org/Gucharmap
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-WRKSRC=		${WRKDIR}/gucharmap-${GL_COMMIT}
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
 		UCD>=0:textproc/UCD \
@@ -30,7 +28,6 @@ MESON_ARGS=	-Ducd_path=${LOCALBASE}/share/unicode/ucd/
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	GNOME
-GL_COMMIT=	36de4b20deb47bccd8434e36dcc48db8b9460e47
 
 GLIB_SCHEMAS=	org.gnome.Charmap.gschema.xml
 
