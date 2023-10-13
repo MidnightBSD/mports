@@ -10,15 +10,13 @@ WWW=		https://gitlab.freedesktop.org/glvnd/libglvnd
 LICENSE=	apache2 mit
 LICENSE_COMB=	multi
 
-WRKSRC=	${WRKDIR}/${PORTNAME}-${GL_COMMIT}
-
 USES=		compiler:c++11-lib localbase meson pkgconfig
 USE_LDCONFIG=	yes
 
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	glvnd
-GL_COMMIT=	b05bbcdaeb9b700cf7877e6d66f8fc3ac952295b
+GL_TAGNAME=	b05bbcdaeb9b700cf7877e6d66f8fc3ac952295b
 
 OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=X11
