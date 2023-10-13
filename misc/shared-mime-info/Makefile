@@ -1,19 +1,18 @@
 PORTNAME=	shared-mime-info
 DISTVERSION=	2.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	misc gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MIME types database from the freedesktop.org project
+WWW=		https://www.freedesktop.org/wiki/Software/shared-mime-info/
 
 LICENSE=	gpl2
-#LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gmake:devel/gmake \
 		itstool:textproc/itstool \
 		minixmlto:textproc/minixmlto
-
-WRKSRC=		${WRKDIR}/shared-mime-info-${GL_COMMIT}
 
 USES=		gettext gnome localbase meson pathfix pkgconfig python:build shebangfix \
 		tar:xz
@@ -24,7 +23,7 @@ USE_GITLAB=	YES
 GL_SITE=	https://gitlab.freedesktop.org/
 GL_ACCOUNT=	xdg
 GL_PROJECT=	shared-mime-info
-GL_COMMIT=	13695c7225c2f525a435e72739c33ac32bbfbbb9
+GL_TAGNAME=	13695c7225c2f525a435e72739c33ac32bbfbbb9
 GL_TUPLE=	xdg:xdgmime:de283fc430460b9b3a7e61432a6d273cd64cb102:xdgmime/src/xdgmime
 bash_CMD=	/bin/sh
 SHEBANG_FILES=	${WRKSRC}/tests/compare_iana.py \

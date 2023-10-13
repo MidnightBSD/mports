@@ -91,15 +91,16 @@ share/mime/packages/freedesktop.org.xml
 @rmtry share/mime/treemagic
 @rmtry share/mime/types
 @rmtry share/mime/version
-@postunexec rm -fr %D/share/mime/x-epoc 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/x-content 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/video 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/text 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/multipart 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/model 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/message 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/inode 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/image 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/font 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/audio 2>/dev/null || true
-@postunexec rm -fr %D/share/mime/application 2>/dev/null || true
+@dirrmtry share/mime/x-epoc
+@dirrmtry share/mime/x-content
+@dirrmtry share/mime/video
+@dirrmtry share/mime/text
+@dirrmtry share/mime/multipart
+@dirrmtry share/mime/model
+@dirrmtry share/mime/message
+@dirrmtry share/mime/inode
+@dirrmtry share/mime/image
+@dirrmtry share/mime/font
+@dirrmtry share/mime/audio
+@dirrmtry share/mime/application
+
