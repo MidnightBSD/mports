@@ -1,36 +1,47 @@
-# Created by: Ben Woods <woodsb02@FreeBSD.org>
-
 PORTNAME=	xfce4-goodies
-PORTVERSION=	4.16
+PORTVERSION=	4.18
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port for software and artwork from the Xfce4 Goodies Project
+WWW=		https://goodies.xfce.org/
 
 LICENSE=	agg
 
 USES=		metaport
 
-OPTIONS_DEFAULT=        ARCHIVE BATTERY CALCULATOR CLIPMAN CPUGRAPH DASHBOARD \
+OPTIONS_DEFAULT=	ARCHIVE BSDCPUFREQ CALCULATOR CLIPMAN CPUGRAPH DASHBOARD \
 			DATETIME DICTIONARY DISKPERF FSGUARD GENMON GIGOLO \
 			MAILWATCH MEDIATAGS MENULIBRE MOUNT NETLOAD NOTES PAROLE \
 			POWERMANAGER RISTRETTO SCREENSAVER SCREENSHOOTER \
 			SMARTBOOKMARK STOPWATCH SYSTEMLOAD TASKMANAGER TERMINAL \
 			THEMES TIMEOUT TIMER VCS VERVE WAVELAN WEATHER WHISKERMENU \
 			XFBURN XKB
-# Removed from defaults due to ports being broken.
-# BSDCPUFREQ
+
+OPTIONS_DEFAULT_amd64=	BATTERY
+OPTIONS_DEFAULT_i386=	BATTERY
+
+OPTIONS_EXCLUDE_aarch64=	BATTERY
+OPTIONS_EXCLUDE_armv6=		BATTERY
+OPTIONS_EXCLUDE_armv7=		BATTERY
+OPTIONS_EXCLUDE_powerpc=	BATTERY
+OPTIONS_EXCLUDE_powerpc64=	BATTERY
+OPTIONS_EXCLUDE_powerpc64le=	BATTERY
+OPTIONS_EXCLUDE_powerpcspe=	BATTERY
+OPTIONS_EXCLUDE_riscv64=	BATTERY
+OPTIONS_EXCLUDE_riscv64sf=	BATTERY
 
 OPTIONS_GROUP=	APPLICATIONS PANELPLUGINS THUNARPLUGINS UNOFFICIAL
 
-OPTIONS_GROUP_APPLICATIONS=	DASHBOARD DICTIONARY GIGOLO MIDORI PAROLE \
-				POWERMANAGER RISTRETTO SCREENSHOOTER \
-				TASKMANAGER TERMINAL VOLUMEDPULSE XFBURN \
-				XFMPC SCREENSAVER
+OPTIONS_GROUP_APPLICATIONS=	DASHBOARD DICTIONARY GIGOLO MIDORI MIXER \
+				PAROLE POWERMANAGER RISTRETTO SCREENSAVER \
+				SCREENSHOOTER TASKMANAGER TERMINAL VOLUMEDPULSE \
+				XFBURN XFMPC
 DASHBOARD_DESC=			GNOME shell like dashboard for the Xfce desktop
 DICTIONARY_DESC=		Xfce4 plugin to query different dictionaries
 GIGOLO_DESC=			Frontend to easily manage filesystem connections
 MIDORI_DESC=			Lightweight web browser using WebKit engine
+MIXER_DESC=			Volume control for the Xfce desktop
 PAROLE_DESC=			Lightweight media player based on GStreamer
 POWERMANAGER_DESC=		Power manager for the Xfce Desktop
 RISTRETTO_DESC=			Image viewer with Xfce integration
@@ -46,6 +57,7 @@ DASHBOARD_RUN_DEPENDS=		xfce4-dashboard>=0:x11/xfce4-dashboard
 DICTIONARY_RUN_DEPENDS=		xfce4-dict-plugin>=0:textproc/xfce4-dict-plugin
 GIGOLO_RUN_DEPENDS=		gigolo>=0:sysutils/gigolo
 MIDORI_RUN_DEPENDS=		midori>=0:www/midori
+MIXER_RUN_DEPENDS=		xfce4-mixer>=0:audio/xfce4-mixer
 PAROLE_RUN_DEPENDS=		parole>=0:multimedia/xfce4-parole
 POWERMANAGER_RUN_DEPENDS=	xfce4-power-manager>=0:sysutils/xfce4-power-manager
 RISTRETTO_RUN_DEPENDS=		ristretto>=0:graphics/ristretto
@@ -62,7 +74,7 @@ OPTIONS_GROUP_PANELPLUGINS=	BATTERY CALCULATOR CLIPMAN CPUGRAPH DATETIME \
 				MAILWATCH MOUNT MPC NETLOAD NOTES PULSEAUDIO \
 				SMARTBOOKMARK STOPWATCH SYSTEMLOAD TIMER \
 				TIMEOUT VERVE WAVELAN WEATHER WHISKERMENU \
-				XKB
+				WINDOWCK XKB
 BATTERY_DESC=			Battery monitor panel plugin for Xfce4
 CALCULATOR_DESC=		Simple calculator for the Xfce panel
 CLIPMAN_DESC=			Clipboard manager for the Xfce panel
@@ -87,6 +99,7 @@ VERVE_DESC=			Command line plugin for the Xfce Desktop
 WAVELAN_DESC=			Displays information about a WaveLAN device
 WEATHER_DESC=			Weather plugin for the Xfce panel
 WHISKERMENU_DESC=		Alternate menu for the Xfce Desktop
+WINDOWCK_DESC=			Add window buttons to Xfce panel
 XKB_DESC=			Keyboard layout switching plugin for Xfce panel
 
 BATTERY_RUN_DEPENDS=		xfce4-battery-plugin>=0:sysutils/xfce4-battery-plugin
@@ -113,6 +126,7 @@ VERVE_RUN_DEPENDS=		xfce4-verve-plugin>=0:x11/xfce4-verve-plugin
 WAVELAN_RUN_DEPENDS=		xfce4-wavelan-plugin>=0:sysutils/xfce4-wavelan-plugin
 WEATHER_RUN_DEPENDS=		xfce4-weather-plugin>=0:misc/xfce4-weather-plugin
 WHISKERMENU_RUN_DEPENDS=	xfce4-whiskermenu-plugin>=0:x11/xfce4-whiskermenu-plugin
+WINDOWCK_RUN_DEPENDS=		xfce4-windowck-plugin>=0:x11/xfce4-windowck-plugin
 XKB_RUN_DEPENDS=		xfce4-xkb-plugin>=0:deskutils/xfce4-xkb-plugin
 
 OPTIONS_GROUP_THUNARPLUGINS=	ARCHIVE MEDIATAGS VCS
@@ -130,7 +144,7 @@ MENULIBRE_DESC=			Advanced compliant menu editor
 THEMES_DESC=			Additional themes for xfwm4
 
 BSDCPUFREQ_RUN_DEPENDS=		xfce4-bsdcpufreq-plugin>=0:sysutils/xfce4-bsdcpufreq-plugin
-MENULIBRE_RUN_DEPENDS=		py${PYTHON3_DEFAULT:S/.//}-menulibre>=0:x11/menulibre
+MENULIBRE_RUN_DEPENDS=		py${PYTHON_DEFAULT:S/.//}-menulibre>=0:x11/menulibre
 THEMES_RUN_DEPENDS=		xfce4-wm-themes>=0:misc/xfce4-wm-themes
 
 .include <bsd.port.mk>
