@@ -1,7 +1,5 @@
-
-
 PORTNAME=	uhttpmock
-PORTVERSION=	0.5.1
+PORTVERSION=	0.5.3
 CATEGORIES=	net gnome
 MASTER_SITES=	http://tecnocode.co.uk/downloads/uhttpmock/
 DIST_SUBDIR=	gnome3
@@ -17,7 +15,7 @@ BUILD_DEPENDS=	gnome-autogen.sh:devel/gnome-common \
 		gtkdoc-rebase:textproc/gtk-doc
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:xz
 USE_GNOME=	gnomeprefix gtk20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

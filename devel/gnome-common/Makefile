@@ -1,11 +1,13 @@
 PORTNAME=	gnome-common
 PORTVERSION=	3.18.0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common automake macros for GNOME 3
+WWW=		https://www.gnome.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

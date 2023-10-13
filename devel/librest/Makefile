@@ -5,6 +5,7 @@ MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy access to RESTful web services
+WWW=		https://wiki.gnome.org/Projects/Librest
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
