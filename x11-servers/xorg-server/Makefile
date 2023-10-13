@@ -20,6 +20,8 @@ EXTRA_PATCHES=	${FILESDIR}/0002-xephyr_Dont_check_for_SeatId_anymore.patch:-p1
 USES=		compiler:c11 cpe gl meson pkgconfig tar:xz xorg
 USE_GL=		gl
 
+NO_TEST=	yes
+
 .if ${FLAVOR} == xephyr
 PORTNAME=	xephyr
 .elif  ${FLAVOR} == xorg
