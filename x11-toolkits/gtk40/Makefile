@@ -1,5 +1,5 @@
 PORTNAME=	gtk
-PORTVERSION=	4.7.0
+PORTVERSION=	4.7.1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
@@ -36,7 +36,7 @@ LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	1.700.0
+LIBVERSION=	1.701.0
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo4.gschema.xml \
@@ -97,6 +97,9 @@ X11_USES=		xorg
 X11_USE=		XORG=x11,xcomposite,xcursor,xdamage,xext,xfixes,xi,xinerama,xrandr,xrender
 
 NO_TEST=	yes
+
+post-patch:
+#	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' ${WRKSRC}/subprojects/wayland/meson.build
 
 pre-build:
 	-${RM} -r ${WRKSRC}/docs/gtk.info*
