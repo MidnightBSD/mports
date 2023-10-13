@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MS-DOS Telix serial communication program "workalike"
 WWW=		https://salsa.debian.org/minicom-team/minicom/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	lrz:comms/lrzsz
@@ -23,7 +23,7 @@ LIBS+=		${ICONV_LIB} -lncurses
 USE_GITLAB=	yes
 GL_SITE=	https://salsa.debian.org/
 GL_ACCOUNT=	minicom-team
-GL_COMMIT=	1fb24b4f8e22e5580da9e8d453d8e5c3a18aed6c
+GL_TAGNAME=	1fb24b4f8e22e5580da9e8d453d8e5c3a18aed6c
 
 OPTIONS_DEFINE=		DOCS NLS
 OPTIONS_SUB=		yes
