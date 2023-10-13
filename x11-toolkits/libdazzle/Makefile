@@ -11,7 +11,7 @@ WWW=		https://gitlab.gnome.org/GNOME/libdazzle
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c11 gnome meson pkgconfig tar:xz vala:build
+USES=		compiler:c11 gettext gnome meson pkgconfig tar:xz vala:build
 USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build
 
 #meson compat issues
