@@ -4,6 +4,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GitLab management commands for git CLI
+WWW=		https://invent.kde.org/sdk/git-lab
 
 LICENSE=	gpl2
 
@@ -18,6 +19,6 @@ USE_GITLAB=	yes
 GL_SITE=	https://invent.kde.org
 GL_ACCOUNT=	sdk
 GL_PROJECT=	${PORTNAME}
-GL_COMMIT=	68c892f1f5268652d23cea04b1af294b8fc32dbb
+GL_TAGNAME=	68c892f1f5268652d23cea04b1af294b8fc32dbb
 
 .include <bsd.port.mk>
