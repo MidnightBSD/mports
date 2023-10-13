@@ -1,6 +1,6 @@
 PORTNAME=	firefox
 PORTVERSION=	${VER}
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	www
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 
@@ -30,7 +30,7 @@ LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libpci.so:devel/libpci \
 		libdbus-1.so:devel/dbus \
 		libdbus-glib-1.so:devel/dbus-glib \
-		libatk-1.0.so:accessibility/atk \
+		libatk-1.0.so:accessibility/at-spi2-core \
 		libaom.so:multimedia/aom \
 		libdav1d.so:multimedia/dav1d
 

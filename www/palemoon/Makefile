@@ -1,5 +1,6 @@
 PORTNAME=	palemoon
 PORTVERSION=	32.1.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://archive.palemoon.org/palemoon/32.x/${PORTVERSION}/FreeBSD/
 DISTFILES=	palemoon-32.0.1.freebsd12.3-x86_64-gtk3.tar.bz2
@@ -30,7 +31,7 @@ LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libpci.so:devel/libpci \
 		libdbus-1.so:devel/dbus \
 		libdbus-glib-1.so:devel/dbus-glib \
-		libatk-1.0.so:accessibility/atk \
+		libatk-1.0.so:accessibility/at-spi2-core \
 		libaom.so:multimedia/aom \
 		libdav1d.so:multimedia/dav1d
 

@@ -1,6 +1,6 @@
 PORTNAME=	chromium-bin
 PORTVERSION=	84.0.4147.135
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 DISTFILES=      chromium-84.0.4147.135.txz
@@ -13,7 +13,7 @@ LICENSE_COMB=   multi
 
 CONFLICTS=	chromium-8*
 
-LIB_DEPENDS=    libatk-bridge-2.0.so:accessibility/at-spi2-atk \
+LIB_DEPENDS=    libatk-bridge-2.0.so:accessibility/at-spi2-core \
                 libatspi.so:accessibility/at-spi2-core \
                 libspeechd.so:accessibility/speech-dispatcher \
                 libsnappy.so:archivers/snappy \

@@ -25,8 +25,7 @@ BUILD_DEPENDS=	bash:shells/bash \
 		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR} \
 		${LOCALBASE}/include/va/va.h:multimedia/libva
 
-LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
-		libatspi.so:accessibility/at-spi2-core \
+LIB_DEPENDS=	libatspi.so:accessibility/at-spi2-core \
 		libspeechd.so:accessibility/speech-dispatcher \
 		libsnappy.so:archivers/snappy \
 		libFLAC.so:audio/flac \
