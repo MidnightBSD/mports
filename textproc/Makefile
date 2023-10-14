@@ -11,6 +11,7 @@ SUBDIR += augeas
 SUBDIR += bsdgrep
 SUBDIR += catdoc
 SUBDIR += clucene
+SUBDIR += cmark
 SUBDIR += diffutils
 SUBDIR += docbook
 SUBDIR += docbook-sgml

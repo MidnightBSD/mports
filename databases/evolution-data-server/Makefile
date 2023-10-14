@@ -1,5 +1,6 @@
 PORTNAME=	evolution-data-server
-DISTVERSION=	3.38.4
+DISTVERSION=	3.44.4
+PORTREVISION=	0
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,7 +12,6 @@ WWW=		https://wiki.gnome.org/Apps/Evolution
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vapigen:lang/vala
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libfribidi.so:converters/fribidi \
 		libgcr-base-3.so:security/gcr \
@@ -32,16 +32,15 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 PORTSCOUT=	limitw:1,even
 
 USES=		bdb:5 cmake compiler:c++11-lib cpe gettext gnome gperf \
-		iconv localbase pathfix pkgconfig python:3.6+,build\
+		iconv:wchar_t localbase pathfix pkgconfig python:build\
 		sqlite tar:xz xorg
 USE_CXXSTD=	gnu++11
 USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool introspection:build libxml2
 USE_XORG=	x11
-CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
+CPE_VENDOR=	gnome
 
-CMAKE_ARGS=	-DENABLE_VALA_BINDINGS=ON \
-		-DENABLE_INTROSPECTION=ON \
+CMAKE_ARGS=	-DENABLE_INTROSPECTION=ON \
 		-DENABLE_UOA=OFF
 
 CMAKE_ARGS+=	-DWITH_LIBDB_CFLAGS=-I${LOCALBASE}/include/db5 \
@@ -57,8 +56,8 @@ GLIB_SCHEMAS=	org.gnome.evolution-data-server.addressbook.gschema.xml \
 PLIST_SUB=	EVO_VERSION="1.2"
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	WEATHER KERBEROS LDAP
-OPTIONS_DEFAULT=WEATHER KERBEROS LDAP
+OPTIONS_DEFINE=	WEATHER KERBEROS LDAP VAPI
+OPTIONS_DEFAULT=WEATHER KERBEROS LDAP VAPI
 
 KERBEROS_CMAKE_ON=	-DWITH_KRB5=/usr
 KERBEROS_CMAKE_OFF=	-DWITH_KRB5=OFF
@@ -68,6 +67,9 @@ LDAP_CMAKE_ON=		-DWITH_OPENLDAP=${LOCALBASE}
 LDAP_CMAKE_OFF=		-DWITH_OPENLDAP=OFF
 LDAP_USE=		openldap=yes
 LDAP_USES=		ldap
+
+VAPI_USES=		vala:build
+VAPI_CMAKE_BOOL=	ENABLE_VALA_BINDINGS
 
 WEATHER_DESC=	Weather calendar backend
 WEATHER_LIB_DEPENDS=	libgweather-3.so:net/libgweather
