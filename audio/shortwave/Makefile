@@ -4,8 +4,9 @@ CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Listen to internet radio
+WWW=		https://gitlab.gnome.org/World/Shortwave
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
@@ -21,7 +22,7 @@ GH_TUPLE=	gtk-rs:gtk3-rs:1ca4fbcc30ec882f6079f26018c30ef1ceb8a2e2:gtk3 \
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	World
 GL_PROJECT=	Shortwave
-GL_COMMIT=	9bfc5ee2d857035cf0d3c72e211b3d76b85d7414
+GL_TAGNAME=	9bfc5ee2d857035cf0d3c72e211b3d76b85d7414
 GL_TUPLE=	https://gitlab.freedesktop.org:gstreamer:gstreamer-rs:f00c57cd6f2a0912e04c10887cedbe95be7d5dea:gstreamer \
 		bilelmoussaoui:libadwaita-rs:2d09b6b566bc0fa2497612768cf0c41f582acdd7:libadwaita
 SHEBANG_FILES=	build-aux/meson/postinstall.py
