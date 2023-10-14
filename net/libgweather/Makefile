@@ -1,27 +1,25 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	libgweather
 PORTVERSION=	40.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Library to access online weather informations
+COMMENT=	Library to access online weather information
+WWW=		https://www.gnome.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vala:lang/vala
 LIB_DEPENDS=	libgeocode-glib.so:net/geocode-glib \
 		libsoup-2.4.so:devel/libsoup
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python:3.6+,build \
-		shebangfix tar:xz
+USES=		gettext gnome localbase meson pkgconfig python:build \
+		shebangfix tar:xz vala:build
 USE_GNOME=	gtk30 libxml2 pygobject3 introspection:build
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
