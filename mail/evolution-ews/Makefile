@@ -1,13 +1,12 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	evolution-ews
-PORTVERSION=	3.38.4
+DISTVERSION=	3.44.4
 CATEGORIES=	mail gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Evolution Microsoft Exchange plugin through Exchange Web Services
+WWW=		https://wiki.gnome.org/Apps/Evolution
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -27,7 +26,7 @@ RUN_DEPENDS=	evolution>=3.0.0:mail/evolution
 
 PORTSCOUT=	limitw:1,even
 
-USES=		bdb:5 compiler:c11 cmake gettext gnome localbase pathfix \
+USES=		compiler:c11 cmake gettext gnome localbase pathfix \
 		pkgconfig sqlite tar:xz
 USE_GNOME=	cairo gdkpixbuf2 evolutiondataserver3 intltool
 
