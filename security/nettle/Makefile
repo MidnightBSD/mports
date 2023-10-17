@@ -1,11 +1,12 @@
 PORTNAME=	nettle
-PORTVERSION=	3.7.3
+PORTVERSION=	3.9.1
 CATEGORIES=	security
 MASTER_SITES=	GNU \
 		https://www.lysator.liu.se/~nisse/archive/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-level cryptographic library
+WWW=		https://www.lysator.liu.se/~nisse/nettle/
 
 LICENSE=	gpl2 gpl3 lgpl3
 LICENSE_COMB=	multi
@@ -13,9 +14,7 @@ LICENSE_COMB=	multi
 BUILD_DEPENDS=	gmp>=6.1.0:math/gmp
 LIB_DEPENDS=	libgmp.so:math/gmp
 
-OPTIONS_DEFINE=	DOCS EXAMPLES
-
-USES=		compiler:c11 gmake localbase makeinfo pathfix
+USES=		compiler:c11 cpe gmake localbase makeinfo pathfix
 
 CONFIGURE_ARGS=	--enable-shared
 CONFIGURE_ENV=	M4="/usr/bin/m4 -g"
@@ -24,23 +23,15 @@ USE_LDCONFIG=	yes
 
 INFO=		nettle
 
+CPE_VENDOR=	nettle_project
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
 EXAMPLES_CFLAGS=	-I${OPENSSLINC}
 EXAMPLES_USES=		ssl
+EXAMPLES_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-Makefile.in
 
 .include <bsd.mport.options.mk>
-
-.if ${ARCH} == "sparc64"
-CONFIGURE_ENV+=	CCPIC=-fPIC
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e '/libdir=/ s|lib32|lib|' ${WRKSRC}/configure
-.if ${ARCH} == "mips64"
-	@${REINPLACE_CMD} -e 's|__sgi|__unix__|' ${WRKSRC}/configure
-.endif
-
-post-patch-EXAMPLES-off:
-	@${REINPLACE_CMD} -e '/SUBDIRS = / s| examples||' ${WRKSRC}/Makefile.in
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so

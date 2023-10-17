@@ -1,5 +1,5 @@
 PORTNAME=	libgcrypt
-DISTVERSION=	1.9.4
+DISTVERSION=	1.10.2
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -19,7 +19,7 @@ USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-drng-support
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd11.4
+CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd12.4
 USE_LDCONFIG=	yes
 #TEST_TARGET=	check
 # magus issues
