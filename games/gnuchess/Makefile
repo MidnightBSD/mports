@@ -1,5 +1,5 @@
 PORTNAME=	gnuchess
-PORTVERSION=	6.2.7
+PORTVERSION=	6.2.9
 CATEGORIES=	games
 MASTER_SITES=	GNU/chess
 # The DISTFILES here is explicitly needed because it can be extended later.
@@ -7,8 +7,9 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"Classic" Gnu Chess
+WWW=		https://savannah.gnu.org/projects/chess
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
