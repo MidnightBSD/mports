@@ -7,8 +7,9 @@ PKGNAMESUFFIX=	-wlm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Linux Utility for Resource Management
+WWW=		https://slurm.schedmd.com/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 NOT_FOR_ARCHS=		armv6 armv7 i386 powerpc
@@ -19,10 +20,11 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libmunge.so:security/munge \
 		liblz4.so:archivers/liblz4
 
-USES=		compiler:c11 gmake gnome libtool localbase lua pkgconfig python:build \
-		readline shebangfix ssl tar:bz2
+USES=		compiler:c11 cpe gmake gnome libtool localbase lua perl5 \
+		pkgconfig python:build readline shebangfix ssl tar:bz2
+USE_PERL5=	build
+CPE_VENDOR=	schedmd
 USE_LDCONFIG=	yes
-#USE_PERL5=	configure
 USE_RC_SUBR=	slurmctld slurmd
 
 USERS=		slurm
@@ -59,7 +61,7 @@ GUI_CONFIGURE_ENABLE=	glibtest gtktest x11
 #GTK2_CONFIGURE_OFF=	--disable-gtktest
 
 HDF5_LIB_DEPENDS=	libhdf5_cpp.so:science/hdf5 \
-			libsz.so:science/szip
+			libsz.so:science/libaec
 HDF5_CONFIGURE_WITH=	hdf5
 HDF5_CONFIGURE_ENV=	H5CC=${LOCALBASE}/bin/h5cc
 
@@ -78,7 +80,8 @@ RRD_CONFIGURE_WITH=	rrdtool
 # --docdir is non-functional
 # CONFIGURE_ARGS=	--docdir=${DOCSDIR}
 # FreeBSD Infiniband support is still experimental
-CONFIGURE_ARGS=	--without-ofed
+# slurmrestd does not build on FreeBSD
+CONFIGURE_ARGS=	--without-ofed --disable-slurmrestd
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${DISTVERSION}
 
 CFLAGS+=	-I${WRKSRC}/slurm -I${LOCALBASE}/include -fcommon
@@ -105,7 +108,7 @@ pre-configure:
 		${WRKSRC}/doc/man/man1/strigger.1 \
 		${WRKSRC}/doc/man/man5/slurm.conf.5
 	@${REINPLACE_CMD} \
-		-e 's|=linux|=FreeBSD|g' \
+		-e 's|=linux|=MidnightBSD|g' \
 		-e 's|run/slurmctld.pid|run/slurm/slurmctld.pid|' \
 		-e 's|run/slurmd.pid|run/slurm/slurd.pid|' \
 		-e 's|SlurmdSpoolDir=.*|SlurmdSpoolDir=/var/spool/slurmd|' \
@@ -116,7 +119,6 @@ pre-configure:
 		-e 's|(/proc)|(/compat/linux/proc)|g' \
 		${WRKSRC}/src/slurmd/slurmstepd/req.c \
 		${WRKSRC}/src/slurmd/slurmstepd/pdebug.c \
-		${WRKSRC}/src/slurmd/slurmd/get_mach_stat.c \
 		${WRKSRC}/src/slurmd/common/xcpuinfo.c \
 		${WRKSRC}/src/slurmd/common/xcgroup.c \
 		${WRKSRC}/src/slurmd/common/set_oomadj.c \
@@ -128,7 +130,6 @@ pre-configure:
 		${WRKSRC}/src/plugins/jobacct_gather/common/common_jag.c \
 		${WRKSRC}/src/plugins/jobacct_gather/linux/jobacct_gather_linux.c \
 		${WRKSRC}/src/plugins/switch/cray_aries/scaling.c \
-		${WRKSRC}/src/plugins/switch/cray_aries/switch_cray_aries.c \
 		${WRKSRC}/src/plugins/proctrack/cray_aries/proctrack_cray_aries.c \
 		${WRKSRC}/src/plugins/proctrack/cgroup/proctrack_cgroup.c \
 		${WRKSRC}/src/plugins/proctrack/pgid/proctrack_pgid.c \
