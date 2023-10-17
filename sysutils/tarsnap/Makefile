@@ -1,12 +1,12 @@
 PORTNAME=	tarsnap
-PORTVERSION=	1.0.39
-PORTREVISION=	1
+PORTVERSION=	1.0.40
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.tarsnap.com/download-http/
 DISTNAME=	${PORTNAME}-autoconf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online encrypted backup service (client)
+WWW=		https://www.tarsnap.com/
 
 LICENSE=	tarsnap
 LICENSE_NAME=	The Tarsnap License
@@ -18,6 +18,9 @@ USES=		gmake tar:tgz ssl
 
 CONFIGURE_ENV=	CFLAGS="-I${OPENSSLINC} ${CFLAGS}" \
 		LDFLAGS="-L${OPENSSLLIB} ${LDFLAGS}"
+
+CONFIGURE_ARGS=	--with-bash-completion-dir=${PREFIX}/etc/bash_completion.d/	\
+		--with-zsh-completion-dir=${PREFIX}/share/zsh/site-functions
 
 .include <bsd.mport.options.mk>
 

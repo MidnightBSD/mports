@@ -3,6 +3,11 @@ bin/tarsnap-keygen
 bin/tarsnap-keymgmt
 bin/tarsnap-keyregen
 bin/tarsnap-recrypt
+etc/bash_completion.d/tarsnap
+etc/bash_completion.d/tarsnap-keygen
+etc/bash_completion.d/tarsnap-keymgmt
+etc/bash_completion.d/tarsnap-keyregen
+etc/bash_completion.d/tarsnap-recrypt
 man/man1/tarsnap-keygen.1.gz
 man/man1/tarsnap-keymgmt.1.gz
 man/man1/tarsnap-keyregen.1.gz
@@ -12,3 +17,4 @@ man/man5/tarsnap.conf.5.gz
 @unexec if cmp -s %D/etc/tarsnap.conf.sample %D/etc/tarsnap.conf; then rm -f %D/etc/tarsnap.conf; fi
 etc/tarsnap.conf.sample
 @exec if [ ! -f %D/etc/tarsnap.conf ] ; then cp -p %D/%F %B/tarsnap.conf; fi
+share/zsh/site-functions/_tarsnap
