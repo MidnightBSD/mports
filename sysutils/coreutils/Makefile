@@ -6,6 +6,7 @@ MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Software Foundation's core utilities
+WWW=		https://www.gnu.org/software/coreutils/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -26,6 +27,7 @@ CONFLICTS_INSTALL=	gdu geneweb gexpr rubygem-god # bin/gdu bin/gexpr bin/god bin
 USES=		cpe gmake iconv charsetfix tar:xz
 USE_PERL5_BUILD=	yes # build - required for tests and man page generation
 USE_LDCONFIG=	yes
+PIE_UNSAFE=	yes
 
 CPE_VENDOR=	gnu
 
