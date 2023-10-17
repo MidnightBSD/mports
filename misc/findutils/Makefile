@@ -7,6 +7,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU find utilities
+WWW=		https://www.gnu.org/software/findutils/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
