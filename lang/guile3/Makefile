@@ -2,6 +2,7 @@ PORTNAME=	guile
 PORTVERSION=	3.0.8
 CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
+PKGNAMESUFFIX?=	3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
