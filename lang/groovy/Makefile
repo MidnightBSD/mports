@@ -1,18 +1,18 @@
 PORTNAME=	groovy
-DISTVERSION=	2.4.17
+DISTVERSION=	2.4.21
 CATEGORIES=	lang java
 MASTER_SITES=	http://dl.bintray.com/groovy/maven/
 DISTFILES=	apache-groovy-binary-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Agile dynamic language for the JVM
+WWW=		https://www.groovy-lang.org/
 
 LICENSE=	apache2
 
-USES=		zip
+USES=		cpe zip
 USE_JAVA=	yes
-
-JAVA_VERSION=	1.7+
+CPE_VENDOR=	apache
 
 NO_ARCH=	yes
 NO_BUILD=	yes
