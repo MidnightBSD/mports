@@ -1,5 +1,5 @@
 PORTNAME=	drupal7
-DISTVERSION=	7.92
+DISTVERSION=	7.98
 CATEGORIES=	www
 MASTER_SITES=	http://ftp.drupal.org/files/projects/
 DISTNAME=	drupal-${PORTVERSION}
@@ -13,7 +13,7 @@ LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		drupal:7 php:web shebangfix
-USE_PHP=	dom filter gd hash json mbstring pcre pdo session simplexml xml
+USE_PHP=	dom filter gd mbstring pcre pdo session simplexml xml
 
 SHEBANG_FILES=	scripts/password-hash.sh
 
