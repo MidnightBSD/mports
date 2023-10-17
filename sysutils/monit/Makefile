@@ -1,6 +1,5 @@
 PORTNAME=	monit
-DISTVERSION=	5.32.0
-PORTREVISION=	1
+DISTVERSION=	5.33.0
 CATEGORIES=	sysutils
 MASTER_SITES=	https://mmonit.com/monit/dist/
 
@@ -12,7 +11,7 @@ LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd11.4
+CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd12.4
 CFLAGS+=	-lkvm -ldevstat
 USES=		bison cpe gmake
 CPE_VENDOR=	m${PORTNAME}
