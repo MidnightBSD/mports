@@ -1,5 +1,5 @@
 PORTNAME=	go
-DISTVERSION?=	g20230104
+DISTVERSION?=	g20230808
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES?=	https://github.com/dmgk/go-bootstrap/releases/download/${BOOTSTRAP_TAG}/:bootstrap \
@@ -9,6 +9,7 @@ DISTFILES?=	go-freebsd-${GOARCH_${ARCH}}${GOARM_${ARCH}}-${BOOTSTRAP_TAG}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Go programming language (development version)
+WWW=		https://golang.org
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -32,8 +33,8 @@ CPE_VENDOR=	golang
 .ifndef MASTERDIR
 USE_GITHUB=	yes
 GH_ACCOUNT=	golang
-# go 1.20rc2
-GH_TAGNAME=	32593a91927dbb891e00a5a94abb04105f6a8aa8
+# go1.21.0
+GH_TAGNAME=	c19c4c566c63818dfd059b352e52c4710eecf14d
 .endif
 
 SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
@@ -43,14 +44,11 @@ SHEBANG_GLOB=	*.bash *.pl *.sh
 # Upstream archive contains files with UTF-8 names
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 ${TAR}
 
-.ifndef GH_TAGNAME
-.endif
-
 OPTIONS_DEFINE_i386=	SOFTFLOAT
 SOFTFLOAT_DESC=	Use soft float on non-SSE2 processors (Pentium 4 and older)
 SOFTFLOAT_VARS=	GO386=softfloat
 
-BOOTSTRAP_TAG=	go1.17.9
+BOOTSTRAP_TAG=	go1.20
 GO_SUFFIX=	${PKGNAMESUFFIX}
 
 GOARCH_amd64=	amd64
