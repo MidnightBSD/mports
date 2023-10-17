@@ -46,8 +46,8 @@ GCC_DEFAULT?=		10
 GL_DEFAULT?=		mesa-libs
 # Possible values: 7, 8, 9, agpl
 GHOSTSCRIPT_DEFAULT?=	agpl
-# Possible values: 1.17, 1.18, 1.19, 1.20, 1.21-devel
-GO_DEFAULT?=            1.19
+# Possible values: 1.19, 1.20, 1.21-devel
+GO_DEFAULT?=            1.20
 # Possible values: 7, 8, 11, 13, 17, 18
 JAVA_DEFAULT?=          8
 # Possible values: 6, 6-nox11, 7, 7-nox11
