@@ -33,7 +33,6 @@ SUBDIR += gjs
 SUBDIR += gnustep-base
 SUBDIR += go
 SUBDIR += go-devel
-SUBDIR += go117
 SUBDIR += go118
 SUBDIR += go119
 SUBDIR += go120
