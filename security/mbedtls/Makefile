@@ -1,28 +1,30 @@
 PORTNAME=	mbedtls
-PORTVERSION=	2.16.11
+PORTVERSION=	2.28.4
 DISTVERSIONPREFIX=${PORTNAME}-
 CATEGORIES=	security devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SSL/TLS and cryptography library
+WWW=		https://www.trustedfirmware.org/projects/mbed-tls/
 
 LICENSE=	apache2
-LICENSE_FILE=	${WRKSRC}/apache-2.0.txt
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
+NO_TEST=	yes
+
+USES=		gmake python:test shebangfix
+SHEBANG_FILES=	scripts/*.py tests/scripts/*.py
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	ARMmbed
+GH_ACCOUNT=	Mbed-TLS
 
 ALL_TARGET=	no_test
-MAKE_ENV=	SHARED=1
-USES=		gmake tar:tgz
+TEST_TARGET=	test
+MAKE_ENV=	PYTHON=${PYTHON_CMD} SHARED=1
 USE_LDCONFIG=	yes
 
-CONFLICTS_INSTALL=	polarssl13-[0-9]*
-
-# magus
-NO_TEST=	yes
+PORTSCOUT=	limit:^${PORTVERSION:R:S/./\./g}\.
 
 post-patch:
 	@${RM} ${WRKSRC}/include/mbedtls/*.orig
@@ -33,8 +35,8 @@ post-patch:
 	@${REINPLACE_CMD} 's/-fpic//' ${WRKSRC}/library/Makefile
 
 post-install:
-	${FIND} ${PREFIX}/bin -type f -not -name \
-		mbedtls_udp_proxy_wrapper.sh -exec ${STRIP_CMD} {} +
+	${FIND} ${PREFIX}/bin -type f -not -name \*.sh \
+		-exec ${STRIP_CMD} {} +
 	${STRIP_CMD} ${PREFIX}/lib/*.so
 
 .include <bsd.port.mk>
