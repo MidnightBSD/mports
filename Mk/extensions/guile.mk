@@ -1,6 +1,5 @@
 # Provide support for guile
 #
-# MAINTAINER: ports@FreeBSD.org
 # Usage:
 #
 # USES+=	guile[:options,...]
