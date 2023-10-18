@@ -39,6 +39,7 @@ SUBDIR += go121
 SUBDIR += groovy
 SUBDIR += gscheme
 SUBDIR += guile
+SUBDIR += guile-aclocal
 SUBDIR += guile2
 SUBDIR += guile3
 SUBDIR += libobjc2
