@@ -1,17 +1,11 @@
-sem_init(3) is part of libc on FreeBSD, so we ended up not linking against
-libpthread. Look for a symbol that causes us to load it.
-libtesseract.so is not linked against libomp if openmp is enabled,
-which makes dependent ports fail. This adds a workaround by linking
-directly against libomp.
---- configure.ac.orig	2019-07-07 12:34:08 UTC
+--- configure.ac.orig
 +++ configure.ac
-@@ -372,6 +372,9 @@ esac
+@@ -7,7 +7,7 @@
  # ----------------------------------------
- 
- AC_SEARCH_LIBS([pthread_create], [pthread])
-+if test "$enable_openmp" != no; then
-+  AC_SEARCH_LIBS([omp_get_thread_num ], [omp])
-+fi
- 
- 
- # ----------------------------------------
+ AC_PREREQ([2.69])
+ AC_INIT([tesseract],
+-        [m4_esyscmd_s([git describe --abbrev=4 2>/dev/null || cat VERSION])],
++        [m4_esyscmd_s([test -d .git && git describe --abbrev=4 || cat VERSION])],
+         [https://github.com/tesseract-ocr/tesseract/issues],,
+         [https://github.com/tesseract-ocr/tesseract/])
+
