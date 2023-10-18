@@ -13,18 +13,16 @@ WWW=		https://www.mono-project.com/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=		amd64 armv6 armv7 i386 powerpc
-
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		bash:shells/bash \
-		cmake>0:devel/cmake \
+		cmake-core>0:devel/cmake-core \
 		python2.7:lang/python27
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
 		libgettextlib.so:devel/gettext-tools
 RUN_DEPENDS=	${PY_PILLOW} \
 		ca_root_nss>=0:security/ca_root_nss
 
-CONFLICTS_INSTALL=	czmq-3* mono[0-9]*
+CONFLICTS_INSTALL=	czmq-3* mono mono[0-9]*
 
 OPTIONS_DEFINE=		MONOLITE X11
 OPTIONS_DEFAULT=	MONOLITE X11
@@ -47,6 +45,7 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	scripts/mono-heapviz mono/mini/genmdesc.py mono/tests/test_lldb.py
 BINARY_ALIAS=	python=${PYTHON_CMD}
+ELF_FEATURES= +wxneeded:mono/mini/mono-sgen
 
 CONFIGURE_ARGS=	--disable-dtrace --enable-btls --enable-nls --disable-getrandom
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no ac_cv_lib_charset_locale_charset=yes
