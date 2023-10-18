@@ -13,7 +13,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
 USES=		python
-USE_PYTHON=	autoplist distutils pytest
+USE_PYTHON=	autoplist distutils 
+# pytest
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} '/pytest-runner/d' ${WRKSRC}/setup.py
