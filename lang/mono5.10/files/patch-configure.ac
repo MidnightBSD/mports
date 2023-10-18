@@ -1,6 +1,6 @@
---- configure.ac.orig	2018-08-24 15:19:14 UTC
-+++ configure.ac
-@@ -180,7 +180,7 @@ case "$host" in
+--- configure.ac.orig	2018-08-24 11:19:14.000000000 -0400
++++ configure.ac	2023-10-13 10:53:59.132757000 -0400
+@@ -180,7 +180,7 @@
  		use_sigposix=yes
  		with_sgen_default_concurrent=yes
  		;;
@@ -9,7 +9,42 @@
  		if test "x$PTHREAD_CFLAGS" = "x"; then
  			CPPFLAGS="$CPPFLAGS -DGC_FREEBSD_THREADS"
  			libmono_cflags=
-@@ -1737,7 +1737,7 @@ if test x$host_win32 = xno; then
+@@ -201,6 +201,12 @@
+ 		libdl=
+ 		libgc_threads=pthreads
+ 		use_sigposix=yes
++		case "$host" in
++		aarch64-*)
++			support_boehm=no
++			with_gc=sgen
++			;;
++		esac
+ 		has_dtrace=yes
+ 		with_sgen_default_concurrent=yes
+ 		;;
+@@ -1668,7 +1674,8 @@
+ 	dnl *** won't always indicate the interface sched_affinity has.  ***
+ 	dnl ****************************************************************
+ 	AC_MSG_CHECKING(for sched_setaffinity from glibc < 2.3.4)
+-	AC_TRY_COMPILE([#include <sched.h>], [
++	AC_TRY_COMPILE([#define _WITH_CPU_SET_T
++#include <sched.h>], [
+             int mask = 1; 
+             sched_setaffinity(0, &mask);
+ 			return 0;
+@@ -1680,8 +1687,9 @@
+ 		# We have the new, three-parameter version
+ 		AC_MSG_RESULT(no)
+ 	])
+-	AC_TRY_COMPILE([#include <sched.h>], [
+-	     CPU_COUNT((void *) 0);
++	AC_TRY_COMPILE([#define _WITH_CPU_SET_T
++#include <sched.h>], [
++	     CPU_COUNT((cpuset_t *) 0);
+ 	], [
+ 		AC_MSG_RESULT(yes)
+ 		AC_DEFINE(GLIBC_HAS_CPU_COUNT, 1, [GLIBC has CPU_COUNT macro in sched.h])
+@@ -1737,7 +1745,7 @@
  	AC_CHECK_LIB(socket, socket, LIBS="$LIBS -lsocket")
  
  	case "$host" in
@@ -18,25 +53,16 @@
  			dnl *****************************
  			dnl *** Checks for libinotify ***
  			dnl *****************************
-@@ -2122,7 +2122,7 @@ if test x$host_win32 = xno; then
+@@ -2122,7 +2130,7 @@
  			dnl Haiku has pthread in libroot (libc equiv)
  			AC_CHECK_LIB(pthread, main, LIBS="$LIBS")
  		;;
 -		*-*-*freebsd*)
-+		*-*-*freebsd* | *-*-*midnightbsd*)
++		*-*-*freebsd*|*-*-*midnightbsd*)
  			AC_CHECK_LIB(pthread, main, LIBS="$LIBS -pthread")
  		;;
  		*-*-*openbsd*)
-@@ -2702,7 +2702,7 @@ if test x$host_win32 = xno; then
- 	dnl *********************************
- 	if test x$host_darwin = xno; then
- 		AC_CHECK_HEADERS(sys/random.h)
--		AC_CHECK_FUNCS(getrandom getentropy)
-+		AC_CHECK_FUNCS(getentropy)
- 	fi
- else
- 	dnl *********************************
-@@ -3297,7 +3297,9 @@ case "$host" in
+@@ -3297,7 +3305,9 @@
  			BTLS_SUPPORTED=yes
  			BTLS_PLATFORM=i386
  			;;
@@ -47,7 +73,7 @@
  		        ;;
  		esac
  		;;
-@@ -3321,7 +3323,9 @@ case "$host" in
+@@ -3321,7 +3331,9 @@
  			BTLS_PLATFORM=x86_64
  			boehm_supported=false
  			;;
@@ -58,12 +84,33 @@
  			;;
  		  mingw*)
  			;;
-@@ -3805,7 +3809,7 @@ case "$host" in
+@@ -3355,11 +3367,10 @@
+ 		INTL="intl"
+ 		;;
+ 	macppc-*-openbsd* | powerpc*-*-linux* | powerpc-*-openbsd* | \
+-        powerpc-*-sysv* | powerpc-*-darwin* | powerpc-*-netbsd* | powerpc-*-freebsd* )
++        powerpc-*-sysv* | powerpc-*-darwin* | powerpc-*-netbsd* | powerpc*-*-freebsd* )
+ 		if test "x$ac_cv_sizeof_void_p" = "x8"; then
+ 			TARGET=POWERPC64;
+ 			CPPFLAGS="$CPPFLAGS -D__mono_ppc__ -D__mono_ppc64__"
+-			CFLAGS="$CFLAGS -mminimal-toc"
+ 		else
+ 			TARGET=POWERPC;
+ 			CPPFLAGS="$CPPFLAGS -D__mono_ppc__"
+@@ -3805,7 +3816,7 @@
  	INTL="libc.so.0.1"
  	X11="libX11.so.6"
  	;;
 -    *-*-*freebsd*)
-+    *-*-*freebsd* | *-*-*midnightbsd*)
++    *-*-*freebsd*|*-*-*midnightbsd*)
      	LIBC="libc.so.7"
  	INTL="libintl.so"
  	SQLITE="libsqlite.so"
+@@ -4425,6 +4436,7 @@
+ 		;;
+ 	aarch64)
+ 		btls_arch=aarch64
++		btls_cflags="-march=armv8-a+crypto"
+ 		;;
+ 	android-armv5)
+ 		BTLS_CMAKE_ARGS="-DANDROID_ABI=\"armeabi\" -DANDROID_NATIVE_API_LEVEL=14"
