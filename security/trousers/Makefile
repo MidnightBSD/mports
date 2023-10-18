@@ -43,7 +43,7 @@ pre-patch: dos2unix
 
 post-install:
 	${INSTALL_DATA} \
-	    ${WRKSRC}/dist/tcsd.conf ${STAGEDIR}${PREFIX}/etc/tcsd.conf.sample
-	${MKDIR} ${STAGEDIR}${PREFIX}/var/lib/tpm
+	    ${WRKSRC}/dist/tcsd.conf ${PREFIX}/etc/tcsd.conf.sample
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/var/lib/tpm
 
 .include <bsd.port.mk>
