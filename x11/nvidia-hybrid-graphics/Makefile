@@ -11,7 +11,7 @@ WWW=		https://github.com/therontarigo/freebsd-gpu-headless
 LICENSE=	bsd2
 
 RUN_DEPENDS=	nvidia-xconfig:x11/nvidia-xconfig \
-		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server
+		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server@xorg
 
 FLAVORS=	default 390
 
