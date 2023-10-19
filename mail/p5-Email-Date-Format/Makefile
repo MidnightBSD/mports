@@ -1,7 +1,5 @@
-# Created by: Anton Yuzhaninov <citrin@rambler-co.ru>
-
 PORTNAME=	Email-Date-Format
-PORTVERSION=	1.005
+PORTVERSION=	1.008
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

@@ -3,10 +3,8 @@
 # Whom:					Lucas Holt
 #
 
-#
-
 PORTNAME=	Email-MIME-Encodings
-PORTVERSION=	1.315
+PORTVERSION=	1.317
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
