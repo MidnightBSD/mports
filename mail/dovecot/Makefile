@@ -1,5 +1,5 @@
 PORTNAME=	dovecot
-PORTVERSION=	2.3.20
+PORTVERSION=	2.3.21
 PORTREVISION=	0
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
