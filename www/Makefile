@@ -248,7 +248,6 @@ SUBDIR += tomcat10
 SUBDIR += tomcat101
 SUBDIR += transmission-web
 SUBDIR += validator
-SUBDIR += varnish4
 SUBDIR += varnish6
 SUBDIR += varnish7
 SUBDIR += w3m

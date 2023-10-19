@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance HTTP accelerator
+WWW=		https://www.varnish-cache.org/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -16,12 +17,13 @@ BUILD_DEPENDS=	rst2man:textproc/py-docutils@${PY_FLAVOR} \
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
 USES=		autoreconf compiler cpe gmake libedit libtool ncurses pathfix \
-		pkgconfig python:3.4+,build readline shebangfix
+		pkgconfig python:build readline shebangfix
 
 CONFLICTS=	varnish4 varnish7
 
 SHEBANG_FILES=	lib/libvcc/*.py
 CPE_VENDOR=	varnish-cache
+CPE_PRODUCT=	varnish_cache
 CFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=${PREFIX} --without-dot
