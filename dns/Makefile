@@ -42,6 +42,7 @@ SUBDIR += py-dnspython1
 SUBDIR += py-idna
 SUBDIR += py-idna_ssl
 SUBDIR += py-ldns
+SUBDIR += py-publicsuffix2
 SUBDIR += py-py3dns
 SUBDIR += py-pycares
 SUBDIR += py-tldextract

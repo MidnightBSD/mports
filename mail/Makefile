@@ -101,6 +101,7 @@ SUBDIR += pine-pgp-filters
 SUBDIR += postfix
 SUBDIR += procmail
 SUBDIR += py-aiosmtpd
+SUBDIR += py-authheaders
 SUBDIR += py-authres
 SUBDIR += py-dkimpy
 SUBDIR += py-email-validator
