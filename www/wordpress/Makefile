@@ -1,5 +1,5 @@
 PORTNAME=	wordpress
-DISTVERSION=	6.1.1
+DISTVERSION=	6.2.2
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	https://wordpress.org/
@@ -8,6 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	State-of-the-art semantic personal publishing platform
 
 LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/license.txt
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -22,7 +23,7 @@ CPE_VERSION=	${DISTVERSION}.0
 
 SUB_FILES=	pkg-message
 PLIST=		${WRKDIR}/pkg-plist
-PORTDOCS=	license.txt readme.html
+PORTDOCS=	readme.html
 
 OPTIONS_DEFINE=	DOCS
 
