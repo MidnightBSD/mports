@@ -1,7 +1,5 @@
-# Created by: Vanilla I. Shu <vanilla@FreeBSD.org>
-
 PORTNAME=	snappy
-PORTVERSION=	1.1.9
+PORTVERSION=	1.1.10
 CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org
