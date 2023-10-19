@@ -929,6 +929,7 @@ SUBDIR += py-gitdb2
 SUBDIR += py-gitpython
 SUBDIR += py-gobject3
 SUBDIR += py-google-i18n-address
+SUBDIR += py-greenlet
 SUBDIR += py-gyp
 SUBDIR += py-hatchling
 SUBDIR += py-hgtools
