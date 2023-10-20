@@ -1,8 +1,7 @@
 PORTNAME=	libxkbcommon
-PORTVERSION=	1.3.0
+PORTVERSION=	1.6.0
 CATEGORIES=	x11
 MASTER_SITES=	https://xkbcommon.org/download/
-DIST_SUBDIR=	xorg/lib
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Keymap handling library for toolkits and window systems
