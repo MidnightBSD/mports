@@ -37,4 +37,6 @@ MAKE_ENV+=	WEBKIT_DISABLE_COMPOSITING_MODE=1
 
 INSTALL_TARGET=	install-strip
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
