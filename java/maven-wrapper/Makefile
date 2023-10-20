@@ -1,6 +1,5 @@
 PORTNAME=	maven-wrapper
-PORTVERSION=	1
-PORTREVISION=	1
+PORTVERSION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -18,7 +17,8 @@ do-fecth:
 	@${DO_NADA}
 
 do-install:
-	${MKDIR} "${PREFIX}/etc/maven-wrapper/instances.d"
-	${INSTALL_SCRIPT} "${WRKDIR}/mvn.sh" "${PREFIX}/bin/mvn"
+	${MKDIR} "${STAGEDIR}${ETCDIR}/instances.d"
+	${INSTALL_SCRIPT} "${WRKDIR}/mvn.sh" "${STAGEDIR}${PREFIX}/bin/mvn"
+	${INSTALL_SCRIPT} "${WRKDIR}/mvn.sh" "${STAGEDIR}${PREFIX}/bin/mvnDebug"
 
 .include <bsd.port.mk>
