@@ -1,6 +1,6 @@
 PORTNAME=	tigervnc
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.11.0
+DISTVERSION=	1.13.1
 CATEGORIES=	net x11-servers
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -8,7 +8,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENCE.TXT
 
-USES+=		cmake:insource,noninja
+USES+=		cmake:insource,noninja cpe
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	TigerVNC
