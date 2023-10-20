@@ -3,7 +3,6 @@ COMMENT = Graphics tools and libraries
 SUBDIR += GraphicsMagick
 SUBDIR += Hermes
 SUBDIR += ImageMagick6
-SUBDIR += ImageMagick6-nox11
 SUBDIR += ImageMagick7
 SUBDIR += aalib
 SUBDIR += agg
