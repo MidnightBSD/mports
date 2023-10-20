@@ -12,6 +12,7 @@ SUBDIR += antlr3
 SUBDIR += antlr4
 SUBDIR += apache-ant
 SUBDIR += apache-commons-daemon
+SUBDIR += apache-log4j2
 SUBDIR += appstream-glib
 SUBDIR += apr1
 SUBDIR += argp-standalone
