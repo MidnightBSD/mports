@@ -1,18 +1,18 @@
-
-
 PORTNAME=	log4j
 PORTVERSION=	1.2.17
 CATEGORIES=	devel java
-MASTER_SITES=	${MASTER_SITE_APACHE}
-MASTER_SITE_SUBDIR=	logging/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	APACHE/logging/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and flexible logging library for Java
+WWW=		https://logging.apache.org/log4j/1.2/
 
 LICENSE=	apache2
 
+USES=		cpe
 USE_JAVA=	YES
 NO_BUILD=	YES
+CPE_VENDOR=	apache
 
 WRKSRC=		${WRKDIR}/apache-${PORTNAME}-${PORTVERSION}
 
