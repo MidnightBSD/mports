@@ -50,6 +50,7 @@ SUBDIR += maven-wrapper
 SUBDIR += maven
 SUBDIR += maven3
 SUBDIR += maven33
+SUBDIR += maven39
 SUBDIR += netbeans
 SUBDIR += netbeans8
 SUBDIR += netty

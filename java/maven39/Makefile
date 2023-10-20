@@ -1,7 +1,8 @@
 PORTNAME=	maven
-DISTVERSION=	3.8.8
+DISTVERSION=	3.9.4
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE/maven/maven-3/${DISTVERSION}/binaries
+PKGNAMESUFFIX=	${DISTVERSION:R:S/.//}
 DISTNAME=	apache-${PORTNAME}-${DISTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -33,7 +34,7 @@ post-extract:
 
 post-patch:
 	@${REINPLACE_CMD} \
-		-e '36,39d;54,72d;74,75d' \
+		-e '37,40d;55,73d;76,77d' \
 		-e 's|/usr/local|${LOCALBASE}|g' \
 		-E -e 's|^MAVEN_HOME=.+$$|MAVEN_HOME="${DATADIR}"|g' ${WRKSRC}/bin/mvn
 	@${FIND} ${WRKSRC} -name '*.bak' -delete -o -name '*.orig' -delete
