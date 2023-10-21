@@ -5,8 +5,9 @@ CATEGORIES=	accessibility linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive technology service provider interface (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://gitlab.gnome.org/GNOME/at-spi2-core
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 
 RUN_DEPENDS=	at-spi2-core>=2.28.0:accessibility/at-spi2-core
 
@@ -14,8 +15,6 @@ USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	dbuslibs xorglibs
 USE_LINUX_RPM=	yes
-
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
