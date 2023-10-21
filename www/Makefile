@@ -244,7 +244,6 @@ SUBDIR += tidy-lib
 SUBDIR += tomcat-native
 SUBDIR += tomcat85
 SUBDIR += tomcat9
-SUBDIR += tomcat10
 SUBDIR += tomcat101
 SUBDIR += transmission-web
 SUBDIR += validator
