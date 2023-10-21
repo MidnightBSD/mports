@@ -1,13 +1,12 @@
-# Created by: Thierry Thomas (<thierry@pompo.net>)
-
 PORTNAME=	Net_Socket
-PORTVERSION=	1.0.14
+PORTVERSION=	1.2.2
 CATEGORIES=	net www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PEAR Network Socket Interface
+WWW=		https://pear.php.net/package/Net_Socket
 
-LICENSE=	php
+LICENSE=	bsd2
 
 USES=	pear
 NO_ARCH=	yes
