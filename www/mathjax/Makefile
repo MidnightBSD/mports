@@ -1,11 +1,10 @@
-# Created by: Lukasz Stelmach <lukasz.stelmach@iem.pw.edu.pl>
-
 PORTNAME=	MathJax
-DISTVERSION=	2.7.8
+DISTVERSION=	2.7.9
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-browser JavaScript display engine for mathematics
+WWW=		https://www.mathjax.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -13,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 NO_BUILD=	yes
 NO_ARCH=	yes
 
+USES=		cpe
 USE_GITHUB=	yes
 
 # Changing permissions of 30k files with find -exec (COPYTREE) is way
