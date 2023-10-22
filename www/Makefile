@@ -190,6 +190,7 @@ SUBDIR += py-hyperlink
 SUBDIR += py-pecan
 SUBDIR += py-priority
 SUBDIR += py-pyjwt
+SUBDIR += py-python-dotenv
 SUBDIR += py-multidict
 SUBDIR += py-qt5-webchannel
 SUBDIR += py-qt5-webengine
