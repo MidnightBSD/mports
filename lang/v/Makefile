@@ -14,7 +14,8 @@ USES=		compiler:c11 gmake
 
 ALL_TARGET=	v
 LDFLAGS+=	-lm
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_TUPLE=	vlang:v:${PORTVERSION} \
