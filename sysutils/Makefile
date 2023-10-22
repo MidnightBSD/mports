@@ -104,6 +104,7 @@ SUBDIR += intel-nvmupdate-10g
 SUBDIR += intel-nvmupdate-40g
 SUBDIR += intel-undervolt
 SUBDIR += ipdbtools
+SUBDIR += ipmitool
 SUBDIR += isc-cron
 SUBDIR += jailme
 SUBDIR += javaservicewrapper
