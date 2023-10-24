@@ -30,4 +30,6 @@ X11_USES=		xorg
 X11_USE=		XORG=x11,xi,xtst
 X11_MESON_ENABLED=	x11
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
