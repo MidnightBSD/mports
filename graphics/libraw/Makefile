@@ -11,7 +11,7 @@ WWW=		https://www.libraw.org/
 LICENSE=	lgpl2.1 cddl
 LICENSE_COMB=	dual
 
-USES=		cpe libtool localbase pathfix pkgconfig
+USES=		autoreconf cpe libtool localbase pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
