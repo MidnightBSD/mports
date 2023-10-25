@@ -5,6 +5,7 @@ MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate configure scripts and related files
+WWW=		https://www.gnu.org/software/autoconf/
 
 LICENSE=	EXCEPTION gfdl gpl2 gpl3
 LICENSE_COMB=	multi
