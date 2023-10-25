@@ -94,6 +94,7 @@ SUBDIR += pantomime
 SUBDIR += php80-imap
 SUBDIR += php81-imap
 SUBDIR += php82-imap
+SUBDIR += php83-imap
 SUBDIR += phplist
 SUBDIR += phpmailer
 SUBDIR += phpmailer6
