@@ -1,8 +1,6 @@
-# Created by: clsung@dragon2.net
-
 PORTNAME=	Gtk2
 PORTVERSION=	1.24993
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits lang perl5
 MASTER_SITES=	CPAN \
 		SF/${PORTNAME:tl}-perl/${PORTNAME}/${PORTVERSION}
@@ -10,6 +8,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for Gtk+ 2.x graphical user interface library
+WWW=		http://gtk2-perl.sourceforge.net/
 
 LICENSE=	lgpl2.1
 
@@ -29,5 +28,8 @@ USE_GNOME=	gtk20 pango
 CONFIGURE_ENV=	FORCE_MAKE_CMD=yes
 
 NO_TEST=	yes
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Gtk2/Gtk2.so
 
 .include <bsd.port.mk>

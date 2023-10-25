@@ -1,9 +1,8 @@
 PORTNAME=	gtk
 PORTVERSION=	2.24.33
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMESUFFIX=	2
 DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome2
@@ -15,13 +14,14 @@ WWW=		https://www.gtk.org/
 LICENSE=	lgpl
 
 USES=		cpe tar:xz
-
+PORTSCOUT=	limitw:0,even
 CPE_VENDOR=	gnome
 
 RUN_DEPENDS+=	update-mime-database:misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme
 
-USES+=		gettext gmake gnome libtool localbase:ldflags pathfix perl5 python:run pkgconfig xorg
+USES+=		gettext gmake gnome libtool localbase:ldflags pathfix perl5 \
+		python:run pkgconfig xorg
 GNU_CONFIGURE=	yes
 USE_GNOME=	atk pango gdkpixbuf2 introspection:build \
 		gtk-update-icon-cache
