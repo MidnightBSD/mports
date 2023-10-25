@@ -110,7 +110,7 @@ DIST_SUBDIR=	PECL
 
 PHPBASE?=	${LOCALBASE}
 
-_ALL_PHP_VERSIONS=	80 81 82
+_ALL_PHP_VERSIONS=	80 81 82 83
 
 # Make the already installed PHP the default one.
 .  if exists(${PHPBASE}/etc/php.conf) && !defined(INDEXING)
@@ -179,8 +179,11 @@ PHP_VER=	${FLAVOR:S/^php//}
 	(${FLAVOR:Mphp[0-9][0-9]} && ${FLAVOR} != ${FLAVORS:[1]})
 # When adding a version, please keep the comment in
 # Mk/components/default-versions.mk in sync.
-.    if ${PHP_VER} == 82
-PHP_EXT_DIR=   20210903
+.    if ${PHP_VER} == 83
+PHP_EXT_DIR=   20230831
+PHP_EXT_INC=    hash json openssl pcre random spl
+.    elif ${PHP_VER} == 82
+PHP_EXT_DIR=   20220829
 PHP_EXT_INC=    hash json openssl pcre random spl
 .    elif ${PHP_VER} == 81
 PHP_EXT_DIR=   20210902
@@ -190,7 +193,7 @@ PHP_EXT_DIR=   20200930
 PHP_EXT_INC=    hash json openssl pcre spl
 .    else
 # (rene) default to DEFAULT_VERSIONS
-PHP_EXT_DIR=   20200930
+PHP_EXT_DIR=   20210902
 PHP_EXT_INC=    hash json openssl pcre spl
 .    endif
 
@@ -224,7 +227,7 @@ PECL_PKGNAMEPREFIX=	php${PHP_VER}-pecl-
 .      if ${PHP_VER} == "${VER}"
 _IGNORE_PHP_SET=
 IGNORE=		cannot be installed: doesn't work with lang/php${PHP_VER} port\
-		(doesn't support PHP ${IGNORE_WITH_PHP:C/^(7)/\1./})
+		(doesn't support PHP ${IGNORE_WITH_PHP:C/^(8)/\1./})
 .      endif
 .    endfor
 .  endif
@@ -323,7 +326,7 @@ PHP_MOD_PRIO=	30
 PHP_MOD_PRIO=	20
 .      endif
 .    endif
-PHP_EXT_INI_FILE=	etc/php/ext-${PHP_MOD_PRIO}-${PHP_MODNAME}.ini
+PHP_EXT_INI_FILE=	etc/php/ext-${PHP_MOD_PRIO}-${PHP_MODNAME}.ini.sample
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/php/${PHP_EXT_DIR}
@@ -358,7 +361,7 @@ add-plist-phpext:
 		>> ${TMPPLIST}
 	@${ECHO_CMD} "@preunexec ${RM} %D/include/php/ext/php_config.h.orig" \
 		>> ${TMPPLIST}
-	@${ECHO_CMD} "${PHP_EXT_INI_FILE}" \
+	@${ECHO_CMD} "@sample ${PHP_EXT_INI_FILE}" \
 		>> ${TMPPLIST}
 	@${ECHO_CMD} "[" > ${PHP_EXT_PKGMESSAGE}
 	@${ECHO_CMD} "{" >> ${PHP_EXT_PKGMESSAGE}
@@ -382,11 +385,13 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		pdo_odbc pdo_pgsql pdo_sqlite phar pgsql posix \
 		pspell radius random readline redis session shmop simplexml snmp \
 		soap sockets sodium spl sqlite3 sysvmsg sysvsem sysvshm \
-		tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zip zlib
+		tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zephir_parser \
+		zip zlib
 # version specific components
-_USE_PHP_VER80=	${_USE_PHP_ALL} zephir_parser
-_USE_PHP_VER81=	${_USE_PHP_ALL} zephir_parser
+_USE_PHP_VER80=	${_USE_PHP_ALL}
+_USE_PHP_VER81=	${_USE_PHP_ALL}
 _USE_PHP_VER82=	${_USE_PHP_ALL}
+_USE_PHP_VER83=	${_USE_PHP_ALL}
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
 bitset_DEPENDS=	math/pecl-bitset@${PHP_FLAVOR}
@@ -409,9 +414,6 @@ iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 igbinary_DEPENDS=	converters/pecl-igbinary@${PHP_FLAVOR}
 imap_DEPENDS=	mail/php${PHP_VER}-imap
 intl_DEPENDS=	devel/php${PHP_VER}-intl
-.    if ${PHP_VER} < 80
-json_DEPENDS=	devel/php${PHP_VER}-json
-.    endif
 ldap_DEPENDS=	net/php${PHP_VER}-ldap
 mbstring_DEPENDS=	converters/php${PHP_VER}-mbstring
 mcrypt_DEPENDS=	security/pecl-mcrypt@${PHP_FLAVOR}
@@ -420,11 +422,7 @@ memcached_DEPENDS=	databases/pecl-memcached@${PHP_FLAVOR}
 mysqli_DEPENDS=	databases/php${PHP_VER}-mysqli
 odbc_DEPENDS=	databases/php${PHP_VER}-odbc
 opcache_DEPENDS=	www/php${PHP_VER}-opcache
-.    if ${PHP_VER} < 80
-openssl_DEPENDS=security/php${PHP_VER}-openssl
-.    endif
 pcntl_DEPENDS=	devel/php${PHP_VER}-pcntl
-pdf_DEPENDS=	print/pecl-pdflib@${PHP_FLAVOR}
 pdo_DEPENDS=	databases/php${PHP_VER}-pdo
 pdo_dblib_DEPENDS=	databases/php${PHP_VER}-pdo_dblib
 pdo_firebird_DEPENDS=	databases/php${PHP_VER}-pdo_firebird
@@ -454,11 +452,7 @@ tidy_DEPENDS=	www/php${PHP_VER}-tidy
 tokenizer_DEPENDS=	devel/php${PHP_VER}-tokenizer
 xml_DEPENDS=	textproc/php${PHP_VER}-xml
 xmlreader_DEPENDS=	textproc/php${PHP_VER}-xmlreader
-.    if ${PHP_VER} >= 80
 xmlrpc_DEPENDS=	net/pecl-xmlrpc@${PHP_FLAVOR}
-.    else
-xmlrpc_DEPENDS=	net/php${PHP_VER}-xmlrpc
-.    endif
 xmlwriter_DEPENDS=	textproc/php${PHP_VER}-xmlwriter
 xsl_DEPENDS=	textproc/php${PHP_VER}-xsl
 zephir_parser_DEPENDS=	textproc/pecl-zephir_parser@${PHP_FLAVOR}
