@@ -5,8 +5,9 @@ MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Standards-compliant Makefile generator
+WWW=		https://www.gnu.org/software/automake/
 
-LICENSE=	gpl3
+LICENSE=	gpl2+ gfdl
 
 BUILD_DEPENDS=	autoconf>=2.69:devel/autoconf
 RUN_DEPENDS=	autoconf>=2.69:devel/autoconf
