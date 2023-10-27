@@ -1,13 +1,15 @@
 PORTNAME=	libcdr
 PORTVERSION=	0.1.7
+PORTREVISION=	1
 CATEGORIES=	graphics devel
 MASTER_SITES=	LODEV
 PKGNAMESUFFIX=	01
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and tools for parsing Corel Draw file format
+WWW=		https://wiki.documentfoundation.org/DLP/Libraries/libcdr
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/COPYING.MPL
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/optional.hpp:devel/boost-libs
@@ -21,6 +23,7 @@ USES=		compiler:c++11-lib libtool pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
+CPPFLAGS+=	-DCMS_NO_REGISTER_KEYWORD
 CPPFLAGS+=	-I${LOCALBASE}/include
 CXXFLAGS+=	-Wno-long-long
 
