@@ -12,6 +12,9 @@ WWW=		https://www.php.net/
 
 LICENSE=	php
 
+DEPRECATED=	Upstream support ends on 2023-11-26
+EXPIRATION_DATE=	2023-12-31
+
 USES+=		compiler:c11 tar:xz cpe gnome pkgconfig
 CPE_PRODUCT=	php
 
