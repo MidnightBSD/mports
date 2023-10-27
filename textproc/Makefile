@@ -228,6 +228,7 @@ SUBDIR += php83-wddx
 SUBDIR += php83-xml
 SUBDIR += php83-xmlreader
 SUBDIR += php83-xmlwriter
+SUBDIR += php83-xsl
 SUBDIR += popup
 SUBDIR += pugixml
 SUBDIR += py-CommonMark
