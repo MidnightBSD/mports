@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep application for digital still cameras
 WWW=		https://github.com/gsimageapps/Camera
 
-LICENSE=	gpl2 # or later
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/Documentation/COPYING
 
 LIB_DEPENDS=	libgphoto2_port.so:graphics/libgphoto2
