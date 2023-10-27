@@ -2,7 +2,7 @@ PORTNAME=	w3m
 PORTVERSION=	0.5.3.${SNAPDATE}
 CATEGORIES+=	www
 
-MAINTAINER?=	nobutaka@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Pager/text-based WWW browser
 WWW=		http://w3m.sourceforge.net/
 
