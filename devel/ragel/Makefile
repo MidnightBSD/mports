@@ -1,10 +1,12 @@
 PORTNAME=	ragel
 PORTVERSION=	6.10
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.colm.net/files/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compile regular languages into executable C/C++ code
+WWW=		http://www.complang.org/ragel/
 
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
@@ -16,6 +18,7 @@ OPTIONS_DEFINE=	TEXDOCS EXAMPLES
 OPTIONS_SUB=	yes
 TEXDOCS_CONFIGURE_ENABLE=	manual
 TEXDOCS_DESC=	Build pdf documentation (requires LaTeX)
+TEXDOCS_USES=		tex
 TEXDOCS_USE=		TEX=latex:build
 TEXDOCS_BUILD_DEPENDS=	fig2dev:print/transfig
 
