@@ -5,12 +5,16 @@ MASTER_SITES=	https://download.libsodium.org/libsodium/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to build higher-level cryptographic tools
+WWW=		https://github.com/jedisct1/libsodium
 
 LICENSE=	iscl
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-GNU_CONFIGURE=	yes
 USES=		libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
 CONFIGURE_ARGS+=	--enable-blocking-random
