@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	3.6
+PORTVERSION=	3.7.3
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
