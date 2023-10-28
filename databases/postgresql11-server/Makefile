@@ -1,10 +1,13 @@
-DISTVERSION?=	11.18
+DISTVERSION?=	11.21
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
 PORTREVISION?=	2
 PKGNAMESUFFIX?=	${DISTVERSION:R:S/.//}${COMPONENT}
 
 MAINTAINER?=	ports@MidnightBSD.org
+
+DEPRECATED=	PostgreSQL-11 will reach end-of-life on 2023-11-09
+EXPIRATION_DATE=2023-12-3
 
 INSTALL_DIRS?=	src/common src/timezone src/backend \
 		src/backend/utils/mb/conversion_procs \
