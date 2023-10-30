@@ -1,5 +1,5 @@
 PORTNAME=	core
-DISTVERSION=	${QT5_VERSION}
+PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
@@ -11,9 +11,10 @@ LIB_DEPENDS=	libdouble-conversion.so:devel/double-conversion \
 		libpcre2-posix.so:devel/pcre2 \
 		libzstd.so:archivers/zstd
 
-USES=		compiler:c++11-lang gnome qmake:no_env qt-dist:5,base
+USES=		compiler:c++11-lang gnome perl5 qmake:no_env qt-dist:5,base
 USE_GNOME=	glib20
-USE_QT=		qmake_build buildtools_build
+USE_PERL5=	extract
+USE_QT=		qmake:build buildtools:build
 HAS_CONFIGURE=	yes
 # Disable (almost) everything to install minimal qconfig.h.
 # -no-feature-* adds QT_NO_* (for features which have no switch or

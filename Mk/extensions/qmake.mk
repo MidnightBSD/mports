@@ -78,7 +78,7 @@ QMAKE_ARGS+=		-spec ${QMAKESPEC} \
 
 .  if defined(WITH_DEBUG)
 PLIST_SUB+=		DEBUG=""
-QMAKE_ARGS+=		CONFIG+="debug" \
+QMAKE_ARGS+=		CONFIG+="debug separate_debug_info" \
 			CONFIG-="release"
 .  else
 PLIST_SUB+=		DEBUG="@comment "
@@ -110,8 +110,8 @@ QMAKE_SOURCE_PATH?=	# empty
 .  endif
 
 # Add qmake to USE_QT -- unless it's qmake itself
-.  if !${PORTNAME} == qmake
-USE_QT+=		qmake_build
+.  if !${PORTNAME} == qmake && ${_QT_VER:M5}
+USE_QT+=		qmake:build
 .  endif
 
 .  if empty(qmake_ARGS:Mno_env)

@@ -1,3 +1,4 @@
+bin/qmake-qt5
 %%QT_BINDIR%%/qmake
 %%QT_MKSPECDIR%%/aix-g++-64/qmake.conf
 %%QT_MKSPECDIR%%/aix-g++-64/qplatformdefs.h
