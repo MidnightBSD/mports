@@ -1,15 +1,15 @@
 PORTNAME?=	lapack
 PORTVERSION=	3.11.0
 .if !(defined(BLAS_SLAVEPORT) || defined(CBLAS_SLAVEPORT) || defined(XLAPACK_SLAVEPORT) || defined(LAPACKE_SLAVEPORT))
-PORTREVISION=	1
+PORTREVISION=	2
 .else
-PORTREVISION?=	1	# Never remove this line, keep PORTREVISION?=0 in case.
+PORTREVISION?=	2	# Never remove this line, keep PORTREVISION?=0 in case.
 .endif
 CATEGORIES=	math
 MASTER_SITES=	https://github.com/Reference-LAPACK/lapack/archive/refs/tags/:src	\
 		http://www.netlib.org/lapack/:man	\
 		FREEBSD_LOCAL/thierry/lapack-${PORTVERSION}/:man
-DISTFILES=	v${PORTVERSION}${EXTRACT_SUFX}:src
+DISTFILES=	v${PORTVERSION:R}${EXTRACT_SUFX}:src
 .if make(makesum) || !(defined(BLAS_SLAVEPORT) || defined(XLAPACK_SLAVEPORT))
 DISTFILES+=	manpages.tgz:man
 .endif
@@ -22,7 +22,7 @@ WWW?=		https://www.netlib.org/lapack/
 LICENSE?=	bsd3
 
 USES=		cmake:testing cpe fortran
-WRKSRC=		${WRKDIR}/lapack-${PORTVERSION}
+WRKSRC=		${WRKDIR}/lapack-${PORTVERSION:R}
 # The actual math/scilab needs deprecated functions - to be removed later
 CMAKE_ON=	BUILD_SHARED_LIBS BUILD_DEPRECATED
 USE_LDCONFIG=	yes

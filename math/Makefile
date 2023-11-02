@@ -35,6 +35,7 @@ SUBDIR += gnuplot
 SUBDIR += gsl
 SUBDIR += ipopt
 SUBDIR += lapack
+SUBDIR += lapacke
 SUBDIR += ldouble
 SUBDIR += lib2geom
 SUBDIR += libqalculate
