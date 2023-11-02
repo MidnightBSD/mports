@@ -1,21 +1,20 @@
 PORTNAME=	webview
-DISTVERSION=	${QT5_VERSION}
-PORTREVISION=	3
+PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
 CATEGORIES=	www
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt component for displaying web content
 
-USES=		compiler:c++11-lang gl qmake:norecursive qt-dist:5
+USES=		compiler:c++11-lang gl perl5 qmake:norecursive qt-dist:5
 USE_GL=		gl
+USE_PERL5=	build
 USE_QT=		core declarative gui location network webchannel \
-		buildtools_build
+		buildtools:build
 
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64 || ${ARCH} == i386
-DEPRECATED=	Uses EOL Python 2.7 via www/qt5-webengine
 PLIST_SUB+=	WEBENGINE=""
 USE_QT+=	webengine
 .else
