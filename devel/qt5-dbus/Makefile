@@ -1,5 +1,5 @@
 PORTNAME=	dbus
-DISTVERSION=	${QT5_VERSION}
+PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
@@ -8,11 +8,11 @@ COMMENT=	Qt D-Bus inter-process communication module
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
-USES=		compiler:c++11-lang qmake:no_env qt-dist:5,base
-USE_QT=		core qmake_build buildtools_build
+USES=		compiler:c++11-lang perl5 qmake:no_env qt-dist:5,base
+USE_PERL5=	extract
+USE_QT=		core qmake:build buildtools:build
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	-no-gui -no-xcb
-#USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
@@ -20,7 +20,6 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 TOOLS=		qdbuscpp2xml qdbusxml2cpp
 
 QT_BINARIES=	yes
-
 QT_DEFINES=	DBUS
 QT_CONFIG=	dbus
 

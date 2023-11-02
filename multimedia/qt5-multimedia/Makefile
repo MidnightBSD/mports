@@ -1,6 +1,5 @@
 PORTNAME=	multimedia
-DISTVERSION=	${QT5_VERSION}
-PORTREVISION=	1
+PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
 CATEGORIES=	multimedia
 PKGNAMEPREFIX=	qt5-
 
@@ -9,14 +8,14 @@ COMMENT=	Qt audio, video, radio and camera support module
 
 # LICENSE set via USES_QT5 (bsd.qt.mk)
 
-USES=		compiler:c++11-lang gl gnome pkgconfig qmake:norecursive \
+USES=		compiler:c++11-lang gl gnome perl5 pkgconfig qmake:norecursive \
 		qt-dist:5,multimedia xorg
 USE_GL=		gl
 USE_GNOME=	glib20
+USE_PERL5=	build
 USE_QT=		core declarative gui network opengl widgets \
-		buildtools_build
+		buildtools:build
 USE_XORG=	x11 xext xv
-USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 QT_CONFIG=	xlib
 
@@ -29,8 +28,8 @@ QT_DEFINES=	_QTMULTIMEDIA_DUMMY
 
 OPTIONS_DEFINE=			GSTREAMER OPENAL
 OPTIONS_DEFAULT=		ALSA GSTREAMER OPENAL
-OPTIONS_RADIO=			AUDIOPLUGIN
-OPTIONS_RADIO_AUDIOPLUGIN=	ALSA PULSEAUDIO
+OPTIONS_GROUP=			AUDIOPLUGIN
+OPTIONS_GROUP_AUDIOPLUGIN=	ALSA PULSEAUDIO
 OPTIONS_SUB=			yes
 
 AUDIOPLUGIN_DESC=	Audio plugins to build

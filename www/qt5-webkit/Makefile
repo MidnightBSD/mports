@@ -1,6 +1,6 @@
 PORTNAME=		webkit
 DISTVERSION=		5.212.0-alpha4
-PORTREVISION=		6
+PORTREVISION=		7
 CATEGORIES=		www
 MASTER_SITES=		https://github.com/qt${PORTNAME}/qt${PORTNAME}/releases/download/${DISTNAME}/
 PKGNAMEPREFIX=		qt5-
@@ -13,6 +13,9 @@ MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		QtWebKit with a more modern WebKit code base
 WWW=			https://github.com/annulen/webkit
 
+DEPRECATED=		No longer actively maintained, increasing security concers
+EXPIRATION_DATE=	2023-12-31
+
 LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
 			libhyphen.so:textproc/hyphen \
 			libicui18n.so:devel/icu \
@@ -21,13 +24,13 @@ LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
 			libwoff2dec.so:devel/woff2
 
 USES=			bison cmake compiler:c++11-lang gnome gperf jpeg \
-			pathfix perl5 pkgconfig python:3.7+,build qt:5 sqlite:3 \
+			pathfix perl5 pkgconfig python:3.7+,build qt:5 ruby:build sqlite:3 \
 			ssl tar:xz xorg
 USE_GNOME=		glib20 libxml2 libxslt
 USE_PERL5=		build
 USE_QT=			core declarative gui location network opengl printsupport \
 			sensors webchannel widgets \
-			buildtools_build declarative-test_build qmake_build testlib_build
+			buildtools:build declarative-test:build qmake:build testlib:build
 USE_RUBY=		yes
 USE_XORG=		x11 xcomposite xrender
 
@@ -55,22 +58,10 @@ SUB_LIST=		QT_INCDIR="${QT_INCDIR}"
 OPTIONS_DEFINE=	GSTREAMER
 OPTIONS_DEFAULT=	GSTREAMER
 
-GSTREAMER_LIB_DEPENDS=	libgstapp-1.0.so:multimedia/gstreamer1-plugins \
-			libgstbase-1.0.so:multimedia/gstreamer1
-GSTREAMER_USE=		GSTREAMER1=core
+GSTREAMER_USES=		gstreamer
+GSTREAMER_USE=		GSTREAMER=core
 GSTREAMER_CMAKE_OFF=	-DUSE_GSTREAMER:BOOL=OFF
 
 BINARY_ALIAS=		python3=${PYTHON_CMD}
 
-.include <bsd.port.pre.mk>
-
-.if ${SSL_DEFAULT} == "base"
-BROKEN=               Qt5 requires Openssl 1.1.1, add DEFAULT_VERSIONS+=ssl=[openssl|libressl*] to /etc/make.conf
-.endif
-# LibreSSL does not currently support BIO_ADDR in DTLSv1_listen()
-.if ${SSL_DEFAULT:Mlibressl*}
-CONFIGURE_ARGS+=        -no-feature-dtls
-.endif
-
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

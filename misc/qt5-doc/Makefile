@@ -1,6 +1,12 @@
-PORTNAME=	doc
+# Lock the port at 5.12.2 due to distfile changes: At the moment it seems like
+# the documentation is no longer availble as a single tarball. So while we try
+# to figure out whether to create a per-module -doc port or some other nastiness
+# hold this port back at the last single-file version available.
+# If you need up-to-date Qt Documentation, for now, use the the online one :)
 QT5_VERSION=	5.12.2
-DISTVERSION=	${QT5_VERSION}
+
+PORTNAME=	doc
+PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
 CATEGORIES=	misc
 MASTER_SITES=	QT/online/qtsdkrepository/linux_x64/desktop/qt5_${QT5_VERSION:S/.//g}_src_doc_examples/qt.qt5.${QT5_VERSION:S/.//g}.doc/
 PKGNAMEPREFIX=	qt5-
@@ -9,6 +15,7 @@ DIST_SUBDIR=	KDE/Qt/${QT5_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 5 documentation
+WWW=		https://www.qt.io/
 
 WRKSRC=		${WRKDIR}/Docs/Qt-${QT5_VERSION}
 

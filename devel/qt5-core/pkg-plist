@@ -724,6 +724,7 @@
 %%QT_INCDIR%%/QtCore/qtimezone.h
 %%QT_INCDIR%%/QtCore/qtranslator.h
 %%QT_INCDIR%%/QtCore/qtransposeproxymodel.h
+%%QT_INCDIR%%/QtCore/qtsan_impl.h
 %%QT_INCDIR%%/QtCore/qtypeinfo.h
 %%QT_INCDIR%%/QtCore/qtypetraits.h
 %%QT_INCDIR%%/QtCore/qurl.h
@@ -759,14 +760,14 @@
 %%QT_MKSPECDIR%%/modules/qt_lib_core.pri
 %%QT_MKSPECDIR%%/modules/qt_lib_core_private.pri
 libdata/pkgconfig/Qt5Core.pc
-@dir %%QT_CMAKEDIR%%/Qt5
-@dir %%QT_CMAKEDIR%%/Qt5Core
-@dir %%QT_CMAKEDIR%%
+@dir %%QT_TOOLDIR%%
 @dir %%QT_ARCHDIR%%/metatypes
 @dir %%QT_MKSPECDIR%%/modules
 @dir %%QT_MKSPECDIR%%
-@dir %%QT_BINDIR%%
 @dir %%QT_ARCHDIR%%
+@dir %%QT_CMAKEDIR%%/Qt5Core
+@dir %%QT_CMAKEDIR%%/Qt5
+@dir %%QT_CMAKEDIR%%
 @dir %%QT_INCDIR%%/QtCore/%%FULLVER%%/QtCore/private
 @dir %%QT_INCDIR%%/QtCore/%%FULLVER%%/QtCore
 @dir %%QT_INCDIR%%/QtCore/%%FULLVER%%
