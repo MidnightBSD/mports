@@ -5,12 +5,13 @@ MASTER_SITES=	https://bitbucket.org/multicoreware/x265_git/get/${BB_TAG}.tar.gz?
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	H.265/High Efficiency Video Coding (HEVC) format
+WWW=		https://www.x265.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC:H}/COPYING
 
-USES=		cmake compiler:c++14-lang pathfix dos2unix
-
+USES=		cmake compiler:c++14-lang cpe pathfix dos2unix
+CPE_VENDOR=		multicorewareinc
 BB_TAG=	25b2c07035ff	# Top of the Release_3.4 branch at this time
 
 OPTIONS_DEFINE=		DEBUG OPTIMIZED_FLAGS VMAF
