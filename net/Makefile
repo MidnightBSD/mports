@@ -159,6 +159,7 @@ SUBDIR += phpldapadmin
 SUBDIR += py-avahi
 SUBDIR += py-ec2-cli-tools
 SUBDIR += py-h11
+SUBDIR += py-mpi4py
 SUBDIR += py-netifaces
 SUBDIR += py-ntplib
 SUBDIR += py-oauth2

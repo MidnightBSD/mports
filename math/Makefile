@@ -98,6 +98,7 @@ SUBDIR += suitesparse-spex
 SUBDIR += suitesparse-spqr
 SUBDIR += suitesparse-umfpack
 SUBDIR += tomsfastmath
+SUBDIR += vtk9
 SUBDIR += xfce4-calculator-plugin
 SUBDIR += xtensor
 SUBDIR += zarray
