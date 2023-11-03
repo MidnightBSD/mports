@@ -11,7 +11,7 @@ includes a small manpage to get you started using makemkvcon.
 
 Requirements:
 
-* A custom FreeBSD kernel with sg devices (Linux' "scsi generic" interface) is
+* A custom BSD kernel with sg devices (Linux' "scsi generic" interface) is
   required to use makemkvcon. To build such a kernel, add "device sg" to your
   kernel configuration and follow the instructions at
   https://docs.freebsd.org/en/books/handbook/kernelconfig/#kernelconfig-building
