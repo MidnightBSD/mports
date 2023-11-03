@@ -1,13 +1,13 @@
 PORTNAME=	libva
-PORTVERSION=	2.10.0
+DISTVERSION=	2.20.0
 CATEGORIES=	multimedia
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	c2a431cc3cab.patch:-p1 # https://github.com/intel/libva/pull/292
-PATCHFILES+=	5cfcd31635b1.patch:-p1 # https://github.com/intel/libva/pull/292
+PATCHFILES+=	6b0efda45140.patch:-p1 # https://github.com/intel/libva/pull/758
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	VAAPI wrapper and dummy driver
+WWW=		https://github.com/intel/libva
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,8 +18,6 @@ USES=		meson pkgconfig
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	intel
-# -lpthread is not necessary if pthread_getthreadid_np is a libc stub
-LDFLAGS+=	-lpthread
 
 OPTIONS_DEFINE=	GLX WAYLAND X11
 OPTIONS_DEFAULT=GLX WAYLAND X11
@@ -36,7 +34,7 @@ WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 WAYLAND_MESON_YES=	with_wayland
 
 X11_USES=		xorg
-X11_USE=		XORG=x11,xorgproto,xext,xfixes
+X11_USE=		XORG=x11,xcb,xext,xfixes,xorgproto
 X11_MESON_YES=		with_x11
 
 .include <bsd.port.mk>
