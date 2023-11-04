@@ -52,6 +52,7 @@ SUBDIR += intel-igb-kmod
 SUBDIR += intel-irdma-kmod
 SUBDIR += intel-ix-kmod
 SUBIDR += intel-ixl-kmod
+SUBIDR += intel-ixv-kmod
 SUBDIR += isboot-kmod
 SUBDIR += isc-dhcp44-client
 SUBDIR += isc-dhcp44-relay
