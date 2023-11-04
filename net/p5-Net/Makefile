@@ -1,5 +1,5 @@
 PORTNAME=	Net
-PORTVERSION=	3.13
+PORTVERSION=	3.15
 PORTEPOCH=	1
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
@@ -8,11 +8,12 @@ DISTNAME=	libnet-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 modules to access and use network protocols
+WWW=		https://metacpan.org/release/libnet
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE_artistic=	${WRKSRC}/Artistic
-LICENSE_FILE_gpl=	${WRKSRC}/Copying
+LICENSE_FILE_gpl+ =	${WRKSRC}/Copying
 
 OPTIONS_DEFINE=	SASL SSL
 OPTIONS_DEFAULT=SASL SSL
