@@ -1,24 +1,25 @@
 PORTNAME=	libproxy
-DISTVERSION=	0.4.17
+DISTVERSION=	0.4.18
 PORTREVISION?=	0
 CATEGORIES?=	net devel
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Library that provides automatic proxy configuration management
+WWW=		https://libproxy.github.io/libproxy/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES+=		cmake cpe pathfix pkgconfig
+USES+=		cmake cpe pathfix pkgconfig tar:xz
 CPE_VENDOR=	libproxy_project
 PATHFIX_CMAKELISTSTXT=	devfiles.cmk
-USE_GITHUB=	yes
 
 CMAKE_ON+=	WITH_VALA
 CMAKE_OFF+=	BIPR WITH_DOTNET WITH_NATUS WITH_NM WITH_NMold
 
 # Slave ports.
-LIBPROXY_SLAVES=	library gnome3 kde mozjs python perl webkit3
+LIBPROXY_SLAVES=	library duktape gnome3 kde mozjs python perl webkit3
 
 # If nothing is set, we're building the library, i.e. this port.
 LIBPROXY_SLAVE?=	library
@@ -48,7 +49,7 @@ LIB_DEPENDS+=	 libdbus-1.so:devel/dbus
 CMAKE_ON=	BUILD_CONFIG_PACRUNNER
 .endif
 
-.if ${LIBPROXY_SLAVE:Mkde} || ${LIBPROXY_SLAVE:Mwebkit3}
+.if  ${LIBPROXY_SLAVE:Mkde} || ${LIBPROXY_SLAVE:Mduktape} || ${LIBPROXY_SLAVE:Mmozjs} || ${LIBPROXY_SLAVE:Mwebkit3}
 RUN_DEPENDS+=	libproxy-pacrunner>=${DISTVERSION}:net/libproxy-pacrunner
 .endif
 
