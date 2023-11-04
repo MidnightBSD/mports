@@ -1,13 +1,15 @@
 PORTNAME=	remmina
-DISTVERSION=	1.4.29
-PORTREVISION=	1
+DISTVERSION=	1.4.32
 CATEGORIES=	net gnome
 
+PATCH_SITES=	https://gitlab.com/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
+PATCHFILES+=	dbd6f94974c4d7df313963ffefecb1ff8ca9ecb6.patch:-p1 # https://gitlab.com/Remmina/Remmina/-/merge_requests/2540
+
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GTK+ Remote Desktop Client
+COMMENT=	GTK Remote Desktop Client
 WWW=		https://www.remmina.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libappindicator3.so:devel/libappindicator \
@@ -27,7 +29,7 @@ USES=		cmake compiler:c11 desktop-file-utils gettext gnome localbase:ldflags pat
 USE_GITLAB=	yes
 GL_ACCOUNT=	Remmina
 GL_PROJECT=	Remmina
-GL_COMMIT=	fb19eb5f11f206ffb442a9e0c519cb0f2cb3fd8b
+GL_TAGNAME=	4804f68f23045a38c3a7be46810fce14bac2fc3c
 
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 pango
 
@@ -36,7 +38,8 @@ USE_XORG=	ice sm x11 xext
 SHEBANG_FILES=	data/desktop/remmina-file-wrapper.in
 bash_CMD=	${SH}
 
-CMAKE_ARGS=	-DWITH_APPINDICATOR:BOOL=false
+CMAKE_ARGS=	-DWITH_APPINDICATOR:BOOL=false \
+	-DLIBSOUP_LIBRARY=/usr/local/lib/libsoup-2.4.so
 
 CONFLICTS_INSTALL=	remmina-plugin*
 
@@ -115,6 +118,7 @@ VNC_CMAKE_BOOL=		WITH_LIBVNCSERVER
 WWW_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz \
 			libsoup-2.4.so:devel/libsoup \
 			libwebkit2gtk-4.0.so:www/webkit2-gtk3
+
 WWW_CMAKE_BOOL=		WITH_WEBKIT2GTK
 
 ZSH_RUN_DEPENDS=	zsh:shells/zsh
