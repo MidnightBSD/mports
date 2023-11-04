@@ -36,6 +36,7 @@ SUBDIR += expat2
 SUBDIR += fixrtf
 SUBDIR += flex
 SUBDIR += fop
+SUBDIR += freexl
 SUBDIR += fzf
 SUBDIR += gdome2
 SUBDIR += gnugrep
