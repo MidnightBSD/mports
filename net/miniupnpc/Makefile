@@ -1,20 +1,21 @@
 PORTNAME=	miniupnpc
-PORTVERSION=	2.2.0
+PORTVERSION=	2.2.5
 CATEGORIES?=	net
 MASTER_SITES=	http://miniupnp.free.fr/files/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	UPnP IGD client lightweight library
+WWW=		http://miniupnp.free.fr/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES+=		gmake
+USES+=		cpe gmake
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
+CPE_VENDOR=	miniupnp_project
 CONFIGURE_SCRIPT=	updateminiupnpcstrings.sh
-MAKE_ENV+=	INSTALLPREFIX=${PREFIX}
+MAKE_ENV+=	INSTALLPREFIX=${PREFIX} LIBDIR=lib
 
 .include <bsd.port.pre.mk>
 
