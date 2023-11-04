@@ -48,6 +48,7 @@ SUBDIR += ilbc
 SUBDIR += intel-em-kmod
 SUBDIR += intel-iavf-kmod
 SUBDIR += intel-ice-kmod
+SUBDIR += intel-igb-kmod
 SUBDIR += intel-irdma-kmod
 SUBDIR += intel-ix-kmod
 SUBIDR += intel-ixl-kmod
