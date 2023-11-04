@@ -1,5 +1,6 @@
 COMMENT = Astronomical ports
 
+SUBDIR += cfitsio
 SUBDIR += gpsd
 SUBDIR += libnova
 SUBDIR += luna

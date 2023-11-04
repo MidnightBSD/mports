@@ -36,6 +36,7 @@ SUBDIR += frei0r
 SUBDIR += ftgl
 SUBDIR += fusefs-gphotofs
 SUBDIR += gd
+SUBDIR += gdal
 SUBDIR += gdchart
 SUBDIR += gdk-pixbuf2
 SUBDIR += geeqie

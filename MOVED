@@ -280,3 +280,4 @@ x11/libdmx||2023-04-25|Upstream removed support for Xdmx server
 www/varnish4|www/varnish6|2023-10-19|Has expired: End of life upstream, users are recommended to upgrade to 6.x or higher
 databases/redis5|databases/redis62|2023-10-19|Has expired: EOLed upstream
 www/tomcat10|www/tomcat101|2023-06-30|Has expired: EOLd, potential security issues (https://tomcat.apache.org/tomcat-10.0-eol.html), use www/tomcat101 instead
+science/cfitsio|astro/cfitsio||moved to astro

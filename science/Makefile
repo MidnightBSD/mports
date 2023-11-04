@@ -1,9 +1,9 @@
 COMMENT= Scientific applications
 
-SUBDIR += cfitsio
 SUBDIR += gtamsanalyzer
 SUBDIR += hdf5
 SUBDIR += libaec
+SUBDIR += libkml
 SUBDIR += linux-foldingathome 
 SUBDIR += netcdf
 SUBDIR += openbabel
