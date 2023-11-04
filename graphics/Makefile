@@ -40,6 +40,7 @@ SUBDIR += gdchart
 SUBDIR += gdk-pixbuf2
 SUBDIR += geeqie
 SUBDIR += gegl
+SUBDIR += geos
 SUBDIR += gexiv2
 SUBDIR += giblib
 SUBDIR += giflib
