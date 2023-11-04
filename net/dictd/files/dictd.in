@@ -1,5 +1,5 @@
 #!/bin/sh
-#
+
 # PROVIDE: dictd
 # REQUIRE: DAEMON
 #
