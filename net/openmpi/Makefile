@@ -1,10 +1,11 @@
 PORTNAME=	openmpi
-PORTVERSION=	4.1.3
+PORTVERSION=	4.1.5
 CATEGORIES=	net parallel
 MASTER_SITES=	http://www.open-mpi.org/software/ompi/v${PORTVERSION:R}/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High Performance Message Passing Library
+WWW=		https://www.open-mpi.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -18,7 +19,7 @@ LIB_DEPENDS=	libhwloc.so.15:devel/hwloc2 \
 USES=		fortran gmake libtool:keepla localbase perl5 \
 		pkgconfig shebangfix tar:bzip2
 
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd12.4
 HAS_CONFIGURE=	yes
 USE_PERL5=	build
 
