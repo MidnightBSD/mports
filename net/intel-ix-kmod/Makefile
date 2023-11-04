@@ -1,8 +1,8 @@
 PORTNAME=	ix
-PORTVERSION=	3.3.29
+PORTVERSION=	3.3.35
 PORTEPOCH=	0
 MASTER_SITES?=	https://downloadmirror.intel.com/29625/eng/:man \
-		https://downloadmirror.intel.com/682699/ \
+		https://downloadmirror.intel.com/682699/
 
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		${_MAN_SOURCE}${EXTRACT_SUFX}:man
@@ -10,6 +10,8 @@ _MAN_SOURCE=	${PORTNAME}-3.3.10
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	10 gigabit FreeBSD Base Driver for Intel(R) Network Connections
+
+MAX_NETMAP_OSVERSION=   300000
 
 MANPAGENAME=	ixgbe
 MANPAGELINKS=	ix if_ix if_ixgbe
