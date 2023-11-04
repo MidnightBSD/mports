@@ -7,6 +7,7 @@ SUBDIR += atlas
 SUBDIR += blas
 SUBDIR += cbc
 SUBDIR += cblas
+SUBDIR += cgal
 SUBDIR += cgl
 SUBDIR += cln
 SUBDIR += clp

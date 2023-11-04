@@ -257,6 +257,7 @@ SUBDIR += libpeas
 SUBDIR += libplist
 SUBDIR += libpthread-stubs
 SUBDIR += librest
+SUBDIR += librttopo
 SUBDIR += libsigc++20
 SUBDIR += libsigsegv
 SUBDIR += libslang2
