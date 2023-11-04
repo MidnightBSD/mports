@@ -1,7 +1,7 @@
 PORTNAME=	irdma
-PORTVERSION=	1.1.11
+PORTVERSION=	1.2.17
 CATEGORIES=	net
-MASTER_SITES?=	https://downloadmirror.intel.com/772536/
+MASTER_SITES?=	https://downloadmirror.intel.com/786091/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDMA FreeBSD* driver for Intel® Ethernet Controller E810
@@ -9,6 +9,9 @@ WWW=		https://www.intel.com/content/www/us/en/download/19762/irdma-rdma-freebsd-
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/doc/irdma_readme.txt
+
+NOT_FOR_ARCHS=	armv6 armv7 i386
+OT_FOR_ARCHS_REASON=	Not supported on 32-bits
 
 BUILD_DEPENDS=	${NONEXISTENT}:net/intel-ice-kmod:extract
 RUN_DEPENDS=	${KMODDIR}/if_ice_updated.ko:net/intel-ice-kmod
