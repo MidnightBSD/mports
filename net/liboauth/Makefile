@@ -6,6 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library implementing the OAuth Core standard
+WWW=		http://liboauth.sourceforge.net/
 
 LICENSE=	mit gpl2
 LICENSE_COMB=dual
