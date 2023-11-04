@@ -98,6 +98,7 @@ SUBDIR += laternamagica
 SUBDIR += lcms
 SUBDIR += lcms2
 SUBDIR += leptonica
+SUBDIR += lerc
 SUBDIR += libGLU
 SUBDIR += libart_lgpl
 SUBDIR += libavif
