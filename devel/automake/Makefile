@@ -8,6 +8,7 @@ COMMENT=	GNU Standards-compliant Makefile generator
 WWW=		https://www.gnu.org/software/automake/
 
 LICENSE=	gpl2+ gfdl
+LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	autoconf>=2.69:devel/autoconf
 RUN_DEPENDS=	autoconf>=2.69:devel/autoconf
