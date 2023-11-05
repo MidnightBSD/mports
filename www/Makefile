@@ -163,7 +163,6 @@ SUBDIR += php83-tidy
 SUBDIR += phpbb
 SUBDIR += phpbb3
 SUBDIR += pmwiki
-SUBDIR += polipo
 SUBDIR += privoxy
 SUBDIR += py-aiohttp
 SUBDIR += py-autobahn
