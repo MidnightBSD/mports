@@ -282,3 +282,4 @@ databases/redis5|databases/redis62|2023-10-19|Has expired: EOLed upstream
 www/tomcat10|www/tomcat101|2023-06-30|Has expired: EOLd, potential security issues (https://tomcat.apache.org/tomcat-10.0-eol.html), use www/tomcat101 instead
 science/cfitsio|astro/cfitsio|2023-11-03|moved to astro
 www/polipo||2023-11-05|End of life
+lang/rust168|lang/rust169|2023-11-05|updated to 1.69
