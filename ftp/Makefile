@@ -30,6 +30,7 @@ SUBDIR += py-tftpy
 SUBDIR += quftp
 SUBDIR += tnftp
 SUBDIR += tnftpd
+SUBDIR += twoftpd
 SUBDIR += waiho
 SUBDIR += weex
 SUBDIR += wget
