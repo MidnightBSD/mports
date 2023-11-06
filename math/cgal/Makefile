@@ -32,7 +32,7 @@ OPTIONS_SUB=		yes
 VISUALIZATION_DESC=		Visualization Required for most demos (Qt5 Geomview)
 VISUALIZATION_LIB_DEPENDS=	libgeomview.so:graphics/geomview
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MQT5}
 USES+=		gl qt:5
