@@ -2,6 +2,7 @@ COMMENT = Development utilities
 
 SUBDIR += 9base
 SUBDIR += ORBit2
+SUBDIR += aarch64-none-elf-gcc
 SUBDIR += abseil
 SUBDIR += acsccid
 SUBDIR += activitymail
