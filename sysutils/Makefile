@@ -58,6 +58,7 @@ SUBDIR += e2fsprogs
 SUBDIR += e2fsprogs-core
 SUBDIR += ebsnvme-id
 SUBDIR += ec2-scripts
+SUBDIR += ed2k
 SUBDIR += entr
 SUBDIR += exa
 SUBDIR += extipl
