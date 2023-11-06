@@ -7,6 +7,7 @@ SUBDIR += irssi-scripts
 SUBDIR += ngircd
 SUBDIR += simpleirc
 SUBDIR += sirc
+SUBDIR += smartirc4net
 SUBDIR += talksoup
 SUBDIR += weechat
 SUBDIR += znc
