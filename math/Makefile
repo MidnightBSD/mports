@@ -45,6 +45,7 @@ SUBDIR += mpc
 SUBDIR += mpdecimal
 SUBDIR += mpfr
 SUBDIR += nauty
+SUBDIR += ntl
 SUBDIR += openblas
 SUBDIR += osi
 SUBDIR += p5-Bit-Vector
