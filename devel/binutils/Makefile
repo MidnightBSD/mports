@@ -1,6 +1,6 @@
 PORTNAME=	binutils
 PORTVERSION=	2.40
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/binutils/releases
 
@@ -34,7 +34,7 @@ RELRO_DESC=	Enable relocation memory corruption mitigation (-z relro) by default
 LICENSE_FILE_GPLv3=	${WRKSRC}/COPYING3
 LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING3.LIB
 
-USES=		bison:alias cpe gmake libtool makeinfo tar:xz compiler:env
+USES=		bison:alias cpe gmake libtool makeinfo tar:xz compiler:env gettext localbase
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 
