@@ -35,5 +35,6 @@ SUBDIR += tcptrack
 SUBDIR += virt-viewer
 SUBDIR += whatmask
 SUBDIR += wifimgr
+SUBDIR += wmi-client
 
 .include <bsd.port.subdir.mk>
