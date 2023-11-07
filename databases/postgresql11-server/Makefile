@@ -7,7 +7,7 @@ PKGNAMESUFFIX?=	${DISTVERSION:R:S/.//}${COMPONENT}
 MAINTAINER?=	ports@MidnightBSD.org
 
 DEPRECATED=	PostgreSQL-11 will reach end-of-life on 2023-11-09
-EXPIRATION_DATE=2023-12-3
+EXPIRATION_DATE=2023-12-31
 
 INSTALL_DIRS?=	src/common src/timezone src/backend \
 		src/backend/utils/mb/conversion_procs \
