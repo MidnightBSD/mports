@@ -1,67 +1,56 @@
 PORTNAME=	kismet
 DISTVERSION=	2016-07-R1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://www.kismetwireless.net/code/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
+WWW=		https://www.kismetwireless.net/
 
 LICENSE=	gpl2
 
-USES=		gmake tar:xz
+USES=		gmake localbase:ldflags tar:xz
+USE_CXXSTD=	c++14
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-OPTIONS_DEFINE=		PCRE PLUGINS SETUID DOCS EXAMPLES
-OPTIONS_DEFAULT=	PCRE PLUGINS SETUID
-SETUID_DESC=		Use privilege separation
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 WRKSRC=	${WRKDIR}/${DISTNAME:S/a$$//}
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	README
-.endif
-
-.if ${PORT_OPTIONS:MEXAMPLES}
 PORTEXAMPLES=	*
-.endif
 
-.if ${PORT_OPTIONS:MPCRE}
-CONFIGURE_ARGS+=--enable-pcre
-LIB_DEPENDS+=	libpcre.so:devel/pcre
-.else
-CONFIGURE_ARGS+=--disable-pcre
-.endif
+OPTIONS_DEFINE=		PCRE PLUGINS SETUID DOCS EXAMPLES
+OPTIONS_DEFAULT=	PCRE PLUGINS SETUID
+OPTIONS_SUB=		yes
+
+SETUID_DESC=		Use privilege separation
+
+PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
+PCRE_CONFIGURE_ENABLE=	pcre
+PLUGINS_USES=	ssl
+PLUGINS_ALL_TARGET=	depend all all-plugins
+PLUGINS_INSTALL_TARGET=	all-plugins-install
+SETUID_CONFIGURE_ON=--with-suidgroup=wheel
+SETUID_CONFIGURE_OFF=--without-suidgroup
+SETUID_INSTALL_TARGET=		suidinstall
+SETUID_INSTALL_TARGET_OFF=		install
+SETUID_SUB_FILES=	suid_pkg-message
+SETUID_PLIST_SUB=	SUID="" SUIDGROUP="${GROUPS}"
+SETUID_PLIST_SUB_OFF=	SUID="@comment " SUIDGROUP=""
+
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSETUID}
 GROUPS=		kismet
-CONFIGURE_ARGS+=--with-suidgroup=wheel
-INSTALL_TARGET=		suidinstall
-PLIST_SUB+=	SUID="" SUIDGROUP="${GROUPS}"
 PKGMESSAGE=	${WRKDIR}/suid_pkg-message
-SUB_FILES+=	suid_pkg-message
-.else
-INSTALL_TARGET=		install
-CONFIGURE_ARGS+=--without-suidgroup
-PLIST_SUB+=	SUID="@comment " SUIDGROUP=""
-.endif
-
-.if ${PORT_OPTIONS:MPLUGINS}
-ALL_TARGET=	depend all all-plugins
-INSTALL_TARGET+=	all-plugins-install
-USES+=	ssl
-PLIST_SUB+=	PLUGINS=""
-.else
-PLIST_SUB+=	PLUGINS="@comment "
 .endif
 
 .include <bsd.port.pre.mk>
+
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-restricted-plugin-ptw_aircrack-crypto.cc
 
 post-patch:
 	@${REINPLACE_CMD} -e "/gps=/s/true/false/" \
