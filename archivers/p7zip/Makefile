@@ -24,6 +24,12 @@ OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	*
 
+.include <bsd.mport.options.mk>
+
+.if ${OSVERSION} > 300000
+IGNORE= Requires MidnightBSD 2.x or lower
+.endif
+
 post-patch:
 	${SED} -e 's!g\+\+!${CXX}!' \
 	       -e 's!gcc!${CC}!' \
