@@ -17,7 +17,6 @@ SUBDIR += mtools
 SUBDIR += open-vm-tools
 SUBDIR += pcem
 SUBDIR += qemu
-SUBDIR += rtc
 SUBDIR += tpm-emulator
 SUBDIR += vba
 SUBDIR += vgb-bin
