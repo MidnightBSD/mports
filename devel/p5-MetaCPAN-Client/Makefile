@@ -1,5 +1,5 @@
 PORTNAME=	MetaCPAN-Client
-PORTVERSION=	2.026000
+PORTVERSION=	2.030000
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MICKEY
@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Comprehensive, DWIM-featured client to the MetaCPAN API
+WWW=		https://metacpan.org/release/MetaCPAN-Client
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
@@ -29,12 +30,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 502600
-BUILD_DEPENDS+=	p5-ExtUtils-MakeMaker>=7.11.01:devel/p5-ExtUtils-MakeMaker
-RUN_DEPENDS+=	p5-ExtUtils-MakeMaker>=7.11.01:devel/p5-ExtUtils-MakeMaker
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
