@@ -9,6 +9,7 @@ PKGNAMESUFFIX?= ${PORTVERSION:R}${COMPONENT}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	PostgreSQL is the most advanced open-source database available anywhere
+WWW=		https://www.postgresql.org/
 
 LICENSE=	pgsql
 
@@ -175,11 +176,13 @@ OPTIMIZED_CFLAGS_CFLAGS=-O3 -funroll-loops
 
 DEBUG_CONFIGURE_ENABLE=	debug
 
-PLIST_SUB+=		PG_USER=${PG_USER} \
+PLIST_SUB+=		PG_VERSION=${PORTVERSION:R} \
+			PG_USER=${PG_USER} \
 			PG_USER_regex=[[:<:]]${PG_USER}[[:>:]] \
 			PG_GROUP=${PG_GROUP} \
 			PG_GROUP_regex=[[:<:]]${PG_GROUP}[[:>:]]
 SUB_LIST+=		PG_GROUP=${PG_GROUP} \
+			PG_VERSION=${PORTVERSION:R} \
 			PG_USER=${PG_USER} \
 			PG_UID=${PG_UID}
 
