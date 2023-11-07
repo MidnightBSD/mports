@@ -30,4 +30,6 @@ GO_TARGET=	./cmd/promscale
 
 PLIST_FILES=	bin/promscale
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
