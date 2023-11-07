@@ -140,12 +140,6 @@ MASTER_SITE_DEBIAN_POOL+= \
 	${MASTER_SITE_DEBIAN:C|(/%SUBDIR%/)|/pool/main/${PORTNAME:C/^(.).*$/\1/}/${PORTNAME}/|}
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_EASYSW)
-MASTER_SITE_EASYSW+= \
-	http://ftp.funet.fi/pub/mirrors/ftp.easysw.com/pub/%SUBDIR%/ \
-	ftp://ftp.funet.fi/pub/mirrors/ftp.easysw.com/pub/%SUBDIR%/
-.endif
-
 .if !defined(IGNORE_MASTER_SITE_ECLIPSE)
 MASTER_SITE_ECLIPSE+= \
 	https://ftp-stud.hs-esslingen.de/pub/Mirrors/eclipse/%SUBDIR%/ \
@@ -264,26 +258,14 @@ MASTER_SITE_GCC+= \
 
 .if !defined(IGNORE_MASTER_SITE_GENTOO)
 MASTER_SITE_GENTOO+= \
-	http://gentoo.mirrors.tera-byte.com/%SUBDIR%/ \
-	http://mirrors.tds.net/pub/gentoo/%SUBDIR%/ \
-	ftp://ftp.mirrorservice.org/sites/www.ibiblio.org/gentoo/%SUBDIR%/ \
-	http://ftp.snt.utwente.nl/pub/os/linux/gentoo/%SUBDIR%/ \
-	http://trumpetti.atm.tut.fi/gentoo/%SUBDIR%/ \
-	https://ftp.uni-erlangen.de/pub/mirrors/gentoo/%SUBDIR%/ \
-	http://gentoo.inode.at/%SUBDIR%/ \
-	http://gentoo.gg3.net/%SUBDIR%/ \
-	http://mirrors.163.com/gentoo/%SUBDIR%/ \
-	ftp://ftp.gtlib.gatech.edu/pub/gentoo/%SUBDIR%/ \
-	ftp://ftp.ussg.iu.edu/pub/linux/gentoo/%SUBDIR%/ \
-	ftp://mirrors.tds.net/pub/gentoo/%SUBDIR%/ \
-	ftp://ftp.belnet.be/mirror/rsync.gentoo.org/gentoo/%SUBDIR%/ \
-	ftp://ftp.snt.utwente.nl/pub/os/linux/gentoo/%SUBDIR%/ \
-	ftp://trumpetti.atm.tut.fi/gentoo/%SUBDIR%/ \
-	ftp://ftp.tu-clausthal.de/pub/linux/gentoo/%SUBDIR%/ \
-	ftp://sunsite.informatik.rwth-aachen.de/pub/Linux/gentoo/%SUBDIR%/ \
-	ftp://linux.rz.ruhr-uni-bochum.de/gentoo-mirror/%SUBDIR%/ \
-	ftp://ftp.uni-erlangen.de/pub/mirrors/gentoo/%SUBDIR%/ \
-	ftp://gentoo.inode.at/source/%SUBDIR%/
+	https://mirror.leaseweb.com/gentoo/%SUBDIR%/ \
+	https://mirror.rackspace.com/gentoo/%SUBDIR%/ \
+	https://mirror.init7.net/gentoo/%SUBDIR%/ \
+	https://mirrors.rit.edu/gentoo/%SUBDIR%/ \
+	http://ftp.iij.ad.jp/pub/linux/gentoo/%SUBDIR%/ \
+	http://ftp.belnet.be/pub/rsync.gentoo.org/gentoo/%SUBDIR%/ \
+	http://ftp.uni-hannover.de/gentoo/%SUBDIR%/ \
+	http://gentoo-mirror.flux.utah.edu/%SUBDIR%/
 .endif
 
 # Keep this before USE_GITHUB
