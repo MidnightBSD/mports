@@ -10,6 +10,7 @@ EXTRACT_SUFX=	.gz.sh
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quake III Arena Demo
+WWW=		http://quake3arena.com/
 
 LICENSE=        Loki
 LICENSE_NAME=   Loki Software License
