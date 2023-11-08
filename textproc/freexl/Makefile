@@ -20,4 +20,7 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 CFLAGS+=	-I${PREFIX}/include
 LIBS+=		-L${PREFIX}/lib
+
+NO_TEST=	yes
+
 .include <bsd.port.mk>
