@@ -81,12 +81,6 @@ ZTS_CONFIGURE_ENV=	pthreads_working="yes"
 
 .if defined(PKGNAMEPREFIX)
 USES+=			apache:2.2+
-.include "${PORTSDIR}/Mk/extensions/apache.mk"
-.if ${PORT_OPTIONS:MAP2FILTER}
-CONFIGURE_ARGS+=	--with-apxs2filter=${APXS}
-.else
-CONFIGURE_ARGS+=	--with-apxs2=${APXS}
-.endif
 PLIST=			${PKGDIR}/pkg-plist.mod
 PKGMESSAGE=		${PKGDIR}/pkg-message.mod
 MODULENAME=		libphp
