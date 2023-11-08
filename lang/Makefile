@@ -110,7 +110,6 @@ SUBDIR += rust-bin
 SUBDIR += rust166-bin
 SUBDIR += rust169
 SUBDIR += scala
-SUBDIR += spidermonkey68
 SUBDIR += spidermonkey78
 SUBDIR += spidermonkey91
 SUBDIR += spidermonkey102

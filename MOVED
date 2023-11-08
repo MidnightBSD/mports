@@ -284,4 +284,5 @@ science/cfitsio|astro/cfitsio|2023-11-03|moved to astro
 www/polipo||2023-11-05|End of life
 lang/rust168|lang/rust169|2023-11-05|updated to 1.69
 emulators/rtc||2023-11-07|Broken on MidnightBSD and FreeBSD
-lang/spidermonkey24||2023-11-07|Has expired: Uses Python 2.7 which is EOLed upstream
+lang/spidermonkey24|lang/spidermonkey78|2023-11-07|Has expired: Uses Python 2.7 which is EOLed upstream
+lang/spidermonkey68|lang/spidermonkey78|2023-11-07|Replaced by a more recent version
