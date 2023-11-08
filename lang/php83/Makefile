@@ -43,22 +43,9 @@ LDFLAGS=	-L${OPENSSLLIB} -lcrypto -lssl
 # PR230207 Allow relocations against read-only segments (override lld default)
 LDFLAGS_i386=	-Wl,-z,notext
 
-OPTIONS_DEFINE+=		CGI CLI DEBUG DTRACE EMBED FPM IPV6 LINKTHR \
+OPTIONS_DEFINE+=		CGI CLI DEBUG EMBED FPM IPV6 LINKTHR \
 				MYSQLND NOASLR PHPDBG ZTS
-OPTIONS_DEFAULT=		CGI CLI DTRACE EMBED FPM LINKTHR MYSQLND
-OPTIONS_EXCLUDE_DragonFly=	DTRACE
-# ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
-OPTIONS_EXCLUDE_aarch64=	DTRACE
-# dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
-OPTIONS_EXCLUDE_armv6=	DTRACE
-OPTIONS_EXCLUDE_armv7=	DTRACE
-# Bug 197128:  No ASM code for MIPS/MIPS64, disable FPM
-OPTIONS_EXCLUDE_mips=	DTRACE FPM
-OPTIONS_EXCLUDE_mips64=	DTRACE FPM
-OPTIONS_EXCLUDE_powerpc64=	${OPTIONS_EXCLUDE_${ARCH}_${OSREL:R}}
-OPTIONS_EXCLUDE_powerpc64_12=	DTRACE
-OPTIONS_EXCLUDE_riscv64=	DTRACE
-OPTIONS_EXCLUDE_sparc64=	DTRACE
+OPTIONS_DEFAULT=		CGI CLI EMBED FPM LINKTHR MYSQLND
 NO_OPTIONS_SORT=	yes
 OPTIONS_SUB=			yes
 
@@ -76,7 +63,6 @@ CGI_VARS=		PHP_SAPI+=cgi
 CLI_CONFIGURE_OFF=	--disable-cli
 CLI_VARS=		PHP_SAPI+=cli
 DEBUG_CONFIGURE_ON=	--enable-debug
-DTRACE_CONFIGURE_ON=	--enable-dtrace
 EMBED_CONFIGURE_ON=	--enable-embed
 EMBED_VARS=		PHP_SAPI+=embed
 FPM_CONFIGURE_ON=	--enable-fpm \
@@ -94,7 +80,13 @@ ZTS_CONFIGURE_ON=	--enable-zts
 ZTS_CONFIGURE_ENV=	pthreads_working="yes"
 
 .if defined(PKGNAMEPREFIX)
-USES+=			apache
+USES+=			apache:2.2+
+.include "${PORTSDIR}/Mk/extensions/apache.mk"
+.if ${PORT_OPTIONS:MAP2FILTER}
+CONFIGURE_ARGS+=	--with-apxs2filter=${APXS}
+.else
+CONFIGURE_ARGS+=	--with-apxs2=${APXS}
+.endif
 PLIST=			${PKGDIR}/pkg-plist.mod
 PKGMESSAGE=		${PKGDIR}/pkg-message.mod
 MODULENAME=		libphp
