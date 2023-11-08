@@ -107,6 +107,7 @@ SUBDIR += gccmakedep
 SUBDIR += gconf2
 SUBDIR += gconfmm26
 SUBDIR += gdb
+SUBDIR += gdcm
 SUBDIR += geany
 SUBDIR += gengetopt
 SUBDIR += gettext
