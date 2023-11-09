@@ -87,7 +87,6 @@ SUBDIR += percona57-server
 SUBDIR += pgmodeler
 SUBDIR += pgtcl
 SUBDIR += pgtop
-SUBDIR += pgtune
 SUBDIR += php80-mysqli
 SUBDIR += php80-odbc
 SUBDIR += php80-pdo
