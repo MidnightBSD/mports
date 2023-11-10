@@ -1,5 +1,5 @@
 PORTNAME=	yt-dlp
-DISTVERSION=	2023.03.04
+DISTVERSION=	2023.10.13
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 DISTNAME=	${PORTNAME}
@@ -12,7 +12,7 @@ WWW=		https://github.com/yt-dlp/yt-dlp
 LICENSE=	unlicense
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-FAKE_OPTS=	prefixhack
+FAKE_OPTS=	trueprefix
 
 PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}brotli>0:archivers/py-brotli@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}certifi>0:security/py-certifi@${PY_FLAVOR} \
@@ -23,7 +23,7 @@ PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}brotli>0:archivers/py-brotli@${PY_FLAVOR} \
 BUILD_DEPENDS=	${PY_DEPENDS}
 RUN_DEPENDS=	${PY_DEPENDS}
 
-USES=		gmake python:3.7+ shebangfix
+USES=		gmake python shebangfix
 
 SHEBANG_GLOB=	devscripts/*.py
 
@@ -44,6 +44,6 @@ SYMLINK_DESC=		Install youtube-dl symbolic link for executable
 SYMLINK_CONFLICTS=	youtube_dl
 
 post-install-SYMLINK-on:
-	@${RLN} ${FAKE_DESTDIR}${PREFIX}/bin/yt-dlp ${FAKE_DESTDIR}${PREFIX}/bin/youtube-dl
+	@${RLN} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/yt-dlp ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/youtube-dl
 
 .include <bsd.port.mk>
