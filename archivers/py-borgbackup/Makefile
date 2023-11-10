@@ -37,7 +37,7 @@ _BORGENV=-i BORG_PASSPHRASE=secret123 PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
 post-install:
 	${MKDIR} ${STAGEDIR}${MAN1PREFIX}/share/man/man1/
 	${INSTALL_MAN} ${WRKSRC}/docs/man/* ${STAGEDIR}${MAN1PREFIX}/share/man/man1/
-	${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/borg/ -name "*.so" \
+	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/borg/ -name "*.so" \
 		-exec ${STRIP_CMD} {} \;
 
 .include <bsd.port.mk>
