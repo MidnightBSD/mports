@@ -287,3 +287,4 @@ emulators/rtc||2023-11-07|Broken on MidnightBSD and FreeBSD
 lang/spidermonkey24|lang/spidermonkey78|2023-11-07|Has expired: Uses Python 2.7 which is EOLed upstream
 lang/spidermonkey68|lang/spidermonkey78|2023-11-07|Replaced by a more recent version
 databases/pgtune||2023-11-09|Not updated for 13 years, website gone last remains in https://git.postgresql.org/gitweb/?p=pgtune.git;a=summary
+x11-toolkits/p5-Gtk2||2023-11-10|Unused by any ports, very old
