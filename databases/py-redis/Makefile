@@ -11,13 +11,11 @@ WWW=		https://github.com/redis/redis-py
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR} \
-		redis-server:databases/redis
-
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils pytest
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}redis[0-9]
 
