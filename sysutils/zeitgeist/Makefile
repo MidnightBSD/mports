@@ -1,5 +1,6 @@
 PORTNAME=	zeitgeist
 DISTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,18 +16,16 @@ BUILD_DEPENDS=	dee-tool:devel/dee \
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/xdg/__init__.py:devel/py-xdg@${PY_FLAVOR} \
 		${PYTHON_SITELIBDIR}/dbus/__init__.py:devel/py-dbus@${PY_FLAVOR}
 
-USES=		autoreconf gettext gmake gnome libtool pathfix pkgconfig python \
-		sqlite tar:xz vala:build
+USES=		autoreconf gettext gmake gnome libtool localbase:ldflags pathfix pkgconfig \
+		python sqlite tar:xz vala:build
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.freedesktop.org
-GL_COMMIT=	8b89364c077b46734d193c5b8a80f83b0fc917dd
+GL_TAGNAME=	8b89364c077b46734d193c5b8a80f83b0fc917dd
 USE_GNOME=	cairo gdkpixbuf2 glib20 intlhack \
 		introspection:build
 USE_LDCONFIG=	yes
 USE_PYTHON=	py3kplist
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS=	--disable-fts --disable-telepathy \

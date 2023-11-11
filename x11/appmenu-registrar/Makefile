@@ -1,5 +1,6 @@
 PORTNAME=	appmenu-registrar
 DISTVERSION=	0.7.6
+PORTREVISION=	1
 CATEGORIES=	x11
 
 PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
@@ -7,6 +8,7 @@ PATCHFILES+=	442bcebcc00e.patch:-p1 # meson >= 0.60
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Appmenu DBusMenu registrar
+WWW=		https://gitlab.com/vala-panel-project/vala-panel-appmenu/-/tree/master/subprojects/registrar
 
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -14,9 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 WRKSRC=	${WRKDIR}/vala-panel-appmenu-4e362c22ab3a23c98f13fb379c782786ee057cf6
 
 LIB_DEPENDS=	libbamf3.so:sysutils/bamf
-BUILD_DEPENDS=	valac:lang/vala
 
-USES=	meson gnome pkgconfig gettext
+USES=	meson gnome pkgconfig gettext vala:build
 
 MESON_ARGS=	-Dvalapanel=disabled \
 		-Dxfce=disabled \
@@ -26,11 +27,11 @@ MESON_ARGS=	-Dvalapanel=disabled \
 		-Dregistrar=enabled \
 		-Dappmenu-gtk-module=disabled
 
-USE_GNOME=	gtk30 glib20 gtk20 gdkpixbuf2
+USE_GNOME=	gtk30 glib20 gdkpixbuf2
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	vala-panel-project
 GL_PROJECT=	vala-panel-appmenu
-GL_COMMIT=	4e362c22ab3a23c98f13fb379c782786ee057cf6
+GL_TAGNAME=	4e362c22ab3a23c98f13fb379c782786ee057cf6
 
 .include <bsd.port.mk>
