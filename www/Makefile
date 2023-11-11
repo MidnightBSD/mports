@@ -177,6 +177,7 @@ SUBDIR += py-falcon
 SUBDIR += py-flask
 SUBDIR += py-flup6
 SUBDIR += py-google-api-python-client
+SUBDIR += py-google-api-python-core
 SUBDIR += py-gunicorn
 SUBDIR += py-h2
 SUBDIR += py-hpack
