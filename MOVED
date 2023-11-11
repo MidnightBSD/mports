@@ -289,3 +289,6 @@ lang/spidermonkey68|lang/spidermonkey78|2023-11-07|Replaced by a more recent ver
 databases/pgtune||2023-11-09|Not updated for 13 years, website gone last remains in https://git.postgresql.org/gitweb/?p=pgtune.git;a=summary
 x11-toolkits/p5-Gtk2||2023-11-10|Unused by any ports, very old
 multimedia/ffmpeg0||2023-11-11|Has expired: vulnerable and old version; use multimedia/ffmpeg instead
+www/yarn-node14||2023-05-28|Has expired: Requires upstream EOL node14
+www/npm-node14||2023-05-28|Has expired: Requires upstream EOL www/node14
+www/node14||2023-05-28|Has expired: Consider using www/node16 or later as Upstream EOL on 2023-04-30
