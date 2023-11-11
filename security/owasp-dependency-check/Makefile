@@ -11,7 +11,8 @@ WWW=		https://jeremylong.github.io/DependencyCheck/dependency-check-cli/argument
 
 LICENSE=	apache2
 
-BUILD_DEPENDS=	${LOCALBASE}/share/java/maven/bin/mvn:java/maven
+BUILD_DEPENDS=	mvn:java/maven-wrapper \
+		${LOCALBASE}/share/java/maven/bin/mvn:java/maven
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jeremylong
@@ -28,7 +29,7 @@ PLIST_FILES=	bin/owasp-dependency-check \
 		${JAVAJARDIR}/owasp-dependency-check-${PORTVERSION}-jar-with-dependencies.jar
 
 do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${LOCALBASE}/share/java/maven/bin/mvn \
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/mvn \
 		--batch-mode -Dmaven.repo.local=${WRKDIR}/repository -DskipTests --offline package
 
 do-install:

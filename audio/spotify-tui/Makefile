@@ -1,15 +1,17 @@
 PORTNAME=	spotify-tui
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.25.0
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spotify for the terminal written in Rust
+WWW=		https://github.com/Rigellute/spotify-tui
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cargo localbase:ldflags python:3.6+,build ssl xorg
+USES=		cargo localbase:ldflags python:build ssl xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	Rigellute
 USE_XORG=	xcb
@@ -212,7 +214,7 @@ CARGO_CRATES=	addr2line-0.14.1 \
 		signal-hook-registry-1.4.0 \
 		slab-0.4.2 \
 		smallvec-1.4.1 \
-		socket2-0.3.12 \
+		socket2-0.3.19 \
 		str-buf-1.0.5 \
 		strsim-0.7.0 \
 		strsim-0.8.0 \
@@ -285,6 +287,14 @@ OPTIONS_DEFINE=	DOCS SPOTIFYD
 SPOTIFYD_DESC=	Lightweight Spotify client daemon
 
 SPOTIFYD_RUN_DEPENDS=	spotifyd:audio/spotifyd
+
+.include <bsd.mport.options.mk>
+
+.if ${SSL_DEFAULT:Mopenssl3*}
+BROKEN_SSL=	base openssl openssl31
+BROKEN_SSL_REASON=	Fails to detect OpenSSL 3.0.0 and later
+.endif
+
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/spt
