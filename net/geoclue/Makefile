@@ -4,6 +4,7 @@ CATEGORIES=	net devel gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	D-Bus service that provides location information
+WWW=		https://gitlab.freedesktop.org/geoclue/geoclue/wikis/hom
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
