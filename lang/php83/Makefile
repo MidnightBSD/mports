@@ -1,5 +1,5 @@
 PORTNAME=	php83
-DISTVERSION=	8.3.0RC4
+DISTVERSION=	8.3.0RC5
 CATEGORIES?=	lang devel www
 MASTER_SITES=	https://downloads.php.net/~jakub/ \
 	https://downloads.php.net/~eric/
@@ -34,10 +34,8 @@ CONFIGURE_ARGS+=	--disable-all \
 			--disable-dtrace
 DESTDIRNAME=		INSTALL_ROOT
 
-USES+=		autoreconf:build ssl
+USES+=		autoreconf:build localbase ssl
 USE_GNOME=	libxml2
-
-CPPFLAGS=	-I${LOCALBASE}/include
 
 LDFLAGS=	-L${OPENSSLLIB} -lcrypto -lssl
 # PR230207 Allow relocations against read-only segments (override lld default)
