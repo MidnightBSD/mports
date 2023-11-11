@@ -1,16 +1,18 @@
 PORTNAME=	certifi
-PORTVERSION=	2022.5.18.1
+PORTVERSION=	2023.7.22
 CATEGORIES=	security python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla SSL certificates
+WWW=		https://github.com/certifi/python-certifi
 
 LICENSE=	mpl
 
-NO_ARCH=	yes
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
