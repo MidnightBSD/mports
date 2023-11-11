@@ -1,7 +1,7 @@
 PORTNAME=	regex
-PORTVERSION=	2020.7.14
+DISTVERSION=	2022.9.13
 CATEGORIES=	textproc python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,7 @@ COMMENT=	Alternative regular expression module, to replace re
 
 LICENSE=	python
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 post-install:
