@@ -1,24 +1,20 @@
 PORTNAME=	openssl
-PORTVERSION=	19.1.0
-PORTREVISION=	0
+PORTVERSION=	23.2.0
+PORTEPOCH=	1
 CATEGORIES=	security python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	pyOpenSSL-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python interface to the OpenSSL library
+WWW=		https://github.com/pyca/pyopenssl
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=2.1.4:security/py-cryptography@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}six>=1.5.2:devel/py-six@${PY_FLAVOR}
-
-OPTIONS_DEFINE=	EXAMPLES
-
-USES=		cpe python:3.6+
-USE_PYTHON=	autoplist concurrent distutils pythonprefix
+USES=		cpe python
+USE_PYTHON=	autoplist concurrent cryptography distutils pythonprefix
 
 NO_ARCH=	yes
 NO_TEST=	yes
