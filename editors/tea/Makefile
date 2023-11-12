@@ -1,10 +1,10 @@
 PORTNAME=	tea
-PORTVERSION=	60.7.0
-PORTREVISION=	1
+PORTVERSION=	62.0.2
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple and powerful Qt-based text editor
+WWW=		http://semiletov.org/tea/
 
 LICENSE=	gpl3
 
@@ -16,7 +16,7 @@ OPTIONS_GROUP_SPELL=	ASPELL HUNSPELL
 OPTIONS_DEFAULT=	ASPELL HUNSPELL
 SPELL_DESC=		Spell checker backend
 
-USE_QT=		buildtools_build core declarative gui network widgets printsupport
+USE_QT=		buildtools:build core declarative gui network widgets printsupport
 USE_GL=		gl
 USE_LOCALE=	en_US.UTF-8
 
