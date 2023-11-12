@@ -6,13 +6,14 @@ DISTNAME=	${QSCI2_DISTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 5 port of the Scintilla C++ editor class
+WWW=		http://www.riverbankcomputing.co.uk/software/qscintilla/
 
 LICENSE=	unknown
 
 USES=		compiler:c++11-lang gl qmake pyqt:5 qt:5
 USE_GL=		gl
 USE_PYQT=	#
-USE_QT=		buildtools_build core gui printsupport widgets
+USE_QT=		buildtools:build core gui printsupport widgets
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 BUILD_WRKSRC=		${WRKSRC}/src
@@ -25,13 +26,9 @@ PORTEXAMPLES=	*
 OPTIONS_DEFINE=	DOCS EXAMPLES NLS
 OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
-
-post-patch:
-.if empty(PORT_OPTIONS:MNLS)
+post-patch-NLS-off:
 	cd ${BUILD_WRKSRC} && ${REINPLACE_CMD} -e \
 		's|trans qsci|qsci|' qscintilla.pro
-.endif
 
 post-install:
 	cd ${WRKSRC} &&\
