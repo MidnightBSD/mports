@@ -84,7 +84,7 @@ CISCODUMP_DESC=		Build ciscodump extcap tool
 OPUS_DESC=		Build opus decoder plugin
 
 GUI_USES=		qt:5
-GUI_USE=	qt=core,gui,multimedia,widgets,printsupport,svg,buildtools_build,linguisttools_build,qmake_build
+GUI_USE=	qt=core,gui,multimedia,widgets,printsupport,svg,buildtools:build,linguisttools:build,qmake:build
 
 LUA_USES=		lua:51-52
 GSSAPI_BASE_USES=		gssapi
