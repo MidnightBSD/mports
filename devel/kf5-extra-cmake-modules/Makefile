@@ -37,7 +37,6 @@ INSTALL_TARGET=	install # does not have install/strip target
 
 post-patch:
 	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' \
-		${WRKSRC}/kde-modules/KDEMetaInfoPlatformCheck.cmake \
 		${WRKSRC}/kde-modules/KDEInstallDirsCommon.cmake \
 		${WRKSRC}/kde-modules/KDECompilerSettings.cmake \
 		${WRKSRC}/metainfo.yaml \
