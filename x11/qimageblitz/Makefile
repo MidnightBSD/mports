@@ -1,21 +1,21 @@
 PORTNAME=	qimageblitz
-PORTVERSION=	0.1.0 # a made-up version also used in some linux distros, otherwise we need to add PORTEPOCH
-PORTREVISION=	1
+PORTVERSION=	0.1.0.${SVN_REVISION} # a made-up version also used in some linux distros, otherwise we need to add PORTEPOCH
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical effects and filters library for Qt5
+WWW=		https://sourceforge.net/projects/qimageblitz/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cmake compiler:c++11-lang qt:5
 USE_LDCONFIG=	yes
-USE_QT=		core gui widgets qmake_build buildtools_build
+USE_QT=		core gui widgets qmake:build buildtools:build
 USE_CXXSTD=	gnu++98
 
 SVN_URL=	svn://anonsvn.kde.org/home/kde/trunk/kdesupport/qimageblitz
-SVN_REVISION=	1515099
+SVN_REVISION=	1548172
 
 do-fetch:
 	@if [ "${FORCE_FETCH_ALL}" = "true" ] || ! [ -f "${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX}" ]; then \
