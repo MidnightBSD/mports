@@ -1,6 +1,6 @@
 PORTNAME=	gitqlient
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.5.0
+DISTVERSION=	1.6.2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,10 +22,10 @@ GH_PROJECT=	GitQlient \
 		QLogger:logger \
 		AuxiliarCustomWidgets:aux \
 		git:git
-GH_TAGNAME=	cc937794e910d0452f0c07b4961c6014a7358831:widget \
-		d1ed24e080521a239d5d5e2c2347fe211f0f3e4f:logger \
-		835f538b4a79e4d6bb70eef37a32103e7b2a1fd1:aux \
-		b62750f4da4b133faff49e6f53950d659b18c948:git
+GH_TAGNAME=	40d0a02e5bdf2f49f9ea41ca533093b2808b0140:widget \
+		ce2f35bad6440a14802fed6c043323d4227ef9a9:logger \
+		f86e72abd442f73b1e3b10ac922908d03444f115:aux \
+		fd63515ee55c2f4f0d8ac3969fcddf322964b3ee:git
 GH_SUBDIR=	src/QPinnableTabWidget:widget \
 		src/QLogger:logger \
 		src/AuxiliarCustomWidgets:aux \
