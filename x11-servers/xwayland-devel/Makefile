@@ -32,6 +32,8 @@ RUN_DEPENDS=	xkbcomp:x11/xkbcomp \
 
 CONFLICTS_INSTALL=	${PORTNAME}
 
+NO_TEST=	yes
+
 USES=		compiler:c11 gl meson pkgconfig xorg
 USE_GITLAB=	yes
 USE_GL=		gbm gl
