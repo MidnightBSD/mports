@@ -35,4 +35,16 @@ MANPAGES_CMAKE_BOOL=	BUILD_MAN_DOCS
 CONFIGURE_ENV+=	CMAKE_PROGRAM_PATH="${LOCALBASE}/bin:${LOCALBASE}/lib/qt5/bin"
 INSTALL_TARGET=	install # does not have install/strip target
 
+post-patch:
+	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' \
+		${WRKSRC}/kde-modules/KDEMetaInfoPlatformCheck.cmake \
+		${WRKSRC}/kde-modules/KDEInstallDirsCommon.cmake \
+		${WRKSRC}/kde-modules/KDECompilerSettings.cmake \
+		${WRKSRC}/metainfo.yaml \
+		${WRKSRC}/modules/ECMGeneratePkgConfigFile.cmake \
+		${WRKSRC}/tests/ECMGeneratePkgConfigFile/metainfo_without_description.yaml \
+		${WRKSRC}/tests/ECMGeneratePkgConfigFile/metainfo_with_empty_description.yaml \
+		${WRKSRC}/tests/ECMGeneratePkgConfigFile/metainfo_with_description.yaml
+
+
 .include <bsd.port.mk>
