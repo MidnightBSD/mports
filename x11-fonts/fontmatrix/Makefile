@@ -10,6 +10,9 @@ WWW=		https://github.com/fcoiffie/fontmatrix
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	Depends on deprecated www/qt5-webkit
+EXPIRATION_DATE=	2023-11-26
+
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
@@ -17,6 +20,6 @@ USES=		cmake compiler:c++11-lang qt:5
 
 USE_GITHUB=	yes
 USE_QT=		buildtools core gui linguisttools network printsupport \
-		qmake_build sql svg webkit widgets xml
+		qmake:build sql svg webkit widgets xml
 
 .include <bsd.port.mk>
