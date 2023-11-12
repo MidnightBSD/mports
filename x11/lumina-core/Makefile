@@ -1,11 +1,12 @@
 PORTNAME=	lumina-core
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.6.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lumina Desktop Environment
+WWW=		https://lumina-desktop.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/../../LICENSE
@@ -24,12 +25,12 @@ LIB_DEPENDS+=	libxcb-ewmh.so:x11/xcb-util-wm \
 		libxcb-util.so:x11/xcb-util \
 		libXcursor.so:x11/libXcursor
 
-USES=		compiler:c++11-lang gl qmake qt:5 ssl xorg
+USES=		compiler:c++11-lang desktop-file-utils gl qmake qt:5 xorg
 USE_GL=		gl
 USE_XORG=	x11 xdamage xcb
 USE_LDCONFIG=	yes
-USE_QT=		buildtools_build concurrent core dbus declarative gui imageformats \
-		multimedia network svg widgets x11extras
+USE_QT=		buildtools:build concurrent core dbus declarative gui \
+		imageformats multimedia network svg widgets x11extras
 USE_GITHUB=	yes
 GH_ACCOUNT=	lumina-desktop
 GH_PROJECT=	lumina
@@ -43,14 +44,19 @@ TRUEOS_DESC=		Use the TrueOS system interface settings.
 
 TRUEOS_QMAKE_ON=	DEFAULT_SETTINGS=TrueOS
 
-MULTIMEDIA_RUN_DEPENDS=	gstreamer1-plugins-core>=0:multimedia/gstreamer1-plugins-core
+MULTIMEDIA_USES=	gstreamer
+MULTIMEDIA_USE=		GSTREAMER=core
 
-NLS_USE=	QT=linguist_build
+NLS_USE=	QT=linguist:build
 NLS_QMAKE_ON=	CONFIG+=WITH_I18N
 
 WRKSRC_SUBDIR=	src-qt5/core
 
 CONFLICTS_INSTALL=	lumina-1.2.*
+
+post-extract:
+	@${RM} ${WRKSRC}/lumina-desktop*/extrafiles/screensavers/Warp*
+	@${RM} ${WRKSRC}/lumina-desktop*/extrafiles/screensavers/*/Warp*
 
 post-install:
 	${FIND} ${PREFIX}/share -name "ecp.*" -delete
