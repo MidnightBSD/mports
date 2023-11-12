@@ -1,18 +1,16 @@
---- configure.ac.orig	2019-04-17 15:37:48.000000000 -0400
-+++ configure.ac	2021-01-03 18:09:22.044327000 -0500
-@@ -64,6 +64,10 @@
+--- configure.ac.orig	2023-11-12 11:46:26.816432000 -0500
++++ configure.ac	2023-11-12 11:47:04.156273000 -0500
+@@ -60,7 +60,7 @@
+     CPU=i386
+     AC_MSG_RESULT(${host_cpu})
+     ;;
+-    x86_64)
++    x86_64|amd64)
      CPU=x86_64
      AC_MSG_RESULT(${host_cpu})
      ;;
-+    amd64)
-+    CPU=x86_64
-+    AC_MSG_RESULT(${host_cpu})
-+    ;;
-     *)
-     AC_MSG_ERROR([Unsupported CPU.])
-     ;;
-@@ -75,7 +79,7 @@
- AC_MSG_CHECKING([for off64_t])
+@@ -85,7 +85,7 @@
+ AC_MSG_CHECKING([for off64_t $CPU])
  AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <sys/types.h>]],[[off64_t n=0;]])],[has_lfs="yes"],[has_lfs="no"])
  case "$host" in
 -    *-*-freebsd*) # has off64_t but no fopen64/etc.
@@ -20,22 +18,12 @@
         has_lfs="no"
         ;;
  esac
-@@ -150,6 +154,18 @@
+@@ -160,7 +160,7 @@
             exit -1])
         build_linux="yes"
         ;;
-+    *-*-freebsd* | *-*-midnightbsd*)
-+       CFLAGS="$CFLAGS -I/usr/local/include"
-+       CXXFLAGS="$CXXFLAGS -I/usr/local/include"
-+       LDFLAGS="$LDFLAGS -L/usr/local/lib"
-+       AC_CHECK_LIB([GL], [glGetError], [], \
-+           [echo "You need to install the OpenGL library."
-+           exit -1])
-+       AC_CHECK_LIB([openal], [alGetError], [], \
-+           [echo "You need to install the OpenAL library."
-+           exit -1])
-+       build_other="yes"
-+       ;;
-     *)
-        AC_CHECK_LIB([GL], [glGetError], [], \
-            [echo "You need to install the OpenGL library."
+-    *-*-freebsd*)
++    *-*-freebsd*|*-*-midnightbsd*)
+        CFLAGS="$CFLAGS -I/usr/local/include"
+        CXXFLAGS="$CXXFLAGS -I/usr/local/include"
+        LDFLAGS="$LDFLAGS -L/usr/local/lib"
