@@ -6,6 +6,7 @@ CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross platform GUI for the Tarsnap command line client
+WWW=		https://github.com/Tarsnap/tarsnap-gui/wiki
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -14,7 +15,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	Tarsnap
 
 USES=		compiler:c++11-lib gl qmake qt:5 ssl
-USE_QT=		buildtools_build core gui network qmake_build sql sql-sqlite3 widgets
+USE_QT=		buildtools:build core gui network qmake:build sql sql-sqlite3 widgets
 USE_GL=		gl
 
 PLIST_FILES=	bin/tarsnap-gui
