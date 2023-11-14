@@ -1,14 +1,17 @@
 PORTNAME=	kore
-PORTVERSION=	4.1.0
+PORTVERSION=	4.2.3
 CATEGORIES=	devel www
 MASTER_SITES=	https://kore.io/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web application framework for writing web APIs in C
-WWW=		https://www.kore.io/
+WWW=		http://www.kore.io/
 
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_SSL=	openssl30 openssl31
+BROKEN_SSL_REASON=	Requires OpenSSL 3.0.0 deprecated RSA_* routines
 
 USES=		compiler:c11 gmake ssl
 
@@ -42,13 +45,17 @@ JSONRPC_MAKE_ARGS=	JSONRPC=1
 PGSQL_IMPLIES=		HTTP
 PGSQL_USES=		pgsql
 PGSQL_MAKE_ARGS=	PGSQL=1
-PYTHON_USES=		gettext-runtime python:3.6+
+PYTHON_USES=		gettext-runtime python
 PYTHON_MAKE_ARGS=	PYTHON=1
 PYTHON_BINARY_ALIAS=	python3-config=${PYTHON_CMD}-config
 TASKS_MAKE_ARGS=	TASKS=1
 TLS_MAKE_ARGS_OFF=	NOTLS=1
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 160
+CFLAGS+=	-Wno-error=deprecated-declarations -Wno-error=incompatible-pointer-types-discards-qualifiers
+.endif
 
 post-patch:
 .if ${LOCALBASE} != /usr/local
@@ -66,4 +73,4 @@ post-install-EXAMPLES-on:
 	@cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 	@cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
