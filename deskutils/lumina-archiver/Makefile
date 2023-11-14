@@ -1,6 +1,7 @@
 PORTNAME=	lumina-archiver
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.6.2
+PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	ports@MidnightBSD.org
