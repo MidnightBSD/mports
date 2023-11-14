@@ -12,14 +12,14 @@ LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
-USES=		cpe gmake iconv libtool pathfix minizip
+USES=		cpe gmake iconv:wchar_t libtool pathfix minizip
 CPE_VENDOR=	${PORTNAME}_project
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	ac_cv_search_locale_charset=no
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 CFLAGS+=	-I${PREFIX}/include
-LIBS+=		-L${PREFIX}/lib
+LIBS+=		-L${PREFIX}/lib -liconv
 
 NO_TEST=	yes
 
