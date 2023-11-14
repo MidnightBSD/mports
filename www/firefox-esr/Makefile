@@ -83,6 +83,7 @@ post-patch:
 		${WRKSRC}/netwerk/moz.build
 	${REINPLACE_CMD} -e 's/"files":{[^}]*}/"files":{}/' \
 		 ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
+	echo "DEFINES['MOZ_DISABLE_NSWIFI_SCANNER'] = True" >> ${WRKSRC}/moz.build
 
 pre-configure:
 	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf2.13)
