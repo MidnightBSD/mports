@@ -22,7 +22,7 @@ USE_PYTHON=	autoplist distutils
 CPE_VENDOR=	pocoo
 .endif
 .if ${PKGNAMESUFFIX} == -doc
-USES=		gmake python:3.7+
+USES=		gmake python
 USE_PYTHON=	flavors
 .endif
 
