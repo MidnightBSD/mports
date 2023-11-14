@@ -10,6 +10,7 @@ WWW=		https://aide.github.io/
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libmhash.so:security/mhash \
+		libgcrypt.so:security/libgcrypt \
 		libpcre2-8.so:devel/pcre2
 
 USES=		bison gmake localbase pkgconfig
