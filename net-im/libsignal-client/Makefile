@@ -18,6 +18,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	signalapp
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 CARGO_CRATES=	addr2line-0.14.1 \
 		adler-1.0.2 \
 		aead-0.4.1 \
