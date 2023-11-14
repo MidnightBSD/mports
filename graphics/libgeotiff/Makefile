@@ -11,7 +11,7 @@ WWW=		https://github.com/OSGeo/libgeotiff
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	proj>=6,1:graphics/proj
+BUILD_DEPENDS=	proj>=0:graphics/proj
 LIB_DEPENDS=	libjbig.so:graphics/jbigkit \
 		libproj.so:graphics/proj \
 		libtiff.so:graphics/tiff
