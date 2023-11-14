@@ -292,3 +292,4 @@ multimedia/ffmpeg0||2023-11-11|Has expired: vulnerable and old version; use mult
 www/yarn-node14||2023-05-28|Has expired: Requires upstream EOL node14
 www/npm-node14||2023-05-28|Has expired: Requires upstream EOL www/node14
 www/node14||2023-05-28|Has expired: Consider using www/node16 or later as Upstream EOL on 2023-04-30
+devel/rust-bindgen|devel/rust-bindgen-cli|2023-01-22|Renamed upstream
