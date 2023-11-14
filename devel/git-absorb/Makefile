@@ -17,7 +17,9 @@ GH_ACCOUNT=	tummychow
 
 PLIST_FILES=	bin/git-absorb
 
+NO_TEST=	yes
+
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/git-absorb
+	${STRIP_CMD} ${PREFIX}/bin/git-absorb
 
 .include <bsd.port.mk>
