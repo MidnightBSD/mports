@@ -49,8 +49,6 @@ do-install:
 .for f in twoftpd-auth.1 twoftpd-switch.1 twoftpd-xfer.1
 	${INSTALL_MAN} ${WRKSRC}/${f} ${STAGEDIR}${MAN1PREFIX}/man/man1/
 .endfor
-
-do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for i in NEWS README TODO
 	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} ${STAGEDIR}${DOCSDIR})
