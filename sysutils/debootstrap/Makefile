@@ -12,6 +12,8 @@ WWW=		https://wiki.debian.org/Debootstrap
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/debian/copyright
 
+FAKE_OPTS=	trueprefix
+
 RUN_DEPENDS=	wget:ftp/wget \
 		bash:shells/bash \
 		${LOCALBASE}/bin/grep:textproc/gnugrep \
@@ -21,10 +23,10 @@ RUN_DEPENDS=	wget:ftp/wget \
 USES=		gmake perl5
 USE_PERL5=	run
 
-MAKE_ENV=	DATADIR="${DATADIR}"
 NO_ARCH=	yes
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
+MAKE_ENV=	DATADIR=${DATADIR}
 
 # The +nmu suffix used by debian for "non maintainer uploads" of a Debian
 # native package doesn't play well with our versioning
