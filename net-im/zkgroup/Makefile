@@ -19,6 +19,8 @@ USE_JAVA=	yes
 JAVA_VERSION=	11+
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 CARGO_CRATES=	aead-0.4.1 \
 		aes-0.7.4 \
 		aes-gcm-siv-0.10.0 \
