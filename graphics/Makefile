@@ -222,7 +222,6 @@ SUBDIR += py-pillow
 SUBDIR += py-png
 SUBDIR += py-pycha
 SUBDIR += py-pyqrcode
-SUBDIR += py-qt5-svg
 SUBDIR += qt5-3d
 SUBDIR += qt5-graphicaleffects
 SUBDIR += qt5-imageformats

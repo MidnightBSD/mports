@@ -92,7 +92,6 @@ SUBDIR += php82
 SUBDIR += php82-extensions
 SUBDIR += php83
 SUBDIR += php83-extensions
-SUBDIR += py-qt5-qml
 SUBDIR += python
 SUBDIR += python2
 SUBDIR += python3
