@@ -1,0 +1,29 @@
+--- configure.ac.orig	2023-11-14 18:14:35.636274000 -0500
++++ configure.ac	2023-11-14 18:15:36.825637000 -0500
+@@ -1036,7 +1036,7 @@
+ 	AC_DEFINE([BROKEN_READ_COMPARISON], [1],
+ 	    [NetBSD read function is sometimes redirected, breaking atomicio comparisons against it])
+ 	;;
+-*-*-freebsd*)
++*-*-freebsd*|*-*-midnightbsd*)
+ 	AC_DEFINE([LOCKED_PASSWD_PREFIX], ["*LOCKED*"], [Account locked with pw(1)])
+ 	AC_DEFINE([SSH_TUN_FREEBSD], [1], [Open tunnel devices the FreeBSD way])
+ 	AC_CHECK_HEADER([net/if_tap.h], ,
+@@ -1916,6 +1916,8 @@
+ 
+ dnl    Checks for library functions. Please keep in alphabetical order
+ AC_CHECK_FUNCS([ \
++	auth_hostok \
++	auth_timeok \
+ 	Blowfish_initstate \
+ 	Blowfish_expandstate \
+ 	Blowfish_expand0state \
+@@ -5670,7 +5672,7 @@
+ B=`eval echo ${bindir}` ; B=`eval echo ${B}`
+ C=`eval echo ${sbindir}` ; C=`eval echo ${C}`
+ D=`eval echo ${sysconfdir}` ; D=`eval echo ${D}`
+-E=`eval echo ${libexecdir}/ssh-askpass` ; E=`eval echo ${E}`
++E=`eval echo /usr/local/bin/ssh-askpass` ; E=`eval echo ${E}`
+ F=`eval echo ${mandir}/${mansubdir}X` ; F=`eval echo ${F}`
+ G=`eval echo ${piddir}` ; G=`eval echo ${G}`
+ H=`eval echo ${PRIVSEP_PATH}` ; H=`eval echo ${H}`

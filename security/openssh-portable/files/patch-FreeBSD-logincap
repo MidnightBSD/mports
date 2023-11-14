@@ -56,14 +56,3 @@ Date:   Tue Aug 31 15:30:50 2021 -0400
  #ifdef BSD_AUTH
  	if ((as = auth_open()) == NULL || auth_setpwd(as, pw) != 0 ||
  	    auth_approval(as, lc, pw->pw_name, "ssh") <= 0) {
---- configure.ac
-+++ configure.ac
-@@ -1784,6 +1784,8 @@ AC_SUBST([PICFLAG])
- 
- dnl    Checks for library functions. Please keep in alphabetical order
- AC_CHECK_FUNCS([ \
-+	auth_hostok \
-+	auth_timeok \
- 	Blowfish_initstate \
- 	Blowfish_expandstate \
- 	Blowfish_expand0state \
