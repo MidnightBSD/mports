@@ -26,6 +26,7 @@ NO_TEST=	yes
 CPPFLAGS+=	-I${FILESDIR}
 #CPPFLAGS+=      -D_WANT_SEMUN
 CFLAGS+=	-Wno-unknown-attributes -Wno-macro-redefined
+LDFLAGS+=	-Wl,--undefined-version
 
 OPTIONS_DEFINE=		PYTHON
 OPTIONS_SUB=		yes
