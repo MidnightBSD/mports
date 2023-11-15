@@ -1,12 +1,11 @@
-# Created by: Gerhard Häring <gh@ghaering.de>
-
 PORTNAME=	duplicity
-PORTVERSION=	0.8.19
+PORTVERSION=	0.8.23
 CATEGORIES=	sysutils
 MASTER_SITES=	https://code.launchpad.net/duplicity/0.8-series/${PORTVERSION}/+download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backup tool that uses librsync and GnuPG
+WWW=		https://duplicity.nongnu.org
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -21,7 +20,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fasteners>=0:devel/py-fasteners@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}future>0:devel/py-future@${PY_FLAVOR}
 
-USES=		localbase python shebangfix
+USES=		cpe localbase python shebangfix
+CPE_VENDOR=	${PORTNAME}_project
 USE_PYTHON=	autoplist distutils noflavors
 USE_LDCONFIG=	yes
 
@@ -59,6 +59,7 @@ post-patch:
 .for f in cfbackend _cf_cloudfiles _cf_pyrax giobackend
 	@${RM} ${WRKSRC}/${PORTNAME}/backends/${f}.py
 .endfor
+	${REINPLACE_CMD} '/self.inplace = True/d' ${WRKSRC}/setup.py
 
 post-patch-NLS-off:
 	@${REINPLACE_CMD} -e '109,133d' \
