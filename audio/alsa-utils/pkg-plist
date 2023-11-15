@@ -15,7 +15,6 @@ bin/aseqnet
 bin/axfer
 bin/iecset
 bin/speaker-test
-lib/udev/89-alsa-ucm.rules
 lib/udev/90-alsa-restore.rules
 man/fr/man8/alsaconf.8.gz
 man/man1/aconnect.1.gz

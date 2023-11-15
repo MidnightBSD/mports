@@ -1,7 +1,5 @@
-# Created by: Aragon Gouveia <aragon@phat.za.net>
-
 PORTNAME=	alsa-utils
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.3
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.alsa-project.org/pub/utils/ \
 		GENTOO
