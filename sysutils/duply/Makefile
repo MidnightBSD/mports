@@ -1,13 +1,12 @@
 PORTNAME=	duply
-PORTVERSION=	2.1
-PORTREVISION=	1
+DISTVERSION=	2.5.1
 CATEGORIES=	sysutils
-MASTER_SITES=	SF/ftplicity/duply%20%28simple%20duplicity%29/2.1.x/
-#MASTER_SITES=	https://duply.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.x/
+MASTER_SITES=	SOURCEFORGE/ftplicity/duply%20%28simple%20duplicity%29/2.5.x/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shell front end for the duplicity backup tool
+WWW=		https://duply.net
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/gpl-2.0.txt
@@ -24,8 +23,6 @@ PLIST_FILES=	bin/duply ${PERIODICDIR}/${PERIODICFILE}
 PERIODICFILE?=	300.duply
 PERIODICDIR?=	${PREFIX}/etc/periodic/backup
 SUB_FILES=	pkg-message periodic_duply
-
-OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	${REINPLACE_CMD} -e "s,/etc/duply,${ETCDIR},g" ${WRKSRC}/duply
