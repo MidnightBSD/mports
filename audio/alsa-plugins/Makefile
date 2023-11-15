@@ -1,5 +1,3 @@
-# Created by: Aragon Gouveia <aragon@phat.za.net>
-
 PORTNAME=	alsa-plugins
 PORTVERSION=	1.2.2
 PORTREVISION=	9
@@ -13,8 +11,9 @@ GH_PROJECT=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library plugins
+WWW=		https://www.alsa-project.org/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 
 LIB_DEPENDS=	libasound.so:audio/alsa-lib
 
