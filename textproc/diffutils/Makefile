@@ -5,8 +5,9 @@ MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU diff utilities
+WWW=		https://www.gnu.org/software/diffutils/diffutils.html
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 LIB_DEPENDS=	libsigsegv.so:devel/libsigsegv
 
