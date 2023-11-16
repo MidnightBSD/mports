@@ -1,5 +1,4 @@
-@comment $FreeBSD: ports/devel/dmalloc/pkg-plist,v 1.4 2007/07/09 17:58:30 miwi Exp $
-bin/dmalloc
+@(,,755) bin/dmalloc
 include/dmalloc.h
 lib/libdmalloc.a
 lib/libdmalloc.so
@@ -14,6 +13,4 @@ lib/libdmallocxx.a
 lib/libdmallocxx.so
 lib/libdmallocxx.so.1
 %%PORTDOCS%%%%DOCSDIR%%/dmalloc.html
-%%PORTDOCS%%%%DOCSDIR%%/dmalloc.pdf
-%%PORTDOCS%%%%DOCSDIR%%/dmalloc.texi
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%PORTDOCS%%%%DOCSDIR%%/INSTALL.txt
