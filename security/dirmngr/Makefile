@@ -8,6 +8,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client for managing and downloading certificate revocation lists
+WWW=		https://www.gnupg.org/aegypten2
 
 LICENSE=	gpl2
 
