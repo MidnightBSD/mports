@@ -1,0 +1,11 @@
+--- ec2_configinit.orig	2023-11-16 15:58:38 UTC
++++ ec2_configinit
+@@ -3,7 +3,7 @@
+ # KEYWORD: firstboot
+ # PROVIDE: ec2_configinit
+ # REQUIRE: NETWORKING
+-# BEFORE: SERVERS ec2_fetchkey firstboot_freebsd_update firstboot_pkgs
++# BEFORE: SERVERS ec2_fetchkey firstboot_midnightbsd_update firstboot_pkgs
+ 
+ # Define ec2_configinit_enable=YES in /etc/rc.conf to enable automatic
+ # system configuration from EC2 user-data when the system first boots.
