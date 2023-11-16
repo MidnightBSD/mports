@@ -1,14 +1,13 @@
-# Created by: Ying-Chieh Liao <ijliao@FreeBSD.org>
-
 PORTNAME=	grc
-PORTVERSION=	1.11.1
+PORTVERSION=	1.13
 DISTVERSIONPREFIX=	v
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic Colouriser
+WWW=		http://kassiopeia.juls.savba.sk/~garabik/software/grc.html
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GITHUB=	yes
@@ -32,6 +31,7 @@ post-patch:
 		 s|/usr/local/share/grc|${DATADIR}|g ; \
 		 s|, /usr/share/grc/||g' ${WRKSRC}/${i}.1
 .endfor
+	(cd ${FILESDIR} && ${CP} colourfiles/conf.* ${WRKSRC}/colourfiles)
 
 do-install:
 .for i in grc grcat
