@@ -1,4 +1,5 @@
-SHA256 (dirmngr-1.1.0.tar.bz2) = eb76d92749d8f9314094376dc3896871c441b0f34b57f25a446c6178a16c93cf
-SIZE (dirmngr-1.1.0.tar.bz2) = 556406
-SHA256 (dirmngr-1.1.0.tar.bz2.sig) = fa19e7a45db57492094e72610db7f46f72402c6b6f1fa02c074d9de79929d0e6
-SIZE (dirmngr-1.1.0.tar.bz2.sig) = 158
+TIMESTAMP = 1700147982
+SHA256 (dirmngr-1.1.1.tar.bz2) = d2280b8c314db80cdaf101211a47826734443436f5c3545cc1b614c50eaae6ff
+SIZE (dirmngr-1.1.1.tar.bz2) = 566929
+SHA256 (dirmngr-1.1.1.tar.bz2.sig) = 451c351cc0a3584e7550f1e32dbab6e376b0b8b7ecd2cafc4674000c593e7817
+SIZE (dirmngr-1.1.1.tar.bz2.sig) = 287
