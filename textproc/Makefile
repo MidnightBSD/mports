@@ -367,6 +367,7 @@ SUBDIR += xhtml-modularization
 SUBDIR += xml2rfc
 SUBDIR += xmlcatmgr
 SUBDIR += xmlcharent
+SUBDIR += xmlstarlet
 SUBDIR += xmlto
 SUBDIR += ydiff
 SUBDIR += yelp-tools
