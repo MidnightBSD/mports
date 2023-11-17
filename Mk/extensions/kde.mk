@@ -139,7 +139,7 @@ GL_TAGNAME=		${_invent_hash}
 
 .    if defined(_KDE_CATEGORY)
 # KDE is normally licensed under the LGPL 2.0.
-LICENSE?=		lgpl2
+LICENSE?=		lgpl
 
 # Set CPE Vendor Information
 #    As _KDE_CATEGORY is set we can assume it is port release by KDE and the
