@@ -76,6 +76,7 @@ SUBDIR += qt6-quick3d
 SUBDIR += qt6-quicktimeline
 SUBDIR += qt6-shadertools
 SUBDIR += qt6-virtualkeyboard
+SUBDIR += qt6pas
 SUBDIR += sdl_pango
 SUBDIR += shared-desktop-ontologies
 SUBDIR += tk-wrapper
