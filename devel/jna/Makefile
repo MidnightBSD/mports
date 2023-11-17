@@ -1,9 +1,11 @@
 PORTNAME=	jna
 PORTVERSION=	5.7.0
+PORTREVISION=	1
 CATEGORIES=	devel java
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java access to native shared libraries
+WWW=		https://github.com/twall/jna
 
 LICENSE=	apache2 lgpl2.1
 LICENSE_COMB=	dual
@@ -11,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_armv6=		fails to compile: build.xml: compilation failed
 BROKEN_armv7=		fails to compile: build.xml: compilation failed
+
+BUILD_DEPENDS=	makeinfo:print/texinfo
 
 USES=		autoreconf:build gmake libtool xorg
 USE_ANT=	yes
