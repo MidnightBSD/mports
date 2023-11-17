@@ -1,25 +1,30 @@
 PORTNAME=	libdbusmenu-qt
 PORTVERSION=	${MAJOR_VER}.${SNAPSHOT_VER:S/.//g}
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	devel
 MASTER_SITES=	http://archive.ubuntu.com/ubuntu/pool/main/libd/${PORTNAME}/ \
 		FREEBSD_LOCAL/tcberner/${PORTNAME}/${PORTVERSION}
-PKGNAMESUFFIX=	5
 DISTNAME=	${PORTNAME}_${MAJOR_VER}+${SNAPSHOT_VER}.orig
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt5 implementation of the DBusMenu protocol
+COMMENT=	Qt${PKGNAMESUFFIX} implementation of the DBusMenu protocol
 WWW=		https://launchpad.net/libdbusmenu-qt
 
 LICENSE=	lgpl
 
-USES=		compiler:c++11-lib cmake qt:5
+FLAVORS=	qt5 qt6
+FLAVOR?=	qt5
+qt5_PKGNAMESUFFIX=	5
+qt6_PKGNAMESUFFIX=	6
+
+USES=		compiler:c++11-lib cmake qt:${FLAVOR:S/qt//}
 USE_LDCONFIG=	yes
-USE_QT=		core dbus gui widgets \
-		buildtools_build qmake_build
-CMAKE_ON=	USE_QT5
-CMAKE_OFF=	USE_QT4
-QTVER_SUFFIX=	5
+_USE_QT5=	core dbus gui widgets \
+		buildtools:build qmake:build
+_USE_QT6=	base
+USE_QT=		${_USE_QT${FLAVOR:S/qt//}}
+CMAKE_ON=	USE_QT${FLAVOR:S/qt//}
+QTVER_SUFFIX=	${FLAVOR:S/qt//}
 
 OPTIONS_DEFINE=		DOXYGEN
 OPTIONS_SUB=		YES
