@@ -110,6 +110,7 @@ SUBDIR += poe
 SUBDIR += pwcview
 SUBDIR += py-gstreamer1
 SUBDIR += qt5-multimedia
+SUBDIR += qt6-multimedia
 SUBDIR += quvi
 SUBDIR += rtmpdump
 SUBDIR += schroedinger
