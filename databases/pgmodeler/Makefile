@@ -7,6 +7,7 @@ CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PostgreSQL Database Modeler
+WWW=		http://pgmodeler.com.br/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
