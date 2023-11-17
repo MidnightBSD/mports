@@ -1190,6 +1190,7 @@ SUBDIR += qt6-5compat
 SUBDIR += qt6-base
 SUBDIR += qt6-languageserver
 SUBDIR += qt6-positioning
+SUBDIR += qt6-remoteobjects
 SUBDIR += qt6-tools
 SUBDIR += qt6-translations
 SUBDIR += qtcreator
