@@ -4,7 +4,7 @@
              set(no_undefined_flag "-Wl,--no-undefined")
          endif()
  
-+        if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++        if (CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
 +             set(no_undefined_flag "")
 +        endif()
 +
