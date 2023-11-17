@@ -12,6 +12,7 @@ SUBDIR += orca
 SUBDIR += py-atspi
 SUBDIR += py-speech-dispatcher
 SUBDIR += qt5-speech
+SUBDIR += qt6-speech
 SUBDIR += speech-dispatcher
 SUBDIR += yasr
 
