@@ -3344,6 +3344,10 @@ lib/cmake/Qt6Xml/Qt6XmlVersionlessTargets.cmake
 %%QT_MKSPECDIR%%/freebsd-clang/qplatformdefs.h
 %%QT_MKSPECDIR%%/freebsd-g++/qmake.conf
 %%QT_MKSPECDIR%%/freebsd-g++/qplatformdefs.h
+%%QT_MKSPECDIR%%/midnightbsd-clang/qmake.conf
+%%QT_MKSPECDIR%%/midnightbsd-clang/qplatformdefs.h
+%%QT_MKSPECDIR%%/midnightbsd-g++/qmake.conf
+%%QT_MKSPECDIR%%/midnightbsd-g++/qplatformdefs.h
 %%QT_MKSPECDIR%%/haiku-g++/qmake.conf
 %%QT_MKSPECDIR%%/haiku-g++/qplatformdefs.h
 %%QT_MKSPECDIR%%/hpuxi-g++-64/qmake.conf
