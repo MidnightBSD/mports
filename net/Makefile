@@ -179,6 +179,7 @@ SUBDIR += py-uritemplate
 SUBDIR += py-urllib3
 SUBDIR += qt5-network
 SUBDIR += qt5-networkauth
+SUBDIR += qt6-networkauth
 SUBDIR += rabbitmq
 SUBDIR += rabbitmq-c
 SUBDIR += rclone
