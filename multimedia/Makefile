@@ -14,6 +14,7 @@ SUBDIR += emby-server46
 SUBDIR += ffmpeg
 SUBDIR += ffmpegthumbnailer
 SUBDIR += ffms2
+SUBDIR += ffnvcodec-headers
 SUBDIR += gmp-api
 SUBDIR += gpac-libgpac
 SUBDIR += gstreamer1
