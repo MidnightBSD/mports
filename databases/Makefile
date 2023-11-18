@@ -204,6 +204,7 @@ SUBDIR += qt5-sqldrivers-pgsql
 SUBDIR += qt5-sqldrivers-sqlite2
 SUBDIR += qt5-sqldrivers-sqlite3
 SUBDIR += qt5-sqldrivers-tds
+SUBDIR += qt6-base_sqldriver
 SUBDIR += redis
 SUBDIR += redis62
 SUBDIR += rrdtool
