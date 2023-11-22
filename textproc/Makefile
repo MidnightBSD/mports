@@ -291,6 +291,7 @@ SUBDIR += py-sphinx-autodoc-typehints
 SUBDIR += py-sphinx-basic-ng
 SUBDIR += py-sphinx-copybutton
 SUBDIR += py-sphinx-inline-tabs
+SUBDIR += py-sphinx-markdown-tables
 SUBDIR += py-sphinx-me
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-adadomain

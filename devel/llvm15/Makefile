@@ -272,7 +272,13 @@ TARGET_ABI=	-gnueabi
 TARGET_ABI=
 .endif
 
-CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${OPSYS:tl}${OSREL}${TARGET_ABI}
+.if ${OSVERSION} < 300000
+FTARGET=freebsd11.4
+.else
+FTARGET=freebsd12.4
+.endif
+
+CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${FTARGET}${TARGET_ABI}
 # ----------- end of sync block --------------------
 
 .if ${PORT_OPTIONS:MCLANG}
@@ -619,89 +625,89 @@ post-patch-LLD-on:
 		${WRKSRC}/lld/docs/conf.py
 
 post-install:
-	${RM} -r ${STAGEDIR}${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
+	${RM} -r ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
-	    ${STAGEDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
+	    ${FAKE_DESTDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
 .for command in ${COMMANDS:C/^/XXXX/1:NXXXX*}
-	${LN} -f ${STAGEDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX} \
-	    ${STAGEDIR}${PREFIX}/bin/${command}${LLVM_SUFFIX}
+	${LN} -f ${FAKE_DESTDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX} \
+	    ${FAKE_DESTDIR}${PREFIX}/bin/${command}${LLVM_SUFFIX}
 .endfor
 
 post-install-DOCS-on:
-	${RM} -r ${STAGEDIR}${DOCSDIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/doc/LLVM/* ${STAGEDIR}${DOCSDIR}
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc/LLVM
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc/LLVM/* ${FAKE_DESTDIR}${DOCSDIR}
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc/LLVM
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc
 .for _man in ${MAN1SRCS}
-	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/${_man} \
-	    ${STAGEDIR}${MANPREFIX}/man/man1/${_man:R}${LLVM_SUFFIX}.1
+	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/${_man} \
+	    ${FAKE_DESTDIR}${MANPREFIX}/man/man1/${_man:R}${LLVM_SUFFIX}.1
 .endfor
 .if ! ${PORT_OPTIONS:MLIT}
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/lit.1
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
+	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
+	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
 .if ! ${PORT_OPTIONS:MLLDB}
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/lldb-tblgen.1
+	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lldb-tblgen.1
 .endif
 .if ! ${PORT_OPTIONS:MMLIR}
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/mlir-tblgen.1
+	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/mlir-tblgen.1
 .endif
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 
 .if ${PORT_OPTIONS:MCLANG}
 post-install-DOCS-off:
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/
+	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 .endif
 
 post-install-CLANG-on:
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/clang \
-	   ${STAGEDIR}${LLVM_PREFIX}/bin/clang-cpp
+	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/clang \
+	   ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/clang-cpp
 	${INSTALL_PROGRAM} ${WRKDIR}/.build/bin/clang-tblgen \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/toolchains/
+	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/toolchains/
 	${INSTALL_DATA} ${WRKDIR}/xtoolchain.mk \
-	    ${STAGEDIR}${PREFIX}/share/toolchains/llvm${LLVM_SUFFIX}.mk
+	    ${FAKE_DESTDIR}${PREFIX}/share/toolchains/llvm${LLVM_SUFFIX}.mk
 
 post-install-EXTRAS-on:
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/clang-tidy/misc/ConfusableTable
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/clang-tidy/misc/ConfusableTable
 post-install-FLANG-on:
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/Optimizer/CodeGen/CMakeFiles
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/Optimizer/Dialect/CMakeFiles
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/Optimizer/Transforms/CMakeFiles
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/Optimizer/CMakeFiles
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/CMakeFiles
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/flang-new \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/flang
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/CodeGen/CMakeFiles
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/Dialect/CMakeFiles
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/Transforms/CMakeFiles
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/CMakeFiles
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/CMakeFiles
+	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/flang-new \
+	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/flang
 
 post-install-LIT-on:
 	${INSTALL_SCRIPT} ${PATCH_WRKSRC}/llvm/utils/lit/lit.py \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/lit
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/llvm-lit
+	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/lit
+	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/lit \
+	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/llvm-lit
 	${LN} -fs ../${LLVM_DIR}/bin/lit \
-	    ${STAGEDIR}${PREFIX}/bin/lit${LLVM_SUFFIX}
+	    ${FAKE_DESTDIR}${PREFIX}/bin/lit${LLVM_SUFFIX}
 	${LN} -fs ../${LLVM_DIR}/bin/llvm-lit \
-	    ${STAGEDIR}${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
-	${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
-	${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/builtin_commands
-	${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/formats
+	    ${FAKE_DESTDIR}${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
+	${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
+	${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/builtin_commands
+	${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/formats
 	${INSTALL_DATA} ${WRKSRC}/llvm/utils/lit/lit/*.py \
-	    ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
+	    ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_DATA} ${WRKSRC}/llvm/utils/lit/lit/builtin_commands/*.py \
-			${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/builtin_commands
+			${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/builtin_commands
 	${INSTALL_DATA} ${WRKSRC}/llvm/utils/lit/lit/formats/*.py \
-			${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/formats
+			${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}/formats
 	${INSTALL_PROGRAM} ${WRKDIR}/.build/bin/FileCheck \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/
+	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/
 	${LN} -fs ../${LLVM_DIR}/bin/FileCheck \
-	    ${STAGEDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
+	    ${FAKE_DESTDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
 
 post-install-LLD-on:
-	${LN} -s ld.lld ${STAGEDIR}${LLVM_PREFIX}/bin/ld
+	${LN} -s ld.lld ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/ld
 
 TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 do-test:
@@ -714,10 +720,10 @@ do-test:
 
 
 post-install-STATIC_LIBS-off:
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/lib/lib*.a
+	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/lib*.a
 
 build-plist:
-	@[ -d ${STAGEDIR} ] || (echo "Can't make plist before package is staged ${STAGEDIR}" && exit 1)
+	@[ -d ${FAKE_DESTDIR} ] || (echo "Can't make plist before package is staged ${FAKE_DESTDIR}" && exit 1)
 	${RM} ${PLIST} ${PLIST}.tmp
 	${ECHO_CMD} "@comment >>>>> GENERATED FILE, DO NOT EDIT <<<<<" >> ${PLIST}.tmp
 	${ECHO_CMD} "@comment Alter build-plist target and regenerate as required" >> ${PLIST}.tmp
@@ -729,10 +735,10 @@ build-plist:
 	${ECHO_CMD} %%LIT%%${LLVM_DIR:C|${LLVM_SUFFIX}|%%LLVM_SUFFIX%%|}/bin/${command} >> ${PLIST}.tmp
 .endfor
 
-	${FIND} ${STAGEDIR}${LLVM_PREFIX} -type f -o -type l | \
+	${FIND} ${FAKE_DESTDIR}${LLVM_PREFIX} -type f -o -type l | \
 	    ${GREP} -v '_ignorelist.txt$$' | \
 	    ${GREP} -v '[/-]lit$$' | ${GREP} -v 'FileCheck$$' | \
-	    ${GREP} -v man/man1 | ${SED} -e 's|${STAGEDIR}${PREFIX}/||' \
+	    ${GREP} -v man/man1 | ${SED} -e 's|${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
 	    -e 's|${PYTHON_SITELIBDIR:C|${PREFIX}/||}|%%PYTHON_SITELIBDIR%%|' \
 	    -e 's|${PYTHON_EXT_SUFFIX:C/\./\\./g}${PYTHON_ABIVER}|%%PYTHON_EXT_SUFFIX%%%%PYTHON_ABIVER%%|' \
 	    -e 's|${LLVM_RELEASE}|%%LLVM_RELEASE%%|' \
@@ -742,8 +748,8 @@ build-plist:
 	    -e 's|\([^0-9]\)${LLVM_MAJOR}$$|\1%%LLVM_MAJOR%%|' \
 	    -e 's|\([^0-9]\)${LLVM_MAJOR}\([^0-9]\)|\1%%LLVM_MAJOR%%\2|' \
 	    | ${SORT} >> ${PLIST}.tmp
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
-	    ${SED} -e 's|${STAGEDIR}${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' \
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
+	    ${SED} -e 's|${FAKE_DESTDIR}${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' \
 	    -e 's|${LLVM_RELEASE:C/\./\\./g}|%%LLVM_RELEASE%%|' \
 	    -e 's|${LLVM_SUFFIX:C/\./\\./g}|%%LLVM_SUFFIX%%|' \
 	    -e 's|\([^0-9]\)${LLVM_MAJOR}$$|\1%%LLVM_MAJOR%%|' \
@@ -769,7 +775,7 @@ build-plist:
 
 check-commands:
 .for command in ${COMMANDS}
-	test -e ${STAGEDIR}${LLVM_PREFIX}/bin/${command}
+	test -e ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/${command}
 .endfor
 
 .include <bsd.port.post.mk>
