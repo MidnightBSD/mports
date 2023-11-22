@@ -197,6 +197,7 @@ SUBDIR += py-pylsqpack
 SUBDIR += py-python-dotenv
 SUBDIR += py-multidict
 SUBDIR += py-qt5-webengine
+SUBDIR += py-qt6-webengine
 SUBDIR += py-requests
 SUBDIR += py-requests-aws4auth
 SUBDIR += py-requests-cache
