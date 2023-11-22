@@ -210,9 +210,9 @@
     SUBDIR += sgifonts
     SUBDIR += sharefonts
     SUBDIR += showfont
-    SUBDIR += sourcecodepro-ttf
-    SUBDIR += sourcesanspro-ttf
-    SUBDIR += sourceserifpro-ttf
+    SUBDIR += source-code-pro-ttf
+    SUBDIR += source-sans-ttf
+    SUBDIR += source-serif-ttf
     SUBDIR += spleen
     SUBDIR += steps-mono
     SUBDIR += stix-fonts

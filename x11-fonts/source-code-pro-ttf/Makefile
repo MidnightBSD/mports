@@ -1,31 +1,26 @@
-# Created by: Masaki TAGAWA <masaki@club.kyutech.ac.jp>
-
-PORTNAME=	sourcecodepro
-PORTVERSION=	2.030
-PORTREVISION=	1
-DISTVERSIONSUFFIX=	R-ro/1.050R-it
+PORTNAME=	source-code-pro
+PORTVERSION=	2.042
 CATEGORIES=	x11-fonts
 PKGNAMESUFFIX=	-ttf
+MASTER_SITES=	https://github.com/adobe-fonts/source-code-pro/releases/download/${PORTVERSION}R-u%2F1.062R-i%2F1.026R-vf/
+DISTNAME=	TTF-source-code-pro-${PORTVERSION}R-u_1.062R-i
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of fonts by Adobe designed for coders
+WWW=		https://github.com/adobe-fonts/source-code-pro
 
 LICENSE=	OFL11
-LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-PORTSCOUT=	skipv:variable-fonts
-
-USES=		fonts
+USES=		fonts zip
 
 NO_ARCH=	yes
 NO_BUILD=	yes
+NO_WRKSUBDIR=	yes
 
 FONTNAME=	SourceCodePro
 SUB_FILES=	pkg-message
 
-GH_ACCOUNT=	adobe-fonts
-GH_PROJECT=	source-code-pro
-USE_GITHUB=	yes
+PORTSCOUT=	skipv:variable-fonts
 
 do-install:
 	${MKDIR} ${STAGEDIR}${FONTSDIR}/
