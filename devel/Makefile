@@ -1271,6 +1271,7 @@ SUBDIR += thunar-vcs-plugin
 SUBDIR += tmake
 SUBDIR += tradcpp
 SUBDIR += tree-sitter
+SUBDIR += trio
 SUBDIR += universal-ctags
 SUBDIR += upnp
 SUBDIR += utf8cpp
