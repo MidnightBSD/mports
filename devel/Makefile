@@ -956,6 +956,7 @@ SUBDIR += py-grpcio-gcp
 SUBDIR += py-grpcio-status
 SUBDIR += py-grpcio-tools
 SUBDIR += py-gyp
+SUBDIR += py-hatch-fancy-pypi-readme
 SUBDIR += py-hatchling
 SUBDIR += py-hgtools
 SUBDIR += py-hypothesis
