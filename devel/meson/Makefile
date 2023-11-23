@@ -11,8 +11,12 @@ WWW=		https://mesonbuild.com/
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+
 USES=		ninja:run python:3.7+ shebangfix
-USE_PYTHON=	autoplist distutils noflavors
+USE_PYTHON=	autoplist pep517
 SHEBANG_FILES=	mesonbuild/rewriter.py \
 		mesonbuild/scripts/cmake_run_ctgt.py
 NO_ARCH=	yes
