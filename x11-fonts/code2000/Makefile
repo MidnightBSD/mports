@@ -1,5 +1,3 @@
-# Created by: Thierry Thomas <thierry@pompo.net>
-
 PORTNAME=	code2000
 PORTVERSION=	1.171
 CATEGORIES=	x11-fonts
@@ -9,6 +7,7 @@ DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shareware demo Unicode TrueType font
+WWW=		https://en.wikipedia.org/wiki/Code2000
 
 LICENSE=	other
 
