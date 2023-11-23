@@ -17,4 +17,10 @@ SHEBANG_FILES=	mesonbuild/rewriter.py \
 		mesonbuild/scripts/cmake_run_ctgt.py
 NO_ARCH=	yes
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_VER} != ${PYTHON_DEFAULT}
+PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
+.endif
+
+.include <bsd.port.post.mk>
