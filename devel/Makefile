@@ -1069,6 +1069,7 @@ SUBDIR += py-pytest-isort
 SUBDIR += py-pytest-mock
 SUBDIR += py-pytest-mypy
 SUBDIR += py-pytest-runner
+SUBDIR += py-pytest-services
 SUBDIR += py-pytest-subtests
 SUBDIR += py-pytest-timeout
 SUBDIR += py-pytest-xdist

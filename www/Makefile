@@ -188,6 +188,7 @@ SUBDIR += py-html5lib
 SUBDIR += py-httpbin
 SUBDIR += py-httpcore
 SUBDIR += py-httplib2
+SUBDIR += py-httpx
 SUBDIR += py-httpx013
 SUBDIR += py-hyperframe
 SUBDIR += py-hyperlink
