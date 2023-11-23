@@ -5,6 +5,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org syscons display driver
+WWW=		https://github.com/rayddteam/xf86-video-scfb
 
 LICENSE=       mit bsd2
 LICENSE_COMB=  multi
