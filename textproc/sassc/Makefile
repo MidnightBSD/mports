@@ -1,9 +1,10 @@
 PORTNAME=	sassc
-PORTVERSION=	3.6.0
+PORTVERSION=	3.6.1
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper around libsass
+WWW=		https://libsass.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
