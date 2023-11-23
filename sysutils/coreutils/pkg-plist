@@ -97,7 +97,6 @@ bin/guname
 bin/gunexpand
 bin/guniq
 bin/gunlink
-bin/guptime
 bin/gusers
 bin/gvdir
 bin/gwc
@@ -203,7 +202,6 @@ man/man1/guname.1.gz
 man/man1/gunexpand.1.gz
 man/man1/guniq.1.gz
 man/man1/gunlink.1.gz
-man/man1/guptime.1.gz
 man/man1/gusers.1.gz
 man/man1/gvdir.1.gz
 man/man1/gwc.1.gz
