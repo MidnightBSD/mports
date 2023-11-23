@@ -1,5 +1,3 @@
-# Created by: mi@aldan.algebra.com
-
 PORTNAME=	cyr-rfx-${CYR_RFX_ENCODING}
 PORTVERSION=	1.1
 CATEGORIES=	x11-fonts ukrainian russian
@@ -8,6 +6,7 @@ EXTRACT_SUFX=	.bdfs.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cyrillic X11 bitmap fonts from CYR-RFX project
+WWW=		https://www.inp.nsk.su/~bolkhov/files/fonts/cyr-rfx/00index.en.html
 
 LICENSE=	unknown
 
