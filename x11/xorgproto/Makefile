@@ -1,5 +1,5 @@
 PORTNAME=	xorgproto
-DISTVERSION=	2022.1
+DISTVERSION=	2023.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -8,7 +8,7 @@ WWW=		https://gitlab.freedesktop.org/xorg/proto/xorgproto
 
 LICENSE=	mit
 
-USES=		xorg-cat:proto
+USES=		tar:xz xorg-cat:proto
 
 CONFIGURE_ARGS= --without-fop \
 		--without-xmlto \
