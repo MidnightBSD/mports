@@ -194,6 +194,7 @@ SUBDIR += py-httpx013
 SUBDIR += py-hyperframe
 SUBDIR += py-hyperlink
 SUBDIR += py-django32
+SUBDIR += py-django-gravatar2
 SUBDIR += py-pecan
 SUBDIR += py-priority
 SUBDIR += py-pyjwt
