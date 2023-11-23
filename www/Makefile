@@ -26,6 +26,7 @@ SUBDIR += googler
 SUBDIR += gstreamer1-plugins-neon
 SUBDIR += gstreamer1-plugins-srt
 SUBDIR += http-parser
+SUBDIR += hypermail
 SUBDIR += joomla3
 SUBDIR += joomla4
 SUBDIR += libapreq2
