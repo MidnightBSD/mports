@@ -29,11 +29,11 @@ lib/cmake/libxslt/libxslt-config.cmake
 %%STATIC%%lib/libexslt.a
 lib/libexslt.so
 lib/libexslt.so.0
-lib/libexslt.so.0.8.20
+lib/libexslt.so.0.8.21
 %%STATIC%%lib/libxslt.a
 lib/libxslt.so
 lib/libxslt.so.1
-lib/libxslt.so.1.1.37
+lib/libxslt.so.1.1.39
 lib/xsltConf.sh
 libdata/pkgconfig/libexslt.pc
 libdata/pkgconfig/libxslt.pc
