@@ -3,7 +3,7 @@ PORTVERSION=	${GDCM_MAJOR}.${GDCM_MINOR}.${GDCM_PATCH}
 CATEGORIES=	devel
 MASTER_SITES=	SF/gdcm/gdcm%20${GDCM_MAJOR}.x/GDCM%20${PORTVERSION}
 
-MAINTAINER=	stephen@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Grassroots DICOM library
 WWW=		http://gdcm.sourceforge.net/
 
