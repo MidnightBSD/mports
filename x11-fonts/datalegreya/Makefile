@@ -1,11 +1,10 @@
-# Created by: Thierry Thomas <thierry@pompo.net>
-
 PORTNAME=	datalegreya
 PORTVERSION=	0.2017.03.29
 CATEGORIES=	x11-fonts math textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Typeface that melts text and data visualisation
+WWW=		https://figs-lab.com/en/datalegreya
 
 LICENSE=	OFL11
 LICENSE_FILE=	${WRKSRC}/SIL\ Open\ Font\ License.txt
