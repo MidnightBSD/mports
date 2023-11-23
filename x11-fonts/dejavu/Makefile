@@ -1,22 +1,23 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
 PORTNAME=	dejavu
 PORTVERSION=	2.37
 DISTVERSIONPREFIX=	fonts-ttf-
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_${PORTVERSION:R}_${PORTVERSION:E}/
 
+PATCH_SITES=	https://github.com/dejavu-fonts/dejavu-fonts/commit/
+PATCHFILES=	d9ee532b4f0a879372bdb006ac85d7807629ea98.patch:-p1
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera Fonts clone with a wider range of characters
+WWW=		https://dejavu-fonts.github.io/
 
 LICENSE=	AMS AREV BITSTREAM
 LICENSE_COMB=	multi
 LICENSE_NAME_AMS=	AMSFonts Copyright version 2.2
 LICENSE_NAME_AREV=	Arev Fonts Copyright
 LICENSE_NAME_BITSTREAM=	Bitstream Vera Fonts Copyright
-LICENSE_FILE_AMS=	${WRKSRC}/LICENSE
-LICENSE_FILE_AREV=	${WRKSRC}/LICENSE
-LICENSE_FILE_BITSTREAM=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS_AMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_AREV=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_BITSTREAM=dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
