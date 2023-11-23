@@ -7,6 +7,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small build system closest in spirit to Make
+WWW=		https://ninja-build.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
