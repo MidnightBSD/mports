@@ -7,6 +7,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org amdgpu display driver
+WWW=		https://www.x.org/wiki/RadeonFeature/
 
 PATCH_SITES=	https://gitlab.freedesktop.org/xorg/driver/${PORTNAME}/-/commit/
 PATCHFILES+=	77b13493.patch:-p1 # https://gitlab.freedesktop.org/xorg/driver/xf86-video-amdgpu/-/merge_requests/77
@@ -14,9 +15,9 @@ PATCHFILES+=	77b13493.patch:-p1 # https://gitlab.freedesktop.org/xorg/driver/xf8
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-# No amdgpu kernel driver on non-x86 and PC98.
-ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64le
-ONLY_FOR_ARCHS_REASON=	KMS is required and currently only available on x86/arm64/powerpc64le
+# No amdgpu kernel driver on non-x86
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
+ONLY_FOR_ARCHS_REASON=	KMS is required and currently only available on x86/arm64
 
 LIB_DEPENDS=	libdrm_amdgpu.so:graphics/libdrm
 
