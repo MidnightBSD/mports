@@ -1,12 +1,13 @@
 PORTNAME=	gnome-shell
-PORTVERSION=	42.2
-PORTREVISION=	2
+PORTVERSION=	42.4
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Next generation GNOME desktop shell
+WWW=		https://live.gnome.org/GnomeShell
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -33,7 +34,7 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
 		libpolkit-agent-1.so:sysutils/polkit \
 		libpulse.so:audio/pulseaudio \
 		libsecret-1.so:security/libsecret \
-		libsoup-2.4.so:devel/libsoup \
+		libsoup-3.0.so:devel/libsoup3 \
 		libstartup-notification-1.so:x11/startup-notification
 RUN_DEPENDS=	gdm:x11/gdm \
 		gkbd-keyboard-display:x11/libgnomekbd \
@@ -41,14 +42,13 @@ RUN_DEPENDS=	gdm:x11/gdm \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 cpe gettext gl gnome libtool localbase meson \
-		pathfix perl5 pkgconfig python:3.4+ shebangfix tar:xz \
+USES=		compiler:c11 cpe gettext gl gnome gstreamer libtool localbase \
+		meson pathfix perl5 pkgconfig python shebangfix tar:xz \
 		webplugin:native xorg
 USE_GNOME=	cairo evolutiondataserver3 gdkpixbuf2 gnomedesktop3 gtk40 \
 		introspection libxml2 libxslt:build
 USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr xtst
 USE_GL=		egl gbm
-USE_GSTREAMER1=	yes
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	src/gnome-shell-extension-tool.in src/gnome-shell-perf-tool.in
@@ -59,12 +59,13 @@ WEBPLUGIN_DIR=	${PREFIX}/lib/mozilla/plugins/
 WEBPLUGIN_FILES=	libgnome-shell-browser-plugin.so
 
 MESON_ARGS=	-Dnetworkmanager=false \
+		-Dsoup2=false \
 		-Dsystemd=false \
 		-Dtests=false
 CPE_VENDOR=	gnome
 
-GLIB_SCHEMAS=	org.gnome.shell.gschema.xml \
-		00_org.gnome.shell.gschema.override
+GLIB_SCHEMAS=	00_org.gnome.shell.gschema.override \
+		org.gnome.shell.gschema.xml
 
 .if exists(/usr/bin/ld.lld) && ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
 # Work around "New rpath must not be longer than the old one."

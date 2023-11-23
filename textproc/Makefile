@@ -86,6 +86,7 @@ SUBDIR += libwpd
 SUBDIR += libwpd010
 SUBDIR += libxml++26
 SUBDIR += libxml2
+SUBDIR += libxmlb
 SUBDIR += libxslt
 SUBDIR += libyaml
 SUBDIR += linux-c7-aspell
