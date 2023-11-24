@@ -51,7 +51,7 @@ LICENSE=	epl
 ONLY_FOR_ARCHS=	amd64 powerpc64 powerpc64le
 
 BUILD_DEPENDS=	git:devel/git@lite \
-		${LOCALBASE}/share/java/maven/bin/mvn:java/maven \
+		${LOCALBASE}/share/java/apache-maven-3.8/bin/mvn:java/maven \
 		zip:archivers/zip
 LIB_DEPENDS=	libsecret-1.so:security/libsecret \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
