@@ -1,3 +1,3 @@
-TIMESTAMP = 1700767515
-SHA256 (coreutils-9.2.tar.xz) = 6885ff47b9cdb211de47d368c17853f406daaf98b148aaecdf10de29cc04b0b3
-SIZE (coreutils-9.2.tar.xz) = 5773008
+TIMESTAMP = 1700806320
+SHA256 (coreutils-9.4.tar.xz) = ea613a4cf44612326e917201bbbcdfbd301de21ffc3b59b6e5c07e040b275e52
+SIZE (coreutils-9.4.tar.xz) = 5979200
