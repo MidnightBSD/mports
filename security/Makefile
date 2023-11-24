@@ -201,6 +201,7 @@ SUBDIR += py-pycryptodome
 SUBDIR += py-pycryptodomex
 SUBDIR += py-pynacl
 SUBDIR += py-python-pam
+SUBDIR += py-python3-openid
 SUBDIR += py-rsa
 SUBDIR += py-scramp
 SUBDIR += py-service_identity
