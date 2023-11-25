@@ -230,6 +230,7 @@
 %%POLARIS11%%/%%KMODDIR%%/amdgpu_polaris11_smc_sk_bin.ko
 %%POLARIS11%%/%%KMODDIR%%/amdgpu_polaris11_uvd_bin.ko
 %%POLARIS11%%/%%KMODDIR%%/amdgpu_polaris11_vce_bin.ko
+%%POLARIS12%%/%%KMODDIR%%/amdgpu_polaris12_32_mc_bin.ko
 %%POLARIS12%%/%%KMODDIR%%/amdgpu_polaris12_ce_2_bin.ko
 %%POLARIS12%%/%%KMODDIR%%/amdgpu_polaris12_ce_bin.ko
 %%POLARIS12%%/%%KMODDIR%%/amdgpu_polaris12_k_mc_bin.ko
