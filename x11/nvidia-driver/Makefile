@@ -11,7 +11,7 @@
 # ``make DISTVERSION=xxx.yy.zz -DNO_CHECKSUM'' should typically work.
 
 PORTNAME?=	nvidia-driver
-DISTVERSION?=	510.60.02
+DISTVERSION?=	535.104.05
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11
@@ -21,6 +21,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	NVidia graphics card binary drivers for hardware OpenGL rendering
+WWW=		https://www.nvidia.com/object/unix.html
 
 LICENSE_FILE=	${WRKSRC}/doc/license.txt
 .include "${.CURDIR}/../nvidia-driver/Makefile.common"
@@ -84,6 +85,10 @@ NVSRC=		.
 NVSRC=		nvidia
 .endif
 
+.if ${NVVERSION} >= 530.03002 && ${NVVERSION} < 545.00
+SUB_PATCHES += extra-patch-src_nvidia-modeset_nvidia-modeset-freebsd.c
+.endif
+
 .if ${NVVERSION} < 460.039
 .  if ${NVVERSION} >= 358.009
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_nvidia-modeset_nvidia-modeset-freebsd.c
@@ -123,6 +128,10 @@ PLIST_SUB+=	EXTENSIONSDIR="@comment "
 PLIST_SUB+=	LIBGLDIR=${LIBGLDIR} LIBGLMAP="@comment "
 .else
 PLIST_SUB+=	LIBGLDIR="@comment " LIBGLMAP=""
+.endif
+
+.if ${NVVERSION} >= 515.04304
+PLIST_FILES+=	lib/libnvidia-wayland-client.so.${DISTVERSION}
 .endif
 
 CONFLICTS_INSTALL+=	nvidia-driver nvidia-driver-*
@@ -317,6 +326,10 @@ post-install: .SILENT
 .if ${NVVERSION} < 495.02905
 	${REINPLACE_CMD} -e '/libnvidia-egl-gbm\.so/d ; \
 		/15_nvidia_gbm\.json/d' ${TMPPLIST}
+.endif
+.if ${NVVERSION} < 525.08902
+	${REINPLACE_CMD} -e '/libnvidia-allocator\.so/d ; \
+		/nvidia-drm_gbm\.so/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 410.057
 # Rename some libraries and install a libmap file to resolve conflict with
