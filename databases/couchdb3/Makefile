@@ -13,15 +13,13 @@ LICENSE=	apache2 bsd3 iscl WTFPL OFL11
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	rebar:devel/rebar \
-		erlang-runtime24>=24.0:lang/erlang-runtime24
+		erlang-runtime25>=25.0:lang/erlang-runtime25
 LIB_DEPENDS=	libicudata.so:devel/icu \
 		libmozjs-91.so:lang/spidermonkey91
-RUN_DEPENDS=	erlang-runtime24>=24.0:lang/erlang-runtime24
+RUN_DEPENDS=	erlang-runtime25>=25.0:lang/erlang-runtime25
 
 USES=		compiler:c++17-lang cpe gmake libtool ncurses
 USE_RC_SUBR=	${PORTNAME}
-
-CONFLICTS=	couchdb[24]*
 
 CPE_VENDOR=	apache
 CPE_PRODUCT=	couchdb
