@@ -6,7 +6,7 @@ MASTER_SITES=	APACHE/couchdb/source/${DISTVERSION}
 DISTNAME=	apache-couchdb-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	JSON document database with HTTP API and scalable multi-master sync
+COMMENT=	JSON document database with HTTP API and scalable cluster mesh sync
 WWW=		https://couchdb.apache.org/
 
 LICENSE=	apache2 bsd3 iscl WTFPL OFL11
@@ -29,7 +29,7 @@ GROUPS=		couchdb
 
 SUB_FILES=	pkg-message
 SUB_LIST=	APPDIR=${APPDIR} \
-		ERL_PATH=${LOCALBASE}/lib/erlang22/bin/erl \
+		ERL_PATH=${LOCALBASE}/lib/erlang${_ERLVER}/bin/erl \
 		PORTNAME=${PORTNAME} \
 		RELDIR=${RELDIR} \
 		WWWDIR=${WWWDIR}
@@ -50,6 +50,7 @@ DBDIR?=		/var/db/${PORTNAME}
 LOGDIR?=	/var/log/${PORTNAME}
 LOGFILE?=	${LOGDIR}/couch.log
 APPDIR=		${LOCALBASE}/libexec/${PORTNAME}
+_ERLVER?=	25
 RELDIR=		${APPDIR}/releases/${DISTVERSION}
 
 NO_TEST=	yes
@@ -65,6 +66,7 @@ post-patch:
 	    -e 's,%%APPDIR%%,${APPDIR},g' \
 	    -e 's,%%DATADIR%%,${DATADIR},g' \
 	    -e 's,%%DBDIR%%,${DBDIR},g' \
+	    -e 's,%%ERLVER%%,${_ERLVER},g' \
 	    -e 's,%%LOCALBASE%%,${LOCALBASE},g' \
 	    -e 's,%%PORTNAME%%,${PORTNAME},g' \
 	    -e 's,%%WWWDIR%%,${WWWDIR},g' \
