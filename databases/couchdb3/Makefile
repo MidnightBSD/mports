@@ -1,11 +1,13 @@
 PORTNAME=	couchdb3
 DISTVERSION=	3.2.2
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	APACHE/couchdb/source/${DISTVERSION}
 DISTNAME=	apache-couchdb-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON document database with HTTP API and scalable multi-master sync
+WWW=		https://couchdb.apache.org/
 
 LICENSE=	apache2 bsd3 iscl WTFPL OFL11
 LICENSE_COMB=	multi
@@ -13,7 +15,7 @@ LICENSE_COMB=	multi
 BUILD_DEPENDS=	rebar:devel/rebar \
 		erlang-runtime24>=24.0:lang/erlang-runtime24
 LIB_DEPENDS=	libicudata.so:devel/icu \
-		libmozjs-78.so:lang/spidermonkey78
+		libmozjs-91.so:lang/spidermonkey91
 RUN_DEPENDS=	erlang-runtime24>=24.0:lang/erlang-runtime24
 
 USES=		compiler:c++17-lang cpe gmake libtool ncurses
@@ -37,7 +39,7 @@ PLIST_SUB=	VERSION=${DISTVERSION}
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--skip-deps --user ${USERS} --rebar ${LOCALBASE}/bin/rebar \
-		--spidermonkey-version 78
+		--spidermonkey-version 91
 
 ALL_TARGET=	release
 
