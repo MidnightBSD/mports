@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-#
+
 # PROVIDE: postfix mail
 # REQUIRE: %%REQUIRE%%
 # KEYWORD: shutdown

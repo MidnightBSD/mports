@@ -1,11 +1,11 @@
 PORTNAME=	postfix
 DISTVERSION=	3.8.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 PORTEPOCH=	1
 CATEGORIES=	mail
-MASTER_SITES=	http://ftp.porcupine.org/mirrors/postfix-release/ \
+MASTER_SITES=	http://cdn.postfix.johnriley.me/mirrors/postfix-release/ \
+		http://ftp.porcupine.org/mirrors/postfix-release/ \
 		http://de.postfix.org/ftpmirror/ \
-		http://cdn.postfix.johnriley.me/mirrors/postfix-release/ \
 		http://www.artfiles.org/postfix.org/postfix-release/ \
 		http://mirror.lhsolutions.nl/postfix-release/ \
 		ftp://postfix.mirrors.pair.com/
@@ -13,67 +13,127 @@ MASTER_SITES:=	${MASTER_SITES:S|$|official/|}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Secure alternative to widely-used Sendmail
+COMMENT=	Secure alternative to widely-used Sendmail ${COMMENT_${FLAVOR}}
+WWW=		https://www.postfix.org/
 
-LICENSE=	IPL10
+LICENSE=	epl IPL10
+LICENSE_COMB=	multi
+LICENSE_NAME_IPL10=	IBM PUBLIC LICENSE VERSION 1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
-LICENSE_NAME=	IBM PUBLIC LICENSE VERSION 1.0
-LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_IPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-STAGEDIR=	${FAKE_DESTDIR}
+STAGEDIR=     ${FAKE_DESTDIR}
 
-PORTSCOUT=	limit:^3\.5\.
+FLAVORS=			default ldap mysql pgsql sasl sqlite
+default_CONFLICTS_INSTALL=	postfix-base-ldap postfix-base-sasl \
+				postfix-ldap postfix-sasl \
+				postfix-mysql postfix-base-mysql \
+				postfix-pgsql postfix-base-pgsql \
+				postfix-sqlite postfix-base-sqlite
+ldap_PKGNAMESUFFIX=		-ldap
+ldap_CONFLICTS_INSTALL=		postfix postfix-base \
+				postfix-base-sasl postfix-sasl \
+				postfix-mysql postfix-base-mysql \
+				postfix-pgsql postfix-base-pgsql \
+				postfix-sqlite postfix-base-sqlite
+mysql_PKGNAMESUFFIX=		-mysql
+mysql_CONFLICTS_INSTALL=	postfix postfix-base \
+				postfix-ldap postfix-base-ldap \
+				postfix-pgsql postfix-base-pgsql \
+				postfix-sasl postfix-base-sasl \
+				postfix-sqlite postfix-base-sqlite
+pgsql_PKGNAMESUFFIX=		-pgsql
+pgsql_CONFLICTS_INSTALL=	postfix postfix-base \
+				postfix-ldap postfix-base-ldap \
+				postfix-mysql postfix-base-mysql \
+				postfix-sasl postfix-base-sasl \
+				postfix-sqlite postfix-base-sqlite
+sasl_PKGNAMESUFFIX=		-sasl
+sasl_CONFLICTS_INSTALL=		postfix postfix-base \
+				postfix-base-ldap postfix-ldap \
+				postfix-mysql postfix-base-mysql \
+				postfix-pgsql postfix-base-pgsql \
+				postfix-sqlite postfix-base-sqlite
+sqlite_PKGNAMESUFFIX=		-sqlite
+sqlite_CONFLICTS_INSTALL=	postfix postfix-base \
+				postfix-ldap postfix-base-ldap \
+				postfix-mysql postfix-base-mysql \
+				postfix-pgsql postfix-base-pgsql \
+				postfix-sasl postfix-base-sasl
 
-CONFLICTS_INSTALL?=	courier-0.* opensmtpd-[0-9]* sendmail-8.* sendmail+*-8.* \
-		postfix-current-*
+COMMENT_ldap=	(with OpenLDAP support)
+COMMENT_mysql=	(with MySQL support)
+COMMENT_pgsql=	(with PostgreSQL support)
+COMMENT_sasl=	(with Cyrus SASL support)
+COMMENT_sqlite=	(with SQLite support)
+
+USES=		cpe shebangfix ssl
+USE_RC_SUBR=	postfix
+USE_SUBMAKE=	yes
+
+SHEBANG_FILES=	auxiliary/qshape/qshape.pl
+
+SCRIPTS_ENV+=	POSTFIX_DEFAULT_MTA="${POSTFIX_DEFAULT_MTA}"
+
+CONFLICTS_INSTALL=	courier-0.* opensmtpd opensmtpd-devel \
+			postfix-current sendmail sendmail-devel
+
+PORTSCOUT=	limit:^3\.7\.
 
 USERS=		postfix
 GROUPS=		mail maildrop postfix
-USES=		shebangfix cpe
-SHEBANG_FILES=	auxiliary/qshape/qshape.pl
 
-USE_RC_SUBR=	postfix
-USE_SUBMAKE=	yes
-SCRIPTS_ENV+=	POSTFIX_DEFAULT_MTA="${POSTFIX_DEFAULT_MTA}"
-
-OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	BDB CDB DOCS EAI INST_BASE LDAP LDAP_SASL \
-		LMDB MYSQL NIS PCRE PGSQL SASL SQLITE TEST TLS
-
+OPTIONS_DEFINE=		BDB BLACKLISTD CDB DOCS EAI INST_BASE LDAP LMDB MYSQL \
+			NIS PCRE2 PGSQL SASL SQLITE TEST TLS
+OPTIONS_DEFAULT?=	BLACKLISTD EAI PCRE2 TLS
 OPTIONS_RADIO=		RG1
-OPTIONS_RADIO_RG1=	SASLKRB5 SASLKMIT
-OPTIONS_DEFAULT?=	EAI PCRE TLS
+OPTIONS_RADIO_RG1=	SASLKMIT SASLKRB5
+.if ${FLAVOR:U} == ldap
+OPTIONS_SLAVE=		LDAP
+.elif ${FLAVOR:U} == mysql
+OPTIONS_SLAVE=		MYSQL
+.elif ${FLAVOR:U} == pgsql
+OPTIONS_SLAVE=		PGSQL
+.elif ${FLAVOR:U} == sasl
+OPTIONS_SLAVE=		SASL
+.elif ${FLAVOR:U} == sqlite
+OPTIONS_SLAVE=		SQLITE
+.endif
+.if !empty(FLAVOR) && ${FLAVOR:U} != default
+OPTIONS_FILE=	${PORT_DBDIR}/${OPTIONS_NAME}/${FLAVOR}-options
+.endif
+OPTIONS_SUB=		yes
 
-BDB_USES=		bdb
-CDB_LIB_DEPENDS=	libcdb.so:databases/tinycdb
-EAI_LIB_DEPENDS=	libicuuc.so:devel/icu
-LDAP_USE=		OPENLDAP=yes
-LMDB_LIB_DEPENDS=	liblmdb.so:databases/lmdb
-MYSQL_USES?=		mysql
-PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
-PGSQL_USES=		pgsql
-SASLKMIT_LIB_DEPENDS=	libkrb5.so:security/krb5
-SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
-SQLITE_USES=		sqlite
-TLS_USES=		ssl
+BLACKLISTD_DESC=	Enable blacklistd support
+CDB_DESC=		CDB maps lookups
+EAI_DESC=		Email Address Internationalization (SMTPUTF8) support
+INST_BASE_DESC=		Install into /usr and /etc/postfix
+LDAP_DESC=		LDAP maps
+LMDB_DESC=		LMDB maps
+PCRE2_DESC=		Use Perl Compatible Regular Expressions, version 2
+RG1_DESC=		Kerberos network authentication protocol type
+SASLKMIT_DESC=		If your SASL req. MIT Kerberos5, select this
+SASLKRB5_DESC=		If your SASL req. Kerberos5, select this
+SASL_DESC=		Cyrus SASL support (Dovecot SASL is always built in)
+TEST_DESC=		SMTP/LMTP test server and generator
 
-CDB_DESC=	CDB maps lookups
-EAI_DESC=	Email Address Internationalization (SMTPUTF8) support
-INST_BASE_DESC=	Install into /usr and /etc/postfix
-LDAP_DESC=	LDAP maps (uses WITH_OPENLDAP_VER)
-LDAP_SASL_DESC=	LDAP client-to-server SASL auth
-LMDB_DESC=	LMDB maps
-TEST_DESC=	SMTP/LMTP test server and generator
-
-SASL_DESC=	Cyrus SASL support (Dovecot SASL is always built in)
-RG1_DESC=	Kerberos network authentication protocol type
-SASLKRB5_DESC=	If your SASL req. Kerberos5, select this
-SASLKMIT_DESC=	If your SASL req. MIT Kerberos5, select this
+BDB_USES=			bdb
+BLACKLISTD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-blacklistd
+CDB_LIB_DEPENDS=		libcdb.so:databases/tinycdb
+EAI_LIB_DEPENDS=		libicuuc.so:devel/icu
+LDAP_USES=			ldap
+LMDB_LIB_DEPENDS=		liblmdb.so:databases/lmdb
+MYSQL_USES?=			mysql
+PCRE2_LIB_DEPENDS=		libpcre2-8.so:devel/pcre2
+PGSQL_USES=			pgsql
+SASLKMIT_LIB_DEPENDS=		libkrb5.so:security/krb5
+SASL_LIB_DEPENDS=		libsasl2.so:security/cyrus-sasl2
+SQLITE_USES=			sqlite
 
 .include <bsd.mport.options.mk>
 
-HTML1=	body_checks.5.html bounce.5.html postfix-power.png \
-	scache.8.html tlsmgr.8.html
+HTML1=		body_checks.5.html bounce.5.html postfix-power.png \
+		scache.8.html tlsmgr.8.html
 
 STRIP_LIBEXEC=	anvil bounce cleanup discard dnsblog error flush lmtp local \
 		master nqmgr oqmgr pickup pipe postlogd postscreen proxymap \
@@ -86,9 +146,21 @@ MAKEFILEFLAGS+=	DEBUG=
 
 MAKEFILEFLAGS+=	pie=yes CC="${CC}" OPT="${CFLAGS}"
 
+.if ${SSL_DEFAULT} == libressl
+BROKEN=		error: OpenSSL-1.1.1 is the minimum supported version. LibreSSL is not supported
+.endif
+
 .if ${PORT_OPTIONS:MINST_BASE}
-.if defined(SASL_SLAVE)
+.if ${FLAVOR:U} == ldap
+PKGNAMESUFFIX=	-base-ldap
+.elif ${FLAVOR:U} == mysql
+PKGNAMESUFFIX=	-base-mysql
+.elif ${FLAVOR:U} == pgsql
+PKGNAMESUFFIX=	-base-pgsql
+.elif ${FLAVOR:U} == sasl
 PKGNAMESUFFIX=	-base-sasl
+.elif ${FLAVOR:U} == sqlite
+PKGNAMESUFFIX=	-base-sqlite
 .else
 PKGNAMESUFFIX=	-base
 .endif
@@ -143,7 +215,7 @@ POSTFIX_CCARGS+=	-DDEF_CONFIG_DIR=\\\"${ETCDIR}\\\" \
 			-Wmissing-prototypes -Wformat -Wno-comment
 
 # Default requirement for postfix rc script
-_REQUIRE=		LOGIN cleanvar dovecot
+_REQUIRE=	LOGIN cleanvar dovecot
 
 # always build with Dovecot SASL support, Cyrus is optional
 # see Postfix HISTORY 20051222
@@ -157,27 +229,30 @@ POSTFIX_AUXLIBS+=	-L${LOCALBASE}/lib -licuuc
 POSTFIX_CCARGS+=	-DNO_EAI
 .endif
 
-.if ${PORT_OPTIONS:MPCRE}
+.if ${PORT_OPTIONS:MPCRE2}
 DYN_EXT+=		pcre
-POSTFIX_CCARGS+=	-DHAS_PCRE -I${LOCALBASE}/include
-POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_PCRE=`${LOCALBASE}/bin/pcre-config --libs`"
+POSTFIX_CCARGS+=	-DHAS_PCRE=2 -I${LOCALBASE}/include
+POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_PCRE=`${LOCALBASE}/bin/pcre2-config --libs8`"
 .else
 POSTFIX_CCARGS+=	-DNO_PCRE
 .endif
 
 .if ${PORT_OPTIONS:MSASL}
-POSTFIX_CCARGS+=	-DUSE_CYRUS_SASL -I${LOCALBASE}/include -I${LOCALBASE}/include/sasl
+POSTFIX_CCARGS+=	-DUSE_CYRUS_SASL -I${LOCALBASE}/include \
+			-I${LOCALBASE}/include/sasl
 POSTFIX_AUXLIBS+=	-L${LOCALBASE}/lib -lsasl2 -lpam -lcrypt
 .else
 POSTFIX_CCARGS+=	-DDEF_SERVER_SASL_TYPE=\\\"dovecot\\\"
 .endif
 
 .if ${PORT_OPTIONS:MSASLKRB5}
-POSTFIX_AUXLIBS+=	-lkrb5 -lhx509 -lcrypto -lcrypt -lcom_err -lasn1 -lroken
+POSTFIX_AUXLIBS+=	-lkrb5 -lhx509 -lcrypto -lcrypt -lcom_err -lasn1 \
+			-lroken
 .endif
 
 .if ${PORT_OPTIONS:MSASLKMIT}
-POSTFIX_AUXLIBS+=	-Wl,--rpath,$${KRB5_HOME:-${LOCALBASE}}/lib -lkrb5 -lcrypto -lcrypt -lcom_err
+POSTFIX_AUXLIBS+=	-Wl,--rpath,$${KRB5_HOME:-${LOCALBASE}}/lib -lkrb5 \
+			-lcrypto -lcrypt -lcom_err
 .endif
 
 .if ${PORT_OPTIONS:MTLS}
@@ -191,6 +266,14 @@ POSTFIX_CCARGS+=	-DNO_TLS
 .if ${PORT_OPTIONS:MBDB}
 POSTFIX_CCARGS+=	-I${BDB_INCLUDE_DIR}
 POSTFIX_AUXLIBS+=	-L${BDB_LIB_DIR} -l${BDB_LIB_NAME}
+.endif
+
+.if ${PORT_OPTIONS:MBLACKLISTD}
+. if ${OPSYS} == MidnightBSD
+POSTFIX_AUXLIBS+=	-lblacklist
+. else
+IGNORE=		blacklistd is only supported on FreeBSD
+. endif
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
@@ -215,19 +298,10 @@ POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_SQLITE=-L${LOCALBASE}/lib -lsqlite3 -lpthread"
 
 .if ${PORT_OPTIONS:MLDAP}
 DYN_EXT+=		ldap
-. if defined(WITH_OPENLDAP_VER)
-WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
-. endif
-POSTFIX_CCARGS+=	-DHAS_LDAP -I${LOCALBASE}/include
-POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_LDAP=-L${LOCALBASE}/lib -lldap -L${LOCALBASE}/lib -llber"
+POSTFIX_CCARGS+=	-DHAS_LDAP -I${LOCALBASE}/include \
+			-I${LOCALBASE}/include/sasl -DUSE_LDAP_SASL
+POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_LDAP=-L${LOCALBASE}/lib -lldap -llber"
 _REQUIRE+=		slapd
-. if ${PORT_OPTIONS:MLDAP_SASL}
-.  if ! ${PORT_OPTIONS:MSASL}
-LIB_DEPENDS+=		libsasl2.so:security/cyrus-sasl2
-.  endif
-WANT_OPENLDAP_SASL=	yes
-POSTFIX_CCARGS+=	-I${LOCALBASE}/include/sasl -DUSE_LDAP_SASL
-. endif
 .endif
 
 .if ${PORT_OPTIONS:MCDB}
@@ -267,13 +341,13 @@ REINPLACE=	s!^PATH=.*!PATH=/bin:/sbin:/usr/bin:/usr/sbin:${PREFIX}/bin:${PREFIX}
 		s!(:|= )/etc/postfix!\1$$config_directory!g;\
 		s!/etc/postfix!${ETCDIR}!g;\
 		s!^(sample_directory =)!\1 ${ETCDIR}!g;\
-		s!($config_directory/(access|aliases|canonical|generic|header_checks|relocated|transport|virtual):f:root:-:644:)p1!\1o!;
+		s!($$config_directory/(access|aliases|canonical|generic|header_checks|relocated|transport|virtual):f:root:-:644:)p1!\1o!;
 
 pre-patch:
 .if ${PORT_OPTIONS:MSASL} && ! ${PORT_OPTIONS:MMYSQL} && exists(${LOCALBASE}/lib/libsasl2.a)
 	@if /usr/bin/nm ${LOCALBASE}/lib/libsasl2.a | ${GREP} -wq "mysql_init"; then \
 		${ECHO_MSG}; \
-		${ECHO_MSG} "Your SASL library it's compiled with MYSQL"; \
+		${ECHO_MSG} "Your SASL library is compiled with MYSQL"; \
 		${ECHO_MSG} "If you use MYSQL in ${PORTNAME} consider CTRL+C and"; \
 		${ECHO_MSG} "select MYSQL OPTION in config menu."; \
 		${ECHO_MSG} "# make clean config"; \
@@ -288,7 +362,7 @@ pre-patch:
 		${WRKSRC}/src/global/mail_params.h
 	@${FIND} -X ${WRKSRC}/README_FILES ${WRKSRC}/conf ${WRKSRC}/man \
 		-type f -a ! \( -name INSTALL -o -name aliases \) | ${XARGS} \
-		${REINPLACE_CMD} -E -e '${REINPLACE}'
+		${REINPLACE_CMD} -i '' -E -e '${REINPLACE}'
 
 post-patch:
 .for f in ${HTML1}
@@ -332,9 +406,13 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/man/man1/qshape.1 ${MANPREFIX}/man/man1
 
 # == do not overwrite existing config
+	${MKDIR} ${DATADIR}
+	${MKDIR} ${ETCDIR}
 	${MV} ${ETCDIR}/main.cf ${ETCDIR}/main.cf.sample
 	${MV} ${ETCDIR}/master.cf ${ETCDIR}/master.cf.sample
-	${MKDIR} ${DATADIR}
+.for SAMPLEFILE in access aliases canonical generic header_checks relocated transport virtual
+	${MV} ${ETCDIR}/${SAMPLEFILE} ${ETCDIR}/${SAMPLEFILE}.sample
+.endfor
 	${INSTALL_DATA} ${WRKDIR}/mailer.conf.postfix ${DATADIR}
 
 # == chop dynamicmaps.cf entries into dedicated .cf files
