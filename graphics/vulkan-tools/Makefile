@@ -1,10 +1,11 @@
 PORTNAME=	vulkan-tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.216
+DISTVERSION=	1.3.270
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and demos for the Vulkan graphics API
+WWW=		https://github.com/KhronosGroup/Vulkan-Tools
 
 LICENSE=	apache2
 
@@ -12,7 +13,7 @@ BUILD_DEPENDS=	glslangValidator:graphics/glslang \
 		vulkan-headers>0:graphics/vulkan-headers
 LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 
-USES=		cmake compiler:c++11-lib pkgconfig python:3.4+,build
+USES=		cmake compiler:c++11-lib pkgconfig python:build
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	Vulkan-Tools
