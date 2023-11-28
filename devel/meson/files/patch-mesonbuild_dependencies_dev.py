@@ -1,6 +1,6 @@
---- mesonbuild/dependencies/dev.py.orig	2022-06-19 19:10:06 UTC
+--- mesonbuild/dependencies/dev.py.orig	2023-05-23 15:20:02 UTC
 +++ mesonbuild/dependencies/dev.py
-@@ -496,7 +496,7 @@ class ZlibSystemDependency(SystemDepende
+@@ -519,7 +519,7 @@ class ZlibSystemDependency(SystemDependency):
          # I'm not sure this is entirely correct. What if we're cross compiling
          # from something to macOS?
          if ((m.is_darwin() and isinstance(self.clib_compiler, (AppleClangCCompiler, AppleClangCPPCompiler))) or

@@ -1,6 +1,6 @@
---- mesonbuild/linkers/linkers.py.orig	2022-11-21 14:54:10.000000000 -0500
-+++ mesonbuild/linkers/linkers.py	2023-11-23 13:32:49.786668000 -0500
-@@ -213,7 +213,7 @@
+--- mesonbuild/linkers/linkers.py.orig	2023-05-25 18:35:03 UTC
++++ mesonbuild/linkers/linkers.py
+@@ -214,7 +214,7 @@ class ArLinker(ArLikeLinker):
          # OS X ld rejects with: "file built for unknown-unsupported file format"
          # illumos/Solaris ld rejects with: "unknown file type"
          if is_thin and not env.machines[self.for_machine].is_darwin() \
