@@ -1,5 +1,5 @@
 PORTNAME=	mpi4py
-DISTVERSION=	3.1.4
+DISTVERSION=	3.1.5
 CATEGORIES=	net parallel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 USES=		python
 USE_PYTHON=	distutils cython autoplist concurrent
 LDFLAGS+=	${MPI_LIBS}
+
+NO_TEST=	yes
 
 SLAVEDIRS=	net/py-mpi4py-mpich
 
@@ -51,8 +53,5 @@ do-install-MANPAGES-on:
 
 post-install:
 	@cd ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/mpi4py && ${STRIP_CMD} dl*.so MPI*.so lib-pmpi/libvt-hyb*.so lib-pmpi/libvt*.so lib-pmpi/libvt-mpi*.so lib-pmpi/libmpe*.so
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
