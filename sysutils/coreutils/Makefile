@@ -46,7 +46,7 @@ NO_TEST=	yes
 .include <bsd.mport.options.mk>
 
 .if ${ARCH} == "i386"
-	CONFIGURE_ARGS+= --disable-year2038
+CONFIGURE_ARGS+= --disable-year2038
 .endif
 
 post-build:
