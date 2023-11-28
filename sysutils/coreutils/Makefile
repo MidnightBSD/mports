@@ -43,7 +43,6 @@ GMP_CONFIGURE_WITH=	gmp
 
 .include <bsd.mport.options.mk>
 
-pre-configure:
 .if ${ARCH} == "i386"
 	CONFIGURE_ARGS+= --disable-year2038
 .endif
