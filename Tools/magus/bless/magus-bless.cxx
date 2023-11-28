@@ -162,7 +162,6 @@ main(int argc, char *argv[])
         }
         printf("\n");
     }
-	R.close();
 
     printf("Load the mirrors list\n");
     result R2(N.exec("SELECT country, url FROM mirrors order by country"));
@@ -187,7 +186,6 @@ main(int argc, char *argv[])
            sqlite3_finalize(stmt);
         }
     }
-	R2.close();
 
     printf("Load the MOVED list\n");
     sprintf(query_def, "SELECT port, moved_to, why, date FROM moved where run=%d order by id", runid);
@@ -217,13 +215,9 @@ main(int argc, char *argv[])
            sqlite3_finalize(stmt);
         }
     }
-	R3.close();
 
 	printf("Load ALIASES not included in current run\n");
-	sprintf(query_def, "select distinct(pkgname, name, moved_to), pkgname, name, moved.moved_to from ports inner join runs on ports.run = runs.id left join moved on moved.port = ports.name
-                                     where moved.run = %d and ports.run < %d and moved.port not in (SELECT name from ports where run = %d)
-                                     and runs.arch = (select arch from runs where id = %d)
-                                     group by pkgname, name, moved_to order by pkgname, name, moved_to;", runid, runid, runid, runid);
+	sprintf(query_def, "select distinct(pkgname, name, moved_to), pkgname, name, moved.moved_to from ports inner join runs on ports.run = runs.id left join moved on moved.port = ports.name where moved.run = %d and ports.run < %d and moved.port not in (SELECT name from ports where run = %d) and runs.arch = (select arch from runs where id = %d) group by pkgname, name, moved_to order by pkgname, name, moved_to;", runid, runid, runid, runid);
 	result R4(N.exec(string(query_def)));
 	if (!R4.empty())
 	{
@@ -234,8 +228,8 @@ main(int argc, char *argv[])
 				errx(1, "Could not prepare statement");
 			}
 
-			sqlite3_bind_text(stmt, 1, row[2].as(string()).c_str(), row[2].as(string()).length(), SQLITE_TRANSIENT);
-			sqlite3_bind_text(stmt, 2, row[1].as(string()).c_str(), row[1].as(string()).length(), SQLITE_TRANSIENT);
+			sqlite3_bind_text(stmt, 1, c[2].as(string()).c_str(), c[2].as(string()).length(), SQLITE_TRANSIENT);
+			sqlite3_bind_text(stmt, 2, c[1].as(string()).c_str(), c[1].as(string()).length(), SQLITE_TRANSIENT);
 
 			if (sqlite3_step(stmt) != SQLITE_DONE)
 				errx(1, "Could not execute query");
@@ -243,7 +237,6 @@ main(int argc, char *argv[])
 			sqlite3_finalize(stmt);
 		}
 	}
-	R4.close();
 
     close_indexdb(db);
 
