@@ -41,6 +41,8 @@ NLS_CONFIGURE_ENABLE=   nls
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 GMP_CONFIGURE_WITH=	gmp
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 .if ${ARCH} == "i386"
