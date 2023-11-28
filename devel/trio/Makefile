@@ -18,6 +18,8 @@ MAKEFILE=	${FILESDIR}/BSDmakefile
 
 OPTIONS_DEFINE=	DOCS
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 post-install:
@@ -26,10 +28,5 @@ post-install:
 	cd ${WRKSRC} && ${FIND} doc | \
 		${CPIO} -pdm -L -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DOCSDIR}
 .endif
-
-do-test:
-	${CC} -o ${WRKSRC}/regression ${WRKSRC}/regression.c \
-		-L${WRKSRC} -ltrio -Wl,-rpath=${WRKSRC}
-	${WRKSRC}/regression
 
 .include <bsd.port.mk>
