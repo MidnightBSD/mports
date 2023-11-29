@@ -10,6 +10,8 @@ WWW=		https://code.videolan.org/videolan/libplacebo
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
+
 USES=		compiler:c11 localbase:ldflags meson pkgconfig python:build
 USE_GITHUB=	nodefault
 USE_GITLAB=	yes
