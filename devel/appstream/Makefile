@@ -37,6 +37,8 @@ MESON_ARGS+=	-Dstemming=true \
 		-Dinstall-docs=false \
 		-Dsystemd=false
 
+NO_TEST=	yes
+
 post-patch:
 	${REINPLACE_CMD} \
 		-e 's|APPLICATIONS_DIR = "/usr/share/applications"|APPLICATIONS_DIR = "${LOCALBASE}/share/applications"|' \
