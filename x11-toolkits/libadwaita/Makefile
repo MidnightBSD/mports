@@ -1,5 +1,5 @@
 PORTNAME=	libadwaita
-PORTVERSION=	1.2.3
+PORTVERSION=	1.4.0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 
@@ -11,13 +11,12 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	sassc:textproc/sassc
-LIB_DEPENDS=	libfribidi.so:converters/fribidi \
+LIB_DEPENDS=	libappstream.so:devel/appstream \
+		libfribidi.so:converters/fribidi \
 		libgraphene-1.0.so:graphics/graphene
 
-USES=		gettext gnome meson ninja pkgconfig vala:build
+USES=		gettext gnome meson ninja pkgconfig tar:xz vala:build
 USE_GNOME=	cairo gdkpixbuf2 gtk40 introspection:build
-
-PORTSCOUT=	limit:1,even
 
 OPTIONS_DEFINE=	DOCS
 
