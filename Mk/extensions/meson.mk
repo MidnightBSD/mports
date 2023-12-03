@@ -18,10 +18,14 @@
 .if !defined(_INCLUDE_USES_MESON_MK)
 _INCLUDE_USES_MESON_MK=	yes
 
+_valid_ARGS=            trueprefix
+
 # Sanity check
-.if !empty(meson_ARGS)
-IGNORE=	Incorrect 'USES+= meson:${meson_ARGS}'. meson takes no arguments
-.endif
+.  for arg in ${meson_ARGS}
+.    if empty(_valid_ARGS:M${arg})
+IGNORE= Incorrect 'USES+= meson:${meson_ARGS}' usage: argument [${arg}] is not recognized
+.    endif
+.  endfor
 
 BUILD_DEPENDS+=		python3.9:lang/python39 \
 			meson:devel/meson
@@ -32,9 +36,19 @@ BUILD_DEPENDS+=		python3.9:lang/python39 \
 # meson might have issues with non-unicode locales
 USE_LOCALE?=	en_US.UTF-8
 
+. if ${meson_ARGS} == trueprefix
+CONFIGURE_ARGS+=	--prefix ${TRUE_PREFIX} \
+			--mandir man \
+			--infodir ${INFO_PATH}
+. else
 CONFIGURE_ARGS+=	--prefix ${PREFIX} \
 			--mandir man \
 			--infodir ${INFO_PATH}
+. endif
+
+# Enable all optional features to make builds deterministic. Consumers can
+# expose those as port OPTIONS_* or explicitly pass -D<option>=disabled
+CONFIGURE_ARGS+=	--auto-features=enabled
 
 # Disable color output.  Meson forces it on by default, Ninja
 # strips it before it goes to the log, but Samurai does not, so we
