@@ -392,11 +392,11 @@ include/gtk-4.0/unix-print/gtk/print/gtkpagesetupunixdialog.h
 include/gtk-4.0/unix-print/gtk/print/gtkprinter.h
 include/gtk-4.0/unix-print/gtk/print/gtkprintjob.h
 include/gtk-4.0/unix-print/gtk/print/gtkprintunixdialog.h
-@comment lib/girepository-1.0/Gdk-4.0.typelib
-@comment %%WAYLAND%%lib/girepository-1.0/GdkWayland-4.0.typelib
-@comment %%X11%%lib/girepository-1.0/GdkX11-4.0.typelib
-@comment lib/girepository-1.0/Gsk-4.0.typelib
-@comment lib/girepository-1.0/Gtk-4.0.typelib
+lib/girepository-1.0/Gdk-4.0.typelib
+%%WAYLAND%%lib/girepository-1.0/GdkWayland-4.0.typelib
+%%X11%%lib/girepository-1.0/GdkX11-4.0.typelib
+lib/girepository-1.0/Gsk-4.0.typelib
+lib/girepository-1.0/Gtk-4.0.typelib
 %%GSTREAMER%%lib/gtk-4.0/4.0.0/media/libmedia-gstreamer.so
 %%CUPS%%lib/gtk-4.0/4.0.0/printbackends/libprintbackend-cups.so
 lib/gtk-4.0/4.0.0/printbackends/libprintbackend-file.so
@@ -415,11 +415,11 @@ share/applications/org.gtk.WidgetFactory4.desktop
 share/applications/org.gtk.gtk4.NodeEditor.desktop
 share/gettext/its/gtk4builder.its
 share/gettext/its/gtk4builder.loc
-@comment share/gir-1.0/Gdk-4.0.gir
-@comment %%WAYLAND%%share/gir-1.0/GdkWayland-4.0.gir
-@comment %%X11%%share/gir-1.0/GdkX11-4.0.gir
-@comment share/gir-1.0/Gsk-4.0.gir
-@comment share/gir-1.0/Gtk-4.0.gir
+share/gir-1.0/Gdk-4.0.gir
+%%WAYLAND%%share/gir-1.0/GdkWayland-4.0.gir
+%%X11%%share/gir-1.0/GdkX11-4.0.gir
+share/gir-1.0/Gsk-4.0.gir
+share/gir-1.0/Gtk-4.0.gir
 %%DATADIR%%-4.0/emoji/da.gresource
 %%DATADIR%%-4.0/emoji/de.gresource
 %%DATADIR%%-4.0/emoji/es.gresource
