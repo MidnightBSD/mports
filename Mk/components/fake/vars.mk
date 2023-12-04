@@ -42,7 +42,7 @@ FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
 FAKE_SETUP+=	PATH=${PATH}:${FAKE_DESTDIR}${PREFIX}/bin:${FAKE_DESTDIR}${PREFIX}/sbin
 .endif
 .if ${FAKE_OPTS:Mprefixhack}x != "x"
-.if ${MAKE_CMD} != "ninja"
+.if defined (MAKE_CMD) && ${MAKE_CMD} != "ninja"
 FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${TRUE_PREFIX} infodir=${FAKE_DESTDIR}${TRUE_PREFIX}/${INFO_PATH}
 FAKE_MAKEARGS+=	mandir=${FAKE_DESTDIR}${MANPREFIX}/man MANDIR=${FAKE_DESTDIR}${MANPREFIX}/man
 .endif
