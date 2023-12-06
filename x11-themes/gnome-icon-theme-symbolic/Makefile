@@ -2,10 +2,11 @@ PORTNAME=	gnome-icon-theme-symbolic
 PORTVERSION=	3.12.0
 CATEGORIES=	x11-themes gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Symbolic Icons
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LICENSE=	ccasa3
 
