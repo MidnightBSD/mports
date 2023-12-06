@@ -63,6 +63,7 @@ INSTALL_TARGET=		install
 CONFIGURE_ARGS+=	--buildtype debug
 .else
 CONFIGURE_ARGS+=	--buildtype release \
+			--optimization plain \
 			--strip
 .endif
 
