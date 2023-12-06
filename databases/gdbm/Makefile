@@ -1,5 +1,5 @@
 PORTNAME=	gdbm
-PORTVERSION=	1.20
+PORTVERSION=	1.23
 CATEGORIES=	databases
 MASTER_SITES=	GNU
 
@@ -7,14 +7,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU database manager
 
 LICENSE=        gpl3
-
-FAKE_OPTS+=	prefixhack
+WWW=		https://www.gnu.org.ua/software/gdbm/
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 USES=		libtool:keepla iconv readline
-DESTDIRNAME=	INSTALL_ROOT
 
 MAKE_JOBS_UNSAFE=	yes
 
