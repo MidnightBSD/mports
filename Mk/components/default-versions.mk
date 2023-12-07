@@ -93,7 +93,7 @@ RUBY_DEFAULT?=		3.0
 .if ${OSVERSION} < 300001
 RUST_DEFAULT?=		rust
 .else
-RUST_DEFAULT?=		rust169
+RUST_DEFAULT?=		rust170
 .endif
 # Possible values: 4.13
 SAMBA_DEFAULT?=		4.13
