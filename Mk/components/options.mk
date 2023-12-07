@@ -256,6 +256,17 @@ _REALLY_ALL_POSSIBLE_OPTIONS:=	${COMPLETE_OPTIONS_LIST} ${_ALL_EXCLUDE}
 _REALLY_ALL_POSSIBLE_OPTIONS:=	${_REALLY_ALL_POSSIBLE_OPTIONS:O:u}
 
 ## Now some compatibility
+# Handle PORTDOCS and PORTEXAMPLES
+.  for _type in DOCS EXAMPLES
+.    if !empty(_REALLY_ALL_POSSIBLE_OPTIONS:M${_type})
+.      if empty(PORT_OPTIONS:M${_type})
+PLIST_SUB+=		PORT${_type}="@comment "
+.      else
+PLIST_SUB+=		PORT${_type}=""
+.      endif
+.    endif
+.  endfor
+
 .if empty(PORT_OPTIONS:MDOCS)
 NOPORTDOCS=     yes
 .endif
