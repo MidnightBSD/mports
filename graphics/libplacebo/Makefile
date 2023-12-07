@@ -47,6 +47,7 @@ OPENGL_MESON_ENABLED=	opengl
 SHADERC_DESC=		libshaderc SPIR-V compiler
 SHADERC_LIB_DEPENDS=	libshaderc_shared.so:graphics/shaderc
 SHADERC_MESON_ENABLED=	shaderc
+SHADERC_MESON_DISABLED=	shaderc
 SHADERC_IMPLIES=	VULKAN
 
 TEST_MESON_TRUE=	tests
@@ -56,11 +57,13 @@ VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-heade
 			${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 VULKAN_MESON_ENABLED=	vulkan
+VULKAN_MESON_DISABLED=	vulkan
 
 XXHASH_DESC=		Faster replacement for internal siphash
 XXHASH_BUILD_DEPENDS=	xxhash>0:devel/xxhash
 XXHASH_RUN_DEPENDS=	xxhash>0:devel/xxhash # pkg-config
 XXHASH_MESON_ENABLED=	xxhash
+XXHASH_MESON_DISABLED=	xxhash
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/share,${PREFIX}/share,' \
