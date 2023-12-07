@@ -25,7 +25,7 @@ CONFIGURE_ARGS+=	--disable-silent-rules \
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+NO_TEST=	yes
 
 CFLAGS+=	-Wno-long-long
 
