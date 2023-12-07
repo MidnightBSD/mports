@@ -1206,6 +1206,7 @@ SUBDIR += qt6-tools
 SUBDIR += qt6-translations
 SUBDIR += qtcreator
 SUBDIR += ragel
+SUBDIR += range-v3
 SUBDIR += rclint
 SUBDIR += rcs57
 SUBDIR += re2
