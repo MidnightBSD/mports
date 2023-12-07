@@ -329,6 +329,7 @@ SUBDIR += makedepend
 SUBDIR += mercurial
 SUBDIR += meson
 SUBDIR += meson-python
+SUBDIR += microsoft-gsl
 SUBDIR += midnightbsd-dev-scripts
 SUBDIR += mk-configure
 SUBDIR += mm
