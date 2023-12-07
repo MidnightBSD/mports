@@ -89,7 +89,7 @@ PYTHON_DEFAULT?=	3.9
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.0, 3.1, 3.2
 RUBY_DEFAULT?=		3.0
-# Possible values: rust, rust167, rust169, rust-bin, rust166-bin
+# Possible values: rust, rust167, rust169, rust-bin
 .if ${OSVERSION} < 300001
 RUST_DEFAULT?=		rust
 .else

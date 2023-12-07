@@ -106,7 +106,6 @@ SUBDIR += ruby31
 SUBDIR += ruby32
 SUBDIR += rust
 SUBDIR += rust-bin
-SUBDIR += rust166-bin
 SUBDIR += rust169
 SUBDIR += rust170
 SUBDIR += scala
