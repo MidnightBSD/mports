@@ -1,20 +1,19 @@
-# Created by: GreenDog <fiziologus@gmail.com>
-
-
 PORTNAME=	lua
 PORTVERSION=	5.1.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	http://www.lua.org/ftp/
 PKGNAMESUFFIX=	51
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, compilable scripting language providing easy access to C code
+WWW=		https://www.lua.org/
 
 LICENSE=	mit
 
 FAKE_OPTS=	prefixhack
-USES=		libedit lua:core,51
+
+USES=		cpe libedit lua:core,51
 USE_LDCONFIG=	yes
 
 MAKE_ARGS=	__MAKE_CONF=${NONEXISTENT}
@@ -35,7 +34,7 @@ MAKE_ARGS+=	MYCFLAGS="${CFLAGS} ${CPPFLAGS} -DLUA_USE_LINUX" \
 		LUA_SONAME=liblua-${LUA_VER}.so \
 		TO_BIN="lua51 luac51" \
 		TO_LIB="liblua-${LUA_VER}.a liblua-${LUA_VER}.so" \
-		INSTALL_TOP=${PREFIX} \
+		INSTALL_TOP=${FAKE_DESTDIR}${TRUE_PREFIX} \
 		INSTALL_INC=${FAKE_DESTDIR}${TRUE_PREFIX}/include/lua51 \
 		INSTALL_EXEC="${INSTALL_PROGRAM}"
 FAKE_MAKEARGS+= ${MAKE_ARGS}
@@ -43,10 +42,6 @@ FAKE_MAKEARGS+= ${MAKE_ARGS}
 CFLAGS+=	-fPIC
 
 post-patch:
-	@${REINPLACE_CMD} -Ee \
-		'/^INSTALL_.*=/s/INSTALL_TOP/prefix/ ; \
-		s|/usr/local|${PREFIX}|' \
-		${WRKSRC}/Makefile ${WRKSRC}/src/Makefile
 	@${REINPLACE_CMD} -e 's,rand *(,random(,g' \
 		${WRKSRC}/src/lmathlib.c
 	@${REINPLACE_CMD} -e "/LUA_ROOT/s|/usr/local|${LUA_PREFIX}| ; \
