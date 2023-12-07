@@ -85,8 +85,7 @@ main(int argc, char *argv[])
     }
 
     sprintf(query_def,
-      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version, restricted from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
-      runid);
+      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version, restricted from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;", runid);
 
     nontransaction N(C);
 
@@ -94,28 +93,30 @@ main(int argc, char *argv[])
 
     if (!R.empty()) 
     {
-    
+   
+	   cout << "Init index db file" << endl; 
         db = open_indexdb(runid);
         create_indexdb(db);
 
-	      for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
+	for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
         {
-	   	     string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
-             asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
-             fileHash = SHA256_File(filePath, NULL);
-             if (fileHash == NULL)
-             {
-                   fprintf(stderr, "Could not locate file %s\n", filePath);
-                   free(filePath);
-                   continue;
-             }
 
-		   if (row[6].as(bool()))
-		   {
+		string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
+		asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
+		fileHash = SHA256_File(filePath, NULL);
+		if (fileHash == NULL)
+		{
+			fprintf(stderr, "Could not locate file %s\n", filePath);
+			free(filePath);
+			continue;
+		}
+
+		if (row[6].as(bool()))
+		{
 			fprintf(stderr, "File %s is restricted and will be removed.\n", filePath);	
 			unlink(filePath);
 			continue;
-		   }
+		}
 
            if (ln.c_str())
            {
@@ -161,6 +162,8 @@ main(int argc, char *argv[])
            }
         }
         printf("\n");
+    } else {
+	    cerr << "Empty resultset" << endl;
     }
 
     printf("Load the mirrors list\n");
@@ -311,13 +314,21 @@ exec_indexdb(sqlite3 *db, const char *fmt, ...)
 void
 create_indexdb(sqlite3 *db)
 {
+	puts("exec 1");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
+	puts("exec 2");
 	exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
+	puts("exec 3");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL, type int NOT NULL)");
+	puts("exec4");
 	exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
+	puts("exec5");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
+	puts("exec6");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
-  exec_indexdb(db, "CREATE TABLE IF NOT EXISTS moved (port text NOT NULL, moved_to text, why text, date text");
+	puts("exec7");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS moved (port text NOT NULL, moved_to text, why text, date text)");
+	puts("exec8");
 }
 
 void
