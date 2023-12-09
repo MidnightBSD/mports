@@ -93,6 +93,7 @@ SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth
 SUBDIR += xminesweep
+SUBDIR += yahtzee
 SUBDIR += yquake2
 SUBDIR += zangband
 SUBDIR += zatacka
