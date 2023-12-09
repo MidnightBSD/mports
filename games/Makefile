@@ -94,6 +94,7 @@ SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth
 SUBDIR += xminesweep
+SUBDIR += xvier
 SUBDIR += xworm
 SUBDIR += xye
 SUBDIR += xzip
