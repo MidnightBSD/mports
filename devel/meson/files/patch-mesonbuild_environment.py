@@ -1,6 +1,6 @@
---- mesonbuild/environment.py.orig	2022-07-03 14:36:29 UTC
+--- mesonbuild/environment.py.orig	2023-05-25 18:35:03 UTC
 +++ mesonbuild/environment.py
-@@ -303,7 +303,7 @@ def detect_cpu_family(compilers: Compile
+@@ -289,7 +289,7 @@ def detect_cpu_family(compilers: CompilersDict) -> str
      """
      if mesonlib.is_windows():
          trial = detect_windows_arch(compilers)
@@ -9,7 +9,7 @@
          trial = platform.processor().lower()
      else:
          trial = platform.machine().lower()
-@@ -364,7 +364,7 @@ def detect_cpu_family(compilers: Compile
+@@ -350,7 +350,7 @@ def detect_cpu_family(compilers: CompilersDict) -> str
  def detect_cpu(compilers: CompilersDict) -> str:
      if mesonlib.is_windows():
          trial = detect_windows_arch(compilers)

@@ -8,7 +8,7 @@ WWW=		https://ebassi.github.io/graphene/
 
 LICENSE=	mit
 
-USES=		compiler:c11 gnome meson pkgconfig python:3.6+ shebangfix
+USES=		compiler:c11 gnome meson pkgconfig python shebangfix
 USE_GNOME=	glib20 pygobject3
 USE_LDCONFIG=	yes
 
@@ -33,7 +33,7 @@ BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 # We don't want install tests
 post-install:
-	@${RM} -rf ${STAGEDIR}${PREFIX}/libexec/installed-tests
-	@${RM} -rf ${STAGEDIR}${PREFIX}/share/installed-tests
+	@${RM} -rf ${PREFIX}/libexec/installed-tests
+	@${RM} -rf ${PREFIX}/share/installed-tests
 
 .include <bsd.port.mk>

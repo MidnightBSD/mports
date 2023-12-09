@@ -1,33 +1,27 @@
 PORTNAME=	p11-kit
-DISTVERSION=	0.24.1
-PORTREVISION=	1
+DISTVERSION=	0.25.2
 CATEGORIES=	security devel
-MASTER_SITES=	https://github.com/p11-glue/p11-kit/releases/download/${DISTVERSION}/
+MASTER_SITES=	https://github.com/p11-glue/${PORTNAME}/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for loading and enumerating of PKCS\#11 modules
+WWW=		https://p11-glue.freedesktop.org/p11-kit.html
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
-BUILD_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss \
-		bash-completion>=0:shells/bash-completion
-LIB_DEPENDS=	libtasn1.so:security/libtasn1 \
-		libffi.so:devel/libffi
+BUILD_DEPENDS=	bash-completion>=0:shells/bash-completion
+LIB_DEPENDS=	libffi.so:devel/libffi \
+		libtasn1.so:security/libtasn1
 
 USES=		cpe localbase meson pkgconfig tar:xz
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	p11-kit_project
 
-USE_GCC=	yes
-
-MESON_ARGS=	-Dbash_completion=enabled \
-		-Dlibffi=enabled \
-		-Dnls=false \
-		-Dtrust_module=enabled \
-		-Dtrust_paths=${LOCALBASE}/share/certs/ca-root-nss.crt
+MESON_ARGS=	-Dnls=false \
+		-Dsystemd=disabled \
+		-Dtrust_paths=${DATADIR}/certs
 
 OPTIONS_DEFINE=		DOCS MANPAGES TEST
 OPTIONS_SUB=		yes
@@ -48,5 +42,8 @@ post-install:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${MV} ${STAGEDIR}${PREFIX}/etc/pkcs11/pkcs11.conf.example ${STAGEDIR}${EXAMPLESDIR}
 	${RMDIR} ${STAGEDIR}${PREFIX}/etc/pkcs11
+	${MKDIR} ${STAGEDIR}${DATADIR}/certs
+	${LN} -s /usr/share/certs/trusted ${STAGEDIR}${DATADIR}/certs/anchors
+	${LN} -s /usr/share/certs/blacklisted ${STAGEDIR}${DATADIR}/certs/blocklist
 
 .include <bsd.port.mk>

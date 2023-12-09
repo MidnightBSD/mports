@@ -1,16 +1,15 @@
 PORTNAME=	png
-PORTVERSION=	1.6.39
-PORTREVISION=	1
+DISTVERSION=	1.6.40
 CATEGORIES=	graphics
-MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}16/${PORTVERSION} \
-		ftp://ftp.simplesystems.org/pub/lib${PORTNAME}/${PORTNAME}/src/lib${PORTNAME}16/
-PATCH_SITES=	SF/apng/lib${PORTNAME}/lib${PORTNAME}16/
-DISTNAME=	lib${PORTNAME}-${PORTVERSION}
-
-FAKE_OPTS=	trueprefix
+MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}16/${DISTVERSION}/
+#PATCH_SITES=	SF/lib${PORTNAME}-apng/lib${PORTNAME}16/${DISTVERSION}/
+# Keep this because you normally need to keep patch version in sync with release 
+PATCH_SITES=	SF/lib${PORTNAME}-apng/lib${PORTNAME}16/1.6.39/
+DISTNAME=	lib${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating PNG images
+WWW=		http://www.libpng.org/pub/png/libpng.html
 
 LICENSE=	Libpng
 LICENSE_GROUPS=	FSF GPL OSI
@@ -18,25 +17,35 @@ LICENSE_NAME=	libpng License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		cpe libtool tar:xz
+USES=		cmake:testing cpe pathfix tar:xz
 CPE_PRODUCT=	libpng
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
-INSTALL_TARGET=	install-strip
-TEST_TARGET=	check-TESTS
 USE_LDCONFIG=	yes
+
+CMAKE_OFF=	PNG_TESTS
+CMAKE_TESTING_ON=	PNG_TESTS
 
 OPTIONS_DEFINE=	APNG SIMD
 OPTIONS_DEFAULT=APNG
 OPTIONS_DEFAULT_amd64=	SIMD
 APNG_DESC=Enable Animated PNG support
-SIMD_CONFIGURE_OFF=	--enable-hardware-optimizations=no
-SIMD_CONFIGURE_ON=	--enable-hardware-optimizations=yes
+
+SIMD_CMAKE_BOOL=	PNG_HARDWARE_OPTIMIZATIONS
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MAPNG} || make(makesum)
-PATCHFILES=	${DISTNAME}-apng.patch.gz
+.if ${ARCH} == powerpc64 && ${PORT_OPTIONS:MSIMD}
+USES+=		compiler:c11
+CFLAGS+=	-maltivec -mvsx
 .endif
+
+.if ${PORT_OPTIONS:MAPNG} || make(makesum)
+#PATCHFILES=	${DISTNAME}-apng.patch.gz:-p1
+# Keep this because you normally need to keep patch version in sync with release
+PATCHFILES=	lib${PORTNAME}-1.6.39-apng.patch.gz:-p1
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|PNG_DEBUG_POSTFIX "d"|PNG_DEBUG_POSTFIX ""|g' \
+		${PATCH_WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.mk>

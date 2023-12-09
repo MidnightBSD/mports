@@ -116,7 +116,6 @@ SUBDIR += nvidia-xconfig
 SUBDIR += openrgb
 SUBDIR += pixman
 SUBDIR += py-python-xapp
-SUBDIR += py-qt5-opengl
 SUBDIR += py-xcffib
 SUBDIR += qimageblitz
 SUBDIR += qt5-qev

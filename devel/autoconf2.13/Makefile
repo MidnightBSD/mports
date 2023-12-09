@@ -1,5 +1,3 @@
-# Created by: torstenb@FreeBSD.org
-
 PORTNAME=	autoconf
 PORTVERSION=	2.13
 CATEGORIES=	devel
@@ -9,18 +7,17 @@ DISTNAME=	autoconf-000227 # 2000-02-27 snapshot post 2.13
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate configure scripts and related files
+WWW=		https://www.gnu.org/software/autoconf/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-FAKE_OPTS=	prefixhack
 
 BUILD_DEPENDS=	gm4:devel/m4
 RUN_DEPENDS=	autoconf-switch>=0:devel/autoconf-switch \
 		gm4:devel/m4
 
 VERSION=	2.13
-USES=		perl5 tar:bzip2
+USES=		desthack perl5 tar:bzip2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-suffix=${VERSION}
@@ -30,7 +27,7 @@ CONFIGURE_ENV=	AWK=${AWK} \
 STRIP=
 DATADIR=	${PREFIX}/share/autoconf${VERSION}
 NO_ARCH=	yes
-PORTSCOUT=	ignore
+PORTSCOUT=	ignore:1
 
 WRKSRC=		${WRKDIR}/autoconf
 

@@ -1,6 +1,6 @@
---- mesonbuild/envconfig.py.orig	2022-08-13 08:48:38 UTC
+--- mesonbuild/envconfig.py.orig	2023-05-23 15:20:02 UTC
 +++ mesonbuild/envconfig.py
-@@ -333,6 +333,10 @@ class MachineInfo(HoldableObject):
+@@ -341,6 +341,10 @@ class MachineInfo(HoldableObject):
          """Machine is FreeBSD?"""
          return self.system == 'freebsd'
  

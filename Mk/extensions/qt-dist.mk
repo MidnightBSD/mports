@@ -532,8 +532,8 @@ post-fake:	qt6-post-stage
 # * cmake to ${LOCALBASE}/lib/cmake not ${QT_LIBDIR}/cmake.
 # * pkgconfig to ${LOCALBASE}/libexec/pkgconfig not ${QT_LIBDIR}/pkgconfig
 qt6-post-stage:
-	${RM} -r ${FAKE_DESTDIR}${QT_LIBDIR}/cmake
-	${RM} -r ${FAKE_DESTDIR}${QT_LIBDIR}/pkgconfig
+	-${RM} -r ${FAKE_DESTDIR}${QT_LIBDIR}/cmake
+	-${RM} -r ${FAKE_DESTDIR}${QT_LIBDIR}/pkgconfig
 .  endif
 
 qt-create-kde-distfile:

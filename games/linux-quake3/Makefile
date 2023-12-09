@@ -11,6 +11,7 @@ DIST_SUBDIR=	${Q3PKGNAMEPREFIX}data
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quake III Arena for Linux
+WWW=		http://www.quake3arena.com/
 
 LICENSE=	Loki
 LICENSE_NAME=	Loki Software License

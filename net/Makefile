@@ -27,6 +27,7 @@ SUBDIR += dictd
 SUBDIR += dual-dhclient
 SUBDIR += empty
 SUBDIR += fping
+SUBDIR += freebsd-telnetd
 SUBDIR += freerdp
 SUBDIR += geoclue
 SUBDIR += geocode-glib

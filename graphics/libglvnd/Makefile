@@ -1,6 +1,6 @@
 PORTNAME=	libglvnd
 DISTVERSION=	1.6.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -28,6 +28,8 @@ X11_MESON_ENABLED=	x11 glx
 
 NO_TEST=	yes
 MESON_DISABLED=	tests
+
+MESON_ARGS+=	-Dasm=disabled
 
 .include <bsd.mport.options.mk>
 

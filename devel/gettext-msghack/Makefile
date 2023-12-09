@@ -1,24 +1,27 @@
 PORTNAME=	msghack
-PORTVERSION=	0.2
+PORTVERSION=	0.21
 CATEGORIES=	devel
 MASTER_SITES=	FREEBSD_LOCAL/rene
 PKGNAMEPREFIX=	gettext-
-# Bundled in fedora gettext srpm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Alter gettext po files in special ways
+WWW=		https://src.fedoraproject.org/rpms/gettext/blob/master/f/msghack.py
 
-LICENSE=	gpl2
+LICENSE=	gpl3+
 
+USES=		python shebangfix tar:xz
+
+NO_ARCH=	yes
 NO_BUILD=	yes
-USES=		python tar:bzip2
-PLIST_FILES=	bin/${PORTNAME}
 
-post-patch:
-	@${REINPLACE_CMD} -e '1s|/usr/bin/python|${PYTHON_CMD}|'\
-		${WRKSRC}/${PORTNAME}.py
+PLIST_FILES=	bin/msghack \
+		share/man/man1/msghack.1.gz
+
+SHEBANG_FILES=	msghack.py
 
 do-install:
-	@${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME}.py ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${INSTALL_SCRIPT} ${WRKSRC}/msghack.py ${STAGEDIR}${PREFIX}/bin/msghack
+	${INSTALL_MAN} ${WRKSRC}/msghack.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
