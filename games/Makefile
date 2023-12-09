@@ -83,7 +83,6 @@ SUBDIR += qqwing
 SUBDIR += qstat
 SUBDIR += quadra
 SUBDIR += quadrapassel
-SUBDIR += quake3
 SUBDIR += quake3-data
 SUBDIR += scummvm
 SUBDIR += supertux
