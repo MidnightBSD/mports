@@ -10,7 +10,7 @@ WWW=		https://www.datadoghq.com/
 LICENSE=	bsd4
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_i386=	fails to build: vendor/github.com/DataDog/gopsutil/process/process_freebsd.go:95:9: cannot use k.Start.Sec * 1000 (value of type int32) as type int64 in return statement
+ONLY_FOR_ARCHS= aarch64 amd64
 
 BUILD_DEPENDS=	cmake-core>=3.12:devel/cmake-core \
 		go>=1.15:lang/go \
