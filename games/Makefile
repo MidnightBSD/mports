@@ -92,6 +92,7 @@ SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth
 SUBDIR += xminesweep
+SUBDIR += zangband
 SUBDIR += zatacka
 SUBDIR += zaz
 SUBDIR += zdoom
