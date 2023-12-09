@@ -7,6 +7,8 @@ DISTNAME=	${PORTNAME}-src
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Curses version of the dice game for one or more players
 
+LICENSE=	other
+
 USES=		ncurses tar:Z
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
