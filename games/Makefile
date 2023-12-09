@@ -94,6 +94,7 @@ SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth
 SUBDIR += xminesweep
+SUBDIR += xtgyoretsu
 SUBDIR += xtic
 SUBDIR += xtriangles
 SUBDIR += xtrojka
