@@ -8,6 +8,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Code shared by the DB reader and writer modules
+WWW=		https://metacpan.org/release/MaxMind-DB-Common
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
