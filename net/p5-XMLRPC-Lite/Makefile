@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client and server side XMLRPC implementation
+WWW=		https://metacpan.org/release/XMLRPC-Lite
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
