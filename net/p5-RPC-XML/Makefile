@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-RPC client and server library for Perl
+WWW=		https://metacpan.org/release/RPC-XML
 
 LICENSE=	artistic2 lgpl2.1
 LICENSE_COMB=	dual
