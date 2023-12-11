@@ -1,13 +1,14 @@
 PORTNAME=	Net-Server
-PORTVERSION=	2.010
+PORTVERSION=	2.014
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configurable base class for writing internet servers in Perl
+WWW=		https://metacpan.org/release/Net-Server
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

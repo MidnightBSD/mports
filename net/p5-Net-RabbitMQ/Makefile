@@ -9,6 +9,7 @@ DISTNAME=	Net--RabbitMQ-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to interact with RabbitMQ over AMQP using librabbitmq
+WWW=		https://metacpan.org/release/Net--RabbitMQ
 
 LICENSE=	unknown
 
