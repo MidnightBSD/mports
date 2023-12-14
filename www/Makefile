@@ -30,6 +30,7 @@ SUBDIR += hypermail
 SUBDIR += joomla3
 SUBDIR += joomla4
 SUBDIR += libapreq2
+SUBDIR += libdatachannel
 SUBDIR += libdom
 SUBDIR += libhubbub
 SUBDIR += libmicrohttpd
