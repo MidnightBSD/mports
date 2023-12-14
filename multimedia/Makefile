@@ -83,6 +83,7 @@ SUBDIR += libquvi-scripts09
 SUBDIR += libquvi09
 SUBDIR += libtheora
 SUBDIR += libuvc
+SUBDIR += librist
 SUBDIR += librtmp
 SUBDIR += libv4l
 SUBDIR += libva
