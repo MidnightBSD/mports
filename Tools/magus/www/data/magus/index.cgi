@@ -522,7 +522,8 @@ sub port_page {
     fail      => $port->status eq "fail",
     pass      => $port->status eq "pass",
     warn      => $port->status eq "warn",
-    cpe       => $port->cpe
+    cpe       => $port->cpe,
+    tm        => time()
   );
   
   my @events = map { { 
