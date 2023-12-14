@@ -44,6 +44,7 @@ const stateProxy = new Proxy(state, {
  * @returns {void}
  */
 async function serializeEvents(data) {
+  const tm = new Date().getTime();
   const eventTableEl = document.createElement("table");
   const eventTableHeaderEl = document.createElement("thead");
   const eventTableBodyEl = document.createElement("tbody");
@@ -83,7 +84,7 @@ async function serializeEvents(data) {
       } else if (title === "can_reset") {
         const a = document.createElement("a");
         a.innerText = "(Reset Port)";
-        a.href = `https://www.midnightbsd.org/magus/auth/reset_port.cgi?id=${event['id']}`;
+        a.href = `https://www.midnightbsd.org/magus/auth/reset_port.cgi?id=${event['id']}&tm=${tm}`;
         a.addEventListener("click", function(event) {  
             if (!confirm_reset()) {
                event.preventDefault();
