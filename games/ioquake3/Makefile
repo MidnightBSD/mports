@@ -196,7 +196,7 @@ PLIST_FILES+=	${inst:C/.*;//}
 .endfor
 # additional rules for our custom server.cfg from filesdir
 .if ${IOQ3:MSERVER}
-PLIST_FILES+=	${Q3DIR}/server.cfg
+PLIST_FILES+=	share/quake3/server.cfg
 .endif
 
 # Generate install target
@@ -212,7 +212,7 @@ do-install: ${Q3INSTALL}
 .if ${IOQ3:MSERVER}
 	${MKDIR} ${STAGEDIR}${Q3DIR}
 	${INSTALL_DATA} ${FILESDIR}/server.cfg \
-		${STAGEDIR}${Q3DIR}/server.cfg
+		${FAKE_DESTDIR}${Q3DIR}/server.cfg
 .endif
 
 .include <bsd.port.mk>
