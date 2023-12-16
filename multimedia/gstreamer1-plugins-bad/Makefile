@@ -33,6 +33,7 @@ BAD_GST_ENABLED_PLUGINS=accurip \
 			codecalpha \
 			codecparsers \
 			codecs \
+			codectimestamper \
 			coloreffects \
 			data \
 			debugutils \
@@ -104,12 +105,6 @@ BAD_GST_ENABLED_PLUGINS=accurip \
 
 NO_GSTREAMER_COMMON=	yes
 PLIST=		${.CURDIR}/pkg-plist
-
-.include <bsd.mport.options.mk>
-.if (${OSVERSION} < 300000)
-# force openssl from mports.
-SSL_DEFAULT=	openssl
-.endif
 
 USES+=ssl
 
