@@ -11,7 +11,7 @@ WWW=		https://www.cmake.org/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
-USES=		cmake:_internal compiler:c++11-lang cpe ncurses ssl
+USES=		cmake:_internal compiler:c++11-lang cpe localbase ncurses ssl
 CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir="/${DATADIR_REL}" \
@@ -29,6 +29,9 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--no-system-nghttp2 \
 		--parallel=${MAKE_JOBS_NUMBER} \
 		--init="${WRKSRC}/InitialCache.cmake"
+
+CFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
@@ -68,7 +71,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,/opt/kde4,${PREFIX},g' \
 		${WRKSRC}/Modules/FindKDE4.cmake
 	@${REINPLACE_CMD} -e 's,/usr/include,${LOCALBASE}/include,' \
-	   	${WRKSRC}/Modules/FindDCMTK.cmake
+		${WRKSRC}/Modules/FindDCMTK.cmake
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/Modules/FindFLEX.cmake
 	@${FIND} ${WRKSRC} -name "*.bak" -delete -o -name "*.orig" -delete
 
 # cmake-gui(1) is installed by devel/cmake-gui. Remove the man page's source to
