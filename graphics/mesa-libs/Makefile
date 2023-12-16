@@ -5,7 +5,12 @@ CATEGORIES=	graphics
 COMMENT=	OpenGL libraries that support GLX and EGL clients
 WWW=		https://www.mesa3d.org/
 
-BUILD_DEPENDS=	libglvnd>0:graphics/libglvnd
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/docs/license.rst
+
+LIB_DEPENDS=	libOpenGL.so:graphics/libglvnd
+
+USES=		llvm:noexport
 
 OPTIONS_GROUP=			PLATFORM
 OPTIONS_GROUP_PLATFORM=		PLATFORM_X11 PLATFORM_WAYLAND
@@ -36,6 +41,8 @@ MESON_ARGS+=	-Dgallium-drivers="" \
 		-Dgallium-va=disabled \
 		-Dgallium-xa=disabled \
 		-Dgallium-nine=false \
+		-Dlmsensors=disabled \
+		-Dmicrosoft-clc=disabled \
 		-Dosmesa=false \
 		-Dtools="" \
 		-Degl=enabled \
