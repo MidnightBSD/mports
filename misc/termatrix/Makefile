@@ -1,5 +1,3 @@
-# Created by: chinsan
-
 PORTNAME=	termatrix
 PORTVERSION=	0.2
 CATEGORIES=	misc
@@ -8,6 +6,7 @@ MASTER_SITES=	FREEBSD_LOCAL/chinsan \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emulates Matrix terminal's "green tears" effect
+WWW=		http://lightless.org/other/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
