@@ -1,6 +1,6 @@
 PORTNAME=	cmake
 DISTVERSION=	${_CMAKE_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-core
 
@@ -16,7 +16,17 @@ CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir="/${DATADIR_REL}" \
 		--docdir="/${DOCSDIR_REL}" \
-		--system-libs \
+		--system-expat \
+		--system-jsoncpp \
+		--system-zlib \
+		--system-zstd \
+		--system-bzip2 \
+		--system-liblzma \
+		--system-libarchive \
+		--system-librhash \
+		--system-libuv \
+		--no-system-curl \
+		--no-system-nghttp2 \
 		--parallel=${MAKE_JOBS_NUMBER} \
 		--init="${WRKSRC}/InitialCache.cmake"
 
@@ -24,8 +34,7 @@ OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
 HAS_CONFIGURE=	yes
 
-LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libexpat.so:textproc/expat2 \
+LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libjsoncpp.so:devel/jsoncpp \
 		libuv.so:devel/libuv \
 		librhash.so:security/rhash
