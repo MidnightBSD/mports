@@ -16,6 +16,7 @@ USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 
 CMAKE_OFF=	BUILD_EXAMPLE
-CMAKE_TESTING_ON=	BUILD_TEST # tests fail to compile, see https://github.com/libuvc/libuvc/issues/254
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
