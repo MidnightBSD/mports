@@ -1,5 +1,5 @@
 PORTNAME=	meson
-PORTVERSION=	1.1.1
+PORTVERSION=	1.2.3
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	https://github.com/mesonbuild/${PORTNAME}/releases/download/${PORTVERSION}/
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		ninja:run python:3.7+ shebangfix
+USES=		ninja:run python shebangfix
 USE_PYTHON=	autoplist pep517
 SHEBANG_FILES=	mesonbuild/rewriter.py \
 		mesonbuild/scripts/cmake_run_ctgt.py

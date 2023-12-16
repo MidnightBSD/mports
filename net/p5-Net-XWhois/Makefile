@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Whois Client Interface for Perl5
+WWW=		https://metacpan.org/release/Net-XWhois
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

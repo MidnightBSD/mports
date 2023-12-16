@@ -18,7 +18,6 @@ SUBDIR += foomatic-db
 SUBDIR += foomatic-db-engine
 SUBDIR += foomatic-db-hpijs
 SUBDIR += fpdf
-SUBDIR += freetype
 SUBDIR += freetype2
 SUBDIR += ghostscript8-base
 SUBDIR += ghostscript8-x11

@@ -1,5 +1,6 @@
 PORTNAME=	gtk
-PORTVERSION=	4.12.3
+PORTVERSION=	4.12.4
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
@@ -32,12 +33,12 @@ USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_GNOME=	atk cairo gdkpixbuf2 introspection:build pango \
 		librsvg2:run
-MESON_ARGS=	-Dbuild-testsuite=false -Dmedia-ffmpeg=disabled
+MESON_ARGS=	-Dintrospection=enabled -Dbuild-testsuite=false -Dmedia-ffmpeg=disabled
 LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	1.1200.3
+LIBVERSION=	1.1200.4
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo4.gschema.xml \
@@ -89,9 +90,6 @@ X11_USES=		xorg
 X11_USE=		XORG=x11,xcomposite,xcursor,xdamage,xext,xfixes,xi,xinerama,xrandr,xrender
 
 NO_TEST=	yes
-
-post-patch:
-#${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' ${WRKSRC}/subprojects/wayland/meson.build
 
 pre-build:
 	-${RM} -r ${WRKSRC}/docs/gtk.info*

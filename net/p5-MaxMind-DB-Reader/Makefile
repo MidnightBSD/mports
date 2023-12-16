@@ -1,5 +1,5 @@
 PORTNAME=	MaxMind-DB-Reader
-PORTVERSION=	1.000013
+PORTVERSION=	1.000014
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MAXMIND
@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read MaxMind DB files
+WWW=		https://metacpan.org/release/MaxMind-DB-Reader
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE

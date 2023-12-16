@@ -1,7 +1,5 @@
-# Created by: scrappy@FreeBSD.org
-
 PORTNAME=	perl-ldap
-PORTVERSION=	0.6500
+PORTVERSION=	0.6800
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MARSCHAP
@@ -10,6 +8,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/00$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client interface to LDAP (includes Net::LDAP)
+WWW=		https://metacpan.org/release/perl-ldap
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

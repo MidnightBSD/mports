@@ -1,5 +1,5 @@
 PORTNAME=	MaxMind-DB-Writer
-PORTVERSION=	0.300003
+PORTVERSION=	0.300004
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MAXMIND
@@ -11,6 +11,9 @@ COMMENT=	Create MaxMind DB database files
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	This is the final release. This distribution is no longer being developed
+EXPIRATION_DATE=2023-12-31
 
 # p5-Math-Intl128 not compatible
 NOT_FOR_ARCHS=  armv6 i386

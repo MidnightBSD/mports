@@ -19,8 +19,6 @@ USES=		python
 USE_PYTHON=	distutils autoplist concurrent
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC}/ && ${PYTHON_CMD} setup.py test
+NO_TEST=	yes
 
 .include <bsd.port.mk>

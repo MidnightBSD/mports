@@ -32,7 +32,7 @@
         <td><TMPL_VAR NAME="status"></td>
         <td>
           <TMPL_IF NAME="can_reset">
-            (<a onclick="return confirm_reset()" href="/magus/auth/reset_port.cgi?id=<TMPL_VAR NAME=id>">Reset Port</a>)
+            (<a onclick="return confirm_reset()" href="/magus/auth/reset_port.cgi?id=<TMPL_VAR NAME=id>&tm=<TMPL_VAR NAME=tm>">Reset Port</a>)
           </TMPL_IF>
         </td>
     </tr>

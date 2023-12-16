@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	APIs for IP addresses and networks
+WWW=		https://metacpan.org/release/Net-Works
 
 LICENSE=	artistic2
 

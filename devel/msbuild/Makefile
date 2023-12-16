@@ -1,34 +1,42 @@
 PORTNAME=	msbuild
 DISTVERSIONPREFIX=	v
 DISTVERSION=	15.8-preview
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/mono/msbuild/releases/download/0.06/:bootstrap
 DISTFILES=	mono_msbuild_xplat-master-3c930fa8.zip:bootstrap
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build platform for .NET and Visual Studio
+WWW=		https://github.com/Microsoft/msbuild
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	bash:shells/bash
+
+USES=		mono:nuget shebangfix
 
 NUGET_FEEDS=	DOTNET_CORE NUGET ROSLYN ROSLYN_TOOLS SYMREADER_CONVERTER
 NUGET_LAYOUT=	dotnet
 
-USES=		mono:nuget shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	mono
 GH_TAGNAME=	0.06
 SHEBANG_FILES=	*.sh artifacts/mono-msbuild/msbuild build.sh build/*.sh
 
 MAKE_ENV=	GIT_COMMIT=3c930fa8721935cf0e381fd349f6f50cf2bc223d
-MAKE_JOBS_UNSAFE=MSBuild has not implemented concurrent builds on non Windows platforms
 ALL_TARGET=	all-mono
 NO_TEST=	yes
 
 post-extract:
 	${MKDIR} ${WRKSRC}/artifacts/
 	${MV} ${WRKDIR}/msbuild ${WRKSRC}/artifacts/mono-msbuild/
+
+pre-configure:
+	${REINPLACE_CMD} -e s/%%MAKE_JOBS_NUMBER%%/${MAKE_JOBS_NUMBER}/ \
+		${WRKSRC}/build/build.sh \
+		${WRKSRC}/Directory.Build.rsp
 
 do-build:
 	(cd ${WRKSRC}; \

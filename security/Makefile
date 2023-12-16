@@ -238,5 +238,6 @@ SUBDIR += ykclient
 SUBDIR += ykpers
 SUBDIR += yubico-piv-tool
 SUBDIR += yubikey-agent
+SUBDIR += zaproxy
 
 .include <bsd.port.subdir.mk>

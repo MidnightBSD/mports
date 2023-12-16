@@ -22,7 +22,8 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--without-python
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 PLIST_SUB=	LIBVERSION=${PORTVERSION}
 

@@ -5,7 +5,7 @@ DISTFILES=
 COMMENT=	GNU gettext meta package
 WWW=		https://www.gnu.org/software/gettext/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 .include "${.CURDIR}/../gettext/Makefile.common"
 

@@ -87,7 +87,7 @@ do-configure:
 		"! ( -name \.* -or -path *\/test\/* -or -name test )")
 	(cd ${_RE2DIR} && \
 		${SETENV} HOME=${WRKDIR} \
-		${LOCALBASE}/lib/node_modules/npm/bin/node-gyp-bin/node-gyp configure \
+		${LOCALBASE}/bin/node-gyp configure \
 		--python=${PYTHON_CMD} \
 		--nodedir=${LOCALBASE} \
 		--devdir=${_DEVDIR})
@@ -101,16 +101,17 @@ do-build:
 do-install:
 	${MKDIR} ${WWWDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${ETCDIR}/kibana.yml.sample
-	(cd ${WRKSRC} && \
-		-${RM} -r config node optimize && \
+	-(cd ${WRKSRC} && \
 		${COPYTREE_SHARE} . ${WWWDIR} && \
 		${COPYTREE_BIN} bin ${WWWDIR})
 	${INSTALL} -lrs ${ETCDIR} ${WWWDIR}/config
 	${MKDIR} ${WWWDIR}/node/bin
-	${LN} -s ${LOCALBASE}/bin/node ${WWWDIR}/node/bin/node
-	${RM} ${WWWDIR}/node_modules/re2/build/Release/re2.node
+	${LN} -sf ${LOCALBASE}/bin/node ${WWWDIR}/node/bin/node
+#	-${RM} ${WWWDIR}/node_modules/re2/build/Release/re2.node
+	${MKDIR} ${WWWDIR}/node_modules/re2/build/Release
 	${INSTALL_LIB} ${_RE2DIR}/build/Release/re2.node \
 		${WWWDIR}/node_modules/re2/build/Release/re2.node
+	${MKDIR} ${WWWDIR}/bin
 .for f in ${BINS}
 	${INSTALL} -l rs ${WWWDIR}/bin/${f} ${PREFIX}/bin/${f}
 	${ECHO} "bin/${f}" >> ${TMPPLIST}

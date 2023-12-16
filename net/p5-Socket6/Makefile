@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPv6 related part of the C socket.h defines and structure manipulators
+WWW=		https://metacpan.org/release/Socket6
 
 LICENSE=	bsd3
 

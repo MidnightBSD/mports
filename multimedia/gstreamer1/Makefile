@@ -11,13 +11,16 @@ WWW=		https://gstreamer.freedesktop.org/
 LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		bison libtool gnome meson ninja pkgconfig python:3.8+,build shebangfix tar:xz
-USE_GNOME=     glib20 introspection:build
+USES=		bison libtool gnome meson ninja pkgconfig python:build shebangfix tar:xz
+USE_GNOME=	glib20 introspection:build
+
+LIB_DEPENDS=	libunwind.so:devel/libunwind
 
 CONFIGURE_ARGS=	-D tests=disabled \
 	-D examples=disabled \
 	-D dbghelp=disabled \
-	-D doc=disabled
+	-D doc=disabled \
+	-D libdw=disabled
 PLIST_SUB=	VERSION=${GST10_VERSION} \
 		SOVERSION=0.2005.0
 
@@ -29,19 +32,8 @@ PORTSCOUT=	limitw:1,even
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	NLS
 
-OPTIONS_DEFINE_aarch64=		LIBUNWIND
-OPTIONS_DEFFAULT_aarch64=	LIBUNWIND
-OPTIONS_DEFINE_amd64=		LIBUNWIND
-OPTIONS_DEFAULT_amd64=		LIBUNWIND
-OPTIONS_DEFINE_i386=		LIBUNWIND
-OPTIONS_DEFFAULT_i386=		LIBUNWIND
-
 NLS_USES=	gettext
 NLS_MESON_ENABLED=      nls
-
-LIBUNWIND_DESC=		Libunwind is optionally used by the leaks tracer
-LIBUNWIND_LIB_DEPENDS=	libunwind.so:devel/libunwind
-LIBUNWIND_MESON_ENABLED=        libunwind
 
 SHEBANG_FILES=  gst/parse/get_flex_version.py \
 	scripts/extract-release-date-from-doap-file.py \

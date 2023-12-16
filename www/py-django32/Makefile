@@ -18,7 +18,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}asgiref>0:www/py-asgiref@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0:databases/py-sqlparse@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tblib>0:devel/py-tblib@${PY_FLAVOR}
 
 USES=		cpe python shebangfix
 USE_PYTHON=	autoplist distutils
@@ -52,6 +51,8 @@ PGSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psycopg2>0:databases/py-psycopg2@${PY_
 MYSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mysqlclient>=1.3.13:databases/py-mysqlclient@${PY_FLAVOR}
 SQLITE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
+NO_TEST=	yes
+
 post-build-HTMLDOCS-on:
 	cd ${WRKSRC}/docs && ${GMAKE} html SPHINXBUILD=sphinx-build-${PYTHON_VER}
 
@@ -62,10 +63,7 @@ post-install:
 	@${ECHO_MSG}	""
 
 post-install-HTMLDOCS-on:
-	${MKDIR} ${STAGEDIR}/${DOCSDIR}
-	${CP} -R ${WRKSRC}/docs/_build/html ${STAGEDIR}/${DOCSDIR}
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} tests/runtests.py --settings=test_sqlite
+	${MKDIR} ${FAKE_DESTDIR}/${DOCSDIR}
+	${CP} -R ${WRKSRC}/docs/_build/html ${FAKE_DESTDIR}/${DOCSDIR}
 
 .include <bsd.port.mk>

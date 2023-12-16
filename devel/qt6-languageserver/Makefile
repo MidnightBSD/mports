@@ -12,4 +12,7 @@ BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 USES=		cmake compiler:c++11-lang pkgconfig qt-dist:6
 USE_QT=		base
 
+pre-fake:
+	${MKDIR} ${PREFIX}/lib/qt6/pkgconfig
+
 .include <bsd.port.mk>

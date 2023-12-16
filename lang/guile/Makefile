@@ -30,7 +30,7 @@ PLIST_FILES=	bin/guile bin/guild
 do-install:
 	for prog in guile guild; do \
 		${LN} -sf $${prog}-${GUILE_VER} \
-			${STAGEDIR}${PREFIX}/bin/$${prog}; \
+			${PREFIX}/bin/$${prog}; \
 	done
 
 .include <bsd.port.mk>

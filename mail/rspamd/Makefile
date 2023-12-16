@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	3.7.3
+PORTVERSION=	3.7.4
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -83,7 +83,8 @@ post-install:
 		${FAKE_DESTDIR}/var/run/rspamd
 	${INSTALL_DATA} ${WRKDIR}/rspamd.newsyslog.conf.sample ${ETCDIR}
 	@${MKDIR} ${PREFIX}/etc/newsyslog.conf.d
-	${LN} -s ${ETCDIR}/rspamd.newsyslog.conf ${PREFIX}/etc/newsyslog.conf.d
+	${LN} -sf ${ETCDIR}/rspamd.newsyslog.conf ${PREFIX}/etc/newsyslog.conf.d
+
 post-install-CGP-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/utils/cgp_rspamd.pl ${FAKE_DESTDIR}${PREFIX}/bin/rspamd-cgp-helper
 

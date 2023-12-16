@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast lookup of country codes from IP addresses
+WWW=		https://metacpan.org/release/IP-Country
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

@@ -1,5 +1,5 @@
 PORTNAME=	libde265
-DISTVERSION=	1.0.11
+DISTVERSION=	1.0.12
 CATEGORIES=	multimedia
 MASTER_SITES=	https://github.com/strukturag/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -27,7 +27,7 @@ LLD_UNSAFE=	yes
 .endif
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/lib/libde265.so.0.1.4
+	${STRIP_CMD} ${PREFIX}/lib/libde265.so.0.1.5
 	${MV} ${PREFIX}/bin/dec265 \
 		${PREFIX}/bin/libde265-dec265
 

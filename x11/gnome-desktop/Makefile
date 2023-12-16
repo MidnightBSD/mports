@@ -1,13 +1,12 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	gnome-desktop
-PORTVERSION=	42.2
+PORTVERSION=	42.4
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional UI API for GNOME
+WWW=		https://www.gnome.org/
 
 LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
@@ -24,7 +23,7 @@ RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		xkeyboard-config>=0:x11/xkeyboard-config
 
 USES=		bison cpe gettext gnome localbase:ldflags meson \
-		pkgconfig python:3.4+ tar:xz xorg
+		pkgconfig python tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30 gtk40 intltool introspection:build
 USE_XORG=	x11
 USE_LDCONFIG=	yes

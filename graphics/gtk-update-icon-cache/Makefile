@@ -10,7 +10,7 @@ WWW=		https://www.gtk.org/
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gettext gnome meson pkgconfig
+USES=		gettext gnome meson pkgconfig trigger
 USE_GNOME=	gdkpixbuf2
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.gnome.org

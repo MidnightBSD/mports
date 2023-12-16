@@ -1,8 +1,13 @@
 PORTNAME=	clover
 PORTVERSION=	${MESAVERSION}
+PORTREVISION=	1
 CATEGORIES=	lang
 
 COMMENT=	Mesa OpenCL implementation for AMD GPUs
+WWW=		https://dri.freedesktop.org/wiki/GalliumCompute/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
 BUILD_DEPENDS=	libclc>=0.3.0:devel/libclc \
 		opencl>=0:devel/opencl
@@ -29,6 +34,7 @@ MESON_ARGS+=	-Ddri-drivers="" \
 		-Dgallium-xvmc=disabled \
 		-Dgles1=disabled \
 		-Dgles2=disabled \
+		-Dmicrosoft-clc=disabled \
 		-Dopengl=false \
 		-Dglx=disabled \
 		-Degl=disabled \

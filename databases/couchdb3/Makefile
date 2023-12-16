@@ -1,25 +1,25 @@
 PORTNAME=	couchdb3
 DISTVERSION=	3.2.2
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	APACHE/couchdb/source/${DISTVERSION}
 DISTNAME=	apache-couchdb-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	JSON document database with HTTP API and scalable multi-master sync
+COMMENT=	JSON document database with HTTP API and scalable cluster mesh sync
+WWW=		https://couchdb.apache.org/
 
 LICENSE=	apache2 bsd3 iscl WTFPL OFL11
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	rebar:devel/rebar \
-		erlang-runtime24>=24.0:lang/erlang-runtime24
+		erlang-runtime25>=25.0:lang/erlang-runtime25
 LIB_DEPENDS=	libicudata.so:devel/icu \
-		libmozjs-78.so:lang/spidermonkey78
-RUN_DEPENDS=	erlang-runtime24>=24.0:lang/erlang-runtime24
+		libmozjs-91.so:lang/spidermonkey91
+RUN_DEPENDS=	erlang-runtime25>=25.0:lang/erlang-runtime25
 
 USES=		compiler:c++17-lang cpe gmake libtool ncurses
 USE_RC_SUBR=	${PORTNAME}
-
-CONFLICTS=	couchdb[24]*
 
 CPE_VENDOR=	apache
 CPE_PRODUCT=	couchdb
@@ -29,7 +29,7 @@ GROUPS=		couchdb
 
 SUB_FILES=	pkg-message
 SUB_LIST=	APPDIR=${APPDIR} \
-		ERL_PATH=${LOCALBASE}/lib/erlang22/bin/erl \
+		ERL_PATH=${LOCALBASE}/lib/erlang${_ERLVER}/bin/erl \
 		PORTNAME=${PORTNAME} \
 		RELDIR=${RELDIR} \
 		WWWDIR=${WWWDIR}
@@ -37,7 +37,7 @@ PLIST_SUB=	VERSION=${DISTVERSION}
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--skip-deps --user ${USERS} --rebar ${LOCALBASE}/bin/rebar \
-		--spidermonkey-version 78
+		--spidermonkey-version 91
 
 ALL_TARGET=	release
 
@@ -50,6 +50,7 @@ DBDIR?=		/var/db/${PORTNAME}
 LOGDIR?=	/var/log/${PORTNAME}
 LOGFILE?=	${LOGDIR}/couch.log
 APPDIR=		${LOCALBASE}/libexec/${PORTNAME}
+_ERLVER?=	25
 RELDIR=		${APPDIR}/releases/${DISTVERSION}
 
 NO_TEST=	yes
@@ -65,6 +66,7 @@ post-patch:
 	    -e 's,%%APPDIR%%,${APPDIR},g' \
 	    -e 's,%%DATADIR%%,${DATADIR},g' \
 	    -e 's,%%DBDIR%%,${DBDIR},g' \
+	    -e 's,%%ERLVER%%,${_ERLVER},g' \
 	    -e 's,%%LOCALBASE%%,${LOCALBASE},g' \
 	    -e 's,%%PORTNAME%%,${PORTNAME},g' \
 	    -e 's,%%WWWDIR%%,${WWWDIR},g' \

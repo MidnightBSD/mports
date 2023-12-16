@@ -2,9 +2,9 @@ PORTNAME=	libtextstyle
 PORTREVISION=	0
 
 COMMENT=	Text styling library
-WW=		https://www.gnu.org/software/gettext/libtextstyle/manual/
+WWW=		https://www.gnu.org/software/gettext/libtextstyle/manual/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 .include "${.CURDIR}/../gettext/Makefile.common"

@@ -1,21 +1,18 @@
-# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-
 PORTNAME=	libebml
-DISTVERSION=	1.3.10
-DISTVERSIONPREFIX=	release-
+DISTVERSION=	1.4.4
 CATEGORIES=	textproc
+MASTER_SITES=	https://dl.matroska.org/downloads/libebml/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	EBML (Extensible Binary Meta Language), sort of binary version of XML
+WWW=		https://www.matroska.org/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE.LGPL
 
-USES=		cmake compiler:c++11-lang pathfix tar:bzip2
+USES=		cmake compiler:c++11-lang cpe tar:xz
 USE_LDCONFIG=	yes
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	Matroska-Org
+CPE_VENDOR=	matroska
 
 CMAKE_ARGS=	-DBUILD_SHARED_LIBS=YES
 

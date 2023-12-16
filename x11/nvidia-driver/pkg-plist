@@ -36,6 +36,9 @@ lib/libnvidia-cfg.so.1
 @comment lib/libnvidia-egl-gbm.so.1
 @comment lib/libnvidia-egl-wayland.so
 @comment lib/libnvidia-egl-wayland.so.1
+lib/libnvidia-allocator.so
+lib/libnvidia-allocator.so.1
+@comment lib/gbm/nvidia-drm_gbm.so
 lib/libnvidia-eglcore.so
 lib/libnvidia-eglcore.so.1
 lib/libnvidia-glcore.so

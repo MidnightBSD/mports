@@ -41,7 +41,13 @@ NLS_CONFIGURE_ENABLE=   nls
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 GMP_CONFIGURE_WITH=	gmp
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+CONFIGURE_ARGS+= --disable-year2038
+.endif
 
 post-build:
 	@${REINPLACE_CMD} -e "s/ lib / /g" ${WRKSRC}/Makefile

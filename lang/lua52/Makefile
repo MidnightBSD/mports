@@ -1,6 +1,6 @@
 PORTNAME=	lua
 PORTVERSION=	5.2.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	http://www.lua.org/ftp/
 PKGNAMESUFFIX=	52
@@ -34,7 +34,7 @@ MAKE_ARGS+=	MYCFLAGS="${CFLAGS} ${CPPFLAGS} -DLUA_USE_LINUX" \
 		LUA_SONAME=liblua-${LUA_VER}.so \
 		TO_BIN="lua52 luac52" \
 		TO_LIB="liblua-${LUA_VER}.a liblua-${LUA_VER}.so" \
-		INSTALL_TOP=${PREFIX} \
+		INSTALL_TOP=${FAKE_DESTDIR}${TRUE_PREFIX} \
 		INSTALL_INC=${FAKE_DESTDIR}${TRUE_PREFIX}/include/lua52 \
 		INSTALL_EXEC="${INSTALL_PROGRAM}"
 FAKE_MAKEARGS+=        ${MAKE_ARGS}
@@ -48,10 +48,6 @@ SUB_LIST=	version=${PORTVERSION} \
 CFLAGS+=	-fPIC
 
 post-patch:
-	@${REINPLACE_CMD} -Ee \
-		'/^INSTALL_.*=/s/INSTALL_TOP/prefix/ ; \
-		s|/usr/local|${PREFIX}|' \
-		${WRKSRC}/Makefile ${WRKSRC}/src/Makefile
 	@${REINPLACE_CMD} -e 's,rand *(,random(,g' \
 		${WRKSRC}/src/lmathlib.c
 	@${REINPLACE_CMD} -e "/LUA_ROOT/s|/usr/local|${LUA_PREFIX}| ; \
