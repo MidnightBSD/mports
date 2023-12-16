@@ -38,11 +38,11 @@ BASE_GST_ALL_PLUGINS+= \
 		tests \
 		theora \
 		tools \
+		tremor \
 		typefind \
 		video \
-		videoconvert \
+		videoconvertscale \
 		videorate \
-		videoscale \
 		videotestsrc \
 		volume \
 		vorbis \
@@ -53,7 +53,6 @@ BASE_GST_ENABLED_PLUGINS?=
 
 BAD_GST_ALL_PLUGINS+= \
 		accurip \
-		adaptivedemux \
 		adpcmdec \
 		adpcmenc \
 		aes \
@@ -80,6 +79,7 @@ BAD_GST_ALL_PLUGINS+= \
 		codecalpha \
 		codecparsers \
 		codecs \
+		codectimestamper \
 		coloreffects \
 		colormanagement \
 		curl \
@@ -208,12 +208,14 @@ BAD_GST_ALL_PLUGINS+= \
 		winscreencap \
 		x265 \
 		y4m \
-		zbar
+		zbar \
+		zxing
 
 BAD_GST_ENABLED_PLUGINS?=
 
 GOOD_GST_ALL_PLUGINS+= \
 		aalib \
+		adaptivedemux2 \
 		alpha \
 		apetag \
 		audiofx \
@@ -288,6 +290,7 @@ GOOD_GST_ALL_PLUGINS+= \
 		wavpack \
 		wavparse \
 		ximagesrc \
+		xingmux \
 		y4m
 
 GOOD_GST_ENABLED_PLUGINS?=
@@ -305,8 +308,7 @@ UGLY_GST_ALL_PLUGINS+= \
 		nls \
 		realmedia \
 		sidplay \
-		x264 \
-		xingmux
+		x264
 
 UGLY_GST_ENABLED_PLUGINS?=
 
@@ -360,9 +362,6 @@ CONFIGURE_ARGS+=	-D${GST_PLUGIN}=enabled
 GST_PLUGIN_SUFFIX?=	-${GST_PLUGIN}
 
 USE_GSTREAMER+=	${DIST:base=}
-
-GST_INC_DIR=		include/gstreamer-${VERSION}
-GST_LIB_DIR=		lib/gstreamer-${VERSION}
 
 .endif # NO_GSTREAMER_COMMON
 
