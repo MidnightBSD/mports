@@ -1,8 +1,8 @@
 PORTNAME=	gstreamer1-libav
-PORTVERSION=	1.20.5
+DISTVERSION=	${_GST_VERSION}
 CATEGORIES=	multimedia
-MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-libav/
-DISTNAME=	gst-libav-${PORTVERSION}
+MASTER_SITES=	https://gstreamer.freedesktop.org/src/gst-libav/
+DISTNAME=	gst-libav-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in with many audio/video decoders/encoders
@@ -12,29 +12,17 @@ LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	orc>=0.4.16:devel/orc
-LIB_DEPENDS=	liborc-0.4.so:devel/orc
+LIB_DEPENDS=	liborc-0.4.so:devel/orc \
+		libavcodec.so:multimedia/ffmpeg
 
 PORTSCOUT=	limitw:1,even
 
 USES=		bison gettext-runtime gnome gstreamer libtool localbase \
-		meson ninja pkgconfig python:3.8+,build tar:xz
+		meson ninja pkgconfig python:build shebangfix tar:xz
 USE_GNOME=	glib20
+SHEBANG_FILES=	scripts/gen-changelog.py \
+		scripts/extract-release-date-from-doap-file.py
 
-BINARY_ALIAS=	python3=${PYTHON_VERSION}
-
-OPTIONS_DEFINE=	FFMPEG
-OPTIONS_DEFAULT=FFMPEG
-
-FFMPEG_DESC?=	Use system ffmpeg instead of internal libav
-FFMPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
-FFMPEG_BUILD_DEPENDS_OFF=	nasm:devel/nasm
-FFMPEG_MAKE_ENV_OFF=	V=1
-FFMPEG_VARS_OFF+=	NOPRECIOUSMAKEVARS=yes # ARCH
-
-.include <bsd.mport.options.mk>
-
-.if empty(PORT_OPTIONS:MFFMPEG)
-LDFLAGS_aarch64=	-Wl,-z,notext
-.endif
+MESON_ARGS=	-Ddoc=disabled
 
 .include <bsd.port.mk>
