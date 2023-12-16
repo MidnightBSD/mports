@@ -1,5 +1,3 @@
-
-
 PORTNAME=	xtail
 PORTVERSION=	2.1
 CATEGORIES=	misc
@@ -8,6 +6,8 @@ MASTER_SITES=	http://www.unicom.com/sw/xtail/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Watches the growth of files or directories
+WWW=		https://www.unicom.com/sw/xtail/
+
 LICENSE=	unknown
 
 HAS_CONFIGURE=	yes
