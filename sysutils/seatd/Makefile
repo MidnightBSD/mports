@@ -5,6 +5,7 @@ MASTER_SITES=	https://git.sr.ht/~kennylevinsen/${PORTNAME}/archive/${DISTVERSION
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Minimal seat management daemon and universal library
+WWW=		https://git.sr.ht/~kennylevinsen/seatd
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -15,6 +16,7 @@ USES=		compiler:c11 cpe meson pkgconfig
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	${PORTNAME}
 CPE_VENDOR=	${PORTNAME}_project
+MESON_ARGS=	-Dlibseat-logind=disabled
 SUB_FILES=	pkg-message
 PLIST_FILES=	bin/${PORTNAME} \
 		"@(,video,4750) bin/${PORTNAME}-launch" \
