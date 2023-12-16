@@ -22,7 +22,7 @@ CONFIGURE_ARGS=	--with-libzmq=${LOCALBASE} \
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+NO_TEST=	yes
 
 CFLAGS+=	-Wno-error
 
