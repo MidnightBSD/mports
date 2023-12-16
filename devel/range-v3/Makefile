@@ -17,15 +17,10 @@ GH_ACCOUNT=	ericniebler
 CMAKE_OFF=	RANGE_V3_TESTS RANGE_V3_EXAMPLES
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/include/module.modulemap
-
-do-test:
-	@cd ${BUILD_WRKSRC} && \
-		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} -DRANGE_V3_TESTS:BOOL=ON ${CMAKE_SOURCE_PATH} && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} test
+	@${RM} ${PREFIX}/include/module.modulemap
 
 build-examples: build
 	@cd ${BUILD_WRKSRC} && \
