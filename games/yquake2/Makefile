@@ -21,6 +21,7 @@ USE_SDL=	sdl2
 MAKE_ARGS=	VERBOSE=1 WITH_SYSTEMWIDE=yes \
 		WITH_SYSTEMDATADIR="${Q2DIR}" \
 		WITH_SYSTEMLIBDIR="${PREFIX}/lib/${PORTNAME}"
+LDFLAGS+=	-lm
 
 OPTIONS_DEFINE=	DOCS
 
@@ -36,9 +37,9 @@ do-install:
 		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${WRKSRC}/doc/*.md \
-		${STAGEDIR}${DOCSDIR}
+		${FAKE_DESTDIR}${DOCSDIR}
 
 .include "${.CURDIR}/../quake2-data/Makefile.include"
 .include <bsd.port.mk>
