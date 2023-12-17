@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client specific buffers module for ZNC
 WWW=		https://wiki.znc.in/Clientbuffer
 
-LICENSE=	aapche2
+LICENSE=	apache2
 
 BUILD_DEPENDS=	znc:irc/znc
 RUN_DEPENDS=	znc:irc/znc
