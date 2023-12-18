@@ -1,13 +1,15 @@
 PORTNAME=	trousers
 PORTVERSION=	0.3.14
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source TCG Software Stack
+WWW=		https://sourceforge.net/projects/trousers/
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	tpm-emulator>=0.7.4_1:emulators/tpm-emulator
 RUN_DEPENDS:=	${BUILD_DEPENDS}
