@@ -1,12 +1,13 @@
 PORTNAME=	pinentry
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.1
 CATEGORIES=	security
 MASTER_SITES=	GNUPG/pinentry
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Collection of simple PIN or passphrase entry dialogs
+WWW=		https://www.gnupg.org/aegypten2
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:bzip2
