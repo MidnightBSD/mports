@@ -1,0 +1,10 @@
+--- compiler-rt/lib/cfi/CMakeLists.txt.orig	2023-12-18 09:28:51.573559000 -0500
++++ compiler-rt/lib/cfi/CMakeLists.txt	2023-12-18 09:29:07.496455000 -0500
+@@ -1,6 +1,6 @@
+ add_compiler_rt_component(cfi)
+ 
+-if(OS_NAME MATCHES "Linux" OR OS_NAME MATCHES "FreeBSD" OR OS_NAME MATCHES "NetBSD")
++if(OS_NAME MATCHES "Linux" OR OS_NAME MATCHES "FreeBSD" OR OS_NAME MATCHES "NetBSD" OR OS_NAME MATCHES "MidnightBSD")
+   set(CFI_SOURCES
+     cfi.cpp
+     )

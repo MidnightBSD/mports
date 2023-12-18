@@ -1,0 +1,11 @@
+--- lldb/tools/lldb-server/CMakeLists.txt.orig	2023-12-18 09:06:44.894758000 -0500
++++ lldb/tools/lldb-server/CMakeLists.txt	2023-12-18 09:07:04.374548000 -0500
+@@ -9,7 +9,7 @@
+   list(APPEND LLDB_PLUGINS lldbPluginProcessLinux)
+ endif()
+ 
+-if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   list(APPEND LLDB_PLUGINS
+     lldbPluginProcessFreeBSDRemote
+     lldbPluginProcessFreeBSD)
