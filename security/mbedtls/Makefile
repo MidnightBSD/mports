@@ -1,5 +1,5 @@
 PORTNAME=	mbedtls
-PORTVERSION=	2.28.4
+PORTVERSION=	2.28.6
 DISTVERSIONPREFIX=${PORTNAME}-
 CATEGORIES=	security devel
 
@@ -7,7 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SSL/TLS and cryptography library
 WWW=		https://www.trustedfirmware.org/projects/mbed-tls/
 
-LICENSE=	apache2
+LICENSE=	apache2 gpl2+
+LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
