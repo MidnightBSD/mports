@@ -22,7 +22,7 @@
      )
    endif()
 +
-+  if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
++  if(${CMAKE_SYSTEM_NAME} MATCHES "MidnightBSD")
 +    list(REMOVE_ITEM i386_SOURCES ${GENERIC_BF_SOURCES})
 +  endif()
  else () # MSVC
@@ -43,7 +43,7 @@
          set(deps_aarch64 lse_builtin_symlinks)
 +      endif()
 +
-+      if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD" AND ${arch} STREQUAL "i386"))
++      if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "MidnightBSD" AND ${arch} STREQUAL "i386"))
 +        append_list_if(COMPILER_RT_HAS_FLOAT16 -DCOMPILER_RT_HAS_FLOAT16 BUILTIN_CFLAGS)
        endif()
  
