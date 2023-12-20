@@ -453,26 +453,26 @@ post-install:
 .endfor
 
 post-install-DOCS-on:
-	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
+	-${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc/* ${FAKE_DESTDIR}${DOCSDIR}
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc
 .for _man in ${MAN1SRCS}
 	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/${_man} \
 	    ${FAKE_DESTDIR}${MANPREFIX}/man/man1/${_man:R}${LLVM_SUFFIX}.1
 .endfor
 .if ! ${PORT_OPTIONS:MLIT}
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 
 .if ${PORT_OPTIONS:MCLANG}
 post-install-DOCS-off:
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 .endif
 
 post-install-CLANG-on:
