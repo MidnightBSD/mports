@@ -164,7 +164,7 @@ llvm%%LLVM_SUFFIX%%/bin/llc
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-argdumper
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-instr
-%%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-server
+@comment %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-server
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-vscode
 llvm%%LLVM_SUFFIX%%/bin/lli
 llvm%%LLVM_SUFFIX%%/bin/llvm-addr2line
