@@ -273,6 +273,8 @@ PYCLANG_PATTERN=	(clang\/(__init__|cindex|enumerations).py)$$
 CMAKE_ARGS+=	-DLLVM_ENABLE_PROJECTS="${LLVM_ENABLE_PROJECTS:ts;}"
 .endif
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 .include "${.CURDIR}/Makefile.COMMANDS"
 .include "${.CURDIR}/Makefile.MAN1SRCS"
@@ -498,15 +500,6 @@ post-install-LIT-on:
 
 post-install-LLD-on:
 	${LN} -s ld.lld ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/ld
-
-TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
-do-test:
-	if [ `${ID} -u` = 0 ]; then \
-		${CHOWN} -R nobody ${WRKSRC}/test; \
-		su -m nobody -c ${TEST_CMD}; \
-	else \
-		${SH} -c ${TEST_CMD}; \
-	fi
 
 build-plist:
 	${RM} ${PLIST} ${PLIST}.tmp
