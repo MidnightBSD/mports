@@ -43,6 +43,7 @@ SUBDIR += gnugrep
 SUBDIR += groff
 SUBDIR += gsed
 SUBDIR += gspell
+SUBDIR += gstreamer1-plugins-zxing
 SUBDIR += gtk-doc
 SUBDIR += gtkspell
 SUBDIR += gtkspell3
