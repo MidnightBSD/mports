@@ -330,3 +330,4 @@ devel/ORBit2||2022-03-15|Gnome2 library unused anymore
 games/quake3|games/ioquake3|2023-12-09|quake3 native broken, use ioquake3 instead
 lang/perl5.30|lang/perl5.36|2023-12-27|5.30 is EOL
 lang/perl5.32|lang/perl5.36|2023-12-27|5.32 is EOL
+devel/llvm40|devel/llvm70|2023-12-27|4 is EOL
