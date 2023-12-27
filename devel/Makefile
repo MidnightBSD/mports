@@ -305,7 +305,6 @@ SUBDIR += linux-c7-sdl20
 SUBDIR += linux-c7-strace
 SUBDIR += linux-c7-systemd-libs
 SUBDIR += linux_libusb
-SUBDIR += llvm40
 SUBDIR += llvm70
 SUBDIR += llvm90
 SUBDIR += llvm10
