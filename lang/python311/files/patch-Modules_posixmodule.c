@@ -1,15 +1,15 @@
---- Modules/posixmodule.c.orig	2022-04-18 10:43:44.030327000 -0400
-+++ Modules/posixmodule.c	2022-04-18 10:46:09.067046000 -0400
-@@ -247,7 +247,7 @@
+--- Modules/posixmodule.c.orig	2023-06-06 18:00:27.000000000 -0400
++++ Modules/posixmodule.c	2023-12-31 18:26:51.346167000 -0500
+@@ -280,7 +280,7 @@
  #  undef HAVE_SCHED_SETAFFINITY
  #endif
  
--#if defined(HAVE_SYS_XATTR_H) && defined(__GLIBC__) && !defined(__FreeBSD_kernel__) && !defined(__GNU__)
-+#if defined(HAVE_SYS_XATTR_H) && defined(__GLIBC__) && !defined(__FreeBSD_kernel__) && !defined(__GNU__) && !defined(__MidnightBSD_kernel__)
+-#if defined(HAVE_SYS_XATTR_H) && defined(__linux__) && !defined(__FreeBSD_kernel__) && !defined(__GNU__)
++#if defined(HAVE_SYS_XATTR_H) && defined(__linux__) && !defined(__FreeBSD_kernel__) && !defined(__GNU__) && !defined(__MidnightBSD_kernel)
  #  define USE_XATTRS
+ #  include <linux/limits.h>  // Needed for XATTR_SIZE_MAX on musl libc.
  #endif
- 
-@@ -255,7 +255,7 @@
+@@ -289,7 +289,7 @@
  #  include <sys/xattr.h>
  #endif
  
@@ -18,7 +18,7 @@
  #  ifdef HAVE_SYS_SOCKET_H
  #    include <sys/socket.h>
  #  endif
-@@ -273,7 +273,8 @@
+@@ -307,7 +307,8 @@
      defined(__OpenBSD__)   || \
      defined(__FreeBSD__)   || \
      defined(__NetBSD__)    || \
