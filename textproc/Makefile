@@ -376,5 +376,6 @@ SUBDIR += ydiff
 SUBDIR += yelp-tools
 SUBDIR += yelp-xsl
 SUBDIR += yq
+SUBDIR += zxing-cpp
 
 .include <bsd.port.subdir.mk>
