@@ -12,6 +12,8 @@ WWW=		https://www.elastic.co/products/beats/
 
 LICENSE=	apache2
 
+BROKEN=		hostname error on app startup
+
 USES=		go:modules
 USE_GITHUB=	yes
 
