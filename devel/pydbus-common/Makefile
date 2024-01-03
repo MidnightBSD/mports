@@ -14,8 +14,8 @@ WWW=		https://dbus.freedesktop.org/doc/dbus-python/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS+=	dbus-glib>=0:${PORTSDIR}/devel/dbus-glib
-LIB_DEPENDS+=    libdbus-1.so:${PORTSDIR}/devel/dbus
+BUILD_DEPENDS+=	dbus-glib>=0:devel/dbus-glib
+LIB_DEPENDS+=    libdbus-1.so:devel/dbus
 
 SLAVE_PORT?=	no
 
@@ -69,7 +69,7 @@ do-install-HTMLDOCS-on:
 LIB_DEPENDS+=	libdbus-glib-1.so:devel/dbus-glib
 RUN_DEPENDS+=	pydbus-common>=0:devel/pydbus-common
 USE_LDCONFIG=	yes
-USES+=		python:3.6+
+USES+=		python
 USE_PYTHON=	flavors py3kplist
 
 post-install:
