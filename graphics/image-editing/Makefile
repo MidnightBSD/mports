@@ -1,5 +1,5 @@
 PORTNAME=	image-editing
-PORTVERSION=	1.0
+PORTVERSION=	1.1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -7,7 +7,7 @@ COMMENT=	Image editing metaport
 
 LICENSE=	bsd2
 
-USES=		metaport
+USES=		metaport magick:x11
 
 RUN_DEPENDS=	inkscape>0:graphics/inkscape \
 		gimp>0:graphics/gimp \
