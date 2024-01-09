@@ -119,7 +119,7 @@ sub update_vcs_dir {
   
   print " done.\n";
   
-  my $cmd = "svn co $Magus::Config{VcsRoot}/mports/trunk $Magus::Config{MportsVcsDir}";
+  my $cmd = "git clone $Magus::Config{VcsRoot}/mports.git $Magus::Config{MportsVcsDir}";
   system($cmd) == 0 || die "$cmd returned non-zero: $?\n";
 }
 
