@@ -80,6 +80,7 @@ SUBDIR += libsass
 SUBDIR += libtextcat
 SUBDIR += libtre
 SUBDIR += libucl
+SUBDIR += libunibreak
 SUBDIR += libuninameslist
 SUBDIR += libvisio01
 SUBDIR += libwapcaplet

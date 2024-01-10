@@ -1,0 +1,33 @@
+PORTNAME=	tuxpaint-config
+PORTVERSION=	0.0.21
+CATEGORIES=	games
+MASTER_SITES=	SF/tuxpaint/${PORTNAME}/${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Graphical tool to change TuxPaint settings
+WWW=		https://www.tuxpaint.org/
+
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/docs/COPYING.txt
+
+LIB_DEPENDS=	libpaper.so:print/libpaper \
+		libfltk.so:x11-toolkits/fltk \
+		libunibreak.so:textproc/libunibreak
+RUN_DEPENDS=	tuxpaint:games/tuxpaint
+
+USES=		gettext gmake pkgconfig
+MAKE_ARGS=	PREFIX="${PREFIX}" \
+		MAN_PREFIX="${MANPREFIX}/man" \
+		GNOME_PREFIX="${PREFIX}" \
+		CFLAGS="${CXXFLAGS} ${CPPFLAGS}" \
+		ARCH_LINKS="${LDFLAGS}"
+INSTALL_TARGET=	install-bin install-data install-man install-gettext \
+		install-doc install-gnome
+MAKE_JOBS_UNSAFE=yes
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lintl
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>
