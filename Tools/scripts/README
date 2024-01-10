@@ -1,6 +1,7 @@
-$MidnightBSD$
 
+MOVEDlint.awk - checks MOVED for common errors
 addport	- replacement for easy-import
+bad-pkgdescrs.sh - locate identical pkg descriptions
 bump_revision.pl - Small script to bump the PORTREVISION variable of ports
                    which are depending on a port with a changed shared lib
                    version.
@@ -12,6 +13,7 @@ chkorigin.sh - checks all ports in the tree for a wrong PKGORIGIN.
                Run this tool after every repocopy.
 de-pkg-comment - converts pkg-comment to COMMENT (will be obsoleted when
                  the mass conversion is finished)
+doportlint - run portlint on every port and return the results
 distclean - compare md5 sums of distfiles in ports/distfiles with currently
             installed ports collection in ports/* and prompt to remove
             unmatched entries
@@ -21,11 +23,13 @@ plist - automate (mostly, at least) pkg-plist generation
 portsearch - A utility for searching the ports tree. It allows more detailed
              search criteria than ``make search key=<string>'' and accepts
              all perl(1) regular expressions.
+search_lib_depends_and_bump.sh - Give it a port that has changed and it will bump
+                               all ports having a LIB_DEPENDS on this port
 splitpatch.pl - A small script to convert multi-file patches to several
                 appropriately named single-file patches.
-tindex - script used to build INDEXes for supported FreeBSD branches, which
+tindex - script used to build INDEXes for supported MidnightBSD branches, which
          are the source of the 'make fetchindex' INDEXes, and the build
-         failure reports on ports@FreeBSD.org
+         failure reports
 update-patches - generates updated patches.
 
 ----------------------------------------------------------------------
