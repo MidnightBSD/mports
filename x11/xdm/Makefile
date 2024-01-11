@@ -1,5 +1,6 @@
 PORTNAME=	xdm
-PORTVERSION=	1.1.12
+PORTVERSION=	1.1.14
+PORTREVISION=	0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -8,6 +9,9 @@ COMMENT=	X.Org X display manager
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+RUN_DEPENDS=	xsm:x11/xsm
+
+EXTRACT_SUFX=	.tar.xz
 USES=		cpe libtool xorg xorg-cat:app
 USE_LDCONFIG=	yes
 USE_XORG=	x11 xau xaw xdmcp xext xinerama xmu xpm xrender xt
