@@ -1,3 +1,3 @@
-TIMESTAMP = 1680808354
-SHA256 (palemoon-32.0.1.freebsd12.3-x86_64-gtk3.tar.bz2) = 3071743330b58c3d995051e9477dc9470bafa38616b8b08e10517de1891b68db
-SIZE (palemoon-32.0.1.freebsd12.3-x86_64-gtk3.tar.bz2) = 49874440
+TIMESTAMP = 1704939558
+SHA256 (palemoon-32.3.0.freebsd12.3-x86_64-gtk3.tar.xz) = 0731455db87ddea4c59e2633272e43e501c045b6b9e60b766f24cc61552fd3df
+SIZE (palemoon-32.3.0.freebsd12.3-x86_64-gtk3.tar.xz) = 40914828
