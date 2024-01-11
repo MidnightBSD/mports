@@ -1,6 +1,6 @@
 PORTNAME=	open-motif
 PORTVERSION=	2.3.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 # MASTER_SITES=	SF/${PORTNAME}/Motif%202.3.4%20Source%20Code/
 MASTER_SITES=	SF/motif/Motif%20${PORTVERSION}%20Source%20Code/
@@ -8,6 +8,7 @@ DISTNAME=	motif-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
+WWW=		https://motif.ics.com/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
