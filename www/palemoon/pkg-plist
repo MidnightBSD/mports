@@ -54,6 +54,7 @@ palemoon/libsoftokn3.so
 palemoon/libplc4.so
 palemoon/libsmime3.so
 palemoon/libmozgtk.so
+palemoon/libhunspell.so
 palemoon/dependentlibs.list
 @dir palemoon/browser/icons
 @dir palemoon/browser/defaults/profile/chrome
