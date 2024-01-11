@@ -943,6 +943,7 @@ SUBDIR += py-fs2
 SUBDIR += py-funcsigs
 SUBDIR += py-future
 SUBDIR += py-game
+SUBDIR += py-gevent
 SUBDIR += py-gitdb2
 SUBDIR += py-gitpython
 SUBDIR += py-gobject3
