@@ -14,6 +14,7 @@ SUBDIR += backuppc
 SUBDIR += bamf
 SUBDIR += batmon
 SUBDIR += battmond
+SUBDIR += beadm
 SUBDIR += beats6
 SUBDIR += beats7
 SUBDIR += beats8

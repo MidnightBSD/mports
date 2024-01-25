@@ -1,0 +1,14 @@
+--- beadm.orig	2024-01-25 16:22:09 UTC
++++ beadm
+@@ -31,9 +31,9 @@ unset LANG
+ PATH=${PATH}:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
+ 
+ # check FreeBSD version
+-if [ $( uname -r | cut -d '-' -f1 | cut -d '.' -f1 ) -lt 8 ]
++if [ $( uname -r | cut -d '-' -f1 | cut -d '.' -f1 ) -lt 2 ]
+ then
+-  echo "ERROR: beadm(8) works on FreeBSD 8.0 or later"
++  echo "ERROR: beadm(8) works on MidnightBSD 2.0 or later"
+   exit 1
+ fi
+ 
