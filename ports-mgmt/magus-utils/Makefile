@@ -15,8 +15,7 @@ RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:databases/p5-DBD-Pg \
 		${SITE_PERL}/Class/Accessor.pm:devel/p5-Class-Accessor \
 		git:devel/git
 
-USES=		perl5
-USE_PGSQL=	yes
+USES=		perl5 pgsql:14
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
