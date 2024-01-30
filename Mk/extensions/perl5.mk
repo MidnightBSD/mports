@@ -245,7 +245,7 @@ BUILD_DEPENDS+=	p5-Module-Build-Tiny>=0.039:devel/p5-Module-Build-Tiny
 CONFIGURE_ARGS+=--create_packlist 1
 .    endif
 .  elif ${_USE_PERL5:Mconfigure}
-CONFIGURE_ARGS+=INSTALLDIRS="site"
+CONFIGURE_ARGS+=INSTALLDIRS="site" MAN1EXT=1 MAN3EXT=3
 .  endif # modbuild
 
 .  if ${_USE_PERL5:Mconfigure}
