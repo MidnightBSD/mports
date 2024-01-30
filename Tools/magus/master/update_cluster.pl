@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #
 # Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
