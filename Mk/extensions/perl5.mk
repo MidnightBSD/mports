@@ -43,7 +43,9 @@ USE_PERL5?=	run build
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=		perl${PERL_BRANCH}
 
-.if ${OSVERSION} > 301006
+.if ${OSVERSION} > 302000
+_DEFAULT_PERL_VERSION=	5.36.3
+.elif ${OSVERSION} > 301006
 _DEFAULT_PERL_VERSION=	5.36.1
 .elif ${OSVERSION} > 202002
 _DEFAULT_PERL_VERSION=	5.36.0
@@ -103,7 +105,7 @@ SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
 SITE_MAN1_REL?=	${SITE_PERL_REL}/man/man1
 SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
 
-.if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
+.if ${OSVERSION} < 302001 && exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
 PERL=		/usr/bin/perl
 CPAN_CMD?= 	/usr/bin/cpan
 _CORE_PERL=	yes
