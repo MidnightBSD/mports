@@ -1,8 +1,8 @@
 #!/bin/sh
 #
 # distclean
-# Compare distfiles in /usr/ports/distfiles
-# with currently instaled ports collection
+# Compare distfiles in /usr/mports/Distfiles
+# with currently instaled mports collection
 # and removes outdated files
 #
 # ----------------------------------------------------------------------------
@@ -14,8 +14,6 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
-#
-# MAINTAINER= sobomax@FreeBSD.org
 
 PATH=/sbin:/bin:/usr/bin
 
@@ -34,7 +32,7 @@ if [ ! -d ${PORTSDIR} ]; then
 fi
 
 DISTDIR=`(make -V DISTDIR -f ${PORTSDIR}/Mk/bsd.port.mk) 2>/dev/null`
-DISTDIR=${DISTDIR:-/usr/ports/distfiles}
+DISTDIR=${DISTDIR:-/usr/mports/Distfiles}
 
 echo "Assumes that your ports are in ${PORTSDIR} and distfiles in ${DISTDIR}."
 echo ""

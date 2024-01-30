@@ -1,7 +1,4 @@
-#!/usr/bin/perl
-# 
-# $MidnightBSD: mports/Tools/make_index_db,v 1.1 2007/09/11 02:34:33 ctriv Exp $
-#
+#!/usr/bin/env perl
 
 use strict;
 use warnings;

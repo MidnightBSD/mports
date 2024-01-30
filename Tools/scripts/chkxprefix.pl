@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #
 # chkxprefix.pl -- A simple script to check if a port and its dependancies have
 # a prefix of /usr/X11R?  
