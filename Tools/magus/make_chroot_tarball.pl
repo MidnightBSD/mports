@@ -78,7 +78,6 @@ my @files = qw(
   /root/.profile
   /sbin
   /usr/bin
-  /usr/games
   /usr/include
   /usr/lib
   /usr/libdata
