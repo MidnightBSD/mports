@@ -36,6 +36,7 @@ SUBDIR += courier-imap
 SUBDIR += couriergraph
 SUBDIR += chk4mail
 SUBDIR += dcc-dccd
+SUBDIR += dkfilter
 SUBDIR += dovecot
 SUBDIR += dovecot-pigeonhole
 SUBDIR += evolution
