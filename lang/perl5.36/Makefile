@@ -1,5 +1,5 @@
 PORTNAME=	perl
-PORTVERSION=	5.36.3
+PORTVERSION=	${PERL_VERSION}
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	CPAN/../../src/5.0
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -54,6 +54,9 @@ PKGINSTALL=${WRKDIR}/pkg-glue
 PKGDEINSTALL=${WRKDIR}/pkg-glue
 
 MAN3PREFIX=	${PREFIX}/lib/perl5/${PERL_VER}/perl
+
+.include "version.mk"
+
 
 _PRIV_LIB=	lib/perl5/${PERL_VER}
 _ARCH_LIB=	${_PRIV_LIB}/${PERL_ARCH}
