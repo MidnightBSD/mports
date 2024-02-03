@@ -117,7 +117,7 @@ post-install:
 		${PREFIX}/bin/pod2man ${WRKDIR}/perl-after-upgrade >${WRKDIR}/perl-after-upgrade.1
 	@${INSTALL_SCRIPT} ${WRKDIR}/perl-after-upgrade ${PREFIX}/bin/perl-after-upgrade
 	@${INSTALL_MAN} ${WRKDIR}/perl-after-upgrade.1 ${MAN1PREFIX}/man/man1/perl-after-upgrade.1
-	@${LN} -sf ${PREFIX}/lib/perl5/${PERL_VER}/mach/CORE/libperl.so ${PREFIX}/lib/libperl.so
+	@${LN} -sf ${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/CORE/libperl.so ${PREFIX}/lib/libperl.so
 	@${LN} -sf ${PREFIX}/bin/perl${PERL_VER} ${PREFIX}/bin/perl5
 
 
