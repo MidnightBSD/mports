@@ -635,6 +635,7 @@ lib/libperl.so
 %%ARCH_LIB%%/CORE/handy.h
 %%ARCH_LIB%%/CORE/mg_data.h
 %%ARCH_LIB%%/CORE/libperl.so
+lib/perl5/5.36.3/mach/CORE/libperl.so
 %%ARCH_LIB%%/CORE/keywords.h
 %%ARCH_LIB%%/CORE/sbox32_hash.h
 %%ARCH_LIB%%/CORE/bitcount.h
