@@ -45,6 +45,7 @@ PERL_PORT?=		perl${PERL_BRANCH}
 
 .if ${OSVERSION} > 302000
 _DEFAULT_PERL_VERSION=	5.36.3
+.include "${PORTSDIR}/lang/perl5.36/version.mk"
 .elif ${OSVERSION} > 301006
 _DEFAULT_PERL_VERSION=	5.36.1
 .elif ${OSVERSION} > 202002
