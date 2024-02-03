@@ -28,12 +28,8 @@ CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
 	-Darchlib=${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH} \
 	-Dprivlib=${PREFIX}/lib/perl5/${PERL_VER} \
-	-Dman3dir=${PREFIX}/lib/perl5/${PERL_VER}/perl/man/man3 \
-	-Dman1dir=${PREFIX}/man/man1 \
 	-Dsitearch=${PREFIX}/${SITE_PERL_REL}/${PERL_ARCH} \
 	-Dsitelib=${PREFIX}/${SITE_PERL_REL} -Dscriptdir=${PREFIX}/bin \
-	-Dsiteman3dir=${PREFIX}/lib/perl5/${PERL_VER}/man/man3 \
-	-Dsiteman1dir=${PREFIX}/man/man1 \
 	-Ui_malloc -Ui_iconv -Uinstallusrbinperl \
 	-Dcc="${CC}" -Duseshrplib 
 
@@ -64,6 +60,18 @@ PLIST_SUB+=	PRIV_LIB=${_PRIV_LIB} \
 		ARCH_LIB=${_ARCH_LIB}
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 302001
+CONFIGURE_ARGS+=	-Dman3dir=${PREFIX}/lib/perl5/${PERL_VER}/perl/man/man3 \
+			-Dman1dir=${PREFIX}/man/man1 \
+			-Dsiteman3dir=${PREFIX}/lib/perl5/${PERL_VER}/man/man3 \
+			-Dsiteman1dir=${PREFIX}/man/man1
+.else
+CONFIGURE_ARGS+=	-Dman1dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man1 \
+			-Dman3dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man3 \
+			-Dsiteman1dir=${SITE_MAN1} \
+			-Dsiteman3dir=${SITE_MAN3}
+.endif
 
 .if defined(WITH_DEBUGGING)
 CONFIGURE_ARGS+=	-Doptimize="-g" -DDEBUGGING
