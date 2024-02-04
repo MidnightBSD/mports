@@ -61,6 +61,8 @@ PLIST_SUB+=	PRIV_LIB=${_PRIV_LIB} \
 
 .include <bsd.port.pre.mk>
 
+PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
+
 .if ${OSVERSION} < 302001
 CONFIGURE_ARGS+=	-Dman3dir=${PREFIX}/lib/perl5/${PERL_VER}/perl/man/man3 \
 			-Dman1dir=${PREFIX}/man/man1 \
@@ -71,6 +73,7 @@ CONFIGURE_ARGS+=	-Dman1dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man1 \
 			-Dman3dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man3 \
 			-Dsiteman1dir=${SITE_MAN1} \
 			-Dsiteman3dir=${SITE_MAN3}
+COMPONENT=.32
 .endif
 
 .if defined(WITH_DEBUGGING)
