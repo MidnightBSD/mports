@@ -9,7 +9,7 @@
 # Define ntp_* variables in one of these files:
 #       /etc/rc.conf
 #       /etc/rc.conf.local
-#       /etc/rc.conf.d/dovecot
+#       /etc/rc.conf.d/ntp
 
 ntp_enable="${ntp_enable-NO}"
 ntp_config="${ntp_config-%%PREFIX%%/etc/ntp.conf}"
