@@ -1,14 +1,15 @@
 @sample etc/ntp.conf
 man/man5/ntp.conf.5.gz
 man/man5/ntp.keys.5.gz
-man/man1/ntp-keygen.1.gz
-%%PERL_UTILS%%man/man1/ntp-wait.1.gz
-man/man1/ntpd.1.gz
-man/man1/ntpdc.1.gz
-man/man1/ntpq.1.gz
-%%PERL_UTILS%%man/man1/ntptrace.1.gz
-%%NTPSNMPD%%man/man1/ntpsnmpd.1.gz
-man/man1/sntp.1.gz
+man/man8/ntp-keygen.8.gz
+%%PERL_UTILS%%man/man8/ntp-wait.8.gz
+man/man8/ntpd.8.gz
+man/man8/ntpdc.8.gz
+man/man8/ntpq.8.gz
+%%PERL_UTILS%%man/man8/ntptrace.8.gz
+%%NTPSNMPD%%man/man8/ntpsnmpd.8.gz
+man/man8/sntp.8.gz
+man/man8/update-leap.8.gz
 %%SSL%%sbin/ntp-keygen
 %%PERL_UTILS%%sbin/ntp-wait
 sbin/ntpd
@@ -19,6 +20,7 @@ sbin/ntpq
 sbin/ntptime
 %%PERL_UTILS%%sbin/ntptrace
 sbin/sntp
+sbin/update-leap
 %%PERL_UTILS%%share/ntp/lib/NTP/Util.pm
 %%PORTDOCS%%%%DOCSDIR%%/access.html
 %%PORTDOCS%%%%DOCSDIR%%/accopt.html
@@ -66,6 +68,7 @@ sbin/sntp
 %%PORTDOCS%%%%DOCSDIR%%/drivers/driver39.html
 %%PORTDOCS%%%%DOCSDIR%%/drivers/driver4.html
 %%PORTDOCS%%%%DOCSDIR%%/drivers/driver40.html
+%%PORTDOCS%%%%DOCSDIR%%/drivers/driver40-ja.html
 %%PORTDOCS%%%%DOCSDIR%%/drivers/driver42.html
 %%PORTDOCS%%%%DOCSDIR%%/drivers/driver43.html
 %%PORTDOCS%%%%DOCSDIR%%/drivers/driver44.html
@@ -162,6 +165,7 @@ sbin/sntp
 %%PORTDOCS%%%%DOCSDIR%%/html/drivers/driver39.html
 %%PORTDOCS%%%%DOCSDIR%%/html/drivers/driver4.html
 %%PORTDOCS%%%%DOCSDIR%%/html/drivers/driver40.html
+%%PORTDOCS%%%%DOCSDIR%%/html/drivers/driver40-ja.html
 %%PORTDOCS%%%%DOCSDIR%%/html/drivers/driver42.html
 %%PORTDOCS%%%%DOCSDIR%%/html/drivers/driver43.html
 %%PORTDOCS%%%%DOCSDIR%%/html/drivers/driver44.html
@@ -485,6 +489,7 @@ sbin/sntp
 %%PORTDOCS%%%%DOCSDIR%%/sntp.html
 %%PORTDOCS%%%%DOCSDIR%%/stats.html
 %%PORTDOCS%%%%DOCSDIR%%/tickadj.html
+%%PORTDOCS%%%%DOCSDIR%%/update-leap.html
 %%PORTDOCS%%%%DOCSDIR%%/warp.html
 %%PORTDOCS%%%%DOCSDIR%%/xleave.html
 %%PORTDOCS%%share/doc/sntp/sntp.html
