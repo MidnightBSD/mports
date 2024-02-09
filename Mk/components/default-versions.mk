@@ -70,9 +70,22 @@ MYSQL_DEFAULT?=		8.0
 NINJA_DEFAULT?=		ninja
 .if ${OSVERSION} < 200001
 PERL5_DEFAULT?=		5.28
-.else
+.endif
+.if ${OSVERSION} < 300000
 PERL5_DEFAULT?=		5.32
 .endif
+.if ${OSVERSION} < 302001
+PERL5_DEFAULT?=		5.36
+.endif
+.if ${OSVERSION} > 302000 && (!exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && defined(PACKAGE_BUILDING)))
+PERL5_DEFAULT?=         5.36
+.  elif !defined(PERL5_DEFAULT)
+.    if !defined(_PERL5_FROM_BIN)
+_PERL5_FROM_BIN!=       ${LOCALBASE}/bin/perl -e 'printf "%vd\n", $$^V;'
+.    endif
+_EXPORTED_VARS+=        _PERL5_FROM_BIN
+PERL5_DEFAULT:=         ${_PERL5_FROM_BIN:R}
+.  endif
 # Possible values: 10, 11, 12, 13, 14
 PGSQL_DEFAULT?=		14
 # Possible values: 8.0, 8.1, 8.2, 8.3
@@ -101,6 +114,9 @@ SAMBA_DEFAULT?=		4.13
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.
+.  if defined(INDEXING)
+SSL_DEFAULT=	base
+.  endif
 .  if	!defined(SSL_DEFAULT) && \
 	!exists(${LOCALBASE}/lib/libcrypto.so) && \
 	exists(/usr/include/openssl/opensslv.h)
