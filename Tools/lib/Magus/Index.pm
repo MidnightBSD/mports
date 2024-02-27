@@ -78,7 +78,7 @@ sub sync {
   recurse_ports {
     print @_, "... ";
     
-    my $yaml = `__MAKE_CONF=/dev/null INDEXING=1 ARCH=$arch OSREL=$osrel OSVERSION=$osversion PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml`;
+    my $yaml = `__MAKE_CONF=/dev/null SSL_DEFAULT=base INDEXING=1 ARCH=$arch OSREL=$osrel OSVERSION=$osversion PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml`;
     my %dump;
       
     eval {
@@ -158,7 +158,7 @@ sub sync {
        print "Default flavor $flav processed.\n";
        next;
      }
-     $yaml = `__MAKE_CONF=/dev/null INDEXING=1 ARCH=$arch PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml FLAVOR=$flav`;
+     $yaml = `__MAKE_CONF=/dev/null SSL_DEFAULT=base INDEXING=1 ARCH=$arch PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml FLAVOR=$flav`;
     eval {
       %dump = %{ Load($yaml) };
     };
