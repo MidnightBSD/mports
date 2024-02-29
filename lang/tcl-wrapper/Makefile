@@ -1,7 +1,6 @@
-
-
 PORTNAME=	wrapper
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	lang tcl
 MASTER_SITES=	# empty
 PKGNAMEPREFIX=	${TX_PORT}-
@@ -11,7 +10,7 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shell wrapper for ${TX_SHELL} (${TX_PORT_U})
 
-LICENSE=	unknown
+LICENSE=	bsd2
 
 BUILD_DEPENDS=	shc:misc/shc
 
@@ -51,13 +50,13 @@ TX_VER=${TCL_VER}
 
 SUB_LIST+=	ECHO_CMD="${ECHO_CMD}" GREP="${GREP}" LS="${LS}" \
 		CP="${CP}" RM="${RM}" MD5="${MD5} -q" \
-		TX_SHELL="${TX_SHELL}" TX_SHELL_U="${TX_SHELL:U}" \
+		TX_SHELL="${TX_SHELL}" TX_SHELL_U="${TX_SHELL:tu}" \
 		TX_PORT="${TX_PORT}" TX_PORT_U="${TX_PORT_U}" \
 		TX_CAT="${TX_CAT}" TX_VER="${TX_VER}" TX_CONF="${TX_CONF}" \
 		TX_CONF_FULL="${TX_CONF_FULL}"
 
 do-build: apply-slist
-	${MAKE_ENV} ${LOCALBASE}/bin/shc -r -T -f ${WRKDIR}/wrapper
+	${MAKE_ENV} ${LOCALBASE}/bin/shc -r -f ${WRKDIR}/wrapper
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKDIR}/wrapper.x ${PREFIX}/bin/${TX_SHELL}
