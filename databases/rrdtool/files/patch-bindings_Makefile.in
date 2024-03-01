@@ -1,6 +1,6 @@
---- bindings/Makefile.in.orig	2016-01-27 17:19:31 UTC
+--- bindings/Makefile.in.orig	2022-03-14 14:29:39 UTC
 +++ bindings/Makefile.in
-@@ -711,15 +711,15 @@ all-local:  @COMP_PERL@ @COMP_RUBY@ @COM
+@@ -727,11 +727,11 @@ all-local:  @COMP_PERL@ @COMP_RUBY@ @COMP_PYTHON@
  install-data-local:
  	$(AM_V_GEN)test -f ${builddir}/perl-piped/Makefile \
             && ( cd ${builddir}/perl-piped \
@@ -14,8 +14,3 @@
             || true
  	$(AM_V_GEN)test -f ${builddir}/ruby/Makefile \
             && ( cd ${builddir}/ruby \
--                && $(MAKE) EPREFIX=$(DESTDIR)$(exec_prefix) $(RUBY_MAKE_OPTIONS) install ) \
-+                && $(MAKE) EPREFIX=$(DESTDIR)$(exec_prefix) install ) \
-            || true
- 	$(AM_V_GEN)test -d ${builddir}/python/build \
-            && ( cd ${builddir}/python \
