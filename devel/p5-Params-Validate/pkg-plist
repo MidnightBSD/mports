@@ -1,16 +1,8 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/Params::Validate.3.gz
-%%SITE_ARCH%%/auto/Params/Validate/XS/XS.so
-%%SITE_ARCH%%/Params/Validate/Constants.pm
-%%SITE_ARCH%%/Params/Validate/XS.pm
-%%SITE_ARCH%%/Params/Validate/PP.pm
 %%SITE_ARCH%%/Params/Validate.pm
+%%SITE_ARCH%%/Params/Validate/Constants.pm
+%%SITE_ARCH%%/Params/Validate/PP.pm
+%%SITE_ARCH%%/Params/Validate/XS.pm
 %%SITE_ARCH%%/Params/ValidatePP.pm
 %%SITE_ARCH%%/Params/ValidateXS.pm
-@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
-@dirrmtry %%SITE_PERL%%/man
-@dir %%SITE_ARCH%%/auto/Params/Validate/XS
-@dir %%SITE_ARCH%%/auto/Params/Validate
-@dirrmtry %%SITE_ARCH%%/auto/Params
-@dirrmtry %%SITE_ARCH%%/auto
-@dirrmtry %%SITE_ARCH%%/Params/Validate
-@dirrmtry %%SITE_ARCH%%/Params
+%%SITE_ARCH%%/auto/Params/Validate/XS/XS.so
+%%PERL5_MAN3%%/Params::Validate.3.gz
