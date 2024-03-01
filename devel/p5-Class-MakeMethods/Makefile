@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Class-MakeMethods
 PORTVERSION=	1.010
 PORTREVISION=	1
@@ -10,6 +8,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/0$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate common types of methods
+WWW=		https://metacpan.org/release/Class-MakeMethods
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
@@ -20,7 +19,7 @@ USE_PERL5=	configure
 
 NO_TEST=	yes
 
-post-extract:
+post-patch:
 		@${RM} ${WRKSRC}/benchmark.pl
 		@${PERL} -pi -e '$$_="" if m|benchmark.pl|' ${WRKSRC}/MANIFEST
 
