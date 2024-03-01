@@ -1,15 +1,13 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/Router::Simple::SubMapper.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Router::Simple::Cookbook.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Router::Simple::Route.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Router::Simple.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Router::Simple::Declare.3.gz
 %%SITE_PERL%%/Router/Simple/Cookbook.pod
 %%SITE_PERL%%/Router/Simple/Declare.pm
 %%SITE_PERL%%/Router/Simple/SubMapper.pm
 %%SITE_PERL%%/Router/Simple/Route.pm
 %%SITE_PERL%%/Router/Simple.pm
-@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
-@dirrmtry %%SITE_PERL%%/man
+%%PERL5_MAN3%%/Router::Simple.3.gz
+%%PERL5_MAN3%%/Router::Simple::Cookbook.3.gz
+%%PERL5_MAN3%%/Router::Simple::Declare.3.gz
+%%PERL5_MAN3%%/Router::Simple::Route.3.gz
+%%PERL5_MAN3%%/Router::Simple::SubMapper.3.gz
 @dirrmtry %%SITE_PERL%%/Router/Simple
 @dirrmtry %%SITE_PERL%%/Router
 @dirrmtry %%SITE_ARCH%%/auto/Router/Simple
