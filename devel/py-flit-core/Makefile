@@ -1,5 +1,5 @@
 PORTNAME=	flit-core
-PORTVERSION=	3.8.0
+PORTVERSION=	3.9.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -7,7 +7,8 @@ DISTNAME=	flit_core-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distribution-building parts of Flit
-WWW=		https://github.com/pypa/flit/tree/main/flit_core
+WWW=		https://flit.pypa.io/en/stable/ \
+		https://github.com/pypa/flit/tree/main/flit_core
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
