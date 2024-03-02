@@ -6,13 +6,13 @@
 %%SITE_ARCH%%/Net/IDN/Standards.pod
 %%SITE_ARCH%%/Net/IDN/Overview.pod
 %%SITE_ARCH%%/Net/IDN/UTS46.pm
-%%SITE_PERL%%/%%PERL5_MAN3%%/Net::IDN::Encode.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Net::IDN::Punycode.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Net::IDN::Overview.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Net::IDN::Standards.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Net::IDN::UTS46::_Mapping.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Net::IDN::UTS46.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Net::IDN::Punycode::PP.3.gz
+%%PERL5_MAN3%%/Net::IDN::Encode.3.gz
+%%PERL5_MAN3%%/Net::IDN::Punycode.3.gz
+%%PERL5_MAN3%%/Net::IDN::Overview.3.gz
+%%PERL5_MAN3%%/Net::IDN::Standards.3.gz
+%%PERL5_MAN3%%/Net::IDN::UTS46::_Mapping.3.gz
+%%PERL5_MAN3%%/Net::IDN::UTS46.3.gz
+%%PERL5_MAN3%%/Net::IDN::Punycode::PP.3.gz
 @dirrmtry %%SITE_ARCH%%/auto/Net/IDN/Punycode
 @dirrmtry %%SITE_ARCH%%/auto/Net/IDN/Encode
 @dirrmtry %%SITE_ARCH%%/auto/Net/IDN
