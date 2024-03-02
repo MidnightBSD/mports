@@ -1,11 +1,9 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/String::Tagged::Extent.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/String::Tagged.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/String::Tagged::Formatting.3.gz
+%%PERL5_MAN3%%/String::Tagged::Extent.3.gz
+%%PERL5_MAN3%%/String::Tagged.3.gz
+%%PERL5_MAN3%%/String::Tagged::Formatting.3.gz
 %%SITE_PERL%%/String/Tagged/Formatting.pod
 %%SITE_PERL%%/String/Tagged/Extent.pm
 %%SITE_PERL%%/String/Tagged.pm
-@dir %%SITE_PERL%%/%%PERL5_MAN3%%
-@dir %%SITE_PERL%%/man
 @dir %%SITE_ARCH%%/auto/String/Tagged
 @dir %%SITE_ARCH%%/auto/String
 @dir %%SITE_ARCH%%/auto
