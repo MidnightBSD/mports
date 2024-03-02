@@ -1,5 +1,5 @@
 PORTNAME=	String-Tagged
-PORTVERSION=	0.18
+PORTVERSION=	0.22
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -12,7 +12,7 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	p5-Test-Identity>=0:devel/p5-Test-Identity
+TEST_DEPENDS=	p5-Test2-Suite>=0:devel/p5-Test2-Suite
 
 NO_ARCH=	yes
 USE_PERL5=	modbuild
