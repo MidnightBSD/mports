@@ -1,6 +1,6 @@
 PORTNAME=	speedtest-go
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.6.3
+DISTVERSION=	1.6.10
 CATEGORIES=	net www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,5 +16,7 @@ GO_MODULE=	github.com/showwin/speedtest-go
 GO_TARGET=	.:${PORTNAME}
 
 PLIST_FILES=	bin/speedtest-go
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
