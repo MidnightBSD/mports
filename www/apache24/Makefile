@@ -228,7 +228,7 @@ post-install:
 	-${STRIP_CMD} ${PREFIX}/bin/*
 	-${STRIP_CMD} ${PREFIX}/libexec/apache24/mod_*.so
 # Remove files left behind by strip
-	${RM} ${DATADIR}/build/ecp.???????? 2>/dev/null
+	-${RM} ${DATADIR}/build/ecp.???????? 2>/dev/null
 
 post-install-LOG_FORENSIC-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/support/check_forensic ${FAKE_DESTDIR}${PREFIX}/sbin
