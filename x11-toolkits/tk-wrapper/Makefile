@@ -1,5 +1,3 @@
-
-
 MAINTAINER=	ports@MidnightBSD.org
 LICENSE=	unknown
 

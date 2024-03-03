@@ -1,7 +1,4 @@
 #!/bin/sh
-#
-
-#
 
 LINENUM=`grep -n COMMENT Makefile | cut -f 1 -d :`
 LINENUM=`expr 1 + $LINENUM`

@@ -13,13 +13,14 @@ WWW=		https://slurm.schedmd.com/
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-NOT_FOR_ARCHS=		armv6 armv7 i386 powerpc
+NOT_FOR_ARCHS=		armv6 armv7 i386
 NOT_FOR_ARCHS_REASON=	32-bit support is deprecated
 
 LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libsysinfo.so:devel/libsysinfo \
 		libmunge.so:security/munge \
-		liblz4.so:archivers/liblz4
+		liblz4.so:archivers/liblz4 \
+		libaec.so:science/libaec
 
 USES=		compiler:c11 cpe gmake gnome libtool localbase lua perl5 \
 		pkgconfig python:build readline shebangfix ssl tar:bz2

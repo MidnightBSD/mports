@@ -1,10 +1,9 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/Encode::Detect::Detector.3.gz
-%%SITE_PERL%%/%%PERL5_MAN3%%/Encode::Detect.3.gz
+%%PERL5_MAN3%%/Encode::Detect.3.gz
+%%PERL5_MAN3%%/Encode::Detect::Detector.3.gz
 %%SITE_ARCH%%/auto/Encode/Detect/Detector/Detector.so
 %%SITE_ARCH%%/Encode/Detect/Detector.pm
 %%SITE_ARCH%%/Encode/Detect.pm
-@dir %%SITE_PERL%%/%%PERL5_MAN3%%
-@dir %%SITE_PERL%%/man
+@dir %%/%%PERL5_MAN3%%
 @dir %%SITE_ARCH%%/auto/Encode/Detect/Detector
 @dir %%SITE_ARCH%%/auto/Encode/Detect
 @dir %%SITE_ARCH%%/auto/Encode

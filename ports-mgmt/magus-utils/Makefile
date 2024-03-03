@@ -1,7 +1,5 @@
-# Created by: Lucas Holt
-
 PORTNAME=	magus-utils
-PORTVERSION=	1.7
+PORTVERSION=	1.8
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -15,10 +13,9 @@ RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:databases/p5-DBD-Pg \
 		${SITE_PERL}/YAML.pm:textproc/p5-YAML \
 		${SITE_PERL}/Class/DBI.pm:databases/p5-Class-DBI \
 		${SITE_PERL}/Class/Accessor.pm:devel/p5-Class-Accessor \
-		svn:devel/subversion
+		git:devel/git
 
-USES=		perl5
-USE_PGSQL=	yes
+USES=		perl5 pgsql:14
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES

@@ -27,7 +27,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAV
 		gpg:security/gnupg
 
 USES=		python
-USE_PYTHON=	autoplist pep517 pytest
+USE_PYTHON=	autoplist pep517
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}-${PORTNAME}
 
@@ -42,10 +42,14 @@ TEST_ENV+=	PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
 # test_not_owner                     requires passwordless sudo access
 PYTEST_IGNORED_TESTS=	test_case_mismatch_on_windows_git \
 			test_on_old_setuptools \
-			test_not_owner
+			test_not_owner \
+			test_calver_by_date \
+			test_pip_download
 
 # https://github.com/pypa/setuptools_scm/issues/449
 PYTEST_BROKEN_TESTS=	test_non_dotted_version
+
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 

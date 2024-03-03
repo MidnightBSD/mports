@@ -1,6 +1,5 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #
-# $MidnightBSD: trunk/Tools/magus/master/top_blockers.pl 18885 2015-05-09 18:58:21Z laffer1 $
 # Prints out all depends for a port on a given run (but not type)
 use strict;
 use warnings;

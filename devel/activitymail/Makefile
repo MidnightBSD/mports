@@ -13,4 +13,7 @@ LICENSE_COMB=	dual
 USES=		perl5
 USE_PERL5=	modbuild
 
+PLIST_FILES=	bin/activitymail \
+		${SITE_MAN1}/activitymail.1.gz
+
 .include <bsd.port.mk>

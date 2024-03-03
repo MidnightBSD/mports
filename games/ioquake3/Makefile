@@ -210,7 +210,7 @@ do-install: ${Q3INSTALL}
 .endfor
 # additional rules for our custom server.cfg from filesdir
 .if ${IOQ3:MSERVER}
-	${MKDIR} ${STAGEDIR}${Q3DIR}
+	${MKDIR} ${FAKE_DESTDIR}${Q3DIR}
 	${INSTALL_DATA} ${FILESDIR}/server.cfg \
 		${FAKE_DESTDIR}${Q3DIR}/server.cfg
 .endif

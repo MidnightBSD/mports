@@ -1,5 +1,5 @@
 PORTNAME=	neon
-DISTVERSION=	0.32.3
+DISTVERSION=	0.32.5
 CATEGORIES=	www
 MASTER_SITES=	https://notroj.github.io/neon/
 

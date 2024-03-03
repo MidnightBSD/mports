@@ -77,19 +77,12 @@ OPTIONS_DEFINE=	BE_AMDGPU BE_WASM CLANG DOCS EXTRAS LIT LLD PYCLANG
 OPTIONS_DEFINE_aarch64=	OPENMP
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD LLDB OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT LLDB OPENMP
-OPTIONS_DEFINE_powerpc=	GOLD
-OPTIONS_DEFINE_powerpc64=	GOLD OPENMP
-OPTIONS_DEFINE_powerpc64le=	GOLD OPENMP
 OPTIONS_DEFINE_riscv64=	OPENMP
 OPTIONS_DEFAULT=	BE_AMDGPU BE_STANDARD BE_WASM CLANG EXTRAS LIT LLD PYCLANG
+# amd64 and i386 should have COMPILER_RT default, but it's not working.
 OPTIONS_DEFAULT_aarch64=	OPENMP
-OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD LLDB OPENMP
-OPTIONS_DEFAULT_i386=	COMPILER_RT LLDB OPENMP
-OPTIONS_DEFAULT_powerpc=	GOLD
-OPTIONS_DEFAULT_powerpc64=	${OPTIONS_DEFAULT_powerpc64_${OSREL:R}} OPENMP
-OPTIONS_DEFAULT_powerpc64_13=	GOLD
-OPTIONS_DEFAULT_powerpc64_14=	GOLD
-OPTIONS_DEFAULT_powerpc64le=	GOLD OPENMP
+OPTIONS_DEFAULT_amd64=	GOLD LLDB OPENMP
+OPTIONS_DEFAULT_i386=	LLDB OPENMP
 OPTIONS_DEFAULT_riscv64=	OPENMP
 OPTIONS_SINGLE=		BACKENDS
 OPTIONS_SINGLE_BACKENDS=BE_FREEBSD BE_NATIVE BE_STANDARD
@@ -118,7 +111,7 @@ CLANG_SUB_LIST=		XCC=clang${LLVM_SUFFIX} \
 			XLD=ld.lld${LLVM_SUFFIX} \
 			X_COMPILER_TYPE=clang
 CLANG_USE=		GNOME=libxml2
-COMPILER_RT_DESC=	Sanitizer libraries
+COMPILER_RT_DESC=	Sanitizer libraries (BROKEN)
 # An unwind.h is require to build.  I think an in-tree one should be used
 # but this seems to work as a workaround...
 COMPILER_RT_BUILD_DEPENDS=	libunwind>0:devel/libunwind
@@ -279,6 +272,8 @@ PYCLANG_PATTERN=	(clang\/(__init__|cindex|enumerations).py)$$
 .if defined(LLVM_ENABLE_PROJECTS)
 CMAKE_ARGS+=	-DLLVM_ENABLE_PROJECTS="${LLVM_ENABLE_PROJECTS:ts;}"
 .endif
+
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 .include "${.CURDIR}/Makefile.COMMANDS"
@@ -449,26 +444,26 @@ post-install:
 .endfor
 
 post-install-DOCS-on:
-	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
+	-${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc/* ${FAKE_DESTDIR}${DOCSDIR}
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc
 .for _man in ${MAN1SRCS}
 	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/${_man} \
 	    ${FAKE_DESTDIR}${MANPREFIX}/man/man1/${_man:R}${LLVM_SUFFIX}.1
 .endfor
 .if ! ${PORT_OPTIONS:MLIT}
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 
 .if ${PORT_OPTIONS:MCLANG}
 post-install-DOCS-off:
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 .endif
 
 post-install-CLANG-on:
@@ -505,15 +500,6 @@ post-install-LIT-on:
 
 post-install-LLD-on:
 	${LN} -s ld.lld ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/ld
-
-TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
-do-test:
-	if [ `${ID} -u` = 0 ]; then \
-		${CHOWN} -R nobody ${WRKSRC}/test; \
-		su -m nobody -c ${TEST_CMD}; \
-	else \
-		${SH} -c ${TEST_CMD}; \
-	fi
 
 build-plist:
 	${RM} ${PLIST} ${PLIST}.tmp

@@ -1,0 +1,11 @@
+--- libcxx/CMakeLists.txt.orig	2023-12-18 09:26:24.011243000 -0500
++++ libcxx/CMakeLists.txt	2023-12-18 09:26:36.356951000 -0500
+@@ -197,7 +197,7 @@
+   if (LIBCXX_TARGETING_MSVC)
+     # FIXME: Figure out how to configure the ABI library on Windows.
+     set(LIBCXX_CXX_ABI_LIBNAME "vcruntime")
+-  elseif (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
++  elseif (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD|MidnightBSD")
+     set(LIBCXX_CXX_ABI_LIBNAME "libcxxrt")
+   elseif (NOT LIBCXX_STANDALONE_BUILD OR HAVE_LIBCXXABI)
+     set(LIBCXX_CXX_ABI_LIBNAME "libcxxabi")

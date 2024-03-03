@@ -43,6 +43,7 @@ SUBDIR += gnugrep
 SUBDIR += groff
 SUBDIR += gsed
 SUBDIR += gspell
+SUBDIR += gstreamer1-plugins-zxing
 SUBDIR += gtk-doc
 SUBDIR += gtkspell
 SUBDIR += gtkspell3
@@ -79,6 +80,7 @@ SUBDIR += libsass
 SUBDIR += libtextcat
 SUBDIR += libtre
 SUBDIR += libucl
+SUBDIR += libunibreak
 SUBDIR += libuninameslist
 SUBDIR += libvisio01
 SUBDIR += libwapcaplet
@@ -375,5 +377,6 @@ SUBDIR += ydiff
 SUBDIR += yelp-tools
 SUBDIR += yelp-xsl
 SUBDIR += yq
+SUBDIR += zxing-cpp
 
 .include <bsd.port.subdir.mk>

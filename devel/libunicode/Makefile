@@ -1,6 +1,6 @@
 PORTNAME=	libunicode
 PORTVERSION=	0.4
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME/sources/libunicode/0.4
 DISTNAME=	${PORTNAME}-${PORTVERSION}.gnome
@@ -11,7 +11,7 @@ WWW=		https://www.gnome.org/
 
 LICENSE=	gpl2
 
-USES=		gmake iconv libtool
+USES=		iconv libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--localstatedir=${PREFIX}/share \

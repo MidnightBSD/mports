@@ -1,7 +1,4 @@
-%%SITE_PERL%%/%%PERL5_MAN3%%/Module::Build::Tiny.3.gz
 %%SITE_PERL%%/Module/Build/Tiny.pm
-@dir %%SITE_PERL%%/%%PERL5_MAN3%%
-@dir %%SITE_PERL%%/man
 @dir %%SITE_ARCH%%/auto/Module/Build/Tiny
 @dir %%SITE_ARCH%%/auto/Module/Build
 @dir %%SITE_ARCH%%/auto/Module

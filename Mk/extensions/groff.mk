@@ -9,7 +9,6 @@
 .if !defined(_INCLUDE_USES_GROFF_MK)
 _INCLUDE_USES_GROFF_MK=	yes
 
-.  if !exists(/usr/bin/groff)
 .    if empty(groff_ARGS)
 groff_ARGS=	build
 .    endif
@@ -28,4 +27,3 @@ IGNORE=	USES=groff - invalid args: [${groff_ARGS}] specified
 .    endif
 .  endif
 
-.endif

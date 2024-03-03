@@ -10,6 +10,7 @@ WWW=		https://metacpan.org/release/Devel-CheckCompiler
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
 USE_PERL5=	modbuildtiny

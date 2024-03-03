@@ -1,19 +1,19 @@
-# Created by: ade, archie
-
 PORTNAME=	caja
-PORTVERSION=	1.26.0
+PORTVERSION=	1.26.1
 CATEGORIES=	x11-fm mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	File manager for the MATE desktop
+WWW=		https://mate-desktop.org/
 
 LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libexif.so:graphics/libexif \
 		libexempi.so:textproc/exempi \
+		libffmpegthumbnailer.so:multimedia/ffmpegthumbnailer \
 		libstartup-notification-1.so:x11/startup-notification \
 		libnotify.so:devel/libnotify
 

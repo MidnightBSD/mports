@@ -1,12 +1,13 @@
 PORTNAME=	installer
-PORTVERSION=	0.6.0
+PORTVERSION=	0.7.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for installing Python wheels
-WWW=		https://github.com/pypa/installer
+WWW=		https://installer.pypa.io/en/stable/ \
+		https://github.com/pypa/installer
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

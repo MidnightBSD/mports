@@ -86,7 +86,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-src_util_build__id.c
 
 BINARY_ALIAS+=	python3=${PYTHON_VERSION}
 
-LLVM_DEFAULT=	11
+LLVM_DEFAULT=	12
 BUILD_DEPENDS+=	llvm-config${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 .if ${COMPONENT} != libs
 RUN_DEPENDS+=	llvm-config${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}

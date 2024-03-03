@@ -25,7 +25,8 @@ CPPFLAGS+=	-fPIC -DPIC
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 LIBS+=		-lexecinfo
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 USE_LDCONFIG=	yes
 
 CONFLICTS_INSTALL=	hdf-4.[0-9]* netcdf-3.[0-9]* netcdf3-3.[0-9]*

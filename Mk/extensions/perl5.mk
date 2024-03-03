@@ -43,7 +43,10 @@ USE_PERL5?=	run build
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=		perl${PERL_BRANCH}
 
-.if ${OSVERSION} > 301006
+.if ${OSVERSION} > 302000
+_DEFAULT_PERL_VERSION=	5.36.3
+.include "${PORTSDIR}/lang/perl5.36/version.mk"
+.elif ${OSVERSION} > 301006
 _DEFAULT_PERL_VERSION=	5.36.1
 .elif ${OSVERSION} > 202002
 _DEFAULT_PERL_VERSION=	5.36.0
@@ -98,12 +101,20 @@ SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
 SITE_PERL?=	${PERL_PREFIX}/${SITE_PERL_REL}
 SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}
 SITE_ARCH?=	${LOCALBASE}/${SITE_ARCH_REL}
+
+.if ${OSVERSION} > 302000
+SITE_MAN3_REL?=	man/man3
+SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
+SITE_MAN1_REL?=	man/man1
+SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
+.else
 SITE_MAN3_REL?=	${SITE_PERL_REL}/man/man3
 SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
 SITE_MAN1_REL?=	${SITE_PERL_REL}/man/man1
 SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
+.endif
 
-.if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
+.if ${OSVERSION} < 302001 && exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
 PERL=		/usr/bin/perl
 CPAN_CMD?= 	/usr/bin/cpan
 _CORE_PERL=	yes
@@ -191,10 +202,15 @@ _INCLUDE_USES_PERL5_POST_MK=	yes
 PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
 		PERL_VER=${PERL_VER} \
 		PERL_ARCH=${PERL_ARCH} \
-		PERL5_MAN1=man/man1 \
-		PERL5_MAN3=man/man3 \
 		SITE_PERL=${SITE_PERL_REL} \
 		SITE_ARCH=${SITE_ARCH_REL}
+.  if ${OSVERSION} < 302001
+PLIST_SUB+=	PERL5_MAN3=${SITE_PERL_REL}/man/man3 \
+		PERL5_MAN1=${SITE_PERL_REL}/man/man1
+.else
+PLIST_SUB+=	PERL5_MAN3=man/man3 \
+		PERL5_MAN1=man/man1
+.endif
 
 SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \
@@ -205,6 +221,7 @@ SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL5_MAN3=man/man3 \
 				PERL=${PERL}
 
+.if ${OSVERSION} < 302001
 # XXX do we really want to store man pages here?
 .if !defined(_CORE_PERL)
 MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
@@ -217,6 +234,7 @@ _MANPAGES+=	${P5MAN${sect}:S%^%${PREFIX}/lib/perl5/${PERL_VER}/man/man${sect}/%}
 .    endif
 .  endfor
 MANDIRS+=	${PREFIX}/${SITE_PERL_REL}/man
+.endif
 
 .  if ${_USE_PERL5:Mmodbuild} || ${_USE_PERL5:Mmodbuildtiny}
 _USE_PERL5+=	configure
@@ -245,7 +263,7 @@ BUILD_DEPENDS+=	p5-Module-Build-Tiny>=0.039:devel/p5-Module-Build-Tiny
 CONFIGURE_ARGS+=--create_packlist 1
 .    endif
 .  elif ${_USE_PERL5:Mconfigure}
-CONFIGURE_ARGS+=INSTALLDIRS="site"
+CONFIGURE_ARGS+=INSTALLDIRS="site" MAN1EXT=1 MAN3EXT=3
 .  endif # modbuild
 
 .  if ${_USE_PERL5:Mconfigure}
@@ -287,8 +305,13 @@ TEST_DEPENDS+=		${PERL5_DEPEND}:lang/${PERL_PORT}
 CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}" PREFIX="${PREFIX}" \
 			INSTALLPRIVLIB="${PREFIX}/lib" INSTALLARCHLIB="${PREFIX}/lib"
 CONFIGURE_SCRIPT?=	Makefile.PL
+.if ${OSVERSION} < 302001
 MAN3PREFIX?=		${PREFIX}/${SITE_PERL_REL}
 MAN1PREFIX?=		${PREFIX}/${SITE_PERL_REL}
+.else
+MAN3PREFIX?=		${PREFIX}/
+MAN1PREFIX?=		${PREFIX}/
+.endif
 .undef HAS_CONFIGURE
 
 .    if !target(do-configure)

@@ -1,6 +1,6 @@
 PORTNAME=	gskrab
 PORTVERSION=	0.0.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	http://organact.mine.nu/~wolfgang/gskrab/
 DISTNAME=	GSKrab-${PORTVERSION}
@@ -8,7 +8,7 @@ DISTNAME=	GSKrab-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Keyboard Grabber
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gnustep

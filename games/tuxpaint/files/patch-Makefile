@@ -1,0 +1,52 @@
+--- Makefile.orig	2020-12-12 07:42:50 UTC
++++ Makefile
+@@ -166,10 +166,10 @@ INCLUDE_PREFIX:=$(DESTDIR)$(PREFIX)/include
+ MAGIC_PREFIX:=$(DESTDIR)$(LIBDIR)/lib$(LIBDIRSUFFIX)/tuxpaint/plugins
+ 
+ # Docs and man page:
+-DOC_PREFIX:=$(DESTDIR)$(PREFIX)/share/doc/tuxpaint-$(VER_VERSION)
+-DEVDOC_PREFIX:=$(DESTDIR)$(PREFIX)/share/doc/tuxpaint-$(VER_VERSION)/tuxpaint-dev
+-MAN_PREFIX:=$(DESTDIR)$(PREFIX)/share/man
+-DEVMAN_PREFIX:=$(DESTDIR)$(PREFIX)/share/man
++DOC_PREFIX:=$(DESTDIR)$(PREFIX)/share/doc/tuxpaint
++DEVDOC_PREFIX:=$(DESTDIR)$(PREFIX)/share/doc/tuxpaint/tuxpaint/dev
++MAN_PREFIX:=$(DESTDIR)$(PREFIX)/man
++DEVMAN_PREFIX:=$(DESTDIR)$(PREFIX)/man
+ 
+ # BASH tab-completion file:
+ COMPLETIONDIR:=$(DESTDIR)/etc/bash_completion.d
+@@ -647,8 +647,8 @@ install-default-config:
+ 	@echo
+ 	@echo "...Installing default config file..."
+ 	@install -d $(CONFDIR)
+-	@cp src/tuxpaint.conf $(CONFDIR)
+-	@chmod 644 $(CONFDIR)/tuxpaint.conf
++	@cp src/tuxpaint.conf $(CONFDIR)/tuxpaint.conf.sample
++	@chmod 644 $(CONFDIR)/tuxpaint.conf.sample
+ 
+ # Install BASH completion file:
+ .PHONY: install-bash-completion
+@@ -1217,10 +1217,10 @@ tp-magic-config:	src/tp-magic-config.sh.in
+ 	@echo "...Generating 'Magic' tool API configuration script..."
+ 	@sed -e s/__VERSION__/$(VER_VERSION)/ \
+ 		-e s/__APIVERSION__/$(MAGIC_API_VERSION)/ \
+-		-e s=__INCLUDE__=$(INCLUDE_PREFIX)/tuxpaint= \
+-		-e s=__DATAPREFIX__=$(DATA_PREFIX)= \
+-		-e s=__PLUGINPREFIX__=$(MAGIC_PREFIX)= \
+-		-e s=__PLUGINDOCPREFIX__=$(DOC_PREFIX)/magic-docs= \
++		-e s=__INCLUDE__=$(patsubst $(DESTDIR)%,%,$(INCLUDE_PREFIX))/tuxpaint= \
++		-e s=__DATAPREFIX__=$(patsubst $(DESTDIR)%,%,DATA_PREFIX)= \
++		-e s=__PLUGINPREFIX__=$(patsubst $(DESTDIR)%,%,MAGIC_PREFIX)= \
++		-e s=__PLUGINDOCPREFIX__=$(patsubst $(DESTDIR)%,%,DOC_PREFIX)/magic-docs= \
+ 		src/tp-magic-config.sh.in \
+ 		> tp-magic-config
+ 
+@@ -1243,7 +1243,7 @@ linux_PLUGIN_LIBS:=
+ PLUGIN_LIBS:=$($(OS)_PLUGIN_LIBS)
+ 
+ #MAGIC_CFLAGS:=-g3 -O2 -fvisibility=hidden -fno-common -W -Wstrict-prototypes -Wmissing-prototypes -Wall $(MAGIC_SDL_CPPFLAGS) -Isrc/
+-MAGIC_CFLAGS:=-g3 -O2 -fno-common -W -Wstrict-prototypes -Wmissing-prototypes -Wall $(MAGIC_SDL_CPPFLAGS) -Isrc/ $(ARCH_CFLAGS)
++MAGIC_CFLAGS:=$(OPTFLAGS) -fno-common -W -Wstrict-prototypes -Wmissing-prototypes -Wall $(MAGIC_SDL_CPPFLAGS) -Isrc/ $(ARCH_CFLAGS)
+ SHARED_FLAGS:=-shared -fpic -lm
+ 
+ MAGIC_C:=$(wildcard magic/src/*.c)

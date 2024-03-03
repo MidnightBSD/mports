@@ -1,5 +1,3 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	mate-session-manager
 PORTVERSION=	1.26.0
 CATEGORIES=	x11 mate
@@ -8,6 +6,7 @@ DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session component for the MATE desktop
+WWW=		https://mate-desktop.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

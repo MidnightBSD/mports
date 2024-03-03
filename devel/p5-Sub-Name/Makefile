@@ -1,7 +1,5 @@
-# Created by: Anton Berezin <tobez@FreeBSD.org>
-
 PORTNAME=	Sub-Name
-PORTVERSION=	0.21
+PORTVERSION=	0.27
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sub::Name - (re)name a sub
+WWW=		https://metacpan.org/release/Sub-Name
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

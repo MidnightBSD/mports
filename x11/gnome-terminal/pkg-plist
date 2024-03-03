@@ -1,7 +1,6 @@
 bin/gnome-terminal
 lib/gnome-terminal/gschemas.compiled
 lib/nautilus/extensions-3.0/libterminal-nautilus.so
-lib/systemd/user/gnome-terminal-server.service
 libexec/gnome-terminal-server
 share/applications/org.gnome.Terminal.desktop
 share/dbus-1/services/org.gnome.Terminal.service

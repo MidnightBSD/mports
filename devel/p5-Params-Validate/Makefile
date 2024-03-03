@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Validate method/function parameters
+WWW=		https://metacpan.org/release/Params-Validate
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE

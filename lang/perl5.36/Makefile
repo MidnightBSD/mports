@@ -1,5 +1,5 @@
 PORTNAME=	perl
-PORTVERSION=	5.36.1
+PORTVERSION=	${PERL_VERSION}
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	CPAN/../../src/5.0
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -28,12 +28,8 @@ CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
 	-Darchlib=${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH} \
 	-Dprivlib=${PREFIX}/lib/perl5/${PERL_VER} \
-	-Dman3dir=${PREFIX}/lib/perl5/${PERL_VER}/perl/man/man3 \
-	-Dman1dir=${PREFIX}/man/man1 \
 	-Dsitearch=${PREFIX}/${SITE_PERL_REL}/${PERL_ARCH} \
 	-Dsitelib=${PREFIX}/${SITE_PERL_REL} -Dscriptdir=${PREFIX}/bin \
-	-Dsiteman3dir=${PREFIX}/lib/perl5/${PERL_VER}/man/man3 \
-	-Dsiteman1dir=${PREFIX}/man/man1 \
 	-Ui_malloc -Ui_iconv -Uinstallusrbinperl \
 	-Dcc="${CC}" -Duseshrplib 
 
@@ -55,12 +51,30 @@ PKGDEINSTALL=${WRKDIR}/pkg-glue
 
 MAN3PREFIX=	${PREFIX}/lib/perl5/${PERL_VER}/perl
 
+.include "version.mk"
+
+
 _PRIV_LIB=	lib/perl5/${PERL_VER}
 _ARCH_LIB=	${_PRIV_LIB}/${PERL_ARCH}
 PLIST_SUB+=	PRIV_LIB=${_PRIV_LIB} \
 		ARCH_LIB=${_ARCH_LIB}
 
 .include <bsd.port.pre.mk>
+
+PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
+
+.if ${OSVERSION} < 302001
+CONFIGURE_ARGS+=	-Dman3dir=${PREFIX}/lib/perl5/${PERL_VER}/perl/man/man3 \
+			-Dman1dir=${PREFIX}/man/man1 \
+			-Dsiteman3dir=${PREFIX}/lib/perl5/${PERL_VER}/man/man3 \
+			-Dsiteman1dir=${PREFIX}/man/man1
+.else
+CONFIGURE_ARGS+=	-Dman1dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man1 \
+			-Dman3dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man3 \
+			-Dsiteman1dir=${SITE_MAN1} \
+			-Dsiteman3dir=${SITE_MAN3}
+COMPONENT=.32
+.endif
 
 .if defined(WITH_DEBUGGING)
 CONFIGURE_ARGS+=	-Doptimize="-g" -DDEBUGGING
@@ -117,7 +131,7 @@ post-install:
 		${PREFIX}/bin/pod2man ${WRKDIR}/perl-after-upgrade >${WRKDIR}/perl-after-upgrade.1
 	@${INSTALL_SCRIPT} ${WRKDIR}/perl-after-upgrade ${PREFIX}/bin/perl-after-upgrade
 	@${INSTALL_MAN} ${WRKDIR}/perl-after-upgrade.1 ${MAN1PREFIX}/man/man1/perl-after-upgrade.1
-	@${LN} -sf ${PREFIX}/lib/perl5/${PERL_VER}/mach/CORE/libperl.so ${PREFIX}/lib/libperl.so
+	@${LN} -sf ${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/CORE/libperl.so ${PREFIX}/lib/libperl.so
 	@${LN} -sf ${PREFIX}/bin/perl${PERL_VER} ${PREFIX}/bin/perl5
 
 

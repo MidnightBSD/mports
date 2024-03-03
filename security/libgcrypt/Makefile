@@ -1,5 +1,5 @@
 PORTNAME=	libgcrypt
-DISTVERSION=	1.10.2
+DISTVERSION=	1.10.3
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose crypto library based on code used in GnuPG
 WWW=		https://www.gnupg.org/software/libgcrypt/index.html
 
-LICENSE=	gpl2 lgpl2.1
+LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	libgpg-error>=1.32:security/libgpg-error
@@ -41,6 +41,14 @@ INFO_USES=	makeinfo
 STATIC_CONFIGURE_ENABLE=	static
 
 .include <bsd.mport.options.mk>
+
+.if ${ARCH} == "armv6" || ${ARCH} == "armv7"
+CONFIGURE_ARGS+=	--disable-jent-support
+.endif
+
+.if defined(WITH_DEBUG)
+CFLAGS+=	-DWITH_DEBUG
+.endif
 
 post-patch:
 	@${RM} ${WRKSRC}/doc/gcrypt.info*

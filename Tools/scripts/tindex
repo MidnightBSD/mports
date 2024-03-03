@@ -26,6 +26,7 @@ export BASEDIR=/home/tindex
 export PORTSDIR=${BASEDIR}/mports
 export SRCDIR1=${BASEDIR}/src.1
 export SRCDIR2=${BASEDIR}/src.2
+export SRCDIR3=${BASEDIR}/src.3
 export OUTDIR=${BASEDIR}/out
 
 # Target architecture if not set in the environment
@@ -116,7 +117,7 @@ ${GIT} -C ${SRCDIR2} pull --rebase -q
 OSVERSION2=$(awk '/^#define[[:blank:]]__MidnightBSD_version/ {print $3}' < ${SRCDIR2}/sys/sys/param.h)
 
 cd ${PORTSDIR}
-rm -f INDEX-1 INDEX-1.bz2 INDEX-2 INDEX-2.bz2
+rm -f INDEX-1 INDEX-1.bz2 INDEX-2 INDEX-2.bz2 INDEX-3 INDEX-3.bz2
 OLD_HEAD=$(${GIT} rev-parse HEAD)
 if ! ${GIT} pull --ff-only > git.log 2>&1 ; then
   (echo "Git update failed with conflicts:";
@@ -124,7 +125,7 @@ if ! ${GIT} pull --ff-only > git.log 2>&1 ; then
     exit 1
 fi
 
-for branch in 1.x 2.x ; do
+for branch in 1.x 2.x 3.x; do
     release=$(echo $branch | sed -e 's,.x,,')
 
     eval _osver=\$OSVERSION${release}

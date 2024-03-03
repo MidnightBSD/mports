@@ -1,4 +1,4 @@
-COMMENT = Games
+COMMENT = Games and related software
 
 SUBDIR += 2048
 SUBDIR += 2048-qt
@@ -19,6 +19,8 @@ SUBDIR += five-or-more
 SUBDIR += fortunate
 SUBDIR += fotaq
 SUBDIR += four-in-a-row
+SUBDIR += freeciv
+SUBDIR += freeciv-nox11
 SUBDIR += ggz-client-libs
 SUBDIR += gmastermind
 SUBDIR += gmines
@@ -90,6 +92,10 @@ SUBDIR += scummvm
 SUBDIR += supertux
 SUBDIR += swell-foop
 SUBDIR += tali
+SUBDIR += tuxpaint
+SUBDIR += tuxpaint-config
+SUBDIR += tuxpaint-fonts
+SUBDIR += tuxpaint-stamps
 SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth

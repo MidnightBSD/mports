@@ -1,5 +1,3 @@
-# Created by: Lars Balker Rasmussen <lbr@FreeBSD.org>
-
 PORTNAME=	Mouse
 PORTVERSION=	2.5.10
 DISTVERSIONPREFIX=	v
@@ -11,12 +9,13 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Moose minus the antlers
+WWW=		https://metacpan.org/release/Mouse
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	p5-Module-Build-XSUtil>=0:devel/p5-Module-Build-XSUtil
+BUILD_DEPENDS=	p5-Module-Build-XSUtil>=0.19:devel/p5-Module-Build-XSUtil
 TEST_DEPENDS=	p5-Declare-Constraints-Simple>=0:devel/p5-Declare-Constraints-Simple \
 		p5-HTTP-Message>=0:www/p5-HTTP-Message \
 		p5-IO-String>=0:devel/p5-IO-String \

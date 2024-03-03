@@ -1,9 +1,8 @@
 PORTNAME=	palemoon
-PORTVERSION=	32.1.0
-PORTREVISION=	1
+PORTVERSION=	32.5.0
 CATEGORIES=	www
 MASTER_SITES=	https://archive.palemoon.org/palemoon/32.x/${PORTVERSION}/FreeBSD/
-DISTFILES=	palemoon-32.0.1.freebsd12.3-x86_64-gtk3.tar.bz2
+DISTFILES=	palemoon-32.5.0.freebsd12.3-x86_64-gtk3.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pale Moon for FreeBSD
@@ -36,11 +35,13 @@ LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libdav1d.so:multimedia/dav1d
 
 USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
-		desktop-file-utils tar:bz2
+		desktop-file-utils tar:xz
 CPE_VENDOR=	palemoon
 USE_GL=         gl
 USE_GNOME=      cairo gdkpixbuf2 gtk20 gtk30
 USE_XORG=       x11 xcb xcomposite xdamage xext xfixes xrender xt
+
+INSTALLS_ICONS=	yes
 
 ONLY_FOR_ARCHS=	amd64
 

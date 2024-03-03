@@ -59,7 +59,7 @@ IGNORE=	not compatible DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}
 .    endif
 .  endif
 
-.  if ${SSL_DEFAULT} == base
+.  if defined(INDEXING) || ${SSL_DEFAULT} == base
 OPENSSLBASE=		/usr
 OPENSSLDIR?=		/etc/ssl
 

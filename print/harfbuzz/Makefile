@@ -1,5 +1,5 @@
 PORTNAME=	harfbuzz
-DISTVERSION=	8.2.2
+DISTVERSION=	8.3.0
 PORTREVISION?=	0
 CATEGORIES=	print
 MASTER_SITES=	https://github.com/harfbuzz/harfbuzz/releases/download/${DISTVERSION}/
@@ -21,10 +21,9 @@ USE_LDCONFIG=	yes
 SHEBANG_GLOB=	*.py
 CPE_VENDOR=	harfbuzz_project
 
-MESON_ARGS=	-Dglib=enabled -Dgobject=enabled -Dgraphite2=enabled \
-		-Dchafa=disabled -Dfreetype=enabled -Dtests=disabled
+MESON_ARGS=	-Dgraphite2=enabled -Dchafa=disabled -Dtests=disabled
 
-PLIST_SUB+=	LIBVER=0.60822.0
+PLIST_SUB+=	LIBVER=0.60830.0
 
 HARFBUZZ_SLAVE?=	no
 

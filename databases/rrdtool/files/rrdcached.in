@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-#
+
 # PROVIDE: rrdcached
 # REQUIRE: DAEMON
 # KEYWORD: shutdown

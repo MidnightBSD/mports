@@ -5,6 +5,7 @@ Makefile.local
 /*/*/work
 /*/*/work-*
 Tools/magus/bless/magus-bless
+Tools/magus/bless/index.db.bz2
 Tools/magus/distcheck/distcheck
 *~
 *.rej

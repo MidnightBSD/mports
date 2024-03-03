@@ -1,5 +1,6 @@
 PORTNAME=	rspamd
 PORTVERSION=	3.7.4
+PORTREVISION=	1
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +16,7 @@ LIB_DEPENDS=	libicui18n.so:devel/icu \
 BUILD_DEPENDS=	ragel:devel/ragel
 RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
 
-USES=		cmake compiler:c++17-lang cpe gnome perl5 pkgconfig sqlite ssl
+USES=		cmake compiler:c++20-lang cpe gnome perl5 pkgconfig sqlite ssl
 CPE_VENDOR=	rspamd_project
 USE_LDCONFIG=	yes
 USE_PERL5=	build run
@@ -67,7 +68,7 @@ HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
 HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
 
 LUAJIT_CMAKE_OFF=	-DENABLE_LUAJIT=OFF
-LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
+LUAJIT_USES=		luajit
 LUAJIT_USES_OFF=	lua:51+
 
 CGP_RUN_DEPENDS+=	\

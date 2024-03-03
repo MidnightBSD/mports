@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -78,7 +78,6 @@ my @files = qw(
   /root/.profile
   /sbin
   /usr/bin
-  /usr/games
   /usr/include
   /usr/lib
   /usr/libdata

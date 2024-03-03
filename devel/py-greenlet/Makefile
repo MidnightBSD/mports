@@ -1,5 +1,5 @@
 PORTNAME=	greenlet
-PORTVERSION=	3.0.0
+PORTVERSION=	3.0.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,11 +11,8 @@ WWW=		https://github.com/python-greenlet/greenlet
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-NOT_FOR_ARCHS=		mips mips64
-NOT_FOR_ARCHS_REASON=	greenlet needs to be ported to this platform
-
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 CPPFLAGS+=	-Dregister=
 
