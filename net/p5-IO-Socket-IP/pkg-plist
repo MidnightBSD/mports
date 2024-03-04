@@ -1,9 +1,7 @@
 %%SITE_PERL%%/IO/Socket/IP.pm
-%%SITE_PERL%%/%%PERL5_MAN3%%/IO::Socket::IP.3.gz
+%%PERL5_MAN3%%/IO::Socket::IP.3.gz
 @dirrmtry %%SITE_PERL%%/IO/Socket
 @dirrmtry %%SITE_PERL%%/IO
-@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
-@dirrmtry %%SITE_PERL%%/man
 @dirrmtry %%SITE_ARCH%%/auto/IO/Socket/IP
 @dirrmtry %%SITE_ARCH%%/auto/IO/Socket
 @dirrmtry %%SITE_ARCH%%/auto/IO

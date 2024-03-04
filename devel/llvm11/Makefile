@@ -289,10 +289,6 @@ _NATIVE_BACKENDS=	AArch64
 _NATIVE_BACKENDS=	ARM
 .elif ${ARCH} == i386
 _NATIVE_BACKENDS=	X86
-.elif ${ARCH:Mmips*}
-_NATIVE_BACKENDS=	Mips
-.elif ${ARCH:Mpowerpc*}
-_NATIVE_BACKENDS=	PowerPC
 .elif ${ARCH:Mriscv*}
 _NATIVE_BACKENDS=	RISCV
 .endif
@@ -316,10 +312,7 @@ _BE_LIBS_BPF=		AsmParser Disassembler
 _BE_LIBS_Hexagon=	AsmParser Disassembler
 _BE_LIBS_Lanai=		AsmParser Disassembler
 _BE_LIBS_MSP430=	AsmParser Disassembler
-_BE_LIBS_Mips=		AsmParser Disassembler
-_BE_LIBS_PowerPC=	AsmParser Disassembler
 _BE_LIBS_RISCV=		AsmParser Disassembler Utils
-_BE_LIBS_Sparc=		AsmParser Disassembler
 _BE_LIBS_SystemZ=	AsmParser Disassembler
 _BE_LIBS_WebAssembly=	AsmParser Disassembler
 _BE_LIBS_X86=		AsmParser Disassembler
