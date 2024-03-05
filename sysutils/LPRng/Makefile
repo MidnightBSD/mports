@@ -12,7 +12,7 @@ DISTNAME=	${PORTNAME:tl}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enhanced Printer Spooler
-WWW=		http://lprng.sourceforge.net/
+WWW=		https://lprng.sourceforge.net/
 
 LICENSE=	artistic gpl2
 LICENSE_COMB=	dual
