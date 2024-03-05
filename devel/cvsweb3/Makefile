@@ -1,13 +1,6 @@
-# New ports collection makefile for:	cvsweb
-# Date created:		27 Jun 1999
-# Whom:			SADA Kenji <sada@FreeBSD.org>
-#
-
-#
-
 PORTNAME=	cvsweb
 PORTVERSION=	3.0.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel www
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
 		http://people.FreeBSD.org/~scop/cvsweb/
@@ -15,6 +8,7 @@ MASTER_SITE_SUBDIR=	scop
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WWW CGI script to browse CVS repository trees version 3
+WWW=		https://www.FreeBSD.org/projects/cvsweb.html
 
 LICENSE=	bsd2
 
@@ -23,26 +17,22 @@ RUN_DEPENDS=	${SITE_PERL}/IPC/Run.pm:devel/p5-IPC-Run \
 
 # The following extra dependencies are optional, but CVSweb works the
 # best with them.
-RUN_DEPENDS+=	${SITE_PERL}/MIME/Types.pm:${PORTSDIR}/mail/p5-MIME-Types \
-		${SITE_PERL}/${PERL_ARCH}/String/Ediff.pm:${PORTSDIR}/devel/p5-String-Ediff \
-		cvsgraph:${PORTSDIR}/devel/cvsgraph
+RUN_DEPENDS+=	${SITE_PERL}/MIME/Types.pm:mail/p5-MIME-Types \
+		${SITE_PERL}/${PERL_ARCH}/String/Ediff.pm:devel/p5-String-Ediff \
+		cvsgraph:devel/cvsgraph
 
 # Use PAPERSIZE to avoid a stale dependency on Enscript.
 PAPERSIZE?=	letter
-RUN_DEPENDS+=	enscript:${PORTSDIR}/print/enscript-${PAPERSIZE}
+RUN_DEPENDS+=	enscript:print/enscript-${PAPERSIZE}
 
-LATEST_LINK=	cvsweb3
 CONFLICTS=	cvsweb-2.*
 
+USES=		cpe perl5 shebangfix
+SHEBANG_FILES=	cvsweb.cgi
+CPE_VENDOR=	freebsd
 NO_BUILD=	yes
-USES=		perl5
 
 .include <bsd.port.pre.mk>
-
-#perl 5.10 fixes
-.if ${PERL_LEVEL} > 500800
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-perl5.10
-.endif
 
 # Specify where your repository belongs.
 # (You can reconfigure it after installation anyway)
@@ -84,15 +74,11 @@ SUB_FILES=	pkg-message
 SUB_LIST=	PREFIX="${PREFIX}" DOCSDIR="${DOCSDIR}"
 
 post-patch:
-	${PERL} -i -pe "\
-		s'!!PERL!!'${PERL}'g; \
-		s'!!PREFIX!!'${PREFIX}'g;" \
-		${WRKSRC}/cvsweb.cgi
-	${PERL} -i -pe "\
-		s'!!PREFIX!!'${PREFIX}'g; \
-		s'!!CVSROOT!!'${CVSROOT}'g; \
-		s'!!TITLE!!'${TITLE}'g;" \
-		${WRKSRC}/cvsweb.conf
+	@${SED} -i '' -e 's,/usr/local/etc/,${PREFIX}/etc/,' \
+		-e 's,\(qw(hi.*)\),(\1),' ${WRKSRC}/cvsweb.cgi
+	@${REINPLACE_CMD} -i '' -e 's,!!PREFIX!!,${PREFIX},' \
+			-e 's,!!CVSROOT!!,${CVSROOT},' \
+			-e 's,!!TITLE!!,${TITLE},' \
 
 do-install:
 	${MKDIR} ${PREFIX}/${CGIDIR}
