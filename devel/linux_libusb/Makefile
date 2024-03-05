@@ -1,5 +1,3 @@
-# Created by: nox@FreeBSD.org
-
 PORTNAME=	linux_libusb
 PORTVERSION=	13.0r${FSVN_REV}
 PORTREVISION=	1
@@ -9,6 +7,7 @@ MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux-compatibility libusb
+WWW=		https://github.com/hselasky/linux_libusb
 
 LICENSE=	bsd2
 
