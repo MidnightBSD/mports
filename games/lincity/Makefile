@@ -1,12 +1,12 @@
 PORTNAME=	lincity
 PORTVERSION=	1.13.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/Lincity%20Development%20Source/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rich city simulation game for X
-WWW=		http://lincity.sourceforge.net/
+WWW=		https://lincity.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
