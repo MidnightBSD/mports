@@ -19,8 +19,9 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}falcon>=1.4.1:www/py-falcon@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-services>=0:devel/py-pytest-services@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
