@@ -1,12 +1,13 @@
 PORTNAME=	localize
 PORTVERSION=	0.0.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	textproc gnustep
-MASTER_SITES=	http://www.eskimo.com/~pburns/Localize/files/
+MASTER_SITES=	https://www.eskimo.com/~pburns/Localize/files/
 DISTNAME=	Localize-20040424
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application to aid in the translation of .strings files
+WWW=		https://www.eskimo.com/~pburns/Localize/
 
 LICENSE=	gpl2
 
