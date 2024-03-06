@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cssselect>=0:www/py-cssselect@${PY_FLAVOR} \
 
 NO_ARCH=	yes
 NO_TEST=	yes
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils concurrent
 
 .include <bsd.port.mk>

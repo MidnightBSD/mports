@@ -20,7 +20,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 RUN_DEPENDS=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 
 USES=		compiler:c++11-lib gettext gnome localbase:ldflags meson \
-		pkgconfig python:3.6+,build sqlite tar:xz
+		pkgconfig python:build sqlite tar:xz
 USE_GNOME=	glib20 libxml2 introspection:build
 USE_LDCONFIG=	yes
 

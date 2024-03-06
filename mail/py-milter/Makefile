@@ -17,7 +17,7 @@ LIB_DEPENDS=	libmilter.so:mail/libmilter
 CFLAGS+=	-I${LOCALBASE}/include
 .endif
 
-USES=	python:3.6+
+USES=	python
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sdgathman

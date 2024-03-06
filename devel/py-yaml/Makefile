@@ -12,7 +12,7 @@ WWW=		https://pyyaml.org/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:3.6+ localbase
+USES=		python localbase
 USE_PYTHON=	autoplist concurrent distutils cython
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pyyaml5

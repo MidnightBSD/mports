@@ -12,7 +12,7 @@ WWW=		https://www.mercurial-scm.org/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cpe python:3.7+ shebangfix
+USES=		cpe python shebangfix
 SHEBANG_FILES=	contrib/hgweb.fcgi hgweb.cgi
 USE_PYTHON=	autoplist distutils
 

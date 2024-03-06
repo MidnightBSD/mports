@@ -1,7 +1,7 @@
 PORTNAME=	ansible-base
 DISTVERSION=	2.10.17
 CATEGORIES=	sysutils python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PATCH_SITES=	https://github.com/ansible/ansible/commit/
 PATCHFILES=	6459fbb7bcf792aac9208d7851bf1edeb0495295.patch:-p1
@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>0:security/py-cryptography@${PY
 		${PYTHON_PKGNAMEPREFIX}resolvelib05>0:devel/py-resolvelib05@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR}
 
-USES=		ansible:env cpe gmake python:3.6+ shebangfix
+USES=		ansible:env cpe gmake python shebangfix
 CPE_VENDOR=	redhat
 CPE_PRODUCT=	ansible
 USE_PYTHON=	autoplist concurrent distutils

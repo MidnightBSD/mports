@@ -36,7 +36,7 @@ OPTIONS_SUB=			yes
 
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
-PYTHON_USES=                  gettext-runtime python:3.6+
+PYTHON_USES=                  gettext-runtime python
 PYTHON_USES_OFF=              python:build,test
 PYTHON_CONFIGURE_OFF=         --disable-python
 

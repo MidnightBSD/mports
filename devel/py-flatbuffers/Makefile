@@ -1,7 +1,7 @@
 PORTNAME=	flatbuffers
 PORTVERSION=	1.11
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ COMMENT=	FlatBuffers serialization format for Python
 LICENSE=	apache2
 #LICENSE_FILE=	Not packaged in PyPI sdist
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 OPTIONS_DEFINE=	NUMPY

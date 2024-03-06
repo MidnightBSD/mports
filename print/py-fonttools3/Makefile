@@ -3,7 +3,7 @@
 PORTNAME=	fonttools
 PORTVERSION=	3.44.0
 CATEGORIES=	print python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	3
 
@@ -13,7 +13,7 @@ COMMENT=	Open source library for manipulating fonts, written in Python
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:3.7+ zip
+USES=		python zip
 USE_PYTHON=	autoplist concurrent distutils
 
 MAKE_ENV=	FONTTOOLS_MANPATH="man"

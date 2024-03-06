@@ -1,7 +1,7 @@
 PORTNAME=	psycopg2
 PORTVERSION=	2.8.6
 CATEGORIES=	databases python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ COMMENT=	High performance Python adapter for PostgreSQL
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/doc/COPYING.LESSER
 
-USES=		pgsql python:3.6+
+USES=		pgsql python
 USE_PYTHON=	autoplist concurrent distutils
 
 post-install:

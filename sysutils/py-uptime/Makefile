@@ -1,7 +1,7 @@
 PORTNAME=	uptime
 PORTVERSION=	3.0.1
 CATEGORIES=	sysutils python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ COMMENT=	Cross-platform uptime library
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 post-install:

@@ -10,7 +10,7 @@ COMMENT=	Translate plain ASCII punctuation into smart typographic HTML
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python:3.7+
+USES=		python
 USE_GITHUB=	yes
 GH_ACCOUNT=	leohemsted
 GH_PROJECT=	${PORTNAME}.py

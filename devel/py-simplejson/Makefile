@@ -1,7 +1,7 @@
 PORTNAME=	simplejson
 PORTVERSION=	3.17.2
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ COMMENT=	Simple, fast, extensible JSON encoder/decoder
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_TEST=	yes

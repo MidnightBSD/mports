@@ -3,7 +3,7 @@
 PORTNAME=	hyperframe
 PORTVERSION=	6.0.0
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ COMMENT=	Python module that decodes binary streams into HTTP/2 frames
 
 LICENSE=	mit
 
-USES?=		python:3.6+
+USES?=		python
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

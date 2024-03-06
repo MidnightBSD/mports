@@ -13,7 +13,7 @@ LICENSE_COMB=	dual
 
 TEST_DEPENDS=	gmd5sum:sysutils/coreutils
 
-USES=		meson pkgconfig python:3.7+,build shebangfix
+USES=		meson pkgconfig python:build shebangfix
 
 MESON_ARGS=	-Ddefault_library=both
 USE_LDCONFIG=	yes

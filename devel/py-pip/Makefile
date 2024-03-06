@@ -16,7 +16,7 @@ WWW=		https://pip.pypa.io/en/latest/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		cpe python:3.7+ shebangfix
+USES=		cpe python shebangfix
 CPE_VENDOR=	pypa
 USE_PYTHON=	autoplist concurrent distutils pytest
 

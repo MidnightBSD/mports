@@ -10,7 +10,7 @@ WWW=		https://github.com/mnooner256/pyqrcode
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/License
 
-USES=		python:3.6+
+USES=		python
 USE_GITHUB=	yes # LICENSE_FILE/tests not packaged in sdist
 USE_PYTHON=	autoplist distutils
 

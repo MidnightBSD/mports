@@ -10,7 +10,7 @@ COMMENT=	Python progress reporting to /dev/tty
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python:3.7+
+USES=		python
 NO_ARCH=	yes
 
 USE_PYTHON=	distutils autoplist

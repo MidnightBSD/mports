@@ -31,7 +31,7 @@ OPTIONS_DEFINE=	DOCS
 
 PYDISTUTILS_BUILDARGS=	-c ${WRKSRC}/docs
 
-USES=		python:3.6+
+USES=		python
 USE_GITHUB=	yes
 USE_PYTHON=	autoplist concurrent distutils
 

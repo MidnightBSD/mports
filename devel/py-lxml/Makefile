@@ -1,7 +1,7 @@
 PORTNAME=	lxml
 PORTVERSION=	4.8.0
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ COMMENT=	Pythonic binding for the libxml2 and libxslt libraries
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
-USES=		compiler cpe gnome python:3.6+ uniquefiles:dirs
+USES=		compiler cpe gnome python uniquefiles:dirs
 USE_GNOME=	libxml2 libxslt
 USE_PYTHON=	autoplist concurrent cython distutils
 

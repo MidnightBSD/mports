@@ -23,7 +23,7 @@ RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gnome localbase meson pkgconfig \
-		python:3.6+,build tar:xz
+		python:build tar:xz
 USE_GNOME=	glib20
 
 NO_TEST=	yes

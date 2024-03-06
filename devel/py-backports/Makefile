@@ -12,7 +12,7 @@ LICENSE=	mit
 NO_FETCH=	yes
 NO_BUILD=	yes
 NO_ARCH=	yes
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	flavors py3kplist
 
 NO_ARCH=	yes

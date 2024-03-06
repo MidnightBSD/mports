@@ -3,7 +3,7 @@
 PORTNAME=	twisted
 PORTVERSION=	20.3.0
 CATEGORIES=	devel net python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	Twisted-${PORTVERSION}
 
@@ -22,7 +22,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=19.2.0:devel/py-attrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}PyHamcrest>=1.9.0:textproc/py-pyhamcrest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.4.2:devel/py-zope.interface@${PY_FLAVOR}
 
-USES=		python:3.6+ tar:bzip2
+USES=		python tar:bzip2
 USE_PYTHON=	autoplist concurrent distutils
 
 OPTIONS_DEFINE=	CONCH HTTP2 SERIAL TLS

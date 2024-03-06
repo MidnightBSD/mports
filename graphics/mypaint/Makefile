@@ -25,7 +25,7 @@ RUN_DEPENDS=	mypaint-brushes2>0:graphics/mypaint-brushes2 \
 		${PYNUMPY}
 
 USES=		compiler:c++11-lib desktop-file-utils gettext gnome localbase \
-		pkgconfig python:3.7+ tar:xz
+		pkgconfig python tar:xz
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mypaint

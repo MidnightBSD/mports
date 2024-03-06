@@ -2,7 +2,7 @@ PORTNAME=	googletrans
 DISTVERSION=	3.0.0
 PORTREVISION=	1
 CATEGORIES=	textproc python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ LICENSE=	mit
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpx013>=0.13.3:www/py-httpx013@${PY_FLAVOR}
 
-USES=		python:3.7+ # due www/py-httpx that requires 3.7+
+USES=		python # due www/py-httpx that requires 3.7+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

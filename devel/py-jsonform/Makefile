@@ -10,7 +10,7 @@ LICENSE=	mit
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jsonschema>=2.4.0:devel/py-jsonschema@${PY_FLAVOR}
 
-USES=		python:3.6+
+USES=		python
 USE_GITHUB=	yes
 GH_ACCOUNT=	RussellLuo
 GH_TAGNAME=	7ee5f95

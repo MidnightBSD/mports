@@ -9,7 +9,7 @@ COMMENT=	Shared namespace shim for py-jaraco.* ports
 
 LICENSE=	mit
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	flavors
 
 NO_ARCH=	yes

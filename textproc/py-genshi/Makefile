@@ -2,7 +2,7 @@ PORTNAME=	Genshi
 PORTVERSION=	0.7.3
 PORTREVISION=	1
 CATEGORIES=	textproc www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ WWW=		https://genshi.edgewall.org/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 OPTIONS_DEFINE=	BABEL

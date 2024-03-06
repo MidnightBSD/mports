@@ -3,7 +3,7 @@
 PORTNAME=	authres
 PORTVERSION=	1.2.0
 CATEGORIES=	mail python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ COMMENT=	Python module for RFC 5451 Authentication-Results headers
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes

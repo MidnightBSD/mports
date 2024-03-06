@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLA
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error
 
-USES=		gnome meson pkgconfig python:3.8+ tar:xz
+USES=		gnome meson pkgconfig python tar:xz
 USE_GNOME=	glib20 intltool introspection:build libxslt:build
 
 # magus

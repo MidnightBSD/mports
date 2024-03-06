@@ -9,7 +9,7 @@ COMMENT=	Library to handle OpenGL function pointer management
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gl localbase meson pkgconfig python:3.6+,build shebangfix tar:xz
+USES=		gl localbase meson pkgconfig python:build shebangfix tar:xz
 USE_GL=		glesv2 egl
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	src/gen_dispatch.py

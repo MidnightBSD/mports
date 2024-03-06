@@ -11,7 +11,7 @@ WWW=		https://github.com/pallets/click
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

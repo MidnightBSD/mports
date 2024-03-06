@@ -20,7 +20,7 @@ LIB_DEPENDS=	libmpfr.so:math/mpfr \
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gnome localbase:ldflags meson \
-		pkgconfig python:3.6+,build tar:xz vala:build
+		pkgconfig python:build tar:xz vala:build
 USE_GNOME=	gtksourceview4 libxml2
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 

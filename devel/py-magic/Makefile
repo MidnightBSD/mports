@@ -14,7 +14,7 @@ COMMENT=	Python module for determining file type
 
 LICENSE=	bsd2
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 # both install module as magic.py

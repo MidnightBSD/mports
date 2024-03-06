@@ -21,7 +21,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cu2qu>=1.6.5:x11-fonts/py-cu2qu@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}booleanOperations>=0.8.1:x11-fonts/py-booleanOperations@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fonttools>=3.32.0:print/py-fonttools@${PY_FLAVOR}
 
-USES=		python:3.6+ zip
+USES=		python zip
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes

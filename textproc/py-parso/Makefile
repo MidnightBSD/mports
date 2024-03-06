@@ -11,7 +11,7 @@ WWW=		https://github.com/davidhalter/parso
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		cpe python:3.6+
+USES=		cpe python
 CPE_VENDOR=	${PORTNAME}_project
 USE_PYTHON=	autoplist distutils
 

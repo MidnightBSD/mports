@@ -12,7 +12,7 @@ LICENSE=	publicdom bsd2 apache2
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-USES=		cpe python:3.7+
+USES=		cpe python
 CPE_VENDOR=	python
 USE_PYTHON=	autoplist distutils
 

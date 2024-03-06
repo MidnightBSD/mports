@@ -3,7 +3,7 @@
 PORTNAME=	pystemmer
 PORTVERSION=	2.0.0.1
 CATEGORIES=	textproc python
-MASTER_SITES=	CHEESESHOP \
+MASTER_SITES=	PYPI \
 		http://snowball.tartarus.org/wrappers/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	PyStemmer-${PORTVERSION}
@@ -14,7 +14,7 @@ COMMENT=	Snowball Stemming Algorithms for Information Retrieval
 LICENSE=	mit bsd3
 LICENSE_COMB=	dual
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	cython distutils autoplist
 
 post-install:

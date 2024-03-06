@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	xclip:x11/xclip
 
-USES=		python:3.7+ shebangfix
+USES=		python shebangfix
 SHEBANG_FILES=	googler
 USE_GITHUB=	yes
 GH_ACCOUNT=	jarun

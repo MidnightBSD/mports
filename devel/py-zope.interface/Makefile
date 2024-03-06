@@ -1,7 +1,7 @@
 PORTNAME=	zope.interface
 PORTVERSION=	5.3.0
 CATEGORIES=	devel python zope
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DIST_SUBDIR=	zope
 
@@ -11,7 +11,7 @@ COMMENT=	Interfaces for Python
 LICENSE=	zpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 post-install:

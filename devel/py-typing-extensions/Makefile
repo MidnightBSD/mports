@@ -3,7 +3,7 @@
 PORTNAME=	typing-extensions
 PORTVERSION=	4.2.0
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	typing_extensions-${PORTVERSION}
 
@@ -13,7 +13,7 @@ COMMENT=	Backported and Experimental Type Hints for Python 3.5+
 LICENSE=	python
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:3.7+
+USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes

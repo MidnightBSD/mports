@@ -1,7 +1,7 @@
 PORTNAME=	stdnum
 PORTVERSION=	1.13
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	python-${PORTNAME}-${PORTVERSION}
 
@@ -10,7 +10,7 @@ COMMENT=	Python module to handle standardized numbers and codes
 
 LICENSE=	lgpl2.1
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>

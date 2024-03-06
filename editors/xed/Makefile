@@ -21,7 +21,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/glib-2.0/schemas/org.gnome.desktop.interface.gsc
 		yelp:x11/yelp
 
 USES=		compiler:c++11-lang desktop-file-utils gettext-tools gnome meson \
-		pkgconfig python:3.6+,run xorg
+		pkgconfig python:run xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 gtksourceview4 \

@@ -13,7 +13,7 @@ COMMENT=	C++ interfaces for glib2
 LICENSE=	lgpl2.1
 
 USES=		compiler:c++11-lang gettext gnome meson pathfix perl5 \
-		pkgconfig python:3.7+,build shebangfix ssl tar:xz
+		pkgconfig python:build shebangfix ssl tar:xz
 USE_GNOME=	glib20 libsigc++20
 USE_LDCONFIG=	yes
 

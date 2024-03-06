@@ -3,7 +3,7 @@
 PORTNAME=	pyasn1
 PORTVERSION=	0.4.7
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 NO_ARCH=	yes
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 do-test:

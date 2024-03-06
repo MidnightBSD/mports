@@ -1,7 +1,7 @@
 PORTNAME=	bottle
 PORTVERSION=	0.12.25
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,7 @@ COMMENT=	Fast and simple WSGI-framework for small web-applications
 
 LICENSE=	mit
 
-USES=		cpe python:3.6+
+USES=		cpe python
 
 NO_ARCH=	yes
 

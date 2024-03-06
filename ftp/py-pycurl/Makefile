@@ -3,7 +3,7 @@
 PORTNAME=	pycurl
 PORTVERSION=	7.43.0.6
 CATEGORIES=	ftp python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +14,7 @@ LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
-USES=		python:3.6+ ssl
+USES=		python ssl
 USE_PYTHON=	autoplist concurrent distutils
 
 PORTDOCS=	AUTHORS INSTALL.rst README.rst RELEASE-NOTES.rst

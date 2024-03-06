@@ -3,7 +3,7 @@
 PORTNAME=	websockets
 PORTVERSION=	8.1
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ COMMENT=	Implementation of the WebSocket Protocol (RFC 6455 and 7692)
 
 LICENSE=	bsd3
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 post-install:

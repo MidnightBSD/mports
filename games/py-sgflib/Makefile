@@ -15,7 +15,7 @@ COMMENT=	Smart Game Format parser library for Python
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/lgpl.txt
 
-USES=		python:3.6+ shebangfix
+USES=		python shebangfix
 USE_PYTHON=	flavors
 NO_BUILD=	yes
 NO_ARCH=	yes

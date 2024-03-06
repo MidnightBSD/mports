@@ -1,7 +1,7 @@
 PORTNAME=	lz4
 PORTVERSION=	2.1.10
 CATEGORIES=	archivers python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +15,7 @@ BUILD_DEPENDS=	liblz4>=1.7.5:archivers/liblz4 \
 		${PYTHON_PKGNAMEPREFIX}setuptools_scm>0:devel/py-setuptools_scm@${PY_FLAVOR}
 LIB_DEPENDS=	liblz4.so:archivers/liblz4
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	distutils
 
 NO_TEST=	yes

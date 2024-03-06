@@ -12,7 +12,7 @@ WWW=		https://www.viewvc.org/
 
 LICENSE=	bsd2
 
-USES=		cpe python:3.6+
+USES=		cpe python
 USE_PYTHON=	flavors
 USE_GITHUB=	yes
 GH_TAGNAME=	c93d9da79c31457ecb0a771ff52d28353dc6e878

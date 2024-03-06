@@ -1,7 +1,7 @@
 PORTNAME=	sqlalchemy
 PORTVERSION=	1.0.14
 CATEGORIES=	databases python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	10
 DISTNAME=	SQLAlchemy-${DISTVERSION}
@@ -11,7 +11,7 @@ COMMENT=	Python SQL toolkit and Object Relational Mapper 1.0.x
 
 LICENSE=	mit
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 PY2TO3_CMD=	${LOCALBASE}/bin/2to3-${PYTHON_VER}

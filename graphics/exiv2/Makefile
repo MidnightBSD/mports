@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 USES=		cmake compiler:c++11-lang cpe dos2unix gettext-tools pathfix \
-		python:3.6+,test localbase:ldflags
+		python,test localbase:ldflags
 USE_LDCONFIG=	yes
 DOS2UNIX_FILES=	cmake/compilerFlags.cmake
 

@@ -3,7 +3,7 @@
 PORTNAME=	pyphen
 PORTVERSION=	0.10.0
 CATEGORIES=	textproc python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	Pyphen-${PORTVERSION}
 
@@ -13,7 +13,7 @@ COMMENT=	Module to hyphenate text based on Hunspell dictionaries
 LICENSE=	gpl2 lgpl2.1 mpl
 LICENSE_COMB=	multi
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 

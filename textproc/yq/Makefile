@@ -1,7 +1,7 @@
 PORTNAME=	yq
 DISTVERSION=	2.14.0
 CATEGORIES=	textproc python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line YAML and XML processor, jq wrapper for YAML/XML documents

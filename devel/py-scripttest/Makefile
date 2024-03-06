@@ -10,7 +10,7 @@ WWW=		https://github.com/pypa/scripttest
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 

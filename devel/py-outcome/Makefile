@@ -15,7 +15,7 @@ LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>0:devel/py-attrs@${PY_FLAVOR}
 
-USES=		python:3.7+
+USES=		python
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 NO_TEST=	yes

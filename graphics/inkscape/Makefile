@@ -44,7 +44,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 		p5-XML-Parser>=0:textproc/p5-XML-Parser
 
 USES=		compiler:c++17-lang cmake cpe desktop-file-utils gnome groff \
-		iconv:wchar_t jpeg pathfix pkgconfig python:3.7+ \
+		iconv:wchar_t jpeg pathfix pkgconfig python \
 		readline shebangfix tar:xz xorg
 USE_GNOME=	gdkpixbuf2 gtkmm30 libxml2 libxslt
 USE_XORG=	sm ice x11 xext

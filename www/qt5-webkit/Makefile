@@ -24,7 +24,7 @@ LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
 			libwoff2dec.so:devel/woff2
 
 USES=			bison cmake compiler:c++11-lang gnome gperf jpeg \
-			pathfix perl5 pkgconfig python:3.7+,build qt:5 ruby:build sqlite:3 \
+			pathfix perl5 pkgconfig python:build qt:5 ruby:build sqlite:3 \
 			ssl tar:xz xorg
 USE_GNOME=		glib20 libxml2 libxslt
 USE_PERL5=		build

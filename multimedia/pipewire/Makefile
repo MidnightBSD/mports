@@ -20,7 +20,7 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libwebrtc_audio_processing.so:audio/webrtc-audio-processing0
 
 USES=		compiler:c11 gettext-tools gnome localbase:ldflags meson \
-		ncurses pkgconfig python:3.6+,build readline ssl
+		ncurses pkgconfig python:build readline ssl
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 

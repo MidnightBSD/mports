@@ -1,7 +1,7 @@
 PORTNAME=	pyasn1-modules
 PORTVERSION=	0.2.8
 CATEGORIES=	devel python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +15,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyasn1>=0.4.1:devel/py-pyasn1@${PY_FLAVOR}
 OPTIONS_DEFINE=	DOCS
 
 NO_ARCH=	yes
-USES=		python:3.6+ shebangfix
+USES=		python shebangfix
 SHEBANG_FILES=	tools/*.py
 USE_PYTHON=	autoplist concurrent distutils
 

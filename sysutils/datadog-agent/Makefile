@@ -18,7 +18,7 @@ BUILD_DEPENDS=	cmake-core>=3.12:devel/cmake-core \
 
 NO_TEST=	yes
 
-USES=		go:modules python:3.7+
+USES=		go:modules python
 
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes

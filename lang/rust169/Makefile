@@ -32,7 +32,7 @@ NO_TEST=      yes
 BUILD_DEPENDS=	cmake:devel/cmake-core
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
-USES=		cpe ninja:build pkgconfig python:3.7+,build shebangfix ssl tar:xz
+USES=		cpe ninja:build pkgconfig python:build shebangfix ssl tar:xz
 
 CPE_VENDOR=	rust-lang
 
