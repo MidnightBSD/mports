@@ -332,3 +332,5 @@ lang/perl5.30|lang/perl5.36|2023-12-27|5.30 is EOL
 lang/perl5.32|lang/perl5.36|2023-12-27|5.32 is EOL
 devel/llvm40|devel/llvm90|2023-12-27|4 is EOL
 devel/llvm70|devel/llvm90|2023-12-27|7 is EOL
+www/py-txrequests|www/py-requests-futures|2024-03-06|Has expired: Use www/py-requests-futures as upstream is unmaintained since 20
+18

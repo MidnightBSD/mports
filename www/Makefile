@@ -221,7 +221,6 @@ SUBDIR += py-rfc3986
 SUBDIR += py-soupsieve
 SUBDIR += py-tornado
 SUBDIR += py-treq
-SUBDIR += py-txrequests
 SUBDIR += py-waitress
 SUBDIR += py-webob
 SUBDIR += py-websocket-client
