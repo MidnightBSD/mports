@@ -1,15 +1,17 @@
 PORTNAME=	wsaccel
-PORTVERSION=	0.6.2
+PORTVERSION=	0.6.4
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WebSocket Accelerator for ws4py and AutobahnPython
+WWW=		https://github.com/methane/wsaccel
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:3.6+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 post-install:
