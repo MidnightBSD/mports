@@ -1,26 +1,32 @@
-# Created by: Guixing Bai <khsing.cn@gmail.com>
-
 PORTNAME=	tornado
-PORTVERSION=	6.1
+PORTVERSION=	6.3.3
 CATEGORIES=	www python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Web Server from FriendFeed
+WWW=		https://www.tornadoweb.org/ \
+		https://github.com/tornadoweb/tornado
 
 LICENSE=	apache2
 
-USES=		python:3.5+
-USE_PYTHON=	autoplist concurrent distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		cpe python
+USE_PYTHON=	autoplist concurrent pep517
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}tornado4 \
 			${PYTHON_PKGNAMEPREFIX}tornado5 \
 			${PYTHON_PKGNAMEPREFIX}tornado6
 
-NO_TEST=	yes
+CPE_VENDOR=	tornadoweb
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/tornado/speedups*.so
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+
+do-test:
+	@cd ${WRKSRC} && ${PYTHON_CMD} -m tornado.test.runtests
 
 .include <bsd.port.mk>
