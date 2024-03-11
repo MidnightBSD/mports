@@ -1,7 +1,6 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	mate-panel
 PORTVERSION=	1.26.2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11 mate
 MASTER_SITES=	MATE
@@ -9,9 +8,13 @@ DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Panel component for the MATE Desktop
+WWW=		https://mate-desktop.org/
 
-LICENSE=	gpl2 lgpl2.1
+LICENSE=	gfdl gpl2 lgpl2.1
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
+LICENSE_FILE_gfdl=	${WRKSRC}/COPYING-DOCS
+LICENSE_FILE_lgpl2.1 =	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
