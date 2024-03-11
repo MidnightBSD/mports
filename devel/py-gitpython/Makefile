@@ -1,11 +1,13 @@
-PORTNAME=	GitPython
-DISTVERSION=	3.1.11
+PORTNAME=	gitpython
+DISTVERSION=	3.1.30
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	GitPython-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Git Library
+WWW=		https://github.com/gitpython-developers/GitPython
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
