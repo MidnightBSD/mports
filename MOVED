@@ -334,3 +334,5 @@ devel/llvm40|devel/llvm90|2023-12-27|4 is EOL
 devel/llvm70|devel/llvm90|2023-12-27|7 is EOL
 www/py-txrequests|www/py-requests-futures|2024-03-06|Has expired: Use www/py-requests-futures as upstream is unmaintained since 20
 18
+devel/py-gitdb2|devel/py-gitdb|2022-05-22|Remove obsoleted port. Use devel/py-gitdb instead
+devel/py-smmap2|devel/py-smmap|2022-05-22|Remove obsoleted port. Use devel/py-smmap instead
