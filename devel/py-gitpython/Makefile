@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS+=	git:devel/git
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ddt>=1.1.1:devel/py-ddt@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}gitdb2>=2.0.0:devel/py-gitdb2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}gitdb>=4.0.0:devel/py-gitdb@${PY_FLAVOR} \
 		git:devel/git
 
 NO_ARCH=	yes
