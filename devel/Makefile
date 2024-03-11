@@ -183,6 +183,7 @@ SUBDIR += hwloc2
 SUBDIR += hyperscan
 SUBDIR += icu
 SUBDIR += imake
+SUBDIR += inih
 SUBDIR += isl
 SUBDIR += jam
 SUBDIR += jansson
