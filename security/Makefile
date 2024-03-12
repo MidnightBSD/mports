@@ -41,6 +41,7 @@ SUBDIR += gnupg
 SUBDIR += gnupg1
 SUBDIR += gnutls
 SUBDIR += gpgme
+SUBDIR += gpgme-cpp
 SUBDIR += gsasl
 SUBDIR += gstreamer1-plugins-dtls
 SUBDIR += heimdal
