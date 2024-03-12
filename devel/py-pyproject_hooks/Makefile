@@ -6,7 +6,8 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrappers to call pyproject.toml-based build backend hooks
-WWW=		https://github.com/pypa/pyproject-hooks
+WWW=		https://pyproject-hooks.readthedocs.io/en/latest/ \
+		https://github.com/pypa/pyproject-hooks
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
