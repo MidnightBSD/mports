@@ -249,6 +249,7 @@ SUBDIR += py-genshi
 SUBDIR += py-gi-docgen
 SUBDIR += py-googletrans
 SUBDIR += py-hexdump
+SUBDIR += py-interegular
 SUBDIR += py-latexcodec
 SUBDIR += py-libxml2
 SUBDIR += py-m2r

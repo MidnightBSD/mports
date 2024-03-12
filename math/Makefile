@@ -77,6 +77,7 @@ SUBDIR += py-kiwisolver
 SUBDIR += py-matplotlib
 SUBDIR += py-mpmath
 SUBDIR += py-numpy
+SUBDIR += py-pandas
 SUBDIR += py-pyclipper
 SUBDIR += py-random2
 SUBDIR += py-sympy
