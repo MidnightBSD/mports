@@ -29,6 +29,7 @@ MESON_ARGS=	-Ddocs=false \
 		-Dlensfun=disabled \
 		-Dlibjpeg=enabled \
 		-Dlibpng=enabled \
+		-Dmaxflow=disabled \
 		-Dmrg=disabled \
 		-Dpygobject=disabled \
 		-Dlua=disabled
