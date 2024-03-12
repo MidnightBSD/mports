@@ -1,6 +1,6 @@
 PORTNAME=	vulkan-loader
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.270
+DISTVERSION=	1.3.276
 CATEGORIES=	graphics devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ LICENSE=	apache2
 
 BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 
-USES=		cmake compiler:c++11-lib pkgconfig python:3.4+,build
+USES=		cmake compiler:c++11-lib pkgconfig python:build
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	KhronosGroup

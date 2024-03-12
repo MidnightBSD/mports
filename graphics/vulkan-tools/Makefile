@@ -1,6 +1,6 @@
 PORTNAME=	vulkan-tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.270
+DISTVERSION=	1.3.276
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,12 +11,12 @@ LICENSE=	apache2
 
 BUILD_DEPENDS=	glslangValidator:graphics/glslang \
 		vulkan-headers>0:graphics/vulkan-headers
-LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 
 USES=		cmake compiler:c++11-lib pkgconfig python:build
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	Vulkan-Tools
+GH_TUPLE=	zeux:volk:1.3.270-19-g3ee06ec:volk/volk
 CMAKE_OFF=	BUILD_CUBE BUILD_ICD
 CMAKE_ARGS=	-DGLSLANG_INSTALL_DIR:PATH="${LOCALBASE}"
 
@@ -25,6 +25,7 @@ OPTIONS_DEFAULT=	WAYLAND XCB XLIB
 OPTIONS_SLAVE=		DISPLAY
 OPTIONS_SUB=		yes
 
+WAYLAND_CATEGORIES=	wayland
 WAYLAND_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 			wayland-protocols>0:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
