@@ -26,9 +26,9 @@ bin/razor-revoke
 %%SITE_ARCH%%/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
 %%SITE_ARCH%%/auto/Razor2/Preproc/deHTMLxs/autosplit.ix
 %%SITE_ARCH%%/auto/Razor2/Syslog/autosplit.ix
-%%PERL5_MAN3%%/Razor2::Errorhandler.3.gz
-%%PERL5_MAN3%%/Razor2::Syslog.3.gz
-%%PERL5_MAN3%%/Razor2::Preproc::deHTMLxs.3.gz
+man/man3/Razor2::Errorhandler.3.gz
+man/man3/Razor2::Syslog.3.gz
+man/man3/Razor2::Preproc::deHTMLxs.3.gz
 @dir %%SITE_ARCH%%/Razor2/Client
 @dir %%SITE_ARCH%%/Razor2/Engine
 @dir %%SITE_ARCH%%/Razor2/Preproc
@@ -44,6 +44,3 @@ bin/razor-revoke
 @dir %%SITE_PERL%%
 @dir lib/perl5/site_perl
 @dir lib/perl5
-@dir %%PERL5_MAN1%%
-@dir share/licenses/razor-agents-2.85_1
-@dir share/licenses
