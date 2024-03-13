@@ -1563,7 +1563,6 @@ PATCH_SITES_TMP=
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
 	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/${DIST_SUBDIR}/ \
-	https://archer.midnightbsd.org/ftp/mports/distfiles/ \
 	https://discovery.midnightbsd.org/ftp/mports/distfiles/ \
 	http://distcache.freebsd.org/ports-distfiles/${DIST_SUBDIR}/
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP:S^\${DIST_SUBDIR}/^^}
