@@ -1,6 +1,5 @@
 PORTNAME=	poppler
-DISTVERSION=	23.05.0
-PORTREVISION=	2
+DISTVERSION=	23.12.0
 CATEGORIES=	graphics print
 MASTER_SITES=	https://poppler.freedesktop.org/
 
@@ -17,7 +16,8 @@ LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libtiff.so:graphics/tiff \
 		libfreetype.so:print/freetype2 \
 		libnss3.so:security/nss \
-		libfontconfig.so:x11-fonts/fontconfig
+		libfontconfig.so:x11-fonts/fontconfig \
+		libgpgmepp.so:security/gpgme-cpp
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs \
 		gsed:textproc/gsed
 RUN_DEPENDS=	poppler-data>0:graphics/poppler-data
@@ -42,7 +42,7 @@ CMAKE_OFF=	BUILD_GTK_TESTS
 CMAKE_ARGS+=	-DCMAKE_IGNORE_PATH:PATH=${PREFIX}/lib/openjpeg-1.5
 
 # Slave ports.
-_POPPLER_SLAVES=	library glib qt5 utils
+_POPPLER_SLAVES=	library glib qt5 qt6 utils
 _SLAVE_PORT?=		library
 
 BINARY_ALIAS=		gperf=${GPERF} \
@@ -56,7 +56,7 @@ CMAKE_OFF+=	${_POPPLER_SLAVES:N${_SLAVE_PORT}:tu:S/^/ENABLE_/}
 PORTSCOUT=	limitw:1,even
 USES+=		iconv
 CMAKE_ON+=	ENABLE_CPP
-PLIST_SUB+=	SHLIB_VER=128
+PLIST_SUB+=	SHLIB_VER=133
 
 OPTIONS_DEFINE=		CURL OPENJPEG
 OPTIONS_DEFAULT=	OPENJPEG
@@ -81,6 +81,10 @@ BINARY_ALIAS+=		python3=${PYTHON_CMD}
 USES+=			qt:5
 USE_QT=			core gui widgets xml \
 			buildtools:build qmake:build testlib:build
+.  elif ${_SLAVE_PORT} == qt6
+USES+=			gl qt:6
+USE_GL+=		gl opengl
+USE_QT=			base
 .  elif ${_SLAVE_PORT} == utils
 LIB_DEPENDS+=		libpoppler-glib.so:graphics/poppler-glib
 USES+=			gnome
@@ -101,6 +105,9 @@ post-install:
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig
 .elif ${_SLAVE_PORT} == qt5
 	${INSTALL_DATA} ${WRKSRC}/poppler-qt5.pc \
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig
+.elif ${_SLAVE_PORT} == qt6
+	${INSTALL_DATA} ${WRKSRC}/poppler-qt6.pc \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig
 .endif
 
