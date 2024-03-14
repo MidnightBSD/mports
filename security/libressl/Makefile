@@ -63,10 +63,12 @@ post-patch-MAN3-off:
 		${WRKSRC}/man/Makefile.in
 
 post-install:
-	${RM} -r ${STAGEDIR}/${PREFIX}/etc/ssl/cert.pem
+	${RM} -r ${PREFIX}/etc/ssl/cert.pem
+	${RMDIR} ${PREFIX}/etc/ssl/certs
+	${LN} -s /etc/ssl/certs ${PREFIX}/etc/ssl/certs
 
 post-fake-MAN3-on:
-	(cd ${STAGEDIR}${MANPREFIX}; ${FIND} man/man3 -not -type d | \
+	(cd ${FAKE_DESTDIR}${MANPREFIX}; ${FIND} man/man3 -not -type d | \
 		${SED} 's/$$/.gz/' >> ${TMPPLIST})
 
 .include <bsd.port.mk>
