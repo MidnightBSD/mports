@@ -277,6 +277,7 @@ SUBDIR += py-pyphen
 SUBDIR += py-pystemmer
 SUBDIR += py-python-augeas
 SUBDIR += py-python-docs-theme
+SUBDIR += py-python-slugify
 SUBDIR += py-pytidylib
 SUBDIR += py-regex
 SUBDIR += py-reno
