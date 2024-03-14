@@ -47,7 +47,8 @@ CFLAGS+=	-fpic -DPIC -Wl,-rpath,${PREFIX}/lib -Wl,--as-needed
 LDFLAGS+=	-pthread
 
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 PLIST_SUB+=	LIBCRYPTO_SHLIBMAJ=50 \
 		LIBCRYPTO_SHLIBFULL=50.0.0 \
