@@ -1044,6 +1044,7 @@ SUBDIR += py-ply
 SUBDIR += py-pockets
 SUBDIR += py-polib
 SUBDIR += py-pkgconfig
+SUBDIR += py-pre-commit
 SUBDIR += py-pretend
 SUBDIR += py-protobuf
 SUBDIR += py-py
