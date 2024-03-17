@@ -1,26 +1,30 @@
-
-
 PORTNAME=	libcdio-paranoia
-PORTVERSION=	10.2+0.90+1
-PORTREVISION=	1
+PORTVERSION=	10.2+2.0.1
 CATEGORIES=	sysutils
 MASTER_SITES=	GNU/libcdio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read audio from the CDROM directly as data
+WWW=		https://www.gnu.org/software/libcdio/
 
-LICENSE=	lgpl2.1
-LICENSE_FILE=	${WRKSRC}/COPYING-LGPL
+LICENSE=	gpl3+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libcdio.so:${PORTSDIR}/sysutils/libcdio
+LIB_DEPENDS=	libcdio.so:sysutils/libcdio
 
-USES=	pathfix tar:bzip2 gmake pkgconfig libtool perl5
-GNU_CONFIGURE=	yes
+USES=		compiler:c11 gmake libtool localbase pathfix perl5 pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
+USE_PERL5=	build
+
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 post-patch:
 	${REINPLACE_CMD} -e 's|/jp/man1|/ja/man1|' \
 		${WRKSRC}/doc/ja/Makefile.in
+	${REINPLACE_CMD} -e 's|freebsd10\.\*|midnightbsd[1-9][0-9].*|' \
+		${WRKSRC}/configure
 
 .include <bsd.port.mk>
