@@ -1,5 +1,5 @@
 PORTNAME=	gexiv2
-PORTVERSION=	0.14.0
+PORTVERSION=	0.14.2
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
@@ -10,17 +10,20 @@ WWW=		https://wiki.gnome.org/Projects/gexiv2
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR} \
-		gm4:devel/m4
-LIB_DEPENDS= 	libexiv2.so:graphics/exiv2
+BROKEN_i386=	fails to build with exiv2 0.28
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
+LIB_DEPENDS=	libexiv2.so:graphics/exiv2
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
 
-USES=		compiler:c++11-lang gnome libtool:build meson pathfix pkgconfig \
+USES=		compiler:c++17-lang gnome libtool:build meson pathfix pkgconfig \
 		python:build tar:xz vala:build
 USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
 BINARY_WRAPPERS=	gm4
 BINARY_ALIAS=	python3=${PYTHON_CMD}
+
+USE_CXXSTD=	c++17
 
 OPTIONS_DEFINE=		DOCS
 OPTIONS_SUB=		yes
