@@ -1,5 +1,6 @@
 PORTNAME=	nautilus
 PORTVERSION=	42.2
+PORTREVISION=	1
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
@@ -32,6 +33,8 @@ BINARY_ALIAS=	python3=${PYTHON_VERSION}
 CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.nautilus.gschema.xml
+
+CFLAGS+=	-Wno-error=strict-prototypes
 
 OPTIONS_DEFINE=		GVFS
 OPTIONS_DEFAULT=	GVFS
