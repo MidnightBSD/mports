@@ -1,33 +1,31 @@
-
-
 PORTNAME=	libcdio
-PORTVERSION=	0.92
-PORTREVISION=	1
+PORTVERSION=	2.1.0
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	libcdio
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compact Disc Input and Control Library
+WWW=		https://www.gnu.org/software/libcdio/
 
-LIB_DEPENDS=	libcddb.so:${PORTSDIR}/audio/libcddb
-
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-GNU_CONFIGURE=	yes
-USES=		pathfix pkgconfig iconv libtool ncurses gmake perl5
-USE_LDCONFIG=	yes
-CONFIGURE_ARGS+=${ICONV_CONFIGURE_ARG}
+LIB_DEPENDS=	libcddb.so:audio/libcddb
+TEST_DEPENDS=	genisoimage:sysutils/genisoimage
+
+USES=		compiler:c11 cpe gmake iconv libtool localbase \
+		ncurses pathfix perl5 pkgconfig tar:bzip2
 USE_PERL5=	build
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
+USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
+CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG}
+LIBS+=		${ICONV_LIB}
 
 INFO=		libcdio
+CPE_VENDOR=	gnu
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
-.include <bsd.port.pre.mk>
-
-post-patch:
-	${REINPLACE_CMD} -e "s,freebsd5\.\*,freebsd*," ${WRKSRC}/configure
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
