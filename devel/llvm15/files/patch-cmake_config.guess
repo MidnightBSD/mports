@@ -1,5 +1,5 @@
---- cmake/config.guess.orig	2021-09-27 05:06:08 UTC
-+++ cmake/config.guess
+--- llvm/cmake/config.guess.orig	2021-09-27 05:06:08 UTC
++++ llvm/cmake/config.guess
 @@ -800,6 +800,15 @@ EOF
  		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
  	esac
