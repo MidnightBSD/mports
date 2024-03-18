@@ -238,6 +238,7 @@ SUBDIR += pugixml
 SUBDIR += py-CommonMark
 SUBDIR += py-Tempita
 SUBDIR += py-alabaster
+SUBDIR += py-ansi2html
 SUBDIR += py-bracex
 SUBDIR += py-chardet
 SUBDIR += py-charset-normalizer
