@@ -1,16 +1,16 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	xreader
 PORTVERSION=	3.2.2
+PORTREVISION=	1
 CATEGORIES=	print gnome
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-format document reader
+WWW=		https://github.com/linuxmint/xreader
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
-PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
+PORTSCOUT=	limit:^[0-9.]+$$	# ignore non-numeric tags
 
 BUILD_DEPENDS=	intltool-merge:textproc/intltool \
 		itstool:textproc/itstool
@@ -46,7 +46,8 @@ DJVU_LIB_DEPENDS=	libdjvulibre.so:graphics/djvulibre
 DJVU_MESON_ON=		-Ddjvu=true
 
 DVI_LIB_DEPENDS=	libspectre.so:print/libspectre
-DVI_USE=		tex=kpathsea
+DVI_USES=		tex
+DVI_USE=		TEX=kpathsea
 DVI_MESON_ON=		-Ddvi=true
 
 EPUB_BUILD_DEPENDS=	${MATHJAX_DIR}/MathJax.js:www/mathjax
