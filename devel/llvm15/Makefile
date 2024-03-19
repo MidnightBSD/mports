@@ -296,13 +296,11 @@ USES+=		gnome
 .if ${PORT_OPTIONS:MCOMPILER_RT}
 LLVM_ENABLE_PROJECTS+=	compiler-rt
 COMPILER_RT_PATTERN=	(sanitizer|include.xray|include\/(fuzzer|orc)|profile\/InstrProfData.inc)
-.if ${OSVERSION} < 1300525
 # An unwind.h is require to build.  I think an in-tree one should be used
 # but this seems to work as a workaround...
 BUILD_DEPENDS+=	libunwind>0:devel/libunwind
 # Allow unwind.h to be found reliably
 USES+=	localbase
-.endif
 .endif
 
 .if ${PORT_OPTIONS:MEXTRAS}
@@ -420,7 +418,7 @@ _BE_INCS_${BE}+=	${_BE_INCS_${BE_ARCH}}
 .endfor
 BE_PATTERN=${_BE_LIBS_STANDARD:O:S/$/.a/:ts|}|${_BE_INCS_STANDARD:ts|}
 
-_CRTLIBDIR=	${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/lib/freebsd
+_CRTLIBDIR=	${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/lib/midnightbsd
 _CRTBLDIR=	${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/share
 _COMPILER_RT_LIBS_i386=	\
 	libclang_rt.asan-i386.a \
@@ -629,12 +627,12 @@ post-patch-LLD-on:
 		${WRKSRC}/lld/docs/conf.py
 
 post-install:
-	${RM} -r ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
+	-${RM} -r ${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
-	    ${FAKE_DESTDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
+	    ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
 .for command in ${COMMANDS:C/^/XXXX/1:NXXXX*}
-	${LN} -f ${FAKE_DESTDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX} \
-	    ${FAKE_DESTDIR}${PREFIX}/bin/${command}${LLVM_SUFFIX}
+	${LN} -f ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX} \
+	    ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${command}${LLVM_SUFFIX}
 .endfor
 
 post-install-DOCS-on:
