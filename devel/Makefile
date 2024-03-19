@@ -897,6 +897,7 @@ SUBDIR += py-calver
 SUBDIR += py-cbor
 SUBDIR += py-cbor2
 SUBDIR += py-cffi
+SUBDIR += py-cfgv
 SUBDIR += py-characteristic
 SUBDIR += py-cheetah3
 SUBDIR += py-cliapp
