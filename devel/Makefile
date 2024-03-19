@@ -1156,6 +1156,7 @@ SUBDIR += py-ujson
 SUBDIR += py-unicodedata2
 SUBDIR += py-unittest2
 SUBDIR += py-usb
+SUBDIR += py-versioneer
 SUBDIR += py-virtualenv
 SUBDIR += py-wadllib
 SUBDIR += py-wcwidth
