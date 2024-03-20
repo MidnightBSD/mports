@@ -636,7 +636,7 @@ post-install:
 .endfor
 
 post-install-DOCS-on:
-	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
+	-${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc/LLVM/* ${FAKE_DESTDIR}${DOCSDIR}
 	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/doc/LLVM
@@ -646,23 +646,23 @@ post-install-DOCS-on:
 	    ${FAKE_DESTDIR}${MANPREFIX}/man/man1/${_man:R}${LLVM_SUFFIX}.1
 .endfor
 .if ! ${PORT_OPTIONS:MLIT}
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
 .if ! ${PORT_OPTIONS:MLLDB}
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lldb-tblgen.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lldb-tblgen.1
 .endif
 .if ! ${PORT_OPTIONS:MMLIR}
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/mlir-tblgen.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/mlir-tblgen.1
 .endif
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 
 .if ${PORT_OPTIONS:MCLANG}
 post-install-DOCS-off:
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 .endif
 
 post-install-CLANG-on:
@@ -675,13 +675,14 @@ post-install-CLANG-on:
 	    ${FAKE_DESTDIR}${PREFIX}/share/toolchains/llvm${LLVM_SUFFIX}.mk
 
 post-install-EXTRAS-on:
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/clang-tidy/misc/ConfusableTable
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/clang-tidy/misc/ConfusableTable
+
 post-install-FLANG-on:
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/CodeGen/CMakeFiles
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/Dialect/CMakeFiles
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/Transforms/CMakeFiles
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/CMakeFiles
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/CMakeFiles
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/CodeGen/CMakeFiles
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/Dialect/CMakeFiles
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/Transforms/CMakeFiles
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/Optimizer/CMakeFiles
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/flang/CMakeFiles
 	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/flang-new \
 	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/flang
 
@@ -722,11 +723,11 @@ do-test:
 
 
 post-install-STATIC_LIBS-off:
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/lib*.a
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/lib*.a
 
 build-plist:
 	@[ -d ${FAKE_DESTDIR} ] || (echo "Can't make plist before package is staged ${FAKE_DESTDIR}" && exit 1)
-	${RM} ${PLIST} ${PLIST}.tmp
+	-${RM} ${PLIST} ${PLIST}.tmp
 	${ECHO_CMD} "@comment >>>>> GENERATED FILE, DO NOT EDIT <<<<<" >> ${PLIST}.tmp
 	${ECHO_CMD} "@comment Alter build-plist target and regenerate as required" >> ${PLIST}.tmp
 .for command in ${COMMANDS}
@@ -773,7 +774,7 @@ build-plist:
 	    if ($$0 !~ /(libclang_rt)/ && $$0 !~ /(${BE_PATTERN})$$/) {print}}' ${PLIST}.tmp >> ${PLIST}
 	${ECHO_CMD} '@postexec if type ccache-update-links >/dev/null 2>&1; then ccache-update-links -v; fi' >> ${PLIST}
 	${ECHO_CMD} '@postunexec if type ccache-update-links >/dev/null 2>&1; then ccache-update-links -v; fi' >> ${PLIST}
-	${RM} ${PLIST}.tmp
+	-${RM} ${PLIST}.tmp
 
 check-commands:
 .for command in ${COMMANDS}

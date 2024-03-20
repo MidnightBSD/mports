@@ -1,0 +1,18 @@
+--- config.guess.orig	2024-03-19 21:13:14 UTC
++++ config.guess
+@@ -800,6 +800,15 @@ EOF
+ 		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
+ 	esac
+ 	exit ;;
++    *:MidnightBSD:*:*)
++	UNAME_PROCESSOR=`/usr/bin/uname -p`
++	case ${UNAME_PROCESSOR} in
++	    amd64)
++		echo x86_64-unknown-midnightbsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	    *)
++		echo ${UNAME_PROCESSOR}-unknown-midnightbsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	esac
++	exit ;;
+     i*:CYGWIN*:*)
+ 	echo ${UNAME_MACHINE}-pc-cygwin
+ 	exit ;;
