@@ -1020,6 +1020,7 @@ SUBDIR += py-node-semver
 SUBDIR += py-nose
 SUBDIR += py-nose2
 SUBDIR += py-olefile
+SUBDIR += py-openapi-spec-validator
 SUBDIR += py-opengrok-tools
 SUBDIR += py-outcome
 SUBDIR += py-packaging
