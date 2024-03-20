@@ -62,6 +62,7 @@ SUBDIR += php83-zip
 SUBDIR += php83-zlib
 SUBDIR += py-borgbackup
 SUBDIR += py-brotli
+SUBDIR += py-brotlicffi
 SUBDIR += py-brotlipy
 SUBDIR += py-bz2file
 SUBDIR += py-libarchive-c
