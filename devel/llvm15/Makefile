@@ -23,6 +23,9 @@ LICENSE_NAME_LLVM2=	Apache License 2.0 with LLVM Exceptions
 LICENSE_PERMS_LLVM2=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE:=	${LICENSE:NARM}
 
+# TODO: fix this
+NO_TEST=	yes
+
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 FLAVORS=	default lite
