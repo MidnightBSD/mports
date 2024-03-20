@@ -718,6 +718,7 @@ post-install-LLD-on:
 TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 do-test:
 	if [ `${ID} -u` = 0 ]; then \
+		${MKDIR} ${WRKSRC}/test; \
 		${CHOWN} -R nobody ${WRKSRC}/test; \
 		su -m nobody -c ${TEST_CMD}; \
 	else \
