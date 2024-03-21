@@ -1272,6 +1272,7 @@ SUBDIR += sonarqube-community
 SUBDIR += sord
 SUBDIR += sparsehash
 SUBDIR += spice-protocol
+SUBDIR += spirv-llvm-translator
 SUBDIR += spirv-tools
 SUBDIR += splint
 SUBDIR += st
