@@ -1029,6 +1029,7 @@ SUBDIR += py-packaging
 SUBDIR += py-parameterized
 SUBDIR += py-parsedatetime
 SUBDIR += py-patch-ng
+SUBDIR += py-pathable
 SUBDIR += py-pathlib2
 SUBDIR += py-pathspec
 SUBDIR += py-pbr
