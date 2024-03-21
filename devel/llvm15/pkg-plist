@@ -119,7 +119,7 @@ bin/split-file%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb-argdumper%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb-instr%%LLVM_SUFFIX%%
-%%LLDB%%bin/lldb-server%%LLVM_SUFFIX%%
+@comment %%LLDB%%bin/lldb-server%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb-vscode%%LLVM_SUFFIX%%
 %%MLIR%%bin/mlir-cpu-runner%%LLVM_SUFFIX%%
 %%MLIR%%bin/mlir-linalg-ods-yaml-gen%%LLVM_SUFFIX%%
