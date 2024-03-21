@@ -1137,6 +1137,7 @@ SUBDIR += py-sniffio
 SUBDIR += py-sortedcontainers
 SUBDIR += py-stdnum
 SUBDIR += py-strenum
+SUBDIR += py-strict-rfc3339
 SUBDIR += py-structlog
 SUBDIR += py-subprocess-tee
 SUBDIR += py-subversion
