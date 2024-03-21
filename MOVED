@@ -336,4 +336,5 @@ www/py-txrequests|www/py-requests-futures|2024-03-06|Has expired: Use www/py-req
 18
 devel/py-gitdb2|devel/py-gitdb|2022-05-22|Remove obsoleted port. Use devel/py-gitdb instead
 devel/py-smmap2|devel/py-smmap|2022-05-22|Remove obsoleted port. Use devel/py-smmap instead
-games/gnome-taquin||2023-12-02|Has expired: BROKEN for more than a year and no upstream activity for more than 2 years
+games/gnome-taquin||2024-03-21|Has expired: BROKEN for more than a year and no upstream activity for more than 2 years
+devel/spirv-tools|graphics/spirv-tools|2024-03-21|Moved to a better category, aligning with glslang and shaderc
