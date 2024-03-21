@@ -250,6 +250,7 @@ SUBDIR += sdl2_ttf
 SUBDIR += sekrit-twc-zimg
 SUBDIR += shaderc
 SUBDIR += silgraphite
+SUBDIR += spirv-tools
 SUBDIR += svgalib
 SUBDIR += sxiv
 SUBDIR += tesseract
