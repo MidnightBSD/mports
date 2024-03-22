@@ -39,13 +39,16 @@ CXX=clang++${LLVM_DEFAULT}
 LDFLAGS+=	-L${LOCALBASE}/llvm${LLVM_DEFAULT}/lib
 
 MESON_ARGS+=	-Dgallium-vdpau=disabled \
+		-Dandroid-libbacktrace=disabled \
 		-Dgallium-omx=disabled \
 		-Dgallium-va=disabled \
 		-Dgallium-xa=disabled \
 		-Dgallium-nine=false \
+		-Dlmsensors=disabled \
 		-Dmicrosoft-clc=disabled \
 		-Dosmesa=false \
 		-Dtools="" \
+		-Dvalgrind=disabled \
 		-Degl=enabled \
 		-Dgbm=enabled \
 		-Dvulkan-drivers="" \
