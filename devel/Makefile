@@ -1113,6 +1113,7 @@ SUBDIR += py-ramlfications
 SUBDIR += py-raven
 SUBDIR += py-re-assert
 SUBDIR += py-readme-renderer
+SUBDIR += py-referencing
 SUBDIR += py-repoze.sphinx.autointerface
 SUBDIR += py-resolvelib
 SUBDIR += py-resolvelib05
