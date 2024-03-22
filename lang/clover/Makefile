@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/docs/license.rst
 BUILD_DEPENDS=	libclc>=0.3.0:devel/libclc \
 		opencl>=0:devel/opencl
 LIB_DEPENDS=	libOpenCL.so:devel/ocl-icd \
+		libLLVM-${LLVM_DEFAULT}.so:devel/llvm${LLVM_DEFAULT} \
 		libzstd.so:archivers/zstd
 RUN_DEPENDS=	libclc>=0.3.0:devel/libclc \
 		opencl>=0:devel/opencl
@@ -31,7 +32,6 @@ MESON_ARGS+=	-Ddri-drivers="" \
 		-Dgallium-va=disabled \
 		-Dgallium-vdpau=disabled \
 		-Dgallium-xa=disabled \
-		-Dgallium-xvmc=disabled \
 		-Dgles1=disabled \
 		-Dgles2=disabled \
 		-Dmicrosoft-clc=disabled \
@@ -46,7 +46,7 @@ MESON_ARGS+=	-Ddri-drivers="" \
 LDFLAGS_i386=		-Wl,-znotext
 
 # keep in sync with devel/libclc
-LLVM_DEFAULT=   10
+#LLVM_DEFAULT=   15
 
 .include "${MASTERDIR}/Makefile.targets"
 

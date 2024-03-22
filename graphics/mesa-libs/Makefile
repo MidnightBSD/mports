@@ -10,8 +10,6 @@ LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
 LIB_DEPENDS=	libOpenGL.so:graphics/libglvnd
 
-USES=		llvm:noexport
-
 OPTIONS_GROUP=			PLATFORM
 OPTIONS_GROUP_PLATFORM=		PLATFORM_X11 PLATFORM_WAYLAND
 PLATFORM_X11_DESC=		Enable X11 support for GBM/EGL
@@ -31,27 +29,29 @@ ZSTD_DESC=		Use ZSTD for shader cache
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 ZSTD_MESON_ENABLED=	zstd
 
+USE_LDCONFIG=		yes
+
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
-MESON_ARGS+=	-Dgallium-drivers="" \
-		-Dgallium-vdpau=disabled \
-		-Dgallium-xvmc=disabled \
+CC=clang${LLVM_DEFAULT}
+CXX=clang++${LLVM_DEFAULT}
+LDFLAGS+=	-L${LOCALBASE}/llvm${LLVM_DEFAULT}/lib
+
+MESON_ARGS+=	-Dgallium-vdpau=disabled \
 		-Dgallium-omx=disabled \
 		-Dgallium-va=disabled \
 		-Dgallium-xa=disabled \
 		-Dgallium-nine=false \
-		-Dlmsensors=disabled \
 		-Dmicrosoft-clc=disabled \
 		-Dosmesa=false \
 		-Dtools="" \
 		-Degl=enabled \
 		-Dgbm=enabled \
 		-Dvulkan-drivers="" \
-		-Dglvnd=true \
-		-Dprefer-iris=true
-# Building EGL and GBM requires a dri driver so add r100
-MESON_ARGS+=	-Ddri-drivers="r100"
+		-Dglvnd=true
+# Building EGL and GBM requires a driver so add r300
+MESON_ARGS+=	-Dgallium-drivers="r300"
 
 .if ${PORT_OPTIONS:MPLATFORM_X11}
 MESA_PLATFORMS+=	x11
@@ -72,8 +72,6 @@ MESON_ARGS+=	-Dplatforms="${MESA_PLATFORMS:ts,:tl}"
 .if ${ARCH} == "i386"
 # PR230239 Fix the build for i386 when WITH_LLD_IS_LD is set
 LDFLAGS+=-Wl,-z,notext
-.elif ${ARCH} == "powerpc"
-USE_GCC=	yes
 .endif
 
 .include "${MASTERDIR}/Makefile.targets"
