@@ -1121,6 +1121,7 @@ SUBDIR += py-repoze.sphinx.autointerface
 SUBDIR += py-resolvelib
 SUBDIR += py-resolvelib05
 SUBDIR += py-resource
+SUBDIR += py-rfc3339-validator
 SUBDIR += py-ruamel.yaml
 SUBDIR += py-ruamel.yaml.clib
 SUBDIR += py-scripttest
