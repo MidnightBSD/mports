@@ -998,6 +998,7 @@ SUBDIR += py-llfuse
 SUBDIR += py-lockfile
 SUBDIR += py-logfury
 SUBDIR += py-logutils
+SUBDIR += py-identify
 SUBDIR += py-importlib-metadata
 SUBDIR += py-importlib-resources
 SUBDIR += py-incremental
