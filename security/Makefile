@@ -207,6 +207,7 @@ SUBDIR += py-pyotp
 SUBDIR += py-rsa
 SUBDIR += py-scramp
 SUBDIR += py-service_identity
+SUBDIR += py-service-identity
 SUBDIR += py-trustme
 SUBDIR += rhash
 SUBDIR += seahorse
