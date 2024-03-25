@@ -908,7 +908,6 @@
 %%DRUPAL_BASE%%/modules/system/system.archiver.inc
 %%DRUPAL_BASE%%/modules/system/system.base-rtl.css
 %%DRUPAL_BASE%%/modules/system/system.base.css
-%%DRUPAL_BASE%%/modules/system/system.cron.js
 %%DRUPAL_BASE%%/modules/system/system.info
 %%DRUPAL_BASE%%/modules/system/system.install
 %%DRUPAL_BASE%%/modules/system/system.js
