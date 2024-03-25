@@ -1,21 +1,20 @@
 PORTNAME=	s3transfer
-PORTVERSION=	0.5.0
+PORTVERSION=	0.7.0
 CATEGORIES=	net python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Amazon S3 Transfer Manager for Python
+WWW=		https://github.com/boto/s3transfer
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.12.36:devel/py-botocore@${PY_FLAVOR} 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=1.3.3:devel/py-nose@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>=1.3.0:devel/py-mock@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.12.36<2.0.0:devel/py-botocore@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 NO_TEST=	yes

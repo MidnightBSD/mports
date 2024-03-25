@@ -876,6 +876,7 @@ SUBDIR += py-atomicwrites
 SUBDIR += py-atpublic
 SUBDIR += py-attrs
 SUBDIR += py-awscli
+SUBDIR += py-awscrt
 SUBDIR += py-b2sdk
 SUBDIR += py-babel
 SUBDIR += py-backports
