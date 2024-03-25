@@ -1022,6 +1022,7 @@ SUBDIR += py-msgpack
 SUBDIR += py-mypy
 SUBDIR += py-mypy_extensions
 SUBDIR += py-node-semver
+SUBDIR += py-nodeenv
 SUBDIR += py-nose
 SUBDIR += py-nose2
 SUBDIR += py-olefile
