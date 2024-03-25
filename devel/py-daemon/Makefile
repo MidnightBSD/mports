@@ -1,7 +1,5 @@
-# Created by: jessekempf@gmail.com
-
 PORTNAME=	daemon
-PORTVERSION=	2.3.0
+PORTVERSION=	2.3.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,6 +7,7 @@ DISTNAME=	python-daemon-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Well-behaved daemon framework for Python
+WWW=		https://pypi.org/project/python-daemon/
 
 LICENSE=	apache2
 
