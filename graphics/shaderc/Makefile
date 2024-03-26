@@ -8,10 +8,11 @@ PATCHFILES=	21c8be385b3f.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLSL/HLSL to SPIR-V shader compiler
+WWW=		https://github.com/google/shaderc
 
 LICENSE=	apache2
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libSPIRV-Tools-opt.a:devel/spirv-tools \
+BUILD_DEPENDS=	${LOCALBASE}/lib/libSPIRV-Tools-opt.a:graphics/spirv-tools \
 		${LOCALBASE}/lib/libHLSL.a:devel/glslang
 
 USES=		cmake compiler:c++11-lib pkgconfig localbase:ldflags python:build
