@@ -204,6 +204,7 @@ SUBDIR += py-django-gravatar2
 SUBDIR += py-django-requests-debug-toolbar
 SUBDIR += py-pecan
 SUBDIR += py-priority
+SUBDIR += py-priority1
 SUBDIR += py-pyjwt
 SUBDIR += py-pylsqpack
 SUBDIR += py-python-dotenv

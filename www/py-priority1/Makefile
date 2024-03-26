@@ -1,8 +1,9 @@
 PORTNAME=	priority
-PORTVERSION=	2.0.0
+PORTVERSION=	1.3.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pure-Python implementation of the HTTP/2 priority tree
@@ -11,8 +12,11 @@ WWW=		https://github.com/python-hyper/priority
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-NO_ARCH=	yes
-USE_PYTHON=	autoplist concurrent distutils
 USES=		python
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=	yes
+
+PORTSCOUT=	limit:^1\.
 
 .include <bsd.port.mk>
