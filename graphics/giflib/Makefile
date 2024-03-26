@@ -6,6 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with GIF images
+WWW=		https://sourceforge.net/projects/giflib/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -17,6 +18,8 @@ USE_LDCONFIG=	yes
 CFLAGS+=	-DHAVE_REALLOCARRAY
 MAKE_ARGS=	CC=${CC} LDFLAGS="${LDFLAGS}" MANDIR=${MANPREFIX}/man OFLAGS="${CFLAGS}" PREFIX="${PREFIX}"
 CPE_VENDOR=	giflib_project
+
+CONFLICTS_INSTALL=	giftool
 
 OPTIONS_DEFINE=	DOCS
 TEST_TARGET=	check
