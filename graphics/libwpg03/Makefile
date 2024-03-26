@@ -6,7 +6,7 @@ PKGNAMESUFFIX=	03
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and tools to work with WordPerfect Graphics (WPG) files
-WWW=		http://libwpg.sourceforge.net/
+WWW=		https://libwpg.sourceforge.net/
 
 LICENSE=	lgpl2.1 mpl
 LICENSE_COMB=	dual
