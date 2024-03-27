@@ -859,6 +859,7 @@ SUBDIR += py-Jinja2
 SUBDIR += py-QtPy
 SUBDIR += py-aiosignal
 SUBDIR += py-amalgamate
+SUBDIR += py-aniso8601
 SUBDIR += py-anyio
 SUBDIR += py-apipkg
 SUBDIR += py-apispec
