@@ -56,6 +56,7 @@ SUBDIR += py-webencodings
 SUBDIR += recode
 SUBDIR += ruby-dump.rb
 SUBDIR += unix2dos
+SUBDIR += uudeview
 SUBDIR += uulib
 SUBDIR += xdeview
 SUBDIR += xml2c
