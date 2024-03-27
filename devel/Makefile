@@ -1173,6 +1173,7 @@ SUBDIR += py-txaio
 SUBDIR += py-typed-ast
 SUBDIR += py-typing-extensions
 SUBDIR += py-typing-inspect
+SUBDIR += py-tzdata
 SUBDIR += py-ujson
 SUBDIR += py-unicodedata2
 SUBDIR += py-unittest2
