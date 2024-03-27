@@ -71,6 +71,7 @@ SUBDIR += php82-gmp
 SUBDIR += php83-bcmath
 SUBDIR += php83-gmp
 SUBDIR += py-MutatorMath
+SUBDIR += py-bottleneck
 SUBDIR += py-gmpy
 SUBDIR += py-gmpy2
 SUBDIR += py-kiwisolver
