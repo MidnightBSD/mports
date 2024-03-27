@@ -57,6 +57,8 @@ SUBDIR += recode
 SUBDIR += ruby-dump.rb
 SUBDIR += unix2dos
 SUBDIR += uulib
+SUBDIR += yj
+SUBDIR += yj-bruceadams
 SUBDIR += ytnef
 
 .include <bsd.port.subdir.mk>
