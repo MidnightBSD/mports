@@ -1,16 +1,16 @@
-
-
 PORTNAME=	uulib
 PORTVERSION=	0.5.20
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	converters
 MASTER_SITES=	http://www.fpx.de/fp/Software/UUDeview/download/
 DISTNAME=	uudeview-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for uu/xx/Base64/BinHex/yEnc de-/encoding
+WWW=		http://www.fpx.de/fp/Software/UUDeview/
 
-LICENSE=        gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 ALL_TARGET=	libuu.a	libuu.so.${SHLIB_VER}
@@ -26,6 +26,8 @@ SHLIB_VER=	3
 DOCFILES=	HISTORY doc/Makefile doc/README doc/binhex.fig \
 		doc/library.ltx doc/structure.fig doc/td-v1.c doc/td-v2.c \
 		doc/td-v3.c doc/test.txt
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${SED} -e 's,FUNKYTOKENHERE,${PREFIX}/,' \
