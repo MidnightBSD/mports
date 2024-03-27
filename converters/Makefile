@@ -57,6 +57,7 @@ SUBDIR += recode
 SUBDIR += ruby-dump.rb
 SUBDIR += unix2dos
 SUBDIR += uulib
+SUBDIR += xdeview
 SUBDIR += xml2c
 SUBDIR += yj
 SUBDIR += yj-bruceadams
