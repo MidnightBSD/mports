@@ -1,5 +1,5 @@
 PORTNAME=	xterm
-PORTVERSION=	388
+PORTVERSION=	390
 PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.invisible-island.net/xterm/:src1 \
@@ -22,7 +22,7 @@ GNU_CONFIGURE=	yes
 CPE_VENDOR=	invisible-island
 
 CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 CONFLICTS=	x11iraf-[0-9]*
 
