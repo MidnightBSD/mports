@@ -1,16 +1,18 @@
 PORTNAME=	nvidia-settings
-PORTVERSION=	470.86
-PORTREVISION=	1
+PORTVERSION=	535.146.02
+PORTREVISION=	0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display Control Panel for X NVidia driver
+WWW=		https://www.nvidia.com/object/unix.html
 
 LICENSE=	gpl2
 
 FAKE_OPTS=	trueprefix
 
-BUILD_DEPENDS=	${LOCALBASE}/include/dbus-1.0/dbus/dbus.h:devel/dbus
+BUILD_DEPENDS=	${LOCALBASE}/include/dbus-1.0/dbus/dbus.h:devel/dbus \
+		${LOCALBASE}/bin/as:devel/binutils
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
@@ -18,7 +20,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libvdpau.so:multimedia/libvdpau
 
 USES=		gl gmake gnome pkgconfig gettext-runtime xorg
-USE_GNOME=	gtk20 cairo gdkpixbuf2
+USE_GNOME=	gtk30 cairo gdkpixbuf2
 USE_GL=		gl
 USE_XORG=	x11 xext xv xxf86vm
 
@@ -27,9 +29,9 @@ GH_ACCOUNT=	NVIDIA
 
 PLIST_FILES=	bin/nvidia-settings \
 		libexec/nvidia-settings \
-		man/man1/nvidia-settings.1.gz \
-		lib/libnvidia-gtk2.so.${PORTVERSION} \
+		lib/libnvidia-gtk3.so.${PORTVERSION} \
 		share/applications/nvidia-settings.desktop \
+		man/man1/nvidia-settings.1.gz \
 		share/pixmaps/nvidia-settings.png
 
 SUB_FILES=	nvidia-settings
@@ -38,7 +40,7 @@ LDFLAGS+=	-pthread
 LLD_UNSAFE=	yes
 MAKE_ENV=	NV_USE_BUNDLED_LIBJANSSON=0 \
 		NV_VERBOSE=1 \
-		GTK3_AVAILABLE=0 \
+		GTK2_AVAILABLE=0 \
 		INSTALL_DOC_ARGS="${INSTALL_MAN:Ninstall}" \
 		XNVCTRL_CFLAGS=-I${LOCALBASE}/include \
 		XNVCTRL_LDFLAGS=-L${LOCALBASE}/lib
@@ -52,7 +54,8 @@ post-patch:	.SILENT
 		${WRKSRC}/src/gtk+-2.x/ctkappprofile.c
 
 post-install:	.SILENT
-	${STRIP_CMD} ${PREFIX}/lib/libnvidia-gtk2.so.${PORTVERSION}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnvidia-gtk3.so.${PORTVERSION}
+	${RM} ${STAGEDIR}/${PREFIX}/lib/libnvidia-wayland-client.so.${PORTVERSION}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.desktop \
 		/${DESKTOPDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.png \
