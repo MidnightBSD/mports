@@ -1,10 +1,11 @@
 PORTNAME=	viewnior
-PORTVERSION=	1.7
+PORTVERSION=	1.8
 DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	graphics
 
 MAINTAINER=	midnightbsd@BSDforge.com
 COMMENT=	Fast and simple image viewer
+WWW=		https://siyanpanayotov.com/project/viewnior/
 
 LICENSE=	gpl3
 
@@ -20,7 +21,7 @@ GH_PROJECT=	Viewnior
 USE_GNOME=	gdkpixbuf2 glib20 gtk20 intlhack intltool
 INSTALLS_ICONS=	yes
 
-PORTDOCS=	AUTHORS NEWS README.md TODO
+PORTDOCS=	AUTHORS NEWS README.md
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes

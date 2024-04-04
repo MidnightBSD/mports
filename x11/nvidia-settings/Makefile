@@ -11,8 +11,7 @@ LICENSE=	gpl2
 
 FAKE_OPTS=	trueprefix
 
-BUILD_DEPENDS=	${LOCALBASE}/include/dbus-1.0/dbus/dbus.h:devel/dbus \
-		${LOCALBASE}/bin/as:devel/binutils
+BUILD_DEPENDS=	${LOCALBASE}/include/dbus-1.0/dbus/dbus.h:devel/dbus
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
