@@ -18,7 +18,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/boost/algorithm/string/classification.hpp:de
 		${LOCALBASE}/include/boost/functional/hash.hpp:devel/boost-libs
 LIB_DEPENDS=	librevenge-0.0.so:textproc/librevenge
 
-USES=		compiler:c++11-lang libtool pathfix pkgconfig tar:xz
+USES=		autoreconf compiler:c++11-lang libtool pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
