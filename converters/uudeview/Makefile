@@ -41,12 +41,12 @@ post-configure:
 		${WRKSRC}/Makefile
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/uudeview
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/uuenview
+	@${STRIP_CMD} ${PREFIX}/bin/uudeview
+	@${STRIP_CMD} ${PREFIX}/bin/uuenview
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/HISTORY ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${FILESDIR}/porting.notes ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/HISTORY ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${FILESDIR}/porting.notes ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
