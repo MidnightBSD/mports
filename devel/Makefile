@@ -922,6 +922,7 @@ SUBDIR += py-coverage
 SUBDIR += py-coveralls
 SUBDIR += py-curio
 SUBDIR += py-cycler
+SUBDIR += py-cython-test-exception-raiser
 SUBDIR += py-daemon
 SUBDIR += py-datadog
 SUBDIR += py-dateutil
