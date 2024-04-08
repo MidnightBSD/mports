@@ -918,6 +918,7 @@ SUBDIR += py-configparser
 SUBDIR += py-constantly
 SUBDIR += py-contextlib2
 SUBDIR += py-country
+SUBDIR += py-covdefaults
 SUBDIR += py-coverage
 SUBDIR += py-coveralls
 SUBDIR += py-curio
