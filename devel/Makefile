@@ -932,6 +932,7 @@ SUBDIR += py-decorator
 SUBDIR += py-defusedxml
 SUBDIR += py-deprecation
 SUBDIR += py-dill
+SUBDIR += py-distlib
 SUBDIR += py-docopt
 SUBDIR += py-dpcontracts
 SUBDIR += py-editables
