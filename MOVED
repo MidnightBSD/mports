@@ -338,3 +338,4 @@ devel/py-gitdb2|devel/py-gitdb|2022-05-22|Remove obsoleted port. Use devel/py-gi
 devel/py-smmap2|devel/py-smmap|2022-05-22|Remove obsoleted port. Use devel/py-smmap instead
 games/gnome-taquin||2024-03-21|Has expired: BROKEN for more than a year and no upstream activity for more than 2 years
 devel/spirv-tools|graphics/spirv-tools|2024-03-21|Moved to a better category, aligning with glslang and shaderc
+emulators/advacemame||2024-04-08|Unmaintained
