@@ -1049,6 +1049,7 @@ SUBDIR += py-phx-class-registry
 SUBDIR += py-poetry-core
 SUBDIR += py-poyo
 SUBDIR += py-prance
+SUBDIR += py-proselint
 SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
 SUBDIR += py-pyproject_hooks
