@@ -1,5 +1,3 @@
-
-
 PORTREVISION=	0
 CATEGORIES=	net gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -50,9 +48,9 @@ post-install:
 	${MKDIR} ${DATADIR}
 	@cd ${WRKSRC}/service-type-database && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} Makefile ${MAKE_ARGS} ${FAKE_MAKEARGS} install
-	(cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
+	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		-d ${PREFIX} -f ${PYTHONPREFIX_SITELIBDIR:S,${PREFIX}/,,})
-	(cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
 		-d ${PREFIX} -f ${PYTHONPREFIX_SITELIBDIR:S,${PREFIX}/,,})
 
 .include "${MASTERDIR}/Makefile"
