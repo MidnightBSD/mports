@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy VCS-based management of project version strings
 WWW=		https://github.com/python-versioneer/python-versioneer
 
-LICENSE=	UNLICENSE
+LICENSE=	unlicense
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
