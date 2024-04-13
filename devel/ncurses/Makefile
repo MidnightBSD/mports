@@ -1,7 +1,5 @@
-# Created by: Andrey Zakhvatov
-
 PORTNAME=	ncurses
-DISTVERSION=	6.3
+DISTVERSION=	6.4
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.invisible-island.net/${PORTNAME}/ \
 		https://invisible-mirror.net/archives/ncurses/
@@ -9,11 +7,10 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for terminal-independent, full-screen output
+WWW=          https://invisible-island.net/ncurses/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN_sparc64=	cannot build: coredump: illegal instruction
 
 USES=		cpe pkgconfig shebangfix
 
@@ -41,7 +38,7 @@ CONFIGURE_ARGS=		--datadir=${PREFIX}/share \
 			--with-shared \
 			--with-termlib \
 			--without-manpage-renames
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 OPTIONS_DEFINE=		DEBUG DOCS EXAMPLES MANPAGES PROFILE TRACE
 OPTIONS_DEFAULT=	DOCS EXAMPLES MANPAGES
