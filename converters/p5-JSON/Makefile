@@ -1,12 +1,12 @@
 PORTNAME=	JSON
-PORTVERSION=	2.97.001
+PORTVERSION=	4.10
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to convert to JSON (JavaScript Object Notation)
+WWW=		https://metacpan.org/release/JSON
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
