@@ -1,5 +1,3 @@
-# Created by: Shell Hung <shell@shellhung.org>
-
 PORTNAME=	Test-Simple
 PORTVERSION=	1.302181
 CATEGORIES=	devel perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic utilities for writing tests in perl
+WWW=		https://metacpan.org/release/Test-Simple
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
