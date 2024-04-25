@@ -1,6 +1,3 @@
-
-#
-
 PORTNAME=	Devel-StackTrace
 PORTVERSION=	2.03
 CATEGORIES=	devel perl5
@@ -9,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Stack trace and stack trace frame objects
+WWW=		https://metacpan.org/release/Devel-StackTrace
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
