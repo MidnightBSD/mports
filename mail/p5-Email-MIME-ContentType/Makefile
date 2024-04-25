@@ -1,7 +1,3 @@
-# New ports collection makefile for:	p5-Email-MIME-ContentType
-# Date created:				Oct 11, 2008
-# Whom:					Lucas Holt
-
 PORTNAME=	Email-MIME-ContentType
 PORTVERSION=	1.028
 CATEGORIES=	mail perl5
