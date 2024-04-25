@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Encode-Locale
 PORTVERSION=	1.05
 CATEGORIES=	converters perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Determine the locale encoding
+WWW=		https://metacpan.org/release/Encode-Locale
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
