@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Device-Gsm
 PORTVERSION=	1.60
 CATEGORIES=	comms perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl interface to GSM phones/modems on serial ports
+WWW=		https://metacpan.org/release/Device-Gsm
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
