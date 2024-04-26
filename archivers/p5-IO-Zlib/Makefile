@@ -1,5 +1,3 @@
-
-
 PORTNAME=	IO-Zlib
 PORTVERSION=	1.10
 PORTREVISION=	2
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IO:: style interface to Compress::Zlib
+WWW=		https://metacpan.org/release/IO-Zlib
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
