@@ -1,18 +1,14 @@
-# New ports collection makefile for:	p5-Convert-ASN1
-# Date created:				May 30, 2008
-# Whom:	      				Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	Convert-ASN1
-PORTVERSION=	0.33
-PORTREVISION=	1
+PORTVERSION=	0.34
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module to encode and decode ASN.1 data structures
+WWW=		https://metacpan.org/release/Convert-ASN1
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
