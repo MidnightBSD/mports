@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Format a header and rows into a table
+WWW=		https://metacpan.org/release/Term-Table
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
@@ -19,10 +20,4 @@ USE_PERL5=	configure
 
 NO_ARCH=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 502800
-TEST_DEPENDS+=	p5-Test-Simple>=1.302097:devel/p5-Test-Simple
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
