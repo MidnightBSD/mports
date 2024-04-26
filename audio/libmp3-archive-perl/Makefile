@@ -1,5 +1,3 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@sunpoet.net>
-
 PORTNAME=	libmp3-archive-perl
 PORTVERSION=	0.9
 CATEGORIES=	audio perl5
@@ -8,6 +6,7 @@ MASTER_SITES=	http://erislabs.net/ianb/projects/libmp3-archive-perl/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to manipulate filenames containing music metadata
+WWW=		https://erislabs.net/ianb/projects/libmp3-archive-perl/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
