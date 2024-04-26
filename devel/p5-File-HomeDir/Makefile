@@ -1,5 +1,3 @@
-
-
 PORTNAME=	File-HomeDir
 PORTVERSION=	1.002
 CATEGORIES=	devel perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get home directory for self or other users
+WWW=		https://metacpan.org/release/File-HomeDir
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	p5-File-Which>=0:sysutils/p5-File-Which
