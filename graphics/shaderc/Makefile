@@ -24,6 +24,8 @@ CMAKE_ARGS=	-Dglslang_SOURCE_DIR:PATH="${LOCALBASE}/include/glslang" \
 		-DSPIRV-Headers_SOURCE_DIR:PATH="${WRKSRC}/third_party/spirv-headers"
 LDFLAGS+=	-Wl,-z,defs # glslang
 
+NO_TEST=	yes
+
 post-patch:
 # Disable bundled dependencies
 	${REINPLACE_CMD} '/third_party/d' ${WRKSRC}/CMakeLists.txt
