@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows your classes to do coercion of parameters  (Params::Coerce)
+WWW=		https://metacpan.org/release/Params-Coerce
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Params-Util>=0.20:devel/p5-Params-Util
