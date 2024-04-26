@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XS implementation for List::SomeUtils
+WWW=		https://metacpan.org/release/List-SomeUtils-XS
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -17,6 +18,6 @@ USE_PERL5=	configure
 USES=		perl5
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/List/SomeUtils/XS/XS.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/List/SomeUtils/XS/XS.so
 
 .include <bsd.port.mk>
