@@ -1,4 +1,3 @@
-
 PORTNAME=	File-ShareDir-Install
 PORTVERSION=	0.13
 CATEGORIES=	devel perl5
@@ -7,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Install read-only data files from a distribution
+WWW=		https://metacpan.org/release/File-ShareDir-Install
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
