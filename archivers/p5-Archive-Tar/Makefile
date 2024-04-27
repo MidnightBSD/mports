@@ -1,5 +1,5 @@
 PORTNAME=	Archive-Tar
-PORTVERSION=	2.32
+PORTVERSION=	3.02
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:BINGOS
@@ -7,14 +7,18 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for creation and manipulation of tar files
+WWW=		https://metacpan.org/release/Archive-Tar
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-IO-String>=0:devel/p5-IO-String
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-IO-Compress-Lzma>=0:archivers/p5-IO-Compress-Lzma \
+		p5-IO-String>=0:devel/p5-IO-String
 
 USES=		perl5
 USE_PERL5=	configure
+
 NO_ARCH=	yes
 
 OPTIONS_DEFINE=	TEXTDIFF
