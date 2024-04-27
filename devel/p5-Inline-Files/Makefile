@@ -1,5 +1,3 @@
-# Created by: ijliao
-
 PORTNAME=	Inline-Files
 PORTVERSION=	0.71
 CATEGORIES=	devel perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiple virtual files at the end of your code
+WWW=		https://metacpan.org/release/Inline-Files
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
