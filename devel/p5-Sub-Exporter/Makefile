@@ -1,8 +1,5 @@
-# Created by: Lars Balker Rasmussen <lbr@FreeBSD.org>
-
 PORTNAME=	Sub-Exporter
-PORTVERSION=	0.987
-PORTREVISION=	1
+PORTVERSION=	0.991
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
