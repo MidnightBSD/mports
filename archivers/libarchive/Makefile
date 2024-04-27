@@ -66,4 +66,8 @@ CONFIGURE_ENV+=	ac_cv_header_localcharset_h=no \
 		ac_cv_lib_charset_locale_charset=no
 .endif
 
+.if ${PORT_OPTIONS:MOPENSSL}
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-pkgconfig-compat
+.endif
+
 .include <bsd.port.post.mk>
