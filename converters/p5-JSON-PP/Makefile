@@ -1,7 +1,5 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	JSON-PP
-PORTVERSION=	2.97001
+PORTVERSION=	4.16
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:ISHIGAKI
@@ -19,6 +17,5 @@ USES=		perl5
 
 pre-patch:
 	@${MV} ${WRKSRC}/bin/json_pp ${WRKSRC}/bin/p5json_pp
-	@${REINPLACE_CMD} -e 's|bin/json_pp|bin/p5json_pp|' ${WRKSRC}/MANIFEST ${WRKSRC}/Makefile.PL
 
 .include <bsd.port.mk>
