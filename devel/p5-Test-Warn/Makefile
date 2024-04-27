@@ -1,13 +1,14 @@
 PORTNAME=	Test-Warn
-PORTVERSION=	0.36
+PORTVERSION=	0.37
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to test methods for warnings
+WWW=		https://metacpan.org/release/Test-Warn
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
