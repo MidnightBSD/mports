@@ -1,5 +1,5 @@
 PORTNAME=	Compress-Raw-Bzip2
-PORTVERSION=	2.201
+PORTVERSION=	2.210
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-Level Interface to bzip2 compression library
 WWW=		https://metacpan.org/release/Compress-Raw-Bzip2
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-Test-Pod>=1:devel/p5-Test-Pod
