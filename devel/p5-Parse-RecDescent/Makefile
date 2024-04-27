@@ -7,8 +7,9 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Recursive descent parsing framework for Perl
+WWW=		https://metacpan.org/release/Parse-RecDescent
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-Test-Warn>=0:devel/p5-Test-Warn
