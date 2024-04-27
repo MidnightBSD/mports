@@ -12,7 +12,7 @@ WWW=		https://www.gnu.org/software/indent/indent.html
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=	groff:run localbase:ldflags makeinfo
+USES=	groff:both localbase:ldflags makeinfo
 
 INFO=	indent
 
