@@ -1,22 +1,20 @@
-# Created by: Konstantin Chuguev <Konstantin.Chuguev@dante.org.uk>
-
 PORTNAME=	iconv
 PORTVERSION=	2.0
+PORTREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	FREEBSD_LOCAL/bland
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Charset conversion library and utilities
 
-# not exactly bsd4, but has advertising clause, missing 3rd clause
-LICENSE=	bsd4
+LICENSE=	bsd3
 
 FAKE_OPTS=	trueprefix
 
 USES=		shebangfix perl5 uidfix
 USE_PERL5=	build
 USE_LDCONFIG=	yes
-#SHEBANG_FILES=	iconv_builtin ccs/iconv_mktbl
+SHEBANG_FILES=	iconv_builtin ccs/iconv_mktbl
 
 OPTIONS_DEFINE=	CCSUTIL
 OPTIONS_DEFAULT=CCSUTIL
