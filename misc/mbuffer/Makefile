@@ -1,19 +1,18 @@
-# Created by: Rong-En Fan <rafan@FreeBSD.org>
-
 PORTNAME=	mbuffer
-PORTVERSION=	20200505
+PORTVERSION=	20240107
 CATEGORIES=	misc
 MASTER_SITES=	http://www.maier-komor.de/software/mbuffer/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for buffering data streams
+WWW=		https://www.maier-komor.de/mbuffer.html
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	gtar:archivers/gtar
 
-USES=		localbase ssl tar:tgz
+USES=		localbase ssl tar:tgz autoreconf gmake
 
 GNU_CONFIGURE=	yes
 
@@ -31,6 +30,10 @@ RHASH_DESC=	Use rhash for hash generation
 GCRYPT_RUN_DEPENDS=	libgcrypt>=1.8.4_1:security/libgcrypt
 MHASH_RUN_DEPENDS=	mhash>=0.9.9.9_5:security/mhash
 RHASH_RUN_DEPENDS=	rhash>=1.3.5:security/rhash
+
+post-patch:
+	${REINPLACE_CMD} \
+		-e 's@bash@sh@' ${WRKSRC}/Makefile.in
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/mbuffer
