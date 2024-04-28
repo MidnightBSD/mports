@@ -7,7 +7,7 @@
 %%SITE_PERL%%/Inline/MakeMaker/Changes
 %%SITE_PERL%%/Inline/Support.pod
 %%SITE_PERL%%/Inline/denter.pm
-%%PERL5_MAN3%%/Inline.3.gz
-%%PERL5_MAN3%%/Inline::API.3.gz
-%%PERL5_MAN3%%/Inline::FAQ.3.gz
-%%PERL5_MAN3%%/Inline::Support.3.gz
+man/man3/Inline.3.gz
+man/man3/Inline::API.3.gz
+man/man3/Inline::FAQ.3.gz
+man/man3/Inline::Support.3.gz
