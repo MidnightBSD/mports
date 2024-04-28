@@ -9,6 +9,9 @@ COMMENT=	Buffer sporadic I/O for faster tape and pipe throughput
 
 LICENSE=	gpl2
 
+DEPRECATED=	No upstream updates since 1995.  Switch to misc/mbuffer                                                                                                   
+EXPIRATION_DATE=2024-05-31 
+
 USES=		tar:tgz
 PLIST_FILES=	bin/buffer \
 		man/man1/buffer.1.gz
