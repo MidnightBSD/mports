@@ -1,7 +1,5 @@
-# Created by: Lung Sung <clsung@FreeBSD.org>
-
 PORTNAME=	JSON-XS
-PORTVERSION=	3.04
+PORTVERSION=	4.03
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,7 +7,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON serialising/deserialising, done correctly and fast
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -19,11 +17,7 @@ RUN_DEPENDS=	p5-Types-Serialiser>=0:devel/p5-Types-Serialiser \
 USES=		perl5
 USE_PERL5=	configure
 
-post-patch:
-# This dependency does nothing and is safe to remove
-	@${REINPLACE_CMD} -e '/use Canary::Stability/d' ${WRKSRC}/Makefile.PL
-
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/JSON/XS/XS.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/JSON/XS/XS.so
 
 .include <bsd.port.mk>
