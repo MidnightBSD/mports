@@ -11,4 +11,4 @@
 %%SITE_PERL%%/Font/Metrics/TimesBoldItalic.pm
 %%SITE_PERL%%/Font/Metrics/TimesItalic.pm
 %%SITE_PERL%%/Font/Metrics/TimesRoman.pm
-%%PERL5_MAN3%%/Font::AFM.3.gz
+man/man3/Font::AFM.3.gz
