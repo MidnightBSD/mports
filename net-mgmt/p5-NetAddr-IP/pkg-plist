@@ -60,8 +60,8 @@
 %%SITE_ARCH%%/auto/NetAddr/IP/re6.al
 %%SITE_ARCH%%/auto/NetAddr/IP/short.al
 %%SITE_ARCH%%/auto/NetAddr/IP/wildcard.al
-%%PERL5_MAN3%%/NetAddr::IP.3.gz
-%%PERL5_MAN3%%/NetAddr::IP::InetBase.3.gz
-%%PERL5_MAN3%%/NetAddr::IP::Lite.3.gz
-%%PERL5_MAN3%%/NetAddr::IP::Util.3.gz
-%%PERL5_MAN3%%/NetAddr::IP::UtilPP.3.gz
+man/man3/NetAddr::IP.3.gz
+man/man3/NetAddr::IP::InetBase.3.gz
+man/man3/NetAddr::IP::Lite.3.gz
+man/man3/NetAddr::IP::Util.3.gz
+man/man3/NetAddr::IP::UtilPP.3.gz
