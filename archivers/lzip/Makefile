@@ -1,7 +1,5 @@
-# Created by: Sylvio Cesar <sylvio@FreeBSD.org>
-
 PORTNAME=	lzip
-PORTVERSION=	1.21
+PORTVERSION=	1.23
 CATEGORIES=	archivers
 MASTER_SITES=	SAVANNAH/lzip
 

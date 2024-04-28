@@ -8,7 +8,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Add contextual fetches to DBI
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:databases/p5-DBI
