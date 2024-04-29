@@ -12,5 +12,5 @@
 %%SITE_PERL%%/ExtUtils/CBuilder/Platform/darwin.pm
 %%SITE_PERL%%/ExtUtils/CBuilder/Platform/dec_osf.pm
 %%SITE_PERL%%/ExtUtils/CBuilder/Platform/os2.pm
-%%PERL5_MAN3%%/ExtUtils::CBuilder.3.gz
-%%PERL5_MAN3%%/ExtUtils::CBuilder::Platform::Windows.3.gz
+man/man3/ExtUtils::CBuilder.3.gz
+man/man3/ExtUtils::CBuilder::Platform::Windows.3.gz

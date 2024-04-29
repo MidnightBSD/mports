@@ -1,2 +1,2 @@
 %%SITE_PERL%%/ExtUtils/Config.pm
-%%PERL5_MAN3%%/ExtUtils::Config.3.gz
+man/man3/ExtUtils::Config.3.gz

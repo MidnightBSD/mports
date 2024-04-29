@@ -2,7 +2,7 @@
 %%SITE_PERL%%/ExtUtils/Helpers/Unix.pm
 %%SITE_PERL%%/ExtUtils/Helpers/VMS.pm
 %%SITE_PERL%%/ExtUtils/Helpers/Windows.pm
-%%PERL5_MAN3%%/ExtUtils::Helpers.3.gz
-%%PERL5_MAN3%%/ExtUtils::Helpers::Unix.3.gz
-%%PERL5_MAN3%%/ExtUtils::Helpers::VMS.3.gz
-%%PERL5_MAN3%%/ExtUtils::Helpers::Windows.3.gz
+man/man3/ExtUtils::Helpers.3.gz
+man/man3/ExtUtils::Helpers::Unix.3.gz
+man/man3/ExtUtils::Helpers::VMS.3.gz
+man/man3/ExtUtils::Helpers::Windows.3.gz
