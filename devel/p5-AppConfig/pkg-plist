@@ -5,10 +5,10 @@
 %%SITE_PERL%%/AppConfig/Getopt.pm
 %%SITE_PERL%%/AppConfig/State.pm
 %%SITE_PERL%%/AppConfig/Sys.pm
-%%PERL5_MAN3%%/AppConfig.3.gz
-%%PERL5_MAN3%%/AppConfig::Args.3.gz
-%%PERL5_MAN3%%/AppConfig::CGI.3.gz
-%%PERL5_MAN3%%/AppConfig::File.3.gz
-%%PERL5_MAN3%%/AppConfig::Getopt.3.gz
-%%PERL5_MAN3%%/AppConfig::State.3.gz
-%%PERL5_MAN3%%/AppConfig::Sys.3.gz
+man/man3/AppConfig.3.gz
+man/man3/AppConfig::Args.3.gz
+man/man3/AppConfig::CGI.3.gz
+man/man3/AppConfig::File.3.gz
+man/man3/AppConfig::Getopt.3.gz
+man/man3/AppConfig::State.3.gz
+man/man3/AppConfig::Sys.3.gz
