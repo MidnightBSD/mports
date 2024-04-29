@@ -1,6 +1,6 @@
-%%PERL5_MAN3%%/SQL::Abstract::Limit.3.gz
+man/man3/SQL::Abstract::Limit.3.gz
 %%SITE_PERL%%/SQL/Abstract/Limit.pm
-@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man/man3
 @dir %%SITE_PERL%%/man
 @dir %%SITE_PERL%%/SQL/Abstract
 @dir %%SITE_PERL%%/SQL
