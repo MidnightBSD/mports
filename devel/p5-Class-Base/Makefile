@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Useful base class for deriving other modules
+WWW=		https://metacpan.org/release/Class-Base
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
