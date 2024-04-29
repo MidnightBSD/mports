@@ -1,11 +1,12 @@
 PORTNAME=	compiz
 PORTVERSION=	0.8.8
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-wm
 MASTER_SITES=	https://BSDforge.com/projects/source/x11-wm/compiz/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
+WWW=		http://www.compiz.org/
 
 LICENSE=	gpl2+ lgpl2.1+ mit
 LICENSE_COMB=	multi
@@ -21,7 +22,7 @@ RUN_DEPENDS=	glxinfo:graphics/mesa-demos \
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gettext gl gmake gnome libtool \
+USES=		gettext-runtime gettext-tools gl gmake gnome libtool \
 		localbase pathfix tar:bzip2 xorg xorg-cat:app
 USE_GL=		gl glu
 USE_GNOME=	cairo libxslt intltool
@@ -59,7 +60,8 @@ FUSE_CONFIGURE_ENABLE=	fuse
 FUSE_USES=		fuse
 
 GTK2_CONFIGURE_ENABLE=	gtk
-GTK2_USE=	GNOME=glib20,libwnck
+GTK2_USE=	GNOME=glib20
+GTK2_LIB_DEPENDS=	libwnck-1.so:x11-toolkits/libwnck
 
 SVG_CONFIGURE_ENABLE=	librsvg
 SVG_USE=	GNOME=librsvg2
