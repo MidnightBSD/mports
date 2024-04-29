@@ -1,17 +1,15 @@
-
-
 PORTNAME=	Unicode-MapUTF8
-PORTVERSION=	1.11
-PORTREVISION=	1
+PORTVERSION=	1.14
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl class that implements conversion between arbitrary charsets
+WWW=		https://metacpan.org/release/Unicode-MapUTF8
 
-LICENSE=      artistic gpl
-LICENSE_COMB= dual
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Jcode>=0:converters/p5-Jcode \
