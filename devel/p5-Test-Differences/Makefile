@@ -1,5 +1,5 @@
 PORTNAME=	Test-Differences
-PORTVERSION=	0.640
+PORTVERSION=	0.650
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
@@ -7,9 +7,10 @@ PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-${PORTVERSION:C/0$//}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Test::Differences - Test strings and data structures for differences
+COMMENT=	Test strings and data structures for differences
+WWW=		https://metacpan.org/release/Test-Differences
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
