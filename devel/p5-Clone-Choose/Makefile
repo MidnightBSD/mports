@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Choose appropriate clone utility
+WWW=		https://metacpan.org/release/Clone-Choose
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-Test-Without-Module>=0:devel/p5-Test-Without-Module
