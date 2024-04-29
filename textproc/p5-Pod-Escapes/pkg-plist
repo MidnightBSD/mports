@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Pod/Escapes.pm
-%%PERL5_MAN3%%/Pod::Escapes.3.gz
+man/man3/Pod::Escapes.3.gz

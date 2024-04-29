@@ -1,23 +1,22 @@
 PORTNAME=	Text-CSV
-PORTVERSION=	2.01
+PORTVERSION=	2.04
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Composition and decomposition of comma-separated values
+WWW=		https://metacpan.org/release/Text-CSV
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
+
+#BUILD_DEPENDS=	${RUN_DEPENDS}
+#RUN_DEPENDS=	p5-Text-CSV_XS>=1.53:textproc/p5-Text-CSV_XS
 
 USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
-
-OPTIONS_DEFINE=	XS
-
-XS_BUILD_DEPENDS=	p5-Text-CSV_XS>=1.46:textproc/p5-Text-CSV_XS
-XS_RUN_DEPENDS=		p5-Text-CSV_XS>=1.46:textproc/p5-Text-CSV_XS
 
 .include <bsd.port.mk>
