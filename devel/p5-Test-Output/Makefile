@@ -1,23 +1,23 @@
-# Created by: Gea-Suan Lin <gslin@gslin.org>
-
 PORTNAME=	Test-Output
-PORTVERSION=	1.03.1
+PORTVERSION=	1.034
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utilities to test STDOUT and STDERR messages
+WWW=		https://metacpan.org/release/Test-Output
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=	artistic2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-Capture-Tiny>=0.17:devel/p5-Capture-Tiny
+RUN_DEPENDS=	p5-Capture-Tiny>=0.17:devel/p5-Capture-Tiny \
+		p5-Sub-Exporter>=0:devel/p5-Sub-Exporter
 
-NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
