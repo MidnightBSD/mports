@@ -1,13 +1,14 @@
 PORTNAME=	File-Copy-Recursive-Reduced
-PORTVERSION=	0.006
+PORTVERSION=	0.007
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Recursive copying of files and directories
+WWW=		https://metacpan.org/release/File-Copy-Recursive-Reduced
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE_ART10=	${WRKSRC}/LICENSE
 

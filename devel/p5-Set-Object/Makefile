@@ -6,8 +6,10 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to manage sets of objects
+WWW=		https://metacpan.org/release/Set-Object
 
 LICENSE=	artistic2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	p5-Moose>=0:devel/p5-Moose \
 		p5-Test-LeakTrace>=0:devel/p5-Test-LeakTrace
