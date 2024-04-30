@@ -1,5 +1,3 @@
-# Created by: Lars Thegler <lth@FreeBSD.org>
-
 PORTNAME=	Test-YAML-Valid
 PORTVERSION=	0.04
 CATEGORIES=	devel perl5
@@ -8,8 +6,10 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test for valid YAML
+WWW=		https://metacpan.org/release/Test-YAML-Valid
 
-LICENSE=	artistic
+LICENSE=	artistic gpl+
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-YAML>=0.60:textproc/p5-YAML

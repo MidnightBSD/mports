@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/YAML/Valid.pm
-%%PERL5_MAN3%%/Test::YAML::Valid.3.gz
+man/man3/Test::YAML::Valid.3.gz
