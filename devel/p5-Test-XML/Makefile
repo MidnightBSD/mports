@@ -1,5 +1,3 @@
-# Created by: Lars Thegler <lth@FreeBSD.org>
-
 PORTNAME=	Test-XML
 PORTVERSION=	0.08
 PORTREVISION=	1
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compare XML in perl tests
+WWW=		https://metacpan.org/release/Test-XML
 
 LICENSE=	other
 
