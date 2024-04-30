@@ -1,7 +1,5 @@
-# Created by: Wei-chun Chao
-
 PORTNAME=	Net-Netmask
-PORTVERSION=	2.0001
+PORTVERSION=	2.0002
 CATEGORIES=	net-mgmt perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
