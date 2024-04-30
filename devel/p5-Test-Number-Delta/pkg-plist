@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Number/Delta.pm
-%%PERL5_MAN3%%/Test::Number::Delta.3.gz
+man/man3/Test::Number::Delta.3.gz
