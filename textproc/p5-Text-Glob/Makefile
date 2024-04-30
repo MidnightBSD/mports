@@ -1,7 +1,3 @@
-# New ports collection makefile for:	Text-Glob
-# Date created:	   May 9 2008
-# Whom:		   Lucas Holt <luke@Midnightbsd.org>
-
 PORTNAME=	Text-Glob
 PORTVERSION=	0.11
 CATEGORIES=	textproc perl5
