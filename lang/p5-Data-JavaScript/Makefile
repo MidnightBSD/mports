@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Data-JavaScript
 PORTVERSION=	1.13
 CATEGORIES=	lang www perl5
@@ -9,8 +7,10 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data::JavaScript - Dump perl structures to JavaScript code
+WWW=		https://metacpan.org/release/Data-JavaScript
 
-LICENSE=	perl
+LICENSE=	artistic gpl+
+LICENSE_COMB=	dual
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
