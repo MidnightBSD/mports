@@ -1,5 +1,3 @@
-
-
 PORTNAME=	MLDBM
 PORTVERSION=	2.05
 PORTREVISION=	1
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Store multi-level hash structure in single level tied hash
+WWW=		https://metacpan.org/release/MLDBM
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
