@@ -331,6 +331,7 @@ SUBDIR += py-tomlkit
 SUBDIR += py-towncrier
 SUBDIR += py-typogrify
 SUBDIR += py-wcmatch
+SUBDIR += py-youseedee
 SUBDIR += py-zope.i18nmessageid
 SUBDIR += qt5-xml
 SUBDIR += qt5-xmlpatterns
