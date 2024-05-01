@@ -45,6 +45,7 @@ SUBDIR += p5-IO-Compress
 SUBDIR += p5-IO-Compress-Lzma
 SUBDIR += p5-IO-Zlib
 SUBDIR += p7zip
+SUBDIR += par2cmdline
 SUBDIR += pbzip2
 SUBDIR += php80-bz2
 SUBDIR += php80-phar

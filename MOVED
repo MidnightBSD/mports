@@ -339,3 +339,4 @@ devel/py-smmap2|devel/py-smmap|2022-05-22|Remove obsoleted port. Use devel/py-sm
 games/gnome-taquin||2024-03-21|Has expired: BROKEN for more than a year and no upstream activity for more than 2 years
 devel/spirv-tools|graphics/spirv-tools|2024-03-21|Moved to a better category, aligning with glslang and shaderc
 emulators/advacemame||2024-04-08|Unmaintained
+devel/py-setuptools_scm|devel/py-setuptools-scm|2024-02-29|Package name changed

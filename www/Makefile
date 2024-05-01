@@ -177,6 +177,7 @@ SUBDIR += py-cachecontrol
 SUBDIR += py-cheroot
 SUBDIR += py-cssselect
 SUBDIR += py-cssutils
+SUBDIR += py-dropbox
 SUBDIR += py-falcon
 SUBDIR += py-flasgger
 SUBDIR += py-flask
