@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON::XS for Cpanel, fast and correct serialising
+WWW=		https://metacpan.org/release/Cpanel-JSON-XS
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 PORTSCOUT=	limit:^[0-9\.]*$$

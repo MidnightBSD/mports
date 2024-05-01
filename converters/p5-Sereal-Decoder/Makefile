@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for fast, powerful binary deserialization (decoder)
 WWW=		https://metacpan.org/pod/Sereal::Decoder
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
@@ -28,6 +28,6 @@ MAKE_JOBS_UNSAFE=	yes
 PORTSCOUT=	limit:^[0-9\.]*$$
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Decoder/Decoder.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Decoder/Decoder.so
 
 .include <bsd.port.mk>

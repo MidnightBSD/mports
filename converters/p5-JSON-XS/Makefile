@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON serialising/deserialising, done correctly and fast
+WWW=		https://metacpan.org/release/JSON-XS
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
