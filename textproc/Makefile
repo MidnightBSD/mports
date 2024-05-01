@@ -242,6 +242,7 @@ SUBDIR += py-ansi2html
 SUBDIR += py-bracex
 SUBDIR += py-chardet
 SUBDIR += py-charset-normalizer
+SUBDIR += py-cmarkgfm
 SUBDIR += py-cssselect2
 SUBDIR += py-docutils
 SUBDIR += py-enrich
