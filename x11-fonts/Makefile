@@ -196,6 +196,8 @@
     SUBDIR += proggy_fonts-ttf
     SUBDIR += psftools
     SUBDIR += py-QtAwesome
+    SUBDIR += py-axisregistry
+    SUBDIR += py-babelfont
     SUBDIR += py-bdflib
     SUBDIR += py-booleanOperations
     SUBDIR += py-compreffor
@@ -203,8 +205,12 @@
     SUBDIR += py-defcon
     SUBDIR += py-fontMath
     SUBDIR += py-fontmake
+    SUBDIR += py-gflanguages
+    SUBDIR += py-gfsubsets
     SUBDIR += py-glyphsLib
+    SUBDIR += py-opentypespec
     SUBDIR += py-opentype-sanitizer
+    SUBDIR += py-shaperglot
     SUBDIR += py-ufo2ft
     SUBDIR += py-ufoLib
     SUBDIR += py-ufolint
