@@ -1,28 +1,32 @@
 PORTNAME=	lz4
-PORTVERSION=	2.1.10
+PORTVERSION=	4.3.3
 CATEGORIES=	archivers python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python binding for the LZ4 compression library
+WWW=		https://github.com/python-lz4/python-lz4
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	liblz4>=1.7.5:archivers/liblz4 \
 		${PYTHON_PKGNAMEPREFIX}pkgconfig>=0:devel/py-pkgconfig@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools_scm>0:devel/py-setuptools_scm@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR}
 LIB_DEPENDS=	liblz4.so:archivers/liblz4
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psutil>=0:sysutils/py-psutil@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	distutils
+USES=		localbase python
+USE_PYTHON=	distutils pytest
 
-NO_TEST=	yes
+CONFIGURE_ENV=	PYLZ4_USE_SYSTEM_LZ4=1
+
+post-patch:
+# Clean up bundled libraries
+	@${RM} -r ${WRKSRC}/lz4libs/
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/_version*.so \
-		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/block/_block*.so \
-		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/frame/_frame*.so
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>

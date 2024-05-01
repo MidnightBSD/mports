@@ -1,34 +1,29 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	jaraco.context
-PORTVERSION=	4.1.1
+PORTVERSION=	4.3.0
+PORTREVISION=	4
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Context managers by jaraco
+WWW=		https://github.com/jaraco/jaraco.context
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=3.4.1:devel/py-setuptools_scm@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jaraco>=0:devel/py-jaraco@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=56:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4.1:devel/py-setuptools-scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-black>=0.3.7:devel/py-pytest-black@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-cov>=0:devel/py-pytest-cov@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-enabler>=0:devel/py-pytest-enabler@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-flake8>=0:devel/py-pytest-flake8@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-mypy>=0:devel/py-pytest-mypy@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
-NO_TEST=	yes
-
-POST_PLIST=	trim-jaraco-namespace
-
-post-install:
-	-${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__init__.py*
-	-@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__pycache__/__init__.*
-	-@${RMDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/jaraco/__pycache__
-
-trim-jaraco-namespace:
-	@${REINPLACE_CMD} '/jaraco\/__init__\./d; /jaraco\/__pycache__\/__init__\./d' ${TMPPLIST}
 
 .include <bsd.port.mk>

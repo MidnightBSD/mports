@@ -1,22 +1,24 @@
-# Created by: Kubilay Kocak <koobs@FreeBSD.org>
-
 PORTNAME=	execnet
-PORTVERSION=	1.6.0
+PORTVERSION=	2.0.2
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Python deployment and communication
+WWW=		https://codespeak.net/execnet/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}apipkg>=1.4:devel/py-apipkg@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hatch-vcs>0:devel/py-hatch-vcs@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+
+TESTING_UNSAFE=	ModuleNotFoundError: No module named 'execnet'
 
 .include <bsd.port.mk>

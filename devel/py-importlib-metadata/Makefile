@@ -1,5 +1,5 @@
 PORTNAME=	importlib-metadata
-PORTVERSION=	4.8.1
+DISTVERSION=	7.1.0
 CATEGORIES=	devel
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -7,20 +7,21 @@ DISTNAME=	importlib_metadata-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read metadata from Python packages
+WWW=		https://github.com/python/importlib_metadata
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${PY_FLAVOR}
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zipp>=0.5:devel/py-zipp@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist pep517 pytest
 
-.include <bsd.port.pre.mk>
+NO_ARCH=	yes
 
-.if ${PYTHON_REL} < 30800
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=3.6.4:devel/py-typing-extensions@${PY_FLAVOR}
-.endif
+TESTING_UNSAFE=	ModuleNotFoundError: No module named 'pyfakefs'
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

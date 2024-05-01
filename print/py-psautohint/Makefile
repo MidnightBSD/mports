@@ -1,19 +1,20 @@
 PORTNAME=	psautohint
-DISTVERSION=	2.0.0
+DISTVERSION=	2.4.0
 CATEGORIES=	print python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python wrapper for Adobe PostScript autohinter
+COMMENT=	Standalone version of Adobe AFDKO's autohinter
+WWW=		https://github.com/adobe-type-tools/psautohint
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>0:devel/py-setuptools_scm@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=3.32.0:print/py-fonttools@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=4.22.0:print/py-fonttools@${PY_FLAVOR}
 
-USES=		python zip
+USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_TEST=	yes
