@@ -3,7 +3,7 @@
 %%SITE_ARCH%%/Scalar/Util.pm
 %%SITE_ARCH%%/Sub/Util.pm
 %%SITE_ARCH%%/auto/List/Util/Util.so
-%%PERL5_MAN3%%/List::Util.3.gz
-%%PERL5_MAN3%%/List::Util::XS.3.gz
-%%PERL5_MAN3%%/Scalar::Util.3.gz
-%%PERL5_MAN3%%/Sub::Util.3.gz
+man/man3/List::Util.3.gz
+man/man3/List::Util::XS.3.gz
+man/man3/Scalar::Util.3.gz
+man/man3/Sub::Util.3.gz
