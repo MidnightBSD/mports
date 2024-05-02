@@ -7,10 +7,10 @@ bin/bdf2gdfont.pl
 %%SITE_ARCH%%/GD/Simple.pm
 %%SITE_ARCH%%/auto/GD/GD.so
 %%SITE_ARCH%%/auto/GD/autosplit.ix
-%%PERL5_MAN1%%/bdf2gdfont.pl.1.gz
-%%PERL5_MAN3%%/GD.3.gz
-%%PERL5_MAN3%%/GD::Group.3.gz
-%%PERL5_MAN3%%/GD::Image.3.gz
-%%PERL5_MAN3%%/GD::Polygon.3.gz
-%%PERL5_MAN3%%/GD::Polyline.3.gz
-%%PERL5_MAN3%%/GD::Simple.3.gz
+man/man1/bdf2gdfont.pl.1.gz
+man/man3/GD.3.gz
+man/man3/GD::Group.3.gz
+man/man3/GD::Image.3.gz
+man/man3/GD::Polygon.3.gz
+man/man3/GD::Polyline.3.gz
+man/man3/GD::Simple.3.gz
