@@ -34,6 +34,16 @@ _OPTIONS_TARGETS=	fetch:300:pre fetch:500:do fetch:700:post \
 			package:300:pre package:500:do package:700:post \
 			fake:800:post
 
+_ALL_OPTIONS_HELPERS=   ${_OPTIONS_DEPENDS:S/$/_DEPENDS/} \
+                        ${_OPTIONS_DEPENDS:S/$/_DEPENDS_OFF/} \
+                        ${_OPTIONS_FLAGS:S/$/_OFF/} ${_OPTIONS_FLAGS} \
+                        CABAL_FLAGS CMAKE_BOOL CMAKE_BOOL_OFF CMAKE_OFF CMAKE_ON \
+                        CONFIGURE_ENABLE CONFIGURE_OFF CONFIGURE_ON \
+                        CONFIGURE_WITH IMPLIES MESON_ARGS MESON_DISABLED \
+                        MESON_ENABLED MESON_FALSE MESON_OFF MESON_ON MESON_TRUE \
+                        PREVENTS PREVENTS_MSG QMAKE_OFF QMAKE_ON \
+                        SUBPACKAGES SUBPACKAGES_OFF USE USE_OFF VARS VARS_OFF
+
 # Set the default values for the global options
 .if !defined(NOPORTDOCS) || defined(PACKAGE_BUILDING)
 PORT_OPTIONS+=	DOCS
@@ -475,6 +485,18 @@ _OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}
 .      endfor
 .  endif
 .endfor
+
+# Collect which options helpers are defined at this point for
+# bsd.sanity.mk later to make sure no other options helper is
+# defined after bsd.port.options.mk.
+_OPTIONS_HELPERS_SEEN=
+.  for opt in ${_REALLY_ALL_POSSIBLE_OPTIONS}
+.    for helper in ${_ALL_OPTIONS_HELPERS}
+.      if defined(${opt}_${helper})
+_OPTIONS_HELPERS_SEEN+= ${opt}_${helper}
+.      endif
+.    endfor
+.  endfor
 
 .undef (SELECTED_OPTIONS)
 .undef (DESELECTED_OPTIONS)
