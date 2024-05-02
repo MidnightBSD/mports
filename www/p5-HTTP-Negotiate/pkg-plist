@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTTP/Negotiate.pm
-%%PERL5_MAN3%%/HTTP::Negotiate.3.gz
+man/man3/HTTP::Negotiate.3.gz
