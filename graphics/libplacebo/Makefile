@@ -56,14 +56,12 @@ TEST_MESON_TRUE=	tests
 VULKAN_DESC=		Vulkan-based renderer
 VULKAN_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
-VULKAN_MESON_ENABLED=	vulkan
-VULKAN_MESON_DISABLED=	vulkan
+VULKAN_MESON_ENABLED=	vulkan vk-proc-addr
 
 XXHASH_DESC=		Faster replacement for internal siphash
 XXHASH_BUILD_DEPENDS=	xxhash>0:devel/xxhash
 XXHASH_RUN_DEPENDS=	xxhash>0:devel/xxhash # pkg-config
 XXHASH_MESON_ENABLED=	xxhash
-XXHASH_MESON_DISABLED=	xxhash
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/share,${PREFIX}/share,' \
