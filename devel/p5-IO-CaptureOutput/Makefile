@@ -1,7 +1,5 @@
-# Created by: Lars Thegler <lth@FreeBSD.org>
-
 PORTNAME=	IO-CaptureOutput
-PORTVERSION=	1.1104
+PORTVERSION=	1.1105
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
