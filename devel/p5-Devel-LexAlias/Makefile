@@ -1,5 +1,3 @@
-# Created by: Ying-Chieh Chen
-
 PORTNAME=	Devel-LexAlias
 PORTVERSION=	0.05
 PORTREVISION=	2
@@ -10,7 +8,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module which does alias lexical variables
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -20,6 +18,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Devel/LexAlias/LexAlias.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Devel/LexAlias/LexAlias.so
 
 .include <bsd.port.mk>
