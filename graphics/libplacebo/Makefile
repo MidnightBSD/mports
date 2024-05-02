@@ -10,7 +10,8 @@ WWW=		https://code.videolan.org/videolan/libplacebo
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
+		${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers	
 
 USES=		compiler:c11 localbase:ldflags meson pkgconfig python:build
 USE_GITHUB=	nodefault
@@ -53,8 +54,7 @@ SHADERC_IMPLIES=	VULKAN
 TEST_MESON_TRUE=	tests
 
 VULKAN_DESC=		Vulkan-based renderer
-VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
-			${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
+VULKAN_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 VULKAN_MESON_ENABLED=	vulkan
 VULKAN_MESON_DISABLED=	vulkan
