@@ -13,7 +13,7 @@ _INCLUDE_USES_GROFF_MK=	yes
 groff_ARGS=	build
 .    endif
 
-_GROFF_DEPENDS=	groff:textproc/groff
+_GROFF_DEPENDS=	${LOCALBASE}/bin/groff:textproc/groff
 
 .    if ${groff_ARGS} == "build"
 BUILD_DEPENDS+=	${_GROFF_DEPENDS}
