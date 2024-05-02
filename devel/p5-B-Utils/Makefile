@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Helper functions for op tree manipulation
+WWW=		https://metacpan.org/release/B-Utils
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-ExtUtils-Depends>=0.301:devel/p5-ExtUtils-Depends
@@ -16,6 +17,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/B/Utils/Utils.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/B/Utils/Utils.so
 
 .include <bsd.port.mk>

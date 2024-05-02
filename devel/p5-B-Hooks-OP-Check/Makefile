@@ -1,5 +1,3 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
-
 PORTNAME=	B-Hooks-OP-Check
 PORTVERSION=	0.22
 CATEGORIES=	devel perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrap OP check callbacks
+WWW=		https://metacpan.org/release/B-Hooks-OP-Check
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
@@ -19,6 +18,6 @@ USE_PERL5=	configure
 USES=		perl5
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/B/Hooks/OP/Check/Check.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/B/Hooks/OP/Check/Check.so
 
 .include <bsd.port.mk>
