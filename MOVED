@@ -340,3 +340,4 @@ games/gnome-taquin||2024-03-21|Has expired: BROKEN for more than a year and no u
 devel/spirv-tools|graphics/spirv-tools|2024-03-21|Moved to a better category, aligning with glslang and shaderc
 emulators/advacemame||2024-04-08|Unmaintained
 devel/py-setuptools_scm|devel/py-setuptools-scm|2024-02-29|Package name changed
+math/p5-Math-BigRat|math/p5-Math-BigInt|2024-01-01|Subsumed into math/p5-Math-BigInt
