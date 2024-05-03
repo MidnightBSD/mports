@@ -17,6 +17,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/B/Utils/Utils.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/B/Utils/Utils.so
 
 .include <bsd.port.mk>
