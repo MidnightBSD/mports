@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to paged queries for CDBI
+WWW=		https://metacpan.org/release/Class-DBI-Plugin-Pager
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
