@@ -53,7 +53,6 @@ SUBDIR += p5-Bit-Vector
 SUBDIR += p5-Graph
 SUBDIR += p5-Math-Base36
 SUBDIR += p5-Math-BigInt
-SUBDIR += p5-Math-BigRat
 SUBDIR += p5-Math-Int64
 SUBDIR += p5-Math-Int128
 SUBDIR += p5-Math-Random-ISAAC
