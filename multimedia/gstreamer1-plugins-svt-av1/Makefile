@@ -1,6 +1,6 @@
 PORTNAME=	svt-av1
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.0
+DISTVERSION=	2.0.0
 CATEGORIES=	multimedia
 PKGNAMEPREFIX=	gstreamer1-plugins-
 
@@ -9,7 +9,6 @@ COMMENT=	GStreamer (svt-av1) plugin
 WWW=		https://01.org/svt
 
 LICENSE=	lgpl2.1+
-LICENSE_FILE=	${_LICENSE_STORE}/LGPL21
 
 LIB_DEPENDS=	libSvtAv1Enc.so:multimedia/svt-av1
 
