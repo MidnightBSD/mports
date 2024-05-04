@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: fuglu
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
