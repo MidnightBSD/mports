@@ -1,13 +1,12 @@
-# Created by: Dan Langille <dvl@FreeBSD.org>
-
 PORTNAME=	tldextract
-PORTVERSION=	2.2.1
+PORTVERSION=	3.3.1
 CATEGORIES=	dns python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Separate the TLD from the registered domain and subdomains of a URL
+WWW=		https://github.com/john-kurkowski/tldextract
 
 LICENSE=	bsd3
 

@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: mta_sts
 # REQUIRE: DAEMON
 # KEYWORD: shutdown

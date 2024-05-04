@@ -1,5 +1,3 @@
-# Created by: Yasuhiro KIMURA <yasu@utahime.org>
-
 PORTNAME=	authres
 PORTVERSION=	1.2.0
 CATEGORIES=	mail python
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python module for RFC 5451 Authentication-Results headers
+WWW=		https://launchpad.net/authentication-results-python/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING

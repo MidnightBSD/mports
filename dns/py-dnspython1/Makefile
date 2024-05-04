@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DNS toolkit for Python - 1.x release
+WWW=		https://www.dnspython.org/
 
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
