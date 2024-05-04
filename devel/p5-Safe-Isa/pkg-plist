@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Safe/Isa.pm
-%%PERL5_MAN3%%/Safe::Isa.3.gz
+man/man3/Safe::Isa.3.gz
