@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for/to use Moose or Mouse modules
+WWW=		https://metacpan.org/release/Any-Moose
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
