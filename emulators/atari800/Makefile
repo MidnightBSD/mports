@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Atari 8-bit computer emulator
 WWW=		http://atari800.sourceforge.net/
 
-LICENSE=	GPLv2 ROM
+LICENSE=	gpl2 ROM
 LICENSE_COMB=	multi
 LICENSE_NAME_ROM=	Copyrighted ROMs
 LICENSE_TEXT_ROM=	xf25 contains copyright ROMs and cannot be distributed.
