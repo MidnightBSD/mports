@@ -1160,6 +1160,7 @@ SUBDIR += py-six
 SUBDIR += py-smmap
 SUBDIR += py-sniffio
 SUBDIR += py-sortedcontainers
+SUBDIR += py-sre-yield
 SUBDIR += py-stdnum
 SUBDIR += py-stone
 SUBDIR += py-strenum
