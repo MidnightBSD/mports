@@ -133,10 +133,10 @@ do-install-PYTHON-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/vtk-${DISTVERSION}-py${PYTHON_VER}.egg-info
 	@${INSTALL_DATA} ${WRKDIR}/PKG-INFO ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/vtk-${DISTVERSION}-py${PYTHON_VER}.egg-info
 	# workaround for: VTK installs mpi4py which makes it to conflict with the standalone mpi4py package, see https://gitlab.kitware.com/vtk/vtk/-/issues/18691
-	@${RM} -r ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/mpi4py
+	-${RM} -r ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/mpi4py
 
 post-install: # autoplist: thousands of files, complex dependencies on options
-	@cd ${STAGEDIR}${PREFIX} && \
+	@cd ${PREFIX} && \
 		${FIND} * -type f -or -type l >> ${TMPPLIST}
 
 .include <bsd.port.mk>
