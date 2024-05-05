@@ -1057,6 +1057,7 @@ SUBDIR += py-proselint
 SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
 SUBDIR += py-pyproject_hooks
+SUBDIR += py-pyproject-api
 SUBDIR += py-pyproject-metadata
 SUBDIR += py-pyrsistent
 SUBDIR += py-python-editor
