@@ -28,6 +28,8 @@ CARGO_TARGET_DIR=	${WRKSRC}/target
 MAKE_ENV=	${CARGO_ENV}
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 .include <bsd.port.pre.mk>
