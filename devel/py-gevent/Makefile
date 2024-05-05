@@ -28,6 +28,8 @@ USE_PYTHON=	autoplist concurrent distutils
 
 MAKE_ENV=	GEVENTSETUP_EMBED_CARES=0 GEVENTSETUP_EMBED_LIBEV=0 GEVENTSETUP_EMBED_LIBUV=0
 
+MO_TEST=	yes
+
 post-patch:
 	@${RM} ${WRKSRC}/src/gevent/_util_py2.py
 # Clean up bundled libraries
