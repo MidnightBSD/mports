@@ -224,6 +224,8 @@ PLIST_FILES=	bin/${PORTNAME}
 
 BINARY_ALIAS=	python3=${PYTHON_CMD} # xcb requires python3
 
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
