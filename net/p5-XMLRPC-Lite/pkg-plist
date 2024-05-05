@@ -1,9 +1,9 @@
-%%PERL5_MAN3%%/Apache::XMLRPC::Lite.3.gz
-%%PERL5_MAN3%%/XMLRPC::Lite.3.gz
-%%PERL5_MAN3%%/XMLRPC::Test.3.gz
-%%PERL5_MAN3%%/XMLRPC::Transport::HTTP.3.gz
-%%PERL5_MAN3%%/XMLRPC::Transport::POP3.3.gz
-%%PERL5_MAN3%%/XMLRPC::Transport::TCP.3.gz
+man/man3/Apache::XMLRPC::Lite.3.gz
+man/man3/XMLRPC::Lite.3.gz
+man/man3/XMLRPC::Test.3.gz
+man/man3/XMLRPC::Transport::HTTP.3.gz
+man/man3/XMLRPC::Transport::POP3.3.gz
+man/man3/XMLRPC::Transport::TCP.3.gz
 %%SITE_PERL%%/Apache/XMLRPC/Lite.pm
 %%SITE_PERL%%/XMLRPC/Lite.pm
 %%SITE_PERL%%/XMLRPC/Test.pm
