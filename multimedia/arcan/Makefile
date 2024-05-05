@@ -1,10 +1,6 @@
 PORTNAME=	arcan
-DISTVERSION=	0.6.2.1
+DISTVERSION=	0.6.3
 CATEGORIES=	multimedia
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	9b807ac75c6f.patch:-p2 # https://github.com/letoram/arcan/issues/258
-PATCHFILES+=	9020c030cbd3.patch:-p2 # evdev crashfix
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display Server, Multimedia Framework, Game Engine
