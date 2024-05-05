@@ -15,4 +15,4 @@
 %%SITE_PERL%%/Chart/Points.pm
 %%SITE_PERL%%/Chart/Split.pm
 %%SITE_PERL%%/Chart/StackedBars.pm
-%%PERL5_MAN3%%/Chart.3.gz
+man/man3/Chart.3.gz
