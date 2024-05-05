@@ -5,6 +5,7 @@ MASTER_SITES=	http://www.freedesktop.org/software/wininfo/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window information utility
+WWW=		https://www.freedesktop.org/Software/wininfo
 
 USES=		gnome pkgconfig xorg
 USE_XORG=	xext xrender xinerama xrandr xi xfixes xcursor \
