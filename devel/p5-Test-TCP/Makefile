@@ -4,11 +4,11 @@ CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Testing TCP program
 WWW=		https://metacpan.org/release/Test-TCP
 
-LICENSE=	ART10 GPLv1+
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
