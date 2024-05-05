@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Pod/Coverage/TrustPod.pm
-%%PERL5_MAN3%%/Pod::Coverage::TrustPod.3.gz
+man/man3/Pod::Coverage::TrustPod.3.gz
