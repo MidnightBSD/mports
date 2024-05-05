@@ -724,6 +724,7 @@ SUBDIR += p5-Test-Simple
 SUBDIR += p5-Test-Spelling
 SUBDIR += p5-Test-Strict
 SUBDIR += p5-Test-SubCalls
+SUBDIR += p5-Test-TCP
 SUBDIR += p5-Test-Taint
 SUBDIR += p5-Test-Tester
 SUBDIR += p5-Test-Time
