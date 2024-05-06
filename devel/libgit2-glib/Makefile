@@ -21,6 +21,7 @@ USE_GNOME=	glib20 introspection
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dpython=false
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+_SSL_RUN_DEP=yes
 
 # XXX: meson_vapi_link.py does not respect STAGEDIR for some reason and silently
 # fails when building as user and touches the external fs when building as root.
