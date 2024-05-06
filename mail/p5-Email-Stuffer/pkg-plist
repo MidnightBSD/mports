@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Email/Stuffer.pm
-%%PERL5_MAN3%%/Email::Stuffer.3.gz
+man/man3/Email::Stuffer.3.gz
