@@ -206,6 +206,7 @@
     SUBDIR += py-cu2qu
     SUBDIR += py-defcon
     SUBDIR += py-fontMath
+    SUBDIR += py-fontfeatures
     SUBDIR += py-fontmake
     SUBDIR += py-gflanguages
     SUBDIR += py-gfsubsets
