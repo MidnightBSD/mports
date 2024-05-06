@@ -6,11 +6,11 @@ MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	fontParts-${PORTVERSION}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for interacting with the parts of fonts during the font development process
 WWW=		https://github.com/robotools/fontParts
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
