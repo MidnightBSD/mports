@@ -332,8 +332,7 @@ lang/perl5.30|lang/perl5.36|2023-12-27|5.30 is EOL
 lang/perl5.32|lang/perl5.36|2023-12-27|5.32 is EOL
 devel/llvm40|devel/llvm90|2023-12-27|4 is EOL
 devel/llvm70|devel/llvm90|2023-12-27|7 is EOL
-www/py-txrequests|www/py-requests-futures|2024-03-06|Has expired: Use www/py-requests-futures as upstream is unmaintained since 20
-18
+www/py-txrequests|www/py-requests-futures|2024-03-06|Has expired: Use www/py-requests-futures as upstream is unmaintained since 2018
 devel/py-gitdb2|devel/py-gitdb|2022-05-22|Remove obsoleted port. Use devel/py-gitdb instead
 devel/py-smmap2|devel/py-smmap|2022-05-22|Remove obsoleted port. Use devel/py-smmap instead
 games/gnome-taquin||2024-03-21|Has expired: BROKEN for more than a year and no upstream activity for more than 2 years
@@ -341,3 +340,12 @@ devel/spirv-tools|graphics/spirv-tools|2024-03-21|Moved to a better category, al
 emulators/advacemame||2024-04-08|Unmaintained
 devel/py-setuptools_scm|devel/py-setuptools-scm|2024-02-29|Package name changed
 math/p5-Math-BigRat|math/p5-Math-BigInt|2024-01-01|Subsumed into math/p5-Math-BigInt
+databases/postgresql11-pltcl|databases/postgresql12-pltcl|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-docs|databases/postgresql12-docs|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-plperl|databases/postgresql12-plperl|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-server|databases/postgresql12-server|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-plpython|databases/postgresql12-plpython|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-contrib|databases/postgresql12-contrib|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-client|databases/postgresql12-client|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-pgtcl|databases/postgresql12-pgtcl|2023-12-31|Has expired: Security support ended on 2023-11-09
+
