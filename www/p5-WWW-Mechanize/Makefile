@@ -34,4 +34,7 @@ USE_PERL5=	configure
 
 NO_ARCH=	yes
 
+#Magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
