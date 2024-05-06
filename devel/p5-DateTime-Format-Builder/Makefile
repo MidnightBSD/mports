@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create DateTime parser classes and objects
+WWW=		https://metacpan.org/release/DateTime-Format-Builder
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
