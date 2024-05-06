@@ -265,6 +265,7 @@ SUBDIR += py-mdurl
 SUBDIR += py-mistune
 SUBDIR += py-mistune0
 SUBDIR += py-myst-parser
+SUBDIR += py-openstep-plist
 SUBDIR += py-parso
 SUBDIR += py-pyaml
 SUBDIR += py-pybtex
