@@ -1,2 +1,2 @@
 %%SITE_PERL%%/DateTime/Format/Mail.pm
-%%PERL5_MAN3%%/DateTime::Format::Mail.3.gz
+man/man3/DateTime::Format::Mail.3.gz
