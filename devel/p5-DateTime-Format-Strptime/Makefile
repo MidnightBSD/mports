@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse and format strp and strf time patterns
+WWW=		https://metacpan.org/release/DateTime-Format-Strptime
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
