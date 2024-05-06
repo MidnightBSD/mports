@@ -6,6 +6,7 @@ PKGNAMESUFFIX?=	${WANT_PGSQL_VER:S/.//}${COMPONENT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for using Python to write SQL functions
+WWW=		https://www.postgresql.org/
 
 LICENSE=	pgsql
 
@@ -21,8 +22,11 @@ WANT_PYTHON_USE?=	python
 CONFIGURE_ARGS=	--with-python
 COMPONENT=	-plpython
 
-BUILD_DIRS=	src/backend src/pl/plpython
-INSTALL_DIRS=	src/pl/plpython
+BUILD_DIRS=	src/backend ${INSTALL_DIRS}
+INSTALL_DIRS?=	src/pl/plpython contrib/hstore_plpython contrib/jsonb_plpython contrib/ltree_plpython
 SLAVE_ONLY=	yes
+
+# this port fails to build in parallel
+MAKE_JOBS_UNSAFE=	yes
 
 .include "${MASTERDIR}/Makefile"
