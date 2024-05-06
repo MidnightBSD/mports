@@ -720,6 +720,7 @@ SUBDIR += p5-Test-Requires
 SUBDIR += p5-Test-RequiresInternet
 SUBDIR += p5-Test-Roo
 SUBDIR += p5-Test-Script
+SUBDIR += p5-Test-SharedFork
 SUBDIR += p5-Test-Simple
 SUBDIR += p5-Test-Spelling
 SUBDIR += p5-Test-Strict
