@@ -8,8 +8,9 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple interface for creating (not parsing!) MIME messages
+WWW=		https://metacpan.org/release/MIME-Lite
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Email-Date-Format>=1.000:mail/p5-Email-Date-Format \
