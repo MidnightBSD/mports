@@ -57,6 +57,7 @@ SUBDIR += py-fonttools
 SUBDIR += py-fonttools3
 SUBDIR += py-fpdf
 SUBDIR += py-glyphsets
+SUBDIR += py-glyphtools
 SUBDIR += py-pdf2
 SUBDIR += py-pollyreports
 SUBDIR += py-freetype-py
