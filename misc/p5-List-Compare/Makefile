@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for comparing lists
+WWW=		https://metacpan.org/release/List-Compare
 
 LICENSE=	artistic
 
