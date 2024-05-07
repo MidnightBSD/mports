@@ -6,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Moose role for setting attributes from a simple configfile
+WWW=		https://metacpan.org/release/MooseX-SimpleConfig
 
-LICENSE=	artistic perl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
