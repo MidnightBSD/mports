@@ -94,12 +94,6 @@ lib/cmake/Qt6Positioning/Qt6PositioningPlugins.cmake
 lib/cmake/Qt6Positioning/Qt6PositioningTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/Qt6Positioning/Qt6PositioningTargets.cmake
 lib/cmake/Qt6Positioning/Qt6PositioningVersionlessTargets.cmake
-lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryGeoclue2PluginAdditionalTargetInfo.cmake
-lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryGeoclue2PluginConfig.cmake
-lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryGeoclue2PluginConfigVersion.cmake
-lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryGeoclue2PluginConfigVersionImpl.cmake
-lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryGeoclue2PluginTargets-%%CMAKE_BUILD_TYPE%%.cmake
-lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryGeoclue2PluginTargets.cmake
 lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryNmeaPluginAdditionalTargetInfo.cmake
 lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryNmeaPluginConfig.cmake
 lib/cmake/Qt6Positioning/Qt6QGeoPositionInfoSourceFactoryNmeaPluginConfigVersion.cmake
@@ -140,7 +134,6 @@ lib/cmake/Qt6Qml/QmlPlugins/Qt6positioningquickpluginTargets.cmake
 %%QT_MKSPECDIR%%/modules/qt_lib_positioning_private.pri
 %%QT_MKSPECDIR%%/modules/qt_lib_positioningquick.pri
 %%QT_MKSPECDIR%%/modules/qt_lib_positioningquick_private.pri
-%%QT_PLUGINDIR%%/position/libqtposition_geoclue2.so
 %%QT_PLUGINDIR%%/position/libqtposition_nmea.so
 %%QT_PLUGINDIR%%/position/libqtposition_positionpoll.so
 %%QT_QMLDIR%%/QtPositioning/libpositioningquickplugin.so
