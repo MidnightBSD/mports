@@ -13,6 +13,7 @@ SUBDIR += dirac
 SUBDIR += emby-server
 SUBDIR += emby-server46
 SUBDIR += ffmpeg
+SUBDIR += ffmpeg4
 SUBDIR += ffmpegthumbnailer
 SUBDIR += ffms2
 SUBDIR += ffnvcodec-headers
