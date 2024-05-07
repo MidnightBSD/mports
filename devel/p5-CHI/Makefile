@@ -8,8 +8,9 @@ DISTNAME=	${PORTNAME}-0.60
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for unified cache interface
+WWW=		https://metacpan.org/release/CHI
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
