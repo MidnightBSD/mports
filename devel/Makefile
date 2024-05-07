@@ -874,6 +874,7 @@ SUBDIR += py-astor
 SUBDIR += py-astroid
 SUBDIR += py-async_generator
 SUBDIR += py-async_timeout
+SUBDIR += py-asynctest
 SUBDIR += py-atomiclong
 SUBDIR += py-atomicwrites
 SUBDIR += py-atpublic
