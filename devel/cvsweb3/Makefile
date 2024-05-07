@@ -74,11 +74,12 @@ SUB_FILES=	pkg-message
 SUB_LIST=	PREFIX="${PREFIX}" DOCSDIR="${DOCSDIR}"
 
 post-patch:
-	@${SED} -i '' -e 's,/usr/local/etc/,${PREFIX}/etc/,' \
+	${REINPLACE_CMD} -e 's,/usr/local/etc/,${PREFIX}/etc/,' \
 		-e 's,\(qw(hi.*)\),(\1),' ${WRKSRC}/cvsweb.cgi
-	@${REINPLACE_CMD} -i '' -e 's,!!PREFIX!!,${PREFIX},' \
+	${REINPLACE_CMD} -e 's,!!PREFIX!!,${PREFIX},' \
 			-e 's,!!CVSROOT!!,${CVSROOT},' \
 			-e 's,!!TITLE!!,${TITLE},' \
+			${WRKSRC}/cvsweb.conf
 
 do-install:
 	${MKDIR} ${PREFIX}/${CGIDIR}
