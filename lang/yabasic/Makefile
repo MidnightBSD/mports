@@ -1,30 +1,44 @@
-
-
 PORTNAME=	yabasic
-PORTVERSION=	2.767
+PORTVERSION=	2.90.4
+PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	lang
-MASTER_SITES=	http://www.yabasic.de/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet another Basic for Unix and Windows
+WWW=		http://www.yabasic.de/
 
-LICENSE=	artistic
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_XORG=	x11 ice sm xt
-USES=		bison
+LIB_DEPENDS=	libffi.so:devel/libffi
+
+USES=		autoreconf cpe bison gmake libtool localbase ncurses xorg
+USE_GITHUB=	yes
+GH_ACCOUNT=	marcIhm
+
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+USE_XORG=	ice sm x11
+TEST_TARGET=	check
 
-PORTDOCS=	yabasic.htm
-PLIST_FILES=	bin/yabasic
+WRKSRC_SUBDIR=	unix/lang
+
+PORTDOCS=	ChangeLog README
+PLIST_FILES=	bin/yabasic share/man/man1/yabasic.1.gz
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|= -DUNIX|= @X_CFLAGS@ -DUNIX|g" ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e \
+		's|= -DUNIX|= @X_CFLAGS@ -DUNIX|g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e \
+		's|-R$$x_libraries||' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e \
+		'/Intrinsic.h/d' ${WRKSRC}/yabasic.h
 
-post-build test:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
-
-post-install:
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/yabasic.htm ${DOCSDIR}
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
