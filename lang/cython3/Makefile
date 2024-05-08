@@ -1,9 +1,10 @@
 PORTNAME=	cython
-PORTVERSION=	0.29.37
+PORTVERSION=	3.0.9
 CATEGORIES=	lang python
 MASTER_SITES=	PYPI \
 		https://github.com/cython/cython/releases/download/${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+PKGNAMESUFFIX=	3
 DISTNAME=	Cython-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,13 +15,15 @@ WWW=		https://cython.org/ \
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		compiler:c11 python:2.7+
-USE_PYTHON=	allflavors autoplist concurrent distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-CONFLICTS_INSTALL=	py*-cython-devel py*-cython3 # bin/cygdb bin/cython bin/cythonize
+USES=		compiler:c11 python
+USE_PYTHON=	allflavors autoplist concurrent pep517
+
+CONFLICTS_INSTALL=	py*-cython py*-cython-devel # bin/cygdb bin/cython bin/cythonize
 
 post-install:
-	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Cython \
-		-name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Cython -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
