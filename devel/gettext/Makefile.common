@@ -1,4 +1,4 @@
-PORTVERSION=	0.22.3
+DISTVERSION=	0.22.5
 PORTREVISION?=	0 # Leave this zero. Set in Makefile instead.
 CATEGORIES=	devel
 MASTER_SITES=	GNU/gettext
@@ -10,3 +10,5 @@ DISTINFO_FILE=	${.CURDIR}/../gettext/distinfo
 
 DATADIR=	${PREFIX}/share/gettext
 DOCSDIR=	${PREFIX}/share/doc/gettext
+
+LTO_UNSAFE=	yes
