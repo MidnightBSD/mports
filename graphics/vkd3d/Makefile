@@ -1,5 +1,5 @@
 PORTNAME=	vkd3d
-PORTVERSION=	1.9
+PORTVERSION=	1.11
 CATEGORIES=	graphics
 MASTER_SITES=	https://dl.winehq.org/${PORTNAME}/source/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${LOCALBASE}/include/spirv-tools/libspirv.h:graphics/spirv-tools \
 		${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
 LIB_DEPENDS=	libSPIRV-Tools-shared.so:graphics/spirv-tools \
-		libvulkan.so:graphics/vulkan-loader
+		libvulkan.so:graphics/vulkan-loader \
+		libxcb-icccm.so:x11/xcb-util-wm
 RUN_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
 
 USES=		bison gmake libtool localbase ncurses pkgconfig tar:xz
@@ -33,14 +34,14 @@ CONFIGURE_ENV+=	NCURSES_CFLAGS=" " NCURSES_LIBS="-lncurses" NCURSES_VERSION=unus
 # XXX Move to a separate port (a la graphics/vulkan-headers) and maybe make
 #     graphics/spirv-tools depend on it as well
 USE_GITHUB=	nodefault
-GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-245-g1feaf44:headers/external/spirv-headers
+GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-350-gb73e168:headers/external/spirv-headers
 CPPFLAGS+=	-isystem${WRKSRC}/external/spirv-headers/include
 
 OPTIONS_DEFINE=	EXAMPLES
 OPTIONS_SUB=	yes
 
-EXAMPLES_BUILD_DEPENDS=	x11/xcb-util-wm>0:x11/xcb-util-wm
-EXAMPLES_LIB_DEPENDS=	libxcb-keysyms.so:x11/xcb-util-keysyms
+EXAMPLES_LIB_DEPENDS=	libxcb-keysyms.so:x11/xcb-util-keysyms \
+			libxcb-icccm.so:x11/xcb-util-wm
 EXAMPLES_USES=		xorg
 EXAMPLES_USE=		XORG=xcb
 EXAMPLES_CONFIGURE_ENABLE=	demos
