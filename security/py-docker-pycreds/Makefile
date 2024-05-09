@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for the docker credentials store API
+WWW=		https://github.com/shin-/dockerpy-creds/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
