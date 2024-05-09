@@ -997,6 +997,7 @@ SUBDIR += py-jaraco.functools
 SUBDIR += py-jedi
 SUBDIR += py-jeepney
 SUBDIR += py-jmespath
+SUBDIR += py-jsondiff
 SUBDIR += py-jsonform
 SUBDIR += py-jsonpointer
 SUBDIR += py-jsonref
