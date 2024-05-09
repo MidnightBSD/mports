@@ -177,6 +177,7 @@ SUBDIR += py-postgresql
 SUBDIR += py-pg8000
 SUBDIR += py-psycopg2
 SUBDIR += py-pymysql
+SUBDIR += py-python-memcached
 SUBDIR += py-redis
 SUBDIR += py-redis2
 SUBDIR += py-sqlalchemy10
