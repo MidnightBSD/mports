@@ -1,11 +1,13 @@
 PORTNAME=	lxml
-PORTVERSION=	4.8.0
+PORTVERSION=	4.9.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pythonic binding for the libxml2 and libxslt libraries
+WWW=		https://lxml.de/ \
+		https://github.com/lxml/lxml
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
@@ -23,7 +25,11 @@ OPTIONS_DEFINE=	DOCS
 
 # needed for test to work
 PYDISTUTILS_BUILD_TARGET=	build_ext
-PYDISTUTILS_BUILDARGS=	--inplace
+PYDISTUTILS_BUILDARGS=		--inplace
+
+# force regeneration of cython files
+post-extract:
+	@${FIND} ${WRKSRC} -name "*.c" -delete
 
 post-install:
 	@${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} \

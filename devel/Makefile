@@ -873,7 +873,7 @@ SUBDIR += py-arrow
 SUBDIR += py-asn1crypto
 SUBDIR += py-astor
 SUBDIR += py-astroid
-SUBDIR == py-asttokens
+SUBDIR += py-asttokens
 SUBDIR += py-async_generator
 SUBDIR += py-async_timeout
 SUBDIR += py-asynctest

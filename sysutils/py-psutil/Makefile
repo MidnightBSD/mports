@@ -1,7 +1,5 @@
-# Created by: Ju Pengfei <jupengfei@gmail.com>
-
 PORTNAME=	psutil
-PORTVERSION=	5.8.0
+PORTVERSION=	5.9.0
 PORTREVISION=	1
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI

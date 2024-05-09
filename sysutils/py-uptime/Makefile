@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform uptime library
+WWW=		https://github.com/Cairnarvon/uptime
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
