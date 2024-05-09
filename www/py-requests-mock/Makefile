@@ -1,13 +1,12 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	requests-mock
-PORTVERSION=	1.9.2
+PORTVERSION=	1.11.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mock out responses from the requests package
+WWW=		https://github.com/jamielennox/requests-mock
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE

@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Random assortment of WSGI servers
+WWW=		https://bitbucket.org/denisenkom/flup
 
 LICENSE=	bsd2
 

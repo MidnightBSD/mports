@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Use requests to talk HTTP via a UNIX domain socket
+WWW=		https://github.com/msabramo/requests-unixsocket
 
 LICENSE=	apache2
 

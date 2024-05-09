@@ -1,38 +1,30 @@
-# Created by: Kubilay Kocak <koobs@FreeBSD.org>
-
 PORTNAME=	boto3
-PORTVERSION=	1.17.64
+PORTVERSION=	1.34.60
 CATEGORIES=	www python devel
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AWS SDK for Python
+WWW=		https://aws.amazon.com/sdk-for-python/ \
+		https://github.com/boto/boto3
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.4.1:devel/py-botocore@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}jmespath>=0.7.1:devel/py-jmespath@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}s3transfer>=0.1.0:net/py-s3transfer@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=${PORTVERSION}<1.35.0:devel/py-botocore@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}jmespath>=0.7.1<2.0.0:devel/py-jmespath@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}s3transfer>=0.10.0<0.11.0:net/py-s3transfer@${PY_FLAVOR}
 
 USES=		python
-USE_GITHUB=	yes
-USE_PYTHON=	autoplist distutils
-
-GH_ACCOUNT=	boto
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
 
 .if defined(MAGUS)
 NO_TEST=	yes
 .endif
-
-# setup.py test runs integration tests which fail
-# https://github.com/boto/s3transfer/issues/41
-# Note: this is an AWS python package wide issue
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m nose -v tests/unit tests/functional
 
 .include <bsd.port.mk>

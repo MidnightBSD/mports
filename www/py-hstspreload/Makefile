@@ -1,13 +1,12 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	hstspreload
-PORTVERSION=	2020.12.22
+PORTVERSION=	2024.3.1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Chromium HSTS Preload list
+WWW=		https://github.com/sethmlarson/hstspreload
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE

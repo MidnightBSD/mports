@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and simple WSGI-framework for small web-applications
+WWW=		https://bottlepy.org/
 
 LICENSE=	mit
 
