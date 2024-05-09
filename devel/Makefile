@@ -987,6 +987,7 @@ SUBDIR += py-hgtools
 SUBDIR += py-hypothesis
 SUBDIR += py-jaraco
 SUBDIR += py-jaraco.classes
+SUBDIR += py-jaraco.collections
 SUBDIR += py-jaraco.context
 SUBDIR += py-jaraco.functools
 SUBDIR += py-jedi

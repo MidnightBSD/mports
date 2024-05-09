@@ -168,6 +168,7 @@ SUBDIR += py-netaddr
 SUBDIR += py-netifaces
 SUBDIR += py-ntplib
 SUBDIR += py-oauth2
+SUBDIR += py-portend
 SUBDIR += py-pysendfile
 SUBDIR += py-pysocks
 SUBDIR += py-python-socks

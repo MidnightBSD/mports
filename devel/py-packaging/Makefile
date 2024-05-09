@@ -6,7 +6,8 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Core utilities for Python packages
-WWW=		https://github.com/pypa/packaging
+WWW=		https://packaging.pypa.io/en/stable/ \
+		https://github.com/pypa/packaging
 
 LICENSE=	apache2 bsd2
 LICENSE_COMB=	dual
