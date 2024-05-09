@@ -6,7 +6,8 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pure-Python RSA implementation
-WWW=		https://stuvel.eu/software/rsa/
+WWW=		https://stuvel.eu/software/rsa/ \
+		https://github.com/sybrenstuvel/python-rsa
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE

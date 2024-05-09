@@ -1,7 +1,5 @@
-# Created by: Yuri Victorovich <yuri@rawbw.com>
-
 PORTNAME=	pynacl
-DISTVERSION=	1.4.0
+DISTVERSION=	1.5.0
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,6 +7,7 @@ DISTNAME=	PyNaCl-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python binding to the Networking and Cryptography library
+WWW=		https://github.com/pyca/pynacl
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE

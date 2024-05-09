@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python PAM module
+WWW=		https://github.com/FirefighterBlu3/python-pam
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
