@@ -1,13 +1,13 @@
-# Created by: Neil Booth
-
 PORTNAME=	ecdsa
-PORTVERSION=	0.16.0
+PORTVERSION=	0.18.0
+PORTREVISION=	1
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ECDSA cryptographic signature library (pure python)
+WWW=		https://github.com/tlsfuzzer/python-ecdsa
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.9.0:devel/py-six@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	autoplist concurrent distutils
 
 OPTIONS_RADIO=		FASTER
 OPTIONS_RADIO_FASTER=	GMPY GMPY2

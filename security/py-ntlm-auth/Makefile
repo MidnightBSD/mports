@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create NTLM authentication structures
+WWW=		https://github.com/jborean93/ntlm-auth
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

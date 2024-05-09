@@ -1,5 +1,3 @@
-# Created by: Milan Obuch
-
 PORTNAME=	pyClamd
 PORTVERSION=	0.3.17
 CATEGORIES=	security python
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python ClamD interface module
+WWW=		https://xael.org/pages/pyclamd-en.html
 
-LICENSE=	lgpl3
+LICENSE=	lgpl3+
 
 NO_ARCH=	yes
 NO_TEST=	yes

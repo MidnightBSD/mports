@@ -197,7 +197,6 @@ SUBDIR += py-openssl
 SUBDIR += py-paramiko
 SUBDIR += py-passlib
 SUBDIR += py-pyclamd
-SUBDIR += py-pycrypto
 SUBDIR += py-pycryptodome
 SUBDIR += py-pycryptodomex
 SUBDIR += py-pynacl

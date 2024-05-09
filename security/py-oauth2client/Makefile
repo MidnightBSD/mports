@@ -6,6 +6,8 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OAuth 2.0 client library
+WWW=		https://googleapis.github.io/oauth2client/ \
+		https://github.com/googleapis/oauth2client
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
