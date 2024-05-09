@@ -283,6 +283,7 @@ SUBDIR += py-python-augeas
 SUBDIR += py-python-docs-theme
 SUBDIR += py-python-slugify
 SUBDIR += py-pytidylib
+SUBDIR += py-qrcode
 SUBDIR += py-regex
 SUBDIR += py-reno
 SUBDIR += py-rich
