@@ -182,6 +182,7 @@ SUBDIR += py-dropbox
 SUBDIR += py-falcon
 SUBDIR += py-flasgger
 SUBDIR += py-flask
+SUBDIR += py-flask-cors
 SUBDIR += py-flask-jwt
 SUBDIR += py-flask-restful
 SUBDIR += py-flup6

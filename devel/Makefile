@@ -1039,6 +1039,7 @@ SUBDIR += py-monotonic
 SUBDIR += py-more-itertools
 SUBDIR += py-moto
 SUBDIR += py-msgpack
+SUBDIR += py-multipart
 SUBDIR += py-mypy
 SUBDIR += py-mypy_extensions
 SUBDIR += py-node-semver
