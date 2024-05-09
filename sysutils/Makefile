@@ -177,7 +177,6 @@ SUBDIR += polkit-gnome
 SUBDIR += polkit-qt
 SUBDIR += powerdxx
 SUBDIR += pstree
-SUBDIR += py-ansible-base
 SUBDIR += py-ansible-compat
 SUBDIR += py-ansible-core
 SUBDIR += py-ansible-lint

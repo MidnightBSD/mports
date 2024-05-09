@@ -948,6 +948,7 @@ SUBDIR += py-enum34
 SUBDIR += py-evdev
 SUBDIR += py-exceptiongroup
 SUBDIR += py-executing
+SUBDIR += py-expandvars
 SUBDIR += py-extras
 SUBDIR += py-fasteners
 SUBDIR += py-fixtures

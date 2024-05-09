@@ -348,4 +348,4 @@ databases/postgresql11-plpython|databases/postgresql12-plpython|2023-12-31|Has e
 databases/postgresql11-contrib|databases/postgresql12-contrib|2023-12-31|Has expired: Security support ended on 2023-11-09
 databases/postgresql11-client|databases/postgresql12-client|2023-12-31|Has expired: Security support ended on 2023-11-09
 databases/postgresql11-pgtcl|databases/postgresql12-pgtcl|2023-12-31|Has expired: Security support ended on 2023-11-09
-
+sysutils/py-ansible-base||2024-05-09|Has expired: Depends on expired security/py-pycrypto
