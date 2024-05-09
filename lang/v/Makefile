@@ -1,5 +1,5 @@
 PORTNAME=	v
-PORTVERSION=	0.4.1
+PORTVERSION=	0.4.3
 CATEGORIES=	lang
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +19,7 @@ NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_TUPLE=	vlang:v:${PORTVERSION} \
-		vlang:vc:b59fe13:vc/vc
+		vlang:vc:760acca:vc/vc
 
 PORTSCOUT=	skipv:weekly.*
 
