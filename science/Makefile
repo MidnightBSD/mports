@@ -8,6 +8,8 @@ SUBDIR += linux-foldingathome
 SUBDIR += netcdf
 SUBDIR += openbabel
 SUBDIR += paje
+SUBDIR += py-scikit-sparse
+SUBDIR += py-scipy
 SUBDIR += szip
 
 .include <bsd.port.subdir.mk>
