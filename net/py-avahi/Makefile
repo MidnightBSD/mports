@@ -24,9 +24,11 @@ PLIST=		${.CURDIR}/pkg-plist
 AVAHI_SLAVE=	python
 
 USE_GNOME=	pygobject3 gtk30
-USES=		python:3.5+
+USES=		python
 USE_PYTHON=	flavors py3kplist
 MANPAGES=	avahi-bookmarks.1
+
+NO_ARCH=	yes
 
 # See https://github.com/lathiat/avahi/issues/277
 post-extract:
@@ -49,8 +51,8 @@ post-install:
 	@cd ${WRKSRC}/service-type-database && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} Makefile ${MAKE_ARGS} ${FAKE_MAKEARGS} install
 	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PREFIX} -f ${PYTHONPREFIX_SITELIBDIR:S,${PREFIX}/,,})
+		-d ${TRUE_PREFIX} -f ${PYTHONPREFIX_SITELIBDIR:S,${TRUE_PREFIX}/,,})
 	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PREFIX} -f ${PYTHONPREFIX_SITELIBDIR:S,${PREFIX}/,,})
+		-d ${TRUE_PREFIX} -f ${PYTHONPREFIX_SITELIBDIR:S,${TRUE_PREFIX}/,,})
 
 .include "${MASTERDIR}/Makefile"
