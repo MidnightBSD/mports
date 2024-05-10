@@ -1001,6 +1001,7 @@ SUBDIR += py-jmespath
 SUBDIR += py-jschema-to-python
 SUBDIR += py-jsondiff
 SUBDIR += py-jsonform
+SUBDIR += py-jsonpatch
 SUBDIR += py-jsonpointer
 SUBDIR += py-jsonref
 SUBDIR += py-jsonschema
