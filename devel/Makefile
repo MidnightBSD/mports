@@ -1172,6 +1172,7 @@ SUBDIR += py-rpds-py
 SUBDIR += py-rstr
 SUBDIR += py-ruamel.yaml
 SUBDIR += py-ruamel.yaml.clib
+SUBDIR += py-sarif-om
 SUBDIR += py-scripttest
 SUBDIR += py-semantic-version
 SUBDIR += py-setproctitle
