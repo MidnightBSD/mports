@@ -218,6 +218,7 @@ SUBDIR += py-beziers
 SUBDIR += py-cairo
 SUBDIR += py-cairocffi
 SUBDIR += py-cairosvg
+SUBDIR += py-gdal
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
 SUBDIR += py-png
