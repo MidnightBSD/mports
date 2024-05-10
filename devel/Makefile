@@ -1073,6 +1073,7 @@ SUBDIR += py-prance
 SUBDIR += py-prompt-toolkit
 SUBDIR += py-proselint
 SUBDIR += py-pure-eval
+SUBDIR += py-py-partiql-parser
 SUBDIR += py-pybind11
 SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
