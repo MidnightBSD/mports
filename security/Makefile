@@ -188,6 +188,7 @@ SUBDIR += py-google-auth
 SUBDIR += py-google-auth-httplib2
 SUBDIR += py-itsdangerous
 SUBDIR += py-josepy
+SUBDIR += py-joserfc
 SUBDIR += py-keyring
 SUBDIR += py-keyrings.alt
 SUBDIR += py-ntlm-auth

@@ -79,6 +79,7 @@ SUBDIR += py-matplotlib
 SUBDIR += py-matplotlib-inline
 SUBDIR += py-mpmath
 SUBDIR += py-munkres
+SUBDIR += py-networkx
 SUBDIR += py-numexpr
 SUBDIR += py-numpy
 SUBDIR += py-pandas
