@@ -253,6 +253,7 @@ SUBDIR += py-gi-docgen
 SUBDIR += py-googletrans
 SUBDIR += py-hexdump
 SUBDIR += py-interegular
+SUBDIR += py-junit-xml
 SUBDIR += py-latexcodec
 SUBDIR += py-libxml2
 SUBDIR += py-m2r
