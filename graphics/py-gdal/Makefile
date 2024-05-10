@@ -5,12 +5,12 @@ MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	GDAL-${PORTVERSION}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python binding for GDAL
 WWW=		https://gdal.org/ \
 		https://github.com/OSGeo/gdal
 
-LICENSE=	MIT
+LICENSE=	mit
 
 LIB_DEPENDS=	libgdal.so:graphics/gdal
 
@@ -27,6 +27,6 @@ NUMPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.0.0,1:math/py-numpy@${PY_FLAV
 NUMPY_USES=		fortran
 
 post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>

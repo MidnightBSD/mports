@@ -221,6 +221,7 @@ SUBDIR += py-cairosvg
 SUBDIR += py-gdal
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
+SUBDIR += py-pydot
 SUBDIR += py-png
 SUBDIR += py-pycha
 SUBDIR += py-pyqrcode
