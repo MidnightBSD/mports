@@ -1085,6 +1085,7 @@ SUBDIR += py-pybind11
 SUBDIR += py-pydantic
 SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
+SUBDIR += py-pythran
 SUBDIR += py-pyproject_hooks
 SUBDIR += py-pyproject-api
 SUBDIR += py-pyproject-metadata
