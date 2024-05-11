@@ -65,7 +65,8 @@ SDL_USE=		sdl=sdl2
 VULKAN_DESC=		Enable Vulkan integration
 VULKAN_MESON_ENABLED=	vulkan
 VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
-VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
+VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader \
+			libdrm.so:grpahics/libdrm
 
 MEDIA_SESSION_VERSION=	0.4.1
 
