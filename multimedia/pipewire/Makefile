@@ -17,7 +17,8 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libepoll-shim.so:devel/libepoll-shim \
 		libsndfile.so:audio/libsndfile \
 		libudev.so:devel/libudev-devd \
-		libwebrtc_audio_processing.so:audio/webrtc-audio-processing0
+		libwebrtc_audio_processing.so:audio/webrtc-audio-processing0 \
+		libavahi-client.so:net/avahi-app
 
 USES=		compiler:c11 gettext-tools gnome localbase:ldflags meson \
 		ncurses pkgconfig python:build readline ssl
@@ -55,8 +56,7 @@ MEDIASESSION_MESON_OFF=		-Dsession-managers=''
 
 PULSEAUDIO_MESON_ENABLED=	libpulse
 PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio \
-				libavahi-common.so:net/avahi-app \
-				libavahi-client.so:net/avahi-app
+				libavahi-common.so:net/avahi-app
 
 SDL_MESON_ENABLED=	sdl2
 SDL_USES=		sdl
