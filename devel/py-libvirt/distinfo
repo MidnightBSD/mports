@@ -1,3 +1,3 @@
-TIMESTAMP = 1670087741
-SHA256 (libvirt-python-8.10.0.tar.gz) = fc30f136abe0b8228029a90814c8f44ac2947433c12f211363051c57df2d5401
-SIZE (libvirt-python-8.10.0.tar.gz) = 240925
+TIMESTAMP = 1715450332
+SHA256 (libvirt-python-9.10.0.tar.gz) = 60b4a32200093d1287de544cdd310f01a1066dbff4cee62d45fa504141aa7577
+SIZE (libvirt-python-9.10.0.tar.gz) = 246390
