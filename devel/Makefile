@@ -890,6 +890,7 @@ SUBDIR += py-b2sdk
 SUBDIR += py-babel
 SUBDIR += py-backports
 SUBDIR += py-bcdoc
+SUBDIR += py-beniget
 SUBDIR += py-binaryornot
 SUBDIR += py-black
 SUBDIR += py-blessings
