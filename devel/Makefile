@@ -973,6 +973,7 @@ SUBDIR += py-fs2
 SUBDIR += py-funcsigs
 SUBDIR += py-future
 SUBDIR += py-game
+SUBDIR += py-gast
 SUBDIR += py-genty
 SUBDIR += py-gevent
 SUBDIR += py-gitdb
