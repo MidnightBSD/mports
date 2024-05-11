@@ -1244,6 +1244,7 @@ SUBDIR += py-unidiff
 SUBDIR += py-unittest2
 SUBDIR += py-usb
 SUBDIR += py-versioneer
+SUBDIR += py-versioningit
 SUBDIR += py-virtualenv
 SUBDIR += py-wadllib
 SUBDIR += py-wcwidth
