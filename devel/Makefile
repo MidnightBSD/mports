@@ -1210,6 +1210,7 @@ SUBDIR += py-subversion
 SUBDIR += py-sure
 SUBDIR += py-tabulate
 SUBDIR += py-tblib
+SUBDIR += py-tempora
 SUBDIR += py-tenacity
 SUBDIR += py-termcolor
 SUBDIR += py-testfixtures
