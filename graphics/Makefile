@@ -219,6 +219,7 @@ SUBDIR += py-cairo
 SUBDIR += py-cairocffi
 SUBDIR += py-cairosvg
 SUBDIR += py-gdal
+SUBDIR += py-graphviz
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
 SUBDIR += py-pydot
