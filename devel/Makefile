@@ -964,6 +964,7 @@ SUBDIR += py-flatbuffers
 SUBDIR += py-flex
 SUBDIR += py-flit
 SUBDIR += py-flit-core
+SUBDIR += py-flit-scm
 SUBDIR += py-flufl.i18n
 SUBDIR += py-flufl.lock
 SUBDIR += py-freezegun
