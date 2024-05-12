@@ -908,6 +908,7 @@ SUBDIR += py-buildbot-worker
 SUBDIR += py-buildbot-www
 SUBDIR += py-cachetools
 SUBDIR += py-calver
+SUBDIR += py-cattrs
 SUBDIR += py-cbor
 SUBDIR += py-cbor2
 SUBDIR += py-cffi
