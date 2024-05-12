@@ -180,6 +180,7 @@ SUBDIR += py-trio
 SUBDIR += py-twitter-tools
 SUBDIR += py-uritemplate
 SUBDIR += py-urllib3
+SUBDIR += py-url-normalize
 SUBDIR += qt5-network
 SUBDIR += qt5-networkauth
 SUBDIR += qt6-networkauth
