@@ -8,6 +8,7 @@ SUBDIR += cddb-bundle
 SUBDIR += cdparanoia
 SUBDIR += celt
 SUBDIR += chromaprint
+SUBDIR += csound
 SUBDIR += dssi
 SUBDIR += esound
 SUBDIR += espeak
