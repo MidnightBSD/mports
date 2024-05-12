@@ -250,7 +250,6 @@ SUBDIR += py-enrich
 SUBDIR += py-furo
 SUBDIR += py-genshi
 SUBDIR += py-gi-docgen
-SUBDIR += py-googletrans
 SUBDIR += py-hexdump
 SUBDIR += py-interegular
 SUBDIR += py-junit-xml
