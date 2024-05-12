@@ -17,6 +17,7 @@ SUBDIR += exaile
 SUBDIR += faac
 SUBDIR += faad
 SUBDIR += faudio
+SUBDIR += faust
 SUBDIR += fdk-aac
 SUBDIR += flac
 SUBDIR += flite
