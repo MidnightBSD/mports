@@ -1068,6 +1068,7 @@ SUBDIR += py-olefile
 SUBDIR += py-openapi-schema-validator
 SUBDIR += py-openapi-spec-validator
 SUBDIR += py-opengrok-tools
+SUBDIR += py-orjson
 SUBDIR += py-outcome
 SUBDIR += py-packaging
 SUBDIR += py-parameterized
