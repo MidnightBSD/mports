@@ -78,7 +78,6 @@ SUBDIR += pinball
 SUBDIR += pvpgn
 SUBDIR += py-cbeams
 SUBDIR += py-fife
-SUBDIR += py-mnemosyne
 SUBDIR += py-pychess
 SUBDIR += py-pysol-cards
 SUBDIR += py-sgflib
