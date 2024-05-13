@@ -12,12 +12,12 @@ LICENSE=	apache2
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 unittest
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
-TEST_ARGS=	discover -s test
+N0_TEST=	yes
+# magus implosion with tests
 
 .include <bsd.port.mk>
