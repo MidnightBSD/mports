@@ -72,6 +72,7 @@ SUBDIR += py-libarchive-c
 SUBDIR += py-lz4
 SUBDIR += py-lzma
 SUBDIR += py-rarfile
+SUBDIR += py-zopfli
 SUBDIR += quazip
 SUBDIR += rar
 SUBDIR += rpm4
