@@ -896,6 +896,7 @@ SUBDIR += py-binaryornot
 SUBDIR += py-black
 SUBDIR += py-blessings
 SUBDIR += py-blinker
+SUBDIR += py-boolean.py
 SUBDIR += py-boto
 SUBDIR += py-botocore
 SUBDIR += py-build
