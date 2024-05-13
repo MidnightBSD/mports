@@ -1147,6 +1147,7 @@ SUBDIR += py-pytest-env
 SUBDIR += py-pytest-flake8
 SUBDIR += py-pytest-forked
 SUBDIR += py-pytest-html
+SUBDIR += py-pytest-httpserver
 SUBDIR += py-pytest-isort
 SUBDIR += py-pytest-lazy-fixture
 SUBDIR += py-pytest-metadata
