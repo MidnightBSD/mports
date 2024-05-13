@@ -1154,6 +1154,7 @@ SUBDIR += py-pytest-mock
 SUBDIR += py-pytest-mypy
 SUBDIR += py-pytest-plus
 SUBDIR += py-pytest-randomly
+SUBDIR += py-pytest-relaxed
 SUBDIR += py-pytest-rerunfailures
 SUBDIR += py-pytest-runner
 SUBDIR += py-pytest-services
