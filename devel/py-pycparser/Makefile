@@ -1,21 +1,22 @@
 PORTNAME=	pycparser
-PORTVERSION=	2.20
+PORTVERSION=	2.22
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C parser in Python
+WWW=		https://github.com/eliben/pycparser
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:2.7+
-USE_PYTHON=	autoplist concurrent distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent pep517 unittest
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} tests/all_tests.py
 
 .include <bsd.port.mk>
