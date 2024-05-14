@@ -654,6 +654,7 @@ post-patch:
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 
 pre-install:
+	${MKDIR} ${PREFIX}
 	${MKDIR} ${PREFIX}/libdata/ldconfig/
 	touch ${PREFIX}/libdata/ldconfig/ffmpeg4
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \
