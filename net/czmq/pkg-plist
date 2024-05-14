@@ -35,7 +35,7 @@ include/zuuid.h
 lib/libczmq.a
 lib/libczmq.so
 lib/libczmq.so.4
-lib/libczmq.so.4.1.1
+lib/libczmq.so.4.2.1
 libdata/pkgconfig/libczmq.pc
 share/zproject/czmq/python_cffi.slurp
 share/zproject/czmq/zactor.api
