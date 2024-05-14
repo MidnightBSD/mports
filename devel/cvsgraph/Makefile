@@ -1,15 +1,22 @@
 PORTNAME=	cvsgraph
-PORTVERSION=	1.7.0
+DISTVERSION=	1.7.2
 PORTREVISION=	3
 CATEGORIES=	devel graphics
-MASTER_SITES=	http://www.akhphd.au.dk/~bertho/cvsgraph/release/
+MASTER_SITES=	https://www.vagrearg.org/cvsgraph/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph the life story of a file under CVS or RCS
+WWW=		https://www.vagrearg.org/content/cvsgraph
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libgd.so:graphics/gd
+LIB_DEPENDS=	libgd.so:graphics/gd \
+		libpng16.so:graphics/png \
+		libtiff.so:graphics/tiff \
+		libwebp.so:graphics/webp \
+		libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
