@@ -76,6 +76,7 @@ RM?=		/bin/rm
 RMDIR?=		/bin/rmdir
 SED?=		/usr/bin/sed
 SETENV?=	/usr/bin/env
+SETENVI?=	/usr/bin/env -i
 SH?=		/bin/sh
 SORT?=		/usr/bin/sort
 STAT?=		/usr/bin/stat
