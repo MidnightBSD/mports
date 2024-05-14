@@ -1,5 +1,5 @@
 PORTNAME=	gnutls
-PORTVERSION=	3.7.10
+PORTVERSION=	3.8.5
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
 
@@ -41,11 +41,12 @@ TEST_TARGET=	check
 # 32 bit test fail on magus. seems to be compiler related.
 NO_TEST=	yes
 
-OPTIONS_DEFINE=		DANE EXAMPLES IDN MAN3 NLS P11KIT
+OPTIONS_DEFINE=		DANE EXAMPLES IDN MAN3 NLS P11KIT SRP
 OPTIONS_DEFAULT=	IDN MAN3 P11KIT
 OPTIONS_SUB=		yes
 
 DANE_DESC=		Certificate verification via DNSSEC
+SRP_DESC=		Secure Remote Password support
 DANE_LIB_DEPENDS=	libunbound.so:dns/unbound
 DANE_CONFIGURE_ENABLE=	libdane
 
@@ -63,7 +64,7 @@ P11KIT_CONFIGURE_WITH=	p11-kit
 P11KIT_CONFIGURE_ON=	--with-default-trust-store-pkcs11="pkcs11:model=p11-kit-trust;manufacturer=PKCS%2311%20Kit"
 P11KIT_LIB_DEPENDS=	libp11-kit.so:security/p11-kit
 
-INFO=		gnutls gnutls-guile
+SRP_CONFIGURE_ENABLE= srp-authentication
 
 .include <bsd.mport.options.mk>
 
@@ -96,9 +97,6 @@ post-patch:
 		${WRKSRC}/doc/invoke-p11tool.texi \
 		${WRKSRC}/doc/manpages/p11tool.1 \
 		${WRKSRC}/src/p11tool-options.c
-# Bug 260078
-	@${REINPLACE_CMD} 's/-Wa,-march=all//' \
-		${WRKSRC}/lib/accelerated/aarch64/Makefile.in
 # Prevent regeneration.  The order is important.
 	@${TOUCH} ${WRKSRC}/doc/enums.texi \
 		${WRKSRC}/doc/invoke-gnutls-cli.texi \
