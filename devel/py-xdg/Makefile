@@ -1,14 +1,13 @@
-
-
 PORTNAME=	xdg
-PORTVERSION=	0.27
+PORTVERSION=	0.28
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	py${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python 2 library to access freedesktop.org standards
+COMMENT=	Python library to access freedesktop.org standards
+WWW=		https://freedesktop.org/wiki/Software/pyxdg/
 
 LICENSE=	lgpl
 
