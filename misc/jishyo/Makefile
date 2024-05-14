@@ -14,6 +14,8 @@ LICENSE=	gpl2
 USES=		gnustep
 USE_GNUSTEP=	back build
 
+CPPFLAGS+=	-fcommon
+
 WRKSRC=	${WRKDIR}/${DISTNAME}
 
 PORTSCOUT=	skipv:0.2
