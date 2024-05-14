@@ -189,7 +189,7 @@ post-install:
 . endfor
 .endif
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-                ${PREFIX}/lib/ruby/3.1/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
+                ${PREFIX}/lib/ruby/3.2/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
                 ${PREFIX}/libdata/pkgconfig/ruby-3.1.pc
 
 
