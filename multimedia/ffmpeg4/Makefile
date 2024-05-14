@@ -18,6 +18,8 @@ BUILD_DEPENDS_armv6=	as:devel/binutils
 BUILD_DEPENDS_armv7=	as:devel/binutils
 BUILD_DEPENDS_i386=	nasm:devel/nasm
 
+FAKE_OPTS=	trueprefix
+
 HAS_CONFIGURE=	yes
 CONFIGURE_LOG=	ffbuild/config.log
 USES=		compiler:c11 cpe gmake localbase:ldflags perl5 \
