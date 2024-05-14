@@ -1,7 +1,5 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
 PORTNAME=	Cairo
-PORTVERSION=	1.107
+PORTVERSION=	1.109
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN \
 		SF/gtk2-perl/${PORTNAME}/${PORTVERSION}
