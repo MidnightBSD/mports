@@ -1,21 +1,21 @@
-# Created by: Yuri Victorovich <yuri@rawbw.com>
-
 PORTNAME=	cycler
-PORTVERSION=	0.10.0
+PORTVERSION=	0.12.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI/source/C/Cycler
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Composable style cycles
+WWW=		https://matplotlib.org/cycler/
 
 LICENSE=	bsd2
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	pep517 autoplist
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>
