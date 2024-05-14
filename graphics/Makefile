@@ -39,6 +39,7 @@ SUBDIR += gd
 SUBDIR += gdal
 SUBDIR += gdchart
 SUBDIR += gdk-pixbuf2
+SUBDIR += gdk-pixbuf2-xlib
 SUBDIR += geeqie
 SUBDIR += gegl
 SUBDIR += geos
