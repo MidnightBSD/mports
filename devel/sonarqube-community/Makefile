@@ -95,7 +95,7 @@ PLIST_SUB=	APP_NAME=${APP_NAME} \
 		SONARVBNET_VER=${SONARVBNET_VER}
 
 post-extract:
-	${RM} -r ${WRKSRC}/bin ${WRKSRC}/lib/jsw ${WRKSRC}/conf/wrapper.conf
+	-${RM} -r ${WRKSRC}/bin ${WRKSRC}/lib/jsw ${WRKSRC}/conf/wrapper.conf
 #	${RM} ${WRKSRC}/elasticsearch/lib/jna*.jar
 	${MV} ${WRKSRC}/conf/sonar.properties ${WRKSRC}/conf/sonar.properties.sample
 .for plugin in sonar-csharp-plugin \
@@ -104,7 +104,7 @@ post-extract:
     sonar-php-plugin \
     sonar-python-plugin \
     sonar-vbnet-plugin
-	${RM} ${WRKSRC}/lib/extensions/${plugin}-*.jar
+	-${RM} ${WRKSRC}/lib/extensions/${plugin}-*.jar
 .endfor
 .for plugin in sonar-csharp-plugin-${SONARCSHARP_VER}.jar \
     sonar-java-plugin-${SONARJAVA_VER}.jar \
