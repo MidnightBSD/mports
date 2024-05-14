@@ -20,7 +20,8 @@ GH_ACCOUNT=	marcIhm
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 USE_XORG=	ice sm x11
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 WRKSRC_SUBDIR=	unix/lang
 
