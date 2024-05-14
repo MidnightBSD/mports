@@ -750,6 +750,17 @@ PKG_NOTES+=	flavor
 PKG_NOTE_flavor=	${FLAVOR}
 .    endif
 
+WRK_ENV+=		HOME=${WRKDIR} \
+			PWD="$${PWD}" \
+			__MAKE_CONF=${NONEXISTENT}
+.    for e in OSVERSION PATH TERM TMPDIR \
+			UNAME_b UNAME_i UNAME_K UNAME_m UNAME_n \
+			UNAME_p UNAME_r UNAME_s UNAME_U UNAME_v
+.      ifdef ${e}
+WRK_ENV+=		${e}=${${e}:Q}
+.      endif
+.    endfor
+
 TEST_ARGS?=		${MAKE_ARGS}
 TEST_ENV?=		${MAKE_ENV}
 
@@ -1076,6 +1087,10 @@ USE_MPORT_TOOLS=	yes
 BUILD_DEPENDS+=	cdrecord:sysutils/cdrtools
 RUN_DEPENDS+=	cdrecord:sysutils/cdrtools
 .endif
+
+.    if defined(USE_LOCALE)
+WRK_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
+.    endif
 
 # Macro for doing in-place file editing using regexps.  REINPLACE_ARGS may only
 # be used to set or override the -i argument.  Any other use is considered
@@ -2189,7 +2204,7 @@ fake: build
 .endif
 
 .if !target(do-test) && defined(TEST_TARGET)
-DO_MAKE_TEST?=  ${SETENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g}
+DO_MAKE_TEST?=  ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g}
 do-test:
 	@(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
 		if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
@@ -2435,7 +2450,7 @@ do-configure:
 	@${MKDIR} ${CONFIGURE_WRKSRC}
 	@(cd ${CONFIGURE_WRKSRC} && \
 	    ${SET_LATE_CONFIGURE_ARGS} \
-		if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
+		if ! ${SETENVI} ${WRK_ENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
 	    CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
 	    LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
 	    INSTALL="/usr/bin/install -c" \
@@ -2457,7 +2472,7 @@ do-configure:
 
 # Build
 # XXX: ${MAKE_ARGS:N${DESTDIRNAME}=*} would be easier but it is not valid with the old fmake
-DO_MAKE_BUILD?= ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g}
+DO_MAKE_BUILD?= ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g}
 .if !target(do-build)
 do-build:
 	@(cd ${BUILD_WRKSRC}; if ! ${DO_MAKE_BUILD} ${ALL_TARGET}; then \
