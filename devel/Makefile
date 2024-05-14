@@ -1009,6 +1009,7 @@ SUBDIR += py-jaraco.text
 SUBDIR += py-jedi
 SUBDIR += py-jeepney
 SUBDIR += py-jmespath
+SUBDIR += py-joblib
 SUBDIR += py-jschema-to-python
 SUBDIR += py-jsondiff
 SUBDIR += py-jsonform
