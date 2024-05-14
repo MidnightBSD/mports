@@ -1,5 +1,3 @@
-# Created by: mbr@FreeBSD.org
-
 PORTNAME=	open-vm-tools
 PORTVERSION=	11.3.5
 DISTVERSIONPREFIX=	stable-
@@ -8,6 +6,7 @@ CATEGORIES=	emulators
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Open VMware tools for MidnightBSD VMware guests
+WWW=		https://github.com/vmware/open-vm-tools
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -49,9 +48,10 @@ FUSE_USES=		fuse
 LIBNOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 OPENSSL_CONFIGURE_WITH=	ssl
 X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
-			libfreetype.so:print/freetype2
-X11_USES=		xorg
-X11_USE=		GNOME=gdkpixbuf2,gtk30,gtkmm30 \
+			libfreetype.so:print/freetype2 \
+			libharfbuzz.so:print/harfbuzz
+X11_USES=		desktop-file-utils xorg
+X11_USE=		GNOME=gdkpixbuf2,gdkpixbuf2xlib,gtk30,gtkmm30 \
 			XORG=ice,sm,x11,xext,xi,xinerama,xorgproto,xrandr,xrender,xtst
 X11_CONFIGURE_WITH=	gtk3 gtkmm3 x
 
