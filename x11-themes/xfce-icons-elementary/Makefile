@@ -1,5 +1,5 @@
 PORTNAME=	elementary
-PORTVERSION=	0.17
+PORTVERSION=	0.19
 DISTVERSIONPREFIX=v
 CATEGORIES=	x11-themes xfce
 PKGNAMEPREFIX=	xfce-icons-
@@ -25,7 +25,7 @@ NO_ARCH=	yes
 INSTALLS_ICONS=	yes
 
 post-patch:
-	${REINPLACE_CMD} -e 's|\/$$(PREFIX)|$$(PREFIX)|g' \
-		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|-O0|${CFLAGS}|' \
+		${WRKSRC}/svgtopng/Makefile
 
 .include <bsd.port.mk>
