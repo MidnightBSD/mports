@@ -439,6 +439,17 @@ gnome-post-glib-schemas:
 			>> ${TMPPLIST};
 .endif
 
+.  if defined(INSTALLS_OMF)
+_USES_install+=	690:gnome-post-omf
+gnome-post-omf:
+	@for i in `${GREP} "\.omf$$" ${TMPPLIST}`; do \
+		${ECHO_CMD} "@postexec scrollkeeper-install -q %D/$${i} 2>/dev/null || /usr/bin/true" \
+			>> ${TMPPLIST}; \
+		${ECHO_CMD} "@postunexec scrollkeeper-uninstall -q %D/$${i} 2>/dev/null || /usr/bin/true" \
+			>> ${TMPPLIST}; \
+	done
+.endif
+
 .if defined(INSTALLS_ICONS)
 _USES_install+=	690:gnome-post-icons
 gnome-post-icons:
