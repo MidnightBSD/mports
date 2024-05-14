@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-#
+
 # PROVIDE: ddclient
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
