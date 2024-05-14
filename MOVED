@@ -352,3 +352,4 @@ sysutils/py-ansible-base||2024-05-09|Has expired: Depends on expired security/py
 www/py-httpx013|www/py-httpx|2024-05-09|Has expired: Old repo-copy needed for deprecated textproc/py-googletrans
 security/py-pycrypto|security/py-pycryptodome|2022-12-31|Has expired: Unmaintained, obsolete, and contains security vulnerabilities. Use security/py-pycryptodome instead
 textproc/py-googletrans||2024-05-12|Has expired: Umaintained for over 3 years, depends on old www/py-httpx013
+math/eigen2||2024-05-14|Has expired: No longer available upstream, no consumers in ports

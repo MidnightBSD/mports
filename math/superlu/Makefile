@@ -1,0 +1,62 @@
+PORTNAME=	superlu
+DISTVERSIONPREFIX=	v
+DISTVERSION=	5.3.0
+PORTREVISION=	3
+CATEGORIES=	math
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Library of routines for performing sparse factorization
+WWW=		https://portal.nersc.gov/project/sparse/superlu/
+
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/License.txt
+
+USES=		cmake fortran pkgconfig
+USE_LDCONFIG=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	xiaoyeli
+
+CMAKE_ON=	USE_XSDK_DEFAULTS
+CMAKE_OFF=	enable_tests
+
+OPTIONS_DEFINE=		DOCS EXAMPLES
+OPTIONS_SINGLE=		BLAS
+OPTIONS_SINGLE_BLAS=	ATLAS OPENBLAS REFERENCE
+OPTIONS_DEFAULT=	REFERENCE
+
+ATLAS_USES=		blaslapack:atlas
+ATLAS_CMAKE_ON=		-DBLA_VENDOR:STRING="ATLAS"
+OPENBLAS_USES=		blaslapack:openblas
+OPENBLAS_CMAKE_ON=	-DBLA_VENDOR:STRING="OpenBLAS"
+REFERENCE_DESC=		Reference blas implementation
+REFERENCE_USES=		blaslapack
+REFERENCE_CMAKE_ON=	-DBLA_VENDOR:STRING="Generic"
+
+PORTDOCS=		*
+PORTEXAMPLES=		*
+
+post-patch:
+	@${REINPLACE_CMD} -e \
+		'/CMAKE_C_FLAGS_RELEASE/s|^|#|' ${WRKSRC}/CMakeLists.txt
+	@${REINPLACE_CMD} -e \
+		'/FFLAGS/s|FATAL_ERROR|WARNING|' ${WRKSRC}/cmake/XSDKDefaults.cmake
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/DOC && ${COPYTREE_SHARE} "html ug.pdf" \
+		${FAKE_DESTDIR}${DOCSDIR}
+
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC}/EXAMPLE && ${INSTALL_DATA} * ${FAKE_DESTDIR}${EXAMPLESDIR})
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/FORTRAN
+	(cd ${WRKSRC}/FORTRAN && ${INSTALL_DATA} * ${FAKE_DESTDIR}${EXAMPLESDIR}/FORTRAN)
+
+do-test:
+	@cd ${BUILD_WRKSRC} && \
+		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} -Denable_tests:BOOL=ON ${CMAKE_SOURCE_PATH} && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} test
+
+.include <bsd.port.mk>
