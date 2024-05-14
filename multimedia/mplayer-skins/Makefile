@@ -8,6 +8,7 @@ DIST_SUBDIR=	mplayer-skins
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Skins for MPlayer's Graphical User Interface (GUI)
+WWW=		http://www.mplayerhq.hu/
 
 LICENSE=	unknown
 
