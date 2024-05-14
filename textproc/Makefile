@@ -248,6 +248,7 @@ SUBDIR += py-cssselect2
 SUBDIR += py-docutils
 SUBDIR += py-elementpath
 SUBDIR += py-enrich
+SUBDIR += py-feedparser
 SUBDIR += py-furo
 SUBDIR += py-genshi
 SUBDIR += py-gi-docgen
