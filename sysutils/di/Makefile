@@ -1,5 +1,5 @@
 PORTNAME=	di
-PORTVERSION=	4.51
+PORTVERSION=	4.52
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/diskinfo-di
 
@@ -10,8 +10,10 @@ WWW=		https://diskinfo-di.sourceforge.io/
 LICENSE=	zlib
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 MAKE_ARGS=	-e
-MAKE_ENV=	prefix="${PREFIX}"
+MAKE_ENV=	prefix="${TRUE_PREFIX}"
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
