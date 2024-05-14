@@ -8,6 +8,7 @@ SUBDIR += linux-foldingathome
 SUBDIR += netcdf
 SUBDIR += openbabel
 SUBDIR += paje
+SUBDIR += py-scikit-learn
 SUBDIR += py-scikit-sparse
 SUBDIR += py-scipy
 SUBDIR += szip

@@ -1139,6 +1139,7 @@ SUBDIR += py-pyrfc3339
 SUBDIR += py-pytest
 SUBDIR += py-pytest-asyncio
 SUBDIR += py-pytest-black
+SUBDIR += py-pytest-black-multipy
 SUBDIR += py-pytest-cache
 SUBDIR += py-pytest-capturelog
 SUBDIR += py-pytest-checkdocs
