@@ -1,5 +1,6 @@
 PORTNAME=	xfce4-goodies
 PORTVERSION=	4.18
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -33,14 +34,13 @@ OPTIONS_EXCLUDE_riscv64sf=	BATTERY
 
 OPTIONS_GROUP=	APPLICATIONS PANELPLUGINS THUNARPLUGINS UNOFFICIAL
 
-OPTIONS_GROUP_APPLICATIONS=	DASHBOARD DICTIONARY GIGOLO MIDORI MIXER \
+OPTIONS_GROUP_APPLICATIONS=	DASHBOARD DICTIONARY GIGOLO MIXER \
 				PAROLE POWERMANAGER RISTRETTO SCREENSAVER \
 				SCREENSHOOTER TASKMANAGER TERMINAL VOLUMEDPULSE \
 				XFBURN XFMPC
 DASHBOARD_DESC=			GNOME shell like dashboard for the Xfce desktop
 DICTIONARY_DESC=		Xfce4 plugin to query different dictionaries
 GIGOLO_DESC=			Frontend to easily manage filesystem connections
-MIDORI_DESC=			Lightweight web browser using WebKit engine
 MIXER_DESC=			Volume control for the Xfce desktop
 PAROLE_DESC=			Lightweight media player based on GStreamer
 POWERMANAGER_DESC=		Power manager for the Xfce Desktop
@@ -56,7 +56,6 @@ XFMPC_DESC=			Graphical MPD client focusing on low footprint
 DASHBOARD_RUN_DEPENDS=		xfce4-dashboard>=0:x11/xfce4-dashboard
 DICTIONARY_RUN_DEPENDS=		xfce4-dict-plugin>=0:textproc/xfce4-dict-plugin
 GIGOLO_RUN_DEPENDS=		gigolo>=0:sysutils/gigolo
-MIDORI_RUN_DEPENDS=		midori>=0:www/midori
 MIXER_RUN_DEPENDS=		xfce4-mixer>=0:audio/xfce4-mixer
 PAROLE_RUN_DEPENDS=		parole>=0:multimedia/xfce4-parole
 POWERMANAGER_RUN_DEPENDS=	xfce4-power-manager>=0:sysutils/xfce4-power-manager
