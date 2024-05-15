@@ -188,9 +188,6 @@ PHP_EXT_INC=    hash json openssl pcre random spl
 .    elif ${PHP_VER} == 81
 PHP_EXT_DIR=   20210902
 PHP_EXT_INC=    hash json openssl pcre spl
-.    elif ${PHP_VER} == 80
-PHP_EXT_DIR=   20200930
-PHP_EXT_INC=    hash json openssl pcre spl
 .    else
 # (rene) default to DEFAULT_VERSIONS
 PHP_EXT_DIR=   20210902
@@ -278,12 +275,7 @@ RUN_DEPENDS+=	${PHPBASE}/include/php/main/php.h:${PHP_PORT}
 .  if  ${php_ARGS:Mmod} || (${php_ARGS:Mweb} && defined(PHP_VERSION) && ${PHP_SAPI:Mcgi} == "" && ${PHP_SAPI:Mfpm} == "")
 USE_APACHE_RUN=	22+
 .include "${PORTSDIR}/Mk/Uses/apache.mk"
-.    if ${PHP_VER} < 80
-# libphpX.so only has the major version number in it, so remove the last digit of PHP_VER to get it.
-RUN_DEPENDS+=	${PHPBASE}/${APACHEMODDIR}/libphp${PHP_VER:C/.$//}.so:${MOD_PHP_PORT}
-.    else
 RUN_DEPENDS+=	${PHPBASE}/${APACHEMODDIR}/libphp.so:${MOD_PHP_PORT}
-.    endif
 .  endif
 
 PLIST_SUB+=	PHP_EXT_DIR=${PHP_EXT_DIR}
@@ -388,7 +380,6 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zephir_parser \
 		zip zlib
 # version specific components
-_USE_PHP_VER80=	${_USE_PHP_ALL}
 _USE_PHP_VER81=	${_USE_PHP_ALL}
 _USE_PHP_VER82=	${_USE_PHP_ALL}
 _USE_PHP_VER83=	${_USE_PHP_ALL}
