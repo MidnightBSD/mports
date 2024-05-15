@@ -951,6 +951,7 @@ SUBDIR += py-diff-cover
 SUBDIR += py-dill
 SUBDIR += py-distlib
 SUBDIR += py-docopt
+SUBDIR += py-doctest-ignore-unicode
 SUBDIR += py-dpcontracts
 SUBDIR += py-domdf-python-tools
 SUBDIR += py-editables
