@@ -110,7 +110,7 @@ DIST_SUBDIR=	PECL
 
 PHPBASE?=	${LOCALBASE}
 
-_ALL_PHP_VERSIONS=	80 81 82 83
+_ALL_PHP_VERSIONS=	81 82 83
 
 # Make the already installed PHP the default one.
 .  if exists(${PHPBASE}/etc/php.conf) && !defined(INDEXING)
