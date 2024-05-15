@@ -1240,6 +1240,7 @@ SUBDIR += py-testpath
 SUBDIR += py-testrepository
 SUBDIR += py-testscenarios
 SUBDIR += py-testtools
+SUBDIR += py-threadpoolctl
 SUBDIR += py-time-machine
 SUBDIR += py-tokenize-rt
 SUBDIR += py-tox
