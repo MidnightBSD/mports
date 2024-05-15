@@ -9,10 +9,14 @@ COMMENT=	Another Window Maker calendar/clock dockapp
 WWW=		http://jmpacquet.free.fr/wmcalclock/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/../COPYING
+
+FAKE_OPTS=	trueprefix
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/Src
 
 USES=		xorg
+MAKE_ENV=	OPSYS=FreeBSD
 USE_XORG=	x11 xext xpm
 PORTDOCS=	BUGS CHANGES HINTS INSTALL README TODO
 
