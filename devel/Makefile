@@ -1254,6 +1254,7 @@ SUBDIR += py-twisted
 SUBDIR += py-txaio
 SUBDIR += py-typed-ast
 SUBDIR += py-typeguard
+SUBDIR += py-types-PyYAML
 SUBDIR += py-types-docutils
 SUBDIR += py-types-psutil
 SUBDIR += py-types-requests
