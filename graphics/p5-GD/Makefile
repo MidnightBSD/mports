@@ -17,7 +17,9 @@ LIB_DEPENDS=	libgd.so:graphics/gd
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/GD/GD.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/GD/GD.so
 
 .include <bsd.port.mk>
