@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatic differentiation library
 WWW=		https://github.com/coin-or/ADOL-C
 
-LICENSE=	EPL
+LICENSE=	epl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	bash:shells/bash
