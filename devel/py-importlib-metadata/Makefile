@@ -18,10 +18,9 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zipp>=0.5:devel/py-zipp@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist pep517 pytest
+USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
-
-TESTING_UNSAFE=	ModuleNotFoundError: No module named 'pyfakefs'
+NO_TEST=	yes
 
 .include <bsd.port.mk>
