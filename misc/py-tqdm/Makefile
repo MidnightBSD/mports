@@ -9,9 +9,8 @@ COMMENT=	Fast, extensible progress bar for Python
 WWW=		https://tqdm.github.io/ \
 		https://github.com/tqdm/tqdm
 
-LICENSE=	mit mpl
+LICENSE=	mit MPL20
 LICENSE_COMB=	multi
-LICENSE_FILE_mit=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4:devel/py-setuptools-scm@${PY_FLAVOR} \
