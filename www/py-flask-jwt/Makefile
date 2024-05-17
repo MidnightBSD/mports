@@ -15,6 +15,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flask>=0.9:www/py-flask@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyjwt>=1.4.0:www/py-pyjwt@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	distutils autoplist pytest # tests fail to run, see https://github.com/mattupstate/flask-jwt/issues/155
+USE_PYTHON=	distutils autoplist
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
