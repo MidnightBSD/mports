@@ -20,6 +20,7 @@ GH_ACCOUNT=	ubuntu
 GH_PROJECT=	yaru
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 BINARY_ALIAS=	realpath=grealpath
 

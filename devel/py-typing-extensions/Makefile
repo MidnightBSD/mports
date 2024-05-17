@@ -18,5 +18,6 @@ USES=		python
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
