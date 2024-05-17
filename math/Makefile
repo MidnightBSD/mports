@@ -83,6 +83,7 @@ SUBDIR += py-numpy
 SUBDIR += py-pandas
 SUBDIR += py-pyclipper
 SUBDIR += py-random2
+SUBDIR += py-scikit-umfpack
 SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5
