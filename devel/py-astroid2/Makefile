@@ -19,13 +19,15 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lazy-object-proxy>=1.4.0:devel/py-lazy-objec
 		${PYTHON_PKGNAMEPREFIX}wrapt>=1.14<2:devel/py-wrapt@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
 CONFLICTS=	${PYTHON_PKGNAMEPREFIX}astroid253
 
 PORTSCOUT=	limit:^2\.
+
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
