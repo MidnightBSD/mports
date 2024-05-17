@@ -5,7 +5,7 @@
   */
  
 +#include <osreldate.h>
-+#if (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__) && defined(__MidnightBSD__)
++#if (defined(__aarch64__) || defined(__powerpc__) || defined(__riscv)) && defined(__MidnightBSD__)
 +#include <sys/types.h>
 +#include <machine/pio.h>
 +#endif
