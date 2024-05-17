@@ -1,8 +1,5 @@
-# Created by: Mike Muir <mmuir@es.co.nz>
-
 PORTNAME=	consolehm
 PORTVERSION=	1.31
-PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	FREEBSD_LOCAL/fenner
 
@@ -13,10 +10,12 @@ LICENSE=	bsd2
 
 FAKE_OPTS=	trueprefix
 
+BROKEN_aarch64=	fails to build: fatal error: 'machine/pio.h' file not found
+
 USES=		uidfix
 GNU_CONFIGURE=	yes
 WRKSRC=		${WRKDIR}/consolehm/consolehm
-MAKE_ARGS+=	-e
+MAKE_ENV=	ARCH=${ARCH}
 
 PLIST_FILES=	bin/chm man/man8/chm.8.gz
 
