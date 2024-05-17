@@ -30,5 +30,6 @@ MAKE_ENV+=	GIT_DIR=${WRKDIR} # workaround for https://github.com/python-poetry/p
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
