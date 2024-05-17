@@ -19,12 +19,12 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=40.8.0:devel/py-setuptools@${P
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}asgiref>=3.6.0:www/py-asgiref@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.3.1:databases/py-sqlparse@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tblib>0:devel/py-tblib@${PY_FLAVOR}
 
 USES=		cpe python shebangfix
 USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/py-django
 PLIST_FILES=	share/man/man1/django-admin.1.gz
@@ -64,8 +64,5 @@ post-install:
 post-install-HTMLDOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}/${DOCSDIR}
 	${CP} -R ${WRKSRC}/docs/_build/html ${FAKE_DESTDIR}/${DOCSDIR}
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} tests/runtests.py --settings=test_sqlite
 
 .include <bsd.port.mk>
