@@ -1,0 +1,12 @@
+--- subprojects/media-session/src/meson.build.orig	2024-05-18 14:52:18.128358000 -0400
++++ subprojects/media-session/src/meson.build	2024-05-18 14:52:26.243374000 -0400
+@@ -1,9 +1,5 @@
+ sm_logind_src = []
+ sm_logind_dep = []
+-if systemd.found() and systemd_dep.found()
+-  sm_logind_src = ['logind.c']
+-  sm_logind_dep = [systemd_dep]
+-endif
+ media_session_sources = [
+     'access-flatpak.c',
+     'access-portal.c',
