@@ -11,4 +11,8 @@ USE_PERL5=	extract
 USE_QT=		core gui \
 		buildtools:build # syncqt
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5X11Extras/Qt5X11ExtrasConfig.cmake
+
 .include <bsd.port.mk>
