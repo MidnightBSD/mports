@@ -4,7 +4,7 @@ CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GObject bindings for libudev.
+COMMENT=	GObject bindings for libudev
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -1,17 +1,19 @@
 PORTNAME=	intel-media-sdk
 DISTVERSIONPREFIX=	intel-mediasdk-
-DISTVERSION=	22.4.3
+DISTVERSION=	22.5.4
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hardware video decoding/encoding/filtering on Intel GPUs
-WWW=		http://mediasdk.intel.com/
+WWW=		https://github.com/Intel-Media-SDK/MediaSDK
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	only Intel GPUs on x86 are supported
+
+USE_GCC=	yes
 
 LIB_DEPENDS=	libva.so:multimedia/libva
 RUN_DEPENDS=	cmrtlib>0:multimedia/cmrtlib
@@ -54,5 +56,6 @@ post-patch:
 # Don't assume GCC and glibc libraries are available
 	@${REINPLACE_CMD} -e 's/ -lstdc++ -ldl//' \
 		${WRKSRC}/api/mfx_dispatch/linux/pkg-config*.cmake
+	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' ${WRKSRC}/contrib/googletest/googletest/m4/acx_pthread.m4
 
 .include <bsd.port.mk>
