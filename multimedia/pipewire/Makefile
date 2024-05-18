@@ -23,6 +23,7 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 USES=		compiler:c11 gettext-tools gnome localbase:ldflags meson \
 		ncurses pkgconfig python:build readline ssl
 USE_GNOME=	glib20
+USE_XORG=	x11 xfixes
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
