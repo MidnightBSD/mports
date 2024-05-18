@@ -77,6 +77,7 @@ MESON_ARGS=	-D pw-cat=enabled \
 		-D raop=disabled \
 		-D bluez5=disabled \
 		-D jack=disabled \
+		-D lv2=disabled \
 		-D libcamera=disabled \
 		-D libcanberra=disabled \
 		-D roc=disabled \
