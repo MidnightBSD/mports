@@ -77,6 +77,7 @@ MESON_ARGS=	-D pw-cat=enabled \
 		-D raop=disabled \
 		-D bluez5=disabled \
 		-D jack=disabled \
+		-D libcanberra=disabled \
 		-D systemd=disabled \
 		-D pipewire-v4l2=disabled \
 		-D udevrulesdir="${LOCALBASE}/lib/udev/rules.d"
