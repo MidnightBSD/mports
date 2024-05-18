@@ -37,4 +37,6 @@ WAYLAND_LIB_DEPENDS=	libva-wayland.so:multimedia/libva \
 WAYLAND_MESON_ENABLED=	wayland
 WAYLAND_IMPLIES=	DRM
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
