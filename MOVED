@@ -413,3 +413,4 @@ databases/php80-pdo_sqlite|databases/php81-pdo_sqlite|2023-12-31|Has expired: Se
 databases/php80-odbc|databases/php81-odbc|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-mysqli|databases/php81-mysqli|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-pdo_mysql|databases/php81-pdo_mysql|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/youtube_dl|www/yt-dlp|2024-04-01|Has expired: Many extractors are brokena and upstream can't keep up
