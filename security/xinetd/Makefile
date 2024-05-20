@@ -1,17 +1,22 @@
-
-
 PORTNAME=	xinetd
-PORTVERSION=	2.3.15
-PORTREVISION=	3
-CATEGORIES=	security ipv6
-MASTER_SITES=	GENTOO
+DISTVERSIONPREFIX=	${PORTNAME}-
+DISTVERSION=	2-3-15
+PORTREVISION=	4
+CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for inetd with better control and logging
+WWW=		https://github.com/xinetd-org/xinetd
 
-LICENSE=	other
+LICENSE=	XINETD
+LICENSE_NAME=	xinetd license
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 FAKE_OPTS=	prefixhack
+
+USE_GITHUB=   yes
+GH_ACCOUNT=   ${PORTNAME}-org
 
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	xinetd

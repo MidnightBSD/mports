@@ -1,5 +1,5 @@
---- xinetd/xconfig.h.orig	Sun Sep 15 19:23:41 2002
-+++ xinetd/xconfig.h	Sun Sep 15 19:23:55 2002
+--- xinetd/xconfig.h.orig	2012-05-09 16:03:17 UTC
++++ xinetd/xconfig.h
 @@ -29,7 +29,7 @@
  #endif
  
