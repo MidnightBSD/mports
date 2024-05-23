@@ -1,5 +1,5 @@
 PORTNAME=	libxml2
-DISTVERSION=	2.10.4
+DISTVERSION=	2.11.7
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${DISTVERSION:R}/
@@ -9,33 +9,29 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	XML parser library for GNOME
 WWW=		http://xmlsoft.org/
 
-LICENSE=	mit TRIO
-LICENSE_COMB=	multi
-LICENSE_NAME_TRIO=	Trio License
-LICENSE_FILE_MIT=	${WRKSRC}/COPYING
-LICENSE_FILE_TRIO=	${FILESDIR}/LICENSE.TRIO
-LICENSE_PERMS_TRIO=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE=	mit
 
-USES+=		cpe iconv libtool localbase pathfix pkgconfig tar:xz
+USES+=		cmake:testing cpe iconv localbase:ldflags pathfix \
+		pkgconfig tar:xz
 CPE_VENDOR=	xmlsoft
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+# Don't build with Python support unless requested
+CMAKE_${LIBXML2_SLAVE:DON:UOFF}=LIBXML2_WITH_PYTHON
 
-INSTALL_TARGET=	install-strip
-#TEST_TARGET=	check
-NO_TEST=	yes
+# Many symbols in the linker version script libxml2.syms are only defined when
+# --with-xptr-locs is enabled at configure time. Suppress errors with lld >= 17
+# due to these undefined symbols.
+LDFLAGS+=	-Wl,--undefined-version
+
+CMAKE_TESTING_ON=	LIBXML2_WITH_TESTS
+
+CMAKE_ARGS=	-DCMAKE_INSTALL_SYSCONFDIR=share
+CMAKE_OFF+=	LIBXML2_WITH_TESTS
 
 PLIST_SUB+=	LIBVERSION=${DISTVERSION}
 
-# Don't build with Python support unless requested
-CONFIGURE_ARGS=		--with-html-dir=${PREFIX}/share/doc \
-			--with-html-subdir=${PORTNAME} \
-			--sysconfdir=${PREFIX}/share/ \
-			--with-lzma=/usr \
-			--${LIBXML2_SLAVE:Dwith:Uwithout}-python${LIBXML2_SLAVE:D=${PYTHON_CMD}:U}
-
-OPTIONS_DEFINE=	DOCS ICU MEM_DEBUG READLINE STATIC THREAD_ALLOC
-OPTIONS_DEFAULT=	READLINE STATIC
+OPTIONS_DEFINE=	DOCS ICU MEM_DEBUG READLINE THREAD_ALLOC
+OPTIONS_DEFAULT=	READLINE
 OPTIONS_SUB=		yes
 
 MEM_DEBUG_DESC=		Memory debugging (DEVELOPERS ONLY!)
@@ -43,30 +39,28 @@ READLINE_DESC=		History for xmllint
 THREAD_ALLOC_DESC=	Per-thread memory (DEVELOPERS ONLY!)
 
 ICU_LIB_DEPENDS=		libicudata.so:devel/icu
-ICU_CONFIGURE_WITH=		icu
-MEM_DEBUG_CONFIGURE_WITH=	mem-debug
+ICU_CMAKE_BOOL=			LIBXML2_WITH_ICU
+MEM_DEBUG_CONFIGURE_WITH=	LIBXML2_WITH_MEM_DEBUG
 READLINE_LIB_DEPENDS=		libreadline.so:devel/readline
-READLINE_CONFIGURE_WITH=	history \
-				readline
-STATIC_CONFIGURE_ENABLE=	static
-THREAD_ALLOC_CONFIGURE_WITH=	thread-alloc
+READLINE_CMAKE_OFF=		-DHAVE_LIBHISTORY=false \
+				-DHAVE_LIBREADLINE=false
+THREAD_ALLOC_CMAKE_BOOL=	LIBXML2_WITH_THREAD_ALLOC
 
 post-patch:
-.for f in catalog.c xmlcatalog.c xmllint.c doc/xmllint.1
 	@${REINPLACE_CMD} -e \
 		's|/etc/xml/catalog|${LOCALBASE}/share/xml/catalog|g; \
 		 s|/etc/sgml/catalog|${LOCALBASE}/share/sgml/catalog|g' \
-		${WRKSRC}/${f}
-.endfor
+		${WRKSRC}/doc/xmllint.1
 
-.if !defined(LIBXML2_SLAVE)
 post-install:
-# Documentation should be in DOCSDIR
-	@${MV} ${STAGEDIR}${PREFIX}/share/gtk-doc/html/libxml2 \
-		${STAGEDIR}${DOCSDIR}/devhelp
-	@${RM} -r ${STAGEDIR}${PREFIX}/share/gtk-doc
-# Install remaining documentation that's not connected to autotools
-	${INSTALL_MAN} ${WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
+.if defined(LIBXML2_SLAVE)
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_LIBDIR}/site-packages/libxml2mod.so
+	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
+		-f -d ${PYTHONPREFIX_SITELIBDIR} \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+		-f -d ${PYTHONPREFIX_SITELIBDIR} \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 .endif
 
 .include <bsd.port.mk>
