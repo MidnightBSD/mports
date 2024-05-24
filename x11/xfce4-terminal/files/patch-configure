@@ -1,0 +1,20 @@
+--- configure.orig	2024-05-24 15:42:35.006720000 -0400
++++ configure	2024-05-24 15:43:39.347337000 -0400
+@@ -14694,7 +14694,7 @@
+       { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ printf "%s\n" "yes" >&6; }
+       ;;
+-    freebsd*)
++    freebsd*|midnightbsd*)
+       if $STRIP -V 2>&1 | $GREP "elftoolchain" >/dev/null; then
+         old_striplib="$STRIP --strip-debug"
+         striplib="$STRIP --strip-unneeded"
+@@ -18706,7 +18706,7 @@
+ 
+ 
+ case $host in #(
+-  *-*freebsd*) :
++  *-*freebsd*|*-*midnightbsd*) :
+     freebsd=yes ;; #(
+   *) :
+     freebsd=no ;;
