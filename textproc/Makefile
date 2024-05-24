@@ -61,7 +61,6 @@ SUBDIR += iso8879
 SUBDIR += itstool
 SUBDIR += jade
 SUBDIR += jq
-SUBDIR += kibana7
 SUBDIR += kibana8
 SUBDIR += kmflcomp
 SUBDIR += latex-service

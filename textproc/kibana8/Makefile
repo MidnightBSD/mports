@@ -1,6 +1,6 @@
 PORTNAME=	kibana
-DISTVERSION=	8.9.0
-DISTVERSIONSUFFIX=	-darwin-x86_64
+DISTVERSION=	8.11.3
+DISTVERSIONSUFFIX=	-linux-x86_64
 CATEGORIES=	textproc www
 MASTER_SITES=	https://artifacts.elastic.co/downloads/kibana/ \
 		http://artifacts.elastic.co/downloads/kibana/
@@ -13,20 +13,18 @@ WWW=		https://www.elastic.co/products/kibana
 
 LICENSE=	apache2
 
-DEPRECATED=	Depends on EOL NodeJS 16
-EXPIRATION_DATE=	2023-12-30
-
-BUILD_DEPENDS=	npm-node16>=9.7.2:www/npm-node16
+BUILD_DEPENDS=	npm-node18>=9.7.2:www/npm-node18
 LIB_DEPENDS=	libre2.so:devel/re2 \
 		libuv.so:devel/libuv
-RUN_DEPENDS=	${LOCALBASE}/bin/node:www/node16
+RUN_DEPENDS=	${LOCALBASE}/bin/node:www/node18
 
-USES=		compiler:c++14-lang cpe nodejs:16,build,run python:build
+USES=		compiler:c++17-lang cpe nodejs:18,build,run python:build
 CPE_VENDOR=	elastic
 
 USE_GITHUB=	nodefault
 GH_TUPLE=	nodejs:nan:v${_NODE_NAN_VER}:node_nan \
 		uhop:node-re2:${_NODE_RE2_VER}:node_re2
+
 USE_CXXSTD=	c++17
 USE_RC_SUBR=	${PORTNAME}
 
@@ -48,9 +46,9 @@ BINS=		kibana-encryption-keys kibana-keystore kibana-plugin \
 
 #######################################################################
 # Set node-nan version here
-_NODE_NAN_VER=	2.17.0
+_NODE_NAN_VER=	2.18.0
 # Set node-re version here
-_NODE_RE2_VER=	1.19.1
+_NODE_RE2_VER=	1.20.0
 #######################################################################
 
 _NODECMD=	${LOCALBASE}/bin/node --version
@@ -68,6 +66,8 @@ post-patch:
 .for _dirdel in ${_DIR2DEL}
 	${FIND} -s ${WRKSRC}/${_dirdel} -type d -empty -delete
 .endfor
+	${REINPLACE_CMD} -e "s|%%WWWDIR%%|${WWWDIR}|g" \
+	${WRKSRC}/config/kibana.yml
 	cd ${_RE2DIR} && ${PATCH} -p0 < ${_RE2PATCHES}
 	${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" \
 	-e "s|%%DEVDIR%%|${_DEVDIR}|g" ${_RE2DIR}/binding.gyp
@@ -87,7 +87,7 @@ do-configure:
 		"! ( -name \.* -or -path *\/test\/* -or -name test )")
 	(cd ${_RE2DIR} && \
 		${SETENV} HOME=${WRKDIR} \
-		${LOCALBASE}/bin/node-gyp configure \
+		${LOCALBASE}/lib/node_modules/npm/node_modules/.bin/node-gyp configure \
 		--python=${PYTHON_CMD} \
 		--nodedir=${LOCALBASE} \
 		--devdir=${_DEVDIR})
@@ -99,30 +99,29 @@ do-build:
 		--devdir=${_DEVDIR})
 
 do-install:
-	${MKDIR} ${WWWDIR} ${ETCDIR}
-	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${ETCDIR}/kibana.yml.sample
+	${MKDIR} ${STAGEDIR}${WWWDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${STAGEDIR}${ETCDIR}/kibana.yml.sample
+	${INSTALL_DATA} ${WRKSRC}/config/node.options ${STAGEDIR}${ETCDIR}/node.options.sample
 	-(cd ${WRKSRC} && \
-		${COPYTREE_SHARE} . ${WWWDIR} && \
-		${COPYTREE_BIN} bin ${WWWDIR})
-	${INSTALL} -lrs ${ETCDIR} ${WWWDIR}/config
-	${MKDIR} ${WWWDIR}/node/bin
-	${LN} -sf ${LOCALBASE}/bin/node ${WWWDIR}/node/bin/node
-#	-${RM} ${WWWDIR}/node_modules/re2/build/Release/re2.node
-	${MKDIR} ${WWWDIR}/node_modules/re2/build/Release
+		${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR} && \
+		${COPYTREE_BIN} bin ${STAGEDIR}${WWWDIR})
+	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${WWWDIR}/config
+	${MKDIR} ${STAGEDIR}${WWWDIR}/node/bin
+	${LN} -sf ${LOCALBASE}/bin/node ${STAGEDIR}${WWWDIR}/node/bin/node
 	${INSTALL_LIB} ${_RE2DIR}/build/Release/re2.node \
-		${WWWDIR}/node_modules/re2/build/Release/re2.node
-	${MKDIR} ${WWWDIR}/bin
+		${STAGEDIR}${WWWDIR}/node_modules/re2/build/Release/re2.node
 .for f in ${BINS}
-	${INSTALL} -l rs ${WWWDIR}/bin/${f} ${PREFIX}/bin/${f}
+	${INSTALL} -l rs ${STAGEDIR}${WWWDIR}/bin/${f} ${STAGEDIR}${PREFIX}/bin/${f}
 	${ECHO} "bin/${f}" >> ${TMPPLIST}
 .endfor
 
 post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/kibana.yml.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/node.options.sample" >> ${TMPPLIST}
 	${FIND} -s ${WWWDIR} -not -type d | ${SORT} | \
 		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
-	${ECHO} "@dir(www,www) ${WWWDIR}/data" >> ${TMPPLIST}
-	${ECHO} "@dir ${WWWDIR}/plugins" >> ${TMPPLIST}
-	${ECHO} "@dir ${WWWDIR}/logs" >> ${TMPPLIST}
+	${ECHO} "@dir(www,www) ${WWWDIR_REL}/data" >> ${TMPPLIST}
+	${ECHO} "@dir ${WWWDIR_REL}/plugins" >> ${TMPPLIST}
+	${ECHO} "@dir ${WWWDIR_REL}/logs" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
