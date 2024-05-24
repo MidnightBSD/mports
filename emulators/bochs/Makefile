@@ -1,5 +1,5 @@
 PORTNAME=	bochs
-PORTVERSION=	2.7
+PORTVERSION=	2.8
 PORTEPOCH=	2
 CATEGORIES=	emulators
 MASTER_SITES=	SF
@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_alsa_asoundlib_h=no \
 		ac_cv_header_ltdl_h=no
 CONFIGURE_ARGS=	--disable-docbook --disable-instrumentation
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 CPE_VENDOR=   bochs_project
 
 SUB_FILES=	pkg-message
@@ -69,7 +69,7 @@ CONF_MSRS_CONFIGURE_ENABLE=	configurable-msrs
 DEBUGGER_DESC=			Debugger support
 DEBUGGER_CONFIGURE_ENABLE=	debugger
 DEBUGGER_IMPLIES=		DISASM
-DEBUGGER_GUI_DESC=		GTK+ 2 GUI debugger support
+DEBUGGER_GUI_DESC=		GTK 2 GUI debugger support
 DEBUGGER_GUI_USES=		gnome
 DEBUGGER_GUI_USE=		GNOME=gtk20
 DEBUGGER_GUI_CONFIGURE_ENABLE=	debugger-gui
