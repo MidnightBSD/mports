@@ -1,0 +1,11 @@
+--- configure.orig	2024-05-24 09:43:10.647762000 -0400
++++ configure	2024-05-24 09:43:31.030860000 -0400
+@@ -432,6 +432,8 @@
+   targetos=haiku
+ elif check_define __FreeBSD__ ; then
+   targetos=freebsd
++elif check_define __MidnightBSD__ ; then
++  targetos=freebsd
+ elif check_define __FreeBSD_kernel__ && check_define __GLIBC__; then
+   targetos=gnu/kfreebsd
+ elif check_define __DragonFly__ ; then

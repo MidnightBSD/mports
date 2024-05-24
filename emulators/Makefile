@@ -16,6 +16,7 @@ SUBDIR += mtools
 SUBDIR += open-vm-tools
 SUBDIR += pcem
 SUBDIR += qemu
+SUBDIR += qemu7
 SUBDIR += qemu-user-static
 SUBDIR += tpm-emulator
 SUBDIR += vba

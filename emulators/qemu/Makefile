@@ -1,5 +1,3 @@
-# Created by: Juergen Lock <nox@jelal.kn-bremen.de>
-
 PORTNAME=	qemu
 PORTVERSION=	4.1.1
 PORTREVISION=	2
@@ -11,6 +9,8 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	QEMU CPU Emulator
 
 LICENSE=	gpl2
+
+BROKEN=		not linking on MidnightBSD 3.x
 
 BUILD_DEPENDS+=  ${LOCALBASE}/lib/libpcap.so:net/libpcap
 LIB_DEPENDS+=   libpcap.so:net/libpcap \
