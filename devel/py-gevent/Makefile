@@ -28,25 +28,19 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.12.3:devel/py-cffi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}greenlet>=3.0.3:devel/py-greenlet@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.event>=0:devel/py-zope.event@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=0:devel/py-zope.interface@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>=0:databases/py-sqlite3@${PY_FLAVOR}
 
 USES=		compiler:c11 localbase python
 USE_PYTHON=	autoplist concurrent pep517
 
 MAKE_ENV=	GEVENTSETUP_EMBED_CARES=0 GEVENTSETUP_EMBED_LIBEV=0 GEVENTSETUP_EMBED_LIBUV=0
-TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
-
 NO_TEST=	yes
 
 post-patch:
-	@${RM} ${WRKSRC}/src/gevent/_util_py2.py
+	-${RM} ${WRKSRC}/src/gevent/_util_py2.py
 # Clean up bundled libraries
-	@${RM} -r ${WRKSRC}/deps/
+	-${RM} -r ${WRKSRC}/deps/
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
-
-do-test:
-	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m gevent.tests
 
 .include <bsd.port.mk>
