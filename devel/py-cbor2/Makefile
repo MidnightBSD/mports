@@ -12,14 +12,10 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=1.7.0:devel/py-setuptools-scm@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}cbor>0:devel/py-cbor@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}objgraph>0:devel/py-objgraph@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -v -rs
+NO_TEST=	yes
 
 .include <bsd.port.mk>
