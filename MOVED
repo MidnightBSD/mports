@@ -414,3 +414,5 @@ databases/php80-odbc|databases/php81-odbc|2023-12-31|Has expired: Security suppo
 databases/php80-mysqli|databases/php81-mysqli|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-pdo_mysql|databases/php81-pdo_mysql|2023-12-31|Has expired: Security support ended on 2023-11-26
 www/youtube_dl|www/yt-dlp|2024-04-01|Has expired: Many extractors are brokena and upstream can't keep up
+textproc/kibana7|textproc/kibana8|2023-11-02|Has expired: Depends on EOL NodeJS 16
+textproc/elasticsearch6|textproc/elasticsearch7|2023-01-01|Has expired: No longer maintained and supported

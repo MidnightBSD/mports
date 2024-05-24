@@ -26,7 +26,6 @@ SUBDIR += dsssl-docbook-modular
 SUBDIR += duncan
 SUBDIR += easydiff
 SUBDIR += ebook-tools
-SUBDIR += elasticsearch6
 SUBDIR += elasticsearch7
 SUBDIR += elasticsearch8
 SUBDIR += enchant
