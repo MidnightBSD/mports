@@ -43,7 +43,7 @@ post-install:
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
 		-f -d ${PYTHONPREFIX_SITELIBDIR}/PyQt5 \
 		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5
-	@${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5 \
-		-name '*.so*' -exec ${STRIP_CMD} {} +
+#	@${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5 \
+#		-name '*.so*' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
