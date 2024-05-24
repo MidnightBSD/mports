@@ -1,6 +1,7 @@
 PORTNAME=	elixir
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.14.5
+DISTVERSION=	1.15.7
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES+=	https://github.com/elixir-lang/elixir/releases/download/${DISTVERSIONPREFIX}${PORTVERSION}/:doc
 DISTFILES=	Docs.zip:doc
@@ -12,7 +13,7 @@ WWW=		https://elixir-lang.org/
 
 LICENSE=	apache2
 
-FAKE_OPTS+=	trueprefix
+FAKE_OPTS=	trueprefix
 
 BUILD_DEPENDS=	erlang>25:lang/erlang
 RUN_DEPENDS=	erlang>25:lang/erlang
@@ -21,7 +22,9 @@ USES=		gmake
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	elixir-lang
+
 CONFLICTS=	elixir-devel # bin/elixir bin/elixirc bin/iex
+
 USE_LOCALE=	en_US.UTF-8
 ALL_TARGET=	# empty
 REINPLACE_ARGS=	-i ""
@@ -43,11 +46,11 @@ post-install-DOCS-on:
 	cd ${WRKDIR}/doc/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib
+	${MKDIR} ${PREFIX}/lib/elixir/lib
 	cd ${WRKSRC}/lib/ && for lib in *; do \
-		${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \
+		${MKDIR} ${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 		cd ${WRKSRC}/lib/$${lib}/lib && \
-			${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \
+			${COPYTREE_SHARE} \* ${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 	done
 
 .include <bsd.port.mk>
