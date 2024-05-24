@@ -80,6 +80,7 @@ SUBDIR += libpcap
 SUBDIR += libpcapnav
 SUBDIR += libproxy
 SUBDIR += librsync
+SUBDIR += libslirp
 SUBDIR += libsrtp2
 SUBDIR += libutp
 SUBDIR += libvncserver
