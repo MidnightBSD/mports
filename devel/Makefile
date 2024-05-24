@@ -93,6 +93,7 @@ SUBDIR += dulwich
 SUBDIR += e_dbus
 SUBDIR += efl
 SUBDIR += eggdbus
+SUBDIR += elfutils
 SUBDIR += epm
 SUBDIR += erlang-unicode_util_compat
 SUBDIR += evdev-proto
