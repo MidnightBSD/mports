@@ -20,7 +20,7 @@ LIB_DEPENDS=	libgd.so:graphics/gd \
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USES=		localbase:ldflags
+USES=		localbase:ldflags jpeg pkgconfig
 
 DOCDIR=		share/doc/${PORTNAME}
 DOCS=		ChangeLog README
