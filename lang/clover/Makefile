@@ -23,9 +23,9 @@ ONLY_FOR_ARCHS_REASON=	Clover needs a GPU supported by the Radeon KMS driver
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
-MESON_ARGS+=	-Ddri-drivers="" \
-		-Dplatforms="" \
+MESON_ARGS+=	-Dplatforms="" \
 		-Dvulkan-drivers="" \
+		-Dandroid-libbacktrace=disabled \
 		-Dgallium-nine=false \
 		-Dgallium-omx=disabled \
 		-Dgallium-opencl=disabled \
@@ -40,6 +40,9 @@ MESON_ARGS+=	-Ddri-drivers="" \
 		-Degl=disabled \
 		-Dgbm=disabled \
 		-Dtools="" \
+		-Dxlib-lease=disabled \
+		-Dlmsensors=disabled \
+		-Dvalgrind=disabled \
 		-Dgallium-opencl=icd \
 		-Dgallium-drivers=r600,radeonsi
 
