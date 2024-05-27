@@ -1,11 +1,13 @@
 PORTNAME=	geary
 PORTVERSION=	40.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
+
 PATCH_SITES=	https://gitlab.gnome.org/GNOME/geary/-/commit/
 PATCHFILES=	0f75e7a84a39492d0748cec2ba6028e08cae3644.diff:-p1 \
+		4a7ca820b1d3d6130fedf254dc5b4cd7efb58f2c.diff:-p1 \
 		9bd4c82952a0a2c3308c5cc86c0b85650c1fb484.diff:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -38,7 +40,7 @@ LIB_DEPENDS=	libappstream-glib.so:devel/appstream-glib \
 		libytnef.so:converters/ytnef
 
 USES=		compiler:c11 cpe desktop-file-utils gettext gnome meson pkgconfig \
-		python:3.5+,build shebangfix sqlite tar:xz vala:build
+		python:build shebangfix sqlite tar:xz vala:build
 CPE_VENDOR=	gnome
 USE_GNOME=	cairo gsound gtk30 libxml2
 GLIB_SCHEMAS=	org.gnome.Geary.gschema.xml
@@ -47,7 +49,9 @@ USE_LDCONFIG=	yes
 
 SHEBANG_FILES=	desktop/geary-attach
 
-MESON_ARGS=	-Dprofile=release
+MESON_ARGS=	-Dprofile=release -Dvaladoc=disabled
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+
+CFLAGS+=	-Wno-error=int-conversion
 
 .include <bsd.port.mk>
