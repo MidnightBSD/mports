@@ -43,7 +43,6 @@ SUBDIR += evolution
 SUBDIR += evolution-ews
 SUBDIR += faces
 SUBDIR += fetchmail
-SUBDIR += gmime2
 SUBDIR += gmime24
 SUBDIR += gmime26
 SUBDIR += gmime30
