@@ -1,13 +1,12 @@
-# Created by: Dean Hollister <dean@odyssey.apana.org.au>
-
 PORTNAME=	dcc-dccd
-PORTVERSION=	2.3.168
+PORTVERSION=	2.3.169
 CATEGORIES=	mail
 MASTER_SITES=	https://www.dcc-servers.net/dcc/source/old/
 DISTNAME=	dcc-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Checksum Clearinghouse bulk email detector
+WWW=		https://www.rhyolite.com/dcc/
 
 LICENSE=	DCC
 LICENSE_NAME=	DCC
