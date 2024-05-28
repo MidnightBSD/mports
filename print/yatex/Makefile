@@ -1,5 +1,5 @@
 PORTNAME=	yatex
-PORTVERSION=	1.82
+PORTVERSION=	1.83
 CATEGORIES?=	print elisp
 MASTER_SITES=	http://www.yatex.org/
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
@@ -7,6 +7,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet Another LaTeX mode and html mode on Emacs
+WWW=		http://www.yatex.org/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKDIR}/LICENSE
