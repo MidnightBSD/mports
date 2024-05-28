@@ -1,7 +1,6 @@
 PORTNAME=	elixir
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.15.7
-PORTREVISION=	1
+DISTVERSION=	1.15.8
 CATEGORIES=	lang
 MASTER_SITES+=	https://github.com/elixir-lang/elixir/releases/download/${DISTVERSIONPREFIX}${PORTVERSION}/:doc
 DISTFILES=	Docs.zip:doc
@@ -41,10 +40,6 @@ OPTIONS_DEFINE=	DOCS
 post-extract:
 	@${FIND} ${WRKDIR}/doc -name .build -delete
 
-post-install-DOCS-on:
-	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	cd ${WRKDIR}/doc/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR}
-
 post-install:
 	${MKDIR} ${PREFIX}/lib/elixir/lib
 	cd ${WRKSRC}/lib/ && for lib in *; do \
@@ -52,5 +47,7 @@ post-install:
 		cd ${WRKSRC}/lib/$${lib}/lib && \
 			${COPYTREE_SHARE} \* ${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 	done
+	${MKDIR} ${DOCSDIR}
+	cd ${WRKDIR}/doc/ && ${COPYTREE_SHARE} \* ${DOCSDIR}
 
 .include <bsd.port.mk>
