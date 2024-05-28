@@ -1,8 +1,13 @@
 PORTNAME=	emacs
-DISTVERSION=	29.1
+DISTVERSION=	29.3
 PORTEPOCH=	3
 CATEGORIES=	editors
 MASTER_SITES=	GNU
+
+.if ${FLAVOR:U} == canna
+PATCH_SITES+=	https://www.gentei.org/~yuuji/software/emacs29canna/:canna
+PATCHFILES+=	emacs29.1-canna-20230730.diff.xz:-p1:canna
+.endif
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU editing macros ${COMMENT_${FLAVOR}}
