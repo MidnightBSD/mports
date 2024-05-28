@@ -1,12 +1,11 @@
-# Created by: Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
-
 PORTNAME=	icewm
-PORTVERSION=	2.8.0
+PORTVERSION=	3.5.0
 CATEGORIES=	x11-wm
 MASTER_SITES=	https://github.com/ice-wm/icewm/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Window Manager designed for speed, usability and consistency
+COMMENT=	Window manager designed for speed and usability
+WWW=		https://ice-wm.org/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -36,13 +35,14 @@ MIDNIGHT_VARS_OFF=	STARTUP_PIXMAP=icewm-logo.xpm
 IMLIB2_LIB_DEPENDS=	libImlib2.so:graphics/imlib2
 IMLIB2_DESC=		Use Imlib2 for rendering
 IMLIB2_CONFIGURE_OFF=	--disable-imlib2 --enable-gdk-pixbuf
-IMLIB2_USE_OFF=		GNOME=gdkpixbuf2
+IMLIB2_USE_OFF=		GNOME=gdkpixbuf2xlib
+
+LIBRSVG2_BUILD_DEPENDS_OFF=	${LOCALBASE}/include/nanosvg.h:graphics/nanosvg
+LIBRSVG2_USE=		GNOME=librsvg2
+LIBRSVG2_CONFIGURE_OFF=	--disable-librsvg --enable-nanosvg
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
-
-SVG_USE=		GNOME=librsvg2
-SVG_CONFIGURE_OFF=	--disable-rsvg
 
 XFT_LIB_DEPENDS=	libXft.so:x11-fonts/libXft
 XFT_CONFIGURE_OFF=	--enable-corefonts --disable-xfreetype
@@ -60,9 +60,9 @@ post-extract:
 	@${LN} -sf ${STARTUP_PIXMAP} ${WRKSRC}/lib/${dir}/start.xpm
 .endfor
 
-post-patch:
-	@${REINPLACE_CMD} -e '/Battery%d/s,snprintf(buf,char buf[20]; &,' \
-		${WRKSRC}/src/aapm.cc
+post-patch-LIBRSVG2-off:
+	@${LN} -sf ${LOCALBASE}/include/nanosvg.h \
+		${LOCALBASE}/include/nanosvgrast.h ${WRKSRC}/src
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
