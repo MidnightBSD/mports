@@ -1,17 +1,17 @@
 # Created by: Kazuo Kuroi <kazuok@projectkitsune.com>
 
-PORTNAME=		emwm
-DISTVERSION=		1.0a
-CATEGORIES=		x11-wm
+PORTNAME=	emwm
+DISTVERSION=	1.2
+CATEGORIES=	x11-wm
 MASTER_SITES=	http://fastestcode.org/dl/
-DISTNAME=		emwm-src-1.0a
+DISTNAME=	emwm-src-1.0a
 
-MAINTAINER=		kazuok@projectkitsune.com
-COMMENT=		Enhanced Motif WM fork with multi-monitor and utf-8 support
+MAINTAINER=	kazuok@projectkitsune.com
+COMMENT=	Enhanced Motif WM fork with multi-monitor and utf-8 support
 
-LICENSE=		lgpl2.1
+LICENSE=	lgpl2.1
 
-USES=			motif pkgconfig tar:xz xorg
+USES=		tar:xz groff:build motif pkgconfig xorg
 USE_XORG=	x11 xt xext xinerama xpm xrandr xscrnsaver
 
 post-patch:
