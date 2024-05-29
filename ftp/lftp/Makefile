@@ -1,17 +1,19 @@
 PORTNAME=	lftp
 PORTVERSION=	4.9.2
+PORTREVISION=	1
 CATEGORIES=	ftp
-MASTER_SITES=	http://lftp.tech/ftp/ \
-		http://lftp.tech/ftp/old/ \
-		http://lftp.cybermirror.org/ \
-		http://lftp.cybermirror.org/old/ \
+MASTER_SITES=	ftp://ftp.cs.tu-berlin.de/pub/net/ftp/lftp/ \
 		http://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/ \
 		http://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/old/ \
 		http://ftp.tuwien.ac.at/infosys/browsers/ftp/lftp/ \
-		ftp://ftp.cs.tu-berlin.de/pub/net/ftp/lftp/
+		http://lftp.cybermirror.org/ \
+		http://lftp.cybermirror.org/old/ \
+		http://lftp.tech/ftp/ \
+		http://lftp.tech/ftp/old/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Shell-like command line FTP client
+COMMENT=	Shell-like command-line FTP client
+WWW=		https://lftp.tech/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
