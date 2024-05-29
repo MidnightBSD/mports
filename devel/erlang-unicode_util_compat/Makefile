@@ -1,5 +1,5 @@
 PORTNAME=	unicode_util_compat
-PORTVERSION=	0.3.1
+PORTVERSION=	0.7.0
 CATEGORIES=	devel
 PKGNAMEPREFIX=	erlang-
 

@@ -419,3 +419,4 @@ textproc/elasticsearch6|textproc/elasticsearch7|2023-01-01|Has expired: No longe
 mail/gmime2|mail/gmime26|2022-05-19|Not used anymore overcome by gnime26
 mail/gmime24-sharp||2021-11-30|Has expired: Use mail/gmime26 or mail/gmime30
 mail/gmime24||2021-11-30|Has expired: Use mail/gmime26 or mail/gmime30
+audio/espeak|audio/espeak-ng|2022-07-15|Switch to fork of (stale) original repository
