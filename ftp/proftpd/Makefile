@@ -24,7 +24,7 @@ BUILD_DEPENDS+=	${LOCALBASE}/sbin/proftpd:ftp/proftpd
 RUN_DEPENDS+=	${LOCALBASE}/sbin/proftpd:ftp/proftpd
 .endif
 
-PROFTPD_VERSION=	1.3.8
+PROFTPD_VERSION=	1.3.8b
 
 CPE_VENDOR=	proftpd
 CPE_PRODUCT=	proftpd
