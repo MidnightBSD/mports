@@ -22,6 +22,7 @@ SUBDIR += proftpd
 SUBDIR += py-aioftp
 SUBDIR += py-pycurl
 SUBDIR += py-pyftpdlib
+SUBDIR += py-parfive
 SUBDIR += py-requests-ftp
 SUBDIR += py-sftp
 SUBDIR += py-tftpy
