@@ -1,7 +1,6 @@
 PORTNAME=	axel
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.17.11-21
-DISTVERSIONSUFFIX=	-gd65dffa
+DISTVERSION=	2.17.14
 CATEGORIES=	ftp
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,7 +19,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	axel-download-accelerator
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 .if exists(/usr/libdata/pkgconfig/openssl.pc)
 CONFIGURE_ARGS=	--with-ssl=openssl
