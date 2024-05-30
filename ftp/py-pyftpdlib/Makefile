@@ -1,11 +1,12 @@
 PORTNAME=	pyftpdlib
-PORTVERSION=	1.5.6
+PORTVERSION=	1.5.9
 CATEGORIES=	ftp python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python FTP server library
+WWW=		https://github.com/giampaolo/pyftpdlib
 
 LICENSE=	mit
 
