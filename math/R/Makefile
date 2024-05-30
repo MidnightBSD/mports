@@ -1,5 +1,5 @@
 PORTNAME=	R
-DISTVERSION=	4.3.3
+DISTVERSION=	4.4.0
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${PORTVERSION:C|\..*||}
 
@@ -10,6 +10,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	texi2any:print/texinfo
 LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libdeflate.so:archivers/libdeflate \
 		libpcre2-8.so:devel/pcre2
 RUN_DEPENDS=	cmake:devel/cmake-core \
 		gmake:devel/gmake # R packages may require GNU make
@@ -118,7 +119,6 @@ _MAJORVER=	${DISTVERSION:R:R}
 USES+=		fortran
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|/usr/local|${LOCALBASE}|g" ${WRKSRC}/configure
 	@${REINPLACE_CMD} \
 		-e "s|%%FULLVER%%|${DISTVERSION}|" \
 		-e "s|%%MAJORVER%%|${_MAJORVER}|" \
