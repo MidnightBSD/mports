@@ -1,5 +1,3 @@
-# Created by: Frank Laszlo <laszlof@vonostingroup.com>
-
 PORTNAME=	quftp
 PORTVERSION=	1.0.7
 PORTREVISION=	6
@@ -8,6 +6,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable FTP client
+WWW=		https://quftp.sourceforge.net/
 
 LICENSE=	gpl2
 
