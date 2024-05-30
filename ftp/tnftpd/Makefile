@@ -1,12 +1,18 @@
 PORTNAME=	tnftpd
-PORTVERSION=	20200704
+PORTVERSION=	20231001
 CATEGORIES=	ftp
-MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
+MASTER_SITES=	https://cdn.netbsd.org/pub/NetBSD/misc/tnftp/ \
+		https://ftp.uni-erlangen.de/netbsd/misc/tnftp/ \
+		https://ftp.jaist.ac.jp/pub/NetBSD/misc/tnftp/ \
+		https://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enhanced FTP server from NetBSD
+WWW=		https://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
-LICENSE=	bsd4
+LICENSE=	bsd2 bsd3
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf libtool
 GNU_CONFIGURE=	yes
