@@ -1,14 +1,13 @@
-
-
 PORTNAME=	waiho
 PORTVERSION=	0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ftp gnustep
 MASTER_SITES=	http://www.roard.com/waiho/download/
 DISTNAME=	Waiho-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple FTP client for GNUstep
+WWW=		http://www.roard.com/waiho/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
