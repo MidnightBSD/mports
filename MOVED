@@ -416,7 +416,8 @@ databases/php80-pdo_mysql|databases/php81-pdo_mysql|2023-12-31|Has expired: Secu
 www/youtube_dl|www/yt-dlp|2024-04-01|Has expired: Many extractors are brokena and upstream can't keep up
 textproc/kibana7|textproc/kibana8|2023-11-02|Has expired: Depends on EOL NodeJS 16
 textproc/elasticsearch6|textproc/elasticsearch7|2023-01-01|Has expired: No longer maintained and supported
-mail/gmime2|mail/gmime26|2022-05-19|Not used anymore overcome by gnime26
-mail/gmime24-sharp||2021-11-30|Has expired: Use mail/gmime26 or mail/gmime30
-mail/gmime24||2021-11-30|Has expired: Use mail/gmime26 or mail/gmime30
-audio/espeak|audio/espeak-ng|2022-07-15|Switch to fork of (stale) original repository
+mail/gmime2|mail/gmime26|2024-05-30|Not used anymore overcome by gnime26
+mail/gmime24-sharp||2024-05-30|Has expired: Use mail/gmime26 or mail/gmime30
+mail/gmime24||2024-05-30|Has expired: Use mail/gmime26 or mail/gmime30
+audio/espeak|audio/espeak-ng|2024-05-30|Switch to fork of (stale) original repository
+audio/celt||2024-05-30|Has expired: Deprecated and considered obsolete by upstream in 2016 in favour of (lib)opus
