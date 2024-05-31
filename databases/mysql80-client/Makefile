@@ -42,8 +42,5 @@ post-install:
 	@${LN} -s libmysqlclient.a ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.a
 	@${LN} -s libmysqlclient.so ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so
 	@${LN} -s libmysqlclient.so.21 ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so.21
-.for f in ${MMAN1}
-	gzip ${PREFIX}/share/man/man1/${f}
-.endfor
 
 .include "${MASTERDIR}/Makefile"
