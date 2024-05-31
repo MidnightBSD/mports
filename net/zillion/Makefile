@@ -1,5 +1,3 @@
-
-
 PORTNAME=	zillion
 PORTVERSION=	0.1
 PORTREVISION=	3
@@ -9,6 +7,7 @@ DISTNAME=	${PORTNAME}-0_1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed computing project
+WWW=		https://zillion.sourceforge.net/
 
 LICENSE=	bsd3
 
