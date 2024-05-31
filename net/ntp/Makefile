@@ -1,5 +1,5 @@
 PORTNAME=	ntp
-PORTVERSION=	4.2.8p17
+PORTVERSION=	4.2.8p18
 PORTREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
