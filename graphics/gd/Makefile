@@ -1,13 +1,12 @@
-# Created by: jeff@cetlink.net
-
 PORTNAME=	libgd
-PORTVERSION=	2.3.0
+PORTVERSION=	2.3.1
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/gd-${PORTVERSION}/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Graphics library for fast creation of images
+WWW=		https://libgd.github.io/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
