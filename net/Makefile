@@ -173,6 +173,7 @@ SUBDIR += py-python-socks
 SUBDIR += py-qt5-networkauth
 SUBDIR += py-s3cmd
 SUBDIR += py-s3transfer
+SUBDIR += py-siosocks
 SUBDIR += py-speedtest-cli
 SUBDIR += py-trio
 SUBDIR += py-twitter-tools
