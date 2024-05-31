@@ -6,6 +6,7 @@ SUBDIR += flow-tools
 SUBDIR += kismet
 SUBDIR += librenms
 SUBDIR += libsmi
+SUBDIR += lldpd
 SUBDIR += nagios
 SUBDIR += nagios-plugins
 SUBDIR += nagios4
