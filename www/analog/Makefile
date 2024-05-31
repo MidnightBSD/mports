@@ -1,15 +1,17 @@
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	12
+PORTREVISION=	13
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://analog.gsp.com/ \
-		http://fossies.org/unix/www/
+		http://fossies.org/unix/www/old/
 
 MAINTAINER=	luke@MidnightBSD.org
-COMMENT=	Extremely fast program for analysing WWW logfiles
+COMMENT=	Fast program for analysing WWW logfiles
+WWW=		https://analog.gsp.com/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/Licence.txt
 
 LIB_DEPENDS=	libgd.so:graphics/gd \
 		libpng.so:graphics/png

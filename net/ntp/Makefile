@@ -12,9 +12,10 @@ WWW=		https://www.ntp.org/
 
 LICENSE=	other
 
-LIB_DEPENDS=  libevent.so:devel/libevent
+LIB_DEPENDS=	libevent.so:devel/libevent
 
 CONFLICTS=	ntpsec openntpd
+CONFLICTS_BUILD=	libwww
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-leap-smear --enable-trustedbsd-mac \

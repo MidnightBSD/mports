@@ -11,11 +11,11 @@ WWW=		https://libgd.github.io/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	bazaar-1.*
+CONFLICTS_INSTALL=	libgd ??-libgd
 
 FAKE_OPTS=	trueprefix
 
-USES=		tar:xz pkgconfig pathfix libtool:keepla shebangfix
+USES=		cpe tar:xz pkgconfig pathfix libtool:keepla shebangfix
 SHEBANG_FILES=	${WRKSRC}/src/bdftogd
 GNU_CONFIGURE=	yes
 SUB_FILES=	gdlib-config
@@ -56,6 +56,11 @@ ICONV_USES=	iconv
 ICONV_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG}
 
 .include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MFREETYPE}
+# bin/annotate
+CONFLICTS_INSTALL+=	mummer
+.endif
 
 # force gdlib-config --ldflags
 LDFLAGS+=	-L${LOCALBASE}/lib
