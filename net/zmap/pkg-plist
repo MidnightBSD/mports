@@ -1,5 +1,5 @@
-%%ETCDIR%%/blocklist.conf
-%%ETCDIR%%/zmap.conf
+@sample etc/zmap/blocklist.conf
+@sample etc/zmap/zmap.conf
 man/man1/zblocklist.1.gz
 man/man1/ziterate.1.gz
 man/man1/zmap.1.gz

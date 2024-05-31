@@ -1,5 +1,3 @@
-
-
 PORTNAME=	zsync
 PORTVERSION=	0.6.2
 PORTREVISION=	1
@@ -7,9 +5,11 @@ CATEGORIES=	net
 MASTER_SITES=	http://zsync.moria.org.uk/download/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A file transfer program
+COMMENT=	File transfer program
+WWW=		http://zsync.moria.org.uk/
 
 LICENSE=	artistic2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf tar:bzip2
 GNU_CONFIGURE=	yes
@@ -24,9 +24,9 @@ BINS=		zsync zsyncmake
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${BINS:S,^,${WRKSRC}/,} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${BINS:S,^,${WRKSRC}/,} ${PREFIX}/bin
 	${INSTALL_MAN} ${MANPAGE:S,^,${WRKSRC}/doc/,} \
-		${STAGEDIR}${MANPREFIX}/man/man1
+		${MANPREFIX}/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
