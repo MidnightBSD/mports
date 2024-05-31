@@ -1,7 +1,5 @@
-# Created by: Corey Smith <corsmith@gmail.com>
-
 PORTNAME=	zerotier
-DISTVERSION=	1.4.6
+DISTVERSION=	1.14.0
 CATEGORIES=	net
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,8 +9,10 @@ LICENSE=		BUSINESS mit publicdom
 LICENSE_COMB=		multi
 LICENSE_NAME_BUSINESS=	Business Source License
 LICENSE_FILE_BUSINESS=	${WRKSRC}/LICENSE.txt
-LICENSE_FILE_mit=	${WRKSRC}/ext/json/LICENSE.MIT
+LICENSE_FILE_mit=	${WRKSRC}/ext/http-parser/LICENSE-MIT
 LICENSE_PERMS_BUSINESS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+BUILD_DEPENDS=	as:devel/binutils
 
 USES=		gmake compiler:c++14-lang
 USE_RC_SUBR=	zerotier
