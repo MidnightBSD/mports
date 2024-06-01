@@ -1,6 +1,6 @@
 PORTNAME=	chromium-bin
 PORTVERSION=	84.0.4147.135
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 DISTFILES=      chromium-84.0.4147.135.txz
