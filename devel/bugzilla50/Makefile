@@ -1,5 +1,6 @@
 PORTNAME=	bugzilla
 PORTVERSION=	5.0.6
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/webtools MOZILLA/webtools/archived
 

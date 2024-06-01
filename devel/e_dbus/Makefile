@@ -2,6 +2,7 @@
 
 PORTNAME=	e_dbus
 PORTVERSION=	1.7.10
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/releases/
 

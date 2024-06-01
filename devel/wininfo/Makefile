@@ -1,5 +1,6 @@
 PORTNAME=	wininfo
 PORTVERSION=	0.7
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.freedesktop.org/software/wininfo/
 

@@ -2,6 +2,7 @@
 
 PORTNAME=	geany
 PORTVERSION=	1.36
+PORTREVISION=	2
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.geany.org/ SF
 

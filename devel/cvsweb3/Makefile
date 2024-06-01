@@ -1,6 +1,6 @@
 PORTNAME=	cvsweb
 PORTVERSION=	3.0.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel www
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
 		http://people.FreeBSD.org/~scop/cvsweb/
