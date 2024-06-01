@@ -44,8 +44,8 @@ FPC_DEFAULT?=		3.0.4
 GCC_DEFAULT?=		10
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
-# Possible values: 7, 8, 9, agpl
-GHOSTSCRIPT_DEFAULT?=	agpl
+# Possible values: 10
+GHOSTSCRIPT_DEFAULT?=	10
 # Possible values: 1.19, 1.20, 1.21-devel
 GO_DEFAULT?=            1.20
 # Possible values: 1.8, 2.2, 3.0

@@ -1,7 +1,7 @@
 PORTNAME=	cups-filters
-PORTVERSION=	1.28.16
+PORTVERSION=	1.28.17
 CATEGORIES=	print
-MASTER_SITES=	https://www.openprinting.org/download/cups-filters/
+MASTER_SITES=	https://github.com/OpenPrinting/cups-filters/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional backends, filters and other software for CUPS
