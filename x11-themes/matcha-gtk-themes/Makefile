@@ -1,5 +1,6 @@
 PORTNAME=	matcha-gtk-themes
 DISTVERSION=	2021-11-29
+PORTREVISION=	1
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@MidnightBSD.org

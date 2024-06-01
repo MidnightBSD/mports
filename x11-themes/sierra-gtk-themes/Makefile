@@ -2,6 +2,7 @@
 
 PORTNAME=	sierra-gtk-themes
 DISTVERSION=	2019-12-16
+PORTREVISION=	1
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@MidnightBSD.org

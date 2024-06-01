@@ -1,5 +1,6 @@
 PORTNAME=	fontpreview
 DISTVERSION=	1.0.6
+PORTREVISION=	1
 CATEGORIES=	x11-fonts graphics
 
 MAINTAINER=	ports@MidnightBSD.org
