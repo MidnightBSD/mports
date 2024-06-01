@@ -2,6 +2,7 @@
 
 PORTNAME=	sratom
 PORTVERSION=	0.6.10
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://download.drobilla.net/
 

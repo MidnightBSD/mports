@@ -405,8 +405,7 @@ databases/php80-pdo|databases/php81-pdo|2023-12-31|Has expired: Security support
 databases/php80-pdo_dblib|databases/php81-pdo_dblib|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-sqlite3|databases/php81-sqlite3|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-pdo_pgsql|databases/php81-pdo_pgsql|2023-12-31|Has expired: Security support ended on 2023-11-26
-databases/php80-pdo_firebird|databases/php81-pdo_firebird|2023-12-31|Has expired: Security support ended on 2023-11
--26
+databases/php80-pdo_firebird|databases/php81-pdo_firebird|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-pgsql|databases/php81-pgsql|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-pdo_odbc|databases/php81-pdo_odbc|2023-12-31|Has expired: Security support ended on 2023-11-26
 databases/php80-pdo_sqlite|databases/php81-pdo_sqlite|2023-12-31|Has expired: Security support ended on 2023-11-26
@@ -421,3 +420,8 @@ mail/gmime24-sharp||2024-05-30|Has expired: Use mail/gmime26 or mail/gmime30
 mail/gmime24||2024-05-30|Has expired: Use mail/gmime26 or mail/gmime30
 audio/espeak|audio/espeak-ng|2024-05-30|Switch to fork of (stale) original repository
 audio/celt||2024-05-30|Has expired: Deprecated and considered obsolete by upstream in 2016 in favour of (lib)opus
+print/ghostscript9-x11||2023-03-31|Has expired: Released over 10 years ago and unsupported by upstream, consider print/ghostscript9-agpl-x11
+print/ghostscript9-base||2023-03-31|Has expired: Released over 10 years ago and unsupported by upstream, consider print/ghostscript9-agpl-base
+print/ghostscript8-base||2023-06-30|Has expired: Obsolete and unsupported upstream, consider using a more recent version
+print/ghostscript8-x11||2023-06-30|Has expired: Obsolete and unsupported upstream
+www/joomla3|www/joomla4|2023-08-30|Has expired: EOL upstream

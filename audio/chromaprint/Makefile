@@ -1,6 +1,6 @@
 PORTNAME=	chromaprint
 DISTVERSION=	1.5.1.20221217
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 #MASTER_SITES=	https://github.com/acoustid/${PORTNAME}/releases/download/v${DISTVERSION}/
 
