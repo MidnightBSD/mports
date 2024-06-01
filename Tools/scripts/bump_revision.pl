@@ -42,7 +42,7 @@ Options:
     -f              - No tmpdir, just use the directory where INDEX resides.
     -i <filename>   - Use this for INDEX name. Defaults to \${PORTSDIR}/INDEX-n,
                       where n is the major version of the OS, or \${PORTSDIR}/INDEX if missing.
-    -p <dirname>    - Set portsdir, if different from /usr/ports.
+    -p <dirname>    - Set portsdir, if different from /usr/mports.
 
 EOF
 	exit 1;

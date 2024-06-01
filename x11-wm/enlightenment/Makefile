@@ -1,5 +1,5 @@
 PORTNAME=	enlightenment
-PORTVERSION=	0.25.4
+PORTVERSION=	0.26.0
 PORTEPOCH=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://download.enlightenment.org/rel/apps/${PORTNAME}/
@@ -37,21 +37,23 @@ NLS_MESON_TRUE=		nls
 EXIF_LIB_DEPENDS=	libexif.so:graphics/libexif
 EXIF_MESON_TRUE=	libexif
 
-.include <bsd.mport.options.mk>
-
 # MESON normalizes ${ARCH} so we cannot use it 'AS IS' without conversion
 CURRENT_ARCH=	${ARCH}
 .if ${CURRENT_ARCH} == amd64
 ENLIGHTENMENT_ARCH=	${OPSYS:tl}-x86_64
 .elif ${CURRENT_ARCH} == i386
 ENLIGHTENMENT_ARCH=	${OPSYS:tl}-x86
+.elif ${CURRENT_ARCH:Mpowerpc64*}
+ENLIGHTENMENT_ARCH=	${OPSYS:tl}-ppc64
+.elif ${CURRENT_ARCH} == powerpc
+ENLIGHTENMENT_ARCH=	${OPSYS:tl}-ppc
 .elif ${CURRENT_ARCH:Marmv?}
 ENLIGHTENMENT_ARCH=	${OPSYS:tl}-arm
 .else
-ENLIGHTENMENT_ARCH=	${OPSYS:tl}-${CURRENT_ARCH:S|amd64|x86_64|:S|i386|x86|}
+ENLIGHTENMENT_ARCH=	${OPSYS:tl}-${CURRENT_ARCH}
 .endif
 
-ENLIGHTENMENT_VERSION=	0.25.4
+ENLIGHTENMENT_VERSION=	${PORTVERSION}
 PLIST_SUB=              ENLIGHTENMENT_ARCH=${ENLIGHTENMENT_ARCH}-${ENLIGHTENMENT_VERSION}
 
 post-install:

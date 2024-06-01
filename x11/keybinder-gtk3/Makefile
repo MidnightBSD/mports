@@ -1,6 +1,7 @@
 PORTNAME=	keybinder
 PORTVERSION=	0.3.2
 DISTVERSIONPREFIX=	keybinder-3.0-v
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/kupferlauncher/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 PKGNAMESUFFIX=	-gtk3

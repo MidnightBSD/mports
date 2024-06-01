@@ -1,5 +1,6 @@
 PORTNAME=	libwraster
 PORTVERSION=	0.96.0
+PORTREVISION=	1
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	http://windowmaker.org/pub/source/release/ \
 		https://github.com/window-maker/wmaker/releases/download/wmaker-${PORTVERSION}/ \

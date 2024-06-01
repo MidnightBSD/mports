@@ -4,6 +4,7 @@
 
 PORTNAME=	windowmaker-desktop
 PORTVERSION=	1.7
+PORTREVISION=	1
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	# none
 DISTFILES=	# none

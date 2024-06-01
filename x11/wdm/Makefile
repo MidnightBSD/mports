@@ -1,6 +1,6 @@
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	http://freebsd.nsu.ru/distfiles/wdm/:wdm GENTOO:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \

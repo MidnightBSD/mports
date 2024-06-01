@@ -1,5 +1,6 @@
 PORTNAME=	libdecor
 DISTVERSION=	0.2.0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
