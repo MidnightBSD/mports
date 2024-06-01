@@ -1,7 +1,7 @@
 PORTNAME=	gnustep-back
 DISTVERSIONPREFIX=	back-
 DISTVERSION=	0_30_0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
