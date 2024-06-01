@@ -16,6 +16,7 @@ SUBDIR += erlang-runtime21
 SUBDIR += erlang-runtime22
 SUBDIR += erlang-runtime24
 SUBDIR += erlang-runtime25
+SUBDIR += erlang-runtime26
 SUBDIR += execline
 SUBDIR += expect
 SUBDIR += fsharp

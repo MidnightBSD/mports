@@ -6,7 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert man pages to HTML
-WWW=		http://man2web.sourceforge.net/
+WWW=		https://man2web.sourceforge.net/
 
 LICENSE=	gpl2+ gfdl
 LICENSE_COMB=	multi

@@ -6,6 +6,7 @@ MASTER_SITES=	http://www.acme.com/software/thttpd/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tiny/turbo/throttling HTTP server
+WWW=		https://www.acme.com/software/thttpd/
 
 LICENSE=	bsd2
 

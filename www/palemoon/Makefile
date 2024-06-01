@@ -1,5 +1,6 @@
 PORTNAME=	palemoon
 PORTVERSION=	32.5.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://archive.palemoon.org/palemoon/32.x/${PORTVERSION}/FreeBSD/
 DISTFILES=	palemoon-32.5.0.freebsd12.3-x86_64-gtk3.tar.xz
