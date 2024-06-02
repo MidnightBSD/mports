@@ -1,6 +1,6 @@
 PORTNAME=	wrapper
 PORTVERSION=	0.1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils gnustep
 #MASTER_SITES=	ftp://ftp.raffael.ch/software/GNUstepWrapper/
 MASTER_SITES=	FREEBSD_LOCAL/dinoex

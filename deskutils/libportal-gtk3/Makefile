@@ -1,5 +1,5 @@
 PKGNAMESUFFIX=	-${BACKEND}
-PORTREVISION=	1
+PORTREVISION=	2
 COMMENT=	GIO-styled async APIs for Flatpak (${BACKEND} backend)
 
 BACKEND=	gtk3

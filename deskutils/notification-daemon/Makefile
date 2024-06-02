@@ -2,6 +2,7 @@
 
 PORTNAME=	notification-daemon
 PORTVERSION=	3.20.0
+PORTREVISION=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 

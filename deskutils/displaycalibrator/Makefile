@@ -1,6 +1,6 @@
 PORTNAME=	displaycalibrator
 PORTVERSION=	0.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://gnu.ethz.ch/linuks.mine.nu/displaycalibrator/
 
