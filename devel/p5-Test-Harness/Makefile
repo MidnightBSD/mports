@@ -11,7 +11,7 @@ WWW=		https://metacpan.org/release/Test-Harness
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
-USES=		perl5
+USES=		perl5:patch,build,run
 USE_PERL5=	configure
 
 PLIST_SUB=	P5_PREFIX="p5"
