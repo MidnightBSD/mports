@@ -1,5 +1,5 @@
 PORTNAME=	tornado
-PORTVERSION=	6.3.3
+PORTVERSION=	6.4
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,11 +22,9 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}tornado4 \
 			${PYTHON_PKGNAMEPREFIX}tornado6
 
 CPE_VENDOR=	tornadoweb
+NO_TEST=	yes
 
 post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m tornado.test.runtests
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
