@@ -1,5 +1,6 @@
 PORTNAME=	arcan
 DISTVERSION=	0.6.3
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org

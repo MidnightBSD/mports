@@ -2,6 +2,7 @@
 
 PORTNAME=	libmediaart
 PORTVERSION=	1.9.4
+PORTREVISION=	1
 CATEGORIES=	multimedia devel
 MASTER_SITES=	GNOME
 

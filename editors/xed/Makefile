@@ -2,6 +2,7 @@
 
 PORTNAME=	xed
 PORTVERSION=	3.0.2
+PORTREVISION=	1
 CATEGORIES=	editors gnome
 DIST_SUBDIR=	gnome
 
