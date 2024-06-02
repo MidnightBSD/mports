@@ -48,7 +48,6 @@ OPTIONS_DEFAULT=	CHUNKS CORBA DIRTY DTRACE KQUEUE MANPAGES OPENSSL SCTP
 OPTIONS_EXCLUDE+=	DTRACE
 .endif
 
-OPTIONS_EXCLUDE_DragonFly=	SCTP
 # ld(1) fails to link probes: missing __dtrace_erlang___* symbols
 # see also https://reviews.freebsd.org/D22360
 OPTIONS_EXCLUDE_aarch64=	DTRACE
