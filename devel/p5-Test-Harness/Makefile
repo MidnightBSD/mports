@@ -1,15 +1,14 @@
-
-
 PORTNAME=	Test-Harness
-PORTVERSION=	3.25
+PORTVERSION=	3.48
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Run perl standard test scripts with statistics
+WWW=		https://metacpan.org/release/Test-Harness
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
