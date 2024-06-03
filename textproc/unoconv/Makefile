@@ -1,8 +1,6 @@
-# Created by: Rusmir Dusko <nemysis@FreeBSD.org>
-
-
 PORTNAME=	unoconv
-PORTVERSION=	0.6
+PORTVERSION=	0.7
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	http://dag.wieers.com/home-made/${PORTNAME}/ \
 		SF/nemysisfreebsdp/textproc/:icons
@@ -13,23 +11,20 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert any document from and to any LibreOffice supported format
+WWW=		http://dag.wieers.com/home-made/unoconv/
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
+RUN_DEPENDS=	xsltproc:textproc/libxslt
 
 USES=		python
 NO_BUILD=	yes
 
 PORTDOCS=	*
 
-DOCSRCDIR1=	${WRKSRC}
-DOC_FILES1=	AUTHORS ChangeLog README.asciidoc WISHLIST
-
-DOCSRCDIR2=	${WRKSRC}/doc
-DOCSDIR2=	${DOCSDIR}/doc
-DOC_FILES2=	errcode.txt filters.txt formats.txt office-installations.txt \
-		selinux.txt unoconv.1.txt
+DOC_FILES=	AUTHORS ChangeLog README.adoc
+DOC_FILES2=	errcode.adoc filters.adoc formats.adoc \
+		office-installations.adoc selinux.adoc unoconv.1.adoc
 
 OPTIONS_DEFINE=	DOCS
 
@@ -41,22 +36,19 @@ post-patch:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
-
 	@${MKDIR} ${STAGEDIR}${DATADIR}/tests/
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${DATADIR}
-
 .for f in *.odt *.csv
 	@(cd ${WRKSRC}/tests && ${INSTALL_DATA} ${f} ${STAGEDIR}${DATADIR}/tests)
 .endfor
-
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
 		${STAGEDIR}${PREFIX}/share/pixmaps/
 	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 \
 		${STAGEDIR}${MAN1PREFIX}/man/man1/
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR2}
-	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${STAGEDIR}${DOCSDIR2}
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOC_FILES:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOC_FILES2:S|^|${WRKSRC}/doc/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

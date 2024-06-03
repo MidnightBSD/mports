@@ -1,19 +1,19 @@
-
-
 PORTNAME=	xhtml-basic
 PORTVERSION=	1.0.${RECDATE}
 PORTREVISION=	2
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.w3.org/TR/2000/REC-${PORTNAME}-${RECDATE}/
+MASTER_SITES=	https://www.w3.org/TR/2000/REC-${PORTNAME}-${RECDATE}/
 DISTNAME=	${PORTNAME}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	W3C's XHTML Basic DTD
+WWW=		https://www.w3.org/TR/xhtml-basic/
+
 LICENSE=	unknown
 
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr \
-		${LOCALBASE}/share/xml/dtd/xhtml-modularization/catalog.xml:${PORTSDIR}/textproc/xhtml-modularization
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr \
+		${LOCALBASE}/share/xml/dtd/xhtml-modularization/catalog.xml:textproc/xhtml-modularization
 
 RECDATE=	20001219
 
