@@ -2,7 +2,7 @@
 
 PORTNAME=	talksoup
 PORTVERSION=	1.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	irc gnustep
 MASTER_SITES=	http://savannah.nongnu.org/download/gap/
 DISTNAME=	TalkSoup-${PORTVERSION}

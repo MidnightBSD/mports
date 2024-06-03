@@ -1,6 +1,6 @@
 PORTNAME=	camerakit
 PORTVERSION=	0.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/
 DISTNAME=	CameraKit-20041011

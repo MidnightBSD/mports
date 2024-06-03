@@ -1,4 +1,5 @@
 PORTNAME=	rssyl
+PORTREVISION=	1
 PORTEPOCH=	4
 
 COMMENT=	RSS/Atom feed reader plugin for Claws Mail

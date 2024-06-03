@@ -2,6 +2,7 @@
 
 PORTNAME=	zphoto
 PORTVERSION=	1.2
+PORTREVISION=	1
 CATEGORIES=	graphics www
 MASTER_SITES=	http://namazu.org/~satoru/zphoto/
 

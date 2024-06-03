@@ -12,11 +12,9 @@ WWW=		https://www.gnu.org/software/findutils/
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		charsetfix cpe gmake tar:xz
+USES=		charsetfix cpe gmake localbase tar:xz
 
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--program-prefix=g --localstatedir=${LOCALSTATEDIR}
 MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
 INFO=		find find-maint

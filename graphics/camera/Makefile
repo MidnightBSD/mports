@@ -2,7 +2,7 @@
 
 PORTNAME=	camera
 PORTVERSION=	0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/
 DISTNAME=	Camera-${PORTVERSION}
