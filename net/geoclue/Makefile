@@ -1,5 +1,6 @@
 PORTNAME=	geoclue
 DISTVERSION=	2.5.7
+PORTREVISION=	1
 CATEGORIES=	net devel gnome
 
 MAINTAINER=	ports@MidnightBSD.org
