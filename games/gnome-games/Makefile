@@ -1,5 +1,6 @@
 PORTNAME=	gnome-games
 PORTVERSION=	3.24.0
+PORTREVISION=	1
 CATEGORIES=	games gnome
 MASTER_SITES=   # empty
 DISTFILES=      # empty

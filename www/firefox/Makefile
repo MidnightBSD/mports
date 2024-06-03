@@ -1,6 +1,6 @@
 PORTNAME=	firefox
 PORTVERSION=	${VER}
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	www
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 

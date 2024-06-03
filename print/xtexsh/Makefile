@@ -1,5 +1,6 @@
 PORTNAME=	xtexsh
 DISTVERSION=	1.4-2
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	http://www.mat.univie.ac.at/~gerald/ftp/xtexsh/
 

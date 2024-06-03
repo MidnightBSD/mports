@@ -1,5 +1,6 @@
 PORTNAME=	gutenprint
 PORTVERSION=	5.3.4
+PORTREVISION=	1
 CATEGORIES=	print
 
 MAINTAINER=	ports@MidnightBSD.org
