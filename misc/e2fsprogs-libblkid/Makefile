@@ -1,5 +1,3 @@
-
-#
 # set PORTREVISION to avoid override by master port
 
 PORTREVISION=	0
@@ -8,7 +6,7 @@ PKGNAMESUFFIX=	-libblkid
 
 COMMENT=	Blkid library from e2fsprogs package
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 _no_license_file=	sorry
 
 LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid
