@@ -1,21 +1,20 @@
-
-
 PORTNAME=	xmlcharent
 PORTVERSION=	0.3
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.oasis-open.org/docbook/${PORTNAME}/${PORTVERSION}/ \
+MASTER_SITES=	https://www.oasis-open.org/docbook/${PORTNAME}/${PORTVERSION}/ \
 		https://library.syr.edu/digital/guides/lavender/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML character entities
+WWW=		https://www.oasis-open.org/docbook/xmlcharent/
 
 LICENSE=	OASIS
 LICENSE_NAME=	OASIS License
 LICENSE_TEXT=	License text is available in all .ent files installed by this port
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
 USES=		zip
 NO_BUILD=	yes
