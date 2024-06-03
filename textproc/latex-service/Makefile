@@ -1,6 +1,6 @@
 PORTNAME=	latex
 PORTVERSION=	0.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://www.roard.com/latexservice/download/
 PKGNAMESUFFIX=	-service${PKGNAMESUFFIX2}

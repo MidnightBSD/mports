@@ -1,6 +1,6 @@
 PORTNAME=	bluefish
 PORTVERSION=	2.2.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www editors
 MASTER_SITES=	http://www.bennewitz.com/bluefish/stable/source/ \
 		http://bluefish.mrball.net/stable/source/

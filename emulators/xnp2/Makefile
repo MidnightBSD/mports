@@ -2,6 +2,7 @@
 
 PORTNAME=		xnp2
 DISTVERSION=		0.86
+PORTREVISION=	1
 CATEGORIES=		emulators
 MASTER_SITES=		http://www.nonakap.org/np2/release/
 
