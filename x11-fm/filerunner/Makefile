@@ -2,13 +2,14 @@
 #
 
 PORTNAME=	filerunner
-PORTVERSION=	17.04.01.19
+PORTVERSION=	23.03.07.16
 CATEGORIES=	x11-fm tk
-MASTER_SITES=	https://BSDforge.com/projects/source/x11-fm/filerunner/
+MASTER_SITES=	SF/${PORTNAME}/release-${PORTVERSION}
 DISTNAME=	fr-${PORTVERSION}
 
 MAINTAINER=	midnightbsd@BSDforge.com
 COMMENT=	Tcl/Tk-based filemanager with FTP capabilities
+WWW=		https://sourceforge.net/projects/filerunner/
 
 LICENSE=	gpl2
 
@@ -28,7 +29,7 @@ do-install:
 	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${DATADIR}
 .for file in fr frftp
 	@${CHMOD} ${BINMODE} ${STAGEDIR}${DATADIR}/${file}
-.endfor 
+.endfor
 	@${LN} -sf ${DATADIR}/fr ${STAGEDIR}${PREFIX}/bin/fr
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/applications/
 	${CP} ${WRKSRC}/Makefiles/filerunner.desktop ${STAGEDIR}${PREFIX}/share/applications/
