@@ -330,7 +330,6 @@ SUBDIR += py-youseedee
 SUBDIR += py-zope.i18nmessageid
 SUBDIR += qt5-xml
 SUBDIR += qt5-xmlpatterns
-SUBDIR += raptor
 SUBDIR += raptor2
 SUBDIR += rarian
 SUBDIR += rasqal
