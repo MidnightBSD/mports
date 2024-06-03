@@ -1,22 +1,20 @@
-# New ports collection makefile for:	xhtml-modularization
-# Date created:		March 27, 2008
-# Whom:			Lucas Holt <luke@Midnightbsd.org>
-#
-
-#
-
 PORTNAME=	xhtml-modularization
 PORTVERSION=	1.0.${RECDATE}
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.w3.org/TR/2001/REC-${PORTNAME}-${RECDATE}/
-DISTNAME=	${PORTNAME}
+MASTER_SITES=	https://www.w3.org/TR/2001/REC-${PORTNAME}-${RECDATE}/
+DISTNAME=	xhtml-modularization
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	W3C's Modularization of XHTML DTDs and docs #'
-LICENSE=	unknown
+WWW=		https://www.w3.org/TR/xhtml-modularization/
 
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+LICENSE=	W3C_DOCUMENT_LICENSE
+LICENSE_NAME=	W3C Document License
+LICENSE_TEXT=	See https://www.w3.org/copyright/document-license/ for detail
+LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
+
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
 RECDATE=	20010410
 

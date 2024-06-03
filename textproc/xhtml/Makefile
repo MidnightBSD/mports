@@ -1,5 +1,3 @@
-
-
 PORTNAME=	xhtml
 PORTVERSION=	1.0.20020801
 PORTREVISION=	5
@@ -13,7 +11,7 @@ LICENSE=	other
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	W3C's XHTML DTD
 
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
 USES=		zip
 NO_MTREE=	YES
