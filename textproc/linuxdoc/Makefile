@@ -1,5 +1,3 @@
-
-
 PORTNAME=	linuxdoc
 PORTVERSION=	1.1
 PORTREVISION=	1
@@ -11,8 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Linuxdoc SGML DTD
 LICENSE=	unknown
 
-RUN_DEPENDS=	${ISOCAT}:${PORTSDIR}/textproc/iso8879 \
-		${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+RUN_DEPENDS=	${ISOCAT}:textproc/iso8879 \
+		${XMLCATMGR}:textproc/xmlcatmgr
 
 EXTRACT_ONLY=	# empty
 NO_BUILD=	yes
