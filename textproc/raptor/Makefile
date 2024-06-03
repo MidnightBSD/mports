@@ -1,5 +1,3 @@
-
-
 PORTNAME=	raptor
 PORTVERSION=	1.4.21
 PORTREVISION=	4
@@ -12,7 +10,7 @@ COMMENT=	RDF Parser Toolkit for Redland
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libcurl.so:ftp/curl
 
 USES=		libtool pathfix
 USE_GNOME=	libxml2

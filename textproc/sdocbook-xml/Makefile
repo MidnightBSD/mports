@@ -1,18 +1,20 @@
-
-
 PORTNAME=	sdocbook-xml
 PORTVERSION= 	1.1
 PORTEPOCH=	1
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.oasis-open.org/docbook/xml/simple/${PORTVERSION}/
+MASTER_SITES=	https://www.oasis-open.org/docbook/xml/simple/${PORTVERSION}/
 DISTNAME=	docbook-simple-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"Simplified" DocBook XML DTD
+WWW=		https://www.oasis-open.org/docbook/xml/simple/
 
-LICENSE=	unknown
+LICENSE=	OASIS
+LICENSE_NAME=	OASIS License
+LICENSE_TEXT=	License text is available in all files installed by this port
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
 USES=		zip
 NO_BUILD=	yes
