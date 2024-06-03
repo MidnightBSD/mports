@@ -1,5 +1,6 @@
 PORTNAME=	thunderbird
 PORTVERSION=	78.8.0
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.midnightbsd.org/ftp/MidnightBSD/mports/distfiles/ \
 		https://pkg.freebsd.org/FreeBSD:11:amd64/quarterly/All/
