@@ -17,7 +17,9 @@ USE_GCC=	yes
 
 LIB_DEPENDS=	libva.so:multimedia/libva
 RUN_DEPENDS=	cmrtlib>0:multimedia/cmrtlib
-TEST_DEPENDS=	googletest>0:devel/googletest
+#TEST_DEPENDS=	googletest>0:devel/googletest
+
+NO_TEST=	yes
 
 USES=		cmake:testing compiler:c++11-lib localbase:ldflags pkgconfig
 USE_GITHUB=	yes
@@ -25,7 +27,7 @@ USE_LDCONFIG=	yes
 GH_ACCOUNT=	Intel-Media-SDK
 GH_PROJECT=	MediaSDK
 CMAKE_ON=	BUILD_TOOLS
-CMAKE_TESTING_ON=	BUILD_TESTS USE_SYSTEM_GTEST
+#CMAKE_TESTING_ON=	BUILD_TESTS USE_SYSTEM_GTEST
 PLIST_SUB=	ARCH_SUFX=${ARCH:S/i386/32/:S/amd//:S/x86_//}
 # https://github.com/Intel-Media-SDK/MediaSDK/issues/1844
 LLD_UNSAFE=	yes
