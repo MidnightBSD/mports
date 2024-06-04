@@ -1,3 +1,4 @@
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MASTERDIR=	${.CURDIR}/../../lang/php82

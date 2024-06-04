@@ -1,5 +1,6 @@
 PORTNAME=	imagick
 PORTVERSION=	3.7.0
+PORTREVISION=	3
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org

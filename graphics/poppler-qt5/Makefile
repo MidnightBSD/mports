@@ -1,4 +1,4 @@
-PORTREVISION=	2
+PORTREVISION=	3
 PKGNAMESUFFIX=	-qt5
 
 COMMENT=	Qt 5 bindings to poppler

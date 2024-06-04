@@ -1,5 +1,6 @@
 PORTNAME=	sdl2_image
 PORTVERSION=	2.0.5
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.libsdl.org/projects/SDL_image/release/
 DISTNAME=	SDL2_image-${PORTVERSION}

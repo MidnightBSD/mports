@@ -2,7 +2,7 @@
 
 PORTNAME=	sane-backends
 PORTVERSION=	1.0.24
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://alioth.debian.org/frs/download.php/3958/ \
 		http://fossies.org/linux/misc/

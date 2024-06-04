@@ -1,6 +1,7 @@
 PORTNAME=	gimp
 DISTVERSION?=	2.10.32
 PORTEPOCH?=	2
+PORTREVISION=	1
 CATEGORIES=	graphics gnome
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -2,6 +2,7 @@
 
 PORTNAME=	scrot
 DISTVERSION=	1.10
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	midnightbsd@BSDforge.com

@@ -2,6 +2,7 @@
 
 PORTNAME=	xviewer
 PORTVERSION=	2.6.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
