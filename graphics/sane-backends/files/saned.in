@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: saned
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
