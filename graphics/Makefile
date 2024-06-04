@@ -275,6 +275,7 @@ SUBDIR += xpdf3
 SUBDIR += xv
 SUBDIR += xviewer
 SUBDIR += zbar
+SUBDIR += zimg
 SUBDIR += zint
 SUBDIR += zphoto
 
