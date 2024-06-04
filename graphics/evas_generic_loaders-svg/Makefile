@@ -3,6 +3,7 @@
 
 PORTNAME=	svg
 PORTVERSION=	1.15.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PKGNAMEPREFIX:S/-//}/
 PKGNAMEPREFIX=	evas_generic_loaders-

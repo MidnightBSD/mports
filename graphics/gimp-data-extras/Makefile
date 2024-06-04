@@ -1,5 +1,6 @@
 PORTNAME=	gimp-data-extras
 PORTVERSION=	2.0.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GIMP/gimp/extras/
 
