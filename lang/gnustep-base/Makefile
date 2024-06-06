@@ -1,7 +1,11 @@
 PORTNAME=	gnustep-base
-DISTVERSIONPREFIX=	base-
-DISTVERSION=	1_29_0
+DISTVERSION=	1.29.0
+PORTREVISION=	1
 CATEGORIES=	lang devel gnustep
+MASTER_SITES=	https://github.com/gnustep/libs-base/releases/download/base-${DISTVERSION:S,.,_,g}/
+
+PATCH_SITES=	https://github.com/gnustep/libs-base/commit/
+PATCHFILES=	37913d006d96a6bdcb963f4ca4889888dcce6094.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
@@ -19,13 +23,10 @@ LIB_DEPENDS+=	libgcrypt.so:security/libgcrypt
 
 RUN_DEPENDS+=	${LOCALBASE}/GNUstep/System/Library/Makefiles/GNUstep.sh:devel/gnustep-make
 
-USES=		pkgconfig iconv gnustep
+USES=		pkgconfig iconv gnome gnustep
+USE_GNOME=	libxml2 libxslt
 USE_GNUSTEP=	build
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	gnustep
-GH_PROJECT=	libs-base
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-procfs --disable-mixedabi --with-installation-domain=SYSTEM
