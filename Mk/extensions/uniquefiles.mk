@@ -105,7 +105,7 @@ _UNIQUEPKGLIST=		${WRKDIR}/.PLIST.uniquefiles
 _DO_CONDITIONAL_SYMLINK=	\
 	if [ ! -e ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} -a ! -L ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} ]; then \
 		${ECHO_MSG} "Link: @$${fname} --> $${newf}"; \
-		${LN} -s ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname}; \
+		${RLN} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname}; \
 		${ECHO_CMD} LINKED:$${newf}%%EXTRA_EXT%%:$${fname}%%EXTRA_EXT%% >> ${_UNIQUEPKGLIST}; \
 	fi
 .  else
