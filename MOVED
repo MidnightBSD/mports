@@ -426,3 +426,4 @@ print/ghostscript8-base||2023-06-30|Has expired: Obsolete and unsupported upstre
 print/ghostscript8-x11||2023-06-30|Has expired: Obsolete and unsupported upstream
 www/joomla3|www/joomla4|2023-08-30|Has expired: EOL upstream
 textproc/raptor||2024-06-03|Has expired: No new release in 10+ years and superseded by 2.0-branch, consider using textproc/raptor2
+lang/rust170|lang/rust|2024-06-06|Moved to standard location as support for old MidnightBSD has dropped
