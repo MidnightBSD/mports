@@ -16,8 +16,6 @@ LICENSE_COMB=	multi
 
 LIB_DEPENDS+=	libunwind.so:devel/libunwind
 LIB_DEPENDS+=	libffi.so:devel/libffi
-LIB_DEPENDS+=	libxml2.so:textproc/libxml2
-LIB_DEPENDS+=	libxslt.so:textproc/libxslt
 LIB_DEPENDS+=	libgmp.so:math/gmp
 LIB_DEPENDS+=	libgcrypt.so:security/libgcrypt
 
