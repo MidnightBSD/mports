@@ -1,37 +1,32 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	ots
-PORTVERSION=	8.0.0
-DISTVERSIONPREFIX=	v
+PORTVERSION=	9.1.0
+PORTREVISION=	3
 CATEGORIES=	x11-fonts
+MASTER_SITES=	https://github.com/khaledhosny/ots/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenType Sanitizer
+WWW=		https://github.com/khaledhosny/ots
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS+=	git:devel/git
+BUILD_DEPENDS=	brotli>=1.0.9:archivers/brotli \
+		freetype2>=2.12.1:print/freetype2 \
+		googletest>=1.11.0:devel/googletest \
+		liblz4>=1.9.4:archivers/liblz4 \
+		woff2>=1.0.2:devel/woff2
 LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 		libfreetype.so:print/freetype2 \
 		libgtest.so:devel/googletest \
 		liblz4.so:archivers/liblz4 \
 		libwoff2dec.so:devel/woff2
 
-USES=		compiler:c++11-lang meson pkgconfig shebangfix
+USES=		compiler:c++14-lang meson pkgconfig tar:xz
 
-MESON_FALSE=	debug
-MESON_TRUE=	graphite
+MESON_ARGS=	--default-library=both -Ddebug=false -Dgraphite=true -Dsynthesize-gvar=true
+USE_CXXSTD=	c++14
 
-GH_ACCOUNT=	khaledhosny
-USE_GITHUB=	yes
-
-SHEBANG_FILES=	tests/*.sh
-bash_CMD=	${SH}
-
-NO_TEST=	yes
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/meson.build
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 .include <bsd.port.mk>
