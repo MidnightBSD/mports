@@ -1,4 +1,4 @@
-DISTVERSION=	1.20.8
+DISTVERSION=	1.20.14
 # Always set PORTREVISION explicitly as otherwise they are inherited from lang/go-devel
 PORTREVISION=	0
 MASTER_SITES=	https://golang.org/dl/ \
@@ -16,5 +16,8 @@ MASTERDIR=	${.CURDIR}/../go-devel
 PATCHDIR=	${.CURDIR}/files
 WRKSRC=		${WRKDIR}/go
 DISTINFO_FILE=	${.CURDIR}/distinfo
+SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
+		src/net/http/cgi/testdata/test.cgi
+BASH=		${SH}
 
 .include "${MASTERDIR}/Makefile"
