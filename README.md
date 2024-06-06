@@ -41,6 +41,12 @@ subdirectories unless you remember to "make clean" after you're done
 building a given port.  /usr/mports/Distfiles can also be periodically
 cleaned without ill-effect.
 
+## Supported Releases ##
+We currently support MidnightBSD 3.x+ with mports.
+
+Users on older releases should checkout a quarterly tagged release or an older point in time relative to
+when the release was out.
+
 ## Contributing ##
 
 If you wish to contribute to mports, submit via github on

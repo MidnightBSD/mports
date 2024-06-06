@@ -238,7 +238,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < $
 .    endif
 _EXPORTED_VARS+=	OSVERSION
 
-.if (${OSVERSION} < 12000)
+.if (${OSVERSION} < 300000)
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
 .      if defined(ALLOW_UNSUPPORTED_SYSTEM)
