@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstraction layer on top of the various Qt bindings
+WWW=		https://github.com/spyder-ide/qtpy
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
