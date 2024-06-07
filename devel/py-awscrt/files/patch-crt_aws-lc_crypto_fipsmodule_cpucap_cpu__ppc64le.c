@@ -1,4 +1,4 @@
---- crt/aws-lc/crypto/fipsmodule/cpucap/cpu_ppc64le.c.orig	2023-03-15 23:47:51 UTC
+--- crt/aws-lc/crypto/fipsmodule/cpucap/cpu_ppc64le.c.orig	2024-05-22 18:19:52 UTC
 +++ crt/aws-lc/crypto/fipsmodule/cpucap/cpu_ppc64le.c
 @@ -27,7 +27,11 @@
  extern uint8_t OPENSSL_cpucap_initialized;

@@ -1,4 +1,4 @@
---- setup.py.orig	2023-11-22 00:46:47 UTC
+--- setup.py.orig	2024-05-22 18:19:58 UTC
 +++ setup.py
 @@ -14,7 +14,6 @@ import shutil
  import subprocess
@@ -25,7 +25,7 @@
  def awscrt_ext():
      # fetch the CFLAGS/LDFLAGS from env
      extra_compile_args = os.environ.get('CFLAGS', '').split()
-@@ -415,6 +404,6 @@ setuptools.setup(
+@@ -418,6 +407,6 @@ setuptools.setup(
      ],
      python_requires='>=3.7',
      ext_modules=[awscrt_ext()],
