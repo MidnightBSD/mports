@@ -32,6 +32,10 @@ NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
 
+.if defined(MAGUS)
+NO_TEST=	yes
+.endif
+
 .if ${PYTHON_REL} < 31100
 TEST_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tomli>=0:textproc/py-tomli@${PY_FLAVOR}
 .endif
