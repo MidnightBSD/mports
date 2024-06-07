@@ -14,7 +14,7 @@
  if test "x$ac_cv_cflags__Wl___section_start__interp_0x7d000400" = xyes; then :
    case $host_os in
 -                                              freebsd* | kfreebsd*-gnu) WINELOADER_LDFLAGS="$WINELOADER_LDFLAGS -Wl,--section-start,.interp=0x60000400" ;;
-+                                              midnightbsd * | freebsd* | kfreebsd*-gnu) WINELOADER_LDFLAGS="$WINELOADER_LDFLAGS -Wl,--section-start,.interp=0x60000400" ;;
++                                              midnightbsd* | freebsd* | kfreebsd*-gnu) WINELOADER_LDFLAGS="$WINELOADER_LDFLAGS -Wl,--section-start,.interp=0x60000400" ;;
                                                *) WINELOADER_LDFLAGS="$WINELOADER_LDFLAGS -Wl,--section-start,.interp=0x7d000400" ;;
                                             esac
  fi
