@@ -1,4 +1,4 @@
-%%SITE_PERL%%/man/man3/Class::Mix.3.gz
+%%PERL5_MAN3%%/Class::Mix.3.gz
 %%SITE_PERL%%/Class/Mix.pm
 @dir %%SITE_PERL%%/man/man3
 @dir %%SITE_PERL%%/man
