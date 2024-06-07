@@ -5,12 +5,12 @@
 %%SITE_ARCH%%/Crypt/Eksblowfish/Uklblowfish.pm
 %%SITE_ARCH%%/Crypt/Eksblowfish/Subkeyed.pm
 %%SITE_ARCH%%/auto/Crypt/Eksblowfish/Eksblowfish.so
-%%SITE_PERL%%/man/man3/Crypt::Eksblowfish::Uklblowfish.3.gz
-%%SITE_PERL%%/man/man3/Crypt::Eksblowfish.3.gz
-%%SITE_PERL%%/man/man3/Crypt::Eksblowfish::Blowfish.3.gz
-%%SITE_PERL%%/man/man3/Crypt::Eksblowfish::Family.3.gz
-%%SITE_PERL%%/man/man3/Crypt::Eksblowfish::Subkeyed.3.gz
-%%SITE_PERL%%/man/man3/Crypt::Eksblowfish::Bcrypt.3.gz
+%%PERL5_MAN3%%/Crypt::Eksblowfish.3.gz
+%%PERL5_MAN3%%/Crypt::Eksblowfish::Bcrypt.3.gz
+%%PERL5_MAN3%%/Crypt::Eksblowfish::Blowfish.3.gz
+%%PERL5_MAN3%%/Crypt::Eksblowfish::Family.3.gz
+%%PERL5_MAN3%%/Crypt::Eksblowfish::Subkeyed.3.gz
+%%PERL5_MAN3%%/Crypt::Eksblowfish::Uklblowfish.3.gz
 @dir %%SITE_ARCH%%/Crypt/Eksblowfish
 @dir %%SITE_ARCH%%/Crypt
 @dir %%SITE_ARCH%%/auto/Crypt/Eksblowfish
