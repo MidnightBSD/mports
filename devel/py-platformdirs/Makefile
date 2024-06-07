@@ -1,24 +1,23 @@
 PORTNAME=	platformdirs
-PORTVERSION=	2.5.2
-PORTREVISION=	1
+PORTVERSION=	4.2.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python module for determining appropriate platform-specific dirs
-WWW=		https://github.com/platformdirs/platformdirs
+WWW=		https://platformdirs.readthedocs.io/en/latest/ \
+		https://github.com/platformdirs/platformdirs
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0.4:devel/py-hatch-vcs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hatchling>=1.18:devel/py-hatchling@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
-
-post-patch:
-	@${RM} ${WRKSRC}/pyproject.toml
-	@${SED} -e 's|%%PORTVERSION%%|${PORTVERSION}|' ${FILESDIR}/setup.py > ${WRKSRC}/setup.py
 
 .include <bsd.port.mk>
