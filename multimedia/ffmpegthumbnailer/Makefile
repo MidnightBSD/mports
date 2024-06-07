@@ -1,20 +1,24 @@
 PORTNAME=	ffmpegthumbnailer
-PORTVERSION=	2.2.2
-PORTREVISION=	1
+DISTVERSION=	2.2.2.20221021
+PORTREVISION=	2
 CATEGORIES=	multimedia graphics
-MASTER_SITES=	https://github.com/dirkvdb/${PORTNAME}/releases/download/${PORTVERSION}/
+#MASTER_SITES=	https://github.com/dirkvdb/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight video thumbnailer that can be used by file managers
 WWW=		https://github.com/dirkvdb/ffmpegthumbnailer
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libavformat.so:multimedia/ffmpeg
 
 USES=		cmake compiler:c++11-lib gnome jpeg localbase pkgconfig tar:bz2
+USE_GITHUB=	yes
+GH_ACCOUNT=	dirkvdb
+GH_TAGNAME=	e0bf01d
+
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 
