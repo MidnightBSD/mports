@@ -1,6 +1,6 @@
 %%SITE_ARCH%%/Params/Classify.pm
 %%SITE_ARCH%%/auto/Params/Classify/Classify.so
-%%SITE_PERL%%/man/man3/Params::Classify.3.gz
+%%PERL5_MAN3%%/Params::Classify.3.gz
 @dirrmtry %%SITE_ARCH%%/Params
 @dirrmtry %%SITE_ARCH%%/auto/Params/Classify
 @dirrmtry %%SITE_ARCH%%/auto/Params
