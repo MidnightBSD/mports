@@ -1,12 +1,11 @@
-# Created by: Gerald Pfeifer <gerald@FreeBSD.org>
-
 PORTNAME=	wine
 DISTVERSION=	6.0.4
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
-		http://mirrors.ibiblio.org/wine/source/6.0/
+		http://mirrors.ibiblio.org/wine/source/6.0/ \
+		https://dl.winehq.org/wine/source/6.0/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility environment
