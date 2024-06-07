@@ -1077,6 +1077,7 @@ SUBDIR += py-pathable
 SUBDIR += py-pathlib2
 SUBDIR += py-pathspec
 SUBDIR += py-pbr
+SUBDIR += py-pendulum
 SUBDIR += py-phx-class-registry
 SUBDIR += py-poetry-core
 SUBDIR += py-pooch
