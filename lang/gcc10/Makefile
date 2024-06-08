@@ -1,6 +1,5 @@
 PORTNAME=	gcc
-PORTVERSION=	10.4.0
-PORTREVISION=	1
+PORTVERSION=	10.5.0
 CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
@@ -53,10 +52,10 @@ CONFIGURE_ARGS+=	--disable-multilib
 
 .if ${ARCH} == amd64
 ARCH_64=
-CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
+CONFIGURE_TARGET=	x86_64-portbld-freebsd12.4
 .else
 ARCH_64=@comment
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 .endif
 
 LANGUAGES:=	c,c++,objc,fortran
