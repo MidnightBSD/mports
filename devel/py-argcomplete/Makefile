@@ -1,31 +1,32 @@
-# Created by: Tony Narlock <tony@git-pull.com>
-
 PORTNAME=	argcomplete
-PORTVERSION=	2.0.0
+PORTVERSION=	3.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bash tab completion for argparse
+WWW=		https://kislyuk.github.io/argcomplete/ \
+		https://github.com/kislyuk/argcomplete
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=0:devel/py-coverage@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}flake8>=0:devel/py-flake8@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pexpect>=0:misc/py-pexpect@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=6.2:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USES=		python shebangfix
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+# ruff isn't available
+NO_TEST=	yes
 
-.include <bsd.port.pre.mk>
+SHEBANG_FILES=	scripts/* \
+		test/prog
 
-.if ${PYTHON_REL} < 30800
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=0.23<5:devel/py-importlib-metadata@${PY_FLAVOR}
-.endif
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|' ${WRKSRC}/test/test.py
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
