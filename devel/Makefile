@@ -91,6 +91,7 @@ SUBDIR += double-conversion
 SUBDIR += doxygen
 SUBDIR += dulwich
 SUBDIR += e_dbus
+SUBDIR += efivar
 SUBDIR += efl
 SUBDIR += eggdbus
 SUBDIR += elfutils
