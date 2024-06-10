@@ -49,7 +49,6 @@ SUBDIR += gnumail
 SUBDIR += hashcash
 SUBDIR += libetpan
 SUBDIR += libmilter
-SUBDIR += libspf
 SUBDIR += libspf2
 SUBDIR += mailman
 SUBDIR += mailman-postfix

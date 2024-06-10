@@ -429,3 +429,4 @@ textproc/raptor||2024-06-03|Has expired: No new release in 10+ years and superse
 lang/rust170|lang/rust|2024-06-06|Moved to standard location as support for old MidnightBSD has dropped
 lang/rust169|lang/rust|2024-06-06|EOL
 devel/glslang|graphics/glslang|2024-06-10|Moved to graphics
+mail/libspf||2023-12-31|Has expired: Abandonware, last commit upstream 14 years ago. Consider migrating to mail/libspf2
