@@ -5,6 +5,7 @@ CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache module for subversion serving
+WWW=		https://subversion.apache.org/
 
 USES=		apache:2.4+
 
@@ -14,7 +15,7 @@ CONFIGURE_ARGS+=	--with-apxs=${APXS} \
 			--with-apache-libexecdir \
 			--without-gnome-keyring \
 			--without-kwallet
-CONFIGURE_TARGET=      ${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=      ${ARCH}-portbld-freebsd12.4
 SUB_FILES+=	220_subversion.conf.sample
 
 PLIST_SUB+=	SED=${SED}
