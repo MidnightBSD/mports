@@ -1,19 +1,21 @@
-# Created by: Alexey V. Degtyarev <alexey@renatasystems.org>
-
 PORTNAME=	colorama
-PORTVERSION=	0.4.4
+PORTVERSION=	0.4.6
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Cross-platform API to print colored terminal text from Python apps
+COMMENT=	Cross-platform API to print colored terminal text from Python applications
+WWW=		https://github.com/tartley/colorama
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-NO_ARCH=	yes
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0.25.1:devel/py-hatchling@${PY_FLAVOR}
+
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	autoplist pep517
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
