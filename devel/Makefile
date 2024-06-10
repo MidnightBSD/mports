@@ -152,7 +152,6 @@ SUBDIR += glade
 SUBDIR += glib20
 SUBDIR += glibmm
 SUBDIR += glog
-SUBDIR += glslang
 SUBDIR += gmake
 SUBDIR += gn
 SUBDIR += gnome-common
