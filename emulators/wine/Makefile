@@ -1,11 +1,9 @@
 PORTNAME=	wine
-DISTVERSION=	6.0.4
-PORTREVISION=	1
+DISTVERSION=	9.0
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	emulators
-MASTER_SITES=	SF/${PORTNAME}/Source \
-		http://mirrors.ibiblio.org/wine/source/6.0/ \
-		https://dl.winehq.org/wine/source/6.0/
+MASTER_SITES=	https://dl.winehq.org/wine/source/9.0/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility environment
@@ -16,9 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex
-LIB_DEPENDS=	libFAudio.so:audio/faudio \
-		libxml2.so:textproc/libxml2
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex llvm${_LLVM_VERSION}>=0:devel/llvm${_LLVM_VERSION}
 
 USES=		bison cpe desktop-file-utils gmake localbase \
 		pkgconfig sdl shebangfix tar:xz
@@ -33,34 +29,31 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--verbose \
 		--disable-kerberos \
 		--disable-tests \
-		--without-alsa \
 		--without-capi \
 		--without-coreaudio \
 		--without-dbus \
 		--without-gettext --without-gettextpo \
 		--without-gphoto \
-		--without-gsm \
 		--without-gssapi \
-		--without-gstreamer \
-		--without-hal \
 		--without-inotify \
 		--without-krb5 \
-		--without-mingw \
+		--with-mingw CROSSCC="clang" CROSSCFLAGS="-isystem ${FILESDIR}/clang" \
 		--without-netapi \
 		--without-opencl \
 		--without-osmesa \
-		--with-oss \
-		--with-pcap \
+		--without-pcap \
+		--without-pcsclite \
 		--with-pthread \
 		--without-pulse \
-		--without-quicktime \
 		--without-sane \
 		--with-sdl \
-		--without-tiff \
 		--without-udev \
 		--without-unwind \
-		--without-usb
+		--without-usb \
+		--without-wayland \
+		--build=${ARCH}-portbld-freebsd12.4 --host=${ARCH}-portbld-freebsd12.4
 CONFIGURE_ENV=	CPPBIN="${CPP}" FLEX="${LOCALBASE}/bin/flex"
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 WINELIBDIR=	${PREFIX}/lib
 .if !defined(USE_LDCONFIG32)
 USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
@@ -68,21 +61,32 @@ USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 SHEBANG_FILES=	tools/make_requests tools/winemaker/winemaker \
 		tools/winedump/function_grep.pl
 
+BINARY_ALIAS+=	clang=${LOCALBASE}/bin/clang${_LLVM_VERSION} \
+		lld-link=${LOCALBASE}/bin/lld-link${_LLVM_VERSION}
+
 SUB_FILES=	pkg-message
 
 PORTDATA=	wine.inf
+MAKE_ENV+=	__MidnightBSD__=3 MTERASE=12
 
-OPTIONS_DEFINE=	CUPS DOCS DOSBOX GNUTLS LDAP LIBXSLT MPG123 OPENAL V4L WINEMAKER X11 GECKO MONO
-OPTIONS_DEFAULT=GNUTLS OPENAL X11
+OPTIONS_DEFINE=	CUPS DOCS DOSBOX GNUTLS V4L WINEMAKER X11 GECKO MONO
+OPTIONS_DEFAULT=ALSA GNUTLS X11
+OPTIONS_RADIO=	AUDIO
+OPTIONS_RADIO_AUDIO=	ALSA OSS
 OPTIONS_SUB=	yes
 
 DOSBOX_DESC=	Use DOSBox to run MS-DOS programs
-LIBXSLT_DESC=	Use libxslt (only used by msxml3.dll)
 WINEMAKER_DESC=	Fully support winemaker (requires Perl)
 GECKO_DESC=	Bundle Gecko MSI package for Wine
 MONO_DESC=	Bundle Mono MSI package for Wine
 
-PORTSCOUT=	limit:^6\.0
+PORTSCOUT=	limit:^8\.0
+
+ALSA_CONFIGURE_WITH=	alsa
+ALSA_USES=		gnome gstreamer
+ALSA_USE=		GNOME=glib20
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+ALSA_RUN_DEPENDS=	alsa-plugins>0:audio/alsa-plugins
 
 CUPS_CONFIGURE_WITH=	cups
 CUPS_LIB_DEPENDS=	libcups.so:print/cups
@@ -94,19 +98,11 @@ GECKO_RUN_DEPENDS=	wine-gecko>0:emulators/wine-gecko
 GNUTLS_CONFIGURE_WITH=	gnutls
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 
-LDAP_CONFIGURE_WITH=	ldap
-LDAP_USE=		OPENLDAP=yes
-
-LIBXSLT_CONFIGURE_WITH=	xslt
-LIBXSLT_LIB_DEPENDS=	libxslt.so:textproc/libxslt
-
 MONO_RUN_DEPENDS=	wine-mono>0:emulators/wine-mono
 
-MPG123_CONFIGURE_WITH=	mpg123
-MPG123_LIB_DEPENDS=	libmpg123.so:audio/mpg123
-
-OPENAL_CONFIGURE_WITH=	openal
-OPENAL_USES=		openal
+OSS_CONFIGURE_WITH=	oss
+OSS_USES=		gnome gstreamer
+OSS_USE=		GNOME=glib20
 
 V4L_CONFIGURE_WITH=	v4l2
 V4L_BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
@@ -114,17 +110,28 @@ V4L_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 
 WINEMAKER_RUN_DEPENDS=	p5-XML-LibXML>0:textproc/p5-XML-LibXML
 
-X11_CONFIGURE_WITH=	x cms fontconfig freetype jpeg opengl png vkd3d xinerama xinput2 xrandr xrender
-X11_USES=		gl jpeg xorg
+X11_CONFIGURE_WITH=	x fontconfig freetype opengl xinerama xinput2 xrandr xrender
+X11_USES=		gl xorg
 X11_USE=		GL=glu XORG=x11,xext,xcomposite,xcursor,xi,xinerama,xrandr,xrender
 X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2 \
-			liblcms2.so:graphics/lcms2 \
-			libpng.so:graphics/png \
-			libvulkan.so:graphics/vulkan-loader \
-			libvkd3d.so:graphics/vkd3d
+			libvulkan.so:graphics/vulkan-loader
 
 .include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MALSA} || ${PORT_OPTIONS:MOSS}
+CONFIGURE_ARGS+=	--with-gstreamer
+PLIST_SUB+=		GSTREAMER=""
+.else
+CONFIGURE_ARGS+=	--without-gstreamer
+PLIST_SUB+=		GSTREAMER="@comment "
+.endif
+
+.if ${LLVM_DEFAULT} == 11
+_LLVM_VERSION=	15
+.else
+_LLVM_VERSION=	${LLVM_DEFAULT}
+.endif
 
 .if ${ARCH} == amd64
 # Wine is composed of three parts:
@@ -137,38 +144,39 @@ X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 
 # --libdir is required since Wine defaults to "${PREFIX}/lib64" on amd64.
 CONFIGURE_ARGS+=	--enable-win64 --libdir=${PREFIX}/lib
-PLIST_SUB+=		WINE32="@comment " WINE64=""
+PLIST_SUB+=		WINE32="@comment " WINE64="" WINEARCH="x86_64"
 
 # Wine assumes a WoW64 package is available, which is not the case
 post-patch:
 	${REINPLACE_CMD} '/Exec/s|wine|wine64|g' ${WRKSRC}/loader/wine.desktop
 
 .else
-PLIST_SUB+=		WINE32="" WINE64="@comment "
+EXTRA_PATCHES+=	files/extra-patch-tools-winebuild-res32
+PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386"
 .endif
 
 pre-build:
-	cd ${WRKSRC} && ${MAKE_CMD} depend
+	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_CMD} depend
 
 post-install:
 .if ${ARCH} == i386
-	${MV} ${PREFIX}/bin/wineserver   ${PREFIX}/bin/wineserver32
-	${MV} ${PREFIX}/bin/wine         ${PREFIX}/bin/wine.bin
-	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh       ${PREFIX}/bin/wine
+	${MV} ${STAGEDIR}${PREFIX}/bin/wineserver	${STAGEDIR}${PREFIX}/bin/wineserver32
+	${MV} ${STAGEDIR}${PREFIX}/bin/wine		${STAGEDIR}${PREFIX}/bin/wine.bin
+	-${ELFCTL} -e +noaslr				${STAGEDIR}${PREFIX}/bin/wine.bin
+	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh		${STAGEDIR}${PREFIX}/bin/wine
 .else
-	${MV} ${PREFIX}/bin/wine64       ${PREFIX}/bin/wine64.bin
-	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh       ${PREFIX}/bin/wine64
-	${INSTALL_SCRIPT} ${FILESDIR}/wine-wow64.sh ${PREFIX}/bin/wine
-	${INSTALL_SCRIPT} ${FILESDIR}/pkg32.sh      ${DATADIR}/pkg32.sh
+	${MV} ${STAGEDIR}${PREFIX}/bin/wine64		${STAGEDIR}${PREFIX}/bin/wine64.bin
+	-${ELFCTL} -e +noaslr				${STAGEDIR}${PREFIX}/bin/wine64.bin
+	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh		${STAGEDIR}${PREFIX}/bin/wine64
+	${INSTALL_SCRIPT} ${FILESDIR}/wine-wow64.sh	${STAGEDIR}${PREFIX}/bin/wine
+	${INSTALL_SCRIPT} ${FILESDIR}/pkg32.sh		${STAGEDIR}${DATADIR}/pkg32.sh
 .endif
-	@${MV} -f ${WINELIBDIR}/libwine.so.1.0 \
-	          ${WINELIBDIR}/libwine.so.1
-	@${LN} -sf libwine.so.1 /${WINELIBDIR}/libwine.so
-	@${MKDIR} ${DOCSDIR}
-.for i in README ANNOUNCE AUTHORS
-	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
+
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for i in ANNOUNCE.md AUTHORS README.md
+	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/programs/winedbg/README ${DOCSDIR}/README.winedbg
-	${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${DOCSDIR}/README.winedump
+	${INSTALL_DATA} ${WRKSRC}/programs/winedbg/README ${STAGEDIR}${DOCSDIR}/README.winedbg
+	${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${STAGEDIR}${DOCSDIR}/README.winedump
 
 .include <bsd.port.post.mk>
