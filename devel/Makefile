@@ -1168,6 +1168,7 @@ SUBDIR += py-pytest4-cov
 SUBDIR += py-pytest4-flakes
 SUBDIR += py-pytrie
 SUBDIR += py-pytz
+SUBDIR += py-pytzdata
 SUBDIR += py-qt5
 SUBDIR += py-qt5-pyqt
 SUBDIR += py-qt5-qscintilla2
