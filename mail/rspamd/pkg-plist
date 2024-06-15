@@ -265,8 +265,6 @@
 %%DATADIR%%/plugins/multimap.lua
 %%DATADIR%%/plugins/ip_score.lua
 %%DATADIR%%/plugins/known_senders.lua
-%%PERL5_MAN1%%/rspamadm.1.gz
-%%PERL5_MAN1%%/rspamc.1.gz
 man/man8/rspamd.8.gz
 etc/rc.d/rspamd
 %%ETCDIR%%/groups.conf
