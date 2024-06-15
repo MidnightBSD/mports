@@ -50,22 +50,29 @@ PORTSTOP=	yes
 
 .include <bsd.port.subdir.mk>
 
-index:
-	@rm -f ${INDEXDIR}/${INDEXFILE}
-	@cd ${.CURDIR} && ${MAKE} ${INDEXDIR}/${INDEXFILE}
+index: 	${INDEXDIR}/${INDEXFILE}
 
-indexbz2: index
-	@rm -f ${INDEXDIR}/${INDEXFILE}.bz2
-	@bzip2 ${INDEXDIR}/${INDEXFILE}
+INDEX_COMPRESSION_FORMAT?=	xz
 
-fetchindex: ${INDEXDIR}/${INDEXFILE}.bz2
-	@bunzip2 < ${INDEXDIR}/${INDEXFILE}.bz2 > ${INDEXDIR}/${INDEXFILE} && \
-	chmod a+r ${INDEXDIR}/${INDEXFILE} && ${RM} -f ${INDEXDIR}/${INDEXFILE}.bz2
+.if ${INDEX_COMPRESSION_FORMAT} != xz && \
+	${INDEX_COMPRESSION_FORMAT} != bz2 && ${INDEX_COMPRESSION_FORMAT} != zst
+.error "Invalid compression format: ${INDEX_COMPRESSION_FORMAT}, expecting xz, bz2 or zst"
+.endif
 
-${INDEXDIR}/${INDEXFILE}.bz2: .PHONY
-	@${FETCHINDEX} ${INDEXDIR}/${INDEXFILE}.bz2 ${MASTER_SITE_INDEX}${INDEXFILE}.bz2
+fetchindex: ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT}
+	@if bsdcat < ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT} > ${INDEXDIR}/${INDEXFILE}.tmp ; then \
+		chmod a+r ${INDEXDIR}/${INDEXFILE}.tmp; \
+		${MV} ${INDEXDIR}/${INDEXFILE}.tmp ${INDEXDIR}/${INDEXFILE}; \
+		${RM} ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT} \
+	else ; \
+		${RM} ${INDEXDIR}/${INDEXFILE}.tmp ; \
+	fi
 
-MASTER_SITE_INDEX?=	http://www.MidnightBSD.org/ports/
+${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT}: .PHONY
+	${FETCHINDEX} ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT} \
+		${MASTER_SITE_INDEX}${INDEXFILE}.${INDEX_COMPRESSION_FORMAT}
+
+MASTER_SITE_INDEX?=	https://www.MidnightBSD.org/ports/
 SETENV?=	/usr/bin/env
 FETCHINDEX?=	${SETENV} ${FETCH_ENV} fetch -am -o
 
@@ -100,7 +107,7 @@ MAKE_INDEX=	/usr/libexec/make_index /dev/stdin
 MAKE_INDEX=	perl ${.CURDIR}/Tools/make_index
 .endif
 
-${INDEXDIR}/${INDEXFILE}:
+${INDEXDIR}/${INDEXFILE}: .PHONY
 	@${INDEX_ECHO_1ST} "Generating ${INDEXFILE} - please wait.."; \
 	if [ "${INDEX_PRISTINE}" != "" ]; then \
 		export LOCALBASE=/nonexistentlocal; \
@@ -118,6 +125,8 @@ ${INDEXDIR}/${INDEXFILE}:
 			echo "version of MidnightBSD (see http://www.MidnightBSD.org/ports/) "; \
 			echo "and that you have a complete and up-to-date ports collection.  "; \
 			echo; \
+			echo "Note: the latest pre-generated version of INDEX may be fetched"; \
+			echo "automatically with \"make fetchindex\"."; \
 			echo "********************************************************************"; \
 			echo; \
 		fi; \
@@ -171,7 +180,7 @@ update:
 	@echo "--------------------------------------------------------------"
 	@echo ">>> Updating ${.CURDIR} from git repository"
 	@echo "--------------------------------------------------------------"
-	cd ${.CURDIR}; ${GIT} pull
+	cd ${.CURDIR}; ${GIT} pull --rebase
 .  endif
 .elif defined(RSYNC_UPDATE) && defined(PORTS_RSYNC_SOURCE)
 	@echo "--------------------------------------------------------------"
