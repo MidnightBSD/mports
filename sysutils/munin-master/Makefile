@@ -1,7 +1,6 @@
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
 CATEGORIES=	sysutils perl5
-MASTER_SITES=	${MUNIN_SITES}
 PKGNAMESUFFIX=	-master
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +8,7 @@ COMMENT=	Collector part of Munin
 WWW=		https://munin-monitoring.org/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	p5-Module-Build>=0:devel/p5-Module-Build \
 		munin-common>=${MUNIN_VERSION}:sysutils/munin-common \
