@@ -294,7 +294,7 @@ etc/rc.d/rspamd
 %%ETCDIR%%/maps.d/redirectors.inc
 %%ETCDIR%%/maps.d/surbl-whitelist.inc
 %%ETCDIR%%/logging.inc
-%%ETCDIR%%/rspamd.newsyslog.conf.sample
+@sample %%ETCDIR%%/rspamd.newsyslog.conf.sample
 etc/newsyslog.conf.d/rspamd.newsyslog.conf
 %%ETCDIR%%/modules.conf
 %%ETCDIR%%/actions.conf
