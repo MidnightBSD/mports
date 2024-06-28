@@ -6,46 +6,40 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Place launch icons and background directly on your desktop
+WWW=		https://idesk.sourceforge.net
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libXft.so:x11-fonts/libXft \
-		libImlib2.so:graphics/imlib2
+LIB_DEPENDS=	libImlib2.so:graphics/imlib2 \
+		libXft.so:x11-fonts/libXft
 
-USES=		autoreconf gmake pkgconfig tar:bzip2
+USES=		gmake pkgconfig tar:bzip2 xorg
+USE_XORG=	ice sm x11
+
 GNU_CONFIGURE=	yes
 
-OPTIONS_DEFINE=	SHAPE SN
-SHAPE_DESC=	Support of XShape extension
-SN_DESC=	Startup notification support
-OPTIONS_DEFAULT=	SHAPE
-
-.include <bsd.port.pre.mk>
-
-CXXFLAGS+=	`imlib2-config --cflags` `freetype-config --cflags`
-MAKE_ARGS=	cc="${CXX}" cflags="${CXXFLAGS}"
+MAKE_ARGS=	cc="${CXX}" \
+		cflags="${CXXFLAGS}"
 SUB_FILES=	pkg-message
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	README
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=		DOCS SHAPE SN
+OPTIONS_DEFAULT=	SHAPE
 
-.if ${PORT_OPTIONS:MSHAPE}
-CONFIGURE_ARGS+=	--enable-shape
-.else
-CONFIGURE_ARGS+=	--disable-shape
-.endif
+SHAPE_DESC=	Support of XShape extension
+SN_DESC=	Startup notification support
 
-.if ${PORT_OPTIONS:MSN}
-LIB_DEPENDS+=	libstartup-notification.so:x11/startup-notification
-CONFIGURE_ARGS+=	--enable-libsn
-.endif
+SHAPE_USE=		XORG=xext
+SHAPE_CONFIGURE_ENABLE=	shape
+
+SN_LIB_DEPENDS=		libstartup-notification-1.so:x11/startup-notification
+SN_CONFIGURE_ON=	--enable-libsn
 
 do-install:
 		${INSTALL_PROGRAM} ${WRKSRC}/src/idesk ${PREFIX}/bin
-.if ${PORT_OPTIONS:MDOCS}
 		${MKDIR} ${DOCSDIR}
 		${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
