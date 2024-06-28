@@ -10,11 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate common types of methods
 WWW=		https://metacpan.org/release/Class-MakeMethods
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes
-USES=		perl5
+USES=		perl5:patch,build,run
 USE_PERL5=	configure
 
 NO_TEST=	yes
