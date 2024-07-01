@@ -13,21 +13,21 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}-extra${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeXLive manager modules
 
-LICENSE=	publicdom
+LICENSE=	gpl2
 
-RUN_DEPENDS=	tex-kpathsea>=6.3.3:devel/tex-kpathsea
-
-USES=		cpe perl5 tar:xz
+USES=		cpe perl5 tar:xz tex
 CPE_VENDOR=	tug
 USE_PERL5=	run
 USE_TEX=	kpathsea
-PATCH_WRKSRC=	${WRKDIR}
+
+NO_ARCH=	yes
 NO_BUILD=	yes
 
-TLPKG_FILE=			${PORTNAME}-${PORTVERSION}-tlpdb-full
+TLPKG_FILE=			${PORTNAME}-${TEXLIVE_YEAR}0311-tlpdb-full
 EXTRACT_AFTER_ARGS_SOURCE=	| ${TAR} -xf - -C ${WRKDIR} \
 				--no-same-permission --no-same-owner \
-				${PORTNAME}-${PORTVERSION}-source/texk/texlive/linked_scripts/texlive
+				${PORTNAME}-${PORTVERSION}-source/texk/texlive/linked_scripts/texlive \
+				${PORTNAME}-${PORTVERSION}-source/build-aux/config.guess
 
 PATCH_WRKSRC=	${WRKDIR}
 
@@ -36,27 +36,32 @@ post-extract:
 	    ${EXTRACT_AFTER_ARGS_SOURCE}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/scripts/texlive
+	@${MKDIR} ${PREFIX}/${TEXMFDISTDIR}/scripts/texlive
 	${INSTALL_SCRIPT} \
 	    ${WRKDIR}/${PORTNAME}-${PORTVERSION}-source/texk/texlive/linked_scripts/texlive/tlmgr.pl \
-	    ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/scripts/texlive
-	cd ${STAGEDIR}${PREFIX}/bin && \
+	    ${PREFIX}/${TEXMFDISTDIR}/scripts/texlive
+	cd ${PREFIX}/bin && \
 	    ${LN} -s ../${TEXMFDISTDIR}/scripts/texlive/tlmgr.pl tlmgr
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/TeXLive
+	# texlive-20230313-source/build-aux/config.guess
+	# /usr/local/share/tlpkg/installer/config.guess
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/TeXLive
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}-${PORTVERSION}-extra/tlpkg/TeXLive/*.pm \
-	    ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/TeXLive
+	    ${PREFIX}/${SITE_PERL_REL}/TeXLive
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}-${PORTVERSION}-extra/tlpkg/TeXLive/trans.pl \
 	    ${PREFIX}/${SITE_PERL_REL}/TeXLive
 	@${MKDIR} ${PREFIX}/${TEXMFDISTDIR}
 	${TOUCH} ${PREFIX}/${TEXMFDISTDIR}/.texlive-tlmgr
-	${MKDIR} ${FAKE_DESTDIR}/var/db/tlpkg
+	${MKDIR} ${FAKE_DESTDIR}/var/db/tlpkg/installer
 	${TOUCH} ${FAKE_DESTDIR}/var/db/tlpkg/tlmgr.log
 	${TAR} -xf ${DISTDIR}/${DIST_SUBDIR}/${TLPKG_FILE}.tar.gz -C \
 	    ${FAKE_DESTDIR}/var/db/tlpkg/ texlive.tlpdb
+	${INSTALL_SCRIPT} \
+	    ${WRKDIR}/${PORTNAME}-${PORTVERSION}-source/build-aux/config.guess \
+	    ${FAKE_DESTDIR}/var/db/tlpkg/installer/
 	${INSTALL_DATA} ${LOCALBASE}/share/texmf-dist/web2c/texmf.cnf \
 	    ${FAKE_DESTDIR}/var/db/tlpkg
 	${MKDIR} ${FAKE_DESTDIR}/var/db/tlpkg/backups
 	${MKDIR} ${FAKE_DESTDIR}/var/db/tlpkg/tlpobj
-	${LN} -s /var/db/tlpkg ${STAGEDIR}${PREFIX}/share/tlpkg
+	${LN} -s /var/db/tlpkg ${PREFIX}/share/tlpkg
 
 .include <bsd.port.mk>

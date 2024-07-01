@@ -1,38 +1,35 @@
-#
-# tex.mk - Common part for TeX related ports
-#
+# Feature: tex
+# Usage:   USES=tex
+# Valid ARGS:	(none)
+# 
 
-#
-# Ports which depend on TeX should use USE_TEX.
-#
-# USE_TEX=	yes
-# imports variables only, and
-# USE_TEX=	full
+# This imports variables only, and USE_TEX=	full
 # means full TeXLive dependency except for documentation and source.
 #
-# The other valid keywords
+# USE_TEX is used to enable additional specific features and
+# fnctionalities for tex.
 #
-#  base:	base part
-#  texmf:	texmf tree (except for documentation and source)
-#  source:	source 
-#  docs:	documentation
-#
-#  web2c:	WEB2C toolchain and TeX engines
+# Valid keywords for USE_TEX are as following:
+
+#  base:		base part
+#  texmf:		texmf tree (except for documentation and source)
+#  source:		source
+#  docs:		documentation
+#  web2c:		WEB2C toolchain and TeX engines
 #  kpathsea:	kpathsea library
-#  ptexenc:	character code conversion library for pTeX
-#  basic:	basic TeX engines including tex and pdftex
-#  tlmgr:	tlmgr dependency (Perl modules)
-#  texlua:	texlua53 library
+#  ptexenc:		character code conversion library for pTeX
+#  basic:		basic TeX engines including tex and pdftex
+#  tlmgr:		tlmgr dependency (Perl modules)
+#  texlua:		texlua53 library
 #  texluajit:	texluajit library
-#  synctex:	synctex library
+#  synctex:		synctex library
 #  xpdfopen:	pdfopen/pdfclose utility
-#
-#  dvipsk:	dvipsk
+#  dvipsk:		dvipsk
 #  dvipdfmx:	DVIPDFMx
-#  xdvik:	XDvi
+#  xdvik:		XDvi
 #  gbklatex:	gbklatex
-#
-#  formats:	TeX, LaTeX, AMSTeX, ConTeXT, EplainTeX,
+
+#  formats:	TeX, LaTeX, AMSTeX, EplainTeX,
 #		CSplainTeX, METAFONT, MLTeX, PDFTeX, TeXsis
 #  tex:		TeX
 #  latex:	LaTeX
@@ -52,9 +49,33 @@
 # USE_TEX=	formats
 # USE_TEX=	latex:build dvipsk:build
 
-.if !defined(Tex_Pre_Include)
+.if !defined(_INCLUDE_USES_TEX_MK)
+_INCLUDE_USES_TEX_MK=    yes
 
-Tex_Pre_Include=             tex.mk
+# List all valid USE_TEX features here
+_VALID_TEX_FEATURES= base texmf source docs web2c kpathsea ptexenc basic \
+					tlmgr texlua texluajit synctex xpdfopen dvipsk dvipdfmx \
+					xdvik gbklatex formats tex latex pdftex jadetex luatex \
+					ptex xetex xmltex texhash texhash-bootstrap updmap fmtutil full
+
+_INVALID_TEX_FEATURES=
+.  for var in ${USE_TEX:O:u:C/:(build|extract|lib|run|test)$//}
+.    if empty(_VALID_TEX_FEATURES:M${var})
+_INVALID_TEX_FEATURES+=  ${var}
+.    endif
+.  endfor
+.  if !empty(_INVALID_TEX_FEATURES)
+IGNORE= uses unknown USE_TEX features: ${_INVALID_TEX_FEATURES}
+.  endif
+
+.  if !empty(tex_ARGS)
+IGNORE=	USES=tex takes no arguments
+.  endif
+
+# Make each individual feature available as _TEX_FEATURE_<FEATURENAME>
+.  for var in ${USE_TEX}
+_TEX_FEATURE_${var:C/=.*$//:tu}= ${var:C/.*=//:S/,/ /g}
+.  endfor
 
 # default TeX distribution.  "texlive"
 TEX_DEFAULT?=	texlive
@@ -70,16 +91,13 @@ TEXMFVARDIR?=	share/texmf-var
 TEXMFCONFIGDIR?=share/texmf-config
 FMTUTIL_CNF?=	${TEXMFCONFIGDIR}/web2c/fmtutil.cnf
 TEXHASHDIRS?=	${TEXMFDIR} ${TEXMFDISTDIR} ${TEXMFLOCALDIR} ${TEXMFVARDIR} ${TEXMFCONFIGDIR}
-TEXLIVE_YEAR?=	2021
-TEXLIVE_VERSION?=	${TEXLIVE_YEAR}0325
+TEXLIVE_YEAR?=	2023
+TEXLIVE_VERSION?=	${TEXLIVE_YEAR}0313
+DISTNAME_TEXMF=	texlive-${TEXLIVE_VERSION}-texmf
 
 .for V in TEXMFDIR TEXMFDISTDIR TEXMFLOCALDIR TEXMFVARDIR TEXMFCONFIGDIR FMTUTIL_CNF
 PLIST_SUB+=	$V="${$V}"
 .endfor
-
-.if !empty(USE_TEX:tu:MTEXLIVE)
-IGNORE=		"texlive" must not be defined in USE_TEX 
-.endif
 
 _USE_TEX_TEXMF_DEP=	${LOCALBASE}/${TEXMFDISTDIR}/README
 _USE_TEX_TEXMF_PORT=	print/${_USE_TEX_TEXMF_PKGNAME}
@@ -190,7 +208,6 @@ _C:=	BUILD RUN
 .  else
 _C:=	${_U:C/.*://:S/,/ /g:C/[<>=][^\:]*//g}
 .  endif
-#. warning DEBUG: ${_U}: _VOP=${_VOP}, _C=${_C}
 .  for _CC in ${_C:tu}
 _V:=${_UU:C/[<>=][^\:]*//:C/\:.*$//}
 .    if defined(_USE_TEX_${_V}_PORT)
@@ -207,7 +224,7 @@ TEX_${_CC}_DEPENDS+=	${_T}
 .  endfor
 .endfor
 
-.for _C in EXTRACT BUILD LIB RUN
+.for _C in EXTRACT BUILD LIB RUN TEST
 ${_C}_DEPENDS+=	${TEX_${_C}_DEPENDS:O:u}
 .endfor
 
@@ -304,20 +321,6 @@ TEX_FORMAT_AMSTEX_DIRS= \
 post-install-amstex:
 	${LN} -fs pdftex ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/amstex
 
-TEX_FORMAT_CONTEXT?= \
-	"cont-en pdftex cont-usr.tex -8bit *cont-en.mkii"
-# XXX
-#	"metafun mpost - metafun.mp"
-TEX_FORMAT_CONTEXT_FILES=	\
-	${TEXMFVARDIR}/web2c/pdftex/cont-en.log \
-	${TEXMFVARDIR}/web2c/pdftex/cont-en.fmt
-#	bin/metafun
-TEX_FORMAT_CONTEXT_DIRS= \
-	${TEXMFVARDIR}/web2c/pdftex
-post-install-context:
-	@${DO_NADA}
-#	${LN} -sf mpost ${PREFIX}/bin/metafun
-
 TEX_FORMAT_CSPLAIN?= \
 	"csplain pdftex - -etex -enc csplain-utf8.ini" \
 	"pdfcsplain pdftex - -etex -enc csplain-utf8.ini"
@@ -383,7 +386,7 @@ TEX_FORMAT_LUATEX?= \
 	"luatex luatex language.def,language.dat.lua luatex.ini" \
 	"dviluatex luatex language.def,language.dat.lua dviluatex.ini" \
 	"dvilualatex luatex language.dat,language.dat.lua dvilualatex.ini" \
-	"lualatex luatex language.dat,language.dat.lua lualatex.ini" \
+	"lualatex luahbtex language.dat,language.dat.lua lualatex.ini" \
 	"luajittex luajittex language.def,language.dat.lua luatex.ini" \
 	"pdfcsplain luatex - -etex csplain.ini" \
 	"lollipop luatex - lollipop.ini"
@@ -394,15 +397,16 @@ TEX_FORMAT_LUATEX_FILES= \
 	${TEXMFVARDIR}/web2c/luatex/dvilualatex.fmt \
 	${TEXMFVARDIR}/web2c/luatex/luatex.log \
 	${TEXMFVARDIR}/web2c/luatex/luatex.fmt \
-	${TEXMFVARDIR}/web2c/luatex/lualatex.log \
-	${TEXMFVARDIR}/web2c/luatex/lualatex.fmt \
 	${TEXMFVARDIR}/web2c/luatex/pdfcsplain.log \
 	${TEXMFVARDIR}/web2c/luatex/pdfcsplain.fmt \
+	${TEXMFVARDIR}/web2c/luahbtex/lualatex.fmt \
+	${TEXMFVARDIR}/web2c/luahbtex/lualatex.log \
 	${TEXMFVARDIR}/web2c/luajittex/luajittex.log \
 	${TEXMFVARDIR}/web2c/luajittex/luajittex.fmt
 TEX_FORMAT_LUATEX_BIN= \
 	bin/dviluatex \
 	bin/dvilualatex \
+	bin/luahbtex \
 	bin/luajittex \
 	bin/lualatex \
 	bin/lualollipop \
@@ -415,9 +419,9 @@ TEX_FORMAT_LUATEX_DIRS=	\
 	${TEXMFVARDIR}/web2c/luatex \
 	${TEXMFVARDIR}/web2c/luajittex
 post-install-luatex:
+	${LN} -sf luahbtex ${FAKE_DESTDIR}${PREFIX}/bin/lualatex
 	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/dviluatex
 	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/dvilualatex
-	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/lualatex
 	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/lualollipop
 	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/texlua
 	${LN} -sf luatex ${FAKE_DESTDIR}${PREFIX}/bin/texluac
@@ -528,12 +532,8 @@ TEX_FORMAT_PTEX_FILES= \
 	${TEXMFVARDIR}/web2c/eptex/platex.fmt
 TEX_FORMAT_PTEX_BIN= \
 	bin/eptex \
-	bin/pbibtex \
-	bin/pdvitype \
 	bin/ptex \
 	bin/platex \
-	bin/ppltotf \
-	bin/ptftopl \
 	bin/upbibtex \
 	bin/updvitype \
 	bin/uppltotf \
@@ -591,13 +591,10 @@ TEX_FORMAT_XETEX?= \
 	"xetex xetex language.def -etex xetex.ini" \
 	"xelatex xetex language.dat -etex xelatex.ini" \
 	"pdfcsplain xetex - -etex csplain.ini" \
-	"cont-en xetex cont-usr.tex -8bit *cont-en.mkii" \
 	"lollipop xetex - -etex lollipop.ini"
 TEX_FORMAT_XETEX_FILES=	\
 	${TEXMFVARDIR}/web2c/xetex/lollipop.fmt \
 	${TEXMFVARDIR}/web2c/xetex/lollipop.log \
-	${TEXMFVARDIR}/web2c/xetex/cont-en.log \
-	${TEXMFVARDIR}/web2c/xetex/cont-en.fmt \
 	${TEXMFVARDIR}/web2c/xetex/pdfcsplain.log \
 	${TEXMFVARDIR}/web2c/xetex/pdfcsplain.fmt \
 	${TEXMFVARDIR}/web2c/xetex/xetex.log \

@@ -1,6 +1,6 @@
 PORTNAME=	xdvik
 PORTVERSION=	22.87.06
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	SF/xdvi/${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	tex-
@@ -8,20 +8,23 @@ DIST_SUBDIR=	TeX
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DVI Previewer(kpathsearch) for X
-WWW=		http://xdvi.sourceforge.net/
+WWW=		https://xdvi.sourceforge.net/
 
-LICENSE=	other
+LICENSE=	gpl2
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libpaper.so:print/libpaper
 RUN_DEPENDS=	tex-dvipsk>=5.995:print/tex-dvipsk
 
-USES=		iconv motif pkgconfig xorg
-USE_TEX=	kpathsea texhash texmf web2c
+USES=		autoreconf iconv libtool:build motif pkgconfig tex xorg
+USE_TEX=	kpathsea texhash web2c
 USE_XORG=	ice sm x11 xext xi xmu xpm xt
 
+PATCH_WRKSRC=	${WRKDIR}/${DISTNAME}
+WRKSRC=		${WRKDIR}/${DISTNAME}/texk/xdvik
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--datarootdir=${LOCALBASE}/share \
 		--enable-shared \
 		--enable-xi2-scrolling \
@@ -42,20 +45,16 @@ CONFIGURE_ENV=	INSTALL_DATA="${INSTALL_DATA}" \
 		INSTALL_SCRIPT="${INSTALL_SCRIPT}"
 
 CFLAGS+=	-I${LOCALBASE}/include -DHAVE_LIBPAPER -g -O0
-
-CONFLICTS_INSTALL=	*-xdvi ja-xdvik xdvi xdvi-* xdvik
-
 BINARY_ALIAS=	freetype-config=true
-
-PATCH_WRKSRC=	${WRKDIR}/${DISTNAME}
-WRKSRC=		${WRKDIR}/${DISTNAME}/texk/xdvik
-
 PLIST_SUB=	TEXMFDISTDIR=${TEXMFDISTDIR}
 PORTDOCS=	BUGS CHANGES ChangeLog INSTALL README* TODO
 
 OPTIONS_DEFINE=	DOCS
 
 TEXHASHDIRS=	${TEXMFDISTDIR}
+
+post-install:
+	cd ${PREFIX}/${TEXMFDISTDIR}/xdvi && ${MV} XDvi XDvi.sample
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -1,5 +1,5 @@
 PORTNAME=	ptexenc
-PORTVERSION=	1.3.9
+PORTVERSION=	1.4.3
 CATEGORIES=	print
 MASTER_SITES=	TEX_CTAN/systems/texlive/Source/${TEXLIVE_YEAR}
 PKGNAMEPREFIX=	tex-
@@ -12,25 +12,27 @@ COMMENT=	Library for Japanese pTeX and its tools
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USES=		iconv libtool pathfix pkgconfig tar:xz
-USE_TEX=	kpathsea
+USES=		iconv libtool pathfix pkgconfig tar:xz tex
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/${DISTNAME}/texk/ptexenc
-EXTRACT_AFTER_ARGS=	${EXTRACT_FILES:S/^/${DISTNAME}\//}
-EXTRACT_FILES=	build-aux texk/ptexenc
+USE_TEX=	kpathsea
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-kanji-iconv \
 		--with-system-kpathsea \
 		--with-kpathsea-includes=${LOCALBASE}/include \
 		--with-kpathsea-libdir=${LOCALBASE}/lib
-LIBS+=		-L${ICONV_PREFIX}/lib ${ICONV_LIB}
-CPPFLAGS+=	-I${ICONV_PREFIX}/include
+
 INSTALL_TARGET=	install-strip
 
-.include <bsd.mport.options.mk>
+CPPFLAGS+=	-I${ICONV_PREFIX}/include
+LIBS+=		-L${ICONV_PREFIX}/lib ${ICONV_LIB}
 
-.if ${ARCH} == "i386"
-DISABLE_SIZE=   yes
-.endif
+EXTRACT_AFTER_ARGS=	${EXTRACT_FILES:S/^/${DISTNAME}\//}
+
+WRKSRC=		${WRKDIR}/${DISTNAME}/texk/ptexenc
+
+PLIST_SUB=	VERSION=${PORTVERSION}
+
+EXTRACT_FILES=	build-aux texk/ptexenc
 
 .include <bsd.port.mk>

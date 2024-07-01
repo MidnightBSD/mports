@@ -1,5 +1,6 @@
 PORTNAME=	libtexluajit
 PORTVERSION=	2.1.0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}
 PKGNAMEPREFIX=	tex-
@@ -12,9 +13,13 @@ COMMENT=	LuaJIT library for TeXLive
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LuaJIT-src/COPYRIGHT
 
-USES=		libtool pathfix pkgconfig tar:xz
+BROKEN_mips=	Does not configure: error: Sorry, cannot preprocess lj_arch.h
+BROKEN_mips64=	Does not configure: error: Sorry, cannot preprocess lj_arch.h
+BROKEN_powerpc64=	Does not build: uninitialized constant Config (NameError)
+BROKEN_riscv64=	Does not configure: error: Sorry, cannot preprocess lj_arch.h
+
+USES=		compiler libtool pathfix pkgconfig tar:xz tex
 USE_LDCONFIG=	yes
-USE_TEX=	yes
 
 GNU_CONFIGURE=	yes
 

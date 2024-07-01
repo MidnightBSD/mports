@@ -13,7 +13,7 @@ LICENSE=	mit gpl2
 LICENSE_COMB=	multi
 
 USE_TEX=	full texhash
-USES=		metaport
+USES=		metaport tex
 
 OPTIONS_DEFINE=	DOCS SOURCE
 

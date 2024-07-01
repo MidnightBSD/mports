@@ -1,7 +1,6 @@
-
-
 PORTNAME=	kpathsea
-PORTVERSION=	6.3.3
+PORTVERSION=	6.3.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}/
 PKGNAMEPREFIX=	tex-
@@ -13,11 +12,11 @@ COMMENT=	Path searching library for TeX
 
 LICENSE=	lgpl2.1
 
-USES=		libtool pathfix tar:xz
+USES=		libtool pathfix tar:xz tex
 USE_LDCONFIG=	yes
-USE_TEX=	yes
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 
 INSTALL_TARGET=	install-strip
 
@@ -29,17 +28,18 @@ EXTRACT_FILES=	build-aux texk/kpathsea texk/texlive/tl_support \
 WRKSRC=		${WRKDIR}/${DISTNAME}/texk/kpathsea
 
 INFO=		kpathsea
+PLIST_SUB= VERSION=${PORTVERSION}
 
 post-install:
 	(cd ${WRKDIR}/${DISTNAME}/texk/texlive/linked_scripts/texlive-extra && \
 	    for f in kpsetool kpsewhere; do \
 		${INSTALL_SCRIPT} $${f}.sh ${STAGEDIR}${PREFIX}/bin/$$f; \
 		${INSTALL_MAN} ../../tl_support/$${f}.1 \
-		    ${STAGEDIR}${MANPREFIX}/man/man1/$${f}.1; \
+		    ${STAGEDIR}${PREFIX}/share/man/man1/$${f}.1; \
 	    done; \
 	    for l in kpsexpand kpsepath; do \
 		${LN} -sf kpsetool ${STAGEDIR}${PREFIX}/bin/$$l; \
-		${LN} -sf kpsetool.1 ${STAGEDIR}${MANPREFIX}/man/man1/$${l}.1; \
+		${LN} -sf kpsetool.1 ${STAGEDIR}${PREFIX}/share/man/man1/$${l}.1; \
 	    done)
 
 .include <bsd.port.mk>

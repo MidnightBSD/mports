@@ -16,18 +16,15 @@ LICENSE=	unknown
 # seems to need a perl module included with this port to build
 BUILD_DEPENDS+=	texlive-tlmgr>0:print/texlive-tlmgr
 
-USE_TEX=	basic fmtutil texhash texmf web2c
-TEXHASHDIRS=	${TEXMFVARDIR}
-TEX_FORMATS=	amstex context csplain eplain latex-bin metafont mex mptopdf \
-		pdftex tex
+USES=		tex
+USE_TEX=	base basic fmtutil texhash texmf web2c
 
 NO_ARCH=	yes
 NO_BUILD=	yes
+NO_INSTALL=	yes
 
-post-extract:
-	mkdir ${WRKSRC}
-	mkdir ${FAKE_DESTDIR}
-
-do-install:
+TEXHASHDIRS=	${TEXMFVARDIR}
+TEX_FORMATS=	amstex csplain eplain latex-bin metafont mex mptopdf \
+		pdftex tex
 
 .include <bsd.port.mk>

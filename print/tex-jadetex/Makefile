@@ -1,47 +1,55 @@
 PORTNAME=	jadetex
 PORTVERSION=	3.13
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	print
-MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}/
+MASTER_SITES=	FREEBSD_LOCAL/tex
 PKGNAMEPREFIX=	tex-
-DISTNAME=	texlive-${TEXLIVE_VERSION}-texmf
+DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${TEXLIVE_VERSION}-freebsd
 DIST_SUBDIR=	TeX
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeX backend for Jade, DSSSL processor for SGML/XML documents
-WWW=		http://jadetex.sourceforge.net/
+WWW=		https://jadetex.sourceforge.net/
 
 LICENSE=	gpl2
 
 USES=		tar:xz tex
-USE_TEX=	texmf pdftex xmltex fmtutil
+USE_TEX=	fmtutil pdftex xmltex
+
+NO_ARCH=	yes
+NO_BUILD=	yes
+
 TEXHASHDIRS=	${TEXMFDISTDIR} ${TEXMFVARDIR}
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
-		--strip-components 1 --no-same-permission --no-same-owner \
-		${EXTRACT_FILES:S,^,${DISTNAME}/,}
-EXTRACT_FILES= \
+TEX_FORMATS=	jadetex
+
+do-install:
+	${TAR} -Jxf ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
+		-C ${STAGEDIR}${PREFIX}/share \
+		--strip-components 1 --no-same-permission --no-same-owner
+
+.if defined(MAINTAINER_MODE)
+_EXTRACT_FILES= \
 	texmf-dist/doc/otherformats/jadetex \
 	texmf-dist/source/jadetex/base \
 	texmf-dist/tex/jadetex/base
-NO_WRKSRC=	yes
-NO_BUILD=	yes
-TEX_FORMATS=	jadetex
+_WRKSRC=	${WRKDIR}/${PKGNAMEPREFIX}${PORTNAME}-${TEXLIVE_VERSION}
 
-.include <bsd.mport.options.mk>
+_maintainer-extract:
+	${MAKE} clean
+	${MKDIR} ${_WRKSRC}
+	${TAR} -xf ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME_TEXMF}${EXTRACT_SUFX} \
+		-C ${_WRKSRC}$ \
+		--strip-components 1 --no-same-permission --no-same-owner \
+		${_EXTRACT_FILES:S,^,${DISTNAME_TEXMF}/,}
 
-.if ${ARCH} == "i386"
-DISABLE_SIZE=   yes
+_maintainer-dist: _maintainer-extract
+	${TAR} --options xz:compression-level=9 -Jcvf \
+		${WRKDIR}/${PKGNAMEPREFIX}${PORTNAME}-${TEXLIVE_VERSION}-freebsd.tar.xz \
+		-C ${WRKDIR} ${PKGNAMEPREFIX}${PORTNAME}-${TEXLIVE_VERSION}
+	scp ${WRKDIR}/${PKGNAMEPREFIX}${PORTNAME}-${TEXLIVE_VERSION}-freebsd.tar.xz \
+		bofh@freefall.freebsd.org://home/tex/public_distfiles/
+
 .endif
-
-do-install:
-	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share
-	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
-	    ${EXTRACT_AFTER_ARGS}
-
-post-fake:
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/jadetex.log \
-		${FAKE_DESTDIR}${PREFIX}/share/texmf-var/web2c/pdftex/pdfjadetex.log
 
 .include <bsd.port.mk>

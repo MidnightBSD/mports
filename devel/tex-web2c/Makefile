@@ -2,7 +2,7 @@ PORTNAME=	web2c
 PORTVERSION=	${TEXLIVE_VERSION}
 PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	TEX_CTAN/systems/texlive/Source/
+MASTER_SITES=	TEX_CTAN/systems/texlive/${TEXLIVE_YEAR}
 PKGNAMEPREFIX=	tex-
 DISTNAME=	texlive-${PORTVERSION}-source
 DIST_SUBDIR=	TeX
@@ -10,7 +10,7 @@ DIST_SUBDIR=	TeX
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeX implementation translating WEB to C
 
-LICENSE=	publicdom
+LICENSE=	lgpl2.1+
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
@@ -18,16 +18,18 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 		libpng.so:graphics/png \
 		libzzip.so:devel/zziplib
 
-USES=		gnome libtool localbase pathfix pkgconfig tar:xz xorg
+USES=		gnome libtool localbase pathfix pkgconfig tar:xz tex xorg
 USE_GNOME=	cairo
 USE_LDCONFIG=	yes
 USE_TEX=	kpathsea ptexenc
 USE_XORG=	pixman
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=		--disable-aleph \
 			--disable-eptex \
 			--disable-euptex \
+			--disable-hitex \
 			--disable-latex \
 			--disable-luahbtex \
 			--disable-luajithbtex \
@@ -57,6 +59,7 @@ CONFLICTS_INSTALL=	cweb
 
 EXTRACT_AFTER_ARGS=	${EXTRACT_FILES:S,^,${DISTNAME}/,}
 EXTRACT_FILES=	build-aux libs/xpdf texk/web2c
+
 WRKSRC=		${WRKDIR}/${DISTNAME}/texk/web2c
 
 INFO=		web2c
