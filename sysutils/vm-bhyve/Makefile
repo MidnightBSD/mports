@@ -1,9 +1,11 @@
 PORTNAME=	vm-bhyve
-PORTVERSION=	1.4.2
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.5.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Management system for bhyve virtual machines
+WWW=		https://github.com/churchers/vm-bhyve
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
