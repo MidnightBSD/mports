@@ -18,10 +18,9 @@ PLIST_SUB=	P5_PREFIX="p5"
 
 pre-patch:
 	@${MV} ${WRKSRC}/bin/prove ${WRKSRC}/bin/p5prove
-	@${PERL} -pi -e "s,^bin/prove$$,bin/p5prove," ${WRKSRC}/MANIFEST
-	@${PERL} -pi -e "s,'bin/prove','bin/p5prove'," ${WRKSRC}/Makefile.PL
 
 post-patch:
 	@${REINPLACE_CMD} -e '/INSTALLDIRS/d' ${WRKSRC}/${CONFIGURE_SCRIPT}
+	@${REINPLACE_CMD} 's|bin/prove|bin/p5prove|' ${WRKSRC}/MANIFEST ${WRKSRC}/Makefile.PL
 
 .include <bsd.port.mk>
