@@ -61,6 +61,6 @@ post-patch:
 	@${INSTALL_SCRIPT} ${DISTDIR}/${DIST_SUBDIR}/texi2pdf-${TEXI2PDF_RELDATE} ${WRKSRC}/util/texi2pdf
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/util/htmlxref.cnf ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/util/htmlxref.cnf ${DATADIR}
 
 .include <bsd.port.mk>
