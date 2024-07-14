@@ -296,12 +296,12 @@ ruby-extconf-configure:
 .        for d in ${RUBY_EXTCONF_SUBDIRS}
 	@${ECHO_MSG} "===>  Running ${RUBY_EXTCONF} in ${d} to configure"
 	@cd ${CONFIGURE_WRKSRC}/${d}; \
-	${SETENV} ${CONFIGURE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_EXTCONF} ${CONFIGURE_ARGS}
+	${SETENVI} ${WRK_ENV} ${CONFIGURE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_EXTCONF} ${CONFIGURE_ARGS}
 .        endfor
 .      else
 	@${ECHO_MSG} "===>  Running ${RUBY_EXTCONF} to configure"
 	@cd ${CONFIGURE_WRKSRC}; \
-	${SETENV} ${CONFIGURE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_EXTCONF} ${CONFIGURE_ARGS}
+	${SETENVI} ${WRK_ENV} ${CONFIGURE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_EXTCONF} ${CONFIGURE_ARGS}
 .      endif
 .    endif
 
@@ -316,21 +316,21 @@ do-configure:	ruby-setup-configure
 ruby-setup-configure:
 	@${ECHO_MSG} "===>  Running ${RUBY_SETUP} to configure"
 	@cd ${BUILD_WRKSRC}; \
-	${SETENV} ${CONFIGURE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_SETUP} config ${CONFIGURE_ARGS}
+	${SETENVI} ${WRK_ENV} ${CONFIGURE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_SETUP} config ${CONFIGURE_ARGS}
 
 do-build:	ruby-setup-build
 
 ruby-setup-build:
 	@${ECHO_MSG} "===>  Running ${RUBY_SETUP} to build"
 	@cd ${BUILD_WRKSRC}; \
-	${SETENV} ${MAKE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_SETUP} setup
+	${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_SETUP} setup
 
 do-install:	ruby-setup-install
 
 ruby-setup-install:
 	@${ECHO_MSG} "===>  Running ${RUBY_SETUP} to install"
 	@cd ${INSTALL_WRKSRC}; \
-	${SETENV} ${MAKE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_SETUP} install --prefix=${FAKE_DESTDIR}
+	${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_SETUP} install --prefix=${FAKE_DESTDIR}
 .endif
 
 .    if defined(USE_RUBY)

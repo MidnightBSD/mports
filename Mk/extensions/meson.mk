@@ -38,11 +38,11 @@ USE_LOCALE?=	en_US.UTF-8
 
 . if ${meson_ARGS} == trueprefix
 CONFIGURE_ARGS+=	--prefix ${TRUE_PREFIX} \
-			--mandir man \
+			--mandir share/man \
 			--infodir ${INFO_PATH}
 . else
 CONFIGURE_ARGS+=	--prefix ${PREFIX} \
-			--mandir man \
+			--mandir share/man \
 			--infodir ${INFO_PATH}
 . endif
 

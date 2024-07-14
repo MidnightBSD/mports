@@ -80,8 +80,8 @@ RUBYGEM_ARGS+=	--no-document
 
 .  if !target(do-extract)
 do-extract:
-	@${SETENV} ${GEM_ENV} ${RUBYGEMBIN} unpack --target=${WRKDIR} ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES}
-	@(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} spec --ruby ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES} > ${GEMSPEC} ; then \
+	@${SETENVI} ${WRK_ENV} ${GEM_ENV} ${RUBYGEMBIN} unpack --target=${WRKDIR} ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES}
+	@(cd ${BUILD_WRKSRC}; if ! ${SETENVI} ${WRK_ENV} ${GEM_ENV} ${RUBYGEMBIN} spec --ruby ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES} > ${GEMSPEC} ; then \
 		if [ -n "${BUILD_FAIL_MESSAGE}" ] ; then \
 			${ECHO_MSG} "===> Extraction failed unexpectedly."; \
 			(${ECHO_CMD} "${BUILD_FAIL_MESSAGE}") | ${FMT_80} ; \
@@ -92,7 +92,7 @@ do-extract:
 
 .  if !target(do-build)
 do-build:
-	@(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} build --force ${GEMSPEC} ; then \
+	@(cd ${BUILD_WRKSRC}; if ! ${SETENVI} ${WRK_ENV} ${GEM_ENV} ${RUBYGEMBIN} build --force ${GEMSPEC} ; then \
 		if [ -n "${BUILD_FAIL_MESSAGE}" ] ; then \
 			${ECHO_MSG} "===> Compilation failed unexpectedly."; \
 			(${ECHO_CMD} "${BUILD_FAIL_MESSAGE}") | ${FMT_80} ; \
@@ -104,7 +104,7 @@ do-build:
 .  if !target(do-install)
 do-install:
 	(cd ${PREFIX}/bin && ln -sf ${RUBY_WITH_SUFFIX$}) 
-	(cd ${BUILD_WRKSRC}; ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} ${CONFIGURE_ARGS})
+	(cd ${BUILD_WRKSRC}; ${SETENVI} ${WRK_ENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} ${CONFIGURE_ARGS})
 	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}/build_info/
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f \( -name mkmf.log -or -name gem_make.out \) -delete

@@ -91,7 +91,7 @@ do-build:
 .for target in ${REBAR_TARGETS}
 # Remove rebar.lock every time - it can be created again after each run of rebar3
 	-${RM} ${WRKSRC}/rebar.lock
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} REBAR_PROFILE=${REBAR_PROFILE} ${ERLANG_COMPILE} ${target}
+	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${FAKE_MAKEENV} REBAR_PROFILE=${REBAR_PROFILE} ${ERLANG_COMPILE} ${target}
 .endfor
 .endif # !target(do-build)
 

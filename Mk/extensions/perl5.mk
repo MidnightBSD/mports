@@ -103,9 +103,9 @@ SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}
 SITE_ARCH?=	${LOCALBASE}/${SITE_ARCH_REL}
 
 .if ${OSVERSION} > 302000
-SITE_MAN3_REL?=	man/man3
+SITE_MAN3_REL?=	share/man/man3
 SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
-SITE_MAN1_REL?=	man/man1
+SITE_MAN1_REL?=	share/man/man1
 SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
 .else
 SITE_MAN3_REL?=	${SITE_PERL_REL}/man/man3
@@ -208,8 +208,8 @@ PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
 PLIST_SUB+=	PERL5_MAN3=${SITE_PERL_REL}/man/man3 \
 		PERL5_MAN1=${SITE_PERL_REL}/man/man1
 .else
-PLIST_SUB+=	PERL5_MAN3=man/man3 \
-		PERL5_MAN1=man/man1
+PLIST_SUB+=	PERL5_MAN3=share/man/man3 \
+		PERL5_MAN1=share/man/man1
 .endif
 
 SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
@@ -217,8 +217,8 @@ SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_ARCH=${PERL_ARCH} \
 				SITE_PERL=${SITE_PERL_REL} \
 				SITE_ARCH=${SITE_ARCH_REL} \
-				PERL5_MAN1=man/man1 \
-				PERL5_MAN3=man/man3 \
+				PERL5_MAN1=share/man/man1 \
+				PERL5_MAN3=share/man/man3 \
 				PERL=${PERL}
 
 .if ${OSVERSION} < 302001
@@ -243,8 +243,8 @@ CONFIGURE_ARGS+=--install_path lib="${TARGETDIR}/${SITE_PERL_REL}" \
 		--install_path arch="${TARGETDIR}/${SITE_PERL_REL}/${PERL_ARCH}" \
 		--install_path script="${TARGETDIR}/bin" \
 		--install_path bin="${TARGETDIR}/bin" \
-		--install_path libdoc="${MAN3PREFIX}/man/man3" \
-		--install_path bindoc="${MAN1PREFIX}/man/man1"
+		--install_path libdoc="${MAN3PREFIX}/share/man/man3" \
+		--install_path bindoc="${MAN1PREFIX}/share/man/man1"
 CONFIGURE_SCRIPT?=	Build.PL
 PL_BUILD?=	Build
 CONFIGURE_ARGS+=--destdir ${FAKE_DESTDIR}
@@ -317,11 +317,11 @@ MAN1PREFIX?=		${PREFIX}/
 .    if !target(do-configure)
 do-configure:
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
-		cd ${.CURDIR} && ${SETENV} ${SCRIPTS_ENV} ${SH} \
+		cd ${.CURDIR} && ${SETENVI} ${WRK_ENV} ${SCRIPTS_ENV} ${SH} \
 		${SCRIPTDIR}/configure; \
 	fi
 	@cd ${CONFIGURE_WRKSRC} && \
-		${SETENV} ${CONFIGURE_ENV} \
+		${SETENVI} ${WRK_ENV} ${CONFIGURE_ENV} \
 		${PERL5} ${CONFIGURE_CMD} ${CONFIGURE_ARGS}
 .      if !${_USE_PERL5:Mmodbuild*}
 	@cd ${CONFIGURE_WRKSRC} && \
@@ -333,16 +333,16 @@ do-configure:
 .  if ${_USE_PERL5:Mmodbuild*}
 .    if !target(do-build)
 do-build:
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${ALL_TARGET} ${MAKE_ARGS})
+	@(cd ${BUILD_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${ALL_TARGET} ${MAKE_ARGS})
 .    endif # !target(do-build)
 
 .    if !${USES:Mgmake}
 .      if !target(do-install)
 do-install:
 .if ${_USE_PERL5:Mmodbuildtiny}
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${INSTALL_TARGET} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR})
+	@(cd ${BUILD_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${INSTALL_TARGET} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR})
 .else
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET})
+	@(cd ${BUILD_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET})
 .endif
 .      endif # !target(do-install)
 .    endif # ! USES=gmake
@@ -389,9 +389,9 @@ TEST_TARGET?=	test
 TEST_WRKSRC?=	${BUILD_WRKSRC}
 do-test:
 .    if ${USE_PERL5:Mmodbuild*}
-	@cd ${TEST_WRKSRC}/ && ${SETENV} ${TEST_ENV} ${PERL5} ${PL_BUILD} ${TEST_TARGET} ${TEST_ARGS}
+	@cd ${TEST_WRKSRC}/ && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PERL5} ${PL_BUILD} ${TEST_TARGET} ${TEST_ARGS}
 .    elif ${USE_PERL5:Mconfigure}
-	@cd ${TEST_WRKSRC}/ && ${SETENV} ${TEST_ENV} ${MAKE_CMD} ${TEST_ARGS} ${TEST_TARGET}
+	@cd ${TEST_WRKSRC}/ && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${MAKE_CMD} ${TEST_ARGS} ${TEST_TARGET}
 .    endif # USE_PERL5:Mmodbuild*
 .  endif # do-test
 

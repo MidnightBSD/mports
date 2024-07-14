@@ -126,10 +126,13 @@ baselibs() {
 	done <<-EOF
 	$(list_stagedir_elfs -exec readelf -d {} + 2>/dev/null)
 	EOF
-	if [ -z "${USESSSL}" -a -n "${found_openssl}" ]; then
-		warn "you need USES=ssl"
-	elif [ -n "${USESSSL}" -a -z "${found_openssl}" ]; then
-		warn "you may not need USES=ssl"
+
+	if ! list_stagedir_elfs | egrep -q 'lib(crypto|ssl).so*'; then
+		if [ -z "${USESSSL}" -a -n "${found_openssl}" ]; then
+			warn "you need USES=ssl"
+		elif [ -n "${USESSSL}" -a -z "${found_openssl}" ]; then
+			warn "you may not need USES=ssl"
+		fi
 	fi
 	return ${rc}
 }
@@ -654,11 +657,11 @@ proxydeps_suggest_uses() {
 }
 
 proxydeps() {
-	local file dep_file dep_file_pkg already rc
+	local file dep_file dep_file_pkg already rc dep_lib_file dep_lib_files
 
 	rc=0
 
-	# Check all dynamicaly linked ELF files
+	# Check all dynamically linked ELF files
 	# Some .so are not executable, but we want to check them too.
 	while read -r file; do
 		# No results presents a blank line from heredoc.
@@ -687,7 +690,7 @@ proxydeps() {
 				# If we don't already depend on it, and we don't provide it
 				if ! listcontains ${dep_file_pkg} "${LIB_RUN_DEPENDS} ${PKGORIGIN}"; then
 					# If the package has a flavor, check that the dependency is not on that particular flavor.
-					flavor=$(pkg annotate -q -S "${dep_file_pkg}" flavor)
+					flavor=$(mport annotate -q -S "$(mport which -q "${dep_file}")" flavor)
 					if [ -n "${flavor}" ]; then
 						if listcontains ${dep_file_pkg}@${flavor} "${LIB_RUN_DEPENDS} ${PKGORIGIN}"; then
 							continue
@@ -702,6 +705,8 @@ proxydeps() {
 				rc=1
 			fi
 			already="${already} ${dep_file}"
+			dep_lib_file=$(basename ${dep_file})
+			dep_lib_files="${dep_lib_files} ${dep_lib_file%%.so*}.so"
 		done <<-EOT
 		$(env LD_LIBMAP_DISABLE=1 ldd -a "${FAKE_DESTDIR}${file}" | \
 			awk '
@@ -717,6 +722,13 @@ proxydeps() {
 		sed -e 's/^\.//')
 	EOT
 
+	# Check whether all files in LIB_DPEENDS are actually linked against
+	for _library in ${WANTED_LIBRARIES} ; do
+		if ! listcontains ${_library} "${dep_lib_files}" ; then
+			warn "you might not need LIB_DEPENDS on ${_library}"
+		fi
+	done
+
 	[ -z "${PROXYDEPS_FATAL}" ] && return 0
 
 	return ${rc}
@@ -729,6 +741,8 @@ sonames() {
 		[ -z "${f}" ] && continue
 		# Ignore symlinks
 		[ -f "${f}" -a ! -L "${f}" ] || continue
+		# Ignore .debug files
+		[ "${f}" == "${f%.debug}" ] || continue
 		if ! readelf -d ${f} | grep SONAME > /dev/null; then
 			warn "${f} doesn't have a SONAME."
 			warn "pkg(8) will not register it as being provided by the port."
@@ -862,7 +876,7 @@ gemdeps()
 				EOF
 			fi
 		done <<-EOF
-		$(grep -a 'add_runtime_dependency' ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/*/specifications/${PORTNAME}-*.gemspec \
+		$(grep -a 's.add_runtime_dependency' ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/*/specifications/${PORTNAME}-*.gemspec \
 			| sed 's|.*<\(.*\)>.*\[\(.*\)\])|\1 \2|' \
 			| sort -u)
 		EOF
@@ -881,24 +895,24 @@ gemfiledeps()
 	if [ -z "$USE_RUBY" ]; then
 		return 0
 	fi
-	
+
 	# skip check if port is a rubygem-* one; they have no Gemfiles
 	if [ "${PKGBASE%%-*}" = "rubygem" ]; then
 		return 0
 	fi
-	
+
 	# advise install of bundler if its not present for check
 	if ! type bundle > /dev/null 2>&1; then
 		notice "Please install sysutils/rubygem-bundler for additional Gemfile-checks"
 		return 0
 	fi
- 
+
 	# locate the Gemfile(s)
 	while read -r f; do
-	
+
 		# no results presents a blank line from heredoc
 		[ -z "$f" ] && continue
-	
+
 		# if there is no Gemfile everything is fine - stop here
 		[ ! -f "$f" ] && return 0;
 
@@ -908,7 +922,7 @@ gemfiledeps()
 		if ! bundle check --dry-run --gemfile $f > /dev/null 2>&1; then
 			warn "Dependencies defined in ${f} are not satisfied"
 		fi
-      
+
 	done <<-EOF
 		$(find ${FAKE_DESTDIR} -name Gemfile)
 		EOF
@@ -986,14 +1000,11 @@ depends_blacklist()
 			lang/go)
 				instead="USES=go"
 				;;
-			lang/julia)
-				instead="a dependency on lang/julia\${JULIA_DEFAULT:S/.//}"
+			lang/mono)
+				instead="USES=mono"
 				;;
 			devel/llvm)
-				instead="a dependency on devel/llvm\${LLVM_DEFAULT}"
-				;;
-			www/py-django)
-				instead="one of the www/py-djangoXYZ port"
+				instead="USES=llvm"
 				;;
 		esac
 
@@ -1028,10 +1039,18 @@ reinplace()
 	fi
 }
 
+prefixman() {
+	if [ -d "${FAKE_DESTDIR}${PREFIX}/man" ]; then
+		warn "Installing man files in ${PREFIX}/man is no longer supported. Consider installing these files in ${PREFIX}/share/man instead."
+		ls -liTd ${FAKE_DESTDIR}${PREFIX}/man
+	fi
+	return 0
+}
+
 checks="shebang symlinks paths stripped desktopfileutils sharedmimeinfo"
 checks="$checks suidfiles libtool libperl prefixvar baselibs terminfo"
 checks="$checks proxydeps sonames perlcore no_arch gemdeps gemfiledeps flavors"
-checks="$checks license depends_blacklist pkgmessage "
+checks="$checks license depends_blacklist pkgmessage reinplace prefixman"
 
 ret=0
 cd ${FAKE_DESTDIR} || exit 1

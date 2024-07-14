@@ -1,10 +1,8 @@
-PORTNAME=	gmake
-PORTVERSION=	4.3
-PORTREVISION=	3
-PORTEPOCH=	1
+PORTNAME=	make
+DISTVERSION=	4.4.1
 CATEGORIES=	devel
-MASTER_SITES=	GNU/make
-DISTNAME=	make-${PORTVERSION}
+MASTER_SITES=	GNU
+PKGNAMEPREFIX=	g
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU version of 'make' utility
@@ -13,20 +11,19 @@ WWW=		https://www.gnu.org/software/make/
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USES=		cpe tar:lz
+CPE_VENDOR=	gnu
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--without-guile
 
-USES=		cpe tar:lz
-CPE_VENDOR=	gnu
-CPE_PRODUCT=	make
+INFO=		make
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
 NLS_USES=	gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
-
-INFO=		make
 
 .include <bsd.port.mk>

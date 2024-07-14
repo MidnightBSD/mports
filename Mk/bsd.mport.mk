@@ -544,7 +544,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux xorg fortran \
 		gcc fmake gmake bison local perl5 \
 		ada ansible apache bdb cabal cargo cmake cpe cran display dos2unix \
-		efl eigen emacs erlang execinfo fakeroot fam fonts fuse \
+		efl eigen elixir emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
 		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde \
 		ldap libarchive libedit libtool llvm localbase lua \
@@ -1862,7 +1862,7 @@ SET_LATE_CONFIGURE_ARGS= \
 	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --localstatedir=/var" ; \
 	fi ; \
 	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--mandir'`" ]; then \
-	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${GNU_CONFIGURE_MANPREFIX}/man" ; \
+	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${GNU_CONFIGURE_MANPREFIX}/share/man" ; \
 	fi ; \
 	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
 	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \

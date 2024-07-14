@@ -11,7 +11,7 @@ MANPREFIX?=	${PREFIX}
 MANDIRS+=       ${PREFIX}/share/man
 .endif
 
-MANDIRS+=	${MANPREFIX}/man
+MANDIRS+=	${MANPREFIX}/share/man
 .for sect in 1 2 3 4 5 6 7 8 9
 MAN${sect}PREFIX?=	${MANPREFIX}
 .endfor
