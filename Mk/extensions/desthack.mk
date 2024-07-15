@@ -1,11 +1,9 @@
-
 #
 # Handle gnu configure that does not properly support DESTDIR
 #
 # Feature:	desthack
 # Usage:	USES=desthack
 # Valid ARGS:	none
-#
 
 .if !defined(_INCLUDE_USES_DESTHACK_MK)
 _INCLUDE_USES_DESTHACK_MK=	yes
@@ -15,5 +13,5 @@ IGNORE=	USES=desthack does not require args
 .endif
 
 GNU_CONFIGURE_PREFIX=	\$${${DESTDIRNAME}}${PREFIX}
-GNU_CONFIGURE_MANPREFIX=	\$${${DESTDIRNAME}}${MANPREFIX}
+GNU_CONFIGURE_MANPREFIX=	\$${${DESTDIRNAME}}${PREFIX}/share
 .endif
