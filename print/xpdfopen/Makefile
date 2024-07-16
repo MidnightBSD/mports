@@ -9,6 +9,8 @@ DIST_SUBDIR=	TeX
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line utility for PDF viewers
 
+LICENSE=	mit
+
 USES=		localbase:ldflags tar:xz tex xorg
 USE_XORG=	x11 xmu
 
