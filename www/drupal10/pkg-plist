@@ -19696,9 +19696,6 @@
 %%DOCSDIR%%/INSTALL.pgsql.txt
 %%DOCSDIR%%/LICENSE.txt
 %%DOCSDIR%%/INSTALL.sqlite.txt
-share/licenses/drupal10-10.2.5/gpl2+
-share/licenses/drupal10-10.2.5/LICENSE
-share/licenses/drupal10-10.2.5/catalog.mk
 @dir %%WWWDIR%%/vendor/asm89/stack-cors/src
 @dir %%WWWDIR%%/vendor/asm89/stack-cors
 @dir %%WWWDIR%%/vendor/asm89
