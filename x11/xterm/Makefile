@@ -1,15 +1,17 @@
 PORTNAME=	xterm
-PORTVERSION=	390
+PORTVERSION=	392
 PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.invisible-island.net/xterm/:src1 \
 		https://invisible-mirror.net/archives/xterm/:src1 \
-		FREEBSD_LOCAL/ehaupt:src1 FREEBSD_LOCAL/ehaupt:src2
+		FREEBSD_LOCAL/ehaupt:src1 \
+		FREEBSD_LOCAL/ehaupt:src2
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src1 \
 		bsd-xterm-icons-${ICONVERSION}${EXTRACT_SUFX}:src2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal emulator for the X Window System
+WWW=		https://invisible-island.net/xterm/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

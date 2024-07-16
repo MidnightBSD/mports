@@ -1,7 +1,7 @@
 PORTNAME=	bgs
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	kazuok@midnightbsd.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/Gottox/bgs
 
 LICENSE=	mit
 
-FAKE_OPTS=	trueprefix
+#FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	libImlib2.so:graphics/imlib2
 
@@ -21,7 +21,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	Gottox
 
 PLIST_FILES=	bin/bgs \
-		man/man1/bgs.1.gz
+		share/man/man1/bgs.1.gz
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/bgs

@@ -1,5 +1,3 @@
-
-
 PORTNAME=	innerspace
 PORTVERSION=	0.2.0
 PORTREVISION=	6
@@ -9,6 +7,7 @@ DISTNAME=	InnerSpace-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep screensaver
+WWW=		https://www.nongnu.org/gap/innerspace/index.html
 
 LICENSE=	gpl2
 

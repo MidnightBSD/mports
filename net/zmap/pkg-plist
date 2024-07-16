@@ -1,9 +1,9 @@
-@sample etc/zmap/blocklist.conf
-@sample etc/zmap/zmap.conf
-man/man1/zblocklist.1.gz
-man/man1/ziterate.1.gz
-man/man1/zmap.1.gz
-man/man1/ztee.1.gz
+@sample etc/zmap/blocklist.conf.sample
+@sample etc/zmap/zmap.conf.sample
+share/man/man1/zblocklist.1.gz
+share/man/man1/ziterate.1.gz
+share/man/man1/zmap.1.gz
+share/man/man1/ztee.1.gz
 sbin/zblocklist
 sbin/ziterate
 sbin/zmap

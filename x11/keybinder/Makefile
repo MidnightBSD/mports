@@ -6,6 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for registering keyboard shortcuts
+WWW=		https://github.com/engla/keybinder
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
