@@ -1,9 +1,11 @@
 PORTNAME=	raptor2
-PORTVERSION=	2.0.15
-PORTREVISION=	24
+DISTVERSION=	2.0.16
+PORTREVISION=	3
 CATEGORIES=	textproc
-MASTER_SITES=	http://download.librdf.org/source/ \
-		SF/librdf/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	https://download.librdf.org/source/
+
+PATCH_SITES=	https://github.com/dajobe/raptor/commit/
+PATCHFILES=	4dbc4c1da2a033c497d84a1291c46f416a9cac51.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF Parser Toolkit for Redland
@@ -25,6 +27,7 @@ CONFIGURE_ARGS=	--with-xml2-config=${LOCALBASE}/bin/xml2-config \
 		--with-curl-config=${LOCALBASE}/bin/curl-config \
 		--with-icu-config=${LOCALBASE}/bin/icu-config \
 		--with-www=curl
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 
 USE_LDCONFIG=	yes
