@@ -21,10 +21,16 @@ USE_TEX=	base basic fmtutil texhash texmf web2c
 
 NO_ARCH=	yes
 NO_BUILD=	yes
-NO_INSTALL=	yes
+#NO_INSTALL=	yes
 
 TEXHASHDIRS=	${TEXMFVARDIR}
 TEX_FORMATS=	amstex csplain eplain latex-bin metafont mex mptopdf \
 		pdftex tex
+
+post-extract:
+	mkdir ${WRKSRC}
+	mkdir ${FAKE_DESTDIR}
+
+do-install:
 
 .include <bsd.port.mk>
