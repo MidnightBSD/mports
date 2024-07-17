@@ -19,6 +19,6 @@ USES=		localbase python
 USE_PYTHON=	distutils autoplist
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/gmpy2*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/gmpy2//gmpy2*.so
 
 .include <bsd.port.mk>
