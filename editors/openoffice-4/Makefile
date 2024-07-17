@@ -328,40 +328,6 @@ post-extract:
 		${WRKSRC}/default_images/introabout/about.png
 	-${RM} -r ${WRKSRC}/l10n
 	${LN} -sf ${UNZIP_CMD} ${WRKSRC}/solenv/bin/unzip
-	${SED}  -e '\|^For main/vcl/unx/generic/fontmanager/parseAFM|,/^__/p' \
-		-e '\|^For PostScript(R) AFM|,/^__/p'			\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_ADOBE}
-	${SED}  -e '\|^For main/unixODBC|,/^__/p'			\
-		-e '\|^For main/connectivity|,/^__/p'			\
-		-e '\|^For main/libtextcat/data|,/^__/p'		\
-		-e '\|^For integration of HSQLDB|,/^__/p'		\
-		-e '\|^For C preprocessor|,/^__/p'			\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_BSD3CLAUSE}
-	${SED}  -e '\|^For ICC |,/^__/p'				\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_BSD4CLAUSE}
-	${SED}  -e '\|^For integration of the C++ Boost |,/^__/p'	\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_BSL}
-	${SED}  -e '\|^For main/i18npool/source/breakiterator|,/^__/p'	\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_ICU}
-	${SED}  -e '\|^For Multi-Dimensional Data|,/^__/p'		\
-		-e '\|^For XSLT MathML Library|,/^__/p'			\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_MIT}
-	${SED}  -e '\|^For XMLSec Library|,/^__/p'			\
-		-e d  ${WRKSRC}/LICENSE_category_b >> ${LICENSE_FILE_MIT}
-	${SED}  -e '\|^For Saxon|,/^__/p'				\
-		-e d ${WRKSRC}/LICENSE_category_b > ${LICENSE_FILE_MPL10}
-	${SED}  -e '\|^The following Licenses have some restrictions|,/^- For Network/p' \
-		-e d ${WRKSRC}/LICENSE_category_b |			\
-		${SED} -e :a -e '$d;N;2,3ba' -e 'P;D' > ${LICENSE_FILE_MPL11}
-	${SED}  -e '\|^For main/filter/source/config/tools/merge/pyAltFCFGMerge|,/^__/p'	\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_PSFL}
-	${ECHO} '' >> ${LICENSE_FILE_PSFL}
-	${SED}  -e '\|^For Python|,/^__/p'	\
-		-e d  ${WRKSRC}/LICENSE >> ${LICENSE_FILE_PSFL}
-	${SED}  -e '\|^For main/twain|,/^__/p'				\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_TWAIN}
-	${SED}  -e '\|^For main/MathMLDTD|,/^__/p'			\
-		-e d  ${WRKSRC}/LICENSE > ${LICENSE_FILE_W3C}
 
 post-patch:
 	${REINPLACE_CMD} -e "/^ICONVERSION/s/=.*/= '${AOOVERSION1}'/" \
