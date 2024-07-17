@@ -1,6 +1,6 @@
 PORTNAME=	gnash
 PORTVERSION=	0.8.10
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	http://git.savannah.gnu.org/cgit/gnash.git/snapshot/
 DISTNAME=	gnash-2b3bdede0305c4fc3ad21a0a4197330606c9b880
@@ -60,6 +60,8 @@ CONFIGURE_ARGS=	--with-boost-incl="${LOCALBASE}/include" \
 		--disable-kparts3 \
 		--disable-jemalloc \
 		--without-gconf
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+#MAKE_ARGS+=	INCLUDES="-I${LOCALBASE}/include/ffmpeg"
 
 GNASHVER=	0.8.11dev
 CONFIG_FILES=	gnashpluginrc gnashrc
