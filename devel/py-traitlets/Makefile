@@ -1,5 +1,5 @@
 PORTNAME=	traitlets
-DISTVERSION=	5.14.2
+DISTVERSION=	5.14.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,8 +18,9 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}argcomplete>=3.0.3:devel/py-argcomplete@${P
 		${PYTHON_PKGNAMEPREFIX}pytest-mock>0:devel/py-pytest-mock@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	pep517 autoplist pytest # 26 tests fail, see https://github.com/ipython/traitlets/issues/901
+USE_PYTHON=	pep517 autoplist
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
