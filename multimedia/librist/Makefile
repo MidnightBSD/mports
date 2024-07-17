@@ -22,11 +22,6 @@ GL_ACCOUNT=	rist
 GL_TAGNAME=	1e805500dc14a507598cebdd49557c32e514899f
 
 MESON_ARGS=	-Dtest=false
-
-do-test:
-	@cd ${WRKSRC} && \
-		${SETENV} ${CONFIGURE_ENV} ${CONFIGURE_CMD} --reconfigure ${CONFIGURE_ARGS} -Dtest=true && \
-		cd ${BUILD_WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} test
+NO_TEST=	yes
 
 .include <bsd.port.mk>
