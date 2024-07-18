@@ -103,7 +103,7 @@ pre-install:
 
 post-fake:
 	${REINPLACE_CMD} -i '' -e 's|/bin/bash|${PREFIX}/bin/bash|' \
-		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/xelatex/hanzibox/build.sh
+		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/doc/xelatex/hanzibox/build.sh
 	${REINPLACE_CMD} -i '' -e 's|/usr/bin/env python|${PYTHON_CMD}|g' \
 		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/dkun-0.3.py \
 		${FAKE_DESTDIR}${PREFIX}/share/texmf-dist/doc/xelatex/xepersian/dkun-0.4.py \
