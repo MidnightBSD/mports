@@ -20,6 +20,8 @@ USE_XORG=	x11 xinerama
 USE_GITHUB=	yes
 GH_ACCOUNT=	Gottox
 
+MAKE_ARGS=	PREFIX="${TRUE_PREFIX}"
+
 PLIST_FILES=	bin/bgs \
 		share/man/man1/bgs.1.gz
 
