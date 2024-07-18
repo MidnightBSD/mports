@@ -1250,6 +1250,7 @@ SUBDIR += py-typed-ast
 SUBDIR += py-typeguard
 SUBDIR += py-types-PyYAML
 SUBDIR += py-types-docutils
+SUBDIR += py-types-jsonschema
 SUBDIR += py-types-psutil
 SUBDIR += py-types-requests
 SUBDIR += py-types-setuptools
