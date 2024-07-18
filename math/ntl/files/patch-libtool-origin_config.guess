@@ -1,0 +1,19 @@
+--- libtool-origin/config.guess.orig	2024-07-18 23:04:39 UTC
++++ libtool-origin/config.guess
+@@ -808,13 +808,13 @@ EOF
+     *:BSD/OS:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
+ 	exit ;;
+-    *:FreeBSD:*:*)
++    *:MidnightBSD:*:*)
+ 	UNAME_PROCESSOR=`/usr/bin/uname -p`
+ 	case ${UNAME_PROCESSOR} in
+ 	    amd64)
+-		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++		echo x86_64-unknown-midnightbsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
+ 	    *)
+-		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++		echo ${UNAME_PROCESSOR}-unknown-midnightbsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
+ 	esac
+ 	exit ;;
+     i*:CYGWIN*:*)

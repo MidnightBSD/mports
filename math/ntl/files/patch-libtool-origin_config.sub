@@ -1,0 +1,11 @@
+--- libtool-origin/config.sub.orig	2024-07-18 23:04:10 UTC
++++ libtool-origin/config.sub
+@@ -1359,7 +1359,7 @@ case $os in
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \
+ 	      | -bitrig* | -openbsd* | -solidbsd* \
+-	      | -ekkobsd* | -kfreebsd* | -freebsd* | -riscix* | -lynxos* \
++	      | -ekkobsd* | -midnightbsd* | -freebsd* | -riscix* | -lynxos* \
+ 	      | -bosx* | -nextstep* | -cxux* | -aout* | -elf* | -oabi* \
+ 	      | -ptx* | -coff* | -ecoff* | -winnt* | -domain* | -vsta* \
+ 	      | -udi* | -eabi* | -lites* | -ieee* | -go32* | -aux* \
