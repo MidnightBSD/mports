@@ -4,11 +4,11 @@ CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	dbaio@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Matplotlib Inline Back-end for IPython and Jupyter
 WWW=		https://pypi.org/project/matplotlib-inline/
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}traitlets>0:devel/py-traitlets@${PY_FLAVOR}
