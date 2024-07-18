@@ -65,6 +65,12 @@
 # Valid args:	build	Don't run autoreconf, only add build dependencies
 #		2.69	Use this legacy version
 #
+# Port maintainers can set the following variable:
+#
+# AUTORECONF_ARGS	The string to pass to autoreconf in addition to
+# 			the default "-f -i"
+#
+#
 
 .if !defined(_INCLUDE_USES_AUTORECONF_MK)
 _INCLUDE_USES_AUTORECONF_MK=	yes
@@ -83,7 +89,7 @@ _AUTORECONF=	2.69
 BUILD_DEPENDS+=	autoconf2.69>=2.69:devel/autoconf2.69
 .  else
 _AUTORECONF=	2.72
-BUILD_DEPENDS+=	autoconf>=2.72:devel/autoconf
+BUILD_DEPENDS+=	autoconf>=${_AUTORECONF}:devel/autoconf
 .  endif
 
 BUILD_DEPENDS+=	automake>=1.16.5:devel/automake
@@ -95,6 +101,7 @@ BUILD_DEPENDS+=	libtoolize:devel/libtool
 # In case autoconf-switch wrapper scripts are used during build.
 CONFIGURE_ENV+=	DEFAULT_AUTOCONF=${_AUTORECONF}
 MAKE_ENV+=	DEFAULT_AUTOCONF=${_AUTORECONF}
+WRK_ENV+=	DEFAULT_AUTOCONF=${_AUTORECONF}
 
 .  if ${autoreconf_ARGS:Nbuild:N2.69}
 IGNORE= 	incorrect 'USES+=autoreconf:${autoreconf_ARGS}'\
@@ -121,7 +128,7 @@ do-autoreconf:
 		${ECHO_MSG} '===>  Mk/Uses/autoreconf.mk: Error running intltoolize'; \
 		${FALSE}; fi; fi)
 .    endif
-	@(cd ${AUTORECONF_WRKSRC} && if ! ${AUTORECONF} -f -i; then \
+	@(cd ${AUTORECONF_WRKSRC} && if ! ${AUTORECONF} -f -i ${AUTORECONF_ARGS}; then \
 		${ECHO_MSG} '===>  Mk/Uses/autoreconf.mk: Error running ${AUTORECONF}'; \
 		${FALSE}; fi)
 .  endif
