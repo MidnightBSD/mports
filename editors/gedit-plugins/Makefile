@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gedit-plugins
 PORTVERSION=	3.28.1
 PORTREVISION=	2
@@ -16,15 +14,17 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	gedit>=0:editors/gedit \
 		valac:lang/vala \
 		itstool:textproc/itstool
+BUILD_DEPENDS+= /usr/local/lib/libgit2.so.1.7.2:devel/libgit2
 LIB_DEPENDS=	libpeas-1.0.so:devel/libpeas \
 		libzeitgeist-2.0.so:sysutils/zeitgeist \
 		libgit2-glib-1.0.so:devel/libgit2-glib
 RUN_DEPENDS=	gedit>=0:editors/gedit
+RUN_DEPENDS+= /usr/local/lib/libgit2.so.1.7.2:devel/libgit2
 
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gmake gnome libtool localbase pathfix pkgconfig \
-		python:3.4+ tar:xz
+		python:3.4+ ssl tar:xz
 USE_GNOME=	cairo gdkpixbuf2 gtk30 gtksourceview3 intlhack introspection
 USE_CSTD=	c11
 USE_LDCONFIG=	yes

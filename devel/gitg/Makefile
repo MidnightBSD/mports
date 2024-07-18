@@ -16,6 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
 		valac:lang/vala
+BUILD_DEPENDS+= /usr/local/lib/libgit2.so.1.7.2:devel/libgit2
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libenchant.so:textproc/enchant \
 		libgee-0.8.so:devel/libgee \
@@ -26,12 +27,13 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libdazzle-1.0.so:x11-toolkits/libdazzle \
 		libsecret-1.so:security/libsecret
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
+RUN_DEPENDS+= /usr/local/lib/libgit2.so.1.7.2:devel/libgit2
 
 CONFLICTS=	gitg0
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 desktop-file-utils gettext gnome localbase \
-		meson pathfix pkgconfig python:3.4+,build tar:xz
+		meson pathfix pkgconfig python:3.4+,build ssl tar:xz
 USE_GNOME=	cairo gtk30 gtksourceview3 intltool introspection
 
 USE_LDCONFIG=	yes
