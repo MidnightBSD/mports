@@ -1,13 +1,12 @@
-# Created by: trasz <trasz@pin.if.uz.zgora.pl>
-
 PORTNAME=	rlog
 PORTVERSION=	1.4
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flexible message logging facility for C++
+WWW=		https://www.arg0.net/rlog
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GITHUB=	yes
