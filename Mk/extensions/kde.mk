@@ -56,15 +56,16 @@ _KDE_SUPPORTED=		5 6
 IGNORE=	kde needs a version (${_KDE_SUPPORTED})
 .  endif
 
-.  for ver in ${_KDE_SUPPORTED:O:u}
-.    if ${kde_ARGS:M${ver}}
-.      if !defined(_KDE_VERSION)
-_KDE_VERSION=	${ver}
-.      else
-IGNORE?=	cannot be installed: different KDE versions specified via kde:[${_KDE_SUPPORTED:S/ //g}] #'
-.      endif
-.    endif
-.  endfor
+kde_ARGS=5
+#.  for ver in ${_KDE_SUPPORTED:O:u}
+#.    if ${kde_ARGS:M${ver}}
+#.      if !defined(_KDE_VERSION)
+#_KDE_VERSION=	${ver}
+#.      else
+#IGNORE?=	cannot be installed: different KDE versions specified via kde:[${_KDE_SUPPORTED:S/ //g}] #'
+#.      endif
+#.    endif
+#.  endfor
 
 .  if empty(_KDE_VERSION)
 IGNORE?=	kde:[${_KDE_SUPPORTED:S/ //g}] needs an argument  #'
