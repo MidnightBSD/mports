@@ -1136,8 +1136,7 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 			CC="${CC}" CFLAGS="${CFLAGS}" \
 			CPP="${CPP}" CPPFLAGS="${CPPFLAGS}" \
 			LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
-			CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" \
-			MANPREFIX="${MANPREFIX}"
+			CXX="${CXX}" CXXFLAGS="${CXXFLAGS}"
 
 # Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break

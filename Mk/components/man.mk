@@ -4,19 +4,13 @@
 #
 #
 
-.if ${PREFIX} == /usr
-MANPREFIX?=	/usr/share
-.else
-MANPREFIX?=	${PREFIX}
-MANDIRS+=       ${PREFIX}/share/man
-.endif
-
-MANDIRS+=	${MANPREFIX}/share/man
+MANDIRS+=       ${PREFIX}/man
+MANDIRS+=	${PREFIX}/share/man
 .for sect in 1 2 3 4 5 6 7 8 9
-MAN${sect}PREFIX?=	${MANPREFIX}
+MAN${sect}PREFIX?=	${PREFIX}
 .endfor
-MANLPREFIX?=	${MANPREFIX}
-MANNPREFIX?=	${MANPREFIX}
+MANLPREFIX?=	${PREFIX}
+MANNPREFIX?=	${PREFIX}
 
 MANLANG?=	""	# english only by default
 

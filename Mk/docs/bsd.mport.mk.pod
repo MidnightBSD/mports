@@ -1263,18 +1263,7 @@ For example, "MLINKS= a.1 b.1 c.3 d.3" will do an "ln -sf a.1 b.1" and "ln
 installs its own manpage links so they will show up correctly in ${PLIST}.)
 
 
-=item MANPREFIX
-
-The directory prefix for ${MANE<lt>sectE<gt>} and ${MLINKS}.
-
-Default: ${PREFIX}
-
 =item MANE<lt>sectE<gt>PREFIX
-
-If manual pages of some sections install in different locations than others,
-use these.
-
-Default: ${MANPREFIX}
 
 =item MANCOMPRESSED
 
@@ -1516,7 +1505,7 @@ GNU_CONFIGURE is set:
 If supported by the configure script, the following will also be in the
 default:
 
- "--mandir=${MANPREFIX}/man --infodir=${PREFIX}/${INFO_PATH}"
+ "--mandir=${PREFIX}/share/man --infodir=${PREFIX}/${INFO_PATH}"
 
 If GNU_CONFIGURE is not set, CONFIGURE_ARGS defaults to empty.
 
