@@ -22,7 +22,7 @@ USE_PERL5_RUN=	yes
 SRC=		${.CURDIR}/src
 
 PLIST_FILES=	bin/portlint \
-		man/man1/portlint.1.gz
+		share/man/man1/portlint.1.gz
 
 PORTEXAMPLES=	portlintgrep
 
@@ -40,7 +40,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/portlint.pl \
 	    ${PREFIX}/bin/portlint
 	${INSTALL_MAN} ${WRKSRC}/portlint.1 \
-	    ${MAN1PREFIX}/man/man1
+	    ${PREFIX}/share/man/man1
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/portlintgrep.pl \
 	    ${EXAMPLESDIR}/portlintgrep
