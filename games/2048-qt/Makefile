@@ -1,5 +1,5 @@
 PORTNAME=	2048-qt
-PORTVERSION=	0.1.6
+PORTVERSION=	0.1.7
 DISTVERSIONPREFIX=	v
 CATEGORIES=	games
 
@@ -11,7 +11,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	xiaoyong
+GH_ACCOUNT=	OpenOrphanage
 GH_PROJECT=	2048-Qt
 
 USES=		compiler:c++11-lang gmake pkgconfig qmake qt:5
