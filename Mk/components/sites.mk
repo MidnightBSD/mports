@@ -108,10 +108,8 @@ MASTER_SITE_CRAN+= \
 	https://cloud.r-project.org/%SUBDIR%/ \
 	https://stat.ethz.ch/CRAN/%SUBDIR%/ \
 	http://cran.utstat.utoronto.ca/%SUBDIR%/ \
-	https://cran.cnr.berkeley.edu/%SUBDIR%/ \
 	https://cran.csiro.au/%SUBDIR%/ \
 	https://mirrors.tuna.tsinghua.edu.cn/CRAN/%SUBDIR%/ \
-	http://camoruco.ing.uc.edu.ve/cran/%SUBDIR%/ \
 	https://mirror.las.iastate.edu/CRAN/%SUBDIR%/ \
 	https://cran.ma.imperial.ac.uk/%SUBDIR%/ \
 	https://cran.ism.ac.jp/%SUBDIR%/
@@ -141,8 +139,7 @@ MASTER_SITE_DEBIAN_POOL+= \
 .if !defined(IGNORE_MASTER_SITE_ECLIPSE)
 MASTER_SITE_ECLIPSE+= \
 	https://ftp-stud.hs-esslingen.de/pub/Mirrors/eclipse/%SUBDIR%/ \
-	https://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/%SUBDIR%/ \
-	http://eclipse.stu.edu.tw/%SUBDIR%/
+	https://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/%SUBDIR%/
 .endif
 
 # List: https://www.exim.org/mirmon/ftp_mirrors.html
@@ -601,18 +598,15 @@ WWW?=	https://gitlab.com/${GL_ACCOUNT}/${GL_PROJECT}/
 .if !defined(IGNORE_MASTER_SITE_GNOME)
 MASTER_SITE_GNOME+= \
 	https://download.gnome.org/%SUBDIR%/ \
-	http://download.gnome.org/%SUBDIR%/ \
 	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/archive/${PORTVERSION}/ \
-	http://ftp.belnet.be/mirror/ftp.gnome.org/%SUBDIR%/ \
-	ftp://ftp.belnet.be/mirror/ftp.gnome.org/%SUBDIR%/ \
+	http://ftp.belnet.be/mirror/ftp.gnome.org/gnomeftp/%SUBDIR%/ \
+	ftp://ftp.belnet.be/mirror/ftp.gnome.org/gnomeftp/%SUBDIR%/ \
 	https://ftp.acc.umu.se/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.cse.buffalo.edu/pub/Gnome/%SUBDIR%/ \
 	https://fr2.rpmfind.net/linux/gnome.org/%SUBDIR%/ \
-	http://www.gtlib.gatech.edu/pub/gnome/%SUBDIR%/ \
 	ftp://ftp.kddlabs.co.jp/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.gnome.org/pub/GNOME/%SUBDIR%/ \
-	ftp://ftp.nara.wide.ad.jp/pub/X11/GNOME/%SUBDIR%/ \
-	https://ftp.gnome.org/pub/GNOME/%SUBDIR%/
+	ftp://ftp.nara.wide.ad.jp/pub/X11/GNOME/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GIMP)
@@ -787,7 +781,7 @@ MASTER_SITE_NVIDIA+= \
 	http://us.download.nvidia.com/%SUBDIR%/ \
 	https://tw.download.nvidia.com/%SUBDIR%/ \
 	http://download.nvidia.com/%SUBDIR%/ \
-	https://download1.nvidia.com/%SUBDIR%/ \
+	https://http.download.nvidia.com/%SUBDIR%/ \
 	ftp://download.nvidia.com/%SUBDIR%/ \
 	ftp://download1.nvidia.com/%SUBDIR%/
 .endif
@@ -875,8 +869,7 @@ MASTER_SITE_OSSP+= \
 
 .if !defined(IGNORE_MASTER_SITE_PACKETSTORM)
 MASTER_SITE_PACKETSTORM+= \
-	https://dl.packetstormsecurity.net/%SUBDIR%/ \
-	https://packetstorm.foofus.com/%SUBDIR%/
+	https://dl.packetstormsecurity.net/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_PERL_CPAN)
@@ -943,10 +936,7 @@ MASTER_SITE_PYTHON+= \
 MASTER_SITE_QMAIL+= \
 	http://qmail.glasswings.com.au/%SUBDIR%/ \
 	http://qmail.psshee.com/%SUBDIR%/ \
-	https://mirrors.sunsite.dk/qmailwww/%SUBDIR%/ \
 	http://www.agria.hu/qmail/%SUBDIR%/ \
-	http://qmail.netvisao.pt/%SUBDIR%/ \
-	http://qmail.ipg.sk/%SUBDIR%/ \
 	http://qmail.omnis.ch/%SUBDIR%/ \
 	http://www.qmail.org/%SUBDIR%/
 .endif
@@ -957,7 +947,6 @@ MASTER_SITE_QT+= \
 	http://master.qt.io/%SUBDIR%/ \
 	https://www.mirrorservice.org/sites/download.qt-project.org/%SUBDIR%/ \
 	http://www.nic.funet.fi/pub/mirrors/download.qt-project.org/%SUBDIR%/ \
-	http://qtmirror.ics.com/pub/qtproject/%SUBDIR%/ \
 	https://ftp.jaist.ac.jp/pub/qtproject/%SUBDIR%/
 .endif
 
@@ -1000,9 +989,9 @@ MASTER_SITE_SAVANNAH+= \
 .  for p in https http
 MASTER_SITE_SOURCEFORGE+= ${p}://downloads.sourceforge.net/project/%SUBDIR%/
 .    for m in cfhcable cytranet deac-ams deac-fra deac-riga excellmedia \
-	freefr gigenet ixpeering jaist jztkft kumisystems liquidtelecom \
+	freefr gigenet ixpeering jaist kumisystems liquidtelecom \
 	nchc netactuate netcologne netix onboardcloud phoenixnap \
-	razaoinfo sinalbr sitsa sonik tenet udomain ufpr versaweb
+	razaoinfo sinalbr sitsa tenet udomain ufpr versaweb
 MASTER_SITE_SOURCEFORGE+= ${p}://${m}.dl.sourceforge.net/project/%SUBDIR%/
 .    endfor
 .  endfor
@@ -1011,7 +1000,9 @@ MASTER_SITE_SOURCEFORGE+= ${p}://${m}.dl.sourceforge.net/project/%SUBDIR%/
 .if !defined(IGNORE_MASTER_SITE_SOURCEWARE)
 MASTER_SITE_SOURCEWARE+= \
 	https://mirrors.kernel.org/sourceware/%SUBDIR%/ \
-	ftp://ftp.funet.fi/pub/mirrors/sourceware.org/pub/%SUBDIR%/
+	https://ftp-stud.hs-esslingen.de/pub/Mirrors/sourceware.org/%SUBDIR%/ \
+	https://ftp.funet.fi/pub/mirrors/sourceware.org/pub/%SUBDIR%/ \
+	https://mirrorservice.org/sites/sourceware.org/pub/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SUDO)
@@ -1021,8 +1012,6 @@ MASTER_SITE_SUDO+= \
 	http://sudo.p8ra.de/sudo/dist/ \
 	http://sudo.cybermirror.org/ \
 	http://sudo-ftp.basemirror.de/ \
-	http://core.ring.gr.jp/archives/misc/sudo/ \
-	http://www.ring.gr.jp/archives/misc/sudo/ \
 	http://ftp.twaren.net/Unix/Security/Sudo/ \
 	ftp://ftp.sudo.ws/pub/sudo/ \
 	ftp://plier.ucar.edu/pub/sudo/ \
@@ -1038,8 +1027,6 @@ MASTER_SITE_SUDO+= \
 	ftp://ftp.informatik.uni-hamburg.de/pub/os/unix/utils/sudo/ \
 	ftp://ftp.st.ryukoku.ac.jp/pub/security/tool/sudo/ \
 	ftp://ftp.cin.nihon-u.ac.jp/pub/misc/sudo/ \
-	ftp://core.ring.gr.jp/pub/misc/sudo/ \
-	ftp://ftp.ring.gr.jp/pub/misc/sudo/ \
 	ftp://sunsite.icm.edu.pl/packages/sudo/ \
 	ftp://mirror.cdmon.com/pub/sudo/ \
 	ftp://ftp.twaren.net/Unix/Security/Sudo/
@@ -1076,46 +1063,37 @@ MASTER_SITE_TEX_CTAN+= \
 .endif
 
 # Derived from: https://www.torproject.org/getinvolved/mirrors.html.en
+# Please do not blindly follow and add URLs from the above list
 .if !defined(IGNORE_MASTER_SITE_TOR)
 MASTER_SITE_TOR+= \
 		https://dist.torproject.org/%SUBDIR%/ \
 		https://archive.torproject.org/tor-package-archive/%SUBDIR%/ \
 		ftp://ftp.bit.nl/mirror/tor/%SUBDIR%/ \
-		https://cyberside.net.ee/tor/%SUBDIR%/ \
+		https://cyberside.net.ee/sibul/dist/%SUBDIR%/ \
 		https://ftp.bit.nl/mirror/tor/%SUBDIR%/ \
 		http://mirror.hessmo.com/tor/dist/%SUBDIR%/ \
 		http://mirror.host4site.co.il/torproject.org/dist/%SUBDIR%/ \
 		http://mirror.open-networx.org/torproject.org/dist/%SUBDIR%/ \
 		http://mirror.tor.hu/dist/%SUBDIR%/ \
-		https://mirror.torland.me/torproject.org/dist/%SUBDIR%/ \
 		http://mirrors.chaos-darmstadt.de/tor-mirror/dist/%SUBDIR%/ \
 		http://theonionrouter.com/dist/%SUBDIR%/ \
 		http://tor.amorphis.eu/dist/%SUBDIR%/ \
 		http://tor.askapache.com/dist/%SUBDIR%/ \
 		http://tor.beme-it.de/dist/%SUBDIR%/ \
 		http://tor.borgmann.tv/dist/%SUBDIR%/ \
-		https://tor.ccc.de/dist/%SUBDIR%/ \
 		http://tor.cyberarmy.at/dist/%SUBDIR%/ \
 		http://tor.dont-know-me.at/dist/%SUBDIR%/ \
 		http://tor.factor.cc/dist/%SUBDIR%/ \
-		http://tor.homosu.net/dist/%SUBDIR%/ \
 		http://tor.idnr.ws/dist/%SUBDIR%/ \
-		https://tor.myrl.net/dist/%SUBDIR%/ \
 		http://tor.kamagurka.org/dist/%SUBDIR%/ \
 		http://tor.spline.de/dist/%SUBDIR%/ \
 		http://tor.vesta.nu/dist/%SUBDIR%/ \
 		http://torproj.xpdm.us/dist/%SUBDIR%/ \
-		https://torproject.antagonism.org/dist/%SUBDIR%/ \
-		https://torproject.crypto.is/dist/%SUBDIR%/ \
-		https://torproject.is/dist/%SUBDIR%/ \
 		http://torproject.nwlinux.us/dist/%SUBDIR%/ \
 		https://torproject.ph3x.at/dist/%SUBDIR%/ \
-		https://www.coevoet.nl/tor/dist/%SUBDIR%/ \
 		http://www.oignon.net/dist/%SUBDIR%/ \
-		https://www.torproject.nl/dist/%SUBDIR%/ \
 		http://www.torproject.org.nyud.net/dist/%SUBDIR%/ \
-		http://www.torproject.us/dist/%SUBDIR%/ \
-		https://www.torservers.net/mirrors/torproject.org/dist/%SUBDIR%/
+		http://www.torproject.us/dist/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_WINDOWMAKER)
@@ -1137,8 +1115,7 @@ MASTER_SITE_XFCE+= \
 	https://mirror.netcologne.de/xfce/src/%SUBDIR%/${_XFCE_PATH}/ \
 	https://ftp.cixug.es/xfce/src/%SUBDIR%/${_XFCE_PATH}/ \
 	https://archive.be.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/ \
-	https://archive.al-us.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/ \
-	http://mirror.perldude.de/archive.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/
+	https://archive.al-us.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XORG)
@@ -1147,13 +1124,10 @@ MASTER_SITE_XORG+= \
 	https://mirror.csclub.uwaterloo.ca/x.org/%SUBDIR%/ \
 	https://artfiles.org/x.org/pub/%SUBDIR%/ \
 	https://ftp.gwdg.de/pub/x11/x.org/pub/%SUBDIR%/ \
-	https://mi.mirror.garr.it/mirrors/x.org/%SUBDIR%/ \
 	https://mirrors.ircam.fr/pub/x.org/%SUBDIR%/ \
 	https://www.mirrorservice.org/sites/ftp.x.org/pub/%SUBDIR%/ \
-	https://mirror.nl.leaseweb.net/xorg/%SUBDIR%/ \
 	https://ftp.yz.yamagata-u.ac.jp/pub/X11/x.org/%SUBDIR%/ \
 	http://piotrkosoft.net/pub/mirrors/ftp.x.org/pub/%SUBDIR%/ \
-	http://xorg.mirrors.pair.com/%SUBDIR%/ \
 	http://ftp.kaist.ac.kr/x.org/%SUBDIR%/
 .endif
 
@@ -1171,7 +1145,7 @@ MASTER_SITE_KERNEL_ORG+= \
 
 .if !defined(IGNORE_MASTER_SITE_ZI)
 MASTER_SITE_ZI+= \
-	https://ftpmirror.your.org/zi/%SUBDIR%/ \
+	https://ftpmirror.your.org/pub/zi/%SUBDIR%/ \
 	https://mirrors.rit.edu/zi/%SUBDIR%/ \
 	https://www.zi0r.com/mirrors/%SUBDIR%/ \
 	${MASTER_SITE_FREEBSD_LOCAL:S/%SUBDIR%/zi/}
