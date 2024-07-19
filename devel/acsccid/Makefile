@@ -1,7 +1,5 @@
-# Created by: mp39590@gmail.com
-
 PORTNAME=	acsccid
-PORTVERSION=	1.1.10
+PORTVERSION=	1.1.11
 CATEGORIES=	devel
 MASTER_SITES=	SF
 
