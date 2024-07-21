@@ -147,11 +147,11 @@ share/man/man1/a2x.1.gz
 %%PYTHON_SITELIBDIR%%/asciidoc/collections.py
 %%PYTHON_SITELIBDIR%%/asciidoc/api.py
 %%PYTHON_SITELIBDIR%%/asciidoc/__metadata__.py
-%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/PKG-INFO
-%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/dependency_links.txt
-%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/entry_points.txt
-%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/SOURCES.txt
-%%PYTHON_SITELIBDIR%%/asciidoc-10.2.0-py%%PYTHON_VER%%.egg-info/top_level.txt
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.1-py%%PYTHON_VER%%.egg-info/PKG-INFO
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.1-py%%PYTHON_VER%%.egg-info/dependency_links.txt
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.1-py%%PYTHON_VER%%.egg-info/entry_points.txt
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.1-py%%PYTHON_VER%%.egg-info/SOURCES.txt
+%%PYTHON_SITELIBDIR%%/asciidoc-10.2.1-py%%PYTHON_VER%%.egg-info/top_level.txt
 bin/asciidoc
 bin/a2x
 @dir %%PYTHON_SITELIBDIR%%/asciidoc/__pycache__

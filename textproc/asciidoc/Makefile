@@ -1,6 +1,5 @@
 PORTNAME=	asciidoc
-PORTVERSION=	10.2.0
-PORTREVISION=	2
+PORTVERSION=	10.2.1
 CATEGORIES=	textproc
 MASTER_SITES=	PYPI \
 		https://github.com/asciidoc-py/asciidoc-py/raw/${PORTVERSION}/doc/:manpage
