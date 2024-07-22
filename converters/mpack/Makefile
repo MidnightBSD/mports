@@ -17,6 +17,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/mpack bin/munpack \
-		man/man1/mpack.1.gz man/man1/munpack.1.gz
+		share/man/man1/mpack.1.gz \
+		share/man/man1/munpack.1.gz
 
 .include <bsd.port.mk>
