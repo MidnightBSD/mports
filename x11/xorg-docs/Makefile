@@ -9,6 +9,7 @@ COMMENT=	X.org documentation files
 LICENSE=	mit
 
 CONFIGURE_ARGS+=	--without-xmlto --without-fop --disable-specs
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 
 USES=		xorg-cat:doc
 
