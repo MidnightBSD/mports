@@ -11,10 +11,10 @@ lib/libbzip3.so
 lib/libbzip3.so.0
 lib/libbzip3.so.0.0.0
 libdata/pkgconfig/bzip3.pc
-man/man1/bunzip3.1.gz
-man/man1/bz3cat.1.gz
-man/man1/bz3grep.1.gz
-man/man1/bz3less.1.gz
-man/man1/bz3more.1.gz
-man/man1/bz3most.1.gz
-man/man1/bzip3.1.gz
+share/man/man1/bunzip3.1.gz
+share/man/man1/bz3cat.1.gz
+share/man/man1/bz3grep.1.gz
+share/man/man1/bz3less.1.gz
+share/man/man1/bz3more.1.gz
+share/man/man1/bz3most.1.gz
+share/man/man1/bzip3.1.gz
