@@ -23,7 +23,7 @@ NO_WRKSUBDIR=	yes
 STUFFIT_FILES=	bin/unstuff bin/stuff
 STUFFIT_MAN=	man/man1/stuff.1 man/man1/unstuff.1
 PLIST_FILES=	${STUFFIT_FILES} \
-		${STUFFIT_MAN:S,$,.gz,}
+		${STUFFIT_MAN:S,$,.gz,:S,^,share/,}
 
 do-build:
 .for sFile in ${STUFFIT_FILES}
@@ -35,7 +35,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${sFile} ${STAGEDIR}${PREFIX}/bin
 .endfor
 .for mFile in ${STUFFIT_MAN}
-	${INSTALL_MAN} ${WRKSRC}/${mFile} ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/${mFile} ${STAGEDIR}${PREFIX}/share/man/man1
 .endfor
 
 .include <bsd.port.mk>
