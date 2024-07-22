@@ -1,5 +1,3 @@
-
-
 PORTNAME=	lzop
 DISTVERSION=	1.04
 PORTREVISION=	1
@@ -9,12 +7,14 @@ MASTER_SITES=	http://www.lzop.org/download/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast file compressor similar to gzip, using the LZO library
+WWW=		https://www.lzop.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 LIB_DEPENDS=	liblzo2.so:archivers/lzo2
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--program-prefix=""
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
