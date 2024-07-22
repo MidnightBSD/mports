@@ -12,7 +12,7 @@ lib/libspeex.so
 lib/libspeex.so.1
 lib/libspeex.so.1.5.1
 libdata/pkgconfig/speex.pc
-man/man1/speexdec.1.gz
-man/man1/speexenc.1.gz
+share/man/man1/speexdec.1.gz
+share/man/man1/speexenc.1.gz
 share/aclocal/speex.m4
 @comment %%PORTDOCS%%%%DOCSDIR%%/manual.pdf
