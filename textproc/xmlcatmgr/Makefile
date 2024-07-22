@@ -1,5 +1,3 @@
-
-
 PORTNAME=	xmlcatmgr
 PORTVERSION=	2.2
 PORTREVISION=	2
@@ -8,6 +6,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SGML and XML catalog manager
+WWW=		https://xmlcatmgr.sourceforge.net/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -25,7 +24,7 @@ SUB_LIST=	XMLCATMGR=${XMLCATMGR} \
 		CATALOG_MASTER_XML=${CATALOG_MASTER_XML} \
 		CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML} \
 		CATALOG_PORTS_XML=${CATALOG_PORTS_XML}
-PLIST_FILES=	bin/xmlcatmgr man/man1/xmlcatmgr.1.gz
+PLIST_FILES=	bin/xmlcatmgr share/man/man1/xmlcatmgr.1.gz
 PLIST_DIRS=	share/xml share/sgml
 PORTDOCS=	AUTHORS COPYING NEWS README TODO
 
