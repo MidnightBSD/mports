@@ -5,6 +5,7 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create an index of X font files in a directory
+WWW=		https://www.x.org/
 
 LICENSE=	bsd2 mit
 LICENSE_COMB=	multi

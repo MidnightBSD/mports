@@ -12,6 +12,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		xorg xorg-cat:app
 USE_XORG=	xorgproto ice
 
-PLIST_FILES=	bin/iceauth man/man1/iceauth.1.gz
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+
+PLIST_FILES=	bin/iceauth share/man/man1/iceauth.1.gz
 
 .include <bsd.port.mk>
