@@ -7,6 +7,7 @@ DISTNAME=	audiofile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sound library for SGI audio file
+WWW=		https://www.68k.org/~michael/audiofile/
 
 LICENSE=	lgpl2.1
 
@@ -14,9 +15,13 @@ LIB_DEPENDS=	libFLAC.so:audio/flac
 
 CONFLICTS=	osalp-0.7.*
 
-USES=		pathfix pkgconfig tar:xz libtool
+USES=		cpe pathfix pkgconfig tar:xz libtool
+USE_CXXSTD=	c++14
+CPE_PRODUCT=	audiofile
 USE_LDCONFIG=	yes
+
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaudiofile.so.1
