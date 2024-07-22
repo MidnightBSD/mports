@@ -16,7 +16,7 @@ PORTDOCS=	Arc521.doc
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/arc ${WRKSRC}/marc ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/arc.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/arc.1 ${PREFIX}/share/man/man1
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/Arc521.doc ${DOCSDIR}
