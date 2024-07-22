@@ -12,4 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		xorg xorg-cat:lib
 USE_XORG=	xorgproto
 
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
+
 .include <bsd.port.mk>
