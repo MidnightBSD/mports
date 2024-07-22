@@ -11,10 +11,12 @@ LICENSE=	gpl2
 
 USES=		cpe tar:lz
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
+
+CONFLICTS_INSTALL=	gzip # bin/zcat bin/zcmp bin/zdiff bin/zgrep share/man/man1/ztest.1.gz
+
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	nongnu
-
-CONFLICTS_INSTALL=	gzip openzfs
 
 INFO=		zutils
 
