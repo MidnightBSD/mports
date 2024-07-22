@@ -1,5 +1,3 @@
-
-
 PORTNAME=	NetPIPE
 PORTVERSION=	3.7.1
 CATEGORIES=	benchmarks net
@@ -14,7 +12,7 @@ LICENSE=	gpl2
 # netpipe(1).  The sources support many other variants.
 
 PORTDOCS=	README netpipe_paper.ps
-PLIST_FILES=	bin/NPtcp bin/NPtcp6 man/man1/netpipe.1.gz
+PLIST_FILES=	bin/NPtcp bin/NPtcp6 share/man/man1/netpipe.1.gz
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME:L}
 
@@ -26,7 +24,7 @@ do-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/NPtcp ${PREFIX}/bin/NPtcp
 	${INSTALL_PROGRAM} ${WRKSRC}/NPtcp6 ${PREFIX}/bin/NPtcp6
-	${INSTALL_MAN} ${WRKSRC}/dox/netpipe.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/dox/netpipe.1 ${PREFIX}/share/man/man1
 .if !defined(NOPORTDOCS)
 .for doc in ${PORTDOCS}
 	@${MKDIR} ${DOCSDIR}
