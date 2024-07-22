@@ -11,7 +11,7 @@ WWW=		https://github.com/ani6al/arc
 
 CONFLICTS_INSTALL= arcanist-php[0-9][0-9]
 
-PLIST_FILES=	bin/arc bin/marc man/man1/arc.1.gz
+PLIST_FILES=	bin/arc bin/marc share/man/man1/arc.1.gz
 PORTDOCS=	Arc521.doc
 
 do-install:
