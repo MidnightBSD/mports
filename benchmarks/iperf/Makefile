@@ -1,5 +1,3 @@
-
-
 PORTNAME=	iperf
 PORTVERSION=	2.0.12
 CATEGORIES=	benchmarks
@@ -15,7 +13,7 @@ OPTIONS_DEFAULT=THREADS
 
 GNU_CONFIGURE=	yes
 
-PLIST_FILES=	bin/iperf man/man1/iperf.1.gz
+PLIST_FILES=	bin/iperf share/man/man1/iperf.1.gz
 PORTDOCS=	*
 
 .include <bsd.mport.options.mk>
