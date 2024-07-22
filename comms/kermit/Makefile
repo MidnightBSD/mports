@@ -19,7 +19,7 @@ ALL_TARGET=	freebsd+ssl
 MAKE_ARGS=	CC="${CC}" CC2="${CC}" \
 		SSLINC="-I${OPENSSLINC}" SSLLIB="-L${OPENSSLLIB}"
 
-PLIST_FILES=	bin/kermit man/man1/kermit.1.gz
+PLIST_FILES=	bin/kermit share/man/man1/kermit.1.gz
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
@@ -30,7 +30,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/wermit ${PREFIX}/bin/kermit
 	${INSTALL_MAN} ${WRKSRC}/ckuker.nr \
-		${MANPREFIX}/man/man1/kermit.1
+		${PREFIX}/share/man/man1/kermit.1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
