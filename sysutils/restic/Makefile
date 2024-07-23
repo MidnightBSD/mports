@@ -106,7 +106,7 @@ post-extract:
 	@${RLN} ${WRKSRC_azure_go_autorest_tracing}/tracing ${WRKSRC}/vendor/github.com/Azure/go-autorest/tracing
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${PREFIX}/share/man/man1
 	${INSTALL} -d ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
 	${INSTALL_SCRIPT} ${WRKSRC}/doc/bash-completion.sh \
 		${STAGEDIR}${PREFIX}/etc/bash_completion.d/${PORTNAME}.sh
