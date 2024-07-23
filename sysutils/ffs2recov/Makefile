@@ -14,9 +14,9 @@ USES=		compiler:c11 tar:bzip2 uidfix
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 PLIST_FILES=	sbin/ffs2recov \
-		man/man8/ffs2recov.8.gz
+		share/man/man8/ffs2recov.8.gz
 
-MAKE_ENV=	BINDIR=${PREFIX}/sbin MANDIR=${MANPREFIX}/man/man \
+MAKE_ENV=	BINDIR=${PREFIX}/sbin MANDIR=${PREFIX}/share/man/man \
 		WARNS=0
 
 .include <bsd.port.mk>
