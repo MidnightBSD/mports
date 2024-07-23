@@ -19,6 +19,7 @@ CPE_PRODUCT=	gettext
 CPE_VENDOR=	gnu
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-csharp --disable-java --disable-openmp \
 		--with-included-glib --with-included-libcroco \
 		--with-included-libunistring --with-included-libxml \
