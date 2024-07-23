@@ -5,6 +5,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General-purpose console screen reader
+WWW=		https://yasr.sourceforge.net/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -21,7 +22,7 @@ OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
 PLIST_FILES=	bin/yasr \
-		man/man1/yasr.1.gz \
+		share/man/man1/yasr.1.gz \
 		%%DATADIR%%/yasr.conf \
 		%%NLS%%share/locale/es/LC_MESSAGES/yasr.mo \
 		%%NLS%%share/locale/fr/LC_MESSAGES/yasr.mo
