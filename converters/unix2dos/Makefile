@@ -17,7 +17,7 @@ CONFLICTS_INSTALL=	dos2unix
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/unix2dos ${PREFIX}/bin/unix2dos
 	${LN} -f ${PREFIX}/bin/unix2dos ${PREFIX}/bin/dos2unix
-	${INSTALL_MAN} ${WRKSRC}/man1/unix2dos.1 ${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/man1/dos2unix.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man1/unix2dos.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man1/dos2unix.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
