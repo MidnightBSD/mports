@@ -19,7 +19,7 @@ CONFIGURE_ARGS=	--disable-nls
 
 CFLAGS=		-D_WITH_CPU_SET_T
 
-PLIST_FILES=	bin/flock man/man1/flock.1.gz \
+PLIST_FILES=	bin/flock share/man/man1/flock.1.gz \
 		etc/bash_completion.d/flock
 
 do-build:
@@ -27,10 +27,10 @@ do-build:
 	${MAKE} -C ${WRKSRC} flock
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/flock ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/flock ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/sys-utils/flock.1 \
-		${STAGEDIR}${MANPREFIX}/man/man1
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
-	${INSTALL_DATA} ${WRKSRC}/bash-completion/flock ${STAGEDIR}${PREFIX}/etc/bash_completion.d
+		${PREFIX}/share/man/man1
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/bash-completion/flock ${PREFIX}/etc/bash_completion.d
 
 .include <bsd.port.mk>
