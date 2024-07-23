@@ -5,9 +5,9 @@ libexec/osh-%%VER%%/fd2
 libexec/osh-%%VER%%/glob
 libexec/osh-%%VER%%/goto
 libexec/osh-%%VER%%/if
-man/man1/fd2.1.gz
-man/man1/glob.1.gz
-man/man1/goto.1.gz
-man/man1/if.1.gz
-man/man1/osh.1.gz
-man/man1/sh6.1.gz
+share/man/man1/fd2.1.gz
+share/man/man1/glob.1.gz
+share/man/man1/goto.1.gz
+share/man/man1/if.1.gz
+share/man/man1/osh.1.gz
+share/man/man1/sh6.1.gz

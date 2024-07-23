@@ -13,7 +13,7 @@ FAKE_OPTS=	trueprefix
 
 MAKE_ENV+=	DOCDIR=${DOCSDIR} \
 		EXPDIR=${EXAMPLESDIR} \
-		MANDIR=${MANPREFIX}/man/man1
+		MANDIR=${PREFIX}/share/man/man1
 
 PORTDOCS=	*
 PORTEXAMPLES=	*

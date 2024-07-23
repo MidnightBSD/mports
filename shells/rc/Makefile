@@ -1,18 +1,22 @@
-
-
 PORTNAME=	rc
-PORTVERSION=	1.7.4
-PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.7.4
+PORTREVISION=	5
 CATEGORIES=	shells plan9
-MASTER_SITES=	http://static.tobold.org/rc/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unix incarnation of the plan9 shell
+WWW=		https://github.com/rakitzis/rc
 
 LICENSE=	zlib
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USES=		autoreconf cpe
+USE_GITHUB=	yes
+GH_ACCOUNT=	rakitzis
+CPE_VENDOR=	${PORTNAME}_project
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--with-history
 
 OPTIONS_DEFINE=	READLINE
