@@ -3,6 +3,7 @@ COMMENT = Shells
 SUBDIR += 44bsd-csh
 SUBDIR += bash
 SUBDIR += bash-completion
+SUBDIR += bash-completion-freebsd
 SUBDIR += cvs-server
 SUBDIR += dash
 SUBDIR += elvish
