@@ -22,7 +22,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include -D__NR_inotify_init
 LDFLAGS+=	-L${LOCALBASE}/lib -linotify
 MAKE_ARGS=	PREFIX="${PREFIX}" USER=${UID}	\
 		DOCDIR="${PREFIX}/etc"	\
-		MANPATH=${MANPREFIX}/man
+		MANPATH=${PREFIX}/share/man
 USE_RC_SUBR=	${PORTNAME}
 
 .include <bsd.port.pre.mk>
