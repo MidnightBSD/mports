@@ -1,7 +1,7 @@
 bin/lynx
 @sample etc/lynx.cfg.sample
 @sample etc/lynx.lss.sample
-man/man1/lynx.1.gz
+share/man/man1/lynx.1.gz
 @exec mkdir -p %D/%%PORTDOCS%%/share/lynx_help
 %%PORTDOCS%%%%DOCSDIR%%/CHANGES
 %%PORTDOCS%%%%DOCSDIR%%/COPYHEADER
