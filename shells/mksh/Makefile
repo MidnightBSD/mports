@@ -13,7 +13,7 @@ LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-PLIST_FILES=	bin/mksh share/examples/mksh/dot.mkshrc man/man1/mksh.1.gz
+PLIST_FILES=	bin/mksh share/examples/mksh/dot.mkshrc share/man/man1/mksh.1.gz
 PLIST_DIRS=	share/examples/mksh
 
 PKGINSTALL=	pkg-install
@@ -28,6 +28,6 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/mksh ${PREFIX}/bin
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/dot.mkshrc ${EXAMPLESDIR}
-	${INSTALL_MAN} ${WRKSRC}/mksh.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/mksh.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.post.mk>
