@@ -431,3 +431,4 @@ lang/rust169|lang/rust|2024-06-06|EOL
 devel/glslang|graphics/glslang|2024-06-10|Moved to graphics
 mail/libspf||2023-12-31|Has expired: Abandonware, last commit upstream 14 years ago. Consider migrating to mail/libspf2
 graphics/giblib||2024-07-18|Has expired: Last release in 2004, abandoned upstream, not used, website disappeared
+sysutils/sysrc||2024-07-23|Has expired: Migrated into src
