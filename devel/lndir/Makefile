@@ -16,6 +16,6 @@ USE_XORG=	xorgproto
 USES=		xorg xorg-cat:util tar:xz
 
 PLIST_FILES=	bin/lndir \
-		man/man1/lndir.1.gz
+		share/man/man1/lndir.1.gz
 
 .include <bsd.port.mk>
