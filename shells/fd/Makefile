@@ -7,11 +7,13 @@ DISTNAME=	FD-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CUI-based file and directory management tool
+WWW=		https://hp.vector.co.jp/authors/VA012337/soft/fd/
 
 LICENSE=	other
 
 MAKE_ENV=	LANG=ja
-MAKE_ARGS=	CC="${CC}" CONFDIR="${PREFIX}/etc"
+MAKE_ARGS=	CC="${CC}" CONFDIR="${PREFIX}/etc" \
+		MANTOP="\$$(DESTDIR)${PREFIX}/share/man"
 
 DOCS_EN=	FAQ.eng \
 		LICENSES.eng \

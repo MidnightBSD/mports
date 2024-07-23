@@ -18,7 +18,7 @@ CFLAGS+=	-DUNUSABLE_RT_SIGNALS
 USES=		cpe gmake
 
 PLIST_FILES=	bin/dash \
-		man/man1/dash.1.gz
+		share/man/man1/dash.1.gz
 PORTDOCS=	ChangeLog
 
 OPTIONS_DEFINE=	DOCS
