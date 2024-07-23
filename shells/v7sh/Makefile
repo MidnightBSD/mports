@@ -1,5 +1,3 @@
-
-
 PORTNAME=	v7sh
 PORTVERSION=	1.0
 PORTREVISION=	1
@@ -15,6 +13,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the UNIX 7th Edition shell
+WWW=		http://minnie.tuhs.org/UnixTree/V7
 
 LICENSE=	unknown
 
