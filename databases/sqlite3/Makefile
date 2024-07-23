@@ -150,7 +150,7 @@ OPTIONS_DEFAULT=	FTS5 FTS4 URI METADATA SECURE_DELETE UNLOCK_NOTIFY THREADS \
 PLIST_FILES=	bin/sqlite3 include/sqlite3.h include/sqlite3ext.h \
 		lib/libsqlite3.a lib/libsqlite3.so lib/libsqlite3.so.0 \
 		lib/libsqlite3.so.0.8.6 libdata/pkgconfig/sqlite3.pc \
-		man/man1/sqlite3.1.gz
+		share/man/man1/sqlite3.1.gz
 
 # The default numeric file permissions for newly created database files under unix.
 # If not specified, the default is 0644 which means that the files is globally
