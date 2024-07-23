@@ -1,5 +1,3 @@
-# Created by: Zach Zurflu <zach@pabst.bendnet.com>
-
 PORTNAME=	libshout
 PORTVERSION=	2.4.6
 CATEGORIES=	audio net
@@ -9,6 +7,8 @@ MASTER_SITES=	https://downloads.xiph.org/releases/libshout/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Connect and transmit data to an Icecast media streaming server
+WWW=		https://icecast.org/ \
+		https://gitlab.xiph.org/xiph/icecast-libshout
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -31,6 +31,5 @@ THEORA_CONFIGURE_ENABLE=theora
 THEORA_LIB_DEPENDS=	libtheora.so:multimedia/libtheora
 vorbis_CONFIGURE_ENABLE=vorbis
 VORBIS_LIB_DEPENDS=	libvorbis.so:audio/libvorbis
-
 
 .include <bsd.port.mk>
