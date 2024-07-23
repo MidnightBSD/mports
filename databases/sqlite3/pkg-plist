@@ -7,4 +7,4 @@ lib/libsqlite3.so
 lib/libsqlite3.so.0
 lib/libsqlite3.so.0.8.6
 libdata/pkgconfig/sqlite3.pc
-man/man1/sqlite3.1.gz
+share/man/man1/sqlite3.1.gz
