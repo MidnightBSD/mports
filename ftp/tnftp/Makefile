@@ -16,6 +16,6 @@ LICENSE_COMB=	multi
 USES=		libedit ncurses ssl
 GNU_CONFIGURE=	yes
 
-PLIST_FILES=	bin/tnftp man/man1/tnftp.1.gz
+PLIST_FILES=	bin/tnftp share/man/man1/tnftp.1.gz
 
 .include <bsd.port.mk>
