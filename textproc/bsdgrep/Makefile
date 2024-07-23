@@ -1,5 +1,3 @@
-
-
 PORTNAME=	grep
 PORTVERSION=	20111002
 PORTREVISION=	1
@@ -14,8 +12,8 @@ COMMENT=	BSD-licensed version of grep
 LICENSE=	bsd3
 
 MAKE_ENV+=	BINDIR="${PREFIX}/bin" \
-		MANDIR="${MANPREFIX}/man/man" \
-		CATDIR="${MANPREFIX}/man/man" \
+		MANDIR="${PREFIX}/share/man/man" \
+		CATDIR="${PREFIX}/share/man/man" \
 		NLSDIR="${PREFIX}/share/nls"
 
 OPTIONS_DEFINE=	GNU_COMPAT NLS

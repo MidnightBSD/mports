@@ -25,7 +25,7 @@ CONFIGURE_ARGS=	--enable-utempter \
 
 PLIST_FILES=	bin/tmux \
 		etc/bash_completion.d/tmux \
-		man/man1/tmux.1.gz
+		share/man/man1/tmux.1.gz
 
 PORTDOCS=	CHANGES README
 PORTEXAMPLES=	*

@@ -20,6 +20,6 @@ do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}/include
 	${INSTALL_DATA} ${WRKSRC}/messages.subr \
 		${STAGEDIR}${PREFIX}/libexec/${PORTNAME}/include
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 ${STAGEDIR}${MANPREFIX}/man/man8
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>
