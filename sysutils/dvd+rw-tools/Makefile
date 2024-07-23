@@ -30,7 +30,7 @@ do-install:
 .for i in ${BIN_FILES}
 	${INSTALL_PROGRAM} ${WRKSRC}/${i} ${PREFIX}/bin
 .endfor
-	${INSTALL_MAN} ${WRKSRC}/growisofs.1 ${MANPREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/growisofs.1 ${PREFIX}/share/man/man1/
 
 post-install:
 .if !defined(NOPORTDOCS)
