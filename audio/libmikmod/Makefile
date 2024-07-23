@@ -5,6 +5,7 @@ MASTER_SITES=	SF/mikmod/libmikmod/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MikMod Sound Library
+WWW=		https://mikmod.sourceforge.net/
 
 LICENSE=	lgpl2.1
 
