@@ -1,21 +1,20 @@
-
-
 PORTNAME=	vlock
 PORTVERSION=	2.2.3
 PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	http://cthulhu.c3d2.de/~toidinamai/vlock/archive/
+MASTER_SITES=	http://cthulhu.c3d2.de/~toidinamai/vlock/archive/ \
+		FREEBSD_LOCAL/martymac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Locks a terminal
+WWW=		http://freshmeat.net/projects/vlock
 
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-plugins --enable-pam \
 		--prefix=${PREFIX} \
-		--mandir=${MANPREFIX}/man \
+		--mandir=${PREFIX}/share/man \
 		--with-modules="${VLOCKMODULES}" \
 		--with-scripts="${VLOCKSCRIPTS}" \
 		VLOCK_GROUP="nobody" \
@@ -24,14 +23,14 @@ CONFIGURE_ARGS=	--enable-plugins --enable-pam \
 USES=	gmake
 USE_CSTD=	gnu99
 
-OPTIONS_DEFINE=	ROOTPWD VLOCKSCRIPTS CACASAVER
+OPTIONS_DEFINE=	ROOTPWD VLOCKSCRIPTS CACASAVER DOCS
 OPTIONS_DEFAULT=	ROOTPWD
 OPTIONS_SUB=	yes
 ROOTPWD_DESC=	Enable unlock using root password
 ROOTPWD_CONFIGURE_ENABLE=	root-password
 VLOCKSCRIPTS_DESC=	Install sample hook scripts
 CACASAVER_DESC=	Enable libcaca screensaver
-CACASAVER_BUILD_DEPENDS=	${LOCALBASE}/lib/libcaca.a:graphics/libcaca
+CACASAVER_LIB_DEPENDS=	libcaca.so:graphics/libcaca
 
 # Default scripts/modules
 VLOCKSCRIPTS=
