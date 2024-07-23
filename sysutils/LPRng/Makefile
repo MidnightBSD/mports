@@ -21,6 +21,7 @@ LIB_DEPENDS=	libgdbm.so:databases/gdbm
 
 USES=		gmake ssl
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--with-config_subdir="" \
 		--with-filterdir=${PREFIX}/libexec/filters \
 		--with-filter_path="${PREFIX}/bin:/bin:/usr/bin:${PREFIX}/sbin:/sbin:/usr/sbin" \
