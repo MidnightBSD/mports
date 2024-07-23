@@ -1,9 +1,7 @@
-
-
 PORTNAME=	tradcpp
-PORTVERSION=	0.5.2
+PORTVERSION=	0.5.3
 CATEGORIES=	devel
-MASTER_SITES=	http://ftp.NetBSD.org/pub/NetBSD/misc/dholland/ \
+MASTER_SITES=	https://ftp.NetBSD.org/pub/NetBSD/misc/dholland/ \
 		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,9 +10,9 @@ COMMENT=	Traditional (K&R-style) C preprocessor
 LICENSE=	bsd2
 
 USES=		uidfix
-MAKE_ARGS=	BINDIR=${PREFIX}/bin MANDIR=${MANPREFIX}/man/man
+MAKE_ARGS=	BINDIR=${PREFIX}/bin MANDIR=${PREFIX}/share/man/man
 
 PLIST_FILES=	bin/tradcpp \
-		man/man1/${PORTNAME}.1.gz
+		share/man/man1/${PORTNAME}.1.gz
 
 .include <bsd.port.mk>
