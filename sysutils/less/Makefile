@@ -20,9 +20,9 @@ GNU_CONFIGURE=	yes
 PLIST_FILES=	bin/less \
 		bin/lessecho \
 		bin/lesskey \
-		man/man1/less.1.gz \
-		man/man1/lessecho.1.gz \
-		man/man1/lesskey.1.gz
+		share/man/man1/less.1.gz \
+		share/man/man1/lessecho.1.gz \
+		share/man/man1/lesskey.1.gz
 
 OPTIONS_DEFINE=		COLORS PCRE
 OPTIONS_DEFAULT=	COLORS PCRE
