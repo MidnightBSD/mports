@@ -22,7 +22,7 @@ post-patch:
 do-install:
 	cd ${WRKSRC}/src && ${INSTALL_PROGRAM} ${MANS:R} ${STAGEDIR}${PREFIX}/bin
 .for m in ${MANS}
-	${INSTALL_MAN} ${WRKSRC}/src/${m:R}.man ${STAGEDIR}${MANPREFIX}/man/man1/${m}
+	${INSTALL_MAN} ${WRKSRC}/src/${m:R}.man ${STAGEDIR}${PREFIX}/share/man/man1/${m}
 .endfor
 	@${MKDIR} ${STAGEDIR}${LIBDIR}/cedf ${STAGEDIR}${LIBDIR}/xlt \
 		${STAGEDIR}${LIBDIR}/doc ${STAGEDIR}${LIBDIR}/bin \
