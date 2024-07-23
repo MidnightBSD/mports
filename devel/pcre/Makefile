@@ -6,9 +6,12 @@ MASTER_SITES=	https://ftp.pcre.org/pub/pcre/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Compatible Regular Expressions library
+WWW=		https://www.pcre.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENCE
+
+DEPRECATED=   EOLed by upstream, use devel/pcre2 instead
 
 USES=		cpe libtool pathfix tar:bzip2
 USE_LDCONFIG=	yes
