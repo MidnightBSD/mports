@@ -1,6 +1,7 @@
 COMMENT = Character code converters
 
 SUBDIR += bsdconv
+SUBDIR += dos2unix
 SUBDIR += enca
 SUBDIR += fribidi
 SUBDIR += iconv

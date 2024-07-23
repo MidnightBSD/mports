@@ -1,5 +1,3 @@
-
-
 PORTNAME=	unix2dos
 PORTVERSION=	1.3
 PORTREVISION=	2
@@ -13,6 +11,8 @@ LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+CONFLICTS_INSTALL=	dos2unix
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/unix2dos ${PREFIX}/bin/unix2dos

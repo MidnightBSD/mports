@@ -1,0 +1,18 @@
+bin/mac2unix
+bin/unix2mac
+bin/dos2unix
+bin/unix2dos
+share/man/man1/mac2unix.1.gz
+share/man/man1/unix2mac.1.gz
+share/man/man1/unix2dos.1.gz
+share/man/man1/dos2unix.1.gz
+%%DOCSDIR%%/dos2unix.htm
+%%DOCSDIR%%/COPYING.txt
+%%DOCSDIR%%/dos2unix.txt
+%%DOCSDIR%%/BUGS.txt
+%%DOCSDIR%%/ChangeLog.txt
+%%DOCSDIR%%/NEWS.txt
+%%DOCSDIR%%/TODO.txt
+%%DOCSDIR%%/README.txt
+%%DOCSDIR%%/INSTALL.txt
+@dir %%DOCSDIR%%
