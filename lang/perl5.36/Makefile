@@ -53,7 +53,8 @@ MAN3PREFIX=	${PREFIX}/lib/perl5/${PERL_VER}/perl
 
 .include "version.mk"
 
-PERLMANPREFIX_REL=      ${_PRIV_LIB}/perl
+#PERLMANPREFIX_REL=      ${_PRIV_LIB}/perl
+PERLMANPREFIX_REL=      share
 PERLMANPREFIX=          ${PREFIX}/${PERLMANPREFIX_REL}
 MANDIRS=                ${PERLMANPREFIX}/man
 
