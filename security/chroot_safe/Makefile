@@ -14,7 +14,7 @@ USES=		tar:tgz
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	sbin/chroot_safe libexec/chroot_safe/chroot_safe.so \
-		man/man1/chroot_safe.1.gz
+		share/man/man1/chroot_safe.1.gz
 PLIST_DIRS=	libexec/chroot_safe
 
 post-patch:
