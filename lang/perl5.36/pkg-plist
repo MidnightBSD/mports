@@ -166,7 +166,6 @@
 %%PERL5_MAN1%%/perlebcdic.1.gz
 %%PERL5_MAN1%%/perldata.1.gz
 %%PERL5_MAN1%%/podchecker.1.gz
-%%PERL5_MAN1%%/perl-after-upgrade.1.gz
 %%PERL5_MAN1%%/perlsyn.1.gz
 %%PERL5_MAN1%%/perluniintro.1.gz
 %%PERL5_MAN1%%/perlcommunity.1.gz
