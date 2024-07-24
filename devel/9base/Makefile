@@ -22,8 +22,8 @@ SHEBANG_FILES=	troff/tmac/sendcover \
 SHEBANG_LANG=	rc
 rc_OLD_CMD=	${PREFIX}/bin/rc
 rc_CMD=		${PREFIX}/9/bin/rc
-MANPREFIX=	${PREFIX}/9
-MAKE_ARGS=	PREFIX="${PREFIX}/9" CC="${CC}" MANPREFIX="${MANPREFIX}/man" \
+MANDIRS=	${PREFIX}/9/share/man
+MAKE_ARGS=	PREFIX="${PREFIX}/9" CC="${CC}" \
 		CFLAGS="${CFLAGS} -I. -c" LDFLAGS="${LDFLAGS} -L."
 MAKE_JOBS_UNSAFE=	yes
 
