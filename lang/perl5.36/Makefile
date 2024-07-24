@@ -53,6 +53,9 @@ MAN3PREFIX=	${PREFIX}/lib/perl5/${PERL_VER}/perl
 
 .include "version.mk"
 
+PERLMANPREFIX_REL=      ${_PRIV_LIB}/perl
+PERLMANPREFIX=          ${PREFIX}/${PERLMANPREFIX_REL}
+MANDIRS=                ${PERLMANPREFIX}/man
 
 _PRIV_LIB=	lib/perl5/${PERL_VER}
 _ARCH_LIB=	${_PRIV_LIB}/${PERL_ARCH}
@@ -67,7 +70,7 @@ PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
 CONFIGURE_ARGS+=	-Dman3dir=${PREFIX}/lib/perl5/${PERL_VER}/perl/man/man3 \
 			-Dman1dir=${PREFIX}/man/man1 \
 			-Dsiteman3dir=${PREFIX}/lib/perl5/${PERL_VER}/man/man3 \
-			-Dsiteman1dir=${PREFIX}/man/man1
+			-Dsiteman1dir=${PREFIX}/share/man/man1
 .else
 CONFIGURE_ARGS+=	-Dman1dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man1 \
 			-Dman3dir=${PREFIX}/${PERLMANPREFIX_REL}/man/man3 \
@@ -94,7 +97,7 @@ PLIST_SUB+=		ENABLE_SUIDPERL="@comment "
 
 .if defined(WITH_GDBM)
 CONFIGURE_ARGS+=	-Di_gdbm
-LIB_DEPENDS+=		gdbm.4:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=		gdbm.4:databases/gdbm
 PLIST_SUB+=		GDBM=""
 MAN3+=	GDBM_File.3
 .else
