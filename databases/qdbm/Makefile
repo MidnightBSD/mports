@@ -1,20 +1,19 @@
-
-
 PORTNAME=	qdbm
 PORTVERSION=	1.8.78
 PORTREVISION=	4
 CATEGORIES=	databases
-MASTER_SITES=	http://fallabs.com/qdbm/
+MASTER_SITES=	https://dbmx.net/qdbm/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quick Database Manager
+WWW=		https://dbmx.net/qdbm/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	liblzo2.so:archivers/lzo2
 
-USES=		iconv
+USES=		cpe iconv
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	ac_cv_lib_iconv_main=yes
@@ -27,6 +26,8 @@ MAKE_ARGS=	MYDATADIR="${DOCSDIR}" MYDOCS="${PORTDOCS}" \
 		MYPCDIR="${PREFIX}/libdata/pkgconfig"
 INSTALL_TARGET=	install-strip
 PORTDOCS=	ChangeLog NEWS
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 .if defined(WITH_DEBUG)
