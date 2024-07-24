@@ -1898,7 +1898,6 @@ lib/libperl.so
 %%PERL5_MAN1%%/perl5222delta.1.gz
 %%PERL5_MAN1%%/pod2html.1.gz
 %%PERL5_MAN1%%/ptar.1.gz
-%%PERL5_MAN1%%/perl-after-upgrade.1.gz
 %%PERL5_MAN1%%/perl5281delta.1.gz
 %%PERL5_MAN1%%/perl5320delta.1.gz
 %%PERL5_MAN1%%/perl5361delta.1.gz
