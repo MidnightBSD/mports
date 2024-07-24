@@ -1,5 +1,3 @@
-
-
 PORTNAME=	chrpath
 PORTVERSION=	0.16
 CATEGORIES=	devel sysutils
@@ -17,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		gmake
 GNU_CONFIGURE=	yes
 
-PLIST_FILES=	bin/chrpath man/man1/chrpath.1.gz
+PLIST_FILES=	bin/chrpath share/man/man1/chrpath.1.gz
 PORTDOCS=	AUTHORS ChangeLog NEWS README
 
 OPTIONS_DEFINE=	DOCS
