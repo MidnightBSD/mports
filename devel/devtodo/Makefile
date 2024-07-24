@@ -1,5 +1,3 @@
-
-
 PORTNAME=	devtodo
 PORTVERSION=	0.1.20
 CATEGORIES=	devel
@@ -7,6 +5,7 @@ MASTER_SITES=	http://swapoff.org/files/devtodo/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to effectively maintain todo lists aimed at developers
+WWW=		https://swapoff.org/devtodo.html
 
 LICENSE=	gpl2
 
