@@ -1,29 +1,35 @@
-# ex:ts=8
-# Ports collection makefile for:	cvsps
-# Date Created:			Jan 4, 2008
-# Whom:				laffer1
-#
-
-#
-
 PORTNAME=	cvsps
-DISTVERSION=	2.1
+DISTVERSION=	2.2b1
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cobite.com/cvsps/
+MASTER_SITES=	SF/${PORTNAME}/
 PKGNAMESUFFIX?=	-devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CVS patchsets
+WWW=		https://cvsps.sourceforge.net/
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	cvsps-1.*
+CONFLICTS=	cvsps
 
-USE_GMAKE=	yes
+USES=		gmake
+ALL_TARGET=	cvsps
 
-PLIST_FILES=	bin/cvsps man/man1/cvsps.1.gz
+PLIST_FILES=	bin/${PORTNAME} \
+		share/man/man1/${PORTNAME}.1.gz
+PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/cvsps ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/cvsps.1 ${MANPREFIX}/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 \
+		${STAGEDIR}${PREFIX}/share/man/man1/
+
+do-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>
