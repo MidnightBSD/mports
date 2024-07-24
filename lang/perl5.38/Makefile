@@ -12,11 +12,11 @@ WWW=		https://www.perl.org/
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE_artistic=	${WRKSRC}/Artistic
-LICENSE_FILE_gpl+ =	${WRKSRC}/Copying
+LICENSE_FILE_gpl1 =	${WRKSRC}/Copying
 
-# Uncomment when the default Perl is switched to 5.38+
+# Uncomment when the default Perl is switched to 5.40+
 #DEPRECATED=	Support end three years after .0 release, please upgrade to a more recent version of Perl
-#EXPIRATION_DATE=2025-05-28
+#EXPIRATION_DATE=	2026-07-03
 
 USES=		cpe tar:xz
 
@@ -32,8 +32,7 @@ PORTSCOUT=	limit:^${PERL_VER}.
 
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
-CONFIGURE_ARGS=		-Accflags='-DUSE_THREAD_SAFE_LOCALE' \
-			-Darchlib=${PREFIX}/${_ARCH_LIB} \
+CONFIGURE_ARGS=		-Darchlib=${PREFIX}/${_ARCH_LIB} \
 			-Dcc="${CC}" \
 			-Dcf_by=${MAINTAINER:C,@.*,,} \
 			-Dcf_email=${MAINTAINER} \
@@ -166,6 +165,8 @@ SITECUSTOMIZE_CONFIGURE_ON=	-Dusesitecustomize
 THREADS_CONFIGURE_ON=		-Dusethreads=y
 THREADS_CONFIGURE_OFF=		-Dusethreads=n
 
+# Why this is required is explained in:
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=227356#c5
 _PERL5_DEFAULT_FILE=	/tmp/PERL5_DEFAULT
 
 # Get the default version, and possibly, overwrite it.
@@ -231,13 +232,13 @@ post-extract:
 
 .if !defined(PACKAGE_BUILDING)
 post-clean:
-	@${RM} ${_PERL5_DEFAULT_FILE}
+	-${RM} ${_PERL5_DEFAULT_FILE}
 .endif
 
 post-patch:
 .if ${LOCALBASE} != /usr/local
 	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/Configure ${WRKSRC}/hints/midnightbsd.sh
+		${WRKSRC}/Configure ${WRKSRC}/hints/freebsd.sh
 .endif
 .if !defined(IAMDEFAULTPERL)
 	${REINPLACE_CMD} -e '/do_installprivlib = 0 if .versiononly/d; \
@@ -257,32 +258,32 @@ post-install:
 # needs to rebuild everything.
 	@${TOUCH} -r ${PREFIX}/${_ARCH_LIB}/Config.pm.bak ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/Config.pm
 	@${TOUCH} -r ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/Config_heavy.pl
-	@${RM} ${PREFIX}/${_ARCH_LIB}/Config.pm.bak ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak
+	@${RM} ${PREFIX}/${_ARCH_LIB}/Config.pm.bak ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak
 .endif
 
-	${MKDIR} ${SITE_MAN1} ${STAGEDIR}${SITE_MAN3}
-	${MKDIR} ${SITE_ARCH}/auto
-	${MKDIR} ${SITE_PERL}/auto
+	${MKDIR} ${STAGEDIR}${SITE_MAN1} ${STAGEDIR}${SITE_MAN3}
+	${MKDIR} ${STAGEDIR}${SITE_ARCH}/auto
+	${MKDIR} ${STAGEDIR}${SITE_PERL}/auto
 .if defined(IAMDEFAULTPERL)
 	${LN} -sf perl ${STAGEDIR}${PREFIX}/bin/perl${PERL_VERSION}
 .endif
 	${LN} -sf libperl.so.${PERL_VERSION} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so
 	${LN} -sf libperl.so.${PERL_VERSION} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so.${PERL_VER}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/perl${PERL_VERSION}
-	${MKDIR} ${STAGEDIR}${SITE_ARCH}/machine
-	${MKDIR} ${STAGEDIR}${SITE_ARCH}/sys
+	${STRIP_CMD} ${PREFIX}/bin/perl${PERL_VERSION}
+	${MKDIR} ${SITE_ARCH}/machine
+	${MKDIR} ${SITE_ARCH}/sys
 # h2ph needs perl, but perl is not installed, it's only
 # staged, so, use the one in WRKDIR
 	(cd /usr/include && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
-		${WRKSRC}/perl -I ${WRKSRC}/lib ${STAGEDIR}${PREFIX}/bin/h2ph${BINSUFFIX} \
+		${WRKSRC}/perl -I ${WRKSRC}/lib ${PREFIX}/bin/h2ph${BINSUFFIX} \
 		-d ${STAGEDIR}${SITE_ARCH} *.h machine/*.h sys/*.h >/dev/null)
-	@${FIND} ${STAGEDIR}${SITE_ARCH} -name '*.ph' | sed -e 's|${FAKE_DESTDIR}||' >> ${TMPPLIST}
+	@${FIND} ${SITE_ARCH} -name '*.ph' | sed -e 's|${FAKE_DESTDIR}||' >> ${TMPPLIST}
 	${FIND} ${FAKE_DESTDIR} -name '*.so*' -type f | while read f; \
 		do \
 			${CHMOD} 644 $$f; \
 			${STRIP_CMD} $$f; \
 			${CHMOD} 444 $$f; \
 		done
-	${INSTALL_DATA} ${WRKDIR}/perl-man.conf ${STAGEDIR}${PREFIX}/etc/man.d/perl${PKGNAMESUFFIX}.conf
+	${INSTALL_DATA} ${WRKDIR}/perl-man.conf ${PREFIX}/etc/man.d/perl${PKGNAMESUFFIX}.conf
 
 .include <bsd.port.mk>

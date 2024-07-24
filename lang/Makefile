@@ -84,6 +84,7 @@ SUBDIR += p5-Try-Tiny
 SUBDIR += p5-ePerl
 SUBDIR += pcc
 SUBDIR += perl5.36
+SUBDIR += perl5.38
 SUBDIR += php_doc
 SUBDIR += php81
 SUBDIR += php81-extensions

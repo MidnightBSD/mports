@@ -278,8 +278,6 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/Memoize.pm
 %%PRIV_LIB%%/Memoize/AnyDBM_File.pm
 %%PRIV_LIB%%/Memoize/Expire.pm
-%%PRIV_LIB%%/Memoize/ExpireFile.pm
-%%PRIV_LIB%%/Memoize/ExpireTest.pm
 %%PRIV_LIB%%/Memoize/NDBM_File.pm
 %%PRIV_LIB%%/Memoize/SDBM_File.pm
 %%PRIV_LIB%%/Memoize/Storable.pm
@@ -717,6 +715,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%ARCH_LIB%%/CORE/perlio.h
 %%ARCH_LIB%%/CORE/perliol.h
 %%ARCH_LIB%%/CORE/perlsdio.h
+%%ARCH_LIB%%/CORE/perlstatic.h
 %%ARCH_LIB%%/CORE/perlvars.h
 %%ARCH_LIB%%/CORE/perly.h
 %%ARCH_LIB%%/CORE/pp.h
@@ -725,10 +724,13 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%ARCH_LIB%%/CORE/reentr.h
 %%ARCH_LIB%%/CORE/regcharclass.h
 %%ARCH_LIB%%/CORE/regcomp.h
+%%ARCH_LIB%%/CORE/regcomp_internal.h
 %%ARCH_LIB%%/CORE/regexp.h
+%%ARCH_LIB%%/CORE/reginline.h
 %%ARCH_LIB%%/CORE/regnodes.h
 %%ARCH_LIB%%/CORE/sbox32_hash.h
 %%ARCH_LIB%%/CORE/scope.h
+%%ARCH_LIB%%/CORE/scope_types.h
 %%ARCH_LIB%%/CORE/sv.h
 %%ARCH_LIB%%/CORE/sv_inline.h
 %%ARCH_LIB%%/CORE/thread.h
@@ -980,6 +982,9 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN1%%/perl5361delta.1.gz
 %%MAN1%%/perl5362delta.1.gz
 %%MAN1%%/perl5363delta.1.gz
+%%MAN1%%/perl5380delta.1.gz
+%%MAN1%%/perl5381delta.1.gz
+%%MAN1%%/perl5382delta.1.gz
 %%MAN1%%/perl561delta.1.gz
 %%MAN1%%/perl56delta.1.gz
 %%MAN1%%/perl581delta.1.gz
@@ -1005,6 +1010,8 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN1%%/perlbug.1.gz
 %%MAN1%%/perlcall.1.gz
 %%MAN1%%/perlcheat.1.gz
+%%MAN1%%/perlclass.1.gz
+%%MAN1%%/perlclassguts.1.gz
 %%MAN1%%/perlclib.1.gz
 %%MAN1%%/perlcn.1.gz
 %%MAN1%%/perlcommunity.1.gz
@@ -1409,8 +1416,6 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN3%%/Memoize.3.gz
 %%MAN3%%/Memoize::AnyDBM_File.3.gz
 %%MAN3%%/Memoize::Expire.3.gz
-%%MAN3%%/Memoize::ExpireFile.3.gz
-%%MAN3%%/Memoize::ExpireTest.3.gz
 %%MAN3%%/Memoize::NDBM_File.3.gz
 %%MAN3%%/Memoize::SDBM_File.3.gz
 %%MAN3%%/Memoize::Storable.3.gz
@@ -1711,11 +1716,11 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN3%%/re.3.gz
 %%MAN3%%/sigtrap.3.gz
 %%MAN3%%/sort.3.gz
+%%MAN3%%/stable.3.gz
 %%MAN3%%/strict.3.gz
 %%MAN3%%/subs.3.gz
 %%MAN3%%/threads.3.gz
 %%MAN3%%/threads::shared.3.gz
-%%MAN3%%/unicore::Name.3.gz
 %%MAN3%%/utf8.3.gz
 %%MAN3%%/vars.3.gz
 %%MAN3%%/version.3.gz
@@ -1785,6 +1790,9 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/pod/perl5361delta.pod
 %%PRIV_LIB%%/pod/perl5362delta.pod
 %%PRIV_LIB%%/pod/perl5363delta.pod
+%%PRIV_LIB%%/pod/perl5380delta.pod
+%%PRIV_LIB%%/pod/perl5381delta.pod
+%%PRIV_LIB%%/pod/perl5382delta.pod
 %%PRIV_LIB%%/pod/perl561delta.pod
 %%PRIV_LIB%%/pod/perl56delta.pod
 %%PRIV_LIB%%/pod/perl581delta.pod
@@ -1809,6 +1817,8 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/pod/perlbs2000.pod
 %%PRIV_LIB%%/pod/perlcall.pod
 %%PRIV_LIB%%/pod/perlcheat.pod
+%%PRIV_LIB%%/pod/perlclass.pod
+%%PRIV_LIB%%/pod/perlclassguts.pod
 %%PRIV_LIB%%/pod/perlclib.pod
 %%PRIV_LIB%%/pod/perlcn.pod
 %%PRIV_LIB%%/pod/perlcommunity.pod
@@ -1939,6 +1949,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/pod/perlxstypemap.pod
 %%PRIV_LIB%%/sigtrap.pm
 %%PRIV_LIB%%/sort.pm
+%%PRIV_LIB%%/stable.pm
 %%PRIV_LIB%%/strict.pm
 %%PRIV_LIB%%/subs.pm
 %%PRIV_LIB%%/unicore/Blocks.txt
@@ -1948,6 +1959,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/unicore/Name.pm
 %%PRIV_LIB%%/unicore/NamedSequences.txt
 %%PRIV_LIB%%/unicore/SpecialCasing.txt
+%%PRIV_LIB%%/unicore/TestNorm.pl
 %%PRIV_LIB%%/unicore/To/Age.pl
 %%PRIV_LIB%%/unicore/To/Bc.pl
 %%PRIV_LIB%%/unicore/To/Bmg.pl
@@ -1995,6 +2007,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/unicore/lib/Age/V120.pl
 %%PRIV_LIB%%/unicore/lib/Age/V130.pl
 %%PRIV_LIB%%/unicore/lib/Age/V140.pl
+%%PRIV_LIB%%/unicore/lib/Age/V150.pl
 %%PRIV_LIB%%/unicore/lib/Age/V20.pl
 %%PRIV_LIB%%/unicore/lib/Age/V30.pl
 %%PRIV_LIB%%/unicore/lib/Age/V31.pl
@@ -2145,6 +2158,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/unicore/lib/In/12_1.pl
 %%PRIV_LIB%%/unicore/lib/In/13_0.pl
 %%PRIV_LIB%%/unicore/lib/In/14_0.pl
+%%PRIV_LIB%%/unicore/lib/In/15_0.pl
 %%PRIV_LIB%%/unicore/lib/In/2_0.pl
 %%PRIV_LIB%%/unicore/lib/In/2_1.pl
 %%PRIV_LIB%%/unicore/lib/In/3_0.pl
@@ -2185,7 +2199,9 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/unicore/lib/InSC/Consona6.pl
 %%PRIV_LIB%%/unicore/lib/InSC/Consona7.pl
 %%PRIV_LIB%%/unicore/lib/InSC/Consona8.pl
+%%PRIV_LIB%%/unicore/lib/InSC/Consona9.pl
 %%PRIV_LIB%%/unicore/lib/InSC/Consonan.pl
+%%PRIV_LIB%%/unicore/lib/InSC/Geminati.pl
 %%PRIV_LIB%%/unicore/lib/InSC/Invisibl.pl
 %%PRIV_LIB%%/unicore/lib/InSC/Nukta.pl
 %%PRIV_LIB%%/unicore/lib/InSC/Number.pl

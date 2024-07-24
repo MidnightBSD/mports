@@ -97,22 +97,15 @@ PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi
 # use true_prefix so that PERL will be right in faked targets.
 # this is historical.
 PERL_PREFIX?=		${LOCALBASE}
-SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
-SITE_PERL?=	${PERL_PREFIX}/${SITE_PERL_REL}
-SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}
+SITE_PERL_REL?=	lib/perl5/site_perl/
+SITE_PERL?=	${LOCALBASE}/${SITE_PERL_REL}
+SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}/${PERL_VER}
 SITE_ARCH?=	${LOCALBASE}/${SITE_ARCH_REL}
 
-.if ${OSVERSION} > 302000
-SITE_MAN3_REL?=	share/man/man3
-SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
-SITE_MAN1_REL?=	share/man/man1
-SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
-.else
-SITE_MAN3_REL?=	${SITE_PERL_REL}/man/man3
-SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
-SITE_MAN1_REL?=	${SITE_PERL_REL}/man/man1
-SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
-.endif
+SITE_MAN3_REL?= ${SITE_PERL_REL}/man/man3
+SITE_MAN3?=     ${PREFIX}/${SITE_MAN3_REL}
+SITE_MAN1_REL?= ${SITE_PERL_REL}/man/man1
+SITE_MAN1?=     ${PREFIX}/${SITE_MAN1_REL}
 
 .if ${OSVERSION} < 302001 && exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
 PERL=		/usr/bin/perl
