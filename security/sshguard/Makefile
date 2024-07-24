@@ -1,10 +1,11 @@
 PORTNAME=	sshguard
-PORTVERSION=	2.4.1
+PORTVERSION=	2.4.3
 CATEGORIES=	security
 MASTER_SITES=	SF/sshguard/sshguard/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Protect hosts from brute-force attacks against SSH and other services
+WWW=		https://www.sshguard.net/
 
 LICENSE=	bsd2
 
