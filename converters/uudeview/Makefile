@@ -20,8 +20,8 @@ CONFIGURE_ARGS=	--disable-tcl
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 PORTDOCS=	HISTORY porting.notes
-PLIST_FILES=	bin/uudeview bin/uuenview man/man1/uudeview.1.gz \
-		man/man1/uuenview.1.gz
+PLIST_FILES=	bin/uudeview bin/uuenview share/man/man1/uudeview.1.gz \
+		share/man/man1/uuenview.1.gz
 
 OPTIONS_DEFINE=	DOCS
 
