@@ -5,6 +5,7 @@ MASTER_SITES=	https://www.nano-editor.org/dist/v${PORTVERSION:R}/ GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nano's ANOther editor, an enhanced free Pico clone
+WWW=		https://www.nano-editor.org/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
