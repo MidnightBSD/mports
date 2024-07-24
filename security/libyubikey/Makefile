@@ -23,9 +23,9 @@ PLIST_FILES=	bin/modhex \
 		lib/libyubikey.so \
 		lib/libyubikey.so.0 \
 		lib/libyubikey.so.0.1.7 \
-		man/man1/modhex.1.gz \
-		man/man1/ykgenerate.1.gz \
-		man/man1/ykparse.1.gz
+		share/man/man1/modhex.1.gz \
+		share/man/man1/ykgenerate.1.gz \
+		share/man/man1/ykparse.1.gz
 
 MAKE_JOBS_UNSAFE=	yes
 
