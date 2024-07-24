@@ -19,8 +19,7 @@ USE_LDCONFIG=	yes
 CFLAGS+=	-I. -I${WRKSRC}/include -fPIC
 LDFLAGS+=	-L. -L${WRKSRC}/lib
 MAKE_ARGS=	PREFIX="${PREFIX}" CC="${CC} -c" LD="${CC}" \
-		CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" \
-		MANPREFIX="${MANPREFIX}/man"
+		CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" 
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|\.a|.so|g; s|(AR)|(LD) -shared -fPIC -o|' \
@@ -44,6 +43,6 @@ do-install:
 	@${LN} -sf libixp.so.1 ${PREFIX}/lib/libixp.so
 	@${LN} -sf libixp_pthread.so.1 ${PREFIX}/lib/libixp_pthread.so
 	@${INSTALL_PROGRAM} ${WRKSRC}/cmd/ixpc.O ${PREFIX}/bin/ixpc
-	@${INSTALL_MAN} ${WRKSRC}/man/ixpc.1 ${MANPREFIX}/man/man1
+	@${INSTALL_MAN} ${WRKSRC}/man/ixpc.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
