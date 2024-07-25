@@ -10,6 +10,7 @@ WWW=		https://sourceforge.net/projects/xmill/
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		dos2unix zip
+USE_CXXSTD=	c++14
 DOS2UNIX_FILES=	${MAKEFILE} XMill/*.cpp
 MAKEFILE=	makefile
 

@@ -1,5 +1,3 @@
-
-
 PORTNAME=	upx
 PORTVERSION=	3.96
 MASTER_SITES=	https://github.com/upx/upx/releases/download/v${PORTVERSION}/
@@ -21,12 +19,12 @@ MAKE_ENV=	UPX_UCLDIR=${LOCALBASE} \
 		target=freebsd
 
 PLIST_FILES=	bin/upx \
-		man/man1/upx.1.gz
+		share/man/man1/upx.1.gz
 
 CPE_VENDOR=	upx_project
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/upx.out ${PREFIX}/bin/upx
-	${INSTALL_MAN} ${WRKSRC}/doc/upx.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/upx.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
