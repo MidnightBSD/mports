@@ -41,22 +41,34 @@ IGNORE=	Incorrect 'USES+=perl5:${perl5_ARGS}' perl5 takes no arguments
 USE_PERL5?=	run build
 
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
-PERL_PORT?=		perl${PERL_BRANCH}
 
 .if ${OSVERSION} > 302000
+.  if   ${PERL_LEVEL} >= 504000
+PERL_PORT?=     perl5.40
+.  elif   ${PERL_LEVEL} >= 503800
+PERL_PORT?=     perl5.38
+.  else # ${PERL_LEVEL} < 503800
+PERL_PORT?=     perl5.36
 _DEFAULT_PERL_VERSION=	5.36.3
 .include "${PORTSDIR}/lang/perl5.36/version.mk"
+.  endif
 .elif ${OSVERSION} > 301006
+PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION=	5.36.1
 .elif ${OSVERSION} > 202002
+PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION=	5.36.0
 .elif ${OSVERSION} > 200001
+PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION=	5.32.0
 .elif ${OSVERSION} > 101001
+PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION=	5.28.0
 .elif ${OSVERSION} > 9009
+PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION=	5.26.0
 .else
+PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION= 5.36.0
 .endif
 _DEFAULT_PERL_BRANCH= 5.36
@@ -88,18 +100,27 @@ PERL_LEVEL=	${perl_major}${perl_minor}${perl_patch}
 PERL_LEVEL=0
 .  endif # !defined(PERL_LEVEL) && defined(PERL_VERSION)
 
+
+.if ${OSVERSION} > 302000
+PERL_ARCH?=     mach
+.else
 .if ${ARCH} == "i386"
 PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi-64int
 .else
 PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi
 .endif
+.endif
 
 # use true_prefix so that PERL will be right in faked targets.
 # this is historical.
 PERL_PREFIX?=		${LOCALBASE}
-SITE_PERL_REL?=	lib/perl5/site_perl/
+SITE_PERL_REL?=	lib/perl5/site_perl
 SITE_PERL?=	${LOCALBASE}/${SITE_PERL_REL}
+.if ${OSVERSION} < 302001
+SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_VER}/${PERL_ARCH}
+.else
 SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}/${PERL_VER}
+.endif
 SITE_ARCH?=	${LOCALBASE}/${SITE_ARCH_REL}
 
 SITE_MAN3_REL?= ${SITE_PERL_REL}/man/man3
