@@ -67,8 +67,8 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/Ted/Ted ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/tedPackage/examples/rtf2*.sh ${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/tedPackage/doc/Ted.1 ${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/tedPackage/doc/rtf2*.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/tedPackage/doc/Ted.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/tedPackage/doc/rtf2*.1 ${PREFIX}/share/man/man1
 	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/tedPackage/ps/*.ps ${DATADIR}
 	@${MKDIR} ${AFMDIR}
