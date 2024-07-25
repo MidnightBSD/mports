@@ -15,7 +15,7 @@ USES=		gmake
 
 INFO=		gnugo
 PLIST_FILES=	bin/gnugo \
-		man/man6/gnugo.6.gz
+		share/man/man6/gnugo.6.gz
 
 post-extract:
 	${RM} -f ${WRKSRC}/doc/gnugo.info*
