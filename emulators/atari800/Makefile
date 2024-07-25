@@ -83,7 +83,7 @@ pre-configure:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/atari800 ${STAGEDIR}${PREFIX}/bin/atari800
-	${INSTALL_MAN} ${WRKSRC}/atari800.man ${STAGEDIR}${MANPREFIX}/man/man1/atari800.1
+	${INSTALL_MAN} ${WRKSRC}/atari800.man ${STAGEDIR}${PREFIX}/share/man/man1/atari800.1
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/atari800.cfg ${STAGEDIR}${DATADIR}
 .for rom in ${ATARI_XF}
