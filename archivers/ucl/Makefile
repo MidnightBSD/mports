@@ -6,8 +6,9 @@ MASTER_SITES=	http://www.oberhumer.com/opensource/ucl/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data compression library with low memory usage
+WWW=		https://www.oberhumer.com/opensource/ucl/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 OPTIONS_DEFINE=	DOCS

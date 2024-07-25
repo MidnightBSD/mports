@@ -1,6 +1,5 @@
 PORTNAME=	thunar-archive-plugin
-PORTVERSION=	0.5.0
-PORTREVISION=	2
+PORTVERSION=	0.5.2
 CATEGORIES=	archivers xfce
 MASTER_SITES=	XFCE/thunar-plugins
 DIST_SUBDIR=	xfce4

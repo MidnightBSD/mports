@@ -6,6 +6,8 @@ MASTER_SITES=	SUNSITE/utils/compress
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extract, view & test ACE archives
+WWW=		http://www.winace.com/
+
 LICENSE=	unknown
 
 MAKE_JOBS_UNSAFE=	yes

@@ -1,10 +1,3 @@
-# New ports collection makefile for:	unmakeself
-# Date created:			31 Mar 2005
-# Whom:				Jean-Yves Lefort <jylefort@brutele.be>
-#
-
-#
-
 PORTNAME=	unmakeself
 PORTVERSION=	1.1
 PORTREVISION=	1
@@ -13,8 +6,10 @@ DISTFILES=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extract Makeself archives
+
 LICENSE=	bsd3
 
+USES=		libarchive
 LDFLAGS=	-larchive -lbz2 -lz -lcrypto -lmd
 NO_WRKSUBDIR=	yes
 

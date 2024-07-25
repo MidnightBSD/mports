@@ -7,6 +7,7 @@ DISTNAME=	trrntzip_v${PORTVERSION:S/.//}_src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Efficient way to prepare zipfiles for BitTorrent
+WWW=		http://trrntzip.sourceforge.net
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

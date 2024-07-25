@@ -26,17 +26,17 @@ GNU_CONFIGURE=	yes
 TEST_TARGET=	check
 
 PLIST_FILES=	bin/lha-ac \
-		man/ja/man1/lha-ac.1.gz \
-		man/man1/lha-ac.1.gz
+		share/man/ja/man1/lha-ac.1.gz \
+		share/man/man1/lha-ac.1.gz
 
 OPTIONS_DEFINE=		NLS
 NLS_CONFIGURE_ON=	--enable-multibyte-filename=auto
 NLS_CONFIGURE_OFF=	--disable-multibyte-filename
 
 do-install:
-	-${MKDIR} ${MANPREFIX}/man/ja/man1
+	-${MKDIR} ${PREFIX}/share/man/ja/man1
 	${INSTALL_PROGRAM} ${WRKSRC}/src/lha ${PREFIX}/bin/lha-ac
-	${INSTALL_MAN} ${WRKSRC}/man/lha.1 ${MANPREFIX}/man/man1/lha-ac.1
-	${INSTALL_MAN} ${WRKSRC}/man/lha.n ${MANPREFIX}/man/ja/man1/lha-ac.1
+	${INSTALL_MAN} ${WRKSRC}/man/lha.1 ${PREFIX}/share/man/man1/lha-ac.1
+	${INSTALL_MAN} ${WRKSRC}/man/lha.n ${PREFIX}/share/man/ja/man1/lha-ac.1
 
 .include <bsd.port.mk>

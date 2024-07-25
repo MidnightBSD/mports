@@ -1,5 +1,5 @@
 PORTNAME=	gzip
-PORTVERSION=	1.10
+PORTVERSION=	1.13
 CATEGORIES=	archivers
 MASTER_SITES=	GNU
 
@@ -11,9 +11,9 @@ LICENSE=	gpl3
 USES=		cpe charsetfix makeinfo
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd12.4
 CONFIGURE_ARGS+=	--infodir=${LOCALBASE}/info \
-		--mandir=${MANPREFIX}/man
+		--mandir=${PREFIX}/share/man
 
 INFO=		gzip
 CPE_VENDOR=	gnu
