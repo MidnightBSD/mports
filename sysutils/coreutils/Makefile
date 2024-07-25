@@ -16,6 +16,7 @@ CONFLICTS=	id-utils-[0-9]* linux-gid-[0-9]*
 MAKE_JOBS_UNSAFE=	yes
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 # A rather nasty hack to stop gnustat from conflicting with base gstat
 CONFIGURE_ARGS=	--program-prefix=g	\
 		--program-transform-name=s/stat/nustat/
