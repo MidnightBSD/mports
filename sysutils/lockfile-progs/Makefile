@@ -22,12 +22,12 @@ PORTDOCS=	TODO changelog
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/lockfile-create ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/lockfile-progs.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_DATA} ${WRKSRC}/lockfile-progs.1 ${STAGEDIR}${PREFIX}/share/man/man1
 .for f in lockfile-remove lockfile-touch lockfile-check mail-lock mail-unlock mail-touchlock
 	${LN} ${STAGEDIR}${PREFIX}/bin/lockfile-create ${STAGEDIR}${PREFIX}/bin/${f}
-	${LN} -s lockfile-progs.1 ${STAGEDIR}${MANPREFIX}/man/man1/${f}.1
+	${LN} -s lockfile-progs.1 ${STAGEDIR}${PREFIX}/share/man/man1/${f}.1
 .endfor
-	${LN} -s lockfile-progs.1 ${STAGEDIR}${MANPREFIX}/man/man1/lockfile-create.1
+	${LN} -s lockfile-progs.1 ${STAGEDIR}${PREFIX}/share/man/man1/lockfile-create.1
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
