@@ -1,21 +1,23 @@
 PORTNAME=	libzip
-PORTVERSION=	1.5.2
+DISTVERSION=	1.10.1
 CATEGORIES=	archivers devel
-MASTER_SITES=	https://libzip.org/download/
+MASTER_SITES=	https://github.com/nih-at/${PORTNAME}/releases/download/v${DISTVERSION}/ \
+		https://libzip.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library for reading, creating, and modifying ZIP archives
+WWW=		https://libzip.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+LIB_DEPENDS=	libzstd.so:archivers/zstd
+
+USES=		cmake cpe pathfix ssl tar:xz
 CPE_VENDOR=	nih
-
-USES=		cmake cpe perl5 ssl tar:xz
 USE_LDCONFIG=	yes
-USE_PERL5=	test
-NO_TEST=	yes
 
-CMAKE_OFF=	ENABLE_COMMONCRYPTO ENABLE_GNUTLS
+CMAKE_OFF=	BUILD_REGRESS ENABLE_COMMONCRYPTO ENABLE_GNUTLS ENABLE_MBEDTLS
+CMAKE_ON=	CMAKE_SKIP_RPATH
 
 .include <bsd.port.mk>
