@@ -1,5 +1,5 @@
 PORTNAME=	zchunk
-DISTVERSION=	1.3.0
+DISTVERSION=	1.5.1
 CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org

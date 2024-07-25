@@ -1,5 +1,3 @@
-
-
 PORTNAME=	zipper
 PORTVERSION=	1.5
 PORTREVISION=	3
@@ -9,6 +7,7 @@ DISTNAME=	Zipper-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for inspecting the contents of a compressed archive
+WWW=		http://gap.nongnu.org/zipper/
 
 LICENSE=	publicdom
 

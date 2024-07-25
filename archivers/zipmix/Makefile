@@ -1,5 +1,3 @@
-# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-
 PORTNAME=	zipmix
 DISTVERSION=	20070221
 CATEGORIES=	archivers
@@ -9,6 +7,7 @@ DISTNAME=	${PORTNAME}_src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Produce .ZIP file from two other ones with the best compressed files
+WWW=		http://www.advsys.net/ken/utils.htm
 
 LICENSE=	other
 
