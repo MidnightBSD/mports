@@ -32,7 +32,7 @@ post-patch:
 	@${REINPLACE_CMD} -E 's,/usr/share,${PREFIX}/share,g' ${WRKSRC}/antiword.h
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/Docs/antiword.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/Docs/antiword.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
