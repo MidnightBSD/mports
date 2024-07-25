@@ -233,11 +233,11 @@ MANDIRS+=	${PREFIX}/${SITE_PERL_REL}/man
 _USE_PERL5+=	configure
 ALL_TARGET?=	# empty
 CONFIGURE_ARGS+=--install_path lib="${TARGETDIR}/${SITE_PERL_REL}" \
-		--install_path arch="${TARGETDIR}/${SITE_PERL_REL}/${PERL_ARCH}" \
+		--install_path arch="${TARGETDIR}/${SITE_PERL_REL}" \
 		--install_path script="${TARGETDIR}/bin" \
 		--install_path bin="${TARGETDIR}/bin" \
-		--install_path libdoc="${MAN3PREFIX}/share/man/man3" \
-		--install_path bindoc="${MAN1PREFIX}/share/man/man1"
+		--install_path libdoc="${PERLMANPREFIX}/man/man3" \
+		--install_path bindoc="${PERLMANPREFIX}/man/man1"
 CONFIGURE_SCRIPT?=	Build.PL
 PL_BUILD?=	Build
 CONFIGURE_ARGS+=--destdir ${FAKE_DESTDIR}
@@ -298,13 +298,7 @@ TEST_DEPENDS+=		${PERL5_DEPEND}:lang/${PERL_PORT}
 CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}" PREFIX="${PREFIX}" \
 			INSTALLPRIVLIB="${PREFIX}/lib" INSTALLARCHLIB="${PREFIX}/lib"
 CONFIGURE_SCRIPT?=	Makefile.PL
-.if ${OSVERSION} < 302001
-MAN3PREFIX?=		${PREFIX}/${SITE_PERL_REL}
-MAN1PREFIX?=		${PREFIX}/${SITE_PERL_REL}
-.else
-MAN3PREFIX?=		${PREFIX}/
-MAN1PREFIX?=		${PREFIX}/
-.endif
+PERLMANPREFIX?=		${PREFIX}/${SITE_PERL_REL}
 .undef HAS_CONFIGURE
 
 .    if !target(do-configure)
