@@ -64,7 +64,10 @@ CONFIGURE_ARGS+=	-Alddlflags='-L${WRKSRC} -L${PREFIX}/${_ARCH_LIB}/CORE -lperl' 
 # When built from a git repository, newvers.sh can put a = in the version.
 CONFIGURE_ENV=	UNAME_v="$$(uname -v | sed 'y/=/ /')"
 
-SUB_FILES=	perl-man.conf
+SUB_FILES=	perl-man.conf pkg-glue perl-after-upgrade
+SUB_LIST=	MAKE_CONF=${__MAKE_CONF}
+PKGINSTALL=${WRKDIR}/pkg-glue
+PKGDEINSTALL=${WRKDIR}/pkg-glue
 
 INSTALL_TARGET=	install-strip
 
@@ -246,6 +249,10 @@ post-patch:
 .endif
 
 post-install:
+	@${SETENV} LD_LIBRARY_PATH=${WRKSRC} ${PREFIX}/bin/perl -I${WRKSRC}/lib \
+		${PREFIX}/bin/pod2man ${WRKDIR}/perl-after-upgrade >${WRKDIR}/perl-after-upgrade.1
+	@${INSTALL_SCRIPT} ${WRKDIR}/perl-after-upgrade ${PREFIX}/bin/perl-after-upgrade
+	@${INSTALL_MAN} ${WRKDIR}/perl-after-upgrade.1 ${MAN1PREFIX}/man/man1/perl-after-upgrade.1
 	@${REINPLACE_CMD} -e '/^lddlflags/s|-L${WRKSRC} ||' \
 		${PREFIX}/${_ARCH_LIB}/Config_heavy.pl
 	@${TOUCH} -r ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl
