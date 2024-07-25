@@ -8,6 +8,7 @@ DISTNAME=	FTP-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compact and handy FTP client for GNUstep
+WWW=		https://www.nongnu.org/gap/ftp/index.htm
 
 LICENSE=	gpl2
 

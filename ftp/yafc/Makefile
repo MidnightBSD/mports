@@ -27,7 +27,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 INFO=		yafc
 PLIST_FILES=	bin/yafc \
-		man/man1/yafc.1.gz
+		share/man/man1/yafc.1.gz
 PORTEXAMPLES=	inputrc yafcrc
 
 OPTIONS_DEFINE=		BASH EXAMPLES NLS READLINE SSH

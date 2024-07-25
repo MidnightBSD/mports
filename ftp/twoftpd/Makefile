@@ -25,8 +25,8 @@ PLIST_FILES=	bin/twoftpd-anon bin/twoftpd-anon-conf \
 		bin/twoftpd-auth bin/twoftpd-bind-port \
 		bin/twoftpd-conf bin/twoftpd-drop \
 		bin/twoftpd-switch bin/twoftpd-xfer \
-		man/man1/twoftpd-auth.1.gz man/man1/twoftpd-switch.1.gz \
-		man/man1/twoftpd-xfer.1.gz
+		share/man/man1/twoftpd-auth.1.gz share/man/man1/twoftpd-switch.1.gz \
+		share/man/man1/twoftpd-xfer.1.gz
 
 OPTIONS_DEFINE=	DOCS
 

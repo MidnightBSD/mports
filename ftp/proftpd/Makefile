@@ -234,7 +234,7 @@ post-install:
 	@${CP} -RP ${WRKSRC}/doc/howto ${STAGEDIR}${DOCSDIR}/html/howto
 . endif
 .endif
-	@${INSTALL_MAN} ${WRKSRC}/src/ftpdctl.8 ${STAGEDIR}${MAN8PREFIX}/man/man8/
+	@${INSTALL_MAN} ${WRKSRC}/src/ftpdctl.8 ${PREFIX}/share/man/man8/
 .endif #!defined(_BUILDING_PROFTPD_MODULE)
 
 .include <bsd.port.post.mk>

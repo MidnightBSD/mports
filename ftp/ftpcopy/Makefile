@@ -25,7 +25,7 @@ pre-build:
 do-install:
 	cd ${WRKSRC}/compile && \
 		${INSTALL_PROGRAM} ftpcopy ftpls ${PREFIX}/bin && \
-		${INSTALL_MAN} ${MANPAGES} ${PREFIX}/man/man1 && \
+		${INSTALL_MAN} ${MANPAGES} ${PREFIX}/share/man/man1 && \
 		${INSTALL_SCRIPT} ftpcp ${PREFIX}/bin
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR} && \

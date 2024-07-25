@@ -37,7 +37,7 @@ pre-configure:
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/wput
-	${INSTALL_MAN}	${WRKSRC}/doc/*.1 ${MANPREFIX}/man/man1/
+	${INSTALL_MAN}	${WRKSRC}/doc/*.1 ${PREFIX}/share/man/man1/
 	@${INSTALL} -d ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
 	@${INSTALL} -d ${EXAMPLESDIR}

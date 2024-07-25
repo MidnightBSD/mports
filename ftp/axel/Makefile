@@ -28,6 +28,6 @@ CONFIGURE_ARGS=	--without-ssl # no easy workaround
 .endif
 
 PLIST_FILES=	bin/axel \
-		man/man1/axel.1.gz
+		share/man/man1/axel.1.gz
 
 .include <bsd.port.mk>

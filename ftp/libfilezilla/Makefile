@@ -5,8 +5,9 @@ MASTER_SITES=	https://download.filezilla-project.org/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ library for building platform-independent programs
+WWW=		https://lib.filezilla-project.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libgnutls.so:security/gnutls \

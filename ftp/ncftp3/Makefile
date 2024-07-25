@@ -8,6 +8,7 @@ DISTNAME=	ncftp-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FTP client with advanced user interface
+WWW=		https://www.ncftp.com/ncftp/
 
 LICENSE=	artistic
 LICENSE_FILE=	${WRKSRC}/doc/LICENSE.txt
