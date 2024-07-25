@@ -72,8 +72,8 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.a ${STAGEDIR}${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.so.1 ${STAGEDIR}${PREFIX}/lib
 	${LN} -sf libcompface.so.1 ${STAGEDIR}${PREFIX}/lib/libcompface.so
-	${INSTALL_MAN} ${WRKSRC}/compface/compface.1 ${STAGEDIR}${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/compface/compface.3 ${STAGEDIR}${MANPREFIX}/man/man3
+	${INSTALL_MAN} ${WRKSRC}/compface/compface.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/compface/compface.3 ${STAGEDIR}${PREFIX}/share/man/man3
 	${INSTALL_SCRIPT} ${FILESDIR}/ikon2xbm ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${FILESDIR}/xbm2ikon ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${FILESDIR}/xbmcut48 ${PREFIX}/bin
