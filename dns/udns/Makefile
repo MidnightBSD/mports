@@ -45,10 +45,10 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/dnsget_s ${PREFIX}/bin/dnsget
 	${INSTALL_PROGRAM} ${WRKSRC}/rblcheck_s ${PREFIX}/bin/rblcheck
 .for FILE in dnsget.1 rblcheck.1
-	${INSTALL_MAN} ${WRKSRC}/${FILE} ${MANPREFIX}/man/man1/${FILE}
+	${INSTALL_MAN} ${WRKSRC}/${FILE} ${PREFIX}/share/man/man1/${FILE}
 .endfor
 .for FILE in udns.3
-	${INSTALL_MAN} ${WRKSRC}/${FILE} ${MANPREFIX}/man/man3/${FILE}
+	${INSTALL_MAN} ${WRKSRC}/${FILE} ${PREFIX}/share/man/man3/${FILE}
 .endfor
 
 post-install:
