@@ -246,6 +246,7 @@ SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 .if !defined(_CORE_PERL)
 MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
 .endif
+.endif
 
 # handle perl5 specific manpages
 .  for sect in 3
@@ -253,8 +254,15 @@ MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
 _MANPAGES+=	${P5MAN${sect}:S%^%${PREFIX}/lib/perl5/${PERL_VER}/man/man${sect}/%}
 .    endif
 .  endfor
-MANDIRS+=	${PREFIX}/${SITE_PERL_REL}/man
+.else
+# handle perl5 specific manpages
+.  for sect in 3
+.    if defined(P5MAN${sect})
+_MANPAGES+=	${P5MAN${sect}:S%^%${PREFIX}/${SITE_PERL_REL}/man/man${sect}/%}
+.    endif
+.  endfor
 .endif
+MANDIRS+=	${PREFIX}/${SITE_PERL_REL}/man
 
 .  if ${_USE_PERL5:Mmodbuild} || ${_USE_PERL5:Mmodbuildtiny}
 _USE_PERL5+=	configure
