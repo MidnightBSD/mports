@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTML/Tagset.pm
-man/man3/HTML::Tagset.3.gz
+%%PERL5_MAN3%%/HTML::Tagset.3.gz
