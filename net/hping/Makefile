@@ -1,5 +1,3 @@
-# Created by: Roman Shterenzon <roman@xpert.com>
-
 PORTNAME=	hping
 PORTVERSION=	2.0.0r3
 PORTREVISION=	2
@@ -23,7 +21,7 @@ USES=		gmake
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--force-libpcap
 
-PLIST_FILES=	sbin/hping man/man8/hping.8.gz
+PLIST_FILES=	sbin/hping share/man/man8/hping.8.gz
 PORTDOCS=	AS-BACKDOOR HPING2-HOWTO.txt HPING2-IS-OPEN \
 		MORE-FUN-WITH-IPID SPOOFED_SCAN.txt APD.txt
 
@@ -40,7 +38,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/hping2 ${PREFIX}/sbin/hping
 	${INSTALL_MAN} ${WRKSRC}/docs/hping2.8 \
-		${MANPREFIX}/man/man8/hping.8
+		${PREFIX}/share/man/man8/hping.8
 	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/docs/${i} ${DOCSDIR}/
