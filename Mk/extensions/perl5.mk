@@ -78,7 +78,7 @@ PERL_VERSION=	${_DEFAULT_PERL_VERSION}
 .endif
 
 
-PERL_VER?=		${PERL_VERSION}
+PERL_VER?=		${PERL_VERSION:C/\.[0-9]+$//}
 
 .  if !defined(PERL_LEVEL) && defined(PERL_VERSION)
 perl_major=	${PERL_VERSION:C|^([1-9]+).*|\1|}
@@ -118,7 +118,7 @@ PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi
 # this is historical.
 PERL_PREFIX?=		${LOCALBASE}
 .if ${OSVERSION} < 302001
-SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
+SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VERSION}
 SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}
 .else
 SITE_PERL_REL?=	lib/perl5/site_perl
