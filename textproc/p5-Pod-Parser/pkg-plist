@@ -5,10 +5,10 @@ bin/podselect
 %%SITE_PERL%%/Pod/Parser.pm
 %%SITE_PERL%%/Pod/PlainText.pm
 %%SITE_PERL%%/Pod/Select.pm
-man/man1/podselect.1.gz
-man/man3/Pod::Find.3.gz
-man/man3/Pod::InputObjects.3.gz
-man/man3/Pod::ParseUtils.3.gz
-man/man3/Pod::Parser.3.gz
-man/man3/Pod::PlainText.3.gz
-man/man3/Pod::Select.3.gz
+%%PERL5_MAN1%%/podselect.1.gz
+%%PERL5_MAN3%%/Pod::Find.3.gz
+%%PERL5_MAN3%%/Pod::InputObjects.3.gz
+%%PERL5_MAN3%%/Pod::ParseUtils.3.gz
+%%PERL5_MAN3%%/Pod::Parser.3.gz
+%%PERL5_MAN3%%/Pod::PlainText.3.gz
+%%PERL5_MAN3%%/Pod::Select.3.gz
