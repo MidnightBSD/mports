@@ -1,22 +1,21 @@
-
-
 PORTNAME=	courier-unicode
-PORTVERSION=	2.1
+PORTVERSION=	2.3.0
+PORTREVISION=	1
 CATEGORIES=	devel mail
 MASTER_SITES=	SF/courier/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	porgs@MidnightBSD.org
 COMMENT=	Courier implementation of Unicode Standard related algorithms
+WWW=		https://www.courier-mta.org/unicode/
 
 LICENSE=	gpl3
-
-CONFLICTS=	libunicode-[0-9]*
 
 USES=		compiler:c++11-lang iconv libtool localbase:ldflags \
 		perl5 tar:bzip2
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 
 post-patch:
