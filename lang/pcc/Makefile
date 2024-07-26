@@ -1,7 +1,3 @@
-# Ports collection makefile for:  pcc
-# Date created:			  May 12, 2008
-# Whom:				  Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	pcc
 PORTVERSION=	1.1.0
 PORTREVISION?=	1
@@ -33,8 +29,8 @@ CONFIGURE_ENV=	YACC=${YACC}
 
 PLIST_FILES=	bin/pcc bin/pcpp \
 		libexec/ccom libexec/cxxcom libexec/cpp \
-		man/man1/ccom.1.gz man/man1/cpp.1.gz \
-		man/man1/pcc.1.gz
+		share/man/man1/ccom.1.gz share/man/man1/cpp.1.gz \
+		share/man/man1/pcc.1.gz
 
 MAKE_JOBS_UNSAFE=	yes
 
