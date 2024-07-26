@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for Base64 and Quoted-Printable encodings
+WWW=		https://metacpan.org/release/MIME-Base64
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
