@@ -1,7 +1,6 @@
-
-
 PORTNAME=	ngircd
 PORTVERSION=	26.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	irc
 MASTER_SITES=	https://ngircd.barton.de/pub/ngircd/ \
@@ -9,12 +8,14 @@ MASTER_SITES=	https://ngircd.barton.de/pub/ngircd/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free open source daemon for Internet Relay Chat (IRC)
+WWW=		https://ngircd.barton.de/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe localbase:ldflags tar:xz
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_RC_SUBR=	ngircd
 
 CPE_VENDOR=	barton
@@ -22,8 +23,8 @@ CPE_VERSION=	${PORTVERSION:C/^([0-9]+)$/\1.0/}
 
 PORTDOCS=	*
 PLIST_FILES=	etc/ngircd.conf.sample \
-		man/man5/ngircd.conf.5.gz \
-		man/man8/ngircd.8.gz \
+		share/man/man5/ngircd.conf.5.gz \
+		share/man/man8/ngircd.8.gz \
 		sbin/ngircd
 
 OPTIONS_DEFINE=		DEBUG DOCS ICONV IDENT IPV6 IRCPLUS LIBWRAP PAM \

@@ -5,6 +5,8 @@ MASTER_SITES=	https://github.com/libexif/exif/releases/download/exif-${PORTVERSI
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line utility to read and manipulate EXIF data
+WWW=		https://libexif.github.io/ \
+		https://github.com/libexif/exif
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING

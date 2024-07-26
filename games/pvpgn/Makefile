@@ -1,5 +1,3 @@
-
-
 PORTNAME=	pvpgn
 PORTVERSION=	1.8.5
 PORTREVISION=	1
@@ -11,6 +9,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Blizzard Battle.net emulation software
+WWW=          http://pvpgn.berlios.de
+
 LICENSE=        gpl2
 
 PKGINSTALL?=	${WRKDIR}/pkg-install
