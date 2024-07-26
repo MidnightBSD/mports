@@ -1,4 +1,0 @@
-%%SITE_PERL%%/Test/CleanNamespaces.pm
-man/man3/Test::CleanNamespaces.3.gz
-@dirrmtry %%SITE_PERL%%/Test
-@dir %%SITE_ARCH%%/auto/Test/CleanNamespaces

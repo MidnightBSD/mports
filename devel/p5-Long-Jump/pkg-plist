@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Long/Jump.pm
-man/man3/Long::Jump.3.gz
+%%PERL5_MAN3%%/Long::Jump.3.gz
