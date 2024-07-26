@@ -1,35 +1,26 @@
-# Created by: Peter Pentchev <roam@FreeBSD.org>
-
-PORTNAME=	apg
-PORTVERSION=	2.3.0b
-CATEGORIES=	security
-MASTER_SITES=	FREEBSD_LOCAL/matthew
+PORTNAME=		apg
+DISTVERSIONPREFIX=	v
+DISTVERSION=		1.2.0
+PORTREVISION=	4
+PORTEPOCH=		1
+CATEGORIES=		security sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Automated password generator
+COMMENT=	Automated Password Generator written in Go
+WWW=		https://github.com/wneessen/apg-go
 
-LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-DOCS=		APG_TIPS pronun.txt rfc0972.txt rfc1750.txt
+USES=		go:1.22,modules
+USE_GITHUB=	yes
+GH_ACCOUNT=	wneessen
+GH_PROJECT=	apg-go
+GH_TUPLE=	wneessen:go-hibp:v1.0.6:wneessen_go_hibp/vendor/github.com/wneessen/go-hibp
 
-OPTIONS_DEFINE=	CRACKLIB DOCS
-CRACKLIB_DESC=	CrackLib support for password quality
-CRACKLIB_LIB_DEPENDS=	libcrack.so:security/cracklib
-CRACKLIB_MAKE_ARGS=	-DWITH_CRACKLIB
+GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
+GO_TARGET=	./cmd/${PORTNAME}
 
-post-extract:
-	@${FIND} ${WRKSRC} -type d | ${XARGS} ${CHMOD} u+wx
-	@${FIND} ${WRKSRC} -type f | ${XARGS} ${CHMOD} u+w
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/apg ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/apgbfm ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/apgd ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/doc/man/apg.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/man/apgbfm.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/man/apgd.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/doc/,} ${STAGEDIR}${DOCSDIR}
+PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.port.mk>
