@@ -78,7 +78,7 @@ PERL5_DEFAULT?=		5.32
 PERL5_DEFAULT?=		5.36
 .endif
 .if ${OSVERSION} > 302000 && (!exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && defined(PACKAGE_BUILDING)))
-PERL5_DEFAULT?=         5.36
+PERL5_DEFAULT?=         5.38
 .  elif !defined(PERL5_DEFAULT)
 .    if !defined(_PERL5_FROM_BIN)
 _PERL5_FROM_BIN!=       ${LOCALBASE}/bin/perl -e 'printf "%vd\n", $$^V;'

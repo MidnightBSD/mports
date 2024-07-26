@@ -47,6 +47,9 @@ PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=     perl5.40
 .  elif   ${PERL_LEVEL} >= 503800
 PERL_PORT?=     perl5.38
+_DEFAULT_PERL_VERSION=	5.38.2
+_DEFAULT_PERL_BRANCH= 5.38
+.include "${PORTSDIR}/lang/perl5.38/version.mk"
 .  else # ${PERL_LEVEL} < 503800
 PERL_PORT?=     perl5.36
 _DEFAULT_PERL_VERSION=	5.36.3
@@ -70,8 +73,8 @@ _DEFAULT_PERL_VERSION=	5.26.0
 .else
 PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION= 5.36.0
-.endif
 _DEFAULT_PERL_BRANCH= 5.36
+.endif
 
 .if !defined(PERL_VERSION)
 .	if exists(${PERL}) && !defined(PACKAGE_BUILDING)
