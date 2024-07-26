@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Archive/Extract.pm
-man/man3/Archive::Extract.3.gz
+%%PERL5_MAN3%%/Archive::Extract.3.gz
