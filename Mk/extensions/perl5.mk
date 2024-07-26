@@ -43,18 +43,10 @@ USE_PERL5?=	run build
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 
 .if ${OSVERSION} > 302000
-.  if ${PERL_LEVEL} >= 504000
-PERL_PORT?=     perl5.40
-.  elif ${PERL_LEVEL} >= 503800
 PERL_PORT?=     perl5.38
 _DEFAULT_PERL_VERSION=	5.38.2
 _DEFAULT_PERL_BRANCH= 5.38
 .include "${PORTSDIR}/lang/perl5.38/version.mk"
-.  else # ${PERL_LEVEL} < 503800
-PERL_PORT?=     perl5.36
-_DEFAULT_PERL_VERSION=	5.36.3
-.include "${PORTSDIR}/lang/perl5.36/version.mk"
-.  endif
 .elif ${OSVERSION} > 301006
 PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION=	5.36.1
@@ -104,6 +96,13 @@ PERL_LEVEL=	${perl_major}${perl_minor}${perl_patch}
 PERL_LEVEL=0
 .  endif # !defined(PERL_LEVEL) && defined(PERL_VERSION)
 
+.  if ${PERL_LEVEL} >= 504000
+PERL_PORT?=     perl5.40
+.  elif ${PERL_LEVEL} >= 503800
+PERL_PORT?=     perl5.38
+.  else # ${PERL_LEVEL} < 503800
+PERL_PORT?=     perl5.36
+.  endif
 
 .if ${OSVERSION} > 302000
 PERL_ARCH?=     mach
