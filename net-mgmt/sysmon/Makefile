@@ -1,5 +1,3 @@
-
-
 PORTNAME=	sysmon
 PORTVERSION=	0.93
 CATEGORIES=	net-mgmt
@@ -27,7 +25,7 @@ do-install:
 		${WRKSRC}/examples/sysmon.conf.dist \
 			${PREFIX}/etc/sysmon.conf.sample
 .for man in ${MANPAGE}
-	${INSTALL_MAN} ${WRKSRC}/docs/${man:S/.8//} ${MANPREFIX}/man/man8/${man}
+	${INSTALL_MAN} ${WRKSRC}/docs/${man:S/.8//} ${PREFIX}/share/man/man8/${man}
 .endfor
 	${MKDIR} ${DOCSDIR}
 .for doc in ${DOCS}
