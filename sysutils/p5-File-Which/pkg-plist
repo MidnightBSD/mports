@@ -1,2 +1,2 @@
 %%SITE_PERL%%/File/Which.pm
-man/man3/File::Which.3.gz
+%%PERL5_MAN3%%/File::Which.3.gz
