@@ -17,9 +17,6 @@ NO_BUILD=	yes
 GH_ACCOUNT=	zsh-users
 USE_GITHUB=	yes
 
-post-patch:
-	@${RM} ${WRKSRC}/src/_tarsnap
-
 do-install:
 	${MKDIR} ${PREFIX}/share/zsh/site-functions/
 	${INSTALL_DATA} ${WRKSRC}/src/* ${PREFIX}/share/zsh/site-functions/
