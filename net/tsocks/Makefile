@@ -1,9 +1,3 @@
-# New ports collection makefile for:	tsocks
-# Date created:				9 Nov 2007
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-
-
 PORTNAME=	tsocks
 DISTVERSION=	1.8.b5
 PORTREVISION=	2
@@ -15,6 +9,8 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/.b/beta/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow non SOCKS aware applications to use SOCKS without modification
+WWW=		https://tsocks.sourceforge.net
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
