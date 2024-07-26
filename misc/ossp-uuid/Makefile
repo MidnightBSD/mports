@@ -1,5 +1,3 @@
-
-
 PORTNAME=	uuid
 PORTVERSION=	1.6.2
 CATEGORIES=	misc devel
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	ossp-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO-C API and CLI for generating Universally Unique Identifiers
+WWW=		http://www.ossp.org/pkg/lib/uuid/
 
 LICENSE=	mit
 
