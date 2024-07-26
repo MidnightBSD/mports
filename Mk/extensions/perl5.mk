@@ -117,14 +117,15 @@ PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi
 # use true_prefix so that PERL will be right in faked targets.
 # this is historical.
 PERL_PREFIX?=		${LOCALBASE}
-SITE_PERL_REL?=	lib/perl5/site_perl
-SITE_PERL?=	${LOCALBASE}/${SITE_PERL_REL}
 .if ${OSVERSION} < 302001
+SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
 SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_VER}/${PERL_ARCH}
 .else
+SITE_PERL_REL?=	lib/perl5/site_perl
 SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}/${PERL_VER}
 .endif
 SITE_ARCH?=	${LOCALBASE}/${SITE_ARCH_REL}
+SITE_PERL?=	${LOCALBASE}/${SITE_PERL_REL}
 
 SITE_MAN3_REL?= ${SITE_PERL_REL}/man/man3
 SITE_MAN3?=     ${PREFIX}/${SITE_MAN3_REL}
@@ -221,12 +222,16 @@ PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
 		PERL_ARCH=${PERL_ARCH} \
 		SITE_PERL=${SITE_PERL_REL} \
 		SITE_ARCH=${SITE_ARCH_REL}
-.  if ${OSVERSION} < 302001
+.if ${OSVERSION} < 302001
+PLIST_SUB+=	PERL5_MAN3=${PREFIX}/man/man3 \
+		PERL5_MAN1=${PREFIX}/man/man1
+SUB_LIST+=	PERL5_MAN3=${PREFIX}/man/man3 \
+		PERL5_MAN1=${PREFIX}/man/man1
+.else
 PLIST_SUB+=	PERL5_MAN3=${SITE_PERL_REL}/man/man3 \
 		PERL5_MAN1=${SITE_PERL_REL}/man/man1
-.else
-PLIST_SUB+=	PERL5_MAN3=share/man/man3 \
-		PERL5_MAN1=share/man/man1
+SUB_LIST+=	PERL5_MAN3=${SITE_PERL_REL}/man/man3 \
+		PERL5_MAN1=${SITE_PERL_REL}/man/man1
 .endif
 
 SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
@@ -234,8 +239,6 @@ SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_ARCH=${PERL_ARCH} \
 				SITE_PERL=${SITE_PERL_REL} \
 				SITE_ARCH=${SITE_ARCH_REL} \
-				PERL5_MAN1=share/man/man1 \
-				PERL5_MAN3=share/man/man3 \
 				PERL=${PERL}
 
 .if ${OSVERSION} < 302001
