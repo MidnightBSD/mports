@@ -1,2 +1,2 @@
-man/man3/IO::String.3.gz
 %%SITE_PERL%%/IO/String.pm
+%%PERL5_MAN3%%/IO::String.3.gz
