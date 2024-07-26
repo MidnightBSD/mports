@@ -7,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to decode yEnc encoded files
 WWW=		http://yydecode.sf.net/
 
+LICENSE=	gpl2
+
 USES=		gmake
 GNU_CONFIGURE=	yes
 
