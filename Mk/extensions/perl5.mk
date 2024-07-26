@@ -43,9 +43,9 @@ USE_PERL5?=	run build
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 
 .if ${OSVERSION} > 302000
-.  if   ${PERL_LEVEL} >= 504000
+.  if ${PERL_LEVEL} >= 504000
 PERL_PORT?=     perl5.40
-.  elif   ${PERL_LEVEL} >= 503800
+.  elif ${PERL_LEVEL} >= 503800
 PERL_PORT?=     perl5.38
 _DEFAULT_PERL_VERSION=	5.38.2
 _DEFAULT_PERL_BRANCH= 5.38
@@ -75,6 +75,7 @@ PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION= 5.36.0
 _DEFAULT_PERL_BRANCH= 5.36
 .endif
+_DEFAULT_PERL_BRANCH?= 5.38
 
 .if !defined(PERL_VERSION)
 .	if exists(${PERL}) && !defined(PACKAGE_BUILDING)
