@@ -5,5 +5,5 @@
 %%SITE_ARCH%%/version/regex.pm
 %%SITE_ARCH%%/version/vpp.pm
 %%SITE_ARCH%%/version/vxs.pm
-man/man3/version.3.gz
-man/man3/version::Internals.3.gz
+%%PERL5_MAN3%%/version.3.gz
+%%PERL5_MAN3%%/version::Internals.3.gz
