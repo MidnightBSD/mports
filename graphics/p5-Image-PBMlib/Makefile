@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Helper functions for PBM/PGM/PPM image file formats
+WWW=		https://metacpan.org/release/Image-PBMlib
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
