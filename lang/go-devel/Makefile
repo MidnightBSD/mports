@@ -1,5 +1,5 @@
 PORTNAME=	go
-DISTVERSION?=	g20230808
+DISTVERSION?=	g20240208
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES?=	https://github.com/dmgk/go-bootstrap/releases/download/${BOOTSTRAP_TAG}/:bootstrap \
@@ -18,8 +18,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 IGNORE=		fails to build with qemu-user-static
 .endif
 
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 riscv64
 
+BUILD_DEPENDS?=	bash:shells/bash
 RUN_DEPENDS=	${RUN_DEPENDS_${ARCH}}
 # ld.bfd from devel/binutils is needed for working cgo on aarch64
 RUN_DEPENDS_aarch64=	binutils>0:devel/binutils
@@ -33,26 +34,47 @@ CPE_VENDOR=	golang
 .ifndef MASTERDIR
 USE_GITHUB=	yes
 GH_ACCOUNT=	golang
-# go1.21.0
-GH_TAGNAME=	c19c4c566c63818dfd059b352e52c4710eecf14d
+# go1.22
+GH_TAGNAME=	20107e05a609b8f2e61a6b5e8dc258237ad046e7
 .endif
 
-SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
-		src/net/http/cgi/testdata/test.cgi
+SHEBANG_FILES?=	misc/wasm/go_js_wasm_exec misc/wasm/go_wasip1_wasm_exec
 SHEBANG_GLOB=	*.bash *.pl *.sh
 
 # Upstream archive contains files with UTF-8 names
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 ${TAR}
+BASH?=		${LOCALBASE}/bin/bash
 
 OPTIONS_DEFINE_i386=	SOFTFLOAT
+OPTIONS_DEFAULT_amd64=	V1
+OPTIONS_SINGLE=	${OPTIONS_SINGLE_${ARCH}}
+OPTIONS_SINGLE_amd64=	GOAMD64
+OPTIONS_SINGLE_GOAMD64=	V1 V2 V3 V4
+
 SOFTFLOAT_DESC=	Use soft float on non-SSE2 processors (Pentium 4 and older)
 SOFTFLOAT_VARS=	GO386=softfloat
+V1_DESC=	Use baseline x86-64 instruction set
+V1_VARS=	GOAMD64=v1
+V2_DESC=	V1 instructions plus CMPXCHG16B, LAHF, SAHF, POPCNT, SSE*
+V2_VARS=	GOAMD64=v2
+V3_DESC=	V2 instructions plus AVX*, BMI*, F16C, FMA, LZCNT, MOVBE, OSXSAVE
+V3_VARS=	GOAMD64=v3
+V4_DESC=	V3 instructions plus AVX512*
+V4_VARS=	GOAMD64=v4
 
 BOOTSTRAP_TAG=	go1.20
 GO_SUFFIX=	${PKGNAMESUFFIX}
 
+GOARCH_aarch64=	arm64
 GOARCH_amd64=	amd64
+GOARCH_armv6=	arm
+GOARCH_armv7=	arm
 GOARCH_i386=	386
+GOARCH_riscv64=	riscv64
+GOARM_armv6=	6
+GOARM_armv7=	7
+
+.include <bsd.port.pre.mk>
 
 post-extract:
 	@[ -z "${GH_TAGNAME}" ] || \
@@ -79,7 +101,7 @@ do-build:
 		GO386=${GO386} \
 		GOARM=${GOARM_${ARCH}} \
 		CC=${CC} \
-		${SH} make.bash -v
+		${BASH} make.bash -v
 
 do-install:
 	-cd ${WRKSRC} ; \
@@ -108,4 +130,4 @@ makesum:
 	${RM} ${DISTINFO_FILE}.tmp
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

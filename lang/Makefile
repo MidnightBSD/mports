@@ -38,6 +38,7 @@ SUBDIR += go-devel
 SUBDIR += go119
 SUBDIR += go120
 SUBDIR += go121
+SUBDIR += go122
 SUBDIR += groovy
 SUBDIR += gscheme
 SUBDIR += guile
