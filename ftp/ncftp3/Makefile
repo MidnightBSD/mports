@@ -39,8 +39,8 @@ pre-build-LIBS-on:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/* ${STAGEDIR}${PREFIX}/bin
 	${LN} -sf ncftpbatch ${STAGEDIR}${PREFIX}/bin/ncftpspooler
-	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${STAGEDIR}${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/Strn/Strn.3 ${STAGEDIR}${MANPREFIX}/man/man3
+	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/Strn/Strn.3 ${STAGEDIR}${PREFIX}/share/man/man3
 
 do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
