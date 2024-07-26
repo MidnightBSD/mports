@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	_nss
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apple mDNS responder - BSD nsswitch module
+WWW=		https://opensource.apple.com/tarballs/mDNSResponder/
 
 LICENSE=    	apache2 bsd3
 LICENSE_COMB=	dual
@@ -43,7 +44,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/mDNSPosix/nss_mdns.conf \
 		${EXAMPLESDIR}
 	${INSTALL_MAN} ${WRKSRC}/mDNSPosix/nss_mdns.conf.5 \
-		${MANPREFIX}/man/man5
+		${MANPREFIX}/share/man/man5
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/mDNSPosix/nss_mdns.conf \
