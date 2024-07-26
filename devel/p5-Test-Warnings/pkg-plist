@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Warnings.pm
-man/man3/Test::Warnings.3.gz
+%%PERL5_MAN3%%/Test::Warnings.3.gz
