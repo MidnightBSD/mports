@@ -1,2 +1,2 @@
 %%SITE_PERL%%/asa.pm
-man/man3/asa.3.gz
+%%PERL5_MAN3%%/asa.3.gz
