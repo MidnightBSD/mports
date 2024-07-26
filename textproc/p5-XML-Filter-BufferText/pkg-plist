@@ -1,2 +1,2 @@
-man/man3/XML::Filter::BufferText.3.gz
+%%PERL5_MAN3%%/XML::Filter::BufferText.3.gz
 %%SITE_PERL%%/XML/Filter/BufferText.pm
