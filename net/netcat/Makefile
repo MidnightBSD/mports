@@ -25,7 +25,7 @@ CFLAGS+=	-DFREEBSD
 LDFLAGS+=	-static
 
 PORTDOCS=	README
-PLIST_FILES=	bin/netcat man/man1/netcat.1.gz
+PLIST_FILES=	bin/netcat share/man/man1/netcat.1.gz
 
 OPTIONS_DEFINE=	IPV6 TELNET GAPING DOCS
 OPTIONS_DEFAULT=TELNET GAPING
@@ -45,7 +45,7 @@ do-build:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKDIR}/${PORTNAME}.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKDIR}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
