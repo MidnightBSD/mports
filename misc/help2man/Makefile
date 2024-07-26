@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 
 INFO=		help2man
 PLIST_FILES=	bin/help2man \
-		man/man1/help2man.1.gz
+		share/man/man1/help2man.1.gz
 
 OPTIONS_DEFINE=	NLS
 
@@ -35,7 +35,7 @@ NLS_INFO+=		help2man-${lang}
 .endfor
 
 .for lang in da de el eo es fi fr hr hu it ja ko nb pl pt_BR ro ru sr sv ta uk vi zh_CN
-NLS_PLIST_FILES+=	man/${lang}/man1/help2man.1.gz \
+NLS_PLIST_FILES+=	share/man/${lang}/man1/help2man.1.gz \
 			share/locale/${lang}/LC_MESSAGES/help2man.mo
 .endfor
 
