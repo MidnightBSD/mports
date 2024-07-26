@@ -255,4 +255,4 @@
 %%SITE_PERL%%/Text/Unidecode/xfd.pm
 %%SITE_PERL%%/Text/Unidecode/xfe.pm
 %%SITE_PERL%%/Text/Unidecode/xff.pm
-man/man3/Text::Unidecode.3.gz
+%%PERL5_MAN3%%/Text::Unidecode.3.gz
