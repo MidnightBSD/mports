@@ -119,7 +119,7 @@ PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi
 PERL_PREFIX?=		${LOCALBASE}
 .if ${OSVERSION} < 302001
 SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
-SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_VER}/${PERL_ARCH}
+SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}
 .else
 SITE_PERL_REL?=	lib/perl5/site_perl
 SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}/${PERL_VER}

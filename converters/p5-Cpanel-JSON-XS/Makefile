@@ -18,6 +18,8 @@ NO_TEST=	yes
 USE_PERL5=	configure
 USES=		perl5
 
+PORTSCOUT=	limit:^[0-9\.]*$$
+
 post-install:
 	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Cpanel/JSON/XS/XS.so
 
