@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IPC/Cmd.pm
-man/man3/IPC::Cmd.3.gz
+%%PERL5_MAN3%%/IPC::Cmd.3.gz
