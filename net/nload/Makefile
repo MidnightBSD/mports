@@ -14,7 +14,7 @@ LICENSE=	gpl2
 USES=		ncurses
 GNU_CONFIGURE=	yes
 
-PLIST_FILES=	bin/nload man/man1/nload.1.gz
+PLIST_FILES=	bin/nload share/man/man1/nload.1.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|\(/etc/nload\.conf\)|${PREFIX}\1|" \
