@@ -1,5 +1,3 @@
-# Created by: Sascha Holzleiter <sascha@root-login.org>
-
 PORTNAME=	fzf
 PORTVERSION=	0.19.0
 CATEGORIES=	textproc
@@ -27,7 +25,7 @@ GH_TUPLE=	\
 GO_BUILDFLAGS=	-ldflags="-X main.revision=9a41fd5 -w"
 
 SUB_FILES=	pkg-message
-PLIST_FILES=	bin/fzf man/man1/fzf.1.gz
+PLIST_FILES=	bin/fzf share/man/man1/fzf.1.gz
 PORTEXAMPLES=	shell/completion.bash shell/completion.zsh \
 		shell/key-bindings.bash shell/key-bindings.fish \
 		shell/key-bindings.zsh
@@ -38,18 +36,18 @@ OPTIONS_DEFAULT=	TMUX
 TMUX_DESC=	Install fzf-tmux (depends on BASH)
 
 TMUX_RUN_DEPENDS=	bash:shells/bash
-TMUX_PLIST_FILES=	bin/fzf-tmux man/man1/fzf-tmux.1.gz
+TMUX_PLIST_FILES=	bin/fzf-tmux share/man/man1/fzf-tmux.1.gz
 
 NO_TEST=	yes
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC} && \
 	    ${COPYTREE_SHARE} shell ${STAGEDIR}${EXAMPLESDIR})
 
 post-install-TMUX-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/${PORTNAME}-tmux ${FAKE_DESTDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf-tmux.1 ${FAKE_DESTDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf-tmux.1 ${FAKE_DESTDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
