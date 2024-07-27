@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTML/Scrubber.pm
-man/man3/HTML::Scrubber.3.gz
+%%PERL5_MAN3%%/HTML::Scrubber.3.gz

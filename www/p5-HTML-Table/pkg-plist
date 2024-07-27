@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTML/Table.pm
-man/man3/HTML::Table.3.gz
+%%PERL5_MAN3%%/HTML::Table.3.gz
