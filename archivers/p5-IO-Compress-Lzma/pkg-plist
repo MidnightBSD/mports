@@ -10,9 +10,9 @@
 %%SITE_PERL%%/IO/Uncompress/UnLzip.pm
 %%SITE_PERL%%/IO/Uncompress/UnLzma.pm
 %%SITE_PERL%%/IO/Uncompress/UnXz.pm
-man/man3/IO::Compress::Lzip.3.gz
-man/man3/IO::Compress::Lzma.3.gz
-man/man3/IO::Compress::Xz.3.gz
-man/man3/IO::Uncompress::UnLzip.3.gz
-man/man3/IO::Uncompress::UnLzma.3.gz
-man/man3/IO::Uncompress::UnXz.3.gz
+share/man/man3/IO::Compress::Lzip.3.gz
+share/man/man3/IO::Compress::Lzma.3.gz
+share/man/man3/IO::Compress::Xz.3.gz
+share/man/man3/IO::Uncompress::UnLzip.3.gz
+share/man/man3/IO::Uncompress::UnLzma.3.gz
+share/man/man3/IO::Uncompress::UnXz.3.gz
