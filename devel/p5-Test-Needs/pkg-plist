@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Needs.pm
-man/man3/Test::Needs.3.gz
+%%PERL5_MAN3%%/Test::Needs.3.gz

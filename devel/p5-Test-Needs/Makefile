@@ -10,6 +10,7 @@ WWW=		https://metacpan.org/release/Test-Needs
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
 USES=		perl5
