@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Unicode/EastAsianWidth.pm
-man/man3/Unicode::EastAsianWidth.3.gz
+%%PERL5_MAN3%%/Unicode::EastAsianWidth.3.gz
