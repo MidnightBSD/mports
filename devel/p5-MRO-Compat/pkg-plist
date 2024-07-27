@@ -1,2 +1,2 @@
 %%SITE_PERL%%/MRO/Compat.pm
-man/man3/MRO::Compat.3.gz
+%%PERL5_MAN3%%/MRO::Compat.3.gz
