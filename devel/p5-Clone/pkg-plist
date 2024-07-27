@@ -1,6 +1,4 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Clone/Clone.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Clone/autosplit.ix
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Clone/.packlist
-%%SITE_PERL%%/%%PERL_ARCH%%/Clone.pm
-man/man3/Clone.3.gz
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Clone
+%%SITE_ARCH%%/Clone.pm
+%%SITE_ARCH%%/auto/Clone/Clone.so
+%%SITE_ARCH%%/auto/Clone/autosplit.ix
+%%PERL5_MAN3%%/Clone.3.gz
