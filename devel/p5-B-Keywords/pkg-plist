@@ -1,2 +1,2 @@
 %%SITE_PERL%%/B/Keywords.pm
-man/man3/B::Keywords.3.gz
+%%PERL5_MAN3%%/B::Keywords.3.gz
