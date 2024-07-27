@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Crypt/OpenSSL/Guess.pm
-man/man3/Crypt::OpenSSL::Guess.3.gz
+%%PERL5_MAN3%%/Crypt::OpenSSL::Guess.3.gz

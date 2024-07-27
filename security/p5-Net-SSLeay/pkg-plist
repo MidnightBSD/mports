@@ -78,5 +78,5 @@
 %%SITE_ARCH%%/auto/Net/SSLeay/want_nothing.al
 %%SITE_ARCH%%/auto/Net/SSLeay/want_read.al
 %%SITE_ARCH%%/auto/Net/SSLeay/want_write.al
-man/man3/Net::SSLeay.3.gz
-man/man3/Net::SSLeay::Handle.3.gz
+%%PERL5_MAN3%%/Net::SSLeay.3.gz
+%%PERL5_MAN3%%/Net::SSLeay::Handle.3.gz
