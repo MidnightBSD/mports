@@ -1,2 +1,2 @@
 %%SITE_PERL%%/ExtUtils/InstallPaths.pm
-man/man3/ExtUtils::InstallPaths.3.gz
+%%PERL5_MAN3%%/ExtUtils::InstallPaths.3.gz
