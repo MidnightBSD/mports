@@ -5,4 +5,4 @@
 %%SITE_PERL%%/Convert/ASN1/_decode.pm
 %%SITE_PERL%%/Convert/ASN1/_encode.pm
 %%SITE_PERL%%/Convert/ASN1/parser.pm
-man/man3/Convert::ASN1.3.gz
+%%PERL5_MAN3%%/Convert::ASN1.3.gz
