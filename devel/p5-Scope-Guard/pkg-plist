@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Scope/Guard.pm
-man/man3/Scope::Guard.3.gz
+%%PERL5_MAN3%%/Scope::Guard.3.gz
