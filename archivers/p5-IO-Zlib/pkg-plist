@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/Zlib.pm
-man/man3/IO::Zlib.3.gz
+%%PERL5_MAN3%%/IO::Zlib.3.gz
