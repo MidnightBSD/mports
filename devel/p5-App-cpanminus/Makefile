@@ -1,5 +1,5 @@
 PORTNAME=	App-cpanminus
-PORTVERSION=	1.7046
+PORTVERSION=	1.7047
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MIYAGAWA
@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get, unpack, build and install modules from CPAN
+WWW=		https://metacpan.org/release/App-cpanminus
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
