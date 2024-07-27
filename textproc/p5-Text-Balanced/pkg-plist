@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Text/Balanced.pm
-man/man3/Text::Balanced.3.gz
+%%PERL5_MAN3%%/Text::Balanced.3.gz

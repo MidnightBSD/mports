@@ -1,3 +1,3 @@
 %%SITE_ARCH%%/XString.pm
 %%SITE_ARCH%%/auto/XString/XString.so
-man/man3/XString.3.gz
+%%PERL5_MAN3%%/XString.3.gz
