@@ -46,7 +46,7 @@ libexec/cups/driver/gutenprint.5.3
 libexec/cups/filter/commandtocanon
 libexec/cups/filter/commandtoepson
 libexec/cups/filter/rastertogutenprint.5.3
-man/man1/escputil.1.gz
+share/man/man1/escputil.1.gz
 man/man8/cups-calibrate.8.gz
 man/man8/cups-genppd.8.gz
 man/man8/cups-genppdupdate.8.gz

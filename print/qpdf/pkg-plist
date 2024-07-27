@@ -53,9 +53,9 @@ lib/libqpdf.so
 lib/libqpdf.so.28
 lib/libqpdf.so.28.0.1
 libdata/pkgconfig/libqpdf.pc
-man/man1/fix-qdf.1.gz
-man/man1/qpdf.1.gz
-man/man1/zlib-flate.1.gz
+share/man/man1/fix-qdf.1.gz
+share/man/man1/qpdf.1.gz
+share/man/man1/zlib-flate.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/qpdf-manual.html
 %%PORTDOCS%%%%DOCSDIR%%/qpdf-manual.pdf
 %%PORTDOCS%%%%DOCSDIR%%/stylesheet.css

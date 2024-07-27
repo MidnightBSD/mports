@@ -370,13 +370,10 @@
 %%DOCSDIR%%/mix/Mix.Tasks.Compile.Elixir.html
 %%DOCSDIR%%/mix/Mix.SCM.html
 %%DOCSDIR%%/mix/Mix.NoProjectError.html
-share/licenses/elixir-1.15.8/LICENSE
-share/licenses/elixir-1.15.8/catalog.mk
-share/licenses/elixir-1.15.8/apache2
-man/man1/mix.1.gz
-man/man1/iex.1.gz
-man/man1/elixirc.1.gz
-man/man1/elixir.1.gz
+share/man/man1/mix.1.gz
+share/man/man1/iex.1.gz
+share/man/man1/elixirc.1.gz
+share/man/man1/elixir.1.gz
 bin/iex
 bin/mix
 bin/elixirc
@@ -1066,8 +1063,6 @@ lib/elixir/lib/eex/lib/eex.ex
 @dir %%DOCSDIR%%/mix/dist
 @dir %%DOCSDIR%%/mix
 @dir %%DOCSDIR%%
-@dir share/licenses/elixir-1.15.8
-@dir share/licenses
 @dir lib/elixir/bin
 @dir lib/elixir/lib/mix/ebin
 @dir lib/elixir/lib/mix/lib/mix/local

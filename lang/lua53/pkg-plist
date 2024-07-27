@@ -8,7 +8,7 @@ include/lua53/lualib.h
 lib/liblua-5.3.a
 lib/liblua-5.3.so
 libdata/pkgconfig/lua-5.3.pc
-man/man1/lua53.1.gz
-man/man1/luac53.1.gz
+share/man/man1/lua53.1.gz
+share/man/man1/luac53.1.gz
 @dir lib/lua/5.3
 @dir %%DATADIR%%/5.3
