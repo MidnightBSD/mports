@@ -1,16 +1,14 @@
-
-
 PORTNAME=	Device-Modem
-PORTVERSION=	1.57
-PORTREVISION=	2
+PORTVERSION=	1.59
 CATEGORIES=	comms perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl class to interface generic modems (AT-compliant)
+WWW=		https://metacpan.org/release/Device-Modem
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

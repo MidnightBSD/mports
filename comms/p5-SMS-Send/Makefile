@@ -1,5 +1,3 @@
-
-
 PORTNAME=	SMS-Send
 PORTVERSION=	1.06
 CATEGORIES=	comms perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver-based API for sending SMS messages
+WWW=		https://metacpan.org/release/SMS-Send
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Class-Adapter>=1.05:devel/p5-Class-Adapter \
