@@ -1,5 +1,5 @@
 PORTNAME=	File-ShareDir
-PORTVERSION=	1.116
+PORTVERSION=	1.118
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,8 +13,7 @@ LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-Class-Inspector>=1.12:devel/p5-Class-Inspector \
-		p5-File-ShareDir-Install>=0.13:devel/p5-File-ShareDir-Install
+RUN_DEPENDS=	p5-Class-Inspector>=1.12:devel/p5-Class-Inspector
 
 USES=		perl5
 USE_PERL5=	configure
