@@ -1,2 +1,2 @@
 %%SITE_PERL%%/CPAN/DistnameInfo.pm
-man/man3/CPAN::DistnameInfo.3.gz
+%%PERL5_MAN3%%/CPAN::DistnameInfo.3.gz
