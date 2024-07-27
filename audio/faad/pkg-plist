@@ -10,4 +10,4 @@ lib/libfaad_drm.so
 lib/libfaad_drm.so.2
 lib/libfaad_drm.so.2.0.0
 libdata/pkgconfig/faad2.pc
-man/man1/faad.1.gz
+share/man/man1/faad.1.gz
