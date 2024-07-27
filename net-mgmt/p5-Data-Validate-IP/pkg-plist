@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Data/Validate/IP.pm
-man/man3/Data::Validate::IP.3.gz
+%%PERL5_MAN3%%/Data::Validate::IP.3.gz
