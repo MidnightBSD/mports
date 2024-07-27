@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Devel/StackTrace/AsHTML.pm
-man/man3/Devel::StackTrace::AsHTML.3.gz
+%%PERL5_MAN3%%/Devel::StackTrace::AsHTML.3.gz
