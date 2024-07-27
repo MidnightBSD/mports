@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Class/Method/Modifiers.pm
-man/man3/Class::Method::Modifiers.3.gz
+%%PERL5_MAN3%%/Class::Method::Modifiers.3.gz
