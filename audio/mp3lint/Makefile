@@ -1,5 +1,3 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@sunpoet.net>
-
 PORTNAME=	mp3lint
 PORTVERSION=	0.9
 CATEGORIES=	audio perl5
@@ -8,6 +6,7 @@ MASTER_SITES=	https://erislabs.net/ianb/projects/mp3lint/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configurable tool to check collections of audio files
+WWW=		https://erislabs.net/ianb/projects/mp3lint/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
