@@ -3,6 +3,7 @@ PORTVERSION=	0.29
 PORTREVISION=	2
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=CPAN:UMEMOTO
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +15,7 @@ LICENSE=	bsd3
 USES=		perl5
 USE_PERL5=	configure
 
-PLIST_FILES=	man/man3/Socket6.3.gz \
+PLIST_FILES=	%%PERL5_MAN3%%/Socket6.3.gz \
 		%%SITE_PERL%%/%%PERL_ARCH%%/Socket6.pm \
 		%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6/Socket6.so
 PLIST_DIRS=	%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6
