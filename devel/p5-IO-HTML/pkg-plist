@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/HTML.pm
-man/man3/IO::HTML.3.gz
+%%PERL5_MAN3%%/IO::HTML.3.gz
