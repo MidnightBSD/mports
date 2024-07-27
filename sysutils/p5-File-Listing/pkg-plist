@@ -1,2 +1,2 @@
 %%SITE_PERL%%/File/Listing.pm
-man/man3/File::Listing.3.gz
+%%PERL5_MAN3%%/File::Listing.3.gz

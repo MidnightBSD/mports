@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Probe/Perl.pm
-man/man3/Probe::Perl.3.gz
+%%PERL5_MAN3%%/Probe::Perl.3.gz

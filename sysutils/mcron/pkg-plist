@@ -16,8 +16,8 @@ bin/mcron
 %%GUILE_SITE_CCACHE%%/mcron/vixie-specification.go
 %%GUILE_SITE_CCACHE%%/mcron/vixie-time.go
 libexec/crontab-access-real
-man/man1/crontab.1.gz
-man/man1/mcron.1.gz
+share/man/man1/crontab.1.gz
+share/man/man1/mcron.1.gz
 man/man8/cron.8.gz
 sbin/cron
 sbin/crontab-access
