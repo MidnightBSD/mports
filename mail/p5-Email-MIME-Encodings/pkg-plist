@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Email/MIME/Encodings.pm
-man/man3/Email::MIME::Encodings.3.gz
+share/man/man3/Email::MIME::Encodings.3.gz

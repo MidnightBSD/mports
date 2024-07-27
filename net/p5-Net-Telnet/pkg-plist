@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Net/Telnet.pm
-man/man3/Net::Telnet.3.gz
+share/man/man3/Net::Telnet.3.gz

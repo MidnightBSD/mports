@@ -24,7 +24,7 @@ lib/liferea/plugins/trayicon.plugin
 lib/liferea/plugins/trayicon.py
 lib/liferea/web-extension/liblifereawebextension.a
 lib/liferea/web-extension/liblifereawebextension.so
-man/man1/liferea.1.gz
+share/man/man1/liferea.1.gz
 man/it/man1/liferea.1.gz
 share/applications/net.sourceforge.liferea.desktop
 share/dbus-1/services/net.sourceforge.liferea.service

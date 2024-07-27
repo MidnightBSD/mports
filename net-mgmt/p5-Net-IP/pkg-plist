@@ -1,4 +1,4 @@
 bin/iptab
 bin/ipcount
 %%SITE_PERL%%/Net/IP.pm
-man/man3/Net::IP.3.gz
+share/man/man3/Net::IP.3.gz

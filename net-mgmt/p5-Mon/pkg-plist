@@ -1,6 +1,6 @@
-man/man3/Mon::Client.3.gz
-man/man3/Mon::Protocol.3.gz
-man/man3/Mon::SNMP.3.gz
+share/man/man3/Mon::Client.3.gz
+share/man/man3/Mon::Protocol.3.gz
+share/man/man3/Mon::SNMP.3.gz
 %%SITE_PERL%%/Mon/Client.pm
 %%SITE_PERL%%/Mon/Protocol.pm
 %%SITE_PERL%%/Mon/SNMP.pm

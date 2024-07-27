@@ -1,5 +1,5 @@
 %%SITE_ARCH%%/Math/Int128.pm
 %%SITE_ARCH%%/Math/Int128/die_on_overflow.pm
 %%SITE_ARCH%%/auto/Math/Int128/Int128.so
-man/man3/Math::Int128.3.gz
-man/man3/Math::Int128::die_on_overflow.3.gz
+share/man/man3/Math::Int128.3.gz
+share/man/man3/Math::Int128::die_on_overflow.3.gz

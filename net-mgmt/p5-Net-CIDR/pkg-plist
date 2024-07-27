@@ -1,2 +1,2 @@
-man/man3/Net::CIDR.3.gz
+share/man/man3/Net::CIDR.3.gz
 %%SITE_PERL%%/Net/CIDR.pm

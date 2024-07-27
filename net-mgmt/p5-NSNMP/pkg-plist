@@ -2,5 +2,5 @@
 %%SITE_PERL%%/NSNMP/Agent.pm
 %%SITE_PERL%%/NSNMP/Mapper.pm
 %%SITE_PERL%%/NSNMP/Simple.pm
-man/man3/NSNMP.3.gz
-man/man3/NSNMP::Simple.3.gz
+share/man/man3/NSNMP.3.gz
+share/man/man3/NSNMP::Simple.3.gz

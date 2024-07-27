@@ -14,9 +14,9 @@ lib/libggzmod.a
 lib/libggzmod.so
 lib/libggzmod.so.4
 lib/libggzmod.so.4.1.0
-man/man1/ggzwrap.1.gz
-man/man3/ggzcore_h.3.gz
-man/man3/ggzmod_h.3.gz
+share/man/man1/ggzwrap.1.gz
+share/man/man3/ggzcore_h.3.gz
+share/man/man3/ggzmod_h.3.gz
 man/man5/ggz.modules.5.gz
 man/man6/ggz.6.gz
 man/man6/ggz-config.6.gz

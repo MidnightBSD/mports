@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Net/SMTP/SSL.pm
-man/man3/Net::SMTP::SSL.3.gz
+share/man/man3/Net::SMTP::SSL.3.gz

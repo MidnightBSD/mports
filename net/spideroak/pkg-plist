@@ -1,7 +1,7 @@
 bin/SpiderOakONE
 bin/spideroak
 etc/xdg/menus/applications-merged/SpiderOakONE.menu
-man/man1/SpiderOakONE.1.gz
+share/man/man1/SpiderOakONE.1.gz
 %%DESKTOPDIR%%/SpiderOakONE.desktop
 %%PORTDOCS%%%%DOCSDIR%%/Getting Started Guide.pdf
 share/pixmaps/SpiderOakONE.png

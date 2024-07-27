@@ -233,10 +233,10 @@ libdata/pkgconfig/freerdp2.pc
 %%WAYLAND%%libdata/pkgconfig/uwac0.pc
 libdata/pkgconfig/winpr-tools2.pc
 libdata/pkgconfig/winpr2.pc
-%%MANPAGES%%man/man1/winpr-hash.1.gz
-%%MANPAGES%%man/man1/winpr-makecert.1.gz
-%%WAYLAND%%%%MANPAGES%%man/man1/wlfreerdp.1.gz
-%%X11%%%%MANPAGES%%man/man1/xfreerdp.1.gz
+%%MANPAGES%%share/man/man1/winpr-hash.1.gz
+%%MANPAGES%%share/man/man1/winpr-makecert.1.gz
+%%WAYLAND%%%%MANPAGES%%share/man/man1/wlfreerdp.1.gz
+%%X11%%%%MANPAGES%%share/man/man1/xfreerdp.1.gz
 %%MANPAGES%%man/man7/wlog.7.gz
 share/cmake/Modules/FreeRDP-Client2/FreeRDP-ClientConfig.cmake
 share/cmake/Modules/FreeRDP-Client2/FreeRDP-ClientConfigVersion.cmake

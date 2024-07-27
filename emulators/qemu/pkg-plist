@@ -40,8 +40,8 @@ bin/qemu-system-x86_64
 %%NO_X86_TARGETS%%bin/qemu-system-xtensa
 %%NO_X86_TARGETS%%bin/qemu-system-xtensaeb
 bin/qemu-x86_64
-man/man1/qemu.1.gz
-man/man1/qemu-img.1.gz
+share/man/man1/qemu.1.gz
+share/man/man1/qemu-img.1.gz
 man/man7/qemu-block-drivers.7.gz
 man/man7/qemu-cpu-models.7.gz
 man/man7/qemu-ga-ref.7.gz

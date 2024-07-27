@@ -6,4 +6,4 @@
 %%SITE_ARCH%%/Cairo/Install/cairo-perl.typemap
 %%SITE_ARCH%%/Cairo/Install/doctypes
 %%SITE_ARCH%%/auto/Cairo/Cairo.so
-man/man3/Cairo.3.gz
+share/man/man3/Cairo.3.gz

@@ -1,2 +1,2 @@
-man/man3/Net::FTP::File.3.gz
+share/man/man3/Net::FTP::File.3.gz
 %%SITE_PERL%%/Net/FTP/File.pm

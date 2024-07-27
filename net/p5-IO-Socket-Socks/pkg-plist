@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/Socket/Socks.pm
-man/man3/IO::Socket::Socks.3.gz
+share/man/man3/IO::Socket::Socks.3.gz

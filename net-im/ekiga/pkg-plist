@@ -3,7 +3,7 @@ bin/ekiga-config-tool
 %%DBUS%%bin/ekiga-helper
 %%GCONF%%etc/ekiga/ekiga.schemas
 lib/ekiga/%%VERSION%%/libekiga.so
-man/man1/ekiga.1.gz
+share/man/man1/ekiga.1.gz
 %%AVAHI%%lib/ekiga/%%VERSION%%/plugins/libgmavahi.so
 %%EVOLUTION%%lib/ekiga/4.0.1/plugins/libgmevolution.so
 %%LDAP%%lib/ekiga/4.0.1/plugins/libgmldap.so

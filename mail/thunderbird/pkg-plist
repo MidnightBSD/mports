@@ -10,12 +10,12 @@ share/licenses/hunspell-1.7.0_2/catalog.mk
 share/licenses/hunspell-1.7.0_2/MPL11
 share/licenses/hunspell-1.7.0_2/GPLv2+
 share/licenses/hunspell-1.7.0_2/LICENSE
-man/man1/hunzip.1.gz
-man/man1/hzip.1.gz
-man/man1/hunspell.1.gz
+share/man/man1/hunzip.1.gz
+share/man/man1/hzip.1.gz
+share/man/man1/hunspell.1.gz
 man/man5/hunspell.5.gz
 man/hu/man1/hunspell.1.gz
-man/man3/hunspell.3.gz
+share/man/man3/hunspell.3.gz
 bin/hunzip
 bin/affixcompress
 bin/hunspell

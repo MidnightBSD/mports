@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/Socket/INET6.pm
-man/man3/IO::Socket::INET6.3.gz
+share/man/man3/IO::Socket::INET6.3.gz

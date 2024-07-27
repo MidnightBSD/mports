@@ -147,5 +147,5 @@ libdata/pkgconfig/libgphoto2_port.pc
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/libgphoto2-6.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/libgphoto2_port-12.mo
-man/man3/libgphoto2.3.gz
-man/man3/libgphoto2_port.3.gz
+share/man/man3/libgphoto2.3.gz
+share/man/man3/libgphoto2_port.3.gz

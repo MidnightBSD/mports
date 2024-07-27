@@ -6,11 +6,11 @@
 %%JANSSON%%bin/autobuild
 %%JANSSON%%man/man8/autobuild.8.gz
 %%LUA%%bin/miltertest
-%%LUA%%man/man3/opendkim-lua.3.gz
+%%LUA%%share/man/man3/opendkim-lua.3.gz
 %%LUA%%man/man8/miltertest.8.gz
 %%OPENDBX%%bin/opendkim-spam
 %%OPENDBX%%sbin/opendkim-importstats
-%%OPENDBX%%man/man1/opendkim-spam.1.gz
+%%OPENDBX%%share/man/man1/opendkim-spam.1.gz
 %%OPENDBX%%man/man8/opendkim-importstats.8.gz
 %%RBL%%include/rbl/rbl.h
 %%RBL%%lib/librbl.a
@@ -18,7 +18,7 @@
 %%RBL%%lib/librbl.so.1
 %%RBL%%lib/librbl.so.1.0.0
 %%RBL%%libdata/pkgconfig/rbl.pc
-%%RBL%%man/man3/rbl.3.gz
+%%RBL%%share/man/man3/rbl.3.gz
 %%REPRRD%%bin/opendkim-reprrdimport
 %%REPRRD%%include/reprrd/reprrd.h
 %%REPRRD%%lib/libreprrd.a
@@ -38,7 +38,7 @@
 %%REPUTATION%%lib/libut.so.1.0.0
 %%REPUTATION%%libdata/pkgconfig/repute.pc
 %%REPUTATION%%libdata/pkgconfig/ut.pc
-%%REPUTATION%%man/man3/ut.3.gz
+%%REPUTATION%%share/man/man3/ut.3.gz
 %%REPUTATION%%man/man8/opendkim-genrates.8.gz
 %%REPUTATION%%man/man8/opendkim-modtotals.8.gz
 %%REPUTATION%%man/man8/opendkim-rephistory.8.gz
@@ -60,7 +60,7 @@
 %%VBR%%lib/libvbr.so.2
 %%VBR%%lib/libvbr.so.2.0.0
 %%VBR%%libdata/pkgconfig/vbr.pc
-%%VBR%%man/man3/vbr.3.gz
+%%VBR%%share/man/man3/vbr.3.gz
 @sample etc/mail/opendkim.conf.sample
 include/opendkim/dkim.h
 lib/libopendkim.a

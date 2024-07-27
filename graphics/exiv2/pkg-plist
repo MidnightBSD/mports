@@ -69,7 +69,7 @@ lib/libexiv2.so
 lib/libexiv2.so.0.28.0
 lib/libexiv2.so.28
 libdata/pkgconfig/exiv2.pc
-man/man1/exiv2.1.gz
+share/man/man1/exiv2.1.gz
 %%NLS%%share/locale/bs/LC_MESSAGES/exiv2.mo
 %%NLS%%share/locale/ca/LC_MESSAGES/exiv2.mo
 %%NLS%%share/locale/de/LC_MESSAGES/exiv2.mo

@@ -2,5 +2,5 @@ bin/flowdumper
 %%SITE_ARCH%%/auto/Cflow/Cflow.so
 %%SITE_ARCH%%/auto/Cflow/autosplit.ix
 %%SITE_ARCH%%/Cflow.pm
-man/man3/Cflow.3.gz
-man/man1/flowdumper.1.gz
+share/man/man3/Cflow.3.gz
+share/man/man1/flowdumper.1.gz

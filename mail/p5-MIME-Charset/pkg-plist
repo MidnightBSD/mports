@@ -3,5 +3,5 @@
 %%SITE_PERL%%/MIME/Charset/UTF.pm
 %%SITE_PERL%%/MIME/Charset/_Compat.pm
 %%SITE_PERL%%/POD2/JA/MIME/Charset.pod
-man/man3/MIME::Charset.3.gz
-man/man3/POD2::JA::MIME::Charset.3.gz
+share/man/man3/MIME::Charset.3.gz
+share/man/man3/POD2::JA::MIME::Charset.3.gz

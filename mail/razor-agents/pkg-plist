@@ -26,9 +26,9 @@ bin/razor-revoke
 %%SITE_ARCH%%/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
 %%SITE_ARCH%%/auto/Razor2/Preproc/deHTMLxs/autosplit.ix
 %%SITE_ARCH%%/auto/Razor2/Syslog/autosplit.ix
-man/man3/Razor2::Errorhandler.3.gz
-man/man3/Razor2::Syslog.3.gz
-man/man3/Razor2::Preproc::deHTMLxs.3.gz
+share/man/man3/Razor2::Errorhandler.3.gz
+share/man/man3/Razor2::Syslog.3.gz
+share/man/man3/Razor2::Preproc::deHTMLxs.3.gz
 @dir %%SITE_ARCH%%/Razor2/Client
 @dir %%SITE_ARCH%%/Razor2/Engine
 @dir %%SITE_ARCH%%/Razor2/Preproc

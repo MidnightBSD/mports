@@ -1,2 +1,2 @@
-man/man3/Number::Compare.3.gz
+share/man/man3/Number::Compare.3.gz
 %%SITE_PERL%%/Number/Compare.pm

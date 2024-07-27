@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Email/Address.pm
-man/man3/Email::Address.3.gz
+share/man/man3/Email::Address.3.gz

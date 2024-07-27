@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Email/Date/Format.pm
-man/man3/Email::Date::Format.3.gz
+share/man/man3/Email::Date::Format.3.gz

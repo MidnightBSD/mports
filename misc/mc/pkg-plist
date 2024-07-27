@@ -142,9 +142,9 @@ libexec/mc/shell/utime
 %%NLS%%man/es/man1/mc.1.gz
 %%NLS%%man/hu/man1/mc.1.gz
 %%NLS%%man/it/man1/mc.1.gz
-man/man1/mc.1.gz
-man/man1/mcedit.1.gz
-man/man1/mcview.1.gz
+share/man/man1/mc.1.gz
+share/man/man1/mcedit.1.gz
+share/man/man1/mcview.1.gz
 %%NLS%%man/pl/man1/mc.1.gz
 %%NLS%%man/ru/man1/mc.1.gz
 %%NLS%%man/sr/man1/mc.1.gz

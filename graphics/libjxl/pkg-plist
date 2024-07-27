@@ -33,7 +33,7 @@ lib/libjxl_threads.so.0.8
 lib/libjxl_threads.so.0.8.2
 libdata/pkgconfig/libjxl.pc
 libdata/pkgconfig/libjxl_threads.pc
-%%MANPAGES%%man/man1/cjxl.1.gz
-%%MANPAGES%%man/man1/djxl.1.gz
+%%MANPAGES%%share/man/man1/cjxl.1.gz
+%%MANPAGES%%share/man/man1/djxl.1.gz
 share/mime/packages/image-jxl.xml
 %%PIXBUF%%share/thumbnailers/jxl.thumbnailer

@@ -59,9 +59,9 @@ man/es_ES.UTF-8/man1/tuxpaint.1.gz
 man/fr_FR.UTF-8/man1/tuxpaint.1.gz
 man/gl_ES.UTF-8/man1/tuxpaint.1.gz
 man/ja_JP.UTF-8/man1/tuxpaint.1.gz
-man/man1/tp-magic-config.1.gz
-man/man1/tuxpaint.1.gz
-man/man1/tuxpaint-import.1.gz
+share/man/man1/tp-magic-config.1.gz
+share/man/man1/tuxpaint.1.gz
+share/man/man1/tuxpaint-import.1.gz
 share/locale/ach/LC_MESSAGES/tuxpaint.mo
 share/locale/af/LC_MESSAGES/tuxpaint.mo
 share/locale/ak/LC_MESSAGES/tuxpaint.mo

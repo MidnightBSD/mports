@@ -5,6 +5,6 @@
 %%SITE_ARCH%%/Bit/Vector/String.pm
 %%SITE_ARCH%%/Bit/Vector/String.pod
 %%SITE_ARCH%%/auto/Bit/Vector/Vector.so
-man/man3/Bit::Vector.3.gz
-man/man3/Bit::Vector::Overload.3.gz
-man/man3/Bit::Vector::String.3.gz
+share/man/man3/Bit::Vector.3.gz
+share/man/man3/Bit::Vector::Overload.3.gz
+share/man/man3/Bit::Vector::String.3.gz

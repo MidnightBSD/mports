@@ -1,5 +1,5 @@
-man/man1/xnp2.1j.gz
-man/man1/xnp2.1.gz
+share/man/man1/xnp2.1j.gz
+share/man/man1/xnp2.1.gz
 %%DATADIR%%/fddseek1.wav
 %%DATADIR%%/np2tool.d88
 %%DATADIR%%/fddseek.wav

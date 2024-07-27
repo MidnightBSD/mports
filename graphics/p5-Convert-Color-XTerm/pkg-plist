@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Convert/Color/XTerm.pm
-man/man3/Convert::Color::XTerm.3.gz
+share/man/man3/Convert::Color::XTerm.3.gz

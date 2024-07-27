@@ -15,8 +15,8 @@ lib/weechat/plugins/trigger.so
 %%TYPING%%lib/weechat/plugins/typing.so
 lib/weechat/plugins/xfer.so
 libdata/pkgconfig/weechat.pc
-%%MANPAGES%%man/man1/weechat.1.gz
-%%HEADLESS%%%%MANPAGES%%man/man1/weechat-headless.1.gz
+%%MANPAGES%%share/man/man1/weechat.1.gz
+%%HEADLESS%%%%MANPAGES%%share/man/man1/weechat-headless.1.gz
 %%MANPAGES%%man/cs/man1/weechat.1.gz
 %%HEADLESS%%%%MANPAGES%%man/cs/man1/weechat-headless.1.gz
 %%MANPAGES%%man/de/man1/weechat.1.gz

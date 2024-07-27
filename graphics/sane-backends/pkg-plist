@@ -364,10 +364,10 @@ lib/sane/libsane-xerox_mfp.so
 lib/sane/libsane-xerox_mfp.so.1
 lib/sane/libsane-xerox_mfp.so.%%SOVERSION%%
 libdata/pkgconfig/sane-backends.pc
-man/man1/gamma4scanimage.1.gz
-man/man1/sane-config.1.gz
-man/man1/sane-find-scanner.1.gz
-man/man1/scanimage.1.gz
+share/man/man1/gamma4scanimage.1.gz
+share/man/man1/sane-config.1.gz
+share/man/man1/sane-find-scanner.1.gz
+share/man/man1/scanimage.1.gz
 man/man5/sane-abaton.5.gz
 man/man5/sane-agfafocus.5.gz
 man/man5/sane-apple.5.gz

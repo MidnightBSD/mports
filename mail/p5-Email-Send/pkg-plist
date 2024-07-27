@@ -4,9 +4,9 @@
 %%SITE_PERL%%/Email/Send/SMTP.pm
 %%SITE_PERL%%/Email/Send/Sendmail.pm
 %%SITE_PERL%%/Email/Send/Test.pm
-man/man3/Email::Send.3.gz
-man/man3/Email::Send::NNTP.3.gz
-man/man3/Email::Send::Qmail.3.gz
-man/man3/Email::Send::SMTP.3.gz
-man/man3/Email::Send::Sendmail.3.gz
-man/man3/Email::Send::Test.3.gz
+share/man/man3/Email::Send.3.gz
+share/man/man3/Email::Send::NNTP.3.gz
+share/man/man3/Email::Send::Qmail.3.gz
+share/man/man3/Email::Send::SMTP.3.gz
+share/man/man3/Email::Send::Sendmail.3.gz
+share/man/man3/Email::Send::Test.3.gz

@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Image/Magick/Iterator.pm
 %%SITE_PERL%%/Image/Magick/Iterator/PPM.pm
-man/man3/Image::Magick::Iterator.3.gz
-man/man3/Image::Magick::Iterator::PPM.3.gz
+share/man/man3/Image::Magick::Iterator.3.gz
+share/man/man3/Image::Magick::Iterator::PPM.3.gz
