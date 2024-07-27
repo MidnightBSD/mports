@@ -1,2 +1,2 @@
 %%SITE_PERL%%/MIME/Base32.pm
-man/man3/MIME::Base32.3.gz
+%%PERL5_MAN3%%/MIME::Base32.3.gz
