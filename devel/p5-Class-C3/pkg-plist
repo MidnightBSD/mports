@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Class/C3.pm
 %%SITE_PERL%%/Class/C3/next.pm
-man/man3/Class::C3.3.gz
-man/man3/Class::C3::next.3.gz
+%%PERL5_MAN3%%/Class::C3.3.gz
+%%PERL5_MAN3%%/Class::C3::next.3.gz
