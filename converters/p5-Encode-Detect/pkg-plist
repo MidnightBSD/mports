@@ -1,5 +1,16 @@
-%%SITE_ARCH%%/Encode/Detect.pm
-%%SITE_ARCH%%/Encode/Detect/Detector.pm
-%%SITE_ARCH%%/auto/Encode/Detect/Detector/Detector.so
-%%PERL5_MAN3%%/Encode::Detect.3.gz
-%%PERL5_MAN3%%/Encode::Detect::Detector.3.gz
+%%SITE_PERL%%/Encode/Detect/Detector.pm
+%%SITE_PERL%%/Encode/Detect.pm
+%%SITE_PERL%%/man/man3/Encode::Detect.3.gz
+%%SITE_PERL%%/man/man3/Encode::Detect::Detector.3.gz
+%%SITE_PERL%%/auto/Encode/Detect/Detector/Detector.so
+@dir %%SITE_PERL%%/Encode/Detect
+@dir %%SITE_PERL%%/Encode
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/auto/Encode/Detect/Detector
+@dir %%SITE_PERL%%/auto/Encode/Detect
+@dir %%SITE_PERL%%/auto/Encode
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
