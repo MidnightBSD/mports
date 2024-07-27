@@ -18,5 +18,6 @@ RUN_DEPENDS=	p5-Class-Inspector>=1.12:devel/p5-Class-Inspector
 USES=		perl5
 USE_PERL5=	configure
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
