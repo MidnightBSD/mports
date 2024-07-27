@@ -1,8 +1,6 @@
-
-
 PREFIX?=	/usr/local
 BINDIR?=	${PREFIX}/bin
-MANDIR?=	${PREFIX}/man/man
+MANDIR?=	${PREFIX}/share/man/man
 
 PROG=	v7sh
 SRCS=   args.c blok.c builtin.c cmd.c ctype.c error.c expand.c \
@@ -13,9 +11,9 @@ SRCS=   args.c blok.c builtin.c cmd.c ctype.c error.c expand.c \
 #CFLAGS+=	-DRENO
 #CFLAGS+=	-DULTRIX
 
-CWARNFLAGS?=	-ansi -Wbad-function-cast 
+CWARNFLAGS?=	-ansi -Wbad-function-cast
 WARNS?=	6
-NO_WERROR=1
+MK_WERROR=no
 WFORMAT=0
 
 .include <bsd.prog.mk>
