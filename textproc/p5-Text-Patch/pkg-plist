@@ -1,2 +1,2 @@
-man/man3/Text::Patch.3.gz
+%%PERL5_MAN3%%/Text::Patch.3.gz
 %%SITE_PERL%%/Text/Patch.pm
