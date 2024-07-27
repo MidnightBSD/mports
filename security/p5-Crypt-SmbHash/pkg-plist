@@ -1,2 +1,2 @@
-man/man3/Crypt::SmbHash.3.gz
+share/man/man3/Crypt::SmbHash.3.gz
 %%SITE_PERL%%/Crypt/SmbHash.pm

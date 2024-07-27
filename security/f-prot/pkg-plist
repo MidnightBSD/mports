@@ -10,7 +10,7 @@ libexec/f-prot/fpscan
 libexec/f-prot/fpupdate
 libexec/f-prot/license.key
 libexec/f-prot/product.data
-share/man/man1/fpscan.1.gz
+share/share/man/man1/fpscan.1.gz
 share/man/man5/f-prot.conf.5.gz
 share/man/man8/fpupdate.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/CHANGES

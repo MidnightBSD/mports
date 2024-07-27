@@ -1,7 +1,7 @@
-man/man1/fail2ban-client.1.gz
-man/man1/fail2ban-regex.1.gz
-man/man1/fail2ban-server.1.gz
-man/man1/fail2ban.1.gz
+share/man/man1/fail2ban-client.1.gz
+share/man/man1/fail2ban-regex.1.gz
+share/man/man1/fail2ban-server.1.gz
+share/man/man1/fail2ban.1.gz
 man/man5/fail2ban-jail.conf.5.gz
 bin/fail2ban-python
 @dir %%ETCDIR%%/fail2ban.d

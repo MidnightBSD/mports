@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Authen/NTLM.pm
 %%SITE_PERL%%/Authen/NTLM/DES.pm
 %%SITE_PERL%%/Authen/NTLM/MD4.pm
-man/man3/Authen::NTLM.3.gz
+share/man/man3/Authen::NTLM.3.gz

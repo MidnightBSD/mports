@@ -8,9 +8,9 @@ share/man/hr/man1/nmap.1.gz
 share/man/hu/man1/nmap.1.gz
 share/man/it/man1/nmap.1.gz
 share/man/ja/man1/nmap.1.gz
-share/man/man1/ncat.1.gz
-share/man/man1/nmap.1.gz
-share/man/man1/nping.1.gz
+share/share/man/man1/ncat.1.gz
+share/share/man/man1/nmap.1.gz
+share/share/man/man1/nping.1.gz
 share/man/pl/man1/nmap.1.gz
 share/man/pt_BR/man1/nmap.1.gz
 share/man/pt_PT/man1/nmap.1.gz

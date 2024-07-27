@@ -3,7 +3,7 @@
 %%SITE_PERL%%/IO/Socket/SSL/Intercept.pm
 %%SITE_PERL%%/IO/Socket/SSL/PublicSuffix.pm
 %%SITE_PERL%%/IO/Socket/SSL/Utils.pm
-man/man3/IO::Socket::SSL.3.gz
-man/man3/IO::Socket::SSL::Intercept.3.gz
-man/man3/IO::Socket::SSL::PublicSuffix.3.gz
-man/man3/IO::Socket::SSL::Utils.3.gz
+%%PERL5_MAN3%%/IO::Socket::SSL.3.gz
+%%PERL5_MAN3%%/IO::Socket::SSL::Intercept.3.gz
+%%PERL5_MAN3%%/IO::Socket::SSL::PublicSuffix.3.gz
+%%PERL5_MAN3%%/IO::Socket::SSL::Utils.3.gz

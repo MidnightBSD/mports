@@ -2,5 +2,5 @@ sbin/vpnc
 sbin/vpnc-disconnect
 man/man8/vpnc.8.gz
 %%DECRYPT%%bin/cisco-decrypt
-%%DECRYPT%%man/man1/cisco-decrypt.1.gz
+%%DECRYPT%%share/man/man1/cisco-decrypt.1.gz
 @sample(,,700) etc/vpnc.conf.sample

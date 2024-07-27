@@ -1,5 +1,5 @@
 bin/gsasl
-man/man1/gsasl.1.gz
+share/man/man1/gsasl.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/gsasl.html
 %%NLS%%share/locale/da/LC_MESSAGES/gsasl.mo
 %%NLS%%share/locale/de/LC_MESSAGES/gsasl.mo

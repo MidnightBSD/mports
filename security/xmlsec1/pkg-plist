@@ -74,6 +74,6 @@ libdata/pkgconfig/xmlsec1-gcrypt.pc
 %%NSS%%libdata/pkgconfig/xmlsec1-nss.pc
 libdata/pkgconfig/xmlsec1-openssl.pc
 libdata/pkgconfig/xmlsec1.pc
-man/man1/xmlsec1-config.1.gz
-man/man1/xmlsec1.1.gz
+share/man/man1/xmlsec1-config.1.gz
+share/man/man1/xmlsec1.1.gz
 share/aclocal/xmlsec1.m4

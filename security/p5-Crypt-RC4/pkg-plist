@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Crypt/RC4.pm
-man/man3/Crypt::RC4.3.gz
+share/man/man3/Crypt::RC4.3.gz

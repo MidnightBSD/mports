@@ -1,5 +1,5 @@
 bin/vlock
-share/man/man1/vlock.1.gz
+share/share/man/man1/vlock.1.gz
 share/man/man5/vlock-plugins.5.gz
 share/man/man8/vlock-main.8.gz
 %%VLOCKSCRIPTS%%lib/vlock/scripts/amarok

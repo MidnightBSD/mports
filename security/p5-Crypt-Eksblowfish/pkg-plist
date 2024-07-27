@@ -17,7 +17,7 @@
 @dir %%SITE_ARCH%%/auto/Crypt
 @dir %%SITE_ARCH%%/auto
 @dir %%SITE_ARCH%%
-@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/share/man/man3
 @dir %%SITE_PERL%%/man
 @dir %%SITE_PERL%%
 @dir lib/perl5/site_perl

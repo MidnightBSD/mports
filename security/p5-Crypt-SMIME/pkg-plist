@@ -1,5 +1,5 @@
 %%SITE_ARCH%%/Crypt/SMIME.pm
 %%SITE_ARCH%%/Crypt/SMIME/JA.pod
 %%SITE_ARCH%%/auto/Crypt/SMIME/SMIME.so
-man/man3/SMIME.3.gz
-man/man3/SMIME::JA.3.gz
+share/man/man3/SMIME.3.gz
+share/man/man3/SMIME::JA.3.gz
