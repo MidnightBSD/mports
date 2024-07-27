@@ -1,5 +1,3 @@
-# Created by: lbr@FreeBSD.org
-
 PORTNAME=	Task-Weaken
 PORTVERSION=	1.06
 CATEGORIES=	devel perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ensure that a platform has weaken support
+WWW=		https://metacpan.org/release/Task-Weaken
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

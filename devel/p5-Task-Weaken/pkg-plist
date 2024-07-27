@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Task/Weaken.pm
-man/man3/Task::Weaken.3.gz
+%%PERL5_MAN3%%/Task::Weaken.3.gz
