@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Class-XSAccessor
 PORTVERSION=	1.19
 PORTEPOCH=	1
@@ -10,8 +8,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate fast XS accessors without runtime compilation
+WWW=		https://metacpan.org/release/Class-XSAccessor
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5
