@@ -1,5 +1,6 @@
 PORTNAME=	sshguard
 PORTVERSION=	2.4.3
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	SF/sshguard/sshguard/${PORTVERSION}
 
@@ -9,6 +10,7 @@ WWW=		https://www.sshguard.net/
 
 LICENSE=	bsd2
 
+USES=		autoreconf
 USE_RC_SUBR=	sshguard
 
 GNU_CONFIGURE=	yes
