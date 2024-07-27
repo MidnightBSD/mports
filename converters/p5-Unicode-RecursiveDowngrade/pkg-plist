@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Unicode/RecursiveDowngrade.pm
-man/man3/Unicode::RecursiveDowngrade.3.gz
+%%PERL5_MAN3%%/Unicode::RecursiveDowngrade.3.gz
