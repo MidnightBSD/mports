@@ -9,6 +9,6 @@ bin/netserver
 %%EXAMPLESDIR%%/tcp_stream_script
 %%EXAMPLESDIR%%/udp_rr_script
 %%EXAMPLESDIR%%/udp_stream_script
-share/man/man1/netperf.1.gz
-share/man/man1/netserver.1.gz
+share/share/man/man1/netperf.1.gz
+share/share/man/man1/netserver.1.gz
 @dirrm %%EXAMPLESDIR%%
