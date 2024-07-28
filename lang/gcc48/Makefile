@@ -100,7 +100,7 @@ full-regression-test: build
 .endif
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/man/man7/*
+	${RM} ${STAGEDIR}${PREFIX}/share/man/man7/*
 	${RM} -r ${STAGEDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/ \
 	         ${STAGEDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/finclude
 	# Add target libraries and include files to packaging list.

@@ -2,12 +2,12 @@ PORTNAME=	eperl
 PORTVERSION=	2.2.14
 PORTREVISION=	6
 CATEGORIES=	lang www perl5
-MASTER_SITES=	${MASTER_SITE_OSSP}
-MASTER_SITE_SUBDIR=	tool/${PORTNAME}
+MASTER_SITES=	OSSP/tool/${PORTNAME}
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Modules of ePerl package: Parse::ePerl, Apache::ePerl
+WWW=		http://www.ossp.org/pkg/tool/eperl/
 
 LICENSE=	artistic gpl2
 LICENSE_COMB=	dual
