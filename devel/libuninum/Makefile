@@ -1,5 +1,3 @@
-
-
 PORTNAME=	libuninum
 PORTVERSION=	2.7
 CATEGORIES=	devel
@@ -10,7 +8,7 @@ COMMENT=	Library for converting Unicode strings to numbers
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
+LIB_DEPENDS=	libgmp.so:math/gmp
 
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
