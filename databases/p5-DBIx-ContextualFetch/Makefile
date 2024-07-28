@@ -12,11 +12,12 @@ WWW=		https://metacpan.org/release/DBIx-ContextualFetch
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:databases/p5-DBI
 BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-DBI>=0:databases/p5-DBI
+TEST_DEPENDS=	p5-DBD-SQLite>=0:databases/p5-DBD-SQLite
 
 USES=		perl5
 USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
-
