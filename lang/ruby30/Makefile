@@ -173,7 +173,7 @@ post-install:
 # Link "ruby.1.gz" to "ruby30.1.gz", etc.
 #
 . for FILE in ${INSTALLED_MANUALS}
-	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${MANPREFIX}/man/man1/${FILE}.1.gz
+	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${PREFIX}/share/man/man1/${FILE}.1.gz
 . endfor
 .endif
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
