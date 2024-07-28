@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/Pipely.pm
-share/man/man3/IO::Pipely.3.gz
+%%PERL5_MAN3%%/IO::Pipely.3.gz

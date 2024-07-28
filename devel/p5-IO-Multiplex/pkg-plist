@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/Multiplex.pm
-share/man/man3/IO::Multiplex.3.gz
+%%PERL5_MAN3%%/IO::Multiplex.3.gz
