@@ -1,11 +1,12 @@
 PORTNAME=	siege
-PORTVERSION=	4.0.5
+PORTVERSION=	4.1.6
 CATEGORIES=	benchmarks www
 MASTER_SITES=	http://download.joedog.org/siege/ \
 		http://fossies.org/linux/www/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP regression testing and benchmarking utility
+WWW=		https://www.joedog.org/JoeDog/Sieg
 
 LICENSE=	gpl2
 

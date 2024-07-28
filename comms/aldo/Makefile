@@ -18,7 +18,7 @@ USES=		compiler:c++0x gmake libtool localbase tar:bzip2
 USE_GCC=	yes
 
 PLIST_FILES=	bin/aldo \
-		man/man1/aldo.1.gz
+		share/man/man1/aldo.1.gz
 
 AUTOTOOLSFILES=	aclocal.m4
 
@@ -29,6 +29,6 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/aldo ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/aldo.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/aldo.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

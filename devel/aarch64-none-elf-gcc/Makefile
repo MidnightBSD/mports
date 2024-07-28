@@ -74,18 +74,18 @@ post-install:
 	fi
 .endfor
 .for f in c++ cpp g++ gcc gcc-ar gcc-nm gcc-ranlib gcov gcov-dump gcov-tool
-	@if [ ! -f ${STAGEDIR}${PREFIX}/man/man1/${GCC_TARGET}-$f.1 ] ; then \
-		if [ -f ${STAGEDIR}${PREFIX}/man/man1/$f.1 ] ; then \
-			${CP} ${STAGEDIR}${PREFIX}/man/man1/$f.1  \
-			    ${STAGEDIR}${PREFIX}/man/man1/${GCC_TARGET}-$f.1 ; \
+	@if [ ! -f ${STAGEDIR}${PREFIX}/share/man/man1/${GCC_TARGET}-$f.1 ] ; then \
+		if [ -f ${STAGEDIR}${PREFIX}/share/man/man1/$f.1 ] ; then \
+			${CP} ${STAGEDIR}${PREFIX}/share/man/man1/$f.1  \
+			    ${STAGEDIR}${PREFIX}/share/man/man1/${GCC_TARGET}-$f.1 ; \
 		fi \
 	fi
 	-${RM} ${STAGEDIR}${PREFIX}/bin/$f
-	-${RM} ${STAGEDIR}${PREFIX}/man/man1/$f.1
-	-${RM} ${STAGEDIR}${PREFIX}/man/man1/$f.1.gz
+	-${RM} ${STAGEDIR}${PREFIX}/share/man/man1/$f.1
+	-${RM} ${STAGEDIR}${PREFIX}/share/man/man1/$f.1.gz
 .endfor
 	-${RM} ${STAGEDIR}${PREFIX}/share/info/*
-	-${RM} ${STAGEDIR}${PREFIX}/man/man7/*
+	-${RM} ${STAGEDIR}${PREFIX}/share/man/man7/*
 	-${RM} -r ${STAGEDIR}/usr/lib/gcc/${GCC_TARGET}/${PORTVERSION}/include-fixed
 
 .include <bsd.port.post.mk>
