@@ -4,5 +4,5 @@ sbin/rrsync
 share/man/man1/rrsync.1.gz
 share/man/man1/rsync.1.gz
 share/man/man1/rsync-ssl.1.gz
-man/man5/rsyncd.conf.5.gz
+share/man/man5/rsyncd.conf.5.gz
 @sample %%ETCDIR%%/rsyncd.conf.sample
