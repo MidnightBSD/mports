@@ -1,2 +1,2 @@
 %%SITE_PERL%%/List/UtilsBy.pm
-share/man/man3/List::UtilsBy.3.gz
+%%PERL5_MAN3%%/List::UtilsBy.3.gz

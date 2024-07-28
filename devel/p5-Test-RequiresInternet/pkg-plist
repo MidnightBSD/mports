@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/RequiresInternet.pm
-share/man/man3/Test::RequiresInternet.3.gz
+%%PERL5_MAN3%%/Test::RequiresInternet.3.gz

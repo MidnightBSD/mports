@@ -2,6 +2,6 @@
 %%SITE_ARCH%%/Test/LeakTrace/JA.pod
 %%SITE_ARCH%%/Test/LeakTrace/Script.pm
 %%SITE_ARCH%%/auto/Test/LeakTrace/LeakTrace.so
-share/man/man3/Test::LeakTrace.3.gz
-share/man/man3/Test::LeakTrace::JA.3.gz
-share/man/man3/Test::LeakTrace::Script.3.gz
+%%PERL5_MAN3%%/Test::LeakTrace.3.gz
+%%PERL5_MAN3%%/Test::LeakTrace::JA.3.gz
+%%PERL5_MAN3%%/Test::LeakTrace::Script.3.gz

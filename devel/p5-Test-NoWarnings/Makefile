@@ -1,16 +1,14 @@
-
-
 PORTNAME=	Test-NoWarnings
-PORTVERSION=	1.04
+PORTVERSION=	1.06
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hide and store warnings while running test scripts
+WWW=		https://metacpan.org/release/Test-NoWarnings
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=	lgpl2.1
 
 USES=		perl5
 USE_PERL5=	configure

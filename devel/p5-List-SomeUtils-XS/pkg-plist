@@ -1,3 +1,3 @@
 %%SITE_ARCH%%/List/SomeUtils/XS.pm
 %%SITE_ARCH%%/auto/List/SomeUtils/XS/XS.so
-share/man/man3/List::SomeUtils::XS.3.gz
+%%PERL5_MAN3%%/List::SomeUtils::XS.3.gz

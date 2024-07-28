@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Sub/Uplevel.pm
-share/man/man3/Sub::Uplevel.3.gz
+%%PERL5_MAN3%%/Sub::Uplevel.3.gz
