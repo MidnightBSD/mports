@@ -17,6 +17,6 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 MAKE_ENV+=	INSTALL="${INSTALL}" INSTALL_PROGRAM="${INSTALL_PROGRAM}"
 USES=		pkgconfig
 
-PLIST_FILES=	bin/freecolor man/man1/freecolor.1.gz
+PLIST_FILES=	bin/freecolor share/man/man1/freecolor.1.gz
 
 .include <bsd.port.mk>
