@@ -21,8 +21,7 @@ CONFIGURE_LOG=			bin/config.log
 PKGCONFIGDIR?=			${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=			PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-CONFIGURE_ARGS+=		--mandir=${MANPREFIX}/man \
-				--disable-rpath \
+CONFIGURE_ARGS+=		--disable-rpath \
 				--disable-rpath-install \
 				--bundled-libraries=NONE \
 				--builtin-libraries=replace \

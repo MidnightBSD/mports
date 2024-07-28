@@ -1,5 +1,3 @@
-
-
 PORTNAME=	zfs-snapshot-mgmt
 PORTVERSION=	20090201
 PORTREVISION=	1
@@ -25,7 +23,7 @@ post-patch:	.SILENT
 
 do-install:
 	@${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
-	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 ${MANPREFIX}/man/man8
+	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 ${PREFIX}/share/man/man8
 	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf.sample ${PREFIX}/etc
 
 .include <bsd.port.mk>

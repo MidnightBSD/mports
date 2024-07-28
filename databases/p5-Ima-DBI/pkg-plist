@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Ima/DBI.pm
-man/man3/Ima::DBI.3.gz
+%%PERL5_MAN3%%/Ima::DBI.3.gz

@@ -1,6 +1,6 @@
---- Jamrules.orig	2023-05-24 05:02:11.000000000 -0400
-+++ Jamrules	2023-10-27 10:55:40.736403000 -0400
-@@ -684,12 +684,11 @@
+--- Jamrules.orig	2024-02-22 10:28:57.000000000 -0500
++++ Jamrules	2024-07-28 14:14:35.622780000 -0400
+@@ -690,12 +690,11 @@
  	# P4BIN is set to ../p4-bin (relative to P4)
  
  	SubDir AllP4 p4 ;	# where we are
@@ -14,7 +14,7 @@
  		$(BUILD)
  		$(TYPE:L) ;
  
-@@ -1256,22 +1255,19 @@
+@@ -1301,22 +1300,19 @@
  		OPTIM += -Wno-parentheses -Wno-switch -fwrapv ;
  
  		_mflags = ;
@@ -32,7 +32,7 @@
 -		# meaning it doesn't record timestamps in the archives. We
 -		# could override that by always running 'ar U', but instead
 -		# we chose to tell Jam not to scan the archives.
-+	case MIDNIGHTBSD[123]* : 
++	case MIDNIGHTBSD[1234]* : 
 +		SetCommonCompiler $(OSCOMP:E=clang) ;
  
 -		NOARSCAN = true ;

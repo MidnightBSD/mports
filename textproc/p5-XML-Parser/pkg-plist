@@ -43,10 +43,10 @@
 %%SITE_ARCH%%/XML/Parser/Style/Subs.pm
 %%SITE_ARCH%%/XML/Parser/Style/Tree.pm
 %%SITE_ARCH%%/auto/XML/Parser/Expat/Expat.so
-man/man3/XML::Parser.3.gz
-man/man3/XML::Parser::Expat.3.gz
-man/man3/XML::Parser::Style::Debug.3.gz
-man/man3/XML::Parser::Style::Objects.3.gz
-man/man3/XML::Parser::Style::Stream.3.gz
-man/man3/XML::Parser::Style::Subs.3.gz
-man/man3/XML::Parser::Style::Tree.3.gz
+%%PERL5_MAN3%%/XML::Parser.3.gz
+%%PERL5_MAN3%%/XML::Parser::Expat.3.gz
+%%PERL5_MAN3%%/XML::Parser::Style::Debug.3.gz
+%%PERL5_MAN3%%/XML::Parser::Style::Objects.3.gz
+%%PERL5_MAN3%%/XML::Parser::Style::Stream.3.gz
+%%PERL5_MAN3%%/XML::Parser::Style::Subs.3.gz
+%%PERL5_MAN3%%/XML::Parser::Style::Tree.3.gz

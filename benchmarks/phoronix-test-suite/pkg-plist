@@ -7680,7 +7680,7 @@ share/appdata/phoronix-test-suite.appdata.xml
 %%DOCSDIR%%/phoronix-test-suite.html
 %%DOCSDIR%%/includes/pts-documentation.png
 %%DOCSDIR%%/includes/pts-documentation.css
-man/man1/phoronix-test-suite.1.gz
+share/man/man1/phoronix-test-suite.1.gz
 bin/phoronix-test-suite
 @dir %%DATADIR%%/ob-cache/test-suites/pts/cryptocurrency-1.0.1
 @dir %%DATADIR%%/ob-cache/test-suites/pts/vulkan-compute-1.0.4
