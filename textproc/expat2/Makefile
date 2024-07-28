@@ -34,6 +34,6 @@ TEST_TARGET=	check
 PLIST_SUB=	EXPAT_VERSION=${DISTVERSION}
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/xmlwf.1 ${MANPREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/doc/xmlwf.1 ${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>
