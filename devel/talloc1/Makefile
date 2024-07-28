@@ -27,8 +27,7 @@ CONFIGURE_LOG=		bin/config.log
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
-			--disable-rpath \
+CONFIGURE_ARGS+=	--disable-rpath \
 			--without-gettext
 
 OPTIONS_DEFINE=		MANPAGES
@@ -95,7 +94,7 @@ CFLAGS+=		-fno-color-diagnostics
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
-TALLOC_MAN3=		man/man3/talloc.3.gz
+TALLOC_MAN3=		share/man/man3/talloc.3.gz
 
 PLIST_FILES+=		${TALLOC_MAN3}
 
