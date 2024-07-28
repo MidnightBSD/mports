@@ -1,8 +1,8 @@
 PORTNAME=	xfs
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.2
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
-DISTFILES=	xfs-1.2.1.tar.xz
+DISTFILES=	xfs-1.2.2.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org font server
