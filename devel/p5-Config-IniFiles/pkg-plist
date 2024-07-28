@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Config/IniFiles.pm
-share/man/man3/Config::IniFiles.3.gz
+%%PERL5_MAN3%%/Config::IniFiles.3.gz
