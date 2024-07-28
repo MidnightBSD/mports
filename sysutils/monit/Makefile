@@ -21,7 +21,7 @@ GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/monit \
 		etc/monitrc.sample \
-		man/man1/monit.1.gz
+		share/man/man1/monit.1.gz
 
 SUB_FILES=	pkg-message
 
