@@ -5,8 +5,9 @@ CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Add contextual fetches to DBI
+WWW=		https://metacpan.org/release/DBIx-ContextualFetch
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
