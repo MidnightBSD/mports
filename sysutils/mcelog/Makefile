@@ -1,7 +1,5 @@
-# Created by: Jeremy Chadwick <freebsd@jdc.parodius.com>
-
 PORTNAME=	mcelog
-PORTVERSION=	169
+PORTVERSION=	178
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -25,7 +23,7 @@ MAKE_ENV+=	FREEBSD=1
 MAKE_ARGS+=	CFLAGS="${CFLAGS}" prefix="${PREFIX}"
 LDFLAGS+=	-lkvm
 
-PLIST_FILES=	bin/mcelog man/man8/mcelog.8.gz
+PLIST_FILES=	bin/mcelog share/man/man8/mcelog.8.gz
 
 post-patch:
 	@${ECHO} "${DISTVERSIONPREFIX}${PORTVERSION}" >${WRKSRC}/.os_version
@@ -35,6 +33,6 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/mcelog ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/mcelog.8 ${STAGEDIR}${MANPREFIX}/man/man8
+	${INSTALL_MAN} ${WRKSRC}/mcelog.8 ${STAGEDIR}${MANPREFIX}/share/man/man8
 
 .include <bsd.port.mk>
