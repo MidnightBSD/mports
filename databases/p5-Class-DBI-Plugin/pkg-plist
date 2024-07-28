@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Class/DBI/Plugin.pm
-man/man3/Class::DBI::Plugin.3.gz
+%%PERL5_MAN3%%/Class::DBI::Plugin.3.gz

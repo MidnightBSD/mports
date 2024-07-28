@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Class/DBI/AbstractSearch.pm
-man/man3/Class::DBI::AbstractSearch.3.gz
+%%PERL5_MAN3%%/Class::DBI::AbstractSearch.3.gz
