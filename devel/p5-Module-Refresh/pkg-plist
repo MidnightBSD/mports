@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Module/Refresh.pm
-share/man/man3/Module::Refresh.3.gz
+%%PERL5_MAN3%%/Module::Refresh.3.gz
