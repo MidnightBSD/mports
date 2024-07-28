@@ -1,6 +1,6 @@
 %%SITE_PERL%%/match/simple.pm
 %%SITE_PERL%%/match/simple/sugar.pm
 %%SITE_PERL%%/match/smart.pm
-share/man/man3/match::simple.3.gz
-share/man/man3/match::simple::sugar.3.gz
-share/man/man3/match::smart.3.gz
+%%PERL5_MAN3%%/match::simple.3.gz
+%%PERL5_MAN3%%/match::simple::sugar.3.gz
+%%PERL5_MAN3%%/match::smart.3.gz

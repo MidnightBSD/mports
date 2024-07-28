@@ -1,2 +1,2 @@
 %%SITE_PERL%%/parent.pm
-share/man/man3/parent.3.gz
+%%PERL5_MAN3%%/parent.3.gz

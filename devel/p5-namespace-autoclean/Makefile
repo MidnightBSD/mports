@@ -1,7 +1,5 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
-
 PORTNAME=	namespace-autoclean
-PORTVERSION=	0.28
+PORTVERSION=	0.29
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

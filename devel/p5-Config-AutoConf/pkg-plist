@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Config/AutoConf.pm
-share/man/man3/Config::AutoConf.3.gz
+%%PERL5_MAN3%%/Config::AutoConf.3.gz
