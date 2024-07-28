@@ -14,10 +14,10 @@ LICENSE=	bsd3
 
 USES=		perl5
 USE_PERL5=	configure
+CONFIGURE_ENV+=	CC="${CC}"
 
 PLIST_FILES=	%%PERL5_MAN3%%/Socket6.3.gz \
-		%%SITE_PERL%%/%%PERL_ARCH%%/Socket6.pm \
-		%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6/Socket6.so
-PLIST_DIRS=	%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6
+		%%SITE_ARCH%%/Socket6.pm \
+		%%SITE_ARCH%%/auto/Socket6/Socket6.so
 
 .include <bsd.port.mk>
