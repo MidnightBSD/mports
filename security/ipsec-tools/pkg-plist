@@ -26,8 +26,8 @@ lib/libracoon.a
 lib/libracoon.so
 lib/libracoon.so.0
 lib/libracoon.so.0.0.0
-share/share/man/man3/ipsec_set_policy.3.gz
-share/share/man/man3/ipsec_strerror.3.gz
+share/man/man3/ipsec_set_policy.3.gz
+share/man/man3/ipsec_strerror.3.gz
 share/man/man5/racoon.conf.5.gz
 share/man/man8/plainrsa-gen.8.gz
 share/man/man8/racoon.8.gz

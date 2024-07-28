@@ -16,7 +16,7 @@ GNU_CONFIGURE=	yes
 
 PORTDOCS=	INSTALL NEWS README
 PLIST_FILES=	bin/zsync bin/zsyncmake \
-		man/man1/zsync.1.gz man/man1/zsyncmake.1.gz
+		share/man/man1/zsync.1.gz share/man/man1/zsyncmake.1.gz
 
 MANPAGE=	zsync.1 zsyncmake.1
 BINS=		zsync zsyncmake
@@ -26,7 +26,7 @@ OPTIONS_DEFINE=	DOCS
 do-install:
 	${INSTALL_PROGRAM} ${BINS:S,^,${WRKSRC}/,} ${PREFIX}/bin
 	${INSTALL_MAN} ${MANPAGE:S,^,${WRKSRC}/doc/,} \
-		${MANPREFIX}/man/man1
+		${MANPREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

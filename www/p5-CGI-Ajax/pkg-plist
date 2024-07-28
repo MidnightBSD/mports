@@ -1,2 +1,2 @@
 %%SITE_PERL%%/CGI/Ajax.pm
-man/man3/CGI::Ajax.3.gz
+%%PERL5_MAN3%%/CGI::Ajax.3.gz

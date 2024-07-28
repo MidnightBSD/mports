@@ -23,5 +23,5 @@ share/man/man3/paperpswidth.3.gz
 share/man/man3/paperwithsize.3.gz
 share/man/man3/systempapername.3.gz
 share/man/man3/systempapersizefile.3.gz
-man/man5/papersize.5.gz
-man/man8/paperconfig.8.gz
+share/man/man5/papersize.5.gz
+share/man/man8/paperconfig.8.gz
