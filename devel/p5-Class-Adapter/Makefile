@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Class-Adapter
 PORTVERSION=	1.08
 CATEGORIES=	devel perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl implementation of the "Adapter" Design Pattern
+WWW=		https://metacpan.org/release/Class-Adapter
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

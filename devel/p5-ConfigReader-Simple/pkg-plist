@@ -1,2 +1,2 @@
 %%SITE_PERL%%/ConfigReader/Simple.pm
-share/man/man3/ConfigReader::Simple.3.gz
+%%PERL5_MAN3%%/ConfigReader::Simple.3.gz

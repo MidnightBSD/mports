@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Devel/ArgNames.pm
-share/man/man3/Devel::ArgNames.3.gz
+%%PERL5_MAN3%%/Devel::ArgNames.3.gz

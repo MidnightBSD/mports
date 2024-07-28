@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Config/Tiny.pm
-share/man/man3/Config::Tiny.3.gz
+%%PERL5_MAN3%%/Config::Tiny.3.gz

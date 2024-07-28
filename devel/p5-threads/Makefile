@@ -1,5 +1,3 @@
-
-
 PORTNAME=	threads
 PORTVERSION=	2.21
 CATEGORIES=	devel perl5
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl interpreter-based threads
+WWW=		https://metacpan.org/release/threads
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5

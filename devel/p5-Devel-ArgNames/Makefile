@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Devel-ArgNames
 PORTVERSION=	0.03
 CATEGORIES=	devel perl5
@@ -8,8 +6,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Figure out the names of variables passed into subroutines
+WWW=		https://metacpan.org/release/Devel-ArgNames
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-PadWalker>=0:devel/p5-PadWalker

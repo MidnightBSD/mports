@@ -1,12 +1,12 @@
 PORTNAME=	version
-PORTVERSION=	0.99.30
+PORTVERSION=	0.9932
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for Version Objects
+WWW=		https://metacpan.org/release/version
 
 LICENSE=	gpl artistic
 LICENSE_COMB=	dual
