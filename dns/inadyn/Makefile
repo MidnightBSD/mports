@@ -1,5 +1,5 @@
 PORTNAME=	inadyn
-PORTVERSION=	2.11.0
+PORTVERSION=	2.12.0
 CATEGORIES=	dns
 MASTER_SITES=	https://github.com/troglobit/${PORTNAME}/releases/download/v${PORTVERSION}/
 
