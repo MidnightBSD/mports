@@ -7254,4 +7254,4 @@ lib/python%%XYDOT%%/zipfile.py
 lib/python%%XYDOT%%/zipimport.py
 libdata/pkgconfig/python-%%XYDOT%%-embed.pc
 libdata/pkgconfig/python-%%XYDOT%%.pc
-man/man1/python%%XYDOT%%.1.gz
+share/man/man1/python%%XYDOT%%.1.gz
