@@ -1,4 +1,4 @@
 %%SITE_PERL%%/strictures.pm
 %%SITE_PERL%%/strictures/extra.pm
-share/man/man3/strictures.3.gz
-share/man/man3/strictures::extra.3.gz
+%%PERL5_MAN3%%/strictures.3.gz
+%%PERL5_MAN3%%/strictures::extra.3.gz
