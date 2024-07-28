@@ -1,13 +1,12 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	CPAN-Meta-Requirements
-PORTVERSION=	2.140
+PORTVERSION=	2.143
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of version requirements for a CPAN distribution
+WWW=		https://metacpan.org/release/CPAN-Meta-Requirements
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Make chained accessors
+WWW=		https://metacpan.org/release/Class-Accessor-Chained
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	p5-Class-Accessor>=0:devel/p5-Class-Accessor

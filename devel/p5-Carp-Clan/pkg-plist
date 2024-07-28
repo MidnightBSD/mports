@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Carp/Clan.pm
-share/man/man3/Carp::Clan.3.gz
+%%PERL5_MAN3%%/Carp::Clan.3.gz
