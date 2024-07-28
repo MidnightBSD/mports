@@ -5,10 +5,10 @@
 %%SITE_PERL%%/Email/Abstract/MailInternet.pm
 %%SITE_PERL%%/Email/Abstract/MailMessage.pm
 %%SITE_PERL%%/Email/Abstract/Plugin.pm
-share/man/man3/Email::Abstract.3.gz
-share/man/man3/Email::Abstract::EmailMIME.3.gz
-share/man/man3/Email::Abstract::EmailSimple.3.gz
-share/man/man3/Email::Abstract::MIMEEntity.3.gz
-share/man/man3/Email::Abstract::MailInternet.3.gz
-share/man/man3/Email::Abstract::MailMessage.3.gz
-share/man/man3/Email::Abstract::Plugin.3.gz
+%%PERL5_MAN3%%/Email::Abstract.3.gz
+%%PERL5_MAN3%%/Email::Abstract::EmailMIME.3.gz
+%%PERL5_MAN3%%/Email::Abstract::EmailSimple.3.gz
+%%PERL5_MAN3%%/Email::Abstract::MIMEEntity.3.gz
+%%PERL5_MAN3%%/Email::Abstract::MailInternet.3.gz
+%%PERL5_MAN3%%/Email::Abstract::MailMessage.3.gz
+%%PERL5_MAN3%%/Email::Abstract::Plugin.3.gz
