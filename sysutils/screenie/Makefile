@@ -1,24 +1,25 @@
-
-
 PORTNAME=	screenie
-PORTVERSION=	1.30.0
+PORTVERSION=	20120406
 CATEGORIES=	sysutils
-MASTER_SITES=	http://pubwww.fhzh.ch/~mgloor/data/ \
-		CRITICAL
+MASTER_SITES=	SF/screenie
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small and lightweight screen(1) wrapper
+WWW=		https://sourceforge.net/projects/screenie/
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	screen:${PORTSDIR}/sysutils/screen
+RUN_DEPENDS=	screen:sysutils/screen
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
-PLIST_FILES=	sbin/screenie man/man1/screenie.1.gz
+PLIST_FILES=	sbin/screenie share/man/man1/screenie.1.gz
+
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${MANPREFIX}/man/man1
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
