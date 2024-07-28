@@ -1,5 +1,3 @@
-
-
 PORTNAME=	expect
 PORTVERSION=	5.45.4
 CATEGORIES=	lang tcl tk
@@ -8,6 +6,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sophisticated scripter based on Tcl/Tk
+WWW=		https://expect.sourceforge.net
 
 LICENSE=	publicdom
 LICENSE_FILE=	${WRKSRC}/license.terms
