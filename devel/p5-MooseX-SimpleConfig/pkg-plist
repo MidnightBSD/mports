@@ -1,2 +1,2 @@
 %%SITE_PERL%%/MooseX/SimpleConfig.pm
-man/man3/MooseX::SimpleConfig.3.gz
+share/man/man3/MooseX::SimpleConfig.3.gz

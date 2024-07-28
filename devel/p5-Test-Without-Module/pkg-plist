@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Without/Module.pm
-man/man3/Test::Without::Module.3.gz
+share/man/man3/Test::Without::Module.3.gz

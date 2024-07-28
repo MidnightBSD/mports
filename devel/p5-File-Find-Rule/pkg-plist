@@ -2,7 +2,7 @@ bin/findrule
 %%SITE_PERL%%/File/Find/Rule.pm
 %%SITE_PERL%%/File/Find/Rule/Extending.pod
 %%SITE_PERL%%/File/Find/Rule/Procedural.pod
-man/man1/findrule.1.gz
-man/man3/File::Find::Rule.3.gz
-man/man3/File::Find::Rule::Extending.3.gz
-man/man3/File::Find::Rule::Procedural.3.gz
+share/man/man1/findrule.1.gz
+share/man/man3/File::Find::Rule.3.gz
+share/man/man3/File::Find::Rule::Extending.3.gz
+share/man/man3/File::Find::Rule::Procedural.3.gz

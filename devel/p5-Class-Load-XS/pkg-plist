@@ -1,3 +1,3 @@
 %%SITE_ARCH%%/Class/Load/XS.pm
 %%SITE_ARCH%%/auto/Class/Load/XS/XS.so
-man/man3/Class::Load::XS.3.gz
+share/man/man3/Class::Load::XS.3.gz

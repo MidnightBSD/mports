@@ -18,5 +18,5 @@ bin/perltidy
 %%SITE_PERL%%/Perl/Tidy/VerticalAligner.pm
 %%SITE_PERL%%/Perl/Tidy/VerticalAligner/Alignment.pm
 %%SITE_PERL%%/Perl/Tidy/VerticalAligner/Line.pm
-man/man1/perltidy.1.gz
-man/man3/Perl::Tidy.3.gz
+share/man/man1/perltidy.1.gz
+share/man/man3/Perl::Tidy.3.gz

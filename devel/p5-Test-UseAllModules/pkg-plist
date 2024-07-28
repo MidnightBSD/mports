@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/UseAllModules.pm
-man/man3/Test::UseAllModules.3.gz
+share/man/man3/Test::UseAllModules.3.gz

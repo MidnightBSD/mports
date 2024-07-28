@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Identity.pm
-man/man3/Test::Identity.3.gz
+share/man/man3/Test::Identity.3.gz

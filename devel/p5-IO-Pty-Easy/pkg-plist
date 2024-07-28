@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/Pty/Easy.pm
-man/man3/IO::Pty::Easy.3.gz
+share/man/man3/IO::Pty::Easy.3.gz

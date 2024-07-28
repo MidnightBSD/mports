@@ -1,2 +1,2 @@
 %%SITE_PERL%%/IO/CaptureOutput.pm
-man/man3/IO::CaptureOutput.3.gz
+share/man/man3/IO::CaptureOutput.3.gz

@@ -2,7 +2,7 @@
 %%SITE_PERL%%/Test/XML/SAX.pm
 %%SITE_PERL%%/Test/XML/Twig.pm
 %%SITE_PERL%%/Test/XML/XPath.pm
-man/man3/Test::XML.3.gz
-man/man3/Test::XML::SAX.3.gz
-man/man3/Test::XML::Twig.3.gz
-man/man3/Test::XML::XPath.3.gz
+share/man/man3/Test::XML.3.gz
+share/man/man3/Test::XML::SAX.3.gz
+share/man/man3/Test::XML::Twig.3.gz
+share/man/man3/Test::XML::XPath.3.gz

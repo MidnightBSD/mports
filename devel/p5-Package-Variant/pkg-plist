@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Package/Variant.pm
-man/man3/Package::Variant.3.gz
+share/man/man3/Package::Variant.3.gz

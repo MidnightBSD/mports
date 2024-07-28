@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/File.pm
-man/man3/Test::File.3.gz
+share/man/man3/Test::File.3.gz

@@ -2,4 +2,4 @@
 %%SITE_ARCH%%/B/Hooks/OP/Check/Install/Files.pm
 %%SITE_ARCH%%/B/Hooks/OP/Check/Install/hook_op_check.h
 %%SITE_ARCH%%/auto/B/Hooks/OP/Check/Check.so
-man/man3/B::Hooks::OP::Check.3.gz
+share/man/man3/B::Hooks::OP::Check.3.gz

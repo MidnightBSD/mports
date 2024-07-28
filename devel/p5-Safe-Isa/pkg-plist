@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Safe/Isa.pm
-man/man3/Safe::Isa.3.gz
+share/man/man3/Safe::Isa.3.gz

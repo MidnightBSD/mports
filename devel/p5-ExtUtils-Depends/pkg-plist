@@ -1,2 +1,2 @@
 %%SITE_PERL%%/ExtUtils/Depends.pm
-man/man3/ExtUtils::Depends.3.gz
+share/man/man3/ExtUtils::Depends.3.gz

@@ -1,2 +1,2 @@
 %%SITE_ARCH%%/XSLoader.pm
-man/man3/XSLoader.3.gz
+share/man/man3/XSLoader.3.gz

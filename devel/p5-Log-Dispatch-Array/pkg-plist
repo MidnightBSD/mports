@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Log/Dispatch/Array.pm
-man/man3/Log::Dispatch::Array.3.gz
+share/man/man3/Log::Dispatch::Array.3.gz

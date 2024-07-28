@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Exception.pm
-man/man3/Test::Exception.3.gz
+share/man/man3/Test::Exception.3.gz

@@ -15,7 +15,7 @@
 @dirrmtry %%SITE_PERL%%/JSON/RPC/Legacy
 @dirrmtry %%SITE_PERL%%/JSON/RPC
 @dirrmtry %%SITE_PERL%%/JSON
-@dirrmtry %%SITE_PERL%%/man/man3
+@dirrmtry %%SITE_PERL%%/share/man/man3
 @dirrmtry %%SITE_PERL%%/man
 @dirrmtry %%SITE_ARCH%%/auto/JSON/RPC
 @dirrmtry %%SITE_ARCH%%/auto/JSON

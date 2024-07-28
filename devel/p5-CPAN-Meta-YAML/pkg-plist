@@ -1,2 +1,2 @@
 %%SITE_PERL%%/CPAN/Meta/YAML.pm
-man/man3/CPAN::Meta::YAML.3.gz
+share/man/man3/CPAN::Meta::YAML.3.gz

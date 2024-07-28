@@ -6,10 +6,10 @@ bin/tp
 %%SITE_PERL%%/IO/Pager/Unbuffered.pm
 %%SITE_PERL%%/IO/Pager/less.pm
 %%SITE_PERL%%/IO/Pager/tp
-man/man1/tp.1.gz
-man/man3/IO::Pager.3.gz
-man/man3/IO::Pager::Buffered.3.gz
-man/man3/IO::Pager::Page.3.gz
-man/man3/IO::Pager::Perl.3.gz
-man/man3/IO::Pager::Unbuffered.3.gz
-man/man3/IO::Pager::less.3.gz
+share/man/man1/tp.1.gz
+share/man/man3/IO::Pager.3.gz
+share/man/man3/IO::Pager::Buffered.3.gz
+share/man/man3/IO::Pager::Page.3.gz
+share/man/man3/IO::Pager::Perl.3.gz
+share/man/man3/IO::Pager::Unbuffered.3.gz
+share/man/man3/IO::Pager::less.3.gz

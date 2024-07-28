@@ -1,4 +1,4 @@
-man/man3/File::Type.3.gz
-man/man3/File::Type::Builder.3.gz
+share/man/man3/File::Type.3.gz
+share/man/man3/File::Type::Builder.3.gz
 %%SITE_PERL%%/File/Type.pm
 %%SITE_PERL%%/File/Type/Builder.pm

@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Test/CPAN/Meta.pm
 %%SITE_PERL%%/Test/CPAN/Meta/Version.pm
-man/man3/Test::CPAN::Meta.3.gz
-man/man3/Test::CPAN::Meta::Version.3.gz
+share/man/man3/Test::CPAN::Meta.3.gz
+share/man/man3/Test::CPAN::Meta::Version.3.gz

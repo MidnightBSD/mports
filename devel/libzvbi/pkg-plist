@@ -5,7 +5,7 @@ lib/libzvbi.so
 lib/libzvbi.so.0
 lib/libzvbi.so.0.13.2
 libdata/pkgconfig/zvbi-0.2.pc
-man/man1/zvbi-ntsc-cc.1.gz
+share/man/man1/zvbi-ntsc-cc.1.gz
 %%NLS%%share/locale/de/LC_MESSAGES/zvbi.mo
 %%NLS%%share/locale/en@boldquot/LC_MESSAGES/zvbi.mo
 %%NLS%%share/locale/en@quot/LC_MESSAGES/zvbi.mo

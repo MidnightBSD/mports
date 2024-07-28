@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Parse/CPAN/Meta.pm
-man/man3/Parse::CPAN::Meta.3.gz
+share/man/man3/Parse::CPAN::Meta.3.gz

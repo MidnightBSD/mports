@@ -1,3 +1,3 @@
 %%SITE_ARCH%%/Time/HiRes.pm
 %%SITE_ARCH%%/auto/Time/HiRes/HiRes.so
-man/man3/Time::HiRes.3.gz
+share/man/man3/Time::HiRes.3.gz

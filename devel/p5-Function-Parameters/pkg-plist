@@ -1,5 +1,5 @@
 %%SITE_ARCH%%/Function/Parameters.pm
 %%SITE_ARCH%%/Function/Parameters/Info.pm
 %%SITE_ARCH%%/auto/Function/Parameters/Parameters.so
-man/man3/Function::Parameters.3.gz
-man/man3/Function::Parameters::Info.3.gz
+share/man/man3/Function::Parameters.3.gz
+share/man/man3/Function::Parameters::Info.3.gz

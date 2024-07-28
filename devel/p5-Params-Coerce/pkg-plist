@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Params/Coerce.pm
-man/man3/Params::Coerce.3.gz
+share/man/man3/Params::Coerce.3.gz

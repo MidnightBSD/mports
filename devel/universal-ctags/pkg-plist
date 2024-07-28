@@ -1,8 +1,8 @@
 bin/uctags
 bin/ureadtags
 bin/uoptscript
-%%MANPAGES%%man/man1/uctags.1.gz
-%%MANPAGES%%man/man1/ureadtags.1.gz
+%%MANPAGES%%share/man/man1/uctags.1.gz
+%%MANPAGES%%share/man/man1/ureadtags.1.gz
 %%MANPAGES%%man/man5/utags.5.gz
 %%MANPAGES%%man/man7/uctags-client-tools.7.gz
 %%MANPAGES%%man/man7/uctags-faq.7.gz

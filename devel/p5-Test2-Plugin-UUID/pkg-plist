@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test2/Plugin/UUID.pm
-man/man3/Test2::Plugin::UUID.3.gz
+share/man/man3/Test2::Plugin::UUID.3.gz

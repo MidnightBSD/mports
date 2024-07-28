@@ -1,3 +1,3 @@
 %%SITE_PERL%%/Test/Object.pm
 %%SITE_PERL%%/Test/Object/Test.pm
-man/man3/Test::Object.3.gz
+share/man/man3/Test::Object.3.gz

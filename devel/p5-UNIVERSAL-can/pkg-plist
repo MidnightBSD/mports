@@ -1,2 +1,2 @@
-man/man3/UNIVERSAL::can.3.gz
+share/man/man3/UNIVERSAL::can.3.gz
 %%SITE_PERL%%/UNIVERSAL/can.pm

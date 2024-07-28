@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/API.pm
-man/man3/Test::API.3.gz
+share/man/man3/Test::API.3.gz

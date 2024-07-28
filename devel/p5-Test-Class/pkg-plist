@@ -1,6 +1,6 @@
 %%SITE_PERL%%/Test/Class.pm
 %%SITE_PERL%%/Test/Class/Load.pm
 %%SITE_PERL%%/Test/Class/MethodInfo.pm
-man/man3/Test::Class.3.gz
-man/man3/Test::Class::Load.3.gz
-man/man3/Test::Class::MethodInfo.3.gz
+share/man/man3/Test::Class.3.gz
+share/man/man3/Test::Class::Load.3.gz
+share/man/man3/Test::Class::MethodInfo.3.gz

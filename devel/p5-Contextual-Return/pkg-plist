@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Contextual/Return.pm
 %%SITE_PERL%%/Contextual/Return/Failure.pm
-man/man3/Contextual::Return.3.gz
-man/man3/Contextual::Return::Failure.3.gz
+share/man/man3/Contextual::Return.3.gz
+share/man/man3/Contextual::Return::Failure.3.gz

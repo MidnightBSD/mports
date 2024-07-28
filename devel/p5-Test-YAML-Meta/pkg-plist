@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/YAML/Meta.pm
-man/man3/Test::YAML::Meta.3.gz
+share/man/man3/Test::YAML::Meta.3.gz

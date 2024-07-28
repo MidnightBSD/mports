@@ -42,7 +42,7 @@ lib/libappstream.so
 lib/libappstream.so.0.16.1
 lib/libappstream.so.4
 libdata/pkgconfig/appstream.pc
-man/man1/appstreamcli.1.gz
+share/man/man1/appstreamcli.1.gz
 share/gettext/its/metainfo.its
 share/gettext/its/metainfo.loc
 share/gir-1.0/AppStream-1.0.gir

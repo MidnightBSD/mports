@@ -1,3 +1,3 @@
 %%SITE_PERL%%/Test/NoWarnings.pm
 %%SITE_PERL%%/Test/NoWarnings/Warning.pm
-man/man3/Test::NoWarnings.3.gz
+share/man/man3/Test::NoWarnings.3.gz

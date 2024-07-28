@@ -1,6 +1,6 @@
 %%SITE_PERL%%/Getopt/Long/Descriptive.pm
 %%SITE_PERL%%/Getopt/Long/Descriptive/Opts.pm
 %%SITE_PERL%%/Getopt/Long/Descriptive/Usage.pm
-man/man3/Getopt::Long::Descriptive.3.gz
-man/man3/Getopt::Long::Descriptive::Opts.3.gz
-man/man3/Getopt::Long::Descriptive::Usage.3.gz
+share/man/man3/Getopt::Long::Descriptive.3.gz
+share/man/man3/Getopt::Long::Descriptive::Opts.3.gz
+share/man/man3/Getopt::Long::Descriptive::Usage.3.gz

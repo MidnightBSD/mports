@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Devel/CheckBin.pm
-man/man3/Devel::CheckBin.3.gz
+share/man/man3/Devel::CheckBin.3.gz

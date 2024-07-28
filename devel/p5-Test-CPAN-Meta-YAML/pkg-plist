@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Test/CPAN/Meta/YAML.pm
 %%SITE_PERL%%/Test/CPAN/Meta/YAML/Version.pm
-man/man3/Test::CPAN::Meta::YAML.3.gz
-man/man3/Test::CPAN::Meta::YAML::Version.3.gz
+share/man/man3/Test::CPAN::Meta::YAML.3.gz
+share/man/man3/Test::CPAN::Meta::YAML::Version.3.gz

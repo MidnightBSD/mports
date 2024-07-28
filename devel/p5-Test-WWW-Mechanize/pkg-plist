@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/WWW/Mechanize.pm
-man/man3/Test::WWW::Mechanize.3.gz
+share/man/man3/Test::WWW::Mechanize.3.gz

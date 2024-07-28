@@ -1,2 +1,2 @@
-man/man3/IPC::System::Simple.3.gz
+share/man/man3/IPC::System::Simple.3.gz
 %%SITE_PERL%%/IPC/System/Simple.pm

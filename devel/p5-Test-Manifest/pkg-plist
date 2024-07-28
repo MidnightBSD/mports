@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Manifest.pm
-man/man3/Test::Manifest.3.gz
+share/man/man3/Test::Manifest.3.gz

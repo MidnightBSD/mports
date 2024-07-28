@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Proc/Queue.pm
-man/man3/Proc::Queue.3.gz
+share/man/man3/Proc::Queue.3.gz

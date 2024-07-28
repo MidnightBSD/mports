@@ -1,2 +1,2 @@
 %%SITE_PERL%%/CPAN/Meta/Requirements.pm
-man/man3/CPAN::Meta::Requirements.3.gz
+share/man/man3/CPAN::Meta::Requirements.3.gz

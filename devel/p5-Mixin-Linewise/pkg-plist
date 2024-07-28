@@ -1,6 +1,6 @@
 %%SITE_PERL%%/Mixin/Linewise.pm
 %%SITE_PERL%%/Mixin/Linewise/Readers.pm
 %%SITE_PERL%%/Mixin/Linewise/Writers.pm
-man/man3/Mixin::Linewise.3.gz
-man/man3/Mixin::Linewise::Readers.3.gz
-man/man3/Mixin::Linewise::Writers.3.gz
+share/man/man3/Mixin::Linewise.3.gz
+share/man/man3/Mixin::Linewise::Readers.3.gz
+share/man/man3/Mixin::Linewise::Writers.3.gz

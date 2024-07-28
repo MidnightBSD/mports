@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Refcount.pm
-man/man3/Test::Refcount.3.gz
+share/man/man3/Test::Refcount.3.gz

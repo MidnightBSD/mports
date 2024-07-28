@@ -11,6 +11,6 @@
 %%SITE_PERL%%/Moo/_Utils.pm
 %%SITE_PERL%%/Moo/sification.pm
 %%SITE_PERL%%/oo.pm
-man/man3/Moo.3.gz
-man/man3/Moo::Role.3.gz
-man/man3/oo.3.gz
+share/man/man3/Moo.3.gz
+share/man/man3/Moo::Role.3.gz
+share/man/man3/oo.3.gz

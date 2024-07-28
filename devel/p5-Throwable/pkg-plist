@@ -1,6 +1,6 @@
 %%SITE_PERL%%/StackTrace/Auto.pm
 %%SITE_PERL%%/Throwable.pm
 %%SITE_PERL%%/Throwable/Error.pm
-man/man3/StackTrace::Auto.3.gz
-man/man3/Throwable.3.gz
-man/man3/Throwable::Error.3.gz
+share/man/man3/StackTrace::Auto.3.gz
+share/man/man3/Throwable.3.gz
+share/man/man3/Throwable::Error.3.gz

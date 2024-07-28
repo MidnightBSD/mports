@@ -4,6 +4,6 @@
 %%SITE_ARCH%%/EV/ev.h
 %%SITE_ARCH%%/EV/libev.pod
 %%SITE_ARCH%%/auto/EV/EV.so
-man/man3/EV.3.gz
-man/man3/EV::MakeMaker.3.gz
-man/man3/EV::libev.3.gz
+share/man/man3/EV.3.gz
+share/man/man3/EV::MakeMaker.3.gz
+share/man/man3/EV::libev.3.gz

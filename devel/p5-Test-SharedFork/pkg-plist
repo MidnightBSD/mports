@@ -2,4 +2,4 @@
 %%SITE_PERL%%/Test/SharedFork/Array.pm
 %%SITE_PERL%%/Test/SharedFork/Scalar.pm
 %%SITE_PERL%%/Test/SharedFork/Store.pm
-man/man3/Test::SharedFork.3.gz
+share/man/man3/Test::SharedFork.3.gz

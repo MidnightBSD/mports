@@ -1,2 +1,2 @@
 %%SITE_PERL%%/File/Find/Rule/Perl.pm
-man/man3/File::Find::Rule::Perl.3.gz
+share/man/man3/File::Find::Rule::Perl.3.gz

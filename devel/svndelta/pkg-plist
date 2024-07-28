@@ -1,5 +1,5 @@
 bin/svndelta
-man/man1/svndelta.1.gz
+share/man/man1/svndelta.1.gz
 %%DATADIR%%/svndelta.rb
 %%DATADIR%%/diff/lcs.rb
 %%DATADIR%%/diff/lcs/array.rb

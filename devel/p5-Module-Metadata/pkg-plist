@@ -1,2 +1,2 @@
-man/man3/Module::Metadata.3.gz
+share/man/man3/Module::Metadata.3.gz
 %%SITE_PERL%%/Module/Metadata.pm

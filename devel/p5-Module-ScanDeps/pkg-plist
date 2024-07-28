@@ -1,5 +1,5 @@
 bin/scandeps.pl
 %%SITE_PERL%%/Module/ScanDeps.pm
 %%SITE_PERL%%/Module/ScanDeps/Cache.pm
-man/man1/scandeps.pl.1.gz
-man/man3/Module::ScanDeps.3.gz
+share/man/man1/scandeps.pl.1.gz
+share/man/man3/Module::ScanDeps.3.gz

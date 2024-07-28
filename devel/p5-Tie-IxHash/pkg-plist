@@ -1,2 +1,2 @@
-man/man3/Tie::IxHash.3.gz
+share/man/man3/Tie::IxHash.3.gz
 %%SITE_PERL%%/Tie/IxHash.pm

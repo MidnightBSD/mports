@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/CheckDeps.pm
-man/man3/Test::CheckDeps.3.gz
+share/man/man3/Test::CheckDeps.3.gz

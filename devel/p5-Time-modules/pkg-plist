@@ -1,8 +1,8 @@
-man/man3/Time::CTime.3.gz
-man/man3/Time::DaysInMonth.3.gz
-man/man3/Time::JulianDay.3.gz
-man/man3/Time::ParseDate.3.gz
-man/man3/Time::Timezone.3.gz
+share/man/man3/Time::CTime.3.gz
+share/man/man3/Time::DaysInMonth.3.gz
+share/man/man3/Time::JulianDay.3.gz
+share/man/man3/Time::ParseDate.3.gz
+share/man/man3/Time::Timezone.3.gz
 %%SITE_PERL%%/Time/CTime.pm
 %%SITE_PERL%%/Time/DaysInMonth.pm
 %%SITE_PERL%%/Time/JulianDay.pm

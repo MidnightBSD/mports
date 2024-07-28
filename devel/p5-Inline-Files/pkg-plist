@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Inline/Files.pm
 %%SITE_PERL%%/Inline/Files/Virtual.pm
-man/man3/Inline::Files.3.gz
-man/man3/Inline::Files::Virtual.3.gz
+share/man/man3/Inline::Files.3.gz
+share/man/man3/Inline::Files::Virtual.3.gz

@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Time/Duration.pm
-man/man3/Time::Duration.3.gz
+share/man/man3/Time::Duration.3.gz

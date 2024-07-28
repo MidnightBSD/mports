@@ -1,2 +1,2 @@
 %%SITE_PERL%%/namespace/autoclean.pm
-man/man3/namespace::autoclean.3.gz
+share/man/man3/namespace::autoclean.3.gz

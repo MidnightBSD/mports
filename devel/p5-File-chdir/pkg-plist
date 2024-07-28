@@ -1,2 +1,2 @@
-man/man3/File::chdir.3.gz
+share/man/man3/File::chdir.3.gz
 %%SITE_PERL%%/File/chdir.pm

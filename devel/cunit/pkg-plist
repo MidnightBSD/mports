@@ -14,7 +14,7 @@ lib/libcunit.so
 lib/libcunit.so.1
 lib/libcunit.so.1.0.1
 libdata/pkgconfig/cunit.pc
-man/man3/CUnit.3.gz
+share/man/man3/CUnit.3.gz
 %%DATADIR%%/CUnit-List.dtd
 %%DATADIR%%/CUnit-List.xsl
 %%DATADIR%%/CUnit-Run.dtd

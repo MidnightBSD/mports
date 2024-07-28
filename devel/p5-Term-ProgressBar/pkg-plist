@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Term/ProgressBar.pm
 %%SITE_PERL%%/Term/ProgressBar/IO.pm
-man/man3/Term::ProgressBar.3.gz
-man/man3/Term::ProgressBar::IO.3.gz
+share/man/man3/Term::ProgressBar.3.gz
+share/man/man3/Term::ProgressBar::IO.3.gz

@@ -4,9 +4,9 @@
 %%SITE_PERL%%/Data/Printer/Filter/DB.pm
 %%SITE_PERL%%/Data/Printer/Filter/DateTime.pm
 %%SITE_PERL%%/Data/Printer/Filter/Digest.pm
-man/man3/DDP.3.gz
-man/man3/Data::Printer.3.gz
-man/man3/Data::Printer::Filter.3.gz
-man/man3/Data::Printer::Filter::DB.3.gz
-man/man3/Data::Printer::Filter::DateTime.3.gz
-man/man3/Data::Printer::Filter::Digest.3.gz
+share/man/man3/DDP.3.gz
+share/man/man3/Data::Printer.3.gz
+share/man/man3/Data::Printer::Filter.3.gz
+share/man/man3/Data::Printer::Filter::DB.3.gz
+share/man/man3/Data::Printer::Filter::DateTime.3.gz
+share/man/man3/Data::Printer::Filter::Digest.3.gz
