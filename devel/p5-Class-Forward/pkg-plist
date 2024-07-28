@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Class/Forward.pm
-share/man/man3/Class::Forward.3.gz
+%%PERL5_MAN3%%/Class::Forward.3.gz

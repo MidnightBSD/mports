@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Class and object builder
+WWW=		https://metacpan.org/release/Class-Gomor
 
 LICENSE=	artistic
 LICENSE_FILE=	${WRKSRC}/LICENSE.Artistic
