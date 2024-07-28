@@ -1,5 +1,3 @@
-
-
 PORTNAME=	tmake
 PORTVERSION=	2.12
 CATEGORIES=	devel perl5
