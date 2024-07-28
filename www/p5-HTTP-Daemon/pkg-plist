@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTTP/Daemon.pm
-man/man3/HTTP::Daemon.3.gz
+%%PERL5_MAN3%%/HTTP::Daemon.3.gz
