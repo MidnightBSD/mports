@@ -37,7 +37,7 @@ GROUPS=		distcc
 PLIST_FILES=	${_BIN_FILES:S|^|bin/|} \
 		${_CONFIG_FILES:S|^|${ETCDIR}/${PORTNAME}/|} \
 		${_DISTCC_COMPILERS:S|^|${CCLINKDIR}/|} \
-		${_MAN_FILES:S|^|man/man1/|:S|$|.gz|} \
+		${_MAN_FILES:S|^|share/man/man1/|:S|$|.gz|} \
 		${_SBIN_FILES:S|^|sbin/|} \
 		etc/default/distcc
 
