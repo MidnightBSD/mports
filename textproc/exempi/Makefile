@@ -1,19 +1,20 @@
 PORTNAME=	exempi
-DISTVERSION=	2.5.2
+DISTVERSION=	2.6.3
 PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	https://libopenraw.freedesktop.org/download/
+MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of Adobe XMP SDK to work on UNIX
-WWW=		https://libopenraw.freedesktop.org/wiki/Exempi
+WWW=		http://libopenraw.freedesktop.org/wiki/Exempi
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	boost-libs>=0:devel/boost-libs
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
-USES=		cpe gmake iconv libtool localbase pathfix tar:bzip2
+USES=		cpe compiler:c++11-lang gmake iconv libtool localbase pathfix tar:xz
 CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
