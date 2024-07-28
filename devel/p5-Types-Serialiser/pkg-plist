@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Types/Serialiser.pm
 %%SITE_PERL%%/Types/Serialiser/Error.pm
-share/man/man3/Types::Serialiser.3.gz
-share/man/man3/Types::Serialiser::Error.3.gz
+%%PERL5_MAN3%%/Types::Serialiser.3.gz
+%%PERL5_MAN3%%/Types::Serialiser::Error.3.gz
