@@ -80,7 +80,7 @@ GSSAPI_MIT_CONFIGURE_ON=\
 GSSAPI_MIT_USES=	gssapi:mit
 
 PLIST_FILES=		bin/${PKGBASE} \
-			man/man1/${PKGBASE}.1.gz
+			share/man/man1/${PKGBASE}.1.gz
 
 .include <bsd.port.pre.mk>
 
@@ -90,7 +90,7 @@ post-patch:
 		${PATCH_WRKSRC}/doc/man/${PORTNAME}.1in
 
 do-install:
-		${INSTALL_MAN} ${INSTALL_WRKSRC}/doc/man/${PORTNAME}.1in ${STAGEDIR}${MANPREFIX}/man/man1/${PKGBASE}.1
+		${INSTALL_MAN} ${INSTALL_WRKSRC}/doc/man/${PORTNAME}.1in ${STAGEDIR}${PREFIX}/share/man/man1/${PKGBASE}.1
 		${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/bin/nsupdate/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PKGBASE}
 
 .include <bsd.port.post.mk>
