@@ -1,5 +1,5 @@
 PORTNAME=	MIME-Tools
-PORTVERSION=	5.509
+PORTVERSION=	5.515
 PORTEPOCH=	2
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
@@ -9,8 +9,9 @@ DISTNAME=	MIME-tools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of perl5 modules for MIME
+WWW=		https://metacpan.org/release/MIME-tools
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

@@ -12,6 +12,7 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
