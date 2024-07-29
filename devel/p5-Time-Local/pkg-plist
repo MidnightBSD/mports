@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Time/Local.pm
-share/man/man3/Time::Local.3.gz
+%%PERL5_MAN3%%/Time::Local.3.gz
