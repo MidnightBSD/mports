@@ -874,6 +874,6 @@ share/man/man1/dovecot-lda.1.gz
 share/man/man1/dovecot-sysreport.1.gz
 share/man/man1/dovecot.1.gz
 share/man/man1/dsync.1.gz
-man/man7/doveadm-search-query.7.gz
+share/man/man7/doveadm-search-query.7.gz
 sbin/dovecot
 share/aclocal/dovecot.m4

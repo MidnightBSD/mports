@@ -89,7 +89,7 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/fetchmailrc.sample \
 		${STAGEDIR}${PREFIX}/etc/fetchmailrc.sample
 	${RM} ${STAGEDIR}${PREFIX}/bin/fetchmailconf
-	${RM} ${STAGEDIR}${PREFIX}/man/man1/fetchmailconf.1*
+	${RM} ${STAGEDIR}${PREFIX}/share/man/man1/fetchmailconf.1*
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
