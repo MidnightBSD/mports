@@ -30,8 +30,8 @@ pre-build:
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
-	${RLN} ${STAGEDIR}${PREFIX}/man/man1/espeak-ng.1 \
-			${STAGEDIR}${PREFIX}/man/man1/espeak.1
+	${RLN} ${STAGEDIR}${PREFIX}/share/man/man1/espeak-ng.1 \
+			${STAGEDIR}${PREFIX}/share/man/man1/espeak.1
 	${LN} -sf libespeak-ng.so ${STAGEDIR}${PREFIX}/lib/libespeak.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libespeak-ng.so*
