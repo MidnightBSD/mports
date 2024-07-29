@@ -14,12 +14,8 @@ IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with 
 
 CONFLICTS_INSTALL=	tdb1-*
 
-#FLAVORS=		default nopython debug
-#nopython_PKGNAMESUFFIX=	-nopython
-#debug_PKGNAMESUFFIX=	-debug
-#nopython_CONFLICTS=	tdb tdb-debug
-#debug_CONFLICTS=	tdb tdb-nopython
-#default_CONFLICTS=	tdb-nopython tdb-debug
+CONFIGURE_ENV=			PYTHONHASHSEED=1
+MAKE_ENV=			PYTHONHASHSEED=1
 
 USES=			compiler gettext-runtime pkgconfig waf 
 USE_LDCONFIG=		yes
@@ -32,6 +28,9 @@ PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
 CONFIGURE_ARGS+=	--disable-rpath \
+			--disable-rpath-install \
+			--bundled-libraries=NONE \
+			--builtin-libraries=replace \
 			--without-gettext
 
 OPTIONS_DEFINE=		MANPAGES DEBUG
