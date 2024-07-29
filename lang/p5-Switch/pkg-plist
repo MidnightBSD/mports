@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Switch.pm
-man/man3/Switch.3.gz
+%%PERL5_MAN3%%/Switch.3.gz

@@ -53,6 +53,11 @@ INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 # make -C /usr/mports/category/port/.
 .CURDIR:=		${.CURDIR:tA}
 
+# Ensure .CURDIR doesn't contain a colon, which breaks makefile targets
+.if ${.CURDIR:S/:/\:/g} != ${.CURDIR}
+.error The current directory path contains ':', this is not supported
+.endif
+
 .include "${PORTSDIR}/Mk/components/commands.mk"
 
 .MAIN: all
