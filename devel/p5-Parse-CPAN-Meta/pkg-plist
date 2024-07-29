@@ -1,2 +1,12 @@
 %%SITE_PERL%%/Parse/CPAN/Meta.pm
-share/man/man3/Parse::CPAN::Meta.3.gz
+%%PERL5_MAN3%%/Parse::CPAN::Meta.3.gz
+@dir %%SITE_PERL%%/Parse/CPAN
+@dir %%SITE_PERL%%/Parse
+@dir %%SITE_ARCH%%/auto/Parse/CPAN/Meta
+@dir %%SITE_ARCH%%/auto/Parse/CPAN
+@dir %%SITE_ARCH%%/auto/Parse
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
