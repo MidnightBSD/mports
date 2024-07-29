@@ -1,5 +1,17 @@
-%%SITE_ARCH%%/Devel/MAT/Dumper.pm
-%%SITE_ARCH%%/Devel/MAT/Dumper/Helper.pm
-%%SITE_ARCH%%/auto/Devel/MAT/Dumper/Dumper.so
-%%PERL5_MAN3%%/Devel::MAT::Dumper.3.gz
-%%PERL5_MAN3%%/Devel::MAT::Dumper::Helper.3.gz
+%%SITE_PERL%%/man/man3/Devel::MAT::Dumper::Helper.3.gz
+%%SITE_PERL%%/man/man3/Devel::MAT::Dumper.3.gz
+%%SITE_PERL%%/auto/Devel/MAT/Dumper/Dumper.so
+%%SITE_PERL%%/Devel/MAT/Dumper/Helper.pm
+%%SITE_PERL%%/Devel/MAT/Dumper.pm
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/auto/Devel/MAT/Dumper
+@dir %%SITE_PERL%%/auto/Devel/MAT
+@dir %%SITE_PERL%%/auto/Devel
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/Devel/MAT/Dumper
+@dir %%SITE_PERL%%/Devel/MAT
+@dir %%SITE_PERL%%/Devel
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
