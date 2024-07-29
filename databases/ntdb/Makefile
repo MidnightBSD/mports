@@ -20,8 +20,7 @@ CONFIGURE_LOG=		bin/config.log
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
-			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
+CONFIGURE_ARGS+=	--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
 			--disable-rpath \
 			--without-gettext
 
@@ -64,12 +63,12 @@ CFLAGS+=		-fno-color-diagnostics
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
-TDB_MAN3=		man/man3/ntdb.3.gz
+TDB_MAN3=		share/man/man3/ntdb.3.gz
 
-TDB_MAN8=		man/man8/ntdbbackup.8.gz \
-			man/man8/ntdbdump.8.gz \
-			man/man8/ntdbrestore.8.gz \
-			man/man8/ntdbtool.8.gz
+TDB_MAN8=		share/man/man8/ntdbbackup.8.gz \
+			share/man/man8/ntdbdump.8.gz \
+			share/man/man8/ntdbrestore.8.gz \
+			share/man/man8/ntdbtool.8.gz
 
 PLIST_FILES+=		${TDB_MAN3} ${TDB_MAN8}
 
