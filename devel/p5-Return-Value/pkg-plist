@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Return/Value.pm
-share/man/man3/Return::Value.3.gz
+%%PERL5_MAN3%%/Return::Value.3.gz
