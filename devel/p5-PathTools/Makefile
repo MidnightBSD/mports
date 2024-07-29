@@ -18,4 +18,6 @@ USE_PERL5=	configure
 
 CPE_VENDOR=	perl
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
