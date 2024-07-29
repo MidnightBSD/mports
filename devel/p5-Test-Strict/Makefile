@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 TEST_DEPENDS=	p5-IO-Stringy>=0:devel/p5-IO-Stringy
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
