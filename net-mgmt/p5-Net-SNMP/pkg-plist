@@ -14,5 +14,5 @@ bin/snmpkey
 %%SITE_PERL%%/Net/SNMP/Transport/IPv6.pm
 %%SITE_PERL%%/Net/SNMP/Transport/IPv6/TCP.pm
 %%SITE_PERL%%/Net/SNMP/Transport/IPv6/UDP.pm
-share/man/man3/Net::SNMP.3.gz
+%%PERL5_MAN3%%/Net::SNMP.3.gz
 share/man/man1/snmpkey.1.gz
