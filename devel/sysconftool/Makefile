@@ -1,10 +1,11 @@
 PORTNAME=	sysconftool
-PORTVERSION=	0.19
+PORTVERSION=	0.21
 CATEGORIES=	devel
 MASTER_SITES=	SF/courier/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Helps to install application configuration files
+WWW=		https://www.Courier-MTA.org/sysconftool
 
 LICENSE=	gpl3
 
