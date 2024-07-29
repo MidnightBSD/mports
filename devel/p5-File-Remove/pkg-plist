@@ -1,2 +1,2 @@
-share/man/man3/File::Remove.3.gz
+%%PERL5_MAN3%%/File::Remove.3.gz
 %%SITE_PERL%%/File/Remove.pm

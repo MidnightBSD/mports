@@ -1,2 +1,2 @@
 %%SITE_PERL%%/MooseX/Types/JSON.pm
-share/man/man3/MooseX::Types::JSON.3.gz
+%%PERL5_MAN3%%/MooseX::Types::JSON.3.gz

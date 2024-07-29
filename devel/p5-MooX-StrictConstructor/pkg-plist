@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Method/Generate/Constructor/Role/StrictConstructor.pm
 %%SITE_PERL%%/MooX/StrictConstructor.pm
-share/man/man3/Method::Generate::Constructor::Role::StrictConstructor.3.gz
-share/man/man3/MooX::StrictConstructor.3.gz
+%%PERL5_MAN3%%/Method::Generate::Constructor::Role::StrictConstructor.3.gz
+%%PERL5_MAN3%%/MooX::StrictConstructor.3.gz

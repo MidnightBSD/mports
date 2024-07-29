@@ -9,6 +9,6 @@ bin/mymeta-cpanfile
 %%SITE_PERL%%/cpanfile.pod
 share/man/man1/cpanfile-dump.1.gz
 share/man/man1/mymeta-cpanfile.1.gz
-share/man/man3/Module::CPANfile.3.gz
-share/man/man3/cpanfile-faq.3.gz
-share/man/man3/cpanfile.3.gz
+%%PERL5_MAN3%%/Module::CPANfile.3.gz
+%%PERL5_MAN3%%/cpanfile-faq.3.gz
+%%PERL5_MAN3%%/cpanfile.3.gz

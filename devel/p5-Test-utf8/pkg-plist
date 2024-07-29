@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/utf8.pm
-share/man/man3/Test::utf8.3.gz
+%%PERL5_MAN3%%/Test::utf8.3.gz

@@ -1,2 +1,2 @@
-share/man/man3/Carp::Assert.3.gz
+%%PERL5_MAN3%%/Carp::Assert.3.gz
 %%SITE_PERL%%/Carp/Assert.pm

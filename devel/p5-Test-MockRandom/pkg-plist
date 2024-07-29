@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/MockRandom.pm
-share/man/man3/Test::MockRandom.3.gz
+%%PERL5_MAN3%%/Test::MockRandom.3.gz

@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Pod/Coverage.pm
-share/man/man3/Test::Pod::Coverage.3.gz
+%%PERL5_MAN3%%/Test::Pod::Coverage.3.gz

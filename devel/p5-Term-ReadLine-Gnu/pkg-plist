@@ -41,4 +41,4 @@ bin/perlsh
 %%SITE_ARCH%%/auto/Term/ReadLine/Gnu/XS/unbind_function.al
 %%SITE_ARCH%%/auto/Term/ReadLine/Gnu/XS/unbind_key.al
 share/man/man1/perlsh.1.gz
-share/man/man3/Term::ReadLine::Gnu.3.gz
+%%PERL5_MAN3%%/Term::ReadLine::Gnu.3.gz

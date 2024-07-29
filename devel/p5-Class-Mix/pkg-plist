@@ -1,6 +1,6 @@
 %%PERL5_MAN3%%/Class::Mix.3.gz
 %%SITE_PERL%%/Class/Mix.pm
-@dir %%SITE_PERL%%/share/man/man3
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
 @dir %%SITE_PERL%%/man
 @dir %%SITE_PERL%%/Class
 @dir %%SITE_ARCH%%/auto/Class/Mix

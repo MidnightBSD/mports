@@ -2,6 +2,6 @@
 %%SITE_ARCH%%/Set/Object/Weak.pm
 %%SITE_ARCH%%/auto/Set/Object/Object.so
 %%SITE_ARCH%%/auto/Set/Object/autosplit.ix
-share/man/man3/Set::Changes.3.gz
-share/man/man3/Set::Object.3.gz
-share/man/man3/Set::Object::Weak.3.gz
+%%PERL5_MAN3%%/Set::Changes.3.gz
+%%PERL5_MAN3%%/Set::Object.3.gz
+%%PERL5_MAN3%%/Set::Object::Weak.3.gz

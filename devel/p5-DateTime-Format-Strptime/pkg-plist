@@ -1,4 +1,4 @@
 %%SITE_PERL%%/DateTime/Format/Strptime.pm
 %%SITE_PERL%%/DateTime/Format/Strptime/Types.pm
-share/man/man3/DateTime::Format::Strptime.3.gz
-share/man/man3/DateTime::Format::Strptime::Types.3.gz
+%%PERL5_MAN3%%/DateTime::Format::Strptime.3.gz
+%%PERL5_MAN3%%/DateTime::Format::Strptime::Types.3.gz

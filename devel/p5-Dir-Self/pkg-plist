@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Dir/Self.pm
-share/man/man3/Dir::Self.3.gz
+%%PERL5_MAN3%%/Dir::Self.3.gz

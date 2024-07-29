@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/SubCalls.pm
-share/man/man3/Test::SubCalls.3.gz
+%%PERL5_MAN3%%/Test::SubCalls.3.gz

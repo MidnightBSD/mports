@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Import/Into.pm
-share/man/man3/Import::Into.3.gz
+%%PERL5_MAN3%%/Import::Into.3.gz

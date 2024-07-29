@@ -4,9 +4,9 @@
 %%SITE_PERL%%/Tie/Simple/Hash.pm
 %%SITE_PERL%%/Tie/Simple/Scalar.pm
 %%SITE_PERL%%/Tie/Simple/Util.pm
-share/man/man3/Tie::Simple.3.gz
-share/man/man3/Tie::Simple::Array.3.gz
-share/man/man3/Tie::Simple::Handle.3.gz
-share/man/man3/Tie::Simple::Hash.3.gz
-share/man/man3/Tie::Simple::Scalar.3.gz
-share/man/man3/Tie::Simple::Util.3.gz
+%%PERL5_MAN3%%/Tie::Simple.3.gz
+%%PERL5_MAN3%%/Tie::Simple::Array.3.gz
+%%PERL5_MAN3%%/Tie::Simple::Handle.3.gz
+%%PERL5_MAN3%%/Tie::Simple::Hash.3.gz
+%%PERL5_MAN3%%/Tie::Simple::Scalar.3.gz
+%%PERL5_MAN3%%/Tie::Simple::Util.3.gz

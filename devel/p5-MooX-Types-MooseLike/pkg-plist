@@ -1,4 +1,4 @@
 %%SITE_PERL%%/MooX/Types/MooseLike.pm
 %%SITE_PERL%%/MooX/Types/MooseLike/Base.pm
-share/man/man3/MooX::Types::MooseLike.3.gz
-share/man/man3/MooX::Types::MooseLike::Base.3.gz
+%%PERL5_MAN3%%/MooX::Types::MooseLike.3.gz
+%%PERL5_MAN3%%/MooX::Types::MooseLike::Base.3.gz

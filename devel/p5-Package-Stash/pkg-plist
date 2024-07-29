@@ -2,5 +2,5 @@ bin/package-stash-conflicts
 %%SITE_PERL%%/Package/Stash.pm
 %%SITE_PERL%%/Package/Stash/Conflicts.pm
 %%SITE_PERL%%/Package/Stash/PP.pm
-share/man/man3/Package::Stash.3.gz
-share/man/man3/Package::Stash::PP.3.gz
+%%PERL5_MAN3%%/Package::Stash.3.gz
+%%PERL5_MAN3%%/Package::Stash::PP.3.gz

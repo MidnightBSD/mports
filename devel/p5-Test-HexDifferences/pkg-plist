@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Test/HexDifferences.pm
 %%SITE_PERL%%/Test/HexDifferences/HexDump.pm
-share/man/man3/Test::HexDifferences.3.gz
-share/man/man3/Test::HexDifferences::HexDump.3.gz
+%%PERL5_MAN3%%/Test::HexDifferences.3.gz
+%%PERL5_MAN3%%/Test::HexDifferences::HexDump.3.gz

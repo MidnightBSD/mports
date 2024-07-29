@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/FailWarnings.pm
-share/man/man3/Test::FailWarnings.3.gz
+%%PERL5_MAN3%%/Test::FailWarnings.3.gz

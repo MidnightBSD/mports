@@ -1,2 +1,2 @@
 %%SITE_PERL%%/File/Slurp.pm
-share/man/man3/File::Slurp.3.gz
+%%PERL5_MAN3%%/File::Slurp.3.gz

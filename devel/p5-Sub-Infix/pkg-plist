@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Sub/Infix.pm
-share/man/man3/Sub::Infix.3.gz
+%%PERL5_MAN3%%/Sub::Infix.3.gz

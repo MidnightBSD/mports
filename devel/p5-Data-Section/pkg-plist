@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Data/Section.pm
-share/man/man3/Data::Section.3.gz
+%%PERL5_MAN3%%/Data::Section.3.gz

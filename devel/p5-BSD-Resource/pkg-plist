@@ -30,4 +30,4 @@
 %%SITE_ARCH%%/auto/BSD/Resource/stime.al
 %%SITE_ARCH%%/auto/BSD/Resource/times.al
 %%SITE_ARCH%%/auto/BSD/Resource/utime.al
-share/man/man3/BSD::Resource.3.gz
+%%PERL5_MAN3%%/BSD::Resource.3.gz

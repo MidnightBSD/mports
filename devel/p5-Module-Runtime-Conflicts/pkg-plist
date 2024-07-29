@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Module/Runtime/Conflicts.pm
-share/man/man3/Module::Runtime::Conflicts.3.gz
+%%PERL5_MAN3%%/Module::Runtime::Conflicts.3.gz

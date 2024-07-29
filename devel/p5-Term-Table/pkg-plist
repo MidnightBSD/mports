@@ -5,9 +5,9 @@
 %%SITE_PERL%%/Term/Table/LineBreak.pm
 %%SITE_PERL%%/Term/Table/Spacer.pm
 %%SITE_PERL%%/Term/Table/Util.pm
-share/man/man3/Term::Table.3.gz
-share/man/man3/Term::Table::Cell.3.gz
-share/man/man3/Term::Table::CellStack.3.gz
-share/man/man3/Term::Table::HashBase.3.gz
-share/man/man3/Term::Table::LineBreak.3.gz
-share/man/man3/Term::Table::Util.3.gz
+%%PERL5_MAN3%%/Term::Table.3.gz
+%%PERL5_MAN3%%/Term::Table::Cell.3.gz
+%%PERL5_MAN3%%/Term::Table::CellStack.3.gz
+%%PERL5_MAN3%%/Term::Table::HashBase.3.gz
+%%PERL5_MAN3%%/Term::Table::LineBreak.3.gz
+%%PERL5_MAN3%%/Term::Table::Util.3.gz

@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Sub/Defer.pm
 %%SITE_PERL%%/Sub/Quote.pm
-share/man/man3/Sub::Defer.3.gz
-share/man/man3/Sub::Quote.3.gz
+%%PERL5_MAN3%%/Sub::Defer.3.gz
+%%PERL5_MAN3%%/Sub::Quote.3.gz

@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/EOL.pm
-share/man/man3/Test::EOL.3.gz
+%%PERL5_MAN3%%/Test::EOL.3.gz

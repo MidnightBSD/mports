@@ -1,2 +1,2 @@
 %%SITE_PERL%%/DateTime/Format/W3CDTF.pm
-share/man/man3/DateTime::Format::W3CDTF.3.gz
+%%PERL5_MAN3%%/DateTime::Format::W3CDTF.3.gz

@@ -3,8 +3,8 @@
 %%SITE_PERL%%/Test/Trap/Builder/PerlIO.pm
 %%SITE_PERL%%/Test/Trap/Builder/SystemSafe.pm
 %%SITE_PERL%%/Test/Trap/Builder/TempFile.pm
-share/man/man3/Test::Trap.3.gz
-share/man/man3/Test::Trap::Builder.3.gz
-share/man/man3/Test::Trap::Builder::PerlIO.3.gz
-share/man/man3/Test::Trap::Builder::SystemSafe.3.gz
-share/man/man3/Test::Trap::Builder::TempFile.3.gz
+%%PERL5_MAN3%%/Test::Trap.3.gz
+%%PERL5_MAN3%%/Test::Trap::Builder.3.gz
+%%PERL5_MAN3%%/Test::Trap::Builder::PerlIO.3.gz
+%%PERL5_MAN3%%/Test::Trap::Builder::SystemSafe.3.gz
+%%PERL5_MAN3%%/Test::Trap::Builder::TempFile.3.gz

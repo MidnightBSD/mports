@@ -1,4 +1,4 @@
 bin/kwalitee-metrics
 %%SITE_PERL%%/Test/Kwalitee.pm
 share/man/man1/kwalitee-metrics.1.gz
-share/man/man3/Test::Kwalitee.3.gz
+%%PERL5_MAN3%%/Test::Kwalitee.3.gz

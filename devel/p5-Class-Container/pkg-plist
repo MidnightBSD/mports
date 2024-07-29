@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Class/Container.pm
-share/man/man3/Class::Container.3.gz
+%%PERL5_MAN3%%/Class::Container.3.gz

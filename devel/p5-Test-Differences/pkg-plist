@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Differences.pm
-share/man/man3/Test::Differences.3.gz
+%%PERL5_MAN3%%/Test::Differences.3.gz

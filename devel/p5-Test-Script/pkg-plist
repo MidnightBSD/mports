@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/Script.pm
-share/man/man3/Test::Script.3.gz
+%%PERL5_MAN3%%/Test::Script.3.gz

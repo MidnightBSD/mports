@@ -1,4 +1,4 @@
 bin/pod2test
-share/man/man3/Pod::Tests.3.gz
+%%PERL5_MAN3%%/Pod::Tests.3.gz
 %%SITE_PERL%%/Pod/Tests.pm
 share/man/man1/pod2test.1.gz

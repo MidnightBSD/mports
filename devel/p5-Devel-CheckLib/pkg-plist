@@ -1,4 +1,4 @@
 bin/use-devel-checklib
 %%SITE_PERL%%/Devel/CheckLib.pm
 share/man/man1/use-devel-checklib.1.gz
-share/man/man3/Devel::CheckLib.3.gz
+%%PERL5_MAN3%%/Devel::CheckLib.3.gz

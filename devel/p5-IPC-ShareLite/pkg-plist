@@ -1,4 +1,4 @@
-share/man/man3/IPC::ShareLite.3.gz
+%%PERL5_MAN3%%/IPC::ShareLite.3.gz
 %%SITE_ARCH%%/IPC/ShareLite.pm
 %%SITE_ARCH%%/auto/IPC/ShareLite/ShareLite.so
 %%SITE_ARCH%%/auto/IPC/ShareLite/autosplit.ix

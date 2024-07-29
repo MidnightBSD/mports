@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Data/IEEE754.pm
-share/man/man3/Data::IEEE754.3.gz
+%%PERL5_MAN3%%/Data::IEEE754.3.gz

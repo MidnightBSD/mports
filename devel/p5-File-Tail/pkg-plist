@@ -1,2 +1,2 @@
 %%SITE_PERL%%/File/Tail.pm
-share/man/man3/File::Tail.3.gz
+%%PERL5_MAN3%%/File::Tail.3.gz

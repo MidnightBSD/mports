@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Dist/CheckConflicts.pm
-share/man/man3/Dist::CheckConflicts.3.gz
+%%PERL5_MAN3%%/Dist::CheckConflicts.3.gz

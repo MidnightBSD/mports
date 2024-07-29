@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Proc/WaitStat.pm
-share/man/man3/Proc::WaitStat.3.gz
+%%PERL5_MAN3%%/Proc::WaitStat.3.gz

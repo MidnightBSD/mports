@@ -6,7 +6,7 @@
 @dirrmtry %%SITE_ARCH%%/auto/Params
 @dirrmtry %%SITE_ARCH%%/auto
 @dirrmtry %%SITE_ARCH%%
-@dirrmtry %%SITE_PERL%%/share/man/man3
+@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
 @dirrmtry %%SITE_PERL%%/man
 @dirrmtry %%SITE_PERL%%
 @dirrmtry lib/perl5/site_perl

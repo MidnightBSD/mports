@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Test/ClassAPI.pm
-share/man/man3/Test::ClassAPI.3.gz
+%%PERL5_MAN3%%/Test::ClassAPI.3.gz

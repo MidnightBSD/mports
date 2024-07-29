@@ -1,2 +1,2 @@
 %%SITE_PERL%%/ExtUtils/MakeMaker/CPANfile.pm
-share/man/man3/ExtUtils::MakeMaker::CPANfile.3.gz
+%%PERL5_MAN3%%/ExtUtils::MakeMaker::CPANfile.3.gz

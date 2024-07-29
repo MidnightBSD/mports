@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Hash/Flatten.pm
-share/man/man3/Hash::Flatten.3.gz
+%%PERL5_MAN3%%/Hash::Flatten.3.gz

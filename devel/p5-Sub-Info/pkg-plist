@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Sub/Info.pm
-share/man/man3/Sub::Info.3.gz
+%%PERL5_MAN3%%/Sub::Info.3.gz
