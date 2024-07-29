@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Digest/Perl/MD5.pm
-share/man/man3/Digest::Perl::MD5.3.gz
+%%PERL5_MAN3%%/Digest::Perl::MD5.3.gz

@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Text/ParseWords.pm
-man/man3/Text::ParseWords.3.gz
+%%PERL5_MAN3%%/Text::ParseWords.3.gz

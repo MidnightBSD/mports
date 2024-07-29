@@ -1,5 +1,5 @@
-man/man3/SGML::Parser::OpenSP.3.gz
-man/man3/SGML::Parser::OpenSP::Tools.3.gz
+%%PERL5_MAN3%%/SGML::Parser::OpenSP.3.gz
+%%PERL5_MAN3%%/SGML::Parser::OpenSP::Tools.3.gz
 %%SITE_ARCH%%/auto/SGML/Parser/OpenSP/OpenSP.so
 %%SITE_ARCH%%/SGML/Parser/OpenSP.pm
 %%SITE_ARCH%%/SGML/Parser/OpenSP/Tools.pm

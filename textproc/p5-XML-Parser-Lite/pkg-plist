@@ -1,2 +1,2 @@
 %%SITE_PERL%%/XML/Parser/Lite.pm
-man/man3/XML::Parser::Lite.3.gz
+%%PERL5_MAN3%%/XML::Parser::Lite.3.gz

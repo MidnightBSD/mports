@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Crypt/PasswdMD5.pm
-share/man/man3/Crypt::PasswdMD5.3.gz
+%%PERL5_MAN3%%/Crypt::PasswdMD5.3.gz

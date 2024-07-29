@@ -1,2 +1,2 @@
 %%SITE_PERL%%/CGI/Fast.pm
-man/man3/CGI::Fast.3.gz
+%%PERL5_MAN3%%/CGI::Fast.3.gz

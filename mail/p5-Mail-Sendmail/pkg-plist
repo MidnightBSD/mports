@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Mail/Sendmail.pm
-share/man/man3/Mail::Sendmail.3.gz
+%%PERL5_MAN3%%/Mail::Sendmail.3.gz

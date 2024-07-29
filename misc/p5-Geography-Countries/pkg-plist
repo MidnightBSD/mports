@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Geography/Countries.pm
-share/man/man3/Geography::Countries.3.gz
+%%PERL5_MAN3%%/Geography::Countries.3.gz

@@ -1,2 +1,2 @@
 %%SITE_PERL%%/MIME/Lite/HTML.pm
-share/man/man3/MIME::Lite::HTML.3.gz
+%%PERL5_MAN3%%/MIME::Lite::HTML.3.gz

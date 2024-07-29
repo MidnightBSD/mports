@@ -4,7 +4,7 @@ bin/msgconvert
 %%SITE_PERL%%/Email/Outlook/Message/Attachment.pm
 %%SITE_PERL%%/Email/Outlook/Message/Base.pm
 share/man/man1/msgconvert.1.gz
-share/man/man3/Email::Outlook::Message.3.gz
-share/man/man3/Email::Outlook::Message::AddressInfo.3.gz
-share/man/man3/Email::Outlook::Message::Attachment.3.gz
-share/man/man3/Email::Outlook::Message::Base.3.gz
+%%PERL5_MAN3%%/Email::Outlook::Message.3.gz
+%%PERL5_MAN3%%/Email::Outlook::Message::AddressInfo.3.gz
+%%PERL5_MAN3%%/Email::Outlook::Message::Attachment.3.gz
+%%PERL5_MAN3%%/Email::Outlook::Message::Base.3.gz

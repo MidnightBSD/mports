@@ -5,4 +5,4 @@
 %%SITE_PERL%%/Crypt/CBC/PBKDF/opensslv2.pm
 %%SITE_PERL%%/Crypt/CBC/PBKDF/pbkdf2.pm
 %%SITE_PERL%%/Crypt/CBC/PBKDF/randomiv.pm
-share/man/man3/Crypt::CBC.3.gz
+%%PERL5_MAN3%%/Crypt::CBC.3.gz

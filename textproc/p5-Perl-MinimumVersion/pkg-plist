@@ -2,4 +2,4 @@ bin/perlver
 %%SITE_PERL%%/Perl/MinimumVersion.pm
 %%SITE_PERL%%/Perl/MinimumVersion/Reason.pm
 man/man1/perlver.1.gz
-man/man3/Perl::MinimumVersion.3.gz
+%%PERL5_MAN3%%/Perl::MinimumVersion.3.gz

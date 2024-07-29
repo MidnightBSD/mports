@@ -2,5 +2,5 @@ bin/pod2markdown
 %%SITE_PERL%%/Pod/Markdown.pm
 %%SITE_PERL%%/Pod/Perldoc/ToMarkdown.pm
 man/man1/pod2markdown.1.gz
-man/man3/Pod::Markdown.3.gz
-man/man3/Pod::Perldoc::ToMarkdown.3.gz
+%%PERL5_MAN3%%/Pod::Markdown.3.gz
+%%PERL5_MAN3%%/Pod::Perldoc::ToMarkdown.3.gz

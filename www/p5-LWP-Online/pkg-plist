@@ -1,2 +1,2 @@
 %%SITE_PERL%%/LWP/Online.pm
-man/man3/LWP::Online.3.gz
+%%PERL5_MAN3%%/LWP::Online.3.gz

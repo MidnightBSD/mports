@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTTP/Request/AsCGI.pm
-man/man3/HTTP::Request::AsCGI.3.gz
+%%PERL5_MAN3%%/HTTP::Request::AsCGI.3.gz

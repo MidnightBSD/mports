@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTTP/Lite.pm
-man/man3/HTTP::Lite.3.gz
+%%PERL5_MAN3%%/HTTP::Lite.3.gz

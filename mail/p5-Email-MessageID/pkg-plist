@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Email/MessageID.pm
-share/man/man3/Email::MessageID.3.gz
+%%PERL5_MAN3%%/Email::MessageID.3.gz

@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTTP/Size.pm
-man/man3/HTTP::Size.3.gz
+%%PERL5_MAN3%%/HTTP::Size.3.gz

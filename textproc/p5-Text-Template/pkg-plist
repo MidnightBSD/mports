@@ -1,4 +1,4 @@
 %%SITE_PERL%%/Text/Template.pm
 %%SITE_PERL%%/Text/Template/Preprocess.pm
-man/man3/Text::Template.3.gz
-man/man3/Text::Template::Preprocess.3.gz
+%%PERL5_MAN3%%/Text::Template.3.gz
+%%PERL5_MAN3%%/Text::Template::Preprocess.3.gz

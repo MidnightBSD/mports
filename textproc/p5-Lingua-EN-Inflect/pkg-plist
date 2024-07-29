@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Lingua/EN/Inflect.pm
-man/man3/Lingua::EN::Inflect.3.gz
+%%PERL5_MAN3%%/Lingua::EN::Inflect.3.gz

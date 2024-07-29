@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Net/DNS/Resolver/Mock.pm
-man/man3/Net::DNS::Resolver::Mock.3.gz
+%%PERL5_MAN3%%/Net::DNS::Resolver::Mock.3.gz

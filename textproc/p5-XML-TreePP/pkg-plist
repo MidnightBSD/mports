@@ -1,2 +1,2 @@
 %%SITE_PERL%%/XML/TreePP.pm
-man/man3/XML::TreePP.3.gz
+%%PERL5_MAN3%%/XML::TreePP.3.gz

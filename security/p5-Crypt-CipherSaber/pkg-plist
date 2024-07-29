@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Crypt/CipherSaber.pm
-share/man/man3/Crypt::CipherSaber.3.gz
+%%PERL5_MAN3%%/Crypt::CipherSaber.3.gz

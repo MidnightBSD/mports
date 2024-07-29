@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTTP/Server/Simple/PSGI.pm
-man/man3/HTTP::Server::Simple::PSGI.3.gz
+%%PERL5_MAN3%%/HTTP::Server::Simple::PSGI.3.gz

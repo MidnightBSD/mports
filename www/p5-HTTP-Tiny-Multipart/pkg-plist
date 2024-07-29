@@ -1,2 +1,2 @@
 %%SITE_PERL%%/HTTP/Tiny/Multipart.pm
-man/man3/HTTP::Tiny::Multipart.3.gz
+%%PERL5_MAN3%%/HTTP::Tiny::Multipart.3.gz
