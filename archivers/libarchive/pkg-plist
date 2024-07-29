@@ -49,7 +49,7 @@ share/man/man3/archive_write_set_passphrase.3.gz
 share/man/man3/libarchive.3.gz
 share/man/man3/libarchive_changes.3.gz
 share/man/man3/libarchive_internals.3.gz
-man/man5/cpio.5.gz
-man/man5/libarchive-formats.5.gz
-man/man5/mtree.5.gz
-man/man5/tar.5.gz
+share/man/man5/cpio.5.gz
+share/man/man5/libarchive-formats.5.gz
+share/man/man5/mtree.5.gz
+share/man/man5/tar.5.gz
