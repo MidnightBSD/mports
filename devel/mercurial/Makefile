@@ -60,8 +60,8 @@ PKGNAMEPREFIX=		${PYTHON_PKGNAMEPREFIX}
 .endif
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${PREFIX}/man/man1/
-	${INSTALL_MAN} ${WRKSRC}/doc/*.5 ${PREFIX}/man/man5/
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/doc/*.5 ${PREFIX}/share/man/man5/
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/ -name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DATA-on:
