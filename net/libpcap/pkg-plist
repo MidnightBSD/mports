@@ -81,10 +81,10 @@ share/man/man3/pcap_statustostr.3.gz
 share/man/man3/pcap_strerror.3.gz
 share/man/man3/pcap_tstamp_type_name_to_val.3.gz
 share/man/man3/pcap_tstamp_type_val_to_name.3.gz
-man/man5/pcap-savefile.5.gz
-%%REMOTE%%man/man5/rpcapd-config.5.gz
-man/man7/pcap-filter.7.gz
-man/man7/pcap-linktype.7.gz
-man/man7/pcap-tstamp.7.gz
-%%REMOTE%%man/man8/rpcapd.8.gz
+share/man/man5/pcap-savefile.5.gz
+%%REMOTE%%share/man/man5/rpcapd-config.5.gz
+share/man/man7/pcap-filter.7.gz
+share/man/man7/pcap-linktype.7.gz
+share/man/man7/pcap-tstamp.7.gz
+%%REMOTE%%share/man/man8/rpcapd.8.gz
 %%REMOTE%%sbin/rpcapd
