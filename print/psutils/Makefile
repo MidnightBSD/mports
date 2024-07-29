@@ -1,6 +1,3 @@
-# Created by: Jean-Marc Zucconi <jmz@FreeBSD.org> and David O'Brien <obrien@FreeBSD.org>
-
-
 PORTNAME=	psutils
 PORTVERSION=	1.17
 CATEGORIES=	print
@@ -12,8 +9,10 @@ DISTNAME=	psutils-p17
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utilities for manipulating PostScript documents
 
-LICENSE=	other
+LICENSE=	PSUTILS
+LICENSE_NAME=	PS Utilities License
 LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 FAKE_OPTS=	trueprefix
 
