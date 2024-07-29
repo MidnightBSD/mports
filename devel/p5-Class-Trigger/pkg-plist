@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Class/Trigger.pm
-share/man/man3/Class::Trigger.3.gz
+%%PERL5_MAN3%%/Class::Trigger.3.gz
