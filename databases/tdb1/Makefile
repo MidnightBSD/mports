@@ -30,8 +30,7 @@ CONFIGURE_LOG=		bin/config.log
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
-			--disable-rpath \
+CONFIGURE_ARGS+=	 --disable-rpath \
 			--without-gettext
 
 NO_TEST=		yes
@@ -105,10 +104,10 @@ CFLAGS+=		-fno-color-diagnostics
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
-TDB_MAN8=		man/man8/tdbbackup.8.gz \
-			man/man8/tdbdump.8.gz \
-			man/man8/tdbrestore.8.gz \
-			man/man8/tdbtool.8.gz
+TDB_MAN8=		share/man/man8/tdbbackup.8.gz \
+			share/man/man8/tdbdump.8.gz \
+			share/man/man8/tdbrestore.8.gz \
+			share/man/man8/tdbtool.8.gz
 
 PLIST_FILES+=		${TDB_MAN8}
 
