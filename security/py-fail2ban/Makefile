@@ -72,7 +72,7 @@ post-patch:
 post-install:
 	@${MKDIR} ${FAKE_DESTDIR}${FAIL2BAN_DBDIR} ${FAKE_DESTDIR}/var/run/fail2ban
 .for file in fail2ban-client fail2ban-regex fail2ban-server fail2ban
-	${INSTALL_MAN} ${WRKSRC}/man/${file}.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/${file}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 .endfor
 	${INSTALL_MAN} ${WRKSRC}/man/jail.conf.5 ${STAGEDIR}${MANPREFIX}/man/man5/fail2ban-jail.conf.5
 
