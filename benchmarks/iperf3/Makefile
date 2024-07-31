@@ -1,7 +1,8 @@
 PORTNAME=	iperf
-DISTVERSION=	3.13
+DISTVERSION=	3.17.1
 CATEGORIES=	benchmarks
-MASTER_SITES=	https://downloads.es.net/pub/iperf/
+MASTER_SITES=	https://github.com/esnet/${PORTNAME}/releases/download/${DISTVERSION}/ \
+		https://downloads.es.net/pub/${PORTNAME}/
 PKGNAMESUFFIX=	3
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,11 +13,10 @@ LICENSE=	bsd3 mit
 LICENSE_COMB=	multi
 
 USES=		cpe libtool ssl
-GNU_CONFIGURE=	yes
+CPE_VENDOR=	iperf_project
 USE_LDCONFIG=	yes
 
-CPE_VENDOR=	iperf_project
-
+GNU_CONFIGURE=	yes
 PORTDOCS=	README.md RELNOTES.md
 
 # Set ${DOCSDIR} to avoid conflict with benchmarks/iperf ${DOCSDIR}
