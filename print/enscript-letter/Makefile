@@ -39,4 +39,7 @@ PAPERSIZE?=	${PS:tl}
 	@${FALSE}
 .endif
 
+post-configure:
+	${REINPLACE_CMD} -e 's|/usr/bin/perl|${PERL}|g' ${WRKSRC}/scripts/Makefile
+
 .include <bsd.port.mk>
