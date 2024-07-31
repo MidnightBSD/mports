@@ -20,7 +20,6 @@ CPE_VENDOR=	miniupnp_project
 
 CONFIGURE_SCRIPT=	updateminiupnpcstrings.sh
 MAKE_ENV+=	INSTALLPREFIX=${PREFIX} LIBDIR=lib
-MAKE_ARGS+=	MANPATH="${PREFIX}/share/man"
 
 .include <bsd.port.pre.mk>
 
