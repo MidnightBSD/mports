@@ -1,32 +1,29 @@
-%%SITE_ARCH%%/auto/Net/IDN/Punycode/Punycode.so
-%%SITE_ARCH%%/Net/IDN/Encode.pm
-%%SITE_ARCH%%/Net/IDN/Punycode/PP.pm
-%%SITE_ARCH%%/Net/IDN/Punycode.pm
-%%SITE_ARCH%%/Net/IDN/UTS46/_Mapping.pm
-%%SITE_ARCH%%/Net/IDN/Standards.pod
-%%SITE_ARCH%%/Net/IDN/Overview.pod
-%%SITE_ARCH%%/Net/IDN/UTS46.pm
-%%PERL5_MAN3%%/Net::IDN::Encode.3.gz
-%%PERL5_MAN3%%/Net::IDN::Punycode.3.gz
-%%PERL5_MAN3%%/Net::IDN::Overview.3.gz
-%%PERL5_MAN3%%/Net::IDN::Standards.3.gz
-%%PERL5_MAN3%%/Net::IDN::UTS46::_Mapping.3.gz
-%%PERL5_MAN3%%/Net::IDN::UTS46.3.gz
-%%PERL5_MAN3%%/Net::IDN::Punycode::PP.3.gz
-@dirrmtry %%SITE_ARCH%%/auto/Net/IDN/Punycode
-@dirrmtry %%SITE_ARCH%%/auto/Net/IDN/Encode
-@dirrmtry %%SITE_ARCH%%/auto/Net/IDN
-@dirrmtry %%SITE_ARCH%%/auto/Net
-@dirrmtry %%SITE_ARCH%%/auto
-@dirrmtry %%SITE_ARCH%%/Net/IDN/Punycode
-@dirrmtry %%SITE_ARCH%%/Net/IDN/UTS46
-@dirrmtry %%SITE_ARCH%%/Net/IDN
-@dirrmtry %%SITE_ARCH%%/Net
-@dirrmtry %%SITE_ARCH%%
-@dirrmtry %%SITE_PERL%%/%%PERL5_MAN3%%
-@dirrmtry %%SITE_PERL%%/man
-@dirrmtry %%SITE_PERL%%
-@dirrmtry lib/perl5/site_perl
-@dirrmtry lib/perl5
-@dirrmtry share/licenses/p5-Net-IDN-Encode-2.500
-@dirrmtry share/licenses
+%%SITE_PERL%%/Net/IDN/Punycode.pm
+%%SITE_PERL%%/Net/IDN/UTS46.pm
+%%SITE_PERL%%/Net/IDN/Standards.pod
+%%SITE_PERL%%/Net/IDN/Encode.pm
+%%SITE_PERL%%/Net/IDN/Overview.pod
+%%SITE_PERL%%/Net/IDN/Punycode/PP.pm
+%%SITE_PERL%%/Net/IDN/UTS46/_Mapping.pm
+%%SITE_PERL%%/auto/Net/IDN/Punycode/Punycode.so
+%%SITE_PERL%%/man/man3/Net::IDN::Overview.3.gz
+%%SITE_PERL%%/man/man3/Net::IDN::UTS46::_Mapping.3.gz
+%%SITE_PERL%%/man/man3/Net::IDN::Punycode::PP.3.gz
+%%SITE_PERL%%/man/man3/Net::IDN::Punycode.3.gz
+%%SITE_PERL%%/man/man3/Net::IDN::Standards.3.gz
+%%SITE_PERL%%/man/man3/Net::IDN::UTS46.3.gz
+%%SITE_PERL%%/man/man3/Net::IDN::Encode.3.gz
+@dir %%SITE_PERL%%/Net/IDN/Punycode
+@dir %%SITE_PERL%%/Net/IDN/UTS46
+@dir %%SITE_PERL%%/Net/IDN
+@dir %%SITE_PERL%%/Net
+@dir %%SITE_PERL%%/auto/Net/IDN/Punycode
+@dir %%SITE_PERL%%/auto/Net/IDN/Encode
+@dir %%SITE_PERL%%/auto/Net/IDN
+@dir %%SITE_PERL%%/auto/Net
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
