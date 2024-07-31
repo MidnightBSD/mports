@@ -131,7 +131,7 @@ BROKEN_sparc64=	option ASM generates illegal instructions
 
 post-patch:
 	${REINPLACE_CMD} \
-		-e 's|^MANDIR=.*$$|MANDIR=$$(INSTALLTOP)/man|' \
+		-e 's|^MANDIR=.*$$|MANDIR=$$(INSTALLTOP)/share/man|' \
 		-e 's| install_html_docs$$||' \
 		-e 's|$$(LIBDIR)/pkgconfig|libdata/pkgconfig|g' \
 		${WRKSRC}/Configurations/unix-Makefile.tmpl
