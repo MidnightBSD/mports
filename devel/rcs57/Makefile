@@ -1,14 +1,12 @@
-
-
 PORTNAME=	rcs
 PORTVERSION=	5.7
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 PKGNAMESUFFIX=	57
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system (as was in FreeBSD prior to removal)
+WWW=		https://www.gnu.org/software/rcs/
 
 LICENSE=	gpl2
 

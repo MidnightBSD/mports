@@ -17,4 +17,4 @@ share/man/man1/rcsdiff.1.gz
 share/man/man1/rcsintro.1.gz
 share/man/man1/rcsmerge.1.gz
 share/man/man1/rlog.1.gz
-man/man5/rcsfile.5.gz
+share/man/man5/rcsfile.5.gz
