@@ -1,10 +1,16 @@
-%%PERL5_MAN3%%/Math::Random::ISAAC::XS.3.gz
-%%SITE_ARCH%%/Math/Random/ISAAC/XS.pm
-%%SITE_ARCH%%/auto/Math/Random/ISAAC/XS/XS.so
-@dir %%SITE_ARCH%%/Math/Random/ISAAC
-@dir %%SITE_ARCH%%/Math/Random
-@dir %%SITE_ARCH%%/Math
-@dir %%SITE_ARCH%%/auto/Math/Random/ISAAC/XS
-@dir %%SITE_ARCH%%/auto/Math/Random/ISAAC
-@dir %%SITE_ARCH%%/auto/Math/Random
-@dir %%SITE_ARCH%%/auto/Math
+%%SITE_PERL%%/Math/Random/ISAAC/XS.pm
+%%SITE_PERL%%/auto/Math/Random/ISAAC/XS/XS.so
+%%SITE_PERL%%/man/man3/Math::Random::ISAAC::XS.3.gz
+@dir %%SITE_PERL%%/Math/Random/ISAAC
+@dir %%SITE_PERL%%/Math/Random
+@dir %%SITE_PERL%%/Math
+@dir %%SITE_PERL%%/auto/Math/Random/ISAAC/XS
+@dir %%SITE_PERL%%/auto/Math/Random/ISAAC
+@dir %%SITE_PERL%%/auto/Math/Random
+@dir %%SITE_PERL%%/auto/Math
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
