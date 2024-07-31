@@ -59,6 +59,8 @@ post-patch:
 		s|^(INSTALL_LMOD=).*|\1 ${LUA_MODSHAREDIR}| ; \
 		s|llua|llua-${LUA_VER}|' \
 		${WRKSRC}/etc/lua.pc
+	@${REINPLACE_CMD} -e "s|man/man|share/man/man|g" \
+		${WRKSRC}/Makefile
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/liblua-${LUA_VER}.so

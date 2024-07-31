@@ -54,6 +54,8 @@ post-patch:
 		s,readline/,editline/,g ; \
 		/history\.h/d" \
 		${WRKSRC}/src/luaconf.h ${WRKSRC}/src/lua.c
+	@${REINPLACE_CMD} -e "s|man/man|share/man/man|g" \
+		${WRKSRC}/Makefile
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblua-${LUA_VER}.so

@@ -136,6 +136,9 @@ SUB_LIST=	version=${PORTVERSION} \
 post-patch:
 	@${REINPLACE_CMD} -e "/LUA_ROOT/s,/usr/local,${LUA_PREFIX}," \
 		${WRKSRC}/src/luaconf.h
+	@${REINPLACE_CMD} -e "s|man/man|share/man/man|g" \
+		${WRKSRC}/Makefile
+
 
 post-patch-LIBEDIT-on:
 	@${REINPLACE_CMD} -e "s,readline/,editline/,g ; \
