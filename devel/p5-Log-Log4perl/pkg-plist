@@ -50,7 +50,7 @@ bin/l4p-tmpl
 %%SITE_PERL%%/Log/Log4perl/Util.pm
 %%SITE_PERL%%/Log/Log4perl/Util/Semaphore.pm
 %%SITE_PERL%%/Log/Log4perl/Util/TimeTracker.pm
-share/man/man1/l4p-tmpl.1.gz
+%%PERL5_MAN1%%/l4p-tmpl.1.gz
 %%PERL5_MAN3%%/Log::Log4perl.3.gz
 %%PERL5_MAN3%%/Log::Log4perl::Appender.3.gz
 %%PERL5_MAN3%%/Log::Log4perl::Appender::Buffer.3.gz
