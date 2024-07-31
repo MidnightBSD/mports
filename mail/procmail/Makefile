@@ -5,6 +5,7 @@ CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Local mail delivery agent
+WWW=		https://www.procmail.org/
 
 LICENSE=	gpl2
 

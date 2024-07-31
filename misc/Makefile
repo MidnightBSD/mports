@@ -1,6 +1,5 @@
 COMMENT = Miscellaneous utilities
 
-SUBDIR += brs
 SUBDIR += buffer
 SUBDIR += chef
 SUBDIR += chmlib

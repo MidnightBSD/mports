@@ -22,7 +22,7 @@ MAKEFILE=	Makefile.dist
 
 post-install:
 .for a in ${LINKS}
-	${LN} -sf mp.1 ${PREFIX}/man/man1/${a}.1
+	${LN} -sf mp.1 ${PREFIX}/share/man/man1/${a}.1
 .endfor
 
 .include <bsd.port.mk>
