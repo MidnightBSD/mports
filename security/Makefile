@@ -31,7 +31,6 @@ SUBDIR += dirmngr
 SUBDIR += doas
 SUBDIR += duo
 SUBDIR += easy-rsa
-SUBDIR += f-prot
 SUBDIR += fakeroot
 SUBDIR += firehol-ip-list
 SUBDIR += firewalk
