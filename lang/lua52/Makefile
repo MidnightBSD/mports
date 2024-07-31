@@ -57,10 +57,10 @@ post-patch:
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblua-${LUA_VER}.so
-	@${MV} ${PREFIX}/man/man1/lua.1 \
-		${PREFIX}/man/man1/lua52.1
-	@${MV} ${PREFIX}/man/man1/luac.1 \
-		${PREFIX}/man/man1/luac52.1
+	@${MV} ${PREFIX}/share/man/man1/lua.1 \
+		${PREFIX}/share/man/man1/lua52.1
+	@${MV} ${PREFIX}/share/man/man1/luac.1 \
+		${PREFIX}/share/man/man1/luac52.1
 	${INSTALL_DATA} ${WRKDIR}/lua-${LUA_VER}.pc \
 		${PREFIX}/libdata/pkgconfig
 
