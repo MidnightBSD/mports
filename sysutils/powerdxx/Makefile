@@ -5,6 +5,7 @@ CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CPU clock speed/frequency daemon
+WWW=		https://github.com/lonkamikaze/powerdxx
 
 LICENSE=	iscl
 
