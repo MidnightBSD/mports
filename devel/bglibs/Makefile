@@ -31,7 +31,7 @@ do-configure:
 	${ECHO_CMD} "${CC} ${STRIP} ${LDFLAGS}"	> ${WRKSRC}/conf-ld
 	${ECHO_CMD} "${FAKE_DESTDIR}${PREFIX}"		> ${WRKSRC}/conf-home
 	${ECHO_CMD} "${FAKE_DESTDIR}${PREFIX}/bin"	> ${WRKSRC}/conf-bin
-	${ECHO_CMD} "${FAKE_DESTDIR}${PREFIX}/man"	> ${WRKSRC}/conf-man
+	${ECHO_CMD} "${FAKE_DESTDIR}${PREFIX}/share/man"	> ${WRKSRC}/conf-man
 	${ECHO_CMD} "${FAKE_DESTDIR}${BGLIBS_INC}"	> ${WRKSRC}/conf-include
 	${ECHO_CMD} "${FAKE_DESTDIR}${BGLIBS_LIB}"	> ${WRKSRC}/conf-lib
 
