@@ -1,5 +1,14 @@
-%%SITE_ARCH%%/Lexical/Sub.pm
-%%SITE_ARCH%%/Lexical/Var.pm
-%%SITE_ARCH%%/auto/Lexical/Var/Var.so
-%%PERL5_MAN3%%/Lexical::Sub.3.gz
-%%PERL5_MAN3%%/Lexical::Var.3.gz
+%%SITE_PERL%%/auto/Lexical/Var/Var.so
+%%SITE_PERL%%/man/man3/Lexical::Var.3.gz
+%%SITE_PERL%%/man/man3/Lexical::Sub.3.gz
+%%SITE_PERL%%/Lexical/Var.pm
+%%SITE_PERL%%/Lexical/Sub.pm
+@dir %%SITE_PERL%%/auto/Lexical/Var
+@dir %%SITE_PERL%%/auto/Lexical
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/Lexical
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
