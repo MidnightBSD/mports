@@ -30,7 +30,7 @@ post-patch:
 		${WRKSRC}/src/odmultibutton.c
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/docs/gentoo.1x ${STAGEDIR}${MANPREFIX}/man/man1/gentoo.1
+	${INSTALL_MAN} ${WRKSRC}/docs/gentoo.1x ${STAGEDIR}${PREFIX}/share/man/man1/gentoo.1
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for file in BUGS CONFIG-CHANGES CREDITS NEWS README README.NLS README.gtkrc \
 	TODO
