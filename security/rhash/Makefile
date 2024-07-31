@@ -1,5 +1,3 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	rhash
 PORTVERSION=	1.3.9
 CATEGORIES=	security
@@ -15,17 +13,21 @@ PATCHFILES=	rhash-1.3.9-nls.patch:-p1:gentoo \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility and library for computing and checking of file hashes
+WWW=		https://rhash.sourceforge.net/
 
-LICENSE=	mit
+LICENSE=	bsd0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 FAKE_OPTS+=   trueprefix
 
 HAS_CONFIGURE=	yes
-CONFIGURE_ARGS=	--prefix="${PREFIX}" --mandir="${PREFIX}/man" \
+CONFIGURE_ARGS=	--prefix="${PREFIX}" --mandir="${PREFIX}/share/man" \
 		--pkgconfigdir="${PREFIX}/libdata/pkgconfig" \
 		--enable-lib-static --enable-openssl-runtime \
 		--extra-cflags="${CFLAGS}" --extra-ldflags="${LDFLAGS}"
+
+USES=		cpe
+CPE_VENDOR=	${PORTNAME}_project
 INSTALL_TARGET=	install install-lib-so-link install-pkg-config
 USE_LDCONFIG=	yes
 
