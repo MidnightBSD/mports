@@ -223,7 +223,6 @@ SUBDIR += ubuntu-keyring
 SUBDIR += unix-selfauth-helper
 SUBDIR += vlock
 SUBDIR += vm-to-tor
-SUBDIR += vnccrack
 SUBDIR += vpnc
 SUBDIR += vuxml
 SUBDIR += vxquery

@@ -432,6 +432,9 @@ devel/glslang|graphics/glslang|2024-06-10|Moved to graphics
 mail/libspf||2023-12-31|Has expired: Abandonware, last commit upstream 14 years ago. Consider migrating to mail/libspf2
 graphics/giblib||2024-07-18|Has expired: Last release in 2004, abandoned upstream, not used, website disappeared
 sysutils/sysrc||2024-07-23|Has expired: Migrated into src
-lang/go119||2024-04-18|Has expired: Upsrteam EOL reached on 2023-09-06
-security/f-prot||2024-02-29|Has expired: F-Prot Antivirus reached end-of-life on July 31, 2021
+lang/go119||2024-07-23|Has expired: Upsrteam EOL reached on 2023-09-06
+security/f-prot||2024-07-31|Has expired: F-Prot Antivirus reached end-of-life on July 31, 2021
 lang/perl5.36|lang/perl5.38|2024-07-31|Updated default to 5.38, removed old version
+security/l0phtcrack||2024-07-31|Has expired: Obsolete, Microsoft LANMAN and NT password hashes are deprecated
+security/vnccrack||2024-07-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while ve
+rsion in ports is 1.0.0
