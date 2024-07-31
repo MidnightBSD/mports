@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Time/Piece/MySQL.pm
-man/man3/Time::Piece::MySQL.3.gz
+%%PERL5_MAN3%%/Time::Piece::MySQL.3.gz
