@@ -5,7 +5,8 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extremely fast non-cryptographic hash algorithm
-WWW=		https://cyan4973.github.io/xxHash/
+WWW=		https://xxhash.com/ \
+		https://github.com/Cyan4973/xxHash
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -15,6 +16,8 @@ FAKE_OPTS=	trueprefix
 USES=		gmake
 
 USE_LDCONFIG=	yes
+
+MAKE_ARGS+=	MANDIR=${PREFIX}/share/man/man1
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
