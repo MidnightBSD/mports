@@ -27,7 +27,7 @@ do-install:
 	${INSTALL_LIB} ${WRKSRC}/libargon2.so ${STAGEDIR}${PREFIX}/lib/libargon2.so.0
 	${RLN} ${STAGEDIR}${PREFIX}/lib/${LIBARGON2} ${STAGEDIR}${PREFIX}/lib/libargon2.so
 	${INSTALL_PROGRAM} ${WRKSRC}/argon2 ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/man/argon2.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/argon2.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKSRC}/libargon2.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/libargon2.pc
 
 .include <bsd.port.mk>

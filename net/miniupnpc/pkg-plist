@@ -1,4 +1,5 @@
 bin/external-ip
+bin/upnp-listdevices
 bin/upnpc
 include/miniupnpc/igd_desc_parse.h
 include/miniupnpc/miniupnpc.h
@@ -12,6 +13,6 @@ include/miniupnpc/upnperrors.h
 include/miniupnpc/upnpreplyparse.h
 lib/libminiupnpc.a
 lib/libminiupnpc.so
-lib/libminiupnpc.so.17
+lib/libminiupnpc.so.18
 libdata/pkgconfig/miniupnpc.pc
 share/man/man3/miniupnpc.3.gz
