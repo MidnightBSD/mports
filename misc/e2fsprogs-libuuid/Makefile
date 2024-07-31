@@ -43,9 +43,9 @@ post-build:
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/misc/uuidgen ${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/misc/uuidgen.1 ${MAN8PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/misc/uuidgen.1 ${PREFIX}/share/man/man1/
 	${INSTALL_PROGRAM} ${WRKSRC}/misc/uuidd ${PREFIX}/sbin/
-	${INSTALL_MAN} ${WRKSRC}/misc/uuidd.8 ${MAN8PREFIX}/man/man8/
+	${INSTALL_MAN} ${WRKSRC}/misc/uuidd.8 ${PREFIX}/share/man/man8/
 	${MKDIR} /var/run/libuuid
 
 .include "${MASTERDIR}/Makefile"
