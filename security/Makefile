@@ -96,7 +96,6 @@ SUBDIR += nmap
 SUBDIR += nettle
 SUBDIR += nss
 SUBDIR += oinkmaster
-SUBDIR += opencdk
 SUBDIR += openct
 SUBDIR += opensc
 SUBDIR += openssh-askpass
