@@ -1,5 +1,3 @@
-
-
 PORTNAME=	getopt
 PORTVERSION=	1.1.6
 PORTREVISION=	1
@@ -9,6 +7,7 @@ MASTER_SITES=	http://frodo.looijaard.name/system/files/software/getopt/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	getopt(1) replacement that supports GNU-style long options
+WWW=		https://software.frodo.looijaard.name/getopt/
 
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
@@ -29,7 +28,7 @@ NLS_CFLAGS=		-I${LOCALBASE}/include
 NLS_MAKE_ARGS=		WITHOUT_GETTEXT=0
 NLS_MAKE_ARGS_OFF=	WITHOUT_GETTEXT=1
 NLS_LDFLAGS=		-L${LOCALBASE}/lib -lintl
-NLS_USES=		gettext
+NLS_USES=		gettext localbase:ldflags
 
 post-install:
 	${MKDIR} ${DOCSDIR}/
