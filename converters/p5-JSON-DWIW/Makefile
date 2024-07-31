@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON converter that Does What I Want
+WWW=		https://metacpan.org/release/JSON-DWIW
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
