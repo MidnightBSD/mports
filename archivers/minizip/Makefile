@@ -1,11 +1,12 @@
 PORTNAME=	minizip
-PORTVERSION=	1.2.11
+PORTVERSION=	1.3.1
 CATEGORIES=	archivers
-MASTER_SITES=	SF/libpng/zlib/${PORTVERSION}
+MASTER_SITES=	https://github.com/madler/zlib/releases/download/v${DISTVERSION}/
 DISTNAME=	zlib-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Zip library and programs from Zlib distribution
+WWW=		https://www.winimage.com/zLibDll/minizip.html
 
 LICENSE=	zlib
 
@@ -20,15 +21,11 @@ WRKSRC=		${WRKDIR}/zlib-${PORTVERSION}/contrib/minizip
 
 .include <bsd.mport.options.mk>
 
-.if ${OSVERSION} < 4015
-CPPFLAGS+=	-Dz_crc_t=uint32_t
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} 's/#ifdef unix || __APPLE__/#ifdef unix/' ${WRKSRC}/mini???.c
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/*.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 regression-test:
 	${RM} -rf ${WRKDIR}/regression-test1
