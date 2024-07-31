@@ -1,3 +1,5 @@
-TIMESTAMP = 1683640028
-SHA256 (trivy_0.41.0_FreeBSD-64bit.tar.gz) = c9c18cd681bc46ef52de2af5dfdfa29a5360b451ff26747779701c858b670892
-SIZE (trivy_0.41.0_FreeBSD-64bit.tar.gz) = 50415299
+TIMESTAMP = 1719843416
+SHA256 (go/security_trivy/trivy-v0.53.0/v0.53.0.mod) = 86adad3fd423806d5d406cf3bb6542f3d3d2248fa40fc57096329c33f594a2a4
+SIZE (go/security_trivy/trivy-v0.53.0/v0.53.0.mod) = 19923
+SHA256 (go/security_trivy/trivy-v0.53.0/v0.53.0.zip) = 8de80f2ffc26df0f6077735c86d162b43bc7d61d00abb6825c512ec777e2648e
+SIZE (go/security_trivy/trivy-v0.53.0/v0.53.0.zip) = 58098784

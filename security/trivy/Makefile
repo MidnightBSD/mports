@@ -1,23 +1,33 @@
 PORTNAME=	trivy
-PORTVERSION=	0.41.0
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.53.0
 CATEGORIES=	security
-MASTER_SITES=	https://github.com/aquasecurity/trivy/releases/download/v0.41.0/
-DISTNAME=	trivy_${PORTVERSION}_FreeBSD-64bit
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Security Scanner
-WWW=		https://aquasecurity.github.io/trivy
+COMMENT=	Security scanner written in go
+WWW=		https://github.com/aquasecurity/trivy
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-WRKSRC=		${WRKDIR}
-NO_BUILD=	yes
+USES=		go:modules,1.22
 
-ONLY_FOR_ARCHS=	amd64
+GO_MODULE=	github.com/aquasecurity/trivy
+GO_TARGET=	./cmd/trivy
+GO_BUILDFLAGS= -ldflags=" \
+		-extldflags '-static' \
+		-X github.com/aquasecurity/trivy/pkg/version.ver=${DISTVERSION} \
+		-s -w"
 
-do-install:
-	${CP} ${WRKDIR}/trivy ${PREFIX}/bin/trivy
-	
+PLIST_FILES=	bin/${PORTNAME}
+
+post-install:
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/contrib/*.tpl ${DATADIR}/
+	${FIND} -s ${STAGEDIR}${DATADIR} -not -type d | ${SORT} | \
+		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
+		${SED} -E -e '/sample$$/ s#^#@sample #; \
+		s#${DATADIR_REL}/bin#@(,,555) ${DATADIR_REL}/bin#; ' >> ${TMPPLIST}
+	cat ${TMPPLIST}
 
 .include <bsd.port.mk>
