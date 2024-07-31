@@ -8,6 +8,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl bindings to the cairo graphics library
+WWW=		https://gtk2-perl.sourceforge.net/
 
 LICENSE=	lgpl2.1
 
