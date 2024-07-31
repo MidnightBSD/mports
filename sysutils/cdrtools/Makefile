@@ -145,12 +145,12 @@ do-install:
 .if ${PORT_OPTIONS:MCDDA2MP3}
 	${INSTALL_SCRIPT} ${WRKSRC}/cdda2wav/cdda2mp3 ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/cdda2wav/cdda2ogg.1 \
-		${STAGEDIR}${PREFIX}/man/man1/cdda2mp3.1
+		${STAGEDIR}${PREFIX}/share/man/man1/cdda2mp3.1
 .endif
 .if ${PORT_OPTIONS:MCDDA2OGG}
 	${INSTALL_SCRIPT} ${WRKSRC}/cdda2wav/cdda2ogg ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/cdda2wav/cdda2ogg.1 \
-		${STAGEDIR}${PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/share/man/man1
 .endif
 	${INSTALL_PROGRAM} ${WRKSRC}/cdda2wav/OBJ/${CDRTLSTARGET}/cdda2wav \
 		${STAGEDIR}${PREFIX}/bin
@@ -173,20 +173,20 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/scgcheck/OBJ/${CDRTLSTARGET}/scgcheck \
 		${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/btcflash/btcflash.1 \
-		${STAGEDIR}${PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/cdda2wav/cdda2wav.1 \
-		${STAGEDIR}${PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/cdrecord/cdrecord.1 \
-		${STAGEDIR}${PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/readcd/readcd.1 ${STAGEDIR}${PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/readcd/readcd.1 ${STAGEDIR}${PREFIX}/share/man/man1
 .if ${PORT_OPTIONS:MRSCSI}
-	@${INSTALL_MAN} ${WRKSRC}/rscsi/rscsi.1 ${STAGEDIR}${PREFIX}/man/man1
+	@${INSTALL_MAN} ${WRKSRC}/rscsi/rscsi.1 ${STAGEDIR}${PREFIX}/share/man/man1
 .endif
 	${INSTALL_MAN} ${WRKSRC}/scgcheck/scgcheck.1 \
-		${STAGEDIR}${PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/mkisofs/mkisofs.8 ${STAGEDIR}${PREFIX}/man/man8
+		${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/mkisofs/mkisofs.8 ${STAGEDIR}${PREFIX}/share/man/man8
 	${INSTALL_MAN} ${WRKSRC}/mkisofs/diag/isoinfo.8 \
-		${STAGEDIR}${PREFIX}/man/man8
+		${STAGEDIR}${PREFIX}/share/man/man8
 	${INSTALL_DATA} ${WRKSRC}/cdrecord/cdrecord.dfl \
 		${STAGEDIR}${PREFIX}/etc/cdrecord.sample
 .if !exists(${STAGEDIR}${PREFIX}/etc/cdrecord)

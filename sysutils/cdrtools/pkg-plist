@@ -68,8 +68,8 @@ share/man/man1/cdda2wav.1.gz
 share/man/man1/cdrecord.1.gz
 share/man/man1/readcd.1.gz
 share/man/man1/scgcheck.1.gz
-man/man8/isoinfo.8.gz
-man/man8/mkisofs.8.gz
+share/man/man8/isoinfo.8.gz
+share/man/man8/mkisofs.8.gz
 %%RSCSI%%@(,,4555) sbin/rscsi
 @sample etc/cdrecord.sample
 %%RSCSI%%@sample etc/rscsi.sample
