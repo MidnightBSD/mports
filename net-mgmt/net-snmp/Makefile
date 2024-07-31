@@ -274,7 +274,7 @@ post-build:
 	${FIND} ${WRKSRC}/perl -name Makefile | \
 	${XARGS} ${REINPLACE_CMD} -E -e '\
 		s!^(PREFIX) = .*!\1 = ${PREFIX}!; \
-		s!^(INSTALLMAN3DIR|INSTALLSITEMAN3DIR) = .*!\1 = ${PREFIX}/man/man3!; \
+		s!^(INSTALLMAN3DIR|INSTALLSITEMAN3DIR) = .*!\1 = ${PREFIX}/share/man/man3!; \
 		s!^(INSTALLSITELIB|INSTALLSITEARCH) = /usr/local/(.*)!\1 = ${PREFIX}/\2!; \
 		s! doc_(perl|site|\$$\(INSTALLDIRS\))_install$$!!; \
 		'
