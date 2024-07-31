@@ -1,12 +1,13 @@
 PORTNAME=	Mojolicious
-PORTVERSION=	9.31
+PORTVERSION=	9.37
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-level MVC web framework written in Perl
-WWW=		https://metacpan.org/pod/Mojolicious
+WWW=		https://metacpan.org/pod/Mojolicious \
+		https://www.mojolicious.org
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
