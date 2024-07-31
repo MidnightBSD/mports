@@ -30,15 +30,14 @@ USE_XORG=	x11 xcb xext xinerama xorgproto xrandr xt
 GNU_CONFIGURE=	yes
 
 MAKE_ARGS=	PREFIX="${PREFIX}" X11LIB="${LOCALBASE}/lib" \
-		X11INC="${LOCALBASE}/include" CC="${CC}" \
-		MANDIR="${MANPREFIX}/man"
+		X11INC="${LOCALBASE}/include" CC="${CC}"
 
 LDFLAGS+=	${ICONV_LIB}
 
 CONFLICTS_INSTALL=	i3lock
 
 PLIST_FILES=	"@(,,4755) bin/i3lock" \
-		man/man1/i3lock.1.gz
+		share/man/man1/i3lock.1.gz
 
 OPTIONS_DEFINE=	DOCS
 

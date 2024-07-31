@@ -13,13 +13,13 @@ LICENSE=	mit
 USES=		imake xorg
 USE_XORG=	x11 xext
 
-PLIST_FILES=	bin/xwit man/man1/xwit.1.gz
+PLIST_FILES=	bin/xwit share/man/man1/xwit.1.gz
 
 EXTRA_PATCHES=	${WRKDIR}/${PORTNAME}-patchset-${PORTVERSION}/patch-*
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}._man \
-		${MANPREFIX}/man/man1/${PORTNAME}.1
+		${PREFIX}/share/man/man1/${PORTNAME}.1
 
 .include <bsd.port.mk>
