@@ -16,7 +16,4 @@ BUILD_DEPENDS=	p5-Test-NoWarnings>=0:devel/p5-Test-NoWarnings
 USES=		perl5
 USE_PERL5=	modbuild
 
-post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Net/IDN/Punycode/Punycode.so
-
 .include <bsd.port.mk>
