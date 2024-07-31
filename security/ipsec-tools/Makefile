@@ -6,7 +6,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KAME racoon IKE daemon, ipsec-tools version
-WWW=		http://ipsec-tools.sourceforge.net/
+WWW=		https://ipsec-tools.sourceforge.net/
 
 LICENSE=	bsd3
 
@@ -21,7 +21,7 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --sysconfdir=${PREFIX}/etc/racoon \
 		--localstatedir=${STATEDIR:S/\/racoon//} \
-		--with-pkgversion=freebsd-${PORTVERSION}
+		--with-pkgversion=midnightbsd-${PORTVERSION}
 
 STATEDIR=	/var/db/racoon
 SUB_LIST+=	STATEDIR=${STATEDIR} REQUIREMOD=${REQUIREMOD}
