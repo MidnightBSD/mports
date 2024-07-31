@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	POD Object Model
 WWW=		https://metacpan.org/release/Pod-POM
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-File-Slurper>=0.004:devel/p5-File-Slurper \
