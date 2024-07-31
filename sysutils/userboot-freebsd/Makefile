@@ -1,5 +1,3 @@
-
-
 PORTNAME=	userboot-freebsd
 PORTVERSION=	10.0
 MASTER_SITES=	http://people.midnightbsd.org/~laffer1/

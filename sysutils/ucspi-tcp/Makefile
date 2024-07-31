@@ -1,17 +1,15 @@
-
-
 PORTNAME=	ucspi-tcp
 PORTVERSION=	0.88
 PORTREVISION=	2
 CATEGORIES=	sysutils net
 MASTER_SITES=	http://cr.yp.to/ucspi-tcp/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	garga/ucspi-tcp
+		FREEBSD_LOCAL/garga/ucspi-tcp
 
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line tools for building TCP client-server applications
+WWW=		https://cr.yp.to/ucspi-tcp.html
 
 LICENSE=	unknown
 
@@ -60,19 +58,14 @@ BROKEN=	SSL and LIMITS options cannot coexist, please choose one of them
 CFLAGS+=	-O
 .endif
 
-.if !defined(NO_INSTALL_MANPAGES)
 MASTER_SITES+=	http://smarden.org/pape/djb/manpages/:man \
-		${MASTER_SITE_LOCAL:S/$/:man/}
+		${MASTER_SITE_FREEBSD_LOCAL:S/$/:man/}
 MASTER_SITE_SUBDIR+=	garga/ucspi-tcp/:man
 DISTFILES+=	${DISTNAME}${EXTRACT_SUFX} \
 		${DISTNAME}-man.tar.gz:man
 MAN_FILES=	addcr.1 argv0.1 date@.1 delcr.1 finger@.1 fixcrio.1 \
 		http@.1 mconnect.1 rblsmtpd.1 recordio.1 tcpcat.1 \
 		tcpclient.1 tcprules.1 tcprulescheck.1 tcpserver.1 who@.1
-PLIST_SUB=	MANPAGES=""
-.else
-PLIST_SUB=	MANPAGES="@comment "
-.endif
 
 .if ${PORT_OPTIONS:MRSS_DIFF}
 PATCH_SITES+=	http://www.qmail.org/:rss
@@ -109,8 +102,7 @@ PATCH_SITES+=	http://www.fefe.de/ucspi/:ipv6
 PATCHFILES+=	ucspi-tcp-0.88-ipv6.diff19.bz2:ipv6
 .endif
 
-PATCH_SITES+=		${MASTER_SITE_LOCAL:S/$/:rss,ssl,rbl2smtpd/}
-PATCH_SITE_SUBDIR+=	garga/ucspi-tcp/:rss,ssl,rbl2smtpd
+PATCH_SITES+=		FREEBSD_LOCAL/garga/ucspi-tcp/:rss,ssl,rbl2smtpd
 
 post-patch:
 .if ${PORT_OPTIONS:MSSL}
@@ -131,10 +123,8 @@ do-install:
 .for file_name in ${SCRIPTS}
 	@${INSTALL_SCRIPT} ${WRKSRC}/${file_name} ${PREFIX}/bin
 .endfor
-.if !defined(NO_INSTALL_MANPAGES)
 . for file_name in ${MAN_FILES}
-	${INSTALL_MAN} ${WRKSRC}-man/${file_name} ${MAN1PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}-man/${file_name} ${PREFIX}/share/man/man1/
 . endfor
-.endif
 
 .include <bsd.port.post.mk>
