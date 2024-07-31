@@ -20,7 +20,7 @@ CONFLICTS=	wmii-devel-[0-9]*
 
 USE_XORG=	x11 xorgproto xt xext
 
-MAKE_ARGS=	PREFIX="${TRUE_PREFIX}" MAN="${MANPREFIX}/man" \
+MAKE_ARGS=	PREFIX="${TRUE_PREFIX}" MAN="${PREFIX}/share/man" \
 		INCLUDE="${LOCALBASE}/include" \
 		INCX11="-I${LOCALBASE}/include" \
 		LIBX11="-L${LOCALBASE}/lib -lX11 -lixp" \
