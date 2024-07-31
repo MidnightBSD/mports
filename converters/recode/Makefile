@@ -1,5 +1,3 @@
-
-
 PORTNAME=	recode
 PORTVERSION=	3.6
 DISTVERSIONPREFIX=	v
@@ -8,8 +6,9 @@ CATEGORIES=	converters
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts files between character sets and usages
+WWW=		https://www.gnu.org/software/recode/recode.html
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	pinard
