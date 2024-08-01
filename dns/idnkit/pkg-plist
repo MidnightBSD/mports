@@ -44,10 +44,10 @@ lib/libidnkitres.a
 lib/libidnkitres.so
 lib/libidnkitres.so.1
 lib/libidnkitres.so.1.0.1
-share/share/man/man1/idnconv.1.gz
-share/share/man/man1/runidn.1.gz
-share/share/man/man3/libidnkit.3.gz
-share/share/man/man3/libidnkitlite.3.gz
+share/man/man1/idnconv.1.gz
+share/man/man1/runidn.1.gz
+share/man/man3/libidnkit.3.gz
+share/man/man3/libidnkitlite.3.gz
 share/man/man5/idn.conf.5.gz
 share/man/man5/idnalias.conf.5.gz
 share/man/man5/idnrc.5.gz

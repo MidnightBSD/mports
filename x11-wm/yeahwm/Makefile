@@ -14,7 +14,7 @@ MAKE_ARGS=	CC="${CC}" XROOT="${LOCALBASE}"
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-PLIST_FILES=	bin/yeahwm man/man1/yeahwm.1.gz
+PLIST_FILES=	bin/yeahwm share/man/man1/yeahwm.1.gz
 PORTDOCS=	README*
 
 OPTIONS_DEFINE=	DOCS MOTIF
@@ -31,7 +31,7 @@ post-patch-MOTIF-off:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/yeahwm ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/yeahwm.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/yeahwm.1 ${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
