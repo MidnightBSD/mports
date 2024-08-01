@@ -1,5 +1,3 @@
-# Created by: Cyrille Lefevre <clefevre@citeweb.net>
-
 PORTNAME=	gengetopt
 PORTVERSION=	2.23
 CATEGORIES=	devel
@@ -33,7 +31,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 \
-		${MAN1PREFIX}/man/man1/
+		${PREFIX}/share/man/man1/
 	@${MKDIR} ${PREFIX}/${INFO_PATH}
 	${INSTALL_DATA} ${WRKSRC}/doc/${PORTNAME}.info \
 		${PREFIX}/${INFO_PATH}
