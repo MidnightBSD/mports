@@ -12,6 +12,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
 USES=		cmake:_internal compiler:c++11-lang cpe localbase ncurses ssl
+CPE_VENDOR=	cmake_project
 CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir="/${DATADIR_REL}" \
