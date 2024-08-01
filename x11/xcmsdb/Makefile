@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	x11
 
-PLIST_FILES=	bin/xcmsdb man/man1/xcmsdb.1.gz
+PLIST_FILES=	bin/xcmsdb share/man/man1/xcmsdb.1.gz
 
 .include <bsd.port.mk>

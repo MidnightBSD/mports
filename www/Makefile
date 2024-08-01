@@ -266,7 +266,6 @@ SUBDIR += tomcat9
 SUBDIR += tomcat101
 SUBDIR += transmission-web
 SUBDIR += validator
-SUBDIR += varnish6
 SUBDIR += varnish7
 SUBDIR += w3m
 SUBDIR += webinject

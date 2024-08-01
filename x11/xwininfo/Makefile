@@ -15,6 +15,6 @@ LIB_DEPENDS=	libxcb-icccm.so:x11/xcb-util-wm
 
 CONFIGURE_ARGS=	--with-xcb-icccm
 
-PLIST_FILES=	bin/xwininfo man/man1/xwininfo.1.gz
+PLIST_FILES=	bin/xwininfo share/man/man1/xwininfo.1.gz
 
 .include <bsd.port.mk>

@@ -10,6 +10,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 libfs
 
-PLIST_FILES=	bin/fslsfonts man/man1/fslsfonts.1.gz
+PLIST_FILES=	bin/fslsfonts share/man/man1/fslsfonts.1.gz
 
 .include <bsd.port.mk>

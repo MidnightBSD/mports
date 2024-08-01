@@ -438,3 +438,4 @@ lang/perl5.36|lang/perl5.38|2024-07-31|Updated default to 5.38, removed old vers
 security/l0phtcrack||2024-07-31|Has expired: Obsolete, Microsoft LANMAN and NT password hashes are deprecated
 security/vnccrack||2024-07-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while ve
 rsion in ports is 1.0.0
+www/varnish6|www/varnish7|2023-12-31|Has expired: Unsupported version upstream, consider migrating to www/varnish7

@@ -10,6 +10,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app
 USE_XORG=	xkbfile x11
 
-PLIST_FILES=	bin/xkbprint man/man1/xkbprint.1.gz
+PLIST_FILES=	bin/xkbprint share/man/man1/xkbprint.1.gz
 
 .include <bsd.port.mk>
