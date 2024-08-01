@@ -1,22 +1,24 @@
 PORTNAME=	libusbmuxd
-PORTVERSION=	2.0.2
+PORTVERSION=	2.1.0
 CATEGORIES=	comms
 MASTER_SITES=	https://github.com/libimobiledevice/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Communication interface library for usbmuxd
+WWW=		https://www.libimobiledevice.org
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libplist-2.0.so:devel/libplist
+LIB_DEPENDS=	libimobiledevice-glue-1.0.so:comms/libimobiledevice-glue \
+		libplist-2.0.so:devel/libplist
 
-CONFLICTS_INSTALL=usbmuxd-1.0.[6-8]
+USES=		cpe libtool pathfix pkgconfig tar:bzip2
+CPE_VENDOR=	libimobiledevice
+USE_LDCONFIG=	yes
 
-USES=		libtool pathfix pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USE_LDCONFIG=	yes
 
 PORTDOCS=	AUTHORS README.md
 
@@ -32,6 +34,6 @@ INOTIFY_LDFLAGS=	-L${LOCALBASE}/lib -linotify
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

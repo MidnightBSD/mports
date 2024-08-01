@@ -7,7 +7,7 @@ MASTER_SITES=	FREEBSD_LOCAL/eadler
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Version control system
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 CONFLICTS_INSTALL?=	cvs+ipv6-[12]* cvs-devel-[12]*
 
@@ -35,6 +35,7 @@ WRKSRC=		${WRKDIR}/call/cvs-build
 DESTDIRNAME=	NADA
 MAKE_ARGS=	DESTDIR=${FAKE_DESTDIR}${TRUE_PREFIX}
 MAKE_ARGS+=	WITHOUT_PIE=true
+MAKE_ARGS+=	MANDIR=/share/man/man
 
 pre-install:
 	${MKDIR} ${PREFIX}/info

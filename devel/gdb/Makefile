@@ -165,7 +165,7 @@ do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/gdb/gdb \
 		${PREFIX}/bin/gdb${VER}
 	${INSTALL_MAN} ${WRKSRC}/gdb/doc/gdb.1 \
-		${MAN1PREFIX}/man/man1/gdb${VER}.1
+		${PREFIX}/share/man/man1/gdb${VER}.1
 	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-syscalls )
 
@@ -173,17 +173,17 @@ do-install-KGDB-on:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/gdb/kgdb \
 		${FAKE_DESTDIR}${PREFIX}/bin/kgdb${VER}
 	${INSTALL_MAN} ${FILESDIR}/kgdb/kgdb.1 \
-		${FAKE_DESTDIR}${MAN1PREFIX}/man/man1/kgdb${VER}.1
+		${FAKE_DESTDIR}${PREFIX}/share/man/man1/kgdb${VER}.1
 
 do-install-TUI-on:
 	${LN} -sf gdb${VER} ${FAKE_DESTDIR}${PREFIX}/bin/gdbtui${VER}
 
 do-install-GDB_LINK-on:
 	${LN} -sf gdb${VER} ${FAKE_DESTDIR}${PREFIX}/bin/gdb
-	${LN} -sf gdb${VER}.1 ${FAKE_DESTDIR}${MAN1PREFIX}/man/man1/gdb.1
+	${LN} -sf gdb${VER}.1 ${FAKE_DESTDIR}${PREFIX}/share/man/man1/gdb.1
 .if ${PORT_OPTIONS:MKGDB}
 	${LN} -sf kgdb${VER} ${FAKE_DESTDIR}${PREFIX}/bin/kgdb
-	${LN} -sf kgdb${VER}.1 ${FAKE_DESTDIR}${MAN1PREFIX}/man/man1/kgdb.1
+	${LN} -sf kgdb${VER}.1 ${FAKE_DESTDIR}$PREFIX}/share/man/man1/kgdb.1
 .endif
 
 do-install-PYTHON-on:

@@ -1,5 +1,6 @@
 PORTNAME=	hamlib
-PORTVERSION=	4.4
+PORTVERSION=	4.5.5
+PORTREVISION=	1
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF
 
@@ -22,20 +23,18 @@ USE_PYTHON=	py3kplist
 # $TCL_INCLUDE_SPEC
 SHEBANG_FILES=	bindings/perltest.pl
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--with-perl-binding \
 		--with-tcl-binding --with-tcl=${TCL_LIBDIR} \
 		--with-libusb \
 		--with-python-binding
-CONFIGURE_ENV=	LIBUSB_LIBS="-lusb"
+CONFIGURE_ENV=	LIBUSB_LIBS="-lusb" cf_with_cxx=yes
 INSTALL_TARGET=	install-strip
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
-PLIST_SUB=	VER=${PORTVERSION} TCL_VER=${TCL_VER}
+PLIST_SUB=	TCL_VER=${TCL_VER}
 OPTIONS_DEFINE=	DOCS
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|python3-config|${PYTHON_CMD}-config|g' \
-		${WRKSRC}/macros/ax_python_devel.m4
 post-build:
 	${PERL5} -pi -e 's/ doc_(perl|site|\$$\(INSTALLDIRS\))_install$$//' \
 		${WRKSRC}/bindings/Hamlib-pl.mk

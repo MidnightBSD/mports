@@ -22,6 +22,6 @@ CONFIGURE_ARGS+=	--datarootdir=${DATADIR}
 CONFLICTS_INSTALL=	sunpromake
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/man/dmake.tf ${PREFIX}/man/man1/dmake.1
+	${INSTALL_MAN} ${WRKSRC}/man/dmake.tf ${PREFIX}/share/man/man1/dmake.1
 
 .include <bsd.port.mk>

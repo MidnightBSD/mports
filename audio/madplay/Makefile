@@ -1,16 +1,15 @@
-
-
 PORTNAME=	madplay
 PORTVERSION=	0.15.2b
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	SF/mad/${PORTNAME}/${PORTVERSION} \
 		ftp://ftp.mars.org/pub/mpeg/
 
 MAINTAINER=	asa@gascom.ru
 COMMENT=	Madplay MP3 player (part of MAD project)
+WWW=		https://www.underbit.com/products/mad/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=	libmad.so:audio/libmad \

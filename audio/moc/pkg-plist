@@ -1,5 +1,5 @@
 bin/mocp
-man/man1/mocp.1.gz
+share/man/man1/mocp.1.gz
 %%DOCSDIR%%/README
 %%DOCSDIR%%/README_equalizer
 %%DOCSDIR%%/THANKS
