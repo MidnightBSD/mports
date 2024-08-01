@@ -10,6 +10,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app
 USE_XORG=	xt xmu
 
-PLIST_FILES=	bin/smproxy man/man1/smproxy.1.gz
+PLIST_FILES=	bin/smproxy share/man/man1/smproxy.1.gz
 
 .include <bsd.port.mk>

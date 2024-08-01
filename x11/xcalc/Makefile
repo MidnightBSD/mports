@@ -1,5 +1,5 @@
 PORTNAME=	xcalc
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ RUN_DEPENDS=	font-misc-misc>=1.1.2:x11-fonts/font-misc-misc \
 		font-alias>=1.0.3:x11-fonts/font-alias \
 		xbitmaps>=1.1.0:x11/xbitmaps
 
-USES=		xorg xorg-cat:app
+USES=		tar:xz xorg xorg-cat:app
 USE_XORG=	x11 xt xaw
 
 .include <bsd.port.mk>

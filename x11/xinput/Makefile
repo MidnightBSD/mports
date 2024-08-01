@@ -13,5 +13,6 @@ USES=		tar:xz xorg xorg-cat:app
 USE_XORG=	xorgproto x11 xi xext xrandr xinerama
 
 PLIST_FILES=	bin/xinput man/man1/xinput.1.gz
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 
 .include <bsd.port.mk>

@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	x11 xxf86vm
 
-PLIST_FILES=	bin/xgamma man/man1/xgamma.1.gz
+PLIST_FILES=	bin/xgamma share/man/man1/xgamma.1.gz
 
 .include <bsd.port.mk>

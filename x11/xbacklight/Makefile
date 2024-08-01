@@ -12,6 +12,6 @@ LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 xrender xrandr xcb
 
-PLIST_FILES=	bin/xbacklight man/man1/xbacklight.1.gz
+PLIST_FILES=	bin/xbacklight share/man/man1/xbacklight.1.gz
 
 .include <bsd.port.mk>

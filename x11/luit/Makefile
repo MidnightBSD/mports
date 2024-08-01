@@ -26,6 +26,6 @@ CONFIGURE_ARGS=	--x-libraries=${LOCALBASE}/lib \
 		--with-locale-alias=${LOCALBASE}/lib/X11/locale/locale.alias \
 		--with-pkg-config=${LOCALBASE}/bin/pkg-config \
 
-PLIST_FILES=	bin/luit man/man1/luit.1.gz
+PLIST_FILES=	bin/luit share/man/man1/luit.1.gz
 
 .include <bsd.port.mk>

@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	x11 xt
 
-PLIST_FILES=	bin/appres man/man1/appres.1.gz
+PLIST_FILES=	bin/appres share/man/man1/appres.1.gz
 
 .include <bsd.port.mk>

@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	x11 xmuu xau
 
-PLIST_FILES=	bin/xhost man/man1/xhost.1.gz
+PLIST_FILES=	bin/xhost share/man/man1/xhost.1.gz
 
 .include <bsd.port.mk>

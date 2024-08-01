@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 xxf86dga xt xaw7 xmu
 
-PLIST_FILES=	bin/dga man/man1/dga.1.gz
+PLIST_FILES=	bin/dga share/man/man1/dga.1.gz
 
 .include <bsd.port.mk>

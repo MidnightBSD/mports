@@ -13,6 +13,6 @@ USE_GL=		gl
 
 USES=		gl xorg xorg-cat:app tar:xz
 USE_XORG=	x11 xorgproto
-PLIST_FILES=	bin/xdriinfo man/man1/xdriinfo.1.gz
+PLIST_FILES=	bin/xdriinfo share/man/man1/xdriinfo.1.gz
 
 .include <bsd.port.mk>

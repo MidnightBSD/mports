@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	xv x11
 
-PLIST_FILES=	bin/xvinfo man/man1/xvinfo.1.gz
+PLIST_FILES=	bin/xvinfo share/man/man1/xvinfo.1.gz
 
 .include <bsd.port.mk>

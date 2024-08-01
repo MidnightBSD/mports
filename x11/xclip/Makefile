@@ -22,7 +22,7 @@ LDFLAGS+=	-L/usr/local/lib
 
 PLIST_FILES=	bin/xclip bin/xclip-copyfile bin/xclip-cutfile \
 		bin/xclip-pastefile \
-		man/man1/xclip.1.gz man/man1/xclip-copyfile.1.gz
+		share/man/man1/xclip.1.gz share/man/man1/xclip-copyfile.1.gz
 
 post-patch:
 	${REINPLACE_CMD} 's,mktemp,mktemp -t xclip,' ${WRKSRC}/xclip-copyfile
