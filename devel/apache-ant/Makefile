@@ -60,8 +60,8 @@ do-install:
 .endfor
 
 	@${ECHO_MSG} -n ">> Installing manpages..."
-	@${INSTALL_MAN} ${MANPAGE_WRKSRC}/ant.1 ${MAN1PREFIX}/man/man1
-	@${INSTALL_MAN} ${MANPAGE_WRKSRC}/build.xml.5 ${MAN5PREFIX}/man/man5
+	@${INSTALL_MAN} ${MANPAGE_WRKSRC}/ant.1 ${PREFIX}/share/man/man1
+	@${INSTALL_MAN} ${MANPAGE_WRKSRC}/build.xml.5 ${PREFIX}/share/man/man5
 	@${ECHO_MSG} " [ DONE ]"
 
 .if ${PORT_OPTIONS:MDOCS}

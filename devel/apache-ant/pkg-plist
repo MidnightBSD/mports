@@ -70,4 +70,4 @@
 %%DATADIR%%/lib/libraries.properties
 bin/ant
 share/man/man1/ant.1.gz
-man/man5/build.xml.5.gz
+share/man/man5/build.xml.5.gz
