@@ -13,7 +13,7 @@ libdata/pkgconfig/dconf.pc
 libexec/dconf-service
 share/man/man1/dconf-service.1.gz
 share/man/man1/dconf.1.gz
-man/man7/dconf.7.gz
+share/man/man7/dconf.7.gz
 share/bash-completion/completions/dconf
 share/dbus-1/services/ca.desrt.dconf.service
 share/vala/vapi/dconf.deps
