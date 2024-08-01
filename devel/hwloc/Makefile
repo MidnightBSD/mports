@@ -1,11 +1,12 @@
 PORTNAME=	hwloc
-PORTVERSION=	1.11.11
+PORTVERSION=	1.11.13
 CATEGORIES=	devel
 MASTER_SITES=	http://www.open-mpi.org/software/hwloc/v${PORTVERSION:R}/downloads/ \
 		http://icl.cs.utk.edu/open-mpi/software/hwloc/v${PORTVERSION:R}/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable Hardware Locality software package
+WWW=		https://www.open-mpi.org/projects/hwloc/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING

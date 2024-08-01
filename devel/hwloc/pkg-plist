@@ -33,7 +33,7 @@ include/hwloc/rename.h
 lib/libhwloc.a
 lib/libhwloc.so
 lib/libhwloc.so.5
-lib/libhwloc.so.5.7.8
+lib/libhwloc.so.5.7.10
 libdata/pkgconfig/hwloc.pc
 share/man/man1/hwloc-annotate.1.gz
 share/man/man1/hwloc-assembler-remote.1.gz
@@ -418,7 +418,7 @@ share/man/man3/hwlocality_openfabrics.3.gz
 share/man/man3/hwlocality_syntheticexport.3.gz
 share/man/man3/hwlocality_tinker.3.gz
 share/man/man3/hwlocality_xmlexport.3.gz
-man/man7/hwloc.7.gz
+share/man/man7/hwloc.7.gz
 %%CAIRO%%share/applications/lstopo.desktop
 share/hwloc/hwloc-valgrind.supp
 share/hwloc/hwloc.dtd

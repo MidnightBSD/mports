@@ -496,7 +496,7 @@ share/man/man3/hwlocality_shmem.3.gz
 share/man/man3/hwlocality_syntheticexport.3.gz
 share/man/man3/hwlocality_tinker.3.gz
 share/man/man3/hwlocality_xmlexport.3.gz
-man/man7/hwloc.7.gz
+share/man/man7/hwloc.7.gz
 share/bash-completion/completions/hwloc
 %%DATADIR%%/hwloc-ps.www/README
 %%DATADIR%%/hwloc-ps.www/assets/index.html
