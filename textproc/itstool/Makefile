@@ -1,12 +1,11 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	itstool
-PORTVERSION=	2.0.6
+PORTVERSION=	2.0.7
 CATEGORIES=	textproc
 MASTER_SITES=	http://files.itstool.org/itstool/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Make XML documents translatable through po files
+WWW=		https://itstool.org/
 
 LICENSE=	gpl3
 

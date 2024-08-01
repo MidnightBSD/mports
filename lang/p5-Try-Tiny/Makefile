@@ -1,7 +1,5 @@
-# Created by: Anton Berezin <tobez@FreeBSD.org>
-
 PORTNAME=	Try-Tiny
-PORTVERSION=	0.30
+PORTVERSION=	0.31
 CATEGORIES=	lang perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:ETHER
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Minimal try/catch with proper localization of $$@
+WWW=		https://metacpan.org/release/Try-Tiny
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENCE
