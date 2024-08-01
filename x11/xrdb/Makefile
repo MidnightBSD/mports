@@ -1,5 +1,5 @@
 PORTNAME=	xrdb
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +10,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app
 USE_XORG=	xmuu x11
 
-PLIST_FILES=	bin/xrdb man/man1/xrdb.1.gz
+PLIST_FILES=	bin/xrdb share/man/man1/xrdb.1.gz
 
 .include <bsd.port.mk>

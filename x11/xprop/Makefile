@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	xmuu x11
 
-PLIST_FILES=	bin/xprop man/man1/xprop.1.gz
+PLIST_FILES=	bin/xprop share/man/man1/xprop.1.gz
 
 .include <bsd.port.mk>

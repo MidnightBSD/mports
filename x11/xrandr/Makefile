@@ -13,6 +13,6 @@ USE_XORG=	xrandr xrender x11
 
 PLIST_FILES=	bin/xrandr \
 		bin/xkeystone \
-		man/man1/xrandr.1.gz
+		share/man/man1/xrandr.1.gz
 
 .include <bsd.port.mk>
