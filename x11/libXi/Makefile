@@ -1,7 +1,6 @@
 PORTNAME=	libXi
-DISTVERSION=	1.8
+DISTVERSION=	1.8.1
 PORTEPOCH=	1
-PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +9,7 @@ WWW=		https://www.freedesktop.org/Software/xlibs
 
 LICENSE=	mit
 
-USES=		cpe xorg xorg-cat:lib
+USES=		cpe tar:xz xorg xorg-cat:lib
 CPE_VENDOR=	x.org
 USE_XORG=	x11 xext xfixes xorgproto
 
