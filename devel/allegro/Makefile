@@ -64,7 +64,7 @@ post-patch-JACK-on:
 		${WRKSRC}/src/unix/jack.c
 
 post-install:
-	${INSTALL_MAN} ${INSTALL_WRKSRC}/docs/man/*.3 ${STAGEDIR}${MAN3PREFIX}/man/man3/
+	${INSTALL_MAN} ${INSTALL_WRKSRC}/docs/man/*.3 ${STAGEDIR}${PREFIX}/share/man/man3/
 
 post-install-EXAMPLES-on:
 	@(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR})
