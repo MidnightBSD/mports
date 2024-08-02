@@ -22,6 +22,7 @@ SUBDIR += docbook-xsd
 SUBDIR += docbook-xsl
 SUBDIR += docbook-xsl-ns
 SUBDIR += docbookide.el
+SUBDIR += docbook2mdoc
 SUBDIR += dsssl-docbook-modular
 SUBDIR += duncan
 SUBDIR += easydiff
