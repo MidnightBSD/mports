@@ -11,6 +11,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		tar:xz xorg xorg-cat:app
 USE_XORG=	x11 xcb xi xt xext xmu xrender
 
-PLIST_FILES=	bin/xeyes man/man1/xeyes.1.gz
+PLIST_FILES=	bin/xeyes share/man/man1/xeyes.1.gz
 
 .include <bsd.port.mk>
