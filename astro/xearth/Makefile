@@ -18,7 +18,7 @@ USE_XORG=	x11 xext sm ice xt
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/xearth ${PREFIX}/bin
-	@${INSTALL_MAN} ${WRKSRC}/xearth.man ${MANPREFIX}/man/man1/xearth.1
+	@${INSTALL_MAN} ${WRKSRC}/xearth.man ${PREFIX}/share/man/man1/xearth.1
 	@${MKDIR} ${PREFIX}/lib/X11/xearth
 
 .include <bsd.port.mk>
