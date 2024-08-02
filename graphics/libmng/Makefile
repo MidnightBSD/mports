@@ -25,7 +25,7 @@ MNG_OPTIMIZE_MAKE_ARGS=	WITH_MNG_OPTIMIZE=true
 MNG_OPTIMIZE_MAKE_ARGS_OFF=	WITH_MNG_OPTIMIZE=off
 
 post-install:
-	cd ${WRKSRC}/doc/man && ${INSTALL_MAN} libmng.3 ${PREFIX}/man/man3 \
-		&& ${INSTALL_MAN} mng.5 jng.5 ${PREFIX}/man/man5
+	cd ${WRKSRC}/doc/man && ${INSTALL_MAN} libmng.3 ${PREFIX}/share/man/man3 \
+		&& ${INSTALL_MAN} mng.5 jng.5 ${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>
