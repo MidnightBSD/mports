@@ -21,7 +21,7 @@ GH_ACCOUNT=	jarun
 NO_BUILD=	yes
 NO_ARCH=	yes
 
-PLIST_FILES=	bin/googler man/man1/googler.1.gz
+PLIST_FILES=	bin/googler share/man/man1/googler.1.gz
 
 post-patch:
 	@${SED} -i.bak 's/^\(ENABLE_SELF_UPGRADE_MECHANISM = \)True$$/\1False/' \
@@ -29,6 +29,6 @@ post-patch:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}/${MANPREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}/${MANPREFIX}/share/man/man1/
 
 .include <bsd.port.mk>
