@@ -1,6 +1,6 @@
 PORTNAME=		nsupdate
 PORTVERSION=		9.16.5
-PORTREVISION=		0
+PORTREVISION=		1
 CATEGORIES=		dns net
 MASTER_SITES=		ISC/bind9/${ISCVERSION}
 PKGNAMEPREFIX=		samba-
@@ -8,8 +8,9 @@ DISTNAME=		bind-${ISCVERSION}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		nsupdate utility with the GSS-TSIG support
+WWW=		https://www.isc.org/software/bind
 
-LICENSE=		mpl
+LICENSE=		MPL20
 LICENSE_FILE=		${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=		libuv.so:devel/libuv
@@ -20,6 +21,7 @@ USES=			autoreconf compiler:c11 cpe libedit libtool pkgconfig ssl tar:xz
 ISCVERSION=		9.16.5
 
 CPE_VENDOR=		isc
+CPE_PRODUCT=		bind
 CPE_VERSION=		${ISCVERSION:C/-.*//}
 .if ${ISCVERSION:M*-*}
 CPE_UPDATE=		${ISCVERSION:C/.*-//:tl}

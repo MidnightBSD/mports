@@ -1,27 +1,24 @@
 PORTNAME=	nslint
-PORTVERSION=	3.1
-PORTREVISION=	1
+PORTVERSION=	3.2
 CATEGORIES=	dns
 MASTER_SITES=	ftp://ftp.ee.lbl.gov/ \
 		FREEBSD_LOCAL/ehaupt
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/.a/a/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perform consistency checks on DNS zone files
 WWW=		https://ee.lbl.gov/ftp.html
 
 LICENSE=	bsd4
-#not exactly, but it contains the advertising clause.
 
 GNU_CONFIGURE=	yes
 
 ALL_TARGET=	${PORTNAME}
-INSTALL_TARGET=	install
 
 BOOTFILE?=	/etc/namedb/named.boot
 CONFFILE?=	/etc/namedb/named.conf
 
-PLIST_FILES=	bin/nslint man/man8/nslint.8.gz
+PLIST_FILES=	bin/nslint \
+		share/man/man8/nslint.8.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^\ \{4\}V_CCOPT/d' ${WRKSRC}/configure
@@ -29,5 +26,9 @@ post-patch:
 		s|/etc/named.conf|${CONFFILE}|' \
 			${WRKSRC}/${PORTNAME}.c \
 			${WRKSRC}/${PORTNAME}.8
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/nslint ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/nslint.8 ${STAGEDIR}${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

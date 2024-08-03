@@ -1,5 +1,3 @@
-# Created by: Emanuel Haupt <ehaupt@critical.ch>
-
 PORTNAME=	zonenotify
 PORTVERSION=	0.1
 PORTREVISION=	1
@@ -9,6 +7,7 @@ MASTER_SITES=	http://www.morettoni.net/bsd/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DNS notify sender written in C
+WWW=		http://www.morettoni.net/zonenotify.en.html
 
 LICENSE=	bsd2
 
