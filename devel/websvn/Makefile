@@ -1,27 +1,30 @@
 PORTNAME=	websvn
-PORTVERSION=	2.7.0
+PORTVERSION=	2.8.4
 CATEGORIES=	devel www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online Subversion repository browser
+WWW=		https://websvnphp.github.io/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/license.txt
 
-RUN_DEPENDS=	${LOCALBASE}/bin/svn:devel/subversion \
-		${PEARDIR}/Archive/Tar.php:devel/pear@${PHP_FLAVOR} \
-		${PEARDIR}/geshi.php:devel/pear-geshi@${PHP_FLAVOR} \
-		${PEARDIR}/Text/Diff.php:devel/pear-Text_Diff@${PHP_FLAVOR}
+.if ${WITH_SUBVERSION_VER:U} == LTS
+RUN_DEPENDS=	subversion-lts>0:devel/subversion-lts
+.else
+RUN_DEPENDS=	subversion>0:devel/subversion
+.endif
+RUN_DEPENDS+=	${LOCALBASE}/bin/composer:devel/php-composer@${PHP_FLAVOR}
 
-USES=		php:flavors cpe
+USES=		php:web,flavors cpe
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME}php
 
-USE_PHP=	iconv pcre xml mbstring
+USE_PHP=	iconv xml mbstring zlib dom
 
-NO_BUILD=	yes
 NO_ARCH=	yes
+NO_BUILD=	yes
 
 PEARDIR?=	${LOCALBASE}/share/pear
 
