@@ -39,6 +39,6 @@ post-install:
 	${STRIP_CMD} ${PREFIX}/lib/libluajit-5.1.so.${LUAJIT_SOVERSION}
 	${LN} -sf ${PORTNAME}-${LUAJIT_VERSION} \
 		${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${WRKSRC}/etc/luajit.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/etc/luajit.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
