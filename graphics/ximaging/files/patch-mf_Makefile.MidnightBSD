@@ -11,7 +11,7 @@
 +ENABLE_OMP = 1
 +
 +PREFIX ?= /usr/local
-+MANDIR = $(PREFIX)/man
++MANDIR = $(PREFIX)/share/man
 +APPLRESDIR = $(PREFIX)/etc/X11/app-defaults
 +
 +INCDIRS = -I/usr/local/include 
