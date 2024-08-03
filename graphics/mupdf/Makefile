@@ -30,7 +30,7 @@ CPE_VENDOR=	artifex
 CFLAGS+=	`pkg-config --cflags libopenjp2`
 LDFLAGS+=	`pkg-config --libs libjpeg libopenjp2` -ljbig2dec
 
-MAKE_ARGS=	build=release prefix=${PREFIX} mandir=${PREFIX}/man verbose=yes \
+MAKE_ARGS=	build=release prefix=${PREFIX} mandir=${PREFIX}/share/man verbose=yes \
 		XCFLAGS+="-I${WRKSRC}/include/mupdf -fPIC" \
 		XLIBS+="-L${LOCALBASE}/lib -L${WRKSRC}/build/release" \
 		SOVERSION=${DISTVERSION}

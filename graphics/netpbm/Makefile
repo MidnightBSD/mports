@@ -14,11 +14,11 @@ LICENSE=	other
 
 FAKE_OPTS=	trueprefix
 
-LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libjbig.so:${PORTSDIR}/graphics/jbigkit \
-		libjasper.so:${PORTSDIR}/graphics/jasper \
-		libxml2.so:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS=	libtiff.so:graphics/tiff \
+		libpng.so:graphics/png \
+		libjbig.so:graphics/jbigkit \
+		libjasper.so:graphics/jasper \
+		libxml2.so:textproc/libxml2
 
 USES=		tar:tgz gmake jpeg perl5 shebangfix
 CFLAGS+=	-DPNG_DEPSTRUCT= -Iutil
@@ -61,13 +61,13 @@ do-configure:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/lib/util/pm_c_util.h ${STAGEDIR}${PREFIX}/include/
-	${INSTALL_MAN} ${WRKSRC}/doc/netpbm.1 ${STAGEDIR}${PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/doc/netpbm.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/USERDOC ${STAGEDIR}${DOCSDIR}/
 
 post-install-MANPAGES-on:
-	${INSTALL_MAN} ${WRKDIR}/doc/*.1 ${STAGEDIR}${PREFIX}/man/man1/
-	${INSTALL_MAN} ${WRKDIR}/doc/*.3 ${STAGEDIR}${PREFIX}/man/man3/
-	${INSTALL_MAN} ${WRKDIR}/doc/*.5 ${STAGEDIR}${PREFIX}/man/man5/
+	${INSTALL_MAN} ${WRKDIR}/doc/*.1 ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKDIR}/doc/*.3 ${STAGEDIR}${PREFIX}/share/man/man3/
+	${INSTALL_MAN} ${WRKDIR}/doc/*.5 ${STAGEDIR}${PREFIX}/share/man/man5/
 
 .include <bsd.port.mk>

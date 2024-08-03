@@ -1,36 +1,30 @@
-
-
 PORTNAME=	libqrencode
-PORTVERSION=	3.4.4
-PORTREVISION=	1
+PORTVERSION=	4.1.1
+DISTVERSIONPREFIX=	v
 CATEGORIES=	graphics
-MASTER_SITES=	http://fukuchi.org/works/qrencode/
-DISTNAME=	qrencode-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library for encoding data in a QR Code symbol
+WWW=		https://github.com/fukuchi/libqrencode
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		pathfix pkgconfig libtool
+USES=		cmake iconv pathfix pkgconfig
+USE_GITHUB=	yes
+GH_ACCOUNT=	fukuchi
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-LDFLAGS+=	-L${LOCALBASE}/lib
-CFLAGS+=	-I${LOCALBASE}/include
 
+CMAKE_ARGS=	-DBUILD_SHARED_LIBS=ON
 PLIST_FILES=	bin/qrencode \
 		include/qrencode.h \
 		lib/libqrencode.so \
-		lib/libqrencode.so.3 \
-		lib/libqrencode.so.3.4.4 \
+		lib/libqrencode.so.4 \
+		lib/libqrencode.so.${PORTVERSION} \
 		libdata/pkgconfig/libqrencode.pc \
-		man/man1/qrencode.1.gz
-
-post-patch:
-	@${REINPLACE_CMD} -e 's,libpng12,libpng,' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e '9s|$$| -lpthread|' ${WRKSRC}/libqrencode.pc.in
+		share/man/man1/qrencode.1.gz
 
 .include <bsd.port.mk>
