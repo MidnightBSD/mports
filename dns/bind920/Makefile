@@ -1,33 +1,32 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.19.24
+DISTVERSION=	9.20.0
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
-PORTREVISION=	1
+PORTREVISION=	0
 .else
 # XXX: correct version
-# dns/bind9xx here
-PORTREVISION=	1
+# dns/bind920 here
+PORTREVISION=	0
 .endif
 CATEGORIES=	dns net
 MASTER_SITES=	ISC/bind9/${DISTVERSION}
 .if defined(BIND_TOOLS_SLAVE)
 PKGNAMESUFFIX=	-tools
 .else
-# XXX: correct SUFFIX.
-PKGNAMESUFFIX=	9-devel
+PKGNAMESUFFIX=	920
 .endif
 
 MAINTAINER=	ports@MidnightBSD.org
+WWW=		https://www.isc.org/bind/
 .if defined(BIND_TOOLS_SLAVE)
 COMMENT=	Command line tools from BIND: delv, dig, host, nslookup...
 .else
 COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 .endif
-WWW=		https://www.isc.org/bind/
 
-# Uncomment when bind9xx comes of age. +3 years if ESV, +1year otherwise, see
+# Uncomment when bind922 comes of age. +3 years if ESV, +1year otherwise, see
 # https://kb.isc.org/docs/aa-00896
 # DEPRECATED=	End of life, please migrate to a newer version of BIND9
 # EXPIRATION_DATE=	XXX-12-31
@@ -71,14 +70,12 @@ EXTRA_PATCHES=		${PATCHDIR}/extrapatch-bind-tools
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/bind-tools
 .else
 USE_RC_SUBR=		named
-# XXX: remove the big warning about it being a development version from pkg-message
 SUB_FILES=		named.conf pkg-message
 EXTRA_PATCHES=		${PATCHDIR}/extrapatch-no-bind-tools
 
 PORTDOCS=	*
 
-# XXX: Add -devel
-CONFLICTS=	bind9[0-9][0-9]
+CONFLICTS=	bind918 bind9-devel
 .endif	# BIND_TOOLS_SLAVE
 
 MAKE_JOBS_UNSAFE=	yes
@@ -200,36 +197,33 @@ post-patch:
 .endfor
 
 .if !defined(BIND_TOOLS_SLAVE)
+
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mtree
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${PREFIX}/etc/mtree
+	${MKDIR} ${ETCDIR}
 .  for i in dynamic primary secondary working
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/$i
+	@${MKDIR} ${ETCDIR}/$i
 .  endfor
-	${INSTALL_DATA} ${WRKDIR}/named.conf ${STAGEDIR}${ETCDIR}/named.conf.sample
-	${INSTALL_DATA} ${FILESDIR}/named.root ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/empty.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
-	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
-		${STAGEDIR}${ETCDIR}/rndc.conf.sample
-# FIXME: this is strange.
-	@${RM} -rf ${STAGEDIR}/wrkdirs
+	${INSTALL_DATA} ${WRKDIR}/named.conf ${ETCDIR}/named.conf.sample
+	${INSTALL_DATA} ${FILESDIR}/named.root ${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/empty.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${PREFIX}/etc/mtree/BIND.chroot.dist.sample
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/arm
 	${INSTALL_DATA} ${WRKSRC}/CHANGES* \
-		${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc/arm/_build/html && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/arm
+		${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc/arm/_build/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}/arm
 .else
 
 do-install:
 	for dir in bin lib doc/man; do \
-		(cd ${INSTALL_WRKSRC}/$$dir && ${SETENV} ${MAKE_ENV} ${FAKEROOT} ${MAKE_CMD} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}) ; \
+		(cd ${INSTALL_WRKSRC}/$$dir && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${FAKEROOT} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}) ; \
 	done
-	@${RM} -r ${STAGEDIR}${PREFIX}/include
+	@${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/include
 
 .endif	# BIND_TOOLS_SLAVE
 

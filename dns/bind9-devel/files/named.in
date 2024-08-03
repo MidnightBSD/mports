@@ -51,6 +51,7 @@ named_wait=${named_wait:-"NO"}
 named_wait_host=${named_wait_host:-"localhost"}
 named_auto_forward=${named_auto_forward:-"NO"}
 named_auto_forward_only=${named_auto_forward_only:-"NO"}
+named_svcj_options=${named_svcj_options:-"net_basic"}
 
 # Not configuration variables but having them here keeps rclint happy
 required_dirs="${named_chrootdir}"
@@ -309,6 +310,24 @@ rndc()
 
 named_prestart()
 {
+	# Is the user using a sandbox?
+	#
+	if [ -n "${named_chrootdir}" ]; then
+		rc_flags="${rc_flags} -t ${named_chrootdir}"
+		checkyesno named_chroot_autoupdate && chroot_autoupdate
+
+		case "${altlog_proglist}" in
+		  *named*)
+		    ;;
+		  *)
+		    warn 'Using chroot without setting altlog_proglist, logging may not'
+		    warn 'work correctly.  Run sysrc altlog_proglist+=named'
+		    ;;
+		esac
+	else
+		named_symlink_enable=NO
+	fi
+
 	find_pidfile
 	find_sessionkeyfile
 
@@ -333,24 +352,6 @@ named_prestart()
 	command_args="-u ${named_uid:=root} -c ${named_conf} ${command_args}"
 
 	local line nsip firstns
-
-	# Is the user using a sandbox?
-	#
-	if [ -n "${named_chrootdir}" ]; then
-		rc_flags="${rc_flags} -t ${named_chrootdir}"
-		checkyesno named_chroot_autoupdate && chroot_autoupdate
-
-		case "${altlog_proglist}" in
-		  *named*)
-		    ;;
-		  *)
-		    warn 'Using chroot without setting altlog_proglist, logging may not'
-		    warn 'work correctly.  Run sysrc altlog_proglist+=named'
-		    ;;
-		esac
-	else
-		named_symlink_enable=NO
-	fi
 
 	# Create an rndc.key file for the user if none exists
 	#
