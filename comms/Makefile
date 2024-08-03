@@ -14,6 +14,7 @@ SUBDIR += hidapi
 SUBDIR += iwmbt-firmware
 SUBDIR += kermit
 SUBDIR += libimobiledevice
+SUBDIR += libimobiledevice-glue
 SUBDIR += libirman
 SUBDIR += lirc
 SUBDIR += libusbmuxd
