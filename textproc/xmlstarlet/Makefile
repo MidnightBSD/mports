@@ -17,7 +17,7 @@ CONFIGURE_ARGS=	--with-libxml-prefix=${LOCALBASE} \
 		--with-libxslt-prefix=${LOCALBASE} \
 		${ICONV_CONFIGURE_ARG} \
 		--disable-static-libs
-PLIST_FILES=	bin/xml man/man1/xmlstarlet.1.gz
+PLIST_FILES=	bin/xml share/man/man1/xmlstarlet.1.gz
 PORTDOCS=	xmlstarlet.txt \
 		xmlstarlet-man.xml \
 		xmlstarlet-ug.html xmlstarlet-ug.pdf \
