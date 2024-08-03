@@ -10,10 +10,12 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Popular virtual window manager for X
+
 WWW=		https://www.fvwm.org/
 
 LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	gm4:devel/m4 \
 		p5-XML-Parser>=0:textproc/p5-XML-Parser
@@ -27,7 +29,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-mandoc --without-gnome --disable-gtk \
 		--without-rplay-library \
 		ac_cv_path_PYTHON=${PYTHON_CMD}
-USES=		cpe gmake gnome perl5 pkgconfig python:3.4+ gettext readline xorg
+USES=		cpe gmake gnome perl5 pkgconfig python gettext readline xorg
 USE_XORG=	xcursor xft xinerama xpm xrender x11 ice xext
 USE_GNOME=	cairo
 CFLAGS=		-Wno-int-conversion
@@ -119,11 +121,11 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/system.fvwm2rc \
 		${STAGEDIR}${PREFIX}/etc/system.fvwm2rc.dist
 	${INSTALL_MAN} ${WRKSRC}/doc/fvwm/fvwm.1 \
-		${STAGEDIR}${PREFIX}/man/man1/fvwm.1
+		${STAGEDIR}${PREFIX}/share/man/man1/fvwm.1
 	${INSTALL_MAN} ${WRKSRC}/doc/fvwm/fvwm.1 \
-		${STAGEDIR}${PREFIX}/man/man1/fvwm2.1
-	${GZIP_CMD} ${STAGEDIR}${PREFIX}/man/man1/fvwm.1 \
-		${STAGEDIR}${PREFIX}/man/man1/fvwm2.1
+		${STAGEDIR}${PREFIX}/share/man/man1/fvwm2.1
+	${GZIP_CMD} ${STAGEDIR}${PREFIX}/share/man/man1/fvwm.1 \
+		${STAGEDIR}${PREFIX}/share/man/man1/fvwm2.1
 .if ${PORT_OPTIONS:MICONS}
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/fvwm/pixmaps
 	${INSTALL_DATA} ${WRKDIR}/icons/${FVWM_ICONS}/*.xpm \

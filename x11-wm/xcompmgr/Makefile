@@ -10,6 +10,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 xcomposite xext xfixes xdamage xrender
 
-PLIST_FILES=	bin/${PORTNAME} man/man1/${PORTNAME}.1.gz
+PLIST_FILES=	bin/${PORTNAME} share/man/man1/${PORTNAME}.1.gz
 
 .include <bsd.port.mk>
