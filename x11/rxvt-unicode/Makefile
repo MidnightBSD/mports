@@ -7,6 +7,7 @@ MASTER_SITE_SUBDIR=	. Attic
 
 MAINTAINER=	ports@MidnightbSD.org
 COMMENT=	Clone of the terminal emulator rxvt modified to support Unicode
+WWW=		http://software.schmorp.de/pkg/rxvt-unicode.html
 
 LICENSE=	gpl2
 
