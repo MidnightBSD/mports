@@ -44,7 +44,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/mDNSPosix/nss_mdns.conf \
 		${EXAMPLESDIR}
 	${INSTALL_MAN} ${WRKSRC}/mDNSPosix/nss_mdns.conf.5 \
-		${MANPREFIX}/share/man/man5
+		${PREFIX}/share/man/man5
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/mDNSPosix/nss_mdns.conf \
