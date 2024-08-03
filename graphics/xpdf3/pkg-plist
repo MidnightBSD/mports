@@ -1,39 +1,29 @@
-libexec/xpdf/pdfinfo
 libexec/xpdf/pdffonts
-libexec/xpdf/pdftops
 libexec/xpdf/pdfimages
+libexec/xpdf/pdfinfo
 libexec/xpdf/pdfdetach
-libexec/xpdf/pdftoppm
-libexec/xpdf/xpdf
-libexec/xpdf/pdftopng
 libexec/xpdf/pdftohtml
+libexec/xpdf/pdftopng
+libexec/xpdf/pdftoppm
+libexec/xpdf/pdftops
 libexec/xpdf/pdftotext
-%%ETCDIR%%rc.sample
+%%X11%%libexec/xpdf/xpdf
+%%X11%%bin/xpdf
+%%X11%%%%DESKTOPDIR%%/xpdf.desktop
 etc/man.d/xpdf.conf
-bin/xpdf
+%%DATADIR%%/man/man1/pdfdetach.1.gz
+%%DATADIR%%/man/man1/pdffonts.1.gz
+%%DATADIR%%/man/man1/pdfimages.1.gz
+%%DATADIR%%/man/man1/pdfinfo.1.gz
+%%DATADIR%%/man/man1/pdftohtml.1.gz
+%%DATADIR%%/man/man1/pdftopng.1.gz
+%%DATADIR%%/man/man1/pdftoppm.1.gz
+%%DATADIR%%/man/man1/pdftops.1.gz
+%%DATADIR%%/man/man1/pdftotext.1.gz
+%%X11%%%%DATADIR%%/man/man1/xpdf.1.gz
 %%DATADIR%%/man/man5/xpdfrc.5.gz
-%%DATADIR%%/share/man/man1/pdfimages.1.gz
-%%DATADIR%%/share/man/man1/pdftotext.1.gz
-%%DATADIR%%/share/man/man1/pdffonts.1.gz
-%%DATADIR%%/share/man/man1/pdftohtml.1.gz
-%%DATADIR%%/share/man/man1/pdftops.1.gz
-%%DATADIR%%/share/man/man1/pdfdetach.1.gz
-%%DATADIR%%/share/man/man1/pdftopng.1.gz
-%%DATADIR%%/share/man/man1/pdfinfo.1.gz
-%%DATADIR%%/share/man/man1/pdftoppm.1.gz
-%%DATADIR%%/share/man/man1/xpdf.1.gz
-%%DOCSDIR%%/README
-%%DOCSDIR%%/CHANGES
-%%DOCSDIR%%/ANNOUNCE
-%%DOCSDIR%%/hello.pdf
-share/licenses/xpdf3-3.04_11/catalog.mk
-share/licenses/xpdf3-3.04_11/LICENSE
-share/licenses/xpdf3-3.04_11/gpl2
-@dir libexec/xpdf
-@dir %%DATADIR%%/man/man5
-@dir %%DATADIR%%/share/man/man1
-@dir %%DATADIR%%/man
-@dir %%DATADIR%%
-@dir %%DOCSDIR%%
-@dir share/licenses/xpdf3-3.04_11
-@dir share/licenses
+%%PORTDOCS%%%%DOCSDIR%%/ANNOUNCE
+%%PORTDOCS%%%%DOCSDIR%%/CHANGES
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/hello.pdf
+@sample etc/xpdfrc.sample

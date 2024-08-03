@@ -17,7 +17,7 @@ CONFIGURE_ARGS=	--with-netpbm=${LOCALBASE}
 MAKE_ARGS=	prefix=${TRUE_PREFIX} exec_prefix=${TRUE_PREFIX} DESTDIR=${FAKE_DESTDIR}
 
 PLIST_FILES=	bin/gocr \
-		man/man1/gocr.1.gz
+		share/man/man1/gocr.1.gz
 
 PORTDOCS=	*
 
