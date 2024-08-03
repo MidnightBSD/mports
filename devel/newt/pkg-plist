@@ -2,8 +2,10 @@ bin/whiptail
 include/newt.h
 lib/libnewt.a
 lib/libnewt.so
-lib/libnewt.so.%%SOVERSION%%
+lib/libnewt.so.0.%%SOVERSION%%
 lib/libnewt.so.%%VERSION%%
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/_snack.so
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/snack.py
 %%TCL%%lib/whip%%VERSION%%/pkgIndex.tcl
 %%TCL%%lib/whip%%VERSION%%/whiptcl.so
 libdata/pkgconfig/libnewt.pc
@@ -41,6 +43,7 @@ share/man/man1/whiptail.1.gz
 %%NLS%%share/locale/id/LC_MESSAGES/newt.mo
 %%NLS%%share/locale/it/LC_MESSAGES/newt.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/newt.mo
+%%NLS%%share/locale/ka/LC_MESSAGES/newt.mo
 %%NLS%%share/locale/km/LC_MESSAGES/newt.mo
 %%NLS%%share/locale/kn/LC_MESSAGES/newt.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/newt.mo
