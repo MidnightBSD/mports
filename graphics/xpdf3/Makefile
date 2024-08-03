@@ -12,6 +12,7 @@ CONFLICTS_INSTALL=	xpdf4 xpdf3
 
 MAINTAINER=	kazuok@midnightbsd.org
 COMMENT=	Display PDF files and convert them to other formats
+WWW=		https://www.xpdfreader.com/
 
 LICENSE=	gpl2
 
@@ -19,6 +20,7 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share/xpdf
 USES=		gmake cpe localbase xorg
 USE_XORG=	ice sm x11 xext xt
 
@@ -30,7 +32,7 @@ CONFIGURE_ARGS=	--enable-opi \
 		--bindir="${PREFIX}/libexec/xpdf" \
 		--mandir="${PREFIX}/share/xpdf/man"
 
-MANPREFIX=	${PREFIX}/share/xpdf
+MANDIRS=	${PREFIX}/share/xpdf/man
 
 OPTIONS_DEFINE=	LIBPAPER TYPE1 X11 DOCS
 LIBPAPER_DESC=	Enable libpaper
