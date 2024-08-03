@@ -7,7 +7,9 @@ DISTFILES+=	owasp-dependency-check-${PORTVERSION}-maven-repository.tar.gz:source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Detects publicly disclosed vulnerabilities in project dependencies
-WWW=		https://jeremylong.github.io/DependencyCheck/dependency-check-cli/arguments.html
+WWW=		https://jeremylong.github.io/DependencyCheck \
+		https://www.owasp.org/index.php/OWASP_Dependency_Check \
+		https://jeremylong.github.io/DependencyCheck/dependency-check-cli/
 
 LICENSE=	apache2
 
