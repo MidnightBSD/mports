@@ -27,7 +27,7 @@ CPPFLAGS+=	-I${TCL_INCLUDEDIR} -DHAVE_TCL \
 LDFLAGS+=	-lX11 -ltcl${TCL_VER:S/.//} \
 		-ltk${TCL_VER:S/.//} -lm
 
-PLIST_FILES=	bin/uuwish bin/xdeview man/man1/xdeview.1.gz
+PLIST_FILES=	bin/uuwish bin/xdeview share/man/man1/xdeview.1.gz
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
@@ -36,7 +36,7 @@ OPTIONS_DEFINE=	DOCS
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/uuwish
-	${INSTALL_MAN} ${WRKSRC}/man/xdeview.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/xdeview.1 ${PREFIX}/share/man/man1
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
