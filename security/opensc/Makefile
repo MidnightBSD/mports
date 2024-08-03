@@ -1,5 +1,5 @@
 PORTNAME=	opensc
-DISTVERSION=	0.23.0
+DISTVERSION=	0.25.1
 CATEGORIES=	security devel
 
 MAINTAINER=	ports@MidnightBSD.org

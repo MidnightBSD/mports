@@ -1,5 +1,5 @@
 PORTNAME=	courier-authlib
-PORTVERSION=	0.72.0
+PORTVERSION=	0.72.1
 CATEGORIES?=	security mail
 .if defined(PKGNAMESUFFIX)
 MASTER_SITES=	SF/courier/authlib/${PORTVERSION}
@@ -35,9 +35,10 @@ do-install:
 .else	# !defined(PKGNAMESUFFIX)
 
 LIB_DEPENDS+=	libltdl.so:devel/libltdl \
+		libidn2.so:dns/libidn2 \
 		libcourier-unicode.so:devel/courier-unicode
 
-USES=		iconv gmake libtool localbase perl5 tar:bzip2
+USES=		iconv gmake libtool localbase perl5 pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_SUBMAKE=	yes
 
