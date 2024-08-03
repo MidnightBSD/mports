@@ -15,7 +15,8 @@ BUILD_DEPENDS=	${LOCALBASE}/share/foomatic/db/oldprinterids:print/foomatic-db
 RUN_DEPENDS=	${LOCALBASE}/share/foomatic/db/oldprinterids:print/foomatic-db
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake perl5
+USE_PERL5=	build
 
 post-patch:
 	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
