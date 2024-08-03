@@ -13,10 +13,10 @@
 %%ASIO%%lib/libnghttp2_asio.so.1
 %%ASIO%%lib/libnghttp2_asio.so.1.0.0
 %%ASIO%%libdata/pkgconfig/libnghttp2_asio.pc
-man/man1/h2load.1.gz
-man/man1/nghttp.1.gz
-man/man1/nghttpd.1.gz
-man/man1/nghttpx.1.gz
+share/man/man1/h2load.1.gz
+share/man/man1/nghttp.1.gz
+share/man/man1/nghttpd.1.gz
+share/man/man1/nghttpx.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/README.rst
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/asio-cl.cc
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/asio-cl2.cc
