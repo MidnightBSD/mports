@@ -18,7 +18,7 @@ USES=		bison gmake localbase pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash=/usr/local/lib \
 		--with-zlib \
-		--mandir=${MANPREFIX}/man \
+		--mandir=${PREFIX}/share/man \
 		--with-config_file=${PREFIX}/etc/aide.conf
 CONFIGURE_ENV=	YACC="bison -y"
 

@@ -1,5 +1,3 @@
-
-
 PORTNAME=	firewalk
 PORTVERSION=	5.0
 PORTREVISION=	5
@@ -30,7 +28,7 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/firewalk ${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/man/firewalk.8 ${MANPREFIX}/man/man8/
+	${INSTALL_MAN} ${WRKSRC}/man/firewalk.8 ${PREFIX}/share/man/man8/
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/BUGS ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/TODO ${DOCSDIR}

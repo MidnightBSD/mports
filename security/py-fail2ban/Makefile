@@ -74,7 +74,7 @@ post-install:
 .for file in fail2ban-client fail2ban-regex fail2ban-server fail2ban
 	${INSTALL_MAN} ${WRKSRC}/man/${file}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 .endfor
-	${INSTALL_MAN} ${WRKSRC}/man/jail.conf.5 ${STAGEDIR}${MANPREFIX}/man/man5/fail2ban-jail.conf.5
+	${INSTALL_MAN} ${WRKSRC}/man/jail.conf.5 ${STAGEDIR}${PREFIX}/share/man/man5/fail2ban-jail.conf.5
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
