@@ -26,6 +26,6 @@ post-install:
 	# To avoid conflict ATM - to be removed later
 	${MV} ${STAGEDIR}${PREFIX}/bin/tidy ${STAGEDIR}${PREFIX}/bin/tidy5
 	${MV} ${STAGEDIR}${PREFIX}/lib/libtidy.so ${STAGEDIR}${PREFIX}/lib/libtidy5.so
-	${MV} ${STAGEDIR}${MANPREFIX}/man/man1/tidy.1 ${STAGEDIR}${MANPREFIX}/man/man1/tidy5.1
+	${MV} ${STAGEDIR}${MANPREFIX}/man/man1/tidy.1 ${STAGEDIR}${PREFIX}/share/man/man1/tidy5.1
 
 .include <bsd.port.mk>
