@@ -20,10 +20,10 @@ share/man/man1/foomatic-perl-data.1.gz
 share/man/man1/foomatic-ppd-options.1.gz
 share/man/man1/foomatic-ppdfile.1.gz
 share/man/man1/foomatic-printjob.1.gz
-man/man8/foomatic-addpjloptions.8.gz
-man/man8/foomatic-getpjloptions.8.gz
-man/man8/foomatic-kitload.8.gz
-man/man8/foomatic-preferred-driver.8.gz
+share/man/man8/foomatic-addpjloptions.8.gz
+share/man/man8/foomatic-getpjloptions.8.gz
+share/man/man8/foomatic-kitload.8.gz
+share/man/man8/foomatic-preferred-driver.8.gz
 sbin/foomatic-addpjloptions
 sbin/foomatic-cleanupdrivers
 sbin/foomatic-extract-text
