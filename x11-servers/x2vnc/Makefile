@@ -19,6 +19,6 @@ USES=		xorg
 USE_XORG=	x11 xext xrandr xxf86dga ice xinerama xrandr xrender xscrnsaver sm
 
 PLIST_FILES=	bin/x2vnc \
-		man/man1/x2vnc.1.gz
+		share/man/man1/x2vnc.1.gz
 
 .include <bsd.port.mk>

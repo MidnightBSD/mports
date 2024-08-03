@@ -26,7 +26,7 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-printing=no
 CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI -I${PREFIX}/include -I/usr/local/include -L/usr/local/lib -liconv
 LDFLAGS+=	-L/usr/local/lib -liconv
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 USE_CSTD=	gnu89
 INSTALL_TARGET=	install-strip
 

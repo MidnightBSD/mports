@@ -20,6 +20,6 @@ OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	*
 
-PLIST_FILES=	bin/x2x man/man1/x2x.1.gz
+PLIST_FILES=	bin/x2x share/man/man1/x2x.1.gz
 
 .include <bsd.port.mk>
