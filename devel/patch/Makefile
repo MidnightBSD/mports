@@ -25,7 +25,7 @@ CPE_VENDOR=	gnu
 
 TEST_TARGET=	check
 
-PLIST_FILES=	bin/gpatch man/man1/gpatch.1.gz
+PLIST_FILES=	bin/gpatch share/man/man1/gpatch.1.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^LOG_COMPILER =/,+1s|$$(SHELL)|bash|' \
