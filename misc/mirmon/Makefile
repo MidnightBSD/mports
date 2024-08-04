@@ -1,5 +1,3 @@
-
-
 PORTNAME=	mirmon
 PORTVERSION=	2.11
 CATEGORIES=	misc
@@ -19,7 +17,7 @@ USE_PERL5_RUN=	yes
 SUB_FILES=	pkg-message
 SUB_LIST=	PREFIX=${PREFIX}
 
-PLIST_FILES=	bin/mirmon bin/probe man/man1/mirmon.1.gz
+PLIST_FILES=	bin/mirmon bin/probe share/man/man1/mirmon.1.gz
 
 .include <bsd.mport.options.mk>
 
@@ -44,7 +42,7 @@ do-install:
 		${SED} 's,^${PREFIX}/,,' >> ${TMPPLIST}
 	@${FIND} ${DATADIR} -type d | ${SORT} -r | \
 		${SED} 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
-	${INSTALL_MAN} ${WRKSRC}/mirmon.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/mirmon.1 ${PREFIX}/share/man/man1
 .if ! ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	${CP} ${WRKSRC}/mirmon.html ${DOCSDIR}
