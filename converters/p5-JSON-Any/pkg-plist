@@ -1,2 +1,2 @@
 %%SITE_PERL%%/JSON/Any.pm
-man/man3/JSON::Any.3.gz
+%%PERL5_MAN3%%/JSON::Any.3.gz
