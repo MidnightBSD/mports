@@ -1,8 +1,19 @@
-%%SITE_ARCH%%/Params/Validate.pm
-%%SITE_ARCH%%/Params/Validate/Constants.pm
-%%SITE_ARCH%%/Params/Validate/PP.pm
-%%SITE_ARCH%%/Params/Validate/XS.pm
-%%SITE_ARCH%%/Params/ValidatePP.pm
-%%SITE_ARCH%%/Params/ValidateXS.pm
-%%SITE_ARCH%%/auto/Params/Validate/XS/XS.so
-%%PERL5_MAN3%%/Params::Validate.3.gz
+%%SITE_PERL%%/man/man3/Params::Validate.3.gz
+%%SITE_PERL%%/Params/ValidateXS.pm
+%%SITE_PERL%%/Params/Validate.pm
+%%SITE_PERL%%/Params/Validate/Constants.pm
+%%SITE_PERL%%/Params/Validate/XS.pm
+%%SITE_PERL%%/Params/Validate/PP.pm
+%%SITE_PERL%%/Params/ValidatePP.pm
+%%SITE_PERL%%/auto/Params/Validate/XS/XS.so
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/Params/Validate
+@dir %%SITE_PERL%%/Params
+@dir %%SITE_PERL%%/auto/Params/Validate/XS
+@dir %%SITE_PERL%%/auto/Params/Validate
+@dir %%SITE_PERL%%/auto/Params
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

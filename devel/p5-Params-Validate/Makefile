@@ -21,7 +21,4 @@ TEST_DEPENDS=	p5-Readonly>=0:devel/p5-Readonly \
 USES=		perl5
 USE_PERL5=	modbuild
 
-post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Params/Validate/XS/XS.so
-
 .include <bsd.port.mk>
