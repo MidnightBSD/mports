@@ -49,4 +49,4 @@ share/man/man1/shownonascii.1.gz
 share/man/man1/showpartial.1.gz
 share/man/man1/showpicture.1.gz
 share/man/man1/splitmail.1.gz
-man/man4/mailcap.4.gz
+share/man/man4/mailcap.4.gz
