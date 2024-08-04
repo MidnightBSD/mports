@@ -22,4 +22,4 @@ include/dnet/tcp.h
 include/dnet/tun.h
 include/dnet/udp.h
 share/man/man3/dnet.3.gz
-man/man8/dnet.8.gz
+share/man/man8/dnet.8.gz
