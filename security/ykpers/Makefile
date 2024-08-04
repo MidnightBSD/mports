@@ -33,9 +33,9 @@ PLIST_FILES=	bin/ykchalresp \
 		lib/libykpers-1.so.1 \
 		lib/libykpers-1.so.${PORTVERSION} \
 		libdata/pkgconfig/ykpers-1.pc \
-		man/man1/ykchalresp.1.gz \
-		man/man1/ykinfo.1.gz \
-		man/man1/ykpersonalize.1.gz
+		share/man/man1/ykchalresp.1.gz \
+		share/man/man1/ykinfo.1.gz \
+		share/man/man1/ykpersonalize.1.gz
 
 OPTIONS_DEFINE=	STATIC
 
