@@ -25,6 +25,6 @@ IPV6_CONFIGURE_OFF=--disable-ipv6
 
 post-install-IPV6-on:
 	${RLN} ${FAKE_DESTDIR}${PREFIX}/sbin/fping  ${FAKE_DESTDIR}${PREFIX}/sbin/fping6
-	${RLN} ${FAKE_DESTDIR}${PREFIX}/man/man8/fping.8 ${FAKE_DESTDIR}${PREFIX}/man/man8/fping6.8
+	${RLN} ${FAKE_DESTDIR}${PREFIX}/man/man8/fping.8 ${FAKE_DESTDIR}${PREFIX}/share/man/man8/fping6.8
 
 .include <bsd.port.mk>
