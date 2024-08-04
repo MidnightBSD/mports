@@ -170,7 +170,7 @@ DOCS_CMAKE_ON= \
 	-DSPHINX_EXECUTABLE=${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} \
 	-DSPHINX_WARNINGS_AS_ERRORS=OFF \
 	-DLLVM_BUILD_DOCS=ON
-DOCS_PLIST_FILES=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
+DOCS_PLIST_FILES=	${MAN1SRCS:S|^|share/man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
 EXTRAS_DESC=		Extra clang tools
 EXTRAS_IMPLIES=		CLANG
 EXTRAS_PLIST_DIRS+=	${LLVM_DIR}/include/clang-tidy/plugin
@@ -745,7 +745,7 @@ build-plist:
 	${FIND} ${FAKE_DESTDIR}${LLVM_PREFIX} -type f -o -type l | \
 	    ${GREP} -v '_ignorelist.txt$$' | \
 	    ${GREP} -v '[/-]lit$$' | ${GREP} -v 'FileCheck$$' | \
-	    ${GREP} -v man/man1 | ${SED} -e 's|${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
+	    ${GREP} -v share/man/man1 | ${SED} -e 's|${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
 	    -e 's|${PYTHON_SITELIBDIR:C|${PREFIX}/||}|%%PYTHON_SITELIBDIR%%|' \
 	    -e 's|${PYTHON_EXT_SUFFIX:C/\./\\./g}${PYTHON_ABIVER}|%%PYTHON_EXT_SUFFIX%%%%PYTHON_ABIVER%%|' \
 	    -e 's|${LLVM_RELEASE}|%%LLVM_RELEASE%%|' \
