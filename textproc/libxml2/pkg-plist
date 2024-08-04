@@ -55,9 +55,9 @@ lib/libxml2.so
 lib/libxml2.so.2
 lib/libxml2.so.%%LIBVERSION%%
 libdata/pkgconfig/libxml-2.0.pc
-man/man1/xml2-config.1.gz
-man/man1/xmlcatalog.1.gz
-man/man1/xmllint.1.gz
+share/man/man1/xml2-config.1.gz
+share/man/man1/xmlcatalog.1.gz
+share/man/man1/xmllint.1.gz
 share/aclocal/libxml.m4
 %%PORTDOCS%%%%DOCSDIR%%/devhelp/general.html
 %%PORTDOCS%%%%DOCSDIR%%/devhelp/home.png
