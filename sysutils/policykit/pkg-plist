@@ -59,8 +59,8 @@ libexec/polkitd-old
 %%MANPAGES%%share/man/man1/polkit-auth.1.gz
 %%MANPAGES%%share/man/man1/polkit-config-file-validate.1.gz
 %%MANPAGES%%share/man/man1/polkit-policy-file-validate.1.gz
-%%MANPAGES%%man/man5/PolicyKit.conf.5.gz
-%%MANPAGES%%man/man8/PolicyKit.8.gz
+%%MANPAGES%%share/man/man5/PolicyKit.conf.5.gz
+%%MANPAGES%%share/man/man8/PolicyKit.8.gz
 share/PolicyKit/config.dtd
 share/PolicyKit/policy/org.freedesktop.policykit.policy
 share/dbus-1/interfaces/org.freedesktop.PolicyKit.AuthenticationAgent.xml

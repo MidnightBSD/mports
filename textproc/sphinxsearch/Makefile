@@ -153,10 +153,10 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/searchd ${STAGEDIR}${PREFIX}/sbin/searchd
 	${INSTALL_DATA}	   ${WRKSRC}/sphinx.conf.dist ${STAGEDIR}${CFGFILE}.sample
 .for man in ${MAN1SRC}
-	${INSTALL_MAN} ${DOCSRC}/${man} ${STAGEDIR}${MANPREFIX}/man/man1/${man}
+	${INSTALL_MAN} ${DOCSRC}/${man} ${STAGEDIR}${PREFIX}/share/man/man1/${man}
 .endfor
 .for man in ${MAN8SRC}
-	${INSTALL_MAN} ${DOCSRC}/${man} ${STAGEDIR}${MANPREFIX}/man/man8/${man}
+	${INSTALL_MAN} ${DOCSRC}/${man} ${STAGEDIR}${PREFIX}/share/man/man8/${man}
 .endfor
 
 do-install-DOCS-on:

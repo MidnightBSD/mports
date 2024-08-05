@@ -14,6 +14,6 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2
 USES=		tar:xz xorg xorg-cat:app
 USE_XORG=	xorgproto fontenc
 
-PLIST_FILES=	bin/fonttosfnt man/man1/fonttosfnt.1.gz
+PLIST_FILES=	bin/fonttosfnt share/man/man1/fonttosfnt.1.gz
 
 .include <bsd.port.mk>

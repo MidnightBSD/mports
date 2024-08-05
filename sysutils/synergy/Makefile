@@ -44,7 +44,7 @@ do-install:
 .endfor
 .for f in synergyc synergys
 	${INSTALL_MAN} ${WRKSRC}/doc/${f}.man \
-		${STAGEDIR}${MANPREFIX}/man/man1/${f}.1
+		${STAGEDIR}${PREFIX}/share/man/man1/${f}.1
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/doc/synergy.conf.example-basic ${STAGEDIR}${PREFIX}/etc/synergy.conf.sample # server config
 

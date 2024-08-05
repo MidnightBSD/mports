@@ -37,5 +37,5 @@
 -	install -c -s -m 0755 wmCalClock $(DESTDIR)/bin
 -	install -c -m 0644 wmCalClock.1 $(DESTDIR)/man/man1 
 +	${BSD_INSTALL_PROGRAM} wmCalClock $(DESTDIR)$(PREFIX)/bin
-+	${BSD_INSTALL_MAN} wmCalClock.1 $(DESTDIR)$(PREFIX)/man/man1
++	${BSD_INSTALL_MAN} wmCalClock.1 $(DESTDIR)$(PREFIX)/share/man/man1
  

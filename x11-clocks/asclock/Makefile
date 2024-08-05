@@ -14,6 +14,7 @@ CONFLICTS=	asclock-gtk-[0-9]* asclock-xlib-[0-9]*
 
 USES=		imake tar:tgz xorg
 USE_XORG=	xpm xext x11
+MAKE_ARGS+=	MANPATH="${PREFIX}/share/man" 
 PLIST_FILES=	bin/asclock share/man/man1/asclock.1.gz
 
 OPTIONS_DEFINE=
