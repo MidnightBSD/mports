@@ -35,7 +35,4 @@ USES=		perl5
 USE_PERL5=	modbuild
 NO_TEST=	yes
 
-post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Mouse/Mouse.so
-
 .include <bsd.port.mk>
