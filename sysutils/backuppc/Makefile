@@ -105,7 +105,7 @@ do-install:
 	pod2man --section=1 --release=${PORTVERSION} \
 		--name=BackupPC --center="BackupPC user guide" \
 		${WRKSRC}/doc/BackupPC.pod ${WRKSRC}/${PORTNAME}.1
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 	${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 	${CP} ${WRKSRC}/doc/BackupPC.html ${WWWDIR}
