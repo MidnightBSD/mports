@@ -168,7 +168,7 @@ share/man/man1/yuvmedianfilter.1.gz
 share/man/man1/yuvplay.1.gz
 share/man/man1/yuvscaler.1.gz
 share/man/man1/yuvycsnoise.1.gz
-man/man5/yuv4mpeg.5.gz
+share/man/man5/yuv4mpeg.5.gz
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/BUGS
 %%PORTDOCS%%%%DOCSDIR%%/CHANGES
