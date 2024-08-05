@@ -29,7 +29,7 @@ CONFIGURE_ARGS+=--disable-udev
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 PLIST_FILES=	lib/xorg/modules/drivers/amdgpu_drv.so \
-		man/man4/amdgpu.4x.gz \
+		share/man/man4/amdgpu.4x.gz \
 		share/X11/xorg.conf.d/10-amdgpu.conf
 
 .include <bsd.port.mk>
