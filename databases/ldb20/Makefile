@@ -38,7 +38,7 @@ PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 CONFIGURE_ARGS+=	--bundled-libraries=!talloc,!tevent,!tdb,!popt,!cmocka \
 			--with-modulesdir=${PREFIX}/lib/shared-modules \
 			--with-privatelibdir=${PREFIX}/lib/ldb \
-			--mandir=${MANPREFIX}/man \
+			--mandir=${PREFIX}/share/man \
 			--with-openldap=${LOCALBASE} \
 			--disable-rpath \
 			--without-gettext
@@ -124,14 +124,14 @@ CFLAGS+=		-fno-color-diagnostics
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
-LDB_MAN1=		man/man1/ldbadd.1.gz \
-			man/man1/ldbdel.1.gz \
-			man/man1/ldbedit.1.gz \
-			man/man1/ldbmodify.1.gz \
-			man/man1/ldbrename.1.gz \
-			man/man1/ldbsearch.1.gz
+LDB_MAN1=		share/man/man1/ldbadd.1.gz \
+			share/man/man1/ldbdel.1.gz \
+			share/man/man1/ldbedit.1.gz \
+			share/man/man1/ldbmodify.1.gz \
+			share/man/man1/ldbrename.1.gz \
+			share/man/man1/ldbsearch.1.gz
 
-LDB_MAN3=		man/man3/ldb.3.gz
+LDB_MAN3=		share/man/man3/ldb.3.gz
 
 PLIST_FILES+=		${LDB_MAN1} ${LDB_MAN3}
 
