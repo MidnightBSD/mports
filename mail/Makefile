@@ -8,6 +8,7 @@ SUBDIR += alpine
 SUBDIR += antivirus-milter
 SUBDIR += batv-milter
 SUBDIR += bogofilter
+SUBDIR += bogofilter-bdb
 SUBDIR += cclient
 SUBDIR += claws-mail
 SUBDIR += claws-mail-address_keeper
