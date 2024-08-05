@@ -10,4 +10,4 @@ bin/mmdb-dump-search-tree
 %%SITE_PERL%%/MaxMind/DB/Reader/Role/NodeReader.pm
 %%SITE_PERL%%/MaxMind/DB/Reader/Role/Reader.pm
 %%SITE_PERL%%/MaxMind/DB/Reader/Role/Sysreader.pm
-share/man/man3/MaxMind::DB::Reader.3.gz
+%%PERL5_MAN3%%/MaxMind::DB::Reader.3.gz
