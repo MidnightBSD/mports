@@ -117,7 +117,7 @@ DOCS_CMAKE_ON=		-DLLVM_ENABLE_SPHINX=ON \
 			-DSPHINX_EXECUTABLE=${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} \
 			-DSPHINX_WARNINGS_AS_ERRORS=OFF \
 			-DLLVM_BUILD_DOCS=ON
-DOCS_PLIST_FILES=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
+DOCS_PLIST_FILES=	${MAN1SRCS:S|^|share/man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
 EXTRAS_DESC=		Extra clang tools
 EXTRAS_EXTRA_PATCHES=	${PATCHDIR}/extras
 EXTRAS_IMPLIES=		CLANG
@@ -574,7 +574,7 @@ build-plist:
 	${FIND} ${FAKE_DESTDIR}${LLVM_PREFIX} -type f -o -type l | \
 	    ${GREP} -v '_blacklist.txt$$' | \
 	    ${GREP} -v '[/-]lit$$' | ${GREP} -v 'FileCheck$$' | \
-	    ${GREP} -v man/man1 | ${SED} -e 's|${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
+	    ${GREP} -v share/man/man1 | ${SED} -e 's|${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
 	    -e 's|${PYTHON_SITELIBDIR:C|${PREFIX}/||}|%%PYTHON_SITELIBDIR%%|' \
 	    -e 's|${LLVM_RELEASE}|%%LLVM_RELEASE%%|' \
 	    -e 's|release.cmake|%%CMAKE_BUILD_TYPE%%.cmake|' \
