@@ -51,7 +51,7 @@ do-install:
 		"! -name *\.bak ! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh")
 	@(cd ${WRKSRC} && ${COPYTREE_BIN} . ${DATADIR} "-name *\.sh")
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.desktop ${PREFIX}/share/applications/
 # Use fsnotifier replacement provided by java/intellij-fsnotifier
 	${ECHO} "idea.filewatcher.executable.path=${TRUE_PREFIX}/intellij/bin/fsnotifier" >> ${DATADIR}/bin/idea.properties
