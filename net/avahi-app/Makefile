@@ -132,7 +132,7 @@ post-install: avahi-post-install
 avahi-post-install:
 .if defined(MANPAGES) && ${AVAHI_SLAVE} != gtk
 .for f in ${MANPAGES}
-	${INSTALL_DATA} ${WRKSRC}/man/${f} ${STAGEDIR}${PREFIX}/man/man${f:E}/${f}
+	${INSTALL_DATA} ${WRKSRC}/man/${f} ${STAGEDIR}${PREFIX}/share/man/man${f:E}/${f}
 .endfor
 .endif
 .for f in ${AVAHI_PKGCONFIG}
