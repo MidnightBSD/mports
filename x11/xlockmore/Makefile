@@ -49,7 +49,7 @@ JP_DESC=	Japanese Language Support
 NO_OPTIONS_SORT=	yes
 
 MAKE_ARGS+=	bindir=${PREFIX}/bin \
-		mandir=${PREFIX}/man/man1 \
+		mandir=${PREFIX}/share/man/man1 \
 		datarootdir=${PREFIX}/share \
 		xapploaddir=${PREFIX}/lib/X11/app-defaults
 

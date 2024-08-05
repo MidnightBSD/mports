@@ -11,8 +11,6 @@ LICENSE=       mit bsd2
 LICENSE_COMB=  multi
 
 USES=		xorg-cat:driver
-PLIST_FILES=	lib/xorg/modules/drivers/scfb_drv.so \
-		man/man4/scfb.4x.gz
 
 IGNORE_MASTER_SITE_XORG=yes
 USE_GITHUB=	yes
