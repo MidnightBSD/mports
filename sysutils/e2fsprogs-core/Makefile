@@ -282,7 +282,7 @@ post-install:
 	${LN} -fs e2fsck ${STAGEDIR}${PREFIX}/sbin/fsck.ext3
 	${LN} -fs e2fsck ${STAGEDIR}${PREFIX}/sbin/fsck.ext4
 	# now the remainder of the usual post-install jobs:
-	${INSTALL_MAN} ${FILESDIR}/fsck_ext2fs.8 ${STAGEDIR}${PREFIX}/man/man8/
+	${INSTALL_MAN} ${FILESDIR}/fsck_ext2fs.8 ${STAGEDIR}${PREFIX}/share/man/man8/
 .if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for i in ${PORTDOCS}
@@ -294,13 +294,13 @@ post-install:
 		${XARGS} <${FILESDIR}/unwanted ${RM} && \
 		${RMDIR} include/e2fsprogs/blkid
 	${MV} ${STAGEDIR}${PREFIX}/bin/compile_et ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
-	${MV} ${STAGEDIR}${MANPREFIX}/man/man1/compile_et.1 ${STAGEDIR}${MANPREFIX}/man/man1/e2fsprogs-compile_et.1
+	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/compile_et.1 ${STAGEDIR}${PREFIX}/share/man/man1/e2fsprogs-compile_et.1
 	${MKDIR} ${STAGEDIR}${DATADIR}/et/
 	${MV} ${STAGEDIR}${PREFIX}/share/et/* ${STAGEDIR}${DATADIR}/et/
 	${REINPLACE_CMD} -e 's}^DIR=.*$$}DIR=${TRUE_PREFIX}/${DATADIR_REL}/et}' -i '' ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
 	${RMDIR} ${STAGEDIR}${PREFIX}/share/et
-	${MV} -f ${STAGEDIR}${MANPREFIX}/man/man3/com_err.3 \
-		 ${STAGEDIR}${MANPREFIX}/man/man3/e2fsprogs-com_err.3
+	${MV} -f ${STAGEDIR}${PREFIX}/share/man/man3/com_err.3 \
+		 ${STAGEDIR}${PREFIX}/share/man/man3/e2fsprogs-com_err.3
 
 #
 # the next line closes .if ${MASTERDIR} == ${.CURDIR}
