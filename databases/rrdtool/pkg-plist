@@ -14,8 +14,8 @@ lib/librrd.so.8.3.0
 %%PERL%%%%SITE_PERL%%/RRDp.pm
 %%PERL%%%%SITE_ARCH%%/RRDs.pm
 %%PERL%%%%SITE_ARCH%%/auto/RRDs/RRDs.so
-%%PERL%%man/man3/RRDp.3.gz
-%%PERL%%man/man3/RRDs.3.gz
+%%PERL%%%%PERL5_MAN3%%/RRDp.3.gz
+%%PERL%%%%PERL5_MAN3%%/RRDs.3.gz
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/rrdtool-0.1.10-py%%PYTHON_VER%%.egg-info/PKG-INFO
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/rrdtool-0.1.10-py%%PYTHON_VER%%.egg-info/SOURCES.txt
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/rrdtool-0.1.10-py%%PYTHON_VER%%.egg-info/dependency_links.txt
