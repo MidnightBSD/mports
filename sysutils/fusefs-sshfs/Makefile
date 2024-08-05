@@ -1,5 +1,3 @@
-
-
 PORTNAME=	sshfs
 PORTVERSION=	2.8
 DISTVERSIONPREFIX=	${PORTNAME}_
@@ -24,6 +22,6 @@ USES=		autoreconf fuse gettext pkgconfig
 USE_GNOME=	glib20
 
 PLIST_FILES=	bin/sshfs \
-		man/man1/sshfs.1.gz
+		share/man/man1/sshfs.1.gz
 
 .include <bsd.port.mk>
