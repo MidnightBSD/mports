@@ -46,7 +46,7 @@ SAMBA4_CONFIG=			smb4.conf
 SAMBA4_MODULES_CLASS=		auth bind9 gensec gpext idmap ldb nss_info \
 				pdb perfcount process_model service vfs
 
-CONFIGURE_ARGS+=		--mandir="${MANPREFIX}/man" \
+CONFIGURE_ARGS+=		--mandir="${PREFIX}/share/man" \
 				--sysconfdir="${SAMBA4_CONFDIR}" \
 				--includedir="${SAMBA4_INCLUDEDIR}" \
 				--datadir="${DATADIR}" \
@@ -275,12 +275,12 @@ CONFIGURE_ARGS+=		\
 FRUIT_PREVENTS=			ZEROCONF_NONE
 FRUIT_PREVENTS_MSG=		MacOSX support requires Zeroconf(AVAHI or MDNSRESPONDER)
 FRUIT_VARS=			SAMBA4_MODULES+=vfs_fruit
-FRUIT_PLIST_FILES=		man/man8/vfs_fruit.8.gz
+FRUIT_PLIST_FILES=		share/man/man8/vfs_fruit.8.gz
 
 GLUSTERFS_CONFIGURE_ENABLE=	glusterfs
 GLUSTERFS_LIB_DEPENDS=		libglusterfs.so:net/glusterfs
 GLUSTERFS_VARS=			SAMBA4_MODULES+=vfs_glusterfs
-GLUSTERFS_PLIST_FILES=		man/man8/vfs_glusterfs.8.gz
+GLUSTERFS_PLIST_FILES=		share/man/man8/vfs_glusterfs.8.gz
 
 ZEROCONF_NONE_MAKE_ENV=		ZEROCONF=none
 ##############################################################################
@@ -519,7 +519,7 @@ PLIST_FILES+=			${SAMBA4_LIBDIR}/private/libldb-mdb-int-samba4.so \
 
 .if ${PORT_OPTIONS:MGSSAPI_MIT}
 PLIST_FILES+=			${SAMBA4_MODULEDIR}/krb5/winbind_krb5_localauth.so \
-				man/man8/winbind_krb5_localauth.8.gz
+				share/man/man8/winbind_krb5_localauth.8.gz
 .	if ${PORT_OPTIONS:MAD_DC}
 PLIST_FILES+=			${SAMBA4_LIBDIR}/krb5/plugins/kdb/samba.so
 .	endif
@@ -642,21 +642,21 @@ post-install-rm-junk:
 
 post-install-fix-manpages:
 .for f in vfs_aio_linux.8 vfs_btrfs.8 vfs_ceph.8 vfs_gpfs.8
-				-${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man8/${f}
+				-${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/rman/man8/${f}
 .endfor
 .if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes
 .	for f in ldbadd.1 ldbdel.1 ldbedit.1 ldbmodify.1 ldbrename.1 ldbsearch.1
-				${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/${f} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/samba-${f}
+				${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/${f} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/man/man1/samba-${f}
 .	endfor
 .endif
 .if defined(SAMBA4_BUNDLED_TDB) && ${SAMBA4_BUNDLED_TDB} == yes
 .	for f in tdbbackup.8 tdbdump.8 tdbrestore.8 tdbtool.8
-				${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man8/${f} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man8/samba-${f}
+				${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man8/${f} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/man/man8/samba-${f}
 .	endfor
 .endif
 
 post-install: post-install-rm-junk post-install-fix-manpages
-				${LN} -sf smb.conf.5.gz ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man5/smb4.conf.5.gz
+				${LN} -sf smb.conf.5.gz ${FAKE_DESTDIR}${TRUE_PREFIX}/share/man/man5/smb4.conf.5.gz
 # Run post-install script
 .for dir in			${SAMBA4_LOGDIR} ${SAMBA4_RUNDIR} ${SAMBA4_LOCKDIR} ${SAMBA4_MODULEDIR}
 					${INSTALL} -d -m 0755 "${FAKE_DESTDIR}${dir}"
@@ -675,7 +675,7 @@ post-install: post-install-rm-junk post-install-fix-manpages
 
 post-install-FRUIT-off:
 				-${RM} ${FAKE_DESTDIR}${SAMBA4_MODULEDIR}/vfs/fruit.so
-				-${RM} ${FAKE_DESTDIR}${PREFIX}/man/man8/vfs_fruit.8
+				-${RM} ${FAKE_DESTDIR}${PREFIX}/share/man/man8/vfs_fruit.8
 
 post-install-DOCS-on:
 				${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
