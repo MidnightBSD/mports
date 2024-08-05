@@ -112,7 +112,7 @@ share/man/man3/Tspi_TPM_SelfTestFull.3.gz
 share/man/man3/Tspi_TPM_SetStatus.3.gz
 share/man/man3/Tspi_TPM_StirRandom.3.gz
 share/man/man3/Tspi_TPM_TakeOwnership.3.gz
-man/man5/tcsd.conf.5.gz
-man/man8/tcsd.8.gz
+share/man/man5/tcsd.conf.5.gz
+share/man/man8/tcsd.8.gz
 @sample(%%USERS%%,%%GROUPS%%,0600) etc/tcsd.conf.sample
 @dir(%%USERS%%,%%GROUPS%%,0700) var/lib/tpm
