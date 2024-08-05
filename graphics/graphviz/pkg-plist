@@ -293,7 +293,7 @@ share/man/man3/pack.3.gz
 share/man/man3/pathplan.3.gz
 %%TCL%%share/man/man3/tcldot.3tcl.gz
 share/man/man3/xdot.3.gz
-man/man7/graphviz.7.gz
+share/man/man7/graphviz.7.gz
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/CHANGELOG.md
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
