@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automating the process of benchmarking a web server
 WWW=		http://www.xenoclast.org/autobench/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
 RUN_DEPENDS=	httperf:benchmarks/httperf \
@@ -17,7 +17,7 @@ RUN_DEPENDS=	httperf:benchmarks/httperf \
 
 USES=		gmake perl5 shebangfix
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" DEBUG_FLAGS= \
-		PREFIX=${PREFIX}
+		PREFIX=${PREFIX} MANDIR=${PREFIX}/share/man/man1
 SHEBANG_FILES=	autobench_admin autobenchd autobench
 
 post-patch:
