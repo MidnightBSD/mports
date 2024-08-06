@@ -91,6 +91,7 @@ CAPSTONE_CONFIGURE_ON=		--enable-capstone \
 				--extra-cflags=-I${LOCALBASE}/include/capstone
 CAPSTONE_CONFIGURE_OFF=		--disable-capstone
 CURL_LIB_DEPENDS=		libcurl.so:ftp/curl
+CURL_USES=			ssl
 CURL_CONFIGURE_OFF=		--disable-curl
 DEBUG_CONFIGURE_ON=		--enable-debug
 DOCS_BUILD_DEPENDS=		${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR} \
