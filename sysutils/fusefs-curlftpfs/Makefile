@@ -16,6 +16,6 @@ LIB_DEPENDS=	libfuse.so:sysutils/fusefs-libs \
 USES=		fuse gnome pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	glib20
-PLIST_FILES=	bin/curlftpfs man/man1/${PORTNAME}.1.gz
+PLIST_FILES=	bin/curlftpfs share/man/man1/${PORTNAME}.1.gz
 
 .include <bsd.port.mk>
