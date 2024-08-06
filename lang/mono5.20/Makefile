@@ -99,10 +99,6 @@ post-patch:
 		${WRKSRC}/man/mono.1 \
 		${WRKSRC}/man/mozroots.1
 
-post-configure:
-	${REINPLACE_CMD} -e 's|share\/man|man|g' \
-		${WRKSRC}/mcs/jay/Makefile
-
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/mono
 # XXX Drop after devel/msbuild >= 16.0 per https://github.com/mono/msbuild/commit/48f3571f4036
