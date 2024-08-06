@@ -44,8 +44,8 @@ lib/linuxsampler/plugins/.keep_me
 %%LV2%%lib/lv2/linuxsampler.lv2/linuxsampler.ttl
 %%LV2%%lib/lv2/linuxsampler.lv2/manifest.ttl
 libdata/pkgconfig/linuxsampler.pc
-man/man1/linuxsampler.1.gz
-man/man1/lscp.1.gz
+share/man/man1/linuxsampler.1.gz
+share/man/man1/lscp.1.gz
 /var/lib/linuxsampler/instruments.db
 @dir /var/lib/linuxsampler
 @dir /var/lib
