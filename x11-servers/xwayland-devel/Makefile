@@ -54,8 +54,8 @@ MESON_ARGS=	-D${PORTNAME}=true \
 PLIST_FILES=	bin/Xwayland \
 		"@comment lib/xorg/protocol.txt" \
 		libdata/pkgconfig/xwayland.pc \
-		"@comment man/man1/Xserver.1.gz" \
-		man/man1/Xwayland.1.gz \
+		"@comment share/man/man1/Xserver.1.gz" \
+		share/man/man1/Xwayland.1.gz \
 		share/applications/org.freedesktop.Xwayland.desktop
 
 # Keep in sync with xorg-server

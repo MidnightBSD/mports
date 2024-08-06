@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Gtk3.pm
-man/man3/Gtk3.3.gz
+%%PERL5_MAN3%%/Gtk3.3.gz

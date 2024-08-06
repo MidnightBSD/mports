@@ -30,7 +30,7 @@ PLIST_FILES=	bin/nvidia-settings \
 		libexec/nvidia-settings \
 		lib/libnvidia-gtk3.so.${PORTVERSION} \
 		share/applications/nvidia-settings.desktop \
-		man/man1/nvidia-settings.1.gz \
+		share/man/man1/nvidia-settings.1.gz \
 		share/pixmaps/nvidia-settings.png
 
 SUB_FILES=	nvidia-settings
