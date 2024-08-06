@@ -105,6 +105,6 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
 	${INSTALL_MAN} ${WRKSRC}/docs/reference/gtk/gtk-query-immodules-3.0.1 \
-		${STAGEDIR}${PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
