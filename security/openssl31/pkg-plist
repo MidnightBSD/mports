@@ -261,9 +261,9 @@ share/man/man1/tsget.1ossl.gz
 share/man/man1/verify.1ossl.gz
 share/man/man1/version.1ossl.gz
 share/man/man1/x509.1ossl.gz
-man/man5/config.5ossl.gz
-man/man5/fips_config.5ossl.gz
-man/man5/x509v3_config.5ossl.gz
+share/man/man5/config.5ossl.gz
+share/man/man5/fips_config.5ossl.gz
+share/man/man5/x509v3_config.5ossl.gz
 %%OPENSSLDIR%%/misc/CA.pl
 @comment %%OPENSSLDIR%%/misc/tsget.pl
 %%OPENSSLDIR%%/misc/tsget
