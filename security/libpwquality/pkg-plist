@@ -12,7 +12,7 @@ libdata/pkgconfig/pwquality.pc
 share/man/man1/pwmake.1.gz
 share/man/man1/pwscore.1.gz
 share/man/man3/pwquality.3.gz
-man/man5/pwquality.conf.5.gz
+share/man/man5/pwquality.conf.5.gz
 %%NLS%%share/locale/ar/LC_MESSAGES/libpwquality.mo
 %%NLS%%share/locale/as/LC_MESSAGES/libpwquality.mo
 %%NLS%%share/locale/az/LC_MESSAGES/libpwquality.mo
