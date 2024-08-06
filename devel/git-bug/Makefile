@@ -25,9 +25,7 @@ GO_BUILDFLAGS=	-ldflags "\
 	       -X ${GO_MODULE}/commands.GitExactTag=${DISTVERSION}"
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/man/*.1 \
-		${STAGEDIR}${MAN1PREFIX}/man/man1
-
+	${INSTALL_MAN} ${WRKSRC}/doc/man/*.1 ${PREFIX}/share/man/man1
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d \
 		${STAGEDIR}${PREFIX}/share/zsh/site-functions
 
