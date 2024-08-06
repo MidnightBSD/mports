@@ -28,7 +28,7 @@ post-patch:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/xtexsh ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/xtexsh.1.gz ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/xtexsh.1.gz ${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKSRC}/xtexshrc ${PREFIX}/etc
 	${INSTALL_DATA} ${WRKSRC}/xtexsh.desktop ${PREFIX}/share/applications
 	@${MKDIR} ${PREFIX}/share/icons/locolor/16x16/apps
