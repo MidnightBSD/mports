@@ -2,7 +2,8 @@ PORTNAME=	abiword
 PORTVERSION=	3.0.5
 PORTREVISION=	1
 CATEGORIES=	editors
-MASTER_SITES=	http://www.abisource.com/downloads/abiword/${PORTVERSION}/source/
+MASTER_SITES=	http://www.abisource.com/downloads/abiword/${PORTVERSION}/source/ \
+		https://dev.alpinelinux.org/archive/${PORTNAME}/
 DIST_SUBDIR=	AbiWord
 
 MAINTAINER=	ports@MidnightBSD.org
