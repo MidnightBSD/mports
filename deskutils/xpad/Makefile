@@ -31,7 +31,7 @@ GNU_CONFIGURE=	yes
 PORTDOCS=	*
 PLIST_FILES=	\
 bin/xpad \
-man/man1/xpad.1.gz \
+share/man/man1/xpad.1.gz \
 share/applications/xpad.desktop \
 share/icons/hicolor/scalable/apps/xpad.svg \
 share/metainfo/xpad.appdata.xml \
