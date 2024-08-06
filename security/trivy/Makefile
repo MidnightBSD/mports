@@ -21,6 +21,8 @@ GO_BUILDFLAGS= -ldflags=" \
 
 PLIST_FILES=	bin/${PORTNAME}
 
+NO_TEST=	yes
+
 post-install:
 	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/contrib/*.tpl ${DATADIR}/
