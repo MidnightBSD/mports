@@ -12,13 +12,13 @@ WWW=		https://www.FreeBSD.org/projects/cvsweb.html
 
 LICENSE=	bsd2
 
-RUN_DEPENDS=	${SITE_PERL}/IPC/Run.pm:devel/p5-IPC-Run \
-		${SITE_PERL}/URI.pm:net/p5-URI
+RUN_DEPENDS=	p5-IPC-Run>=0:devel/p5-IPC-Run \
+		p5-URI>=0:net/p5-URI
 
 # The following extra dependencies are optional, but CVSweb works the
 # best with them.
-RUN_DEPENDS+=	${SITE_PERL}/MIME/Types.pm:mail/p5-MIME-Types \
-		${SITE_PERL}/${PERL_ARCH}/String/Ediff.pm:devel/p5-String-Ediff \
+RUN_DEPENDS+=	p5-MIME-Types>=0:mail/p5-MIME-Types \
+		p5-String-Ediff>=0:devel/p5-String-Ediff \
 		cvsgraph:devel/cvsgraph
 
 # Use PAPERSIZE to avoid a stale dependency on Enscript.
@@ -29,8 +29,11 @@ CONFLICTS=	cvsweb-2.*
 
 USES=		cpe perl5 shebangfix
 SHEBANG_FILES=	cvsweb.cgi
+
 CPE_VENDOR=	freebsd
+
 NO_BUILD=	yes
+NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
 
