@@ -1,10 +1,7 @@
 PORTNAME=	fish
-DISTVERSION=	3.6.1
+DISTVERSION=	3.7.1
 CATEGORIES=	shells
 MASTER_SITES=	https://github.com/fish-shell/fish-shell/releases/download/${PORTVERSION}/
-
-PATCH_SITES=	https://github.com/fish-shell/fish-shell/commit/
-PATCHFILES+=	85504ca694ae099f023ae0febb363238d9c64e8d.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User friendly command line shell
@@ -27,7 +24,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 CONFLICTS_INSTALL=	comms/mlan3
 
-MANDIRS=	${DATADIR}/man/man1
+MANDIRS=	${DATADIR}/man
 
 PORTDOCS=	*
 
@@ -49,16 +46,22 @@ CMAKE_ARGS+=	-DCURSES_NEED_NCURSES=TRUE
 .endif
 
 post-install:
-.for i in fish fish_indent fish_key_reader
-	@${STRIP_CMD} ${PREFIX}/bin/${i}
-.endfor
 	@${MV} ${ETCDIR}/config.fish ${ETCDIR}/config.fish.sample
 
 post-fake-DOCS-on:
 	@${RM} ${FAKE_DESTDIR}${DOCSDIR}/.buildinfo
 
-post-fake-MANPAGES-off:
-	@${RM} -rf ${FAKE_DESTDIR}${MANPREFIX}/man/man1
-	@${RM} -rf ${FAKE_DESTDIR}${DATADIR}/man
+post-install-DOCS-off:
+	# required because fish always installs documentation
+	@${ECHO_MSG} "====> DOCS disable; removing documentation"
+	@${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
+
+post-install-MANPAGES-off:
+	# required because fish always installs manual pages
+	@${ECHO_MSG} "====> MANPAGES disable; removing manual pages"
+	for dir in ${MANDIRS:S/^/${FAKE_DESTDIR}/} ; do \
+		${FIND} $$dir -type f -delete ; \
+	done
+	@${RM} -r ${FAKE_DESTEDIR}${DATADIR}/man
 
 .include <bsd.port.post.mk>

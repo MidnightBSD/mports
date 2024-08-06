@@ -17,6 +17,6 @@ GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 
 PLIST_FILES=	bin/gbdfed \
-		man/man1/gbdfed.1.gz
+		share/man/man1/gbdfed.1.gz
 
 .include <bsd.port.mk>
