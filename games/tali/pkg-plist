@@ -1,5 +1,5 @@
 bin/tali
-man/man6/tali.6.gz
+share/man/man6/tali.6.gz
 share/appdata/tali.appdata.xml
 share/applications/tali.desktop
 @unexec [ -s %D/share/games/gtali.Colors.scores ] || rm -f %D/share/games/gtali.Colors.scores

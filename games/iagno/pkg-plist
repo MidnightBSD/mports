@@ -1,5 +1,5 @@
 bin/iagno
-man/man6/iagno.6.gz
+share/man/man6/iagno.6.gz
 share/applications/iagno.desktop
 share/help/C/iagno/2player.page
 share/help/C/iagno/ai-game.page

@@ -1,5 +1,5 @@
 bin/quadrapassel
-man/man6/quadrapassel.6.gz
+share/man/man6/quadrapassel.6.gz
 share/appdata/quadrapassel.appdata.xml
 share/applications/quadrapassel.desktop
 share/help/C/quadrapassel/bug-filing.page
