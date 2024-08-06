@@ -33,7 +33,7 @@ PLIST_FILES=	bin/yubico-piv-tool \
 		lib/libykpiv.so.1.5.0 \
 		libdata/pkgconfig/ykcs11.pc \
 		libdata/pkgconfig/ykpiv.pc \
-		man/man1/yubico-piv-tool.1.gz
+		share/man/man1/yubico-piv-tool.1.gz
 
 .include <bsd.port.pre.mk>
 
