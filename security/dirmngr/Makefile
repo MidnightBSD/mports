@@ -11,6 +11,8 @@ WWW=		https://www.gnupg.org/aegypten2
 
 LICENSE=	gpl2
 
+BROKEN=		does not build with security/libassuan >= 3.0.0 (GNU Pth support was dropped)
+
 LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error \
