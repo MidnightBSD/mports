@@ -203,7 +203,7 @@ VVV_PATCH_VERSION=	1.13.0
 GREETING_PATCH_VERSION=	2.2.0
 
 post-install:
-	${INSTALL_MAN} ${FILESDIR}/mailcap.5 ${MANPREFIX}/man/man5
+	${INSTALL_MAN} ${FILESDIR}/mailcap.5 ${PREFIX}/share/man/man5
 
 pre-configure::
 # Stop make from setgid mutt_dotlock
