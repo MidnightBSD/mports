@@ -38,12 +38,12 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/yafic-sign ${PREFIX}/bin
 	${LN} -f ${PREFIX}/bin/yafic-sign ${PREFIX}/bin/yafic-check
 .endif
-	${INSTALL_MAN} ${WRKSRC}/yafic.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/yafic.1 ${PREFIX}/share/man/man1
 .if ${PORT_OPTIONS:MCRYPTO}
-	${INSTALL_MAN} ${WRKSRC}/yafic-sign.1 ${PREFIX}/man/man1
-	${LN} -sf yafic-sign.1 ${PREFIX}/man/man1/yafic-check.1
+	${INSTALL_MAN} ${WRKSRC}/yafic-sign.1 ${PREFIX}/share/man/man1
+	${LN} -sf yafic-sign.1 ${PREFIX}/share/man/man1/yafic-check.1
 .endif
-	${INSTALL_MAN} ${WRKSRC}/yafic.conf.5 ${PREFIX}/man/man5
+	${INSTALL_MAN} ${WRKSRC}/yafic.conf.5 ${PREFIX}/share/man/man5
 
 post-install:
 	@${MKDIR} ${PREFIX}/share/examples/yafic
