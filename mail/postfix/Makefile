@@ -335,7 +335,7 @@ REINPLACE=	s!^PATH=.*!PATH=/bin:/sbin:/usr/bin:/usr/sbin:${PREFIX}/bin:${PREFIX}
 		s!^(newaliases_path =)!\1 ${PREFIX}/bin/newaliases!g;\
 		s!^(mailq_path =)!\1 ${PREFIX}/bin/mailq!g;\
 		s!^(setgid_group =)!\1 maildrop!g;\
-		s!^(manpage_directory =)!\1 ${MANPREFIX}/man!g;\
+		s!^(manpage_directory =)!\1 ${PREFIX}/share/man!g;\
 		s!^((html|readme)_directory =)!\1 ${READMEDIR}!g;\
 		\!^\#alias_database = dbm:/etc/mail/aliases$$!d;\
 		s!(:|= )/etc/postfix!\1$$config_directory!g;\
@@ -403,7 +403,7 @@ do-install:
 
 	${INSTALL_SCRIPT} ${WRKSRC}/auxiliary/rmail/rmail ${PREFIX}/bin/rmail
 	${INSTALL_SCRIPT} ${WRKSRC}/auxiliary/qshape/qshape.pl ${PREFIX}/bin/qshape
-	${INSTALL_MAN} ${WRKSRC}/man/man1/qshape.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/man1/qshape.1 ${PREFIX}/share/man/man1
 
 # == do not overwrite existing config
 	${MKDIR} ${DATADIR}
@@ -440,6 +440,6 @@ do-install:
 
 do-install-TEST-on:
 	${INSTALL_PROGRAM} ${BINTEST:S|^|${WRKSRC}/bin/|} ${FAKE_DESTDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${MANTEST:S|^|${WRKSRC}/man/man1/|} ${FAKE_DESTDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${MANTEST:S|^|${WRKSRC}/man/man1/|} ${FAKE_DESTDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
