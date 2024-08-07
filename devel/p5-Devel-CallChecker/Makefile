@@ -19,7 +19,4 @@ TEST_DEPENDS=	p5-Test-Pod>=1:devel/p5-Test-Pod \
 USES=		perl5
 USE_PERL5=	modbuild
 
-post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Devel/CallChecker/CallChecker.so
-
 .include <bsd.port.mk>

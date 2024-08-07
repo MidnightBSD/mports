@@ -16,7 +16,4 @@ TEST_DEPENDS=	p5-Test-LeakTrace>=0.07:devel/p5-Test-LeakTrace
 USE_PERL5=	modbuild
 USES=		perl5
 
-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Hash/FieldHash/FieldHash.so
-
 .include <bsd.port.mk>

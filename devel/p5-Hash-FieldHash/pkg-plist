@@ -1,2 +1,12 @@
-%%SITE_ARCH%%/Hash/FieldHash.pm
-%%SITE_ARCH%%/auto/Hash/FieldHash/FieldHash.so
+%%SITE_PERL%%/auto/Hash/FieldHash/FieldHash.so
+%%SITE_PERL%%/Hash/FieldHash.pm
+%%SITE_PERL%%/man/man3/Hash::FieldHash.3.gz
+@dir %%SITE_PERL%%/auto/Hash/FieldHash
+@dir %%SITE_PERL%%/auto/Hash
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/Hash
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

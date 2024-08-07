@@ -1,2 +1,12 @@
-%%SITE_ARCH%%/Lexical/SealRequireHints.pm
-%%SITE_ARCH%%/auto/Lexical/SealRequireHints/SealRequireHints.so
+%%SITE_PERL%%/auto/Lexical/SealRequireHints/SealRequireHints.so
+%%SITE_PERL%%/Lexical/SealRequireHints.pm
+%%SITE_PERL%%/man/man3/Lexical::SealRequireHints.3.gz
+@dir %%SITE_PERL%%/auto/Lexical/SealRequireHints
+@dir %%SITE_PERL%%/auto/Lexical
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/Lexical
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
