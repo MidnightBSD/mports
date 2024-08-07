@@ -26,7 +26,8 @@ MAKE_ARGS+=	INSTALLFLAGS="${COPY}" \
 		INSTPGMFLAGS="${STRIP}" \
 		INSTBINFLAGS="-m ${BINMODE}" \
 		INSTDATFLAGS="-m ${SHAREMODE}" \
-		INSTMANFLAGS="-m ${MANMODE}"
+		INSTMANFLAGS="-m ${MANMODE}" \
+		MANPATH=${PREFIX}/share/man
 
 post-install:
 	for i in hr_HR hu_HU pl_PL ro_RO; do \
