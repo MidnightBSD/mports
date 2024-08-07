@@ -31,4 +31,4 @@ bin/git-lfs
 %%MANPAGES%%share/man/man1/git-lfs-untrack.1.gz
 %%MANPAGES%%share/man/man1/git-lfs-update.1.gz
 %%MANPAGES%%share/man/man1/git-lfs.1.gz
-%%MANPAGES%%man/man5/git-lfs-config.5.gz
+%%MANPAGES%%share/man/man5/git-lfs-config.5.gz
