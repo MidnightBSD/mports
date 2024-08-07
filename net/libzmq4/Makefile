@@ -18,7 +18,8 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-silent-rules \
 			--disable-Werror \
-			--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
+			--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
+			--mandir=${PREFIX}/share/man
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 INSTALL_TARGET=	install-strip
