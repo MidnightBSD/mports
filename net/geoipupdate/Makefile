@@ -26,8 +26,8 @@ OPTIONS_DEFINE=	DOCS MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 
 MANPAGES_BUILD_DEPENDS=	lowdown:textproc/lowdown
-MANPAGES_PLIST_FILES=	man/man1/geoipupdate.1.gz \
-			man/man5/GeoIP.conf.5.gz
+MANPAGES_PLIST_FILES=	share/man/man1/geoipupdate.1.gz \
+			share/man/man5/GeoIP.conf.5.gz
 
 PLIST_FILES=	bin/geoipupdate \
 		'@sample etc/GeoIP.conf.sample' \
@@ -54,7 +54,7 @@ do-install-DOCS-on:
 	cd ${WRKSRC}/build && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 do-install-MANPAGES-on:
-	${INSTALL_MAN} ${WRKSRC}/build/geoipupdate.1 ${FAKE_DESTDIR}${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/build/GeoIP.conf.5  ${FAKE_DESTDIR}${MANPREFIX}/man/man5
+	${INSTALL_MAN} ${WRKSRC}/build/geoipupdate.1 ${FAKE_DESTDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/build/GeoIP.conf.5  ${FAKE_DESTDIR}${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>

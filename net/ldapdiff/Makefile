@@ -34,7 +34,7 @@ CONFIGURE_ARGS+=--with-iconv-dir=${LOCALBASE}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ldapdiff ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/ldapdiff.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/ldapdiff.1 ${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKSRC}/ldapdiff.conf.sample ${PREFIX}/etc/
 	@${MKDIR} ${DATADIR}/samples
 .for sample in ${SAMPLES}

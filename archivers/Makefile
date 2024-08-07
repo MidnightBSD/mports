@@ -7,6 +7,7 @@ SUBDIR += brotli
 SUBDIR += bzip2
 SUBDIR += bzip3
 SUBDIR += cabextract
+SUBDIR += c-blosc
 SUBDIR += deb2targz
 SUBDIR += fastjar
 SUBDIR += file-roller

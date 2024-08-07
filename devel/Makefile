@@ -48,6 +48,7 @@ SUBDIR += bugzilla44
 SUBDIR += bugzilla50
 SUBDIR += bullet
 SUBDIR += cargo-c
+SUBDIR += cereal
 SUBDIR += compiler-rt
 SUBDIR += cgit
 SUBDIR += check

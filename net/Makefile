@@ -195,7 +195,6 @@ SUBDIR += samba413
 SUBDIR += sdl_net
 SUBDIR += smbldap-tools
 SUBDIR += speedtest-go
-SUBDIR += spideroak
 SUBDIR += tigervnc-server
 SUBDIR += tigervnc-viewer
 SUBDIR += tiny-network-utilities

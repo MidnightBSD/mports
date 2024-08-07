@@ -3,6 +3,7 @@ SUBDIR += archivers
 SUBDIR += astro
 SUBDIR += audio
 SUBDIR += benchmarks
+SUBDIR += cad
 SUBDIR += comms
 SUBDIR += converters
 SUBDIR += core
