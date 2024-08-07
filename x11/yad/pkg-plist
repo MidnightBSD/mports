@@ -1,8 +1,8 @@
 %%PFD%%bin/pfd
 bin/yad
 %%ICONBROWSER%%bin/yad-icon-browser
-%%PFD%%man/man1/pfd.1.gz
-man/man1/yad.1.gz
+%%PFD%%share/man/man1/pfd.1.gz
+share/man/man1/yad.1.gz
 share/aclocal/yad.m4
 %%ICONBROWSER%%share/applications/yad-icon-browser.desktop
 share/icons/hicolor/128x128/apps/yad.png
