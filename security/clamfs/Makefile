@@ -21,7 +21,7 @@ USES=		autoreconf compiler:c++11-lib fuse:3 pkgconfig
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/clamfs \
-		man/man1/clamfs.1.gz
+		share/man/man1/clamfs.1.gz
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
