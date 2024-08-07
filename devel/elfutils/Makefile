@@ -37,7 +37,7 @@ NLS_USES=	gettext
 NLS_USES_OFF=	gettext  # used anyway
 NLS_CONFIGURE_ENABLE=	nls
 
-USES=		autoreconf cpe gmake libtool pkgconfig tar:bzip2
+USES=		autoreconf cpe gmake libtool pkgconfig ssl tar:bzip2
 CPE_VENDOR=	${PORTNAME}_project
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
