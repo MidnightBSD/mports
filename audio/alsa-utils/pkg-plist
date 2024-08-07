@@ -16,7 +16,7 @@ bin/axfer
 bin/iecset
 bin/speaker-test
 lib/udev/90-alsa-restore.rules
-man/fr/man8/alsaconf.8.gz
+share/man/fr/man8/alsaconf.8.gz
 share/man/man1/aconnect.1.gz
 share/man/man1/alsa-info.sh.1.gz
 %%BAT%%share/man/man1/alsabat.1.gz
