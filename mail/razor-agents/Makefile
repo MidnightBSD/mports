@@ -31,7 +31,6 @@ post-patch:
 
 post-fake:
 	${MKDIR} ${PREFIX}/share/man/man3
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${SITE_PERL}/${PERL_ARCH}/auto/razor-agents/.packlist
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_ARCH_REL}/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
