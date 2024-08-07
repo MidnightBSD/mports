@@ -205,7 +205,7 @@ POSTFIX_CCARGS+=	-DDEF_CONFIG_DIR=\\\"${ETCDIR}\\\" \
 			-DDEF_SENDMAIL_PATH=\\\"${PREFIX}/sbin/sendmail\\\" \
 			-DDEF_NEWALIAS_PATH=\\\"${PREFIX}/bin/newaliases\\\" \
 			-DDEF_MAILQ_PATH=\\\"${PREFIX}/bin/mailq\\\" \
-			-DDEF_MANPAGE_DIR=\\\"${PREFIX}/man\\\" \
+			-DDEF_MANPAGE_DIR=\\\"${PREFIX}/share/man\\\" \
 			-DDEF_README_DIR=\\\"${READMEDIR}\\\" \
 			-DDEF_HTML_DIR=\\\"${READMEDIR}\\\" \
 			-DDEF_QUEUE_DIR=\\\"/var/spool/postfix\\\" \

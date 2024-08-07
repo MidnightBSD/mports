@@ -25,7 +25,7 @@ PORTEXAMPLES=	1procmailrc 1rmail 2procmailrc 2rmail 3procmailrc 3rmail \
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/config.h
 # Allow parallel builds (-jX) to work
-	@${FIND} ${WRKSRC} -name 'Makefile*' | ${XARGS} ${REINPLACE_CMD} -E 's|cd (.+); (\$$\(MAKE\))|\2 -C \1|'
+	@${FIND} ${WRKSRC} -name 'Makefile*' | ${XARGS} ${REINPLACE_CMD} -E -e 's|cd (.+); (\$$\(MAKE\))|\2 -C \1|' -e '/^MANDIR/s|/man|/share/man|'
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${EXAMPLESDIR}/
