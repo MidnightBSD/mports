@@ -22,7 +22,7 @@ USES=		cmake compiler:c++11-lang qt:${FLAVOR:S/qt//} tar:xz
 CMAKE_ARGS=	-DBUILD_PLUGINS=none -DBUILD_TESTS=no \
 		-DPKGCONFIG_INSTALL_PREFIX=${PREFIX}/libdata/pkgconfig \
 		-DQCA_FEATURE_INSTALL_DIR=${QT_MKSPECDIR}/features \
-		-DQCA_MAN_INSTALL_DIR=${PREFIX}/man
+		-DQCA_MAN_INSTALL_DIR=${PREFIX}/share/man
 CONFIGURE_ENV=	QC_CERTSTORE_PATH=${LOCALBASE}/share/certs/ca-root-nss.crt
 USE_LDCONFIG=	yes
 

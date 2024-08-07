@@ -1377,7 +1377,6 @@ SUBDIR += splint
 SUBDIR += st
 SUBDIR += subversion
 SUBDIR += subversion-lts
-SUBDIR += svndelta
 SUBDIR += swig
 SUBDIR += swig30
 SUBDIR += sysconftool

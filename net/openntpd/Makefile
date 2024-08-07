@@ -26,7 +26,6 @@ CONFIGURE_ARGS=	--with-cacert=${LOCALBASE}/etc/ssl/cert.pem
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 SUB_FILES=	480.status-openntpd pkg-message
-SUB_LIST=	MANPREFIX="${MANPREFIX}"
 
 pre-build:
 	${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},g' \

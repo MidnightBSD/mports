@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 
 # PROVIDE: htpdate
 # REQUIRE: NETWORKING syslogd
