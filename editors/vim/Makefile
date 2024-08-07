@@ -176,7 +176,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/vim ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/runtime/defaults.vim ${DATADIR}/${VIM_VER}
 	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${DATADIR}/${VIM_VER}
-	${INSTALL_MAN} ${WRKSRC}/runtime/doc/vim.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/runtime/doc/vim.1 ${PREFIX}/share/man/man1
 
 .else  # flavor != tiny
 post-install:
