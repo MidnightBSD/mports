@@ -28,13 +28,13 @@ MAKE_JOBS_UNSAFE=	yes
 
 post-patch:
 	@${FIND} ${WRKSRC} -type f | ${XARGS} ${PERL} -pi -e 's|/etc/razor|${PREFIX}/etc|g'
-	@${REINPLACE_CMD} -e '/MAN5/s,man/man5,${SITE_MAN3_REL:S/3/5/},g' ${WRKSRC}/${CONFIGURE_SCRIPT}
-#	@${PERL} -pi -e 's,share/man,man,g' ${WRKSRC}/${CONFIGURE_SCRIPT}
 
 post-fake:
+	${MKDIR} ${PREFIX}/share/man/man3
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${SITE_PERL}/${PERL_ARCH}/auto/razor-agents/.packlist
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_ARCH_REL}/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
+	-${CP} ${PREFIX}/man/man3/* ${PREFIX}/share/man/man3/
 
 .include <bsd.port.mk>
