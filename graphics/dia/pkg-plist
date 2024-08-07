@@ -34,7 +34,7 @@ lib/dia/libwpg_filter.so
 %%WMF%%lib/dia/libwmf_filter.so
 lib/dia/libxfig_filter.so
 lib/dia/libxslt_filter.so
-%%PORTDOCS%%man/fr/man1/dia.1.gz
+%%PORTDOCS%%share/man/fr/man1/dia.1.gz
 %%PORTDOCS%%share/man/man1/dia.1.gz
 share/applications/dia.desktop
 share/dia/dia-splash.png
