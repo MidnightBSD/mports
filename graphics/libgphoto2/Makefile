@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libltdl.so:devel/libltdl
 
-USES=		gnome libtool pathfix pkgconfig tar:xz
+USES=		gnome libtool pathfix pkgconfig ssl tar:xz
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
@@ -31,7 +31,6 @@ OPTIONS_SUB=	yes
 CURL_DESC=	Lumix WiFi support via cURL
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 CURL_CONFIGURE_OFF=	--with-libcurl=no
-CURL_USES=	ssl
 
 GD_DESC=	libGD conversion support
 GD_LIB_DEPENDS=		libgd.so:graphics/gd
