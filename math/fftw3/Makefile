@@ -150,7 +150,7 @@ post-configure-G77_WRAPPERS-on:
 
 .if ${FFTW3_FLAVOR} != "default"
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/tools/fftw${FFTW3_SUFX}-wisdom.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/tools/fftw${FFTW3_SUFX}-wisdom.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so
 .endif
 
