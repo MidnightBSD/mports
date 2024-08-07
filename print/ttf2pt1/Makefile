@@ -1,5 +1,3 @@
-
-
 PORTNAME=	ttf2pt1
 PORTVERSION=	3.4.4
 PORTREVISION=	6
@@ -19,7 +17,8 @@ RUN_DEPENDS=	t1asm:print/t1utils
 USES=		pkgconfig perl5 uidfix tar:tgz
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} ${CPPFLAGS}" LIBS="${LIBS}" \
 		INSTDIR="${FAKE_DESTDIR}${TRUE_PREFIX}" LIBXDIR="${FAKE_DESTDIR}${TRUE_PREFIX}/bin" \
-		OWNER=${BINOWN} GROUP=${BINGRP}
+		OWNER=${BINOWN} GROUP=${BINGRP} \
+		MANDIR="${FAKE_DESTDIR}${TRUE_PREFIX}/share/man"
 SHEBANG_FILES=	app/TeX/sfd2map \
 		app/TeX/cjk-latex-config \
 		other/showdf \
@@ -41,9 +40,9 @@ LIBS+=		`pkg-config --libs freetype2` \
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/ttf2pt1
 	${SED} -i '' 's,${FAKE_DESTDIR},,' ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/ttf2pt1_convert \
-		${PREFIX}/man/man1/ttf2pt1_x2gs.1 \
-		${PREFIX}/man/man1/ttf2pt1.1 \
-		${PREFIX}/man/man1/ttf2pt1_convert.1 \
+		${PREFIX}/share/man/man1/ttf2pt1_x2gs.1 \
+		${PREFIX}/share/man/man1/ttf2pt1.1 \
+		${PREFIX}/share/man/man1/ttf2pt1_convert.1 \
 		${DATADIR}/scripts/convert
 
 .include <bsd.port.mk>
