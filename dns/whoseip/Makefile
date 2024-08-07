@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get information about IP addresses: country code and network
 WWW=		https://man.gnu.org.ua/manpage/?1+whoseip
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 RUN_DEPENDS=	p5-Net-CIDR>0:net-mgmt/p5-Net-CIDR \
 		p5-Data-UUID>0:devel/p5-Data-UUID
