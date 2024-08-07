@@ -24,7 +24,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 post-install:
-	${CP} -f ${WRKSRC}/man/git-*.1 ${PREFIX}/man/man1/
+	${CP} -f ${WRKSRC}/man/git-*.1 ${PREFIX}/share/man/man1/
 
 
 .include <bsd.port.mk>
