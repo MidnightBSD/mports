@@ -30,6 +30,6 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/share/svndelta/diff/lcs/ldiff.rb ${DATADIR}/diff/lcs/
 	${INSTALL_DATA} ${WRKSRC}/share/svndelta/diff/lcs/string.rb ${DATADIR}/diff/lcs/
 
-	${INSTALL_MAN} ${WRKSRC}/svndelta.1 ${PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/svndelta.1 ${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>
