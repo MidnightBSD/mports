@@ -10,6 +10,8 @@ COMMENT=	PostScript printing util for ASCII files, email, USENET news articles, 
 
 LICENSE=	other
 
+FAKE_OPTS=	trueprefix
+
 WRKSRC=		${WRKDIR}/mp
 LINKS=		digestp filep filofaxp franklinp mailp newsp timemanp timesysp
 
