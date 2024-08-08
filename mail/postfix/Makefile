@@ -135,6 +135,7 @@ BLACKLISTD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-blacklistd
 CDB_LIB_DEPENDS=		libcdb.so:databases/tinycdb
 EAI_LIB_DEPENDS=		libicuuc.so:devel/icu
 LDAP_USES=			ldap
+LDAP_USE=	OPENLDAP=yes
 LMDB_LIB_DEPENDS=		liblmdb.so:databases/lmdb
 MONGO_LIB_DEPENDS=		libbson-1.0.so:devel/libbson \
 				libmongoc-1.0.so:devel/mongo-c-driver
