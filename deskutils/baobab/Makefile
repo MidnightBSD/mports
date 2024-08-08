@@ -1,5 +1,3 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	baobab
 PORTVERSION=	42.0
 PORTREVISION=	1
@@ -8,19 +6,18 @@ MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME 3 graphical directory tree analyzer
+COMMENT=	GNOME graphical directory tree analyzer
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
 
-BUILD_DEPENDS=	valac:lang/vala \
-		itstool:textproc/itstool
+BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libhandy-1.so:x11-toolkits/libhandy
 
 USES=		desktop-file-utils gettext gnome meson pkgconfig \
-		python:3.5+,build tar:xz
+		python:build tar:xz vala:build
 USE_GNOME=	cairo gtk40 libadwaita
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
