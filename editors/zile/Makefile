@@ -22,7 +22,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-included-regex
 
 PLIST_FILES=	bin/${PORTNAME} \
-		man/man1/${PORTNAME}.1.gz \
+		share/man/man1/${PORTNAME}.1.gz \
 		%%DOCSDIR%%/AUTHORS \
 		%%DOCSDIR%%/FAQ \
 		%%DOCSDIR%%/NEWS \

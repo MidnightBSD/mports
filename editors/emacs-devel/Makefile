@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU editing macros ${COMMENT_${FLAVOR}}
 COMMENT_nox=	(No X flavor)
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	texinfo>=6.5,1:print/texinfo
