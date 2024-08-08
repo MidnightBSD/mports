@@ -142,7 +142,7 @@ lib/gedit/plugins/time.plugin
 %%PYTHON_SITELIBDIR%%/gi/overrides/__pycache__/Gedit.cpython-%%PYTHON_SUFFIX%%.pyc
 libdata/pkgconfig/gedit.pc
 libexec/gedit/gedit-bugreport.sh
-man/man1/gedit.1.gz
+share/man/man1/gedit.1.gz
 share/GConf/gsettings/gedit.convert
 share/applications/org.gnome.gedit.desktop
 share/dbus-1/services/org.gnome.gedit.service
