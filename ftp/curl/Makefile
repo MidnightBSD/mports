@@ -163,12 +163,12 @@ IGNORE=		only supports LDAPS with GNUTLS/OPENSSL/WOLFSSL enabled
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${PREFIX}/share/aclocal/
+	${REINPLACE_CMD} -e 's|Requires.private: zlib,openssl,libnghttp2||g' ${PREFIX}/libdata/pkgconfig/libcurl.pc
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/ ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
 	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} FAQ INSTALL KNOWN_BUGS THANKS TODO options-in-versions *.md ${FAKE_DESTDIR}${DOCSDIR}/
 	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI.md libcurl.m4 *.pl symbols-in-versions ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
-	${REINPLACE_CMD} -e 's|Requires.private: zlib,openssl,libnghttp2||g' ${PREFIX}/libdata/pkgconfig/libcurl.pc
 
 post-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
