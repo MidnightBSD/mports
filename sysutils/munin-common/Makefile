@@ -29,6 +29,6 @@ post-install:
 #	@(cd ${WRKSRC}/common/blib/libdoc && for man in ${MAN3} ; do \
 #		${INSTALL_MAN} -C $$man ${PREFIX}/man/man3; \
 #	done)
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/perl5/site_perl/${PERL_VER}/Munin/Common/Defaults.pm
+#	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/perl5/site_perl/${PERL_VER}/Munin/Common/Defaults.pm
 
 .include <bsd.port.mk>
