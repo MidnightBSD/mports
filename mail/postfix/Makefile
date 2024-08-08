@@ -419,7 +419,7 @@ do-install:
 		meta_directory=${META_DIRECTORY} \
 		html_directory=${READMEDIR} \
 		mailq_path=${TRUE_PREFIX}/bin/mailq \
-		manpage_directory=${TRUE_PREFIX}/man \
+		manpage_directory=${TRUE_PREFIX}/share/man \
 		newaliases_path=${TRUE_PREFIX}/bin/newaliases \
 		readme_directory=${READMEDIR} \
 		sendmail_path=${TRUE_PREFIX}/sbin/sendmail )
