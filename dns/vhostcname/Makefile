@@ -15,6 +15,14 @@ USES=		perl5
 USE_PERL5=	configure
 NO_ARCH=	yes
 
-PLIST_FILES=	bin/vhostcname share/man/man1/vhostcname.1.gz
+PLIST_FILES=	bin/vhostcname
+
+.include <bsd.mport.options.mk>
+
+.if ${OSVERSION} > 302000
+PLIST_FILES+= ${SITE_MAN1}/vhostcname.1.gz
+.else
+PLIST_FILES+= man/man1/vhostcname.1.gz
+.endif
 
 .include <bsd.port.mk>
