@@ -47,5 +47,5 @@ share/man/man1/tesseract.1.gz
 share/man/man1/text2image.1.gz
 share/man/man1/unicharset_extractor.1.gz
 share/man/man1/wordlist2dawg.1.gz
-man/man5/unicharambigs.5.gz
-man/man5/unicharset.5.gz
+share/man/man5/unicharambigs.5.gz
+share/man/man5/unicharset.5.gz
