@@ -107,14 +107,14 @@ post-patch:
 		${WRKSRC}/src/Makefile.in
 	@${REINPLACE_CMD} 's|$$(INSTALL) -d $$(DESTDIR)/\@storage_dir\@|#$$(INSTALL) -d $$(DESTDIR)/\@storage_dir\@|' \
 		${WRKSRC}/src/Makefile.in
-	@${RM} -r ${WRKSRC}/src/zscanner/scanner.c
+	-${RM} -r ${WRKSRC}/src/zscanner/scanner.c
 .endif
 
 post-install:
 .if !defined(UTILS_ONLY) && !defined(LIB_ONLY)
 	${MV} ${STAGEDIR}${ETCDIR}/knot.sample.conf \
 		${STAGEDIR}${ETCDIR}/knot.conf.sample
-	@${MKDIR} ${STAGEDIR}/var/run/knot ${STAGEDIR}/var/db/knot
+	@${MKDIR} ${FAKE_DESTDIR}/var/run/knot ${FAKE_DESTDIR}/var/db/knot
 .endif
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}/
