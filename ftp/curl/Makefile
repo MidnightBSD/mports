@@ -1,5 +1,5 @@
 PORTNAME=	curl
-PORTVERSION=	8.9.1
+PORTVERSION=	8.8.0
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
@@ -149,10 +149,6 @@ ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 .include <bsd.port.pre.mk>
 
-.if defined(MAGUS)
-SSL_DEFAULT=	openssl
-.endif
-
 .if ((!${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MOPENSSL}) || (${PORT_OPTIONS:MOPENSSL} && ${SSL_DEFAULT:Mlibressl*})) && ${PORT_OPTIONS:MTLS_SRP}
 IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
 .endif
@@ -163,7 +159,7 @@ IGNORE=		only supports LDAPS with GNUTLS/OPENSSL/WOLFSSL enabled
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${PREFIX}/share/aclocal/
-	${REINPLACE_CMD} -e 's|Requires.private: zlib,openssl,libnghttp2||g' ${PREFIX}/libdata/pkgconfig/libcurl.pc
+#	${REINPLACE_CMD} -e 's|Requires.private: zlib,openssl,libnghttp2||g' ${PREFIX}/libdata/pkgconfig/libcurl.pc
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/ ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
