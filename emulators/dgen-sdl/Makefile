@@ -1,5 +1,3 @@
-
-
 PORTNAME=	dgen-sdl
 PORTVERSION=	1.33
 PORTREVISION=	1
@@ -17,9 +15,9 @@ GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/dgen \
 		bin/dgen_tobin \
-		man/man1/dgen.1.gz \
-		man/man1/dgen_tobin.1.gz \
-		man/man5/dgenrc.5.gz
+		share/man/man1/dgen.1.gz \
+		share/man/man1/dgen_tobin.1.gz \
+		share/man/man5/dgenrc.5.gz
 
 .include <bsd.port.pre.mk>
 
