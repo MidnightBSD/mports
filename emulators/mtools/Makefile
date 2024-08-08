@@ -1,18 +1,13 @@
-# New ports collection makefile for:    mtools
-# Date created:         5 October 1994
-# Whom:                 jmz
-#
-
-
 PORTNAME=	mtools
-PORTVERSION=	4.0.10
+PORTVERSION=	4.0.11
 PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	mtools
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A collection of tools for manipulating MSDOS files
+COMMENT=	Collection of tools for manipulating MSDOS files
+WWW=		https://www.gnu.org/software/mtools/intro.html
 
 LICENSE=	gpl3
 
