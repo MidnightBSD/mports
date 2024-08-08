@@ -1,2 +1,12 @@
-%%SITE_ARCH%%/auto/Devel/Refcount/Refcount.so
-%%SITE_ARCH%%/Devel/Refcount.pm
+%%SITE_PERL%%/Devel/Refcount.pm
+%%SITE_PERL%%/auto/Devel/Refcount/Refcount.so
+%%SITE_PERL%%/man/man3/Devel::Refcount.3.gz
+@dir %%SITE_PERL%%/Devel
+@dir %%SITE_PERL%%/auto/Devel/Refcount
+@dir %%SITE_PERL%%/auto/Devel
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
