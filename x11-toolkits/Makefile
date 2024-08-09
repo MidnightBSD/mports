@@ -82,6 +82,7 @@ SUBDIR += unique
 SUBDIR += vte
 SUBDIR += vte3
 SUBDIR += wlroots
+SUBDIR += wlroots015
 SUBDIR += wxgtk30
 SUBDIR += wxgtk31
 SUBDIR += wxgtk32

@@ -91,8 +91,8 @@ VULKAN_PLIST_FILES=	include/wlr/types/wlr_drm.h \
 X11_LIB_DEPENDS=	libxcb-errors.so:x11/xcb-util-errors \
 			libxcb-render-util.so:x11/xcb-util-renderutil \
 			libxcb-icccm.so:x11/xcb-util-wm
-X11_BUILD_DEPENDS=	xwayland-devel>0:x11-servers/xwayland-devel
-X11_RUN_DEPENDS=	xwayland-devel>0:x11-servers/xwayland-devel
+X11_BUILD_DEPENDS=	xwayland>0:x11-servers/xwayland
+X11_RUN_DEPENDS=	xwayland>0:x11-servers/xwayland
 X11_USE=		XORG=xcb
 X11_MESON_ENABLED=	x11-backend xwayland
 
