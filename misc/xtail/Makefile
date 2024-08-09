@@ -12,10 +12,10 @@ LICENSE=	unknown
 
 HAS_CONFIGURE=	yes
 
-PLIST_FILES=	bin/xtail man/man1/xtail.1.gz
+PLIST_FILES=	bin/xtail share/man/man1/xtail.1.gz
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/xtail ${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/xtail.1 ${PREFIX}/man/man1
+	${INSTALL_DATA} ${WRKSRC}/xtail.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

@@ -29,6 +29,7 @@ SUBDIR += gnome-user-docs
 SUBDIR += grc
 SUBDIR += help2man
 SUBDIR += hicolor-icon-theme
+SUBDIR += hwdata
 SUBDIR += iso-codes
 SUBDIR += jishyo
 SUBDIR += ldconfig_compat
