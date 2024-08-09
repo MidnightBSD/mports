@@ -9,10 +9,10 @@ COMMENT=        Magus runtime utilities for build cluster
 
 LICENSE=	agg
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:databases/p5-DBD-Pg \
-		${SITE_PERL}/YAML.pm:textproc/p5-YAML \
-		${SITE_PERL}/Class/DBI.pm:databases/p5-Class-DBI \
-		${SITE_PERL}/Class/Accessor.pm:devel/p5-Class-Accessor \
+RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
+		p5-YAML>=0:textproc/p5-YAML \
+		p5-Class-DBI>=0:databases/p5-Class-DBI \
+		p5-Class-Accessor>=0:devel/p5-Class-Accessor \
 		git:devel/git
 
 USES=		perl5 pgsql:14
