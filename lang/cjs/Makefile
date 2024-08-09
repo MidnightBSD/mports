@@ -1,5 +1,3 @@
-# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-
 PORTNAME=	cjs
 PORTVERSION=	4.8.2
 PORTREVISION=	1
@@ -10,10 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JavaScript bindings based on gobject-introspection
 WWW=		https://github.com/linuxmint/cinnamon
 
-LICENSE=		mit lgpl
+LICENSE=		mit lgpl+
 LICENSE_COMB=		dual
-LICENSE_FILE_MIT=	${WRKSRC}/COPYING
-LICENSE_FILE_LGPL20+ =	${WRKSRC}/COPYING.LGPL
+LICENSE_FILE_mit=	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl+ =	${WRKSRC}/COPYING.LGPL
 
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libmozjs-78.so:lang/spidermonkey78

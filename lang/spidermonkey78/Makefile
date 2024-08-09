@@ -12,9 +12,8 @@ LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # must use 90 or better
-LLVM_DEFAULT=	90
+LLVM_DEFAULT=	11
 BUILD_DEPENDS=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
-		${LOCALBASE}/bin/python${PYTHON3_DEFAULT}:lang/python${PYTHON3_DEFAULT:S/.//g} \
 		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
 		autoconf2.13:devel/autoconf2.13 \
 		rust-cbindgen>=0.8.7:devel/rust-cbindgen
