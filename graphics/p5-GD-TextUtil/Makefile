@@ -1,6 +1,3 @@
-
-#
-
 PORTNAME=	GD-TextUtil
 PORTVERSION=	0.86
 PORTREVISION=	1
@@ -12,10 +9,10 @@ DISTNAME=	GDTextUtil-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text utilities for use with GD drawing package
 
-LICENSE=	artistic gpl gpl2
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/GD.pm:graphics/p5-GD
+RUN_DEPENDS=	p5-GD>=0:graphics/p5-GD
 
 USES=		perl5
 USE_PERL5=	configure
