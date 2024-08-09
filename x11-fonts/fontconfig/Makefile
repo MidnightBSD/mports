@@ -1,6 +1,7 @@
 PORTNAME=	fontconfig
 DISTVERSION=	2.15.0
 PORTEPOCH=	1
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://www.freedesktop.org/software/fontconfig/release/
 
@@ -74,9 +75,9 @@ post-patch:
 	    ${PATCH_WRKSRC}/conf.d/meson.build
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/fc-*/*.1 ${PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/*.3 ${PREFIX}/man/man3
-	${INSTALL_MAN} ${WRKSRC}/doc/*.5 ${PREFIX}/man/man5
+	${INSTALL_MAN} ${WRKSRC}/fc-*/*.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/*.3 ${PREFIX}/share/man/man3
+	${INSTALL_MAN} ${WRKSRC}/doc/*.5 ${PREFIX}/share/man/man5
 	${MV} ${PREFIX}/etc/fonts/fonts.conf ${PREFIX}/etc/fonts/fonts.conf.sample
 	@${MKDIR} ${FAKE_DESTDIR}/var/db/fontconfig
 
