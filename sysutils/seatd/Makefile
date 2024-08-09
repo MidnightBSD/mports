@@ -1,5 +1,6 @@
 PORTNAME=	seatd
 DISTVERSION=	0.8.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://git.sr.ht/~kennylevinsen/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
@@ -9,8 +10,6 @@ WWW=		https://git.sr.ht/~kennylevinsen/seatd
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-USE_GCC=	yes
 
 USES=		compiler:c11 cpe meson pkgconfig
 USE_LDCONFIG=	yes
