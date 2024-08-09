@@ -21,7 +21,7 @@ MINUID?=	100
 DELAY?=		3
 CONFIGURE_ARGS+=--with-minuid=${MINUID} --with-badpassdelay=${DELAY}
 
-PLIST_FILES=	sbin/courierpassd man/man8/courierpassd.8.gz
+PLIST_FILES=	sbin/courierpassd share/man/man8/courierpassd.8.gz
 PORTDOCS=	AUTHORS ChangeLog COPYING INSTALL NEWS README
 
 OPTIONS_DEFINE=	DOCS
