@@ -31,6 +31,6 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/bvm ${PREFIX}/bin/
 	${INSTALL_PROGRAM} ${WRKSRC}/src/bvmb ${PREFIX}/bin/
 	${INSTALL_PROGRAM} ${WRKSRC}/src/bvmdhcp ${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/bvm.8 ${MAN8PREFIX}/man/man8
+	${INSTALL_MAN} ${WRKSRC}/bvm.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>
