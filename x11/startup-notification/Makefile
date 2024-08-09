@@ -7,6 +7,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that supports startup notification spec from freedesktop.org
+WWW=		https://www.freedesktop.org/wiki/Software/startup-notification/
 
 LICENSE=	lgpl mit
 LICENSE_COMB=	multi
