@@ -14,6 +14,5 @@ SUBDIR += rubygem-money
 SUBDIR += sql-ledger
 SUBDIR += venice
 SUBDIR += weberp
-SUBDIR += wmstock
 
 .include <bsd.port.subdir.mk>
