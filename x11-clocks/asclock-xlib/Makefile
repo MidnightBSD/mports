@@ -34,5 +34,7 @@ post-install:
 	  ${MKDIR} ${STAGEDIR}${PREFIX}/share/asclock/${i}; \
 	  ${INSTALL_DATA} *.xpm config ${STAGEDIR}${PREFIX}/share/asclock/${i}/ )
 .endfor
+	${MKDIR} ${PREFIX}/share/man/man1
+	${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1/
 
 .include <bsd.port.post.mk>
