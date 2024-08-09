@@ -440,3 +440,4 @@ security/vnccrack||2024-07-31|Has expired: Outdated and abandoned, last release 
 rsion in ports is 1.0.0
 www/varnish6|www/varnish7|2023-12-31|Has expired: Unsupported version upstream, consider migrating to www/varnish7
 devel/llvm10|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
+devel/llvm90|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
