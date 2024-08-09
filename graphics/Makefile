@@ -124,6 +124,7 @@ SUBDIR += libimagequant
 SUBDIR += libiptcdata
 SUBDIR += libjpeg-turbo
 SUBDIR += libjxl
+SUBDIR += libliftoff
 SUBDIR += liblqr-1
 SUBDIR += libmng
 SUBDIR += libmypaint

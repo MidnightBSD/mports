@@ -1,7 +1,6 @@
 PORTNAME=	libinput
-DISTVERSION=	1.24.0
+DISTVERSION=	1.26.1
 CATEGORIES=	x11
-DISTFILES=	libinput-${DISTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic input library
@@ -20,8 +19,8 @@ LIB_DEPENDS=	libevdev.so:devel/libevdev \
 USES=		cpe localbase meson pkgconfig python:run shebangfix
 USE_LDCONFIG=	yes
 
-#USE_GITLAB=	yes
-#GL_SITE=	https://gitlab.freedesktop.org
+USE_GITLAB=	yes
+GL_SITE=	https://gitlab.freedesktop.org
 
 CPE_VENDOR=	freedesktop
 
@@ -29,7 +28,8 @@ NO_TEST=	yes
 
 MESON_ARGS=	-Ddocumentation=false -Dtests=false
 
-SHEBANG_FILES=	tools/libinput-analyze-per-slot-delta.py \
+SHEBANG_FILES=	tools/libinput-analyze-buttons.py \
+		tools/libinput-analyze-per-slot-delta.py \
 		tools/libinput-analyze-recording.py \
 		tools/libinput-analyze-touch-down-state.py \
 		tools/libinput-measure-fuzz.py \
