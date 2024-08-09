@@ -638,7 +638,7 @@ LDFLAGS_armv7=	-Wl,-z,notext
 LDFLAGS_i386=	-Wl,-z,notext
 
 CONFIGURE_ARGS+=--prefix="${PREFIX}" \
-		--mandir="${PREFIX}/man" \
+		--mandir="${PREFIX}/share/man" \
 		--datadir="${DATADIR}" \
 		--docdir="${DOCSDIR}" \
 		--pkgconfigdir="${PREFIX}/libdata/pkgconfig" \
