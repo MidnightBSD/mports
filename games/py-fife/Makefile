@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flexible Isometric Free Engine
+WWW=		https://www.fifengine.net/
 
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE.md

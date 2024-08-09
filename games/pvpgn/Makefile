@@ -1,6 +1,6 @@
 PORTNAME=	pvpgn
 PORTVERSION=	1.8.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	BERLIOS
 DISTFILES=	${EXTRACT_ONLY} pvpgn-support-1.2.tar.gz
@@ -9,7 +9,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Blizzard Battle.net emulation software
-WWW=          http://pvpgn.berlios.de
+WWW=		http://pvpgn.berlios.de
 
 LICENSE=        gpl2
 
@@ -31,6 +31,7 @@ PLIST_SUB+=	RC_SUFX=${RC_SUFX}
 WRKSRC=		${WRKDIR}/${DISTNAME}/src
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pvpgn \
 		--localstatedir=${DATADIR} \
 		--with-libraries=${LOCALBASE}/lib
@@ -46,6 +47,7 @@ D2_CONFIGURE_ENABLE=	d2cs d2dbs
 
 MYSQL_USES=		mysql
 MYSQL_CONFIGURE_WITH=	mysql
+MYSQL_VARS=		IGNORE_WITH_MYSQL="80 81"
 
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_WITH=	pgsql

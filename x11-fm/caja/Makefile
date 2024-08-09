@@ -1,5 +1,5 @@
 PORTNAME=	caja
-PORTVERSION=	1.26.1
+PORTVERSION=	1.28.0
 PORTREVISION=	1
 CATEGORIES=	x11-fm mate
 MASTER_SITES=	MATE
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	File manager for the MATE desktop
 WWW=		https://mate-desktop.org/
 
-LICENSE=	gpl2 lgpl
+LICENSE=	gpl2+ lgpl+
 LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libexif.so:graphics/libexif \
@@ -24,11 +24,12 @@ USES=		compiler:c11 desktop-file-utils gettext gmake gnome libtool \
 		localbase mate pathfix pkgconfig shared-mime-info tar:xz xorg
 USE_MATE=	desktop icontheme:run
 USE_XORG=	ice sm x11
-USE_GNOME=	cairo gtk30 gnomeprefix intltool introspection:build libxml2
+USE_GNOME=	cairo gtk30 gnomeprefix intltool introspection:build libxml2 \
+		gvfs
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-packagekit
-INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.mate.caja.gschema.xml \

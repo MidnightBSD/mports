@@ -1,5 +1,3 @@
-
-
 PORTNAME=	grubik
 PORTVERSION=	0.1
 PORTREVISION=	2
@@ -10,7 +8,7 @@ DISTNAME=	GRubik
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Virtual 3D Rubiks cube for GNUstep
 
-LICENSE=	gpl2 # or later
+LICENSE=	gpl2+
 
 USES=		tar:tgz gnustep
 USE_GNUSTEP=	back build
