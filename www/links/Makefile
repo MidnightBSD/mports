@@ -24,7 +24,7 @@ USES=		cpe localbase:ldflags ssl gettext-runtime tar:bzip2
 
 CPE_VENDOR=	twibright
 
-PLIST_FILES=	bin/links man/man1/links.1.gz
+PLIST_FILES=	bin/links share/man/man1/links.1.gz
 
 OPTIONS_DEFINE=	BROTLI CIPHERSTRING DIRECTFB IPV6 SVG SVGALIB THREADS TRANS \
 		UTF8 X11
