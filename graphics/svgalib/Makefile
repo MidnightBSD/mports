@@ -9,7 +9,7 @@ COMMENT=	Low level console graphics library
 
 LICENSE=	publicdom
 
-USES=	gmake uidfix dos2unix shebangfix
+USES=		cpe gmake uidfix dos2unix shebangfix
 DOS2UNIX_FILES=	utils/gtf/gtf.h utils/gtf/scitech.h
 SHEBANG_FILES=	utils/svgakeymap
 USE_LDCONFIG=	yes
