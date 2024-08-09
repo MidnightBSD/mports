@@ -1,11 +1,11 @@
 PORTNAME=	clamtk
-PORTVERSION=	6.14
-PORTREVISION=	2
+PORTVERSION=	6.18
 DISTVERSIONPREFIX=v
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK front-end for Clam Antivirus
+WWW=		https://dave-theunsub.github.io/clamtk/
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
@@ -43,7 +43,7 @@ post-patch:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/ClamTk
 	${INSTALL_DATA} ${WRKSRC}/lib/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/ClamTk
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications
