@@ -1,7 +1,6 @@
 PORTNAME=	libvpx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.13.0
-PORTREVISION=	1
+DISTVERSION=	1.14.1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -51,8 +50,8 @@ post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/vpx*
 	@${STRIP_CMD} ${PREFIX}/lib/libvpx.so.*.*.*
 # firefox for 2.x
-	cd ${PREFIX}/lib && ${LN} -sf libvpx.so.8 libvpx.so.6
+	cd ${PREFIX}/lib && ${LN} -sf libvpx.so.9 libvpx.so.6
 # firefox for 3.x
-	cd ${PREFIX}/lib && ${LN} -sf libvpx.so.8 libvpx.so.7
+	cd ${PREFIX}/lib && ${LN} -sf libvpx.so.9 libvpx.so.7
 
 .include <bsd.port.mk>
