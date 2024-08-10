@@ -40,7 +40,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/dosbox ${PREFIX}/bin/dosbox
 	${INSTALL_DATA} ${WRKSRC}/src/dosbox.ico ${PREFIX}/share/pixmaps/
-	${INSTALL_MAN} ${WRKSRC}/docs/dosbox.1 ${PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/docs/dosbox.1 ${PREFIX}/share/man/man1/
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 

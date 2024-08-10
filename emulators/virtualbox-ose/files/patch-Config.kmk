@@ -1,0 +1,556 @@
+--- Config.kmk.orig	2024-01-11 06:59:58.000000000 -0500
++++ Config.kmk	2024-05-30 14:44:49.048433000 -0400
+@@ -281,7 +281,7 @@
+   VBOX_PACKAGE_OS = OS2
+ else ifeq ($(KBUILD_TARGET),haiku)
+   VBOX_PACKAGE_OS = HAIKU
+-else if1of ($(KBUILD_TARGET), dragonfly freebsd netbsd openbsd)
++else if1of ($(KBUILD_TARGET), dragonfly midnightbsd freebsd netbsd openbsd)
+   VBOX_PACKAGE_OS = BSD
+ else
+   $(error Cannot determine VBOX_PACKAGE_OS)
+@@ -326,7 +326,7 @@
+  VBOX_WITH_ADDITION_DRIVERS = 1
+ endif
+ # Build X11 additions. Can be disabled separately.
+-if1of ($(KBUILD_TARGET), dragonfly freebsd linux netbsd openbsd solaris)
++if1of ($(KBUILD_TARGET), dragonfly midnightbsd freebsd linux netbsd openbsd solaris)
+  VBOX_WITH_X11_ADDITIONS = 1
+ endif
+ # Enable the building of shared folders in the windows additions.
+@@ -474,11 +474,11 @@
+  # Enable OSS audio support.
+  VBOX_WITH_AUDIO_OSS = 1
+ endif
+-if1of ($(KBUILD_TARGET), linux)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd linux)
+  # Enable ALSA audio support.
+  VBOX_WITH_AUDIO_ALSA = 1
+ endif
+-if1of ($(KBUILD_TARGET), linux)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd linux)
+  # Enable PulseAudio audio support.
+  VBOX_WITH_AUDIO_PULSE = 1
+ endif
+@@ -491,11 +491,11 @@
+ # (disabled with 6.1, since it's not complete/useful enough)
+ VBOX_WITH_PCI_PASSTHROUGH =
+ # Enable statically linked dbus support.
+-if1of ($(KBUILD_TARGET), linux solaris)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd linux solaris)
+  VBOX_WITH_DBUS = 1
+ endif
+ # Enable building PAM modules.
+-if1of ($(KBUILD_TARGET), linux solaris)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd linux solaris)
+  VBOX_WITH_PAM = 1
+ endif
+ # Enable internal networking.
+@@ -503,7 +503,7 @@
+ # Enable vmsvga (svga2) graphics device variant, 2D part
+ VBOX_WITH_VMSVGA = 1
+ # Enable vmsvga (svga2) graphics device variant, 3D part
+-if1of ($(KBUILD_TARGET), darwin linux win)
++if1of ($(KBUILD_TARGET), darwin midnightbsd freebsd linux win)
+  VBOX_WITH_VMSVGA3D = 1
+ endif
+ # Enable the generic 3D settings support if at least one 3D capable solution is enabled
+@@ -513,7 +513,7 @@
+ # Enable Host Guest Shared Memory Interface.
+ VBOX_WITH_HGSMI = 1
+ # Enable Video 2D Acceleration.
+-if1of ($(KBUILD_TARGET), darwin linux win freebsd)
++if1of ($(KBUILD_TARGET), darwin linux win midnightbsd freebsd)
+  VBOX_WITH_VIDEOHWACCEL = 1
+ endif
+ # Enable Wddm Video driver for Vista+ guests.
+@@ -590,7 +590,7 @@
+ # Enable MSI support in devices
+ VBOX_WITH_MSI_DEVICES = 1
+ # Enable host network interface API.
+-if1of ($(KBUILD_TARGET), darwin freebsd linux solaris win)
++if1of ($(KBUILD_TARGET), darwin midnightbsd freebsd linux solaris win)
+  VBOX_WITH_HOSTNETIF_API = 1
+ endif
+ # Emulated USB smart card reader
+@@ -649,7 +649,7 @@
+ #endif
+ # Set this to prefix all C symbols in XPCOM, to avoid dynamic linking problems
+ # caused by our XPCOM library polluting the symbol namespace for system libs.
+-if1of ($(KBUILD_TARGET), linux solaris)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd linux solaris)
+  VBOX_WITH_XPCOM_NAMESPACE_CLEANUP = 1
+ endif
+ # The webservices api.
+@@ -744,7 +744,7 @@
+ # Compile the host channel
+ VBOX_WITH_HOST_CHANNEL = 1
+ # Enable the guest control service.
+-if1of ($(KBUILD_TARGET), darwin freebsd linux solaris win)
++if1of ($(KBUILD_TARGET), darwin midnightbsd freebsd linux solaris win)
+  VBOX_WITH_GUEST_CONTROL = 1
+ endif
+ # Enable ballooning
+@@ -789,14 +789,14 @@
+ ## @name Networking
+ ## @{
+ # Use VBoxNetFlt for host interface networking.
+-if1of ($(KBUILD_TARGET), darwin freebsd linux solaris win)
++if1of ($(KBUILD_TARGET), darwin midnightbsd freebsd linux solaris win)
+  VBOX_WITH_NETFLT = 1
+  ifeq ($(KBUILD_TARGET),solaris)
+   # requires snv_159+.
+   VBOX_WITH_NETFLT_CROSSBOW = 1
+  endif
+  # Use VBoxNetAdp for host only networking.
+- if1of ($(KBUILD_TARGET), darwin freebsd linux solaris win)
++ if1of ($(KBUILD_TARGET), darwin midnightbsd freebsd linux solaris win)
+   VBOX_WITH_NETADP = 1
+  endif
+ endif
+@@ -805,7 +805,7 @@
+ # Enable the netshaper support
+ VBOX_WITH_NETSHAPER = 1
+ # Enable Virtual Distributed Ethernet or not.
+-if1of ($(KBUILD_TARGET), freebsd linux)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd linux)
+  VBOX_WITH_VDE = 1
+ endif
+ # Use new VBoxNetDhcpd instead of old VBoxNetDHCP
+@@ -906,6 +906,8 @@
+   VBOX_PATH_APP_PRIVATE      = /Applications/VirtualBox.app/Contents/MacOS
+  else ifeq ($(KBUILD_TARGET),freebsd)
+   VBOX_PATH_APP_PRIVATE      = /usr/local/lib/virtualbox
++ else ifeq ($(KBUILD_TARGET),midnightbsd)
++  VBOX_PATH_APP_PRIVATE      = /usr/local/lib/virtualbox
+  else ifeq ($(KBUILD_TARGET),haiku)
+   VBOX_PATH_APP_PRIVATE      = /boot/system/apps/VirtualBox
+  endif
+@@ -943,7 +945,7 @@
+ ifdef VBOX_WITH_HARDENING
+  if1of ($(KBUILD_TARGET), solaris)
+   VBOX_WITH_RUNPATH = $(VBOX_PATH_APP_PRIVATE)/$(if-expr $(KBUILD_TARGET_ARCH) == "amd64",amd64,i386)
+- else if1of ($(KBUILD_TARGET), freebsd linux)
++ else if1of ($(KBUILD_TARGET), midnightbsd freebsd linux)
+   VBOX_WITH_RUNPATH = $(VBOX_PATH_APP_PRIVATE)
+  endif
+ endif
+@@ -952,7 +954,7 @@
+ # things gets a bit complicated since the $ORIGIN+setuid policy differs.
+ #VBOX_WITH_ORIGIN = 1
+ ifndef VBOX_WITH_HARDENING
+- if1of ($(KBUILD_TARGET), freebsd linux netbsd openbsd solaris) # duplicated further down
++ if1of ($(KBUILD_TARGET), midnightbsd freebsd linux netbsd openbsd solaris) # duplicated further down
+   VBOX_WITH_ORIGIN = 1
+  endif
+ endif
+@@ -1074,10 +1076,6 @@
+  VBOX_WITH_VBOXSDL=
+ endif
+ 
+-ifeq ($(KBUILD_TARGET),freebsd)
+- VBOX_WITH_DOCS=
+-endif
+-
+ ifeq ($(KBUILD_TARGET),haiku)
+  # Don't bother with SDL ttf for now.
+  VBOX_WITH_SECURELABEL=
+@@ -1238,7 +1236,7 @@
+  VBOX_WITH_KCHMVIEWER=
+  VBOX_WITH_PLUGIN_CRYPT=
+  VBOX_WITH_DRAG_AND_DROP_PROMISES=
+- ifn1of ($(KBUILD_TARGET), linux)
++ ifn1of ($(KBUILD_TARGET), midnightbsd freebsd linux)
+   VBOX_WITH_DOCS=
+   VBOX_WITH_DOCS_PACKING=
+  endif
+@@ -1305,7 +1303,7 @@
+   VBOX_PATH_SHARED_LIBS=
+   VBOX_PATH_APP_DOCS=
+   VBOX_WITH_RUNPATH=
+-  if1of ($(KBUILD_TARGET), freebsd linux netbsd openbsd solaris) # duplicated up above
++  if1of ($(KBUILD_TARGET), midnightbsd freebsd linux netbsd openbsd solaris) # duplicated up above
+    VBOX_WITH_ORIGIN = 1
+   endif
+  endif
+@@ -1466,7 +1464,7 @@
+ #
+ # Image and object format config.
+ #
+-if1of ($(KBUILD_TARGET), freebsd haiku linux netbsd openbsd solaris)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd haiku linux netbsd openbsd solaris)
+  VBOX_LDR_FMT = elf
+ endif
+ ifeq ($(KBUILD_TARGET),darwin)
+@@ -1676,6 +1674,7 @@
+ DEFS.sparc64     = RT_ARCH_SPARC64
+ DEFS.darwin      = RT_OS_DARWIN __DARWIN__
+ DEFS.freebsd     = RT_OS_FREEBSD __FREEBSD__
++DEFS.midnightbsd     = RT_OS_FREEBSD __FREEBSD__
+ DEFS.haiku       = RT_OS_HAIKU
+ DEFS.linux       = RT_OS_LINUX _FILE_OFFSET_BITS=64
+ DEFS.netbsd      = RT_OS_NETBSD
+@@ -1819,7 +1818,7 @@
+ #
+ # Add the output dir(s) to the dynamic loader search path.
+ #
+-if1of ($(KBUILD_HOST), freebsd linux netbsd openbsd solaris)
++if1of ($(KBUILD_HOST), midnightbsd freebsd linux netbsd openbsd solaris)
+  export LD_LIBRARY_PATH:=$(PATH_STAGE_BIN):$(PATH_STAGE_LIB):$(LD_LIBRARY_PATH)
+ endif
+ ifeq ($(KBUILD_HOST),haiku)
+@@ -1854,7 +1853,7 @@
+  LIB_DDU         = $(PATH_STAGE_BIN)/VBoxDDU.dylib
+  VBOX_LIB_SUPR0  = $(PATH_STAGE_LIB)/SUPR0$(VBOX_SUFF_LIB)
+ endif
+-if1of ($(KBUILD_TARGET), freebsd haiku linux netbsd openbsd solaris)
++if1of ($(KBUILD_TARGET), midnightbsd freebsd haiku linux netbsd openbsd solaris)
+  LIB_RUNTIME     = $(PATH_STAGE_BIN)/VBoxRT.so
+  LIB_RUNTIME_EF  = $(PATH_STAGE_LIB)/RuntimeEFCPP.a
+  VBOX_LIB_RUNTIME_X86   = $(PATH_STAGE_BIN)/VBoxRT-x86.so
+@@ -2125,7 +2124,7 @@
+ # GNU tar if present.
+ if1of ($(KBUILD_TARGET), linux os2 win)
+  VBOX_GTAR ?= tar
+-else if1of ($(KBUILD_TARGET), freebsd netbsd solaris)
++else if1of ($(KBUILD_TARGET), midnightbsd freebsd netbsd solaris)
+  VBOX_GTAR ?= gtar
+ endif
+ 
+@@ -2961,7 +2960,7 @@
+ 	$(QUIET)$(APPEND) '$@' 'endif'
+ 	$(QUIET)$(APPEND) '$@' 'VBOX_SOLARIS_11_BUILD_VERSION  := $$(word 6, $$(subst ., ,$$(VBOX_SOLARIS_11_BRANCH_VERSION)))'
+ endif
+-if1of ($(KBUILD_HOST), darwin freebsd solaris)
++if1of ($(KBUILD_HOST), darwin midnightbsd freebsd solaris)
+ 	$(QUIET)$(APPEND) '$@' 'VBOX_HOST_DTRACE_VERSION := $(shell dtrace -V)'
+ endif
+ if defined(VBOX_PYLINT) && !defined(VBOX_WITH_PYLINT_PRE_V1_0) && !defined(VBOX_WITH_PYLINT_V1_1_PLUS) && !defined(VBOX_WITH_PYLINT_V1_2_1_PLUS)
+@@ -4462,7 +4461,7 @@
+    ## @todo WTF doesn't the globals work? Debug info is supposed to be split everywhere. GRR
+    TEMPLATE_VBoxRc_LD_DEBUG          = split
+   endif
+-  ifn1of ($(KBUILD_TARGET), solaris freebsd)
++  ifn1of ($(KBUILD_TARGET), solaris midnightbsd freebsd)
+    TEMPLATE_VBoxRc_LIBS               = \
+ 	$(VBOX_GCC32_LIBGCC) # intrinsics
+   endif
+@@ -4522,7 +4521,7 @@
+   TEMPLATE_VBoxRcExe_LDFLAGS.dbgopt = -g
+   TEMPLATE_VBoxRcExe_LDFLAGS.strict = -g
+   TEMPLATE_VBoxRcExe_LDFLAGS.release = -g
+-  if1of ($(KBUILD_TARGET).$(KBUILD_TARGET_ARCH), freebsd.amd64)
++  if1of ($(KBUILD_TARGET).$(KBUILD_TARGET_ARCH), midnightbsd.amd64 freebsd.amd64)
+    # The FreeBSD port of gcc isn't picking up -m32 where it should.
+    TEMPLATE_VBoxRcExe_DEFS.$(KBUILD_TARGET)    = $(TEMPLATE_VBoxRc_DEFS.$(KBUILD_TARGET))    IPRT_DONT_USE_SYSTEM_STDINT_H
+    TEMPLATE_VBoxRcExe_LDFLAGS.$(KBUILD_TARGET) = /usr/lib32/crt1.o /usr/lib32/crti.o /usr/lib32/crtbegin.o $(TEMPLATE_VBoxRc_LDFLAGS.$(KBUILD_TARGET)) -nostdlib -v
+@@ -4613,6 +4612,7 @@
+ TEMPLATE_VBoxR0_CFLAGS.amd64        = -m64 -mno-red-zone -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -fasynchronous-unwind-tables -ffreestanding
+ TEMPLATE_VBoxR0_CXXFLAGS.amd64      = -m64 -mno-red-zone -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -fasynchronous-unwind-tables
+ TEMPLATE_VBoxR0_CXXFLAGS.freebsd    = -ffreestanding
++TEMPLATE_VBoxR0_CXXFLAGS.midnightbsd    = -ffreestanding
+  if $(VBOX_GCC_VERSION_CC) < 30400
+   TEMPLATE_VBoxR0_DEFS             += RT_WITHOUT_PRAGMA_ONCE
+  endif
+@@ -4644,7 +4644,7 @@
+ TEMPLATE_VBoxR0_CFLAGS.amd64       += -mcmodel=kernel
+ TEMPLATE_VBoxR0_CXXFLAGS.amd64     += -mcmodel=kernel
+  endif
+- ifn1of ($(KBUILD_TARGET),solaris freebsd)
++ ifn1of ($(KBUILD_TARGET),solaris midnightbsd freebsd)
+  TEMPLATE_VBoxR0_LIBS               = \
+ 	$(VBOX_GCC_LIBGCC) # intrinsics
+  endif
+@@ -4978,7 +4978,7 @@
+ TEMPLATE_VBOXR0DRV_POST_CMDS          = $(VBOX_SIGN_DRIVER_CMDS)
+ endif # Solaris
+ 
+-ifeq ($(KBUILD_TARGET),freebsd)
++if1of ($(KBUILD_TARGET),midnightbsd freebsd)
+ # x86 FreeBSD (6.2 or something):
+ #  cc -O2 -fno-strict-aliasing -pipe -Werror -D_KERNEL -DKLD_MODULE \
+ #   -nostdinc -I- -I. -I@ -I@/contrib/altq -I@/../include -I/usr/include \
+@@ -5075,7 +5075,7 @@
+ 		| xargs -J% objcopy % $(outbase).kld
+ 
+ # Link the final .ko (a shared object).
+-	ld $(flags) -Bshareable -o $(out) $(outbase).kld
++    ld $(flags) -Bshareable -znotext -o $(out) $(outbase).kld
+ endef
+  endif # x86
+ 
+@@ -5186,7 +5186,7 @@
+  endif
+ endif
+ 
+-ifn1of ($(KBUILD_TARGET), darwin os2 win solaris freebsd)
++ifn1of ($(KBUILD_TARGET), darwin os2 win solaris midnightbsd freebsd)
+  # This doesn't work if supdrv is natively loading VMMR0.r0 et al, but
+  # fortunately it isn't really necessary.
+  TEMPLATE_VBOXR0DRV_CFLAGS    += -include $(PATH_ROOT)/include/VBox/SUPDrvMangling.h
+@@ -5353,6 +5353,8 @@
+ TEMPLATE_VBOXR3EXE_LDFLAGS.amd64       = -m64
+ TEMPLATE_VBOXR3EXE_LDFLAGS.sparc32     = -m32
+ TEMPLATE_VBOXR3EXE_LDFLAGS.sparc64     = -m64
++TEMPLATE_VBOXR3EXE_LDFLAGS.freebsd     = -Wl,-z,noexecstack,-z,relro $(VBOX_LD_as_needed)
++TEMPLATE_VBOXR3EXE_LDFLAGS.midnightbsd     = -Wl,-z,noexecstack,-z,relro $(VBOX_LD_as_needed)
+ TEMPLATE_VBOXR3EXE_LDFLAGS.linux       = -Wl,-z,noexecstack,-z,relro $(VBOX_LD_as_needed)
+ TEMPLATE_VBOXR3EXE_LDFLAGS.solaris     = -Wl,-z,ignore # same as VBOX_LD_as_needed
+ TEMPLATE_VBOXR3EXE_LDFLAGS.debug       = $(VBOX_GCC_SANITIZER_FLAGS) $(VBOX_GCC_SANITIZER_LDFLAGS)
+@@ -5386,10 +5388,19 @@
+ TEMPLATE_VBOXR3EXE_CFLAGS             += -fno-pic
+ TEMPLATE_VBOXR3EXE_CXXFLAGS           += -fno-pic
+ TEMPLATE_VBOXR3EXE_LDFLAGS            += -fno-pic
+- else if1of ($(KBUILD_TARGET), freebsd openbsd)
++ else if1of ($(KBUILD_TARGET),midnightbsd freebsd)
+ TEMPLATE_VBOXR3EXE_TOOL                = GXX3
+ TEMPLATE_VBOXR3EXE_LIBS                = pthread
++TEMPLATE_VBOXR3EXE_LDFLAGS.freebsd.x86 = -Wl,-z,notext
++TEMPLATE_VBOXR3EXE_LDFLAGS.midnightbsd.x86 = -Wl,-z,notext
+ TEMPLATE_VBOXR3EXE_INCS               += \
++	/usr/local/include
++TEMPLATE_VBOXR3EXE_LIBPATH            += \
++	/usr/local/lib
++ else ifeq ($(KBUILD_TARGET),openbsd)
++TEMPLATE_VBOXR3EXE_TOOL                = GXX3
++TEMPLATE_VBOXR3EXE_LIBS                = pthread
++TEMPLATE_VBOXR3EXE_INCS               += \
+ 	/usr/include \
+ 	/usr/X11R6/include \
+ 	/usr/local/include
+@@ -5421,6 +5432,8 @@
+   TEMPLATE_VBOXR3EXE_LDFLAGS          += '$(VBOX_GCC_RPATH_OPT)$(VBOX_WITH_RELATIVE_RUNPATH)'
+  endif
+  ifdef VBOX_WITH_ORIGIN
++  TEMPLATE_VBOXR3EXE_LDFLAGS.freebsd  += $(VBOX_GCC_ORIGIN_OPT)
++  TEMPLATE_VBOXR3EXE_LDFLAGS.midnightbsd  += $(VBOX_GCC_ORIGIN_OPT)
+   TEMPLATE_VBOXR3EXE_LDFLAGS.linux    += $(VBOX_GCC_ORIGIN_OPT)
+  endif
+ endif
+@@ -5488,7 +5501,7 @@
+ #
+ TEMPLATE_VBoxR3DllNoPic                    = VBox ring-3 SO/DLLs without PIC, without warnings.
+ TEMPLATE_VBoxR3DllNoPic_EXTENDS            = VBOXR3
+-if1of ($(KBUILD_TARGET).$(KBUILD_TARGET_ARCH), linux.x86 freebsd.x86)
++if1of ($(KBUILD_TARGET).$(KBUILD_TARGET_ARCH), linux.x86 midnightbsd.x86 freebsd.x86)
+  TEMPLATE_VBoxR3DllNoPic_DEFS              = $(TEMPLATE_VBOXR3EXE_DEFS)
+  TEMPLATE_VBoxR3DllNoPic_CFLAGS            = $(TEMPLATE_VBOXR3EXE_CFLAGS)   $(VBOX_GCC_WERR)
+  TEMPLATE_VBoxR3DllNoPic_CXXFLAGS          = $(TEMPLATE_VBOXR3EXE_CXXFLAGS) $(VBOX_GCC_WERR)
+@@ -5524,7 +5537,7 @@
+ #
+ TEMPLATE_VBoxR3DllWarnNoPic                = VBox ring-3 SO/DLLs without PIC, with warnings.
+ TEMPLATE_VBoxR3DllWarnNoPic_EXTENDS        = VBOXR3
+-if1of ($(KBUILD_TARGET).$(KBUILD_TARGET_ARCH), linux.x86 freebsd.x86)
++if1of ($(KBUILD_TARGET).$(KBUILD_TARGET_ARCH), linux.x86 midnightbsd.x86 freebsd.x86)
+  TEMPLATE_VBoxR3DllWarnNoPic_DEFS          = $(TEMPLATE_VBOXR3EXE_DEFS)
+  TEMPLATE_VBoxR3DllWarnNoPic_CFLAGS        = $(TEMPLATE_VBOXR3EXE_CFLAGS)
+  TEMPLATE_VBoxR3DllWarnNoPic_CXXFLAGS      = $(TEMPLATE_VBOXR3EXE_CXXFLAGS)
+@@ -5560,7 +5573,7 @@
+  	$(PATH_TOOL_$(TEMPLATE_VBOXR3STATIC_TOOL.win.amd64)_LIB)/libcmt$(VBOX_VCC_CRT_TYPE).lib \
+  	$(PATH_TOOL_$(TEMPLATE_VBOXR3STATIC_TOOL.win.amd64)_LIB)/libcpmt$(VBOX_VCC_CRT_TYPE).lib \
+  	$(PATH_TOOL_$(TEMPLATE_VBOXR3STATIC_TOOL.win.amd64)_LIB)/oldnames.lib
+-else ifn1of ($(KBUILD_TARGET), darwin linux solaris)
++else ifn1of ($(KBUILD_TARGET), darwin midnightbsd freebsd linux solaris)
+  # The gcc guys sans darwin, linux and solaris (don't depend on statically compiled system libs there)
+  TEMPLATE_VBOXR3STATIC_CFLAGS          = $(TEMPLATE_VBOXR3EXE_CFLAGS) -static
+  TEMPLATE_VBOXR3STATIC_CXXFLAGS        = $(TEMPLATE_VBOXR3EXE_CXXFLAGS) -static
+@@ -5608,7 +5621,7 @@
+  TEMPLATE_VBoxR3Static_LIBS        += \
+  	$(SDK_VBOX_LZF_LIBS) \
+  	$(SDK_VBOX_ZLIB_LIBS)
+- if1of ($(KBUILD_TARGET),darwin freebsd)
++ if1of ($(KBUILD_TARGET),darwin midnightbsd freebsd)
+   TEMPLATE_VBoxR3Static_LIBS       += iconv
+  else ifeq ($(KBUILD_TARGET),solaris)
+   TEMPLATE_VBoxR3Static_LIBS       += kstat
+@@ -5705,6 +5718,8 @@
+ else ifn1of ($(KBUILD_TARGET), os2 solaris)
+  # We want to keep the RPATH on Solaris to be able to find libgcc_1/libstdc++ within $(VBOX_WITH_RUNPATH)
+  TEMPLATE_VBOXR3HARDENEDEXE_LDFLAGS       = $(filter-out '$(VBOX_GCC_RPATH_OPT)%,$(TEMPLATE_VBOXR3EXE_LDFLAGS))
++ TEMPLATE_VBoxR3HardenedTstDll_LDFLAGS.freebsd = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBoxR3TstDll_LDFLAGS.freebsd))
++ TEMPLATE_VBoxR3HardenedTstDll_LDFLAGS.midnightbsd = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBoxR3TstDll_LDFLAGS.freebsd))
+  TEMPLATE_VBOXR3HARDENEDEXE_LDFLAGS.linux = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBOXR3EXE_LDFLAGS.linux))
+ endif
+ 
+@@ -5732,6 +5747,8 @@
+  TEMPLATE_VBoxR3HardenedTstDll_LDFLAGS.win = $(TEMPLATE_VBoxR3TstDll_LDFLAGS.win) -IntegrityCheck
+ ifn1of ($(KBUILD_TARGET), win os2)
+  TEMPLATE_VBoxR3HardenedTstDll_LDFLAGS       = $(filter-out '$(VBOX_GCC_RPATH_OPT)%,$(TEMPLATE_VBoxR3TstDll_LDFLAGS))
++ TEMPLATE_VBoxR3HardenedTstDll_LDFLAGS.freebsd = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBoxR3TstDll_LDFLAGS.freebsd))
++ TEMPLATE_VBoxR3HardenedTstDll_LDFLAGS.midnightbsd = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBoxR3TstDll_LDFLAGS.midnightbsd))
+  TEMPLATE_VBoxR3HardenedTstDll_LDFLAGS.linux = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBoxR3TstDll_LDFLAGS.linux))
+ endif
+ 
+@@ -5754,6 +5771,8 @@
+   TEMPLATE_VBoxR3SetUidToRoot_LDFLAGS += '$(VBOX_GCC_RPATH_OPT)$(VBOX_WITH_RELATIVE_RUNPATH)'
+  endif
+  ifdef VBOX_WITH_ORIGIN
++  TEMPLATE_VBoxR3SetUidToRoot_LDFLAGS.freebsd += $(VBOX_GCC_ORIGIN_OPT)
++  TEMPLATE_VBoxR3SetUidToRoot_LDFLAGS.midnightbsd += $(VBOX_GCC_ORIGIN_OPT)
+   TEMPLATE_VBoxR3SetUidToRoot_LDFLAGS.linux += $(VBOX_GCC_ORIGIN_OPT)
+  endif
+ endif
+@@ -6281,10 +6300,21 @@
+  else ifeq ($(KBUILD_TARGET),haiku)
+ TEMPLATE_VBOXMAINEXE_TOOL                = GXX3
+ TEMPLATE_VBOXMAINEXE_LIBS                = $(LIB_RUNTIME) network stdc++ supc++
+- else if1of ($(KBUILD_TARGET), freebsd openbsd)
++ else if1of ($(KBUILD_TARGET), midnightbsd freebsd)
+ TEMPLATE_VBOXMAINEXE_TOOL                = GXX3
+ TEMPLATE_VBOXMAINEXE_LIBS                = $(LIB_RUNTIME)
++TEMPLATE_VBOXMAINEXE_LDFLAGS.freebsd     = -Wl,-z,noexecstack,-z,relro $(VBOX_LD_as_needed)
++TEMPLATE_VBOXMAINEXE_LDFLAGS.freebsd.x86 = -Wl,-z,notext
++TEMPLATE_VBOXMAINEXE_LDFLAGS.midnightbsd     = -Wl,-z,noexecstack,-z,relro $(VBOX_LD_as_needed)
++TEMPLATE_VBOXMAINEXE_LDFLAGS.midnightbsd.x86 = -Wl,-z,notext
+ TEMPLATE_VBOXMAINEXE_INCS               += \
++	/usr/local/include
++TEMPLATE_VBOXMAINEXE_LIBPATH            += \
++	/usr/local/lib
++ else ifeq ($(KBUILD_TARGET),openbsd)
++TEMPLATE_VBOXMAINEXE_TOOL                = GXX3
++TEMPLATE_VBOXMAINEXE_LIBS                = $(LIB_RUNTIME)
++TEMPLATE_VBOXMAINEXE_INCS               += \
+ 	/usr/include \
+ 	/usr/X11R6/include \
+ 	/usr/local/include
+@@ -6316,6 +6346,8 @@
+ TEMPLATE_VBOXMAINEXE_LDFLAGS            += '$(VBOX_GCC_RPATH_OPT)$(VBOX_WITH_RELATIVE_RUNPATH)'
+  endif
+  ifdef VBOX_WITH_ORIGIN
++TEMPLATE_VBOXMAINEXE_LDFLAGS.freebsd    += $(VBOX_GCC_ORIGIN_OPT)
++TEMPLATE_VBOXMAINEXE_LDFLAGS.midnightbsd    += $(VBOX_GCC_ORIGIN_OPT)
+ TEMPLATE_VBOXMAINEXE_LDFLAGS.linux      += $(VBOX_GCC_ORIGIN_OPT)
+  endif
+ 
+@@ -6712,11 +6744,11 @@
+   VBOX_QT_MOD = \
+    QtCore QtGui QtWidgets QtPrintSupport QtMacExtras \
+    $(if $(VBOX_GUI_USE_QGL),QtOpenGL,)
+- else if1of ($(KBUILD_TARGET), linux freebsd netbsd openbsd solaris win)
++ else if1of ($(KBUILD_TARGET), linux midnightbsd freebsd netbsd openbsd solaris win)
+   VBOX_QT_MOD += \
+    Qt5Core Qt5Gui Qt5Widgets Qt5PrintSupport \
+    $(if $(VBOX_GUI_USE_QGL),Qt5OpenGL,)
+-   if1of ($(KBUILD_TARGET), linux freebsd netbsd openbsd solaris)
++   if1of ($(KBUILD_TARGET), linux midnightbsd freebsd netbsd openbsd solaris)
+     VBOX_QT_MOD += \
+      Qt5DBus Qt5XcbQpa Qt5X11Extras
+     # legacy libraries required to be installed on EL5
+@@ -6729,7 +6761,7 @@
+     VBOX_QT_MOD += \
+      Qt5WinExtras
+    endif # win
+- endif # linux freebsd netbsd openbsd solaris win
++ endif # linux midnightbsd freebsd netbsd openbsd solaris win
+ 
+  VBOX_QT_MOD_NAMES = $(foreach qtmod,$(VBOX_QT_MOD),$(qtmod)$(VBOX_QT_INFIX))
+ 
+@@ -6885,14 +6917,13 @@
+ 	$(LIB_PTHREAD)
+    TEMPLATE_VBOXQTGUIEXE_LIBPATH += \
+ 	$(VBOX_LIBPATH_X11)
+-   ifeq ($(KBUILD_TARGET),freebsd)
++   if1of ($(KBUILD_TARGET), midnightbsd freebsd)
++    TEMPLATE_VBOXQTGUIEXE_LDFLAGS += -Wl,-z,noexecstack,-z,relro $(VBOX_LD_as_needed)
++    TEMPLATE_VBOXQTGUIEXE_LDFLAGS.freebsd.x86 = -Wl,-z,notext
++    TEMPLATE_VBOXQTGUIEXE_LDFLAGS.midnightbsd.x86 = -Wl,-z,notext
+     TEMPLATE_VBOXQTGUIEXE_INCS += \
+-	/usr/include \
+-	/usr/X11R6/include \
+ 	/usr/local/include
+     TEMPLATE_VBOXQTGUIEXE_LIBPATH += \
+-	/usr/lib \
+-	/usr/X11R6/lib \
+ 	/usr/local/lib
+    endif
+    ifeq ($(KBUILD_TARGET),solaris)
+@@ -7139,10 +7170,17 @@
+ TEMPLATE_VBoxBldProg_LIBS                = network iconv
+ TEMPLATE_VBoxBldProg_LIBPATH            += \
+ 	/boot/common/lib
+- else if1of ($(KBUILD_HOST), freebsd openbsd)
++ else if1of ($(KBUILD_HOST), midnightbsd freebsd)
+ TEMPLATE_VBoxBldProg_TOOL                = GXX3
+ TEMPLATE_VBoxBldProg_LIBS                = pthread
+ TEMPLATE_VBoxBldProg_INCS               += \
++	/usr/local/include
++TEMPLATE_VBoxBldProg_LIBPATH            += \
++	/usr/local/lib
++ else ifeq ($(KBUILD_HOST),openbsd)
++TEMPLATE_VBoxBldProg_TOOL                = GXX3
++TEMPLATE_VBoxBldProg_LIBS                = pthread
++TEMPLATE_VBoxBldProg_INCS               += \
+ 	/usr/include \
+ 	/usr/X11R6/include \
+ 	/usr/local/include
+@@ -7194,6 +7232,11 @@
+ 	iconv \
+ 	rt \
+ 	$(TEMPLATE_VBoxBldProg_LIBS.freebsd)
++TEMPLATE_VBoxAdvBldProg_LIBS.midnightbsd = \
++	$(TEMPLATE_VBoxAdvBldProg_LIBS) \
++	iconv \
++	rt \
++	$(TEMPLATE_VBoxBldProg_LIBS.midnightbsd)
+ TEMPLATE_VBoxAdvBldProg_LIBS.linux = \
+ 	$(TEMPLATE_VBoxAdvBldProg_LIBS) \
+ 	$(TEMPLATE_VBoxBldProg_LIBS.linux)
+@@ -7266,6 +7309,8 @@
+  # Do not inherit sanitizer flags from VBOXR3EXE in guest executables.  Deal with them separately.
+  TEMPLATE_VBOXGUESTR3EXE_CXXFLAGS.debug = $(NO_SUCH_VARIABLE)
+  TEMPLATE_VBOXGUESTR3EXE_CFLAGS.debug = $(NO_SUCH_VARIABLE)
++ TEMPLATE_VBOXGUESTR3EXE_LDFLAGS.freebsd = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBOXR3EXE_LDFLAGS.freebsd))
++ TEMPLATE_VBOXGUESTR3EXE_LDFLAGS.midnightbsd = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBOXR3EXE_LDFLAGS.midhightbsd))
+  TEMPLATE_VBOXGUESTR3EXE_LDFLAGS.linux = $(filter-out $(VBOX_GCC_ORIGIN_OPT),$(TEMPLATE_VBOXR3EXE_LDFLAGS.linux))
+  TEMPLATE_VBOXGUESTR3EXE_LDFLAGS.debug = $(NO_SUCH_VARIABLE)
+  TEMPLATE_VBOXGUESTR3EXE_LDFLAGS  = $(filter-out '$(VBOX_GCC_RPATH_OPT)%,$(TEMPLATE_VBOXR3EXE_LDFLAGS))
+@@ -7275,7 +7320,7 @@
+ TEMPLATE_VBOXGUESTR3EXE_DEFS.linux := $(TEMPLATE_VBOXR3EXE_DEFS.linux) LOG_USE_C99 RT_WITHOUT_EXEC_ALLOC
+ ifeq ($(KBUILD_TARGET),linux) # As few libs as possible on linux.
+  TEMPLATE_VBOXGUESTR3EXE_LIBS     = pthread rt m dl
+-else if1of ($(KBUILD_TARGET), darwin freebsd openbsd)
++else if1of ($(KBUILD_TARGET), darwin midnightbsd freebsd openbsd)
+  TEMPLATE_VBOXGUESTR3EXE_LIBS     = $(TEMPLATE_VBOXR3EXE_LIBS) iconv
+ else ifeq ($(KBUILD_TARGET), solaris)
+  TEMPLATE_VBOXGUESTR3EXE_LIBS     = $(TEMPLATE_VBOXR3EXE_LIBS) nsl
+@@ -7289,6 +7334,8 @@
+ 	$(VBOX_GCC_fno-stack-protector)
+ TEMPLATE_VBOXGUESTR3EXE_CFLAGS.linux      = $(TEMPLATE_VBOXGUESTR3EXE_CXXFLAGS.linux)
+ # The GNU_HASH ELF tag is not supported by older systems.
++TEMPLATE_VBOXGUESTR3EXE_LDFLAGS.freebsd    += $(VBOX_LD_hash_style_sysv)
++TEMPLATE_VBOXGUESTR3EXE_LDFLAGS.midhightbsd    += $(VBOX_LD_hash_style_sysv)
+ TEMPLATE_VBOXGUESTR3EXE_LDFLAGS.linux      += $(VBOX_LD_hash_style_sysv)
+ 
+ #
+@@ -7496,10 +7543,12 @@
+ TEMPLATE_VBOXGUESTR3XF86MOD_LIBS.$(KBUILD_TARGET)    = $(NO_SUCH_VARIABLE)
+ TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.$(KBUILD_TARGET) = $(NO_SUCH_VARIABLE)
+ # The GNU_HASH ELF tag is not supported by older glibc dynamic linkers.
++TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.freebsd = $(subst -Wl$(COMMA),,$(VBOX_LD_hash_style_sysv))
++TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.midnightbsd = $(subst -Wl$(COMMA),,$(VBOX_LD_hash_style_sysv))
+ TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.linux = $(subst -Wl$(COMMA),,$(VBOX_LD_hash_style_sysv))
+ TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.$(KBUILD_TYPE)   = $(NO_SUCH_VARIABLE)
+ TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS          = -r
+-if1of ($(KBUILD_TARGET), dragonfly freebsd linux netbsd openbsd) # the gnu ld guys.
++if1of ($(KBUILD_TARGET), dragonfly midnightbsd freebsd linux netbsd openbsd) # the gnu ld guys.
+  TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.release = -S
+  TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.x86     = -m elf_i386
+  TEMPLATE_VBOXGUESTR3XF86MOD_LDFLAGS.amd64   = -m elf_x86_64
+@@ -7542,6 +7591,8 @@
+ 	$(VBOX_LIB_VBGL_R3_XORG)
+ TEMPLATE_VBOXGUESTR3XORGMOD_LIBS.freebsd += \
+ 	iconv
++TEMPLATE_VBOXGUESTR3XORGMOD_LIBS.midnightbsd += \
++	iconv
+ 
+ 
+ #
+@@ -7777,7 +7828,7 @@
+ 	$(QUIET)$(MV) -f $@.tmp $@
+ 
+ if !defined(VBOX_OSE) && !defined(VBOX_NOINC_LICENSE_VER_KMK)
+- if1of ($(KBUILD_TARGET), freebsd linux netbsd openbsd solaris)
++ if1of ($(KBUILD_TARGET), midnightbsd freebsd linux netbsd openbsd solaris)
+   # VBOX_LICENSE_VER is used in several Makefiles
+   VBOX_LICENSE_VER_KMK = $(PATH_OUT)/license-version.kmk
+ $(VBOX_LICENSE_VER_KMK): $(VBOX_BRAND_LICENSE_HTML)
