@@ -6,9 +6,11 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manipulate 64 bits integers in Perl
+WWW=		https://metacpan.org/release/Math-Int64
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_PERL5=	configure
 USES=		perl5
