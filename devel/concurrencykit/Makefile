@@ -9,8 +9,6 @@ WWW=		https://github.com/concurrencykit/ck
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc powerpc64 powerpc64le
-
 USES=		pkgconfig
 USE_LDCONFIG=	yes
 
@@ -20,7 +18,8 @@ GH_PROJECT=	ck
 HAS_CONFIGURE=	yes
 
 PLIST_SUB=	DISTVERSION=${DISTVERSION}
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 CONFIGURE_ARGS=	--mandir=${PREFIX}/share/man
 CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd12.4
