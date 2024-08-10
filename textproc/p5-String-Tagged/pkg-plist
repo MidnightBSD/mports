@@ -1,6 +1,3 @@
-%%PERL5_MAN3%%/String::Tagged::Extent.3.gz
-%%PERL5_MAN3%%/String::Tagged.3.gz
-%%PERL5_MAN3%%/String::Tagged::Formatting.3.gz
 %%SITE_PERL%%/String/Tagged/Formatting.pod
 %%SITE_PERL%%/String/Tagged/Extent.pm
 %%SITE_PERL%%/String/Tagged.pm

@@ -27,9 +27,6 @@ NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuild
 
-post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Devel/MAT/MAT.so
-
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 502501
