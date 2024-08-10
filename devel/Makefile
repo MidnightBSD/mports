@@ -804,6 +804,7 @@ SUBDIR += pear-channel-geshi
 SUBDIR += pear-geshi
 SUBDIR += pecl-APCu
 SUBDIR += performance
+SUBDIR += php-composer
 SUBDIR += php81-gettext
 SUBDIR += php81-intl
 SUBDIR += php81-json
