@@ -1,6 +1,3 @@
-
-#
-
 PORTNAME=	vxtools
 PORTVERSION=	0.2
 PORTREVISION=	3
@@ -23,8 +20,8 @@ do-install:
 	@ ${INSTALL_PROGRAM} ${WRKSRC}/vxcd ${PREFIX}/bin
 	@ ${INSTALL_PROGRAM} ${WRKSRC}/vxpwd ${PREFIX}/bin
 	@ ${INSTALL_PROGRAM} ${WRKSRC}/prtvtoc ${PREFIX}/bin
-	@ ${INSTALL_MAN} ${WRKSRC}/prtvtoc.8 ${PREFIX}/man/man8
-	@ ${INSTALL_MAN} ${WRKSRC}/vxmount.1 ${PREFIX}/man/man1
-	@ ${INSTALL_MAN} ${WRKSRC}/vxumount.1 ${PREFIX}/man/man1
+	@ ${INSTALL_MAN} ${WRKSRC}/prtvtoc.8 ${PREFIX}/share/man/man8
+	@ ${INSTALL_MAN} ${WRKSRC}/vxmount.1 ${PREFIX}/share/man/man1
+	@ ${INSTALL_MAN} ${WRKSRC}/vxumount.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
