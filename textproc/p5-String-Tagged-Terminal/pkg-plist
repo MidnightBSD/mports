@@ -1,5 +1,3 @@
-%%PERL5_MAN3%%/String::Tagged::Terminal.3.gz
-%%PERL5_MAN3%%/String::Tagged::Terminal::Win32Console.3.gz
 %%SITE_PERL%%/String/Tagged/Terminal.pm
 %%SITE_PERL%%/String/Tagged/Terminal/Win32Console.pm
 @dir %%SITE_ARCH%%/auto/String/Tagged/Terminal
