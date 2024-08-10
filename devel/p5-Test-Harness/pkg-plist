@@ -49,7 +49,6 @@ bin/p5prove
 %%SITE_PERL%%/TAP/Parser/YAMLish/Writer.pm
 %%SITE_PERL%%/Test/HACKING.pod
 %%SITE_PERL%%/Test/Harness.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Test/Harness/.packlist
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Test/Harness
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Test
 @dirrmtry %%SITE_PERL%%/Test
