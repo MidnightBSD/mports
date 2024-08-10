@@ -173,6 +173,7 @@ SUBDIR += gradle6
 SUBDIR += gradle62
 SUBDIR += gradle761
 SUBDIR += gsettings-desktop-schemas
+SUBDIR += gsoap
 SUBDIR += gstreamer1-plugins-soup
 SUBDIR += gumbo
 SUBDIR += gvfs
