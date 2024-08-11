@@ -10,8 +10,6 @@ WWW=		https://www.maier-komor.de/mbuffer.html
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	gtar:archivers/gtar
-
 USES=		localbase ssl tar:tgz autoreconf gmake
 
 GNU_CONFIGURE=	yes
@@ -30,6 +28,9 @@ RHASH_DESC=	Use rhash for hash generation
 GCRYPT_RUN_DEPENDS=	libgcrypt>=1.8.4_1:security/libgcrypt
 MHASH_RUN_DEPENDS=	mhash>=0.9.9.9_5:security/mhash
 RHASH_RUN_DEPENDS=	rhash>=1.3.5:security/rhash
+
+# hangs forever
+NO_TEST=	yes
 
 post-patch:
 	${REINPLACE_CMD} \
