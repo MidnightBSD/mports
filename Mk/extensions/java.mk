@@ -171,8 +171,6 @@ _JAVA_PORT_FREEBSD_OPENJDK_JDK_11_INFO=	PORT=java/openjdk11-bin			HOME=${LOCALBA
 											VERSION=11	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_8_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
 											VERSION=8	OS=freebsd	VENDOR=openjdk
-_JAVA_PORT_NATIVE_OPENJDK_JDK_7_INFO=		PORT=java/openjdk7			HOME=${LOCALBASE}/openjdk7 \
-											VERSION=7	OS=native	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_7_INFO=	PORT=java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
 											VERSION=7	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_17_INFO=		PORT=java/openjdk17			HOME=${LOCALBASE}/openjdk17 \

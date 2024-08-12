@@ -1,5 +1,5 @@
 PORTNAME=	mbuffer
-PORTVERSION=	20240107
+PORTVERSION=	20240707
 CATEGORIES=	misc
 MASTER_SITES=	http://www.maier-komor.de/software/mbuffer/
 
@@ -14,10 +14,6 @@ USES=		localbase ssl tar:tgz autoreconf gmake
 
 GNU_CONFIGURE=	yes
 
-# for --ignore-failed-read
-TEST_ARGS=	TAR=gtar
-TEST_TARGET=	check
-
 OPTIONS_DEFINE=		GCRYPT MHASH RHASH
 OPTIONS_DEFAULT=	MHASH
 
@@ -29,6 +25,7 @@ GCRYPT_RUN_DEPENDS=	libgcrypt>=1.8.4_1:security/libgcrypt
 MHASH_RUN_DEPENDS=	mhash>=0.9.9.9_5:security/mhash
 RHASH_RUN_DEPENDS=	rhash>=1.3.5:security/rhash
 
+WRKSRC=		${WRKDIR}/${PORTNAME}-r${PORTVERSION}
 # hangs forever
 NO_TEST=	yes
 

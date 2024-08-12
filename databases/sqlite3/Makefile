@@ -1,8 +1,8 @@
 PORTNAME=	sqlite3
-DISTVERSION=	3.44.0
+DISTVERSION=	3.46.0
 PORTEPOCH=	1
 CATEGORIES=	databases
-MASTER_SITES=	https://www.sqlite.org/2023/ http://www2.sqlite.org/2023/ http://www3.sqlite.org/2023/
+MASTER_SITES=	https://www.sqlite.org/2024/ http://www2.sqlite.org/2024/ http://www3.sqlite.org/2023/
 DISTNAME=	sqlite-autoconf-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
 MAINTAINER=	ports@MidnightBSD.org
