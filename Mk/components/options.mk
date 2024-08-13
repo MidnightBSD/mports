@@ -256,6 +256,39 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
 .endfor
 
+_DEPCHAIN=
+.  for opt in ${COMPLETE_OPTIONS_LIST}
+.    for o in ${${opt}_IMPLIES}
+_DEPCHAIN+=     ${opt}.$o
+.    endfor
+.  endfor
+## 2) Check each dependency pair and if LHS is in PORT_OPTIONS then add RHS.
+##    All of RHS of "RHS.*" (i.e. indirect dependency) are also added for
+##    fast convergence.
+_PORT_OPTIONS:= ${PORT_OPTIONS}
+.  for _count in _0 ${COMPLETE_OPTIONS_LIST}
+count=  ${_count}
+### Check if all of the nested dependency are resolved already.
+.    if ${count} == _0 || ${_PORT_OPTIONS} != ${PORT_OPTIONS}
+PORT_OPTIONS:=  ${_PORT_OPTIONS}
+.      for dc in ${_DEPCHAIN}
+.        for opt in ${_PORT_OPTIONS}
+_opt=${opt}
+### Add all of direct and indirect dependency only if
+### they are not in ${PORT_OPTIONS}.
+.          if !empty(_opt:M${dc:R})
+.            for d in ${dc:E} ${_DEPCHAIN:M${dc:E}.*:E}
+.              if empty(_PORT_OPTIONS:M$d)
+_PORT_OPTIONS+= $d
+.              endif
+.            endfor
+.          endif
+.        endfor
+.      endfor
+.    endif
+.  endfor
+
+
 # Finally, add options required by slave ports
 PORT_OPTIONS+=	${OPTIONS_SLAVE}
 
