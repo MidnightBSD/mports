@@ -5,7 +5,7 @@ MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
-WWW=		https://xmlrpc-c.sourceforge.net
+WWW=		https://xmlrpc-c.sourceforge.net/
 
 LICENSE=	bsd3
 

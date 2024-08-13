@@ -1,0 +1,21 @@
+--- config.mk.in.orig	2024-08-13 12:02:13.525705000 -0400
++++ config.mk.in	2024-08-13 12:02:42.290355000 -0400
+@@ -269,6 +269,18 @@
+   NEED_WL_RPATH=yes
+ endif
+ 
++ifeq ($(patsubst midnightbsd%,midnightbsd,$(HOST_OS)),midnightbsd)
++  SHARED_LIB_TYPE = unix
++  SHLIB_SUFFIX = so
++  MUST_BUILD_SHLIB = Y
++  MUST_BUILD_SHLIBLE = Y
++  shlibfn = $(1:%=%.$(SHLIB_SUFFIX).$(MAJ).$(MIN))
++  shliblefn = $(1:%=%.$(SHLIB_SUFFIX))
++  CFLAGS_SHLIB = -fpic
++  LDFLAGS_SHLIB = -shared -Wl,-soname,$(SONAME) $(SHLIB_CLIB)
++  NEED_WL_RPATH=yes
++endif
++
+ ifeq ($(findstring interix,$(HOST_OS)),interix)
+   SHARED_LIB_TYPE = unix
+   SHLIB_SUFFIX = so
