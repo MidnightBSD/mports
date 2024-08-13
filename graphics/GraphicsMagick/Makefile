@@ -1,5 +1,5 @@
 PORTNAME=	GraphicsMagick
-PORTVERSION=	1.3.40
+PORTVERSION=	1.3.43
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics
@@ -7,11 +7,12 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast image processing tools based on ImageMagick
-WWW=		http://www.graphicsmagick.org/
+WWW=		https://graphicsmagick.sourceforge.io/ \
+		http://www.graphicsmagick.org/
 
 LICENSE=	mit
 
-USES=		cpe libtool localbase pathfix pkgconfig tar:zst
+USES=		cpe libtool localbase pathfix pkgconfig tar:xz
 
 CONFIGURE_ARGS=	--enable-shared --enable-static \
 		--with-windows-font-dir=${WINDOWS_FONT_DIR} \
@@ -19,7 +20,10 @@ CONFIGURE_ARGS=	--enable-shared --enable-static \
 CONFIGURE_ENV=	PTHREAD_LIBS=-lpthread
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
+
+PORTSCOUT=	limit:^[0-9]\.[0-9]\.[1-9][0-9\]*$$
 
 # Use fonts installed by x11-fonts/webfonts by default
 WINDOWS_FONT_DIR?=	${LOCALBASE}/share/fonts/webfonts
@@ -31,6 +35,7 @@ TEST_DESC=	Run bundled self-tests after build
 
 BZIP2_CONFIGURE_WITH=	bzlib
 FPX_CONFIGURE_WITH=	fpx
+FPX_LDFLAGS=		-L${LOCALBASE}/lib -lfpx
 FPX_LIB_DEPENDS=	libfpx.so:graphics/libfpx
 FREETYPE_CONFIGURE_WITH=ttf
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
@@ -74,6 +79,12 @@ ZSTD_CONFIGURE_WITH=	zstd
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 .include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MOPENMP}
+.if ${ARCH} != aarch64 && ${ARCH} != amd64 && ${ARCH} != i386 && ${ARCH} != powerpc64 && ${ARCH} != powerpc64le && ${ARCH} != riscv64
+USES+=		compiler:gcc-c++11-lib
+.endif
+.endif
 
 .if ${PORT_OPTIONS:MWMF}
 .if ${PORT_OPTIONS:MX11}
