@@ -37,27 +37,37 @@ CONFIGURE_ARGS=	MP_APXS=${LOCALBASE}/sbin/apxs PREFIX=${PREFIX}
 
 .include <bsd.port.pre.mk>
 
-.if defined(APR_H)
-APR_HAS_THREADS!=	${ECHO_CMD} `${GREP} -c 'APR_HAS_THREADS *1' ${APR_H}`
-.else
-APR_HAS_THREADS=	0
-.endif
-
-.if ${APR_HAS_THREADS} == 1
-PLIST_SUB+=	THREADMUTEX=""
-PLIST_SUB+=	THREADRWLOCK=""
-.else
-PLIST_SUB+=	THREADMUTEX="@comment "
-PLIST_SUB+=	THREADRWLOCK="@comment "
-.endif
-
 post-patch:
 	${REINPLACE_CMD} -e 's/APR_INLINE//g' \
 		${PATCH_WRKSRC}/src/modules/perl/modperl_common_util.h
+	${REINPLACE_CMD} -e "s|/usr/local/apache/bin/apxs|${APXS}|" \
+		-e "s|'bin', 'apxs'|'sbin', 'apxs'|" \
+		${WRKSRC}/lib/Apache2/Build.pm
+
+pre-configure:
+	${FIND} ${WRKSRC} -type f \( -name \*.bak -o -name \*.orig \) -delete
+
+# PR 200697: Test whether the system uses a multithreaded perl
+.if exists(${PERL})
+HAS_ITHREADS!=	${PERL} -e 'use Config; print $$Config{useithreads} ? 1 : 0'
+.else
+# Assume true when building packages.
+HAS_ITHREADS=	1
+.endif
+
+.if ${HAS_ITHREADS:M1}
+PLIST_SUB+=	ITHREADS=""
+.else
+PLIST_SUB+=	ITHREADS="@comment "
+. if ${APACHE_VERSION:M24}
+IGNORE=		requires PERL with "THREADS=on", please rebuild PERL and all depending ports
+. endif
+.endif
 
 post-configure:
 	${REINPLACE_CMD} -e 's/-pthread -Wl,-E//g' \
 		${PATCH_WRKSRC}/xs/APR/APR/Makefile
+	@${ECHO_CMD} == PERL: \"${PERL_VER}\", ITHREADS: \"${HAS_ITHREADS}\", Apache: \"${APACHE_VERSION}\"
 
 post-install:
 	${MKDIR} ${PREFIX}/${APACHEINCLUDEDIR}/modules/perl
