@@ -1,5 +1,5 @@
 PORTNAME=	qemu
-DISTVERSION=	8.2.4
+DISTVERSION=	8.2.5
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -165,13 +165,13 @@ do-build:
 	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${GMAKE} -j${MAKE_JOBS_NUMBER}
 
 do-install:
-	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} gmake install
+	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} DESTDIR=${FAKE_DESTDIR} gmake install
 
 .if !target(post-install)
 post-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifup.sample ${PREFIX}/etc
 	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifdown.sample ${PREFIX}/etc
-	@${STRIP_CMD} ${PREFIX}/bin/qemu-*
+	-${STRIP_CMD} ${PREFIX}/bin/qemu-*
 
 post-install-DOCS-on:
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} docs ${FAKE_DESTDIR}${DOCSDIR}/)
