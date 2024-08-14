@@ -12,7 +12,7 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libpng.so:graphics/png \
-		libavcodec.so.58:multimedia/ffmpeg4 \
+		${LOCALBASE}/ffmpeg/lib/libavcodec.so.58:multimedia/ffmpeg4 \
 		libfreetype.so:print/freetype2
 
 BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
@@ -26,9 +26,9 @@ CONFIGURE_ENV+=	TMPDIR="${WRKSRC}" \
 CONFIGURE_ARGS=	--cc="${CC}" \
 		--host-cc="${CC}" \
 		--as="${AS}" \
-		--mandir="${PREFIX}/man" \
-		--extra-cflags="-I${PREFIX}/include -I${LOCALBASE}/include" \
-		--extra-libs="-L${PREFIX}/lib" \
+		--mandir="${PREFIX}/share/man" \
+		--extra-cflags="-I${PREFIX}/include -I${LOCALBASE}/include" -I${PREFIX}/ffmpeg4/include \
+		--extra-libs="-L${PREFIX}/lib" -L${PREFIX}/ffmpeg4/lib \
 		--disable-alsa \
 		--disable-ass-internal \
 		--disable-bitmap-font \
