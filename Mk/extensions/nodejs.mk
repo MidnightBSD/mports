@@ -22,7 +22,7 @@
 .if !defined(_INCLUDE_USES_NODEJS_MK)
 _INCLUDE_USES_NODEJS_MK=	yes
 
-_VALID_NODEJS_VERSIONS=	14 16 18 19 current lts
+_VALID_NODEJS_VERSIONS=	18 19 20 current lts
 
 .  if ! ${_VALID_NODEJS_VERSIONS:M${NODEJS_DEFAULT}}
 IGNORE=	Invalid default nodejs version ${NODEJS_DEFAULT}; valid versions are ${_VALID_NODEJS_VERSIONS}
@@ -47,7 +47,7 @@ _NODEJS_VER=	${version}
 _NODEJS_VER=	${NODEJS_DEFAULT}
 .  endif
 
-NODEJS_VERSION=	${_NODEJS_VER:S|current|19|:S|lts|18|}
+NODEJS_VERSION=	${_NODEJS_VER:S|current|20|:S|lts|18|}
 NODEJS_SUFFIX=	-node${NODEJS_VERSION}
 
 .  if ${nodejs_ARGS:M*build*}
