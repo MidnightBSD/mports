@@ -103,11 +103,13 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${STAGEDIR}${ETCDIR}/kibana.yml.sample
 	${INSTALL_DATA} ${WRKSRC}/config/node.options ${STAGEDIR}${ETCDIR}/node.options.sample
 	-(cd ${WRKSRC} && \
+		${RM} -r config node optimize && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR} && \
 		${COPYTREE_BIN} bin ${STAGEDIR}${WWWDIR})
 	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${WWWDIR}/config
 	${MKDIR} ${STAGEDIR}${WWWDIR}/node/bin
-	${LN} -sf ${LOCALBASE}/bin/node ${STAGEDIR}${WWWDIR}/node/bin/node
+	${LN} -s ${LOCALBASE}/bin/node ${STAGEDIR}${WWWDIR}/node/bin/node
+	${RM} ${STAGEDIR}${WWWDIR}/node_modules/re2/build/Release/re2.node
 	${INSTALL_LIB} ${_RE2DIR}/build/Release/re2.node \
 		${STAGEDIR}${WWWDIR}/node_modules/re2/build/Release/re2.node
 .for f in ${BINS}
