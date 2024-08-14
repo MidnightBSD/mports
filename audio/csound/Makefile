@@ -1,5 +1,6 @@
 PORTNAME=	csound
 DISTVERSION=	6.15.0
+PORTREVISION=	1
 CATEGORIES=	audio lang
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +16,7 @@ BUILD_DEPENDS=	boost-libs>0:devel/boost-libs \
 LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate \
 		libsndfile.so:audio/libsndfile
 
-USES=		bison cmake compiler:c++11-lib cpe eigen:3 localbase ncurses python:build # is python needed: https://github.com/csound/csound/issues/1437 ?
+USES=		bison cmake compiler:c++11-lib cpe eigen:3 localbase ncurses python:build
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 
