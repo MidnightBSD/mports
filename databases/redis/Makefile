@@ -1,5 +1,5 @@
 PORTNAME=	redis
-DISTVERSION=	7.2.3
+DISTVERSION=	7.2.5
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
@@ -12,50 +12,24 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES+=		compiler:c11 cpe gmake
 CPE_VENDOR=	redislabs
+USE_RC_SUBR=	redis sentinel
 
 CONFLICTS_INSTALL=    redis-devel redis6 # etc/rc.d/redis
 
-OPTIONS_DEFINE=	JEMALLOC TESTS TLS TRIB
-OPTIONS_RADIO=	EXTLUA
-OPTIONS_RADIO_EXTLUA=	LUA LUAJIT LUAJITOR
+OPTIONS_DEFINE=	JEMALLOC TESTS TLS
 OPTIONS_SUB=	yes
 JEMALLOC_DESC=	Use jemalloc
-LUA_DESC=	Use lang/lua instead of builtin lua
-LUAJIT_DESC=	Use lang/luajit instead of builtin lua
-LUAJITOR_DESC=	Use lang/luajit-openresty instead of builtin lua
 TLS_DESC=	Use TLS (openssl req.)
 TESTS_DESC=	Install lang/tcl for redis unit tests
-TRIB_DESC=	Install redis-trib.rb (lang/ruby req.)
 
 MAKE_ENV=	V=yo OPTIMIZATION=
 
 JEMALLOC_MAKE_ENV=	USE_JEMALLOC=yes
 
-LUA_USES=		lua:51
-LUA_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.lua
-LUA_VARS=		_addflags=true
-
-LUAJIT_BROKEN=		Fails to link
-LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
-LUAJIT_BUILD_DEPENDS=	${LOCALBASE}/include/luajit-2.0/lua.h:lang/luajit
-LUAJIT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.luajit
-LUAJIT_VARS=		_addflags=true
-
-LUAJITOR_BROKEN=      Fails to link
-LUAJITOR_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
-LUAJITOR_BUILD_DEPENDS=	${LOCALBASE}/include/luajit-2.1/lua.h:lang/luajit-openresty
-LUAJITOR_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.luajit-or \
-			${PATCHDIR}/extra-patch-deps_lua_src_lua__cjson.c
-LUAJITOR_VARS=		_addflags=true
-
 TESTS_USES=	tcl:build
 
 TLS_USES=	ssl
 TLS_MAKE_ENV=	BUILD_TLS=yes
-
-TRIB_CATEGORIES=	ruby
-TRIB_USE=		ruby=yes
-TRIB_RUN_DEPENDS=	rubygem-redis>=2.2:databases/rubygem-redis
 
 .include <bsd.port.pre.mk>
 
@@ -105,11 +79,6 @@ PLIST_SUB+=	REDIS_USER=${USERS} \
 post-patch-JEMALLOC-on:
 	@${REINPLACE_CMD} '35s!Linux!MidnightBSD!g' ${WRKSRC}/src/Makefile
 
-post-patch-LUA-on:
-	@cd ${WRKSRC}/deps/lua/src && ${CP} fpconv.* lua_* strbuf.* ${WRKSRC}/src/
-post-patch-LUAJIT-on:	post-patch-LUA-on
-post-patch-LUAJITOR-on:	post-patch-LUA-on
-
 post-build:
 	${SED} ${SUB_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
 		${WRKSRC}/redis.conf > ${WRKDIR}/redis.conf
@@ -121,9 +90,6 @@ do-install:
 	${MKDIR} ${STAGEDIR}${REDIS_LOGDIR} \
 		${STAGEDIR}${REDIS_DBDIR} \
 		${STAGEDIR}${REDIS_RUNDIR}
-
-do-install-TRIB-on:
-	${INSTALL_SCRIPT} ${WRKSRC}/src/redis-trib.rb ${FAKE_DESTDIR}${PREFIX}/bin/
 
 do-test:
 	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl

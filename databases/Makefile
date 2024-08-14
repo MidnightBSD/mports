@@ -15,6 +15,7 @@ SUBDIR += firebird25-client
 SUBDIR += firebird25-server
 SUBDIR += fortytwo-bdb
 SUBDIR += freetds
+SUBDIR += galera26
 SUBDIR += gdbm
 SUBDIR += gnats4
 SUBDIR += gom
