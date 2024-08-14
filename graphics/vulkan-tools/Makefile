@@ -1,6 +1,6 @@
 PORTNAME=	vulkan-tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.276
+DISTVERSION=	1.3.290
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,9 +16,14 @@ USES=		cmake compiler:c++11-lib pkgconfig python:build
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	Vulkan-Tools
-GH_TUPLE=	zeux:volk:1.3.270-19-g3ee06ec:volk/volk
+GH_TUPLE=	zeux:volk:1.3.270-63-g4660854:volk/volk
 CMAKE_OFF=	BUILD_CUBE BUILD_ICD
 CMAKE_ARGS=	-DGLSLANG_INSTALL_DIR:PATH="${LOCALBASE}"
+
+.if ${DISTVERSION:E} < 281
+GH_TUPLE+=	KhronosGroup:Vulkan-Headers:v1.3.280:vkheaders/Vulkan-Headers
+CFLAGS+=	-I${WRKSRC_vkheaders}/include
+.endif
 
 OPTIONS_DEFINE=		WAYLAND XCB XLIB
 OPTIONS_DEFAULT=	WAYLAND XCB XLIB
