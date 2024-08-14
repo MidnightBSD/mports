@@ -11,14 +11,14 @@ COMMENT=	Python SQL toolkit and Object Relational Mapper 1.0.x
 
 LICENSE=	mit
 
-USES=		python
+USES=		cpe python
 USE_PYTHON=	distutils autoplist
 
 PY2TO3_CMD=	${LOCALBASE}/bin/2to3-${PYTHON_VER}
 PY2TO3_ARGS=	--no-diffs --nobackups --verbose --write
 NO_TEST=	yes
 
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}sqlalchemy0[6789]* ${PYTHON_PKGNAMEPREFIX}sqlalchemy1[12]
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}sqlalchemy[0-9][0-9]
 
 OPTIONS_DEFINE=		DOCS EXAMPLES
 OPTIONS_MULTI=		BACKEND
