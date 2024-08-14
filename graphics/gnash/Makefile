@@ -21,7 +21,7 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 		libboost_thread.so:devel/boost-libs \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig \
-		libavcodec.so.58:multimedia/ffmpeg4 \
+		${LOCALBASE}/ffmpeg/lib/libavcodec.so.58:multimedia/ffmpeg4 \
 		libtheora.so:multimedia/libtheora \
 		libogg.so:audio/libogg \
 		libvorbis.so:audio/libvorbis \
