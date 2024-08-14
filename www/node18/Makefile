@@ -1,5 +1,5 @@
 PORTNAME=	node
-PORTVERSION=	18.15.0
+PORTVERSION=	${NODEJS_PORTVERSION}
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES=	https://nodejs.org/dist/v${PORTVERSION}/
@@ -27,7 +27,7 @@ LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 		libnghttp2.so:www/libnghttp2 \
 		libuv.so:devel/libuv
 
-USES=		compiler:c++11-lib gmake localbase pkgconfig python:build shebangfix
+USES=		compiler:c++11-lib gmake localbase pkgconfig python:build shebangfix tar:xz
 
 CONFIGURE_ARGS=	--prefix=${PREFIX:S|^${DESTDIR}||} \
 		--shared-brotli \
@@ -64,6 +64,8 @@ BUNDLED_SSL_USES_OFF=	ssl
 NLS_BUILD_DEPENDS=	icu>=69.1:devel/icu
 NLS_CONFIGURE_ON=	--with-intl=system-icu
 NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
+
+.include "Makefile.version"
 
 .include <bsd.mport.options.mk>
 

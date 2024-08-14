@@ -1,5 +1,5 @@
 PORTNAME=	node
-PORTVERSION=	19.5.0
+PORTVERSION=	${NODEJS_PORTVERSION}
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES=	https://nodejs.org/dist/v${PORTVERSION}/
@@ -62,6 +62,8 @@ BUNDLED_SSL_USES_OFF=	ssl
 NLS_BUILD_DEPENDS=	icu>=69.1:devel/icu
 NLS_CONFIGURE_ON=	--with-intl=system-icu
 NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
+
+.include "Makefile.version"
 
 .include <bsd.mport.options.mk>
 
