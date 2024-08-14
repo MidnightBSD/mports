@@ -438,7 +438,7 @@ lang/perl5.36|lang/perl5.38|2024-07-31|Updated default to 5.38, removed old vers
 security/l0phtcrack||2024-07-31|Has expired: Obsolete, Microsoft LANMAN and NT password hashes are deprecated
 security/vnccrack||2024-07-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while ve
 rsion in ports is 1.0.0
-www/varnish6|www/varnish7|2023-12-31|Has expired: Unsupported version upstream, consider migrating to www/varnish7
+www/varnish6|www/varnish7|2023-08-08|Has expired: Unsupported version upstream, consider migrating to www/varnish7
 devel/llvm10|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
 devel/llvm90|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
 databases/mysql55-server|databases/mysql80-server|2024-08-12|Has expired: Upstream support ended on December 2018
@@ -447,6 +447,7 @@ databases/mysql56-server|databases/mysql80-server|2024-08-12|Has expired: Upstre
 databases/mysql56-client|databases/mysql80-client|2024-08-12|Has expired: Upstream support ended in February 2021
 databases/mysql57-server|databases/mysql80-server|2024-08-12|Has expired: Upstream support ended in October 2019
 databases/mysql57-client|databases/mysql80-client|2024-08-12|Has expired: Upstream support ended in October 2019
-databases/percona57-pam-for-mysql||2023-10-01|Has expired: Upstream EOL reaches on 2023-10-01
-databases/percona57-server||2023-10-01|Has expired: Upstream EOL reaches on 2023-10-01
-databases/percona57-client||2023-10-01|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-pam-for-mysql||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-server||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-client||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
+graphics/vkd3d||2024-08-13|No consumers in ports

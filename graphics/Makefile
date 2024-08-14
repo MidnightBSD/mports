@@ -262,7 +262,6 @@ SUBDIR += tesseract-data
 SUBDIR += tiff
 SUBDIR += viewnior
 SUBDIR += vigra
-SUBDIR += vkd3d
 SUBDIR += vulkan-headers
 SUBDIR += vulkan-loader
 SUBDIR += vulkan-tools
