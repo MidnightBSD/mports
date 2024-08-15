@@ -11,10 +11,10 @@ WWW=		https://github.com/pychess/pychess
 LICENSE=	gpl3
 
 COMMON_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pexpect>0:misc/py-pexpect@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sqlalchemy*>1.:databases/py-sqlalchemy13@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}psutil*>0.:sysutils/py-psutil@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}gobject*>2:devel/py-gobject3@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}websockets*>7.:devel/py-websockets@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}sqlalchemy20>0:databases/py-sqlalchemy20@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}psutil>0.:sysutils/py-psutil@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}gobject3>2:devel/py-gobject3@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}websockets>11.:devel/py-websockets@${PY_FLAVOR}
 RUN_DEPENDS=	${COMMON_DEPENDS}
 BUILD_DEPENDS=	${COMMON_DEPENDS}
 
@@ -26,5 +26,7 @@ _USES_$t+=	${_USES_configure}
 USE_PYTHON=	distutils autoplist
 USE_GNOME=	gtksourceview3:run glib20 gtk30 librsvg2 introspection
 PYDISTUTILS_INSTALLNOSINGLE=	nope
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
