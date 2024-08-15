@@ -205,6 +205,7 @@ SUBDIR += pixd
 SUBDIR += pixen
 SUBDIR += plotutils
 SUBDIR += png
+SUBDIR += podofo
 SUBDIR += poppler
 SUBDIR += poppler-data
 SUBDIR += poppler-glib

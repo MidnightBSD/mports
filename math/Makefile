@@ -23,6 +23,7 @@ SUBDIR += djbfft
 SUBDIR += edenmath
 SUBDIR += eigen3
 SUBDIR += facile
+SUBDIR += fast_float
 SUBDIR += fftw3
 SUBDIR += fftw3-float
 SUBDIR += fftw3-long
