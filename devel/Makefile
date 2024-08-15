@@ -1095,6 +1095,7 @@ SUBDIR += py-pyproject_hooks
 SUBDIR += py-pyproject-api
 SUBDIR += py-pyproject-metadata
 SUBDIR += py-pyrsistent
+SUBDIR += py-pyyaml
 SUBDIR += py-python-dateutil
 SUBDIR += py-python-editor
 SUBDIR += py-python-magic
