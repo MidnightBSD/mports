@@ -1,18 +1,28 @@
 PORTNAME=	pytest-asyncio
-PORTVERSION=	0.10.0
+DISTVERSION=	0.23.8
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	pytest_asyncio-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Py.test plugin providing fixtures and markers for asyncio
+WWW=		https://pypi.org/project/pytest-asyncio/
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=3.0.6:devel/py-pytest@${PY_FLAVOR}
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pytest4-asyncio
 
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=6.1.0:devel/py-pytest@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=6.1.0:devel/py-pytest@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=5.7.1:devel/py-hypothesis@${PY_FLAVOR} \
+
+USES=		python
+USE_PYTHON=	autoplist distutils pytest
 NO_ARCH=	yes
-USES=		python:3.5+
-USE_PYTHON=	autoplist distutils
+
+post-patch:
+	@${ECHO_CMD} 'from setuptools import setup; setup()' > ${WRKSRC}/setup.py
 
 .include <bsd.port.mk>
