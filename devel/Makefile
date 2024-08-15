@@ -1251,6 +1251,7 @@ SUBDIR += py-types-PyYAML
 SUBDIR += py-types-docutils
 SUBDIR += py-types-jsonschema
 SUBDIR += py-types-psutil
+SUBDIR += py-types-python-dateutil
 SUBDIR += py-types-requests
 SUBDIR += py-types-setuptools
 SUBDIR += py-types-toml
