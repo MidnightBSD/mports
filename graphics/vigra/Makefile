@@ -11,7 +11,7 @@ WWW=		https://ukoethe.github.io/vigra/
 LICENSE=	mit
 
 LIB_DEPENDS=	libImath.so:math/Imath \
-		libsz.so:science/szip
+		libsz.so:science/libaec
 
 USES=		cmake compiler:c++14-lang python:run shebangfix
 
