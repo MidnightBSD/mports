@@ -41,7 +41,7 @@ LMAN8=		sendmail.8 mailstats.8 makemap.8 praliases.8 smrsh.8 \
 		mail.local.8 rmail.8 editmap.8
 SENDMAIL=	${PREFIX}/sbin/sendmail
 BASEMAIL=	/usr/libexec/sendmail/sendmail
-PLIST_SUB+=	PREFIX=${PREFIX:S=${PREFIX}/==} MANPREFIX=${MANPREFIX:S=$=/=:S=${PREFIX}==:S=^/==}
+PLIST_SUB+=	PREFIX=${PREFIX:S=${PREFIX}/==} MANPREFIX=${PREFIX}/share/
 MILTER_SOVER?=	6
 
 OPTIONS_DEFINE?=	SHMEM SEM LA NIS IPV6 TLS DANE SASL SASLAUTHD LDAP \
@@ -236,7 +236,10 @@ post-build:
 	 ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} op.txt)
 
 pre-install:
-	${MKDIR} ${FAKE_DESTDIR}/etc/mail
+	${MKDIR} ${FAKE_DESTDIR}/etc/mail \
+		${STAGEDIR}${PREFIX}/share/man/cat1 \
+		${STAGEDIR}${PREFIX}/share/man/cat5 \
+		${STAGEDIR}${PREFIX}/share/man/cat8
 	@${CAT} ${PKGDIR}/pkg-plist >${PLIST}
 	if ! pw groupshow smmsp; then pw groupadd smmsp -g 25; fi
 	if ! pw usershow smmsp; then pw useradd smmsp -g smmsp -u 25 \
@@ -267,16 +270,13 @@ post-install:
 	(cd ${WRKSRC}/rmail && \
 	 ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} force-install)
 .for i in ${LMAN8}
-	@${RM} -f ${MANPREFIX}/man/cat8/${i} ${MANPREFIX}/man/cat8/${i}.gz
-	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man8
+	${INSTALL_MAN} ${WRKSRC}/*/${i} ${PREFIX}/share/man/man8/
 .endfor
 .for i in ${LMAN5}
-	@${RM} -f ${MANPREFIX}/man/cat5/${i} ${MANPREFIX}/man/cat5/${i}.gz
-	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man5
+	${INSTALL_MAN} ${WRKSRC}/*/${i} ${PREFIX}/share/man/man5/
 .endfor
 .for i in ${LMAN1}
-	@${RM} -f ${MANPREFIX}/man/cat1/${i} ${MANPREFIX}/man/cat1/${i}.gz
-	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/*/${i} ${PREFIX}/share/man/man1/
 .endfor
 	${MKDIR} ${PREFIX}/share/sendmail
 	@${TAR} -C ${WRKSRC} -cf - cf | \
