@@ -31,21 +31,19 @@ OPTIONS_SINGLE_EVENTS=	GLIB LIBEVENT
 OPTIONS_SINGLE_SSL=	OPENSSL GNUTLS NSS
 
 OPTIONS_MULTI=		PROTO
-OPTIONS_MULTI_PROTO=	LIBPURPLE JABBER MSN OSCAR TWITTER
+OPTIONS_MULTI_PROTO=	LIBPURPLE JABBER TWITTER
 
-LIBPURPLE_PREVENTS=	JABBER MSN OSCAR TWITTER
+LIBPURPLE_PREVENTS=	JABBER TWITTER
 LIBPURPLE_PREVENTS_MSG=	If libpurple is enabled, all native protocols must be disabled
 
 GLIB_DESC=		Use glib as event handler
 LIBEVENT_BROKEN=	bitlbee w/ libevent fails to start as daemon or fork
 LIBEVENT_DESC=		Use libevent as event handler
 LIBPURPLE_DESC=		Use libpurple for protocol support
-MSN_DESC=		Microsoft Messenger support
-OSCAR_DESC=		OSCAR (ICQ) support
 OTR_DESC=		Off-the-Record Messaging support
 TWITTER_DESC=		Twitter support
 
-OPTIONS_DEFAULT=	GLIB GNUTLS JABBER OSCAR OTR TWITTER
+OPTIONS_DEFAULT=	GLIB GNUTLS JABBER OTR TWITTER
 
 CONFIGURE_ARGS=		--config=/var/db/bitlbee \
 			--pcdir=${PREFIX}/libdata/pkgconfig \
@@ -69,7 +67,7 @@ LIBEVENT_CONFIGURE_ON=	--events=libevent --libevent=${LOCALBASE}
 LIBEVENT_LIB_DEPENDS=	libevent.so:devel/libevent
 LIBPURPLE_CONFIGURE_ON=	--purple=1
 LIBPURPLE_LIB_DEPENDS=	libpurple.so:net-im/libpurple
-MSN_CONFIGURE_OFF=	--msn=0
+CONFIGURE_ARGS+=	--msn=0
 NSS_CONFIGURE_ON=	--ssl=nss
 NSS_LIB_DEPENDS=	libnss3.so:security/nss \
 			libnspr4.so:devel/nspr \
@@ -77,7 +75,7 @@ NSS_LIB_DEPENDS=	libnss3.so:security/nss \
 			libplds4.so:devel/nspr
 OPENSSL_CONFIGURE_ON=	--ssl=openssl
 OPENSSL_USES=		ssl
-OSCAR_CONFIGURE_OFF=	--oscar=0
+CONFIGURE_ARGS+=	--oscar=0
 OTR_CONFIGURE_ON=	--otr=1
 OTR_LIB_DEPENDS=	libotr.so.5:security/libotr \
 			libgcrypt.so:security/libgcrypt \
