@@ -33,7 +33,6 @@ OPTIONS_DEFINE_amd64=		HYPERSCAN
 OPTIONS_DEFAULT_amd64=		HYPERSCAN LUAJIT
 OPTIONS_DEFAULT_armv7=		LUAJIT
 OPTIONS_DEFAULT_i386=		LUAJIT
-OPTIONS_DEFAULT_powerpc=	LUAJIT
 OPTIONS_SUB=	yes
 
 BLAS_DESC=	Use OpenBLAS to accelerate KANN
@@ -49,7 +48,7 @@ CMAKE_ARGS+=	-DCONFDIR=${PREFIX}/etc/rspamd \
 		-DLOGDIR=/var/log/rspamd \
 		-DDBDIR=/var/db/rspamd \
 		-DRUNDIR=/var/run/rspamd \
-		-DMANDIR=${MANPREFIX}/man \
+		-DMANDIR=${PREFIX}/share/man \
 		-DCMAKE_INSTALL_PREFIX=${PREFIX} \
 		-DBUILD_PORT=yes \
 		-DLIBDIR=${PREFIX}/lib/rspamd
