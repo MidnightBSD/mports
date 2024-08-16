@@ -1,6 +1,6 @@
 PORTNAME=	yaz
 DISTVERSION=	5.31.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	https://ftp.indexdata.dk/pub/yaz/
 
@@ -18,13 +18,14 @@ USES=		gnome iconv libtool ncurses pathfix localbase:ldflags \
 		pkgconfig readline shebangfix tcl
 SHEBANG_FILES=	src/yaz-asncomp
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 USE_GNOME=	libxml2 libxslt
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
 
 CONFIGURE_ARGS=	--enable-shared --with-iconv=${ICONV_PREFIX} \
-		--with-xml2=${LOCALBASE} --with-xslt=${LOCALBASE} \
-		--with-icu=${LOCALBASE} --enable-tcpd
+		--with-xml2 --with-xslt --with-icu --enable-tcpd
 LIBS+=		-lexecinfo
 
 PORTDOCS=	*
@@ -42,7 +43,7 @@ post-patch:
 	@${REINPLACE_CMD} 's|tclsh |tclsh${TCL_VER} |' ${WRKSRC}/configure
 
 post-configure:
-	@${REINPLACE_CMD} -e 's,[$$]{datarootdir}/man,${PREFIX}/man,' \
+	@${REINPLACE_CMD} -e 's,[$$]{datarootdir}/man,${PREFIX}/share/man,' \
 		${WRKSRC}/doc/Makefile
 
 post-install:

@@ -1,37 +1,24 @@
---- unix/configure.orig	2018-11-16 14:01:52.000000000 -0500
-+++ unix/configure	2019-10-10 22:31:09.019368000 -0400
-@@ -7511,7 +7511,7 @@
+--- unix/configure.orig	2024-02-07 13:50:03.000000000 -0500
++++ unix/configure	2024-08-16 09:27:27.696036000 -0400
+@@ -7303,7 +7303,7 @@
  fi
  
  	    ;;
--	DragonFly-*|FreeBSD-*)
-+	DragonFly-*|FreeBSD-*|MidnightBSD-*)
- 	    # This configuration from FreeBSD Ports.
- 	    SHLIB_CFLAGS="-fPIC"
- 	    SHLIB_LD="${CC} -shared"
-@@ -7534,15 +7534,11 @@
- 		LDFLAGS="$LDFLAGS $PTHREAD_LIBS"
- fi
+-	Linux*|GNU*|NetBSD-Debian|DragonFly-*|FreeBSD-*)
++	Linux*|GNU*|NetBSD-Debian|DragonFly-*|FreeBSD-*|MidnightBSD-*)
+ 	    SHLIB_CFLAGS="-fPIC -fno-common"
+ 	    SHLIB_SUFFIX=".so"
  
--	    case $system in
--	    FreeBSD-3.*)
- 		# Version numbers are dot-stripped by system policy.
- 		TCL_TRIM_DOTS=`echo ${VERSION} | tr -d .`
- 		UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
--		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so'
+@@ -7319,7 +7319,11 @@
+ 	    LDFLAGS="$LDFLAGS -Wl,--export-dynamic"
+ 
+ 	    case $system in
+-	    DragonFly-*|FreeBSD-*)
++	    DragonFly-*|FreeBSD-*|MidnightBSD-*)
++		SHLIB_LD_LIBS="${SHLIB_LD_LIBS} -Wl,-soname,\$@"
++		UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
 +		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so.1'
- 		TCL_LIB_VERSIONS_OK=nodots
--		;;
--	    esac
- 	    ;;
- 	Darwin-*)
- 	    CFLAGS_OPTIMIZE="-Os"
-@@ -8719,7 +8715,7 @@
- 	    BSD/OS*) ;;
- 	    CYGWIN_*|MINGW32_*) ;;
- 	    IRIX*) ;;
--	    NetBSD-*|DragonFly-*|FreeBSD-*|OpenBSD-*) ;;
-+	    NetBSD-*|DragonFly-*|MidnightBSD-*|FreeBSD-*|OpenBSD-*) ;;
- 	    Darwin-*) ;;
- 	    SCO_SV-3.2*) ;;
- 	    *) SHLIB_CFLAGS="-fPIC" ;;
++		TCL_LIB_VERSIONS_OK=nodots
+ 		if test "${TCL_THREADS}" = "1"; then
+ 
+ 		    # The -pthread needs to go in the LDFLAGS, not LIBS
