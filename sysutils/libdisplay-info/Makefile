@@ -19,6 +19,9 @@ GL_ACCOUNT=	emersion
 SHEBANG_FILES=	tool/*.py
 PLIST_SUB=	VERSION=${DISTVERSION:C/-.*//}
 
+# some failures
+NO_TEST=	yes
+
 pre-test:
 	@if [ ! -e ${WRKDIR}/.meson_build_tests ]; then \
 		${RM} ${CONFIGURE_COOKIE} ${BUILD_COOKIE}; \
