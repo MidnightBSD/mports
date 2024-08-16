@@ -11,7 +11,6 @@ SUBDIR += paje
 SUBDIR += py-scikit-learn
 SUBDIR += py-scikit-sparse
 SUBDIR += py-scipy
-SUBDIR += szip
 SUBDIR += trilinos
 
 .include <bsd.port.subdir.mk>
