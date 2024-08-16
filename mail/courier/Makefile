@@ -1,5 +1,6 @@
 PORTNAME=	courier
 PORTVERSION=	1.1.11
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	SF
 
@@ -61,11 +62,14 @@ CALENDIR=	/var/spool/calendar
 MIMETYPES=	${LOCALBASE}/etc/mime.types
 WITH_TRANSPORT=	local esmtp dsn
 
-USES=		fam gettext gmake libtool perl5 pkgconfig tar:bzip2 ssl
+USES=		fam gettext gmake libtool perl5 pkgconfig tar:bzip2 ssl shebangfix
 USE_SUBMAKE=	yes
 USE_RC_SUBR=	courier
+SHEBANG_FILES=	courier/filters/perlfilter/perlfilter-ratelimit.pl \
+		courier/filters/perlfilter/perlfilter-wrapper.pl
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-root-check \
 		--with-db=gdbm \
 		--enable-syslog=1 --enable-use-flock \
