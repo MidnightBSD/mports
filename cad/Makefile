@@ -2,6 +2,7 @@
 
     SUBDIR += cascade
     SUBDIR += gdsreader
+    SUBDIR += veroroute
     SUBDIR += xcircuit
     SUBDIR += xyce
     SUBDIR += z88
