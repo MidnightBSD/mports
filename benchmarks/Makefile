@@ -36,6 +36,7 @@ SUBDIR += slowloris
 SUBDIR += sysbench
 SUBDIR += ttcp
 SUBDIR += unixbench
+SUBDIR += uperf
 SUBDIR += vkpeak
 SUBDIR += webbench
 SUBDIR += wrk
