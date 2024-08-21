@@ -1,5 +1,5 @@
 PORTNAME=	mawk
-DISTVERSION=	1.3.4-20161120
+DISTVERSION=	1.3.4-20240622
 CATEGORIES=	lang
 MASTER_SITES=	https://invisible-island.net/archives/mawk/
 
@@ -14,6 +14,8 @@ GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 USES=		tar:tgz
 
 PLIST_FILES=	bin/mawk \
-		share/man/man1/mawk.1.gz
+		share/man/man1/mawk.1.gz \
+		share/man/man7/mawk-arrays.7.gz \
+		share/man/man7/mawk-code.7.gz
 
 .include <bsd.port.mk>
