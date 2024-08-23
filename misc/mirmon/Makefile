@@ -5,14 +5,18 @@ MASTER_SITES=	http://www.staff.science.uu.nl/~penni101/mirmon/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Monitor the status of mirrors
+WWW=		http://www.cs.uu.nl/people/henkp/mirmon/
 
 LICENSE=	other
 #bsdish
 
-RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
+RUN_DEPENDS=	wget:ftp/wget
 
 NO_BUILD=	yes
-USE_PERL5_RUN=	yes
+USES=		perl5 shebangfix
+USE_PERL5=	run
+
+SHEBANG_FILES=	${WRKSRC}/mirmon ${WRKSRC}/probe
 
 SUB_FILES=	pkg-message
 SUB_LIST=	PREFIX=${PREFIX}

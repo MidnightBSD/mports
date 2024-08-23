@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
   The program is intended to be run by cron every hour.
 
     42 * * * * perl %%PREFIX%%/bin/mirmon -q -get update
@@ -7,7 +10,7 @@
   with the results. The subset contains the sites that are new, bad
   and/or not probed for a specified time.
 
-  When no 'get' option is specified, the program just generates a 
+  When no 'get' option is specified, the program just generates a
   new web page from the last known state.
 
   The program checks the mirrors by running a (user specified)
@@ -20,3 +23,6 @@
   The probe should return something that looks like "1043625600\n",
   that is, a timestamp followed by a newline. The exit status of
   the probe is ignored.
+EOM
+}
+]
