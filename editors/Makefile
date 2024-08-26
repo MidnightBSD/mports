@@ -29,6 +29,7 @@ SUBDIR += vim
 SUBDIR += xcoral
 SUBDIR += xed
 SUBDIR += xnedit
+SUBDIR += yudit
 SUBDIR += zile
 
 .include <bsd.port.subdir.mk>
