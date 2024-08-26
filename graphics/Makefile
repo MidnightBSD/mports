@@ -181,6 +181,7 @@ SUBDIR += opencv-core
 SUBDIR += openexr
 SUBDIR += openjpeg
 SUBDIR += openjpeg15
+SUBDIR += opennurbs
 SUBDIR += optipng
 SUBDIR += p5-Cairo
 SUBDIR += p5-Chart
