@@ -7,13 +7,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate configure scripts and related files
 WWW=		https://www.gnu.org/software/autoconf/
 
-LICENSE=	EXCEPTION gfdl gpl2 gpl3
+LICENSE=	EXCEPTION gfdl gpl2+ gpl3+
 LICENSE_COMB=	multi
 LICENSE_NAME_EXCEPTION=	AUTOCONF CONFIGURE SCRIPT EXCEPTION
 LICENSE_FILE_EXCEPTION=	${WRKSRC}/COPYING.EXCEPTION
 LICENSE_FILE_gfdl=	${WRKSRC}/doc/fdl.texi
-LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
-LICENSE_FILE_gpl3=	${WRKSRC}/COPYINGv3
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
+LICENSE_FILE_gpl3+ =	${WRKSRC}/COPYINGv3
 LICENSE_PERMS_EXCEPTION=dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	gm4:devel/m4
