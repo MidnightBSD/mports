@@ -1,5 +1,5 @@
 PORTNAME=	dnsmasq
-DISTVERSION=	2.89
+DISTVERSION=	2.90
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	dns
@@ -12,7 +12,7 @@ WWW=		https://www.thekelleys.org.uk/dnsmasq/doc.html
 
 LICENSE=	gpl2
 
-USES=		cpe tar:xz
+USES=		cpe shebangfix tar:xz
 CPE_VENDOR=	thekelleys
 
 SHEBANG_FILES=	contrib/dnslist/dnslist.pl \
@@ -119,7 +119,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/dnsmasq ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/dnsmasq.conf.example ${STAGEDIR}${PREFIX}/etc/dnsmasq.conf.sample
 	${REINPLACE_CMD} -i '' 's}%%PREFIX%%}${PREFIX}}' ${STAGEDIR}${PREFIX}/etc/dnsmasq.conf.sample
-	${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.8 ${STAGEDIR}${PREFIX}/man/man8
+	${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.8 ${PREFIX}/share/man/man8
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/trust-anchors.conf ${STAGEDIR}${DATADIR}/
 .if ${PORT_OPTIONS:MDOCS}
