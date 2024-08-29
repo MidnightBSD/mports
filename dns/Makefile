@@ -1,7 +1,6 @@
 COMMENT = Domain Name Service tools
 
 SUBDIR += adns
-SUBDIR += ares
 SUBDIR += bind-tools
 SUBDIR += bind9-devel
 SUBDIR += bind918

@@ -451,3 +451,4 @@ databases/percona57-pam-for-mysql||2024-08-12|Has expired: Upstream EOL reaches 
 databases/percona57-server||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
 databases/percona57-client||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
 graphics/vkd3d||2024-08-13|No consumers in ports
+dns/ares||2024-08-29|Has expired: Deprecated upstream as of March 12, 2023
