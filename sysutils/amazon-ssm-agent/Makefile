@@ -1,6 +1,6 @@
 PORTNAME=	amazon-ssm-agent
 PORTVERSION=	2.3.1205.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -38,6 +38,12 @@ PLIST_FILES=	etc/amazon/ssm/amazon-ssm-agent.json.template	\
 USE_RC_SUBR=	amazon-ssm-agent
 
 NO_TEST=	yes
+
+pre-patch:
+	${MKDIR} ${WRKSRC}/vendor/src/github.com/creack
+	${LN} -s ${WRKSRC_pty} ${WRKSRC}/vendor/src/github.com/creack/pty
+	${RM} -r ${WRKSRC}/vendor/src/golang.org/x/sys
+	${LN} -s ${WRKSRC_sys} ${WRKSRC}/vendor/src/golang.org/x/sys
 
 post-patch:
 	${LN} -s ${WRKSRC}/vendor/src/* ${WRKSRC}/vendor/
