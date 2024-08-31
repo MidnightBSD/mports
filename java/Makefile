@@ -58,7 +58,6 @@ SUBDIR += openjdk7-bin
 SUBDIR += openjdk8
 SUBDIR += openjdk8-bin
 SUBDIR += openjdk8-jre
-SUBDIR += openjdk8-bin
 SUBDIR += openjdk11-bin
 SUBDIR += openjdk13-bin
 SUBDIR += openjdk17-bin
