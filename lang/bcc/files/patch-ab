@@ -44,7 +44,7 @@
 ! PROG		=as86
 ! 
 ! BINDIR		= ${LOCALPREFIX}/bin
-! MANDIR		= ${LOCALPREFIX}/man/man
+! MANDIR		= ${LOCALPREFIX}/share/man/man
 ! 
 ! 
 ! .include <bsd.prog.mk>

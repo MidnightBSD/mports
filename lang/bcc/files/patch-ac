@@ -33,7 +33,7 @@
 ! 
   
 ! BINDIR		= ${LOCALPREFIX}/lib/bcc
-! MANDIR		= ${LOCALPREFIX}/man/man
+! MANDIR		= ${LOCALPREFIX}/share/man/man
   
 ! beforeinstall:
 ! 		-mkdir -p ${LOCALPREFIX}/lib/bcc

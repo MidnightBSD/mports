@@ -32,7 +32,7 @@
 ! PROG		=ld86
 ! 
 ! BINDIR		=${LOCALPREFIX}/bin
-! MANDIR		=${LOCALPREFIX}/man/man
+! MANDIR		=${LOCALPREFIX}/share/man/man
 ! 
 ! beforeinstall:
 ! 		-mkdir -p ${BINDIR}
