@@ -2,12 +2,13 @@ PORTNAME=	windowmaker
 PORTVERSION=	0.95.9
 PORTREVISION=	1
 CATEGORIES=	x11-wm windowmaker
-MASTER_SITES=	http://windowmaker.org/pub/source/release/
+MASTER_SITES=	http://www.windowmaker.org/pub/source/release/ \
+		https://github.com/window-maker/wmaker/releases/download/wmaker-${PORTVERSION}/
 DISTNAME=	WindowMaker-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep-compliant NeXTstep window manager clone
-WWW=		https://windowmaker.org/
+WWW=		https://www.windowmaker.org/
 
 LICENSE=	gpl2
 
