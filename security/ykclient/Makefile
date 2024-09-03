@@ -27,7 +27,7 @@ PLIST_FILES=	bin/ykclient \
 		lib/libykclient.so \
 		lib/libykclient.so.3 \
 		lib/libykclient.so.3.6.0 \
-		man/man1/ykclient.1.gz
+		share/man/man1/ykclient.1.gz
 
 OPTIONS_DEFINE=	STATIC
 
