@@ -243,9 +243,9 @@ pre-install:
 
 .if ${PKGNAMESUFFIX:M*-client}
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/my.cnf.sample ${FAKE_DESTDIR}${ETCDIR}/my.cnf.sample
+	${INSTALL_DATA} ${WRKDIR}/my.cnf.sample ${ETCDIR}/my.cnf.sample
 	${INSTALL_DATA} ${WRKDIR}/client.cnf.sample \
-		${FAKE_DESTDIR}${ETCDIR}/conf.d/client.cnf.sample
+		${ETCDIR}/conf.d/client.cnf.sample
 	-${RM} -r ${FAKE_DESTDIR}${DATADIR} \
 		${FAKE_DESTDIR}${PREFIX}/include/mysql/server \
 		${FAKE_DESTDIR}${ETCDIR}/init.d \
