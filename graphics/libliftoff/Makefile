@@ -18,4 +18,6 @@ USE_LDCONFIG=	yes
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	emersion
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
