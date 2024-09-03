@@ -246,7 +246,7 @@ post-install:
 	${INSTALL_DATA} ${WRKDIR}/my.cnf.sample ${FAKE_DESTDIR}${ETCDIR}/my.cnf.sample
 	${INSTALL_DATA} ${WRKDIR}/client.cnf.sample \
 		${FAKE_DESTDIR}${ETCDIR}/conf.d/client.cnf.sample
-	${RM} -r ${FAKE_DESTDIR}${DATADIR} \
+	-${RM} -r ${FAKE_DESTDIR}${DATADIR} \
 		${FAKE_DESTDIR}${PREFIX}/include/mysql/server \
 		${FAKE_DESTDIR}${ETCDIR}/init.d \
 		${FAKE_DESTDIR}${PREFIX}/lib/mysql/pkgconfig
@@ -262,7 +262,7 @@ post-install:
 		${FAKE_DESTDIR}${PREFIX}/etc/mysql/user_map.conf.sample
 	${MV} ${FAKE_DESTDIR}${PREFIX}/share/pam_user_map.so \
 		${FAKE_DESTDIR}${PREFIX}/lib/mysql/
-	${RM} -r ${FAKE_DESTDIR}${PREFIX}/share/mysql/policy \
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/share/mysql/policy \
 		${FAKE_DESTDIR}${PREFIX}/include/mysql/server/private \
 		${FAKE_DESTDIR}${PREFIX}/lib/mysql/pkgconfig \
 		${FAKE_DESTDIR}${PREFIX}/libexec/rcmysql \
@@ -276,7 +276,7 @@ post-install:
 
 post-install-MROONGA-on:
 	${MV} ${FAKE_DESTDIR}${PREFIX}/share/groonga ${FAKE_DESTDIR}${DOCSDIR}
-	${RM}	${FAKE_DESTDIR}${DOCSDIR}/groonga/COPYING \
+	-${RM}	${FAKE_DESTDIR}${DOCSDIR}/groonga/COPYING \
 		${FAKE_DESTDIR}${DATADIR}/mroonga/COPYING
 
 post-install-SPIDER-on:
