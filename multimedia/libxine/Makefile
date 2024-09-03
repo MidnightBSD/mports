@@ -1,10 +1,10 @@
 PORTNAME=	xine
-DISTVERSION=	1.2.12
-PORTREVISION=	7
+DISTVERSION=	1.2.13
+PORTREVISION=	9
 CATEGORIES=	multimedia
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-lib/${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-lib/${DISTVERSION}
 PKGNAMEPREFIX=	lib
-DISTNAME=	${PORTNAME}-lib-${PORTVERSION}
+DISTNAME=	${PORTNAME}-lib-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for xine multimedia player
@@ -43,6 +43,7 @@ LLD_UNSAFE=	yes
 CPE_PRODUCT=	xine-lib
 CPE_VENDOR=	xine
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_XORG=	x11 xcb xv xinerama xext sm ice
 USE_GL=		gl glu
 USE_PERL5=	build
@@ -50,7 +51,8 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-libflac \
 		--enable-musepack \
 		--enable-real-codecs \
-		--without-esound
+		--without-esound \
+		--disable-crypto
 
 MAKE_ENV=	V=1
 MAKE_ARGS=	pkgdatadir="${DATADIR}" \
@@ -62,7 +64,7 @@ CFLAGS_i386=	-fomit-frame-pointer
 DOCSDIR=	${PREFIX}/share/doc/xine-lib
 # Please sync with XINE_PLUGINSDIR in multimedia/xine
 # and multimedia/vdr-plugin-xineliboutput
-PLUGINSDIR=	lib/xine/plugins/2.10
+PLUGINSDIR=	lib/xine/plugins/2.11
 PLIST_SUB=	PLUGINSDIR="${PLUGINSDIR}"
 
 OPTIONS_DEFINE=		AALIB ALSA AOM CACA DAV1D DOCS DMX_IMAGE DVB \
@@ -132,8 +134,7 @@ SMB_CONFIGURE_ENV=		LIBSMBCLIENT_LIBS="-L${SAMBALIBS} -lsmbclient" \
 SMB_CONFIGURE_ENABLE=		samba
 SNDIO_LIB_DEPENDS=		libsndio.so:audio/sndio
 SNDIO_CONFIGURE_ENABLE=		sndio
-VAAPI_LIB_DEPENDS=		libva.so:multimedia/libva \
-				libva-glx.so:multimedia/libva-glx
+VAAPI_LIB_DEPENDS=		libva.so:multimedia/libva
 VAAPI_CONFIGURE_ENABLE=		vaapi
 V4L_BUILD_DEPENDS=		v4l_compat>=1.0.20100321:multimedia/v4l_compat
 V4L_LIB_DEPENDS=		libv4l2.so:multimedia/libv4l
