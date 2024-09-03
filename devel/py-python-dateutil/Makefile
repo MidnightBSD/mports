@@ -16,13 +16,12 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.5:devel/py-six@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}freezegun>=0:devel/py-freezegun@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}hypothesis>=3.30:devel/py-hypothesis@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-cov>=2.0.0:devel/py-pytest-cov@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+# circular dependencies.
+NO_TEST=	yes
 
 .include <bsd.port.mk>
