@@ -17,11 +17,11 @@ lib/libggzmod.so.4.1.0
 share/man/man1/ggzwrap.1.gz
 share/man/man3/ggzcore_h.3.gz
 share/man/man3/ggzmod_h.3.gz
-man/man5/ggz.modules.5.gz
-man/man6/ggz.6.gz
-man/man6/ggz-config.6.gz
-man/man6/ggz-wrapper.6.gz
-man/man7/ggz.7.gz
+share/man/man5/ggz.modules.5.gz
+share/man/man6/ggz.6.gz
+share/man/man6/ggz-config.6.gz
+share/man/man6/ggz-wrapper.6.gz
+share/man/man7/ggz.7.gz
 share/desktop-directories/ggz-games.directory
 share/desktop-directories/ggz.directory
 share/locale/ar/LC_MESSAGES/ggzcore.mo
