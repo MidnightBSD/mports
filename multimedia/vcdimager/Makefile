@@ -1,27 +1,27 @@
-
-
 PORTNAME=	vcdimager
-PORTVERSION=	0.7.24
-PORTREVISION=	3
+PORTVERSION=	2.0.1
+PORTREVISION=	5
 CATEGORIES=	multimedia
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU VCDImager/VCDRip -- The GNU VideoCD Image Maker/Ripping Tool
+WWW=		https://www.gnu.org/software/vcdimager/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
-		libxml2.so:${PORTSDIR}/textproc/libxml2 \
-		libcdio.so:${PORTSDIR}/sysutils/libcdio
+LIB_DEPENDS=	libpopt.so:devel/popt \
+		libxml2.so:textproc/libxml2 \
+		libcdio.so:sysutils/libcdio
+
+USES=		gmake libtool localbase makeinfo pathfix pkgconfig
+USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--mandir=${PREFIX}/man/ --bindir=${PREFIX}/bin
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
-USES=		gmake libtool pkgconfig pathfix
-USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+TEST_TARGET=	check
 
 INFO=		vcdimager vcdxrip vcd-info
 
