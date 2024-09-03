@@ -35,7 +35,7 @@ post-patch:
 
 do-configure:
 	@${ECHO_CMD} "${PREFIX}/bin" > ${WRKSRC}/conf-bin
-	@${ECHO_CMD} "${MANPREFIX}/man" > ${WRKSRC}/conf-man
+	@${ECHO_CMD} "${PREFIX}/share/man" > ${WRKSRC}/conf-man
 	@${ECHO_CMD} "${CC} ${CFLAGS} ${CPPFLAGS}" > ${WRKSRC}/conf-cc
 	@${ECHO_CMD} "${CC} ${STRIP} ${LDFLAGS}" > ${WRKSRC}/conf-ld
 	@${ECHO_CMD} "${BGLIBS_INCLUDE}" > ${WRKSRC}/conf-bgincs
@@ -47,7 +47,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/bin/
 .endfor
 .for f in twoftpd-auth.1 twoftpd-switch.1 twoftpd-xfer.1
-	${INSTALL_MAN} ${WRKSRC}/${f} ${STAGEDIR}${MAN1PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/share/man/man1/
 .endfor
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for i in NEWS README TODO
