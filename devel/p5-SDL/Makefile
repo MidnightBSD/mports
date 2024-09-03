@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Bindings for SDL
+WWW=		http://sdl.perl.org/
 
 LICENSE=	gpl2
 
