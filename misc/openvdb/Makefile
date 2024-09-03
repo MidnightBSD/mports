@@ -38,4 +38,12 @@ TOOLS_LIB_DEPENDS=	libglfw.so:graphics/glfw \
 TOOLS_USES=		gl xorg
 TOOLS_USE=		GL=gl,glu XORG=ice,sm,x11,xcursor,xext,xi,xinerama,xrandr,xxf86vm
 
+# DOCS is broken: https://github.com/AcademySoftwareFoundation/openvdb/issues/899
+#DOCS_CMAKE_BOOL=	OPENVDB_BUILD_DOCS
+#DOCS_BUILD_DEPENDS=	doxygen:devel/doxygen
+
+#PORTDOCS=	*
+
+NO_TEST=	yes
+
 .include <bsd.port.mk>
