@@ -26,7 +26,7 @@ MAKE_ARGS=	CC="${CC}" \
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-PLIST_FILES=	bin/wmCalendar man/man1/wmCalendar.1.gz
+PLIST_FILES=	bin/wmCalendar share/man/man1/wmCalendar.1.gz
 
 post-patch:
 	${REINPLACE_CMD} -e 's#/usr/local#${LOCALBASE}#g' \
@@ -34,6 +34,6 @@ post-patch:
 			${WRKSRC}/Makefile
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/wmCalendar ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/wmCalendar.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/wmCalendar.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
