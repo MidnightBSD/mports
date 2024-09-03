@@ -1,5 +1,5 @@
 PORTNAME=	pythran
-PORTVERSION=	0.15.0
+PORTVERSION=	0.16.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,8 +22,8 @@ USE_PYTHON=	autoplist concurrent distutils
 NO_ARCH=	yes
 
 post-extract:
-	${RM} ${WRKSRC}/third_party/xsimd/config/*.rej
-	${RM} ${WRKSRC}/third_party/xsimd/*.rej
-	${RM} ${WRKSRC}/third_party/xsimd/math/.xsimd_gamma.hpp.swp
+	-${RM} ${WRKSRC}/third_party/xsimd/config/*.rej
+	-${RM} ${WRKSRC}/third_party/xsimd/*.rej
+	-${RM} ${WRKSRC}/third_party/xsimd/math/.xsimd_gamma.hpp.swp
 
 .include <bsd.port.mk>
