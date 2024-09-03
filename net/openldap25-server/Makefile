@@ -270,8 +270,7 @@ EXTRA_PATCHES+=		${FILESDIR}/extrapatch-Makefile.in
 
 LDFLAGS+=		-L${LOCALBASE}/lib
 
-SED_MODULES=		-e 's,mandir = \$$(exec_prefix)/share/man,mandir = $$(exec_prefix)/man,' \
-			-e 's/\(moduleload[ 	]*back_[a-z]*\)\.la/\1/' \
+SED_MODULES=		-e 's/\(moduleload[ 	]*back_[a-z]*\)\.la/\1/' \
 			-e 's/\# *\(modulepath\)/\1/'
 
 CONFIGURE_ARGS+=	--enable-modules \
