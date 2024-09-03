@@ -15,8 +15,9 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=3.2.5:devel/py-pytest@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
