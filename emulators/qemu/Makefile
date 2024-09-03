@@ -236,7 +236,7 @@ do-build:
 	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${GMAKE} -j${MAKE_JOBS_NUMBER}
 
 do-install:
-	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} gmake install
+	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} DESTDIR=${FAKE_DESTDIR} gmake install
 
 .if !target(post-install)
 post-install:
@@ -244,7 +244,6 @@ post-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifup.sample ${STAGEDIR}${PREFIX}/etc
 	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifdown.sample ${STAGEDIR}${PREFIX}/etc
 .endif
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/qemu-*
 
 post-install-DOCS-on:
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} docs ${FAKE_DESTDIR}${DOCSDIR}/)
