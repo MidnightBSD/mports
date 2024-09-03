@@ -23,4 +23,7 @@ post-patch:
 pre-install:
 	@${ELFCTL} -e +noaslr ${WRKSRC}/xmail
 
+post-fake:
+	${CP} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/* ${FAKE_DESTDIR}${TRUE_PREFIX}/share/man/man1/
+
 .include <bsd.port.mk>
