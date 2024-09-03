@@ -45,7 +45,6 @@ MAKE_ENV=	NV_USE_BUNDLED_LIBJANSSON=0 \
 		XNVCTRL_LDFLAGS=-L${LOCALBASE}/lib
 
 post-patch:	.SILENT
-	${REINPLACE_CMD} -e '/^MANDIR/s|share/||' ${WRKSRC}/utils.mk
 	${REINPLACE_CMD} -E -e 's,__(PIXMAP|UTILS)_PATH__/,,' \
 		-e 's|__NVIDIA_SETTINGS_DESKTOP_CATEGORIES__|Settings;HardwareSettings;|' \
 		${WRKSRC}/doc/nvidia-settings.desktop
