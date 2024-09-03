@@ -49,7 +49,7 @@ NLS_CONFIGURE_ENABLE=	nls
 XFT_USE=		XORG=xft
 XFT_CONFIGURE_ENABLE=	xft
 
-XINE_PLUGINSDIR=	lib/xine/plugins/2.10
+XINE_PLUGINSDIR=	lib/xine/plugins/2.11
 
 CFLAGS+=	-liconv
 LDFLAGS+=	-liconv
