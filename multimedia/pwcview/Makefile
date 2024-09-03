@@ -1,5 +1,3 @@
-# Created by: Andrew Thompson <thompsa@FreeBSD.org>
-
 PORTNAME=	pwcview
 PORTVERSION=	1.4.1
 CATEGORIES=	multimedia
@@ -29,6 +27,6 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/pwcview ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/pwcsnap ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.post.mk>
