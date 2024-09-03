@@ -61,7 +61,7 @@ post-build:
 		${MAKE_ARGS} -C ${BUILD_WRKSRC}
 
 post-install:
-	${SETENV} ${MAKE_ENV} ${MAKE_CMD} -f Makefile.fip ${MAKE_ARGS} \
+	${SETENV} ${MAKE_ENV} ${MAKE_CMD} -f Makefile.fip ${MAKE_ARGS} ${FAKE_MAKEARGS} \
 		-C ${INSTALL_WRKSRC} ${INSTALL_TARGET}
 	${LN} -sf libfreeimageplus.so.3 \
 		${STAGEDIR}${PREFIX}/lib/libfreeimageplus.so
