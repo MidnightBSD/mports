@@ -21,7 +21,7 @@ GNU_CONFIGURE=	yes
 
 WRKSRC=		${WRKDIR}/${GH_ACCOUNT}-${PORTVERSION}
 
-PLIST_FILES=	bin/s3fs man/man1/s3fs.1.gz
+PLIST_FILES=	bin/s3fs share/man/man1/s3fs.1.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/libcrypto >= 0.9//' ${WRKSRC}/configure.ac
