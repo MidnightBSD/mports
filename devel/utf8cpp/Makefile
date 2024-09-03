@@ -1,24 +1,26 @@
 PORTNAME=	utf8cpp
-PORTVERSION=	2.3.4
+PORTVERSION=	4.0.5
+DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
-MASTER_SITES=	SF/utfcpp/${PORTNAME:tl}_2x/Release%20${PORTVERSION}/
-DISTNAME=	utf8_v${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple, portable, lightweight library for handling UTF-8 strings
+WWW=		https://github.com/nemtrif/utfcpp
 
 LICENSE=	boost
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		zip
-NO_WRKSUBDIR=	yes
+NO_ARCH=	yes
 NO_BUILD=	yes
 
-PLIST_FILES=	include/utf8.h \
-		include/utf8/checked.h \
-		include/utf8/core.h \
-		include/utf8/unchecked.h
+USE_GITHUB=	yes
+GH_ACCOUNT=	nemtrif
+GH_PROJECT=	utfcpp
+
+CONFLICTS_INSTALL=	utf8cpp3
 
 do-install:
-	(cd ${WRKSRC}/source; ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include)
+	${MKDIR} ${STAGEDIR}${PREFIX}/include/utf8cpp/
+	cd ${WRKSRC}/source/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/utf8cpp/
 
 .include <bsd.port.mk>
