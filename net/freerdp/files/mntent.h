@@ -27,8 +27,6 @@
  * SUCH DAMAGE.
  */
 
-// $FreeBSD: head/net/freerdp/files/mntent.h 538228 2020-06-08 15:51:55Z kevans $
-
 #if defined(HAVE_MNTENT_H)
 #include <mntent.h>
 #else

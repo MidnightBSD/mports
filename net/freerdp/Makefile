@@ -1,6 +1,5 @@
 PORTNAME=	freerdp
-DISTVERSION=	2.6.1
-PORTREVISION=	1
+DISTVERSION=	2.7.0
 CATEGORIES=	net comms
 MASTER_SITES=   https://pub.freerdp.com/releases/ \
 		https://github.com/FreeRDP/FreeRDP/releases/download/${DISTVERSION}/
@@ -165,5 +164,8 @@ post-patch:
 pre-configure:
 	${CP} ${FILESDIR}/mntent.h ${WRKSRC}/rdtk/include
 	${CP} ${FILESDIR}/mntent_compat.c ${WRKSRC}/channels/rdpdr/client
+
+post-fake:
+	${CP} ${FAKE_DESTDIR}${PREFIX}/man/man1/* ${FAKE_DESTDIR}${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>
