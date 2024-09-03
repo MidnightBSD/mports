@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-#
 
 # PROVIDE: obspamlogd
 # REQUIRE: NETWORKING SERVERS obspamd

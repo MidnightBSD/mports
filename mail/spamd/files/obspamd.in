@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-#
 
 # PROVIDE: obspamd
 # REQUIRE: NETWORKING SERVERS syslogd named
