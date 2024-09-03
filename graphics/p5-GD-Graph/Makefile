@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph plotting module for perl5
 WWW=		https://metacpan.org/release/GDGraph
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-GD>=0:graphics/p5-GD \
