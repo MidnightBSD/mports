@@ -11,6 +11,8 @@ WWW=		https://www.gnu.org/software/gnash/
 
 LICENSE=	gpl3
 
+BUILD_DEPENDS=	${LOCALBASE}/ffmpeg/lib/libavcodec.so.58:multimedia/ffmpeg4
+RUN_DEPENDS=	${LOCALBASE}/ffmpeg/lib/libavcodec.so.58:multimedia/ffmpeg4
 LIB_DEPENDS=	libltdl.so:devel/libltdl \
 		libnspr4.so:devel/nspr \
 		libgif.so:graphics/giflib \
@@ -21,7 +23,6 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 		libboost_thread.so:devel/boost-libs \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig \
-		${LOCALBASE}/ffmpeg/lib/libavcodec.so.58:multimedia/ffmpeg4 \
 		libtheora.so:multimedia/libtheora \
 		libogg.so:audio/libogg \
 		libvorbis.so:audio/libvorbis \
