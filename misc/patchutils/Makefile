@@ -16,6 +16,6 @@ GNU_CONFIGURE=	yes
 SHEBANG_FILES=	patchview/gitdiff scripts/*.in
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}/${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}/${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
