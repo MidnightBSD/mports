@@ -1,5 +1,6 @@
 PORTNAME=	tnftpd
-PORTVERSION=	20231001
+DISTVERSION=	20231001
+PORTREVISION=	1
 CATEGORIES=	ftp
 MASTER_SITES=	https://cdn.netbsd.org/pub/NetBSD/misc/tnftp/ \
 		https://ftp.uni-erlangen.de/netbsd/misc/tnftp/ \
@@ -23,24 +24,30 @@ ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
 CFLAGS+=	-DSUPPORT_UTMPX -fcommon
 
-PLIST_FILES=	libexec/tnftpd \
-		man/man5/ftpd.conf.5.gz man/man5/ftpusers.5.gz man/man8/tnftpd.8.gz
-PORTDOCS=	ChangeLog NEWS README THANKS COPYING
-PORTEXAMPLES=	ftpd.conf ftpusers
-
 SUB_FILES=	pkg-message
+
+PLIST_FILES=	libexec/tnftpd \
+		share/man/man5/ftpd.conf.5.gz \
+		share/man/man5/ftpusers.5.gz \
+		share/man/man8/tnftpd.8.gz
+PORTDOCS=	COPYING ChangeLog NEWS README THANKS
+PORTEXAMPLES=	ftpd.conf ftpusers
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/tnftpd ${PREFIX}/libexec
-	${INSTALL_MAN} ${WRKSRC}/src/ftpd.conf.man ${PREFIX}/man/man5/ftpd.conf.5
-	${INSTALL_MAN} ${WRKSRC}/src/ftpusers.man ${PREFIX}/man/man5/ftpusers.5
-	${INSTALL_MAN} ${WRKSRC}/src/tnftpd.man ${PREFIX}/man/man8/tnftpd.8
+	${INSTALL_MAN} ${WRKSRC}/src/ftpd.conf.man ${PREFIX}/share/man/man5/ftpd.conf.5
+	${INSTALL_MAN} ${WRKSRC}/src/ftpusers.man ${PREFIX}/share/man/man5/ftpusers.5
+	${INSTALL_MAN} ${WRKSRC}/src/tnftpd.man ${PREFIX}/share/man/man8/tnftpd.8
+
+do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
+
+do-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 .for f in ${PORTEXAMPLES}
 	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${FAKE_DESTDIR}${EXAMPLESDIR}
