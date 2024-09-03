@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fully-featured shell-like command line environment
+WWW=		https://metacpan.org/release/Term-ShellUI
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
