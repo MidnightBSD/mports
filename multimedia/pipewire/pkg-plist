@@ -236,7 +236,7 @@ libdata/pkgconfig/libspa-0.2.pc
 %%MANPAGES%%share/man/man1/pw-mon.1.gz
 %%MANPAGES%%share/man/man1/pw-profiler.1.gz
 %%MANPAGES%%share/man/man1/pw-top.1.gz
-%%MANPAGES%%man/man5/pipewire.conf.5.gz
+%%MANPAGES%%share/man/man5/pipewire.conf.5.gz
 %%MEDIASESSION%%share/alsa-card-profile/mixer/paths/analog-input-aux.conf
 %%MEDIASESSION%%share/alsa-card-profile/mixer/paths/analog-input-dock-mic.conf
 %%MEDIASESSION%%share/alsa-card-profile/mixer/paths/analog-input-fm.conf
