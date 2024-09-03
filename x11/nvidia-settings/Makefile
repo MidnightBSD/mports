@@ -55,9 +55,9 @@ post-install:	.SILENT
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnvidia-gtk3.so.${PORTVERSION}
 	${RM} ${STAGEDIR}/${PREFIX}/lib/libnvidia-wayland-client.so.${PORTVERSION}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.desktop \
-		/${DESKTOPDIR}
+		${DESKTOPDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.png \
-		/${PREFIX}/share/pixmaps
+		${PREFIX}/share/pixmaps
 	${MV} ${PREFIX}/bin/nvidia-settings \
 		${PREFIX}/libexec/nvidia-settings
 	${INSTALL} ${WRKDIR}/nvidia-settings \

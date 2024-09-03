@@ -17,7 +17,7 @@
  BINDIR = $(DESTDIR)$(PREFIX)/bin
  LIBDIR = $(DESTDIR)$(PREFIX)/lib
 -MANDIR = $(DESTDIR)$(PREFIX)/share/man/man1
-+MANDIR = $(DESTDIR)$(PREFIX)/man/man1
++MANDIR = $(DESTDIR)$(PREFIX)/share/man/man1
  
  
  ##############################################################################
