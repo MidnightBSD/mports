@@ -1,6 +1,5 @@
 PORTNAME=	musicpd
-PORTVERSION=	0.23.12
-PORTREVISION=	2
+PORTVERSION=	0.23.15
 CATEGORIES=	audio
 MASTER_SITES=	https://www.musicpd.org/download/mpd/${PORTVERSION:R}/
 DISTNAME=	mpd-${PORTVERSION}
@@ -24,6 +23,7 @@ MESON_ARGS=	--auto-features=disabled \
 		-Dbzip2=disabled \
 		-Dhttpd=true \
 		-Dicu=enabled \
+		-Dmpcdec=disabled \
 		-Doss=enabled \
 		-Dpipe=true \
 		-Dsyslog=enabled \
@@ -47,7 +47,7 @@ OPTIONS_RADIO_RESAMPLER=	SAMPLERATE SOXR
 OPTIONS_MULTI=	DOCUMENTATION FILE_FORMAT
 OPTIONS_MULTI_FILE_FORMAT=	\
 			ADPLUG AUDIOFILE FAAD FFMPEG FLAC FLUIDSYNTH \
-			GME MAD MIKMOD MODPLUG MPG123 MUSEPACK \
+			GME MAD MIKMOD MODPLUG MPG123 \
 			OPUS SIDPLAY SNDFILE TWOLAME \
 			VORBIS WAVPACK WILDMIDI
 
@@ -110,8 +110,6 @@ MODPLUG_MESON_ENABLED=	modplug
 MODPLUG_LIB_DEPENDS=	libmodplug.so:audio/libmodplug
 MPG123_MESON_ENABLED=	mpg123
 MPG123_LIB_DEPENDS=	libmpg123.so:audio/mpg123
-MUSEPACK_MESON_ENABLED=	mpcdec
-MUSEPACK_LIB_DEPENDS=	libmpcdec.so:audio/musepack
 NFS_MESON_ENABLED=	nfs
 NFS_LIB_DEPENDS=	libnfs.so:net/libnfs
 OPENMPT_MESON_ENABLED=	openmpt
@@ -169,8 +167,9 @@ SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
 # Input plugins
 CDPARANOIA_MESON_ENABLED=	cdio_paranoia
 CDPARANOIA_LIB_DEPENDS=	libcdio_paranoia.so:sysutils/libcdio-paranoia
-CURL_MESON_ENABLED=	curl
+CURL_MESON_ENABLED=	curl webdav
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
+CURL_IMPLIES=		PLAYLISTS
 SMB_MESON_ENABLED=	smbclient
 SMB_USES=		samba:lib
 
@@ -243,8 +242,8 @@ do-install:
 
 do-install-MANPAGES-on:
 	${INSTALL_MAN} ${WRKSRC}/_build/doc/${PORTNAME}.1 \
-		${FAKE_DESTDIR}${PREFIX}/man/man1
+		${FAKE_DESTDIR}${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/_build/doc/${PORTNAME}.conf.5 \
-		${FAKE_DESTDIR}${PREFIX}/man/man5
+		${FAKE_DESTDIR}${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>
