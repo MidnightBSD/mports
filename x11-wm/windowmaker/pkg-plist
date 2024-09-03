@@ -407,7 +407,5 @@ share/man/man1/wxpaste.1.gz
 %%NLS%%share/man/sk/man1/wmsetbg.1.gz
 %%NLS%%share/man/sk/man1/wxcopy.1.gz
 %%NLS%%share/man/sk/man1/wxpaste.1.gz
-share/applications/WPrefs.desktop
-share/xsessions/wmaker.desktop
 @dir GNUstep/Applications/WPrefs.app/xpm
 @dir share/WindowMaker/Sounds
