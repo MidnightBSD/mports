@@ -15,28 +15,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Exporter-Tiny>=1.006000:devel/p5-Exporter-Tiny
-TEST_DEPENDS=	p5-Class-InsideOut>=0:devel/p5-Class-InsideOut \
-		p5-Function-Parameters>=0:devel/p5-Function-Parameters \
-		p5-JSON>=0:converters/p5-JSON \
-		p5-Moo>=1.006000:devel/p5-Moo \
-		p5-Moose>=2.0000:devel/p5-Moose \
-		p5-MooseX-Types>=0:devel/p5-MooseX-Types \
-		p5-MooseX-Types-Common>=0:devel/p5-MooseX-Types-Common \
-		p5-Mouse>=1.00:devel/p5-Mouse \
-		p5-MouseX-Types>=0:devel/p5-MouseX-Types \
-		p5-Role-Tiny>=0:devel/p5-Role-Tiny \
-		p5-Sub-Exporter-Lexical>=0:devel/p5-Sub-Exporter-Lexical \
-		p5-Test-Deep>=0:devel/p5-Test-Deep \
-		p5-Test-LeakTrace>=0:devel/p5-Test-LeakTrace \
-		p5-Test-Requires>=0:devel/p5-Test-Requires \
-		p5-Test-Warnings>=0:devel/p5-Test-Warnings \
-		p5-Validation-Class>=0:devel/p5-Validation-Class \
-		p5-match-simple>=0:devel/p5-match-simple
 
 USES=		perl5
 USE_PERL5=	configure
 
+# circular depends on moose
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PORTSCOUT=	limit:^[0-9\.]*$$
 
