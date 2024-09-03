@@ -1,7 +1,7 @@
 PORTNAME=	pidgin
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Pidgin multi-protocol messaging client (GTK+ UI)
+COMMENT=	Pidgin multi-protocol messaging client (GTK UI)
 
 LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification \
 		libpurple.so:net-im/libpurple
@@ -27,6 +27,6 @@ CONFIGURE_ARGS=	--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES:S/,$//}
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/pidgin.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/pidgin.1 ${PREFIX}/share/man/man1
 
 .include "${MASTERDIR}/Makefile"
