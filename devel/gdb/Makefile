@@ -183,7 +183,7 @@ do-install-GDB_LINK-on:
 	${LN} -sf gdb${VER}.1 ${FAKE_DESTDIR}${PREFIX}/share/man/man1/gdb.1
 .if ${PORT_OPTIONS:MKGDB}
 	${LN} -sf kgdb${VER} ${FAKE_DESTDIR}${PREFIX}/bin/kgdb
-	${LN} -sf kgdb${VER}.1 ${FAKE_DESTDIR}$PREFIX}/share/man/man1/kgdb.1
+	${LN} -sf kgdb${VER}.1 ${FAKE_DESTDIR}${PREFIX}/share/man/man1/kgdb.1
 .endif
 
 do-install-PYTHON-on:
