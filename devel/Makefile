@@ -1163,6 +1163,7 @@ SUBDIR += py-pytest-services
 SUBDIR += py-pytest-subtests
 SUBDIR += py-pytest-sugar
 SUBDIR += py-pytest-timeout
+SUBDIR += py-pytest-trio
 SUBDIR += py-pytest-xdist
 SUBDIR += py-pytest4
 SUBDIR += py-pytest4-asyncio
