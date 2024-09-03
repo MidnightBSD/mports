@@ -675,8 +675,8 @@ share/man/man1/dumpcap.1.gz
 share/man/man1/tshark.1.gz
 %%UDPDUMP_MAN%%share/man/man1/udpdump.1.gz
 %%GUI%%share/man/man1/wireshark.1.gz
-man/man4/extcap.4.gz
-man/man4/wireshark-filter.4.gz
+share/man/man4/extcap.4.gz
+share/man/man4/wireshark-filter.4.gz
 %%GUI%%share/appdata/wireshark.appdata.xml
 %%GUI%%share/applications/wireshark.desktop
 %%GUI%%share/icons/hicolor/128x128/apps/wireshark.png
