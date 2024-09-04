@@ -13,6 +13,8 @@ LICENSE_COMB=	multi
 
 USES=		tar:lz
 
+NO_TEST=	yes
+
 # The -aclocal slave port includes this file to get the version,
 # distinfo, etc., but needs none of the definitions. So almost all
 # of the file is inside this .if
@@ -92,8 +94,8 @@ post-install:
 	for p in guile guild guile-tools guile-config guile-snarf; do \
 	  ${LN} -s $${p}-${GUILE_VER} ${STAGEDIR}${PREFIX}/bin/$${p}${GUILE_SFX}; \
 	done
-	${MV} ${STAGEDIR}${PREFIX}/man/man1/guile-${GUILE_VER}.1 \
-	      ${STAGEDIR}${PREFIX}/man/man1/guile${GUILE_SFX}.1
+	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/guile-${GUILE_VER}.1 \
+	      ${STAGEDIR}${PREFIX}/share/man/man1/guile${GUILE_SFX}.1
 
 .endif # empty(NO_BUILD)
 
