@@ -1333,6 +1333,7 @@ SUBDIR += qt6-translations
 SUBDIR += qtcreator
 SUBDIR += ragel
 SUBDIR += range-v3
+SUBDIR += rapidjson
 SUBDIR += rclint
 SUBDIR += rcs57
 SUBDIR += re2
