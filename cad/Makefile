@@ -2,6 +2,9 @@
 
     SUBDIR += cascade
     SUBDIR += gdsreader
+    SUBDIR += libopencad
+    SUBDIR += sumo
+    SUBDIR += uranium
     SUBDIR += veroroute
     SUBDIR += xcircuit
     SUBDIR += xyce

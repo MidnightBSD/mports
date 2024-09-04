@@ -2,6 +2,7 @@ COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
 SUBDIR += fltk
+SUBDIR += fox16
 SUBDIR += gdl
 SUBDIR += gnome-pty-helper
 SUBDIR += gnustep-back

@@ -40,8 +40,8 @@ FIREBIRD_DEFAULT?=	2.5
 FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
-# Possible values: 4.9, 5, 6, 7
-GCC_DEFAULT?=		10
+# Possible values: 10, 11, 12
+GCC_DEFAULT?=		12
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
 # Possible values: 10
