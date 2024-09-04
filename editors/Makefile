@@ -13,6 +13,7 @@ SUBDIR += joe
 SUBDIR += jupp
 SUBDIR += lazarus
 SUBDIR += lazarus-qt5
+SUBDIR += lazarus-qt6
 SUBDIR += linux-openoffice3
 SUBDIR += linux-sublime
 SUBDIR += linux-sublime-text4
