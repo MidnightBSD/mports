@@ -28,6 +28,7 @@ SUBDIR += mDNSResponder_nss
 SUBDIR += mdnsd
 SUBDIR += nslint
 SUBDIR += nss_mdns
+SUBDIR += p5-Mozilla-PublicSuffix
 SUBDIR += p5-Net-DNS
 SUBDIR += p5-Net-DNS-Resolver-Mock
 SUBDIR += p5-Net-DNS-Resolver-Programmable
