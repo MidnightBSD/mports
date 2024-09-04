@@ -1,7 +1,7 @@
 PORTNAME=	openmpi
-PORTVERSION=	4.1.6
+DISTVERSION=	5.0.5
 CATEGORIES=	net parallel
-MASTER_SITES=	http://www.open-mpi.org/software/ompi/v${PORTVERSION:R}/downloads/
+MASTER_SITES=	https://download.open-mpi.org/release/open-mpi/v${PORTVERSION:R}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High Performance Message Passing Library
@@ -10,122 +10,101 @@ WWW=		https://www.open-mpi.org/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libhwloc.so.15:devel/hwloc2 \
-		libltdl.so:devel/libltdl \
+NOT_FOR_ARCHS=		armv6 armv7 i386 powerpc
+NOT_FOR_ARCHS_REASON=	Not supported on 32-bits - see net/openmpi4
+
+LIB_DEPENDS=	libhwloc.so:devel/hwloc2 \
 		libevent.so:devel/libevent \
 		libmunge.so:security/munge
 
-# :keepla because port uses lt_dlopen
-USES=		fortran gmake libtool:keepla localbase perl5 \
-		pkgconfig shebangfix tar:bzip2
-
 CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd12.4
-HAS_CONFIGURE=	yes
+
+# :keepla because port uses lt_dlopen
+USES=		compiler:c11 fortran gmake libtool:keepla localbase perl5 \
+		pkgconfig python:build shebangfix tar:bzip2
+USE_LDCONFIG=	${PREFIX}/${MPIDIR}/lib
 USE_PERL5=	build
+SHEBANG_FILES=	ompi/mca/common/monitoring/profile2mat.pl \
+		ompi/mca/common/monitoring/aggregate_profile.pl
 
 MPIBASE?=	mpi
 MPIDIR?=	${MPIBASE}/${PKGBASE}
 
-PLIST_SUB+=	MPIBASE=${MPIBASE}
-PLIST_SUB+=	MPIDIR=${MPIDIR}
-
-# Workaround for https://github.com/open-mpi/ompi/issues/7516
-CONFIGURE_ENV+=		DISABLE_gds_ds12=1 DISABLE_gds_ds21=1
-
-CONFIGURE_ARGS+=	--prefix=${PREFIX}/${MPIDIR} \
-			--mandir=${PREFIX}/${MPIDIR}/man \
-			--program-prefix= \
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_PREFIX=	${PREFIX}/${MPIDIR}
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/${MPIDIR}/share
+CONFIGURE_ARGS+=	--program-prefix= \
 			--with-hwloc=external \
-			--with-libltdl \
 			--without-ofi \
-			--enable-mpi-fortran=usempi \
-			--enable-mpi-cxx \
-			--enable-cxx-exceptions \
+			--enable-mpi-fortran=usempif08 \
 			--with-libevent=external \
 			--enable-mca-no-build=verbs,btl_openib,oob_ud \
-			--without-verbs \
-			--with-wrapper-ldflags=-Wl,-rpath=-Wl,-rpath=${LOCALBASE}/lib/gcc${_GCC_VER} \
-			ompi_cv_fortran_ignore_tkr_data=0
+			--with-wrapper-ldflags=-Wl,-rpath=-Wl,-rpath=${LOCALBASE}/lib/gcc${_GCC_VER}
+TEST_TARGET=		check
+CFLAGS+=		${CFLAGS_F2018}
+CONFLICTS_INSTALL=	openmpi4-4*
 
-USE_LDCONFIG=	${PREFIX}/${MPIDIR}/lib
+DOCSDIR=	${PREFIX}/${MPIDIR}/share/doc
+MANDIRS=	${PREFIX}/${MPIDIR}/share/man
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+PLIST_SUB+=	MPIDIR=${MPIDIR}
+PORTDOCS=	*
 
-MANPREFIX=	${PREFIX}/${MPIDIR}
-
-SHEBANG_FILES=	ompi/mca/common/monitoring/profile2mat.pl \
-		ompi/mca/common/monitoring/aggregate_profile.pl
-
-OPTIONS_DEFINE=			AVX DEBUG IPV6 SLURM TORQUE
-OPTIONS_DEFAULT=		SLURM
+OPTIONS_DEFINE=			AVX DEBUG DOCS IPV6 ROMIO SLURM
+OPTIONS_DEFAULT=		ROMIO
 OPTIONS_EXCLUDE_aarch64=	AVX
-OPTIONS_EXCLUDE_armv6=		AVX
-OPTIONS_EXCLUDE_armv7=		AVX
+OPTIONS_EXCLUDE_armv6=		AVX SLURM
+OPTIONS_EXCLUDE_armv7=		AVX SLURM
 OPTIONS_EXCLUDE_i386=		SLURM
-OPTIONS_EXCLUDE_mips=		AVX
+OPTIONS_EXCLUDE_mips=		AVX SLURM
 OPTIONS_EXCLUDE_mips64=		AVX
-OPTIONS_EXCLUDE_powerpc=	AVX
+OPTIONS_EXCLUDE_powerpc=	AVX SLURM
 OPTIONS_EXCLUDE_powerpc64=	AVX
 OPTIONS_EXCLUDE_powerpc64le=	AVX
 OPTIONS_EXCLUDE_riscv64=	AVX
 OPTIONS_SUB=			yes
 
 AVX_DESC=	Enable AVX instructions
+ROMIO_DESC=	Enable romio mpi-io support
 SLURM_DESC=	Enable SLURM support
-TORQUE_DESC=	Enable Torque support
 
 AVX_CONFIGURE_OFF=	--enable-mca-no-build=op-avx
 
-DEBUG_CONFIGURE_ENABLE=	debug
+DEBUG_CONFIGURE_ENABLE=		debug
 DEBUG_INSTALL_TARGET_OFF=	install-strip
+
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}	\
+			${PYTHON_PKGNAMEPREFIX}recommonmark>0:textproc/py-recommonmark@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
 
 IPV6_CONFIGURE_ENABLE=	ipv6
 
-TORQUE_CONFIGURE_WITH=	tm
-TORQUE_LIB_DEPENDS=	libtorque.so:sysutils/torque
-TORQUE_PLIST_FILES=	${MPIDIR}/lib/openmpi/mca_plm_tm.so \
-			${MPIDIR}/lib/openmpi/mca_plm_tm.la \
-			${MPIDIR}/lib/openmpi/mca_ras_tm.la \
-			${MPIDIR}/lib/openmpi/mca_ras_tm.so \
-			${MPIDIR}/lib/openmpi/mca_ess_tm.so \
-			${MPIDIR}/lib/openmpi/mca_ess_tm.la \
-			${MPIDIR}/share/openmpi/help-plm-tm.txt \
-			${MPIDIR}/share/openmpi/help-ras-tm.txt
+ROMIO_CONFIGURE_OFF=	--disable-io-romio
 
-SLURM_CONFIGURE_WITH=	slurm
 SLURM_LIB_DEPENDS=	libslurm.so:sysutils/slurm-wlm
-SLURM_PLIST_FILES=	${MPIDIR}/lib/openmpi/mca_ess_slurm.la \
-			${MPIDIR}/lib/openmpi/mca_ess_slurm.so \
-			${MPIDIR}/lib/openmpi/mca_plm_slurm.la \
-			${MPIDIR}/lib/openmpi/mca_plm_slurm.so \
-			${MPIDIR}/lib/openmpi/mca_ras_slurm.la \
-			${MPIDIR}/lib/openmpi/mca_ras_slurm.so \
-			${MPIDIR}/lib/openmpi/mca_schizo_slurm.la \
-			${MPIDIR}/lib/openmpi/mca_schizo_slurm.so \
-			${MPIDIR}/share/openmpi/help-plm-slurm.txt \
-			${MPIDIR}/share/openmpi/help-ras-slurm.txt
+SLURM_CONFIGURE_WITH=	slurm
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
 .if ${FORTRAN_DEFAULT} == gfortran && ${GCC_DEFAULT} >= 10
 FCFLAGS+=	-fallow-argument-mismatch
 .endif
 
-.if ${ARCH} != aarch64 && ${ARCH} != amd64 && ${ARCH} != i386 && !${ARCH:Mpowerpc*}
-PLIST_SUB+=	NO_MCA_PATCHER_OVERWRITE="@comment "
+# Both clang and gcc support half precision on these platforms
+# Note: RISC-V can support half precision with Zhf extension
+.if ${ARCH:Maarch64} || ${ARCH:Mamd64}
+PLIST_SUB+=	SHORTFLOAT=""
 .else
-PLIST_SUB+=	NO_MCA_PATCHER_OVERWRITE=""
+PLIST_SUB+=	SHORTFLOAT="@comment "
 .endif
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|$$(libdir)/pkgconfig|${LOCALBASE}/libdata/pkgconfig|g' \
-		${WRKSRC}/ompi/tools/wrappers/Makefile.am \
-		${WRKSRC}/ompi/tools/wrappers/Makefile.in \
-		${WRKSRC}/opal/tools/wrappers/Makefile.am \
-		${WRKSRC}/opal/tools/wrappers/Makefile.in \
-		${WRKSRC}/orte/tools/wrappers/Makefile.am \
-		${WRKSRC}/orte/tools/wrappers/Makefile.in \
-		${WRKSRC}/opal/mca/pmix/pmix3x/pmix/Makefile.am \
-		${WRKSRC}/opal/mca/pmix/pmix3x/pmix/Makefile.in
-	@${REINPLACE_CMD} 's|define MCA_hwloc_external_.*header "|&${LOCALBASE}/include/|' \
-		${WRKSRC}/configure
+LIBDIR2FIX=	oshmem/tools/wrappers opal/tools/wrappers \
+		3rd-party/openpmix ompi/tools/wrappers
 
-.include <bsd.port.mk>
+pre-configure:
+.for d in ${LIBDIR2FIX}
+	${REINPLACE_CMD} -e 's|$$(libdir)/pkgconfig|${LOCALBASE}/libdata/pkgconfig|g' \
+		${WRKSRC}/${d}/Makefile.in
+.endfor
+
+.include <bsd.port.post.mk>
