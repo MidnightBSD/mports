@@ -35,7 +35,7 @@ PORTEXAMPLES=	ftpd.conf ftpusers
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-do-install:
+do-install: do-install-EXAMPLES-on do-install-DOCS-on
 	${INSTALL_PROGRAM} ${WRKSRC}/src/tnftpd ${PREFIX}/libexec
 	${INSTALL_MAN} ${WRKSRC}/src/ftpd.conf.man ${PREFIX}/share/man/man5/ftpd.conf.5
 	${INSTALL_MAN} ${WRKSRC}/src/ftpusers.man ${PREFIX}/share/man/man5/ftpusers.5
