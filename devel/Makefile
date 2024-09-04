@@ -1007,6 +1007,7 @@ SUBDIR += py-jschema-to-python
 SUBDIR += py-jsondiff
 SUBDIR += py-jsonform
 SUBDIR += py-jsonpatch
+SUBDIR += py-jsonpath-ng
 SUBDIR += py-jsonpickle
 SUBDIR += py-jsonpointer
 SUBDIR += py-jsonref
