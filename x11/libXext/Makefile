@@ -10,7 +10,7 @@ WWW=		https://www.freedesktop.org/Software/xlibs
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tar:xz cpe xorg xorg-cat:lib
+USES=		cpe tar:xz xorg xorg-cat:lib
 USE_XORG=	x11 xau xorgproto
 CPE_VENDOR=	x
 CPE_PRODUCT=	libxext
