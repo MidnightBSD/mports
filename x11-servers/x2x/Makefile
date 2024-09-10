@@ -14,7 +14,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	dottedmag
 GH_TAGNAME=	e62a535
 GNU_CONFIGURE=	yes
-USE_XORG=	x11 xext xtst
+USE_XORG=	x11 xext xi xtst
 
 OPTIONS_DEFINE=	DOCS
 
