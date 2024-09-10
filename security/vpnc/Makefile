@@ -66,8 +66,8 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/vpnc.8 ${STAGEDIR}${PREFIX}/share/man/man8
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 do-install-DECRYPT-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/cisco-decrypt ${FAKE_DESTDIR}${PREFIX}/bin
