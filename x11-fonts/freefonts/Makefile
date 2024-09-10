@@ -1,5 +1,3 @@
-# Created by: erich@FreeBSD.org
-
 PORTNAME=	freefonts
 PORTVERSION=	0.10
 PORTREVISION=	10
@@ -13,7 +11,11 @@ MASTER_SITE_SUBDIR=	gimp/fonts
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of ATM fonts (not all free) from the CICA archives
 
-LICENSE=	other
+# Converted from RESTRICTED
+LICENSE=	freefont
+LICENSE_NAME=	freefont
+LICENSE_TEXT=	License prohibits redistribution; see individual .license files
+LICENSE_PERMS=	auto-accept
 
 BUILD_DEPENDS=	type1inst:x11-fonts/p5-type1inst
 
