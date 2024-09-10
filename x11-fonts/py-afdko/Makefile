@@ -13,7 +13,7 @@ LICENSE=	apache2
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	afdko>=${PORTVERSION}<${PORTVERSION}_99:x11-fonts/afdko \
+RUN_DEPENDS=	afdko>=${PORTVERSION}:x11-fonts/afdko \
 		${PYTHON_PKGNAMEPREFIX}booleanOperations>=0.9.0:x11-fonts/py-booleanOperations@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}defcon>=0.10.2:x11-fonts/py-defcon@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fontMath>=0.9.3:x11-fonts/py-fontMath@${PY_FLAVOR} \
