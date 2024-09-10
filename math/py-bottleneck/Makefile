@@ -32,7 +32,7 @@ post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/ && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${DOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
