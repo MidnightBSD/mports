@@ -1,10 +1,11 @@
 PORTNAME=	antiword
 PORTVERSION=	0.37
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.winfield.demon.nl/linux/
+MASTER_SITES=	https://web.archive.org/web/20221207132720/http://www.winfield.demon.nl/linux/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application for displaying Microsoft(R) Word documents
+WWW=		https://web.archive.org/web/20221207132720/http://www.winfield.demon.nl
 
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/Docs/COPYING
@@ -12,9 +13,10 @@ LICENSE_FILE=	${WRKSRC}/Docs/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/share/ghostscript/fonts/n022003l.afm:print/gsfonts
 RUN_DEPENDS=	${LOCALBASE}/share/ghostscript/fonts/n022003l.afm:print/gsfonts
 
-USES=		cpe gmake perl5
+USES=		cpe gmake shebangfix perl5
 CPE_VENDOR=	antiword_project
 USE_PERL5=	build
+SHEBANG_FILES=	kantiword Unix-only/fontinfo.pl
 MAKE_JOBS_UNSAFE=yes
 INSTALL_TARGET=	global_install
 
