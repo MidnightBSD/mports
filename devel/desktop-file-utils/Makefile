@@ -10,8 +10,6 @@ WWW=		https://www.freedesktop.org/wiki/Software/desktop-file-utils/
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GCC=	yes
-
 USES=		compiler:c11 gettext meson gnome pkgconfig tar:xz
 USE_GNOME=	glib20
 
