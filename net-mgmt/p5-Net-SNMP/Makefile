@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Net-SNMP
 PORTVERSION=	6.0.1
 DISTVERSIONPREFIX=	v
@@ -11,8 +9,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object oriented interface to SNMP
+WWW=		https://metacpan.org/release/Net-SNMP
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
