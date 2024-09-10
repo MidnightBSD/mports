@@ -186,10 +186,10 @@ post-patch:
 		${WRKSRC}/util/CMakeLists.txt
 
 post-install:
-	@${LN} -sf libcsnd6.so.6.0 ${STAGEDIR}${PREFIX}/lib/libcsnd6.so.6
-	@${LN} -sf libcsound64.so.6.0 ${STAGEDIR}${PREFIX}/lib/libcsound64.so.6
+	@${LN} -sf libcsnd6.so.6.0 ${PREFIX}/lib/libcsnd6.so.6
+	@${LN} -sf libcsound64.so.6.0 ${PREFIX}/lib/libcsound64.so.6
 
 post-install-FLTK-on:
-	@${LN} -sf libCsoundAC.so.6.0 ${STAGEDIR}${PREFIX}/lib/libCsoundAC.so.6
+	@${LN} -sf libCsoundAC.so.6.0 ${FAKE_DESTDIR}${PREFIX}/lib/libCsoundAC.so.6
 
 .include <bsd.port.mk>
