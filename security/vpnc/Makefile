@@ -7,72 +7,65 @@ MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client for Cisco 3000 VPN Concentrator
+WWW=		https://www.unix-ag.uni-kl.de/~massar/vpnc/
 
-LICENSE=	gpl2 bsd2
+LICENSE=	gpl2+ bsd2
 LICENSE_COMB=	multi
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE_NAME_VPNC=	vpnc
+LICENSE_FILE_BSD2CLAUSE=	${WRKSRC}/COPYING
+LICENSE_FILE_GPLv2+ =	${WRKSRC}/COPYING
+LICENSE_TEXT_VPNC=	Redistribution is not allowed if linked against OpenSSL
+LICENSE_PERMS_VPNC=	auto-accept
 
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error
 RUN_DEPENDS=	vpnc-script:sysutils/vpnc-scripts
 
-USES=		shebangfix gmake perl5
+USES=		gmake perl5 shebangfix
 USE_PERL5=	build
 USE_RC_SUBR=	vpnc
 
 LEGAL_TEXT=	Redistribution is not allowed if linked against OpenSSL
 
 ALL_TARGET=	all
+SHEBANG_FILES=	makeman.pl
 
 PORTDOCS=	README TODO
 
-MAKE_ENV+=	BINS="${EXTRABUILDS}"
+MAKE_ENV=	BINS="${EXTRABUILDS}"
 
-OPTIONS_DEFINE=	DECRYPT SSL CISCOVERSION DOCS
+OPTIONS_DEFINE=		CISCOVERSION DECRYPT DOCS SSL
+OPTIONS_DEFAULT=	DECRYPT
+OPTIONS_SUB=		yes
 
-DECRYPT_DESC=		cisco-decypt password decrypt utility
 CISCOVERSION_DESC=	Mask linux presentation string
+CISCOVERSION_CFLAGS=	-DCISCO_PATCH_VERSION
 
-OPTIONS_DEFAULT=DECRYPT
+DECRYPT_DESC=	cisco-decypt password decrypt utility
+DECRYPT_VARS=	EXTRABUILDS+=cisco-decrypt
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDECRYPT}
-MANPAGE1=	cisco-decrypt.1
-EXTRABUILDS+=	cisco-decrypt
-PLIST_SUB+=	DECRYPT=""
-.else
-PLIST_SUB+=	DECRYPT="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MSSL}
-NO_PACKAGE=	binary linked against OpenSSL must not be redistributed
-CFLAGS+=	-DOPENSSL_GPL_VIOLATION
-LDFLAGS+=	-lcrypto
-.endif
-
-.if ${PORT_OPTIONS:MCISCOVERSION}
-CFLAGS+=	-DCISCO_PATCH_VERSION
-.endif
+SSL_VARS=	NO_PACKAGE="binary linked against OpenSSL must not be redistributed" \
+		LICENSE+=VPNC
+SSL_CFLAGS=	-DOPENSSL_GPL_VIOLATION
+SSL_LDFLAGS=	-lcrypto
 
 post-patch:
+	@${REINPLACE_CMD} \
+		-e 's|.*%%FREEBSD_IPLEN_FIX%%.*|#define NEED_IPLEN_FIX 1|' \
+		${WRKSRC}/sysdep.h
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' ${WRKSRC}/config.c
 	@${REINPLACE_CMD} -e 's|\(/etc/vpnc\)|${PREFIX}\1|' \
 		${WRKSRC}/vpnc.8.template
 
 do-install:
-	${INSTALL_PROGRAM} -m 751 ${WRKSRC}/vpnc ${STAGEDIR}${PREFIX}/sbin/vpnc
-.if ${PORT_OPTIONS:MDECRYPT}
-	${INSTALL_PROGRAM} ${WRKSRC}/cisco-decrypt ${STAGEDIR}${PREFIX}/bin
-.endif
-	${INSTALL_SCRIPT} -m 751 ${WRKSRC}/vpnc-disconnect \
+	${INSTALL_PROGRAM} ${WRKSRC}/vpnc ${STAGEDIR}${PREFIX}/sbin/vpnc
+	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-disconnect \
 		${STAGEDIR}${PREFIX}/sbin/vpnc-disconnect
-	${INSTALL_DATA} -m 600 ${WRKSRC}/vpnc.conf \
+	${INSTALL_DATA} ${WRKSRC}/vpnc.conf \
 		${STAGEDIR}${PREFIX}/etc/vpnc.conf.sample
-.if !exists(${STAGEDIR}${PREFIX}/etc/vpnc.conf)
-	${INSTALL_DATA} -m 600 ${WRKSRC}/vpnc.conf ${STAGEDIR}${PREFIX}/etc
-.endif
 	${INSTALL_MAN} ${WRKSRC}/vpnc.8 ${STAGEDIR}${PREFIX}/share/man/man8
+
+do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
