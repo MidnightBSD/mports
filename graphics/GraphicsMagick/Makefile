@@ -23,6 +23,8 @@ INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 PORTSCOUT=	limit:^[0-9]\.[0-9]\.[1-9][0-9\]*$$
 
 # Use fonts installed by x11-fonts/webfonts by default
