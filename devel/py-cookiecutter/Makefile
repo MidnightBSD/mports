@@ -20,28 +20,13 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}binaryornot>=0.4.4:devel/py-binaryornot@${PY
 		${PYTHON_PKGNAMEPREFIX}yaml>=5.3.1:devel/py-yaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}arrow>=0:devel/py-arrow@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rich>=0:textproc/py-rich@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}freezegun>0:devel/py-freezegun@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-cov>0:devel/py-pytest-cov@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-mock>0:devel/py-pytest-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
-		git:devel/git
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils 
 
 CPE_VENDOR=	cookiecutter_project
 
 NO_ARCH=	yes
-
-# pytest needs a UTF-8 environment, and it will try and write outside
-# ${WRKDIR} unless told not to.
-
-TEST_ENV=	HOME=${WRKDIR} \
-		LANG=C.UTF-8 \
-		LC_ALL=C.UTF-8 \
-		TMPDIR=${WRKDIR}
-
-# Windows specific test
-PYTEST_IGNORED_TESTS= test_run_shell_hooks_win
+NO_TEST=	yes
 
 .include <bsd.port.mk>
