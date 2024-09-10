@@ -1,38 +1,33 @@
-# Created by: Mikhail Teterin <mi@aldan.algebra.com>
-
-
 PORTNAME=	dht
-PORTVERSION=	0.22
+DISTVERSIONPREFIX=	${PORTNAME}-
+DISTVERSION=	0.27
 CATEGORIES=	devel
-MASTER_SITES=	http://www.pps.univ-paris-diderot.fr/~jch/software/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mainline variant of Kademlia Distributed Hash Table (DHT)
+WWW=		http://www.pps.univ-paris-diderot.fr/~jch/software/bittorrent/
 
 LICENSE=	mit
 
 FAKE_OPTS=	trueprefix
 
-MAKEFILE=	${FILESDIR}/BSDmakefile
+USE_GITHUB=	yes
+GH_ACCOUNT=	jech
+
 USE_LDCONFIG=	yes
 USES=	uidfix
+
+MAKEFILE=	${FILESDIR}/BSDmakefile
 
 post-build:
 	${SETENV} ${MAKE_ENV} ${MAKE} -C ${WRKSRC} -f \
 		${FILESDIR}/Makefile.example
 
-do-install:
-	${INSTALL_LIB} ${WRKSRC}/libdht.so.0 ${PREFIX}/lib/libdht.so.0
-	${INSTALL_LIB} ${WRKSRC}/libdht.so ${PREFIX}/lib/libdht.so
-	${INSTALL_LIB} ${WRKSRC}/libdht.a ${PREFIX}/lib/libdht.a
-	${INSTALL_SCRIPT} ${WRKSRC}/dht-example ${PREFIX}/bin/dht-example
-	${INSTALL_DATA} ${WRKSRC}/dht.h ${PREFIX}/include/dht/dht.h
+pre-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/include/dht
 
 post-install:
 	${SETENV} ${MAKE_ENV} ${MAKE} -C ${WRKSRC} -f \
 		${FILESDIR}/Makefile.example install
-
-pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/dht
 
 .include <bsd.port.mk>
