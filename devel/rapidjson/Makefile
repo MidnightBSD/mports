@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast JSON parser/generator for C++ with both SAX/DOM style API
 WWW=		https://github.com/Tencent/rapidjson
 
-LICENSE=	unknown
+LICENSE=	RapidJSON
 LICENSE_NAME=	RapidJSON
 LICENSE_FILE=	${WRKSRC}/license.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
