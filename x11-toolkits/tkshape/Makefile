@@ -1,17 +1,18 @@
-
-
 PORTNAME=	tkshape
 PORTVERSION=	0.4
 PORTREVISION=	3
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	http://www.cs.man.ac.uk/~fellowsd/tcl/ \
-		http://nivi.interfree.it/distfiles/${PORTNAME}/${PORTVERSION}/
+MASTER_SITES=	http://www.cs.man.ac.uk/~fellowsd/tcl/
 DISTNAME=	shape${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tk library to access to X Shaped Window Extension
+WWW=		https://www.cs.man.ac.uk/~fellowsd/tcl/shapeidx.html
 
-LICENSE=	other
+LICENSE=      TKSHAPE
+LICENSE_NAME= TKSHAPE License
+LICENSE_FILE=	${WRKSRC}/license.txt
+LICENSE_PERMS=        dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		gmake tk:85+ xorg
 USE_XORG=	x11 xext
@@ -57,7 +58,7 @@ FIND_IMAGES=		demos/images -type f \
 			-or -name "*.cur" \)
 
 TARGET_DIR=		${PREFIX}/lib/${PORTNAME}
-MANPAGES=		${MAN3} ${MANN}
+MANPAGES=		CombShape.3 QuryShape.3 shape.n
 
 do-install:
 # script, library
@@ -83,7 +84,7 @@ do-install:
 	cd ${WRKSRC}; \
 	for m in ${MANPAGES} ; do \
 	    s=$${m##*.}; \
-	    ${INSTALL_MAN} doc/$${m} ${MANPREFIX}/man/man$${s}/$${m}; \
+	    ${INSTALL_MAN} doc/$${m} ${PREFIX}/share/man/man$${s}/$${m}; \
 	done;
 .endif
 
