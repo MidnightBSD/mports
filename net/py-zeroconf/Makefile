@@ -11,7 +11,7 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 
-BUILD_DEPENDS=	lang/cython3>=3.0.8:lang/cython3 \
+BUILD_DEPENDS=	lang/cython3>0:lang/cython3 \
 		${PYTHON_PKGNAMEPREFIX}poetry-core>=1.5.2:devel/py-poetry-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=63.1.0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0.40.0:devel/py-wheel@${PY_FLAVOR}
