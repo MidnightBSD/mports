@@ -1,5 +1,5 @@
 PORTNAME=	gc
-PORTVERSION=	8.2.6
+PORTVERSION=	8.2.8
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/ivmai/bdwgc/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	boehm-
@@ -37,7 +37,7 @@ PLIST=		${NONEXISTENT}
 PLIST_FILES=	${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so,} \
 		${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so.1,} \
 		lib/libcord-${GC_VARIANT}.so.1.5.1 \
-		lib/libgc-${GC_VARIANT}.so.1.5.3 \
+		lib/libgc-${GC_VARIANT}.so.1.5.4 \
 		lib/libgccpp-${GC_VARIANT}.so.1.5.0 \
 		lib/libgctba-${GC_VARIANT}.so.1.5.0 \
 		libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
