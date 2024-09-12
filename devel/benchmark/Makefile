@@ -1,6 +1,7 @@
 PORTNAME=	benchmark
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.0
+DISTVERSION=	1.9.0
+PORTEPOCH=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,8 +11,10 @@ WWW=		https://github.com/google/benchmark
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake:testing compiler:c++11-lang
+USES=		cmake:testing compiler:c++11-lang pathfix
 USE_LDCONFIG=	yes
+
+NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
@@ -24,9 +27,12 @@ CMAKE_TESTING_ARGS=	-DGOOGLETEST_PATH=${WRKSRC_googletest}
 
 CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
 CXXFLAGS_gcc=	-Wno-stringop-truncation
+PIE_UNSAFE=	yes
 
 BINARY_ALIAS=	git=false
 
-NO_TEST=	yes
+PLIST_SUB=	VERSION=${DISTVERSION}
+
+# tests fail to compile, due to https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=280382
 
 .include <bsd.port.mk>
