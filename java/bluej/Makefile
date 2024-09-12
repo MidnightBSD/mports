@@ -1,5 +1,5 @@
 PORTNAME=	bluej
-PORTVERSION=	3.1.1
+PORTVERSION=	3.1.7
 CATEGORIES=	java editors
 MASTER_SITES=	http://www.bluej.org/download/files/ \
 		ftp://ftp.bluej.org/pub/bluej/
