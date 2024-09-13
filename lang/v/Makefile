@@ -1,5 +1,5 @@
 PORTNAME=	v
-PORTVERSION=	0.4.3
+PORTVERSION=	0.4.7
 CATEGORIES=	lang
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,14 +14,13 @@ USES=		compiler:c11 gmake
 
 ALL_TARGET=	v
 LDFLAGS+=	-lm
-#TEST_TARGET=	check
 NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_TUPLE=	vlang:v:${PORTVERSION} \
-		vlang:vc:760acca:vc/vc
+		vlang:vc:8c681ed:vc/vc
 
-PORTSCOUT=	skipv:weekly.*
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
