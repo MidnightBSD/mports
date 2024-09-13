@@ -1,17 +1,23 @@
 PORTNAME=	bzip3
-PORTVERSION=	1.3.2
+DISTVERSION=	1.4.0
+PORTREVISION=	2
 CATEGORIES=	archivers
-MASTER_SITES=	https://github.com/kspalaiologos/${PORTNAME}/releases/download/${PORTVERSION}/
+MASTER_SITES=	https://github.com/kspalaiologos/${PORTNAME}/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Better and stronger spiritual successor to BZip2
 WWW=		https://github.com/kspalaiologos/bzip3
 
-LICENSE=	lgpl3
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	apache2 bsd2 lgpl3+
+LICENSE_COMB=	multi
+LICENSE_FILE_apache2=	${WRKSRC}/libsais-LICENSE
+LICENSE_FILE_lgpl3+ =	${WRKSRC}/LICENSE
 
-USES=		libtool pkgconfig
+USES=		cmake pathfix tar:xz
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
+
+post-patch:
+	@${REINPLACE_CMD} -e "s|\(VERSION \)1\.3\.0|\1${DISTVERSION}|" \
+		${WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.mk>
