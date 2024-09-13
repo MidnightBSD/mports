@@ -24,8 +24,8 @@ PERIODIC_SECURITY=	etc/periodic/security/
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/checkrestart ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${MAN1PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/checkrestart.1 ${STAGEDIR}${MAN1PREFIX}/share/man/man1
+	${MKDIR} ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/checkrestart.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${PERIODIC_SECURITY}
 	${INSTALL_SCRIPT} ${WRKDIR}/checkrestart ${STAGEDIR}${PREFIX}/${PERIODIC_SECURITY}
 
