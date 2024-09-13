@@ -1,38 +1,36 @@
-
-
 PORTNAME=	gawk
-PORTVERSION=	4.1.3
+PORTVERSION=	5.3.0
 CATEGORIES=	lang
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU version of Awk
+COMMENT=	GNU version of AWK scripting language
+WWW=		https://www.gnu.org/software/gawk/gawk.html
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libsigsegv.so:${PORTSDIR}/devel/libsigsegv
+CONFLICTS_INSTALL=	ja-gawk # bin/gawk
 
 OPTIONS_DEFINE=		NLS MPFR
 OPTIONS_SUB=		yes
 NLS_USES=		gettext
 NLS_CONFIGURE_OFF=	--disable-nls
 MPFR_DESC?=		Support multiple-precision floating-point computation
-MPFR_LIB_DEPENDS=	libmpfr.so:${PORTSDIR}/math/mpfr
+MPFR_LIB_DEPENDS=	libgmp.so:math/gmp libmpfr.so:math/mpfr
 MPFR_CONFIGURE_OFF=	--without-gmp --without-mpfr
 
-INFO=		gawk gawkinet
+INFO=		gawk gawkinet gawkworkflow pm-gawk
 
+USES=		gmake iconv libtool readline tar:lz
 GNU_CONFIGURE=	yes
-USES=		iconv libtool makeinfo tar:xz
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG} \
 		--with-libintl-prefix=${LOCALBASE} \
 		AWK=${AWK}
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 PLIST_SUB+=	VERSION=${PORTVERSION}
-
-post-patch:
-	@${RM} -f ${WRKSRC}/doc/*.info
-	@${REINPLACE_CMD} -e 's/ -export-dynamic/ -Wl,--export-dynamic/' \
-		${WRKSRC}/configure
 
 .include <bsd.port.mk>
