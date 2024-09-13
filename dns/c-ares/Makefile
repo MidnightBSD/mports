@@ -1,5 +1,5 @@
 PORTNAME=	c-ares
-DISTVERSION=	1.30.0
+DISTVERSION=	1.33.1
 CATEGORIES=	dns
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -15,14 +15,13 @@ USE_LDCONFIG=	yes
 
 CONFLICTS=	py*-ripe.atlas.tools
 
-OPTIONS_DEFINE=		STATIC TEST
+OPTIONS_DEFINE=	STATIC TEST
 OPTIONS_SUB=	yes
 
 STATIC_CMAKE_BOOL=	CARES_STATIC
 
 TEST_BUILD_DEPENDS=	googletest>0:devel/googletest
 TEST_USES=		compiler:c++14-lang localbase:ldflags
-TEST_USES_OFF=		compiler:c++11-lang
 TEST_CMAKE_BOOL=	CARES_BUILD_TESTS
 TEST_TEST_TARGET=	test
 
