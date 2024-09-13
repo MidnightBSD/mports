@@ -1,5 +1,5 @@
 PORTNAME=	c-blosc
-PORTVERSION=	1.21.1
+PORTVERSION=	1.21.6
 DISTVERSIONPREFIX=	v
 CATEGORIES=	archivers devel
 
@@ -8,7 +8,7 @@ COMMENT=	Blocking, shuffling and loss-less compression library
 WWW=		https://blosc.org/
 
 LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/LICENSES/BLOSC.txt
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		cmake compiler:c11
 USE_CSTD=	c11
