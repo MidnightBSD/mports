@@ -1,5 +1,5 @@
 PORTNAME=	cabextract
-PORTVERSION=	1.9.1
+PORTVERSION=	1.11
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/
 
