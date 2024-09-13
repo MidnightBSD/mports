@@ -6,13 +6,14 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to provide transparent read access to zipped files
+WWW=		https://github.com/gdraheim/zziplib
 
 LICENSE=	lgpl2.1 mpl
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	bash:shells/bash
 
-USES=		cmake compiler:c11
+USES=		cmake compiler:c11 pathfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gdraheim
