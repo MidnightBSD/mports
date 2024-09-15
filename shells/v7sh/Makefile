@@ -13,7 +13,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the UNIX 7th Edition shell
-WWW=		http://minnie.tuhs.org/UnixTree/V7
+WWW=		http://minnie.tuhs.org/UnixTree/V7/
 
 LICENSE=	unknown
 
