@@ -181,6 +181,12 @@ MASTER_SITE_EPEL7+= \
 	http://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_ROCKY_LINUX)
+MASTER_SITE_ROCKY_LINUX+= \
+	https://dl.rockylinux.org/pub/rocky/%SUBDIR%/:DEFAULT,aarch64,amd64,SOURCE \
+	https://dl.rockylinux.org/vault/rocky/%SUBDIR%/:DEFAULT,aarch64,amd64,SOURCE
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_FEDORA_LINUX)
 MASTER_SITE_FEDORA_LINUX+= \
 	https://archives.fedoraproject.org/pub/archive/fedora/linux/%SUBDIR%/:DEFAULT,SOURCE \
@@ -635,7 +641,6 @@ MASTER_SITE_GNU+= \
 .if !defined(IGNORE_MASTER_SITE_GNUPG)
 MASTER_SITE_GNUPG+= \
 	https://mirrors.dotsrc.org/gcrypt/%SUBDIR%/ \
-	https://ftp.heanet.ie/mirrors/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
 	https://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
 	http://www.ring.gr.jp/pub/net/gnupg/%SUBDIR%/ \
 	https://gnupg.org/ftp/gcrypt/%SUBDIR%/
@@ -667,16 +672,6 @@ MASTER_SITE_GNU_ALPHA+= \
 MASTER_SITE_HACKAGE+= \
 	https://hackage.haskell.org/package/ \
 	http://hackage.haskell.org/package/
-.endif
-
-.if !defined(IGNORE_MASTER_SITE_HORDE)
-MASTER_SITE_HORDE+= \
-	https://ftp.horde.org/pub/%SUBDIR%/ \
-	ftp://ftp.horde.org/pub/%SUBDIR%/ \
-	ftp://ftp.at.horde.org/infosys/webapps/horde/%SUBDIR%/ \
-	ftp://ftp.se.horde.org/mirror/horde/pub/%SUBDIR%/ \
-	ftp://ftp.tw.horde.org/pub/%SUBDIR%/ \
-	ftp://ftp.us.horde.org/pub/software/horde//%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_IDSOFTWARE)
@@ -726,16 +721,7 @@ MASTER_SITE_MATE+= \
 
 .if !defined(IGNORE_MASTER_SITE_MOZDEV)
 MASTER_SITE_MOZDEV+= \
-	http://ftp.scarlet.be/pub/mozdev/%SUBDIR%/ \
-	http://ftp.rz.tu-bs.de/pub/mirror/downloads.mozdev.org/%SUBDIR%/ \
-	http://ftp.ntua.gr/pub/www/mozdev/%SUBDIR%/ \
-	https://ftp.heanet.ie/pub/mozdev/%SUBDIR%/ \
-	http://mozdev.oregonstate.edu/%SUBDIR%/ \
-	http://ftp.ntua.gr/pub/www/mozdev/%SUBDIR%/ \
-	http://www.devlib.org/mozdev/%SUBDIR%/ \
-	ftp://ftp.heanet.ie/pub/mozdev/%SUBDIR%/ \
-	http://mirrors.ibiblio.org/mozdev.org/%SUBDIR%/ \
-	https://ftp.osuosl.org/pub/mozdev/%SUBDIR%/
+	http://mirrors.ibiblio.org/mozdev.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_MOZILLA)
@@ -769,8 +755,6 @@ MASTER_SITE_NETBSD+= \
 .if !defined(IGNORE_MASTER_SITE_NETLIB)
 MASTER_SITE_NETLIB+= \
 	http://www.netlib.org/%SUBDIR%/ \
-	https://ftp.mirrorservice.org/sites/ftp.netlib.org/%SUBDIR%/ \
-	https://www.mirrorservice.org/sites/ftp.netlib.org/%SUBDIR%/ \
 	ftp://ftp.irisa.fr/pub/netlib/%SUBDIR%/ \
 	http://netlib.sandia.gov/%SUBDIR%/
 .endif
@@ -1138,7 +1122,6 @@ MASTER_SITE_KERNEL_ORG+= \
 	https://mirrors.mit.edu/kernel/%SUBDIR%/ \
 	http://ftp.nara.wide.ad.jp/pub/kernel.org/%SUBDIR%/ \
 	http://ftp.yandex.ru/pub/%SUBDIR%/ \
-	http://ftp.heanet.ie/pub/kernel.org/pub/%SUBDIR%/ \
 	ftp://ftp.ntu.edu.tw/%SUBDIR%/ \
 	ftp://ftp.riken.jp/Linux/kernel.org/%SUBDIR%/
 .endif
@@ -1178,7 +1161,6 @@ MASTER_SITES_SUBDIRS=	APACHE_COMMONS_BINARIES:${PORTNAME:S,commons-,,} \
 			GNU:${PORTNAME} \
 			GNUPG:${PORTNAME} \
 			GNU_ALPHA:${PORTNAME} \
-			HORDE:${PORTNAME} \
 			LIBREOFFICE_DEV:${PORTNAME} \
 			MATE:${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/} \
 			MOZDEV:${PORTNAME:tl} \
