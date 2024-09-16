@@ -1,0 +1,11 @@
+--- cmake/dtrace.cmake.orig	2024-09-16 11:23:15.328046000 -0400
++++ cmake/dtrace.cmake	2024-09-16 11:23:37.749100000 -0400
+@@ -40,7 +40,7 @@
+  ENDIF()
+ 
+  # On FreeBSD, dtrace does not handle userland tracing yet
+- IF(DTRACE AND NOT CMAKE_SYSTEM_NAME MATCHES "FreeBSD"
++ IF(DTRACE AND NOT CMAKE_SYSTEM_NAME MATCHES "MidnightBSD"
+      AND NOT BUGGY_GCC_NO_DTRACE_MODULES
+      AND NOT BUGGY_LINUX_DTRACE
+      AND NOT CMAKE_SYSTEM_NAME MATCHES "SunOS"
