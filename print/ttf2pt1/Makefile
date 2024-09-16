@@ -1,12 +1,13 @@
 PORTNAME=	ttf2pt1
 PORTVERSION=	3.4.4
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	print
 MASTER_SITES=	SF
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	True Type Font to Postscript Type 1 Converter
+WWW=		https://ttf2pt1.sourceforge.net/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 RUN_DEPENDS=	t1asm:print/t1utils
 
-USES=		pkgconfig perl5 uidfix tar:tgz
+USES=		localbase perl5 pkgconfig shebangfix tar:tgz uidfix
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} ${CPPFLAGS}" LIBS="${LIBS}" \
 		INSTDIR="${FAKE_DESTDIR}${TRUE_PREFIX}" LIBXDIR="${FAKE_DESTDIR}${TRUE_PREFIX}/bin" \
 		OWNER=${BINOWN} GROUP=${BINGRP} \
