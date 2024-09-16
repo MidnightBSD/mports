@@ -5,6 +5,7 @@ MASTER_SITES=	http://hspell.ivrix.org.il/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hebrew spellchecker and morphology engine
+WWW=		http://hspell.ivrix.org.il
 
 LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,6 +19,8 @@ CONFIGURE_ARGS=	--enable-fatverb \
 		--enable-shared
 
 SUB_FILES=	pkg-message
+
+SHEBANG_FILES=	pmerge multispell
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libhspell.so
