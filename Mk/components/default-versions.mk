@@ -106,7 +106,7 @@ RUBY_DEFAULT?=		3.0
 RUST_DEFAULT?=		rust
 # Possible values: 4.13
 SAMBA_DEFAULT?=		4.13
-# Possible values: base, openssl, libressl, libressl-devel
+# Possible values: base, openssl, openssl111, openssl31, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.
