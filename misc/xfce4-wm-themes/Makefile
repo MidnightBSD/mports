@@ -1,17 +1,19 @@
-
-
 PORTNAME=	xfce4-wm-themes
 PORTVERSION=	4.10.0
 PORTREVISION=	2
 CATEGORIES=	misc xfce
-MASTER_SITES=	XFCE/src/art/xfwm4-themes/${PORTVERSION:R}
-DISTNAME=	xfwm4-themes-${PORTVERSION}
+MASTER_SITES=	XFCE/art
+DISTNAME=	xfwm4-themes-${DISTVERSIONFULL}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Xfce 4 window decoration themes for xfwm4
+COMMENT=	Additional themes for xfwm4
+WWW=		https://www.xfce.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		gmake gnome tar:bzip2
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
