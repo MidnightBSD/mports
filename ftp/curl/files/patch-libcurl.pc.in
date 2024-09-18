@@ -1,0 +1,12 @@
+--- libcurl.pc.in.orig	2024-09-18 14:04:53.025772000 -0400
++++ libcurl.pc.in	2024-09-18 14:05:10.084074000 -0400
+@@ -35,7 +35,5 @@
+ Version: @CURLVERSION@
+ Requires: @LIBCURL_PC_REQUIRES@
+ Requires.private: @LIBCURL_PC_REQUIRES_PRIVATE@
+-Libs: -L${libdir} -lcurl @LIBCURL_PC_LIBS@
+-Libs.private: @LIBCURL_PC_LIBS_PRIVATE@
+-Cflags: -I${includedir} @LIBCURL_PC_CFLAGS@
+-Cflags.private: @LIBCURL_PC_CFLAGS_PRIVATE@
++Libs: -L${libdir} -lcurl @LIBCURL_PC_LIBS@ @LIBCURL_PC_LIBS_PRIVATE@
++Cflags: -I${includedir} @LIBCURL_PC_CFLAGS@ @LIBCURL_PC_CFLAGS_PRIVATE@
