@@ -164,7 +164,7 @@ post-install:
 #	${REINPLACE_CMD} -e 's|Requires.private: zlib,openssl,libnghttp2||g' ${PREFIX}/libdata/pkgconfig/libcurl.pc
 
 post-install-DOCS-on:
-	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/ ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/ ${FAKE_DESTDIR}${DOCSDIR}/internals/ ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
 	${INSTALL_DATA} ${WRKSRC}/docs/internals/*.md ${FAKE_DESTDIR}${DOCSDIR}/internals/
 	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} FAQ INSTALL KNOWN_BUGS THANKS TODO options-in-versions *.md ${FAKE_DESTDIR}${DOCSDIR}/
 	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI.md libcurl.m4 *.pl symbols-in-versions ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
