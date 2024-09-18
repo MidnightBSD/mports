@@ -21,7 +21,7 @@ rcvar=munin_node_enable
 load_rc_config $name
 
 command="%%PREFIX%%/sbin/munin-node"
-command_interpreter="/usr/bin/perl"
+command_interpreter="%%LOCALBASE%%/bin/perl"
 start_precmd=find_pidfile
 status_precmd=find_pidfile
 stop_precmd=find_pidfile
