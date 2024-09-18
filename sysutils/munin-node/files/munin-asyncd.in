@@ -35,7 +35,7 @@ munin_asyncd_host=${munin_asyncd_host:-localhost:4949}
 start_cmd()
 {
         check_startmsgs && echo "Starting ${name}."
-        daemon -u %%USER%% -f -p ${pidfile} "/usr/bin/perl" ${command} --spool ${munin_asyncd_spool} --host ${munin_asyncd_host} ${munin_asyncd_args}
+        daemon -u %%USER%% -f -p ${pidfile} "%%LOCALBASE%%/bin/perl" ${command} --spool ${munin_asyncd_spool} --host ${munin_asyncd_host} ${munin_asyncd_args}
 }
 
 run_rc_command $1
