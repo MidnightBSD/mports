@@ -602,9 +602,9 @@ WWW?=	https://gitlab.com/${GL_ACCOUNT}/${GL_PROJECT}/
 .endif # !defined(IGNORE_MASTER_SITE_GITLAB)
 
 .if !defined(IGNORE_MASTER_SITE_GNOME)
+
 MASTER_SITE_GNOME+= \
 	https://download.gnome.org/%SUBDIR%/ \
-	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/archive/${PORTVERSION}/ \
 	http://ftp.belnet.be/mirror/ftp.gnome.org/gnomeftp/%SUBDIR%/ \
 	ftp://ftp.belnet.be/mirror/ftp.gnome.org/gnomeftp/%SUBDIR%/ \
 	https://ftp.acc.umu.se/pub/GNOME/%SUBDIR%/ \
