@@ -1,5 +1,5 @@
 PORTNAME=	glib
-DISTVERSION=	2.78.4
+DISTVERSION=	2.80.5
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -11,8 +11,13 @@ WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libpcre2-8.so:devel/pcre2
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
+TEST_DEPENDS=	dbus-uuidgen:devel/dbus \
+		update-desktop-database:devel/desktop-file-utils \
+		update-mime-database:misc/shared-mime-info
 
 # iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
 # (wchar_t is used by glibmm, rawtherapee triggered this)
@@ -25,6 +30,7 @@ USE_PYTHON=	py3kplist
 MESON_ARGS=	-Db_lundef=false \
 		-Ddefault_library=both \
 		-Dinstalled_tests=false \
+		-Dintrospection=disabled \
 		-Dlibmount=disabled \
 		-Dlocalstatedir=/var \
 		-Druntime_dir=/var/run \
@@ -36,25 +42,22 @@ CPE_VENDOR=	gnome
 
 CONFLICTS_INSTALL=	p5-Giovanni
 
-_LIBVERSION=	0.7800.4
+_LIBVERSION=	0.8000.5
 PLIST_SUB=	LIBVERSION=${_LIBVERSION}
 
-OPTIONS_DEFINE=		DEBUG GTKDOC FAM_ALTBACKEND MANPAGES NLS TEST
+OPTIONS_DEFINE=		DOCS FAM_ALTBACKEND MANPAGES NLS TEST
 OPTIONS_DEFAULT=	MANPAGES
 OPTIONS_SUB=		yes
 
-GTKDOC_BUILD_DEPENDS=	gtk-doc>0:textproc/gtk-doc
-GTKDOC_IMPLIES=		TEST
-GTKDOC_MESON_TRUE=	gtk_doc
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR}
+DOCS_IMPLIES=		MANPAGES TEST
+DOCS_MESON_TRUE=	documentation
 
 FAM_ALTBACKEND_DESC=	Alternate file monitor backend
 
-MANPAGES_BUILD_DEPENDS=	docbook-xml>4.1.2:textproc/docbook-xml \
-			docbook-xsl>0:textproc/docbook-xsl
-MANPAGES_USE=		GNOME=libxslt:build
-MANPAGES_MESON_TRUE=	man
+MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
+MANPAGES_MESON_ENABLED=	man-pages
 
-TEST_BUILD_DEPENDS=	dbus-daemon:devel/dbus
 TEST_MESON_TRUE=	tests
 
 .include <bsd.port.pre.mk>
@@ -71,30 +74,13 @@ pre-configure-FAM_ALTBACKEND-on:
 	@${CP} ${FILESDIR}/kqueue_fnm.c ${WRKSRC}/gio/kqueue/kqueue_fnm.c
 	@${CP} ${FILESDIR}/kqueue_fnm.h ${WRKSRC}/gio/kqueue/kqueue_fnm.h
 
-# The generation of GIO documentation depends on a types-document
-# generated as part of the dbus-object-manager example. With an
-# embarrassingly parallel build, failures like this can happen:
-#
-# Building documentation for gdbus-object-manager-example
-# ERROR: Error in gtkdoc helper script:
-# FileNotFoundError: [Errno 2] No such file or directory: '_build/docs/reference/gio/gdbus-object-manager-example/gdbus-object-manager-example.types'
-#
-# Meson does not seem to provide a way to express that dependency.
-#
-# Hack it into the generated ninja build instead.
-post-configure-GTKDOC-on:
-	@${REINPLACE_CMD} -e '\+^build docs/reference/gio/gdbus-object-manager-example/gdbus-object-manager-example-decl.txt:+s+$$+ || gio/tests/gdbus-object-manager-example/libgdbus-example-objectmanager.so+' ${BUILD_WRKSRC}/build.ninja
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
-		s|/usr/share/locale/locale|${LOCALBASE}/share/locale/locale|g' \
-		${WRKSRC}/glib/gutils.c
-	@${REINPLACE_CMD} -e 's|@PYTHON@|${PYTHON_CMD}|g' \
+	${REINPLACE_CMD} -e 's|@PYTHON@|${PYTHON_CMD}|g' \
 		${WRKSRC}/gio/gdbus-2.0/codegen/gdbus-codegen.in \
 		${WRKSRC}/glib/gtester-report.in \
 		${WRKSRC}/gobject/glib-genmarshal.in \
 		${WRKSRC}/gobject/glib-mkenums.in
-	@${REINPLACE_CMD} -e '/inotify_init1/d' \
+	${REINPLACE_CMD} -e '/inotify_init1/d' \
 		-e '/inotify.h/d' \
 		${WRKSRC}/meson.build
 	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
@@ -123,5 +109,8 @@ post-install:
 		${PREFIX}/share/bash-completion/completions/
 .endfor
 	-${RM} -r ${PREFIX}/libexec/installed-tests
+
+pre-test:
+	${LOCALBASE}/bin/dbus-uuidgen > /var/lib/dbus/machine-id
 
 .include <bsd.port.post.mk>

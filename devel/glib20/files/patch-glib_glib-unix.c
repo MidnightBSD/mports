@@ -1,23 +1,22 @@
---- glib/gspawn.c.orig	2023-03-10 14:33:15 UTC
-+++ glib/gspawn.c
-@@ -54,6 +54,12 @@
+--- glib/glib-unix.c.orig	2024-03-07 21:35:05 UTC
++++ glib/glib-unix.c
+@@ -55,6 +55,11 @@
  #include <sys/syscall.h>  /* for syscall and SYS_getdents64 */
  #endif
  
-+#if defined(__FreeBSD__) || defined(__MidnightBSD__)
-+#include <sys/types.h>
++#ifdef __FreeBSD__
 +#include <sys/user.h>
 +#include <libutil.h>
 +#endif
 +
- #include "gspawn.h"
- #include "gspawn-private.h"
- #include "gthread.h"
-@@ -1231,6 +1237,33 @@ g_spawn_check_exit_status (gint      wait_status,
-   return g_spawn_check_wait_status (wait_status, error);
+ #ifdef HAVE_SYS_RESOURCE_H
+ #include <sys/resource.h>
+ #endif /* HAVE_SYS_RESOURCE_H */
+@@ -620,6 +625,33 @@ filename_to_fd (const char *p)
  }
+ #endif
  
-+#if defined(__FreeBSD__) || defined (__MidnightBSD__)
++#ifdef __FreeBSD__
 +static int
 +fdwalk2(int (*func)(void *, int), void *udata, gint *ret)
 +{
@@ -44,15 +43,15 @@
 +}
 +#endif
 +
+ static int safe_fdwalk_with_invalid_fds (int (*cb)(void *data, int fd), void *data);
+ 
  /* This function is called between fork() and exec() and hence must be
-  * async-signal-safe (see signal-safety(7)). */
- static gssize
-@@ -1432,6 +1465,13 @@ safe_fdwalk (int (*cb)(void *data, int fd), void *data
+@@ -640,6 +672,13 @@ safe_fdwalk (int (*cb)(void *data, int fd), void *data
     * may fail on non-Linux operating systems. See safe_fdwalk_with_invalid_fds
     * for a slower alternative.
     */
 +
-+#if defined(__FreeBSD__) || defined (__MidnightBSD__)
++#ifdef __FreeBSD__
 +  gint res = 0;
 +  if (fdwalk2(cb, data, &res) == 0)
 +      return res;
