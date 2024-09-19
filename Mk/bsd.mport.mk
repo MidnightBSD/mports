@@ -1167,11 +1167,12 @@ MAKE_JOBS_NUMBER=	1
 .if defined(MAKE_JOBS_NUMBER)
 _MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
 .else
-.  if !defined(_SMP_CPUS)
-SMP_CPUS!=		${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
-.  endif
-EXPORTED_VARS+=	_SMP_CPUS
-_MAKE_JOBS_NUMBER!=	${_SMP_CPUS}
+#.  if !defined(_SMP_CPUS)
+#_SMP_CPUS!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
+#.  endif
+#EXPORTED_VARS+=	_SMP_CPUS
+#_MAKE_JOBS_NUMBER!=	${_SMP_CPUS}
+_MAKE_JOBS_NUMBER!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
 .endif
 .if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
 MAKE_JOBS_NUMBER=	${MAKE_JOBS_NUMBER_LIMIT}
