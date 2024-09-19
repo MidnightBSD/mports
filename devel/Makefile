@@ -44,6 +44,7 @@ SUBDIR += boost-jam
 SUBDIR += boost-libs
 SUBDIR += boost-python-libs
 SUBDIR += boxfort
+SUBDIR += bsddialog
 SUBDIR += bugzilla44
 SUBDIR += bugzilla50
 SUBDIR += bullet
