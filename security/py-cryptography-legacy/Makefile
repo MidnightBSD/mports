@@ -13,8 +13,11 @@ WWW=		https://github.com/pyca/cryptography
 
 LICENSE=	apache2 bsd3
 LICENSE_COMB=	dual
-LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE.APACHE
-LICENSE_FILE_BSD3CLAUSE=${WRKSRC}/LICENSE.BSD
+LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE
+LICENSE_FILE_bsd3=${WRKSRC}/LICENSE.BSD
+
+# 16 failed on magus, env related
+NO_TEST=	yes
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.12:devel/py-cffi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
