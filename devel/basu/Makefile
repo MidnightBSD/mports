@@ -1,7 +1,7 @@
 PORTNAME=	basu
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	https://git.sr.ht/~emersion/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
@@ -18,7 +18,6 @@ SHEBANG_FILES=	src/basic/generate-gperfs.py
 
 MESON_ARGS=	-Daudit=disabled -Dlibcap=disabled
 
-USE_GCC=	10+
 NO_TEST=	yes
 
 .if exists(/usr/bin/ld.lld) && ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
