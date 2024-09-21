@@ -1,5 +1,5 @@
 PORTNAME=	jenkins
-PORTVERSION=	2.469
+PORTVERSION=	2.474
 CATEGORIES=	devel java
 MASTER_SITES=	https://get.jenkins.io/war/${PORTVERSION}/
 DISTNAME=	jenkins
@@ -16,7 +16,7 @@ LICENSE=	mit
 CONFLICTS=	jenkins-lts-[0-9]*
 
 USE_JAVA=	yes
-JAVA_VERSION=	11+
+JAVA_VERSION=	17+
 
 NO_BUILD=	yes
 
