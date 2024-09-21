@@ -197,6 +197,7 @@ SUBDIR += remmina
 SUBDIR += remotedesk
 SUBDIR += rsync
 SUBDIR += samba413
+SUBDIR += samba416
 SUBDIR += sdl_net
 SUBDIR += smbldap-tools
 SUBDIR += speedtest-go
