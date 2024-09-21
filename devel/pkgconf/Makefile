@@ -1,5 +1,5 @@
 PORTNAME=	pkgconf
-PORTVERSION=	2.2.0
+PORTVERSION=	2.3.0
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://distfiles.ariadne.space/${PORTNAME}/
@@ -27,6 +27,7 @@ CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:${PREFIX}/lib/
 		--with-system-includedir=/usr/include
 
 OPTIONS_DEFINE=	DOCS
+TESTING_UNSAFE=	tests/Kyuafile:5: Non-existent test program 'tests/basic'
 
 post-install:
 	${LN} -sf pkgconf ${STAGEDIR}${PREFIX}/bin/pkg-config
