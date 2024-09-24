@@ -6,6 +6,7 @@ SUBDIR += aria2
 SUBDIR += awstats
 SUBDIR += bluefish
 SUBDIR += bozohttpd
+SUBDIR += caddy
 SUBDIR += chromium
 SUBDIR += chromium-bin
 SUBDIR += codeigniter
