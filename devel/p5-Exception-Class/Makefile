@@ -1,13 +1,14 @@
 PORTNAME=	Exception-Class
-PORTVERSION=	1.44
+PORTVERSION=	1.45
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Real exception classes in Perl
+WWW=		https://metacpan.org/release/Exception-Class
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
