@@ -1,13 +1,12 @@
-# Created by: Aaron Dalton <aaron@FreeBSD.org>
-
 PORTNAME=	Carp-Assert-More
-PORTVERSION=	1.16
+PORTVERSION=	2.4.0
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience wrappers around Carp::Assert
+WWW=		https://metacpan.org/release/Carp-Assert-More
 
 LICENSE=	artistic2
 
