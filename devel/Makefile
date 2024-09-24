@@ -785,6 +785,7 @@ SUBDIR += p5-common-sense
 SUBDIR += p5-goto-file
 SUBDIR += p5-indirect
 SUBDIR += p5-match-simple
+SUBDIR += p5-meta
 SUBDIR += p5-multidimensional
 SUBDIR += p5-namespace-autoclean
 SUBDIR += p5-namespace-clean
