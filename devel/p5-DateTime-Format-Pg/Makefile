@@ -1,13 +1,14 @@
 PORTNAME=	DateTime-Format-Pg
-PORTVERSION=	0.16013
+PORTVERSION=	0.16014
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse and format PostgreSQL dates and times
+WWW=		https://metacpan.org/release/DateTime-Format-Pg
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

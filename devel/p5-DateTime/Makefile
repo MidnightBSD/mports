@@ -1,13 +1,12 @@
-# Created by: Mathieu Arnold <m@absolight.net>
-
 PORTNAME=	DateTime
-PORTVERSION=	1.51
+PORTVERSION=	1.65
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Date and time object
+WWW=		https://metacpan.org/release/DateTime
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE

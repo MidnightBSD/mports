@@ -1,5 +1,5 @@
 PORTNAME=	DateTime-Format-Strptime
-PORTVERSION=	1.76
+PORTVERSION=	1.79
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-DateTime>=1:devel/p5-DateTime \
-		p5-DateTime-Locale>=1.23:devel/p5-DateTime-Locale \
+		p5-DateTime-Locale>=1.30:devel/p5-DateTime-Locale \
 		p5-DateTime-TimeZone>=2.09:devel/p5-DateTime-TimeZone \
 		p5-Params-ValidationCompiler>=0:devel/p5-Params-ValidationCompiler \
 		p5-Specio>=0.33:devel/p5-Specio \
