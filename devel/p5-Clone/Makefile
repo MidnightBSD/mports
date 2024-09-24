@@ -1,5 +1,5 @@
 PORTNAME=	Clone
-PORTVERSION=	0.46
+PORTVERSION=	0.47
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -8,7 +8,7 @@ MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	recursively copy Perl datatypes
 WWW=		https://metacpan.org/release/Clone
 
-LICENSE=	gpl artistic
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-B-COW>=0.004:devel/p5-B-COW
