@@ -1,5 +1,7 @@
 PORTNAME=	mod_security
+DISTVERSIONPREFIX=	v
 PORTVERSION=	2.9.6
+PORTREVISION=	1
 CATEGORIES=	www security
 MASTER_SITES=	https://github.com/SpiderLabs/ModSecurity/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
@@ -18,9 +20,12 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libgdbm.so:databases/gdbm \
 		libexpat.so:textproc/expat2
 
-USES=		apache:2.4 bdb gnome perl5 pkgconfig
+USES=		apache:2.4 bdb gnome perl5 pkgconfig shebangfix
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
+
+SHEBANG_FILES=	tools/rules-updater.pl.in mlogc/mlogc-batch-load.pl.in
+perl_OLD_CMD=	@PERL@
 
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
