@@ -5,6 +5,7 @@ MASTER_SITES=	https://notroj.github.io/neon/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP and WebDAV client library for Unix systems
+WWW=		https://notroj.github.io/neon/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/src/COPYING.LIB
