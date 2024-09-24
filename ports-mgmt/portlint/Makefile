@@ -1,7 +1,7 @@
 # This port is self contained in the src directory.
 
 PORTNAME=	portlint
-PORTVERSION=	2.20.0
+PORTVERSION=	2.22.1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -16,8 +16,9 @@ LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
 
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/src
-USES=		perl5
-USE_PERL5_RUN=	yes
+USES=         perl5 shebangfix
+SHEBANG_FILES=        *.pl
+USE_PERL5=    run
 
 SRC=		${.CURDIR}/src
 
@@ -28,13 +29,8 @@ PORTEXAMPLES=	portlintgrep
 
 OPTIONS_DEFINE=	EXAMPLES
 
-pre-patch:
+do-extract:
 	@${CP} -R ${SRC} ${WRKDIR}
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/bin/perl|${PERL}|' \
-		${WRKSRC}/portlint.pl \
-		${WRKSRC}/portlintgrep.pl
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/portlint.pl \
