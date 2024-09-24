@@ -66,6 +66,7 @@ SUBDIR += mod_php81
 SUBDIR += mod_php82
 SUBDIR += mod_php83
 SUBDIR += mod_security
+SUBDIR += mod_webkit
 SUBDIR += mod_wsgi4
 SUBDIR += mod_xsendfile
 SUBDIR += moinmoin
