@@ -1,5 +1,5 @@
 PORTNAME=	Mozilla-CA
-PORTVERSION=	20240313
+PORTVERSION=	20240730
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for Mozilla CA cert bundle in PEM format
 WWW=		https://metacpan.org/dist/Mozilla-CA
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/README
 
 USES=		perl5
