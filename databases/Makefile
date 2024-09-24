@@ -59,6 +59,7 @@ SUBDIR += p5-DBD-CSV
 SUBDIR += p5-DBD-Pg
 SUBDIR += p5-DBD-SQLite
 SUBDIR += p5-DBD-mysql
+SUBDIR += p5-DBD-mysql4
 SUBDIR += p5-DBI
 SUBDIR += p5-DBIx-Class
 SUBDIR += p5-DBIx-ContextualFetch

@@ -1,25 +1,20 @@
-# New ports collection makefile for:	mail/p5-Email-MessageID
-# Date created:				Oct 11, 2008
-# Whom:					Lucas Holt
-#
-
-
 PORTNAME=	Email-MessageID
-PORTVERSION=	1.406
+PORTVERSION=	1.408
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate world unique message-ids
+WWW=		https://metacpan.org/release/Email-MessageID
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
-
-BUILD_DEPENDS=	${SITE_PERL}/Email/Address.pm:mail/p5-Email-Address
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
