@@ -1,13 +1,14 @@
 PORTNAME=	Class-C3
-PORTVERSION=	0.34
+PORTVERSION=	0.35
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pragma to use the C3 method resolution order algorithm
+WWW=		https://metacpan.org/release/Class-C3
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 OPTIONS_DEFINE=	XS
