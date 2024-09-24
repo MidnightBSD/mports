@@ -139,6 +139,7 @@ SUBDIR += textmail
 SUBDIR += thunderbird
 SUBDIR += vrfy
 SUBDIR += wpop3d
+SUBDIR += xbuffy
 SUBDIR += xcite
 SUBDIR += xfaces
 SUBDIR += xfce4-mailwatch-plugin
