@@ -1,5 +1,5 @@
 PORTNAME=	Data-Validate-IP
-PORTVERSION=	0.27
+PORTVERSION=	0.31
 CATEGORIES=	net-mgmt perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DROLSKY
@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common data validation methods for IPs
+WWW=		https://metacpan.org/release/Data-Validate-IP
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
