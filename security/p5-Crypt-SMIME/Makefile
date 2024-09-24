@@ -1,5 +1,5 @@
 PORTNAME=	Crypt-SMIME
-PORTVERSION=	0.29
+PORTVERSION=	0.30
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -8,7 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	S/MIME message signing, verification, encryption and decryption
 WWW=		https://metacpan.org/release/Crypt-SMIME
 
-LICENSE=	artistic
+LICENSE=	artistic gpl+
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-ExtUtils-CChecker>=0:devel/p5-ExtUtils-CChecker \
 		p5-ExtUtils-PkgConfig>=0:devel/p5-ExtUtils-PkgConfig
