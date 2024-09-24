@@ -458,3 +458,5 @@ net-p2p/transmission-daemon|net-p2p/transmission-components@daemon|2024-09-04|Mo
 net-p2p/transmission-gtk|net-p2p/transmission-components@gtk|2024-09-04|Moved for metaport
 net-p2p/transmission-qt|net-p2p/transmission-components@qt|2024-09-04|Moved for metaport
 net-p2p/transmission-utils|net-p2p/transmission-components@utils|2024-09-04|Moved for metaport
+www/mod_auth_openid||2024-09-24|Has expired: Depends on expired devel/libopkele
+devel/libopkele||2024-09-24|Has expired: Last upstream release was in 2009
