@@ -12,6 +12,7 @@ SUBDIR += cairomm
 SUBDIR += camera
 SUBDIR += camerakit
 SUBDIR += cenon
+SUBDIR += chafa
 SUBDIR += clutter
 SUBDIR += clutter-gtk3
 SUBDIR += cogl
