@@ -1,15 +1,14 @@
-# Created by: ijliao
-
 PORTNAME=	File-Copy-Recursive
-PORTVERSION=	0.44
+PORTVERSION=	0.45
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for recursively copying files and directories
+WWW=		https://metacpan.org/release/File-Copy-Recursive
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 TEST_DEPENDS=	p5-Path-Tiny>=0:devel/p5-Path-Tiny \
