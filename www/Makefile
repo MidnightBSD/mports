@@ -67,6 +67,7 @@ SUBDIR += mod_php82
 SUBDIR += mod_php83
 SUBDIR += mod_security
 SUBDIR += mod_wsgi4
+SUBDIR += mod_xsendfile
 SUBDIR += moinmoin
 SUBDIR += mybb
 SUBDIR += nanoblogger
