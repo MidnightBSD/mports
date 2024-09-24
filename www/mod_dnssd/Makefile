@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache module that provides DNS-SD capabilities
+WWW=		https://0pointer.de/lennart/projects/mod_dnssd/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -24,11 +25,6 @@ OPTIONS_DEFINE=	DOCS
 post-configure:
 	${REINPLACE_CMD} -e 's|@APXS_STAGE@|-S LIBEXECDIR=${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}|' ${WRKSRC}/src/Makefile
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
-
-#do-install:
-#	${INSTALL_LIB} ${WRKSRC}/src/.libs/mod_dnssd.so ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
-#	${INSTALL_LIB} ${WRKSRC}/src/.libs/mod_dnssd.a ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
-#	${INSTALL_DATA} ${WRKSRC}/src/.libs/mod_dnssd.la ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/${MODULENAME}.so
