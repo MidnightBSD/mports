@@ -492,6 +492,7 @@ SUBDIR += p5-ExtUtils-MakeMaker-CPANfile
 SUBDIR += p5-ExtUtils-ParseXS
 SUBDIR += p5-ExtUtils-PkgConfig
 SUBDIR += p5-ExtUtils-XSBuilder
+SUBDIR += p5-Feature-Compat-Try
 SUBDIR += p5-File-BaseDir
 SUBDIR += p5-File-Copy-Recursive
 SUBDIR += p5-File-Copy-Recursive-Reduced
