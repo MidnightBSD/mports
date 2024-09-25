@@ -22,6 +22,7 @@ SUBDIR += gom
 SUBDIR += hiredis
 SUBDIR += ldb15
 SUBDIR += ldb20
+SUBDIR += ldb25
 SUBDIR += leveldb
 SUBDIR += libgda5
 SUBDIR += libgda5-bdb
