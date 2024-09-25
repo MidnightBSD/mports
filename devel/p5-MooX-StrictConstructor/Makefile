@@ -1,13 +1,14 @@
 PORTNAME=	MooX-StrictConstructor
-PORTVERSION=	0.010
+PORTVERSION=	0.011
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Make your Moo-based object constructors blow up on unknown attributes
+WWW=		https://metacpan.org/release/MooX-StrictConstructor
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

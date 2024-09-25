@@ -1,5 +1,5 @@
 PORTNAME=	MooseX-Getopt
-PORTVERSION=	0.74
+PORTVERSION=	0.76
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN/MooseX CPAN
 MASTER_SITE_SUBDIR=	CPAN:ETHER
@@ -7,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Moose role for processing command line options
+WWW=		https://metacpan.org/release/MooseX-Getopt
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
