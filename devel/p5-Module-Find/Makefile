@@ -1,11 +1,12 @@
 PORTNAME=	Module-Find
-PORTVERSION=	0.13
+PORTVERSION=	0.16
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lets you find and use modules in categories
+WWW=		https://metacpan.org/release/Module-Find
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
