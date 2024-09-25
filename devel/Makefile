@@ -495,6 +495,7 @@ SUBDIR += p5-ExtUtils-XSBuilder
 SUBDIR += p5-File-BaseDir
 SUBDIR += p5-File-Copy-Recursive
 SUBDIR += p5-File-Copy-Recursive-Reduced
+SUBDIR += p5-File-DesktopEntry
 SUBDIR += p5-File-Find-Object
 SUBDIR += p5-File-Find-Rule
 SUBDIR += p5-File-Find-Rule-Perl
