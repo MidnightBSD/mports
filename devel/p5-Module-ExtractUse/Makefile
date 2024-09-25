@@ -1,11 +1,12 @@
 PORTNAME=	Module-ExtractUse
-PORTVERSION=	0.343
+PORTVERSION=	0.345
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Find out what CPAN modules are used
+WWW=		https://metacpan.org/release/Module-ExtractUse
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
