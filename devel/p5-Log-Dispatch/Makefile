@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Suite of OO modules for logging messages to multiple outputs
+WWW=		https://metacpan.org/release/Log-Dispatch
 
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -33,7 +34,7 @@ USES=		perl5
 USE_PERL5=	configure
 
 APACHELOG_RUN_DEPENDS=	${APACHE_PKGNAMEPREFIX}mod_perl2>=0:www/mod_perl2
-APACHELOG_USE=		APACHE_RUN=22+
+APACHELOG_USES=		apache:run
 MIMELITE_RUN_DEPENDS=	p5-MIME-Lite>=0:mail/p5-MIME-Lite
 MAILSEND_RUN_DEPENDS=	p5-Mail-Tools>=0:mail/p5-Mail-Tools
 MAILSENDER_RUN_DEPENDS=	p5-Mail-Sender>=0:mail/p5-Mail-Sender

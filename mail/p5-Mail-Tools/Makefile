@@ -1,7 +1,5 @@
-
-
 PORTNAME=	Mail-Tools
-PORTVERSION=	2.19
+PORTVERSION=	2.21
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,8 +7,9 @@ DISTNAME=	MailTools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 modules for dealing with Internet e-mail messages
+WWW=		https://metacpan.org/release/MailTools
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	p5-TimeDate>=0:devel/p5-TimeDate

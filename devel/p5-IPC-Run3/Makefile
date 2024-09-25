@@ -1,11 +1,12 @@
 PORTNAME=	IPC-Run3
-PORTVERSION=	0.048
+PORTVERSION=	0.049
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Run a subprocess in batch mode
+WWW=		https://metacpan.org/release/IPC-Run3
 
 # Any version of the following licenses are acceptable
 LICENSE=	artistic gpl bsd2
