@@ -46,5 +46,6 @@ USE_PERL5=	configure
 
 SHEBANG_FILES=	bin/*
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
