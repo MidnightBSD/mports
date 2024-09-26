@@ -15,6 +15,7 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-IO-Tty>=0:devel/p5-IO-Tty
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USE_PERL5=	configure
 USES=		perl5
 
