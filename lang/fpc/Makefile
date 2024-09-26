@@ -45,18 +45,14 @@ PLIST_SUB+=	FPC_I386="@comment " \
 		FPC_AMD64=""
 .endif
 
-.if ${OPSYS} == FreeBSD
 PLIST_SUB+=	FREEBSD=""
-.else
-PLIST_SUB+=	FREEBSD="@comment "
-.endif
 
 SUB_FILES=	pkg-message
 
-BUILDNAME=	${FPC_ARCH}-${OPSYS:tl}
+BUILDNAME=	${FPC_ARCH}-freebsd
 PLIST_SUB+=	PORTVERSION=${PORTVERSION} \
 		BUILDNAME=${BUILDNAME}
-DISTFILES+=	${BOOTDIR}.tar.gz:${OPSYS:MDragonFly}bootstrap \
+DISTFILES+=	${BOOTDIR}.tar.gz:bootstrap \
 		fpc-${MANVER}.man.tar.gz:man
 NEWFPCMAKE=	${WRKDIR}/${FPCSRCDIR}/utils/fpcm/bin/${BUILDNAME}/fpcmake
 MAKE_ARGS+=	FPCMAKE=${NEWFPCMAKE} \
@@ -71,7 +67,7 @@ MAKE_ARGS+=	FPCMAKE=${NEWFPCMAKE} \
 		FPC_LDPATH=${FPC_LDPATH}
 NEWPPC=		PP=${WRKSRC}/compiler/${PPNAME}
 NEWFPC=		FPC=${WRKSRC}/compiler/${PPNAME}
-BOOTDIR=	${PPNAME}-${BOOTVER}-${OPSYS:tl}
+BOOTDIR=	${PPNAME}-${BOOTVER}-freebsd
 BOOTPPC=	PP=${WRKDIR}/${BOOTDIR}
 
 do-extract:
