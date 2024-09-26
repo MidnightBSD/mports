@@ -14,6 +14,8 @@ LICENSE_COMB=	dual
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/IO/Tty/Tty.so
 
