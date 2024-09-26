@@ -18,6 +18,7 @@ RUN_DEPENDS=	p5-ExtUtils-Config>=0.003:devel/p5-ExtUtils-Config \
 		p5-ExtUtils-InstallPaths>=0.002:devel/p5-ExtUtils-InstallPaths
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USE_PERL5=	modbuildtiny
 USES=		perl5
 
