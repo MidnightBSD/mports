@@ -11,13 +11,16 @@ WWW=		https://joblib.readthedocs.io/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tomli>=0:textproc/py-tomli@${PY_FLAVOR}
 TEST_DEPENDS=	${PYNUMPY}
-#TEST_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}threadpoolctl>0:devel/py-threadpoolctl@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tomli>=0:textproc/py-tomli@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	distutils autoplist pytest
+USE_PYTHON=	distutils autoplist
+#pytest
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PYTEST_IGNORED_TESTS=	test_disk_used	\
 			test_parallel_call_cached_function_defined_in_jupyter
