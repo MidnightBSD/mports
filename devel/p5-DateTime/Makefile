@@ -27,6 +27,9 @@ TEST_DEPENDS=	p5-Test-Fatal>=0:devel/p5-Test-Fatal \
 USES=		perl5
 USE_PERL5=	configure
 
+# magus
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DateTime/DateTime.so
 
