@@ -23,5 +23,7 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/DISCLAIMER ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${PREFIX}/share/man
+	${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>
