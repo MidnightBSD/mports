@@ -1,5 +1,5 @@
 PORTNAME=	cups
-PORTVERSION=	2.4.2
+PORTVERSION=	2.4.10
 DISTVERSIONPREFIX=v
 CATEGORIES=	print
 
@@ -20,7 +20,7 @@ CONFLICTS=	LPRng
 
 DESTDIRNAME=	DSTROOT
 GNU_CONFIGURE=	yes
-#CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+#CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 CONFIGURE_ARGS=	--enable-relro \
 		--disable-gssapi					\
 		--disable-launchd					\
