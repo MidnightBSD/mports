@@ -1,6 +1,6 @@
 PORTNAME=	openssh
-DISTVERSION=	9.3p2
-PORTREVISION=	2
+DISTVERSION=	9.8p1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -20,6 +20,7 @@ CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel
 USES=			autoreconf compiler:c11 cpe localbase ncurses \
 			pkgconfig ssl
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ARGS=		--prefix=${PREFIX} \
 			--without-zlib-version-check \
 			--with-ssl-engine \
@@ -109,15 +110,14 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-hpn-gss-glue
 .  endif
 # - See https://sources.debian.org/data/main/o/openssh/ for which subdir to
 # pull from.
-GSSAPI_DEBIAN_VERSION=	9.4p1
-GSSAPI_DEBIAN_SUBDIR=	${GSSAPI_DEBIAN_VERSION:U${DISTVERSION}}-1
+GSSAPI_DEBIAN_VERSION=	9.8p1
+GSSAPI_DEBIAN_SUBDIR=	${GSSAPI_DEBIAN_VERSION:U${DISTVERSION}}-3
 # - Debian does not use a versioned filename so we trick fetch to make one for
 # us with the ?<anything>=/ trick.
 PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_SUBDIR}/debian/patches/gssapi.patch?dummy=/:gsskex
 # Bump this when updating the patch location
-GSSAPI_DISTVERSION=	9.4p1
+GSSAPI_DISTVERSION=	9.8p1
 PATCHFILES+=	openssh-${GSSAPI_DISTVERSION:U${DISTVERSION}}-gsskex-all-debian-rh-${GSSAPI_DISTVERSION}.patch:-p1:gsskex
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-auth2-gss.c
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgssc.c
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgsss.c
 .endif
@@ -158,6 +158,7 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have heimdal installed in bas
 CONFIGURE_LIBS+=	-lgssapi_krb5
 CONFIGURE_ARGS+=	--with-kerberos5=/usr
 .	else
+CONFIGURE_LIBS+=	-lgssapi_krb5
 CONFIGURE_ARGS+=	--with-kerberos5=${LOCALBASE}
 .	endif
 .	if ${OPENSSLBASE} == "/usr"

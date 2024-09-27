@@ -1,6 +1,6 @@
---- configure.ac.orig	2023-11-14 18:14:35.636274000 -0500
-+++ configure.ac	2023-11-14 18:15:36.825637000 -0500
-@@ -1036,7 +1036,7 @@
+--- configure.ac.orig	2024-09-27 12:14:36.590846000 -0400
++++ configure.ac	2024-09-27 12:15:30.933321000 -0400
+@@ -1055,7 +1055,7 @@
  	AC_DEFINE([BROKEN_READ_COMPARISON], [1],
  	    [NetBSD read function is sometimes redirected, breaking atomicio comparisons against it])
  	;;
@@ -9,16 +9,16 @@
  	AC_DEFINE([LOCKED_PASSWD_PREFIX], ["*LOCKED*"], [Account locked with pw(1)])
  	AC_DEFINE([SSH_TUN_FREEBSD], [1], [Open tunnel devices the FreeBSD way])
  	AC_CHECK_HEADER([net/if_tap.h], ,
-@@ -1916,6 +1916,8 @@
- 
- dnl    Checks for library functions. Please keep in alphabetical order
- AC_CHECK_FUNCS([ \
-+	auth_hostok \
-+	auth_timeok \
- 	Blowfish_initstate \
- 	Blowfish_expandstate \
- 	Blowfish_expand0state \
-@@ -5670,7 +5672,7 @@
+@@ -1067,7 +1067,7 @@
+ 	AC_DEFINE([SANDBOX_SKIP_RLIMIT_NOFILE], [1],
+ 	    [define if setrlimit RLIMIT_NOFILE breaks things])
+ 	case "$host" in
+-	*-*-freebsd9.*|*-*-freebsd10.*)
++	*-*-freebsd9.*|*-*-freebsd10.*|*-*-midnightbsd1.*)
+ 		# Capsicum on 9 and 10 do not allow ppoll() so don't auto-enable.
+ 		disable_capsicum=yes
+ 	esac
+@@ -5742,7 +5742,7 @@
  B=`eval echo ${bindir}` ; B=`eval echo ${B}`
  C=`eval echo ${sbindir}` ; C=`eval echo ${C}`
  D=`eval echo ${sysconfdir}` ; D=`eval echo ${D}`
