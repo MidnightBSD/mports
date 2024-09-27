@@ -11,6 +11,8 @@ WWW=		https://caddyserver.com
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+NO_TEST=	yes
+
 USES=		cpe go:modules
 CPE_VENDOR=	caddyserver
 
