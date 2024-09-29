@@ -1,0 +1,23 @@
+--- configure.orig	2024-09-29 13:25:32.943874000 -0400
++++ configure	2024-09-29 13:26:03.485734000 -0400
+@@ -24325,10 +24325,7 @@
+ esac
+ 
+ fi
+-ac_fn_c_check_func "$LINENO" "timingsafe_memcmp" "ac_cv_func_timingsafe_memcmp"
+-if test "x$ac_cv_func_timingsafe_memcmp" = xyes
+-then :
+-  printf "%s\n" "#define HAVE_TIMINGSAFE_MEMCMP 1" >>confdefs.h
++printf "%s\n" "#define HAVE_TIMINGSAFE_MEMCMP 1" >>confdefs.h
+ 
+ else $as_nop
+   case " $LIBOBJS " in
+@@ -24336,8 +24333,6 @@
+   *) LIBOBJS="$LIBOBJS timingsafe_memcmp.$ac_objext"
+  ;;
+ esac
+-
+-fi
+ 
+  if test "x$ac_cv_func_poll" = "xyes"; then
+   POLL_TRUE=
