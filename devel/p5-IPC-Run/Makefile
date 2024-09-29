@@ -15,9 +15,11 @@ LICENSE_FILE_ART10=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-IO-Tty>=1.08:devel/p5-IO-Tty
-TEST_DEPENDS=	p5-Readonly>=0:devel/p5-Readonly
 
 NO_ARCH=	yes
+NO_TEST=	yes
+# magus test issues.
+
 USES=		perl5
 USE_PERL5=	configure
 
