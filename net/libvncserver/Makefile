@@ -1,18 +1,21 @@
 PORTNAME=	libvncserver
-PORTVERSION=	0.9.13
+PORTVERSION=	0.9.14
 DISTVERSIONPREFIX=	LibVNCServer-
 CATEGORIES=	net devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide an easy API to a custom vnc server
+WWW=		https://libvnc.github.io/
 
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		liblzo2.so:archivers/lzo2
 
-USES=		cmake jpeg libtool pathfix pkgconfig
+USES=		cmake cpe jpeg libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+
+CPE_VENDOR=	libvncserver_project
 
 CMAKE_ON=	WITH_24BPP WITH_JPEG WITH_LZO WITH_PNG \
 		WITH_THREADS WITH_TIGHTVNC_FILETRANSFER \
