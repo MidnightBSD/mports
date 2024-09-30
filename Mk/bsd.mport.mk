@@ -27,7 +27,7 @@ LC_ALL=		C
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
 # by individual Makefiles or local system make configuration.
-_LIST_OF_WITH_FEATURES=	debug lto ssp
+_LIST_OF_WITH_FEATURES=	bind_now debug debuginfo lto pie relro sanitize ssp testing
 _DEFAULT_WITH_FEATURES=	ssp
 PORTSDIR?=		/usr/mports
 LOCALBASE?=		/usr/local
@@ -907,9 +907,6 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .include "${PORTSDIR}/Mk/features/$f.mk"
 .      endif
 .    endfor
-
-# XXX PIE support to be added here
-MAKE_ENV+=	NO_PIE=yes
 
 # We will control debug files. Don't let builds that use /usr/share/mk
 # # split out debug symbols since the plist won't know to expect it.
@@ -4115,7 +4112,7 @@ _TEST_SEQ=		100:test-message 150:test-depends 300:pre-test 500:do-test \
 				800:post-test \
 				${_OPTIONS_test} ${_USES_test}
 
-_PACKAGE_DEP=	fake
+_PACKAGE_DEP=	fake ${_TESTING_PACKAGE_DEP}
 _PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
 				500:do-package 750:post-package 850:post-package-script \
 				${_OPTIONS_package} ${_USES_package}

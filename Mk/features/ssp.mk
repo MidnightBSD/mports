@@ -2,7 +2,7 @@
 
 .if !defined(_SSP_MK_INCLUDED)
 _SSP_MK_INCLUDED=	yes
-SSP_Include_MAINTAINER=	portmgr@MidnightBSD.org
+SSP_Include_MAINTAINER=	ports@MidnightBSD.org
 
 .  if !defined(SSP_UNSAFE) && \
     (! ${ARCH:Mmips*})

@@ -9,7 +9,7 @@
 
 .if !defined(_DEBUG_MK_INCLUDED)
 _DEBUG_MK_INCLUDED=	yes
-DEBUG_Include_MAINTAINER=	portmgr@MidnightBSD.org
+DEBUG_Include_MAINTAINER=	ports@MidnightBSD.org
 
 .  if !defined(INSTALL_STRIPPED)
 STRIP=	#none
