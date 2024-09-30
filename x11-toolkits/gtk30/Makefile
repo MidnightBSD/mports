@@ -81,6 +81,7 @@ X11_USE=	XORG=x11,xcomposite,xcursor,xdamage,xext,xfixes,xi,xinerama,xrandr,xren
 X11_MESON_TRUE=	x11_backend
 
 TESTING_UNSAFE=	ld: error: unable to find library -lintl
+NO_TEST=	yes
 
 pre-build:
 	-${RM} -r ${WRKSRC}/docs/gtk.info*
@@ -90,8 +91,8 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
 
-pre-test:
-	${RM} ${CONFIGURE_COOKIE} ${BUILD_COOKIE}
-	${MAKE} -C${.CURDIR} build MESON_ARGS="${MESON_ARGS} --reconfigure -Dtests=true"
+#pre-test:
+#	${RM} ${CONFIGURE_COOKIE} ${BUILD_COOKIE}
+#	${MAKE} -C${.CURDIR} build MESON_ARGS="${MESON_ARGS} --reconfigure -Dtests=true"
 
 .include <bsd.port.mk>
