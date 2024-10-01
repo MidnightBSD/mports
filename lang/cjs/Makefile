@@ -32,5 +32,6 @@ GH_ACCOUNT=	linuxmint
 SHEBANG_GLOB=	*.py
 
 PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
+NO_TEST=	yes
 
 .include <bsd.port.mk>
