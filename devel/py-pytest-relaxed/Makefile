@@ -16,8 +16,9 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest4>=3:devel/py-pytest4@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}decorator>=4:devel/py-decorator@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist distutils pytest
+USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
