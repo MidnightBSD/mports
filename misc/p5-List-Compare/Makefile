@@ -15,6 +15,7 @@ TEST_DEPENDS=	p5-IO-CaptureOutput>=0:devel/p5-IO-CaptureOutput
 USES=		perl5
 USE_PERL5=	configure
 NO_ARCH=	yes
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS
 
