@@ -243,6 +243,7 @@ pre-install:
 
 .if ${PKGNAMESUFFIX:M*-client}
 post-install:
+	${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKDIR}/my.cnf.sample ${ETCDIR}/my.cnf.sample
 	${INSTALL_DATA} ${WRKDIR}/client.cnf.sample \
 		${ETCDIR}/conf.d/client.cnf.sample
