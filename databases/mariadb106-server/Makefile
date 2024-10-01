@@ -259,19 +259,19 @@ post-install-GSSAPI_NONE-off:
 .else # ! ${PKGNAMESUFFIX:M*-client}
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/server.cnf.sample \
-		${FAKE_DESTDIR}${ETCDIR}/conf.d/server.cnf.sample
-	${MV} ${FAKE_DESTDIR}${PREFIX}/share/user_map.conf \
-		${FAKE_DESTDIR}${PREFIX}/etc/mysql/user_map.conf.sample
-	${MV} ${FAKE_DESTDIR}${PREFIX}/share/pam_user_map.so \
-		${FAKE_DESTDIR}${PREFIX}/lib/mysql/
-	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/share/mysql/policy \
-		${FAKE_DESTDIR}${PREFIX}/include/mysql/server/private \
-		${FAKE_DESTDIR}${PREFIX}/lib/mysql/pkgconfig \
-		${FAKE_DESTDIR}${PREFIX}/libexec/rcmysql \
+		${ETCDIR}/conf.d/server.cnf.sample
+	${MV} ${PREFIX}/share/user_map.conf \
+		${PREFIX}/etc/mysql/user_map.conf.sample
+	${MV} ${PREFIX}/share/pam_user_map.so \
+		${PREFIX}/lib/mysql/
+	-${RM} -r ${PREFIX}/share/mysql/policy \
+		${PREFIX}/include/mysql/server/private \
+		${PREFIX}/lib/mysql/pkgconfig \
+		${PREFIX}/libexec/rcmysql \
 		${FAKE_DESTDIR}/suite \
-		${FAKE_DESTDIR}${ETCDIR}/init.d \
-		${FAKE_DESTDIR}${ETCDIR}/logrotate.d \
-		${FAKE_DESTDIR}${DOCSDIR}/COPYING
+		${ETCDIR}/init.d \
+		${ETCDIR}/logrotate.d \
+		${DOCSDIR}/COPYING
 	${MKDIR} ${FAKE_DESTDIR}${MARIADB_LOGDIR}
 	${SED} '/%%/d;/^@comment /d;s/^/@comment /' ${PORTSDIR}/${CATEGORIES:[1]}/${PORTNAME}${PKGNAMESUFFIX:S/-server/-client/}/pkg-plist \
 		>> ${TMPPLIST}
