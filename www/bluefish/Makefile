@@ -2,12 +2,14 @@ PORTNAME=	bluefish
 PORTVERSION=	2.2.15
 CATEGORIES=	www editors
 MASTER_SITES=	http://www.bennewitz.com/bluefish/stable/source/ \
-		http://bluefish.mrball.net/stable/source/
+		http://bluefish.mrball.net/stable/source/ \
+		SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML editor designed for the experienced web designer
+WWW=		http://bluefish.openoffice.nl/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpcre.so:devel/pcre \
