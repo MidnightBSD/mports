@@ -597,9 +597,6 @@ pre-configure:
 .endif
 
 .if !defined(CLIENT_ONLY)
-test: build
-	@(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test)
 
 post-build:
 	@${DO_NADA}
