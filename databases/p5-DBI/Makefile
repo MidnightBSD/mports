@@ -1,5 +1,5 @@
 PORTNAME=	DBI
-PORTVERSION=	1.644
+PORTVERSION=	1.645
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 OPTIONS_DEFINE=	PROXY
 PROXY_DESC=	Build DBI::Proxy
 
-USES=		cpe perl5 shebangfix
+USES=		cpe perl5 shebangfix tar:tgz
 USE_PERL5=	configure
 CPE_VENDOR=	perl
 
