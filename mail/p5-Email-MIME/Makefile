@@ -1,11 +1,5 @@
-# New ports collection makefile for:	p5-Email-MIME
-# Date created:				Oct 11, 2008
-# Whom:					Lucas Holt
-#
-
-
 PORTNAME=	Email-MIME
-PORTVERSION=	1.946
+PORTVERSION=	1.954
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
