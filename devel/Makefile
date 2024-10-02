@@ -676,6 +676,7 @@ SUBDIR += p5-Sub-Info
 SUBDIR += p5-Sub-Install
 SUBDIR += p5-Sub-Quote
 SUBDIR += p5-Sub-Uplevel
+SUBDIR += p5-Syntax-Keyword-Match
 SUBDIR += p5-Syntax-Keyword-Try
 SUBDIR += p5-Sys-Mmap
 SUBDIR += p5-Taint-Util
