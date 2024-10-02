@@ -1,5 +1,6 @@
 PORTNAME=	vxquery
 PORTVERSION=	0.2.1
+PORTREVISION=	1
 CATEGORIES=	security textproc
 MASTER_SITES=	http://www.vuxml.org/files/
 
