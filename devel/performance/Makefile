@@ -1,9 +1,5 @@
-# New ports collection makefile for:	performance
-# Date created:         28 Oct 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-
 PORTNAME=	performance
-PORTVERSION=	0.5.0
+PORTVERSION=	0.6.0
 CATEGORIES=	devel gnustep
 MASTER_SITES=	GNUSTEP/libs
 DISTNAME=	Performance-${PORTVERSION}
