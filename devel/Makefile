@@ -790,6 +790,7 @@ SUBDIR += p5-UNIVERSAL-require
 SUBDIR += p5-Validation-Class
 SUBDIR += p5-Variable-Magic
 SUBDIR += p5-Want
+SUBDIR += p5-XS-Parse-Keyword
 SUBDIR += p5-XSLoader
 SUBDIR += p5-aliased
 SUBDIR += p5-asa
