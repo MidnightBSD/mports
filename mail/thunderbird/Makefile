@@ -36,5 +36,7 @@ do-install:
 post-fake:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/man1
 	${CP} ${FAKE_DESTDIR}${PREFIX}/man/man1/* ${FAKE_DESTDIR}${PREFIX}/share/man/man1
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/man3
+	${CP} ${FAKE_DESTDIR}${PREFIX}/man/man3/* ${FAKE_DESTDIR}${PREFIX}/share/man/man3
 
 .include <bsd.port.mk>
