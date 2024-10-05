@@ -32,6 +32,7 @@ BUILD_DEPENDS+= gsed>0:textproc/gsed \
 		v4l_compat>=${PORTVERSION}:multimedia/v4l_compat
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USES+=		autoreconf gettext-tools gmake iconv jpeg libtool pathfix pkgconfig
@@ -62,7 +63,9 @@ CONFIGURE_ARGS+= \
 
 .if ${PORTNAME} == libv4l
 CONFIGURE_ENV+= \
-	libudev_CFLAGS=" "
+	libudev_CFLAGS=" " \
+	ac_cv_header_argp_h=yes \
+	ac_cv_search_argp_parse="none required"
 CONFIGURE_ARGS+= \
 	--disable-v4l-utils \
 	--enable-dyn-libv4l \
@@ -128,6 +131,7 @@ post-patch:
 			-e 's|<malloc.h>|<stdlib.h>|g' \
 			-e 's|<sys/epoll.h>|<libepoll-shim/sys/epoll.h>|g' \
 			-e 's|<sys/sysmacros.h>|<sys/types.h>|g' \
+			-e 's|/usr/bin/perl|${LOCALBASE}/bin/perl|g' \
 			-e 's|__user||g'
 
 .include <bsd.port.mk>
