@@ -189,6 +189,5 @@ do-install:
 	for dir in bin lib doc/man; do \
 		(cd ${INSTALL_WRKSRC}/$$dir && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${FAKEROOT} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}) ; \
 	done
-	@${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/include
 
 .include <bsd.port.post.mk>
