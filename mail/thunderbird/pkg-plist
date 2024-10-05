@@ -5,11 +5,6 @@ include/hunspell/atypes.hxx
 include/hunspell/hunspell.h
 share/applications/thunderbird.desktop
 share/pixmaps/thunderbird.png
-share/licenses/hunspell-1.7.0_2/LGPL21+
-share/licenses/hunspell-1.7.0_2/catalog.mk
-share/licenses/hunspell-1.7.0_2/MPL11
-share/licenses/hunspell-1.7.0_2/GPLv2+
-share/licenses/hunspell-1.7.0_2/LICENSE
 share/man/man1/hunzip.1.gz
 share/man/man1/hzip.1.gz
 share/man/man1/hunspell.1.gz
@@ -76,7 +71,6 @@ lib/libhunspell-1.7.la
 lib/libhunspell-1.7.a
 libdata/pkgconfig/hunspell.pc
 @dir include/hunspell
-@dir share/licenses/hunspell-1.7.0_2
 @dir man/hu/man1
 @dir man/hu
 @dir lib/thunderbird/chrome/icons/default

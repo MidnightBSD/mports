@@ -33,4 +33,8 @@ do-extract:
 do-install:
 	${NOOP}
 
+post-fake:
+	${MKDIR} ${PREFIX}/share/man/man1
+	${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1
+
 .include <bsd.port.mk>
