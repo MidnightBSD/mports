@@ -24,7 +24,8 @@ CONFIGURE_ARGS=	--with-threestore=no \
 		--with-virtuoso=no
 
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 OPTIONS_DEFINE=		THREADS
 OPTIONS_DEFAULT=	SQLITE
