@@ -7,6 +7,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser
+WWW=		https://www.netsurf-browser.org/
 
 LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
@@ -16,7 +17,7 @@ FAKE_OPTS=	trueprefix
 BUILD_DEPENDS=	duk:lang/duktape \
 		nsgenbind:devel/nsgenbind \
 		p5-HTML-Parser>=3.72:www/p5-HTML-Parser \
-		xxd:editors/vim
+		xxd:sysutils/xxd
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpng.so:graphics/png \
 		libnsutils.so:devel/libnsutils \
@@ -33,8 +34,9 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 RUN_DEPENDS=	duk:lang/duktape \
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		bison desktop-file-utils gettext-runtime gmake gnome iconv jpeg \
+USES=		bison cpe desktop-file-utils gettext-runtime gmake gnome iconv jpeg \
 		localbase pkgconfig shebangfix ssl
+CPE_VENDOR=	${PORTNAME}-browser
 ALL_TARGET=	#empty
 LDFLAGS+=	-L${OPENSSLLIB} -lssl -lcrypto ${ICONV_LIB}
 CFLAGS+=	-I${OPENSSLINC}
