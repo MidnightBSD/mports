@@ -6,7 +6,7 @@ MASTER_SITES=	SOURCEWARE/docbook-tools/new-trials/SOURCES
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates various output formats from DocBook SGML documents
-WWW=		http://sources.redhat.com/docbook-tools/
+WWW=		https://www.sourceware.org/docbook-tools/
 
 LICENSE=	gpl2
 
