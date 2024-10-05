@@ -34,7 +34,7 @@ do-install:
 	${NOOP}
 
 post-fake:
-	${MKDIR} ${PREFIX}/share/man/man1
-	${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/man1
+	${CP} ${FAKE_DESTDIR}${PREFIX}/man/man1/* ${FAKE_DESTDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
