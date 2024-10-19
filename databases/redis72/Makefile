@@ -1,19 +1,15 @@
 PORTNAME=	redis
-DISTVERSION=	7.4.0
+DISTVERSION=	7.2.6
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
+PKGNAMESUFFIX=	72
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
 WWW=		https://redis.io/
 
-LICENSE=        RSALv2 SSPLv1
-LICENSE_COMB=   dual
-LICENSE_NAME_RSALv2=    Redis Source Available License v2
-LICENSE_NAME_SSPLv1=    Server Side Public License v1
-LICENSE_FILE=   ${WRKSRC}/LICENSE.txt
-LICENSE_PERMS_RSALv2=   dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-LICENSE_PERMS_SSPLv1=   dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES+=		compiler:c11 cpe gmake
 CPE_VENDOR=	redislabs

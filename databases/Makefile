@@ -183,6 +183,7 @@ SUBDIR += qt5-sqldrivers-tds
 SUBDIR += qt6-base_sqldriver
 SUBDIR += redis
 SUBDIR += redis62
+SUBDIR += redis72
 SUBDIR += rrdtool
 SUBDIR += ruby-bdb
 SUBDIR += sfcgal
