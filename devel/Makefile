@@ -317,6 +317,7 @@ SUBDIR += llvm12
 SUBDIR += llvm15
 SUBDIR += llvm-devel
 SUBDIR += lndir
+SUBDIR += log4cplus
 SUBDIR += log4j
 SUBDIR += lua-bitop
 SUBDIR += lua-lgi

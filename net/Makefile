@@ -60,6 +60,7 @@ SUBDIR += isc-dhcp44-client
 SUBDIR += isc-dhcp44-relay
 SUBDIR += isc-dhcp44-server
 SUBDIR += jrdesktop
+SUBDIR += kea
 SUBDIR += realtek-re-kmod
 SUBDIR += rubygem-http_parser.rb
 SUBDIR += rubygem-serverengine
