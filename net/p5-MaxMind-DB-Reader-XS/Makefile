@@ -37,6 +37,6 @@ NO_TEST=	yes
 CONFIGURE_ENV=	CC=${CC} CFLAGS="${CFLAGS}"
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/MaxMind/DB/Reader/XS/XS.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/auto/MaxMind/DB/Reader/XS/XS.so
 
 .include <bsd.port.mk>

@@ -1,15 +1,15 @@
-%%SITE_ARCH%%/auto/MaxMind/DB/Reader/XS/XS.so
-%%SITE_ARCH%%/MaxMind/DB/Reader/XS.pm
+%%SITE_PERL%%/MaxMind/DB/Reader/XS.pm
 %%PERL5_MAN3%%/MaxMind::DB::Reader::XS.3.gz
-@dir %%SITE_ARCH%%/auto/MaxMind/DB/Reader/XS
-@dir %%SITE_ARCH%%/auto/MaxMind/DB/Reader
-@dir %%SITE_ARCH%%/auto/MaxMind/DB
-@dir %%SITE_ARCH%%/auto/MaxMind
-@dirrmtry %%SITE_ARCH%%/auto
-@dir %%SITE_ARCH%%/MaxMind/DB/Reader
-@dir %%SITE_ARCH%%/MaxMind/DB
-@dir %%SITE_ARCH%%/MaxMind
-@dirrmtry %%SITE_ARCH%%
-@dirrmtry %%SITE_PERL%%
-@dirrmtry lib/perl5/site_perl
-@dirrmtry lib/perl5
+%%SITE_PERL%%/auto/MaxMind/DB/Reader/XS/XS.so
+@dir %%SITE_PERL%%/MaxMind/DB/Reader
+@dir %%SITE_PERL%%/MaxMind/DB
+@dir %%SITE_PERL%%/MaxMind
+@dir %%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/auto/MaxMind/DB/Reader/XS
+@dir %%SITE_PERL%%/auto/MaxMind/DB/Reader
+@dir %%SITE_PERL%%/auto/MaxMind/DB
+@dir %%SITE_PERL%%/auto/MaxMind
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%
+@dir lib/perl5
