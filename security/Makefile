@@ -209,6 +209,7 @@ SUBDIR += py-scramp
 SUBDIR += py-service-identity
 SUBDIR += py-trustme
 SUBDIR += rhash
+SUBDIR += rustls-ffi
 SUBDIR += seahorse
 SUBDIR += secure_delete
 SUBDIR += security-advisory-client

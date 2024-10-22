@@ -1,5 +1,3 @@
-# Created by: FreeBSD GNOME Team <gnome@FreeBSD.org>
-
 PORTNAME=	gnome-color-manager
 PORTVERSION=	3.36.0
 PORTREVISION=	1
@@ -9,6 +7,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session framework for the GNOME desktop to manage color profiles
+WWW=		https://git.gnome.org/browse/gnome-color-manager
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -32,9 +31,5 @@ USE_GNOME=	cairo gtk30 vte3
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 MESON_ARGS=	-Dtests=false
-
-post-patch:
-	@${REINPLACE_CMD} -e "s|'share/man/man1'|'man/man1'|g" \
-		${WRKSRC}/man/meson.build
 
 .include <bsd.port.mk>
