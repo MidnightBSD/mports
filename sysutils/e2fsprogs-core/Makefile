@@ -290,9 +290,9 @@ post-install:
 .endfor
 .endif
 	# remove or relocate files installed by other ports already, or shadowing system files:
-	cd ${STAGEDIR}${PREFIX} && \
-		${XARGS} <${FILESDIR}/unwanted ${RM} && \
-		${RMDIR} include/e2fsprogs/blkid
+#	cd ${STAGEDIR}${PREFIX} && \
+#		${XARGS} <${FILESDIR}/unwanted ${RM} && \
+#		${RMDIR} include/e2fsprogs/blkid
 	${MV} ${STAGEDIR}${PREFIX}/bin/compile_et ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
 	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/compile_et.1 ${STAGEDIR}${PREFIX}/share/man/man1/e2fsprogs-compile_et.1
 	${MKDIR} ${STAGEDIR}${DATADIR}/et/
