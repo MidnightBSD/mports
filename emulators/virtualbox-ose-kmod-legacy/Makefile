@@ -1,5 +1,6 @@
 PORTNAME=	virtualbox-ose
 PORTVERSION=	5.2.44
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.oracle.com/virtualbox/${PORTVERSION}/
 PKGNAMESUFFIX=	-kmod-legacy
@@ -42,11 +43,13 @@ CONFLICTS_INSTALL=	virtualbox-ose-kmod
 
 PORTSCOUT=	limit:^5\.
 
-OPTIONS_DEFINE=	DEBUG VIMAGE
-OPTIONS_DEFAULT=VIMAGE
-OPTIONS_SUB=	yes
-DEBUG_DESC=	Debug symbols, additional logs and assertions
-VIMAGE_DESC=	VIMAGE virtual networking support
+OPTIONS_DEFINE=		DEBUG VIMAGE
+OPTIONS_DEFINE_i386=	PAE
+OPTIONS_DEFAULT=	VIMAGE
+OPTIONS_SUB=		yes
+DEBUG_DESC=		Debug symbols, additional logs and assertions
+PAE_DESC=		Build kernel modules for PAE-kernels
+VIMAGE_DESC=		VIMAGE virtual networking support
 
 .include <bsd.mport.options.mk>
 
@@ -76,6 +79,7 @@ KMK_ARCH=	freebsd.${ARCH}
 
 .include <bsd.port.pre.mk>
 
+CFLAGS+=	-Wno-error=int-conversion
 SYMBOLSUFFIX=	debug
 PLIST_SUB+=	SYMBOLSUFFIX=${SYMBOLSUFFIX}
 
@@ -86,6 +90,9 @@ post-patch:
 	@${ECHO_CMD} 'VBOX_WITH_ADDITIONS =' >> ${WRKSRC}/LocalConfig.kmk
 .if ${PORT_OPTIONS:MVIMAGE}
 	@${ECHO_CMD} 'VBOX_WITH_NETFLT_VIMAGE = 1' >> ${WRKSRC}/LocalConfig.kmk
+.endif
+.if ${PORT_OPTIONS:MPAE}
+	@${ECHO_CMD} 'VBOX_FREEBSD = -DPAE' >> ${WRKSRC}/LocalConfig.kmk
 .endif
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 	    ${WRKSRC}/Config.kmk ${WRKSRC}/configure

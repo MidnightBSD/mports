@@ -1,6 +1,6 @@
 PORTNAME=	virtualbox-ose
 PORTVERSION=	5.2.44
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.oracle.com/virtualbox/${PORTVERSION}/
 PKGNAMESUFFIX?=	-additions-legacy
@@ -46,12 +46,15 @@ CONFLICTS_INSTALL=	virtualbox-ose \
 			virtualbox-ose-lite \
 			virtualbox-ose-nox11
 
+EXTRACT_AFTER_ARGS=	--exclude tools/*.x86 --exclude tools/*.amd64 --exclude Firmware
 PORTSCOUT=	limit:^5\.
 
-OPTIONS_DEFINE=	DBUS DEBUG X11
+OPTIONS_DEFINE=		DBUS DEBUG X11
+OPTIONS_DEFINE_i386=	PAE
 OPTIONS_DEFAULT=	DBUS X11
-OPTIONS_SUB=	yes
+OPTIONS_SUB=		yes
 
+PAE_DESC=		Build kernel modules for PAE-kernels
 DBUS_CONFIGURE_OFF=	--disable-dbus
 DBUS_LIB_DEPENDS=	libdbus-1.so:devel/dbus
 DEBUG_CONFIGURE_ON=	--build-debug
@@ -131,6 +134,10 @@ post-patch:
 	    ${WRKSRC}/src/VBox/Additions/x11/VBoxClient/Makefile.kmk
 	@${ECHO_CMD} 'VBOX_ICONV_DEFS = LIBICONV_PLUG' >> ${WRKSRC}/LocalConfig.kmk
 .endif
+.if ${PORT_OPTIONS:MPAE}
+	@${ECHO_CMD} 'VBOX_FREEBSD = -DPAE' >> ${WRKSRC}/LocalConfig.kmk
+.endif
+	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' ${WRKSRC}/Config.kmk
 
 post-patch-X11-on:
 	@${ECHO_CMD} 'VBOX_USE_SYSTEM_XORG_HEADERS = 1' >> \
@@ -141,34 +148,34 @@ pre-build:
 	    ". env.sh && ${KMK_CONFIG} ${LOCALBASE}/bin/kmk"
 
 do-install:
-	${MKDIR} ${STAGEDIR}${KMODDIR}
+	${MKDIR} ${FAKE_DESTDIR}${KMODDIR}
 	${INSTALL_KLD} ${VBOX_BIN}/src/vboxguest/vboxguest.ko \
-	    ${STAGEDIR}${KMODDIR}
-	${INSTALL_KLD} ${VBOX_BIN}/vboxvfs.ko ${STAGEDIR}${KMODDIR}
-	${INSTALL_LIB} ${VBOX_BIN}/pam_vbox.so ${STAGEDIR}${PREFIX}/lib
+	    ${FAKE_DESTDIR}${KMODDIR}
+	${INSTALL_KLD} ${VBOX_BIN}/vboxvfs.ko ${FAKE_DESTDIR}${KMODDIR}
+	${INSTALL_LIB} ${VBOX_BIN}/pam_vbox.so ${FAKE_DESTDIR}${PREFIX}/lib
 	${INSTALL_PROGRAM} ${VBOX_SBINS:S|^|${VBOX_BIN}/|} \
-	    ${STAGEDIR}${PREFIX}/sbin/
+	    ${FAKE_DESTDIR}${PREFIX}/sbin/
 
 do-install-X11-on:
-	${INSTALL_PROGRAM} ${VBOX_BIN}/VBoxClient ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${VBOX_BIN}/VBoxClient ${FAKE_DESTDIR}${PREFIX}/bin/
 	${INSTALL_SCRIPT} \
 	    ${WRKSRC}/src/VBox/Additions/x11/Installer/98vboxadd-xclient \
-	    ${STAGEDIR}${PREFIX}/bin/VBoxClient-all
+	    ${FAKE_DESTDIR}${PREFIX}/bin/VBoxClient-all
 	# X11 autostart
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/xdg/autostart/
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/xdg/autostart/
 	${INSTALL_DATA} \
 	    ${WRKSRC}/src/VBox/Additions/x11/Installer/vboxclient.desktop \
-	    ${STAGEDIR}${PREFIX}/etc/xdg/autostart/
+	    ${FAKE_DESTDIR}${PREFIX}/etc/xdg/autostart/
 	# KDE autostart
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/autostart/
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/autostart/
 	${INSTALL_DATA} \
 	    ${WRKSRC}/src/VBox/Additions/x11/Installer/vboxclient.desktop \
-	    ${STAGEDIR}${PREFIX}/share/autostart/
-	${MKDIR} ${STAGEDIR}${VIDEODIR}
+	    ${FAKE_DESTDIR}${PREFIX}/share/autostart/
+	${MKDIR} ${FAKE_DESTDIR}${VIDEODIR}
 	${INSTALL_DATA} ${VBOX_BIN}/vboxvideo_drv_system.so \
-	    ${STAGEDIR}${VIDEODIR}/vboxvideo_drv.so
-	${MKDIR} ${STAGEDIR}${INPUTDIR}
+	    ${FAKE_DESTDIR}${VIDEODIR}/vboxvideo_drv.so
+	${MKDIR} ${FAKE_DESTDIR}${INPUTDIR}
 	${INSTALL_DATA} ${VBOX_BIN}/vboxmouse_drv_system.so \
-	    ${STAGEDIR}${INPUTDIR}/vboxmouse_drv.so
+	    ${FAKE_DESTDIR}${INPUTDIR}/vboxmouse_drv.so
 
 .include <bsd.port.post.mk>

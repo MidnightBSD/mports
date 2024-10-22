@@ -1,6 +1,16 @@
---- configure.orig	2020-05-13 19:36:41 UTC
-+++ configure
-@@ -138,10 +138,14 @@ CXX_FLAGS=""
+--- configure.orig	2020-07-09 12:49:46.000000000 -0400
++++ configure	2024-10-22 10:27:21.708395000 -0400
+@@ -51,6 +51,9 @@
+     ;;
+   freebsd)
+     ;;
++  midnightbsd)
++    OS='freebsd'
++    ;;
+   netbsd)
+     ;;
+   sunos)
+@@ -138,10 +141,14 @@
  if [ "$OS" = "freebsd" ]; then
    INCCURL="-I/usr/local/include"
    LIBCURL="-L/usr/local/lib -lcurl"
@@ -15,7 +25,7 @@
  else
    INCCURL=""
    LIBCURL="-lcurl"
-@@ -441,6 +445,9 @@ check_gcc()
+@@ -441,6 +448,9 @@
        elif [ $cc_maj -eq 4 -a $cc_min -eq 0 -a "$OS" = "darwin" ]; then
          log_success "found version $cc_ver"
        # gcc-4.0 is allowed for Darwin only
@@ -25,7 +35,17 @@
        elif [ $cc_maj -lt 4 \
               -o \( $cc_maj -eq 4 -a $cc_min -lt 4 -a "$OS" != "darwin" \) \
               -o \( $cc_maj -eq 4 -a $cc_min -lt 2 -a "$OS"  = "darwin" \) ]; then
-@@ -1208,7 +1215,7 @@ extern "C" int main(void)
+@@ -1124,6 +1134,9 @@
+   printf("found version %d.%d.%d",
+          SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+ #if SDL_VERSION_ATLEAST(1,2,7)
++#if !defined(SDL_VIDEO_DRIVER_X11)
++#error SDL must be compiled with X11 support
++#endif
+   printf(", OK.\n");
+   return 0;
+ #else
+@@ -1208,7 +1221,7 @@
  #endif
  }
  EOF
@@ -34,7 +54,7 @@
      test_execute
    fi
  }
-@@ -1508,8 +1515,7 @@ EOF
+@@ -1508,8 +1521,7 @@
          if [ $? -eq 0 ]; then
            echo "(Qt5 from pkg-config)" >> $LOG
            FLGQT5=`pkg-config Qt5Core --cflags`
@@ -44,7 +64,7 @@
            INCQT5=`strip_I "$FLGQT5"`
            LIBDIR5=`pkg-config Qt5Core --variable=libdir`
            LIBQT5=`pkg-config Qt5Core --libs`
-@@ -1648,7 +1654,7 @@ check_libopus()
+@@ -1648,7 +1660,7 @@
        fi
        cat > $ODIR.tmp_src.cc << EOF
  #include <cstdio>
@@ -53,7 +73,25 @@
  extern "C" int main(void)
  {
    OpusEncoder *test;
-@@ -1980,8 +1986,8 @@ EOF
+@@ -1827,7 +1839,7 @@
+     fi
+     echo "export PATH" >> $ENV
+     echo "unset path_kbuild_bin path_dev_bin" >> $ENV
+-    KBUILD_SED="$KBUILDDIR_BIN/kmk_sed"
++    KBUILD_SED="/usr/local/bin/kmk_sed"
+   elif [ "$OS.$BUILD_MACHINE" = "darwin.amd64" ]; then
+     # Currently there are no amd64 kBuild bins. So use the x86 variant in any case.
+     KBUILDDIR_BIN="$KBUILDDIR/bin/$OS.x86"
+@@ -1843,7 +1855,7 @@
+     echo "echo \"\$PATH\" | grep -q \"\$path_dev_bin\" || PATH=\"\$path_dev_bin:\$PATH\"" >> $ENV
+     echo "export PATH" >> $ENV
+     echo "unset path_kbuild_bin path_dev_bin" >> $ENV
+-    KBUILD_SED="$KBUILDDIR_BIN/kmk_sed"
++    KBUILD_SED="/usr/local/bin/kmk_sed"
+   elif check_avail "kmk" KBUILDDIR really; then
+     # check for installed kBuild
+     KBUILD_SED="`which_wrapper kmk_sed`"
+@@ -1980,8 +1992,8 @@
          echo "compiling the following source file:" >> $LOG
          cat $ODIR.tmp_src.cc >> $LOG
          echo "using the following command line:" >> $LOG
@@ -64,7 +102,7 @@
          if [ $? -eq 0 ]; then
            found=1
            break
-@@ -2453,7 +2459,7 @@ for option in "$@"; do
+@@ -2453,7 +2465,7 @@
      --with-openssl-dir=*)
        OPENSSLDIR=`echo $option | cut -d'=' -f2`
        INCCRYPTO="-I${OPENSSLDIR}/include"
@@ -73,7 +111,7 @@
        ;;
      --with-ow-dir=*)
        WATCOM=`echo $option | cut -d'=' -f2`
-@@ -2767,7 +2773,7 @@ if [ $ONLY_ADDITIONS -eq 0 ]; then
+@@ -2767,7 +2779,7 @@
    check_ssl
    check_curl
    [ $WITH_LIBVPX -eq 1 ] && check_vpx
@@ -82,7 +120,7 @@
   [ "$OS" != "darwin"  ] && check_z
    [ "$OS" != "darwin"  ] && check_png
    [ $OSE -eq 0 -a "$OS" = "linux" ] && check_pam
-@@ -2788,13 +2794,20 @@ if [ $ONLY_ADDITIONS -eq 0 ]; then
+@@ -2788,13 +2800,20 @@
    [ $WITH_PYTHON -eq 1 ] && check_python
    [ $WITH_JAVA   -eq 1 ] && check_java
  
@@ -104,7 +142,7 @@
   fi
  fi
  
-@@ -2810,14 +2823,6 @@ if [ "$OS" = "linux" ]; then
+@@ -2810,14 +2829,6 @@
      cnf_append "VBOX_WITHOUT_LINUX_TEST_BUILDS" "1"
    fi
    if [ $ONLY_ADDITIONS -eq 0 ]; then
