@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: kpropd
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
