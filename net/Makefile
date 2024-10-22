@@ -126,7 +126,6 @@ SUBDIR += p5-IP-Country
 SUBDIR += p5-MaxMind-DB-Common
 SUBDIR += p5-MaxMind-DB-Reader
 SUBDIR += p5-MaxMind-DB-Reader-XS
-SUBDIR += p5-MaxMind-DB-Writer
 SUBDIR += p5-Net
 SUBDIR += p5-Net-CIDR-Lite
 SUBDIR += p5-Net-FTP-File

@@ -1,6 +1,0 @@
-%%SITE_ARCH%%/MaxMind/DB/Writer.pm
-%%SITE_ARCH%%/MaxMind/DB/Writer/Serializer.pm
-%%SITE_ARCH%%/MaxMind/DB/Writer/Tree.pm
-%%SITE_ARCH%%/MaxMind/DB/Writer/Tree/Processor/VisualizeTree.pm
-%%SITE_ARCH%%/MaxMind/DB/Writer/Util.pm
-%%SITE_ARCH%%/auto/MaxMind/DB/Writer/Tree/Tree.so
