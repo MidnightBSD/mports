@@ -1,20 +1,17 @@
 --- configure.orig	2024-01-11 06:59:58.000000000 -0500
-+++ configure	2024-05-30 14:33:55.416630000 -0400
-@@ -51,6 +51,8 @@
++++ configure	2024-10-22 10:32:24.481172000 -0400
+@@ -51,6 +51,9 @@
      ;;
    freebsd)
      ;;
 +  midnightbsd)
++    OS='freebsd'
 +    ;;
    netbsd)
      ;;
    sunos)
-@@ -136,13 +138,17 @@
- INCDEVMAPPER=""
- LIBDEVMAPPER="-ldevmapper"
- CXX_FLAGS=""
--if [ "$OS" = "freebsd" ]; then
-+if [ "$OS" = "freebsd" || "$OS" = "midnightbsd" ]; then
+@@ -139,10 +142,14 @@
+ if [ "$OS" = "freebsd" ]; then
    INCCURL="-I/usr/local/include"
    LIBCURL="-L/usr/local/lib -lcurl"
 +  INCALSA="-I/usr/local/include"
@@ -28,33 +25,17 @@
  else
    INCCURL=""
    LIBCURL="-lcurl"
-@@ -564,6 +570,7 @@
-     "darwin")   wc_bin="binosx";;  # ??
-     "dos")      wc_bin="binw";;
-     "freebsd")  wc_bin="binfbsd";; # ??
-+    "midnightbsd")  wc_bin="binfbsd";; # ??
-     "linux")    wc_bin="binl";;
-     "netbsd")   wc_bin="binnbsd";; # ??
-     "solaris")  wc_bin="binsol";;  # ??
-@@ -924,7 +931,7 @@
-   [ -n "$INCZ" ] && I_INCZ=`prefix_I "$INCZ"`
-   if test_compile "$LIBZ $I_INCZ" zlib zlib; then
-     if test_execute; then
--      echo "if1of (\$(KBUILD_TARGET),darwin freebsd haiku linux)" >> $CNF
-+      echo "if1of (\$(KBUILD_TARGET),darwin midnightbsd freebsd haiku linux)" >> $CNF
-       cnf_append " SDK_VBOX_ZLIB_LIBS" "`strip_l "$LIBZ"`"
-       cnf_append " SDK_VBOX_ZLIB_INCS" "$INCZ"
-       echo "endif" >> $CNF
-@@ -957,7 +964,7 @@
-   [ -n "$INCLZF" ] && I_INCLZF=`prefix_I "$INCLZF"`
-   if test_compile "$LIBLZF $I_INCLZF" liblzf liblzf nofatal; then
-     if test_execute; then
--      echo "if1of (\$(KBUILD_TARGET),darwin freebsd haiku linux)" >> $CNF
-+      echo "if1of (\$(KBUILD_TARGET),darwin midnightbsd freebsd haiku linux)" >> $CNF
-       cnf_append " SDK_VBOX_LZF_LIBS" "`strip_l "$LIBLZF"`"
-       cnf_append " SDK_VBOX_LZF_INCS" "$INCLZF"
-       echo "endif" >> $CNF
-@@ -1257,7 +1264,7 @@
+@@ -1173,6 +1180,9 @@
+   printf("found version %d.%d.%d",
+          SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+ #if SDL_VERSION_ATLEAST(1,2,7)
++#if !defined(SDL_VIDEO_DRIVER_X11)
++#error SDL must be compiled with X11 support
++#endif
+   printf(", OK.\n");
+   return 0;
+ #else
+@@ -1257,7 +1267,7 @@
  #endif
  }
  EOF
@@ -63,7 +44,7 @@
      test_execute
    fi
  }
-@@ -1564,6 +1571,7 @@
+@@ -1564,6 +1574,7 @@
            FLGQT5=`pkg-config Qt5Core --cflags`
            # gcc 4.8 is able to compile with C++11 (see also VBOX_GCC_std in Config.kmk)
            [ $(($cc_maj * 100 + $cc_min)) -ge 408 ] && FLGQT5="$FLGQT5 -std=c++11"
@@ -71,7 +52,7 @@
            INCQT5=`strip_I "$FLGQT5"`
            LIBDIR5=`pkg-config Qt5Core --variable=libdir`
            LIBQT5=`pkg-config Qt5Core Qt5Gui --libs`
-@@ -1702,7 +1710,7 @@
+@@ -1702,7 +1713,7 @@
        fi
        cat > $ODIR.tmp_src.cc << EOF
  #include <cstdio>
@@ -80,7 +61,7 @@
  extern "C" int main(void)
  {
    OpusEncoder *test;
-@@ -1881,7 +1889,7 @@
+@@ -1881,7 +1892,7 @@
      fi
      echo "export PATH" >> $ENV
      echo "unset path_kbuild_bin path_dev_bin" >> $ENV
@@ -89,7 +70,7 @@
    elif [ "$OS.$BUILD_MACHINE" = "darwin.amd64" ]; then
      # Currently there are no amd64 kBuild bins. So use the x86 variant in any case.
      KBUILDDIR_BIN="$KBUILDDIR/bin/$OS.x86"
-@@ -1897,7 +1905,7 @@
+@@ -1897,7 +1908,7 @@
      echo "echo \"\$PATH\" | grep -q \"\$path_dev_bin\" || PATH=\"\$path_dev_bin:\$PATH\"" >> $ENV
      echo "export PATH" >> $ENV
      echo "unset path_kbuild_bin path_dev_bin" >> $ENV
@@ -98,7 +79,15 @@
    elif check_avail "kmk" KBUILDDIR really; then
      # check for installed kBuild
      KBUILD_SED="`which_wrapper kmk_sed`"
-@@ -2034,8 +2042,8 @@
+@@ -2027,15 +2038,15 @@
+ }
+ EOF
+   found=
+-  SUPPYTHONLIBS="python2.7 python2.6 python3.1 python3.2 python3.3 python3.4 python3.4m python3.5 python3.5m python3.6 python3.6m python3.7 python3.7m python3.8 python3.8m python3.9 python3.9m python3.10 python3.10m python3.11 python3.12"
++  SUPPYTHONLIBS="python3.9"
+   for p in $PYTHONDIR; do
+     for d in $SUPPYTHONLIBS; do
+       for b in lib/x86_64-linux-gnu lib/i386-linux-gnu lib64 lib/64 lib; do
          echo "compiling the following source file:" >> $LOG
          cat $ODIR.tmp_src.cc >> $LOG
          echo "using the following command line:" >> $LOG
@@ -109,7 +98,7 @@
          if [ $? -eq 0 ]; then
            found=1
            break
-@@ -2151,7 +2159,7 @@
+@@ -2151,7 +2162,7 @@
          else
            cnf_append "VBOX_GSOAP_CXX_SOURCES" ""
          fi
@@ -118,16 +107,7 @@
          gsoap_version=`pkg-config gsoapssl++ --modversion`
          log_success "found version $gsoap_version"
          return
-@@ -2384,7 +2392,7 @@
- [ $WITH_DOCS    -eq 1 ] && echo "  --disable-docs           don't build the documentation"
- [ $WITH_LIBVPX  -eq 1 ] && echo "  --disable-libvpx         don't use libvpx for video capturing"
- [ $WITH_LIBOPUS -eq 1 ] && echo "  --disable-libopus        don't use libopus for audio capturing"
--[ "$OS" = "linux" -o "$OS" = "freebsd" ] && echo "  --enable-vde             enable VDE networking"
-+[ "$OS" = "linux" -o "$OS" = "freebsd" -o "$OS" = "midnightbsd" ] && echo "  --enable-vde             enable VDE networking"
- cat << EOF
-   --disable-udptunnel      disable UDP tunnel networking
-   --disable-devmapper      disable device mapper library access
-@@ -2519,7 +2527,7 @@
+@@ -2519,7 +2530,7 @@
      --with-openssl-dir=*)
        OPENSSLDIR=`echo $option | cut -d'=' -f2`
        INCCRYPTO="-I${OPENSSLDIR}/include"
@@ -136,7 +116,7 @@
        # On Linux static OpenSSL typically needs a few additional libraries.
        [ "$OS" = "linux" ] && LIBCRYPTO="-ldl $LIBPTHREAD -lm"
        ;;
-@@ -2865,12 +2873,22 @@
+@@ -2865,12 +2876,22 @@
    [ $WITH_JAVA   -eq 1 ] && check_java
  
    # PulseAudio
@@ -146,7 +126,7 @@
 -    cnf_append "VBOX_WITH_AUDIO_PULSE" ""
 -  elif [ $WITH_PULSE -eq 2 ]; then # --enable-pulse was passed, force PulseAudio.
 -    cnf_append "VBOX_WITH_AUDIO_PULSE" "1"
-+  if [ "$OS" = "linux" -o "$OS" = "freebsd" -o "$OS" = "netbsd" -o "$OS" = "midnightbsd"]; then
++  if [ "$OS" = "linux" -o "$OS" = "freebsd" -o "$OS" = "netbsd" ]; then
 +    if [ $WITH_ALSA -eq 1 ]; then
 +      check_alsa
 +    else
@@ -165,7 +145,7 @@
    fi
  fi
  
-@@ -2886,14 +2904,6 @@
+@@ -2886,14 +2907,6 @@
      cnf_append "VBOX_WITHOUT_LINUX_TEST_BUILDS" "1"
    fi
    if [ $ONLY_ADDITIONS -eq 0 ]; then
@@ -180,12 +160,3 @@
      if [ $WITH_DEVMAPPER -eq 1 ]; then
        check_libdevmapper
      else
-@@ -2921,7 +2931,7 @@
- fi
- 
- # VDE
--if [ $ONLY_ADDITIONS -eq 0 -a "$OS" = "linux" -o "$OS" = "freebsd" ]; then
-+if [ $ONLY_ADDITIONS -eq 0 -a "$OS" = "linux" -o "$OS" = "freebsd" -o "$OS" = "midnightbsd"]; then
-   if [ $WITH_VDE -eq 1 ]; then
-     cnf_append "VBOX_WITH_VDE" "1"
-   fi
