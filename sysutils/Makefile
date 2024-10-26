@@ -147,6 +147,7 @@ SUBDIR += mcelog
 SUBDIR += mcron
 SUBDIR += mdf2iso
 SUBDIR += memtest86
+SUBDIR += minimunin
 SUBDIR += monit
 SUBDIR += munin-common
 SUBDIR += munin-contrib
