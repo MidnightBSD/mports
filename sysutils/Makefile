@@ -101,6 +101,7 @@ SUBDIR += htop
 SUBDIR += hw-probe
 SUBDIR += hwstat
 SUBDIR += i2c-tools
+SUBDIR += i7z
 SUBDIR += incron
 SUBDIR += intel-epct
 SUBDIR += intel-nvmupdate-100g
