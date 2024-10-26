@@ -262,6 +262,7 @@ SUBDIR += zfsnap
 SUBDIR += zfstools
 SUBDIR += znapzend
 SUBDIR += zrep
+SUBDIR += zsd
 SUBDIR += zsm
 SUBDIR += ztop
 SUBDIR += zxfer
