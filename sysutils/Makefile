@@ -65,6 +65,7 @@ SUBDIR += entr
 SUBDIR += exa
 SUBDIR += extipl
 SUBDIR += ezjail
+SUBDIR += fastfetch
 SUBDIR += ffs2recov
 SUBDIR += firstboot-growfs
 SUBDIR += firstboot-midnightbsd-update
