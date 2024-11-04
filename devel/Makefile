@@ -1441,6 +1441,7 @@ SUBDIR += xxhash
 SUBDIR += yajl
 SUBDIR += yaml-cpp
 SUBDIR += yasm
+SUBDIR += yyjson
 SUBDIR += zookeeper
 SUBDIR += zthread
 SUBDIR += zziplib
