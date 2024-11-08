@@ -78,6 +78,7 @@ SUBDIR += tvbrowser
 SUBDIR += unclutter
 SUBDIR += unicode-emoji
 SUBDIR += usbids
+SUBDIR += utouch-kmod
 SUBDIR += wmScoreBoard
 SUBDIR += wmcalendar
 SUBDIR += wmjulia
