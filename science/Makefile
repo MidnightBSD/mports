@@ -11,6 +11,9 @@ SUBDIR += paje
 SUBDIR += py-scikit-learn
 SUBDIR += py-scikit-sparse
 SUBDIR += py-scipy
+SUBDIR += sigrok-firmware
+SUBDIR += sigrok-firmware-fx2lafw
+SUBDIR += sigrok-firmware-utils
 SUBDIR += trilinos
 
 .include <bsd.port.subdir.mk>
