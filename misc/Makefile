@@ -68,6 +68,7 @@ SUBDIR += qt6-examples
 SUBDIR += qt6ct
 SUBDIR += shared-mime-info
 SUBDIR += shc
+SUBDIR += soapysdr
 SUBDIR += susv2
 SUBDIR += susv3
 SUBDIR += susv4
