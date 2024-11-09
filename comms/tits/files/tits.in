@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # PROVIDE: tits
 # REQUIRE: DAEMON
 # BEFORE: LOGIN
