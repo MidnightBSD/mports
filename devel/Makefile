@@ -104,6 +104,7 @@ SUBDIR += erlang-unicode_util_compat
 SUBDIR += evdev-proto
 SUBDIR += fam
 SUBDIR += fifechan
+SUBDIR += firmware-utils
 SUBDIR += flatbuffers
 SUBDIR += fmake
 SUBDIR += fortytwo-encore
