@@ -201,6 +201,7 @@ SUBDIR += qt5-qtdiag
 SUBDIR += qt5-qtpaths
 SUBDIR += qt5-qtplugininfo
 SUBDIR += restic
+SUBDIR += rpi-firmware
 SUBDIR += rubygem-bundler
 SUBDIR += rubygem-fluentd
 SUBDIR += scan_ffs
