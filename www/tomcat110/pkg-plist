@@ -12,6 +12,8 @@
 %%T%%/bin/configtest.sh
 %%T%%/bin/daemon.sh
 %%T%%/bin/digest.sh
+%%T%%/bin/makebase.sh
+%%T%%/bin/migrate.sh
 %%T%%/bin/setclasspath.sh
 %%T%%/bin/shutdown.sh
 %%T%%/bin/startup.sh
@@ -21,24 +23,29 @@
 %%T%%/lib/annotations-api.jar
 %%T%%/lib/catalina-ant.jar
 %%T%%/lib/catalina-ha.jar
+%%T%%/lib/catalina-ssi.jar
 %%T%%/lib/catalina-storeconfig.jar
 %%T%%/lib/catalina-tribes.jar
 %%T%%/lib/catalina.jar
-%%T%%/lib/ecj-4.6.3.jar
+%%T%%/lib/ecj-4.33.jar
 %%T%%/lib/el-api.jar
+%%T%%/lib/jakartaee-migration-1.0.8-shaded.jar
 %%T%%/lib/jasper-el.jar
 %%T%%/lib/jasper.jar
 %%T%%/lib/jaspic-api.jar
 %%T%%/lib/jsp-api.jar
 %%T%%/lib/servlet-api.jar
 %%T%%/lib/tomcat-api.jar
+%%T%%/lib/tomcat-coyote-ffm.jar
 %%T%%/lib/tomcat-coyote.jar
 %%T%%/lib/tomcat-dbcp.jar
+%%NLS%%%%T%%/lib/tomcat-i18n-cs.jar
 %%NLS%%%%T%%/lib/tomcat-i18n-de.jar
 %%NLS%%%%T%%/lib/tomcat-i18n-es.jar
 %%NLS%%%%T%%/lib/tomcat-i18n-fr.jar
 %%NLS%%%%T%%/lib/tomcat-i18n-ja.jar
 %%NLS%%%%T%%/lib/tomcat-i18n-ko.jar
+%%NLS%%%%T%%/lib/tomcat-i18n-pt-BR.jar
 %%NLS%%%%T%%/lib/tomcat-i18n-ru.jar
 %%NLS%%%%T%%/lib/tomcat-i18n-zh-CN.jar
 %%T%%/lib/tomcat-jdbc.jar
@@ -47,7 +54,7 @@
 %%T%%/lib/tomcat-util.jar
 %%T%%/lib/tomcat-websocket.jar
 %%T%%/lib/websocket-api.jar
-@dir %%T%%/endorsed
+%%T%%/lib/websocket-client-api.jar
 @postunexec [ ! -d %D/%%T%% ] || echo If permanently deleting this package, %D/%%T%% must be removed manually
 @owner %%WWWOWN%%
 @group %%WWWGRP%%
@@ -56,7 +63,6 @@
 @dir %%T%%/temp
 @dir %%T%%/webapps
 @dir %%T%%/work
-@sample %%T%%/conf/catalina.policy.sample
 @sample %%T%%/conf/catalina.properties.sample
 @sample %%T%%/conf/context.xml.sample
 @sample %%T%%/conf/jaspic-providers.xml.sample
@@ -74,8 +80,8 @@
 %%DOCS%%%%T%%/webapps/docs/WEB-INF/jsp/403.jsp
 %%DOCS%%%%T%%/webapps/docs/WEB-INF/web.xml
 %%DOCS%%%%T%%/webapps/docs/aio.html
-%%DOCS%%%%T%%/webapps/docs/annotationapi/index.html
 %%DOCS%%%%T%%/webapps/docs/api/index.html
+%%DOCS%%%%T%%/webapps/docs/annotationapi/index.html
 %%DOCS%%%%T%%/webapps/docs/appdev/build.xml.txt
 %%DOCS%%%%T%%/webapps/docs/appdev/deployment.html
 %%DOCS%%%%T%%/webapps/docs/appdev/index.html
@@ -100,10 +106,23 @@
 %%DOCS%%%%T%%/webapps/docs/architecture/requestProcess/authentication-process.png
 %%DOCS%%%%T%%/webapps/docs/architecture/requestProcess/request-process.png
 %%DOCS%%%%T%%/webapps/docs/architecture/startup.html
-%%DOCS%%%%T%%/webapps/docs/architecture/startup/serverStartup.pdf
-%%DOCS%%%%T%%/webapps/docs/architecture/startup/serverStartup.txt
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/1_overview.plantuml
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/1_overview.png
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/2_catalina_init.plantuml
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/2_catalina_init.png
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/3_catalina_start_1.plantuml
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/3_catalina_start_1.png
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/4_catalina_start_2.plantuml
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/4_catalina_start_2.png
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/5_catalina_start_3.plantuml
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/5_catalina_start_3.png
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/6_catalina_host_config.plantuml
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/6_catalina_host_config.png
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/7_catalina_context_config.plantuml
+%%DOCS%%%%T%%/webapps/docs/architecture/startup/7_catalina_context_config.png
 %%DOCS%%%%T%%/webapps/docs/balancer-howto.html
 %%DOCS%%%%T%%/webapps/docs/building.html
+%%DOCS%%%%T%%/webapps/docs/cdi.html
 %%DOCS%%%%T%%/webapps/docs/cgi-howto.html
 %%DOCS%%%%T%%/webapps/docs/changelog.html
 %%DOCS%%%%T%%/webapps/docs/class-loader-howto.html
@@ -150,7 +169,7 @@
 %%DOCS%%%%T%%/webapps/docs/deployer-howto.html
 %%DOCS%%%%T%%/webapps/docs/developers.html
 %%DOCS%%%%T%%/webapps/docs/elapi/index.html
-%%DOCS%%%%T%%/webapps/docs/extras.html
+%%DOCS%%%%T%%/webapps/docs/graal.html
 %%DOCS%%%%T%%/webapps/docs/host-manager-howto.html
 %%DOCS%%%%T%%/webapps/docs/html-host-manager-howto.html
 %%DOCS%%%%T%%/webapps/docs/html-manager-howto.html
@@ -191,7 +210,6 @@
 %%DOCS%%%%T%%/webapps/docs/realm-howto.html
 %%DOCS%%%%T%%/webapps/docs/rewrite.html
 %%DOCS%%%%T%%/webapps/docs/security-howto.html
-%%DOCS%%%%T%%/webapps/docs/security-manager-howto.html
 %%DOCS%%%%T%%/webapps/docs/servletapi/index.html
 %%DOCS%%%%T%%/webapps/docs/setup.html
 %%DOCS%%%%T%%/webapps/docs/ssi-howto.html
@@ -215,12 +233,14 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/HelloWorldExample.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/HelloWorldExample.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings.properties
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_cs.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_de.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_es.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_fr.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_ja.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_ko.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_pt.properties
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_pt_BR.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_ru.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_zh_CN.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/RequestHeaderExample.class
@@ -312,11 +332,9 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/listeners/ContextListener.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/listeners/SessionListener.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/listeners/SessionListener.java
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/ByteCounter$1.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/ByteCounter$CounterListener.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/ByteCounter.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/ByteCounter.java
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/NumberWriter$1.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/NumberWriter$NumberWriterListener.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/NumberWriter.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/nonblocking/NumberWriter.java
@@ -324,6 +342,9 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/num/NumberGuessBean.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/sessions/DummyCart.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/sessions/DummyCart.java
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/trailers/ResponseTrailers.class
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/trailers/ResponseTrailers.java
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/trailers/ResponseTrailers$TrailerFieldSupplier.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/util/CookieFilter.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/util/CookieFilter.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/util/HTMLFilter.class
@@ -365,11 +386,9 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/StringWebsocketMessage.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoAnnotation.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoAnnotation.java
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoAsyncAnnotation$1.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoAsyncAnnotation$CompletedFuture.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoAsyncAnnotation.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoAsyncAnnotation.java
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoEndpoint$1.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoEndpoint$EchoMessageHandlerBinary.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoEndpoint$EchoMessageHandlerText.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/websocket/echo/EchoEndpoint.class
@@ -394,8 +413,8 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/jsp/debug-taglib.tld
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/jsp/example-taglib.tld
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/jsp/jsp2-example-taglib.tld
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5-migrated-0.0.1.jar
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5-migrated-0.0.1.jar
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/tags/displayProducts.tag
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/tags/helloWorld.tag
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/tags/panel.tag

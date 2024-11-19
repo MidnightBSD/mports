@@ -1,12 +1,12 @@
 PORTNAME=	tomcat
-PORTVERSION=	8.5.99
+DISTVERSION=	11.0.0
 CATEGORIES=	www java
-MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/([0-9])(.*)/\1/}/v${PORTVERSION}/bin
-PKGNAMESUFFIX=	85
-DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
+MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${DISTVERSION:C/([0-9]+)(.*)/\1/}/v${DISTVERSION}/bin
+PKGNAMESUFFIX=	110
+DISTNAME=	apache-${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Open-source Java web server by Apache, 8.5.x branch
+COMMENT=	Open-source Java web server by Apache, 11.0.x branch
 WWW=		https://tomcat.apache.org/
 
 LICENSE=	apache2
@@ -16,16 +16,17 @@ RUN_DEPENDS=	jsvc:devel/apache-commons-daemon
 USES=		cpe
 CPE_VENDOR=	apache
 USE_JAVA=	yes
+JAVA_VERSION=	17+
 USE_RC_SUBR=	${PKGBASE:C/-/_/}
 
 NO_ARCH=	yes
 NO_BUILD=	yes
-PLIST_SUB=	T=${TOMCAT_SUBDIR} \
-		WWWOWN=${WWWOWN} \
-		WWWGRP=${WWWGRP}
 SUB_LIST=	TOMCAT_HOME=${TOMCAT_HOME} \
 		TOMCAT_USER=${WWWOWN} \
 		JAVA_HOME=${JAVA_HOME}
+PLIST_SUB=	T=${TOMCAT_SUBDIR} \
+		WWWOWN=${WWWOWN} \
+		WWWGRP=${WWWGRP}
 
 OPTIONS_DEFINE=		HOST_MANAGER MANAGER DOCS EXAMPLES ROOT NLS
 OPTIONS_DEFAULT=	HOST_MANAGER MANAGER ROOT
@@ -47,8 +48,7 @@ post-patch:
 
 do-install:
 	@${MKDIR} ${TOMCAT_HOME}/logs
-	@${MKDIR} ${TOMCAT_HOME}/endorsed
-	${CP} -R ${WRKSRC}/* ${TOMCAT_HOME}
+	@${CP} -R ${WRKSRC}/* ${TOMCAT_HOME}
 
 post-install:
 	@${RM} ${TOMCAT_HOME}/bin/*.bat
@@ -56,28 +56,13 @@ post-install:
 		for f in $$(find . -type f -not -name '*.xsd'); do ${MV} $$f $$f.sample; done)
 
 post-install-HOST_MANAGER-on:
-	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+	@(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
 		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/manager.xml host-manager/WEB-INF/web.xml; do \
 			${MV} $$f $$f.sample; done)
 
-post-install-HOST_MANAGER-off:
-	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/host-manager
-
 post-install-MANAGER-on:
-	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+	@(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
 		for f in manager/META-INF/context.xml manager/WEB-INF/web.xml; do \
 			${MV} $$f $$f.sample; done)
-
-post-install-MANAGER-off:
-	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/manager
-
-post-install-DOCS-off:
-	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/docs
-
-post-install-EXAMPLES-off:
-	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/examples
-
-post-install-ROOT-off:
-	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/ROOT
 
 .include <bsd.port.mk>
