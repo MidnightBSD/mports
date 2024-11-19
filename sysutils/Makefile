@@ -159,6 +159,7 @@ SUBDIR += neofetch
 SUBDIR += nvclock
 SUBDIR += obliterate
 SUBDIR += openipmi
+SUBDIR += opensbi
 SUBDIR += openupsd
 SUBDIR += osinfo-db-tools
 SUBDIR += p5-File-Listing
