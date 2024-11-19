@@ -1,10 +1,12 @@
 PORTNAME=	w3m
 PORTVERSION=	0.5.3.${SNAPDATE}
+PORTREVISION=	1
 CATEGORIES+=	www
+MASTER_SITES=	https://git.sr.ht/~rkta/${PORTNAME}/archive/${COMMIT_HASH}${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Pager/text-based WWW browser
-WWW=		https://w3m.sourceforge.net/
+WWW=		https://git.sr.ht/~rkta/w3m
 
 LICENSE=	w3m
 LICENSE_NAME=	w3m
@@ -13,25 +15,20 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BROKEN_mips64=		fails to build: qemu: uncaught target signal 11 (Segmentation fault) - core dumped
 
-PATCH_DEPENDS+=	${LOCALBASE}/bin/iconv:converters/libiconv
-BUILD_DEPENDS+=	${LOCALBASE}/bin/iconv:converters/libiconv
 LIB_DEPENDS=	libgc.so:devel/boehm-gc
-RUN_DEPENDS+=   ${LOCALBASE}/bin/iconv:converters/libiconv
 
-USES=		cpe iconv:wchar_t pkgconfig perl5 ssl
-USE_GITHUB=	yes
+USES=		cpe iconv pkgconfig perl5 ssl
 
 CPE_VENDOR=	w3m_project
 
-GH_ACCOUNT=	tats
-GH_PROJECT=	w3m
-GH_TAGNAME=	ee66aab
-
 MAKE_JOBS_UNSAFE=	yes
-SNAPDATE=	20230718
+SNAPDATE=	20240916
+COMMIT_HASH=	3601d308b98006da4240f1fd39282a9245e70264
+WRKSRC=		${WRKDIR}/${PORTNAME}-${COMMIT_HASH}
 
 CONFLICTS?=	ja-w3m-0.5.* ja-w3m-img-0.5.* w3m-img-0.5.*
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--with-gc=${LOCALBASE} \
 		ac_cv_path_PERL=${PERL}
 CONFIGURE_ENV=	DEFS="-I${LOCALBASE}/include"
@@ -100,6 +97,7 @@ post-install:
 	for i in ${DOCS_COMMON} ${DOCS_EN} ; do \
 		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/share/doc/w3m/ ; \
 	done
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
 	${INSTALL_MAN} ${WRKSRC}/scripts/w3mman/w3mman.1 ${STAGEDIR}${PREFIX}/share/man/ja/man1
 
 .include <bsd.port.mk>
