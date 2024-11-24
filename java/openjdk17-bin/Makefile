@@ -38,9 +38,8 @@ COMPONENT=.17
 IGNORE=	OS Not Supported
 .endif
 .else
-IGNORE=	architecture not supported
-VER=    17.0.5
-DISTFILES=      openjdk17-17.0.5+8.1_1.pkg
+VER=    17.0.4
+DISTFILES=      openjdk17-17.0.4+8.1_1.pkg
 FBSD_PATH=      FreeBSD:12:i386
 COMPONENT=.17.${ARCH}
 .endif
