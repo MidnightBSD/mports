@@ -33,6 +33,9 @@ bin/munin-cron
 @sample %%ETCDIR%%/templates/partial/logo_path.tmpl.sample
 @sample %%ETCDIR%%/templates/partial/navigation.tmpl.sample
 @sample %%ETCDIR%%/templates/partial/path.tmpl.sample
+@comment the directory exists in STAGEDIR because it is present in
+@comment BSD.local.dist but if not registered here, it will not exist in PREFIX
+@comment when the package is installed.
 @dir etc/newsyslog.conf.d
 @dir etc/cron.d
 @sample %%ETCDIR%%/munin-master.newsyslog etc/newsyslog.conf.d/munin-master.conf
@@ -65,12 +68,12 @@ share/man/man3/Munin::Master::Update.3.gz
 share/man/man3/Munin::Master::UpdateWorker.3.gz
 share/man/man3/Munin::Master::Utils.3.gz
 share/man/man3/Munin::Master::Worker.3.gz
-man/man5/munin.conf.5.gz
-man/man8/munin-cron.8.gz
-man/man8/munin-graph.8.gz
-man/man8/munin-html.8.gz
-man/man8/munin-limits.8.gz
-man/man8/munin-update.8.gz
+share/man/man5/munin.conf.5.gz
+share/man/man8/munin-cron.8.gz
+share/man/man8/munin-graph.8.gz
+share/man/man8/munin-html.8.gz
+share/man/man8/munin-limits.8.gz
+share/man/man8/munin-update.8.gz
 %%DATADIR%%/DejaVuSans.ttf
 %%DATADIR%%/DejaVuSansMono.ttf
 %%DATADIR%%/munin-datafile2storable

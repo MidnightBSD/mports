@@ -49,8 +49,8 @@ share/man/man3/Munin::Node::Utils.3.gz
 share/man/man3/Munin::Plugin.3.gz
 share/man/man3/Munin::Plugin::Pgsql.3.gz
 share/man/man3/Munin::Plugin::SNMP.3.gz
-man/man5/munin-node.conf.5.gz
-man/man8/munin.8.gz
+share/man/man5/munin-node.conf.5.gz
+share/man/man8/munin.8.gz
 sbin/munin-node
 sbin/munin-node-configure
 sbin/munin-run
