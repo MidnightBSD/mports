@@ -9,6 +9,8 @@ COMMENT=	Command line tool and library for transferring data with URLs
 WWW=		https://curl.se/ \
 		https://github.com/curl/curl
 
+CONFLICTS=	curl
+
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 

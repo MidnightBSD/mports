@@ -12,6 +12,8 @@ WWW=		https://curl.se/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+CONFLICTS=	curl180
+
 USES=		cpe libtool localbase pathfix perl5 shebangfix tar:xz
 USE_PERL5=	build
 
