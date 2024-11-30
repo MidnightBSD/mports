@@ -1,5 +1,5 @@
 PORTNAME=	x265
-PORTVERSION=	3.4.1
+PORTVERSION=	3.5
 CATEGORIES=	multimedia
 MASTER_SITES=	https://bitbucket.org/multicoreware/x265_git/get/${BB_TAG}.tar.gz?meow=/
 
@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC:H}/COPYING
 
 USES=		cmake compiler:c++14-lang cpe pathfix dos2unix
 CPE_VENDOR=		multicorewareinc
-BB_TAG=	57022ba54264	# Top of the Release_3.4.1 branch at this time
+BB_TAG=	f0c1022b6be1	# Top of the Release_3.5 branch at this time
 
 OPTIONS_DEFINE=		DEBUG OPTIMIZED_FLAGS VMAF
 OPTIONS_DEFAULT=	OPTIMIZED_FLAGS HI8P HI10P HI12P
