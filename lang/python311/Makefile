@@ -7,15 +7,15 @@ DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Interpreted object-oriented programming language (beta version)
+COMMENT=	Interpreted object-oriented programming language
 WWW=		https://www.python.org/
 
 LICENSE=	python
 
 LIB_DEPENDS=	libffi.so:devel/libffi
 
-USES=		compiler:c11 cpe ncurses pathfix pkgconfig readline \
-		shebangfix ssl tar:xz
+USES=		compiler:c11 cpe ncurses pathfix pkgconfig \
+		python:${PYTHON_DISTVERSION:R},env readline shebangfix ssl tar:xz
 PATHFIX_MAKEFILEIN=	Makefile.pre.in
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -48,6 +48,7 @@ SUB_LIST=		PYTHON_SUFFIX=${PYTHON_SUFFIX}
 
 PLIST_SUB=		ABI=${ABIFLAGS} \
 			XY=${PYTHON_SUFFIX} \
+			DISTVERSION=${DISTVERSION} \
 			XYDOT=${PYTHON_VER} \
 			XYZDOT=${DISTVERSION:C/[a-z].*//} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-freebsd* in pkg-plist. https://bugs.python.org/issue19554
