@@ -1,6 +1,6 @@
 PORTNAME=	lkl
 DISTVERSION=	4.16.g20180628
-CATEGORIES=	sysutils
+CATEGORIES=	filesystems
 PKGNAMEPREFIX=	fusefs-
 
 MAINTAINER=	ports@MidnightBSD.org

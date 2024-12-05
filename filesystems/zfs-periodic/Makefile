@@ -1,12 +1,11 @@
-
-
 PORTNAME=	zfs-periodic
 PORTVERSION=	1.0.20130213
 PORTREVISION=	1
-CATEGORIES=	sysutils
+CATEGORIES=	filesystems sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple way of maintaining zfs snapshots using the periodic system
+WWW=		https://github.com/ross/zfs-periodic
 
 LICENSE=	unknown
 

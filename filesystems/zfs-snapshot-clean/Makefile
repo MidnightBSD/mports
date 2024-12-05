@@ -1,9 +1,7 @@
-
-
 PORTNAME=	zfs-snapshot-clean
 PORTVERSION=	0.2.0
 DISTVERSIONPREFIX=	v
-CATEGORIES=	sysutils
+CATEGORIES=	filesystems sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to sieve ZFS snapshots as per given spec a la 'pdumpfs-clean'

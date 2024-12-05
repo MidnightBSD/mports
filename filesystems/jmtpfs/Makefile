@@ -1,6 +1,6 @@
 PORTNAME=	jmtpfs
 DISTVERSION=	g20190420
-CATEGORIES=	sysutils
+CATEGORIES=	filesystems sysutils
 PKGNAMEPREFIX=	fusefs-
 
 MAINTAINER=	ports@MidnightBSD.org
