@@ -6,6 +6,7 @@ SUBDIR += bonnie
 SUBDIR += compiler-benchmark
 SUBDIR += dkftpbench
 SUBDIR += fhourstones
+SUBDIR += fio
 SUBDIR += flops
 SUBDIR += gtkperf
 SUBDIR += hey
