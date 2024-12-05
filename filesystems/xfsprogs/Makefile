@@ -1,6 +1,6 @@
 PORTNAME=	xfsprogs
 PORTVERSION=	3.2.4
-CATEGORIES=	sysutils
+CATEGORIES=	filesystems sysutils
 MASTER_SITES=	ftp://oss.sgi.com/projects/xfs/cmd_tars/ \
 		ftp://oss.sgi.com/projects/xfs/previous/cmd_tars/
 
