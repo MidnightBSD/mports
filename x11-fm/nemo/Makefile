@@ -1,8 +1,6 @@
-# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-
 PORTNAME=	nemo
 PORTVERSION=	4.8.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-fm gnome
 DIST_SUBDIR=	gnome
 
@@ -21,7 +19,7 @@ LIB_DEPENDS=	libcinnamon-desktop.so:x11/cinnamon-desktop \
 		libxapp.so:x11/xapp
 RUN_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme \
 		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
-		gvfs>0:devel/gvfs
+		gvfs>0:filesystems/gvfs
 
 USES=		compiler:c11 desktop-file-utils gettext gnome meson pkgconfig \
 		python:3.5+ shared-mime-info shebangfix xorg
