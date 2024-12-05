@@ -41,6 +41,7 @@ SUBDIR += consolehm
 SUBDIR += coreutils
 SUBDIR += datadog-agent
 SUBDIR += datadog-integrations
+SUBDIR += ddrescue
 SUBDIR += debootstrap
 SUBDIR += devcpu-data
 SUBDIR += devcpu-data-amd
