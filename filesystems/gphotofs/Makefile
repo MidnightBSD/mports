@@ -1,19 +1,23 @@
 PORTNAME=	gphotofs
-PORTVERSION=	0.5
-CATEGORIES=	graphics sysutils
-MASTER_SITES=	SF/gphoto/${PORTNAME}/${PORTVERSION}.0
+DISTVERSION=	0.5.20181029
+CATEGORIES=	filesystems graphics sysutils
 PKGNAMEPREFIX=	fusefs-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mount PTP camera as a file system
-WWW=		http://gphoto.sourceforge.net/proj/gphotofs/
+WWW=		https://github.com/gphoto/gphotofs
 
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libgphoto2.so:graphics/libgphoto2
 
-USES=		fuse gnome pkgconfig tar:bzip2
+USES=		autoreconf fuse gnome libtool pkgconfig
 USE_GNOME=	glib20
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	gphoto
+GH_TAGNAME=	9f9f594
+
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/gphotofs

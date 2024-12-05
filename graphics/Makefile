@@ -36,7 +36,6 @@ SUBDIR += freeglut
 SUBDIR += freeimage
 SUBDIR += frei0r
 SUBDIR += ftgl
-SUBDIR += fusefs-gphotofs
 SUBDIR += gd
 SUBDIR += gdal
 SUBDIR += gdchart
