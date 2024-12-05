@@ -14,7 +14,7 @@ CONFIGURE_ARGS=	--enable-elf-shlibs --enable-libuuid
 WITHOUT_NLS=	yes
 OPTIONS_EXCLUDE=	NLS
 OPTIONSFILE=	# works around optionsNG trouble
-MASTERDIR=	${.CURDIR}/../../sysutils/e2fsprogs-core
+MASTERDIR=	${.CURDIR}/../../filesystems/e2fsprogs-core
 MAKE_ARGS=	LIB_SUBDIRS=lib/uuid
 USE_LDCONFIG=	yes
 ALL_TARGET=	libs

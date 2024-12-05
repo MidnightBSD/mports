@@ -180,7 +180,6 @@ SUBDIR += gsettings-desktop-schemas
 SUBDIR += gsoap
 SUBDIR += gstreamer1-plugins-soup
 SUBDIR += gumbo
-SUBDIR += gvfs
 SUBDIR += highlighterkit
 SUBDIR += highway
 SUBDIR += hs-cabal-install

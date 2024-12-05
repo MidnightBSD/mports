@@ -13,6 +13,7 @@ SUBDIR += devel
 SUBDIR += dns
 SUBDIR += editors
 SUBDIR += emulators
+SUBDIR += filesystems
 SUBDIR += finance
 SUBDIR += ftp
 SUBDIR += games

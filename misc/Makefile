@@ -17,7 +17,6 @@ SUBDIR += cpuid
 SUBDIR += dejagnu
 SUBDIR += dict-de
 SUBDIR += dnetc
-SUBDIR += e2fsprogs-libblkid
 SUBDIR += e2fsprogs-libuuid
 SUBDIR += findutils
 SUBDIR += getopt

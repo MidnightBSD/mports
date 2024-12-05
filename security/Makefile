@@ -14,7 +14,6 @@ SUBDIR += clamav
 SUBDIR += clamav-lts
 SUBDIR += clamav-unofficial-sigs
 SUBDIR += clamd-stream-client
-SUBDIR += clamfs
 SUBDIR += clamsmtp
 SUBDIR += clamtk
 SUBDIR += courier-authlib
