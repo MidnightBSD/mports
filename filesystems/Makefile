@@ -137,8 +137,6 @@
     SUBDIR += zfstools
     SUBDIR += zip
     SUBDIR += zisofs-tools
-    SUBDIR += zrepl
-    SUBDIR += zrepl-dsh2dsh
     SUBDIR += ztop
     SUBDIR += zxfer
 

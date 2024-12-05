@@ -295,6 +295,7 @@ SUBDIR += py-sphinx-copybutton
 SUBDIR += py-sphinx-inline-tabs
 SUBDIR += py-sphinx-markdown-tables
 SUBDIR += py-sphinx-me
+SUBIDR += py-sphinx-multiversion-zrepl
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-adadomain
 SUBDIR += py-sphinxcontrib-applehelp
