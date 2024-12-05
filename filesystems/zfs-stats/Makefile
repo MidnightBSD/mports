@@ -1,6 +1,6 @@
 PORTNAME=	zfs-stats
-PORTVERSION=	1.3.0
-CATEGORIES=	sysutils
+PORTVERSION=	1.3.2
+CATEGORIES=	filesystems sysutils
 MASTER_SITES=	GH
 
 MAINTAINER=	ports@MidnightBSD.org

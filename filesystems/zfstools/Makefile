@@ -1,10 +1,8 @@
-
-
 PORTNAME=	zfstools
 DISTVERSIONPREFIX=v
 DISTVERSION=	0.3.6
-PORTREVISION=	0
-CATEGORIES=	sysutils ruby
+PORTREVISION=	1
+CATEGORIES=	filesystems sysutils ruby
 MASTER_SITES=	GH \
 		http://mirror.shatow.net/freebsd/${PORTNAME}/
 
@@ -14,6 +12,8 @@ COMMENT=	OpenSolaris-compatible auto snapshotting for ZFS
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+USES=		ruby shebangfix
+SHEBANG_FILES=	bin/*
 USE_GITHUB=	yes
 GH_ACCOUNT=	bdrewery
 
