@@ -1,6 +1,6 @@
 PORTNAME=	aide
 PORTVERSION=	0.18.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/aide/aide/releases/download/v${PORTVERSION}/
 
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libmhash.so:security/mhash \
 		libpcre2-8.so:devel/pcre2 \
-		libe2p.so:sysutils/e2fsprogs-core
+		libe2p.so:filesystems/e2fsprogs-core
 
 USES=		bison gmake localbase pkgconfig:build
 
