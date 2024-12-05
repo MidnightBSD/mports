@@ -1,6 +1,6 @@
 PORTNAME=	dsbmd
 PORTVERSION=	1.11.4
-CATEGORIES=	sysutils
+CATEGORIES=	filesystems sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Media mounting daemon
@@ -33,12 +33,12 @@ LKL_DESC=	Btrfs and XFS support through Linux Kernel Library
 NTFS_DESC=	Mount NTFS filesystems with read and write support
 PTP_DESC=	Picture Transfer Protocol support
 
-EXFAT_RUN_DEPENDS=	mount.exfat:sysutils/fusefs-exfat
-EXT4_RUN_DEPENDS=	fuse-ext2:sysutils/fusefs-ext2
-HFS_RUN_DEPENDS=	hfsfuse:sysutils/fusefs-hfsfuse
-LKL_RUN_DEPENDS=	lklfuse:sysutils/fusefs-lkl
-MTP_RUN_DEPENDS=	jmtpfs:sysutils/fusefs-jmtpfs
-NTFS_RUN_DEPENDS=	ntfs-3g:sysutils/fusefs-ntfs
-PTP_RUN_DEPENDS=	gphotofs:graphics/fusefs-gphotofs
+EXFAT_RUN_DEPENDS=	mount.exfat:filesystems/exfat
+EXT4_RUN_DEPENDS=	fuse-ext2:filesystems/ext2
+HFS_RUN_DEPENDS=	hfsfuse:filesystems/hfsfuse
+LKL_RUN_DEPENDS=	lklfuse:filesystems/lkl
+MTP_RUN_DEPENDS=	jmtpfs:filesystems/jmtpfs
+NTFS_RUN_DEPENDS=	ntfs-3g:filesystems/ntfs
+PTP_RUN_DEPENDS=	gphotofs:filesystems/gphotofs
 
 .include <bsd.port.mk>
