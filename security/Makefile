@@ -58,6 +58,7 @@ SUBDIR += krb5-121
 SUBDIR += l0phtcrack
 SUBDIR += libargon2
 SUBDIR += libassuan
+SUBDIR += libcaes
 SUBDIR += libcryptui
 SUBDIR += libfido2
 SUBDIR += libgcrypt
