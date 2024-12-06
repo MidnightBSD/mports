@@ -1412,6 +1412,7 @@ SUBDIR += talloc
 SUBDIR += talloc1
 SUBDIR += tbb
 SUBDIR += tcl-memchan
+SUBDIR += tclap
 SUBDIR += tcl-trf
 SUBDIR += tcllib
 SUBDIR += tevent
