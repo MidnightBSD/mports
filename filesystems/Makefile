@@ -1,6 +1,5 @@
     COMMENT = File systems and related utilities
 
-    SUBDIR += R-cran-fs
     SUBDIR += acfgfs
     SUBDIR += afuse
     SUBDIR += archivemount
