@@ -1,15 +1,14 @@
 PORTNAME=	icu
-DISTVERSION=	73_2
-PORTREVISION?=	0 # keep for icu-lx
+DISTVERSION=	74_2
+PORTREVISION?=	1 # keep for icu-lx
 PORTEPOCH?=	1
 CATEGORIES?=	devel
-MASTER_SITES=	https://github.com/unicode-org/${PORTNAME}/releases/download/release-${DISTVERSION:S/rc/-&/:S/_/-/g}/ \
-		SF/${PORTNAME}/${PORTNAME:tu}4C/${PORTVERSION}
+MASTER_SITES=	https://github.com/unicode-org/${PORTNAME}/releases/download/release-${DISTVERSION:S/rc/-&/:S/_/-/g}/
 DISTNAME=	icu4c-${DISTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	International Components for Unicode (from IBM)
-WWW=		http://site.icu-project.org/
+COMMENT?=	International Components for Unicode (from IBM)
+WWW=		https://icu.unicode.org/
 
 LICENSE=	icu
 LICENSE_NAME=	ICU license
