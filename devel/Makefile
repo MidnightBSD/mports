@@ -1363,6 +1363,7 @@ SUBDIR += rebar3
 SUBDIR += riscv64-none-elf-gcc
 SUBDIR += rlog
 SUBDIR += ruby-gems
+SUBDIR += rubygem-builder
 SUBDIR += rubygem-concurrent-ruby
 SUBDIR += rubygem-cool.io
 SUBDIR += rubygem-i18n
