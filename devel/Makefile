@@ -1368,6 +1368,7 @@ SUBDIR += rubygem-concurrent-ruby
 SUBDIR += rubygem-cool.io
 SUBDIR += rubygem-i18n
 SUBDIR += rubygem-iobuffer
+SUBDIR += rubygem-logger
 SUBDIR += rubygem-msgpack
 SUBDIR += rubygem-mustache
 SUBDIR += rubygem-rdoc
