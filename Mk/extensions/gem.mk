@@ -18,15 +18,17 @@ IGNORE= Incorrect 'USES+= gem:${gem_ARGS}' usage: argument [${arg}] is not recog
 .    endif
 .  endfor
 
-BUILD_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
-RUN_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
+# "USES=gem" implies "USES=ruby"
+.include "${MPORTEXTENSIONS}/ruby.mk"
 
 PKGNAMEPREFIX?=	rubygem-
 EXTRACT_SUFX=	.gem
 EXTRACT_ONLY=
 DIST_SUBDIR=	rubygem
 
+BUILD_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
 EXTRACT_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
+RUN_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
 GEMS_BASE_DIR=	lib/ruby/gems/${RUBY_VER}
 CACHE_DIR=	${GEMS_BASE_DIR}/cache
 DOC_DIR=	${GEMS_BASE_DIR}/doc
@@ -64,10 +66,17 @@ PLIST_SUB+=	PORTVERSION="${PORTVERSION}" \
 
 RUBYGEMBIN=	${LOCALBASE}/bin/gem
 
-.  if defined(DISTFILES)
-GEMFILES=	${DISTFILES:C/:[^:]+$//}
+.  if defined(GEMS_SKIP_SUBDIR)
+# do not define a DIST_SUBDIR, currently required to have cargo archives available in the gem source directory to be able to compile it
+#DIST_SUBDIR=
 .  else
-GEMFILES=	${DISTNAME}${EXTRACT_SUFX}
+DIST_SUBDIR=	rubygem
+.  endif
+
+.  if defined(DISTFILES)
+GEMFILES?=	${DISTFILES:C/:[^:]+$//}
+.  else
+GEMFILES?=	${DISTNAME}${EXTRACT_SUFX}
 .  endif
 
 RUBYGEM_ARGS=-l --no-update-sources --install-dir ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/gems/${RUBY_VER} --ignore-dependencies --bindir=${FAKE_DESTDIR}${TRUE_PREFIX}/bin
@@ -103,8 +112,8 @@ do-build:
 
 .  if !target(do-install)
 do-install:
-	(cd ${PREFIX}/bin && ln -sf ${RUBY_WITH_SUFFIX$}) 
-	(cd ${BUILD_WRKSRC}; ${SETENVI} ${WRK_ENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} ${CONFIGURE_ARGS})
+#	(cd ${PREFIX}/bin && ln -sf ${RUBY_WITH_SUFFIX$}) 
+	(cd ${BUILD_WRKSRC}; ${SETENVI} ${WRK_ENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} -- ${CONFIGURE_ARGS})
 	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}/build_info/
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f \( -name mkmf.log -or -name gem_make.out \) -delete
