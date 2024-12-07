@@ -9,9 +9,8 @@ COMMENT=	Automatic ZFS snapshot management tool
 
 LICENSE=	bsd2
 
-USE_RUBY=	yes
-RUBY_NO_BUILD_DEPENDS=	yes
-RUBY_SHEBANG_FILES=	zfs-snapshot-mgmt
+USES=		ruby:run shebangfix
+SHEBANG_FILES=	zfs-snapshot-mgmt
 
 NO_BUILD=	yes
 

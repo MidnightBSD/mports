@@ -11,7 +11,6 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE-MIT
 
 USES=		gem
-USE_RUBY=	yes
 
 pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/

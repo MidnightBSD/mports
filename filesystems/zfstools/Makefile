@@ -17,7 +17,6 @@ SHEBANG_FILES=	bin/*
 USE_GITHUB=	yes
 GH_ACCOUNT=	bdrewery
 
-USE_RUBY=	yes
 NO_BUILD=	yes
 
 SUB_FILES=	pkg-message

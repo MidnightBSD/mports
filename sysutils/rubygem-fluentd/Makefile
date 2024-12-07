@@ -5,6 +5,7 @@ MASTER_SITES=	RG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fluent event collector
+WWW=		https://fluentd.org/
 
 LICENSE=	apache2
 
@@ -28,7 +29,6 @@ PLIST_FILES=	bin/fluent-cap-ctl bin/fluent-cat bin/fluent-ctl \
 		"@sample etc/fluentd/fluent.conf.sample"
 PLIST_DIRS=	etc/fluentd/plugin
 USES=		cpe gem
-USE_RUBY=	yes
 USE_RC_SUBR=	fluentd
 USERS=		fluentd
 GROUPS=		fluentd

@@ -1,7 +1,5 @@
-# Created by: Eric Freeman <freebsdports@chillibear.com>
-
 PORTNAME=	money
-PORTVERSION=	6.13.1
+PORTVERSION=	6.14.1
 CATEGORIES=	finance rubygems
 MASTER_SITES=	RG
 
@@ -14,7 +12,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	rubygem-i18n>=0.6.4:devel/rubygem-i18n
 
 USES=		gem
-USE_RUBY=	yes
 
 NO_ARCH=	yes
 

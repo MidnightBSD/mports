@@ -248,7 +248,6 @@ SUBDIR += py-yarl
 SUBDIR += qt5-webchannel
 SUBDIR += qt5-webengine
 SUBDIR += qt5-webglplugin
-SUBDIR += qt5-webkit
 SUBDIR += qt5-websockets
 SUBDIR += qt5-websockets-qml
 SUBDIR += qt5-webview

@@ -1,6 +1,6 @@
 PORTNAME=	ocl-icd
 DISTVERSIONPREFIX=	v
-PORTVERSION=	2.3.1
+PORTVERSION=	2.3.2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,12 +12,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	opencl>=3.0:devel/opencl
 
-USES=		autoreconf gmake libtool localbase:ldflags pathfix
+USES=		autoreconf gmake libtool localbase:ldflags pathfix ruby:build
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	OCL-dev
-USE_RUBY=	yes
-RUBY_NO_RUN_DEPENDS=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-DCL_TARGET_OPENCL_VERSION=300
@@ -27,7 +25,7 @@ INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS+=--disable-official-khronos-headers \
 		--enable-custom-vendordir \
 		--enable-pthread-once
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 OPTIONS_DEFINE=	DOCS MANPAGES
 OPTIONS_DEFAULT=MANPAGES
