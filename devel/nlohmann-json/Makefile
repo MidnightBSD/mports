@@ -1,13 +1,12 @@
-# Created by: Viacheslav Mikerov <SlavaMikerov@gmail.com>
-
 PORTNAME=	json
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.10.4
+DISTVERSION=	3.11.3
 CATEGORIES=	devel
 PKGNAMEPREFIX=	nlohmann-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON library for Modern C++
+WWW=		https://nlohmann.github.io/json
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.MIT
