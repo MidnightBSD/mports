@@ -1,8 +1,10 @@
 PORTNAME=	flac
-PORTVERSION=	1.4.2
+DISTVERSION=	1.4.3
 PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	audio
-MASTER_SITES=	https://downloads.xiph.org/releases/flac/
+MASTER_SITES=	https://downloads.xiph.org/releases/flac/ \
+		https://github.com/xiph/flac/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
@@ -27,16 +29,13 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
 		--with-ogg="${LOCALBASE}" \
 		--disable-doxygen-docs \
-		--disable-thorough-tests \
-		--disable-xmms-plugin
+		--disable-thorough-tests
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
-
-CONFIGURE_ARGS+=--disable-vsx
 
 post-install:
 	cd ${PREFIX}/lib && ${LN} -sf libFLAC.so.12 libFLAC.so.8
