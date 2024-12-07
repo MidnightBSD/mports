@@ -22,14 +22,11 @@ RUN_DEPENDS=	libffi>=0:devel/libffi
 
 FAKE_OPTS=    trueprefix
 
-USES=		autoreconf cpe ssl tar:xz
+USES=		autoreconf cpe localbase ruby:none ssl tar:xz
 CPE_VENDOR=	ruby-lang
 CPE_VERSION=	${RUBY_RELVERSION}
 CPE_UPDATE=	p${RUBY_PATCHLEVEL}
 USE_LDCONFIG=	yes
-USE_RUBY=	yes
-RUBY_NO_BUILD_DEPENDS=	yes
-RUBY_NO_RUN_DEPENDS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
@@ -44,7 +41,7 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
                 --with-rubyhdrdir="${LOCALBASE}/include/ruby-3.1/" \
                 --with-rubylibprefix="${LOCALBASE}/lib/ruby" \
                 --docdir="${LOCALBASE}/share/doc/ruby31" \
-                --mandir="${LOCALBASE}/man" \
+                --mandir="${LOCALBASE}/share/man" \
                --with-destdir=${FAKE_DESTDIR}
 CONFIGURE_ENV=	debugflags=
 
@@ -185,7 +182,7 @@ post-install:
 # Link "ruby.1.gz" to "ruby31.1.gz", etc.
 #
 . for FILE in ${INSTALLED_MANUALS}
-	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${MANPREFIX}/man/man1/${FILE}.1.gz
+	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${PREFIX}/share/man/man1/${FILE}.1.gz
 . endfor
 .endif
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
