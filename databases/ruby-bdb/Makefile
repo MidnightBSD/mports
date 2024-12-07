@@ -16,16 +16,13 @@ LICENSE=	ruby
 
 BUILD_DEPENDS=	rubygem-rdoc>=0.a:devel/rubygem-rdoc
 
+USES=		bdb ruby:extconf shebangfix tar:bzip2
 USE_BDB=	yes
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 OPTIONSFILE=	${PORT_DBDIR}/ruby-${PORTNAME}/options
 
 MAKE_ENV+=	RUBY_RDOC=${LOCALBASE}/bin/rdoc
-
-USE_RUBY=		yes
-USE_RUBY_EXTCONF=	yes
-USE_RUBY_RDOC=		yes
 
 ALL_TARGET=	all rdoc
 CONFIGURE_ARGS=	--with-db-include=${BDB_INCLUDE_DIR} \
