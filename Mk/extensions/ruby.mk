@@ -1,7 +1,3 @@
-# bsd.ruby.mk - Utility definitions for Ruby related ports.
-#
-# Created by: Akinori MUSHA <knu@FreeBSD.org>
-
 .if !defined(_POST_MKINCLUDED) && !defined(Ruby_Pre_Include)
 
 Ruby_Pre_Include=			ruby.mk
@@ -97,6 +93,20 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 
 .include "${PORTSDIR}/Mk/components/default-versions.mk"
 
+_valid_ARGS=		build extconf none run setup
+
+# "USES=gem" implies "USES=ruby"
+.  if defined(_INCLUDE_USES_GEM_MK)
+ruby_ARGS=
+.  endif
+
+# Sanity check
+.  for arg in ${ruby_ARGS}
+.    if empty(_valid_ARGS:M${arg})
+IGNORE= Incorrect 'USES+= ruby:${ruby_ARGS}' usage: argument [${arg}] is not recognized
+.    endif
+.  endfor
+
 .if defined(RUBY_DEFAULT_VER)
 WARNING+=	"RUBY_DEFAULT_VER is defined, consider using DEFAULT_VERSIONS=ruby=${RUBY_DEFAULT_VER} instead"
 .  endif
@@ -131,14 +141,7 @@ RUBY?=			${LOCALBASE}/bin/ruby${RUBY_SUFFIX}
 .    if defined(RUBY_VER)
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-.      if ${RUBY_VER} == 3.0
-#
-# Ruby 3.0
-#
-RUBY_DISTVERSION=	3.0.5
-RUBY_PORTREVISION=	0
-RUBY_PORTEPOCH=		1
-.      elif ${RUBY_VER} == 3.1
+.      if ${RUBY_VER} == 3.1
 #
 # Ruby 3.1
 #
@@ -154,13 +157,21 @@ RUBY_DISTVERSION=	3.2.5
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
 
+.      elif ${RUBY_VER} == 3.3
+#
+# Ruby 3.3
+#
+RUBY_DISTVERSION=	3.3.6
+RUBY_PORTREVISION=	0
+RUBY_PORTEPOCH=		1
+
 # When adding a version, please keep the comment in
 # Mk/components/default-versions.mk in sync.
 . else
 #
 # Other versions
 #
-IGNORE=	Only ruby 3.0, 3.1 and 3.2 are supported
+IGNORE=	Only ruby 3.1, 3.2 and 3.3 are supported
 _INVALID_RUBY_VER=	1
 .      endif
 RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
@@ -168,9 +179,9 @@ RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
 
 .    if !defined(_INVALID_RUBY_VER)
 
-RUBY30?=		"@comment "
 RUBY31?=		"@comment "
 RUBY32?=		"@comment "
+RUBY33?=		"@comment "
 
 .      if defined(BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E})
 .        if ${BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E}} == "yes"
@@ -271,7 +282,7 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_ARCH="${RUBY_ARCH}" \
 			RUBY_SUFFIX="${RUBY_SUFFIX}" \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
-			RUBY30=${RUBY30} \
+			RUBY33=${RUBY33} \
 			RUBY31=${RUBY31} \
 			RUBY32=${RUBY32}
 
@@ -282,8 +293,7 @@ RUBY_FLAGS+=	-d
 #
 # extconf.rb support
 #
-.    if defined(USE_RUBY_EXTCONF)
-USE_RUBY=		yes
+.    if ${ruby_ARGS:Mextconf}
 
 RUBY_EXTCONF?=		extconf.rb
 CONFIGURE_ARGS+=	--with-opt-dir="${LOCALBASE}"
@@ -308,7 +318,7 @@ ruby-extconf-configure:
 #
 # setup.rb support
 #
-.    if defined(USE_RUBY_SETUP)
+.    if ${ruby_ARGS:Msetup}
 RUBY_SETUP?=		setup.rb
 
 do-configure:	ruby-setup-configure
@@ -331,17 +341,19 @@ ruby-setup-install:
 	@${ECHO_MSG} "===>  Running ${RUBY_SETUP} to install"
 	@cd ${INSTALL_WRKSRC}; \
 	${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${RUBY} ${RUBY_FLAGS} ${RUBY_SETUP} install --prefix=${FAKE_DESTDIR}
-.endif
+.    endif
 
-.    if defined(USE_RUBY)
-.      if !defined(RUBY_NO_BUILD_DEPENDS)
+.    if !${ruby_ARGS:Mbuild} && !${ruby_ARGS:Mrun} && !${ruby_ARGS:Mnone}
 EXTRACT_DEPENDS+=	${DEPEND_RUBY}
 PATCH_DEPENDS+=		${DEPEND_RUBY}
 BUILD_DEPENDS+=		${DEPEND_RUBY}
-.      endif
-.      if !defined(RUBY_NO_RUN_DEPENDS)
 RUN_DEPENDS+=		${DEPEND_RUBY}
-.      endif
+.    elif ${ruby_ARGS:Mbuild}
+EXTRACT_DEPENDS+=	${DEPEND_RUBY}
+PATCH_DEPENDS+=		${DEPEND_RUBY}
+BUILD_DEPENDS+=		${DEPEND_RUBY}
+.    elif ${ruby_ARGS:Mrun}
+RUN_DEPENDS+=		${DEPEND_RUBY}
 .    endif
 
 .  endif # _INVALID_RUBY_VER

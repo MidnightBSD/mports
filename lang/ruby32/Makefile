@@ -22,14 +22,11 @@ RUN_DEPENDS=	libffi>=0:devel/libffi
 
 FAKE_OPTS=    trueprefix
 
-USES=		autoreconf cpe ssl tar:xz
+USES=		autoreconf cpe localbase ruby:none ssl tar:xz
 CPE_VENDOR=	ruby-lang
 CPE_VERSION=	${RUBY_RELVERSION}
 CPE_UPDATE=	p${RUBY_PATCHLEVEL}
 USE_LDCONFIG=	yes
-USE_RUBY=	yes
-RUBY_NO_BUILD_DEPENDS=	yes
-RUBY_NO_RUN_DEPENDS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
@@ -185,13 +182,16 @@ post-install:
 # Link "ruby.1.gz" to "ruby31.1.gz", etc.
 #
 . for FILE in ${INSTALLED_MANUALS}
-	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${MANPREFIX}/man/man1/${FILE}.1.gz
+	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${PREFIX}/share/man/man1/${FILE}.1.gz
 . endfor
 .endif
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
                 ${PREFIX}/lib/ruby/3.2/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
                 ${PREFIX}/libdata/pkgconfig/ruby-3.2.pc
 
+post-install-CAPIDOCS-on:
+	${RM} ${WRKSRC}/doc/capi/.timestamp ${FAKE_DESTDIR}${PREFIX}/share/doc/ruby${RUBY_SUFFIX}/capi/.timestamp
+	cd ${FAKE_DESTDIR}${PREFIX} && ${FIND} share/doc/ruby${RUBY_SUFFIX}/capi/ -type f >> ${TMPPLIST}
 
 post-install-DEBUG-off:
 #
