@@ -53,7 +53,6 @@ SUBDIR += py-text-unidecode
 SUBDIR += py-unidecode
 SUBDIR += py-webencodings
 SUBDIR += recode
-SUBDIR += ruby-dump.rb
 SUBDIR += trans
 SUBDIR += unix2dos
 SUBDIR += uudeview

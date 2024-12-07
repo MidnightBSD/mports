@@ -1,5 +1,5 @@
 PORTNAME=	gems
-PORTVERSION=	3.4.17
+PORTVERSION=	3.5.23
 CATEGORIES=	devel ruby
 MASTER_SITES=	https://rubygems.org/rubygems/
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
@@ -8,7 +8,8 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Package management framework for the Ruby language
-WWW=		https://rubygems.org/
+WWW=		https://rubygems.org/ \
+		https://github.com/rubygems/rubygems
 
 LICENSE=	mit ruby
 LICENSE_COMB=	dual
@@ -17,8 +18,7 @@ LICENSE_FILE_ruby=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 
-USES=		cpe tar:tgz
-USE_RUBY=	yes
+USES=		cpe ruby tar:tgz
 
 GEMS_BASE_DIR=	lib/ruby/gems/${RUBY_VER}
 GEMS_ENV=	GEM_HOME=${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}
@@ -61,8 +61,8 @@ post-patch:
 	-@${RM} ${WRKSRC}/lib/rubygems/commands/setup_command.rb.orig
 
 pre-fake:
-	${LN} -sf /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/
-	${LN} -sf gem${RUBY_VER_SHORT} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/gem
+	${LN} -sf ${RUBY} ${FAKE_DESTDIR}${RUBY}
+#	${LN} -sf gem${RUBY_VER_SHORT} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/gem
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${GEMS_BASE_DIR}
@@ -71,11 +71,12 @@ do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${DOC_DIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/${EXT_DIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/${GEMS_DIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/${PLUGINS_DIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/${SPEC_DIR}
 	cd ${WRKSRC}/ && ${SETENV} ${GEMS_ENV} ${RUBY} ${RUBY_SETUP} ${RUBY_SETUP_OPTIONS}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/gem ${PREFIX}/bin/gem${RUBY_VER_SHORT}
-	${LN} -sf gem${RUBY_SUFFIX} ${STAGEDIR}${PREFIX}/bin/gem
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/gem${RUBY_VER_SHORT}
+	${INSTALL_SCRIPT} ${WRKSRC}/exe/gem ${PREFIX}/bin/gem
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/gem
+
 
 # Find all RDOC and RI files
 post-install-DOCS-on:

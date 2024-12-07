@@ -1372,6 +1372,7 @@ SUBDIR += rubygem-msgpack
 SUBDIR += rubygem-mustache
 SUBDIR += rubygem-rdoc
 SUBDIR += rubygem-sigdump
+SUBDIR += rubygem-stringio
 SUBDIR += rubygem-strptime
 SUBDIR += rubygem-svn2git
 SUBDIR += rubygem-thread_safe

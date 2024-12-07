@@ -1,5 +1,5 @@
 PORTNAME=	rdiscount
-PORTVERSION=	2.2.0.2
+PORTVERSION=	2.2.7.3
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
@@ -10,7 +10,6 @@ WWW=		https://dafoster.net/projects/rdiscount/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_RUBY=	yes
 USES=		gem
 
 PLIST_FILES=	bin/rdiscount
