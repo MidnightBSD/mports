@@ -9,7 +9,6 @@ WWW=		https://github.com/hpricot/hpricot
 
 LICENSE=	mit
 
-USE_RUBY=	yes
 USES=		gem
 
 RUBY_VER_SHORT=            ${RUBY_VER:S/.//}
