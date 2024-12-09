@@ -11,6 +11,7 @@ WWW=		https://facebook.github.io/zstd/ \
 LICENSE=	bsd3 gpl2
 LICENSE_COMB=	dual
 
+LIB_DEPENDS=	liblz4.so:archivers/liblz4
 TEST_DEPENDS=	gmd5sum:sysutils/coreutils
 
 USES=		meson pkgconfig python:build shebangfix
@@ -25,12 +26,8 @@ PLIST_SUB=	BUILD_TYPE=${BUILD_TYPE:tl} PORTVERSION=${PORTVERSION}
 SUB_FILES=	zstdConfigVersion.cmake zstdTargets-BUILD_TYPE.cmake
 SUB_LIST=	BUILD_TYPE_CAPS=${BUILD_TYPE:tu} BUILD_TYPE_MIXED=${BUILD_TYPE} PORTVERSION=${PORTVERSION}
 
-OPTIONS_DEFINE=	LZ4 OPTIMIZED_CFLAGS TEST
-OPTIONS_DEFAULT=LZ4
+OPTIONS_DEFINE=	OPTIMIZED_CFLAGS TEST
 
-LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
-LZ4_MESON_ENABLED=	lz4
-LZ4_USES=		localbase:ldflags
 OPTIMIZED_CFLAGS_VARS=	CFLAGS+=-O3
 TEST_MESON_TRUE=	bin_tests
 
