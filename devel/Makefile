@@ -1286,6 +1286,7 @@ SUBDIR += py-typing-extensions
 SUBDIR += py-typing-inspect
 SUBDIR += py-tzdata
 SUBDIR += py-ujson
+SUBDIR += py-undefined
 SUBDIR += py-unicodedata2
 SUBDIR += py-unidiff
 SUBDIR += py-unittest2
