@@ -12,7 +12,6 @@
     SUBDIR += cramfs
     SUBDIR += cryptofs
     SUBDIR += curlftpfs
-    SUBDIR += darling-dmg
     SUBDIR += dsbmc
     SUBDIR += dsbmc-cli
     SUBDIR += dsbmd
@@ -69,7 +68,6 @@
     SUBDIR += moosefs3-master
     SUBDIR += moosefs3-metalogger
     SUBDIR += moosefs3-netdump
-    SUBDIR += mp3fs
     SUBDIR += mtools
     SUBDIR += mtpfs
     SUBDIR += nbt
@@ -91,14 +89,11 @@
     SUBDIR += py-fsspec-xrootd
     SUBDIR += py-fusepy
     SUBDIR += py-gcsfs
-    SUBDIR += py-libzfs
     SUBDIR += py-llfuse
-    SUBDIR += py-prometheus-zfs
     SUBDIR += py-pyfakefs
     SUBDIR += py-s3fs
     SUBDIR += py-zfs-autobackup
     SUBDIR += rar2fs
-    SUBDIR += rubygem-winrm-fs
     SUBDIR += s3backer
     SUBDIR += s3fs
     SUBDIR += sandboxfs
