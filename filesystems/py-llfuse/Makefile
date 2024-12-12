@@ -1,11 +1,12 @@
 PORTNAME=	llfuse
 PORTVERSION=	1.3.8
-CATEGORIES=	devel python
+CATEGORIES=	filesystems devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for low-level FUSE API
+WWW=		https://github.com/python-llfuse/python-llfuse
 
 LICENSE=	lgpl
 
