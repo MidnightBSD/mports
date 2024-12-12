@@ -29,6 +29,7 @@ SUBDIR += prometheus-collectd-exporter
 SUBDIR += prometheus1
 SUBDIR += prometheus2
 SUBDIR += promscale
+SUBDIR += py-prometheus-client
 SUBDIR += softflowd
 SUBDIR += subcalc
 SUBDIR += sysmon
