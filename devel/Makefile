@@ -1045,7 +1045,6 @@ SUBDIR += py-libpeas
 SUBDIR += py-libvirt
 SUBDIR += py-linecache2
 SUBDIR += py-littleutils
-SUBDIR += py-llfuse
 SUBDIR += py-lockfile
 SUBDIR += py-logfury
 SUBDIR += py-logutils
