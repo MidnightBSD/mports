@@ -1,5 +1,5 @@
---- configure.ac.orig	2022-03-23 16:12:04.000000000 -0400
-+++ configure.ac	2022-04-18 10:51:22.723874000 -0400
+--- configure.ac.orig	2024-12-03 12:27:57.000000000 -0500
++++ configure.ac	2024-12-14 14:01:37.084600000 -0500
 @@ -844,7 +844,7 @@
  # else
  #   error unknown platform triplet
@@ -26,6 +26,15 @@
  	  LDLIBRARY='libpython$(LDVERSION).so'
  	  BLDLIBRARY='-L. -lpython$(LDVERSION)'
  	  RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+@@ -1380,7 +1381,7 @@
+ [AC_MSG_RESULT(no)])
+ if test "$Py_LTO" = 'true' ; then
+   case $CC in
+-    *clang*)
++    *clang*|cc)
+       AC_SUBST(LLVM_AR)
+       AC_PATH_TOOL(LLVM_AR, llvm-ar, '', ${llvm_path})
+       AC_SUBST(LLVM_AR_FOUND)
 @@ -2715,7 +2716,7 @@
  	Linux*|GNU*|QNX*|VxWorks*)
  		LDSHARED='$(CC) -shared'
@@ -53,12 +62,12 @@
  		if [[ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]]
  		then
  			LINKFORSHARED="-Wl,--export-dynamic"
-@@ -3090,6 +3091,8 @@
+@@ -3089,6 +3090,8 @@
+ [AC_MSG_RESULT(no)])
  
  PKG_PROG_PKG_CONFIG
- 
-+AC_SUBST(DISABLED_EXTENSIONS)
 +
++AC_SUBST(DISABLED_EXTENSIONS)
+ 
  # Check for use of the system expat library
  AC_MSG_CHECKING(for --with-system-expat)
- AC_ARG_WITH(system_expat,

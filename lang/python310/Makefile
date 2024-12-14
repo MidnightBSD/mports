@@ -8,13 +8,14 @@ DIST_SUBDIR=	python
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interpreted object-oriented programming language
+WWW=		https://www.python.org/
 
 LICENSE=	python
 
 LIB_DEPENDS=	libffi.so:devel/libffi
 
-USES=		compiler:c11 cpe ncurses pathfix pkgconfig readline \
-		shebangfix ssl tar:xz
+USES=		compiler:c11 cpe ncurses pathfix pkgconfig \
+		python:${PYTHON_DISTVERSION:R},env readline shebangfix ssl tar:xz
 PATHFIX_MAKEFILEIN=	Makefile.pre.in
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -24,14 +25,10 @@ SHEBANG_FILES+=	Lib/test/ziptestdata/exe_with_z64 \
 		Lib/test/ziptestdata/exe_with_zip \
 		Lib/test/ziptestdata/header.sh
 
-# Duplicate python.mk variables. TODO: Let lang/python?? ports use python.mk bits.
-PYTHON_VER=		${PYTHON_DISTVERSION:R}
-PYTHON_VERSION=		python${PYTHON_VER}
-PYTHON_SUFFIX=		${PYTHON_VER:S/.//g}
-
 DISABLED_EXTENSIONS=	_sqlite3 _tkinter _gdbm
-CONFIGURE_ARGS+=	--enable-shared --without-ensurepip
-CONFIGURE_ENV+=		OPT="" DISABLED_EXTENSIONS="${DISABLED_EXTENSIONS}"	# Null out OPT to respect user CFLAGS and remove optimizations
+CONFIGURE_ARGS+=	--enable-shared --without-ensurepip \
+			--with-system-ffi
+CONFIGURE_ENV+=		OPT="" # Null out OPT to respect user CFLAGS and remove optimizations
 
 INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 
@@ -47,15 +44,17 @@ PLIST_SUB=		ABI=${ABIFLAGS} \
 			XY=${PYTHON_SUFFIX} \
 			XYDOT=${PYTHON_VER} \
 			XYZDOT=${DISTVERSION} \
+			DISTVERSION=${DISTVERSION} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-midnightbsd* in pkg-plist. https://bugs.python.org/issue19554
 
-OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI NLS PYMALLOC
-OPTIONS_DEFAULT=	LIBFFI PYMALLOC
+OPTIONS_DEFINE=		DEBUG IPV6 LIBMPDEC LTO NLS PYMALLOC
+OPTIONS_DEFAULT=	LIBMPDEC PYMALLOC
+OPTIONS_EXCLUDE_riscv64=	LTO
 OPTIONS_RADIO=		HASH
 OPTIONS_RADIO_HASH=	FNV SIPHASH
 OPTIONS_SUB=		yes
 
-LIBFFI_DESC=		Use libffi from ports instead of bundled version
+LIBMPDEC_DESC=		Use libmpdec from ports instead of bundled version
 NLS_DESC=		Enable gettext support for the locale module
 PYMALLOC_DESC=		Enable specialized mallocs
 
@@ -69,8 +68,10 @@ SIPHASH_CONFIGURE_ON=	--with-hash-algorithm=siphash24
 DEBUG_CONFIGURE_WITH=	pydebug
 IPV6_CONFIGURE_ENABLE=	ipv6
 
-LIBFFI_CONFIGURE_ON=	--with-system-ffi
-LIBFFI_LIB_DEPENDS=	libffi.so:devel/libffi
+LIBMPDEC_CONFIGURE_ON=	--with-system-libmpdec
+LIBMPDEC_LIB_DEPENDS=	libmpdec.so:math/mpdecimal
+
+LTO_CONFIGURE_ON=	--with-lto
 
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3
@@ -98,16 +99,6 @@ PLIST_FILES+=	bin/python${PYTHON_VER}${ABIFLAGS} \
 		libdata/pkgconfig/python-${PYTHON_VER}${ABIFLAGS}-embed.pc
 .endif
 
-# https://bugs.python.org/issue22521
-# https://bugs.python.org/issue23042
-.if ${ARCH} == i386 && !${PORT_OPTIONS:MLIBFFI}
-BROKEN=		You must use libffi from ports on i386. Enable the LIBFFI option
-.endif
-
-.if ${ARCH} == sparc64
-CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
-.endif
-
 # See https://bugs.freebsd.org/115940 and https://bugs.freebsd.org/193650
 .if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS)
 PLIST_SUB+=	NO_NIS="@comment "
@@ -116,13 +107,9 @@ DISABLED_EXTENSIONS+=	nis
 PLIST_SUB+=	NO_NIS=""
 .endif
 
-# Python 3.10 requires OpenSSL >= 1.1.1 (PEP 644), so with
-# libressl, some modules are not built
-#.if ${SSL_DEFAULT:Mlibressl*}
-PLIST_SUB+=	SUPPORTED_OPENSSL="@comment "
-#.else
-#PLIST_SUB+=	SUPPORTED_OPENSSL=""
-#.endif
+.if ${SSL_DEFAULT:Mlibressl*}
+EXTRA_PATCHES+=	${PATCHDIR}/libressl
+.endif
 
 post-patch:
 # disable the detection of includes and library from e2fsprogs-libuuid,
