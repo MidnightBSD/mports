@@ -236,6 +236,7 @@ SUBDIR += libexecinfo
 SUBDIR += libffi
 SUBDIR += libfmt
 SUBDIR += libftdi
+SUBDIR += libfwnt
 SUBDIR += libgdata
 SUBDIR += libgee
 SUBDIR += libgit2
