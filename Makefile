@@ -3,6 +3,7 @@ SUBDIR += archivers
 SUBDIR += astro
 SUBDIR += audio
 SUBDIR += benchmarks
+SUBDIR += biology
 SUBDIR += cad
 SUBDIR += comms
 SUBDIR += converters
