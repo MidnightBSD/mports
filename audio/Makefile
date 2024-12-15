@@ -62,6 +62,7 @@ SUBDIR += gstreamer1-plugins-twolame
 SUBDIR += gstreamer1-plugins-vorbis
 SUBDIR += gstreamer1-plugins-wavpack
 SUBDIR += gstreamer1-plugins-webrtcdsp
+SUBDIR += id3lib
 SUBDIR += jack
 SUBDIR += ladspa
 SUBDIR += lame
