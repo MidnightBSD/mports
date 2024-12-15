@@ -12,7 +12,6 @@ SUBDIR += higan
 SUBDIR += linux-c7
 SUBDIR += linux_base-c7
 SUBDIR += mastergear
-SUBDIR += mtools
 SUBDIR += open-vm-tools
 SUBDIR += pcem
 SUBDIR += qemu
