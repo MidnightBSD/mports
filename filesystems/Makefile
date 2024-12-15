@@ -55,8 +55,6 @@
     SUBDIR += ntfs-compression
     SUBDIR += ntfs2btrfs
     SUBDIR += ods2
-    SUBDIR += openzfs
-    SUBDIR += openzfs-kmod
     SUBDIR += p5-Filesys-Statvfs
     SUBDIR += p5-Fuse
     SUBDIR += pear-Horde_Vfs
