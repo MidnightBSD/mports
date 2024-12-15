@@ -47,7 +47,6 @@
     SUBDIR += libfsxfs
     SUBDIR += libmodi
     SUBDIR += linux-c7-dosfstools
-    SUBDIR += lizardfs
     SUBDIR += lkl
     SUBDIR += mhddfs
     SUBDIR += moosefs2-cgi
