@@ -49,8 +49,6 @@
     SUBDIR += linux-c7-dosfstools
     SUBDIR += lizardfs
     SUBDIR += lkl
-    SUBDIR += ltfs
-    SUBDIR += mergerfs
     SUBDIR += mhddfs
     SUBDIR += moosefs2-cgi
     SUBDIR += moosefs2-cgiserv
