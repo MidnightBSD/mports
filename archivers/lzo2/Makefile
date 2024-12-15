@@ -1,5 +1,6 @@
 PORTNAME=	lzo2
 PORTVERSION=	2.10
+PORTREVISION=	1
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		FREEBSD_LOCAL/mandree
@@ -7,22 +8,23 @@ DISTNAME=	lzo-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable speedy, lossless data compression library
+WWW=		https://www.oberhumer.com/opensource/lzo/
 
 LICENSE=	gpl2
 
-USES=		libtool
+USES=		cpe libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --docdir=${DOCSDIR} --with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 USE_LDCONFIG=	yes
+CPE_VENDOR=	oberhumer
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-DOCS_INSTALL_TARGET_OFF=	install-exec install-pkgincludeHEADERS
+DOCS_INSTALL_TARGET_OFF=	install-exec install-pkgincludeHEADERS install-pkgconfigDATA
 
 post-build:
 .if !defined(WITHOUT_CHECKS)
 	@${ECHO_MSG} "===>  Running self-tests for ${PKGNAME} (can take a few minutes)"
-	@#: override MALLOC_OPTIONS, else tests take excessively long
 	cd ${WRKSRC} && ${SETENV} MALLOC_OPTIONS=jz ${MAKE} check test SHELL="${SH} -x"
 .endif
 
