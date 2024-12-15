@@ -1415,6 +1415,7 @@ SUBDIR += sonarqube
 SUBDIR += sonarqube-community
 SUBDIR += sord
 SUBDIR += sparsehash
+SUBDIR += spdlog
 SUBDIR += spice-protocol
 SUBDIR += spirv-llvm-translator
 SUBDIR += splint
