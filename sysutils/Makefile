@@ -111,7 +111,6 @@ SUBDIR += libgksu
 SUBDIR += libudisks
 SUBDIR += liburcu
 SUBDIR += libsunacl
-SUBDIR += linux-c7-dosfstools
 SUBDIR += linux-c7-lttng-ust
 SUBDIR += linux-c7-numactl-libs
 SUBDIR += linux-c7-userspace-rcu
