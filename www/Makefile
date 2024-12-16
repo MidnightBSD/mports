@@ -192,6 +192,7 @@ SUBDIR += py-cachecontrol
 SUBDIR += py-cheroot
 SUBDIR += py-cherrypy
 SUBDIR += py-css-parser
+SUBDIR += py-csscompressor
 SUBDIR += py-cssselect
 SUBDIR += py-cssutils
 SUBDIR += py-dropbox
