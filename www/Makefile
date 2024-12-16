@@ -157,6 +157,7 @@ SUBDIR += p5-libwww
 SUBDIR += palemoon
 SUBDIR += pear-HTTP_Request
 SUBDIR += pear-Horde_Dav
+SUBDIR += pear-Horde_Feed
 SUBDIR += pear-Horde_Form
 SUBDIR += pear-Horde_Http
 SUBDIR += pear-Horde_Routes
