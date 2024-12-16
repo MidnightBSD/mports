@@ -156,6 +156,7 @@ SUBDIR += p5-Unix-Processors
 SUBDIR += patchelf
 SUBDIR += pcbsd-libsh
 SUBDIR += pear-File
+SUBDIR += pear-Horde_Log
 SUBDIR += php81-fileinfo
 SUBDIR += php81-posix
 SUBDIR += php82-fileinfo
