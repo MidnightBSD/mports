@@ -195,6 +195,7 @@ SUBDIR += py-flask-jwt
 SUBDIR += py-flask-restful
 SUBDIR += py-flup6
 SUBDIR += py-formencode
+SUBDIR += py-ghp-import
 SUBDIR += py-google-api-python-client
 SUBDIR += py-google-api-core
 SUBDIR += py-gunicorn
