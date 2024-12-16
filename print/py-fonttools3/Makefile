@@ -1,5 +1,3 @@
-# Created by: Joseph Koshy <jkoshy@FreeBSD.org>
-
 PORTNAME=	fonttools
 PORTVERSION=	3.44.0
 CATEGORIES=	print python
@@ -38,7 +36,7 @@ INTERPOLATABLE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scipy>=0:science/py-scipy@${P
 LXML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>=4.0<5:devel/py-lxml@${PY_FLAVOR}
 PLOT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}matplotlib>=0:math/py-matplotlib@${PY_FLAVOR}
 SYMFONT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sympy>=0:math/py-sympy@${PY_FLAVOR}
-UFO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fs2>=2.2.0<3:devel/py-fs2@${PY_FLAVOR}
+UFO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fs2>=2.2.0<3:filesystems/py-fs2@${PY_FLAVOR}
 WOFF_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}brotli>=1.0.1:archivers/py-brotli@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}zopfli>=0.1.4:archivers/py-zopfli@${PY_FLAVOR}
 
