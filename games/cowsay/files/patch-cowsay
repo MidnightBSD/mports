@@ -1,6 +1,8 @@
---- cowsay.orig	Fri May 19 21:29:49 2000
-+++ cowsay	Thu Apr  3 20:58:49 2008
-@@ -7,7 +7,7 @@
+$NetBSD: patch-aa,v 1.1.1.1 2000/03/25 20:13:24 jlam Exp $
+
+--- cowsay.orig	2016-06-25 02:45:15 UTC
++++ cowsay
+@@ -7,11 +7,18 @@
  ##
  
  use Text::Tabs qw(expand);
@@ -9,20 +11,21 @@
  use File::Basename;
  use Getopt::Std;
  use Cwd;
-@@ -16,7 +16,7 @@
+ 
++if (${^UTF8LOCALE}) {
++    binmode STDIN, ':utf8';
++    binmode STDOUT, ':utf8';
++    require Encode;
++    eval { $_ = Encode::decode_utf8($_,1) } for @ARGV;
++}
++
+ $version = "3.03";
  $progname = basename($0);
  $eyes = "oo";
- $tongue = "  ";
--$cowpath = $ENV{'COWPATH'} || '%PREFIX%/share/cows';
-+$cowpath = $ENV{'COWPATH'} || '/usr/local/share/cows';
- @message = ();
- $thoughts = "";
- 
-@@ -184,4 +184,21 @@
- Usage: $progname [-bdgpstwy] [-h] [-e eyes] [-f cowfile] 
+@@ -185,3 +192,20 @@ Usage: $progname [-bdgpstwy] [-h] [-e ey
            [-l] [-n] [-T tongue] [-W wrapcolumn] [message]
  EOF
-+}
+ }
 +
 +sub fill {
 +    my ($ip, $xp, @raw) = @_;
@@ -39,4 +42,4 @@
 +    # separate paragraphs with blank lines
 +
 +    return join ($ip eq $xp ? "\n\n" : "\n", @para);
- }
++}
