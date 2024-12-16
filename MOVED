@@ -436,8 +436,7 @@ lang/go119||2024-07-23|Has expired: Upsrteam EOL reached on 2023-09-06
 security/f-prot||2024-07-31|Has expired: F-Prot Antivirus reached end-of-life on July 31, 2021
 lang/perl5.36|lang/perl5.38|2024-07-31|Updated default to 5.38, removed old version
 security/l0phtcrack||2024-07-31|Has expired: Obsolete, Microsoft LANMAN and NT password hashes are deprecated
-security/vnccrack||2024-07-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while ve
-rsion in ports is 1.0.0
+security/vnccrack||2024-07-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while version in ports is 1.0.0
 www/varnish6|www/varnish7|2023-08-08|Has expired: Unsupported version upstream, consider migrating to www/varnish7
 devel/llvm10|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
 devel/llvm90|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
