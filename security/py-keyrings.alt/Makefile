@@ -17,7 +17,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}keyring>=10.3.1:security/py-keyring@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pycryptodome>0:security/py-pycryptodome@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pycryptodomex>0:security/py-pycryptodomex@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}fs>=0.5:devel/py-fs@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}fs>=0.5:filesystems/py-fs@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist distutils pytest
