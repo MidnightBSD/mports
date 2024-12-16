@@ -77,6 +77,7 @@ SUBDIR += p5-SQL-Abstract-Limit
 SUBDIR += p5-SQL-Statement
 SUBDIR += p5-SQL-Translator
 SUBDIR += p5-Time-Piece-MySQL
+SUBDIR += pear-Horde_Db
 SUBDIR += pecl-redis
 SUBDIR += pgmodeler
 SUBDIR += pgtcl
