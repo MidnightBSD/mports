@@ -159,6 +159,7 @@ SUBDIR += pear-HTTP_Request
 SUBDIR += pear-Horde_Dav
 SUBDIR += pear-Horde_Form
 SUBDIR += pear-Horde_Http
+SUBDIR += pear-Horde_Routes
 SUBDIR += pear-Horde_SessionHandler
 SUBDIR += pear-Horde_Template
 SUBDIR += php81-opcache
