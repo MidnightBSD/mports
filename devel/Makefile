@@ -821,6 +821,7 @@ SUBDIR += pcsc-lite
 SUBDIR += pear
 SUBDIR += pear-Horde_Cache
 SUBDIR += pear-Horde_Cli
+SUBDIR += pear-Horde_Constraint
 SUBDIR += pear-Horde_Controller
 SUBDIR += pear-Horde_Core
 SUBDIR += pear-Horde_Data
