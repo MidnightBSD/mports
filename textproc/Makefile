@@ -192,6 +192,7 @@ SUBDIR += p5-YAML-LibYAML
 SUBDIR += p5-YAML-Tiny
 SUBDIR += p5-libxml
 SUBDIR += pdfoutline
+SUBDIR += pear-Horde_Text_Flowed
 SUBDIR += php81-ctype
 SUBDIR += php81-dom
 SUBDIR += php81-enchant
