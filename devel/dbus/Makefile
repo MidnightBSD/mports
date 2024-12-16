@@ -1,7 +1,7 @@
 PORTNAME=	dbus
-DISTVERSION=	1.14.6
+DISTVERSION=	1.14.8
 CATEGORIES=	devel gnome
-MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
+MASTER_SITES=	https://dbus.freedesktop.org/releases/dbus/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Message bus system for inter-application communication
