@@ -164,9 +164,9 @@ _USE_QT5_ONLY=		assistant buildtools concurrent core dbus \
 			uitools webglplugin websockets-qml \
 			widgets x11extras xml xmlpatterns
 
-# grpc
-_USE_QT6_ONLY=		5compat base coap graphs httpserver languageserver lottie pdf positioning \
-			quick3dphysics quickeffectmaker shadertools tools translations \
+# coap grpc pdf quick3dphysics graphs
+_USE_QT6_ONLY=		5compat base httpserver languageserver lottie positioning \
+			quickeffectmaker shadertools tools translations \
 			sqldriver-sqlite sqldriver-mysql sqldriver-psql sqldriver-odbc
 
 # Dependency tuples: _LIB should be preferred if possible.
