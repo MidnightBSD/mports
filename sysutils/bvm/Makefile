@@ -1,5 +1,5 @@
 PORTNAME=	bvm
-PORTVERSION=	1.3.3
+PORTVERSION=	1.3.5
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
