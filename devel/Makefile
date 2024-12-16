@@ -821,6 +821,7 @@ SUBDIR += pcsc-lite
 SUBDIR += pear
 SUBDIR += pear-Horde_Core
 SUBDIR += pear-Horde_Date
+SUBDIR += pear-Horde_Date_Parser
 SUBDIR += pear-Horde_Exception
 SUBDIR += pear-Horde_Nls
 SUBDIR += pear-Horde_Role
