@@ -823,6 +823,7 @@ SUBDIR += pear-Horde_Date
 SUBDIR += pear-Horde_Exception
 SUBDIR += pear-Horde_Nls
 SUBDIR += pear-Horde_Role
+SUBDIR += pear-Horde_Stream_Wrapper
 SUBDIR += pear-Horde_Support
 SUBDIR += pear-Horde_Token
 SUBDIR += pear-Horde_Translation
