@@ -1,44 +1,41 @@
-# Created by: Graeme Cross <gcross@netspace.net.au>
-
-
 PORTNAME=	cppunit
-PORTVERSION=	1.12.1
-PORTREVISION=	4
+PORTVERSION=	1.15.1
 CATEGORIES=	devel
-MASTER_SITES=	SF
+MASTER_SITES=	https://dev-www.libreoffice.org/src/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ port of the JUnit framework for unit testing
+WWW=		https://freedesktop.org/wiki/Software/cppunit
 
 LICENSE=	lgpl2.1
 
-OPTIONS_DEFINE=	DOXYGEN
+OPTIONS_DEFINE=	DOCS DOXYGEN
 
-USES=		libtool pathfix
+DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen \
+			dot:graphics/graphviz
+DOXYGEN_CONFIGURE_ENABLE=	dot doxygen html-docs
+DOXYGEN_CONFIGURE_ON=	--htmldir="${DOCSDIR}/html"
+
+USES=		libtool pathfix compiler:c++11-lang
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+OPTIONS_SUB=	yes
+USE_LDCONFIG=	yes
 
-.include <bsd.mport.options.mk>
+SUB_FILES=	cppunit-config
+SUB_LIST+=	DISTVERSION=${DISTVERSION}
 
-.if ${PORT_OPTIONS:MDOXYGEN}
-BUILD_DEPENDS+=		doxygen:${PORTSDIR}/devel/doxygen \
-			dot:${PORTSDIR}/graphics/graphviz
-CONFIGURE_ARGS+=	--enable-doc --enable-doxygen --enable-html-docs
-PLIST_SUB+=		PORTDOCS=""
-.else
-CONFIGURE_ARGS+=	--disable-doc --disable-doxygen --disable-html-docs
-PLIST_SUB+=		PORTDOCS="@comment "
-.endif
+PLIST_SUB=	VERSION=${PORTVERSION:R}
+
+PORTDOCS=	*
 
 post-install:
-	${FIND} ${STAGEDIR}${PREFIX}/include/cppunit ! -type d | \
-		${SED} 's,^${STAGEDIR}${PREFIX}/,,' >> ${TMPPLIST}
+	${INSTALL_SCRIPT} ${WRKDIR}/cppunit-config ${STAGEDIR}${PREFIX}/bin/
+
+post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${FIND} ${WRKSRC}/doc/html -not -type d \
-                | ${SED} 's,^${WRKSRC}/doc/html,${DOCSDIR_REL},' >> ${TMPPLIST}
-	${INSTALL_MAN} ${WRKSRC}/doc/FAQ ${STAGEDIR}${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/NEWS ${STAGEDIR}${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/FAQ ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/NEWS ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
