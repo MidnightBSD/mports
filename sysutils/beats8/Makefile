@@ -1,6 +1,6 @@
 PORTNAME=	beats
 DISTVERSIONPREFIX=	v
-DISTVERSION=	8.8.2
+DISTVERSION=	8.14.3
 CATEGORIES=	sysutils
 MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 PKGNAMESUFFIX?=	8
@@ -12,7 +12,7 @@ WWW=		https://www.elastic.co/products/beats/
 
 LICENSE=	apache2
 
-BROKEN=		hostname error on app startup
+#BROKEN=		hostname error on app startup
 
 USES=		go:modules
 USE_GITHUB=	yes
