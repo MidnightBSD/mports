@@ -156,6 +156,7 @@ SUBDIR += p5-libapreq2
 SUBDIR += p5-libwww
 SUBDIR += palemoon
 SUBDIR += pear-HTTP_Request
+SUBDIR += pear-Horde_Browser
 SUBDIR += pear-Horde_Css_Parser
 SUBDIR += pear-Horde_Dav
 SUBDIR += pear-Horde_Editor
