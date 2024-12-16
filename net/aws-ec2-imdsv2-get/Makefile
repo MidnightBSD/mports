@@ -1,5 +1,5 @@
 PORTNAME=	aws-ec2-imdsv2-get
-DISTVERSION=	1.0.3
+DISTVERSION=	1.0.5
 CATEGORIES=	net
 
 MAINTAINER=	ports@MidnightBSD.org
