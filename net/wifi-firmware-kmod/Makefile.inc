@@ -17,6 +17,8 @@ FWDRV?=		base
 LICENSE_NAME?=	firmware license (${FWDRV})
 LICENSE_PERMS?=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
+FAKE_OPTS=	trueprefix
+
 EXTRACT_SUFX=
 DISTURL_SUFFIX?=	?h=${PORTVERSION}
 
@@ -100,6 +102,7 @@ MAKE_ENV+=	FWSRCDIR=${WRKSRC}/fw
 
 post-extract:
 	@${MKDIR} ${WRKSRC}/fw
+	${MKDIR} ${FAKE_DESTDIR}/${BOOTFWDIR}
 	@${MKDIR} ${WRKSRC}/lic
 	# Deal with supplementary licenses files.
 	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${LICENSE_FILE}${DISTURL_SUFFIX} ${WRKSRC}/${LICENSE_FILE}
@@ -152,9 +155,12 @@ post-extract:
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/${_f} ${WRKSRC}/lic/${_f:C@(^[^?]*)${DISTURL_SUFFIX:Q}@\1@:S,/,_,g}
 .endfor
 
+pre-install:
+	${MKDIR} ${FAKE_DESTDIR}${BOOTFWDIR}
+
 .if (${OSVERSION} >= 1500014) || (${OSVERSION} < 1500000 && ${OSVERSION} >= 1402000)
 do-install:
-	(cd ${WRKSRC}/fw/ && ${COPYTREE_SHARE} . ${STAGEDIR}/${BOOTFWDIR})
+	(cd ${WRKSRC}/fw/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}/${BOOTFWDIR})
 .endif
 
 .include <bsd.port.post.mk>
