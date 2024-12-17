@@ -21,6 +21,6 @@ NO_TEST=	yes
 
 post-patch:
 		@${RM} ${WRKSRC}/benchmark.pl
-		@${PERL} -pi -e '$$_="" if m|benchmark.pl|' ${WRKSRC}/MANIFEST
+#		@${PERL} -pi -e '$$_="" if m|benchmark.pl|' ${WRKSRC}/MANIFEST
 
 .include <bsd.port.mk>
