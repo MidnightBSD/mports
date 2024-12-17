@@ -205,7 +205,6 @@ SUBDIR += jsoncpp
 SUBDIR += judy
 SUBDIR += kBuild
 SUBDIR += kf5-extra-cmake-modules
-SUBDIR += kore
 SUBDIR += kyua
 SUBDIR += lcov
 SUBDIR += lemon
