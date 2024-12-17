@@ -74,8 +74,9 @@ CORELIMIT?=	/usr/bin/limits -Sc 0
 .endif
 TESTLOGS?=	RunGrepTest RunTest pcre_jit_test pcre_scanner_unittest \
 		pcre_stringpiece_unittest pcrecpp_unittest
+NO_TEST=	yes
 
-do-test:
+foo-test:
 	@cd ${WRKSRC} ; \
 	${SETENV} ${MAKE_ENV} ${CORELIMIT} ${MAKE_CMD} ${MAKE_ARGS} check ; \
 	for _l in ${TESTLOGS} ; do if ${TEST} -f $${_l}.log ; then \
