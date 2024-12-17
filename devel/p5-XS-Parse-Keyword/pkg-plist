@@ -1,13 +1,31 @@
-%%SITE_ARCH%%/XS/Parse/Infix.pm
-%%SITE_ARCH%%/XS/Parse/Infix/Builder.pm
-%%SITE_ARCH%%/XS/Parse/Infix/Builder_data.pm
-%%SITE_ARCH%%/XS/Parse/Keyword.pm
-%%SITE_ARCH%%/XS/Parse/Keyword/Builder.pm
-%%SITE_ARCH%%/XS/Parse/Keyword/Builder_data.pm
-%%SITE_ARCH%%/auto/XS/Parse/Keyword/Keyword.so
-%%SITE_ARCH%%/auto/share/module/XS-Parse-Infix/include/XSParseInfix.h
-%%SITE_ARCH%%/auto/share/module/XS-Parse-Keyword/include/XSParseKeyword.h
+%%SITE_PERL%%/auto/share/module/XS-Parse-Infix/include/XSParseInfix.h
+%%SITE_PERL%%/auto/share/module/XS-Parse-Keyword/include/XSParseKeyword.h
+%%SITE_PERL%%/auto/XS/Parse/Keyword/Keyword.so
+%%SITE_PERL%%/XS/Parse/Keyword/Builder.pm
+%%SITE_PERL%%/XS/Parse/Keyword/Builder_data.pm
+%%SITE_PERL%%/XS/Parse/Keyword.pm
+%%SITE_PERL%%/XS/Parse/Infix.pm
+%%SITE_PERL%%/XS/Parse/Infix/Builder_data.pm
+%%SITE_PERL%%/XS/Parse/Infix/Builder.pm
+%%PERL5_MAN3%%/XS::Parse::Keyword.3.gz
 %%PERL5_MAN3%%/XS::Parse::Infix.3.gz
 %%PERL5_MAN3%%/XS::Parse::Infix::Builder.3.gz
-%%PERL5_MAN3%%/XS::Parse::Keyword.3.gz
 %%PERL5_MAN3%%/XS::Parse::Keyword::Builder.3.gz
+@dir %%SITE_PERL%%/auto/share/module/XS-Parse-Infix/include
+@dir %%SITE_PERL%%/auto/share/module/XS-Parse-Infix
+@dir %%SITE_PERL%%/auto/share/module/XS-Parse-Keyword/include
+@dir %%SITE_PERL%%/auto/share/module/XS-Parse-Keyword
+@dir %%SITE_PERL%%/auto/share/module
+@dir %%SITE_PERL%%/auto/share
+@dir %%SITE_PERL%%/auto/XS/Parse/Keyword
+@dir %%SITE_PERL%%/auto/XS/Parse
+@dir %%SITE_PERL%%/auto/XS
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%/XS/Parse/Keyword
+@dir %%SITE_PERL%%/XS/Parse/Infix
+@dir %%SITE_PERL%%/XS/Parse
+@dir %%SITE_PERL%%/XS
+@dir %%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%
+@dir lib/perl5
