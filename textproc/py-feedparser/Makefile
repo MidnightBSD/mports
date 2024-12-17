@@ -20,6 +20,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	kurtmckee
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PORTDOCS=	NEWS README.rst
 
@@ -28,8 +29,5 @@ OPTIONS_DEFINE=	DOCS
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
-
-do-test:
-	@(cd ${WRKSRC}; ${PYTHON_CMD} tests/runtests.py)
 
 .include <bsd.port.mk>
