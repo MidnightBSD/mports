@@ -1,0 +1,20 @@
+--- configure.orig	2024-12-17 09:17:31 UTC
++++ configure
+@@ -400,7 +400,7 @@ AIX|OpenBSD|NetBSD)
+     force_no_lex_o="yes"
+   fi
+   ;;
+-FreeBSD)
++FreeBSD|MidnightBSD)
+   CFLAGS="$CFLAGS -I/usr/local/include"
+   LDFLAGS="$LDFLAGS -L/usr/local/lib"
+   ;;
+@@ -476,7 +476,7 @@ esac
+ # Now we know the target platform we can have another guess at the preferred
+ # compiler when it wasn't explictly set
+ if test -z "${CC}${cross_prefix}"; then
+-  if test "$targetos" = "FreeBSD" || test "$targetos" = "Darwin"; then
++  if test "$targetos" = "FreeBSD" || test "$targetos" = "MidnightBSD" || test "$targetos" = "Darwin"; then
+     if has clang; then
+       cc=clang
+     fi
