@@ -1,10 +1,11 @@
 PORTNAME=	tcllib
-PORTVERSION=	1.19
+PORTVERSION=	2.0
 CATEGORIES=	devel tcl
 MASTER_SITES=	https://core.tcl.tk/tcllib/uv/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of utility modules for Tcl
+WWW=		https://tcllib.sourceforge.net/
 
 LICENSE=	TclTk
 LICENSE_NAME=	Tcl/Tk License
@@ -38,7 +39,7 @@ INSTALL_ARGS=	-pkgs -pkg-path ${STAGEDIR}${PREFIX}/lib/tcllib \
 #
 .if ${PORT_OPTIONS:MMANPAGES} && !(defined(ALL_TARGET) && !empty(ALL_TARGET:Mcritcl))
 ALL_TARGET+=	nroff-doc
-INSTALL_ARGS+=	-nroff-path ${STAGEDIR}${PREFIX}/man/mann
+INSTALL_ARGS+=	-nroff-path ${STAGEDIR}${PREFIX}/share/man/mann
 .else
 INSTALL_ARGS+=	-no-nroff
 .endif
@@ -59,17 +60,13 @@ post-patch:
 #	Ensure the detailed output of vendors' self-tests is
 #	available in addition to the pretty progress report:
 #
-	${REINPLACE_CMD} -e 's,test run,test run -l testlog,' \
+	${REINPLACE_CMD} \
+		-e 's,test run,test run -l testlog,' \
+		-e '/test run/s,$$, || ${TRUE},' \
 		-e 's,$$(libdir)/@PACKAGE@@VERSION@,$$(libdir)/@PACKAGE@,' \
 		${WRKSRC}/Makefile.in
 	${FIND} ${WRKSRC}/apps -type f ! -name "*.man" | ${XARGS} \
 	   ${REINPLACE_CMD} -e 's,exec tclsh,exec ${TCLSH},' -e 's,/usr/bin/env tclsh,${TCLSH},'
-#
-#	patch(1) adds a newline at eof, so we need to remove it here
-#
-	${AWK} 'NR > 1 { print h } { h = $$0 } END { ORS = ""; print h }' \
-	   ${WRKSRC}/modules/doctools/tests/text/04 > ${WRKSRC}/modules/doctools/tests/text/04.new
-	${MV} ${WRKSRC}/modules/doctools/tests/text/04.new ${WRKSRC}/modules/doctools/tests/text/04
 #
 #	man pages have the .tcllib suffix, so there's no need to have a
 #	tcllib_ prefix too
