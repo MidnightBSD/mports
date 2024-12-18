@@ -77,6 +77,7 @@ SUBDIR += p5-SQL-Statement
 SUBDIR += p5-SQL-Translator
 SUBDIR += p5-Time-Piece-MySQL
 SUBDIR += pear-Horde_Db
+SUBDIR += pear-Horde_HashTable
 SUBDIR += pecl-redis
 SUBDIR += pgmodeler
 SUBDIR += pgtcl
