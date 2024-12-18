@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Controller libraries
 WWW=		https://pear.horde.org
 
+LICENSE=	bsd2
+
 USES=		horde cpe
 USE_HORDE_RUN=	Horde_Exception \
 		Horde_Injector \
