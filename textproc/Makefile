@@ -248,6 +248,7 @@ SUBDIR += py-furo
 SUBDIR += py-genshi
 SUBDIR += py-gi-docgen
 SUBDIR += py-hexdump
+SUBDIR += py-htmlmin2
 SUBDIR += py-interegular
 SUBDIR += py-junit-xml
 SUBDIR += py-latexcodec
