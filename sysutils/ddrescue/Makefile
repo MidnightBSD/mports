@@ -14,7 +14,7 @@ HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	CC="${CC}" CXX="${CXX}" CFLAGS="${CFLAGS}" \
 		CXXFLAGS="${CXXFLAGS}"
 
-INFO=		ddrescue
+#INFO=		ddrescue
 PLIST_FILES=	bin/ddrescue \
 		bin/ddrescuelog \
 		share/man/man1/ddrescue.1.gz \
