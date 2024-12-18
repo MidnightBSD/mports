@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Compression API
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+
 OPTIONS_DEFAULT=	ZLIB
 OPTIONS_DEFINE=		ZLIB
 ZLIB_DESC=	Depend on PHP zlib extension

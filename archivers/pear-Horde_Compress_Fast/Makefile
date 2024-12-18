@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Fast Compression Library
 WWW=		https://pear.horde.org
 
+LICENSE=	lpgl2.1
+
 USES=		horde cpe
 USE_HORDE_RUN=	Horde_Exception
 

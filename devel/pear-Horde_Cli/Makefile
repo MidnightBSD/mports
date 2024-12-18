@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Command Line Interface API
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+
 USES=	horde
 USE_HORDE_RUN=	Horde_Support Horde_Translation
 
