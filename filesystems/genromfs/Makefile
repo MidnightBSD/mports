@@ -11,8 +11,6 @@ LICENSE=	gpl2
 USE_GITHUB=	yes
 GH_ACCOUNT=	chexum
 
-MAKE_ARGS=	PREFIX=${STAGEDIR}${PREFIX}
-
 PLIST_FILES=	bin/genromfs \
 		share/man/man8/genromfs.8.gz
 
