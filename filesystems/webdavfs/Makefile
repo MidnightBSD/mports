@@ -23,6 +23,8 @@ GH_ACCOUNT=	miquels
 GH_PROJECT=	webdavfs
 GH_TAGNAME=	117d633
 
+NO_TEST=	yes
+
 # 2020-12-04 pborman/getopt
 GETOPT_GH_TAGNAME=	ee0cd42419d3
 # 2020-05-25 bazil/fuse
