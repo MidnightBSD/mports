@@ -20,6 +20,6 @@ USES=		perl5
 USE_PERL5=	modbuild
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Syntax/Keyword/Match/Match.so
+	${STRIP_CMD} ${PREFIX}/${SITE_PERL_REL}/auto/Syntax/Keyword/Match/Match.so
 
 .include <bsd.port.mk>
