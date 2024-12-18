@@ -1,6 +1,6 @@
---- src/platformsupport/input/evdevtouch/qevdevtouchhandler.cpp.orig	2023-09-15 10:20:51 UTC
+--- src/platformsupport/input/evdevtouch/qevdevtouchhandler.cpp.orig	2023-09-21 19:24:26 UTC
 +++ src/platformsupport/input/evdevtouch/qevdevtouchhandler.cpp
-@@ -19,11 +19,7 @@
+@@ -17,11 +17,7 @@
  
  #include <mutex>
  

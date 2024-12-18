@@ -821,7 +821,6 @@ SUBDIR += pear
 SUBDIR += pear-Horde_Alarm
 SUBDIR += pear-Horde_Argv
 SUBDIR += pear-Horde_Autoloader
-SUBDIR += pear-Horde_Autoloader_Cache
 SUBDIR += pear-Horde_Cache
 SUBDIR += pear-Horde_Cli
 SUBDIR += pear-Horde_Constraint
