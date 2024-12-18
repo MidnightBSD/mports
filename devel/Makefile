@@ -1296,7 +1296,6 @@ SUBDIR += py-twine
 SUBDIR += py-twine1
 SUBDIR += py-twisted
 SUBDIR += py-txaio
-SUBDIR += py-typed-ast
 SUBDIR += py-typeguard
 SUBDIR += py-types-PyYAML
 SUBDIR += py-types-docutils
