@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde ActiveSync Server Library
 WWW=		https://pear.horde.org
 
+LICENSE=	gpl2
+
 USES=		horde php cpe
 USE_PHP=	ctype
 USE_HORDE_RUN=	Horde_Compress \
