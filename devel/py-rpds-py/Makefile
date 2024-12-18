@@ -22,6 +22,11 @@ CARGO_BUILD=	no
 CARGO_INSTALL=	no
 WRKSRC=		${WRKDIR}/rpds_py-${PORTVERSION}
 
+#PYTHON_CMD=	python-3.9
+
+#post-build:
+#	maturin-${PYTHON_VER} pep517 build-wheel -i  python${PYTHON_VER} --compatibility off 
+
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
