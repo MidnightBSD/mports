@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde CSS Parser
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+
 USES=	horde cpe
 
 .include <bsd.port.mk>
