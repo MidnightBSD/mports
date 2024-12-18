@@ -154,6 +154,7 @@ SUBDIR += pear-Auth
 SUBDIR += pear-Auth_HTTP
 SUBDIR += pear-Auth_SASL
 SUBDIR += pear-Horde_Auth
+SUBDIR += pear-Horde_Crypt
 SUBDIR += pear-Horde_Crypt_Blowfish
 SUBDIR += pear-Horde_Group
 SUBDIR += pear-Horde_Perms
