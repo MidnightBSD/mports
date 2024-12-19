@@ -31,6 +31,6 @@ USES=		perl5
 USE_PERL5=	modbuild
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Devel/MAT/MAT.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/auto/Devel/MAT/MAT.so
 
 .include <bsd.port.mk>
