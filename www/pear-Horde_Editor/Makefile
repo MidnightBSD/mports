@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Editor API
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+
 CONFLICTS=	horde-3*
 
 USES=	horde cpe

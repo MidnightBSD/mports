@@ -2,11 +2,11 @@ PORTNAME=	Horde_Dav
 PORTVERSION=	1.1.4
 CATEGORIES=	www pear
 
-MAINTAINER=	horde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde library for WebDAV, CalDAV, CardDAV
 WWW=		https://pear.horde.org
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 
 USES=	horde cpe
 USE_HORDE_RUN=	Horde_Auth \

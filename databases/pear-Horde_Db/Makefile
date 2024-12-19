@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Database Libraries
 WWW=		https://pear.horde.org
 
+LICENSE=	bsd2
+
 OPTIONS_DEFAULT=	MYSQLI
 OPTIONS_DEFINE=		MYSQLI PDO
 MYSQLI_DESC=		Depend on mysqli PHP extension
