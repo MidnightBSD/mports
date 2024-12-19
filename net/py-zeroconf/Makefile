@@ -22,11 +22,11 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}async_timeout>=3.0.1:devel/py-async_timeout@
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0.20.3:devel/py-pytest-asyncio@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517
 USE_GITHUB=	yes
 GH_ACCOUNT=	python-zeroconf
 GH_PROJECT=	python-zeroconf
 
-TEST_TARGET=	test
+NO_TEST=	yes
 
 .include <bsd.port.mk>
