@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde IDNA backend normalization package
 WWW=		https://pear.horde.org
 
+LICENSE=	bsd2
+
 USES=		horde php cpe
 USE_PHP=	dom
 
