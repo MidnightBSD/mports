@@ -100,11 +100,4 @@ post-install:
 	(cd ${WRKSRC}/docs/examples && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR})
 .endif
 
-check regression-test test: build
-.if empty(PKGNAMESUFFIX)
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test
-.else
-	@${DO_NADA}
-.endif
-
 .include <bsd.port.post.mk>
