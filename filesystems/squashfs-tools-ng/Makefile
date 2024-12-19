@@ -36,8 +36,8 @@ ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 ZSTD_CONFIGURE_OFF=	--without-zstd
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/CHANGELOG.md ${WRKSRC}/README.md \
-		${WRKSRC}/doc/* ${STAGEDIR}${DOCSDIR}
+		${WRKSRC}/doc/* ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
