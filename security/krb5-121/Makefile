@@ -65,10 +65,11 @@ READLINE_CONFIGURE_WITH=readline
 LIBEDIT_USES=		libedit
 LIBEDIT_CONFIGURE_WITH=	libedit
 LIBEDIT_BASE_CONFIGURE_WITH=	libedit
-LIBEDIT_BASE_DESC=	Use libedit in FreeBSD base
+LIBEDIT_BASE_DESC=	Use libedit in BSD base
 
 .if ${FLAVOR:U} == ldap
 OPTIONS_DEFAULT+=	LDAP LMDB
+USE_OPENLDAP=	yes
 .endif
 
 .if defined(KRB5_HOME)
