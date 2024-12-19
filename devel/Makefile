@@ -128,7 +128,6 @@ SUBDIR += gio-sharp
 SUBDIR += git
 SUBDIR += git-absorb
 SUBDIR += git-bug
-SUBDIR += git-cinnabar
 SUBDIR += git-codereview
 SUBDIR += git-cola
 SUBDIR += git-cvs
