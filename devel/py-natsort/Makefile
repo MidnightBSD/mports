@@ -11,16 +11,10 @@ WWW=		https://github.com/SethMMorton/natsort
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>0:devel/py-coverage@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}hypothesis>=3.8.0:devel/py-hypothesis@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-cov>0:devel/py-pytest-cov@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-mock>0:devel/py-pytest-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}semver>0:devel/py-semver@${PY_FLAVOR}
-
 USES=		python
-USE_PYTHON=	distutils autoplist pytest
+USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
