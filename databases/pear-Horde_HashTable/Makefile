@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Hash Table Interface
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+
 OPTIONS_DEFINE=	MEMCACHE
 USES=		horde cpe
 USE_HORDE_RUN=	Horde_Exception
