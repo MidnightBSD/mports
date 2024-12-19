@@ -5,7 +5,7 @@
      # python interpreter
      base_command = [
 -        "maturin",
-+        "maturin-3.9",
++        "maturin-3.11",
          "pep517",
          "build-wheel",
          "-i",
