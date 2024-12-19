@@ -1,7 +1,5 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	libcss
-PORTVERSION=	0.9.1
+PORTVERSION=	0.9.2
 CATEGORIES=	textproc
 MASTER_SITES=	https://download.netsurf-browser.org/libs/releases/
 EXTRACT_SUFX=	-src.tar.gz
@@ -21,7 +19,7 @@ LIB_DEPENDS=	libwapcaplet.so:textproc/libwapcaplet \
 USES=		gmake iconv:wchar_t localbase pkgconfig
 
 USE_LDCONFIG=	yes
-MAKE_ENV=	COMPONENT_TYPE="lib-shared"
+MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
 CFLAGS+=		-Wno-error
 LDFLAGS+=	${ICONV_LIB}
 PLIST_SUB=	VERSION=${PORTVERSION}

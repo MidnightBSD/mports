@@ -1,13 +1,12 @@
-# Created by: David Romano <unobe@cpan.org>
-
 PORTNAME=	libparserutils
-PORTVERSION=	0.2.4
+PORTVERSION=	0.2.5
 CATEGORIES=	devel
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 EXTRACT_SUFX=	-src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lexer/parser utility functions for NetSurf
+WWW=		https://www.netsurf-browser.org/projects/libparserutils/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -19,8 +18,8 @@ BUILD_DEPENDS=	netsurf-buildsystem>=1.5:devel/netsurf-buildsystem
 USES=		gmake iconv localbase pkgconfig
 USE_LDCONFIG=	yes
 
-MAKE_ENV=	COMPONENT_TYPE="lib-shared"
-LDFLAGS+=	${ICONV_LIB} -L/usr/local/lib
+MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
+LDFLAGS+=	${ICONV_LIB}
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 

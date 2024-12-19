@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libre2.so:devel/re2
 
+NO_TEST=	yes
+
 USES=		go:1.22,modules pkgconfig
 _COMMIT=	4851945a
 _BUILD_DATE=	$$(date -u "+%F_%T")

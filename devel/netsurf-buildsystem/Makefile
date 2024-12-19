@@ -1,7 +1,5 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	buildsystem
-PORTVERSION=	1.8
+PORTVERSION=	1.10
 CATEGORIES=	devel
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 PKGNAMEPREFIX=	netsurf-

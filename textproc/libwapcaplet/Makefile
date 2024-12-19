@@ -1,5 +1,3 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	libwapcaplet
 PORTVERSION=	0.4.3
 CATEGORIES=	textproc
@@ -8,6 +6,7 @@ EXTRACT_SUFX=	-src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	String internment library
+WWW=		https://www.netsurf-browser.org/projects/libwapcaplet/
 
 LICENSE=	mit
 
@@ -19,7 +18,8 @@ BUILD_DEPENDS=	netsurf-buildsystem>=1.5:devel/netsurf-buildsystem \
 USES=		gmake
 USE_LDCONFIG=	yes
 
-MAKE_ENV=	COMPONENT_TYPE="lib-shared" \
+MAKE_ENV=	BUILD_CC="${CC}" \
+		COMPONENT_TYPE="lib-shared" \
 		FLEX="${LOCALBASE}/bin/flex"
 
 PLIST_SUB=	VERSION=${PORTVERSION}

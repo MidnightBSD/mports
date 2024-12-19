@@ -1,13 +1,12 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	libdom
-PORTVERSION=	0.4.1
+PORTVERSION=	0.4.2
 CATEGORIES=	www
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 EXTRACT_SUFX=	-src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Document Object Model library
+WWW=		https://www.netsurf-browser.org/projects/libdom/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -23,7 +22,7 @@ LIB_DEPENDS=	libwapcaplet.so:textproc/libwapcaplet \
 USES=		gmake iconv localbase pkgconfig
 USE_LDCONFIG=	yes
 
-MAKE_ENV=	COMPONENT_TYPE="lib-shared"
+MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 

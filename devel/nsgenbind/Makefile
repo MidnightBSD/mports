@@ -1,7 +1,5 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	nsgenbind
-PORTVERSION=	0.8
+PORTVERSION=	0.9
 CATEGORIES=	devel
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -20,7 +18,8 @@ BUILD_DEPENDS=	netsurf-buildsystem>=1.5:devel/netsurf-buildsystem \
 USES=		bison gmake
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 MAKE_ENV+=	COMPONENT_TYPE="lib-shared" \
-		FLEX="${LOCALBASE}/bin/flex"
+		FLEX="${LOCALBASE}/bin/flex" \
+		BUILD_CC="${CC}"
 PLIST_FILES=	bin/nsgenbind
 
 post-install:
