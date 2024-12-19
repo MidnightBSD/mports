@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Feed libraries
 WWW=		https://pear.horde.org
 
+LICENSE=	bsd2
+
 USES=	horde php cpe
 USE_PHP=	dom
 USE_HORDE_RUN=	Horde_Exception \

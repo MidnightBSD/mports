@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Form API
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+
 USES=	horde cpe
 USE_HORDE_RUN=	Horde_Core \
 		Horde_Date \
