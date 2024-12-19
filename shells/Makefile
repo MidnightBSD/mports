@@ -16,6 +16,7 @@ SUBDIR += ksh93
 SUBDIR += ksh93-devel
 SUBDIR += mksh
 SUBDIR += nologinmsg
+SUBDIR += nushell
 SUBDIR += osh
 SUBDIR += p5-Term-ShellUI
 SUBDIR += pdksh
