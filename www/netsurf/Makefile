@@ -1,6 +1,5 @@
 PORTNAME=	netsurf
-PORTVERSION=	3.10
-PORTREVISION=	2
+PORTVERSION=	3.11
 CATEGORIES=	www
 MASTER_SITES=	http://download.netsurf-browser.org/netsurf/releases/source/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -11,6 +10,7 @@ WWW=		https://www.netsurf-browser.org/
 
 LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 FAKE_OPTS=	trueprefix
 
@@ -18,61 +18,54 @@ BUILD_DEPENDS=	duk:lang/duktape \
 		nsgenbind:devel/nsgenbind \
 		p5-HTML-Parser>=3.72:www/p5-HTML-Parser \
 		xxd:sysutils/xxd
-LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libpng.so:graphics/png \
-		libnsutils.so:devel/libnsutils \
-		libutf8proc.so:textproc/utf8proc \
-		libnsgif.so:graphics/libnsgif \
-		libnsbmp.so:graphics/libnsbmp \
+LIB_DEPENDS=	libcss.so:textproc/libcss \
+		libcurl.so:ftp/curl \
 		libdom.so:www/libdom \
-		libcss.so:textproc/libcss \
-		libparserutils.so:devel/libparserutils \
-		libwapcaplet.so:textproc/libwapcaplet \
-		libhubbub.so:www/libhubbub \
 		libexpat.so:textproc/expat2 \
-		libnspsl.so:dns/libnspsl
-RUN_DEPENDS=	duk:lang/duktape \
-		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+		libhubbub.so:www/libhubbub \
+		libnsbmp.so:graphics/libnsbmp \
+		libnsgif.so:graphics/libnsgif \
+		libnspsl.so:dns/libnspsl \
+		libnsutils.so:devel/libnsutils \
+		libparserutils.so:devel/libparserutils \
+		libpng.so:graphics/png \
+		libutf8proc.so:textproc/utf8proc \
+		libwapcaplet.so:textproc/libwapcaplet \
+		libwebp.so:graphics/webp
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss \
+		duk:lang/duktape
 
-USES=		bison cpe desktop-file-utils gettext-runtime gmake gnome iconv jpeg \
+USES=		bison cpe desktop-file-utils gmake gnome iconv:translit jpeg \
 		localbase pkgconfig shebangfix ssl
 CPE_VENDOR=	${PORTNAME}-browser
-ALL_TARGET=	#empty
-LDFLAGS+=	-L${OPENSSLLIB} -lssl -lcrypto ${ICONV_LIB}
-CFLAGS+=	-I${OPENSSLINC}
-MAKE_ARGS=	HOST_CC="${CC}" CC="${CC}" CCOPT="" HOST="${OPSYS}" \
+USE_GNOME=	cairo glib20 gtk30 librsvg2
+
+MAKE_ARGS=	CC="${CC}" \
+		CCOPT="" \
+		HOST="${OPSYS}" \
+		HOST_CC="${CC}" \
+		OPTCFLAGS="${CFLAGS}" \
+		Q="" \
 		TARGET="gtk3" \
-		WARNFLAGS="" Q="" OPTCFLAGS="${CFLAGS}"
+		WARNFLAGS=""
+.if defined(WITH_DEBUG)
+MAKE_ARGS+=	STRIP="true"
+.endif
 MAKE_ENV+=	COMPONENT_TYPE="lib-shared" \
 		FLEX="${LOCALBASE}/bin/flex"
-USE_GNOME=	glib20 gtk30 cairo librsvg2
+
+ALL_TARGET=	#empty
+CFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB} -lssl -lcrypto
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
-
-SHEBANG_FILES=	utils/split-messages.pl
-perl_CMD=	${SETENV} perl
-
-OPTIONS_DEFINE=		GSTREAMER
-OPTIONS_EXCLUDE=	GSTREAMER
-GSTREAMER_USE=		GSTREAMER=yes, good
 
 post-patch:
 	@${REINPLACE_CMD} '/CFLAGS/d' \
 		${WRKSRC}//Makefile.defaults
-	@${REINPLACE_CMD} 's| -O2||' \
-		${WRKSRC}/frontends/gtk/Makefile.defaults
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' \
-		${WRKSRC}/frontends/gtk/gui.c
+	@${CP} ${FILESDIR}/buildui.pl ${WRKSRC}/utils/
 
 do-configure:
 	@${CP} ${FILESDIR}/Makefile.config  ${WRKSRC}
-.if empty(ICONV_LIB)
-	@${REINPLACE_CMD} '/NETSURF_USE_LIBICONV_PLUG/ s|NO|YES|' \
-		${WRKSRC}/Makefile.config
-.endif
-
-do-configure-GSTREAMER-on:
-	@${REINPLACE_CMD} '/NETSURF_USE_VIDEO/ s|NO|YES|' \
-		${WRKSRC}/Makefile.config
 
 post-install:
 	cd ${STAGEDIR}${PREFIX}/bin && ${LN} -sf netsurf-gtk3 \
