@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Exception Handler
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+
 USES=		horde cpe
 USE_HORDE_RUN=	Horde_Translation
 
