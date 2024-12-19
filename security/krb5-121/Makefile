@@ -52,7 +52,7 @@ KRB5_HTML_DESC=		Install krb5 HTML documentation
 DNS_FOR_REALM_DESC=	Enable DNS lookups for Kerberos realm names
 DNS_FOR_REALM_CONFIGURE_ENABLE=	dns-for-realm
 LDAP=			Enable LDAP support
-LDAP_USE=		OPENLDAP=yes
+LDAP_USE=		OPENLDAP=yes LDAP=yes
 LDAP_CONFIGURE_WITH=	ldap
 LMDB_DESC=		OpenLDAP Lightning Memory-Mapped Database support
 LMDB_CONFIGURE_WITH=	lmdb
@@ -70,6 +70,7 @@ LIBEDIT_BASE_DESC=	Use libedit in BSD base
 .if ${FLAVOR:U} == ldap
 OPTIONS_DEFAULT+=	LDAP LMDB
 USE_OPENLDAP=	yes
+LDAP=YES
 .endif
 
 .if defined(KRB5_HOME)
