@@ -1,0 +1,687 @@
+openjdk17/jmods/java.management.rmi.jmod
+openjdk17/jmods/jdk.editpad.jmod
+openjdk17/jmods/jdk.unsupported.jmod
+openjdk17/jmods/jdk.jlink.jmod
+openjdk17/jmods/jdk.crypto.ec.jmod
+openjdk17/jmods/jdk.security.auth.jmod
+openjdk17/jmods/java.base.jmod
+openjdk17/jmods/jdk.compiler.jmod
+openjdk17/jmods/jdk.security.jgss.jmod
+openjdk17/jmods/jdk.incubator.foreign.jmod
+openjdk17/jmods/jdk.zipfs.jmod
+openjdk17/jmods/jdk.jconsole.jmod
+openjdk17/jmods/jdk.naming.rmi.jmod
+openjdk17/jmods/jdk.naming.dns.jmod
+openjdk17/jmods/jdk.httpserver.jmod
+openjdk17/jmods/jdk.internal.le.jmod
+openjdk17/jmods/java.net.http.jmod
+openjdk17/jmods/java.naming.jmod
+openjdk17/jmods/java.security.jgss.jmod
+openjdk17/jmods/java.scripting.jmod
+openjdk17/jmods/jdk.jfr.jmod
+openjdk17/jmods/java.xml.jmod
+openjdk17/jmods/java.smartcardio.jmod
+openjdk17/jmods/java.datatransfer.jmod
+openjdk17/jmods/jdk.management.jfr.jmod
+openjdk17/jmods/jdk.management.agent.jmod
+openjdk17/jmods/jdk.localedata.jmod
+openjdk17/jmods/jdk.jdeps.jmod
+openjdk17/jmods/jdk.javadoc.jmod
+openjdk17/jmods/jdk.internal.ed.jmod
+openjdk17/jmods/java.xml.crypto.jmod
+openjdk17/jmods/java.sql.jmod
+openjdk17/jmods/jdk.jdwp.agent.jmod
+openjdk17/jmods/java.logging.jmod
+openjdk17/jmods/jdk.attach.jmod
+openjdk17/jmods/java.management.jmod
+openjdk17/jmods/jdk.dynalink.jmod
+openjdk17/jmods/java.desktop.jmod
+openjdk17/jmods/java.security.sasl.jmod
+openjdk17/jmods/jdk.net.jmod
+openjdk17/jmods/jdk.crypto.cryptoki.jmod
+openjdk17/jmods/java.rmi.jmod
+openjdk17/jmods/jdk.unsupported.desktop.jmod
+openjdk17/jmods/jdk.incubator.vector.jmod
+openjdk17/jmods/jdk.jstatd.jmod
+openjdk17/jmods/jdk.internal.opt.jmod
+openjdk17/jmods/jdk.charsets.jmod
+openjdk17/jmods/jdk.jsobject.jmod
+openjdk17/jmods/jdk.nio.mapmode.jmod
+openjdk17/jmods/java.se.jmod
+openjdk17/jmods/java.instrument.jmod
+openjdk17/jmods/jdk.internal.vm.compiler.jmod
+openjdk17/jmods/java.compiler.jmod
+openjdk17/jmods/jdk.jartool.jmod
+openjdk17/jmods/jdk.internal.vm.ci.jmod
+openjdk17/jmods/jdk.hotspot.agent.jmod
+openjdk17/jmods/jdk.accessibility.jmod
+openjdk17/jmods/jdk.internal.jvmstat.jmod
+openjdk17/jmods/jdk.jshell.jmod
+openjdk17/jmods/java.transaction.xa.jmod
+openjdk17/jmods/jdk.jcmd.jmod
+openjdk17/jmods/jdk.random.jmod
+openjdk17/jmods/jdk.management.jmod
+openjdk17/jmods/java.sql.rowset.jmod
+openjdk17/jmods/jdk.sctp.jmod
+openjdk17/jmods/java.prefs.jmod
+openjdk17/jmods/jdk.internal.vm.compiler.management.jmod
+openjdk17/jmods/jdk.jdi.jmod
+openjdk17/jmods/jdk.xml.dom.jmod
+openjdk17/man/man1/jfr.1
+openjdk17/man/man1/javap.1
+openjdk17/man/man1/jcmd.1
+openjdk17/man/man1/jmod.1
+openjdk17/man/man1/jdeps.1
+openjdk17/man/man1/jhsdb.1
+openjdk17/man/man1/jps.1
+openjdk17/man/man1/jconsole.1
+openjdk17/man/man1/serialver.1
+openjdk17/man/man1/jstack.1
+openjdk17/man/man1/jar.1
+openjdk17/man/man1/keytool.1
+openjdk17/man/man1/javadoc.1
+openjdk17/man/man1/jinfo.1
+openjdk17/man/man1/jstatd.1
+openjdk17/man/man1/jdeprscan.1
+openjdk17/man/man1/javac.1
+openjdk17/man/man1/jmap.1
+openjdk17/man/man1/jarsigner.1
+openjdk17/man/man1/jshell.1
+openjdk17/man/man1/jrunscript.1
+openjdk17/man/man1/jstat.1
+openjdk17/man/man1/java.1
+openjdk17/man/man1/jlink.1
+openjdk17/man/man1/rmiregistry.1
+openjdk17/man/man1/jdb.1
+openjdk17/conf/sound.properties
+openjdk17/conf/security/java.policy
+openjdk17/conf/security/policy/README.txt
+openjdk17/conf/security/policy/limited/default_local.policy
+openjdk17/conf/security/policy/limited/default_US_export.policy
+openjdk17/conf/security/policy/limited/exempt_local.policy
+openjdk17/conf/security/policy/unlimited/default_US_export.policy
+openjdk17/conf/security/policy/unlimited/default_local.policy
+openjdk17/conf/security/java.security
+openjdk17/conf/management/jmxremote.password.template
+openjdk17/conf/management/jmxremote.access
+openjdk17/conf/management/management.properties
+openjdk17/conf/net.properties
+openjdk17/conf/logging.properties
+openjdk17/bin/jps
+openjdk17/bin/jlink
+openjdk17/bin/jstat
+openjdk17/bin/jcmd
+openjdk17/bin/jmap
+openjdk17/bin/jdb
+openjdk17/bin/keytool
+openjdk17/bin/jdeprscan
+openjdk17/bin/jhsdb
+openjdk17/bin/javac
+openjdk17/bin/jmod
+openjdk17/bin/java
+openjdk17/bin/javap
+openjdk17/bin/serialver
+openjdk17/bin/jstatd
+openjdk17/bin/jshell
+openjdk17/bin/javadoc
+openjdk17/bin/jdeps
+openjdk17/bin/jstack
+openjdk17/bin/jinfo
+openjdk17/bin/jconsole
+openjdk17/bin/rmiregistry
+openjdk17/bin/jar
+openjdk17/bin/jarsigner
+openjdk17/bin/jimage
+openjdk17/bin/jrunscript
+openjdk17/bin/jfr
+openjdk17/demo/jfc/TableExample/TableExample.jar
+openjdk17/demo/jfc/TableExample/src.zip
+openjdk17/demo/jfc/TableExample/README.txt
+openjdk17/demo/jfc/SampleTree/SampleTree.jar
+openjdk17/demo/jfc/SampleTree/README.txt
+openjdk17/demo/jfc/SampleTree/src.zip
+openjdk17/demo/jfc/CodePointIM/README.html
+openjdk17/demo/jfc/CodePointIM/CodePointIM.jar
+openjdk17/demo/jfc/CodePointIM/src.zip
+openjdk17/demo/jfc/CodePointIM/README_ja.html
+openjdk17/demo/jfc/CodePointIM/README_zh_CN.html
+openjdk17/demo/jfc/Font2DTest/src.zip
+openjdk17/demo/jfc/Font2DTest/Font2DTest.jar
+openjdk17/demo/jfc/Font2DTest/Font2DTest.html
+openjdk17/demo/jfc/Font2DTest/README.txt
+openjdk17/demo/jfc/TransparentRuler/src.zip
+openjdk17/demo/jfc/TransparentRuler/README.txt
+openjdk17/demo/jfc/TransparentRuler/TransparentRuler.jar
+openjdk17/demo/jfc/J2Ddemo/README.txt
+openjdk17/demo/jfc/J2Ddemo/J2Ddemo.jar
+openjdk17/demo/jfc/J2Ddemo/src.zip
+openjdk17/demo/jfc/FileChooserDemo/FileChooserDemo.jar
+openjdk17/demo/jfc/FileChooserDemo/src.zip
+openjdk17/demo/jfc/FileChooserDemo/README.txt
+openjdk17/demo/jfc/Notepad/src.zip
+openjdk17/demo/jfc/Notepad/Notepad.jar
+openjdk17/demo/jfc/Notepad/README.txt
+openjdk17/demo/jfc/Stylepad/Stylepad.jar
+openjdk17/demo/jfc/Stylepad/src.zip
+openjdk17/demo/jfc/Stylepad/README.txt
+openjdk17/demo/jfc/Metalworks/Metalworks.jar
+openjdk17/demo/jfc/Metalworks/README.txt
+openjdk17/demo/jfc/Metalworks/src.zip
+openjdk17/demo/jfc/SwingSet2/SwingSet2.jar
+openjdk17/demo/jfc/SwingSet2/src.zip
+openjdk17/demo/jfc/SwingSet2/README.txt
+openjdk17/demo/jfc/SwingSet2/SwingSet2.html
+openjdk17/demo/README
+openjdk17/demo/nbproject/project.xml
+openjdk17/demo/nbproject/README.txt
+openjdk17/demo/nbproject/jfc/FileChooserDemo/build.xml
+openjdk17/demo/nbproject/jfc/FileChooserDemo/build.properties
+openjdk17/demo/nbproject/jfc/FileChooserDemo/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/FileChooserDemo/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/FileChooserDemo/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/FileChooserDemo/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/SampleTree/build.properties
+openjdk17/demo/nbproject/jfc/SampleTree/build.xml
+openjdk17/demo/nbproject/jfc/SampleTree/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/SampleTree/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/SampleTree/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/SampleTree/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/TransparentRuler/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/TransparentRuler/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/TransparentRuler/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/TransparentRuler/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/TransparentRuler/build.xml
+openjdk17/demo/nbproject/jfc/TransparentRuler/build.properties
+openjdk17/demo/nbproject/jfc/Font2DTest/build.properties
+openjdk17/demo/nbproject/jfc/Font2DTest/build.xml
+openjdk17/demo/nbproject/jfc/Font2DTest/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/Font2DTest/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/Font2DTest/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/Font2DTest/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/TableExample/build.xml
+openjdk17/demo/nbproject/jfc/TableExample/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/TableExample/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/TableExample/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/TableExample/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/TableExample/build.properties
+openjdk17/demo/nbproject/jfc/Notepad/build.properties
+openjdk17/demo/nbproject/jfc/Notepad/build.xml
+openjdk17/demo/nbproject/jfc/Notepad/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/Notepad/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/Notepad/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/Notepad/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/SwingApplet/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/SwingApplet/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/SwingApplet/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/SwingApplet/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/SwingApplet/build.xml
+openjdk17/demo/nbproject/jfc/SwingApplet/build.properties
+openjdk17/demo/nbproject/jfc/Metalworks/build.properties
+openjdk17/demo/nbproject/jfc/Metalworks/nbproject/file-targets.xml
+openjdk17/demo/nbproject/jfc/Metalworks/nbproject/jdk.xml
+openjdk17/demo/nbproject/jfc/Metalworks/nbproject/project.xml
+openjdk17/demo/nbproject/jfc/Metalworks/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/jfc/Metalworks/build.xml
+openjdk17/demo/nbproject/scripting/jconsole-plugin/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/scripting/jconsole-plugin/nbproject/jdk.xml
+openjdk17/demo/nbproject/scripting/jconsole-plugin/nbproject/project.xml
+openjdk17/demo/nbproject/scripting/jconsole-plugin/nbproject/file-targets.xml
+openjdk17/demo/nbproject/scripting/jconsole-plugin/build.properties
+openjdk17/demo/nbproject/scripting/jconsole-plugin/build.xml
+openjdk17/demo/nbproject/management/JTop/build.xml
+openjdk17/demo/nbproject/management/JTop/nbproject/file-targets.xml
+openjdk17/demo/nbproject/management/JTop/nbproject/jdk.xml
+openjdk17/demo/nbproject/management/JTop/nbproject/project.xml
+openjdk17/demo/nbproject/management/JTop/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/management/JTop/build.properties
+openjdk17/demo/nbproject/management/VerboseGC/nbproject/project.xml
+openjdk17/demo/nbproject/management/VerboseGC/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/management/VerboseGC/nbproject/jdk.xml
+openjdk17/demo/nbproject/management/VerboseGC/nbproject/file-targets.xml
+openjdk17/demo/nbproject/management/VerboseGC/build.xml
+openjdk17/demo/nbproject/management/VerboseGC/build.properties
+openjdk17/demo/nbproject/management/FullThreadDump/nbproject/jdk.xml
+openjdk17/demo/nbproject/management/FullThreadDump/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/management/FullThreadDump/nbproject/file-targets.xml
+openjdk17/demo/nbproject/management/FullThreadDump/nbproject/project.xml
+openjdk17/demo/nbproject/management/FullThreadDump/build.properties
+openjdk17/demo/nbproject/management/FullThreadDump/build.xml
+openjdk17/demo/nbproject/management/MemoryMonitor/nbproject/netbeans-targets.xml
+openjdk17/demo/nbproject/management/MemoryMonitor/nbproject/project.xml
+openjdk17/demo/nbproject/management/MemoryMonitor/nbproject/file-targets.xml
+openjdk17/demo/nbproject/management/MemoryMonitor/nbproject/jdk.xml
+openjdk17/demo/nbproject/management/MemoryMonitor/build.properties
+openjdk17/demo/nbproject/management/MemoryMonitor/build.xml
+openjdk17/include/jdwpTransport.h
+openjdk17/include/freebsd/jawt_md.h
+openjdk17/include/freebsd/jni_md.h
+openjdk17/include/classfile_constants.h
+openjdk17/include/jawt.h
+openjdk17/include/sizecalc.h
+openjdk17/include/jvmticmlr.h
+openjdk17/include/jvmti.h
+openjdk17/include/jni.h
+openjdk17/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.naming.dns/LICENSE
+openjdk17/legal/jdk.security.auth/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.security.auth/LICENSE
+openjdk17/legal/jdk.dynalink/dynalink.md
+openjdk17/legal/jdk.dynalink/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.dynalink/LICENSE
+openjdk17/legal/java.scripting/LICENSE
+openjdk17/legal/java.scripting/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.scripting/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.security.jgss/LICENSE
+openjdk17/legal/java.security.jgss/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.net/LICENSE
+openjdk17/legal/jdk.net/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.net/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.compiler/LICENSE
+openjdk17/legal/java.compiler/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.compiler/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.instrument/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.instrument/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.instrument/LICENSE
+openjdk17/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jlink/LICENSE
+openjdk17/legal/jdk.jlink/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jshell/LICENSE
+openjdk17/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jshell/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jconsole/LICENSE
+openjdk17/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jconsole/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.sql.rowset/LICENSE
+openjdk17/legal/java.sql.rowset/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.internal.ed/LICENSE
+openjdk17/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jdwp.agent/LICENSE
+openjdk17/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jartool/LICENSE
+openjdk17/legal/jdk.jartool/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md
+openjdk17/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.crypto.cryptoki/LICENSE
+openjdk17/legal/jdk.crypto.cryptoki/pkcs11wrapper.md
+openjdk17/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.xml/xalan.md
+openjdk17/legal/java.xml/bcel.md
+openjdk17/legal/java.xml/LICENSE
+openjdk17/legal/java.xml/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.xml/xerces.md
+openjdk17/legal/java.xml/dom.md
+openjdk17/legal/java.xml/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.xml/jcup.md
+openjdk17/legal/java.management/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.management/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.management/LICENSE
+openjdk17/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jsobject/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jsobject/LICENSE
+openjdk17/legal/jdk.unsupported.desktop/LICENSE
+openjdk17/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.smartcardio/pcsclite.md
+openjdk17/legal/java.smartcardio/LICENSE
+openjdk17/legal/java.smartcardio/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.crypto.ec/LICENSE
+openjdk17/legal/jdk.jcmd/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jcmd/LICENSE
+openjdk17/legal/java.desktop/mesa3d.md
+openjdk17/legal/java.desktop/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.desktop/LICENSE
+openjdk17/legal/java.desktop/xwd.md
+openjdk17/legal/java.desktop/colorimaging.md
+openjdk17/legal/java.desktop/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.random/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.random/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.random/LICENSE
+openjdk17/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.transaction.xa/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.transaction.xa/LICENSE
+openjdk17/legal/jdk.javadoc/LICENSE
+openjdk17/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.javadoc/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.javadoc/jqueryUI.md
+openjdk17/legal/jdk.javadoc/jquery.md
+openjdk17/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.accessibility/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.accessibility/LICENSE
+openjdk17/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.opt/LICENSE
+openjdk17/legal/jdk.internal.opt/jopt-simple.md
+openjdk17/legal/java.net.http/LICENSE
+openjdk17/legal/java.net.http/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.net.http/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.unsupported/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.unsupported/LICENSE
+openjdk17/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.incubator.foreign/LICENSE
+openjdk17/legal/jdk.incubator.foreign/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.incubator.foreign/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jdeps/LICENSE
+openjdk17/legal/jdk.jdeps/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jfr/LICENSE
+openjdk17/legal/jdk.jfr/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.rmi/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.rmi/LICENSE
+openjdk17/legal/java.rmi/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.security.jgss/LICENSE
+openjdk17/legal/java.sql/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.sql/LICENSE
+openjdk17/legal/java.sql/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.security.sasl/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.security.sasl/LICENSE
+openjdk17/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.vm.ci/LICENSE
+openjdk17/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.internal.vm.compiler/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.internal.vm.compiler/LICENSE
+openjdk17/legal/jdk.internal.vm.compiler/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.hotspot.agent/LICENSE
+openjdk17/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.xml.dom/LICENSE
+openjdk17/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.management.jfr/LICENSE
+openjdk17/legal/jdk.charsets/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.charsets/LICENSE
+openjdk17/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.management.rmi/LICENSE
+openjdk17/legal/java.management.rmi/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.logging/LICENSE
+openjdk17/legal/java.logging/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.logging/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.base/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.base/unicode.md
+openjdk17/legal/java.base/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.base/public_suffix.md
+openjdk17/legal/java.base/LICENSE
+openjdk17/legal/java.base/asm.md
+openjdk17/legal/java.base/c-libutl.md
+openjdk17/legal/java.base/aes.md
+openjdk17/legal/java.base/cldr.md
+openjdk17/legal/java.base/icu.md
+openjdk17/legal/jdk.sctp/LICENSE
+openjdk17/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.sctp/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.compiler/LICENSE
+openjdk17/legal/jdk.compiler/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.attach/LICENSE
+openjdk17/legal/jdk.attach/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.attach/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.localedata/LICENSE
+openjdk17/legal/jdk.localedata/thaidict.md
+openjdk17/legal/jdk.localedata/cldr.md
+openjdk17/legal/jdk.localedata/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.se/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.se/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.se/LICENSE
+openjdk17/legal/jdk.nio.mapmode/LICENSE
+openjdk17/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.vm.compiler.management/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.vm.compiler.management/LICENSE
+openjdk17/legal/jdk.internal.vm.compiler.management/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.editpad/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.editpad/LICENSE
+openjdk17/legal/java.xml.crypto/LICENSE
+openjdk17/legal/java.xml.crypto/santuario.md
+openjdk17/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.xml.crypto/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.internal.le/jline.md
+openjdk17/legal/jdk.internal.le/LICENSE
+openjdk17/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.le/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.naming/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.naming/LICENSE
+openjdk17/legal/java.naming/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.naming.rmi/LICENSE
+openjdk17/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jstatd/LICENSE
+openjdk17/legal/jdk.jstatd/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.management.agent/LICENSE
+openjdk17/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.management.agent/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.internal.jvmstat/LICENSE
+openjdk17/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.incubator.vector/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.incubator.vector/LICENSE
+openjdk17/legal/jdk.incubator.vector/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.prefs/LICENSE
+openjdk17/legal/java.prefs/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.prefs/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.httpserver/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.httpserver/LICENSE
+openjdk17/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.jdi/LICENSE
+openjdk17/legal/jdk.jdi/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.zipfs/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.zipfs/LICENSE
+openjdk17/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/java.datatransfer/LICENSE
+openjdk17/legal/java.datatransfer/ASSEMBLY_EXCEPTION
+openjdk17/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO
+openjdk17/legal/jdk.management/ASSEMBLY_EXCEPTION
+openjdk17/legal/jdk.management/LICENSE
+openjdk17/legal/jdk.management/ADDITIONAL_LICENSE_INFO
+openjdk17/release
+openjdk17/lib/libj2pkcs11.so
+openjdk17/lib/jfr/profile.jfc
+openjdk17/lib/jfr/default.jfc
+openjdk17/lib/libzip.so
+openjdk17/lib/libawt.so
+openjdk17/lib/libj2pcsc.so
+openjdk17/lib/libsaproc.so
+openjdk17/lib/libjsig.so
+openjdk17/lib/libfontmanager.so
+openjdk17/lib/libextnet.so
+openjdk17/lib/libsctp.so
+openjdk17/lib/libsyslookup.so
+openjdk17/lib/libverify.so
+openjdk17/lib/libjava.so
+openjdk17/lib/psfontj2d.properties
+openjdk17/lib/libjdwp.so
+openjdk17/lib/libjawt.so
+openjdk17/lib/jrt-fs.jar
+openjdk17/lib/libjli.so
+openjdk17/lib/libawt_xawt.so
+openjdk17/lib/liblcms.so
+openjdk17/lib/libmanagement_agent.so
+openjdk17/lib/jvm.cfg
+openjdk17/lib/libmlib_image.so
+openjdk17/lib/librmi.so
+openjdk17/lib/libsplashscreen.so
+openjdk17/lib/classlist
+openjdk17/lib/libnet.so
+openjdk17/lib/jspawnhelper
+openjdk17/lib/modules
+openjdk17/lib/tzdb.dat
+openjdk17/lib/libdt_socket.so
+openjdk17/lib/src.zip
+openjdk17/lib/libmanagement_ext.so
+openjdk17/lib/security/public_suffix_list.dat
+openjdk17/lib/security/cacerts
+openjdk17/lib/security/blocked.certs
+openjdk17/lib/security/default.policy
+openjdk17/lib/libnio.so
+openjdk17/lib/libjsound.so
+openjdk17/lib/libjimage.so
+openjdk17/lib/ct.sym
+openjdk17/lib/libawt_headless.so
+openjdk17/lib/libinstrument.so
+openjdk17/lib/libmanagement.so
+openjdk17/lib/psfont.properties.ja
+openjdk17/lib/libjaas.so
+openjdk17/lib/libj2gss.so
+openjdk17/lib/libattach.so
+openjdk17/lib/libjavajpeg.so
+openjdk17/lib/fontconfig.bfc
+openjdk17/lib/server/libjsig.so
+openjdk17/lib/server/classes.jsa
+openjdk17/lib/server/libjvm.so
+openjdk17/lib/server/classes_nocoops.jsa
+openjdk17/lib/libprefs.so
+openjdk17/lib/fontconfig.properties.src
+@dir openjdk17/jmods
+@dir openjdk17/man/man1
+@dir openjdk17/man
+@dir openjdk17/conf/security/policy/limited
+@dir openjdk17/conf/security/policy/unlimited
+@dir openjdk17/conf/security/policy
+@dir openjdk17/conf/security
+@dir openjdk17/conf/management
+@dir openjdk17/conf
+@dir openjdk17/bin
+@dir openjdk17/demo/jfc/TableExample
+@dir openjdk17/demo/jfc/SampleTree
+@dir openjdk17/demo/jfc/CodePointIM
+@dir openjdk17/demo/jfc/Font2DTest
+@dir openjdk17/demo/jfc/TransparentRuler
+@dir openjdk17/demo/jfc/J2Ddemo
+@dir openjdk17/demo/jfc/FileChooserDemo
+@dir openjdk17/demo/jfc/Notepad
+@dir openjdk17/demo/jfc/Stylepad
+@dir openjdk17/demo/jfc/Metalworks
+@dir openjdk17/demo/jfc/SwingSet2
+@dir openjdk17/demo/jfc
+@dir openjdk17/demo/nbproject/jfc/FileChooserDemo/nbproject
+@dir openjdk17/demo/nbproject/jfc/FileChooserDemo
+@dir openjdk17/demo/nbproject/jfc/SampleTree/nbproject
+@dir openjdk17/demo/nbproject/jfc/SampleTree
+@dir openjdk17/demo/nbproject/jfc/TransparentRuler/nbproject
+@dir openjdk17/demo/nbproject/jfc/TransparentRuler
+@dir openjdk17/demo/nbproject/jfc/Font2DTest/nbproject
+@dir openjdk17/demo/nbproject/jfc/Font2DTest
+@dir openjdk17/demo/nbproject/jfc/TableExample/nbproject
+@dir openjdk17/demo/nbproject/jfc/TableExample
+@dir openjdk17/demo/nbproject/jfc/Notepad/nbproject
+@dir openjdk17/demo/nbproject/jfc/Notepad
+@dir openjdk17/demo/nbproject/jfc/SwingApplet/nbproject
+@dir openjdk17/demo/nbproject/jfc/SwingApplet
+@dir openjdk17/demo/nbproject/jfc/Metalworks/nbproject
+@dir openjdk17/demo/nbproject/jfc/Metalworks
+@dir openjdk17/demo/nbproject/jfc
+@dir openjdk17/demo/nbproject/scripting/jconsole-plugin/nbproject
+@dir openjdk17/demo/nbproject/scripting/jconsole-plugin
+@dir openjdk17/demo/nbproject/scripting
+@dir openjdk17/demo/nbproject/management/JTop/nbproject
+@dir openjdk17/demo/nbproject/management/JTop
+@dir openjdk17/demo/nbproject/management/VerboseGC/nbproject
+@dir openjdk17/demo/nbproject/management/VerboseGC
+@dir openjdk17/demo/nbproject/management/FullThreadDump/nbproject
+@dir openjdk17/demo/nbproject/management/FullThreadDump
+@dir openjdk17/demo/nbproject/management/MemoryMonitor/nbproject
+@dir openjdk17/demo/nbproject/management/MemoryMonitor
+@dir openjdk17/demo/nbproject/management
+@dir openjdk17/demo/nbproject
+@dir openjdk17/demo
+@dir openjdk17/include/freebsd
+@dir openjdk17/include/midnightbsd
+@dir openjdk17/include
+@dir openjdk17/legal/jdk.naming.dns
+@dir openjdk17/legal/jdk.security.auth
+@dir openjdk17/legal/jdk.dynalink
+@dir openjdk17/legal/java.scripting
+@dir openjdk17/legal/java.security.jgss
+@dir openjdk17/legal/jdk.net
+@dir openjdk17/legal/java.compiler
+@dir openjdk17/legal/java.instrument
+@dir openjdk17/legal/jdk.jlink
+@dir openjdk17/legal/jdk.jshell
+@dir openjdk17/legal/jdk.jconsole
+@dir openjdk17/legal/java.sql.rowset
+@dir openjdk17/legal/jdk.internal.ed
+@dir openjdk17/legal/jdk.jdwp.agent
+@dir openjdk17/legal/jdk.jartool
+@dir openjdk17/legal/jdk.crypto.cryptoki
+@dir openjdk17/legal/java.xml
+@dir openjdk17/legal/java.management
+@dir openjdk17/legal/jdk.jsobject
+@dir openjdk17/legal/jdk.unsupported.desktop
+@dir openjdk17/legal/java.smartcardio
+@dir openjdk17/legal/jdk.crypto.ec
+@dir openjdk17/legal/jdk.jcmd
+@dir openjdk17/legal/java.desktop
+@dir openjdk17/legal/jdk.random
+@dir openjdk17/legal/java.transaction.xa
+@dir openjdk17/legal/jdk.javadoc
+@dir openjdk17/legal/jdk.accessibility
+@dir openjdk17/legal/jdk.internal.opt
+@dir openjdk17/legal/java.net.http
+@dir openjdk17/legal/jdk.unsupported
+@dir openjdk17/legal/jdk.incubator.foreign
+@dir openjdk17/legal/jdk.jdeps
+@dir openjdk17/legal/jdk.jfr
+@dir openjdk17/legal/java.rmi
+@dir openjdk17/legal/jdk.security.jgss
+@dir openjdk17/legal/java.sql
+@dir openjdk17/legal/java.security.sasl
+@dir openjdk17/legal/jdk.internal.vm.ci
+@dir openjdk17/legal/jdk.internal.vm.compiler
+@dir openjdk17/legal/jdk.hotspot.agent
+@dir openjdk17/legal/jdk.xml.dom
+@dir openjdk17/legal/jdk.management.jfr
+@dir openjdk17/legal/jdk.charsets
+@dir openjdk17/legal/java.management.rmi
+@dir openjdk17/legal/java.logging
+@dir openjdk17/legal/java.base
+@dir openjdk17/legal/jdk.sctp
+@dir openjdk17/legal/jdk.compiler
+@dir openjdk17/legal/jdk.attach
+@dir openjdk17/legal/jdk.localedata
+@dir openjdk17/legal/java.se
+@dir openjdk17/legal/jdk.nio.mapmode
+@dir openjdk17/legal/jdk.internal.vm.compiler.management
+@dir openjdk17/legal/jdk.editpad
+@dir openjdk17/legal/java.xml.crypto
+@dir openjdk17/legal/jdk.internal.le
+@dir openjdk17/legal/java.naming
+@dir openjdk17/legal/jdk.naming.rmi
+@dir openjdk17/legal/jdk.jstatd
+@dir openjdk17/legal/jdk.management.agent
+@dir openjdk17/legal/jdk.internal.jvmstat
+@dir openjdk17/legal/jdk.incubator.vector
+@dir openjdk17/legal/java.prefs
+@dir openjdk17/legal/jdk.httpserver
+@dir openjdk17/legal/jdk.jdi
+@dir openjdk17/legal/jdk.zipfs
+@dir openjdk17/legal/java.datatransfer
+@dir openjdk17/legal/jdk.management
+@dir openjdk17/legal
+@dir openjdk17/lib/jfr
+@dir openjdk17/lib/security
+@dir openjdk17/lib/server
+@dir openjdk17/lib
+@dir openjdk17
+@postexec /usr/local/bin/registervm '/usr/local/openjdk17/bin/java'
+@preunexec /usr/local/bin/unregistervm '/usr/local/openjdk17/bin/java'
