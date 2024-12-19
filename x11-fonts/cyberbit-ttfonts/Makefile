@@ -1,6 +1,5 @@
 PORTNAME=	cyberbit-ttfonts
-PORTVERSION=	2.0
-PORTREVISION=	1
+PORTVERSION=	2.0.20050220
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://vault.101011010.xyz/distfiles/cyberbit/ \
