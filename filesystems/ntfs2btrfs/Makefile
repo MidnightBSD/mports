@@ -15,7 +15,7 @@ USES=		cmake pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	maharmstone
 
-PLIST_FILES=	sbin/${PORTNAME} man/man8/${PORTNAME}.8.gz
+PLIST_FILES=	sbin/${PORTNAME} share/man/man8/${PORTNAME}.8.gz
 
 post-patch:
 # One should not try to mmap(2) disk devices on FreeBSD, it won't work
