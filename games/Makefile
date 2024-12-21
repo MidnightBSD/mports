@@ -1,7 +1,6 @@
 COMMENT = Games and related software
 
 SUBDIR += 2048
-SUBDIR += 2048-qt
 SUBDIR += 3dpong
 SUBDIR += aisleriot
 SUBDIR += allenroids
