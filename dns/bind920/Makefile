@@ -214,8 +214,7 @@ post-install:
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/CHANGES* \
-		${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC}/doc/arm/_build/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}/arm
 .else
 
