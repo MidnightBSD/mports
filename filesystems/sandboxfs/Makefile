@@ -16,6 +16,8 @@ USES=		cargo fuse
 USE_GITHUB=	yes
 GH_ACCOUNT=	bazelbuild
 
+NO_TEST=	yes
+
 CARGO_CRATES=	aho-corasick-0.7.10 \
 		arc-swap-0.4.5 \
 		atty-0.2.14 \
