@@ -1,7 +1,8 @@
 PORTNAME=	llfuse
-PORTVERSION=	1.3.8
+PORTVERSION=	1.5.1
 CATEGORIES=	filesystems devel python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/python-llfuse/python-llfuse/releases/download/release-${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,12 +11,13 @@ WWW=		https://github.com/python-llfuse/python-llfuse
 
 LICENSE=	lgpl
 
-py27_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}contextlib2>0:devel/py-contextlib2@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		compiler:c++11-lang fuse pkgconfig python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	autoplist concurrent cython pep517
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/llfuse*.so
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
