@@ -60,6 +60,7 @@ SUBDIR += mod_defensible
 SUBDIR += mod_dnssd
 SUBDIR += mod_evasive
 SUBDIR += mod_fastcgi
+SUBDIR += mod_fcgid
 SUBDIR += mod_http2
 SUBDIR += mod_perl2
 SUBDIR += mod_php81
