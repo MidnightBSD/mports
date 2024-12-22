@@ -137,9 +137,9 @@ lib/gedit/plugins/snippets/windowactivatable.py
 lib/gedit/plugins/sort.plugin
 lib/gedit/plugins/spell.plugin
 lib/gedit/plugins/time.plugin
-%%PYTHON_SITELIBDIR%%/gi/overrides/Gedit.py
-%%PYTHON_SITELIBDIR%%/gi/overrides/__pycache__/Gedit.cpython-%%PYTHON_SUFFIX%%.opt-1.pyc
-%%PYTHON_SITELIBDIR%%/gi/overrides/__pycache__/Gedit.cpython-%%PYTHON_SUFFIX%%.pyc
+@comment %%PYTHON_SITELIBDIR%%/gi/overrides/Gedit.py
+@comment %%PYTHON_SITELIBDIR%%/gi/overrides/__pycache__/Gedit.cpython-%%PYTHON_SUFFIX%%.opt-1.pyc
+@comment %%PYTHON_SITELIBDIR%%/gi/overrides/__pycache__/Gedit.cpython-%%PYTHON_SUFFIX%%.pyc
 libdata/pkgconfig/gedit.pc
 libexec/gedit/gedit-bugreport.sh
 share/man/man1/gedit.1.gz
