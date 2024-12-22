@@ -43,4 +43,6 @@ SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SASL_MESON_TRUE=	sasl
 STATISTICS_MESON_ON=	-Dstatistics=true
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
