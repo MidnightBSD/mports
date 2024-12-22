@@ -16,7 +16,9 @@ USE_PERL5=	configure
 
 PORTSCOUT=	limit:^[0-9\.]*$$
 
+NO_TEST=	yes
+
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Fuse/Fuse.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Fuse/Fuse.so
 
 .include <bsd.port.mk>
