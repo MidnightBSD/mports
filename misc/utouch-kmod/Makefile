@@ -9,6 +9,8 @@ WWW=		https://github.com/wulf7/utouch
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 USES=		kmod uidfix
 
 USE_GITHUB=	yes
@@ -29,6 +31,9 @@ KMODSRC_FILES=	Makefile utouch.c
 .if ${PORT_OPTIONS:MSOURCE}
 PLIST_FILES+=	${KMODSRC_FILES:S|^|${KMODSRC_DIR}/|}
 .endif
+
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}/boot/modules
 
 post-install-SOURCE-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${KMODSRC_DIR}
