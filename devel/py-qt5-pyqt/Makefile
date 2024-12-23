@@ -22,7 +22,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dbus>1:devel/py-dbus@${PY_FLAVOR} \
 
 USES=		gl pkgconfig python pyqt:5 qt:5
 USE_GL=		gl
-USE_PYTHON=	concurrent flavors py3kplist
+USE_PYTHON=	concurrent flavors
 USE_PYQT=	qtbuilder sip pysip
 USE_QT=		connectivity core dbus declarative designer gui help imageformats location \
 		multimedia network opengl printsupport quick3d remoteobjects \
