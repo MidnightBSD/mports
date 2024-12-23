@@ -1260,6 +1260,7 @@ SUBDIR += py-setproctitle
 SUBDIR += py-setuptools
 SUBDIR += py-setuptools44
 SUBDIR += py-setuptools-git
+SUBDIR += py-setuptools_git_ls_files
 SUBDIR += py-setuptools-rust
 SUBDIR += py-setuptools_hg
 SUBDIR += py-setuptools-scm
