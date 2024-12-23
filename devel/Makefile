@@ -1056,6 +1056,7 @@ SUBDIR += py-jeepney
 SUBDIR += py-jmespath
 SUBDIR += py-joblib
 SUBDIR += py-jschema-to-python
+SUBDIR += py-jsmin
 SUBDIR += py-jsondiff
 SUBDIR += py-jsonform
 SUBDIR += py-jsonpatch
