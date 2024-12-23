@@ -833,6 +833,7 @@ SUBDIR += pear-Horde_Exception
 SUBDIR += pear-Horde_History
 SUBDIR += pear-Horde_Icalendar
 SUBDIR += pear-Horde_Injector
+SUBDIR += pear-Horde_Lock
 SUBDIR += pear-Horde_Nls
 SUBDIR += pear-Horde_Role
 SUBDIR += pear-Horde_Serialize
