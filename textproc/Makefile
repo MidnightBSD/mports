@@ -281,6 +281,7 @@ SUBDIR += py-mkdocs-simple-hooks
 SUBDIR += py-mkdocstrings
 SUBDIR += py-mkdocstrings-crystal
 SUBDIR += py-mkdocstrings-python
+SUBDIR += py-mkdocstrings-python-legacy
 SUBDIR += py-myst-parser
 SUBDIR += py-openstep-plist
 SUBDIR += py-paginate
