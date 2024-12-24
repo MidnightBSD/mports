@@ -240,6 +240,7 @@ SUBDIR += py-chardet
 SUBDIR += py-charset-normalizer
 SUBDIR += py-cmarkgfm
 SUBDIR += py-cssselect2
+SUBDIR += py-docstring-parser
 SUBDIR += py-docutils
 SUBDIR += py-elementpath
 SUBDIR += py-enrich
