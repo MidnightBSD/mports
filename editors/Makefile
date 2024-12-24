@@ -25,6 +25,7 @@ SUBDIR += nano
 SUBDIR += nvi-devel
 SUBDIR += openoffice-4
 SUBDIR += pico-alpine
+SUBDIR += py-editorconfig
 SUBDIR += slime
 SUBDIR += tea
 SUBDIR += ted

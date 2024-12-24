@@ -1055,6 +1055,7 @@ SUBDIR += py-jedi
 SUBDIR += py-jeepney
 SUBDIR += py-jmespath
 SUBDIR += py-joblib
+SUBDIR += py-jsbeautifier
 SUBDIR += py-jschema-to-python
 SUBDIR += py-jsmin
 SUBDIR += py-jsondiff
