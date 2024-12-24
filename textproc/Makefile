@@ -273,6 +273,7 @@ SUBDIR += py-mkdocs-get-deps
 SUBDIR += py-mkdocs-git-revision-date-localized-plugin
 SUBDIR += py-mkdocs-material
 SUBDIR += py-mkdocs-material-extensions
+SUBDIR += py-mkdocs-mermaid2-plugin
 SUBDIR += py-mkdocs-minify-plugin
 SUBDIR += py-mkdocs-nature
 SUBDIR += py-mkdocs-redirects
