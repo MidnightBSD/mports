@@ -1,6 +1,6 @@
 PORTNAME=	openjdk17-bin
 PORTVERSION=	${VER}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	java
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/openjdk/${ARCH}/
 
@@ -20,7 +20,8 @@ DISTINFO_FILE=  ${.CURDIR}/distinfo.${ARCH}
 
 LIB_DEPENDS=    libfontconfig.so:x11-fonts/fontconfig \
                 libfreetype.so:print/freetype2 \
-                libinotify.so:devel/libinotify
+                libinotify.so:devel/libinotify \
+		libharfbuzz.so:print/harfbuzz
 RUN_DEPENDS+=	javavm:java/javavmwrapper \
 		dejavu>=2.35:x11-fonts/dejavu
 
