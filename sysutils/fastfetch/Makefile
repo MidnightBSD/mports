@@ -1,5 +1,5 @@
 PORTNAME=	fastfetch
-DISTVERSION=	2.31.0
+DISTVERSION=	2.33.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
