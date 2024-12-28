@@ -1,6 +1,5 @@
 PORTNAME=	lz4
-PORTVERSION=	1.9.4
-PORTREVISION=	1
+PORTVERSION=	1.10.0
 PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/lz4/lz4/releases/download/v${PORTVERSION}/
@@ -16,16 +15,25 @@ LICENSE_COMB=	multi
 LICENSE_FILE_bsd2=${WRKSRC}/../../lib/LICENSE
 LICENSE_FILE_gpl2=	${WRKSRC}/../../programs/COPYING
 
-USES=		cpe meson pkgconfig python:build shebangfix
+USES=		cpe meson pkgconfig python:build
 
 MESON_ARGS=	--default-library=both \
+		-Dalign-test=true \
 		-Dcontrib=false \
+		-Ddebug-level=1 \
+		-Ddistance-max=65535 \
+		-Denable_multithread=true \
 		-Dexamples=false \
+		-Dfast-dec-loop='auto' \
+		-Dforce-sw-bitcount=false \
+		-Dfreestanding=false \
 		-Dmemory-usage=0 \
+		-Dossfuzz=true \
 		-Dprograms=true \
-		-Dunstable=false
+		-Dunstable=false \
+		-Duser-memory-functions=false
 USE_LDCONFIG=	yes
-WRKSRC_SUBDIR=	contrib/meson
+WRKSRC_SUBDIR=	build/meson
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
@@ -33,6 +41,8 @@ CPE_VENDOR=	lz4_project
 
 PORTSCOUT=	limit:^[0-9]*\.
 
-SHEBANG_FILES=	../../tests/*.py meson/*.py
+OPTIONS_DEFINE=	TEST
+
+TEST_MESON_TRUE=	tests
 
 .include <bsd.port.mk>
