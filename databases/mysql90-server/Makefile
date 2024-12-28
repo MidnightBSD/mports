@@ -1,9 +1,9 @@
 PORTNAME?=		mysql
-PORTVERSION=		8.4.2
-PORTREVISION?=		1
+PORTVERSION=		9.0.1
+PORTREVISION?=		0
 CATEGORIES=		databases
-MASTER_SITES=		MYSQL/MySQL-8.4
-PKGNAMESUFFIX?=		84-server
+MASTER_SITES=		MYSQL/MySQL-9.0
+PKGNAMESUFFIX?=		90-server
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT?=		Multithreaded SQL database (server)
@@ -31,7 +31,6 @@ MY_SECDIR=	/var/db/mysql_secure
 MY_TMPDIR=	/var/db/mysql_tmpdir
 
 LIB_DEPENDS+=	libcurl.so:ftp/curl \
-		libevent.so:devel/libevent \
 		libicutu.so:devel/icu \
 		liblz4.so:archivers/liblz4 \
 		libhidapi.so:comms/hidapi \
@@ -76,7 +75,6 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DWITH_BOOST="${WRKSRC}/boost" \
 		-DWITH_SYSTEM_LIBS=1 \
 		-DWITH_EDITLINE=system \
-		-DWITH_LIBEVENT=system \
 		-DWITH_LZ4=system \
 		-DWITH_ICU=system \
 		-DWITH_CURL=system \
@@ -85,10 +83,6 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DWITH_SSL=system \
 		-DWITH_ZLIB=system \
 		-DWITH_LZ4=system
-
-CMAKE_ARGS+=	-DWITHOUT_MROONGA_STORAGE_ENGINE=1 \
-		-DWITHOUT_ROCKSDB_STORAGE_ENGINE=1 \
-		-DWITHOUT_TOKUDB_STORAGE_ENGINE=1
 
 SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
@@ -106,7 +100,7 @@ PLIST_SUB=	MY_DBDIR=${MY_DBDIR} \
 
 # MySQL-Server part
 .if !defined(CLIENT_ONLY)
-USES+=		mysql:84
+USES+=		mysql:90
 
 CONFLICTS_INSTALL=	mysql*-server \
 			mysqlwsrep*-server \
