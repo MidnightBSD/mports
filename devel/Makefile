@@ -1475,6 +1475,7 @@ SUBDIR += tmake
 SUBDIR += tradcpp
 SUBDIR += tree-sitter
 SUBDIR += trio
+SUBDIR += unibilium
 SUBDIR += universal-ctags
 SUBDIR += upnp
 SUBDIR += utf8cpp
