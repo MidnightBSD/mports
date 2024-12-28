@@ -322,6 +322,7 @@ SUBDIR += lua-bitop
 SUBDIR += lua-lgi
 SUBDIR += lua-lpeg
 SUBDIR += lutok
+SUBDIR += luv
 SUBDIR += m17n-db
 SUBDIR += m17n-docs
 SUBDIR += m17n-lib
