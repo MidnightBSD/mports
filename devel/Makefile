@@ -339,6 +339,7 @@ SUBDIR += mm
 SUBDIR += mono-addins
 SUBDIR += motor
 SUBDIR += msbuild
+SUBDIR += msgpack-c
 SUBDIR += nasm
 SUBDIR += ncurses
 SUBDIR += newt
