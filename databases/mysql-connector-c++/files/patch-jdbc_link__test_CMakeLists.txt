@@ -1,0 +1,11 @@
+--- jdbc/link_test/CMakeLists.txt.orig	2023-03-23 16:32:48 UTC
++++ jdbc/link_test/CMakeLists.txt
+@@ -282,7 +282,7 @@ if(BUILD_STATIC AND NOT WIN32)
+     list(APPEND libs socket nsl)
+   endif()
+ 
+-  if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++  if(CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+     list(APPEND libs execinfo unwind)
+   else()
+     list(APPEND libs resolv)

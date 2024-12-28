@@ -43,6 +43,7 @@ SUBDIR += mdbtools
 SUBDIR += memcached
 SUBDIR += mongodb36
 SUBDIR += mongodb50
+SUBDIR += mysql-connector-c++
 SUBDIR += mysql-connector-j
 SUBDIR += mysql-connector-java51
 SUBDIR += mysql80-client
