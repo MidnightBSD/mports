@@ -1,6 +1,6 @@
 PORTNAME?=		mysql
-PORTVERSION=		8.0.35
-PORTREVISION?=		1
+PORTVERSION=		8.0.39
+PORTREVISION?=		0
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.0
 PKGNAMESUFFIX?=		80-server
@@ -35,7 +35,9 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		${LIB_DEPENDS_${ARCH}}
 LIB_DEPENDS_aarch64=	libunwind.so:devel/libunwind
 LIB_DEPENDS_amd64=	libunwind.so:devel/libunwind
+LIB_DEPENDS_armv7=	libunwind.so:devel/libunwind
 LIB_DEPENDS_i386=	libunwind.so:devel/libunwind
+LIB_DEPENDS_powerpc=		libunwind.so:devel/libunwind
 LIB_DEPENDS_powerpc64=		libunwind.so:devel/libunwind
 LIB_DEPENDS_powerpc64le=	libunwind.so:devel/libunwind
 
@@ -43,12 +45,15 @@ BUILD_DEPENDS=	liblz4>0:archivers/liblz4 \
 		${BUILD_DEPENDS_${ARCH}}
 BUILD_DEPENDS_aarch64=	libunwind>0:devel/libunwind
 BUILD_DEPENDS_amd64=	libunwind>0:devel/libunwind
+BUILD_DEPENDS_armv7=	libunwind>0:devel/libunwind
 BUILD_DEPENDS_i386=	libunwind>0:devel/libunwind
+BUILD_DEPENDS_powerpc=	libunwind>0:devel/libunwind
 BUILD_DEPENDS_powerpc64=	libunwind>0:devel/libunwind
 BUILD_DEPENDS_powerpc64le=	libunwind>0:devel/libunwind
 
 CMAKE_BUILD_TYPE=	Release
-CFLAGS+=		-fPIC -DNDEBUG -malign-double
+CFLAGS+=		-fPIC
+CFLAGS_aarch64?=	-march=armv8-a+crc+crypto
 
 CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DINSTALL_LDCONFIGDIR="${LOCALBASE}/libdata/ldconfig" \
@@ -105,8 +110,7 @@ SUB_LIST=	MY_DBDIR=${MY_DBDIR} \
 
 PLIST_SUB=	MY_DBDIR=${MY_DBDIR} \
 		MY_SECDIR=${MY_SECDIR} \
-		MY_TMPDIR=${MY_TMPDIR} \
-		MYSQL80_LIBVER=${MYSQL80_LIBVER}
+		MY_TMPDIR=${MY_TMPDIR}
 
 # MySQL-Server part
 .if !defined(CLIENT_ONLY)
@@ -171,11 +175,6 @@ FEDERATED_SUB_LIST_OFF+=	FEDER=""
 
 .include <bsd.mport.options.mk>
 
-.if (${OSVERSION} < 300000)
-# force openssl from mports.
-SSL_DEFAULT=    openssl
-.endif
-
 # Since 8.0.20 release innodb engine uses new memory alligned allocator
 # which is broken on i386 due to different size of types and caused a
 # 'static_assert(alignof(T) <= alignof(std::max_align_t))' error
@@ -184,12 +183,12 @@ SSL_DEFAULT=    openssl
 SSP_UNSAFE=	yes
 .endif
 
-.if ${OSVERSION} >= 300000
-SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
+.if ${ARCH} == powerpc
+LDFLAGS+=	-latomic
+USES+=		compiler:gcc-c++11-lib
 .else
-SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
-.endif
 USES+=		compiler:c++17-lang
+.endif
 
 .include <bsd.port.pre.mk>
 
