@@ -36,6 +36,8 @@ LIBUNWIND_VERSION=	1.8.1
 
 .include <bsd.mport.options.mk>
 
+PLIST_FILES=	include/unwind.h
+
 .if ${ARCH:Mpowerpc*}
 PLIST_SUB+=	COREDUMP="@comment "
 .else
@@ -43,6 +45,7 @@ PLIST_SUB+=	COREDUMP=""
 .endif
 
 post-install:
+	${INSTALL_DATA} ${FILESDIR}/unwind.h ${STAGEDIR}${PREFIX}/include
 	cd ${STAGEDIR}${PREFIX}/ && ${FIND} libexec/libunwind -type f >> ${TMPPLIST}
 
 .include <bsd.port.mk>
