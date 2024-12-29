@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FFMpeg library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://ffmpeg.org/
 
-LICENSE=	GPLv2+ LGPL21+
+LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
 
 USES=		linux:rl9
@@ -30,7 +30,7 @@ DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == amd64
 USE_LINUX+=	vmaf

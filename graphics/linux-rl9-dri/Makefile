@@ -31,7 +31,7 @@ CONFLICTS=	linux-c7-${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-install:
 .if ${ARCH} == amd64  ||  ${ARCH} == i386

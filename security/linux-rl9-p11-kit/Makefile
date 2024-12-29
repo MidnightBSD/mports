@@ -22,7 +22,7 @@ DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-install:
 	${RLN} ${STAGEDIR}${PREFIX}/usr/lib64/pkcs11/p11-kit-trust.so ${STAGEDIR}${PREFIX}/usr/lib64/libnssckbi.so

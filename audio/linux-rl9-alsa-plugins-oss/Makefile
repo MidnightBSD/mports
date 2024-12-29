@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OSS plugin for ALSA (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.alsa-project.org/
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		autoreconf:build gmake libtool:build linux:rl9 pkgconfig
 USE_LDCONFIG=	yes
@@ -40,7 +40,7 @@ CONFLICTS=	linux-c7-${PORTNAME}${PKGNAMESUFFIX}
 DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-extract:
 .if !empty(COMPAT32_CFLAGS_${ARCH})
