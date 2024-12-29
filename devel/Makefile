@@ -311,6 +311,7 @@ SUBDIR += linux-c7-sdl12
 SUBDIR += linux-c7-sdl20
 SUBDIR += linux-c7-strace
 SUBDIR += linux-c7-systemd-libs
+SUBDIR += linux-c7-zlib-devel
 SUBDIR += linux_libusb
 SUBDIR += linux-rl9-dbus-libs
 SUBDIR += linux-rl9-devtools
