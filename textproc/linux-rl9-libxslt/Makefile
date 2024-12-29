@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XSLT C library for GNOME (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://gitlab.gnome.org/GNOME/libxslt/
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	xmlsoft
 USE_LDCONFIG=	yes

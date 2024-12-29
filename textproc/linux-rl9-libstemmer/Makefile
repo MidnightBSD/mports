@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C stemming algorithm library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://snowball.tartarus.org
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

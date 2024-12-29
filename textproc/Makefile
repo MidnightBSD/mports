@@ -92,6 +92,7 @@ SUBDIR += libxslt
 SUBDIR += libyaml
 SUBDIR += linux-c7-aspell
 SUBDIR += linux-c7-expat
+SUBDIR += linux-c7-expat-devel
 SUBDIR += linux-c7-libcroco
 SUBDIR += linux-c7-libxml2
 SUBDIR += linux-c7-libxslt

@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library providing XML and HTML support (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://xmlsoft.org/
 
-LICENSE=	MIT
+LICENSE=	mit
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	xmlsoft
