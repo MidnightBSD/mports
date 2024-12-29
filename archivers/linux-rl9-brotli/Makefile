@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic-purpose lossless compression algorithm (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/google/brotli
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

@@ -8,6 +8,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LZ4 compression library and utilities (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://lz4.github.io/lz4/
 
+LICENSE=        bsd2 gpl2
+LICENSE_COMB=   multi
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
