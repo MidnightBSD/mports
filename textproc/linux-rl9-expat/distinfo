@@ -1,0 +1,9 @@
+TIMESTAMP = 1732658787
+SHA256 (rocky/e/expat-2.5.0-3.el9_5.1.aarch64.rpm) = 9886532d4dad744803b28eb89a82a03770a0b515d74527a37178b12bd7c71f7a
+SIZE (rocky/e/expat-2.5.0-3.el9_5.1.aarch64.rpm) = 111843
+SHA256 (rocky/e/expat-2.5.0-3.el9_5.1.i686.rpm) = 81061b74181a35f6eaba67d764525051eca75048bc6eb2cc5a04ca6d65433960
+SIZE (rocky/e/expat-2.5.0-3.el9_5.1.i686.rpm) = 120660
+SHA256 (rocky/e/expat-2.5.0-3.el9_5.1.x86_64.rpm) = 520670e38e85bce31f42e2beadf37fb0589d5a7fb5ee4b1b9ecfd406b23e081e
+SIZE (rocky/e/expat-2.5.0-3.el9_5.1.x86_64.rpm) = 117557
+SHA256 (rocky/e/expat-2.5.0-3.el9_5.1.src.rpm) = 01035a5121632871c1efeadacffd0422ecdcf615e8f5dc89d09c8b142000322b
+SIZE (rocky/e/expat-2.5.0-3.el9_5.1.src.rpm) = 8355511

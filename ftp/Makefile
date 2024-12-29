@@ -13,6 +13,7 @@ SUBDIR += lftp
 SUBDIR += libfilezilla
 SUBDIR += linux-c7-curl
 SUBDIR += linux-rl9-curl
+SUBDIR += linux-rl9-wget
 SUBDIR += ncftp3
 SUBDIR += p5-File-Fetch
 SUBDIR += php81-curl

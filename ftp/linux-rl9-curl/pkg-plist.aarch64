@@ -1,0 +1,15 @@
+usr/bin/curl
+usr/lib/.build-id/08/04b7a1d40e1d7c8bb3ffacdbdd814968cf7dd2
+usr/lib/.build-id/c5/148099be6a9f0d8c4873f3ef72ecb0f3746fc1
+usr/lib64/libcurl.so.4
+usr/lib64/libcurl.so.4.7.0
+%%PORTDOCS%%%%DOCSDIR%%/BUGS.md
+%%PORTDOCS%%%%DOCSDIR%%/CHANGES
+%%PORTDOCS%%%%DOCSDIR%%/FAQ
+%%PORTDOCS%%%%DOCSDIR%%/FEATURES.md
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/TODO
+%%PORTDOCS%%%%DOCSDIR%%/TheArtOfHttpScripting.md
+usr/share/licenses/libcurl/COPYING
+usr/share/man/man1/curl.1.gz
+usr/share/zsh/site-functions/_curl
