@@ -238,7 +238,7 @@ OUTLOOK_EXTRA_PATCHES=		${FILESDIR}/extrapatch-outlook-servers__slapd__schema_pr
 
 CONFIGURE_SED=		-e 's,uuid/uuid.h,xxuuid/uuid.h,g'
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(CLIENT_ONLY)
 OPENLDAP_PORTREVISION=	${PORTREVISION_CLIENT}
