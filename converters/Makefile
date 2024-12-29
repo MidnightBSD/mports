@@ -10,6 +10,7 @@ SUBDIR += iconv-rfc1345
 SUBDIR += libb64
 SUBDIR += libiconv
 SUBDIR += linux-c7-fribidi
+SUBDIR += linux-rl9-fribidi
 SUBDIR += lua-json
 SUBDIR += mpack
 SUBDIR += o3read
