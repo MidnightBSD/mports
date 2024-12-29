@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform application and UI framework, metaport (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.qt.io/
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 
 USES=		linux:rl9 metaport
 USE_LINUX=	qt3d qtbase qtconnectivity qtdeclarative qtgraphicaleffects \
@@ -17,6 +17,6 @@ USE_LINUX=	qt3d qtbase qtconnectivity qtdeclarative qtgraphicaleffects \
 
 DESCR=		${PORTSDIR}/devel/${PORTNAME}/pkg-descr
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .include <bsd.port.mk>
