@@ -10,6 +10,7 @@ SUBDIR += extract-xiso
 SUBDIR += gearsystem
 SUBDIR += higan
 SUBDIR += linux-c7
+SUBDIR += linux-rl9
 SUBDIR += linux_base-c7
 SUBDIR += linux_base-rl9
 SUBDIR += mastergear
