@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced Linux Sound Architecture libraries (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.alsa-project.org/
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 RUN_DEPENDS=	alsa-lib>0:audio/alsa-lib
 

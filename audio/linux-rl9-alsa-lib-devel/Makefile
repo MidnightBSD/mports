@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced Linux Sound Architecture headers (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.alsa-project.org/
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		linux:rl9
 USE_LINUX=	alsalib

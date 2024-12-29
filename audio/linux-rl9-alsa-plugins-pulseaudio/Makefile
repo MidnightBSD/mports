@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PulseAudio plugin for ALSA (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.alsa-project.org/
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
