@@ -78,6 +78,7 @@ SUBDIR += libssh
 SUBDIR += libssh2
 SUBDIR += libtasn1
 SUBDIR += libtatsu
+SUBDIR += libxcrypt
 SUBDIR += libyubikey
 SUBDIR += libzrtpcppcore
 SUBDIR += linux-c7-cyrus-sasl2
