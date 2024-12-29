@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AV1 reference encoder/decoder (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://aomedia.org/
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
@@ -26,7 +26,7 @@ DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == amd64
 USE_LINUX+=	vmaf
