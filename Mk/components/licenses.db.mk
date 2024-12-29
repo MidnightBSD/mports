@@ -1,7 +1,7 @@
 _LICENSE_LIST= 	apsl2 apsl1 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
-		mit modula3 ncsa npl nvidia NONE openldap2.8 opera owl OFL10 OFL11 \
+		mit modula3 ncsa npl nvidia NONE openldap2.8 OpenSSL opera owl OFL10 OFL11 \
 		pgsql python ruby sgi subversion unlicense \
 		WTFPL1 WTFPL x11 zlib zpl2.1 \
 		publicdom unknown other agg restricted \
@@ -343,6 +343,9 @@ _LICENSE_GROUPS_opera=
 
 _LICENSE_NAME_other=	Other License (not yet defined)
 _LICENSE_GROUPS_other=	
+
+_LICENSE_NAME_OpenSSL=  OpenSSL License
+_LICENSE_GROUPS_OpenSSL=        FSF
 
 _LICENSE_NAME_owl=	Open Works License (owl.apotheon.org)
 _LICENSE_GROUPS_owl=	COPYFREE
