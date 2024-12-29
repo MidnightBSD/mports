@@ -7,7 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux compilers and base libraries (CentOS ${LINUX_DIST_VER})
 WWW=		https://gcc.gnu.org/
 
-# LICENSE=	Various GNU
+LICENSE=	gpl2+ gpl3+ lgpl2.1+
+LICENSE_COMB=	multi
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
@@ -63,7 +64,7 @@ PLIST_SUB=	BUVERSION=${BUVERSION} \
 		MPFRVERSION=${MPFRVERSION} \
 		LIBMPCVERSION=${LIBMPCVERSION}
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-install:
 	${LN} -sf ld.bfd ${STAGEDIR}${PREFIX}/usr/bin/ld
