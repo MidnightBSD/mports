@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Accessibility Toolkit (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://developer.gnome.org/atk/
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

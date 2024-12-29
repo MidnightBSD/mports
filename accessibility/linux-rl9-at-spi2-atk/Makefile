@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive technology ATK bridge (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://gitlab.gnome.org/GNOME/at-spi2-atk
 
-LICENSE=	LGPL20+
+LICENSE=	lgpl+
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
