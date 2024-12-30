@@ -865,7 +865,7 @@ sub template {
   $query ||= '';
 
   # should be dynamic but seems to fail with fast cgi
-  my $root = '/magus/'; # $p->script_name()
+  my $root = $p->script_name();
 
   $tmpl->param(
     query     => $query,
