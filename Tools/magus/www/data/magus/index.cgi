@@ -22,9 +22,9 @@ use String::Clean::XSS;
     use Class::DBI::AbstractSearch;
 }
 
-while (my $p = CGI::Fast->new) {
+while (my $cgi = CGI::Fast->new) {
 	eval {
-  		main($p);
+  		main($cgi);
 	};
 
 	if ($@) {
@@ -153,7 +153,7 @@ sub api_run_port_stats {
             -status => '400 Bad Request',
         );
         print "{}";
-        exit;
+        return;
   }
     
   my %details = (run => $run, status => $status);
@@ -284,7 +284,7 @@ sub compare_runs {
                 -status=> '400 Bad Request'
             );
             print "One or more run ids missing.\n";
-            exit;
+            return;
 
     }
   
@@ -402,7 +402,7 @@ sub blockers {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
 	my $ports = Magus::Port->search(run => $run, status => 'untested');
@@ -442,7 +442,7 @@ sub run_page {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
     eval {
@@ -454,7 +454,7 @@ sub run_page {
             -status => '404 Not Found'
         );
         print "404 Not Found\n";
-        exit;
+        return;
     }
 
   my $tmpl = template($p, "run.tmpl");
@@ -507,7 +507,7 @@ sub port_page {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
   eval { 
@@ -519,7 +519,7 @@ sub port_page {
               -status=> '404 Not Found'
     );
     print "404 Not Found\n";
-    exit;
+    return;
   }
 
   $tmpl->param(
@@ -603,7 +603,7 @@ sub machine_page {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
     eval {
@@ -615,7 +615,7 @@ sub machine_page {
             -status=> '404 Not Found'
         );
         print "404 Not Found\n";
-        exit;
+        return;
     }
 
   my $tmpl = template($p, 'machine.tmpl');
@@ -735,7 +735,7 @@ sub async_machine_events {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
   
   my @events = map { {
@@ -770,7 +770,7 @@ sub async_run_port_stats {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
   
   my @ports;
@@ -830,7 +830,7 @@ sub browse {
             -status => '404 Not Found'
         );
         print "404 Not Found\n";
-        exit;
+        return;
     }
 
     my $tmpl = template($p, "category.tmpl");
