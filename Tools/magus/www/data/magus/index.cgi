@@ -75,13 +75,13 @@ sub main {
   if ($path eq '' || $path eq '/') {
     summary_page($p);
   } elsif ($path =~ m:/machines/(.*):) {
-    if ($1) {
+    if (defined($1) && length($1) > 0) {
       machine_page($p, $1);
     } else {
       machine_index($p);
     }
   } elsif ($path =~ m:^/runs/(.*):) {
-    if ($1) {
+    if (defined($1) && length($1) > 0) {
       run_page($p, $1);
     } else {
       run_index($p);
