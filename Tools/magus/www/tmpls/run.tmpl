@@ -6,6 +6,25 @@
        <h2>Run <TMPL_VAR name="id"></h2>
 	<p>View <a href="/magus/blockers/<TMPL_VAR name="id">">Top Blockers</a></p>
 
+	<table class="table table-striped table-bordered">
+	<thead>
+	<tr>
+	<th>Avg Events /Hour</th>
+	<th>Min Events /Hour</th>
+	<th>Max Events /Hour</th>
+	<th>Total Hours</th>
+	</tr>
+	</thead>
+	<TMPL_LOOP NAME="metrics">
+	<tr>
+	<td><TMPL_VAR name="average_events_per_hour"></td>
+	<td><TMPL_VAR name="min_events_per_hour"></td>
+	<td><TMPL_VAR name="max_events_per_hour"></td>
+	<td><TMPL_VAR name="total_hours"></td>
+	</tr>
+              </TMPL_LOOP>
+	</table>
+
        <table class="table table-striped table-bordered run-summary">
 <thead>
 <tr>
