@@ -481,7 +481,7 @@ sub run_page {
     GROUP BY DATE_TRUNC('hour', events.time)
 )
 SELECT
-    AVG(event_count) AS average_events_per_hour,
+    ROUND(AVG(event_count)::numeric, 2) AS average_events_per_hour,
     MIN(event_count) AS min_events_per_hour,
     MAX(event_count) AS max_events_per_hour,
     COUNT(*) AS total_hours
