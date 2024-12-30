@@ -469,9 +469,28 @@ sub run_page {
   $sth->finish;
 
   push(@$status_stats, { status => 'ready', count => Magus::Port->search_ready_ports($run)->count });
-  
   $tmpl->param(status_stats => $status_stats);
-  
+
+  my $sth2 = $dbh->prepare("WITH hourly_events AS (
+    SELECT
+        DATE_TRUNC('hour', events.time) AS hour,
+        COUNT(*) AS event_count
+    FROM events
+    INNER JOIN ports ON events.port = ports.id
+    WHERE ports.run=?
+    GROUP BY DATE_TRUNC('hour', events.time)
+)
+SELECT
+    AVG(event_count) AS average_events_per_hour,
+    MIN(event_count) AS min_events_per_hour,
+    MAX(event_count) AS max_events_per_hour,
+    COUNT(*) AS total_hours
+FROM hourly_events");
+  $sth2->execute($run->id);
+  my $metrics = $sth2->fetchall_arrayref({});
+  $sth2->finish;
+  $tmpl->param(metrics => $metrics);
+
   print $p->header;
   print $tmpl->output;
 }
