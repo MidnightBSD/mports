@@ -45,8 +45,10 @@ END_OF_ERROR
 sub main {
   my ($p) = @_;
 
-  my $path = $p->path_info;
-  $path =~ s!//!/!;  # Replace the first occurrence of // with / anywhere in the path
+  my $path = $p->path_info || '';
+  $path =~ s!^/magus!!; # Remove leading /magus if present
+  $path =~ s!^/+!/!;    # Ensure only one leading slash
+  $path =~ s!/+$!!;     # Remove trailing slashes
 
   if ($path =~ m:^/api/runs:) {
     api_runs($p);
