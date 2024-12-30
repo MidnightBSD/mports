@@ -44,8 +44,9 @@ END_OF_ERROR
 
 sub main {
   my ($p) = @_;
- 
+
   my $path = $p->path_info;
+  $path =~ s!//!/!;  # Replace the first occurrence of // with / anywhere in the path
 
   if ($path =~ m:^/api/runs:) {
     api_runs($p);
