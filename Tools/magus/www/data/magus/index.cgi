@@ -863,15 +863,18 @@ sub template {
   
   my $query = $p->param('q');
   $query ||= '';
-  
+
+  # should be dynamic but seems to fail with fast cgi
+  my $root = '/magus/'; # $p->script_name()
+
   $tmpl->param(
     query     => $query,
     title     => 'Magus',
-    root      => $p->script_name(),
-    run_root  => $p->script_name() . '/runs',
-    port_root => $p->script_name() . '/ports',
-    machine_root => $p->script_name() . '/machines',
-    browse_root  => $p->script_name() . '/browse',
+    root      => $root,
+    run_root  => $root . '/runs',
+    port_root => $root . '/ports',
+    machine_root => $root . '/machines',
+    browse_root  => $root . '/browse',
   );
   
   return $tmpl;
