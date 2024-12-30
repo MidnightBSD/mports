@@ -810,6 +810,7 @@ SUBDIR += p5-Time-Duration
 SUBDIR += p5-Time-Duration-Parse
 SUBDIR += p5-Time-HiRes
 SUBDIR += p5-Time-Local
+SUBDIR += p5-Time-Piece
 SUBDIR += p5-Time-modules
 SUBDIR += p5-TimeDate
 SUBDIR += p5-Throwable
