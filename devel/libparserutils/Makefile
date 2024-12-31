@@ -15,7 +15,7 @@ FAKE_OPTS=	trueprefix
 
 BUILD_DEPENDS=	netsurf-buildsystem>=1.5:devel/netsurf-buildsystem
 
-USES=		gmake iconv localbase pkgconfig
+USES=		gmake iconv:wchar_t localbase pkgconfig
 USE_LDCONFIG=	yes
 
 MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
