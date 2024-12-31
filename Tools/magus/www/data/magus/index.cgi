@@ -22,9 +22,9 @@ use String::Clean::XSS;
     use Class::DBI::AbstractSearch;
 }
 
-while (my $p = CGI::Fast->new) {
+while (my $cgi = CGI::Fast->new) {
 	eval {
-  		main($p);
+  		main($cgi);
 	};
 
 	if ($@) {
@@ -44,8 +44,11 @@ END_OF_ERROR
 
 sub main {
   my ($p) = @_;
- 
-  my $path = $p->path_info;
+
+  my $path = $p->path_info || '';
+  $path =~ s!^/magus!!; # Remove leading /magus if present
+  $path =~ s!^/+!/!;    # Ensure only one leading slash
+  $path =~ s!/+$!!;     # Remove trailing slashes
 
   if ($path =~ m:^/api/runs:) {
     api_runs($p);
@@ -72,13 +75,13 @@ sub main {
   if ($path eq '' || $path eq '/') {
     summary_page($p);
   } elsif ($path =~ m:/machines/(.*):) {
-    if ($1) {
+    if (defined($1) && length($1) > 0) {
       machine_page($p, $1);
     } else {
       machine_index($p);
     }
   } elsif ($path =~ m:^/runs/(.*):) {
-    if ($1) {
+    if (defined($1) && length($1) > 0) {
       run_page($p, $1);
     } else {
       run_index($p);
@@ -153,7 +156,7 @@ sub api_run_port_stats {
             -status => '400 Bad Request',
         );
         print "{}";
-        exit;
+        return;
   }
     
   my %details = (run => $run, status => $status);
@@ -284,7 +287,7 @@ sub compare_runs {
                 -status=> '400 Bad Request'
             );
             print "One or more run ids missing.\n";
-            exit;
+            return;
 
     }
   
@@ -402,7 +405,7 @@ sub blockers {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
 	my $ports = Magus::Port->search(run => $run, status => 'untested');
@@ -442,7 +445,7 @@ sub run_page {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
     eval {
@@ -454,7 +457,7 @@ sub run_page {
             -status => '404 Not Found'
         );
         print "404 Not Found\n";
-        exit;
+        return;
     }
 
   my $tmpl = template($p, "run.tmpl");
@@ -507,7 +510,7 @@ sub port_page {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
   eval { 
@@ -519,7 +522,7 @@ sub port_page {
               -status=> '404 Not Found'
     );
     print "404 Not Found\n";
-    exit;
+    return;
   }
 
   $tmpl->param(
@@ -603,7 +606,7 @@ sub machine_page {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
 
     eval {
@@ -615,7 +618,7 @@ sub machine_page {
             -status=> '404 Not Found'
         );
         print "404 Not Found\n";
-        exit;
+        return;
     }
 
   my $tmpl = template($p, 'machine.tmpl');
@@ -735,7 +738,7 @@ sub async_machine_events {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
   
   my @events = map { {
@@ -770,7 +773,7 @@ sub async_run_port_stats {
             -status => '400 Bad Request'
         );
         print "400 Bad Request\n";
-        exit;
+        return;
     }
   
   my @ports;
@@ -830,7 +833,7 @@ sub browse {
             -status => '404 Not Found'
         );
         print "404 Not Found\n";
-        exit;
+        return;
     }
 
     my $tmpl = template($p, "category.tmpl");
@@ -860,15 +863,18 @@ sub template {
   
   my $query = $p->param('q');
   $query ||= '';
-  
+
+  # should be dynamic but seems to fail with fast cgi
+  my $root = $p->script_name();
+
   $tmpl->param(
     query     => $query,
     title     => 'Magus',
-    root      => $p->script_name(),
-    run_root  => $p->script_name() . '/runs',
-    port_root => $p->script_name() . '/ports',
-    machine_root => $p->script_name() . '/machines',
-    browse_root  => $p->script_name() . '/browse',
+    root      => $root,
+    run_root  => $root . '/runs',
+    port_root => $root . '/ports',
+    machine_root => $root . '/machines',
+    browse_root  => $root . '/browse',
   );
   
   return $tmpl;
