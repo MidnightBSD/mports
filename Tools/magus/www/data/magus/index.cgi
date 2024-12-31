@@ -48,7 +48,6 @@ sub main {
   my $path = $p->path_info || '';
   $path =~ s!^/magus!!; # Remove leading /magus if present
   $path =~ s!^/+!/!;    # Ensure only one leading slash
-  $path =~ s!/+$!!;     # Remove trailing slashes
 
   if ($path =~ m:^/api/runs:) {
     api_runs($p);
@@ -75,13 +74,13 @@ sub main {
   if ($path eq '' || $path eq '/') {
     summary_page($p);
   } elsif ($path =~ m:/machines/(.*):) {
-    if (defined($1) && length($1) > 0) {
+    if ($1) {
       machine_page($p, $1);
     } else {
       machine_index($p);
     }
   } elsif ($path =~ m:^/runs/(.*):) {
-    if (defined($1) && length($1) > 0) {
+    if ($1) {
       run_page($p, $1);
     } else {
       run_index($p);
@@ -641,7 +640,7 @@ sub machine_page {
     osversion  => $machine->osversion,
     runs       => \@runs,
   );
-    
+ 
   print $p->header, $tmpl->output;
 }
 
@@ -865,7 +864,7 @@ sub template {
   $query ||= '';
 
   # should be dynamic but seems to fail with fast cgi
-  my $root = $p->script_name();
+  my $root = '/magus'; #$p->script_name();
 
   $tmpl->param(
     query     => $query,
