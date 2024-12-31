@@ -166,14 +166,10 @@ lib/libpt.so
 lib/libpt.so.%%PVERSION_MINOR%%
 lib/libpt.so.%%PVERSION_MAJOR%%
 lib/libpt.so.%%PORTVERSION%%
-%%DEBUG%%lib/libpt_d.so
-%%DEBUG%%lib/libpt_d.so.%%PVERSION_MINOR%%
-%%DEBUG%%lib/libpt_d.so.%%PVERSION_MAJOR%%
-%%DEBUG%%lib/libpt_d.so.%%PORTVERSION%%
 lib/ptlib-%%PORTVERSION%%/devices/sound/oss_pwplugin.so
-%%PULSEAUDIO%%lib/ptlib-%%PORTVERSION%%/devices/sound/pulse_pwplugin.so
-%%V4L%%lib/ptlib-%%PORTVERSION%%/devices/videoinput/v4l_pwplugin.so
-%%V4L%%lib/ptlib-%%PORTVERSION%%/devices/videoinput/v4l2_pwplugin.so
+@comment %%PULSEAUDIO%%lib/ptlib-%%PORTVERSION%%/devices/sound/pulse_pwplugin.so
+@comment %%V4L%%lib/ptlib-%%PORTVERSION%%/devices/videoinput/v4l_pwplugin.so
+@comment %%V4L%%lib/ptlib-%%PORTVERSION%%/devices/videoinput/v4l2_pwplugin.so
 libdata/pkgconfig/ptlib.pc
 share/ptlib/make/common.mak
 share/ptlib/make/lib.mak
