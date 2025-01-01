@@ -19,7 +19,7 @@ USES=		gmake iconv:wchar_t localbase pkgconfig
 USE_LDCONFIG=	yes
 
 MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
-LDFLAGS+=	${ICONV_LIB}
+LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 

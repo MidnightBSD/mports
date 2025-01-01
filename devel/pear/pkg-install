@@ -5,7 +5,7 @@ if [ "$2" != "POST-INSTALL" ]; then
 fi
  
 # Regenerate %%PEARDIR%%/.depdb post-install
-# This is to prevent fs or stage violation for first dependent port
+# This is to prevent fs or fake violation for first dependent port
 ${PKG_PREFIX}/bin/pear list > /dev/null
  
 exit 0
