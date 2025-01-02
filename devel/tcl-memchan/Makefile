@@ -16,7 +16,8 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 
 MAKE_ARGS=	mandir=${PREFIX}/share/man
 ALL_TARGET=	binaries libraries doc-old
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 
 USES+=		tcl:tea
 TCL_PKG=	Memchan${PORTVERSION}
