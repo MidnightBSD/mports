@@ -137,7 +137,7 @@ post-patch:
 .if ${PORT_OPTIONS:MPAE}
 	@${ECHO_CMD} 'VBOX_FREEBSD = -DPAE' >> ${WRKSRC}/LocalConfig.kmk
 .endif
-	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' ${WRKSRC}/Config.kmk
+#	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' ${WRKSRC}/Config.kmk
 
 post-patch-X11-on:
 	@${ECHO_CMD} 'VBOX_USE_SYSTEM_XORG_HEADERS = 1' >> \
