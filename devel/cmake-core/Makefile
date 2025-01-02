@@ -1,6 +1,6 @@
 PORTNAME=	cmake
 DISTVERSION=	${_CMAKE_VERSION}
-PORTREVISION=	3
+PORTREVISION=	0
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-core
 
@@ -60,7 +60,7 @@ pre-configure:
 
 
 post-patch:
-	@${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
+	@${CP} ${FILESDIR}/MidnightBSD*.cmake ${WRKSRC}/Modules/Platform
 	@(${FIND} ${WRKSRC}/Modules -name "*.cmake" -print0; \
 		${FIND} ${WRKSRC}/Tests -name "CMakeLists.txt" -print0 ) | \
 		${XARGS} -0 -n 100 ${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g; \
