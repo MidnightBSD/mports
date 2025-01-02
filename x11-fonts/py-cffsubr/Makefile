@@ -29,6 +29,6 @@ post-patch:
 	@${RM} -r ${WRKSRC}/external/
 
 post-install:
-	${LN} -s ${LOCALBASE}/bin/tx ${STAGEDIR}${PYTHON_SITELIBDIR}/cffsubr/tx
+	${LN} -s ${LOCALBASE}/bin/tx ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cffsubr/tx
 
 .include <bsd.port.mk>
