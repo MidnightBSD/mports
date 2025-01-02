@@ -467,3 +467,5 @@ games/2048-qt||2024-12-21|Has expired: Unmaintained, last upstream release in 20
 databases/mongodb36|databases/mongodb50|2025-01-02|Has expired: Upstream EOL reached on 2021-04-30
 x11-fonts/fontmatrix||2025-01-02|Has expired: Depends on deprecated www/qt5-webkit
 www/qt5-webkit||2025-01-02|Has expired: No longer actively maintained, increasing security concerns
+net/opal||2025-01-02|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is still active
+net-im/ekigal||2025-01-02|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is dead

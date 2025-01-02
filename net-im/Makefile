@@ -1,6 +1,5 @@
 COMMENT = Instant messaging
 
-SUBDIR += ekiga
 SUBDIR += farstream
 SUBDIR += finch
 SUBDIR += folks
