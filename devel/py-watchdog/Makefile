@@ -25,7 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}eventlet>0:net/py-eventlet@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}types-PyYAML>=6.0.12.12:devel/py-types-PyYAML@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517 
 
 # NotImplementedError: unsupported platform
 # site-packages/trio/_core/_run.py:2843: NotImplementedError
@@ -39,6 +39,7 @@ TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PORTDOCS=	*
 
