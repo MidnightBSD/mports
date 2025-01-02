@@ -1,5 +1,3 @@
-
-
 PORTNAME=	pam_ldap
 PORTVERSION=	1.8.6
 PORTREVISION=	2
@@ -10,10 +8,11 @@ DISTNAME=	pam_ldap-${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pam module for authenticating with LDAP
+WWW=		https://www.padl.com/OSS/pam_ldap.html
 
 LICENSE=	gpl2
 
-USES=		gmake perl5 ldap
+USES=		cpe gmake perl5 ldap shebangfix
 GNU_CONFIGURE=	yes
 USE_OPENLDAP=	yes
 USE_PERL5_BUILD=	yes
@@ -23,8 +22,11 @@ CONFIGURE_ARGS=	--with-ldap-lib=openldap \
 		--with-ldap-dir=${LOCALBASE} \
 		--with-ldap-conf-file=${PREFIX}/etc/${PAM_LDAP_CONF} \
 		--with-ldap-secret-file=${PREFIX}/etc/ldap.secret
+GNU_CONFIGURE_MANPREFIX= ${PREFIX}/share
+SHEBANG_FILES=	vers_string
+CPE_VENDOR=	padl
 
-PKGMESSAGE=	${WRKDIR}/pkg-message
+SUB_FILES=	pkg-message
 PORTDATA=	*.schema
 
 pre-install:
@@ -32,8 +34,5 @@ pre-install:
 
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/*.schema ${DATADIR}
-	@${SED} -e 's|%%PREFIX%%|${TRUE_PREFIX}|g' \
-	    	-e 's|%%DATADIR%%|${DATADIR}|' < ${PKGDIR}/pkg-message \
-		| /usr/bin/fmt 75 79 > ${PKGMESSAGE}
 
 .include <bsd.port.mk>
