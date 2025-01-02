@@ -29,7 +29,6 @@ SUBDIR += cvm
 SUBDIR += cyrus-sasl2
 SUBDIR += cyrus-sasl2-ldapdb
 SUBDIR += cyrus-sasl2-saslauthd
-SUBDIR += dirmngr
 SUBDIR += doas
 SUBDIR += duo
 SUBDIR += easy-rsa
