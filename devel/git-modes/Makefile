@@ -1,6 +1,5 @@
 PORTNAME=	git-modes
-DISTVERSION=	1.4.0
-PORTREVISION=	5
+DISTVERSION=	1.4.2
 PORTEPOCH=	1
 CATEGORIES=	devel elisp
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
@@ -12,11 +11,16 @@ WWW=		https://github.com/magit/git-modes
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	git:devel/git
+BUILD_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.1:misc/compat.el@${EMACS_FLAVOR}
+RUN_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.1:misc/compat.el@${EMACS_FLAVOR} \
+		git:devel/git
 
 USES=		emacs gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	magit
+
+MAKE_ENV+=	LOAD_PATH="-L ${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/compat"
+MAKE_JOBS_UNSAFE=	yes
 
 NO_ARCH=	yes
 
