@@ -3013,7 +3013,6 @@ bin/ctest
 %%DATADIR%%/Modules/Platform/MSYS-windres.cmake
 %%DATADIR%%/Modules/Platform/MSYS.cmake
 %%DATADIR%%/Modules/Platform/Midipix-Initialize.cmake
-%%DATADIR%%/Modules/Platform/MidnightBSD.cmake
 %%DATADIR%%/Modules/Platform/MidnightBSD-Determine-CXX.cmake
 %%DATADIR%%/Modules/Platform/MidnightBSD-Initialize.cmake
 %%DATADIR%%/Modules/Platform/MidnightBSD.cmake
