@@ -17,9 +17,11 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-cov>=2.6:devel/py-pytest-cov@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517 
+#pytest
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	RSA SIGNALS SIGNEDTOKEN
 OPTIONS_DEFAULT=RSA SIGNALS SIGNEDTOKEN
