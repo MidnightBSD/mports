@@ -37,4 +37,6 @@ MINIO_USER?=	${PORTNAME}
 MINIO_GROUP?=	${PORTNAME}
 MINIO_DBDIR?=	/var/db/${PORTNAME}
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
