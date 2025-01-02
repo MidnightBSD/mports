@@ -28,18 +28,18 @@ PLIST_FILES=	sbin/zfs-replicate
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/zfs-replicate.sh \
-		${STAGEDIR}${PREFIX}/sbin/zfs-replicate
+		${PREFIX}/sbin/zfs-replicate
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for file in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 do-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DATADIR}
 .for data in ${PORTDATA}
-	${INSTALL_DATA} ${WRKSRC}/${data} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/${data} ${FAKE_DESTDIR}${DATADIR}
 .endfor
 
 .include <bsd.port.mk>
