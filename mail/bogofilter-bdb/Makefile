@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 .if !defined(MASTERDIR) || ${MASTERDIR} == ${.CURDIR}
 # building master port
-USES+=		bdb:5+
+USES+=		bdb:5
 DEPRECATED=	The Berkeley DB database interface is obsolescent.
 EXPIRATION_DATE=2025-06-30
 .endif
