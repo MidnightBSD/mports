@@ -46,12 +46,6 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 
 CXXFLAGS+=	-D__BSD_VISIBLE
 
-.include <bsd.port.pre.mk>
-
-.if defined(STRIP) && ${STRIP} != "" && !defined(WITH_DEBUG)
-INSTALL_TARGET=	install/strip
-.endif
-
 # CMake >= 3.1.0 needs libarchive3 because it calls
 # archive_entry_copy_sourcepath_w and archive_write_set_format_7zip.
 LIB_DEPENDS+=	libarchive.so.13:archivers/libarchive
@@ -86,4 +80,4 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/Auxiliary/cmake-mode.el ${PREFIX}/share/emacs/site-lisp
 	@${FIND} ${STAGEDIR}${PREFIX} -name ".NoDartCoverage" -delete
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
