@@ -601,8 +601,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 OPENSSLINC=	/usr/include
 OPENSSLLIB=	/usr/lib
 
-PLIST_FILES=	@shell bin/nu
-
 OPTIONS_DEFINE=		DATAFRAME
 
 DATAFRAME_DESC=		Include the dataframe feature
