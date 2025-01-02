@@ -1,5 +1,3 @@
-# Created by: David Naylor <dbn@FreeBSD.org>
-
 PORTNAME=	userspace-rcu
 PORTVERSION=	0.7.16
 DISTVERSIONSUFFIX=	-1.el7
@@ -8,14 +6,15 @@ MASTER_SITES=	EPEL7/u
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Userspace read-copy-update (RCU) data synchronization library (CentOS ${LINUX_DIST_VER})
+WWW=		https://liburcu.org/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 
-ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS=	aarch64 amd64
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
-USE_LINUX_RPM=	yes
+USE_LINUX_RPM=	nolib
 
 DESCR=		${.CURDIR}/../liburcu/pkg-descr
 
