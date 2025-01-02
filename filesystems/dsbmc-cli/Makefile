@@ -11,6 +11,8 @@ WWW=		https://freeshell.de/~mk/projects/dsbmc-cli.html
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 RUN_DEPENDS=	dsbmd>=0.3:filesystems/dsbmd
 
 USES=		tar:tgz
