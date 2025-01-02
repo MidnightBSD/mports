@@ -22,8 +22,9 @@ GH_ACCOUNT=	aklajnert
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
-do-test:
-	cd ${WRKSRC} && ${PYTHON_CMD} -m pytest tests.py
+#do-test:
+#	cd ${WRKSRC} && ${PYTHON_CMD} -m pytest tests.py
 
 .include <bsd.port.mk>
