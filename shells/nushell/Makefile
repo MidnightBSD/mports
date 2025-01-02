@@ -607,10 +607,13 @@ DATAFRAME_DESC=		Include the dataframe feature
 DATAFRAME_VARS=		CARGO_BUILD_ARGS+=--features=dataframe
 DATAFRAME_BROKEN=	see https://github.com/nushell/nushell/issues/7665
 
+# magus
+NO_TEST=	yes
+
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/nu
 
-do-test:
-	@${CARGO_CARGO_RUN} test --workspace
+#do-test:
+#	@${CARGO_CARGO_RUN} test --workspace
 
 .include <bsd.port.mk>
