@@ -43,7 +43,6 @@ SUBDIR += mariadb106-client
 SUBDIR += mariadb106-server
 SUBDIR += mdbtools
 SUBDIR += memcached
-SUBDIR += mongodb36
 SUBDIR += mongodb50
 SUBDIR += mysql-connector-c++
 SUBDIR += mysql-connector-j

@@ -464,3 +464,4 @@ net/p5-MaxMind-DB-Writer||2024-10-22|Has expired: This is the final release. Thi
 www/py-django32||2024-12-04|Has expired: Django 3.2 is now in Extended Support, receives security fixes only and will reach End-Of-Life in April 2024. Upgrade to a later Django version. See https://www.djangoproject.com/download/
 lang/ruby30|lang/ruby32|2024-12-07|Has expired, move to ruby 3.2
 games/2048-qt||2024-12-21|Has expired: Unmaintained, last upstream release in 2016
+databases/mongodb36|databases/mongodb50|2025-01-02|Has expired: Upstream EOL reached on 2021-04-30
