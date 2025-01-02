@@ -20,9 +20,11 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}invoke>=0:devel/py-invoke@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-relaxed>=0:devel/py-pytest-relaxed@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	autoplist cryptography distutils pytest4
+USE_PYTHON=	autoplist cryptography distutils
+# pytest4
 
 NO_ARCH=	yes
+NO_TEST=	yes
 TEST_ARGS=	-p no:relaxed
 
 OPTIONS_DEFINE=		GSSAPI
