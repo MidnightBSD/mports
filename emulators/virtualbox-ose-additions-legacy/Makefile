@@ -148,13 +148,13 @@ pre-build:
 	    ". env.sh && ${KMK_CONFIG} ${LOCALBASE}/bin/kmk"
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}${KMODDIR}
+	${MKDIR} ${KMODDIR}
 	${INSTALL_KLD} ${VBOX_BIN}/src/vboxguest/vboxguest.ko \
-	    ${FAKE_DESTDIR}${KMODDIR}
-	${INSTALL_KLD} ${VBOX_BIN}/vboxvfs.ko ${FAKE_DESTDIR}${KMODDIR}
-	${INSTALL_LIB} ${VBOX_BIN}/pam_vbox.so ${FAKE_DESTDIR}${PREFIX}/lib
+	    ${KMODDIR}
+	${INSTALL_KLD} ${VBOX_BIN}/vboxvfs.ko ${KMODDIR}
+	${INSTALL_LIB} ${VBOX_BIN}/pam_vbox.so ${PREFIX}/lib
 	${INSTALL_PROGRAM} ${VBOX_SBINS:S|^|${VBOX_BIN}/|} \
-	    ${FAKE_DESTDIR}${PREFIX}/sbin/
+	    ${PREFIX}/sbin/
 
 do-install-X11-on:
 	${INSTALL_PROGRAM} ${VBOX_BIN}/VBoxClient ${FAKE_DESTDIR}${PREFIX}/bin/
