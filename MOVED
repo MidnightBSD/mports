@@ -465,3 +465,5 @@ www/py-django32||2024-12-04|Has expired: Django 3.2 is now in Extended Support, 
 lang/ruby30|lang/ruby32|2024-12-07|Has expired, move to ruby 3.2
 games/2048-qt||2024-12-21|Has expired: Unmaintained, last upstream release in 2016
 databases/mongodb36|databases/mongodb50|2025-01-02|Has expired: Upstream EOL reached on 2021-04-30
+x11-fonts/fontmatrix||2025-01-02|Has expired: Depends on deprecated www/qt5-webkit
+www/qt5-webkit||2025-01-02|Has expired: No longer actively maintained, increasing security concerns
