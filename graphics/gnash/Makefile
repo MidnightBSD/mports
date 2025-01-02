@@ -11,8 +11,8 @@ WWW=		https://www.gnu.org/software/gnash/
 
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	${LOCALBASE}/ffmpeg/lib/libavcodec.so.58:multimedia/ffmpeg4
-RUN_DEPENDS=	${LOCALBASE}/ffmpeg/lib/libavcodec.so.58:multimedia/ffmpeg4
+BUILD_DEPENDS=	${LOCALBASE}/ffmpeg4/lib/libavcodec.so.58:multimedia/ffmpeg4
+RUN_DEPENDS=	${LOCALBASE}/ffmpeg4/lib/libavcodec.so.58:multimedia/ffmpeg4
 LIB_DEPENDS=	libltdl.so:devel/libltdl \
 		libnspr4.so:devel/nspr \
 		libgif.so:graphics/giflib \
