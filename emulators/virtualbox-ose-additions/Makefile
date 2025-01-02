@@ -13,6 +13,8 @@ WWW=		https://www.virtualbox.org/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FAKE_OPTS=      trueprefix
+
 ONLY_FOR_ARCHS=	amd64
 USES=		compiler:c++11-lang cpe iconv kmod tar:bzip2
 USE_RC_SUBR=	vboxguest vboxservice
