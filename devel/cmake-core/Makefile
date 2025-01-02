@@ -26,6 +26,7 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--system-libarchive \
 		--system-librhash \
 		--system-libuv \
+		--no-system-cppdap \
 		--no-system-curl \
 		--no-system-nghttp2 \
 		--parallel=${MAKE_JOBS_NUMBER} \
