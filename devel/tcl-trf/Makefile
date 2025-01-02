@@ -16,6 +16,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 TEST_DEPENDS=	${LOCALBASE}/lib/Memchan2.3/libMemchan.so.1:devel/tcl-memchan
 
+USE_GCC=	yes
 USES+=		tcl:tea tar:bzip2 compiler
 USE_LDCONFIG=	${PREFIX}/lib/Trf
 DDIR=		${PREFIX}/lib/tcl${TCL_VER}/Trf
@@ -24,7 +25,7 @@ CFLAGS+=	-Wall -Werror
 MAKE_ENV+=	INSTALL_DATA="${INSTALL_DATA}"
 
 REINPLACE_ARGS=	-i ""
-CONFIGURE_ARGS+=--enable-static-zlib --enable-static-bzlib \
+CONFIGURE_ARGS+=--enable-static-zlib --enable-static-bzlib  \
 		--enable-static-md5
 CONFIGURE_ENV+=	CC=${CC}
 
@@ -47,8 +48,8 @@ PLIST_SUB+=	TCL_DVER=${TCL_VER:C/\.//} VER=${PORTVERSION}
 
 .include <bsd.port.pre.mk>
 
-.if ${COMPILER_TYPE} == "clang"
-CFLAGS+=	-Wno-deprecated-non-prototype
-.endif
+#.if ${COMPILER_TYPE} == "clang"
+#CFLAGS+=	-Wno-deprecated-non-prototype
+#.endif
 
 .include <bsd.port.post.mk>
