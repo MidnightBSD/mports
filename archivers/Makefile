@@ -19,6 +19,7 @@ SUBDIR += gnome-autoar
 SUBDIR += gtar
 SUBDIR += gzip
 SUBDIR += gzrecover
+SUBDIR += laszip
 SUBDIR += lcab
 SUBDIR += lha
 SUBDIR += lha-ac
