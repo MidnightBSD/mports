@@ -21,17 +21,8 @@ _QT_MK_INCLUDED=	qt.mk
 # Qt versions currently supported by the framework.
 _QT_SUPPORTED?=		5 6
 QT5_VERSION?=		5.15.11
-QT6_VERSION?=		6.5.3
-PYSIDE6_VERSION?=	6.5.3
-
-# Support for intermediate Qt6 releases. This partially defines
-# _QT6_MASTER_SITE_SUBDIR and would probably be better in qt-dist.mk,
-# but misc/qt6-examples needs this too.
-.  if ${QT6_VERSION:M*beta*} || ${QT6_VERSION:M*rc*}
-_QT6_RELEASE_TYPE=		development
-.  else
-_QT6_RELEASE_TYPE=		official
-.  endif
+QT6_VERSION?=		6.6.2
+PYSIDE6_VERSION?=	6.6.0
 
 # We accept the Qt version to be passed by either or all of the three mk files.
 .  if empty(qt_ARGS) && empty(qmake_ARGS) && empty(qt-dist_ARGS)
@@ -164,9 +155,8 @@ _USE_QT5_ONLY=		assistant buildtools concurrent core dbus \
 			uitools webglplugin websockets-qml \
 			widgets x11extras xml xmlpatterns
 
-# coap grpc pdf quick3dphysics graphs
-_USE_QT6_ONLY=		5compat base httpserver languageserver lottie positioning \
-			quickeffectmaker shadertools tools translations \
+_USE_QT6_ONLY=		5compat base coap graphs httpserver languageserver lottie pdf positioning \
+			quick3dphysics quickeffectmaker shadertools tools translations \
 			sqldriver-sqlite sqldriver-mysql sqldriver-psql sqldriver-odbc
 
 # Dependency tuples: _LIB should be preferred if possible.
@@ -233,9 +223,6 @@ qt-graphicaleffects_PATH=	${LOCALBASE}/${QT_QMLDIR_REL}/QtGraphicalEffects/qmldi
 
 qt-graphs_PORT=		x11-toolkits/${_QT_RELNAME}-graphs
 qt-graphs_LIB=		libQt${_QT_LIBVER}Graphs.so
-
-qt-grpc_PORT=		devel/${_QT_RELNAME}-grpc
-qt-grpc_LIB=		libQt${_QT_LIBVER}Grpc.so
 
 qt-gui_PORT=		x11-toolkits/${_QT_RELNAME}-gui
 qt-gui_LIB=		libQt${_QT_LIBVER}Gui.so
@@ -320,7 +307,7 @@ qt-quick3d_PORT=	x11-toolkits/${_QT_RELNAME}-quick3d
 qt-quick3d_LIB=		libQt${_QT_LIBVER}Quick3D.so
 
 qt-quick3dphysics_PORT=	science/${_QT_RELNAME}-quick3dphysics
-qt-quick3dphysics_LIB=	libQt${_QT_LIBVER}Quick3DPhysics.so
+qt_quick3dphysics_LIB=	libQt${_QT_LIBVER}Quick3DPhysics.so
 
 qt-quickcontrols_PORT=	x11-toolkits/${_QT_RELNAME}-quickcontrols
 qt-quickcontrols_PATH=	${LOCALBASE}/${QT_QMLDIR_REL}/QtQuick/Controls/qmldir

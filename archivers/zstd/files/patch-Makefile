@@ -1,0 +1,11 @@
+--- Makefile.orig	2024-03-21 22:05:51 UTC
++++ Makefile
+@@ -151,7 +151,7 @@ clean:
+ #------------------------------------------------------------------------------
+ # make install is validated only for Linux, macOS, Hurd and some BSD targets
+ #------------------------------------------------------------------------------
+-ifneq (,$(filter $(shell uname),Linux Darwin GNU/kFreeBSD GNU OpenBSD FreeBSD DragonFly NetBSD MSYS_NT CYGWIN_NT Haiku AIX))
++ifneq (,$(filter $(shell uname),Linux Darwin GNU/kFreeBSD GNU OpenBSD FreeBSD DragonFly NetBSD MSYS_NT CYGWIN_NT Haiku AIX MidnightBSD))
+ 
+ HOST_OS = POSIX
+ 

@@ -2,21 +2,19 @@
 
 PORTNAME=	base
 DISTVERSION=	${QT6_VERSION}
-PORTREVISION=	4
 CATEGORIES=	databases
 PKGNAMEPREFIX=	qt6-
 PKGNAMESUFFIX=	_sqldriver-${FLAVOR}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt base (${FLAVOR} sqldriver)
-WWW=		https://www.qt.io/
 
 FLAVORS=	sqlite mysql odbc psql
 FLAVOR?=	sqlite
 
 WRKSRC_SUBDIR=	src/plugins/sqldrivers
 
-USES=		cmake pkgconfig qt-dist:6 \
+USES=		cmake compiler:c++17-lang pkgconfig qt-dist:6 \
 		${${FLAVOR}_USES}
 USE_QT=		base
 
@@ -31,5 +29,9 @@ psql_USES=		pgsql
 sqlite_USES=		sqlite:3
 sqlite_CMAKE_ON=	QT_FEATURE_system_sqlite
 ${FLAVOR}_PLIST=	${.CURDIR}/pkg-plist.${FLAVOR}
+
+.if ${FLAVOR:U} == mysql
+IGNORE_WITH_MYSQL=	105m 106m 1011m
+.endif
 
 .include <bsd.port.mk>

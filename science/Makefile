@@ -10,6 +10,7 @@ SUBDIR += paje
 SUBDIR += py-scikit-learn
 SUBDIR += py-scikit-sparse
 SUBDIR += py-scipy
+SUBDIR += qt6-quick3dphysics
 SUBDIR += sigrok-firmware
 SUBDIR += sigrok-firmware-fx2lafw
 SUBDIR += sigrok-firmware-utils

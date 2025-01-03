@@ -1,11 +1,8 @@
 PORTNAME=	base
 DISTVERSION=	${QT6_VERSION}
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt6-
-
-PATCH_SITES=	https://github.com/qt/qtbase/commit/
-PATCHFILES=	3f45905953d57e0174059d7d9d6bc75c3c1c406c.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt base (core, gui, widgets, network,...)
@@ -18,40 +15,24 @@ LIB_DEPENDS=	\
 		libatk-1.0.so:accessibility/at-spi2-core \
 		libatk-bridge-2.0.so:accessibility/at-spi2-core \
 		libatspi.so:accessibility/at-spi2-core \
-		libavahi-client.so:net/avahi-app \
 		libbrotlidec.so:archivers/brotli \
 		libdbus-1.so:devel/dbus \
 		libdouble-conversion.so:devel/double-conversion \
 		libdrm.so:graphics/libdrm \
-		libepoll-shim.so:devel/libepoll-shim \
-		libepoxy.so:graphics/libepoxy \
 		libevdev.so:devel/libevdev \
-		libexpat.so:textproc/expat2 \
-		libffi.so:devel/libffi \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
-		libfribidi.so:converters/fribidi \
-		libgmp.so:math/gmp \
-		libgnutls.so:security/gnutls \
 		libgraphite2.so:graphics/graphite2 \
-		libgudev-1.0.so:devel/libgudev \
 		libharfbuzz.so:print/harfbuzz \
 		libicui18n.so:devel/icu \
-		libidn2.so:dns/libidn2 \
 		libinput.so:x11/libinput \
 		libintl.so:devel/gettext-runtime \
 		libjpeg.so:graphics/jpeg-turbo \
 		libmtdev.so:devel/libmtdev \
-		libnettle.so:security/nettle \
-		libp11-kit.so:security/p11-kit \
-		libpcre.so:devel/pcre \
 		libpcre2-16.so:devel/pcre2 \
 		libpng16.so:graphics/png \
-		libtasn1.so:security/libtasn1 \
 		libudev.so:devel/libudev-devd \
-		libunistring.so:devel/libunistring \
 		libvulkan.so:graphics/vulkan-loader \
-		libwacom.so:x11/libwacom \
 		libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon \
 		libzstd.so:archivers/zstd
@@ -60,7 +41,10 @@ USES=		cmake compiler:c++17-lang gl gnome jpeg perl5 pkgconfig python \
 		qt-dist:6 shebangfix ssl
 USE_GL=		egl opengl
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 pango
+USE_LOCALE=	C.UTF-8
+
 CMAKE_ARGS=	-DOPENSSL_ROOT_DIR="${OPENSSLBASE}"
+#  -DQT_NO_FEATURE_AUTO_RESET=ON
 CMAKE_ON=	QT_AVOID_CMAKE_ARCHIVING_API \
 		QT_FIND_ALL_PACKAGES_ALWAYS \
 		QT_FEATURE_openssl_linked
@@ -97,8 +81,7 @@ X11_LIB_DEPENDS=	libxcb-cursor.so:x11/xcb-util-cursor \
 			libxcb-icccm.so:x11/xcb-util-wm \
 			libxcb-image.so:x11/xcb-util-image \
 			libxcb-keysyms.so:x11/xcb-util-keysyms \
-			libxcb-render-util.so:x11/xcb-util-renderutil \
-			libxcb-util.so:x11/xcb-util
+			libxcb-render-util.so:x11/xcb-util-renderutil
 
 .include <bsd.port.pre.mk>
 

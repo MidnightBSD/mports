@@ -1,5 +1,6 @@
 PORTNAME=	zstd
 PORTVERSION=	1.5.6
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${PORTVERSION}/
 
@@ -11,25 +12,33 @@ WWW=		https://facebook.github.io/zstd/ \
 LICENSE=	bsd3 gpl2
 LICENSE_COMB=	dual
 
+FAKE_OPTS=	trueprefix
+
 LIB_DEPENDS=	liblz4.so:archivers/liblz4
-TEST_DEPENDS=	gmd5sum:sysutils/coreutils
 
-USES=		meson pkgconfig python:build shebangfix
+USES=		gmake localbase:ldflags tar:zst
 
-MESON_ARGS=	-Ddefault_library=both
+ALL_TARGET=	default
+BINARY_ALIAS=	gmd5sum=md5sum
+CFLAGS+=	-fPIC
+MAKE_ENV=	INSTALL_DATA="${INSTALL_DATA}" \
+		INSTALL_MAN="${INSTALL_MAN}" \
+		MANDIR=${PREFIX}/share/man \
+		PREFIX=${TRUE_PREFIX} \
+		DESTDIR=${FAKE_DESTDIR} \
+		V=1
+TEST_TARGET=	shortest
 USE_LDCONFIG=	yes
-WRKSRC_SUBDIR=	build/meson
-
-SHEBANG_FILES=	*.py
 
 PLIST_SUB=	BUILD_TYPE=${BUILD_TYPE:tl} PORTVERSION=${PORTVERSION}
 SUB_FILES=	zstdConfigVersion.cmake zstdTargets-BUILD_TYPE.cmake
 SUB_LIST=	BUILD_TYPE_CAPS=${BUILD_TYPE:tu} BUILD_TYPE_MIXED=${BUILD_TYPE} PORTVERSION=${PORTVERSION}
 
-OPTIONS_DEFINE=	OPTIMIZED_CFLAGS TEST
+BUILD_TYPE=	${defined(WITH_DEBUG) :?Debug:Release}
+
+OPTIONS_DEFINE=	OPTIMIZED_CFLAGS
 
 OPTIMIZED_CFLAGS_VARS=	CFLAGS+=-O3
-TEST_MESON_TRUE=	bin_tests
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/cmake/zstd
