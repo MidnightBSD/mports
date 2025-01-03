@@ -1059,6 +1059,7 @@ SUBDIR += py-future
 SUBDIR += py-game
 SUBDIR += py-gast
 SUBDIR += py-genty
+SUBDIR += py-geojson
 SUBDIR += py-gevent
 SUBDIR += py-gitdb
 SUBDIR += py-gitpython
