@@ -53,6 +53,10 @@
 #			Default: BUILD_TESTING
 # CMAKE_TESTING_OFF	Appends -D<var>:bool=OFF to the CMAKE_TESTING_ARGS.
 #			Default: empty
+# CMAKE_TESTING_SETENV	- Use SETENV instead of SETENVI to run the tests.
+#			Useful for tests that require a running X or Wayland
+#			session to keep enviroment variables like DISPLAY.
+#			Default: undefined, set to any value to enable.
 # CMAKE_TESTING_TARGET	- Name of the test target. Default: test
 #
 # 
@@ -62,7 +66,9 @@ _INCLUDE_USES_CMAKE_MK=	yes
 
 _valid_ARGS=		indirect insource noninja run testing _internal
 
-_CMAKE_VERSION=		3.29.2
+# Reminder: devel/cmake-core, devel/cmake-doc, devel/cmake-gui, and devel/cmake-man
+# are all affected by changing _CMAKE_VERSION. Please check each of these mports.
+_CMAKE_VERSION=		3.31.3
 CMAKE_BIN=		${LOCALBASE}/bin/cmake
 
 # Sanity check
@@ -103,6 +109,7 @@ CMAKE_ARGS+=		-DCMAKE_C_COMPILER:STRING="${CC}" \
 			-DCMAKE_MODULE_LINKER_FLAGS:STRING="${LDFLAGS}" \
 			-DCMAKE_SHARED_LINKER_FLAGS:STRING="${LDFLAGS}" \
 			-DCMAKE_INSTALL_PREFIX:PATH="${CMAKE_INSTALL_PREFIX}" \
+			-DCMAKE_AUTOGEN_PARALLEL:STRING="${MAKE_JOBS_NUMBER}" \
 			-DCMAKE_BUILD_TYPE:STRING="${CMAKE_BUILD_TYPE}" \
 			-DTHREADS_HAVE_PTHREAD_ARG:BOOL=YES \
 			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=YES \
@@ -126,6 +133,7 @@ CMAKE_NOCOLOR=		yes
 CMAKE_ARGS+=		-DCMAKE_COLOR_MAKEFILE:BOOL=OFF
 .    endif
 .  endif
+
 .  if empty(cmake_ARGS:Mindirect)
 .    if defined(STRIP) && ${STRIP} != "" && !defined(WITH_DEBUG) && !defined(WITH_DEBUGINFO)
 INSTALL_TARGET?=	install/strip
@@ -178,7 +186,15 @@ do-configure:
 
 .    if !target(do-test) && ${cmake_ARGS:Mtesting}
 CMAKE_TESTING_ON?=		BUILD_TESTING
+CMAKE_TESTING_PARALLEL_LEVEL?=	${MAKE_JOBS_NUMBER}
 CMAKE_TESTING_TARGET?=		test
+
+# Use SETENV instead of SETENVI if CMAKE_TESTING_SETENV is defined
+.      if defined(CMAKE_TESTING_SETENV)
+_CMAKE_TESTING_SETENV=	${SETENV}
+.      else
+_CMAKE_TESTING_SETENV=	${SETENVI}
+.      endif
 
 # Handle the option-like CMAKE_TESTING_ON and CMAKE_TESTING_OFF lists.
 .      for _bool_kind in ON OFF
@@ -191,7 +207,7 @@ do-test:
 	@cd ${BUILD_WRKSRC} && \
 		${SETENVI} ${WRK_ENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_TESTING_ARGS} ${CMAKE_SOURCE_PATH} && \
 		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET} && \
-		${SETENVI} ${WRK_ENV} ${TEST_ENV} CTEST_PARALLEL_LEVEL=${_MAKE_JOBS_NUMBER} ${MAKE_CMD} ${MAKE_ARGS} ${CMAKE_TESTING_TARGET}
+		${_CMAKE_TESTING_SETENV} ${WRK_ENV} ${TEST_ENV} CTEST_PARALLEL_LEVEL=${CMAKE_TESTING_PARALLEL_LEVEL} ${MAKE_CMD} ${MAKE_ARGS} ${CMAKE_TESTING_TARGET}
 .    endif
 .  endif
 

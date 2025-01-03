@@ -1,16 +1,12 @@
-# Disable CMake's tests while building. We are not interested in them when
-# building packages/ports, and it may create problems if part of some
-# dependencies are installed (for example, devel/qmake4 is installed, but
-# devel/qt4-corelib is not).
-# See https://mail.kde.org/pipermail/kde-freebsd/2013-July/015703.html
-set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
+# TODO: Add TEST option to enable regression tests. The tests require
+# additional packages to be installed and a small amount of patching
+# to account for our local changes.
+set(BUILD_TESTING OFF CACHE BOOL
+    "Build the testing tree.")
 
-# Force CMake to look for base's liblzma, otherwise the configuration process
-# will fail if archivers/lzmalib is installed, as CMake will try to use its
-# liblzma.so.
-# Note that this is necessary only for `make configure' to work, as liblzma is
-# only ever used if CMake's bundled libarchive is being used.
-set(LIBLZMA_INCLUDE_DIR "/usr/include" CACHE PATH
-    "Directory where LibLZMA headers are located.")
-set(LIBLZMA_LIBRARY "/usr/lib/liblzma.so" CACHE PATH
-    "LibLZMA library to link against.")
+# Use base libarchive instead of the ports or bundled version, because
+# libpkg links against base.
+set(LibArchive_INCLUDE_DIR "/usr/include" CACHE PATH
+    "Directory where LibArchive headers are located.")
+set(LibArchive_LIBRARY "/usr/lib/libarchive.so" CACHE PATH
+    "LibArchive library to link against.")
