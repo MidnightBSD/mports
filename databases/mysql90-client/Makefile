@@ -46,9 +46,9 @@ post-patch:
 	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' ${WRKSRC}/libmysql/CMakeLists.txt
 
 post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/lib/mysql/private
-	@${LN} -s libmysqlclient.a ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.a
-	@${LN} -s libmysqlclient.so ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so
-	@${LN} -s libmysqlclient.so.24 ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so.24
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/mysql/private
+	${LN} -sf libmysqlclient.a ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.a
+	${LN} -sf libmysqlclient.so ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so
+	${LN} -sf libmysqlclient.so.24 ${STAGEDIR}${PREFIX}/lib/mysql/libmysqlclient_r.so.24
 
 .include "${MASTERDIR}/Makefile"
