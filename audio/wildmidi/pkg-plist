@@ -4,7 +4,7 @@ include/wildmidi_lib.h
 %%STATIC%%lib/libWildMidi.a
 lib/libWildMidi.so
 lib/libWildMidi.so.2
-lib/libWildMidi.so.2.0.1
+lib/libWildMidi.so.2.1.0
 libdata/pkgconfig/wildmidi.pc
 share/man/man1/wildmidi.1.gz
 share/man/man3/WildMidi_ClearError.3.gz
