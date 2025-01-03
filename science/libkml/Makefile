@@ -1,5 +1,6 @@
 PORTNAME=	libkml
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	science
 
 MAINTAINER=	ports@MidnightBSD.org
