@@ -62,6 +62,7 @@ SUBDIR += p5-Math-Round
 SUBDIR += p5-Number-Compare
 SUBDIR += p5-Set-IntSpan
 SUBDIR += p5-bignum
+SUBDIR += pdal
 SUBDIR += pear-Math_BigInteger
 SUBDIR += php81-bcmath
 SUBDIR += php81-gmp
