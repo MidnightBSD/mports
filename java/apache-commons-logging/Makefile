@@ -1,7 +1,5 @@
-# Created by: Ernst de Haan <znerd@FreeBSD.org>
-
 PORTNAME=	commons-logging
-PORTVERSION=	1.2
+PORTVERSION=	1.3.4
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE_COMMONS_BINARIES
 PKGNAMEPREFIX=	apache-
