@@ -20,6 +20,7 @@ SUBDIR += gtar
 SUBDIR += gzip
 SUBDIR += gzrecover
 SUBDIR += laszip
+SUBDIR += lazperf
 SUBDIR += lcab
 SUBDIR += lha
 SUBDIR += lha-ac

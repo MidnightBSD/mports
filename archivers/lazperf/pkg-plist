@@ -1,0 +1,9 @@
+include/lazperf/filestream.hpp
+include/lazperf/io.hpp
+include/lazperf/lazperf.hpp
+include/lazperf/vlr.hpp
+lib/cmake/LAZPERF/lazperf-config-version.cmake
+lib/cmake/LAZPERF/lazperf-config.cmake
+lib/cmake/LAZPERF/lazperf-targets-%%CMAKE_BUILD_TYPE%%.cmake
+lib/cmake/LAZPERF/lazperf-targets.cmake
+lib/liblazperf.so
