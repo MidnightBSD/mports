@@ -1,7 +1,5 @@
-# Created by: Anton Yudin <toha@toha.org.ua>
-
 PORTNAME=	commons-dbcp
-PORTVERSION=	2.9.0
+PORTVERSION=	2.12.0
 CATEGORIES=	java databases
 MASTER_SITES=	https://archive.apache.org/dist/commons/dbcp/binaries/
 PKGNAMEPREFIX=	apache-
@@ -24,7 +22,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}2-${PORTVERSION}
 JARFILE=	${PORTNAME}2-${PORTVERSION}.jar
 DOCFILES=	LICENSE.txt \
 		NOTICE.txt \
-		README.txt \
 		RELEASE-NOTES.txt
 
 PORTDOCS=	*
