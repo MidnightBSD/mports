@@ -9,6 +9,7 @@ SUBDIR += bzip3
 SUBDIR += cabextract
 SUBDIR += c-blosc
 SUBDIR += deb2targz
+SUBDIR += draco
 SUBDIR += fastjar
 SUBDIR += file-roller
 SUBDIR += freetar
