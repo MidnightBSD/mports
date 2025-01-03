@@ -4,7 +4,7 @@
    fflush(stdout);
  }
  
-+#ifndef __MidnightBSD__
++#ifndef __FreeBSD__
  void CPutStr(s, c)
  char *s;
  int c;
@@ -12,7 +12,7 @@
    tputs(tgoto(s, 0, c), 1, putcha);
    fflush(stdout);
  }
-+#endif /* __MidnightBSD__ */
++#endif /* __FreeBSD__ */
  
  void CCPutStr(s, x, y)
  char *s;

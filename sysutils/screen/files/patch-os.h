@@ -5,7 +5,7 @@
  
  #if defined(UTMPOK) || defined(BUGGYGETLOGIN)
 -# if defined(SVR4) && !defined(DGUX) && !defined(__hpux) && !defined(linux)
-+# if (defined(SVR4) && !defined(DGUX) && !defined(__hpux) && !defined(linux)) || defined(__MidnightBSD_version)
++# if (defined(SVR4) && !defined(DGUX) && !defined(__hpux) && !defined(linux)) || defined(__FreeBSD_version)
  #  include <utmpx.h>
 -#  define UTMPFILE	UTMPX_FILE
 +#  ifdef UTMPX_FILE /* GNU extension */

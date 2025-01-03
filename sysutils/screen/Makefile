@@ -1,5 +1,5 @@
 PORTNAME=	screen
-PORTVERSION=	4.9.0
+PORTVERSION=	4.9.1
 CATEGORIES=	sysutils
 MASTER_SITES=	GNU \
 		ftp://ftp.gnu.org/gnu/screen/ \
@@ -16,7 +16,8 @@ WWW=		https://www.gnu.org/software/screen/
 
 LICENSE=	gpl3
 
-OPTIONS_DEFINE=		INFO NETHACK XTERM_256 SYSTEM_SCREENRC MULTIUSER
+OPTIONS_DEFINE=		INFO NETHACK XTERM_256 SYSTEM_SCREENRC MULTIUSER \
+			NOSOCKETDIR
 OPTIONS_DEFAULT=	INFO NETHACK XTERM_256 SOCKETS SYSTEM_SCREENRC \
 			NCURSES_DEFAULT MULTIUSER
 OPTIONS_SINGLE=		IPC NCURSES
@@ -33,6 +34,7 @@ MULTIUSER_PLIST_SUB_OFF=MULTISUID="@(,,0555) "
 NCURSES_DEFAULT_DESC=	Depend on ncurses (ports if installed, otherwise base)
 NCURSES_BASE_DESC=	Depend on ncurses in base
 NCURSES_PORT_DESC=	Depend on devel/ncurses in ports
+NOSOCKETDIR_DESC=	Use ~/.screen instead of socketdir
 
 NCURSES_DEFAULT_USES=	ncurses
 NCURSES_BASE_USES=	ncurses:base
@@ -73,6 +75,14 @@ CFLAGS+=	-DCOLORS256
 
 .if ! ${PORT_OPTIONS:MNETHACK}
 CFLAGS+=	-DNONETHACK
+.endif
+
+.if ${PORT_OPTIONS:MNOSOCKETDIR}
+CONFIGURE_ARGS+=	--disable-socket-dir
+.endif
+
+.if defined(SCREEN_SOCKET_DIR)
+CONFIGURE_ARGS+=	--with-socket-dir=${SCREEN_SOCKET_DIR}
 .endif
 
 post-patch:
