@@ -1304,6 +1304,7 @@ SUBDIR += py-setuptools-scm
 SUBDIR += py-setuptools_scm7
 SUBDIR += py-setuptools_scm_git_archive
 SUBDIR += py-sgmllib3k
+SUBDIR += py-shapely
 SUBDIR += py-simplejson
 SUBDIR += py-sip
 SUBDIR += py-six
