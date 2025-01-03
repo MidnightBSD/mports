@@ -20,7 +20,8 @@ USE_GITHUB=	yes
 GH_PROJECT=	msgpack-c
 
 CMAKE_OFF=	MSGPACK_BUILD_EXAMPLES MSGPACK_BUILD_TESTS
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
