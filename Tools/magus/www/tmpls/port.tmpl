@@ -129,7 +129,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var cpe = '<TMPL_VAR NAME=cpe>';
-    var apiUrl = 'https://sec.midnightbsd.org/api/cpe/partial-match?includeVersion=true&cpe=' + encodeURIComponent(cpe);
+    var apiUrl = '/magus/auth/get_cves.cgi?cpe=' + encodeURIComponent(cpe);
 
     $.ajax({
         url: apiUrl,
@@ -139,7 +139,9 @@ $(document).ready(function() {
             var $cveList = $('#cveList');
             $cveList.empty();
 
-            if (data.length === 0) {
+            if (data.error) {
+                $cveList.append('<li>Error: ' + data.error + '</li>');
+            } else if (data.length === 0) {
                 $cveList.append('<li>No CVEs found.</li>');
             } else {
                 $.each(data, function(index, cve) {
