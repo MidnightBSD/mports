@@ -120,6 +120,45 @@
     </TMPL_LOOP>
 </ul>
 
+<h3>CVEs</h3>
+
+<ul id="cveList" class="cves">
+    <li>Loading CVE information...</li>
+</ul>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var cpe = '<TMPL_VAR NAME=cpe>';
+    var apiUrl = 'https://sec.midnightbsd.org/api/cpe/partial-match?includeVersion=true&cpe=' + encodeURIComponent(cpe);
+
+    $.ajax({
+        url: apiUrl,
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            var $cveList = $('#cveList');
+            $cveList.empty();
+
+            if (data.length === 0) {
+                $cveList.append('<li>No CVEs found.</li>');
+            } else {
+                $.each(data, function(index, cve) {
+                    var severity = cve.cvssMetrics3 && cve.cvssMetrics3[0] ? cve.cvssMetrics3[0].baseSeverity : 'Unknown';
+                    var listItem = '<li>' +
+                        '<strong>' + cve.cveId + '</strong> - Severity: ' + severity + '<br>' +
+                        '<em>' + cve.description + '</em>' +
+                        '</li>';
+                    $cveList.append(listItem);
+                });
+            }
+        },
+        error: function() {
+            $('#cveList').html('<li>Error loading CVE information.</li>');
+        }
+    });
+});
+</script>
+
 </div>
 </section>
 
