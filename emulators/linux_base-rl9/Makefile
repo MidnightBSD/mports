@@ -215,7 +215,7 @@ post-patch:
 .endif
 
 post-install:
-	${RM} -r ${FAKE_DESTDIR}${LOCALBASE}
+	-${RM} -r ${FAKE_DESTDIR}${LOCALBASE}
 	${MV} ${STAGEDIR}${PREFIX}/etc/krb5.conf \
 		${STAGEDIR}${PREFIX}/etc/krb5.conf.sample
 	${MV} ${STAGEDIR}${PREFIX}/etc/nsswitch.conf \
