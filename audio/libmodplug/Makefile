@@ -4,7 +4,7 @@ CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ModPlug mod-like music shared libraries
-WWW=		http://modplug-xmms.sourceforge.net/
+WWW=		https://modplug-xmms.sourceforge.net/
 
 LICENSE=	publicdom
 LICENSE_FILE=	${WRKSRC}/COPYING
