@@ -17,4 +17,9 @@ USE_HORDE_RUN=	Horde_Date \
 		Horde_Translation \
 		Horde_Util
 
+
+pre-fake:
+	${REINPLACE_CMD} '/test\/Horde\/Icalendar\/fixtures\/vTimezone/d' ${WRKDIR}/package.xml
+
+
 .include <bsd.port.mk>
