@@ -473,3 +473,4 @@ math/py-gmpy|math/py-gmpy2|2025--1-02|Has expired: EOLd, use math/py-gmpy2 inste
 graphics/opencv-core|graphics/opencv|2025-01-07|Reintegrated into a simple, maintainable port
 lang/gcc8|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11 or newer instead
 lang/gcc9|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11 or newer instead
+lang/gcc10|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11 or newer instead
