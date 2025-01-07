@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform application and UI framework, ${PKGNAMESUFFIX:S/-qt//g} (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.qt.io/
 
-LICENSE=	GPLv2+
+LICENSE=	gpl2+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
