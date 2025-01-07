@@ -1,9 +1,7 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	alsa-plugins
 PORTVERSION=	1.1.6
 DISTVERSIONSUFFIX=	-1.el7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio linux
 MASTER_SITES=	CENTOS_LINUX
 MASTER_SITE_SUBDIR=	centos/${LINUX_DIST_VER}/os/Source/SPackages/ \
@@ -15,8 +13,9 @@ DIST_SUBDIR=	centos
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OSS plugin for ALSA (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://www.alsa-project.org/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 
 USES=		autoreconf:build gmake libtool:build linux:c7 pkgconfig
 USE_LDCONFIG=	yes
@@ -35,12 +34,13 @@ CONFIG_ARGS=	--disable-static --disable-mix --disable-usbstream \
 CPPFLAGS+=	-DFREEBSD_OSS -DFREEBSD_OSS_USE_IO_PTR
 CFLAGS+=	--sysroot=${LINUXBASE}
 COMPAT32_CFLAGS_amd64=	-m32
+LIBDIR_aarch64=	/usr/lib64
 LIBDIR_amd64=	/usr/lib64
 LIBDIR_i386=	/usr/lib
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 WRKSRC32=	${WRKDIR}/32/${PORTNAME}-${PORTVERSION}
 
-CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX}-[0-9]*
+CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX}
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
 
@@ -104,5 +104,8 @@ do-install:
 .endif
 	${MKDIR} ${LINUXBASE}/${LIBDIR_${ARCH}}/alsa-lib/
 	${CP} ${WRKSRC}/oss/.libs/*.so ${LINUXBASE}/${LIBDIR_${ARCH}}/alsa-lib/
+	-${RM} -r ${LINUXBASE}${LIBDIR_${ARCH}}/alsa-lib/*.la
+	${LN} -sf ../../../usr/share/alsa/alsa.conf.d/50-oss.conf \
+		${LINUXBASE}/etc/alsa/conf.d
 
 .include <bsd.port.mk>
