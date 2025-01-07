@@ -8,7 +8,7 @@ MAINTAINER=	ports@MinightBSD.org
 COMMENT=	Zlib headers (Linux CentOS ${LINUX_DIST_VER})
 WWW=		http://zlib.net/
 
-LICENSE=	zliB
+LICENSE=	zlib
 
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes
