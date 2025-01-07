@@ -153,4 +153,8 @@ post-build:
 		${BUILD_WRKSRC}/lib/cmake/Qt5${module}/Qt5${module}Config.cmake
 .endfor
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.post.mk>
