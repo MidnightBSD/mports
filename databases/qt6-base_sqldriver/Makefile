@@ -28,6 +28,7 @@ odbc_LIB_DEPENDS=	libodbc.so:databases/unixODBC
 psql_USES=		pgsql
 sqlite_USES=		sqlite:3
 sqlite_CMAKE_ON=	QT_FEATURE_system_sqlite
+sqlite_LIB_DEPENDS=	sqlite3:databases/sqlite3
 ${FLAVOR}_PLIST=	${.CURDIR}/pkg-plist.${FLAVOR}
 
 .if ${FLAVOR:U} == mysql
