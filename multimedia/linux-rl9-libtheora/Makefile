@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Theora Video Compression Codec (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.theora.org/
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

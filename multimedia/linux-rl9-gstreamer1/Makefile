@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer1 library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://gstreamer.freedesktop.org/
 
-LICENSE=	LGPL20+
+LICENSE=	lgpl+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

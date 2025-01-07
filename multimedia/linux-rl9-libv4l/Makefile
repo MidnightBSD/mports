@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Video4Linux library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://linuxtv.org/wiki/index.php/V4l-utils
 
-LICENSE=	LGPL20+
+LICENSE=	lgpl+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
