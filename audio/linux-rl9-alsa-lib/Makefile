@@ -19,7 +19,7 @@ WANT_LINUX32=	yes
 CONFLICTS=	linux-c7-${PORTNAME}
 
 post-patch:
-	@${RM} -r ${WRKSRC}/etc/* ${WRKSRC}/lib/modprobe.d \
+	-${RM} -r ${WRKSRC}/etc/* ${WRKSRC}/lib/modprobe.d \
 		${WRKSRC}/usr/share/doc/alsa-lib
 
 post-install:
