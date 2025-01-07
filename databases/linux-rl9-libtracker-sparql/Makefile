@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-footprint RDF triple store with SPARQL interface (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://tracker.gnome.org/
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
