@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	VAAPI wrapper and dummy driver (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/intel/libva
 
-LICENSE=	MIT
+LICENSE=	mit
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
