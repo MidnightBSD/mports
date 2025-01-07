@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for executing DNS queries (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://0pointer.de/lennart/projects/libasyncns/
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library to handle the Public Suffix List (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/rockdaboot/libpsl
 
-LICENSE=	MIT
+LICENSE=	mit
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

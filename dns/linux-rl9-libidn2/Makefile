@@ -9,7 +9,7 @@ COMMENT=	Implementation of IDNA2008 internationalized domain names (Rocky Linux 
 WWW=		https://www.gnu.org/software/libidn/\#libidn2 \
 		https://gitlab.com/libidn/libidn2
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
