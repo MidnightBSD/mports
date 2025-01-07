@@ -9,7 +9,7 @@ COMMENT=	HTTP/2.0 C Library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://nghttp2.org/ \
 		https://github.com/nghttp2/nghttp2
 
-LICENSE=	MIT
+LICENSE=	mit
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
