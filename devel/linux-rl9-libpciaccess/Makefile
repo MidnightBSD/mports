@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic PCI access library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.freedesktop.org/wiki/Software/xlibs/
 
+LICENSE=	mit
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

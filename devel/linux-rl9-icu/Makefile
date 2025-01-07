@@ -8,6 +8,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	International Components for Unicode (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://site.icu-project.org/
 
+LICENSE=        icu
+LICENSE_NAME=   ICU license
+LICENSE_TEXT=	ICU License
+LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	${PORTNAME}-project
 CPE_PRODUCT=	international_components_for_unicode
