@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common error values for all GnuPG components (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.gnupg.org/software/libgpg-error/
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

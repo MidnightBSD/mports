@@ -6,7 +6,7 @@ CATEGORIES=	security linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla CA root certificate bundle (Rocky Linux ${LINUX_DIST_VER})
 
-LICENSE=	PD
+LICENSE=	publicdom
 
 USES=		linux:rl9
 USE_LINUX=	p11-kit

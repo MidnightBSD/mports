@@ -9,6 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 2222 SASL (Simple Authentication and Security Layer) (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.cyrusimap.org/sasl/
 
+LICENSE=	bsd4
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
