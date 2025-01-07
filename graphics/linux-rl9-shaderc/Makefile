@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLSL/HLSL to SPIR-V shader compiler (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/google/shaderc
 
-LICENSE=	APACHE20
+LICENSE=	apache2
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

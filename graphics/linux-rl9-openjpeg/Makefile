@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source JPEG 2000 codec (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.openjpeg.org/
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

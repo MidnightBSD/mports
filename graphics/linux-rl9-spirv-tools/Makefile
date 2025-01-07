@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools for processing SPIR-V intermediate shader language modules (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/KhronosGroup/SPIRV-Tools
 
-LICENSE=	APACHE20
+LICENSE=	apache2
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

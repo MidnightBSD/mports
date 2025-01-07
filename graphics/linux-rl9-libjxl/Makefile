@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JPEG XL reference encoder/decoder
 WWW=		https://jpeg.org/jpegxl/
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
