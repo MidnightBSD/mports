@@ -1,6 +1,6 @@
 PORTNAME=	runner
 PORTVERSION=	1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	http://www.boomerangsworld.de/cms/tools/downloads/
 
@@ -13,7 +13,7 @@ USES=		compiler:c++0x tar:bzip2 xorg
 GNU_CONFIGURE=	yes
 USE_XORG=	ice sm x11 xft xinerama
 
-USE_GCC=	8
+USE_GCC=	12+
 
 PLIST_FILES=	bin/${PORTNAME} ${DATADIR_REL}/program_list
 PORTDOCS=	AUTHORS ChangeLog README
