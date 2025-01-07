@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SOAP (Simple Object Access Protocol) implementation in C (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://libsoup.org/
 
-LICENSE=	LGPL20
+LICENSE=	lgpl
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
