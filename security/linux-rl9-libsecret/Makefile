@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for storing and retrieving passwords and other secrets
 WWW=		https://wiki.gnome.org/Projects/Libsecret/
 
-LICENSE=	LGPL20+
+LICENSE=	lgpl+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
