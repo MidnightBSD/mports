@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The LLVM Debugger for LLVM suite (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://llvm.org
 
-LICENSE=	GPLv2+
+LICENSE=	gpl2+
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

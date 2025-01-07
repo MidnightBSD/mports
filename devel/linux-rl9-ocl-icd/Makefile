@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenCL Installable Client Driver (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/OCL-dev/ocl-icd
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
