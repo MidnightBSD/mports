@@ -1,5 +1,5 @@
 PORTNAME=	game
-DISTVERSION=	2.1.2
+DISTVERSION=	2.6.1
 PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
@@ -13,14 +13,15 @@ WWW=		https://www.pygame.org/news
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/docs/LGPL.txt
 
+BROKEN_i386=	error: always_inline function '_mm_set_epi32' requires target feature 'sse2'
+
 BUILD_DEPENDS=	v4l_compat>0:multimedia/v4l_compat
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
-		libpng.so:graphics/png \
-		libsmpeg.so:multimedia/smpeg
+		libpng.so:graphics/png
 RUN_DEPENDS=	${PYNUMPY} \
 		v4l_compat>0:multimedia/v4l_compat
 
-USES=		compiler:c11 jpeg pkgconfig python sdl xorg
+USES=		compiler:c11 jpeg localbase pkgconfig python sdl xorg
 USE_SDL=	sdl2 ttf2 image2 mixer2
 USE_PYTHON=	autoplist distutils
 USE_XORG=	x11
