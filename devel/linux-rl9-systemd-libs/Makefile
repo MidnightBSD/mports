@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for accessing systemd (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.freedesktop.org/wiki/Software/systemd/
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	systemd_project

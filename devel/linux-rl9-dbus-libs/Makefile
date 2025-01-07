@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for accessing D-BUS (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.freedesktop.org/Software/dbus
 
-LICENSE=	GPLv2+
+LICENSE=	gpl2+
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
