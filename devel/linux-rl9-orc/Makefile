@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and toolset to operate arrays of data (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://gstreamer.freedesktop.org/projects/orc.html
 
-LICENSE=	BSD2CLAUSE BSD3CLAUSE
+LICENSE=	bsd2 bsd3
 LICENSE_COMB=	multi
 
 USES=		linux:rl9
