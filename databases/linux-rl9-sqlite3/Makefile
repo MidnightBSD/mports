@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that implements an embeddable SQL database engine (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.sqlite.org/
 
-LICENSE=	PD
+LICENSE=	publicdom
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
