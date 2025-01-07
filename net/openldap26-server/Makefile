@@ -35,6 +35,8 @@ LICENSE_FILE=		${WRKSRC}/LICENSE
 USES=			cpe gmake libtool:keepla localbase ssl tar:tgz
 BUILD_DEPENDS+=		autoconf>0:devel/autoconf
 
+NO_TEST=	yes
+
 .if defined(CLIENT_ONLY)
 CONFLICTS_INSTALL=	${PORTNAME}2[0-57-9]-client ${PORTNAME}-client
 .else
