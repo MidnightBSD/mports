@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VDPAU wrapper and tracing library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://freedesktop.org/wiki/Software/VDPAU
 
-LICENSE=	MIT
+LICENSE=	mit
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
