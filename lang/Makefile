@@ -27,7 +27,6 @@ SUBDIR += fpc-source
 SUBDIR += gawk
 SUBDIR += gcc
 SUBDIR += gcc48
-SUBDIR += gcc9
 SUBDIR += gcc10
 SUBDIR += gcc11
 SUBDIR += gcc12
