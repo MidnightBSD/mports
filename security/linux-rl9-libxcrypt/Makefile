@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extended crypt library for descrypt, md5crypt, bcrypt, and others (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/besser82/libxcrypt
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
