@@ -19,7 +19,7 @@ ALL_TARGET=	all compat.info
 
 NO_ARCH=	yes
 
-INFO=		compat
+#INFO=		compat
 PORTDOCS=	NEWS.org README.md
 
 OPTIONS_DEFINE=	DOCS
