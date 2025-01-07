@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for executing callback functions on events or timeouts (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://libevent.org/
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
