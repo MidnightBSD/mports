@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Crypto library based on code used in GnuPG (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.gnupg.org/software/libgcrypt/index.html
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnupg

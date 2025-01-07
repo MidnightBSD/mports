@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPC library used by GnuPG and gpgme (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://gnupg.org/related_software/libassuan/index.en.html
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnupg
