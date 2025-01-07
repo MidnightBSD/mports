@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Runtime libraries for GNU libtool (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.gnu.org/software/libtool/
 
-LICENSE=	LGPL21+
+LICENSE=	lgpl2.1+
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
