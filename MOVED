@@ -470,3 +470,4 @@ www/qt5-webkit||2025-01-02|Has expired: No longer actively maintained, increasin
 net/opal||2025-01-02|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is still active
 net-im/ekigal||2025-01-02|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is dead
 math/py-gmpy|math/py-gmpy2|2025--1-02|Has expired: EOLd, use math/py-gmpy2 instead
+graphics/opencv-core|graphics/opencv|2025-01-07|Reintegrated into a simple, maintainable port

@@ -205,7 +205,6 @@ SUBDIR += netpbm
 SUBDIR += nvidia-texture-tools
 SUBDIR += ocrad
 SUBDIR += opencv
-SUBDIR += opencv-core
 SUBDIR += openexr
 SUBDIR += openjpeg
 SUBDIR += openjpeg15
