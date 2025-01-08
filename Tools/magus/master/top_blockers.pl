@@ -1,4 +1,4 @@
-#!/usr/bin/env perl#
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
@@ -19,8 +19,7 @@ while (my $port = $ports->next) {
   $objs{$port} ||= $port;
 
   foreach my $dep ($port->depends) {
-    next unless $dep->status eq 'fail' || $dep->status eq 'skip' || $dep->status eq 'untested';
-    
+    next unless $dep->status =~ /^(fail|skip|untested)$/;
     
     $objs{$dep}    ||= $dep;
     $blocking{$dep} += $add;
@@ -29,7 +28,9 @@ while (my $port = $ports->next) {
 
 print '-' x 79, "\n";
 
-foreach my $port (sort { $blocking{$b} <=> $blocking{$a} } keys %blocking) {
+foreach my $port (sort { $blocking{$b} <=> $blocking{$a} }
+  grep { $objs{$_}->status ne 'untested'}
+  keys %blocking) {
   next if $objs{$port}->status eq 'untested';
   print "$port: $blocking{$port}\n";
 }
