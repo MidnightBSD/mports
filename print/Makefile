@@ -73,6 +73,7 @@ SUBDIR += py-vharfbuzz
 SUBDIR += py-weasyprint
 SUBDIR += qpdf
 SUBDIR += qt5-printsupport
+SUBDIR += qt6-pdf
 SUBDIR += t1utils
 SUBDIR += tex-basic-engines
 SUBDIR += tex-dvipdfmx
