@@ -1,5 +1,5 @@
 PORTNAME=	magus-utils
-PORTVERSION=	1.8
+PORTVERSION=	1.9
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -13,6 +13,7 @@ RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
 		p5-YAML>=0:textproc/p5-YAML \
 		p5-Class-DBI>=0:databases/p5-Class-DBI \
 		p5-Class-Accessor>=0:devel/p5-Class-Accessor \
+		p5-BSD-Resource>=0:devel/p5-BSD-Resource \
 		git:devel/git
 
 USES=		perl5 pgsql:14
