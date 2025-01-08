@@ -7,12 +7,39 @@ use lib qw(/usr/mports/Tools/lib);
 use Magus;
 
 #
-# quick little script to delete runs from the db.
+# Script to delete runs from the db with cascading deletes.
 #
 
-while (@ARGV) {
+my @run_ids = @ARGV;
 
-  my $run = Magus::Run->retrieve(shift) || die "Couldn't get run!\n";
+if (@run_ids) {
+    my $dbh = Magus::Run->db_Main;
 
-  $run->delete;
+    # Start a transaction
+    $dbh->begin_work;
+
+    eval {
+        foreach my $run_id (@run_ids) {
+            my $run = Magus::Run->retrieve($run_id);
+            if ($run) {
+                $run->delete;
+                print "Deleted run $run_id\n";
+            } else {
+                warn "Couldn't find run with ID $run_id\n";
+            }
+        }
+
+        # Commit the transaction
+        $dbh->commit;
+    };
+
+    if ($@) {
+        # If there was an error, roll back the transaction
+        $dbh->rollback;
+        die "Error deleting runs: $@\n";
+    }
+
+    print "Finished deleting runs.\n";
+} else {
+    print "No run IDs provided.\n";
 }
