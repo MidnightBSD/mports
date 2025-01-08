@@ -3,3 +3,7 @@ AuthName "Authorization Required"
 AuthBasicProvider file
 AuthUserFile /home/mbsd/magus/magus-passwd
 Require valid-user
+
+<Files "get_cves.cgi">
+    Require all granted
+</Files>
