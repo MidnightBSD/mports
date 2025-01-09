@@ -2,7 +2,7 @@ package Magus::App::Slave::Worker;
 
 use strict;
 use warnings;
-use BSD::Resource qw(setproctitle);
+use subs qw(setproctitle);
 
 sub run {
   my ($class, %args) = @_;
