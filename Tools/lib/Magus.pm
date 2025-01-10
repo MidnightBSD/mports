@@ -24,6 +24,7 @@ use Magus::Distfile ();
 use Magus::RestrictedDistfile ();
 use Magus::MasterSite ();
 use Magus::Moved ();
+use Magus::CriticalPorts ();
 
 use Mport::Globals   ();
 our $Machine;

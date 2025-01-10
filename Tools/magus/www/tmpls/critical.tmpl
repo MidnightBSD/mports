@@ -1,0 +1,36 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<section>
+	<div class="row-fluid">
+		<div class="col-md-10 col-md-offset-1">
+			<h2>
+				Critical Ports
+			</h2>
+
+			<table class="table critical-summary">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Package Name</th>
+						<th>Arch</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td data-critical-id="<TMPL_VAR NAME="id">">
+							<TMPL_VAR NAME="id">
+						</td>
+						<td data-critical-pkgname="<TMPL_VAR NAME="pkgname">">
+							<TMPL_VAR NAME="pkgname">
+						</td>
+						<td data-critical-arch="<TMPL_VAR NAME="arch">">
+							<TMPL_VAR NAME="arch">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

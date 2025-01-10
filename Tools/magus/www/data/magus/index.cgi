@@ -73,6 +73,8 @@ sub main {
 
   if ($path eq '' || $path eq '/') {
     summary_page($p);
+  } elsif ($path =~ m:/critical/(.*):) {
+    critical_index($p);
   } elsif ($path =~ m:/machines/(.*):) {
     if ($1) {
       machine_page($p, $1);
@@ -649,13 +651,27 @@ sub machine_index {
   my ($p) = @_;
 
   my @machines = Magus::Machine->retrieve_all({ order_by => 'osversion DESC, id' });
-      
 
   my $tmpl = template($p, 'machines.tmpl');
 
   $tmpl->param(
     title      => 'Magus // Machines',
     machines       => \@machines,
+  );
+
+  print $p->header, $tmpl->output;
+}
+
+sub critical_index {
+  my ($p) = @_;
+
+  my @critical = Magus::CriticalPorts->retrieve_all({ order_by => 'arch, pkgname' });
+
+  my $tmpl = template($p, 'critical.tmpl');
+
+  $tmpl->param(
+      title      => 'Magus // Critical',
+      critical       => \@critical,
   );
 
   print $p->header, $tmpl->output;
@@ -867,13 +883,14 @@ sub template {
   my $root = '/magus'; #$p->script_name();
 
   $tmpl->param(
-    query     => $query,
-    title     => 'Magus',
-    root      => $root,
-    run_root  => $root . '/runs',
-    port_root => $root . '/ports',
-    machine_root => $root . '/machines',
-    browse_root  => $root . '/browse',
+      query         => $query,
+      title         => 'Magus',
+      root          => $root,
+      run_root      => $root . '/runs',
+      port_root     => $root . '/ports',
+      machine_root  => $root . '/machines',
+      browse_root   => $root . '/browse',
+      critical_root => $root . '/critical'
   );
   
   return $tmpl;
