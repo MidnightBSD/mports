@@ -12,6 +12,7 @@
         <th>Status</th>
         <th>Version 2</th>
         <th>Status 2</th>
+        <th>Critical</th>
     </tr>
     </thead>
 
@@ -22,6 +23,13 @@
         <td class="<TMPL_VAR NAME=status1>"><TMPL_VAR NAME="status1"></td>
         <td class="<TMPL_VAR NAME=status2>"><TMPL_VAR NAME="version2"></td>
         <td class="<TMPL_VAR NAME=status2>"><TMPL_VAR NAME="status2"></td>
+        <td>
+              <TMPL_IF NAME="critical">
+                    <span class="label label-important">Critical</span>
+              <TMPL_ELSE>
+                   <span class="label label-default">Normal</span>
+              </TMPL_IF>
+        </td>
     </tr>
 </TMPL_LOOP>
 </table>

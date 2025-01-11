@@ -302,21 +302,38 @@ sub compare_runs {
 
   my @ports1 = Magus::Port->search(run => $run_id1, {order_by => 'name'});
   my @ports2 = Magus::Port->search(run => $run_id2, {order_by => 'name'});
+  my @critical = Magus::CriticalPorts->search(arch => $run1->{arch}, { order_by => 'arch, pkgname' });
   my %results;
  
   $run1->{ports} = @ports1;
   $run2->{ports} = @ports2;
 
   foreach my $p (@ports1) {
-    $results{$p->{name}} = { name => $p->{name}, version1 => $p->{version}, status1 => $p->{status}};
+    my $found = 0;
+    foreach my $crit (@critical) {
+      if ($p->{name} eq $crit->{pkgname}) {
+        $found = 1;
+        last;
+      }
+    }
+    $results{$p->{name}} = { name => $p->{name}, version1 => $p->{version}, status1 => $p->{status}, critical = $found};
   }
 
   foreach my $p2 (@ports2) {
+    my $found = 0;
+    foreach my $crit (@critical) {
+      if ($p2->{name} eq $crit->{pkgname}) {
+        $found = 1;
+        last;
+      }
+    }
+
     if ($results{$p2->{name}}) {
       $results{$p2->{name}}->{version2} = $p2->{version};
       $results{$p2->{name}}->{status2} = $p2->{status};
+      $results{$p2->{name}}->{critical} = $found;
     } else {
-      $results{$p2->{name}} = { name => $p2->{name}, version2 => $p2->{version}, status2 => $p2->{status}};
+      $results{$p2->{name}} = { name => $p2->{name}, version2 => $p2->{version}, status2 => $p2->{status}, critical = $found};
     }
   }
 
