@@ -311,7 +311,7 @@ sub compare_runs {
   foreach my $p (@ports1) {
     my $found = 0;
     foreach my $crit (@critical) {
-      if ($p->{name} eq $crit->{pkgname}) {
+      if ($p->{pkgname} eq $crit->{pkgname}) {
         $found = 1;
         last;
       }
@@ -322,7 +322,7 @@ sub compare_runs {
   foreach my $p2 (@ports2) {
     my $found = 0;
     foreach my $crit (@critical) {
-      if ($p2->{name} eq $crit->{pkgname}) {
+      if ($p2->{pkgname} eq $crit->{pkgname}) {
         $found = 1;
         last;
       }
