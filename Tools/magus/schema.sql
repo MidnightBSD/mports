@@ -298,6 +298,18 @@ create VIEW ready_ports AS
     depends.dependency = locks.port))
 ORDER BY priority desc, ports.name asc;
 
+DROP TABLE "critical_ports" CASCADE\g
+DROP SEQUENCE "critical_ports_id_seq" CASCADE ;
+
+CREATE SEQUENCE "critical_ports_id_seq" ;
+
+CREATE TABLE  "critical_ports" (
+                             "id" integer DEFAULT nextval('"critical_ports_id_seq"') NOT NULL,
+                             "arch"   varchar(12) NOT NULL,
+                             "pkgname"   varchar(128) NOT NULL,
+                             primary key ("id")
+);
+
 alter table ports add foreign key (run) references runs(id);
 alter table port_categories add foreign key (category) references categories(id);
 alter table locks add foreign key (port) references ports(id);
