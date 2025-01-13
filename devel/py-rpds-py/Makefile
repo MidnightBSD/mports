@@ -27,4 +27,7 @@ NO_TEST=	yes
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
+do-test:
+	${NOOP}
+
 .include <bsd.port.mk>
