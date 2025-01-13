@@ -6,6 +6,7 @@ MASTER_SITES=	https://github.com/liballeg/allegro5/releases/download/${DISTVERSI
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform library for games and multimedia programming
+WWW=		https://liballeg.org/
 
 LICENSE=	GIFTWARE
 LICENSE_NAME=	Giftware
@@ -18,8 +19,8 @@ LIB_DEPENDS=	libogg.so:audio/libogg \
 
 USES=		cmake gl makeinfo pkgconfig xorg
 USE_GL=		gl glu
-USE_XORG=	ice sm x11 xcursor xext xpm xxf86dga xxf86vm
 USE_LDCONFIG=	yes
+USE_XORG=	ice sm x11 xcursor xext xpm xxf86dga xxf86vm
 
 INFO=		allegro
 PORTDOCS=	*
