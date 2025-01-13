@@ -75,6 +75,7 @@ include/php/Zend/zend_list.h
 include/php/Zend/zend_llist.h
 include/php/Zend/zend_long.h
 include/php/Zend/zend_map_ptr.h
+include/php/Zend/zend_max_execution_timer.h
 include/php/Zend/zend_mmap.h
 include/php/Zend/zend_modules.h
 include/php/Zend/zend_multibyte.h
@@ -200,6 +201,7 @@ include/php/ext/standard/dl.h
 include/php/ext/standard/dl_arginfo.h
 include/php/ext/standard/exec.h
 include/php/ext/standard/file.h
+include/php/ext/standard/file_arginfo.h
 include/php/ext/standard/flock_compat.h
 include/php/ext/standard/fsock.h
 include/php/ext/standard/head.h
