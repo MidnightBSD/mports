@@ -12,7 +12,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libsasl2.so:security/cyrus-sasl2
 
 USES=		apache ldap libtool pathfix pkgconfig ssl
-USE_OPENLDAP=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share

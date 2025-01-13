@@ -1,5 +1,3 @@
-
-
 PORTNAME=	ldapdiff
 PORTVERSION=	1.4.1
 PORTREVISION=	1
@@ -13,7 +11,6 @@ COMMENT=	Utility for patching LDAP directories using LDIF files
 LICENSE=	gpl2
 
 USES=		iconv tar:tgz ldap
-USE_OPENLDAP=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${LOCALBASE} \
 		--with-ldap-dir=${LOCALBASE}

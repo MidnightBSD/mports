@@ -1,5 +1,6 @@
 PORTNAME=	ldap2dns
 PORTVERSION=	0.4.2
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	GHC
 
@@ -14,7 +15,6 @@ RUN_DEPENDS=	p5-Net-DNS>=0:dns/p5-Net-DNS \
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
 USES=		gmake ldap localbase:ldflags perl5 
-USE_OPENLDAP=	yes
 USE_PERL5=	run
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" LD="${CC}" LDFLAGS="${LDFLAGS}"
 

@@ -1,12 +1,6 @@
-# Ports collection Makefile for:	nss_ldap
-# Date created:				10/08/2007
-# Whom:					luke@MidnightBSD.org
-#
-
-#
-
 PORTNAME=	nss_ldap
 PORTVERSION=	1.${NSS_LDAP_VERSION}
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.padl.com/download/ \
 		FREEBSD_LOCAL/martymac
@@ -14,23 +8,22 @@ DISTNAME=	${PORTNAME}-${NSS_LDAP_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 2307 NSS module
+WWW=		https://www.padl.com/OSS/nss_ldap.html
 
 LICENSE=	gpl2
 
 NSS_LDAP_VERSION=265
 
-USES=		autoreconf gmake perl5 ldap
+USES=		autoreconf cpe gmake perl5 ldap
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_OPENLDAP=	yes
+CPE_VENDOR=	padl
 
-OPTIONS_DEFINE=	LCLASS KERBEROS SASL
+OPTIONS_DEFINE=	LCLASS KERBEROS
 OPTIONS_DEFAULT=LCLASS KERBEROS
 
 LCLASS_DESC=	Enable login classes via the loginClass attribute
-
-SASL_DESC=	Use the SASL-enabled version of OpenLDAP
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -Wl,-rpath,${LOCALBASE}/lib
@@ -39,7 +32,7 @@ CONFIGURE_ARGS=	--with-ldap-conf-file=${PREFIX}/etc/nss_ldap.conf \
 		--with-ldap-secret-file=${PREFIX}/etc/nss_ldap.secret \
 		--enable-rfc2307bis \
 		--enable-paged-results
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 SUB_FILES=	pkg-message
 
@@ -52,10 +45,6 @@ CONFIGURE_ARGS+=--enable-configurable-krb5-ccname-gssapi \
 
 .if ${PORT_OPTIONS:MLCLASS}
 CFLAGS+="-DHAVE_LOGIN_CLASSES"
-.endif
-
-.if ${PORT_OPTIONS:MSASL}
-WANT_OPENLDAP_SASL=	 yes
 .endif
 
 post-extract:
@@ -81,6 +70,6 @@ post-configure:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/nss_ldap.so ${STAGEDIR}/${PREFIX}/lib/nss_ldap.so.1
 	${INSTALL_DATA} ${WRKSRC}/ldap.conf ${STAGEDIR}/${PREFIX}/etc/nss_ldap.conf.sample
-	${INSTALL_MAN} ${WRKSRC}/nss_ldap.5 ${STAGEDIR}/${MAN5PREFIX}/man/man5
+	${INSTALL_MAN} ${WRKSRC}/nss_ldap.5 ${STAGEDIR}/${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>

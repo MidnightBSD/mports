@@ -63,7 +63,6 @@ CONFIGURE_ARGS+=	--without-bdb
 
 .if ${LIBGDA5_SLAVE}==ldap
 USES+=		ldap
-USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=	--with-ldap=${LOCALBASE}
 .else
 CONFIGURE_ARGS+=	--without-ldap

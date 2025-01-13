@@ -367,7 +367,7 @@ AD_DC_BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}markdown>=3.3.7:textproc/py-markdo
 AD_DC_RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}markdown>=3.3.7:textproc/py-markdown@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}dnspython>=2.2.1:dns/py-dnspython@${PY_FLAVOR}
 
-ADS_IMPLIES=			LDAP OPENLDAP
+ADS_IMPLIES=			LDAP
 ADS_CONFIGURE_WITH=		ads
 
 CLUSTER_CONFIGURE_WITH=		cluster-support
@@ -399,7 +399,6 @@ GSSAPI_HEIMDAL_PREVENTS_MSG=	GSSAPI_HEIMDAL and AD_DC enable conflicting options
 LDAP_CONFIGURE_WITH=		ldap
 LDAP_CONFIGURE_ON=		--with-openldap=${LOCALBASE}
 LDAP_USES=			ldap
-LDAP_USE=                       OPENLDAP=yes
 LDAP_VARS=			SAMBA4_MODULES+=idmap_ldap
 
 LIBZFS_CONFIGURE_WITH=		libzfs

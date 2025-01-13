@@ -1,86 +1,110 @@
-
-
-.if !defined(Ldap_Post_Include)
-
-Ldap_Post_Include=			ldap.mk
-Database_Include_MAINTAINER=		ports@MidnightBSD.org
-
-# For including this file define macro USE_OPENLDAP. Defining macro like
-# USE_OPENLDAP_VER or WANT_OPENLDAP_VER will include this file too.
+# Provide support for OpenLDAP
+# Feature:	ldap
+# Usage:	USES=ldap or USES=ldap:args
+# Valid ARGS:	<version>, client, server, (none)
 #
-##
-# USE_OPENLDAP			- Add OpenLDAP client dependency.
-#				  If no version is given (by the maintainer via the port or
-#				  by the user via defined variable), try to find the
-#				  currently installed version.  Fall back to default if
-#				  necessary (OpenLDAP 2.4 = 24).
-# DEFAULT_OPENLDAP_VER
-#				- OpenLDAP default version. Can be overriden within a port.
-#				  Default: 24.
-# WANT_OPENLDAP_VER
-#				- Maintainer can set an arbitrary version of OpenLDAP by using it.
-# IGNORE_OPENLDAP_OPENLDAP
-#				- This variable can be defined if the ports doesn't support
-#				  one or more version of OpenLDAP.
+# version	If no version is given (by the maintainer via the port), try to
+#		find the currently installed version.  Fall back to default if
+#		necessary (OpenLDAP-2.6 = 26, look at bsd.default-versions.mk for
+#		possible values).
+# client	Depends on the libldap library (default)
+# server
+#		Depend on the server at runtime. If none of these is
+#		set, depends on the client.
+#
+# IGNORE_WITH_OPENLDAP
+#		This variable can be defined if the ports does not support one
+#		or more version of OpenLDAP.
 # WITH_OPENLDAP_VER
-#				- User defined variable to set OpenLDAP version.
+#		User defined variable to set OpenLDAP version.
 # OPENLDAP_VER
-#				- Detected OpenLDAP version.
+#		Detected OpenLDAP version.
+#
+# 
 
-.if defined(USE_OPENLDAP)
-DEFAULT_OPENLDAP_VER?=	24
+.if !defined(_INCLUDE_USES_LDAP_MK)
+_INCLUDE_USES_LDAP_MK=    yes
+
+.sinclude "${PORTSDIR}/Mk/components/default-versions.mk"
+
+.  if !empty(ldap_ARGS)
+.undef _WANT_OPENLDAP_VER
+.undef _WANT_OPENLDAP_SERVER
+_OPENLDAP_ARGS=		${ldap_ARGS:S/,/ /g}
+.    if ${_OPENLDAP_ARGS:Mserver}
+_WANT_OPENLDAP_SERVER=	yes
+_OPENLDAP_ARGS:=	${_OPENLDAP_ARGS:Nserver}
+.    endif
+.    if ${_OPENLDAP_ARGS:Mclient}
+_WANT_OPENLDAP_CLIENT=	yes
+_OPENLDAP_ARGS:=	${_OPENLDAP_ARGS:Nclient}
+.    endif
+
+# Port requested a version
+.    if !empty(_OPENLDAP_ARGS)
+_WANT_OPENLDAP_VER=	${_OPENLDAP_ARGS}
+.    endif
+.  endif # !empty(ldap_ARGS)
+
+.  if defined(DEFAULT_OPENLDAP_VER)
+WARNING+=	"DEFAULT_OPENLDAP_VER is defined, consider using DEFAULT_VERSIONS=openldap=${DEFAULT_OPENLDAP_VER} instead"
+.  endif
+
+DEFAULT_OPENLDAP_VER?=	${OPENLDAP_DEFAULT:S/.//}
+# OpenLDAP client version currently supported.
+# When adding a version, please keep the comment in
+# Mk/bsd.default-versions.mk in sync.
 # OpenLDAP client versions currently supported
-OPENLDAP24_LIB=		libldap-2.4.so.2
 OPENLDAP25_LIB=		libldap-2.5.so.0
 OPENLDAP26_LIB=		libldap.so.2
 
-.    if exists(${LOCALBASE}/bin/ldapwhoami)
+.  if exists(${LOCALBASE}/bin/ldapwhoami)
 _OPENLDAP_VER!=	${LOCALBASE}/bin/ldapwhoami -VV 2>&1 | ${GREP} ldapwhoami | ${SED} -E 's/.*OpenLDAP: ldapwhoami (2)\.([0-9]).*/\1\2/'
-.    endif
+.  endif
 
-.    if defined(WANT_OPENLDAP_VER)
-.      if defined(WITH_OPENLDAP_VER) && ${WITH_OPENLDAP_VER} != ${WANT_OPENLDAP_VER}
+.  if defined(WANT_OPENLDAP_VER)
+.    if defined(WITH_OPENLDAP_VER) && ${WITH_OPENLDAP_VER} != ${WANT_OPENLDAP_VER}
 IGNORE=		cannot install: the port wants openldap${WANT_OPENLDAP_VER}-client and you try to install openldap${WITH_OPENLDAP_VER}-client
-.      endif
-OPENLDAP_VER=	${WANT_OPENLDAP_VER}
-.    elif defined(WITH_OPENLDAP_VER)
-OPENLDAP_VER=	${WITH_OPENLDAP_VER}
-.    else
-.      if defined(_OPENLDAP_VER)
-OPENLDAP_VER=	${_OPENLDAP_VER}
-.      else
-OPENLDAP_VER=	${DEFAULT_OPENLDAP_VER}
-.      endif
-.    endif # WANT_OPENLDAP_VER
-
-.    if defined(_OPENLDAP_VER)
-.      if ${_OPENLDAP_VER} != ${OPENLDAP_VER}
-IGNORE=	cannot install: OpenLDAP versions mismatch: openldap${_OPENLDAP_VER}-client is installed and wanted version is openldap${OPENLDAP_VER}-client
-.      endif
 .    endif
+OPENLDAP_VER=	${WANT_OPENLDAP_VER}
+.  elif defined(WITH_OPENLDAP_VER)
+OPENLDAP_VER=	${WITH_OPENLDAP_VER}
+.  else
+.    if defined(_OPENLDAP_VER)
+OPENLDAP_VER=	${_OPENLDAP_VER}
+.    else
+OPENLDAP_VER=	${DEFAULT_OPENLDAP_VER}
+.    endif
+.  endif # WANT_OPENLDAP_VER
+
+.  if defined(_OPENLDAP_VER)
+.    if ${_OPENLDAP_VER} != ${OPENLDAP_VER}
+IGNORE=	cannot install: OpenLDAP versions mismatch: openldap${_OPENLDAP_VER}-client is installed and wanted version is openldap${OPENLDAP_VER}-client
+.    endif
+.  endif
 
 CFLAGS+=	-DLDAP_DEPRECATED
 
-_OPENLDAP_CLIENT_PKG!=	 /usr/libexec/mport.query name='openldap*-client' 2>/dev/null | grep openldap ; echo
+_OPENLDAP_CLIENT=	net/openldap${OPENLDAP_VER}-client
+_OPENLDAP_SERVER=	net/openldap${OPENLDAP_VER}-server
 
 # And now we are checking if we can use it
-.    if defined(OPENLDAP${OPENLDAP_VER}_LIB)
-# compatability shim
-.      if defined(BROKEN_WITH_OPENLDAP)
-IGNORE_WITH_OPENLDAP=${BROKEN_WITH_OPENLDAP}
-.      endif
-.      if defined(IGNORE_WITH_OPENLDAP)
-.        for VER in ${IGNORE_WITH_OPENLDAP}
-.          if (${OPENLDAP_VER} == "${VER}")
+.  if defined(OPENLDAP${OPENLDAP_VER}_LIB)
+.    if defined(IGNORE_WITH_OPENLDAP)
+.      for VER in ${IGNORE_WITH_OPENLDAP}
+.        if (${OPENLDAP_VER} == "${VER}")
 IGNORE=		cannot install: doesn't work with OpenLDAP version: ${OPENLDAP_VER} (Doesn't support OpenLDAP ${IGNORE_WITH_OPENLDAP})
-.          endif
-.        endfor
-.      endif # IGNORE_WITH_OPENLDAP
-LIB_DEPENDS+=	${OPENLDAP${OPENLDAP_VER}_LIB}:net/openldap${OPENLDAP_VER}-client
-.    else
+.        endif
+.      endfor
+.    endif # IGNORE_WITH_OPENLDAP
+.    if defined(_WANT_OPENLDAP_SERVER)
+RUN_DEPENDS+=	${LOCALBASE}/libexec/slapd:${_OPENLDAP_SERVER}
+.    endif
+.    if defined(_WANT_OPENLDAP_CLIENT) || !defined(_WANT_OPENLDAP_SERVER)
+LIB_DEPENDS+=	${OPENLDAP${OPENLDAP_VER}_LIB}:${_OPENLDAP_CLIENT}
+.    endif
+.  else
 IGNORE=		cannot install: unknown OpenLDAP version: ${OPENLDAP_VER}
-.    endif # Check for correct libs
+.  endif # Check for correct libs
 
-.  endif # defined(USE_OPENLDAP)
-
-.endif # !defined(Ldap_Post_Include)
+.endif # !defined(_INCLUDE_USES_LDAP_MK)
