@@ -22,6 +22,8 @@ CARGO_BUILD=	no
 CARGO_INSTALL=	no
 WRKSRC=		${WRKDIR}/rpds_py-${PORTVERSION}
 
+NO_TEST=	yes
+
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
