@@ -14,6 +14,8 @@ LICENSE=		gpl2
 # MySQL8.2+ supports only 64-bit platforms
 NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
 
+BROKEN_MidnightBSD_3.2= Needs newer C++20 support for std:ranges
+
 USES=		bison:build cmake:noninja cpe groff:run libedit localbase \
 		ncurses perl5 pkgconfig shebangfix ssl compiler:c++20-lang
 

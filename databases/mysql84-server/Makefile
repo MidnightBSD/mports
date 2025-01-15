@@ -14,8 +14,16 @@ LICENSE=		gpl2
 # MySQL8.2+ supports only 64-bit platforms
 NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
 
+BROKEN_MidnightBSD_3.2=	Needs newer C++20 support for std:ranges
+
+BUILD_DEPENDS+= clang15:devel/llvm15
+CPP=    ${LOCALBASE}/bin/clang-cpp15
+CC=     ${LOCALBASE}/bin/clang15
+CXX=    ${LOCALBASE}/bin/clang++15
+
 USES=		bison:build cmake:noninja cpe groff:run libedit localbase \
-		ncurses perl5 pkgconfig shebangfix ssl compiler:c++20-lang
+		ncurses perl5 pkgconfig shebangfix ssl 
+#compiler:c++20-lang
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
 
@@ -88,7 +96,8 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 
 CMAKE_ARGS+=	-DWITHOUT_MROONGA_STORAGE_ENGINE=1 \
 		-DWITHOUT_ROCKSDB_STORAGE_ENGINE=1 \
-		-DWITHOUT_TOKUDB_STORAGE_ENGINE=1
+		-DWITHOUT_TOKUDB_STORAGE_ENGINE=1 \
+		-DWITHOUT_NDB_STORAGE_ENGINE=1
 
 SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
