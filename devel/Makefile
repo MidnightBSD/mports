@@ -345,6 +345,7 @@ SUBDIR += linux-rl9-systemd-libs
 SUBDIR += llvm11
 SUBDIR += llvm12
 SUBDIR += llvm15
+SUBDIR += llvm16
 SUBDIR += llvm-devel
 SUBDIR += lndir
 SUBDIR += log4cplus
