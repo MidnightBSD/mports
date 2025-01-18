@@ -23,6 +23,16 @@
 #	In most cases, this is the only required variable for ports that
 #	use Go modules.
 #
+# GO_MOD_DIST
+#       The location to download the go.mod file if GO_MODULE is used.
+#       The default is empty, so it is loaded from GO_PROXY.
+#       Set it to "gitlab" and make sure GL_PROJECT is defined to download
+#       the "go.mod" from gitlab.
+#       Set it to "github" and make sure GH_PROJECT is defined to download
+#       the "go.mod" from github.
+#       You can also set it completely manually a URI without go.mod in it,
+#       is attached automatically to the URI.
+#
 # GO_PKGNAME
 #	The name of the package when building in GOPATH mode.  This
 #	is the directory that will be created in ${GOPATH}/src.  If not set
@@ -60,7 +70,7 @@ _INCLUDE_USES_GO_MK=	yes
 
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-GO_VALID_VERSIONS=	1.20 1.21 1.22 1.23-devel
+GO_VALID_VERSIONS=	1.20 1.21 1.22 1.23 1.24-devel
 
 # Check arguments sanity
 .  if !empty(go_ARGS:N[1-9].[0-9][0-9]:N*-devel:Nmodules:Nno_targets:Nrun)
@@ -90,20 +100,17 @@ GO_PKGNAME=	${PORTNAME}
 GO_TARGET?=	${GO_PKGNAME}
 GO_TESTTARGET?=	./...
 
-.if !defined(PIE_UNSAFE) && defined(WITH_PIE) && ${ARCH} == amd64
+.  if !defined(PIE_UNSAFE) && defined(WITH_PIE) && ${ARCH} == amd64
 GO_BUILDFLAGS+= -buildmode=pie
-.else
+.  else
 GO_BUILDFLAGS+= -buildmode=exe
-.endif
+.  endif
 GO_BUILDFLAGS+= -v -trimpath
 .  if !defined(WITH_DEBUG) && empty(GO_BUILDFLAGS:M-ldflags*)
 GO_BUILDFLAGS+=	-ldflags=-s
 .  endif
-GO_TESTFLAGS+=	-v
-.  if ${GO_VERSION} != 1.17
 GO_BUILDFLAGS+=	-buildvcs=false
-GO_TESTFLAGS+=	-buildvcs=false
-.  endif
+GO_TESTFLAGS+=	-v -buildvcs=false
 
 CGO_ENABLED?=	1
 CGO_CFLAGS+=	-I${LOCALBASE}/include
@@ -146,9 +153,25 @@ GO_MODNAME=	${GO_MODULE:C/^([^@]*)(@([^@]*)?)/\1/}
 GO_MODVERSION=	${GO_MODULE:C/^([^@]*)(@([^@]*)?)/\2/:M@*:S/^@//:S/^$/${DISTVERSIONFULL}/}
 GO_MODFILE=	${GO_MODVERSION}.mod
 GO_DISTFILE=	${GO_MODVERSION}.zip
+# If GO_MOD_DIST is gitlab, download the go.mod from gitlab by the defined GL_ACCOUNT and GL_PROJECT/PORTNAME
+.        if defined(GO_MOD_DIST) && "${GO_MOD_DIST}" == "gitlab"
+MASTER_SITES+=	https://gitlab.com/${GL_ACCOUNT}/${GL_PROJECT}/-/raw/${GO_MODVERSION}/${WRKSRC_SUBDIR:?${WRKSRC_SUBDIR}/:}
+DISTFILES+=	go.mod
+# If GO_MOD_DIST is github, download the go.mod from github by the defined GH_ACCOUNT and GH_PROJECT/PORTNAME
+.        elif defined(GO_MOD_DIST) && "${GO_MOD_DIST}" == "github"
+MASTER_SITES+=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${GO_MODVERSION}/${WRKSRC_SUBDIR:?${WRKSRC_SUBDIR}/:}
+DISTFILES+=	go.mod
+# Manually defined GO_MOD_DIST
+.        elifdef(GO_MOD_DIST)
+MASTER_SITES+=	${GO_MOD_DIST}
+DISTFILES+=	go.mod
+# Fallback to default GO_PROXY
+.        else
 MASTER_SITES+=	${GO_GOPROXY}/${GO_MODNAME:C/([A-Z])/!\1/g:tl}/@v/
 DISTFILES+=	${GO_MODFILE} ${GO_DISTFILE}
 WRKSRC=		${WRKDIR}/${GO_MODNAME}@${GO_MODVERSION}
+.        endif
+
 .      endif
 EXTRACT_ONLY?=	${DISTFILES:N*.mod\:*:N*.mod:C/:.*//}
 DIST_SUBDIR=	go/${PKGORIGIN:S,/,_,g}/${DISTNAME}
@@ -192,7 +215,14 @@ go-post-fetch:
 	@${ECHO_MSG} "===> Fetching ${GO_MODNAME} dependencies";
 	@(cd ${DISTDIR}/${DIST_SUBDIR}; \
 		[ -e go.mod ] || ${RLN} ${GO_MODFILE} go.mod; \
-		${SETENVI} ${WRK_ENV} ${GO_ENV} GOPROXY=${GO_GOPROXY} ${GO_CMD} mod download -x all)
+		${SETENVI} ${WRK_ENV} \
+		${HTTP_PROXY:DHTTP_PROXY=${HTTP_PROXY:Q}} \
+		${http_proxy:Dhttp_proxy=${http_proxy:Q}} \
+		${HTTPS_PROXY:DHTTPS_PROXY=${HTTPS_PROXY:Q}} \
+		${https_proxy:Dhttps_proxy=${https_proxy:Q}} \
+		${NO_PROXY:DNO_PROXY=${NO_PROXY:Q}} \
+		${no_proxy:Dno_proxy=${no_proxy:Q}} \
+		${GO_ENV} GOPROXY=${GO_GOPROXY} ${GO_CMD} mod download -x all)
 .  endif
 
 _USES_extract+=	800:go-post-extract
