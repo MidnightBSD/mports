@@ -1,0 +1,11 @@
+--- compiler-rt/lib/tsan/CMakeLists.txt.orig	2025-01-17 17:23:21.494234000 -0500
++++ compiler-rt/lib/tsan/CMakeLists.txt	2025-01-17 17:23:51.230294000 -0500
+@@ -4,7 +4,7 @@
+ # SANITIZER_COMMON_CFLAGS contains -fPIC, but it's performance-critical for
+ # TSan runtime to be built with -fPIE to reduce the number of register spills.
+ # On FreeBSD however it provokes linkage issue thus we disable it.
+-if(NOT CMAKE_SYSTEM MATCHES "FreeBSD")
++if(NOT CMAKE_SYSTEM MATCHES "FreeBSD" AND NOT CMAKE_SYSTEM MATCHES "MidnightBSD")
+   append_list_if(COMPILER_RT_HAS_FPIE_FLAG -fPIE TSAN_CFLAGS)
+ endif()
+ append_rtti_flag(OFF TSAN_CFLAGS)
