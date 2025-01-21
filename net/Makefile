@@ -102,6 +102,7 @@ SUBDIR += luasocket
 SUBDIR += mDNSResponder
 SUBDIR += malo-firmware-kmod
 SUBDIR += miniupnpc
+SUBDIR += motsognir
 SUBDIR += mtr
 SUBDIR += mtr-nox11
 SUBDIR += nanomsg
