@@ -40,6 +40,7 @@ SUBDIR += gnet2
 SUBDIR += gnome-nettool
 SUBDIR += gnome-online-accounts
 SUBDIR += gnome-online-miners
+SUBDIR += gopher
 SUBDIR += grilo
 SUBDIR += grilo-plugins
 SUBDIR += gstreamer1-plugins-srtp
