@@ -1,5 +1,6 @@
 COMMENT = Network news
 
+SUBDIR += inn
 SUBDIR += lusernet
 SUBDIR += newsfetch
 SUBDIR += p5-News-Newsrc
