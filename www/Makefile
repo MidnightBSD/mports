@@ -23,6 +23,7 @@ SUBDIR += glassfish4
 SUBDIR += gnome-user-share
 SUBDIR += google-sitemapgen
 SUBDIR += googler
+SUBDIR += gophernicus
 SUBDIR += gstreamer1-plugins-neon
 SUBDIR += gstreamer1-plugins-srt
 SUBDIR += http-parser
