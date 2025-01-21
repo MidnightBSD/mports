@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manage newsrc files
+WWW=		https://metacpan.org/release/News-Newsrc
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
