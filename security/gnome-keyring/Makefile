@@ -1,8 +1,6 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	gnome-keyring
 PORTVERSION=	40.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
@@ -15,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		docbook-xsl>=0:textproc/docbook-xsl \
-		gcr>=3.5.3:security/gcr
+		gcr>=3.5.3:security/gcr3
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libgpg-error.so:security/libgpg-error \
 		libgcr-base-3.so:security/gcr \
