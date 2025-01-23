@@ -1,5 +1,5 @@
 PORTNAME=	p11-kit
-DISTVERSION=	0.25.2
+DISTVERSION=	0.25.5
 CATEGORIES=	security devel
 MASTER_SITES=	https://github.com/p11-glue/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -29,14 +29,18 @@ MANPAGES_IMPLIES=	DOCS
 OPTIONS_DEFAULT=	MANPAGES
 
 DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
-DOCS_USES=		gnome
-DOCS_USE=		GNOME=glib20
 DOCS_MESON_TRUE=	gtk_doc
 
 MANPAGES_BUILD_DEPENDS=	xsltproc:textproc/libxslt
 MANPAGES_MESON_TRUE=	man
 
 TEST_MESON_TRUE=	test
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
+MESON_ARGS+=		-Dglib_prefix=${LOCALBASE}
+.endif
 
 post-install:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
