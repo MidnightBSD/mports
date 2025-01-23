@@ -39,6 +39,7 @@ SUBDIR += weex
 SUBDIR += wget
 SUBDIR += wmget
 SUBDIR += wput
+SUBDIR += wush
 SUBDIR += wzdftpd
 SUBDIR += yafc
 

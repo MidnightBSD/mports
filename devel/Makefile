@@ -1470,6 +1470,7 @@ SUBDIR += scons
 SUBDIR += sdl12
 SUBDIR += sdl20
 SUBDIR += serd
+SUBDIR += shunit2
 SUBDIR += sigar
 SUBDIR += silc-toolkit
 SUBDIR += simpleini
