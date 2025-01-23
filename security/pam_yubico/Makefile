@@ -1,5 +1,6 @@
 PORTNAME=	pam_yubico
-PORTVERSION=	2.26
+PORTVERSION=	2.27
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://developers.yubico.com/yubico-pam/Releases/
 
@@ -13,27 +14,30 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libykclient.so:security/ykclient \
 		libyubikey.so:security/libyubikey
 
-GNU_CONFIGURE=	yes
 USES=		libtool localbase pkgconfig
+
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 TEST_TARGET=	check
 NO_TEST=yes
 
+SUB_FILES=	pkg-message
 PLIST_FILES=	lib/security/pam_yubico.so \
 		share/man/man8/pam_yubico.8.gz
-SUB_FILES=	pkg-message
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	CR LDAP DOCS STATIC
-CR_DESC=	Include Challenge/response support
 OPTIONS_DEFAULT=	CR
 
-CR_CONFIGURE_WITH=	cr
+CR_DESC=	Include Challenge/response support
+
 CR_LIB_DEPENDS=	libykpers-1.so:security/ykpers
+CR_CONFIGURE_WITH=	cr
 CR_PLIST_FILES=	bin/ykpamcfg \
 		share/man/man1/ykpamcfg.1.gz
 
+LDAP_USES=	ldap
 LDAP_CONFIGURE_WITH=	ldap
-LDAP_USE=	OPENLDAP=yes
 
 STATIC_CONFIGURE_ENABLE=	static
 STATIC_PLIST_FILES=	lib/security/pam_yubico.a

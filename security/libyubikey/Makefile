@@ -1,5 +1,6 @@
 PORTNAME=	libyubikey
 PORTVERSION=	1.13
+PORTREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	https://developers.yubico.com/yubico-c/Releases/
 
@@ -12,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		libtool
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check

@@ -1,10 +1,12 @@
 PORTNAME=	ykclient
 PORTVERSION=	2.15
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://developers.yubico.com/yubico-c-client/Releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yubico C client library
+WWW=		https://developers.yubico.com/yubico-c-client/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -14,6 +16,7 @@ BUILD_DEPENDS=	curl-config:ftp/curl \
 		help2man:misc/help2man
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USES=		libtool pkgconfig
 USE_LDCONFIG=	yes
 TEST_TARGET=	check

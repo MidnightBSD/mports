@@ -2,7 +2,7 @@ COMMENT = File Transfer Protocol
 
 SUBDIR += axel
 SUBDIR += curl
-SUBDIR += curl810
+SUBDIR += curl811
 SUBDIR += filezilla
 SUBDIR += freebsd-ftpd
 SUBDIR += ftpcopy
