@@ -204,6 +204,7 @@ SUBDIR += tdb1
 SUBDIR += tinycdb
 SUBDIR += tuning-primer
 SUBDIR += unixODBC
+SUBDIR += valkey
 SUBDIR += virtualpg
 SUBDIR += vsqlite
 
