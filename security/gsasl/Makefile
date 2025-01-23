@@ -1,12 +1,11 @@
-# Created by: ijliao
-
 PORTNAME=	gsasl
-PORTVERSION=	1.8.1
+PORTVERSION=	2.2.1
 CATEGORIES=	security
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU SASL command-line utility
+WWW=		https://www.gnu.org/software/gsasl/
 
 LICENSE=	lgpl2.1
 
@@ -23,11 +22,12 @@ INFO=		gsasl
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
+DOCS_USES=		makeinfo
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
 
-post-patch:
-	@${REINPLACE_CMD} -e '/^en@/d' ${WRKSRC}/po/LINGUAS
+post-build-DOCS-on:
+	cd ${WRKSRC}/doc && ${MAKE_CMD} gsasl.html
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
