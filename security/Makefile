@@ -36,6 +36,7 @@ SUBDIR += fakeroot
 SUBDIR += firehol-ip-list
 SUBDIR += firewalk
 SUBDIR += gcr
+SUBDIR += gcr3
 SUBDIR += gnome-keyring
 SUBDIR += gnupg
 SUBDIR += gnupg1

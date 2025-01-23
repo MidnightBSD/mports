@@ -1,6 +1,6 @@
 PORTNAME=	raphael
 PORTVERSION=	9.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libnotify.so:devel/libnotify \
 		libjson-glib-1.0.so:devel/json-glib \
 		libsoup-2.4.so:devel/libsoup \
 		libp11-kit.so:security/p11-kit \
-		libgcr-base-3.so:security/gcr \
+		libgcr-base-3.so:security/gcr3 \
 		libpeas-1.0.so:devel/libpeas \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 		libharfbuzz.so:print/harfbuzz
