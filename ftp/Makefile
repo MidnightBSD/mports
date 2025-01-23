@@ -35,6 +35,7 @@ SUBDIR += tnftp
 SUBDIR += tnftpd
 SUBDIR += twoftpd
 SUBDIR += waiho
+SUBDIR += wcurl
 SUBDIR += weex
 SUBDIR += wget
 SUBDIR += wmget
