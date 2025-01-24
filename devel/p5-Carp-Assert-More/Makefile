@@ -1,5 +1,5 @@
 PORTNAME=	Carp-Assert-More
-PORTVERSION=	2.4.0
+PORTVERSION=	2.7.0
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,8 +10,6 @@ WWW=		https://metacpan.org/release/Carp-Assert-More
 
 LICENSE=	artistic2
 
-BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-Carp-Assert>=0:devel/p5-Carp-Assert
 TEST_DEPENDS=	p5-Test-Exception>=0:devel/p5-Test-Exception
 
 NO_ARCH=	yes
