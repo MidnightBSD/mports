@@ -1,6 +1,6 @@
 PORTNAME=	dovecot
 PORTVERSION=	2.3.21.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
@@ -10,6 +10,11 @@ WWW=		https://www.dovecot.org/
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
+
+FLAVORS=	default mysql pgsql
+FLAVOR?=	${FLAVORS[1]}
+mysql_PKGNAMESUFFIX=	-mysql
+pgsql_PKGNAMESUFFIX=	-pgsql
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
@@ -79,14 +84,17 @@ LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
 CDB_CONFIGURE_WITH=	cdb
 CDB_LIB_DEPENDS=	libcdb.so:databases/tinycdb
 
-LDAP_USE=		OPENLDAP=yes
-LDAP_CONFIGURE_WITH=	ldap
+LDAP_USES=			ldap
+LDAP_CONFIGURE_WITH=		ldap
+LDAP_VARS=			_REQUIRE+=slapd
 
 MYSQL_USES=		mysql
 MYSQL_CONFIGURE_WITH=	mysql
+MYSQL_VARS=	_REQUIRE+=mysql
 
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_WITH=	pgsql
+PGSQL_VARS=	_REQUIRE+=postgresql
 
 SQLITE_USES=		sqlite
 SQLITE_CONFIGURE_WITH=	sqlite
@@ -102,8 +110,8 @@ SOLR_CONFIGURE_WITH=	solr
 SOLR_LIB_DEPENDS=	libcurl.so:ftp/curl \
 			libexpat.so:textproc/expat2
 
-TEXTCAT_CONFIGURE_WITH=	textcat
 TEXTCAT_LIB_DEPENDS=	libexttextcat-2.0.so:textproc/libexttextcat
+TEXTCAT_CONFIGURE_WITH=	textcat
 
 # GSSAPI
 GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
@@ -118,10 +126,6 @@ PORTEXAMPLES=	*
 
 # Default requirement for dovecot rc script
 _REQUIRE=	LOGIN
-
-LDAP_VARS=	_REQUIRE+=slapd
-MYSQL_VARS=	_REQUIRE+=mysql
-PGSQL_VARS=	_REQUIRE+=postgresql
 
 SUB_LIST+=	REQUIRE="${_REQUIRE}"
 SUB_FILES+=	pkg-message

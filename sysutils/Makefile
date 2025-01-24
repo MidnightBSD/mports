@@ -155,6 +155,7 @@ SUBDIR += p5-Sys-Hostname-Long
 SUBDIR += p5-Unix-Processors
 SUBDIR += patchelf
 SUBDIR += pcbsd-libsh
+SUBDIR += pciutils
 SUBDIR += pear-File
 SUBDIR += pear-Horde_Log
 SUBDIR += php81-fileinfo
