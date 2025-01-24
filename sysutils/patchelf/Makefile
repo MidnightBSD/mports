@@ -1,5 +1,5 @@
 PORTNAME=	patchelf
-DISTVERSION=	0.14.3
+DISTVERSION=	0.14.5
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/NixOS/${PORTNAME}/releases/download/${DISTVERSION}/
 
