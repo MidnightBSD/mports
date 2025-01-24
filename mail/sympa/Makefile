@@ -1,11 +1,10 @@
-# Created by: Autrijus Tang <autrijus@autrijus.org>
-
 PORTNAME=	sympa
-DISTVERSION=	6.2.68
+DISTVERSION=	6.2.72
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Electronic mailing list manager
+WWW=		https://www.sympa.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
