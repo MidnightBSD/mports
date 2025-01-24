@@ -1,5 +1,5 @@
 PORTNAME=	Capture-Tiny
-PORTVERSION=	0.48
+PORTVERSION=	0.50
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DAGOLDEN
@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Capture STDOUT and STDERR from Perl, XS, or external programs
- WWW=		https://metacpan.org/release/Capture-Tiny
+WWW=		https://metacpan.org/release/Capture-Tiny
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
