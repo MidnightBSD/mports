@@ -1,0 +1,11 @@
+--- src/meson.build.orig	2025-01-24 09:27:41.930005000 -0500
++++ src/meson.build	2025-01-24 09:27:54.753063000 -0500
+@@ -24,6 +24,8 @@
+   _pci_access_host_files += ['linux_sysfs.c', 'linux_devmem.c', 'common_vgaarb.c']
+ elif host == 'freebsd'
+   _pci_access_host_files += ['freebsd_pci.c', 'common_vgaarb_stub.c']
++elif host == 'midnightbsd'
++  _pci_access_host_files += ['freebsd_pci.c', 'common_vgaarb_stub.c']
+ elif host == 'netbsd'
+   _pci_access_host_files += ['netbsd_pci.c', 'common_vgaarb_stub.c']
+ elif host == 'openbsd'
