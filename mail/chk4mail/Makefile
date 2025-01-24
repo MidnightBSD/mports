@@ -5,7 +5,7 @@ MASTER_SITES=	ftp://ftp.stack.nl/pub/users/johans/chk4mail/ \
 		ftp://mud.stack.nl/pub/chk4mail/
 
 MAINTAINER=	ports@Midnightbsd.org
-COMMENT=	A utility to quickly check multiple folders for new email
+COMMENT=	Utility to quickly check multiple folders for new email
 
 LICENSE=        bsd2
 
