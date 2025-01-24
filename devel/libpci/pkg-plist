@@ -1,4 +1,4 @@
-%%DATADIR%%/config.mk
+share/libpci/config.mk
 libdata/pkgconfig/libpci.pc
 lib/libpci.a
 lib/libpci.so
@@ -7,5 +7,5 @@ include/pci/config.h
 include/pci/header.h
 include/pci/types.h
 include/pci/pci.h
-@dir %%DATADIR%%
+@dir share/libpci
 @dir include/pci

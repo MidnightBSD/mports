@@ -1,12 +1,12 @@
 PORTNAME=	libpci
-PORTVERSION=	3.8.0
+PORTVERSION=	3.13.0
 CATEGORIES=	devel
-MASTER_SITES=	KERNEL_ORG/software/utils/pciutils \
-		FREEBSD_LOCAL/sunpoet
+MASTER_SITES=	KERNEL_ORG/software/utils/pciutils
 DISTNAME=	pciutils-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PCI configuration space I/O made easy
+WWW=		https://mj.ucw.cz/sw/pciutils/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
