@@ -15,3 +15,8 @@ install: magus
 
 clean:
 	rm -f *.o magus-bless
+
+compress:
+	zstd index.db
+	sha256 index.db.zst > index.db.zst.sha256
+	bzip2 index.db
