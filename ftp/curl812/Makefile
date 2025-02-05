@@ -1,5 +1,5 @@
 PORTNAME=	curl
-PORTVERSION=	8.11.1
+PORTVERSION=	8.12.0
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
@@ -10,7 +10,7 @@ COMMENT=	Command line tool and library for transferring data with URLs
 WWW=		https://curl.se/ \
 		https://github.com/curl/curl
 
-CONFLICTS=	curl
+#CONFLICTS=	curl
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -182,6 +182,6 @@ post-install-DOCS-on:
 
 post-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} Makefile.example Makefile.mk README.md *.c *.cpp ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} Makefile.example CMakeLists.txt README.md *.c *.cpp ${FAKE_DESTDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.post.mk>

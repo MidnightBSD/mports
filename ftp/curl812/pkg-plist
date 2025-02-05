@@ -75,7 +75,6 @@ share/aclocal/libcurl.m4
 %%PORTDOCS%%%%DOCSDIR%%/internals/CONNECTION-FILTERS.md
 %%PORTDOCS%%%%DOCSDIR%%/internals/DYNBUF.md
 %%PORTDOCS%%%%DOCSDIR%%/internals/HASH.md
-%%PORTDOCS%%%%DOCSDIR%%/internals/HYPER.md
 %%PORTDOCS%%%%DOCSDIR%%/internals/LLIST.md
 %%PORTDOCS%%%%DOCSDIR%%/internals/MQTT.md
 %%PORTDOCS%%%%DOCSDIR%%/internals/NEW-PROTOCOL.md
@@ -91,7 +90,7 @@ share/aclocal/libcurl.m4
 %%PORTDOCS%%%%DOCSDIR%%/options-in-versions
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/10-at-a-time.c
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/Makefile.example
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/Makefile.mk
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/CMakeLists.txt
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/README.md
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/address-scope.c
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/altsvc.c
