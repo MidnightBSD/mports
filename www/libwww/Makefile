@@ -6,7 +6,7 @@ MASTER_SITES=	https://www.w3.org/Library/Distribution/ \
 DISTNAME=	w3c-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The W3C Reference Library
+COMMENT=	W3C Reference Library
 WWW=		https://www.w3.org/Library/
 
 LICENSE=	w3cipr
@@ -22,6 +22,8 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --with-zlib --with-ssl=${OPENSSLBASE}
 CPE_VENDOR=	w3c
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/lib/*.so
