@@ -43,6 +43,7 @@ SUBDIR += mime-support
 SUBDIR += mirmon
 SUBDIR += newer
 SUBDIR += nut
+SUBDIR += ollama
 SUBDIR += openvdb
 SUBDIR += osinfo-db
 SUBDIR += ossp-uuid
