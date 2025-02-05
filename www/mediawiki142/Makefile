@@ -10,7 +10,7 @@ WWW=		https://www.mediawiki.org/
 
 LICENSE=	gpl2
 
-CONFLICTS=	mediawiki139 mediawiki140 mediawiki141
+CONFLICTS=	mediawiki139 mediawiki140 mediawiki141 mediawiki143
 
 USES=		cpe php:flavors shebangfix
 SHEBANG_FILES=	maintenance/storage/make-blobs

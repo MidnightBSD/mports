@@ -1,8 +1,8 @@
 PORTNAME=	mediawiki
-PORTVERSION=	1.41.5
+PORTVERSION=	1.43.0
 CATEGORIES=	www
 MASTER_SITES=	https://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
-PKGNAMESUFFIX=	141${PHP_PKGNAMESUFFIX}
+PKGNAMESUFFIX=	143${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wiki engine used by Wikipedia
@@ -10,17 +10,11 @@ WWW=		https://www.mediawiki.org/
 
 LICENSE=	gpl2
 
-DEPRECATED=	EOL upstream
-EXPIRATION_DATE=2025-01-22
-
-CONFLICTS=	mediawiki139 mediawiki140 mediawiki142
+CONFLICTS=	mediawiki139 mediawiki141 mediawiki142
 
 USES=		cpe php:flavors shebangfix
-SHEBANG_FILES=	maintenance/dev/*.sh \
-		maintenance/storage/make-blobs
-SHEBANG_LANG=	hhvm
-hhvm_OLD_CMD=	/usr/bin/hhvm
-hhvm_CMD=	${LOCALBASE}/bin/hhvm # not installed by anything yet
+SHEBANG_FILES=	maintenance/storage/make-blobs
+
 USE_PHP=	ctype dom fileinfo filter iconv intl mbstring \
 		readline session xml xmlreader zlib
 MEDIAWIKIDIR?=	www/mediawiki
