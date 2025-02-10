@@ -164,6 +164,7 @@ SUBDIR += p5-Digest-SHA3
 SUBDIR += p5-GSSAPI
 SUBDIR += p5-IO-Socket-SSL
 SUBDIR += p5-Net-SSLeay
+SUBDIR += p5-POE-Component-SSLify
 SUBDIR += pam_google_authenticator
 SUBDIR += pam_helper
 SUBDIR += pam_ldap
