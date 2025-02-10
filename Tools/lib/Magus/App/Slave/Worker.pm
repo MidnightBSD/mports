@@ -2,7 +2,6 @@ package Magus::App::Slave::Worker;
 
 use strict;
 use warnings;
-use subs qw(setproctitle);
 
 sub run {
   my ($class, %args) = @_;
@@ -16,17 +15,12 @@ sub run {
   eval {
     $self->{port} = $self->{lock}->port;
     $self->log->info("Starting test run for $self->{port}");
-    setproctitle("Magus: Start Testing %s", $self->{port});
     $self->{port}->note_event(info => "Test Started");
     $self->prep_chroot();
-    setproctitle("Magus: Injecting Dependencies for %s", $self->{port});
     $self->inject_depends();
-    setproctitle("Magus: Injecting Distfiles for %s", $self->{port});
     $self->inject_distfiles();
-    setproctitle("Magus: Running test for %s", $self->{port});
     $self->run_test();
     $self->{port}->note_event($self->{port}->status => "Test complete.");
-    setproctitle("Magus: Test Complete for %s", $self->{port});
   }; 
   
   if ($@) {
