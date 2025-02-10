@@ -505,6 +505,7 @@ SUBDIR += p5-Devel-MAT
 SUBDIR += p5-Devel-MAT-Dumper
 SUBDIR += p5-Devel-OverloadInfo
 SUBDIR += p5-Devel-Refcount
+SUBDIR += p5-Devel-Size
 SUBDIR += p5-Devel-StackTrace
 SUBDIR += p5-Devel-StackTrace-AsHTML
 SUBDIR += p5-Devel-Symdump
