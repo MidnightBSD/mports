@@ -146,6 +146,7 @@ SUBDIR += p5-LWP-Protocol-https
 SUBDIR += p5-LWP-UserAgent-Cached
 SUBDIR += p5-LWP-UserAgent-Determined
 SUBDIR += p5-LWP-UserAgent-POE
+SUBDIR += p5-LWP-UserAgent-WithCache
 SUBDIR += p5-Mojolicious
 SUBDIR += p5-Mojo-IOLoop-Delay
 SUBDIR += p5-Mojo-IOLoop-ForkCall
