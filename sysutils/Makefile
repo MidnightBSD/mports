@@ -142,6 +142,7 @@ SUBDIR += munin-node
 SUBDIR += ncdu
 SUBDIR += neofetch
 SUBDIR += nvclock
+SUBDIR += nvme-cli
 SUBDIR += obliterate
 SUBDIR += openipmi
 SUBDIR += opensbi
