@@ -139,6 +139,7 @@ SUBDIR += p5-Net-HTTP
 SUBDIR += p5-Net-IP-Minimal
 SUBDIR += p5-Net-Libdnet
 SUBDIR += p5-Net-RabbitMQ
+SUBDIR += p5-Net-SSH2
 SUBDIR += p5-Net-Server
 SUBDIR += p5-Net-Telnet
 SUBDIR += p5-Net-Works
