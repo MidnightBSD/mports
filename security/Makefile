@@ -119,6 +119,7 @@ SUBDIR += nebula
 SUBDIR += nmap
 SUBDIR += nettle
 SUBDIR += nss
+SUBDIR += nuclei
 SUBDIR += oinkmaster
 SUBDIR += openct
 SUBDIR += opensc
