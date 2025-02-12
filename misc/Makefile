@@ -68,6 +68,7 @@ SUBDIR += qt5-l10n
 SUBDIR += qt6-doc
 SUBDIR += qt6-examples
 SUBDIR += qt6ct
+SUBDIR += seabios
 SUBDIR += shared-mime-info
 SUBDIR += shc
 SUBDIR += soapysdr
