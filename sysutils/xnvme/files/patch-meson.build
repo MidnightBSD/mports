@@ -1,0 +1,11 @@
+--- meson.build.orig	2025-02-12 00:29:35 UTC
++++ meson.build
+@@ -23,7 +23,7 @@ fs = import('fs')
+ #
+ # Pre-flight check, operating system and compiler arguments
+ #
+-system_support = ['freebsd', 'linux', 'windows', 'darwin']
++system_support = ['freebsd', 'linux', 'windows', 'darwin', 'midnightbsd']
+ system = host_machine.system()
+ message('host_machine.system:', system)
+ if not system_support.contains(system)
