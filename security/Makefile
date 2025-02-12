@@ -251,6 +251,7 @@ SUBDIR += signify
 SUBDIR += snort
 SUBDIR += sshguard
 SUBDIR += sudo
+SUBDIR += tailscale
 SUBDIR += tor
 SUBDIR += trivy
 SUBDIR += trousers
