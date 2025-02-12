@@ -115,6 +115,7 @@ SUBDIR += mcrypt
 SUBDIR += mhash
 SUBDIR += minisign
 SUBDIR += munge
+SUBDIR += nebula
 SUBDIR += nmap
 SUBDIR += nettle
 SUBDIR += nss
