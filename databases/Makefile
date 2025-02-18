@@ -20,7 +20,6 @@ SUBDIR += gdbm
 SUBDIR += gnats4
 SUBDIR += gom
 SUBDIR += hiredis
-SUBDIR += ldb20
 SUBDIR += ldb25
 SUBDIR += leveldb
 SUBDIR += libgda5
