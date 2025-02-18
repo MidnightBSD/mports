@@ -27,7 +27,7 @@ IGNORE= Incorrect 'USES+= meson:${meson_ARGS}' usage: argument [${arg}] is not r
 .    endif
 .  endfor
 
-BUILD_DEPENDS+=		python3.9:lang/python39 \
+BUILD_DEPENDS+=		python3.11:lang/python311 \
 			meson:devel/meson
 
 # meson uses ninja
