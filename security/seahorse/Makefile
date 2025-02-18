@@ -1,12 +1,13 @@
 PORTNAME=	seahorse
 PORTVERSION=	41.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME application for managing encryption keys (PGP, SSH)
+WWW=		https://wiki.gnome.org/Apps/Seahorse
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
