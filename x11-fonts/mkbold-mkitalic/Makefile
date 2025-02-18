@@ -1,22 +1,29 @@
-# Created by: KOMATSU Shinichiro
-
 PORTNAME=	mkbold-mkitalic
 PORTVERSION=	0.11
 CATEGORIES=	x11-fonts
-MASTER_SITES=	http://hp.vector.co.jp/authors/VA013651/lib/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programs to make BDF font bold/italic
+WWW=		https://gitlab.com/unshumikan/mkbold-mkitalic/
 
-LICENSE=	unknown
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
 
-CONFLICTS=	mkbold-[0-9]* mkitalic-[0-9]*
+CONFLICTS=	mkbold mkitalic
 
-PLIST_FILES=	bin/mkbold bin/mkitalic bin/mkbolditalic
-PORTDOCS=	ALGORITHM ALGORITHM.eucJP LICENSE README README.eucJP
-USES=	tar:bzip2
+USE_GITLAB=	yes
+GL_ACCOUNT=	unshumikan
+
+PORTDOCS=	ALGORITHM \
+		ALGORITHM.eucJP \
+		README \
+		README.eucJP
+
+PLIST_FILES=	bin/mkbold \
+		bin/mkbolditalic \
+		bin/mkitalic
 
 OPTIONS_DEFINE=	DOCS
 
