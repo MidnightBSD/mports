@@ -1,8 +1,10 @@
 PORTNAME=	opensearch
-DISTVERSION=	2.8.0
+DISTVERSION?=	2.17.1
+PORTREVISION?=	1
 DISTVERSIONSUFFIX=	-linux-x64
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.opensearch.org/releases/bundle/${PORTNAME}/${DISTVERSION}/
+PKGNAMESUFFIX?=	#
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full-text search engine for Java
@@ -14,11 +16,10 @@ BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	bash>0:shells/bash \
 		jna>0:devel/jna
 
-CONFLICTS=	opensearch13
+CONFLICTS?=	opensearch13 opensearch210 opensearch213 opensearch216
 
-USES=		cpe shebangfix
-USE_JAVA=	yes
-JAVA_VERSION=	11+
+USES=		cpe java shebangfix
+JAVA_VERSION=	17+
 USE_RC_SUBR=	${PORTNAME}
 
 SHEBANG_FILES=	bin/opensearch bin/opensearch-cli \
@@ -43,7 +44,9 @@ CONFIG_FILES=	opensearch.yml jvm.options log4j2.properties
 PLUGINS_CONFIG_FILES?= \
 		opensearch-notifications-core/notifications-core.yml \
 		opensearch-notifications/notifications.yml \
-		opensearch-observability/observability.yml \
+		opensearch-observability/observability.yml
+.if ${PKGNAMESUFFIX} == "210" || ${PKGNAMESUFFIX} == "213" || ${PKGNAMESUFFIX} == "216"
+PLUGINS_CONFIG_FILES+=	\
 		opensearch-performance-analyzer/agent-stats-metadata \
 		opensearch-performance-analyzer/log4j2.xml \
 		opensearch-performance-analyzer/opensearch_security.policy \
@@ -52,7 +55,9 @@ PLUGINS_CONFIG_FILES?= \
 		opensearch-performance-analyzer/rca.conf \
 		opensearch-performance-analyzer/rca_idle_cluster_manager.conf \
 		opensearch-performance-analyzer/rca_cluster_manager.conf \
-		opensearch-performance-analyzer/supervisord.conf \
+		opensearch-performance-analyzer/supervisord.conf
+.endif
+PLUGINS_CONFIG_FILES+= \
 		opensearch-reports-scheduler/reports-scheduler.yml \
 		opensearch-security/action_groups.yml \
 		opensearch-security/allowlist.yml \
@@ -108,9 +113,12 @@ do-install-PLUGINS-on:
 	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/opensearch-notifications-core \
 		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-notifications \
 		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-observability \
-		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-performance-analyzer \
 		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-reports-scheduler \
 		 ${FAKE_DESTDIR}${ETCDIR}/opensearch-security
+.if ${PKGNAMESUFFIX} == "210" || ${PKGNAMESUFFIX} == "213" || ${PKGNAMESUFFIX} == "216"
+	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/opensearch-performance-analyzer
+.endif
+
 .for f in ${PLUGINS_CONFIG_FILES}
 	${INSTALL} ${WRKSRC}/config/${f} ${FAKE_DESTDIR}${ETCDIR}/${f}.sample
 	${ECHO} "@sample ${ETCDIR}/${f}.sample" >> ${TMPPLIST}
@@ -129,10 +137,18 @@ post-install:
 	${FIND} -s ${PREFIX}/lib/opensearch -not -type d | ${SORT} | \
 		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir lib/opensearch/extensions" >> ${TMPPLIST}
+	${ECHO} "@dir libexec/opensearch" >> ${TMPPLIST}
 .if ${PORT_OPTIONS:MPLUGINS}
 	${ECHO} "@dir lib/opensearch/plugins" >> ${TMPPLIST}
+	${ECHO} "@dir(opensearch,opensearch,0750) ${ETCDIR_REL}/opensearch-notifications-core" >> ${TMPPLIST}
+	${ECHO} "@dir(opensearch,opensearch,0750) ${ETCDIR_REL}/opensearch-notifications" >> ${TMPPLIST}
+	${ECHO} "@dir(opensearch,opensearch,0750) ${ETCDIR_REL}/opensearch-observability" >> ${TMPPLIST}
+.if ${PKGNAMESUFFIX} == "210" || ${PKGNAMESUFFIX} == "213" || ${PKGNAMESUFFIX} == "216"
+	${ECHO} "@dir(opensearch,opensearch,0750) ${ETCDIR_REL}/opensearch-performance-analyzer" >> ${TMPPLIST}
 .endif
-	${ECHO} "@dir libexec/opensearch" >> ${TMPPLIST}
-	${ECHO} "@dir(opensearch,opensearch,0755) ${ETCDIR_REL}" >> ${TMPPLIST}
+	${ECHO} "@dir(opensearch,opensearch,0750) ${ETCDIR_REL}/opensearch-reports-scheduler" >> ${TMPPLIST}
+	${ECHO} "@dir(opensearch,opensearch,0750) ${ETCDIR_REL}/opensearch-security" >> ${TMPPLIST}
+.endif
+	${ECHO} "@dir(opensearch,opensearch,0750) ${ETCDIR_REL}/" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
