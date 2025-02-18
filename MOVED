@@ -476,3 +476,11 @@ lang/gcc9|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11
 lang/gcc10|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11 or newer instead
 net/openldap24-client|net/openldap25-client|2025-01-13|Has expired: No longer supported by upstream.  Please use a newer version of OpenLDAP instead
 net/openldap24-server|net/openldap25-server|2023-01-13|Has expired: No longer supported by upstream.  Please use a newer version of OpenLDAP instead
+databases/postgresql12-contrib||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-client||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-plperl||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-pltcl||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-plpython||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-docs||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-pgtcl||2025-01-01|Removed, PostgreSQL-12 is end-of-life
+databases/postgresql12-server||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
