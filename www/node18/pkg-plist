@@ -2236,8 +2236,8 @@ include/node/v8-exception.h
 include/node/v8-extension.h
 include/node/v8-external.h
 include/node/v8-forward.h
-include/node/v8-function.h
 include/node/v8-function-callback.h
+include/node/v8-function.h
 include/node/v8-initialization.h
 include/node/v8-internal.h
 include/node/v8-isolate.h
@@ -2276,12 +2276,11 @@ lib/node_modules/corepack/CHANGELOG.md
 lib/node_modules/corepack/LICENSE.md
 lib/node_modules/corepack/README.md
 lib/node_modules/corepack/dist/corepack.js
+lib/node_modules/corepack/dist/lib/corepack.cjs
 lib/node_modules/corepack/dist/npm.js
 lib/node_modules/corepack/dist/npx.js
 lib/node_modules/corepack/dist/pnpm.js
 lib/node_modules/corepack/dist/pnpx.js
-lib/node_modules/corepack/dist/vcc.js
-lib/node_modules/corepack/dist/vendors-_yarn_berry_cache_proxy-agent-npm-5_0_0-41772f4b01-9_zip_node_modules_proxy-agent_index_js.js
 lib/node_modules/corepack/dist/yarn.js
 lib/node_modules/corepack/dist/yarnpkg.js
 lib/node_modules/corepack/package.json
@@ -2327,7 +2326,7 @@ lib/node_modules/corepack/shims/yarn.ps1
 lib/node_modules/corepack/shims/yarnpkg
 lib/node_modules/corepack/shims/yarnpkg.cmd
 lib/node_modules/corepack/shims/yarnpkg.ps1
-@(,,444) share/man/man1/node.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/gdbinit
 %%PORTDOCS%%%%DOCSDIR%%/lldb_commands.py
+@(,,444) share/man/man1/node.1.gz
 share/systemtap/tapset/node.stp
