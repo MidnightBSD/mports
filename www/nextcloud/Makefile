@@ -1,6 +1,5 @@
 PORTNAME=	nextcloud
-PORTVERSION=	28.0.0
-PORTREVISION=	3
+PORTVERSION=	30.0.5
 CATEGORIES=	www
 MASTER_SITES=	https://download.nextcloud.com/server/releases/
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -14,8 +13,8 @@ LICENSE=	agpl
 
 USES=		cpe gettext-runtime php:flavors,web tar:bzip2
 USE_PHP=	bcmath bz2 ctype curl dom fileinfo filter gd gmp iconv \
-		mbstring pcntl pdo posix session simplexml xml xmlreader \
-		xmlwriter xsl zip zlib
+		mbstring pcntl pdo posix session simplexml sodium \
+		xml xmlreader xmlwriter xsl zip zlib
 
 NEXTCLOUD_USERNAME?=	${WWWOWN}
 NEXTCLOUD_GROUPNAME?=	${WWWGRP}
@@ -61,6 +60,8 @@ SMB_RUN_DEPENDS=	${PECL_PKGNAMEPREFIX}smbclient>=0.9.0:net/pecl-smbclient@${PHP_
 SQLITE_USE=	PHP=pdo_sqlite,sqlite3
 SYSVSEM_USE=	PHP=sysvsem
 
+.include <bsd.mport.options.mk>
+
 post-extract:
 	@${MV} ${WRKSRC}/config/config.sample.php ${WRKSRC}/config/config.documented.php
 	@${MV} ${WRKSRC}/.htaccess ${WRKSRC}/.htaccess.dist
@@ -80,7 +81,7 @@ do-install:
 		${STAGEDIR}${WWWDIR}/config/config.sample.php
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/data ${STAGEDIR}${WWWDIR}/apps \
 		${STAGEDIR}/var/log/${PORTNAME}
-	(cd ${WRKSRC}; ${FIND} . -type f) | ${SORT} | \
+	(cd ${WRKSRC}; ${FIND} . -type f -or -type l) | ${SORT} | \
 		${SED} -Ee '/^\.\/\.(htaccess\.dist|user\.ini)/d' \
 			-e '/^\.\/config\/config\.sample\.php/d' \
 			-e 's,^\.,${WWWDIR_REL},' >> ${TMPPLIST}
