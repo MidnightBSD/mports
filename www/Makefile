@@ -91,6 +91,7 @@ SUBDIR += npm-node20
 SUBDIR += node
 SUBDIR += node18
 SUBDIR += node20
+SUBDIR += node22
 SUBDIR += otter-browser
 SUBDIR += p5-Apache-LogFormat-Compiler
 SUBDIR += p5-CGI-Ajax
