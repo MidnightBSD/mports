@@ -1782,11 +1782,16 @@ check-categories:
 .    else
 
 VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
-	benchmarks biology cad comms converters core databases \
-	deskutils devel dns editors elisp emulators filesystems finance french ftp \
-	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
-	ipv6 irc japanese java kde ${_KDE_CATEGORIES_SUPPORTED} kld korean lang linux lisp lua \
-	mail mate math misc multimedia net net-im net-mgmt net-p2p news \
+	benchmarks biology budgie cad chinese comms converters core \
+	databases deskutils devel dns docs \
+	editors education elisp emulators enlightenment \
+	filesystems finance french ftp \
+	games geography german gnome gnustep graphics \
+	hamradio haskell hebrew hungarian ipv6 irc japanese java \
+	kde ${_KDE_CATEGORIES_SUPPORTED} kld korean \
+	lang linux lisp lua \
+	mail mate math mbone misc multimedia \
+	net net-im net-mgmt net-p2p net-vpn news \
 	parallel pear perl5 plan9 polish portuguese ports-mgmt \
 	print python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
