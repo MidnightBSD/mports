@@ -1,5 +1,5 @@
 PORTNAME=	nghttp2
-PORTVERSION=	1.58.0
+PORTVERSION=	1.59.0
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/nghttp2/nghttp2/releases/download/v${PORTVERSION}/
 
@@ -48,11 +48,6 @@ HPACK_CONFIGURE_ENABLE=	hpack-tools
 HPACK_LIB_DEPENDS=	libjansson.so:devel/jansson
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 200000
-# stupid thing won't link with system compiler
-USE_GCC=8
-.endif
 
 .if (${OSVERSION} < 300000)
 # force openssl from mports.
