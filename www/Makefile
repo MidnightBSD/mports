@@ -88,6 +88,7 @@ SUBDIR += nginx
 SUBDIR += npm
 SUBDIR += npm-node18
 SUBDIR += npm-node20
+SUBDIR += npm-node22
 SUBDIR += node
 SUBDIR += node18
 SUBDIR += node20
