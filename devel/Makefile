@@ -203,7 +203,6 @@ SUBDIR += json-glib
 SUBDIR += jsoncpp
 SUBDIR += judy
 SUBDIR += kBuild
-SUBDIR += kf5-extra-cmake-modules
 SUBDIR += kyua
 SUBDIR += lcov
 SUBDIR += lemon

@@ -4,7 +4,6 @@
 # Usage:	USES=fakeroot
 # Valid ARGS:	none
 #
-# MAINTAINER:	bapt@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_FAKEROOT_MK)
 _INCLUDE_USES_FAKEROOT_MK=	yes

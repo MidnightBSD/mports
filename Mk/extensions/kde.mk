@@ -56,16 +56,15 @@ _KDE_SUPPORTED=		5 6
 IGNORE=	kde needs a version (${_KDE_SUPPORTED})
 .  endif
 
-kde_ARGS=5
-#.  for ver in ${_KDE_SUPPORTED:O:u}
-#.    if ${kde_ARGS:M${ver}}
-#.      if !defined(_KDE_VERSION)
-#_KDE_VERSION=	${ver}
-#.      else
-#IGNORE?=	cannot be installed: different KDE versions specified via kde:[${_KDE_SUPPORTED:S/ //g}] #'
-#.      endif
-#.    endif
-#.  endfor
+.  for ver in ${_KDE_SUPPORTED:O:u}
+.    if ${kde_ARGS:M${ver}}
+.      if !defined(_KDE_VERSION)
+_KDE_VERSION=	${ver}
+.      else
+IGNORE?=	cannot be installed: different KDE versions specified via kde:[${_KDE_SUPPORTED:S/ //g}] #'
+.      endif
+.    endif
+.  endfor
 
 .  if empty(_KDE_VERSION)
 IGNORE?=	kde:[${_KDE_SUPPORTED:S/ //g}] needs an argument  #'
@@ -435,7 +434,7 @@ kde-dnssd_LIB=			libKF${_KDE_VERSION}DNSSD.so
 kde-doctools_PORT=		devel/kf${_KDE_VERSION}-kdoctools
 kde-doctools_PATH=		${KDE_PREFIX}/bin/meinproc${_KDE_VERSION}
 
-kde-ecm_PORT=			devel/kf${_KDE_VERSION}-extra-cmake-modules
+kde-ecm_PORT=			devel/kf6-extra-cmake-modules
 kde-ecm_PATH=			${LOCALBASE}/share/ECM/cmake/ECMConfig.cmake
 
 kde-emoticons_PORT=		x11-themes/kf${_KDE_VERSION}-kemoticons

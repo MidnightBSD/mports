@@ -553,7 +553,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		tar tcl tk tex trigger uniquefiles wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
-.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php")
+.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde")
 # we have to skip these as ${EXT}_ARGS won't be defined right
 .  elif defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT) || defined(USE_${EXT})
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
@@ -573,11 +573,18 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .      endif
 .    endfor
 .    for f in ${USES}
-#.     if !defined(USE_${f:tu})
-#USE_${f:tu}=yes
-#.     endif
-.include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
-.    endfor
+.undef _usefound
+.      for udir in ${OVERLAYS:C,$,/Mk/Uses,} ${MPORTEXTENSIONS}
+_usefile=       ${udir}/${f:C/\:.*//}.mk
+.        if exists(${_usefile}) && !defined(_usefound)
+_usefound=
+.include "${_usefile}"
+.        endif
+.      endfor
+.      if !defined(_usefound)
+ERROR+= "Unknown USES=${f:C/\:.*//}"
+.      endif
+.     endfor
 
 .    if !empty(FLAVORS)
 .      if ${FLAVORS:Mall}
@@ -1035,22 +1042,32 @@ EXTENSIONS+=xorg
 # Here we include again XXX
 #
 .for EXT in ${_ALL_EXT:tu} 
-.       if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php")
+.       if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde")
 .	elif defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
 .	endif
 .endfor
 
 # FreeBSD compatibility: Loading features
-.for f in ${_USES_POST}
-_f:=		${f:C/\:.*//}
-.if !defined(${_f}_ARGS)
-${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
-.endif
-.endfor
-.for f in ${_USES_POST}
-.include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
-.endfor
+.    for f in ${_USES_POST}
+_f:=            ${f:C/\:.*//}
+.      if !defined(${_f}_ARGS)
+${_f}_ARGS:=    ${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
+.      endif
+.    endfor
+.    for f in ${_USES_POST}
+.undef _usefound
+.      for udir in ${OVERLAYS:C,$,/Mk/Uses,} ${MPORTEXTENSIONS}
+_usefile=       ${udir}/${f:C/\:.*//}.mk
+.        if exists(${_usefile}) && !defined(_usefound)
+_usefound=
+.include "${_usefile}"
+.        endif
+.      endfor
+.      if !defined(_usefound)
+ERROR+= "Unknown USES=${f:C/\:.*//}"
+.      endif
+.    endfor
 
 .if defined(USE_LOCALE)
 CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
