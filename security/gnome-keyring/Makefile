@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		docbook-xsl>=0:textproc/docbook-xsl \
-		gcr>=3.5.3:security/gcr3
+		gcr3>=3.5.3:security/gcr3
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libgpg-error.so:security/libgpg-error \
 		libgcr-base-3.so:security/gcr3 \
