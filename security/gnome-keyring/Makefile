@@ -16,7 +16,7 @@ BUILD_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		gcr>=3.5.3:security/gcr3
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libgpg-error.so:security/libgpg-error \
-		libgcr-base-3.so:security/gcr \
+		libgcr-base-3.so:security/gcr3 \
 		libtasn1.so:security/libtasn1 \
 		libp11-kit.so:security/p11-kit \
 		libgcrypt.so:security/libgcrypt
