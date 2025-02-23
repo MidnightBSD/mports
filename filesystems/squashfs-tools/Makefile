@@ -12,6 +12,8 @@ WWW=		https://squashfs.sourceforge.net/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
+FAKE_OPTS=	trueprefix
+
 BUILD_DEPENDS=	gsed:textproc/gsed help2man:misc/help2man
 
 USES=		alias cpe gmake
