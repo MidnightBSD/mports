@@ -1,19 +1,18 @@
-# Created by: Mark Felder <feld@FreeBSD.org>
-
 PORTNAME=	ruamel.yaml
-PORTVERSION=	0.16.12
+PORTVERSION=	0.18.10
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	YAML 1.2 loader/dumper package for Python
+WWW=		https://sourceforge.net/p/ruamel-yaml
 
 LICENSE=	mit
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ruamel.yaml.clib>=0.1.2:devel/py-ruamel.yaml.clib@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ruamel.yaml.clib>=0.2.6:devel/py-ruamel.yaml.clib@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.9+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes
