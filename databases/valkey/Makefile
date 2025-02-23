@@ -9,6 +9,8 @@ WWW=		https://valkey.io/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FAKE_OPTS=	trueprefix
+
 USES=		gmake pkgconfig tcl:test
 USE_GITHUB=	yes
 GH_ACCOUNT=	valkey-io
@@ -59,9 +61,9 @@ post-build:
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/valkey.conf ${STAGEDIR}${PREFIX}/etc/valkey.conf.sample
 	${INSTALL_DATA} ${WRKDIR}/valkey-sentinel.conf ${STAGEDIR}${PREFIX}/etc/valkey-sentinel.conf.sample
-	${MKDIR} ${STAGEDIR}${VALKEY_LOGDIR} \
-		${STAGEDIR}${VALKEY_DBDIR} \
-		${STAGEDIR}${VALKEY_RUNDIR}
+	${MKDIR} ${FAKE_DESTDIR}${VALKEY_LOGDIR} \
+		${FAKE_DESTDIR}${VALKEY_DBDIR} \
+		${FAKE_DESTDIR}${VALKEY_RUNDIR}
 
 do-test:
 	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
