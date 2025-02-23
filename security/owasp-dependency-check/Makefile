@@ -14,7 +14,7 @@ WWW=		https://jeremylong.github.io/DependencyCheck \
 LICENSE=	apache2
 
 BUILD_DEPENDS=	mvn:java/maven-wrapper \
-		${LOCALBASE}/share/java/maven/bin/mvn:java/maven
+		maven>0:java/maven
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jeremylong
