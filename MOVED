@@ -485,3 +485,4 @@ databases/postgresql12-docs||2025-01-21|Has expired: PostgreSQL-12 is end-of-lif
 databases/postgresql12-pgtcl||2025-01-21|Removed, PostgreSQL-12 is end-of-life
 databases/postgresql12-server||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
 databases/ldb20||2025-02-18|Has expired: Outdated and not necessary for any supported version of Samba
+databases/ntdb||2025-02-23|Has expired: Outdated and not necessary for any supported version of Samba
