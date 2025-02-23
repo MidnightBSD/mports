@@ -5,6 +5,7 @@ DISTFILES=      ${PORTNAME}-${PORTVERSION}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X DGA Extension
+WWW=		https://www.freedesktop.org/Software/xorg
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
