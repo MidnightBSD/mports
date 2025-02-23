@@ -174,7 +174,6 @@ SUBDIR += py-sqlalchemy-migrate
 SUBDIR += py-sqlite3
 SUBDIR += py-sqlobject
 SUBDIR += py-sqlparse
-SUBDIR += pymongo
 SUBDIR += qdbm
 SUBDIR += qt5-sql
 SUBDIR += qt5-sqldrivers-mysql
