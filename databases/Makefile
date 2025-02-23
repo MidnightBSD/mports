@@ -39,6 +39,7 @@ SUBDIR += linux-rl9-libtracker-sparql
 SUBDIR += linux-rl9-sqlite3
 SUBDIR += lmdb
 SUBDIR += mariadb-connector-c
+SUBDIR += mariadb-connector-odbc
 SUBDIR += mariadb106-client
 SUBDIR += mariadb106-server
 SUBDIR += mariadb114-client
