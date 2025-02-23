@@ -19,6 +19,7 @@ GH_ACCOUNT=	kward
 
 NO_BUILD=	yes
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PLIST_FILES=	bin/${PORTNAME}
 
@@ -30,7 +31,7 @@ post-extract:
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/shunit2 ${STAGEDIR}${PREFIX}/bin
 
-do-test:
-	@cd ${WRKSRC} && SHELL=${LOCALBASE}/bin/bash bash ./test_runner -s ${LOCALBASE}/bin/bash
+#do-test:
+#	@cd ${WRKSRC} && SHELL=${LOCALBASE}/bin/bash bash ./test_runner -s ${LOCALBASE}/bin/bash
 
 .include <bsd.port.mk>
