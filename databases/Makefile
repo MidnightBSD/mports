@@ -55,7 +55,6 @@ SUBDIR += mysql84-server
 SUBDIR += mysql90-client
 SUBDIR += mysql90-server
 SUBDIR += mysqltuner
-SUBDIR += ntdb
 SUBDIR += oracle8-client
 SUBDIR += p5-Class-DBI
 SUBDIR += p5-Class-DBI-AbstractSearch
