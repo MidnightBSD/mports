@@ -975,6 +975,7 @@ SUBDIR += py-awscrt
 SUBDIR += py-b2sdk
 SUBDIR += py-babel
 SUBDIR += py-backports
+SUBDIR += py-backports.tarfile
 SUBDIR += py-bcdoc
 SUBDIR += py-beniget
 SUBDIR += py-binaryornot
