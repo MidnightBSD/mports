@@ -853,7 +853,6 @@ INSTALL_WRKSRC?=${WRKSRC}
 TEST_WRKSRC?=	${WRKSRC}
 
 DESCR?=			${PKGDIR}/pkg-descr
-PLIST?=			${PKGDIR}/pkg-plist
 PKGINSTALL?=	${PKGDIR}/pkg-install
 PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
 PKGREQ?=		${PKGDIR}/pkg-req
@@ -1315,6 +1314,8 @@ COPYTREE_BIN=	${SH} -c '(${FIND} -Ed $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null 2>&
 COPYTREE_SHARE=	${SH} -c '(${FIND} -Ed $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null 2>&1) && \
 						   ${FIND} -Ed $$0 $$2 \(   -type d -exec ${SH} -c '\''cd '\''$$1'\'' && chmod 755 "$$@"'\'' -- . {} + \
 											-o -type f -exec ${SH} -c '\''cd '\''$$1'\'' && chmod ${SHAREMODE} "$$@"'\'' -- . {} + \)' --
+
+PLIST?=                 ${PKGDIR}/pkg-plist
 
 MPORT_CREATE?=		/usr/libexec/mport.create
 MPORT_DELETE?=		/usr/libexec/mport.delete
