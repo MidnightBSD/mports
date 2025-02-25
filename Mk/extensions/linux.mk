@@ -363,16 +363,16 @@ PLIST?=			${PKGDIR}/pkg-plist.${ARCH}
 .    if !target(do-install)
 do-install:
 	(cd ${WRKSRC} && \
-		${FIND} * | ${CPIO} -dumpl --quiet ${STAGEDIR}${PREFIX})
+		${FIND} * | ${CPIO} -dumpl --quiet ${PREFIX})
 .      for d in bin lib lib64 sbin
-	[ ! -e ${STAGEDIR}${PREFIX}/${d} -o -L ${STAGEDIR}${PREFIX}/${d} ] || \
-		(cd ${STAGEDIR}${PREFIX} && \
+	[ ! -e ${PREFIX}/${d} -o -L ${PREFIX}/${d} ] || \
+		(cd ${PREFIX} && \
 		${FIND} ${d} | ${CPIO} -dumpl --quiet usr && ${RM} -r ${d})
 .      endfor
-	[ ! -e ${STAGEDIR}${PREFIX}/usr/share/icons -o \
-		-L ${STAGEDIR}${PREFIX}/usr/share/icons ] || \
-		(cd ${STAGEDIR}${PREFIX}/usr/share && ${FIND} icons | \
-		${CPIO} -dumpl --quiet ${STAGEDIR}${LOCALBASE}/share && \
+	[ ! -e ${PREFIX}/usr/share/icons -o \
+		-L ${PREFIX}/usr/share/icons ] || \
+		(cd ${PREFIX}/usr/share && ${FIND} icons | \
+		${CPIO} -dumpl --quiet ${FAKE_DESTDIR}${LOCALBASE}/share && \
 		${RM} -r icons)
 .    endif
 
