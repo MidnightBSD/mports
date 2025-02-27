@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#
 # PROVIDE: memcached
 # REQUIRE: LOGIN
 # KEYWORD: shutdown

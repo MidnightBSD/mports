@@ -1,5 +1,6 @@
 PORTNAME=	memcached
 PORTVERSION=	1.6.36
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/
 
@@ -17,14 +18,13 @@ NO_TEST=	yes
 
 CONFLICTS=	memcached-1.2*
 
-USES=		cpe shebangfix autoreconf
+USES=		autoreconf cpe pkgconfig shebangfix
 SHEBANG_FILES=	scripts/memcached-tool
 
 USE_RC_SUBR=	memcached
 SUB_LIST+=	RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
 
-USE_CSTD=	c99
-GNU_CONFIGURE=	yes
+HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libevent=${LOCALBASE} \
 		--program-prefix= \
 		--disable-coverage
@@ -58,6 +58,9 @@ SASL_LDFLAGS=		-L${LOCALBASE}/lib
 MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.pre.mk>
+
+CONFIGURE_ARGS+=	--enable-tls
+USES+=			ssl
 
 .if ${ARCH} == amd64
 CONFIGURE_ARGS+=	--enable-64bit
