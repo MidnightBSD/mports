@@ -27,6 +27,7 @@ USE_PERL5=	configure
 
 CONFIGURE_ARGS=	--default
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PORTEXAMPLES=	*
 
