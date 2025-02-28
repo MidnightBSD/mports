@@ -43,7 +43,7 @@ PLIST_FILES=	lib/mariadb/libmaodbc.so \
 		libdata/pkgconfig/libmaodbc.pc
 
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX} \
+	-${RM} -r ${STAGEDIR}${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX} \
 		${STAGEDIR}${PREFIX}/docs
 
 .include <bsd.port.mk>
