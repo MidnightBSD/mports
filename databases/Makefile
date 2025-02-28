@@ -25,7 +25,6 @@ SUBDIR += leveldb
 SUBDIR += libgda5
 SUBDIR += libgda5-bdb
 SUBDIR += libgda5-jdbc
-SUBDIR += libgda5-mdb
 SUBDIR += libgda5-mysql
 SUBDIR += libgda5-ldap
 SUBDIR += libgda5-postgresql
