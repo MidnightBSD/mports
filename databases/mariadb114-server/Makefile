@@ -268,7 +268,7 @@ post-install:
 		${STAGEDIR}${PREFIX}/include/mysql/server/private \
 		${STAGEDIR}${PREFIX}/lib/mysql/pkgconfig \
 		${STAGEDIR}${PREFIX}/libexec/rcmysql \
-		${STAGEDIR}/suite \
+		${FAKE_DESTDIR}/suite \
 		${STAGEDIR}${ETCDIR}/init.d \
 		${STAGEDIR}${ETCDIR}/logrotate.d \
 		${STAGEDIR}${DOCSDIR}/COPYING
@@ -280,7 +280,7 @@ post-install:
 
 post-install-HASHICORP_VAULT-on:
 	${MV} ${FAKE_DESTDIR}${ETCDIR}/conf.d/hashicorp_key_management.cnf \
-		${STAGEDIR}${ETCDIR}/conf.d/hashicorp_key_management.cnf.sample
+		${FAKE_DESTDIR}${ETCDIR}/conf.d/hashicorp_key_management.cnf.sample
 
 post-install-MROONGA-on:
 	${MV} ${FAKE_DESTDIR}${PREFIX}/share/groonga/README.md ${FAKE_DESTDIR}${DOCSDIR}/README-groonga.md
