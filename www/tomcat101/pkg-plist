@@ -29,7 +29,7 @@
 %%T%%/lib/catalina.jar
 %%T%%/lib/ecj-4.27.jar
 %%T%%/lib/el-api.jar
-%%T%%/lib/jakartaee-migration-1.0.8-shaded.jar
+%%T%%/lib/jakartaee-migration-1.0.9-shaded.jar
 %%T%%/lib/jasper-el.jar
 %%T%%/lib/jasper.jar
 %%T%%/lib/jaspic-api.jar
@@ -339,6 +339,8 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/num/NumberGuessBean.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/sessions/DummyCart.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/sessions/DummyCart.java
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/sessions/Item.class
+%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/sessions/Item.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/trailers/ResponseTrailers.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/trailers/ResponseTrailers.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/trailers/ResponseTrailers$TrailerFieldSupplier.class
@@ -550,6 +552,8 @@
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/sessions/carts.jsp
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/sessions/carts.jsp.html
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/sessions/crt.html
+%%EXAMPLES%%%%T%%/webapps/examples/jsp/sessions/shopping.jsp
+%%EXAMPLES%%%%T%%/webapps/examples/jsp/sessions/shopping.jsp.html
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/simpletag/foo.html
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/simpletag/foo.jsp
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/simpletag/foo.jsp.html
