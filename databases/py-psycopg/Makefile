@@ -25,7 +25,7 @@ OPTIONS_DEFAULT=C POOL
 C_DESC=		C extension support
 POOL_DESC=	Connection pool support
 
-C_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}psycopg-c>=${PORTVERSION}<${PORTVERSION}_99:databases/py-psycopg-c@${PY_FLAVOR}
+C_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}psycopg-c>=${PORTVERSION}:databases/py-psycopg-c@${PY_FLAVOR}
 POOL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psycopg-pool>=0:databases/py-psycopg-pool@${PY_FLAVOR}
 
 .include <bsd.port.pre.mk>
