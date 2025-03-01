@@ -9,9 +9,8 @@ WWW=		https://glassfish.java.net/
 
 LICENSE=        cddl
 
-USES=		cpe zip
+USES=		cpe java zip
 CPE_VENDOR=	oracle
-USE_JAVA=	yes
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/glassfish4

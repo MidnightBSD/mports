@@ -11,8 +11,7 @@ WWW=		https://projects.eclipse.org/projects/ee4j.glassfish
 
 LICENSE=	epl
 
-USES=		zip
-USE_JAVA=	yes
+USES=		java zip
 
 NO_BUILD=	yes
 CONFLICTS_INSTALL=	glassfish4

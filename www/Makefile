@@ -294,7 +294,6 @@ SUBDIR += sitecopy
 SUBDIR += spawn-fcgi
 SUBDIR += squid
 SUBDIR += srt
-SUBDIR += subsonic-standalone
 SUBDIR += thttpd
 SUBDIR += tidy
 SUBDIR += tidy-devel

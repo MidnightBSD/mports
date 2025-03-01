@@ -13,9 +13,8 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	jsvc:devel/apache-commons-daemon
 
-USES=		cpe
+USES=		cpe java
 CPE_VENDOR=	apache
-USE_JAVA=	yes
 JAVA_VERSION=	17+
 USE_RC_SUBR=	${PKGBASE:C/-/_/}
 

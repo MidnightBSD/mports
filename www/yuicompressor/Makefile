@@ -17,7 +17,7 @@ LICENSE_COMB=	multi
 
 NO_WRKSUBDIR=	yes
 
-USE_JAVA=	yes
+USES=		java
 NO_BUILD=	yes
 
 PLIST_FILES=	bin/yuicompressor %%JAVAJARDIR%%/yuicompressor.jar
