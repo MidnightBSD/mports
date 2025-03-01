@@ -19,6 +19,7 @@ RUN_DEPENDS=	p5-Net-DNS>=0.65:dns/p5-Net-DNS \
 TEST_DEPENDS=	p5-Test-NoWarnings>=1.02:devel/p5-Test-NoWarnings
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
