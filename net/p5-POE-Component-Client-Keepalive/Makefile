@@ -20,6 +20,8 @@ RUN_DEPENDS=	p5-Net-IP-Minimal>=0.02:net/p5-Net-IP-Minimal  \
 		p5-POE-Component-Resolver>=0.917:dns/p5-POE-Component-Resolver
 
 NO_ARCH=	yes
+# tests hang on magus and block build
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
