@@ -37,16 +37,14 @@ NLS_MESON_TRUE=		nls
 EXIF_LIB_DEPENDS=	libexif.so:graphics/libexif
 EXIF_MESON_TRUE=	libexif
 
+.include <bsd.port.pre.mk>
+
 # MESON normalizes ${ARCH} so we cannot use it 'AS IS' without conversion
-CURRENT_ARCH=	${ARCH}
+CURRENT_ARCH=${ARCH}
 .if ${CURRENT_ARCH} == amd64
 ENLIGHTENMENT_ARCH=	${OPSYS:tl}-x86_64
 .elif ${CURRENT_ARCH} == i386
 ENLIGHTENMENT_ARCH=	${OPSYS:tl}-x86
-.elif ${CURRENT_ARCH:Mpowerpc64*}
-ENLIGHTENMENT_ARCH=	${OPSYS:tl}-ppc64
-.elif ${CURRENT_ARCH} == powerpc
-ENLIGHTENMENT_ARCH=	${OPSYS:tl}-ppc
 .elif ${CURRENT_ARCH:Marmv?}
 ENLIGHTENMENT_ARCH=	${OPSYS:tl}-arm
 .else
@@ -60,4 +58,4 @@ post-install:
 	${MKDIR} ${PREFIX}/lib/pkgconfig
 	${CP} ${PREFIX}/lib/data/pkgconfig/* ${PREFIX}/lib/pkgconfig/
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
