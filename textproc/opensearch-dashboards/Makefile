@@ -47,7 +47,7 @@ do-install:
 		${COPYTREE_BIN} bin ${STAGEDIR}${WWWDIR})
 
 post-install:
-	${ECHO} "@sample ${ETCDIR}/opensearch_dashboards.yml.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/opensearch_dashboards.yml.sample" >> ${TMPPLIST}
 	${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(www,www) ${WWWDIR}/data" >> ${TMPPLIST}
