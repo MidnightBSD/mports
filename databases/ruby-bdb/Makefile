@@ -1,23 +1,22 @@
 PORTNAME=	bdb
 PORTVERSION=	0.6.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases ruby
 MASTER_SITES=	ftp://ftp.idaemons.org/pub/distfiles/ruby/ \
 		http://idaemons.org/distfiles/ruby/ \
 		FREEBSD_LOCAL/knu
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
-PKGNAMESUFFIX=	${WITH_BDB_VER}
 DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby interface to Oracle Berkeley DB revision 2 or later
+WWW=		https://github.com/knu/ruby-bdb
 
 LICENSE=	ruby
 
 BUILD_DEPENDS=	rubygem-rdoc>=0.a:devel/rubygem-rdoc
 
 USES=		bdb ruby:extconf shebangfix tar:bzip2
-USE_BDB=	yes
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 OPTIONSFILE=	${PORT_DBDIR}/ruby-${PORTNAME}/options
@@ -28,6 +27,7 @@ ALL_TARGET=	all rdoc
 CONFIGURE_ARGS=	--with-db-include=${BDB_INCLUDE_DIR} \
 		--with-db-lib=${BDB_LIB_DIR}
 INSTALL_TARGET=	site-install
+WITH_BDB6_PERMITTED=	yes
 
 DOCS=		Changes README.en bdb.rd docs/*.rd
 DOCSDIR=	${RUBY_MODDOCDIR}
@@ -36,7 +36,6 @@ SHAREMODE=	0644
 PLIST_FILES=	%%RUBY_SITEARCHLIBDIR%%/bdb.so
 PORTDOCS=	*
 PORTEXAMPLES=	*
-USES=		bdb shebangfix tar:bzip2
 SHEBANG_FILES=	examples/record.rb \
 		examples/recno.rb \
 		examples/zeroc.rb \
@@ -58,9 +57,6 @@ SHEBANG_FILES=	examples/record.rb \
 
 NO_TEST=	yes
 
-.include <bsd.port.pre.mk>
-
-
 post-patch:
 	@${RM} ${WRKSRC}/docs/*.orig
 
@@ -76,9 +72,9 @@ post-install:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
 	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR} "! -empty")
 
-regression-test: build
+do-test:
 	@${MKDIR} ${BUILD_WRKSRC}/tmp
 	(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} \
 	${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test)
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
