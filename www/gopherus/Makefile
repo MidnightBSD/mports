@@ -9,6 +9,8 @@ WWW=		https://gopherus.sourceforge.net/
 
 LICENSE=	bsd2
 
+FAKE_OPTS=	trueprefix
+
 USES=		ncurses tar:xz uidfix
 MAKEFILE=	${FILESDIR}/Makefile
 CFLAGS+=	-I${NCURSESINC} -I${LOCALBASE}/include
