@@ -83,6 +83,7 @@ SUBDIR += qt6-shadertools
 SUBDIR += qt6-virtualkeyboard
 SUBDIR += qt6pas
 SUBDIR += sdl_pango
+SUBDIR += sdl2_pango
 SUBDIR += shared-desktop-ontologies
 SUBDIR += tk-wrapper
 SUBDIR += tk86
