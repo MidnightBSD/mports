@@ -1,7 +1,6 @@
-# Created by: Ernst de Haan <znerd@FreeBSD.org>
-
 PORTNAME=	commons-collections
 PORTVERSION=	3.2.2
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE_COMMONS_SOURCE
 PKGNAMEPREFIX=	apache-
@@ -9,18 +8,17 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Classes that extend/augment the Java Collections Framework
+WWW=		https://commons.apache.org/proper/commons-collections/
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		dos2unix
-
-USE_JAVA=	yes
-JAVA_VERSION=	8+
-USE_ANT=	yes
-DOS2UNIX_GLOB=	Multi*.java Test*.java
+USES=		java:ant,run
+JAVA_VERSION=	8 11 17 18
 
 ALL_TARGET=	jar
-PLIST_FILES=	%%JAVAJARDIR%%/${PORTNAME}.jar
+NO_ARCH=	yes
+PLIST_FILES=	${JAVAJARDIR}/${PORTNAME}.jar
 OTHERDOCS=	DEVELOPERS-GUIDE.html PROPOSAL.html README.txt RELEASE-NOTES.txt
 PORTDOCS=	apidocs ${OTHERDOCS}
 
