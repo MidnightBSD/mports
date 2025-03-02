@@ -1,5 +1,5 @@
 PORTNAME=	netbeans
-DISTVERSION=	16
+DISTVERSION=	17
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE/netbeans/netbeans/${PORTVERSION}/
 DISTNAME=	netbeans-${DISTVERSION}-bin
@@ -23,6 +23,8 @@ SHEBANG_FILES=	extide/ant/bin/antRun.pl \
 		extide/ant/bin/runant.pl \
 		extide/ant/bin/runant.py
 
+perl_OLD_CMD=	/usr/bin/perl
+perl_CMD=	${LOCALBASE}/bin/perl
 python_OLD_CMD=	/usr/bin/python
 python_CMD=	${LOCALBASE}/bin/python${PYTHON_DEFAULT}
 
