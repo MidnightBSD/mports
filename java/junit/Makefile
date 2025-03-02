@@ -1,18 +1,22 @@
 PORTNAME=	junit
 PORTVERSION=	4.12
 CATEGORIES=	java devel
-MASTER_SITES=	http://repo1.maven.org/maven2/${PORTNAME}/${PORTNAME}/${PORTVERSION}/
+MASTER_SITES=	https://repo1.maven.org/maven2/${PORTNAME}/${PORTNAME}/${PORTVERSION}/
 DISTFILES=	${DISTNAME}.jar ${DISTNAME}-sources.jar
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Regression testing utility for use with the Java(TM) Language
+WWW=		https://www.junit.org/
 
 LICENSE=	other
 
 RUN_DEPENDS=	${JAVAJARDIR}/hamcrest.jar:java/hamcrest
 
-USE_JAVA=	yes
+USES=		cpe java
+CPE_VENDOR=	${PORTNAME}
+CPE_PRODUCT=	${PORTNAME}4
+
 NO_BUILD=	yes
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
