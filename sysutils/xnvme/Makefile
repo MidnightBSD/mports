@@ -12,7 +12,7 @@ LICENSE=	bsd3
 NOT_FOR_ARCHS=	armv7 i386 powerpc
 NOT_FOR_ARCHS_REASON=	use of types with platform-specific length
 
-USES=		meson
+USES=		meson pkgconfig
 USE_LDCONFIG=	yes
 
 MESON_ARGS=	-Dforce_completions=true \
