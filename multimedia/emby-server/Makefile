@@ -26,6 +26,7 @@ LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	nasm:devel/nasm \
+		libimagequant>0:graphics/libimagequant \
 		${LOCALBASE}/include/CL/opencl.h:devel/opencl
 LIB_DEPENDS=	libaribb24.so:multimedia/aribb24 \
 		libass.so:multimedia/libass \
