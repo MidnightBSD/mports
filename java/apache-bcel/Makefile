@@ -7,11 +7,12 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Commons Byte Code Engineering Library
+WWW=		https://commons.apache.org/proper/commons-bcel/
 
 LICENSE=	apache2
 
+USES=		java
 NO_BUILD=	yes
-USE_JAVA=	yes
 
 NO_ARCH=	yes
 
