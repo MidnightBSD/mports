@@ -11,7 +11,7 @@ LICENSE=	gpl2
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-USE_JAVA=	yes
+USES=		java
 NO_BUILD=	yes
 NO_ARCH=	yes
 
@@ -24,14 +24,14 @@ post-extract:
 	@${RMDIR} ${WRKSRC}/examples/android/.gradle/6.4/vcsMetadata-1
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/lib/*.jar ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/proguard.sh ${STAGEDIR}${PREFIX}/bin/proguard
-	${INSTALL_SCRIPT} ${WRKDIR}/proguard-gui.sh ${STAGEDIR}${PREFIX}/bin/proguard-gui
-	${INSTALL_SCRIPT} ${WRKDIR}/retrace.sh ${STAGEDIR}${PREFIX}/bin/retrace
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}/
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/lib/*.jar ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/proguard.sh ${PREFIX}/bin/proguard
+	${INSTALL_SCRIPT} ${WRKDIR}/proguard-gui.sh ${PREFIX}/bin/proguard-gui
+	${INSTALL_SCRIPT} ${WRKDIR}/retrace.sh ${PREFIX}/bin/retrace
+	${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${DOCSDIR}/
+	${MKDIR} ${EXAMPLESDIR}
+	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${EXAMPLESDIR}/
 
 .include <bsd.port.mk>

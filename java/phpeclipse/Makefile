@@ -14,9 +14,7 @@ RUN_DEPENDS=	eclipse:java/eclipse
 PLUGIN_PATHS=	features plugins
 PATCH_TASKS=	eclipse.versionReplacer eclipse.idReplacer
 
-USES=		zip:infozip
-USE_JAVA=	yes
-USE_ANT=	yes
+USES=		java:ant,run zip:infozip
 
 WRKSRC=		${WRKDIR}/dist
 ECLIPSE=	lib/eclipse

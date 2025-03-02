@@ -13,8 +13,7 @@ LICENSE=	apache2
 WRKSRC=		${WRKDIR}/spring-framework-${PORTVERSION}.RELEASE
 
 NO_BUILD=	yes
-USE_JAVA=	yes
-USES=		zip
+USES=		java zip
 
 OPTIONS_DEFINE=	DOCS RESRCS
 RESRCS_DESC=	Install resource files
