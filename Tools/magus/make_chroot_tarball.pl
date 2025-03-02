@@ -40,6 +40,10 @@ my $ballname = shift || die "Usage: $0 <tarball name>\n";
 
 my $tmpdir = tempdir('/tmp/magusXXXXXXXX', CLEANUP => 1);
 
+# Get the CPU architecture
+my $arch = `uname -m`;
+chomp $arch;
+
 # list of files and dirs that are passed to tar normally.
 my @files = qw(
   /.cshrc
@@ -104,6 +108,11 @@ my @files = qw(
   /var/yp/Makefile
   /var/yp/Makefile.dist
 );
+
+# Add /usr/lib32 for amd64 architecture
+if ($arch eq 'amd64') {
+    push @files, '/usr/lib32';
+}
 
 # directories to get out of the tempdir
 my @tempdirs = qw(mnt proc);
