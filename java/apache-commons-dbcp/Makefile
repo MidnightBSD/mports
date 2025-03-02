@@ -7,6 +7,7 @@ DISTNAME=	${PORTNAME}2-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Commons Database Connection Pool
+WWW=		https://commons.apache.org/dbcp/
 
 LICENSE=	apache2
 
@@ -14,7 +15,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/commons-pool.jar:java/apache-commons-pool
 
 OPTIONS_DEFINE=	DOCS
 
-USE_JAVA=	yes
+USES=		java
 JAVA_VERSION=	8
 NO_BUILD=	yes
 
