@@ -7,10 +7,11 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java library for command line arguments and options
+WWW=		https://commons.apache.org/proper/commons-cli/
 
 LICENSE=	apache2
 
-USE_JAVA=	yes
+USES=		java
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -27,9 +28,9 @@ do-install:
 		${STAGEDIR}${JAVAJARDIR}/${DESTJARFILE}
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} apidocs ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} apidocs ${FAKE_DESTDIR}${DOCSDIR})
 	(cd ${WRKSRC} && ${INSTALL_DATA} LICENSE.txt NOTICE.txt \
-		RELEASE-NOTES.txt ${STAGEDIR}${DOCSDIR})
+		RELEASE-NOTES.txt ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
