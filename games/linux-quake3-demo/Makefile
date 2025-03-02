@@ -2,7 +2,9 @@ PORTNAME=	quake3
 DISTVERSION=	1.11-6
 PORTREVISION=	4
 CATEGORIES=	games
-MASTER_SITES=	GENTOO
+MASTER_SITES=	http://mirror.internode.on.net/pub/idstuff/quake3/linux/ \
+		https://www.quaddicted.com/files/idgames/idstuff/quake3/linux/ \
+		https://dukeworld.duke4.net/idgames2/idstuff/quake3/linux/
 PKGNAMEPREFIX=	linux-
 PKGNAMESUFFIX=	-demo
 DISTNAME=	linuxq3ademo-${DISTVERSION}.x86
