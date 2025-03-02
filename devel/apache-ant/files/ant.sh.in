@@ -7,7 +7,6 @@
 #
 # See: http://ant.apache.org/
 #
-# $MidnightBSD$
 
 
 DEFAULT_JIKES=false

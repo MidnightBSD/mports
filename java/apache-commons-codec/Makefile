@@ -7,12 +7,13 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementations of common encoders and decoders
+WWW=		https://commons.apache.org/codec/
 
 LICENSE=	apache2
 
 OPTIONS_DEFINE=	DOCS
 
-USE_JAVA=	yes
+USES=		java
 JAVA_VERSION=	8+
 NO_BUILD=	yes
 NO_ARCH=	yes
@@ -26,16 +27,16 @@ PORTDOCS=	*
 do-install:
 	@${ECHO_MSG} -n ">> Installing JAR file as ${JAVAJARDIR}/${PORTNAME}.jar..."
 	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}-${PORTVERSION}.jar \
-		${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
+		${JAVAJARDIR}/${PORTNAME}.jar
 	@${ECHO_MSG} " [DONE]"
 
 do-install-DOCS-on:
 	@${ECHO_MSG} -n ">> Installing documentation..."
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	@cd ${WRKSRC} && ${FIND} apidocs \
-	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DOCSDIR} > /dev/null 2>&1
+	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${FAKE_DESTDIR}${DOCSDIR} > /dev/null 2>&1
 	@${INSTALL_DATA} ${WRKSRC}/RELEASE-NOTES.txt \
-		${STAGEDIR}${DOCSDIR}/
+		${FAKE_DESTDIR}${DOCSDIR}/
 	@${ECHO_MSG} " [DONE]"
 
 .include <bsd.port.mk>

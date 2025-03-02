@@ -1,8 +1,9 @@
 PORTNAME=	apache-ant
-PORTVERSION=	1.10.13
+DISTVERSION=	1.10.13
+PORTREVISION=	1
 CATEGORIES=	devel java
-MASTER_SITES=	https://archive.apache.org/dist/ant/binaries/:bin \
-		FREEBSD_LOCAL/hq:man
+MASTER_SITES=	APACHE/ant/binaries:bin \
+		https://deb.debian.org/debian/pool/main/a/ant/:man
 DISTFILES=	${ANT_DISTFILE}:bin \
 		${MANPAGE_DISTFILE}:man
 EXTRACT_ONLY=	${ANT_DISTFILE}
@@ -13,38 +14,34 @@ WWW=		https://ant.apache.org/
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	classpath:java/javavmwrapper
-
-OPTIONS_DEFINE=	DOCS
+USES=		cpe java tar:bzip2
+CPE_VENDOR=	apache
+CPE_PRODUCT=	ant
 
 ANT_DISTFILE=	${PORTNAME}-${DISTVERSION}-bin.tar.bz2
-MANPAGE_DISTFILE=	${PORTNAME}-manpage-${MANPAGE_VERSION}.tgz
-MANPAGE_VERSION=	20030908
-USES=		tar:bzip2
-USE_JAVA=	1.7+
+MANPAGE_DISTFILE=	ant_${DISTVERSION}-${MANPAGE_VERSION}.debian.tar.xz
+MANPAGE_VERSION=	1
 
-NO_BUILD=	YES
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
+NO_ARCH=	yes
+NO_BUILD=	yes
 
 READMES=	LICENSE README WHATSNEW
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDOCS}
 DISTFILES+=	${PORTNAME}-${DISTVERSION}-manual.tar.bz2:doc
-MASTER_SITES+=	https://archive.apache.org/dist/ant/manual/:doc
+MASTER_SITES+=	APACHE/ant/manual:doc
 PORTDOCS=	*
 .endif
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-MANPAGE_SUBDIR=	apache-ant-manpage
-MANPAGE_WRKSRC=	${WRKSRC}/${MANPAGE_SUBDIR}
 
 SUB_FILES=	ant.sh
 
 post-extract:
-	@${TAR} -C ${WRKSRC} -xzf ${DISTDIR}/${MANPAGE_DISTFILE}
+	@${TAR} -C ${WRKSRC} -xJf ${DISTDIR}/${MANPAGE_DISTFILE} debian/ant.1 debian/build.xml.5
 
 do-install:
 	@${ECHO_MSG} -n ">> Installing scripts..."
@@ -60,8 +57,8 @@ do-install:
 .endfor
 
 	@${ECHO_MSG} -n ">> Installing manpages..."
-	@${INSTALL_MAN} ${MANPAGE_WRKSRC}/ant.1 ${PREFIX}/share/man/man1
-	@${INSTALL_MAN} ${MANPAGE_WRKSRC}/build.xml.5 ${PREFIX}/share/man/man5
+	${INSTALL_MAN} ${WRKSRC}/debian/ant.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/debian/build.xml.5 ${PREFIX}/share/man/man5
 	@${ECHO_MSG} " [ DONE ]"
 
 .if ${PORT_OPTIONS:MDOCS}
