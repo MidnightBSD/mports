@@ -1,6 +1,6 @@
---- meson.build.orig	2025-02-12 00:29:35 UTC
-+++ meson.build
-@@ -23,7 +23,7 @@ fs = import('fs')
+--- meson.build.orig	2024-09-11 07:56:13.000000000 -0400
++++ meson.build	2025-03-02 17:56:41.740099000 -0500
+@@ -23,7 +23,7 @@
  #
  # Pre-flight check, operating system and compiler arguments
  #
@@ -9,3 +9,18 @@
  system = host_machine.system()
  message('host_machine.system:', system)
  if not system_support.contains(system)
+@@ -189,13 +189,7 @@
+   install_completions = true
+ elif get_option('force_completions') and not is_windows
+   # Install completions at default locations if bash-completion is not available on the system
+-  if is_darwin
+-     bash_completions_dir = get_option('prefix') / 'share/bash-completion/completions'
+-  elif is_freebsd
+-     bash_completions_dir = get_option('prefix') / 'share/bash-completion/completions'
+-  elif is_linux
+-     bash_completions_dir = '/usr/share/bash-completion/completions'
+-  endif
++  bash_completions_dir = get_option('prefix') / 'share/bash-completion/completions'
+ 
+   message('Bash-completions: ' + bash_completions_dir)
+   install_completions = true
