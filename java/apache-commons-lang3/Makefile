@@ -7,12 +7,14 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache library with helper utilities for the java.lang API
+https://commons.apache.org/proper/commons-lang/
 
 LICENSE=	apache2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USE_JAVA=	yes
+USES=		java
+
 NO_BUILD=	yes
 NO_ARCH=	yes
 
@@ -26,10 +28,10 @@ OPTIONS_DEFINE=	DOCS
 DOCS_ALL_TARGET=	javadoc
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/${JARFILE} ${STAGEDIR}${JAVAJARDIR}
-	${LN} -sf ${JARFILE} ${STAGEDIR}${JAVAJARDIR}/${DESTJARFILE}
+	${INSTALL_DATA} ${WRKSRC}/${JARFILE} ${JAVAJARDIR}
+	${LN} -sf ${JARFILE} ${JAVAJARDIR}/${DESTJARFILE}
 
 do-install-DOCS-on:
-	(cd ${WRKSRC}/apidocs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	(cd ${WRKSRC}/apidocs && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>

@@ -1,7 +1,6 @@
-# Created by: Ernst de Haan <znerd@FreeBSD.org>
-
 PORTNAME=	commons-lang
 PORTVERSION=	2.6
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE_COMMONS_SOURCE
 PKGNAMEPREFIX=	apache-
@@ -9,12 +8,12 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache library with helper utilities for the java.lang API
+WWW=		https://commons.apache.org/proper/commons-lang/
 
 LICENSE=	apache2
 
-USE_JAVA=	yes
+USES=		java:ant,run
 JAVA_VERSION=	8
-USE_ANT=	yes
 ALL_TARGET=	jar
 NO_ARCH=	yes
 

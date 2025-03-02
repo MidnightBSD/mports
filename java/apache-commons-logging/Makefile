@@ -7,6 +7,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic logging wrapper library
+WWW=		https://commons.apache.org/proper/commons-logging/
 
 LICENSE=	apache2
 
@@ -14,7 +15,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS
 
-USE_JAVA=	yes
+USES=		java
 NO_BUILD=	yes
 
 JARFILE=	${PORTNAME}-${PORTVERSION}.jar
