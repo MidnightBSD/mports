@@ -104,7 +104,7 @@ DEV_ERROR+=	"All LIB_DEPENDS should use the new format and start out with lib.  
 
 .if defined(LICENSE)
 .  if ${LICENSE:MBSD}
-DEV_WARNING+=	"LICENSE must not contain BSD, instead use BSD[234]CLAUSE"
+DEV_WARNING+=	"LICENSE must not contain BSD, instead use bsd[234]"
 .  endif
 .elif !defined(DISABLE_LICENSES)
 .  if empty(USES:Mmetaport)
