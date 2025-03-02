@@ -1,6 +1,6 @@
 PORTNAME=	netbeans
 PORTVERSION=	8.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.netbeans.org/netbeans/${PORTVERSION}/final/zip/ \
     		http://dlc.sun.com.edgesuite.net/netbeans/${PORTVERSION}/final/zip/
@@ -13,13 +13,11 @@ COMMENT=	A full-featured integrated environment for Java
 LICENSE=	cddl gpl2
 LICENSE_COMB=	dual
 
-USES=		shebangfix zip
+USES=		java shebangfix zip
 SHEBANG_FILES=	extide/ant/bin/antRun.pl \
 		extide/ant/bin/complete-ant-cmd.pl \
 		extide/ant/bin/runant.pl \
 		extide/ant/bin/runant.py
-USE_JAVA=	yes
-JAVA_VERSION=	1.7+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/netbeans

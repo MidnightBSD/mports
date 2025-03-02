@@ -11,11 +11,10 @@ WWW=		https://netbeans.apache.org/
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cpe shebangfix zip
+USES=		cpe java shebangfix zip
 
 CPE_VENDOR=	apache
 
-USE_JAVA=	yes
 JAVA_VERSION=	11 17
 NO_BUILD=	yes
 
