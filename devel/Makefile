@@ -1366,6 +1366,7 @@ SUBDIR += py-types-urllib3
 SUBDIR += py-typing-extensions
 SUBDIR += py-typing-inspect
 SUBDIR += py-tzdata
+SUBDIR += py-u-msgpack-python
 SUBDIR += py-ujson
 SUBDIR += py-undefined
 SUBDIR += py-unicodedata2
