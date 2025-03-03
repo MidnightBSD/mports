@@ -1,13 +1,14 @@
 PORTNAME=	namespace-autoclean
-PORTVERSION=	0.29
+PORTVERSION=	0.31
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Keep imports out of your namespace
+WWW=		https://metacpan.org/release/namespace-autoclean
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
