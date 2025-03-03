@@ -284,7 +284,7 @@ post-build:
 
 post-build-TZUPDATE-on:
 	@# Update time zones
-	@${RM} -r ${JRE_IMAGEDIR}/lib/zi
+	-${RM} -r ${JRE_IMAGEDIR}/lib/zi
 	@${LN} -sf ${LOCALBASE}/share/java/zi ${JRE_IMAGEDIR}/lib
 
 do-install:
