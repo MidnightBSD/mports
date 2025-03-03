@@ -1,5 +1,5 @@
 PORTNAME=	YAML-LibYAML
-PORTVERSION=	0.86
+PORTVERSION=	0.90
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl YAML Serialization using XS and libyaml
 WWW=		https://metacpan.org/release/YAML-LibYAML
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
