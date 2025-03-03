@@ -8,6 +8,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Check the correct line endings in your project
+WWW=		https://metacpan.org/release/Test-EOL
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

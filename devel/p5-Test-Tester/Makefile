@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Test-Tester
 PORTVERSION=	0.10.9
 CATEGORIES=	devel perl5
@@ -10,7 +8,9 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Helps to test various Test::Builder derivatives
-LICENSE=	perl
+
+LICENSE=	artistic gpl+
+LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure

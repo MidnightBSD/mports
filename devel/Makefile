@@ -829,6 +829,7 @@ SUBDIR += p5-UNIVERSAL-isa
 SUBDIR += p5-UNIVERSAL-moniker
 SUBDIR += p5-UNIVERSAL-ref
 SUBDIR += p5-UNIVERSAL-require
+SUBDIR += p5-UUID-Tiny
 SUBDIR += p5-Validation-Class
 SUBDIR += p5-Variable-Magic
 SUBDIR += p5-Want

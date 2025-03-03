@@ -1,13 +1,14 @@
 PORTNAME=	Term-ProgressBar
-PORTVERSION=	2.22
+PORTVERSION=	2.23
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to display a progress bar
+WWW=		https://metacpan.org/release/Term-ProgressBar
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

@@ -1,13 +1,14 @@
 PORTNAME=	Term-ANSIColor
-PORTVERSION=	4.06
+PORTVERSION=	5.01
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Color screen output using ANSI escape sequences
+WWW=		https://metacpan.org/release/Term-ANSIColor
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 OPTIONS_DEFINE=	EXAMPLES

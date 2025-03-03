@@ -1,13 +1,14 @@
 PORTNAME=	Term-ReadLine-Gnu
-PORTVERSION=	1.42
+PORTVERSION=	1.46
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow Term::ReadLine to use GNU readline
+WWW=		https://metacpan.org/release/Term-ReadLine-Gnu
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5 readline
