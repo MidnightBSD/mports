@@ -111,7 +111,7 @@ pre-install:
 
 post-install:
 		${INSTALL_MAN} ${FILESDIR}/makemkvcon.1 \
-			${PREFIX}/man/man1
+			${PREFIX}/share/man/man1
 		cd ${WRKSRC_bin}; \
 		${MKDIR} tmp; \
 		${ECHO_CMD} accepted > tmp/eula_accepted; \
