@@ -14,7 +14,7 @@ COMMENT=	Compiler for the functional language Haskell
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=			autoreconf:2.69 compiler:c11 gmake iconv:translit \
+USES=			autoreconf:2.69 compiler:c11 gmake iconv:patch,translit \
 			localbase:ldflags ncurses perl5 tar:xz
 USE_LOCALE=		en_US.UTF-8
 USE_PERL5=		build
@@ -22,7 +22,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--with-iconv-includes=${LOCALBASE}/include \
 			--with-iconv-libraries=${LOCALBASE}/lib
 CONFIGURE_ENV=		CC=${CC} LD=${LD} PATH=${SLAVES_PREFIX}/bin:${PATH}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 MAKE_ENV=		PATH=${SLAVES_PREFIX}/bin:${PATH}
 
 SUB_FILES=		build.mk
@@ -70,14 +70,16 @@ BOOT_SUB_LIST_OFF=	HSC2HS=${BOOT_HSC2HS}
 PROFILE_SUB_LIST=	WITH_PROFILE="YES"
 PROFILE_SUB_LIST_OFF=	WITH_PROFILE="NO"
 
-GHC_VERSION=		8.10.4
+GHC_VERSION=		8.10.7
 CABAL_VERSION=		3.2.1.0
 HSCOLOUR_VERSION=	1.24.4
-LLVM_VERSION=		90
+LLVM_VERSION=		10
 # LLVM version that bootstrap compiler uses
-BOOT_LLVM_VERSION=	60
+BOOT_LLVM_VERSION=	90
 
 PLIST_SUB=		GHC_VERSION=${GHC_VERSION} CABAL_VERSION=${CABAL_VERSION}
+
+PORTDOCS=		*
 
 .include <bsd.port.pre.mk>
 
@@ -86,14 +88,7 @@ PLIST_SUB=		GHC_VERSION=${GHC_VERSION} CABAL_VERSION=${CABAL_VERSION}
 BUILD_DEPENDS+=	${LOCALBASE}/lib/compat/libncursesw.so.8:misc/compat12x
 .endif
 
-.if ${ARCH} == powerpc64
 CONFIGURE_ARGS+=	--enable-dtrace=0
-.endif
-
-# .if ${ARCH} == i386
-# EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-libraries_ghc-prim_cbits_atomic.c \
-# 		${PATCHDIR}/extra-patch-rts_posix_TTY.c
-# .endif
 
 BOOT_GHC_VERSION=      8.10.7
 
@@ -126,13 +121,14 @@ _EXECUTABLES+=	${GHC_LIBDIR}/bin/ghc-iserv-dyn
 .if empty(PORT_OPTIONS:MBOOT)
 BOOTSTRAPS_SUFFIX?=		${BOOTSTRAPS_SUFFIX_${ARCH}}
 BOOTSTRAPS_SUFFIX_powerpc64?=	-${PPC_ABI:tl}
-.  if ${OSVERSION} < 1200000 && (${ARCH} == amd64 || ${ARCH} == i386)
+.  if ${OSVERSION} < 300000 && (${ARCH} == amd64 || ${ARCH} == i386)
 ELEVEN_SUFX=		11
 .  endif
 DISTFILES+=		ghc-${BOOT_GHC_VERSION}-boot-${ARCH}-freebsd${BOOTSTRAPS_SUFFIX}${EXTRACT_SUFX}:boot
 .endif # MBOOT
 
-.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7
+.if ${ARCH} == aarch64 || ${ARCH:Marmv*}
+# ghc-8.10.x on arm requires devel/llvm10
 # CONFIGURE_TARGET must to be the same as the llvm triple
 CONFIGURE_TARGET=	${ARCH}-unknown-freebsd${"${ARCH:Maarch64}" != "":?:-gnueabihf}
 EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-aclocal.m4
@@ -147,16 +143,16 @@ CONFIGURE_ENV+=		LLC=llc${LLVM_VERSION} \
 # LLVM versions, we have to pull in both. Luckily, this is relatively rare.
 .  if ${BOOT_LLVM_VERSION} != ${LLVM_VERSION}
 BUILD_DEPENDS+=		llc${BOOT_LLVM_VERSION}:devel/llvm${BOOT_LLVM_VERSION}
-RUN_DEPENDS+=		llc${BOOT_LLVM_VERSION}:devel/llvm${BOOT_LLVM_VERSION}
-# Keep in sync with BOOT_LLVM_VERSION
-BINARY_ALIAS+=		llc-6.0=llc60 \
-			opt-6.0=opt60
+CONFIGURE_ENV_BOOTSTRAP=LLC=llc${BOOT_LLVM_VERSION} \
+			OPT=opt${BOOT_LLVM_VERSION} \
+			CLANG=clang${BOOT_LLVM_VERSION} \
+			CC=clang${BOOT_LLVM_VERSION}
 .  endif
 .endif
 
-.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == powerpc64
-.  if ${OSVERSION} < 1201000
-IGNORE=	lang/ghc requires at least FreeBSD 12.1-RELEASE
+.if ${ARCH} == aarch64 || ${ARCH:Marmv*} || ${ARCH} == powerpc64
+.  if ${OSVERSION} < 300000
+IGNORE=	lang/ghc requires at least 3.2
 .  endif
 .  ifdef QEMU_EMULATING
 IGNORE=	qemu-user-static isn't able to build lang/ghc, but it builds fine on a real hardware
@@ -181,10 +177,12 @@ SLAVES_PREFIX=		${WRKDIR}/slaves_prefix
 SLAVES_WRKDIRPREFIX=	${WRKDIR}/slaves_wrkdirprefix
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%CC%%|${CC}|; \
-		s|%%AR%%|${AR}|; \
-		s|%%LD%%|${LD}|' \
-		${WRKSRC}/libraries/Cabal/Cabal/Distribution/Simple/Program/Builtin.hs
+	${TOUCH} ${WRKSRC}/libraries/terminfo/config.guess
+	${TOUCH} ${WRKSRC}/libraries/process/config.guess
+	${TOUCH} ${WRKSRC}/libraries/base/config.guess
+	${TOUCH} ${WRKSRC}/libraries/integer-gmp/config.guess
+	${TOUCH} ${WRKSRC}/libraries/directory/config.guess
+	${TOUCH} ${WRKSRC}/libraries/time/config.guess
 
 .if empty(PORT_OPTIONS:MBOOT)
 	@${REINPLACE_CMD} -e '/^mandir/d' ${BOOT_DIR}/mk/build.mk
@@ -199,7 +197,7 @@ pre-configure: apply-slist
 
 # If we are using bootstrap compiler, configure and install it into ${BOOT_DIR}
 .if empty(PORT_OPTIONS:MBOOT)
-	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_CMD} --prefix=${BOOT_DIR} --build=${ARCH}-portbld-freebsd11.4 --host=${ARCH}-portbld-freebsd11.4 --target=${ARCH}-portbld-freebsd11.4
+	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_ENV_BOOTSTRAP} ${CONFIGURE_CMD} --prefix=${BOOT_DIR} --build=${ARCH}-portbld-freebsd12.4 --host=${ARCH}-portbld-freebsd12.4 --target=${ARCH}-portbld-freebsd12.4
 	cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install
 .else
 # otherwise, make sure we have "ghc" in PATH
