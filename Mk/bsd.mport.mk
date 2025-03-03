@@ -553,7 +553,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		tar tcl tk tex trigger uniquefiles wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
-.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" || ${EXT:tl} == "ruby")
+.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" || ${EXT:tl} == "ruby" || ${EXT:tl} == "cabal")
 # we have to skip these as ${EXT}_ARGS won't be defined right
 .  elif defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT) || defined(USE_${EXT})
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
@@ -1041,7 +1041,7 @@ EXTENSIONS+=xorg
 # Here we include again XXX
 #
 .for EXT in ${_ALL_EXT:tu} 
-.       if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" ||${EXT:tl} == "ruby")
+.       if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" ||${EXT:tl} == "ruby" || ${EXT:tl} == "cabal")
 .	elif defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
 .	endif
