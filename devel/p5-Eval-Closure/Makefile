@@ -1,5 +1,3 @@
-
-
 PORTNAME=	Eval-Closure
 PORTVERSION=	0.14
 CATEGORIES=	devel perl5
@@ -9,8 +7,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Safely and cleanly create closures via string eval
+WWW=		https://metacpan.org/release/Eval-Closure
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
