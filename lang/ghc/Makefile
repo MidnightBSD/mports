@@ -1,5 +1,3 @@
-# Created by: Simon Marlow <simonmar@microsoft.com>
-
 PORTNAME=	ghc
 PORTVERSION=	${GHC_VERSION}
 CATEGORIES=	lang haskell
@@ -16,7 +14,7 @@ COMMENT=	Compiler for the functional language Haskell
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=			autoreconf compiler:c11 gmake iconv:translit \
+USES=			autoreconf:2.69 compiler:c11 gmake iconv:translit \
 			localbase:ldflags ncurses perl5 tar:xz
 USE_LOCALE=		en_US.UTF-8
 USE_PERL5=		build
@@ -97,11 +95,7 @@ CONFIGURE_ARGS+=	--enable-dtrace=0
 # 		${PATCHDIR}/extra-patch-rts_posix_TTY.c
 # .endif
 
-.if defined(PPC_ABI) && ${PPC_ABI} == ELFv1
-BOOT_GHC_VERSION=      8.6.3
-.else
-BOOT_GHC_VERSION=	8.6.5
-.endif
+BOOT_GHC_VERSION=      8.10.7
 
 NO_CCACHE=	ccache: error: Failed to create directory /nonexistent/.ccache/tmp: Permission denied
 
@@ -135,7 +129,7 @@ BOOTSTRAPS_SUFFIX_powerpc64?=	-${PPC_ABI:tl}
 .  if ${OSVERSION} < 1200000 && (${ARCH} == amd64 || ${ARCH} == i386)
 ELEVEN_SUFX=		11
 .  endif
-DISTFILES+=		ghc-${BOOT_GHC_VERSION}-boot-${ARCH}-freebsd${BOOTSTRAPS_SUFFIX}${ELEVEN_SUFX}${EXTRACT_SUFX}:boot
+DISTFILES+=		ghc-${BOOT_GHC_VERSION}-boot-${ARCH}-freebsd${BOOTSTRAPS_SUFFIX}${EXTRACT_SUFX}:boot
 .endif # MBOOT
 
 .if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7
