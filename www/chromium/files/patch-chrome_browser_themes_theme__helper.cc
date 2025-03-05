@@ -1,11 +1,20 @@
---- chrome/browser/themes/theme_helper.cc.orig	2021-05-12 22:05:45 UTC
+--- chrome/browser/themes/theme_helper.cc.orig	2022-08-31 12:19:35 UTC
 +++ chrome/browser/themes/theme_helper.cc
-@@ -289,7 +289,7 @@ bool ThemeHelper::ShouldUseIncreasedContrastThemeSuppl
-     ui::NativeTheme* native_theme) const {
- // TODO(crbug.com/1052397): Revisit once build flag switch of lacros-chrome is
- // complete.
--#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD)
-   // On Linux the GTK system theme provides the high contrast colors,
-   // so don't use the IncreasedContrastThemeSupplier.
-   return false;
+@@ -18,7 +18,7 @@
+ #include "ui/gfx/image/image.h"
+ #include "ui/native_theme/native_theme.h"
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "ui/linux/linux_ui.h"
+ #endif
+ 
+@@ -172,7 +172,7 @@ bool ThemeHelper::UseDarkModeColors(const CustomThemeS
+ 
+   ui::NativeTheme const* native_theme =
+       ui::NativeTheme::GetInstanceForNativeUi();
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   if (const auto* linux_ui = ui::LinuxUi::instance()) {
+     // We rely on the fact that the system theme is in use iff `theme_supplier`
+     // is non-null, but this is cheating. In the future this might not hold

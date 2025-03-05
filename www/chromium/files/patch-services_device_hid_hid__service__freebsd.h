@@ -1,6 +1,6 @@
---- services/device/hid/hid_service_freebsd.h.orig	2021-04-15 08:13:27 UTC
+--- services/device/hid/hid_service_freebsd.h.orig	2022-02-07 13:39:41 UTC
 +++ services/device/hid/hid_service_freebsd.h
-@@ -0,0 +1,47 @@
+@@ -0,0 +1,49 @@
 +// Copyright 2014 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
@@ -10,7 +10,6 @@
 +
 +#include <string>
 +
-+#include "base/macros.h"
 +#include "base/memory/ref_counted.h"
 +#include "base/memory/weak_ptr.h"
 +#include "base/timer/timer.h"
@@ -22,10 +21,15 @@
 +class HidServiceFreeBSD : public HidService {
 + public:
 +  HidServiceFreeBSD();
++
++  HidServiceFreeBSD(const HidServiceFreeBSD&) = delete;
++  HidServiceFreeBSD& operator=(const HidServiceFreeBSD&) = delete;
++
 +  ~HidServiceFreeBSD() override;
 +
 +  void Connect(const std::string& device_guid,
 +               bool allow_protected_reports,
++	       bool allow_fido_reports,
 +               ConnectCallback connect) override;
 +  base::WeakPtr<HidService> GetWeakPtr() override;
 +
@@ -41,8 +45,6 @@
 +  // a weak reference back to the service that owns it.
 +  std::unique_ptr<BlockingTaskRunnerHelper, base::OnTaskRunnerDeleter> helper_;
 +  base::WeakPtrFactory<HidServiceFreeBSD> weak_factory_{this};
-+
-+  DISALLOW_COPY_AND_ASSIGN(HidServiceFreeBSD);
 +};
 +
 +}  // namespace device

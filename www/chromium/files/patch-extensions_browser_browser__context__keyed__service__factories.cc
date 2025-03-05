@@ -1,11 +1,11 @@
---- extensions/browser/browser_context_keyed_service_factories.cc.orig	2021-05-12 22:05:54 UTC
+--- extensions/browser/browser_context_keyed_service_factories.cc.orig	2022-08-31 12:19:35 UTC
 +++ extensions/browser/browser_context_keyed_service_factories.cc
-@@ -86,7 +86,7 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() 
-   HidDeviceManager::GetFactoryInstance();
+@@ -89,7 +89,7 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() 
    IdleManagerFactory::GetInstance();
    ManagementAPI::GetFactoryInstance();
--#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_WIN) || \
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_WIN) || defined(OS_BSD) || \
-     defined(OS_MAC)
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN) || \
+-    BUILDFLAG(IS_MAC)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
    NetworkingPrivateEventRouterFactory::GetInstance();
  #endif
+   OffscreenDocumentManager::GetFactory();

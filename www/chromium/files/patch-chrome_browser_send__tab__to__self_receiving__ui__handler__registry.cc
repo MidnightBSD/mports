@@ -1,20 +1,20 @@
---- chrome/browser/send_tab_to_self/receiving_ui_handler_registry.cc.orig	2021-04-14 18:40:55 UTC
+--- chrome/browser/send_tab_to_self/receiving_ui_handler_registry.cc.orig	2022-02-28 16:54:41 UTC
 +++ chrome/browser/send_tab_to_self/receiving_ui_handler_registry.cc
-@@ -11,7 +11,7 @@
- #include "chrome/browser/profiles/profile.h"
- #include "chrome/browser/send_tab_to_self/receiving_ui_handler.h"
+@@ -16,7 +16,7 @@
+ #include "components/send_tab_to_self/features.h"
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || \
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || defined(OS_BSD) || \
-     defined(OS_WIN)
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
  #include "chrome/browser/send_tab_to_self/desktop_notification_handler.h"
+ #include "chrome/browser/ui/send_tab_to_self/send_tab_to_self_toolbar_icon_controller.h"
  #endif
-@@ -33,7 +33,7 @@ ReceivingUiHandlerRegistry* ReceivingUiHandlerRegistry
- // Instantiates all the handlers relevant to this platform.
- void ReceivingUiHandlerRegistry::InstantiatePlatformSpecificHandlers(
+@@ -48,7 +48,7 @@ SendTabToSelfToolbarIconController*
+ ReceivingUiHandlerRegistry::GetToolbarButtonControllerForProfile(
      Profile* profile) {
--#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || \
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || defined(OS_BSD) || \
-     defined(OS_WIN)
-   applicable_handlers_.push_back(
-       std::make_unique<send_tab_to_self::DesktopNotificationHandler>(profile));
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+   for (const std::unique_ptr<ReceivingUiHandler>& handler :
+        applicable_handlers_) {
+     auto* button_controller =

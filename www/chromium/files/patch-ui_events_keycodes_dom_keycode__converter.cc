@@ -1,36 +1,38 @@
---- ui/events/keycodes/dom/keycode_converter.cc.orig	2021-04-20 18:58:56 UTC
+--- ui/events/keycodes/dom/keycode_converter.cc.orig	2022-07-22 17:30:31 UTC
 +++ ui/events/keycodes/dom/keycode_converter.cc
+@@ -11,7 +11,7 @@
+ #include "ui/events/keycodes/dom/dom_code.h"
+ #include "ui/events/keycodes/dom/dom_key.h"
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FREEBSD)
+ #include <linux/input.h>
+ #endif
+ 
 @@ -24,7 +24,7 @@ namespace {
- #if defined(OS_WIN)
+ #if BUILDFLAG(IS_WIN)
  #define DOM_CODE(usb, evdev, xkb, win, mac, code, id) \
    { usb, win, code }
--#elif defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#elif defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #define DOM_CODE(usb, evdev, xkb, win, mac, code, id) \
    { usb, xkb, code }
- #elif defined(OS_APPLE)
-@@ -148,7 +148,7 @@ int KeycodeConverter::DomCodeToNativeKeycode(DomCode c
+ #elif BUILDFLAG(IS_APPLE)
+@@ -58,7 +58,7 @@ struct DomKeyMapEntry {
+ #undef DOM_KEY_MAP
+ #undef DOM_KEY_UNI
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FREEBSD)
+ 
+ // The offset between XKB Keycode and evdev code.
+ constexpr int kXkbKeycodeOffset = 8;
+@@ -139,7 +139,7 @@ int KeycodeConverter::DomCodeToNativeKeycode(DomCode c
    return UsbKeycodeToNativeKeycode(static_cast<uint32_t>(code));
  }
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FREEBSD)
  // static
  DomCode KeycodeConverter::XkbKeycodeToDomCode(uint32_t xkb_keycode) {
    // Currently XKB keycode is the native keycode.
-@@ -163,6 +163,7 @@ uint32_t KeycodeConverter::DomCodeToXkbKeycode(DomCode
-   return static_cast<uint32_t>(DomCodeToNativeKeycode(code));
- }
- 
-+#if !defined(OS_BSD)
- // static
- DomCode KeycodeConverter::EvdevCodeToDomCode(int evdev_code) {
-   // Currently XKB keycode is the native keycode.
-@@ -176,6 +177,7 @@ int KeycodeConverter::DomCodeToEvdevCode(DomCode code)
-   // TODO(crbug.com/1135034): Replace with evdev.
-   return XkbKeycodeToEvdevCode(DomCodeToXkbKeycode(code));
- }
-+#endif
- #endif
- 
- // static

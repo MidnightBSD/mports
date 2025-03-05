@@ -1,88 +1,56 @@
---- chrome/browser/flag_descriptions.cc.orig	2021-06-09 22:13:55 UTC
+--- chrome/browser/flag_descriptions.cc.orig	2022-08-31 12:19:35 UTC
 +++ chrome/browser/flag_descriptions.cc
-@@ -5007,7 +5007,7 @@ const char kEnableNewBadgeOnMenuItemsDescription[] =
- 
+@@ -6066,7 +6066,7 @@ const char kSideSearchDSESupportDescription[] =
  // Random platform combinations -----------------------------------------------
  
--#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
  
- const char kEnableOopPrintDriversName[] =
-@@ -5040,20 +5040,20 @@ const char kRemoteCopyProgressNotificationDescription[
-     "Enables progress notifications to be shown for the remote copy feature "
-     "when receiving a message.";
+ const char kDesktopDetailedLanguageSettingsName[] =
+     "Detailed Language Settings (Desktop)";
+@@ -6087,7 +6087,7 @@ const char kWebShareDescription[] =
+     "platforms.";
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC)
  
--#endif  // defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) ||
-         // defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
++#if (BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)) || BUILDFLAG(IS_BSD)
+ const char kOzonePlatformHintChoiceDefault[] = "Default";
+ const char kOzonePlatformHintChoiceAuto[] = "Auto";
+ const char kOzonePlatformHintChoiceX11[] = "X11";
+@@ -6107,7 +6107,7 @@ const char kWebBluetoothConfirmPairingSupportDescripti
+     "Bluetooth";
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
  
--#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ const char kCleanUndecryptablePasswordsLinuxName[] =
+     "Cleanup local undecryptable passwords during initial sync flow";
+ const char kCleanUndecryptablePasswordsLinuxDescription[] =
+@@ -6120,7 +6120,7 @@ const char kForcePasswordInitialSyncWhenDecryptionFail
+     "storage and requests initial sync.";
+ #endif  // BUILDFLAG(IS_LINUX)
  
- const char kDirectManipulationStylusName[] = "Direct Manipulation Stylus";
- const char kDirectManipulationStylusDescription[] =
-     "If enabled, Chrome will scroll web pages on stylus drag.";
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
+ const char kSkipUndecryptablePasswordsName[] =
+     "Skip undecryptable passwords to use the available decryptable "
+     "passwords.";
+@@ -6129,7 +6129,7 @@ const char kSkipUndecryptablePasswordsDescription[] =
+     "there are undecryptable ones.";
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
  
--#endif  // defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD)
-         // defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ const char kAsyncDnsName[] = "Async DNS resolver";
+ const char kAsyncDnsDescription[] = "Enables the built-in DNS resolver.";
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
+@@ -6234,7 +6234,7 @@ const char kElasticOverscrollDescription[] =
  
--#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX)
-+#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD)
- 
- const char kCommanderName[] = "Commander";
- const char kCommanderDescription[] =
-@@ -5069,7 +5069,7 @@ const char kDesktopDetailedLanguageSettingsName[] =
- const char kDesktopDetailedLanguageSettingsDescription[] =
-     "Enable the new detailed language settings page";
- 
--#endif  // defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX)
-+#endif  // defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD)
- 
- #if defined(OS_CHROMEOS) || defined(OS_LINUX)
- #if BUILDFLAG(USE_TCMALLOC)
-@@ -5096,20 +5096,20 @@ const char kWebShareDescription[] =
- 
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if defined(OS_WIN) || (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || \
-+#if defined(OS_WIN) || (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD) || \
-     defined(OS_MAC)
- const char kEnableEphemeralGuestProfilesOnDesktopName[] =
-     "Enable ephemeral Guest profiles on Desktop";
- const char kEnableEphemeralGuestProfilesOnDesktopDescription[] =
-     "Enables ephemeral Guest profiles on Windows, Linux, and Mac.";
--#endif  // defined(OS_WIN) || (defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || (defined(OS_LINUX) || defined(OS_BSD) ||
-         // BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_MAC)
- 
--#if defined(OS_LINUX) && defined(USE_OZONE)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && defined(USE_OZONE)
- const char kUseOzonePlatformName[] = "Use ozone.";
- const char kUseOzonePlatformDescription[] =
-     "Use the Ozone/X11 platform implementation on X11.";
--#endif  // defined(OS_LINUX) && defined(USE_OZONE)
-+#endif  // (defined(OS_LINUX) || defined(OS_BSD)) && defined(USE_OZONE)
- 
- // Feature flags --------------------------------------------------------------
- 
-@@ -5190,7 +5190,7 @@ const char kAutofillCreditCardUploadDescription[] =
- 
- #endif  // defined(TOOLKIT_VIEWS) || defined(OS_ANDROID)
- 
--#if !defined(OS_WIN) && !defined(OS_FUCHSIA)
-+#if !defined(OS_WIN) && !defined(OS_FUCHSIA) && !defined(OS_BSD)
- const char kSendWebUIJavaScriptErrorReportsName[] =
-     "Send WebUI JavaScript Error Reports";
- const char kSendWebUIJavaScriptErrorReportsDescription[] =
-@@ -5199,7 +5199,7 @@ const char kSendWebUIJavaScriptErrorReportsDescription
-     "will be sent to Google.";
- #endif
- 
--#if defined(OS_WIN) || (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || \
-+#if defined(OS_WIN) || (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD) || \
-     defined(OS_MAC)
+ #if BUILDFLAG(IS_WIN) ||                                      \
+     (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || \
+-    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
  const char kUIDebugToolsName[] = "Debugging tools for UI";
  const char kUIDebugToolsDescription[] =
+     "Enables additional keyboard shortcuts to help debugging.";

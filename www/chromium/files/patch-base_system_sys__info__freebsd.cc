@@ -1,6 +1,6 @@
---- base/system/sys_info_freebsd.cc.orig	2021-04-14 18:40:48 UTC
+--- base/system/sys_info_freebsd.cc.orig	2022-09-01 17:22:07 UTC
 +++ base/system/sys_info_freebsd.cc
-@@ -9,30 +9,95 @@
+@@ -9,30 +9,106 @@
  #include <sys/sysctl.h>
  
  #include "base/notreached.h"
@@ -9,8 +9,20 @@
  
  namespace base {
  
- int64_t SysInfo::AmountOfPhysicalMemoryImpl() {
+-int64_t SysInfo::AmountOfPhysicalMemoryImpl() {
 -  int pages, page_size;
++int SysInfo::NumberOfProcessors() {
++  int mib[] = {CTL_HW, HW_NCPU};
++  int ncpu;
++  size_t size = sizeof(ncpu);
++  if (sysctl(mib, std::size(mib), &ncpu, &size, NULL, 0) < 0) {
++    NOTREACHED();
++    return 1;
++  }
++  return ncpu;
++}
++
++uint64_t SysInfo::AmountOfPhysicalMemoryImpl() {
 +  int pages, page_size, r = 0;
    size_t size = sizeof(pages);
 -  sysctlbyname("vm.stats.vm.v_page_count", &pages, &size, NULL, 0);
@@ -26,11 +38,12 @@
      NOTREACHED();
      return 0;
    }
+-  return static_cast<int64_t>(pages) * page_size;
 +
-   return static_cast<int64_t>(pages) * page_size;
++  return static_cast<uint64_t>(pages) * page_size;
  }
  
-+int64_t SysInfo::AmountOfAvailablePhysicalMemoryImpl() {
++uint64_t SysInfo::AmountOfAvailablePhysicalMemoryImpl() {
 +  int page_size, r = 0;
 +  unsigned int pgfree, pginact, pgcache;
 +  size_t size = sizeof(page_size);
@@ -50,12 +63,12 @@
 +    return 0;
 +  }
 +
-+  return static_cast<int64_t>((pgfree + pginact + pgcache) * page_size);
++  return static_cast<uint64_t>((pgfree + pginact + pgcache) * page_size);
 +}
 +
  // static
-+int64_t SysInfo::AmountOfAvailablePhysicalMemory(const SystemMemoryInfoKB& info) {
-+  int64_t res_kb = info.available != 0
++uint64_t SysInfo::AmountOfAvailablePhysicalMemory(const SystemMemoryInfoKB& info) {
++  uint64_t res_kb = info.available != 0
 +                       ? info.available - info.active_file
 +                       : info.free + info.reclaimable + info.inactive_file;
 +  return res_kb * 1024;
@@ -65,9 +78,9 @@
 +std::string SysInfo::CPUModelName() {
 +  int mib[] = { CTL_HW, HW_MODEL };
 +  char name[256];
-+  size_t size = base::size(name);
++  size_t size = std::size(name);
 +
-+  if (sysctl(mib, base::size(mib), &name, &size, NULL, 0) == 0) {
++  if (sysctl(mib, std::size(mib), &name, &size, NULL, 0) == 0) {
 +    return name;
 +  }
 +

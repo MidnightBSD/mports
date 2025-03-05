@@ -1,15 +1,20 @@
---- media/base/media_switches.h.orig	2021-05-12 22:05:55 UTC
+--- media/base/media_switches.h.orig	2022-08-31 12:19:35 UTC
 +++ media/base/media_switches.h
-@@ -179,10 +179,10 @@ MEDIA_EXPORT extern const base::Feature kUseFakeDevice
+@@ -203,7 +203,7 @@ MEDIA_EXPORT extern const base::Feature kUseDecoderStr
+ MEDIA_EXPORT extern const base::Feature kUseFakeDeviceForMediaStream;
  MEDIA_EXPORT extern const base::Feature kUseMediaHistoryStore;
  MEDIA_EXPORT extern const base::Feature kUseR16Texture;
- MEDIA_EXPORT extern const base::Feature kUseSodaForLiveCaption;
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  MEDIA_EXPORT extern const base::Feature kVaapiVideoDecodeLinux;
  MEDIA_EXPORT extern const base::Feature kVaapiVideoEncodeLinux;
--#endif  // defined(OS_LINUX)
-+#endif  // defined(OS_LINUX) || defined(OS_BSD)
- MEDIA_EXPORT extern const base::Feature kVaapiAV1Decoder;
- MEDIA_EXPORT extern const base::Feature kVaapiLowPowerEncoderGen9x;
- MEDIA_EXPORT extern const base::Feature kVaapiEnforceVideoMinMaxResolution;
+ MEDIA_EXPORT extern const base::Feature kVaapiIgnoreDriverChecks;
+@@ -310,7 +310,7 @@ MEDIA_EXPORT extern const base::FeatureParam<
+ MEDIA_EXPORT extern const base::Feature kDeprecateLowUsageCodecs;
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ MEDIA_EXPORT extern const base::Feature kUseOutOfProcessVideoDecoding;
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+ 

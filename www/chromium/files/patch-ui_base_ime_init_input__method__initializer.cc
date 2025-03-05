@@ -1,38 +1,29 @@
---- ui/base/ime/init/input_method_initializer.cc.orig	2021-04-14 18:41:37 UTC
+--- ui/base/ime/init/input_method_initializer.cc.orig	2022-08-31 12:19:35 UTC
 +++ ui/base/ime/init/input_method_initializer.cc
-@@ -11,7 +11,7 @@
+@@ -10,7 +10,7 @@
+ #include "build/chromeos_buildflags.h"
  
- #if BUILDFLAG(IS_CHROMEOS_ASH)
- #include "ui/base/ime/chromeos/ime_bridge.h"
--#elif defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
-+#elif defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD))
- #include "base/check.h"
- #include "ui/base/ime/linux/fake_input_method_context_factory.h"
- #elif defined(OS_WIN)
-@@ -21,7 +21,7 @@
+ #if !BUILDFLAG(IS_CHROMEOS_ASH) && defined(USE_AURA) && \
+-    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
++    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD))
+ #include "ui/base/ime/linux/fake_input_method_context.h"
+ #include "ui/base/ime/linux/linux_input_method_context_factory.h"
+ #elif BUILDFLAG(IS_WIN)
+@@ -34,7 +34,7 @@ void ShutdownInputMethod() {
  
- namespace {
- 
--#if defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
-+#if defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD))
- const ui::LinuxInputMethodContextFactory*
-     g_linux_input_method_context_factory_for_testing;
- #endif
-@@ -49,7 +49,7 @@ void ShutdownInputMethod() {
  void InitializeInputMethodForTesting() {
- #if BUILDFLAG(IS_CHROMEOS_ASH)
-   IMEBridge::Initialize();
--#elif defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
-+#elif defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD))
-   if (!g_linux_input_method_context_factory_for_testing)
-     g_linux_input_method_context_factory_for_testing =
-         new FakeInputMethodContextFactory();
-@@ -68,7 +68,7 @@ void InitializeInputMethodForTesting() {
+ #if !BUILDFLAG(IS_CHROMEOS_ASH) && defined(USE_AURA) && \
+-    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
++    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD))
+   GetInputMethodContextFactoryForTest() =
+       base::BindRepeating([](LinuxInputMethodContextDelegate* delegate)
+                               -> std::unique_ptr<LinuxInputMethodContext> {
+@@ -47,7 +47,7 @@ void InitializeInputMethodForTesting() {
+ 
  void ShutdownInputMethodForTesting() {
- #if BUILDFLAG(IS_CHROMEOS_ASH)
-   IMEBridge::Shutdown();
--#elif defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
-+#elif defined(USE_AURA) && (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD))
-   const LinuxInputMethodContextFactory* factory =
-       LinuxInputMethodContextFactory::instance();
-   CHECK(!factory || factory == g_linux_input_method_context_factory_for_testing)
+ #if !BUILDFLAG(IS_CHROMEOS_ASH) && defined(USE_AURA) && \
+-    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
++    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD))
+   // The function owns the factory (as a static variable that's returned by
+   // reference), so setting this to an empty factory will free the old one.
+   GetInputMethodContextFactoryForTest() = LinuxInputMethodContextFactory();

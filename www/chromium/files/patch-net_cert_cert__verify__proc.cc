@@ -1,11 +1,11 @@
---- net/cert/cert_verify_proc.cc.orig	2021-04-14 18:41:06 UTC
+--- net/cert/cert_verify_proc.cc.orig	2022-06-17 14:20:10 UTC
 +++ net/cert/cert_verify_proc.cc
-@@ -493,7 +493,7 @@ base::Value CertVerifyParams(X509Certificate* cert,
+@@ -527,7 +527,7 @@ base::Value CertVerifyParams(X509Certificate* cert,
  
  }  // namespace
  
--#if !(defined(OS_FUCHSIA) || defined(OS_LINUX) || defined(OS_CHROMEOS))
-+#if !(defined(OS_FUCHSIA) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD))
+-#if !(BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS))
++#if !(BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD))
  // static
  scoped_refptr<CertVerifyProc> CertVerifyProc::CreateSystemVerifyProc(
      scoped_refptr<CertNetFetcher> cert_net_fetcher) {

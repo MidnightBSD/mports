@@ -1,16 +1,11 @@
---- ui/base/clipboard/clipboard_constants.cc.orig	2021-04-14 18:41:37 UTC
+--- ui/base/clipboard/clipboard_constants.cc.orig	2022-03-25 21:59:56 UTC
 +++ ui/base/clipboard/clipboard_constants.cc
-@@ -18,11 +18,11 @@ const char kMimeTypeSvg[] = "image/svg+xml";
- const char kMimeTypeRTF[] = "text/rtf";
- const char kMimeTypePNG[] = "image/png";
+@@ -24,7 +24,7 @@ const char kMimeTypeOctetStream[] = "application/octet
+ // Used for window dragging on some platforms.
+ const char kMimeTypeWindowDrag[] = "chromium/x-window-drag";
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_FUCHSIA)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_FUCHSIA) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
  const char kMimeTypeLinuxUtf8String[] = "UTF8_STRING";
  const char kMimeTypeLinuxString[] = "STRING";
  const char kMimeTypeLinuxText[] = "TEXT";
--#endif  // defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_FUCHSIA)
-+#endif  // defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_FUCHSIA) || defined(OS_BSD)
- 
- #if !defined(OS_APPLE)
- const char kMimeTypeWebCustomData[] = "chromium/x-web-custom-data";

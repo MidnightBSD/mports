@@ -1,35 +1,20 @@
---- extensions/browser/api/messaging/message_service.cc.orig	2021-05-12 22:05:54 UTC
+--- extensions/browser/api/messaging/message_service.cc.orig	2022-07-22 17:30:31 UTC
 +++ extensions/browser/api/messaging/message_service.cc
-@@ -63,7 +63,7 @@ namespace {
- 
+@@ -74,7 +74,7 @@ namespace {
  const char kReceivingEndDoesntExistError[] =
      "Could not establish connection. Receiving end does not exist.";
--#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  const char kMissingPermissionError[] =
      "Access to native messaging requires nativeMessaging permission.";
-@@ -394,7 +394,7 @@ void MessageService::OpenChannelToNativeApp(
-   if (!opener_port->IsValidPort())
+ const char kProhibitedByPoliciesError[] =
+@@ -437,7 +437,7 @@ void MessageService::OpenChannelToNativeApp(
      return;
  
--#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    bool has_permission = extension->permissions_data()->HasAPIPermission(
        mojom::APIPermissionID::kNativeMessaging);
-@@ -445,12 +445,12 @@ void MessageService::OpenChannelToNativeApp(
-   channel->opener->IncrementLazyKeepaliveCount();
- 
-   AddChannel(std::move(channel), receiver_port_id);
--#else   // !(defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) ||
-+#else   // !(defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) ||
-         // defined(OS_CHROMEOS))
-   const char kNativeMessagingNotSupportedError[] =
-       "Native Messaging is not supported on this platform.";
-   opener_port->DispatchOnDisconnect(kNativeMessagingNotSupportedError);
--#endif  // !(defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) ||
-+#endif  // !(defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) ||
-         // defined(OS_CHROMEOS))
- }
- 
+   if (!has_permission) {

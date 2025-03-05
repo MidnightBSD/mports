@@ -1,17 +1,20 @@
---- chrome/app/chrome_main.cc.orig	2021-04-14 18:40:49 UTC
+--- chrome/app/chrome_main.cc.orig	2022-08-31 12:19:35 UTC
 +++ chrome/app/chrome_main.cc
-@@ -130,12 +130,12 @@ int ChromeMain(int argc, const char** argv) {
-   MainThreadStackSamplingProfiler scoped_sampling_profiler;
+@@ -26,7 +26,7 @@
+ #include "chrome/app/notification_metrics.h"
+ #endif
  
-   // Chrome-specific process modes.
--#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || \
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || defined(OS_BSD) || \
-     defined(OS_WIN)
-   if (command_line->HasSwitch(switches::kHeadless)) {
-     return headless::HeadlessShellMain(params);
-   }
--#endif  // defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) ||
-+#endif  // defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_MAC) || defined(OS_BSD) ||
-         // defined(OS_WIN)
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "base/base_switches.h"
+ #endif
  
-   int rv = content::ContentMain(params);
+@@ -152,7 +152,7 @@ int ChromeMain(int argc, const char** argv) {
+     headless::SetUpCommandLine(command_line);
+   } else {
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+     if (command_line->HasSwitch(switches::kHeadless)) {
+ #if BUILDFLAG(GOOGLE_CHROME_BRANDING)
+       command_line->AppendSwitch(::headless::switches::kEnableCrashReporter);

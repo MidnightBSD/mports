@@ -1,11 +1,20 @@
---- v8/src/api/api.cc.orig	2021-05-12 22:13:52 UTC
+--- v8/src/api/api.cc.orig	2022-08-31 12:19:35 UTC
 +++ v8/src/api/api.cc
-@@ -5764,7 +5764,7 @@ bool v8::V8::Initialize(const int build_config) {
+@@ -138,7 +138,7 @@
+ #include "src/wasm/wasm-serialization.h"
+ #endif  // V8_ENABLE_WEBASSEMBLY
+ 
+-#if V8_OS_LINUX || V8_OS_DARWIN || V8_OS_FREEBSD
++#if V8_OS_LINUX || V8_OS_DARWIN || V8_OS_FREEBSD || V8_OS_OPENBSD
+ #include <signal.h>
+ 
+ #if V8_ENABLE_WEBASSEMBLY
+@@ -6129,7 +6129,7 @@ bool v8::V8::Initialize(const int build_config) {
    return true;
  }
  
--#if V8_OS_LINUX || V8_OS_MACOSX
-+#if V8_OS_LINUX || V8_OS_MACOSX || V8_OS_OPENBSD || V8_OS_FREEBSD
+-#if V8_OS_LINUX || V8_OS_DARWIN
++#if V8_OS_LINUX || V8_OS_DARWIN || V8_OS_FREEBSD || V8_OS_OPENBSD
  bool TryHandleWebAssemblyTrapPosix(int sig_code, siginfo_t* info,
                                     void* context) {
-   // When the target code runs on the V8 arm simulator, the trap handler does
+ #if V8_ENABLE_WEBASSEMBLY && V8_TRAP_HANDLER_SUPPORTED

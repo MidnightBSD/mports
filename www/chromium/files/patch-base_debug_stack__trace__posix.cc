@@ -1,45 +1,38 @@
---- base/debug/stack_trace_posix.cc.orig	2021-04-14 18:40:48 UTC
+--- base/debug/stack_trace_posix.cc.orig	2022-08-31 12:19:35 UTC
 +++ base/debug/stack_trace_posix.cc
-@@ -35,7 +35,7 @@
+@@ -39,7 +39,7 @@
  #include <AvailabilityMacros.h>
  #endif
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "base/debug/proc_maps_linux.h"
  #endif
  
-@@ -659,13 +659,21 @@ class SandboxSymbolizeHelper {
+@@ -698,6 +698,9 @@ class SandboxSymbolizeHelper {
+   // for the modules that are loaded in the current process.
+   // Returns true on success.
+   bool CacheMemoryRegions() {
++#if BUILDFLAG(IS_BSD)
++    return false;
++#else
      // Reads /proc/self/maps.
      std::string contents;
      if (!ReadProcMaps(&contents)) {
-+#if defined(OS_BSD)
-+      LOG(ERROR) << "Failed to read /proc/curproc/map";
-+#else
-       LOG(ERROR) << "Failed to read /proc/self/maps";
-+#endif
-       return false;
-     }
+@@ -715,6 +718,7 @@ class SandboxSymbolizeHelper {
  
-     // Parses /proc/self/maps.
-     if (!ParseProcMaps(contents, &regions_)) {
-+#if defined(OS_BSD)
-+      LOG(ERROR) << "Failed to parse the contents of /proc/curproc/map";
-+#else
-       LOG(ERROR) << "Failed to parse the contents of /proc/self/maps";
+     is_initialized_ = true;
+     return true;
 +#endif
-       return false;
-     }
+   }
  
-@@ -696,7 +704,11 @@ class SandboxSymbolizeHelper {
-           // Skip regions with empty file names.
-           continue;
-         }
-+#if defined(OS_BSD)
-+	if (region.path[0] == '-') {
-+#else	
-         if (region.path[0] == '[') {
-+#endif
-           // Skip pseudo-paths, like [stack], [vdso], [heap], etc ...
-           continue;
-         }
+   // Opens all object files and caches their file descriptors.
+@@ -871,7 +875,7 @@ size_t CollectStackTrace(void** trace, size_t count) {
+   // If we do not have unwind tables, then try tracing using frame pointers.
+   return base::debug::TraceStackFramePointers(const_cast<const void**>(trace),
+                                               count, 0);
+-#elif !defined(__UCLIBC__) && !defined(_AIX)
++#elif !defined(__UCLIBC__) && !defined(_AIX) && !BUILDFLAG(IS_BSD)
+   // Though the backtrace API man page does not list any possible negative
+   // return values, we take no chance.
+   return base::saturated_cast<size_t>(

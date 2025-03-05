@@ -1,10 +1,11 @@
---- tools/json_schema_compiler/feature_compiler.py.orig	2021-04-14 18:41:36 UTC
+--- tools/json_schema_compiler/feature_compiler.py.orig	2022-08-31 12:19:35 UTC
 +++ tools/json_schema_compiler/feature_compiler.py
-@@ -257,6 +257,7 @@ FEATURE_GRAMMAR = ({
-                 'chromeos': 'Feature::CHROMEOS_PLATFORM',
-                 'lacros': 'Feature::LACROS_PLATFORM',
-                 'linux': 'Feature::LINUX_PLATFORM',
-+                'bsd': 'Feature::LINUX_PLATFORM',
+@@ -268,6 +268,8 @@ FEATURE_GRAMMAR = ({
                  'mac': 'Feature::MACOSX_PLATFORM',
                  'win': 'Feature::WIN_PLATFORM',
+                 'fuchsia': 'Feature::FUCHSIA_PLATFORM',
++                'openbsd': 'Feature::LINUX_PLATFORM',
++                'freebsd': 'Feature::LINUX_PLATFORM',
              }
+         }
+     },

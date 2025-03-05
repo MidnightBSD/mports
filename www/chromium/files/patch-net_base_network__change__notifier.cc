@@ -1,21 +1,21 @@
---- net/base/network_change_notifier.cc.orig	2021-04-14 18:41:06 UTC
+--- net/base/network_change_notifier.cc.orig	2022-08-31 12:19:35 UTC
 +++ net/base/network_change_notifier.cc
-@@ -38,7 +38,7 @@
+@@ -37,7 +37,7 @@
  #include "net/base/network_change_notifier_linux.h"
- #elif defined(OS_APPLE)
+ #elif BUILDFLAG(IS_APPLE)
  #include "net/base/network_change_notifier_mac.h"
--#elif BUILDFLAG(IS_CHROMEOS_ASH) || defined(OS_ANDROID)
-+#elif BUILDFLAG(IS_CHROMEOS_ASH) || defined(OS_ANDROID) || defined(OS_BSD)
+-#elif BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
++#elif BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
  #include "net/base/network_change_notifier_posix.h"
- #elif defined(OS_FUCHSIA)
+ #elif BUILDFLAG(IS_FUCHSIA)
  #include "net/base/network_change_notifier_fuchsia.h"
-@@ -252,6 +252,9 @@ std::unique_ptr<NetworkChangeNotifier> NetworkChangeNo
- #elif defined(OS_FUCHSIA)
+@@ -329,6 +329,9 @@ std::unique_ptr<NetworkChangeNotifier> NetworkChangeNo
+ #elif BUILDFLAG(IS_FUCHSIA)
    return std::make_unique<NetworkChangeNotifierFuchsia>(
        /*require_wlan=*/false);
-+#elif defined(OS_BSD)
++#elif BUILDFLAG(IS_BSD)
 +  return std::make_unique<MockNetworkChangeNotifier>(
 +      /*dns_config_notifier*/nullptr);
  #else
    NOTIMPLEMENTED();
-   return NULL;
+   return nullptr;

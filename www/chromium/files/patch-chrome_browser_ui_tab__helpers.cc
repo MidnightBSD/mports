@@ -1,25 +1,36 @@
---- chrome/browser/ui/tab_helpers.cc.orig	2021-05-12 22:05:45 UTC
+--- chrome/browser/ui/tab_helpers.cc.orig	2022-08-31 12:19:35 UTC
 +++ chrome/browser/ui/tab_helpers.cc
-@@ -150,7 +150,7 @@
- #include "chrome/browser/ui/app_list/search/cros_action_history/cros_action_recorder_tab_tracker.h"
+@@ -198,7 +198,7 @@
  #endif
  
--#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/autofill_assistant/common_dependencies_chrome.h"
+ #include "chrome/browser/autofill_assistant/platform_dependencies_desktop.h"
  #include "chrome/browser/ui/blocked_content/framebust_block_tab_helper.h"
- #include "chrome/browser/ui/hats/hats_helper.h"
-@@ -414,11 +414,11 @@ void TabHelpers::AttachTabHelpers(WebContents* web_con
+@@ -538,13 +538,13 @@ void TabHelpers::AttachTabHelpers(WebContents* web_con
+ 
  // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
  // of lacros-chrome is complete.
- #if defined(OS_WIN) || defined(OS_MAC) || \
--    (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
-+    (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD)
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || \
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD) || \
+     (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
    metrics::DesktopSessionDurationObserver::CreateForWebContents(web_contents);
  #endif
  
--#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_MAC) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    if (base::FeatureList::IsEnabled(
-           features::kHappinessTrackingSurveysForDesktopDemo)) {
+           features::kHappinessTrackingSurveysForDesktopDemo) ||
+       base::FeatureList::IsEnabled(features::kTrustSafetySentimentSurvey) ||
+@@ -559,7 +559,7 @@ void TabHelpers::AttachTabHelpers(WebContents* web_con
+ #endif
+ 
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   if (base::FeatureList::IsEnabled(
+           autofill_assistant::features::kAutofillAssistantDesktop)) {
+     autofill_assistant::CreateForWebContents(

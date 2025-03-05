@@ -1,20 +1,20 @@
---- ui/platform_window/platform_window_init_properties.h.orig	2021-04-14 18:41:39 UTC
+--- ui/platform_window/platform_window_init_properties.h.orig	2022-08-31 12:19:35 UTC
 +++ ui/platform_window/platform_window_init_properties.h
-@@ -47,7 +47,7 @@ enum class PlatformWindowShadowType {
+@@ -54,7 +54,7 @@ class WorkspaceExtensionDelegate;
+ class ScenicWindowDelegate;
+ #endif
  
- class WorkspaceExtensionDelegate;
- 
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  class X11ExtensionDelegate;
  #endif
  
-@@ -93,7 +93,7 @@ struct COMPONENT_EXPORT(PLATFORM_WINDOW) PlatformWindo
+@@ -115,7 +115,7 @@ struct COMPONENT_EXPORT(PLATFORM_WINDOW) PlatformWindo
  
    PlatformWindowShadowType shadow_type = PlatformWindowShadowType::kDefault;
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    bool prefer_dark_theme = false;
-   gfx::ImageSkia* icon = nullptr;
-   base::Optional<int> background_color;
+   raw_ptr<gfx::ImageSkia> icon = nullptr;
+   absl::optional<int> background_color;

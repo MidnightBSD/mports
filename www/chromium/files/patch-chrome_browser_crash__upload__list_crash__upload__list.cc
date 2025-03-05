@@ -1,11 +1,11 @@
---- chrome/browser/crash_upload_list/crash_upload_list.cc.orig	2021-05-12 22:05:43 UTC
+--- chrome/browser/crash_upload_list/crash_upload_list.cc.orig	2022-06-17 14:20:10 UTC
 +++ chrome/browser/crash_upload_list/crash_upload_list.cc
-@@ -48,7 +48,7 @@ scoped_refptr<UploadList> CreateCrashUploadList() {
+@@ -50,7 +50,7 @@ scoped_refptr<UploadList> CreateCrashUploadList() {
+ // which isn't compatible with CrashUploadListCrashpad. crash_sender continues
  // to log uploads in CrashUploadList::kReporterLogFilename.
  // Linux is handled below.
- #if !(BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_CHROMEOS_LACROS) || \
--      defined(OS_LINUX))
-+      defined(OS_LINUX) || defined(OS_BSD))
+-#if !(BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX))
++#if !(BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD))
    if (crash_reporter::IsCrashpadEnabled()) {
      return new CrashUploadListCrashpad();
    }

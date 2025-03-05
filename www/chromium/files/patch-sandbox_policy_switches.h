@@ -1,11 +1,21 @@
---- sandbox/policy/switches.h.orig	2021-05-12 22:05:58 UTC
+--- sandbox/policy/switches.h.orig	2022-06-17 14:20:10 UTC
 +++ sandbox/policy/switches.h
-@@ -55,7 +55,7 @@ SANDBOX_POLICY_EXPORT extern const char kDisableSetuid
+@@ -56,7 +56,7 @@ SANDBOX_POLICY_EXPORT extern const char kWindowsSystem
+ SANDBOX_POLICY_EXPORT extern const char kMirroringSandbox[];
+ #endif  // BUILDFLAG(IS_MAC)
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)
+ SANDBOX_POLICY_EXPORT extern const char kHardwareVideoDecodingSandbox[];
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)
+ 
+@@ -78,7 +78,8 @@ SANDBOX_POLICY_EXPORT extern const char kDisableSetuid
  SANDBOX_POLICY_EXPORT extern const char kGpuSandboxAllowSysVShm[];
  SANDBOX_POLICY_EXPORT extern const char kGpuSandboxFailuresFatal[];
  SANDBOX_POLICY_EXPORT extern const char kNoSandbox[];
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++SANDBOX_POLICY_EXPORT extern const char kDisableUnveil[];
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  SANDBOX_POLICY_EXPORT extern const char kNoZygoteSandbox[];
  #endif
- #if defined(OS_WIN)
+ #if BUILDFLAG(IS_WIN)

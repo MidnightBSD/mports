@@ -1,4 +1,4 @@
---- base/linux_util.cc.orig	2021-04-14 18:40:48 UTC
+--- base/linux_util.cc.orig	2022-08-31 12:19:35 UTC
 +++ base/linux_util.cc
 @@ -15,6 +15,7 @@
  
@@ -6,19 +6,9 @@
  #include <memory>
 +#include <sstream>
  
+ #include "base/base_export.h"
  #include "base/files/dir_reader_posix.h"
- #include "base/files/file_util.h"
-@@ -79,6 +80,9 @@ class DistroNameGetter {
-  public:
-   DistroNameGetter() {
-     static const char* const kFilesToCheck[] = {"/etc/os-release",
-+#if defined(OS_BSD)
-+	                                        "/usr/local/etc/os-release",
-+#endif
-                                                 "/usr/lib/os-release"};
-     for (const char* file : kFilesToCheck) {
-       if (ReadDistroFromOSReleaseFile(file))
-@@ -135,6 +139,9 @@ void SetLinuxDistro(const std::string& distro) {
+@@ -135,6 +136,9 @@ void SetLinuxDistro(const std::string& distro) {
  }
  
  bool GetThreadsForProcess(pid_t pid, std::vector<pid_t>* tids) {
@@ -28,7 +18,7 @@
    // 25 > strlen("/proc//task") + strlen(std::to_string(INT_MAX)) + 1 = 22
    char buf[25];
    strings::SafeSPrintf(buf, "/proc/%d/task", pid);
-@@ -154,6 +161,7 @@ bool GetThreadsForProcess(pid_t pid, std::vector<pid_t
+@@ -152,6 +156,7 @@ bool GetThreadsForProcess(pid_t pid, std::vector<pid_t
    }
  
    return true;

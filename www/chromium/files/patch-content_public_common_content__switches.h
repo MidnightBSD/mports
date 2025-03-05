@@ -1,11 +1,19 @@
---- content/public/common/content_switches.h.orig	2021-05-12 22:05:53 UTC
+--- content/public/common/content_switches.h.orig	2022-07-22 17:30:31 UTC
 +++ content/public/common/content_switches.h
-@@ -268,7 +268,7 @@ CONTENT_EXPORT extern const char kRendererWaitForJavaD
+@@ -118,6 +118,7 @@ CONTENT_EXPORT extern const char kEnableBlinkTestFeatu
+ CONTENT_EXPORT extern const char kEnableGpuMemoryBufferVideoFrames[];
+ CONTENT_EXPORT extern const char kEnableLCDText[];
+ CONTENT_EXPORT extern const char kEnableLogging[];
++CONTENT_EXPORT extern const char kDisableUnveil[];
+ CONTENT_EXPORT extern const char kEnableNetworkInformationDownlinkMax[];
+ CONTENT_EXPORT extern const char kEnableCanvas2DLayers[];
+ CONTENT_EXPORT extern const char kEnablePluginPlaceholderTesting[];
+@@ -263,7 +264,7 @@ CONTENT_EXPORT extern const char kRendererWaitForJavaD
  
  // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
  // of lacros-chrome is complete.
--#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
  CONTENT_EXPORT extern const char kEnableSpeechDispatcher[];
  #endif
  

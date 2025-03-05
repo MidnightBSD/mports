@@ -1,30 +1,32 @@
 PORTNAME=	chromium
-PORTVERSION=	91.0.4472.164
-PORTREVISION=	1
-CATEGORIES=	www java
+PORTVERSION=	105.0.5195.125
+CATEGORIES=	www wayland
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
-		FREEBSD_LOCAL/rene/chromium/:fonts
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+		https://nerd.hu/distfiles/:external
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		chrome-linux-${PORTVERSION}-llvm13.profdata${EXTRACT_SUFX}:external
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google web browser based on WebKit
+WWW=		https://www.chromium.org/Home
 
 LICENSE=	bsd3 lgpl2.1 mpl
 LICENSE_COMB=	multi
+
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
 
 BUILD_DEPENDS=	bash:shells/bash \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ply>0:devel/py-ply@${PY_FLAVOR} \
 		gperf:devel/gperf \
-		ffmpeg>=3.2.2,1:multimedia/ffmpeg \
 		flock:sysutils/flock \
 		node:www/node \
 		xcb-proto>0:x11/xcb-proto \
-		${LOCALBASE}/bin/ar:devel/binutils \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
 		${LOCALBASE}/share/usbids/usb.ids:misc/usbids \
 		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR} \
-		${LOCALBASE}/include/va/va.h:multimedia/libva
+		${LOCALBASE}/include/va/va.h:multimedia/libva \
+		${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
 
 LIB_DEPENDS=	libatspi.so:accessibility/at-spi2-core \
 		libspeechd.so:accessibility/speech-dispatcher \
@@ -34,6 +36,7 @@ LIB_DEPENDS=	libatspi.so:accessibility/at-spi2-core \
 		libspeex.so:audio/speex \
 		libdbus-1.so:devel/dbus \
 		libdbus-glib-1.so:devel/dbus-glib \
+		libevent.so:devel/libevent \
 		libicuuc.so:devel/icu \
 		libjsoncpp.so:devel/jsoncpp \
 		libpci.so:devel/libpci \
@@ -44,7 +47,6 @@ LIB_DEPENDS=	libatspi.so:accessibility/at-spi2-core \
 		libexif.so:graphics/libexif \
 		libpng.so:graphics/png \
 		libwebp.so:graphics/webp \
-		libavcodec.so:multimedia/ffmpeg \
 		libopenh264.so:multimedia/openh264 \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
@@ -54,22 +56,21 @@ LIB_DEPENDS=	libatspi.so:accessibility/at-spi2-core \
 		libnss3.so:security/nss \
 		libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig \
+		libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon \
 		libxshmfence.so:x11/libxshmfence
 
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		noto-basic>0:x11-fonts/noto-basic
 
-USES=		bison compiler:c++17-lang cpe desktop-file-utils dos2unix gl gnome jpeg localbase:ldflags \
-		ninja perl5 pkgconfig python:2.7,build shebangfix tar:xz xorg
+USES=		bison compiler:c++17-lang cpe desktop-file-utils gl gnome iconv jpeg \
+		localbase:ldflags ninja perl5 pkgconfig python:3.7+,build shebangfix \
+		tar:xz xorg
 
 CPE_VENDOR=	google
 CPE_PRODUCT=	chrome
-DOS2UNIX_FILES=	third_party/skia/third_party/vulkanmemoryallocator/include/vk_mem_alloc.h \
-		third_party/vulkan_memory_allocator/src/vk_mem_alloc.h
 USE_GL=		gbm gl
-USE_GNOME=	atk dconf glib20 gtk30 libxml2 libxslt
-INSTALLS_ICONS=	yes
+USE_GNOME=	atk dconf gdkpixbuf2 glib20 gtk30 libxml2 libxslt
 USE_LDCONFIG=	${DATADIR}
 USE_PERL5=	build
 USE_XORG=	x11 xcb xcomposite xcursor xext xdamage xfixes xi \
@@ -79,8 +80,7 @@ SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper buildtools/linux64/clang-
 MAKE_ARGS=	-C out/${BUILDTYPE}
 ALL_TARGET=	chrome
 
-BINARY_ALIAS=	python=${PYTHON_CMD}
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-clang
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 # TODO bz@ : install libwidevinecdm.so (see third_party/widevine/cdm/BUILD.gn)
 #
@@ -95,11 +95,12 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		enable_hangout_services_extension=true \
 		enable_js_type_check=false \
 		enable_nacl=false \
-		enable_one_click_signin=true \
 		enable_remoting=false \
-		fieldtrial_testing_like_official_build=true \
+		enable_wmax_tokens=false \
+		fatal_linker_warnings=false \
+		icu_use_data_file=false \
 		is_clang=true \
-		optimize_webui=false \
+		optimize_webui=true \
 		toolkit_views=true \
 		treat_warnings_as_errors=false \
 		use_allocator="none" \
@@ -109,11 +110,15 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_gnome_keyring=false \
 		use_lld=true \
 		use_sysroot=false \
-		use_system_freetype=true \
+		use_system_freetype=false \
 		use_system_harfbuzz=true \
 		use_system_libjpeg=true \
+		use_system_libwayland=true \
+		use_system_wayland_scanner=true \
+		use_udev=false \
 		extra_cxxflags="${CXXFLAGS}" \
 		extra_ldflags="${LDFLAGS}"
+
 # TODO: investigate building with these options:
 # use_system_minigbm
 GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild --skip-generate-buildfiles
@@ -127,8 +132,9 @@ GN_ARGS+=	google_api_key="AIzaSyC4CVcPIcQRgKU_aDmitQwNZNmuC_qbvUE"
 SUB_FILES=	chromium-browser.desktop chrome
 SUB_LIST+=	COMMENT="${COMMENT}"
 
-OPTIONS_DEFINE=	CODECS CUPS DEBUG DRIVER KERBEROS LTO TEST
+OPTIONS_DEFINE=		CODECS CUPS DEBUG DRIVER KERBEROS LTO TEST
 OPTIONS_DEFAULT=	CODECS CUPS DRIVER KERBEROS SNDIO
+OPTIONS_EXCLUDE_aarch64=LTO
 OPTIONS_GROUP=		AUDIO
 OPTIONS_GROUP_AUDIO=	ALSA PULSEAUDIO SNDIO
 OPTIONS_RADIO=		KERBEROS
@@ -155,18 +161,19 @@ CUPS_LIB_DEPENDS=	libcups.so:print/cups
 CUPS_VARS=		GN_ARGS+=use_cups=true
 CUPS_VARS_OFF=		GN_ARGS+=use_cups=false
 
+DEBUG_BUILD_DEPENDS=	esbuild:devel/esbuild
 DEBUG_VARS=		BUILDTYPE=Debug \
 			GN_ARGS+=is_debug=true \
 			GN_ARGS+=is_component_build=false \
 			GN_ARGS+=symbol_level=1 \
 			GN_BOOTSTRAP_FLAGS+=--debug \
-			WANTSPACE="13 GB"
+			WANTSPACE="21 GB"
 DEBUG_VARS_OFF=		BUILDTYPE=Release \
 			GN_ARGS+=blink_symbol_level=0 \
 			GN_ARGS+=is_debug=false \
 			GN_ARGS+=is_official_build=true \
 			GN_ARGS+=symbol_level=0 \
-			WANTSPACE="6.5 GB"
+			WANTSPACE="14 GB"
 
 DRIVER_MAKE_ARGS=	chromedriver
 
@@ -177,6 +184,7 @@ KERBEROS_VARS_OFF=	GN_ARGS+=use_kerberos=false
 LTO_VARS=		GN_ARGS+=use_thin_lto=true \
 			GN_ARGS+=thin_lto_enable_optimizations=true \
 			WANTSPACE="14 GB"
+LTO_VARS_OFF=		GN_ARGS+=use_thin_lto=false
 
 MIT_LIB_DEPENDS=	libkrb.so.3:security/krb5
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
@@ -193,7 +201,7 @@ SNDIO_VARS_OFF=		GN_ARGS+=use_sndio=false
 
 .include "Makefile.tests"
 TEST_DISTFILES=		${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX} \
-			test_fonts-85${EXTRACT_SUFX}:fonts
+			test_fonts-336e775eec536b2d785cc80eff6ac39051931286.tar.gz:external
 TEST_ALL_TARGET=	${TEST_TARGETS}
 
 .include <bsd.mport.options.mk>
@@ -203,12 +211,18 @@ TEST_ALL_TARGET=	${TEST_TARGETS}
 IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in base
 .endif
 
-.if ${COMPILER_VERSION} < 120
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-build_config_compiler_pgo_pgo.gni
-
-.if ${PORT_OPTIONS:MLTO}
-BROKEN+=	does not build with LTO needs LLVM 12+
-.endif
+.if ${COMPILER_VERSION} < 130
+LLVM_DEFAULT=		13
+BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+BINARY_ALIAS+=		cpp=${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT} \
+			cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT} \
+			c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT} \
+			ar=${LOCALBASE}/bin/llvm-ar${LLVM_DEFAULT} \
+			nm=${LOCALBASE}/bin/llvm-nm${LLVM_DEFAULT} \
+			ld=${LOCALBASE}/bin/ld.lld${LLVM_DEFAULT}
+.else
+BINARY_ALIAS+=		ar=/usr/bin/llvm-ar \
+			nm=/usr/bin/llvm-nm
 .endif
 
 # swiftshader/lib/{libEGL.so,libGLESv2.so} is x86 only
@@ -236,20 +250,6 @@ post-extract-TEST-on:
 	@${MKDIR} ${WRKSRC}/third_party/test_fonts/test_fonts
 	@${MV} ${WRKDIR}/test_fonts ${WRKSRC}/third_party/test_fonts/
 
-post-patch:
-	@${MKDIR} ${WRKSRC}/sandbox/policy/freebsd
-	@${CP} ${FILESDIR}/dir_reader_freebsd.h ${WRKSRC}/base/files
-	@${CP} ${FILESDIR}/device_info_fetcher_freebsd.h ${WRKSRC}/chrome/browser/enterprise/signals
-	@${CP} ${FILESDIR}/device_info_fetcher_freebsd.cc ${WRKSRC}/chrome/browser/enterprise/signals
-	@${CP} ${FILESDIR}/sandbox_freebsd.h ${WRKSRC}/sandbox/policy/freebsd
-	@${CP} ${FILESDIR}/sandbox_freebsd.cc ${WRKSRC}/sandbox/policy/freebsd
-
-post-patch-SNDIO-on:
-	@${MKDIR} ${WRKSRC}/media/audio/sndio ${WRKSRC}/media/audio/openbsd
-	@${CP} ${FILESDIR}/sndio_output.* ${WRKSRC}/media/audio/sndio
-	@${CP} ${FILESDIR}/sndio_input.* ${WRKSRC}/media/audio/sndio
-	@${CP} ${FILESDIR}/audio_manager_openbsd.* ${WRKSRC}/media/audio/openbsd
-
 pre-configure:
 	# We used to remove bundled libraries to be sure that chromium uses
 	# system libraries and not shipped ones.
@@ -257,15 +257,14 @@ pre-configure:
 	#./build/linux/unbundle/remove_bundled_libraries.py [list of preserved]
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
 		./build/linux/unbundle/replace_gn_files.py --system-libraries \
-		ffmpeg flac fontconfig freetype harfbuzz-ng libdrm libpng libwebp libxml libxslt openh264 opus snappy || ${FALSE}
-
-	# We need the site package from xcbgen, which installs as python3.x (really: default version), while the chromium
-	# build still needs to use python2.7. It works, because xcbgen can run with both versions, but we want to avoid
-	# having the pre-compiled pyc files from 2.7 in the 3.x site packages
-	# Remove this as soon as chromium uses python3.x as well
-	@${MKDIR} ${WRKDIR}/site-packages/xcbgen
-	${CP} ${PYTHONBASE}/lib/python${PYTHON_DEFAULT}/site-packages/xcbgen/*.py \
-		${WRKDIR}/site-packages/xcbgen
+		flac fontconfig freetype harfbuzz-ng icu libdrm libevent libpng \
+		libusb libwebp libxml libxslt openh264 opus snappy || ${FALSE}
+	# Chromium uses an unreleased version of FFmpeg, so configure it
+.for brand in Chrome Chromium
+	${CP} -R \
+		${WRKSRC}/third_party/ffmpeg/chromium/config/${brand}/linux/ \
+		${WRKSRC}/third_party/ffmpeg/chromium/config/${brand}/freebsd
+.endfor
 
 do-configure:
 	# GN generator bootstrapping and generating ninja files
@@ -276,17 +275,20 @@ do-configure:
 		gen --args='${GN_ARGS}' out/${BUILDTYPE}
 
 	# Setup nodejs dependency
-	@${MKDIR} ${WRKSRC}/third_party/node/freebsd/node-freebsd-x64/bin
-	${LN} -sf ${LOCALBASE}/bin/node ${WRKSRC}/third_party/node/freebsd/node-freebsd-x64/bin/node
+	@${MKDIR} ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin
+	${LN} -sf ${LOCALBASE}/bin/node ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin/node
 
 	# Setup buildtools/freebsd
 	@${MKDIR} ${WRKSRC}/buildtools/freebsd
 	${LN} -sf ${WRKSRC}/buildtools/linux64/clang-format ${WRKSRC}/buildtools/freebsd
 	${LN} -sf ${WRKSRC}/out/${BUILDTYPE}/gn ${WRKSRC}/buildtools/freebsd
+	${LN} -sf /usr/bin/strip ${WRKSRC}/buildtools/freebsd/strip
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_MAN} ${WRKSRC}/chrome/app/resources/manpage.1.in \
+		${STAGEDIR}${MANPREFIX}/man/man1/chrome.1
+	@${SED} -i "" -e 's,\@\@PACKAGE\@\@,chromium,g;s,\@\@MENUNAME\@\@,Chromium Web Browser,g' \
 		${STAGEDIR}${MANPREFIX}/man/man1/chrome.1
 	${CP} ${WRKSRC}/chrome/app/theme/chromium/product_logo_22_mono.png ${WRKSRC}/chrome/app/theme/chromium/product_logo_22.png
 .for s in 22 24 48 64 128 256
@@ -299,7 +301,7 @@ do-install:
 .for d in protoc mksnapshot
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${d} ${STAGEDIR}${DATADIR}
 .endfor
-.for d in icudtl.dat snapshot_blob.bin v8_context_snapshot.bin
+.for d in snapshot_blob.bin v8_context_snapshot.bin
 	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${d} ${STAGEDIR}${DATADIR}
 .endfor
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chrome \
@@ -317,31 +319,26 @@ do-install:
 .for f in libEGL.so libGLESv2.so libVkICD_mock_icd.so
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
 .endfor
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 \
+		${STAGEDIR}${DATADIR}/libvulkan.so
 .if ${BUILDTYPE} == Debug
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libVkLayer_khronos_validation.so ${STAGEDIR}${DATADIR}
 .endif
 
 	# SwiftShader
 .if ${ARCH} != aarch64
-	@${MKDIR} ${STAGEDIR}${DATADIR}/swiftshader
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvk_swiftshader.so ${STAGEDIR}${DATADIR}
-.for g in libEGL.so libGLESv2.so
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/swiftshader/${g} \
-		${STAGEDIR}${DATADIR}/swiftshader
-.endfor
 .endif
 
 post-install-DEBUG-on:
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/*.so \
 		${STAGEDIR}${DATADIR}
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 \
-		${STAGEDIR}${DATADIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/character_data_generator \
 		${STAGEDIR}${DATADIR}
 
 post-install-DRIVER-on:
-	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver \
-		${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver.unstripped \
+		${STAGEDIR}${PREFIX}/bin/chromedriver
 
 do-test-TEST-on:
 .for t in ${TEST_TARGETS}

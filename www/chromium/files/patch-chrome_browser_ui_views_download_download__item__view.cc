@@ -1,11 +1,11 @@
---- chrome/browser/ui/views/download/download_item_view.cc.orig	2021-04-14 18:40:55 UTC
+--- chrome/browser/ui/views/download/download_item_view.cc.orig	2022-07-22 17:30:31 UTC
 +++ chrome/browser/ui/views/download/download_item_view.cc
 @@ -188,7 +188,7 @@ bool UseNewWarnings() {
  }
  
  int GetFilenameStyle(const views::Label& label) {
--#if !defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if !defined(OS_LINUX) && !defined(OS_CHROMEOS) && !defined(OS_BSD)
+-#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
++#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS) && !BUILDFLAG(IS_BSD)
    if (UseNewWarnings())
      return STYLE_EMPHASIZED;
  #endif
@@ -13,8 +13,8 @@
  }
  
  int GetFilenameStyle(const views::StyledLabel& label) {
--#if !defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if !defined(OS_LINUX) && !defined(OS_CHROMEOS) && !defined(OS_BSD)
+-#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
++#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS) && !BUILDFLAG(IS_BSD)
    if (UseNewWarnings())
      return STYLE_EMPHASIZED;
  #endif

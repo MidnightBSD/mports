@@ -1,22 +1,22 @@
---- base/message_loop/message_pump_glib.cc.orig	2021-04-14 18:40:48 UTC
+--- base/message_loop/message_pump_glib.cc.orig	2022-08-31 12:19:35 UTC
 +++ base/message_loop/message_pump_glib.cc
 @@ -8,6 +8,11 @@
  #include <glib.h>
  #include <math.h>
  
-+#if defined(OS_BSD)
++#if BUILDFLAG(IS_BSD)
 +#include <pthread.h>
 +#include <pthread_np.h>
 +#endif
 +
  #include "base/logging.h"
- #include "base/numerics/safe_conversions.h"
- #include "base/posix/eintr_wrapper.h"
-@@ -48,9 +53,13 @@ int GetTimeIntervalMilliseconds(TimeTicks next_task_ti
+ #include "base/memory/raw_ptr.h"
+ #include "base/notreached.h"
+@@ -51,9 +56,13 @@ int GetTimeIntervalMilliseconds(TimeTicks next_task_ti
  }
  
  bool RunningOnMainThread() {
-+#if defined(OS_BSD)
++#if BUILDFLAG(IS_BSD)
 +  return pthread_main_np();
 +#else
    auto pid = getpid();

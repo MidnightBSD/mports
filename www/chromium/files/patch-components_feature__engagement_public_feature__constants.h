@@ -1,20 +1,20 @@
---- components/feature_engagement/public/feature_constants.h.orig	2021-05-12 22:05:49 UTC
+--- components/feature_engagement/public/feature_constants.h.orig	2022-08-31 12:19:35 UTC
 +++ components/feature_engagement/public/feature_constants.h
-@@ -16,7 +16,7 @@ extern const base::Feature kIPHDemoMode;
- // A feature to ensure all arrays can contain at least one feature.
- extern const base::Feature kIPHDummyFeature;
+@@ -32,7 +32,7 @@ extern const base::Feature kIPHDummyFeature;
+ extern const base::Feature kEnableIPH;
  
--#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+ extern const base::Feature kIPHDesktopSharedHighlightingFeature;
  extern const base::Feature kIPHDesktopTabGroupsNewGroupFeature;
- extern const base::Feature kIPHFocusModeFeature;
-@@ -30,7 +30,7 @@ extern const base::Feature kIPHWebUITabStripFeature;
- extern const base::Feature kIPHDesktopSnoozeFeature;
- extern const base::Feature kIPHDesktopPwaInstallFeature;
- extern const base::Feature kIPHProfileSwitchFeature;
--#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) ||
-         // defined(OS_CHROMEOS)
+ extern const base::Feature kIPHFocusHelpBubbleScreenReaderPromoFeature;
+@@ -181,7 +181,7 @@ extern const base::Feature kIPHPasswordSuggestionsFeat
+ extern const base::Feature kIPHFollowWhileBrowsingFeature;
+ #endif  // BUILDFLAG(IS_IOS)
  
- // All the features declared for Android below that are also used in Java,
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD) || \
+     BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
+ extern const base::Feature kIPHAutofillVirtualCardSuggestionFeature;
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) ||

@@ -1,11 +1,11 @@
---- chrome/browser/ui/views/eye_dropper/eye_dropper_view.cc.orig	2021-06-10 11:18:23 UTC
+--- chrome/browser/ui/views/eye_dropper/eye_dropper_view.cc.orig	2022-04-21 18:48:31 UTC
 +++ chrome/browser/ui/views/eye_dropper/eye_dropper_view.cc
-@@ -104,7 +104,7 @@ EyeDropperView::EyeDropperView(content::RenderFrameHos
-   SetModalType(ui::MODAL_TYPE_WINDOW);
-   SetOwnedByWidget(false);
+@@ -157,7 +157,7 @@ EyeDropperView::EyeDropperView(content::RenderFrameHos
+   // EyeDropper/WidgetDelegate.
+   set_owned_by_client();
    SetPreferredSize(GetSize());
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    // Use TYPE_MENU for Linux to ensure that the eye dropper view is displayed
    // above the color picker.
    views::Widget::InitParams params(views::Widget::InitParams::TYPE_MENU);

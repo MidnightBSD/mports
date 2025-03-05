@@ -1,29 +1,28 @@
---- chrome/browser/chrome_browser_main_linux.cc.orig	2021-04-14 18:40:52 UTC
+--- chrome/browser/chrome_browser_main_linux.cc.orig	2022-06-17 14:20:10 UTC
 +++ chrome/browser/chrome_browser_main_linux.cc
-@@ -47,7 +47,7 @@ ChromeBrowserMainPartsLinux::~ChromeBrowserMainPartsLi
+@@ -57,13 +57,15 @@ ChromeBrowserMainPartsLinux::~ChromeBrowserMainPartsLi
  }
  
- void ChromeBrowserMainPartsLinux::PreProfileInit() {
--#if !BUILDFLAG(IS_CHROMEOS_ASH)
-+#if !BUILDFLAG(IS_CHROMEOS_ASH) && !defined(OS_BSD)
-   // Needs to be called after we have chrome::DIR_USER_DATA and
-   // g_browser_process.  This happens in PreCreateThreads.
-   // base::GetLinuxDistro() will initialize its value if needed.
-@@ -79,7 +79,7 @@ void ChromeBrowserMainPartsLinux::PreProfileInit() {
+ void ChromeBrowserMainPartsLinux::PostCreateMainMessageLoop() {
+-#if BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   // No-op: Ash and Lacros Bluetooth DBusManager initialization depend on
+   // FeatureList, and is done elsewhere.
+ #endif  // BUILDFLAG(IS_CHROMEOS)
  
- 
- void ChromeBrowserMainPartsLinux::PostMainMessageLoopStart() {
--#if !BUILDFLAG(IS_CHROMEOS_ASH)
-+#if !BUILDFLAG(IS_CHROMEOS_ASH) && !defined(OS_BSD)
+ #if !BUILDFLAG(IS_CHROMEOS)
++#if !BUILDFLAG(IS_BSD)
    bluez::BluezDBusManager::Initialize(nullptr /* system_bus */);
- #endif
++#endif
  
-@@ -87,7 +87,7 @@ void ChromeBrowserMainPartsLinux::PostMainMessageLoopS
- }
+   // Set up crypt config. This needs to be done before anything starts the
+   // network service, as the raw encryption key needs to be shared with the
+@@ -123,7 +125,7 @@ void ChromeBrowserMainPartsLinux::PostBrowserStart() {
+ #endif  // defined(USE_DBUS) && !BUILDFLAG(IS_CHROMEOS)
  
  void ChromeBrowserMainPartsLinux::PostDestroyThreads() {
--#if !BUILDFLAG(IS_CHROMEOS_ASH)
-+#if !BUILDFLAG(IS_CHROMEOS_ASH) && !defined(OS_BSD)
+-#if BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   // No-op; per PostBrowserStart() comment, this is done elsewhere.
+ #else
    bluez::BluezDBusManager::Shutdown();
-   bluez::BluezDBusThreadManager::Shutdown();
- #endif

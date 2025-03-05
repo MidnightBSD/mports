@@ -1,21 +1,23 @@
---- chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc.orig	2021-05-12 22:05:44 UTC
+--- chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc.orig	2022-08-31 12:19:35 UTC
 +++ chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc
-@@ -63,7 +63,9 @@
+@@ -58,8 +58,10 @@
+ 
+ // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
  // of lacros-chrome is complete.
- #if defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
++#if !BUILDFLAG(IS_BSD)
  #include <gnu/libc-version.h>
 +#endif
  
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
  #include "base/linux_util.h"
  #include "base/strings/string_split.h"
- #include "base/strings/string_util.h"
-@@ -72,7 +74,7 @@
- #include "ui/base/ui_base_features.h"
- #include "ui/base/x/x11_util.h"
- #endif
--#endif  // defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#endif  // defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || defined(OS_BSD)
+@@ -523,7 +525,7 @@ void RecordStartupMetrics() {
  
- #if defined(USE_OZONE) || defined(USE_X11)
- #include "ui/events/devices/device_data_manager.h"
+   // Record whether Chrome is the default browser or not.
+   // Disabled on Linux due to hanging browser tests, see crbug.com/1216328.
+-#if !BUILDFLAG(IS_LINUX)
++#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_BSD)
+   shell_integration::DefaultWebClientState default_state =
+       shell_integration::GetDefaultBrowser();
+   base::UmaHistogramEnumeration("DefaultBrowser.State", default_state,

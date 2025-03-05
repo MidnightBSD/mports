@@ -1,11 +1,11 @@
---- headless/lib/browser/headless_browser_main_parts.h.orig	2021-05-12 22:05:54 UTC
+--- headless/lib/browser/headless_browser_main_parts.h.orig	2022-06-17 14:20:10 UTC
 +++ headless/lib/browser/headless_browser_main_parts.h
-@@ -46,7 +46,7 @@ class HeadlessBrowserMainParts : public content::Brows
-   void PreMainMessageLoopStart() override;
-   device::GeolocationSystemPermissionManager* GetLocationPermissionManager();
+@@ -48,7 +48,7 @@ class HEADLESS_EXPORT HeadlessBrowserMainParts
+ #if BUILDFLAG(IS_MAC)
+   void PreCreateMainMessageLoop() override;
  #endif
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
-   void PostMainMessageLoopStart() override;
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   void PostCreateMainMessageLoop() override;
  #endif
    void QuitMainMessageLoop();

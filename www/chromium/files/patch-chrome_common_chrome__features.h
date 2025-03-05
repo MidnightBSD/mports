@@ -1,38 +1,47 @@
---- chrome/common/chrome_features.h.orig	2021-06-09 22:13:57 UTC
+--- chrome/common/chrome_features.h.orig	2022-08-31 12:19:35 UTC
 +++ chrome/common/chrome_features.h
-@@ -70,10 +70,10 @@ extern const base::Feature kAppShimNewCloseBehavior;
- 
+@@ -81,7 +81,7 @@ extern const base::Feature kAppShimNewCloseBehavior;
  COMPONENT_EXPORT(CHROME_FEATURES) extern const base::Feature kAsyncDns;
  
--#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::Feature kAutofillAddressSurvey;
+ COMPONENT_EXPORT(CHROME_FEATURES)
+@@ -90,7 +90,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::Feature kAutofillPasswordSurvey;
+ #endif
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  COMPONENT_EXPORT(CHROME_FEATURES)
  extern const base::Feature kBackgroundModeAllowRestart;
--#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+@@ -210,7 +210,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::Feature kDesktopPWAsWebBundles;
  
- #if BUILDFLAG(IS_CHROMEOS_ASH)
- COMPONENT_EXPORT(CHROME_FEATURES) extern const base::Feature kBorealis;
-@@ -234,11 +234,11 @@ extern const base::Feature kEnableAmbientAuthenticatio
- 
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if defined(OS_WIN) || (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || \
-+#if defined(OS_WIN) || (defined(OS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || defined(OS_BSD) || \
-     defined(OS_MAC)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
  COMPONENT_EXPORT(CHROME_FEATURES)
- extern const base::Feature kEnableEphemeralGuestProfilesOnDesktop;
--#endif  // defined(OS_WIN) || (defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || (defined(OS_LINUX) || defined(OS_BSD) ||
-         // BUILDFLAG(IS_CHROMEOS_LACROS)) ||  defined(OS_MAC)
- 
- #if defined(OS_WIN)
-@@ -358,7 +358,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
- extern const base::Feature kIncompatibleApplicationsWarning;
- #endif  // defined(OS_ANDROID)
- 
--#if defined(OS_MAC) || defined(OS_WIN) || defined(OS_LINUX) || \
-+#if defined(OS_MAC) || defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ extern const base::Feature kChromeAppsDeprecation;
  COMPONENT_EXPORT(CHROME_FEATURES)
- extern const base::Feature kIncognitoBrandConsistencyForDesktop;
+@@ -424,7 +424,7 @@ extern const base::Feature kIncognitoNtpRevamp;
+ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::Feature kUpdateHistoryEntryPointsInIncognito;
+ 
+-#if BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && !BUILDFLAG(IS_CHROMEOS)
+ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::Feature kLinuxLowMemoryMonitor;
+ COMPONENT_EXPORT(CHROME_FEATURES)
+@@ -433,7 +433,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::FeatureParam<int> kLinuxLowMemoryMonitorCriticalLevel;
+ #endif  // BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::Feature kListWebAppsSwitch;
+ #endif

@@ -1,6 +1,6 @@
---- media/audio/BUILD.gn.orig	2021-04-14 18:41:05 UTC
+--- media/audio/BUILD.gn.orig	2022-07-22 17:30:31 UTC
 +++ media/audio/BUILD.gn
-@@ -236,7 +236,7 @@ source_set("audio") {
+@@ -248,9 +248,20 @@ source_set("audio") {
      ]
    }
  
@@ -8,22 +8,17 @@
 +  if ((is_linux || is_chromeos) && !use_sndio) {
      sources += [ "linux/audio_manager_linux.cc" ]
    }
- 
-@@ -301,6 +301,17 @@ source_set("audio") {
-     } else {
-       deps += [ ":libpulse_stubs" ]
-     }
-+  }
 +
 +  if (use_sndio) {
 +    libs += [ "sndio" ]
 +    sources += [
-+      "openbsd/audio_manager_openbsd.cc",
++      "sndio/audio_manager_sndio.cc",
 +      "sndio/sndio_input.cc",
 +      "sndio/sndio_input.h",
 +      "sndio/sndio_output.cc",
-+      "sndio/sndio_output.h",
++      "sndio/sndio_output.h"
 +    ]
-   }
++   }
  
-   if (is_fuchsia) {
+   if (use_alsa) {
+     libs += [ "asound" ]

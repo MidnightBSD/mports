@@ -1,29 +1,29 @@
---- content/browser/download/download_manager_impl.cc.orig	2021-05-12 22:05:52 UTC
+--- content/browser/download/download_manager_impl.cc.orig	2022-08-31 12:19:35 UTC
 +++ content/browser/download/download_manager_impl.cc
-@@ -83,7 +83,7 @@
- #include "third_party/blink/public/common/loader/referrer_utils.h"
- #include "third_party/blink/public/common/loader/throttling_url_loader.h"
+@@ -91,7 +91,7 @@
+ #include "third_party/blink/public/common/storage_key/storage_key.h"
+ #include "url/origin.h"
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "base/nix/xdg_util.h"
  #endif
  
-@@ -229,7 +229,7 @@ class DownloadItemFactoryImpl : public download::Downl
+@@ -218,7 +218,7 @@ class DownloadItemFactoryImpl : public download::Downl
    }
  };
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  base::FilePath GetTemporaryDownloadDirectory() {
    std::unique_ptr<base::Environment> env(base::Environment::Create());
    return base::nix::GetXDGDirectory(env.get(), "XDG_DATA_HOME", ".local/share");
-@@ -570,7 +570,7 @@ bool DownloadManagerImpl::InterceptDownload(
+@@ -654,7 +654,7 @@ bool DownloadManagerImpl::InterceptDownload(
  
  base::FilePath DownloadManagerImpl::GetDefaultDownloadDirectory() {
    base::FilePath default_download_directory;
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    // TODO(thomasanderson,crbug.com/784010): Remove this when all Linux
    // distros with versions of GTK lower than 3.14.7 are no longer
    // supported.  This should happen when support for Ubuntu Trusty and

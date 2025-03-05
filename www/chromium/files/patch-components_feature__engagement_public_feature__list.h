@@ -1,38 +1,40 @@
---- components/feature_engagement/public/feature_list.h.orig	2021-05-24 22:05:38 UTC
+--- components/feature_engagement/public/feature_list.h.orig	2022-08-31 12:19:35 UTC
 +++ components/feature_engagement/public/feature_list.h
-@@ -155,7 +155,7 @@ DEFINE_VARIATION_PARAM(kIPHDiscoverFeedHeaderFeature,
-                        "IPH_DiscoverFeedHeaderMenu");
- #endif  // defined(OS_IOS)
+@@ -227,7 +227,7 @@ DEFINE_VARIATION_PARAM(kIPHFollowWhileBrowsingFeature,
+ #endif  // BUILDFLAG(IS_IOS)
  
--#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || \
-+#if defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
  DEFINE_VARIATION_PARAM(kIPHDesktopTabGroupsNewGroupFeature,
                         "IPH_DesktopTabGroupsNewGroup");
-@@ -172,7 +172,7 @@ DEFINE_VARIATION_PARAM(kIPHReopenTabFeature, "IPH_Reop
- DEFINE_VARIATION_PARAM(kIPHWebUITabStripFeature, "IPH_WebUITabStrip");
- DEFINE_VARIATION_PARAM(kIPHDesktopPwaInstallFeature, "IPH_DesktopPwaInstall");
- DEFINE_VARIATION_PARAM(kIPHProfileSwitchFeature, "IPH_ProfileSwitch");
--#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) ||
-         // defined(OS_CHROMEOS)
+ DEFINE_VARIATION_PARAM(kIPHFocusModeFeature, "IPH_FocusMode");
+@@ -256,7 +256,8 @@ DEFINE_VARIATION_PARAM(kIPHIntentChipFeature, "IPH_Int
+         // BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
  
- }  // namespace
-@@ -248,7 +248,7 @@ constexpr flags_ui::FeatureEntry::FeatureVariation
-         VARIATION_ENTRY(kIPHBadgedReadingListFeature),
-         VARIATION_ENTRY(kIPHBadgedTranslateManualTriggerFeature),
-         VARIATION_ENTRY(kIPHDiscoverFeedHeaderFeature),
--#elif defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || \
-+#elif defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) || \
-     defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA) || \
++    BUILDFLAG(IS_BSD)
+ DEFINE_VARIATION_PARAM(kIPHAutofillVirtualCardSuggestionFeature,
+                        "IPH_AutofillVirtualCardSuggestion");
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) ||
+@@ -363,7 +364,7 @@ constexpr flags_ui::FeatureEntry::FeatureVariation
+         VARIATION_ENTRY(kIPHPasswordSuggestionsFeature),
+         VARIATION_ENTRY(kIPHFollowWhileBrowsingFeature),
+ #elif BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
          VARIATION_ENTRY(kIPHDesktopTabGroupsNewGroupFeature),
          VARIATION_ENTRY(kIPHFocusModeFeature),
-@@ -261,7 +261,7 @@ constexpr flags_ui::FeatureEntry::FeatureVariation
-         VARIATION_ENTRY(kIPHWebUITabStripFeature),
-         VARIATION_ENTRY(kIPHDesktopPwaInstallFeature),
-         VARIATION_ENTRY(kIPHProfileSwitchFeature),
--#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) ||
-+#endif  // defined(OS_WIN) || defined(OS_APPLE) || defined(OS_LINUX) || defined(OS_BSD) ||
-         // defined(OS_CHROMEOS)
- };
+         VARIATION_ENTRY(kIPHGlobalMediaControls),
+@@ -386,7 +387,8 @@ constexpr flags_ui::FeatureEntry::FeatureVariation
+         // BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
  
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA) || \
++    BUILDFLAG(IS_BSD)
+         VARIATION_ENTRY(kIPHAutofillVirtualCardSuggestionFeature),
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) ||
+         // BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) ||

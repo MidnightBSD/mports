@@ -1,6 +1,6 @@
---- ui/gl/generate_bindings.py.orig	2021-04-14 18:41:39 UTC
+--- ui/gl/generate_bindings.py.orig	2022-08-31 12:19:35 UTC
 +++ ui/gl/generate_bindings.py
-@@ -2840,6 +2840,9 @@ GLX_FUNCTIONS = [
+@@ -2932,6 +2932,9 @@ GLX_FUNCTIONS = [
    'arguments':
        'Display* dpy, GLXDrawable drawable, int32_t* numerator, '
        'int32_t* denominator' },

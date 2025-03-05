@@ -1,52 +1,38 @@
---- content/renderer/render_thread_impl.cc.orig	2021-05-12 22:05:53 UTC
+--- content/renderer/render_thread_impl.cc.orig	2022-08-31 12:19:35 UTC
 +++ content/renderer/render_thread_impl.cc
-@@ -180,7 +180,7 @@
+@@ -190,7 +190,7 @@
  
- #if defined(OS_MAC)
+ #if BUILDFLAG(IS_MAC)
  #include <malloc/malloc.h>
 -#else
-+#elif !defined(OS_BSD)
++#elif !BUILDFLAG(IS_OPENBSD)
  #include <malloc.h>
  #endif
  
-@@ -714,7 +714,7 @@ void RenderThreadImpl::Init() {
-                        compositor_thread_pipeline_.get()));
-   }
- 
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
-   categorized_worker_pool_->SetBackgroundingCallback(
-       main_thread_scheduler_->DefaultTaskRunner(),
-       base::BindOnce(
-@@ -737,7 +737,7 @@ void RenderThreadImpl::Init() {
+@@ -670,7 +670,7 @@ void RenderThreadImpl::Init() {
    base::DiscardableMemoryAllocator::SetInstance(
        discardable_memory_allocator_.get());
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
-   if (base::FeatureList::IsEnabled(
-           blink::features::kBlinkCompositorUseDisplayThreadPriority)) {
-     render_message_filter()->SetThreadPriority(
-@@ -1058,11 +1058,11 @@ media::GpuVideoAcceleratorFactories* RenderThreadImpl:
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   render_message_filter()->SetThreadType(
+       ChildProcess::current()->io_thread_id(), base::ThreadType::kCompositing);
+ #endif
+@@ -1040,7 +1040,7 @@ media::GpuVideoAcceleratorFactories* RenderThreadImpl:
  
-   const bool enable_video_accelerator =
+   const bool enable_video_decode_accelerator =
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
        base::FeatureList::IsEnabled(media::kVaapiVideoDecodeLinux) &&
  #else
        !cmd_line->HasSwitch(switches::kDisableAcceleratedVideoDecode) &&
--#endif  // defined(OS_LINUX)
-+#endif  // defined(OS_LINUX) || defined(OS_BSD)
-       (gpu_channel_host->gpu_feature_info()
-            .status_values[gpu::GPU_FEATURE_TYPE_ACCELERATED_VIDEO_DECODE] ==
-        gpu::kGpuFeatureStatusEnabled);
-@@ -1072,7 +1072,7 @@ media::GpuVideoAcceleratorFactories* RenderThreadImpl:
-       !cmd_line->HasSwitch(switches::kDisableGpuMemoryBufferVideoFrames);
+@@ -1051,7 +1051,7 @@ media::GpuVideoAcceleratorFactories* RenderThreadImpl:
+ 
+   const bool enable_video_encode_accelerator =
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+       base::FeatureList::IsEnabled(media::kVaapiVideoEncodeLinux) &&
  #else
-       cmd_line->HasSwitch(switches::kEnableGpuMemoryBufferVideoFrames);
--#endif  // defined(OS_MAC) || defined(OS_LINUX) || defined(OS_CHROMEOS) ||
-+#endif  // defined(OS_MAC) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
-         // defined(OS_WIN)
-   const bool enable_media_stream_gpu_memory_buffers =
-       enable_gpu_memory_buffers &&
+       !cmd_line->HasSwitch(switches::kDisableAcceleratedVideoEncode) &&

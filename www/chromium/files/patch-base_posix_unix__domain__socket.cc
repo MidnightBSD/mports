@@ -1,49 +1,39 @@
---- base/posix/unix_domain_socket.cc.orig	2021-06-09 22:13:52 UTC
+--- base/posix/unix_domain_socket.cc.orig	2022-08-31 12:19:35 UTC
 +++ base/posix/unix_domain_socket.cc
-@@ -5,7 +5,10 @@
- #include "base/posix/unix_domain_socket.h"
+@@ -51,7 +51,7 @@ bool CreateSocketPair(ScopedFD* one, ScopedFD* two) {
  
- #include <errno.h>
-+#include <sys/param.h>
- #include <sys/socket.h>
-+#include <sys/types.h>
-+#include <sys/ucred.h>
- #if !defined(OS_NACL_NONSFI)
- #include <sys/un.h>
- #endif
-@@ -29,6 +32,14 @@ namespace base {
+ // static
+ bool UnixDomainSocket::EnableReceiveProcessId(int fd) {
+-#if !BUILDFLAG(IS_APPLE)
++#if !BUILDFLAG(IS_APPLE) && !BUILDFLAG(IS_BSD)
+   const int enable = 1;
+   return setsockopt(fd, SOL_SOCKET, SO_PASSCRED, &enable, sizeof(enable)) == 0;
+ #else
+@@ -149,7 +149,7 @@ ssize_t UnixDomainSocket::RecvMsgWithFlags(int fd,
  
- const size_t UnixDomainSocket::kMaxFileDescriptors = 16;
- 
-+#ifndef SCM_CREDENTIALS
-+#  define SCM_CREDENTIALS  0x9001
-+#endif
-+
-+#ifndef SO_PASSCRED
-+#  define SO_PASSCRED      0x9002
-+#endif
-+
- #if !defined(OS_NACL_NONSFI)
- bool CreateSocketPair(ScopedFD* one, ScopedFD* two) {
-   int raw_socks[2];
-@@ -151,7 +162,7 @@ ssize_t UnixDomainSocket::RecvMsgWithFlags(int fd,
- #if !defined(OS_NACL_NONSFI) && !defined(OS_APPLE)
-       // The PNaCl toolchain for Non-SFI binary build and macOS do not support
-       // ucred. macOS supports xucred, but this structure is insufficient.
--      + CMSG_SPACE(sizeof(struct ucred))
-+      + CMSG_SPACE(sizeof(struct cmsgcred))
- #endif  // !defined(OS_NACL_NONSFI) && !defined(OS_APPLE)
-       ;
-   char control_buffer[kControlBufferSize];
-@@ -181,9 +192,9 @@ ssize_t UnixDomainSocket::RecvMsgWithFlags(int fd,
-       // SCM_CREDENTIALS.
+   const size_t kControlBufferSize =
+       CMSG_SPACE(sizeof(int) * kMaxFileDescriptors)
+-#if !BUILDFLAG(IS_APPLE)
++#if !BUILDFLAG(IS_APPLE) && !BUILDFLAG(IS_BSD)
+       // macOS does not support ucred.
+       // macOS supports xucred, but this structure is insufficient.
+       + CMSG_SPACE(sizeof(struct ucred))
+@@ -177,7 +177,7 @@ ssize_t UnixDomainSocket::RecvMsgWithFlags(int fd,
+         wire_fds = reinterpret_cast<int*>(CMSG_DATA(cmsg));
+         wire_fds_len = payload_len / sizeof(int);
+       }
+-#if !BUILDFLAG(IS_APPLE)
++#if !BUILDFLAG(IS_APPLE) && !BUILDFLAG(IS_BSD)
+       // macOS does not support SCM_CREDENTIALS.
        if (cmsg->cmsg_level == SOL_SOCKET &&
            cmsg->cmsg_type == SCM_CREDENTIALS) {
--        DCHECK_EQ(payload_len, sizeof(struct ucred));
-+        DCHECK_EQ(payload_len, sizeof(struct cmsgcred));
-         DCHECK_EQ(pid, -1);
--        pid = reinterpret_cast<struct ucred*>(CMSG_DATA(cmsg))->pid;
-+        pid = getpid();
-       }
- #endif  // !defined(OS_NACL_NONSFI) && !defined(OS_APPLE)
-     }
+@@ -211,6 +211,9 @@ ssize_t UnixDomainSocket::RecvMsgWithFlags(int fd,
+     socklen_t pid_size = sizeof(pid);
+     if (getsockopt(fd, SOL_LOCAL, LOCAL_PEERPID, &pid, &pid_size) != 0)
+       pid = -1;
++#elif BUILDFLAG(IS_BSD)
++    NOTIMPLEMENTED();
++    pid = -1;
+ #else
+     // |pid| will legitimately be -1 if we read EOF, so only DCHECK if we
+     // actually received a message.  Unfortunately, Linux allows sending zero
