@@ -1,5 +1,5 @@
 PORTNAME=	jenkins
-PORTVERSION=	2.487
+PORTVERSION=	2.500
 CATEGORIES=	devel java
 MASTER_SITES=	https://get.jenkins.io/war/${PORTVERSION}/
 DISTNAME=	jenkins
@@ -15,14 +15,13 @@ LICENSE=	mit
 
 CONFLICTS=	jenkins-lts-[0-9]*
 
-USE_JAVA=	yes
+USES=		cpe java
 JAVA_VERSION=	17+
 
 NO_BUILD=	yes
 
 USE_RC_SUBR=	jenkins
 
-USES+=		cpe
 CPE_VENDOR=	cloudbees
 
 JENKINS_HOME?=	${PREFIX}/jenkins
