@@ -6,7 +6,7 @@
    # Path to wayland-scanner. Has effect only when the system libwayland is used.
 -  assert(host_os == "linux")
 -  system_wayland_scanner_path = "/usr/bin/wayland-scanner"
-+  assert(host_os == "linux" || host_os == "freebsd")
++  assert(host_os == "linux" || host_os == "freebsd" || host_os == "midnightbsd")
 +  if (is_bsd) {
 +    system_wayland_scanner_path = "/usr/local/bin/wayland-scanner"
 +  } else {
