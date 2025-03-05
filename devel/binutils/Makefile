@@ -157,8 +157,8 @@ post-install:
 .for tool in ${BUREMOVE}
 	-${RM} ${PREFIX}/bin/${BUTARGET}-${tool} \
 	    ${PREFIX}/bin/${tool} \
-	    ${MANPREFIX}/man/man1/${BUTARGET}-${tool}.1 \
-	    ${MANPREFIX}/man/man1/${tool}.1 \
+	    ${PREFIX}/man/man1/${BUTARGET}-${tool}.1 \
+	    ${PREFIX}/man/man1/${tool}.1 \
 	    ${PREFIX}/${BUTARGET}/bin/${tool}
 .endfor
 .if defined(BUREMOVE) && ${BUREMOVE:Mld}
