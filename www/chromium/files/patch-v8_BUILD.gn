@@ -8,7 +8,7 @@
 +    defines += [ "V8_HAVE_TARGET_OS" ]
 +    defines += [ "V8_TARGET_OS_OPENBSD" ]
 +    defines += [ "V8_TARGET_OS_BSD" ]
-+  } else if (target_os == "freebsd") {
++  } else if (target_os == "freebsd" || target_os == "midnightbsd") {
 +    defines += [ "V8_HAVE_TARGET_OS" ]
 +    defines += [ "V8_TARGET_OS_FREEBSD" ]
 +    defines += [ "V8_TARGET_OS_BSD" ]

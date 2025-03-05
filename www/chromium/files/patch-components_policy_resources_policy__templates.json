@@ -5,7 +5,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.win7:11-', 'chrome.mac:11-', 'chrome.linux:11-'],
-+      'supported_on': ['chrome.win7:11-', 'chrome.mac:11-', 'chrome.linux:11-', 'chrome.openbsd:11-', 'chrome.freebsd:11-'],
++      'supported_on': ['chrome.win7:11-', 'chrome.mac:11-', 'chrome.linux:11-', 'chrome.midnightbsd:11-', 'chrome.freebsd:11-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': False,
@@ -14,7 +14,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.linux:25-', 'chrome.mac:25-'],
-+      'supported_on': ['chrome.linux:25-', 'chrome.mac:25-', 'chrome.openbsd:25-', 'chrome.freebsd:25-'],
++      'supported_on': ['chrome.linux:25-', 'chrome.mac:25-', 'chrome.midnightbsd:25-', 'chrome.freebsd:25-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': False,
@@ -23,7 +23,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.win:57-', 'chrome.mac:88-', 'chrome.linux:88-'],
-+      'supported_on': ['chrome.win:57-', 'chrome.mac:88-', 'chrome.linux:88-', 'chrome.openbsd:88-', 'chrome.freebsd:88-'],
++      'supported_on': ['chrome.win:57-', 'chrome.mac:88-', 'chrome.linux:88-', 'chrome.midnightbsd:88-', 'chrome.freebsd:88-'],
        'features': {
          'dynamic_refresh': False,
          'per_profile': False,
@@ -32,7 +32,7 @@
        'type': 'string',
        'schema': { 'type': 'string' },
 -      'supported_on': ['chrome.win:57-', 'chrome.mac:88-', 'chrome.linux:88-'],
-+      'supported_on': ['chrome.win:57-', 'chrome.mac:88-', 'chrome.linux:88-', 'chrome.openbsd:88-', 'chrome.freebsd:88-'],
++      'supported_on': ['chrome.win:57-', 'chrome.mac:88-', 'chrome.linux:88-', 'chrome.midnightbsd:88-', 'chrome.freebsd:88-'],
        'features': {
          'dynamic_refresh': False,
          'per_profile': False,
@@ -41,7 +41,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.linux:74-','chrome.mac:74-','chrome_os:74-'],
-+      'supported_on': ['chrome.linux:74-','chrome.mac:74-','chrome_os:74-','chrome.openbsd:74-','chrome.freebsd:74-'],
++      'supported_on': ['chrome.linux:74-','chrome.mac:74-','chrome_os:74-','chrome.midnightbsd:74-','chrome.freebsd:74-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': False,
@@ -50,7 +50,7 @@
        'type': 'string',
        'schema': { 'type': 'string' },
 -      'supported_on': ['chrome.linux:9-'],
-+      'supported_on': ['chrome.linux:9-','chrome.openbsd:9-','chrome.freebsd:9-'],
++      'supported_on': ['chrome.linux:9-','chrome.midnightbsd:9-','chrome.freebsd:9-'],
        'features': {
          'dynamic_refresh': False,
          'per_profile': False,
@@ -59,7 +59,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.linux:63-','chrome.mac:63-','chrome_os:63-','android:63-','webview_android:63-'],
-+      'supported_on': ['chrome.linux:63-','chrome.mac:63-','chrome_os:63-','android:63-','webview_android:63-','chrome.openbsd:63-','chrome.freebsd:63-'],
++      'supported_on': ['chrome.linux:63-','chrome.mac:63-','chrome_os:63-','android:63-','webview_android:63-','chrome.midnightbsd:63-','chrome.freebsd:63-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': False,
@@ -68,7 +68,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome_os:30-', 'chrome.linux:30-', 'chrome.win:30-'],
-+      'supported_on': ['chrome_os:30-', 'chrome.linux:30-', 'chrome.win:30-', 'chrome.openbsd:30-', 'chrome.freebsd:30-'],
++      'supported_on': ['chrome_os:30-', 'chrome.linux:30-', 'chrome.win:30-', 'chrome.midnightbsd:30-', 'chrome.freebsd:30-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': False,
@@ -77,7 +77,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome_os:77-83', 'chrome.linux:79-83', 'chrome.mac:83-'],
-+      'supported_on': ['chrome_os:77-83', 'chrome.linux:79-83', 'chrome.mac:83-', 'chrome.openbsd:79-83', 'chrome.freebsd:79-83'],
++      'supported_on': ['chrome_os:77-83', 'chrome.linux:79-83', 'chrome.mac:83-', 'chrome.midnightbsd:79-83', 'chrome.freebsd:79-83'],
        'features': {
          'dynamic_refresh': False,
          'per_profile': False,
@@ -86,7 +86,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.win:19-', 'chrome.linux:19-'],
-+      'supported_on': ['chrome.win:19-', 'chrome.linux:19-', 'chrome.openbsd:19-', 'chrome.freebsd:19-'],
++      'supported_on': ['chrome.win:19-', 'chrome.linux:19-', 'chrome.midnightbsd:19-', 'chrome.freebsd:19-'],
        'features': {
          'can_be_recommended': True,
          'dynamic_refresh': True,
@@ -95,7 +95,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.win:31-', 'chrome.linux:31-', 'chrome_os:31-'],
-+      'supported_on': ['chrome.win:31-', 'chrome.linux:31-', 'chrome_os:31-', 'chrome.openbsd:31-', 'chrome.freebsd:31-'],
++      'supported_on': ['chrome.win:31-', 'chrome.linux:31-', 'chrome_os:31-', 'chrome.midnightbsd:31-', 'chrome.freebsd:31-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': True,
@@ -104,7 +104,7 @@
        },
        # Spell checking is provided by macOS, so can't be controlled on Mac.
 -      'supported_on': ['chrome.win:65-', 'chrome.linux:65-', 'chrome_os:65-'],
-+      'supported_on': ['chrome.win:65-', 'chrome.linux:65-', 'chrome_os:65-', 'chrome.openbsd:65-', 'chrome.freebsd:65-'],
++      'supported_on': ['chrome.win:65-', 'chrome.linux:65-', 'chrome_os:65-', 'chrome.midnightbsd:65-', 'chrome.freebsd:65-'],
        'features': {
          'can_be_recommended': False,
          'dynamic_refresh': True,
@@ -113,7 +113,7 @@
        },
        # Spell checking is provided by macOS, so can't be controlled on Mac.
 -      'supported_on': ['chrome.win:75-100', 'chrome.linux:75-100', 'chrome_os:75-100'],
-+      'supported_on': ['chrome.win:75-100', 'chrome.linux:75-100', 'chrome_os:75-100', 'chrome.openbsd:75-100', 'chrome.freebsd:75-100'],
++      'supported_on': ['chrome.win:75-100', 'chrome.linux:75-100', 'chrome_os:75-100', 'chrome.midnightbsd:75-100', 'chrome.freebsd:75-100'],
        'deprecated': True,
        'features': {
          'can_be_recommended': False,
@@ -122,7 +122,7 @@
        },
        # Spell checking is provided by macOS, so can't be controlled on Mac.
 -      'supported_on': ['chrome.win:86-', 'chrome.linux:86-', 'chrome_os:86-'],
-+      'supported_on': ['chrome.win:86-', 'chrome.linux:86-', 'chrome_os:86-', 'chrome.openbsd:86-', 'chrome.freebsd:86-'],
++      'supported_on': ['chrome.win:86-', 'chrome.linux:86-', 'chrome_os:86-', 'chrome.midnightbsd:86-', 'chrome.freebsd:86-'],
        'features': {
          'can_be_recommended': False,
          'dynamic_refresh': True,
@@ -131,7 +131,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.win:66-', 'chrome.linux:66-', 'chrome.mac:66-', 'chrome_os:66-'],
-+      'supported_on': ['chrome.win:66-', 'chrome.linux:66-', 'chrome.mac:66-', 'chrome_os:66-', 'chrome.openbsd:66-', 'chrome.freebsd:66-'],
++      'supported_on': ['chrome.win:66-', 'chrome.linux:66-', 'chrome.mac:66-', 'chrome_os:66-', 'chrome.midnightbsd:66-', 'chrome.freebsd:66-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': True,
@@ -140,7 +140,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.win:79-', 'chrome.linux:79-', 'chrome.mac:79-'],
-+      'supported_on': ['chrome.win:79-', 'chrome.linux:79-', 'chrome.mac:79-', 'chrome.openbsd:79-', 'chrome.freebsd:79-'],
++      'supported_on': ['chrome.win:79-', 'chrome.linux:79-', 'chrome.mac:79-', 'chrome.midnightbsd:79-', 'chrome.freebsd:79-'],
        'features': {
          'dynamic_refresh': False,
          'per_profile': False,
@@ -149,7 +149,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.linux:83-100'],
-+      'supported_on': ['chrome.linux:83-100','chrome.openbsd:83-100','chrome.freebsd:83-100'],
++      'supported_on': ['chrome.linux:83-100','chrome.midnightbsd:83-100','chrome.freebsd:83-100'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': True,
@@ -158,7 +158,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.linux:90-'],
-+      'supported_on': ['chrome.linux:90-','chrome.openbsd:90-','chrome.freebsd:90-'],
++      'supported_on': ['chrome.linux:90-','chrome.midnightbsd:90-','chrome.freebsd:90-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': True,
@@ -167,7 +167,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.linux:91-92', 'chrome_os:91-'],
-+      'supported_on': ['chrome.linux:91-92', 'chrome_os:91-', 'chrome.openbsd:91-', 'chrome.freebsd:91-'],
++      'supported_on': ['chrome.linux:91-92', 'chrome_os:91-', 'chrome.midnightbsd:91-', 'chrome.freebsd:91-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': False,
@@ -176,7 +176,7 @@
        ],
        'default': True,
 -      'supported_on': ['chrome.win:93-', 'chrome.linux:93-', 'chrome.mac:93-'],
-+      'supported_on': ['chrome.win:93-', 'chrome.linux:93-', 'chrome.mac:93-', 'chrome.openbsd:93-', 'chrome.freebsd:93-'],
++      'supported_on': ['chrome.win:93-', 'chrome.linux:93-', 'chrome.mac:93-', 'chrome.midnightbsd:93-', 'chrome.freebsd:93-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': True,
@@ -185,7 +185,7 @@
        'type': 'main',
        'schema': { 'type': 'boolean' },
 -      'supported_on': ['chrome.win:104-', 'chrome.mac:104-', 'chrome.linux:104-'],
-+      'supported_on': ['chrome.win:104-', 'chrome.mac:104-', 'chrome.linux:104-', 'chrome.openbsd:104-', 'chrome.freebsd:104-'],
++      'supported_on': ['chrome.win:104-', 'chrome.mac:104-', 'chrome.linux:104-', 'chrome.midnightbsd:104-', 'chrome.freebsd:104-'],
        'features': {
          'dynamic_refresh': True,
          'per_profile': True,

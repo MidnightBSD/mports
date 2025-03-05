@@ -4,7 +4,7 @@
                  'mac': 'Feature::MACOSX_PLATFORM',
                  'win': 'Feature::WIN_PLATFORM',
                  'fuchsia': 'Feature::FUCHSIA_PLATFORM',
-+                'openbsd': 'Feature::LINUX_PLATFORM',
++                'midnightbsd': 'Feature::LINUX_PLATFORM',
 +                'freebsd': 'Feature::LINUX_PLATFORM',
              }
          }

@@ -5,7 +5,7 @@
      status: {
        valid_values: ["stable", "experimental", "test"],
 -      valid_keys: ["Android", "Win", "ChromeOS_Ash", "ChromeOS_Lacros", "Mac", "Linux"]
-+      valid_keys: ["Android", "Win", "ChromeOS_Ash", "ChromeOS_Lacros", "Mac", "Linux", "OpenBSD", "FreeBSD"]
++      valid_keys: ["Android", "Win", "ChromeOS_Ash", "ChromeOS_Lacros", "Mac", "Linux", "OpenBSD", "FreeBSD", "MidnightBSD"]
      },
  
      // "implied_by" or "depends_on" specifies relationship to other features:
@@ -14,7 +14,7 @@
        status: {"Android": "test", "default": "experimental"},
        origin_trial_feature_name: "FileHandling",
 -      origin_trial_os: ["win", "mac", "linux", "fuchsia", "chromeos"],
-+      origin_trial_os: ["win", "mac", "linux", "fuchsia", "chromeos", "openbsd", "freebsd"],
++      origin_trial_os: ["win", "mac", "linux", "fuchsia", "chromeos", "openbsd", "freebsd", "midnightbsd"],
      },
      {
        name: "FileHandlingIcons",
@@ -23,7 +23,7 @@
        name: "U2FSecurityKeyAPI",
        origin_trial_feature_name: "U2FSecurityKeyAPI",
 -      origin_trial_os: ["win", "mac", "linux", "chromeos"],
-+      origin_trial_os: ["win", "mac", "linux", "chromeos", "openbsd", "freebsd"],
++      origin_trial_os: ["win", "mac", "linux", "chromeos", "openbsd", "freebsd", "midnightbsd"],
        origin_trial_type: "deprecation",
      },
      {
@@ -32,7 +32,7 @@
        name: "UnrestrictedSharedArrayBuffer",
        origin_trial_feature_name: "UnrestrictedSharedArrayBuffer",
 -      origin_trial_os: ["win", "mac", "linux", "fuchsia", "chromeos"],
-+      origin_trial_os: ["win", "mac", "linux", "fuchsia", "chromeos", "openbsd", "freebsd"],
++      origin_trial_os: ["win", "mac", "linux", "fuchsia", "chromeos", "openbsd", "freebsd", "midnightbsd"],
      },
      {
        name: "URLPatternCompareComponent",
@@ -41,7 +41,7 @@
        origin_trial_allows_third_party: true,
        // iOS not included as it should not send a reduced User-Agent string.
 -      origin_trial_os: ["android", "chromeos", "fuchsia", "linux", "mac", "win"],
-+      origin_trial_os: ["android", "chromeos", "fuchsia", "linux", "mac", "win", "openbsd", "freebsd"],
++      origin_trial_os: ["android", "chromeos", "fuchsia", "linux", "mac", "win", "openbsd", "freebsd", "midnightbsd"],
      },
      {
        name: "V8IdleTasks",
@@ -50,13 +50,13 @@
        status: "experimental",
        origin_trial_feature_name: "WebAppUrlHandling",
 -      origin_trial_os: ["win", "mac", "linux"],
-+      origin_trial_os: ["win", "mac", "linux", "openbsd", "freebsd"],
++      origin_trial_os: ["win", "mac", "linux", "openbsd", "freebsd", "midnightbsd"],
      },
      {
        name: "WebAppWindowControlsOverlay",
        origin_trial_feature_name: "WebAppWindowControlsOverlay",
 -      origin_trial_os: ["win", "mac", "linux", "chromeos"],
-+      origin_trial_os: ["win", "mac", "linux", "chromeos", "openbsd", "freebsd"],
++      origin_trial_os: ["win", "mac", "linux", "chromeos", "openbsd", "freebsd", "midnightbsd"],
        status: "stable",
      },
      {

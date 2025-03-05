@@ -5,7 +5,7 @@
      'mac',
      'windows',
 +    'openbsd',
-+    'freebsd',
++    'freebsd', 'midnightbsd',
  ]
  
  _form_factors = [

@@ -8,7 +8,7 @@
 +    return self._platform == 'openbsd'
 +
 +  def is_freebsd(self):
-+    return self._platform == 'freebsd'
++    return self._platform == 'freebsd' || self._platform == 'midnightbsd'
 +
    def is_posix(self):
      return self._platform in ['linux', 'freebsd', 'darwin', 'aix', 'openbsd', 'haiku', 'solaris', 'msys', 'netbsd']
