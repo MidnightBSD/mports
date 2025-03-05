@@ -40,8 +40,8 @@
 +is_linux = current_os == "linux" || current_os == "openbsd" ||
 +           current_os == "freebsd" || current_os == "midnightbsd"
 +is_openbsd = current_os == "openbsd"
-+is_freebsd = current_os == "freebsd"
-+is_bsd = current_os == "openbsd" || current_os == "freebsd" || current_os = "midnightbsd"
++is_freebsd = current_os == "freebsd" || current_os == "midnightbsd"
++is_bsd = current_os == "midnightbsd" || current_os == "freebsd"
  is_mac = current_os == "mac"
  is_nacl = current_os == "nacl"
  is_win = current_os == "win" || current_os == "winuwp"

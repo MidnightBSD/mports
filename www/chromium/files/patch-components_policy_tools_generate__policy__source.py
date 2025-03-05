@@ -4,11 +4,11 @@
      'ios': ['ios'],
      'chrome.win': ['win'],
      'chrome.linux': ['linux'],
-+    'chrome.openbsd': ['openbsd'],
++    'chrome.midnightbsd': ['midnightbsd'],
 +    'chrome.freebsd': ['freebsd'],
      'chrome.mac': ['mac'],
 -    'chrome.*': ['win', 'mac', 'linux', 'fuchsia'],
-+    'chrome.*': ['win', 'mac', 'linux', 'fuchsia', 'openbsd', 'freebsd'],
++    'chrome.*': ['win', 'mac', 'linux', 'fuchsia', 'openbsd', 'freebsd', 'midnightbsd'],
      'chrome.win7': ['win'],
  }
  

@@ -4,7 +4,7 @@
    return os_path.join(os_path.dirname(__file__), *{
      'Darwin': ('mac', darwin_name, 'bin', 'node'),
      'Linux': ('linux', 'node-linux-x64', 'bin', 'node'),
-+    'OpenBSD': ('openbsd', 'node-openbsd', 'bin', 'node'),
++    'MidnightBSD': ('midnightbsd', 'node-midnightbsd', 'bin', 'node'),
 +    'FreeBSD': ('freebsd', 'node-freebsd', 'bin', 'node'),
      'Windows': ('win', 'node.exe'),
    }[platform.system()])
