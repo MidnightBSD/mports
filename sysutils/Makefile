@@ -69,6 +69,7 @@ SUBDIR += firstboot-midnightbsd-update
 SUBDIR += firstboot-pkgs
 SUBDIR += flashback
 SUBDIR += flock
+SUBDIR += freebsd-shar
 SUBDIR += freecolor
 SUBDIR += gag
 SUBDIR += garcon
