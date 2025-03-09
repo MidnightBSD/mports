@@ -8,9 +8,9 @@
 +        UNAME_PROCESSOR=`/usr/bin/uname -p`
 +        case ${UNAME_PROCESSOR} in
 +            amd64)
-+                echo x86_64-unknown-freebsd11.4 ;;
++                echo x86_64-unknown-freebsd12.4 ;;
 +            *)
-+                echo ${UNAME_PROCESSOR}-unknown-freebsd11.4 ;;
++                echo ${UNAME_PROCESSOR}-unknown-freebsd12.4 ;;
 +        esac
 +        exit ;;
      i*:CYGWIN*:*)
