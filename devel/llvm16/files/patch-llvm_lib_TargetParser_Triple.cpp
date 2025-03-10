@@ -1,10 +1,10 @@
---- llvm/lib/TargetParser/Triple.cpp.orig	2025-03-09 16:09:45.292468000 -0400
-+++ llvm/lib/TargetParser/Triple.cpp	2025-03-09 16:10:07.114281000 -0400
-@@ -218,6 +218,7 @@
-   case ELFIAMCU: return "elfiamcu";
-   case Emscripten: return "emscripten";
-   case FreeBSD: return "freebsd";
-+  case MidnightBSD: return "freebsd";
-   case Fuchsia: return "fuchsia";
-   case Haiku: return "haiku";
-   case HermitCore: return "hermit";
+--- llvm/lib/TargetParser/Triple.cpp.orig	2024-10-29 10:09:39 UTC
++++ llvm/lib/TargetParser/Triple.cpp
+@@ -648,6 +648,7 @@ static Triple::OSType parseOS(StringRef
+     .StartsWith("darwin", Triple::Darwin)
+     .StartsWith("dragonfly", Triple::DragonFly)
+     .StartsWith("freebsd", Triple::FreeBSD)
++    .StartsWith("midnightbsd", Triple::FreeBSD)
+     .StartsWith("fuchsia", Triple::Fuchsia)
+     .StartsWith("ios", Triple::IOS)
+     .StartsWith("kfreebsd", Triple::KFreeBSD)
