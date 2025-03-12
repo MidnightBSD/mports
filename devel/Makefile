@@ -98,6 +98,7 @@ SUBDIR += e_dbus
 SUBDIR += efivar
 SUBDIR += efl
 SUBDIR += eggdbus
+SUBDIR += electron28
 SUBDIR += elfutils
 SUBDIR += epm
 SUBDIR += erlang-unicode_util_compat
