@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.6.4
+PORTVERSION=	2.6.5
 PORTREVISION=	2
 CATEGORIES=	core
 MASTER_SITES=	# none
@@ -35,10 +35,10 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		xscreensaver:x11/xscreensaver \
 		gconftool-2:devel/gconf2 \
 		dialog4ports:ports-mgmt/dialog4ports \
-		evolution>=0:mail/evolution
+		evolution>=0:mail/evolution \
+		xconfig>=0:x11/xconfig
 
-USE_PERL5_RUN=	yes
-USE_PYTHON_RUN=	yes
+USES=		perl5:run python:run
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
