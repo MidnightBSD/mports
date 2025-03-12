@@ -163,6 +163,7 @@ SUBDIR += xcb-util-xrm
 SUBDIR += xclip
 SUBDIR += xclipboard
 SUBDIR += xcmsdb
+SUBDIR += xconfig
 SUBDIR += xconsole
 SUBDIR += xcursorgen
 SUBDIR += xdesktopwaves
