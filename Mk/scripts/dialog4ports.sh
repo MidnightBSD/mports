@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD: mports/Tools/scripts/dialog4ports.sh,v 1.1 2013/03/30 12:05:44 laffer1 Exp $
 set -e
 set -o pipefail
 
