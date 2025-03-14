@@ -21,6 +21,7 @@ GH_TUPLE=	creack:pty:v1.1.18:pty \
 		golang:sys:v0.6.0:sys
 
 GO_BUILDFLAGS=	-ldflags "-s -w"
+GO_ENV+=	GOOS=freebsd
 GO_TARGET=	./agent:${PREFIX}/sbin/amazon-ssm-agent \
 		./agent/framework/processor/executer/outofproc/worker:${PREFIX}/sbin/ssm-document-worker \
 		./agent/framework/processor/executer/outofproc/sessionworker:${PREFIX}/sbin/ssm-session-worker \
