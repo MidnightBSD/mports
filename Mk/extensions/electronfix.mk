@@ -54,10 +54,10 @@ _USES_fakee=		995:electronfix-fake-qa
 .  endif
 
 electronfix-post-install:
-	${RM} ${FAKE_DESTDIR}${DATADIR}/chrome-sandbox
-	${RM} ${FAKE_DESTDIR}${DATADIR}/libvulkan.so.1
+	-${RM} ${FAKE_DESTDIR}${DATADIR}/chrome-sandbox
+	-${RM} ${FAKE_DESTDIR}${DATADIR}/libvulkan.so.1
 .  for f in ${ELECTRONFIX_SYMLINK_FILES}
-	${RM} ${FAKE_DESTDIR}${DATADIR}/${f}
+	-${RM} ${FAKE_DESTDIR}${DATADIR}/${f}
 	${LN} -s ${LOCALBASE}/share/electron${_ELECTRONFIX_MK_VERSION}/${f} ${FAKE_DESTDIR}${DATADIR}/${f}
 .  endfor
 .  ifdef ELECTRONFIX_MAIN_EXECUTABLE
