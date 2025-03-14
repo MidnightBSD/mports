@@ -316,7 +316,7 @@ sub compare_runs {
         last;
       }
     }
-    $results{$p->{name}} = { name => $p->{name}, version1 => $p->{version}, status1 => $p->{status}, critical = $found};
+    $results{$p->{name}} = { name => $p->{name}, version1 => $p->{version}, status1 => $p->{status}, critical => $found  };
   }
 
   foreach my $p2 (@ports2) {
@@ -333,7 +333,7 @@ sub compare_runs {
       $results{$p2->{name}}->{status2} = $p2->{status};
       $results{$p2->{name}}->{critical} = $found;
     } else {
-      $results{$p2->{name}} = { name => $p2->{name}, version2 => $p2->{version}, status2 => $p2->{status}, critical = $found};
+      $results{$p2->{name}} = { name => $p2->{name}, version2 => $p2->{version}, status2 => $p2->{status}, critical => $found};
     }
   }
 
