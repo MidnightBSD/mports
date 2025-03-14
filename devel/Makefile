@@ -13,6 +13,7 @@ SUBDIR += antlr4
 SUBDIR += apache-ant
 SUBDIR += apache-commons-daemon
 SUBDIR += apache-log4j2
+SUBDIR += app-builder
 SUBDIR += appstream
 SUBDIR += appstream-glib
 SUBDIR += apr1
