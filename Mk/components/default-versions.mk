@@ -58,7 +58,7 @@ LAZARUS_DEFAULT?=	2.2.0
 LIBRSVG2_DEFAULT?=    rust
 # Possible values: c7
 LINUX_DEFAULT?=		c7
-# Possible values: 60, 70, 90, 11, 12,  -devel (to be used when non-base compiler is required)
+# Possible values: 11, 12, 15, 16  -devel (to be used when non-base compiler is required)
 LLVM_DEFAULT?=		15
 LUA_DEFAULT?=		5.4
 LUAJIT_DEFAULT?=        luajit-devel

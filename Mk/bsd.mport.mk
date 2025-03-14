@@ -1368,6 +1368,10 @@ MPORT_CREATE_ARGS+=     -f ${PKG_NOTE_flavor}
 MPORT_CREATE_ARGS+=     -S ${PKG_NOTE_no_provide_shlib}
 .endif
 
+.if defined(LUA) && (${OSVERSION} > 39000)
+MPORT_CREATE_ARGS+=     -L
+.endif
+
 MPORT_CREATE_ARGS+=			$$_LATE_MPORT_CREATE_ARGS
 					
 .if !defined(NO_MTREE)
