@@ -1483,6 +1483,7 @@ SUBDIR += sdl20
 SUBDIR += serd
 SUBDIR += shunit2
 SUBDIR += sigar
+SUBDIR += signal-fts5-extension
 SUBDIR += silc-toolkit
 SUBDIR += simpleini
 SUBDIR += skalibs
