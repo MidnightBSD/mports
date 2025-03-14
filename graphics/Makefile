@@ -20,6 +20,7 @@ SUBDIR += colord
 SUBDIR += colord-gtk
 SUBDIR += dia
 SUBDIR += djvulibre
+SUBDIR += drawio
 SUBDIR += drm-510-kmod
 SUBDIR += drm-fbsd11.2-kmod
 SUBDIR += drm-fbsd12.0-kmod
