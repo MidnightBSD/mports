@@ -61,6 +61,7 @@ SUBDIR += edid-decode
 SUBDIR += entr
 SUBDIR += exa
 SUBDIR += extipl
+SUBDIR += eza
 SUBDIR += ezjail
 SUBDIR += fastfetch
 SUBDIR += ffs2recov
