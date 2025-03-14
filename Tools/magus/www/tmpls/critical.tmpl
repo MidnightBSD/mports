@@ -16,6 +16,8 @@
 					</tr>
 				</thead>
 				<tbody>
+<TMPL_LOOP NAME="critical">
+
 					<tr>
 						<td data-critical-id="<TMPL_VAR NAME="id">">
 							<TMPL_VAR NAME="id">
@@ -27,6 +29,7 @@
 							<TMPL_VAR NAME="arch">
 						</td>
 					</tr>
+</TMPL_LOOP>
 				</tbody>
 			</table>
 		</div>
