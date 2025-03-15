@@ -1158,11 +1158,13 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 # Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break
 # a lot of ports.
-.if !defined(WITHOUT_NO_STRICT_ALIASING)
-.if !empty(CFLAGS:M-O[23s]) && empty(CFLAGS:M-fno-strict-aliasing)
+.    if !defined(WITHOUT_NO_STRICT_ALIASING)
+.      if ${CC} != "icc"
+.        if empty(CFLAGS:M-fno-strict-aliasing)
 CFLAGS+=       -fno-strict-aliasing
-.endif
-.endif
+.        endif
+.      endif
+.    endif
 
 .    for lang in C CXX
 .      if defined(USE_${lang}STD)
