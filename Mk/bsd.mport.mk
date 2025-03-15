@@ -3269,6 +3269,7 @@ DEPENDS-LIST= \
 			dp_PKGNAME="${PKGNAME}" \
 			dp_PKG_INFO="${MPORT_QUERY}" \
 			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+			dp_OVERLAYS="${OVERLAYS}" \
 			${SH} ${SCRIPTSDIR}/depends-list.sh \
 			${DEPENDS_SHOW_FLAVOR:D-f}
 
@@ -3612,9 +3613,9 @@ add-plist-examples:
 .endif
 .endif
 
-.if !target(add-plist-data)
+.    if !target(add-plist-data)
 add-plist-data:
-.if defined(PORTDATA)
+.      if defined(PORTDATA)
 .for x in ${PORTDATA}
 	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
 	if [ ! -e ${FAKE_DESTDIR}${DATADIR}/${x} ]; then \
@@ -3623,14 +3624,14 @@ add-plist-data:
 .endfor
 	@${FIND} -P ${PORTDATA:S/^/${FAKE_DESTDIR}${DATADIR}\//} ! -type d 2>/dev/null | \
 		${SED} -ne 's,^${FAKE_DESTDIR},,p' >> ${TMPPLIST}
-.endif
-.endif
+.      endif
+.    endif
 
-.if !target(add-plist-info)
+.    if !target(add-plist-info)
 add-plist-info:
 # Process GNU INFO files at package install/deinstall time
-.if defined(INFO)
-.for i in ${INFO}
+.       if defined(INFO)
+.        for i in ${INFO}
 	@${ECHO_CMD} "@postunexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
 		>> ${TMPPLIST}
 	@${ECHO_CMD} ${INFO_PATH}/$i.info >> ${TMPPLIST}
@@ -3639,7 +3640,7 @@ add-plist-info:
 	@if [ "`${DIRNAME} $i`" != "." ]; then \
 		${ECHO_CMD} "@dir info/`${DIRNAME} $i`" >> ${TMPPLIST}; \
 	fi
-.endfor
+.        endfor
 .if defined(INFO_SUBDIR)
 	@${ECHO_CMD} "@unexec ${RMDIR} %D/${INFO_PATH}/${INFO_SUBDIR} 2> /dev/null || true" >> ${TMPPLIST}
 .endif
@@ -3657,14 +3658,15 @@ add-plist-info:
 
 # If we're installing into a non-standard PREFIX, we need to remove that directory at
 # deinstall-time
-.if !target(add-plist-post)
+.    if !target(add-plist-post)
 add-plist-post:
-.	if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr")
+.      if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && \
+    ${PREFIX} != "/usr" && !defined(NO_PREFIX_RMDIR))
 		@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
-.	else
+.      else
 		@${DO_NADA}
-.	endif
-.endif
+.      endif
+.    endif
 
 
 .if !target(install-rc-script)
@@ -3889,18 +3891,18 @@ compress-man:
 	for dir in $$mdirs; do \
 		${FIND} $$dir -type f \! -name "*.gz" -links 1 -exec ${GZIP_CMD} {} \; ; \
 		${FIND} $$dir -type f \! -name "*.gz" \! -links 1 -exec ${STAT} -f '%i' {} \; | \
-		${SORT} -u | while read inode ; do \
-			unset ref ; \
-			for f in $$(${FIND} $$dir -type f -inum $${inode} -print); do \
-				if [ -z $$ref ]; then \
-					ref=$${f}.gz ; \
-					${GZIP_CMD} $${f} ; \
-					continue ; \
-				fi ; \
-				${RM} -f $${f} ; \
-				(cd $${f%/*}; ${LN} -f $${ref##*/} $${f##*/}.gz) ; \
+			${SORT} -u | while read inode ; do \
+				unset ref ; \
+				for f in $$(${FIND} $$dir -type f -inum $${inode} -print); do \
+					if [ -z $$ref ]; then \
+						ref=$${f}.gz ; \
+						${GZIP_CMD} $${f} ; \
+						continue ; \
+					fi ; \
+					${RM} -f $${f} ; \
+					(cd $${f%/*}; ${LN} -f $${ref##*/} $${f##*/}.gz) ; \
+				done ; \
 			done ; \
-		done ; \
 		${FIND} $$dir -type l \! -name "*.gz" | while read link ; do \
 			dest=$$(readlink $$link) ; \
 			rm -f $$link ; \
@@ -3913,14 +3915,14 @@ compress-man:
 .endif
 .endif
 
-.if !target(fake-qa)
+.    if !target(fake-qa)
 fake-qa:
 	@${ECHO_MSG} "====> Running Q/A tests (fake-qa)"
 	@${SETENV} ${QA_ENV} ${SH} ${SCRIPTSDIR}/qa.sh
-.if !defined(DEVELOPER)
+.      if !defined(DEVELOPER)
 	@${ECHO_MSG} "/!\\ To run fake-qa automatically add DEVELOPER=yes to your environment /!\\"
-.endif
-.endif
+.      endif
+.    endif
 
 pretty-flavors-package-names: .PHONY
 .    if empty(FLAVORS)
@@ -3938,8 +3940,8 @@ flavors-package-names: .PHONY
 .    else
 .      for f in ${FLAVORS}
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -V PKGNAME
-.endfor
-.endif
+.      endfor
+.    endif
 
 # Depend is generally meaningless for arbitrary ports, but if someone wants
 # one they can override this.  This is just to catch people who've gotten into
@@ -3963,45 +3965,45 @@ PORTS_ENV_VARS+=	${_EXPORTED_VARS}
 
 desktop-categories:
 	@${SETENV} \
-                        dp_CATEGORIES="${CATEGORIES}" \
-                        dp_ECHO_CMD=${ECHO_CMD} \
-                        dp_SCRIPTSDIR="${SCRIPTSDIR}" \
-                        dp_SORT="${SORT}" \
-                        dp_TR="${TR}" \
-                        ${SH} ${SCRIPTSDIR}/desktop-categories.sh
+			dp_CATEGORIES="${CATEGORIES}" \
+			dp_ECHO_CMD=${ECHO_CMD} \
+			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+			dp_SORT="${SORT}" \
+			dp_TR="${TR}" \
+			${SH} ${SCRIPTSDIR}/desktop-categories.sh
 
 .    if defined(DESKTOP_ENTRIES)
 check-desktop-entries:
 	@${SETENV} \
-		dp_CURDIR="${.CURDIR}" \
-		dp_ECHO_CMD=${ECHO_CMD} \
-		dp_ECHO_MSG=${ECHO_MSG} \
-		dp_EXPR="${EXPR}" \
-		dp_GREP="${GREP}" \
-		dp_MAKE="${MAKE}" \
-		dp_PKGNAME="${PKGNAME}" \
-		dp_SCRIPTSDIR="${SCRIPTSDIR}" \
-		dp_SED="${SED}" \
-		dp_VALID_DESKTOP_CATEGORIES="${VALID_DESKTOP_CATEGORIES}" \
-		dp_TR="${TR}" \
-		${SH} ${SCRIPTSDIR}/check-desktop-entries.sh ${DESKTOP_ENTRIES}
-.endif
+			dp_CURDIR="${.CURDIR}" \
+			dp_ECHO_CMD=${ECHO_CMD} \
+			dp_ECHO_MSG=${ECHO_MSG} \
+			dp_EXPR="${EXPR}" \
+			dp_GREP="${GREP}" \
+			dp_MAKE="${MAKE}" \
+			dp_PKGNAME="${PKGNAME}" \
+			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+			dp_SED="${SED}" \
+			dp_VALID_DESKTOP_CATEGORIES="${VALID_DESKTOP_CATEGORIES}" \
+			dp_TR="${TR}" \
+			${SH} ${SCRIPTSDIR}/check-desktop-entries.sh ${DESKTOP_ENTRIES}
+.    endif
 
-.if !target(install-desktop-entries)
-.if defined(DESKTOP_ENTRIES)
+.    if !target(install-desktop-entries)
+.      if defined(DESKTOP_ENTRIES)
 install-desktop-entries:
 	@${SETENV} \
-                        dp_CURDIR="${.CURDIR}" \
-                        dp_ECHO_CMD=${ECHO_CMD} \
-                        dp_SCRIPTSDIR="${SCRIPTSDIR}" \
-                        dp_STAGEDIR="${FAKE_DESTDIR}" \
-                        dp_DESKTOPDIR="${DESKTOPDIR}" \
-                        dp_TMPPLIST="${TMPPLIST}" \
-                        dp_MAKE="${MAKE}" \
-                        dp_SED="${SED}" \
-                        ${SH} ${SCRIPTSDIR}/install-desktop-entries.sh ${DESKTOP_ENTRIES}
-.endif
-.endif
+			dp_CURDIR="${.CURDIR}" \
+			dp_ECHO_CMD=${ECHO_CMD} \
+			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+			dp_STAGEDIR="${FAKE_DESTDIR}" \
+			dp_DESKTOPDIR="${DESKTOPDIR}" \
+			dp_TMPPLIST="${TMPPLIST}" \
+			dp_MAKE="${MAKE}" \
+			dp_SED="${SED}" \
+			${SH} ${SCRIPTSDIR}/install-desktop-entries.sh ${DESKTOP_ENTRIES}
+.      endif
+.    endif
 
 .if !target(install-desktop-entries)
 install-desktop-entries-lah:
@@ -4063,6 +4065,20 @@ create-binary-alias: ${BINARY_LINKDIR}
 .      endif
 .    endif
 
+.    if !empty(PKGCONFIG_BASE)
+.      if !target(create-base-pkgconfig)
+create-base-pkgconfig: ${PKGCONFIG_LINKDIR}
+.        for pcfile in ${PKGCONFIG_BASE:S/$/.pc/}
+			@if `test -f ${PKGCONFIG_BASEDIR}/${pcfile}`; then \
+				${RLN} ${PKGCONFIG_BASEDIR}/${pcfile} ${PKGCONFIG_LINKDIR}/${pcfile}; \
+			else \
+				${ECHO_MSG} "===>  Missing \"${pcfile}\" to create a link at \"${PKGCONFIG_LINKDIR}/${pcfile}\"     "; \
+				${FALSE}; \
+			fi
+.        endfor
+.      endif
+.    endif
+
 .    if !empty(BINARY_WRAPPERS)
 .      if !target(create-binary-wrappers)
 create-binary-wrappers: ${BINARY_LINKDIR}
@@ -4071,6 +4087,58 @@ create-binary-wrappers: ${BINARY_LINKDIR}
 .        endfor
 .      endif
 .    endif
+
+.    if defined(WARNING)
+WARNING_WAIT?=	10
+show-warnings:
+	@${ECHO_MSG} "/!\\ WARNING /!\\"
+	@${ECHO_MSG}
+.      for m in ${WARNING}
+	@${ECHO_MSG} "${m}" | ${FMT_80}
+	@${ECHO_MSG}
+.      endfor
+	@sleep ${WARNING_WAIT}
+.    endif
+
+.    if defined(ERROR)
+show-errors:
+	@${ECHO_MSG} "/!\\ ERRORS /!\\"
+	@${ECHO_MSG}
+.      for m in ${ERROR}
+	@${ECHO_MSG} "${m}" | ${FMT_80}
+	@${ECHO_MSG}
+.      endfor
+	@${FALSE}
+.    endif
+
+.    if defined(DEVELOPER) || defined(MPORT_MAINTAINER_MODE)
+.      if defined(DEV_WARNING)
+DEV_WARNING_WAIT?=	10
+show-dev-warnings:
+	@${ECHO_MSG} "/!\\ ${PKGNAME}: Makefile warnings, please consider fixing /!\\"
+	@${ECHO_MSG}
+.        for m in ${DEV_WARNING}
+	@${ECHO_MSG} ${m} | ${FMT_80}
+	@${ECHO_MSG}
+.        endfor
+.        if defined(DEV_WARNING_FATAL)
+	@${FALSE}
+.        else
+	@sleep ${DEV_WARNING_WAIT}
+.        endif
+.      endif
+
+.      if defined(DEV_ERROR)
+show-dev-errors:
+	@${ECHO_MSG} "/!\\ ${PKGNAME}: Makefile errors /!\\"
+	@${ECHO_MSG}
+.        for m in ${DEV_ERROR}
+	@${ECHO_MSG} "${m}" | ${FMT_80}
+	@${ECHO_MSG}
+.        endfor
+	@${FALSE}
+.      endif
+.    endif #DEVELOPER
 
 ########################################################################################
 # Order of targets run for each stage of the build.
