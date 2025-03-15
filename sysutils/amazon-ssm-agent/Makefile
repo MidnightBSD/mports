@@ -1,5 +1,5 @@
 PORTNAME=	amazon-ssm-agent
-PORTVERSION=	3.0.151.0
+PORTVERSION=	3.0.1390.0
 PORTREVISION=	0
 CATEGORIES=	sysutils
 
@@ -17,8 +17,6 @@ USES=		go
 USE_GITHUB=	yes
 GH_ACCOUNT=	aws
 GH_SUBDIR=	src/github.com/aws/amazon-ssm-agent
-GH_TUPLE=	creack:pty:v1.1.18:pty \
-		golang:sys:v0.6.0:sys
 
 GO_BUILDFLAGS=	-ldflags "-s -w"
 GO_ENV+=	GOOS=freebsd
@@ -28,36 +26,9 @@ GO_TARGET=	./agent:${PREFIX}/sbin/amazon-ssm-agent \
 		./agent/session/logging:${PREFIX}/sbin/ssm-session-logger \
 		./agent/cli-main:${PREFIX}/sbin/ssm-cli
 
-PLIST_FILES=	etc/amazon/ssm/amazon-ssm-agent.json.template	\
-		etc/amazon/ssm/seelog_unix.xml.template		\
-		sbin/amazon-ssm-agent				\
-		sbin/ssm-document-worker			\
-		sbin/ssm-session-worker				\
-		sbin/ssm-session-logger				\
-		sbin/ssm-cli
-PLIST_DIRS=	etc/amazon/ssm \
-		etc/amazon \
-		/var/run/amazon/ssm \
-		/var/run/amazon \
-		/var/log/amazon \
-		/var/lib/amazon/ssm/daemons \
-		/var/lib/amazon/ssm/localcommands \
-		/var/lib/amazon/ssm/ipc \
-		/var/lib/amazon/ssm/locks \
-		/var/lib/amazon/ssm/manifests \
-		/var/lib/amazon/ssm/packages \
-		/var/lib/amazon/ssm \
-		/var/lib/amazon 
-
 USE_RC_SUBR=	amazon-ssm-agent
 
 NO_TEST=	yes
-
-pre-patch:
-	${MKDIR} ${WRKSRC}/vendor/src/github.com/creack
-	${LN} -s ${WRKSRC_pty} ${WRKSRC}/vendor/src/github.com/creack/pty
-	${RM} -r ${WRKSRC}/vendor/src/golang.org/x/sys
-	${LN} -s ${WRKSRC_sys} ${WRKSRC}/vendor/src/golang.org/x/sys
 
 post-patch:
 	${LN} -s ${WRKSRC}/vendor/src/* ${WRKSRC}/vendor/
