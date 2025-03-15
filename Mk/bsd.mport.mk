@@ -178,7 +178,6 @@ _MANOWNGRP=
 # Start of options section
 .  if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
 
-
 # Get the default maintainer
 MAINTAINER?=	ports@MidnightBSD.org
 
@@ -278,7 +277,7 @@ MASTER_PORT?=${MASTERDIR:C/[^\/]+\/\.\.\///:C/[^\/]+\/\.\.\///:C/^.*\/([^\/]+\/[
 .    else
 SLAVE_PORT?=	no
 MASTER_PORT?=
-.endif
+.    endif
 
 # Check the compatibility layer for amd64
 
@@ -575,16 +574,16 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .    for f in ${USES}
 .undef _usefound
 .      for udir in ${OVERLAYS:C,$,/Mk/Uses,} ${MPORTEXTENSIONS}
-_usefile=       ${udir}/${f:C/\:.*//}.mk
+_usefile=	${udir}/${f:C/\:.*//}.mk
 .        if exists(${_usefile}) && !defined(_usefound)
 _usefound=
 .include "${_usefile}"
 .        endif
 .      endfor
 .      if !defined(_usefound)
-ERROR+= "Unknown USES=${f:C/\:.*//}"
+ERROR+=	"Unknown USES=${f:C/\:.*//}"
 .      endif
-.     endfor
+.    endfor
 
 .    if !empty(FLAVORS)
 .      if ${FLAVORS:Mall}
@@ -723,7 +722,7 @@ WWWGRP?=	www
 
 .include "${MPORTCOMPONENTS}/fake/vars.mk"
 
-.endif
+.  endif
 # End of pre-makefile section.
 
 # Start of post-makefile section.
@@ -757,12 +756,16 @@ PKG_NOTES+=	flavor
 PKG_NOTE_flavor=	${FLAVOR}
 .    endif
 
+# GIT_CEILING_DIRECTORIES prevents ports that try to find their version
+# using git from finding the ports tree's git repository.
 WRK_ENV+=		HOME=${WRKDIR} \
-			PWD="$${PWD}" \
-			__MAKE_CONF=${NONEXISTENT}
+				MACHINE_ARCH=${MACHINE_ARCH} \
+				PWD="$${PWD}" \
+				GIT_CEILING_DIRECTORIES=${WRKDIR} \
+				__MAKE_CONF=${NONEXISTENT}
 .    for e in OSVERSION PATH TERM TMPDIR \
-			UNAME_b UNAME_i UNAME_K UNAME_m UNAME_n \
-			UNAME_p UNAME_r UNAME_s UNAME_U UNAME_v
+				UNAME_b UNAME_i UNAME_K UNAME_m UNAME_n \
+				UNAME_p UNAME_r UNAME_s UNAME_U UNAME_v
 .      ifdef ${e}
 WRK_ENV+=		${e}=${${e}:Q}
 .      endif
@@ -914,8 +917,8 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .      endif
 .    endfor
 
-# We will control debug files. Don't let builds that use /usr/share/mk
-# # split out debug symbols since the plist won't know to expect it.
+# We will control debug files.  Don't let builds that use /usr/share/mk
+# split out debug symbols since the plist won't know to expect it.
 MAKE_ENV+=	MK_DEBUG_FILES=no
 MAKE_ENV+=	MK_KERNEL_SYMBOLS=no
 
@@ -983,21 +986,21 @@ USE_BINUTILS=   yes
 .  endif
 .endif
 
-.if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
+.    if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
 	READELF SIZE STRINGS
 BINUTILS_NO_MAKE_ENV?=
-. for b in ${BINUTILS}
+.      for b in ${BINUTILS}
 ${b}=	${LOCALBASE}/bin/${b:C/PP/++/:tl}
-.  if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
+.        if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
 CONFIGURE_ENV+=	${b}="${${b}}"
-.  endif
-.  if ${BINUTILS_NO_MAKE_ENV:M${b}} == ""
+.        endif
+.        if ${BINUTILS_NO_MAKE_ENV:M${b}} == ""
 MAKE_ENV+=	${b}="${${b}}"
-.  endif
-. endfor
-.endif
+.        endif
+.      endfor
+.    endif
 
 .if defined(USE_OPENLDAP_VER)
 USE_OPENLDAP?=		yes
@@ -1026,6 +1029,7 @@ IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 # required by mport.create MPORT_CREATE_ARGS
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
+METADIR=		${WRKDIR}/.metadir
 .if defined(USE_LOCAL_MK)
 EXTENSIONS+=	local
 .endif
@@ -1057,14 +1061,14 @@ ${_f}_ARGS:=    ${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .    for f in ${_USES_POST}
 .undef _usefound
 .      for udir in ${OVERLAYS:C,$,/Mk/Uses,} ${MPORTEXTENSIONS}
-_usefile=       ${udir}/${f:C/\:.*//}.mk
+_usefile=	${udir}/${f:C/\:.*//}.mk
 .        if exists(${_usefile}) && !defined(_usefound)
 _usefound=
 .include "${_usefile}"
 .        endif
 .      endfor
 .      if !defined(_usefound)
-ERROR+= "Unknown USES=${f:C/\:.*//}"
+ERROR+=	"Unknown USES=${f:C/\:.*//}"
 .      endif
 .    endfor
 
@@ -1160,17 +1164,17 @@ CFLAGS+=       -fno-strict-aliasing
 .endif
 .endif
 
-.for lang in C CXX
-.if defined(USE_${lang}STD)
+.    for lang in C CXX
+.      if defined(USE_${lang}STD)
 ${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
-.endif
+.      endif
 
 .if defined(${lang}FLAGS_${ARCH})
 ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
 .endif
-.endfor
+.    endfor
 
-LDFLAGS+=       ${LDFLAGS_${ARCH}}
+LDFLAGS+=	${LDFLAGS_${ARCH}}
 
 # Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
@@ -1203,16 +1207,19 @@ FETCH_ENV?=		SSL_NO_VERIFY_PEER=1 SSL_NO_VERIFY_HOSTNAME=1
 FETCH_BINARY?=	/usr/bin/fetch
 FETCH_ARGS?=	-Fpr
 FETCH_REGET?=	1
-.if !defined(DISABLE_SIZE)
-#FETCH_BEFORE_ARGS+=	$${CKSIZE:+-S $$CKSIZE}
-.endif
 FETCH_CMD?=		${FETCH_BINARY} ${FETCH_ARGS}
 
-.if defined(RANDOMIZE_MASTER_SITES) && exists(/usr/games/random)
+.    if defined(RANDOMIZE_MASTER_SITES)
+.      if exists(/usr/games/random)
 RANDOM_CMD?=	/usr/games/random
-RANDOM_ARGS?=	"-w -f -"
-_RANDOMIZE_SITES=	" |${RANDOM_CMD} ${RANDOM_ARGS}"
-.endif
+.      elif exists(/usr/bin/random)
+RANDOM_CMD?=	/usr/bin/random
+.      endif
+.      if defined(RANDOM_CMD) && !empty(RANDOM_CMD)
+RANDOM_ARGS?=	-w -f -
+_RANDOMIZE_SITES=	 ${RANDOM_CMD} ${RANDOM_ARGS}
+.      endif
+.    endif
 
 TOUCH?=			/usr/bin/touch
 TOUCH_FLAGS?=	-f
@@ -1225,7 +1232,7 @@ PATCH_DIST_STRIP?=	-p0
 PATCH_DEBUG_TMP=	yes
 PATCH_ARGS?=	-E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
-.else
+.    else
 PATCH_DEBUG_TMP=	no
 PATCH_ARGS?=	--forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward --quiet -E ${PATCH_DIST_STRIP}
@@ -1310,10 +1317,10 @@ SCRIPTS_ENV+=	${INSTALL_MACROS}
 # to be able to use $@ directly.
 COPYTREE_BIN=	${SH} -c '(${FIND} -Ed $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null 2>&1) && \
 						   ${FIND} -Ed $$0 $$2 \(   -type d -exec ${SH} -c '\''cd '\''$$1'\'' && chmod 755 "$$@"'\'' -- . {} + \
-											-o -type f -exec ${SH} -c '\''cd '\''$$1'\'' && chmod ${BINMODE} "$$@"'\'' -- . {} + \)' --
+												 -o -type f -exec ${SH} -c '\''cd '\''$$1'\'' && chmod ${BINMODE} "$$@"'\'' -- . {} + \)' --
 COPYTREE_SHARE=	${SH} -c '(${FIND} -Ed $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null 2>&1) && \
 						   ${FIND} -Ed $$0 $$2 \(   -type d -exec ${SH} -c '\''cd '\''$$1'\'' && chmod 755 "$$@"'\'' -- . {} + \
-											-o -type f -exec ${SH} -c '\''cd '\''$$1'\'' && chmod ${SHAREMODE} "$$@"'\'' -- . {} + \)' --
+												 -o -type f -exec ${SH} -c '\''cd '\''$$1'\'' && chmod ${SHAREMODE} "$$@"'\'' -- . {} + \)' --
 
 PLIST?=                 ${PKGDIR}/pkg-plist
 
@@ -2966,7 +2973,7 @@ pre-distclean:
 	@${DO_NADA}
 .endif
 
-.if !target(distclean)
+.    if !target(distclean)
 distclean: clean
 	@cd ${.CURDIR} && ${MAKE} delete-distfiles RESTRICTED_FILES="${_DISTFILES:Q} ${_PATCHFILES:Q}"
 .    endif
@@ -3003,8 +3010,8 @@ delete-distfiles-list:
 	fi
 .      if defined(DIST_SUBDIR)
 	@${ECHO_CMD} "${RMDIR} ${_DISTDIR} 2>/dev/null || ${TRUE}"
-.endif
-.endif
+.      endif
+.    endif
 
 # Prints out a list of files to fetch (useful to do a batch fetch)
 
