@@ -42,11 +42,12 @@ PLIST_DIRS=	etc/amazon/ssm \
 		/var/log/amazon \
 		/var/lib/amazon/ssm/daemons \
 		/var/lib/amazon/ssm/localcommands \
+		/var/lib/amazon/ssm/ipc \
 		/var/lib/amazon/ssm/locks \
 		/var/lib/amazon/ssm/manifests \
 		/var/lib/amazon/ssm/packages \
 		/var/lib/amazon/ssm \
-		/var/lib/amazon
+		/var/lib/amazon 
 
 USE_RC_SUBR=	amazon-ssm-agent
 
