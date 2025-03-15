@@ -1018,18 +1018,18 @@ SUB_FILES+=	${USE_RCORDER}
 .endif
 .endif
 
-.if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
+.    if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
 USE_LDCONFIG=	${PREFIX}/lib
-.endif
-
-.if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:tl} == "yes"
+.    endif
+.    if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:tl} == "yes"
 IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
-.endif
+.    endif
 
 # required by mport.create MPORT_CREATE_ARGS
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
 METADIR=		${WRKDIR}/.metadir
+
 .if defined(USE_LOCAL_MK)
 EXTENSIONS+=	local
 .endif
@@ -1177,28 +1177,28 @@ ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
 LDFLAGS+=	${LDFLAGS_${ARCH}}
 
 # Multiple make jobs support
-.if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
+.    if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
 _MAKE_JOBS=		#
 MAKE_JOBS_NUMBER=	1
-.else
-.if defined(MAKE_JOBS_NUMBER)
+.    else
+.      if defined(MAKE_JOBS_NUMBER)
 _MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
-.else
+.      else
 #.  if !defined(_SMP_CPUS)
 #_SMP_CPUS!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
 #.  endif
 #EXPORTED_VARS+=	_SMP_CPUS
 #_MAKE_JOBS_NUMBER!=	${_SMP_CPUS}
 _MAKE_JOBS_NUMBER!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
-.endif
-.if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
+.      endif
+.      if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
 MAKE_JOBS_NUMBER=	${MAKE_JOBS_NUMBER_LIMIT}
-.else
+.      else
 MAKE_JOBS_NUMBER=	${_MAKE_JOBS_NUMBER}
-.endif
+.      endif
 _MAKE_JOBS?=		-j${MAKE_JOBS_NUMBER}
 BUILD_FAIL_MESSAGE+=	Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reporting the failure to the maintainer.
-.endif
+.    endif
 
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
@@ -1390,6 +1390,8 @@ MPORT_CREATE_ARGS+=	-C "${CONFLICTS}"
 .endif
 
 PKG_SUFX?=	.mport
+# for FreeBSD pkg compatibility (dir with sqlite3 databases)
+PKG_DBDIR?=		/var/db/mport
 
 ALL_TARGET?=		all
 INSTALL_TARGET?=	install
@@ -3109,6 +3111,7 @@ makesum: check-sanity
 	@cd ${.CURDIR} && ${MAKE} fetch NO_CHECKSUM=yes \
 			DISABLE_SIZE=yes DISTFILES="${DISTFILES}" \
 			MASTER_SITES="${MASTER_SITES}" \
+			MASTER_SITE_SUBDIR="${MASTER_SITE_SUBDIR}" \
 			PATCH_SITES="${PATCH_SITES}"
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
@@ -3172,7 +3175,7 @@ repackage: pre-repackage package
 
 pre-repackage:
 	@${RM} -f ${PACKAGE_COOKIE}
-.endif
+.    endif
 
 # Build a package but don't check the cookie for installation, also don't
 # install package cookie
