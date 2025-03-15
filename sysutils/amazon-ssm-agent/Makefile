@@ -1,5 +1,5 @@
 PORTNAME=	amazon-ssm-agent
-PORTVERSION=	2.3.1644.0
+PORTVERSION=	3.0.151.0
 PORTREVISION=	0
 CATEGORIES=	sysutils
 
@@ -35,6 +35,18 @@ PLIST_FILES=	etc/amazon/ssm/amazon-ssm-agent.json.template	\
 		sbin/ssm-session-worker				\
 		sbin/ssm-session-logger				\
 		sbin/ssm-cli
+PLIST_DIRS=	etc/amazon/ssm \
+		etc/amazon \
+		/var/run/amazon/ssm \
+		/var/run/amazon \
+		/var/log/amazon \
+		/var/lib/amazon/ssm/daemons \
+		/var/lib/amazon/ssm/localcommands \
+		/var/lib/amazon/ssm/locks \
+		/var/lib/amazon/ssm/manifests \
+		/var/lib/amazon/ssm/packages \
+		/var/lib/amazon/ssm \
+		/var/lib/amazon
 
 USE_RC_SUBR=	amazon-ssm-agent
 
