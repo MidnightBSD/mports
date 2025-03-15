@@ -41,6 +41,9 @@ _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
 INDEXDIR?=		${PORTSDIR}
 SRC_BASE?=		/usr/src
 SCRIPTSDIR?=	${PORTSDIR}/Mk/scripts
+MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
+MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
+WRAPPERSDIR?=		${PORTSDIR}/Mk/wrappers/
 LIB_DIRS?=		/lib /usr/lib ${LOCALBASE}/lib
 NOTPHONY?=
 FLAVORS?=
@@ -69,7 +72,7 @@ MAKE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
 
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
-_PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
+_PORTS_DIRECTORIES+=	${PKG_DBDIR} ${TRUE_PREFIX} ${WRKDIR} ${EXTRACT_WRKDIR} \
 			${FAKE_DESTDIR}${TRUE_PREFIX} ${WRKDIR}/pkg ${BINARY_LINKDIR} \
 			${PKGCONFIG_LINKDIR}
 
@@ -78,13 +81,13 @@ _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
 # make -C /usr/mports/category/port/.
 .CURDIR:=		${.CURDIR:tA}
 
+# Ensure .CURDIR doesn't contain a colon, which breaks makefile targets
+.if ${.CURDIR:S/:/\:/g} != ${.CURDIR}
+.error The current directory path contains ':', this is not supported
+.endif
 
 # make sure bmake treats -V as expected
 .MAKE.EXPAND_VARIABLES= yes
-
-MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
-MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
-WRAPPERSDIR?=		${PORTSDIR}/Mk/wrappers/
 
 .include "${MPORTCOMPONENTS}/commands.mk"
 
@@ -1028,6 +1031,12 @@ IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 # required by mport.create MPORT_CREATE_ARGS
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
+.    if defined(NO_PREFIX_RMDIR)
+CO_ENV+=	NO_PREFIX_RMDIR=1
+.    else
+CO_ENV+=	NO_PREFIX_RMDIR=0
+.    endif
+
 METADIR=		${WRKDIR}/.metadir
 
 .if defined(USE_LOCAL_MK)
@@ -1158,11 +1167,13 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 # Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break
 # a lot of ports.
-.if !defined(WITHOUT_NO_STRICT_ALIASING)
-.if !empty(CFLAGS:M-O[23s]) && empty(CFLAGS:M-fno-strict-aliasing)
+.    if !defined(WITHOUT_NO_STRICT_ALIASING)
+.      if ${CC} != "icc"
+.        if empty(CFLAGS:M-fno-strict-aliasing)
 CFLAGS+=       -fno-strict-aliasing
-.endif
-.endif
+.        endif
+.      endif
+.    endif
 
 .    for lang in C CXX
 .      if defined(USE_${lang}STD)
@@ -1178,7 +1189,7 @@ LDFLAGS+=	${LDFLAGS_${ARCH}}
 
 # Multiple make jobs support
 .    if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
-_MAKE_JOBS=		#
+_MAKE_JOBS?=		#
 MAKE_JOBS_NUMBER=	1
 .    else
 .      if defined(MAKE_JOBS_NUMBER)
@@ -1281,27 +1292,17 @@ EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
 .endif
 
 
-# Determine whether or not we can use rootly owner/group functions.
-.if !defined(UID)
-UID!=	${ID} -u
-.endif
-.if ${UID} == 0
-_BINOWNGRP=	-o ${BINOWN} -g ${BINGRP}
-_SHROWNGRP=	-o ${SHAREOWN} -g ${SHAREGRP}
-_MANOWNGRP=	-o ${MANOWN} -g ${MANGRP}
-.else
-_BINOWNGRP=
-_SHROWNGRP=
-_MANOWNGRP=
-.endif
+
+
+_SHAREMODE?=	0644
 
 # A few aliases for *-install targets
-INSTALL_PROGRAM=	${INSTALL} ${COPY} ${STRIP} ${_BINOWNGRP} -m ${BINMODE}
-INSTALL_KLD=	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
-INSTALL_LIB=	${INSTALL} ${COPY} ${STRIP} ${_SHROWNGRP} -m ${SHAREMODE}
-INSTALL_SCRIPT=	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
-INSTALL_DATA=	${INSTALL} ${COPY} ${_SHROWNGRP} -m ${SHAREMODE}
-INSTALL_MAN=	${INSTALL} ${COPY} ${_MANOWNGRP} -m ${MANMODE}
+INSTALL_PROGRAM=	${INSTALL} ${COPY} ${STRIP} -m ${BINMODE}
+INSTALL_KLD=	${INSTALL} ${COPY} -m ${BINMODE}
+INSTALL_LIB=	${INSTALL} ${COPY} ${STRIP} -m ${_SHAREMODE}
+INSTALL_SCRIPT=	${INSTALL} ${COPY} -m ${BINMODE}
+INSTALL_DATA=	${INSTALL} ${COPY} -m ${_SHAREMODE}
+INSTALL_MAN=	${INSTALL} ${COPY} -m ${MANMODE}
 
 INSTALL_MACROS=	BSD_INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 			BSD_INSTALL_LIB="${INSTALL_LIB}" \
@@ -3180,10 +3181,9 @@ pre-repackage:
 # Build a package but don't check the cookie for installation, also don't
 # install package cookie
 
-.if !target(package-noinstall)
-package-noinstall: 
-	@cd ${.CURDIR} && ${MAKE} package
-.endif
+.    if !target(package-noinstall)
+package-noinstall: package
+.    endif
 
 ################################################################
 # Dependency checking
