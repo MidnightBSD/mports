@@ -27,6 +27,7 @@
                 <th>Summary</th>
                 <th>OSVersion</th>
                 <th>Arch</th>
+		<th>Critical</th>
         </tr>
         </thead>
         <tbody>
@@ -38,6 +39,15 @@
                 <td><TMPL_VAR NAME=summary></td>
                 <td><TMPL_VAR NAME=osversion></td>
                 <td><TMPL_VAR NAME=arch></td>
+		<td>
+              <TMPL_IF NAME="critical">
+                    <span class="label label-success">Critical</span>
+              <TMPL_ELSE>
+                   <span class="label label-primary">Normal</span>
+              </TMPL_IF>
+		</td>
+        </td>
+
         </tr>
         </TMPL_LOOP>
         </tbody>

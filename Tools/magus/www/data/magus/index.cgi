@@ -370,6 +370,7 @@ sub summary_page {
     flavor    => $_->flavor,
     osversion => $_->run->osversion,
     arch      => $_->run->arch, 
+    critical  => $_->critical,
   }} Magus::Port->search_last_twenty;
   
   print $p->header;
