@@ -1060,10 +1060,11 @@ PKGPOSTINSTALL?=	${PKGDIR}/pkg-post-install
 PKGPREDEINSTALL?=	${PKGDIR}/pkg-pre-deinstall
 PKGPOSTDEINSTALL?=	${PKGDIR}/pkg-post-deinstall
 
-.if defined(USE_LOCAL_MK)
-EXTENSIONS+=	local
-.endif
-.for odir in ${OVERLAYS}
+.    if defined(USE_LOCAL_MK)
+#EXTENSIONS+=	local
+.include "${PORTSDIR}/Mk/extensions/local.mk"
+.    endif
+.    for odir in ${OVERLAYS}
 .sinclude "${odir}/Mk/bsd.overlay.mk"
 .    endfor
 
@@ -1168,6 +1169,10 @@ FAKE_COOKIE?=		${WRKDIR}/.fake_done.${PORTNAME}.${PREFIX:S/\//_/g}
 
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
+# In general, however, DO_NADA is a relic of the past in the ports
+# infrastructure, and most of its usage has been removed. If you need to define
+# a target with DO_NADA, then there is a high chance that the ports
+# infrastructure should be fixed instead.
 DO_NADA?=		${TRUE}
 
 # Use this as the first operand to always build dependency.
@@ -4364,9 +4369,9 @@ install-desktop-entries:
 .      endif
 .    endif
 
-.if !target(install-desktop-entries)
+.    if !target(install-desktop-entries)
+.      if defined(DESKTOP_ENTRIES)
 install-desktop-entries-lah:
-.if defined(DESKTOP_ENTRIES)
 	@(${MKDIR} "${FAKE_DESTDIR}${DESKTOPDIR}" 2> /dev/null) || \
 		(${ECHO_MSG} "===> Cannot create ${FAKE_DESTDIR}${DESKTOPDIR}, check permissions"; exit 1)
 	@set -- ${DESKTOP_ENTRIES} XXX; \
@@ -4405,10 +4410,8 @@ install-desktop-entries-lah:
 	if [ -z "${_DESKTOPDIR_REL}" ]; then \
 		${ECHO_CMD} "@cwd" >> ${TMPPLIST}; \
 	fi
-.else
-	@${DO_NADA}
-.endif
-.endif
+.      endif
+.    endif
 
 .    if !empty(BINARY_ALIAS)
 .      if !target(create-binary-alias)
@@ -4512,12 +4515,13 @@ ${_PORTS_DIRECTORIES}:
 _TARGETS_STAGES=SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE TEST INSTALL UPDATE
 
 _SANITY_SEQ=	100:pre-everything 150:check-makefile \
-				200:show-warnings 210:show-dev-warnings 220:show-dev-errors \
+				190:show-errors 200:show-warnings \
+				210:show-dev-errors 220:show-dev-warnings \
 				250:check-categories 300:check-makevars \
 				350:check-desktop-entries 400:check-depends \
 				450:identify-install-conflicts 500:check-deprecated \
-				550:check-vulnerable 600:check-license 700:buildanyway-message \
-				750:options-message ${_USES_sanity}
+				550:check-vulnerable 600:check-license 650:check-config \
+				700:buildanyway-message 750:options-message ${_USES_sanity}
 
 _PKG_DEP=		check-sanity
 _PKG_SEQ=		500:pkg-depends
@@ -4527,28 +4531,30 @@ _FETCH_SEQ=		150:fetch-depends 300:pre-fetch 450:pre-fetch-script \
 				850:post-fetch-script \
 				${_OPTIONS_fetch} ${_USES_fetch}
 _EXTRACT_DEP=	fetch
-_EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum 150:extract-depends \
-				190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
+_EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum \
+				150:extract-depends 190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
 				300:pre-extract 450:pre-extract-script 500:do-extract \
 				700:post-extract 850:post-extract-script \
 				999:extract-fixup-modes \
 				${_OPTIONS_extract} ${_USES_extract} ${_SITES_extract}
 _PATCH_DEP=		extract
-_PATCH_SEQ=		050:ask-license 100:patch-message \
-				150:patch-depends \
+_PATCH_SEQ=		050:ask-license 100:patch-message 150:patch-depends \
 				300:pre-patch 450:pre-patch-script 500:do-patch \
 				700:post-patch 850:post-patch-script \
 				${_OPTIONS_patch} ${_USES_patch}
 _CONFIGURE_DEP=	patch
-_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 160:create-binary-alias 200:configure-message \
+_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 160:create-binary-alias \
+				161:create-binary-wrappers 170:create-base-pkgconfig \
+				200:configure-message 210:apply-slist \
 				300:pre-configure 450:pre-configure-script \
-				460:run-autotools 490:do-autoreconf 491:patch-libtool \
-				500:do-configure 700:post-configure 850:post-configure-script \
+				490:run-autotools-fixup 490:do-autoreconf 491:patch-libtool \
+				500:do-configure 700:post-configure \
+				850:post-configure-script \
 				${_OPTIONS_configure} ${_USES_configure}
 _BUILD_DEP=		configure
 _BUILD_SEQ=		100:build-message 300:pre-build 450:pre-build-script \
-			500:do-build 700:post-build 850:post-build-script \
-			${_OPTIONS_build} ${_USES_build}
+				500:do-build 700:post-build 850:post-build-script \
+				${_OPTIONS_build} ${_USES_build}
 
 _FAKE_DEP=		build
 _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-pre-install \
@@ -4558,7 +4564,9 @@ _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-
 				800:post-fake 850:fake-compress-man \
 				851:compress-man 860:install-rc-script 870:install-ldconfig-file \
 				880:install-license 890:install-desktop-entries \
-				900:fix-fake-symlinks 920:finish-tmpplist 930:fix-plist-sequence \
+				900:add-plist-info 910:add-plist-docs 920:add-plist-examples \
+				930:add-plist-data 940:add-plist-post \
+				950:fix-fake-symlinks 960:finish-tmpplist 970:fix-plist-sequence \
 				${POST_PLIST:C/^/990:/} \
 				${_OPTIONS_install} ${_USES_install} \
                                 ${_OPTIONS_fake} ${_USES_fake}
@@ -4697,12 +4705,15 @@ fetch: ${_FETCH_DEP} ${_FETCH_REAL_SEQ}
 pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
 .    endif
 
-#.    if !target(test)
+.    if !target(test)
 test: ${_TEST_DEP}
 .      if !defined(NO_TEST)
 test: ${_TEST_REAL_SEQ}
 .      endif
-#.    endif
+.    endif
+
+.  endif
+# End of post-makefile section.
 
 .endif
-# End of post-makefile section.
+# End of the DESTDIR if statement
