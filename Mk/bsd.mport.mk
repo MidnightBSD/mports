@@ -1083,12 +1083,6 @@ ERROR+=	"Unknown USES=${f:C/\:.*//}"
 .      endif
 .    endif
 
-.    if defined(USE_LOCALE)
-CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-MAKE_ENV+=		LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-WRK_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-.    endif
-
 .    if defined(USE_XORG)
 # Add explicit X options to avoid problems with false positives in configure
 .      if defined(GNU_CONFIGURE)
@@ -1144,6 +1138,10 @@ FAKE_COOKIE?=		${WRKDIR}/.fake_done.${PORTNAME}.${PREFIX:S/\//_/g}
 
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
+# In general, however, DO_NADA is a relic of the past in the ports
+# infrastructure, and most of its usage has been removed. If you need to define
+# a target with DO_NADA, then there is a high chance that the ports
+# infrastructure should be fixed instead.
 DO_NADA?=		${TRUE}
 
 # Use this as the first operand to always build dependency.
@@ -1183,9 +1181,7 @@ CFLAGS+=       -fno-strict-aliasing
 ${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
 .      endif
 
-.if defined(${lang}FLAGS_${ARCH})
 ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
-.endif
 .    endfor
 
 LDFLAGS+=	${LDFLAGS_${ARCH}}
@@ -1275,23 +1271,9 @@ PATCH_DIST_ARGS+=	--suffix .orig
 TAR?=	/usr/bin/tar
 
 # EXTRACT_SUFX is defined in .pre.mk section
-.if defined(USE_LHA)
-EXTRACT_CMD?=		${LHA_CMD}
-EXTRACT_BEFORE_ARGS?=	xfqw=${WRKDIR}
-EXTRACT_AFTER_ARGS?=
-.elif defined(USE_MAKESELF)
-EXTRACT_CMD?=		${UNMAKESELF_CMD}
-EXTRACT_BEFORE_ARGS?=
-EXTRACT_AFTER_ARGS?=
-.else
 EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
-.if defined(EXTRACT_PRESERVE_OWNERSHIP)
-EXTRACT_AFTER_ARGS?=
-.else
 EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
-.endif
-.endif
 
 
 
