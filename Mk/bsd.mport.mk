@@ -956,11 +956,9 @@ check-makevars::
 
 MANCOMPRESSED?=	no
 
-.if defined(PATCHFILES)
-.if ${PATCHFILES:M*.zip}x != x
+.    if defined(PATCHFILES) && ${PATCHFILES:M*.zip}
 PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:archivers/unzip
-.endif
-.endif
+.    endif
 
 .if defined(USE_LHA)
 EXTRACT_DEPENDS+=	lha:archivers/lha
@@ -1786,12 +1784,7 @@ maintainer:
 	@${ECHO_CMD} "${MAINTAINER}"
 .    endif
 
-.if !target(check-makefile)
-check-makefile::
-	@${DO_NADA}
-.endif
-
-.if !defined(CATEGORIES)
+.    if !defined(CATEGORIES)
 check-categories:
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: CATEGORIES is mandatory."
 	@${FALSE}
