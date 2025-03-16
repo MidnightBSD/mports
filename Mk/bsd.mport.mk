@@ -3663,7 +3663,7 @@ add-plist-data:
 .      if defined(INFO)
 add-plist-info:
 .        for i in ${INFO}
-	@${LS} ${STAGEDIR}${PREFIX}/${INFO_PATH}/$i.info* | ${SED} -e s:${STAGEDIR}:@info\ :g >> ${TMPPLIST}
+	@${LS} ${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}/$i.info* | ${SED} -e s:${STAGEDIR}:@info\ :g >> ${TMPPLIST}
 .        endfor
 .      endif
 .    endif
