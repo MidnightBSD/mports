@@ -4230,7 +4230,7 @@ config-conditional:
 .    endif # config-conditional
 
 .    if !target(showconfig) && (make(*config*) || (!empty(.MAKEFLAGS:M-V) && !empty(.MAKEFLAGS:M*_DESC)))
-.include "${PORTSDIR}/Mk/bsd.options.desc.mk"
+.include "${PORTSDIR}/Mk/components/options.desc.mk"
 MULTI_EOL=	: you have to choose at least one of them
 SINGLE_EOL=	: you have to select exactly one of them
 RADIO_EOL=	: you can only select none or one of them
