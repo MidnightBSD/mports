@@ -779,11 +779,6 @@ TEST_ENV?=		${MAKE_ENV}
 
 PKG_ENV+=		PORTSDIR=${PORTSDIR}
 
-# Integrate with the license auditing framework
-.    if !defined (DISABLE_LICENSES)
-.include "${MPORTCOMPONENTS}/licenses.mk"
-.    endif
-
 # Make sure we have some stuff defined before we pull in the mixins.
 #
 # The user can override the NO_PACKAGE by specifying this from
@@ -1241,10 +1236,9 @@ PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 .    if defined(PATCH_DEBUG)
 PATCH_DEBUG_TMP=	yes
-PATCH_ARGS?=	-E ${PATCH_STRIP}
-PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
+PATCH_ARGS?=	--forward -E ${PATCH_STRIP}
+PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward -E ${PATCH_DIST_STRIP}
 .    else
-PATCH_DEBUG_TMP=	no
 PATCH_ARGS?=	--forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward --quiet -E ${PATCH_DIST_STRIP}
 .    endif
@@ -1612,7 +1606,7 @@ PATCH_SITES_TMP=
 MASTER_SITE_BACKUP?=	\
 	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/${DIST_SUBDIR}/ \
 	https://discovery.midnightbsd.org/ftp/mports/distfiles/ \
-	http://distcache.freebsd.org/ports-distfiles/${DIST_SUBDIR}/
+	http://distcache.FreeBSD.org/ports-distfiles/${DIST_SUBDIR}/
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP:S^\${DIST_SUBDIR}/^^}
 # Include private dist files that we can't redistribute for Magus.
 .if defined(MAGUS)
@@ -1623,13 +1617,13 @@ MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP} \
 
 # If the user has MASTER_SITE_FREEBSD set, go to the FreeBSD repository
 # for everything, but don't search it twice by appending it to the end.
-.if defined(MASTER_SITE_FREEBSD)
+.    if defined(MASTER_SITE_FREEBSD)
 _MASTER_SITE_OVERRIDE:=	${MASTER_SITE_BACKUP}
 _MASTER_SITE_BACKUP:=	# empty
 .    else
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE}
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
-.endif
+.    endif
 
 NOFETCHFILES?=
 
@@ -1762,10 +1756,10 @@ _F_TEMP=	${_F:S/^${_F:C/:[^-:][^:]*$//}//:S/^://}
 .        for _group in ${_F_TEMP:S/,/ /g}
 .          if defined(_PATCH_SITES_${_group})
 _PATCH_SITES_ENV+=	_PATCH_SITES_${_group}=${_PATCH_SITES_${_group}:Q}
-.			endif
-.		endfor
-.	endif
-.endfor
+.          endif
+.        endfor
+.      endif
+.    endfor
 
 master-sites-ALL:
 	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_MASTER_SITES_ALL}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
@@ -1824,7 +1818,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	lang linux lisp lua \
 	mail mate math mbone misc multimedia \
 	net net-im net-mgmt net-p2p net-vpn news \
-	parallel pear perl5 plan9 polish portuguese ports-mgmt \
+	parallel pear perl5 plan9 polish ports-mgmt portuguese \
 	print python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
 	tcl textproc tk \
@@ -1833,13 +1827,13 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	x11-toolkits x11-wm xfce zope base
 
 check-categories:
-.for cat in ${CATEGORIES}
-.	if empty(VALID_CATEGORIES:M${cat})
+.      for cat in ${CATEGORIES}
+.        if empty(VALID_CATEGORIES:M${cat})
 		@${ECHO_MSG} "${PKGNAME}: Makefile error: category ${cat} not in list of valid categories."; \
 		${FALSE};
-.	endif
-.endfor
-.endif
+.        endif
+.      endfor
+.    endif
 
 .if !target(check-makevars)
 check-makevars::
@@ -1859,16 +1853,85 @@ PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
 
 # The "latest version" link -- ${PKGNAME} minus everthing after the last '-'
 PKGLATESTREPOSITORY?=	${PACKAGES}/Latest
+PKGBASE?=			${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${PKGBASE}${PKG_SUFX}
 
+
+_PKGS=	${PKGBASE}
+PORTS_FEATURES+=	SUBPACKAGES
+.    if defined(SUBPACKAGES)
+.      if ${SUBPACKAGES:Mmain}
+DEV_ERROR+=	"SUBPACKAGES cannot contain 'main', it is a reserved value"
+.      endif
+.      for sp in ${SUBPACKAGES}
+.        if ${sp:C/[[:lower:][:digit:]_]//g}
+_BAD_SUBPACKAGES_NAMES+=	${sp}
+.        endif
+.      endfor
+.      if !empty(_BAD_SUBPACKAGES_NAMES)
+DEV_ERROR+=	"SUBPACKAGES cannot subpackages that are not all [a-z0-9_]: ${_BAD_SUBPACKAGES_NAMES}"
+.      endif
+.    endif
+.    for sp in ${SUBPACKAGES}
+# If a FRAMEWORK generated package needs to override its subpackage package name
+# it can do it with this mechanism
+.      if !defined(_PKGS.${sp})
+_PKGS.${sp}=	${PKGBASE}-${sp}
+.      endif
+_PKGS+=	${_PKGS.${sp}}
+PKGBASE.${sp}=	${_PKGS.${sp}}
+_SP.${_PKGS.${sp}}=.${sp}
+.    endfor
+
+.    if !defined(_DID_SUBPACKAGES_HELPERS)
+_DID_SUBPACKAGES_HELPERS=	yes
+_SUBPACKAGE_HELPERS_FILE=	DESCR PKGINSTALL PKGDEINSTALL PKGMESSAGE \
+							PKGPREINSTALL PKGPOSTINSTALL PKGPREDEINSTALL PKGPOSTDEINSTALL \
+							PKGPREUPGRADE PKGPOSTUPGRADE PKGUPGRADE
+
+.      for sp in ${SUBPACKAGES}
+# These overwrite the current value
+.        for v in ${_SUBPACKAGE_HELPERS_FILE}
+${v}.${sp}?=	${$v}.${sp}
+.        endfor
+_PKGMESSAGES.${sp}=		${PKGMESSAGE}.${sp}
+.        if !exists(${DESCR.${sp}}) && ${sp} != debuginfo
+DESCR.${sp}=	${DESCR}
+DEV_WARNING+=	"DESCR.${sp} needs to point to an existing file."
+.        endif
+COMMENT.${sp}?=	${COMMENT} (subpkg: ${sp})
+.      endfor
+.    endif
+
+.    if exists(${PACKAGES})
+PACKAGES:=	${PACKAGES:S/:/\:/g}
+_HAVE_PACKAGES=	yes
+_PKGDIR=	${PKGREPOSITORY}
+.    else
+_PKGDIR=	${.CURDIR}
+.    endif
+.    for sp in ${_PKGS}
+PKGNAME${_SP.${sp}}=	${sp}-${PKGVERSION}
+PKGNAMES+=				${PKGNAME${_SP.${sp}}}
+PKGFILE${_SP.${sp}}=	${_PKGDIR}/${PKGNAME${_SP.${sp}}}${PKG_SUFX}
+.    endfor
+_EXTRA_PACKAGE_TARGET_DEP+=	${_PKGDIR}
+.    for sp in ${_PKGS}
+WRKDIR_PKGFILE${_SP.${sp}}=	${WRKDIR}/pkg/${PKGNAME${_SP.${sp}}}${PKG_SUFX}
+.    endfor
+
+# Integrate with the license auditing framework
+.    if !defined (DISABLE_LICENSES)
+.include "${MPORTCOMPONENTS}/licenses.mk"
+.    endif
 
 CONFIGURE_SCRIPT?=	configure
 CONFIGURE_CMD?=		./${CONFIGURE_SCRIPT}
 
 .if (${OSVERSION} < 10001)
-CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET?=	${HOSTARCH}-portbld-freebsd9.1
 .else
-CONFIGURE_TARGET?=	${ARCH}-portbld-midnightbsd${OSREL}
+CONFIGURE_TARGET?=	${HOSTARCH}-portbld-${OPSYS:tl}${OSREL}
 .endif
 CONFIGURE_TARGET:=	${CONFIGURE_TARGET:S/--build=//}
 CONFIGURE_LOG?=		config.log
@@ -1933,11 +1996,7 @@ SCRIPTS_ENV+=	BATCH=yes
 # Manual Pages
 .include "${PORTSDIR}/Mk/components/man.mk"
 
-.if ${PREFIX} == /usr
 INFO_PATH?=	share/info
-.else
-INFO_PATH?=	info
-.endif
 
 .    if defined(INFO)
 RUN_DEPENDS+=	indexinfo:print/indexinfo
@@ -1952,8 +2011,8 @@ BROKEN=		only one subdirectory in INFO is allowed
 .          endif
 .        endif
 .undef RD
-. endfor
-.endif
+.      endfor
+.    endif
 
 DOCSDIR?=	${PREFIX}/share/doc/${PORTNAME}
 EXAMPLESDIR?=	${PREFIX}/share/examples/${PORTNAME}
@@ -2048,8 +2107,15 @@ IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON})
 .    endif
 
 # Check the user interaction and legal issues
-.if !defined(NO_IGNORE)
-.if (defined(IS_INTERACTIVE) && defined(BATCH))
+.    if !defined(NO_IGNORE)
+.      for v in ${OSREL} ${OSREL:R}
+.        for f in ${FLAVOR}
+.          if defined($f_IGNORE_${OPSYS}_${v})
+IGNORE+= "${${f}_IGNORE_${OPSYS}_${v}}"
+.          endif
+.        endfor
+.      endfor
+.      if (defined(IS_INTERACTIVE) && defined(BATCH))
 IGNORE=		is an interactive port
 .      elif (!defined(IS_INTERACTIVE) && defined(INTERACTIVE))
 IGNORE=		is not an interactive port
@@ -2109,9 +2175,9 @@ clean:
 .      if defined(IGNORE)
 .        if defined(IGNORE_SILENT)
 IGNORECMD=	${DO_NADA}
-.else
-IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
-.endif
+.        else
+IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}. | ${FMT_80} ; exit 1
+.        endif
 
 _TARGETS=	check-sanity pkg fetch checksum extract patch configure all build \
 		fake install reinstall test package 
@@ -2179,9 +2245,9 @@ all:
 	${ALL_HOOK}
 .    endif
 
-.if !target(all)
+.    if !target(all)
 all: build
-.endif
+.    endif
 
 .    if !defined(DEPENDS_TARGET)
 .      if defined(DEPENDS_PRECLEAN)
@@ -2190,14 +2256,14 @@ DEPENDS_ARGS=	NOCLEANDEPENDS=yes
 .      endif
 .      if make(reinstall)
 DEPENDS_TARGET+=	reinstall
-.else
+.      else
 DEPENDS_TARGET+=	cached-install
-.endif
-.if defined(DEPENDS_CLEAN)
+.      endif
+.      if defined(DEPENDS_CLEAN)
 DEPENDS_TARGET+=	clean
 DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
-.endif
-.endif
+.      endif
+.    endif
 
 ################################################################
 #
@@ -2205,12 +2271,10 @@ DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
 # target or not.
 #
 ################################################################
-.if ((!defined(OPTIONS) && !defined(OPTIONS_DEFINE) && \
-	!defined(OPTIONS_SINGLE) && !defined(OPTIONS_MULTI)) \
+.    if ((!defined(OPTIONS_DEFINE) && !defined(OPTIONS_SINGLE) && !defined(OPTIONS_MULTI)) \
 	&& !defined(OPTIONS_GROUP) && !defined(OPTIONS_RADIO) \
-	|| defined(CONFIG_DONE) || \
-	defined(PACKAGE_BUILDING) || defined(BATCH) || \
-	exists(${_OPTIONSFILE}) || exists(${_OPTIONSFILE}.local))
+	|| defined(CONFIG_DONE_${PKGBASE:tu}) || \
+	defined(PACKAGE_BUILDING) || defined(BATCH))
 _OPTIONS_OK=yes
 .    endif
 
@@ -2233,7 +2297,7 @@ checksum: fetch
 .    if defined(NO_BUILD) && !target(build)
 build: configure
 	@${TOUCH} ${TOUCH_FLAGS} ${BUILD_COOKIE}
-.endif
+.    endif
 
 # Disable install
 .if defined(NO_INSTALL) && !target(install)
@@ -2256,12 +2320,12 @@ do-test:
 # Disable package
 .    if defined(NO_PACKAGE) && !target(package)
 package:
-.if defined(IGNORE_SILENT)
+.      if !defined(IGNORE_SILENT)
 	@${DO_NADA}
-.else
+.    else
 	@${ECHO_MSG} "===>  ${PKGNAME} may not be packaged: "${NO_PACKAGE:Q}.
-.endif
-.endif
+.      endif
+.    endif
 
 # Disable describe
 .if defined(NO_DESCRIBE) && !target(describe)
@@ -2293,11 +2357,11 @@ patch-libtool::
 .endif
 
 buildanyway-message:
-.if defined(TRYBROKEN) && defined(BROKEN)
+.    if defined(TRYBROKEN) && defined(BROKEN)
 	@${ECHO_MSG} "Trying build of ${PKGNAME} even though it is marked BROKEN."
-.else
+.    else
 	@${DO_NADA}
-.endif
+.    endif
 
 
 # Warn user about deprecated packages.  Advisory only.
@@ -2386,7 +2450,7 @@ _DO_FETCH_ENV+= dp_DEVELOPER=
 
 .    if !target(do-fetch)
 do-fetch:
-.if !empty(DISTFILES)
+.      if !empty(DISTFILES)
 	@${SETENV} \
 			${_DO_FETCH_ENV} ${_MASTER_SITES_ENV} \
 			dp_SITE_FLAVOR=MASTER \
@@ -2397,8 +2461,8 @@ do-fetch:
 			${_DO_FETCH_ENV} ${_PATCH_SITES_ENV} \
 			dp_SITE_FLAVOR=PATCH \
 			${SH} ${SCRIPTSDIR}/do-fetch.sh ${PATCHFILES:C/:-p[0-9]//:C/.*/'&'/}
-.endif
-.endif
+.      endif
+.    endif
 
 # Extract
 
@@ -2501,22 +2565,22 @@ do-configure:
 			 (${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT_80} ; \
 			 ${FALSE}; \
 		fi)
-.endif
+.      endif
 # XXX is this needed?
 .if defined(USE_IMAKE)
 	@(cd ${CONFIGURE_WRKSRC}; ${SETENV} ${MAKE_ENV} ${XMKMF})
 .endif
-.endif
+.    endif
 
 # Build
-# XXX: ${MAKE_ARGS:N${DESTDIRNAME}=*} would be easier but it is not valid with the old fmake
-DO_MAKE_BUILD?= ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g}
-.if !target(do-build)
+DO_MAKE_BUILD?=	${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
+				${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:N${DESTDIRNAME}=*}
+.    if !target(do-build)
 do-build:
 	@(cd ${BUILD_WRKSRC}; if ! ${DO_MAKE_BUILD} ${ALL_TARGET}; then \
 		if [ -n "${BUILD_FAIL_MESSAGE}" ] ; then \
 			${ECHO_MSG} "===> Compilation failed unexpectedly."; \
-			(${ECHO_CMD} "${BUILD_FAIL_MESSAGE}") | ${FMT} 75 79 ; \
+			(${ECHO_CMD} "${BUILD_FAIL_MESSAGE}") | ${FMT_80} ; \
 			fi; \
 		${FALSE}; \
 		fi)
@@ -2524,13 +2588,13 @@ do-build:
 
 # Check conflicts
 
-.if !target(check-conflicts)
+.    if !target(check-conflicts)
 check-conflicts: check-build-conflicts check-install-conflicts
-.endif
+.    endif
 
-.if !target(check-build-conflicts)
+.    if !target(check-build-conflicts)
 check-build-conflicts:
-.if ( defined(CONFLICTS) || defined(CONFLICTS_BUILD) ) && !defined(DISABLE_CONFLICTS) && !defined(DEFER_CONFLICTS_CHECK)
+.      if ( defined(CONFLICTS) || defined(CONFLICTS_BUILD) ) && !defined(DISABLE_CONFLICTS) && !defined(DEFER_CONFLICTS_CHECK)
 	@for _name in ${CONFLICTS:C/.+/'&'/}; do \
 		if ${MPORT_QUERY} -q name=$${_name} ; then \
 			${ECHO_CMD} -n "===> $${_name} conflicts with installed packages. You need to remove it with mport delete $${_name}"; \
@@ -2543,27 +2607,28 @@ check-build-conflicts:
 			exit 1;  \
 		fi; \
 	done;
-.endif
-.endif
+.      endif
+.    endif
 
-.if !target(identify-install-conflicts)
+.    if !target(identify-install-conflicts)
+CONFLICT_WARNING_WAIT?=	10
 identify-install-conflicts:
-.if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) ) && !defined(DISABLE_CONFLICTS)
+.      if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) ) && !defined(DISABLE_CONFLICTS)
 	@for _name in ${CONFLICTS_INSTALL:C/.+/'&'/}; do \
                 if ${MPORT_QUERY} -q name=$$_name ; then \
                         ${ECHO_MSG} "===> $${_name} conflicts with installed packages."; \
 			${ECHO_MSG} "      They install files into the same place."; \
 			${ECHO_MSG} "      You may want to stop build with Ctrl + C."; \
-                        sleep 10;  \
+                        sleep ${CONFLICT_WARNING_WAIT}; \
                 fi; \
         done;
-.endif
-.endif
+.      endif
+.    endif
 
-.if !target(check-install-conflicts)
+.    if !target(check-install-conflicts)
 check-install-conflicts:
-.if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) || ( defined(CONFLICTS_BUILD) && defined(DEFER_CONFLICTS_CHECK) ) ) && !defined(DISABLE_CONFLICTS)
-.if defined(DEFER_CONFLICTS_CHECK)
+.      if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) || ( defined(CONFLICTS_BUILD) && defined(DEFER_CONFLICTS_CHECK) ) ) && !defined(DISABLE_CONFLICTS)
+.        if defined(DEFER_CONFLICTS_CHECK)
 	@for _name in ${CONFLICTS:C/.+/'&'/} ${CONFLICTS_BUILD:C/.+/'&'/} ${CONFLICTS_INSTALL:C/.+/'&'/}; do \
 		if ${MPORT_QUERY} -q name=$${_name} ; then \
 			${ECHO_CMD} -n "===> $${_name} conflicts with installed packages. You need to remove it with mport delete $${_name}"; \
@@ -2579,15 +2644,15 @@ check-install-conflicts:
 			exit 1;  \
 		fi; \
 	done;
-.endif # defined(DEFER_CONFLICTS_CHECK)
-.endif
-.endif
+.        endif # defined(DEFER_CONFLICTS_CHECK)
+.      endif
+.    endif
 
 
 #
 # Package
 #
-.if !target(do-package)
+.    if !target(do-package)
 do-package: ${TMPPLIST}
 	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
 		${ECHO_MSG} "=> Can't create directory ${PKGREPOSITORY}."; \
@@ -2613,7 +2678,7 @@ do-package: ${TMPPLIST}
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
 		exit 1; \
 	fi
-.endif
+.    endif
 
 # Some support rules for do-package
 
@@ -3919,7 +3984,7 @@ compress-man:
 fake-qa:
 	@${ECHO_MSG} "====> Running Q/A tests (fake-qa)"
 	@${SETENV} ${QA_ENV} ${SH} ${SCRIPTSDIR}/qa.sh
-.      if !defined(DEVELOPER)
+.      if !defined(DEVELOPER) && !defined(MPORT_MAINTAINER_MODE)
 	@${ECHO_MSG} "/!\\ To run fake-qa automatically add DEVELOPER=yes to your environment /!\\"
 .      endif
 .    endif
