@@ -1,5 +1,5 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
-#
+
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building mports subdirectories.
 #
@@ -45,8 +45,6 @@ README=			${TEMPLATES}/README.category
 .endif
 MOVEDDIR?=		${PORTSDIR}
 MOVEDFILE?=		MOVED
-INDEXDIR?=		${PORTSDIR}
-INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 # Ensure .CURDIR contains an absolute path without a trailing slash.  Failed
 # builds can occur when PORTSDIR is a symbolic link, or with something like
@@ -71,76 +69,79 @@ STRIP?=	-s
 # to child makes explicitly, instead of recomputing them tens of thousands of times.
 
 .if !defined(NOPRECIOUSMAKEVARS)
-.if !defined(ARCH)
+.  if !defined(ARCH)
 ARCH!=	${UNAME} -p
-.endif
+.  endif
 _EXPORTED_VARS+=	ARCH
 
-.if !defined(OSVERSION)
-.if exists(/usr/include/sys/param.h)
+.  if !defined(OSVERSION)
+.    if exists(/usr/include/sys/param.h)
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < /usr/include/sys/param.h
-.elif exists(${SRC_BASE}/sys/sys/param.h)
+.    elif exists(${SRC_BASE}/sys/sys/param.h)
 OSVERSION!=${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
-.else
+.    else
 OSVERSION!=	${SYSCTL} -n kern.osreldate
-.endif
-.endif
+.    endif
+.  endif
 _EXPORTED_VARS+=	OSVERSION
-.endif
 
-.if !defined(_OSRELEASE)
+
+.  if !defined(_OSRELEASE)
 _OSRELEASE!=		${UNAME} -r
-.endif
+.  endif
 _EXPORTED_VARS+=	_OSRELEASE
-.if !defined(OSREL)
+.  if !defined(OSREL)
 OSREL=	${_OSRELEASE:C/[-(].*//}
-.endif
+.  endif
 _EXPORTED_VARS+=	OSREL
 
-.if !defined(OPSYS)
+.  if !defined(OPSYS)
 OPSYS!=	${UNAME} -s
-.endif
+.  endif
 _EXPORTED_VARS+=	OPSYS
 
-.if ${ARCH} == "amd64"
-.if !defined(HAVE_COMPAT_IA32_KERN)
+.  if ${ARCH} == "amd64"
+.    if !defined(HAVE_COMPAT_IA32_KERN)
 HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -n compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi; echo
-.if empty(HAVE_COMPAT_IA32_KERN)
+.      if empty(HAVE_COMPAT_IA32_KERN)
 .undef HAVE_COMPAT_IA32_KERN
-.endif
-.endif
-.endif
+.      endif
+.    endif
+.  endif
 _EXPORTED_VARS+=	HAVE_COMPAT_IA32_KERN
 
-.if !defined(CONFIGURE_MAX_CMD_LEN)
+.  if !defined(CONFIGURE_MAX_CMD_LEN)
 CONFIGURE_MAX_CMD_LEN!= ${SYSCTL} -n kern.argmax
-.endif
+.  endif
 _EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 
-.if !defined(_JAVA_VERSION_LIST_REGEXP)
+.  if !defined(_JAVA_VERSION_LIST_REGEXP)
 _JAVA_VERSION_LIST_REGEXP!=	${MAKE} -V _JAVA_VERSION_LIST_REGEXP USE_JAVA=1 -f ${PORTSDIR}/Mk/bsd.mport.mk
-.endif
+.  endif
 _EXPORTED_VARS+=	_JAVA_VERSION_LIST_REGEXP
 
-.if !defined(_JAVA_VENDOR_LIST_REGEXP)
+.  if !defined(_JAVA_VENDOR_LIST_REGEXP)
 _JAVA_VENDOR_LIST_REGEXP!=	${MAKE} -V _JAVA_VENDOR_LIST_REGEXP USE_JAVA=1 -f ${PORTSDIR}/Mk/bsd.mport.mk
-.endif
+.  endif
 _EXPORTED_VARS+=	_JAVA_VENDOR_LIST_REGEXP
 
-.if !defined(_JAVA_OS_LIST_REGEXP)
+.  if !defined(_JAVA_OS_LIST_REGEXP)
 _JAVA_OS_LIST_REGEXP!=		${MAKE} -V _JAVA_OS_LIST_REGEXP USE_JAVA=1 -f ${PORTSDIR}/Mk/bsd.mport.mk
-.endif
+.  endif
 _EXPORTED_VARS+=	_JAVA_OS_LIST_REGEXP
 
-.if !defined(_JAVA_PORTS_INSTALLED)
+.  if !defined(_JAVA_PORTS_INSTALLED)
 _JAVA_PORTS_INSTALLED!=		${MAKE} -V _JAVA_PORTS_INSTALLED USE_JAVA=1 -f ${PORTSDIR}/Mk/bsd.mport.mk
-.endif
+.  endif
 _EXPORTED_VARS+=	_JAVA_PORTS_INSTALLED
 
-.if !defined(UID)
-UID!=	${ID} -u
-.endif
+UID?=	${.MAKE.UID}
 _EXPORTED_VARS+=	UID
+
+.endif
+
+INDEXDIR?=		${PORTSDIR}
+INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 # local customization of the mports tree
 .sinclude "${.CURDIR}/Makefile.local"
