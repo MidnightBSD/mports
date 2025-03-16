@@ -123,10 +123,6 @@ STRIPBIN=	${STRIP_CMD}
 .export.env STRIPBIN
 .endif
 
-#
-# DESTDIR section to start a chrooted process if invoked with DESTDIR set
-#
-
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
 .if defined(USE_LINUX_PREFIX) || defined(USE_LINUX_RPM)
@@ -139,6 +135,20 @@ PREFIX?=	${LOCALBASE_REL}
 # Fake targets override this when they submake.
 TRUE_PREFIX?=		${PREFIX}
 
+# Figure out where the local mtree file is
+.if !defined(MTREE_FILE)  && !defined(NO_MTREE)
+.if ${PREFIX} == /usr
+MTREE_FILE=	/etc/mtree/BSD.usr.dist
+.elif ${PREFIX} == ${LINUXBASE_REL}
+MTREE_FILE=	${MTREE_LINUX_FILE}
+.else
+MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
+.endif
+.endif
+MTREE_CMD?=		/usr/sbin/mtree
+MTREE_LINUX_FILE?=	${PORTSDIR}/Templates/BSD.compat.dist
+MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
+MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
 .if defined(USE_DOS2UNIX)
 .if ${USE_DOS2UNIX:tu}=="YES"
@@ -167,21 +177,6 @@ _BINOWNGRP=
 _SHROWNGRP=
 _MANOWNGRP=
 .endif
-
-.if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
-	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
-
-.include "${PORTSDIR}/Mk/bsd.destdir.mk"
-
-.else
-
-.  if !target(makepatch)
-makepatch:
-	@${SETENV} WRKDIR=${WRKDIR} PATCHDIR=${PATCHDIR} \
-		PATCH_WRKSRC=${PATCH_WRKSRC} \
-		STRIP_COMPONENTS="${PATCH_STRIP:S/-p//}" \
-		${SH} ${SCRIPTSDIR}/smart_makepatch.sh
-.  endif
 
 # Start of options section
 .  if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
@@ -321,30 +316,6 @@ USE_SUBMAKE=	yes
 USE_SUBMAKE=	yes
 .    endif
 
-.    for _CATEGORY in ${CATEGORIES}
-PKGCATEGORY?=	${_CATEGORY}
-.    endfor
-_PORTDIRNAME=	${.CURDIR:T}
-PORTDIRNAME?=	${_PORTDIRNAME}
-PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
-
-# Now that PKGORIGIN is set, look for origin-specific variables.
-# These are typically set in a make.conf, in the form:
-#
-# category_portname_VARS= varname=value othervar+=value novar@
-#
-# e.g.  devel_llvm10_VARS= MAKE_JOBS_NUMBER=2
-
-.    for var in ${${PKGORIGIN:S/\//_/}_VARS:C/=.*//:O:u}
-.      if ${var:M*@}
-.  undef ${var:C/.$//}
-.      elif ${var:M*+}
-${var:C/.$//}+=	${${PKGORIGIN:S/\//_/}_VARS:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
-.      else
-${var}=			${${PKGORIGIN:S/\//_/}_VARS:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
-.      endif
-.    endfor
-
 # where 'make config' records user configuration options
 PORT_DBDIR?=	/var/db/ports
 
@@ -364,31 +335,21 @@ GROUPS_BLACKLIST=	_dhcp _pflogd _ypldap audit authpf bin bind daemon dialer ftp 
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
 
+UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+
+.endif  # end of options before pre-makefile starts
+
 # At least KDE needs TMPDIR for the package building,
 # so we're setting it to the known default value.
 .    if defined(PACKAGE_BUILDING)
 TMPDIR?=	/tmp
 .    endif # defined(PACKAGE_BUILDING)
 
-# Enable default features unless they have been disabled by the user, and cleanup
-.    for feature in ${_DEFAULT_WITH_FEATURES}
-.      if !defined(WITHOUT_${feature:tu})
-WITH_${feature:tu}=		yes
-.undef WITHOUT_${feature:tu}
+.    if defined(WITH_DEBUG_PORTS)
+.      if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
+WITH_DEBUG=	yes
 .      endif
-.    endfor
-
-# For each Feature we support, process the
-# WITH_FEATURE_PORTS and WITHOUT_FEATURE_PORTS variables
-.    for feature in ${_LIST_OF_WITH_FEATURES}
-.      if defined(WITHOUT_${feature:tu}_PORTS) && ${WITHOUT_${feature:tu}_PORTS:M${PKGORIGIN}}
-# Feature disabled for this port, remove WITH_<feat>
-.undef WITH_${feature:tu}
-.      elif defined(WITH_${feature:tu}_PORTS) && ${WITH_${feature:tu}_PORTS:M${PKGORIGIN}}
-# Feature enabled for this port, set WITH_<feat>
-WITH_${feature:tu}=	yes
-.      endif
-.    endfor
+.    endif
 
 .    if defined(USE_LTO)
 WITH_LTO=	${USE_LTO}
@@ -448,15 +409,10 @@ STRIP=	#none
 .include "${MPORTCOMPONENTS}/default-versions.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
 
-.  endif
-# End of options section.
-
 # Start of pre-makefile section.
 .  if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
 
-.    if defined(_PREMKINCLUDED)
-DEV_ERROR+=	"you cannot include bsd.port[.pre].mk twice"
-.    endif
+.include "${MPORTCOMPONENTS}/sanity.mk"
 
 _PREMKINCLUDED=	yes
 
@@ -583,7 +539,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 .endfor
 
 # setup empty variables for USES targets
-.    for target in sanity fetch extract patch configure build install test package fake
+.for target in sanity fetch extract patch configure build install test package fake
 _USES_${target}?=
 .    endfor
 
@@ -677,33 +633,59 @@ SUB_LIST+=	${FLAVOR:tu}="" NO_${FLAVOR:tu}="@comment "
 EXTRACT_DEPENDS+=       gcpio:archivers/gcpio
 .endif
 
+.if defined(USE_BZIP2)
+USES+=tar:bzip2
+.elif defined(USE_ZIP)
+USES+=zip
+.elif defined(USE_XZ)
+USES+=tar:xz
+.elif defined(USE_MAKESELF)
+EXTRACT_SUFX?=			.run
+.else
 EXTRACT_SUFX?=			.tar.gz
+.endif
 
 .if defined(USE_LINUX_PREFIX)
 _LINUX_LDCONFIG=			${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
 LDCONFIG_PLIST_EXEC_CMD?=	${_LINUX_LDCONFIG}
 LDCONFIG_PLIST_UNEXEC_CMD?=	${_LINUX_LDCONFIG}
 DATADIR?=				${PREFIX}/usr/share/${PORTNAME}
-DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${DISTVERSION}
+DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}
 NO_LICENSES_INSTALL=	yes
 NO_MTREE=				yes
 .    endif
 
+# These do some path checks if DESTDIR is set correctly.
 # You can force skipping these test by defining IGNORE_PATH_CHECKS
 .    if !defined(IGNORE_PATH_CHECKS)
-.      if ! ${PREFIX:M/*}
+.      if (${PREFIX:C,(^.).*,\1,} != "/")
 .BEGIN:
 	@${ECHO_MSG} "PREFIX must be defined as an absolute path so that when 'make'"
 	@${ECHO_MSG} "is invoked in the work area PREFIX points to the right place."
 	@${FALSE}
 .      endif
+.      if defined(DESTDIR)
+.        if (${DESTDIR:C,(^.).*,\1,} != "/")
+.          if ${DESTDIR} == "/"
+.BEGIN:
+	@${ECHO_MSG} "You can't set DESTDIR to /. Please re-run make with"
+	@${ECHO_MSG} "DESTDIR unset."
+	@${FALSE}
+.          else
+.BEGIN:
+	@${ECHO_MSG} "DESTDIR must be defined as an absolute path so that when 'make'"
+	@${ECHO_MSG} "is invoked in the work area DESTDIR points to the right place."
+	@${FALSE}
+.          endif
+.        endif
+.        if (${DESTDIR:C,^.*(/)$$,\1,} == "/")
+.BEGIN:
+	@${ECHO_MSG} "DESTDIR can't have a trailing slash. Please remove the trailing"
+	@${ECHO_MSG} "slash and re-run 'make'"
+	@${FALSE}
+.        endif
+.      endif
 .    endif
-
-DATADIR?=		${PREFIX}/share/${PORTNAME}
-DOCSDIR?=		${PREFIX}/share/doc/${PORTNAME}
-ETCDIR?=		${PREFIX}/etc/${PORTNAME}
-EXAMPLESDIR?=	${PREFIX}/share/examples/${PORTNAME}
-WWWDIR?=		${PREFIX}/www/${PORTNAME}
 
 #
 # One of the includes may have changed CPIO
@@ -726,7 +708,8 @@ WWWGRP?=	www
 .  if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .    if defined(_POSTMKINCLUDED)
-DEV_ERROR+=	"${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
+check-makefile::
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
 	@${FALSE}
 .    endif
 
@@ -846,8 +829,22 @@ BUILD_WRKSRC?=	${WRKSRC}
 INSTALL_WRKSRC?=${WRKSRC}
 TEST_WRKSRC?=	${WRKSRC}
 
+DESCR?=			${PKGDIR}/pkg-descr
+PKGINSTALL?=	${PKGDIR}/pkg-install
+PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
+PKGREQ?=		${PKGDIR}/pkg-req
+PKGMESSAGE?=	${PKGDIR}/pkg-message
+
 TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
 TMPGUCMD?=	${WRKDIR}/.PLIST.gucmd
+
+.for _CATEGORY in ${CATEGORIES}
+PKGCATEGORY?=	${_CATEGORY}
+.endfor
+#_PORTDIRNAME=	${.CURDIR:T}
+#PORTDIRNAME?=	${_PORTDIRNAME}
+PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
+
 
 
 #
@@ -855,8 +852,10 @@ TMPGUCMD?=	${WRKDIR}/.PLIST.gucmd
 #
 
 
+.include "${MPORTCOMPONENTS}/options.mk"
 .include "${MPORTCOMPONENTS}/metadata.mk"
 .include "${MPORTCOMPONENTS}/maintainer.mk"
+
 
 PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR} \
@@ -866,21 +865,6 @@ SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} \
 		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR} \
 		SED=${SED} 
-
-# This is used for check-stagedir.sh and check_leftover.sh to replace
-# directories/files with PLIST_SUB %%KEYS%%.
-# Remove VARS which values are PLIST_SUB_SED_MIN long or shorter
-PLIST_SUB_SED_MIN?=	2
-PLIST_SUB_SED_tmp1= ${PLIST_SUB:C/.*=.{1,${PLIST_SUB_SED_MIN}}$//g}
-#  Remove VARS that are too generic
-#  Remove empty values
-#  Remove @comment values
-PLIST_SUB_SED_tmp2= ${PLIST_SUB_SED_tmp1:NEXTRACT_SUFX=*:NOSREL=*:NLIB32DIR=*:NPREFIX=*:NLOCALBASE=*:NRESETPREFIX=*:N*="":N*="@comment*}
-#  Handle VARS for which there is a _regex entry
-PLIST_SUB_SED_tmp3?= ${PLIST_SUB_SED_tmp2:C/(${PLIST_SUB:M*_regex=*:C/_regex=.*/=.*/:Q:S/\\ /|/g:S/\\//g})//:C/(.*)_regex=(.*)/\1=\2/}
-#  Remove quotes
-#  Replace . with \. for later sed(1) usage
-PLIST_SUB_SED?= ${PLIST_SUB_SED_tmp3:C/([^=]*)="?([^"]*)"?/s!\2!%%\1%%!g;/g:C/\./[.]/g}
 
 PLIST_REINPLACE+=	group mode owner stopdaemon rmtry
 PLIST_REINPLACE_RMTRY=s!^@rmtry \(.*\)!@unexec rm -f %D/\1 2>/dev/null || true!
@@ -918,6 +902,17 @@ MAKE_SHELL?=	${SH}
 CONFIGURE_ENV+=	SHELL=${CONFIGURE_SHELL} CONFIG_SHELL=${CONFIGURE_SHELL}
 MAKE_ENV+=		SHELL=${MAKE_SHELL} NO_LINT=YES
 
+.if defined(MANCOMPRESSED)
+.if ${MANCOMPRESSED} != yes && ${MANCOMPRESSED} != no && \
+	${MANCOMPRESSED} != maybe
+check-makevars::
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: value of MANCOMPRESSED (is \"${MANCOMPRESSED}\") can only be \"yes\", \"no\" or \"maybe\"".
+	@${FALSE}
+.endif
+.endif
+
+MANCOMPRESSED?=	no
+
 .    if defined(PATCHFILES) && ${PATCHFILES:M*.zip}
 PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:archivers/unzip
 .    endif
@@ -954,15 +949,27 @@ LIB32DIR=	lib
 .    endif
 PLIST_SUB+=	LIB32DIR=${LIB32DIR}
 
-.    if defined(USE_GCC)
-.include "${PORTSDIR}/Mk/extensions/gcc.mk"
-.    endif
+.if defined(USE_LHA)
+EXTRACT_DEPENDS+=	lha:archivers/lha
+.endif
+.if defined(USE_MAKESELF)
+EXTRACT_DEPENDS+=	unmakeself:archivers/unmakeself
+.endif
 
-.    if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
-LDFLAGS+=	-fuse-ld=bfd
-BINARY_ALIAS+=	ld=${LD}
-USE_BINUTILS=	yes
+_TEST_LD=/usr/bin/ld
+.if defined(LLD_UNSAFE) && ${_TEST_LD:tA} == "/usr/bin/ld.lld"
+LDFLAGS+=       -fuse-ld=bfd
+BINARY_ALIAS+=  ld=${LD}
+.  if !defined(USE_BINUTILS)
+.    if exists(/usr/bin/ld.bfd)
+LD=     /usr/bin/ld.bfd
+CONFIGURE_ENV+= LD=${LD}
+MAKE_ENV+=      LD=${LD}
+.    else
+USE_BINUTILS=   yes
 .    endif
+.  endif
+.endif
 
 .    if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
@@ -980,9 +987,21 @@ MAKE_ENV+=	${b}="${${b}}"
 .      endfor
 .    endif
 
-.    if defined(USE_RC_SUBR)
+.if defined(USE_OPENLDAP_VER)
+USE_OPENLDAP?=		yes
+WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
+.endif
+
+.if defined(USE_RC_SUBR) || defined(USE_RCORDER)
+RC_SUBR=	/etc/rc.subr
+SUB_LIST+=	RC_SUBR=${RC_SUBR}
+.if defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
 SUB_FILES+=	${USE_RC_SUBR}
-.    endif
+.endif
+.if defined(USE_RCORDER)
+SUB_FILES+=	${USE_RCORDER}
+.endif
+.endif
 
 .    if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
 USE_LDCONFIG=	${PREFIX}/lib
@@ -1207,11 +1226,12 @@ MAKE_JOBS_NUMBER=	1
 .      if defined(MAKE_JOBS_NUMBER)
 _MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
 .      else
-.        if !defined(_SMP_CPUS)
-_SMP_CPUS!=		${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
-.        endif
-_EXPORTED_VARS+=	_SMP_CPUS
-_MAKE_JOBS_NUMBER=	${_SMP_CPUS}
+#.  if !defined(_SMP_CPUS)
+#_SMP_CPUS!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
+#.  endif
+#EXPORTED_VARS+=	_SMP_CPUS
+#_MAKE_JOBS_NUMBER!=	${_SMP_CPUS}
+_MAKE_JOBS_NUMBER!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
 .      endif
 .      if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
 MAKE_JOBS_NUMBER=	${MAKE_JOBS_NUMBER_LIMIT}
@@ -1286,7 +1306,11 @@ TAR?=	/usr/bin/tar
 # EXTRACT_SUFX is defined in .pre.mk section
 EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
+.if defined(EXTRACT_PRESERVE_OWNERSHIP)
+EXTRACT_AFTER_ARGS?=
+.else
 EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
+.endif
 
 # Figure out where the local mtree file is
 .    if !defined(MTREE_FILE) && !defined(NO_MTREE)
@@ -1776,7 +1800,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	editors education elisp emulators enlightenment \
 	filesystems finance french ftp \
 	games geography german gnome gnustep graphics \
-	hamradio haskell hebrew hungarian irc japanese java \
+	hamradio haskell hebrew hungarian ipv6 irc japanese java \
 	kde ${_KDE_CATEGORIES_SUPPORTED} kld korean \
 	lang linux lisp lua \
 	mail mate math mbone misc multimedia \
@@ -3257,7 +3281,7 @@ limited-clean-depends:
 .    if !target(deinstall-depends)
 deinstall-depends:
 	@recursive_cmd="deinstall"; \
-		recursive_dirs="$$(${DEINSTALL-DEPENDS-FLAVORS-LIST})"; \
+	    recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
@@ -3273,14 +3297,14 @@ fetch-specials:
 fetch-recursive:
 	@${ECHO_MSG} "===> Fetching all distfiles for ${PKGNAME} and dependencies"
 	@recursive_cmd="fetch"; \
-	    recursive_dirs="${.CURDIR}${FLAVOR:D@${FLAVOR}} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
 .    if !target(fetch-recursive-list)
 fetch-recursive-list:
 	@recursive_cmd="fetch-list"; \
-	    recursive_dirs="${.CURDIR}${FLAVOR:D@${FLAVOR}} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
@@ -3325,7 +3349,7 @@ fetch-required: fetch
 	@${ECHO_MSG} "===> Fetching all required distfiles for ${PKGNAME} and dependencies"
 .        for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
 .          if defined(${deptype}_DEPENDS)
-	@targ=fetch; deps="${${deptype}_DEPENDS_ALL}"; ${FETCH_LIST}
+	@targ=fetch; deps="${${deptype}_DEPENDS}"; ${FETCH_LIST}
 .          endif
 .        endfor
 .      endif
@@ -3337,7 +3361,7 @@ fetch-required-list: fetch-list
 .      if !defined(NO_DEPENDS)
 .        for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
 .          if defined(${deptype}_DEPENDS)
-	@targ=fetch-list; deps="${${deptype}_DEPENDS_ALL}"; ${FETCH_LIST}
+	@targ=fetch-list; deps="${${deptype}_DEPENDS}"; ${FETCH_LIST}
 .          endif
 .        endfor
 .      endif
@@ -3347,7 +3371,7 @@ fetch-required-list: fetch-list
 checksum-recursive:
 	@${ECHO_MSG} "===> Fetching and checking checksums for ${PKGNAME} and dependencies"
 	@recursive_cmd="checksum"; \
-	    recursive_dirs="${.CURDIR}${FLAVOR:D@${FLAVOR}} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
@@ -3376,7 +3400,7 @@ package-depends-list:
 	@${PACKAGE-DEPENDS-LIST}
 .    endif
 
-_LIB_RUN_DEPENDS=	${LIB_DEPENDS_ALL} ${RUN_DEPENDS_ALL}
+_LIB_RUN_DEPENDS=	${LIB_DEPENDS} ${RUN_DEPENDS}
 # the mport binary tools only store the the first tier of the depenancy
 # tree in a mports archive.
 PACKAGE-DEPENDS-LIST?= \
@@ -3408,40 +3432,10 @@ PACKAGE-DEPENDS-LIST?= \
 		fi; \
 	done
 
-# FIXME: SELF_DEPENDS can only be used to depend on sub packages whose
-# package name has not been overrided by the framework, otherwize the
-# assumption made below that the package name is "PKGBASE-$$self" is broken.
-.    for sp in ${_PKGS}
-ACTUAL-PACKAGE-DEPENDS${_SP.${sp}}?= \
-	depfiles="" ; \
-	for lib in ${LIB_DEPENDS${_SP.${sp}}:C/\:.*//}; do \
-		depfiles="$$depfiles `${SETENV} LIB_DIRS="${LIB_DIRS}" LOCALBASE="${LOCALBASE}" ${SH} ${SCRIPTSDIR}/find-lib.sh $${lib}`" ; \
-	done ; \
-	for self in ${SELF_DEPENDS${_SP.${sp}}}; do \
-		if [ "$$self" = "main" ]; then \
-			printf "\"%s\": {origin: \"%s\", version: \"%s\"}\n" ${PKGBASE} ${PKGORIGIN} ${PKGVERSION}; \
-		else \
-			printf "\"%s-%s\": {origin: \"%s\", version: \"%s\"}\n" ${PKGBASE} $$self ${PKGORIGIN} ${PKGVERSION}; \
-		fi ; \
-	done ; \
-	${SETENV} PKG_BIN="${PKG_BIN}" ${SH} ${SCRIPTSDIR}/actual-package-depends.sh $${depfiles} ${RUN_DEPENDS${_SP.${sp}}:C/(.*)\:.*/"\1"/}
-.    endfor
-
-PKG_NOTES_ENV?=
-.    for note in ${PKG_NOTES}
-PKG_NOTES_ENV+=	dp_PKG_NOTE_${note}=${PKG_NOTE_${note}:Q}
-.    endfor
-
-.    for sp in ${_PKGS}
-PKG_NOTES.${sp}=	${PKG_NOTES}
-PKG_NOTES_ENV.${sp}=	${PKG_NOTES_ENV}
-.      if ${sp} != ${PKGBASE}
-PKG_NOTES.${sp}+=	subpackage
-PKG_NOTES_ENV.${sp}+=	dp_PKG_NOTE_subpackage=${_SP.${sp}:S/^.//1}
-.      endif
-
+.if !target(package-depends)
 package-depends:
 	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{ if ($$4) print $$1":"$$3":"$$4; else print $$1":"$$3 }'
+.endif
 
 .    for sp in ${_PKGS}
 actual-package-depends: actual-package-depends.${sp}
@@ -3457,6 +3451,7 @@ package-recursive: package
 	done
 
 # Show missing dependiencies
+.if !target(missing)
 missing:
 	@for dir in $$(${ALL-DEPENDS-LIST}); do \
 		THISORIGIN=$$(${ECHO_CMD} $$dir | ${SED} 's,${PORTSDIR}/,,'); \
@@ -3464,7 +3459,7 @@ missing:
 			${ECHO_CMD} $$THISORIGIN; \
 		fi \
 	done
-
+.endif
 ################################################################
 # Everything after here are internal targets and really
 # shouldn't be touched by anybody but the release engineers.
