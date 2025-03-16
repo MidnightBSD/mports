@@ -3662,29 +3662,9 @@ add-plist-data:
 .    if !target(add-plist-info)
 .      if defined(INFO)
 add-plist-info:
-# Process GNU INFO files at package install/deinstall time
 .        for i in ${INFO}
-	@${ECHO_CMD} "@postunexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
-		>> ${TMPPLIST}
-	@${ECHO_CMD} ${INFO_PATH}/$i.info >> ${TMPPLIST}
-	@${ECHO_CMD} "@postexec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
-		>> ${TMPPLIST}
-	@if [ "`${DIRNAME} $i`" != "." ]; then \
-		${ECHO_CMD} "@dir info/`${DIRNAME} $i`" >> ${TMPPLIST}; \
-	fi
+	@${LS} ${STAGEDIR}${PREFIX}/${INFO_PATH}/$i.info* | ${SED} -e s:${STAGEDIR}:@info\ :g >> ${TMPPLIST}
 .        endfor
-.if defined(INFO_SUBDIR)
-	@${ECHO_CMD} "@unexec ${RMDIR} %D/${INFO_PATH}/${INFO_SUBDIR} 2> /dev/null || true" >> ${TMPPLIST}
-.endif
-.if (${PREFIX} != "/usr")
-	@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir \
-		 | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
-
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
-	@${ECHO_CMD} "@dir rmdir info/" >> ${TMPPLIST}
-.endif
-
-.endif
 .      endif
 .    endif
 
