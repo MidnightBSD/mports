@@ -434,7 +434,9 @@ STRIP=	#none
 # Start of pre-makefile section.
 .  if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
 
-.include "${MPORTCOMPONENTS}/sanity.mk"
+.    if defined(_PREMKINCLUDED)
+DEV_ERROR+=	"you cannot include bsd.port[.pre].mk twice"
+.    endif
 
 _PREMKINCLUDED=	yes
 
@@ -1074,17 +1076,25 @@ ERROR+=	"Unknown USES=${f:C/\:.*//}"
 .      endif
 .    endfor
 
-.if defined(USE_LOCALE)
+.    if defined(PORTNAME)
+.      if !defined(PACKAGE_BUILDING) || empty(.TARGETS) || make(all) || \
+	      make(check-sanity) || make(show*-errors) || make(show*-warnings)
+.include "${MPORTCOMPONENTS}/sanity.mk"
+.      endif
+.    endif
+
+.    if defined(USE_LOCALE)
 CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
 MAKE_ENV+=		LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-.endif
+WRK_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
+.    endif
 
-.if defined(USE_XORG)
+.    if defined(USE_XORG)
 # Add explicit X options to avoid problems with false positives in configure
-.if defined(GNU_CONFIGURE)
+.      if defined(GNU_CONFIGURE)
 CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
-.endif
-.endif
+.      endif
+.    endif
 
 .if exists(${PORTSDIR}/../Makefile.inc)
 .include "${PORTSDIR}/../Makefile.inc"
