@@ -1003,16 +1003,9 @@ USE_OPENLDAP?=		yes
 WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
 .endif
 
-.if defined(USE_RC_SUBR) || defined(USE_RCORDER)
-RC_SUBR=	/etc/rc.subr
-SUB_LIST+=	RC_SUBR=${RC_SUBR}
-.if defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
+.    if defined(USE_RC_SUBR)
 SUB_FILES+=	${USE_RC_SUBR}
-.endif
-.if defined(USE_RCORDER)
-SUB_FILES+=	${USE_RCORDER}
-.endif
-.endif
+.    endif
 
 .    if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
 USE_LDCONFIG=	${PREFIX}/lib
@@ -2270,12 +2263,6 @@ _OPTIONS_OK=yes
 # override from an individual Makefile.
 ################################################################
 
-# Disable checksum
-.if defined(NO_CHECKSUM) && !target(checksum)
-checksum: fetch
-	@${DO_NADA}
-.endif
-
 # Disable build
 .    if defined(NO_BUILD) && !target(build)
 build: configure
@@ -2304,8 +2291,6 @@ do-test:
 .    if defined(NO_PACKAGE) && !target(package)
 package:
 .      if !defined(IGNORE_SILENT)
-	@${DO_NADA}
-.    else
 	@${ECHO_MSG} "===>  ${PKGNAME} may not be packaged: "${NO_PACKAGE:Q}.
 .      endif
 .    endif
@@ -2342,10 +2327,7 @@ patch-libtool::
 buildanyway-message:
 .    if defined(TRYBROKEN) && defined(BROKEN)
 	@${ECHO_MSG} "Trying build of ${PKGNAME} even though it is marked BROKEN."
-.    else
-	@${DO_NADA}
 .    endif
-
 
 # Warn user about deprecated packages.  Advisory only.
 
@@ -2465,8 +2447,7 @@ do-extract: ${EXTRACT_WRKDIR}
 		${CHMOD} -R ug-s ${WRKDIR}; \
 		${CHOWN} -R 0:0 ${WRKDIR}; \
 	fi
-.endif
-
+.    endif
 
 .if defined(MAGUS)
 _SLEEP=${TRUE}
@@ -2848,14 +2829,14 @@ fake-message:
 	@${ECHO_MSG} -e "\033[1m===>  Faking install for ${PKGNAME}\033[0m"
 install-message:
 .if !defined(DESTDIR)
-	@${ECHO_MSG} -e "\033[1m===>  Installing ${PKGFILE}\033[0m"
+	@${ECHO_MSG} -e "\033[1m===>  Installing for ${PKGFILE}\033[0m"
 .else
 	@${ECHO_MSG} -e "\033[1m===>  Installing ${PKGFILE} into ${DESTDIR}\033[0m"
 .endif
 test-message:
 	@${ECHO_MSG} -e "\033[1m===>  Testing for ${PKGNAME}\033[0m"
 package-message:
-	@${ECHO_MSG} -e "\033[1m===>  Building package for ${PKGNAME}\033[0m"
+	@${ECHO_MSG} -e "\033[1m===>  Building packages for ${PKGNAME}\033[0m"
 update-message:
 	@${ECHO_MSG} -e "\033[1m===>  Updating ${PKGBASE} to ${PKGVERSION}\033[0m"
 done-message:
@@ -3675,23 +3656,23 @@ add-plist-examples:
 .endif
 
 .    if !target(add-plist-data)
-add-plist-data:
 .      if defined(PORTDATA)
-.for x in ${PORTDATA}
+add-plist-data:
+.        for x in ${PORTDATA}
 	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
 	if [ ! -e ${FAKE_DESTDIR}${DATADIR}/${x} ]; then \
 		${ECHO_CMD} ${DATADIR}/${x} >> ${TMPPLIST}; \
 	fi;fi
-.endfor
+.        endfor
 	@${FIND} -P ${PORTDATA:S/^/${FAKE_DESTDIR}${DATADIR}\//} ! -type d 2>/dev/null | \
 		${SED} -ne 's,^${FAKE_DESTDIR},,p' >> ${TMPPLIST}
 .      endif
 .    endif
 
 .    if !target(add-plist-info)
+.      if defined(INFO)
 add-plist-info:
 # Process GNU INFO files at package install/deinstall time
-.       if defined(INFO)
 .        for i in ${INFO}
 	@${ECHO_CMD} "@postunexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
 		>> ${TMPPLIST}
@@ -3714,47 +3695,31 @@ add-plist-info:
 .endif
 
 .endif
-.endif
-.endif
+.      endif
+.    endif
 
 # If we're installing into a non-standard PREFIX, we need to remove that directory at
 # deinstall-time
 .    if !target(add-plist-post)
+.      if (${PREFIX} != ${LOCALBASE} && ${PREFIX} != ${LINUXBASE} && \
+    ${PREFIX} != "/usr" && ${PREFIX} != "/" && !defined(NO_PREFIX_RMDIR))
 add-plist-post:
-.      if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && \
-    ${PREFIX} != "/usr" && !defined(NO_PREFIX_RMDIR))
-		@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
-.      else
-		@${DO_NADA}
+	@${ECHO_CMD} "@dir ${PREFIX}" >> ${TMPPLIST}
 .      endif
 .    endif
 
-
-.if !target(install-rc-script)
+.    if !target(install-rc-script)
+.      if defined(USE_RC_SUBR)
 install-rc-script:
-.	if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
-.		if defined(USE_RCORDER)
-			@${ECHO_MSG} "===> Installing early rc.d startup script(s)"
-			@${ECHO_CMD} "@cwd /" >> ${TMPPLIST}
-			@${INSTALL} -d ${FAKE_DESTDIR}/etc/rc.d
-			@for i in ${USE_RCORDER}; do \
-				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}/etc/rc.d/$${i%.sh}; \
-				${ECHO_CMD} "@(root,wheel,0755) etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
-			done
-			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
-.		endif
-.		if defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
-			@${ECHO_MSG} "===> Installing rc.d startup script(s)"
-			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
-			@for i in ${USE_RC_SUBR}; do \
-				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${PREFIX}/etc/rc.d/$${i%.sh}; \
-				${ECHO_CMD} "@(root,wheel,0755) etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
-			done
-.		endif
-.	else
-		@${DO_NADA}
-.	endif
-.endif
+	@${ECHO_MSG} "===> Staging rc.d startup script(s)"
+	@for i in ${USE_RC_SUBR}; do \
+		_prefix=${PREFIX}; \
+		[ "${PREFIX}" = "/usr" ] && _prefix="" ; \
+		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}$${_prefix}/etc/rc.d/$${i%.sh}; \
+		${ECHO_CMD} "@(root,wheel,0755) $${_prefix}/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+	done
+.      endif
+.    endif
 
 #
 # Install the ldconfig file if needed. 
