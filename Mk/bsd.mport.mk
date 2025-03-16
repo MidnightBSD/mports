@@ -2845,24 +2845,21 @@ done-message:
 
 # Empty pre-* and post-* targets
 
-.for stage in pre post
+.    if exists(${SCRIPTDIR})
+.      for stage in pre post
 .for name in pkg check-sanity fetch extract patch configure build fake install package
 
-.if !target(${stage}-${name})
-${stage}-${name}:
-	@${DO_NADA}
-.endif
-
-.if !target(${stage}-${name}-script)
+.          if !target(${stage}-${name}-script)
+.            if exists(${SCRIPTDIR}/${stage}-${name})
 ${stage}-${name}-script:
-	@if [ -f ${SCRIPTDIR}/${.TARGET:S/-script$//} ]; then \
-		cd ${.CURDIR} && ${SETENV} ${SCRIPTS_ENV} ${SH} \
-			${SCRIPTDIR}/${.TARGET:S/-script$//}; \
-	fi
-.endif
+	@ cd ${.CURDIR} && ${SETENV} ${SCRIPTS_ENV} ${SH} \
+			${SCRIPTDIR}/${.TARGET:S/-script$//}
+.            endif
+.          endif
 
-.endfor
-.endfor
+.        endfor
+.      endfor
+.    endif
 
 .    if !target(pretty-print-www-site)
 pretty-print-www-site:
@@ -2996,11 +2993,6 @@ post-clean-${_f}:
 clean: ${CLEAN_DEPENDENCIES}
 .      endfor
 .    endif
-
-.if !target(pre-distclean)
-pre-distclean:
-	@${DO_NADA}
-.endif
 
 .    if !target(distclean)
 distclean: clean
@@ -3515,23 +3507,21 @@ missing:
 
 
 _SUB_LIST_TEMP=	${SUB_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/}
-.if !target(apply-slist)
+.    if !target(apply-slist) && defined(SUB_FILES)
 apply-slist:
-.if defined(SUB_FILES)
-.for file in ${SUB_FILES}
-.if !exists(${FILESDIR}/${file}.in)
+.      for file in ${SUB_FILES}
+.        if !exists(${FILESDIR}/${file}.in)
 	@${ECHO_MSG} "** Missing ${FILESDIR}/${file}.in for ${PKGNAME}."; exit 1
-.else
+.        else
 	@${SED} ${_SUB_LIST_TEMP} -e '/^@comment /d' ${FILESDIR}/${file}.in > ${WRKDIR}/${file}
-.endif
-.endfor
-.for i in pkg-message pkg-install pkg-deinstall pkg-req
-.if ${SUB_FILES:M${i}*}!=""
+.        endif
+.      endfor
+.      for i in pkg-message pkg-install pkg-deinstall pkg-req
+.        if ${SUB_FILES:M${i}*}!=""
 ${i:S/-//:tu}=	${WRKDIR}/${SUB_FILES:M${i}*}
-.endif
-.endfor
-.endif
-.endif
+.        endif
+.      endfor
+.    endif
 
 # Make tmp packaing list.  This is the top level target for the entire file.
 make-tmpplist:  generate-plist finish-tmpplist
