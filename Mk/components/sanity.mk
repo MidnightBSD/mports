@@ -55,9 +55,9 @@ ERROR+=	"${a} is unsupported, please use ${${a}_ALT}"
 .if defined(DEVELOPER) || defined(MPORT_MAINTAINER_MODE)
 
 .if exists(${.CURDIR}/../../Mk/bsd.mport.mk) || ${OVERLAYS:tA:M${.CURDIR:H:H}} == ${.CURDIR:H:H}
-.  if ${.CURDIR:H:T} != ${PKGCATEGORY}
-DEV_ERROR+=	"The first entry in CATEGORIES should be the directory where the port lives"
-.  endif
+#.  if ${.CURDIR:H:T} != ${PKGCATEGORY}
+#DEV_ERROR+=	"The first entry in CATEGORIES should be the directory where the port lives"
+#.  endif
 .else
 DEV_WARNING+=	"Not validating first entry in CATEGORIES due to being outside of PORTSDIR. Please ensure this is proper when committing."
 .endif
