@@ -184,7 +184,7 @@ ${__target}:
 
 .if defined(SUBDIR) && !empty(SUBDIR)
 
-.for __target in ${TARGETS} checksubdirs describe readmes port-ftplinks
+.for __target in ${TARGETS} checksubdirs describe readmes
 ${SUBDIR:S/^/_/:S/$/.${__target}/}: _SUBDIRUSE
 .endfor
 
@@ -300,27 +300,25 @@ describe:
 .endif
 .endif
 
-.if !target(port-ftplinks)
-.if defined(PORTSTOP)
-port-ftplinks: port-ftplink ${SUBDIR:S/^/_/:S/$/.port-ftplinks/}
-.else
-port-ftplinks: port-ftplink
-.endif
-.endif
-
-.if !target(port-ftplink)
-port-ftplink:
-	@make port-symlen
-.endif
-
-port-symlen:
-.for entry in ${SUBDIR}
-.if exists(${entry})
-.if !defined(PORTSTOP)
-	@echo "ln -s ../All/`cd ${entry}; make package-name`.tbz ${entry}.tbz " >> /portsymlink.txt
-.endif
-.endif
-.endfor
+# Store last subdir name
+_LAST_DIR = ${SUBDIR:[-1]}
+describe-json:
+	@${ECHO_MSG} "{"
+	@for sub in ${SUBDIR}; do \
+	if ${TEST} -d ${.CURDIR}/$${sub}; then \
+		cd ${.CURDIR}/$${sub}; \
+		${ECHO_MSG} "\"$${sub}\": " ;\
+		${MAKE} -B describe-json || \
+			(${ECHO_CMD} "===> ${DIRPRFX}$${sub} failed" >&2; \
+			exit 1) ;\
+		if [ "$${sub}" != "${_LAST_DIR}" ]; then \
+			(${ECHO_MSG} ",") ; \
+		fi; \
+	else \
+		${ECHO_MSG} "===> ${DIRPRFX}$${sub} non-existent"; \
+ 	fi; \
+	done
+	@${ECHO_MSG} "}"
 
 .if !target(readmes)
 .if defined(PORTSTOP)
