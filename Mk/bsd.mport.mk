@@ -3952,20 +3952,20 @@ fake-qa:
 
 pretty-flavors-package-names: .PHONY
 .    if empty(FLAVORS)
-	@${ECHO_CMD} "no flavor: ${PKGNAME}"
+	@${ECHO_CMD} "no flavor: ${PKGNAMES}"
 .    else
 .      for f in ${FLAVORS}
 	@${ECHO_CMD} -n "${f}: "
-	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -V PKGNAME
+	@cd ${.CURDIR} && ${SETENV} -i FLAVOR=${f} ${MAKE} -B -V PKGNAME | ${XARGS} -n 1
 .      endfor
 .    endif
 
 flavors-package-names: .PHONY
 .    if empty(FLAVORS)
-	@${ECHO_CMD} "${PKGNAME}" | ${XARGS} -n 1
+	@${ECHO_CMD} "${PKGNAMES}" | ${XARGS} -n 1
 .    else
 .      for f in ${FLAVORS}
-	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -V PKGNAME
+	@cd ${.CURDIR} && ${SETENV} -i FLAVOR=${f} ${MAKE} -B -V PKGNAME | ${XARGS} -n 1
 .      endfor
 .    endif
 

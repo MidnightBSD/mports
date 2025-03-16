@@ -1,6 +1,5 @@
 PORTNAME=	amazon-ssm-agent
 PORTVERSION=	3.0.1390.0
-PORTREVISION=	0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
