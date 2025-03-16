@@ -2783,10 +2783,10 @@ magus-install-depend:
 .endif
 
 
-#
+
 # Utility targets follow
-#
-.if !target(check-umask)
+
+.    if !target(check-umask)
 check-umask:
 	@if [ `${SH} -c umask` != 0022 ]; then \
 		${ECHO_MSG} "===>  Warning: your umask is \"`${SH} -c umask`"\".; \
@@ -2795,9 +2795,9 @@ check-umask:
 	fi
 .    endif
 
-.if !target(install-mtree)
+.    if !target(install-mtree)
 install-mtree:
-.endif
+.    endif
 
 .    if !defined(DISABLE_SECURITY_CHECK)
 .      if !target(security-check)
@@ -2808,11 +2808,11 @@ security-check: ${TMPPLIST}
 #   3.  insecure functions (gets/mktemp/tempnam/[XXX])
 #   4.  startup scripts, in conjunction with 2.
 #   5.  world-writable files/dirs
-# 
+#
 #  The ${NONEXISTENT} argument of ${READELF} is there so that there are always
 #  at least two file arguments, and forces it to always output the "File: foo"
 #  header lines.
-# 
+#
 	-@${RM} ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable ${WRKDIR}/.PLIST.readelf; \
 	${AWK} -v prefix='${PREFIX}' ' \
 		match($$0, /^@cwd /) { prefix = substr($$0, RSTART + RLENGTH); if (prefix == "/") prefix=""; next; } \
@@ -2829,9 +2829,9 @@ security-check: ${TMPPLIST}
 	| ${XARGS} -0 ${READELF} -r ${NONEXISTENT} 2> /dev/null > ${WRKDIR}/.PLIST.readelf; \
 	if \
 		! ${AWK} -v audit="$${PORTS_AUDIT}" -f ${SCRIPTSDIR}/security-check.awk \
-		${WRKDIR}/.PLIST.flattened ${WRKDIR}/.PLIST.readelf ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable; \
+		  ${WRKDIR}/.PLIST.flattened ${WRKDIR}/.PLIST.readelf ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable; \
 	then \
-		if [ ! -z "${_WWW}" ]; then \
+	    if [ ! -z "${_WWW}" ]; then \
 			${ECHO_MSG}; \
 			${ECHO_MSG} "      For more information, and contact details about the security"; \
 			${ECHO_MSG} "      status of this software, see the following webpage: "; \
@@ -2843,8 +2843,6 @@ security-check: ${TMPPLIST}
 security-check:
 	@${ECHO_MSG} "      WARNING: Security check has been disabled."
 .    endif # !defined(DISABLE_SECURITY_CHECK)
-
-
 
 ################################################################
 # Skeleton targets start here
@@ -2937,12 +2935,11 @@ reinstall:
 # refake
 #
 # Clear the fake dir and cookie, and do it again.
-.if !target(refake)
+.    if !target(refake)
 refake:
 	@${RM} -rf ${FAKE_DESTDIR} ${FAKE_COOKIE} ${PACKAGE_COOKIE}
 	@cd ${.CURDIR} && ${MAKE} fake	
-.endif
-
+.    endif
 
 # Deinstall
 #
@@ -3258,10 +3255,13 @@ package-noinstall: package
 depends: pkg-depends extract-depends patch-depends lib-depends fetch-depends build-depends run-depends
 
 .      for deptype in PKG EXTRACT PATCH FETCH BUILD LIB RUN TEST
+.        for sp in ${_PKGS}
+${deptype}_DEPENDS_ALL+=	${${deptype}_DEPENDS${_SP.${sp}}}
+.        endfor
 ${deptype:tl}-depends:
-.        if defined(${deptype}_DEPENDS) && !defined(NO_DEPENDS)
+.        if !empty(${deptype}_DEPENDS_ALL) && !defined(NO_DEPENDS)
 	@${SETENV} \
-                dp_RAWDEPENDS="${${deptype}_DEPENDS}" \
+                dp_RAWDEPENDS="${${deptype}_DEPENDS_ALL}" \
                 dp_DEPTYPE="${deptype}_DEPENDS" \
                 dp_DEPENDS_TARGET="${DEPENDS_TARGET}" \
                 dp_DEPENDS_PRECLEAN="${DEPENDS_PRECLEAN}" \
@@ -3290,7 +3290,7 @@ ${deptype:tl}-depends:
 
 # Dependency lists: both build and runtime, recursive.  Print out directory names.
 
-_UNIFIED_DEPENDS=${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS} ${RUN_DEPENDS} ${TEST_DEPENDS}
+_UNIFIED_DEPENDS=${PKG_DEPENDS_ALL} ${EXTRACT_DEPENDS_ALL} ${PATCH_DEPENDS_ALL} ${FETCH_DEPENDS_ALL} ${BUILD_DEPENDS_ALL} ${LIB_DEPENDS_ALL} ${RUN_DEPENDS_ALL} ${TEST_DEPENDS_ALL}
 _DEPEND_SPECIALS=	${_UNIFIED_DEPENDS:M*\:*\:*:C,^[^:]*:([^:]*):.*$,\1,}
 
 .    for d in ${_UNIFIED_DEPENDS:M*\:/*}
@@ -3340,10 +3340,11 @@ DEPENDS-LIST= \
 
 ALL-DEPENDS-LIST=			${DEPENDS-LIST} -r ${_UNIFIED_DEPENDS:Q}
 ALL-DEPENDS-FLAVORS-LIST=	${DEPENDS-LIST} -f -r ${_UNIFIED_DEPENDS:Q}
+DEINSTALL-DEPENDS-FLAVORS-LIST=	${DEPENDS-LIST} -f -r ${_UNIFIED_DEPENDS:N${PKG_DEPENDS}:Q}
 MISSING-DEPENDS-LIST=		${DEPENDS-LIST} -m ${_UNIFIED_DEPENDS:Q}
-BUILD-DEPENDS-LIST=			${DEPENDS-LIST} "${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS}"
-RUN-DEPENDS-LIST=			${DEPENDS-LIST} "${LIB_DEPENDS} ${RUN_DEPENDS}"
-TEST-DEPENDS-LIST=			${DEPENDS-LIST} ${TEST_DEPENDS:Q}
+BUILD-DEPENDS-LIST=			${DEPENDS-LIST} "${PKG_DEPENDS_ALL} ${EXTRACT_DEPENDS_ALL} ${PATCH_DEPENDS_ALL} ${FETCH_DEPENDS_ALL} ${BUILD_DEPENDS_ALL} ${LIB_DEPENDS_ALL}"
+RUN-DEPENDS-LIST=			${DEPENDS-LIST} "${LIB_DEPENDS_ALL} ${RUN_DEPENDS_ALL}"
+TEST-DEPENDS-LIST=			${DEPENDS-LIST} ${TEST_DEPENDS_ALL:Q}
 CLEAN-DEPENDS-LIST=			${DEPENDS-LIST} -wr ${_UNIFIED_DEPENDS:Q}
 CLEAN-DEPENDS-LIMITED-LIST=	${DEPENDS-LIST} -w ${_UNIFIED_DEPENDS:Q}
 
@@ -3520,6 +3521,11 @@ package-depends:
 	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{ if ($$4) print $$1":"$$3":"$$4; else print $$1":"$$3 }'
 .endif
 
+.    for sp in ${_PKGS}
+actual-package-depends: actual-package-depends.${sp}
+actual-package-depends.${sp}:
+	@${ACTUAL-PACKAGE-DEPENDS${_SP.${sp}}}
+.    endfor
 
 # Build packages for port and dependencies
 
@@ -3581,6 +3587,13 @@ generate-plist: ${WRKDIR}
 	@for file in ${PLIST_FILES}; do \
 		${ECHO_CMD} $${file} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} >> ${TMPPLIST}; \
 	done
+.      for sp in ${_PKGS}
+.        if ${sp} != ${PKGBASE}
+	@for file in ${PLIST_FILES${_SP.${sp}}}; do \
+		${ECHO_CMD} $${file} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} -e 's/^/@@${_SP.${sp}:S/^.//}@@/' >> ${TMPPLIST}; \
+	done
+.        endif
+.      endfor
 	@for man in ${__MANPAGES}; do \
 		${ECHO_CMD} $${man} >> ${TMPPLIST}; \
 	done
@@ -3596,16 +3609,16 @@ generate-plist: ${WRKDIR}
 				${ECHO_CMD} "$$i" >> ${TMPPLIST}; \
 			done
 			@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
-.		endif
-.	endfor
-.if !empty(PLIST)
-.for f in ${PLIST}
+.        endif
+.      endfor
+.      if !empty(PLIST)
+.        for f in ${PLIST}
 	@if [ -f "${f}" ]; then \
 		${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${f} >> ${TMPPLIST}; \
 		for i in owner group mode; do ${ECHO_CMD} "@$$i"; done >> ${TMPPLIST}; \
 	fi
-.endfor
-.endif
+.        endfor
+.      endif
 .	for reinplace in ${PLIST_REINPLACE}
 .		if defined(PLIST_REINPLACE_${reinplace:tu})
 			@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:tu}}' ${TMPPLIST}
