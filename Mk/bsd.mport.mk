@@ -123,6 +123,17 @@ STRIPBIN=	${STRIP_CMD}
 .export.env STRIPBIN
 .endif
 
+#
+# DESTDIR section to start a chrooted process if invoked with DESTDIR set
+#
+
+.if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
+	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
+
+.include "${PORTSDIR}/Mk/bsd.destdir.mk"
+
+.else
+
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
 .if defined(USE_LINUX_PREFIX) || defined(USE_LINUX_RPM)
@@ -135,20 +146,7 @@ PREFIX?=	${LOCALBASE_REL}
 # Fake targets override this when they submake.
 TRUE_PREFIX?=		${PREFIX}
 
-# Figure out where the local mtree file is
-.if !defined(MTREE_FILE)  && !defined(NO_MTREE)
-.if ${PREFIX} == /usr
-MTREE_FILE=	/etc/mtree/BSD.usr.dist
-.elif ${PREFIX} == ${LINUXBASE_REL}
-MTREE_FILE=	${MTREE_LINUX_FILE}
-.else
-MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
-.endif
-.endif
-MTREE_CMD?=		/usr/sbin/mtree
-MTREE_LINUX_FILE?=	${PORTSDIR}/Templates/BSD.compat.dist
-MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
-MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
+
 
 .if defined(USE_DOS2UNIX)
 .if ${USE_DOS2UNIX:tu}=="YES"
@@ -718,6 +716,12 @@ NO_MTREE=				yes
 CPIO=	${GCPIO}
 .    endif
 
+DATADIR?=		${PREFIX}/share/${PORTNAME}
+DOCSDIR?=		${PREFIX}/share/doc/${PORTNAME}
+ETCDIR?=		${PREFIX}/etc/${PORTNAME}
+EXAMPLESDIR?=	${PREFIX}/share/examples/${PORTNAME}
+WWWDIR?=		${PREFIX}/www/${PORTNAME}
+
 # Owner and group of the WWW user
 WWWOWN?=	www
 WWWGRP?=	www
@@ -1173,10 +1177,10 @@ MAKE_JOBS_NUMBER=	1
 .      if defined(MAKE_JOBS_NUMBER)
 _MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
 .      else
-#.  if !defined(_SMP_CPUS)
-#_SMP_CPUS!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
-#.  endif
-#EXPORTED_VARS+=	_SMP_CPUS
+#.  	if !defined(_SMP_CPUS)
+#_SMP_CPUS!=		${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
+#.  	endif
+#_EXPORTED_VARS+=	_SMP_CPUS
 #_MAKE_JOBS_NUMBER!=	${_SMP_CPUS}
 _MAKE_JOBS_NUMBER!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
 .      endif
@@ -1254,8 +1258,20 @@ EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
 EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
 
-
-
+# Figure out where the local mtree file is
+.    if !defined(MTREE_FILE) && !defined(NO_MTREE)
+.      if ${PREFIX} == /usr
+MTREE_FILE=	/etc/mtree/BSD.usr.dist
+.      elif ${PREFIX} == ${LINUXBASE_REL}
+MTREE_FILE=	${MTREE_LINUX_FILE}
+.      else
+MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
+.      endif
+.    endif
+MTREE_CMD?=		/usr/sbin/mtree
+MTREE_LINUX_FILE?=	${PORTSDIR}/Templates/BSD.compat.dist
+MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
+MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
 _SHAREMODE?=	0644
 
@@ -1285,6 +1301,12 @@ COPYTREE_BIN=	${SH} -c '(${FIND} -Ed $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null 2>&
 COPYTREE_SHARE=	${SH} -c '(${FIND} -Ed $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null 2>&1) && \
 						   ${FIND} -Ed $$0 $$2 \(   -type d -exec ${SH} -c '\''cd '\''$$1'\'' && chmod 755 "$$@"'\'' -- . {} + \
 												 -o -type f -exec ${SH} -c '\''cd '\''$$1'\'' && chmod ${SHAREMODE} "$$@"'\'' -- . {} + \)' --
+
+# The user can override the NO_PACKAGE by specifying this from
+# the make command line
+.    if defined(FORCE_PACKAGE)
+.undef NO_PACKAGE
+.    endif
 
 PLIST?=                 ${PKGDIR}/pkg-plist
 
@@ -1907,12 +1929,6 @@ BROKEN=		only one subdirectory in INFO is allowed
 .      endfor
 .    endif
 
-DOCSDIR?=	${PREFIX}/share/doc/${PORTNAME}
-EXAMPLESDIR?=	${PREFIX}/share/examples/${PORTNAME}
-DATADIR?=	${PREFIX}/share/${PORTNAME}
-WWWDIR?=	${PREFIX}/www/${PORTNAME}
-ETCDIR?=	${PREFIX}/etc/${PORTNAME}
-
 DOCSDIR_REL?=	${DOCSDIR:S,^${PREFIX}/,,}
 EXAMPLESDIR_REL?=	${EXAMPLESDIR:S,^${PREFIX}/,,}
 DATADIR_REL?=	${DATADIR:S,^${PREFIX}/,,}
@@ -2073,7 +2089,7 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}. | ${FMT_80} ; exit 1
 .        endif
 
 _TARGETS=	check-sanity pkg fetch checksum extract patch configure all build \
-		fake install reinstall test package 
+			fake install reinstall test package 
 
 .        for target in ${_TARGETS}
 .          if !target(${target})
@@ -2190,18 +2206,6 @@ build: configure
 .if defined(NO_INSTALL) && !target(install)
 fake: build
 	@${TOUCH} ${TOUCH_FLAGS} ${INSTALL_COOKIE}
-.endif
-
-.if !target(do-test) && defined(TEST_TARGET)
-DO_MAKE_TEST?=  ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g}
-do-test:
-	@(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
-		if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
-			${ECHO_MSG} "===> Tests failed unexpectedly."; \
-			(${ECHO_CMD} "${TEST_FAIL_MESSAGE}") | ${FMT_80} ; \
-		fi; \
-		${FALSE}; \
-		fi)
 .endif
 
 # Disable package
@@ -2453,10 +2457,28 @@ do-patch:
 			${SH} ${SCRIPTSDIR}/do-patch.sh
 .    endif
 
-.if !target(run-autotools)
-run-autotools:
-	@${DO_NADA}
-.endif
+.    if !target(run-autotools-fixup)
+run-autotools-fixup:
+# Work around an issue where FreeBSD 10.0 is detected as FreeBSD 1.x.
+.      if !defined(WITHOUT_FBSD10_FIX)
+	-@for f in `${FIND} ${WRKDIR} -type f \( -name config.libpath -o \
+		-name config.rpath -o -name configure -o -name libtool.m4 -o \
+		-name ltconfig -o -name libtool -o -name aclocal.m4 -o \
+		-name acinclude.m4 \)` ; do \
+			${SED} -i.fbsd10bak \
+				-e 's|freebsd1\*)|freebsd1.\*)|g' \
+				-e 's|freebsd\[12\]\*)|freebsd[12].*)|g' \
+				-e 's|freebsd\[123\]\*)|freebsd[123].*)|g' \
+				-e 's|freebsd\[\[12\]\]\*)|freebsd[[12]].*)|g' \
+				-e 's|freebsd\[\[123\]\]\*)|freebsd[[123]].*)|g' \
+					$${f} ; \
+			cmp -s $${f}.fbsd10bak $${f} || \
+			${ECHO_MSG} "===>   FreeBSD 10 autotools fix applied to $${f}"; \
+			${TOUCH} ${TOUCH_FLAGS} -mr $${f}.fbsd10bak $${f} ; \
+			${RM} $${f}.fbsd10bak ; \
+		done
+.      endif
+.    endif
 
 # Configure
 
@@ -2579,9 +2601,35 @@ check-install-conflicts:
 .    endif
 
 
-#
+# Test
+
+.    if !target(do-test) && defined(TEST_TARGET)
+DO_MAKE_TEST?=  ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
+			${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g}
+do-test:
+	@(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
+		if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
+			${ECHO_MSG} "===> Tests failed unexpectedly."; \
+			(${ECHO_CMD} "${TEST_FAIL_MESSAGE}") | ${FMT_80} ; \
+		fi; \
+		${FALSE}; \
+		fi)
+.    endif
+
 # Package
-#
+
+_EXTRA_PACKAGE_TARGET_DEP+=	${WRKDIR_PKGFILE${_SP.${sp}}}
+
+.      if defined(_HAVE_PACKAGES)
+${PKGFILE${_SP.${sp}}}: ${WRKDIR_PKGFILE${_SP.${sp}}}
+	@${LN} -f ${WRKDIR_PKGFILE${_SP.${sp}}} ${PKGFILE${_SP.${sp}}} 2>/dev/null \
+		|| ${CP} -f ${WRKDIR_PKGFILE${_SP.${sp}}} ${PKGFILE${_SP.${sp}}}
+
+_EXTRA_PACKAGE_TARGET_DEP+=	${PKGFILE${_SP.${sp}}}
+.      endif
+.    endfor
+# This will be the end of the loop
+
 .    if !target(do-package)
 do-package: ${TMPPLIST}
 	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
@@ -2601,7 +2649,6 @@ do-package: ${TMPPLIST}
 	fi; \
 	if ${MPORT_CREATE} ${MPORT_CREATE_ARGS} ; then \
 		${ECHO_MSG} "Created ${PKGFILE}"; \
-		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
 	else \
 		${ECHO_MSG} "Unable to create package ${PKGFILE}"; \
 		cd ${.CURDIR} && rm -f ${PACKAGE_COOKIE} ${INSTALL_COOKIE}; \
@@ -2610,62 +2657,21 @@ do-package: ${TMPPLIST}
 	fi
 .    endif
 
-# Some support rules for do-package
+.    if !target(delete-package)
+delete-package:
+.      for sp in ${_PKGS}
+	@${ECHO_MSG} "===>  Deleting package for ${sp}"
+# When staging, the package may only be in the workdir if not root
+	@${RM} ${PKGFILE${_SP.${sp}}} ${WRKDIR_PKGFILE${_SP.${sp}}} 2>/dev/null || :
+.      endfor
+.    endif
 
-.if !target(package-links)
-package-links: delete-package-links
-	@for cat in ${CATEGORIES}; do \
-		if [ ! -d ${PACKAGES}/$$cat ]; then \
-			if ! ${MKDIR} ${PACKAGES}/$$cat; then \
-				${ECHO_MSG} "=> Can't create directory ${PACKAGES}/$$cat."; \
-				exit 1; \
-			fi; \
-		fi; \
-		${ECHO_MSG} "Link to ${PACKAGES}/$$cat/${PKGNAME}${PKG_SUFX}"; \
-		${LN} -sf ${PKGFILE} ${PACKAGES}/$$cat; \
-	done
-.if !defined(NO_LATEST_LINK)
-	@if [ ! -d ${PKGLATESTREPOSITORY} ]; then \
-		if ! ${MKDIR} ${PKGLATESTREPOSITORY}; then \
-			${ECHO_MSG} "=> Can't create directory ${PKGLATESTREPOSITORY}."; \
-			exit 1; \
-		fi; \
-	fi
-	@${ECHO_MSG} "Link to ${PKGLATESTREPOSITORY}/${PKGNAME}${PKG_SUFX}"
-	@${LN} -s ${PKGFILE} ${PKGLATESTFILE}
-.endif
-.endif
-
-.if !target(delete-package-links)
-delete-package-links:
-	@for cat in ${CATEGORIES}; do \
-		${RM} -f ${PACKAGES}/$$cat/${PKGNAME}${PKG_SUFX}; \
-	done
-.if !defined(NO_LATEST_LINK)
-	@${RM} -f ${PKGLATESTFILE}
-.endif
-.endif
-
-.if !target(delete-package)
-delete-package: delete-package-links
-	@${RM} -f ${PKGFILE}
-.endif
-
-.if !target(delete-package-links-list)
-delete-package-links-list:
-	@for cat in ${CATEGORIES}; do \
-		${ECHO_CMD} ${RM} -f ${PACKAGES}/$$cat/${PKGNAME}${PKG_SUFX}; \
-	done
-.if !defined(NO_LATEST_LINK)
-	@${ECHO_CMD} ${RM} -f ${PKGLATESTFILE}
-.endif
-.endif
-
-.if !target(delete-package-list)
-delete-package-list: delete-package-links-list
-	@${ECHO_CMD} "[ -f ${PKGFILE} ] && (${ECHO_CMD} deleting ${PKGFILE}; ${RM} -f ${PKGFILE})"
-.endif
-
+.    if !target(delete-package-list)
+delete-package-list:
+.      for sp in ${_PKGS}
+	@${ECHO_CMD} "[ -f ${PKGFILE${_SP.${sp}}} ] && (${ECHO_CMD} deleting ${PKGFILE${_SP.${sp}}}; ${RM} ${PKGFILE${_SP.${sp}}})"
+.      endfor
+.    endif
 
 #
 # This is the "real" install.  Really.  Not kidding.
@@ -2679,6 +2685,7 @@ install-package:
 	@${MPORT_INSTALL} ${PKGFILE}	
 .endif
 
+# Some support rules for do-package
 
 #
 # This is used by dependcies to install.  If ${PKGFILE} exists, we can just 
@@ -2711,8 +2718,6 @@ magus-install-depend:
 		@exit 1
 .   endif
 .endif
-
-
 
 # Utility targets follow
 
@@ -2891,9 +2896,6 @@ fix-plist-sequence: ${TMPPLIST}
 	@${EGREP} -v -e '^@exec echo.*Creating users and' -e '^@exec.*${PW}' -e '^@exec ${INSTALL} -d -g' ${TMPPLIST} >> ${TMPGUCMD}
 	@${MV} -f ${TMPGUCMD} ${TMPPLIST}
 .endif
-.endif
-
-
 .endif
 
 .    if !defined(DISABLE_SECURITY_CHECK)
@@ -3375,7 +3377,7 @@ limited-clean-depends:
 .    if !target(deinstall-depends)
 deinstall-depends:
 	@recursive_cmd="deinstall"; \
-	    recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
