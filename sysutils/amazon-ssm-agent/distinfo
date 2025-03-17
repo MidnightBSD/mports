@@ -1,7 +1,3 @@
-TIMESTAMP = 1742020231
-SHA256 (aws-amazon-ssm-agent-3.0.1390.0_GH0.tar.gz) = 33f71cd08503d251ce7e6a6b612d326ad385a646fab9a5cc31dcad7f9a93fd53
-SIZE (aws-amazon-ssm-agent-3.0.1390.0_GH0.tar.gz) = 25387308
-SHA256 (creack-pty-v1.1.18_GH0.tar.gz) = 7a1d6775e3f99b98e5d87303e9aeacfd73d810abffc17e42a561d0650adc980e
-SIZE (creack-pty-v1.1.18_GH0.tar.gz) = 10668
-SHA256 (golang-sys-v0.6.0_GH0.tar.gz) = b4f6d17c7a128f76169964b437cb66b3f2dbf9a33361928ec19dfecf7b03fc54
-SIZE (golang-sys-v0.6.0_GH0.tar.gz) = 1434234
+TIMESTAMP = 1742188275
+SHA256 (aws-amazon-ssm-agent-3.1.90.0_GH0.tar.gz) = 2a3b0fc420fc91adaeaef56d1bda65182271c9682f474c04e615ca6083c55d2d
+SIZE (aws-amazon-ssm-agent-3.1.90.0_GH0.tar.gz) = 25387119
