@@ -1024,6 +1024,8 @@ IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 # required by mport.create MPORT_CREATE_ARGS
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
+# _DESTDIR_VIA_ENV is loaded by fake/vars.mk
+
 .    if defined(NO_PREFIX_RMDIR)
 CO_ENV+=	NO_PREFIX_RMDIR=1
 .    else
@@ -3961,7 +3963,7 @@ add-plist-data:
 .      if defined(INFO)
 add-plist-info:
 .        for i in ${INFO}
-	@${LS} ${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}/$i.info* | ${SED} -e s:${STAGEDIR}:@info\ :g >> ${TMPPLIST}
+	@${LS} ${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}/$i.info* | ${SED} -e s:${FAKE_DESTDIR}:@info\ :g >> ${TMPPLIST}
 .        endfor
 .      endif
 .    endif
