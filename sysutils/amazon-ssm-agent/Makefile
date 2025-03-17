@@ -1,5 +1,5 @@
 PORTNAME=	amazon-ssm-agent
-PORTVERSION=	3.3.1957.0
+PORTVERSION=	3.1.90.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		go:1.22
+USES=		go
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	aws
@@ -47,9 +47,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/amazon-ssm-agent.json.template ${STAGEDIR}${PREFIX}/etc/amazon/ssm
 	${INSTALL_DATA} ${WRKSRC}/seelog_unix.xml ${STAGEDIR}${PREFIX}/etc/amazon/ssm/seelog_unix.xml.template
 	${CP} ${WRKDIR}/bin/ssm-agent-worker ${PREFIX}/bin/ssm-agent-worker
-	${MKDIR} ${FAKE_DESTDIR}/usr/bin
-	${LN} -sf ${PREFIX}/sbin/ssm-document-worker ${FAKE_DESTDIR}/usr/bin/ssm-document-worker
-	${LN} -sf ${PREFIX}/bin/ssm-agent-worker ${FAKE_DESTDIR}/usr/bin/ssm-agent-worker
-
 
 .include <bsd.port.mk>
