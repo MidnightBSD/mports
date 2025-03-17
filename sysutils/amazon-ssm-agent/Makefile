@@ -47,9 +47,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/amazon-ssm-agent.json.template ${STAGEDIR}${PREFIX}/etc/amazon/ssm
 	${INSTALL_DATA} ${WRKSRC}/seelog_unix.xml ${STAGEDIR}${PREFIX}/etc/amazon/ssm/seelog_unix.xml.template
 	${CP} ${WRKDIR}/bin/ssm-agent-worker ${PREFIX}/bin/ssm-agent-worker
-	${MKDIR} ${FAKE_DESTDIR}/usr/bin
-	${LN} -sf ${PREFIX}/sbin/ssm-document-worker ${FAKE_DESTDIR}/usr/bin/ssm-document-worker
-	${LN} -sf ${PREFIX}/bin/ssm-agent-worker ${FAKE_DESTDIR}/usr/bin/ssm-agent-worker
-
 
 .include <bsd.port.mk>

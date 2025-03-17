@@ -8,8 +8,6 @@ sbin/ssm-session-logger
 sbin/ssm-cli
 sbin/ssm-setup-cli
 sbin/ssm-session-worker
-/usr/bin/ssm-agent-worker
-/usr/bin/ssm-document-worker
 @dir /var/run/amazon/ssm
 @dir /var/run/amazon
 @dir /var/log/amazon
