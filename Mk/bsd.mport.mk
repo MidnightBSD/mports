@@ -938,25 +938,6 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 MAKE_ENV+=	MK_DEBUG_FILES=no
 MAKE_ENV+=	MK_KERNEL_SYMBOLS=no
 
-.if defined(NOPORTDOCS)
-PLIST_SUB+=	PORTDOCS="@comment "
-.else
-PLIST_SUB+=	PORTDOCS=""
-.endif
-
-.if defined(NOPORTEXAMPLES)
-PLIST_SUB+=	PORTEXAMPLES="@comment "
-.else
-PLIST_SUB+=	PORTEXAMPLES=""
-.endif
-
-# XXX deprecated
-.if defined(NOPORTDATA)
-PLIST_SUB+=	PORTDATA="@comment "
-.else
-PLIST_SUB+=	PORTDATA=""
-.endif
-
 CONFIGURE_SHELL?=	${SH}
 MAKE_SHELL?=	${SH}
 
@@ -966,13 +947,6 @@ MAKE_ENV+=		SHELL=${MAKE_SHELL} NO_LINT=YES
 .    if defined(PATCHFILES) && ${PATCHFILES:M*.zip}
 PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:archivers/unzip
 .    endif
-
-.if defined(USE_LHA)
-EXTRACT_DEPENDS+=	lha:archivers/lha
-.endif
-.if defined(USE_MAKESELF)
-EXTRACT_DEPENDS+=	unmakeself:archivers/unmakeself
-.endif
 
 _TEST_LD=/usr/bin/ld
 .if defined(LLD_UNSAFE) && ${_TEST_LD:tA} == "/usr/bin/ld.lld"
@@ -1046,11 +1020,10 @@ METADIR=		${WRKDIR}/.metadir
 EXTENSIONS+=xorg
 .endif
 
-
-.if exists(${PORTSDIR}/../Makefile.inc)
-.include "${PORTSDIR}/../Makefile.inc"
+.    if exists(${PORTSDIR}/Makefile.inc)
+.include "${PORTSDIR}/Makefile.inc"
 USE_SUBMAKE=	yes
-.endif
+.    endif
 
 #
 # Here we include again XXX
