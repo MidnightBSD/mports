@@ -3537,23 +3537,6 @@ generate-plist: ${WRKDIR}
 	done
 .        endif
 .      endfor
-	@for man in ${__MANPAGES}; do \
-		${ECHO_CMD} $${man} >> ${TMPPLIST}; \
-	done
-.	for _PREFIX in ${PREFIX}
-.		if ${_TMLINKS:M${_PREFIX}*}x != x
-			@for i in ${_TMLINKS:M${_PREFIX}*:S|^${_PREFIX}/||}; do \
-				${ECHO_CMD} "$$i" >> ${TMPPLIST}; \
-			done
-.		endif
-.		if ${_TMLINKS:N${_PREFIX}*}x != x
-			@${ECHO_CMD} @cwd / >> ${TMPPLIST}
-			@for i in ${_TMLINKS:N${_PREFIX}*:S|^/||}; do \
-				${ECHO_CMD} "$$i" >> ${TMPPLIST}; \
-			done
-			@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
-.        endif
-.      endfor
 .      if !empty(PLIST)
 .        for f in ${PLIST}
 	@if [ -f "${f}" ]; then \
@@ -3562,15 +3545,19 @@ generate-plist: ${WRKDIR}
 	fi
 .        endfor
 .      endif
-.	for reinplace in ${PLIST_REINPLACE}
-.		if defined(PLIST_REINPLACE_${reinplace:tu})
-			@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:tu}}' ${TMPPLIST}
-.		endif
-.	endfor
- 
+
 .      for dir in ${PLIST_DIRS}
 	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} -e 's,^,@dir ,' >> ${TMPPLIST}
 .      endfor
+
+.      for sp in ${_PKGS}
+.        if ${sp} != ${PKGBASE}
+.          for dir in ${PLIST_DIRS${_SP.${sp}}}
+	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB_SANITIZED:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} -e 's,^,@@${_SP.${sp}:S/^.//}@@@dir ,' >> ${TMPPLIST}
+.          endfor
+.        endif
+.      endfor
+.    endif
 
 .if defined(USE_LINUX_PREFIX)
 .if defined(USE_LDCONFIG)
@@ -3894,30 +3881,6 @@ fix-plist-sequence: ${TMPPLIST}
 .endif
 .endif
 
-# Compress (or uncompress) and symlink manpages.
-.if !target(compress-man)
-compress-man:
-.  if defined(_FAKEMAN) || defined(_MLINKS)
-.    if ${MANCOMPRESSED:tl} == yes && defined(NO_MANCOMPRESS)
-	@${ECHO_MSG} "===>   Uncompressing manual pages for ${PKGNAME}"
-	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GUNZIP_CMD} $${_manpages} ) || ${TRUE}
-.    elif ${MANCOMPRESSED:tl} == no && !defined(NO_MANCOMPRESS)
-	@${ECHO_MSG} "===>   Compressing manual pages for ${PKGNAME}"
-	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GZIP_CMD} $${_manpages} ) || ${TRUE}
-.    endif
-.    if defined(_MLINKS)
-	@set -- ${_FAKE_MLINKS}; \
-	while :; do \
-		[ $$# -eq 0 ] && break || ${TRUE}; \
-		${RM} -f $${2%.gz}; ${RM} -f $$2.gz; \
-		${LN} -fs `${ECHO_CMD} $$1 $$2 | ${AWK} '{ \
-					z=split($$1, a, /\//); x=split($$2, b, /\//); \
-					while (a[i] == b[i]) i++; \
-					for (q=i; q<x; q++) printf "../"; \
-					for (; i<z; i++) printf a[i] "/"; printf a[z]; }'` $$2; \
-		shift; shift; \
-	done
-.    endif
 # FreeBSD Stage Compatibility - FAKE_DESTDIR = STAGEDIR in their world ~
 	@mdirs= ; \
 	for dir in ${MANDIRS:S/^/${FAKE_DESTDIR}/} ; do \
