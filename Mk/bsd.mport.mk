@@ -1097,8 +1097,6 @@ CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .      endif
 .    endif
 
-
-
 # Set up the cdrtools.
 .if defined(USE_CDRTOOLS)
 BUILD_DEPENDS+=	cdrecord:sysutils/cdrtools
@@ -3855,10 +3853,6 @@ ${i:S/-//:tu}=	${WRKDIR}/${SUB_FILES:M${i}*}
 .      endfor
 .    endif
 
-# Make tmp packaing list.  This is the top level target for the entire file.
-make-tmpplist:  generate-plist finish-tmpplist
-finish-tmpplist: add-plist-info add-plist-examples add-plist-docs add-plist-data add-plist-post
-
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
 
@@ -3977,6 +3971,10 @@ add-plist-post:
 	@${ECHO_CMD} "@dir ${PREFIX}" >> ${TMPPLIST}
 .      endif
 .    endif
+
+# Make tmp packaing list.  This is the top level target for the entire file.
+make-tmpplist:  generate-plist finish-tmpplist
+finish-tmpplist: add-plist-info add-plist-examples add-plist-docs add-plist-data add-plist-post
 
 .    if !target(install-rc-script)
 .      if defined(USE_RC_SUBR)
