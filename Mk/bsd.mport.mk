@@ -3099,9 +3099,6 @@ fetch-list:
 .endif
 .endif
 
-# Generates patches.
-
-
 # Checksumming utilities
 
 # List all algorithms here, all the variables name must begin with dp_
@@ -3480,7 +3477,6 @@ package-recursive: package
 	done
 
 # Show missing dependiencies
-.if !target(missing)
 missing:
 	@for dir in $$(${ALL-DEPENDS-LIST}); do \
 		THISORIGIN=$$(${ECHO_CMD} $$dir | ${SED} 's,${PORTSDIR}/,,'); \
@@ -3488,7 +3484,7 @@ missing:
 			${ECHO_CMD} $$THISORIGIN; \
 		fi \
 	done
-.endif
+
 ################################################################
 # Everything after here are internal targets and really
 # shouldn't be touched by anybody but the release engineers.
@@ -3557,7 +3553,6 @@ generate-plist: ${WRKDIR}
 .          endfor
 .        endif
 .      endfor
-.    endif
 
 .if defined(USE_LINUX_PREFIX)
 .if defined(USE_LDCONFIG)
@@ -3577,7 +3572,7 @@ generate-plist: ${WRKDIR}
 .endif
 .endif
 # End of generate-plist
-.endif 
+.    endif
 
 ${TMPPLIST}:
 	@cd ${.CURDIR} && ${MAKE} generate-plist
