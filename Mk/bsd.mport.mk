@@ -63,12 +63,7 @@ _FLAVOR:=	${FLAVOR}
 PORTS_FEATURES+=	FLAVORS
 .endif
 
-CONFIGURE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
-				XDG_CONFIG_HOME=${WRKDIR} \
-				HOME=${WRKDIR}
-MAKE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
-				XDG_CONFIG_HOME=${WRKDIR} \
-				HOME=${WRKDIR}
+
 
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
@@ -280,32 +275,6 @@ SLAVE_PORT?=	no
 MASTER_PORT?=
 .    endif
 
-# Check the compatibility layer for amd64
-
-.    if ${ARCH} == "amd64"
-.      if exists(/usr/lib32)
-HAVE_COMPAT_IA32_LIBS?=  YES
-.      endif
-.      if !defined(HAVE_COMPAT_IA32_KERN)
-HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -a compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi
-.      endif
-.    endif
-
-.    if defined(IA32_BINARY_PORT) && ${ARCH} != "i386"
-.      if ${ARCH} == "amd64"
-.        if !defined(HAVE_COMPAT_IA32_KERN)
-IGNORE= you need a kernel with compiled-in IA32 compatibility to use this port.
-.        elif !defined(HAVE_COMPAT_IA32_LIBS)
-IGNORE= you need the 32-bit libraries installed under /usr/lib32 to use this port.
-.        endif
-_LDCONFIG_FLAGS=-32
-LIB32DIR=	lib32
-.      else
-IGNORE= you have to use i386 (or compatible) platform to use this port.
-.      endif
-.    endif
-PLIST_SUB+=     LIB32DIR=${LIB32DIR}
-
 # If they exist, include Makefile.inc, then architecture/operating
 # system specific Makefiles, then local Makefile.local.
 
@@ -338,6 +307,30 @@ USE_SUBMAKE=	yes
 USE_SUBMAKE=	yes
 .    endif
 
+.    for _CATEGORY in ${CATEGORIES}
+PKGCATEGORY?=	${_CATEGORY}
+.    endfor
+_PORTDIRNAME=	${.CURDIR:T}
+PORTDIRNAME?=	${_PORTDIRNAME}
+PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
+
+# Now that PKGORIGIN is set, look for origin-specific variables.
+# These are typically set in a make.conf, in the form:
+#
+# category_portname_VARS= varname=value othervar+=value novar@
+#
+# e.g.  devel_llvm10_VARS= MAKE_JOBS_NUMBER=2
+
+.    for var in ${${PKGORIGIN:S/\//_/}_VARS:C/=.*//:O:u}
+.      if ${var:M*@}
+.  undef ${var:C/.$//}
+.      elif ${var:M*+}
+${var:C/.$//}+=	${${PKGORIGIN:S/\//_/}_VARS:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
+.      else
+${var}=			${${PKGORIGIN:S/\//_/}_VARS:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
+.      endif
+.    endfor
+
 # where 'make config' records user configuration options
 PORT_DBDIR?=	/var/db/ports
 
@@ -357,77 +350,42 @@ GROUPS_BLACKLIST=	_dhcp _pflogd _ypldap audit authpf bin bind daemon dialer ftp 
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
 
-.endif  # end of options before pre-makefile starts
-
 # At least KDE needs TMPDIR for the package building,
 # so we're setting it to the known default value.
 .    if defined(PACKAGE_BUILDING)
 TMPDIR?=	/tmp
 .    endif # defined(PACKAGE_BUILDING)
 
-.    if defined(WITH_DEBUG_PORTS)
-.      if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
-WITH_DEBUG=	yes
+# Enable default features unless they have been disabled by the user, and cleanup
+.    for feature in ${_DEFAULT_WITH_FEATURES}
+.      if !defined(WITHOUT_${feature:tu})
+WITH_${feature:tu}=		yes
+.undef WITHOUT_${feature:tu}
 .      endif
-.    endif
+.    endfor
+
+# For each Feature we support, process the
+# WITH_FEATURE_PORTS and WITHOUT_FEATURE_PORTS variables
+.    for feature in ${_LIST_OF_WITH_FEATURES}
+.      if defined(WITHOUT_${feature:tu}_PORTS) && ${WITHOUT_${feature:tu}_PORTS:M${PKGORIGIN}}
+# Feature disabled for this port, remove WITH_<feat>
+.undef WITH_${feature:tu}
+.      elif defined(WITH_${feature:tu}_PORTS) && ${WITH_${feature:tu}_PORTS:M${PKGORIGIN}}
+# Feature enabled for this port, set WITH_<feat>
+WITH_${feature:tu}=	yes
+.      endif
+.    endfor
 
 .    if defined(USE_LTO)
 WITH_LTO=	${USE_LTO}
 WARNING+=	USE_LTO is deprecated in favor of WITH_LTO
 .    endif
 
-# Respect TMPDIR passed via make.conf or similar and pass it down
-# to configure and make.
-.    if defined(TMPDIR)
-MAKE_ENV+=	TMPDIR="${TMPDIR}"
-CONFIGURE_ENV+=	TMPDIR="${TMPDIR}"
-.    endif # defined(TMPDIR)
-
-QA_ENV+=                FAKE_DESTDIR=${FAKE_DESTDIR} \
-                                PREFIX=${TRUE_PREFIX} \
-                                LINUXBASE=${LINUXBASE} \
-                                LOCALBASE=${LOCALBASE} \
-                                "STRIP=${STRIP}" \
-                                TMPPLIST=${TMPPLIST} \
-                                CURDIR='${.CURDIR}' \
-                                FLAVOR=${FLAVOR} \
-                                FLAVORS='${FLAVORS}' \
-                                BUNDLE_LIBS=${BUNDLE_LIBS} \
-                                LDCONFIG_DIR="${LDCONFIG_DIR}" \
-                                PKGORIGIN=${PKGORIGIN} \
-                                LIB_RUN_DEPENDS='${_LIB_RUN_DEPENDS:C,[^:]*:([^:]*):?.*,\1,}' \
-                                UNIFIED_DEPENDS=${_UNIFIED_DEPENDS:C,([^:]*:[^:]*):?.*,\1,:O:u:Q} \
-                                PKGBASE=${PKGBASE} \
-                                LICENSE="${LICENSE}" \
-                                LICENSE_PERMS="${_LICENSE_PERMS}" \
-                                DISABLE_LICENSES="${DISABLE_LICENSES:Dyes}" \
-                                PORTNAME=${PORTNAME} \
-                                NO_ARCH=${NO_ARCH} \
-                                "NO_ARCH_IGNORE=${NO_ARCH_IGNORE}" \
-                                USE_RUBY=${USE_RUBY}
-.    if !empty(USES:Mssl)
-QA_ENV+=                USESSSL=yes
-.    endif
-.    if !empty(USES:Mdesktop-file-utils)
-QA_ENV+=                USESDESKTOPFILEUTILS=yes
-.    endif
-.    if !empty(USES:Mlibtool*)
-QA_ENV+=                USESLIBTOOL=yes
-.    endif
-.    if !empty(USES:Mshared-mime-info)
-QA_ENV+=                USESSHAREDMIMEINFO=yes
-.    endif
-.    if !empty(USES:Mterminfo)
-QA_ENV+=                USESTERMINFO=yes
-.    endif
-
-# Reset value from bsd.own.mk.
-.    if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)
-STRIP=	#none
-.    endif
-
 .include "${MPORTCOMPONENTS}/default-versions.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
+
+.  endif
+# End of options section.
 
 # Start of pre-makefile section.
 .  if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
@@ -655,24 +613,14 @@ SUB_LIST+=	${FLAVOR:tu}="" NO_${FLAVOR:tu}="@comment "
 EXTRACT_DEPENDS+=       gcpio:archivers/gcpio
 .endif
 
-.if defined(USE_BZIP2)
-USES+=tar:bzip2
-.elif defined(USE_ZIP)
-USES+=zip
-.elif defined(USE_XZ)
-USES+=tar:xz
-.elif defined(USE_MAKESELF)
-EXTRACT_SUFX?=			.run
-.else
 EXTRACT_SUFX?=			.tar.gz
-.endif
 
 .if defined(USE_LINUX_PREFIX)
-_LINUX_LDCONFIG=			${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
+_LINUX_LDCONFIG=		${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
 LDCONFIG_PLIST_EXEC_CMD?=	${_LINUX_LDCONFIG}
 LDCONFIG_PLIST_UNEXEC_CMD?=	${_LINUX_LDCONFIG}
 DATADIR?=				${PREFIX}/usr/share/${PORTNAME}
-DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}
+DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${DISTVERSION}
 NO_LICENSES_INSTALL=	yes
 NO_MTREE=				yes
 .    endif
@@ -736,8 +684,7 @@ WWWGRP?=	www
 .  if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .    if defined(_POSTMKINCLUDED)
-check-makefile::
-	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
+DEV_ERROR+=	"${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
 	@${FALSE}
 .    endif
 
@@ -782,13 +729,82 @@ TEST_ARGS?=		${MAKE_ARGS}
 TEST_ENV?=		${MAKE_ENV}
 
 PKG_ENV+=		PORTSDIR=${PORTSDIR}
+CONFIGURE_ENV+=	XDG_DATA_HOME=${WRKDIR} \
+				XDG_CONFIG_HOME=${WRKDIR} \
+				XDG_CACHE_HOME=${WRKDIR}/.cache \
+				HOME=${WRKDIR}
+MAKE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
+				XDG_CONFIG_HOME=${WRKDIR} \
+				XDG_CACHE_HOME=${WRKDIR}/.cache \
+				HOME=${WRKDIR}
+# Respect TMPDIR passed via make.conf or similar and pass it down
+# to configure and make.
+.    if defined(TMPDIR)
+MAKE_ENV+=		TMPDIR="${TMPDIR}"
+CONFIGURE_ENV+=	TMPDIR="${TMPDIR}"
+.    endif # defined(TMPDIR)
 
 # Make sure we have some stuff defined before we pull in the mixins.
-#
-# The user can override the NO_PACKAGE by specifying this from
-# the make command line
-.    if defined(FORCE_PACKAGE)
-.undef NO_PACKAGE
+
+QA_ENV+=		FAKE_DESTDIR=${FAKE_DESTDIR} \
+				PREFIX=${TRUE_PREFIX} \
+				LINUXBASE=${LINUXBASE} \
+				LOCALBASE=${LOCALBASE} \
+				REWARNFILE=${REWARNFILE} \
+				"STRIP=${STRIP}" \
+				TMPPLIST=${TMPPLIST} \
+				CURDIR='${.CURDIR}' \
+				PKGMESSAGES='${_PKGMESSAGES}' \
+				FLAVOR=${FLAVOR} \
+				FLAVORS='${FLAVORS}' \
+				BUNDLE_LIBS=${BUNDLE_LIBS} \
+				LDCONFIG_DIR="${LDCONFIG_DIR}" \
+				PKGORIGIN=${PKGORIGIN} \
+				LIB_RUN_DEPENDS='${_LIB_RUN_DEPENDS:C,[^:]*:([^:]*):?.*,\1,}' \
+				UNIFIED_DEPENDS=${_UNIFIED_DEPENDS:C,([^:]*:[^:]*):?.*,\1,:O:u:Q} \
+				WANTED_LIBRARIES='${LIB_DEPENDS:C,([^:]*):([^:]*):?.*,\1,}' \
+				PKGBASE=${PKGBASE} \
+				LICENSE="${LICENSE}" \
+				LICENSE_PERMS="${_LICENSE_PERMS}" \
+				DISABLE_LICENSES="${DISABLE_LICENSES:Dyes}" \
+				PORTNAME=${PORTNAME} \
+				NO_ARCH=${NO_ARCH} \
+				"NO_ARCH_IGNORE=${NO_ARCH_IGNORE}" \
+				USE_RUBY=${USE_RUBY}
+.    if !empty(USES:Mssl)
+QA_ENV+=		USESSSL=yes
+.    endif
+.    if !empty(USES:Mdesktop-file-utils)
+QA_ENV+=		USESDESKTOPFILEUTILS=yes
+.    endif
+.    if !empty(USES:Mlibtool*)
+QA_ENV+=		USESLIBTOOL=yes
+.    endif
+.    if !empty(USES:Mshared-mime-info)
+QA_ENV+=		USESSHAREDMIMEINFO=yes
+.    endif
+.    if !empty(USES:Mterminfo)
+QA_ENV+=		USESTERMINFO=yes
+.    endif
+
+CO_ENV+=		FAKE_DESTDIR=${FAKE_DESTDIR} \
+				PREFIX=${TRUE_PREFIX} \
+				LOCALBASE=${LOCALBASE} \
+				WRKDIR=${WRKDIR} \
+				WRKSRC=${WRKSRC} \
+				MTREE_FILE=${MTREE_FILE} \
+				TMPPLIST=${TMPPLIST} \
+				SCRIPTSDIR=${SCRIPTSDIR} \
+				PLIST_SUB_SED="${PLIST_SUB_SED}" \
+				PORT_OPTIONS="${PORT_OPTIONS}" \
+				PORTSDIR="${PORTSDIR}"
+
+.    if defined(CROSS_SYSROOT)
+PKG_ENV+=		ABI_FILE=${CROSS_SYSROOT}/bin/sh
+MAKE_ENV+=		NM=${NM} \
+				STRIPBIN=${STRIPBIN} \
+				PKG_CONFIG_SYSROOT_DIR="${CROSS_SYSROOT}"
+CONFIGURE_ENV+=	PKG_CONFIG_SYSROOT_DIR="${CROSS_SYSROOT}"
 .    endif
 
 .    if empty(FLAVOR)
@@ -866,27 +882,17 @@ PKGMESSAGE?=	${PKGDIR}/pkg-message
 TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
 TMPGUCMD?=	${WRKDIR}/.PLIST.gucmd
 
-.for _CATEGORY in ${CATEGORIES}
-PKGCATEGORY?=	${_CATEGORY}
-.endfor
-#_PORTDIRNAME=	${.CURDIR:T}
-#PORTDIRNAME?=	${_PORTDIRNAME}
-PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
-
-
-
 #
 # Pull in our mixins.
 #
-
 
 .include "${MPORTCOMPONENTS}/options.mk"
 .include "${MPORTCOMPONENTS}/maintainer.mk"
 
 
 PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} \
-		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR} \
-		RESETPREFIX=${TRUE_PREFIX}
+			DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR} \
+			RESETPREFIX=${TRUE_PREFIX}
 SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
 		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR} \
@@ -948,20 +954,47 @@ MAKE_ENV+=		SHELL=${MAKE_SHELL} NO_LINT=YES
 PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:archivers/unzip
 .    endif
 
-_TEST_LD=/usr/bin/ld
-.if defined(LLD_UNSAFE) && ${_TEST_LD:tA} == "/usr/bin/ld.lld"
-LDFLAGS+=       -fuse-ld=bfd
-BINARY_ALIAS+=  ld=${LD}
-.  if !defined(USE_BINUTILS)
-.    if exists(/usr/bin/ld.bfd)
-LD=     /usr/bin/ld.bfd
-CONFIGURE_ENV+= LD=${LD}
-MAKE_ENV+=      LD=${LD}
-.    else
-USE_BINUTILS=   yes
+# Check the compatibility layer for amd64
+
+.    if ${ARCH} == "amd64"
+.      if exists(/usr/lib32)
+HAVE_COMPAT_IA32_LIBS?=  YES
+.      endif
+.      if !defined(HAVE_COMPAT_IA32_KERN)
+HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -n compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi; echo
+.        if empty(HAVE_COMPAT_IA32_KERN)
+.undef HAVE_COMPAT_IA32_KERN
+.        endif
+.      endif
 .    endif
-.  endif
-.endif
+_EXPORTED_VARS+=	HAVE_COMPAT_IA32_KERN
+
+.    if defined(IA32_BINARY_PORT) && ${ARCH} != "i386"
+.      if ${ARCH} == "amd64"
+.        if !defined(HAVE_COMPAT_IA32_KERN)
+IGNORE=		requires a kernel with compiled-in IA32 compatibility
+.        elif !defined(HAVE_COMPAT_IA32_LIBS)
+IGNORE=		requires 32-bit libraries installed under /usr/lib32
+.        endif
+_LDCONFIG_FLAGS=-32
+LIB32DIR=	lib32
+.      else
+IGNORE=		requires i386 (or compatible) platform to run
+.      endif
+.    else
+LIB32DIR=	lib
+.    endif
+PLIST_SUB+=	LIB32DIR=${LIB32DIR}
+
+.    if defined(USE_GCC)
+.include "${PORTSDIR}/Mk/extensions/gcc.mk"
+.    endif
+
+.    if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
+LDFLAGS+=	-fuse-ld=bfd
+BINARY_ALIAS+=	ld=${LD}
+USE_BINUTILS=	yes
+.    endif
 
 .    if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
@@ -3381,7 +3414,7 @@ limited-clean-depends:
 .    if !target(deinstall-depends)
 deinstall-depends:
 	@recursive_cmd="deinstall"; \
-		recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		recursive_dirs="$$(${DEINSTALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
@@ -3397,14 +3430,14 @@ fetch-specials:
 fetch-recursive:
 	@${ECHO_MSG} "===> Fetching all distfiles for ${PKGNAME} and dependencies"
 	@recursive_cmd="fetch"; \
-	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+	    recursive_dirs="${.CURDIR}${FLAVOR:D@${FLAVOR}} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
 .    if !target(fetch-recursive-list)
 fetch-recursive-list:
 	@recursive_cmd="fetch-list"; \
-	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+	    recursive_dirs="${.CURDIR}${FLAVOR:D@${FLAVOR}} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .    endif
 
@@ -3449,7 +3482,7 @@ fetch-required: fetch
 	@${ECHO_MSG} "===> Fetching all required distfiles for ${PKGNAME} and dependencies"
 .        for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
 .          if defined(${deptype}_DEPENDS)
-	@targ=fetch; deps="${${deptype}_DEPENDS}"; ${FETCH_LIST}
+	@targ=fetch; deps="${${deptype}_DEPENDS_ALL}"; ${FETCH_LIST}
 .          endif
 .        endfor
 .      endif
