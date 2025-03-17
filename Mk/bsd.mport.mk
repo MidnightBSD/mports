@@ -873,15 +873,6 @@ BUILD_WRKSRC?=	${WRKSRC}
 INSTALL_WRKSRC?=${WRKSRC}
 TEST_WRKSRC?=	${WRKSRC}
 
-DESCR?=			${PKGDIR}/pkg-descr
-PKGINSTALL?=	${PKGDIR}/pkg-install
-PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
-PKGREQ?=		${PKGDIR}/pkg-req
-PKGMESSAGE?=	${PKGDIR}/pkg-message
-
-TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
-TMPGUCMD?=	${WRKDIR}/.PLIST.gucmd
-
 #
 # Pull in our mixins.
 #
@@ -1026,6 +1017,34 @@ USE_LDCONFIG=	${PREFIX}/lib
 .    endif
 .    if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:tl} == "yes"
 IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
+.    endif
+
+_ALL_LIB_DIRS=	${LIB_DIRS} ${USE_LDCONFIG}
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_NATIVE="${_ALL_LIB_DIRS:O:u:ts,}"
+.    if defined(HAVE_COMPAT_IA32_KERN)
+_ALL_LIB_DIRS_32= /usr/lib32 ${LOCALBASE}/lib32 ${USE_LDCONFIG32}
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_32="${_ALL_LIB_DIRS_32:O:u:ts,}"
+.    endif
+.    if ${LINUX_DEFAULT} == c7 || ${LINUX_DEFAULT} == rl9
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_LINUX="${LINUXBASE}/usr/lib64"
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_LINUX_32="${LINUXBASE}/usr/lib"
+.    else
+.      warning "Unknown Linux distribution ${LINUX_DEFAULT}, SHLIB_PROVIDE_PATHS_COMPAT_LINUX will not be set!"
+.    endif
+
+.    if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
+.      if defined(USE_LINUX_PREFIX)
+PLIST_FILES+=	"@ldconfig-linux ${LINUXBASE}"
+.      else
+PLIST_FILES+=	"@ldconfig"
+.      endif
+.    endif
+
+.    if defined(NO_SHLIB_REQUIRES_GLOB)
+PKG_ENV+=	SHLIB_REQUIRE_IGNORE_GLOB="${NO_SHLIB_REQUIRES_GLOB:ts,}"
+.    endif
+.    if defined(NO_SHLIBS_REQUIRES_REGEX)
+PKG_ENV+=	SHLIB_REQUIRE_IGNORE_REGEX="${NO_SHLIBS_REQUIRES_REGEX:ts,}"
 .    endif
 
 # required by mport.create MPORT_CREATE_ARGS
@@ -1190,9 +1209,9 @@ MAKE_JOBS_NUMBER=	1
 .      if defined(MAKE_JOBS_NUMBER)
 _MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
 .      else
-#.  	if !defined(_SMP_CPUS)
+#.        if !defined(_SMP_CPUS)
 #_SMP_CPUS!=		${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
-#.  	endif
+#.        endif
 #_EXPORTED_VARS+=	_SMP_CPUS
 #_MAKE_JOBS_NUMBER!=	${_SMP_CPUS}
 _MAKE_JOBS_NUMBER!=	${NPROC} 2>/dev/null || ${SYSCTL} -n kern.smp.cpus
@@ -1333,7 +1352,18 @@ COPYTREE_SHARE=	${SH} -c '(${FIND} -Ed $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null 2
 .undef NO_PACKAGE
 .    endif
 
-PLIST?=                 ${PKGDIR}/pkg-plist
+DESCR?=			${PKGDIR}/pkg-descr
+PLIST?=			${PKGDIR}/pkg-plist
+PKGHELP?=		${PKGDIR}/pkg-help
+PKGINSTALL?=	${PKGDIR}/pkg-install
+PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
+PKGREQ?=		${PKGDIR}/pkg-req
+PKGMESSAGE?=	${PKGDIR}/pkg-message
+_PKGMESSAGES+=	${PKGMESSAGE}
+
+TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
+TMPGUCMD?=	${WRKDIR}/.PLIST.gucmd
+_PLIST?=	${WRKDIR}/.PLIST
 
 MPORT_CREATE?=		/usr/libexec/mport.create
 MPORT_DELETE?=		/usr/libexec/mport.delete
@@ -2784,7 +2814,7 @@ install-ldconfig-file:
 	@${ECHO_CMD} ${USE_LDCONFIG} | ${TR} ' ' '\n' \
 		> ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG_DIR}/${PKGBASE}
 	@${ECHO_CMD} ${LDCONFIG_DIR}/${PKGBASE} >> ${TMPPLIST}
-.          if ${TRUE_PREFIX} != ${LOCALBASE}
+.               if ${TRUE_PREFIX} != ${LOCALBASE}
 	@${ECHO_CMD} "@dir ${LOCALBASE}/${LDCONFIG_DIR}" >> ${TMPPLIST}
 .              endif
 .            endif
@@ -3590,6 +3620,23 @@ missing:
 			${ECHO_CMD} $$THISORIGIN; \
 		fi \
 	done
+
+# Show missing dependencies by name
+missing-packages:
+	@_packages=$$(${MPORT_LIST} -b); \
+	for dir in $$(${ALL-DEPENDS-LIST}); do \
+		_p=$$(cd $$dir; ${MAKE} -VPKGNAME); \
+		if ! $$(${ECHO_CMD} $${_packages} | ${GREP} -q $${_p}); then \
+			${ECHO_CMD} $${_p}; \
+		fi; \
+	done
+
+# Install missing dependencies from package
+# TODO: use -A flag to mport.install to mark automatic. (not released yet)
+install-missing-packages:
+	@_dirs=$$(${MISSING-DEPENDS-LIST}); \
+	${ECHO_CMD} "$${_dirs}" | ${SED} "s%${PORTSDIR}/%%g" | \
+		${SU_CMD} "${XARGS} -o ${MPORT_INSTALL}"
 
 ################################################################
 # Everything after here are internal targets and really
