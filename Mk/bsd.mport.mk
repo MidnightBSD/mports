@@ -893,6 +893,21 @@ SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR} \
 		SED=${SED} 
 
+# This is used for check-stagedir.sh and check_leftover.sh to replace
+# directories/files with PLIST_SUB %%KEYS%%.
+# Remove VARS which values are PLIST_SUB_SED_MIN long or shorter
+PLIST_SUB_SED_MIN?=	2
+PLIST_SUB_SED_tmp1= ${PLIST_SUB:C/.*=.{1,${PLIST_SUB_SED_MIN}}$//g}
+#  Remove VARS that are too generic
+#  Remove empty values
+#  Remove @comment values
+PLIST_SUB_SED_tmp2= ${PLIST_SUB_SED_tmp1:NEXTRACT_SUFX=*:NOSREL=*:NLIB32DIR=*:NPREFIX=*:NLOCALBASE=*:NRESETPREFIX=*:N*="":N*="@comment*}
+#  Handle VARS for which there is a _regex entry
+PLIST_SUB_SED_tmp3?= ${PLIST_SUB_SED_tmp2:C/(${PLIST_SUB:M*_regex=*:C/_regex=.*/=.*/:Q:S/\\ /|/g:S/\\//g})//:C/(.*)_regex=(.*)/\1=\2/}
+#  Remove quotes
+#  Replace . with \. for later sed(1) usage
+PLIST_SUB_SED?= ${PLIST_SUB_SED_tmp3:C/([^=]*)="?([^"]*)"?/s!\2!%%\1%%!g;/g:C/\./[.]/g}
+
 PLIST_REINPLACE+=	group mode owner stopdaemon rmtry
 PLIST_REINPLACE_RMTRY=s!^@rmtry \(.*\)!@unexec rm -f %D/\1 2>/dev/null || true!
 PLIST_REINPLACE_STOPDAEMON=s!^@stopdaemon \(.*\)!@unexec %D/etc/rc.d/\1 forcestop 2>/dev/null || true!
@@ -1078,15 +1093,6 @@ CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 USE_SUBMAKE=	yes
 .endif
 
-#
-# These componenets include targets that may have been overwritten by the 
-# above extensions, so they are loaded here.
-#
-MAKE_CMD?=		${BSDMAKE}
-USE_MPORT_TOOLS=	yes
-.include "${MPORTCOMPONENTS}/fake/targets.mk"
-.include "${MPORTCOMPONENTS}/update.mk"
-
 
 # Set up the cdrtools.
 .if defined(USE_CDRTOOLS)
@@ -1139,6 +1145,7 @@ DISTINFO_FILE?=		${MASTERDIR}/distinfo
 
 MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
+MAKE_CMD?=		${BSDMAKE}
 MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 			DESTDIR=${DESTDIR} \
 			PREFIX=${PREFIX} \
@@ -1290,6 +1297,14 @@ INSTALL_MACROS=	BSD_INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 			BSD_INSTALL_MAN="${INSTALL_MAN}"
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
+
+#
+# These componenets include targets that may have been overwritten by the 
+# above extensions, so they are loaded here.
+#
+USE_MPORT_TOOLS=	yes
+.include "${MPORTCOMPONENTS}/fake/targets.mk"
+.include "${MPORTCOMPONENTS}/update.mk"
 
 # Macro for copying entire directory tree with correct permissions
 # In the -exec shell commands, we add add a . as the first argument, it would
@@ -2617,6 +2632,21 @@ do-test:
 .    endif
 
 # Package
+# from here this will become a loop for subpackages
+.    for sp in ${_PKGS}
+${_PLIST}.${sp}: ${TMPPLIST}
+	@if [ "${PKGBASE}" = "${sp}" ]; then \
+		${SED} "/^@comment /d; /@@/d" ${TMPPLIST} > ${.TARGET} ; \
+	else \
+		${SED} -n "s/@@${sp:S/${PKGBASE}-//}@@//p" ${TMPPLIST} > ${.TARGET} ; \
+	fi
+
+${WRKDIR_PKGFILE${_SP.${sp}}}:	${_PLIST}.${sp} create-manifest ${WRKDIR}/pkg
+	@echo "===>   Building ${PKGNAME${_SP.${sp}}}"
+	@if ! ${SETENV} ${PKG_ENV} ${PKG_CREATE} ${PKG_CREATE_ARGS} -m ${METADIR}.${sp} -p ${_PLIST}.${sp} -o ${WRKDIR}/pkg ${PKGNAME}; then \
+		cd ${.CURDIR} && eval ${MAKE} delete-package >/dev/null; \
+		exit 1; \
+	fi
 
 _EXTRA_PACKAGE_TARGET_DEP+=	${WRKDIR_PKGFILE${_SP.${sp}}}
 
