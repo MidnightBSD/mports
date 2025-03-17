@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 
 set -e
 set -o pipefail
@@ -21,6 +22,7 @@ for native_category in ${dp_CATEGORIES}; do
 		audio)		c="AudioVideo Audio"			;;
 		benchmarks)	c="System"				;;
 		biology)	c="Education Science Biology"		;;
+		budgie)         c="Budgie GTK"                          ;;
 		cad)		c="Graphics Engineering"		;;
 		comms)		c="Utility"				;;
 		converters)	c="Utility"				;;
@@ -28,10 +30,11 @@ for native_category in ${dp_CATEGORIES}; do
 		deskutils)	c="Utility"				;;
 		devel)		c="Development"				;;
 		dns)		c="Network"				;;
-		elisp)		c="Development"				;;
 		editors)	c="Utility"				;;
 		education)	c="Education"				;;
+		elisp)		c="Development"				;;
 		emulators)	c="System Emulator"			;;
+		filesystems)	c="System Filesystem"			;;
 		finance)	c="Office Finance"			;;
 		ftp)		c="Network FileTransfer"		;;
 		games)		c="Game"				;;
