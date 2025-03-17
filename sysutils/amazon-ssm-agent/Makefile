@@ -1,5 +1,5 @@
 PORTNAME=	amazon-ssm-agent
-PORTVERSION=	3.1.90.0
+PORTVERSION=	3.3.1957.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		go
+USES=		go:1.22
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	aws
