@@ -11,6 +11,8 @@ sbin/ssm-session-worker
 @dir /var/run/amazon/ssm
 @dir /var/run/amazon
 @dir /var/log/amazon
+@dir /var/lib/amazon/ssm/ec2config
+@dir /var/lib/amazon/ssm/ec2configservice
 @dir /var/lib/amazon/ssm/daemons
 @dir /var/lib/amazon/ssm/localcommands
 @dir /var/lib/amazon/ssm/ipc
