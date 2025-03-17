@@ -17,6 +17,7 @@ sbin/ssm-session-worker
 @dir /var/lib/amazon/ssm/locks
 @dir /var/lib/amazon/ssm/manifests
 @dir /var/lib/amazon/ssm/packages
+@dir /var/lib/amazon/ssm/runtimeconfig
 @dir /var/lib/amazon/ssm
 @dir /var/lib/amazon
 @dir etc/amazon/ssm
