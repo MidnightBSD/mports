@@ -945,17 +945,6 @@ MAKE_SHELL?=	${SH}
 CONFIGURE_ENV+=	SHELL=${CONFIGURE_SHELL} CONFIG_SHELL=${CONFIGURE_SHELL}
 MAKE_ENV+=		SHELL=${MAKE_SHELL} NO_LINT=YES
 
-.if defined(MANCOMPRESSED)
-.if ${MANCOMPRESSED} != yes && ${MANCOMPRESSED} != no && \
-	${MANCOMPRESSED} != maybe
-check-makevars::
-	@${ECHO_MSG} "${PKGNAME}: Makefile error: value of MANCOMPRESSED (is \"${MANCOMPRESSED}\") can only be \"yes\", \"no\" or \"maybe\"".
-	@${FALSE}
-.endif
-.endif
-
-MANCOMPRESSED?=	no
-
 .    if defined(PATCHFILES) && ${PATCHFILES:M*.zip}
 PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:archivers/unzip
 .    endif
@@ -1969,9 +1958,9 @@ SCRIPTS_ENV+=	CURDIR=${MASTERDIR} DISTDIR=${DISTDIR} \
 SCRIPTS_ENV+=	BATCH=yes
 .    endif
 
-# Manual Pages
-.include "${PORTSDIR}/Mk/components/man.mk"
-
+# TODO: remove man soon. We are migrating to share/man
+MANDIRS+=       ${PREFIX}/man
+MANDIRS+=	${PREFIX}/share/man
 INFO_PATH?=	share/info
 
 .    if defined(INFO)
@@ -3691,6 +3680,56 @@ install-rc-script:
 .      endif
 .    endif
 
+.    if !target(check-man)
+check-man: fake
+	@${ECHO_MSG} "====> Checking man pages (check-man)"
+	@mdirs= ; \
+	for dir in ${MANDIRS:S/^/${FAKE_DESTDIR}/} ; do \
+		[ -d $$dir ] && mdirs="$$mdirs $$dir" ;\
+	done ; \
+	err=0 ; \
+	for dir in $$mdirs; do \
+		for f in $$(find $$dir -name "*.gz"); do \
+			${ECHO_CMD} "===> Checking $${f##*/}" ; \
+			gunzip -c $$f | mandoc -Tlint -Werror && continue ; \
+			err=1 ; \
+		done ; \
+	done ; \
+	exit $$err
+.    endif
+
+# Compress all manpage not already compressed which are not hardlinks
+# Find all manpages which are not compressed and are hardlinks, and only get the list of inodes concerned, for each of them compress the first one found and recreate the hardlinks for the others
+# Fixes all dead symlinks left by the previous round
+.    if !target(compress-man)
+compress-man:
+	@${ECHO_MSG} "====> Compressing man pages (compress-man)"
+	@mdirs= ; \
+	for dir in ${MANDIRS:S/^/${FAKE_DESTDIR}/} ; do \
+		[ -d $$dir ] && mdirs="$$mdirs $$dir" ;\
+	done ; \
+	for dir in $$mdirs; do \
+		${FIND} $$dir -type f \! -name "*.gz" -links 1 -exec ${GZIP_CMD} {} \; ; \
+		${FIND} $$dir -type f \! -name "*.gz" \! -links 1 -exec ${STAT} -f '%i' {} \; | \
+			${SORT} -u | while read inode ; do \
+				unset ref ; \
+				for f in $$(${FIND} $$dir -type f -inum $${inode} -print); do \
+					if [ -z $$ref ]; then \
+						ref=$${f}.gz ; \
+						${GZIP_CMD} $${f} ; \
+						continue ; \
+					fi ; \
+					${RM} $${f} ; \
+					(cd $${f%/*}; ${LN} -f $${ref##*/} $${f##*/}.gz) ; \
+				done ; \
+			done ; \
+		${FIND} $$dir -type l \! -name "*.gz" | while read link ; do \
+				${LN} -sf $$(readlink $$link).gz $$link.gz ;\
+				${RM} $$link ; \
+		done; \
+	done
+.    endif
+
 #
 # Install the ldconfig file if needed. 
 #
@@ -4566,8 +4605,8 @@ _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-
 				400:generate-plist 450:fake-pre-su-install 475:create-users-groups \
 				500:do-fake 600:fixup-lib-pkgconfig 700:fake-post-install \
 				750:post-install-script \
-				800:post-fake 850:fake-compress-man \
-				851:compress-man 860:install-rc-script 870:install-ldconfig-file \
+				800:post-fake 850:compress-man \
+				860:install-rc-script 870:install-ldconfig-file \
 				880:install-license 890:install-desktop-entries \
 				900:fix-fake-symlinks 920:finish-tmpplist 930:fix-plist-sequence \
 				${POST_PLIST:C/^/990:/} \
