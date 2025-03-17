@@ -23,7 +23,8 @@ GO_TARGET=	./agent:${PREFIX}/sbin/amazon-ssm-agent \
 		./agent/framework/processor/executer/outofproc/worker:${PREFIX}/sbin/ssm-document-worker \
 		./agent/framework/processor/executer/outofproc/sessionworker:${PREFIX}/sbin/ssm-session-worker \
 		./agent/session/logging:${PREFIX}/sbin/ssm-session-logger \
-		./agent/cli-main:${PREFIX}/sbin/ssm-cli
+		./agent/cli-main:${PREFIX}/sbin/ssm-cli \
+		./agent/setupcli:${PREFIX}/sbin/ssm-setup-cli
 
 USE_RC_SUBR=	amazon-ssm-agent
 
