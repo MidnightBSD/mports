@@ -1032,15 +1032,22 @@ CO_ENV+=	NO_PREFIX_RMDIR=0
 
 METADIR=		${WRKDIR}/.metadir
 
-.if defined(USE_LOCAL_MK)
-EXTENSIONS+=	local
+.    if defined(USE_LOCAL_MK)
+#EXTENSIONS+=	local
+.include "${PORTSDIR}/Mk/extensions/bsd.local.mk"
 .endif
 .for odir in ${OVERLAYS}
 .sinclude "${odir}/Mk/bsd.overlay.mk"
-.endfor
+.    endfor
 
 .if defined(XORG_CAT)
 EXTENSIONS+=xorg
+.endif
+
+
+.if exists(${PORTSDIR}/../Makefile.inc)
+.include "${PORTSDIR}/../Makefile.inc"
+USE_SUBMAKE=	yes
 .endif
 
 #
@@ -1088,10 +1095,6 @@ CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .      endif
 .    endif
 
-.if exists(${PORTSDIR}/../Makefile.inc)
-.include "${PORTSDIR}/../Makefile.inc"
-USE_SUBMAKE=	yes
-.endif
 
 
 # Set up the cdrtools.
@@ -1135,9 +1138,6 @@ DO_NADA?=		${TRUE}
 
 # Use this as the first operand to always build dependency.
 NONEXISTENT?=	/nonexistent
-
-# Miscellaneous overridable commands:
-XMKMF?=			xmkmf -a
 
 CHECKSUM_ALGORITHMS?= sha256
 
@@ -1200,10 +1200,14 @@ _MAKE_JOBS?=		-j${MAKE_JOBS_NUMBER}
 BUILD_FAIL_MESSAGE+=	Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reporting the failure to the maintainer.
 .    endif
 
+#.include "${PORTSDIR}/Mk/bsd.ccache.mk"
+
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
 
+#.    if !make(makesum)
 FETCH_ENV?=		SSL_NO_VERIFY_PEER=1 SSL_NO_VERIFY_HOSTNAME=1
+#.    endif
 FETCH_BINARY?=	/usr/bin/fetch
 FETCH_ARGS?=	-Fpr
 FETCH_REGET?=	1
@@ -1616,7 +1620,6 @@ MASTER_SITE_BACKUP?=	\
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP:S^\${DIST_SUBDIR}/^^}
 # Include private dist files that we can't redistribute for Magus.
 .if defined(MAGUS)
-RANDOMIZE_MASTER_SITES=	"yes"
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP} \
 			ftp://extradistfiles.midnightbsd.org/pub/
 .endif
@@ -1630,8 +1633,6 @@ _MASTER_SITE_BACKUP:=	# empty
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE}
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
 .    endif
-
-NOFETCHFILES?=
 
 # Organize DISTFILES, PATCHFILES, _MASTER_SITES_ALL, _PATCH_SITES_ALL
 # according to grouping rules (:something)
@@ -3054,7 +3055,7 @@ checkpatch:
 
 .    if !target(reinstall)
 reinstall:
-	@${RM} -f ${INSTALL_COOKIE} 
+	@${RM} ${INSTALL_COOKIE} 
 	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} -DFORCE_PKG_REGISTER install
 .endif
 
@@ -3084,7 +3085,7 @@ deinstall:
 .else
 	@${MPORT_DELETE} -f -n ${PKGBASE}
 .endif
-	@${RM} -f ${INSTALL_COOKIE}
+	@${RM} ${INSTALL_COOKIE}
 .endif # !target(deinstall)
 
 # Cleaning up
@@ -3093,7 +3094,7 @@ deinstall:
 do-clean:
 	@if [ -d ${WRKDIR} ]; then \
 		if [ -w ${WRKDIR} ]; then \
-			${RM} -rf ${WRKDIR}; \
+			${RM} -r ${WRKDIR}; \
 		else \
 			${ECHO_MSG} "===>   ${WRKDIR} not writable, skipping"; \
 		fi; \
@@ -3170,7 +3171,7 @@ delete-distfiles:
 	@(if [ "X${RESTRICTED_FILES}" != "X" -a -d ${_DISTDIR} ]; then \
 		cd ${_DISTDIR}; \
 		for file in ${RESTRICTED_FILES}; do \
-			${RM} -f $${file}; \
+			${RM} $${file}; \
 			dir=$${file%/*}; \
 			if [ "$${dir}" != "$${file}" ]; then \
 				${RMDIR} -p $${dir} >/dev/null 2>&1 || :; \
@@ -3187,7 +3188,7 @@ delete-distfiles-list:
 	@${ECHO_CMD} "# ${PKGNAME}"
 	@if [ "X${RESTRICTED_FILES}" != "X" ]; then \
 		for file in ${RESTRICTED_FILES}; do \
-			${ECHO_CMD} "[ -f ${_DISTDIR}/$$file ] && (${ECHO_CMD} deleting ${_DISTDIR}/$$file; ${RM} -f ${_DISTDIR}/$$file)"; \
+			${ECHO_CMD} "[ -f ${_DISTDIR}/$$file ] && (${ECHO_CMD} deleting ${_DISTDIR}/$$file; ${RM} ${_DISTDIR}/$$file)"; \
 			dir=$${file%/*}; \
 			if [ "$${dir}" != "$${file}" ]; then \
 				${ECHO_CMD} "(cd ${_DISTDIR} && ${RMDIR} -p $${dir} 2>/dev/null)"; \
@@ -3279,7 +3280,7 @@ package-name:
 repackage: pre-repackage package
 
 pre-repackage:
-	@${RM} -f ${PACKAGE_COOKIE}
+	@${RM} ${PACKAGE_COOKIE}
 .    endif
 
 # Build a package but don't check the cookie for installation, also don't
@@ -3614,13 +3615,13 @@ _DESCR=${DESCR}
 _DESCR=/dev/null
 .      endif
 
-.  if defined(BUILDING_INDEX) && defined(INDEX_PORTS)
+.      if defined(BUILDING_INDEX) && defined(INDEX_PORTS)
 INDEX_OUT=${INDEX_TMPDIR}/${INDEXFILE}.desc.aggr
-.  else
+.      else
 INDEX_OUT=/dev/stdout
-.  endif
+.      endif
 
-.  if empty(FLAVORS) || defined(_DESCRIBE_WITH_FLAVOR)
+.      if empty(FLAVORS) || defined(_DESCRIBE_WITH_FLAVOR)
 describe:
 	@(${ECHO_CMD} -n "${PKGNAME}|${.CURDIR}|${PREFIX}|"; \
 	${ECHO_CMD} -n ${COMMENT:Q}; \
@@ -3635,15 +3636,14 @@ describe:
 			;; \
 		esac; \
 	done < ${DESCR}; ${ECHO_CMD}) >>${INDEX_OUT}
-.  else # empty(FLAVORS)
+.      else # empty(FLAVORS)
 describe: ${FLAVORS:S/^/describe-/}
-.   for f in ${FLAVORS}
+.        for f in ${FLAVORS}
 describe-${f}:
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -D_DESCRIBE_WITH_FLAVOR describe
-.   endfor
-.  endif # empty(FLAVORS)
-. endif
-
+.        endfor
+.      endif # empty(FLAVORS)
+.    endif
 
 .    if empty(FLAVORS) || defined(_DESCRIBE_WITH_FLAVOR)
 
@@ -3780,7 +3780,7 @@ readmes:	readme
 
 .    if !target(readme)
 readme:
-	@${RM} -f ${.CURDIR}/README.html
+	@${RM} ${.CURDIR}/README.html
 	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} ${.CURDIR}/README.html
 .    endif
 
@@ -3922,44 +3922,26 @@ generate-plist: ${WRKDIR}
 ${TMPPLIST}:
 	@cd ${.CURDIR} && ${MAKE} generate-plist
 
-.if !target(add-plist-docs)
-add-plist-docs:
-.	if defined(PORTDOCS) && !defined(NOPORTDOCS)
-		@if ${EGREP} -qe '^@cw?d' ${TMPPLIST} && \
-			[ "`${SED} -En -e '/^@cw?d[ 	]*/s,,,p' ${TMPPLIST} | ${TAIL} -n 1`" != "${PREFIX}" ]; then \
-			${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}; \
-		fi
-.		for x in ${PORTDOCS}
-			@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
-				if [ ! -e ${FAKE_DESTDIR}${DOCSDIR}/${x} ]; then \
-					${ECHO_CMD} ${DOCSDIR}/${x} | \
-					${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}; \
-				fi; \
-			fi
-.		endfor
-		@${FIND} -P ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} ! -type d 2>/dev/null | \
-			${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,,p' >> ${TMPPLIST}
-		@${FIND} -P -d ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} -type d 2>/dev/null | \
-			${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,@dir ,p' >> ${TMPPLIST}
-		@${ECHO_CMD} "@dir ${DOCSDIR:S,^${PREFIX}/,,}" >> ${TMPPLIST}
-.	else
-		@${DO_NADA}
-.	endif
-.endif
-
-.if !target(add-plist-examples)
-add-plist-examples:
-.if defined(PORTEXAMPLES) && !empty(PORT_OPTIONS:MEXAMPLES)
-.for x in ${PORTEXAMPLES}
+.    for _type in EXAMPLES DOCS
+.      if !empty(_REALLY_ALL_POSSIBLE_OPTIONS:M${_type})
+.        if !target(add-plist-${_type:tl})
+.          if defined(PORT${_type}) && !empty(PORT_OPTIONS:M${_type})
+add-plist-${_type:tl}:
+.            for x in ${PORT${_type}}
 	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
-	if [ ! -e ${FAKE_DESTDIR}${EXAMPLESDIR}/${x} ]; then \
-		${ECHO_CMD} ${EXAMPLESDIR}/${x} >> ${TMPPLIST}; \
+		if [ ! -e ${FAKE_DESTDIR}${${_type}DIR}/${x} ]; then \
+		${ECHO_CMD} ${${_type}DIR}/${x} >> ${TMPPLIST}; \
 	fi;fi
-.endfor
-	@${FIND} -P ${PORTEXAMPLES:S/^/${FAKE_DESTDIR}${EXAMPLESDIR}\//} ! -type d 2>/dev/null | \
+.            endfor
+	@${FIND} -P ${PORT${_type}:S/^/${FAKE_DESTDIR}${${_type}DIR}\//} ! -type d 2>/dev/null | \
 		${SED} -ne 's,^${FAKE_DESTDIR},,p' >> ${TMPPLIST}
-.endif
-.endif
+	@${FIND} -P -d ${FAKE_DESTDIR}${PORT${_type}DIR}\//} -type d 2>/dev/null | \
+			${SED} -ne 's,^${FAKE_DESTDIR}/,@dir ,p' >> ${TMPPLIST}
+	@${ECHO_CMD} "@dir ${${_type}DIR}" >> ${TMPPLIST}
+.          endif
+.        endif
+.      endif
+.    endfor
 
 .    if !target(add-plist-data)
 .      if defined(PORTDATA)
@@ -4665,13 +4647,15 @@ ${_PORTS_DIRECTORIES}:
 
 _TARGETS_STAGES=	SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE TEST INSTALL UPDATE
 
-_SANITY_SEQ=	100:pre-everything 150:check-makefile \
-				200:show-warnings 210:show-dev-warnings 220:show-dev-errors \
+_SANITY_SEQ=	050:post-chroot 100:pre-everything \
+				125:show-unsupported-system-error 150:check-makefile \
+				190:show-errors 200:show-warnings \
+				210:show-dev-errors 220:show-dev-warnings \
 				250:check-categories 300:check-makevars \
 				350:check-desktop-entries 400:check-depends \
 				450:identify-install-conflicts 500:check-deprecated \
-				550:check-vulnerable 600:check-license 700:buildanyway-message \
-				750:options-message ${_USES_sanity}
+				550:check-vulnerable 600:check-license 650:check-config \
+				700:buildanyway-message 750:options-message ${_USES_sanity}
 
 _PKG_DEP=		check-sanity
 _PKG_SEQ=		500:pkg-depends
@@ -4681,29 +4665,30 @@ _FETCH_SEQ=		150:fetch-depends 300:pre-fetch 450:pre-fetch-script \
 				850:post-fetch-script \
 				${_OPTIONS_fetch} ${_USES_fetch}
 _EXTRACT_DEP=	fetch
-_EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum 150:extract-depends \
-				190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
+_EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum \
+				150:extract-depends 190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
 				300:pre-extract 450:pre-extract-script 500:do-extract \
 				700:post-extract 850:post-extract-script \
 				999:extract-fixup-modes \
 				${_OPTIONS_extract} ${_USES_extract} ${_SITES_extract}
 _PATCH_DEP=		extract
-_PATCH_SEQ=		050:ask-license 100:patch-message \
-				150:patch-depends \
+_PATCH_SEQ=		050:ask-license 100:patch-message 150:patch-depends \
 				300:pre-patch 450:pre-patch-script 500:do-patch \
 				700:post-patch 850:post-patch-script \
 				${_OPTIONS_patch} ${_USES_patch}
 _CONFIGURE_DEP=	patch
-_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 160:create-binary-alias 200:configure-message \
+_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 160:create-binary-alias \
+				161:create-binary-wrappers 170:create-base-pkgconfig \
+				200:configure-message 210:apply-slist \
 				300:pre-configure 450:pre-configure-script \
-				460:run-autotools 490:do-autoreconf 491:patch-libtool \
-				500:do-configure 700:post-configure 850:post-configure-script \
+				460:run-autotools-fixup 490:do-autoreconf 491:patch-libtool \
+				500:do-configure 700:post-configure \
+				850:post-configure-script \
 				${_OPTIONS_configure} ${_USES_configure}
 _BUILD_DEP=		configure
 _BUILD_SEQ=		100:build-message 300:pre-build 450:pre-build-script \
-			500:do-build 700:post-build 850:post-build-script \
-			${_OPTIONS_build} ${_USES_build}
-
+				500:do-build 700:post-build 850:post-build-script \
+				${_OPTIONS_build} ${_USES_build}
 _FAKE_DEP=		build
 _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-pre-install \
 				400:generate-plist 450:fake-pre-su-install 475:create-users-groups \
