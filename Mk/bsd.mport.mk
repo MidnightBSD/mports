@@ -3390,8 +3390,9 @@ _FLAVOR_RECURSIVE_SH= \
 		${FALSE}; \
 	fi; \
 	for dir in $${recursive_dirs}; do \
-		unset flavor; \
+		unset flavor FLAVOR; \
 		case $${dir} in \
+			*@*/*) ;; \
 			*@*) \
 				flavor=$${dir\#*@}; \
 				dir=$${dir%@*}; \
@@ -3401,7 +3402,7 @@ _FLAVOR_RECURSIVE_SH= \
 		/*) ;; \
 		*) dir=${PORTSDIR}/$$dir ;; \
 		esac; \
-		(cd $$dir; ${SETENV} FLAVOR=$${flavor} ${MAKE} $${recursive_cmd}); \
+		(cd $$dir; ${SETENV} $${flavor:+FLAVOR=$${flavor}} ${MAKE} $${recursive_cmd}); \
 	done
 
 # This script is shared among several dependency list variables.  See file for
@@ -3606,19 +3607,15 @@ actual-package-depends.${sp}:
 .    endfor
 
 # Build packages for port and dependencies
-
 package-recursive: package
-	@for dir in $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} package); \
-	done
+	@recursive_cmd="package-noinstall"; \
+	    recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
 
 # Show missing dependiencies
 missing:
-	@for dir in $$(${ALL-DEPENDS-LIST}); do \
-		THISORIGIN=$$(${ECHO_CMD} $$dir | ${SED} 's,${PORTSDIR}/,,'); \
-		if ${MPORT_QUERY} -q origin=$${THISORIGIN}; then \
-			${ECHO_CMD} $$THISORIGIN; \
-		fi \
+	@for dir in $$(${MISSING-DEPENDS-LIST}); do \
+		echo $${dir#${PORTSDIR}/}; \
 	done
 
 # Show missing dependencies by name
