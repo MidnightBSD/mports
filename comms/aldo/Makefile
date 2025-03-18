@@ -6,7 +6,8 @@ MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Morse code training program
-WWW=		https://www.nongnu.org/aldo/
+WWW=		https://www.nongnu.org/aldo/ \
+		https://savannah.nongnu.org/projects/aldo/
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
