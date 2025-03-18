@@ -50,7 +50,7 @@ CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 VUXML_FILE?=	${PKGDIR}/vuln.xml
 VUXML_FLAT_FILE?=	${PKGDIR}/vuln-flat.xml
 _YEAR!=	date +%Y
-VUXML_CURRENT_FILE?=	${PKGDIR}/vuln-${_YEAR}.xml
+VUXML_CURRENT_FILE?=	${PKGDIR}/vuln/${_YEAR}.xml
 
 .if defined(MAGUS)
 NO_TEST=	yes
@@ -113,7 +113,7 @@ tidy: ${VUXML_FLAT_FILE}
 	${SH} ${FILESDIR}/tidy.sh "${FILESDIR}/tidy.xsl" "${VUXML_FLAT_FILE}" > "${VUXML_FILE}.tidy"
 
 newentry:
-	@${SH} ${FILESDIR}/newentry.sh "${VUXML_CURRENT_FILE}"
+	@${SH} ${FILESDIR}/newentry.sh "${VUXML_CURRENT_FILE}" "CVE_ID=${CVE_ID}" "SA_ID=${SA_ID}"
 
 .if defined(VID) && !empty(VID)
 html: work/${VID}.html

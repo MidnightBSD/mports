@@ -22,9 +22,10 @@
 <!ENTITY vuln-2022 SYSTEM "vuln/2022.xml">
 <!ENTITY vuln-2023 SYSTEM "vuln/2023.xml">
 <!ENTITY vuln-2024 SYSTEM "vuln/2024.xml">
+<!ENTITY vuln-2025 SYSTEM "vuln/2025.xml">
 ]>
 <!--
-Copyright 2003-2024 Jacques Vidrine and contributors
+Copyright 2003-2025 Jacques Vidrine and contributors
 
 Redistribution and use in source (VuXML) and 'compiled' forms (SGML,
 HTML, PDF, PostScript, RTF and so forth) with or without modification,
@@ -67,17 +68,13 @@ Additional tests can be done this way:
  $ pkg audit -f ./vuln-flat.xml py26-django-1.6
  $ pkg audit -f ./vuln-flat.xml py27-django-1.6.1
 
-Extensive documentation of the format and help with writing and verifying
-a new entry is available in The Porter's Handbook at:
-
-  https://docs.freebsd.org/en/books/porters-handbook/security/#security-notify
-
 Notes:
 
   * Please add new entries to the beginning of the current year's file.
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+&vuln-2025;
 &vuln-2024;
 &vuln-2023;
 &vuln-2022;
