@@ -4021,19 +4021,22 @@ generate-plist: ${WRKDIR}
 
 .      if defined(USE_LINUX_PREFIX)
 .         if defined(USE_LDCONFIG)
+.if (${OSVERSION} < 32002)
 	@${ECHO_CMD} '@preexec [ -n "`/sbin/sysctl -q compat.linux.osrelease`" ] || ( echo "Cannot install package: kernel missing Linux support"; exit 1 ) ' >> ${TMPPLIST}
 	@${ECHO_CMD} "@postexec ${LINUXBASE}/sbin/ldconfig" >> ${TMPPLIST}
 	@${ECHO_CMD} "@postunexec ${LINUXBASE}/sbin/ldconfig" >> ${TMPPLIST}
+.else
+	@${ECHO_CMD} "@ldconfig-linux" >> ${TMPPLIST}
+.endif
 .        endif
 .      else
 .        if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
-.          if !defined(INSTALL_AS_USER)
-	@${ECHO_CMD} "@postexec /usr/sbin/service ldconfig restart > /dev/null" >> ${TMPPLIST}
-	@${ECHO_CMD} "@postunexec /usr/sbin/service ldconfig restart > /dev/null" >> ${TMPPLIST}
-.          else
+.if (${OSVERSION} < 32002)
 	@${ECHO_CMD} "@postexec /usr/sbin/service ldconfig restart > /dev/null || ${TRUE}" >> ${TMPPLIST}
 	@${ECHO_CMD} "@postunexec /usr/sbin/service ldconfig restart > /dev/null || ${TRUE}" >> ${TMPPLIST}
-.          endif
+.else
+	@${ECHO_CMD} "@ldconfig" >> ${TMPPLIST}
+.endif
 .        endif
 .      endif
 # End of generate-plist
