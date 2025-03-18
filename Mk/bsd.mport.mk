@@ -2748,7 +2748,7 @@ delete-package-list:
 .if !target(install-package)
 install-package:
 .	if defined(DESTDIR) 
-		@${CP} ${PKGFILE} ${DISTDIR}${PKGFILE}
+		@${CP} ${PKGFILE} ${_DISTDIR}${PKGFILE}
 .	endif
 # $MPORT_INSTALL calls chroot if DESTDIR is set
 	@${MPORT_INSTALL} ${PKGFILE}	
@@ -3317,6 +3317,7 @@ package-name:
 .    if !target(repackage)
 repackage: pre-repackage package
 
+# TODO: should we add ${TMPPLIST}*
 pre-repackage:
 	@${RM} ${PACKAGE_COOKIE}
 .    endif
@@ -3598,6 +3599,77 @@ PACKAGE-DEPENDS-LIST?= \
 		fi; \
 	done
 
+# FIXME: SELF_DEPENDS can only be used to depend on sub packages whose
+# package name has not been overrided by the framework, otherwize the
+# assumption made below that the package name is "PKGBASE-$$self" is broken.
+.    for sp in ${_PKGS}
+ACTUAL-PACKAGE-DEPENDS${_SP.${sp}}?= \
+	depfiles="" ; \
+	for lib in ${LIB_DEPENDS${_SP.${sp}}:C/\:.*//}; do \
+		depfiles="$$depfiles `${SETENV} LIB_DIRS="${LIB_DIRS}" LOCALBASE="${LOCALBASE}" ${SH} ${SCRIPTSDIR}/find-lib.sh $${lib}`" ; \
+	done ; \
+	for self in ${SELF_DEPENDS${_SP.${sp}}}; do \
+		if [ "$$self" = "main" ]; then \
+			printf "\"%s\": {origin: \"%s\", version: \"%s\"}\n" ${PKGBASE} ${PKGORIGIN} ${PKGVERSION}; \
+		else \
+			printf "\"%s-%s\": {origin: \"%s\", version: \"%s\"}\n" ${PKGBASE} $$self ${PKGORIGIN} ${PKGVERSION}; \
+		fi ; \
+	done ; \
+	${SETENV} PKG_BIN="${MPORT_CMD}" ${SH} ${SCRIPTSDIR}/actual-package-depends.sh $${depfiles} ${RUN_DEPENDS${_SP.${sp}}:C/(.*)\:.*/"\1"/}
+.    endfor
+
+PKG_NOTES_ENV?=
+.    for note in ${PKG_NOTES}
+PKG_NOTES_ENV+=	dp_PKG_NOTE_${note}=${PKG_NOTE_${note}:Q}
+.    endfor
+
+.    for sp in ${_PKGS}
+PKG_NOTES.${sp}=	${PKG_NOTES}
+PKG_NOTES_ENV.${sp}=	${PKG_NOTES_ENV}
+.      if ${sp} != ${PKGBASE}
+PKG_NOTES.${sp}+=	subpackage
+PKG_NOTES_ENV.${sp}+=	dp_PKG_NOTE_subpackage=${_SP.${sp}:S/^.//1}
+.      endif
+create-manifest: create-manifest.${sp}
+create-manifest.${sp}:
+	@${SETENV} \
+			dp_SCRIPTSDIR='${SCRIPTSDIR}'                         \
+			dp_ACTUAL_PACKAGE_DEPENDS='${ACTUAL-PACKAGE-DEPENDS${_SP.${sp}}}' \
+			dp_CATEGORIES='${CATEGORIES:u:S/$/,/}'                \
+			dp_COMMENT=${COMMENT${_SP.${sp}}:Q}                   \
+			dp_COMPLETE_OPTIONS_LIST='${COMPLETE_OPTIONS_LIST}'   \
+			dp_DEPRECATED=${DEPRECATED:Q}                         \
+			dp_DESCR='${DESCR${_SP.${sp}}}'                       \
+			dp_EXPIRATION_DATE='${EXPIRATION_DATE}'               \
+			dp_GROUPS='${GROUPS:u:S/$/,/}'                        \
+			dp_LICENSE='${LICENSE:u:S/$/,/}'                      \
+			dp_LICENSE_COMB='${LICENSE_COMB}'                     \
+			dp_MAINTAINER='${MAINTAINER}'                         \
+			dp_METADIR='${METADIR}.${sp}'                         \
+			dp_NO_ARCH='${NO_ARCH}'                               \
+			dp_PKGBASE='${sp}'                                    \
+			dp_PKGDEINSTALL='${PKGDEINSTALL${_SP.${sp}}}'         \
+			dp_PKGINSTALL='${PKGINSTALL${_SP.${sp}}}'             \
+			dp_PKGMESSAGES='${_PKGMESSAGES${_SP.${sp}}}'          \
+			dp_PKGORIGIN='${PKGORIGIN}'                           \
+			dp_PKGPOSTDEINSTALL='${PKGPOSTDEINSTALL${_SP.${sp}}}' \
+			dp_PKGPOSTINSTALL='${PKGPOSTINSTALL${_SP.${sp}}}'     \
+			dp_PKGPREDEINSTALL='${PKGPREDEINSTALL${_SP.${sp}}}'   \
+			dp_PKGPREINSTALL='${PKGPREINSTALL${_SP.${sp}}}'       \
+			dp_PKGVERSION='${PKGVERSION}'                         \
+			dp_PKG_BIN='${MPORT_CMD}'                               \
+			dp_PKG_IGNORE_DEPENDS='${PKG_IGNORE_DEPENDS}'         \
+			dp_PKG_NOTES='${PKG_NOTES.${sp}}'                     \
+			dp_PORT_OPTIONS='${PORT_OPTIONS}'                     \
+			dp_PREFIX='${PREFIX}'                                 \
+			dp_USERS='${USERS:u:S/$/,/}'                          \
+			dp_WWW='${WWW}'                                       \
+			dp_VITAL='${VITAL${_SP.${sp}}}'                       \
+			${PKG_NOTES_ENV.${sp}}                                \
+			${SH} ${SCRIPTSDIR}/create-manifest.sh
+.    endfor
+
+# Print out package names.
 
 package-depends:
 	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{ if ($$4) print $$1":"$$3":"$$4; else print $$1":"$$3 }'
