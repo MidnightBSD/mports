@@ -92,7 +92,6 @@ do-install:
 	${LN} -sf ../../../usr/share/alsa/alsa.conf.d/50-oss.conf \
 		${STAGEDIR}${LINUXBASE}/etc/alsa/conf.d
 
-## Pet poudriere's stage-qa
 post-install:
 .if defined(WRKDIRPREFIX) && !empty(WRKDIRPREFIX)
 	${RM} -r ${LINUXBASE}${WRKDIRPREFIX}
