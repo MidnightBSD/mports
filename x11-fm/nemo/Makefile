@@ -1,6 +1,6 @@
 PORTNAME=	nemo
 PORTVERSION=	4.8.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-fm gnome
 DIST_SUBDIR=	gnome
 
@@ -24,7 +24,7 @@ RUN_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme \
 USES=		compiler:c11 desktop-file-utils gettext gnome meson pkgconfig \
 		python:3.5+ shared-mime-info shebangfix xorg
 
-USE_GCC=	13+
+USE_GCC=	13
 SHEBANG_FILES=	generate_additional_file makepot
 SHEBANG_GLOB=	*.py
 
