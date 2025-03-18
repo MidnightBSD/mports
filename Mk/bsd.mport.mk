@@ -977,9 +977,7 @@ LIB32DIR=	lib
 .    endif
 PLIST_SUB+=	LIB32DIR=${LIB32DIR}
 
-.    if defined(USE_GCC)
-.include "${PORTSDIR}/Mk/extensions/gcc.mk"
-.    endif
+# gcc is loaded as extension
 
 .    if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
 LDFLAGS+=	-fuse-ld=bfd
