@@ -1,4 +1,4 @@
-bin/ssm-agent-worker
+@comment bin/ssm-agent-worker
 etc/rc.d/amazon-ssm-agent
 etc/amazon/ssm/seelog_unix.xml.template
 etc/amazon/ssm/amazon-ssm-agent.json.template
@@ -6,7 +6,7 @@ sbin/ssm-document-worker
 sbin/amazon-ssm-agent
 sbin/ssm-session-logger
 sbin/ssm-cli
-sbin/ssm-setup-cli
+@comment sbin/ssm-setup-cli
 sbin/ssm-session-worker
 @dir /var/run/amazon/ssm
 @dir /var/run/amazon
