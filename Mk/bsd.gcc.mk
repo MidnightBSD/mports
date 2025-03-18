@@ -30,8 +30,6 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 
-.if defined(_POSTMKINCLUDED) && !defined(Gcc_Post_Include)
-
 GCC_Include_MAINTAINER=		ports@MidnightBSD.org
 
 # All GCC versions supported by this framework.

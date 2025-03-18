@@ -500,7 +500,7 @@ _LOAD_${EXT:tu}_EXT=	yes
 # we could go back to the above approach.
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux xorg fortran \
-		gcc fmake gmake bison local perl5 \
+		fmake gmake bison local perl5 \
 		ada ansible apache bdb cabal cargo cmake cpe cran display dos2unix \
 		efl eigen elixir emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
@@ -977,7 +977,10 @@ LIB32DIR=	lib
 .    endif
 PLIST_SUB+=	LIB32DIR=${LIB32DIR}
 
-# gcc is loaded as extension
+# can have weird interactions when used as an extension.
+.    if defined(USE_GCC)
+.include "${PORTSDIR}/Mk/bsd.gcc.mk"
+.    endif
 
 .    if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
 LDFLAGS+=	-fuse-ld=bfd
