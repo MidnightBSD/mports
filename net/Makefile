@@ -35,6 +35,7 @@ SUBDIR += geocode-glib
 SUBDIR += geocode-glib2
 SUBDIR += geoipupdate
 SUBDIR += gfbgraph
+SUBDIR += gitup
 SUBDIR += glib-networking
 SUBDIR += gnet2
 SUBDIR += gnome-nettool
