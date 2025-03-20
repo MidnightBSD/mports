@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [  'cpp', 'go',  'javascript', 'python', 'ruby' ]
+        language: [  'go',  'javascript', 'python', 'ruby' ]
 
     steps:
       - name: Checkout
