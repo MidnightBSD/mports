@@ -20,23 +20,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ python, javascript ]
+        language: [  'cpp', 'go',  'javascript', 'python', 'ruby' ]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
           queries: +security-and-quality
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
-        if: ${{ matrix.language == 'python' || matrix.language == 'javascript' }}
+        uses: github/codeql-action/autobuild@v3
+        if: ${{  matrix.language == 'go' || matrix.language == 'javascript' || matrix.language == 'python' || matrix.language == 'ruby' }}
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{ matrix.language }}"
