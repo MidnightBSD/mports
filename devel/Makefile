@@ -110,6 +110,7 @@ SUBDIR += firmware-utils
 SUBDIR += flatbuffers
 SUBDIR += fmake
 SUBDIR += fortytwo-encore
+SUBDIR += fossology-nomos-standalone
 SUBDIR += fstrm
 SUBDIR += gamin
 SUBDIR += gccmakedep

@@ -4081,6 +4081,8 @@ add-plist-data:
 .      if defined(INFO)
 add-plist-info:
 .        for i in ${INFO}
+# hack since mport has a bug in 2.7.0 beta or lower that doesn't extract/delete file
+#	@${LS} ${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}/$i.info* | ${SED} -e s:${FAKE_DESTDIR}:\:g >> ${TMPPLIST}
 	@${LS} ${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}/$i.info* | ${SED} -e s:${FAKE_DESTDIR}:@info\ :g >> ${TMPPLIST}
 .        endfor
 .      endif

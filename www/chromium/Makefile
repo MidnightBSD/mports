@@ -117,7 +117,11 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_system_wayland_scanner=true \
 		use_udev=false \
 		extra_cxxflags="${CXXFLAGS}" \
-		extra_ldflags="${LDFLAGS}"
+		extra_ldflags="${LDFLAGS}" \
+		is_bsd=true \
+		is_linux=true \
+		is_posix=true \
+		target_os=freebsd
 
 # TODO: investigate building with these options:
 # use_system_minigbm
@@ -212,7 +216,7 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in bas
 .endif
 
 .if ${COMPILER_VERSION} < 130
-LLVM_DEFAULT=		13
+LLVM_DEFAULT=		14
 BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 BINARY_ALIAS+=		cpp=${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT} \
 			cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT} \

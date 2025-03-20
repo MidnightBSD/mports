@@ -1,3 +1,5 @@
+#-*- tab-width: 4; -*-
+# ex:ts=4
 
 
 Licenses_Include_MAINTAINER=         ports@MidnightBSD.org
@@ -43,14 +45,17 @@ _LICENSE_LIST_PORT_VARS=	PERMS NAME GROUPS
 # 					  bsd.port.mk to avoid creating LICENSE_{REQ,SEQ} for a
 # 					  few more targets only.
 
-_LICENSE_DIR?=		${PREFIX}/share/licenses/${PKGNAME}
-_LICENSE_DIR_REL?=	share/licenses/${PKGNAME}
 _LICENSE_STORE?=	${PORTSDIR}/Templates/Licenses
-_LICENSE_CATALOG?=	${_LICENSE_DIR}/catalog.mk
 _LICENSE_CATALOG_TMP?=	${WRKDIR}/.license-catalog.mk
-_LICENSE_REPORT?=	${_LICENSE_DIR}/LICENSE
 _LICENSE_REPORT_TMP?=	${WRKDIR}/.license-report
 _LICENSE_COOKIE?=	${WRKDIR}/.license_done.${PORTNAME}.${PREFIX:S/\//_/g}
+
+.    for sp in ${_PKGS}
+_LICENSE_DIR.${sp}?=		${PREFIX}/share/licenses/${PKGNAME${_SP.${sp}}}
+_LICENSE_DIR_REL.${sp}?=	share/licenses/${PKGNAME${_SP.${sp}}
+_LICENSE_CATALOG.${sp}?=	${_LICENSE_DIR.${sp}}/catalog.mk
+_LICENSE_REPORT.${sp}?=	${_LICENSE_DIR.${sp}}/LICENSE
+.    endfor
 
 # Defaults (never overriden for now)
 #
@@ -545,30 +550,30 @@ ${_LICENSE_COOKIE}:
 .      if !defined(NO_LICENSES_DIALOGS)
 # Dialog interface
 .        if ${_LICENSE_COMB} == "single"
-	@${DIALOG} --title "License for ${PKGNAME} (${_LICENSE})" \
+	@${SETENV} LC_ALL=C.UTF-8 ${DIALOG} --title "License for ${PKGNAME} (${_LICENSE})" \
 		--yes-label Accept --no-label Reject --yesno \
 		"$$(${CAT} ${_LICENSE_FILE})" 21 76
 
 .        elif ${_LICENSE_COMB} == "dual"
-	@${RM} -f ${_LICENSE_ASK_DATA}
+	@${RM} ${_LICENSE_ASK_DATA}
 .          for lic in ${_LICENSE_TO_ASK}
 	@${ECHO_CMD} "${lic}:${_LICENSE_FILE_${lic}}" >> ${_LICENSE_ASK_DATA}
 .          endfor
 	@menu_cmd="${DIALOG} --hline \"This port requires you to accept at least one license\" --menu \"License for ${PKGNAME} (dual)\" 21 70 15"; \
-	trap '${RM} -f $$tmpfile' EXIT INT TERM; \
+	trap '${RM} $$tmpfile' EXIT INT TERM; \
 	tmpfile=$$(mktemp -t portlicenses); \
 	for lic in ${_LICENSE_TO_ASK}; do \
 		menu_cmd="$${menu_cmd} VIEW_$${lic} \"View the license $${lic}\" USE_$${lic} \"Accept the license $${lic}\""; \
 	done; \
 	menu_cmd="$${menu_cmd} REJECT \"Reject the licenses (all)\""; \
 	while true; do \
-		${SH} -c "$${menu_cmd} 2>\"$${tmpfile}\""; \
+		${SH} -c "${SETENV} LC_ALL=C.UTF-8 $${menu_cmd} 2>\"$${tmpfile}\""; \
 		result=$$(${CAT} "$${tmpfile}"); \
 		case $${result} in \
 		REJECT) exit 1;; \
 		VIEW_*) name=$$(${ECHO_CMD} $${result} | ${SED} -e 's/^VIEW_//'); \
 				file=$$(${GREP} "^$${name}:" ${_LICENSE_ASK_DATA} | ${CUT} -d : -f 2); \
-				${DIALOG} --textbox "$${file}" 21 75 ;; \
+				${SETENV} LC_ALL=C.UTF-8 ${DIALOG} --textbox "$${file}" 21 75 ;; \
 		USE_*)  name=$$(${ECHO_CMD} $${result} | ${SED} -e 's/^USE_//'); \
 				${ECHO_CMD} $${name} > ${_LICENSE_COOKIE}; \
 				break ;; \
@@ -576,12 +581,12 @@ ${_LICENSE_COOKIE}:
 	done
 
 .        elif ${_LICENSE_COMB} == "multi"
-	@${RM} -f ${_LICENSE_ASK_DATA}
+	@${RM} ${_LICENSE_ASK_DATA}
 .          for lic in ${_LICENSE_TO_ASK}
 	@${ECHO_CMD} "${lic}:${_LICENSE_FILE_${lic}}" >> ${_LICENSE_ASK_DATA}
 .          endfor
-	@menu_cmd="${DIALOG} --hline \"This port requires you to accept all mentioned licenses\" --menu \"License for ${PKGNAME} (multi)\" 21 70 15"; \
-	trap '${RM} -f $$tmpfile' EXIT INT TERM; \
+	@menu_cmd="${SETENV} LC_ALL=C.UTF-8 ${DIALOG} --hline \"This port requires you to accept all mentioned licenses\" --menu \"License for ${PKGNAME} (multi)\" 21 70 15"; \
+	trap '${RM} $$tmpfile' EXIT INT TERM; \
 	tmpfile=$$(mktemp -t portlicenses); \
 	for lic in ${_LICENSE_TO_ASK}; do \
 		menu_cmd="$${menu_cmd} VIEW_$${lic} \"View the license $${lic}\""; \
@@ -595,7 +600,7 @@ ${_LICENSE_COOKIE}:
 		REJECT) exit 1 ;; \
 		VIEW_*) name=$$(${ECHO_CMD} $${result} | ${SED} -e 's/^VIEW_//'); \
 				file=$$(${GREP} "^$${name}:" ${_LICENSE_ASK_DATA} | ${CUT} -d : -f 2); \
-				${DIALOG} --textbox "$${file}" 21 75 ;; \
+				${SETENV} LC_ALL=C.UTF-8 ${DIALOG} --textbox "$${file}" 21 75 ;; \
 		esac; \
 	done
 .        endif
@@ -627,12 +632,12 @@ ${_LICENSE_COOKIE}:
 	@${ECHO_MSG}
 	@exit 1
 .      endif
-	@${RM} -f ${_LICENSE_ASK_DATA}
+	@${RM} ${_LICENSE_ASK_DATA}
 .    endif
 
 # Create report and catalog
 .    if !defined(NO_LICENSES_INSTALL)
-	@${RM} -f ${_LICENSE_CATALOG_TMP} ${_LICENSE_REPORT_TMP}
+	@${RM} ${_LICENSE_CATALOG_TMP} ${_LICENSE_REPORT_TMP}
 .      if ${_LICENSE_COMB} == "single"
 # Catalog
 .        for var in _LICENSE _LICENSE_NAME _LICENSE_PERMS _LICENSE_GROUPS _LICENSE_DISTFILES
@@ -671,40 +676,57 @@ ${_LICENSE_COOKIE}:
 # Package list entries, and installation
 
 .    if !defined(NO_LICENSES_INSTALL)
-PLIST_FILES+=	${_LICENSE_CATALOG} \
-				${_LICENSE_REPORT}
-
-.      if ${_LICENSE_COMB} == "single"
-PLIST_FILES+=	${_LICENSE_DIR}/${_LICENSE}
-.      else
-.        for lic in ${_LICENSE}
-.          if defined(_LICENSE_FILE_${lic})
-PLIST_FILES+=	${_LICENSE_DIR}/${lic}
+.      for sp in ${_PKGS}
+.        if ${sp} == ${PKGBASE}
+PLIST_FILES+=	${_LICENSE_CATALOG.${sp}} \
+				${_LICENSE_REPORT.${sp}}
+.          if ${_LICENSE_COMB} == "single"
+PLIST_FILES+=	${_LICENSE_DIR.${sp}}/${_LICENSE}
+.          else
+.            for lic in ${_LICENSE}
+.              if defined(_LICENSE_FILE_${lic})
+PLIST_FILES+=	${_LICENSE_DIR.${sp}}/${lic}
+.              endif
+.            endfor
 .          endif
-.        endfor
-.      endif
+.        else
+PLIST_FILES${_SP.${sp}}+=	${_LICENSE_CATALOG.${sp}} \
+				${_LICENSE_REPORT.${sp}}
+.          if ${_LICENSE_COMB} == "single"
+PLIST_FILES${_SP.${sp}}+=	${_LICENSE_DIR.${sp}}/${_LICENSE}
+.          else
+.            for lic in ${_LICENSE}
+.              if defined(_LICENSE_FILE_${lic})
+PLIST_FILES${_SP.${sp}}+=	${_LICENSE_DIR.${sp}}/${lic}
+.              endif
+.            endfor
+.          endif
+.        endif
 
-install-license:
-	@${MKDIR} ${FAKE_DESTDIR}${_LICENSE_DIR}
-	@${INSTALL_DATA} ${_LICENSE_CATALOG_TMP} ${FAKE_DESTDIR}${_LICENSE_CATALOG}
-	@${INSTALL_DATA} ${_LICENSE_REPORT_TMP} ${FAKE_DESTDIR}${_LICENSE_REPORT}
-.if ${_LICENSE_COMB} == "single"
-	@${INSTALL_DATA} ${_LICENSE_FILE} ${FAKE_DESTDIR}${_LICENSE_DIR}/${_LICENSE}
-.else
-.	for lic in ${_LICENSE}
-	@${INSTALL_DATA} ${_LICENSE_FILE_${lic}} ${FAKE_DESTDIR}${_LICENSE_DIR}/${lic}
-.	endfor
-.endif
-# XXX @dirrmtry entry must be here (no way to do with PLIST_* vars)
-	@${ECHO_CMD} "@owner root" >> ${TMPPLIST}
-	@${ECHO_CMD} "@group wheel" >> ${TMPPLIST}
-	@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@dirrm ${_LICENSE_DIR_REL}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec rmdir %D/share/licenses 2>/dev/null || true" >> ${TMPPLIST}
 
-.endif
+install-license: install-license.${sp}
+install-license.${sp}:
+	@${MKDIR} ${FAKE_DESTDIR}${_LICENSE_DIR.${sp}}
+	@${INSTALL_DATA} ${_LICENSE_CATALOG_TMP} ${FAKE_DESTDIR}${_LICENSE_CATALOG.${sp}}
+	@${INSTALL_DATA} ${_LICENSE_REPORT_TMP} ${FAKE_DESTDIR}${_LICENSE_REPORT.${sp}}
+.        if ${_LICENSE_COMB} == "single"
+	@${INSTALL_DATA} ${_LICENSE_FILE} ${FAKE_DESTDIR}${_LICENSE_DIR.${sp}}/${_LICENSE}
+.        else
+.          for lic in ${_LICENSE}
+	@${INSTALL_DATA} ${_LICENSE_FILE_${lic}} ${FAKE_DESTDIR}${_LICENSE_DIR.${sp}}/${lic}
+.          endfor
+.        endif
+# XXX: do we need this anymore?
+	@${ECHO_CMD} "@dirrm ${_LICENSE_DIR.${sp}}" >> ${TMPPLIST}
+.      endfor
+.    endif
 
-.else	# !LICENSE
+.  else	# !LICENSE
+
+debug-license:
+.    if defined(LICENSE_VERBOSE)
+	@${ECHO_MSG} "===>  License debug empty, port has not defined LICENSE"
+.    endif
 
 check-license:
 .	if defined(LICENSE_VERBOSE) || defined(MPORT_MAINTAINER_MODE)
