@@ -9,6 +9,7 @@ SUBDIR += bozohttpd
 SUBDIR += caddy
 SUBDIR += chromium
 SUBDIR += chromium-bin
+SUBDIR += clearsilver
 SUBDIR += codeigniter
 SUBDIR += drupal10
 SUBDIR += drupal7

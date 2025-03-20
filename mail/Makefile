@@ -59,6 +59,7 @@ SUBDIR += mb2md
 SUBDIR += metamail
 SUBDIR += milter-greylist
 SUBDIR += mime-construct
+SUBDIR += mlmmj
 SUBDIR += msmtp
 SUBDIR += mutt
 SUBDIR += nmh
