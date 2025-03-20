@@ -238,6 +238,7 @@ SUBDIR += wifi-firmware-ath12k-kmod
 SUBDIR += wifi-firmware-iwlwifi-kmod
 SUBDIR += wifi-firmware-kmod
 SUBDIR += wifi-firmware-mt76-kmod
+SUBDIR += wifi-firmware-mt7601u-kmod
 SUBDIR += wifi-firmware-rtw88-kmod
 SUBDIR += wifi-firmware-rtw89-kmod
 SUBDIR += wireguard-go
