@@ -60,6 +60,7 @@ SUBDIR += metamail
 SUBDIR += milter-greylist
 SUBDIR += mime-construct
 SUBDIR += mlmmj
+SUBDIR += mlmmj-archiver
 SUBDIR += msmtp
 SUBDIR += mutt
 SUBDIR += nmh

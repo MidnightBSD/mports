@@ -31,6 +31,7 @@ SUBDIR += gstreamer1-plugins-srt
 SUBDIR += http-parser
 SUBDIR += hypermail
 SUBDIR += joomla4
+SUBDIR += kcgi
 SUBDIR += libapreq2
 SUBDIR += libdatachannel
 SUBDIR += libdom
