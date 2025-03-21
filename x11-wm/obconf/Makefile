@@ -1,20 +1,20 @@
-
-
 PORTNAME=	obconf
 PORTVERSION=	2.0.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://openbox.org/dist/obconf/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Preferences manager for the Openbox window manager
+WWW=		http://openbox.org/wiki/Obconf
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
-		libobrender.so:${PORTSDIR}/x11-wm/openbox
+LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification \
+		libobrender.so:x11-wm/openbox
 
-USES=		pkgconfig desktop-file-utils shared-mime-info
+USES=		desktop-file-utils gnome pkgconfig shared-mime-info
 USE_GNOME=	libglade2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	OPENBOX_CFLAGS="`pkg-config --cflags obrender-3.5 obt-3.5`" \
@@ -29,22 +29,15 @@ PORTDOCS=	ABOUT-NLS AUTHORS README TODO
 
 OPTIONS_DEFINE=	DOCS NLS
 
-.include <bsd.mport.options.mk>
+OPTIONS_SUB=	yes
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
 
-post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for file in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
