@@ -1563,3 +1563,4 @@ lib/postgresql/utf8_and_win.so
 %%DATADIR%%/tsearch_data/thesaurus_sample.ths
 %%DATADIR%%/tsearch_data/turkish.stop
 %%DATADIR%%/tsearch_data/nepali.stop
+@dir /var/db/%%PG_USER%%/data%%PG_VERSION%%

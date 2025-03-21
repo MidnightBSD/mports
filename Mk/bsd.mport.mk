@@ -4764,6 +4764,12 @@ show-dev-errors:
 .      endif
 .    endif #DEVELOPER
 
+.    if defined(HAS_SYMBOL_VERSION)
+stage-sanity: check_has_symbol_version
+check_has_symbol_version:
+	${SH} ${SCRIPTSDIR}/check_have_symbols.sh ${FAKE_DESTDIR} ${HAS_SYMBOL_VERSION}
+.    endif # HAS_SYMBOL_VERSION
+
 ########################################################################################
 # Order of targets run for each stage of the build.
 ######################################################################################## 
@@ -4826,7 +4832,8 @@ _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-
 				800:post-fake 850:compress-man \
 				860:install-rc-script 870:install-ldconfig-file \
 				880:install-license 890:install-desktop-entries \
-				900:fix-fake-symlinks 920:add-plist-info 921:add-plist-examples 922:add-plist-docs 923:add-plist-data 924:add-plist-post 930:fix-plist-sequence \
+				900:fix-fake-symlinks 920:add-plist-info 921:add-plist-examples 922:add-plist-docs 923:add-plist-data 924:add-plist-post \
+				930:fix-plist-sequence 984:stage-sanity \
 				${POST_PLIST:C/^/990:/} \
 				${_OPTIONS_install} ${_USES_install} \
                                 ${_OPTIONS_fake} ${_USES_fake} ${_FEATURES_fake}
