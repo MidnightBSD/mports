@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 You will need a network interface setup prior to running this program:
 
 Simple interfaces:
@@ -18,3 +21,6 @@ Or, alternatively:
     ifconfig_lagg0="DHCP"
 
 Replace ath0 with your network interface name.
+EOM
+}
+]
