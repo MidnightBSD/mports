@@ -7,8 +7,11 @@ DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for single instance applications
+WWW=		http://live.gnome.org/LibUnique
 
 LICENSE=	lgpl
+
+PORTSCOUT=	ignore:1
 
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib
 
