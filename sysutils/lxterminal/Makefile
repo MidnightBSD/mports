@@ -1,23 +1,26 @@
 PORTNAME=	lxterminal
 PORTVERSION=	0.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/lxde/LXTerminal%20%28terminal%20emulator%29/LXTerminal%200.4.x/
 
 MAINTAINER=	midnightbsd@BSDforge.com
 COMMENT=	Lightweight terminal emulator from the LXDE project
+WWW=		https://github.com/lxde/lxterminal
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-USES=		gmake gnome localbase pkgconfig tar:xz xorg
+USES=		cpe gmake gnome localbase pkgconfig tar:xz xorg
+CPE_VENDOR=	${PORTNAME}_project
 USE_GNOME=	gtk20 glib20 cairo vte intltool
 USE_XORG=	x11 xext
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--enable-gtk3=no
 INSTALLS_ICONS=	yes
 
