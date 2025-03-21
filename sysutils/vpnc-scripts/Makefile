@@ -1,22 +1,24 @@
 PORTNAME=	vpnc-scripts
-PORTVERSION=	20190611
-CATEGORIES=	sysutils
+PORTVERSION=	20210402
+CATEGORIES=	sysutils net-vpn
 MASTER_SITES=	ftp://ftp.infradead.org/pub/${PORTNAME}/ \
 		ZI
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of scripts to setup routes and other changes for a VPN
+WWW=		https://git.infradead.org/users/dwmw2/vpnc-scripts.git
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 PLIST_FILES=	sbin/vpnc-script sbin/vpnc-script-sshd sbin/vpnc-script-ptrtd
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|\(/etc/vpnc\)|${PREFIX}\1|' \
-	    	${WRKSRC}/vpnc-script
+		${WRKSRC}/vpnc-script
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-script ${STAGEDIR}${PREFIX}/sbin

@@ -1,12 +1,14 @@
 PORTNAME=	xosview
 DISTVERSION=	1.23
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
 MAINTAINER=	kazuok@midnightbsd.org
 COMMENT=	Graphical performance meter
+WWW=		https://www.pogo.org.uk/~mark/xosview/
 
-LICENSE=	bsd4
+LICENSE=	bsd4 gpl2
+LICENSE_COMB=	multi
 
 FAKE_OPTS=	trueprefix
 
