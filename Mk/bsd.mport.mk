@@ -122,7 +122,7 @@ STRIPBIN=	${STRIP_CMD}
 # DESTDIR section to start a chrooted process if invoked with DESTDIR set
 #
 
-.if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
+.if defined(NOTYET) && defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
 	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .include "${PORTSDIR}/Mk/bsd.destdir.mk"
