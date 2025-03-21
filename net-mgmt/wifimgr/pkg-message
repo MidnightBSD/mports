@@ -1,0 +1,20 @@
+You will need a network interface setup prior to running this program:
+
+Simple interfaces:
+    wlans_ath0=wlan0
+    ifconfig_wlan0="WPA DHCP"
+
+As part of an aggregated interface:
+    wlans_ath0=wlan0
+    ifconfig_wlan0="WPA"
+    cloned_interfaces="lagg0"
+    ifconfig_lagg0="laggproto failover laggport em0 laggport wlan0 DHCP"
+
+Or, alternatively:
+    wlans_ath0=wlan0
+    ifconfig_wlan0="WPA"
+    cloned_interfaces="lagg0"
+    create_args_lagg0="laggproto failover laggport em0 laggport wlan0"
+    ifconfig_lagg0="DHCP"
+
+Replace ath0 with your network interface name.
