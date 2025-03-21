@@ -162,7 +162,8 @@ dconf_LIB_DEPENDS=	libdconf.so:devel/dconf
 dconf_RUN_DEPENDS=	dconf:devel/dconf
 dconf_USE_GNOME_IMPL=	glib20
 
-pango_LIB_DEPENDS=	libpango-1.0.so:x11-toolkits/pango
+pango_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz \
+			libpango-1.0.so:x11-toolkits/pango
 pango_USE_GNOME_IMPL=	glib20
 
 pangox-compat_LIB_DEPENDS=	libpangox-1.0.so:x11-toolkits/pangox-compat
