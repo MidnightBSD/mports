@@ -1,6 +1,6 @@
 PORTNAME=	libfm
 DISTVERSION=	1.3.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11
 MASTER_SITES=	SF/pcmanfm/PCManFM%20%2B%20Libfm%20%28tarball%20release%29/LibFM/
 
@@ -8,17 +8,18 @@ MAINTAINER=	midnightbsd@BSDforge.com
 COMMENT?=	Core library of PCManFM file manager
 WWW=		https://wiki.lxde.org/en/Libfm
 
-LICENSE=	gpl2 lgpl2.1
+LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
-LICENSE_FILE_gpl2 =	${WRKSRC}/COPYING
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
 
 .if ! defined(EXTRA_ONLY)
-BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
-		valac:lang/vala
+USES+=		vala:build
+BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser
 LIB_DEPENDS=	libmenu-cache.so:x11/menu-cache \
 		libexif.so:graphics/libexif \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz \
 		libfm-extra.so:x11/libfm-extra
 
 FLAVORS=	gtk2 gtk3
