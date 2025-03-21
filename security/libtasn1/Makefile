@@ -21,6 +21,8 @@ CONFIGURE_ARGS=	--enable-ld-version-script
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	gnu
 
+HAS_SYMBOL_VERSION=     ${PREFIX}/lib/libtasn1.so.6.6.4
+
 OPTIONS_DEFINE=	DOCS
 
 NO_TEST=	yes
