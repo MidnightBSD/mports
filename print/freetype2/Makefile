@@ -9,11 +9,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free and portable TrueType font rendering engine
 WWW=		https://www.freetype.org/
 
-LICENSE=	FTL gpl2
+LICENSE=	FTL gpl2+
 LICENSE_COMB=	dual
 LICENSE_NAME_FTL=	The FreeType Project license
 LICENSE_FILE_FTL=	${WRKSRC}/docs/FTL.TXT
-LICENSE_FILE_gpl2 =	${WRKSRC}/docs/GPLv2.TXT
+LICENSE_FILE_gpl2+ =	${WRKSRC}/docs/GPLv2.TXT
 LICENSE_PERMS_FTL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		cmake cpe localbase pathfix pkgconfig tar:xz
