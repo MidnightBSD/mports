@@ -1,11 +1,7 @@
-# Created by: J.R. Oldroyd <fbsd@opal.com>
-
 PORTNAME=	wifimgr
-PORTVERSION=	1.13
-PORTREVISION=	1
+PORTVERSION=	1.14
 CATEGORIES=	net-mgmt sysutils
-MASTER_SITES=	http://opal.com/freebsd/ports/net-mgmt/wifimgr/ \
-		FREEBSD_LOCAL/ehaupt
+MASTER_SITES=	https://opal.com/src/wifimgr/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WiFi Networks Manager
