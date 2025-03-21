@@ -1,92 +1,101 @@
 PORTNAME=	boinc-client
-PORTVERSION=	7.8.6
-DISTVERSIONPREFIX=	client_release/7.8/
-PORTREVISION=	1
+DISTVERSIONPREFIX=	client_release/8.0/
+DISTVERSION=	8.0.2
 CATEGORIES=	net
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Berkeley Open Infrastructure for Network Computing client
+WWW=		https://boinc.berkeley.edu/ \
+		https://github.com/BOINC/boinc/
 
 LICENSE=	lgpl3
 
-USES=		autoreconf compiler:c++11-lang dos2unix gettext gmake \
-		libtool pkgconfig ssl tar:xz
-INSTALL_TARGET=	install-strip
-GNU_CONFIGURE=	yes
+USES=		autoreconf compiler:c++11-lang gmake libtool pkgconfig ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	BOINC
 GH_PROJECT=	boinc
 USE_LDCONFIG=	yes
-DOS2UNIX_GLOB=	*.xpm
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-server
+CONFIGURE_ENV=	OBJCXX="${CXX}"
+
+INSTALL_TARGET=	install-strip
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lexecinfo
+
+SUB_FILES=	pkg-deinstall pkg-install
+SUB_LIST=	BOINC_CLIENT_GROUP="${BOINC_CLIENT_GROUP}" \
+		BOINC_CLIENT_HOME="${BOINC_CLIENT_HOME}" \
+		BOINC_CLIENT_USER="${BOINC_CLIENT_USER}" \
+		LOCALBASE="${LOCALBASE}" \
+		PREFIX="${PREFIX}"
 
 USERS=		boinc
 GROUPS=		boinc
 
-BOINC_CLIENT_USER?=	boinc
-BOINC_CLIENT_GROUP?=	boinc
-BOINC_CLIENT_HOME?=	/var/db/boinc
-
-SUB_FILES=	pkg-install pkg-deinstall
-SUB_LIST=	BOINC_CLIENT_HOME="${BOINC_CLIENT_HOME}" \
-		BOINC_CLIENT_USER="${BOINC_CLIENT_USER}" \
-		BOINC_CLIENT_GROUP="${BOINC_CLIENT_GROUP}" \
-		PREFIX="${PREFIX}" LOCALBASE="${LOCALBASE}"
-
-CONFIGURE_ARGS=	--disable-server
-CONFIGURE_ENV=	OBJCXX="${CXX}"
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lexecinfo
-
-OPTIONS_DEFINE=		CLIENT MANAGER NLS X11 LINUX USER SKINS
-OPTIONS_DEFAULT=	CLIENT MANAGER X11 USER
+OPTIONS_DEFINE=		CLIENT MANAGER NLS SKINS USER X11
+OPTIONS_DEFINE_aarch64=	LINUX
+OPTIONS_DEFINE_amd64=	LINUX
+OPTIONS_DEFINE_i386=	LINUX
+OPTIONS_DEFAULT=	CLIENT MANAGER USER X11
 OPTIONS_GROUP=		SCRIPT
 OPTIONS_GROUP_SCRIPT=	NO_GUI_RPC NO_NET_INFO
-CLIENT_DESC=		Build BOINC client
-MANAGER_DESC=		Build BOINC manager GUI
-X11_DESC=		Build graphics API
-LINUX_DESC=		Accept Linux science applications
-USER_DESC=		Create/check BOINC client user and directory
-SKINS_DESC=		Install more skins for BOINC manager
-SCRIPT_DESC=		Command line options in script
-NO_GUI_RPC_DESC=	Disable GUI RPC and socket (breaks boinc_curses)
-NO_NET_INFO_DESC=	Do not send host address and name to servers
-
 OPTIONS_SUB=		yes
 
-MANAGER_LIB_DEPENDS=	libnotify.so:devel/libnotify \
-			libfontconfig.so:x11-fonts/fontconfig \
-			libsqlite3.so:databases/sqlite3 \
-			libxcb-util.so:x11/xcb-util
-MANAGER_BUILD_DEPENDS=  ${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3	
-MANAGER_RUN_DEPENDS=  ${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3	
-MANAGER_CONFIGURE_ON=	--with-sqlite3-prefix=${LOCALBASE}
-MANAGER_CONFIGURE_OFF=	--with-wx-config=false --without-x
-MANAGER_CONFIGURE_ENABLE=manager
-MANAGER_USES=		gnome iconv
-MANAGER_USE=		GNOME=cairo,gdkpixbuf2,glib20,gtk20,pango \
-			XORG=xcb,x11,xext,xscrnsaver WX=3.0
+CLIENT_DESC=		BOINC Build client
+LINUX_DESC=		Accept science applications for GNU/Linux
+MANAGER_DESC=		BOINC Build GUI manager
+NLS_DESC=		Install language translations for use in the GUI
+NO_GUI_RPC_DESC=	(breaks and boinc_curses) Disable GUI RPC socket
+NO_NET_INFO_DESC=	address and Do host name not send servers to
+SCRIPT_DESC=		Command in line options script
+SKINS_DESC=		BOINC for Install manager more skins
+USER_DESC=		and BOINC client Create/check directory user
+X11_DESC=		API Build graphics
 
-CLIENT_CONFIGURE_ENABLE=client
-CLIENT_LIB_DEPENDS=	libcurl.so:ftp/curl \
-			libfreetype.so:print/freetype2
-CLIENT_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
-CLIENT_USE=		RC_SUBR=boinc-client
+CLIENT_LIB_DEPENDS=		libcurl.so:ftp/curl \
+				libfreetype.so:print/freetype2
+CLIENT_RUN_DEPENDS=		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+CLIENT_USE=			RC_SUBR=boinc-client
+CLIENT_CONFIGURE_ENABLE=	client
 
-LINUX_CONFIGURE_ON=	--with-boinc-alt-platform=i686-pc-linux-gnu
-LINUX_USES=		linux
+LINUX_USES=			linux
+LINUX_CONFIGURE_ON=		${LINUX_CONFIGURE_ON_${ARCH}}
+# https://boinc.berkeley.edu/trac/wiki/BoincPlatforms
+LINUX_CONFIGURE_ON_aarch64=	--with-boinc-alt-platform=aarch64-unknown-linux-gnu
+LINUX_CONFIGURE_ON_amd64=	--with-boinc-alt-platform=x86_64-pc-linux-gnu
+LINUX_CONFIGURE_ON_i386=	--with-boinc-alt-platform=i686-pc-linux-gnu
 
-X11_USES=		jpeg gl xorg
-X11_USE=		GL=glut XORG=x11,xscrnsaver,xmu,xi
-X11_CONFIGURE_OFF=	--without-x ax_cv_check_glut_libglut=no
+MANAGER_LIB_DEPENDS=		libnotify.so:devel/libnotify \
+				libxcb-util.so:x11/xcb-util \
+				libfreetype.so:print/freetype2 \
+				libxkbcommon.so:x11/libxkbcommon
+MANAGER_USES=			desktop-file-utils gnome iconv xorg
+MANAGER_USE=			GNOME=atk,cairo,gdkpixbuf2,glib20,gtk30,pango \
+				WX=3.2+ XORG=x11,xcb,xext,xscrnsaver
+MANAGER_CONFIGURE_ENABLE=	manager
+MANAGER_CONFIGURE_WITH=		wx-config
+
+NLS_USES=			gettext-tools
+
+X11_USES=			desktop-file-utils gl jpeg xorg
+X11_USE=			GL=glut XORG=x11,xi,xmu,xscrnsaver
+X11_CONFIGURE_OFF=		ax_cv_check_glut_libglut=no
+X11_CONFIGURE_WITH=		x
+
+BOINC_CLIENT_GROUP?=	boinc
+BOINC_CLIENT_HOME?=	/var/db/boinc
+BOINC_CLIENT_USER?=	boinc
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MMANAGER}
-WX_CONF_ARGS=	absolute
-SUB_LIST+=	OPTION_MANAGER="true"
+WX_CONF_ARGS=		absolute
+SUB_LIST+=		OPTION_MANAGER="true"
 .else
-SUB_LIST+=	OPTION_MANAGER=""
-CONFIGURE_ARGS+=	--disable-manager
+SUB_LIST+=		OPTION_MANAGER=""
 .endif
 
 .if ${PORT_OPTIONS:MCLIENT}
@@ -101,53 +110,64 @@ SUB_LIST+=	OPTION_USER=""
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|@PREFIX@|${PREFIX}|' \
-		${WRKSRC}/client/hostinfo_unix.cpp
-	@${REINPLACE_CMD} -e 's|client/scripts||' ${WRKSRC}/Makefile.am
+	@${REINPLACE_CMD} -e 's|client/scripts||' \
+		${WRKSRC}/Makefile.am
 # avoid build conflict with archivers/libzip
-	@${MV} ${WRKSRC}/zip/unzip/zip.h ${WRKSRC}/zip/unzip/boinczip.h
-	@${MV} ${WRKSRC}/zip/zip/zip.h ${WRKSRC}/zip/zip/boinczip.h
+	@${MV} ${WRKSRC}/zip/unzip/zip.h \
+		${WRKSRC}/zip/unzip/boinczip.h
+	@${MV} ${WRKSRC}/zip/zip/zip.h \
+		${WRKSRC}/zip/zip/boinczip.h
 	@${REINPLACE_CMD} -e 's|zip/zip.h|zip/boinczip.h|' \
-	    ${WRKSRC}/zip/boinc_zip.cpp
+		${WRKSRC}/zip/boinc_zip.cpp
 	@${REINPLACE_CMD} -e 's|"zip.h"|"boinczip.h"|' \
-	    ${WRKSRC}/zip/unzip/crc32.c ${WRKSRC}/zip/unzip/ttyio.c \
-	    ${WRKSRC}/zip/zip/deflate.c ${WRKSRC}/zip/zip/trees.c \
-	    ${WRKSRC}/zip/zip/unix/z_unix.c ${WRKSRC}/zip/zip/util.c \
-	    ${WRKSRC}/zip/zip/z_fileio.c ${WRKSRC}/zip/zip/z_globals.c \
-	    ${WRKSRC}/zip/zip/zip.c ${WRKSRC}/zip/zip/zipfile.c \
-	    ${WRKSRC}/zip/zip/zipup.c
+		${WRKSRC}/zip/unzip/crc32.c \
+		${WRKSRC}/zip/unzip/ttyio.c \
+		${WRKSRC}/zip/zip/deflate.c \
+		${WRKSRC}/zip/zip/trees.c \
+		${WRKSRC}/zip/zip/unix/z_unix.c \
+		${WRKSRC}/zip/zip/util.c \
+		${WRKSRC}/zip/zip/z_fileio.c \
+		${WRKSRC}/zip/zip/z_globals.c \
+		${WRKSRC}/zip/zip/zip.c \
+		${WRKSRC}/zip/zip/zipfile.c \
+		${WRKSRC}/zip/zip/zipup.c
 
 post-patch-X11-off:
-	@${REINPLACE_CMD} -e 's|enable_xss="yes"|enable_xss="no"|' ${WRKSRC}/configure.ac
+	@${REINPLACE_CMD} -e 's|enable_xss="yes"|enable_xss="no"|' \
+		${WRKSRC}/configure.ac
 
 post-install:
-.for name in config.h project_specific_defines.h api/reduce.h \
+.for name in config.h project_specific_defines.h api/reduce.h lib/keyword.h \
 	lib/opencl_boinc.h lib/shmem.h lib/std_fixes.h lib/str_replace.h
-	${INSTALL_DATA} ${WRKSRC}/${name} ${STAGEDIR}${PREFIX}/include/boinc
+	${INSTALL_DATA} ${WRKSRC}/${name} \
+		${PREFIX}/include/boinc
 .endfor
 
 post-install-MANAGER-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc
 .for name in 16 32 48
 	${INSTALL_DATA} ${WRKSRC}/packages/generic/sea/boincmgr.${name}x${name}.png \
-	    ${FAKE_DESTDIR}${PREFIX}/share/pixmaps
+		${FAKE_DESTDIR}${PREFIX}/share/pixmaps
 .endfor
 .if ${PORT_OPTIONS:MSKINS}
 	(cd ${WRKSRC}/clientgui && \
-	${COPYTREE_SHARE} skins ${FAKE_DESTDIR}${PREFIX}/share/boinc/ )
+		${COPYTREE_SHARE} skins ${FAKE_DESTDIR}${PREFIX}/share/boinc/ \
+		)
 .else
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc/skins
 	(cd ${WRKSRC}/clientgui/skins && \
-	${COPYTREE_SHARE} Default ${FAKE_DESTDIR}${PREFIX}/share/boinc/skins/ )
+		${COPYTREE_SHARE} Default ${FAKE_DESTDIR}${PREFIX}/share/boinc/skins/ \
+		)
 .endif
 
 post-install-X11-on:
-.for name in api/boinc_gl.h api/graphics_api.h api/graphics_data.h \
-	api/ttfont.h
-	${INSTALL_DATA} ${WRKSRC}/${name} ${FAKE_DESTDIR}${PREFIX}/include/boinc
+.for name in api/boinc_gl.h api/graphics_api.h api/graphics_data.h api/ttfont.h
+	${INSTALL_DATA} ${WRKSRC}/${name} \
+		${FAKE_DESTDIR}${PREFIX}/include/boinc
 .endfor
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc/ttf
 	(cd ${WRKSRC}/api/ttf/liberation-fonts-ttf-2.00.0 && \
-	    ${COPYTREE_SHARE} \*.ttf ${FAKE_DESTDIR}${PREFIX}/share/boinc/ttf/ )
+		${COPYTREE_SHARE} \*.ttf ${FAKE_DESTDIR}${PREFIX}/share/boinc/ttf/ \
+		)
 
 .include <bsd.port.mk>
