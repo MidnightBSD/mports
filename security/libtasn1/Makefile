@@ -1,5 +1,5 @@
 PORTNAME=	libtasn1
-PORTVERSION=	4.19.0
+PORTVERSION=	4.20.0
 PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	GNU \
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library
 WWW=		https://www.gnu.org/software/libtasn1/
 
-LICENSE=	lgpl2.1 gpl3
+LICENSE=	lgpl2.1+ gpl3
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -17,6 +17,7 @@ USES=		cpe libtool pathfix pkgconfig
 USE_CSTD=	c99
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-ld-version-script
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	gnu
 
