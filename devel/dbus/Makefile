@@ -1,5 +1,7 @@
 PORTNAME=	dbus
-DISTVERSION=	1.14.8
+DISTVERSION=	1.16.2
+PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	https://dbus.freedesktop.org/releases/dbus/
 
@@ -11,52 +13,71 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
-PORTSCOUT=	limitw:1,even
-
-USES=		cpe gmake libtool localbase pathfix pkgconfig python:build shebangfix tar:xz
-GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
-		--localstatedir=/var \
-		--disable-doxygen-docs \
-		--disable-selinux \
-		--disable-apparmor \
-		--disable-systemd \
-		--with-session-socket-dir=/tmp
-INSTALL_TARGET=	install-strip
-SHEBANG_FILES=	tools/GetAllMatchRules.py
-
+USES=		cpe libtool localbase meson pkgconfig python:build \
+		shebangfix tar:xz
 CPE_VENDOR=	d-bus_project
 CPE_PRODUCT=	d-bus
-
+USE_LDCONFIG=	yes
 USE_RC_SUBR=	dbus
+SHEBANG_FILES=	tools/GetAllMatchRules.py \
+		tools/build-timestamp.py
+
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libdbus-1.so.${_LIBVERSION}
+MESON_ARGS=	-Dkqueue=enabled \
+		-Dapparmor=disabled \
+		-Ddoxygen_docs=disabled \
+		-Dducktype_docs=disabled \
+		-Depoll=disabled \
+		-Dinotify=disabled \
+		-Dlaunchd=disabled \
+		-Dlibaudit=disabled \
+		-Dmodular_tests=disabled \
+		-Dqt_help=disabled \
+		-Dselinux=disabled \
+		-Dsystemd=disabled \
+		-Druntime_dir=/var/run \
+		-Dsession_socket_dir=/tmp \
+		-Dtest_socket_dir=${WRKDIR} \
+		-Dlocalstatedir=/var \
+		-Db_lundef=false
+
+# for now we, added a hack for symbols -Db_lundef=false
+# this will barf on some LLVM versions without it.
+
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+
+PORTSCOUT=	limitw:1,even
 
 USERS=		messagebus
 GROUPS=		messagebus
 
-PLIST_SUB=	VERSION="1.0" GROUPS=${GROUPS}
+_LIBVERSION=	3.38.3
 
-OPTIONS_DEFINE=	EXAMPLES MANPAGES X11
-OPTIONS_DEFAULT=MANPAGES X11
 OPTIONS_SUB=	yes
-X11_DESC=	Support X11 Desktop Environments
+PLIST_SUB=	GROUPS=${GROUPS} \
+		VERSION="1.0" \
+		LIBVERSION=${_LIBVERSION}
+PORTEXAMPLES=	*
 
-MANPAGES_CONFIGURE_ENV=	XMLTO=${LOCALBASE}/bin/minixmlto
-MANPAGES_BUILD_DEPENDS=	minixmlto:textproc/minixmlto
-MANPAGES_CONFIGURE_ENABLE=	xml-docs
-X11_USES=	xorg
-X11_USE=	xorg=ice,sm,x11
-X11_CONFIGURE_WITH=	x
+OPTIONS_DEFINE=		EXAMPLES MANPAGES X11
+OPTIONS_DEFAULT=	MANPAGES X11
+
+MANPAGES_BUILD_DEPENDS=		docbook-xsl>0:textproc/docbook-xsl
+MANPAGES_USES=			gnome
+MANPAGES_USE=			gnome=libxslt:build
+MANPAGES_MESON_ENABLED=		xml_docs
+
+X11_DESC=		Support X11 Desktop Environments
+X11_USES=			xorg
+X11_USE=			XORG=ice,sm,x11
+X11_MESON_ENABLED=		x11_autolaunch
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/dbus/dbus-sysdeps-util-unix.c
-	@${REINPLACE_CMD} '/^SUBDIRS =/s|test||' ${WRKSRC}/Makefile.in
 
 post-install:
-	${MKDIR} ${EXAMPLESDIR}
-	${MV} ${DOCSDIR}/examples/* ${EXAMPLESDIR}
-	${RM} -r ${DOCSDIR}
+	${MV} ${STAGEDIR}${DOCSDIR}/examples ${STAGEDIR}${EXAMPLESDIR}
 .for file in session.conf system.conf
 	@cd ${STAGEDIR}${ETCDIR}-1/ && \
 		${MV} ${file} ${file}.sample
