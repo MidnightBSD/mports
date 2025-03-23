@@ -29,7 +29,7 @@ CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 CPPFLAGS+=    -DPIXMAP_ROOTDIR=${LOCALBASE}/share/pixmaps
 
-CONFLICTS=	x11iraf-[0-9]*
+CONFLICTS=	x11iraf
 
 ICONVERSION=	1
 
