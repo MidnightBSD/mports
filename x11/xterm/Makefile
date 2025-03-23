@@ -1,8 +1,8 @@
 PORTNAME=	xterm
-PORTVERSION=	392
+DISTVERSION=	397
 PORTREVISION=	0
 CATEGORIES=	x11
-MASTER_SITES=	ftp://ftp.invisible-island.net/xterm/:src1 \
+MASTER_SITES=	https://invisible-island.net/archives/xterm/:src1 \
 		https://invisible-mirror.net/archives/xterm/:src1 \
 		FREEBSD_LOCAL/ehaupt:src1 \
 		FREEBSD_LOCAL/ehaupt:src2
@@ -18,6 +18,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	x11iraf-[0-9]*
 
+LIB_DEPENDS+=   libfontconfig.so:x11-fonts/fontconfig
+
 USES=		cpe localbase ncurses tar:tgz xorg
 USE_XORG=	ice xft xmu xt x11 xext xpm xt
 GNU_CONFIGURE=	yes
@@ -25,6 +27,7 @@ CPE_VENDOR=	invisible-island
 
 CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+CPPFLAGS+=    -DPIXMAP_ROOTDIR=${LOCALBASE}/share/pixmaps
 
 CONFLICTS=	x11iraf-[0-9]*
 
@@ -76,8 +79,6 @@ TOOLBAR_CONFIGURE_ENABLE=	toolbar
 WCHAR_LIB_DEPENDS=		libfreetype.so:print/freetype2
 XINERAMA_USE=			XORG=xinerama,xorgproto
 XINERAMA_CONFIGURE_OFF=		--without-xinerama
-
-LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig
 
 .include <bsd.mport.options.mk>
 
