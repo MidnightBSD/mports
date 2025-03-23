@@ -3,8 +3,7 @@
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
 
-CONFLICTS_INSTALL=	subversion-1.[^9].[0-9]* \
-			subversion1[^9]-1.[^9].[0-9]*
+CONFLICTS_INSTALL=	subversion-lts
 
 USE_RC_SUBR=	svnserve
 

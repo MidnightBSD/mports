@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 
 SVNSERVE=$(dirname $(realpath $0))/svnserve.bin
 
