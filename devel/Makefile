@@ -1032,7 +1032,6 @@ SUBDIR += py-cycler
 SUBDIR += py-cython-test-exception-raiser
 SUBDIR += py-daemon
 SUBDIR += py-datadog
-SUBDIR += py-dateutil
 SUBDIR += py-dbus
 SUBDIR += py-ddt
 SUBDIR += py-decorator
