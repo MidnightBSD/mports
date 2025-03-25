@@ -3,6 +3,7 @@ COMMENT = X11 window managers
 SUBDIR += afterstep
 SUBDIR += awesome
 SUBDIR += blackbox
+SUBDIR += cage
 SUBDIR += compiz
 SUBDIR += compton
 SUBDIR += emwm
