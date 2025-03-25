@@ -1,6 +1,7 @@
 PORTNAME=	mport-manager
 PORTVERSION=	0.2.2
-PORTREVISION=	1
+PORTREVISION=	2
+MASTER_SITES=	GH
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -11,19 +12,15 @@ LICENSE=	bsd2
 
 RUN_DEPENDS+=	gksudo:sysutils/gksu
 
-WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-USES=		desktop-file-utils pkgconfig
+USES=		desktop-file-utils gnome pkgconfig
 USE_GITHUB=     yes
 GH_PROJECT=     mport-manager
 GH_ACCOUNT=     laffer1
-GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      796890b7c2e8a3a9f5174c503b7ed1e46b53fa51
+GH_TAGNAME=      796890b7c2e8a3a9f5174c503b7ed1e46b53fa51
 USE_CSTD=       c99
 
 USE_XORG=	x11
 USE_GNOME=	gtk30
-WANT_GNOME=	yes
 
 pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/
