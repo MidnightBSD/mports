@@ -1,11 +1,11 @@
 PORTNAME=	harfbuzz
-DISTVERSION=	8.3.0
+DISTVERSION=	10.3.0
 PORTREVISION?=	0
 CATEGORIES=	print
 MASTER_SITES=	https://github.com/harfbuzz/harfbuzz/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	OpenType text shaping engine
+COMMENT?=	OpenType text shaping engine
 WWW=		https://harfbuzz.github.io/
 
 LICENSE=	mit
@@ -23,7 +23,7 @@ CPE_VENDOR=	harfbuzz_project
 
 MESON_ARGS=	-Dgraphite2=enabled -Dchafa=disabled -Dtests=disabled
 
-PLIST_SUB+=	LIBVER=0.60830.0
+PLIST_SUB+=	LIBVER=0.61030.0
 
 HARFBUZZ_SLAVE?=	no
 
