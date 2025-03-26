@@ -8,60 +8,49 @@ DISTNAME=	nss-${VERSION_NSS}${NSS_SUFFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The root certificate bundle from the Mozilla Project
 
-LICENSE=	mpl
+LICENSE=	MPL20
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	ETCSYMLINK
-OPTIONS_DEFAULT= ETCSYMLINK
-ETCSYMLINK_DESC=	Add symlink to /etc/ssl/cert.pem
+USES=		perl5 ssl:build
+USE_PERL5=	build
 
-USE_PERL5_BUILD=	yes
-NO_WRKSUBDIR=	yes
+NO_ARCH=	yes
+WRKSRC_SUBDIR=	nss
+
+OPTIONS_DEFINE=		ETCSYMLINK
+OPTIONS_DEFAULT=	ETCSYMLINK
+
+OPTIONS_SUB=		yes
+
+ETCSYMLINK_DESC=	Add symlinks to default bundle locations
+ETCSYMLINK_CONFLICTS_INSTALL=	ca-roots-[0-9]*
 
 CERTDIR?=	share/certs
 PLIST_SUB+=	CERTDIR=${CERTDIR}
 
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# !!!  These versions are indented to track security/nss.        !!!
-# !!!  Please DO NOT submit patches for new version until it has !!!
-# !!!  been committed there first.                               !!!
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-VERSION_NSS=	3.89
-CERTDATA_TXT_PATH=	nss-${VERSION_NSS}/nss/lib/ckfw/builtins/certdata.txt
+VERSION_NSS=	3.108
+CERTDATA_TXT_PATH=	lib/ckfw/builtins/certdata.txt
 BUNDLE_PROCESSOR=	MAca-bundle.pl
 
 SUB_FILES=	MAca-bundle.pl pkg-message
 SUB_LIST=	VERSION_NSS=${VERSION_NSS}
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:METCSYMLINK}
-PLIST_SUB+=	ETCSYMLINK=
-CONFLICTS=	ca-roots-[0-9]*
-.else
-PLIST_SUB+=	ETCSYMLINK="@comment "
-.endif
-
-do-extract:
-	@${MKDIR} ${WRKDIR}
-	@${TAR} -C ${WRKDIR} -xf ${DISTDIR}/nss-${VERSION_NSS}${NSS_SUFFIX}${EXTRACT_SUFX} \
-	    ${CERTDATA_TXT_PATH}
-	@${CP} ${WRKDIR}/${CERTDATA_TXT_PATH} ${WRKDIR}
-	@${RM} -rf ${WRKDIR}/nss-${VERSION_NSS}
-
-do-build:	apply-slist
-	@${PERL} ${WRKDIR}/${BUNDLE_PROCESSOR} \
-	    < ${WRKDIR}/certdata.txt > \
+do-build: apply-slist
+	@${SETENV} PATH=${LOCALBASE}/bin:$${PATH} \
+		${PERL} ${WRKDIR}/${BUNDLE_PROCESSOR} \
+	    < ${WRKSRC}/${CERTDATA_TXT_PATH} > \
 	    ${WRKDIR}/ca-root-nss.crt
 
 do-install:
-	${MKDIR} ${PREFIX}/${CERTDIR}
-	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${PREFIX}/${CERTDIR}
-.if ${PORT_OPTIONS:METCSYMLINK}
-	${LN} -sf ${PREFIX}/${CERTDIR}/ca-root-nss.crt /etc/ssl/cert.pem
-.endif
-	${MKDIR} ${PREFIX}/etc/ssl
-	${LN} -sf ${PREFIX}/${CERTDIR}/ca-root-nss.crt ${PREFIX}/etc/ssl/cert.pem.sample
-	${MKDIR} ${PREFIX}/openssl
-	${LN} -sf ${PREFIX}/${CERTDIR}/ca-root-nss.crt ${PREFIX}/openssl/cert.pem.sample
+	${MKDIR} ${STAGEDIR}${PREFIX}/${CERTDIR}
+	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/${CERTDIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/ssl
+	${LN} -sf ../../${CERTDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/etc/ssl/cert.pem.sample
+
+do-install-ETCSYMLINK-on:
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/openssl
+	${LN} -sf ../etc/ssl/cert.pem ${FAKE_DESTDIR}${PREFIX}/openssl/cert.pem
+	${MKDIR} ${FAKE_DESTDIR}/etc/ssl
+	${LN} -sf ../..${PREFIX}/etc/ssl/cert.pem ${FAKE_DESTDIR}/etc/ssl/cert.pem
 
 .include <bsd.port.mk>
