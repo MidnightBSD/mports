@@ -1,21 +1,19 @@
 PORTNAME=	nspr
-DISTVERSION=	4.35
-PORTREVISION=	1
+DISTVERSION=	4.36
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/v${PORTVERSION}/src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Platform-neutral API for system level and libc like functions
-WWW=		https://developer.mozilla.org/docs/Mozilla/Projects/NSPR
+WWW=		https://firefox-source-docs.mozilla.org/nspr/index.html
 
-LICENSE=	lgpl gpl2 mpl
-LICENSE_COMB=	dual
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cpe gmake pathfix
 CPE_VENDOR=	mozilla
 CPE_PRODUCT=	netscape_portable_runtime
-WRKSRC=		${WRKDIR}/nspr-${DISTVERSION}/nspr
+WRKSRC_SUBDIR=	nspr
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

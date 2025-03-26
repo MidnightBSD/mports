@@ -1,37 +1,36 @@
 PORTNAME=	nss
-PORTVERSION=	3.89
+PORTVERSION=	3.109
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries to support development of security-enabled applications
-WWW=		https://developer.mozilla.org/docs/Mozilla/Projects/NSS
+WWW=		https://firefox-source-docs.mozilla.org/security/nss/index.html
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	zip:archivers/zip \
-		nspr>=4.10.8:devel/nspr \
-		sqlite3>=3.7.15:databases/sqlite3
+BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
+BUILD_DEPENDS_powerpc64le=	as:devel/binutils
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libsqlite3.so:databases/sqlite3
-RUN_DEPENDS=	sqlite3>=3.7.15:databases/sqlite3
+TEST_DEPENDS=	bash:shells/bash
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/nss
-
-MAKE_JOBS_UNSAFE=	yes
-USE_LDCONFIG=	${PREFIX}/lib/nss
 USES=		cpe gmake perl5
+
+WRKSRC_SUBDIR=	nss
+
+USE_LDCONFIG=	yes
 CPE_VENDOR=	mozilla
 CPE_PRODUCT=	network_security_services
 USE_PERL5=	build
-MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib" \
+MAKE_ENV=	NSPR_LIB_DIR="${LOCALBASE}/lib" \
 		SQLITE_INCLUDE_DIR="${LOCALBASE}/include" \
 		FREEBL_LOWHASH=1 \
 		NSS_ENABLE_WERROR=0 \
 		NSS_DISABLE_GTESTS=1 \
 		NSS_USE_SYSTEM_SQLITE=1
-CFLAGS+=	-I${LOCALBASE}/include/nspr  -Wno-everything
+CFLAGS+=	-iquote ./mpi -I${LOCALBASE}/include/nspr -Wno-error=unused-function
 
 NO_TEST=	yes
 
@@ -49,6 +48,11 @@ INSTALL_BINS=	certutil cmsutil crlutil derdump makepqg \
 
 OPTIONS_DEFINE=	DEBUG
 
+VSX_CFLAGS=	-DUSE_PPC_CRYPTO
+VSX_DESC=	Use VSX optimized routines (POWER8 or newer)
+
+TESTING_UNSAFE=	Fatal DOMSUF env. variable is not defined
+
 .include <bsd.mport.options.mk>
 
 .if ! ${PORT_OPTIONS:MDEBUG}
@@ -58,9 +62,8 @@ BINS=		${DIST}/${OPSYS}${OSREL}_OPT.OBJ
 BINS=		${DIST}/${OPSYS}${OSREL}_DBG.OBJ
 .endif
 
-.if ${ARCH} == i386 
-# make error && ! ${MACHINE_CPU:Msse2}
-USES+=		compiler:c++14-lang # gcm.h
+.if ${ARCH} == armv6
+MAKE_ENV+=	NSS_DISABLE_ARM32_NEON=1
 .endif
 
 .if ${ARCH} == amd64
