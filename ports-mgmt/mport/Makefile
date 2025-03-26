@@ -1,5 +1,5 @@
 PORTNAME=	mport
-PORTVERSION=	2.6.0
+PORTVERSION=	2.6.8
 PORTREVISION=	0
 CATEGORIES=	ports-mgmt sysutils
 
@@ -8,8 +8,6 @@ COMMENT=	Package Manager for MidnightBSD
 WWW=		https://github.com/midnightbsd/mport
 
 LICENSE=	bsd2
-
-WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 USE_GITHUB=     yes
 GH_PROJECT=     mport
