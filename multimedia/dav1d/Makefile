@@ -1,5 +1,5 @@
 PORTNAME=	dav1d
-DISTVERSION=	1.3.0
+DISTVERSION=	1.5.1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -52,5 +52,6 @@ MESON_ARGS_clang_i386=	-Dstack_alignment=4
 pre-install-TEST-on: do-test
 
 post-install:
-	cd ${PREFIX}/lib/ &&  ${LN} -sf libdav1d.so.7 libdav1d.so.4
+	# firefox hack
+	cd ${PREFIX}/lib/ &&  ${LN} -sf libdav1d.so.7 libdav1d.so.6
 .include <bsd.port.mk>

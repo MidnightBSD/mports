@@ -1,6 +1,6 @@
 PORTNAME=	icu
 DISTVERSION=	74_2
-PORTREVISION?=	1 # keep for icu-lx
+PORTREVISION?=	2 # keep for icu-lx
 PORTEPOCH?=	1
 CATEGORIES?=	devel
 MASTER_SITES=	https://github.com/unicode-org/${PORTNAME}/releases/download/release-${DISTVERSION:S/rc/-&/:S/_/-/g}/
@@ -52,6 +52,11 @@ post-install:
 	${LN} -sf ${PREFIX}/lib/libicudata.so ${PREFIX}/lib/libicudata.so.67
 	${LN} -sf ${PREFIX}/lib/libicuio.so ${PREFIX}/lib/libicuio.so.67
 	${LN} -sf ${PREFIX}/lib/libicutest.so ${PREFIX}/lib/libicutest.so.67
+	${LN} -sf ${PREFIX}/lib/libicui18n.so ${PREFIX}/lib/libicui18n.so.72
+	${LN} -sf ${PREFIX}/lib/libicuuc.so ${PREFIX}/lib/libicuuc.so.72
+	${LN} -sf ${PREFIX}/lib/libicudata.so ${PREFIX}/lib/libicudata.so.72
+	${LN} -sf ${PREFIX}/lib/libicuio.so ${PREFIX}/lib/libicuio.so.72
+	${LN} -sf ${PREFIX}/lib/libicutest.so ${PREFIX}/lib/libicutest.so.72
 .endif # PKGNAMESUFFIX
 
 .include <bsd.port.mk>

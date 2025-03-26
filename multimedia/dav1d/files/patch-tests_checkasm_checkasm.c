@@ -3,12 +3,12 @@ FreeBSD >= 13.1 pulls cpu_set_t from <sched.h> via <pthread.h>
 
 https://cgit.freebsd.org/src/commit/?id=379bfb2aa9e9
 
---- tests/checkasm/checkasm.c.orig	2023-02-14 16:39:08 UTC
+--- tests/checkasm/checkasm.c.orig	2025-01-19 21:33:54 UTC
 +++ tests/checkasm/checkasm.c
-@@ -620,7 +620,11 @@ int main(int argc, char *argv[]) {
+@@ -734,7 +734,11 @@ int main(int argc, char *argv[]) {
                  fprintf(stderr, "checkasm: running on cpu %lu\n", affinity);
              }
- #elif defined(HAVE_PTHREAD_SETAFFINITY_NP) && defined(CPU_SET)
+ #elif HAVE_PTHREAD_SETAFFINITY_NP && defined(CPU_SET)
 +#if defined(__MidnightBSD__)
 +            cpuset_t set;
 +#else
