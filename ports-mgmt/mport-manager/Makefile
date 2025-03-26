@@ -1,6 +1,5 @@
 PORTNAME=	mport-manager
-PORTVERSION=	0.2.2
-PORTREVISION=	2
+PORTVERSION=	0.2.3
 MASTER_SITES=	GH
 CATEGORIES=	ports-mgmt sysutils
 
@@ -16,7 +15,6 @@ USES=		desktop-file-utils gnome pkgconfig
 USE_GITHUB=     yes
 GH_PROJECT=     mport-manager
 GH_ACCOUNT=     laffer1
-GH_TAGNAME=      796890b7c2e8a3a9f5174c503b7ed1e46b53fa51
 USE_CSTD=       c99
 
 USE_XORG=	x11
