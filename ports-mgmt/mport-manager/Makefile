@@ -1,5 +1,6 @@
 PORTNAME=	mport-manager
 PORTVERSION=	0.2.3
+PORTREVISION=	1
 MASTER_SITES=	GH
 CATEGORIES=	ports-mgmt sysutils
 
@@ -18,7 +19,7 @@ GH_ACCOUNT=     laffer1
 USE_CSTD=       c99
 
 USE_XORG=	x11
-USE_GNOME=	gtk30
+USE_GNOME=	gtk30 gdkpixbuf2
 
 pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/
