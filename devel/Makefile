@@ -111,6 +111,7 @@ SUBDIR += flatbuffers
 SUBDIR += fmake
 SUBDIR += fortytwo-encore
 SUBDIR += fossology-nomos-standalone
+SUBDIR += freebsd-sysroot
 SUBDIR += fstrm
 SUBDIR += gamin
 SUBDIR += gccmakedep
