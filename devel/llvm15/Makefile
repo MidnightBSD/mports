@@ -162,7 +162,8 @@ COMPILER_RT_DESC=	Sanitizer libraries
 COMPILER_RT_CMAKE_ON= \
 	-DCOMPILER_RT_INSTALL_PATH=${LLVM_PREFIX}/lib/clang/${LLVM_RELEASE}
 COMPILER_RT_PLIST_FILES=${_COMPILER_RT_LIBS:S|^|${_CRTLIBDIR}/|} \
-			${_COMPILER_RT_IGNORELISTS:S|^|${_CRTBLDIR}/|}
+			${_COMPILER_RT_IGNORELISTS:S|^|${_CRTBLDIR}/|} \
+			${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/lib/freebsd
 DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx-markdown-tables>=0:textproc/py-sphinx-markdown-tables@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}recommonmark>=0.0.20180530:textproc/py-recommonmark@${PY_FLAVOR}
 DOCS_CONFLICTS_BUILD=	cmark
@@ -716,6 +717,9 @@ post-install-LIT-on:
 
 post-install-LLD-on:
 	${LN} -s ld.lld ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/ld
+
+post-install-COMPILER_RT-on:
+	${LN} -s ${FAKE_DESTDIR}${TRUE_PREFIX}/${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/lib/midnightbsd ${FAKE_DESTDIR}${TRUE_PREFIX}/${LLVM_DIR}/lib/clang/${LLVM_RELEASE}/lib/freebsd
 
 TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 do-test:
