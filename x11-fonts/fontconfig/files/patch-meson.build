@@ -1,11 +1,11 @@
---- meson.build.orig	2023-12-24 09:46:41 UTC
-+++ meson.build
-@@ -440,7 +440,7 @@ install_data('fonts.dtd',
-                install: true)
+--- meson.build.orig	2025-03-28 14:45:40.058195000 -0400
++++ meson.build	2025-03-28 14:47:24.778247000 -0400
+@@ -534,7 +534,7 @@
+                install_tag: 'runtime')
  
  install_data('fonts.dtd',
--             install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'xml/fontconfig')
-+             install_dir: join_paths(get_option('prefix'), get_option('sysconfdir'), 'fonts')
-             )
+-             install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'xml/fontconfig'),
++             install_dir: join_paths(get_option('prefix'), get_option('sysconfdir'), 'fonts'),
+              install_tag: 'runtime')
  
  fc_headers = [
