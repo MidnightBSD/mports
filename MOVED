@@ -490,3 +490,4 @@ databases/tdb1|databases/tdb1410|2025-02-23|Update to 1.4.x
 databases/libgda5-mdb||2025-02-27|Has expired: Broken since 2021
 www/subsonic-standalone||2025-02-28|Has expired: Abandonware, no longer maintained upstream as of 2019
 devel/py-dateutil|devel/py-python-dateutil|2025-03-23|Move devel/py-dateutil to devel/py-python-dateutil
+devel/sonarqube|devel/sonarqube-community|2025-03-28|Old version expired, switch to community
