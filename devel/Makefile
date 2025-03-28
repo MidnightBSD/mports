@@ -127,6 +127,7 @@ SUBDIR += gettext-msghack
 SUBDIR += gettext-runtime
 SUBDIR += gettext-tools
 SUBDIR += gflags
+SUBDIR += gh
 SUBDIR += gindent
 SUBDIR += gio-sharp
 SUBDIR += git
