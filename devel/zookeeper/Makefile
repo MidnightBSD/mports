@@ -1,5 +1,5 @@
 PORTNAME=	zookeeper
-PORTVERSION=	3.8.3
+PORTVERSION=	3.8.4
 CATEGORIES=	devel java
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION} \
 		APACHE/logging/log4j/${ZOOKEEPER_LOG4J2_VERSION}/:log4j2
@@ -14,11 +14,8 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	libzookeeper>=${PORTVERSION}:devel/libzookeeper
 
-USES=		cpe
+USES=		cpe java
 CPE_VENDOR=	apache
-USE_JAVA=	yes
-JAVA_VERSION=	8+
-JAVA_RUN=	yes
 USE_RC_SUBR=	zookeeper
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
