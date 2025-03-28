@@ -41,11 +41,5 @@ MANPAGES_CMAKE_BOOL=	BUILD_MAN_DOCS
 TESTING_UNSAFE=		requires reuse-tool port
 
 
-post-patch:
-	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' \
-		${WRKSRC}/kde-modules/KDEMetaInfoPlatformCheck.cmake \
-		${WRKSRC}/kde-modules/KDECompilerSettings.cmake \
-		${WRKSRC}/kde-modules/KDEInstallDirsCommon.cmake \
-		${WRKSRC}/modules/ECMGeneratePkgConfigFile.cmake
 
 .include <bsd.port.mk>

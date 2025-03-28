@@ -5,7 +5,7 @@
  
    if(EGPF_INSTALL)
 -    if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
-+    if(CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
++    if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
        set(ECM_PKGCONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/libdata/pkgconfig" CACHE PATH "The directory where pkgconfig will be installed to.")
      else()
        set(ECM_PKGCONFIG_INSTALL_DIR "${EGPF_LIB_INSTALL_DIR}/pkgconfig" CACHE PATH "The directory where pkgconfig will be installed to.")

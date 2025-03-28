@@ -1,0 +1,11 @@
+--- metainfo.yaml.orig	2025-03-28 23:11:54 UTC
++++ metainfo.yaml
+@@ -6,6 +6,8 @@ platforms:
+       note: Only platform X11 is supported
+     - name: FreeBSD
+       note: Only platform X11 is supported
++    - name: MidnightBSD
++      note: Only platform X11 is supported
+     - name: macOS
+       note: Not all features supported
+     - name: Windows
