@@ -237,6 +237,7 @@ SUBDIR += xtrans
 SUBDIR += xvidtune
 SUBDIR += xvinfo
 SUBDIR += xwatchwin
+SUBDIR += xwayland-run
 SUBDIR += xwd
 SUBDIR += xwininfo
 SUBDIR += xwinwrap
