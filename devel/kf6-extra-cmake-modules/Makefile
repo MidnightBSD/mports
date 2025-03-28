@@ -1,7 +1,6 @@
 PORTNAME=	extra-cmake-modules
 DISTVERSION=	${KDE_FRAMEWORKS_VERSION}
 CATEGORIES=	devel kde kde-frameworks
-KDE_FRAMEWORKS_VERSION=	6.11.0
 
 COMMENT=	Extra modules and scripts for CMake
 MAINTAINER=	ports@MidnightBSD.org
