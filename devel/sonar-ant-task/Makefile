@@ -20,11 +20,8 @@ NO_WRKSUBDIR=	yes
 
 RUN_DEPENDS+=	ant:devel/apache-ant
 
-USES=		cpe
+USES=		cpe java
 CPE_VENDOR=	sonarsource
-
-USE_JAVA=	yes
-JAVA_VERSION=	1.8+
 
 SUB_FILES=	pkg-message
 PLIST_FILES=	${DATADIR_REL}/sonar-ant-task.jar

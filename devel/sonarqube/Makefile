@@ -20,12 +20,9 @@ USE_RC_SUBR=	${PORTNAME}
 USERS=		www
 GROUPS=		www
 
-USES=		cpe dos2unix zip
+USES=		cpe dos2unix java zip
 CPE_VENDOR=	sonarsource
 DOS2UNIX_GLOB=	*.properties *.conf
-
-USE_JAVA=	yes
-JAVA_VERSION=	1.8+
 
 SQ_FILE=	sonar.sh
 SQ_HOME=	${PREFIX}/share/${PORTNAME}
