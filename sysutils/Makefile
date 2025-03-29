@@ -25,6 +25,7 @@ SUBDIR += bsdfetch
 SUBDIR += bsdinfo
 SUBDIR += bsdisks
 SUBDIR += bsdstats
+SUBDIR += btop
 SUBDIR += bvm
 SUBDIR += cdircmp
 SUBDIR += cdrdao
