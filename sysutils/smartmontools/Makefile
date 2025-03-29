@@ -1,6 +1,6 @@
 PORTNAME=	smartmontools
 DISTVERSION=	7.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
@@ -9,8 +9,9 @@ COMMENT=	S.M.A.R.T. disk monitoring tools
 WWW=		https://www.smartmontools.org
 
 LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	smartmontools-devel-[0-9]*
+RUN_DEPENDS=	gpg-agent:security/gnupg
 
 USES=		compiler:c++11-lib cpe shebangfix
 USE_RC_SUBR=	smartd
@@ -19,7 +20,7 @@ SHEBANG_FILES=	examplescripts/Example5
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-sample \
-		--with-gnupg=no \
+		--with-gnupg=yes \
 		--with-nvme-devicescan=yes \
 		--with-initscriptdir=${PREFIX}/etc/rc.d
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
