@@ -1,5 +1,5 @@
 PORTNAME=	bastille
-PORTVERSION=	0.9.20220714
+PORTVERSION=	0.10.20230714
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,6 @@ FAKE_OPTS=	trueprefix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bastillebsd
-GH_TAGNAME=	da377f4
 
 NO_BUILD=	yes
 NO_ARCH=	yes
