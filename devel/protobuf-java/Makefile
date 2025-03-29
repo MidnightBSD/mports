@@ -1,15 +1,16 @@
 PORTNAME=	protobuf-java
-DISTVERSION=	3.8.0
+DISTVERSION=	3.25.3
 CATEGORIES=	devel java
-MASTER_SITES=	http://central.maven.org/maven2/com/google/protobuf/protobuf-java/${DISTVERSION}/
+MASTER_SITES=	https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/${DISTVERSION}/
 EXTRACT_SUFX=	.jar
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Core Protocol Buffers library
+WWW=		https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
 
 LICENSE=	bsd3
 
-USE_JAVA=	yes
+USES=		java
 
 NO_WRKSUBDIR=	yes
 EXTRACT_CMD=	${CP}
