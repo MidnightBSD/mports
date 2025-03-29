@@ -9,8 +9,7 @@ WWW=		https://logging.apache.org/log4j/1.2/
 
 LICENSE=	apache2
 
-USES=		cpe
-USE_JAVA=	YES
+USES=		cpe java
 NO_BUILD=	YES
 CPE_VENDOR=	apache
 
