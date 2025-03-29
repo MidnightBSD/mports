@@ -1,11 +1,11 @@
 PORTNAME=	jna
 PORTVERSION=	5.7.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel java
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java access to native shared libraries
-WWW=		https://github.com/twall/jna
+WWW=		https://github.com/java-native-access/jna
 
 LICENSE=	apache2 lgpl2.1
 LICENSE_COMB=	dual
@@ -16,10 +16,7 @@ BROKEN_armv7=		fails to compile: build.xml: compilation failed
 
 BUILD_DEPENDS=	makeinfo:print/texinfo
 
-USES=		autoreconf:build gmake libtool xorg
-USE_ANT=	yes
-USE_JAVA=       yes
-JAVA_VERSION=   8+
+USES=		autoreconf:build gmake java:ant libtool xorg
 USE_XORG=	x11 xt
 MAKE_ARGS=	-DCC="${CC}" -DLD="${LD}"
 MAKE_ENV=	ANT_OPTS=-Drelease -DARCH=${ANT_ARCH} JAVACMD=${JAVA}
