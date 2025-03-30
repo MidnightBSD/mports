@@ -6,6 +6,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal Plug and Play Software Development Kit
+WWW=		http://pupnp.sourceforge.net/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
