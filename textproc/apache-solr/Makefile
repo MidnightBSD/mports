@@ -14,8 +14,7 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	bash:shells/bash
 
-USES=		cpe tar:tgz
-USE_JAVA=	yes
+USES=		cpe java tar:tgz
 JAVA_VERSION=	11+
 JAVA_RUN=	yes
 NO_BUILD=	yes

@@ -1,5 +1,6 @@
 PORTNAME=	ezjail
 PORTVERSION=	3.4.2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://erdgeist.org/arts/software/ezjail/
 
@@ -12,5 +13,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		tar:bzip2
 FAKE_OPTS=	trueprefix
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|man/man|share/man/man|g' \
+		${WRKSRC}/Makefile
 
 .include <bsd.port.mk>
