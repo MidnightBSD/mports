@@ -7,17 +7,17 @@ MASTER_SITES=	http://www.abisource.com/downloads/wv/${PORTVERSION}/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and executables to access Microsoft Word files
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png \
 		libwmf.so:graphics/libwmf
 
+USES=		gmake gnome jpeg pkgconfig libtool localbase xorg
 USE_GNOME=	libgsf
 USE_XORG=	x11
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USES=		gmake jpeg pkgconfig libtool localbase
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 CONFIGURE_ARGS=	--with-png=${LOCALBASE} \
 		--with-libwmf=${LOCALBASE}
