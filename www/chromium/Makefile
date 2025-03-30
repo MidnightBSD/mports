@@ -216,7 +216,7 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in bas
 .endif
 
 .if ${COMPILER_VERSION} < 130
-LLVM_DEFAULT=		14
+LLVM_DEFAULT=		15
 BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 BINARY_ALIAS+=		cpp=${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT} \
 			cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT} \
