@@ -1,21 +1,20 @@
-# Created by: Gerrit Beine <gerrit.beine@gmx.de>
-
-
 PORTNAME=	lucene
 PORTVERSION=	3.6.2
 # Be sure to chase textproc/py-lucene
 CATEGORIES=	textproc java devel
-MASTER_SITES=	APACHE/${PORTNAME}/java/${PORTVERSION}
+MASTER_SITES=	https://archive.apache.org/dist/${PORTNAME}/java/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full-text search engine for Java
+WWW=		https://lucene.apache.org/core/
 
 LICENSE=	apache2
 
 CONFLICTS=	lucene4-[0-9].*
 
-USES=		cpe tar:tgz
-USE_JAVA=	yes
+PORTSCOUT=	limit:^3\.
+
+USES=		cpe java tar:tgz
 NO_BUILD=	yes
 CPE_VENDOR=	apache
 
@@ -82,7 +81,7 @@ do-install:
 .for i in CHANGES.txt LICENSE.txt NOTICE.txt README.txt
 	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
 .endfor
-	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${STAGEDIR}${DOCSDIR})
+	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${STAGEDIR}${DOCSDIR} "-not -empty")
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/${DEMODIR} && ${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR})
 
