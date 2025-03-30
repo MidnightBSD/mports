@@ -1,5 +1,5 @@
 PORTNAME=	commons-daemon
-PORTVERSION=	1.3.3
+PORTVERSION=	1.4.0
 CATEGORIES=	devel java
 MASTER_SITES=	https://archive.apache.org/dist/commons/daemon/source/:src \
 		https://archive.apache.org/dist/commons/daemon/binaries/:bin
@@ -16,12 +16,11 @@ LICENSE=	apache2
 
 OPTIONS_DEFINE=	DOCS
 
-USE_JAVA=	yes
-JAVA_VERSION=	1.8+
+USES=		java
 JAVA_OS=	freebsd
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-java=${JAVA_HOME}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 WRKSRC=		${WRKDIR}/${DISTNAME}-native-src/unix
 WRKBIN=		${WRKDIR}/${DISTNAME}
