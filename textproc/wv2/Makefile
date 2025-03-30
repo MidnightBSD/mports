@@ -1,19 +1,20 @@
-
-
 PORTNAME=	wv2
 PORTVERSION=	0.4.2
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	textproc
 MASTER_SITES=	SF/wvware/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library providing routines to access Microsoft Word files
+WWW=		https://wvware.sourceforge.net/
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
+USES=		cmake gnome iconv pkgconfig libtool tar:bzip2
 USE_GNOME=	libgsf
+USE_CXXSTD=	c++14
 GNU_CONFIGURE=	yes
-USES=		cmake iconv pkgconfig libtool tar:bzip2
 USE_LDCONFIG=	yes
 
 post-patch:
