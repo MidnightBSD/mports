@@ -1,12 +1,14 @@
 PORTNAME=	libinotify
-PORTVERSION=	20211018
+PORTVERSION=	20240724
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/libinotify-kqueue/libinotify-kqueue/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kevent based inotify compatible library
+WWW=		https://github.com/libinotify-kqueue/libinotify-kqueue
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
 
