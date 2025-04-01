@@ -136,7 +136,7 @@ include/openssl/x509err.h
 include/openssl/x509v3.h
 include/openssl/x509v3err.h
 %%SHARED%%lib/engines-%%SHLIBVER%%/capi.so
-%%CRYPTODEV%%%%SHARED%%lib/engines-%%SHLIBVER%%/devcrypto.so
+%%SHARED%%lib/engines-%%SHLIBVER%%/devcrypto.so
 %%SHARED%%lib/engines-%%SHLIBVER%%/loader_attic.so
 %%SHARED%%lib/engines-%%SHLIBVER%%/padlock.so
 lib/libcrypto.a
@@ -268,7 +268,8 @@ share/man/man5/x509v3_config.5ossl.gz
 @comment %%OPENSSLDIR%%/misc/tsget.pl
 %%OPENSSLDIR%%/misc/tsget
 @sample %%OPENSSLDIR%%/ct_log_list.cnf.dist %%OPENSSLDIR%%/ct_log_list.cnf
-%%OPENSSLDIR%%/fipsmodule.cnf
+%%FIPS%%%%OPENSSLDIR%%/fipsmodule.cnf
 @sample %%OPENSSLDIR%%/openssl.cnf.dist %%OPENSSLDIR%%/openssl.cnf
+@dir lib/ossl-modules
 @dir %%OPENSSLDIR%%/private
 @dir %%OPENSSLDIR%%/certs

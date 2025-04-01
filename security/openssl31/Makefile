@@ -1,7 +1,8 @@
 PORTNAME=	openssl
-PORTVERSION=	3.1.7
+PORTVERSION=	3.1.8
 CATEGORIES=	security devel
 PKGNAMESUFFIX=	31
+MASTER_SITES=	https://github.com/openssl/openssl/releases/download/${DISTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TLSv1.3 capable SSL and crypto library
@@ -10,7 +11,9 @@ WWW=		https://www.openssl.org/
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl30 openssl-quictls
+#EXPIRATION_DATE=	2025-03-14
+
+CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl111 openssl3[2345] openssl*-quictls
 
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	config
@@ -20,14 +23,14 @@ CONFIGURE_ARGS=	--openssldir=${OPENSSLDIR} \
 
 USES=		cpe perl5
 USE_PERL5=	build
-USE_GITHUB=   yes
-GH_TAGNAME=   ${PORTNAME}-${PORTVERSION}
 TEST_TARGET=	test
 
 LDFLAGS_i386=	-Wl,-znotext
 
 MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive CNF_LDFLAGS="${LDFLAGS}"
 MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
+
+EXTRA_PATCHES+=	${.CURDIR}/../openssl/files/patch-crypto_async_arch_async__posix.h
 
 OPTIONS_GROUP=		CIPHERS HASHES MODULES OPTIMIZE PROTOCOLS
 OPTIONS_GROUP_CIPHERS=	ARIA DES GOST IDEA SM4 RC2 RC4 RC5 WEAK-SSL-CIPHERS
@@ -37,10 +40,10 @@ OPTIONS_GROUP_MODULES=	FIPS LEGACY
 OPTIONS_DEFINE_i386=	I386
 OPTIONS_GROUP_PROTOCOLS=NEXTPROTONEG SCTP SSL3 TLS1 TLS1_1 TLS1_2
 
-OPTIONS_DEFINE=	ASYNC CRYPTODEV CT MAN3 RFC3779 SHARED ZLIB
+OPTIONS_DEFINE=	ASYNC CT KTLS MAN3 RFC3779 SHARED ZLIB
 
 OPTIONS_DEFAULT=ASM ASYNC CT DES EC FIPS GOST MAN3 MD4 NEXTPROTONEG \
-		RC2 RC4 RMD160 SCTP SHARED SSE2 THREADS TLS1 TLS1_1 TLS1_2
+		RFC3779	RC2 RC4 RMD160 SCTP SHARED SSE2 THREADS TLS1 TLS1_1 TLS1_2
 
 OPTIONS_GROUP_OPTIMIZE_amd64=	EC
 
@@ -56,15 +59,15 @@ ARIA_DESC=	ARIA (South Korean standard)
 ASM_DESC=	Assembler code
 ASYNC_DESC=	Asynchronous mode
 CIPHERS_DESC=	Block Cipher Support
-CRYPTODEV_DESC=	/dev/crypto support
 CT_DESC=	Certificate Transparency Support
 DES_DESC=	(Triple) Data Encryption Standard
 EC_DESC=	Optimize NIST elliptic curves
-FIPS_DESC=	Build FIPS provider (Note: NOT yet FIPS validated)
+FIPS_DESC=	Build FIPS provider
 GOST_DESC=	GOST (Russian standard)
 HASHES_DESC=	Hash Function Support
 I386_DESC=	i386 (instead of i486+)
 IDEA_DESC=	International Data Encryption Algorithm
+KTLS_DESC=	Use in-kernel TLS (MidnightBSD >4)
 LEGACY_DESC=	Older algorithms
 MAN3_DESC=	Install API manpages (section 3, 7)
 MD2_DESC=	MD2 (obsolete) (requires LEGACY)
@@ -111,6 +114,7 @@ TLS1_1_IMPLIES=	TLS1_2
 EC_CONFIGURE_ON=	enable-ec_nistp_64_gcc_128
 FIPS_VARS=		shlibs+=lib/ossl-modules/fips.so
 I386_CONFIGURE_ON=	386
+KTLS_EXTRA_PATCHES=	${FILESDIR}/extra-patch-ktls
 LEGACY_VARS=		shlibs+=lib/ossl-modules/legacy.so
 MAN3_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-util_find-doc-nits
 SHARED_MAKE_ENV=	SHLIBVER=${OPENSSL_SHLIBVER}
@@ -134,13 +138,11 @@ CONFIGURE_ARGS+=	BSD-x86-elf
 CONFIGURE_ARGS+=	BSD-x86_64
 .endif
 
+OPTIONS_EXCLUDE=${${OSVERSION} < 400000:?KTLS:}
+
 .include <bsd.port.pre.mk>
 .if ${PREFIX} == /usr
 IGNORE=	the OpenSSL port can not be installed over the base version
-.endif
-
-.if !${PORT_OPTIONS:MCRYPTODEV}
-CONFIGURE_ARGS+=	no-devcryptoeng
 .endif
 
 OPENSSLDIR?=	${PREFIX}/openssl

@@ -19,6 +19,9 @@ CONFLICTS_INSTALL=	libressl-[0-9]* \
 			libressl-devel-[0-9]* \
 			openssl-[0-9]*
 
+DEPRECATED=	End-of-life since 2023-09-11, see https://www.openssl.org/blog/blog/2023/09/11/eol-111/ \
+		port will be removed when MidnightBSD 4 is EoL
+
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	config
 CONFIGURE_ENV=	PERL="${PERL}"
@@ -116,6 +119,8 @@ SHARED_USE=		ldconfig=yes
 SSL3_CONFIGURE_ON+=	enable-ssl3-method
 ZLIB_CONFIGURE_ON=	zlib-dynamic
 
+PORTSCOUT=		limit:^1\.1\.1
+
 .include <bsd.port.pre.mk>
 .if ${PREFIX} == /usr
 IGNORE=	the OpenSSL port can not be installed over the base version
@@ -125,10 +130,6 @@ OPENSSLDIR?=	${PREFIX}/openssl
 PLIST_SUB+=	OPENSSLDIR=${OPENSSLDIR:S=^${PREFIX}/==}
 
 .include "version.mk"
-
-.if ${PORT_OPTIONS:MASM}
-BROKEN_sparc64=	option ASM generates illegal instructions
-.endif
 
 post-patch:
 	${REINPLACE_CMD} \
