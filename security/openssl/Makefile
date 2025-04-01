@@ -1,5 +1,5 @@
 PORTNAME=	openssl
-DISTVERSION=	3.0.15
+DISTVERSION=	3.0.16
 CATEGORIES=	security devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,7 @@ WWW=		https://www.openssl.org/
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl-quictls
+CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl111 openssl3* openssl-quictls
 
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	config
@@ -36,7 +36,7 @@ OPTIONS_GROUP_MODULES=	FIPS LEGACY
 OPTIONS_DEFINE_i386=	I386
 OPTIONS_GROUP_PROTOCOLS=NEXTPROTONEG SCTP SSL3 TLS1 TLS1_1 TLS1_2
 
-OPTIONS_DEFINE=	ASYNC CRYPTODEV CT MAN3 RFC3779 SHARED ZLIB
+OPTIONS_DEFINE=	ASYNC KTLS CT MAN3 RFC3779 SHARED ZLIB
 
 OPTIONS_DEFAULT=ASM ASYNC CT DES EC FIPS GOST MAN3 MD4 NEXTPROTONEG \
 		RC2 RC4 RMD160 SCTP SHARED SSE2 THREADS TLS1 TLS1_1 TLS1_2
@@ -56,7 +56,6 @@ ARIA_DESC=	ARIA (South Korean standard)
 ASM_DESC=	Assembler code
 ASYNC_DESC=	Asynchronous mode
 CIPHERS_DESC=	Block Cipher Support
-CRYPTODEV_DESC=	/dev/crypto support
 CT_DESC=	Certificate Transparency Support
 DES_DESC=	(Triple) Data Encryption Standard
 EC_DESC=	Optimize NIST elliptic curves
@@ -65,6 +64,7 @@ GOST_DESC=	GOST (Russian standard)
 HASHES_DESC=	Hash Function Support
 I386_DESC=	i386 (instead of i486+)
 IDEA_DESC=	International Data Encryption Algorithm
+KTLS_DESC=	Use in-kernel TLS (MidnightBSD >4)
 LEGACY_DESC=	Older algorithms
 MAN3_DESC=	Install API manpages (section 3, 7)
 MD2_DESC=	MD2 (obsolete) (requires LEGACY)
@@ -92,7 +92,7 @@ TLS1_2_DESC=	TLSv1.2
 WEAK-SSL-CIPHERS_DESC=	Weak cipher support (unsafe)
 
 # Upstream default disabled options
-.for _option in fips md2 rc5 sctp ssl3 weak-ssl-ciphers zlib
+.for _option in fips md2 rc5 ktls sctp ssl3 weak-ssl-ciphers zlib
 ${_option:tu}_CONFIGURE_ON=	enable-${_option}
 .endfor
 
@@ -126,6 +126,8 @@ ZLIB_CONFIGURE_ON=	zlib-dynamic
 
 SHLIBS=			lib/engines-${OPENSSL_SHLIBVER}/loader_attic.so
 
+PORTSCOUT=		limit:^${PORTVERSION:R:S/./\./g}\.
+
 .include <bsd.mport.options.mk>
 
 .if ${ARCH} == powerpc64
@@ -136,13 +138,11 @@ CONFIGURE_ARGS+=	BSD-ppc64le
 CONFIGURE_ARGS+=	BSD-riscv64
 .endif
 
+OPTIONS_EXCLUDE=${${OSVERSION} < 400000:?KTLS:}
+
 .include <bsd.port.pre.mk>
 .if ${PREFIX} == /usr
 IGNORE=	the OpenSSL port can not be installed over the base version
-.endif
-
-.if !${PORT_OPTIONS:MCRYPTODEV}
-CONFIGURE_ARGS+=	no-devcryptoeng
 .endif
 
 OPENSSLDIR?=	${PREFIX}/openssl
