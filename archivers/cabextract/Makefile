@@ -1,40 +1,36 @@
 PORTNAME=	cabextract
 PORTVERSION=	1.11
+PORTREVISION=	1
 CATEGORIES=	archivers
-MASTER_SITES=	http://www.cabextract.org.uk/
+MASTER_SITES=	https://www.cabextract.org.uk/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program to extract Microsoft cabinet (.CAB) files
-WWW=		https://www.cabextract.org.uk/
+WWW=		https://www.cabextract.org.uk/ \
+		https://github.com/kyz/libmspack/tree/master/cabextract
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe iconv
+
 GNU_CONFIGURE=	yes
 
-PLIST_FILES=	bin/cabextract \
-		man/ja/man1/cabextract.1.gz \
-		man/man1/cabextract.1.gz
-DOCS=		AUTHORS ChangeLog NEWS README TODO
-DOC_DOCS=	magic wince_cab_format.html
-SRC_DOCS=	wince_info wince_rename
-PORTDOCS=	${DOCS} ${DOC_DOCS} ${SRC_DOCS}
+CPE_VENDOR=	cabextract_project
+
+DOCS=		AUTHORS ChangeLog NEWS README TODO \
+		doc/magic doc/wince_cab_format.html \
+		src/wince_info src/wince_rename
 
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/cabextract.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/ja/cabextract.1 ${STAGEDIR}${MAN1PREFIX}/man/ja/man1
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for i in ${DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
-.endfor
-.for i in ${DOC_DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DOCSDIR}
-.endfor
-.for i in ${SRC_DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/src/${i} ${DOCSDIR}
-.endfor
+	${MKDIR} ${PREFIX}/share/man/ja/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/ja/cabextract.1 ${PREFIX}/share/man/ja/man1
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
