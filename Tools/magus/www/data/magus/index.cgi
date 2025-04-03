@@ -363,14 +363,14 @@ sub summary_page {
   });
   
   my @results = map {{
-    summary   => $_->status,
-    port      => $_->name,
-    port_id   => $_->id,
+    summary   => $_->status // '',
+    port      => $_->name // '',
+    port_id   => $_->id // 0,
     version   => $_->version,
-    flavor    => $_->flavor,
-    osversion => $_->run->osversion,
-    arch      => $_->run->arch, 
-    critical  => $_->critical,
+    flavor    => $_->flavor // '',
+    osversion => $_->run ? ($_->run->osversion // '') : '',
+    arch      => $_->run ? ($_->run->arch // '') : '', 
+    critical  => $_->critical // 0,
   }} Magus::Port->search_last_twenty;
   
   print $p->header;
