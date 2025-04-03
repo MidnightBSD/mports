@@ -1,11 +1,13 @@
 PORTNAME=	autoconf
 PORTVERSION=	2.69
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	${VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate configure scripts and related files
+WWW=		https://www.gnu.org/software/autoconf/
 
 LICENSE=	EXCEPTION gfdl gpl2 gpl3
 LICENSE_COMB=	multi
@@ -24,6 +26,7 @@ VERSION=	2.69
 USES=		perl5 tar:xz
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--program-suffix=${VERSION} \
 		--without-lispdir
 CONFIGURE_ENV=	AWK=${AWK} \
@@ -32,7 +35,7 @@ CONFIGURE_ENV=	AWK=${AWK} \
 
 DATADIR=	${PREFIX}/share/autoconf${VERSION}
 NO_ARCH=	yes
-PORTSCOUT=	ignore
+PORTSCOUT=	ignore:1
 
 PLIST_SUB=	VERSION=${VERSION}
 
