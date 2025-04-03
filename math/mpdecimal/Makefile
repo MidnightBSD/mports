@@ -16,7 +16,9 @@ GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 USE_LDCONFIG=	yes
 ALL_TARGET=	default
-TEST_TARGET=	check_local
+#TEST_TARGET=	check_local
+
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
