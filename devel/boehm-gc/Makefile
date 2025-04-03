@@ -90,7 +90,7 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/gc.man ${MAN3PREFIX}/man/man3/gc.3
+	${INSTALL_MAN} ${WRKSRC}/doc/gc.man ${PREFIX}/share/man/man3/gc.3
 	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR})
 
