@@ -200,7 +200,7 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 .    endif
 
 # The complete list of Java versions, os and vendors supported.
-__JAVA_VERSION_LIST=	7 8 11 12 13 17 18
+__JAVA_VERSION_LIST=	8 11 12 13 17 18
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
 _JAVA_OS_LIST=			native freebsd linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava oracle openjdk
@@ -217,8 +217,6 @@ _JAVA_PORT_FREEBSD_OPENJDK_JDK_11_INFO=	PORT=java/openjdk11-bin			HOME=${LOCALBA
 											VERSION=11	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_8_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
 											VERSION=8	OS=freebsd	VENDOR=openjdk
-_JAVA_PORT_FREEBSD_OPENJDK_JDK_7_INFO=	PORT=java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
-											VERSION=7	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_17_INFO=		PORT=java/openjdk17			HOME=${LOCALBASE}/openjdk17 \
 											VERSION=17	OS=native	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_18_INFO=		PORT=java/openjdk18			HOME=${LOCALBASE}/openjdk18 \
@@ -243,8 +241,6 @@ __JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_13 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_17 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_18 \
-			JAVA_PORT_FREEBSD_OPENJDK_JDK_7 \
-					JAVA_PORT_NATIVE_OPENJDK_JDK_7 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_8  \
  					JAVA_PORT_NATIVE_OPENJDK_JDK_11 \
  					JAVA_PORT_NATIVE_OPENJDK_JDK_12 \
@@ -313,7 +309,7 @@ check-makevars::
 .		undef _JAVA_PORTS_INSTALLED
 .		undef _JAVA_PORTS_POSSIBLE
 .		if defined(JAVA_VERSION)
-_JAVA_VERSION=	${JAVA_VERSION:S/^1.7+/1.7 1.8+/:S/^1.8+/1.8 11+/:S/^1.7/7/:S/^1.8/8/:S/^7+/7 8+/:S/^8+/8 11+/:S/^11+/11 13+/:S/^13+/13 17+/:S/^17+/17 18+/:S/^18+/18/}
+_JAVA_VERSION=	${JAVA_VERSION:S/^1.8+/1.8 11+/:S/^1.7/7/:S/^1.8/8/:S/^7+/7 8+/:S/^8+/8 11+/:S/^11+/11 13+/:S/^13+/13 17+/:S/^17+/17 18+/:S/^18+/18/}
 .		else
 _JAVA_VERSION=	${__JAVA_VERSION_LIST}
 .    endif

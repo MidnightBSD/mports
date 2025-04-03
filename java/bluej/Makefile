@@ -16,7 +16,7 @@ LICENSE_COMB=	multi
 NO_BUILD=	yes
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.7+
+JAVA_VERSION=	8+
 SUB_FILES=	bluej
 
 post-extract:
