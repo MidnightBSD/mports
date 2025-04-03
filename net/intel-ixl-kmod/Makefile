@@ -51,10 +51,10 @@ ONLY_FOR_ARCHS_REASON=	Not supported on other architectures, amd64 and powerpc64
 do-install:
 	${MKDIR} ${KMODDIR}
 	${INSTALL_KLD} ${WRKSRC}/if_${PORTNAME}.ko ${KMODDIR}/if_${PORTNAME}_updated.ko
-	${INSTALL_MAN} ${WRKSRC}/${MANPAGENAME}.4 ${STAGEDIR}${MAN4PREFIX}/man/man4/
+	${INSTALL_MAN} ${WRKSRC}/${MANPAGENAME}.4 ${PREFIX}/share/man/man4/
 
 .for link in ${MANPAGELINKS}
-	${LN} ${STAGEDIR}${MAN4PREFIX}/man/man4/${MANPAGENAME}.4 ${STAGEDIR}${MAN4PREFIX}/man/man4/${link}.4
+	${LN} ${PREFIX}/share/man/man4/${MANPAGENAME}.4 ${PREFIX}/share/man/man4/${link}.4
 .endfor
 
 .include <bsd.port.post.mk>
