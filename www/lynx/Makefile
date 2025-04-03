@@ -1,10 +1,12 @@
 PORTNAME=	lynx
-PORTVERSION=	2.8.9.1
+DISTVERSION=	2.8.9.1
+PORTREVISION=	1
 PORTEPOCH=	1
-CATEGORIES=	www ipv6
-MASTER_SITES=	http://invisible-mirror.net/archives/lynx/tarballs/ \
+CATEGORIES=	www
+MASTER_SITES=	https://invisible-mirror.net/archives/lynx/tarballs/ \
+		https://invisible-island.net/archives/lynx/tarballs/ \
 		http://bitrote.org/distfiles/
-DISTNAME=	${PORTNAME}${PORTVERSION:R}rel.${PORTVERSION:E}
+DISTNAME=	${PORTNAME}${DISTVERSION:R}rel.${DISTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Non-graphical, text-based World-Wide Web client
@@ -12,77 +14,57 @@ WWW=		https://lynx.invisible-island.net/
 
 LICENSE=	gpl2
 
-MAKE_JOBS_UNSAFE=yes
+LIB_DEPENDS=	libidn.so:dns/libidn
 
-USES=		cpe ssl tar:bzip2
-WRKSRC=		${WRKDIR}/${PORTNAME}2.8.9rel.1
+CONFLICTS=	lynx-2.8.[8-9]d*
+
+USES=		cpe ncurses shebangfix tar:bzip2
+SHEBANG_FILES=	samples/mailto-form.pl
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
+CONFIGURE_ARGS+=--with-zlib --libdir="${PREFIX}/etc" \
 		--enable-nsl-fork --enable-persistent-cookies \
 		--enable-nested-tables --enable-gzip-help \
 		--with-screen=ncursesw
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-CPE_VERSION=	${PORTVERSION:R}
-CPE_UPDATE=	rel.${PORTVERSION:E}
-
-
-_FAKE_SETUP += DOCSDIR=${FAKE_DESTDIR}${DOCSDIR}
-TARGET_DIR=	${DESTDIR}${PREFIX}
-
-OPTIONS_DEFINE=	DEFAULT_COLORS IPV6 NLS SSL
-OPTIONS_DEFAULT=	SSL
-DEFAULT_COLORS_DESC=	Colors support
-
-.include <bsd.mport.options.mk>
-
-.if empty(PORT_OPTIONS:MNLS)
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS='@comment '
-.else
-USES+=		gettext iconv
-CONFIGURE_ARGS+=--enable-nls --with-libiconv-prefix="${LOCALBASE}"
-PLIST_SUB+=	NLS=''
-.endif
-
-.if ${PORT_OPTIONS:MIPV6} && !defined(NO_INET6)
-CONFIGURE_ARGS+=--enable-ipv6
-.else
-CONFIGURE_ARGS+=--disable-ipv6
-.endif
-
-.if ${PORT_OPTIONS:MSSL}
-CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
-.endif
-
-.if ${PORT_OPTIONS:MDEFAULT_COLORS}
-CONFIGURE_ARGS+=--enable-default-colors
-.endif
-
-.if empty(PORT_OPTIONS:MDOCS)
-CONFIGURE_ARGS+=--disable-local-docs
-INSTALL_TARGET=	install
-DOCSDIR=
-L_HELP=
-.else
-INSTALL_TARGET=	install-full
-L_HELP=		${PREFIX}/share/lynx_help
-MAKE_ARGS=	helpdir=${L_HELP} docdir=${DOCSDIR}
-.endif
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+CPE_VERSION=	${DISTVERSION:R}
+CPE_UPDATE=	rel.${DISTVERSION:E}
 
 MAKEFILE=	makefile
-
-L_LIB=		${PREFIX}/etc
-
+L_HELP=		${PREFIX}/share/lynx_help
 SUB_FILES=	pkg-message
+MAKE_JOBS_UNSAFE=	yes
+
+OPTIONS_DEFINE=	DEFAULT_COLORS IPV6 NLS SSL DOCS EXTERNALS
+OPTIONS_DEFAULT=	SSL EXTERNALS
+DEFAULT_COLORS_DESC=	Colors support
+EXTERNALS_DESC=	External application support
+OPTIONS_SUB=	yes
+
+NLS_USES=	gettext iconv
+NLS_CONFIGURE_ENABLE=	nls
+NLS_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG}
+
+IPV6_CONFIGURE_ENABLE=	ipv6
+
+DEFAULT_COLORS_CONFIGURE_ENABLE=	default-colors
+
+DOCS_CONFIGURE_ENABLE=	local-docs
+DOCS_INSTALL_TARGET=	install-full
+DOCS_MAKE_ARGS=		helpdir=${L_HELP} docdir=${DOCSDIR}
+
+EXTERNALS_CONFIGURE_ENABLE=externs
+
+SSL_CONFIGURE_ON=	--with-ssl=${OPENSSLBASE}
+SSL_USES=		ssl
 
 post-install:
-.if empty(PORT_OPTIONS:MDOCS)
-	[ -f ${L_LIB}/lynx.cfg ] || ${INSTALL} ${L_LIB}/lynx.cfg.sample ${L_LIB}/lynx.cfg
-	[ -f ${L_LIB}/lynx.lss ] || ${INSTALL} ${L_LIB}/lynx.lss.sample ${L_LIB}/lynx.lss
-.else
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${L_HELP}
-.endif
-	${CHOWN} ${SHAREOWN}:${SHAREGRP} ${L_LIB}/lynx.cfg
+	${RM} ${PREFIX}/share/doc/lynx/test/X
+	${RM} ${PREFIX}/share/doc/lynx/test/nobody
+
+post-install-DOCS-on:
+# Fix some stage symlinks
+.for doc in COPYHEADER COPYING COPYHEADER.asc COPYING.asc
+	(cd ${FAKE_DESTDIR}${L_HELP} && ${LN} -sf ../doc/lynx/${doc} .)
+.endfor
 
 .include <bsd.port.mk>
