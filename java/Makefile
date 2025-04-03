@@ -22,7 +22,6 @@ SUBDIR += hamcrest
 SUBDIR += intellij
 SUBDIR += intellij-fsnotifier
 SUBDIR += intellij-pty4j
-SUBDIR += jaf
 SUBDIR += jai
 SUBDIR += jakarta-commons-cli
 SUBDIR += jakarta-commons-codec
