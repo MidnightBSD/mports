@@ -1,7 +1,7 @@
 # This port is self contained in the src directory.
 
 PORTNAME=	javavmwrapper
-PORTVERSION=	2.7.9
+PORTVERSION=	2.7.10
 CATEGORIES=	java
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -54,10 +54,10 @@ do-install:
 	${LN} -sf javavm unregistervm && \
 	${LN} -sf javavm checkvms && \
 	${LN} -sf javavm manvm )
-	${INSTALL_MAN} ${WRKSRC}/*.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/*.1 ${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/registervm.1 \
-		${MAN1PREFIX}/man/man1/unregistervm.1
-	${INSTALL_MAN} ${WRKSRC}/*.5 ${MAN5PREFIX}/man/man5
+		${PREFIX}/share/man/man1/unregistervm.1
+	${INSTALL_MAN} ${WRKSRC}/*.5 ${PREFIX}/share/man/man5
 	${INSTALL_DATA} ${FILESDIR}/javavm_opts.conf.dist \
 		${PREFIX}/etc/javavm_opts.conf.dist
 
