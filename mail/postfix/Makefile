@@ -1,5 +1,5 @@
 PORTNAME=	postfix
-DISTVERSION=	3.9.0
+DISTVERSION=	3.10.1
 PORTEPOCH=	1
 CATEGORIES=	mail
 MASTER_SITES=	https://postfix-mirror.horus-it.com/postfix-release/ \
@@ -145,6 +145,8 @@ SASLKMIT_LIB_DEPENDS=		libkrb5.so:security/krb5
 SASL_LIB_DEPENDS=		libsasl2.so:security/cyrus-sasl2
 SQLITE_USES=			sqlite
 
+ALL_TARGET=           default
+
 .include <bsd.mport.options.mk>
 
 HTML1=		body_checks.5.html bounce.5.html postfix-power.png \
@@ -196,7 +198,7 @@ SUB_LIST+=	MC_PREFIX="" \
 
 .if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	*
-READMEDIR=	${TRUE_PREFIX}${DOCSDIR_REL}
+READMEDIR=	${TRUE_PREFIX}/${DOCSDIR_REL}
 .else
 READMEDIR=	no
 .endif
