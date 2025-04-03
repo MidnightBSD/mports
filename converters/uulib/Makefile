@@ -1,6 +1,6 @@
 PORTNAME=	uulib
 PORTVERSION=	0.5.20
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	converters
 MASTER_SITES=	http://www.fpx.de/fp/Software/UUDeview/download/
 DISTNAME=	uudeview-${PORTVERSION}
@@ -19,7 +19,7 @@ USE_LDCONFIG=	yes
 PORTDOCS=	*
 PLIST_FILES=	include/uudeview.h lib/libuu.a lib/libuu.so \
 		lib/libuu.so.${SHLIB_VER} \
-		man/man3/uulib.3.gz
+		share/man/man3/uulib.3.gz
 
 SHLIB_VER=	3
 
@@ -34,17 +34,17 @@ post-patch:
 		< ${FILESDIR}/uulib.3 > ${WRKDIR}/uulib.3
 
 do-install:
-	${INSTALL_LIB} ${WRKSRC}/uulib/libuu.so.${SHLIB_VER} ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf libuu.so.${SHLIB_VER} ${STAGEDIR}${PREFIX}/lib/libuu.so
-	${INSTALL_DATA} ${WRKSRC}/uulib/libuu.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_DATA} ${WRKSRC}/uulib/uudeview.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_MAN} ${WRKDIR}/uulib.3 ${STAGEDIR}${MAN3PREFIX}/man/man3
+	${INSTALL_LIB} ${WRKSRC}/uulib/libuu.so.${SHLIB_VER} ${PREFIX}/lib
+	${LN} -sf libuu.so.${SHLIB_VER} ${PREFIX}/lib/libuu.so
+	${INSTALL_DATA} ${WRKSRC}/uulib/libuu.a ${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/uulib/uudeview.h ${PREFIX}/include
+	${INSTALL_MAN} ${WRKDIR}/uulib.3 ${PREFIX}/share/man/man3
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${FILESDIR}/porting.notes ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${FILESDIR}/porting.notes ${FAKE_DESTDIR}${DOCSDIR}
 .for docfile in ${DOCFILES}
-	${INSTALL_DATA} ${WRKSRC}/${docfile} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${docfile} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>
