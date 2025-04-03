@@ -1,5 +1,3 @@
-
-
 PORTNAME=	enemyterritory
 PORTVERSION=	2.60b
 PORTREVISION=	3
@@ -52,7 +50,7 @@ do-install:
 	${INSTALL_DIR} ${ETDIR}/${DIR}
 .endfor
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${INSTALL_DIR} ${DOCSDIR}
 	${RMDIR} ${WRKSRC}/Docs/Help/_private
 	${CP} -R ${WRKSRC}/Docs/* ${DOCSDIR}
