@@ -1,28 +1,33 @@
-# Created by: samm
-
 PORTNAME=	o3read
 PORTVERSION=	0.0.4
+PORTREVISION=	2
 CATEGORIES=	converters
-MASTER_SITES=	http://siag.nu/pub/o3read/ \
-		GENTOO
+MASTER_SITES=	https://siag.nu/pub/o3read/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standalone converter for the OpenOffice.org writer and scalc formats
+WWW=		https://siag.nu/o3read/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTDOCS=	README COPYING ChangeLog
+FETCH_BEFORE_ARGS=	--user-agent=Wget/1.20.3
+
+PORTDOCS=	README ChangeLog
+
+OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/o3read ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/o3totxt ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/o3tohtml ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/utf8tolatin1 ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/*.1 ${MAN1PREFIX}/man/man1
-	@${MKDIR} ${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/o3read ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/o3totxt ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/o3tohtml ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/utf8tolatin1 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for FILE in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${FILE} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>
