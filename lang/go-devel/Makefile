@@ -30,6 +30,7 @@ NO_TEST=	yes
 USES=		cpe shebangfix
 
 CPE_VENDOR=	golang
+NO_SHLIB_REQUIRES_GLOB=	*
 
 .ifndef MASTERDIR
 USE_GITHUB=	yes
@@ -40,7 +41,7 @@ GH_TAGNAME=	20107e05a609b8f2e61a6b5e8dc258237ad046e7
 
 SHEBANG_FILES?=	misc/wasm/go_js_wasm_exec misc/wasm/go_wasip1_wasm_exec
 SHEBANG_GLOB=	*.bash *.pl *.sh
-
+REINPLACE_ARGS=	-i''
 # Upstream archive contains files with UTF-8 names
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 ${TAR}
 BASH?=		${LOCALBASE}/bin/bash

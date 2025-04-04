@@ -20,7 +20,7 @@ GO_SUFFIX=	${GO_DEFAULT:S/.//:C/.*-devel/-devel/}
 
 do-install:
 .for f in go gofmt
-	@${LN} -sf ${f}${GO_SUFFIX} ${STAGEDIR}${PREFIX}/bin/${f}
+	@${LN} -sf ${f}${GO_SUFFIX} ${PREFIX}/bin/${f}
 .endfor
 
 .include <bsd.port.mk>
