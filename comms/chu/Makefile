@@ -2,8 +2,7 @@ PORTNAME=	chu
 PORTVERSION=	0.1.29
 PORTREVISION=	1
 CATEGORIES=	comms hamradio
-MASTER_SITES=	${MASTER_SITE_SUNSITE}
-MASTER_SITE_SUBDIR=	system/admin/time
+MASTER_SITES=	SUNSITE/system/admin/time
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Synchronise computer clock to CHU radio station
@@ -12,19 +11,12 @@ WWW=		https://www.rossi.com/chu/
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-.include <bsd.mport.options.mk>
+NO_WRKSUBDIR=	yes
 
-do-extract:
-	@${RM} -rf ${WRKDIR}
-	@${MKDIR} ${WRKDIR}
-	@${MKDIR} ${WRKSRC}
-	@for f in ${EXTRACT_ONLY}; do  \
-		if ! (cd ${WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$f ${EXTRACT_AFTER_ARGS});\
-		then \
-			exit 1; \
-		fi \
-	done
-	${GZIP_CMD} -d ${WRKSRC}/testsignal.gz
+OPTIONS_DEFINE=	DOCS
+
+post-extract:
+	@${GZIP_CMD} -d ${WRKSRC}/testsignal.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/chu|${PREFIX}/etc/chu|g' ${WRKSRC}/chu.c ${WRKSRC}/chu.8
@@ -32,19 +24,15 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|gcc -O2|${CC} ${CFLAGS}|g' ${WRKSRC}/Makefile
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/chu ${PREFIX}/sbin
-	@${MKDIR} ${DATADIR}
-	@${INSTALL_DATA} ${WRKSRC}/testsignal ${DATADIR}
-	@${INSTALL_MAN} ${WRKSRC}/chu.8 ${PREFIX}/man/man8
-.if	${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-.for	d in ${WRKSRC}/COPYING \
-	${WRKSRC}/TESTING \
-	${WRKSRC}/chu.html \
-	${WRKSRC}/chuman.html \
-	${WRKSRC}/ntp.html
-	@${INSTALL_DATA} ${WRKSRC}/${d} ${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/chu ${STAGEDIR}${PREFIX}/sbin
+	@${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/testsignal ${STAGEDIR}${DATADIR}
+	${INSTALL_MAN} ${WRKSRC}/chu.8 ${STAGEDIR}${PREFIX}/share/man/man8
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for d in TESTING chu.html chuman.html ntp.html
+	${INSTALL_DATA} ${WRKSRC}/${d} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
