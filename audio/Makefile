@@ -149,7 +149,6 @@ SUBDIR += musescore
 SUBDIR += musicpd
 SUBDIR += nas
 SUBDIR += ncspot
-SUBDIR += openal
 SUBDIR += openal-soft
 SUBDIR += opencore-amr
 SUBDIR += opus
