@@ -1,10 +1,12 @@
 PORTNAME=	pbzip2
 PORTVERSION=	1.1.13
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://launchpad.net/${PORTNAME}/1.1/${PORTVERSION}/+download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parallel BZIP2
+WWW=		http://compression.ca/pbzip2/
 
 LICENSE=	bsd4
 
@@ -23,7 +25,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
 	${LN} -sf ${PORTNAME} ${PREFIX}/bin/pbunzip2
-	${INSTALL_MAN} ${WRKSRC}/pbzip2.1 ${MAN1PREFIX}/man/man1/
-	${LN} -sf pbzip2.1 ${MAN1PREFIX}/man/man1/pbunzip2.1
+	${INSTALL_MAN} ${WRKSRC}/pbzip2.1 ${PREFIX}/share/man/man1/
+	${LN} -sf pbzip2.1 ${PREFIX}/share/man/man1/pbunzip2.1
 
 .include <bsd.port.mk>
