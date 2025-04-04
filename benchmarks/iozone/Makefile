@@ -1,5 +1,5 @@
 PORTNAME=	iozone
-DISTVERSION=	3_494
+DISTVERSION=	3_507
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.iozone.org/src/current/
 DISTNAME=	${PORTNAME}${DISTVERSION}
@@ -13,25 +13,26 @@ LICENSE_NAME=	Iozone license
 LICENSE_FILE=	${WRKDIR}/${DISTNAME}/docs/License.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		gmake tar:tgz
-
-WRKSRC=		${WRKDIR}/${DISTNAME}/src/current
+USES=		gmake tar
 
 MAKEFILE=	makefile
 MAKE_ARGS=	${MAKE_ENV}
-ALL_TARGET=	freebsd
 MAKE_JOBS_UNSAFE=	yes
+ALL_TARGET=	freebsd
 
-PLIST_FILES=	bin/iozone man/man1/iozone.1.gz
+WRKSRC_SUBDIR=	src/current
 
-OPTIONS_DEFINE=	SSH THREADS
-OPTIONS_DEFAULT=SSH THREADS
+PLIST_FILES=	bin/iozone \
+		share/man/man1/iozone.1.gz
+
+OPTIONS_DEFINE=		SSH THREADS
+OPTIONS_DEFAULT=	SSH THREADS
 
 SSH_DESC=	Use ssh in distributed measurement
 THREADS_DESC=	Enable threading (uses pthreads)
 
-THREADS_LDFLAGS=	-lpthread
 THREADS_CFLAGS_OFF=	-DNO_THREADS
+THREADS_LDFLAGS=	-lpthread
 
 post-patch-SSH-on:
 	@${REINPLACE_CMD} -e 's|shell\,\"rsh\"|shell\,\"ssh\"|' \
@@ -43,6 +44,6 @@ pre-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/iozone ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKDIR}/${DISTNAME}/docs/iozone.1 \
-		${STAGEDIR}${MAN1PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
