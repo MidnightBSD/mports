@@ -146,7 +146,6 @@ SUBDIR += libvisual04
 SUBDIR += libwmf
 SUBDIR += libwmf-nox11
 SUBDIR += libwpg03
-SUBDIR += libxatracker
 SUBDIR += linux-c7-cairo
 SUBDIR += linux-c7-cairo-gobject
 SUBDIR += linux-c7-dri
