@@ -198,7 +198,6 @@ SUBDIR += restic
 SUBDIR += rpi-firmware
 SUBDIR += rubygem-bundler
 SUBDIR += rubygem-fluentd
-SUBDIR += scan_ffs
 SUBDIR += screen
 SUBDIR += screenie
 SUBDIR += seatd
