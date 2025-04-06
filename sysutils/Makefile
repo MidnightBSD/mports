@@ -221,7 +221,6 @@ SUBDIR += tracker-miners
 SUBDIR += ucspi-tcp
 SUBDIR += uefi-edk2-bhyve
 SUBDIR += uefi-edk2-bhyve-csm
-SUBDIR += ufs_copy
 SUBDIR += uif2iso
 SUBDIR += upower
 SUBDIR += userboot-freebsd
