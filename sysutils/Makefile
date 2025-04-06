@@ -250,7 +250,6 @@ SUBDIR += xosview
 SUBDIR += xxd
 SUBDIR += zeitgeist
 SUBDIR += zetaback
-SUBDIR += zfs-periodic
 SUBDIR += zfs-replicate
 SUBDIR += znapzend
 SUBDIR += zpool-iostat-viz
