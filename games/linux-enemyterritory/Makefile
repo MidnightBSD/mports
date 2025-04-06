@@ -2,14 +2,16 @@ PORTNAME=	enemyterritory
 PORTVERSION=	2.60b
 PORTREVISION=	3
 CATEGORIES=	games linux
-MASTER_SITES=		${MASTER_SITE_IDSOFTWARE:S|$|et/:patch|} \
-			${MASTER_SITE_IDSOFTWARE:S|$|et/linux/:full|}
+MASTER_SITES=	IDSOFTWARE/et/:patch \
+ 		IDSOFTWARE/et/linux/:full
+
 PKGNAMEPREFIX=	linux-
 DISTNAME=	et-linux-2.60b.x86
 DISTFILES=	et-linux-2.60.x86.run:full ET-2.60b.zip:patch
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wolfenstein: Enemy Territory (Linux version)
+WWW=		https://www.splashdamage.com/games/wolfenstein-enemy-territory/
 
 LICENSE=	id
 LICENSE_NAME=	id Software License
@@ -22,6 +24,13 @@ NO_CDROM=	Redistribution is limited, see license
 ETDIR=		${PREFIX}/lib/${PORTNAME}
 INSTALL_DIR=	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
 PATCH_260B_DIR=	Enemy Territory 2.60b
+
+CONFLICTS_INSTALL=	eternalterminal
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.mport.options.mk>
+
 
 do-extract:
 	@${MKDIR} ${WRKSRC}
