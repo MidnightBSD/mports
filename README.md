@@ -2,7 +2,7 @@ This is the MidnightBSD Ports Collection.
 
 	https://www.MidnightBSD.org/mports
 	
-Downloaad or submit patches via github:
+Download, file bug reports or submit patches via github:
 	https://github.com/MidnightBSD/mports
 
 For documentation, consult:
