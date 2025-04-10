@@ -182,6 +182,7 @@ bin/notus-subscriber
 @dir(gvm,gvm,750) /var/run/notus-scanner
 @dir(gvm,gvm,750) /var/lib/openvas/plugins/notus/products
 @dir(gvm,gvm,750) /var/lib/openvas/plugins/notus
+@dir(gvm,gvm,750) /var/lib/notus/products
 @dir(gvm,gvm,750) /var/lib/notus
 @dir(gvm,gvm,750) /var/lib/openvas/plugins
 @dir(gvm,gvm,750) /var/lib/openvas
