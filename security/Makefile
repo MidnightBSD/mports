@@ -121,6 +121,7 @@ SUBDIR += nss
 SUBDIR += nuclei
 SUBDIR += oinkmaster
 SUBDIR += openct
+SUBDIR += opendoas
 SUBDIR += opensc
 SUBDIR += openssh-askpass
 SUBDIR += openssh-portable
