@@ -128,6 +128,7 @@ SUBDIR += openssl
 SUBDIR += openssl111
 SUBDIR += openssl31
 SUBDIR += openvpn
+SUBDIR += osv-scanner
 SUBDIR += owasp-dependency-check
 SUBDIR += p11-kit
 SUBDIR += p5-Authen-NTLM
