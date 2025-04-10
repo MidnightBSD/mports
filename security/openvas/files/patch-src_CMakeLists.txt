@@ -1,0 +1,35 @@
+--- src/CMakeLists.txt.orig	2024-12-17 15:32:50 UTC
++++ src/CMakeLists.txt
+@@ -16,7 +16,9 @@ pkg_check_modules (LIBGVM_BASE REQUIRED libgvm_base>=2
+ pkg_check_modules (LIBGVM_BOREAS REQUIRED libgvm_boreas>=22.4)
+ pkg_check_modules (LIBGVM_UTIL REQUIRED libgvm_util>=22.4)
+ pkg_check_modules (GLIB REQUIRED glib-2.0>=2.42)
++if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "MidnightBSD")
+ pkg_check_modules (LIBBSD REQUIRED libbsd)
++endif()
+ 
+ message (STATUS "Looking for libgcrypt...")
+ pkg_check_modules (GCRYPT REQUIRED libgcrypt)
+@@ -132,9 +134,9 @@ if (SCANNER_NVT_TIMEOUT)
+   add_definitions (-DSCANNER_NVT_TIMEOUT=${SCANNER_NVT_TIMEOUT})
+ endif (SCANNER_NVT_TIMEOUT)
+ 
+-if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if (CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+   set (EXECINFO_LDFLAGS "execinfo")
+-endif (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++endif (CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+ 
+ target_link_libraries (openvas openvas_nasl_shared ${LIBOPENVAS_NASL_LDFLAGS}
+                        ${LIBOPENVAS_MISC_LDFLAGS}
+@@ -198,8 +200,8 @@ install (TARGETS openvas
+          PERMISSIONS OWNER_EXECUTE OWNER_READ OWNER_WRITE
+          GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+ 
+-install (FILES ${CMAKE_BINARY_DIR}/src/openvas_log.conf
+-         DESTINATION ${OPENVAS_SYSCONF_DIR})
++install (FILES ${CMAKE_BINARY_DIR}/src/openvas_log.conf.sample
++         DESTINATION "${OPENVAS_SYSCONF_DIR}")
+ 
+ install (FILES ${CMAKE_BINARY_DIR}/doc/man/openvas.8
+          DESTINATION ${DATADIR}/man/man8 )
