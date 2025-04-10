@@ -220,6 +220,7 @@ SUBDIR += py-ecdsa
 SUBDIR += py-fail2ban
 SUBDIR += py-google-auth
 SUBDIR += py-google-auth-httplib2
+SUBDIR += py-greenbone-feed-sync
 SUBDIR += py-itsdangerous
 SUBDIR += py-josepy
 SUBDIR += py-joserfc
