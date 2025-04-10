@@ -1307,6 +1307,7 @@ SUBDIR += py-sarif-om
 SUBDIR += py-scripttest
 SUBDIR += py-semantic-version
 SUBDIR += py-semver
+SUBDIR += py-sentry-sdk
 SUBDIR += py-setproctitle
 SUBDIR += py-setuptools
 SUBDIR += py-setuptools44

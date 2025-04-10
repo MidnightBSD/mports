@@ -235,6 +235,7 @@ SUBDIR += py-pycryptodome
 SUBDIR += py-pycryptodome-test-vectors
 SUBDIR += py-pycryptodomex
 SUBDIR += py-pynacl
+SUBDIR += py-python-gnupg
 SUBDIR += py-python-pam
 SUBDIR += py-python3-openid
 SUBDIR += py-pyotp
