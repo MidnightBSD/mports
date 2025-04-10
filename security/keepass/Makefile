@@ -1,16 +1,14 @@
-# Created by: Ben Woods <woodsb02@FreeBSD.org>
-
 PORTNAME=	keepass
-PORTVERSION=	2.46
-PORTREVISION=	1
+PORTVERSION=	2.56
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/KeePass%202.x/${PORTVERSION}
 DISTNAME=	KeePass-${PORTVERSION}-Source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Light-weight and easy-to-use password manager
+WWW=		https://keepass.info/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 BUILD_DEPENDS=	icotool:graphics/icoutils
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
