@@ -22,6 +22,7 @@ SUBDIR += bhyve-firmware
 SUBDIR += brasero
 SUBDIR += bsd-splash-changer
 SUBDIR += bsdfetch
+SUBDIR += bsdhwmon
 SUBDIR += bsdinfo
 SUBDIR += bsdisks
 SUBDIR += bsdstats
