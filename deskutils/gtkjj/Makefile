@@ -1,8 +1,5 @@
-
-
 PORTNAME=	gtkjj
-PORTVERSION=	2.0.0
-PORTREVISION=	2
+PORTVERSION=	2.0.2
 CATEGORIES=	deskutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -11,21 +8,28 @@ COMMENT=	GTK client for posting JustJournal entries
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
-WRKSRC=         ${WRKDIR}/justjournal-client-unix-2.0.0/gtk
+WRKSRC_SUBDIR=	gtk
 
-USES=		pkgconfig
+USES=		gnome pkgconfig
 USE_GITHUB=     yes
 GH_PROJECT=     justjournal-client-unix
-GH_ACCOUNT=     laffer1
+GH_ACCOUNT=     JustJournal
 GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      087a087
 USE_CSTD=       c99
 
 CFLAGS+=        -I/usr/local/include
 LDFLAGS+=       -L/usr/local/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse
 
-LIB_DEPENDS=	libxmlrpc_client.so:${PORTSDIR}/net/xmlrpc-c
+LIB_DEPENDS=	libxmlrpc_client.so:net/xmlrpc-c
 USE_GNOME=	gtk30
-WANT_GNOME=	yes
+
+OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
+
+.include <bsd.mport.options.mk>
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${CP} ${WRKSRC}/../README ${FAKE_DESTDIR}${DOCSDIR}/README
 
 .include <bsd.port.mk>
