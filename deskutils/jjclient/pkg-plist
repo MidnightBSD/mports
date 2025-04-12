@@ -1,1 +1,3 @@
 bin/jjclient
+%%DOCS%%%%DOCSDIR%%/README
+share/man/man1/jjclient.1.gz
