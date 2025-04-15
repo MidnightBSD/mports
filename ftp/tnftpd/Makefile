@@ -20,8 +20,6 @@ GNU_CONFIGURE=	yes
 AUTOMAKE_ARGS=	--add-missing
 ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
-.include <bsd.port.pre.mk>
-
 CFLAGS+=	-DSUPPORT_UTMPX -fcommon
 
 SUB_FILES=	pkg-message
@@ -34,8 +32,9 @@ PORTDOCS=	COPYING ChangeLog NEWS README THANKS
 PORTEXAMPLES=	ftpd.conf ftpusers
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
+OPTIONS_SUB=	yes
 
-do-install: do-install-EXAMPLES-on do-install-DOCS-on
+do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/tnftpd ${PREFIX}/libexec
 	${INSTALL_MAN} ${WRKSRC}/src/ftpd.conf.man ${PREFIX}/share/man/man5/ftpd.conf.5
 	${INSTALL_MAN} ${WRKSRC}/src/ftpusers.man ${PREFIX}/share/man/man5/ftpusers.5
@@ -53,4 +52,4 @@ do-install-EXAMPLES-on:
 	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${FAKE_DESTDIR}${EXAMPLESDIR}
 .endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
