@@ -187,6 +187,7 @@ SUBDIR += py-distro
 SUBDIR += py-docker
 SUBDIR += py-execnet
 SUBDIR += py-filelock
+SUBDIR += py-fwget
 SUBDIR += py-pkginfo
 SUBDIR += py-psutil
 SUBDIR += py-ptyprocess
