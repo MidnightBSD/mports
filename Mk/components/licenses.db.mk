@@ -7,6 +7,9 @@ _LICENSE_LIST= 	apsl2 apsl1 \
 		publicdom unknown other agg restricted \
 		ccasa3
 
+# EU family
+_LICENSE_LIST+= EUPL11 EUPL12
+
 # GNU family
 _LICENSE_LIST+= agpl gpl gpl2 gpl3 gpl3rle lgpl lgpl2.1 lgpl3
 _LICENSE_LIST+= agpl+ gpl+ gpl2+ gpl3+ gpl3rle+ lgpl+ lgpl2.1+ lgpl3+
@@ -91,7 +94,7 @@ _LICENSE_GROUPS_artistic2=	FSF GPL OSI
 _LICENSE_NAME_bdb=	Oracle BDB License
 _LICENSE_GROUPS_bdb=	
 
-_LICENSE_NAME_boost=	Boost Software License
+_LICENSE_NAME_boost=	Boost Software License 1.0
 _LICENSE_GROUPS_boost=	FSF OSI COPYFREE
 
 _LICENSE_NAME_bsd=	BSD license Generic Version (deprecated)
@@ -112,9 +115,10 @@ _LICENSE_GROUPS_bsd3=	FSF OSI COPYFREE
 _LICENSE_NAME_bsd4=	BSD 4-clause "Original" or "Old" License
 _LICENSE_GROUPS_bsd4=	FSF
 
-_LICENSE_NAME_bzip2=	BZIP License
+_LICENSE_NAME_bzip2=	bzip2 and libbzip2 License v1.0.6
 _LICENSE_GROUPS_bzip2=
 
+# todo: remove
 _LICENSE_NAME_ccasa3=	Creative Commons Attribution-Share Alike 3.0
 _LICENSE_GROUPS_ccasa3=
 
@@ -243,6 +247,11 @@ _LICENSE_GROUPS_gpl3rle=	FSF GPL OSI
 
 _LICENSE_NAME_gpl3rle+ =	${_LICENSE_NAME_gpl3rle} (or later)
 _LICENSE_GROUPS_gpl3rle+ =	${_LICENSE_GROUPS_gpl3rle}
+
+_LICENSE_NAME_EUPL11=	European Union Public Licence version 1.1
+_LICENSE_GROUPS_EUPL11=	EU OSI
+_LICENSE_NAME_EUPL12=	European Union Public Licence version 1.2
+_LICENSE_GROUPS_EUPL12=	EU OSI
 
 _LICENSE_NAME_ibm=	IBM License
 _LICENSE_GROUPS_ibm=
