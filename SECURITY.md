@@ -2,14 +2,13 @@
 
 ## Supported Versions
 
-MidnightBSD support list for mports currently.  It's OK to add patches for unsupported releases, but we can't guarantee they will work.  
+MidnightBSD support list for mports currently.  Adding patches for unsupported releases is OK, but we can't guarantee they will work.  
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 4.0     | :white_check_mark: |
 | 3.2     | :white_check_mark: |
-| 3.1     | :white_check_mark: |
-| 3.0     | :x: |
-| < 2.2   | :x:                |
+| < 3.2   | :x:                |
 
 ## Reporting a Vulnerability
 
