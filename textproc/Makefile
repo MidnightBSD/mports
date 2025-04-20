@@ -380,6 +380,7 @@ SUBDIR += rasqal
 SUBDIR += redland
 SUBDIR += ripgrep
 SUBDIR += rubygem-asciidoctor
+SUBDIR += rubygem-ltsv
 SUBDIR += rubygem-psych
 SUBDIR += rubygem-rdiscount
 SUBDIR += rubygem-ronn
