@@ -11,11 +11,9 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
-USES=		cpe shebangfix
+USES=		cpe java shebangfix
 
 CPE_VENDOR=	elastic
-USE_JAVA=	yes
-JAVA_VERSION=	1.8+
 JAVA_RUN=	yes
 USE_RC_SUBR=	logstash
 SHEBANG_FILES=	bin/*
