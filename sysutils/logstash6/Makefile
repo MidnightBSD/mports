@@ -11,6 +11,8 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
+EXPIRATION_DATE=2025-05-31
+
 USES=		cpe java shebangfix
 
 CPE_VENDOR=	elastic
