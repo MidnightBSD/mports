@@ -200,6 +200,7 @@ SUBDIR += restic
 SUBDIR += rpi-firmware
 SUBDIR += rubygem-bundler
 SUBDIR += rubygem-fluent-mixin-plaintextformatter
+SUBDIR += rubygem-fluent-plugin-config-expander
 SUBDIR += rubygem-fluentd
 SUBDIR += screen
 SUBDIR += screenie
