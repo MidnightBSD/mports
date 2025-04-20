@@ -199,6 +199,7 @@ SUBDIR += qt5-qtplugininfo
 SUBDIR += restic
 SUBDIR += rpi-firmware
 SUBDIR += rubygem-bundler
+SUBDIR += rubygem-fluent-mixin-plaintextformatter
 SUBDIR += rubygem-fluentd
 SUBDIR += screen
 SUBDIR += screenie
