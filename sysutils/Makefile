@@ -147,6 +147,7 @@ SUBDIR += munin-master
 SUBDIR += munin-node
 SUBDIR += ncdu
 SUBDIR += neofetch
+SUBDIR += node_exporter
 SUBDIR += nvclock
 SUBDIR += nvme-cli
 SUBDIR += obliterate
