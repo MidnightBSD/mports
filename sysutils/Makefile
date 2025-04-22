@@ -3,6 +3,7 @@ COMMENT = System utilities
 SUBDIR += 915resolution
 SUBDIR += LPRng
 SUBDIR += accountsservice
+SUBDIR += alloy
 SUBDIR += amazon-ssm-agent
 SUBDIR += ansible
 SUBDIR += apachetop
