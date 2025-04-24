@@ -6,8 +6,9 @@ MASTER_SITES=	http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spawns fastcgi applications
+WWW=		http://redmine.lighttpd.net/projects/spawn-fcgi
 
-LICENSE=      bsd3
+LICENSE=	bsd3
 
 USES=		cmake
 CMAKE_ARGS=	-DCMAKE_MAN_DIR:string=${PREFIX}/share/man
