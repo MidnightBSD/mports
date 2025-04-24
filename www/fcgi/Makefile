@@ -1,8 +1,6 @@
-PORTNAME=	fcgi
-PORTVERSION=	2.4.0
-PORTREVISION=	2
+PORTNAME=	fcgi2
+PORTVERSION=	2.4.5
 CATEGORIES=	www
-MASTER_SITES=	FREEBSD_LOCAL/adamw
 PKGNAMESUFFIX=	-devkit
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,13 +8,15 @@ COMMENT=	FastCGI Development Kit
 
 LICENSE=	Open_Market_FastCGI_license
 LICENSE_NAME=	Open Market FastCGI license
-LICENSE_FILE=	${WRKSRC}/LICENSE.TERMS
+LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-CPE_VENDOR=	fastcgi
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		cpe libtool
+USES=		autoreconf cpe libtool
+USE_GITHUB=	yes
+GH_ACCOUNT=	FastCGI-Archives
+GH_TAGNAME=     ${PORTVERSION}
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes

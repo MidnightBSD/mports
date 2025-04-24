@@ -14,6 +14,8 @@ lib/libfcgi.a
 lib/libfcgi.so
 lib/libfcgi.so.0
 lib/libfcgi.so.0.0.0
+libdata/pkgconfig/fcgi.pc
+libdata/pkgconfig/fcgi++.pc
 share/man/man1/cgi-fcgi.1.gz
 share/man/man3/FCGI_Accept.3.gz
 share/man/man3/FCGI_Finish.3.gz
