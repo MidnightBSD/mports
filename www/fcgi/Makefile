@@ -5,6 +5,7 @@ PKGNAMESUFFIX=	-devkit
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FastCGI Development Kit
+WWW=		https://github.com/FastCGI-Archives/fcgi2
 
 LICENSE=	Open_Market_FastCGI_license
 LICENSE_NAME=	Open Market FastCGI license
