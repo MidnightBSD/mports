@@ -41,6 +41,7 @@ SUBDIR += gnet2
 SUBDIR += gnome-nettool
 SUBDIR += gnome-online-accounts
 SUBDIR += gnome-online-miners
+SUBDIR += google-cloud-sdk
 SUBDIR += gopher
 SUBDIR += grilo
 SUBDIR += grilo-plugins
