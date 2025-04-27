@@ -1,6 +1,6 @@
 PORTNAME=	btop
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.0
+DISTVERSION=	1.4.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,5 +18,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	aristocratos
 
 MAKE_ARGS+=	STRIP=true ADDFLAGS="${CXXFLAGS} ${LDFLAGS}" VERBOSE=true
+
+post-fake:
+	${CP} ${WRKSRC}/btop.1 ${PREFIX}/share/man/man1/btop.1.gz
 
 .include <bsd.port.mk>
