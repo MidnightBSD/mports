@@ -9,6 +9,7 @@ SUBDIR += botan2
 SUBDIR += ca_root_nss
 SUBDIR += calife
 SUBDIR += cargo-audit
+SUBDIR += chkrootkit
 SUBDIR += chroot_safe
 SUBDIR += clamav
 SUBDIR += clamav-lts
