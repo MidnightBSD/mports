@@ -1,5 +1,5 @@
 PORTNAME=	php81
-DISTVERSION=	8.1.31
+DISTVERSION=	8.1.32
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -14,7 +14,7 @@ LICENSE=	PHP301
 DEPRECATED=	Upstream EOL reaches on 2025-12-31
 EXPIRATION_DATE=	2025-12-31
 
-USES+=		compiler:c11 cpe gnome pkgconfig tar:xz
+USES+=		compiler:c11 cpe gnome localbase pkgconfig tar:xz
 CPE_PRODUCT=	php
 PHP_VER=	81
 
