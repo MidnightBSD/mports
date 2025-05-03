@@ -26,6 +26,7 @@ SUBDIR += google-sitemapgen
 SUBDIR += googler
 SUBDIR += gophernicus
 SUBDIR += gopherus
+SUBDIR += grafana
 SUBDIR += gstreamer1-plugins-neon
 SUBDIR += gstreamer1-plugins-srt
 SUBDIR += http-parser
