@@ -13,6 +13,7 @@ SUBDIR += catdoc
 SUBDIR += clucene
 SUBDIR += cmark
 SUBDIR += diffutils
+SUBDIR += discount
 SUBDIR += docbook
 SUBDIR += docbook-sgml
 SUBDIR += docbook-to-man
