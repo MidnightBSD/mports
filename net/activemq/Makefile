@@ -1,5 +1,5 @@
 PORTNAME=	activemq
-PORTVERSION=	5.18.3
+PORTVERSION=	5.18.7
 CATEGORIES=	net java
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTVERSION}
 DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
@@ -12,9 +12,8 @@ WWW=		https://activemq.apache.org
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cpe
+USES=		cpe java
 CPE_VENDOR=	apache
-USE_JAVA=	yes
 JAVA_VERSION=	18
 USE_RC_SUBR=	activemq
 
