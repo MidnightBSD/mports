@@ -257,6 +257,7 @@ SUBDIR += libisofs
 SUBDIR += libixp
 SUBDIR += liblangtag
 SUBDIR += liblockfile
+SUBDIR += liblogging
 SUBDIR += libltdl
 SUBDIR += libmaa
 SUBDIR += libmtdev
