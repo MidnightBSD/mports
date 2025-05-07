@@ -237,6 +237,7 @@ SUBDIR += libev
 SUBDIR += libevdev
 SUBDIR += libevent
 SUBDIR += libexecinfo
+SUBDIR += libfastjson
 SUBDIR += libffi
 SUBDIR += libfmt
 SUBDIR += libftdi
