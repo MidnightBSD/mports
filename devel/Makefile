@@ -51,6 +51,7 @@ SUBDIR += bugzilla50
 SUBDIR += bullet
 SUBDIR += cargo-c
 SUBDIR += catch
+SUBDIR += ccache
 SUBDIR += cereal
 SUBDIR += compiler-rt
 SUBDIR += cgit
