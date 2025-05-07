@@ -232,6 +232,7 @@ SUBDIR += libdbusmenu-qt
 SUBDIR += libedit
 SUBDIR += libelf
 SUBDIR += libepoll-shim
+SUBDIR += libestr
 SUBDIR += libev
 SUBDIR += libevdev
 SUBDIR += libevent
