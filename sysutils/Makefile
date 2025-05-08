@@ -201,6 +201,7 @@ SUBDIR += qt5-qtpaths
 SUBDIR += qt5-qtplugininfo
 SUBDIR += restic
 SUBDIR += rpi-firmware
+SUBDIR += rsyslog8
 SUBDIR += rubygem-bundler
 SUBDIR += rubygem-fluent-mixin-plaintextformatter
 SUBDIR += rubygem-fluent-plugin-config-expander
