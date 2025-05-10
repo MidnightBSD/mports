@@ -12,7 +12,7 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	mvn:java/maven-wrapper
 
-USES=		cpe java
+USES=		cpe java:run
 CPE_VENDOR=	apache
 CPE_PRODUCT=	maven
 

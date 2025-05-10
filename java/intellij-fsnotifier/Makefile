@@ -1,33 +1,27 @@
-# Created by: Tobias Kortkamp <t@tobik.me>
-
-
 PORTNAME=	intellij-fsnotifier
-PORTVERSION=	20160221
+PORTVERSION=	20230112
 CATEGORIES=	java devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for IntelliJ's fsnotifier
+WWW=		https://gitlab.com/worthwhileit/bsd/fsnotifier
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-LIB_DEPENDS=	libinotify.so:${PORTSDIR}/devel/libinotify
+LIB_DEPENDS=	libinotify.so:devel/libinotify
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	idea4bsd
-GH_PROJECT=	fsnotifier
-GH_TAGNAME=	a04fbff6e21d58fea7a3ed2a6a21e53cbef4b7af
+USES=	cmake compiler:c11 pkgconfig
 
-WRKSRC=		${WRKDIR}/fsnotifier-${GH_TAGNAME}
+USE_GITLAB=	yes
+GL_ACCOUNT=	worthwhileit/bsd
+GL_PROJECT=	fsnotifier
+GL_COMMIT=	b96f269f637058461df482f4cf55037a5968d7a8
 
-USES=	compiler:c11
+PIE_UNSAFE=	yes
 
-.include "${.CURDIR}/../intellij/common.mk"
+CMAKE_ARGS+=	-DVERSION=${PORTVERSION}
 
-PLIST_FILES=	intellij/bin/fsnotifier
-
-do-install:
-	${MKDIR} ${STAGEDIR}${IDEA_HOME}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/fsnotifier ${STAGEDIR}${IDEA_HOME}/bin
+PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 .include <bsd.port.mk>

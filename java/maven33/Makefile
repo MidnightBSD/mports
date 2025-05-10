@@ -11,11 +11,10 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	mvn:java/maven-wrapper
 
-USES=		cpe java
+USES=		cpe java:run
 CPE_PRODUCT=	maven
 CPE_VENDOR=	apache
 
-USE_JAVA=	yes
 NO_BUILD=	yes
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 WRKSRC=		${WRKDIR}/apache-maven-${DISTVERSION}

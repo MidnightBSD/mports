@@ -1,68 +1,66 @@
-# Created by: Tobias Kortkamp <t@tobik.me>
-
-
 # Based on the devel/intellij port from OpenBSD by
 # Vadim Zhukov <zhuk@openbsd.org>
 
 PORTNAME=	intellij
-PORTVERSION=	2016.2.2
+PORTVERSION=	2020.2.3
+PORTREVISION=	3
 CATEGORIES=	java devel
-MASTER_SITES=	https://download.jetbrains.com/idea/ \
-		http://download.jetbrains.com/idea/
-DISTNAME=	ideaIC-${PORTVERSION}
+MASTER_SITES=	https://download-cf.jetbrains.com/idea/
+DISTNAME=	ideaIC-${PORTVERSION}-no-jbr
+DIST_SUBDIR=	jetbrains
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IntelliJ IDEA Community Edition
+WWW=		https://www.jetbrains.com/idea/
 
 LICENSE=	apache2
 
-BUILD_DEPENDS=	${DEPEND_JAVA}
-RUN_DEPENDS=	intellij-fsnotifier>0:${PORTSDIR}/java/intellij-fsnotifier \
-		intellij-pty4j>0:${PORTSDIR}/java/intellij-pty4j
+RUN_DEPENDS=	intellij-fsnotifier>0:java/intellij-fsnotifier
 
-USE_JAVA=	yes
-JAVA_VERSION=	1.7+
-JAVA_RUN=	yes
+USES=		cpe java python:run shebangfix
+CPE_VENDOR=	jetbrains
+CPE_PRODUCT=	${PORTNAME}_idea
+SHEBANG_FILES=	bin/printenv.py bin/restart.py
 
 NO_ARCH=	yes
+NO_ARCH_IGNORE=	libjansi.so
 NO_BUILD=	yes
 
-WRKDIST=	${WRKDIR}/idea-IC-162.1628.40
+WRKSRC=		${WRKDIR}/idea-IC-202.7660.26
 
-.include "common.mk"
-
-PLIST_SUB+=	IDEA_HOME=${IDEA_HOME_REL}
-SUB_FILES+=	idea idea.desktop pkg-message
-SUB_LIST+=	IDEA_HOME=${IDEA_HOME}
+SUB_FILES=	idea idea.desktop pkg-message
+CONFLICTS=	idea intellij-ultimate
 
 do-install:
-	${MKDIR} ${STAGEDIR}${IDEA_HOME}
-	@${TAR} -czf - -C ${WRKDIST} . | ${TAR} xzf - -C ${STAGEDIR}${IDEA_HOME}
 # Linux/Windows/OS X only so remove them
-	@${RM} ${STAGEDIR}${IDEA_HOME}/bin/fsnotifier \
-		${STAGEDIR}${IDEA_HOME}/bin/fsnotifier-arm \
-		${STAGEDIR}${IDEA_HOME}/bin/fsnotifier64 \
-		${STAGEDIR}${IDEA_HOME}/bin/libbreakgen.so \
-		${STAGEDIR}${IDEA_HOME}/bin/libbreakgen64.so \
-		${STAGEDIR}${IDEA_HOME}/plugins/gradle/lib/native-platform-linux-amd64-0.10.jar \
-		${STAGEDIR}${IDEA_HOME}/plugins/gradle/lib/native-platform-linux-i386-0.10.jar \
-		${STAGEDIR}${IDEA_HOME}/plugins/gradle/lib/native-platform-osx-amd64-0.10.jar \
-		${STAGEDIR}${IDEA_HOME}/plugins/gradle/lib/native-platform-osx-i386-0.10.jar \
-		${STAGEDIR}${IDEA_HOME}/plugins/gradle/lib/native-platform-windows-amd64-0.10.jar \
-		${STAGEDIR}${IDEA_HOME}/plugins/gradle/lib/native-platform-windows-i386-0.10.jar
-# Remove the bundled native Pty4J support libraries, they are replaced
-# by java/intellij-pty4j
-	@${RM} -r ${STAGEDIR}${IDEA_HOME}/lib/libpty
-	@${RM} -r ${STAGEDIR}${IDEA_HOME}/jre/jre
+	@${RM} -r ${WRKSRC}/bin/fsnotifier \
+		${WRKSRC}/bin/fsnotifier-arm \
+		${WRKSRC}/bin/fsnotifier64 \
+		${WRKSRC}/lib/pty4j-native/ \
+		${WRKSRC}/plugins/android/lib/libwebp/ \
+		${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/linux32/ \
+		${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/linux64/ \
+		${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/osx/ \
+		${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/windows32/ \
+		${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/windows64/ \
+		${WRKSRC}/plugins/performanceTesting/bin/
+	${MKDIR} ${STAGEDIR}${DATADIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
+		"! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh")
+	@(cd ${WRKSRC} && ${COPYTREE_BIN} . ${STAGEDIR}${DATADIR} "-name *\.sh")
+	${INSTALL_LIB} ${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/freebsd32/libjansi.so \
+		${STAGEDIR}${DATADIR}/plugins/maven/lib/maven3/lib/jansi-native/freebsd32/
+	${INSTALL_LIB} ${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/freebsd64/libjansi.so \
+		${STAGEDIR}${DATADIR}/plugins/maven/lib/maven3/lib/jansi-native/freebsd64/
 	${INSTALL_SCRIPT} ${WRKDIR}/idea ${STAGEDIR}${PREFIX}/bin/idea
-	${INSTALL_MAN} ${FILESDIR}/idea.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${FILESDIR}/idea.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKDIR}/idea.desktop ${STAGEDIR}${PREFIX}/share/applications/
-	cd ${WRKDIST}/lib && ${JAVA_HOME}/bin/jar xf icons.jar
-	${INSTALL_DATA} ${WRKDIST}/lib/icon.png ${STAGEDIR}${IDEA_HOME}/idea.png
-# TODO: Remove and enable fsnotifier when devel/libinotify is fixed
-# Disable filewatcher warning message on IDEA startup
-	${ECHO} "idea.filewatcher.disabled=true" >> ${STAGEDIR}${IDEA_HOME}/bin/idea.properties
 # Use fsnotifier replacement provided by java/intellij-fsnotifier
-#	${ECHO} "idea.filewatcher.executable.path=${IDEA_HOME}/bin/fsnotifier" >> ${STAGEDIR}${IDEA_HOME}/bin/idea.properties
+	${ECHO} "idea.filewatcher.executable.path=${PREFIX}/intellij/bin/fsnotifier" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
+# Fix "Typeahead timeout is exceeded" error
+	${ECHO} "action.aware.typeAhead=false" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
+# Fix slow render
+	${ECHO} "-Dsun.java2d.xrender=false" >> ${STAGEDIR}${DATADIR}/bin/idea.vmoptions
+	${ECHO} "-Dsun.java2d.xrender=false" >> ${STAGEDIR}${DATADIR}/bin/idea64.vmoptions
 
 .include <bsd.port.mk>
