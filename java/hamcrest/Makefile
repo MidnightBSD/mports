@@ -7,10 +7,12 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of matchers for building test expressions
+WWW=		https://hamcrest.org/
 
 LICENSE=	unknown
 
 USES=		java
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}

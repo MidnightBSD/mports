@@ -13,7 +13,7 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	ant:devel/apache-ant
 
-USE_JAVA=	yes
+USES=		java
 
 NO_BUILD=	yes
 
