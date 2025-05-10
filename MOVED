@@ -492,3 +492,4 @@ www/subsonic-standalone||2025-02-28|Has expired: Abandonware, no longer maintain
 devel/py-dateutil|devel/py-python-dateutil|2025-03-23|Move devel/py-dateutil to devel/py-python-dateutil
 devel/sonarqube|devel/sonarqube-community|2025-03-28|Old version expired, switch to community
 java/bouncycastle15|java/bouncycastle|2025-04-03|deleted old version, moved this here.
+sysutils/linux-crashplan||2025-05-09|broken for awhile
