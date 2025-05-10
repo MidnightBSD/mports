@@ -14,9 +14,8 @@ LICENSE_NAME=	jai
 LICENSE_FILE=	${WRKSRC}/LICENSE-jai.txt
 LICENSE_PERMS=	auto-accept
 
-USES=		cpe zip
+USES=		cpe java zip
 CPE_VENDOR=	oracle
-USE_JAVA=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/./_/g}
 NO_BUILD=	yes
 

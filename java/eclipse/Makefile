@@ -1,5 +1,3 @@
-# Created by: Jonathan Chen <jonc@chen.org.nz>
-
 PORTNAME=	eclipse
 PORTVERSION=	4.16
 PORTREVISION=	1
@@ -56,14 +54,14 @@ BUILD_DEPENDS=	git:devel/git@lite \
 		zip:archivers/zip
 LIB_DEPENDS=	libsecret-1.so:security/libsecret \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
-USES=		compiler:c++11-lang gmake pkgconfig gnome
+USES=		compiler:c++11-lang java gmake pkgconfig gnome
 USE_GNOME=	gtk30
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	daemonblade
 GH_PROJECT=	eclipse-maven-repo
 
-USE_JAVA=	11+
+JAVA_VERSION=	11+
 
 DESKTOP_ENTRIES="Eclipse" \
 		"${COMMENT}" \

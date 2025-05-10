@@ -15,7 +15,7 @@ LICENSE_COMB=	multi
 
 NO_BUILD=	yes
 
-USE_JAVA=	yes
+USES=		java
 JAVA_VERSION=	8+
 SUB_FILES=	bluej
 

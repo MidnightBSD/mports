@@ -1,5 +1,6 @@
 PORTNAME=	jdom
 PORTVERSION=	1.1.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	java textproc
 MASTER_SITES=	http://www.jdom.org/dist/source/
@@ -13,9 +14,8 @@ LICENSE=	other
 
 RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:java/jaxen
 
-USE_JAVA=	yes
-JAVA_VERSION=	7+
-USE_ANT=	yes
+USES=         java:ant,run
+JAVA_VERSION= 8
 
 ALL_TARGET=	package
 .if !defined(NOPORTDOCS)
