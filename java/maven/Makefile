@@ -12,10 +12,9 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	mvn:java/maven-wrapper
 
-USES=		cpe
+USES=		cpe java
 CPE_VENDOR=	apache
 CPE_PRODUCT=	maven
-USE_JAVA=	yes
 
 DATADIR=	${JAVASHAREDIR}/${INSTANCE_ID}
 NO_ARCH=	yes
