@@ -119,7 +119,6 @@ SUBDIR += libsunacl
 SUBDIR += linux-c7-lttng-ust
 SUBDIR += linux-c7-numactl-libs
 SUBDIR += linux-c7-userspace-rcu
-SUBDIR += linux-crashplan
 SUBDIR += linuxfdisk
 SUBDIR += lmmon
 SUBDIR += lockfile-progs
