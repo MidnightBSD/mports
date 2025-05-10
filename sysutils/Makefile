@@ -239,6 +239,7 @@ SUBDIR += vm-bhyve
 SUBDIR += vpnc-scripts
 SUBDIR += wmbsdbatt
 SUBDIR += xe
+SUBDIR += xen-tools
 SUBDIR += xfburn
 SUBDIR += xfce4-battery-plugin
 SUBDIR += xfce4-bsdcpufreq-plugin
