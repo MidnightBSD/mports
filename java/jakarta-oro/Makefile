@@ -1,5 +1,6 @@
 PORTNAME=	jakarta-oro
 PORTVERSION=	2.0.8
+PORTREVISION=	1
 CATEGORIES=	java
 MASTER_SITES=	http://archive.apache.org/dist/jakarta/oro/
 
@@ -9,9 +10,7 @@ WWW=		https://jakarta.apache.org/oro/
 
 LICENSE=	apache1.1
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/ant:devel/apache-ant
-
-USE_JAVA=	yes
+USES=		java:ant,run
 
 PLIST=	${WRKDIR}/PLIST
 
