@@ -13,8 +13,7 @@ LICENSE=	apache2 bsd3 cddl epl lgpl2.1+ mit MPL20
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cpe zip
-USE_JAVA=	yes
+USES=		cpe java zip
 
 CONFLICTS_INSTALL=	gradle gradle62
 
