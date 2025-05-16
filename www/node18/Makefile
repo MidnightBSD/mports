@@ -91,6 +91,5 @@ post-configure:
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/node
-	${CP} ${PREFIX}/share/man/man1/node.1 ${PREFIX}/man/man1/
 
 .include <bsd.port.mk>
