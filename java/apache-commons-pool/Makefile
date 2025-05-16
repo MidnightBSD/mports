@@ -1,5 +1,3 @@
-# Created by: Anton Yudin <toha@toha.org.ua>
-
 PORTNAME=	commons-pool
 PORTVERSION=	2.11.1
 CATEGORIES=	java devel
@@ -9,12 +7,13 @@ DISTNAME=	${PORTNAME}2-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Commons Object-pooling API
+WWW=		https://commons.apache.org/proper/commons-pool/
 
 LICENSE=	apache2
 
 OPTIONS_DEFINE=	DOCS
 
-USE_JAVA=	yes
+USES=		java
 JAVA_VERSION=	8+
 NO_BUILD=	yes
 NO_ARCH=	yes
