@@ -1,6 +1,6 @@
 PORTNAME=	antlr
 PORTVERSION=	2.7.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel java
 MASTER_SITES=	https://www.antlr2.org/download/
 
@@ -11,13 +11,10 @@ WWW=		https://www.antlr2.org/
 LICENSE=	publicdom
 LICENSE_FILE= ${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS+=	javavm:java/javavmwrapper
-RUN_DEPENDS+=	javavm:java/javavmwrapper
+CONFLICTS=	pccts
 
-CONFLICTS=	pccts-[0-9]*
-
-USES=		compiler:c++11-lang gmake
-USE_JAVA=	yes
+USES=		compiler:c++11-lang gmake java
+USE_CXXSTD=	c++14
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}" CLASSPATH="${PORT_CLASSPATH}"
@@ -38,21 +35,10 @@ PORTDOCS=	ANTLRException.gif closure.gif cpp-runtime.html \
 		stream.splitter.gif streams.html subrule.gif trees.html \
 		vocab.html
 
-OPTIONS_DEFINE=	PYTHON DOCS
-OPTIONS_SUB=	yes
-
-PYTHON_USES=		python:2.7
-PYTHON_PORTDOCS=	python-runtime.html
+OPTIONS_DEFINE=	DOCS
 
 post-extract:
 	(cd ${WRKSRC} && ${CP} antlr.jar antlrall.jar)
-
-post-configure-PYTHON-on:
-	(cd ${WRKSRC}/lib/python && ${PYTHON_CMD} setup.py config)
-
-post-build-PYTHON-on:
-	(cd ${WRKSRC}/lib/python && ${PYTHON_CMD} setup.py build && \
-	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py ${WRKSRC}/lib/python)
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}
@@ -62,10 +48,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/lib/cpp/antlr/*.hpp \
 		${STAGEDIR}${PREFIX}/include/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/lib/cpp/src/libantlr.a ${STAGEDIR}${PREFIX}/lib
-	${MKDIR} ${DOCSDIR}
-	(cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
 
-do-install-PYTHON-on:
-	@(cd ${WRKSRC}/lib/python && ${PYTHON_CMD} setup.py install --root=${FAKE_DESTDIR})
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
