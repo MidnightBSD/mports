@@ -17,14 +17,12 @@ RUN_DEPENDS+=	javavm:java/javavmwrapper
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-USES=		cpe
+USES=		cpe java:ant,run
 USE_GITHUB=	yes
 GH_ACCOUNT=	javaee
 
 CPE_VENDOR=	sun
-USE_JAVA=	YES
-JAVA_VERSION=	8+
-USE_ANT=	YES
+JAVA_VERSION=	8
 NO_ARCH=	yes
 
 PLIST_FILES=	%%JAVAJARDIR%%/mail.jar
