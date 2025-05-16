@@ -1,5 +1,5 @@
 PORTNAME=	antlr4
-PORTVERSION=	4.12.0
+PORTVERSION=	4.13.1
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.antlr.org/download/
 DISTNAME=	antlr-${PORTVERSION}-complete
@@ -12,10 +12,9 @@ WWW=		https://www.antlr.org/
 
 LICENSE=	bsd3
 
+USES=		java
 NO_BUILD=	yes
 NO_ARCH=	yes
-USE_JAVA=	yes
-JAVA_VERSION=	8+
 INSTALL_JAR=	${DISTFILES}
 SUB_LIST=	INSTALL_JAR=${INSTALL_JAR}
 SUB_FILES=	antlr.sh
