@@ -288,8 +288,8 @@ snmpd:*:344:
 _metronome:*:345:
 ngircd:*:346:
 eturnal:*:347:
-# free: 348
-# free: 349
+davfs2:*:348:
+tempo:*:349:
 _sabnzbd:*:350:
 sonarr:*:351:
 radarr:*:352:
@@ -306,9 +306,9 @@ readarr:*:362:
 victoria-logs:*:363:
 elog:*:364:
 gotify:*:365:
-# free: 366
-# free: 367
-# free: 368
+opengist:*:366:
+velbustcpd:*:367:
+sshesame:*:368:
 # free: 369
 _wsdd:*:370:
 # free: 371
@@ -317,9 +317,9 @@ _wsdd:*:370:
 # free: 374
 # free: 375
 # free: 376
-# free: 377
-# free: 378
-# free: 379
+hostd:*:377:
+walletd:*:378:
+renterd:*:379:
 spoofdpi:*:380:
 hydroxide:*:381:
 # free: 382
@@ -440,8 +440,8 @@ openbao:*:482:
 # free: 497
 rustypaste:*:498:
 # free: 499
-# free: 500
-# free: 501
+qw:*:500:
+qwfwd:*:501:
 birdvty:*:502:
 # free: 503
 # free: 504
@@ -595,7 +595,7 @@ _xrdp:*:648:
 # free: 652
 # free: 653
 # free: 654
-# free: 655
+tinc:*:655:
 # free: 656
 # free: 657
 # free: 658
@@ -676,7 +676,7 @@ bopm:*:717:
 # free: 733
 # free: 734
 c-lightning:*:735:
-# free: 736
+zonemaster:*:736:
 # free: 737
 # free: 738
 # free: 739
@@ -725,7 +725,7 @@ monero:*:781:
 zeek:*:782:
 # free: 783
 # free: 784
-# free: 785
+stirlingpdf:*:785:
 # free: 786
 # free: 787
 # free: 788
@@ -746,7 +746,7 @@ clickhouse:*:800:
 # free: 803
 # free: 804
 # free: 805
-# free: 806
+act_runner:*:806:
 bosun:*:807:
 clixon:*:808:
 # free: 809
@@ -801,10 +801,10 @@ opensearch:*:855:
 # free: 858
 # free: 859
 plocate:*:860:
-# free: 861
-# free: 862
-# free: 863
-# free: 864
+rekor:*:861:
+timestamp-authority:*:862:
+trillian:*:863:
+mediamtx:*:864:
 z2m:*:865:
 vglusers:*:866:
 sqlpage:*:867:
