@@ -7,21 +7,20 @@ CATEGORIES=	deskutils java
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Just Journal for Java blogging app
+WWW=		https://www.justjournal.com/ \
+		https://github.com/JustJournal/justjournal-client-java
 
 LICENSE=	bsd2
 
-BUILD_DEPENDS+=	mvn:java/maven \
+BUILD_DEPENDS+=	mvn:java/maven39 \
 		javavm:java/javavmwrapper
 RUN_DEPENDS+=	javavm:java/javavmwrapper
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	laffer1
+GH_ACCOUNT=	JustJournal
 GH_PROJECT=	justjournal-client-java
 
-USES=		tar:bzip2
-USE_JAVA=	yes
-
-WRKSRC=		${WRKDIR}/justjournal-client-java-${PORTVERSION}
+USES=		java tar:bzip2
 
 SUB_FILES=	${PORTNAME}.sh
 PLIST_FILES+=	bin/${PORTNAME}
