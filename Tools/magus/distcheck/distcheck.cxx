@@ -39,43 +39,44 @@ using namespace pqxx;
 
 #include <sys/types.h>
 
-const string DB_HOST = "70.91.226.203";
 const string DB_DATABASE = "magus";
 
 int main(int argc, char *argv[])
 {
-	char query_def[1000];
-	int runid;
+    char query_def[1000];
+    int runid;
 
-	if (argc != 6)
-	{
-		std::cerr << "Usage: " << argv[0] << " <runid> <db_user> <db_pass> <src> <dest>" << endl;
-		exit(1);
-	}
+    if (argc != 7)
+    {
+        std::cerr << "Usage: " << argv[0] << " <runid> <db_host> <db_user> <db_pass> <src> <dest>" << endl;
+        exit(1);
+    }
 
-	runid = std::stoi(string(argv[1]));
-	if (runid < 1)
-	{
-		std::cerr << "Invalid run id" << endl;
-		exit(1);
-	}
+    runid = std::stoi(string(argv[1]));
+    if (runid < 1)
+    {
+        std::cerr << "Invalid run id" << endl;
+        exit(1);
+    }
 
-	try
-	{
-		string connect_string = "dbname=magus user=" + string(argv[2]) + " password=" + string(argv[3]) + " hostaddr=" + DB_HOST + " port=5432";
+    string db_host = argv[2];
 
-		connection C(connect_string);
-		connection C2(connect_string);
+    try
+    {
+        string connect_string = "dbname=magus user=" + string(argv[3]) + " password=" + string(argv[4]) + " hostaddr=" + db_host + " port=5432";
 
-		if (C.is_open())
-		{
-			cout << "We are connected to " << C.dbname() << endl;
-		}
-		else
-		{
-			cout << "We are not connected! Check username and password." << endl;
-			return -1;
-		}
+        connection C(connect_string);
+        connection C2(connect_string);
+
+        if (C.is_open())
+        {
+            cout << "We are connected to " << C.dbname() << endl;
+        }
+        else
+        {
+            cout << "We are not connected! Check username and password." << endl;
+            return -1;
+        }
 
 		sprintf(query_def,
 				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
@@ -94,7 +95,7 @@ int main(int argc, char *argv[])
 				string filename = row[4].as(string());
 
 				namespace fs = std::filesystem;
-				fs::path src{string(argv[4]) + "/" + filename};
+				fs::path src{string(argv[5]) + "/" + filename};
 				if (!fs::exists(src))
 				{
 					cout << "File " << src << " does not exist" << endl;
@@ -107,7 +108,7 @@ int main(int argc, char *argv[])
 					continue;
 				}
 
-				fs::path dest{string(argv[5]) + "/" + filename};
+				fs::path dest{string(argv[6]) + "/" + filename};
 				if (!fs::exists(dest))
 				{
 					bool result = fs::copy_file(src, dest);
@@ -142,7 +143,7 @@ int main(int argc, char *argv[])
 				string filename = c[4].as(string());
 
 				namespace fs = std::filesystem;
-				fs::path f{string(argv[5]) + "/" + filename};
+				fs::path f{string(argv[6]) + "/" + filename};
 				if (fs::exists(f))
 				{
 					cout << name << " , license: " << license << " , filename: " << filename << endl;
