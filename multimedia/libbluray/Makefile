@@ -1,8 +1,9 @@
 PORTNAME=	libbluray
-DISTVERSION=	1.3.3
+DISTVERSION=	1.3.4
 PORTEPOCH=	1
 CATEGORIES=	multimedia
-MASTER_SITES=	https://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSION}/
+MASTER_SITES=	https://get.videolan.org/${PORTNAME}/${DISTVERSION}/ \
+		https://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blu-Ray discs playback library for media players
@@ -14,10 +15,9 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
 USES=		cpe gnome libtool pathfix pkgconfig tar:bzip2
+CPE_VENDOR=	videolan
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
-
-CPE_VENDOR=	videolan
 
 GNU_CONFIGURE=	yes
 
@@ -33,19 +33,12 @@ JAVA_DESC=	Enable Blu-Ray Java support
 
 JAVA_CATEGORIES=		java
 JAVA_BUILD_DEPENDS=		ant:devel/apache-ant
+JAVA_USES=		java:build
 JAVA_CONFIGURE_ENABLE=		bdjava-jar
 JAVA_CONFIGURE_WITH=		java9
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MJAVA}
-USE_JAVA=	yes
-JAVA_VERSION=	8
-JAVA_BUILD=	yes
-MAKE_ENV=	JAVA_HOME=${JAVA_HOME} \
+JAVA_MAKE_ENV=	JAVA_HOME=${JAVA_HOME} \
 		PATH=${JAVA_HOME}/bin:${PATH}
-
-.endif
+JAVA_VARS=	JAVA_VERSION=8
 
 post-patch:
 	@${RLN} ${WRKSRC}/jni/linux ${WRKSRC}/jni/freebsd
