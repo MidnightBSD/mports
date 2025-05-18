@@ -36,6 +36,7 @@ using namespace pqxx;
 #include <stdlib.h>
 #include <unistd.h>
 #include <err.h>
+#include <getopt.h>
 
 #include <sys/types.h>
 
@@ -46,24 +47,78 @@ int main(int argc, char *argv[])
     char query_def[1000];
     int runid;
 
-    if (argc != 7)
-    {
-        std::cerr << "Usage: " << argv[0] << " <runid> <db_host> <db_user> <db_pass> <src> <dest>" << endl;
-        exit(1);
-    }
+	// Default values
+    string db_name = "magus";
+    string db_host = "127.0.0.1";
+    string db_user;
+    string db_pass;
 
-    runid = std::stoi(string(argv[1]));
-    if (runid < 1)
-    {
-        std::cerr << "Invalid run id" << endl;
-        exit(1);
-    }
+	int opt;
+	while ((opt = getopt(argc, argv, "d:h:U:P:")) != -1)
+	{
+		switch (opt)
+		{
+		case 'd':
+			db_name = optarg;
+			break;
+		case 'h':
+			db_host = optarg;
+			break;
+		case 'U':
+			db_user = optarg;
+			break;
+		case 'P':
+			db_pass = optarg;
+			break;
+		default:
+			std::cerr << "Usage: " << argv[0] << " -d <db_name> -h <db_host> -U <db_user> -P <db_pass> <runid> <src> <dest>" << endl;
+			exit(1);
+		}
+	}
 
-    string db_host = argv[2];
+	if (argc - optind != 3)
+	{
+		std::cerr << "Usage: " << argv[0] << " -d <db_name> -h <db_host> -U <db_user> -P <db_pass> <runid> <src> <dest>" << endl;
+		exit(1);
+	}
+
+	try
+	{
+		runid = std::stoi(string(argv[optind]));
+		if (runid < 1)
+		{
+			std::cerr << "Invalid run id" << endl;
+			exit(1);
+		}
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Invalid run id: " << argv[optind] << endl;
+		exit(1);
+	}
+
+	const string dsrc = argv[optind + 1];
+	string ddest = argv[optind + 2];
+
+	if (db_user.empty() || db_pass.empty())
+	{
+		std::cerr << "Database user and password are required." << endl;
+		exit(1);
+	}
+
+	int copied_count = 0;
+    int exists_count = 0;
+    int missing_count = 0;
+    int restricted_count = 0;
+    int failed_count = 0;
 
     try
     {
-        string connect_string = "dbname=magus user=" + string(argv[3]) + " password=" + string(argv[4]) + " hostaddr=" + db_host + " port=5432";
+        string connect_string = "dbname=" + db_name +
+                               " user=" + db_user +
+                               " password=" + db_pass +
+                               " hostaddr=" + db_host +
+                               " port=5432";
 
         connection C(connect_string);
         connection C2(connect_string);
@@ -95,35 +150,40 @@ int main(int argc, char *argv[])
 				string filename = row[4].as(string());
 
 				namespace fs = std::filesystem;
-				fs::path src{string(argv[5]) + "/" + filename};
+				fs::path src{string(dsrc) + "/" + filename};
 				if (!fs::exists(src))
 				{
 					cout << "File " << src << " does not exist" << endl;
+					missing_count++;
 					continue;
 				}
 
 				if (row[3].as(bool()))
 				{
 					cout << "File " << src << " is restricted; skipping file." << endl;
+					restricted_count++;
 					continue;
 				}
 
-				fs::path dest{string(argv[6]) + "/" + filename};
+				fs::path dest{string(ddest) + "/" + filename};
 				if (!fs::exists(dest))
 				{
 					bool result = fs::copy_file(src, dest);
 					if (!result)
 					{
 						cout << "Failed to copy source " << src << " to destination " << dest << endl;
+						failed_count++;
 					}
 					else
 					{
 						cout << "Copied source " << src << " to destination " << dest << endl;
+						copied_count++;
 					}
 				}
 				else
 				{
 					cout << "File " << dest << " already exists." << endl;
+					exists_count++;
 				}
 			}
 		}
@@ -143,7 +203,7 @@ int main(int argc, char *argv[])
 				string filename = c[4].as(string());
 
 				namespace fs = std::filesystem;
-				fs::path f{string(argv[6]) + "/" + filename};
+				fs::path f{string(ddest) + "/" + filename};
 				if (fs::exists(f))
 				{
 					cout << name << " , license: " << license << " , filename: " << filename << endl;
@@ -155,6 +215,13 @@ int main(int argc, char *argv[])
 	{
 		std::cerr << error.what() << endl;
 	}
+
+	cout << "\nSummary:" << endl;
+    cout << "Copied files: " << copied_count << endl;
+    cout << "Already existed: " << exists_count << endl;
+    cout << "Missing source: " << missing_count << endl;
+    cout << "Restricted: " << restricted_count << endl;
+    cout << "Failed to copy: " << failed_count << endl;
 
 	return 0;
 }
