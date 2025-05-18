@@ -1,7 +1,6 @@
 COMMENT = peer-to-peer network applications
 
 SUBDIR += ctorrent
-SUBDIR += frost
 SUBDIR += libtorrent
 SUBDIR += libutp
 SUBDIR += rtorrent
@@ -10,5 +9,6 @@ SUBDIR += transmission
 SUBDIR += transmission-components
 SUBDIR += transmission-remote-gui
 SUBDIR += xbt
+SUBDIR += xmrig
 
 .include <bsd.port.subdir.mk>

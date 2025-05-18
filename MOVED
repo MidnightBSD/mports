@@ -493,3 +493,4 @@ devel/py-dateutil|devel/py-python-dateutil|2025-03-23|Move devel/py-dateutil to 
 devel/sonarqube|devel/sonarqube-community|2025-03-28|Old version expired, switch to community
 java/bouncycastle15|java/bouncycastle|2025-04-03|deleted old version, moved this here.
 sysutils/linux-crashplan||2025-05-09|broken for awhile
+net-p2p/frost||2025-05-18|Has expired: Outdated version and unsupported upstream
