@@ -16,11 +16,10 @@ LICENSE=	apache2
 BUILD_DEPENDS=	mvn:java/maven-wrapper \
 		maven>0:java/maven
 
+USES=		java
 USE_GITHUB=	yes
 GH_ACCOUNT=	jeremylong
 GH_PROJECT=	DependencyCheck
-
-USE_JAVA=	yes
 
 NO_ARCH=	yes
 
