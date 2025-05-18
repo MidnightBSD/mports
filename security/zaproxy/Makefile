@@ -12,8 +12,7 @@ LICENSE=	apache2
 
 BUILD_DEPENDS=	gradle:devel/gradle
 
-USES=		gettext-runtime
-USE_JAVA=	yes
+USES=		gettext-runtime java
 
 USE_GITHUB=	yes
 
