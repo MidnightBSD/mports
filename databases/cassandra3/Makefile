@@ -1,5 +1,6 @@
 PORTNAME=	cassandra
-DISTVERSION=	3.11.11
+DISTVERSION=	3.11.14
+PORTREVISION=	1
 CATEGORIES=	databases java
 MASTER_SITES=	FREEBSD_LOCAL/nc:repo
 PKGNAMESUFFIX=	3
@@ -7,16 +8,15 @@ DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Highly scalable distributed database
+WWW=		https://cassandra.apache.org/
 
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
 
-USES=		cpe python
-USE_ANT=	yes
-USE_JAVA=	yes
-JAVA_VERSION=	1.8
+USES=		cpe java:ant,run python
+JAVA_VERSION=	8
 JAVA_VENDOR=	openjdk
 CPE_VENDOR=	apache
 
@@ -24,8 +24,7 @@ USE_RC_SUBR=	cassandra
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
-GH_PROJECT=	cassandra
-GH_TAGNAME=	0150ddc
+GH_TAGNAME=	c29ba30
 
 NO_TEST=	yes
 
@@ -73,6 +72,7 @@ SCRIPT_FILES=	cassandra \
 		sstableupgrade \
 		sstableutil \
 		sstableverify
+ANT_OPTS_LOCAL=	${ANT_OPTS} -Xmx512m
 
 post-patch:
 	@${CHMOD} ug+x ${WRKSRC}/pylib/cassandra-cqlsh-tests.sh
@@ -82,10 +82,10 @@ do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
 
 do-build-DOCS-on:
-	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocal.repository=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
 
 do-build-DOCS-off:
-	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} freebsd-stage
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocal.repository=${REPO_DIR} freebsd-stage
 
 post-build:
 .for f in ${SCRIPT_FILES}

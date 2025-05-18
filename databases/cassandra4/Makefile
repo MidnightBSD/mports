@@ -19,12 +19,11 @@ WWW=		https://cassandra.apache.org/
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+FETCH_DEPENDS=        ant:devel/apache-ant
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java \
 		netty>0:java/netty
 
-USES=		cpe python
-USE_JAVA=	yes
-USE_ANT=	yes
+USES=		cpe java:ant python
 USE_RC_SUBR=	cassandra
 NO_TEST=	yes
 
