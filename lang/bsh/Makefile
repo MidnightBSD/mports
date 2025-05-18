@@ -7,12 +7,11 @@ COMMENT=	Beanshell Java scripting language
 
 LICENSE=	apache2
 
+USES=		java:ant,run
+JAVA_VERSION=	8
 USE_GITHUB=	yes
 GH_ACCOUNT=	beanshell
 GH_PROJECT=	beanshell
-
-USE_JAVA=	8
-USE_ANT=	yes
 
 CONFLICTS_INSTALL=	schilyutils # bin/bsh
 
