@@ -1,8 +1,13 @@
     COMMENT = CAD tools
 
     SUBDIR += cascade
+    SUBDIR += digital
+    SUBDIR += fidocadj
     SUBDIR += gdsreader
+    SUBDIR += impact
     SUBDIR += libopencad
+    SUBDIR += logisim
+    SUBDIR += silice
     SUBDIR += sumo
     SUBDIR += uranium
     SUBDIR += veroroute
