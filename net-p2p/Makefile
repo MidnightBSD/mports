@@ -8,6 +8,7 @@ SUBDIR += shx
 SUBDIR += transmission
 SUBDIR += transmission-components
 SUBDIR += transmission-remote-gui
+SUBDIR += warpinator
 SUBDIR += xbt
 SUBDIR += xmrig
 
