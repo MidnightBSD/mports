@@ -1,7 +1,7 @@
---- Makefile.orig	2020-05-06 17:26:51 UTC
-+++ Makefile
-@@ -2,7 +2,7 @@
- include Makefile.common
+--- Makefile.orig	2023-09-26 22:22:20.000000000 -0400
++++ Makefile	2025-05-18 15:51:05.234772000 -0400
+@@ -4,7 +4,7 @@
+ $(info OS_NAME:$(OS_NAME), OS_ARCH:$(OS_ARCH))
  
  MVN:=mvn
 -SBT:=./sbt
@@ -9,42 +9,30 @@
  
  all: snappy
  
-@@ -25,7 +25,6 @@ BITSHUFFLE_UNPACKED:=$(TARGET)/bitshuffl
+@@ -17,7 +17,6 @@
+ # Change this variable to use a specific git commit
+ SNAPPY_GIT_REV:=$(SNAPPY_VERSION)
+ SNAPPY_UNPACKED:=$(TARGET)/snappy-extracted.log
+-SNAPPY_GIT_UNPACKED:=$(TARGET)/snappy-git-extracted.log
+ SNAPPY_CMAKE_CACHE=$(SNAPPY_OUT)/CMakeCache.txt
  
- $(BITSHUFFLE_ARCHIVE):
- 	@mkdir -p $(@D)
--	curl -L -o$@ https://github.com/kiyo-masui/bitshuffle/archive/$(BITSHUFFLE_VERSION).tar.gz
- 
- $(BITSHUFFLE_UNPACKED): $(BITSHUFFLE_ARCHIVE)
- 	$(TAR) xvfz $< -C $(TARGET)
-@@ -65,26 +64,25 @@ endif
- 
- $(SNAPPY_ARCHIVE):
- 	@mkdir -p $(@D)
--	curl -L -o$@ https://github.com/google/snappy/releases/download/$(SNAPPY_VERSION)/snappy-$(SNAPPY_VERSION).tar.gz
- 
- $(SNAPPY_UNPACKED): $(SNAPPY_ARCHIVE)
+ BITSHUFFLE_ARCHIVE:=$(TARGET)/bitshuffle-$(BITSHUFFLE_VERSION).tar.gz
+@@ -74,37 +73,28 @@
  	$(TAR) xvfz $< -C $(TARGET)
  	touch $@
  
 -$(SNAPPY_GIT_UNPACKED):
--	@mkdir -p $(SNAPPY_OUT)
++$(SNAPPY_CMAKE_CACHE): $(SNAPPY_UNPACKED)
+ 	@mkdir -p $(SNAPPY_OUT)
 -	rm -rf $(SNAPPY_SRC_DIR)
 -	@mkdir -p $(SNAPPY_SRC_DIR)
 -	git clone $(SNAPPY_GIT_REPO_URL) $(SNAPPY_SRC_DIR)
 -	git --git-dir=$(SNAPPY_SRC_DIR)/.git --work-tree=$(SNAPPY_SRC_DIR) checkout -b local/snappy-$(SNAPPY_VERSION) $(SNAPPY_GIT_REV)
+-	cd $(SNAPPY_SRC_DIR) && git submodule update --init
 -	touch $@
-+#$(SNAPPY_GIT_UNPACKED):
-+#	@mkdir -p $(SNAPPY_OUT)
-+#	rm -rf $(SNAPPY_SRC_DIR)
-+#	@mkdir -p $(SNAPPY_SRC_DIR)
-+#	git clone $(SNAPPY_GIT_REPO_URL) $(SNAPPY_SRC_DIR)
-+#	git --git-dir=$(SNAPPY_SRC_DIR)/.git --work-tree=$(SNAPPY_SRC_DIR) checkout -b local/snappy-$(SNAPPY_VERSION) $(SNAPPY_GIT_REV)
-+#	touch $@
- 
+-
 -$(SNAPPY_CMAKE_CACHE): $(SNAPPY_GIT_UNPACKED)
-+$(SNAPPY_CMAKE_CACHE): $(SNAPPY_UNPACKED)
- 	@mkdir -p $(SNAPPY_OUT)
+-	@mkdir -p $(SNAPPY_OUT)
  	cd $(SNAPPY_OUT) && cmake $(SNAPPY_CMAKE_OPTS) ../../$(SNAPPY_SRC_DIR)
  	touch $@
  
@@ -53,7 +41,17 @@
  
  snappy-header: $(SNAPPY_CMAKE_CACHE)
  
-@@ -100,7 +98,7 @@ $(TARGET)/jni-classes/org/xerial/snappy/
+ $(TARGET)/jni-classes/org/xerial/snappy/SnappyNative.class: $(SRC)/org/xerial/snappy/SnappyNative.java
+ 	@mkdir -p $(TARGET)/jni-classes
+-	$(JAVAC) -source 1.7 -target 1.7 -h $(SRC)/org/xerial/snappy/ -d $(TARGET)/jni-classes -sourcepath $(SRC) $<
++	$(JAVAC) -source 8 -target 8 -h $(SRC)/org/xerial/snappy/ -d $(TARGET)/jni-classes -sourcepath $(SRC) $<
+ 
+ $(SRC)/org/xerial/snappy/SnappyNative.h: $(TARGET)/jni-classes/org/xerial/snappy/SnappyNative.class
+ 
+ $(TARGET)/jni-classes/org/xerial/snappy/BitShuffleNative.class: $(SRC)/org/xerial/snappy/BitShuffleNative.java
+ 	@mkdir -p $(TARGET)/jni-classes
+-	$(JAVAC) -source 1.7 -target 1.7 -h $(SRC)/org/xerial/snappy/ -d $(TARGET)/jni-classes -sourcepath $(SRC) $<
++	$(JAVAC) -source 8 -target 8 -h $(SRC)/org/xerial/snappy/ -d $(TARGET)/jni-classes -sourcepath $(SRC) $<
  
  $(SRC)/org/xerial/snappy/BitShuffleNative.h: $(TARGET)/jni-classes/org/xerial/snappy/BitShuffleNative.class
  
@@ -62,13 +60,13 @@
  
  # aarch64 can use big-endian optimzied code
  ifeq ($(OS_ARCH),aarch64)
-@@ -184,6 +182,9 @@ linux64: jni-header
+@@ -201,6 +191,9 @@
+ 
  freebsd64:
  	$(MAKE) native OS_NAME=FreeBSD OS_ARCH=x86_64
- 
++
 +midnightbsd64:
 +	$(MAKE) native OS_NAME=MidnightBSD OS_ARCH=x86_64
-+
- # For ARM
- native-arm: linux-arm linux-armv6 linux-armv7 linux-android-arm
  
+ # For ARM
+ native-arm: linux-arm64 linux-android-arm linux-android-aarch64 linux-arm linux-armv6 linux-armv7 windows-aarch64
