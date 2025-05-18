@@ -10,7 +10,7 @@ COMMENT=	Detects vulnerabilities in running applications
 
 LICENSE=	apache2
 
-USE_JAVA=	yes
+USES=		java
 NO_ARCH=	yes
 NO_BUILD=	yes
 
