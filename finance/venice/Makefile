@@ -1,9 +1,7 @@
-# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-
 PORTNAME=	venice
-DISTVERSION=	0.751beta
+DISTVERSION=	0.752beta
 CATEGORIES=	finance java
-MASTER_SITES=	SF/mov/${PORTNAME}/0.751%20beta/ \
+MASTER_SITES=	SF/mov/${PORTNAME}/0.752%20beta/ \
 		SF/nemysisfreebsdp/:icons
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
 		${PORTNAME}_icons${EXTRACT_SUFX}:icons
@@ -11,11 +9,11 @@ DIST_SUBDIR=	java
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Merchant Of Venice, a stock market trading program
+WWW=		https://mov.sourceforge.net/
 
 LICENSE=	gpl2
 
-USES=		gnome
-USE_JAVA=	yes
+USES=		gnome java
 NO_BUILD=	yes
 
 PORTDOCS=	*
