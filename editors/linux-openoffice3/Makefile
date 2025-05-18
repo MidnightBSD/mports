@@ -81,16 +81,13 @@ RPMFILES= \
 
 WRKSRC=	${WRKDIR}/OOO330_m20_native_packed-1_en-US.${OO_BUILD}
 
-OPTIONS=	JAVA "Enable Java Support" off
+OPTIONS_DEFINE=	JAVA
+
+JAVA_USES=	java
 
 .include <bsd.port.pre.mk>
 
 LINPROCFS!=	/sbin/mount | ${GREP} linprocfs | ${AWK} '{print $1}'
-
-.if defined(WITH_JAVA)
-USE_JAVA=	yes
-JAVA_VERSION=	1.6
-.endif
 
 pre-fetch:
 .if !defined(PACKAGE_BUILDING)
