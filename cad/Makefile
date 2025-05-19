@@ -8,6 +8,7 @@
     SUBDIR += impact
     SUBDIR += libopencad
     SUBDIR += logisim
+    SUBDIR += rubygem-gdsii
     SUBDIR += silice
     SUBDIR += sumo
     SUBDIR += surelog
