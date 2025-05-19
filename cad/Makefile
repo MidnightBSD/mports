@@ -9,6 +9,7 @@
     SUBDIR += logisim
     SUBDIR += silice
     SUBDIR += sumo
+    SUBDIR += surelog
     SUBDIR += sweethome3d
     SUBDIR += uranium
     SUBDIR += veroroute
