@@ -4,6 +4,7 @@
     SUBDIR += digital
     SUBDIR += fidocadj
     SUBDIR += gdsreader
+    SUBDIR += gtkwave
     SUBDIR += impact
     SUBDIR += libopencad
     SUBDIR += logisim
