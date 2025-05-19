@@ -49,6 +49,7 @@ SUBDIR += bsddialog
 SUBDIR += bugzilla44
 SUBDIR += bugzilla50
 SUBDIR += bullet
+SUBDIR += capnproto
 SUBDIR += cargo-c
 SUBDIR += catch
 SUBDIR += ccache
