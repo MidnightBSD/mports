@@ -20,7 +20,7 @@ PORT_MIMEDIRS=	${LOCALBASE}/share/applications
 
 MIMEDIRS=	${PORT_MIMEDIRS}
 
-SUB_FILES=	pkg-deinstall pkg-install
+SUB_FILES=	pkg-deinstall
 SUB_LIST=	MIMEDIRS="${MIMEDIRS}"
 
 post-install:
