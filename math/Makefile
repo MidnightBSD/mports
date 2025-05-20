@@ -112,6 +112,7 @@ SUBDIR += tomsfastmath
 SUBDIR += vtk9
 SUBDIR += xfce4-calculator-plugin
 SUBDIR += xtensor
+SUBDIR += yices
 SUBDIR += zarray
 
 .include <bsd.port.subdir.mk>
