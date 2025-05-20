@@ -21,8 +21,8 @@ pre-build:
 	${LN} -sf /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_VER_SHORT}
 
 post-fake:
-	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/bin/rdiscount \
+	-${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/bin/rdiscount \
 		${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/rdiscount-${DISTVERSION}/rdoc/ext/Makefile.html
-	${RM} ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/rdiscount-${DISTVERSION}/rdoc/ext/Makefile.html.bak
+	-${RM} ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/rdiscount-${DISTVERSION}/rdoc/ext/Makefile.html.bak
 
 .include <bsd.port.mk>
