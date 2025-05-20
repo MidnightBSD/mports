@@ -16,6 +16,7 @@
     SUBDIR += surelog
     SUBDIR += sweethome3d
     SUBDIR += tochnog
+    SUBDIR += uhdm
     SUBDIR += uranium
     SUBDIR += veroroute
     SUBDIR += xcircuit
