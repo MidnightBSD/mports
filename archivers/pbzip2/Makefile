@@ -13,7 +13,7 @@ LICENSE=	bsd4
 MAKE_ARGS=	CFLAGS="${CXXFLAGS}" CC="${CXX}"
 
 PLIST_FILES=	bin/pbzip2 bin/pbunzip2 \
-		man/man1/pbzip2.1.gz man/man1/pbunzip2.1.gz
+		share/man/man1/pbzip2.1.gz share/man/man1/pbunzip2.1.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,PRI[iu]MAX, & ,g' ${WRKSRC}/pbzip2.cpp \
