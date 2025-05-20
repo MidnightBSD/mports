@@ -17,10 +17,10 @@ pre-fake:
 	${LN} -sf ${RUBY} ${FAKE_DESTDIR}${RUBY}
 
 post-install:
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+	-${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/http_parser.rb-${PORTVERSION}/rdoc/ext/ruby_http_parser/Makefile.html \
 		${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/http_parser.rb-${PORTVERSION}/ri/ext/ruby_http_parser/page-Makefile.ri
-	${RM} ${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/http_parser.rb-${PORTVERSION}/rdoc/ext/ruby_http_parser/Makefile.html.bak \
+	-${RM} ${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/http_parser.rb-${PORTVERSION}/rdoc/ext/ruby_http_parser/Makefile.html.bak \
 		${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/http_parser.rb-${PORTVERSION}/ri/ext/ruby_http_parser/page-Makefile.ri.bak
 
 .include <bsd.port.mk>
