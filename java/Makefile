@@ -32,6 +32,7 @@ SUBDIR += jakarta-commons-primitives
 SUBDIR += jakarta-oro
 SUBDIR += jamvm
 SUBDIR += java-zoneinfo
+SUBDIR += java3d
 SUBDIR += javamail
 SUBDIR += javavmwrapper
 SUBDIR += jaxen
