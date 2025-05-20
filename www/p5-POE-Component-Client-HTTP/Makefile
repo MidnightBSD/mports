@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	POE component for non-blocking/concurrent HTTP queries
 WWW=		https://metacpan.org/release/POE-Component-Client-HTTP
 
-LICENSE=	artitsic gpl+
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
