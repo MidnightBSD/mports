@@ -206,6 +206,7 @@ SUBDIR += jech-dht
 SUBDIR += jenkins
 SUBDIR += jenkins-lts
 SUBDIR += jetbrains-clion
+SUBDIR += jetbrains-pty4j
 SUBDIR += jna
 SUBDIR += json-c
 SUBDIR += json-glib
