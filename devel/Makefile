@@ -208,6 +208,7 @@ SUBDIR += jenkins
 SUBDIR += jenkins-lts
 SUBDIR += jetbrains-clion
 SUBDIR += jetbrains-pty4j
+SUBDIR += jetbrains-sqlite
 SUBDIR += jna
 SUBDIR += json-c
 SUBDIR += json-glib
