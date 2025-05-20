@@ -18,7 +18,7 @@ pre-build:
 	${LN} -sf /usr/local/bin/ruby${RUBY_VER_SHORT} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_VER_SHORT}
 
 post-fake:
-	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/hpricot-0.8.6/rdoc/ext/fast_xs/Makefile.html \
+	-${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/hpricot-0.8.6/rdoc/ext/fast_xs/Makefile.html \
 		${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/hpricot-0.8.6/rdoc/ext/hpricot_scan/Makefile.html
 	-${RM} ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/hpricot-0.8.6/rdoc/ext/hpricot_scan/Makefile.html.bak \
 		${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/doc/hpricot-0.8.6/rdoc/ext/fast_xs/Makefile.html.bak
