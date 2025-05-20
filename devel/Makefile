@@ -87,6 +87,7 @@ SUBDIR += dbus-glib
 SUBDIR += dconf
 SUBDIR += dconf-editor
 SUBDIR += dee
+SUBDIR += delve
 SUBDIR += desktop-file-utils
 SUBDIR += dev86
 SUBDIR += devhelp
