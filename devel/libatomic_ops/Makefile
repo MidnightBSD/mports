@@ -5,6 +5,7 @@ MASTER_SITES=	https://github.com/ivmai/libatomic_ops/releases/download/v${DISTVE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Atomic operations access library
+WWW=		https://github.com/ivmai/libatomic_ops
 
 LICENSE=	bsd2 gpl2
 LICENSE_COMB=	multi
