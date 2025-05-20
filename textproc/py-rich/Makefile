@@ -17,6 +17,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markdown-it-py>=2.2.0:textproc/py-markdown-i
 		${PYTHON_PKGNAMEPREFIX}pygments>=2.13.0:textproc/py-pygments@${PY_FLAVOR}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		python
 USE_PYTHON=	autoplist pep517 pytest
 USE_GITHUB=	yes
