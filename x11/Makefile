@@ -125,6 +125,7 @@ SUBDIR += pixman
 SUBDIR += plasma-wayland-protocols
 SUBDIR += py-python-xapp
 SUBDIR += py-xcffib
+SUBDIR += py-xdot
 SUBDIR += qimageblitz
 SUBDIR += qt5-qev
 SUBDIR += qt5-x11extras
