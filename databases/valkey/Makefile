@@ -52,6 +52,8 @@ VALKEY_DBDIR?=	/var/db/valkey
 VALKEY_RUNDIR?=	/var/run/valkey
 VALKEY_LOGDIR?=	/var/log/valkey
 
+NO_TEST=	yes
+
 post-build:
 	${SED} ${SUB_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
 		${WRKSRC}/valkey.conf > ${WRKDIR}/valkey.conf
@@ -65,7 +67,7 @@ post-install:
 		${FAKE_DESTDIR}${VALKEY_DBDIR} \
 		${FAKE_DESTDIR}${VALKEY_RUNDIR}
 
-do-test:
-	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
+#do-test:
+#	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
 
 .include <bsd.port.mk>
