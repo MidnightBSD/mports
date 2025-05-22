@@ -14,6 +14,7 @@ LICENSE=	other
 MAKE_ENV=	LANG=ja
 MAKE_ARGS=	CC="${CC}" CONFDIR="${PREFIX}/etc" \
 		MANTOP="\$$(DESTDIR)${PREFIX}/share/man"
+CONFLICTS_INSTALL=	fd-find # bin/fd
 
 DOCS_EN=	FAQ.eng \
 		LICENSES.eng \
@@ -27,6 +28,8 @@ DOCS_JA=	FAQ \
 		TECHKNOW \
 		ToAdmin
 
+OPTIONS_DEFINE=	DOCS
+
 post-configure:
 	${REINPLACE_CMD} -E -e 's|^(#[[:space:]]*define[[:space:]]+EXTENDCCOPT[[:space:]]+"([^"]+ )?)-O(["[:space:]])|\1${CFLAGS}\3|' ${WRKSRC}/machine.h
 
@@ -36,15 +39,15 @@ post-install:
 	if [ ! -f ${PREFIX}/etc/fd2rc ]; then \
 		${CP} -p ${PREFIX}/etc/fd2rc.sample ${PREFIX}/etc/fd2rc; \
 	fi
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${MKDIR} ${PREFIX}/share/doc/ja/${PORTNAME}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/ja/${PORTNAME}
 	@for i in ${DOCS_EN}; do \
-		${INSTALL_DATA} ${WRKSRC}/$$i ${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$$i ${FAKE_DESTDIR}${DOCSDIR}; \
 	done
 	@for i in ${DOCS_JA}; do \
-		${INSTALL_DATA} ${WRKSRC}/$$i ${PREFIX}/share/doc/ja/${PORTNAME}; \
+		${INSTALL_DATA} ${WRKSRC}/$$i ${FAKE_DESTDIR}${PREFIX}/share/doc/ja/${PORTNAME}; \
 	done
-.endif
 
 .include <bsd.port.mk>
