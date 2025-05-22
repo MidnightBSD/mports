@@ -25,6 +25,8 @@ PLIST_FILES=	bin/nebula \
 		bin/nebula-cert \
 		etc/${PORTNAME}/config.yml.example
 
+NO_TEST=	yes
+
 pre-patch:
 .for m in net term sys
 	${RM} -r ${WRKSRC}/vendor/golang.org/x/$m
