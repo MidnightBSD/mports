@@ -32,7 +32,6 @@ SUBDIR += hicolor-icon-theme
 SUBDIR += hwdata
 SUBDIR += iso-codes
 SUBDIR += jishyo
-SUBDIR += ldconfig_compat
 SUBDIR += localedata
 SUBDIR += mate-user-guide
 SUBDIR += mbuffer
