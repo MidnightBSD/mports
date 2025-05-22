@@ -360,6 +360,8 @@ GROUPS=		${LOKI_GROUP} ${PROMTAIL_GROUP}
 
 PLIST_SUB=	${SUB_LIST}
 
+NO_TEST=	yes
+
 post-extract:
 	@${RLN} ${WRKSRC_googleapis_google_cloud_go} ${WRKSRC}/vendor/cloud.google.com/go
 	@${RM} -r ${WRKSRC}/vendor/cloud.google.com/go/bigtable
