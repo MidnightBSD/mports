@@ -10,30 +10,21 @@ COMMENT=	Powerful text mode based programming IDE
 LICENSE=	gpl2
 
 OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_SUB=	yes
 
 USES=		tar:bzip2 gmake iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG}
 
-.include <bsd.mport.options.mk>
+PORTDOCS=	FAQ README
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=--with-libintl-prefix=${LOCALBASE}
-PLIST_SUB=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB=	NLS="@comment "
-.endif
+NLS_USES=		gettext
+NLS_CONFIGURE_ARGS=--with-libintl-prefix=${LOCALBASE}
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|strndup|my_strndup|' ${WRKSRC}/parser/src/parser.c \
 		${WRKSRC}/parser/src/strfn.c ${WRKSRC}/parser/include/strfn.h
-
-.if ${PORT_OPTIONS:MDOCS}
-post-install:
-	@${MKDIR} ${DOCSDIR}
-	@(cd ${WRKSRC} ; ${INSTALL_DATA} FAQ README ${DOCSDIR})
-.endif
 
 .include <bsd.port.mk>
