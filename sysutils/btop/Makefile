@@ -20,6 +20,6 @@ GH_ACCOUNT=	aristocratos
 MAKE_ARGS+=	STRIP=true ADDFLAGS="${CXXFLAGS} ${LDFLAGS}" VERBOSE=true
 
 post-fake:
-	${CP} ${WRKSRC}/btop.1 ${PREFIX}/share/man/man1/btop.1.gz
+	-${CP} ${WRKSRC}/btop.1 ${FAKE_DESTDIR}${TRUE_PREFIX}/share/man/man1/btop.1
 
 .include <bsd.port.mk>
