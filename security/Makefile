@@ -92,7 +92,6 @@ SUBDIR += linux-c7-nss
 SUBDIR += linux-c7-openssl-devel
 SUBDIR += linux-c7-p11-kit
 SUBDIR += linux-c7-trousers
-SUBDIR += linux-pam-docs
 SUBDIR += linux-rl9-ca-certificates
 SUBDIR += linux-rl9-cyrus-sasl2
 SUBDIR += linux-rl9-gnupg
