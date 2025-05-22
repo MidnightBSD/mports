@@ -1,26 +1,26 @@
-
-
 PORTNAME=	mdf2iso
 PORTVERSION=	0.3.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	DEBIAN
-DISTFILES=	${PORTNAME}_${PORTVERSION}.orig.tar.gz ${PORTNAME}_${PORTVERSION}-${DEBIANVERSION}.debian.tar.xz  
+DISTFILES=	${PORTNAME}_${PORTVERSION}.orig.tar.gz ${PORTNAME}_${PORTVERSION}-${DEBIANVERSION}.debian.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Alcohol 120% to ISO converter
+WWW=		https://BSDforge.com/projects/sysutils/mdf2iso/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 DEBIANVERSION=	2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 GNU_CONFIGURE=	yes
 
-PLIST_FILES=	bin/${PORTNAME} man/man1/${PORTNAME}.1.gz
+PLIST_FILES=	bin/${PORTNAME} share/man/man1/${PORTNAME}.1.gz
 
 INSTALL_TARGET=	install-strip
 
 post-install:
-		${INSTALL_MAN} ${WRKDIR}/debian/${PORTNAME}.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+		${INSTALL_MAN} ${WRKDIR}/debian/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
