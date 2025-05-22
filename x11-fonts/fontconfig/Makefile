@@ -11,6 +11,7 @@ WWW=		https://www.freedesktop.org/wiki/Software/fontconfig/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	python3:lang/python3
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libexpat.so:textproc/expat2
 
@@ -25,7 +26,7 @@ SHEBANG_FILES=	conf.d/link_confs.py \
 		fc-lang/fc-lang.py
 
 TEST_TARGET=	test
-SUB_FILES=	pkg-install
+SUB_FILES=	pkg-install pkg-message
 SUB_LIST=	PREFIX=${PREFIX}
 
 # Custom configuration variables
