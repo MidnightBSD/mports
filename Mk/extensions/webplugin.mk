@@ -167,9 +167,9 @@ PLIST_FILES+=	${d}/${l}
 _USES_install+=	600:webplugin-post-install
 webplugin-post-install:
 .  for d in ${_WEBPLUGIN_LINKFARMS}
-	${MKDIR} ${STAGEDIR}${d}
+	${MKDIR} ${FAKE_DESTDIR}${d}
 .    for l in ${WEBPLUGIN_FILES}
-	${LN} -sf ${l:S,^,${WEBPLUGIN_DIR}/,} ${STAGEDIR}${d}/
+	${LN} -sf ${l:S,^,${WEBPLUGIN_DIR}/,} ${FAKE_DESTDIR}${d}/
 .    endfor
 .  endfor
 .endif
