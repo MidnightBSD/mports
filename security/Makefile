@@ -35,7 +35,6 @@ SUBDIR += duo
 SUBDIR += easy-rsa
 SUBDIR += fakeroot
 SUBDIR += firehol-ip-list
-SUBDIR += firewalk
 SUBDIR += gcr
 SUBDIR += gcr3
 SUBDIR += gnome-keyring
