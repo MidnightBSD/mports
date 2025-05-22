@@ -1,6 +1,5 @@
 COMMENT = Miscellaneous utilities
 
-SUBDIR += buffer
 SUBDIR += chef
 SUBDIR += chmlib
 SUBDIR += cinnamon-translations
