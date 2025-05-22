@@ -1,5 +1,3 @@
-
-
 PORTNAME=	openct
 PORTVERSION=	0.6.20
 PORTREVISION=	1
@@ -8,12 +6,13 @@ MASTER_SITES=	SF/opensc/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Middleware framework for smart card terminals
+WWW=		https://github.com/OpenSC/openct
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
+LIB_DEPENDS=	libltdl.so:devel/libltdl
 
-OPTIONS_DEFINE=	PCSC DOCS
+OPTIONS_DEFINE=	PCSC DOCS EXAMPLES
 PCSC_DESC=	Enable PC/SC support
 
 GNU_CONFIGURE=	yes
@@ -32,7 +31,7 @@ CONFIGURE_ARGS=	--localstatedir=/var --enable-usb
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if ${OSVERSION} >= 4016
 CONFIGURE_ENV+=	LIBUSB_CFLAGS="-I/usr/include" \
@@ -42,7 +41,7 @@ CONFIGURE_ARGS+=--enable-usb
 .endif
 
 .if ${PORT_OPTIONS:MPCSC}
-LIB_DEPENDS+=	libpcsclite.so:${PORTSDIR}/devel/pcsc-lite
+LIB_DEPENDS+=	libpcsclite.so:devel/pcsc-lite
 CONFIGURE_ARGS+=--enable-pcsc
 PLIST_SUB+=	PCSC=""
 .else
