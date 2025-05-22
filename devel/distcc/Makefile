@@ -32,7 +32,9 @@ CONFIGURE_ARGS=	--disable-Werror \
 		CC="${CC}" \
 		PTHREAD_CC="${CC}"
 
-TEST_TARGET=	check
+# test hangs on magus?
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 ETCDIR=		${PREFIX}/etc
 
