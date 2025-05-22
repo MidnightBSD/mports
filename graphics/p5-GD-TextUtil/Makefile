@@ -17,4 +17,7 @@ RUN_DEPENDS=	p5-GD>=0:graphics/p5-GD
 USES=		perl5
 USE_PERL5=	configure
 
+#magus issues
+NO_TEST=	yes
+
 .include <bsd.port.mk>
