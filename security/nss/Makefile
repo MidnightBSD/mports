@@ -15,6 +15,7 @@ BUILD_DEPENDS_powerpc64le=	as:devel/binutils
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
+RUN_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 TEST_DEPENDS=	bash:shells/bash
 
 USES=		cpe gmake perl5
