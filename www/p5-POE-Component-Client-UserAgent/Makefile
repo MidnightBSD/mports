@@ -18,6 +18,7 @@ RUN_DEPENDS=	p5-POE>=0:devel/p5-POE \
 		p5-ParallelUserAgent>=0:www/p5-ParallelUserAgent
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
