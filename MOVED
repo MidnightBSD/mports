@@ -494,3 +494,4 @@ devel/sonarqube|devel/sonarqube-community|2025-03-28|Old version expired, switch
 java/bouncycastle15|java/bouncycastle|2025-04-03|deleted old version, moved this here.
 sysutils/linux-crashplan||2025-05-09|broken for awhile
 net-p2p/frost||2025-05-18|Has expired: Outdated version and unsupported upstream
+misc/buffer|misc/mbuffer|2024-05-22|Has expired: No upstream updates since 1995.  Switch to misc/mbuffer
