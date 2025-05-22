@@ -6,7 +6,7 @@ CATEGORIES=			databases
 MASTER_SITES=			SAMBA
 PKGNAMESUFFIX=			1410
 
-MAINTAINER=			samba@FreeBSD.org
+MAINTAINER=			ports@MidnightBSD.org
 COMMENT=			Trivial Database
 WWW=		https://tdb.samba.org/
 
@@ -58,6 +58,9 @@ MAKE_ENV+=			NOCOLOR=yes
 # scripts are generated dynamically, suppress errors with lld >= 17 due to these
 # undefined symbols.
 LDFLAGS+=			-Wl,--undefined-version
+
+#magus crash
+NO_TEST=	yes
 
 post-patch:
 				@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${PKGCONFIGDIR}|g' \
