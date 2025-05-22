@@ -16,4 +16,8 @@ USES=		meson pkgconfig tar:xz
 MESON_ARGS=	-Dtests=false
 NO_ARCH=	yes
 
+post-install:
+	${MKDIR} ${PREFIX}/share/pkgconfig/
+	-${CP} ${PREFIX}/libdata/pkgconfig/wayland-protocols.pc ${PREFIX}/share/pkgconfig/wayland-protocols.pc
+
 .include <bsd.port.mk>
