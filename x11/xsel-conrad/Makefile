@@ -1,5 +1,3 @@
-# Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
-
 PORTNAME=	xsel
 PORTVERSION=	1.2.0
 PORTREVISION=	1
@@ -9,6 +7,7 @@ PKGNAMESUFFIX=	-conrad
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Access X selection from command line
+WWW=		https://www.vergenet.net/~conrad/software/xsel/
 
 LICENSE=	xsel-conrad
 LICENSE_GROUPS=	COPYFREE
@@ -21,14 +20,14 @@ CONFLICTS_INSTALL=	xsel-[0-9]*
 USES=		autoreconf localbase xorg
 USE_XORG=	x11 xt
 GNU_CONFIGURE=	yes
-PLIST_FILES=	bin/${PORTNAME} man/man1/${PORTNAME}.1.gz
+PLIST_FILES=	bin/${PORTNAME} share/man/man1/${PORTNAME}.1.gz
 PORTDOCS=	ChangeLog README
 
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1x ${STAGEDIR}${MAN1PREFIX}/man/man1/${PORTNAME}.1
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1x ${PREFIX}/share/man/man1/${PORTNAME}.1
 
 do-install-DOCS-on:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \
