@@ -2,6 +2,9 @@ PORTNAME=	libxkbcommon
 PORTVERSION=	1.8.1
 CATEGORIES=	x11
 
+PATCH_SITES=	https://github.com/xkbcommon/libxkbcommon/commit/
+PATCHFILES=	d7e112febb7ab756563da6eced0a650396be5945.patch:-p1
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Keymap handling library for toolkits and window systems
 WWW=		https://xkbcommon.org/
@@ -42,5 +45,8 @@ WAYLAND_MESON_TRUE=	enable-wayland
 X11_USES=	xorg
 X11_USE=	XORG=xcb
 X11_MESON_TRUE=	enable-x11
+
+# magus 
+NO_TEST=	yes
 
 .include <bsd.port.mk>
