@@ -99,11 +99,11 @@ post-install:
 	${INSTALL_DATA} ${WRKDIR}/plugins.conf \
 		${STAGEDIR}${ETCDIR}/plugins.conf.sample
 	(cd ${WRKSRC}/node/blib/bindoc; \
-		${INSTALL_MAN} munin-node-configure.1 munin-node.1 munin-run.1 ${STAGEDIR}${MAN1PREFIX}/share/man/man1; \
+		${INSTALL_MAN} munin-node-configure.1 munin-node.1 munin-run.1 ${STAGEDIR}${PREFIX}/share/man/man1; \
 	)
 	(cd ${WRKSRC}/build/doc; \
-		${INSTALL_MAN} munin-node.conf.5 ${STAGEDIR}${MAN5PREFIX}/share/man/man5; \
-		${INSTALL_MAN} munin.8 ${STAGEDIR}${MAN8PREFIX}/share/man/man8; \
+		${INSTALL_MAN} munin-node.conf.5 ${STAGEDIR}${PREFIX}/share/man/man5; \
+		${INSTALL_MAN} munin.8 ${STAGEDIR}${PREFIX}/share/man/man8; \
 	)
 	${INSTALL_DATA} ${FILESDIR}/newsyslog ${STAGEDIR}${ETCDIR}/munin-node.newsyslog
 
