@@ -1,5 +1,3 @@
-
-
 PORTNAME=	adamem
 PORTVERSION=	1.0
 PORTREVISION=	3
@@ -8,7 +6,8 @@ MASTER_SITES=	http://www.komkon.org/~dekogel/files/coleco/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	ADAMEm is a portable Coleco ADAM and ColecoVision emulator
+COMMENT=	Portable Coleco ADAM and ColecoVision emulator
+WWW=		https://www.komkon.org/~dekogel/adamem.html
 
 LICENSE=	ADAMEm
 LICENSE_NAME=	ADAMEm Software License
@@ -25,6 +24,9 @@ ALL_TARGET=	x
 
 PROGDIR=	${PREFIX}/${PORTNAME}
 
+OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e "s,%%DATADIR%%,${DATADIR}," ${WRKSRC}/ADAMEm.c \
 		${WRKSRC}/Coleco.c
@@ -37,9 +39,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/OS7.rom ${PROGDIR}
 	${INSTALL_DATA} ${WRKSRC}/WP.rom ${PROGDIR}
 	${INSTALL_DATA} ${WRKSRC}/EOS.rom ${PROGDIR}
-.ifndef(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/adamem.txt ${DOCSDIR}
-.endif
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/adamem.txt ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
