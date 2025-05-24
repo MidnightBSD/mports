@@ -1,5 +1,3 @@
-
-
 PORTNAME=	st
 PORTVERSION=	1.9
 PORTREVISION=	2
@@ -8,16 +6,20 @@ MASTER_SITES=	SF/${PORTNAME}ate-threads/${PORTNAME}ate-threads/${PORTVERSION}
 
 MAINTAINER=	ports@midnightBSD.org
 COMMENT=	State Threads Library for Internet Applications
+WWW=		https://state-threads.sourceforge.net/
+
 LICENSE=	mpl
 
+USES=		uidfix
 USE_LDCONFIG=	yes
+ONLY_FOR_ARCHS=	i386 amd64
 
 DOCS=		fig.gif notes.html reference.html st.html \
 		timeout_heap.txt
 EXAMPLES=	Makefile README error.c lookupdns.c proxy.c \
 		res.c server.c
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-patch:
 	@${RM} -f ${WRKSRC}/Makefile ${WRKSRC}/examples/Makefile
@@ -25,14 +27,11 @@ post-patch:
 	@${CP} ${FILESDIR}/Makefile.examples ${WRKSRC}/examples/Makefile
 
 post-install:
-	@${CP} ${WRKSRC}/public.h ${PREFIX}/include/st.h
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/docs/,} ${DOCSDIR}/
-.endif
-.if ${PORT_OPTIONS:MEXAMPLES}
-	@${MKDIR} ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${EXAMPLES:S,^,${WRKSRC}/examples/,} ${EXAMPLESDIR}/
-.endif
+	${INSTALL_DATA} ${WRKSRC}/public.h ${STAGEDIR}${PREFIX}/include/st.h
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/docs/,} ${STAGEDIR}${DOCSDIR}/
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${EXAMPLES:S,^,${WRKSRC}/examples/,} \
+		${STAGEDIR}${EXAMPLESDIR}/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
