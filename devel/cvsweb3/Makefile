@@ -35,6 +35,8 @@ CPE_VENDOR=	freebsd
 NO_BUILD=	yes
 NO_ARCH=	yes
 
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
 .include <bsd.port.pre.mk>
 
 # Specify where your repository belongs.
@@ -97,14 +99,12 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/css/*.css ${PREFIX}/${CSSDIR}/cvsweb/
 	${MKDIR} ${PREFIX}/share/enscript/hl
 	${INSTALL_DATA} ${WRKSRC}/enscript/*.st ${PREFIX}/share/enscript/hl/
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 .for f in ChangeLog INSTALL NEWS README TODO
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
 .endfor
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/samples/* ${EXAMPLESDIR}/
-.endif
 
 post-install:
 	${ECHO_CMD} "@unexec rmdir -p %D/${CGIDIR} %D/${ICONSDIR} %D/${CSSDIR} 2>/dev/null || true" >> ${TMPPLIST}
