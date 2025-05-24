@@ -38,4 +38,4 @@ share/applications/btop.desktop
 %%DATADIR%%/themes/whiteout.theme
 share/icons/hicolor/48x48/apps/btop.png
 share/icons/hicolor/scalable/apps/btop.svg
-share/man/man1/btop.1.gz
+@comment share/man/man1/btop.1.gz
