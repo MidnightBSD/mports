@@ -17,6 +17,7 @@ USE_LDCONFIG=	${PREFIX}/lib/javaservicewrapper/lib
 DATADIR=	${PREFIX}/lib/${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
 
 .include <bsd.mport.options.mk>
 
