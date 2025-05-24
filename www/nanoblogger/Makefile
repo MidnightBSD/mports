@@ -41,11 +41,11 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/welcome-to-nb.txt ${STAGEDIR}${DATADIR}
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for doc in ChangeLog README TODO
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/html
-	${INSTALL_DATA} ${WRKSRC}/docs/nanoblogger.html ${STAGEDIR}${DOCSDIR}/html
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/docs/nanoblogger.html ${FAKE_DESTDIR}${DOCSDIR}/html
 
 .include <bsd.port.mk>
