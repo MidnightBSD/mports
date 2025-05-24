@@ -1,5 +1,3 @@
-
-
 PORTNAME=	xsel
 PORTVERSION=	0.04.1
 PORTREVISION=	4
@@ -19,7 +17,7 @@ USE_XORG=	xmu xaw xt xorgproto xkbfile
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lXt -lXaw -lX11 -lXmu
 
-PLIST_FILES=	bin/${PORTNAME} man/man1/xsel.1.gz
+PLIST_FILES=	bin/${PORTNAME} share/man/man1/xsel.1.gz
 PORTDOCS=	${PORTNAME}.html
 
 OPTIONS_DEFINE=	DOCS
@@ -30,7 +28,7 @@ do-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.man \
-		${MAN1PREFIX}/man/man1/${PORTNAME}.1
+		${PREFIX}/share/man/man1/${PORTNAME}.1
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
 
