@@ -1,10 +1,3 @@
-# ex:ts=8
-# Ports collection makefile for:	nanoblogger
-# Date created:			Jul 15, 2004
-# Whom:				ijliao
-#
-
-
 PORTNAME=	nanoblogger
 PORTVERSION=	3.4.2
 PORTREVISION=	1
@@ -13,13 +6,20 @@ MASTER_SITES=	http://nanoblogger.sourceforge.net/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small weblog engine written in Bash for the command line
-LICENSE=        gpl2
+WWW=		https://nanoblogger.sourceforge.net/
 
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+RUN_DEPENDS=	bash:shells/bash
+
+USES=		cpe
 
 NO_BUILD=	yes
 
 SUB_FILES=	pkg-message
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX},g" ${WRKSRC}/nb
@@ -38,19 +38,14 @@ do-install:
 		( cd ${WRKSRC}/${data} && \
 			${COPYTREE_SHARE} \* ${DATADIR}/${data} "! -name *.orig" )
 .endfor
-	@${CP} ${WRKSRC}/welcome-to-nb.txt ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/welcome-to-nb.txt ${STAGEDIR}${DATADIR}
 
-post-install:
-	@if [ ! -f ${PREFIX}/etc/nb.conf ]; then \
-		${CP} -p ${PREFIX}/etc/nb.conf.sample ${PREFIX}/etc/nb.conf; \
-	fi
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for doc in COPYING ChangeLog README TODO copyright
-	@${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
+post-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for doc in ChangeLog README TODO
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
 .endfor
-	@${MKDIR} ${DOCSDIR}/html
-	@${INSTALL_DATA} ${WRKSRC}/docs/nanoblogger.html ${DOCSDIR}/html
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/docs/nanoblogger.html ${STAGEDIR}${DOCSDIR}/html
 
 .include <bsd.port.mk>
