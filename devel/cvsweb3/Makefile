@@ -36,6 +36,7 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
+OPTIONS_SUB=	yes
 
 .include <bsd.port.pre.mk>
 
