@@ -30,7 +30,7 @@ COMMENT=	Dashboard and graph editor for multiple data stores
 WWW=		https://grafana.com/grafana/ \
 		https://github.com/grafana/grafana
 
-LICENSE=	agpl3
+LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
