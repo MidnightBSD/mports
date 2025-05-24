@@ -1,5 +1,3 @@
-
-
 PORTNAME=	pccts
 PORTVERSION=	1.33.33
 CATEGORIES=	devel
@@ -49,11 +47,9 @@ do-install:
 .endfor
 
 post-install:
-.if !defined(NOPORTDOCS)
 	@ ${MKDIR} ${PREFIX}/share/doc/pccts
 .for file in CHANGES_FROM_131.txt CHANGES_FROM_133.txt CHANGES_FROM_133_BEFORE_MR13.txt KNOWN_PROBLEMS.txt README RIGHTS history.ps history.txt
 	@ ${INSTALL_DATA} ${WRKSRC}/${file} ${PREFIX}/share/doc/pccts/${file}
 .endfor
-.endif
 
 .include <bsd.port.mk>
