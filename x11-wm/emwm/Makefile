@@ -3,11 +3,12 @@
 PORTNAME=	emwm
 DISTVERSION=	1.2
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://fastestcode.org/dl/
+MASTER_SITES=	https://fastestcode.org/dl/
 DISTNAME=	emwm-src-1.0a
 
 MAINTAINER=	kazuok@projectkitsune.com
 COMMENT=	Enhanced Motif WM fork with multi-monitor and utf-8 support
+WWW=		https://fastestcode.org/emwm.html
 
 LICENSE=	lgpl2.1
 
