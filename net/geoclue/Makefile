@@ -10,7 +10,8 @@ LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
-		libsoup-3.0.so:devel/libsoup3
+		libsoup-3.0.so:devel/libsoup3 \
+		libinotify.so:devel/libinotify
 
 USES=		gettext gnome meson pkgconfig tar:bz2 vala:build
 
