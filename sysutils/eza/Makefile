@@ -14,6 +14,8 @@ USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	eza-community
 
+NO_TEST=	yes
+
 OPTIONS_DEFINE=	MANPAGES
 
 MANPAGES_BUILD_DEPENDS=	pandoc:textproc/hs-pandoc
@@ -45,7 +47,7 @@ post-install:
 
 post-install-MANPAGES-on:
 .for i in ${_MARKDOWN_FILES}
-	${INSTALL_MAN} ${WRKSRC}/man/${i} ${FAKE_DESTDIR}${MANPREFIX}/share/man/man${i:C/.*\.//}
+	${INSTALL_MAN} ${WRKSRC}/man/${i} ${FAKE_DESTDIR}${PREFIX}/share/man/man${i:C/.*\.//}
 .endfor
 
 .include <bsd.port.mk>
