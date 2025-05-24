@@ -27,4 +27,6 @@ GO_BUILDFLAGS=	-tags xversion -ldflags "\
 PLIST_FILES=	bin/tailscale  \
 		bin/tailscaled
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
