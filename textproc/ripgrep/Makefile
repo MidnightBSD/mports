@@ -1,5 +1,3 @@
-# Created by: Petteri Valkonen <petteri.valkonen@iki.fi>
-
 PORTNAME=	ripgrep
 DISTVERSION=	13.0.0
 CATEGORIES=	textproc
@@ -90,7 +88,7 @@ CARGO_ENV=	RIPGREP_OUTDIR=${RIPGREP_OUTDIR}
 
 PLIST_FILES=	bin/rg \
 		etc/bash_completion.d/rg.bash \
-		man/man1/rg.1.gz \
+		share/man/man1/rg.1.gz \
 		share/fish/vendor_completions.d/rg.fish \
 		share/zsh/site-functions/_rg
 
@@ -116,7 +114,7 @@ post-patch:
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/rg
-	${INSTALL_MAN} ${RIPGREP_OUTDIR}/rg.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${RIPGREP_OUTDIR}/rg.1 ${PREFIX}/share/man/man1
 	@${MKDIR} ${PREFIX}/etc/bash_completion.d/
 	${INSTALL_DATA} ${RIPGREP_OUTDIR}/rg.bash \
 		${PREFIX}/etc/bash_completion.d/
