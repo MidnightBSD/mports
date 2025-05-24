@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		cpe gl jpeg localbase pkgconfig tar:bz2 xorg
+USES=		cpe gettext:runtime gl jpeg localbase pkgconfig tar:bz2 xorg
 CPE_VENDOR=	fltk_project
 USE_XORG=	x11 xcursor xext xfixes xft xinerama xrender
 USE_GL=		gl glu
