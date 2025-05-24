@@ -69,6 +69,8 @@ PORTDOCS=	readme.md
 
 OPTIONS_DEFINE=	DOCS
 
+NO_TEST=	yes
+
 pre-build:
 	cd ${WRKSRC} && ${MAKE_CMD} assets
 
