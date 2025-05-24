@@ -35,6 +35,8 @@ MATTERMOSTD_GROUP=	mattermost
 USERS=		${MATTERMOSTD_USER}
 GROUPS=		${MATTERMOSTD_GROUP}
 
+NO_TEST=	yes
+
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/bin/mattermost ${STAGEDIR}${PREFIX}/bin/mattermostd
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mattermost
