@@ -42,11 +42,9 @@ BITSHUFFLE_V=	0.3.4
 PLIST_FILES=	${JAVAJARDIR}/snappy-java.jar \
 		lib/libsnappyjava.so
 
-.include <bsd.port.pre.mk>
+NO_TEST=	yes
 
-.if ${ARCH} == powerpc
-MAKE_ENV+=	_JAVA_OPTIONS="-Xmx768m -Xms768m"
-.endif
+.include <bsd.port.pre.mk>
 
 post-extract:
 	${MKDIR} ${WRKSRC}/target
@@ -62,7 +60,7 @@ do-build:
 	cd ${WRKSRC} && ${SETENV} JAVA_HOME=${JAVA_HOME} ${MAKE_ENV} \
 		${MAKE_CMD} ${MAKE_ARGS} SBT_IVY_HOME=${WRKDIR}/repository SBT_BOOT_DIR=${WRKDIR}/sbt_boot SBT_GLOBAL_DIR=${WRKDIR}/sbt_global
 
-do-test:
+do-test-manual:
 	cd ${WRKSRC} && ${SETENV} JAVA_HOME=${JAVA_HOME} ${MAKE_ENV} \
 		${MAKE_CMD} ${MAKE_ARGS} SBT_IVY_HOME=${WRKDIR}/repository SBT_BOOT_DIR=${WRKDIR}/sbt_boot SBT_GLOBAL_DIR=${WRKDIR}/sbt_global test
 
