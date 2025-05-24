@@ -35,16 +35,16 @@ post-patch:
 		${WRKSRC}/${PORTNAME}
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
-	@${MKDIR} ${STAGEDIR}${DATADIR}/tests/
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin/
+	@${MKDIR} ${DATADIR}/tests/
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${DATADIR}
 .for f in *.odt *.csv
-	@(cd ${WRKSRC}/tests && ${INSTALL_DATA} ${f} ${STAGEDIR}${DATADIR}/tests)
+	@(cd ${WRKSRC}/tests && ${INSTALL_DATA} ${f} ${DATADIR}/tests)
 .endfor
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/
+		${PREFIX}/share/pixmaps/
 	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 \
-		${STAGEDIR}${MAN1PREFIX}/man/man1/
+		${PREFIX}/share/man/man1/
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
