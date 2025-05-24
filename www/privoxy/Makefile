@@ -109,7 +109,7 @@ do-install:
 .for examplefile in config match-all.action trust user.action
 	${INSTALL_DATA} ${WRKSRC}/${examplefile} ${STAGEDIR}${EXAMPLESDIR}/
 .endfor
-	${INSTALL_MAN}  ${WRKSRC}/privoxy.8 ${STAGEDIR}${MAN1PREFIX}/man/man8
+	${INSTALL_MAN}  ${WRKSRC}/privoxy.8 ${STAGEDIR}${PREFIX}/share/man/man8
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/user-manual
 	${INSTALL_DATA} ${WRKSRC}/doc/webserver/user-manual/[a-z]* ${STAGEDIR}${DOCSDIR}/user-manual
 	${INSTALL_DATA} ${WRKSRC}/doc/webserver/p_doc.css ${STAGEDIR}${DOCSDIR}/user-manual
