@@ -26,7 +26,7 @@ GH_ACCOUNT=	erlang
 
 NO_ARCH=	yes
 PLIST_FILES=	bin/${PORTNAME} \
-		man/man1/rebar3.1.gz
+		share/man/man1/rebar3.1.gz
 PORTEXAMPLES=	rebar.config.sample
 
 BASH_PLIST_FILES=	share/bash-completion/completions/rebar3
@@ -37,7 +37,7 @@ do-build:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/manpages/*.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/manpages/*.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 
 do-install-BASH-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/bash-completion/completions
