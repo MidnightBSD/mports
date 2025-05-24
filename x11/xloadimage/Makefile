@@ -15,7 +15,7 @@ LICENSE=	mit
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
-CONFLICTS_INSTALL=	xli-*
+CONFLICTS_INSTALL=	xli
 
 EXTRA_PATCHES=	${WRKDIR}/debian/patches/*.patch
 IGNORE_PATCHES=	07_SYSPATHFILE.patch 24_libtiff5.patch \
@@ -30,6 +30,7 @@ USES=		jpeg xorg
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 
+CFLAGS+=	-Wno-int-conversion
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
@@ -52,9 +53,9 @@ do-install:
 		${LN} -sf xloadimage xsetbg && \
 		${LN} -sf xloadimage xview )
 	${INSTALL_PROGRAM} ${WRKSRC}/uufilter ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/uufilter.man ${STAGEDIR}${MAN1PREFIX}/man/man1/uufilter.1
-	${INSTALL_MAN} ${WRKSRC}/xloadimage.man ${STAGEDIR}${MAN1PREFIX}/man/man1/xloadimage.1
-	@(cd ${STAGEDIR}${MAN1PREFIX}/man/man1 && \
+	${INSTALL_MAN} ${WRKSRC}/uufilter.man ${STAGEDIR}${PREFIX}/share/man/man1/uufilter.1
+	${INSTALL_MAN} ${WRKSRC}/xloadimage.man ${STAGEDIR}${PREFIX}/share/man/man1/xloadimage.1
+	@(cd ${STAGEDIR}${PREFIX}/share/man/man1 && \
 		${LN} -sf xloadimage.1 xsetbg.1 && \
 		${LN} -sf xloadimage.1 xview.1 )
 	${INSTALL_DATA} ${WRKSRC}/xloadimagerc ${STAGEDIR}${PREFIX}/etc/xloadimagerc.sample
