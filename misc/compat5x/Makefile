@@ -5,19 +5,19 @@
 PORTNAME=	compat5x
 PORTVERSION=	5.4.0.8.1
 CATEGORIES=	misc
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=amdmi3/compat5x
+MASTER_SITES=	FREEBSD_LOCAL/bapt
 PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A convenience package to install the compat5x libraries
+COMMENT=	Convenience package to install the compat5x libraries
 LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		tar:bzip2
 NO_BUILD=	yes
+ONLY_FOR_ARCHS=	amd64 i386
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/compat
 TARGET_DIR=	${PREFIX}/lib/compat
@@ -42,12 +42,6 @@ PLIST_SUB+=	I386=""
 PLIST_SUB+=	I386="@comment "
 .endif
 
-.if ${ARCH} == sparc64
-PLIST_SUB+=	SPARC64=""
-.else
-PLIST_SUB+=	SPARC64="@comment "
-.endif
-
 do-install:
 	@${MKDIR} ${TARGET_DIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} *.so.* ${TARGET_DIR})
@@ -55,8 +49,5 @@ do-install:
 	@${MKDIR} ${TARGET32_DIR}
 	(cd ${WRKSRC}/lib32 && ${INSTALL_DATA} *.so.* ${TARGET32_DIR})
 .endif
-
-# Include to automatic install file in libdata/ldconfig{,32}
-.include "${PORTSDIR}/misc/ldconfig_compat/bsd.ldconfig.mk"
 
 .include <bsd.port.post.mk>
