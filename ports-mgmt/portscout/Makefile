@@ -81,7 +81,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/portscout.pod ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}
 
 	pod2man ${WRKSRC}/portscout.pod ${WRKSRC}/portscout.1
-	${INSTALL_MAN} ${WRKSRC}/portscout.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/portscout.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 
 	@${MKDIR} ${STAGEDIR}${DATADIR}/templates
 	cd ${WRKSRC}/templates \
