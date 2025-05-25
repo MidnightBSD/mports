@@ -30,6 +30,10 @@ PORTDOCS=	CHANGELOG.md CONTRIBUTING.md README.md
 
 OPTIONS_DEFINE=	DOCS
 
+.if defined(MAGUS)
+NO_TEST=	yes
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's,%%GO_SUFFIX%%,${GO_SUFFIX},' \
 		${WRKSRC}/internal/sourceanalysis/go.go
