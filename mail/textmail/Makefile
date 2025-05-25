@@ -6,6 +6,7 @@ MASTER_SITES=	http://raf.org/textmail/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts e-mail attachments to plain-text
+WWW=		https://raf.org/textmail/
 
 LICENSE=	gpl2
 
@@ -17,7 +18,7 @@ RUN_DEPENDS=	antiword:textproc/antiword \
 
 USES=		perl5 shebangfix
 SHEBANG_FILES=	${PORTNAME}
-PLIST_FILES=	bin/${PORTNAME} man/man1/${PORTNAME}.1.gz
+PLIST_FILES=	bin/${PORTNAME} share/man/man1/${PORTNAME}.1.gz
 NO_WRKSUBDIR=	yes
 
 post-patch:
@@ -28,6 +29,6 @@ do-build:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
