@@ -22,7 +22,7 @@ OPTIONS_DEFINE=	DOCS
 
 PLIST_FILES=	bin/${PORTNAME} \
 		libexec/${PORTNAME}_prog \
-		man/man6/xvier.6.gz \
+		share/man/man6/xvier.6.gz \
 		share/pixmaps/xvier.png
 
 DESKTOP_ENTRIES="Xvier" "" "${PORTNAME}" \
@@ -33,7 +33,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME}_prog \
 		${STAGEDIR}${PREFIX}/libexec/
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.man \
-		${STAGEDIR}${MAN6PREFIX}/man/man6/${PORTNAME}.6
+		${STAGEDIR}${PREFIX}/share/man/man6/${PORTNAME}.6
 
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
 		${STAGEDIR}${PREFIX}/share/pixmaps/
