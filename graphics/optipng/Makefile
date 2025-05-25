@@ -1,5 +1,3 @@
-# Created by: Thomas Hurst <tom@hur.st>
-
 PORTNAME=	optipng
 PORTVERSION=	0.7.7
 CATEGORIES=	graphics
@@ -7,6 +5,7 @@ MASTER_SITES=	SF/${PORTNAME}/OptiPNG/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Optimizer for PNG files
+WWW=		https://optipng.sourceforge.net/
 
 LICENSE=	zlib
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
@@ -26,13 +25,13 @@ BUNDLED_ZLIB_CONFIGURE_ON=	--without-system-zlib
 USES=	gmake
 HAS_CONFIGURE=	yes
 
-PLIST_FILES=	bin/optipng man/man1/optipng.1.gz
+PLIST_FILES=	bin/optipng share/man/man1/optipng.1.gz
 PORTDOCS=	history.txt optipng.man.html optipng.man.pdf optipng.man.txt \
 		png_optimization.html todo.txt
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/optipng/optipng ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/src/optipng/man/optipng.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/src/optipng/man/optipng.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 
 	${INSTALL} -d ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${STAGEDIR}${DOCSDIR}/
