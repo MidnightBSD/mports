@@ -17,6 +17,7 @@ INSTALL_TARGET=	install # does not have install/strip target
 PORTDOCS=	html/*
 DOCSDIR=	${PREFIX}/share/doc/ECM
 NO_ARCH=	yes
+NO_TEST=	yes
 
 SPHINX_DEP=	sphinx-build:textproc/py-sphinx
 ## options
