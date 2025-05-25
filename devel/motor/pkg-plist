@@ -52,4 +52,3 @@ share/man/man1/motor.1.gz
 @dir %%DATADIR%%/templates/%%LIB32DIR%%rary
 @dir %%DATADIR%%/templates
 @dir %%DATADIR%%
-@dir %%DOCSDIR%%

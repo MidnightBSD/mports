@@ -9,14 +9,12 @@ COMMENT=	Powerful text mode based programming IDE
 
 LICENSE=	gpl2
 
-OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
 USES=		tar:bzip2 gmake iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG}
-
-PORTDOCS=	FAQ README
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ARGS=--with-libintl-prefix=${LOCALBASE}
