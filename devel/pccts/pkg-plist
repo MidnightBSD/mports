@@ -43,14 +43,6 @@ include/pccts/pccts_stdlib.h
 include/pccts/pccts_string.h
 include/pccts/pcctscfg.h
 include/pccts/slist.cpp
-%%PORTDOCS%%%%DOCSDIR%%/CHANGES_FROM_131.txt
-%%PORTDOCS%%%%DOCSDIR%%/CHANGES_FROM_133.txt
-%%PORTDOCS%%%%DOCSDIR%%/CHANGES_FROM_133_BEFORE_MR13.txt
-%%PORTDOCS%%%%DOCSDIR%%/KNOWN_PROBLEMS.txt
-%%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/RIGHTS
-%%PORTDOCS%%%%DOCSDIR%%/history.txt
-%%PORTDOCS%%%%DOCSDIR%%/history.ps
 %%EXAMPLESDIR%%/makefile
 %%EXAMPLESDIR%%/1/makefile
 %%EXAMPLESDIR%%/1/test.g
