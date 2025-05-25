@@ -74,7 +74,7 @@ CONFFILES=	cvsweb.conf \
 		cvsweb.conf-netbsd \
 		cvsweb.conf-ruby
 
-PLIST_SUB=	CGIDIR="${CGIDIR}" ICONSDIR="${ICONSDIR}" CSSDIR="${CSSDIR}"
+PLIST_SUB+=	CGIDIR="${CGIDIR}" ICONSDIR="${ICONSDIR}" CSSDIR="${CSSDIR}"
 
 SUB_FILES=	pkg-message
 SUB_LIST=	PREFIX="${PREFIX}" DOCSDIR="${DOCSDIR}"
