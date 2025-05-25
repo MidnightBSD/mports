@@ -7,12 +7,11 @@ DISTNAME=	firefox-${DISTVERSION}esr.source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standalone JavaScript based from Mozilla 78-esr
+WWW=		https://spidermonkey.dev/
 
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-# must use 90 or better
-LLVM_DEFAULT=	11
 BUILD_DEPENDS=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
 		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
 		autoconf2.13:devel/autoconf2.13 \
@@ -73,9 +72,6 @@ CPP=		${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT}
 CC=		${LOCALBASE}/bin/clang${LLVM_DEFAULT}
 CXX=		${LOCALBASE}/bin/clang++${LLVM_DEFAULT}
 BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
-.if ${LLVM_DEFAULT:M[678]0}
-BROKEN=		LLVM 9.0 or higher required
-.endif
 .endif
 
 post-patch:
