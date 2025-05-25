@@ -128,7 +128,7 @@ post-patch:
 		${WRKSRC}/src/modules/lapack/Makefile.in
 
 post-install:
-	${CP} ${WRKSRC}/doc/manual/*.info ${PREFIX}/info/
+	-${CP} ${WRKSRC}/doc/manual/*.info ${PREFIX}/info/
 
 post-install-RBLAS-off:
 	@${REINPLACE_CMD} -e "s| -lR| -lR ${BLASLIB}|" \
