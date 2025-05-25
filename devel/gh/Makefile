@@ -15,6 +15,8 @@ RUN_DEPENDS=	git:devel/git
 
 USES=		go:1.22,modules
 
+NO_TEST=	yes
+
 _BUILD_VERSION=	${DISTVERSION}
 _BUILD_DATE=	$$(date +%Y-%m-%d)
 
