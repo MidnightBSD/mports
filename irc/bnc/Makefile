@@ -1,9 +1,6 @@
 # New ports collection makefile for:   bnc
 # Date created:        January 21, 2008
 # Whom:                Lucas Holt <luke@midnightbsd.org>
-#
-
-#
 
 PORTNAME=	bnc
 PORTVERSION=	2.9.4
@@ -14,11 +11,15 @@ MASTER_SITES=	http://home.risingnet.net/download/ \
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A simple IRC relay proxy with support for virtual hosting
+COMMENT=	Simple IRC relay proxy with support for virtual hosting
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	YES
 DOCS=		COPYING Changelog README example.conf
+
+OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -31,9 +32,7 @@ do-install:
 	@${INSTALL_SCRIPT} ${WRKSRC}/bncsetup ${PREFIX}/bin
 	@${INSTALL_PROGRAM} ${WRKSRC}/mkpasswd ${PREFIX}/bin
 	@${INSTALL_DATA} ${WRKSRC}/example.conf ${PREFIX}/etc/bnc.conf.sample
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
-.endif
 
 .include <bsd.port.post.mk>
