@@ -38,7 +38,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		evolution>=0:mail/evolution \
 		xconfig>=0:x11/xconfig
 
-USES=		perl5:run python:run
+USES=		perl5 python:run
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
