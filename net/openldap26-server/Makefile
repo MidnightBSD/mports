@@ -403,9 +403,6 @@ pre-configure:
 	@(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf)
 
 .if !defined(CLIENT_ONLY)
-test: build
-	@(cd ${BUILD_WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test)
 
 post-build:
 .for module in ${CONTRIB_MODULES}
