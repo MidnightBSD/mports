@@ -19,7 +19,7 @@ HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX}
 NO_ARCH=	yes
 
-PORTDOCS=	BUGS CHANGES INSTALL README
+PORTDOCS=	BUGS CHANGES INSTALL README LICENSE
 PLIST_FILES=	bin/ppf_mime bin/ppf_mime_decrypt \
 		libexec/ppf_decrypt libexec/ppf_encrypt libexec/ppf_mime \
 		libexec/ppf_mime_decrypt libexec/ppf_sign libexec/ppf_verify
@@ -37,7 +37,7 @@ do-configure:
 
 post-install-DOCS-on:
 	${INSTALL} -d -o ${SHAREOWN} -g ${SHAREGRP} ${FAKE_DESTDIR}${DOCSDIR}
-.for file in BUGS CHANGES INSTALL README
+.for file in BUGS CHANGES INSTALL README LICENSE
 	${INSTALL_DATA} ${WRKSRC}/${file} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
