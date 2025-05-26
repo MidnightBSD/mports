@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/README
 # non-commercial and prohibits distribution of modified versions
 LICENSE_PERMS=	dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
 
-USES=		gl tar:bzip2 localbase
+USES=		gl tar:bzip2 localbase xorg
 USE_GL=		gl glu
 USE_XORG=	x11
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" LIBS="${LIBS}"
