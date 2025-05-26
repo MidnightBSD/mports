@@ -10,6 +10,8 @@ WWW=		https://github.com/signalapp/Signal-FTS5-Extension
 LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+NO_TEST=	yes
+
 USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	signalapp
