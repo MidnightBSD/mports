@@ -1,21 +1,27 @@
 PORTNAME=	ufs_copy
 PORTVERSION=	20060921
 CATEGORIES=	filesystems sysutils
-MASTER_SITES=	http://people.freebsd.org/~simokawa/ufs/
+MASTER_SITES=	https://people.freebsd.org/~simokawa/ufs/
 DISTNAME=	ufs-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast copy utility for UFS filesystem
+WWW=		https://people.freebsd.org/~simokawa/ufs/
 
 LICENSE=	bsd4
 
+USES=		uidfix
 WRKSRC=		${WRKDIR}/ufs
 MAKE_ARGS=	BINDIR=${PREFIX}/sbin
 
-post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA}	${WRKSRC}/README ${DOCSDIR}
-.endif
+PORTDOCS=	README
+
+OPTIONS_DEFINE=	DOCS
+
+PLIST_FILES=	sbin/ufs_copy
+
+post-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA}	${WRKSRC}/${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

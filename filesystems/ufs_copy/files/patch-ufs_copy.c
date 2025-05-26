@@ -1,6 +1,6 @@
---- ufs_copy.c.orig	2006-09-21 15:28:09.000000000 +0900
-+++ ufs_copy.c	2007-12-27 23:28:55.000000000 +0900
-@@ -111,9 +111,11 @@
+--- ufs_copy.c.orig	2006-09-21 06:28:09 UTC
++++ ufs_copy.c
+@@ -111,9 +111,11 @@ int
  main(int argc, char *argv[])
  {
  	struct fstab *fs;
@@ -14,7 +14,7 @@
  
  #ifdef USEMMAP
  	while ((ch = getopt(argc, argv, "aBb:ceMms:v")) != -1)
-@@ -174,6 +176,21 @@
+@@ -174,6 +176,21 @@ main(int argc, char *argv[])
  		eval = system(buf);
  		if (eval)
  			errx(eval, "mksnap_ffs failed");
@@ -36,7 +36,7 @@
  	}
  
  	if ((fs = getfsfile(src)) == NULL) {
-@@ -188,9 +205,19 @@
+@@ -188,9 +205,19 @@ main(int argc, char *argv[])
  	}
  
  	if (snapshot) {
@@ -58,3 +58,15 @@
  			fprintf(stderr, "done\n");
  		else
  			fprintf(stderr, "failed\n");
+@@ -262,6 +289,11 @@ copy_ufs(const char *src_path, const char *dst_path)
+ 		}
+ 	}
+ 	bcopy(&src, &dst, sizeof(dst));
++#if (defined(__FreeBSD_version) && __FreeBSD_version >= 1300100)
++	dst.d_si = NULL;
++#else
++	dst.d_sbcsum = NULL;
++#endif
+ 	dst.d_name = dst_path;
+ 	dst.d_fd = open(dst_path, O_CREAT | O_WRONLY,  S_IRUSR |  S_IWUSR );
+ 	if (dst.d_fd < 0) {
