@@ -1,6 +1,3 @@
-# Created by: Ulrich Spoerlein <q@uni.de>
-
-
 PORTNAME=	ocrad
 PORTVERSION=	0.22
 CATEGORIES=	graphics
@@ -10,6 +7,7 @@ EXTRACT_SUFX=	.tar.lz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OCR program implemented as filter
+WWW=		https://www.gnu.org/software/ocrad/ocrad.html
 
 LICENSE=	gpl2
 
@@ -18,7 +16,7 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} CXXFLAGS="${CXXFLAGS}" CXX="${CXX}"
 CXXFLAGS+=	-Wall -W
 MAKE_ARGS=	-j`${SYSCTL} -n hw.ncpu`
 
-PLIST_FILES=	bin/${PORTNAME} man/man1/ocrad.1.gz
+PLIST_FILES=	bin/${PORTNAME} share/man/man1/ocrad.1.gz
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README
 PORTEXAMPLES=	*
@@ -34,7 +32,7 @@ EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/ocrad.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/ocrad.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
