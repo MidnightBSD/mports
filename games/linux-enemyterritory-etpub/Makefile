@@ -1,5 +1,3 @@
-
-
 PORTNAME=	etpub
 PORTVERSION=	0.8.1
 CATEGORIES=	games linux
@@ -58,12 +56,10 @@ do-install:
 .for f in PHP etadmin_mod
 	${CP} -R ${WRKSRC}/extra/${f} ${DATADIR}/extra
 .endfor
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 .   for f in ChangeLog.txt Install.txt Upgrade-0.8.txt
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .   endfor
 	${CP} -R ${WRKSRC}/docs ${DOCSDIR}
-.endif
 
 .include <bsd.port.post.mk>
