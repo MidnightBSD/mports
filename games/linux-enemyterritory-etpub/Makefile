@@ -10,7 +10,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ET Pub - An Enemy Territory Modification
 
-LICENSE=	other
+LICENSE=	restricted
 
 BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
@@ -19,7 +19,10 @@ USES=		linux zip
 
 RESTRICTED=	do not redistribute
 
-OPTIONS=	OMNIBOT "Install Omni-Bot for bot support" off
+OPTIONS_DEFINE=	OMNIBOT DOCS
+OPTIONS_SUB=	yes
+
+OMNIBOT_DESC=	Install Omni-Bot for bot support
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/enemyterritory-${PORTNAME}
