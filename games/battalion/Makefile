@@ -9,6 +9,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Monsters, explosions, destruction game for X Window System
+WWW=		https://www.evl.uic.edu/aej/AndyBattalion.html
 
 LICENSE=	batallion
 LICENSE_NAME=	batallion license
@@ -16,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/README
 # non-commercial and prohibits distribution of modified versions
 LICENSE_PERMS=	dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
 
-USES=		tar:bzip2 localbase
+USES=		gl tar:bzip2 localbase
 USE_GL=		gl glu
 USE_XORG=	x11
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" LIBS="${LIBS}"
@@ -25,7 +26,7 @@ CFLAGS+=	-I${LOCALBASE}/include/X11 \
 		-DLINUXVERSION -DLINUXAUDIO
 LIBS+=		-lX11 -lm
 
-PLIST_FILES=	bin/${PORTNAME} man/man6/${PORTNAME}.6.gz
+PLIST_FILES=	bin/${PORTNAME} share/man/man6/${PORTNAME}.6.gz
 PORTDATA=	*
 PORTDOCS=	*
 
@@ -46,7 +47,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/battalion ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKDIR}/battalionSUN4/battalion.man \
-		${STAGEDIR}${MAN6PREFIX}/man/man6/battalion.6
+		${STAGEDIR}${PREFIX}/share/man/man6/battalion.6
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${WRKDIR}/battalionSUN4/battalion.data/battalion.sho \
 		${STAGEDIR}${DATADIR}
