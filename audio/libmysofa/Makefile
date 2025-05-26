@@ -6,6 +6,7 @@ CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SOFA (Spatially Oriented Format for Acoustics) file reader
+WWW=		https://github.com/hoene/libmysofa
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
