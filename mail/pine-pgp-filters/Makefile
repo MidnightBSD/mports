@@ -1,24 +1,33 @@
-
-
 PORTNAME=	pine-pgp-filters
 PORTVERSION=	1.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail security
-MASTER_SITES=	http://dougbarton.us/PGP/ppf/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	dougb
+MASTER_SITES=	FREEBSD_LOCAL/marino
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Simple /bin/sh-based filters to use GnuPG with Alpine
+COMMENT=	Simple sh-based filters to use GnuPG with Alpine
+
 LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-.include <bsd.port.pre.mk>
+BUILD_DEPENDS=	gpg2:security/gnupg
+RUN_DEPENDS=	alpine:mail/alpine \
+		gpg2:security/gnupg
 
-BUILD_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
-RUN_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
-RUN_DEPENDS+=	alpine:${PORTSDIR}/mail/alpine
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS=	--prefix=${PREFIX}
+NO_ARCH=	yes
+
+PORTDOCS=	BUGS CHANGES INSTALL README
+PLIST_FILES=	bin/ppf_mime bin/ppf_mime_decrypt \
+		libexec/ppf_decrypt libexec/ppf_encrypt libexec/ppf_mime \
+		libexec/ppf_mime_decrypt libexec/ppf_sign libexec/ppf_verify
+
+OPTIONS_DEFINE=	DOCS
+
+DOCS_SUB_FILES=	pkg-message
 
 verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
@@ -27,12 +36,10 @@ do-configure:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/libexec
 	@(cd ${WRKSRC} && ./configure )
 
-post-install:
-.if !defined(NOPORTDOCS)
-	${INSTALL} -d -o ${SHAREOWN} -g ${SHAREGRP} ${DOCSDIR}
-.for file in BUGS CHANGES INSTALL LICENSE README
-	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
+post-install-DOCS-on:
+	${INSTALL} -d -o ${SHAREOWN} -g ${SHAREGRP} ${FAKE_DESTDIR}${DOCSDIR}
+.for file in BUGS CHANGES INSTALL README
+	${INSTALL_DATA} ${WRKSRC}/${file} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
