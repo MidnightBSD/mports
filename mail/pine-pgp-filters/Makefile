@@ -10,7 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple sh-based filters to use GnuPG with Alpine
 
 LICENSE=	bsd2
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	gpg2:security/gnupg
 RUN_DEPENDS=	alpine:mail/alpine \
