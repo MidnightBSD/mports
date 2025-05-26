@@ -106,6 +106,7 @@ do-install:
 	${CP} ${WRKSRC}/oss/.libs/*.so ${LINUXBASE}/${LIBDIR_${ARCH}}/alsa-lib/
 	-${RM} -r ${LINUXBASE}${LIBDIR_${ARCH}}/alsa-lib/*.la
 	${MKDIR} ${LINUXBASE}/etc/alsa/conf.d
+	${MKDIR} ${LINUXBASE}/usr/share/alsa/alsa.conf.d
 	${CP} ${WRKSRC}/oss/50-oss.conf ${LINUXBASE}/usr/share/alsa/alsa.conf.d/
 	${LN} -sf ../../../usr/share/alsa/alsa.conf.d/50-oss.conf \
 		${LINUXBASE}/etc/alsa/conf.d
