@@ -1,5 +1,5 @@
 PORTNAME=	bastille
-PORTVERSION=	0.13.20250126
+DISTVERSION=	0.14.20250420
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,13 +14,19 @@ FAKE_OPTS=	trueprefix
 USE_GITHUB=	yes
 GH_ACCOUNT=	bastillebsd
 
-NO_BUILD=	yes
 NO_ARCH=	yes
+NO_BUILD=	yes
 
-USE_RC_SUBR=	bastille
+post-patch:
+	@${REINPLACE_CMD} \
+		-e 's|/usr/local/etc/bastille|${ETCDIR}|g' \
+		-e 's|/usr/local|${PREFIX}|g' \
+		${WRKSRC}/usr/local/etc/rc.d/bastille
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${TRUE_PREFIX}/bin/bastille ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/usr/local/bin/bastille ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/usr/local/etc/rc.d/bastille \
+		${STAGEDIR}${PREFIX}/etc/rc.d
 
 post-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}
