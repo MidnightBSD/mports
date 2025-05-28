@@ -1,6 +1,6 @@
 PORTNAME=	hw-probe
 PORTVERSION=	1.6.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,11 +18,11 @@ RUN_DEPENDS+=	dmidecode:sysutils/dmidecode \
 		cpuid:misc/cpuid \
 		curl:ftp/curl
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
+#WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxhw
-GH_TAGNAME=	405bd9070dbeb9a3c8de7a226923c2eab59cbe63
+GH_TAGNAME=	d9609b9721d33858ff13b6046cc06d2d30130c13
 
 NO_BUILD=	yes
 
