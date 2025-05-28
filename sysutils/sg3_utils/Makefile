@@ -6,8 +6,12 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of utilities that send SCSI commands to devices
+WWW=		https://sg.danny.cz/sg/sg3_utils.html
 
-LICENSE=	bsd3
+LICENSE=	bsd2 gpl2+
+LICENSE_COMB=	multi
+LICENSE_FILE_bsd2=	${WRKSRC}/BSD_LICENSE
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
 
 USES=		gmake libtool
 

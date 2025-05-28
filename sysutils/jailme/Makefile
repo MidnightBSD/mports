@@ -4,6 +4,7 @@ CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Setuid version of jexec to allow normal users access to jails
+WWW=		https://github.com/Intermedix/jailme
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
