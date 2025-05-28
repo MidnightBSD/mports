@@ -6,6 +6,7 @@ DISTNAME=	xa-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Two-pass cross-assembler for MOS 6502 and compatible CPUs
+WWW=		https://www.floodgap.com/retrotech/xa/
 
 LICENSE=	gpl2+
 
