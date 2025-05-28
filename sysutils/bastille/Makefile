@@ -27,7 +27,7 @@ post-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	(cd ${WRKSRC}/${LOCALBASE}/${DATADIR_REL} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
 	${INSTALL_MAN} ${WRKSRC}/${TRUE_PREFIX}/man/man8/bastille.8.gz \
-		${STAGEDIR}${PREFIX}/man/man8/bastille.8.gz
+		${STAGEDIR}${PREFIX}/share/man/man8/bastille.8.gz
 	${INSTALL_DATA} ${WRKSRC}/${LOCALBASE}/${ETCDIR_REL}/bastille.conf.sample ${ETCDIR}/bastille.conf.sample
 
 .include <bsd.port.mk>

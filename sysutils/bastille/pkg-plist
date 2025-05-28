@@ -40,5 +40,5 @@ bin/bastille
 %%DATADIR%%/upgrade.sh
 %%DATADIR%%/verify.sh
 %%DATADIR%%/zfs.sh
-man/man8/bastille.8.gz
+share/man/man8/bastille.8.gz
 @dir %%ETCDIR%%
