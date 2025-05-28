@@ -1,3 +1,4 @@
+etc/rc.d/smartd
 etc/periodic/daily/smart
 etc/smartd.conf.sample
 etc/smartd_warning.sh
