@@ -1,11 +1,12 @@
 PORTNAME=	openvdb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.0.0
+DISTVERSION=	12.0.1
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools for storage and manipulation of sparse volumetric data
-WWW=		https://www.openvdb.org/
+WWW=		https://www.openvdb.org/ \
+		https://github.com/AcademySoftwareFoundation/openvdb
 
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
