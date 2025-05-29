@@ -1,5 +1,5 @@
 PORTNAME=	coreutils
-PORTVERSION=	9.5
+PORTVERSION=	9.7
 PORTREVISION=	0
 CATEGORIES=	sysutils textproc
 MASTER_SITES=	GNU
@@ -25,8 +25,8 @@ CPPFLAGS+=	"-I${LOCALBASE}/include"
 
 CONFLICTS_INSTALL=	gdu geneweb gexpr rubygem-god # bin/gdu bin/gexpr bin/god bin/gwc
 
-USES=		cpe gmake iconv charsetfix tar:xz
-USE_PERL5_BUILD=	yes # build - required for tests and man page generation
+USES=		charsetfix cpe gmake iconv perl5 tar:xz
+USE_PERL5=	build # build - required for tests and man page generation
 USE_LDCONFIG=	yes
 PIE_UNSAFE=	yes
 
