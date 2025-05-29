@@ -2,6 +2,7 @@
 
 SUBDIR += bitlbee
 SUBDIR += bnc
+SUBDIR += catgirl
 SUBDIR += irssi
 SUBDIR += irssi-scripts
 SUBDIR += ngircd
