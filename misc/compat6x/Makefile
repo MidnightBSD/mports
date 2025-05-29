@@ -1,18 +1,17 @@
-
-
 PORTNAME=	compat6x
 PORTVERSION=	6.4.604000.200810
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
-		http://people.freebsd.org/~${MASTER_SITE_SUBDIR}/
-MASTER_SITE_SUBDIR=	mnag/compat6x
+MASTER_SITES=	FREEBSD_LOCAL/bapt
 PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience package to install the FreeBSD 6.x compat libraries
+
 LICENSE=	agg
+
+ONLY_FOR_ARCHS=		amd64 i386
 
 USES=		tar:bzip2
 NO_BUILD=	yes
@@ -49,8 +48,5 @@ do-install:
 . endif
 	(cd ${WRKSRC}/lib32 && ${INSTALL_DATA} *.so.* ${TARGET32_DIR})
 .endif
-
-# Include this file to use install-ldconfig-file
-.include "${PORTSDIR}/misc/ldconfig_compat/bsd.ldconfig.mk"
 
 .include <bsd.port.post.mk>

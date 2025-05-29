@@ -25,6 +25,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON= FreeBSD 4.x did not support this architecture
 
 RUN_DEPENDS+=		${LOCALBASE}/share/compat/locale/UTF-8/LC_CTYPE:misc/localedata
+LIB_DEPENDS=	libncurses.so.5:misc/compat5x
 
 COMPAT4X_OSVERSION=	5.3
 .if ${ARCH} == i386

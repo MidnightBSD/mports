@@ -1,2 +1,9 @@
-Do not forget to add COMPAT_FREEBSD6 into
-your kernel configuration (enabled by default).
+[
+{ type: install
+  message: <<EOM
+ Do not forget to add COMPAT_FREEBSD6 into
+ your kernel configuration (enabled by default).
+
+EOM
+}
+]
