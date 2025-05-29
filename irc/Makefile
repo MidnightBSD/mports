@@ -11,6 +11,7 @@ SUBDIR += sirc
 SUBDIR += smartirc4net
 SUBDIR += talksoup
 SUBDIR += weechat
+SUBDIR += weechat-otr
 SUBDIR += znc
 SUBDIR += znc-clientbuffer
 SUBDIR += znc-push
