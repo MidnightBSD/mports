@@ -1,21 +1,19 @@
-# New ports collection makefile for:   bnc
-# Date created:        January 21, 2008
-# Whom:                Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	bnc
 PORTVERSION=	2.9.4
 CATEGORIES=	irc
-MASTER_SITES=	http://home.risingnet.net/download/ \
-		http://bnc.acmeshells.com/ \
-		http://www.sourcefiles.org/System/Servers/
+MASTER_SITES=	http://home.risingnet.net/download/
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple IRC relay proxy with support for virtual hosting
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-GNU_CONFIGURE=	YES
+DEPRECATED=		Unmaintained without upstream distfile and WWW
+EXPIRATION_DATE=	2025-05-27
+
+GNU_CONFIGURE=	yes
 DOCS=		COPYING Changelog README example.conf
 
 OPTIONS_DEFINE=	DOCS
