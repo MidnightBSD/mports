@@ -12,8 +12,6 @@ WWW=		https://www.gnu.org/software/coreutils/ \
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	id-utils-[0-9]* linux-gid-[0-9]*
-
 MAKE_JOBS_UNSAFE=	yes
 
 GNU_CONFIGURE=	yes
@@ -38,10 +36,13 @@ INFO=		coreutils
 OPTIONS_DEFINE=	GMP NLS
 OPTIONS_DEFAULT=NLS
 OPTIONS_SUB=	yes
+
+GMP_LIB_DEPENDS=	libgmp.so:math/gmp
+GMP_USES=		localbase:ldflags
+GMP_CONFIGURE_WITH=	libgmp
+
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=   nls
-GMP_LIB_DEPENDS=	libgmp.so:math/gmp
-GMP_CONFIGURE_WITH=	libgmp
 
 NO_TEST=	yes
 
@@ -57,8 +58,5 @@ post-build:
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/g* \
 		${PREFIX}/libexec/coreutils/libstdbuf.so
-
-#regression-test: build
-#	(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} check)
 
 .include <bsd.port.mk>
