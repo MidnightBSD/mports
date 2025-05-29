@@ -6,7 +6,8 @@ MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Software Foundation's core utilities
-WWW=		https://www.gnu.org/software/coreutils/
+WWW=		https://www.gnu.org/software/coreutils/ \
+		https://git.savannah.gnu.org/gitweb/?p=coreutils.git
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
