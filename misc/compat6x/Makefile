@@ -9,7 +9,8 @@ DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience package to install the FreeBSD 6.x compat libraries
 
-LICENSE=	agg
+LICENSE=	bsd2 bsd3 bsd4
+LICENSE_COMB=	multi
 
 ONLY_FOR_ARCHS=		amd64 i386
 

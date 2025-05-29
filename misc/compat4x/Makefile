@@ -10,7 +10,8 @@ DIST_SUBDIR=	${COMPAT4X_ARCH}/${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience package to install the compat4x libraries
 
-LICENSE=	agg
+LICENSE=	bsd2 bsd3 bsd4
+LICENSE_COMB=	multi
 
 WRKSRC=		${WRKDIR}/usr/lib/compat
 

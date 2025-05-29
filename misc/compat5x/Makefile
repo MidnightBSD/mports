@@ -11,7 +11,9 @@ DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience package to install the compat5x libraries
-LICENSE=	agg
+
+LICENSE=	bsd2 bsd3 bsd4
+LICENSE_COMB=	multi
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
