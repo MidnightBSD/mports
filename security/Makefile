@@ -238,6 +238,7 @@ SUBDIR += py-oauthlib
 SUBDIR += py-openssl
 SUBDIR += py-paramiko
 SUBDIR += py-passlib
+SUBDIR += py-potr
 SUBDIR += py-pyclamd
 SUBDIR += py-pycryptodome
 SUBDIR += py-pycryptodome-test-vectors
