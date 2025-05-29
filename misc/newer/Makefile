@@ -1,5 +1,3 @@
-
-
 PORTNAME=	newer
 PORTVERSION=	1.0
 CATEGORIES=	misc
