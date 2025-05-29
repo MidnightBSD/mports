@@ -10,6 +10,7 @@ SUBDIR += simpleirc
 SUBDIR += sirc
 SUBDIR += smartirc4net
 SUBDIR += talksoup
+SUBDIR += unreal
 SUBDIR += weechat
 SUBDIR += weechat-otr
 SUBDIR += znc
