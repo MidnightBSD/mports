@@ -11,6 +11,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
 
+RUN_DEPENDS+=	htop:sysutils/htop
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	bastillebsd
 
