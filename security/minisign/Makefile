@@ -1,9 +1,11 @@
 PORTNAME=	minisign
-PORTVERSION=	0.9
+PORTVERSION=	0.12
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple tool to sign files and verify signatures
+WWW=		https://jedisct1.github.io/minisign/ \
+		https://github.com/jedisct1/minisign
 
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
