@@ -1,5 +1,5 @@
 PORTNAME=	libxslt
-DISTVERSION=	1.1.39
+DISTVERSION=	1.1.43
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${DISTVERSION:R}/
 DIST_SUBDIR=	gnome
@@ -9,7 +9,7 @@ COMMENT=	XML stylesheet transformation library
 WWW=		https://gitlab.gnome.org/GNOME/libxslt/
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE_FILE=	${WRKSRC}/Copyright
 
 # See note in textproc/libxml2 for why this port uses autotools
 # from the choices of that and CMake.
