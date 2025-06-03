@@ -42,6 +42,7 @@ SUBDIR += mirmon
 SUBDIR += newer
 SUBDIR += nut
 SUBDIR += ollama
+SUBDIR += onnx
 SUBDIR += openvdb
 SUBDIR += osinfo-db
 SUBDIR += ossp-uuid
