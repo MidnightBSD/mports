@@ -3,11 +3,11 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	0.31
 CATEGORIES=	cad java
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Digital logic designer and circuit simulator
 WWW=		https://github.com/hneemann/Digital
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	maven>0:java/maven
