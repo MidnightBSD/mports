@@ -1,8 +1,6 @@
-# Created by: Hye-Shik Chang
-
 PORTNAME=	sqlite3
 DISTVERSION=	${PYTHON_DISTVERSION}
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	databases python
 MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,24 +17,26 @@ LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 RUN_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 
-USES=		compiler:c11 python:2.7+ tar:xz
-USE_PYTHON=	autoplist distutils allflavors
+USES=		compiler:c11 python tar:xz
+USE_PYTHON=	allflavors autoplist pep517
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC_SUBDIR=	Modules
 
-PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
+SUB_LIST+=	DISTVERSION=${DISTVERSION}
+SUB_FILES=	pyproject.toml
+PLIST_FILES=	${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;}/lib-dynload/_sqlite3${PYTHON_EXT_SUFFIX}.so
 
-.include <bsd.port.pre.mk>
+PORTSCOUT=	ignore:1
 
-post-extract:
-.if ${PYTHON_REL} < 30000
+pre-configure:
 	@${CP} ${FILESDIR}/setup.py ${WRKSRC}
-.else
-	@${CP} ${FILESDIR}/setup3.py ${WRKSRC}/setup.py
-.endif
+	@${MV} ${WRKDIR}/pyproject.toml ${WRKSRC}
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_LIBDIR}/lib-dynload/_sqlite3*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_sqlite3${PYTHON_EXT_SUFFIX}.so
+	# lib-dynload is the expected location
+	@${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload
+	@(cd ${FAKE_DESTDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload && ${LN} -s ../site-packages/_sqlite3${PYTHON_EXT_SUFFIX}.so)
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
