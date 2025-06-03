@@ -62,6 +62,7 @@ SUBDIR += py-pexpect
 SUBDIR += py-pytorch
 SUBDIR += py-spdx-tools
 SUBDIR += py-tqdm
+SUBDIR += pytorch
 SUBDIR += qt5-doc
 SUBDIR += qt5-examples
 SUBDIR += qt5-l10n
