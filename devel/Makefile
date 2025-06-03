@@ -130,6 +130,7 @@ SUBDIR += fortytwo-encore
 SUBDIR += fossology-nomos-standalone
 SUBDIR += freebsd-sysroot
 SUBDIR += fstrm
+SUBDIR += fxdiv
 SUBDIR += gamin
 SUBDIR += gccmakedep
 SUBDIR += gconf2
