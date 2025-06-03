@@ -90,6 +90,7 @@ SUBDIR += py-scikit-umfpack
 SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5
+SUBDIR += sleef
 SUBDIR += suitesparse
 SUBDIR += suitesparse-amd
 SUBDIR += suitesparse-btf
