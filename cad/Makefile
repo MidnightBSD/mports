@@ -8,6 +8,7 @@
     SUBDIR += impact
     SUBDIR += libopencad
     SUBDIR += logisim
+    SUBDIR += p5-Verilog-Perl
     SUBDIR += py-edalize
     SUBDIR += py-vunit-hdl
     SUBDIR += rubygem-gdsii
