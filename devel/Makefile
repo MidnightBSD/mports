@@ -1420,6 +1420,7 @@ SUBDIR += py-watchdog
 SUBDIR += py-wcwidth
 SUBDIR += py-websockets
 SUBDIR += py-wheel
+SUBDIR += py-wheel044
 SUBDIR += py-wrapt
 SUBDIR += py-xdg
 SUBDIR += py-xmltodict
