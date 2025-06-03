@@ -79,6 +79,7 @@ SUBDIR += timezonemap
 SUBDIR += tvbrowser
 SUBDIR += unclutter
 SUBDIR += unicode-emoji
+SUBDIR += upclient
 SUBDIR += usbids
 SUBDIR += utouch-kmod
 SUBDIR += wmScoreBoard
