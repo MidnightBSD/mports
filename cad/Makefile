@@ -1,5 +1,6 @@
     COMMENT = CAD tools
 
+    SUBDIR += abc
     SUBDIR += cascade
     SUBDIR += digital
     SUBDIR += fidocadj
