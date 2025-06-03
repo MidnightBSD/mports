@@ -973,6 +973,7 @@ SUBDIR += protobuf25
 SUBDIR += pth
 SUBDIR += pth-hard
 SUBDIR += ptlib
+SUBDIR += pthreadpool
 SUBDIR += py-Automat
 SUBDIR += py-Jinja2
 SUBDIR += py-QtPy
