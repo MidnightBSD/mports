@@ -59,6 +59,7 @@ SUBDIR += php81-calendar
 SUBDIR += php82-calendar
 SUBDIR += php83-calendar
 SUBDIR += py-pexpect
+SUBDIR += py-pytorch
 SUBDIR += py-spdx-tools
 SUBDIR += py-tqdm
 SUBDIR += qt5-doc
