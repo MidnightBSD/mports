@@ -6,6 +6,7 @@ SUBDIR += adol-c
 SUBDIR += asl
 SUBDIR += atlas
 SUBDIR += blas
+SUBDIR += blis
 SUBDIR += cbc
 SUBDIR += cblas
 SUBDIR += cgal
