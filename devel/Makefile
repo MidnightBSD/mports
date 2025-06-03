@@ -996,6 +996,7 @@ SUBDIR += py-astor
 SUBDIR += py-astroid
 SUBDIR += py-astroid2
 SUBDIR += py-asttokens
+SUBDIR += py-astunparse
 SUBDIR += py-async_generator
 SUBDIR += py-async_timeout
 SUBDIR += py-asynctest
