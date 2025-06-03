@@ -21,7 +21,7 @@ PORTSCOUT=	ignore:1
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 NO_ARCH=	yes
 
-post-install:
+post-fake:
 # move everything under setuptools vendor directory
 	${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/setuptools/_vendor
 	${MV} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.dist-info \
