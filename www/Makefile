@@ -289,6 +289,7 @@ SUBDIR += qt6-webview
 SUBDIR += raphael
 SUBDIR += rubygem-cgi
 SUBDIR += rubygem-hpricot
+SUBDIR += rubygem-httpclient
 SUBDIR += rubygem-webrick
 SUBDIR += serf
 SUBDIR += selfhtml-de
