@@ -10,6 +10,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Pascal compiler with Turbo and Delphi compatibility
 WWW=		https://www.freepascal.org/
 
+LICENSE=	gpl2
+
 CONFLICTS=	fpc-devel
 
 RUN_DEPENDS=	${LOCALBASE}/bin/as:devel/binutils
@@ -25,7 +27,7 @@ USE_GITLAB=	yes
 GL_SITE=	https://gitlab.com/freepascal.org
 GL_ACCOUNT=	fpc
 GL_PROJECT=	source
-GL_TAGNAME=	3d2b1f062e1e79d64b56a496f9eecd6084fa5803
+GL_TAGNAME=	57e84ef714df2404341229bd795dd69a8a6a38bb
 
 FPCSRCDIR=	source-${GL_TAGNAME}
 
@@ -64,7 +66,8 @@ MAKE_ARGS+=	FPCMAKE=${NEWFPCMAKE} \
 		INSTALLEXE="${INSTALL_PROGRAM}" \
 		INSTALLSCR="${INSTALL_SCRIPT}" \
 		INSTALL_PREFIX=${STAGEDIR}${PREFIX} \
-		FPC_LDPATH=${FPC_LDPATH}
+		FPC_LDPATH=${FPC_LDPATH} \
+		BSDs=midnightbsd freebsd netbsd openbsd darwin dragonfly
 NEWPPC=		PP=${WRKSRC}/compiler/${PPNAME}
 NEWFPC=		FPC=${WRKSRC}/compiler/${PPNAME}
 BOOTDIR=	${PPNAME}-${BOOTVER}-freebsd
@@ -142,6 +145,10 @@ post-patch:
 		${WRKSRC}/packages/rexx/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
 		${WRKSRC}/packages/zorba/fpmake.pp
+	@${REINPLACE_CMD} -i "" -e 's|FreeBSD|FreeBSD,MidnightBSD|g' \
+		${WRKSRC}/utils/fpcm/fpcmake.ini
+	@${REINPLACE_CMD} -i "" -e 's|FreeBSD|MidnightBSD,FreeBSD|g' \
+		${WRKSRC}/rtl/fpmake.pp
 
 do-build:
 # build fpc compiler
