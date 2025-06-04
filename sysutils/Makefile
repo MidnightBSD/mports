@@ -228,6 +228,7 @@ SUBDIR += tmux
 SUBDIR += tracker
 SUBDIR += tracker3
 SUBDIR += tracker-miners
+SUBDIR += u-boot-tools
 SUBDIR += ucspi-tcp
 SUBDIR += uefi-edk2-bhyve
 SUBDIR += uefi-edk2-bhyve-csm
