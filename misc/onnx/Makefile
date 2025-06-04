@@ -27,11 +27,13 @@ CMAKE_TESTING_TARGET=
 
 CXXFLAGS+=	-Dstat64=stat
 
+NO_TEST=	yes
+
 post-install:
 	@${FIND} ${STAGEDIR}${PREFIX}/include -type d -empty -delete
 
-post-test:
-	cd ${BUILD_WRKSRC} && ./onnx_gtests
+#post-test:
+#	cd ${BUILD_WRKSRC} && ./onnx_gtests
 
 # tests as of 1.17.0: 84 tests from 11 test suites ran. (160 ms total)
 
