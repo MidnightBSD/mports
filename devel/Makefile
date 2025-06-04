@@ -18,6 +18,7 @@ SUBDIR += appstream
 SUBDIR += appstream-glib
 SUBDIR += apr1
 SUBDIR += argp-standalone
+SUBDIR += arm-none-eabi-gcc
 SUBDIR += atf
 SUBDIR += autoconf
 SUBDIR += autoconf-archive
