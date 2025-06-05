@@ -85,7 +85,6 @@ include/pccts/slist.cpp
 %%EXAMPLESDIR%%/13/makefile
 %%EXAMPLESDIR%%/13/test.g
 @dirrm include/pccts
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrm %%EXAMPLESDIR%%/1
 @dirrm %%EXAMPLESDIR%%/2
 @dirrm %%EXAMPLESDIR%%/3
