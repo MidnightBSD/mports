@@ -24,4 +24,6 @@ CONFLICTS_INSTALL=	dlv # bin/dlv
 
 PLIST_FILES=	bin/dlv
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
