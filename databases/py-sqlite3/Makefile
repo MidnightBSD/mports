@@ -13,6 +13,9 @@ COMMENT=	Standard Python binding to the SQLite3 library
 LICENSE=	python
 LICENSE_FILE=	${WRKDIR}/Python-${DISTVERSION}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 RUN_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
