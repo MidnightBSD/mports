@@ -22,8 +22,7 @@ CC=     ${LOCALBASE}/bin/clang15
 CXX=    ${LOCALBASE}/bin/clang++15
 
 USES=		bison:build cmake:noninja cpe groff:run libedit localbase \
-		ncurses perl5 pkgconfig shebangfix ssl 
-#compiler:c++20-lang
+		ncurses perl5 pkgconfig shebangfix ssl compiler:c++20-lang
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
 
