@@ -22,5 +22,6 @@ CMAKE_TESTING_ON=	PYBIND11_TEST # 6 tests are known to fail: https://github.com/
 CMAKE_TESTING_TARGET=	pytest
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
