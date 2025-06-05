@@ -1,6 +1,6 @@
 PORTNAME=	libgda
 DISTVERSION?=	5.2.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX?=	5
@@ -15,7 +15,7 @@ LICENSE_COMB=	multi
 LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
 LICENSE_FILE_lgpl+ =	${WRKSRC}/COPYING.LIB
 
-USES=		cpe python readline shebangfix tar:xz
+USES=		cpe python readline shebangfix sqlite tar:xz
 CPE_VENDOR=	gnome
 LIBGDA5_SLAVE?=	no
 SHEBANG_FILES=	libgda-report/RML/*/*.py
@@ -98,6 +98,8 @@ CFLAGS+=		-I${JAVA_HOME}/include -I${JAVA_HOME}/include/freebsd
 .else
 CONFIGURE_ARGS+=	--without-java
 .endif
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-ldl||g' \
