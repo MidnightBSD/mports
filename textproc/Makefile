@@ -400,6 +400,7 @@ SUBDIR += teckit
 SUBDIR += texi2html
 SUBDIR += tidyp
 SUBDIR += tinyxml
+SUBDIR += tinyxml2
 SUBDIR += txt2man
 SUBDIR += uchardet
 SUBDIR += unoconv

@@ -98,6 +98,7 @@ SUBDIR += libmysofa
 SUBDIR += libnjb
 SUBDIR += libogg
 SUBDIR += libopenmpt
+SUBDIR += libopusenc
 SUBDIR += libsamplerate
 SUBDIR += libshout
 SUBDIR += libsidplay

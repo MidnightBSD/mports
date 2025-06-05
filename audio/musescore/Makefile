@@ -1,85 +1,70 @@
-PORTNAME=	musescore
+PORTNAME=	${GH_PROJECT:tl}
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.3.4
+DISTVERSION=	4.5.1
 PORTREVISION=	1
 CATEGORIES=	audio
-# DISTNAME=	MuseScore-${DISTVERSION}
+
+PATCH_SITES=	https://github.com/musescore/MuseScore/commit/
+PATCHFILES+=	05056ed19520060c3912a09a3adfa0927057f956.patch:-p1 # Fix build with Qt >= 6.9.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free music composition & notation software
+WWW=		https://musescore.org/ \
+		https://github.com/musescore/MuseScore
 
-LICENSE=	gpl2
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-LIB_DEPENDS=	libmp3lame.so:audio/lame \
-		libsndfile.so:audio/libsndfile \
-		libvorbis.so:audio/libvorbis \
-		libogg.so:audio/libogg \
-		libfreetype.so:print/freetype2
+LIB_DEPENDS=	libsndfile.so:audio/libsndfile \
+		libasound.so:audio/alsa-lib \
+		libasound_module_pcm_oss.so:audio/alsa-plugins \
+		libFLAC.so:audio/flac \
+		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz \
+		libopus.so:audio/opus \
+		libopusenc.so:audio/libopusenc \
+		libtinyxml2.so:textproc/tinyxml2 \
+		libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake compiler:c++11-lib desktop-file-utils \
-		pkgconfig qt:5 shared-mime-info
-USE_QT=		core declarative gui widgets opengl concurrent designer help \
-		location network \
-		scripttools svg sql printsupport testlib \
-		webchannel xml xmlpatterns \
-		buildtools_build linguisttools_build qmake_build uitools_build
+USES=		cmake compiler:c++17-lang desktop-file-utils gl localbase \
+		pkgconfig qt:6 shared-mime-info
+USE_QT=		base 5compat declarative networkauth scxml svg \
+		tools:build
+USE_GL=		gl
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	musescore
 GH_PROJECT=	MuseScore
 
 # Each release gets a subdir containing the distfiles for that release,
 # so hope that scanning the parent dir finds new ones.
+#
+# Note needs PORTVERSION:R once there is a .minor version
 DATADIR=	${PREFIX}/share/mscore-${PORTVERSION:R}
 
-ALL_TARGET=	lrelease manpages all
-CMAKE_ARGS+=	-DUSE_SYSTEM_FREETYPE="ON" \
-		-DBUILD_PORTMIDI=OFF \
-		-DBUILD_PCH=OFF \
-		-DDOWNLOAD_SOUNDFONT=OFF
+CMAKE_TESTS=	MUE_BUILD_BRAILLE_TESTS MUE_BUILD_ENGRAVING_TESTS MUE_BUILD_IMPORTEXPORT_TESTS MUE_BUILD_NOTATION_TESTS MUE_BUILD_PLAYBACK_TESTS MUE_BUILD_PROJECT_TESTS
+CMAKE_ON=	MUE_COMPILE_USE_SYSTEM_FLAC \
+		MUE_COMPILE_USE_SYSTEM_FREETYPE \
+		MUE_COMPILE_USE_SYSTEM_HARFBUZZ \
+		MUE_COMPILE_USE_SYSTEM_OPUS \
+		MUE_COMPILE_USE_SYSTEM_OPUSENC \
+		MUE_COMPILE_USE_SYSTEM_TINYXML
+CMAKE_OFF=	MUE_BUILD_CRASHPAD_CLIENT \
+		MUE_COMPILE_USE_PCH \
+		${CMAKE_TESTS}
+CMAKE_BUILD_TYPE=	release
+CMAKE_ARGS=	-DMUSE_APP_BUILD_MODE="release"
 
-# WebEngine is only available on i386/amd64, amd ppc64 starting FreeBSD 13.0.
-# If enabled on arches that don't have WebEngine, the build breaks.
-OPTIONS_DEFINE=		ALSA JACK PORTAUDIO PULSEAUDIO WEBENGINE
-OPTIONS_DEFAULT=	PORTAUDIO
-OPTIONS_DEFAULT_amd64=	WEBENGINE
-OPTIONS_DEFAULT_i386=	WEBENGINE
-OPTIONS_DEFAULT_powerpc64=     ${OPTIONS_DEFAULT_powerpc64_${OSREL:R}}
-OPTIONS_DEFAULT_powerpc64_13=  WEBENGINE
+post-install:
+	# workaround for https://github.com/musescore/MuseScore/issues/26103
+	@${RM} -r \
+		${STAGEDIR}${PREFIX}/include \
+		${STAGEDIR}${PREFIX}/lib \
+		${STAGEDIR}${PREFIX}/libdata
+	# workaround for https://github.com/musescore/MuseScore/issues/26104
+	@${INSTALL_DATA} ${FILESDIR}/mscore.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	@${REINPLACE_CMD} -i '' -e "\
+		s|^Version=.*|Version=${PORTVERSION}|; \
+		s|^Name=.*|Name=MuseScore|; \
+		"  ${STAGEDIR}${PREFIX}/share/applications/mscore.desktop
 
-WEBENGINE_DESC=		Use WebEngine in the welcome panel
-
-ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
-ALSA_CMAKE_BOOL=	BUILD_ALSA
-JACK_LIB_DEPENDS=	libjack.so:audio/jack
-JACK_CMAKE_BOOL=	BUILD_JACK
-PORTAUDIO_LIB_DEPENDS=	libportaudio.so:audio/portaudio
-PORTAUDIO_CMAKE_BOOL=	BUILD_PORTAUDIO
-PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
-PULSEAUDIO_CMAKE_BOOL=	BUILD_PULSEAUDIO
-WEBENGINE_USE=		qt=webengine
-WEBENGINE_CMAKE_BOOL=	BUILD_WEBENGINE
-
-.include <bsd.port.pre.mk>
-
-.if ${CHOSEN_COMPILER_TYPE} == clang
-CXXFLAGS+=	-Wno-inconsistent-missing-override
-.endif
-
-post-extract:
-	@${RM} -r ${WRKSRC}/thirdparty/freetype
-
-post-patch:
-	@${FIND} ${WRKSRC} -name "CMakeLists.txt" -print0 | ${XARGS} -0 \
-		${REINPLACE_CMD} -e \
-		'/RELEASE/s|-O2 ||; \
-		 /COMPILE_FLAGS/s|-g ||; \
-		 s|share/man|man|; \
-		 /COMPILE_FLAGS/s|$${PCH_INCLUDE} |-include $${PROJECT_BINARY_DIR}/all.h |'
-	@${REINPLACE_CMD} -e \
-		's|<errno.h>|<cerrno>| ; \
-		 s|<limits.h>|<climits>| ; \
-		 s|<math.h>|<cmath>| ; \
-		 s|<stdio.h>|<cstdio>|' ${WRKSRC}/all.h
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

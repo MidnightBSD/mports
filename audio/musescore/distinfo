@@ -1,3 +1,5 @@
-TIMESTAMP = 1575585732
-SHA256 (musescore-MuseScore-v3.3.4_GH0.tar.gz) = ab8bade6c7eec6a9ae03f435cad65e79c4ca031d19020aa6e2a4da2868f49a2a
-SIZE (musescore-MuseScore-v3.3.4_GH0.tar.gz) = 62827836
+TIMESTAMP = 1746432494
+SHA256 (musescore-MuseScore-v4.5.1_GH0.tar.gz) = 5ec033770599ee42ebc00e1a8c680b78de7ac871a0fa6484a68544653171b9ae
+SIZE (musescore-MuseScore-v4.5.1_GH0.tar.gz) = 144481700
+SHA256 (05056ed19520060c3912a09a3adfa0927057f956.patch) = 8f8b1d947562ccb78875c00f50ece2ba32cb2ff38ef9da6350fc1eae4eac734a
+SIZE (05056ed19520060c3912a09a3adfa0927057f956.patch) = 3471

@@ -1,0 +1,11 @@
+--- src/framework/ui/CMakeLists.txt.orig	2024-12-11 12:43:18 UTC
++++ src/framework/ui/CMakeLists.txt
+@@ -49,6 +49,8 @@ elseif(OS_IS_LIN)
+     set(PLATFORM_THEME_SRC
+         ${CMAKE_CURRENT_LIST_DIR}/internal/platform/linux/linuxplatformtheme.cpp
+         ${CMAKE_CURRENT_LIST_DIR}/internal/platform/linux/linuxplatformtheme.h
++        ${CMAKE_CURRENT_LIST_DIR}/internal/platform/stub/stubplatformtheme.cpp
++        ${CMAKE_CURRENT_LIST_DIR}/internal/platform/stub/stubplatformtheme.h
+     )
+ else()
+     set(PLATFORM_THEME_SRC
