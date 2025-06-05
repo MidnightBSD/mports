@@ -33,6 +33,7 @@ SUBDIR += libXmu
 SUBDIR += libXt
 SUBDIR += libgdiplus
 SUBDIR += libhandy
+SUBDIR += libshumate
 SUBDIR += libunique3
 SUBDIR += libwnck
 SUBDIR += libwnck3
