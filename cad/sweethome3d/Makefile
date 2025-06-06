@@ -15,10 +15,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING.TXT
 BUILD_DEPENDS=	java3d>=0:java/java3d
 RUN_DEPENDS=	java3d>=0:java/java3d
 
-USES=		cmake:indirect
+USES=		cmake:indirect java:ant,run
 
-USE_ANT=	yes
-USE_JAVA=	8
+JAVA_VERSION=	8
 
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	puybaret:yr
