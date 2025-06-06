@@ -61,7 +61,7 @@ post-patch:
 		${WRKSRC}/cmake/compiler_settings.cmake
 
 post-install:
-	@cd ${FAKE_DESTDIR}/${LOCALBASE} && \
+	@cd ${FAKE_DESTDIR}/${TRUE_PREFIX} && \
 	${FIND} -s -d * -type f > ${TMPPLIST}
 
 .include <bsd.port.mk>
