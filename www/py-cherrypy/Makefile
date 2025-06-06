@@ -20,26 +20,16 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cheroot>=8.2.1:www/py-cheroot@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}portend>=2.1.1:net/py-portend@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>=1.11.0:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zclockfile>0:devel/py-zclockfile@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}codecov>=2.1.13:devel/py-codecov@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}coverage>=7.2.2:devel/py-coverage@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}objgraph>=3.5.0:devel/py-objgraph@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}path.py>0:devel/py-path.py@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-cov>=2.9.0:devel/py-pytest-cov@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-forked>=1.6.0:devel/py-pytest-forked@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-services>=2:devel/py-pytest-services@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-sugar>=0.9.7:devel/py-pytest-sugar@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}python-memcached>=1.59:databases/py-python-memcached@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}requests-toolbelt>0:www/py-requests-toolbelt@${PY_FLAVOR} \
-		${PY_SETUPTOOLS}
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent distutils pytest
+USE_PYTHON=	autoplist concurrent distutils
 PYTEST_BROKEN_TESTS=	test_0_NormalStateFlow test_8_Ram_Cleanup \
 			test_multipart_decoding \
 			test_multipart_decoding_bigger_maxrambytes test_pass \
 			test_4_File_deletion test_3_Redirect \
 			test_threadlocal_garbage
 NO_ARCH=	yes
+NO_TEST=	yes
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	EXAMPLES
@@ -48,10 +38,10 @@ EXAMPLES_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cheetah3>0:devel/py-cheetah3@${PY_F
 			${PYTHON_PKGNAMEPREFIX}sqlobject>=1.5.1:databases/py-sqlobject@${PY_FLAVOR}
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/cherrypy/tutorial && \
-	${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-	(cd ${STAGEDIR}${PREFIX} && \
+	${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR})
+	(cd ${FAKE_DESTDIR}${PREFIX} && \
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		-d ${EXAMPLESDIR} ${EXAMPLESDIR:S,${PREFIX}/,,})
 
