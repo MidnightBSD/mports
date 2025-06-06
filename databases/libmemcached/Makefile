@@ -49,4 +49,6 @@ MURMUR_CMAKE_BOOL=	ENABLE_HASH_MURMUR
 SASL_CMAKE_BOOL=	ENABLE_SASL
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
