@@ -10,11 +10,11 @@ DISTFILES=	Impact-${DISTVERSION}${EXTRACT_SUFX} \
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	Impact-${DISTVERSION}${EXTRACT_SUFX}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic Finite Element Program Suite
 WWW=		https://www.impact-fem.org/
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 
 RUN_DEPENDS=	java3d>0:java/java3d
 
