@@ -1,0 +1,10 @@
+--- metainfo.yaml.orig	2025-06-06 21:17:43 UTC
++++ metainfo.yaml
+@@ -5,6 +5,7 @@ type: integration
+ platforms:
+     - name: Linux
+     - name: FreeBSD
++    - name: MidnightBSD
+ portingAid: false
+ deprecated: false
+ release: true
