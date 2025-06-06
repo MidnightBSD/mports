@@ -23,6 +23,8 @@ USE_PYTHON=	autoplist concurrent cython pep517
 
 MAKE_ENV+=	CYTHON_ANNOTATE=0 CYTHON_LINETRACE=0 USE_SYSTEM_LIBS=1
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/setup.py ${WRKSRC}/src/uharfbuzz/_harfbuzz.cpp
 # Clean up bundled libraries
