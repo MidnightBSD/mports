@@ -23,4 +23,8 @@ USE_XORG=	x11 xcomposite
 
 QT_BINARIES=	yes
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>
