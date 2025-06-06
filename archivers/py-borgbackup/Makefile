@@ -54,4 +54,4 @@ post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/borg/ -name "*.so" \
 		-exec ${STRIP_CMD} {} \;
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
