@@ -46,7 +46,9 @@ INSTALL_TARGET=	install-strip
 
 BINARY_ALIAS=	python=${PYTHON_CMD} # only for tests
 
-do-test: # one test is known to fail, see https://github.com/Xyce/Xyce/issues/67#issuecomment-1179857728
+NO_TEST=	yes
+
+hidden-test: # one test is known to fail, see https://github.com/Xyce/Xyce/issues/67#issuecomment-1179857728
 	# checkout tests
 	@cd ${WRKDIR} && \
 		${ECHO} "cloning git repository ..." && \
