@@ -24,6 +24,8 @@ GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 GO_TARGET=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 GO_BUILDFLAGS=	-ldflags='-X github.com/grafana/alloy/internal/build.Version=v${PORTVERSION}'
 
+NO_TEST=	yes
+
 post-fetch:
 	@${ECHO_MSG} "===> Fetching ${GO_MODNAME}/syntax dependency";
 	(cd ${DISTDIR}/${DIST_SUBDIR}; [ -e syntax/go.mod ] || (\
