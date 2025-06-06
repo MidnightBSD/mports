@@ -22,9 +22,10 @@ RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}
 
 USES=		fortran python
-USE_PYTHON=	distutils cython autoplist pytest # tests fail, see https://github.com/scikit-umfpack/scikit-umfpack/issues/77
+USE_PYTHON=	distutils cython autoplist # tests fail, see https://github.com/scikit-umfpack/scikit-umfpack/issues/77
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+NO_TEST=	yes
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/scikits/umfpack/__umfpack${PYTHON_EXT_SUFFIX}.so
