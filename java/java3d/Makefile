@@ -37,33 +37,33 @@ post-patch:
 		${WRKSRC}/j3d-core/src/native/ogl/build-freebsd.xml
 
 do-build:
-	cd ${WRKSRC}/vecmath && ${SETENV} ${MAKE_ENV} ${ANT} dist
+	cd ${WRKSRC}/vecmath && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${ANT} dist
 	cd ${WRKSRC}/j3d-core \
-		&& ${SETENV} ${MAKE_ENV} ${ANT} -Dbuild.type=fcs \
-						-Dis${OPSYS}=yes \
+		&& ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${ANT} -Dbuild.type=fcs \
+						-Dis${OPSYS}=yes -DisFreeBSD=yes\
 						-Dports.localbase=${LOCALBASE} \
 						jar-opt
 
 post-build-DOCS-on:
 	cd ${WRKSRC}/j3d-core \
-		&& ${SETENV} ${MAKE_ENV} ${ANT} -Dbuild.type=fcs \
-						-Dis${OPSYS}=yes \
+		&& ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${ANT} -Dbuild.type=fcs \
+						-Dis${OPSYS}=yes -DisFreeBSD=yes \
 						docs-public
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${JAVA_HOME}/jre/lib/ext
+	@${MKDIR} ${FAKE_DESTDIR}${JAVA_HOME}/jre/lib/ext
 	${INSTALL_DATA} \
 		${WRKSRC}/vecmath/dist/lib/ext/vecmath.jar \
 		${WRKSRC}/j3d-core/build/default/opt/lib/ext/j3dcore.jar \
 		${WRKSRC}/j3d-core/build/default/opt/lib/ext/j3dutils.jar \
-		${STAGEDIR}${JAVA_HOME}/jre/lib/ext
-	@${MKDIR} ${STAGEDIR}${JAVA_HOME}/jre/lib/${ARCH}
+		${FAKE_DESTDIR}${JAVA_HOME}/jre/lib/ext
+	@${MKDIR} ${FAKE_DESTDIR}${JAVA_HOME}/jre/lib/${ARCH}
 	${INSTALL} \
 		${WRKSRC}/j3d-core/build/default/opt/native/libj3dcore-ogl.so \
-		${STAGEDIR}${JAVA_HOME}/jre/lib/${ARCH}
+		${FAKE_DESTDIR}${JAVA_HOME}/jre/lib/${ARCH}
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${DOCSSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${DOCSSRC} && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
