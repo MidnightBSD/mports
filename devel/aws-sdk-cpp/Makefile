@@ -60,7 +60,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's,"-Werror",,g' \
 		${WRKSRC}/cmake/compiler_settings.cmake
 
-post-install:
+post-fake:
 	@cd ${FAKE_DESTDIR}/${TRUE_PREFIX} && \
 	${FIND} -s -d * -type f > ${TMPPLIST}
 
