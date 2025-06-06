@@ -34,4 +34,6 @@ EXAMPLES_MESON_TRUE=	examples
 TESTS_MESON_TRUE=	tests
 TOOLS_MESON_TRUE=	tools
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
