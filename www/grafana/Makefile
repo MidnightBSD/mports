@@ -100,8 +100,9 @@ pre-build:
 		./pkg/build/wire/cmd/wire/main.go gen -tags "oss" ./pkg/server)
 
 post-install:
-	${MKDIR} ${FAKE_DESTDIR}${GRAFANA_HOMEDIR}
-	${MKDIR} ${FAKE_DESTDIR}${GRAFANA_HOMEDIR}/conf
+	${MKDIR} ${ETCDIR}
+	${MKDIR} ${GRAFANA_HOMEDIR}
+	${MKDIR} ${GRAFANA_HOMEDIR}/conf
 	${MKDIR} ${FAKE_DESTDIR}${GRAFANA_DATADIR}
 	${MKDIR} ${FAKE_DESTDIR}${GRAFANA_PLUGINDIR}
 .for dir in access-control alerting dashboards datasources plugins
@@ -109,14 +110,14 @@ post-install:
 .endfor
 	${MKDIR} ${FAKE_DESTDIR}${GRAFANA_LOGDIR}
 	(cd ${WRKDIR}/${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX} \
-		&& ${COPYTREE_SHARE} public ${FAKE_DESTDIR}${GRAFANA_HOMEDIR})
+		&& ${COPYTREE_SHARE} public ${GRAFANA_HOMEDIR})
 	${INSTALL_DATA} ${WRKSRC}/conf/defaults.ini \
-		${FAKE_DESTDIR}${GRAFANA_HOMEDIR}/conf/defaults.ini
+		${GRAFANA_HOMEDIR}/conf/defaults.ini
 	${INSTALL_DATA} ${WRKSRC}/conf/sample.ini \
-		${FAKE_DESTDIR}${ETCDIR}/grafana.ini.sample
+		${ETCDIR}/grafana.ini.sample
 	${INSTALL_DATA} ${WRKSRC}/conf/ldap.toml \
-		${FAKE_DESTDIR}${ETCDIR}/ldap.toml.sample
-	${FIND} ${FAKE_DESTDIR}${DATADIR}/public -type f | \
-		${SED} "s,^${FAKE_DESTDIR}${DATADIR},${DATADIR}," >> ${TMPPLIST}
+		${ETCDIR}/ldap.toml.sample
+	${FIND} ${DATADIR}/public -type f | \
+		${SED} "s,^${DATADIR},${DATADIR_REL}," >> ${TMPPLIST}
 
 .include <bsd.port.mk>
