@@ -10,6 +10,7 @@ WWW=		https://github.com/awslabs/aws-crt-ffi
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${LOCALBASE}/bin/bssl:security/aws-lc
 LIB_DEPENDS=	libaws-c-auth.so:security/aws-c-auth \
 		libaws-c-cal.so:security/aws-c-cal \
 		libaws-c-common.so:devel/aws-c-common \
