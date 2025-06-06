@@ -18,7 +18,7 @@ BUILD_DEPENDS=	harfbuzz>=10.2.0:print/harfbuzz \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 
-USES=		compiler:c++11-lang python
+USES=		compiler:c++11-lang pkgconfig python
 USE_PYTHON=	autoplist concurrent cython pep517
 
 MAKE_ENV+=	CYTHON_ANNOTATE=0 CYTHON_LINETRACE=0 USE_SYSTEM_LIBS=1
