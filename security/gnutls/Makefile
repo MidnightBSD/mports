@@ -1,70 +1,74 @@
 PORTNAME=	gnutls
-PORTVERSION=	3.8.6
+DISTVERSION=	3.8.9
 CATEGORIES=	security net
-MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
+MASTER_SITES=	GNUPG/${PORTNAME}/v${DISTVERSION:C/(\.[^.]*).*/\1/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
 WWW=		https://gnutls.org/
 
-LICENSE=	gpl3 lgpl2.1
+LICENSE=	gpl3+ lgpl2.1+
 LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libnettle.so:security/nettle \
 		libtasn1.so:security/libtasn1 \
 		libunistring.so:devel/libunistring
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
 USES=		compiler:c11 cpe gmake iconv libtool localbase makeinfo \
 		pkgconfig tar:xz
+CPE_VENDOR=	gnu
 USE_LDCONFIG=	yes
 
-CPE_VENDOR=	gnu
+#magus
+NO_TEST=	yes
+
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-guile \
-		--enable-local-libopts \
-		--with-system-priority-file=${PREFIX}/etc/gnutls/default-priorities \
-		--with-default-trust-store-file=${LOCALBASE}/share/certs/ca-root-nss.crt \
-		--with-trousers-lib=${LOCALBASE}/lib/libtspi.so.1 \
+CONFIGURE_ARGS=	--disable-rpath \
+		--enable-ld-version-script \
+		--enable-openssl-compatibility \
+		--with-default-trust-store-dir=/etc/ssl/certs \
+		--with-system-priority-file=${PREFIX}/etc/gnutls/config \
 		--without-brotli \
-		--without-zstd \
+		--without-included-libtasn1 \
 		--without-tpm \
 		--without-tpm2 \
-		AUTOGEN=false \
-		ac_cv_type_max_align_t=yes
-LDFLAGS_i386=	-Wl,-z,notext
+		--without-zstd
+
 MAKE_ENV=	MAKEINFOFLAGS=--no-split
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
-# 32 bit test fail on magus. seems to be compiler related.
-NO_TEST=	yes
+LDFLAGS+=	-Wl,--undefined-version
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION:C/(\.[^.]*\.[^.]*).*/\1/}
+
+INFO=		gnutls
 
 OPTIONS_DEFINE=		DANE EXAMPLES IDN MAN3 NLS P11KIT SRP
 OPTIONS_DEFAULT=	IDN MAN3 P11KIT
 OPTIONS_SUB=		yes
 
 DANE_DESC=		Certificate verification via DNSSEC
+MAN3_DESC=		Install API manpages (section 3)
+P11KIT_DESC=		PKCS\#11 and p11-kit support
 SRP_DESC=		Secure Remote Password support
+
 DANE_LIB_DEPENDS=	libunbound.so:dns/unbound
 DANE_CONFIGURE_ENABLE=	libdane
 
-IDN_CONFIGURE_WITH=	idn
 IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
+IDN_CONFIGURE_WITH=	idn
 
-MAN3_DESC=		Install API manpages (section 3)
-
-NLS_CONFIGURE_ENABLE=	nls
-NLS_CONFIGURE_OFF=	ac_cv_lib_intl_gettext=no
 NLS_USES=		gettext
+NLS_CONFIGURE_OFF=	ac_cv_lib_intl_gettext=no
+NLS_CONFIGURE_ENABLE=	nls
 
-P11KIT_DESC=		PKCS\#11 and p11-kit support
-P11KIT_CONFIGURE_WITH=	p11-kit
-P11KIT_CONFIGURE_ON=	--with-default-trust-store-pkcs11="pkcs11:model=p11-kit-trust;manufacturer=PKCS%2311%20Kit"
 P11KIT_LIB_DEPENDS=	libp11-kit.so:security/p11-kit
+P11KIT_CONFIGURE_ON=	--with-default-trust-store-pkcs11="pkcs11:model=p11-kit-trust;manufacturer=PKCS%2311%20Kit"
+P11KIT_CONFIGURE_WITH=	p11-kit
 
-SRP_CONFIGURE_ENABLE= srp-authentication
+SRP_CONFIGURE_ENABLE=	srp-authentication
 
 .include <bsd.mport.options.mk>
 
@@ -80,13 +84,13 @@ post-patch:
 		${WRKSRC}/doc/invoke-gnutls-serv.texi \
 		${WRKSRC}/doc/invoke-p11tool.texi \
 		${WRKSRC}/doc/invoke-srptool.texi \
+		${WRKSRC}/doc/srptool-examples.texi \
 		${WRKSRC}/doc/manpages/certtool.1 \
 		${WRKSRC}/doc/manpages/gnutls_priority_init2.3 \
 		${WRKSRC}/doc/manpages/gnutls-cli.1 \
 		${WRKSRC}/doc/manpages/gnutls-serv.1 \
 		${WRKSRC}/doc/manpages/p11tool.1 \
 		${WRKSRC}/doc/manpages/srptool.1 \
-		${WRKSRC}/doc/srptool-examples.texi \
 		${WRKSRC}/lib/includes/gnutls/pkcs11.h \
 		${WRKSRC}/lib/pkcs11.c \
 		${WRKSRC}/src/p11tool-options.c \
@@ -115,7 +119,9 @@ post-patch:
 		${WRKSRC}/doc/stamp_functions
 
 post-install:
-	${MKDIR} ${EXAMPLESDIR}
+	@${RM} ${STAGEDIR}${DOCSDIR}/*.png
+	@${RMDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/examples/*.[ch] ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
