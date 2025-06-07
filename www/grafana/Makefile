@@ -77,6 +77,8 @@ GRAFANA_LOGDIR?=		/var/log/${PORTNAME}
 GRAFANA_PLUGINDIR?=		${GRAFANA_DATADIR}/plugins
 GRAFANA_PROVISIONINGDIR?=	${ETCDIR}/provisioning
 
+NO_TEST=	yes
+
 post-extract:
 	@${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
 	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
