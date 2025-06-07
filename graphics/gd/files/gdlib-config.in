@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-#	$FreeBSD: head/graphics/gd/files/gdlib-config.in 533989 2020-05-04 21:31:39Z dinoex $
-#
 # Return information about the local GD library installation
 #
 # Modeled for ports:
