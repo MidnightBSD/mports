@@ -9,15 +9,3 @@
  	set(BSD TRUE)
  	set(FREEBSD TRUE)
  endif()
-@@ -963,11 +963,9 @@
- set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
- if (APPLE)
- 	set(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
--	set(CMAKE_INSTALL_RPATH "@loader_path/../Frameworks")
- else (APPLE)
- 	set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
- 	if (NOT FREEBSD)
--		set(CMAKE_INSTALL_RPATH "\$ORIGIN/../${CMAKE_INSTALL_LIBDIR}:\$ORIGIN/..")
- 	endif()
- endif(APPLE)
- 
