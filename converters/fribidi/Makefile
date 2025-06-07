@@ -1,10 +1,7 @@
 PORTNAME=	fribidi
-DISTVERSION=	1.0.15
+DISTVERSION=	1.0.16
 CATEGORIES=	converters
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
-
-PATCH_SITES=	https://github.com/fribidi/fribidi/commit/
-PATCHFILES=	3826589ea556da613bd42742a169789469e8b635.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Implementation of the Unicode Bidirectional Algorithm
