@@ -1,6 +1,5 @@
 PORTNAME=	flac
-DISTVERSION=	1.4.3
-PORTREVISION=	1
+DISTVERSION=	1.5.0
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://downloads.xiph.org/releases/flac/ \
@@ -38,7 +37,7 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.port.pre.mk>
 
 post-install:
-	cd ${PREFIX}/lib && ${LN} -sf libFLAC.so.12 libFLAC.so.8
+	cd ${PREFIX}/lib && ${LN} -sf libFLAC.so.14 libFLAC.so.8
 
 # test_libFLAC:
 # "iterator claims file is writable when tester thinks it should not be"
