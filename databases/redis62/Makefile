@@ -1,5 +1,5 @@
 PORTNAME=	redis
-DISTVERSION=	6.2.17
+DISTVERSION=	6.2.188888888
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 PKGNAMESUFFIX=	62
@@ -50,7 +50,7 @@ NO_TEST=	yes
 
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
-CONFLICTS_INSTALL=	redis redis-devel redis6 redis70 # etc/rc.d/redis
+CONFLICTS_INSTALL=	redis redis-devel redis6 redis72 redis74 # etc/rc.d/redis
 
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \
