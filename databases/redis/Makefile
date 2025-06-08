@@ -1,5 +1,5 @@
 PORTNAME=	redis
-DISTVERSION=	7.4.2
+DISTVERSION=	8.0.1
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
@@ -19,7 +19,7 @@ USES+=		compiler:c11 cpe gmake
 CPE_VENDOR=	redislabs
 USE_RC_SUBR=	redis sentinel
 
-CONFLICTS_INSTALL=    redis-devel redis6 # etc/rc.d/redis
+CONFLICTS_INSTALL=    redis-devel redis6 redis72 redis74 # etc/rc.d/redis
 
 OPTIONS_DEFINE=	JEMALLOC TESTS TLS
 OPTIONS_SUB=	yes
