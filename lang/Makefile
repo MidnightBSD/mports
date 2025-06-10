@@ -34,6 +34,7 @@ SUBDIR += gcc14
 SUBDIR += gcc-ecj45
 SUBDIR += ghc
 SUBDIR += gjs
+SUBDIR += gnat12
 SUBDIR += gnustep-base
 SUBDIR += go
 SUBDIR += go-devel
