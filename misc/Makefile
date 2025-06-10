@@ -15,6 +15,7 @@ SUBDIR += compat10x
 SUBDIR += compat11x
 SUBDIR += compat12x
 SUBDIR += cpuid
+SUBDIR += ctm
 SUBDIR += dejagnu
 SUBDIR += dict-de
 SUBDIR += dnetc
