@@ -305,6 +305,7 @@ SUBDIR += libspice-server
 SUBDIR += libsoup
 SUBDIR += libsoup3
 SUBDIR += libstatgrab
+SUBDIR += libsysctlmibinfo2
 SUBDIR += libsysinfo
 SUBDIR += libtextstyle
 SUBDIR += libthai
