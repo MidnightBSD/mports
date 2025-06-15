@@ -223,6 +223,7 @@ SUBDIR += jech-dht
 SUBDIR += jenkins
 SUBDIR += jenkins-lts
 SUBDIR += jetbrains-clion
+SUBDIR += jetbrains-goland
 SUBDIR += jetbrains-pty4j
 SUBDIR += jetbrains-restarter
 SUBDIR += jetbrains-sqlite
