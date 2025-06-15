@@ -36,6 +36,7 @@ SUBDIR += javajj
 SUBDIR += jjclient
 SUBDIR += jlj
 SUBDIR += libportal
+SUBDIR += kf6-kstatusnotifieritem
 SUBDIR += libportal-gtk3
 SUBDIR += libportal-gtk4
 SUBDIR += libportal-qt5
