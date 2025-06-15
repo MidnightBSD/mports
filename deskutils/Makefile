@@ -57,6 +57,7 @@ SUBDIR += preferencepanes
 SUBDIR += preferences
 SUBDIR += simpleagenda
 SUBDIR += spice-gtk
+SUBDIR += sysctlview
 SUBDIR += systempreferences
 SUBDIR += toolboxkit
 SUBDIR += virt-manager
