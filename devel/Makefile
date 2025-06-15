@@ -233,6 +233,7 @@ SUBDIR += jsoncpp
 SUBDIR += judy
 SUBDIR += kBuild
 SUBDIR += kf6-extra-cmake-modules
+SUBDIR += kf6-kconfig
 SUBDIR += kyua
 SUBDIR += lcov
 SUBDIR += lemon

@@ -1,0 +1,10 @@
+--- metainfo.yaml.orig	2025-06-15 19:06:14 UTC
++++ metainfo.yaml
+@@ -7,6 +7,7 @@ platforms:
+     - name: Windows
+     - name: macOS
+     - name: Android
++    - name: MidnightBSD
+ portingAid: false
+ deprecated: false
+ release: true
