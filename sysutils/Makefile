@@ -217,6 +217,7 @@ SUBDIR += slurm-wlm
 SUBDIR += smartmontools
 SUBDIR += synergy
 SUBDIR += sysctlbyname-improved-kmod
+SUBDIR += sysctlinfo-kmod
 SUBDIR += system-tools-backends
 SUBDIR += tarsnap
 SUBDIR += tarsnap-gui
