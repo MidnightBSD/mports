@@ -3,7 +3,7 @@
 # Feature:	webplugin
 # Usage:	USES=webplugin or USES=webplugin:ARGS
 # Valid ARGS:	gecko: Support geko based plugings
-# 		native: Support gecko, opera, webkit-gtk*
+# 		native: Support gecko, webkit-gtk*
 # 		linux: Support linux plugins
 # 		[list of indivudual engines]: specify browsers to use
 # 		all: All browser (implicit, default)
@@ -104,9 +104,9 @@
 _INCLUDE_USES_WEBPLUGIN_MK=	yes
 
 WEBPLUGIN_NAME?=		${PKGBASE}
-_WEBPLUGIN_APPS_ALL_LINUX=	linux-firefox linux-opera linux-opera-devel \
+_WEBPLUGIN_APPS_ALL_LINUX=	linux-firefox \
 				linux-seamonkey
-_WEBPLUGIN_APPS_ALL_NATIVE=	gecko opera opera-devel webkit-gtk2
+_WEBPLUGIN_APPS_ALL_NATIVE=	gecko webkit-gtk2
 _WEBPLUGIN_APPS_ALL=		${_WEBPLUGIN_APPS_ALL_LINUX} \
 				${_WEBPLUGIN_APPS_ALL_NATIVE}
 

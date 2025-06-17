@@ -347,9 +347,6 @@ _LICENSE_GROUPS_OFL11=	FONTS
 _LICENSE_NAME_openldap2.8= OpenLDAP License version 2.8
 _LICENSE_GROUPS_openldap2.8=
 
-_LICENSE_NAME_opera=	Opera License
-_LICENSE_GROUPS_opera=
-
 _LICENSE_NAME_other=	Other License (not yet defined)
 _LICENSE_GROUPS_other=	
 
