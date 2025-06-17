@@ -1,5 +1,5 @@
 PORTNAME=	wordpress
-DISTVERSION=	6.6.1
+DISTVERSION=	6.7.2
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	https://wordpress.org/
