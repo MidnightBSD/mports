@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Berkeley DB Java Edition
 WWW=		https://www.oracle.com/database/technologies/related/berkeleydb.html
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${JAVALIBDIR}/junit.jar:java/junit

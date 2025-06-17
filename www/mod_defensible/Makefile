@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache 2.4 module aiming to block IP listed in DNSBL
 WWW=		https://github.com/jd/mod_defensible
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		apache
 

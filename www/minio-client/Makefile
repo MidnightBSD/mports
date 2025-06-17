@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for ls, cp, mkdir, diff and rsync commands for filesystems
 WWW=		https://minio.io/downloads/ #minio-client
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BROKEN_i386=	fails to build
 

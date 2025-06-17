@@ -9,7 +9,7 @@ COMMENT=	Multidict implementation
 WWW=		https://pypi.org/project/multidict/ \
 		https://github.com/aio-libs/multidict
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python

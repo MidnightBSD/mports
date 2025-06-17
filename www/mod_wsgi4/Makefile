@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python WSGI adapter module for Apache
 WWW=		https://www.modwsgi.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		apache:2.4+ cpe gettext python:3.8-3.11
 USE_PYTHON=	flavors

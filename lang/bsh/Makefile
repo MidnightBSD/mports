@@ -5,7 +5,7 @@ CATEGORIES=	lang java
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Beanshell Java scripting language
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		java:ant,run
 JAVA_VERSION=	8

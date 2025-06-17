@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache library with helper utilities for the java.lang API
 https://commons.apache.org/proper/commons-lang/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 

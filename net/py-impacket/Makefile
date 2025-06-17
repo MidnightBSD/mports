@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of Python classes providing access to network packets
 WWW=		https://www.coresecurity.com/corelabs-research/open-source-tools/impacket
 
-LICENSE=	apache1 zlib
+LICENSE=	Apache-1.0 zlib
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

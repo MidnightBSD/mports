@@ -18,7 +18,7 @@ _LICENSE_LIST+= agpl+ gpl+ gpl2+ gpl3+ gpl3rle+ lgpl+ lgpl2.1+ lgpl3+
 _LICENSE_LIST+= bsd bsd0 bsd1 bsd2 bsd3 bsd4
 
 # Apache family
-_LICENSE_LIST+= apache1 apache1.1 apache2
+_LICENSE_LIST+= Apache-1.0 Apache-1.1 Apache-2.0
 
 # Artistic family
 _LICENSE_LIST+= artistic artistic2 perl
@@ -73,14 +73,14 @@ _LICENSE_GROUPS_agpl=	FSF GPL OSI
 _LICENSE_NAME_apgl+ =       ${_LICENSE_NAME_agpl} (or later)
 _LICENSE_GROUPS_agpl+ =     ${_LICENSE_GROUPS_agpl}
 
-_LICENSE_NAME_apache1=	Apache License 1.0
-_LICENSE_GROUPS_apache1=	FSF
+_LICENSE_NAME_Apache-1.0=	Apache License 1.0
+_LICENSE_GROUPS_Apache-1.0=	FSF
 
-_LICENSE_NAME_apache1.1=	Apache License 1.1
-_LICENSE_GROUPS_apache1.1=	FSF OSI
+_LICENSE_NAME_Apache-1.1=	Apache License 1.1
+_LICENSE_GROUPS_Apache-1.1=	FSF OSI
 
-_LICENSE_NAME_apache2=	Apache License 2.0
-_LICENSE_GROUPS_apache2=	FSF OSI
+_LICENSE_NAME_Apache-2.0=	Apache License 2.0
+_LICENSE_GROUPS_Apache-2.0=	FSF OSI
 
 _LICENSE_NAME_artistic=	Artistic License version 1.0
 _LICENSE_GROUPS_artistic=	OSI
@@ -361,9 +361,6 @@ _LICENSE_GROUPS_owl=	COPYFREE
 
 _LICENSE_NAME_pgsql=	PostgreSQL Licence
 _LICENSE_GROUPS_pgsql=	FSF GPL OSI COPYFREE
-
-_LICENSE_NAME_php=	PHP License version 3.01
-_LICENSE_GROUPS_php=	FSF OSI
 
 _LICENSE_NAME_PHP202=	PHP License version 2.02
 _LICENSE_GROUPS_PHP202=	FSF OSI

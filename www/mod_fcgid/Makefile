@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Alternative FastCGI module for Apache2
 WWW=		https://httpd.apache.org/mod_fcgid/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		apache cpe
 CPE_VENDOR=	apache

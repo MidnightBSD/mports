@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache2 module that processes X-SENDFILE headers
 WWW=		https://tn123.org/mod_xsendfile/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		apache
 AP_FAST_BUILD=	yes

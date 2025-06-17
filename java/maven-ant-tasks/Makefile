@@ -9,7 +9,7 @@ EXTRACT_ONLY=
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows Maven's artifact handling to be used from within an Ant build
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	ant:devel/apache-ant
 

@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP/2 modules for Apache httpd
 WWW=		https://github.com/icing/mod_h2
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libnghttp2.so:www/libnghttp2

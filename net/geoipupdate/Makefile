@@ -7,9 +7,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fetch the latest copies of the GeoIP2 databases
 WWW=		https://github.com/maxmind/geoipupdate
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	dual
-LICENSE_FILE_apache2=	${WRKSRC}/LICENSE-APACHE
+LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
 RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss

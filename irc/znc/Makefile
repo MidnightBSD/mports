@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced IRC bouncer
 WWW=		https://wiki.znc.in/ZNC
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		compiler:c++11-lib cpe cmake:run iconv:wchar_t pathfix pkgconfig python:3.5+

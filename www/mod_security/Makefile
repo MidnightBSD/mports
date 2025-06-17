@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intrusion detection and prevention engine
 WWW=		https://www.modsecurity.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libapr-1.so:devel/apr1 \

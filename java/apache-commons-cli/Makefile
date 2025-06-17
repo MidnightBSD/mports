@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java library for command line arguments and options
 WWW=		https://commons.apache.org/proper/commons-cli/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		java
 NO_BUILD=	yes

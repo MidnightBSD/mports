@@ -10,7 +10,7 @@ COMMENT=	Cleanroom build of Java Cryptography Extensions
 WWW=		https://www.bouncycastle.org/
 
 # APACHE20 is used by pg/src/main/java/org/bouncycastle/apache/bzip2/*.
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	multi
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE.html
 

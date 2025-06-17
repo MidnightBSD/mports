@@ -8,7 +8,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional and object-oriented language for the .NET platform
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 EXTRACT_DEPENDS=  ${LOCALBASE}/bin/bsdtar:archivers/libarchive

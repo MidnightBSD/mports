@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Spring Framework for Java
 WWW=		https://www.springframework.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 WRKSRC=		${WRKDIR}/spring-framework-${PORTVERSION}.RELEASE
 

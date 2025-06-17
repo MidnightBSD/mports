@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache module that provides DNS-SD capabilities
 WWW=		https://0pointer.de/lennart/projects/mod_dnssd/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libavahi-client.so:net/avahi-app

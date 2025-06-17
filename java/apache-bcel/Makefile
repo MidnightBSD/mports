@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Commons Byte Code Engineering Library
 WWW=		https://commons.apache.org/proper/commons-bcel/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		java
 NO_BUILD=	yes

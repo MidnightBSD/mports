@@ -10,7 +10,7 @@ WWW=		https://pypi.org/project/aioftp/ \
 		https://aioftp.readthedocs.io/ \
 		https://github.com/aio-libs/aioftp
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/license.txt
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

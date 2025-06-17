@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Commons Database Connection Pool
 WWW=		https://commons.apache.org/dbcp/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	${JAVALIBDIR}/commons-pool.jar:java/apache-commons-pool
 

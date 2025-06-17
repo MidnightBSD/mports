@@ -12,7 +12,7 @@ COMMENT=	Compiler for Writing C Extensions for the Python Language
 WWW=		https://cython.org/ \
 		https://github.com/cython/cython
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		compiler:c11 python:2.7+

@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source Java web server by Apache, 10.1.x branch
 WWW=		https://tomcat.apache.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	jsvc:devel/apache-commons-daemon
 

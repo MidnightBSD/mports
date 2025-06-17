@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Agile dynamic language for the JVM
 WWW=		https://www.groovy-lang.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cpe java zip
 CPE_VENDOR=	apache

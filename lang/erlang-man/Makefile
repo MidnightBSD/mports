@@ -9,7 +9,7 @@ DIST_SUBDIR=	erlang
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manual pages for Erlang/OTP
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 NO_ARCH=	yes
 NO_BUILD=	yes

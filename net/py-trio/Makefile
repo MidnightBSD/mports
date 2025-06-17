@@ -9,9 +9,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for async concurrency and I/O
 WWW=		https://pypi.org/project/trio/
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	dual
-LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE2
+LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE.APACHE2
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE.MIT
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}async_generator>0:devel/py-async_generator@${PY_FLAVOR} \
