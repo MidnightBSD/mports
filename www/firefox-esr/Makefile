@@ -15,6 +15,8 @@ WWW=		https://www.mozilla.com/firefox
 LICENSE=	mpl gpl2
 LICENSE_COMB=	dual
 
+PY_FLAVOR=	py39
+
 BUILD_DEPENDS=	nspr>=4.21:devel/nspr \
 		nss>=3.44.3:security/nss \
 		icu>=63.1,1:devel/icu \
@@ -36,17 +38,18 @@ CPE_PRODUCT=	${PORTNAME}_esr
 CONFLICTS_INSTALL=	firefox
 USE_MOZILLA=	-sqlite
 CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include"
+MBSD64_TARGET=  x86_64-mports-freebsd12.3
+CONFIGURE_TARGET=       ${MBSD64_TARGET}
 
 USES=		tar:xz
 
 MOZILLA=        browser                                                                                                                                                   
 MOZILLA_NAME=   Browser                                                                                                                                                   
 #MOZ_OPTIONS=    --program-transform-name='s/firefox/${MOZILLA}/'                                                                                                          
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.3
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
 FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/${MOZILLA}-snap/${MOZILLA}.desktop
-MOZ_OPTIONS+=	--enable-application=browser \
+MOZ_OPTIONS=	--enable-application=browser \
 		--enable-install-strip \
 		--enable-optimize \
 		--enable-strip \
@@ -61,7 +64,19 @@ MOZ_OPTIONS+=	--enable-application=browser \
 		--disable-debug-symbols \
 		--disable-profiling \
 		--disable-dtrace \
-		--disable-crashreporter
+		--disable-crashreporter \
+		--disable-alsa \
+                --disable-jack \
+                --disable-pulseaudio \
+		--with-intl-api \
+                --with-system-icu \
+                --with-system-jpeg \
+                --with-system-libevent \
+                --with-system-nspr \
+                --with-system-nss \
+                --with-system-png \
+                --with-system-zlib \
+                --without-wasm-sandboxed-libraries
 
 MAKE_ENV+=    __FreeBSD__=12 __FreeBSD__version=1203501
 
