@@ -30,7 +30,7 @@ _LICENSE_LIST+= artistic artistic2 perl
 _LICENSE_LIST+= PHP202 PHP30 PHP301
 
 # MPL family
-_LICENSE_LIST+= mpl MPL10 MPL11 MPL20
+_LICENSE_LIST+= MPL10 MPL11 MPL20
 
 # Create commons variants
 _LICENSE_LIST+= CC0-1.0 \
@@ -318,9 +318,6 @@ _LICENSE_GROUPS_mit=	FSF GPL OSI COPYFREE
 
 _LICENSE_NAME_modula3=	Modula 3 license
 _LICENSE_GROUPS_modula3=
-
-_LICENSE_NAME_mpl=	Mozilla Public License
-_LICENSE_GROUPS_mpl=	FSF OSI
 
 _LICENSE_NAME_MPL10=	Mozilla Public License version 1.0
 _LICENSE_GROUPS_MPL10=	FSF OSI
