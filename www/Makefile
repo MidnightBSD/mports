@@ -322,6 +322,7 @@ SUBDIR += yarn
 SUBDIR += yarn-node18
 SUBDIR += yarn-node20
 SUBDIR += yarn-node22
+SUBDIR += youtube
 SUBDIR += yt-dlp
 SUBDIR += yuicompressor
 SUBDIR += zend-framework
