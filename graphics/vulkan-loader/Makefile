@@ -1,13 +1,13 @@
 PORTNAME=	vulkan-loader
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.293
+DISTVERSION=	1.4.316
 CATEGORIES=	graphics devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver loader for the Vulkan graphics API
 WWW=		https://github.com/KhronosGroup/Vulkan-Loader
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 

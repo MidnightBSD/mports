@@ -1,13 +1,13 @@
 PORTNAME=	vulkan-headers
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.293
+DISTVERSION=	1.4.316
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Headers for the Vulkan graphics API
 WWW=		https://github.com/KhronosGroup/Vulkan-Headers
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cmake
 USE_GITHUB=	yes
