@@ -243,6 +243,7 @@ SUBDIR += libatomic_ops
 SUBDIR += libayatana-appindicator
 SUBDIR += libayatana-indicator
 SUBDIR += libappindicator
+SUBDIR += libb2
 SUBDIR += libburn
 SUBDIR += libcbor
 SUBDIR += libccid
