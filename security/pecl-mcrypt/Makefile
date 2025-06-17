@@ -5,7 +5,7 @@ CATEGORIES=	security pear
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP extension for mcrypt, removed in PHP 7.2
 
-LICENSE=	php
+LICENSE=	PHP301
 
 IGNORE_WITH_PHP=	71
 

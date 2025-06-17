@@ -24,7 +24,7 @@ _LICENSE_LIST+= apache1 apache1.1 apache2
 _LICENSE_LIST+= artistic artistic2 perl
 
 # PHP family
-_LICENSE_LIST+= php PHP202 PHP30 PHP301
+_LICENSE_LIST+= PHP202 PHP30 PHP301
 
 # MPL family
 _LICENSE_LIST+= mpl MPL10 MPL11 MPL20
