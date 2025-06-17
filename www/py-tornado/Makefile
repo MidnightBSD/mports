@@ -9,7 +9,7 @@ COMMENT=	Python Web Server from FriendFeed
 WWW=		https://www.tornadoweb.org/ \
 		https://github.com/tornadoweb/tornado
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}

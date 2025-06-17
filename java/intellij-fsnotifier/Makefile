@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for IntelliJ's fsnotifier
 WWW=		https://gitlab.com/worthwhileit/bsd/fsnotifier
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 LIB_DEPENDS=	libinotify.so:devel/libinotify

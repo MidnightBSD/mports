@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language from Ericsson
 WWW=		https://www.erlang.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		autoreconf:build compiler:c11 cpe gmake ncurses perl5
 CPE_VENDOR=	erlang

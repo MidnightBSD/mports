@@ -7,7 +7,7 @@ DISTNAME=	apache-maven-${DISTVERSION}-bin
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java project management tool, 3.3.x branch
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	mvn:java/maven-wrapper
 

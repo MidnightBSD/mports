@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Package implementing the client side of the HTTP standard
 WWW=		https://hc.apache.org/httpclient-3.x/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${JAVALIBDIR}/commons-logging.jar:java/apache-commons-logging
 BUILD_DEPENDS+=	${JAVALIBDIR}/commons-codec.jar:java/apache-commons-codec

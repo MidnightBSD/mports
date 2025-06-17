@@ -7,7 +7,7 @@ PATCHDIR=	${.CURDIR}/../boost-libs/files
 COMMENT=	Framework for interfacing Python and C++
 WWW=		https://www.boost.org/
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 BUILD_DEPENDS=	bjam:devel/boost-jam \

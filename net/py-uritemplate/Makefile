@@ -10,7 +10,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python implementation of URI Template
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		python
 USE_PYTHON=	autoplist distutils

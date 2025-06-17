@@ -8,7 +8,7 @@ MAINTAINER=	ports@midnightBSD.org
 COMMENT=	State Threads Library for Internet Applications
 WWW=		https://state-threads.sourceforge.net/
 
-LICENSE=	mpl
+LICENSE=	MPL20
 
 USES=		uidfix
 USE_LDCONFIG=	yes

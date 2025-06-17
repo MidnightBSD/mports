@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WebSocket Accelerator for ws4py and AutobahnPython
 WWW=		https://github.com/methane/wsaccel
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 DEPRECATED=	Upstream ceased development

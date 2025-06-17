@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reads data from EC2 IMDS with v2 protocol
 WWW=		https://github.com/aws/aws-ec2-imdsv2-get
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cargo

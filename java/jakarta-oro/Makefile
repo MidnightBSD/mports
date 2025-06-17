@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl/awk/sh regular expressions for Java
 WWW=		https://jakarta.apache.org/oro/
 
-LICENSE=	apache1.1
+LICENSE=	Apache-1.1
 
 USES=		java:ant,run
 

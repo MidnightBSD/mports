@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IntelliJ IDEA Community Edition
 WWW=		https://www.jetbrains.com/idea/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	intellij-fsnotifier>0:java/intellij-fsnotifier
 

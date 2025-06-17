@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tomcat native library
 WWW=		https://tomcat.apache.org/native-${PORTVERSION:R}-doc/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 LIB_DEPENDS=	libapr-1.so:devel/apr1
 

@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	ISC Dynamic Host Configuration Protocol server
 WWW=		https://www.isc.org/dhcp/
 
-LICENSE=	mpl
+LICENSE=	MPL20
 
 USES=		cpe gmake
 

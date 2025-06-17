@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free implementation of Remote Desktop Protocol
 WWW=		https://www.freerdp.com/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim

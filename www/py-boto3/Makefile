@@ -9,7 +9,7 @@ COMMENT=	AWS SDK for Python
 WWW=		https://aws.amazon.com/sdk-for-python/ \
 		https://github.com/boto/boto3
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \

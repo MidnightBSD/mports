@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance Python framework for building cloud APIs
 WWW=		https://falconframework.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-mimeparse>=1.5.2:devel/py-python-mimeparse@${PY_FLAVOR} \

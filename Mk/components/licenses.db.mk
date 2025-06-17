@@ -1,6 +1,6 @@
 _LICENSE_LIST= 	apsl2 apsl1 \
-		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
-		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
+		bdb BSL-1.0 bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
+		ibm ilm infozip iscl liberation \
 		mit modula3 ncsa npl nvidia NONE openldap2.8 OpenSSL opera owl OFL10 OFL11 \
 		pgsql python ruby sgi subversion unlicense \
 		WTFPL1 WTFPL x11 zlib zpl2.1 \
@@ -17,17 +17,20 @@ _LICENSE_LIST+= agpl+ gpl+ gpl2+ gpl3+ gpl3rle+ lgpl+ lgpl2.1+ lgpl3+
 # BSD family
 _LICENSE_LIST+= bsd bsd0 bsd1 bsd2 bsd3 bsd4
 
+# LaTeX family
+_LICENSE_LIST+= lppl1 lppl1.1 lppl1.2 LPPL13 LPPL13a LPPL13b LPPL13c
+
 # Apache family
-_LICENSE_LIST+= apache1 apache1.1 apache2
+_LICENSE_LIST+= Apache-1.0 Apache-1.1 Apache-2.0
 
 # Artistic family
 _LICENSE_LIST+= artistic artistic2 perl
 
 # PHP family
-_LICENSE_LIST+= php PHP202 PHP30 PHP301
+_LICENSE_LIST+= PHP202 PHP30 PHP301
 
 # MPL family
-_LICENSE_LIST+= mpl MPL10 MPL11 MPL20
+_LICENSE_LIST+= MPL10 MPL11 MPL20
 
 # Create commons variants
 _LICENSE_LIST+= CC0-1.0 \
@@ -73,14 +76,14 @@ _LICENSE_GROUPS_agpl=	FSF GPL OSI
 _LICENSE_NAME_apgl+ =       ${_LICENSE_NAME_agpl} (or later)
 _LICENSE_GROUPS_agpl+ =     ${_LICENSE_GROUPS_agpl}
 
-_LICENSE_NAME_apache1=	Apache License 1.0
-_LICENSE_GROUPS_apache1=	FSF
+_LICENSE_NAME_Apache-1.0=	Apache License 1.0
+_LICENSE_GROUPS_Apache-1.0=	FSF
 
-_LICENSE_NAME_apache1.1=	Apache License 1.1
-_LICENSE_GROUPS_apache1.1=	FSF OSI
+_LICENSE_NAME_Apache-1.1=	Apache License 1.1
+_LICENSE_GROUPS_Apache-1.1=	FSF OSI
 
-_LICENSE_NAME_apache2=	Apache License 2.0
-_LICENSE_GROUPS_apache2=	FSF OSI
+_LICENSE_NAME_Apache-2.0=	Apache License 2.0
+_LICENSE_GROUPS_Apache-2.0=	FSF OSI
 
 _LICENSE_NAME_artistic=	Artistic License version 1.0
 _LICENSE_GROUPS_artistic=	OSI
@@ -94,8 +97,8 @@ _LICENSE_GROUPS_artistic2=	FSF GPL OSI
 _LICENSE_NAME_bdb=	Oracle BDB License
 _LICENSE_GROUPS_bdb=	
 
-_LICENSE_NAME_boost=	Boost Software License 1.0
-_LICENSE_GROUPS_boost=	FSF OSI COPYFREE
+_LICENSE_NAME_BSL-1.0=	Boost Software License 1.0
+_LICENSE_GROUPS_BSL-1.0=	FSF OSI COPYFREE
 
 _LICENSE_NAME_bsd=	BSD license Generic Version (deprecated)
 _LICENSE_GROUPS_bsd=	FSF OSI COPYFREE
@@ -316,9 +319,6 @@ _LICENSE_GROUPS_mit=	FSF GPL OSI COPYFREE
 _LICENSE_NAME_modula3=	Modula 3 license
 _LICENSE_GROUPS_modula3=
 
-_LICENSE_NAME_mpl=	Mozilla Public License
-_LICENSE_GROUPS_mpl=	FSF OSI
-
 _LICENSE_NAME_MPL10=	Mozilla Public License version 1.0
 _LICENSE_GROUPS_MPL10=	FSF OSI
 
@@ -347,9 +347,6 @@ _LICENSE_GROUPS_OFL11=	FONTS
 _LICENSE_NAME_openldap2.8= OpenLDAP License version 2.8
 _LICENSE_GROUPS_openldap2.8=
 
-_LICENSE_NAME_opera=	Opera License
-_LICENSE_GROUPS_opera=
-
 _LICENSE_NAME_other=	Other License (not yet defined)
 _LICENSE_GROUPS_other=	
 
@@ -361,9 +358,6 @@ _LICENSE_GROUPS_owl=	COPYFREE
 
 _LICENSE_NAME_pgsql=	PostgreSQL Licence
 _LICENSE_GROUPS_pgsql=	FSF GPL OSI COPYFREE
-
-_LICENSE_NAME_php=	PHP License version 3.01
-_LICENSE_GROUPS_php=	FSF OSI
 
 _LICENSE_NAME_PHP202=	PHP License version 2.02
 _LICENSE_GROUPS_PHP202=	FSF OSI

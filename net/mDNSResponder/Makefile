@@ -8,7 +8,7 @@ COMMENT=	Bonjour (zero-configuration networking) by Apple
 WWW=		https://developer.apple.com/bonjour/ \
 		https://github.com/apple-oss-distributions/mDNSResponder
 
-LICENSE=	apache2 bsd3
+LICENSE=	Apache-2.0 bsd3
 LICENSE_COMB=	dual
 
 # lib/libdns_sd.so.1 sbin/mdnsd

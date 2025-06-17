@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache library with helper utilities for the java.lang API
 WWW=		https://commons.apache.org/proper/commons-lang/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		java:ant,run
 JAVA_VERSION=	8

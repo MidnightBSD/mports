@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple, portable, lightweight library for handling UTF-8 strings
 WWW=		https://github.com/nemtrif/utfcpp
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes

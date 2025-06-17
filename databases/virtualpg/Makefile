@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Loadable dynamic extension to both SQLite and SpatiaLite
 WWW=		https://www.gaia-gis.it/fossil/virtualpg/index
 
-LICENSE=	mpl lgpl2.1 gpl2
+LICENSE=	MPL20 lgpl2.1 gpl2
 LICENSE_COMB=	dual
 LICENSE_FILE_mpl=	${WRKSRC}/COPYING
 

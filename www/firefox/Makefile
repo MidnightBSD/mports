@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Firefox for FreeBSD
 WWW=		https://www.mozilla.com/firefox
 
-LICENSE=	mpl gpl2
+LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
 
 LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \

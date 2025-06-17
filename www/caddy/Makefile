@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, cross-platform HTTP/2 web server with automatic HTTPS
 WWW=		https://caddyserver.com
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_TEST=	yes

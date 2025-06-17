@@ -7,7 +7,7 @@ MASTER_SITES=	MOZILLA/webtools MOZILLA/webtools/archived
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bug-tracking system developed by Mozilla Project
 
-LICENSE=	mpl
+LICENSE=	MPL20
 
 # see Bugzilla/Install/Requirements.pm
 RUN_DEPENDS=	\

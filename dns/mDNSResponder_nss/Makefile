@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apple mDNS responder - BSD nsswitch module
 WWW=		https://opensource.apple.com/tarballs/mDNSResponder/
 
-LICENSE=    	apache2 bsd3
+LICENSE=    	Apache-2.0 bsd3
 LICENSE_COMB=	dual
 
 # use base system version for now

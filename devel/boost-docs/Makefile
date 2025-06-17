@@ -2,7 +2,7 @@ PORTNAME=	boost-docs
 COMMENT=	Documentation for libraries from boost.org
 WWW=		https://www.boost.org/
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 USES=	python:env shebangfix

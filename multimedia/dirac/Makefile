@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source video codec from the BBC
 WWW=		https://dirac.sourceforge.net/
 
-LICENSE=	mpl
+LICENSE=	MPL20
 
 GNU_CONFIGURE=	yes
 USES=		gmake libtool pathfix shebangfix

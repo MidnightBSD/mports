@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language (8.2.X branch)
 WWW=		https://www.php.net/
 
-LICENSE=	php
+LICENSE=	PHP301
 
 USES+=		compiler:c11 cpe gnome pkgconfig tar:xz
 CPE_PRODUCT=	php

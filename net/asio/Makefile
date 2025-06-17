@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform C++ library for network and low-level I/O programming
 WWW=		https://think-async.com/Asio/
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 USES=		tar:bz2

@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PEAR framework for PHP
 WWW=		https://pear.php.net/
 
-LICENSE=	php
+LICENSE=	PHP301
 
 USES=		cpe php:build,cli,flavors tar:xz
 CPE_VENDOR=	php

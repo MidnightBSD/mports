@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ libraries with a network/internet focus
 WWW=		https://pocoproject.org/
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libpcre.so:devel/pcre \

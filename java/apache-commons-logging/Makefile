@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic logging wrapper library
 WWW=		https://commons.apache.org/proper/commons-logging/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 

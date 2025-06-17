@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Classes that extend/augment the Java Collections Framework
 WWW=		https://commons.apache.org/proper/commons-collections/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		java:ant,run

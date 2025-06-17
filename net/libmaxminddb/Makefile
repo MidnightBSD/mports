@@ -6,7 +6,7 @@ MASTER_SITES=	https://github.com/maxmind/libmaxminddb/releases/download/${PORTVE
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for the MaxMind DB file format used for GeoIP2
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		compiler:c11 gmake libtool

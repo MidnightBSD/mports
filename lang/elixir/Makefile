@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional, meta-programming aware language built on top of Erlang VM
 WWW=		https://elixir-lang.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 FAKE_OPTS=	trueprefix
 NO_TEST=	yes

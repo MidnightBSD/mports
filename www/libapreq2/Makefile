@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSd.org
 COMMENT=	Generic Apache2 Request Library
 WWW=		https://metacpan.org/dist/libapreq2
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 LIB_DEPENDS=	libapr-1.so:devel/apr1 \
 		libaprutil-1.so:devel/apr1 \

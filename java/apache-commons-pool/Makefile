@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Commons Object-pooling API
 WWW=		https://commons.apache.org/proper/commons-pool/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 OPTIONS_DEFINE=	DOCS
 

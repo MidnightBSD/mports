@@ -11,7 +11,7 @@ EXTRACT_ONLY=
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gecko Layout Engine for Wine (HTML support)
 
-LICENSE=	mpl gpl2 gpl3 lgpl2.1 lgpl3
+LICENSE=	MPL20 gpl2 gpl3 lgpl2.1 lgpl3
 LICENSE_COMB=	multi
 
 NO_BUILD=	yes

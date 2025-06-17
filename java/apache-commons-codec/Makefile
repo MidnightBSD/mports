@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementations of common encoders and decoders
 WWW=		https://commons.apache.org/codec/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 OPTIONS_DEFINE=	DOCS
 

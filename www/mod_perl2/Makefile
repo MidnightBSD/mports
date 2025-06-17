@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embeds a Perl interpreter in the Apache server
 WWW=		https://perl.apache.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	p5-BSD-Resource>=0:devel/p5-BSD-Resource

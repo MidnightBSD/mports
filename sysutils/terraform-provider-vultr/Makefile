@@ -7,7 +7,7 @@ CATEGORIES=	sysutils
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terraform provider for Vultr
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	terraform:sysutils/terraform

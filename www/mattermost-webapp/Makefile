@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Webapp of Mattermost server
 WWW=		https://mattermost.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 WWWDIR=		${PREFIX}/www/mattermost
 NO_ARCH=	yes

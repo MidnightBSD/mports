@@ -9,7 +9,7 @@ COMMENT=	Async http client/server framework (asyncio)
 WWW=		https://docs.aiohttp.org/en/stable/ \
 		https://github.com/aio-libs/aiohttp
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=46.4.0:devel/py-setuptools@${PY_FLAVOR} \

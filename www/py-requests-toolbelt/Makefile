@@ -9,7 +9,7 @@ COMMENT=	Utility belt for advanced users of python-requests
 WWW=		https://toolbelt.readthedocs.io/en/latest/ \
 		https://github.com/requests/toolbelt
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=2.0.1<3.0.0:www/py-requests@${PY_FLAVOR}

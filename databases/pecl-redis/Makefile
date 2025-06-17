@@ -6,7 +6,7 @@ CATEGORIES=	databases
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extension to access Redis
 
-LICENSE=	php
+LICENSE=	PHP301
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		php:pecl
