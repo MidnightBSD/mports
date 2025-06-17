@@ -1,6 +1,6 @@
 _LICENSE_LIST= 	apsl2 apsl1 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
-		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
+		ibm ilm infozip iscl liberation \
 		mit modula3 ncsa npl nvidia NONE openldap2.8 OpenSSL opera owl OFL10 OFL11 \
 		pgsql python ruby sgi subversion unlicense \
 		WTFPL1 WTFPL x11 zlib zpl2.1 \
@@ -16,6 +16,9 @@ _LICENSE_LIST+= agpl+ gpl+ gpl2+ gpl3+ gpl3rle+ lgpl+ lgpl2.1+ lgpl3+
 
 # BSD family
 _LICENSE_LIST+= bsd bsd0 bsd1 bsd2 bsd3 bsd4
+
+# LaTeX family
+_LICENSE_LIST+= lppl1 lppl1.1 lppl1.2 LPPL13 LPPL13a LPPL13b LPPL13c
 
 # Apache family
 _LICENSE_LIST+= Apache-1.0 Apache-1.1 Apache-2.0
