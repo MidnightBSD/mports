@@ -496,3 +496,4 @@ sysutils/linux-crashplan||2025-05-09|broken for awhile
 net-p2p/frost||2025-05-18|Has expired: Outdated version and unsupported upstream
 misc/buffer|misc/mbuffer|2025-05-22|Has expired: No upstream updates since 1995.  Switch to misc/mbuffer
 www/linux-opera||2025-05-24|Long EOL presto engine version. 
+www/ytdl|www/yt-dlp|2025-06-17|ytdl doesn't work and is archived upstream, www/yt-dlp be used instead
