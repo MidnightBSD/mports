@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pytest plugin for generating html reports
 WWW=		https://github.com/pytest-dev/pytest-html
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

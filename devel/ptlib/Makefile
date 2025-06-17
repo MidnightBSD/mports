@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross platform C++ library, used by OPAL
 WWW=		http://www.opalvoip.org
 
-LICENSE=	mpl
+LICENSE=	MPL20
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 

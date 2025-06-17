@@ -6,7 +6,7 @@ CATEGORIES=	sysutils
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terraform provider for gridscale
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	terraform:sysutils/terraform

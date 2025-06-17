@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 WWW=		https://www.mozilla.com/firefox
 
-LICENSE=	mpl gpl2
+LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	nspr>=4.21:devel/nspr \

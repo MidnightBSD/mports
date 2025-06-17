@@ -8,7 +8,7 @@ CATEGORIES=	security linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Security Services (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	mpl
+LICENSE=	MPL20
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

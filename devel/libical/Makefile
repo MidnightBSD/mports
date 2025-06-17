@@ -8,7 +8,7 @@ MASTER_SITES=	https://github.com/libical/libical/releases/download/v${PORTVERSIO
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the IETF Calendaring and Scheduling protocols
 
-LICENSE=	mpl lgpl2.1
+LICENSE=	MPL20 lgpl2.1
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc

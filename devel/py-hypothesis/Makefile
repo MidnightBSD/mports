@@ -11,7 +11,7 @@ WWW=		https://hypothesis.works/ \
 		https://hypothesis.readthedocs.io/en/latest/ \
 		https://github.com/HypothesisWorks/hypothesis/tree/master/hypothesis-python
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \

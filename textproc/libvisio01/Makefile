@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and tools for parsing the visio file format structure
 WWW=		https://wiki.documentfoundation.org/DLP/Libraries/libvisio
 
-LICENSE=	mpl
+LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/COPYING.MPL
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/spirit/include/classic_core.hpp:devel/boost-libs

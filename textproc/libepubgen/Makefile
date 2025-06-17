@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for generating documents in ePub format
 WWW=		http://libepubgen.sourceforge.net/
 
-LICENSE=	mpl
+LICENSE=	MPL20
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/algorithm/string/classification.hpp:devel/boost-libs \
 		${LOCALBASE}/include/boost/algorithm/string/join.hpp:devel/boost-libs \
