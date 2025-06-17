@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mustache text templates for modern C++
 WWW=		https://github.com/kainjow/Mustache
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cmake

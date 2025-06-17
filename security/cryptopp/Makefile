@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free C++ class library of Cryptographic Primitives
 WWW=		https://github.com/weidai11/cryptopp
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/License.txt
 
 USES=		cpe compiler:c++11-lang gmake zip

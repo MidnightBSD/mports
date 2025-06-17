@@ -1,5 +1,5 @@
 _LICENSE_LIST= 	apsl2 apsl1 \
-		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
+		bdb BSL-1.0 bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation \
 		mit modula3 ncsa npl nvidia NONE openldap2.8 OpenSSL opera owl OFL10 OFL11 \
 		pgsql python ruby sgi subversion unlicense \
@@ -97,8 +97,8 @@ _LICENSE_GROUPS_artistic2=	FSF GPL OSI
 _LICENSE_NAME_bdb=	Oracle BDB License
 _LICENSE_GROUPS_bdb=	
 
-_LICENSE_NAME_boost=	Boost Software License 1.0
-_LICENSE_GROUPS_boost=	FSF OSI COPYFREE
+_LICENSE_NAME_BSL-1.0=	Boost Software License 1.0
+_LICENSE_GROUPS_BSL-1.0=	FSF OSI COPYFREE
 
 _LICENSE_NAME_bsd=	BSD license Generic Version (deprecated)
 _LICENSE_GROUPS_bsd=	FSF OSI COPYFREE

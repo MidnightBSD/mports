@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vendor and platform neutral SDR support library
 WWW=		https://github.com/pothosware/SoapySDR
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 USES=		cmake compiler:c++11-lang

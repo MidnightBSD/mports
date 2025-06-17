@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Header-only test framework for C++
 WWW=		https://github.com/catchorg/Catch2
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		cmake compiler:c++14-lang pathfix python:build

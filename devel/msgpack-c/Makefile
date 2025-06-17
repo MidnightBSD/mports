@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Efficient binary serialization, like JSON but smaller and faster
 WWW=		https://msgpack.org/
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 TEST_DEPENDS=	googletest>0:devel/googletest \
