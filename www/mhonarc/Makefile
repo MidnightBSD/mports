@@ -1,11 +1,13 @@
 PORTNAME=	mhonarc
 PORTVERSION=	2.6.24
+PORTREVISION=	1
 CATEGORIES=	www mail
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WWW front end for mail archives
+WWW=		https://www.mhonarc.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe tar:bzip2 perl5
@@ -18,7 +20,7 @@ NO_ARCH=	yes
 
 INSTALL_ARGS=	-prefix ${FAKE_DESTDIR} -binpath ${FAKE_DESTDIR}${TRUE_PREFIX}/bin \
 		-libpath ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_PERL_REL} \
-		-manpath ${FAKE_DESTDIR}${TRUE_PREFIX}/man \
+		-manpath ${FAKE_DESTDIR}${TRUE_PREFIX}/share/man \
 		-batch
 
 OPTIONS_DEFINE=	DOCS
