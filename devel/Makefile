@@ -1503,6 +1503,7 @@ SUBDIR += rubygem-concurrent-ruby
 SUBDIR += rubygem-cool.io
 SUBDIR += rubygem-csv
 SUBDIR += rubygem-drb
+SUBDIR += rubygem-getoptlong
 SUBDIR += rubygem-i18n
 SUBDIR += rubygem-iobuffer
 SUBDIR += rubygem-logger
