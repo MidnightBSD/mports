@@ -39,7 +39,7 @@ USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5
 		desktop-file-utils tar:xz
 CPE_VENDOR=	palemoon
 USE_GL=         gl
-USE_GNOME=      cairo gdkpixbuf2 gtk20 gtk30
+USE_GNOME=      cairo gdkpixbuf gtk20 gtk30
 USE_XORG=       x11 xcb xcomposite xdamage xext xfixes xrender xt
 
 INSTALLS_ICONS=	yes

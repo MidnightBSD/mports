@@ -17,7 +17,7 @@ LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 USES=		autoreconf:build gmake gnome libtool pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	dashea
-USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build librsvg2
+USE_GNOME=	cairo gdkpixbuf gtk30 introspection:build librsvg2
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes

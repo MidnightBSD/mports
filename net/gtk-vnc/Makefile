@@ -20,7 +20,7 @@ LIB_DEPENDS=	libgnutls.so:security/gnutls \
 
 USES=		gettext gmake gnome libtool localbase pathfix pkgconfig python \
 		tar:xz xorg
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool introspection:build
+USE_GNOME=	cairo gdkpixbuf gtk30 intltool introspection:build
 USE_XORG=	x11
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

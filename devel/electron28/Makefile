@@ -56,7 +56,7 @@ USES=		bison compiler:c++17-lang cpe gettext-tools gl gmake gnome \
 
 CPE_VENDOR=	electronjs
 USE_GL=		gbm gl glesv2
-USE_GNOME=	atk cairo gdkpixbuf2 gtk30 libxml2 libxslt pango
+USE_GNOME=	atk cairo gdkpixbuf gtk30 libxml2 libxslt pango
 USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrandr \
 		xrender xscrnsaver xtst
 

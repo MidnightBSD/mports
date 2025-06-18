@@ -30,7 +30,7 @@ GH_ACCOUNT=	linuxmint
 
 USE_XORG=	x11 xext xinerama xrandr xscrnsaver
 
-USE_GNOME=	cairo gdkpixbuf2 intltool introspection:build libgnomekbd pygobject3
+USE_GNOME=	cairo gdkpixbuf intltool introspection:build libgnomekbd pygobject3
 
 INSTALLS_ICONS=	yes
 

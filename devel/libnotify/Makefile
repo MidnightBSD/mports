@@ -11,7 +11,7 @@ LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake gnome libtool meson pkgconfig tar:xz
-USE_GNOME=	gdkpixbuf2 glib20 introspection:build
+USE_GNOME=	gdkpixbuf glib20 introspection:build
 USE_LDCONFIG=	yes
 
 MESON_ARGS=	-Ddocbook_docs=disabled \

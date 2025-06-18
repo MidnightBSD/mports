@@ -28,7 +28,7 @@ OPTIONS_DEFINE=	UI
 
 UI_DESC=	Enable testing UI
 UI_MESON_TRUE=	enable-test-ui
-UI_USE=		GNOME=cairo,gdkpixbuf2,gtk30
+UI_USE=		GNOME=cairo,gdkpixbuf,gtk30
 
 PLIST_SUB+=	LIBVER=315
 

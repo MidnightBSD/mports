@@ -22,7 +22,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 USES=		autoreconf cpe gettext gl gmake gnome jpeg localbase:ldflags \
 		perl5 pkgconfig xorg
 USE_GL=		gl glu
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool libxml2
+USE_GNOME=	cairo gdkpixbuf gtk30 intltool libxml2
 USE_PERL5=	run
 USE_XORG=	ice sm x11 xext xft xi xinerama xmu xrandr xrender xt xxf86vm
 CPE_VENDOR=	xscreensaver_project

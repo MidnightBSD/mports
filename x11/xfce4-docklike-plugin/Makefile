@@ -24,7 +24,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	autogen.sh
 INSTALL_TARGET=		install-strip
 
-USE_GNOME=		cairo gdkpixbuf2 gtk30 intltool libwnck3
+USE_GNOME=		cairo gdkpixbuf gtk30 intltool libwnck3
 USE_XFCE=		libmenu panel
 USE_XORG=		x11
 

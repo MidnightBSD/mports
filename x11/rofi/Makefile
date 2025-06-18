@@ -20,7 +20,7 @@ LIB_DEPENDS+=	libstartup-notification-1.so:x11/startup-notification \
 
 USES=		bison gnome meson pkgconfig shebangfix xorg
 USE_GITHUB=	yes # required by rofi-wayland
-USE_GNOME=	cairo gdkpixbuf2 librsvg2 pango
+USE_GNOME=	cairo gdkpixbuf librsvg2 pango
 USE_XORG=	xcb
 GH_ACCOUNT?=	davatorium
 GH_TUPLE=	sardemff7:libgwater:555fa6d:libgwater/subprojects/libgwater \

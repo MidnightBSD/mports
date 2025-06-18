@@ -138,7 +138,7 @@ CONFIGURE_ARGS+=	--enable-smart-resize
 CONFIGURE_ARGS+=	--disable-pixbuf
 .else
 USES+=			gnome
-USE_GNOME+=		gdkpixbuf2
+USE_GNOME+=		gdkpixbuf
 CONFIGURE_ARGS+=	--enable-pixbuf
 .endif
 

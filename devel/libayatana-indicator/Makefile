@@ -17,7 +17,7 @@ LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz \
 		libgtest.so:devel/googletest \
 		libayatana-ido3-0.4.so:devel/ayatana-ido
 
-USE_GNOME=	introspection glib20 gtk30 pango atk cairo gdkpixbuf2
+USE_GNOME=	introspection glib20 gtk30 pango atk cairo gdkpixbuf
 
 USE_LDCONFIG=	yes
 

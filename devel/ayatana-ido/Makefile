@@ -15,7 +15,7 @@ BUILD_DEPENDS=	vala>=0:lang/vala \
 
 USES=	cmake localbase:ldflags gnome pkgconfig
 
-USE_GNOME=	introspection glib20 gtk30 pango atk cairo gdkpixbuf2
+USE_GNOME=	introspection glib20 gtk30 pango atk cairo gdkpixbuf
 
 USE_LDCONFIG=	yes
 

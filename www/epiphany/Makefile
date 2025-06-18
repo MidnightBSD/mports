@@ -41,7 +41,7 @@ USES=		compiler:c++11-lib cpe desktop-file-utils gettext gnome \
 		shebangfix sqlite tar:xz xorg
 
 CPE_VENDOR=	gnome
-USE_GNOME=	cairo gdkpixbuf2 gnomedesktop3 intlhack libwnck3 libxml2 libxslt
+USE_GNOME=	cairo gdkpixbuf gnomedesktop3 intlhack libwnck3 libxml2 libxslt
 USE_XORG=	x11
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
