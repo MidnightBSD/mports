@@ -77,6 +77,7 @@ SUBDIR += kf6-kcontacts
 SUBDIR += kf6-kdav
 SUBDIR += kf6-kholidays
 SUBDIR += kf6-syndication
+SUBDIR += kidentitymanagement
 SUBDIR += kpimtextedit
 SUBDIR += realtek-re-kmod
 SUBDIR += rubygem-http_parser.rb
