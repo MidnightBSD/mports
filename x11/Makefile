@@ -58,6 +58,7 @@ SUBDIR += kf6-kded
 SUBDIR += kf6-kglobalaccel
 SUBDIR += kf6-krunner
 SUBDIR += kf6-kwindowsystem
+SUBDIR += konsole
 SUBDIR += libICE
 SUBDIR += libSM
 SUBDIR += libX11

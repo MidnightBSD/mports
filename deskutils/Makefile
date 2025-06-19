@@ -40,6 +40,7 @@ SUBDIR += kdeconnect-kde
 SUBDIR += kdepim
 SUBDIR += kdepim-addons
 SUBDIR += kdepim-runtime
+SUBDIR += keditbookmarks
 SUBDIR += kf6-kstatusnotifieritem
 SUBDIR += kruler
 SUBDIR += libportal-gtk3
