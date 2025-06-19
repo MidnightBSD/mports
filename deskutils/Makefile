@@ -41,6 +41,7 @@ SUBDIR += kdepim
 SUBDIR += kdepim-addons
 SUBDIR += kdepim-runtime
 SUBDIR += kf6-kstatusnotifieritem
+SUBDIR += kruler
 SUBDIR += libportal-gtk3
 SUBDIR += libportal-gtk4
 SUBDIR += libportal-qt5

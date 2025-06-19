@@ -11,6 +11,7 @@ SUBDIR += impress
 SUBDIR += jedit
 SUBDIR += joe
 SUBDIR += jupp
+SUBDIR += kate
 SUBDIR += lazarus
 SUBDIR += lazarus-qt5
 SUBDIR += lazarus-qt6
