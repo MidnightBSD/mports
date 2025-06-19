@@ -1,37 +1,29 @@
 PORTNAME=	atf
-PORTVERSION=	0.21
+DISTVERSION=	0.23
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/jmmv/${PORTNAME}/releases/download/${PORTNAME}-${PORTVERSION}/ \
-		FREEBSD_LOCAL/jmmv
+MASTER_SITES=	https://github.com/freebsd/${PORTNAME}/releases/download/${PORTNAME}-${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C, C++ and shell libraries to write ATF-compliant test programs
+WWW=		https://github.com/freebsd/atf
 
 LICENSE=	bsd3
 
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
+USES=		autoreconf libtool pathfix
+USE_CXXSTD=	gnu++14
 USE_LDCONFIG=	yes
-USES=		libtool
+
+GNU_CONFIGURE=	yes
+
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS TEST
 OPTIONS_DEFAULT=TEST
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
+DOCS_MAKE_ARGS_OFF=	doc_DATA=
 
-MAKE_FLAGS+=	atf_pkgconfigdir=${PREFIX}/libdata/pkgconfig
-.if empty(PORT_OPTIONS:MDOCS)
-MAKE_FLAGS+=	doc_DATA=
-.endif
-.if empty(PORT_OPTIONS:MTEST)
-PLIST_SUB+=	TEST="@comment "
-.else
-PLIST_SUB+=	TEST=
-.endif
-
-post-install:
-.if empty(PORT_OPTIONS:MTEST)
-	@${RM} -r ${STAGEDIR}${PREFIX}/tests
-.endif
+post-install-TEST-off:
+	@${RM} -r ${FAKE_DESTDIR}${PREFIX}/tests
 
 .include <bsd.port.mk>

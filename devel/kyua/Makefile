@@ -1,8 +1,8 @@
 PORTNAME=	kyua
-DISTVERSION=	0.13
-PORTREVISION=	1
+DISTVERSION=	0.14.1
 PORTEPOCH=	3
 CATEGORIES=	devel
+MASTER_SITES=	https://github.com/freebsd/${PORTNAME}/releases/download/${DISTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Testing framework for infrastructure software
@@ -12,11 +12,8 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	liblutok.so:devel/lutok
 
-USES=		autoreconf lua pkgconfig sqlite
-USE_GITHUB=	yes
-GH_ACCOUNT=	freebsd
-GH_TAGNAME=	c85354e
-USE_CXXSTD=	gnu++11
+USES=		autoreconf libtool lua pkgconfig sqlite
+USE_CXXSTD=	gnu++14
 
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
@@ -41,7 +38,7 @@ DOCS_MAKE_ARGS_OFF=	doc_DATA=
 EXAMPLES_MAKE_ARGS_OFF=	dist_examples_DATA=
 TEST_BUILD_DEPENDS=	atf>=0.21:devel/atf
 TEST_RUN_DEPENDS=	atf>=0.21:devel/atf
-TEST_CONFIGURE_WITH=	atf
+TEST_CONFIGURE_ENABLE=	atf
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/kyua
