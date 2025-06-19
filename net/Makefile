@@ -82,6 +82,7 @@ SUBDIR += rubygem-serverengine
 SUBDIR += rubygem-uri
 SUBDIR += ldap2dns
 SUBDIR += ldapdiff
+SUBDIR += libarcus
 SUBDIR += libdnet
 SUBDIR += libgrss
 SUBDIR += libgweather
