@@ -1,5 +1,3 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	Test-CPAN-Meta
 PORTVERSION=	0.25
 CATEGORIES=	devel perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Validate your CPAN META.yml files
+WWW=		https://metacpan.org/release/Test-CPAN-Meta
 
 LICENSE=	artistic2
 

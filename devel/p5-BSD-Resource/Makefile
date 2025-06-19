@@ -1,5 +1,3 @@
-# Created by: James FitzGibbon <jfitz@FreeBSD.org>
-
 PORTNAME=	BSD-Resource
 PORTVERSION=	1.2911
 CATEGORIES=	devel perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to access BSD resource limit and priority functions
+WWW=		https://metacpan.org/release/BSD-Resource
 
 LICENSE=	artistic2 gpl2
 LICENSE_COMB=	dual

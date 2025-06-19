@@ -1,5 +1,3 @@
-# Created by: Ade Lovett <ade@FreeBSD.org>
-
 PORTNAME=	gconf2
 PORTVERSION=	3.2.6
 PORTREVISION=	9
@@ -10,6 +8,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configuration database system for GNOME
+WWW=		https://www.gnome.org/projects/gconf/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
