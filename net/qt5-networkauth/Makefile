@@ -10,6 +10,7 @@ USES=		compiler:c++11-lang perl5 qmake:no_env qt-dist:5
 USE_PERL5=	extract
 USE_QT=		core network \
 		buildtools:build
+USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 post-install:
 	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
