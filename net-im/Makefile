@@ -4,6 +4,7 @@ SUBDIR += farstream
 SUBDIR += finch
 SUBDIR += folks
 SUBDIR += jabberd
+SUBDIR += libaccounts-qt
 SUBDIR += libnice
 SUBDIR += libnice-gst1
 SUBDIR += libpurple
