@@ -235,6 +235,7 @@ SUBDIR += screen50
 SUBDIR += screenie
 SUBDIR += seatd
 SUBDIR += sg3_utils
+SUBDIR += signond
 SUBDIR += slurm-wlm
 SUBDIR += smartmontools
 SUBDIR += synergy
