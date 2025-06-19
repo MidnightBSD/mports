@@ -8,13 +8,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt base (core, gui, widgets, network,...)
 WWW=		https://www.qt.io/
 
-BUILD_DEPENDS=	xml:textproc/xmlstarlet \
-		${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
+BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
-LIB_DEPENDS=	\
-		libatk-1.0.so:accessibility/at-spi2-core \
+LIB_DEPENDS=	libatk-1.0.so:accessibility/at-spi2-core \
 		libatk-bridge-2.0.so:accessibility/at-spi2-core \
 		libatspi.so:accessibility/at-spi2-core \
+		libb2.so:devel/libb2 \
 		libbrotlidec.so:archivers/brotli \
 		libdbus-1.so:devel/dbus \
 		libdouble-conversion.so:devel/double-conversion \
@@ -43,26 +42,24 @@ USE_GL=		egl opengl
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 pango
 USE_LOCALE=	C.UTF-8
 
+SHEBANG_FILES=	${WRKSRC}/libexec/qt-android-runner.py \
+		${WRKSRC}/mkspecs/features/uikit/device_destinations.sh \
+		${WRKSRC}/mkspecs/features/uikit/devices.py \
+		${WRKSRC}/util/testrunner/qt-testrunner.py \
+		${WRKSRC}/util/testrunner/sanitizer-testrunner.py
+
 CMAKE_ARGS=	-DOPENSSL_ROOT_DIR="${OPENSSLBASE}"
-#  -DQT_NO_FEATURE_AUTO_RESET=ON
-CMAKE_ON=	QT_AVOID_CMAKE_ARCHIVING_API \
+CMAKE_ON=	CMAKE_DISABLE_FIND_PACKAGE_LTTngUST \
+		QT_AVOID_CMAKE_ARCHIVING_API \
 		QT_FIND_ALL_PACKAGES_ALWAYS \
 		QT_FEATURE_openssl_linked
 CMAKE_OFF=	QT_FEATURE_eglfs \
 		QT_FEATURE_gssapi
-# sql drivers are handled in the qt6-base-sqldriver port
+# sql drivers are handled in the databases/qt6-base_sqldriver port
 CMAKE_OFF+=	FEATURE_sql_mysql \
 		FEATURE_sql_odbc \
 		FEATURE_sql_psql \
 		FEATURE_sql_sqlite
-
-SHEBANG_FILES=	${WRKSRC}/mkspecs/features/uikit/device_destinations.sh \
-		${WRKSRC}/mkspecs/features/uikit/devices.py \
-		${WRKSRC}/mkspecs/features/data/mac/objc_namespace.sh \
-		${WRKSRC}/util/android/android_emulator_launcher.sh \
-		${WRKSRC}/util/testrunner/qt-testrunner.py \
-		${WRKSRC}/util/testrunner/sanitizer-testrunner.py
-USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 # zstd from base fails to compress files during the build (error 11: unsupported argument)
 BINARY_ALIAS=	zstd=${LOCALBASE}/bin/zstd
@@ -72,16 +69,17 @@ OPTIONS_DEFAULT=	CUPS X11
 OPTIONS_SUB=		yes
 
 CUPS_LIB_DEPENDS=	libcups.so:print/cups
-CUPS_CMAKE_OFF=		-DFEATURE_cups=OFF
+CUPS_CMAKE_BOOL=	FEATURE_cups
 
-X11_USES=		xorg
-X11_USE=		XORG=ice,pixman,sm,x11,xau,xcb,xcomposite,xcursor,xdamage,xdmcp,xext,xfixes,xi,xinerama,xrandr,xrender
-X11_CMAKE_BOOL=		FEATURE_xcb FEATURE_xlib
 X11_LIB_DEPENDS=	libxcb-cursor.so:x11/xcb-util-cursor \
 			libxcb-icccm.so:x11/xcb-util-wm \
 			libxcb-image.so:x11/xcb-util-image \
 			libxcb-keysyms.so:x11/xcb-util-keysyms \
 			libxcb-render-util.so:x11/xcb-util-renderutil
+X11_USES=		xorg
+X11_USE=		XORG=ice,pixman,sm,x11,xau,xcb,xcomposite,xcursor,xdamage,xdmcp,xext,xfixes,xi,xinerama,xrandr,xrender
+X11_CMAKE_BOOL=		FEATURE_xcb \
+			FEATURE_xlib
 
 .include <bsd.port.pre.mk>
 
@@ -102,15 +100,12 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%OPENSSLLIB%%|${OPENSSLLIB}|g' \
 		${WRKSRC}/src/plugins/tls/openssl/qsslsocket_openssl_symbols.cpp
 
-# TODO: do this cleaner -- somewhere cmake/qmake still creates empty directories
-# for the cmake files in INSTALL_PREFIX/lib/cmake
 post-install:
-	-${RM} -vr ${PREFIX}/${QT_LIBDIR_REL}/cmake
-	# Install symlinks for user-facing tools
-	if ! grep -q ${FAKE_DESTDIR} "${WRKDIR}/.build/user_facing_tool_links.txt"; then ${REINPLACE_CMD} -e "s#^#${FAKE_DESTDIR}#" -e "s# # ${FAKE_DESTDIR}#" ${WRKDIR}/.build/user_facing_tool_links.txt; fi
-	while read t; do \
-		${RLN} $$t; \
-	done <${WRKDIR}/.build/user_facing_tool_links.txt
-	touch ${FAKE_DESTDIR}/usr/local/lib/qt6/cmake
+# Install symlinks for user-facing tools
+	while read line; do \
+		source="$$(${ECHO_CMD} $${line} | ${AWK} '{print $$1}')"; \
+		target="${FAKE_DESTDIR}${TRUE_PREFIX}/$$(${ECHO_CMD} $${line} | ${AWK} '{print $$2}')"; \
+		${RLN} $${source} $${target}; \
+	done <${BUILD_WRKSRC}/user_facing_tool_links.txt
 
 .include <bsd.port.post.mk>
