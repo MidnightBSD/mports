@@ -80,6 +80,7 @@ SUBDIR += libepubgen
 SUBDIR += libexttextcat
 SUBDIR += libgepub
 SUBDIR += libkmfl
+SUBDIR += libkolabxml
 SUBDIR += liblrdf
 SUBDIR += librevenge
 SUBDIR += libsass
