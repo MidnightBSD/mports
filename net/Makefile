@@ -90,6 +90,7 @@ SUBDIR += kmime
 SUBDIR += kontactinterface
 SUBDIR += kpimtextedit
 SUBDIR += ksmtp
+SUBDIR += ktnef
 SUBDIR += realtek-re-kmod
 SUBDIR += rubygem-http_parser.rb
 SUBDIR += rubygem-serverengine
