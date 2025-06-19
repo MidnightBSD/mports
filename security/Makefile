@@ -268,6 +268,7 @@ SUBDIR += sig2dot
 SUBDIR += signify
 SUBDIR += snort
 SUBDIR += sshguard
+SUBDIR += sshpass
 SUBDIR += sudo
 SUBDIR += tailscale
 SUBDIR += tor
