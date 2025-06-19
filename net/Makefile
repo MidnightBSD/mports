@@ -204,6 +204,7 @@ SUBDIR += php83-ldap
 SUBDIR += php83-soap
 SUBDIR += php83-sockets
 SUBDIR += phpldapadmin
+SUBDIR += pimcommon
 SUBDIR += py-avahi
 SUBDIR += py-ec2-cli-tools
 SUBDIR += py-eventlet
