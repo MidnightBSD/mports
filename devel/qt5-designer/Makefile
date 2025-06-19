@@ -10,6 +10,7 @@ USES=		compiler:c++11-lang perl5 qmake qt-dist:5,tools
 USE_PERL5=	build
 USE_QT=		assistant:run core declarative gui network printsupport uiplugin \
 		widgets xml buildtools:build
+USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 DESKTOP_ENTRIES="Qt 5 Designer" "" \
 		"${PREFIX}/share/pixmaps/designer-qt5.png" \
@@ -20,13 +21,6 @@ BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 
 QT_BINARIES=	yes
-
-OPTIONS_DEFINE=	WEBKIT
-OPTIONS_SUB=	yes
-WEBKIT_DESC=	Build WebKit-based WebView widget
-WEBKIT_QMAKE_ON=	CONFIG+=use_webkit
-WEBKIT_USES=	qt-dist:5,tools
-WEBKIT_USE=	QT=webkit
 
 post-patch:
 # uiplugin is built in x11-toolkits/qt5-uiplugin.
