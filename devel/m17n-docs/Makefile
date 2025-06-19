@@ -5,6 +5,7 @@ MASTER_SITES=	http://anthesphoria.net/FreeBSD/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The m17n library documentation
+WWW=		https://www.nongnu.org/m17n/
 
 LICENSE=	lgpl2.1
 

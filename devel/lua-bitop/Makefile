@@ -1,15 +1,14 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	bitop
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	devel
 MASTER_SITES=	http://bitop.luajit.org/download/ \
-		LOCAL/sunpoet
+		FREEBSD_LOCAL/sunpoet
 PKGNAMEPREFIX=	${LUA_PKGNAMEPREFIX}
 DISTNAME=	LuaBitOp-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitwise operations on numbers
+WWW=		https://bitop.luajit.org/
 
 LICENSE=	mit
 

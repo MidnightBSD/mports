@@ -4,7 +4,7 @@ CATEGORIES=	devel
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/
 DISTNAME=	libclc-${DISTVERSION}.src
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Required library functions for OpenCL C programming language
 WWW=		https://libclc.llvm.org/
 
