@@ -90,6 +90,7 @@ SUBDIR += libgweather4
 SUBDIR += libmateweather
 SUBDIR += libmaxminddb
 SUBDIR += libnatpmp
+SUBDIR += libndp
 SUBDIR += libnet
 SUBDIR += libnfs
 SUBDIR += liboauth
