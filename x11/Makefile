@@ -38,6 +38,7 @@ SUBDIR += innerspace
 SUBDIR += keybinder
 SUBDIR += keybinder-gtk3
 SUBDIR += kf5-kwayland
+SUBDIR += kf6-frameworks
 SUBDIR += kf6-kwindowsystem
 SUBDIR += libICE
 SUBDIR += libSM

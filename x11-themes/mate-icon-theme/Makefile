@@ -1,13 +1,12 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	mate-icon-theme
-PORTVERSION=	1.26.0
+PORTVERSION=	1.28.0
 CATEGORIES=	x11-themes mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of icons for the MATE desktop
+WWW=		https://mate-desktop.org/
 
 LICENSE=	lgpl3 CC-BY-SA-3.0
 LICENSE_COMB=	dual

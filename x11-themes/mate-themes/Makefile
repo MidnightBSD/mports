@@ -1,5 +1,3 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	mate-themes
 PORTVERSION=	3.22.23
 PORTREVISION=	1
@@ -9,6 +7,7 @@ DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of themes and icons for MATE
+WWW=		https://mate-desktop.org/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
