@@ -31,7 +31,7 @@ SHEBANG_GLOB=	*.py
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intlhack introspection libxml2 pango pygobject3
+USE_GNOME=	cairo gdkpixbuf gtk30 intlhack introspection libxml2 pango pygobject3
 
 USE_XORG=	x11
 

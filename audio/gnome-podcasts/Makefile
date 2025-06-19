@@ -20,7 +20,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 
 USES=		cargo gettext gnome gstreamer meson pkgconfig python:build shebangfix sqlite ssl
 USE_GITLAB=	yes
-USE_GNOME=	gdkpixbuf2 gtk30
+USE_GNOME=	gdkpixbuf gtk30
 USE_GSTREAMER=	bad good libav
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	World

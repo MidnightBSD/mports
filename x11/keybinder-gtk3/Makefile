@@ -14,7 +14,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gettext-runtime gmake gnome libtool pathfix pkgconfig xorg
-USE_GNOME=	gtk30 introspection:build cairo gdkpixbuf2
+USE_GNOME=	gtk30 introspection:build cairo gdkpixbuf
 USE_XORG=	x11 xext xrender
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip

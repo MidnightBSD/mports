@@ -26,7 +26,7 @@ gtk3_CONFLICTS_INSTALL=	pcmanfm
 
 USES=		cpe desktop-file-utils gmake gnome gettext libtool localbase \
 		pkgconfig tar:xz xorg
-USE_GNOME=	cairo gdkpixbuf2 intltool
+USE_GNOME=	cairo gdkpixbuf intltool
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 CPE_VENDOR=	${PORTNAME}_project

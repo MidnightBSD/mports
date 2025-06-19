@@ -18,7 +18,7 @@ LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz \
 		libdbusmenu-glib.so:devel/libdbusmenu \
 		libayatana-ido3-0.4.so:devel/ayatana-ido
 
-USE_GNOME=	introspection gtk30 glib20 pango atk cairo gdkpixbuf2
+USE_GNOME=	introspection gtk30 glib20 pango atk cairo gdkpixbuf
 CMAKE_OFF=	ENABLE_BINDINGS_MONO \
 		FLAVOUR_GTK2 \
 		ENABLE_BINDINGS_VALA

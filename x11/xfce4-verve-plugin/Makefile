@@ -18,7 +18,7 @@ LIB_DEPENDS=	libpcre2-8.so:devel/pcre2 \
 
 USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
 		tar:bzip2 xfce
-USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 intltool pango
+USE_GNOME=	atk cairo gdkpixbuf glib20 gtk30 intltool pango
 USE_XFCE=	panel
 
 GNU_CONFIGURE=	yes

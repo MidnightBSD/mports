@@ -44,7 +44,7 @@ IPV6_CONFIGURE_WITH=	ipv6
 
 SVG_CONFIGURE_WITH=	librsvg
 SVG_USES=		gnome
-SVG_USE=		gnome=librsvg2,glib20,gdkpixbuf2,cairo
+SVG_USE=		gnome=librsvg2,glib20,gdkpixbuf,cairo
 
 SVGALIB_LIB_DEPENDS=	libvga.so:graphics/svgalib
 SVGALIB_CONFIGURE_WITH=	svgalib

@@ -65,7 +65,7 @@ _USE_GNOME_ALL= intlhack intltool introspection \
 
 # GNOME 2 components
 _USE_GNOME_ALL+= atk cairo \
-		gdkpixbuf2 gdkpixbuf2xlib gconf2 glib20 \
+		gdkpixbuf gdkpixbuf2xlib gconf2 glib20 \
 		gtk-update-icon-cache gtk20 \
 		gtksharp20 gtksourceview2 gvfs libartlgpl2 \
 		libglade2 libgnomecanvas \
@@ -169,14 +169,14 @@ pango_USE_GNOME_IMPL=	glib20
 pangox-compat_LIB_DEPENDS=	libpangox-1.0.so:x11-toolkits/pangox-compat
 pangox-compat_USE_GNOME_IMPL=	glib20 pango
 
-gdkpixbuf2_LIB_DEPENDS=	libgdk_pixbuf-2.0.so:graphics/gdk-pixbuf2
-gdkpixbuf2_USE_GNOME_IMPL=glib20
+gdkpixbuf_LIB_DEPENDS=	libgdk_pixbuf-2.0.so:graphics/gdk-pixbuf2
+gdkpixbuf_USE_GNOME_IMPL=glib20
 
 gdkpixbuf2xlib_LIB_DEPENDS=	libgdk_pixbuf_xlib-2.0.so:graphics/gdk-pixbuf2-xlib
-gdkpixbuf2xlib_USE_GNOME_IMPL=	glib20 gdkpixbuf2
+gdkpixbuf2xlib_USE_GNOME_IMPL=	glib20 gdkpixbuf
 
 gtk-update-icon-cache_RUN_DEPENDS=	gtk-update-icon-cache:graphics/gtk-update-icon-cache
-gtk-update-icon-cache_USE_GNOME_IMPL=	atk pango gdkpixbuf2
+gtk-update-icon-cache_USE_GNOME_IMPL=	atk pango gdkpixbuf
 
 gtk20_LIB_DEPENDS=	libgtk-x11-2.0.so:x11-toolkits/gtk20
 gtk20_USE_GNOME_IMPL=	atk pango
@@ -244,7 +244,7 @@ librsvg2_BUILD_DEPENDS=	librsvg2>=0:graphics/librsvg2
 librsvg2_LIB_DEPENDS=	librsvg-2.so:graphics/librsvg2
 librsvg2_RUN_DEPENDS=	librsvg2>=0:graphics/librsvg2
 .  endif
-librsvg2_USE_GNOME_IMPL=gdkpixbuf2 pango
+librsvg2_USE_GNOME_IMPL=gdkpixbuf pango
 
 nautilus3_LIB_DEPENDS=	libnautilus-extension.so:x11-fm/nautilus
 nautilus3_USE_GNOME_IMPL=gnomedesktop3 libxml2

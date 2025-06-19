@@ -39,7 +39,7 @@ LIB_DEPENDS=	libatk-1.0.so:accessibility/at-spi2-core \
 USES=		cmake compiler:c++17-lang gl gnome jpeg perl5 pkgconfig python \
 		qt-dist:6 shebangfix ssl
 USE_GL=		egl opengl
-USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 pango
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30 pango
 USE_LOCALE=	C.UTF-8
 
 SHEBANG_FILES=	${WRKSRC}/libexec/qt-android-runner.py \

@@ -21,7 +21,7 @@ OPTIONS_DEFINE=	READLINE DOCS
 OPTIONS_DEFAULT=READLINE
 
 USES=		gmake gnome pathfix pkgconfig libtool
-USE_GNOME=	gtk20 libxml2 gdkpixbuf2 cairo
+USE_GNOME=	gtk20 libxml2 gdkpixbuf cairo
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alsa-midi
 USE_LDCONFIG=	yes

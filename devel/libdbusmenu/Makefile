@@ -18,7 +18,7 @@ LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 GNU_CONFIGURE=	yes
 USES=		compiler gettext-tools:build,run gmake gnome libtool pathfix \
 		pkgconfig python:run shebangfix vala:build xorg
-USE_GNOME=	cairo gdkpixbuf2 glib20 intltool intlhack libxslt \
+USE_GNOME=	cairo gdkpixbuf glib20 intltool intlhack libxslt \
 		introspection:build gtk30
 USE_XORG=	x11
 USE_LDCONFIG=	yes

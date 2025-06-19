@@ -25,7 +25,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>=1.15.4:graphics/py-cairo@${PY_FLAVOR}
 
 USES=		gnome python
 USE_PYTHON=	distutils autoplist
-USE_GNOME=	gdkpixbuf2 pango
+USE_GNOME=	gdkpixbuf pango
 
 NO_ARCH=	yes
 

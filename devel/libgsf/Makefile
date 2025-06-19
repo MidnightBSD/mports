@@ -14,7 +14,7 @@ LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
 LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LIB
 
 USES=		cpe gmake gnome libtool localbase pathfix pkgconfig tar:xz
-USE_GNOME=	gdkpixbuf2 intlhack introspection:build libxml2
+USE_GNOME=	gdkpixbuf intlhack introspection:build libxml2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip

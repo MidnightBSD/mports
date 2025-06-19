@@ -20,7 +20,7 @@ LIB_DEPENDS=	libmozjs-91.so:lang/spidermonkey91 \
 
 USES=		compiler:c++11-lib gettext gnome libtool \
 		localbase meson pathfix pkgconfig python:build readline tar:xz xorg
-USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection
+USE_GNOME=	cairo gdkpixbuf gtk30 introspection
 USE_XORG=	x11 xext
 MESON_ARGS=	-Dcairo=enabled \
 		-Dreadline=enabled \
