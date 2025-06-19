@@ -48,6 +48,7 @@ SUBDIR += gnupg1
 SUBDIR += gnutls
 SUBDIR += gpgme
 SUBDIR += gpgme-cpp
+SUBDIR += gpgme-qt
 SUBDIR += gsasl
 SUBDIR += gstreamer1-plugins-dtls
 SUBDIR += gvm-libs
