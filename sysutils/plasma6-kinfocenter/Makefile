@@ -24,7 +24,7 @@ USE_KDE=	auth colorscheme completion config configwidgets coreaddons \
 		kirigami2:run systemsettings:run
 USE_QT=		base declarative
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386
 RUN_DEPENDS+=	dmidecode:sysutils/dmidecode
