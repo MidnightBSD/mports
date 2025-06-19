@@ -1479,6 +1479,7 @@ SUBDIR += qt5-uitools
 SUBDIR += qt6
 SUBDIR += qt6-5compat
 SUBDIR += qt6-base
+SUBDIR += qt6-grpc
 SUBDIR += qt6-languageserver
 SUBDIR += qt6-location
 SUBDIR += qt6-positioning
