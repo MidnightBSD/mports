@@ -1,7 +1,7 @@
 PORTNAME=	clamav
-DISTVERSION=	1.4.2
+DISTVERSION=	1.4.3
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	https://www.clamav.net/downloads/production/
 
