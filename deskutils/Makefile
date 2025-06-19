@@ -38,6 +38,7 @@ SUBDIR += jjclient
 SUBDIR += jlj
 SUBDIR += libkdepim
 SUBDIR += libportal
+SUBDIR += kaddressbook
 SUBDIR += kdeconnect-kde
 SUBDIR += kdepim
 SUBDIR += kdepim-addons
