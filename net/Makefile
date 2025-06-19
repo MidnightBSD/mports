@@ -2,6 +2,9 @@ COMMENT = Networking tools
 
 SUBDIR += 44bsd-rdist
 SUBDIR += activemq
+SUBDIR += akonadi-calendar
+SUBDIR += akonadi-contacts
+SUBDIR += akonadi-search
 SUBDIR += akonadi-mime
 SUBDIR += aquantia-atlantic-kmod
 SUBDIR += asio
@@ -130,6 +133,7 @@ SUBDIR += liveMedia
 SUBDIR += luasocket
 SUBDIR += mDNSResponder
 SUBDIR += malo-firmware-kmod
+SUBDIR += messagelib
 SUBDIR += miniupnpc
 SUBDIR += mosquitto
 SUBDIR += motsognir
