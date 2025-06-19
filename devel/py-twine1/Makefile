@@ -9,7 +9,7 @@ PKGNAMESUFFIX=	1
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of utilities for interacting with PyPI
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pkginfo>=1.4.2:sysutils/py-pkginfo@${PY_FLAVOR} \

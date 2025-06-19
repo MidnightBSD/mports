@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build-tool for Erlang that follows OTP principles
 WWW=		https://github.com/rebar/rebar
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/escript:lang/erlang
 RUN_DEPENDS:=	${BUILD_DEPENDS}

@@ -68,7 +68,7 @@ _LICENSE_PERMS_DEFAULT=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 # - General permissions from groups are added to each license, if not defined.
 #
 
-_LICENSE_NAME_agg=	Aggregate (depricated)
+_LICENSE_NAME_agg=	Aggregate (deprecated)
 _LICENSE_GROUPS_agg=
 
 _LICENSE_NAME_agpl=	GNU Affero General Public License version 3

@@ -9,7 +9,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python implementation of the Git file formats and protocols
 
-LICENSE=	apache2 gpl2
+LICENSE=	Apache-2.0 gpl2
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
 

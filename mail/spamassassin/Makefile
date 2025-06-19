@@ -8,7 +8,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Highly efficient mail filter for identifying spam
 WWW=		https://spamassassin.apache.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	p5-Encode-Detect>=0:converters/p5-Encode-Detect \
 		p5-HTML-Parser>=3.46:www/p5-HTML-Parser \

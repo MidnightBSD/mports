@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that provides thread building blocks (Legacy Version)
 WWW=		https://threadingbuildingblocks.org
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=	compiler gmake tar:tgz
 

@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	libuv bindings for lua
 WWW=		https://github.com/luvit/luv
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 LIB_DEPENDS=	libuv.so:devel/libuv

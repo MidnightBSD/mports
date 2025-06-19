@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FlatBuffers serialization format for Python
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 #LICENSE_FILE=	Not packaged in PyPI sdist
 
 USES=		python

@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP/2-based RPC framework
 WWW=		https://pypi.org/project/grpcio/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=3:devel/py-protobuf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>1:devel/py-six@${PY_FLAVOR}

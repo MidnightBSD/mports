@@ -9,7 +9,7 @@ COMMENT=	Annotate AST trees with source code positions
 WWW=		https://pypi.org/project/asttokens/ \
 		https://github.com/gristlabs/asttokens
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR}

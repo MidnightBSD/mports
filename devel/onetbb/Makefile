@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that provides thread building blocks
 WWW=		https://software.intel.com/oneapi/onetbb
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 LIB_DEPENDS=	libhwloc.so.15:devel/hwloc2
 

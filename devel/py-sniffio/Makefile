@@ -9,7 +9,7 @@ COMMENT=	Sniff out which async library your code is running under
 WWW=		https://sniffio.readthedocs.io/en/latest/ \
 		https://github.com/python-trio/sniffio
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \

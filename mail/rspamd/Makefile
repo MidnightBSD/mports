@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast spam filtering system
 WWW=		https://rspamd.com/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 LIB_DEPENDS=	libicui18n.so:devel/icu \

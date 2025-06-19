@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java access to native shared libraries
 WWW=		https://github.com/java-native-access/jna
 
-LICENSE=	apache2 lgpl2.1
+LICENSE=	Apache-2.0 lgpl2.1
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

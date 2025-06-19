@@ -10,7 +10,7 @@ COMMENT=	Allow your python tests to easily mock out the boto library
 WWW=		https://docs.getmoto.org/en/latest/ \
 		https://github.com/getmoto/moto
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=40.6.0:devel/py-setuptools@${PY_FLAVOR} \

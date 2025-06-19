@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal Command Line Interface for Amazon Web Services
 WWW=		https://aws.amazon.com/cli/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.21.61:devel/py-botocore@${PY_FLAVOR} \

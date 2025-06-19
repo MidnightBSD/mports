@@ -9,7 +9,7 @@ COMMENT=	Async client for aws services using botocore and aiohttp
 WWW=		https://aiobotocore.readthedocs.io/en/latest/ \
 		https://github.com/aio-libs/aiobotocore
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \

@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small build system closest in spirit to Make
 WWW=		https://ninja-build.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GITHUB=	yes

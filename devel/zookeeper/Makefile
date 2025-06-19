@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Coordination Service for Distributed Applications
 WWW=		https://zookeeper.apache.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	libzookeeper>=${PORTVERSION}:devel/libzookeeper
 

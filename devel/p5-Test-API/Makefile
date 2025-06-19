@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test a list of subroutines provided by a module
 WWW=		https://metacpan.org/release/Test-API
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		perl5
 USE_PERL5=	configure

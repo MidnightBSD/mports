@@ -6,7 +6,7 @@ CATEGORIES=	devel textproc
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pure-C HTML5 parser
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
