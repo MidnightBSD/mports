@@ -1,5 +1,3 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	gnome-system-monitor
 PORTVERSION=	3.38.0
 PORTREVISION=	2

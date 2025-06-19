@@ -1,5 +1,3 @@
-# Created by: Dan Langille <dan@langille.org>
-
 PORTNAME=	bacula
 PORTVERSION=	9.4.3
 CATEGORIES=	sysutils
@@ -9,7 +7,7 @@ DISTNAME=	${PORTNAME}-docs-${PORTVERSION}
 
 CONFLICTS=	bacula-* bacula5-*
 
-MAINTAINER=	dvl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bacula document set
 
 USES=		tar:bz2

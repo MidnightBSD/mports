@@ -1505,6 +1505,7 @@ SUBDIR += pydbus-common
 SUBDIR += pygobject3-common
 SUBDIR += pylint
 SUBDIR += qca
+SUBDIR += qcoro
 SUBDIR += qgit
 SUBDIR += qjson
 SUBDIR += qscintilla2-qt5

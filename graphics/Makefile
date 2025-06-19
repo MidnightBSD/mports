@@ -135,6 +135,7 @@ SUBDIR += libimagequant
 SUBDIR += libiptcdata
 SUBDIR += libjpeg-turbo
 SUBDIR += libjxl
+SUBDIR += libkexiv2
 SUBDIR += libliftoff
 SUBDIR += liblqr-1
 SUBDIR += libmng
