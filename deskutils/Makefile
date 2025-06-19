@@ -36,6 +36,7 @@ SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
 SUBDIR += jlj
+SUBDIR += libkdepim
 SUBDIR += libportal
 SUBDIR += kdeconnect-kde
 SUBDIR += kdepim
