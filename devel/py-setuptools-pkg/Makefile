@@ -4,7 +4,7 @@ CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	bofh@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Plugin for setuptools to build FreeBSD pkg
 WWW=		https://github.com/kxepal/setuptools-pkg
 

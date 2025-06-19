@@ -1,5 +1,3 @@
-# Created by: Martin Wilke <miwi@FreeBSD.org>
-
 PORTNAME=	setuptools_hg
 PORTVERSION=	0.4
 CATEGORIES=	devel python
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Setuptools plugin for hg
+WWW=		https://pypi.org/project/setuptools_hg/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE

@@ -1,5 +1,3 @@
-# Created by: Antoine Brodin <antoine@FreeBSD.org>
-
 PORTNAME=	olefile
 PORTVERSION=	0.46
 CATEGORIES=	devel python
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python module to read MS OLE2 files
+WWW=		https://www.decalage.info/en/olefile
 
 LICENSE=	bsd2 mit
 LICENSE_COMB=	multi

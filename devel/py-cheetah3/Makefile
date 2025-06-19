@@ -1,5 +1,3 @@
-# Created by: Dan Langille <dvl@FreeBSD.org>
-
 PORTNAME=	cheetah
 DISTVERSION=	3.2.6
 CATEGORIES=	devel textproc www python
@@ -10,6 +8,7 @@ DISTNAME=	Cheetah3-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML template engine for Python
+WWW=		https://cheetahtemplate.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE

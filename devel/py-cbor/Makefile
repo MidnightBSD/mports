@@ -1,27 +1,23 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	cbor
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 7049 - Concise Binary Object Representation
+WWW=		https://bitbucket.org/bodhisnarkva/cbor
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		compiler python
-USE_PYTHON=	autoplist concurrent distutils
-
-.include <bsd.port.pre.mk>
-
-.if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} <= 42
-post-patch:
-	@${REINPLACE_CMD} -e '/pragma/d' ${WRKSRC}/c/cbormodule.c
-.endif
+USE_PYTHON=	autoplist concurrent pep517
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cbor/_cbor*.so
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
