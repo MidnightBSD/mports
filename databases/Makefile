@@ -86,6 +86,7 @@ SUBDIR += p5-SQL-Abstract-Limit
 SUBDIR += p5-SQL-Statement
 SUBDIR += p5-SQL-Translator
 SUBDIR += p5-Time-Piece-MySQL
+SUBDIR += p5-Xapian
 SUBDIR += pear-Horde_Db
 SUBDIR += pear-Horde_HashTable
 SUBDIR += pecl-redis
