@@ -16,6 +16,7 @@ SUBDIR += apache-log4j2
 SUBDIR += app-builder
 SUBDIR += appstream
 SUBDIR += appstream-glib
+SUBDIR += appstream-qt
 SUBDIR += apr1
 SUBDIR += argp-standalone
 SUBDIR += arm-none-eabi-gcc
