@@ -1,5 +1,5 @@
 PORTNAME=	pyqt
-PORTVERSION=	${PYQT_VERSION}
+DISTVERSION=	${PYQT_VERSION}
 PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITES_PYQT}
@@ -10,32 +10,31 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for the Qt6 toolkit, QtCore module
 WWW=		https://riverbankcomputing.com/software/pyqt
 
-PYQT_DIST=	yes
+LICENSE=	${PYQT6_LICENSE}
 
-LIB_DEPENDS=	libqscintilla2_qt6.so:devel/qscintilla2-qt6 \
-		libdbus-1.so:devel/dbus
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dbus>1:devel/py-dbus@${PY_FLAVOR}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dbus>1:devel/py-dbus@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>1:devel/py-dbus@${PY_FLAVOR}
+LIB_DEPENDS=	libdbus-1.so:devel/dbus
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>1:devel/py-dbus@${PY_FLAVOR}
 
-USES=		gl pkgconfig python pyqt:6 qt:6
-USE_GL+=	gl opengl
-USE_LOCALE=	C.UTF-8
+USES=		gl pkgconfig pyqt:6,dist python qt:6
+USE_GL=		opengl
+USE_PYQT=	pysip qtbuilder:build sip:build
 USE_PYTHON=	concurrent flavors
-USE_PYQT=	qtbuilder sip pysip
-USE_QT=		5compat base connectivity declarative imageformats \
-		languageserver lottie multimedia positioning quick3d \
-		remoteobjects sensors serialport speech shadertools \
-		svg tools translations webchannel websockets
+USE_QT=		base connectivity declarative imageformats multimedia \
+		positioning quick3d remoteobjects scxml sensors serialport \
+		shadertools speech svg tools translations webchannel \
+		websockets
 
-PORTSCOUT?=	limit:^${_QT_VERSION:R}
+PORTSCOUT=	limit:^${_QT_VERSION:R}
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == amd64 || ${ARCH} == i386
-PLIST_SUB+=	WEBENGINE=""
-USE_QT+=	webengine
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == armv7 || ${ARCH} == i386
+USE_QT+=	pdf
+PLIST_SUB+=	PDF=""
 .else
-PLIST_SUB+=	WEBENGINE="@comment "
+SIP_ARGS+=	--disable QtPdf --disable QtPdfWidgets
+PLIST_SUB+=	PDF="@comment "
 .endif
 
 post-extract:
