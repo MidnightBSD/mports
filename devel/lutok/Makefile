@@ -1,61 +1,50 @@
-# Created by: Alan Somers <asomers@FreeBSD.org>
-
 PORTNAME=	lutok
-PORTVERSION=	0.4
+DISTVERSION=	0.6.1
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/jmmv/lutok/releases/download/${PORTNAME}-${PORTVERSION}/ \
-		FREEBSD_LOCAL/jmmv
+MASTER_SITES=	https://github.com/freebsd/${PORTNAME}/releases/download/${DISTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight C++ API for Lua
+WWW=		https://github.com/freebsd/lutok/
 
 LICENSE=	bsd3
 
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
+USES=		autoreconf libtool lua pathfix pkgconfig
+USE_CXXSTD=	gnu++14
 USE_LDCONFIG=	yes
-USES=		libtool lua pkgconfig
 
-OPTIONS_DEFINE=	DOCS EXAMPLES TEST
-OPTIONS_DEFAULT=TEST
-
-OPTIONS_SUB=		yes
-TEST_CONFIGURE_WITH=	atf
-TEST_BUILD_DEPENDS=	atf>=0.21:devel/atf
-TEST_RUN_DEPENDS=	atf>=0.21:devel/atf
-
-.include <bsd.mport.options.mk>
-
-CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
-CONFIGURE_ARGS+=	--htmldir=${DOCSDIR}/html
-# The distfile contains prebuilt doxygen files.  Specify --without_doxygen so
-# we won't rebuild them
-CONFIGURE_ARGS+=	--without-doxygen
-
-# Force the use of the lua version we have chosen via USE_LUA.  If we allow
-# lutok's configure script search for one using pkgconfig files, it might pick
-# a different version.
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	LUA_CFLAGS="-I${LUA_INCDIR}"
 CONFIGURE_ARGS+=	LUA_LIBS="-L${LUA_LIBDIR} -llua-${LUA_VER} -lm"
 
-MAKE_FLAGS+=	examplesdir=${FAKE_DESTDIR}${EXAMPLESDIR}
-MAKE_FLAGS+=	pkgconfigdir=${PREFIX}/libdata/pkgconfig
-.if ! ${PORT_OPTIONS:MDOCS}
-MAKE_FLAGS+=	doc_DATA=
-.endif
-.if ! ${PORT_OPTIONS:MEXAMPLES}
-MAKE_FLAGS+=	examples_DATA=
-.endif
+FAKE_MAKEFLAGS+=	examplesdir=${FAKE_DESTDIR}${EXAMPLESDIR}
+INSTALL_TARGET=	install-strip
 
-PLIST_SUB+=	TESTS="@comment "
+PORTDOCS=	AUTHORS COPYING NEWS README.md html/*
 
-.if ! ${PORT_OPTIONS:MDOCS}
-pre-install: .SILENT
-	${RM} -r ${WRKSRC}/api-docs
-.endif
+OPTIONS_DEFAULT= DOCS EXAMPLES TEST
+OPTIONS_DEFINE=	DOCS EXAMPLES TEST
+OPTIONS_SUB=		yes
 
-post-fake-EXAMPLES-on:
-	${MV} ${FAKE_DESTDIR}${DOCSDIR}/examples ${FAKE_DESTDIR}${EXAMPLESDIR}
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}/${PREFIX}/tests/lutok/examples_test
+DOCS_BUILD_DEPENDS=	doxygen>0:devel/doxygen
+DOCS_CONFIGURE_ON=	--docdir=${DOCSDIR} --htmldir=${DOCSDIR}/html
+DOCS_CONFIGURE_OFF=	--without-doxygen
+DOCS_MAKE_ARGS_OFF=	doc_DATA=
+EXAMPLES_MAKE_ARGS_OFF=	dist_examples_DATA=
+TEST_CONFIGURE_ENABLE=	atf
+TEST_BUILD_DEPENDS=	atf>=0.21:devel/atf
+TEST_RUN_DEPENDS=	atf>=0.21:devel/atf
+
+pre-install-DOCS-off:
+	@${RM} -r ${WRKSRC}/api-docs
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/api-docs && ${COPYTREE_SHARE} html ${FAKE_DESTDIR}${DOCSDIR})
+	${RM} -r ${FAKE_DESTDIR}${PREFIX}/share/doc/lutok/examples
+
+post-install-EXAMPLES-on:
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC}/ && ${CP} examples/* ${FAKE_DESTDIR}${EXAMPLESDIR})
 
 .include <bsd.port.mk>

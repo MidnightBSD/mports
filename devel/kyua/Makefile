@@ -4,9 +4,9 @@ PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	devel
 
-MAINTAINER=	jmmv@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Testing framework for infrastructure software
-WWW=		https://github.com/jmmv/kyua/
+WWW=		https://github.com/freebsd/kyua/
 
 LICENSE=	bsd3
 
