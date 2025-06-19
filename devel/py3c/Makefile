@@ -1,12 +1,11 @@
-# Created by: lev@FreeBSD.org
-
 PORTNAME=	py3c
-PORTVERSION=	1.3
+PORTVERSION=	1.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Py3c helps you port C extensions to Python 3
+WWW=		https://github.com/encukou/py3c
 
 LICENSE=	mit
 
@@ -18,7 +17,7 @@ GH_ACCOUNT=	encukou
 NO_BUILD=	yes
 
 do-install:
-	@${MAKE_CMD}                              \
+	${SETENVI} ${WRK_ENV} ${MAKE_CMD} \
 	 prefix=${TRUE_PREFIX}                         \
 	 pkgconfigdir=${TRUE_PREFIX}/libdata/pkgconfig \
 	 DESTDIR=${FAKE_DESTDIR}                      \

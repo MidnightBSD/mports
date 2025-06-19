@@ -1,5 +1,3 @@
-# Created by: Tom Judge <tj@FreeBSD.org>
-
 PORTNAME=	twine
 DISTVERSION=	1.15.0
 PORTREVISION=	1

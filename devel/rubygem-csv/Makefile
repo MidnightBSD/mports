@@ -3,7 +3,7 @@ PORTVERSION=	3.3.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface to CSV files and data
 WWW=		https://github.com/ruby/csv
 
