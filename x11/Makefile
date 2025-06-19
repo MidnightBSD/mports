@@ -84,6 +84,7 @@ SUBDIR += libXxf86dga
 SUBDIR += libXxf86vm
 SUBDIR += libei
 SUBDIR += libexo
+SUBDIR += libfakekey
 SUBDIR += libfm
 SUBDIR += libfm-extra
 SUBDIR += libgnomekbd
