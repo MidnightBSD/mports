@@ -1,5 +1,3 @@
-# Created by: Lars Thegler <lth@FreeBSD.org>
-
 PORTNAME=	Test-XML-Valid
 PORTVERSION=	0.04
 PORTREVISION=	1
@@ -9,6 +7,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidngihtBSD.org
 COMMENT=	Validate XML and XHTML
+WWW=		https://metacpan.org/release/Test-XML-Valid
 
 LICENSE=	other
 
