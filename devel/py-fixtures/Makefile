@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fixtures, reusable state for writing clean tests and more
 WWW=		https://github.com/testing-cabal/fixtures
 
-LICENSE=	apache2 bsd3
+LICENSE=	Apache-2.0 bsd3
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/Apache-2.0
 LICENSE_FILE_bsd3=${WRKSRC}/BSD

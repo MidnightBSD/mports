@@ -5,7 +5,7 @@ CATEGORIES=	devel
 MAINTAINER=	poprts@MidnightBSD.org
 COMMENT=	Open Computing Language (OpenCL) specifications V3.0 (header files)
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup

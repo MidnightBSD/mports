@@ -9,7 +9,7 @@ COMMENT=	Bash tab completion for argparse
 WWW=		https://kislyuk.github.io/argcomplete/ \
 		https://github.com/kislyuk/argcomplete
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \

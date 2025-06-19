@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nauty & Traces are programs for computing graph automorphism
 WWW=		https://pallini.di.uniroma1.it/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		gmake
 

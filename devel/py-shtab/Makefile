@@ -10,7 +10,7 @@ COMMENT=	Automagic shell tab completion for Python CLI applications
 WWW=		https://docs.iterative.ai/shtab/ \
 		https://github.com/iterative/shtab
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4:devel/py-setuptools-scm@${PY_FLAVOR} \

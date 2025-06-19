@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Logging library for C++
 WWW=		https://log4cplus.github.io/log4cplus/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	catch>=0:devel/catch

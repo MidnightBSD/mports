@@ -8,7 +8,7 @@ PKGNAMEPREFIX=	panda-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mark Crispin's C-client mail access routines forked from UW
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes

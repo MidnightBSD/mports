@@ -9,7 +9,7 @@ COMMENT=	Retry code until it succeeds
 WWW=		https://tenacity.readthedocs.io/en/latest/ \
 		https://github.com/jd/tenacity
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=21.0.0:devel/py-setuptools@${PY_FLAVOR} \

@@ -9,7 +9,7 @@ COMMENT=	Core utilities for Python packages
 WWW=		https://packaging.pypa.io/en/stable/ \
 		https://github.com/pypa/packaging
 
-LICENSE=	apache2 bsd2
+LICENSE=	Apache-2.0 bsd2
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE
 LICENSE_FILE_bsd2=${WRKSRC}/LICENSE.BSD

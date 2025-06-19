@@ -9,7 +9,7 @@ COMMENT=	MessagePack (de)serializer for Python
 WWW=		https://msgpack.org/ \
 		https://github.com/msgpack/msgpack-python
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=35.0.2:devel/py-setuptools@${PY_FLAVOR} \

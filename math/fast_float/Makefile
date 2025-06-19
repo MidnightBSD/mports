@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and exact C++ number parsing library
 WWW=		https://github.com/fastfloat/fast_float
 
-LICENSE=	apache2 boost mit
+LICENSE=	Apache-2.0 boost mit
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE-APACHE
 

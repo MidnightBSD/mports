@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Expand a regular expression to its possible matches
 WWW=		https://github.com/google/sre_yield
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils

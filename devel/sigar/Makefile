@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sigar system information API
 WWW=		https://support.hyperic.com/display/SIGAR/Home
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/NOTICE
 
 USE_GITHUB=	yes

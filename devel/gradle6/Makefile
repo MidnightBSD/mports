@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Project automation tool
 WWW=		https://www.gradle.org/
 
-LICENSE=	apache2 bsd3 cddl epl lgpl2.1+ mit MPL20
+LICENSE=	Apache-2.0 bsd3 cddl epl lgpl2.1+ mit MPL20
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

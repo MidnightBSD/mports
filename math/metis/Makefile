@@ -9,7 +9,7 @@ MASTER_SITES=	http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Package for unstructured graph partitioning
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 CONFLICTS=	metis4-4* metis-edf-[0-9]*
 

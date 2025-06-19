@@ -5,7 +5,7 @@ CATEGORIES=	math
 COMMENT=	Graph algorithms in the language of linear algebra
 WWW=		https://faculty.cse.tamu.edu/davis/suitesparse.html
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		localbase:ldflags
 

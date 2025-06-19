@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	List-like structure which implements collections.abc.MutableSequence
 WWW=		https://github.com/aio-libs/frozenlist
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gettext-runtime python

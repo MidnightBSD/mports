@@ -9,7 +9,7 @@ USES+=		cpe libtool pathfix pkgconfig shebangfix tar:bzip2
 SHEBANG_FILES=	tools/server-side/svnpubsub/rc.d/svnpubsub.solaris \
 		tools/server-side/svnpubsub/rc.d/svnwcsub.solaris
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 CPE_VENDOR=	apache
 

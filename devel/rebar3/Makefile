@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build tool for Erlang
 WWW=		https://www.rebar3.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/erl:lang/erlang \
 		${LOCALBASE}/bin/git:devel/git

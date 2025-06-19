@@ -8,7 +8,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenCORE implementation of AMR Narrowband & Wideband speech codec
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 GNU_CONFIGURE=	yes
 USES=		gmake libtool pathfix

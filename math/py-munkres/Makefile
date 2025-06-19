@@ -9,7 +9,7 @@ COMMENT=	Munkres implementation for Python
 WWW=		https://software.clapper.org/munkres/ \
 		https://github.com/bmc/munkres
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils

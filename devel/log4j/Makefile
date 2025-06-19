@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and flexible logging library for Java
 WWW=		https://logging.apache.org/log4j/1.2/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cpe java
 NO_BUILD=	YES

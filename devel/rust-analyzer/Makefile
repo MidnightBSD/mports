@@ -5,7 +5,7 @@ CATEGORIES=	devel
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Experimental Rust compiler front-end for IDEs
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	dual
 
 USES=		cargo

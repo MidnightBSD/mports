@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache Portability Library
 WWW=		https://apr.apache.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS+=	automake>=1.16.1:devel/automake
 LIB_DEPENDS=	libexpat.so:textproc/expat2

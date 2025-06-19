@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java- and XML-based build tool, conceptually similar to make
 WWW=		https://ant.apache.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cpe java tar:bzip2
 CPE_VENDOR=	apache

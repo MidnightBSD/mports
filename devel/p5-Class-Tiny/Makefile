@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for minimalist class construction
 WWW=		https://metacpan.org/release/Class-Tiny
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		perl5
 USE_PERL5=	configure

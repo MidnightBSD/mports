@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance-portable, length-agnostic SIMD with runtime dispatch
 WWW=		https://github.com/google/highway
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 TEST_DEPENDS=	googletest>0:devel/googletest
 

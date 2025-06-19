@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abseil Common Libraries (C++)
 WWW=		https://abseil.io/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cmake compiler:c++17-lang pathfix
 CMAKE_ARGS=	-DBUILD_SHARED_LIBS:BOOL=ON \
