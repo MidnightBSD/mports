@@ -115,6 +115,7 @@ SUBDIR += kf6-kplotting
 SUBDIR += kf6-kquickcharts
 SUBDIR += kf6-ksvg
 SUBDIR += kf6-prison
+SUBDIR += kimageannotator
 SUBDIR += kmscube
 SUBDIR += laternamagica
 SUBDIR += lcms
