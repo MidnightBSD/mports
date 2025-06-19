@@ -159,6 +159,7 @@ SUBDIR += pcaudiolib
 SUBDIR += portaudio
 SUBDIR += portmidi
 SUBDIR += pulseaudio
+SUBDIR += pulseaudio-qt
 SUBDIR += py-gtts
 SUBDIR += py-mpd
 SUBDIR += py-mutagen
