@@ -1,6 +1,3 @@
-# Created by: Wen Heping <wen@FreeBSD.org>
-
-
 PORTNAME=	Import-Into
 PORTVERSION=	1.002005
 PORTEPOCH=	1
@@ -11,8 +8,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Import packages into other packages
+WWW=		https://metacpan.org/release/Import-Into
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Module-Runtime>=0:devel/p5-Module-Runtime

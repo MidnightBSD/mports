@@ -806,7 +806,7 @@ settable options.  (Setting USE_* in /etc/make.conf is always wrong).
 
 If set, this port uses libiconv.
 
-=item USE_GETTEXT
+=item USES=gettext
 
 If set, this port uses GNU gettext (libintl).
 

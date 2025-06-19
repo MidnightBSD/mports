@@ -1,15 +1,6 @@
---- meson.build.orig	2022-05-02 07:33:03.000000000 -0400
-+++ meson.build	2022-06-03 09:29:34.432669000 -0400
-@@ -410,7 +410,7 @@
- 
-   # on aarch64 error: -fstack-protector not supported for this target
-   if host_machine.cpu_family() != 'aarch64'
--    if host_machine.system() in [ 'linux', 'freebsd', 'windows' ]
-+    if host_machine.system() in [ 'linux', 'freebsd', 'windows', 'midnightbsd' ]
-       # we prefer -fstack-protector-strong but fallback to -fstack-protector-all
-       fstack_cflags = cc.first_supported_argument([
-         '-fstack-protector-strong',
-@@ -622,6 +622,11 @@
+--- meson.build.orig	2025-05-02 03:25:45.000000000 -0400
++++ meson.build	2025-06-19 15:26:00.648077000 -0400
+@@ -700,6 +700,11 @@
    headers += 'libutil.h'
  endif
  
@@ -19,9 +10,9 @@
 +
 +
  foreach name : headers
-   if cc.has_header(name)
+   if cc.check_header(name)
      conf.set('WITH_@0@'.format(name.underscorify().to_upper()), 1)
-@@ -795,6 +800,11 @@
+@@ -841,6 +846,11 @@
    required_programs += 'ifconfig'
  endif
  
@@ -33,16 +24,16 @@
  foreach name : required_programs
    prog = find_program(name, dirs: libvirt_sbin_path)
    varname = name.underscorify()
-@@ -855,7 +865,7 @@
+@@ -898,7 +908,7 @@
      xdr_dep = cc.find_library('portablexdr', required: get_option('driver_remote'))
-   elif host_machine.system() == 'linux'
+   elif host_machine.system() in [ 'linux', 'gnu' ]
      xdr_dep = dependency('libtirpc', required: get_option('driver_remote'))
 -  elif host_machine.system() in [ 'freebsd', 'darwin' ]
 +  elif host_machine.system() in [ 'midnightbsd', 'freebsd', 'darwin' ]
      xdr_dep = cc.find_library('c', required: get_option('driver_remote'))
    else
      xdr_dep = dependency('', required: false)
-@@ -988,6 +998,8 @@
+@@ -1044,6 +1054,8 @@
  # Check for BSD kvm (kernel memory interface)
  if host_machine.system() == 'freebsd'
    libkvm_dep = cc.find_library('kvm')
@@ -51,7 +42,7 @@
  else
    libkvm_dep = dependency('', required: false)
  endif
-@@ -1452,7 +1464,7 @@
+@@ -1494,7 +1506,7 @@
    endif
  endif
  
@@ -60,7 +51,7 @@
    bhyve_prog = find_program('bhyve', required: get_option('driver_bhyve'))
    bhyvectl_prog = find_program('bhyvectl', required: get_option('driver_bhyve'))
    bhyveload_prog = find_program('bhyveload', required: get_option('driver_bhyve'))
-@@ -1667,7 +1679,7 @@
+@@ -1712,7 +1724,7 @@
        error('Please specify both qemu_user and qemu_group or neither of them')
      endif
      if qemu_user == '' and qemu_group == ''
