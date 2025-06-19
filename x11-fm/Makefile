@@ -4,6 +4,7 @@ SUBDIR += caja
 SUBDIR += dolphin
 SUBDIR += filerunner
 SUBDIR += gentoo
+SUBDIR += konqueror
 SUBDIR += nautilus
 SUBDIR += nemo
 SUBDIR += pcmanfm
