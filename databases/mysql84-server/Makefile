@@ -1,6 +1,6 @@
 PORTNAME?=		mysql
-PORTVERSION=		8.4.2
-PORTREVISION?=		1
+PORTVERSION=		8.4.5
+PORTREVISION?=		0
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.4
 PKGNAMESUFFIX?=		84-server
@@ -16,12 +16,11 @@ NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
 
 BROKEN_MidnightBSD_3.2=	Needs newer C++20 support for std:ranges
 
-BUILD_DEPENDS+= clang15:devel/llvm15
 CPP=    ${LOCALBASE}/bin/clang-cpp15
 CC=     ${LOCALBASE}/bin/clang15
 CXX=    ${LOCALBASE}/bin/clang++15
 
-USES=		bison:build cmake:noninja cpe groff:run libedit localbase \
+USES=		bison:build cmake:noninja cpe groff:run libedit localbase llvm:build,run \
 		ncurses perl5 pkgconfig shebangfix ssl compiler:c++20-lang
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
