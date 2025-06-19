@@ -288,6 +288,7 @@ SUBDIR += kf6-ktexttemplate
 SUBDIR += kf6-kunitconversion
 SUBDIR += kf6-solid
 SUBDIR += kf6-threadweaver
+SUBDIR += kio-extras
 SUBDIR += kyua
 SUBDIR += lcov
 SUBDIR += lemon

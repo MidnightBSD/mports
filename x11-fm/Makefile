@@ -1,6 +1,7 @@
 COMMENT = X11 file managers
 
 SUBDIR += caja
+SUBDIR += dolphin
 SUBDIR += filerunner
 SUBDIR += gentoo
 SUBDIR += nautilus

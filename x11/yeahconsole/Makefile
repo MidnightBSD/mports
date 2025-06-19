@@ -1,5 +1,3 @@
-# Created by: Satoshi Asami <asami@FreeBSD.org>
-
 PORTNAME=	yeahconsole
 PORTVERSION=	0.3.4
 CATEGORIES=	x11
@@ -7,8 +5,9 @@ MASTER_SITES=	http://phrat.de/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal wrapper for creating drop-down consoles
+WWW=		http://phrat.de/yeahtools.html
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		xorg
