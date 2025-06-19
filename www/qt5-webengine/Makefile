@@ -1,5 +1,25 @@
+# QtWebEngine itself is a very thin layer of Qt code on top of a large part of
+# Chromium (everything up to the content/ layer). As such, most of the work in
+# this port revolves around taming Chromium and getting it to build on FreeBSD.
+# While it does build at the moment, there are several items that should be
+# investigated or improved:
+# - We are using several stub files, especially in Chromium's base/ and net/
+#   layers. We should look at implementing the missing bits instead.
+# - We are currently not using any sandboxing mechanism.
+# - We need to see if more "use_system_<FOO>" flags can be passed.
+# - The process of porting QtWebEngine needs to be documented so we can move to
+#   newer releases more easily.
+#
+# Also note that, due to the insane amount of patches this port needs, it tends
+# to lag behind the rest of the official Qt5 ones, which is why we set
+# QT5_VERSION and DISTINFO_FILE here.
+
+# In order to successfully build this port in poudriere you need to add
+# MAX_FILES_qt5_webengine=4096 to /usr/local/etc/poudriere.conf
+
 PORTNAME=	webengine
-DISTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
+PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
+PORTREVISION=	2
 CATEGORIES=	www
 PKGNAMEPREFIX=	qt5-
 
@@ -8,7 +28,8 @@ COMMENT=	Qt 5 library to render web content
 
 BUILD_DEPENDS=	bison:devel/bison \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
-		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
+		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
+		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR}
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libdbus-1.so:devel/dbus \
 		libdouble-conversion.so:devel/double-conversion \
@@ -24,19 +45,13 @@ LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libopus.so:audio/opus \
 		libpci.so:devel/libpci \
 		libpng.so:graphics/png \
+		libre2.so:devel/re2 \
 		libsnappy.so:archivers/snappy \
 		libvpx.so:multimedia/libvpx \
 		libwebp.so:graphics/webp
 
 DISTINFO_FILE=	${.CURDIR}/distinfo
 QT5_VERSION=	${_KDE_webengine_VERSION}
-
-# Add extra-patch-no-mempcpy-nasm only when there's no mempcpy() in base.
-# Nested variable expansion avoids executing the test when not needed for
-# expanding EXTRA_PATCHES.
-# mempcpy was introduced in ee37f64cf875255338f917a9da76c643cf59786c
-EXTRA_PATCHES+=	${"${:!${GREP} mempcpy ${CROSS_SYSROOT}/usr/include/string.h \
-		|| ${TRUE}!}" == "":?${PATCHDIR}/extra-patch-no-mempcpy-nasm:}
 
 OPTIONS_SINGLE=		AUDIO
 OPTIONS_SINGLE_AUDIO=	ALSA PULSEAUDIO SNDIO
@@ -61,7 +76,7 @@ SNDIO_VARS_OFF=		QMAKE_CONFIGURE_ARGS+=-no-sndio
 # whether webenginewidgets is available, which fails when qmake processes all
 # .pro files at once.
 USES=		gl gnome gperf jpeg minizip ninja:build nodejs:build,lts \
-		perl5 pkgconfig python:2.7,build qmake:norecursive,outsource \
+		perl5 pkgconfig python:build qmake:norecursive,outsource \
 		qt-dist:5,webengine shebangfix xorg
 USE_GL=		gl
 USE_GNOME=	glib20 libxml2 libxslt
@@ -71,6 +86,7 @@ USE_QT=		core declarative gui location network printsupport \
 		buildtools:build designer:build qmake:build
 USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 		xorgproto xrandr xrender xscrnsaver xtst
+USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 QMAKE_CONFIGURE_ARGS=	-proprietary-codecs -system-ffmpeg
 
@@ -103,7 +119,7 @@ QT_BINARIES=	yes
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*} || ${ARCH} == sparc64
+.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*}
 PLIST_SUB+=	BE="" LE="@comment "
 .else
 PLIST_SUB+=	BE="@comment " LE=""
@@ -128,8 +144,10 @@ post-patch:
 		${WRKSRC}/src/3rdparty/chromium/chrome/common/chrome_paths.cc \
 		${WRKSRC}/src/3rdparty/chromium/third_party/pdfium/core/fxge/fx_ge_linux.cpp \
 		${WRKSRC}/src/3rdparty/gn/build/gen.py
+	@${REINPLACE_CMD} -E -e 's|^(MODULE_VERSION = ).*|\1${QT5_VERSION}|' \
+		${WRKSRC}/.qmake.conf
 
-.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*} || ${ARCH} == sparc64
+.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*}
 	@${REINPLACE_CMD} -e 's/icudtl.dat/icudtb.dat/' \
 		${WRKSRC}/src/core/core_module.pro
 .endif
@@ -146,8 +164,8 @@ pre-configure:
 # Rerun syncqt.pl -- otherwise the resulting package misses some forwarding headers.
 	cd ${WRKSRC} && ${QT_BINDIR}/syncqt.pl -version ${QT5_VERSION}
 
-# Fix version mismatches for CMake
 post-build:
+# Fix version mismatches for CMake
 .for module in Pdf PdfWidgets WebEngine WebEngineCore WebEngineWidgets
 	@${REINPLACE_CMD} -e '/${QT5_VERSION} $${_Qt5${module}_FIND_VERSION_EXACT}/s|${QT5_VERSION}|'"$$(${MAKE} -C ../../devel/qt5-core -VQT5_VERSION)"'|' \
 		${BUILD_WRKSRC}/lib/cmake/Qt5${module}/Qt5${module}Config.cmake
