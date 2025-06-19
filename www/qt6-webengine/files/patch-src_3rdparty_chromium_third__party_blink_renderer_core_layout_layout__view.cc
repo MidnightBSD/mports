@@ -1,17 +1,17 @@
---- src/3rdparty/chromium/third_party/blink/renderer/core/layout/layout_view.cc.orig	2023-04-05 11:05:06 UTC
+--- src/3rdparty/chromium/third_party/blink/renderer/core/layout/layout_view.cc.orig	2024-01-30 07:53:34 UTC
 +++ src/3rdparty/chromium/third_party/blink/renderer/core/layout/layout_view.cc
-@@ -67,7 +67,7 @@
- #include "ui/display/screen_info.h"
+@@ -72,7 +72,7 @@
  #include "ui/gfx/geometry/quad_f.h"
+ #include "ui/gfx/geometry/size_conversions.h"
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "third_party/blink/renderer/platform/fonts/font_cache.h"
  #endif
  
-@@ -365,7 +365,7 @@ void LayoutView::UpdateLayout() {
-   DCHECK(!layout_state_);
-   LayoutState root_layout_state(*this);
+@@ -813,7 +813,7 @@ void LayoutView::UpdateLayout() {
+     intrinsic_logical_widths_ = LogicalWidth();
+   }
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)

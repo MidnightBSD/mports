@@ -20,9 +20,18 @@ _QT_MK_INCLUDED=	qt.mk
 
 # Qt versions currently supported by the framework.
 _QT_SUPPORTED?=		5 6
-QT5_VERSION?=		5.15.11
-QT6_VERSION?=		6.6.2
-PYSIDE6_VERSION?=	6.6.0
+QT5_VERSION?=		5.15.16
+QT6_VERSION?=		6.8.3
+PYSIDE6_VERSION?=	6.8.3
+
+# Support for intermediate Qt6 releases. This partially defines
+# _QT6_MASTER_SITE_SUBDIR and would probably be better in qt-dist.mk,
+# but misc/qt6-examples needs this too.
+.  if ${QT6_VERSION:M*beta*} || ${QT6_VERSION:M*rc*}
+_QT6_RELEASE_TYPE=		development
+.  else
+_QT6_RELEASE_TYPE=		official
+.  endif
 
 # We accept the Qt version to be passed by either or all of the three mk files.
 .  if empty(qt_ARGS) && empty(qmake_ARGS) && empty(qt-dist_ARGS)
@@ -63,6 +72,7 @@ QT_DESCRIPTIONSDIR_REL?=${QT_DATADIR_REL}/modules
 QT_LIBEXECDIR_REL?=	libexec/${_QT_RELNAME}
 QT_IMPORTDIR_REL?=	${QT_ARCHDIR_REL}/imports
 QT_QMLDIR_REL?=		${QT_ARCHDIR_REL}/qml
+QT_SBOMDIR_REL?=	${QT_ARCHDIR_REL}/sbom
 QT_DATADIR_REL?=	share/${_QT_RELNAME}
 QT_DOCDIR_REL?=		share/doc/${_QT_RELNAME}
 QT_L10NDIR_REL?=	${QT_DATADIR_REL}/translations
@@ -100,7 +110,7 @@ QMAKESPEC?=		${QT_MKSPECDIR}/${QMAKESPECNAME}
 QMAKE_COMPILER=	$$(ccver="$$(${CXX} --version)"; case "$$ccver" in *clang*) echo clang ;; *) echo g++ ;; esac)
 
 .  for dir in BIN INC LIB ARCH PLUGIN LIBEXEC IMPORT \
-	QML DATA DOC L10N ETC EXAMPLE TEST MKSPEC \
+	QML SBOM DATA DOC L10N ETC EXAMPLE TEST MKSPEC \
 	CMAKE TOOL
 QT_${dir}DIR=	${PREFIX}/${QT_${dir}DIR_REL}
 # Export all directories to the plist substituion for QT_DIST ports.
@@ -140,9 +150,10 @@ _USES_POST+=		qt
 _QT_MK_POST_INCLUDED=	qt.mk
 
 # The Qt components supported by qt.mk: list of shared, and version specific ones
-_USE_QT_COMMON=		3d charts connectivity datavis3d declarative doc examples imageformats location \
-			multimedia networkauth quick3d quicktimeline remoteobjects scxml \
-			sensors serialbus serialport speech svg virtualkeyboard wayland \
+_USE_QT_COMMON=		3d charts connectivity datavis3d declarative doc \
+			examples imageformats location multimedia networkauth \
+			quick3d quicktimeline remoteobjects scxml sensors \
+			serialbus serialport speech svg virtualkeyboard wayland \
 			webchannel webengine websockets webview
 
 _USE_QT5_ONLY=		assistant buildtools concurrent core dbus \
@@ -155,9 +166,10 @@ _USE_QT5_ONLY=		assistant buildtools concurrent core dbus \
 			uitools webglplugin websockets-qml \
 			widgets x11extras xml xmlpatterns
 
-_USE_QT6_ONLY=		5compat base coap graphs httpserver languageserver lottie pdf positioning \
-			quick3dphysics quickeffectmaker shadertools tools translations \
-			sqldriver-sqlite sqldriver-mysql sqldriver-psql sqldriver-odbc
+_USE_QT6_ONLY=		5compat base coap graphs grpc httpserver languageserver \
+			lottie mqtt pdf positioning quick3dphysics quickeffectmaker \
+			shadertools tools translations sqldriver-sqlite \
+			sqldriver-mysql sqldriver-psql sqldriver-odbc
 
 # Dependency tuples: _LIB should be preferred if possible.
 qt-3d_PORT=		graphics/${_QT_RELNAME}-3d
@@ -224,6 +236,9 @@ qt-graphicaleffects_PATH=	${LOCALBASE}/${QT_QMLDIR_REL}/QtGraphicalEffects/qmldi
 qt-graphs_PORT=		x11-toolkits/${_QT_RELNAME}-graphs
 qt-graphs_LIB=		libQt${_QT_LIBVER}Graphs.so
 
+qt-grpc_PORT=		devel/${_QT_RELNAME}-grpc
+qt-grpc_LIB=		libQt${_QT_LIBVER}Grpc.so
+
 qt-gui_PORT=		x11-toolkits/${_QT_RELNAME}-gui
 qt-gui_LIB=		libQt${_QT_LIBVER}Gui.so
 
@@ -237,7 +252,7 @@ qt-imageformats_PORT=	graphics/${_QT_RELNAME}-imageformats
 qt-imageformats_PATH=	${LOCALBASE}/${QT_PLUGINDIR_REL}/imageformats/libqtiff.so
 
 qt-languageserver_PORT=	devel/${_QT_RELNAME}-languageserver
-qt-languageserver_LIB=	libQt${_QT_LIBVER}LanguageServer.so
+qt-languageserver_PATH=	${LOCALBASE}/${QT_LIBDIR_REL}/libQt6LanguageServer.a
 
 qt-lottie_PORT=		graphics/${_QT_RELNAME}-lottie
 qt-lottie_LIB=		libQt${_QT_LIBVER}Bodymovin.so
@@ -253,6 +268,9 @@ qt-location_LIB=	libQt${_QT_LIBVER}Location.so
 
 qt-l10n_PORT=		misc/${_QT_RELNAME}-l10n
 qt-l10n_PATH=		${_QT_RELNAME}-l10n>=${_QT_VERSION:R:R}
+
+qt-mqtt_PORT=		net/${_QT_RELNAME}-mqtt
+qt-mqtt_LIB=		libQt${_QT_LIBVER}Mqtt.so
 
 qt-multimedia_PORT=	multimedia/${_QT_RELNAME}-multimedia
 qt-multimedia_LIB=	libQt${_QT_LIBVER}Multimedia.so
@@ -307,7 +325,7 @@ qt-quick3d_PORT=	x11-toolkits/${_QT_RELNAME}-quick3d
 qt-quick3d_LIB=		libQt${_QT_LIBVER}Quick3D.so
 
 qt-quick3dphysics_PORT=	science/${_QT_RELNAME}-quick3dphysics
-qt_quick3dphysics_LIB=	libQt${_QT_LIBVER}Quick3DPhysics.so
+qt-quick3dphysics_LIB=	libQt${_QT_LIBVER}Quick3DPhysics.so
 
 qt-quickcontrols_PORT=	x11-toolkits/${_QT_RELNAME}-quickcontrols
 qt-quickcontrols_PATH=	${LOCALBASE}/${QT_QMLDIR_REL}/QtQuick/Controls/qmldir
@@ -424,7 +442,7 @@ _USE_QT_ALL=		${_USE_QT_COMMON} \
 			${_USE_QT${_QT_VER}_ONLY}
 _USE_QT=		${USE_QT}
 # Iterate through components deprived of suffix.
-.  for component in ${_USE_QT:O:u:C/:(build|run)$//}
+.  for component in ${_USE_QT:O:u:C/:(build|run|test)$//}
 # Check that the component is valid.
 .    if ${_USE_QT_ALL:M${component}} != ""
 # Skip meta-components (currently none).
@@ -437,6 +455,9 @@ qt-${component}_TYPE+=		build
 .          endif
 .          if ${_USE_QT:M${component}\:run} != ""
 qt-${component}_TYPE+=		run
+.          endif
+.          if ${_USE_QT:M${component}\:test} != ""
+qt-${component}_TYPE+=		test
 .          endif
 .        endif # ${_USE_QT:M${component}_*} != "" && ${_USE_QT:M${component}} == ""
 # If no dependency type is set, default to full dependency.
@@ -454,6 +475,9 @@ BUILD_DEPENDS+=			${qt-${component}_DEPENDS}
 .          endif
 .          if ${qt-${component}_TYPE:Mrun} != ""
 RUN_DEPENDS+=			${qt-${component}_DEPENDS}
+.          endif
+.          if ${qt-${component}_TYPE:Mtest} != ""
+TEST_DEPENDS+=			${qt-${component}_DEPENDS}
 .          endif
 .        endif # ${qt-${component}_LIB} && ${qt-${component}_TYPE:Mbuild} && ${qt-${component}_TYPE:Mrun}
 .      endif # defined(qt-${component}_PORT) && defined(qt-${component}_PATH)

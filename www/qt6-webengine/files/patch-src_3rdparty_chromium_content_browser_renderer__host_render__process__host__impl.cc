@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/content/browser/renderer_host/render_process_host_impl.cc.orig	2023-08-16 19:50:41 UTC
+--- src/3rdparty/chromium/content/browser/renderer_host/render_process_host_impl.cc.orig	2024-07-03 01:14:49 UTC
 +++ src/3rdparty/chromium/content/browser/renderer_host/render_process_host_impl.cc
-@@ -212,7 +212,7 @@
+@@ -222,7 +222,7 @@
  #include "third_party/blink/public/mojom/android_font_lookup/android_font_lookup.mojom.h"
  #endif
  
@@ -9,7 +9,7 @@
  #include <sys/resource.h>
  
  #include "components/services/font/public/mojom/font_service.mojom.h"  // nogncheck
-@@ -1148,7 +1148,7 @@ size_t GetPlatformProcessLimit() {
+@@ -970,7 +970,7 @@ size_t GetPlatformProcessLimit() {
  // to indicate failure and std::numeric_limits<size_t>::max() to indicate
  // unlimited.
  size_t GetPlatformProcessLimit() {
@@ -18,7 +18,16 @@
    struct rlimit limit;
    if (getrlimit(RLIMIT_NPROC, &limit) != 0)
      return kUnknownPlatformProcessLimit;
-@@ -1240,7 +1240,7 @@ class RenderProcessHostImpl::IOThreadHostImpl : public
+@@ -1158,7 +1158,7 @@ class RenderProcessHostImpl::IOThreadHostImpl : public
+   IOThreadHostImpl& operator=(const IOThreadHostImpl& other) = delete;
+ 
+   void SetPid(base::ProcessId child_pid) {
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+     child_thread_type_switcher_.SetPid(child_pid);
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+   }
+@@ -1175,7 +1175,7 @@ class RenderProcessHostImpl::IOThreadHostImpl : public
          return;
      }
  
@@ -27,7 +36,7 @@
      if (auto font_receiver = receiver.As<font_service::mojom::FontService>()) {
        ConnectToFontService(std::move(font_receiver));
        return;
-@@ -1329,7 +1329,7 @@ class RenderProcessHostImpl::IOThreadHostImpl : public
+@@ -1269,7 +1269,7 @@ class RenderProcessHostImpl::IOThreadHostImpl : public
    std::unique_ptr<service_manager::BinderRegistry> binders_;
    mojo::Receiver<mojom::ChildProcessHost> receiver_{this};
  
@@ -35,30 +44,21 @@
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    mojo::Remote<media::mojom::VideoEncodeAcceleratorProviderFactory>
        video_encode_accelerator_factory_remote_;
- #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-@@ -2168,7 +2168,7 @@ void RenderProcessHostImpl::ReinitializeLogging(
- }
- #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
+   ChildThreadTypeSwitcher child_thread_type_switcher_;
+@@ -3403,7 +3403,7 @@ void RenderProcessHostImpl::AppendRendererCommandLine(
+             base::TimeTicks::UnixEpoch().since_origin().InMicroseconds()));
+   }
  
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- void RenderProcessHostImpl::CreateStableVideoDecoder(
-     mojo::PendingReceiver<media::stable::mojom::StableVideoDecoder> receiver) {
-   DCHECK_CURRENTLY_ON(BrowserThread::UI);
-@@ -3356,6 +3356,7 @@ void RenderProcessHostImpl::PropagateBrowserCommandLin
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // Append `kDisableVideoCaptureUseGpuMemoryBuffer` flag if there is no support
+   // for NV12 GPU memory buffer.
+   if (switches::IsVideoCaptureUseGpuMemoryBufferEnabled() &&
+@@ -3463,6 +3463,7 @@ void RenderProcessHostImpl::PropagateBrowserCommandLin
      switches::kDisableSpeechAPI,
      switches::kDisableThreadedCompositing,
      switches::kDisableTouchDragDrop,
 +    switches::kDisableUnveil,
-     switches::kDisableUseMojoVideoDecoderForPepper,
      switches::kDisableV8IdleTasks,
      switches::kDisableVideoCaptureUseGpuMemoryBuffer,
-@@ -4847,7 +4848,7 @@ void RenderProcessHostImpl::ResetIPC() {
-   coordinator_connector_receiver_.reset();
-   tracing_registration_.reset();
- 
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   stable_video_decoder_factory_remote_.reset();
- #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
- 
+     switches::kDisableWebGLImageChromium,

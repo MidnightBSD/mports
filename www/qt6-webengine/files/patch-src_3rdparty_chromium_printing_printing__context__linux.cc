@@ -1,7 +1,7 @@
---- src/3rdparty/chromium/printing/printing_context_linux.cc.orig	2023-04-05 11:05:06 UTC
+--- src/3rdparty/chromium/printing/printing_context_linux.cc.orig	2023-12-10 06:10:27 UTC
 +++ src/3rdparty/chromium/printing/printing_context_linux.cc
-@@ -19,7 +19,7 @@
- #include "printing/units.h"
+@@ -23,7 +23,7 @@
+ #endif
  
  // Avoid using LinuxUi on Fuchsia.
 -#if BUILDFLAG(IS_LINUX)

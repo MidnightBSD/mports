@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/base/threading/platform_thread_posix.cc.orig	2023-04-05 11:05:06 UTC
+--- src/3rdparty/chromium/base/threading/platform_thread_posix.cc.orig	2024-02-23 21:04:38 UTC
 +++ src/3rdparty/chromium/base/threading/platform_thread_posix.cc
-@@ -76,7 +76,7 @@ void* ThreadFunc(void* params) {
+@@ -78,12 +78,12 @@ void* ThreadFunc(void* params) {
      if (!thread_params->joinable)
        base::DisallowSingleton();
  
@@ -9,7 +9,22 @@
      partition_alloc::internal::PCScan::NotifyThreadCreated(
          partition_alloc::internal::GetStackPointer());
  #endif
-@@ -374,6 +374,9 @@ void SetCurrentThreadTypeImpl(ThreadType thread_type,
+ 
+-#if !BUILDFLAG(IS_NACL)
++#if !BUILDFLAG(IS_NACL) && !BUILDFLAG(IS_BSD)
+ #if BUILDFLAG(IS_APPLE)
+     PlatformThread::SetCurrentThreadRealtimePeriodValue(
+         delegate->GetRealtimePeriod());
+@@ -357,7 +357,7 @@ void PlatformThreadBase::Detach(PlatformThreadHandle t
+ 
+ // static
+ bool PlatformThreadBase::CanChangeThreadType(ThreadType from, ThreadType to) {
+-#if BUILDFLAG(IS_NACL)
++#if BUILDFLAG(IS_NACL) || BUILDFLAG(IS_BSD)
+   return false;
+ #else
+   if (from >= to) {
+@@ -378,6 +378,9 @@ void SetCurrentThreadTypeImpl(ThreadType thread_type,
                                MessagePumpType pump_type_hint) {
  #if BUILDFLAG(IS_NACL)
    NOTIMPLEMENTED();
@@ -19,3 +34,12 @@
  #else
    if (internal::SetCurrentThreadTypeForPlatform(thread_type, pump_type_hint))
      return;
+@@ -400,7 +403,7 @@ void SetCurrentThreadTypeImpl(ThreadType thread_type,
+ 
+ // static
+ ThreadPriorityForTest PlatformThreadBase::GetCurrentThreadPriorityForTest() {
+-#if BUILDFLAG(IS_NACL)
++#if BUILDFLAG(IS_NACL) || BUILDFLAG(IS_BSD)
+   NOTIMPLEMENTED();
+   return ThreadPriorityForTest::kNormal;
+ #else

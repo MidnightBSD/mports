@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/gpu/vulkan/vulkan_function_pointers.cc.orig	2022-04-21 18:48:31 UTC
+--- src/3rdparty/chromium/gpu/vulkan/vulkan_function_pointers.cc.orig	2024-02-23 21:04:38 UTC
 +++ src/3rdparty/chromium/gpu/vulkan/vulkan_function_pointers.cc
-@@ -1151,7 +1151,7 @@ bool VulkanFunctionPointers::BindDeviceFunctionPointer
+@@ -1289,7 +1289,7 @@ bool VulkanFunctionPointers::BindDeviceFunctionPointer
      }
    }
  
@@ -8,4 +8,13 @@
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    if (gfx::HasExtension(enabled_extensions,
                          VK_EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME)) {
-     vkGetImageDrmFormatModifierPropertiesEXT =
+     constexpr char kvkGetImageDrmFormatModifierPropertiesEXT[] =
+@@ -1489,7 +1489,7 @@ void VulkanFunctionPointers::ResetForTesting() {
+   vkGetSwapchainImagesKHR = nullptr;
+   vkQueuePresentKHR = nullptr;
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   vkGetImageDrmFormatModifierPropertiesEXT = nullptr;
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+ }
