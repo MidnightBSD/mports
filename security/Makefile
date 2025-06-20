@@ -129,6 +129,7 @@ SUBDIR += nmap
 SUBDIR += nettle
 SUBDIR += nss
 SUBDIR += nuclei
+SUBDIR += oath-toolkit
 SUBDIR += oinkmaster
 SUBDIR += openct
 SUBDIR += opendoas
