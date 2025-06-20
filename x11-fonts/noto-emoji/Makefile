@@ -10,8 +10,11 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google Noto Fonts family (Emoji)
+WWW=		https://fonts.google.com/noto \
+		https://github.com/googlefonts/noto-emoji
 
-LICENSE=	apache2
+
+LICENSE=	Apache-2.0
 
 USES=		fonts
 
