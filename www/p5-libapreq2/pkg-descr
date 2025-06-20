@@ -1,4 +1,4 @@
-p5-libapreq2 - Perl elements for the Generic Apache2 Request Library
+p5-libapreq2 - Perl elements for the Generic Apache-2.0 Request Library
 
 This package contains the Perl elements of the Generic Apache2
 Request Library.

@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Syslogd supporting SQL, TCP, and TLS
 WWW=		https://www.rsyslog.com/
 
-LICENSE=	gpl3 lgpl3 apache2
+LICENSE=	gpl3 lgpl3 Apache-2.0
 LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libestr.so:devel/libestr \

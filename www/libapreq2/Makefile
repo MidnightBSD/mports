@@ -4,7 +4,7 @@ CATEGORIES=	www devel
 MASTER_SITES=	APACHE_HTTPD/libapreq
 
 MAINTAINER=	ports@MidnightBSd.org
-COMMENT=	Generic Apache2 Request Library
+COMMENT=	Generic Apache-2.0 Request Library
 WWW=		https://metacpan.org/dist/libapreq2
 
 LICENSE=	Apache-2.0

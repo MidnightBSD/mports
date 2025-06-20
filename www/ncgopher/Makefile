@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and modern Gopher, Gemini and finger terminal client
 WWW=		https://github.com/jansc/ncgopher
 
-LICENSE=	bsd2 apache2 bsd3 mit unlicense zlib
+LICENSE=	bsd2 Apache-2.0 bsd3 mit unlicense zlib
 LICENSE_COMB=	multi
 
 USES=		cargo ssl sqlite

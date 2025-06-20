@@ -8,7 +8,7 @@ DISTFILES=      rust-1.30.0.txz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=        Language with a focus on memory safety and concurrency (FreeBSD version)
 
-LICENSE=        apache2 mit
+LICENSE=        Apache-2.0 mit
 LICENSE_COMB=   dual
 
 USES=		pkgconfig python:3.3+,build ssl tar:xz

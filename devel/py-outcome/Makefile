@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Capture the outcome of Python function calls
 WWW=		https://pypi.org/project/outcome/
 
-LICENSE=	mit apache2
+LICENSE=	mit Apache-2.0
 LICENSE_COMB=	dual
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE.MIT
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE2
