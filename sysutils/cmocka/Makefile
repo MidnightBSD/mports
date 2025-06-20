@@ -6,8 +6,9 @@ MASTER_SITES=	https://cmocka.org/files/1.1/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unit testing framework for C with support for mock objects
+WWW=		https://cmocka.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cmake tar:xz
 USE_LDCONFIG=	yes
