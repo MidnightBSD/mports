@@ -2,6 +2,7 @@ COMMENT = System utilities
 
 SUBDIR += 915resolution
 SUBDIR += LPRng
+SUBDIR += accounts-qml-module
 SUBDIR += accountsservice
 SUBDIR += alloy
 SUBDIR += amazon-ssm-agent
