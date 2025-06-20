@@ -23,6 +23,7 @@ SUBDIR += boinc-client
 SUBDIR += bsdec2-image-upload
 SUBDIR += bwi-firmware-kmod
 SUBDIR += bwn-firmware-kmod
+SUBDIR += calendarsupport
 SUBDIR += czmq
 SUBDIR += daq
 SUBDIR += dhcp6
