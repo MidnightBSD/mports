@@ -8,13 +8,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal charset detection library
 WWW=		https://www.freedesktop.org/wiki/Software/uchardet/
 
-LICENSE=	gpl2 lgpl2.1 mpl
+LICENSE=	gpl2 lgpl2.1 MPL11
 LICENSE_COMB=	dual
 
 USES=		cmake compiler:c++11-lang pathfix tar:xz
 USE_LDCONFIG=	yes
-
-
 
 CMAKE_ARGS=	-DTARGET_ARCHITECTURE=NONE -DCMAKE_INSTALL_MANDIR:PATH=${PREFIX}/share/man
 
