@@ -5,12 +5,14 @@ CATEGORIES=	archivers linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LZ4 compression library and utilities (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://lz4.github.io/lz4/
 
 LICENSE=        bsd2 gpl2
 LICENSE_COMB=   multi
 
-USES=		linux:c7
+USES=		cpe linux:c7
 USE_LDCONFIG=	yes
+CPE_VENDOR=	lz4_project
 USE_LINUX_RPM=	yes
 
 DESCR=		${.CURDIR}/../liblz4/pkg-descr

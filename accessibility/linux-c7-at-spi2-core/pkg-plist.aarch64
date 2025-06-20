@@ -1,9 +1,9 @@
 usr/lib64/girepository-1.0/Atspi-2.0.typelib
 usr/lib64/libatspi.so.0
 usr/lib64/libatspi.so.0.0.1
-%%PORTDOCS%%usr/share/doc/at-spi2-core/AUTHORS
-%%PORTDOCS%%usr/share/doc/at-spi2-core/README
-usr/share/licenses/at-spi2-core/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/README
+usr/share/licenses/at-spi2-core-2.28.0/COPYING
 %%NLS%%usr/share/locale/an/LC_MESSAGES/at-spi2-core.mo
 %%NLS%%usr/share/locale/as/LC_MESSAGES/at-spi2-core.mo
 %%NLS%%usr/share/locale/ast/LC_MESSAGES/at-spi2-core.mo
@@ -75,3 +75,4 @@ usr/share/licenses/at-spi2-core/COPYING
 %%NLS%%usr/share/locale/zh_CN/LC_MESSAGES/at-spi2-core.mo
 %%NLS%%usr/share/locale/zh_HK/LC_MESSAGES/at-spi2-core.mo
 %%NLS%%usr/share/locale/zh_TW/LC_MESSAGES/at-spi2-core.mo
+@dir usr/lib
