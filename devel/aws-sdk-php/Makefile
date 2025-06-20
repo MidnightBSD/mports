@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP interface for Amazon Web Services (AWS)
 WWW=		https://github.com/aws/aws-sdk-php
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		php:flavors zip

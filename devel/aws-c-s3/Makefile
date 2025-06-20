@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C99 library implementation for communicating with the S3 service
 WWW=		https://github.com/awslabs/aws-c-s3
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libaws-c-auth.so:security/aws-c-auth \

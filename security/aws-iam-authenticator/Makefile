@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Use AWS IAM credentials to authenticate to a Kubernetes cluster
 WWW=		https://github.com/kubernetes-sigs/aws-iam-authenticator
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		go:1.24,modules
 
