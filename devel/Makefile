@@ -1647,6 +1647,7 @@ SUBDIR += wininfo
 SUBDIR += wizardkit
 SUBDIR += woff2
 SUBDIR += xa65
+SUBDIR += xdg-user-dirs
 SUBDIR += xdg-utils
 SUBDIR += xfce4-dev-tools
 SUBDIR += xorg-macros
