@@ -5,9 +5,10 @@ MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	File::pushd - temporary chdir for a limited scope
+COMMENT=	Temporary chdir for a limited scope
+WWW=		https://metacpan.org/release/File-pushd
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		perl5
