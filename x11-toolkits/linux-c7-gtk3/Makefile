@@ -6,7 +6,7 @@ CATEGORIES=	x11-toolkits linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK library, version 3.X (Linux CentOS ${LINUX_DIST_VER})
-WWW=		https://www.gtk.org
+WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl3
 
@@ -17,7 +17,7 @@ USES=		cpe linux:c7
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	gtk
 USE_LDCONFIG=	yes
-USE_LINUX=	at-spi2-atk atk cairo-gobject fontconfig freetype gdkpixbuf2 \
+USE_LINUX=	at-spi2-atk atk cairo-gobject fontconfig freetype gdkpixbuf \
 		libepoxy librsvg2 libxkbcommon pango wayland xorglibs
 USE_LINUX_RPM=	yes
 

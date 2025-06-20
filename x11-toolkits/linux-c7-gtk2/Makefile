@@ -11,7 +11,7 @@ LICENSE=	lgpl
 
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes
-USE_LINUX=	atk gdkpixbuf2 pango xorglibs
+USE_LINUX=	atk gdkpixbuf pango xorglibs
 USE_LINUX_RPM=	yes
 CPE_VENDOR=   gnome
 CPE_PRODUCT=  gtk
