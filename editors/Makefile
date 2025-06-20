@@ -3,6 +3,7 @@ COMMENT = Editors
 SUBDIR += 2bsd-vi
 SUBDIR += abiword
 SUBDIR += abiword-docs
+SUBDIR += editorconfig-core-c
 SUBDIR += emacs
 SUBDIR += emacs-devel
 SUBDIR += gedit
