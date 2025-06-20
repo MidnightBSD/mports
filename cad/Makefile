@@ -8,6 +8,7 @@
     SUBDIR += ghdl
     SUBDIR += gtkwave
     SUBDIR += impact
+    SUBDIR += iverilog
     SUBDIR += libopencad
     SUBDIR += logisim
     SUBDIR += p5-Verilog-Perl
