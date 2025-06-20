@@ -1,25 +1,40 @@
-PORTNAME=	qscintilla2-qt5
+PORTNAME=	qscintilla2
 PORTVERSION=	${QSCI2_VERSION}
+PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITES_QSCI2}
+PKGNAMESUFFIX=	-${FLAVOR}
 DISTNAME=	${QSCI2_DISTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt 5 port of the Scintilla C++ editor class
-WWW=		http://www.riverbankcomputing.co.uk/software/qscintilla/
+COMMENT=	Qt${FLAVOR:S/qt//} port of the Scintilla C++ editor class
+WWW=		https://riverbankcomputing.com/software/qscintilla/
 
-LICENSE=	unknown
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler:c++11-lang gl qmake pyqt:5 qt:5
-USE_GL=		gl
-USE_PYQT=	#
-USE_QT=		buildtools:build core gui printsupport widgets
+FLAVORS=	qt5 qt6
+FLAVOR?=	qt5
+
+USES=		compiler:c++11-lang gl qmake pyqt:5 qt:${FLAVOR:S/qt//}
+_USE_GL_qt5=	gl
+_USE_GL_qt6=	gl opengl
+USE_GL=		${_USE_GL_${FLAVOR}}
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
+USE_PYQT=	#
+_USE_QT_qt5=	buildtools:build core gui printsupport widgets
+_USE_QT_qt6=	base
+USE_QT=		${_USE_QT_${FLAVOR}}
+
+DATADIR=	${PREFIX}/share/${PORTNAME}-${FLAVOR}
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${FLAVOR}
+EXAMPLESDIR=	${PREFIX}/share/examples/${PORTNAME}-${FLAVOR}
 
 BUILD_WRKSRC=		${WRKSRC}/src
 CONFIGURE_WRKSRC=	${BUILD_WRKSRC}
 INSTALL_WRKSRC=		${BUILD_WRKSRC}
 
+PLIST_SUB=	QT_MAJOR_VERSION=${FLAVOR:S/qt//}
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
