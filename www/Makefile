@@ -245,6 +245,7 @@ SUBDIR += py-django-allauth
 SUBDIR += py-django-debug-toolbar
 SUBDIR += py-django-gravatar2
 SUBDIR += py-django-requests-debug-toolbar
+SUBDIR += py-nh3
 SUBDIR += py-pecan
 SUBDIR += py-priority
 SUBDIR += py-priority1
