@@ -1,5 +1,3 @@
-# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-
 PORTNAME=	libzapojit
 PORTVERSION=	0.0.3
 PORTREVISION=	1

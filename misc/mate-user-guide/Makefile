@@ -1,5 +1,3 @@
-# Created by: Eric Turgeon <ericbsd@FreeBSD.org>
-
 PORTNAME=	mate-user-guide
 PORTVERSION=	1.24.0
 PORTREVISION=	1

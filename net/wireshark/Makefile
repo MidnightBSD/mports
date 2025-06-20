@@ -1,5 +1,3 @@
-# Created by: Bill Fumerola <billf@chc-chimes.com>
-
 PORTNAME?=	wireshark
 PORTVERSION=	3.4.3
 PORTREVISION?=	0

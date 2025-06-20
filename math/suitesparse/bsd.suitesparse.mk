@@ -1,5 +1,3 @@
-# Created by: Maho Nakata <maho@FreeBSD.org>
-#
 # Common elements used by the SuiteSparse modules
 
 PKGNAMEPREFIX=	suitesparse-

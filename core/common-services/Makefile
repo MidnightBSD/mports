@@ -1,5 +1,3 @@
-# Created By:	Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	common-services
 PORTVERSION=	1.8
 CATEGORIES=	core

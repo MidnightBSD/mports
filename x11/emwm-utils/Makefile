@@ -1,5 +1,3 @@
-# Created by: Kazuo Kuroi <kazuok@projectkitsune.com>
-
 PORTNAME=	utils
 DISTVERSION=	1.2
 CATEGORIES=	x11

@@ -1,5 +1,3 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-
 PORTNAME=	libmatekbd
 PORTVERSION=	1.24.0
 PORTREVISION=	1

@@ -1,6 +1,3 @@
-# Based on a port created by: Simon 'corecode' Schubert <corecode@corecode.ath.cx>
-
-
 PORTNAME=	susv4
 PORTVERSION=	20180131
 CATEGORIES=	misc

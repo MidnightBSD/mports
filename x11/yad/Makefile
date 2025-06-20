@@ -1,5 +1,3 @@
-# Created by: Danilo Egea Gondolfo <danilo@FreeBSD.org>
-
 PORTNAME=	yad
 PORTVERSION=	6.0
 DISTVERSIONPREFIX=	v

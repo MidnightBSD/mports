@@ -1,5 +1,3 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	gnome-menus
 PORTVERSION=	3.36.0
 CATEGORIES=	x11 gnome
