@@ -8,7 +8,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python implementation of subunit test streaming protocol
 
-LICENSE=	bsd3 apache2
+LICENSE=	bsd3 Apache-2.0
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}extras>=0:devel/py-extras@${PY_FLAVOR} \

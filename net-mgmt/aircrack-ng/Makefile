@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 WEP and WPA-PSK keys cracking program
 WWW=		https://www.aircrack-ng.org/
 
-LICENSE=	gpl2 bsd3 apache2
+LICENSE=	gpl2 bsd3 Apache-2.0
 LICENSE_COMB=	dual
 
 BROKEN_aarch64=		fails to configure: _AX_COMPILER_VERSION_GNU unknown gcc major

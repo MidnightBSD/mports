@@ -9,7 +9,7 @@ COMMENT=	Pytest plugin for trio
 WWW=		https://pypi.org/project/pytest-trio/ \
 		https://github.com/python-trio/pytest-trio
 
-LICENSE=	mit apache2
+LICENSE=	mit Apache-2.0
 LICENSE_COMB=	dual
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR} \

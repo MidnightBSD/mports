@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line tools for transforming and inspecting PDF documents
 WWW=		http://qpdf.sourceforge.net
 
-LICENSE=	artistic2 apache2
+LICENSE=	artistic2 Apache-2.0
 LICENSE_COMB=	dual
 LICENSE_FILE_artistic2=	${WRKSRC}/Artistic-2.0
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.txt

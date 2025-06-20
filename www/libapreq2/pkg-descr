@@ -1,4 +1,4 @@
-libapreq2 - Generic Apache2 Request Library
+libapreq2 - Generic Apache-2.0 Request Library
 
 This package contains modules for manipulating client request data via
 the Apache API with Perl and C.  Functionality includes:
