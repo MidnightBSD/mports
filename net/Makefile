@@ -248,6 +248,7 @@ SUBDIR += py-zeroconf
 SUBDIR += qt5-network
 SUBDIR += qt5-networkauth
 SUBDIR += qt6-coap
+SUBDIR += qt6-mqtt
 SUBDIR += qt6-networkauth
 SUBDIR += rabbitmq
 SUBDIR += rabbitmq-c
