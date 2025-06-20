@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gecko Media Plugins API from mozilla-release
 WWW=		https://wiki.mozilla.org/GeckoMediaPlugins
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mozilla
