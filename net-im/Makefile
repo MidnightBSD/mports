@@ -6,6 +6,7 @@ SUBDIR += folks
 SUBDIR += jabberd
 SUBDIR += kaccounts-integration
 SUBDIR += kaccounts-providers
+SUBDIR += libaccounts-glib
 SUBDIR += libaccounts-qt
 SUBDIR += libnice
 SUBDIR += libnice-gst1
