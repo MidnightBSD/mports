@@ -49,7 +49,7 @@ _PYQT_VERSION=	0
 _PYQT_DIST=	yes
 .  endif
 
-PYQT_MAINTAINER=	kde@FreeBSD.org
+PYQT_MAINTAINER=	ports@MidnightBSD.org
 
 MASTER_SITE_RIVERBANK=	https://www.riverbankcomputing.com/static/Downloads/%SUBDIR%/
 MASTER_SITE_RBDEV=	https://www.riverbankcomputing.com/pypi/packages/%SUBDIR%/

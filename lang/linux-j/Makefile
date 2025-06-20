@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	linux-
 DISTNAME=	j${PORTVERSION}_linux32
 DIST_SUBDIR=	${PKGNAMEPREFIX}${PORTNAME}/${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose programming language
 WWW=		https://www.jsoftware.com/
 

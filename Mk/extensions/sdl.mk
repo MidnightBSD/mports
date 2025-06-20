@@ -9,7 +9,6 @@
 #		Not specifying USE_SDL with USES=sdl is an error.
 #		USE_SDL=yes implies USE_SDL=sdl.  This is deprecated
 #
-# MAINTAINER:	amdmi3@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_SDL_MK)
 _INCLUDE_USES_SDL_MK=		yes

@@ -54,7 +54,7 @@ Gecko_Pre_Include=	bsd.gecko.mk
 # 						CONFIGURE_ARGS instead
 #
 
-MAINTAINER?=	gecko@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 
 MOZILLA?=	${PORTNAME}
 MOZILLA_VER?=	${PORTVERSION}

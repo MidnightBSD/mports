@@ -6,7 +6,7 @@ MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source
 PKGNAMESUFFIX=	${SP_VER}
 DISTNAME=	firefox-${DISTVERSION}esr.source
 
-MAINTAINER=	nc@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standalone JavaScript based from Mozilla 102-esr
 WWW=		https://spidermonkey.dev/
 

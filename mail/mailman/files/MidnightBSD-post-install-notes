@@ -191,6 +191,3 @@ package) can help with that.
    After that, restart your apache:
 
      # apachectl restart.
-
--- Matthias Andree <mandree@FreeBSD.org> (current Mailman port maintainer)
--- Jean Milanez Melo <jmelo@FreeBSD.org> (former Mailman port maintainer)

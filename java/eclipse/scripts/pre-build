@@ -12,11 +12,11 @@ then
 	mkdir ${WRKDIR}/githome
 	(
 		export HOME=${WRKDIR}/githome
-		git config --global user.email "eclipse@freebsd.org"
-		git config --global user.name "Eclipse"
+		git config --global user.email "ports@MidnightBSD.org"
+		git config --global user.name "mports"
 		git init
 		git add .
-		git commit -q --message="java/eclipse" --author="Eclipse <eclipse@freebsd.org>"
+		git commit -q --message="java/eclipse" --author="mports <ports@MidnightBSD.org>"
 	)
 fi
 

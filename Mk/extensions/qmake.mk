@@ -38,7 +38,6 @@
 # User defined variables:
 # QMAKE_VERBOSE		- Enable verbose configure output.
 #
-# MAINTAINER: kde@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_QMAKE_MK)
 _INCLUDE_USES_QMAKE_MK=	yes
