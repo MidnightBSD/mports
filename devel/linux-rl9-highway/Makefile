@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance-portable, length-agnostic SIMD with runtime dispatch (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/google/highway
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
