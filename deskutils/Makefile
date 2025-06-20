@@ -2,6 +2,7 @@ COMMENT = Things that used to be on the desktop before computers were invented
 
 SUBDIR += affiche
 SUBDIR += akonadi-import-wizard
+SUBDIR += akonadiconsole
 SUBDIR += appwrapper
 SUBDIR += baobab
 SUBDIR += calibre
