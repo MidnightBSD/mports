@@ -7,10 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to provide transparent read access to zipped files
 WWW=		https://github.com/gdraheim/zziplib
 
-LICENSE=	lgpl2.1 mpl
+LICENSE=	lgpl2.1 MPL11
 LICENSE_COMB=	dual
 LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LIB
-LICENSE_FILE_mpl=	${WRKSRC}/docs/COPYING.MPL
+LICENSE_FILE_MPL11=	${WRKSRC}/docs/COPYING.MPL
 
 BUILD_DEPENDS=	bash:shells/bash
 
