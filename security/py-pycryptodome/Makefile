@@ -1,5 +1,5 @@
 PORTNAME?=	pycryptodome
-DISTVERSION=	3.20.0
+DISTVERSION=	3.21.0
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cryptographic library for Python
 WWW=		https://www.pycryptodome.org/
 
-LICENSE=	publicdom bsd2 apache2
+LICENSE=	publicdom bsd2 Apache-2.0
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
