@@ -6,6 +6,7 @@ PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 12
+WWW=		https://gcc.gnu.org
 
 LICENSE=	gpl3
 
