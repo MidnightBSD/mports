@@ -16,10 +16,6 @@ NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
 
 BROKEN_MidnightBSD_3.2=	Needs newer C++20 support for std:ranges
 
-CPP=    ${LOCALBASE}/bin/clang-cpp15
-CC=     ${LOCALBASE}/bin/clang15
-CXX=    ${LOCALBASE}/bin/clang++15
-
 USES=		bison:build cmake:noninja cpe groff:run libedit localbase llvm:build,run \
 		ncurses perl5 pkgconfig shebangfix ssl compiler:c++20-lang
 
