@@ -65,7 +65,7 @@ do-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/f2c ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/src/f2c.h ${PREFIX}/include
-	${INSTALL_MAN} ${WRKSRC}/src/f2c.1t ${MAN1PREFIX}/man/man1/f2c.1
+	${INSTALL_MAN} ${WRKSRC}/src/f2c.1t ${PREFIX}/share/man/man1/f2c.1
 	${INSTALL_DATA} ${WRKSRC}/libf2c/libf2c.a ${PREFIX}/lib
 	${INSTALL_LIB} ${WRKSRC}/libf2c/libf2c.so.${LIBVER} ${PREFIX}/lib
 	${LN} -sf libf2c.so.${LIBVER} ${PREFIX}/lib/libf2c.so
