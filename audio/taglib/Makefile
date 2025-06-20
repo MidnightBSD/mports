@@ -1,5 +1,3 @@
-
-
 PORTNAME=	taglib
 DISTVERSION=	1.12
 CATEGORIES=	audio
@@ -9,7 +7,7 @@ MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DI
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating ID3 tags and Ogg comments
 
-LICENSE=	lgpl2.1 mpl
+LICENSE=	lgpl2.1 MPL11
 LICENSE_COMB=	dual
 LICENSE_FILE_MPL=	${WRKSRC}/COPYING.MPL
 
