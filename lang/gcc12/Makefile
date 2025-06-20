@@ -1,5 +1,5 @@
 PORTNAME=	gcc
-PORTVERSION=	12.1.0
+PORTVERSION=	12.2.0
 CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
@@ -128,8 +128,13 @@ full-regression-test: build
 .endif
 
 post-fake:
-	${RM} -f ${PREFIX}/man/man7/*
+	${RM} -f ${FAKE_DESTDIR}${TRUE_PREFIX}/share/man/man7/*
 	-${RM} -fr ${FAKE_DESTDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
+	# Install ISO_Fortran_binding.h in an easily findable directory
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/include/gcc${SUFFIX}
+	${INSTALL_DATA} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/gcc${SUFFIX}/gcc/${CONFIGURE_TARGET}/${GCC_VERSION}/include/ISO_Fortran_binding.h	\
+		${FAKE_DESTDIR}${TRUE_PREFIX}/include/gcc${SUFFIX}
+
 	# Add target libraries and include files to packaging list.
 
 .if ${ARCH} == amd64 && ${PORT_OPTIONS:MMULTILIB}
