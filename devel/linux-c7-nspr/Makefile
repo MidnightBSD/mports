@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	nspr
 PORTVERSION=	4.25.0
 DISTVERSIONSUFFIX=	-2.el7_9
@@ -8,7 +6,7 @@ CATEGORIES=	devel linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Netscape Portable Runtime (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	lgpl gpl2 mpl
+LICENSE=	lgpl gpl2 MPL20
 LICENSE_COMB=	dual
 
 USES=		linux:c7
