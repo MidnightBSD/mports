@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base library for writing document import filters
 WWW=		https://libwpd.sourceforge.net
 
-LICENSE=	lgpl2.1 mpl
+LICENSE=	lgpl2.1 MPL20
 LICENSE_COMB=	dual
 
 USES=		compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz
