@@ -102,6 +102,7 @@ SUBDIR += ldap2dns
 SUBDIR += ldapdiff
 SUBDIR += libarcus
 SUBDIR += libdnet
+SUBDIR += libgravatar
 SUBDIR += libgrss
 SUBDIR += libgweather
 SUBDIR += libgweather4
