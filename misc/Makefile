@@ -35,6 +35,7 @@ SUBDIR += iso-codes
 SUBDIR += jishyo
 SUBDIR += kf5-purpose
 SUBDIR += kf6-purpose
+SUBDIR += linux-c7-sdl12-extralibs
 SUBDIR += localedata
 SUBDIR += mate-user-guide
 SUBDIR += mbuffer
