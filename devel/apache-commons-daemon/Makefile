@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper code to start/stop a Java application as a daemon
 WWW=		https://commons.apache.org/proper/commons-daemon/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 OPTIONS_DEFINE=	DOCS
 

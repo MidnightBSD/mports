@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension of Path::Tiny types and coercions for Moose
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
 RUN_DEPENDS=	p5-Moose>=2:devel/p5-Moose \

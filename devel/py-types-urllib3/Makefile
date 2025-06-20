@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Typing stubs for urllib3
 WWW=		https://pypi.org/project/types-urllib3/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 # TODO: deprecate as soon as py-urllib3 is updated to 2.x
 # DEPRECATED=	No longer needed, type annotations are now available in urllib3 module

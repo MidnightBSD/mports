@@ -1,5 +1,3 @@
-# Created by: Stijn Hoop <stijn@win.tue.nl>
-#
 # Starting with version 1.0-7667, NVidia has dropped support for numerous
 # "legacy" GPUs.  Consult NVidia README (the Appendix) to find out whether
 # you need to use legacy driver version and install one of corresponding

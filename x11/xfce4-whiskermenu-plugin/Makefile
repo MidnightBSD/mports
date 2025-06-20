@@ -1,5 +1,3 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	xfce4-whiskermenu-plugin
 PORTVERSION=	2.5.3
 PORTREVISION=	1

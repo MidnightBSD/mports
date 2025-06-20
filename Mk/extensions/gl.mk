@@ -8,7 +8,6 @@
 #		Not specifying USE_GL with USES=gl is an error.
 #		USE_GL=yes implies USE_GL=glu.  This is deprecated
 # 
-# MAINTAINER:	x11@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_GL_MK)
 _INCLUDE_USES_GL_MK=yes

@@ -1,6 +1,3 @@
-# Created by: Pedro Giffuni
-
-
 PORTNAME=	CoinMP
 PORTVERSION=	1.8.3
 PORTREVISION=	1

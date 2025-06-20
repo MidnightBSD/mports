@@ -1,5 +1,3 @@
-# Created By:	Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	midnightbsd-desktop
 PORTVERSION=	2.6.5
 PORTREVISION=	2

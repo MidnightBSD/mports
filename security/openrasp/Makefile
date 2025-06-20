@@ -8,7 +8,7 @@ DISTFILES+=	rasp-java.tar.gz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Detects vulnerabilities in running applications
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		java
 NO_ARCH=	yes

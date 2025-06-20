@@ -1,5 +1,3 @@
-# Created by: Jan Hornyak <pav@oook.cz>
-
 PORTNAME=	luasocket
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.0-rc1

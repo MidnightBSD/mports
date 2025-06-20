@@ -11,7 +11,7 @@ WWW=		https://jeremylong.github.io/DependencyCheck \
 		https://www.owasp.org/index.php/OWASP_Dependency_Check \
 		https://jeremylong.github.io/DependencyCheck/dependency-check-cli/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	mvn:java/maven-wrapper \
 		maven>0:java/maven

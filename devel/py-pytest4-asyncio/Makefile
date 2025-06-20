@@ -8,7 +8,7 @@ DISTNAME=	${PORTNAME:C/4//}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Py.test plugin providing fixtures and markers for asyncio (legacy version for pytest 4)
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pytest-asyncio
 

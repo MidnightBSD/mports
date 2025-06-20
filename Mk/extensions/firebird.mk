@@ -2,7 +2,6 @@
 # Provide support for Firebird
 # Feature:	firebird
 # Usage:	USES=	firebird[:version]
-# MAINTAINER:	ports@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_FIREBIRD_MK)
 _INCLUDE_USES_FIREBIRD_MK=	yes

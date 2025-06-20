@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Typing stubs for docutils
 WWW=		https://github.com/python/typeshed/tree/main/stubs/docutils
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils

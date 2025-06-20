@@ -17,7 +17,7 @@
 #   RUBY_VER = 1.8
 #   RUBY_ARCH = i386-freebsd6
 #   % portsvar.sh -w kde -e KDE_
-#   KDE_MAINTAINER = will@FreeBSD.org
+#   KDE_MAINTAINER = ports@MidnightBSD.org
 #   KDE_ORIGVER = ${KDE_VERSION}
 #   KDE_PREFIX = ${LOCALBASE}
 #   KDE_VERSION = 3.5.0

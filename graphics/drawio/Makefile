@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Diagramming and whiteboarding desktop app
 WWW=		https://drawio.com/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		desktop-file-utils electronfix:28 shared-mime-info
 

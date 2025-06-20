@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Top quality TLS certs while you wait, for the discerning tester
 WWW=		https://github.com/python-trio/trustme
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE2
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE.MIT

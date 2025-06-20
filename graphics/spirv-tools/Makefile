@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools for processing SPIR-V intermediate shader language modules
 WWW=		https://github.com/KhronosGroup/SPIRV-Tools
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cmake compiler:c++11-lib python:build shebangfix
 USE_LDCONFIG=	yes

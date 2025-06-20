@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Trained language data for the Tesseract OCR engine
 WWW=		https://github.com/tesseract-ocr/tessdata
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	tesseract-ocr

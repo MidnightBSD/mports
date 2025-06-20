@@ -11,7 +11,7 @@ WWW=		https://certbot.eff.org/ \
 		https://github.com/certbot/certbot \
 		https://github.com/certbot/certbot/tree/master/acme
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}josepy>=1.13.0:security/py-josepy@${PY_FLAVOR} \

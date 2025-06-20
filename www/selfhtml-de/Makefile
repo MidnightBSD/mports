@@ -59,7 +59,8 @@ post-patch:
 		-type f -print0 \
 		| ${XARGS} -0 -n 5 -x \
 			${REINPLACE_CMD} -E \
-			-e 's|||'
+			-e 's|
+||'
 # remove extraneous backup files
 	@${FIND} ${WRKSRC} -type f -name "*.bak" -print0 \
 		| ${XARGS} -0 -n 5 -x \
@@ -67,7 +68,6 @@ post-patch:
 
 do-install:
 	@${MKDIR} ${DOCSDIR}
-# line taken from textproc/xerces-j maintained by hq@FreeBSD.org
 # recursively create dirs and install docs
 	@cd ${WRKSRC} && \
 		${FIND} ${PORTDOCS} -type d -exec ${MKDIR} "${DOCSDIR}/{}" \; && \

@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Structured Logging for Python
 WWW=		https://www.structlog.org/
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.apache2
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE.mit

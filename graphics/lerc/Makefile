@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ library for Limited Error Raster Compression
 WWW=		https://esri.github.io/lerc/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cmake compiler:c++17-lang dos2unix

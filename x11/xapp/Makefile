@@ -1,5 +1,3 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	xapp
 PORTVERSION=	2.2.8
 PORTREVISION=	1

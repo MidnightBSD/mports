@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver loader for the Vulkan graphics API (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/KhronosGroup/Vulkan-Loader
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

@@ -1,5 +1,3 @@
-# Created by: Nick Hilliard <nick@foobar.org>
-
 PORTNAME=	phplist
 PORTVERSION=	3.5.5
 PORTREVISION=	3

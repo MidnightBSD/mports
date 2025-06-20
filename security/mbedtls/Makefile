@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SSL/TLS and cryptography library
 WWW=		https://www.trustedfirmware.org/projects/mbed-tls/
 
-LICENSE=	apache2 gpl2+
+LICENSE=	Apache-2.0 gpl2+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL and OpenGL ES shader front end and validator
 WWW=		https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/
 
-LICENSE=	apache2 bsd2 bsd3 gpl3 mit
+LICENSE=	Apache-2.0 bsd2 bsd3 gpl3 mit
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 

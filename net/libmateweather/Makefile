@@ -1,5 +1,3 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	libmateweather
 PORTVERSION=	1.24.1
 PORTREVISION=	1

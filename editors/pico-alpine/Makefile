@@ -8,7 +8,7 @@ CATEGORIES=	editors
 DISTNAME=	alpine-${PORTVERSION}
 
 COMMENT=	[Al]PIne's message COmposition editor and Pilot file manager
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 MASTERDIR=	${.CURDIR}/../../mail/alpine
 

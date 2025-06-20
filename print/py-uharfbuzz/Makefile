@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Streamlined Cython bindings for the harfbuzz shaping engine
 WWW=		https://github.com/harfbuzz/uharfbuzz
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	harfbuzz>=10.2.0:print/harfbuzz \

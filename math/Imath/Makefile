@@ -1,5 +1,3 @@
-# Based on the graphics/ilmbase port that was done by: nork@FreeBSD.org
-
 PORTNAME=	Imath
 PORTVERSION=	3.1.9
 DISTVERSIONPREFIX=	v
