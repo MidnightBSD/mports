@@ -13,10 +13,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library with cross-device output support
 WWW=		https://www.cairographics.org/
 
-LICENSE=	lgpl2.1 mpl
+LICENSE=	lgpl2.1 MPL11
 LICENSE_COMB=	dual
 LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING-LGPL-2.1
-LICENSE_FILE_mpl=	${WRKSRC}/COPYING-MPL-1.1
+LICENSE_FILE_MPL11=	${WRKSRC}/COPYING-MPL-1.1
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png \
