@@ -35,6 +35,7 @@ SUBDIR += joomla4
 SUBDIR += kcgi
 SUBDIR += kdsoap
 SUBDIR += kdsoap-ws-discovery-client
+SUBDIR += kf5-kjs
 SUBDIR += libapreq2
 SUBDIR += libdatachannel
 SUBDIR += libdom
