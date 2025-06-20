@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	tk
 PORTVERSION=	8.5.13
 DISTVERSIONSUFFIX=	-6.el7
@@ -9,6 +7,7 @@ PKGNAMESUFFIX=	85
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical toolkit for TCL (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://www.tcl.tk/
 
 LICENSE=        TclTk
 LICENSE_NAME=   Tcl/Tk License
@@ -21,7 +20,7 @@ USE_LINUX=	xorglibs
 USE_LINUX_RPM=	yes
 USE_LINUX_RPM_BAD_PERMS=	yes
 
-CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX}-[0-9]*
+CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX}
 DATADIR=	${PREFIX}/usr/share/tk${PORTVERSION:R}
 
 OPTIONS_DEFINE=	DOCS

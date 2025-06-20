@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	pango
 PORTVERSION=	1.42.4
 DISTVERSIONSUFFIX=	-4.el7_7
@@ -8,15 +6,17 @@ CATEGORIES=	x11-toolkits linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pango library (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://www.pango.org/
 
 LICENSE=	lgpl
 
-USES=		linux:c7
+USES=		cpe linux:c7
+CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 USE_LINUX=	cairo fontconfig freetype fribidi harfbuzz libthai xorglibs
 USE_LINUX_RPM=	yes
 
-CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
+CONFLICTS=	linux-c6-${PORTNAME}
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
 OPTIONS_DEFINE=	DOCS
