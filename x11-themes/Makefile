@@ -32,6 +32,7 @@ SUBDIR += mate-backgrounds
 SUBDIR += mate-icon-theme
 SUBDIR += mate-themes
 SUBDIR += midnightbsd-backgrounds
+SUBDIR += plasma6-breeze
 SUBDIR += qt5-style-plugins
 SUBDIR += sierra-gtk-themes
 SUBDIR += slim-themes
