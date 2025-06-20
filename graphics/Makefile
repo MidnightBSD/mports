@@ -118,6 +118,7 @@ SUBDIR += kf6-prison
 SUBDIR += kimageannotator
 SUBDIR += kmscube
 SUBDIR += kolourpaint
+SUBDIR += ksanecore
 SUBDIR += laternamagica
 SUBDIR += lcms
 SUBDIR += lcms2
