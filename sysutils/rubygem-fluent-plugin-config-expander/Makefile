@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fluent plugin which provides directives for loop extraction
 WWW=		https://github.com/tagomoris/fluent-plugin-config-expander
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	rubygem-fluentd>0:sysutils/rubygem-fluentd
 

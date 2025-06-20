@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AWS SDK C utilities
 WWW=		https://github.com/awslabs/aws-c-sdkutils
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libaws-c-common.so:devel/aws-c-common

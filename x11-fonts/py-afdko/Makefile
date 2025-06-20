@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Font Development Kit for OpenType
 WWW=		https://github.com/adobe-type-tools/afdko
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \

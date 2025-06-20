@@ -6,7 +6,7 @@ MASTER_SITES=	https://01.org/sites/default/files/downloads/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Versatile OpenType font for screen, print, and Web
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		fonts zip
 NO_ARCH=	yes

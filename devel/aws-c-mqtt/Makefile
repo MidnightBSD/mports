@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C99 implementation of the MQTT 3.1.1 and MQTT 5 specification
 WWW=		https://github.com/awslabs/aws-c-mqtt
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libaws-c-cal.so:security/aws-c-cal \

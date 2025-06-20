@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensible embeddable ansible job runner
 WWW=		https://ansible-runner.readthedocs.io/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	\
 		${PYTHON_PKGNAMEPREFIX}pbr>=0:devel/py-pbr@${PY_FLAVOR} \

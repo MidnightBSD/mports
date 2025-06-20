@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SystemVerilog 2017 Pre-processor, Parser, Elaborator, etc
 WWW=		https://github.com/chipsalliance/Surelog
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_aarch64=	compilation fails: Creating OVM precompiled package... Segmentation fault (core dumped) # update to the current revision might help but it has C++ errors

@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read and write bzip2-compressed files
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		python
 USE_PYTHON=	autoplist distutils

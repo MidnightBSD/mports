@@ -7,7 +7,7 @@ PKGNAMEPREFIX=  ${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Documentation generator for GObject-based libraries
 
-LICENSE=	apache2 gpl3
+LICENSE=	Apache-2.0 gpl3
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSES/Apache-2.0.txt
 LICENSE_FILE_gpl3=	${WRKSRC}/LICENSES/GPL-3.0-or-later.txt

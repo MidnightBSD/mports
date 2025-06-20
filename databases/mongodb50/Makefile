@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed document-oriented "NoSQL" database (5.0.x Branch)
 WWW=		https://docs.mongodb.com/v5.0/
 
-LICENSE=	apache2 SSPLv1 # mongodb is SSPLv1, C++ driver is APACHE20
+LICENSE=	Apache-2.0 SSPLv1 # mongodb is SSPLv1, C++ driver is APACHE20
 LICENSE_COMB=	multi
 LICENSE_NAME_SSPLv1=	Server Side Public License Version 1
 LICENSE_FILE_SSPLv1=	${WRKSRC}/LICENSE-Community.txt

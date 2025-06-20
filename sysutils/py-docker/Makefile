@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python library for the Docker Engine API
 WWW=		https://github.com/docker/docker-py
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

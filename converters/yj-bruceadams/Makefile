@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line tool that converts YAML to JSON
 WWW=		https://github.com/bruceadams/yj
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cargo

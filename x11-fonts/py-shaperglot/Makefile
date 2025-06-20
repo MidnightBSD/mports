@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test font files for OpenType language support
 WWW=		https://github.com/googlefonts/shaperglot
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=45:devel/py-setuptools@${PY_FLAVOR} \

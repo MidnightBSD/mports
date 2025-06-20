@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kubernetes command-line tool
 WWW=		https://github.com/derailed/k9s
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		go:modules
 

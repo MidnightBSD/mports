@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parses, normalizes and compares license expressions
 WWW=		https://github.com/nexB/license-expression
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/NOTICE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

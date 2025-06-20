@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full-text search engine for Java
 WWW=		https://opensearch.org
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	bash>0:shells/bash \

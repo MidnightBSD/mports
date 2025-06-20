@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML parser for Java
 WWW=		https://xerces.apache.org/xerces2-j/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		java
 NO_BUILD=	yes

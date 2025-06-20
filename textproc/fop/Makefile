@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Print formatter driven by XSL formatting
 WWW=		https://xmlgraphics.apache.org/fop/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 EXTRACT_DEPENDS=	${UNZIP_CMD}:archivers/unzip

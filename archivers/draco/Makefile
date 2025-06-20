@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for compressing and decompressing 3D meshes and point clouds
 WWW=		https://google.github.io/draco/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cmake compiler:c++11-lang

@@ -7,7 +7,7 @@ MASTER_SITES=	FREEBSD_LOCAL/sunpoet/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Droid typeface family
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
 

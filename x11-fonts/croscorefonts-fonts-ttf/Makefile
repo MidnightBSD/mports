@@ -10,7 +10,7 @@ MASTER_SITES=	https://gsdview.appspot.com/chromeos-localmirror/distfiles/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fonts created from by Google for ChromeOS to replace MS TTF
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		fonts tar:bzip2 xorg
 USE_XORG=	x11

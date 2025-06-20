@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full-text search engine for Java
 WWW=		https://lucene.apache.org/core/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 CONFLICTS=	lucene4-[0-9].*
 

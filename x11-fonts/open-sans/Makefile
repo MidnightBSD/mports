@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Clean and modern sans-serif typeface
 WWW=		https://www.opensans.com
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/Apache\ License.txt
 
 USES=		fonts zip

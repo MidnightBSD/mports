@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DataStax C/C++ Driver for Apache Cassandra
 WWW=		https://datastax.github.io/cpp-driver/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 LIB_DEPENDS=	libuv.so:devel/libuv
 

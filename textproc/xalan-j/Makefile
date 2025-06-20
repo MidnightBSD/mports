@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache XSLT processor for transforming XML documents
 WWW=		https://xml.apache.org/xalan-j/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	${JAVALIBDIR}/xml-apis.jar:textproc/xerces-j
 

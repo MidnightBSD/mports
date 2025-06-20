@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Visualization dashboards for OpenSearch
 WWW=		https://opensearch.org
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 CONFLICTS?=	opensearch-dashboards210 opensearch-dashboards213 opensearch-dashboards216

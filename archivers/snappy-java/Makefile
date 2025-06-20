@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast compressor/decompressor library
 WWW=		https://github.com/xerial/snappy-java
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	cmake:devel/cmake-core \
 		sbt:devel/sbt

@@ -7,7 +7,7 @@ PKGNAMESUFFIX=	6
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collect logs locally and send to remote logstash
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		gmake go
 USE_GITHUB=	yes

@@ -8,7 +8,7 @@ COMMENT=	AWS libcrypto
 WWW=		https://github.com/aws/aws-lc
 
 # It is actually (APACHE20 or ISCL) and BSD3CLAUSE and MIT and OpenSSL
-LICENSE=	apache2 bsd3 iscl mit OpenSSL
+LICENSE=	Apache-2.0 bsd3 iscl mit OpenSSL
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 

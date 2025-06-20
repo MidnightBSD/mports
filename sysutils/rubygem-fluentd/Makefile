@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fluent event collector
 WWW=		https://fluentd.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	\
 	rubygem-base64>=0.2<0.3:converters/rubygem-base64 \

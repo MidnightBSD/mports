@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Highly scalable distributed database
 WWW=		https://cassandra.apache.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 FETCH_DEPENDS=        ant:devel/apache-ant

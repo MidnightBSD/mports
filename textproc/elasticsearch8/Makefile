@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed, RESTful search and analytics engine
 WWW=		https://www.elastic.co/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	bash:shells/bash \

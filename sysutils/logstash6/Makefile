@@ -7,7 +7,7 @@ PKGNAMESUFFIX=	6
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Server-side data ingestion and transformation tool
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 

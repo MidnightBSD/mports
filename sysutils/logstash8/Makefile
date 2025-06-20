@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Server-side data ingestion and transformation tool (8.x version)
 WWW=		https://www.elastic.co/products/logstash
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 

@@ -8,7 +8,7 @@ DISTNAME=	${PORTNAME}-core-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CLucene is a C++ port of Lucene
 
-LICENSE=	apache2 lgpl2.1
+LICENSE=	Apache-2.0 lgpl2.1
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libboost_regex.a:devel/boost-libs

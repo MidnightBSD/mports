@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance search server built using Lucene Java
 WWW=		https://lucene.apache.org/solr/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	bash:shells/bash
 

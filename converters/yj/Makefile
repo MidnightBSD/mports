@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert between YAML, TOML, JSON, and HCL
 WWW=		https://github.com/sclevine/yj
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules

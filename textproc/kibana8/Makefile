@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Browser based analytics and search interface to ElasticSearch
 WWW=		https://www.elastic.co/products/kibana
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	npm-node18>=9.7.2:www/npm-node18
 LIB_DEPENDS=	libre2.so:devel/re2 \

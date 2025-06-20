@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Prometheus exporter for machine metrics
 WWW=		https://github.com/prometheus/node_exporter
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gmake go:modules shebangfix

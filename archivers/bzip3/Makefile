@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Better and stronger spiritual successor to BZip2
 WWW=		https://github.com/kspalaiologos/bzip3
 
-LICENSE=	apache2 bsd2 lgpl3+
+LICENSE=	Apache-2.0 bsd2 lgpl3+
 LICENSE_COMB=	multi
 LICENSE_FILE_apache2=	${WRKSRC}/libsais-LICENSE
 LICENSE_FILE_lgpl3+ =	${WRKSRC}/LICENSE

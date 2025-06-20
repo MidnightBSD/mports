@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Event driven framework for implementing application protocols
 WWW=		https://github.com/awslabs/aws-c-io
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libaws-c-cal.so:security/aws-c-cal \

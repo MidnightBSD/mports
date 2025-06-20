@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Typing stubs for MarkupSafe
 WWW=		https://pypi.org/project/types-MarkupSafe/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		python
 USE_PYTHON=	autoplist distutils

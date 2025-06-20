@@ -9,7 +9,7 @@ DISTNAME=	Meslo%20LG%20v${DISTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Customized version of the Apple Menlo font
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		fonts zip
 

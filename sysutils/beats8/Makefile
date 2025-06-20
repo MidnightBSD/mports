@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Send logs, network, metrics and heartbeat to elasticsearch or logstash
 WWW=		https://www.elastic.co/products/beats/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 #BROKEN=		hostname error on app startup
 

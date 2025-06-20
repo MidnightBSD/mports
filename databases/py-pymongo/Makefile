@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python driver for MongoDB
 WWW=		https://github.com/mongodb/mongo-python-driver
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils

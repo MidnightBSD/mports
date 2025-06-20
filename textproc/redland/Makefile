@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-level interface for RDF
 WWW=		https://librdf.org
 
-LICENSE=	apache2 gpl2 gpl3 lgpl2.1
+LICENSE=	Apache-2.0 gpl2 gpl3 lgpl2.1
 LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libltdl.so:devel/libltdl \

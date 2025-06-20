@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C99 implementation of the TLS/SSL protocols
 WWW=		https://github.com/aws/s2n-tls
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cmake:testing ssl

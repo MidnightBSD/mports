@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for lossless LAS compression
 WWW=		https://laszip.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cmake compiler:c++0x

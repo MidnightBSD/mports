@@ -6,7 +6,7 @@ PKGNAMESUFFIX=	-ttf
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Material Design icon set from Google
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=	fonts

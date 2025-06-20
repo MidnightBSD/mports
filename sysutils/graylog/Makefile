@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for centralized log collection
 WWW=		https://www.graylog.org/
 
-LICENSE=	apache2 SSPLv1
+LICENSE=	Apache-2.0 SSPLv1
 LICENSE_COMB=	multi
 LICENSE_NAME_SSPLv1=	Server Side Public License
 LICENSE_FILE_SSPLv1=	${WRKSRC}/LICENSE

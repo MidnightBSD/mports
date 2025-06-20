@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx Fulltoc Extension
 WWW=		https://pypi.org/project/sphinxcontrib-fulltoc/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=1.8.1:devel/py-pbr@${PY_FLAVOR}

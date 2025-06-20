@@ -8,7 +8,7 @@ DISTNAME=	JetBrainsMono-${DISTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free and open source typeface for developers
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		fonts zip
 

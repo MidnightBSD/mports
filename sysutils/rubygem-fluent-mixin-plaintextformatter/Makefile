@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fluentd plugin to include format values into json, tsv or csv
 WWW=		https://github.com/tagomoris/fluent-mixin-plaintextformatter
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	\
 	rubygem-fluentd>0:sysutils/rubygem-fluentd \

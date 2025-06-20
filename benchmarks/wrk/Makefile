@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modern HTTP benchmarking tool
 WWW=		https://github.com/wg/wrk
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	wg

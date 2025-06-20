@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IntelliJ SQLite native library
 WWW=		https://github.com/JetBrains/intellij-community/tree/master/platform/sqlite
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/../../LICENSE.txt
 
 ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64le

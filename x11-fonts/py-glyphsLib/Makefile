@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bridge from Glyphs source files (.glyphs) to UFOs
 WWW=		https://github.com/googlefonts/glyphsLib
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

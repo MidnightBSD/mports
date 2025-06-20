@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Font created by Google for ChromeOS to replace MS Cambria
 WWW=		https://code.google.com/p/chromium/issues/detail?id=168879
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		fonts xorg
 USE_XORG=	x11

@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper around the aws-c libraries
 WWW=		https://github.com/awslabs/aws-crt-cpp
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libaws-c-auth.so:security/aws-c-auth \

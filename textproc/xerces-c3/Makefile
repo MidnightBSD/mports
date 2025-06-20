@@ -9,7 +9,7 @@ COMMENT=	Validating XML parser from the Apache XML Project
 WWW=		https://xerces.apache.org/xerces-c/ \
 		https://github.com/apache/xerces-c
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		compiler cpe iconv libtool pathfix

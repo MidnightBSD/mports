@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Zopfli Compression Algorithm
 WWW=		https://github.com/google/zopfli
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake

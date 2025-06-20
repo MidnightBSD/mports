@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of freely redistributable TrueType fonts from Google
 WWW=		https://fonts.google.com/
 
-LICENSE=	apache2 OFL11
+LICENSE=	Apache-2.0 OFL11
 LICENSE_COMB=	multi
 
 RUN_DEPENDS=	Andika>0:x11-fonts/andika \

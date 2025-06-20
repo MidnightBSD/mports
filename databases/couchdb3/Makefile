@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON document database with HTTP API and scalable cluster mesh sync
 WWW=		https://couchdb.apache.org/
 
-LICENSE=	apache2 bsd3 iscl WTFPL OFL11
+LICENSE=	Apache-2.0 bsd3 iscl WTFPL OFL11
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	erlang-runtime${_ERLVER}>=${_ERLVER}.0:lang/erlang-runtime${_ERLVER} \

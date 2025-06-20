@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foreign function interface (FFI) for the AWS Common Runtime (CRT) libraries
 WWW=		https://github.com/awslabs/aws-crt-ffi
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/bssl:security/aws-lc

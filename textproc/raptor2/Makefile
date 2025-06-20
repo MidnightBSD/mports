@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF Parser Toolkit for Redland
 WWW=		https://librdf.org/raptor/
 
-LICENSE=	apache2 gpl2 gpl3 lgpl2.1
+LICENSE=	Apache-2.0 gpl2 gpl3 lgpl2.1
 LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \

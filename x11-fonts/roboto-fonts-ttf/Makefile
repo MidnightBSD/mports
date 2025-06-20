@@ -9,7 +9,7 @@ CATEGORIES=	x11-fonts
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Roboto typeface family
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
