@@ -60,6 +60,7 @@ SUBDIR += gstreamer1-vaapi
 SUBDIR += gstreamer1-validate
 SUBDIR += gstreamermm
 SUBDIR += intel-media-sdk
+SUBDIR += kdemultimedia-ffmpegthumbs
 SUBDIR += l-smash
 SUBDIR += libaacs
 SUBDIR += libass
