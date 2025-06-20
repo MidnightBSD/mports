@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FFI bindings for the rustls TLS library
 WWW=		https://github.com/rustls/rustls-ffi
 
-LICENSE=	apache2 iscl mit
+LICENSE=	Apache-2.0 iscl mit
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_iscl=	${WRKSRC}/LICENSE-ISC

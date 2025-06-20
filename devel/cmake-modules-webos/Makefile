@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CMake modules needed to build WebOS components
 WWW=		https://freewebos.github.io/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeWebOS

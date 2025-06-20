@@ -9,7 +9,7 @@ COMMENT=	Pure-Python RSA implementation
 WWW=		https://stuvel.eu/software/rsa/ \
 		https://github.com/sybrenstuvel/python-rsa
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyasn1>=0.1.3:devel/py-pyasn1@${PY_FLAVOR}

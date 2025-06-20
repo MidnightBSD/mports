@@ -10,7 +10,7 @@ WWW=		https://certbot.eff.org/ \
 		https://github.com/certbot/certbot \
 		https://github.com/certbot/certbot/tree/master/certbot-dns-google
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}acme>=${ACME_VERSION},1:security/py-acme@${PY_FLAVOR} \

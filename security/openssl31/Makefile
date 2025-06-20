@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TLSv1.3 capable SSL and crypto library
 WWW=		https://www.openssl.org/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 #EXPIRATION_DATE=	2025-03-14

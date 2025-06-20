@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GL Vendor-Neutral Dispatch library
 WWW=		https://gitlab.freedesktop.org/glvnd/libglvnd
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	multi
 
 USES=		compiler:c++11-lib localbase meson pkgconfig

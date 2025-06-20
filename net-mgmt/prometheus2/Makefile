@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Systems monitoring and alerting toolkit
 WWW=		https://prometheus.io/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 PATCH_DEPENDS=	bash:shells/bash

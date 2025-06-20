@@ -8,7 +8,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension of Moose type constraints for string-like objects
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	\
 	p5-MooseX-Types>0:devel/p5-MooseX-Types

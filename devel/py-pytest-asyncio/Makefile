@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Py.test plugin providing fixtures and markers for asyncio
 WWW=		https://pypi.org/project/pytest-asyncio/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pytest4-asyncio

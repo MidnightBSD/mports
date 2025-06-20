@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replaces random number generation with non-random number generation
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		perl5
 USE_PERL5=	configure

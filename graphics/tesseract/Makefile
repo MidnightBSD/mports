@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Commercial quality open source OCR engine
 WWW=		https://github.com/tesseract-ocr/tesseract
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	asciidoc:textproc/asciidoc \
 		xsltproc:textproc/libxslt \

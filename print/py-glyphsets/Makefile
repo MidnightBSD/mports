@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python API for evaluating coverage of glyph sets in font projects
 WWW=		https://github.com/googlefonts/glyphsets
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=4<8.1:devel/py-setuptools-scm@${PY_FLAVOR}

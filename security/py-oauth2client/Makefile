@@ -9,7 +9,7 @@ COMMENT=	OAuth 2.0 client library
 WWW=		https://googleapis.github.io/oauth2client/ \
 		https://github.com/googleapis/oauth2client
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httplib2>=0.9.1:www/py-httplib2@${PY_FLAVOR} \

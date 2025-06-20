@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build and publish crates with pyo3, rust-cpython and cffi bindings
 WWW=		https://github.com/PyO3/maturin
 
-LICENSE=	apache2 mit
+LICENSE=	Apache-2.0 mit
 LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/license-apache
 LICENSE_FILE_mit=	${WRKSRC}/license-mit

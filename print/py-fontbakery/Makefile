@@ -10,7 +10,7 @@ COMMENT=	Well designed Font QA tool
 WWW=		https://font-bakery.readthedocs.io/en/latest/ \
 		https://github.com/fonttools/fontbakery
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=6.2:devel/py-setuptools-scm@${PY_FLAVOR} \

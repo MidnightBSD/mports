@@ -6,7 +6,7 @@ CATEGORIES=	security
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PAM module for two-step authentication from Google
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USES=		autoreconf gmake libtool
 GNU_CONFIGURE=	YES

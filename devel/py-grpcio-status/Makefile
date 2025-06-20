@@ -9,7 +9,7 @@ COMMENT=	Status proto mapping for gRPC
 WWW=		https://grpc.io/ \
 		https://github.com/grpc/grpc/tree/master/src/python/grpcio_status
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}googleapis-common-protos>=1.5.5:devel/py-googleapis-common-protos@${PY_FLAVOR} \

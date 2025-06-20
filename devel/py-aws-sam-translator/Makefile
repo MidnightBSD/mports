@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that transform SAM templates into AWS CloudFormation templates
 WWW=		https://pypi.org/project/aws-sam-translator/
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}boto3>=1.19.5:www/py-boto3@${PY_FLAVOR} \

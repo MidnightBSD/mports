@@ -8,7 +8,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compare the difference between two numbers within a specified amount
 
-LICENSE=	apache2
+LICENSE=	Apache-2.0
 
 USE_PERL5=	configure
 USES=		perl5
