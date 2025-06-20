@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Improved spell-checker for Hungarian and other languages
 WWW=		https://hunspell.github.io/
 
-LICENSE=	gpl2 lgpl2.1 mpl
+LICENSE=	gpl2+ lgpl2.1+ MPL11
 LICENSE_COMB=	dual
 
 CONFLICTS_INSTALL=	tinker
