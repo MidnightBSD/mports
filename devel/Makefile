@@ -73,6 +73,7 @@ SUBDIR += compiler-rt
 SUBDIR += cgit
 SUBDIR += check
 SUBDIR += chrpath
+SUBDIR += clinfo
 SUBDIR += cmake
 SUBDIR += cmake-core
 SUBDIR += cmake-doc
