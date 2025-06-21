@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	-pulseaudio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PulseAudio plugin for ALSA (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://www.alsa-project.org/
 
 LICENSE=	gpl3
 
@@ -17,7 +18,7 @@ USE_LINUX_RPM=	yes
 
 LIB_DISTNAMES=	${PORTNAME}${PKGNAMESUFFIX}-${DISTVERSIONFULL}
 
-CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX}-[0-9]*
+CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX}
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 

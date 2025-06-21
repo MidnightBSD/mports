@@ -6,8 +6,9 @@ PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced Linux Sound Architecture headers (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://www.alsa-project.org/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 
 USES=		linux:c7
 USE_LINUX=	alsalib
