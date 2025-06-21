@@ -497,3 +497,4 @@ net-p2p/frost||2025-05-18|Has expired: Outdated version and unsupported upstream
 misc/buffer|misc/mbuffer|2025-05-22|Has expired: No upstream updates since 1995.  Switch to misc/mbuffer
 www/linux-opera||2025-05-24|Long EOL presto engine version. 
 www/ytdl|www/yt-dlp|2025-06-17|ytdl doesn't work and is archived upstream, www/yt-dlp be used instead
+multimedia/schroedinger||2025-06-21|Has expired: Abandoned legacy video codec, upstream is dead and last release was back in 2012
