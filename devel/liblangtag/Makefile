@@ -1,5 +1,3 @@
-
-
 PORTNAME=	liblangtag
 PORTVERSION=	0.5.7
 CATEGORIES=	devel textproc
@@ -9,10 +7,10 @@ MASTER_SITES=	https://bitbucket.org/tagoh/liblangtag/downloads/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface library to access tags for identifying languages
 
-LICENSE=	lgpl3 mpl
+LICENSE=	lgpl3 MPL20
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS=	libxml2.so:textproc/libxml2
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
