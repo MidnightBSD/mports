@@ -88,7 +88,9 @@ QT_STR=		Qt${FLAVOR:S/qt//}
 USES+=		compiler:c++11-lib pkgconfig qt:5
 USE_QT=		buildtools:build core
 TEST_USE=	QT=testlib:build
-PLIST_SUB=	QT_SUFFIX="" qt_SUFFIX=""
+PLIST_SUB=	QT_SUFFIX="" qt_SUFFIX="" QGPGME_CMAKE_SUFFIX="" \
+		QGPGME_INCLUDE_SUFFIX="${FLAVOR}" \
+		QGPGME_LIB_SUFFIX=""
 .    else
 USES+=		compiler:c++17-lang pkgconfig qt:6
 USE_CXXSTD=	c++17
