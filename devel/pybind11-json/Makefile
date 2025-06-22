@@ -27,6 +27,7 @@ CMAKE_TESTING_ON=	BUILD_TESTS
 CMAKE_TESTING_TARGET=	${ALL_TARGET}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PLIST_FILES=	include/pybind11_json/pybind11_json.hpp \
 		share/cmake/pybind11_json/pybind11_jsonConfig.cmake \
