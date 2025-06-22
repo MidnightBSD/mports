@@ -11,6 +11,6 @@ MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
 
 PLIST=  ${.CURDIR}/pkg-plist
 
-USE_GNOME= gdkpixbuf2
+USE_GNOME= gdkpixbuf
 
 .include "${MASTERDIR}/Makefile"
