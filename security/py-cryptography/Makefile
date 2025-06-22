@@ -10,9 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cryptographic recipes and primitives for Python developers
 WWW=		https://github.com/pyca/cryptography
 
-LICENSE=			apache2 bsd3
+LICENSE=			Apache-2.0 bsd3
 LICENSE_COMB=			dual
-LICENSE_FILE_apache2=		${WRKSRC}/LICENSE.APACHE
+LICENSE_FILE_Apache-2.0=		${WRKSRC}/LICENSE.APACHE
 LICENSE_FILE_bsd3=	${WRKSRC}/LICENSE.BSD
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.12:devel/py-cffi@${PY_FLAVOR} \
