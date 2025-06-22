@@ -1,6 +1,5 @@
 PORTNAME=	jpeg-turbo
-DISTVERSION=	3.0.3
-PORTREVISION?=	0
+DISTVERSION=	3.1.0
 CATEGORIES=	graphics
 MASTER_SITES=	https://github.com/lib${PORTNAME}/lib${PORTNAME}/releases/download/${DISTVERSION}/
 DISTNAME=	lib${PORTNAME}-${DISTVERSION}
@@ -13,15 +12,19 @@ LICENSE=	bsd3 IJG zlib
 LICENSE_COMB=	multi
 LICENSE_GROUPS_IJG=	FSF GPL
 LICENSE_NAME_IJG=	Independent JPEG Group License
-LICENSE_FILE_bsd3=	${WRKSRC}/LICENSE.md
+LICENSE_FILE_BSD3CLAUSE=${WRKSRC}/LICENSE.md
 LICENSE_FILE_IJG=	${WRKSRC}/README.ijg
-LICENSE_FILE_zlib=	${WRKSRC}/LICENSE.md
+LICENSE_FILE_ZLIB=	${WRKSRC}/LICENSE.md
 LICENSE_PERMS_IJG=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
+BUILD_DEPENDS_amd64=	nasm:devel/nasm
+BUILD_DEPENDS_i386=	nasm:devel/nasm
+
 USES=		cmake cpe pathfix
+CPE_PRODUCT=	libjpeg-turbo
 USE_LDCONFIG=	yes
 
-CPE_PRODUCT=	libjpeg-turbo
 TEST_TARGET=	test
 
 PORTDOCS=	*
@@ -39,10 +42,6 @@ OPTIMIZED_CFLAGS_CFLAGS=	-O3
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == i386 || ${ARCH} == amd64
-BUILD_DEPENDS+=	nasm:devel/nasm
-.endif
-
 .if ${ARCH} == armv6
 CMAKE_OFF=	WITH_SIMD
 .endif
@@ -51,7 +50,7 @@ CMAKE_OFF=	WITH_SIMD
 PLIST_SUB+=	JPEG="@comment " LIBTURBOJPEG=""
 .else
 CMAKE_OFF+=	WITH_TURBOJPEG
-CONFLICTS_INSTALL=	mozjpeg jpeg-[0-9]*
+CONFLICTS_INSTALL=	mozjpeg
 PLIST_SUB+=	JPEG="" LIBTURBOJPEG="@comment "
 .endif
 
