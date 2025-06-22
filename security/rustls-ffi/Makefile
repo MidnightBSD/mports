@@ -21,6 +21,8 @@ USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	rustls
 
+NO_TEST=	yes
+
 do-build:
 	@${CARGO_CARGO_RUN} cbuild --verbose --verbose ${CARGO_BUILD_ARGS}
 
