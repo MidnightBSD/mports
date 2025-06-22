@@ -18,4 +18,6 @@ GO_TARGET=	./cmd/youtubedr
 
 PLIST_FILES=	${GO_TARGET:C/.\/cmd/bin/}
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
