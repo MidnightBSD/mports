@@ -9,6 +9,11 @@ WWW=		https://xmlrpc-c.sourceforge.net/
 
 LICENSE=	bsd3
 
+.if defined(MAGUS)
+BUILD_DEPENDS+=	${LOCALBASE}/bin/openssl:security/openssl
+RUN_DEPENDS+=	${LOCALBASE}/bin/openssl:security/openssl
+.endif
+
 USES=		gmake pkgconfig ssl tar:tgz
 USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
