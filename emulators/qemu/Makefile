@@ -195,7 +195,7 @@ USBREDIR_CONFIGURE_OFF=		--disable-usb-redir
 VDE_LIB_DEPENDS=		libvdeplug.so:net/vde2
 VDE_CONFIGURE_OFF=		--disable-vde
 X11_USES=			sdl
-X11_USE=			GNOME=gdkpixbuf2 \
+X11_USE=			GNOME=gdkpixbuf \
 				SDL=sdl2 \
 				XORG=x11,xext
 X11_CONFIGURE_ENABLE=		sdl
