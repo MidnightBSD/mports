@@ -49,6 +49,6 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/jedit.sh ${PREFIX}/bin/jedit
 	${INSTALL_DATA} ${DATADIR}/doc/jedit.png \
 		${PREFIX}/share/pixmaps/${PORTNAME}.png
-	${INSTALL_MAN} ${WRKDIR}/jedit.1 ${MAN1PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKDIR}/jedit.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
