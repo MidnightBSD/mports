@@ -1,37 +1,39 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	json-glib
-PORTVERSION=	1.6.2
+DISTVERSION=	1.10.6
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON (RFC 4627) interface for Glib
+WWW=		https://live.gnome.org/JsonGlib
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gettext gnome localbase meson python:3.5+ pkgconfig tar:xz
+USES=		gnome localbase meson python pkgconfig tar:xz
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
+MESON_ARGS=	-Dinstalled_tests=false
 
 PORTDOCS=	*
 
-OPTIONS_DEFINE=	GIR DOCS
+OPTIONS_DEFINE=	DOCS GIR MANPAGES NLS
 OPTIONS_DEFAULT=GIR
 OPTIONS_SUB=	yes
-MESON_ARGS=	-Dgtk_doc=disabled
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-DOCS_BUILD_DEPENDS=	gtk-doc>0:textproc/gtk-doc
-DOCS_MESON_ENABLED=	gtk_doc
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>=0:textproc/py-gi-docgen@${PY_FLAVOR} \
+			rst2html5:textproc/py-docutils@${PY_FLAVOR}
+DOCS_MESON_ENABLED=	documentation
+DOCS_IMPLIES=	GIR
 GIR_DESC=	Build introspection data
 GIR_USE=	gnome=introspection
 GIR_MESON_ENABLED=	introspection
-
-post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/libexec/installed-tests
-	@${RM} -r ${STAGEDIR}${PREFIX}/share/installed-tests
+MANPAGES_BUILD_DEPENDS=	xsltproc:textproc/libxslt \
+			rst2man:textproc/py-docutils@${PY_FLAVOR}
+MANPAGES_MESON_TRUE=	man
+NLS_USES=	gettext-tools
+NLS_MESON_ENABLED=	nls
 
 .include <bsd.port.mk>
