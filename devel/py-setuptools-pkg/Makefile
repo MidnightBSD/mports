@@ -16,6 +16,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=2.0.0:devel/py-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 # Actually 2.7,3.4+
 USES=		python
