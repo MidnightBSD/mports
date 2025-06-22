@@ -1,9 +1,9 @@
 COMMENT = Instant messaging
 
+SUBDIR += ejabberd
 SUBDIR += farstream
 SUBDIR += finch
 SUBDIR += folks
-SUBDIR += jabberd
 SUBDIR += kaccounts-integration
 SUBDIR += kaccounts-providers
 SUBDIR += libaccounts-glib
@@ -29,6 +29,9 @@ SUBDIR += telegram-cli
 SUBDIR += telegram-purple
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-logger
+SUBDIR += vqcc-gtk
+SUBDIR += xmpp-client
+SUBDIR += yume
 SUBDIR += zkgroup
 SUBDIR += zoom
 
