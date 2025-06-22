@@ -19,7 +19,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 USES=		autoreconf:build cpe gnome jpeg libtool localbase pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	caolanm
-USE_GNOME=	gdkpixbuf2
+USE_GNOME=	gdkpixbuf
 USE_LDCONFIG=	yes
 CPE_VENDOR=	wvware
 
