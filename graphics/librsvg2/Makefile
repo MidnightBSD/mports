@@ -22,7 +22,7 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libcroco-0.6.so:textproc/libcroco
 
 USES=		cpe gettext gmake gnome libtool localbase pathfix pkgconfig tar:xz
-USE_GNOME=	cairo gnomeprefix libgsf gdkpixbuf2 introspection:build \
+USE_GNOME=	cairo gnomeprefix libgsf gdkpixbuf introspection:build \
 		libxml2 pango
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
