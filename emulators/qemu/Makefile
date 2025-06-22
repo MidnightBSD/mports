@@ -165,7 +165,7 @@ GNUTLS_LIB_DEPENDS=		libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_OFF=		--disable-gnutls
 GTK3_LIB_DEPENDS=		libxkbcommon.so:x11/libxkbcommon
 GTK3_USES=			gettext gl
-GTK3_USE=			GNOME=gdkpixbuf2,gtk30,vte3 \
+GTK3_USE=			GNOME=gdkpixbuf,gtk30,vte3 \
 				XORG=x11,xext
 GTK3_CONFIGURE_OFF=		--disable-gtk \
 				--disable-vte
