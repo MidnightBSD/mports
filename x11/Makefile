@@ -267,6 +267,7 @@ SUBDIR += xsel
 SUBDIR += xsel-conrad
 SUBDIR += xset
 SUBDIR += xsetroot
+SUBDIR += xsettingsd
 SUBDIR += xsm
 SUBDIR += xterm
 SUBDIR += xtitle
