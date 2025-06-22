@@ -1,6 +1,5 @@
 PORTNAME=	libopenraw
-PORTVERSION=	0.3.6
-PORTREVISION=	1
+PORTVERSION=	0.3.7
 CATEGORIES=	graphics
 MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -9,10 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for camera RAW files decoding
 WWW=		https://libopenraw.freedesktop.org/
 
-LICENSE=		lgpl3+ mpl
+LICENSE=		lgpl3+ MPL20
 LICENSE_COMB=		multi
 LICENSE_FILE_lgpl3+ =	${WRKSRC}/COPYING.LESSER
-LICENSE_FILE_mpl=	${WRKSRC}/MPL-2.0
+LICENSE_FILE_MPL20=	${WRKSRC}/MPL-2.0
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/variant.hpp:devel/boost-libs
 TEST_DEPENDS=	curl:ftp/curl
@@ -71,7 +70,7 @@ OPTIONS_SUB=		yes
 
 GNOME_CONFIGURE_ENABLE=	gnome
 GNOME_USES=		gettext-runtime
-GNOME_USE=		GNOME=glib20,gdkpixbuf2
+GNOME_USE=		GNOME=glib20,gdkpixbuf
 
 TEST_BUILD_DEPENDS=	curl:ftp/curl
 
