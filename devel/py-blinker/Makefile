@@ -11,7 +11,7 @@ WWW=		https://pythonhosted.org/blinker/ \
 		https://github.com/pallets-eco/blinker
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=0<4:devel/py-flit-core@${PY_FLAVOR}
 
