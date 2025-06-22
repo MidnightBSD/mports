@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and transmitter that implements ICE-19
 WWW=		https://nice.freedesktop.org
 
-LICENSE=	lgpl mpl
+LICENSE=	lgpl2.1 MPL11
 LICENSE_COMB=	dual
 
 LIB_DEPENDS?=	libgnutls.so:security/gnutls
