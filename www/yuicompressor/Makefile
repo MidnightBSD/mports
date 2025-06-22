@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Yahoo! JavaScript and CSS Compressor
 WWW=		https://yui.github.io/yuicompressor/
 
-LICENSE=	bsd3 mpl
+LICENSE=	bsd3 MPL20
 LICENSE_COMB=	multi
 
 NO_WRKSUBDIR=	yes
