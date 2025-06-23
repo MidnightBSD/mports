@@ -83,6 +83,7 @@ SUBDIR += xfce4-notifyd
 SUBDIR += xfce4-tumbler
 SUBDIR += xfce4-xkb-plugin
 SUBDIR += xpad
+SUBDIR += xpad3
 SUBDIR += xpostit
 
 .include <bsd.port.subdir.mk>

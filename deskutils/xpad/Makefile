@@ -1,6 +1,6 @@
 PORTNAME=	xpad
 PORTVERSION=	5.8.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils
 MASTER_SITES=	https://launchpad.net/${PORTNAME}/trunk/${PORTVERSION}/+download/
 
@@ -24,7 +24,7 @@ OPTIONS_SUB=	yes
 
 CONFLICTS_INSTALL=	xpad3
 USE_XORG=	x11 sm ice
-USE_GNOME=	gtk30 gtksourceview4 cairo gdkpixbuf2
+USE_GNOME=	gtk30 gtksourceview4 cairo gdkpixbuf
 CPPFLAGS+=	${CXXFLAGS} -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
