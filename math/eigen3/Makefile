@@ -7,10 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight library for vector and matrix math
 WWW=		https://eigen.tuxfamily.org/
 
-LICENSE=	lgpl2.1 mpl
+LICENSE=	lgpl2.1 MPL20
 LICENSE_COMB=	multi
 LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LGPL
-LICENSE_FILE_mpl=	${WRKSRC}/COPYING.MPL2
+LICENSE_FILE_MPL20=	${WRKSRC}/COPYING.MPL2
 
 TEST_DEPENDS=	suitesparse-cholmod>0:math/suitesparse-cholmod \
 		suitesparse-umfpack>0:math/suitesparse-umfpack \
