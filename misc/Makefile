@@ -41,6 +41,7 @@ SUBDIR += kf6-purpose
 SUBDIR += kgeography
 SUBDIR += klettres
 SUBDIR += kwordquiz
+SUBDIR += libkeduvocdocument
 SUBDIR += linux-c7-sdl12-extralibs
 SUBDIR += linux-rl9-sdl12-extralibs
 SUBDIR += linux-rl9-sdl20-extralibs
