@@ -1,27 +1,23 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
-PORTNAME=	cups
+PORTNAME=	cups-libs
 PORTVERSION=	1.6.3
-DISTVERSIONSUFFIX=	-51.el7
-PORTREVISION=	9
+DISTVERSIONSUFFIX=	-52.el7_9
+PORTREVISION=	10
 CATEGORIES=	print linux
-PKGNAMESUFFIX=	-libs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System libraries
+WWW=		https://github.com/OpenPrinting/cups
 
 LICENSE=	gpl2
 
-USES=		linux:c7
+USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	avahi-libs
 USE_LINUX_RPM=	yes
 
-LIB_DISTNAMES=	${PORTNAME}${PKGNAMESUFFIX}-${DISTVERSIONFULL}
+SRC_DISTFILES=	cups-${DISTVERSIONFULL}${SRC_SUFX}:SOURCE
 
-CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX}-[0-9]*
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
-DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
+DESCR=		${.CURDIR}/../cups/pkg-descr
 
 OPTIONS_DEFINE=	DOCS
 
