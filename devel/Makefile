@@ -1051,6 +1051,7 @@ SUBDIR += py-amalgamate
 SUBDIR += py-aniso8601
 SUBDIR += py-antlr4-python3-runtime
 SUBDIR += py-anyio
+SUBDIR += py-anytree
 SUBDIR += py-apipkg
 SUBDIR += py-apispec
 SUBDIR += py-apispec-webframeworks
