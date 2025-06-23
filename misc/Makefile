@@ -34,6 +34,7 @@ SUBDIR += hicolor-icon-theme
 SUBDIR += hwdata
 SUBDIR += iso-codes
 SUBDIR += jishyo
+SUBDIR += kdeedu
 SUBDIR += kf5-purpose
 SUBDIR += kf6-purpose
 SUBDIR += kgeography

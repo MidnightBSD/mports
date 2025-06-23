@@ -14,6 +14,7 @@ SUBDIR += qt6-quick3dphysics
 SUBDIR += sigrok-firmware
 SUBDIR += sigrok-firmware-fx2lafw
 SUBDIR += sigrok-firmware-utils
+SUBDIR += step
 SUBDIR += trilinos
 
 .include <bsd.port.subdir.mk>
