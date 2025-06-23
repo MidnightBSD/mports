@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse and render SVG vector graphics (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://live.gnome.org/LibRsvg
 
+LICENSE=	gpl2
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	librsvg
