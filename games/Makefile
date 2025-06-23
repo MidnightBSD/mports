@@ -8,6 +8,7 @@ SUBDIR += aop
 SUBDIR += atomix
 SUBDIR += bass
 SUBDIR += battalion
+SUBDIR += blinken
 SUBDIR += bsdgames
 SUBDIR += cowsay
 SUBDIR += craft

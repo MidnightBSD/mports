@@ -49,6 +49,7 @@ SUBDIR += guile
 SUBDIR += guile-aclocal
 SUBDIR += guile2
 SUBDIR += guile3
+SUBDIR += kturtle
 SUBDIR += libobjc2
 SUBDIR += linux-c7-tcl85
 SUBDIR += linux-dotnet-cli
