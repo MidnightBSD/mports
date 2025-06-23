@@ -33,6 +33,7 @@ SUBDIR += mate-icon-theme
 SUBDIR += mate-themes
 SUBDIR += midnightbsd-backgrounds
 SUBDIR += plasma6-breeze
+SUBDIR += plasma6-breeze-gtk
 SUBDIR += plasma6-oxygen
 SUBDIR += plasma6-plasma-workspace-wallpapers
 SUBDIR += plasma6-qqc2-breeze-style
