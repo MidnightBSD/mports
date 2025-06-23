@@ -5,13 +5,15 @@ CATEGORIES=	print linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenType text shaping engine (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://harfbuzz.github.io/
 
 LICENSE=	mit
 
-USES=		linux:c7
+USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	graphite2
 USE_LINUX_RPM=	yes
+CPE_VENDOR=	harfbuzz_project
 
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
