@@ -1593,6 +1593,7 @@ SUBDIR += samurai
 SUBDIR += sbt
 SUBDIR += scons
 SUBDIR += sdl12
+SUBDIR += sdl12-compat
 SUBDIR += sdl20
 SUBDIR += serd
 SUBDIR += shunit2
