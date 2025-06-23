@@ -61,6 +61,7 @@ SUBDIR += gstreamer1-validate
 SUBDIR += gstreamermm
 SUBDIR += intel-media-sdk
 SUBDIR += kdemultimedia-ffmpegthumbs
+SUBDIR += kf5-kmediaplayer
 SUBDIR += l-smash
 SUBDIR += libaacs
 SUBDIR += libass
