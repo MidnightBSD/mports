@@ -38,6 +38,7 @@ SUBDIR += gnumeric
 SUBDIR += gnuplot
 SUBDIR += gsl
 SUBDIR += ipopt
+SUBDIR += kig
 SUBDIR += lapack
 SUBDIR += lapacke
 SUBDIR += ldouble
