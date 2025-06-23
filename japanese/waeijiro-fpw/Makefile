@@ -44,7 +44,7 @@ MAKE_ARGS+=	SRC_DICT=${SOURCE_FILE:Q}
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-extract:
 	@if [ -f ${DICT_PATH}/eijiro-original/*.exe ]; then \
