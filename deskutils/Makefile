@@ -77,6 +77,7 @@ SUBDIR += sysctlview
 SUBDIR += systempreferences
 SUBDIR += toolboxkit
 SUBDIR += virt-manager
+SUBDIR += xcalendar
 SUBDIR += xfce4-notes-plugin
 SUBDIR += xfce4-notifyd
 SUBDIR += xfce4-tumbler
