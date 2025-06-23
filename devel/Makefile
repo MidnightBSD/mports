@@ -351,6 +351,7 @@ SUBDIR += libnsutils
 SUBDIR += liboil
 SUBDIR += libosinfo
 SUBDIR += libparserutils
+SUBDIR += libpasori
 SUBDIR += libpci
 SUBDIR += libpciaccess
 SUBDIR += libpeas
