@@ -314,6 +314,7 @@ SUBDIR += svgalib
 SUBDIR += sxiv
 SUBDIR += tesseract
 SUBDIR += tesseract-data
+SUBDIR += tgif
 SUBDIR += tiff
 SUBDIR += viewnior
 SUBDIR += vigra
