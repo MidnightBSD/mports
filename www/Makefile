@@ -312,6 +312,7 @@ SUBDIR += tomcat110
 SUBDIR += validator
 SUBDIR += varnish7
 SUBDIR += w3m
+SUBDIR += webalizer
 SUBDIR += webinject
 SUBDIR += webkit2-gtk3
 SUBDIR += webkit2-gtk4
