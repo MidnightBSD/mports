@@ -5,6 +5,7 @@ SUBDIR += at-spi2-core
 SUBDIR += atkmm
 SUBDIR += caribou
 SUBDIR += eflite
+SUBDIR += libqaccessibilityclient
 SUBDIR += linux-c7-at-spi2-atk
 SUBDIR += linux-c7-at-spi2-core
 SUBDIR += linux-c7-atk
