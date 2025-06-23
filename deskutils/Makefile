@@ -29,6 +29,7 @@ SUBDIR += gnote
 SUBDIR += gnustep-notebook
 SUBDIR += gnustep-wrapper
 SUBDIR += go-for-it
+SUBDIR += grantlee-editor
 SUBDIR += grantleetheme
 SUBDIR += gtkjj
 SUBDIR += gucharmap
