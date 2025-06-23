@@ -4,11 +4,11 @@ CATEGORIES=	graphics linux
 PKGNAMESUFFIX=	-libs
 DISTNAME=
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for working with image formats (Linux CentOS ${LINUX_DIST_VER})
 WWW=		https://www.freedesktop.org/Software/dbus
 
-LICENSE=	BSD3CLAUSE GPLv2+ JASPER LIBPNG ZLIB
+LICENSE=	bsd3 gpl2+ JASPER LIBPNG zlib
 LICENSE_COMB=	multi
 LICENSE_NAME_JASPER=	JasPer License Version 2.0
 LICENSE_FILE_JASPER=	${WRKSRC}/usr/share/doc/jasper-libs-1.900.1/LICENSE
