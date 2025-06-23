@@ -20,6 +20,7 @@ SUBDIR += ftp
 SUBDIR += games
 SUBDIR += graphics
 SUBDIR += irc
+SUBDIR += japanese
 SUBDIR += java
 SUBDIR += lang
 SUBDIR += mail

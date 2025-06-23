@@ -14,6 +14,7 @@ SUBDIR += cinnamon-session
 SUBDIR += dmenu
 SUBDIR += editres
 SUBDIR += emwm-utils
+SUBDIR += eterm
 SUBDIR += evilvte
 SUBDIR += fstobdf
 SUBDIR += gdm
