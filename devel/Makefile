@@ -1655,6 +1655,7 @@ SUBDIR += xdg-user-dirs
 SUBDIR += xdg-utils
 SUBDIR += xfce4-dev-tools
 SUBDIR += xorg-macros
+SUBDIR += xsd
 SUBDIR += xtl-quant-stack
 SUBDIR += xxhash
 SUBDIR += yajl
