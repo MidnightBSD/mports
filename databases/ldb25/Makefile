@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LDAP-like embedded database
 WWW=		https://ldb.samba.org/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 IGNORE_NONTHREAD_PYTHON=	needs port lang/python${PYTHON_SUFFIX} to be \
 				build with THREADS support
@@ -25,7 +25,7 @@ LDB_DEPENDS=	talloc>=2.2.0:devel/talloc \
 
 CONFLICTS_INSTALL=	ldb-1.1.* ldb1[2-9]-1.* ldb2[1-9]-2.*
 
-USES=		compiler ldap pkgconfig waf
+USES=		compiler ldap localbase:ldflags pkgconfig waf
 USE_OPENLDAP=	yes
 USE_LDCONFIG=	yes
 WAF_CMD=	${BUILD_WRKSRC}/buildtools/bin/waf
