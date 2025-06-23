@@ -168,6 +168,7 @@ SUBDIR += rgb
 SUBDIR += runner
 SUBDIR += rxvt-unicode
 SUBDIR += scripts
+SUBDIR += sddm
 SUBDIR += sessreg
 SUBDIR += setxkbmap
 SUBDIR += slim
