@@ -504,7 +504,7 @@ post-patch-LLD-on:
 
 post-install:
 .for CRT_ARCH in ${COMPILER_RT_ARCHS}
-	cd ${PREFIX} && ${LN} -sf ${_CRTLIBDIR}/${CRT_ARCH}-portbld-${FTARGET} ${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}
+	cd ${PREFIX}/${_CRTLIBDIR} && ${LN} -sf ${CRT_ARCH}-portbld-${FTARGET} ${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}
 .endfor
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
 	    ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
