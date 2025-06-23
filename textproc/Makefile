@@ -410,6 +410,7 @@ SUBDIR += tinyxml
 SUBDIR += tinyxml2
 SUBDIR += txt2man
 SUBDIR += uchardet
+SUBDIR += uim
 SUBDIR += unoconv
 SUBDIR += urlview
 SUBDIR += utf8proc

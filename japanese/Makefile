@@ -157,7 +157,6 @@
     SUBDIR += latex-jlisting
     SUBDIR += leafrogue
     SUBDIR += less
-    SUBDIR += libreoffice
     SUBDIR += libskk
     SUBDIR += libslang
     SUBDIR += libtomoe-gtk
@@ -165,7 +164,6 @@
     SUBDIR += lookup
     SUBDIR += lsd-fpw
     SUBDIR += lynx
-    SUBDIR += lynx-current
     SUBDIR += man
     SUBDIR += man-doc
     SUBDIR += mecab
