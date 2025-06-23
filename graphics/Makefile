@@ -322,6 +322,7 @@ SUBDIR += vulkan-loader
 SUBDIR += vulkan-tools
 SUBDIR += wayland
 SUBDIR += wayland-protocols
+SUBDIR += wayland-utils
 SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += ximaging
