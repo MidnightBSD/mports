@@ -952,6 +952,7 @@ SUBDIR += p5-subversion
 SUBDIR += p5-threads
 SUBDIR += p5-threads-shared
 SUBDIR += p5-version
+SUBDIR += p8-platform
 SUBDIR += patch
 SUBDIR += pccts
 SUBDIR += pcc-libs
