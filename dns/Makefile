@@ -60,6 +60,7 @@ SUBDIR += py-publicsuffix2
 SUBDIR += py-py3dns
 SUBDIR += py-pycares
 SUBDIR += py-tldextract
+SUBDIR += rubygem-public_suffix
 SUBDIR += samba-nsupdate
 SUBDIR += sleuth
 SUBDIR += udns
