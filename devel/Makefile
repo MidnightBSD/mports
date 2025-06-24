@@ -97,6 +97,7 @@ SUBDIR += cvsps
 SUBDIR += cvsps-devel
 SUBDIR += cvsweb3
 SUBDIR += cxxopts
+SUBDIR += darts
 SUBDIR += date
 SUBDIR += dbus
 SUBDIR += dbus-glib
