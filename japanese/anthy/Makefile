@@ -32,7 +32,7 @@ OPTIONS_DEFINE=	ODIC GSKKDIC DOCS
 ODIC_DESC=	Okinawa Dictionary
 GSKKDIC_DESC=	SKK Dictionary
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MODIC}
 MASTER_SITES+=	http://www.ofug.net/~yamajun/files/:odic
