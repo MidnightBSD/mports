@@ -1585,6 +1585,7 @@ SUBDIR += rubygem-logger
 SUBDIR += rubygem-msgpack
 SUBDIR += rubygem-mustache
 SUBDIR += rubygem-mutex_m
+SUBDIR += rubygem-rake
 SUBDIR += rubygem-rdoc
 SUBDIR += rubygem-sigdump
 SUBDIR += rubygem-stringio
