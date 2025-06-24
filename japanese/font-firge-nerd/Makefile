@@ -27,7 +27,7 @@ OPTIONS_SUB=			yes
 FIRGENERD_CONS_DESC=		FirgeNerd Console
 FIRGE35NERD_CONS_DESC=		Firge35Nerd Console
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MFIRGENERD_CONS}
 FIRGE_FONTS+=	FirgeNerdConsole-Regular FirgeNerdConsole-Bold
