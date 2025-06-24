@@ -12,12 +12,14 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-Jcode>=0:converters/p5-Jcode \
+RUN_DEPENDS=	ja-p5-Jcode>=0:japanese/p5-Jcode \
 		p5-Unicode-Map>=0:converters/p5-Unicode-Map \
 		p5-Unicode-Map8>=0:converters/p5-Unicode-Map8 \
 		p5-Unicode-String>=0:converters/p5-Unicode-String
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
