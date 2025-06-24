@@ -90,6 +90,7 @@ SUBDIR += quadra
 SUBDIR += quadrapassel
 SUBDIR += quake2-data
 SUBDIR += quake3-data
+SUBDIR += quit
 SUBDIR += scummvm
 SUBDIR += supertux
 SUBDIR += swell-foop
