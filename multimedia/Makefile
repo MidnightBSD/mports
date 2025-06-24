@@ -60,6 +60,7 @@ SUBDIR += gstreamer1-vaapi
 SUBDIR += gstreamer1-validate
 SUBDIR += gstreamermm
 SUBDIR += intel-media-sdk
+SUBDIR += jellyfin-media-player
 SUBDIR += kdemultimedia-ffmpegthumbs
 SUBDIR += kf5-kmediaplayer
 SUBDIR += l-smash
