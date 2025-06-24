@@ -1579,6 +1579,7 @@ SUBDIR += rubygem-drb
 SUBDIR += rubygem-getoptlong
 SUBDIR += rubygem-i18n
 SUBDIR += rubygem-iobuffer
+SUBDIR += rubygem-launchy2
 SUBDIR += rubygem-logger
 SUBDIR += rubygem-msgpack
 SUBDIR += rubygem-mustache
