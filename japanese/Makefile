@@ -188,7 +188,6 @@
     SUBDIR += newosaka
     SUBDIR += ng
     SUBDIR += ng-canna
-    SUBDIR += ng-devel
     SUBDIR += ngraph-fonts
     SUBDIR += nkf
     SUBDIR += open_jtalk
