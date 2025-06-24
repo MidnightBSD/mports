@@ -5,10 +5,11 @@ CATEGORIES=	x11 linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-level pixel manipulation library (Linux CentOS ${LINUX_DIST_VER})
+WWW=		http://pixman.org
 
 LICENSE=	mit
 
-USES=		linux:c7
+USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

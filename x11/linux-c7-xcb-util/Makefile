@@ -6,6 +6,7 @@ CATEGORIES=	x11 linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	libxcb/libX11 extension/replacement libraries (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://xcb.freedesktop.org/
 
 LICENSE=	mit
 
