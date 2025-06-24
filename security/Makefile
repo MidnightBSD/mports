@@ -120,6 +120,7 @@ SUBDIR += linux-rl9-p11-kit
 SUBDIR += linux-rl9-trousers
 SUBDIR += logcheck
 SUBDIR += mbedtls
+SUBDIR += mbedtls3
 SUBDIR += mcrypt
 SUBDIR += mhash
 SUBDIR += minisign
