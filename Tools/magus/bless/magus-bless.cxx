@@ -40,7 +40,7 @@ using namespace pqxx;
 
 #include "sqlite3.h"
 
-const string DB_HOST = "70.91.226.203";
+const string DB_HOST = "10.1.10.11";
 const string DB_DATABASE = "magus";
 
 /* SQLITE3 */
