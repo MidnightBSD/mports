@@ -96,6 +96,7 @@ SUBDIR += mailcommon
 SUBDIR += mailimporter
 SUBDIR += realtek-re-kmod
 SUBDIR += rubygem-http_parser.rb
+SUBDIR += rubygem-net-protocol
 SUBDIR += rubygem-serverengine
 SUBDIR += rubygem-uri
 SUBDIR += ldap2dns
