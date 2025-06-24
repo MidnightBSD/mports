@@ -67,6 +67,7 @@ SUBDIR += libaacs
 SUBDIR += libass
 SUBDIR += libbdplus
 SUBDIR += libbluray
+SUBDIR += libcec
 SUBDIR += libdc1394
 SUBDIR += libdca
 SUBDIR += libde265
