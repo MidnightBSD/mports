@@ -1,23 +1,23 @@
 PORTNAME=	openrgb
 PORTVERSION=	0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Software to control a multitude of (a)RGB devices
+COMMENT=	Software to control a multitude of RGB devices
 WWW=		https://openrgb.org
 
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	git>0:devel/git \
 		hidapi>0:comms/hidapi \
-		mbedtls>0:security/mbedtls \
+		mbedtls3>0:security/mbedtls3 \
 		qt5-qmake>0:devel/qt5-qmake
-LIB_DEPENDS=	libGLESv2.so:graphics/libglvnd \
+LIB_DEPENDS=	libGL.so:graphics/libglvnd \
 		libhidapi.so:comms/hidapi \
-		libmbedcrypto.so:security/mbedtls \
-		libmbedtls.so:security/mbedtls \
-		libmbedx509.so:security/mbedtls
+		libmbedcrypto.so:security/mbedtls3 \
+		libmbedtls.so:security/mbedtls3 \
+		libmbedx509.so:security/mbedtls3
 
 USES=		gmake gl qmake qt:5
 
