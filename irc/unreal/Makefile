@@ -72,29 +72,29 @@ DOCS=		Authors coding-guidelines \
 		technical/serverprotocol.txt
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/ircd ${FAKE_DESTDIR}${PREFIX}/libexec/unrealircd
-	${INSTALL_PROGRAM} ${WRKSRC}/src/unrealircdctl ${FAKE_DESTDIR}${PREFIX}/libexec/unrealircdctl
-	${INSTALL_SCRIPT} ${WRKSRC}/unrealircd ${FAKE_DESTDIR}${PREFIX}/sbin/unrealircd
+	${INSTALL_PROGRAM} ${WRKSRC}/src/ircd ${PREFIX}/libexec/unrealircd
+	${INSTALL_PROGRAM} ${WRKSRC}/src/unrealircdctl ${PREFIX}/libexec/unrealircdctl
+	${INSTALL_SCRIPT} ${WRKSRC}/unrealircd ${PREFIX}/sbin/unrealircd
 	${MKDIR} ${FAKE_DESTDIR}${CACHEDIR}
-	${MKDIR} ${FAKE_DESTDIR}${CONFIGDIR}
-	${MKDIR} ${FAKE_DESTDIR}${CONFIGDIR}/aliases
-	${MKDIR} ${FAKE_DESTDIR}${CONFIGDIR}/examples
-	${MKDIR} ${FAKE_DESTDIR}${CONFIGDIR}/help
-	${MKDIR} ${FAKE_DESTDIR}${CONFIGDIR}/tls
+	${MKDIR} ${CONFIGDIR}
+	${MKDIR} ${CONFIGDIR}/aliases
+	${MKDIR} ${CONFIGDIR}/examples
+	${MKDIR} ${CONFIGDIR}/help
+	${MKDIR} ${CONFIGDIR}/tls
 	${MKDIR} ${FAKE_DESTDIR}${LOGDIR}
-	${MKDIR} ${FAKE_DESTDIR}${MODULESDIR}
-	${MKDIR} ${FAKE_DESTDIR}${MODULESDIR}/chanmodes
-	${MKDIR} ${FAKE_DESTDIR}${MODULESDIR}/extbans
-	${MKDIR} ${FAKE_DESTDIR}${MODULESDIR}/rpc
-	${MKDIR} ${FAKE_DESTDIR}${MODULESDIR}/usermodes
+	${MKDIR} ${MODULESDIR}
+	${MKDIR} ${MODULESDIR}/chanmodes
+	${MKDIR} ${MODULESDIR}/extbans
+	${MKDIR} ${MODULESDIR}/rpc
+	${MKDIR} ${MODULESDIR}/usermodes
 	${MKDIR} ${FAKE_DESTDIR}${RUNDIR}
-	${TOUCH} ${FAKE_DESTDIR}${CONFIGDIR}/ircd.motd.sample
-	${TOUCH} ${FAKE_DESTDIR}${CONFIGDIR}/ircd.rules.sample
-	(cd ${WRKSRC}/doc/conf && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${CONFIGDIR})
-	${INSTALL_DATA} ${WRKSRC}/doc/conf/examples/example.conf ${FAKE_DESTDIR}${CONFIGDIR}/unrealircd.conf.sample
-	${INSTALL_LIB} ${WRKSRC}/src/modules/*.so ${FAKE_DESTDIR}${MODULESDIR}
+	${TOUCH} ${CONFIGDIR}/ircd.motd.sample
+	${TOUCH} ${CONFIGDIR}/ircd.rules.sample
+	(cd ${WRKSRC}/doc/conf && ${COPYTREE_SHARE} . ${CONFIGDIR})
+	${INSTALL_DATA} ${WRKSRC}/doc/conf/examples/example.conf ${CONFIGDIR}/unrealircd.conf.sample
+	${INSTALL_LIB} ${WRKSRC}/src/modules/*.so ${MODULESDIR}
 .for subdir in ${MODULESSUBDIR}
-	${INSTALL_LIB} ${WRKSRC}/src/modules/${subdir}/*.so ${FAKE_DESTDIR}${MODULESDIR}/${subdir}/
+	${INSTALL_LIB} ${WRKSRC}/src/modules/${subdir}/*.so ${MODULESDIR}/${subdir}/
 .endfor
 
 do-install-DOCS-on:
