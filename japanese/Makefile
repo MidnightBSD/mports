@@ -231,7 +231,6 @@
     SUBDIR += qkc
     SUBDIR += qolibri
     SUBDIR += quit
-    SUBDIR += roget-fpw
     SUBDIR += rogue_s
     SUBDIR += ruby-romkan
     SUBDIR += ruby-uconv
