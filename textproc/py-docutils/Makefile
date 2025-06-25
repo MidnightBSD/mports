@@ -12,7 +12,7 @@ WWW=		https://docutils.sourceforge.io/
 LICENSE=	bsd2 gpl3+ publicdom python
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.4<4:devel/py-flit-core@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.4:devel/py-flit-core@${PY_FLAVOR}
 
 USES=		python shebangfix
 USE_PYTHON=	autoplist concurrent pep517
