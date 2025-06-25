@@ -34,8 +34,8 @@ PYGMENTS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=0:textproc/py-pygments@${
 
 # hack for magus
 post-install:
-	${CP} ${PREFIX}/bin/rst2html4 ${PREFIX}/bin/rst2html-${PYTHON_VER}
-	${REINPLACE_CMD} -e 's/rst2html4/rst2html/g' ${PREFIX}/bin/rst2html-${PYTHON_VER}
+	${CP} ${PREFIX}/bin/rst2html4 ${PREFIX}/bin/rst2html
+	${REINPLACE_CMD} -e 's/rst2html4/rst2html/g' ${PREFIX}/bin/rst2html
 	${FIND} ${PREFIX}/bin/ -iname '*.bak' -delete
 
 .include <bsd.port.mk>
