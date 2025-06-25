@@ -331,6 +331,9 @@ _VALID_PYTHON_FEATURES=	allflavors \
 			cython \
 			cython_run \
 			cython_test \
+			cython3 \
+			cython3_run \
+			cython3_test \
 			distutils \
 			flavors \
 			noegginfo \
@@ -636,6 +639,18 @@ RUN_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
 TEST_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
 .  endif
 
+.  if defined(_PYTHON_FEATURE_CYTHON3)
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cython3>=3.0.12<3.1:lang/cython3@${PY_FLAVOR}
+.  endif
+
+.  if defined(_PYTHON_FEATURE_CYTHON3_RUN)
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cython3>=3.0.12<3.1:lang/cython3@${PY_FLAVOR}
+.  endif
+
+.  if defined(_PYTHON_FEATURE_CYTHON3_TEST)
+TEST_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cython3>=3.0.12<3.1:lang/cython3@${PY_FLAVOR}
+.  endif
+
 .  if defined(_PYTHON_FEATURE_CONCURRENT)
 .    if !defined(_PYTHON_FEATURE_FLAVORS) && (${_PYTHON_VERSION_MINIMUM:M3*} || ${_PYTHON_VERSION_MAXIMUM:M2*})
 DEV_WARNING+=	"USE_PYTHON=concurrent when only one of Python 2 or 3 is supported AND not using flavors does not make any sense"
@@ -768,7 +783,7 @@ add-plist-egginfo:
 .    for egginfo in ${PYDISTUTILS_EGGINFO}
 	if [ -d "${PYDISTUTILS_EGGINFODIR}/${egginfo}" ]; then \
 		${LS} ${PYDISTUTILS_EGGINFODIR}/${egginfo} | while read f; do \
-			${ECHO_CMD} ${PYDISTUTILS_EGGINFODIR:S;^${FAKE_DESTDIR}${PYTHONBASE}/;;}/${egginfo}/$${f} >> ${TMPPLIST}; \
+			${ECHO_CMD} ${PYDISTUTILS_EGGINFODIR:S;^${FAKE_DESTDIR}${TRUE_PREFIX}/;;}/${egginfo}/$${f} >> ${TMPPLIST}; \
 		done; \
 	fi;
 .    endfor
@@ -837,6 +852,8 @@ PY_SETUPTOOLS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAV
 # Common Python modules that can be needed but only for some versions of Python.
 .  if ${PYTHON_REL} < 31100
 PY_EXCEPTIONGROUP=	${PYTHON_PKGNAMEPREFIX}exceptiongroup>=1.1.1:devel/py-exceptiongroup@${PY_FLAVOR}
+PY_TOMLI=	${PYTHON_PKGNAMEPREFIX}tomli>=2.0.2:textproc/py-tomli@${PY_FLAVOR}
+PY_TYPING_EXTENSIONS=	${PYTHON_PKGNAMEPREFIX}typing-extensions>0:devel/py-typing-extensions@${PY_FLAVOR}
 .  endif
 
 .  if ${PYTHON_REL} >= 30000
