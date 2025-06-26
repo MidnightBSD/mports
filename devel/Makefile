@@ -577,6 +577,7 @@ SUBDIR += p5-Data-Section-Simple
 SUBDIR += p5-Data-UUID
 SUBDIR += p5-Date-Calc
 SUBDIR += p5-Date-Manip
+SUBDIR += p5-Date-Simple
 SUBDIR += p5-DateTime
 SUBDIR += p5-DateTime-Calendar-Mayan
 SUBDIR += p5-DateTime-Format-Builder
