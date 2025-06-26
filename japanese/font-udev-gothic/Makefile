@@ -31,7 +31,7 @@ UDEV_GOTHIC_35_DESC=		UDEVGothic35
 UDEV_GOTHIC_35JPDOC_DESC=	UDEVGothic35JPDOC
 UDEV_GOTHIC_35LG_DESC=		UDEVGothic35LG
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MUDEV_GOTHIC}
 FONT_FAMILY+=	UDEVGothic
