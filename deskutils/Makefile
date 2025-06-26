@@ -81,6 +81,7 @@ SUBDIR += menumaker
 SUBDIR += notification-daemon
 SUBDIR += notify-osd
 SUBDIR += owncloudclient
+SUBDIR += pim-data-exporter
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
