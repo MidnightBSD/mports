@@ -6,6 +6,7 @@ MASTER_SITES=	https://freedesktop.org/software/pulseaudio/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sound server for UNIX
+WWW=		https://www.freedesktop.org/wiki/Software/PulseAudio/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LGPL
