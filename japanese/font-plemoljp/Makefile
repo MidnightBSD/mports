@@ -25,7 +25,7 @@ PLEMOLJP_CONS_DESC=		PlemolJP Console
 PLEMOLJP35_DESC=		PlemolJP35
 PLEMOLJP35_CONS_DESC=		PlemolJP35 Console
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MPLEMOLJP}
 FONT_FAMILY+=	PlemolJP
