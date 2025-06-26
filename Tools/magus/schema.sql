@@ -116,6 +116,17 @@ CREATE INDEX "port_categories_port_idx" ON "port_categories" USING btree ("port"
 CREATE INDEX "port_categories_category_idx" ON "port_categories" USING btree ("category");
 
 --
+-- Table structure for table port_license_perms
+--
+   
+DROP TABLE "port_license_perms" CASCADE\g
+CREATE TABLE  "port_license_perms" (
+   "port"       int NOT NULL,
+   "perm"   varchar(50) NOT NULL
+)  ;
+CREATE INDEX "port_lic_perm_port_idx" ON "port_license_perms" USING btree ("port");
+
+--
 -- Table structure for table ports
 --
 

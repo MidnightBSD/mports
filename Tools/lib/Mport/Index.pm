@@ -49,6 +49,13 @@ sub build {
         $sth->execute($port{'name'}, $cat);
       }
       $sth->finish;
+
+
+      $sth = $dbh->prepare("INSERT INTO port_license_perms (port, perm) VALUES (?, ?)");      
+      foreach my $lic (@{$port{'license_perms'}}) {      
+        $sth->execute($port{'name'}, $lic);
+      }
+      $sth->finish;
       
       $dbh->commit;
     };

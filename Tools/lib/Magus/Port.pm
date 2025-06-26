@@ -44,6 +44,7 @@ __PACKAGE__->has_a(run => 'Magus::Run');
 
 __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
+__PACKAGE__->has_many(perms => [ 'Magus::PortLicensePerms' => 'perm' ]);
 __PACKAGE__->has_many(events => 'Magus::Event');
 __PACKAGE__->has_many(master_sites => 'Magus::MasterSite');
 __PACKAGE__->has_many(distfiles => 'Magus::Distfile');

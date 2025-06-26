@@ -128,6 +128,14 @@ sub sync {
        });
      }
 
+
+     for (@{$dump{'license_perms'}}) {
+       Magus::PortLicensePerms->insert({
+           port      => $port->id,
+           perm => $_
+       });
+     }
+
     $depends{$port->id} = [];
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
       foreach my $dep (@$deps) {
@@ -319,9 +327,6 @@ sub sync_categories {
     }
 }
   
-       
-
-   
 1;
 __END__
  
