@@ -33,7 +33,6 @@ SUBDIR += help2man
 SUBDIR += hicolor-icon-theme
 SUBDIR += hwdata
 SUBDIR += iso-codes
-SUBDIR += jishyo
 SUBDIR += kdeedu
 SUBDIR += kdeedu-data
 SUBDIR += kf5-purpose

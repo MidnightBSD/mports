@@ -164,7 +164,6 @@
     SUBDIR += lsd-fpw
     SUBDIR += lynx
     SUBDIR += man
-    SUBDIR += man-doc
     SUBDIR += mecab
     SUBDIR += mecab-ipadic
     SUBDIR += mecab-ipadic-eucjp
