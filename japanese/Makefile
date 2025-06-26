@@ -6,7 +6,6 @@
     SUBDIR += FreeWnn-server
     SUBDIR += R-cran-zipangu
     SUBDIR += Wnn6-lib
-    SUBDIR += Wnn7-lib
     SUBDIR += a2ps
     SUBDIR += ack
     SUBDIR += ajaxzip2-core
