@@ -48,7 +48,7 @@ ROUNDED_MGENPLUS_2M_DESC=	Rounded Mgen+ 2m
 ROUNDED_MGENPLUS_2P_DESC=	Rounded Mgen+ 2p
 ROUNDED_MGENPLUS_2PP_DESC=	Rounded Mgen+ 2pp
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MROUNDED_MGENPLUS_1C}
 FAMILY=	1c
