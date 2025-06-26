@@ -76,6 +76,7 @@ SUBDIR += lumina-photo
 SUBDIR += lumina-screenshot
 SUBDIR += lumina-textedit
 SUBDIR += mate-notification-daemon
+SUBDIR += mbox-importer
 SUBDIR += menumaker
 SUBDIR += notification-daemon
 SUBDIR += notify-osd
