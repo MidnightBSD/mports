@@ -53,6 +53,7 @@ SUBDIR += kdepim-addons
 SUBDIR += kdepim-runtime
 SUBDIR += keditbookmarks
 SUBDIR += kf6-kstatusnotifieritem
+SUBDIR += kfind
 SUBDIR += kmail
 SUBDIR += kmail-account-wizard
 SUBDIR += kongress
