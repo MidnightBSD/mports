@@ -44,7 +44,7 @@ MGENPLUS_2M_DESC=		Mgen+ 2m
 MGENPLUS_2P_DESC=		Mgen+ 2p
 MGENPLUS_2PP_DESC=		Mgen+ 2pp
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MMGENPLUS_1C}
 FAMILY=	1c
