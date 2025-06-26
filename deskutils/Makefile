@@ -76,6 +76,7 @@ SUBDIR += lumina-textedit
 SUBDIR += mate-notification-daemon
 SUBDIR += menumaker
 SUBDIR += notification-daemon
+SUBDIR += owncloudclient
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
