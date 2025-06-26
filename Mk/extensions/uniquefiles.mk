@@ -163,10 +163,14 @@ move-uniquefiles:
 	if [ -e ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} -o -L ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} ]; then \
 		ofname=$${fname##*/}; \
 		newf=$${fname%/*}/$${ofname%${UNIQUE_${sufxtype}_WITH_EXT}}${UNIQUE_SUFFIX}$${ofname#$${ofname%${UNIQUE_${sufxtype}_WITH_EXT}}}; \
-		${ECHO_MSG} "Move: $${fname} --> $${newf}"; \
-		${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf}; \
-		${ECHO_CMD} MOVED:$${fname}${UNIQUE_${sufxtype}_EXTRA_EXT}:$${newf}${UNIQUE_${sufxtype}_EXTRA_EXT} >> ${_UNIQUEPKGLIST}; \
-		${_DO_CONDITIONAL_SYMLINK:S/%%EXTRA_EXT%%/${UNIQUE_${sufxtype}_EXTRA_EXT}/g}; \
+		if [ ! -e ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf} -a ! -L ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf} ]; then \
+			${ECHO_MSG} "Move: $${fname} --> $${newf}"; \
+			${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf}; \
+			${ECHO_CMD} MOVED:$${fname}${UNIQUE_${sufxtype}_EXTRA_EXT}:$${newf}${UNIQUE_${sufxtype}_EXTRA_EXT} >> ${_UNIQUEPKGLIST}; \
+			${_DO_CONDITIONAL_SYMLINK:S/%%EXTRA_EXT%%/${UNIQUE_${sufxtype}_EXTRA_EXT}/g}; \
+		else \
+        	${ECHO_MSG} "Skipping: $${newf} already exists"; \
+        fi; \
 	else \
 		${ECHO_MSG} "Makefile error: UNIQUE (suffix): $${fname} not found"; \
 		${FALSE}; \
@@ -180,10 +184,14 @@ move-uniquefiles:
 		if [ -e ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} -o -L ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} ]; then \
 			ofname=$${fname##*/}; \
 			newf=$${fname%/*}/$${ofname%${UNIQUE_${sufxtype}_WITH_EXT}}${UNIQUE_SUFFIX}$${ofname#$${ofname%${UNIQUE_${sufxtype}_WITH_EXT}}}; \
-			${ECHO_MSG} "Move: $${fname} --> $${newf}"; \
-			${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf}; \
-			${ECHO_CMD} MOVED:$${fname}${UNIQUE_${sufxtype}_EXTRA_EXT}:$${newf}${UNIQUE_${sufxtype}_EXTRA_EXT} >> ${_UNIQUEPKGLIST}; \
-			${_DO_CONDITIONAL_SYMLINK:S/%%EXTRA_EXT%%/${UNIQUE_${sufxtype}_EXTRA_EXT}/g}; \
+			if [ ! -e ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf} -a ! -L ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf} ]; then \
+				${ECHO_MSG} "Move: $${fname} --> $${newf}"; \
+				${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${fname} ${FAKE_DESTDIR}${TRUE_PREFIX}/$${newf}; \
+				${ECHO_CMD} MOVED:$${fname}${UNIQUE_${sufxtype}_EXTRA_EXT}:$${newf}${UNIQUE_${sufxtype}_EXTRA_EXT} >> ${_UNIQUEPKGLIST}; \
+				${_DO_CONDITIONAL_SYMLINK:S/%%EXTRA_EXT%%/${UNIQUE_${sufxtype}_EXTRA_EXT}/g}; \
+			else \
+				${ECHO_MSG} "Skipping: $${newf} already exists"; \
+			fi; \
 		else \
 			${ECHO_MSG} "Makefile error: UNIQUE (suffix): $${fname} not found"; \
 			${FALSE}; \
