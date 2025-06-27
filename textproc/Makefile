@@ -389,6 +389,7 @@ SUBDIR += redland
 SUBDIR += ripgrep
 SUBDIR += rubygem-asciidoctor
 SUBDIR += rubygem-ltsv
+SUBDIR += rubygem-nokogiri
 SUBDIR += rubygem-psych
 SUBDIR += rubygem-rdiscount
 SUBDIR += rubygem-rexml
