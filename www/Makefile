@@ -300,6 +300,7 @@ SUBDIR += rubygem-addressable
 SUBDIR += rubygem-cgi
 SUBDIR += rubygem-hpricot
 SUBDIR += rubygem-httpclient
+SUBDIR += rubygem-rack
 SUBDIR += rubygem-webrick
 SUBDIR += serf
 SUBDIR += sitecopy

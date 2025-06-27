@@ -29,6 +29,7 @@ SUBDIR += perftest
 SUBDIR += phoronix-test-suite
 SUBDIR += raidtest
 SUBDIR += ramspeed
+SUBDIR += rubygem-benchmark
 SUBDIR += scimark2c
 SUBDIR += scimark4c
 SUBDIR += shellbench
