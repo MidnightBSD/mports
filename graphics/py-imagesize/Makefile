@@ -1,18 +1,23 @@
-# Created by: Kris Moore <kmoore@FreeBSD.org>
-
 PORTNAME=	imagesize
-PORTVERSION=	1.1.0
+PORTVERSION=	1.4.1
+PORTREVISION=	1
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python image size library
+COMMENT=	Get image size from png/jpeg/jpeg2000/gif file
+WWW=		https://github.com/shibukawa/imagesize_py
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
-USES=		python
-USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>
