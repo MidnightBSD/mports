@@ -320,7 +320,6 @@ SUBDIR += rubygem-histogram
 SUBDIR += rubygem-image_processing
 SUBDIR += rubygem-image_science
 SUBDIR += rubygem-imagesize
-SUBDIR += rubygem-invisible_captcha
 SUBDIR += rubygem-mini_magick
 SUBDIR += rubygem-mini_magick4
 SUBDIR += rubygem-opengl
