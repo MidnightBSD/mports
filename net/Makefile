@@ -31,6 +31,7 @@ SUBDIR += dhcpdump
 SUBDIR += dictd
 SUBDIR += dual-dhclient
 SUBDIR += empty
+SUBDIR += eventviews
 SUBDIR += fping
 SUBDIR += freebsd-telnetd
 SUBDIR += freebsd-uucp
