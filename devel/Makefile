@@ -358,6 +358,7 @@ SUBDIR += libpasori
 SUBDIR += libpci
 SUBDIR += libpciaccess
 SUBDIR += libpeas
+SUBDIR += libphonenumber
 SUBDIR += libplist
 SUBDIR += libpthread-stubs
 SUBDIR += librest

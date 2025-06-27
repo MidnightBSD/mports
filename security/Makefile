@@ -61,6 +61,7 @@ SUBDIR += keepass
 SUBDIR += keepass-plugin-keepassrpc
 SUBDIR += kf5-kdesu
 SUBDIR += kf6-kdesu
+SUBDIR += kpkpass
 SUBDIR += krb5
 SUBDIR += krb5-120
 SUBDIR += krb5-121

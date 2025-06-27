@@ -86,6 +86,7 @@ SUBDIR += kf6-kholidays
 SUBDIR += kf6-syndication
 SUBDIR += kidentitymanagement
 SUBDIR += kimap
+SUBDIR += kitinerary
 SUBDIR += kldap
 SUBDIR += kmailtransport
 SUBDIR += kmbox
