@@ -367,7 +367,6 @@ SUBDIR += py-sphinxcontrib-serializinghtml
 SUBDIR += py-sphinxcontrib-svg2pdfconverter
 SUBDIR += py-sphinxcontrib-towncrier
 SUBDIR += py-sphinxcontrib-websupport
-SUBDIR += py-sphinxcontrib-websupport11
 SUBDIR += py-tinycss
 SUBDIR += py-tinycss2
 SUBDIR += py-toml

@@ -1,5 +1,3 @@
-# Created by: Dmitry Sivachenko <demon@FreeBSD.org>
-
 PORTNAME=	tinycss
 PORTVERSION=	0.4
 CATEGORIES=	textproc python
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Complete yet simple CSS parser for Python
+WWW=		https://pypi.org/project/tinycss/
 
 LICENSE=	bsd3
 
