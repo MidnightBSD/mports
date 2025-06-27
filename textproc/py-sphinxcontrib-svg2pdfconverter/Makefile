@@ -1,9 +1,9 @@
 PORTNAME=	sphinxcontrib-svg2pdfconverter
-PORTVERSION=	1.2.1
-PORTREVISION=	1
+DISTVERSION=	1.2.3
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	${PORTNAME:C/-/_/}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx extension for converting SVG to PDF
@@ -12,22 +12,29 @@ WWW=		https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils flavors
+USE_GNOME=	librsvg2
+USE_PYTHON=	autoplist concurrent flavors pep517
 
 NO_ARCH=	yes
 
-OPTIONS_DEFINE=	RSVGIMPL
-RSVGIMPL_DESC=	Depend on the Rust implementation of rsvg-convert
+OPTIONS_DEFAULT=	CAIROSVG
+OPTIONS_GROUP=		RENDERER
+OPTIONS_GROUP_RENDERER=	CAIROSVG INKSCAPE RSVG
 
-.include <bsd.mport.options.mk>
+CAIROSVG_DESC=	Python Cairo SVG
+INKSCAPE_DESC=	Inkscape
+RENDERER_DESC=	SVG to PDF runtime renderer
+RSVG_DESC=	Rust librsvg2 (graphics/librsvg2)
 
-.if ${PORT_OPTIONS:MRSVGIMPL}
-RUN_DEPENDS+=	rsvg-convert:graphics/librsvg2-rust
-.else
-RUN_DEPENDS+=	rsvg-convert:graphics/librsvg2
-.endif
+CAIROSVG_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairosvg>0:graphics/py-cairosvg@${PY_FLAVOR}
+INKSCAPE_RUN_DEPENDS=	inkscape>0:graphics/inkscape
+RSVG_USES=		gnome
+RSVG_USE=		GNOME=librsvg2
 
 .include <bsd.port.mk>
