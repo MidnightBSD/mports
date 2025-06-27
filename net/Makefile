@@ -57,6 +57,7 @@ SUBDIR += hostapd
 SUBDIR += hping
 SUBDIR += htpdate
 SUBDIR += ilbc
+SUBDIR += incidenceeditor
 SUBDIR += intel-em-kmod
 SUBDIR += intel-iavf-kmod
 SUBDIR += intel-ice-kmod
