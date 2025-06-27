@@ -1575,6 +1575,7 @@ SUBDIR += rebar3
 SUBDIR += riscv64-none-elf-gcc
 SUBDIR += rlog
 SUBDIR += ruby-gems
+SUBDIR += rubygem-ast
 SUBDIR += rubygem-builder
 SUBDIR += rubygem-cairo-gobject
 SUBDIR += rubygem-concurrent-ruby
