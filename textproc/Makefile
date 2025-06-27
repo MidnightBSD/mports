@@ -391,6 +391,7 @@ SUBDIR += rubygem-asciidoctor
 SUBDIR += rubygem-ltsv
 SUBDIR += rubygem-psych
 SUBDIR += rubygem-rdiscount
+SUBDIR += rubygem-rexml
 SUBDIR += rubygem-ronn
 SUBDIR += sassc
 SUBDIR += scdoc
