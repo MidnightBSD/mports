@@ -1507,7 +1507,6 @@ SUBDIR += py-wrapt
 SUBDIR += py-xdg
 SUBDIR += py-xmltodict
 SUBDIR += py-xxhash
-SUBDIR += py-yaml
 SUBDIR += py-yamllint
 SUBDIR += py-zclockfile
 SUBDIR += py-zipp
