@@ -246,7 +246,6 @@
     SUBDIR += scim-tables
     SUBDIR += scim-tomoe
     SUBDIR += scim-uim
-    SUBDIR += seaside
     SUBDIR += sj3-lib
     SUBDIR += sj3-server
     SUBDIR += skk
