@@ -17,6 +17,7 @@ SUBDIR += py-atspi
 SUBDIR += py-speech-dispatcher
 SUBDIR += qt5-speech
 SUBDIR += qt6-speech
+SUBDIR += rubygem-atk
 SUBDIR += speech-dispatcher
 SUBDIR += yasr
 
