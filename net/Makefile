@@ -97,6 +97,7 @@ SUBDIR += ksmtp
 SUBDIR += ktnef
 SUBDIR += mailcommon
 SUBDIR += mailimporter
+SUBDIR += mimetreeparser
 SUBDIR += realtek-re-kmod
 SUBDIR += rubygem-connection_pool
 SUBDIR += rubygem-http_parser.rb
