@@ -337,6 +337,7 @@ SUBDIR += libgnuregex
 SUBDIR += libgsf
 SUBDIR += libgtop
 SUBDIR += libgudev
+SUBDIR += libgusb
 SUBDIR += libical
 SUBDIR += libinotify
 SUBDIR += libisofs
