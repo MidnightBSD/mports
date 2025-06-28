@@ -30,6 +30,8 @@ GH_TAGNAME=	drm_v4.16-fbsd12
 IGNORE=		only supported on MidnightBSD 3.x
 .endif
 
+IGNORE_MidnightBSD_4.0=	too new
+
 .if ${ARCH} == "amd64"
 PLIST_SUB+=     AMDGPU=""
 PLIST_SUB+=     AMDKFD=""
