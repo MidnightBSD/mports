@@ -12,6 +12,8 @@ BROKEN_MidnightBSD_1.0=      too old
 BROKEN_MidnightBSD_1.1=      too old
 BROKEN_MidnightBSD_1.2=      too old
 BROKEN_MidnightBSD_3.0=      too new
+BROKEN_MidnightBSD_3.1=      too new
+BROKEN_MidnightBSD_3.2=      too new
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64
