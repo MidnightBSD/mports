@@ -92,13 +92,13 @@ SSL_MAKE_ARGS=	--ssl
 
 .include <bsd.mport.options.mk>
 
-.if ${OPSYS} == FreeBSD && (${OSREL:R} >= 15 && ${OSVERSION} >= 1500026)
+.if (${OSREL:R} >= 5 && ${OSVERSION} >= 500000)
 USES+=		llvm:max=18,build
 .endif
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == aarch64 || ${ARCH} == powerpc64le
+.if ${ARCH} == aarch64
 EXTRA_PATCHES=	${FILESDIR}/${ARCH}
 .endif
 

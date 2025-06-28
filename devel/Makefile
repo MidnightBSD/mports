@@ -1409,6 +1409,7 @@ SUBDIR += py-resolvelib
 SUBDIR += py-resolvelib05
 SUBDIR += py-resource
 SUBDIR += py-responses
+SUBDIR += py-retry2
 SUBDIR += py-rfc3339-validator
 SUBDIR += py-rpds-py
 SUBDIR += py-rstr
