@@ -27,6 +27,9 @@ GH_TAGNAME=	${DRM_KMOD_GH_TAGNAME}
 
 .include <bsd.mport.options.mk>
 
+IGNORE_MidnightBSD_3.2=	Needs 4.x or higher
+IGNORE_MidnightBSD_3.1=	Needs 4.x or higher
+
 .if ${ARCH} == "amd64"
 PLIST_SUB+=	AMDGPU=""
 PLIST_SUB+=	I915=""
