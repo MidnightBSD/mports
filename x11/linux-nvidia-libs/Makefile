@@ -1,5 +1,5 @@
 PORTNAME=	nvidia-libs
-DISTVERSION?=	510.60.02
+DISTVERSION?=	${NVIDIA_DISTVERSION}
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11 linux
@@ -10,9 +10,17 @@ PKGNAMEPREFIX=	linux-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NVidia graphics libraries and programs (Linux version)
+WWW=		https://www.nvidia.com/object/unix.html
 
 LICENSE_FILE=	${WRKSRC}/LICENSE
+.include "${.CURDIR}/../nvidia-driver/Makefile.version"
 .include "${.CURDIR}/../nvidia-driver/Makefile.common"
+
+# Choose proper distinfo file using PKGNAMESUFFIX for slave ports.
+# Kept for switching to centralized distinfo with suffixes.
+.ifdef PKGNAMESUFFIX
+DISTINFO_FILE=	${.CURDIR}/distinfo
+.endif
 
 .if ${DISTVERSION:R} > 390
 PORTSCOUT=	limit:\.\d+$$		# ignore *-no-compat32 distfiles

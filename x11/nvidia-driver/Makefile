@@ -9,7 +9,7 @@
 # ``make DISTVERSION=xxx.yy.zz -DNO_CHECKSUM'' should typically work.
 
 PORTNAME?=	nvidia-driver
-DISTVERSION?=	535.104.05
+DISTVERSION?=	${NVIDIA_DISTVERSION}
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11
@@ -22,7 +22,10 @@ COMMENT?=	NVidia graphics card binary drivers for hardware OpenGL rendering
 WWW=		https://www.nvidia.com/object/unix.html
 
 LICENSE_FILE=	${WRKSRC}/doc/license.txt
+.include "${.CURDIR}/../nvidia-driver/Makefile.version"
 .include "${.CURDIR}/../nvidia-driver/Makefile.common"
+
+NO_SHLIB_REQUIRES_GLOB=*:32
 
 # Pull GNU sed(1) for "binary" patching of obj/libglvnd/libEGL.so.1 and
 # obj/libEGL_nvidia.so.0 (see below)
@@ -30,6 +33,10 @@ LICENSE_FILE=	${WRKSRC}/doc/license.txt
 PATCH_DEPENDS=	gsed:textproc/gsed
 BUILD_DEPENDS=	pkg-config:devel/pkgconf
 LIB_DEPENDS=	libOpenGL.so:graphics/libglvnd
+.endif
+
+.if ${NVVERSION} >= 415.013
+LIB_DEPENDS+= libnvidia-egl-wayland.so:graphics/egl-wayland
 .endif
 
 USES=		kmod uidfix xorg
