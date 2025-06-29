@@ -33,7 +33,11 @@ DIALOG?=		/usr/bin/dialog
 .  else
 DIALOG?=		/usr/bin/bsddialog
 .  endif
+.  if exists(/usr/local/bin/portconfig)
+DIALOG4PORTS?=		${LOCALBASE}/bin/portconfig
+.else
 DIALOG4PORTS?=		${LOCALBASE}/bin/dialog4ports
+.endif
 DIFF?=			/usr/bin/diff
 DIRNAME?=		/usr/bin/dirname
 DOAS?=			/usr/bin/doas
