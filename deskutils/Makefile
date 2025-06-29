@@ -82,6 +82,7 @@ SUBDIR += notification-daemon
 SUBDIR += notify-osd
 SUBDIR += owncloudclient
 SUBDIR += pim-data-exporter
+SUBDIR += pim-sieve-editor
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences

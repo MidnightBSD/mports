@@ -205,6 +205,7 @@ SUBDIR += rubygem-ruby-mysql
 SUBDIR += rubygem-sqlite3
 SUBDIR += rubygem-sqlite3-ruby
 SUBDIR += rubygem-sqlite31
+SUBDIR += rubygem-trilogy
 SUBDIR += sfcgal
 SUBDIR += spatialite
 SUBDIR += sqlclient
