@@ -48,6 +48,7 @@ SUBDIR += mariadb114-server
 SUBDIR += mdbtools
 SUBDIR += memcached
 SUBDIR += mongodb50
+SUBDIR += mongodb60
 SUBDIR += mysql-connector-c++
 SUBDIR += mysql-connector-j
 SUBDIR += mysql-connector-java51
