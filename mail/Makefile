@@ -101,6 +101,7 @@ SUBDIR += panda-cclient
 SUBDIR += pantomime
 SUBDIR += pear-Horde_Imap_Client
 SUBDIR += pear-Horde_Mail
+SUBDIR += pear-Horde_Mail_Autoconfig
 SUBDIR += pear-Horde_Mapi
 SUBDIR += pear-Horde_Mime
 SUBDIR += pear-Horde_Mime_Viewer
