@@ -312,6 +312,7 @@ SUBDIR += libcjson
 SUBDIR += libclc
 SUBDIR += libconfig
 SUBDIR += libconfuse
+SUBDIR += libcutl
 SUBDIR += libdaemon
 SUBDIR += libdatrie
 SUBDIR += libdevq
