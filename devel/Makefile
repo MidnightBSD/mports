@@ -65,6 +65,7 @@ SUBDIR += bugzilla50
 SUBDIR += build2
 SUBDIR += bullet
 SUBDIR += capnproto
+SUBDIR += capstone
 SUBDIR += cargo-c
 SUBDIR += catch
 SUBDIR += ccache
