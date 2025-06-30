@@ -81,6 +81,7 @@ SUBDIR += py-MutatorMath
 SUBDIR += py-bottleneck
 SUBDIR += py-contourpy
 SUBDIR += py-gmpy2
+SUBDIR += py-igraph
 SUBDIR += py-kiwisolver
 SUBDIR += py-matplotlib
 SUBDIR += py-matplotlib-inline
