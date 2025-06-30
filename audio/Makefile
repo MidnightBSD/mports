@@ -180,6 +180,7 @@ SUBDIR += sndio
 SUBDIR += sonata
 SUBDIR += sound-juicer
 SUBDIR += soundtouch
+SUBDIR += sox
 SUBDIR += speex
 SUBDIR += speexdsp
 SUBDIR += spotify-qt
