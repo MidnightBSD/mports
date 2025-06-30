@@ -1,5 +1,5 @@
 PORTNAME=	libXtst
-PORTVERSION=	1.2.3
+PORTVERSION=	1.2.4
 PORTREVISION=	1
 CATEGORIES=	x11
 
@@ -9,7 +9,7 @@ WWW=		https://www.freedesktop.org/Software/xorg
 
 LICENSE=	mit
 
-USES=		cpe xorg xorg-cat:lib
+USES=		cpe tar:xz xorg xorg-cat:lib
 USE_XORG=	x11 xext xi xorgproto
 CPE_PRODUCT=	libxtst
 CPE_VENDOR=	x

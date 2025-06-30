@@ -1,5 +1,5 @@
 PORTNAME=	libXau
-PORTVERSION=	1.0.9
+PORTVERSION=	1.0.11
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,7 @@ WWW=		https://www.freedesktop.org/wiki/Software/xlibs/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		xorg xorg-cat:lib
+USES=		tar:xz xorg xorg-cat:lib
 USE_XORG=	xorgproto
 
 INSTALL_TARGET=	install-strip

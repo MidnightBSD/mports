@@ -1,5 +1,5 @@
 PORTNAME=	libXrender
-PORTVERSION=	0.9.10
+PORTVERSION=	0.9.12
 PORTREVISION=	2
 CATEGORIES=	x11
 
@@ -8,7 +8,7 @@ COMMENT=	X Render extension library
 
 LICENSE=	mit
 
-USES=		cpe xorg xorg-cat:lib
+USES=		cpe tar:xz xorg xorg-cat:lib
 USE_XORG=	x11 xorgproto
 
 CPE_VENDOR=	x.org

@@ -1,5 +1,5 @@
 PORTNAME=	libei
-DISTVERSION=	1.1.0
+DISTVERSION=	1.4.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-dbusmock>0:devel/py-python-dbusmock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}structlog>0:devel/py-structlog@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}pyyaml>0:devel/py-pyyaml@${PY_FLAVOR}
 
 USES=		compiler:c11 localbase meson pkgconfig python:build
 USE_GITHUB=	nodefault
@@ -36,6 +36,7 @@ OPTIONS_SUB=	yes
 BASU_DESC=		XDG RemoteDesktop portal via basu
 BASU_LIB_DEPENDS=	libbasu.so:devel/basu
 BASU_MESON_ENABLED=	liboeffis
+PLIST_SUB+=	VERSION=${PORTVERSION}
 
 .ifdef GH_TUPLE
 post-configure:

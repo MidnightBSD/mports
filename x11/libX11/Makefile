@@ -1,5 +1,5 @@
 PORTNAME=	libX11
-DISTVERSION=	1.8.10
+DISTVERSION=	1.8.12
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -10,7 +10,7 @@ WWW=		https://www.freedesktop.org/Software/xlibs
 LICENSE=	mit
 
 USES=		cpe tar:xz xorg xorg-cat:lib
-USE_XORG=	xau xdmcp xtrans xorgproto xcb
+USE_XORG=	xtrans xorgproto xcb
 CPE_VENDOR=	x
 
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
