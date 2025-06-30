@@ -100,6 +100,7 @@ SUBDIR += p5-Net-SMTPS
 SUBDIR += panda-cclient
 SUBDIR += pantomime
 SUBDIR += pear-Horde_Imap_Client
+SUBDIR += pear-Horde_ListHeaders
 SUBDIR += pear-Horde_Mail
 SUBDIR += pear-Horde_Mail_Autoconfig
 SUBDIR += pear-Horde_Mapi
