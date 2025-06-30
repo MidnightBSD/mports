@@ -1231,6 +1231,7 @@ SUBDIR += py-jsonschema
 SUBDIR += py-jsonschema-path
 SUBDIR += py-jsonschema-specifications
 SUBDIR += py-jsonsir
+SUBDIR += py-keystone-engine
 SUBDIR += py-kitchen
 SUBDIR += py-lark
 SUBDIR += py-lazr.config
