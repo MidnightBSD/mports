@@ -293,6 +293,7 @@ SUBDIR += kf6-solid
 SUBDIR += kf6-threadweaver
 SUBDIR += kio-extras
 SUBDIR += kopeninghours
+SUBDIR += kpublictransport
 SUBDIR += ktextaddons
 SUBDIR += kyua
 SUBDIR += lcov
