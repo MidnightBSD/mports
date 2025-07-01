@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE Plasma Desktop and Applications (meta port)
 WWW=		https://www.kde.org
 
+LICENSE=	bsd2
+
 RUN_DEPENDS=	kde-baseapps>=${KDE_APPLICATIONS_VERSION}:x11/kde-baseapps \
 		plasma6-plasma>=${KDE_PLASMA_VERSION}:x11/plasma6-plasma
 
