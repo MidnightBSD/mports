@@ -10,6 +10,8 @@ WWW=		http://capstone-engine.org/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
+FAKE_OPTS=	trueprefix
+
 USES=		cpe gmake tar:xz
 CPE_VENDOR=	${PORTNAME}-engine
 #USE_GITHUB=	yes
