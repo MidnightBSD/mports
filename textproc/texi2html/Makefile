@@ -1,24 +1,25 @@
 PORTNAME=	texi2html
 PORTVERSION=	5.0
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Texinfo to HTML converter
+WWW=		https://www.nongnu.org/texi2html/
 
 LICENSE=        gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PERL=${PERL}
 CONFIGURE_ARGS=	--disable-multiplatform
-USES=		gmake perl5 tar:bzip2
+USES=		gettext-tools:build gmake perl5 shebangfix tar:bzip2
+SHEBANG_FILES=	*.pl
 
 OPTIONS_DEFINE=	NLS DOCS
 OPTIONS_SUB=	yes
 
-NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=nls translations
 
 PROGRAM_PREFIX?=
@@ -45,7 +46,6 @@ post-patch:
 .if empty(PORT_OPTIONS:MDOCS)
 	@${REINPLACE_CMD} -e 's| install-texinfohtmlDATA||g' ${WRKSRC}/doc/Makefile.in
 .endif
-	@${REINPLACE_CMD} -e '1s|/usr/bin/perl|${PERL}|' ${WRKSRC}/*.pl
 	@${CHMOD} +x ${WRKSRC}/install-sh
 
 .include <bsd.port.mk>
