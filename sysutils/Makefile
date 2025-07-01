@@ -177,6 +177,7 @@ SUBDIR += p5-Probe-Perl
 SUBDIR += p5-Quota
 SUBDIR += p5-Sys-Hostname-Long
 SUBDIR += p5-Unix-Processors
+SUBDIR += password-store
 SUBDIR += patchelf
 SUBDIR += pcbsd-libsh
 SUBDIR += pciutils
