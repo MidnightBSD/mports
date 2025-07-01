@@ -300,6 +300,7 @@ SUBDIR += kyua
 SUBDIR += lcov
 SUBDIR += lemon
 SUBDIR += libIDL
+SUBDIR += libast
 SUBDIR += libatomic_ops
 SUBDIR += libayatana-appindicator
 SUBDIR += libayatana-indicator
