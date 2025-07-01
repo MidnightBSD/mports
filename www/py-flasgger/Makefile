@@ -1,5 +1,6 @@
 PORTNAME=	flasgger
 DISTVERSION=	0.9.7.1
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}apispec>0:devel/py-apispec@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>=1.10.0:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}werkzeug>=0:www/py-werkzeug@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}yaml>=3.0:devel/py-yaml@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}pyyaml>=3.0:devel/py-pyyaml@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}apispec-webframeworks>0:devel/py-apispec-webframeworks@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}apispec>=1.0.0b5:devel/py-apispec@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}coveralls>0:devel/py-coveralls@${PY_FLAVOR} \
@@ -36,7 +37,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}apispec-webframeworks>0:devel/py-apispec-we
 USES=		python
 USE_PYTHON=	distutils autoplist pytest # tests fail to run, see https://github.com/flasgger/flasgger/issues/605
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes
 
