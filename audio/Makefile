@@ -193,6 +193,7 @@ SUBDIR += spotifyd
 SUBDIR += sratom
 SUBDIR += stk
 SUBDIR += suil
+SUBDIR += swhplugins
 SUBDIR += taglib
 SUBDIR += teamspeak3-server
 SUBDIR += thunar-media-tags-plugin
