@@ -246,6 +246,7 @@ SUBDIR += screen50
 SUBDIR += screenie
 SUBDIR += seatd
 SUBDIR += sg3_utils
+SUBDIR += signon-plugin-oauth2
 SUBDIR += signond
 SUBDIR += slurm-wlm
 SUBDIR += smartmontools
