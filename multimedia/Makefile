@@ -11,6 +11,7 @@ SUBDIR += cmrtlib
 SUBDIR += dav1d
 SUBDIR += dirac
 SUBDIR += dragon
+SUBDIR += dvdauthor
 SUBDIR += emby-server
 SUBDIR += emby-server46
 SUBDIR += ffmpeg
