@@ -3,6 +3,7 @@ COMMENT = Programming languages
 SUBDIR += alisp
 SUBDIR += bcc
 SUBDIR += bsh
+SUBDIR += chaiscript
 SUBDIR += cjs
 SUBDIR += clover
 SUBDIR += cython
