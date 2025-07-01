@@ -398,6 +398,7 @@ SUBDIR += sassc
 SUBDIR += scdoc
 SUBDIR += scim
 SUBDIR += scim-input-pad
+SUBDIR += scim-kmfl-imengine
 SUBDIR += scim-m17n
 SUBDIR += scim-table-imengine
 SUBDIR += scr2txt
