@@ -39,7 +39,7 @@ WAYLAND_RUN_DEPENDS=	wl-clipboard>=0:x11/wl-clipboard
 
 SUB_FILES=		pass
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -Ee 's|/usr/local|${LOCALBASE}|g' ${WRKSRC}/src/platform/freebsd.sh
