@@ -130,6 +130,7 @@ SUBDIR += pwcview
 SUBDIR += py-gstreamer1
 SUBDIR += qt5-multimedia
 SUBDIR += qt6-multimedia
+SUBDIR += recordmydesktop
 SUBDIR += ringrtc
 SUBDIR += smpeg
 SUBDIR += streamlink
