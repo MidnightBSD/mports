@@ -372,6 +372,7 @@ SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += ximaging
 SUBDIR += xli
+SUBDIR += xpdf
 SUBDIR += xpdf3
 SUBDIR += xpdf4
 SUBDIR += xv
