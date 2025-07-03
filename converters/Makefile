@@ -16,6 +16,7 @@ SUBDIR += mpack
 SUBDIR += o3read
 SUBDIR += p5-Convert-ASN1
 SUBDIR += p5-Convert-BinHex
+SUBDIR += p5-Convert-Moji
 SUBDIR += p5-Cpanel-JSON-XS
 SUBDIR += p5-Encode
 SUBDIR += p5-Encode-Detect

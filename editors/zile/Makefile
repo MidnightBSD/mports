@@ -1,5 +1,5 @@
 PORTNAME=	zile
-PORTVERSION=	2.6.2
+PORTVERSION=	2.6.4
 CATEGORIES=	editors
 MASTER_SITES=	GNU
 
@@ -15,7 +15,8 @@ LIB_DEPENDS=	libgc.so:devel/boehm-gc \
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/help2man:misc/help2man
 
-USES=		gmake gnome ncurses perl5 pkgconfig compiler:c++11-lang
+USES=		compiler:c++11-lang gmake gnome localbase:ldflags ncurses perl5 \
+		pkgconfig vala:build
 USE_PERL5=	build
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes

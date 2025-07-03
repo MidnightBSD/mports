@@ -1,5 +1,3 @@
-# Created by: Miguel Clara <miguelmclara@gmail.com>
-
 PORTNAME=	sublime
 PORTVERSION=	3.2.2
 PORTREVISION=	3
@@ -10,6 +8,7 @@ PKGNAMESUFFIX=	3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sophisticated text editor for code, markup and prose
+WWW=		https://www.sublimetext.com
 
 LICENSE=	SUBLIMEHQ
 LICENSE_NAME=	End User License Agreement

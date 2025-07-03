@@ -90,6 +90,7 @@ SUBDIR += kubrick
 SUBDIR += lapispuzzle
 SUBDIR += libggz
 SUBDIR += libgnome-games-support
+SUBDIR += libkdegames
 SUBDIR += libkmahjongg
 SUBDIR += lightsoff
 SUBDIR += lincity

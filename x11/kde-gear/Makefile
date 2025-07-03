@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE Gear distribution (meta port)
 WWW=		https://apps.kde.org/
 
+LICENSE=	bsd2
+
 USES=		kde:6 metaport qt:6
 USE_QT=		# empty
 

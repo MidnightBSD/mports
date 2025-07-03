@@ -1,16 +1,12 @@
-# New ports collection makefile for:	2bsd-vi
-# Date created:			2007-04-27
-# Whom:				Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	vi
 PORTVERSION=	050325
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors
 MASTER_SITES=	SF/ex-${PORTNAME}/ex-${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	2bsd-
 DISTNAME=	ex-${PORTVERSION}
 
-MAINTAINER=	luke@midnightbsd.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The original vi editor
 WWW=		https://ex-vi.sourceforge.net/
 

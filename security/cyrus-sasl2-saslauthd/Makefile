@@ -1,6 +1,7 @@
 PKGNAMESUFFIX=	-saslauthd
 
 COMMENT=	SASL authentication server for cyrus-sasl2
+WWW=		https://www.cyrusimap.org/sasl/
 
 LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 
@@ -20,6 +21,7 @@ HTTPFORM_DESC=		Enable HTTP form authentication
 HTTPFORM_CONFIGURE_ENABLE=httpform
 OPENLDAP_DESC=		Use OpenLDAP
 OPENLDAP_USE=		OPENLDAP=yes
+OPENLDAP_USES=		ldap
 OPENLDAP_CONFIGURE_ON=	--with-ldap=${LOCALBASE}
 
 SASLDB_DESC=		Experimental SASLdb authentication module

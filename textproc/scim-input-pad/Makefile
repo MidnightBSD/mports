@@ -1,14 +1,13 @@
-# Created by: chinsan	<chinsan@mail2000.com.tw>
-
 PORTNAME=	scim-input-pad
 PORTVERSION=	0.1.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	SF/scim/${PORTNAME}/0.1.3/ \
 		http://anthesphoria.net/FreeBSD/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SCIM add-on to input various symbols with customisable on-screen pad
+WWW=		https://github.com/scim-im/scim
 
 LICENSE=	lgpl2.1
 

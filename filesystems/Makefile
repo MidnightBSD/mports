@@ -38,6 +38,7 @@
     SUBDIR += httpfs
     SUBDIR += ifuse
     SUBDIR += jmtpfs
+    SUBDIR += kio-fuse
     SUBDIR += libbde
     SUBDIR += libfsapfs
     SUBDIR += libfsext
