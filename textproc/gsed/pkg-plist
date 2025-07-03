@@ -1,5 +1,4 @@
 bin/gsed
-share/man/man1/gsed.1.gz
 %%NLS%%share/locale/af/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/ast/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/bg/LC_MESSAGES/sed.mo
@@ -22,6 +21,7 @@ share/man/man1/gsed.1.gz
 %%NLS%%share/locale/id/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/it/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/sed.mo
+%%NLS%%share/locale/ka/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/nb/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/sed.mo
@@ -39,3 +39,4 @@ share/man/man1/gsed.1.gz
 %%NLS%%share/locale/vi/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/sed.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/sed.mo
+share/man/man1/gsed.1.gz
