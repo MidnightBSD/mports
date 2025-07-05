@@ -1,5 +1,5 @@
-DISTVERSION=	0.22.5
-PORTREVISION?=	0 # Leave this zero. Set in Makefile instead.
+DISTVERSION=	0.23.1
+PORTREVISION?=	0 # Leave this zero. Set in Makefile instead
 CATEGORIES=	devel
 MASTER_SITES=	GNU/gettext
 DISTNAME=	gettext-${PORTVERSION}
