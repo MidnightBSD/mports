@@ -1,5 +1,5 @@
 PORTNAME=	urllib3
-PORTVERSION=	1.26.19
+PORTVERSION=	1.26.20
 PORTEPOCH=	1
 CATEGORIES=	net python
 MASTER_SITES=	PYPI \
@@ -14,7 +14,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent cryptography_test distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 CPE_VENDOR=	python
 
