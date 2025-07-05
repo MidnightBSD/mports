@@ -17,7 +17,7 @@ USES=		gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	Vladimir-csp
 
-MAKE_ARGS=	prefix=${STAGEDIR}${PREFIX}
+MAKE_ARGS=	prefix=${FAKE_DESTDIR}${TRUE_PREFIX}
 
 BINARY_ALIAS=	install=ginstall
 OPTIONS_SUB=	yes
