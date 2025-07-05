@@ -1,7 +1,5 @@
-# Created by: Cyrille Lefevre <clefevre@citeweb.net>
-
 PORTNAME=	sed
-PORTVERSION=	4.8
+PORTVERSION=	4.9
 CATEGORIES=	textproc
 MASTER_SITES=	GNU
 PKGNAMEPREFIX=	g
@@ -12,11 +10,12 @@ COMMENT=	GNU stream editor
 LICENSE=	gpl3 gfdl
 LICENSE_COMB=	multi
 
-USES=		charsetfix makeinfo tar:xz
+USES=		charsetfix cpe makeinfo tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g
 CONFIGURE_ENV+=	MAKEINFO="${MAKEINFO} --no-split"
 TEST_TARGET=	check
+CPE_VENDOR=	gnu
 
 DATADIR=	${PREFIX}/share/${PKGBASE}
 DOCSDIR=	${PREFIX}/share/doc/${PKGBASE}

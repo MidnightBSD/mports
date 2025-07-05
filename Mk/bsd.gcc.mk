@@ -35,7 +35,7 @@ GCC_Include_MAINTAINER=		ports@MidnightBSD.org
 # All GCC versions supported by this framework.
 #
 # When updating this, keep Mk/bsd.default-versions.mk in sync.
-GCCVERSIONS=	4.8 11 12 13 14
+GCCVERSIONS=	4.8 11 12 13 14 15
 
 # No configurable parts below this. ####################################
 #
