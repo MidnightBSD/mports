@@ -16,4 +16,7 @@ USE_XORG=	ice sm x11 xaw xext xmu xt
 MAKE_ENV=	FILESDIR=${FILESDIR}
 ALL_TARGET=	all XCal-uj.ad xcalendar-uj.hlp xcalendar-uj.man
 
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/ja/man1
+
 .include <bsd.port.mk>
