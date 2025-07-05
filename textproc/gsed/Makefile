@@ -1,17 +1,21 @@
 PORTNAME=	sed
 PORTVERSION=	4.9
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNU
 PKGNAMEPREFIX=	g
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU stream editor
+WWW=		https://www.gnu.org/software/sed/sed.html
 
-LICENSE=	gpl3 gfdl
+LICENSE=	gpl3+ gfdl
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl3+ =	${WRKSRC}/COPYING
 
 USES=		charsetfix cpe makeinfo tar:xz
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ARGS=	--program-prefix=g
 CONFIGURE_ENV+=	MAKEINFO="${MAKEINFO} --no-split"
 TEST_TARGET=	check
