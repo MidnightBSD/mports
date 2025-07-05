@@ -114,13 +114,13 @@ do-build:
 
 do-install:
 .if !defined(UIM_SLAVE)
-	cd ${WRKSRC} && ${MAKE_CMD} DESTDIR=${STAGEDIR} install-data-am
+	cd ${WRKSRC} && ${MAKE_CMD} DESTDIR=${FAKE_DESTDIR} install-data-am
 .for d in sigscheme uim scm xim fep emacs pixmaps tables
-	cd ${WRKSRC}/${d} && ${MAKE_CMD} DESTDIR=${STAGEDIR} install-strip
+	cd ${WRKSRC}/${d} && ${MAKE_CMD} DESTDIR=${FAKE_DESTDIR} install-strip
 .endfor
-	cd ${WRKSRC}/po && ${MAKE_CMD} DESTDIR=${STAGEDIR} install
+	cd ${WRKSRC}/po && ${MAKE_CMD} DESTDIR=${FAKE_DESTDIR} install
 .if ${PORT_OPTIONS:MX11}
-	cd ${WRKSRC}/gtk3/candwin && ${MAKE_CMD} DESTDIR=${STAGEDIR} install-strip
+	cd ${WRKSRC}/gtk3/candwin && ${MAKE_CMD} DESTDIR=${FAKE_DESTDIR} install-strip
 .endif
 .endif
 
