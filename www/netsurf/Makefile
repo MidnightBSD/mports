@@ -12,6 +12,8 @@ LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN=		failed to load "frontends/gtk/res/netsurf.xpm": Couldn?t recognize the image file format for file ?frontends/gtk/res/netsurf.xpm?
+
 FAKE_OPTS=	trueprefix
 
 BUILD_DEPENDS=	duk:lang/duktape \
