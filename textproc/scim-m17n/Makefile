@@ -24,9 +24,9 @@ PLIST_FILES=	lib/scim-1.0/1.4.0/IMEngine/m17n.a \
 		share/scim/icons/scim-m17n.png
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|$$(DESTDIR)$$(moduledir)|${STAGEDIR}${PREFIX}/lib/scim-1.0/1.4.0/IMEngine|g' \
+	@${REINPLACE_CMD} -e 's|$$(DESTDIR)$$(moduledir)|${FAKE_DESTDIR}${TRUE_PREFIX}/lib/scim-1.0/1.4.0/IMEngine|g' \
 		${WRKSRC}/src/Makefile.in
-	@${REINPLACE_CMD} -e 's|$$(DESTDIR)$$(icondir)|${STAGEDIR}${PREFIX}/share/scim/icons|g' \
+	@${REINPLACE_CMD} -e 's|$$(DESTDIR)$$(icondir)|${FAKE_DESTDIR}${TRUE_PREFIX}/share/scim/icons|g' \
 		${WRKSRC}/data/Makefile.in
 
 .include <bsd.port.mk>
