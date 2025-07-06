@@ -17,7 +17,7 @@ USES=		cpe linux:c7
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	gtk
 USE_LDCONFIG=	yes
-USE_LINUX=	at-spi2-atk atk cairo-gobject fontconfig freetype gdkpixbuf \
+USE_LINUX=	at-spi2-atk atk cairo-gobject fontconfig freetype gdkpixbuf2 \
 		libepoxy librsvg2 libxkbcommon pango wayland xorglibs
 USE_LINUX_RPM=	yes
 
