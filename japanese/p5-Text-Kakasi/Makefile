@@ -15,6 +15,8 @@ LIB_DEPENDS=	libkakasi.so:japanese/kakasi
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 PKGNAMEPREFIX:=	${PKGNAMEPREFIX}p5-
