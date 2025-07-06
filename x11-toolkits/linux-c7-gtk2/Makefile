@@ -10,16 +10,16 @@ WWW=		https://www.gtk.org/
 LICENSE=	lgpl
 
 USES=		cpe linux:c7
+CPE_VENDOR=	gnome
+CPE_PRODUCT=	gtk
 USE_LDCONFIG=	yes
-USE_LINUX=	atk gdkpixbuf pango xorglibs
+USE_LINUX=	atk gdkpixbuf2 pango xorglibs
 USE_LINUX_RPM=	yes
-CPE_VENDOR=   gnome
-CPE_PRODUCT=  gtk
 
 LIB_DISTNAMES=	${DISTNAME} \
 		${PORTNAME}-immodules-${DISTVERSIONFULL}
 
-CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
+CONFLICTS=	linux-c6-${PORTNAME}
 DESCR=		${.CURDIR}/../${PORTNAME}0/pkg-descr
 
 OPTIONS_DEFINE=	DOCS NLS
