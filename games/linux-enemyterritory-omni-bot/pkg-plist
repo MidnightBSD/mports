@@ -36,12 +36,12 @@ bin/etded-omni-bot
 %%DATADIR%%/omnibot_et.pk3
 %%DATADIR%%/omnibot_et.so
 %%DATADIR%%/qagame.mp.i386.so
-%%PORTDOCS%%%%DOCSDIR%%/credits.txt
-%%PORTDOCS%%%%DOCSDIR%%/docs/Omni-bot Wiki.pdf
-%%PORTDOCS%%%%DOCSDIR%%/install.de.txt
-%%PORTDOCS%%%%DOCSDIR%%/install.en.txt
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/docs
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%DOCSDIR%%/credits.txt
+%%DOCSDIR%%/docs/Omni-bot Wiki.pdf
+%%DOCSDIR%%/install.de.txt
+%%DOCSDIR%%/install.en.txt
+@dirrmtry %%DOCSDIR%%/docs
+@dirrmtry %%DOCSDIR%%
 @dirrm %%DATADIR%%/global_scripts/weapons
 @dirrm %%DATADIR%%/global_scripts
 @dirrm %%DATADIR%%/et/scripts/weapons
