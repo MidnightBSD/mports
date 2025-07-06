@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to handle OpenGL function pointer management (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/anholt/libepoxy
 
+LICENSE=	mit
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
