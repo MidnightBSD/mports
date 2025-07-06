@@ -5,6 +5,7 @@ CATEGORIES=	graphics linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface to kernel Direct Rendering Module (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://dri.freedesktop.org/
 
 LICENSE=	mit
 
