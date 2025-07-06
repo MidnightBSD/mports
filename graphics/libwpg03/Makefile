@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and tools to work with WordPerfect Graphics (WPG) files
 WWW=		https://libwpg.sourceforge.net/
 
-LICENSE=	lgpl2.1 mpl
+LICENSE=	lgpl2.1 MPL20
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/optional.hpp:devel/boost-libs
