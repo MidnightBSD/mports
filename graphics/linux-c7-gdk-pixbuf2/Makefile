@@ -1,21 +1,23 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	gdk-pixbuf2
 PORTVERSION=	2.36.12
 DISTVERSIONSUFFIX=	-3.el7
+PORTREVISION=	1
 CATEGORIES=	graphics linux
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Graphic library for GTK+ (Linux CentOS ${LINUX_DIST_VER})
+COMMENT=	Graphic library for GTK (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://developer.gnome.org/gdk-pixbuf/
 
 LICENSE=	lgpl
 
-USES=		linux:c7
+USES=		cpe linux:c7
+CPE_VENDOR=	gnome
+CPE_PRODUCT=	gdk-pixbuf
 USE_LDCONFIG=	yes
-USE_LINUX=	jasper jpeg png tiff xorglibs
+USE_LINUX=	imageformats-libs xorglibs
 USE_LINUX_RPM=	yes
 
-CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
+CONFLICTS=	linux-c6-${PORTNAME}
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
 OPTIONS_DEFINE=	DOCS NLS
