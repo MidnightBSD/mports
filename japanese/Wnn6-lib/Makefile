@@ -11,7 +11,7 @@ WWW=		https://www.omronsoft.co.jp/
 
 LICENSE=	Wnn6
 LICENSE_NAME=	Wnn6
-LICENSE_FILE=	${WRKSRC}/contrib/im/Xsi/README
+LICENSE_FILE=	${WRKDIR}/src/contrib/im/Xsi/README
 LICENSE_PERMS=	auto-accept
 
 OPTIONS_DEFINE=	DOCS
