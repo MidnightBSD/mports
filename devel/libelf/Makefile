@@ -14,6 +14,7 @@ USES=		desthack pathfix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=		--enable-shared --disable-compat
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 CONFLICTS_INSTALL=	elfutils
 
