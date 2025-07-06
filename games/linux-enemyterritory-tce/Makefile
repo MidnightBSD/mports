@@ -1,5 +1,3 @@
-
-
 PORTNAME=	enemyterritory-tce
 PORTVERSION=	0.49
 PORTREVISION=	2
@@ -11,18 +9,17 @@ DISTFILES=	tcetest049.zip
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modern tactical Enemy Territory modification
+WWW=		http://www.truecombat.com/intro.php
 
 LICENSE=	truecombat
 LICENSE_FILE=	${WRKSRC}/EULA_TrueCombat_Elite.txt
-LICENSE_PERMS=	
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 LICENSE_NAME=	True Combat Elite EULA
 
-BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS)
 
-USES=		zip
-USE_LINUX=	f10
-RESTRICTED=	Redistribution is limited, see license
+USES=		linux zip
 ETDIR=		${PREFIX}/lib/enemyterritory
 
 PORTDOCS=	*

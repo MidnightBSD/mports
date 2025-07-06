@@ -1,26 +1,23 @@
-
-
 PORTNAME=	shrub
 PORTVERSION=	1.2
 PORTREVISION=	2
 CATEGORIES=	games linux
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=   alepulver
+MASTER_SITES=	FREEBSD_LOCAL/alepulver
 PKGNAMEPREFIX=	linux-enemyterritory-
 DISTNAME=	1.2-test13-l
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shrub - An Enemy Territory Modification
+WWW=		http://www.planetwolfenstein.com/shrub/
 
 LICENSE=	other
 
-BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 RESTRICTED=	not redistributable
 
-USES=		zip
-USE_LINUX=	f10
+USES=		linux zip
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}

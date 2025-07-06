@@ -1,5 +1,3 @@
-
-
 PORTNAME=	jaymod
 PORTVERSION=	2.2.0
 PORTREVISION=	1
@@ -10,6 +8,7 @@ PKGNAMEPREFIX=	linux-enemyterritory-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jaymod - An Enemy Territory Modification
+WWW=		https://jaymod.clanfu.org/
 
 LICENSE=	other
 
@@ -26,7 +25,7 @@ DOCSDIR=	${PREFIX}/share/doc/enemyterritory-${PORTNAME}
 CLIENT_PK3=	${PORTNAME}-${PORTVERSION}.pk3
 PLIST_SUB=	CLIENT_PK3="${CLIENT_PK3}"
 
-OMNIBOT_RUN_DEPENDS=	et-omni-bot:${PORTSDIR}/games/linux-enemyterritory-omni-bot
+OMNIBOT_RUN_DEPENDS=	et-omni-bot:games/linux-enemyterritory-omni-bot
 
 .include <bsd.mport.options.mk>
 

@@ -16,7 +16,7 @@ WWW=		https://www.splashdamage.com/games/wolfenstein-enemy-territory/
 LICENSE=	id
 LICENSE_NAME=	id Software License
 LICENSE_FILE=	${WRKSRC}/Docs/EULA_Wolfenstein_Enemy_Territory.txt
-LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 USES=		linux zip:infozip
 USE_LINUX=	dri xorglibs
