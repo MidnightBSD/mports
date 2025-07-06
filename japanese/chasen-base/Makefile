@@ -33,7 +33,7 @@ post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/chasen/dic
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/manual* ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/manual* ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
