@@ -69,6 +69,8 @@ SUB_LIST=	GROUPS=${GROUPS} \
 USERS=		${PORTNAME}
 GROUPS=		${PORTNAME}
 
+NO_TEST=	yes
+
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}-syslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf.sample
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.yml ${STAGEDIR}${PREFIX}/etc/${PORTNAME}.yml.sample
