@@ -1,5 +1,6 @@
 PORTNAME=	cairo
 PORTVERSION=	1.17.4
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-7.el9
 CATEGORIES=	graphics linux
 
@@ -7,9 +8,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library Cairo (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.cairographics.org/
 
+LICENSE=	lgpl2.1
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
-USE_LINUX=	dri fontconfig pixman png xorglibs
+USE_LINUX=	dri fontconfig pixman xorglibs
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 
