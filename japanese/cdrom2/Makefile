@@ -10,6 +10,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to lookup CD-ROM dictionaries
 WWW=		https://www.nerimadors.or.jp/~jiro/cdrom2/
 
+LICENSE=	NONE
+
+FAKE_OPTS=	trueprefix
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 PLIST_FILES=	bin/cdgaiji bin/cdrom2 lib/cdrom2/kojien3.tbl \
