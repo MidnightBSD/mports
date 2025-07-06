@@ -11,6 +11,8 @@ WWW=		https://hp.vector.co.jp/authors/VA004474/etc/etc.html
 
 LICENSE=	other
 
+FAKE_OPTS=	trueprefix
+
 USES=		tar:tgz
 
 CONFLICTS_INSTALL=	p5-ack # /bin/ack
@@ -24,5 +26,8 @@ post-patch:
 	@${REINPLACE_CMD} -E 's,(BINARY|MANUAL)),DESTDIR)$$(&, ; \
 		s|^MANUAL.*|MANUAL=${PREFIX}/share/man/ja/man1|' \
 		${WRKSRC}/Makefile
+
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/ja/man1
 
 .include <bsd.port.mk>
