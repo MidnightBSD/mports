@@ -8,6 +8,7 @@ DISTFILES=	thunderbird-78.8.0.txz hunspell-1.7.0_2.txz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Thunderbird for FreeBSD
+WWW=		https://www.mozilla.com/thunderbird/
 
 LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual

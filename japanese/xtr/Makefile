@@ -14,6 +14,8 @@ LICENSE_NAME=	xtr
 LICENSE_TEXT=	Need to obtain permission for commercial redistribution
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
+NO_CDROM=	yes
+
 USES=		tar:tgz
 USE_CSTD=	c89
 USE_GCC=	yes
