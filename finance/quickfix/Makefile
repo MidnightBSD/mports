@@ -1,15 +1,14 @@
-# Created by: Mikhail T. <m.tsatsenko@gmail.com>
-
 PORTNAME=	quickfix
 PORTVERSION=	1.15.1
-PORTREVISION=	1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	2
 CATEGORIES=	finance devel
 
 MAINTAINER=	ports@MidnightbSD.org
 COMMENT=	Free FIX Protocol Implementation
+WWW=		https://www.quickfixengine.org/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 BROKEN_i386=	fails to build
 
@@ -26,19 +25,18 @@ HAS_CONFIGURE=	yes
 CONFIGURE_ENV=	CXX=${CXX} CC=${CC} LIBS=-L${LOCALBASE}/lib/
 CONFIGURE_ARGS+=	--without-python2
 
-OPTIONS_DEFINE=	MYSQL PGSQL PYTHON RUBY JAVA
-OPTIONS_DEFAULT=	MYSQL
+OPTIONS_DEFINE=	MYSQL PGSQL RUBY JAVA
+OPTIONS_DEFAULT=	PGSQL
 OPTIONS_SUB=	YES
 PGSQL_USES=	pgsql
 PGSQL_CONFIGURE_WITH=	postgresql
 MYSQL_USES=	mysql
 MYSQL_CONFIGURE_WITH=	mysql
-PYTHON_USES=	python:3.7
-PYTHON_CONFIGURE_WITH=	python3
-RUBY_USE=	ruby=yes
+MYSQL_VARS=	IGNORE_WITH_MYSQL="80 81"
+RUBY_USES=	ruby
 RUBY_CONFIGURE_WITH=	ruby
 RUBY_LIB_DEPENDS+=libunwind.so:devel/libunwind
-JAVA_USE=	java=yes
+JAVA_USES=	java
 JAVA_CONFIGURE_WITH=	java
 
 INSTALL_TARGET=install-strip
