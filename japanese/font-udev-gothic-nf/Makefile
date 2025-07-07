@@ -50,7 +50,7 @@ do-install:
 .  for STYLE in ${FONT_STYLE}
 	${INSTALL_DATA} ${WRKSRC}/${FAMILY}-${STYLE}.ttf \
 		${STAGEDIR}${FONTSDIR}
-	@${ECHO_CMD} ${FONTSDIR}/${FAMILY}-${STYLE}.ttf >> ${TMPPLIST}
+	@${ECHO_CMD} ${FONTSDIR:S,${PREFIX}/,,}/${FAMILY}-${STYLE}.ttf >> ${TMPPLIST}
 .  endfor
 .endfor
 
