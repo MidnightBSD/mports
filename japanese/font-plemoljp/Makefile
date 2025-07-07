@@ -48,7 +48,7 @@ do-install:
 		SemiBold SemiBoldItalic Text TextItalic Thin ThinItalic
 	${INSTALL_DATA} ${WRKSRC}/${FAMILY}/${FAMILY}-${STYLE}.ttf \
 		${STAGEDIR}${FONTSDIR}
-	@${ECHO_CMD} ${FONTSDIR}/${FAMILY}-${STYLE}.ttf >> ${TMPPLIST}
+	@${ECHO_CMD} ${FONTSDIR:S,${PREFIX}/,,}/${FAMILY}-${STYLE}.ttf >> ${TMPPLIST}
 .  endfor
 .endfor
 
