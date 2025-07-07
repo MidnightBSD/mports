@@ -1,10 +1,13 @@
 PORTNAME=	glib
-DISTVERSION=	2.80.5
+DISTVERSION=	2.82.4
 PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
+
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
+PATCHFILES=	3dcf1ea13d9b2a3371fa35b79e640063de33dc20.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful routines of C programming (current stable version)
@@ -16,22 +19,37 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libpcre2-8.so:devel/pcre2
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
+TEST_DEPENDS=	dbus-uuidgen:devel/dbus \
+		update-desktop-database:devel/desktop-file-utils \
+		update-mime-database:misc/shared-mime-info
+
+FLAVORS=	default bootstrap
+FLAVOR?=	${FLAVORS:[1]}
+FLAVORS_SUB=	yes
+
+SKIP_FAKE_CHECK=	libdata/ldconfig/glib-bootstrap
+
+default_EXTRACT_DEPENDS=	${LOCALBASE}/gobject-introspection-bootstrap/bin/g-ir-scanner:devel/gobject-introspection@bootstrap
+default_USES=		trigger
+
+bootstrap_PKGNAMESUFFIX=	-bootstrap
 
 # iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
 # (wchar_t is used by glibmm, rawtherapee triggered this)
 USES=		compiler:c11 cpe gettext gnome iconv:wchar_t localbase:ldflags \
-		meson perl5 pkgconfig python tar:xz trigger
-TRIGGERS=	gio-modules glib-schemas
+		meson perl5 pkgconfig python tar:xz ${${FLAVOR}_USES}
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_PYTHON=	py3kplist
+TRIGGERS=	gio-modules glib-schemas
 MESON_ARGS=	-Db_lundef=false \
 		-Ddefault_library=both \
 		-Dinstalled_tests=false \
-		-Dintrospection=disabled \
 		-Dlibmount=disabled \
 		-Druntime_dir=/var/run \
 		-Dselinux=disabled \
+		-Dsysprof=disabled \
+		-Dsystemtap=disabled \
 		-Dxattr=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 PORTSCOUT=	limitw:1,even
@@ -39,15 +57,15 @@ CPE_VENDOR=	gnome
 
 CONFLICTS_INSTALL=	p5-Giovanni
 
-_LIBVERSION=	0.8000.5
+_LIBVERSION=	0.${DISTVERSION:R:E}00.${DISTVERSION:E}
 PLIST_SUB=	LIBVERSION=${_LIBVERSION}
 
-OPTIONS_DEFINE=		DOCS FAM_ALTBACKEND MANPAGES NLS
+OPTIONS_DEFINE=		DOCS FAM_ALTBACKEND MANPAGES NLS TEST
 OPTIONS_DEFAULT=	MANPAGES
 OPTIONS_SUB=		yes
 
 DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR}
-DOCS_IMPLIES=		MANPAGES
+DOCS_IMPLIES=		MANPAGES TEST
 DOCS_MESON_TRUE=	documentation
 
 FAM_ALTBACKEND_DESC=	Alternate file monitor backend
@@ -55,13 +73,32 @@ FAM_ALTBACKEND_DESC=	Alternate file monitor backend
 MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
 MANPAGES_MESON_ENABLED=	man-pages
 
-# tests require circular dependency
-NO_TEST=	yes
-
-.include <bsd.port.pre.mk>
+TEST_MESON_TRUE=	tests
 
 # doesn't build yet
-MESON_ARGS+=	-Ddtrace=false
+MESON_ARGS+=	-Ddtrace=disabled
+
+.if ${FLAVOR:U} == bootstrap
+MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
+LDFLAGS+= -L/usr/local/glib-bootstrap/lib -L/usr/local/lib
+MESON_ARGS+=	-Dintrospection=disabled -Ddocumentation=false -Dman-pages=disabled
+OPTIONS_DEFINE=
+PREFIX=		${LOCALBASE}/glib-bootstrap
+PLIST_SUB+=	PORTDOCS='@comment ' NLS='@comment ' MANPAGES='@comment '
+.else
+MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
+BINARY_ALIAS+=	g-ir-scanner=${LOCALBASE}/gobject-introspection-bootstrap/bin/g-ir-scanner
+MESON_ARGS+=	-Dintrospection=enabled
+.endif
+
+.if ${FLAVOR:U} == default
+post-extract:
+	${CP} -r ${LOCALBASE}/gobject-introspection-bootstrap/libdata/pkgconfig ${PKGCONFIG_LINKDIR}
+	${CP} ${LOCALBASE}/glib-bootstrap/libdata/pkgconfig/* ${PKGCONFIG_LINKDIR}
+.endif
+
+pre-build:
+	${MKDIR} ${LOCALBASE}/glib-bootstrap
 
 pre-configure-FAM_ALTBACKEND-on:
 	@${REINPLACE_CMD} -e 's|kqueue-helper.c|kqueue_fnm.c|g ; \
@@ -88,6 +125,11 @@ post-patch:
 
 CODEGENDIR=	${PREFIX}/share/glib-2.0/codegen
 
+post-install-DOCS-on:
+# this doc file gets created conditionally, so instead of adding another
+# PLIST_SUB item just create an empty file if it is missing
+	${TOUCH} ${FAKE_DESTDIR}${DOCSDIR}-2.0/const.VA_COPY_AS_ARRAY.html
+
 post-install:
 	@${MKDIR} ${PREFIX}/share/GConf/gsettings
 	@${MKDIR} ${PREFIX}/lib/gio/modules
@@ -98,7 +140,7 @@ post-install:
 	(cd ${PREFIX} && \
 	python${PYTHON_VER} ${PYTHON_LIBDIR}/compileall.py \
 		-d ${CODEGENDIR} -f ${CODEGENDIR:S;${PREFIX}/;;} && \
-	python${PYTHON_VER} -O ${PYTHON_LIBDIR}/compileall.py \
+	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
 		-d ${CODEGENDIR} -f ${CODEGENDIR:S;${PREFIX}/;;})
 	# install bash completion regardless if bash is present
 	@${MKDIR} ${PREFIX}/share/bash-completion/completions
@@ -107,5 +149,13 @@ post-install:
 		${PREFIX}/share/bash-completion/completions/
 .endfor
 	-${RM} -r ${PREFIX}/libexec/installed-tests
+.if ${FLAVOR:U} == bootstrap
+	${MKDIR} ${PREFIX}/libdata/ldconfig
+	${LN} -sf ${FAKE_DESTDIR}${LOCALBASE}/libdata/ldconfig/glib-bootstrap ${PREFIX}/libdata/ldconfig/glib-bootstrap
+.endif
 
-.include <bsd.port.post.mk>
+
+pre-test:
+	${LOCALBASE}/bin/dbus-uuidgen > /var/lib/dbus/machine-id
+
+.include <bsd.port.mk>
