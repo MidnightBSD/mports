@@ -38,7 +38,6 @@ MESON_ARGS=	-Dkqueue=enabled \
 		-Druntime_dir=/var/run \
 		-Dsession_socket_dir=/tmp \
 		-Dtest_socket_dir=${WRKDIR} \
-		-Dlocalstatedir=/var \
 		-Db_lundef=false
 
 # for now we, added a hack for symbols -Db_lundef=false
