@@ -53,8 +53,8 @@ post-install:
 	    ${STAGEDIR}${FONTSDIR}/fonts.alias.${PKGNAMESUFFIX}
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC} && \
-	    ${INSTALL_DATA} README.${DISTNAME} ${STAGEDIR}${DOCSDIR}
+	    ${INSTALL_DATA} README.${DISTNAME} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
