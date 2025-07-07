@@ -1,5 +1,5 @@
 PORTNAME=	luit
-PORTVERSION=	20230201
+PORTVERSION=	20240102
 CATEGORIES=	x11
 MASTER_SITES=	https://invisible-island.net/archives/luit/ \
 		https://invisible-mirror.net/archives/luit/ \
