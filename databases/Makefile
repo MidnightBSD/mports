@@ -203,6 +203,7 @@ SUBDIR += rubygem-pg
 SUBDIR += rubygem-redis
 SUBDIR += rubygem-redis-client
 SUBDIR += rubygem-ruby-mysql
+SUBDIR += rubygem-sdbm
 SUBDIR += rubygem-sqlite3
 SUBDIR += rubygem-sqlite3-ruby
 SUBDIR += rubygem-sqlite31

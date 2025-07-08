@@ -1613,6 +1613,7 @@ SUBDIR += rubygem-json_pure
 SUBDIR += rubygem-launchy2
 SUBDIR += rubygem-logger
 SUBDIR += rubygem-mini_portile2
+SUBDIR += rubygem-minitest
 SUBDIR += rubygem-msgpack
 SUBDIR += rubygem-multi_json
 SUBDIR += rubygem-mustache
