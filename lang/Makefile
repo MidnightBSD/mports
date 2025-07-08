@@ -51,6 +51,7 @@ SUBDIR += guile
 SUBDIR += guile-aclocal
 SUBDIR += guile2
 SUBDIR += guile3
+SUBDIR += jruby
 SUBDIR += kf5-kross
 SUBDIR += kturtle
 SUBDIR += libobjc2

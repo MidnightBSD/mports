@@ -1593,6 +1593,7 @@ SUBDIR += rlog
 SUBDIR += rttr
 SUBDIR += ruby-gems
 SUBDIR += rubygem-activesupport4
+SUBDIR += rubygem-activesupport5
 SUBDIR += rubygem-ast
 SUBDIR += rubygem-builder
 SUBDIR += rubygem-cairo-gobject
