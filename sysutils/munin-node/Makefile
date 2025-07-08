@@ -50,10 +50,8 @@ JAVA_DESC=	Include JAVA plugins
 PYTHON_DESC=	Include Python plugins
 
 PYTHON_USES=	python
-JAVA_USE=	java=yes
+JAVA_USES=		java
 JAVA_INSTALL_TARGET=	install-plugins-java
-JAVA_BUILD=	yes
-JAVA_RUN=	yes
 
 SUB_FILES=	pkg-message plugins.conf
 USE_RC_SUBR=	munin-asyncd munin-node
