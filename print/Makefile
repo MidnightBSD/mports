@@ -1,5 +1,8 @@
 COMMENT = Desktop publishing
 
+SUBDIR += R-cran-knitr
+SUBDIR += R-cran-textshaping
+SUBDIR += R-cran-tinytex
 SUBDIR += a2ps
 SUBDIR += adobe-cmaps
 SUBDIR += cups

@@ -1,5 +1,7 @@
 COMMENT = Miscellaneous utilities
 
+SUBDIR += R-cran-mime
+SUBDIR += R-cran-xfun
 SUBDIR += artikulate
 SUBDIR += chef
 SUBDIR += chmlib

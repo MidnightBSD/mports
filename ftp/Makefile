@@ -1,5 +1,7 @@
 COMMENT = File Transfer Protocol 
 
+SUBDIR += R-cran-RCurl
+SUBDIR += R-cran-curl
 SUBDIR += axel
 SUBDIR += curl
 SUBDIR += curl812

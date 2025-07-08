@@ -1,5 +1,6 @@
 COMMENT = Character code converters
 
+SUBDIR += R-cran-jsonlite
 SUBDIR += bsdconv
 SUBDIR += dos2unix
 SUBDIR += enca

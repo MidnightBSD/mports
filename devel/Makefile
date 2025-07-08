@@ -1,7 +1,24 @@
 COMMENT = Development utilities
 
 SUBDIR += 9base
+SUBDIR += R-cran-bitops
+SUBDIR += R-cran-callr
+SUBDIR += R-cran-cli
+SUBDIR += R-cran-covr
+SUBDIR += R-cran-memoise
+SUBDIR += R-cran-mockery
 SUBDIR += R-cran-rlang
+SUBDIR += R-cran-rprojroot
+SUBDIR += R-cran-rstudioapi
+SUBDIR += R-cran-sys
+SUBDIR += R-cran-testit
+SUBDIR += R-cran-testthat
+SUBDIR += R-cran-urlchecker
+SUBDIR += R-cran-uuid
+SUBDIR += R-cran-waldo
+SUBDIR += R-cran-whoami
+SUBDIR += R-cran-withr
+SUBDIR += R-cran-zeallot
 SUBDIR += aarch64-none-elf-gcc
 SUBDIR += abseil
 SUBDIR += acsccid

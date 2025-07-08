@@ -1,5 +1,8 @@
 COMMENT = Ports related to the World Wide Web
 
+SUBDIR += R-cran-httpuv
+SUBDIR += R-cran-jose
+SUBDIR += R-cran-webutils
 SUBDIR += analog
 SUBDIR += apache24
 SUBDIR += aria2

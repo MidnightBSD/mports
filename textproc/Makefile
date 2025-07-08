@@ -1,5 +1,13 @@
 COMMENT = Text processing utilities (does not include desktop publishing)
 
+SUBDIR += R-cran-commonmark
+SUBDIR += R-cran-hunspell
+SUBDIR += R-cran-rmarkdown
+SUBDIR += R-cran-spelling
+SUBDIR += R-cran-stringi
+SUBDIR += R-cran-stringr
+SUBDIR += R-cran-xml2
+SUBDIR += R-cran-yaml
 SUBDIR += UCD
 SUBDIR += agrep
 SUBDIR += apache-solr

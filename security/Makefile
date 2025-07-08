@@ -1,5 +1,8 @@
 COMMENT = Security tools
 
+SUBDIR += R-cran-askpass
+SUBDIR += R-cran-digest
+SUBDIR += R-cran-openssl
 SUBDIR += aide
 SUBDIR += apg
 SUBDIR += autossh
