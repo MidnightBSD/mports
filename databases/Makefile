@@ -205,6 +205,7 @@ SUBDIR += rubygem-activerecord5
 SUBDIR += rubygem-activerecord-import
 SUBDIR += rubygem-arel6
 SUBDIR += rubygem-arel8
+SUBDIR += rubygem-couchrest
 SUBDIR += rubygem-jdbc-mysql
 SUBDIR += rubygem-memcache
 SUBDIR += rubygem-mysql
