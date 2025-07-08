@@ -1,6 +1,7 @@
 COMMENT = Development utilities
 
 SUBDIR += 9base
+SUBDIR += R-cran-rlang
 SUBDIR += aarch64-none-elf-gcc
 SUBDIR += abseil
 SUBDIR += acsccid
