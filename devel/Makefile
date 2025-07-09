@@ -1357,6 +1357,7 @@ SUBDIR += py-pyTooling
 SUBDIR += py-py-partiql-parser
 SUBDIR += py-pybind11
 SUBDIR += py-pydantic
+SUBDIR += py-pyelftools
 SUBDIR += py-pygdbmi
 SUBDIR += py-pyicu
 SUBDIR += py-pyinotify
