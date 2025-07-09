@@ -1,5 +1,3 @@
-
-
 PORTNAME=	omni-bot
 PORTVERSION=	0.66
 PORTREVISION=	1
@@ -10,13 +8,14 @@ PKGNAMEPREFIX=	linux-enemyterritory-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Omni-Bot is a bot for Enemy Territory
+WWW=		https://github.com/jswigart/omni-bot/
 
-LICENSE=	other
+LICENSE=	Omnibot
+LICENSE_TEXT=	You can distribute binaries or make release packages for any OS. If you modify the source code, then you must make a pull request to this repository.
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
-
-RESTRICTED=	mods are not redistributable
 
 USES=		linux zip
 NO_WRKSUBDIR=	yes
