@@ -1,7 +1,14 @@
 COMMENT = Ports related to the World Wide Web
 
+SUBDIR += R-cran-bslib
 SUBDIR += R-cran-httpuv
 SUBDIR += R-cran-jose
+SUBDIR += R-cran-jquerylib
+SUBDIR += R-cran-selectr
+SUBDIR += R-cran-servr
+SUBDIR += R-cran-shiny
+SUBDIR += R-cran-shinyjs
+SUBDIR += R-cran-webshot
 SUBDIR += R-cran-webutils
 SUBDIR += analog
 SUBDIR += apache24
