@@ -11,6 +11,7 @@ COMMENT=	Omni-Bot is a bot for Enemy Territory
 WWW=		https://github.com/jswigart/omni-bot/
 
 LICENSE=	Omnibot
+LICENSE_NAME=	Omnibot
 LICENSE_TEXT=	You can distribute binaries or make release packages for any OS. If you modify the source code, then you must make a pull request to this repository.
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
