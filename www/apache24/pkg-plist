@@ -230,7 +230,7 @@ share/man/man8/fcgistarter.8.gz
 share/man/man8/htcacheclean.8.gz
 share/man/man8/httpd.8.gz
 share/man/man8/rotatelogs.8.gz
-%%SUEXEC%%man/man8/suexec.8.gz
+%%SUEXEC%%share/man/man8/suexec.8.gz
 sbin/apachectl
 sbin/apxs
 %%LOG_FORENSIC%%sbin/check_forensic
