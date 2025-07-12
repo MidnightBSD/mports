@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build and install Perl modules
 WWW=		https://metacpan.org/release/Module-Build
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
@@ -17,6 +17,7 @@ USES=		perl5
 USE_PERL5=	modbuild
 
 NO_TEST=	yes
+PORTSCOUT=	skipv:0.31011,0.31012
 
 post-patch:
 	@${RM} ${WRKSRC}/bin/config_data
