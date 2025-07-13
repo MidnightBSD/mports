@@ -1,5 +1,6 @@
 PORTNAME=	grc
 PORTVERSION=	1.13
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	misc
 
@@ -39,6 +40,9 @@ do-install:
 	(cd ${WRKSRC} && ${INSTALL_MAN} ${i}.1 ${STAGEDIR}${PREFIX}/share/man/man1)
 .endfor
 	(cd ${WRKSRC} && ${INSTALL_DATA} grc.conf ${STAGEDIR}${PREFIX}/etc)
+.for s in grc.zsh grc.sh grc.fish
+	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ${s} ${PREFIX}/etc/)
+.endfor
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} colourfiles/conf.* ${STAGEDIR}${DATADIR})
 

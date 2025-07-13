@@ -1,6 +1,9 @@
 bin/grc
 bin/grcat
 etc/grc.conf
+etc/grc.fish
+etc/grc.sh
+etc/grc.zsh
 share/man/man1/grc.1.gz
 share/man/man1/grcat.1.gz
 %%DATADIR%%/conf.ant
@@ -59,6 +62,7 @@ share/man/man1/grcat.1.gz
 %%DATADIR%%/conf.lsof
 %%DATADIR%%/conf.lspci
 %%DATADIR%%/conf.mount
+%%DATADIR%%/conf.mport
 %%DATADIR%%/conf.mtr
 %%DATADIR%%/conf.mvn
 %%DATADIR%%/conf.netstat
