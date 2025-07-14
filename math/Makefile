@@ -3,6 +3,7 @@ COMMENT = Mathematics
 SUBDIR += Imath
 SUBDIR += R
 SUBDIR += R-cran-assertthat
+SUBDIR += R-cran-backports
 SUBDIR += R-cran-date
 SUBDIR += R-cran-dplyr
 SUBDIR += R-cran-haven
