@@ -1,5 +1,14 @@
 COMMENT = Databases
 
+SUBDIR += R-cran-DBI
+SUBDIR += R-cran-RMySQL
+SUBDIR += R-cran-RPostgreSQL
+SUBDIR += R-cran-RSQLite
+SUBDIR += R-cran-cachem
+SUBDIR += R-cran-dbplyr
+SUBDIR += R-cran-dtplyr
+SUBDIR += R-cran-fastmap
+SUBDIR += R-cran-sqldf
 SUBDIR += adodb5
 SUBDIR += akonadi
 SUBDIR += c3p0
