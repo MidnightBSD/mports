@@ -2,6 +2,7 @@ COMMENT = Mathematics
 
 SUBDIR += Imath
 SUBDIR += R
+SUBDIR += R-cran-mathjaxr
 SUBDIR += adol-c
 SUBDIR += analitza
 SUBDIR += asl
