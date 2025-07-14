@@ -2,7 +2,11 @@ COMMENT = Mathematics
 
 SUBDIR += Imath
 SUBDIR += R
+SUBDIR += R-cran-assertthat
+SUBDIR += R-cran-dplyr
+SUBDIR += R-cran-haven
 SUBDIR += R-cran-mathjaxr
+SUBDIR += R-cran-sets
 SUBDIR += adol-c
 SUBDIR += analitza
 SUBDIR += asl

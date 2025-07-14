@@ -23,6 +23,7 @@ SUBDIR += R-cran-mockery
 SUBDIR += R-cran-pillar
 SUBDIR += R-cran-pkgconfig
 SUBDIR += R-cran-pkgload
+SUBDIR += R-cran-praise
 SUBDIR += R-cran-rematch2
 SUBDIR += R-cran-rlang
 SUBDIR += R-cran-rprojroot

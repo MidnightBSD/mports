@@ -1,11 +1,26 @@
 COMMENT = Text processing utilities (does not include desktop publishing)
 
+SUBDIR += R-cran-DT
+SUBDIR += R-cran-XML
+SUBDIR += R-cran-bibtex
+SUBDIR += R-cran-brew
 SUBDIR += R-cran-commonmark
+SUBDIR += R-cran-downlit
+SUBDIR += R-cran-formatR
+SUBDIR += R-cran-highr
+SUBDIR += R-cran-htmltools
 SUBDIR += R-cran-hunspell
+SUBDIR += R-cran-litedown
+SUBDIR += R-cran-markdown
+SUBDIR += R-cran-readr
+SUBDIR += R-cran-rex
+SUBDIR += R-cran-rio
 SUBDIR += R-cran-rmarkdown
+SUBDIR += R-cran-sass
 SUBDIR += R-cran-spelling
 SUBDIR += R-cran-stringi
 SUBDIR += R-cran-stringr
+SUBDIR += R-cran-utf8
 SUBDIR += R-cran-xml2
 SUBDIR += R-cran-yaml
 SUBDIR += UCD
