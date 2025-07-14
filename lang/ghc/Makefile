@@ -13,6 +13,11 @@ WWW=		https://www.haskell.org/ghc/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_MidnightBSD_3.2=	Requires 4.0 or higher
+BROKEN_MidnightBSD_3.2.1=	Requires 4.0 or higher
+BROKEN_MidnightBSD_3.2.2=	Requires 4.0 or higher
+BROKEN_MidnightBSD_3.2.3=	Requires 4.0 or higher
+
 ONLY_FOR_ARCHS=		aarch64 amd64 i386
 
 BUILD_DEPENDS=		${LOCALBASE}/lib/libgmp.so:math/gmp
