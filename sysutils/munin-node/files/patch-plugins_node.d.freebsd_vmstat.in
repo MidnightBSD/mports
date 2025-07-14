@@ -1,0 +1,36 @@
+--- plugins/node.d.freebsd/vmstat.in.orig	2025-07-12 12:34:41.403003000 -0400
++++ plugins/node.d.freebsd/vmstat.in	2025-07-12 12:35:33.344419000 -0400
+@@ -21,15 +21,9 @@
+ OSV=`/sbin/sysctl -n kern.osrelease | cut -f1 -d.`
+ 
+ if [ "$1" = "autoconf" ]; then
+-	if [ "$OSV" -ge "5" ]; then
+-		/sbin/sysctl -n vm.vmtotal 2>/dev/null >/dev/null
+-		RESULT=$?
+-		NAME=/sbin/sysctl
+-	else
+-		/usr/bin/vmstat 1 1 2>/dev/null >/dev/null
+-		RESULT=$?
+-		NAME=/usr/bin/vmstat
+-	fi
++	/sbin/sysctl -n vm.vmtotal 2>/dev/null >/dev/null
++	RESULT=$?
++	NAME=/sbin/sysctl
+ 	if [ $RESULT -eq 0 ]; then
+ 		echo yes
+ 		exit 0
+@@ -72,7 +66,6 @@
+ 	exit 0
+ fi
+ 
+-if [ "$OSV" -ge "5" ]; then
+ 	/sbin/sysctl -n vm.vmtotal | /usr/bin/awk '
+ /^Processes:/ {
+ 	print "running.value", $3;
+@@ -80,6 +73,3 @@
+ 	print "pagewait.value", $9;
+ 	print "sleep.value", $11+0;
+ }'
+-else
+-	/usr/bin/vmstat 1 2 | /usr/bin/awk 'END { print "wait.value " $1 "\nsleep.value " $2 }'
+-fi

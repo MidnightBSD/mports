@@ -1,6 +1,6 @@
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils perl5
 PKGNAMESUFFIX=	-node
 
@@ -9,7 +9,7 @@ COMMENT=	Node-specific part of Munin
 WWW=		https://munin-monitoring.org/
 
 LICENSE=	gpl2
-LICENSE_FILE= ${WRKSRC}/COPYING
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	bash:shells/bash \
 		p5-Module-Build>=0:devel/p5-Module-Build \
@@ -28,9 +28,10 @@ RUN_DEPENDS=	p5-Cache-Cache>=0:devel/p5-Cache-Cache \
 		bash:shells/bash
 
 EXTRA_PATCHES+=	${MUNIN_PATCHES}
-USES=		gmake perl5 cpe shebangfix
+USES=		cpe gmake perl5 shebangfix
 PKGMESSAGE=	${WRKDIR}/pkg-message
 REINPLACE_ARGS=	-i ""
+USE_RC_SUBR=	munin-asyncd munin-node
 SHEBANG_FILES=	node/bin/munindoc node/sbin/munin-node \
 		node/sbin/munin-node-configure node/sbin/munin-run
 
@@ -79,6 +80,9 @@ post-patch:
 		${WRKSRC}/node/sbin/munin-node \
 		${WRKSRC}/node/sbin/munin-node-configure \
 		${WRKSRC}/node/sbin/munin-run
+	@${RM}  ${WRKSRC}/node/sbin/munin-node.bak \
+		${WRKSRC}/node/sbin/munin-node-configure.bak \
+		${WRKSRC}/node/sbin/munin-run.bak
 	@${REINPLACE_CMD} \
 		-e 's|^\(BASH[[:space:]]*:=\).*|\1 ${bash_CMD}|' \
 		-e 's|^\(JAVARUN[[:space:]]*:=\).*|\1 ${java_CMD}|' \

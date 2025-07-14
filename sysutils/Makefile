@@ -3,6 +3,7 @@ COMMENT = System utilities
 SUBDIR += 915resolution
 SUBDIR += LPRng
 SUBDIR += R-cran-processx
+SUBDIR += R-cran-ps
 SUBDIR += accounts-qml-module
 SUBDIR += accountsservice
 SUBDIR += alloy

@@ -1,6 +1,7 @@
 COMMENT = Networking tools
 
 SUBDIR += 44bsd-rdist
+SUBDIR += R-cran-pingr
 SUBDIR += activemq
 SUBDIR += akonadi-calendar
 SUBDIR += akonadi-contacts
