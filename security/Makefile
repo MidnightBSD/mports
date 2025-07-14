@@ -1,8 +1,12 @@
 COMMENT = Security tools
 
+SUBDIR += R-cran-ROAuth
 SUBDIR += R-cran-askpass
+SUBDIR += R-cran-credentials
 SUBDIR += R-cran-digest
+SUBDIR += R-cran-gitcreds
 SUBDIR += R-cran-openssl
+SUBDIR += R-cran-sodium
 SUBDIR += aide
 SUBDIR += apg
 SUBDIR += autossh
@@ -14,6 +18,7 @@ SUBDIR += aws-vault
 SUBDIR += barnyard2
 SUBDIR += blocklist-de-all
 SUBDIR += botan2
+SUBDIR += botan3
 SUBDIR += ca_root_nss
 SUBDIR += calife
 SUBDIR += cargo-audit
