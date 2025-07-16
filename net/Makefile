@@ -273,6 +273,7 @@ SUBDIR += smbldap-tools
 SUBDIR += speedtest-go
 SUBDIR += tigervnc-server
 SUBDIR += tigervnc-viewer
+SUBDIR += tintin++
 SUBDIR += tiny-network-utilities
 SUBDIR += tshark
 SUBDIR += tsocks
