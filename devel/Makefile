@@ -38,6 +38,7 @@ SUBDIR += R-cran-promises
 SUBDIR += R-cran-proto
 SUBDIR += R-cran-purrr
 SUBDIR += R-cran-rematch2
+SUBDIR += R-cran-reshape
 SUBDIR += R-cran-rlang
 SUBDIR += R-cran-rprojroot
 SUBDIR += R-cran-rstudioapi
