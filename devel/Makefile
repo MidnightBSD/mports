@@ -40,6 +40,7 @@ SUBDIR += R-cran-praise
 SUBDIR += R-cran-promises
 SUBDIR += R-cran-proto
 SUBDIR += R-cran-purrr
+SUBDIR += R-cran-registry
 SUBDIR += R-cran-rematch2
 SUBDIR += R-cran-reshape
 SUBDIR += R-cran-rlang
