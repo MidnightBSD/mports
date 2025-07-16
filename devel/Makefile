@@ -7,6 +7,7 @@ SUBDIR += R-cran-S7
 SUBDIR += R-cran-bit
 SUBDIR += R-cran-bit64
 SUBDIR += R-cran-bitops
+SUBDIR += R-cran-blob
 SUBDIR += R-cran-brio
 SUBDIR += R-cran-callr
 SUBDIR += R-cran-cli
