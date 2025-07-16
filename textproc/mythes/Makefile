@@ -1,11 +1,13 @@
 PORTNAME=	mythes
 PORTVERSION=	1.2.4
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/hunspell/MyThes/${PORTVERSION}/
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple thesaurus library
+WWW=		https://hunspell.github.io/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING

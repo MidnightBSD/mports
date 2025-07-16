@@ -18,6 +18,7 @@ SUBDIR += filesystems
 SUBDIR += finance
 SUBDIR += ftp
 SUBDIR += games
+SUBDIR += german
 SUBDIR += graphics
 SUBDIR += irc
 SUBDIR += japanese

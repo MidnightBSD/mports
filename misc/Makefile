@@ -70,7 +70,6 @@ SUBDIR += p5-Software-License-CCpack
 SUBDIR += parley
 SUBDIR += patchutils
 SUBDIR += pciids
-SUBDIR += phone-de
 SUBDIR += php81-calendar
 SUBDIR += php82-calendar
 SUBDIR += php83-calendar
