@@ -34,6 +34,7 @@ SUBDIR += R-cran-pillar
 SUBDIR += R-cran-pkgconfig
 SUBDIR += R-cran-pkgload
 SUBDIR += R-cran-plogr
+SUBDIR += R-cran-plyr
 SUBDIR += R-cran-praise
 SUBDIR += R-cran-promises
 SUBDIR += R-cran-proto
