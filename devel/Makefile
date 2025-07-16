@@ -4,6 +4,7 @@ SUBDIR += 9base
 SUBDIR += R-cran-R6
 SUBDIR += R-cran-Rcpp
 SUBDIR += R-cran-S7
+SUBDIR += R-cran-abind
 SUBDIR += R-cran-bit
 SUBDIR += R-cran-bit64
 SUBDIR += R-cran-bitops
