@@ -60,8 +60,6 @@
     SUBDIR += libime
     SUBDIR += libime-jyutping
     SUBDIR += libpinyin
-    SUBDIR += libreoffice-zh_CN
-    SUBDIR += libreoffice-zh_TW
     SUBDIR += librime
     SUBDIR += libtabe
     SUBDIR += linux-wps-office-zh_CN
