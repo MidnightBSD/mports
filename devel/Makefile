@@ -15,6 +15,7 @@ SUBDIR += R-cran-cli
 SUBDIR += R-cran-covr
 SUBDIR += R-cran-cpp11
 SUBDIR += R-cran-crayon
+SUBDIR += R-cran-data.table
 SUBDIR += R-cran-desc
 SUBDIR += R-cran-diffobj
 SUBDIR += R-cran-evaluate
