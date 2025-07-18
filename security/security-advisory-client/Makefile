@@ -1,5 +1,5 @@
 PORTNAME=	security-advisory-client
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.7
 CATEGORIES=	security
 
 MAINTAINER=	luke@midnightbsd.org
@@ -14,15 +14,13 @@ RUN_DEPENDS+=	p5-LWP-Protocol-https>=0:www/p5-LWP-Protocol-https \
 		p5-Try-Tiny>=0:lang/p5-Try-Tiny \
 		p5-URI-Encode>=0:www/p5-URI-Encode
 
-WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
+#WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_GITHUB=     yes
 GH_PROJECT=     security-advisory-client
 GH_ACCOUNT=     midnightbsd
 GH_TAGNAME=     ${PORTVERSION}
 
 NO_BUILD=	yes
-
-PORTDOCS=	*
 
 do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
