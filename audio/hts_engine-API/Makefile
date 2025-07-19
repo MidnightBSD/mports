@@ -11,7 +11,8 @@ WWW=		https://hts-engine.sourceforge.net/
 
 LICENSE=	bsd3
 
-HAS_CONFIGURE=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
