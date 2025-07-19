@@ -10,7 +10,7 @@ COMMENT=	Utility classes and extension that are required by Rails MVC Framework
 WWW=		https://rubyonrails.org/ \
 		https://github.com/rails/rails/tree/main/activesupport
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-concurrent-ruby>=1.0.2<2:devel/rubygem-concurrent-ruby \
