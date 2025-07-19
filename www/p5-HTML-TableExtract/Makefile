@@ -17,6 +17,7 @@ RUN_DEPENDS=	p5-HTML-Element-Extended>=1.17:www/p5-HTML-Element-Extended \
 		p5-HTML-Parser>=0:www/p5-HTML-Parser
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
