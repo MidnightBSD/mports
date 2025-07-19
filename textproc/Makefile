@@ -1,6 +1,7 @@
 COMMENT = Text processing utilities (does not include desktop publishing)
 
 SUBDIR += R-cran-DT
+SUBDIR += R-cran-R.rsp
 SUBDIR += R-cran-XML
 SUBDIR += R-cran-bibtex
 SUBDIR += R-cran-brew
