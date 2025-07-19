@@ -25,6 +25,7 @@ SUBDIR += R-cran-evaluate
 SUBDIR += R-cran-fansi
 SUBDIR += R-cran-foreach
 SUBDIR += R-cran-future
+SUBDIR += R-cran-generics
 SUBDIR += R-cran-globals
 SUBDIR += R-cran-glue
 SUBDIR += R-cran-iterators
