@@ -64,7 +64,7 @@ case "$weekly_certbot_enable" in
 
 	anticongestion
 
-	eval %%LOCALBASE%%/bin/certbot-%%PYTHON_VER%% renew "$PRE_HOOK" "$POST_HOOK" \
+	eval /usr/bin/env CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1 %%LOCALBASE%%/bin/certbot-%%PYTHON_VER%% renew "$PRE_HOOK" "$POST_HOOK" \
 		"$DEPLOY_HOOK" "$weekly_certbot_custom_args" --no-random-sleep-on-renew
 	if [ $? -gt 0 ]
 	then
