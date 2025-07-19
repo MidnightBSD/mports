@@ -1,6 +1,7 @@
 COMMENT = peer-to-peer network applications
 
 SUBDIR += ctorrent
+SUBDIR += libktorrent
 SUBDIR += libtorrent
 SUBDIR += libutp
 SUBDIR += rtorrent
