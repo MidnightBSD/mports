@@ -11,6 +11,7 @@ SUBDIR += R-cran-bitops
 SUBDIR += R-cran-blob
 SUBDIR += R-cran-brio
 SUBDIR += R-cran-callr
+SUBDIR += R-cran-chron
 SUBDIR += R-cran-cli
 SUBDIR += R-cran-covr
 SUBDIR += R-cran-cpp11
