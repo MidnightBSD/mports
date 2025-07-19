@@ -462,6 +462,7 @@ SUBDIR += libvirt-glib
 SUBDIR += libvolume_id
 SUBDIR += libvterm
 SUBDIR += libxsd
+SUBDIR += libxsd-frontend
 SUBDIR += libzookeeper
 SUBDIR += libzvbi
 SUBDIR += linux-c7-dbus-glib
