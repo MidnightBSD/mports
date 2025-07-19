@@ -1,6 +1,7 @@
 COMMENT = Ports related to the World Wide Web
 
 SUBDIR += R-cran-bslib
+SUBDIR += R-cran-gh
 SUBDIR += R-cran-htmlwidgets
 SUBDIR += R-cran-httpuv
 SUBDIR += R-cran-httr
