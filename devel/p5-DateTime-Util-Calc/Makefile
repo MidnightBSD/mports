@@ -16,6 +16,7 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-DateTime>=0:devel/p5-DateTime
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
