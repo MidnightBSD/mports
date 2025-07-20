@@ -1,6 +1,7 @@
 COMMENT = Character code converters
 
 SUBDIR += R-cran-arabic2kansuji
+SUBDIR += R-cran-base64enc
 SUBDIR += R-cran-jsonlite
 SUBDIR += bsdconv
 SUBDIR += dos2unix
