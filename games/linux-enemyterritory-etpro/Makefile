@@ -1,5 +1,3 @@
-
-
 PORTNAME=	etpro
 PORTVERSION=	3.2.6
 CATEGORIES=	games linux
