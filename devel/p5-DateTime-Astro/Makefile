@@ -26,6 +26,6 @@ USES=		localbase perl5
 USE_PERL5=	modbuild
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DateTime/Astro/Astro.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/auto/DateTime/Astro/Astro.so
 
 .include <bsd.port.mk>
