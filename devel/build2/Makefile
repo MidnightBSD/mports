@@ -55,13 +55,13 @@ do-install:
 		config.cxx.loptions="${LDFLAGS} -s" \
 		config.bin.lib=shared \
 		config.import.libsqlite3= \
-		config.bin.rpath=${PREFIX}/lib \
+		config.bin.rpath=${TRUE_PREFIX}/lib \
 		config.install.chroot=${FAKE_DESTDIR} \
 		config.install.root=${TRUE_PREFIX}
-	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} \
+	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${FAKE_MAKEENV} \
 		./build2/build2/b-boot install: build2/ bpkg/ bdep/ \
 		-V -j ${MAKE_JOBS_NUMBER} -J ${MAKE_JOBS_NUMBER}
-	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} \
+	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${FAKE_MAKEENV} \
 		./build2/build2/b-boot install: '!config.install.scope=project' libbuild2-*/ \
 		-V -j ${MAKE_JOBS_NUMBER} -J ${MAKE_JOBS_NUMBER}
 
