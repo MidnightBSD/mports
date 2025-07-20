@@ -1,5 +1,6 @@
 COMMENT = Miscellaneous utilities
 
+SUBDIR += R-cran-gapminder
 SUBDIR += R-cran-mime
 SUBDIR += R-cran-xfun
 SUBDIR += artikulate
