@@ -55,6 +55,7 @@ SUBDIR += R-cran-rlang
 SUBDIR += R-cran-rprojroot
 SUBDIR += R-cran-rstudioapi
 SUBDIR += R-cran-sys
+SUBDIR += R-cran-systemfonts
 SUBDIR += R-cran-testit
 SUBDIR += R-cran-testthat
 SUBDIR += R-cran-tibble
