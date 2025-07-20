@@ -1658,6 +1658,7 @@ SUBDIR += re2c
 SUBDIR += readline
 SUBDIR += rebar
 SUBDIR += rebar3
+SUBDIR += rinutils
 SUBDIR += riscv64-none-elf-gcc
 SUBDIR += rlog
 SUBDIR += rttr

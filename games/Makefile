@@ -22,6 +22,7 @@ SUBDIR += five-or-more
 SUBDIR += fortunate
 SUBDIR += fotaq
 SUBDIR += four-in-a-row
+SUBDIR += freecell-solver
 SUBDIR += freeciv
 SUBDIR += freeciv-nox11
 SUBDIR += ggz-client-libs
