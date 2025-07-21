@@ -10,10 +10,10 @@ PORTREVISION?=	0
 MASTER_SITES=	SF/eric-ide/${PORTNAME}/stable/${PORTVERSION}
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	fluffy@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full featured Python and Ruby editor and IDE based on Qt
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 DESCR=		${.CURDIR}/../../devel/eric6/pkg-descr
 MAKE_ENV+=	"HOME=${WRKDIR}"
