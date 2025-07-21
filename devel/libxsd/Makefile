@@ -33,9 +33,9 @@ do-build:
 		config.cxx.coptions="${CXXFLAGS}" \
 		config.cxx.loptions="${LDFLAGS} ${STRIP}" \
 		config.bin.lib=shared \
-		config.bin.rpath=${PREFIX}/lib \
-		config.install.chroot=${STAGEDIR} \
-		config.install.root=${PREFIX}
+		config.bin.rpath=${TRUE_PREFIX}/lib \
+		config.install.chroot=${FAKE_DESTDIR} \
+		config.install.root=${TRUE_PREFIX}
 
 do-install:
 	@cd ${WRKSRC} && ${SETENV} ${FAKE_MAKEENV} ${B_CMD} install ${B_ARGS}
