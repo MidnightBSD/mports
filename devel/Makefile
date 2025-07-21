@@ -4,6 +4,7 @@ SUBDIR += 9base
 SUBDIR += R-cran-R6
 SUBDIR += R-cran-R.utils
 SUBDIR += R-cran-Rcpp
+SUBDIR += R-cran-RUnit
 SUBDIR += R-cran-S7
 SUBDIR += R-cran-abind
 SUBDIR += R-cran-bit
