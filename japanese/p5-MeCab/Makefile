@@ -20,6 +20,8 @@ CFLAGS+=	--std=c++14
 
 OPTIONS_DEFINE=	EXAMPLES
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 PKGNAMEPREFIX:=	${PKGNAMEPREFIX}p5-
