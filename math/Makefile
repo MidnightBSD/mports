@@ -57,6 +57,7 @@ SUBDIR += lapacke
 SUBDIR += ldouble
 SUBDIR += lib2geom
 SUBDIR += libqalculate
+SUBDIR += matio
 SUBDIR += metis
 SUBDIR += mpc
 SUBDIR += mpdecimal
