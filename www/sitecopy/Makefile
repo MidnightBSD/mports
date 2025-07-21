@@ -47,7 +47,7 @@ CONFIGURE_ARGS+=	--with-ssl
 post-patch:
 	@${REINPLACE_CMD} -e 's|;;|;|g' \
 		${WRKSRC}/src/sitestore.c
-	@${REINPLACE_CMD} -e 's|25 26 27 28|& 29 30 31 32|g' \
+	@${REINPLACE_CMD} -e 's|25 26 27 28|& 29 30 31 32 34|g' \
 		${WRKSRC}/configure
 .if ${OSVERSION} >= 300000
 	@${REINPLACE_CMD} -e '/#define ksize_t /d' \
