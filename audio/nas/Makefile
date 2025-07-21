@@ -7,6 +7,7 @@ EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Audio System
+WWW=		https://radscan.com/nas.html
 
 LICENSE=	mit
 
