@@ -8,6 +8,7 @@ MASTER_SITES=	http://oldhome.schmorp.de/marc/data/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for managing x11 cut-buffers
+WWW=		http://oldhome.schmorp.de/marc/xcb.html
 
 LICENSE=	mit
 
