@@ -221,6 +221,7 @@ SUBDIR += mesa-dri
 SUBDIR += mesa-gallium-xa
 SUBDIR += mesa-libs
 SUBDIR += ming
+SUBDIR += movit
 SUBDIR += mozjpeg
 SUBDIR += mupdf
 SUBDIR += mypaint
