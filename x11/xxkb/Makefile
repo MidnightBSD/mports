@@ -30,7 +30,7 @@ post-build:
 .endfor
 
 post-install:
-	${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1/
+	-${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1/
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
