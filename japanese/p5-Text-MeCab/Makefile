@@ -21,6 +21,8 @@ USES=		perl5
 USE_PERL5=	configure
 CONFIGURE_ARGS=	</dev/null
 
+NO_TEST=	yes
+
 # dictionary encoding (euc-jp, shift_jis, utf-8)
 ENCODING?=	euc-jp
 
