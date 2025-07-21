@@ -12,7 +12,11 @@ PATCH_DIST_STRIP=	-p1
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Japanized ls
 
+LICENSE=	bsd4
+
 CONFLICTS=	sleuthkit
+
+FAKE_OPTS=	trueprefix
 
 USES=		ncurses uidfix
 PLIST_FILES=	bin/jls \
@@ -20,7 +24,7 @@ PLIST_FILES=	bin/jls \
 
 WRKSRC=	${WRKDIR}/ls
 
-MAKE_ARGS=	MANDIR="${PREFIX}/share/man/man"
+MAKE_ARGS=	MANDIR="${TRUE_PREFIX}/share/man/man"
 
 .include <bsd.mport.options.mk>
 
