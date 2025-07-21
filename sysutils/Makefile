@@ -233,6 +233,7 @@ SUBDIR += qt5-qtdiag
 SUBDIR += qt5-qtpaths
 SUBDIR += qt5-qtplugininfo
 SUBDIR += restic
+SUBDIR += rkbin
 SUBDIR += rocinante
 SUBDIR += rpi-firmware
 SUBDIR += rsyslog8
