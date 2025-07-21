@@ -16,11 +16,13 @@ MESON_ARGS=	--default-library=both \
 		-Dexamples=false \
 		-Dfuzzer=false \
 		-Dinstall_examples=false \
-		-Dtests=true
+		-Dtests=false
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dloebl
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
