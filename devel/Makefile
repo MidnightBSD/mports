@@ -1254,6 +1254,7 @@ SUBDIR += py-expandvars
 SUBDIR += py-extras
 SUBDIR += py-factory-boy
 SUBDIR += py-fasteners
+SUBDIR += py-fastimport
 SUBDIR += py-fixtures
 SUBDIR += py-flake8
 SUBDIR += py-flaky
