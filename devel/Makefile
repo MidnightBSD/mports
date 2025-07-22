@@ -65,6 +65,7 @@ SUBDIR += R-cran-tibble
 SUBDIR += R-cran-tidyr
 SUBDIR += R-cran-tidyselect
 SUBDIR += R-cran-tinytest
+SUBDIR += R-cran-tidyverse
 SUBDIR += R-cran-tzdb
 SUBDIR += R-cran-urlchecker
 SUBDIR += R-cran-uuid
