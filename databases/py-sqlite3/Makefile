@@ -28,7 +28,7 @@ WRKSRC_SUBDIR=	Modules
 
 SUB_LIST+=	DISTVERSION=${DISTVERSION}
 SUB_FILES=	pyproject.toml
-PLIST_FILES=	${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;}/lib-dynload/_sqlite3${PYTHON_EXT_SUFFIX}.so
+PLIST_FILES=	${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;}/lib-dynload/_sqlite3${PYTHON_TAG}.so
 
 PORTSCOUT=	ignore:1
 
@@ -37,9 +37,9 @@ pre-configure:
 	@${MV} ${WRKDIR}/pyproject.toml ${WRKSRC}
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_sqlite3${PYTHON_EXT_SUFFIX}.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_sqlite3${PYTHON_TAG}.so
 	# lib-dynload is the expected location
 	@${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload
-	@(cd ${FAKE_DESTDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload && ${LN} -s ../site-packages/_sqlite3${PYTHON_EXT_SUFFIX}.so)
+	@(cd ${FAKE_DESTDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload && ${LN} -s ../site-packages/_sqlite3${PYTHON_TAG}.so)
 
 .include <bsd.port.mk>
