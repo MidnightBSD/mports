@@ -30,7 +30,8 @@ USE_XORG=	x11 xext xt sm ice
 .if ${PORT_OPTIONS:MNLS}
 USES+=		gettext
 IMAKEDEFINES+=	WITH_NLS
-PLIST_SUB+=	NLS=""
+# nls is broken?
+PLIST_SUB+=	NLS="@comment "
 .else
 PLIST_SUB+=	NLS="@comment "
 .endif
