@@ -19,9 +19,6 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libpcre2-8.so:devel/pcre2
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
-TEST_DEPENDS=	dbus-uuidgen:devel/dbus \
-		update-desktop-database:devel/desktop-file-utils \
-		update-mime-database:misc/shared-mime-info
 
 FLAVORS=	default bootstrap
 FLAVOR?=	${FLAVORS:[1]}
@@ -79,6 +76,7 @@ TEST_MESON_TRUE=	tests
 MESON_ARGS+=	-Ddtrace=disabled
 
 .if ${FLAVOR:U} == bootstrap
+NO_TEST=	yes
 MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
 LDFLAGS+= -L/usr/local/glib-bootstrap/lib -L/usr/local/lib
 MESON_ARGS+=	-Dintrospection=disabled -Ddocumentation=false -Dman-pages=disabled
@@ -89,6 +87,9 @@ PLIST_SUB+=	PORTDOCS='@comment ' NLS='@comment ' MANPAGES='@comment '
 MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
 BINARY_ALIAS+=	g-ir-scanner=${LOCALBASE}/gobject-introspection-bootstrap/bin/g-ir-scanner
 MESON_ARGS+=	-Dintrospection=enabled
+TEST_DEPENDS=	dbus-uuidgen:devel/dbus \
+		update-desktop-database:devel/desktop-file-utils \
+		update-mime-database:misc/shared-mime-info
 .endif
 
 .if ${FLAVOR:U} == default
