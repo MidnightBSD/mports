@@ -27,7 +27,7 @@ FLAVORS_SUB=	yes
 SKIP_FAKE_CHECK=	libdata/ldconfig/glib-bootstrap
 
 default_EXTRACT_DEPENDS=	${LOCALBASE}/gobject-introspection-bootstrap/bin/g-ir-scanner:devel/gobject-introspection@bootstrap
-default_BUILD_DEPENDS=	git:devel/git
+default_BUILD_DEPENDS=	git:devel/git@lite
 default_USES=		trigger
 
 bootstrap_PKGNAMESUFFIX=	-bootstrap

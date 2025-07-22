@@ -16,6 +16,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display shaped icons for mail spool contents
 WWW=		https://legacy.cs.indiana.edu/ftp/faces/index.html
 
+LICENSE=	NONE
+
 LIB_DEPENDS=	libcompface.so:mail/faces
 
 # GNU make properly processes some overridden rules in the makefile that
@@ -26,7 +28,5 @@ USE_XORG=	ice sm x11 xaw xext xmu xt xpm
 post-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}/images
 	${INSTALL_DATA} ${WRKSRC}/images/* ${STAGEDIR}${DATADIR}/images
-	${MKDIR} ${PREFIX}/share/man/man1
-	${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>
