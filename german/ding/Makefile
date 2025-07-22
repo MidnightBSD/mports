@@ -3,13 +3,13 @@ PORTVERSION=	1.9
 PORTREVISION=	1
 CATEGORIES=	german tk
 MASTER_SITES=	ftp://ftp.tu-chemnitz.de/pub/Local/urz/ding/ \
-		LOCAL/ehaupt
+		FREEBSD_LOCAL/ehaupt
 
-MAINTAINER=	beat@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	German-English dictionary program for X windows/Unix
 WWW=		https://www-user.tu-chemnitz.de/~fri/ding/
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 
 RUN_DEPENDS=	wish8.6:x11-toolkits/tk86 \
 		agrep:textproc/agrep
