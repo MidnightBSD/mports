@@ -2,6 +2,7 @@ COMMENT = Development utilities
 
 SUBDIR += 9base
 SUBDIR += R-cran-R6
+SUBDIR += R-cran-R.methodsS3
 SUBDIR += R-cran-R.utils
 SUBDIR += R-cran-Rcpp
 SUBDIR += R-cran-RUnit
