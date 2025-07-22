@@ -30,6 +30,7 @@ SUBDIR += R-cran-future
 SUBDIR += R-cran-generics
 SUBDIR += R-cran-globals
 SUBDIR += R-cran-glue
+SUBDIR += R-cran-gsubfn
 SUBDIR += R-cran-iterators
 SUBDIR += R-cran-later
 SUBDIR += R-cran-lifecycle

@@ -57,12 +57,12 @@ CONFLICTS_INSTALL=	p5-Giovanni
 _LIBVERSION=	0.${DISTVERSION:R:E}00.${DISTVERSION:E}
 PLIST_SUB=	LIBVERSION=${_LIBVERSION}
 
-OPTIONS_DEFINE=		DOCS FAM_ALTBACKEND MANPAGES NLS TEST
+OPTIONS_DEFINE=		DOCS FAM_ALTBACKEND MANPAGES NLS
 OPTIONS_DEFAULT=	MANPAGES
 OPTIONS_SUB=		yes
 
 DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR}
-DOCS_IMPLIES=		MANPAGES TEST
+DOCS_IMPLIES=		MANPAGES
 DOCS_MESON_TRUE=	documentation
 
 FAM_ALTBACKEND_DESC=	Alternate file monitor backend
@@ -70,13 +70,12 @@ FAM_ALTBACKEND_DESC=	Alternate file monitor backend
 MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
 MANPAGES_MESON_ENABLED=	man-pages
 
-TEST_MESON_TRUE=	tests
-
 # doesn't build yet
 MESON_ARGS+=	-Ddtrace=disabled
 
-.if ${FLAVOR:U} == bootstrap
 NO_TEST=	yes
+
+.if ${FLAVOR:U} == bootstrap
 MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
 LDFLAGS+= -L/usr/local/glib-bootstrap/lib -L/usr/local/lib
 MESON_ARGS+=	-Dintrospection=disabled -Ddocumentation=false -Dman-pages=disabled
@@ -87,9 +86,6 @@ PLIST_SUB+=	PORTDOCS='@comment ' NLS='@comment ' MANPAGES='@comment '
 MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
 BINARY_ALIAS+=	g-ir-scanner=${LOCALBASE}/gobject-introspection-bootstrap/bin/g-ir-scanner
 MESON_ARGS+=	-Dintrospection=enabled
-TEST_DEPENDS=	dbus-uuidgen:devel/dbus \
-		update-desktop-database:devel/desktop-file-utils \
-		update-mime-database:misc/shared-mime-info
 .endif
 
 .if ${FLAVOR:U} == default
