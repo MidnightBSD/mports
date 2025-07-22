@@ -15,6 +15,6 @@ LICENSE=	other
 
 USES=		imake tar:Z
 USE_XORG=	x11 xext xmu xaw xt xpm sm ice
-PLIST_FILES=	bin/xminesweep man/man1/xminesweep.1.gz
+PLIST_FILES=	bin/xminesweep share/man/man1/xminesweep.1.gz
 
 .include <bsd.port.mk>
