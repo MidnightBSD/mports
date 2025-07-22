@@ -1384,6 +1384,7 @@ SUBDIR += py-pathlib2
 SUBDIR += py-pathspec
 SUBDIR += py-pbr
 SUBDIR += py-pdm-backend
+SUBDIR += py-pdm-pep517
 SUBDIR += py-pefile
 SUBDIR += py-pendulum
 SUBDIR += py-pep8-naming
