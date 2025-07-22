@@ -11,7 +11,10 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 minesweeper game
 
-LICENSE=	other
+LICENSE=	xminesweep
+LICENSE_NAME=	xminesweep
+LICENSE_TEXT=	noncommercial distribution only.
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 USES=		imake tar:Z
 USE_XORG=	x11 xext xmu xaw xt xpm sm ice
