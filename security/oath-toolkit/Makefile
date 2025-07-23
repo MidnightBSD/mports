@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library, tools, and PAM module for OATH authentication
 WWW=		https://www.nongnu.org/oath-toolkit/
 
-LICENSE=	gpl3+ lgpl2+
+LICENSE=	gpl3+ lgpl+
 LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libltdl.so:devel/libltdl
