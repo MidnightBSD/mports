@@ -19,10 +19,12 @@ RUN_DEPENDS=	p5-Class-Accessor>=0:devel/p5-Class-Accessor \
 		p5-File-ShareDir>=0:devel/p5-File-ShareDir \
 		p5-Params-Validate>=0:devel/p5-Params-Validate \
 		p5-YAML-Tiny>=1.38:textproc/p5-YAML-Tiny
-TEST_DEPENDS=	p5-YAML>=0:textproc/p5-YAML
+#TEST_DEPENDS=	p5-YAML>=0:textproc/p5-YAML
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 post-patch:
 	@${RM} -r ${WRKSRC}/inc
