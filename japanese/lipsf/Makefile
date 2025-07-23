@@ -11,6 +11,8 @@ WWW=		https://hp.vector.co.jp/authors/VA012337/soft/lipsf/
 
 LICENSE=	other
 
+FAKE_OPTS=	trueprefix
+
 USES=		ncurses
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/.//}
 
