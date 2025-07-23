@@ -18,7 +18,7 @@ LIB_DEPENDS=	libunique-1.0.so:x11-toolkits/unique \
 
 USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
 		tar:bzip2 xfce xorg
-USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30 intltool
 USE_XFCE=	panel
 USE_XORG=	ice sm x11
 
