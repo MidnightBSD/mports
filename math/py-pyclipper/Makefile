@@ -20,6 +20,6 @@ USE_PYTHON=	distutils cython autoplist pytest
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/pyclipper/_pyclipper${PYTHON_EXT_SUFFIX}.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/pyclipper/_pyclipper${PYTHON_TAG}.so
 
 .include <bsd.port.mk>
