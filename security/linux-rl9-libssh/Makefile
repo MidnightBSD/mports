@@ -7,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library implementing the SSH2 protocol (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.libssh.org/
 
+LICENSE=	lgpl2.1
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
