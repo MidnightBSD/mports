@@ -22,6 +22,6 @@ USES=		python
 USE_PYTHON=	autoplist pep517
 
 post-install:
-		${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_time_machine${PYTHON_EXT_SUFFIX}.so
+		${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_time_machine${PYTHON_TAG}.so
 
 .include <bsd.port.mk>
