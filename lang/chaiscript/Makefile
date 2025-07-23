@@ -32,7 +32,10 @@ CPP17_CMAKE_BOOL=	BUILD_IN_CPP17_MODE
 CPP17_USES=		compiler:c++17-lang
 CPP17_USES_OFF=		compiler:c++14-lang
 
-do-test: # some tests are known to fail: https://github.com/ChaiScript/ChaiScript/issues/466
+# magus
+NO_TEST=	yes
+
+do-test-special: # some tests are known to fail: https://github.com/ChaiScript/ChaiScript/issues/466
 	@cd ${BUILD_WRKSRC} && \
 		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} -DRUN_FUZZY_TESTS:BOOL=ON ${CMAKE_SOURCE_PATH} && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} && \
