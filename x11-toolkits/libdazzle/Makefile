@@ -13,7 +13,7 @@ LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		compiler:c11 gettext gnome meson pkgconfig tar:xz vala:build
-USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build
+USE_GNOME=	cairo gdkpixbuf gtk30 introspection:build
 
 #meson compat issues
 NO_TEST=	yes
