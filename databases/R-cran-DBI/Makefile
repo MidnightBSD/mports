@@ -11,4 +11,6 @@ LICENSE=	lgpl2.1+
 
 USES=		cran:auto-plist
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
