@@ -19,6 +19,7 @@ SUBDIR += ffmpeg4
 SUBDIR += ffmpegthumbnailer
 SUBDIR += ffms2
 SUBDIR += ffnvcodec-headers
+SUBDIR += gavl
 SUBDIR += gmp-api
 SUBDIR += gpac-libgpac
 SUBDIR += gstreamer1
