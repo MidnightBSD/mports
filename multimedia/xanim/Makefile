@@ -10,11 +10,12 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:main ${EXTRA_FILES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Play most popular animation formats and show pictures
+WWW=		https://web.archive.org/web/20230627070655/http://xanim.polter.net/
 
 LICENSE=	xanim
-LICENSE_NAME=	xanim license
+LICENSE_NAME=	xanim
 LICENSE_FILE=	${WRKSRC}/docs/Copyright
-LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 NO_CDROM=	Must be redistributed without fee
 
@@ -25,7 +26,7 @@ USE_GCC=	yes
 USE_XORG=	xext xt sm ice xext x11
 MAKE_ARGS+=	-j 2 # safe and helps even the single-CPU machines
 DLLDIR=		${PREFIX}/lib/X11/xanim
-PLIST_FILES+=	bin/xanim man/man1/xanim.1.gz
+PLIST_FILES+=	bin/xanim share/man/man1/xanim.1.gz
 
 post-extract:
 	${CP} ${WRKSRC}/docs/xanim.man ${WRKSRC}
