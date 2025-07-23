@@ -20,7 +20,7 @@ PORTSCOUT=	limitw:1,even
 USES+=		gettext gmake gnome libtool pathfix pkgconfig \
 		compiler:c++11-lang
 USE_CXXSTD=	c++11
-USE_GNOME=	gdkpixbuf2 gtk30 glibmm cairomm atkmm pangomm
+USE_GNOME=	gdkpixbuf gtk30 glibmm cairomm atkmm pangomm
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-documentation
