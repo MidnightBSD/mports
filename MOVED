@@ -500,3 +500,5 @@ www/ytdl|www/yt-dlp|2025-06-17|ytdl doesn't work and is archived upstream, www/y
 multimedia/schroedinger||2025-06-21|Has expired: Abandoned legacy video codec, upstream is dead and last release was back in 2012
 converters/p5-Jcode|japanese/p5-Jcode|2025-06-24|Moved categories
 lang/python38|lang/python39|2025-06-25|Has expired: Reached end-of-life in October 2024
+sysutils/datadog-agent||2025-07-23|Has expired: broken/unfetchable
+sysutils/datadog-integrations||2025-07-23|Has expired: broken/unfetchable
