@@ -343,6 +343,7 @@ SUBDIR += upower
 SUBDIR += userboot-freebsd
 SUBDIR += vixie-cron
 SUBDIR += vm-bhyve
+SUBDIR += vm-bhyve-zcomp
 SUBDIR += vpnc-scripts
 SUBDIR += wmbsdbatt
 SUBDIR += wuzzah
