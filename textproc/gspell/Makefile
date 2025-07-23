@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gspell
 PORTVERSION=	1.8.1
 PORTREVISION=	1
@@ -9,19 +7,19 @@ DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spell checking for GTK+
+WWW=		https://gitlab.gnome.org/GNOME/gspell
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	valac:lang/vala \
-		iso-codes>=3.57:misc/iso-codes
+BUILD_DEPENDS=	iso-codes>=3.57:misc/iso-codes
 LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 		libfribidi.so:converters/fribidi
 
 PORTSCOUT=	limitw:even
 
-USES=		gmake iconv libtool pathfix pkgconfig tar:xz
-USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 introspection:build \
+USES=		gmake gnome iconv libtool pathfix pkgconfig tar:xz vala:build
+USE_GNOME=	atk cairo gdkpixbuf glib20 gtk30 introspection:build \
 		libxml2 pango
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
