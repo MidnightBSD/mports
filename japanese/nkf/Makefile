@@ -11,6 +11,8 @@ COMMENT=	Network Kanji code conversion Filter
 LICENSE=	zlib
 LICENSE_FILE=	${WRKSRC}/nkf.c
 
+FAKE_OPTS=	trueprefix
+
 USES=		iconv
 USE_GITHUB=	yes
 GH_ACCOUNT=	nurse
