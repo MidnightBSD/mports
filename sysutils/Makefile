@@ -345,6 +345,7 @@ SUBDIR += vixie-cron
 SUBDIR += vm-bhyve
 SUBDIR += vpnc-scripts
 SUBDIR += wmbsdbatt
+SUBDIR += wuzzah
 SUBDIR += xe
 SUBDIR += xen-tools
 SUBDIR += xfburn
