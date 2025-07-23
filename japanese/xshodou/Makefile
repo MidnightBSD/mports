@@ -23,7 +23,7 @@ post-patch:
 		's|/usr/X11R6|${PREFIX}|g ; \
 		 s|/usr/local/bin/wish|${WISH}|' ${WRKSRC}/xshodou
 	@${REINPLACE_CMD} -e \
-		's|/usr/X11R6|${STAGEDIR}${PREFIX}|g ; \
+		's|/usr/X11R6|${FAKE_DESTDIR}${TRUE_PREFIX}|g ; \
 		 s|/man/man1|/share/man/man1|' ${WRKSRC}/Makefile
 
 .include <bsd.port.mk>
