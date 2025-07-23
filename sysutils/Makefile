@@ -368,6 +368,7 @@ SUBDIR += xxd
 SUBDIR += zeitgeist
 SUBDIR += zetaback
 SUBDIR += znapzend
+SUBDIR += zoxide
 SUBDIR += zpool-iostat-viz
 SUBDIR += zrep
 SUBDIR += zsd
