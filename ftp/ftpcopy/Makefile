@@ -4,7 +4,7 @@ CATEGORIES=	ftp
 MASTER_SITES=	http://www.ohse.de/uwe/ftpcopy/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Command line ftp tools for listing and mirroring
+COMMENT=	Command line FTP tools for listing and mirroring
 WWW=		https://www.ohse.de/uwe/ftpcopy.html
 
 LICENSE=	gpl2
@@ -12,6 +12,7 @@ LICENSE=	gpl2
 USES=		perl5
 USE_PERL5=	build
 
+OPTIONS_DEFINE=	DOCS
 
 MANPAGES=	ftpcopy.1 ftpcp.1 ftpls.1
 
