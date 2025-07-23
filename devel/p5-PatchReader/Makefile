@@ -1,10 +1,3 @@
-# New ports collection makefile for:	p5-PatchReader
-# Date created:				2004-02-11
-# Whom:					Toni Viemerö <toni.viemero@iki.fi>
-#
-
-#
-
 PORTNAME=	PatchReader
 PORTVERSION=	0.9.6
 CATEGORIES=	devel perl5
@@ -14,17 +7,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module with utilities to read and manipulate patches and CVS
+WWW=		https://metacpan.org/release/PatchReader
 
-LICENSE=	perl
+LICENSE=	artistic gpl+
+LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
-
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-BUILD_DEPENDS+=	${SITE_PERL}/File/Temp.pm:devel/p5-File-Temp
-RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:devel/p5-File-Temp
-.endif
 
 .include <bsd.port.post.mk>
