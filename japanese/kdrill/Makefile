@@ -14,6 +14,8 @@ LICENSE_NAME=	boltholl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
+FAKE_OPTS=	trueprefix
+
 RUN_DEPENDS=	xjdic:japanese/edict
 
 USES=		imake xorg
