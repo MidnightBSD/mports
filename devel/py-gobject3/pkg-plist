@@ -28,8 +28,8 @@
 %%PYTHON_SITELIBDIR%%/gi/__pycache__/types.cpython-%%PYTHON_SUFFIX%%.pyc
 %%PYTHON_SITELIBDIR%%/gi/_constants.py
 %%PYTHON_SITELIBDIR%%/gi/_error.py
-%%PYTHON_SITELIBDIR%%/gi/_gi%%PYTHON_EXT_SUFFIX%%.so
-%%PYTHON_SITELIBDIR%%/gi/_gi_cairo%%PYTHON_EXT_SUFFIX%%.so
+%%PYTHON_SITELIBDIR%%/gi/_gi%%PYTHON_TAG%%.so
+%%PYTHON_SITELIBDIR%%/gi/_gi_cairo%%PYTHON_TAG%%.so
 %%PYTHON_SITELIBDIR%%/gi/_gtktemplate.py
 %%PYTHON_SITELIBDIR%%/gi/_option.py
 %%PYTHON_SITELIBDIR%%/gi/_ossighelper.py
