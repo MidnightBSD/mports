@@ -175,6 +175,7 @@ SUBDIR += librsvg2
 SUBDIR += librsvg2-rust
 SUBDIR += libnsbmp
 SUBDIR += libnsgif
+SUBDIR += libskiasharp
 SUBDIR += libspiro
 SUBDIR += libsvg
 SUBDIR += libvisual04
