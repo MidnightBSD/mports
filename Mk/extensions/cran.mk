@@ -59,14 +59,14 @@ do-install:
 .if ${cran_ARGS:Mauto-plist}
 _USES_install+=	750:cran-auto-plist
 cran-auto-plist:
-	@${FIND} -ds ${STAGEDIR}${PREFIX}/${R_MOD_DIR} \( -type f -or -type l \) -print | \
-		${SED} -E -e 's,^${STAGEDIR}${PREFIX}/?,,' >> ${TMPPLIST}
+	@${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${R_MOD_DIR} \( -type f -or -type l \) -print | \
+		${SED} -E -e 's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST}
 .endif
 
 .if ${cran_ARGS:Mcompiles}
 _USES_install+= 755:cran-strip
 cran-strip:
-	${FIND} ${STAGEDIR}${PREFIX}/${R_MOD_DIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${R_MOD_DIR} -name '*.so' -exec ${STRIP_CMD} {} +
 .include "${MPORTEXTENSIONS}/fortran.mk"
 .else
 NO_ARCH=	yes
