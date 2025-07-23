@@ -95,7 +95,10 @@ PLIST_SUB=	QT_SUFFIX="" qt_SUFFIX="" QGPGME_CMAKE_SUFFIX="" \
 USES+=		compiler:c++17-lang pkgconfig qt:6
 USE_CXXSTD=	c++17
 USE_QT=		base
-PLIST_SUB=	QT_SUFFIX="${QT_STR}" qt_SUFFIX="${FLAVOR}"
+PLIST_SUB=	QT_SUFFIX="${QT_STR}" qt_SUFFIX="${FLAVOR}" \
+		QGPGME_CMAKE_SUFFIX="Qt${FLAVOR:S|qt||}" \
+		QGPGME_INCLUDE_SUFFIX="${FLAVOR}" \
+		QGPGME_LIB_SUFFIX="${FLAVOR}"
 .    endif
 
 CONFIGURE_ARGS+=--enable-languages="cpp ${FLAVOR}"
