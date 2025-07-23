@@ -12,6 +12,8 @@ WWW=		https://hp.vector.co.jp/authors/VA003457/vim/
 
 LICENSE=	publicdom
 
+FAKE_OPTS=	trueprefix
+
 EXTRA_PATCHES=	${WRKDIR}/${PORTNAME}.diff
 WRKSRC=		${WRKDIR}/vim
 BUILD_WRKSRC=	${WRKSRC}/src
