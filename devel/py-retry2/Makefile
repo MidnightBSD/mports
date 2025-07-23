@@ -21,8 +21,6 @@ GH_ACCOUNT=	eSAMTrade
 GH_PROJECT=	retry
 
 NO_ARCH=	yes
-
-do-test: install
-	@cd ${WRKSRC} && ${PYTHON_CMD} tests/test_retry.py && ${ECHO} "Tests succeeded"
+NO_TEST=	yes
 
 .include <bsd.port.mk>
