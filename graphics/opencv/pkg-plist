@@ -753,7 +753,7 @@ lib/libopencv_xphoto.so.406
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/mat_wrapper/__init__.py
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/misc/__init__.py
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/misc/version.py
-%%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/python-%%PYTHON_VER%%/cv2%%PYTHON_EXT_SUFFIX%%.so
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/python-%%PYTHON_VER%%/cv2%%PYTHON_TAG%%.so
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/utils/__init__.py
 libdata/pkgconfig/opencv4.pc
 %%DATADIR%%/haarcascades/haarcascade_eye.xml
