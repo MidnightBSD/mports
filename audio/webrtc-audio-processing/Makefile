@@ -13,6 +13,7 @@ PATCHFILES+=	f29ff57d6ccd.patch:-p1 # https://gitlab.freedesktop.org/pulseaudio/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AudioProcessing module from WebRTC project
+WWW=		https://freedesktop.org/software/pulseaudio/webrtc-audio-processing/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -20,7 +21,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	cmake:devel/cmake
 LIB_DEPENDS=	libabsl_strings.so:devel/abseil
 
-USES=		compiler:c++17-lang meson
+USES=		compiler:c++17-lang meson pkgconfig
 USE_LDCONFIG=	yes
 CFLAGS_i386=	-msse # https://gitlab.freedesktop.org/pulseaudio/webrtc-audio-processing/-/issues/5
 
