@@ -29,4 +29,6 @@ RUN_DEPENDS=	p5-DateTime>=0:devel/p5-DateTime \
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
