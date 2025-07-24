@@ -46,8 +46,8 @@ bin/meld
 %%PYTHON_SITELIBDIR%%/meld/__pycache__/recent.cpython-%%PYTHON_SUFFIX%%.pyc
 %%PYTHON_SITELIBDIR%%/meld/__pycache__/settings.cpython-%%PYTHON_SUFFIX%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/meld/__pycache__/settings.cpython-%%PYTHON_SUFFIX%%.pyc
-%%PYTHON_SITELIBDIR%%/meld/__pycache__/signalhelpers%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
-%%PYTHON_SITELIBDIR%%/meld/__pycache__/signalhelpers%%PYTHON_EXT_SUFFIX%%.pyc
+%%PYTHON_SITELIBDIR%%/meld/__pycache__/signalhelpers%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/meld/__pycache__/signalhelpers%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/meld/__pycache__/sourceview.cpython-%%PYTHON_SUFFIX%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/meld/__pycache__/sourceview.cpython-%%PYTHON_SUFFIX%%.pyc
 %%PYTHON_SITELIBDIR%%/meld/__pycache__/task.cpython-%%PYTHON_SUFFIX%%.opt-1.pyc
