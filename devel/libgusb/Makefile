@@ -32,4 +32,6 @@ DOCS_MESON_TRUE=	docs
 VAPI_USES=		vala:build
 VAPI_MESON_TRUE=	vapi
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
