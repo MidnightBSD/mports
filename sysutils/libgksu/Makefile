@@ -17,7 +17,7 @@ RUN_DEPENDS=	xauth:x11/xauth \
 		sudo:security/sudo
 
 USES=		gettext gmake gnome libtool pathfix pkgconfig xorg
-USE_GNOME=	cairo gconf2 gdkpixbuf2 glib20 intltool gtk20
+USE_GNOME=	cairo gconf2 gdkpixbuf glib20 intltool gtk20
 USE_LDCONFIG=	yes
 USE_XORG=	x11
 CONFIGURE_ARGS=	--enable-gtk-doc=no

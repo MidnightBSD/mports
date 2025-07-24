@@ -1,5 +1,3 @@
-# Created by: Jesse van den Kieboom <troplosti@orcaweb.cjb.net>
-
 PORTNAME=	gksu
 PORTVERSION=	2.0.2
 PORTREVISION=	4
@@ -19,7 +17,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libstartup-notification-1.so:x11/startup-notification
 
 USES=		gettext-tools gmake gnome libtool pathfix pkgconfig
-USE_GNOME=	cairo gconf2 gdkpixbuf2 gnomeprefix gtk20 intlhack
+USE_GNOME=	cairo gconf2 gdkpixbuf gnomeprefix gtk20 intlhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include

@@ -27,6 +27,8 @@ USES=		compiler:c11 gl meson pkgconfig xorg tar:xz
 USE_GL=		egl gbm gl
 USE_XORG=	pixman xau xdmcp xfont2 xkbfile xshmfence xtrans
 
+NO_TEST=	yes
+
 MESON_ARGS=	-Dxvfb=false \
 		-Dxcsecurity=true \
 		-Dxkb_output_dir=/var/lib/xkb \

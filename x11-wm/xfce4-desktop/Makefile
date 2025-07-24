@@ -8,7 +8,7 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Xfce's desktop manager
-WWW=		https://www.xfce.org/
+WWW=		https://gitlab.xfce.org/xfce/xfdesktop
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libnotify.so:devel/libnotify \
 
 USES=		compiler:c11 gettext-tools gmake gnome pkgconfig tar:bzip2 \
 		xfce xorg
-USE_GNOME=	cairo glib20 gdkpixbuf2 gtk30 intltool libwnck3
+USE_GNOME=	cairo glib20 gdkpixbuf gtk30 intltool libwnck3
 USE_XFCE=	garcon libexo
 USE_XORG=	ice sm x11
 

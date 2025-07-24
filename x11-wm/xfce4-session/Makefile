@@ -20,7 +20,7 @@ LIB_DEPENDS=	libupower-glib.so:sysutils/upower \
 
 USES=		compiler:c11 gettext-tools gmake gnome libtool pathfix \
 		pkgconfig tar:bzip2 xfce xorg
-USE_GNOME=	cairo gdkpixbuf2 gtk30 glib20 intltool libwnck3
+USE_GNOME=	cairo gdkpixbuf gtk30 glib20 intltool libwnck3
 USE_XFCE=	libexo xfconf
 USE_XORG=	ice sm x11
 

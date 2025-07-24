@@ -26,7 +26,7 @@ USES=		gettext gmake gnome libtool localbase pathfix pkgconfig \
 		tar:xz xorg
 USE_XORG=	ice sm x11 xcomposite xcursor xdamage xext xfixes \
 		xinerama xrandr xrender
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool
+USE_GNOME=	cairo gdkpixbuf gtk30 intltool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
