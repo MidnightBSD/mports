@@ -1,5 +1,5 @@
 PORTNAME=	nginx
-PORTVERSION=	1.26.3
+PORTVERSION=	1.28.0
 PORTREVISION=	0
 PORTEPOCH=	3
 CATEGORIES=	www
@@ -269,9 +269,6 @@ pre-everything::
 post-extract-NAXSI-on:
 	@${RMDIR} ${WRKSRC_naxsi}/naxsi_src/libinjection
 	@${LN} -s ${WRKSRC_libinjection} ${WRKSRC_naxsi}/naxsi_src/libinjection
-
-pre-patch-HTTPV3-on:
-	@${MV} ${WRKSRC}/README ${WRKSRC}/README.1st
 
 post-patch:
 	@${REINPLACE_CMD} 's!%%HTTP_PORT%%!${HTTP_PORT}!; \
