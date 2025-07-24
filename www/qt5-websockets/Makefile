@@ -11,4 +11,8 @@ USE_PERL5=	extract
 USE_QT=		buildtools:build core network
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>
