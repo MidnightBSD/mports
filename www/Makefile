@@ -1,6 +1,10 @@
 COMMENT = Ports related to the World Wide Web
 
+SUBDIR += R-cran-RgoogleMaps
+SUBDIR += R-cran-Rook
 SUBDIR += R-cran-bslib
+SUBDIR += R-cran-crosstalk
+SUBDIR += R-cran-downloader
 SUBDIR += R-cran-gh
 SUBDIR += R-cran-htmlwidgets
 SUBDIR += R-cran-httpuv

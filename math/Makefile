@@ -8,6 +8,7 @@ SUBDIR += R-cran-date
 SUBDIR += R-cran-dplyr
 SUBDIR += R-cran-forcats
 SUBDIR += R-cran-haven
+SUBDIR += R-cran-lazyeval
 SUBDIR += R-cran-maps
 SUBDIR += R-cran-mathjaxr
 SUBDIR += R-cran-sets
