@@ -1,11 +1,12 @@
 PORTNAME=	compiler-rt
 DISTVERSION=	0.r${SVN_REV}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	FREEBSD_LOCAL/brooks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiler runtime library with Blocks support
+WWW=		https://compiler-rt.llvm.org/
 
 LICENSE=	bsd3 mit
 LICENSE_COMB=	dual
@@ -13,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
 BROKEN_powerpc=		does not compile
 BROKEN_powerpc64=	does not build: undefined reference to fmax
-
-BUILD_DEPENDS=	cmake:devel/cmake
 
 CONFIGURE_WRKSRC=	${WRKDIR}/build
 BUILD_WRKSRC=		${WRKDIR}/build
