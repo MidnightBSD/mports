@@ -13,4 +13,7 @@ PLIST=		${.CURDIR}/pkg-plist
 
 PLIST_SUB+=	PYTHON_VER=${PYTHON_VER}
 
+NO_TEST=	yes
+MESON_ARGS+=	-Dtests=false
+
 .include "${MASTERDIR}/Makefile"

@@ -1,5 +1,5 @@
 PORTNAME=	gobject
-PORTVERSION=	3.42.2
+PORTVERSION=	3.50.0
 PORTREVISION=	0
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME/sources/pygobject/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -55,7 +55,7 @@ RUN_DEPENDS+=	pygobject3-common>=0:devel/pygobject3-common
 
 .  if ${SLAVE_PORT} == python
 USES+=		python
-USE_PYTHON=	flavors py3kplist
+USE_PYTHON=	flavors autoplist concurrent
 MESON_ARGS+=	-Dpython=${PYTHON_VERSION}
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
