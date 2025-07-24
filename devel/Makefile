@@ -43,6 +43,7 @@ SUBDIR += R-cran-magrittr
 SUBDIR += R-cran-memoise
 SUBDIR += R-cran-mockery
 SUBDIR += R-cran-pak
+SUBDIR += R-cran-parallelly
 SUBDIR += R-cran-pillar
 SUBDIR += R-cran-pkgconfig
 SUBDIR += R-cran-pkgload
