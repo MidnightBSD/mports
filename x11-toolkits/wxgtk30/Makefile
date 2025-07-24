@@ -8,7 +8,7 @@ PKGNAMESUFFIX=	${_SHORT_WX_VER}-${FLAVOR}
 DISTNAME=	wxWidgets-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The wxWidgets GUI toolkit with GTK+ bindings
+COMMENT=	The wxWidgets GUI toolkit with GTK bindings
 WWW=		https://www.wxwidgets.org/
 
 LICENSE=	gpl2
@@ -26,7 +26,7 @@ USES=		compiler:c++11-lib gl gmake gnome iconv jpeg localbase \
 		pkgconfig tar:bz2 xorg
 USE_XORG=	x11 sm xxf86vm xinerama
 USE_GL=		gl glu
-USE_GNOME=	cairo gdkpixbuf2
+USE_GNOME=	cairo gdkpixbuf
 USE_LDCONFIG=	yes
 USE_CXXSTD=	c++11
 GNU_CONFIGURE=	yes
@@ -102,6 +102,8 @@ CONFIGURE_ARGS+=--disable-tls
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 CONFIGURE_ARGS+=--disable-precomp-headers
 .endif
+
+LDFLAGS+=	-Wl,--undefined-version
 
 post-build-NLS-on:
 	@${DO_MAKE_BUILD} allmo -C ${BUILD_WRKSRC}/locale

@@ -36,7 +36,7 @@ USES=		compiler:c++11-lib gl gmake gnome iconv jpeg localbase \
 GNU_CONFIGURE=	yes
 USE_XORG=	x11 sm xxf86vm xtst
 USE_GL=		gl glu
-USE_GNOME=	cairo gdkpixbuf2
+USE_GNOME=	cairo gdkpixbuf
 USE_LDCONFIG=	yes
 USE_CXXSTD=	c++11
 CONFIGURE_ARGS=	--with-libpng=sys \

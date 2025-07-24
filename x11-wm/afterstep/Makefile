@@ -21,7 +21,7 @@ RUN_DEPENDS=	xli:graphics/xli
 
 USES=		execinfo gmake gnome pkgconfig jpeg shebangfix tar:bzip2
 USE_CSTD=	gnu89
-USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 librsvg2 pango
+USE_GNOME=	atk cairo gdkpixbuf glib20 gtk20 librsvg2 pango
 USE_XORG+=	ice sm x11 xcomposite xcursor xdamage xext xfixes xi xinerama \
 		xrandr xrender
 GNU_CONFIGURE=	yes
