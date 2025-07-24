@@ -5,6 +5,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Various X related scripts
+WWW=		https://cgit.freedesktop.org/xorg/app/scripts
 
 LICENSE=	unknown
 
