@@ -1,7 +1,7 @@
 PORTNAME=	viewnior
 PORTVERSION=	1.8
 DISTVERSIONPREFIX=	${PORTNAME}-
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 MAINTAINER=	midnightbsd@BSDforge.com
@@ -19,7 +19,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	hellosiyan
 GH_PROJECT=	Viewnior
 
-USE_GNOME=	gdkpixbuf2 glib20 gtk20 intlhack intltool
+USE_GNOME=	gdkpixbuf glib20 gtk20 intlhack intltool
 INSTALLS_ICONS=	yes
 
 PORTDOCS=	AUTHORS NEWS README.md
