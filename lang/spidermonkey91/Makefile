@@ -1,9 +1,14 @@
 PORTNAME=	spidermonkey
-DISTVERSION=	91.8.0
+DISTVERSION=	91.13.0
+PORTREVISION=	29
 CATEGORIES=	lang
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source
 PKGNAMESUFFIX=	${SP_VER}
 DISTNAME=	firefox-${DISTVERSION}esr.source
+
+PATCH_SITES=	https://hg.mozilla.org/mozilla-central/raw-rev/
+PATCHFILES+=	223087fdc29f18678f6174e9807b8780e439acf6:-p1 # https://bugzilla.mozilla.org/1894423
+PATCHFILES+=	68ff4d3f7338248b4d67cf03aade5a73f8d396b2:-p1 # https://bugzilla.mozilla.org/1849070
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standalone JavaScript based from Mozilla 91-esr
@@ -12,9 +17,7 @@ WWW=		https://spidermonkey.dev/
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
-		${LOCALBASE}/bin/python${PYTHON3_DEFAULT}:lang/python${PYTHON3_DEFAULT:S/.//g} \
-		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
 		autoconf2.13:devel/autoconf2.13 \
 		rust-cbindgen>=0.8.7:devel/rust-cbindgen
 LIB_DEPENDS=	libffi.so:devel/libffi \
@@ -30,9 +33,9 @@ HAS_CONFIGURE=	yes
 WRKSRC=			${WRKDIR}/firefox-${DISTVERSION}/
 PATCH_WRKSRC=		${WRKDIR}/firefox-${DISTVERSION}/
 CONFIGURE_OUTSOURCE=	yes
-CONFIGURE_SCRIPT=	../firefox-${DISTVERSION}/js/src/configure
 
-CONFIGURE_ARGS=	--disable-debug \
+CONFIGURE_ARGS=	--enable-application=js \
+		--disable-debug \
 		--disable-debug-symbols \
 		--disable-gold \
 		--disable-jemalloc \
@@ -53,6 +56,12 @@ CONFIGURE_ENV=	HOST_CC=${CC} \
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 PLIST_SUB=	SP_VER=${SP_VER}
 
+.include <bsd.mport.options.mk>
+
+USES+=	llvm:max=15
+CONFIGURE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_VERSION} \
+		LLVM_OBJDUMP=llvm-objdump${LLVM_VERSION}
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
@@ -61,25 +70,16 @@ CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4
 .endif
 
-# Require newer Clang than what's in base system unless user opted out
-# or the base system is new enough.
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 CONFIGURE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT} \
 		LLVM_OBJDUMP=llvm-objdump${LLVM_DEFAULT}
 BUILD_DEPENDS+=	${LOCALBASE}/bin/llvm-objdump${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 USE_GCC=	yes
-.elif ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so) && \
-	${COMPILER_VERSION} < 80
-CPP=		${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT}
-CC=		${LOCALBASE}/bin/clang${LLVM_DEFAULT}
-CXX=		${LOCALBASE}/bin/clang++${LLVM_DEFAULT}
-CONFIGURE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT} \
-		LLVM_OBJDUMP=llvm-objdump${LLVM_DEFAULT}
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/js/moz.configure
+	@${REINPLACE_CMD} -e 's|icu-i18n|icu-uc icu-i18n|g' ${WRKSRC}/js/moz.configure
 	${REINPLACE_CMD} -e 's|midnightbsd"\$UNAME_RELEASE"|freebsd11.4|g' \
 		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
@@ -88,6 +88,7 @@ post-patch:
 		${REINPLACE_CMD} 's|"rU"|"r"|g' {} \;
 
 pre-configure:
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf2.13)
 	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf2.13)
 
 post-install:
