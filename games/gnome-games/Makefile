@@ -27,7 +27,6 @@ RUN_DEPENDS=	five-or-more:games/five-or-more \
 		gnome-sudoku:games/gnome-sudoku \
 		gnome-tetravex:games/gnome-tetravex \
 		hitori:games/hitori \
-		iagno:games/iagno \
 		lightsoff:games/lightsoff \
 		quadrapassel:games/quadrapassel \
 		aisleriot>=0:games/aisleriot \

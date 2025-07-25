@@ -1,6 +1,6 @@
 PORTNAME=	libgnome-games-support
 DISTVERSION=	1.8.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -20,5 +20,7 @@ USES=		gettext gnome meson pkgconfig tar:xz vala:build
 USE_GNOME=	cairo gdkpixbuf gtk30
 
 NO_TEST=	yes
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 .include <bsd.port.mk>
