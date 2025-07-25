@@ -1,6 +1,6 @@
 PORTNAME=	gnome-utils
 PORTVERSION=	42
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	deskutils gnome
 
@@ -22,7 +22,7 @@ RUN_DEPENDS=	baobab>=3.0:deskutils/baobab \
 		gnome-photos>=3.0:deskutils/gnome-photos \
 		gnome-clocks>=3.0:deskutils/gnome-clocks \
 		gnome-maps>=3.0:deskutils/gnome-maps \
-		gnome-weather>=3.0:deskutils/gnome-weather \
-		gnome-todo>=3.0:deskutils/gnome-todo
+		gnome-weather>=3.0:deskutils/gnome-weather
+#		gnome-todo>=3.0:deskutils/gnome-todo
 
 .include <bsd.port.mk>

@@ -1,14 +1,13 @@
-# Created by: Gustau Perez <gustau.perez@gmail.com>
-
 PORTNAME=	gnome-todo
 PORTVERSION=	41.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small application to manage your personal tasks
+WWW=		https://wiki.gnome.org/Apps/Todo
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -25,7 +24,7 @@ LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts \
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gnome localbase meson pkgconfig \
-		python:3.4+,build shebangfix tar:xz
+		python:build shebangfix tar:xz
 USE_GNOME=	cairo evolutiondataserver3 gnomedesktop3 gtk40 introspection \
 		libadwaita
 USE_LDCONFIG=	yes

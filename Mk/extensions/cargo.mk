@@ -95,12 +95,17 @@ WRKSRC_crate_${_crate}=	${WRKDIR}/${_wrksrc}
 # Build dependencies.
 
 CARGO_BUILDDEP?=	yes
-.if ${CARGO_BUILDDEP:tl} == "yes"
-BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.30.0:lang/${RUST_DEFAULT}
+.  if ${CARGO_BUILDDEP:tl} == "yes"
+BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.70.0:lang/${RUST_DEFAULT}
 LIB_DEPENDS+=    libcurl.so:ftp/curl \
                 libgit2.so:devel/libgit2 \
                 libssh2.so:security/libssh2
-.endif
+.  elif ${CARGO_BUILDDEP:tl} == "any-version"
+BUILD_DEPENDS+=	${RUST_DEFAULT}>=0:lang/${RUST_DEFAULT}
+LIB_DEPENDS+=    libcurl.so:ftp/curl \
+                libgit2.so:devel/libgit2 \
+                libssh2.so:security/libssh2
+.  endif
 
 # Location of toolchain (default to lang/rust's toolchain)
 CARGO?=		${LOCALBASE}/bin/cargo
@@ -136,6 +141,11 @@ CARGO_ENV+= \
 	RUSTFLAGS="${RUSTFLAGS} ${LDFLAGS:C/.+/-C link-arg=&/}"
 
 CARGO_ENV+=	RUST_BACKTRACE=1
+
+.  if !defined(LTO_UNSAFE)
+_CARGO_MSG=	"===>   Additional optimization to port applied"
+WITH_LTO=	yes
+.  endif
 
 # Adjust -C target-cpu if -march/-mcpu is set by bsd.cpu.mk
 .  if ${ARCH} == amd64 || ${ARCH} == i386
@@ -189,7 +199,7 @@ CARGO_INSTALL_ARGS+=	--debug
 .  endif
 
 .  if ${_CARGO_CRATES:Mcmake}
-BUILD_DEPENDS+=	cmake:devel/cmake
+BUILD_DEPENDS+=	cmake:devel/cmake-core
 .  endif
 
 .  if ${_CARGO_CRATES:Mgettext-sys}
@@ -200,7 +210,7 @@ CARGO_ENV+=	GETTEXT_BIN_DIR=${LOCALBASE}/bin \
 
 .  if ${_CARGO_CRATES:Mjemalloc-sys}
 BUILD_DEPENDS+=	gmake:devel/gmake
-.endif
+.  endif
 
 .for libc in ${CARGO_CRATES:Mlibc-[0-9]*}
 # FreeBSD 12.0 changed ABI: r318736 and r320043
@@ -256,9 +266,14 @@ CARGO_ENV+=	OPENSSL_LIB_DIR=${OPENSSLLIB} \
 		OPENSSL_INCLUDE_DIR=${OPENSSLINC}
 .  endif
 
-.if ${CARGO_CRATES:Mpkg-config-[0-9]*}
+.if ${CARGO_CRATES:Mpkg-config}
 .include "${MPORTEXTENSIONS}/pkgconfig.mk"
 .endif
+
+.  if ${_CARGO_CRATES:Mzstd-sys}
+# Use the system's zstd instead of building the bundled version
+CARGO_ENV+=	ZSTD_SYS_USE_PKG_CONFIG=1
+.  endif
 
 .  for _index _crate _name _version in ${_CARGO_CRATES}
 # Split up semantic version and try to sanitize it by removing
@@ -293,7 +308,7 @@ cargo-extract:
 .    if ${_index} != @git
 	@${MV} ${WRKDIR}/${_crate} ${CARGO_VENDOR_DIR}/${_crate}
 	@${PRINTF} '{"package":"%s","files":{}}' \
-		$$(${SHA256} -q ${DISTDIR}/${CARGO_DIST_SUBDIR}/${_crate}${CARGO_CRATE_EXT}) \
+		$$(${SHA256} -q ${_DISTDIR}/${CARGO_DIST_SUBDIR}/${_crate}${CARGO_CRATE_EXT}) \
 		> ${CARGO_VENDOR_DIR}/${_crate}/.cargo-checksum.json
 	@if [ -r ${CARGO_VENDOR_DIR}/${_crate}/Cargo.toml.orig ]; then \
 		${MV} ${CARGO_VENDOR_DIR}/${_crate}/Cargo.toml.orig \
@@ -311,6 +326,9 @@ cargo-configure:
 # Check that the running kernel has COMPAT_FREEBSD11 required by lang/rust post-ino64
 	@${SETENV} CC="${CC}" OPSYS="${OPSYS}" OSVERSION="${OSVERSION}" WRKDIR="${WRKDIR}" \
 		${SH} ${SCRIPTSDIR}/rust-compat11-canary.sh
+.    if defined(_CARGO_MSG)
+	@${ECHO_MSG} ${_CARGO_MSG}
+.    endif
 	@${ECHO_MSG} "===>   Cargo config:"
 	@${MKDIR} ${WRKDIR}/.cargo
 	@: > ${WRKDIR}/.cargo/config.toml

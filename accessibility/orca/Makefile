@@ -1,14 +1,13 @@
-# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-
 PORTNAME=	orca
-PORTVERSION=	40.0
-PORTREVISION=	2
+PORTVERSION=	43.1
+PORTREVISION=	5
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable screen reader
+WWW=		https://live.gnome.org/Orca
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -24,15 +23,15 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0:devel/py-dbus@${PY_FLAVOR} \
 
 # conflict with py*-json-py because orca uses the json from python itself
 # and py*-json-py shadows this.
-CONFLICTS=	py*-json-py-[0-9]*
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}orca # lib/python3.8/site-packages/orca/__init__.py
 PORTSCOUT=	limitw:1,even
 
 NO_ARCH=	yes
 USES=		cpe gettext gmake gnome localbase pathfix pkgconfig \
-		python:3.4+ tar:xz
+		python tar:xz
 USE_GNOME=	gtk30 pygobject3
-INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CPE_VENDOR=	gnome
 
 post-patch:

@@ -7,6 +7,7 @@ DISTNAME=	AppWrapper.${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep application wrapper
+WWW=		https://appwrapper.sourceforge.net/
 
 LICENSE=	gpl2
 

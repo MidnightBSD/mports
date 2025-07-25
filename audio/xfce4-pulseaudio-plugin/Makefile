@@ -1,47 +1,43 @@
-# Created by: Olivier Duchateau
-
 PORTNAME=	xfce4-pulseaudio-plugin
-PORTVERSION=	0.4.3
-PORTREVISION=	2
+PORTVERSION=	0.5.1
 CATEGORIES=	audio xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Panel plugin for controlling PulseAudio mixer
+WWW=		https://gitlab.xfce.org/panel-plugins/xfce4-pulseaudio-plugin
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libpulse-mainloop-glib.so:audio/pulseaudio \
-		libdbus-1.so:devel/dbus \
-		libdbus-glib-1.so:devel/dbus-glib \
-		libnotify.so:devel/libnotify
+LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
+		libnotify.so:devel/libnotify \
+		libpulse-mainloop-glib.so:audio/pulseaudio
 RUN_DEPENDS=	pavucontrol>=2.0:audio/pavucontrol
 
-USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce xorg
-USE_GNOME=	cairo glib20 gtk30 intltool libwnck3
-USE_XFCE=	panel
+USES=		compiler:c11 gettext-tools gnome meson pkgconfig tar:xz \
+		xfce xorg
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30
+USE_XFCE=	libexo panel windowing xfconf
 USE_XORG=	x11
 
-GNU_CONFIGURE=	yes
-INSTALLS_ICONS=	yes
-INSTALL_TARGET=	install-strip
+MESON_ARGS=	-Dlibcanberra=enabled \
+		-Dlibnotify=enabled \
+		-Dlibxfce4windowing=enabled \
+		-Dmixer-command=${LOCALBASE}/bin/pavucontrol \
+		-Dmpris2=enabled
 
-CONFIGURE_ARGS=--with-mixer-command=${LOCALBASE}/bin/pavucontrol \
-		--enable-mpris2 \
-		--enable-wnck
-CFLAGS+=	-Wno-return-type
-
-OPTIONS_DEFINE=			KEYBINDER NLS
-OPTIONS_DEFAULT=		KEYBINDER
-OPTIONS_SUB=			yes
+OPTIONS_DEFINE=		KEYBINDER NLS
+OPTIONS_DEFAULT=	KEYBINDER
+OPTIONS_SUB=		yes
 
 KEYBINDER_DESC=			Keyboard shortcuts
 KEYBINDER_LIB_DEPENDS=		libkeybinder-3.0.so:x11/keybinder-gtk3
-KEYBINDER_CONFIGURE_ENABLE=	keybinder
+KEYBINDER_MESON_ENABLED=	keybinder
 
-NLS_CONFIGURE_ENABLE=		nls
-NLS_USES=			gettext-runtime
+NLS_USES=	gettext-runtime
+
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>

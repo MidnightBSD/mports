@@ -1,3 +1,5 @@
+# $LastChangedDate: 2010-02-01 22:21:34 -0500 (Mon, 01 Feb 2010) $
+#
 # To create a plugin, put the following at the bottom of your makefile:
 #
 # .include <bsd.port.pre.mk>

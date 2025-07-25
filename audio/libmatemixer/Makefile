@@ -1,11 +1,13 @@
 PORTNAME=	libmatemixer
-PORTVERSION=	1.24.1
+PORTVERSION=	1.28.0
+PORTREVISION=	1
 CATEGORIES=	audio mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mixer library for MATE desktop
+WWW=		https://github.com/mate-desktop/libmatemixer
 
 LICENSE=	lgpl2.1
 

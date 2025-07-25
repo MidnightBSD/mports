@@ -1,8 +1,8 @@
 PORTNAME=	squirrelmail
-PORTVERSION=	20230207
+DISTVERSION=	20240929
 CATEGORIES=	mail www
 MASTER_SITES=	http://snapshots.squirrelmail.org/ \
-	http://freebsd.uzsolt.hu/src/
+		http://freebsd.uzsolt.hu/src/
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 DISTNAME=	${PORTNAME}-${PORTVERSION}_0200-SVN.stable
 DIST_SUBDIR=	${PORTNAME}
@@ -15,16 +15,29 @@ LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/doc/COPYING
 
 USES=		cpe gettext perl5 php:web,flavors tar:bzip2
-USE_PHP=	gettext hash mbstring openssl pcre session xml
 USE_PERL5=	run
+USE_PHP=	gettext mbstring session xml
 
-PORTSCOUT=	ignore:1
+CONFLICTS=	squirreloutlook
 
 NO_ARCH=	yes
+PORTSCOUT=	ignore:1
+SUB_FILES=	pkg-message
+SUB_LIST=	SMGROUP=${SMGROUP} \
+		SMUSER=${SMUSER} \
+		SQUIRRELDIR=${SQUIRRELDIR}
+
+USERS=		${SMUSER}
+GROUPS=		${SMGROUP}
+
+PLIST_SUB=	PORTVERSION=${PORTVERSION} \
+		SMGROUP=${SMGROUP} \
+		SMUSER=${SMUSER} \
+		SQUIRRELDIR="${SQUIRRELDIR:S,^${PREFIX}/,,}"
 
 WRKSRC=		${WRKDIR}/${PORTNAME}.stable/${PORTNAME}
 
-OPTIONS_DEFINE=	DATABASE LDAP DOCS
+OPTIONS_DEFINE=	DATABASE DOCS LDAP
 DATABASE_DESC=	PDO database support (must also install a driver)
 
 DATABASE_USE=	PHP=pdo
@@ -35,18 +48,6 @@ SQUIRRELDIR?=	${WWWDIR}
 
 SMUSER?=	${WWWOWN}
 SMGROUP?=	${WWWGRP}
-USERS=		${SMUSER}
-GROUPS=		${SMGROUP}
-
-PLIST_SUB=	PORTVERSION=${PORTVERSION} \
-		SQUIRRELDIR="${SQUIRRELDIR:S,^${PREFIX}/,,}" \
-		SMUSER=${SMUSER} \
-		SMGROUP=${SMGROUP}
-
-SUB_FILES=	pkg-message
-SUB_LIST=	SQUIRRELDIR=${SQUIRRELDIR} SMUSER=${SMUSER} SMGROUP=${SMGROUP}
-
-CONFLICTS=	squirreloutlook-[0-9]*
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|ispell|${LOCALBASE}/bin/aspell|g' \

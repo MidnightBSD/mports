@@ -4,6 +4,7 @@ share/applications/org.gnome.font-viewer.desktop
 share/dbus-1/services/org.gnome.font-viewer.service
 share/icons/hicolor/scalable/apps/org.gnome.font-viewer.svg
 share/icons/hicolor/symbolic/apps/org.gnome.font-viewer-symbolic.svg
+share/locale/ab/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/af/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/am/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/an/LC_MESSAGES/gnome-font-viewer.mo
@@ -47,10 +48,12 @@ share/locale/hi/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/hr/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/hu/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/id/LC_MESSAGES/gnome-font-viewer.mo
+share/locale/ie/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/is/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/it/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/ja/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/ka/LC_MESSAGES/gnome-font-viewer.mo
+share/locale/kab/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/kk/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/km/LC_MESSAGES/gnome-font-viewer.mo
 share/locale/kn/LC_MESSAGES/gnome-font-viewer.mo

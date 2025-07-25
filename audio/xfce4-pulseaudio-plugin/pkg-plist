@@ -1,4 +1,5 @@
 lib/xfce4/panel/plugins/libpulseaudio-plugin.so
+share/icons/hicolor/32x32/apps/xfce4-pulseaudio-plugin.png
 share/icons/hicolor/48x48/apps/xfce4-pulseaudio-plugin.png
 share/icons/hicolor/scalable/apps/xfce4-pulseaudio-plugin.svg
 share/icons/hicolor/scalable/status/audio-volume-high-symbolic.svg
@@ -9,6 +10,7 @@ share/icons/hicolor/scalable/status/microphone-sensitivity-high-symbolic.svg
 share/icons/hicolor/scalable/status/microphone-sensitivity-low-symbolic.svg
 share/icons/hicolor/scalable/status/microphone-sensitivity-medium-symbolic.svg
 share/icons/hicolor/scalable/status/microphone-sensitivity-muted-symbolic.svg
+%%NLS%%share/locale/ar/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/be/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/bg/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/ca/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
@@ -17,7 +19,10 @@ share/icons/hicolor/scalable/status/microphone-sensitivity-muted-symbolic.svg
 %%NLS%%share/locale/de/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/el/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/en_AU/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
+%%NLS%%share/locale/en_CA/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
+%%NLS%%share/locale/en_GB/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/es/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
+%%NLS%%share/locale/et/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/eu/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/fi/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
@@ -27,6 +32,7 @@ share/icons/hicolor/scalable/status/microphone-sensitivity-muted-symbolic.svg
 %%NLS%%share/locale/hr/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/hu/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/hy_AM/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
+%%NLS%%share/locale/hye/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/id/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/ie/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/is/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
@@ -42,6 +48,7 @@ share/icons/hicolor/scalable/status/microphone-sensitivity-muted-symbolic.svg
 %%NLS%%share/locale/pl/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/pt/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/pt_BR/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
+%%NLS%%share/locale/ro/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/sk/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/sl/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
@@ -51,6 +58,7 @@ share/icons/hicolor/scalable/status/microphone-sensitivity-muted-symbolic.svg
 %%NLS%%share/locale/th/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/tr/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/uk/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
+%%NLS%%share/locale/vi/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/xfce4-pulseaudio-plugin.mo
 share/xfce4/panel/plugins/pulseaudio.desktop

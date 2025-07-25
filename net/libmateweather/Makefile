@@ -1,12 +1,12 @@
 PORTNAME=	libmateweather
-PORTVERSION=	1.24.1
-PORTREVISION=	1
+PORTVERSION=	1.28.0
 CATEGORIES=	net mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Library to accessing online weather informations
+COMMENT=	Library to access online weather information
+WWW=		https://mate-desktop.org/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING

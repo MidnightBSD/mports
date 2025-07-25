@@ -1,5 +1,5 @@
 PORTNAME=	at-spi2-core
-PORTVERSION=	2.54.1
+PORTVERSION=	2.56.2
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,7 +11,7 @@ WWW=		https://gitlab.gnome.org/GNOME/at-spi2-core
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gettext gnome localbase meson pkgconfig tar:xz
+USES=		gettext-tools gnome localbase meson pkgconfig tar:xz
 USE_GNOME=	glib20 introspection:build libxml2:build
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Duse_systemd=false

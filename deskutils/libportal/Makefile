@@ -1,10 +1,12 @@
 PORTNAME=	libportal
-PORTVERSION=	0.6
-PORTREVISION=	1
+PORTVERSION=	0.9.1
 CATEGORIES=	deskutils
 
+PATCH_SITES=	https://github.com/flatpak/libportal/commit/
+PATCHFILES+=	796053d2eebe4532aad6bd3fd80cdf3b197806ec.patch:-p1 # Fix build with Qt >= 6.9.0
+
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GIO-styled async APIs for Flatpak
+COMMENT?=	GIO-styled async APIs for Flatpak
 WWW=		https://github.com/flatpak/libportal
 
 LICENSE=	lgpl3
@@ -26,7 +28,9 @@ OPTIONS_DEFAULT=	VAPI
 VAPI_MESON_TRUE=	vapi
 VAPI_USES=		vala:build
 
-MESON_ARGS=	-Ddocs=false -Dbackends=${BACKEND}
+MESON_ARGS=	-Ddocs=false \
+		-Dbackend-gtk3=disabled -Dbackend-gtk4=disabled \
+		-Dbackend-qt5=disabled -Dbackend-qt6=disabled
 OPTIONS_SUB=	yes
 
 NO_TEST=	yes
@@ -34,6 +38,7 @@ NO_TEST=	yes
 .if defined(BACKEND)
 LIB_DEPENDS=	libportal.so:deskutils/libportal
 PLIST=		${PKGDIR}/pkg-plist.${BACKEND}
+MESON_ARGS+=	-Dbackend-${BACKEND}=enabled
 
 post-install:
 	@cd ${STAGEDIR}${PREFIX} && \

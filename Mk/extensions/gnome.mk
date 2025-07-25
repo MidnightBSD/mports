@@ -65,13 +65,13 @@ _USE_GNOME_ALL= intlhack intltool introspection \
 
 # GNOME 2 components
 _USE_GNOME_ALL+= atk cairo \
-		gdkpixbuf gdkpixbuf2xlib gconf2 glib20 \
+		gdkpixbuf gdkpixbuf2xlib gdkpixbufextra gconf2 glib20 \
 		gtk-update-icon-cache gtk20 \
 		gtksharp20 gtksourceview2 gvfs libartlgpl2 \
 		libglade2 libgnomecanvas \
 		libgsf libidl librsvg2 \
 		libxml2 libxslt \
-		pango pangox-compat \
+		pango pangoft2 pangox-compat \
 		vte
 
 # GNOME 3 components
@@ -113,7 +113,7 @@ libxml++26_USE_GNOME_IMPL=	glibmm libxml2
 cairo_LIB_DEPENDS=	libcairo.so:graphics/cairo
 
 cairomm_LIB_DEPENDS=	libcairomm-1.0.so:graphics/cairomm
-cairomm_USE_GNOME_IMPL=	cairo libxml++26
+cairomm_USE_GNOME_IMPL=	cairo libsigc++20
 
 gconfmm26_LIB_DEPENDS=		libgconfmm-2.6.so:devel/gconfmm26
 gconfmm26_USE_GNOME_IMPL=	glibmm gconf2
@@ -133,7 +133,7 @@ gtkmm24_LIB_DEPENDS=	libgtkmm-2.4.so:x11-toolkits/gtkmm24
 gtkmm24_USE_GNOME_IMPL=	glibmm cairomm atkmm pangomm gtk20
 
 gtkmm30_LIB_DEPENDS=	libgtkmm-3.0.so:x11-toolkits/gtkmm30
-gtkmm30_USE_GNOME_IMPL=	glibmm cairomm atkmm pangomm gtk30
+gtkmm30_USE_GNOME_IMPL=	atkmm cairomm gdkpixbuf glibmm gtk30 pangomm
 
 gtksourceviewmm3_LIB_DEPENDS=		libgtksourceviewmm-3.0.so:x11-toolkits/gtksourceviewmm3
 gtksourceviewmm3_USE_GNOME_IMPL=	gtkmm30 gtksourceview3
@@ -166,6 +166,10 @@ pango_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz \
 			libpango-1.0.so:x11-toolkits/pango
 pango_USE_GNOME_IMPL=	glib20
 
+pangoft2_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+			libfreetype.so:print/freetype2
+pangoft2_USE_GNOME_IMPL=pango
+
 pangox-compat_LIB_DEPENDS=	libpangox-1.0.so:x11-toolkits/pangox-compat
 pangox-compat_USE_GNOME_IMPL=	glib20 pango
 
@@ -175,15 +179,18 @@ gdkpixbuf_USE_GNOME_IMPL=glib20
 gdkpixbuf2xlib_LIB_DEPENDS=	libgdk_pixbuf_xlib-2.0.so:graphics/gdk-pixbuf2-xlib
 gdkpixbuf2xlib_USE_GNOME_IMPL=	glib20 gdkpixbuf
 
+gdkpixbufextra_BUILD_DEPENDS=	gdk-pixbuf-extra>=0.1.0:graphics/gdk-pixbuf-extra
+gdkpixbufextra_RUN_DEPENDS=	gdk-pixbuf-extra>=0.1.0:graphics/gdk-pixbuf-extra
+gdkpixbufextra_USE_GNOME_IMPL=	glib20 gdkpixbuf
+
 gtk-update-icon-cache_RUN_DEPENDS=	gtk-update-icon-cache:graphics/gtk-update-icon-cache
-gtk-update-icon-cache_USE_GNOME_IMPL=	atk pango gdkpixbuf
 
 gtk20_LIB_DEPENDS=	libgtk-x11-2.0.so:x11-toolkits/gtk20
-gtk20_USE_GNOME_IMPL=	atk pango
+gtk20_USE_GNOME_IMPL=	atk cairo gdkpixbuf pangoft2
 GTK2_VERSION=		2.10.0
 
 gtk30_LIB_DEPENDS=	libgtk-3.so:x11-toolkits/gtk30
-gtk30_USE_GNOME_IMPL=	atk pango
+gtk30_USE_GNOME_IMPL=	atk cairo gdkpixbuf pango
 GTK3_VERSION=		3.0.0
 
 gtk40_LIB_DEPENDS=	libgtk-4.so:x11-toolkits/gtk40
@@ -244,7 +251,7 @@ librsvg2_BUILD_DEPENDS=	librsvg2>=0:graphics/librsvg2
 librsvg2_LIB_DEPENDS=	librsvg-2.so:graphics/librsvg2
 librsvg2_RUN_DEPENDS=	librsvg2>=0:graphics/librsvg2
 .  endif
-librsvg2_USE_GNOME_IMPL=gdkpixbuf pango
+librsvg2_USE_GNOME_IMPL=cairo gdkpixbuf
 
 nautilus3_LIB_DEPENDS=	libnautilus-extension.so:x11-fm/nautilus
 nautilus3_USE_GNOME_IMPL=gnomedesktop3 libxml2
@@ -276,8 +283,8 @@ gtksourceview5_USE_GNOME_IMPL=gtk40 libxml2
 libgsf_LIB_DEPENDS=	libgsf-1.so:devel/libgsf
 libgsf_USE_GNOME_IMPL=	glib20 libxml2
 
-pygobject3_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
-pygobject3_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
+pygobject3_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygobject>=0:devel/py-pygobject@${PY_FLAVOR}
+pygobject3_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}pygobject>=0:devel/py-pygobject@${PY_FLAVOR}
 pygobject3_USE_GNOME_IMPL=	glib20
 
 intltool_BUILD_DEPENDS=	${LOCALBASE}/bin/intltool-extract:textproc/intltool
@@ -310,7 +317,6 @@ libgnomekbd_USE_GNOME_IMPL=	gtk30 libxml2
 
 gvfs_BUILD_DEPENDS=	gvfs>=0:filesystems/gvfs
 gvfs_RUN_DEPENDS=	gvfs>=0:filesystems/gvfs
-gvfs_USE_GNOME_IMPL=	glib20
 
 # End component definition section
 

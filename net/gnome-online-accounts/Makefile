@@ -1,8 +1,11 @@
 PORTNAME=	gnome-online-accounts
 PORTVERSION=	3.44.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	GNOME
+
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/gnome-online-accounts/-/commit/
+PATCHFILES=	b9638e2418408be4906752297e700506766dcf20.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface provider to access the user's online accounts
@@ -12,7 +15,7 @@ LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl
-LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
+LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk@40 \
 		libjson-glib-1.0.so:devel/json-glib \
 		libsecret-1.so:security/libsecret \
 		libsoup-2.4.so:devel/libsoup \

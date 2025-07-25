@@ -3,10 +3,11 @@ PORTVERSION=	3.32.0
 PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Power management system for the GNOME Desktop
+WWW=		https://projects.gnome.org/gnome-power-manager
 
 LICENSE=	gpl2
 

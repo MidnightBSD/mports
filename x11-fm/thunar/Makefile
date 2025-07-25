@@ -1,13 +1,12 @@
 PORTNAME=	thunar
-DISTVERSION=	4.18.10
-PORTREVISION=	1
+DISTVERSION=	4.20.3
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Xfce file manager
-WWW=		https://docs.xfce.org/xfce/thunar/Start
+WWW=		https://gitlab.xfce.org/xfce/thunar
 
 LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
@@ -20,12 +19,11 @@ RUN_DEPENDS=	pkexec:sysutils/polkit \
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-tools gmake gnome \
 		libtool pathfix perl5 pkgconfig tar:bzip2 xfce xorg
-USE_GNOME=	cairo gdkpixbuf glib20 gtk30 intltool
+CPE_VENDOR=	xfce
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30
 USE_LDCONFIG=	yes
 USE_XFCE=	libexo panel xfconf
 USE_XORG=	ice sm x11
-
-CPE_VENDOR=	xfce
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-gudev \
@@ -35,9 +33,9 @@ INSTALL_TARGET=	install-strip
 PORTSCOUT=	limitw:1,even
 
 OPTIONS_DEFINE=		GIR NLS NOTIFY
+OPTIONS_DEFAULT=	NOTIFY PLUG_APR PLUG_SBR PLUG_TPA PLUG_UCA PLUG_WALL
 OPTIONS_GROUP=		PLUGINS
 OPTIONS_GROUP_PLUGINS=	PLUG_APR PLUG_SBR PLUG_TPA PLUG_UCA PLUG_WALL
-OPTIONS_DEFAULT=	NOTIFY PLUG_APR PLUG_SBR PLUG_TPA PLUG_UCA PLUG_WALL
 OPTIONS_SUB=		yes
 
 # Override NOTIFY_DESC
@@ -49,25 +47,25 @@ PLUG_TPA_DESC=	Trash Panel Applet plugin
 PLUG_UCA_DESC=	User Customizable Actions plugin
 PLUG_WALL_DESC=	Wallpaper plugin
 
-GIR_USE=			gnome=introspection:build
-GIR_CONFIGURE_ON=		--enable-introspection=yes
-GIR_CONFIGURE_OFF=		--enable-introspection=no
+GIR_USE=		GNOME=introspection:build
+GIR_CONFIGURE_ON=	--enable-introspection=yes
+GIR_CONFIGURE_OFF=	--enable-introspection=no
 
-NLS_CONFIGURE_ENABLE=		nls
-NLS_USES=			gettext-runtime
+NLS_USES=		gettext-runtime
+NLS_CONFIGURE_ENABLE=	nls
 
-NOTIFY_CONFIGURE_ENABLE=	notifications
 NOTIFY_LIB_DEPENDS=		libnotify.so:devel/libnotify
+NOTIFY_CONFIGURE_ENABLE=	notifications
 
-PLUG_APR_CONFIGURE_ENABLE=	apr-plugin exif
 PLUG_APR_LIB_DEPENDS=		libexif.so:graphics/libexif
+PLUG_APR_CONFIGURE_ENABLE=	apr-plugin exif
 
-PLUG_SBR_CONFIGURE_ENABLE=	sbr-plugin
 PLUG_SBR_LIB_DEPENDS=		libpcre2-8.so:devel/pcre2
+PLUG_SBR_CONFIGURE_ENABLE=	sbr-plugin
 
-PLUG_TPA_CONFIGURE_ENABLE=	tpa-plugin
 PLUG_TPA_USE=			GNOME=gvfs \
 				XFCE=panel
+PLUG_TPA_CONFIGURE_ENABLE=	tpa-plugin
 
 PLUG_UCA_CONFIGURE_ENABLE=	uca-plugin
 
@@ -76,10 +74,10 @@ PLUG_WALL_CONFIGURE_ENABLE=	wallpaper-plugin
 post-patch:
 	@${REINPLACE_CMD} -e 's|mail-send|emblem-mail|' \
 		${WRKSRC}/plugins/thunar-sendto-email/thunar-sendto-email.desktop.in.in
-
-post-install:
-	${RM} ${PREFIX}/lib/systemd/user/thunar.service
-	(cd ${PREFIX}/lib && ${RMDIR} -p systemd/user)
+.for f in org.xfce.FileManager org.xfce.Thunar.FileManager1 org.xfce.Thunar
+	@${REINPLACE_CMD} -i "" -e 's|SystemdService|#SystemdService|' \
+		${WRKSRC}/${f}.service.in
+.endfor
 
 .include <bsd.port.pre.mk>
 

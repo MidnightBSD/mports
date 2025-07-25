@@ -1,5 +1,3 @@
-# Created by: Gustau Perez <gustau.perez@gmail.com>
-
 PORTNAME=	gnome-weather
 PORTVERSION=	42.0
 PORTREVISION=	1
@@ -9,6 +7,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Weather application for GNOME
+WWW=		https://wiki.gnome.org/Design/Apps/Weather
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING.md
