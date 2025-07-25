@@ -1,22 +1,22 @@
 PORTNAME=	mutter
-PORTVERSION=	42.2
-PORTREVISION=	2
+PORTVERSION=	42.4
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window and compositing manager based on Clutter
+WWW=		https://gitlab.gnome.org/GNOME/mutter
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		gnome-settings-daemon>0:sysutils/gnome-settings-daemon \
 		gsettings-desktop-schemas>=3.4.0:devel/gsettings-desktop-schemas \
 		xkeyboard-config>=0:x11/xkeyboard-config \
-		zenity>=3.0.0:x11/zenity \
-		${LOCALBASE}/lib/libcrypto.so:security/openssl
+		zenity>=3.0.0:x11/zenity
 LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libcanberra.so:audio/libcanberra \
 		libdrm.so:graphics/libdrm \
@@ -33,15 +33,14 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 RUN_DEPENDS=	gnome-settings-daemon>0:sysutils/gnome-settings-daemon \
 		gsettings-desktop-schemas>=3.4.0:devel/gsettings-desktop-schemas \
 		xkeyboard-config>=0:x11/xkeyboard-config \
-		zenity>=3.0.0:x11/zenity \
-		${LOCALBASE}/lib/libcrypto.so:security/openssl
+		zenity>=3.0.0:x11/zenity
 
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c++0x gettext gl gnome localbase meson pkgconfig \
-		ssl tar:xz xorg
+		tar:xz xorg
 USE_GL=		egl gbm
-USE_GNOME=	cairo gdkpixbuf2 gnomedesktop3 introspection
+USE_GNOME=	cairo gdkpixbuf gnomedesktop3 introspection
 USE_XORG=	ice sm x11 xcb xcomposite xcursor xdamage xext xfixes xi \
 		xinerama xrandr xrender xtst
 USE_LDCONFIG=	yes

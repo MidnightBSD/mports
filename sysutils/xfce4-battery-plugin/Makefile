@@ -1,33 +1,30 @@
-# Created by: Thorsten Greiner <thorsten.greiner@web.de>
-
 PORTNAME=	xfce4-battery-plugin
-PORTVERSION=	1.1.4
-PORTREVISION=	1
+PORTVERSION=	1.2.0
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Battery monitor panel plugin for Xfce4
+WWW=		https://docs.xfce.org/panel-plugins/xfce4-battery-plugin/start
 
 LICENSE=	gpl2
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-USES=		gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce
-USE_GNOME=	cairo gtk30 glib20 intltool
-USE_XFCE=	panel
+USES=		alias gettext-tools gnome meson pkgconfig tar:xz xfce
+USE_GNOME=	glib20 gtk30
 USE_LDCONFIG=	yes
+USE_XFCE=	libmenu panel
 
 SSP_UNSAFE=	yes
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=		NLS
-OPTIONS_SUB=		yes
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
 
-NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=		gettext-runtime
+NLS_USES=	gettext-runtime
+
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>

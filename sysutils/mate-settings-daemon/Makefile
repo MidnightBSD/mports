@@ -1,16 +1,15 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	mate-settings-daemon
-PORTVERSION=	1.26.0
-PORTREVISION=	1
+PORTVERSION=	1.28.0
+PORTREVISION=	3
 CATEGORIES=	sysutils mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MATE settings daemon
+WWW=		https://mate-desktop.org/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
@@ -35,6 +34,7 @@ USE_XORG=	ice sm x11 xext xi
 USE_GNOME=	cairo dconf gtk30 intlhack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--with-dbus-services=${PREFIX}/share/dbus-1/services \
 		--disable-static \
 		--disable-rfkill
@@ -73,5 +73,9 @@ OPTIONS_SUB=	yes
 
 PULSEAUDIO_CONFIGURE_ENABLE=	pulse
 PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio
+
+.include <bsd.mport.options.mk>
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 .include <bsd.port.mk>

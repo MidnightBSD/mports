@@ -8,6 +8,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Minimal X11 window manager with BeOS-like tabbed titles
 WWW=		http://phrat.de/
 
+LICENSE=	AEWM
+LICENSE_NAME=	AEWM License
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
 USES=		xorg
 USE_XORG=	x11 xext xinerama
 MAKE_ARGS=	CC="${CC}" XROOT="${LOCALBASE}"

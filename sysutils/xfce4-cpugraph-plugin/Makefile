@@ -1,31 +1,28 @@
-# Created by: Matt Lancereau <matt@rimasec.net>
-
 PORTNAME=	xfce4-cpugraph-plugin
-PORTVERSION=	1.2.3
-PORTREVISION=	1
+PORTVERSION=	1.3.0
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical representation of the CPU load
+WWW=		https://docs.xfce.org/panel-plugins/xfce4-cpugraph-plugin/start
 
 LICENSE=	gpl2
 
-USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce
-USE_CSTD=	c99
-USE_GNOME=	cairo gtk30 intltool
-USE_XFCE=	panel
-
-GNU_CONFIGURE=	yes
+USES=		compiler:c++17-lang gettext-tools gnome meson pkgconfig tar:xz \
+		xfce
+USE_CXXSTD=	c++17
+USE_GNOME=	gtk30
+USE_XFCE=	libmenu panel xfconf
 INSTALLS_ICONS=	yes
-INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=		NLS
-OPTIONS_SUB=		yes
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
 
-NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=		gettext-runtime
+NLS_USES=	gettext-runtime
+
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>

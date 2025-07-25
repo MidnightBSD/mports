@@ -1,32 +1,29 @@
-# Created by: Matt Lancereau <matt@rimasec.net>
-
 PORTNAME=	xfce4-fsguard-plugin
-PORTVERSION=	1.1.2
-PORTREVISION=	2
+PORTVERSION=	1.2.0
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Panel plugin which displays free space of mountpoint
+WWW=		https://docs.xfce.org/panel-plugins/xfce4-fsguard-plugin/start
 
 # COPYING file is wrong compared to license header
 LICENSE=	bsd2
 
-USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce xorg
-USE_GNOME=	cairo gtk30 intltool
-USE_XFCE=	panel
+USES=		compiler:c11 gettext-tools gnome meson pkgconfig tar:xz xfce \
+		xorg
+USE_GNOME=	gdkpixbuf gtk30
+USE_XFCE=	libmenu panel
 USE_XORG=	x11
-
-GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=		NLS
-OPTIONS_SUB=		yes
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
 
-NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=		gettext-runtime
+NLS_USES=	gettext-runtime
+
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>
