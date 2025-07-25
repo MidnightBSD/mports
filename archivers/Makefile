@@ -1,6 +1,8 @@
 COMMENT = Archivers
 
 SUBDIR += 7-zip
+SUBDIR += R-cran-brotli
+SUBDIR += R-cran-zip
 SUBDIR += arc
 SUBDIR += arj
 SUBDIR += brotli
@@ -106,6 +108,7 @@ SUBDIR += xdms
 SUBDIR += xmill
 SUBDIR += xpk
 SUBDIR += zchunk
+SUBDIR += zim-tools
 SUBDIR += zip
 SUBDIR += zipmix
 SUBDIR += zipper
