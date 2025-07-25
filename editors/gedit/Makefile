@@ -1,60 +1,56 @@
 PORTNAME=	gedit
-PORTVERSION=	3.28.1
-PORTREVISION=	1
+PORTVERSION=	44.2
+PORTREVISION=	4
 CATEGORIES=	editors gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Small but powerful text editor for GNOME 3 Desktop Environment
+COMMENT=	Small but powerful text editor for the GNOME Desktop Environment
+WWW=		https://www.gnome.org/projects/gedit/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	iso-codes>=0:misc/iso-codes \
-		vala:lang/vala \
-		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
+BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
+		gtk-doc>0:textproc/gtk-doc \
+		iso-codes>=0:misc/iso-codes \
 		itstool:textproc/itstool
-LIB_DEPENDS=	libenchant.so:textproc/enchant \
-		libpeas-gtk-1.0.so:devel/libpeas \
+LIB_DEPENDS=	libamtk-5.so:x11-toolkits/amtk \
+		libenchant.so:textproc/enchant \
 		libgspell-1.so:textproc/gspell \
-		libsoup-2.4.so:devel/libsoup
-RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
+		libpeas-gtk-1.0.so:devel/libpeas \
+		libsoup-2.4.so:devel/libsoup \
+		libtepl-6.so:x11-toolkits/tepl6
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR} \
 		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
-		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR}
+		iso-codes>=0:misc/iso-codes
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 desktop-file-utils gettext gmake gnome libtool \
-		localbase pathfix pkgconfig python:3.4+ shebangfix tar:xz xorg
+USES=		compiler:c11 cpe desktop-file-utils gettext gnome localbase \
+		meson pkgconfig python tar:xz vala:build xorg
 USE_CSTD=	c11
-USE_GNOME=	cairo gdkpixbuf gtksourceview3 intlhack introspection \
-		libxml2 pygobject3
-SHEBANG_FILES=	plugins/externaltools/data/send-to-fpaste.tool.in
+USE_GNOME=	cairo gdkpixbuf gtksourceview4 intlhack introspection libxml2 \
+		pygobject3
 USE_XORG=	sm x11
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-updater \
-		--enable-python \
-		--enable-spell
-CPPFLAGS+=	-Wno-error=format-nonliteral
-CFLAGS+=	-Wno-error=format-nonliteral
-LDFLAGS+=	-L${LOCALBASE}/lib
-USE_LDCONFIG=	yes
-SHEBANG_FILES=	plugins/externaltools/data/send-to-fpaste.tool.in
-PLIST_SUB=	VERSION="3.14"
+USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
+PLIST_SUB=	VERSION=44
 INSTALL_TARGET=	install-strip
+MESON_ARGS+=	--buildtype \
+		plain
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.gedit.enums.xml \
-		org.gnome.gedit.plugins.externaltools.gschema.xml \
 		org.gnome.gedit.gschema.xml \
+		org.gnome.gedit.plugins.externaltools.gschema.xml \
 		org.gnome.gedit.plugins.filebrowser.enums.xml \
 		org.gnome.gedit.plugins.filebrowser.gschema.xml \
 		org.gnome.gedit.plugins.pythonconsole.gschema.xml \
+		org.gnome.gedit.plugins.spell.gschema.xml \
 		org.gnome.gedit.plugins.time.enums.xml \
 		org.gnome.gedit.plugins.time.gschema.xml
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|=python|=${PYTHON_CMD}|g' \
-		${WRKSRC}/py-compile
 
 .include <bsd.port.mk>
