@@ -1,5 +1,6 @@
 PORTNAME=	gsettings-desktop-schemas
-DISTVERSION=	42.0
+DISTVERSION=	47.1
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${DISTVERSION:R:R}
 DIST_SUBDIR=	gnome
@@ -12,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python:3.5+,build \
+USES=		gettext gnome localbase meson pkgconfig python:build \
 		tar:xz
 USE_GNOME=	glib20 introspection:build
 
@@ -47,7 +48,8 @@ GLIB_SCHEMAS=	org.gnome.desktop.a11y.applications.gschema.xml \
 		org.gnome.desktop.wm.preferences.gschema.xml \
 		org.gnome.system.locale.gschema.xml \
 		org.gnome.system.location.gschema.xml \
-		org.gnome.system.proxy.gschema.xml
+		org.gnome.system.proxy.gschema.xml \
+		org.gnome.desktop.break-reminders.gschema.xml
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 

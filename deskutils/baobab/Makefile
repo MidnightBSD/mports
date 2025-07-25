@@ -1,12 +1,13 @@
 PORTNAME=	baobab
-PORTVERSION=	42.0
-PORTREVISION=	1
+PORTVERSION=	43.0
+PORTREVISION=	0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME graphical directory tree analyzer
+WWW=		https://wiki.gnome.org/Apps/Baobab
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

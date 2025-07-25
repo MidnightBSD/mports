@@ -1,6 +1,6 @@
 PORTNAME=	dconf
 PORTVERSION=	0.40.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DISTNAME=	dconf-${PORTVERSION}
@@ -36,6 +36,7 @@ MESON_ARGS=	-Dman=true \
 
 # magus
 NO_TEST=	yes
+TESTING_UNSAFE=	some tests fail
 
 post-install:
 	@${MKDIR} ${PREFIX}/etc/dconf/db

@@ -1,8 +1,8 @@
 PORTNAME=	glibmm
-DISTVERSION=	2.66.7
-PORTEPOCH=	1
+PORTVERSION=	2.80.1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
+PKGNAMESUFFIX=	26
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,17 +13,14 @@ LICENSE=	lgpl2.1
 
 USES=		compiler:c++11-lang gettext gnome meson pathfix perl5 \
 		pkgconfig python:build shebangfix tar:xz
-SHEBANG_GLOB=	*.py
-USE_GNOME=	glib20 libsigc++20
+USE_GNOME=	glib20 libsigc++30
 USE_LDCONFIG=	yes
 
-MESON_ARGS=	-Dbuild-documentation=false \
-		-Dbuild-examples=false
+SHEBANG_GLOB=	*.py
 
-# 2.68 and later are currently incompatible with consumers
-PORTSCOUT=	limit:^2\.66
-PLIST_SUB=	VERSION=2.4
+MESON_ARGS=	-Dbuild-documentation=false
 
-NO_TEST=	yes
+PORTSCOUT=	limitw:1,even
+PLIST_SUB=	VERSION=2.68
 
 .include <bsd.port.mk>

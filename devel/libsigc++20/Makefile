@@ -1,19 +1,18 @@
-# Created by: Alexander Nedotsukov <bland@FreeBSD.org>
-
 PORTNAME=	libsigc++
-PORTVERSION=	2.10.4
+DISTVERSION=	2.12.1
 CATEGORIES=	devel
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME \
+		https://github.com/libsigcplusplus/libsigcplusplus/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
+WWW=		https://github.com/libsigcplusplus/libsigcplusplus
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limit:^2\.10\.
+PORTSCOUT=	limit:^2\.12\.
 
-INSTALL_TARGET=	install-strip
 USES=		compiler:c++11-lang meson tar:xz
 USE_LDCONFIG=	yes
 
