@@ -1,12 +1,14 @@
 PORTNAME=	nss
 PORTVERSION=	3.101.0
-DISTVERSIONSUFFIX=	-7.el9_4
-PORTREVISION=	1
+DISTVERSIONSUFFIX=	-10.el9_5
+PORTREVISION=	2
 CATEGORIES=	security linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Security Services (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://developer.mozilla.org/docs/Mozilla/Projects/NSS
+
+LICENSE=	MPL20
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	mozilla
