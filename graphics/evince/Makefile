@@ -1,14 +1,13 @@
-# Created by: Adam Weinberger <adamw@FreeBSD.org>
-
 PORTNAME=	evince
-DISTVERSION=	42.2
-PORTREVISION=	2
+DISTVERSION=	46.3.1
+PORTREVISION=	3
 CATEGORIES=	graphics print gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME 3 multi-format document viewer
+COMMENT=	GNOME multi-format document viewer
+WWW=		https://wiki.gnome.org/Apps/Evince
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -28,18 +27,18 @@ RUN_DEPENDS=	adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme \
 		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
 PORTSCOUT=	limitw:1,even
-SLAVEPORT?=	no
 
-USES=		compiler:c++11-lib cpe desktop-file-utils gettext gnome libarchive \
+USES=		compiler:c++11-lib cpe desktop-file-utils gettext gnome gstreamer libarchive \
 		localbase:ldflags meson pkgconfig tar:xz xorg
-USE_GNOME=	cairo gtk30
-USE_GSTREAMER1=	yes
+USE_GNOME=	cairo gdkpixbuf gtk30
 USE_LDCONFIG=	yes
 USE_XORG=	ice
 CPE_VENDOR=	gnome
 MESON_ARGS=	-Dgtk_doc=false \
+		-Dpdf=enabled \
 		-Dps=enabled \
-		-Dsystemduserunitdir=no
+		-Dsystemduserunitdir=no \
+		-Dnautilus=false
 
 .if ${FLAVOR} == lite
 MESON_ARGS+=		-Dintrospection=false \
@@ -47,13 +46,13 @@ MESON_ARGS+=		-Dintrospection=false \
 			-Dthumbnail_cache=disabled \
 			-Dthumbnailer=false
 USE_GNOME+=		libxml2
-OPTIONS_EXCLUDE=	DBUS NAUTILUS
+OPTIONS_EXCLUDE=	DBUS
 PLIST=			${.CURDIR}/pkg-plist-lite
 PKGNAMESUFFIX=		-lite
 COMMENT+=		without GNOME dependencies
 CONFLICTS_INSTALL=	evince
 .else
-USE_GNOME+=		introspection:build
+USE_GNOME+=		introspection:build gnomedesktop3
 MESON_ARGS+=		-Dintrospection=true
 CONFLICTS_INSTALL=	evince-lite
 .endif
@@ -63,8 +62,8 @@ GLIB_SCHEMAS=	org.gnome.Evince.gschema.xml
 PLIST_SUB=	VERSION=3.0
 
 OPTIONS_SUB=		yes
-OPTIONS_DEFINE=		COMICS DBUS DJVU DVI KEYRING NAUTILUS SPELL XPS
-OPTIONS_DEFAULT=	COMICS DBUS DJVU KEYRING NAUTILUS SPELL XPS
+OPTIONS_DEFINE=		COMICS DBUS DJVU DVI KEYRING SPELL XPS
+OPTIONS_DEFAULT=	COMICS DBUS DJVU KEYRING SPELL XPS
 
 COMICS_DESC=		Comic book archives support
 COMICS_MESON_ENABLED=	comics
@@ -77,16 +76,13 @@ DBUS_MESON_TRUE=	dbus
 DBUS_LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
 DVI_DESC=		DVI viewer support
+DVI_USES=		tex
 DVI_USE=		TEX=kpathsea,latex
 DVI_MESON_ENABLED=	dvi
 
 KEYRING_DESC=		Keyring support
 KEYRING_LIB_DEPENDS=	libsecret-1.so:security/libsecret
 KEYRING_MESON_ENABLED=	keyring
-
-NAUTILUS_DESC=		Nautilus plugin
-NAUTILUS_USE=		GNOME=nautilus3
-NAUTILUS_MESON_TRUE=	nautilus
 
 SPELL_DESC=		spell checking support
 SPELL_MESON_ENABLED=	gspell
