@@ -1,6 +1,5 @@
 PORTNAME=	mate-desktop
-PORTVERSION=	1.26.0
-PORTREVISION=	1
+PORTVERSION=	1.28.2
 CATEGORIES=	x11 mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
@@ -9,11 +8,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional UI API for MATE
 WWW=		https://mate-desktop.org/
 
-LICENSE=	gpl lgpl2.1
+LICENSE=	gpl2 gfdl lgpl2.1
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
+LICENSE_FILE_gfdl=	${WRKSRC}/COPYING-DOCS
+LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification
 BUILD_DEPENDS=	iso-codes>=0:misc/iso-codes
+RUN_DEPENDS=	dconf-editor:devel/dconf-editor
 
 PORTSCOUT=	limitw:1,even
 
@@ -24,6 +27,7 @@ USE_GNOME=	cairo dconf gdkpixbuf gnomeprefix gtk30 \
 		intltool introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 INSTALLS_ICONS=	yes
 
