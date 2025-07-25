@@ -1,6 +1,6 @@
 PORTNAME=	gnome-user-share
 PORTVERSION=	3.14.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -9,16 +9,19 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Personal file-sharing service for the GNOME Desktop
 LICENSE=	gpl2
 
+BROKEN=		Package 'libnautilus-extension' not found
+DEPRECATED=	Broken build for months
+EXPIRATION_DATE=2025-07-30
+
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
 		libnotify.so:devel/libnotify \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libunique-1.0.so:x11-toolkits/unique
-RUN_DEPENDS=	${LOCALBASE}/${APACHEMODDIR}/mod_dnssd.so:www/mod_dnssd \
+RUN_DEPENDS=	${APACHE_PKGNAMEPREFIX}mod_dnssd>=0:www/mod_dnssd \
 		console-kit-daemon:sysutils/consolekit2
 
-USES=		gettext gmake gnome libtool pkgconfig tar:xz xorg
-USE_APACHE=	22+
+USES=		apache gettext gmake gnome libtool pkgconfig tar:xz xorg
 USE_XORG=	sm
 USE_GNOME=	gnomeprefix gtk30 intlhack nautilus3
 GNU_CONFIGURE=	yes

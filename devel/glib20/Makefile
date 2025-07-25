@@ -1,13 +1,10 @@
 PORTNAME=	glib
-DISTVERSION=	2.82.4
+DISTVERSION=	2.84.1
 PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES=	3dcf1ea13d9b2a3371fa35b79e640063de33dc20.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful routines of C programming (current stable version)
@@ -17,6 +14,7 @@ LICENSE=	lgpl
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
 LIB_DEPENDS=	libffi.so:devel/libffi \
+		libinotify.so:devel/libinotify \
 		libpcre2-8.so:devel/pcre2
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
 
@@ -32,6 +30,8 @@ default_USES=		trigger
 
 bootstrap_PKGNAMESUFFIX=	-bootstrap
 
+NO_TEST=	yes
+
 # iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
 # (wchar_t is used by glibmm, rawtherapee triggered this)
 USES=		compiler:c11 cpe gettext gnome iconv:wchar_t localbase:ldflags \
@@ -42,13 +42,16 @@ USE_PYTHON=	py3kplist
 TRIGGERS=	gio-modules glib-schemas
 MESON_ARGS=	-Db_lundef=false \
 		-Ddefault_library=both \
+		-Dfile_monitor_backend='libinotify-kqueue' \
 		-Dinstalled_tests=false \
+		-Dlibelf=disabled \
 		-Dlibmount=disabled \
 		-Druntime_dir=/var/run \
 		-Dselinux=disabled \
 		-Dsysprof=disabled \
 		-Dsystemtap=disabled \
-		-Dxattr=false
+		-Dxattr=false \
+		-Dtests=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 PORTSCOUT=	limitw:1,even
 CPE_VENDOR=	gnome
