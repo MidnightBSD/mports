@@ -1,12 +1,13 @@
 PORTNAME=	yalias
 PORTVERSION=	0.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	http://offog.org/files/ \
 		http://ftp.i-scream.org/pub/offog.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enhanced execution box with regex pattern matching
+WWW=		https://offog.org/code/
 
 LICENSE=	gpl2
 

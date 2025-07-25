@@ -1,6 +1,5 @@
 PORTNAME=	xfce4-screenshooter-plugin
-PORTVERSION=	1.10.5
-PORTREVISION=	2
+PORTVERSION=	1.11.2
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE/apps
 DISTNAME=	xfce4-screenshooter-${DISTVERSIONFULL}
@@ -13,36 +12,28 @@ WWW=		https://goodies.xfce.org/projects/applications/xfce4-screenshooter
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libsoup-3.0.so:devel/libsoup3 \
-		libharfbuzz.so:print/harfbuzz
-
-USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce xorg
+USES=		compiler:c11 gettext-tools gnome meson pkgconfig tar:xz xfce \
+		xorg
 USE_CSTD=	c99
-USE_GNOME=	cairo gdkpixbuf glib20 gtk30 intltool libxml2
+USE_GNOME=	glib20 gtk30
 USE_XFCE=	libexo libmenu panel xfconf
-USE_XORG=	ice sm x11 xfixes xext
-
-GNU_CONFIGURE=	yes
+USE_XORG=	ice sm x11 xext xfixes
 INSTALLS_ICONS=	yes
-INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=		NLS IMGUR
-OPTIONS_DEFAULT=	IMGUR
+MESON_ARGS=	-Dx11=enabled \
+		-Dxfixes=enabled
+
+OPTIONS_DEFINE=		NLS WAYLAND
+OPTIONS_DEFAULT=	WAYLAND
 OPTIONS_SUB=		yes
 
-IMGUR_DESC=		Install imgur image upload custom action
+NLS_USES=	gettext-runtime
 
-IMGUR_RUN_DEPENDS=	curl:ftp/curl \
-			jq:textproc/jq \
-			xclip:x11/xclip \
-			zenity:x11/zenity
+WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
+WAYLAND_BUILD_DEPENDS=	wayland-protocols>0:graphics/wayland-protocols
+WAYLAND_MESON_ENABLED=	wayland
 
-NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=		gettext-runtime
-
-post-patch-IMGUR-off:
-	@${REINPLACE_CMD} '/imgur_custom_action_added = xfconf_channel_get_bool/s/FALSE/TRUE/' \
-		${WRKSRC}/lib/screenshooter-custom-actions.c
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>

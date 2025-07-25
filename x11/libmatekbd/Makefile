@@ -1,5 +1,5 @@
 PORTNAME=	libmatekbd
-PORTVERSION=	1.24.0
+PORTVERSION=	1.28.0
 PORTREVISION=	1
 CATEGORIES=	x11 mate
 MASTER_SITES=	MATE
@@ -7,8 +7,9 @@ DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MATE keyboard shared library
+WWW=		https://mate-desktop.org/
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libxklavier.so:x11/libxklavier
