@@ -107,9 +107,9 @@ _WX_Definitions_Done=	yes
 
 _WX_COMPS_ALL=		wx python
 _WX_DEP_TYPES_ALL=	build lib run
-_WX_VERS_ALL=		3.0 3.1 3.2
-_WX_VERS_UC_ALL=	3.0 3.1 3.2
-_WX_VERS_SKIP=		3.0 3.1 3.2
+_WX_VERS_ALL=		3.0 3.2
+_WX_VERS_UC_ALL=	3.0 3.2
+_WX_VERS_SKIP=		3.0 3.2
 _WX_VERS_LISTS=		WANT_WX_VER WITH_WX_VER _WX_VER_INSTALLED
 
 #
@@ -127,11 +127,6 @@ _WX_LIB_wx_3.0=		wx_baseu-3.0
 
 _WX_PORT_python_3.0=	x11-toolkits/py-wxPython30
 _WX_FILE_python_3.0=	${PYTHON_SITELIBDIR}/wx-3.0-gtk3/wx/__init__.py
-
-# wxgtk 3.1
-_WX_PORT_wx_3.1=	x11-toolkits/wxgtk31
-_WX_LIB_wx_3.1=		wx_baseu-3.1
-
 
 # wxgtk 3.2
 _WX_PORT_wx_3.2=	x11-toolkits/wxgtk32
