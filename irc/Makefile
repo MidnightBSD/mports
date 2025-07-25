@@ -5,6 +5,7 @@ SUBDIR += bnc
 SUBDIR += catgirl
 SUBDIR += irssi
 SUBDIR += irssi-scripts
+SUBDIR += polari
 SUBDIR += ngircd
 SUBDIR += simpleirc
 SUBDIR += sirc
