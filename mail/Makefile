@@ -6,6 +6,7 @@ SUBDIR += addresses
 SUBDIR += addresses-goodies
 SUBDIR += alpine
 SUBDIR += antivirus-milter
+SUBDIR += balsa
 SUBDIR += batv-milter
 SUBDIR += bogofilter
 SUBDIR += bogofilter-bdb
