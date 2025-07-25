@@ -1,6 +1,6 @@
 PORTNAME=	clutter-gst
 PORTVERSION=	3.0.27
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -20,7 +20,7 @@ LIB_DEPENDS=	libclutter-1.0.so:graphics/clutter \
 
 USES=		gettext-runtime gl gmake gnome gstreamer libtool localbase pathfix \
 		pkgconfig tar:xz xorg
-USE_GNOME=	atk cairo gdkpixbuf2 gnomeprefix introspection:build pango
+USE_GNOME=	atk cairo gdkpixbuf gnomeprefix introspection:build pango
 GNU_CONFIGURE=	yes
 USE_GL=		gl egl
 USE_XORG=	xcomposite xdamage xext xfixes xi xrandr x11

@@ -1,7 +1,6 @@
-# Created by: Stijn Hoop <stijn@win.tue.nl>
-
 PORTNAME=	zsnes
 PORTVERSION=	1.51
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/ZSNES%20v${PORTVERSION}
@@ -9,6 +8,7 @@ DISTNAME=	zsnes${PORTVERSION:S/.//}src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intel x86 only Super Nintendo Entertainment System (SNES) Emulator
+WWW=		https://www.zsnes.com/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/../docs/license.txt
