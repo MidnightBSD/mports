@@ -1,34 +1,31 @@
 PORTNAME=	midori
 PORTVERSION=	9.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	www xfce
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser using WebKit browser engine
-WWW=		https://www.midori-browser.org/
+WWW=		https://astian.org/midori-browser/
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	multi
 
 CONFLICTS_INSTALL=	raphael
 
-LIB_DEPENDS=	libnotify.so:devel/libnotify \
-		libjson-glib-1.0.so:devel/json-glib \
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 		libsoup-2.4.so:devel/libsoup \
 		libp11-kit.so:security/p11-kit \
 		libgcr-base-3.so:security/gcr3 \
 		libpeas-1.0.so:devel/libpeas \
-		libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
+		libwebkit2gtk-4.0.so:www/webkit2-gtk@40 \
 		libharfbuzz.so:print/harfbuzz
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss \
-		${LOCALBASE}/libexec/gsd-xsettings:sysutils/gnome-settings-daemon
-
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
 USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext gnome \
 		libarchive localbase:ldflags pkgconfig sqlite tar:bzip2 vala:build
-USE_GNOME=	cairo glib20 gtk30 intltool introspection librsvg2:build \
-		libxml2
+USE_GNOME=	cairo glib20 gtk30 intltool introspection librsvg2:build
+
 CPE_VENDOR=	midori-browser
 
 CFLAGS+=	-Wno-int-conversion -Wno-return-type
