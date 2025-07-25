@@ -21,7 +21,7 @@ _INCLUDE_USES_GSTREAMER_MK=	YES
 # Preparations to support multiple gstreamer versions
 _GST_VER_SUPPORTED=	1
 _GST_VER_DEFAULT=	1
-_GST_VER=		#
+_GST_VER=
 .  for ver in ${_GST_VER_SUPPORTED:O:u}
 .    if ${gstreamer_ARGS:M${ver}}
 .      if empty(_GST_VER)

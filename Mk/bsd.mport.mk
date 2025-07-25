@@ -511,7 +511,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		tar tcl tk tex trigger uniquefiles wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
-.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" || ${EXT:tl} == "ruby" || ${EXT:tl} == "cabal")
+.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" || ${EXT:tl} == "ruby" || ${EXT:tl} == "cabal" || ${EXT:tl} == "gstreamer") 
 # we have to skip these as ${EXT}_ARGS won't be defined right
 .  elif defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT) || defined(USE_${EXT})
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
