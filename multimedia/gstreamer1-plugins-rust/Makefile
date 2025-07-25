@@ -1,6 +1,5 @@
 PORTNAME=	gstreamer1-plugins-rust
-DISTVERSION=	0.11.1
-DISTVERSIONSUFFIX=	+fixup
+DISTVERSION=	${gst-rust_VERSION}
 PORTREVISION=	1
 CATEGORIES=	multimedia
 
@@ -13,21 +12,26 @@ LICENSE_COMB=	multi
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/LICENSE-LGPLv2
 
-BUILD_DEPENDS=	cargo-cbuild:devel/cargo-c
+BUILD_DEPENDS=	cargo-cbuild:devel/cargo-c \
+		${PY_TOMLI}
 
 USES=		cargo gnome gstreamer meson pkgconfig python:build shebangfix ssl
 USE_GITLAB=	yes
-USE_GNOME=	glib20
-USE_GSTREAMER=	bad gl # webrtc
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	gstreamer
 GL_PROJECT=	gst-plugins-rs
+USE_GNOME=	glib20
+USE_GSTREAMER=	webrtc
+
 SHEBANG_FILES=	dependencies.py
+
 MESON_ARGS=	-Ddoc=disabled
-MAKE_ENV=	${CARGO_ENV}
+
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
 CARGO_TEST=	no
+
+MAKE_ENV=	${CARGO_ENV}
 
 .if ${MACHINE_ARCH} == i386 || "${MACHINE_ARCH:Marmv?}" != ""
 # https://github.com/rust-lang/rust/issues/85598
@@ -35,14 +39,14 @@ LTO_UNSAFE=	yes
 CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false
 .endif
 
-OPTIONS_DEFINE=	ASM CAIRO CSOUND DAV1D GTK4 PANGO SODIUM WEBP
-OPTIONS_DEFAULT=ASM CAIRO CSOUND DAV1D GTK4 PANGO SODIUM WEBP
+OPTIONS_DEFINE=		ASM CAIRO CSOUND DAV1D GTK4 PANGO SODIUM WEBP
+OPTIONS_DEFAULT=	ASM CAIRO CSOUND DAV1D GTK4 PANGO SODIUM WEBP
 OPTIONS_EXCLUDE_aarch64=	CSOUND # https://github.com/neithanmo/csound-rs/commit/8962b89d7bda
-OPTIONS_EXCLUDE_armv7=	CSOUND # https://github.com/neithanmo/csound-rs/commit/8962b89d7bda
-OPTIONS_EXCLUDE_powerpc64le=	CSOUND
-OPTIONS_EXCLUDE_powerpc64=	CSOUND
+OPTIONS_EXCLUDE_armv7=		CSOUND # https://github.com/neithanmo/csound-rs/commit/8962b89d7bda
 OPTIONS_EXCLUDE_powerpc=	CSOUND DAV1D
-OPTIONS_SUB=	yes
+OPTIONS_EXCLUDE_powerpc64=	CSOUND
+OPTIONS_EXCLUDE_powerpc64le=	CSOUND
+OPTIONS_SUB=		yes
 
 ASM_BUILD_DEPENDS=	nasm:devel/nasm
 
@@ -59,7 +63,7 @@ DAV1D_LIB_DEPENDS=	libdav1d.so:multimedia/dav1d
 DAV1D_MESON_ENABLED=	dav1d
 
 GTK4_LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene
-GTK4_USE=		GNOME=gtk40
+GTK4_USE=		GNOME=gtk40 GSTREAMER=gl
 GTK4_MESON_ENABLED=	gtk4
 
 PANGO_USE=		GNOME=cairo,pango
@@ -78,13 +82,4 @@ post-patch:
 	@${REINPLACE_CMD} -Ee "/cargo.*'c?(build|test)'/s/]/, '--verbose', '--verbose'&/" \
 		${WRKSRC}/cargo_wrapper.py
 
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gstreamer-1.0/*.so
-
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 31100
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tomli>0:textproc/py-tomli@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
