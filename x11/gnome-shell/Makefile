@@ -53,6 +53,7 @@ USE_PERL5=	build
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	src/gnome-shell-extension-tool.in src/gnome-shell-perf-tool.in
 BINARY_ALIAS=	python3=${PYTHON_CMD}
+NO_SHLIB_REQUIRES_GLOB=	libmutter-clutter-* libmutter-cogl-*
 
 WEBPLUGIN_NAME=	libgnome-shell-browser-plugin.so
 WEBPLUGIN_DIR=	${PREFIX}/lib/mozilla/plugins/

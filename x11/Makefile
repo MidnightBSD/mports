@@ -18,6 +18,7 @@ SUBDIR += eterm
 SUBDIR += evilvte
 SUBDIR += fstobdf
 SUBDIR += gdm
+SUBDIR += gnome-console
 SUBDIR += gnome-desktop
 SUBDIR += gnome-menus
 SUBDIR += gnome-session

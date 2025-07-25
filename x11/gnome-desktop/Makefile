@@ -1,6 +1,5 @@
 PORTNAME=	gnome-desktop
-PORTVERSION=	42.4
-PORTREVISION=	1
+PORTVERSION=	44.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
@@ -28,8 +27,7 @@ USES=		bison cpe gettext gnome localbase:ldflags meson \
 USE_GNOME=	cairo gdkpixbuf gtk30 gtk40 intltool introspection:build
 USE_XORG=	x11
 USE_LDCONFIG=	yes
-MESON_ARGS=	-Dgnome_distributor="MidnightBSD GNOME Project" \
-		-Dudev=disabled \
+MESON_ARGS=	-Dudev=disabled \
 		-Dsystemd=disabled \
 		-Dgtk_doc=false
 CPE_VENDOR=	gnome

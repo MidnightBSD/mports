@@ -6,6 +6,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the FreeDesktop Desktop Menu Spec
+WWW=		https://www.freedesktop.org/Standards/menu-spec
 
 LICENSE=	gpl2
 
