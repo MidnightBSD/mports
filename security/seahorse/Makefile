@@ -58,5 +58,6 @@ LDAP_MESON_TRUE=	ldap-support
 .include <bsd.mport.options.mk>
 
 LDFLAGS+=	-fuse-ld=lld
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 .include <bsd.port.mk>

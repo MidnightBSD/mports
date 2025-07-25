@@ -1,12 +1,13 @@
 PORTNAME=	gdm
 PORTVERSION=	42.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME 3 display manager
+COMMENT=	GNOME display manager
+WWW=		https://www.gnome.org/projects/gdm/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -87,7 +88,7 @@ GNOME_LOCALSTATEDIR=	/var
 
 OPTIONS_DEFINE=	IPV6
 
-IPV6_MESON_ENABLE=	ipv6
+IPV6_MESON_TRUE=	ipv6
 
 .include <bsd.mport.options.mk>
 

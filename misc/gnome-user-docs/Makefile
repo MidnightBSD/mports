@@ -1,13 +1,13 @@
 PORTNAME=	gnome-user-docs
-PORTVERSION=	3.28.2
+PORTVERSION=	42.0
 CATEGORIES=	misc gnome
-MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME 3 users guide
+COMMENT=	GNOME desktop users guide
 
-LICENSE=	other
+LICENSE=	CC-BY-3.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
