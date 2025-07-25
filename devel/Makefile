@@ -1795,6 +1795,7 @@ SUBDIR += tex-libtexluajit
 SUBDIR += tex-synctex
 SUBDIR += tex-web2c
 SUBDIR += thunar-vcs-plugin
+SUBDIR += tinysparql
 SUBDIR += tl-expected
 SUBDIR += tmake
 SUBDIR += tradcpp
