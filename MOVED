@@ -502,3 +502,5 @@ converters/p5-Jcode|japanese/p5-Jcode|2025-06-24|Moved categories
 lang/python38|lang/python39|2025-06-25|Has expired: Reached end-of-life in October 2024
 sysutils/datadog-agent||2025-07-23|Has expired: broken/unfetchable
 sysutils/datadog-integrations||2025-07-23|Has expired: broken/unfetchable
+devel/py-gobject3|devel/py-pygobject|2025-07-25|Use proper upstream package name
+devel/pygobject3-common|devel/pygobject-common|2025-07-25|Match devel/py-pygobject, use proper upstream name
