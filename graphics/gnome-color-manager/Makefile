@@ -1,6 +1,6 @@
 PORTNAME=	gnome-color-manager
 PORTVERSION=	3.36.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,6 +11,9 @@ WWW=		https://git.gnome.org/browse/gnome-color-manager
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	Depends on expired textproc-docbook-utils
+EXPIRATION_DATE=2025-08-21
 
 BUILD_DEPENDS=	docbook2man:textproc/docbook-utils \
 		itstool:textproc/itstool \
