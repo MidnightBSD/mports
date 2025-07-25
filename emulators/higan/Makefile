@@ -1,30 +1,33 @@
 PORTNAME=	higan
-PORTVERSION=	106
-PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+DISTVERSION=	110
+PORTREVISION=	1
 CATEGORIES=	emulators games
-MASTER_SITES=	http://download.byuu.org/ \
-		http://www.cyberbotx.com/higan/
-DISTNAME=	${PORTNAME}_v${PORTVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nintendo multi-system emulator
-WWW=		https://byuu.org/higan/
+WWW=		https://github.com/higan-emu/higan
 
-# has gplv3 source files
-LICENSE=	gpl3
+LICENSE=	gpl3+
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64 powerpc64le
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2
+		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz
 
-USES=		7z compiler:c++14-lang gettext gmake gnome pkgconfig xorg
-USE_GNOME=	cairo gdkpixbuf2 gtk20 gtksourceview2
-USE_XORG=	x11 xext
+USES=		compiler:c++14-lang gettext gmake gnome pkgconfig xorg
+USE_GNOME=	cairo gdkpixbuf gtk20 gtksourceview2
+USE_XORG=	x11 xext xrandr
 USE_CSTD=	c99
 USE_CXXSTD=	c++14
-USE_GCC=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	higan-emu
 
 MAKEFILE=	GNUmakefile
-MAKE_ENV=	compiler="${CXX}" hiro="gtk"
+MAKE_ENV=	compiler="${CXX}" hiro="gtk2"
 
 OPTIONS_DEFINE=		DEBUG
 OPTIONS_MULTI=		VIDEO SOUND INPUT
@@ -32,7 +35,7 @@ OPTIONS_MULTI_VIDEO=	GLX SDL XSHM XV
 OPTIONS_MULTI_SOUND=	AO OPENAL OSS PULSEAUDIO
 OPTIONS_MULTI_INPUT=	INPUT_SDL INPUT_X
 OPTIONS_DEFAULT=	GLX XSHM XV SDL \
-			OSS INPUT_SDL INPUT_X
+			OPENAL INPUT_SDL INPUT_X
 
 XSHM_DESC=		Build XShm video driver
 XV_DESC=		Build Xv video driver
@@ -44,7 +47,7 @@ GLX_USE=	GL=gl
 GLX_VARS=	VIDEO_DRIVER+=video.glx
 
 SDL_USES=	sdl
-SDL_USE=	XORG=xv SDL=sdl
+SDL_USE=	XORG=xv SDL=sdl2
 SDL_VARS=	VIDEO_DRIVER+=video.sdl
 
 XSHM_USE=	XORG=xext
@@ -71,11 +74,6 @@ INPUT_SDL_VARS=	INPUT_DRIVER+=input.sdl
 INPUT_X_VARS=	INPUT_DRIVER+=input.xlib
 
 post-patch:
-	${REINPLACE_CMD} \
-		-e 's|%%VIDEO%%|${VIDEO_DRIVER}|' \
-		-e 's|%%AUDIO%%|${AUDIO_DRIVER}|' \
-		-e 's|%%INPUT%%|${INPUT_DRIVER}|' \
-		${WRKSRC}/higan/target-tomoko/GNUmakefile
 	${REINPLACE_CMD} -e 's|/usr/share/|${PREFIX}/share/|' \
 		${WRKSRC}/nall/path.hpp
 
@@ -92,9 +90,9 @@ do-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/higan/out/higan ${STAGEDIR}${PREFIX}/bin/
 	${INSTALL_PROGRAM} ${WRKSRC}/icarus/out/icarus ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_DATA} ${WRKSRC}/higan/data/higan.png ${STAGEDIR}${PREFIX}/share/pixmaps/
-	${INSTALL_DATA} ${WRKSRC}/higan/data/higan.desktop ${STAGEDIR}${PREFIX}/share/applications/
-	(cd ${WRKSRC}/higan/systems && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/)
+	${INSTALL_DATA} ${WRKSRC}/higan/target-higan/resource/higan.png ${STAGEDIR}${PREFIX}/share/pixmaps/
+	${INSTALL_DATA} ${WRKSRC}/higan/target-higan/resource/higan.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	(cd ${WRKSRC}/higan/System && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/)
 	(cd ${WRKSRC}/icarus/Database && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icarus/Database/)
 
 .include <bsd.port.mk>

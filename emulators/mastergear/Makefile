@@ -1,5 +1,6 @@
 PORTNAME=	mastergear
 PORTVERSION=	2.0
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://fms.komkon.org/MG/
 DISTNAME=	MG20-FreeBSD-80x86-bin
