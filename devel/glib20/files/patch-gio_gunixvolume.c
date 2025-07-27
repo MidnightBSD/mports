@@ -4,7 +4,7 @@
                       gpointer             user_data)
  {
    GUnixVolume *unix_volume = G_UNIX_VOLUME (volume);
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  const gchar *argv[] = {"cdcontrol", "-f", NULL, "eject", NULL};
 +  argv[2] = unix_volume->device_path;
 +#else

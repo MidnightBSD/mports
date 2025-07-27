@@ -50,9 +50,11 @@ TEST_MESON_ENABLED=	cairo
 TEST_LIB_DEPENDS=	libcairo.so:graphics/cairo
 
 .if ${FLAVOR:U} == bootstrap
+PKG_CONFIG_PATH=/usr/local/glib-bootstrap/libdata/pkgconfig
 MESON_ARGS+=	-Dcairo=disabled 
 OPTIONS_DEFINE=
 PREFIX=		${LOCALBASE}/${PORTNAME}-bootstrap
+PLIST_FILES+=	/usr/local/libdata/ldconfig/gobject-introspection-bootstrap
 .endif
 
 .include <bsd.port.pre.mk>
