@@ -11,8 +11,8 @@
 # Variables for ports:
 # MESON_ARGS		- Arguments passed to meson
 #			format: -Denable_foo=true
-# MESON_BUILD_DIR	- Path to the build directory
-#			Default: ${WRKSRC}/_build
+# MESON_BUILD_DIR	- Path to the build directory relative to ${WRKSRC}
+#			Default: _build
 #
 
 .if !defined(_INCLUDE_USES_MESON_MK)
@@ -64,13 +64,15 @@ CONFIGURE_ARGS+=	-Db_colorout=never
 INSTALL_TARGET=		install
 
 # should we have strip separate from WITH_DEBUG?
-.if defined(WITH_DEBUG)
+.  if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--buildtype debug
-.else
+.  elif defined(WITH_DEBUGINFO)
+CONFIGURE_ARGS+=	--buildtype debugoptimized
+.  else
 CONFIGURE_ARGS+=	--buildtype release \
 			--optimization plain \
 			--strip
-.endif
+.  endif
 
 HAS_CONFIGURE=		yes
 CONFIGURE_CMD=		meson
@@ -81,6 +83,7 @@ BUILD_WRKSRC=		${WRKSRC}/${MESON_BUILD_DIR}
 
 INSTALL_WRKSRC=		${WRKSRC}/${MESON_BUILD_DIR}
 
+TEST_ENV+=		MESON_TESTTHREADS=${MAKE_JOBS_NUMBER}
 TEST_WRKSRC=		${WRKSRC}/${MESON_BUILD_DIR}
 TEST_TARGET=		test
 
