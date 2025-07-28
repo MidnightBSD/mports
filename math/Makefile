@@ -12,6 +12,7 @@ SUBDIR += R-cran-lazyeval
 SUBDIR += R-cran-maps
 SUBDIR += R-cran-mathjaxr
 SUBDIR += R-cran-sets
+SUBDIR += R-cran-sf
 SUBDIR += adol-c
 SUBDIR += analitza
 SUBDIR += asl
