@@ -112,6 +112,7 @@ SUBDIR += rubygem-uri
 SUBDIR += ldap2dns
 SUBDIR += ldapdiff
 SUBDIR += libarcus
+SUBDIR += libcloudproviders
 SUBDIR += libdnet
 SUBDIR += libgravatar
 SUBDIR += libgrss
