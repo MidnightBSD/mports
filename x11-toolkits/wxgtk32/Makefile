@@ -77,7 +77,7 @@ MSPACK_CONFIGURE_WITH=		libmspack
 MSPACK_LIB_DEPENDS=		libmspack.so:archivers/libmspack
 
 WEBKIT_CONFIGURE_ENABLE=	webview
-WEBKIT_LIB_DEPENDS=		libwebkit2gtk-4.0.so:www/webkit2-gtk3
+WEBKIT_LIB_DEPENDS=		libwebkit2gtk-4.0.so:www/webkit2-gtk@40
 
 .if ${FLAVOR} == gtk3
 USE_GNOME+=	gtk30
