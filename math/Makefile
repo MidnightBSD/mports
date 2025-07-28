@@ -2,6 +2,7 @@ COMMENT = Mathematics
 
 SUBDIR += Imath
 SUBDIR += R
+SUBDIR += R-cran-Formula
 SUBDIR += R-cran-assertthat
 SUBDIR += R-cran-backports
 SUBDIR += R-cran-date

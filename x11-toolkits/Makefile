@@ -57,6 +57,7 @@ SUBDIR += libXt
 SUBDIR += libgdiplus
 SUBDIR += libhandy
 SUBDIR += libshumate
+SUBDIR += libspelling
 SUBDIR += libunique3
 SUBDIR += libwnck
 SUBDIR += libwnck3
