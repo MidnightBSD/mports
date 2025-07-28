@@ -130,6 +130,7 @@ SUBDIR += libpaho-mqtt3
 SUBDIR += libpcap
 SUBDIR += libpcapnav
 SUBDIR += libproxy
+SUBDIR += librest1
 SUBDIR += librsync
 SUBDIR += libslirp
 SUBDIR += libsrtp2
