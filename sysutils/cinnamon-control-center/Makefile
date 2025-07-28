@@ -1,13 +1,12 @@
-# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-
 PORTNAME=	cinnamon-control-center
-PORTVERSION=	4.8.2
-PORTREVISION=	1
+PORTVERSION=	5.4.6
+PORTREVISION=	5
 CATEGORIES=	sysutils gnome
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Control center for Cinnamon
+WWW=		https://github.com/linuxmint/cinnamon-control-center
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -22,18 +21,18 @@ LIB_DEPENDS=	libcinnamon-desktop.so:x11/cinnamon-desktop \
 		libnotify.so:devel/libnotify \
 		libpolkit-gobject-1.so:sysutils/polkit \
 		libxklavier.so:x11/libxklavier \
-		libharfbuzz.so:print/harfbuzz
-RUN_DEPENDS=	iso-codes>0:misc/iso-codes \
-		cinnamon-settings-daemon>=1.0.0:sysutils/cinnamon-settings-daemon
+		libharfbuzz.so:print/harfbuzz \
+		libupower-glib.so:sysutils/upower \
+		libgudev-1.0.so:devel/libgudev
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USES=		gettext gnome meson pkgconfig python:3.5+,build shebangfix xorg
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool libgnomekbd libxml2
-USE_XORG=	x11 xfixes sm
+USES=		gettext gnome meson pkgconfig python:build shebangfix xorg
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30 intltool libgnomekbd libxml2
+USE_XORG=	x11 xfixes xorgproto sm
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 
-INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 
 MESON_ARGS=	-Dnetworkmanager=false \
@@ -42,6 +41,8 @@ MESON_ARGS=	-Dnetworkmanager=false \
 SHEBANG_GLOB=	*.py
 
 NO_TEST=	yes
+
+GLIB_SCHEMAS=	org.cinnamon.control-center.display.gschema.xml
 
 OPTIONS_DEFINE=	COLORD ONLINEACCOUNTS WACOM
 OPTIONS_DEFAULT=COLORD ONLINEACCOUNTS WACOM

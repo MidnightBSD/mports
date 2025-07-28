@@ -38,6 +38,7 @@ SUBDIR += hwdata
 SUBDIR += iso-codes
 SUBDIR += kdeedu
 SUBDIR += kdeedu-data
+SUBDIR += kdeutils
 SUBDIR += kf5-purpose
 SUBDIR += kf6-purpose
 SUBDIR += kgeography

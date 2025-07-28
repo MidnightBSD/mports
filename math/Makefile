@@ -53,6 +53,7 @@ SUBDIR += gsl
 SUBDIR += ipopt
 SUBDIR += kalgebra
 SUBDIR += kbruch
+SUBDIR += kcalc
 SUBDIR += kig
 SUBDIR += kmplot
 SUBDIR += lapack

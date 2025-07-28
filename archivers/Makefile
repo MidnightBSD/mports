@@ -5,6 +5,7 @@ SUBDIR += R-cran-brotli
 SUBDIR += R-cran-zip
 SUBDIR += arc
 SUBDIR += arj
+SUBDIR += ark
 SUBDIR += brotli
 SUBDIR += bzip2
 SUBDIR += bzip3
