@@ -1711,6 +1711,7 @@ SUBDIR += rinutils
 SUBDIR += riscv64-none-elf-gcc
 SUBDIR += rlog
 SUBDIR += rttr
+SUBDIR += ruby-bsearch
 SUBDIR += ruby-gems
 SUBDIR += rubygem-activesupport4
 SUBDIR += rubygem-activesupport5
