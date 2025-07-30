@@ -143,6 +143,7 @@ SUBDIR += roundcube-classic
 SUBDIR += roundcube-larry
 SUBDIR += roundcube-thunderbird_labels
 SUBDIR += rspamd
+SUBDIR += rubygem-actionmailer4
 SUBDIR += rubygem-mail
 SUBDIR += rubygem-mini_mime
 SUBDIR += rubygem-net-imap

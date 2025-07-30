@@ -328,6 +328,7 @@ SUBDIR += qt6-webengine
 SUBDIR += qt6-websockets
 SUBDIR += qt6-webview
 SUBDIR += raphael
+SUBDIR += rubygem-actionpack4
 SUBDIR += rubygem-addressable
 SUBDIR += rubygem-cgi
 SUBDIR += rubygem-crass
