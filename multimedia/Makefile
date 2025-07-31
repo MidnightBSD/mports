@@ -124,6 +124,7 @@ SUBDIR += mpeg2codec
 SUBDIR += mplayer
 SUBDIR += mplayer-skins
 SUBDIR += mpv
+SUBDIR += obuparse
 SUBDIR += openh264
 SUBDIR += opentimelineio
 SUBDIR += phonon
