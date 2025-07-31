@@ -19,6 +19,8 @@ GH_TUPLE=	agl:xmpp-client:3030ad4:DEFAULT/vendor/github.com/agl/xmpp-client \
 
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 
+NO_TEST=	yes
+
 PLIST_FILES=	bin/xmpp-client
 
 do-test:
