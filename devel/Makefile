@@ -808,6 +808,7 @@ SUBDIR += p5-Import-Into
 SUBDIR += p5-Importer
 SUBDIR += p5-Inline
 SUBDIR += p5-Inline-Files
+SUBDIR += p5-JSON-Parse
 SUBDIR += p5-JSON-RPC
 SUBDIR += p5-Lexical-SealRequireHints
 SUBDIR += p5-Lexical-Var
