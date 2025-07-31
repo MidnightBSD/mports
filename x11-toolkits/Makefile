@@ -125,6 +125,7 @@ SUBDIR += rubygem-vte4
 SUBDIR += sdl_pango
 SUBDIR += sdl2_pango
 SUBDIR += shared-desktop-ontologies
+SUBDIR += tepl6
 SUBDIR += tk-wrapper
 SUBDIR += tk86
 SUBDIR += tkshape
