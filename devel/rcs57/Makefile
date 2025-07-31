@@ -11,6 +11,9 @@ WWW=		https://www.gnu.org/software/rcs/
 
 LICENSE=	gpl2
 
+BUILD_DEPENDS=	gdiff3:textproc/diffutils
+RUN_DEPENDS=	gdiff3:textproc/diffutils
+
 OPTIONS_DEFINE=	FREEBSD
 OPTIONS_DEFAULT=	FREEBSD
 FREEBSD_DESC=	Apply FreeBSD patches
