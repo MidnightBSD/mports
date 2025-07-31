@@ -52,6 +52,7 @@ SUBDIR += libadwaita
 SUBDIR += libdazzle
 SUBDIR += libdecor
 SUBDIR += libXaw
+SUBDIR += libXaw3d
 SUBDIR += libXmu
 SUBDIR += libXt
 SUBDIR += libgdiplus
