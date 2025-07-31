@@ -16,7 +16,7 @@ FAKE_OPTS=	trueprefix
 USE_GITHUB=	yes
 GH_ACCOUNT=	pianojockl
 
-MAKE_ARGS=	BINGRP=${BINGRP} MANDIR="${PREFIX}/share/man/man"
+MAKE_ARGS=	BINGRP=${BINGRP} MANDIR="${PREFIX}/share/man/man" MK_WERROR=no
 MAKE_ENV=	WITHOUT_WERROR=yes
 
 CFLAGS+=	-fcommon
@@ -28,7 +28,9 @@ INFO_PATH=	share/games
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} < 400000
 MAKE_ARGS+=	NO_WERROR=yes
+.endif
 
 pre-install:
 .for d in atc larn quiz.db boggle
