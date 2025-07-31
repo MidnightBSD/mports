@@ -1,22 +1,33 @@
-
-
 PORTNAME=	libEMF
-PORTVERSION=	1.0.7
+DISTVERSION=	1.0.13
 PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF
+DISTNAME=	libemf-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enhanced Metafile Library
-LICENSE=	gpl2
+WWW=		https://libemf.sourceforge.net/
+
+LICENSE=	lgpl2.1
+
+USES=		compiler:c++14-lang cpe libtool
+CPE_VENDOR=	${PORTNAME:tl}_project
+# libEMF 1.10.13 does not work with C++17 which is the default since
+# clang 16. This can be removed once that port starts working with C++17 and
+# has its own USE_CXXSTD removed.
+# See also: https://sourceforge.net/p/libemf/bugs/5/
+USE_CXXSTD=	c++14
+USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		libtool
-GNU_CONFIGURE=	yes
-
-post-install:
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/html/* ${DOCSDIR}
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
