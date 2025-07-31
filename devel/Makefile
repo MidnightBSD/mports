@@ -1801,7 +1801,6 @@ SUBDIR += st
 SUBDIR += subversion
 SUBDIR += subversion-lts
 SUBDIR += swig
-SUBDIR += swig30
 SUBDIR += sysconftool
 SUBDIR += t1lib
 SUBDIR += talloc
