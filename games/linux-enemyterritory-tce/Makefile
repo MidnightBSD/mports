@@ -16,13 +16,14 @@ LICENSE_FILE=	${WRKSRC}/EULA_TrueCombat_Elite.txt
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 LICENSE_NAME=	True Combat Elite EULA
 
-BUILD_DEPENDS=	et:games/linux-enemyterritory
-RUN_DEPENDS=	${BUILD_DEPENDS)
+RUN_DEPENDS=	et:games/linux-enemyterritory
 
+ONLY_FOR_ARCHS=	i386 amd64
 USES=		linux zip
 ETDIR=		${PREFIX}/lib/enemyterritory
-
 PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
 
 DESKTOP_ENTRIES="Enemy Territory TrueCombat:Elite" \
 		"Play Enemy Territory TrueCombat:Elite" \
@@ -52,12 +53,9 @@ do-install:
 	-${CHOWN} ${LIBOWN}:${LIBGRP} ${ETDIR}/tcetest/${f}
 	${CHMOD} ${LIBMODE} ${ETDIR}/tcetest/${f}
 .endfor
-
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 .for f in *.txt *.rtf	
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
