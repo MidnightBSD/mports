@@ -51,7 +51,7 @@ aarch64_COMMENT=	GNU binutils for ${FLAVOR} development
 
 .if ${OSVERSION} < 300000
 FTARGET=freebsd11.4
-.elsif {$OSVERSION} < 400000
+.elsif ${OSVERSION} < 400000
 FTARGET=freebsd12.3
 .else
 FTARGET=freebsd13.4
