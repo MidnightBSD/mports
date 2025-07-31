@@ -51,8 +51,10 @@ aarch64_COMMENT=	GNU binutils for ${FLAVOR} development
 
 .if ${OSVERSION} < 300000
 FTARGET=freebsd11.4
-.else
+.elsif {$OSVERSION} < 400000
 FTARGET=freebsd12.3
+.else
+FTARGET=freebsd13.4
 .endif
 
 .if ${FLAVOR} != native
@@ -125,12 +127,16 @@ CONFIGURE_ARGS+=      --disable-initfini-array
 .if ${ARCH} == amd64
 .if ${OSVERSION} < 300000
 CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
+.elsif ${OSVERSION} < 400000
+CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
 .else
 CONFIGURE_TARGET=	x86_64-portbld-freebsd12.3
 .endif
 .else
 .if ${OSVERSION} < 300000
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+.elsif ${OSVERSION} < 400000
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 .else
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.3
 .endif
