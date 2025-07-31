@@ -109,7 +109,6 @@ SUBDIR += libshout
 SUBDIR += libsidplay
 SUBDIR += libsndfile
 SUBDIR += libsoxr
-SUBDIR += libtremor
 SUBDIR += libvorbis
 SUBDIR += libxmp
 SUBDIR += lilv
