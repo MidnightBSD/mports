@@ -1,5 +1,5 @@
 PORTNAME=	zint
-PORTVERSION=	2.12.0
+PORTVERSION=	2.15.0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -19,6 +19,7 @@ USE_LDCONFIG=	yes
 USE_QT=		buildtools:build qmake:build uitools:build core gui \
 		svg widgets
 
+PLIST_SUB+=	VER=${PORTVERSION:R}
 DESKTOP_ENTRIES="Zint" "Barcode generator" "" "zint-qt" "" false
 
 post-patch:
