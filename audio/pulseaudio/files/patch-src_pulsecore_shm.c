@@ -1,6 +1,6 @@
---- src/pulsecore/shm.c.orig	2016-06-21 10:58:21 UTC
+--- src/pulsecore/shm.c.orig	2024-01-12 17:22:09 UTC
 +++ src/pulsecore/shm.c
-@@ -102,7 +102,7 @@ static inline size_t shm_marker_size(pa_
+@@ -105,7 +105,7 @@ static inline size_t shm_marker_size(pa_mem_type_t typ
  
  #ifdef HAVE_SHM_OPEN
  static char *segment_name(char *fn, size_t l, unsigned id) {

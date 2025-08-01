@@ -1,6 +1,6 @@
---- src/tests/atomic-test.c.orig	2019-09-13 13:10:23 UTC
+--- src/tests/atomic-test.c.orig	2024-01-12 17:22:09 UTC
 +++ src/tests/atomic-test.c
-@@ -51,6 +51,11 @@
+@@ -54,6 +54,11 @@
  
  #define MEMORY_SIZE (8 * 2 * 1024 * 1024)
  
