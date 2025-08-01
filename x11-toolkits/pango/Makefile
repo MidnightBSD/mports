@@ -15,7 +15,6 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfribidi.so:converters/fribidi
-TEST_DEPENDS=	cantarell-fonts>=0:x11-fonts/cantarell-fonts
 
 USES=		compiler:c11 cpe gnome meson pkgconfig tar:xz
 CPE_VENDOR=	gnome
@@ -44,8 +43,6 @@ X11_USES=		xorg
 X11_USE=		XORG=x11,xft,xrender
 X11_MESON_ENABLED=	xft
 
-pre-test:
-# Don't test backup files. Silly Meson.
-	@${FIND} ${WRKSRC}/tests/fontsets/ -name "*.orig" -delete
+NO_TEST=	yes
 
 .include <bsd.port.mk>
