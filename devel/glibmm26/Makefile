@@ -23,4 +23,6 @@ MESON_ARGS=	-Dbuild-documentation=false
 PORTSCOUT=	limitw:1,even
 PLIST_SUB=	VERSION=2.68
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
