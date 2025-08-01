@@ -1,5 +1,10 @@
 COMMENT = Graphics tools and libraries
 
+SUBDIR += R-cran-GDD
+SUBDIR += R-cran-colorspace
+SUBDIR += R-cran-latticeExtra
+SUBDIR += R-cran-pixmap
+SUBDIR += R-cran-visNetwork
 SUBDIR += GraphicsMagick
 SUBDIR += Hermes
 SUBDIR += ImageMagick6
