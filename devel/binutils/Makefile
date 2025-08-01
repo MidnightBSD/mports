@@ -1,15 +1,18 @@
 PORTNAME=	binutils
 PORTVERSION=	2.40
 PORTREVISION?=	1
-CATEGORIES=	devel
-MASTER_SITES=	SOURCEWARE/binutils/releases
+CATEGORIES?=	devel
+MASTER_SITES=	GNU \
+		SOURCEWARE/binutils/releases
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU binary tools
+COMMENT?=	GNU binary tools
 WWW=		https://www.gnu.org/software/binutils/
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl3=	${WRKSRC}/COPYING3
+LICENSE_FILE_lgpl3=	${WRKSRC}/COPYING3.LIB
 
 FLAVORS=	native aarch64 aarch64_none_elf amd64 arm_gnueabi arm_none_eabi \
 		avr i386 riscv64 \
@@ -20,7 +23,7 @@ RELRO_CONFIGURE_ON=	--enable-relro
 BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:math/gmp \
 		${LOCALBASE}/lib/libmpfr.so:math/mpfr
 
-CONFLICTS=	libbfd-[0-9]*
+CONFLICTS=	libbfd
 
 #TEST_DEPENDS+=	runtest:misc/dejagnu
 #TEST_TARGET=	check
@@ -31,8 +34,9 @@ STATIC_PREVENTS=	NLS
 
 RELRO_DESC=	Enable relocation memory corruption mitigation (-z relro) by default
 
-LICENSE_FILE_GPLv3=	${WRKSRC}/COPYING3
-LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING3.LIB
+# Some versioned symbols in libctf are undefined when libctf-nobfd.so is linked.
+# Suppress errors with lld >= 17 due to these undefined symbols.
+LDFLAGS+=	-Wl,--undefined-version
 
 USES=		bison:alias cpe gmake libtool makeinfo tar:xz compiler:env gettext localbase
 CPE_VENDOR=	gnu
