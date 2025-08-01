@@ -6,7 +6,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Upload files or directories to FTP server with resume support
-WWW=		http://wput.sourceforge.net/
+WWW=		https://wput.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -29,6 +29,8 @@ NLS_USES=		gettext iconv
 NLS_CONFIGURE_ENABLE=	nls
 NLS_CONFIGURE_WITH=	libintl-prefix=${LOCALBASE}
 NLS_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG}
+
+CFLAGS+=	-Wno-error=int-conversion
 
 pre-configure:
 	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|' \
