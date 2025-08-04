@@ -107,7 +107,6 @@ SUBDIR += upx
 SUBDIR += xar
 SUBDIR += xdms
 SUBDIR += xmill
-SUBDIR += xpk
 SUBDIR += zchunk
 SUBDIR += zim-tools
 SUBDIR += zip
