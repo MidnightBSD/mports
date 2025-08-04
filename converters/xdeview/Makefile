@@ -34,6 +34,8 @@ OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/uuwish
 	${INSTALL_MAN} ${WRKSRC}/man/xdeview.1 ${PREFIX}/share/man/man1
