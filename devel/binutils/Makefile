@@ -95,6 +95,7 @@ CONFIGURE_ARGS+=	--target=${BUTARGET}
 .endif
 
 .if ${FLAVOR} == native
+PKGNAMEPREFIX=	native-
 CONFIGURE_ARGS+=	--enable-shared
 PLIST_SUB+=		SHARED=''
 .else
