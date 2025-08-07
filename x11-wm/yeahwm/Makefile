@@ -1,5 +1,6 @@
 PORTNAME=	yeahwm
 PORTVERSION=	0.3.5
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://phrat.de/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -26,6 +27,10 @@ OPTIONS_DEFINE=	DOCS MOTIF
 MOTIF_DESC=	Use Motif hints to find if window should be borderless
 
 MOTIF_BUILD_DEPENDS=	${LOCALBASE}/include/Xm/MwmUtil.h:x11-toolkits/open-motif
+
+post-extract:
+	@${SED} -n '/^Copyright (c)/,$$p' \
+		${WRKSRC}/README.evilwm > ${LICENSE_FILE}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's, -Wall  -Os,-fcommon,' ${WRKSRC}/Makefile
