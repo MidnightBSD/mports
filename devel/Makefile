@@ -56,6 +56,7 @@ SUBDIR += R-cran-pak
 SUBDIR += R-cran-parallelly
 SUBDIR += R-cran-parsedate
 SUBDIR += R-cran-pillar
+SUBDIR += R-cran-pkgbuild
 SUBDIR += R-cran-pkgconfig
 SUBDIR += R-cran-pkgload
 SUBDIR += R-cran-plogr
