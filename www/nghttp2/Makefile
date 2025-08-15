@@ -5,6 +5,7 @@ MASTER_SITES=	https://github.com/nghttp2/nghttp2/releases/download/v${PORTVERSIO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP/2.0 C Library
+WWW=		https://nghttp2.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
