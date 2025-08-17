@@ -24,6 +24,7 @@ SUBDIR += R-cran-callr
 SUBDIR += R-cran-chron
 SUBDIR += R-cran-cli
 SUBDIR += R-cran-clipr
+SUBDIR += R-cran-conflicted
 SUBDIR += R-cran-covr
 SUBDIR += R-cran-cpp11
 SUBDIR += R-cran-crayon
