@@ -38,6 +38,7 @@ SUBDIR += R-cran-fansi
 SUBDIR += R-cran-fontawesome
 SUBDIR += R-cran-foreach
 SUBDIR += R-cran-future
+SUBDIR += R-cran-gargle
 SUBDIR += R-cran-generics
 SUBDIR += R-cran-gert
 SUBDIR += R-cran-globals
