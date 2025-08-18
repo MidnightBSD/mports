@@ -26,6 +26,7 @@ SUBDIR += php83-curl
 SUBDIR += php83-ftp
 SUBDIR += proftpd
 SUBDIR += py-aioftp
+SUBDIR += py-ftputil
 SUBDIR += py-pycurl
 SUBDIR += py-pyftpdlib
 SUBDIR += py-parfive
