@@ -275,6 +275,7 @@ SUBDIR += xset
 SUBDIR += xsetroot
 SUBDIR += xsettingsd
 SUBDIR += xsm
+SUBDIR += xstdcmap
 SUBDIR += xterm
 SUBDIR += xtitle
 SUBDIR += xtrans
