@@ -42,6 +42,7 @@ SUBDIR += R-cran-generics
 SUBDIR += R-cran-gert
 SUBDIR += R-cran-globals
 SUBDIR += R-cran-glue
+SUBDIR += R-cran-googlesheets4
 SUBDIR += R-cran-gsubfn
 SUBDIR += R-cran-hms
 SUBDIR += R-cran-iterators
