@@ -16,6 +16,7 @@ SUBDIR += R-cran-maps
 SUBDIR += R-cran-mathjaxr
 SUBDIR += R-cran-sets
 SUBDIR += R-cran-sf
+SUBDIR += R-cran-sp
 SUBDIR += R-cran-units
 SUBDIR += adol-c
 SUBDIR += analitza
