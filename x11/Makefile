@@ -283,6 +283,7 @@ SUBDIR += xvidtune
 SUBDIR += xvinfo
 SUBDIR += xwatchwin
 SUBDIR += xwayland-run
+SUBDIR += xwayland-satellite
 SUBDIR += xwd
 SUBDIR += xwininfo
 SUBDIR += xwinwrap
