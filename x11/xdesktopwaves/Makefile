@@ -1,9 +1,6 @@
 # New ports collection Makefile for:	xdesktopwaves
 # Date Created:				13 April 2007
 # Whom:					wintellect <wintellect@bsdnexus.com>
-#
-
-#
 
 PORTNAME=	xdesktopwaves
 PORTVERSION=	1.3
@@ -13,8 +10,11 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sets the background of your X desktop under water
+WWW=		http://xdesktopwaves.sourceforge.net/
+
 LICENSE=	gpl2
 
+USES=		xorg
 USE_XORG=	x11 xext
 
 .include <bsd.port.mk>
