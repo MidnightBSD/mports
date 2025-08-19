@@ -33,6 +33,7 @@ SUBDIR += chromium
 SUBDIR += chromium-bin
 SUBDIR += clearsilver
 SUBDIR += codeigniter
+SUBDIR += dojo
 SUBDIR += drupal10
 SUBDIR += drupal7
 SUBDIR += epiphany
