@@ -47,6 +47,7 @@ SUBDIR += R-cran-googledrive
 SUBDIR += R-cran-googlesheets4
 SUBDIR += R-cran-gsubfn
 SUBDIR += R-cran-hms
+SUBDIR += R-cran-ids
 SUBDIR += R-cran-iterators
 SUBDIR += R-cran-later
 SUBDIR += R-cran-lifecycle
