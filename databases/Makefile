@@ -174,7 +174,6 @@ SUBDIR += py-flask-sqlalchemy
 SUBDIR += py-gdbm
 SUBDIR += py-hiredis
 SUBDIR += py-mongoengine
-SUBDIR += py-mysql2pgsql
 SUBDIR += py-postgresql
 SUBDIR += py-pg8000
 SUBDIR += py-psycopg
