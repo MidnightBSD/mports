@@ -270,7 +270,6 @@ SUBDIR += xrdb
 SUBDIR += xrefresh
 SUBDIR += xscreensaver
 SUBDIR += xscreensaver.app
-SUBDIR += xsel
 SUBDIR += xsel-conrad
 SUBDIR += xset
 SUBDIR += xsetroot

@@ -16,8 +16,6 @@ WWW=		https://invisible-island.net/xterm/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	x11iraf-[0-9]*
-
 LIB_DEPENDS+=   libfontconfig.so:x11-fonts/fontconfig
 
 USES=		cpe localbase ncurses tar:tgz xorg
