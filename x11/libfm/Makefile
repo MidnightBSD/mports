@@ -33,7 +33,7 @@ gtk3_CONFLICTS_INSTALL=	libfm
 
 SLAVEDIRS=	${CATEGORIES}/${PORTNAME}-extra
 
-USES=		gettext-tools gmake gnome libtool localbase \
+USES+=		gettext-tools gmake gnome libtool localbase \
 		pkgconfig tar:xz
 USE_GNOME=	intltool
 USE_LDCONFIG=	yes
@@ -71,7 +71,7 @@ post-extract:
 		${WRKSRC}/data/libfm.conf.sample
 .endif
 
-	${MKDIR} -p ${FAKED_DESTDIR}${PREFIX}/include/${PORTNAME}
+	${MKDIR} ${FAKED_DESTDIR}${PREFIX}/include/${PORTNAME}
 
 post-patch:
 	${REINPLACE_CMD} -e 's|^[[:blank:]]\{5,\}USE_NLS=yes|#&|' \
