@@ -15,6 +15,9 @@ LICENSE_NAME=	ICU license
 LICENSE_FILE=	${WRKSRC}/../LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+SKIP_FAKE_CHECK=	lib/*.67 \
+			lib/*.72
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-layoutex
 CONFIGURE_ARGS+=--with-data-packaging=archive \
