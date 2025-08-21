@@ -84,6 +84,7 @@ SUBDIR += pim-data-exporter
 SUBDIR += pim-sieve-editor
 SUBDIR += plan
 SUBDIR += plasma6-milou
+SUBDIR += plasma6-sddm-kcm
 SUBDIR += plasma6-xdg-desktop-portal-kde
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
