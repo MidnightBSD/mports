@@ -2,6 +2,7 @@ COMMENT = Graphics tools and libraries
 
 SUBDIR += R-cran-GDD
 SUBDIR += R-cran-colorspace
+SUBDIR += R-cran-farver
 SUBDIR += R-cran-latticeExtra
 SUBDIR += R-cran-pixmap
 SUBDIR += R-cran-viridis
