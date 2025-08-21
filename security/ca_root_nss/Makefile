@@ -11,6 +11,9 @@ COMMENT=	The root certificate bundle from the Mozilla Project
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+SKIP_FAKE_CHECK=	openssl/cert.pem \
+			etc/ssl/cert.pem
+
 USES=		perl5 ssl:build
 USE_PERL5=	build
 
