@@ -85,6 +85,7 @@ SUBDIR += R-cran-rematch2
 SUBDIR += R-cran-remotes
 SUBDIR += R-cran-reshape
 SUBDIR += R-cran-rlang
+SUBDIR += R-cran-roxygen2
 SUBDIR += R-cran-rprojroot
 SUBDIR += R-cran-rstudioapi
 SUBDIR += R-cran-sourcetools
