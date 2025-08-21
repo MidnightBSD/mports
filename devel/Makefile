@@ -112,7 +112,6 @@ SUBDIR += abseil
 SUBDIR += acsccid
 SUBDIR += activitymail
 SUBDIR += allegro
-SUBDIR += anjuta
 SUBDIR += antlr
 SUBDIR += antlr3
 SUBDIR += antlr4
