@@ -42,6 +42,7 @@ SUBDIR += R-cran-future
 SUBDIR += R-cran-gargle
 SUBDIR += R-cran-generics
 SUBDIR += R-cran-gert
+SUBDIR += R-cran-git2r
 SUBDIR += R-cran-globals
 SUBDIR += R-cran-glue
 SUBDIR += R-cran-googledrive
