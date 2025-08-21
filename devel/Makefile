@@ -35,6 +35,7 @@ SUBDIR += R-cran-desc
 SUBDIR += R-cran-diffobj
 SUBDIR += R-cran-evaluate
 SUBDIR += R-cran-fansi
+SUBDIR += R-cran-filelock
 SUBDIR += R-cran-fontawesome
 SUBDIR += R-cran-foreach
 SUBDIR += R-cran-future
