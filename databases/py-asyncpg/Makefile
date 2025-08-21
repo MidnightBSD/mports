@@ -24,8 +24,8 @@ post-extract:
 	@${RM} ${WRKSRC}/asyncpg/protocol/*.c
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/asyncpg/protocol/protocol*.so
-	@${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/asyncpg/pgproto/pgproto*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/asyncpg/protocol/protocol*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/asyncpg/pgproto/pgproto*.so
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
