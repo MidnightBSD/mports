@@ -270,6 +270,7 @@ SUBDIR += tmux
 SUBDIR += tracker
 SUBDIR += tracker3
 SUBDIR += tracker-miners
+SUBDIR += tree
 SUBDIR += u-boot-a13-olinuxino
 SUBDIR += u-boot-a64-olinuxino
 SUBDIR += u-boot-bananapi
