@@ -348,6 +348,7 @@ SUBDIR += py-mkdocstrings-python-legacy
 SUBDIR += py-myst-parser
 SUBDIR += py-openstep-plist
 SUBDIR += py-paginate
+SUBDIR += py-parse
 SUBDIR += py-parso
 SUBDIR += py-pyaml
 SUBDIR += py-pybtex
