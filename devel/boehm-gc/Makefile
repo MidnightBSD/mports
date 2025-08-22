@@ -16,7 +16,7 @@ LICENSE_NAME=	Boehm-Demers-Weiser Garbage Collector License
 LICENSE_TEXT=	License can be found at http://www.hboehm.info/gc/license.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-SKIP_FAKE_CHECK=	share/doc/gc/gc.man.bak
+SKIP_FAKE_CHECK=	.*/share/doc/gc/gc\.man\.bak$
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops
 
