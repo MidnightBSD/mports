@@ -5,6 +5,7 @@ MASTER_SITES=	SF/${PORTNAME}/Irrlicht%20SDK/${PORTVERSION:R}/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance realtime 3D engine
+WWW=		https://irrlicht.sourceforge.io/
 
 LICENSE=	zlib
 LICENSE_FILE=	${WRKSRC}/readme.txt
@@ -13,8 +14,9 @@ FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
+USE_CXXSTD=	gnu++11
 DOS2UNIX_GLOB=	Makefile *.cpp *.h *.txt
-USES=		alias dos2unix gl gmake jpeg zip xorg
+USES=		cpe dos2unix gl gmake jpeg zip xorg
 USE_GL=		gl
 USE_XORG=	x11 xxf86vm
 USE_LDCONFIG=	yes
