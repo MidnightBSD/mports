@@ -350,6 +350,7 @@ SUBDIR += jna
 SUBDIR += json-c
 SUBDIR += json-glib
 SUBDIR += jsoncpp
+SUBDIR += jsonrpc-glib
 SUBDIR += judy
 SUBDIR += kBuild
 SUBDIR += kf5-kauth
