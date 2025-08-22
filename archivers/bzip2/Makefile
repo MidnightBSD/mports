@@ -17,19 +17,19 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bzip2 ${PREFIX}/bin
-	${LN} -sf ${PREFIX}/bin/bzip2 ${PREFIX}/bin/bunzip2
-	${LN} -sf ${PREFIX}/bin/bzip2 ${PREFIX}/bin/bzcat
-	${LN} -sf ${PREFIX}/bin/bzip2 ${PREFIX}/bin/bz2cat
+	cd ${PREFIX}/bin/ && ${LN} -sf bzip2 bunzip2
+	cd ${PREFIX}/bin/ && ${LN} -sf bzip2 bzcat
+	cd ${PREFIX}/bin/ && ${LN} -sf bzip2 bz2cat
 	${INSTALL_PROGRAM} ${WRKSRC}/bzip2recover ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/bzgrep ${PREFIX}/bin
-	${LN} -sf ${PREFIX}/bin/bzgrep ${PREFIX}/bin/bzegrep
-	${LN} -sf ${PREFIX}/bin/bzgrep ${PREFIX}/bin/bzfgrep
+	cd ${PREFIX}/bin/ && ${LN} -sf bzgrep bzegrep
+	cd ${PREFIX}/bin/ && ${LN} -sf bzgrep bzfgrep
 	${INSTALL_SCRIPT} ${WRKSRC}/bzmore ${PREFIX}/bin
-	${LN} -sf ${PREFIX}/bin/bzmore ${PREFIX}/bin/bzless
+	cd ${PREFIX}/bin/ && ${LN} -sf bzmore bzless
 	${INSTALL_DATA} ${WRKSRC}/bzlib.h ${PREFIX}/include
 	${INSTALL_DATA} ${WRKSRC}/libbz2.a ${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/libbz2.so.1 ${PREFIX}/lib
-	${LN} -sf ${PREFIX}/lib/libbz2.so.1 ${PREFIX}/lib/libbz2.so
+	cd ${PREFIX}/lib && ${LN} -sf libbz2.so.1 libbz2.so
 	${INSTALL_MAN} ${WRKSRC}/bzip2.1 ${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/bzgrep.1 ${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/bzmore.1 ${PREFIX}/share/man/man1
