@@ -22,13 +22,14 @@ USE_RC_SUBR=	gpsd
 
 PIE_UNSAFE=	yes
 
+CFLAGS+=	-D__POSIX_VISIBLE=200809 -D__BSD_VISIBLE=1
 MAKE_ARGS=	manbuild=no \
 		mandir="share/man" \
 		pkgconfig="libdata/pkgconfig" \
 		prefix="${PREFIX}" \
 		qt=no \
 		target_python="${PYTHON_CMD}"
-MAKE_ENV=	DESTDIR="${STAGEDIR}"
+MAKE_ENV=	DESTDIR="${FAKE_DESTDIR}"
 PLIST_SUB=	PYTHON_EGGINFO=gps-${PORTVERSION}.egg-info
 
 OPTIONS_DEFINE=		AIVDM ASHTECH CPPBIND DBUS EARTHMATE EVERMORE FURY FV18 \
