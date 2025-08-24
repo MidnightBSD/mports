@@ -19,7 +19,7 @@ ATLAS_DESC=	Use ATLAS instead of BLAS/LAPACK
 
 WRKSRC=		${WRKDIR}/Sources/Tochnog-Latest-jan-2014
 MAKEFILE=	makefile
-USES=		fortran zip dos2unix
+USES=		compiler:c++17-lang fortran zip dos2unix
 DOS2UNIX_FILES=	time.cc time.h tnlapack.h tnsuplu.h
 
 # You can set GIDDIR to share/gid to install the scripts to be used
@@ -45,9 +45,7 @@ ALL_TARGET=	freebsd_old
 LIB_DEPENDS+=	libsuperlu.so:math/superlu
 SUPERLU=	superlu
 
-.if ${OPSYS} == FreeBSD && ( ${OSVERSION} >= 1400091 || ( ${OSVERSION} >= 1302507 && ${OSVERSION} < 1400000 ))
 CPPFLAGS+=  -Dregister=
-.endif
 
 post-extract:
 .for sup in gid tools test
