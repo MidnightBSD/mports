@@ -1,5 +1,6 @@
 PORTNAME=	portfmt
 DISTVERSION=	1.1.6
+PORTREVISION=	1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	https://codeberg.org/tobik/portfmt/releases/download/v${DISTVERSION}/
 
