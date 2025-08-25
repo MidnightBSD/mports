@@ -1834,6 +1834,7 @@ SUBDIR += tcl-memchan
 SUBDIR += tclap
 SUBDIR += tcl-trf
 SUBDIR += tcllib
+SUBDIR += template-glib
 SUBDIR += tevent
 SUBDIR += tex-kpathsea
 SUBDIR += tex-libtexlua
