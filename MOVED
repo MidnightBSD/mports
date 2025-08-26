@@ -508,3 +508,4 @@ archivers/untar||2025-07-29|Superceded by bsdtar/libarchive
 archivers/xpk||2025-08-04|Has expired: Unmaintained, upstream last release in 2002
 devel/anjuta|devel/gnome-builder|2025-08-20|Has expired: Unmaintained, upstream WWW owned by gambling site, use devel/gn
 ome-builder
+devel/libvolume_id||2025-08-25|Dead upstream, no consumers in the mports tree

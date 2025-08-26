@@ -506,7 +506,6 @@ SUBDIR += libunwind
 SUBDIR += libuv
 SUBDIR += libvirt
 SUBDIR += libvirt-glib
-SUBDIR += libvolume_id
 SUBDIR += libvterm
 SUBDIR += libxsd
 SUBDIR += libxsd-frontend
