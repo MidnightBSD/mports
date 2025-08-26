@@ -591,7 +591,6 @@ SUBDIR += midnightbsd-dev-scripts
 SUBDIR += mk-configure
 SUBDIR += mm
 SUBDIR += mono-addins
-SUBDIR += motor
 SUBDIR += msbuild
 SUBDIR += msgpack-c
 SUBDIR += mustache
