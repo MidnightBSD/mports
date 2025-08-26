@@ -219,6 +219,7 @@ SUBDIR += rubygem-arel6
 SUBDIR += rubygem-arel8
 SUBDIR += rubygem-couchrest
 SUBDIR += rubygem-gdbm
+SUBDIR += rubygem-globalid
 SUBDIR += rubygem-hiredis
 SUBDIR += rubygem-jdbc-mysql
 SUBDIR += rubygem-memcache
