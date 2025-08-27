@@ -17,7 +17,9 @@ LICENSE=	bsd2
 
 FAKE_OPTS=	trueprefix
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
+
+USES=		uidfix
 
 WRKSRC=		${WRKDIR}/src
 

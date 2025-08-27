@@ -7,7 +7,6 @@ SRCS=	fixrtf.l
 BINDIR=	${PREFIX}/bin
 CFLAGS+=-I${PREFIX}/include
 LDADD=	-L${PREFIX}/lib -lpng
-NO_MAN=
-NOMAN=
+MAN=
 
 .include <bsd.prog.mk>
