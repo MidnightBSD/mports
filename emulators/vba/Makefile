@@ -56,7 +56,7 @@ do-install:
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 do-install-GTK2-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/VisualBoyAdvance
