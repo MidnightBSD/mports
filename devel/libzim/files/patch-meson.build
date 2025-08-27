@@ -4,7 +4,25 @@ local patch).
 
 --- meson.build.orig	2024-08-28 18:56:57 UTC
 +++ meson.build
-@@ -77,9 +77,15 @@ if xapian_dep.found()
+@@ -47,7 +47,7 @@ endif
+ 
+ zstd_dep = dependency('libzstd', static:static_linkage, default_options:['werror=false'])
+ 
+-if host_machine.system() == 'freebsd'
++if host_machine.system() == 'midnightbsd'
+     execinfo_dep = cpp.find_library('execinfo')
+ endif
+ 
+@@ -69,7 +69,7 @@ else
+ endif
+ 
+ compiler = meson.get_compiler('cpp')
+-if (compiler.get_id() == 'gcc' and build_machine.system() == 'linux') or host_machine.system() == 'freebsd'
++if (compiler.get_id() == 'gcc' and build_machine.system() == 'linux') or host_machine.system() == 'midnightbsd'
+   # C++ std::thread is implemented using pthread on linux by gcc
+   thread_dep = dependency('threads')
+ else
+@@ -77,9 +77,15 @@ else
  endif
  
  if xapian_dep.found()
