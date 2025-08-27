@@ -14,9 +14,7 @@ PLIST_SUB=	PORTVERSION=${PORTVERSION}
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	ac_cv_search_iconv=${ICONV_LIB} \
 		ac_cv_search_libiconv_open=no
-USES=		autoreconf iconv gmake tar:bzip2
-
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+USES=		autoreconf iconv gmake localbase tar:bzip2
+USE_CXXSTD=	c++14
 
 .include <bsd.port.mk>
