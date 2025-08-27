@@ -50,16 +50,16 @@ post-install:
 	@(cd ${STAGEDIR}${PREFIX} && ${ECHO_CMD} \
 		${DATADIR_REL}/${PORTVERSION:C/r.?/1/}/icudt*.dat >>${TMPPLIST})
 # hack for firefox
-	${LN} -sf ${PREFIX}/lib/libicui18n.so ${PREFIX}/lib/libicui18n.so.67
-	${LN} -sf ${PREFIX}/lib/libicuuc.so ${PREFIX}/lib/libicuuc.so.67
-	${LN} -sf ${PREFIX}/lib/libicudata.so ${PREFIX}/lib/libicudata.so.67
-	${LN} -sf ${PREFIX}/lib/libicuio.so ${PREFIX}/lib/libicuio.so.67
-	${LN} -sf ${PREFIX}/lib/libicutest.so ${PREFIX}/lib/libicutest.so.67
-	${LN} -sf ${PREFIX}/lib/libicui18n.so ${PREFIX}/lib/libicui18n.so.72
-	${LN} -sf ${PREFIX}/lib/libicuuc.so ${PREFIX}/lib/libicuuc.so.72
-	${LN} -sf ${PREFIX}/lib/libicudata.so ${PREFIX}/lib/libicudata.so.72
-	${LN} -sf ${PREFIX}/lib/libicuio.so ${PREFIX}/lib/libicuio.so.72
-	${LN} -sf ${PREFIX}/lib/libicutest.so ${PREFIX}/lib/libicutest.so.72
+	cd ${PREFIX}/lib && ${LN} -sf libicui18n.so libicui18n.so.67
+	cd ${PREFIX}/lib && ${LN} -sf libicuuc.so libicuuc.so.67
+	cd ${PREFIX}/lib && ${LN} -sf libicudata.so libicudata.so.67
+	cd ${PREFIX}/lib && ${LN} -sf libicuio.so libicuio.so.67
+	cd ${PREFIX}/lib && ${LN} -sf libicutest.so libicutest.so.67
+	cd ${PREFIX}/lib && ${LN} -sf libicui18n.so libicui18n.so.72
+	cd ${PREFIX}/lib && ${LN} -sf libicuuc.so libicuuc.so.72
+	cd ${PREFIX}/lib && ${LN} -sf libicudata.so libicudata.so.72
+	cd ${PREFIX}/lib && ${LN} -sf libicuio.so libicuio.so.72
+	cd ${PREFIX}/lib && ${LN} -sf libicutest.so libicutest.so.72
 .endif # PKGNAMESUFFIX
 
 .include <bsd.port.mk>
