@@ -70,6 +70,7 @@ SUBDIR += mysql90-client
 SUBDIR += mysql90-server
 SUBDIR += mysqltuner
 SUBDIR += oracle8-client
+SUBDIR += p5-CDB_File
 SUBDIR += p5-Class-DBI
 SUBDIR += p5-Class-DBI-AbstractSearch
 SUBDIR += p5-Class-DBI-Plugin
