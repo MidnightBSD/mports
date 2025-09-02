@@ -22,6 +22,10 @@ MAKE_ENV=	LIBTOOL=${LIBTOOL}
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
+.include <bsd.mport.options.mk>
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
 do-install:
 	(cd ${WRKSRC}/lib && ${LIBTOOL} --mode=install ${INSTALL_DATA} \
 		libXmHTML.la ${STAGEDIR}${PREFIX}/lib)
