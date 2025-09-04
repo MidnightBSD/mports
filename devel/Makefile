@@ -916,6 +916,7 @@ SUBDIR += p5-PatchReader
 SUBDIR += p5-Path-Class
 SUBDIR += p5-Path-Tiny
 SUBDIR += p5-PathTools
+SUBDIR += p5-Pegex
 SUBDIR += p5-Perl-OSType
 SUBDIR += p5-Perl-PrereqScanner-NotQuiteLite
 SUBDIR += p5-Perl-Tidy
