@@ -21,6 +21,7 @@ SUBDIR += R-cran-blob
 SUBDIR += R-cran-brio
 SUBDIR += R-cran-broom
 SUBDIR += R-cran-callr
+SUBDIR += R-cran-checkmate
 SUBDIR += R-cran-chron
 SUBDIR += R-cran-cli
 SUBDIR += R-cran-clipr
