@@ -820,6 +820,7 @@ SUBDIR += p5-IPC-System-Simple
 SUBDIR += p5-Import-Into
 SUBDIR += p5-Importer
 SUBDIR += p5-Inline
+SUBDIR += p5-Inline-C
 SUBDIR += p5-Inline-Files
 SUBDIR += p5-JSON-Parse
 SUBDIR += p5-JSON-RPC
