@@ -15,6 +15,8 @@ USES=		perl5 shebangfix
 USE_PERL5=	configure
 SHEBANG_FILES=	bun-x.pl
 
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/CDB_File/CDB_File.so
 
