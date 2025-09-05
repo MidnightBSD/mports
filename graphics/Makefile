@@ -1,6 +1,7 @@
 COMMENT = Graphics tools and libraries
 
 SUBDIR += R-cran-GDD
+SUBDIR += R-cran-RColorBrewer
 SUBDIR += R-cran-colorspace
 SUBDIR += R-cran-farver
 SUBDIR += R-cran-latticeExtra
