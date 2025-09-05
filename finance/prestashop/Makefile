@@ -1,5 +1,5 @@
 PORTNAME=	prestashop
-PORTVERSION=	8.1.5
+PORTVERSION=	8.2.0
 CATEGORIES=	finance www
 MASTER_SITES=	https://github.com/PrestaShop/PrestaShop/releases/download/${PORTVERSION}/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -22,7 +22,7 @@ SUB_FILES=	pkg-message
 
 post-extract:
 	@(cd ${WRKDIR} && ${UNZIP_CMD} -d prestashop ${WRKDIR}/prestashop.zip)
-	${REINPLACE_CMD} -e 's#@prefix@#${PREFIX}#g' \
+	${REINPLACE_CMD} -i '' -e 's#@prefix@#${PREFIX}#g' \
 		${WRKSRC}/vendor/pear/archive_tar/scripts/phptar.in
 
 pre-install:
