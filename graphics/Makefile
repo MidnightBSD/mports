@@ -5,6 +5,7 @@ SUBDIR += R-cran-colorspace
 SUBDIR += R-cran-farver
 SUBDIR += R-cran-latticeExtra
 SUBDIR += R-cran-pixmap
+SUBDIR += R-cran-scales
 SUBDIR += R-cran-viridis
 SUBDIR += R-cran-viridisLite
 SUBDIR += R-cran-visNetwork
