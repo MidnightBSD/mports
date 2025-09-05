@@ -254,6 +254,7 @@ SUBDIR += p5-XML-XPathEngine
 SUBDIR += p5-XString
 SUBDIR += p5-YAML
 SUBDIR += p5-YAML-LibYAML
+SUBDIR += p5-YAML-PP
 SUBDIR += p5-YAML-Tiny
 SUBDIR += p5-libxml
 SUBDIR += pdfoutline
