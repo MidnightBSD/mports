@@ -61,6 +61,7 @@ SUBDIR += kdsoap-ws-discovery-client
 SUBDIR += kf5-khtml
 SUBDIR += kf5-kjs
 SUBDIR += kf5-kjsembed
+SUBDIR += ladybird
 SUBDIR += libapreq2
 SUBDIR += libdatachannel
 SUBDIR += libdom
