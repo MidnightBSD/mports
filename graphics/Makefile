@@ -113,6 +113,7 @@ SUBDIR += gstreamer1-plugins-webp
 SUBDIR += gstreamer1-plugins-zbar
 SUBDIR += gtk-update-icon-cache
 SUBDIR += gwenview
+SUBDIR += icc-profiles-adobe-cs4
 SUBDIR += icoutils
 SUBDIR += image-editor
 SUBDIR += imageviewer
