@@ -7,6 +7,7 @@ SUBDIR += R-cran-RcppEigen
 SUBDIR += R-cran-assertthat
 SUBDIR += R-cran-backports
 SUBDIR += R-cran-date
+SUBDIR += R-cran-deldir
 SUBDIR += R-cran-dplyr
 SUBDIR += R-cran-forcats
 SUBDIR += R-cran-gtable
