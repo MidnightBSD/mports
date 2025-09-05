@@ -1084,6 +1084,7 @@ SUBDIR += p5-Variable-Magic
 SUBDIR += p5-Want
 SUBDIR += p5-XS-Parse-Keyword
 SUBDIR += p5-XSLoader
+SUBDIR += p5-XXX
 SUBDIR += p5-aliased
 SUBDIR += p5-asa
 SUBDIR += p5-bareword-filehandles
