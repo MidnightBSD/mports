@@ -34,6 +34,7 @@ SUBDIR += R-cran-data.table
 SUBDIR += R-cran-decor
 SUBDIR += R-cran-desc
 SUBDIR += R-cran-diffobj
+SUBDIR += R-cran-ellipsis
 SUBDIR += R-cran-evaluate
 SUBDIR += R-cran-fansi
 SUBDIR += R-cran-filelock
