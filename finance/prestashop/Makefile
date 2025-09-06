@@ -8,6 +8,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-Source e-Commerce Software for Web 2.0
 WWW=		https://www.prestashop.com/
 
+LICENSE=	AFL OSL
+LICENSE_COMB=	multi
+LICENSE_NAME_AFL=	Academic Free License
+LICENSE_NAME_OSL=	Open Software License
+LICENSE_PERMS_OSL=	dist-mirror pkg-mirror auto-accept
+LICENSE_PERMS_AFL=	dist-mirror pkg-mirror auto-accept
+LICENSE_FILE=	${WRKSRC}/docs/licenses/LICENSE.txt
+
 USES=		cpe php shebangfix zip:infozip
 NO_BUILD=	yes
 PRESTADIR=	www/${PORTNAME}
