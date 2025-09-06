@@ -19,7 +19,7 @@ OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
-USES+=	llvm:max=14
+USES+=	llvm:max=12
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/X11R6,${LOCALBASE},g' \
