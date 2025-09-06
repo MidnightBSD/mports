@@ -1657,6 +1657,7 @@ SUBDIR += py-unicodedata2
 SUBDIR += py-unidiff
 SUBDIR += py-unittest2
 SUBDIR += py-usb
+SUBDIR += py-uvloop
 SUBDIR += py-validators
 SUBDIR += py-vcrpy
 SUBDIR += py-versioneer
