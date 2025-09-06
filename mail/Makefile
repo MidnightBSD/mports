@@ -49,6 +49,7 @@ SUBDIR += gmime26
 SUBDIR += gmime30
 SUBDIR += gnumail
 SUBDIR += hashcash
+SUBDIR += libesmtp
 SUBDIR += libetpan
 SUBDIR += libmilter
 SUBDIR += libspf2
