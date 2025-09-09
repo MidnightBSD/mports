@@ -17,8 +17,11 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 LIB_DEPENDS=	libevdev.so:devel/libevdev
 
 USES=		python
-USE_PYTHON=	autoplist pep517 pytest
+USE_PYTHON=	autoplist pep517
+# pytest
+# magus test hard crash
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
