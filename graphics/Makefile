@@ -4,7 +4,9 @@
     SUBDIR += Hermes
     SUBDIR += ImageMagick6
     SUBDIR += ImageMagick7
+    SUBDIR += R-cran-DiagrammeR
     SUBDIR += R-cran-GDD
+    SUBDIR += R-cran-R.devices
     SUBDIR += R-cran-RColorBrewer
     SUBDIR += R-cran-colorspace
     SUBDIR += R-cran-cowplot
