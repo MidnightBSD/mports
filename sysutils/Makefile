@@ -133,6 +133,7 @@ SUBDIR += libcdio-paranoia
 SUBDIR += libchk
 SUBDIR += libdisplay-info
 SUBDIR += libgksu
+SUBDIR += libptytty
 SUBDIR += libudisks
 SUBDIR += liburcu
 SUBDIR += libsunacl
