@@ -45,6 +45,7 @@ do-install:
 	(cd ${WRKSRC} && \
 		${COPYTREE_SHARE} "data node_modules package.json plugins src" ${STAGEDIR}${WWWDIR} && \
 		${COPYTREE_BIN} bin ${STAGEDIR}${WWWDIR})
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX} -type f -iname '*.bak' -delete
 
 post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/opensearch_dashboards.yml.sample" >> ${TMPPLIST}
