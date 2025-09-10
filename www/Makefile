@@ -237,6 +237,7 @@ SUBDIR += php83-opcache
 SUBDIR += php83-session
 SUBDIR += php83-tidy
 SUBDIR += phpbb3
+SUBDIR += plasma6-plasma-browser-integration
 SUBDIR += pmwiki
 SUBDIR += privoxy
 SUBDIR += py-aiohttp
