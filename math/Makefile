@@ -12,6 +12,7 @@
     SUBDIR += R-cran-forcats
     SUBDIR += R-cran-gtable
     SUBDIR += R-cran-haven
+    SUBDIR += R-cran-igraph 
     SUBDIR += R-cran-isoband
     SUBDIR += R-cran-labeling
     SUBDIR += R-cran-lazyeval
@@ -53,6 +54,7 @@
     SUBDIR += fftw3-long
     SUBDIR += gf2x
     SUBDIR += glm
+    SUBDIR += glpk
     SUBDIR += gmm++
     SUBDIR += gmp
     SUBDIR += gnome-calculator

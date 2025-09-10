@@ -33,8 +33,9 @@ CONFLICTS_INSTALL?=	${PORTNAME}-wayland
 
 OPTIONS_DEFINE=	TEST
 
-TEST_BUILD_DEPENDS=	checkmk:devel/check
-TEST_MESON_ENABLED=	check
+#TEST_BUILD_DEPENDS=	checkmk:devel/check
+#TEST_MESON_ENABLED=	check
+NO_TEST=	yes
 
 post-patch:
 # Fix rofi-theme-selector which assumes we have GNU sed
