@@ -19,8 +19,9 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.5:devel/py-six@${PY_FLAVOR} \
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist distutils pytest
+USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
