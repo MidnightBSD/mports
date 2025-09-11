@@ -22,4 +22,6 @@ USES=		compiler:c11 gettext gnome meson pkgconfig tar:xz
 USE_GNOME=	cairo gdkpixbuf gtksourceview4 libxml2
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
