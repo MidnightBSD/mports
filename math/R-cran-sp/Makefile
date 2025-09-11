@@ -12,4 +12,6 @@ LICENSE_COMB=	dual
 
 USES=		cran:auto-plist,compiles
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
