@@ -9,7 +9,7 @@ MAINTAINER= 	ports@MidnightBSD.org
 COMMENT=	RDF triple store library with SPARQL 1.1 interface
 WWW=		https://gitlab.gnome.org/GNOME/tinysparql
 
-LICENSES= 	lgpl2.1 gpl2 bsd3
+LICENSE= 	lgpl2.1 gpl2 bsd3
 LICENSE_COMB=	multi
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
