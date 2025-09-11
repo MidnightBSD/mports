@@ -11,4 +11,6 @@ LICENSE=	BSL-1.0
 
 USES=		cran:auto-plist
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
