@@ -39,4 +39,7 @@ OPTIONS_DEFINE=	BOOST
 BOOST_BUILD_DEPENDS=	${LOCALBASE}/include/boost/regex.hpp:devel/boost-libs
 BOOST_CMAKE_BOOL=	PREFER_BOOST
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
