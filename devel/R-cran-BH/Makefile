@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Boost C++ Header Files
 WWW=		https://cran.r-project.org/web/packages/BH/
 
-LICENSE=	boost
+LICENSE=	BSL-1.0
 
 USES=		cran:auto-plist
 
