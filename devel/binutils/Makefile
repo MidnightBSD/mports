@@ -138,7 +138,7 @@ FTARGET=freebsd13.4
 .endif
 
 # Actual earliest version may differ slightly
-.if (${ARCH} != mips && ${ARCH} != mips64 && ${ARCH} != powerpcspe && ${ARCH} != powerpc && ${ARCH} != powerpc64 && ${ARCH} != riscv64 && !defined(PKGNAMEPREFIX)) || ((${ARCH} == powerpc || ${ARCH} == powerpc64) && ${CHOSEN_COMPILER_TYPE} != gcc && !defined(PKGNAMEPREFIX))
+.if (${ARCH} != riscv64 && !defined(PKGNAMEPREFIX)) || (${FLAVOR} == "native")
 CONFIGURE_ARGS+=	--enable-gold --enable-plugins
 CXXFLAGS+=	-Wno-c++11-narrowing
 PLIST_SUB+=	GOLD=""
