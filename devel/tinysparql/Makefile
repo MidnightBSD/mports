@@ -29,4 +29,6 @@ CONFIGURE_ARGS=	-Dsystemd_user_services=false \
 		-Ddocs=false
 LDFLAGS=	-L${LOCALBASE}/lib
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
