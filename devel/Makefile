@@ -569,7 +569,6 @@ SUBDIR += linux-rl9-sdl12
 SUBDIR += linux-rl9-sdl20
 SUBDIR += linux-rl9-strace
 SUBDIR += linux-rl9-systemd-libs
-SUBDIR += llvm11
 SUBDIR += llvm12
 SUBDIR += llvm15
 SUBDIR += llvm16
