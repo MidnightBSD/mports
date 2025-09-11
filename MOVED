@@ -510,3 +510,4 @@ devel/anjuta|devel/gnome-builder|2025-08-20|Has expired: Unmaintained, upstream 
 devel/libvolume_id||2025-08-25|Dead upstream, no consumers in the mports tree
 devel/motor||2025-08-26|Not maintained
 lang/gcc48|lang/gcc11|2025-08-27|No longer used in mports
+devel/llvm11|devel/llvm12|2025-09-11|deprecated and unused in mports
