@@ -494,6 +494,10 @@ post-patch:
 	    ${WRKSRC}/llvm/utils/lit/lit/formats/*.py
 	${REINPLACE_CMD} -e 's,/usr/local/,${LOCALBASE}/,' \
 	    ${WRKSRC}/llvm/CMakeLists.txt
+	${REINPLACE_CMD} -e 's|__FreeBSD__|__MidnightBSD__|g' \
+		-e 's|__FreeBSD_version|__MidnightBSD_version|g' \
+		-e 's|1300057|400000|g' \
+		${WRKSRC}/llvm/lib/Support/Unix/Path.inc
 
 post-patch-CLANG-on:
 	${REINPLACE_CMD} -e 's|%%LLVM_PREFIX%%|${LLVM_PREFIX}|' \
