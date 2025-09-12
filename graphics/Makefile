@@ -78,6 +78,7 @@
     SUBDIR += gd
     SUBDIR += gdal
     SUBDIR += gdchart
+    SUBDIR += gdk-pixbuf-extra
     SUBDIR += gdk-pixbuf2
     SUBDIR += gdk-pixbuf2-xlib
     SUBDIR += geeqie
