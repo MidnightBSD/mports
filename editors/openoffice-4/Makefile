@@ -22,7 +22,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated wordprocessor/dbase/spreadsheet/drawing/chart/browser
 WWW=		https://openoffice.apache.org/
 
-LICENSE=		apache2 ADOBE bsd3 bsd4 mit mpl \
+LICENSE=		Apache-2.0 ADOBE bsd3 bsd4 mit MPL20 \
 			python TWAIN W3C
 LICENSE_COMB=		multi
 LICENSE_NAME_ADOBE=	Adobe Systems Incorporated license
@@ -34,8 +34,6 @@ LICENSE_TEXT_W3C=	w3c
 LICENSE_PERMS_ADOBE=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_TWAIN=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_W3C=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-
-ONLY_FOR_ARCHS=	amd64 i386 powerpc64
 
 BUILD_DEPENDS=								\
 		p5-Archive-Zip>=0:archivers/p5-Archive-Zip		\
