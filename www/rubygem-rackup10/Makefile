@@ -11,7 +11,7 @@ WWW=		https://github.com/rack/rackup
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
-RUN_DEPENDS=	rubygem-rack22>=2.2,3<3,3:www/rubygem-rack22 \
+RUN_DEPENDS=	rubygem-rack22>=2.2:www/rubygem-rack22 \
 		rubygem-webrick>=0:www/rubygem-webrick
 
 USES=		gem
