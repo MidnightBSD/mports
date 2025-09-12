@@ -158,7 +158,7 @@ libdata/pkgconfig/gstreamer-net-%%VERSION%%.pc
 libexec/gstreamer-%%VERSION%%/gst-hotdoc-plugins-scanner
 libexec/gstreamer-%%VERSION%%/gst-plugin-scanner
 libexec/gstreamer-%%VERSION%%/gst-plugins-doc-cache-generator
-%%PTP%%@(root,wheel,4755) libexec/gstreamer-%%VERSION%%/gst-ptp-helper
+@comment %%PTP%%@(root,wheel,4755) libexec/gstreamer-%%VERSION%%/gst-ptp-helper
 share/aclocal/gst-element-check-%%VERSION%%.m4
 %%BASH%%share/bash-completion/completions/gst-inspect-%%VERSION%%
 %%BASH%%share/bash-completion/completions/gst-launch-%%VERSION%%
