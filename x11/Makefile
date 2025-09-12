@@ -98,6 +98,7 @@ SUBDIR += libxcvt
 SUBDIR += libxdg-basedir
 SUBDIR += libxfce4menu
 SUBDIR += libxfce4util
+SUBDIR += libxfce4windowing
 SUBDIR += libxkbcommon
 SUBDIR += libxkbfile
 SUBDIR += libxklavier
