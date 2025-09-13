@@ -128,6 +128,21 @@ _LICENSE_GROUPS_ccasa3=
 _LICENSE_NAME_CC0-1.0=		Creative Commons Zero v1.0 Universal
 _LICENSE_GROUPS_CC0-1.0=	FSF GPL COPYFREE
 
+_LICENSE_NAME_CC-BY-1.0=        Creative Commons Attribution 1.0
+_LICENSE_GROUPS_CC-BY-1.0=      # empty
+
+_LICENSE_NAME_CC-BY-2.0=        Creative Commons Attribution 2.0
+_LICENSE_GROUPS_CC-BY-2.0=      # empty
+
+_LICENSE_NAME_CC-BY-2.5=        Creative Commons Attribution 2.5
+_LICENSE_GROUPS_CC-BY-2.5=      # empty
+
+_LICENSE_NAME_CC-BY-3.0=        Creative Commons Attribution 3.0
+_LICENSE_GROUPS_CC-BY-3.0=      # empty
+                                
+_LICENSE_NAME_CC-BY-4.0=        Creative Commons Attribution 4.0
+_LICENSE_GROUPS_CC-BY-4.0=      # empty
+
 _LICENSE_NAME_CC-BY-ND-1.0=     Creative Commons Attribution No Derivatives 1.0
 _LICENSE_GROUPS_CC-BY-ND-1.0=   # empty
 
