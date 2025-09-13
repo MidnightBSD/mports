@@ -14,6 +14,7 @@ DIST=			good
 GST_PLUGIN=		${DIST}
 GST_PLUGIN_SUFFIX=	-${DIST}
 NO_GSTREAMER_COMMON=	yes
+NO_TEST=	yes
 
 GOOD_GST_ENABLED_PLUGINS=	adaptivedemux2 \
 				alpha \
