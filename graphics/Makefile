@@ -269,6 +269,7 @@
     SUBDIR += openexr
     SUBDIR += openjpeg
     SUBDIR += openjpeg15
+    SUBDIR += openjph
     SUBDIR += opennurbs
     SUBDIR += optipng
     SUBDIR += p5-Cairo
