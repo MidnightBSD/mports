@@ -7,7 +7,8 @@ DIST_SUBDIR=	KDE/${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Oxygen icon theme for KDE
 
-LICENSE=	NONE
+LICENSE=	lgpl3+
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 USES=		cmake kde:6 qt:6 tar:xz
 USE_KDE=	ecm:build  # We only install icons.
