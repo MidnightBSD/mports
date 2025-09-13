@@ -9,6 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port for the default version of the Go programming language
 WWW=		https://golang.org
 
+LICENSE=	bsd2
+
 RUN_DEPENDS=	go${GO_SUFFIX}:lang/go${GO_SUFFIX}
 
 NO_ARCH=	yes
@@ -20,7 +22,7 @@ GO_SUFFIX=	${GO_DEFAULT:S/.//:C/.*-devel/-devel/}
 
 do-install:
 .for f in go gofmt
-	@${LN} -sf ${f}${GO_SUFFIX} ${PREFIX}/bin/${f}
+	cd ${PREFIX}/bin && ${LN} -sf ${f}${GO_SUFFIX} ${f}
 .endfor
 
 .include <bsd.port.mk>
