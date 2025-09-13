@@ -128,7 +128,6 @@ SUBDIR += obuparse
 SUBDIR += openh264
 SUBDIR += opentimelineio
 SUBDIR += phonon
-SUBDIR += phonon-gstreamer
 SUBDIR += phonon-mpv
 SUBDIR += pipewire
 SUBDIR += plexmediaserver
