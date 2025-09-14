@@ -104,6 +104,7 @@ SUBDIR += mailcommon
 SUBDIR += mailimporter
 SUBDIR += mimetreeparser
 SUBDIR += realtek-re-kmod
+SUBDIR += realtek-re-kmod198
 SUBDIR += rubygem-connection_pool
 SUBDIR += rubygem-http_parser.rb
 SUBDIR += rubygem-net-protocol
