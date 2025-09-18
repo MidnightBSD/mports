@@ -25,6 +25,7 @@ SUBDIR += R-cran-checkmate
 SUBDIR += R-cran-chron
 SUBDIR += R-cran-cli
 SUBDIR += R-cran-clipr
+SUBDIR += R-cran-clock
 SUBDIR += R-cran-conflicted
 SUBDIR += R-cran-covr
 SUBDIR += R-cran-cpp11

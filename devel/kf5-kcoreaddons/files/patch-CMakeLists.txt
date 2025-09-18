@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2025-09-18 13:24:11 UTC
++++ CMakeLists.txt
+@@ -78,7 +78,7 @@ if (BSDLIKE)
+             PURPOSE "Process information using libprocstat")
+         set(HAVE_PROCSTAT ${PROCSTAT_FOUND})
+     endif()
+-    if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++    if (CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+         set_package_properties(Procstat PROPERTIES
+             TYPE REQUIRED
+         )
