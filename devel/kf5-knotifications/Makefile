@@ -5,6 +5,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 abstraction for system notifications
 
+LICENSE=	lgpl2.1+
+
 LIB_DEPENDS=	libdbusmenu-qt5.so:devel/libdbusmenu-qt@qt5 \
 		libcanberra.so:audio/libcanberra
 

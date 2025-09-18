@@ -5,6 +5,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 documentation generation from docbook
 
+LICENSE=	lgpl2.1+
+
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:textproc/docbook-xsl \
 		docbook-xml>0:textproc/docbook-xml \
 		p5-URI>=0:net/p5-URI
