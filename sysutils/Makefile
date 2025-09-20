@@ -142,6 +142,7 @@ SUBDIR += linux-c7-numactl-libs
 SUBDIR += linux-c7-userspace-rcu
 SUBDIR += linuxfdisk
 SUBDIR += lmmon
+SUBDIR += localsearch
 SUBDIR += lockfile-progs
 SUBDIR += logstash6
 SUBDIR += logstash7
