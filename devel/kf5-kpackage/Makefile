@@ -5,7 +5,9 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 library to load and install packages
 
-USES=		cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz
+LICENSE=	lgpl2.1+
+
+USES=		cmake compiler:c++11-lib gettext kde:5 kfhack qt:5 tar:xz
 USE_KDE=	archive coreaddons i18n \
 		doctools:build ecm:build
 USE_QT=		core dbus \
