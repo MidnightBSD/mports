@@ -8,7 +8,7 @@ DISTFILES=      chromium-84.0.4147.135.txz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Chromium for FreeBSD
 
-LICENSE=        bsd3 lgpl2.1 mpl
+LICENSE=        bsd3 lgpl2.1 MPL20
 LICENSE_COMB=   multi
 
 CONFLICTS=	chromium-8*
