@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google web browser based on WebKit
 WWW=		https://www.chromium.org/Home
 
-LICENSE=	bsd3 lgpl2.1 mpl
+LICENSE=	bsd3 lgpl2.1 MPL20
 LICENSE_COMB=	multi
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386
