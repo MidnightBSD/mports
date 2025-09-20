@@ -5,6 +5,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 hardware integration and detection
 
+LICENSE=	lgpl2.1+
+
 RUN_DEPENDS=	bsdisks:sysutils/bsdisks
 
 USES=		bison cmake compiler:c++11-lib kde:5 qt:5 tar:xz
