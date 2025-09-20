@@ -5,7 +5,7 @@ CATEGORIES=	textproc kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 syntax highlighting engine for structured text and code
 
-USES=		cmake compiler:c++11-lib kde:5 perl5 qt:5 tar:xz
+USES=		cmake compiler:c++11-lib kde:5 kfhack perl5 qt:5 tar:xz
 USE_KDE=	ecm:build
 USE_QT=		core declarative gui network \
 		buildtools:build linguisttools:build testlib:build qmake:build
