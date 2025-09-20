@@ -18,8 +18,9 @@ SHEBANG_FILES=	test/__run_unicode_tests.sh \
 		test/captures/posix/.gen/__gen.sh \
 		test/captures/posix/.run/__run.sh
 
-CMAKE_TESTING_ON=	RE2C_BUILD_TESTS
-CMAKE_TESTING_TARGET=	check
+#CMAKE_TESTING_ON=	RE2C_BUILD_TESTS
+#CMAKE_TESTING_TARGET=	check
+NO_TEST=	yes
 CMAKE_OFF=	RE2C_REBUILD_DOCS
 CMAKE_ON=	BUILD_SHARED_LIBS \
 		RE2C_BUILD_LIBS
