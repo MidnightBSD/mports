@@ -5,7 +5,7 @@ CATEGORIES=	dns kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 abstraction to system DNSSD features
 
-USES=		cmake compiler:c++11-lib kde:5 pkgconfig qt:5 tar:xz
+USES=		cmake compiler:c++11-lib kde:5 kfhack pkgconfig qt:5 tar:xz
 USE_KDE=	ecm:build
 USE_QT=		core linguisttools network \
 		buildtools:build qmake:build
