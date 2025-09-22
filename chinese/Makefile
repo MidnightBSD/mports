@@ -10,7 +10,6 @@
     SUBDIR += auto-tw-l10n
     SUBDIR += autoconvert
     SUBDIR += big5width
-    SUBDIR += bitchx
     SUBDIR += bsdconv-opencc
     SUBDIR += bug5
     SUBDIR += c2t
