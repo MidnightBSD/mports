@@ -215,6 +215,7 @@ SUBDIR += polkit-qt-1
 SUBDIR += powerdxx
 SUBDIR += pstree
 SUBDIR += pv
+SUBDIR += pwgen
 SUBDIR += py-ansible-compat
 SUBDIR += py-ansible-core
 SUBDIR += py-ansible-lint
