@@ -37,6 +37,7 @@ SUBDIR += fping
 SUBDIR += freebsd-telnetd
 SUBDIR += freebsd-uucp
 SUBDIR += freerdp
+SUBDIR += freerdp3
 SUBDIR += geoclue
 SUBDIR += geocode-glib
 SUBDIR += geocode-glib2
