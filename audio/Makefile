@@ -31,6 +31,7 @@ SUBDIR += goobox
 SUBDIR += gsm
 SUBDIR += gsound
 SUBDIR += gstreamer1-plugins-a52dec
+SUBDIR += gstreamer1-plugins-alsa
 SUBDIR += gstreamer1-plugins-amrnb
 SUBDIR += gstreamer1-plugins-amrwbdec
 SUBDIR += gstreamer1-plugins-bs2b
