@@ -72,6 +72,7 @@ SUBDIR += enchant
 SUBDIR += enchant2
 SUBDIR += exempi
 SUBDIR += expat2
+SUBDIR += fcitx-qt5
 SUBDIR += fixrtf
 SUBDIR += flex
 SUBDIR += fop
