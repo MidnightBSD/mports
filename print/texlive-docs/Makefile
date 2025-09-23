@@ -117,6 +117,7 @@ do-install:
 		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/support/latexdiff/contrib/latexdiff-wrap
 	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/share/texmf-dist/doc/generic/m-tx/buildmtxdoc.lua
+	${FIND} ${PREFIX}/share/texmf-dist -iname '*.bak' -delete \
 	${FIND} -s ${PREFIX}/share/texmf-dist -not -type d | ${SORT} | \
 		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	${FIND} -s ${PREFIX}/share/texmf-dist -type d -empty | ${SORT} -r | \
