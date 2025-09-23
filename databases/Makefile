@@ -30,6 +30,7 @@ SUBDIR += gdbm
 SUBDIR += gnats4
 SUBDIR += gom
 SUBDIR += hiredis
+SUBDIR += kyotocabinet
 SUBDIR += ldb25
 SUBDIR += leveldb
 SUBDIR += libgda5
