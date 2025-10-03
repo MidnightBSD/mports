@@ -11,6 +11,6 @@ LICENSE=	mit
 USES=		xorg xorg-cat:app tar:xz
 USE_XORG=	xmu x11 xt
 
-PLIST_FILES=	bin/xstdcmap man/man1/xstdcmap.1.gz
+PLIST_FILES=	bin/xstdcmap share/man/man1/xstdcmap.1.gz
 
 .include <bsd.port.mk>

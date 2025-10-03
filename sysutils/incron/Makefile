@@ -14,7 +14,8 @@ LICENSE_FILE_mit=	${WRKSRC}/LICENSE-X11
 
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 
-USES=		compiler
+USES=		compiler localbase:ldflags
+USE_CXXSTD=	c++14
 USE_GITHUB=	yes
 GH_ACCOUNT=	ar-
 GH_TAGNAME=	81421d3a8bde0989d7e167d8a814d5232896c930

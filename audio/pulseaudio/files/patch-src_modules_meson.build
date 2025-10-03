@@ -1,6 +1,6 @@
 --- src/modules/meson.build.orig	2024-01-12 17:22:09 UTC
 +++ src/modules/meson.build
-@@ -221,7 +221,7 @@ endif
+@@ -221,14 +221,14 @@ if libsystemd_dep.found() or libelogind_dep.found()
    ]
  endif
  
@@ -9,3 +9,11 @@
    all_modules += [ [ 'module-udev-detect', 'module-udev-detect.c', [], [], [udev_dep] ] ]
    if get_option('hal-compat')
      all_modules += [ [ 'module-hal-detect', 'module-hal-detect-compat.c' ] ]
+   endif
+ endif
+ 
+-if host_machine.system() == 'freebsd'
++if host_machine.system() == 'midnightbsd'
+   all_modules += [ [ 'module-devd-detect', 'module-devd-detect.c', [], [], [] ] ]
+ endif
+ 

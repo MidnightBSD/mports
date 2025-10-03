@@ -79,7 +79,7 @@ PINENTRY_BIN=	${PINENTRY_${gui}}
 .endfor
 
 do-install:
-	${LN} -sf ${PINENTRY_BIN} ${STAGEDIR}${PREFIX}/bin/pinentry
+	cd ${PREFIX}/bin/ && ${LN} -sf ${PINENTRY_BIN} pinentry
 	${MKDIR} ${PREFIX}/${INFO_PATH}
 	${INSTALL_DATA} ${WRKSRC}/doc/pinentry.info ${STAGEDIR}${PREFIX}/${INFO_PATH}
 

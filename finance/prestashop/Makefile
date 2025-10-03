@@ -1,5 +1,5 @@
 PORTNAME=	prestashop
-PORTVERSION=	8.1.5
+PORTVERSION=	8.2.0
 CATEGORIES=	finance www
 MASTER_SITES=	https://github.com/PrestaShop/PrestaShop/releases/download/${PORTVERSION}/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -7,6 +7,14 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-Source e-Commerce Software for Web 2.0
 WWW=		https://www.prestashop.com/
+
+LICENSE=	AFL OSL
+LICENSE_COMB=	multi
+LICENSE_NAME_AFL=	Academic Free License
+LICENSE_NAME_OSL=	Open Software License
+LICENSE_PERMS_OSL=	dist-mirror pkg-mirror auto-accept
+LICENSE_PERMS_AFL=	dist-mirror pkg-mirror auto-accept
+LICENSE_FILE=	${WRKSRC}/docs/licenses/LICENSE.txt
 
 USES=		cpe php shebangfix zip:infozip
 NO_BUILD=	yes
@@ -22,7 +30,7 @@ SUB_FILES=	pkg-message
 
 post-extract:
 	@(cd ${WRKDIR} && ${UNZIP_CMD} -d prestashop ${WRKDIR}/prestashop.zip)
-	${REINPLACE_CMD} -e 's#@prefix@#${PREFIX}#g' \
+	${REINPLACE_CMD} -i '' -e 's#@prefix@#${PREFIX}#g' \
 		${WRKSRC}/vendor/pear/archive_tar/scripts/phptar.in
 
 pre-install:

@@ -1,8 +1,7 @@
 PORTNAME=	php83
-DISTVERSION=	8.3.20
+DISTVERSION=	8.3.21
 CATEGORIES?=	lang devel www
-MASTER_SITES=	https://downloads.php.net/~jakub/ \
-	https://downloads.php.net/~eric/
+MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -67,7 +66,7 @@ FPM_CONFIGURE_ON=	--enable-fpm \
 			--with-fpm-group=${WWWGRP} \
 			--with-fpm-user=${WWWOWN}
 FPM_VARS=		PHP_SAPI+=fpm \
-			USE_RC_SUBR+=php-fpm
+			USE_RC_SUBR+=php_fpm
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 LINKTHR_LIBS=		-lpthread
 NOASLR_USES=	elfctl
@@ -78,7 +77,7 @@ ZTS_CONFIGURE_ON=	--enable-zts
 ZTS_CONFIGURE_ENV=	pthreads_working="yes"
 
 .if defined(PKGNAMEPREFIX)
-USES+=			apache:2.2+
+USES+=			apache
 PLIST=			${PKGDIR}/pkg-plist.mod
 PKGMESSAGE=		${PKGDIR}/pkg-message.mod
 MODULENAME=		libphp
@@ -119,10 +118,10 @@ PLIST_SUB+=	SAPI_INC=""
 PLIST_SUB+=	SAPI_INC="@comment "
 .endif
 
-.if ${OSVERSION} <= 202003
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
-.else
+.if ${OSVERSION} <= 300000
 CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
+.else
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd13.4
 .endif
 
 CONFIGURE_ENV+=	ac_cv_decimal_fp_supported="no" \
@@ -182,7 +181,7 @@ COMMENT=	The ${PHP_MODNAME} shared extension for php
 USES+=		php:ext,noflavors
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
 PHP_VER=	83
-IGNORE_WITH_PHP=	80 81 82
+IGNORE_WITH_PHP=	81 82 84
 
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
 WRKSRC=		${WRKDIR}/${EXTSUBDIR}
@@ -617,8 +616,7 @@ USE_PHP=	dom:build xml:build
 .if ${PHP_MODNAME} == "zip"
 LIB_DEPENDS+=	libzip.so:archivers/libzip
 
-CONFIGURE_ARGS+=	--with-zip \
-			--with-zlib-dir=/usr
+CONFIGURE_ARGS+=	--with-zip --with-zlib-dir=/usr
 USES+=			pkgconfig
 .endif
 
@@ -629,10 +627,10 @@ USES+=			pkgconfig
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} <= 202003
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
-.else
+.if ${OSVERSION} <= 300000
 CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
+.else
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd13.4
 .endif
 
 .if ${PHP_MODNAME} == "sqlite3" || ${PHP_MODNAME} == "zlib"

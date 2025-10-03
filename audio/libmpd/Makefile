@@ -1,22 +1,26 @@
-
-
 PORTNAME=	libmpd
 PORTVERSION=	11.8.17
+PORTREVISION=	2
 CATEGORIES=	audio
-MASTER_SITES=	http://download.sarine.nl/Programs/gmpc/11.8.16/
+MASTER_SITES=	http://download.sarine.nl/Programs/gmpc/${PORTVERSION:R}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstraction around libmpdclient
+WWW=		https://gmpc.wikia.com/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-GNU_CONFIGURE=	yes
 USES=		gnome libtool pathfix pkgconfig
 USE_GNOME=	glib20
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,libmpd-1.0\/libmpd,libmpd,' \
 		${WRKSRC}/src/Makefile.in
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmpd.so
 
 .include <bsd.port.mk>

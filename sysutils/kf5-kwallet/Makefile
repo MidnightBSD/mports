@@ -16,7 +16,7 @@ LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libqca-qt5.so:devel/qca@qt5 \
 		libqgpgme.so:security/gpgme-qt@qt5
 
-USES=		cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz xorg
+USES=		cmake compiler:c++11-lib gettext kde:5 kfhack qt:5 tar:xz xorg
 USE_KDE=	auth codecs config configwidgets coreaddons dbusaddons \
 		i18n iconthemes notifications service \
 		widgetsaddons windowsystem \

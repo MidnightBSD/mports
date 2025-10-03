@@ -5,7 +5,7 @@ CATEGORIES=	x11 accessibility
 MASTER_SITES=	http://www.linklevel.net/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Magnify, rotate, mirror the image on the X screen
+COMMENT=	Magnify, rotate, mirror the image on the X11 screen
 
 LICENSE=	other
 

@@ -10,7 +10,7 @@ DEPRECATED=	has its functionality stripped compared to a kf6 variant
 
 LIB_DEPENDS=	libxcb-keysyms.so:x11/xcb-util-keysyms
 
-USES=		cmake compiler:c++11-lib kde:5 qt:5 tar:xz xorg
+USES=		cmake compiler:c++11-lib kde:5 kfhack qt:5 tar:xz xorg
 USE_KDE=	config coreaddons crash dbusaddons service \
 		windowsystem \
 		ecm:build

@@ -1,5 +1,5 @@
 PORTNAME=	poppler
-DISTVERSION=	24.12.0
+DISTVERSION=	25.04.0
 PORTREVISION=	1
 CATEGORIES=	graphics print
 MASTER_SITES=	https://poppler.freedesktop.org/
@@ -57,7 +57,7 @@ CMAKE_OFF+=	${_POPPLER_SLAVES:N${_SLAVE_PORT}:tu:S/^/ENABLE_/}
 PORTSCOUT=	limitw:1,even
 USES+=		iconv
 CMAKE_ON+=	ENABLE_CPP
-PLIST_SUB+=	SHLIB_VER=144
+#PLIST_SUB+=	SHLIB_VER=148
 
 OPTIONS_DEFINE=		CURL OPENJPEG GNUPG
 OPTIONS_DEFAULT=	OPENJPEG GNUPG
@@ -105,6 +105,18 @@ GNUPG_CMAKE_BOOL=	ENABLE_GPGME
 GNUPG_LIB_DEPENDS=	libgpgme.so:security/gpgme \
 		libgpgmepp.so:security/gpgme-cpp
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 400000
+DISTVERSION=   25.04.0
+PLIST_SUB+=    SHLIB_VER=148
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-poppler_FlateStream.cc	${FILESDIR}/extra-patch-poppler_FlateStream.h
+.else
+DISTVERSION=   24.12.0
+PLIST_SUB+=    SHLIB_VER=144
+.endif
+
+
 post-install:
 .if ${_SLAVE_PORT} == glib
 	${INSTALL_DATA} ${WRKSRC}/poppler-glib.pc \
@@ -117,4 +129,4 @@ post-install:
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

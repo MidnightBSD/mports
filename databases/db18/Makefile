@@ -15,8 +15,8 @@ WWW=		https://www.oracle.com/database/berkeley-db/
 LICENSE=	agpl bsd3 UPL10
 LICENSE_COMB=	multi
 LICENSE_NAME_UPL10=	The Universal Permissive License (UPL), Version 1.0
-LICENSE_FILE=	${WRKSRC}/../LICENSE
 LICENSE_FILE_UPL10=	${WRKSRC}/../EXAMPLES-LICENSE
+LICENSE_FILE=	${WRKSRC}/../LICENSE
 LICENSE_PERMS_UPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BDBVER=		${PORTVERSION:R}
@@ -38,6 +38,9 @@ USE_LDCONFIG=	yes
 PLIST_SUB=	BDBMAJ=${BDBMAJ} BDBVER=${BDBVER}
 MAKE_ARGS+=	docdir=${DOCSDIR}
 
+CFLAGS+=	-I${OPENSSLINC} -Wno-deprecated-non-prototype \
+		-Wno-incompatible-library-redeclaration -Wno-int-conversion
+
 OPTIONS_DEFINE=	CRYPTO DEBUG L10N JAVA TCL DOCS
 OPTIONS_DEFAULT=CRYPTO
 OPTIONS_SUB=	yes
@@ -54,8 +57,8 @@ L10N_CONFIGURE_ENABLE=	localization
 JAVA_USE=		java
 JAVA_VARS=		DBLIBS+=libdb_java JAVA_VERSION="7+"
 JAVA_CONFIGURE_ENABLE=	java
-JAVA_CPPFLAGS=		-I"${JAVA_HOME}/include"
 JAVA_CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}"
+JAVA_CPPFLAGS=		-I"${JAVA_HOME}/include"
 TCL_CONFIGURE_ENABLE=	tcl
 TCL_USES=		tcl
 TCL_CONFIGURE_WITH=	tcl=${TCL_LIBDIR}

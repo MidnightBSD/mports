@@ -1,59 +1,72 @@
 PORTNAME=	binutils
-PORTVERSION=	2.40
+DISTVERSION=	2.44
 PORTREVISION?=	1
-CATEGORIES=	devel
-MASTER_SITES=	SOURCEWARE/binutils/releases
+CATEGORIES?=	devel
+MASTER_SITES=	GNU \
+		SOURCEWARE/binutils/releases
+DISTNAME=	${PORTNAME}-with-gold-${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU binary tools
+COMMENT?=	GNU binary tools
 WWW=		https://www.gnu.org/software/binutils/
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl3=	${WRKSRC}/COPYING3
+LICENSE_FILE_lgpl3=	${WRKSRC}/COPYING3.LIB
+
+BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:math/gmp \
+		${LOCALBASE}/lib/libmpfr.so:math/mpfr
+
+LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 FLAVORS=	native aarch64 aarch64_none_elf amd64 arm_gnueabi arm_none_eabi \
 		avr i386 riscv64 \
 		riscv64_none_elf riscv32_unknown_elf
 FLAVOR?=	native
 
-RELRO_CONFIGURE_ON=	--enable-relro
-BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:math/gmp \
-		${LOCALBASE}/lib/libmpfr.so:math/mpfr
-
-CONFLICTS=	libbfd-[0-9]*
-
-#TEST_DEPENDS+=	runtest:misc/dejagnu
-#TEST_TARGET=	check
-NO_TEST=	yes
-
-OPTIONS_DEFINE=	NLS RELRO STATIC
-STATIC_PREVENTS=	NLS
-
-RELRO_DESC=	Enable relocation memory corruption mitigation (-z relro) by default
-
-LICENSE_FILE_GPLv3=	${WRKSRC}/COPYING3
-LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING3.LIB
-
-USES=		bison:alias cpe gmake libtool makeinfo tar:xz compiler:env gettext localbase
+USES=		bison:alias compiler:env cpe gmake localbase libtool perl5 pkgconfig tar:lz gettext
 CPE_VENDOR=	gnu
+USE_PERL5=	build
 GNU_CONFIGURE=	yes
 
-RELRO_CONFIGURE_OFF=	--enable-relro=no
+CONFIGURE_ARGS+=	--disable-werror \
+			--enable-deterministic-archives \
+			--with-sysroot=/ \
+			--enable-x86-relax-relocations=no \
+			--with-zstd \
+			--enable-default-compressed-debug-sections-algorithm=zstd
+MAKE_ARGS+=	LIBDL="" V=1
+MAKE_ENV+=	ac_cv_func_sbrk=0
+
+# Some versioned symbols in libctf are undefined when libctf-nobfd.so is linked.
+# Suppress errors with lld >= 17 due to these undefined symbols.
+LDFLAGS+=	-Wl,--undefined-version
+
+# Tests will always fail because --compress-debug-sections is always set to
+# zlib-gabi regardless of the compression setting by ./configure.
+# TEST_TARGET=	check
+NO_TEST=	yes
+CONFLICTS=	libbfd
+
+OPTIONS_DEFINE=	ELFU INFO NLS RELRO
+OPTIONS_DEFAULT=	INFO
+OPTIONS_EXCLUDE=	NLS
 OPTIONS_SUB=	yes
+
+INFO_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-no-info
+INFO_USES=	makeinfo
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
-
-STATIC_LDFLAGS+=	-all-static
+RELRO_CONFIGURE_ON=	--enable-relro
+RELRO_CONFIGURE_OFF=	--enable-relro=no
+RELRO_DESC=	Enable relocation memory corruption mitigation (-z relro) by default
+NLS_CONFIGURE_ENABLE=	nls
+ELFU_DESC=		Depend on devel/elfutils
+ELFU_CONFIGURE_WITH=	debuginfod
+ELFU_LIB_DEPENDS=	libdebuginfod.so:devel/elfutils
 
 aarch64_COMMENT=	GNU binutils for ${FLAVOR} development
-
-.include <bsd.mport.options.mk>
-
-.if ${OSVERSION} < 300000
-FTARGET=freebsd11.4
-.else
-FTARGET=freebsd12.3
-.endif
 
 .if ${FLAVOR} != native
 PKGNAMEPREFIX=	${FLAVOR:C/_/-/g}-
@@ -65,7 +78,6 @@ BUTARGET?=	${PKGNAMEPREFIX}${FTARGET}
 BUTARGET?=	${PKGNAMEPREFIX}unknown-${FTARGET}
 .endif
 PLIST_SUB=	BUTARGET=${BUTARGET}
-OPTIONS_EXCLUDE=	NLS
 INFO_PATH=	${PKGNAMEPREFIX:S/-$//}/share/info
 
 .if ${FLAVOR} == aarch64
@@ -75,12 +87,23 @@ BUTARGET=	${FLAVOR:C/_/-/g}
 BUTARGET=	x86_64-unknown-${FTARGET}
 .endif
 
-CONFIGURE_ARGS+=	--disable-shared \
-			--target=${BUTARGET}
+.if ${FLAVOR} == mingw32
+USES+=		iconv
+.endif
+
+CONFIGURE_ARGS+=	--target=${BUTARGET}
 .endif
 
 .if ${FLAVOR} == native
 PKGNAMEPREFIX=	native-
+CONFIGURE_ARGS+=	--enable-shared
+PLIST_SUB+=		SHARED=''
+.else
+CONFIGURE_ARGS+=	--disable-shared
+PLIST_SUB+=		SHARED='@comment'
+.endif
+
+.if ${FLAVOR} == native
 BUREMOVE=	coffdump \
 		dlltool \
 		dllwrap \
@@ -95,25 +118,27 @@ CONFIGURE_ARGS+=	--with-system-zlib \
 			--with-mpfr=${LOCALBASE} \
 			--enable-targets=all \
 			--enable-threads=yes
-INFO=		as \
+# XXX Needed to support gcc10 and earlier:
+CONFIGURE_ARGS+=	--with-isa-spec=2.2
+INFO_INFO=	as \
 		binutils \
+		ctf-spec \
 		gprof \
 		bfd \
-		ld
+		ld \
+		sframe-spec
 .endif
-
-CONFIGURE_ARGS+=	--disable-werror \
-			--enable-deterministic-archives \
-			--with-sysroot=/ \
-			--enable-x86-relax-relocations=no
-
-MAKE_ENV+=	ac_cv_func_sbrk=0
-MAKE_ARGS+=	LIBDL=""
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} < 400000
+FTARGET=freebsd12.3
+.else
+FTARGET=freebsd13.4
+.endif
+
 # Actual earliest version may differ slightly
-.if (${ARCH} != sparc64 && ${ARCH} != mips && ${ARCH} != mips64 && ${ARCH} != powerpcspe && ${ARCH} != powerpc && ${ARCH} != powerpc64 && ${ARCH} != riscv64 && ${FLAVOR} == native) || ((${ARCH} == powerpc || ${ARCH} == powerpc64) && ${CHOSEN_COMPILER_TYPE} != gcc && ${FLAVOR} == native)
+.if (${ARCH} != riscv64 && !defined(PKGNAMEPREFIX)) || (${FLAVOR} == "native")
 CONFIGURE_ARGS+=	--enable-gold --enable-plugins
 CXXFLAGS+=	-Wno-c++11-narrowing
 PLIST_SUB+=	GOLD=""
@@ -121,48 +146,59 @@ PLIST_SUB+=	GOLD=""
 PLIST_SUB+=	GOLD="@comment "
 .endif
 
-CONFIGURE_ARGS+=      --disable-initfini-array
+# do we still need this?
+CONFIGURE_ARGS+=	--disable-initfini-array
+# should we turn this on?
+#CONFIGURE_ARGS+=	--enable-new-dtags
 .if ${ARCH} == amd64
-.if ${OSVERSION} < 300000
-CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
-.else
+.if ${OSVERSION} < 400000
 CONFIGURE_TARGET=	x86_64-portbld-freebsd12.3
+.else
+CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
 .endif
 .else
 .if ${OSVERSION} < 300000
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
-.else
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.3
+.else
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 .endif
 .endif
 
 post-patch:
 	${REINPLACE_CMD} -e "s/-ldl//g" ${WRKSRC}/gold/testsuite/Makefile.in
+# Force the generation of man pages
+	${RM} ${WRKSRC}/binutils/doc/*.1
+	${RM} ${WRKSRC}/gas/doc/*.1
+	${RM} ${WRKSRC}/gprof/*.1
+	${RM} ${WRKSRC}/ld/*.1
 
 post-install:
 .if ${FLAVOR} == native
-	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${PREFIX}/include/
-	@${FIND} -ds ${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
-		${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}
-	-${RM} ${PREFIX}/include/ansidecl.h
-	${REINPLACE_CMD} '/#include "ansidecl.h"/d' ${PREFIX}/include/bfd.h
+	@${STRIP_CMD} \
+		${STAGEDIR}${PREFIX}/lib/lib*.so* \
+		${STAGEDIR}${PREFIX}/lib/bfd-plugins/libdep.so
+	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${STAGEDIR}${PREFIX}/include/
+	@${FIND} -ds ${STAGEDIR}${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
+		${SED} -e 's,^${STAGEDIR}${PREFIX}/,,' >> ${TMPPLIST}
 .else
 .if ${PKGNAMEPREFIX:S/-$//} != ${BUTARGET}
 	${RM} -r ${PREFIX}/${PKGNAMEPREFIX:S/-$//}
 .endif
-	-${RM} ${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
-	@if [ -d ${PREFIX}/${INFO_PATH:H} ] ; then rm -rf ${PREFIX}/${INFO_PATH:H}; fi
-	${LN} -fs ../../bin/${BUTARGET}-size ${PREFIX}/${BUTARGET}/bin/size
+	${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
+	${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/stamp
+	@if [ -d ${STAGEDIR}${PREFIX}/${INFO_PATH:H} ] ; then ${RM} -rf ${STAGEDIR}${PREFIX}/${INFO_PATH:H}; fi
+	${LN} -fs ../../bin/${BUTARGET}-size ${STAGEDIR}${PREFIX}/${BUTARGET}/bin/size
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/bfd-plugins
 .endif
 .for tool in ${BUREMOVE}
-	-${RM} ${PREFIX}/bin/${BUTARGET}-${tool} \
-	    ${PREFIX}/bin/${tool} \
-	    ${PREFIX}/man/man1/${BUTARGET}-${tool}.1 \
-	    ${PREFIX}/man/man1/${tool}.1 \
-	    ${PREFIX}/${BUTARGET}/bin/${tool}
+	@${RM} ${STAGEDIR}${PREFIX}/bin/${BUTARGET}-${tool} \
+	    ${STAGEDIR}${PREFIX}/bin/${tool} \
+	    ${STAGEDIR}${PREFIX}/share/man/man1/${BUTARGET}-${tool}.1 \
+	    ${STAGEDIR}${PREFIX}/share/man/man1/${tool}.1 \
+	    ${STAGEDIR}${PREFIX}/${BUTARGET}/bin/${tool}
 .endfor
 .if defined(BUREMOVE) && ${BUREMOVE:Mld}
-	-${RM} -r ${PREFIX}/${BUTARGET}/lib/ldscripts
+	@${RM} -r ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts
 .endif
 
 .include <bsd.port.post.mk>

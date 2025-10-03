@@ -22,6 +22,8 @@ YOUBINBINDIR=	${PREFIX}
 YOUBINBINDIR=	${LOCALBASE}
 .endif
 
+CFLAGS+=	-Wno-error=int-conversion
+
 .include <bsd.port.pre.mk>
 
 do-extract:

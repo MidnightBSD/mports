@@ -6,10 +6,12 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 advanced embeddable text editor
 
+LICENSE=	lgpl2.1+
+
 LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 		libeditorconfig.so:editors/editorconfig-core-c
 
-USES=		cmake compiler:c++11-lib gettext kde:5 cpe pkgconfig \
+USES=		cmake compiler:c++11-lib gettext kde:5 kfhack cpe pkgconfig \
 		qt:5 tar:xz xorg
 USE_KDE=	archive auth codecs completion config configwidgets \
 		coreaddons guiaddons i18n itemviews \

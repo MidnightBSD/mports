@@ -40,11 +40,9 @@ DESTDIRNAME=		INSTALL_ROOT
 USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
 
-CPPFLAGS=	-I${LOCALBASE}/include
-
-LDFLAGS=	-L${OPENSSLLIB} -lcrypto -lssl
+LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
 # PR230207 Allow relocations against read-only segments (override lld default)
-LDFLAGS_i386=	-Wl,-z,notext
+LDFLAGS_i386+=	-Wl,-z,notext
 
 OPTIONS_DEFINE+=		CGI CLI DEBUG EMBED FPM IPV6 LINKTHR \
 				MYSQLND PHPDBG ZTS
@@ -72,7 +70,7 @@ FPM_CONFIGURE_ON=	--enable-fpm \
 			--with-fpm-group=${WWWGRP} \
 			--with-fpm-user=${WWWOWN}
 FPM_VARS=		PHP_SAPI+=fpm \
-			USE_RC_SUBR+=php-fpm
+			USE_RC_SUBR+=php_fpm
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 LINKTHR_LIBS=		-lpthread
 MYSQLND_CONFIGURE_ON=	--enable-mysqlnd
@@ -83,12 +81,8 @@ ZTS_CONFIGURE_ENV=	pthreads_working="yes"
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == riscv64
-CONFIGURE_ARGS+=	--without-pcre-jit
-.endif
-
 .if defined(PKGNAMEPREFIX)
-USES+=			apache:2.2+
+USES+=			apache
 .include "${PORTSDIR}/Mk/extensions/apache.mk"
 .if ${PORT_OPTIONS:MAP2FILTER}
 CONFIGURE_ARGS+=	--with-apxs2filter=${APXS}
@@ -160,7 +154,7 @@ COMMENT=	The ${PHP_MODNAME} shared extension for php
 USES+=		php:ext,noflavors
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
 PHP_VER=	81
-IGNORE_WITH_PHP=	80 82 83
+IGNORE_WITH_PHP=	82 83 84
 
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
 WRKSRC=		${WRKDIR}/${EXTSUBDIR}
@@ -386,8 +380,7 @@ MYSQLND_USES_OFF=	mysql
 .if ${PHP_MODNAME} == "odbc"
 LIB_DEPENDS+=	libodbc.so:databases/unixODBC
 
-CONFIGURE_ARGS+=	--enable-odbc \
-			--with-unixODBC=${LOCALBASE}
+CONFIGURE_ARGS+=	--enable-odbc --with-unixODBC=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "opcache"
@@ -597,8 +590,7 @@ USE_PHP=	dom:build xml:build
 .if ${PHP_MODNAME} == "zip"
 LIB_DEPENDS+=	libzip.so:archivers/libzip
 
-CONFIGURE_ARGS+=	--with-zip \
-			--with-zlib-dir=/usr
+CONFIGURE_ARGS+=	--with-zip --with-zlib-dir=/usr
 USES+=			pkgconfig
 .endif
 

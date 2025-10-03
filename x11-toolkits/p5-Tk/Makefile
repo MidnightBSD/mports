@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Re-port of a perl5 interface to Tk8.4
+WWW=		https://metacpan.org/release/Tk
 
 LICENSE=	artistic
 

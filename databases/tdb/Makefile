@@ -10,22 +10,22 @@ WWW=		https://tdb.samba.org/
 
 LICENSE=	gpl3
 
-USES=			compiler pkgconfig shebangfix waf
-USE_LDCONFIG=		yes
-SHEBANG_GLOB=		*.py
-WAF_CMD=		buildtools/bin/waf
-CONFIGURE_LOG=		bin/config.log
+USES=		compiler pkgconfig shebangfix waf
+USE_LDCONFIG=	yes
+SHEBANG_GLOB=	*.py
+WAF_CMD=	buildtools/bin/waf
+CONFIGURE_LOG=	bin/config.log
 
-PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
-PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;^${PREFIX}/;;}
+PKGCONFIGDIR?=	${PREFIX}/libdata/pkgconfig
+PLIST_SUB+=	PKGCONFIGDIR=${PKGCONFIGDIR:S;^${PREFIX}/;;}
 
 CONFIGURE_ARGS+=	--disable-rpath \
 			--disable-rpath-install \
 			--bundled-libraries=NONE \
 			--builtin-libraries=replace \
 			--without-gettext
-CONFIGURE_ENV=		PYTHONHASHSEED=1
-MAKE_ENV=		PYTHONHASHSEED=1
+CONFIGURE_ENV=	PYTHONHASHSEED=1
+MAKE_ENV=	PYTHONHASHSEED=1
 
 CONFLICTS_INSTALL=	tdb[0-9]*
 

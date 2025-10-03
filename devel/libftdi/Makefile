@@ -1,11 +1,12 @@
 PORTNAME=	libftdi
 PORTVERSION=	0.20
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://www.intra2net.com/en/developer/libftdi/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library (using libusb) to talk to FTDI chips
+WWW=		https://www.intra2net.com/de/produkte/opensource/ftdi/
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
@@ -26,8 +27,7 @@ BOOST_CMAKE_BOOL=	FTDIPP
 BOOST_CXXFLAGS=		-I${LOCALBASE}/include
 
 PYTHON_DESC=		Python bindings
-PYTHON_BINARY_ALIAS=	swig=swig3.0
-PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30
+PYTHON_BUILD_DEPENDS=	swig:devel/swig
 PYTHON_CMAKE_BOOL=	PYTHON_BINDINGS
 PYTHON_USES=		python
 PYTHON_USE=		PYTHON=py3kplist

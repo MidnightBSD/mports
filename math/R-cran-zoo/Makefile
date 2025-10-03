@@ -1,0 +1,14 @@
+PORTNAME=	zoo
+DISTVERSION=	1.8-14
+CATEGORIES=	math
+DISTNAME=	${PORTNAME}_${DISTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	S3 Infrastructure for Regular and Irregular Time Series
+WWW=		https://cran.r-project.org/web/packages/zoo/
+
+LICENSE=	gpl2+
+
+USES=		cran:auto-plist,compiles
+
+.include <bsd.port.mk>

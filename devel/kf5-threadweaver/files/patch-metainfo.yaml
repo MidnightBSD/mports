@@ -1,0 +1,11 @@
+--- metainfo.yaml.orig	2025-09-20 02:21:00 UTC
++++ metainfo.yaml
+@@ -4,7 +4,7 @@ tier: 1
+ type: functional
+ platforms:
+     - name: Linux
+-    - name: FreeBSD
++    - name: MidnightBSD
+     - name: Windows
+     - name: macOS
+     - name: Android

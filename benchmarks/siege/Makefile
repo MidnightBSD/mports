@@ -1,12 +1,12 @@
 PORTNAME=	siege
-PORTVERSION=	4.1.6
+PORTVERSION=	4.1.7
 CATEGORIES=	benchmarks www
 MASTER_SITES=	http://download.joedog.org/siege/ \
 		http://fossies.org/linux/www/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP regression testing and benchmarking utility
-WWW=		https://www.joedog.org/JoeDog/Sieg
+WWW=		https://www.joedog.org/JoeDog/Siege
 
 LICENSE=	gpl2
 
@@ -15,6 +15,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PERL="${PERL}"
 CONFIGURE_ARGS=	--with-ssl=${OPENSSLBASE} --disable-shared \
 		--sysconfdir=${ETCDIR}
+
+CFLAGS+=	-Wno-error=int-conversion
 
 pre-configure:
 	@${RM} ${WRKSRC}/acinclude.m4

@@ -10,7 +10,9 @@ WWW=		https://xcb.freedesktop.org/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	xcb-proto>=1.17:x11/xcb-proto
+BUILD_DEPENDS=	xcb-proto>=1.17:x11/xcb-proto \
+		${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
+RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-devel-docs --without-doxygen --enable-xinput --enable-xkb

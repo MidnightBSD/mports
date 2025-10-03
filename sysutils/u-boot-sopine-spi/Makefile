@@ -16,7 +16,7 @@ PLIST_EXTRAS=		sopine-spi-flasher.img
 post-build:
 	mkimage -C none -A arm64 -T script -d ${.CURDIR}/../u-boot-sopine-spi/files/boot.cmd ${WRKSRC}/boot.scr
 
-post-stage:
+post-fake:
 	makefs -t msdos -s 5m ${WRKDIR}/sopine-spi-flash.msdos ${STAGEDIR}/${INST}
 	mkimg -v -s mbr -p fat32::5M:1M -o ${STAGEDIR}/${INST}/sopine-spi-flasher.img
 	dd if=${WRKDIR}/sopine-spi-flash.msdos of=${STAGEDIR}/${INST}/sopine-spi-flasher.img bs=1M oseek=1 conv=notrunc

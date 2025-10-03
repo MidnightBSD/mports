@@ -1,15 +1,14 @@
 PORTNAME=	rhash
-PORTVERSION=	1.3.9
+PORTVERSION=	1.4.4
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
-PATCH_SITES=	https://gitweb.gentoo.org/repo/gentoo.git/plain/app-crypt/rhash/files/:gentoo \
-		https://raw.githubusercontent.com/gentoo/gentoo/master/app-crypt/rhash/files/:gentoo \
-		https://sourceforge.net/p/rhash/patches/_discuss/thread/271b85e9/0ac7/attachment/:sf
-PATCHFILES=	rhash-1.3.9-nls.patch:-p1:gentoo \
-		rhash-1.3.9-rc-segfault.patch:-p1:gentoo \
-		rhash-1.3.2.patch:-p1:sf
+PATCH_SITES=	https://github.com/rhash/RHash/commit/
+PATCHFILES+=	c804982d1b24c6533118b3068d2cfdca685076f3.patch:-p1
+PATCHFILES+=	9ef90b958b7ae50aeeb5c269468034d73d6e2efe.patch:-p1
+PATCHFILES+=	b8c91ea6551e99e10352386cd46ea26973bb4a4d.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility and library for computing and checking of file hashes
@@ -25,10 +24,10 @@ CONFIGURE_ARGS=	--prefix="${PREFIX}" --mandir="${PREFIX}/share/man" \
 		--pkgconfigdir="${PREFIX}/libdata/pkgconfig" \
 		--enable-lib-static --enable-openssl-runtime \
 		--extra-cflags="${CFLAGS}" --extra-ldflags="${LDFLAGS}"
+INSTALL_TARGET=	install install-lib-so-link install-pkg-config
 
 USES=		cpe
 CPE_VENDOR=	${PORTNAME}_project
-INSTALL_TARGET=	install install-lib-so-link install-pkg-config
 USE_LDCONFIG=	yes
 
 NO_TEST=	yes

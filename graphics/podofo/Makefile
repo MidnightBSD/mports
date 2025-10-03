@@ -1,5 +1,5 @@
 PORTNAME=	podofo
-PORTVERSION=	0.10.3
+PORTVERSION=	0.10.4
 CATEGORIES=	graphics print
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -273,8 +273,8 @@ TARGET_ABI=	-gnueabi
 TARGET_ABI=
 .endif
 
-.if ${OSVERSION} < 300000
-FTARGET=freebsd11.4
+.if ${OSVERSION} > 400000
+FTARGET=freebsd13.5
 .else
 FTARGET=freebsd12.4
 .endif
@@ -293,6 +293,11 @@ USES+=		gnome
 .if ${PORT_OPTIONS:MCOMPILER_RT}
 LLVM_ENABLE_PROJECTS+=	compiler-rt
 COMPILER_RT_PATTERN=	(sanitizer|include.xray|include\/(fuzzer|orc)|profile\/InstrProfData.inc)
+# An unwind.h is require to build.  I think an in-tree one should be used
+# but this seems to work as a workaround...
+BUILD_DEPENDS+= libunwind>0:devel/libunwind
+# Allow unwind.h to be found reliably
+USES+=  localbase
 .endif
 
 .if ${PORT_OPTIONS:MEXTRAS}
@@ -489,6 +494,10 @@ post-patch:
 	    ${WRKSRC}/llvm/utils/lit/lit/formats/*.py
 	${REINPLACE_CMD} -e 's,/usr/local/,${LOCALBASE}/,' \
 	    ${WRKSRC}/llvm/CMakeLists.txt
+	${REINPLACE_CMD} -e 's|__FreeBSD__|__MidnightBSD__|g' \
+		-e 's|__FreeBSD_version|__MidnightBSD_version|g' \
+		-e 's|1300057|400000|g' \
+		${WRKSRC}/llvm/lib/Support/Unix/Path.inc
 
 post-patch-CLANG-on:
 	${REINPLACE_CMD} -e 's|%%LLVM_PREFIX%%|${LLVM_PREFIX}|' \

@@ -12,7 +12,7 @@ LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 LICENSE=	lgpl2.1 lgpl3
 LICENSE_COMB=	dual
 
-USES=		cmake compiler:c++11-lib gettext gl kde:5 pkgconfig qt:5 \
+USES=		cmake compiler:c++11-lib gettext gl kde:5 kfhack pkgconfig qt:5 \
 		tar:xz
 USE_GL=		egl
 USE_KDE=	ecm:build plasma-wayland-protocols:build

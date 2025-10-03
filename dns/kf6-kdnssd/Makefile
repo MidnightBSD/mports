@@ -5,7 +5,7 @@ CATEGORIES=	dns kde kde-frameworks
 COMMENT=	Network service discovery using Zeroconf
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake kde:6 qt:6 tar:xz
+USES=		cmake kde:6 kfhack qt:6 tar:xz
 USE_KDE=	ecm:build
 USE_QT=		base tools
 

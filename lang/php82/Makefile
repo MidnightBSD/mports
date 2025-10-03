@@ -2,8 +2,7 @@ PORTNAME=	php82
 DISTVERSION=	8.2.28
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-MASTER_SITES=	https://downloads.php.net/~sergey/ \
-		PHP/distributions
+MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +11,7 @@ WWW=		https://www.php.net/
 
 LICENSE=	PHP301
 
-USES+=		compiler:c11 cpe gnome pkgconfig tar:xz
+USES+=		compiler:c11 cpe gnome localbase pkgconfig tar:xz
 CPE_PRODUCT=	php
 PHP_VER=	82
 
@@ -37,8 +36,6 @@ DESTDIRNAME=		INSTALL_ROOT
 
 USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
-
-CPPFLAGS=	-I${LOCALBASE}/include
 
 LDFLAGS=	-L${OPENSSLLIB} -lcrypto -lssl
 # PR230207 Allow relocations against read-only segments (override lld default)
@@ -70,7 +67,7 @@ FPM_CONFIGURE_ON=	--enable-fpm \
 			--with-fpm-group=${WWWGRP} \
 			--with-fpm-user=${WWWOWN}
 FPM_VARS=		PHP_SAPI+=fpm \
-			USE_RC_SUBR+=php-fpm
+			USE_RC_SUBR+=php_fpm
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 LINKTHR_LIBS=		-lpthread
 MYSQLND_CONFIGURE_ON=	--enable-mysqlnd
@@ -86,7 +83,7 @@ CONFIGURE_ARGS+=	--without-pcre-jit
 .endif
 
 .if defined(PKGNAMEPREFIX)
-USES+=			apache:2.2+
+USES+=			apache
 .include "${PORTSDIR}/Mk/extensions/apache.mk"
 .if ${PORT_OPTIONS:MAP2FILTER}
 CONFIGURE_ARGS+=	--with-apxs2filter=${APXS}
@@ -110,10 +107,10 @@ PLIST_SUB+=	SAPI_INC=""
 PLIST_SUB+=	SAPI_INC="@comment "
 .endif
 
-.if ${OSVERSION} <= 202003
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
-.else
+.if ${OSVERSION} <= 300000
 CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
+.else
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd13.4
 .endif
 
 CONFIGURE_ENV+=	ac_cv_decimal_fp_supported="no" \
@@ -608,8 +605,7 @@ USE_PHP=	dom:build xml:build
 .if ${PHP_MODNAME} == "zip"
 LIB_DEPENDS+=	libzip.so:archivers/libzip
 
-CONFIGURE_ARGS+=	--with-zip \
-			--with-zlib-dir=/usr
+CONFIGURE_ARGS+=	--with-zip --with-zlib-dir=/usr
 USES+=			pkgconfig
 .endif
 
@@ -620,10 +616,10 @@ USES+=			pkgconfig
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} <= 202003
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd11.4
-.else
+.if ${OSVERSION} <= 300000
 CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
+.else
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd13.4
 .endif
 
 .if ${PHP_MODNAME} == "sqlite3" || ${PHP_MODNAME} == "zlib"

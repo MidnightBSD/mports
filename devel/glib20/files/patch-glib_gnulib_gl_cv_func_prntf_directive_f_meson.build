@@ -1,0 +1,11 @@
+--- glib/gnulib/gl_cv_func_printf_directive_f/meson.build.orig	2025-07-27 14:58:28.642129000 -0400
++++ glib/gnulib/gl_cv_func_printf_directive_f/meson.build	2025-07-27 14:58:37.637093000 -0400
+@@ -43,7 +43,7 @@
+         host_system.startswith ('freebsd5'))
+     gl_cv_func_printf_directive_f = false
+   elif (host_system.startswith ('freebsd') or
+-        host_system.startswith ('kfreebsd'))
++        host_system.startswith ('midnightbsd'))
+     gl_cv_func_printf_directive_f = true
+   elif (host_system.startswith ('darwin1') or
+         host_system.startswith ('darwin2') or

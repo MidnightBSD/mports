@@ -4,6 +4,7 @@ SUBDIR += ctorrent
 SUBDIR += libktorrent
 SUBDIR += libtorrent
 SUBDIR += libtorrent-rasterbar
+SUBDIR += libtorrent-rasterbar2
 SUBDIR += libutp
 SUBDIR += qbittorrent
 SUBDIR += rtorrent

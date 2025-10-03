@@ -5,7 +5,7 @@ CATEGORIES=	x11 kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 process launcher to speed up launching KDE applications
 
-USES=		cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz xorg
+USES=		cmake compiler:c++11-lib gettext kde:5 kfhack qt:5 tar:xz xorg
 USE_KDE=	completion config coreaddons crash dbusaddons i18n \
 		jobwidgets kio service solid widgetsaddons windowsystem \
 		doctools:build ecm:build

@@ -1,7 +1,6 @@
-
-
 PORTNAME=	quadra
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://kbrandt.sdf-eu.org/FreeBSD/distfiles/ \
 		ftp://ftp.bsdforen.de/pub/BSDForen/distfiles/ \
@@ -9,12 +8,14 @@ MASTER_SITES=	http://kbrandt.sdf-eu.org/FreeBSD/distfiles/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tetris like game with multiplayer support
+WWW=		https://code.google.com/p/quadra/
 
-LICENSE=	unknown
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		autoreconf gmake localbase tar:bzip2
+USES=		autoreconf gmake localbase sdl tar:bzip2 xorg
 USE_SDL=	sdl
 USE_XORG=	x11 xau xdmcp
 GNU_CONFIGURE=	yes

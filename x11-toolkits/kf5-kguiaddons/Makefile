@@ -11,7 +11,7 @@ DEPRECATED=	has its functionality stripped compared to a kf6 variant
 LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 
 USES=		cmake compiler:c++11-lib desktop-file-utils kde:5 pkgconfig \
-		qt:5 tar:xz xorg
+		qt:5 tar:xz xorg kfhack
 USE_KDE=	ecm:build plasma-wayland-protocols:build
 USE_QT=		core dbus gui wayland x11extras \
 		buildtools:build qmake:build testlib:build

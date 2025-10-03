@@ -4,7 +4,7 @@
 
 PORTNAME=	pulseaudio
 DISTVERSION=	17.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio
 MASTER_SITES=	https://freedesktop.org/software/pulseaudio/releases/
 
@@ -102,7 +102,7 @@ post-patch:
 		${WRKSRC}/src/utils/pa-info
 
 post-install:
-	${RM} -r ${STAGEDIR}/lib
+	${RM} -r ${FAKE_DESTDIR}/lib
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/pulse
 .for ii in default.pa daemon.conf client.conf system.pa
 	${MV} ${STAGEDIR}${PREFIX}/etc/pulse/${ii} \

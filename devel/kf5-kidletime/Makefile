@@ -6,6 +6,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 library for monitoring user activity
 
+LICENSE=	lgpl2.1+
+
 BUILD_DEPENDS=	wayland-protocols>=1.27:graphics/wayland-protocols
 LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 

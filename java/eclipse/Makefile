@@ -53,7 +53,7 @@ BUILD_DEPENDS=	git:devel/git@lite \
 		${LOCALBASE}/share/java/apache-maven-3.8/bin/mvn:java/maven \
 		zip:archivers/zip
 LIB_DEPENDS=	libsecret-1.so:security/libsecret \
-		libwebkit2gtk-4.0.so:www/webkit2-gtk3
+		webkit2-gtk_41>=0:www/webkit2-gtk@41
 USES=		compiler:c++11-lang java gmake pkgconfig gnome
 USE_GNOME=	gtk30
 

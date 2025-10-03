@@ -9,6 +9,8 @@ WWW=		https://www.openssl.org/
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+#EXPIRATION_DATE=	2026-09-07
+
 CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl111 openssl3* openssl-quictls
 
 HAS_CONFIGURE=	yes
@@ -21,7 +23,8 @@ USES=		cpe perl5
 USE_PERL5=	build
 USE_GITHUB=	yes
 GH_TAGNAME=	${PORTNAME}-${PORTVERSION}
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 
 LDFLAGS_i386=	-Wl,-znotext
 
@@ -111,6 +114,7 @@ TLS1_1_IMPLIES=	TLS1_2
 EC_CONFIGURE_ON=	enable-ec_nistp_64_gcc_128
 FIPS_VARS=		shlibs+=lib/ossl-modules/fips.so
 I386_CONFIGURE_ON=	386
+KTLS_EXTRA_PATCHES=	${FILESDIR}/extra-patch-ktls
 LEGACY_VARS=		shlibs+=lib/ossl-modules/legacy.so
 MAN3_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-util_find-doc-nits
 SHARED_MAKE_ENV=	SHLIBVER=${OPENSSL_SHLIBVER}

@@ -8,6 +8,8 @@ WWW=		https://github.com/troydm/udpt
 
 LICENSE=	gpl3+
 
+FAKE_OPTS=	trueprefix
+
 USES=		gmake localbase:ldflags sqlite:3
 USE_GITHUB=	yes
 GH_ACCOUNT=	troydm

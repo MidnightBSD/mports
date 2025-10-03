@@ -1,28 +1,35 @@
 PORTNAME=	ayatana-ido
-PORTVERSION=	0.9.2
-PORTREVISION=	1
+PORTVERSION=	0.10.4
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ayatana Indicator Display Objects
+WWW=		https://github.com/AyatanaIndicators/ayatana-ido
 
 LICENSE=	lgpl3
 
-LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz \
-		libgtest.so:devel/googletest
-BUILD_DEPENDS=	vala>=0:lang/vala \
-		lcov>=0:devel/lcov
+LIB_DEPENDS=	libgtest.so:devel/googletest \
+		libharfbuzz.so:print/harfbuzz
+BUILD_DEPENDS=	lcov>=0:devel/lcov
 
-USES=	cmake localbase:ldflags gnome pkgconfig
+USES=		cmake gnome localbase:ldflags pkgconfig vala:build
+USE_GNOME=	atk cairo gdkpixbuf glib20 gtk30 introspection pango
 
-USE_GNOME=	introspection glib20 gtk30 pango atk cairo gdkpixbuf
-
+OPTIONS_DEFINE=	DOCS
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	AyatanaIndicators
 
+PORTDOCS=	AUTHORS ChangeLog INSTALL.md NEWS README.md
+
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libayatana-ido3-0.4.so.*
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for doc in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
 
 .include <bsd.port.mk>

@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 workspace and cross-framework integration plugins
 
 USES=		cmake compiler:c++11-lib gettext kde:5 pkgconfig \
-		qt:5 tar:xz xorg
+		qt:5 tar:xz xorg kfhack
 USE_KDE=	auth attica codecs config configwidgets coreaddons i18n \
 		iconthemes newstuff notifications oxygen-sounds widgetsaddons \
 		ecm:build

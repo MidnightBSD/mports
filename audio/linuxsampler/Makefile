@@ -1,74 +1,50 @@
 PORTNAME=	linuxsampler
-DISTVERSION=	2.0.0
+DISTVERSION=	2.3.1
 CATEGORIES=	audio
-MASTER_SITES=	http://download.linuxsampler.org/packages/
+MASTER_SITES=	https://download.linuxsampler.org/packages/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modular MIDI sampler
+WWW=		https://www.linuxsampler.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 ONLY_FOR_ARCHS=	amd64 i386
-ONLY_FOR_ARCHS_REASON=	"not yet ported"
+ONLY_FOR_ARCHS_REASON=	not yet ported to this architecture
 
 BUILD_DEPENDS=	lv2>0:audio/lv2
 LIB_DEPENDS=	libgig.so:audio/libgig \
 		libsndfile.so:audio/libsndfile \
 		libuuid.so:misc/e2fsprogs-libuuid
 
-OPTIONS_DEFINE=	JACK ALSA DSSI LV2
-OPTIONS_DEFAULT=	JACK
-DSSI_DESC=	Enable DSSI support
-LV2_DESC=	Enable LV2 support
-
-USES=		bison gmake libtool pathfix pkgconfig sqlite:3 tar:bzip2
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	HAVE_UNIX98=1
+USES=		bison:wrapper compiler:c++14-lang gmake libtool localbase pathfix pkgconfig sqlite:3 tar:bzip2
 USE_LDCONFIG=	${PREFIX}/lib/linuxsampler
+
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+CONFIGURE_ENV=	HAVE_UNIX98=1
+CONFIGURE_ARGS=	--disable-arts-driver
+
 INSTALL_TARGET=	install-strip
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+OPTIONS_DEFINE=		JACK ALSA
+OPTIONS_DEFAULT=	JACK
+OPTIONS_SUB=		yes
 
-CONFIGURE_ARGS+=	--disable-arts-driver
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+ALSA_CONFIGURE_ENABLE=	alsa-driver
+ALSA_BROKEN=		error: unknown type name 'snd_pcm_t'
 
-.include <bsd.mport.options.mk>
+JACK_LIB_DEPENDS=	libjack.so:audio/jack
+JACK_CONFIGURE_ENABLE=	jack-driver
 
-.if ${PORT_OPTIONS:MJACK}
-LIB_DEPENDS+=	libjack.so:audio/jack
-.else
-CONFIGURE_ARGS+=--disable-jack-driver
-.endif
-
-.if ${PORT_OPTIONS:MALSA}
-LIB_DEPENDS+=	libasound.so:audio/alsa-lib
-.else
-CONFIGURE_ARGS+=--disable-alsa-driver
-.endif
-
-.if ${PORT_OPTIONS:MDSSI}
-BUILD_DEPENDS+=	dssi>=0:audio/dssi
-RUN_DEPENDS+=	dssi>=0:audio/dssi
-PLIST_SUB+=	DSSI=""
-CPPFLAGS:=	-I${LOCALBASE}/include/dssi ${CPPFLAGS}
-.else
-CONFIGURE_ENV+=	ac_cv_header_dssi_h=no
-PLIST_SUB+=	DSSI="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MLV2}
-BUILD_DEPENDS+=	lv2>=1.14.0_1:audio/lv2
-RUN_DEPENDS+=	lv2>=1.14.0_1:audio/lv2
-PLIST_SUB+=	LV2=""
-.else
-CONFIGURE_ENV+=	ac_cv_header_lv2_h=no
-PLIST_SUB+=	LV2="@comment "
-.endif
+CONFLICTS_BUILD=	dssi # DSSI is a no-longer-maintained interface to obsolete LADSPA plugins - no need to pull DSSI and LADSPA into dependencies
 
 post-patch:
 	@${REINPLACE_CMD} -e \
 		's|CXX_CPU_SWITCH=.*|CXX_CPU_SWITCH=|g ; \
+		 s|dragonfly|midnightbsd|g ; \
 		 s|"lv2core"|"_lv2core_"|' ${WRKSRC}/configure
 
 post-install:

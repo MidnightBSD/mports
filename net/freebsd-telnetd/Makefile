@@ -1,11 +1,11 @@
 PORTNAME=	freebsd-telnetd
 DISTVERSIONPREFIX=	v
-DISTVERSION=	14.0.5
+DISTVERSION=	15.0
 CATEGORIES=	net
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FreeBSD telnetd
-WWW=		https://github.com/cschuber/freebsd-telnetd
+WWW=		https://github.com/cschuber/freebsd-telnet
 
 LICENSE=	bsd3
 
@@ -18,8 +18,9 @@ USES=		uidfix
 MAKE_ARGS+=		BINOWN=${BINOWN} BINMODE=${BINMODE}
 MAKE_ENV+=		MAKESYSPATH=/usr/src/share/mk \
 			BINDIR=${PREFIX}/libexec \
-			MANDIR=${PREFIX}/man/man \
-			TELNETDIR=${WRKSRC}/contrib/telnet
+			MANDIR=${PREFIX}/share/man/man \
+			TELNETDIR=${WRKSRC}/contrib/telnet \
+			MK_WERROR=no
 
 OPTIONS_DEFINE=		IPV6
 OPTIONS_DEFAULT=	IPV6
@@ -27,8 +28,6 @@ OPTIONS_DEFAULT=	IPV6
 # WRKSRC_SUBDIR=		libexec/telnetd
 
 .include <bsd.mport.options.mk>
-
-MAKE_ENV+=	NO_WERROR=1
 
 post-patch:
 	@${CP} ${FILESDIR}/Makefile.in ${WRKSRC}/Makefile

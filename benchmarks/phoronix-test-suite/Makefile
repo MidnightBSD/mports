@@ -24,6 +24,7 @@ PORTDATA=	*
 PORTDOCS=	*
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 SHEBANG_GLOB=	*.sh
 

@@ -5,6 +5,7 @@ SUBDIR += audio
 SUBDIR += benchmarks
 SUBDIR += biology
 SUBDIR += cad
+SUBDIR += chinese
 SUBDIR += comms
 SUBDIR += converters
 SUBDIR += core

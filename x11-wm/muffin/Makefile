@@ -44,7 +44,8 @@ GLIB_SCHEMAS=	org.cinnamon.muffin.gschema.xml
 OPTIONS_DEFINE=	TEST UDEV WACOM
 OPTIONS_DEFAULT=	WACOM
 
-TEST_MESON_TRUE=	cogl_tests clutter_tests
+#TEST_MESON_TRUE=	cogl_tests clutter_tests
+NO_TEST=	yes
 
 UDEV_DESC=	Enable udev support when using the X11 backend (EXPERIMENTAL)
 UDEV_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev \

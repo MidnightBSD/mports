@@ -105,7 +105,11 @@ PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.0, 3.1, 3.2
 RUBY_DEFAULT?=		3.2
 # Possible values: rust, rust167, rust169, rust-bin
+.if ${OSVERSION} > 400000
+RUST_DEFAULT?=		rust186
+.else
 RUST_DEFAULT?=		rust
+.endif
 # Possible values: 4.13
 SAMBA_DEFAULT?=		4.13
 # Possible values: base, openssl, openssl111, openssl31, libressl, libressl-devel

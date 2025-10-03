@@ -30,7 +30,7 @@ CONFIGURE_ARGS=	--program-suffix=${DISTVERSION:S/.//g} \
 		${ICONV_CONFIGURE_ARG} \
 		--with-expat=yes --with-libexpat-prefix=${LOCALBASE} \
 		--without-libunwind-ia64 --with-system-zlib
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
 CONFIGURE_OUTSOURCE=	yes
 CFLAGS:=	${CFLAGS:C/ +$//}	# blanks at EOL creep in sometimes
 CFLAGS+=	-DRL_NO_COMPAT
@@ -150,7 +150,7 @@ EXCLUDE+=	zlib
 .endif
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd11.4
+CONFIGURE_TARGET=	x86_64-portbld-freebsd12.4
 .endif
 
 post-patch:

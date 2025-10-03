@@ -8,7 +8,7 @@
 
 OPTIONS_DEFINE+=GHOSTSCRIPT X11
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 FONTSDIR?=	${PREFIX}/share/fonts/TrueType
 FONTSDIR_REL=	${FONTSDIR:S,^${PREFIX}/,,}

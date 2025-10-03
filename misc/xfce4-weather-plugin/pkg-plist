@@ -1,5 +1,9 @@
 lib/xfce4/panel/plugins/libweather.so
-%%NLS%%share/icons/hicolor/48x48/apps/xfce4-weather.png
+share/icons/hicolor/128x128/apps/org.xfce.panel.weather.png
+share/icons/hicolor/16x16/apps/org.xfce.panel.weather.png
+share/icons/hicolor/32x32/apps/org.xfce.panel.weather.png
+share/icons/hicolor/48x48/apps/org.xfce.panel.weather.png
+share/icons/hicolor/scalable/apps/org.xfce.panel.weather.svg
 %%NLS%%share/locale/ar/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/ast/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/be/LC_MESSAGES/xfce4-weather-plugin.mo
@@ -22,6 +26,7 @@ lib/xfce4/panel/plugins/libweather.so
 %%NLS%%share/locale/hu/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/hye/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/id/LC_MESSAGES/xfce4-weather-plugin.mo
+%%NLS%%share/locale/ie/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/is/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/it/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/xfce4-weather-plugin.mo
@@ -37,6 +42,7 @@ lib/xfce4/panel/plugins/libweather.so
 %%NLS%%share/locale/pl/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/pt/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/pt_BR/LC_MESSAGES/xfce4-weather-plugin.mo
+%%NLS%%share/locale/ro/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/sk/LC_MESSAGES/xfce4-weather-plugin.mo
 %%NLS%%share/locale/sl/LC_MESSAGES/xfce4-weather-plugin.mo

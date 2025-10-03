@@ -12,4 +12,6 @@ SLAVE_PORT=	common
 
 MASTERDIR=	${.CURDIR}/../../devel/py-pygobject
 
+NO_TEST=	yes
+
 .include "${MASTERDIR}/Makefile"

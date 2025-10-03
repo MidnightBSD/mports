@@ -4,9 +4,9 @@ PKGNAMESUFFIX=	-extra
 MAINTAINER=	midnightbsd@BSDforge.com
 COMMENT=	LibFM-Extra library
 
-LICENSE=	gpl2 lgpl2.1
+LICENSE=	gpl2+ lgpl2.1
 LICENSE_COMB=	multi
-LICENSE_FILE_gpl2 =	${WRKSRC}/COPYING
+LICENSE_FILE_gpl2+ = ${WRKSRC}/COPYING
 
 MASTERDIR=	${.CURDIR}/../${PORTNAME}
 

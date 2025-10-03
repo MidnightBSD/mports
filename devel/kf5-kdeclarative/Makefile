@@ -5,6 +5,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 library providing integration of QML and KDE Frameworks
 
+LICENSE=	lgpl2.1+
+
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy
 
 USES=		cmake compiler:c++11-lib gettext kde:5 pkgconfig \
