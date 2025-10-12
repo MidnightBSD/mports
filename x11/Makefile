@@ -194,6 +194,7 @@ SUBDIR += xbiff
 SUBDIR += xbitmaps
 SUBDIR += xcalc
 SUBDIR += xcb
+SUBDIR += xcb-imdkit
 SUBDIR += xcb-proto
 SUBDIR += xcb-util
 SUBDIR += xcb-util-cursor
