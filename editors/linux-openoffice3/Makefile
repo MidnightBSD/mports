@@ -14,7 +14,8 @@ LICENSE=	lgpl3
 
 RUN_DEPENDS+=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
-USES=		linux:c7
+USES=		linux
+USE_LINUX=      xorglibs
 USE_GCPIO=	yes
 USE_XORG=	x11 ice xaw xau xext xrender xrandr \
 		xi xt xcursor xdamage xcomposite xfixes
