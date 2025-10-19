@@ -4,7 +4,7 @@ CATEGORIES=	net-mgmt
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/ \
 		http://media.luffy.cx/files/${PORTNAME}/
 
-MAINTAINER=	freebsd@simweb.ch
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Link-Layer Discovery Protocol (LLDP 802.1ab) daemon
 WWW=		https://lldpd.github.io/
 
@@ -72,7 +72,7 @@ SNMP_LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 SNMP_CONFIGURE_WITH=	snmp
 
 post-install:
-	${MKDIR} ${STAGEDIR}/var/run/lldpd
+	${MKDIR} ${FAKE_DESTDIR}/var/run/lldpd
 
 post-install-DOCS-on:
 	${INSTALL_DATA} ${FILESDIR}/README.bsd ${FAKE_DESTDIR}${DOCSDIR}
