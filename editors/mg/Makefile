@@ -1,24 +1,45 @@
 PORTNAME=	mg
-PORTVERSION=	7.0
+DISTVERSION=	20241008
 PORTEPOCH=	1
 CATEGORIES=	editors
-MASTER_SITES=	https://github.com/ibara/mg/releases/download/mg-${PORTVERSION}/
+MASTER_SITES=	https://hydrus.org.uk/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, fast Emacs-like editor
+WWW=		https://man.openbsd.org/mg
 
 LICENSE=	publicdom
 
-USES=		ncurses
-HAS_CONFIGURE=	yes
-CONFIGURE_ARGS=	--prefix=${PREFIX}
-PLIST_FILES=	bin/mg man/man1/mg.1.gz
-PORTDOCS=	README-Mg README.md tutorial
+FLAVORS=		dynamic static
+FLAVOR?=		${FLAVORS:[1]}
+static_PKGNAMESUFFIX=	-static
 
+USES=		ncurses uidfix
+
+.if ${FLAVOR} == static
+COMMENT+=	(rescue(8) version)
+MAKE_ARGS+=	NO_SHARED=yes
+PLIST_FILES=	/rescue/mg
+.else
+PLIST_FILES=	bin/mg \
+		share/man/man1/mg.1.gz
+PORTDOCS=	README tutorial
 OPTIONS_DEFINE=	DOCS
+.endif
 
+MAKE_ARGS+=	BINDIR=${PREFIX}/bin \
+		MANDIR=${PREFIX}/share/man/man \
+		NCURSESINC=${NCURSESINC} \
+		NCURSESLIB=${NCURSESLIB}
+
+.if ${FLAVOR} == static
+do-install:
+	@${MKDIR} ${STAGEDIR}/rescue
+	${INSTALL_PROGRAM} ${WRKSRC}/mg ${STAGEDIR}/rescue
+.else
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
+.endif
 
 .include <bsd.port.mk>

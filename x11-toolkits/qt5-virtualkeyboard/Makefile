@@ -17,4 +17,8 @@ USE_XORG=	xcb
 # stuff.
 QMAKE_ARGS=	CONFIG+=disable-layouts
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>

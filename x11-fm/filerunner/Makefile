@@ -1,5 +1,4 @@
 # created by:	Chris Hutchinson <midnightbsd@BSDforge.com>
-#
 
 PORTNAME=	filerunner
 PORTVERSION=	23.03.07.16
@@ -22,7 +21,7 @@ USES+=		tk:run
 USE_LDCONFIG=	yes
 
 post-patch:
-	${REINPLACE_CMD} -e 's|/usr/bin/env wish|${WISH}|' ${WRKSRC}/fr
+	${REINPLACE_CMD} -i '' -e 's|/usr/bin/env wish|${WISH}|' ${WRKSRC}/fr
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
@@ -34,5 +33,6 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/applications/
 	${CP} ${WRKSRC}/Makefiles/filerunner.desktop ${STAGEDIR}${PREFIX}/share/applications/
 	${CP} ${WRKSRC}/icons/filerunner-48x48.png ${STAGEDIR}${PREFIX}/share/pixmaps/filerunner.png
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX} -type f -iname '*.orig' -delete
 
 .include <bsd.port.mk>

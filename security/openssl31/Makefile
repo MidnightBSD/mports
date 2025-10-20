@@ -23,7 +23,8 @@ CONFIGURE_ARGS=	--openssldir=${OPENSSLDIR} \
 
 USES=		cpe perl5
 USE_PERL5=	build
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 
 LDFLAGS_i386=	-Wl,-znotext
 

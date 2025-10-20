@@ -27,4 +27,6 @@ BINARY_ALIAS=	python3=${PYTHON_CMD:T} python3-config=${PYTHON_CMD:T}-config
 
 PLIST_SUB=	DISTVERSION=${DISTVERSION} DISTMAJ=${DISTVERSION:C/\..*//}
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

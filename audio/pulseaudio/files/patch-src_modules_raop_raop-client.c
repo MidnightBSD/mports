@@ -1,6 +1,6 @@
---- src/modules/raop/raop-client.c.orig	2017-07-24 23:14:10 UTC
+--- src/modules/raop/raop-client.c.orig	2024-01-12 17:22:09 UTC
 +++ src/modules/raop/raop-client.c
-@@ -35,6 +35,10 @@
+@@ -39,6 +39,10 @@
  #include <sys/filio.h>
  #endif
  

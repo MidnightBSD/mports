@@ -16,5 +16,6 @@ SUBDIR += sigrok-firmware-fx2lafw
 SUBDIR += sigrok-firmware-utils
 SUBDIR += step
 SUBDIR += trilinos
+SUBDIR += udunits
 
 .include <bsd.port.subdir.mk>

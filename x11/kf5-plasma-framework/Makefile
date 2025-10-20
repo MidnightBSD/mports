@@ -9,7 +9,7 @@ COMMENT=	KF5 plugin based UI runtime used to write user interfaces
 DEPRECATED=	has its functionality stripped compared to a kf6 variant
 
 USES=		cmake compiler:c++11-lib gettext gl kde:5 pkgconfig qt:5 \
-		tar:xz xorg
+		tar:xz xorg kfhack
 USE_GL=		egl gl
 USE_KDE=	activities archive auth codecs completion config configwidgets \
 		coreaddons dbusaddons globalaccel guiaddons i18n iconthemes \

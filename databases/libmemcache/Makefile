@@ -6,6 +6,7 @@ MASTER_SITES=	http://people.FreeBSD.org/~seanc/libmemcache/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library for accessing a memcache cluster
+WWW=		https://people.FreeBSD.org/~seanc/libmemcache/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -24,6 +25,6 @@ CONFIGURE_ARGS+=--enable-debug
 .endif
 
 post-install:
-	cd ${PREFIX}/lib && ${LN} -sf libmemcache.so.4.0 libmemcache.so
+	cd ${PREFIX}/lib && ${LN} -sf libmemcache.so.0.4.0 libmemcache.so
 
 .include <bsd.port.mk>

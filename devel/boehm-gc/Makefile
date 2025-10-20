@@ -1,7 +1,7 @@
 PORTNAME=	gc
-PORTVERSION=	8.2.8
+PORTVERSION=	8.2.10
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/ivmai/bdwgc/releases/download/v${PORTVERSION}/
+MASTER_SITES=	https://github.com/bdwgc/bdwgc/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	boehm-
 .ifdef GC_VARIANT
 PKGNAMESUFFIX=	-${GC_VARIANT}
@@ -13,8 +13,10 @@ WWW=		https://www.hboehm.info/gc/
 
 LICENSE=	BDWGC
 LICENSE_NAME=	Boehm-Demers-Weiser Garbage Collector License
-LICENSE_TEXT=	License can be found at http://www.hboehm.info/gc/license.txt
+LICENSE_TEXT=	License can be found at https://www.hboehm.info/gc/license.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+SKIP_FAKE_CHECK=	.*/share/doc/gc/gc\.man\.bak$
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops
 
@@ -37,7 +39,7 @@ PLIST=		${NONEXISTENT}
 PLIST_FILES=	${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so,} \
 		${INSTLIBS:S,^,lib/lib,:S,$,-${GC_VARIANT}.so.1,} \
 		lib/libcord-${GC_VARIANT}.so.1.5.1 \
-		lib/libgc-${GC_VARIANT}.so.1.5.4 \
+		lib/libgc-${GC_VARIANT}.so.1.5.5 \
 		lib/libgccpp-${GC_VARIANT}.so.1.5.0 \
 		lib/libgctba-${GC_VARIANT}.so.1.5.0 \
 		libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc

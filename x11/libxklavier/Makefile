@@ -7,6 +7,7 @@ MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility library to make XKB stuff easier
+WWW=		https://gswitchit.sourceforge.net/
 
 LICENSE=	lgpl
 

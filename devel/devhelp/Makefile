@@ -1,34 +1,34 @@
-
-
 PORTNAME=	devhelp
-PORTVERSION=	3.16.1
-PORTREVISION=	1
+PORTVERSION=	41.2
+PORTREVISION=	4
 CATEGORIES=	devel gnome
-MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+DIST_SUBDIR=	gnome
+
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
+PATCHFILES+=	f1c27fd4eaa5.patch:-p1 # https://gitlab.gnome.org/GNOME/devhelp/-/merge_requests/42
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Developer help browser for GNOME 3
+COMMENT=	Developer help browser for GNOME
+WWW=		https://wiki.gnome.org/Apps/Devhelp
 
-LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSES/GPL-3.0-or-later.txt
 
-LIB_DEPENDS=	libwebkit2gtk-4.0.so:${PORTSDIR}/www/webkit2-gtk3
+BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
+		libwebkit2gtk-4.0.so:www/webkit2-gtk@40 \
+		libamtk-5.so:x11-toolkits/amtk
 
-USES=		compiler:c++11-lib gettext gmake libtool pathfix \
-		pkgconfig tar:xz
-USE_GNOME=	gtk30 intlhack libxslt
-USE_XORG=	x11
-GNU_CONFIGURE=	yes
-INSTALLS_ICONS=	yes
+PORTSCOUT=	limitw:1,even
+
+USES=		compiler:c++11-lib gettext gnome localbase meson pkgconfig \
+		python:build tar:xz
+USE_GNOME=	cairo gtk30 introspection
+
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-INSTALL_TARGET=	install-strip
 
-GLIB_SCHEMAS=	org.gnome.devhelp.gschema.xml
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|gedit-plugin||g' ${WRKSRC}/misc/Makefile.in
+GLIB_SCHEMAS=	org.gnome.devhelp.gschema.xml \
+		org.gnome.libdevhelp-3.gschema.xml
 
 .include <bsd.port.mk>

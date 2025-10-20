@@ -120,7 +120,6 @@ bin/sancov%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb-argdumper%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb-instr%%LLVM_SUFFIX%%
-%%LLDB%%bin/lldb-server%%LLVM_SUFFIX%%
 %%LLDB%%bin/lldb-vscode%%LLVM_SUFFIX%%
 %%MLIR%%bin/mlir-cpu-runner%%LLVM_SUFFIX%%
 %%MLIR%%bin/mlir-lsp-server%%LLVM_SUFFIX%%
@@ -212,7 +211,6 @@ llvm%%LLVM_SUFFIX%%/bin/llc
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-argdumper
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-instr
-%%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-server
 %%LLDB%%llvm%%LLVM_SUFFIX%%/bin/lldb-vscode
 llvm%%LLVM_SUFFIX%%/bin/lli
 llvm%%LLVM_SUFFIX%%/bin/llvm-addr2line

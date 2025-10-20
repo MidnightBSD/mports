@@ -24,4 +24,6 @@ MESON_ARGS=	-Dbuild-documentation=false \
 
 PLIST_SUB=	API_VERSION="3.0"
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

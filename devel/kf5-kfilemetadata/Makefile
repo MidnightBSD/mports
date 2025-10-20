@@ -6,6 +6,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 library for extracting file metadata
 
+LICENSE=	lgpl2.1+
+
 LIB_DEPENDS=	libavutil.so:multimedia/ffmpeg \
 		libepub.so:textproc/ebook-tools \
 		libexiv2.so:graphics/exiv2 \

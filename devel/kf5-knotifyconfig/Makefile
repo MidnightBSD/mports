@@ -5,6 +5,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 configuration system for KNotify
 
+LICENSE=	lgpl2.1+
+
 LIB_DEPENDS=	libcanberra.so:audio/libcanberra
 
 USES=		cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz xorg

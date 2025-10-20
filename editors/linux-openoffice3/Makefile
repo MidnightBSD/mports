@@ -1,6 +1,6 @@
 PORTNAME=	openoffice3
 PORTVERSION=	${OO_RELEASE}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors java linux
 MASTER_SITES=	${MASTER_SITE_OPENOFFICE:=stable/${OO_RELEASE}/}
 PKGNAMEPREFIX?=	linux-
@@ -14,8 +14,9 @@ LICENSE=	lgpl3
 
 RUN_DEPENDS+=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
+USES=		linux
+USE_LINUX=	imageformats-libs xorglibs
 USE_GCPIO=	yes
-USE_LINUX=	yes
 USE_XORG=	x11 ice xaw xau xext xrender xrandr \
 		xi xt xcursor xdamage xcomposite xfixes
 NO_BUILD=	yes

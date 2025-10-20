@@ -34,12 +34,12 @@ INSTALL_FILES=	Adobe-Japan1.cidToUnicode ISO-2022-JP.unicodeMap \
 		README ../dot.xpdfrc
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/japanese
+	${MKDIR} ${DATADIR}/japanese
 	cd ${WRKSRC} && \
-	    ${INSTALL_DATA} ${INSTALL_FILES} ${STAGEDIR}${DATADIR}/japanese
+	    ${INSTALL_DATA} ${INSTALL_FILES} ${DATADIR}/japanese
 	${MKDIR} ${STAGEDIR}${DATADIR}/japanese/CMap
-	cd ${STAGEDIR}${DATADIR}/japanese/CMap && \
-	    ${FIND} ${ADOBECMAPDIR}/aj16/CMap ${ADOBECMAPDIR}/aj20/CMap \
-		-type f -exec ${LN} -s -f {} . \;
+#	cd ${DATADIR}/japanese/CMap && \
+#	    ${FIND} ${FAKE_DESTDIR}${ADOBECMAPDIR}/aj16/CMap ${FAKE_DESTDIR}${ADOBECMAPDIR}/aj20/CMap \
+#		-type f -exec ${LN} -s -f {} . \;
 
 .include <bsd.port.mk>

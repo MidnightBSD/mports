@@ -47,6 +47,7 @@ SUBDIR += linux-rl9-harfbuzz
 SUBDIR += mp-letter
 SUBDIR += p5-Text-PDF
 SUBDIR += pdflib
+SUBDIR += plasma6-print-manager
 SUBDIR += psutils
 SUBDIR += py-collidoscope
 SUBDIR += py-dehinter

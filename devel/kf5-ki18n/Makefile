@@ -5,6 +5,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 advanced internationalization framework
 
+LICENSE=	lgpl2.1+
+
 BUILD_DEPENDS=	iso-codes>=0:misc/iso-codes
 RUN_DEPENDS=	iso-codes>=0:misc/iso-codes
 

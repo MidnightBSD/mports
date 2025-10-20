@@ -7,6 +7,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Deprecated pangoX support
+WWW=		https://www.pango.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

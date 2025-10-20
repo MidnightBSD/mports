@@ -6,6 +6,8 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 resource and network access abstraction
 
+LICENSE=	lgpl2.1+
+
 DEPRECATED=	has its functionality stripped compared to a kf6 variant
 
 USES=		cmake compiler:c++11-lib desktop-file-utils \

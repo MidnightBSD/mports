@@ -1,5 +1,3 @@
-
-
 PORTNAME=	gzrecover
 PORTVERSION=	0.8
 CATEGORIES=	archivers
@@ -9,6 +7,7 @@ DISTNAME=	gzrt-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	gzip recovery toolkit
+WWW=		https://www.urbanophile.com/arenn/hacking/gzrt/
 
 LICENSE=	gpl2
 

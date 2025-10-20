@@ -282,8 +282,8 @@ TARGET_ABI=	-gnueabi
 TARGET_ABI=
 .endif
 
-.if ${OSVERSION} < 300000
-FTARGET=freebsd11.4
+.if ${OSVERSION} > 400000
+FTARGET=freebsd13.5
 .else
 FTARGET=freebsd12.4
 .endif
@@ -619,6 +619,10 @@ post-patch:
 	    ${WRKSRC}/llvm/utils/lit/lit/formats/*.py
 	${REINPLACE_CMD} -e 's,/usr/local/,${LOCALBASE}/,' \
 	    ${WRKSRC}/llvm/CMakeLists.txt
+	${REINPLACE_CMD} -e 's|__FreeBSD__|__MidnightBSD__|g' \
+		-e 's|__FreeBSD_version|__MidnightBSD_version|g' \
+		-e 's|1300057|400000|g' \
+		${WRKSRC}/llvm/lib/Support/Unix/Path.inc
 
 post-patch-CLANG-on:
 	${REINPLACE_CMD} -e 's|%%LLVM_PREFIX%%|${LLVM_PREFIX}|' \

@@ -1,6 +1,5 @@
 PORTNAME=	snappy
-DISTVERSION=	1.2.1
-PORTREVISION=	1
+DISTVERSION=	1.2.2
 CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +9,7 @@ WWW=		https://google.github.io/snappy/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake compiler:c++11-lang cpe
+USES=		cmake compiler:c++14-lang cpe localbase:ldflags
 CPE_VENDOR=	google
 USE_LDCONFIG=	yes
 

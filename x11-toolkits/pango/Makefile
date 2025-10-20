@@ -1,9 +1,8 @@
 PORTNAME=	pango
-PORTVERSION=	1.50.14
-PORTREVISION=	0
+PORTVERSION=	1.56.1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source framework for the layout and rendering of i18n text
@@ -16,49 +15,34 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfribidi.so:converters/fribidi
-RUN_DEPENDS=	xorg-fonts-truetype>0:x11-fonts/xorg-fonts-truetype \
-		${FONTENCOD}:x11-fonts/encodings
 
-PORTSCOUT=	limitw:1,even
-
-USES=		compiler:c11 cpe gettext gnome localbase meson pkgconfig python:env tar:xz
-USE_LDCONFIG=	yes
-USE_GNOME=	cairo glib20 introspection:build
-
+USES=		compiler:c11 cpe gnome meson pkgconfig tar:xz
 CPE_VENDOR=	gnome
+USE_GNOME=	cairo glib20 introspection:build
+USE_LDCONFIG=	yes
 
-VERSION=	1.8.0
-LIBVERSION=	0.5000.14
-PLIST_SUB+=     VERSION=${VERSION} LIBVERSION=${LIBVERSION}
+PORTSCOUT=	limit:^1\.[^9]
 
-FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
-FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
+PLIST_SUB=	LIBVERSION=0.${PORTVERSION:R:E}00.${PORTVERSION:E}
 
-OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	X11 DOCS MANPAGES THAI
-OPTIONS_DEFAULT=X11 MANPAGES THAI
+OPTIONS_DEFINE=		DOCS LANG_TH MANPAGES X11
+OPTIONS_DEFAULT=	LANG_TH MANPAGES X11
+OPTIONS_SUB=		yes
 
-#DOCS_MESON_TRUE=	gtk_doc
-#DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>=0:textproc/py-gi-docgen
-PLIST_SUB+=    PORTDOCS=@comment
+DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen \
+			rst2man:textproc/py-docutils
+DOCS_MESON_TRUE=	documentation
 
-MANPAGES_BUILD_DEPENDS=	help2man:misc/help2man
+LANG_TH_LIB_DEPENDS=	libthai.so:devel/libthai
+LANG_TH_MESON_ENABLED=	libthai
 
-THAI_DESC=		Thai language support via libThai
-THAI_LIB_DEPENDS=	libthai.so:devel/libthai
-THAI_MESON_ENABLED=	libthai
+MANPAGES_MESON_TRUE=	man-pages
+MANPAGES_IMPLIES=	DOCS
 
+X11_USES=		xorg
+X11_USE=		XORG=x11,xft,xrender
 X11_MESON_ENABLED=	xft
-X11_USES=	xorg
-X11_USE=	XORG=x11,xft,xrender
 
 NO_TEST=	yes
-
-pre-configure:
-# .if !exists() evaluates too early before cairo has a chance to be installed
-	@if ! pkg-config --exists cairo-gobject; then \
-		${ECHO_MSG} "${PKGNAME}: Needs cairo with GLIB (GObject) support enabled."; \
-		${FALSE}; \
-	fi
 
 .include <bsd.port.mk>

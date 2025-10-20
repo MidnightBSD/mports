@@ -78,7 +78,6 @@ share/pixmaps/filerunner.png
 %%DATADIR%%/font.tcl
 %%DATADIR%%/fr
 %%DATADIR%%/fr-inotify.tcl
-%%DATADIR%%/fr.bak
 %%DATADIR%%/fr.tcl
 %%DATADIR%%/frBalloon.tcl
 %%DATADIR%%/frExpandFileListing.tcl

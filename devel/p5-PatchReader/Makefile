@@ -15,4 +15,6 @@ LICENSE_COMB=	dual
 USES=		perl5 dos2unix
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

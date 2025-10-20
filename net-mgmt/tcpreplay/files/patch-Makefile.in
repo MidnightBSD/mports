@@ -1,6 +1,6 @@
---- Makefile.in.orig	2022-02-05 21:30:36 UTC
+--- Makefile.in.orig	2024-07-12 17:15:27 UTC
 +++ Makefile.in
-@@ -892,7 +892,7 @@ autoopts:
+@@ -900,7 +900,7 @@ test:
  
  test:
  	echo Making test in $(TEST_DIR)

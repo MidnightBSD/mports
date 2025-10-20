@@ -11,6 +11,8 @@ WWW=		https://github.com/adobe-type-tools/cffsubr
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+SKIP_FAKE_CHECK=	.*\/cffsubr/tx$
+
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
@@ -29,6 +31,6 @@ post-patch:
 	@${RM} -r ${WRKSRC}/external/
 
 post-install:
-	${LN} -s ${LOCALBASE}/bin/tx ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cffsubr/tx
+	cd ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} && ${LN} -s ${LOCALBASE}/bin/tx cffsubr/tx
 
 .include <bsd.port.mk>

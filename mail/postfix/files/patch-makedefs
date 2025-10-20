@@ -4,7 +4,7 @@
  		: ${SHLIB_ENV="LD_LIBRARY_PATH=`pwd`/lib"}
  		: ${PLUGIN_LD="${CC} -shared"}
  		;;
-+  MidnightBSD.1*)	SYSTYPE=FREEBSD10
++  MidnightBSD.4*)	SYSTYPE=FREEBSD12
 +		: ${CC=cc}
 +		: ${SHLIB_SUFFIX=.so}
 +		: ${SHLIB_CFLAGS=-fPIC}
@@ -22,7 +22,7 @@
 +		: ${SHLIB_ENV="LD_LIBRARY_PATH=`pwd`/lib"}
 +		: ${PLUGIN_LD="${CC} -shared"}
 +		;;
-+  MidnightBSD.3*)	SYSTYPE=FREEBSD11
++  MidnightBSD.3*)	SYSTYPE=FREEBSD12
 +		: ${CC=cc}
 +		: ${SHLIB_SUFFIX=.so}
 +		: ${SHLIB_CFLAGS=-fPIC}

@@ -16,4 +16,8 @@ USE_QT=		core declarative gui widgets \
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 QT_DIST=	${PORTNAME}
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>

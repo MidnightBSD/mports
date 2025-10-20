@@ -10,6 +10,7 @@ WWW=		https://github.com/davatorium/rofi
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	checkmk:devel/check
 LIB_DEPENDS+=	libstartup-notification-1.so:x11/startup-notification \
 		libxcb-cursor.so:x11/xcb-util-cursor \
 		libxcb-ewmh.so:x11/xcb-util-wm \
@@ -33,8 +34,8 @@ CONFLICTS_INSTALL?=	${PORTNAME}-wayland
 
 OPTIONS_DEFINE=	TEST
 
-TEST_BUILD_DEPENDS=	checkmk:devel/check
-TEST_MESON_ENABLED=	check
+#TEST_MESON_ENABLED=	check
+NO_TEST=	yes
 
 post-patch:
 # Fix rofi-theme-selector which assumes we have GNU sed

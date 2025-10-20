@@ -32,7 +32,7 @@ X11_USES=		xorg
 X11_USE=		XORG=x11
 X11_CONFIGURE_WITH=	x
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-patch-X11-off:
 	${REINPLACE_CMD} -e '/all:/s/ bims//; /bims/d' \

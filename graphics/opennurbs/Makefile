@@ -35,6 +35,10 @@ IGNORE=		needs SRC_BASE to compile. Install base system sources and try again
 MAKE_ARGS+=	ON_GNU_OPTIMIZER_FLAGS="-g -fPIC"
 .endif
 
+post-patch:
+	@${REINPLACE_CMD} -e 's|D_GNU_SOURCE -I|D_GNU_SOURCE --std=c++14 -I|g' \
+		${WRKSRC}/makefile
+
 pre-build:
 	@${RM} -r ${WRKSRC}/zlib
 	${CP} -R ${LIBZ} ${WRKSRC}/zlib

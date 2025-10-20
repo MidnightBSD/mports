@@ -34,6 +34,8 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.mport.options.mk>
 
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
 post-patch:
 	for x in ${BUILD_WRKSRC}/*; do ${REINPLACE_CMD} 's,z88v15os,Z88OS-15, ; s,gcc,${CC}, ; s,CFLAGS =,CFLAGS+=, ; s,-O2,, ; s,LDLIBSOX,LDFLAGS, ; s,LDFLAGS =,LDFLAGS+=, ; s,--copy-dt-needed-entries,,' $$x; done
 

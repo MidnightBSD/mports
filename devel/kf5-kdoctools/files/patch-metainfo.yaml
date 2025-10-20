@@ -1,0 +1,10 @@
+--- metainfo.yaml.orig	2025-09-18 14:22:31 UTC
++++ metainfo.yaml
+@@ -5,6 +5,7 @@ type: functional
+ platforms:
+     - name: Linux
+     - name: FreeBSD
++    - name: MidnightBSD
+     - name: Windows
+     - name: macOS
+ portingAid: false

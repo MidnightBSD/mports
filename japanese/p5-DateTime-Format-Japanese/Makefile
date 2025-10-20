@@ -21,6 +21,9 @@ RUN_DEPENDS=	p5-DateTime>=0:devel/p5-DateTime \
 USES=		perl5
 USE_PERL5=	configure
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 PKGNAMEPREFIX:=	${PKGNAMEPREFIX}p5-

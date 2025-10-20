@@ -63,6 +63,15 @@
              | Os::NetBsd
              | Os::OpenBsd
              | Os::Dragonfly
+@@ -488,7 +488,7 @@ impl Target {
+     /// Returns true if the current platform is freebsd
+     #[inline]
+     pub fn is_freebsd(&self) -> bool {
+-        self.os == Os::FreeBsd
++        self.os == Os::FreeBsd || self.os == Os::MidnightBsd
+     }
+ 
+     /// Returns true if the current platform is mac os
 @@ -548,7 +548,7 @@ impl Target {
      /// Is cross compiling for this target
      #[inline]

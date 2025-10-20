@@ -2,6 +2,7 @@ PORTNAME=	hwdata
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.395
 PORTEPOCH=	1
+PORTREVISION=	1
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +19,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	vcrhonek
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
-		--datadir=${DATADIR}
+		--datarootdir=${PREFIX}/share
 
 BINARY_ALIAS=	install=ginstall
 

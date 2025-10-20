@@ -9,7 +9,7 @@ PATCHFILES+=	4e6763a5914c.patch:-p1 # https://gitlab.freedesktop.org/xorg/lib/li
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstract network code for X
 
-LICENSE=	MIT
+LICENSE=	mit
 
 USES=		tar:xz xorg-cat:lib
 

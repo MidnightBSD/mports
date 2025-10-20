@@ -1,10 +1,11 @@
 PORTNAME=	nghttp2
-PORTVERSION=	1.59.0
+PORTVERSION=	1.60.0
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/nghttp2/nghttp2/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP/2.0 C Library
+WWW=		https://nghttp2.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

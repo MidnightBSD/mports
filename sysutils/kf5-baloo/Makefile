@@ -11,7 +11,7 @@ LIB_DEPENDS=	liblmdb.so:databases/lmdb \
 
 DEPRECATED=	has its functionality stripped compared to a kf6 variant
 
-USES=		cmake compiler:c++11-lib gettext kde:5 pathfix qt:5 tar:xz
+USES=		cmake compiler:c++11-lib gettext kde:5 kfhack pathfix qt:5 tar:xz
 USE_KDE=	config coreaddons crash dbusaddons \
 		filemetadata i18n idletime kio service \
 		solid \

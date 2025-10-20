@@ -28,6 +28,7 @@ SUBDIR += ssh-chat
 SUBDIR += telegram-cli
 SUBDIR += telegram-purple
 SUBDIR += telepathy-glib
+SUBDIR += telepathy-idle
 SUBDIR += telepathy-logger
 SUBDIR += vqcc-gtk
 SUBDIR += xmpp-client

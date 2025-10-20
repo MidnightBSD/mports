@@ -2,8 +2,8 @@
 # being overriden by devel/appstream-qt slave port
 
 PORTNAME?=	AppStream
-DISTVERSION=	0.16.1
-PORTREVISION?=	0
+DISTVERSION=	1.0.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://www.freedesktop.org/software/${PORTNAME:tl}/releases/
 
@@ -19,15 +19,15 @@ BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
 		itstool:textproc/itstool \
 		lmdb>0:databases/lmdb
 LIB_DEPENDS?=	libcurl.so:ftp/curl \
-		liblmdb.so:databases/lmdb \
 		libstemmer.so:textproc/snowballstemmer \
 		libxmlb.so:textproc/libxmlb \
-		libyaml.so:textproc/libyaml
+		libyaml.so:textproc/libyaml \
+		libzstd.so:archivers/zstd
 
 USES+=		gettext gnome localbase:ldflags meson pkgconfig \
 		python:build tar:xz vala:build
 
-USE_GNOME+=	glib20 introspection:build libxml2 libxslt
+USE_GNOME+=	glib20 libxml2 introspection:build libxslt:build
 USE_LDCONFIG=	yes
 
 CFLAGS+=	-D__BSD_VISIBLE=1
@@ -48,8 +48,5 @@ post-patch:
 	${REINPLACE_CMD} \
 		-e 's|"/usr/share";|"${LOCALBASE}/share";|' \
 		${WRKSRC}/src/as-utils.c
-	${REINPLACE_CMD} \
-		-e 's|"/usr/share/fonts/"|"${LOCALBASE}/share/fonts/"|' \
-		${WRKSRC}/compose/asc-utils-fonts.c
 
 .include <bsd.port.mk>

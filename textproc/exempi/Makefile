@@ -20,6 +20,7 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-unittest=no
+USE_CXXSTD=	c++11
 
 NO_TEST=	yes
 

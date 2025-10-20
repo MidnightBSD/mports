@@ -8,6 +8,7 @@ SUBDIR += aop
 SUBDIR += atomix
 SUBDIR += bass
 SUBDIR += battalion
+SUBDIR += black-hole-solver
 SUBDIR += blinken
 SUBDIR += bomber
 SUBDIR += bovo

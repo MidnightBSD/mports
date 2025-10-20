@@ -12,6 +12,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented SGML/XML parser toolkit and DSSSL engine
+WWW=		http://www.jclark.com/jade/
 
 LICENSE=	mit
 
@@ -21,6 +22,7 @@ RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
 USES=		desthack libtool gmake
 GNU_CONFIGURE=	yes
+USE_CXXSTD=	gnu++98
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--enable-shared --enable-static

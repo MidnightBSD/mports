@@ -218,8 +218,8 @@ TARGET_ABI=	-gnueabi
 TARGET_ABI=
 .endif
 
-.if ${OSVERSION} < 300000
-FTARGET=freebsd11.4
+.if ${OSVERSION} > 400000
+FTARGET=freebsd13.5
 .else
 FTARGET=freebsd12.3
 .endif

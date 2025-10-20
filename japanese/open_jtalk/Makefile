@@ -17,7 +17,8 @@ BUILD_DEPENDS=	${PREFIX}/include/iconv.h:converters/libiconv \
 
 USE_CXXSTD=	c++14
 
-HAS_CONFIGURE=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}

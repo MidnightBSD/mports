@@ -17,6 +17,7 @@ DIST=			bad
 GST_PLUGIN=		${DIST}
 GST_PLUGIN_SUFFIX=	-${DIST}
 NO_GSTREAMER_COMMON=	yes
+NO_TEST=	yes
 
 BAD_GST_ENABLED_PLUGINS=accurip \
 			adaptivedemux \

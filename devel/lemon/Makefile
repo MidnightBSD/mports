@@ -19,7 +19,7 @@ post-patch:
 		${WRKSRC}/lemon.c
 
 do-build:
-	cd ${WRKSRC} && ${MAKE} PROG=lemon NOMAN=1 NO_MAN=1 \
+	cd ${WRKSRC} && ${MAKE} PROG=lemon NOMAN=1 MK_MAN=no \
 		CFLAGS="-g ${CFLAGS}" \
 		-f /usr/share/mk/bsd.prog.mk
 

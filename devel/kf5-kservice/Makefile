@@ -5,7 +5,9 @@ CATEGORIES=	devel kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 advanced plugin and service introspection
 
-USES=		bison cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz
+LICENSE=	lgpl2.1+
+
+USES=		bison cmake compiler:c++11-lib gettext kde:5 kfhack qt:5 tar:xz
 USE_KDE=	config coreaddons dbusaddons i18n \
 		doctools:build ecm:build
 USE_QT=		core dbus xml \

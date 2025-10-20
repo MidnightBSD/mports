@@ -1,5 +1,3 @@
-
-
 PORTNAME=	opensp
 PORTVERSION=	1.5.2
 CATEGORIES=	textproc
@@ -8,6 +6,7 @@ DISTFILES=	OpenSP-${PORTVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This package is a collection of SGML/XML tools called OpenSP
+WWW=		https://openjade.sourceforge.net/doc/
 
 LICENSE=	JamesClark
 LICENSE_NAME=	License of James Clark Software
@@ -22,6 +21,7 @@ CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--disable-doc-build
 
 WRKSRC=		${WRKDIR}/OpenSP-${PORTVERSION}
+CPPFLAGS+=	-Dregister=
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes

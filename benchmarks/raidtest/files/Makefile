@@ -1,6 +1,5 @@
-
 PROG=	raidtest
-NO_MAN=	true
+MAN=
 WARNS?=	6
 BINDIR?= ${PREFIX}/bin
 

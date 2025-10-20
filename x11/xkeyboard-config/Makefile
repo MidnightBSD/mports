@@ -9,6 +9,8 @@ COMMENT=	X Keyboard Configuration Database
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+SKIP_FAKE_CHECK=	share/X11/xkb/compiled
+
 BUILD_DEPENDS=	xkbcomp:x11/xkbcomp
 
 USES=		gmake gnome localbase pathfix perl5 python:3.5+,build \

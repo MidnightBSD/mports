@@ -6,6 +6,7 @@ MASTER_SITES=	FREEBSD_LOCAL/mat/ydiff
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Diff readability enhancher for color terminals
+WWW=		https://github.com/ymattw/ydiff
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE

@@ -1,26 +1,28 @@
 PORTNAME=	libsidplay
-PORTVERSION=	1.36.59
-PORTREVISION=	2
+PORTVERSION=	1.36.60
+PORTREVISION=	1
 CATEGORIES=	audio emulators
-MASTER_SITES=	http://bsd-geek.de/FreeBSD/distfiles/ \
-		FREEBSD_LOCAL/ehaupt
-EXTRACT_SUFX=	.tgz
+MASTER_SITES=	DEBIAN
+DISTNAME=	${PORTNAME}_${DISTVERSION}${DISTVERSIONSUFFIX}.orig
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Commodore SID-chip emulator library to play SID music files
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	sid_cv_have_ios_binary=yes
-INSTALL_TARGET=	install-strip
-USES=		autoreconf libtool tar:tgz
+USES=		autoreconf libtool tar:bz2
+USE_CXXSTD=	c++14
 USE_LDCONFIG=	yes
 
-.include <bsd.port.pre.mk>
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	${CONFIGURE_ARGS_${ARCH}}
+CONFIGURE_ENV=	sid_cv_have_ios_binary=yes
 
-.if ${ARCH} == "i386"
-CONFIGURE_ARGS=	--enable-optendian --enable-optfixpoint
-.endif
+INSTALL_TARGET=	install-strip
 
-.include <bsd.port.post.mk>
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+CONFIGURE_ARGS_i386=	--enable-optendian --enable-optfixpoint
+
+.include <bsd.port.mk>

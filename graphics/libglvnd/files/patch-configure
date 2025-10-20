@@ -1,0 +1,74 @@
+--- configure.orig	2025-09-12 18:51:19 UTC
++++ configure
+@@ -6776,7 +6776,7 @@ else $as_nop
+     lt_cv_sys_max_cmd_len=8192;
+     ;;
+ 
+-  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
++  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd* | midnightbsd*)
+     # This has been around since 386BSD, at least.  Likely further.
+     if test -x /sbin/sysctl; then
+       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
+@@ -7201,7 +7201,7 @@ darwin* | rhapsody*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -11586,7 +11586,7 @@ fi
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++    freebsd* | dragonfly* | midnightbsd*)
+       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -12636,7 +12636,7 @@ dgux*)
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -15289,7 +15289,7 @@ if test "x$enable_asm" = xyes; then
+     case "$host_cpu" in
+     i?86)
+         case "$host_os" in
+-        linux* | *freebsd* | dragonfly* | *netbsd*)
++        linux* | *freebsd* | dragonfly* | *netbsd* | midnightbsd*)
+             asm_arch=x86
+             ;;
+         gnu*)
+@@ -15299,7 +15299,7 @@ if test "x$enable_asm" = xyes; then
+         ;;
+     x86_64 | amd64)
+         case "$host_os" in
+-        linux* | *freebsd* | dragonfly* | *netbsd*)
++        linux* | *freebsd* | dragonfly* | *netbsd* | midnightbsd*)
+             asm_arch=x86_64
+             ;;
+         esac
+@@ -15644,7 +15644,7 @@ printf "%s\n" "#define PTHREAD_CREATE_JOINABLE $attr_n
+ printf %s "checking if more special flags are required for pthreads... " >&6; }
+         flag=no
+         case ${host_os} in
+-            aix* | freebsd* | darwin*) flag="-D_THREAD_SAFE";;
++            aix* | midnightbsd* | freebsd* | darwin*) flag="-D_THREAD_SAFE";;
+             osf* | hpux*) flag="-D_REENTRANT";;
+             solaris*)
+             if test "$GCC" = "yes"; then
+@@ -16238,7 +16238,7 @@ xx86 | xx86_64 | xppc64)
+     # extension functions unknown at compile time.
+     # https://gitlab.freedesktop.org/glvnd/libglvnd/-/merge_requests/249
+     case "$host_os$HAVE_TLS" in
+-    *gnu*yes|*freebsd*yes)
++    *gnu*yes|*freebsd*yes|*midnightbsd*yes)
+         gldispatch_entry_type=${asm_arch}_tls
+         ;;
+     *)
