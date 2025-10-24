@@ -48,6 +48,7 @@ SUBDIR += pdnsd
 SUBDIR += pear-File_DNS
 SUBDIR += pear-Horde_Idna
 SUBDIR += pear-Net_DNS2
+SUBDIR += powerdns
 SUBDIR += public_suffix_list
 SUBDIR += py-aiodns
 SUBDIR += py-dns-lexicon
