@@ -1,6 +1,6 @@
 PORTNAME=	zaproxy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.16.0
+DISTVERSION=	2.16.1
 CATEGORIES=	security java
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,7 @@ WWW=		https://www.zaproxy.org/
 
 LICENSE=	Apache-2.0
 
-BUILD_DEPENDS=	gradle:devel/gradle
+BUILD_DEPENDS=	gradle:devel/gradle8
 
 USES=		gettext-runtime java
 
@@ -63,7 +63,7 @@ post-patch:
 .endif
 
 do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} gradle \
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} gradle8 \
 		--gradle-user-home ${DEPS_CACHE_DIR}/gradle-${PORTNAME} --project-cache-dir ${DEPS_CACHE_DIR}/gradle-${PORTNAME} \
 		${GRADLE_ARGS} --build-cache :zap:distCore ${EXCLUDE_TASK}
 
