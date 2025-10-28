@@ -1,6 +1,6 @@
---- login_duo/Makefile.in.orig	2015-03-02 13:12:34 UTC
+--- login_duo/Makefile.in.orig	2025-10-28 00:58:40 UTC
 +++ login_duo/Makefile.in
-@@ -714,16 +714,6 @@ install-exec-hook:
+@@ -751,16 +751,6 @@ install-data-local:
  	 chmod 4755 $(DESTDIR)$(sbindir)/login_duo
  
  install-data-local:

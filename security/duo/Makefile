@@ -1,5 +1,5 @@
 PORTNAME=	duo
-PORTVERSION=	2.0.4
+PORTVERSION=	2.2.1
 CATEGORIES=	security
 MASTER_SITES=	https://dl.duosecurity.com/ \
 		ZI
