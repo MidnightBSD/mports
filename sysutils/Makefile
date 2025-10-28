@@ -84,6 +84,7 @@ SUBDIR += flashback
 SUBDIR += flock
 SUBDIR += freebsd-shar
 SUBDIR += freecolor
+SUBDIR += freeipmi
 SUBDIR += garcon
 SUBDIR += gconf-editor
 SUBDIR += genisoimage
