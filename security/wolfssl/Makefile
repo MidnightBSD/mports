@@ -1,5 +1,6 @@
 PORTNAME=	wolfssl
-PORTVERSION=	5.7.6
+PORTVERSION=	5.8.0
+PORTREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.wolfssl.com/ \
 		FREEBSD_LOCAL/fox
@@ -34,9 +35,13 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-ssh \
 		--enable-static \
 		--enable-tls13 \
-		--enable-tls13-draft18
-CFLAGS+=	-DWOLFSSL_ALT_NAMES
-PORTDOCS=	*
+		--enable-tls13-draft18 \
+		--enable-haproxy \
+		--enable-quic \
+		--enable-context-extra-user-data
+
+CFLAGS+=	-DWOLFSSL_ALT_NAMES -DWOLFSSL_GETRANDOM=1
+
 OPTIONS_DEFINE=	DEBUG DOCS
 
 DEBUG_CONFIGURE_ON=	--enable-debug

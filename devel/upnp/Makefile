@@ -25,7 +25,7 @@ CONFIGURE_ARGS=	--enable-device \
 		--enable-soap \
 		--enable-ssdp \
 		--enable-webserver
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 

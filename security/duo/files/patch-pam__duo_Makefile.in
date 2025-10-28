@@ -1,6 +1,6 @@
---- pam_duo/Makefile.in.orig	2017-05-03 23:03:21 UTC
+--- pam_duo/Makefile.in.orig	2025-10-28 00:58:40 UTC
 +++ pam_duo/Makefile.in
-@@ -725,20 +725,6 @@ clean-local-semodule:
+@@ -792,20 +792,6 @@ install-data-local:
  .PHONY: semodule semodule-enable semodule-install semodule-remove clean-local-semodule
  
  install-data-local:

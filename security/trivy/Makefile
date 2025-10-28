@@ -1,6 +1,6 @@
 PORTNAME=	trivy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.53.0
+DISTVERSION=	0.62.1
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/aquasecurity/trivy
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules,1.22
+USES=		go:modules,1.24
 
 GO_MODULE=	github.com/aquasecurity/trivy
 GO_TARGET=	./cmd/trivy
