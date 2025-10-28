@@ -17,6 +17,7 @@ SUBDIR += kermit
 SUBDIR += libimobiledevice
 SUBDIR += libimobiledevice-glue
 SUBDIR += libirman
+SUBDIR += libmodus
 SUBDIR += libusbmuxd
 SUBDIR += linux-rl9-qt5-qtconnectivity
 SUBDIR += linux-rl9-qt5-qtsensors
