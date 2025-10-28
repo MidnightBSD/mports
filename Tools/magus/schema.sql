@@ -203,6 +203,8 @@ CREATE TABLE  "runs" (
    primary key ("id")
 );
 
+CREATE INDEX idx_runs_arch_osversion_status
+ON runs (arch, osversion, status);
 
 --
 -- Table structure for table distfiles
