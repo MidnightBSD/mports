@@ -330,6 +330,12 @@ alter table distfiles add foreign key (port) references ports(id);
 alter table restricted_distfiles add foreign key (port) references ports(id);
 alter table master_sites add foreign key (port) references ports(id);
 alter table moved add foreign key (run) references runs(id);
+alter table events add foreign key ("machine") references machines("id");
+alter table events add foreign key ("port") references ports("id");
+ALTER TABLE "depends" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
+ALTER TABLE "depends" ADD FOREIGN KEY ("dependency") REFERENCES "ports"("id");
+ALTER TABLE "port_license_perms" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
+ALTER TABLE "logs" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
 
 create table mirrors
 (
