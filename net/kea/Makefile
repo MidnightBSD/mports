@@ -1,5 +1,5 @@
 PORTNAME=	kea
-DISTVERSION=	2.6.2
+DISTVERSION=	2.6.3
 CATEGORIES=	net
 MASTER_SITES=	ISC/kea/${DISTVERSION}
 
@@ -29,6 +29,7 @@ CONFIGURE_ARGS=	--with-boost-include=${LOCALBASE}/include \
 		--with-log4cplus=${LOCALBASE} \
 		--with-openssl=${OPENSSLBASE} \
 		--without-werror
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.5
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 

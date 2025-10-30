@@ -1,0 +1,11 @@
+--- configure.orig	2025-10-29 19:30:23.081281000 -0400
++++ configure	2025-10-29 19:31:02.111349000 -0400
+@@ -19759,7 +19759,7 @@
+       BSD_TYPE="OSX"
+       CPPFLAGS="$CPPFLAGS -DOS_BSD"
+       ;;
+-    *-freebsd*)
++    *-freebsd*|*-midnightbsd*)
+ 
+ printf "%s\n" "#define OS_BSD 1" >>confdefs.h
+ 
