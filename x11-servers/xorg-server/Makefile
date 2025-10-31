@@ -1,6 +1,6 @@
 PORTNAME=	xorg
 PORTVERSION=	21.1.18
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -18,7 +18,7 @@ FLAVOR?=	${FLAVORS:[1]}
 USES=		compiler:c11 cpe gl meson pkgconfig tar:xz xorg
 USE_GL=		gl
 
-NO_TEST=	yes
+#NO_TEST=	yes
 
 .if ${FLAVOR} == xephyr
 PORTNAME=	xephyr
@@ -56,6 +56,7 @@ MESON_ARGS+=	-Dxwin=false \
 		-Dfallback_input_driver=libinput \
 		-Ddocs=false \
 		-Dxcsecurity=true \
+		-Dsecure-rpc=false \
 		-Dxkb_dir=${LOCALBASE}/share/X11/xkb \
 		-Dxkb_output_dir=/var/lib/xkb \
 		-D${FLAVOR}=true

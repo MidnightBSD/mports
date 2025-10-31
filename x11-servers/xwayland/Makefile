@@ -1,5 +1,6 @@
 PORTNAME=	xwayland
 PORTVERSION=	24.1.8
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -31,6 +32,7 @@ NO_TEST=	yes
 
 MESON_ARGS=	-Dxvfb=false \
 		-Dxcsecurity=true \
+		-Dsecure-rpc=false \
 		-Dxkb_output_dir=/var/lib/xkb \
 		-Ddefault_font_path="${DEFAULT_FONTPATH_LIST:ts,}"
 
