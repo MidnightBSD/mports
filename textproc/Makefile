@@ -76,6 +76,7 @@ SUBDIR += fcitx-qt5
 SUBDIR += fcitx5
 SUBDIR += fcitx5-lua
 SUBDIR += fcitx5-qt
+SUBDIR += fcitx5-qt-common
 SUBDIR += fixrtf
 SUBDIR += flex
 SUBDIR += fop
