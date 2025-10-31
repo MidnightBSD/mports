@@ -1,7 +1,3 @@
-# New ports collection makefile for:	cracklib
-# Date created:				12 Oct 2007
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	cracklib
 PORTVERSION=	2.9.7
 CATEGORIES=	security
@@ -15,6 +11,7 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Password-checking library
+WWW=		https://sourceforge.net/projects/cracklib/
 
 LICENSE=	lgpl2.1
 
@@ -23,7 +20,7 @@ DICTFILE=	${DICTPATH}/cracklib-words
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-default-dict=${DICTFILE}
 INSTALL_TARGET=	install-strip
-USES=		libtool tar:bz2
+USES=		cpe libtool tar:bz2
 
 .if defined(PYTHON_SLAVEPORT)
 CATEGORIES+=	python
