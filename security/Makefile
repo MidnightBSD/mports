@@ -305,6 +305,7 @@ SUBDIR += wipe
 SUBDIR += wolfssh
 SUBDIR += wolfssl
 SUBDIR += wpa_supplicant
+SUBDIR += wpa_supplicant29
 SUBDIR += xinetd
 SUBDIR += xmlsec1
 SUBDIR += yafic
