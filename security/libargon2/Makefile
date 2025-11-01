@@ -4,8 +4,9 @@ CATEGORIES=	security devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Memory hard password hashing program and library
+WWW=		https://github.com/P-H-C/phc-winner-argon2
 
-LICENSE=	other
+LICENSE=	CC0-1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gmake
