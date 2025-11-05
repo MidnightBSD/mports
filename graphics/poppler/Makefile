@@ -109,11 +109,13 @@ GNUPG_LIB_DEPENDS=	libgpgme.so:security/gpgme \
 
 .if ${OSVERSION} >= 400000
 DISTVERSION=   25.04.0
-PLIST_SUB+=    SHLIB_VER=148
+PLIST_SUB+=    SHLIB_VER=148 \
+		CPP_VER=2 CPP_VER_LONG=2.1.0
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-poppler_FlateStream.cc	${FILESDIR}/extra-patch-poppler_FlateStream.h
 .else
 DISTVERSION=   24.12.0
-PLIST_SUB+=    SHLIB_VER=144
+PLIST_SUB+=    SHLIB_VER=144 \
+		CPP_VER=1 CPP_VER_LONG=1.0.0
 .endif
 
 
