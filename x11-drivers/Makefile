@@ -30,7 +30,6 @@
     SUBDIR += xf86-video-qxl
     SUBDIR += xf86-video-r128
     SUBDIR += xf86-video-rendition
-    SUBDIR += xf86-video-savage
     SUBDIR += xf86-video-scfb
     SUBDIR += xf86-video-siliconmotion
     SUBDIR += xf86-video-sis
