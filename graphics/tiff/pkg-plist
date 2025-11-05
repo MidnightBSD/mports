@@ -27,10 +27,10 @@ lib/cmake/tiff/TiffTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/tiff/TiffTargets.cmake
 lib/libtiff.so
 lib/libtiff.so.6
-lib/libtiff.so.6.1.0
+lib/libtiff.so.6.2.0
 lib/libtiffxx.so
 lib/libtiffxx.so.6
-lib/libtiffxx.so.6.1.0
+lib/libtiffxx.so.6.2.0
 libdata/pkgconfig/libtiff-4.pc
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/LICENSE.md
