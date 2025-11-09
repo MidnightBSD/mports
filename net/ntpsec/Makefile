@@ -9,7 +9,7 @@ WWW=		https://gitlab.com/NTPsec/ntpsec/
 
 LICENSE=	bsd2
 
-LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
+#LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
 
 USES=		cpe bison gettext-runtime pkgconfig python shebangfix ssl waf
 USE_GITHUB=	yes
