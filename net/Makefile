@@ -168,6 +168,7 @@ SUBDIR += nload
 SUBDIR += norm
 SUBDIR += nss_ldap
 SUBDIR += ntp
+SUBDIR += ntpsec
 SUBDIR += openldap25-client
 SUBDIR += openldap25-server
 SUBDIR += openldap26-client
