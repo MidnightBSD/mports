@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+
+# PROVIDE: ntpsec
+# REQUIRE: DAEMON ntpdate cleanvar devfs
+# BEFORE:  LOGIN
+# KEYWORD: nojail shutdown
+
+# Define ntpsec_* variables in one of these files:
+#       /etc/rc.conf
+#       /etc/rc.conf.local
+#       /etc/rc.conf.d/ntpsec
+
+ntpsec_enable="${ntpsec_enable-NO}"
+ntpsec_config="${ntpsec_config-%%PREFIX%%/etc/ntpsec.conf}"
+ntpsec_flags="${ntpsec_flags-}"
+ntpsec_sync_on_start="${ntpsec_sync_on_start-NO}"
+
+. /etc/rc.subr
+
+name="ntpsec"
+rcvar=`set_rcvar`
+command="%%PREFIX%%/sbin/ntpd"
+pidfile="/var/run/${name}.pid"
+start_precmd="ntpsec_precmd"
+
+load_rc_config $name
+
+ntpsec_precmd()
+{
+	rc_flags="-c ${ntpsec_config} -p ${pidfile} ${ntpsec_flags}"
+
+	if checkyesno ntpsec_sync_on_start; then
+		rc_flags="-g $rc_flags"
+	fi
+
+	if [ -z "$ntpsec_chrootdir" ]; then
+		return 0;
+	fi
+
+	# If running in a chroot cage, ensure that the appropriate files
+	# exist inside the cage, as well as helper symlinks into the cage
+	# from outside.
+	#
+	# As this is called after the is_running and required_dir checks
+	# are made in run_rc_command(), we can safely assume ${ntpsecd_chrootdir}
+	# exists and ntpsecd isn't running at this point (unless forcestart
+	# is used).
+	#
+	if [ ! -c "${ntpsec_chrootdir}/dev/clockctl" ]; then
+		rm -f "${ntpsec_chrootdir}/dev/clockctl"
+		( cd /dev ; /bin/pax -rw -pe clockctl "${ntpsec_chrootdir}/dev" )
+	fi
+	ln -fs "${ntpsec_chrootdir}/var/db/ntpsec.drift" /var/db/ntpsec.drift
+
+	#	Change run_rc_commands()'s internal copy of $ntpsec_flags
+	#
+	rc_flags="-u ntpd:ntpd -i ${ntpsec_chrootdir} $rc_flags"
+}
+
+run_rc_command "$1"

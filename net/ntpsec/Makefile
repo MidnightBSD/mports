@@ -14,6 +14,7 @@ LICENSE=	bsd2
 USES=		cpe bison gettext-runtime pkgconfig python shebangfix ssl waf
 USE_GITHUB=	yes
 USE_LDCONFIG=	${PREFIX}/lib/ntp
+USE_RC_SUBR=    ntpsec
 
 SHEBANG_FILES=	${WRKSRC}/ntpclients/ntp*.py
 python_OLD_CMD=	@PYSHEBANG@
@@ -37,7 +38,7 @@ PORTSCOUT=	limit:^\d+\. # prevent alpha-numeric strings
 
 post-install:
 	# autoplist: plist varies depending on the python version
-	@cd ${STAGEDIR}${PREFIX} && \
+	cd ${PREFIX} && \
 		${FIND} * -type f -or -type l | ${SED} -e 's|^share/man/.*|&.gz|' >> ${TMPPLIST}
 	# strip binaries
 	@${STRIP_CMD} \
