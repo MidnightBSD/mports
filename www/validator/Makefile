@@ -2,7 +2,7 @@ PORTNAME=	validator
 DISTVERSIONPREFIX=	${PORTNAME}-
 DISTVERSION=	1_3
 DISTVERSIONSUFFIX=	-release
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,6 +17,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 RUN_DEPENDS=	onsgmls:textproc/opensp \
 		p5-CGI>=0:www/p5-CGI \
 		p5-Config-General>=0:devel/p5-Config-General \
+		p5-Encode-HanExtra>=0:chinese/p5-Encode-HanExtra \
 		p5-Encode-JIS2K>=0:converters/p5-Encode-JIS2K \
 		p5-HTML-Parser>=0:www/p5-HTML-Parser \
 		p5-HTML-Encoding>=0:www/p5-HTML-Encoding \
