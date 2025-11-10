@@ -1,5 +1,5 @@
 PORTNAME=	dnsmasq
-DISTVERSION=	2.90
+DISTVERSION=	2.91
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	dns
@@ -28,9 +28,8 @@ CFLAGS+=	-Wall -Wno-unused-function -Wno-unused-parameter \
 		-Wno-unused-value -Wno-unused-variable
 CPPFLAGS+=	-I${LOCALBASE}/include
 
-CONFLICTS_INSTALL=	dnsmasq-devel-*
+CONFLICTS_INSTALL=	dnsmasq-devel
 
-PATCH_STRIP=	-p1
 SUB_FILES=	pkg-message
 
 PORTDOCS=	CHANGELOG CHANGELOG.archive FAQ doc.html setup.html
@@ -100,7 +99,7 @@ USE_RC_SUBR=	dnsmasq
 LDFLAGS+=	-L${LOCALBASE}/lib ${_intllibs} ${ICONV_LIB}
 
 post-patch:
-	${REINPLACE_CMD} -e '/^lua_/s/lua5\.2/lua-${LUA_VER}/' ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e '/^LUA /s/lua/lua-${LUA_VER}/' ${WRKSRC}/Makefile
 
 pre-configure: pretty-print-config
 .if ${PORT_OPTIONS:MIDN}
