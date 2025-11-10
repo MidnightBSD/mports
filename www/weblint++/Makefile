@@ -6,8 +6,9 @@ MASTER_SITE_SUBDIR=	CPAN:BDFOY
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML validator and sanity checker
+WWW=		https://metacpan.org/release/BDFOY/weblint++-1.15
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-ConfigReader-Simple>=1.15:devel/p5-ConfigReader-Simple \
