@@ -392,7 +392,6 @@
     SUBDIR += youtube
     SUBDIR += yt-dlp
     SUBDIR += yuicompressor
-    SUBDIR += zend-framework
     SUBDIR += zenphoto
     SUBDIR += zola
 
