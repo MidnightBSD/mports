@@ -1,14 +1,15 @@
 PORTNAME=	bindgraph
 PORTVERSION=	0.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	http://www.linux.it/~md/software/
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RRDtool frontend for BIND statistics
+WWW=		https://www.linux.it/~md/software/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:databases/rrdtool	\
 		${SITE_PERL}/File/Tail.pm:devel/p5-File-Tail
@@ -23,12 +24,13 @@ BINDGRAPH_GROUP?=	${WWWGRP}
 
 USE_RC_SUBR=	${PORTNAME}
 SUB_LIST+=	BINDGRAPH_USER=${BINDGRAPH_USER} BINDGRAPH_GROUP=${BINDGRAPH_GROUP}
-PLIST_SUB=	CGIDIR=${CGIDIR:S,${PREFIX}/,,}
+PLIST_SUB=	CGIDIR=${CGIDIR:S,${PREFIX}/,,} \
+		BINDGRAPH_USER="${BINDGRAPH_USER}" \
+		BINDGRAPH_GROUP="${BINDGRAPH_GROUP}"
 
-DOCS=		README ChangeLog
-.if !defined(NOPORTDOCS)
-PORTDOCS=	${DOCS}
-.endif
+PORTDOCS=	README ChangeLog
+
+OPTIONS_DEFINE=	DOCS
 
 pre-everything::
 	@${ECHO_MSG} "You may set following options:"
@@ -47,11 +49,11 @@ do-install:
 	@${CHOWN} -R ${BINDGRAPH_USER}:${BINDGRAPH_GROUP} ${DATADIR}/
 	@${INSTALL_SCRIPT} ${WRKSRC}/bindgraph.pl ${PREFIX}/sbin/
 	@${INSTALL_SCRIPT} ${WRKSRC}/bindgraph.cgi ${CGIDIR}/
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	for f in ${DOCS}; do \
-	  ${INSTALL_DATA} ${WRKSRC}/$$f ${DOCSDIR}/; \
-	done
-.endif
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for f in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}/
+.endfor
 
 .include <bsd.port.mk>
