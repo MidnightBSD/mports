@@ -5,7 +5,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://www.acme.com/software/thttpd/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Tiny/turbo/throttling HTTP server
+COMMENT=	Tiny/turbo/throttling HTTP server with CGI support
 WWW=		https://www.acme.com/software/thttpd/
 
 LICENSE=	bsd2
