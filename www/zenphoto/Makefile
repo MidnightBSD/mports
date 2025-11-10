@@ -1,5 +1,5 @@
 PORTNAME=	zenphoto
-PORTVERSION=	1.5.9
+PORTVERSION=	1.6.8
 DISTVERSIONPREFIX=	v
 PORTREVISION=	3
 CATEGORIES=	www
@@ -7,13 +7,14 @@ PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simpler web photo gallery
-WWW=		https://www.zenphoto.org/
+WWW=		https://www.zenphoto.org/ \
+		https://github.com/zenphoto/zenphoto
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cpe php:flavors,web
-USE_PHP=	gd gettext hash json mbstring mysqli pcre session
+USE_PHP=	gd gettext mbstring mysqli session
 
 NO_ARCH=	yes
 NO_BUILD=	yes
