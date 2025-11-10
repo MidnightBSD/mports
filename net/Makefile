@@ -279,6 +279,7 @@ SUBDIR += samba413
 SUBDIR += samba416
 SUBDIR += sdl_net
 SUBDIR += smbldap-tools
+SUBDIR += socat
 SUBDIR += speedtest-go
 SUBDIR += tigervnc-server
 SUBDIR += tigervnc-viewer
