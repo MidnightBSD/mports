@@ -1,7 +1,7 @@
 PORTNAME=	zola
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.18.0
-PORTREVISION=	3
+DISTVERSION=	0.20.0
+PORTREVISION=	4
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +10,9 @@ WWW=		https://www.getzola.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+NOT_FOR_ARCHS=	i386
+NOT_FOR_ARCHS_REASON=	the ring crate requires SSE2 instruction on intel cpu
 
 LIB_DEPENDS=	libonig.so:devel/oniguruma \
 		libsass.so:textproc/libsass
