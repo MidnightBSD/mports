@@ -366,9 +366,7 @@
     SUBDIR += srt
     SUBDIR += thttpd
     SUBDIR += tidy
-    SUBDIR += tidy-devel
     SUBDIR += tidy-html5
-    SUBDIR += tidy-lib
     SUBDIR += tomcat-native
     SUBDIR += tomcat101
     SUBDIR += tomcat110
