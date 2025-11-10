@@ -5,6 +5,7 @@ MASTER_SITES=	https://wpewebkit.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Freedesktop.org backend for WPE WebKit
+WWW=		https://wpewebkit.org
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
