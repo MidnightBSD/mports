@@ -84,6 +84,7 @@ SUBDIR += freexl
 SUBDIR += fzf
 SUBDIR += gdome2
 SUBDIR += gnugrep
+SUBDIR += go-md2man
 SUBDIR += groff
 SUBDIR += gsed
 SUBDIR += gspell
