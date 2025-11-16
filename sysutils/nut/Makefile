@@ -159,10 +159,10 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
 .endfor
 .endif
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${PATCHDIR}/nut.syslog ${STAGEDIR}${EXAMPLESDIR}/syslog.sample
-	${INSTALL_DATA} ${PATCHDIR}/nut.newsyslog ${STAGEDIR}${EXAMPLESDIR}/newsyslog.sample
-	${INSTALL_DATA} ${PATCHDIR}/nut_upslog.sample ${STAGEDIR}${EXAMPLESDIR}/nut_upslog.sample
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${PATCHDIR}/nut.syslog ${EXAMPLESDIR}/syslog.sample
+	${INSTALL_DATA} ${PATCHDIR}/nut.newsyslog ${EXAMPLESDIR}/newsyslog.sample
+	${INSTALL_DATA} ${PATCHDIR}/nut_upslog.sample ${EXAMPLESDIR}/nut_upslog.sample
 	${MKDIR} ${FAKE_DESTDIR}/var/log/nut
 
 .include <bsd.port.post.mk>
