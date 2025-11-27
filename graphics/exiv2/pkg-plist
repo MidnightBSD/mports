@@ -32,7 +32,6 @@ include/exiv2/exiv2lib_export.h
 include/exiv2/exv_conf.h
 include/exiv2/futils.hpp
 include/exiv2/gifimage.hpp
-include/exiv2/http.hpp
 include/exiv2/image.hpp
 include/exiv2/image_types.hpp
 include/exiv2/iptc.hpp
@@ -67,7 +66,7 @@ lib/cmake/exiv2/exiv2ConfigVersion.cmake
 lib/cmake/exiv2/exiv2Export-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/exiv2/exiv2Export.cmake
 lib/libexiv2.so
-lib/libexiv2.so.0.28.2
+lib/libexiv2.so.0.28.3
 lib/libexiv2.so.28
 libdata/pkgconfig/exiv2.pc
 share/man/man1/exiv2.1.gz
