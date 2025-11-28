@@ -1,11 +1,11 @@
 PORTNAME=	libatomic_ops
-DISTVERSION=	7.8.2
+DISTVERSION=	7.10.0
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/ivmai/libatomic_ops/releases/download/v${DISTVERSION}/
+MASTER_SITES=	https://github.com/bdwgc/libatomic_ops/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Atomic operations access library
-WWW=		https://github.com/ivmai/libatomic_ops
+WWW=		https://github.com/bdwgc/libatomic_ops
 
 LICENSE=	bsd2 gpl2
 LICENSE_COMB=	multi
