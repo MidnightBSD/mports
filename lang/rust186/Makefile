@@ -230,17 +230,8 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
 do-install:
-	${RM} -r ${WRKDIR}/_extractdist
-.for _c in ${_COMPONENTS}
-	${MKDIR} ${WRKDIR}/_extractdist
-	${TAR} xf ${WRKDIR}/_build/dist/${_c}.tar.xz -C ${WRKDIR}/_extractdist
-	cd ${WRKDIR}/_extractdist/${_c} && \
-		${SH} install.sh \
-		--docdir="${STAGEDIR}${DOCSDIR}" \
-		--mandir="${STAGEDIR}${PREFIX}/share/man" \
-		--prefix="${STAGEDIR}${PREFIX}"
-	${RM} -r ${WRKDIR}/_extractdist
-.endfor
+	@cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${PYTHON_CMD} x.py install --jobs=${MAKE_JOBS_NUMBER}
 
 # We autogenerate the plist file.  We do that, instead of the
 # regular pkg-plist, because several libraries have a computed
