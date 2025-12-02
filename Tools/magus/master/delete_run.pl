@@ -6,6 +6,7 @@ use lib qw(/usr/mports/Tools/lib);
 
 use Magus;
 use Magus::Depend;
+use Magus::Log;
 
 #
 # Script to delete runs from the db with cascading deletes.
@@ -27,10 +28,20 @@ if (@run_ids) {
                 foreach my $port (@ports) {
                     my $pid = $port->id;
 
+                    $port->events->delete_all if $port->events;
+
+                    Magus::Log->search(port => $pid)->delete_all;
+
                     # remove depends where this port is the depender
                     Magus::Depend->search(port       => $port)->delete_all;
                     # remove depends where this port is the dependency of another port
                     Magus::Depend->search(dependency => $port)->delete_all;
+
+                    $port->master_sites->delete_all if $port->master_sites;
+                    $port->distfiles->delete_all if $port->distfiles;
+                    $port->restricted_distfiles->delete_all if $port->restricted_distfiles;
+                    $port->perms->delete_all if $port->perms;
+
 
                     $port->delete;
                     print "Deleted port $pid\n";
