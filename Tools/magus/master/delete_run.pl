@@ -25,13 +25,15 @@ if (@run_ids) {
             if ($run) {
                 my @ports = $run->ports;
                 foreach my $port (@ports) {
+                    my $pid = $port->id;
+
                     # remove depends where this port is the depender
                     Magus::Depend->search(port       => $port)->delete_all;
                     # remove depends where this port is the dependency of another port
                     Magus::Depend->search(dependency => $port)->delete_all;
 
                     $port->delete;
-                    print "Deleted port " . $port->id . "\n";
+                    print "Deleted port $pid\n";
                 }
                 $run->delete;
                 print "Deleted run $run_id\n";
