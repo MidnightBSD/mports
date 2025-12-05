@@ -1,18 +1,19 @@
 PORTNAME=	djvulibre
-PORTVERSION=	3.5.28
-PORTREVISION=	1
+PORTVERSION=	3.5.29
 CATEGORIES=	graphics www
 MASTER_SITES=	SF/djvu/DjVuLibre/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DjVu base libraries and utilities
+WWW=		https://djvu.sourceforge.net/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libtiff.so:graphics/tiff
 
 USES=		cpe gmake iconv:wchar_t jpeg libtool
+USE_CXXSTD=	c++14
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	djvulibre_project
