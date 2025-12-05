@@ -40,8 +40,7 @@ MASTER_SITE_PORTS_JP+= \
 
 .if !defined(IGNORE_MASTER_SITE_AFTERSTEP)
 MASTER_SITE_AFTERSTEP+= \
-	ftp://ftp.afterstep.org/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/X11/AfterStep/%SUBDIR%/
+	ftp://ftp.afterstep.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_ALSA)
@@ -57,7 +56,6 @@ MASTER_SITE_APACHE+= \
 	https://mirror.its.dal.ca/apache/%SUBDIR%/ \
 	http://mirror.cogentco.com/pub/apache/%SUBDIR%/ \
 	http://mirror.navercorp.com/apache/%SUBDIR%/ \
-	http://ftp.kddi-research.jp/infosystems/apache/%SUBDIR%/ \
 	http://miroir.univ-lorraine.fr/apache/%SUBDIR%/
 .endif
 
@@ -156,7 +154,6 @@ MASTER_SITE_EXIM+= \
 
 .if !defined(IGNORE_MASTER_SITE_CENTOS_LINUX)
 MASTER_SITE_CENTOS_LINUX+= \
-	http://mirror.centos.org/%SUBDIR%/:DEFAULT,aarch64,amd64,i386 \
 	http://vault.centos.org/%SUBDIR%/:DEFAULT,aarch64,amd64,i386,SOURCE
 .endif
 
@@ -172,12 +169,19 @@ MASTER_SITE_EPEL+= \
 
 .if !defined(IGNORE_MASTER_SITE_EPEL7)
 MASTER_SITE_EPEL7+= \
-	https://dl.fedoraproject.org/pub/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
-	https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
-	https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE \
-	http://dl.fedoraproject.org/pub/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
-	http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
-	http://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE
+	https://archives.fedoraproject.org/pub/archive/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
+	https://archives.fedoraproject.org/pub/archive/epel/7/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
+	https://archives.fedoraproject.org/pub/archive/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE \
+	http://archives.fedoraproject.org/pub/archive/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
+	http://archives.fedoraproject.org/pub/archive/epel/7/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
+	http://archives.fedoraproject.org/pub/archive/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_EPEL9)
+MASTER_SITE_EPEL9+= \
+	https://dl.fedoraproject.org/pub/epel/9/Everything/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
+	https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
+	https://dl.fedoraproject.org/pub/epel/9/Everything/source/tree/Packages/%SUBDIR%/:SOURCE
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_ROCKY_LINUX)
@@ -616,7 +620,6 @@ MASTER_SITE_GNOME+= \
 	https://ftp.acc.umu.se/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.cse.buffalo.edu/pub/Gnome/%SUBDIR%/ \
 	https://fr2.rpmfind.net/linux/gnome.org/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.gnome.org/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.nara.wide.ad.jp/pub/X11/GNOME/%SUBDIR%/
 .endif
@@ -636,7 +639,6 @@ MASTER_SITE_GNU+= \
 	https://www.nic.funet.fi/pub/gnu/gnu/%SUBDIR%/ \
 	http://mirror.navercorp.com/gnu/%SUBDIR%/ \
 	http://ftp.halifax.rwth-aachen.de/gnu/%SUBDIR%/ \
-	http://ftp.kddilabs.jp/GNU/gnu/%SUBDIR%/ \
 	ftp://mirrors.rit.edu/gnu/%SUBDIR%/ \
 	ftp://ftp.fu-berlin.de/unix/gnu/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/%SUBDIR%/ \
@@ -682,9 +684,9 @@ MASTER_SITE_HACKAGE+= \
 
 .if !defined(IGNORE_MASTER_SITE_IDSOFTWARE)
 MASTER_SITE_IDSOFTWARE+= \
-	ftp://ftp.gwdg.de/pub/misc2/ftp.idsoftware.com/idstuff/%SUBDIR%/ \
-	ftp://ftp.fu-berlin.de/pc/games/idgames/idstuff/%SUBDIR%/ \
-	ftp://ftp.gamers.org/pub/idgames/idstuff/%SUBDIR%/ \
+	https://ftp.gwdg.de/pub/misc/ftp.idsoftware.com/idstuff/%SUBDIR%/ \
+ 	https://ftp.fu-berlin.de/pc/games/idgames/idstuff/%SUBDIR%/ \
+ 	https://ftp.gamers.org/pub/idgames/idstuff/%SUBDIR%/ \
 	ftp://ftp.omen.net.au/games/idstuff/%SUBDIR%/
 .endif
 
@@ -816,7 +818,6 @@ MASTER_SITE_OPENOFFICE+=	\
 	ftp://mirror.switch.ch/mirror/OpenOffice/ \
 	http://mirror.pacific.net.au/openoffice/ \
 	http://komo.vlsm.org/openoffice/ \
-	ftp://ftp.kddlabs.co.jp/office/openoffice/ \
 	ftp://ftp.t.ring.gr.jp/pub/misc/openoffice/ \
 	http://mymirror.asiaosc.org/openoffice/ \
 	ftp://ftp.kr.freebsd.org/pub/openoffice/ \
@@ -868,7 +869,6 @@ MASTER_SITE_PERL_CPAN_BY+= \
 	https://cpan.metacpan.org/modules/by-module/%SUBDIRPLUS%/ \
 	https://www.cpan.org/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.cpan.org/pub/CPAN/%CPANSORT%/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/lang/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
 	http://ftp.jaist.ac.jp/pub/CPAN/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/cpan.perl.org/CPAN/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.auckland.ac.nz/pub/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
@@ -1027,7 +1027,6 @@ MASTER_SITE_SUNSITE+= \
 .if !defined(IGNORE_MASTER_SITE_TCLTK)
 MASTER_SITE_TCLTK+= \
 	ftp://ftp.tcl.tk/pub/tcl/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/lang/tcl/ftp.scriptics.com/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.tcl.tk/pub/tcl/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/languages/tcl/tcl/%SUBDIR%/
 .endif
