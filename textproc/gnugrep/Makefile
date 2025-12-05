@@ -1,50 +1,58 @@
-
-
 PORTNAME=	grep
-PORTVERSION=	2.20
+PORTVERSION=	3.12
 CATEGORIES=	textproc
 MASTER_SITES=	GNU
 PKGNAMEPREFIX=	gnu
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU grep
+COMMENT=	GNU version of popular pattern matching utility
+WWW=		https://www.gnu.org/software/grep/
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
-CONFLICTS=	bsd-grep-*
-
-USES=		tar:xz
-
+USES=		charsetfix cpe tar:xz
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--program-prefix=g
+TEST_TARGET=	check
 
 INFO=		grep
+CPE_VENDOR=	gnu
 
-OPTIONS=	PCRE	"Compile with Perl-compatible regex support"	off
+OPTIONS_DEFINE=		COMPAT ICONV LIBSIGSEGV NLS PCRE
+OPTIONS_DEFAULT=	ICONV PCRE
+COMPAT_DESC=		Create g-prefixless compatibility symlinks
+LIBSIGSEGV_DESC=	Use alternative page fault handler (GNU libsigsegv)
+OPTIONS_SUB=		yes
 
-.include <bsd.port.pre.mk>
+ICONV_CONFIGURE_USES=	iconv
+ICONV_CONFIGURE_WITH=	libiconv-prefix=${LOCALBASE}
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
-LDFLAGS+=	-lintl -L${LOCALBASE}/lib
-PLIST_SUB+=	NLS=
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+LIBSIGSEGV_LIB_DEPENDS=	libsigsegv.so:devel/libsigsegv
+LIBSIGSEGV_CONFIGURE_WITH=	libsigsegv-prefix=${LOCALBASE}
 
-.if defined(WITH_PCRE)
-LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
-.else
-CONFIGURE_ARGS+=	--disable-perl-regexp
-.endif
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+NLS_CONFIGURE_WITH=	libintl-prefix=${LOCALBASE}
+
+PCRE_LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
+PCRE_USES=		pkgconfig
+PCRE_CONFIGURE_ENABLE=	perl-regexp
 
 post-patch:
-.if defined(WITHOUT_NLS)
+	@${REINPLACE_CMD} 's:@grep@:${PREFIX}/bin/&:' ${WRKSRC}/src/egrep.sh
+	@${REINPLACE_CMD} 's|mkinstalldirs = .*|mkinstalldirs = ${MKDIR}|g' \
+		${WRKSRC}/po/Makefile.in.in
+# Don't use extension register to avoid run-time dependency on `textproc/groff'
+	@${REINPLACE_CMD} 's,do nr mH .* groff extension register,nr mH 0,' \
+		${WRKSRC}/doc/grep.in.1
+
+post-patch-NLS-off:
 	@${REINPLACE_CMD} '/install-exec-local:/s/install-exec-localcharset//' \
 		${WRKSRC}/lib/Makefile.in
-.endif
-	@${REINPLACE_CMD} 's|mkinstalldirs = .*|mkinstalldirs = mkdir -p|g' \
-		${WRKSRC}/po/Makefile.in.in
 
-.include <bsd.port.post.mk>
+post-install-COMPAT-on:
+.for p in grep egrep fgrep
+	${LN} -sf g${p} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${p}
+.endfor
+
+.include <bsd.port.mk>
