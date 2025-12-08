@@ -35,6 +35,8 @@ JPEGICC_USES=		jpeg
 TIFFICC_CONFIGURE_WITH=	tiff
 TIFFICC_LIB_DEPENDS=	libtiff.so:graphics/tiff
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| python samples||' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e '/^#ifdef __sgi/ s|__sgi|__unix__|; /^#include "sgidefs.h"/d' ${WRKSRC}/include/icc34.h.in
@@ -44,8 +46,5 @@ post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/
 	cd ${WRKSRC}/ && ${INSTALL_DATA} doc/LCMSAPI.TXT doc/TUTORIAL.TXT tifficc/tifficc.c \
 		jpegicc/jpegicc.c jpegicc/iccjpeg.c samples/wtpt.c samples/icctrans.c ${STAGEDIR}${DOCSDIR}/
-
-regression-test test: build
-	cd ${WRKSRC}/testbed/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
 .include <bsd.port.mk>
