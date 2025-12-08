@@ -6,7 +6,8 @@ MASTER_SITES=	http://download.mono-project.com/sources/gtk-sharp212/
 PKGNAMESUFFIX=	20
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GTK+ and GNOME interfaces for the .NET runtime
+COMMENT=	GTK and GNOME interfaces for the .NET runtime
+WWW=		https://www.mono-project.com/Gtk
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
