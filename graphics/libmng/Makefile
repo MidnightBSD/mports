@@ -1,28 +1,24 @@
 PORTNAME=	libmng
-PORTVERSION=	1.0.10
-PORTREVISION=	5
+PORTVERSION=	2.0.3
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-devel/${PORTVERSION} \
 		http://www.libmng.com/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiple-image Network Graphics (MNG) reference library
-WWW=		https://www.libmng.com/
+WWW=		https://sourceforge.net/projects/libmng/
 
 LICENSE=	bsd3
 
-LIB_DEPENDS=	liblcms.so:graphics/lcms
-
-OPTIONS_DEFINE=	MNG_OPTIMIZE
-MNG_OPTIMIZE_DESC=	Use vendor's new optimization flags
+LIB_DEPENDS=	liblcms2.so:graphics/lcms2
 
 MAKEFILE=	${FILESDIR}/Makefile.bsd
 
-USES=		jpeg uidfix
+USES=		jpeg uidfix tar:xz
 USE_LDCONFIG=	yes
 
-MNG_OPTIMIZE_MAKE_ARGS=	WITH_MNG_OPTIMIZE=true
-MNG_OPTIMIZE_MAKE_ARGS_OFF=	WITH_MNG_OPTIMIZE=off
+MAKE_ARGS+=	WITH_MNG_OPTIMIZE=true
 
 post-install:
 	cd ${WRKSRC}/doc/man && ${INSTALL_MAN} libmng.3 ${PREFIX}/share/man/man3 \
