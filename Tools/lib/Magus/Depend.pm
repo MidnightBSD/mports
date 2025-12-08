@@ -38,6 +38,7 @@ use base 'Magus::DBI';
 __PACKAGE__->table('depends');
 __PACKAGE__->columns(Primary => qw(port dependency type));
 __PACKAGE__->has_a(dependency => 'Magus::Port');
+__PACKAGE__->has_a(port => 'Magus::Port');
 
 
 1;
