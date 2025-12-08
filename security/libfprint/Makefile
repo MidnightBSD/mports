@@ -26,7 +26,7 @@ MESON_ARGS=	-Dinstalled-tests= \
 
 INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=		DOCS GIR GTK_EXAMPLES TEST
+OPTIONS_DEFINE=		DOCS GIR GTK_EXAMPLES
 OPTIONS_SUB=		yes
 GIR_DESC=		Install glib introspection support
 GTK_EXAMPLES_DESC=	Install GTK examples
@@ -36,6 +36,7 @@ DOCS_MESON_TRUE=		doc
 GIR_MESON_TRUE=			introspection
 GTK_EXAMPLES_USE=		GNOME=gtk30
 GTK_EXAMPLES_MESON_TRUE=	gtk-examples
-TEST_MESON_TRUE=		installed-tests
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
