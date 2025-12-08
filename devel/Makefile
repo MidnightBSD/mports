@@ -591,6 +591,7 @@
     SUBDIR += m4
     SUBDIR += mage
     SUBDIR += makedepend
+    SUBDIR += marisa-trie
     SUBDIR += mercurial
     SUBDIR += meson
     SUBDIR += meson-python
