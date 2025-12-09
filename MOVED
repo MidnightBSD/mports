@@ -514,3 +514,4 @@ devel/llvm11|devel/llvm12|2025-09-11|deprecated and unused in mports
 www/zend-framework||2025-11-10|Has expired: Deprecated by upstream, and moved to Laminas Project
 www/tidy-devel|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replaced by www/tidy-html5
 www/tidy-lib|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replaced by www/tidy-html5
+net-p2p/shx||2025-12-09|Has expired: Obsolete protocol that has been superseded by many others
