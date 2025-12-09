@@ -1,20 +1,20 @@
 PORTNAME=	gmime
-PORTVERSION=	3.2.7
+DISTVERSION=	3.2.15
+PORTREVISION=	1
 CATEGORIES=	mail
-MASTER_SITES=	GNOME
+MASTER_SITES=	https://github.com/jstedfast/${PORTNAME}/releases/download/${DISTVERSION}/
 PKGNAMESUFFIX=	30
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library (written in C) for parsing and creating messages using MIME
+WWW=		https://github.com/jstedfast/gmime
 
 LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	libgpgme.so:security/gpgme \
-		libassuan.so:security/libassuan \
 		libidn2.so:dns/libidn2 \
 		libgpg-error.so:security/libgpg-error
 
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}30
 USES=		gettext-runtime gmake gnome iconv libtool localbase pathfix \
 		pkgconfig tar:xz
 USE_GNOME=	glib20 introspection:build
@@ -22,12 +22,11 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	VALA
-OPTIONS_DEFAULT=	VALA
+OPTIONS_DEFINE=	VAPI
+OPTIONS_DEFAULT=	VAPI
 OPTIONS_SUB=	yes
-VALA_DESC=	Install vala binding
-VALA_BUILD_DEPENDS=	vala>=0.20:lang/vala
-VALA_CONFIGURE_ENABLE=	vala
+VAPI_USES=		vala:build
+VAPI_CONFIGURE_ENABLE=	vala
 
 CPPFLAGS+=      -I${LOCALBASE}/include
 LDFLAGS+=       -L${LOCALBASE}/lib -liconv
