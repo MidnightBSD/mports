@@ -296,6 +296,7 @@ NEW_OPTIONS=	${COMPLETE_OPTIONS_LIST}
 ## Set default options defined by the port maintainer
 PORT_OPTIONS+=	${OPTIONS_DEFAULT}
 
+.if !defined(MAGUS)
 ## Set system-wide defined options (set by user in make.conf)
 .    for opt in ${OPTIONS_SET}
 .      if !empty(COMPLETE_OPTIONS_LIST:M${opt})
@@ -337,6 +338,8 @@ WARNING+=	"You are using ${_OPTIONS_UNIQUENAME}_${_k} which is not supported any
 WARNING+=	"${OPTIONS_NAME}_${_k}=	${${_OPTIONS_UNIQUENAME}_${_k}}"
 .      endif
 .    endfor
+
+.endif
 
 ## Finish by using the options set by the port config dialog, if any
 .    for opt in ${OPTIONS_FILE_SET}
