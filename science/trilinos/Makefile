@@ -1,11 +1,11 @@
 PORTNAME=	trilinos
-DISTVERSIONPREFIX=	trilinos-release-
-DISTVERSION=	16-1-0
+DISTVERSION=	16.2.0
 CATEGORIES=	science # physics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Solver for multi-physics engineering and scientific problems
-WWW=		https://trilinos.github.io/
+WWW=		https://trilinos.github.io/ \
+		https://github.com/trilinos/trilinos
 
 LICENSE=	bsd3 lgpl
 LICENSE_COMB=	multi
@@ -92,5 +92,7 @@ CONFLICTS_INSTALL=	googletest # installs files into the same place, problematic 
 post-install:
 	# remove MPI headers that it installs
 	@${RM} ${STAGEDIR}${PREFIX}/include/mpi*.h
+
+# Tests fail to compile, see https://github.com/trilinos/Trilinos/issues/14748
 
 .include <bsd.port.mk>
