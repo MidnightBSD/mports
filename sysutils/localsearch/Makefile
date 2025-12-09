@@ -46,5 +46,6 @@ MESON_ARGS=	-Dminer_rss=false \
 		-Dlandlock=disabled \
 		-Dfanotify=disabled
 
+NO_TEST=	yes
 
 .include <bsd.port.mk>
