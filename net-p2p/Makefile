@@ -8,6 +8,7 @@ SUBDIR += libtorrent-rasterbar2
 SUBDIR += libutp
 SUBDIR += qbittorrent
 SUBDIR += rtorrent
+SUBDIR += sonarr
 SUBDIR += transmission
 SUBDIR += transmission-components
 SUBDIR += transmission-remote-gui
