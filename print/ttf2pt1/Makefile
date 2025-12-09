@@ -38,6 +38,8 @@ CPPFLAGS+=	`pkg-config --cflags freetype2` \
 LIBS+=		`pkg-config --libs freetype2` \
 		-L${LOCALBASE}/lib -lm
 
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/ttf2pt1
 	${SED} -i '' 's,${FAKE_DESTDIR},,' ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/ttf2pt1_convert \
