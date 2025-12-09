@@ -27,7 +27,6 @@ SUBDIR += fpc-docs
 SUBDIR += fpc-source
 SUBDIR += gawk
 SUBDIR += gcc
-SUBDIR += gcc11
 SUBDIR += gcc12
 SUBDIR += gcc13
 SUBDIR += gcc14

@@ -515,3 +515,4 @@ www/zend-framework||2025-11-10|Has expired: Deprecated by upstream, and moved to
 www/tidy-devel|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replaced by www/tidy-html5
 www/tidy-lib|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replaced by www/tidy-html5
 net-p2p/shx||2025-12-09|Has expired: Obsolete protocol that has been superseded by many others
+lang/gcc11|lang/gcc12|2025-12-09|Has expired: End-of-life upstream since mid 2024, newer versions available
