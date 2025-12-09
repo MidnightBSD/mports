@@ -17,6 +17,9 @@ GO_TARGET=	./cmd/${PORTNAME}
 
 PLIST_SUB=	PORTNAME=${PORTNAME}
 
+# disable tests.  most work, but seem to eat disk space on magus
+NO_TEST=	yes
+
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL} -d ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
