@@ -6,12 +6,16 @@
     SUBDIR += libtorrent-rasterbar
     SUBDIR += libtorrent-rasterbar2
     SUBDIR += libutp
+    SUBDIR += lidarr
     SUBDIR += qbittorrent
+    SUBDIR += radarr
+    SUBDIR += readarr
     SUBDIR += rtorrent
     SUBDIR += sonarr
     SUBDIR += transmission
     SUBDIR += transmission-components
     SUBDIR += transmission-remote-gui
+    SUBDIR += twitch-tui
     SUBDIR += udpt
     SUBDIR += uhub
     SUBDIR += walletd
