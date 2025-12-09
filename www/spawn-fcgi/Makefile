@@ -1,6 +1,6 @@
 PORTNAME=	spawn-fcgi
 PORTVERSION=	1.6.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/
 
@@ -22,6 +22,6 @@ PLIST_FILES=	bin/spawn-fcgi \
 
 .include <bsd.port.pre.mk>
 
-SUB_LIST+=	REQUIRE="DAEMON"
+SUB_LIST+=	REQUIRE="LOGIN cleanvar"
 
 .include <bsd.port.post.mk>

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# $MidnightBSD$
-#
 # PROVIDE: spawn_fcgi
 # REQUIRE: %%REQUIRE%%
 # BEFORE:  LOGIN
@@ -14,6 +12,7 @@
 # spawn_fcgi_bindsocket
 # spawn_fcgi_web_server_addrs
 # spawn_fcgi_allowed_env
+# spawn_fcgi_command_interpreter
 
 . /etc/rc.subr
 
@@ -50,8 +49,12 @@ else
     _spawn_fcgi_chroot=""
 fi
 
+if [ -n "${spawn_fcgi_command_interpreter}" ]; then
+  command_interpreter=${spawn_fcgi_command_interpreter}
+fi
+
 command="/usr/local/bin/spawn-fcgi"
-command_args="-u ${spawn_fcgi_username} -g ${spawn_fcgi_groupname} ${_spawn_fcgi_bind} ${_spawn_fcgi_chroot} -P ${spawn_fcgi_pidfile} -- ${spawn_fcgi_app} ${spawn_fcgi_app_args}"
+command_args="-u ${spawn_fcgi_username} -g ${spawn_fcgi_groupname} ${_spawn_fcgi_bind} ${_spawn_fcgi_chroot} -P ${spawn_fcgi_pidfile} -F ${spawn_fcgi_children} -- ${spawn_fcgi_app} ${spawn_fcgi_app_args}"
 pidfile=${spawn_fcgi_pidfile}
 procname=${spawn_fcgi_app}
 
