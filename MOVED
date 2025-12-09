@@ -516,3 +516,4 @@ www/tidy-devel|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replace
 www/tidy-lib|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replaced by www/tidy-html5
 net-p2p/shx||2025-12-09|Has expired: Obsolete protocol that has been superseded by many others
 lang/gcc11|lang/gcc12|2025-12-09|Has expired: End-of-life upstream since mid 2024, newer versions available
+audio/libnjb||2025-12-09|Has expired: Abandoned upstream, no new release since 2011

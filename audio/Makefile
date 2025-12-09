@@ -102,7 +102,6 @@ SUBDIR += libmpd
 SUBDIR += libmpdclient
 SUBDIR += libmusicbrainz5
 SUBDIR += libmysofa
-SUBDIR += libnjb
 SUBDIR += libogg
 SUBDIR += libopenmpt
 SUBDIR += libopusenc
