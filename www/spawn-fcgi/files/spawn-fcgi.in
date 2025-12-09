@@ -2,7 +2,6 @@
 
 # PROVIDE: spawn_fcgi
 # REQUIRE: %%REQUIRE%%
-# BEFORE:  LOGIN
 # KEYWORD: shutdown
 #
 # Optional settings:
