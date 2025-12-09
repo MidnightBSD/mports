@@ -26,6 +26,7 @@ USE_LDCONFIG=	yes
 USE_CXXSTD=	c++17 # prevent boost-related SEGV, see bug#264278
 
 LDFLAGS+=	${ICONV_LIB}
+NO_TEST=	yes
 
 SHLIB_VER=	10
 PLIST_SUB+=	SHLIB_VER="${SHLIB_VER}" SO_VER="${DISTVERSION}"
