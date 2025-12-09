@@ -1,22 +1,25 @@
 PORTNAME=	gorm
-PORTVERSION=	1.2.23
+DISTVERSIONPREFIX=	gorm-
+DISTVERSION=	1_3_1
 PORTREVISION=	1
 CATEGORIES=	devel gnustep
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	gnustep
-GH_PROJECT=	apps-gorm
-GH_TAGNAME=	04554d2
-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Object Relationship Modeller
+WWW=		http://www.gnustep.org/experience/Gorm.html
 
 LICENSE=	gpl3
 
 USES=		gnustep
-USE_GNUSTEP=	back build
+USE_GNUSTEP=	back build gui
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	gnustep
+GH_PROJECT=	apps-gorm
+
 DEFAULT_LIBVERSION=	1.1.0
+
+CPPFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 .include <bsd.port.mk>
