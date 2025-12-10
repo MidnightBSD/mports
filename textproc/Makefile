@@ -124,6 +124,7 @@ SUBDIR += libdiff
 SUBDIR += libebml
 SUBDIR += libepubgen
 SUBDIR += libexttextcat
+SUBDIR += libfyaml
 SUBDIR += libgepub
 SUBDIR += libkmfl
 SUBDIR += libkolabxml
