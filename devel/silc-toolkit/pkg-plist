@@ -1581,7 +1581,6 @@ libdata/pkgconfig/silcclient.pc
 %%PORTDOCS%%%%DOCSDIR%%/tutorial/Makefile.defines_int
 %%PORTDOCS%%%%DOCSDIR%%/tutorial/Makefile.defines_int.in
 %%PORTDOCS%%%%DOCSDIR%%/tutorial/Makefile.in
-%%PORTDOCS%%%%DOCSDIR%%/tutorial/Makefile.in.bak
 %%PORTDOCS%%%%DOCSDIR%%/tutorial/README
 %%PORTDOCS%%%%DOCSDIR%%/tutorial/mybot/README
 %%PORTDOCS%%%%DOCSDIR%%/tutorial/mybot/mybot.c

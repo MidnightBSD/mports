@@ -1,5 +1,3 @@
-
-
 PORTNAME=	silc-toolkit
 PORTVERSION=	1.1.12
 CATEGORIES=	devel ipv6 net security
@@ -32,5 +30,8 @@ OPTIMIZED_ASM_CONFIGURE_ENABLE=	asm
 
 post-configure:
 	@${REINPLACE_CMD} 's|-fno-regmove||' ${WRKSRC}/lib/silccrypt/Makefile
+
+post-fake:
+	-${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc/silc-toolkit/tutorial/Makefile.in.bak
 
 .include <bsd.port.mk>
