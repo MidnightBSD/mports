@@ -14,7 +14,7 @@ LIB_DEPENDS=	libjansson.so:devel/jansson \
 
 USES=		compiler:c11 cmake:insource pathfix
 USE_CSTD=	c99
-USE_CXXSTD=	c++98
+USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 
 CXXFLAGS+=	-Wno-implicit-fallthrough
