@@ -1,15 +1,17 @@
 PORTNAME=	lsof
-DISTVERSION=	4.95.0
+DISTVERSION=	4.99.5
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists information about open files (similar to fstat(1))
-WWW=		https://github.com/lsof-org/lsof
+WWW=		https://github.com/lsof-org/lsof/
 
 LICENSE=	lsof
 LICENSE_NAME=	lsof
 LICENSE_FILE=	${FILESDIR}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+BUILD_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USES=		compiler cpe shebangfix
 CPE_VENDOR=	lsof_project
@@ -18,8 +20,12 @@ GH_ACCOUNT=	lsof-org
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
-CONFIGURE_ENV=	LSOF_CC="${CC}"  FREEBSD_SYS="${SRC_BASE}/sys"
+CONFIGURE_ENV=	LSOF_CC="${CC}"  FREEBSD_SYS="${SRC_BASE}/sys" LSOF_OPINC="-idirafter ${SRC_BASE}/sys"
 LDFLAGS+=	-lutil
+#USE_CSTD=	c99
+
+SHEBANG_FILES=	scripts/*.pl
+
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} > 400000
@@ -34,6 +40,8 @@ CONFIGURE_ENV+=	LSOF_VSTR="11.3-RELEASE" LSOF_VERS=11000
 
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 CONFIGURE_ENV+=       LSOF_CFGL="-lzfs -lzpool"
+.else
+CONFIGURE_ENV+=	LSOF_CFGL="-lzfs -lzpool -lutil"
 .endif
 
 .if !exists(${SRC_BASE}/sys/kern/kern_lockf.c)
