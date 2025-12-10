@@ -1,5 +1,5 @@
 PORTNAME=	irrlicht
-PORTVERSION=	1.8.4
+PORTVERSION=	1.8.5
 CATEGORIES=	x11-toolkits graphics
 MASTER_SITES=	SF/${PORTNAME}/Irrlicht%20SDK/${PORTVERSION:R}/${PORTVERSION}/
 
@@ -14,9 +14,9 @@ FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
+USES=		cpe dos2unix gl gmake jpeg zip xorg
 USE_CXXSTD=	gnu++11
 DOS2UNIX_GLOB=	Makefile *.cpp *.h *.txt
-USES=		cpe dos2unix gl gmake jpeg zip xorg
 USE_GL=		gl
 USE_XORG=	x11 xxf86vm
 USE_LDCONFIG=	yes
@@ -36,6 +36,11 @@ OPTIONS_DEFINE=	DEBUG EXAMPLES
 
 DEBUG_MAKE_ENV_OFF=	NDEBUG=1
 
+post-extract:
+.for bundled in bzip2 jpeglib libpng zlib
+	@${RM} -r ${WRKSRC}/source/Irrlicht/${bundled}
+.endfor
+
 post-patch:
 	@${REINPLACE_CMD} -e '/#define.*_IRR_USE_NON_SYSTEM_JPEG_LIB_/ d' \
 		-e '/#define.*_IRR_USE_NON_SYSTEM_LIB_PNG_/ d' \
@@ -43,6 +48,9 @@ post-patch:
 		-e '/#define.*_IRR_USE_NON_SYSTEM_BZLIB_/ d' \
 		-e '/#define.*_IRR_COMPILE_WITH_JOYSTICK_EVENTS_/ d' \
 		${WRKSRC}/include/IrrCompileConfig.h
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libIrrlicht.so
 
 post-install-EXAMPLES-on:
 	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} "${EXAMPLEDIRS}" \
