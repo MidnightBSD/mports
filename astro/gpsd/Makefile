@@ -22,7 +22,7 @@ USE_RC_SUBR=	gpsd
 
 PIE_UNSAFE=	yes
 
-CFLAGS+=	-D__POSIX_VISIBLE=200809 -D__BSD_VISIBLE=1
+CFLAGS+=	-D__POSIX_VISIBLE=200809 -D__BSD_VISIBLE=1 -D__XSI_VISIBLE=1
 MAKE_ARGS=	manbuild=no \
 		mandir="share/man" \
 		pkgconfig="libdata/pkgconfig" \
