@@ -258,6 +258,7 @@
     SUBDIR += fxdiv
     SUBDIR += gamin
     SUBDIR += gccmakedep
+    SUBDIR += gcem
     SUBDIR += gconf2
     SUBDIR += gconfmm26
     SUBDIR += gdb
