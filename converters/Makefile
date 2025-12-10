@@ -23,6 +23,7 @@
     SUBDIR += p5-Cpanel-JSON-XS
     SUBDIR += p5-Encode
     SUBDIR += p5-Encode-Detect
+    SUBDIR += p5-Encode-Detect-CJK
     SUBDIR += p5-Encode-HanConvert
     SUBDIR += p5-Encode-HanExtra
     SUBDIR += p5-Encode-JIS2K
