@@ -1,5 +1,5 @@
 PORTNAME=	nextcloud
-PORTVERSION=	31.0.5
+PORTVERSION=	32.0.2
 CATEGORIES=	www
 MASTER_SITES=	https://download.nextcloud.com/server/releases/
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -78,7 +78,8 @@ do-install:
 	@${MKDIR} -m 0755 ${STAGEDIR}${WWWDIR}
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
 	${INSTALL_SCRIPT} ${WRKDIR}/config.sample.php \
-		${STAGEDIR}${WWWDIR}/config/config.sample.php
+		${STAGEDIR}${WWWDIR}/config/config.php
+	${CP} ${WWWDIR}/.htaccess.dist ${WWWDIR}/.htaccess
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/data ${STAGEDIR}${WWWDIR}/apps \
 		${STAGEDIR}/var/log/${PORTNAME}
 	(cd ${WRKSRC}; ${FIND} . -type f -or -type l) | ${SORT} | \
