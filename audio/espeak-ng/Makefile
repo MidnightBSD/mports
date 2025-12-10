@@ -1,5 +1,5 @@
 PORTNAME=	espeak-ng
-PORTVERSION=	1.51.1
+PORTVERSION=	1.52.0
 CATEGORIES=	audio
 #MASTER_SITES=	https://github.com/espeak-ng/${PORTNAME}/releases/download/${PORTVERSION}/
 
@@ -18,6 +18,7 @@ USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-pcaudiolib
+CONFIGURE_ENV=	RONN=/usr/bin/true
 
 CONFLICTS_INSTALL=	espeak speak
 
@@ -27,11 +28,14 @@ pre-build:
 	@${REINPLACE_CMD} -e 's|%%DATADIR%%|${DATADIR}|' \
 		${WRKSRC}/Makefile.am ${WRKSRC}/src/libespeak-ng/speech.h
 
+pre-install:
+	${TOUCH} ${WRKSRC}/src/espeak-ng.1 ${WRKSRC}/src/speak-ng.1
+
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
-	${RLN} ${STAGEDIR}${PREFIX}/share/man/man1/espeak-ng.1 \
-			${STAGEDIR}${PREFIX}/share/man/man1/espeak.1
+#	${RLN} ${STAGEDIR}${PREFIX}/share/man/man1/espeak-ng.1 \
+#			${STAGEDIR}${PREFIX}/share/man/man1/espeak.1
 	${LN} -sf libespeak-ng.so ${STAGEDIR}${PREFIX}/lib/libespeak.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libespeak-ng.so*
