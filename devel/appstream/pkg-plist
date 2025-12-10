@@ -103,3 +103,4 @@ share/man/man1/appstreamcli.1.gz
 share/metainfo/org.freedesktop.appstream.cli.metainfo.xml
 share/vala/vapi/appstream.deps
 share/vala/vapi/appstream.vapi
+@dir include/appstream
