@@ -20,6 +20,7 @@ ALL_TARGET=	libzopfli libzopfli.a libzopflipng libzopflipng.a zopfli zopflipng
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 USE_CSTD=	c99
+USE_CXXSTD=	c++11
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
