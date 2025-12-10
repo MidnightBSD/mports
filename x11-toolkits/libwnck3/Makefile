@@ -1,6 +1,6 @@
 PORTNAME=	libwnck
 PORTVERSION=	3.36.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -8,6 +8,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library used for writing pagers and taskslists
+WWW=		https://www.gnome.org/
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
