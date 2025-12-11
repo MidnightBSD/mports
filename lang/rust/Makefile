@@ -24,6 +24,7 @@ LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
 BROKEN_MidnightBSD_2.1=		requires 3.x
 BROKEN_MidnightBSD_2.2=		requires 3.x
+BROKEN_MidnightBSD_4.0=		requires 3.x use rust186 port
 
 FAKE_OPTS=    trueprefix
 NO_TEST=      yes
