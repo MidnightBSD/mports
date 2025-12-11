@@ -9,7 +9,7 @@ BUILD_DEPENDS=	wayland-protocols>0:graphics/wayland-protocols
 LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake desktop-file-utils gl kde:6 pkgconfig qt:6 tar:xz xorg
+USES=		cmake desktop-file-utils gl kde:6 kfhack pkgconfig qt:6 tar:xz xorg
 USE_GL=		gl opengl
 USE_KDE=	ecm:build plasma-wayland-protocols:build
 USE_QT=		base wayland

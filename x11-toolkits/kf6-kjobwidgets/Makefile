@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake gl kde:6 qt:6 tar:xz
+USES=		cmake gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	coreaddons notifications widgetsaddons \
 		ecm:build
