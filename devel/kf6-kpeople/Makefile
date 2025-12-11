@@ -5,7 +5,7 @@ CATEGORIES=	devel kde kde-frameworks
 COMMENT=	Provides access to all contacts and aggregates them by person
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	coreaddons i18n itemviews widgetsaddons contacts \
 		ecm:build

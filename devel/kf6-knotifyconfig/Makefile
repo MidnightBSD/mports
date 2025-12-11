@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 
 LIB_DEPENDS=	libcanberra.so:audio/libcanberra
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	completion config coreaddons i18n jobwidgets kio notifications \
 		phonon service solid widgetsaddons xmlgui \

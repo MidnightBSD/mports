@@ -5,7 +5,7 @@ CATEGORIES=	devel kde kde-frameworks
 COMMENT=	Plugin framework for desktop services
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gettext kde:6 qt:6 tar:xz
+USES=		cmake gettext kde:6 kfhack qt:6 tar:xz
 USE_KDE=	config coreaddons i18n \
 		ecm:build
 USE_QT=		base

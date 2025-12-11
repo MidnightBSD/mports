@@ -5,7 +5,7 @@ CATEGORIES=	devel kde kde-frameworks
 COMMENT=	Installation and loading of additional content as packages
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gettext kde:6 qt:6 tar:xz
+USES=		cmake gettext kde:6 kfhack qt:6 tar:xz
 USE_KDE=	archive coreaddons i18n \
 		ecm:build
 USE_QT=		base
