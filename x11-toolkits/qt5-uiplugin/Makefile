@@ -16,4 +16,8 @@ INSTALL_WRKSRC=	${WRKSRC}/src/designer/src/${PORTNAME}
 
 NO_ARCH=	yes
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+                ${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>
