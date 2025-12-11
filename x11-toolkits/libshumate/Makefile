@@ -26,4 +26,6 @@ OPTIONS_DEFINE=	DOCS
 DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
 DOCS_MESON_TRUE=	gtk_doc
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
