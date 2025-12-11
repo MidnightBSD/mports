@@ -8,7 +8,7 @@ COMMENT=	KF5 library for bookmarks and the XBEL format
 LICENSE=	bsd3 lgpl2.1+
 LICENSE_COMB=	multi
 
-USES=		cmake compiler:c++11-lib kde:5 qt:5 tar:xz
+USES=		cmake compiler:c++11-lib kde:5 kfhack qt:5 tar:xz
 USE_KDE=	auth codecs config configwidgets coreaddons \
 		widgetsaddons xmlgui \
 		ecm:build

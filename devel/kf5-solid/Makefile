@@ -9,7 +9,7 @@ LICENSE=	lgpl2.1+
 
 RUN_DEPENDS=	bsdisks:sysutils/bsdisks
 
-USES=		bison cmake compiler:c++11-lib kde:5 qt:5 tar:xz
+USES=		bison cmake compiler:c++11-lib kde:5 kfhack qt:5 tar:xz
 USE_KDE=	ecm:build
 USE_QT=		core dbus declarative gui linguisttools \
 		network xml \

@@ -8,7 +8,7 @@ COMMENT=	KF5 library to handle crash analysis and bug report from apps
 LICENSE=	bsd3 lgpl2.1+
 LICENSE_COMB=	multi
 
-USES=		cmake compiler:c++11-lib kde:5 qt:5 tar:xz xorg
+USES=		cmake compiler:c++11-lib kde:5 kfhack qt:5 tar:xz xorg
 USE_KDE=	coreaddons \
 		ecm:build
 USE_QT=		core gui x11extras \
