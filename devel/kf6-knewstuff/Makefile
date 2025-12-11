@@ -5,7 +5,7 @@ CATEGORIES=	devel kde kde-frameworks
 COMMENT=	Framework for downloading and sharing additional application data
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	archive attica config coreaddons i18n package syndication \
 		widgetsaddons \

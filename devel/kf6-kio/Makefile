@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake desktop-file-utils gettext gl gnome kde:6 qt:6 ssl \
+USES=		cmake desktop-file-utils gettext gl gnome kde:6 kfhack qt:6 ssl \
 		tar:xz xorg
 USE_GL=		gl opengl
 USE_GNOME=	libxml2 libxslt

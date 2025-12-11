@@ -12,7 +12,7 @@ LIB_DEPENDS=	libavutil.so:multimedia/ffmpeg \
 		libpoppler-qt6.so:graphics/poppler-qt6 \
 		libtag.so:audio/taglib
 
-USES=		cmake gettext gl kde:6 pkgconfig qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack pkgconfig qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	archive config coreaddons i18n codecs\
 		ecm:build

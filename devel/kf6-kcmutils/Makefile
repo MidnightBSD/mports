@@ -5,7 +5,7 @@ CATEGORIES=	devel kde kde-frameworks
 COMMENT=	Utilities for KDE System Settings modules
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	colorscheme config configwidgets coreaddons guiaddons i18n \
 		itemviews kio service widgetsaddons xmlgui \
