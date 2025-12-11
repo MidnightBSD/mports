@@ -80,7 +80,7 @@ USE_GCC=	yes
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/js/moz.configure
 	@${REINPLACE_CMD} -e 's|icu-i18n|icu-uc icu-i18n|g' ${WRKSRC}/js/moz.configure
-	${REINPLACE_CMD} -e 's|midnightbsd"\$UNAME_RELEASE"|freebsd11.4|g' \
+	${REINPLACE_CMD} -e "s|midnightbsd${OSREL}|freebsd11.4|g" \
 		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
 		${WRKSRC}/testing/mozbase/mozinfo/mozinfo/mozinfo.py

@@ -80,7 +80,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/js/moz.configure
 	@${FIND} ${WRKSRC}/python/mozbuild -name *.py -exec \
 		${REINPLACE_CMD} 's|"rU"|"r"|g' {} \;
-	${REINPLACE_CMD} -e 's|midnightbsd"\$UNAME_RELEASE"|freebsd12.4|g' \
+	${REINPLACE_CMD} -e "s|midnightbsd${OSREL}|freebsd12.4|g" \
 		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
 		${WRKSRC}/testing/mozbase/mozinfo/mozinfo/mozinfo.py
