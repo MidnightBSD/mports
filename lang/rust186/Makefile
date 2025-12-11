@@ -23,6 +23,10 @@ LICENSE_COMB=	dual
 LICENSE_FILE_apache2=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
+BROKEN_MidnightBSD_3.0=	Requires 4.0+
+BROKEN_MidnightBSD_3.1=	Requires 4.0+
+BROKEN_MidnightBSD_3.2=	Requires 4.0+
+
 ONLY_FOR_ARCHS?=	aarch64 amd64 armv7 i386 powerpc64 powerpc64le powerpc \
 			riscv64
 ONLY_FOR_ARCHS_REASON?=	requires prebuilt bootstrap compiler
