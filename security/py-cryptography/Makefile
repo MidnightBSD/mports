@@ -41,7 +41,4 @@ OPTIONS_DEFINE=	SSH
 
 SSH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bcrypt>=3.1.5:security/py-bcrypt@${PY_FLAVOR}
 
-post-install:
-	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
-
 .include <bsd.port.mk>
