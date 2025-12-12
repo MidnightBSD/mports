@@ -5,7 +5,7 @@ CATEGORIES=	x11-toolkits kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 widgets for tracking KJob instance
 
-USES=		cmake compiler:c++11-lib kde:5 qt:5 tar:xz
+USES=		cmake compiler:c++11-lib kde:5 kfhack qt:5 tar:xz
 USE_KDE=	coreaddons widgetsaddons \
 		ecm:build
 USE_QT=		core dbus gui linguisttools widgets x11extras \
