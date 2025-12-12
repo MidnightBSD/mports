@@ -6,7 +6,7 @@ CATEGORIES=	x11-themes kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt QuickControl2 style for KDE
 
-USES=		cmake compiler:c++11-lang kde:5 pkgconfig qt:5 tar:xz
+USES=		cmake compiler:c++11-lang kde:5 pkgconfig kfhack qt:5 tar:xz
 USE_KDE=	auth codecs config configwidgets coreaddons iconthemes \
 		kirigami2 sonnet widgetsaddons \
 		ecm:build

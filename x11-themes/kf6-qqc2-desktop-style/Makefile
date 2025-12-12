@@ -5,7 +5,7 @@ CATEGORIES=	x11-themes kde kde-frameworks
 COMMENT=	Style for Qt Quick Controls 2
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gl kde:6 qt:6 tar:xz
+USES=		cmake gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	colorscheme config iconthemes kirigami2 \
 		ecm:build

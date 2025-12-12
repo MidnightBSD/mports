@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	archive breeze-icons colorscheme config configwidgets i18n widgetsaddons \
 		ecm:build
