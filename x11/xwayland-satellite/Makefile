@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libxcb-cursor.so:x11/xcb-util-cursor
 RUN_DEPENDS=	Xwayland:x11-servers/xwayland
 
-USES=		cargo llvm xorg
+USES=		cargo llvm pkgconfig xorg
 USE_GITHUB=	yes
 USE_XORG=	xcb
 GH_ACCOUNT=	Supreeeme
