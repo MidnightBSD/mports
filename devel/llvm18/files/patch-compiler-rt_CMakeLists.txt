@@ -1,0 +1,11 @@
+--- compiler-rt/CMakeLists.txt.orig	2024-03-19 11:09:40.414818000 -0400
++++ compiler-rt/CMakeLists.txt	2024-03-19 11:10:13.026162000 -0400
+@@ -181,7 +181,7 @@
+     set(${var}_LIBNAME "${CMAKE_MATCH_1}")
+     set(${var}_SYSTEM 1)
+   elseif (${var} STREQUAL "default")
+-    if (APPLE OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++    if (APPLE OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD" OR CMAKE_SYSTEM_NAME MATCHES "MidnightBSD") 
+       set(${var}_LIBNAME "libc++")
+       set(${var}_SYSTEM 1)
+     elseif (FUCHSIA)

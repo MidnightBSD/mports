@@ -577,6 +577,7 @@
     SUBDIR += llvm15
     SUBDIR += llvm16
     SUBDIR += llvm17
+    SUBDIR += llvm18
     SUBDIR += lndir
     SUBDIR += log4cplus
     SUBDIR += log4cxx
