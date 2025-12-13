@@ -48,6 +48,9 @@ SQLITE_VARS=	GO_TAGS+=sqlite
 TIKV_VARS=	GO_TAGS+=tikv
 YDB_VARS=	GO_TAGS+=ydb
 
+# too hard to run in magus chroot
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 .if !empty (GO_TAGS)
 GO_BUILDFLAGS+=	-tags "${GO_TAGS}"
