@@ -28,6 +28,8 @@ DOCS_MESON_TRUE=	docs
 
 EXAMPLES_MESON_TRUE=	examples
 
+NO_TEST=yes
+
 pre-configure:
 # .if !exists() evaluates too early before gtk3 has a chance to be installed
 	@if ! pkg-config --exists gdk-wayland-3.0; then \
