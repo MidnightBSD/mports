@@ -22,6 +22,8 @@ INSTALL_WRKSRC=	${WRKSRC}/src/${PORTNAME}/${PORTNAME}
 QT_BINARIES=	yes
 
 post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+                ${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
 	${INSTALL_DATA} ${BUILD_WRKSRC}/images/icons/linguist-128-32.png \
 		${STAGEDIR}${PREFIX}/share/pixmaps/linguist-qt5.png
 
