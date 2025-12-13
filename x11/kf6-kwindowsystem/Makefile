@@ -10,7 +10,7 @@ LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 		libxcb-keysyms.so:x11/xcb-util-keysyms \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake gl kde:6 pkgconfig qt:6 tar:xz xorg
+USES=		cmake gl kde:6 pkgconfig kfhack qt:6 tar:xz xorg
 USE_GL=		gl opengl
 USE_KDE=	ecm:build \
 		plasma-wayland-protocols:build

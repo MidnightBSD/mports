@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 LIB_DEPENDS=	libAppStreamQt.so:devel/appstream-qt \
 		libpackagekitqt6.so:ports-mgmt/packagekit-qt \
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	attica colorscheme config coreaddons i18n iconthemes newstuff \
 		notifications package widgetsaddons \
