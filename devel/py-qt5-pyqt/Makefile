@@ -10,6 +10,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for the Qt5 toolkit, QtCore module
 WWW=		https://riverbankcomputing.com/software/pyqt
 
+LICENSE=	gpl3
+
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>1:devel/py-dbus@${PY_FLAVOR}
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>1:devel/py-dbus@${PY_FLAVOR}
