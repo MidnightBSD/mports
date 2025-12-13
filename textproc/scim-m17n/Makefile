@@ -18,6 +18,8 @@ USES=		gmake pkgconfig libtool:keepla
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
+USE_CXXSTD=	c++11
+
 PLIST_FILES=	lib/scim-1.0/1.4.0/IMEngine/m17n.a \
 		lib/scim-1.0/1.4.0/IMEngine/m17n.la \
 		lib/scim-1.0/1.4.0/IMEngine/m17n.so \
