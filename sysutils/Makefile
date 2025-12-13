@@ -75,7 +75,6 @@ SUBDIR += extipl
 SUBDIR += eza
 SUBDIR += ezjail
 SUBDIR += fastfetch
-SUBDIR += ffs2recov
 SUBDIR += filelight
 SUBDIR += firstboot-growfs
 SUBDIR += firstboot-midnightbsd-update
