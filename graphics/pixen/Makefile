@@ -1,5 +1,3 @@
-
-
 PORTNAME=	pixen
 PORTVERSION=	0.1
 PORTREVISION=	4
@@ -9,6 +7,7 @@ DISTNAME=	Pixen-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphics editing software for small-scale pictures for GNUstep
+WWW=		https://www.opensword.org/Pixen/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/License.txt
@@ -17,6 +16,9 @@ USES=		tar:bzip2 gnustep
 USE_GNUSTEP=	back build
 
 ADDITIONAL_OBJCFLAGS+=	-Dlog2=logb
+
+CFLAGS+=	-Wno-error=int-conversion
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Pixen.app/Pixen
