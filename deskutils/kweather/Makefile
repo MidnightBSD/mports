@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSES/GPL-2.0-or-later.txt
 
 LIB_DEPENDS=	libKWeatherCore.so:deskutils/kweathercore
 
-USES=		cmake gettext kde:6 qt:6 tar:xz
+USES=		cmake gettext kde:6 kfhack qt:6 tar:xz
 USE_KDE=	config coreaddons crash i18n kirigami-addons libplasma \
 		notifications \
 		ecm:build

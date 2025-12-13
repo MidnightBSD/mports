@@ -9,7 +9,7 @@ WWW=		https://invent.kde.org/libraries/kweathercore
 LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/LICENSES/LGPL-2.0-or-later.txt
 
-USES=		cmake gettext kde:6 qt:6 tar:xz
+USES=		cmake gettext kde:6 kfhack qt:6 tar:xz
 USE_KDE=	holidays i18n \
 		ecm:build
 USE_QT=		base positioning
