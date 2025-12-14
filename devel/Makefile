@@ -1505,6 +1505,7 @@
     SUBDIR += py-pyrsistent
     SUBDIR += py-pytest
     SUBDIR += py-pytest-asyncio
+    SUBDIR += py-pytest-benchmark
     SUBDIR += py-pytest-black
     SUBDIR += py-pytest-black-multipy
     SUBDIR += py-pytest-cache
