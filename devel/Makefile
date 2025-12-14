@@ -1247,6 +1247,7 @@
     SUBDIR += py-backoff
     SUBDIR += py-backports
     SUBDIR += py-backports.tarfile
+    SUBDIR += py-beartype
     SUBDIR += py-bcdoc
     SUBDIR += py-beniget
     SUBDIR += py-binaryornot
