@@ -66,6 +66,7 @@
     SUBDIR += gnumeric
     SUBDIR += gnuplot
     SUBDIR += gsl
+    SUBDIR += igraph
     SUBDIR += ipopt
     SUBDIR += kalgebra
     SUBDIR += kbruch
