@@ -249,6 +249,7 @@ SUBDIR += rubygem-fluent-plugin-config-expander
 SUBDIR += rubygem-fluent-plugin-file-alternative
 SUBDIR += rubygem-fluent-plugin-tail-asis
 SUBDIR += rubygem-fluentd
+SUBDIR += rust-coreutils
 SUBDIR += screen
 SUBDIR += screen49
 SUBDIR += screen50
