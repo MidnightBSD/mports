@@ -133,34 +133,35 @@ int main(int argc, char *argv[])
             return -1;
         }
 
-		sprintf(query_def,
-				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg', 'NONE') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' AND (rd.filename is NULL or d.filename != rd.filename) ORDER BY p.name, d.id;",
-				runid);
+    	const std::string query1 =
+				 "select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where p.run=$1 AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg', 'NONE') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' AND (rd.filename is NULL or d.filename != rd.filename) ORDER BY p.name, d.id;";
 
-		pqxx::nontransaction N(C);
+    	C.prepare("distcheck_query1", query1);
 
-		pqxx::result R(N.exec(string(query_def)));
+    	pqxx::work W(C);
+    	pqxx::result R(W.exec_prepared("distcheck_query1", runid));
+    	W.commit();
 
 		if (!R.empty())
 		{
-			for (result::const_iterator row = R.begin(); row != R.end(); ++row)
+			for (const auto& row: R)
 			{
-				std::string name = row[0].as(string());
-				std::string license = row[2].as(string());
-				std::string filename = row[4].as(string());
+				std::string name = row[0].as<std::string>();
+				std::string license = row[2].as<std::string>();
+				std::string filename = row[4].as<std::string>();
 
 				namespace fs = std::filesystem;
 				fs::path src{string(dsrc) + "/" + filename};
 				if (!fs::exists(src))
 				{
-					cout << "File " << src << " does not exist" << endl;
+					std::cout << "File " << src << " does not exist" << std::endl;
 					missing_count++;
 					continue;
 				}
 
-				if (row[3].as(bool()))
+				if (row[3].as<bool>())
 				{
-					cout << "File " << src << " is restricted; skipping file." << endl;
+					std::cout << "File " << src << " is restricted; skipping file." << std::endl;
 					restricted_count++;
 					continue;
 				}
@@ -168,16 +169,13 @@ int main(int argc, char *argv[])
 				fs::path dest{string(ddest) + "/" + filename};
 				if (!fs::exists(dest))
 				{
-					bool result = fs::copy_file(src, dest);
-					if (!result)
-					{
-						std::cout << "Failed to copy source " << src << " to destination " << dest << std::endl;
-						failed_count++;
-					}
-					else
-					{
+					try {
+						fs::copy_file(src, dest);
 						std::cout << "Copied source " << src << " to destination " << dest << std::endl;
 						copied_count++;
+					} catch (const fs::filesystem_error& e) {
+						std::cerr << "Failed to copy source " << src << " to destination " << dest << ": " << e.what() << std::endl;
+						failed_count++;
 					}
 				}
 				else
@@ -188,19 +186,23 @@ int main(int argc, char *argv[])
 			}
 		}
 
-		sprintf(query_def,
-				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg', 'NONE') or d.filename = rd.filename) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
-				runid);
+    	const std::string query2 =
+						"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg', 'NONE') or d.filename = rd.filename) and p.run=$1 AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;";
 
-		std::cout << "List restricted distinfo files" << endl;
-		pqxx::result R2(N.exec(string(query_def)));
+    	C.prepare("distcheck_query2", query2);
+
+    	std::cout << "List restricted distinfo files" << std::endl;
+    	pqxx::work W2(C);
+    	pqxx::result R2(W2.exec_prepared("distcheck_query2", runid));
+    	W2.commit();
+
 		if (!R2.empty())
 		{
-			for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
+			for (const auto& c: R2)
 			{
-				string name = c[0].as(string());
-				string license = c[2].as(string());
-				string filename = c[4].as(string());
+				std::string name = c[0].as<std::string>();
+				std::string license = c[2].as<std::string>();
+				std::string filename = c[4].as<std::string>();
 
 				namespace fs = std::filesystem;
 				fs::path f{string(ddest) + "/" + filename};
