@@ -18,7 +18,7 @@
     SUBDIR += R-cran-lazyeval
     SUBDIR += R-cran-lpSolve
     SUBDIR += R-cran-maps
-    SUBDIR += R-cran-mathjax
+    SUBDIR += R-cran-mathjaxr
     SUBDIR += R-cran-sandwich
     SUBDIR += R-cran-sets
     SUBDIR += R-cran-sf
