@@ -1,5 +1,6 @@
 COMMENT= Scientific applications
 
+SUBDIR += R-cran-e1071
 SUBDIR += gtamsanalyzer
 SUBDIR += hdf5
 SUBDIR += libaec
