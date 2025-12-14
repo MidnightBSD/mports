@@ -647,6 +647,9 @@ post-patch-LLD-on:
 
 post-install:
 	-${RM} -r ${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
+.for CRT_ARCH in ${COMPILER_RT_ARCHS}
+	-cd ${PREFIX}/${_CRTLIBDIR} && ${LN} -sf ${CRT_ARCH}-portbld-${FTARGET} ${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}
+.endfor
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
 	    ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
 .for command in ${COMMANDS:C/^/XXXX/1:NXXXX*}
