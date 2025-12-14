@@ -1,5 +1,3 @@
-# Created by: mi@aldan.algebra.com
-
 PORTNAME=	gemini
 PORTVERSION=	1.0
 CATEGORIES=	x11-fonts
@@ -11,7 +9,8 @@ DISTNAME=	x-koi8u
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ukrainian KOI8 fonts for X11R6 (koi8-u)
 
-LICENSE=	unknown
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/xrus.info
 
 BUILD_DEPENDS=	bdftopcf:x11-fonts/bdftopcf \
 		mkfontscale>=0:x11-fonts/mkfontscale
