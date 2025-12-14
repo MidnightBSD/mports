@@ -312,6 +312,7 @@ SUBDIR += py-cmarkgfm
 SUBDIR += py-cssselect2
 SUBDIR += py-docstring-parser
 SUBDIR += py-docutils
+SUBDIR += py-elasticsearch
 SUBDIR += py-elementpath
 SUBDIR += py-enrich
 SUBDIR += py-feedparser
