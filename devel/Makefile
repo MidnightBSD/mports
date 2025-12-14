@@ -76,6 +76,7 @@
     SUBDIR += R-cran-pkgbuild
     SUBDIR += R-cran-pkgcache
     SUBDIR += R-cran-pkgconfig
+    SUBDIR += R-cran-pkgdepends
     SUBDIR += R-cran-pkgload
     SUBDIR += R-cran-plogr
     SUBDIR += R-cran-plyr
