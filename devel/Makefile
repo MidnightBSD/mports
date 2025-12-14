@@ -23,6 +23,7 @@
     SUBDIR += R-cran-callr
     SUBDIR += R-cran-checkmate
     SUBDIR += R-cran-chron
+    SUBDIR += R-cran-classInt
     SUBDIR += R-cran-cli
     SUBDIR += R-cran-clipr
     SUBDIR += R-cran-clock
