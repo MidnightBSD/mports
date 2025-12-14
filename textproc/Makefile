@@ -491,6 +491,7 @@
     SUBDIR += xmlcharent
     SUBDIR += xmlstarlet
     SUBDIR += xmlto
+    SUBDIR += yamlfmt
     SUBDIR += ydiff
     SUBDIR += yelp-tools
     SUBDIR += yelp-xsl
