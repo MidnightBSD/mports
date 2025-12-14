@@ -11,7 +11,9 @@ MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 MAINTAINER=     luke@MidnightBSD.org
 COMMENT=        MidnightBSD desktop environment
 
-LICENSE=	agg
+LICENSE=	bsd2 CC-BY-NC-SA-4.0
+LICENSE_COMB=	multi
+
 
 USES=		tar:bzip2
 NO_BUILD=	yes
