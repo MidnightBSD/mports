@@ -9,7 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic set of icons for the most common usage
 WWW=		http://tango.freedesktop.org/
 
-LICENSE=	other
+LICENSE=	publicdom
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/libexec/icon-name-mapping:x11-themes/icon-naming-utils \
 		Magick-config:graphics/ImageMagick6
