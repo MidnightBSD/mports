@@ -1,5 +1,6 @@
 PORTNAME=	gcc
-PORTVERSION=	12.2.0
+PORTVERSION=	12.4.0
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
@@ -10,12 +11,13 @@ WWW=		https://gcc.gnu.org
 
 LICENSE=	gpl3
 
+ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc powerpc64 powerpc64le riscv64
+
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
 		libmpc.so:math/mpc
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
-
 .if defined(MAINTAINER_MODE)
 BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
@@ -31,21 +33,37 @@ SSP_UNSAFE=	yes
 CFLAGS:=	${CFLAGS:N-mretpoline}
 CXXFLAGS:=	${CXXFLAGS:N-mretpoline}
 
-OPTIONS_DEFINE=		BOOTSTRAP GRAPHITE
-OPTIONS_DEFAULT=	BOOTSTRAP
-BOOTSTRAP_DESC=		Build using a full bootstrap
+OPTIONS_DEFINE=		GRAPHITE
+OPTIONS_DEFAULT_aarch64=STANDARD_BOOTSTRAP
+OPTIONS_DEFAULT_amd64=	STANDARD_BOOTSTRAP
+OPTIONS_DEFAULT_i386=	STANDARD_BOOTSTRAP
+OPTIONS_DEFAULT_powerpc=LTO_BOOTSTRAP
+OPTIONS_DEFAULT_powerpc64=	LTO_BOOTSTRAP
+OPTIONS_DEFAULT_powerpc64le=	LTO_BOOTSTRAP
+OPTIONS_RADIO=	BOOTSTRAP
+OPTIONS_RADIO_BOOTSTRAP=	LTO_BOOTSTRAP STANDARD_BOOTSTRAP
+LTO_BOOTSTRAP_DESC=	Build using a full LTO bootstrap
+STANDARD_BOOTSTRAP_DESC=	Build using a full bootstrap without LTO
 GRAPHITE_DESC=		Support for Graphite loop optimizations
 
 .if exists(/usr/lib32/libc.so)
-OPTIONS_DEFINE_amd64+=                MULTILIB
-OPTIONS_DEFAULT_amd64+=       MULTILIB
+OPTIONS_DEFINE_amd64+=		MULTILIB
+OPTIONS_DEFAULT_amd64+=	MULTILIB
 OPTIONS_DEFINE_powerpc64+=	MULTILIB
-OPTIONS_DEFAULT_powerpc64+=	MULTILIB
+#OPTIONS_DEFAULT_powerpc64+=	MULTILIB # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=105010
 MULTILIB_DESC=		Build support for 32-bit and 64-bit targets
 MULTILIB_CONFIGURE_ENABLE=	multilib
 .else
 CONFIGURE_ARGS+=	--disable-multilib
 .endif
+
+.if defined(CPUTYPE) && ${CPUTYPE:Mg[3-5]}
+CFLAGS:=	${CFLAGS:S/mcpu=g/mcpu=G/}
+CXXFLAGS:=	${CFLAGS:S/mcpu=g/mcpu=G/}
+.endif
+
+GRAPHITE_LIB_DEPENDS=          libisl.so:devel/isl
+GRAPHITE_CONFIGURE_WITH+=      isl
 
 .include <bsd.port.pre.mk>
 
@@ -63,17 +81,23 @@ TARGLIB32=	${PREFIX}/lib32	# The version information is added later
 LIBEXEC=	${PREFIX}/libexec/gcc${SUFFIX}
 GNU_CONFIGURE=	yes
 CONFIGURE_OUTSOURCE=	yes
-.if empty(PORT_OPTIONS:MBOOTSTRAP)
+.if empty(PORT_OPTIONS:M*BOOTSTRAP)
 CONFIGURE_ARGS+=--disable-bootstrap
+.elif ${PORT_OPTIONS:MLTO_BOOTSTRAP}
+CONFIGURE_ARGS+=--with-build-config=bootstrap-lto-noplugin
+ALL_TARGET=	bootstrap-lean
+PIE_UNSAFE=	yes
 .else
 CONFIGURE_ARGS+=--with-build-config=bootstrap-debug
 ALL_TARGET=	bootstrap-lean
+PIE_UNSAFE=	yes
 .endif
 INSTALL_TARGET=	install-strip
 .if ${UID} != 0
 BINMODE=	755
 .endif
 CONFIGURE_ARGS+=--disable-nls \
+		--disable-libssp \
 		--enable-gnu-indirect-function \
 		--enable-host-shared \
 		--enable-plugin \
@@ -83,6 +107,7 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-as=${LOCALBASE}/bin/as \
 		--with-gmp=${LOCALBASE} \
 		--with-gxx-include-dir=${TARGLIB}/include/c++/ \
+		--with-gxx-libcxx-include-dir=/usr/include/c++/v1 \
 		--with-ld=${LOCALBASE}/bin/ld \
 		${ICONV_CONFIGURE_ARG} \
 		--with-pkgversion="MidnightBSD Ports Collection" \
@@ -92,8 +117,7 @@ MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
 PLIST_SUB+=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
-		SUFFIX=${SUFFIX} \
-		ARCH_64=${ARCH_64}
+		SUFFIX=${SUFFIX}
 INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/cppinternals \
 		gcc${SUFFIX}/gcc \
@@ -108,12 +132,11 @@ INFO+=		gcc${SUFFIX}/libquadmath \
 SUB_FILES=	pkg-message
 SUB_LIST+=	TARGLIB=${TARGLIB}
 
-.if ${PORT_OPTIONS:MGRAPHITE}
-LIB_DEPENDS+=	libisl.so:devel/isl
-CONFIGURE_ARGS+=--with-isl=${LOCALBASE}
-.endif
-
 CONFIGURE_ARGS+=--enable-languages=${LANGUAGES}
+
+.if (${ARCH} == amd64 || ${ARCH} == powerpc64) && ${PORT_OPTIONS:MMULTILIB}
+USE_LDCONFIG32=	${TARGLIB32}/gcc${SUFFIX}
+.endif
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${CONFIGURE_TARGET} [${LANGUAGES}]"
@@ -137,6 +160,7 @@ post-fake:
 		${FAKE_DESTDIR}${TRUE_PREFIX}/include/gcc${SUFFIX}
 
 	# Add target libraries and include files to packaging list.
+	${RM} ${WRKDIR}/PLIST.lib
 
 .if ${ARCH} == amd64 && ${PORT_OPTIONS:MMULTILIB}
 	${MKDIR} ${FAKE_DESTDIR}${TARGLIB32}
