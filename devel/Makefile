@@ -1223,6 +1223,7 @@
     SUBDIR += py-argcomplete
     SUBDIR += py-arrow
     SUBDIR += py-asn1crypto
+    SUBDIR += py-aspectlib
     SUBDIR += py-astor
     SUBDIR += py-astroid
     SUBDIR += py-astroid2
