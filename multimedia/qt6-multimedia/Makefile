@@ -77,7 +77,7 @@ X11_IMPLIES=		FFMPEG
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == "i386" && ${MACHINE_CPU:Nsse}
+.if ${ARCH} == "i386"
 CXXFLAGS+=	-DDISABLE_SIMD \
 		-DPFFFT_SIMD_DISABLE
 .endif
