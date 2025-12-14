@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
         }
 
 		sprintf(query_def,
-				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg', 'NONE') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg', 'NONE') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' AND (rd.filename is NULL or d.filename != rd.filename) ORDER BY p.name, d.id;",
 				runid);
 
 		nontransaction N(C);
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		}
 
 		sprintf(query_def,
-				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg', 'NONE')) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
+				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg', 'NONE') or d.filename = rd.filename) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
 				runid);
 
 		cout << "List restricted distinfo files" << endl;
