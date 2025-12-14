@@ -27,20 +27,22 @@ SUCH DAMAGE.
 #include <fstream>
 #include <filesystem>
 #include <pqxx/pqxx>
+#include <stdexcept>
 #include <cstring>
+#include <string>
+#include <vector>
 
 using namespace std;
 using namespace pqxx;
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <unistd.h>
 #include <err.h>
 #include <getopt.h>
-
 #include <sys/types.h>
 
-const string DB_DATABASE = "magus";
+const std::string DB_DATABASE = "magus";
 
 int main(int argc, char *argv[])
 {
@@ -48,10 +50,10 @@ int main(int argc, char *argv[])
     int runid;
 
 	// Default values
-    string db_name = "magus";
-    string db_host = "127.0.0.1";
-    string db_user;
-    string db_pass;
+    std::string db_name = "magus";
+    std::string db_host = "127.0.0.1";
+    std::string db_user;
+    std::string db_pass;
 
 	int opt;
 	while ((opt = getopt(argc, argv, "d:h:U:P:")) != -1)
@@ -72,38 +74,37 @@ int main(int argc, char *argv[])
 			break;
 		default:
 			std::cerr << "Usage: " << argv[0] << " -d <db_name> -h <db_host> -U <db_user> -P <db_pass> <runid> <src> <dest>" << endl;
-			exit(1);
+			return 1;
 		}
 	}
 
 	if (argc - optind != 3)
 	{
 		std::cerr << "Usage: " << argv[0] << " -d <db_name> -h <db_host> -U <db_user> -P <db_pass> <runid> <src> <dest>" << endl;
-		exit(1);
+		return 1;
 	}
 
 	try
 	{
-		runid = std::stoi(string(argv[optind]));
+		runid = std::stoi(std::string(argv[optind]));
 		if (runid < 1)
 		{
-			std::cerr << "Invalid run id" << endl;
-			exit(1);
+			throw std::invalid_argument("Invalid run id");
 		}
 	}
 	catch (const std::exception &e)
 	{
 		std::cerr << "Invalid run id: " << argv[optind] << endl;
-		exit(1);
+		return 1;
 	}
 
-	const string dsrc = argv[optind + 1];
-	string ddest = argv[optind + 2];
+	const std::string dsrc = argv[optind + 1];
+	std::string ddest = argv[optind + 2];
 
 	if (db_user.empty() || db_pass.empty())
 	{
 		std::cerr << "Database user and password are required." << endl;
-		exit(1);
+		return 1;
 	}
 
 	int copied_count = 0;
@@ -114,22 +115,21 @@ int main(int argc, char *argv[])
 
     try
     {
-        string connect_string = "dbname=" + db_name +
+        std::string connect_string = "dbname=" + db_name +
                                " user=" + db_user +
                                " password=" + db_pass +
                                " hostaddr=" + db_host +
                                " port=5432";
 
-        connection C(connect_string);
-        connection C2(connect_string);
+        pqxx::connection C(connect_string);
 
         if (C.is_open())
         {
-            cout << "We are connected to " << C.dbname() << endl;
+            std::cout << "We are connected to " << C.dbname() << endl;
         }
         else
         {
-            cout << "We are not connected! Check username and password." << endl;
+            std::cerr << "We are not connected! Check username and password." << endl;
             return -1;
         }
 
@@ -137,17 +137,17 @@ int main(int argc, char *argv[])
 				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where p.run=%d AND p.restricted = false and p.license not in ('restricted', 'other', 'unknown', 'agg', 'NONE') AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' AND (rd.filename is NULL or d.filename != rd.filename) ORDER BY p.name, d.id;",
 				runid);
 
-		nontransaction N(C);
+		pqxx::nontransaction N(C);
 
-		result R(N.exec(string(query_def)));
+		pqxx::result R(N.exec(string(query_def)));
 
 		if (!R.empty())
 		{
 			for (result::const_iterator row = R.begin(); row != R.end(); ++row)
 			{
-				string name = row[0].as(string());
-				string license = row[2].as(string());
-				string filename = row[4].as(string());
+				std::string name = row[0].as(string());
+				std::string license = row[2].as(string());
+				std::string filename = row[4].as(string());
 
 				namespace fs = std::filesystem;
 				fs::path src{string(dsrc) + "/" + filename};
@@ -171,18 +171,18 @@ int main(int argc, char *argv[])
 					bool result = fs::copy_file(src, dest);
 					if (!result)
 					{
-						cout << "Failed to copy source " << src << " to destination " << dest << endl;
+						std::cout << "Failed to copy source " << src << " to destination " << dest << std::endl;
 						failed_count++;
 					}
 					else
 					{
-						cout << "Copied source " << src << " to destination " << dest << endl;
+						std::cout << "Copied source " << src << " to destination " << dest << std::endl;
 						copied_count++;
 					}
 				}
 				else
 				{
-					cout << "File " << dest << " already exists." << endl;
+					std::cout << "File " << dest << " already exists." << std::endl;
 					exists_count++;
 				}
 			}
@@ -192,8 +192,8 @@ int main(int argc, char *argv[])
 				"select p.name, p.version, p.license, p.restricted, d.filename, d.id from ports p inner join distfiles d on p.id = d.port left join restricted_distfiles rd on p.id = rd.port where (p.restricted = true or p.license in ('restricted', 'other', 'unknown', 'agg', 'NONE') or d.filename = rd.filename) and p.run=%d AND p.status!='internal' AND p.status!='untested' AND p.status!='fail' ORDER BY p.name, d.id;",
 				runid);
 
-		cout << "List restricted distinfo files" << endl;
-		result R2(N.exec(string(query_def)));
+		std::cout << "List restricted distinfo files" << endl;
+		pqxx::result R2(N.exec(string(query_def)));
 		if (!R2.empty())
 		{
 			for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
@@ -206,22 +206,23 @@ int main(int argc, char *argv[])
 				fs::path f{string(ddest) + "/" + filename};
 				if (fs::exists(f))
 				{
-					cout << name << " , license: " << license << " , filename: " << filename << endl;
+					std::cout << name << " , license: " << license << " , filename: " << filename << std::endl;
 				}
 			}
 		}
 	}
 	catch (std::exception const &error)
 	{
-		std::cerr << error.what() << endl;
+		std::cerr << error.what() << std::endl;
+        return 1;
 	}
 
-	cout << "\nSummary:" << endl;
-    cout << "Copied files: " << copied_count << endl;
-    cout << "Already existed: " << exists_count << endl;
-    cout << "Missing source: " << missing_count << endl;
-    cout << "Restricted: " << restricted_count << endl;
-    cout << "Failed to copy: " << failed_count << endl;
+	std::cout << "\nSummary:" << std::endl;
+    std::cout << "Copied files: " << copied_count << std::endl;
+    std::cout << "Already existed: " << exists_count << std::endl;
+    std::cout << "Missing source: " << missing_count << std::endl;
+    std::cout << "Restricted: " << restricted_count << std::endl;
+    std::cout << "Failed to copy: " << failed_count << std::endl;
 
 	return 0;
 }
