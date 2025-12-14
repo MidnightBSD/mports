@@ -2,11 +2,12 @@ PORTNAME=	icons-tango
 PORTVERSION=	0.8.90
 PORTREVISION=	3
 CATEGORIES=	x11-themes
-MASTER_SITES=	GENTOO
+MASTER_SITES=	https://tango.freedesktop.org/releases/
 DISTNAME=	tango-icon-theme-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic set of icons for the most common usage
+WWW=		http://tango.freedesktop.org/
 
 LICENSE=	other
 
