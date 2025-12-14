@@ -400,6 +400,7 @@ _LICENSE_GROUPS_sgi=
 
 _LICENSE_NAME_unknown=	Unknown license
 _LICENSE_GROUPS_unknown=
+_LICENSE_PERMS_unknown=	none
 
 _LICENSE_NAME_WTFPL1=	Do What the Fuck You Want To Public License version 1
 _LICENSE_GROUPS_WTFPL1=	GPL FSF COPYFREE
