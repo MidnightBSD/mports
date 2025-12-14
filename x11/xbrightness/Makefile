@@ -7,7 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Brightness and gamma correction through the X server
 WWW=		http://disjunkt.com/xbrightness/
 
-LICENSE=	NONE
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_XORG=	x11 xxf86vm ice xmu xt xaw
 USES=		imake xorg
