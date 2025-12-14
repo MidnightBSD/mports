@@ -16,6 +16,7 @@
     SUBDIR += R-cran-isoband
     SUBDIR += R-cran-labeling
     SUBDIR += R-cran-lazyeval
+    SUBDIR += R-cran-lpSolve
     SUBDIR += R-cran-maps
     SUBDIR += R-cran-mathjax
     SUBDIR += R-cran-sandwich
@@ -74,6 +75,7 @@
     SUBDIR += ldouble
     SUBDIR += lib2geom
     SUBDIR += libqalculate
+    SUBDIR += lp_solve
     SUBDIR += matio
     SUBDIR += metis
     SUBDIR += mpc
