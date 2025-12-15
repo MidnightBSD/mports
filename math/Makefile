@@ -26,6 +26,7 @@
     SUBDIR += R-cran-sp
     SUBDIR += R-cran-spData
     SUBDIR += R-cran-units
+    SUBDIR += R-cran-wk
     SUBDIR += R-cran-xts
     SUBDIR += R-cran-zoo
     SUBDIR += adol-c
