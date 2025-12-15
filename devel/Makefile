@@ -1315,6 +1315,7 @@
     SUBDIR += py-doctest-ignore-unicode
     SUBDIR += py-domdf-python-tools
     SUBDIR += py-dpcontracts
+    SUBDIR += py-dulwich
     SUBDIR += py-editables
     SUBDIR += py-entrypoints
     SUBDIR += py-enum34
@@ -1345,6 +1346,7 @@
     SUBDIR += py-genty
     SUBDIR += py-geojson
     SUBDIR += py-gevent
+    SUBDIR += py-geventhttpclient
     SUBDIR += py-gitdb
     SUBDIR += py-gitpython
     SUBDIR += py-google-i18n-address
