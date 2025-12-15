@@ -81,7 +81,7 @@ X11_BELL_USE=		xorg=x11,xfixes
 X11_BELL_MESON_ENABLED=	libcanberra x11 x11-xfixes
 
 MESON_ARGS=	-D pw-cat=enabled \
-		-D v4l2=disabled \
+		-D v4l2=enabled \
 		-D raop=disabled \
 		-D session-managers='[]' \
 		-D compress-offload=disabled \

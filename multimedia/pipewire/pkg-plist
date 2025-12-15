@@ -312,7 +312,7 @@ lib/spa-0.2/filter-graph/libspa-filter-graph.so
 lib/spa-0.2/libspa.so
 lib/spa-0.2/support/libspa-dbus.so
 lib/spa-0.2/support/libspa-support.so
-@comment lib/spa-0.2/v4l2/libspa-v4l2.so
+lib/spa-0.2/v4l2/libspa-v4l2.so
 lib/spa-0.2/videoconvert/libspa-videoconvert.so
 lib/spa-0.2/videotestsrc/libspa-videotestsrc.so
 %%VULKAN%%lib/spa-0.2/vulkan/libspa-vulkan.so
