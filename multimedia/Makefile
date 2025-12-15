@@ -156,7 +156,7 @@
     SUBDIR += vlc
     SUBDIR += vmaf
     SUBDIR += webcamd
-    SUBDIR += win32-codecs
+    SUBDIR += webcamoid
     SUBDIR += x264
     SUBDIR += x265
     SUBDIR += xanim
