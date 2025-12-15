@@ -159,6 +159,7 @@ SUBDIR += win32-codecs
 SUBDIR += x264
 SUBDIR += x265
 SUBDIR += xanim
+SUBDIR += xawtv
 SUBDIR += xfce4-parole
 SUBDIR += xine
 SUBDIR += xvid

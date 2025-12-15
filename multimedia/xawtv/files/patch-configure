@@ -1,0 +1,82 @@
+--- configure.orig	2020-05-15 19:35:58.000000000 -0400
++++ configure	2025-12-15 10:44:26.688026000 -0500
+@@ -3963,7 +3963,7 @@
+ 	Linux)
+ 		FOUND_OS="linux"
+ 		;;
+-	OpenBSD | FreeBSD | NetBSD)
++	OpenBSD | FreeBSD | NetBSD | MidnightBSD)
+ 		# *BSD has important stuff (from ports)
+ 		# in /usr/local ...
+ 		CFLAGS="$CFLAGS -I/usr/local/include -L/usr/local/lib"
+@@ -4398,7 +4398,7 @@
+ ac_x_header_dirs='
+ /usr/X11/include
+ /usr/X11R7/include
+-/usr/X11R6/include
++/usr/local/include
+ /usr/X11R5/include
+ /usr/X11R4/include
+ 
+@@ -5089,7 +5089,7 @@
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_v4l2_v4l2_fd_open" >&5
+ $as_echo "$ac_cv_lib_v4l2_v4l2_fd_open" >&6; }
+ if test "x$ac_cv_lib_v4l2_v4l2_fd_open" = xyes; then :
+-  LIBV4L="yes"
++  LIBV4L="no"
+ fi
+ 
+ if test "$LIBV4L" != "yes"; then
+@@ -5296,7 +5296,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lzvbi $LIBPTHREAD $LIBS"
++LIBS="-liconv -lunicode -lzvbi $LIBPTHREAD $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -5329,7 +5329,7 @@
+ if test "x$ac_cv_lib_zvbi_vbi_capture_fd" = xyes; then :
+ 
+ $as_echo "#define HAVE_ZVBI 1" >>confdefs.h
+- FOUND_ZVBI="yes"; LIBZVBI="-lzvbi -lpthread -lm -lpng -lz"
++ FOUND_ZVBI="yes"; LIBZVBI="-lzvbi -liconv -lunicode -lpthread -lm -lpng -lz"
+ fi
+ 
+ else
+@@ -5431,7 +5431,7 @@
+ if test "x$ac_cv_lib_dv_dv_decoder_new" = xyes; then :
+ 
+ $as_echo "#define HAVE_DV 1" >>confdefs.h
+- FOUND_DV="yes"; LIBDV="-ldv -lm"
++ FOUND_DV="yes"; LIBDV="-ldv -lm $LIBPTHREAD $LIBS"
+ fi
+ 
+ else
+@@ -5966,23 +5966,14 @@
+ 
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for X11 config directory" >&5
+ $as_echo_n "checking for X11 config directory... " >&6; }
+-x11conf=/usr/lib/X11
+-if test -d /etc/X11; then
+-	x11conf=/etc/X11
+-fi
++x11conf=/etc/X11
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $x11conf" >&5
+ $as_echo "$x11conf" >&6; }
+ 
+ 
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for X11 app-defaults directory" >&5
+ $as_echo_n "checking for X11 app-defaults directory... " >&6; }
+-resdir=/usr/lib/X11
+-if test -d /usr/share/X11/app-defaults; then
+-	resdir=/usr/share/X11
+-fi
+-if test -d /etc/X11/app-defaults; then
+-	resdir=/etc/X11
+-fi
++resdir=/usr/local/lib/X11
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $resdir/app-defaults" >&5
+ $as_echo "$resdir/app-defaults" >&6; }
+ 
