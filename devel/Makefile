@@ -898,6 +898,7 @@
     SUBDIR += p5-Mouse
     SUBDIR += p5-MouseX-Types
     SUBDIR += p5-Net-DBus
+    SUBDIR += p5-Number-Bytes-Human
     SUBDIR += p5-OLE-Storage_Lite
     SUBDIR += p5-Opcodes
     SUBDIR += p5-PAR-Dist
@@ -973,6 +974,7 @@
     SUBDIR += p5-Sub-Uplevel
     SUBDIR += p5-Syntax-Keyword-Match
     SUBDIR += p5-Syntax-Keyword-Try
+    SUBDIR += p5-Sys-CPU
     SUBDIR += p5-Sys-Mmap
     SUBDIR += p5-Taint-Util
     SUBDIR += p5-Task-Weaken
