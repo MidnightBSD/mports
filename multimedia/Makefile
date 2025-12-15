@@ -152,6 +152,7 @@
     SUBDIR += v4l_compat
     SUBDIR += vapoursynth
     SUBDIR += vcdimager
+    SUBDIR += vid.stab
     SUBDIR += vlc
     SUBDIR += vmaf
     SUBDIR += webcamd
