@@ -1,67 +1,72 @@
 PORTNAME=	pipewire
-DISTVERSION=	0.3.51
+DISTVERSION=	1.4.9
 CATEGORIES=	multimedia
-MASTER_SITES=	https://gitlab.freedesktop.org/pipewire/media-session/-/archive/${MEDIA_SESSION_VERSION}/:media_session
-DISTFILES=	media-session-${MEDIA_SESSION_VERSION}${EXTRACT_SUFX}:media_session
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Server and user space API to deal with multimedia pipelines
+WWW=		https://pipewire.org/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	v4l_compat>0:multimedia/v4l_compat
-LIB_DEPENDS=	libasound.so:audio/alsa-lib \
-		libdbus-1.so:devel/dbus \
+BUILD_DEPENDS=	v4l_compat>0:multimedia/v4l_compat \
+		${LOCALBASE}/include/fftw3.f:math/fftw3
+LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libinotify.so:devel/libinotify \
 		libepoll-shim.so:devel/libepoll-shim \
+		libfftw3f.so:math/fftw3-float \
+		libopus.so:audio/opus \
 		libsndfile.so:audio/libsndfile \
 		libudev.so:devel/libudev-devd \
-		libwebrtc_audio_processing.so:audio/webrtc-audio-processing0 \
-		libavahi-client.so:net/avahi-app
+		libwebrtc-audio-processing-1.so:audio/webrtc-audio-processing
 
 USES=		compiler:c11 gettext-tools gnome localbase:ldflags meson \
-		ncurses pkgconfig python:build readline ssl
+		ncurses pkgconfig python:build readline shebangfix ssl
 USE_GNOME=	glib20
-USE_XORG=	x11 xfixes
 USE_LDCONFIG=	yes
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	PipeWire
+USE_GITLAB=	yes
+GL_SITE=	https://gitlab.freedesktop.org
 
-OPTIONS_DEFINE=		GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION PULSEAUDIO SDL VULKAN
-OPTIONS_DEFAULT=	GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION
-OPTIONS_SUB=	yes
+SHEBANG_FILES=	doc/*.py
+PORTDOCS=	*
 
-USE_OPENSSL_RPATH=yes
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libcrypto.so:security/openssl
-RUN_DEPENDS+=	${LOCALBASE}/lib/libcrypto.so:security/openssl
-NO_TEST=	yes
+OPTIONS_DEFINE=		ALSA AVAHI DOCS DOXYGEN EBUR GSTREAMER JACK LV2 PULSEAUDIO \
+			VULKAN X11_BELL
+OPTIONS_DEFAULT=	EBUR GSTREAMER JACK
+OPTIONS_SUB=		yes
+
+ALSA_MESON_ENABLED=	alsa pipewire-alsa
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+ALSA_RUN_DEPENDS=	alsa-plugins>0:audio/alsa-plugins
+ALSA_SUB_FILES=		10-alsa-default.conf
+
+AVAHI_DESC=		Automatic service discovery for the Pulseaudio module via Avahi
+AVAHI_IMPLIES=		PULSEAUDIO
+AVAHI_MESON_ENABLED=	avahi
+AVAHI_LIB_DEPENDS=	libavahi-client.so:net/avahi-app
+
+DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen
+DOXYGEN_MESON_ENABLED=	docs
+DOXYGEN_IMPLIES=	DOCS
+
+EBUR_DESC=		Loudness normalization plugin based on ebur128
+EBUR_MESON_ENABLED=	ebur128
+EBUR_USES=		ebur128
 
 GSTREAMER_USES=		gstreamer
-GSTREAMER_MESON_ENABLED=gstreamer
-GSTREAMER_LIB_DEPENDS= libgstreamer-1.0.so:multimedia/gstreamer1 \
-                       libgstaudio-1.0.so:multimedia/gstreamer1-plugins
+GSTREAMER_MESON_ENABLED=gstreamer gstreamer-device-provider
 
+JACK_LIB_DEPENDS=	libjack.so:audio/jack
+JACK_MESON_ENABLED=	jack pipewire-jack
 
-PIPEWIRE_JACK_DESC=		Build pipewire-jack
-PIPEWIRE_JACK_MESON_ENABLED=	pipewire-jack
+LV2_DESC=		Support lv2-based audio plugins via lilv
+LV2_LIB_DEPENDS=	liblilv-0.so:audio/lilv
+LV2_MESON_ENABLED=	lv2
 
-MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
-MANPAGES_MESON_ENABLED=	man
-
-MEDIASESSION_DESC=		Session manager support
-MEDIASESSION_MESON_ENABLED=	alsa pipewire-alsa
-MEDIASESSION_MESON_ON=		-Dsession-managers=media-session
-MEDIASESSION_MESON_OFF=		-Dsession-managers=''
-
+PULSEAUDIO_DESC=		Enable PulseAudio emulation
 PULSEAUDIO_MESON_ENABLED=	libpulse
-PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio \
-				libavahi-common.so:net/avahi-app
-
-SDL_MESON_ENABLED=	sdl2
-SDL_USES=		sdl
-SDL_USE=		sdl=sdl2
+PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio
 
 VULKAN_DESC=		Enable Vulkan integration
 VULKAN_MESON_ENABLED=	vulkan
@@ -69,48 +74,49 @@ VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-heade
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader \
 			libdrm.so:graphics/libdrm
 
-MEDIA_SESSION_VERSION=	0.4.1
+X11_BELL_DESC=		Support for X11 bell via libcanberra
+X11_BELL_LIB_DEPENDS=	libcanberra.so:audio/libcanberra
+X11_BELL_USES=		xorg
+X11_BELL_USE=		xorg=x11,xfixes
+X11_BELL_MESON_ENABLED=	libcanberra x11 x11-xfixes
 
-#raop should be enabled, but ssl issues on magus
 MESON_ARGS=	-D pw-cat=enabled \
-		-D v4l2=enabled \
+		-D v4l2=disabled \
 		-D raop=disabled \
+		-D session-managers='[]' \
+		-D compress-offload=disabled \
+		-D avb=disabled \
 		-D bluez5=disabled \
-		-D jack=disabled \
-		-D lv2=disabled \
+		-D man=disabled \
 		-D libcamera=disabled \
-		-D libcanberra=disabled \
 		-D roc=disabled \
+		-D sdl2=disabled \
+		-D selinux=disabled \
 		-D systemd=disabled \
+		-D logind=disabled \
 		-D pipewire-v4l2=disabled \
+		-D libmysofa=disabled \
+		-D libffado=disabled \
+		-D snap=disabled \
+		-D gsettings-pulse-schema=disabled \
 		-D udevrulesdir="${LOCALBASE}/lib/udev/rules.d"
 
-# Fake pkg-config support before https://cgit.freebsd.org/src/commit/?id=396851c20aeb
-# but only if devel/ncurses isn't installed
+PORTDOCS=	*
+
 .if !exists(/usr/libdata/pkgconfig/ncursesw.pc)
 CONFIGURE_ENV+=	${ncurses_ARGS:Mbase:C/.+/PKG_CONFIG_PATH="${FILESDIR}"/}
 .endif
 
-post-extract:
-	${LN} -s ${WRKDIR}/media-session-${MEDIA_SESSION_VERSION} ${WRKSRC}/subprojects/media-session
-
 post-patch:
-	${REINPLACE_CMD} -e 's/freebsd/midnightbsd/g' \
-		${WRKSRC}/src/pipewire/meson.build \
-		${WRKSRC}/subprojects/media-session/meson.build \
+#	${REINPLACE_CMD} -e 's/freebsd/midnightbsd/g' \
+#		${WRKSRC}/src/pipewire/meson.build \
+#		${WRKSRC}/meson.build
+	${REINPLACE_CMD} -e "s|find_installation('python3'|find_installation('python${PYTHON_VER}'|" \
 		${WRKSRC}/meson.build
 
-post-patch-MEDIASESSION-on:
-# alsa-seq is not supported & causes SIGSEGV with media session
-	@${REINPLACE_CMD} 's| alsa-seq|\ #alsa-seq|g' \
-		${WRKDIR}/media-session-${MEDIA_SESSION_VERSION}/media-session.d/media-session.conf
-# start media session by default
-	@${REINPLACE_CMD} '/manager_args/ s/@sm_comment@//g' \
-		${WRKSRC}/src/daemon/pipewire.conf.in
-
-do-test:
-	${ECHO} "no tests"
-	printenv
-
+post-install-ALSA-on:
+	${MKDIR} ${STAGEDIR}${DATADIR}/${PORTNAME}.conf.d
+	${INSTALL_DATA} ${WRKDIR}/10-alsa-default.conf \
+		${STAGEDIR}${DATADIR}/${PORTNAME}.conf.d
 
 .include <bsd.port.mk>
