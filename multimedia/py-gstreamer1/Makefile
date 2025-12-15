@@ -1,5 +1,5 @@
 PORTNAME=	gstreamer
-DISTVERSION=	1.20.5
+DISTVERSION=	${_GST_VERSION}
 CATEGORIES=	multimedia python
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,8 +18,9 @@ PORTSCOUT=	limitw:1,even
 USES=		cpe gnome gstreamer meson pkgconfig python tar:xz
 CPE_VENDOR=	${PORTNAME}_project
 USE_GNOME=	pygobject3
-USE_PYTHON=	flavors py3kplist
-PLIST_SUB=	VERSION="${GST_VERSION}"
+USE_PYTHON=	flavors
+USE_GSTREAMER=	bad rtsp-server webrtc
+PLIST_SUB=	VERSION="${_GST_VERSION}"
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 NO_TEST=	yes

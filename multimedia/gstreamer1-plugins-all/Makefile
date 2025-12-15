@@ -1,5 +1,5 @@
 PORTNAME=	gstreamer1-plugins-all
-PORTVERSION=	{_GST_VERSION}
+PORTVERSION=	${_GST_VERSION}
 PORTREVISION=	1
 CATEGORIES=	multimedia
 DISTFILES=      # none
