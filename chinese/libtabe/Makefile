@@ -23,6 +23,7 @@ CONFIGURE_ARGS=	--includedir=${PREFIX}/include/tabe \
 		--with-db-inc=${BDB_INCLUDE_DIR} \
 		--with-db-lib=${BDB_LIB_DIR} \
 		--with-db-bin=${LOCALBASE}/bin
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 WRKSRC=		${WRKDIR}/${DISTNAME:S|_|-|}
 MAKE_JOBS_UNSAFE=	yes
 
