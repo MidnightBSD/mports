@@ -79,6 +79,7 @@
     SUBDIR += ldouble
     SUBDIR += lib2geom
     SUBDIR += libqalculate
+    SUBDIR += libtommath
     SUBDIR += lp_solve
     SUBDIR += matio
     SUBDIR += metis
