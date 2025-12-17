@@ -1,8 +1,7 @@
 PORTNAME=	libffi
-PORTVERSION=	3.4.4
-PORTREVISION=	1
+DISTVERSION=	3.5.1
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${PORTVERSION}/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foreign Function Interface
@@ -14,16 +13,18 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 TEST_DEPENDS=	runtest:misc/dejagnu
 
 USES=		compiler:c11 cpe libtool pathfix
+CPE_VENDOR=	libffi_project
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CPE_VENDOR=	libffi_project
 
 CONFIGURE_ARGS=	--disable-multi-os-directory
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 INSTALL_TARGET=	install-strip
-INFO=		libffi
-# magus
 NO_TEST=	yes
+
+LDFLAGS+=	-Wl,--undefined-version
+
+INFO=		libffi
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| -Wno-psabi||g' \
