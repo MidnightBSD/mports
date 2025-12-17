@@ -107,17 +107,6 @@
     SUBDIR += pgtcl
     SUBDIR += pgtop
     SUBDIR += php-xapian
-    SUBDIR += php81-mysqli
-    SUBDIR += php81-odbc
-    SUBDIR += php81-pdo
-    SUBDIR += php81-pdo_dblib
-    SUBDIR += php81-pdo_firebird
-    SUBDIR += php81-pdo_mysql
-    SUBDIR += php81-pdo_odbc
-    SUBDIR += php81-pdo_pgsql
-    SUBDIR += php81-pdo_sqlite
-    SUBDIR += php81-pgsql
-    SUBDIR += php81-sqlite3
     SUBDIR += php82-mysqli
     SUBDIR += php82-odbc
     SUBDIR += php82-pdo

@@ -285,8 +285,6 @@
     SUBDIR += p5-Image-PBMlib
     SUBDIR += p5-Image-Size
     SUBDIR += pecl-imagick
-    SUBDIR += php81-exif
-    SUBDIR += php81-gd
     SUBDIR += php82-exif
     SUBDIR += php82-gd
     SUBDIR += php83-exif

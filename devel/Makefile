@@ -1159,16 +1159,6 @@
     SUBDIR += pecl-APCu
     SUBDIR += performance
     SUBDIR += php-composer
-    SUBDIR += php81-gettext
-    SUBDIR += php81-intl
-    SUBDIR += php81-json
-    SUBDIR += php81-pcntl
-    SUBDIR += php81-readline
-    SUBDIR += php81-shmop
-    SUBDIR += php81-sysvmsg
-    SUBDIR += php81-sysvsem
-    SUBDIR += php81-sysvshm
-    SUBDIR += php81-tokenizer
     SUBDIR += php82-gettext
     SUBDIR += php82-intl
     SUBDIR += php82-json

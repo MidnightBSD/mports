@@ -73,7 +73,6 @@
     SUBDIR += parley
     SUBDIR += patchutils
     SUBDIR += pciids
-    SUBDIR += php81-calendar
     SUBDIR += php82-calendar
     SUBDIR += php83-calendar
     SUBDIR += py-pexpect

@@ -64,10 +64,6 @@
     SUBDIR += pear-Horde_Compress_Fast
     SUBDIR += pear-Horde_Pack
     SUBDIR += pear-PHP_Archive
-    SUBDIR += php81-bz2
-    SUBDIR += php81-phar
-    SUBDIR += php81-zip
-    SUBDIR += php81-zlib
     SUBDIR += php82-bz2
     SUBDIR += php82-phar
     SUBDIR += php82-zip

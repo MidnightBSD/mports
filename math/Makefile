@@ -105,8 +105,6 @@
     SUBDIR += p5-bignum
     SUBDIR += pdal
     SUBDIR += pear-Math_BigInteger
-    SUBDIR += php81-bcmath
-    SUBDIR += php81-gmp
     SUBDIR += php82-bcmath
     SUBDIR += php82-gmp
     SUBDIR += php83-bcmath

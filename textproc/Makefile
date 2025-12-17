@@ -271,15 +271,6 @@
     SUBDIR += pear-Horde_Text_Flowed
     SUBDIR += pear-Horde_Xml_Element
     SUBDIR += pear-Horde_Xml_Wbxml
-    SUBDIR += php81-ctype
-    SUBDIR += php81-dom
-    SUBDIR += php81-enchant
-    SUBDIR += php81-pspell
-    SUBDIR += php81-simplexml
-    SUBDIR += php81-xml
-    SUBDIR += php81-xmlreader
-    SUBDIR += php81-xmlwriter
-    SUBDIR += php81-xsl
     SUBDIR += php82-ctype
     SUBDIR += php82-dom
     SUBDIR += php82-enchant

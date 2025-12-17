@@ -216,9 +216,6 @@
     SUBDIR += pear-Net_Socket
     SUBDIR += pear-Net_URL
     SUBDIR += pear-Net_URL2
-    SUBDIR += php81-ldap
-    SUBDIR += php81-soap
-    SUBDIR += php81-sockets
     SUBDIR += php82-ldap
     SUBDIR += php82-soap
     SUBDIR += php82-sockets
