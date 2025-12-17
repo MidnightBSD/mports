@@ -130,7 +130,6 @@
     SUBDIR += librsync
     SUBDIR += libslirp
     SUBDIR += libsrtp2
-    SUBDIR += libutp
     SUBDIR += libvncserver
     SUBDIR += libwebsockets
     SUBDIR += libzapojit
