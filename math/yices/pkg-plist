@@ -10,4 +10,5 @@ include/yices_limits.h
 include/yices_types.h
 lib/libyices.a
 lib/libyices.so
-lib/libyices.so.2.6
+lib/libyices.so.2.7
+lib/libyices.so.2.7.0
