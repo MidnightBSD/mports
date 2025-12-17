@@ -518,4 +518,6 @@ net-p2p/shx||2025-12-09|Has expired: Obsolete protocol that has been superseded 
 lang/gcc11|lang/gcc12|2025-12-09|Has expired: End-of-life upstream since mid 2024, newer versions available
 audio/libnjb||2025-12-09|Has expired: Abandoned upstream, no new release since 2011
 sysutils/ffs2recover||2025-12-13|Broken and not updated on current/4.0
-multimedia/win32-codecs||2025-12-15|Has expired: Obsolete and users are recommended to utilize ffmpeg instead
+multimedia/win32-codecs||2025-12-15|Has expired: Obsolete and users are recommended to utilize ffmpeg insteaa
+sysutils/screen49|sysutils/screen|2025-12-15|Has expired: Multiple CVEs
+sysutils/screen50|sysutils/screen|2025-12-15|Moved to screen after removal of screen49

@@ -252,8 +252,6 @@
     SUBDIR += rubygem-fluentd
     SUBDIR += rust-coreutils
     SUBDIR += screen
-    SUBDIR += screen49
-    SUBDIR += screen50
     SUBDIR += screenie
     SUBDIR += seatd
     SUBDIR += sg3_utils
