@@ -18,6 +18,8 @@ GNU_CONFIGURE=	yes
 #USES=	alias
 OPTIONS_DEFINE=	DOCS
 
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/sysmon ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/src/sysmond ${PREFIX}/bin
