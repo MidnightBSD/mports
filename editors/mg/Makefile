@@ -34,8 +34,8 @@ MAKE_ARGS+=	BINDIR=${PREFIX}/bin \
 
 .if ${FLAVOR} == static
 do-install:
-	@${MKDIR} ${STAGEDIR}/rescue
-	${INSTALL_PROGRAM} ${WRKSRC}/mg ${STAGEDIR}/rescue
+	@${MKDIR} ${FAKE_DESTDIR}/rescue
+	${INSTALL_PROGRAM} ${WRKSRC}/mg ${FAKE_DESTDIR}/rescue
 .else
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
