@@ -521,3 +521,4 @@ sysutils/ffs2recover||2025-12-13|Broken and not updated on current/4.0
 multimedia/win32-codecs||2025-12-15|Has expired: Obsolete and users are recommended to utilize ffmpeg insteaa
 sysutils/screen49|sysutils/screen|2025-12-15|Has expired: Multiple CVEs
 sysutils/screen50|sysutils/screen|2025-12-15|Moved to screen after removal of screen49
+net/zebra||2025-12-16|Has expired: Abandoned upstream, last release in 2005. Consider migrating to net/frr8 or net/bird2

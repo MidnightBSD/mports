@@ -19,6 +19,7 @@
     SUBDIR += avahi-qt5
     SUBDIR += avahi-sharp
     SUBDIR += aws-ec2-imdsv2-get
+    SUBDIR += bird2
     SUBDIR += bmon
     SUBDIR += boinc-client
     SUBDIR += bsdec2-image-upload
@@ -38,6 +39,8 @@
     SUBDIR += freebsd-uucp
     SUBDIR += freerdp
     SUBDIR += freerdp3
+    SUBDIR += frr8
+    SUBDIR += frr8-pythontools
     SUBDIR += geoclue
     SUBDIR += geocode-glib
     SUBDIR += geocode-glib2
