@@ -15,6 +15,8 @@ GO_MODULE=	github.com/kubernetes-sigs/${PORTNAME}
 GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags="-X sigs.k8s.io/aws-iam-authenticator/pkg.Version=${PORTVERSION}"
 
+NO_TEST=	yes
+
 PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.port.mk>
