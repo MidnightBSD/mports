@@ -10,6 +10,8 @@ COMMENT=	Convert JIS Kanji to GuoBiao Hanzi
 
 LICENSE=	NONE
 
+FAKE_OPTS=	trueprefix
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 ALL_TARGET=
 
