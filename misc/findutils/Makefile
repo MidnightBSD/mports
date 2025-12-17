@@ -15,7 +15,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		charsetfix cpe gmake localbase tar:xz
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--program-prefix=g --localstatedir=${LOCALSTATEDIR}
+i386_CONFIGURE_ARGS=	--disable-year2038
+CONFIGURE_ARGS+=	--program-prefix=g --localstatedir=${LOCALSTATEDIR} \
+	${${ARCH}_CONFIGURE_ARGS}
 MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
 INFO=		find find-maint
 
