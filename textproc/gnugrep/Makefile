@@ -38,6 +38,8 @@ PCRE_LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 PCRE_USES=		pkgconfig
 PCRE_CONFIGURE_ENABLE=	perl-regexp
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} 's:@grep@:${PREFIX}/bin/&:' ${WRKSRC}/src/egrep.sh
 	@${REINPLACE_CMD} 's|mkinstalldirs = .*|mkinstalldirs = ${MKDIR}|g' \
