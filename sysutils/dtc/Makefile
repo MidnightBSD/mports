@@ -1,31 +1,33 @@
 PORTNAME=	dtc
-PORTVERSION=	1.6.0
 DISTVERSIONPREFIX=	v
+DISTVERSION=	1.7.1
 CATEGORIES=	sysutils
 
 PATCH_SITES=	https://github.com/dgibson/dtc/commit/
-PATCHFILES+=	ca19c3db2b.patch:-p1 # https://github.com/dgibson/dtc/pull/41
+PATCHFILES=	1b75550436433e150164715dedb417e4d234df6c.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Device Tree Compiler
+WWW=		https://git.kernel.org/cgit/utils/dtc/dtc.git
 
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libyaml.so:textproc/libyaml
 
-USES=		bison compiler:c11 gmake pkgconfig shebangfix
-USE_LDCONFIG=	yes
+USES=		bison compiler:c11 cpe meson pkgconfig shebangfix
+CPE_VENDOR=	${PORTNAME}_project
 SHEBANG_FILES=	dtdiff
-
-TEST_TARGET=	check
-TEST_ENV=	STATSZ="stat -f %Uz"
+USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dgibson
-GH_PROJECT=	dtc
 
-MAKE_ARGS+=	PREFIX=${PREFIX} NO_PYTHON=yes \
-		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
-		INSTALL_LIB="${INSTALL_LIB}"
+MESON_ARGS=	--default-library=shared \
+		-Dpython=disabled \
+		-Dvalgrind=disabled
+
+OPTIONS_DEFINE=		TEST
+
+TEST_MESON_TRUE=	tests
 
 .include <bsd.port.mk>
