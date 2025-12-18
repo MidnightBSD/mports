@@ -1,5 +1,6 @@
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.82
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -120,6 +121,8 @@ post-patch:
 	@${REINPLACE_CMD} -E -e \
 		's|^(server.document-root.*=).*|\1 "${PREFIX}/www" + "/data"|' \
 		-e "s|/etc/lighttpd|${ETCDIR}|g" \
+		-e 's|^(server.event-handler.*=).*|\1 "freebsd-kqueue"|' \
+		-e 's|^(server.network-backend.*=).*|\1 "writev"|' \
 		-e "s|^(server.username.*=).*|\1 \"${WWWOWN}\"|" \
 		-e "s|^(server.groupname.*=).*|\1 \"${WWWGRP}\"|" \
 		-e "s|^(var.log_root.*=).*|\1 \"${LOGDIR}\"|" \

@@ -48,7 +48,6 @@ fi
 command=%%PREFIX%%/sbin/lighttpd
 stop_postcmd=stop_postcmd
 restart_precmd="lighttpd_checkconfig"
-reload_precmd="lighttpd_checkconfig"
 graceful_precmd="lighttpd_checkconfig"
 graceful_cmd="lighttpd_graceful"
 gracefulstop_cmd="lighttpd_gracefulstop"
@@ -57,11 +56,6 @@ extra_commands="reload graceful gracefulstop configtest"
 command_args="-f ${lighttpd_conf}"
 pidfile=${lighttpd_pidfile}
 required_files=${lighttpd_conf}
-
-# change reload default from SIGHUP to SIGUSR1
-# SIGHUP triggers lighttpd to reopen file logs (for log rotation)
-# SIGUSR1 triggers lighttpd to restart gracefully, reloading config
-sig_reload="SIGUSR1"
 
 lighttpd_check_deprecated()
 {
@@ -83,14 +77,15 @@ lighttpd_checkconfig()
 lighttpd_gracefulstop()
 {
 	echo "Stopping ${name} gracefully."
-	sig_reload="SIGINT"
-	run_rc_command ${rc_prefix}reload
+	sig_reload="SIGUSR1"
+	run_rc_command reload
 }
 
 lighttpd_graceful()
 {
-	sig_reload="SIGUSR1"
-	run_rc_command ${rc_prefix}reload
+	lighttpd_gracefulstop
+	rm -f ${pidfile}
+	run_rc_command start
 }
 
 lighttpd_run_instance()
