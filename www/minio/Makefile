@@ -9,12 +9,15 @@ WWW=		https://minio.io/
 
 LICENSE=	agpl
 
-USES=		compiler cpe go:1.23,modules
-GH_TAGNAME=	RELEASE.2024-12-18T13-15-44Z
+DEPRECATED=	Upstream unmaintained
+EXPIRATION_DATE=	2026-12-31
+
+USES=		compiler cpe go:modules
+GH_TAGNAME=	RELEASE.2025-10-15T17-29-55Z
 CPE_VERSION=	${GH_TAGNAME}
 USE_RC_SUBR=	${PORTNAME}
 
-COMMIT_ID=	16f8cf1c52f0a77eeb8f7565aaf7f7df12454583
+COMMIT_ID=	9e49d5e7a648f00e26f2246f4dc28e6b07f8c84a
 
 GO_MODULE=	github.com/minio/minio@v0.0.0-${DISTVERSION:S/.//g}-${COMMIT_ID:C/^(.{12}).*/\1/}
 GO_BUILDFLAGS=	-ldflags=' \
