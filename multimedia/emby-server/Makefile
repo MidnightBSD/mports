@@ -1,17 +1,17 @@
 PORTNAME=	emby-server
-DISTVERSION?=	4.8.1.0
+DISTVERSION?=	4.8.3.0
 PORTREVISION?=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://github.com/MediaBrowser/Emby.Releases/releases/download/${DISTVERSION}/ \
 		https://mediabrowser.github.io/embytools/
-DISTNAME=	emby-server-freebsd12_${DISTVERSION}_amd64
+DISTNAME=	emby-server-freebsd13_${DISTVERSION}_amd64
 DISTFILES=	${DISTNAME}.tar.xz \
-		ffdetect-${FFVERSION}-x64_freebsd12.tar.xz \
+		ffdetect-${FFVERSION}-x64_freebsd13.tar.xz \
 		ffmpeg-${FFVERSION}.tar.gz \
 		license.docx
 DIST_SUBDIR?=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}.tar.xz \
-		ffdetect-${FFVERSION}-x64_freebsd12.tar.xz \
+		ffdetect-${FFVERSION}-x64_freebsd13.tar.xz \
 		ffmpeg-${FFVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,6 +24,8 @@ LICENSE_FILE=	${DISTDIR}/${DIST_SUBDIR}/license.docx
 LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
 ONLY_FOR_ARCHS=	amd64
+
+BROKEN_MidnightBSD_3.2=	Requires 4.0+
 
 BUILD_DEPENDS=	nasm:devel/nasm \
 		libimagequant>0:graphics/libimagequant \
