@@ -37,7 +37,6 @@ SUBDIR += gnat12
 SUBDIR += gnustep-base
 SUBDIR += go
 SUBDIR += go-devel
-SUBDIR += go120
 SUBDIR += go121
 SUBDIR += go122
 SUBDIR += go123
