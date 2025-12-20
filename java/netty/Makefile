@@ -30,6 +30,8 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
+CFLAGS+=	-Wno-error=int-conversion
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "aarch64"
@@ -42,12 +44,6 @@ NETTY_ARCH=	arm_32
 NETTY_ARCH=	arm_32
 .elif ${ARCH} == "i386"
 NETTY_ARCH=	x86_32
-.elif ${ARCH} == "powerpc"
-NETTY_ARCH=	ppc_32
-.elif ${ARCH} == "powerpc64"
-NETTY_ARCH=	ppc_64
-.elif ${ARCH} == "sparc64"
-NETTY_ARCH=	sparc_64
 .else
 # Default to ${ARCH}
 NETTY_ARCH=	${ARCH}
