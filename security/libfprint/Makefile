@@ -20,7 +20,7 @@ GL_SITE=	https://gitlab.freedesktop.org
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 SHEBANG_GLOB=	*.py
-MESON_ARGS=	-Dinstalled-tests= \
+MESON_ARGS=	-Dinstalled-tests=false \
 		-Dudev_hwdb=disabled \
 		-Dudev_rules=disabled
 
