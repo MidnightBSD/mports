@@ -21,7 +21,7 @@ BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
 LIB_DEPENDS?=	libcurl.so:ftp/curl \
 		libstemmer.so:textproc/snowballstemmer \
 		libxmlb.so:textproc/libxmlb \
-		libyaml.so:textproc/libyaml \
+		libfyaml.so:textproc/libfyaml \
 		libzstd.so:archivers/zstd
 
 USES+=		gettext gnome localbase:ldflags meson pkgconfig \
