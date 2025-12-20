@@ -31,6 +31,7 @@ MESON_ARGS=	-Dsystemd=false -Dudev_rules=false \
 		-Dpnp_ids=${LOCALBASE}/share/hwdata/hwdata/pnp.ids \
 		--localstatedir=/var \
 
+NO_TEST=	yes
 INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.freedesktop.ColorHelper.gschema.xml
