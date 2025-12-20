@@ -104,11 +104,11 @@ PYTHON_DEFAULT?=	3.11
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.0, 3.1, 3.2
 RUBY_DEFAULT?=		3.2
-# Possible values: rust, rust167, rust169, rust-bin
+# Possible values: rust, rust-bin
 .if ${OSVERSION} > 400000
-RUST_DEFAULT?=		rust186
-.else
 RUST_DEFAULT?=		rust
+.else
+RUST_DEFAULT?=		rust-bin
 .endif
 # Possible values: 4.13
 SAMBA_DEFAULT?=		4.13
