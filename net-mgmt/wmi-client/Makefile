@@ -9,16 +9,19 @@ PKGNAMESUFFIX=	-client
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DCOM/WMI client implementation
 
-USES=		autoreconf:build gmake iconv tar:bzip2
+LICENSE=	gpl2
 
+USES=		autoreconf:build gmake iconv tar:bzip2
 MAKEFILE=	GNUmakefile
-MAKE_ARGS+=	ZENHOME="${PREFIX}" INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
+FAKE_MAKEARGS+=	ZENHOME="${PREFIX}" INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 		INSTALL_LIB="${INSTALL_LIB}"
 ALL_TARGET=	build
 
 PROGS=	bin/wmic bin/winexe
 
 .include <bsd.mport.options.mk>
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 do-install:
 .for x in ${PROGS}

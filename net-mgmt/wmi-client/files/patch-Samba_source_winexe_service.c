@@ -1,5 +1,5 @@
---- Samba/source/winexe/service.c.orig	2008-07-30 19:44:55 UTC
-+++ Samba/source/winexe/service.c
+--- Samba/source/winexe/service.c.orig	2012-11-06 19:39:54.144961557 +0900
++++ Samba/source/winexe/service.c	2012-11-06 19:37:01.500708620 +0900
 @@ -15,7 +15,7 @@
  #define SERVICE_DEMAND_START (0x00000003)
  #define SERVICE_ERROR_NORMAL (0x00000001)
