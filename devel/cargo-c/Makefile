@@ -17,7 +17,7 @@ LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 		libcurl.so:ftp/curl \
 		libssh2.so:security/libssh2
 
-USES=		cargo ssl
+USES=		cargo localbase ssl
 PLIST_FILES=	bin/cargo-capi \
 		bin/cargo-cbuild \
 		bin/cargo-cinstall \
