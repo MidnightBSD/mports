@@ -152,6 +152,7 @@
     SUBDIR += suitesparse-spqr
     SUBDIR += suitesparse-umfpack
     SUBDIR += superlu
+    SUBDIR += tlfloat
     SUBDIR += tomsfastmath
     SUBDIR += vtk9
     SUBDIR += xfce4-calculator-plugin
