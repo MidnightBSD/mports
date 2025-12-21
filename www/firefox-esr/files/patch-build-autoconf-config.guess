@@ -5,7 +5,7 @@
  	;;
      *:MidnightBSD:*:*)
 -	GUESS=$UNAME_MACHINE-unknown-midnightbsd$UNAME_RELEASE
-+	GUESS=$UNAME_MACHINE-unknown-freebsd12.4
++	GUESS=$UNAME_MACHINE-unknown-freebsd13.4
  	;;
      *:ekkoBSD:*:*)
  	GUESS=$UNAME_MACHINE-unknown-ekkobsd$UNAME_RELEASE

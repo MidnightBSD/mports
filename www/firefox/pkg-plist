@@ -1,5 +1,3 @@
-@comment %%ONLY-LINUX%%lib/firefox/crashreporter
-@comment %%ONLY-LINUX%%lib/firefox/libmozsandbox.so
 bin/firefox
 lib/firefox/application.ini
 lib/firefox/dependentlibs.list

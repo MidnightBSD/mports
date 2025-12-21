@@ -40,6 +40,7 @@
     SUBDIR += fcgi
     SUBDIR += firefox
     SUBDIR += firefox-esr
+    SUBDIR += firefox-freebsd
     SUBDIR += furl
     SUBDIR += gitea
     SUBDIR += glassfish
@@ -99,7 +100,6 @@
     SUBDIR += mod_fcgid
     SUBDIR += mod_http2
     SUBDIR += mod_perl2
-    SUBDIR += mod_php81
     SUBDIR += mod_php82
     SUBDIR += mod_php83
     SUBDIR += mod_security
@@ -227,9 +227,6 @@
     SUBDIR += pear-Horde_Service_Weather
     SUBDIR += pear-Horde_SessionHandler
     SUBDIR += pear-Horde_Template
-    SUBDIR += php81-opcache
-    SUBDIR += php81-session
-    SUBDIR += php81-tidy
     SUBDIR += php82-opcache
     SUBDIR += php82-session
     SUBDIR += php82-tidy
