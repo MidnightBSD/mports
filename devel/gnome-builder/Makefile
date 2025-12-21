@@ -27,7 +27,7 @@ LIB_DEPENDS=	libcmark.so:textproc/cmark \
 		libjson-glib-1.0.so:devel/json-glib \
 		libjsonrpc-glib-1.0.so:devel/jsonrpc-glib \
 		libpcre.so:devel/pcre \
-		libpeas-1.0.so:devel/libpeas \
+		libpeas-1.0.so:devel/libpeas1 \
 		libportal.so:deskutils/libportal \
 		libportal-gtk3.so:deskutils/libportal-gtk3 \
 		libsoup-2.4.so:devel/libsoup \
