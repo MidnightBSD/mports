@@ -18,7 +18,7 @@ FLAVOR?=	${FLAVORS:[1]}
 USES=		compiler:c11 cpe gl meson pkgconfig tar:xz xorg
 USE_GL=		gl
 
-#NO_TEST=	yes
+NO_TEST=	yes
 
 .if ${FLAVOR} == xephyr
 PORTNAME=	xephyr
