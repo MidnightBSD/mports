@@ -5,7 +5,7 @@ MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Gstreamer-based video player for the GNOME 3 Desktop
+COMMENT=	Gstreamer-based video player for the GNOME Desktop
 WWW=		https://apps.gnome.org/Totem/
 
 LICENSE=	gpl2+
