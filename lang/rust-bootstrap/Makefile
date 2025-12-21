@@ -1,5 +1,5 @@
 PORTNAME=	rust
-PORTVERSION=	1.71.0
+PORTVERSION=	1.87.0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/
 PKGNAMEPREFIX=	${FLAVOR:S/_/-/g}-
@@ -71,8 +71,7 @@ do-configure:
 # Check that the running kernel has COMPAT_FREEBSD11 required by lang/rust post-ino64
 	@${SETENV} CC="${CC}" OPSYS="${OPSYS}" OSVERSION="${OSVERSION}" WRKDIR="${WRKDIR}" \
 		${SH} ${SCRIPTSDIR}/rust-compat11-canary.sh
-	@${ECHO_CMD} 'changelog-seen=2' > ${WRKSRC}/config.toml
-#	@${ECHO_CMD} 'profile = "dist"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'profile = "dist"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} '[build]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'build-dir="${WRKDIR}/_build"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'vendor=true' >> ${WRKSRC}/config.toml
@@ -83,10 +82,10 @@ do-configure:
 	@${ECHO_CMD} 'cargo-native-static=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'cargo="${LOCALBASE}/bin/cargo"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'rustc="${LOCALBASE}/bin/rustc"' >> ${WRKSRC}/config.toml
-.if ${_RUST_HOST} != ${_RUST_TARGET}
-	@${ECHO_CMD} 'host=["${_RUST_HOST}","${_RUST_TARGET}"]' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'target=["${_RUST_TARGET}"]' >> ${WRKSRC}/config.toml
-.endif
+#.if ${_RUST_HOST} != ${_RUST_TARGET}
+#	@${ECHO_CMD} 'host=["${_RUST_HOST}","${_RUST_TARGET}"]' >> ${WRKSRC}/config.toml
+#	@${ECHO_CMD} 'target=["${_RUST_TARGET}"]' >> ${WRKSRC}/config.toml
+#.endif
 	@${ECHO_CMD} '[rust]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'channel="stable"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'default-linker="${CC}"' >> ${WRKSRC}/config.toml
@@ -115,17 +114,16 @@ do-configure:
 .if ${_RUST_HOST} != ${_RUST_TARGET}
 	@${ECHO_CMD} '[target.${_RUST_HOST}]' >> ${WRKSRC}/config.toml
 .endif
-	@${ECHO_CMD} 'cc="${CC}"' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'cxx="${CXX}"' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'linker="${CC}"' >> ${WRKSRC}/config.toml
+#	@${ECHO_CMD} 'cc="${CC}"' >> ${WRKSRC}/config.toml
+#	@${ECHO_CMD} 'cxx="${CXX}"' >> ${WRKSRC}/config.toml
+#	@${ECHO_CMD} 'linker="${CC}"' >> ${WRKSRC}/config.toml
 #.endif
 	@${ECHO_CMD} '[dist]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'src-tarball=false' >> ${WRKSRC}/config.toml
 
 do-build:
 	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER} \
-		cargo rustc rust-std
+		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/rust-bootstrap/${FLAVOR}
