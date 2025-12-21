@@ -49,6 +49,7 @@
     SUBDIR += linux-c7-sdl12-extralibs
     SUBDIR += linux-rl9-sdl12-extralibs
     SUBDIR += linux-rl9-sdl20-extralibs
+    SUBDIR += llama-cpp
     SUBDIR += localedata
     SUBDIR += mate-user-guide
     SUBDIR += mbuffer
