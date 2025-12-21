@@ -313,6 +313,7 @@
     SUBDIR += zebra
     SUBDIR += zebra-server
     SUBDIR += zerotier
+    SUBDIR += ziina
     SUBDIR += zillion
     SUBDIR += zmap
     SUBDIR += zsync
