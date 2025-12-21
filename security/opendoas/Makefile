@@ -1,6 +1,7 @@
 PORTNAME=	opendoas
 DISTVERSIONPREFIX=	v
 DISTVERSION=	6.8.2
+PORTREVISION=	1
 CATEGORIES=	security
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -9,7 +10,7 @@ PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	b96106b7e34ac591ae78b1684e9be3a265122463.patch:-p1
 # Added freebsd support for timestamp (persist):
 # https://github.com/Duncaen/OpenDoas/pull/127
-#PATCHFILES+=	97218322213274eb24ab633e09478075b2282ab3.patch:-p1
+PATCHFILES+=	97218322213274eb24ab633e09478075b2282ab3.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of OpenDoas: a portable version of OpenBSD's doas
@@ -27,11 +28,15 @@ GH_PROJECT=	OpenDoas
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc \
+		--with-timestamp \
 		--without-shadow
 
 MAKEFILE=	GNUmakefile
 
 CONFLICTS=	doas
+
+post-patch:
+	${REINPLACE_CMD} -e 's|__freebsd__|__midnightbsd__|g' ${WRKSRC}/timestamp.c
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/doas
