@@ -1,5 +1,5 @@
 PORTNAME=	pciids
-PORTVERSION=	20250621
+PORTVERSION=	20251219
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,7 @@ PORTDATA=	pci.ids
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	pciutils
-GH_TAGNAME=	6d8349f
+GH_TAGNAME=	59d876a
 
 do-install:
 	${MKDIR} ${DATADIR}/
