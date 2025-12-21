@@ -75,7 +75,6 @@
     SUBDIR += links
     SUBDIR += links1
     SUBDIR += linux-c7-qtwebkit
-    SUBDIR += linux-libgtkembedmoz
     SUBDIR += linux-rl9-libnghttp2
     SUBDIR += linux-rl9-qt5-qtwebchannel
     SUBDIR += linux-rl9-qt5-qtwebsockets
