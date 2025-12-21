@@ -491,6 +491,7 @@
     SUBDIR += libpci
     SUBDIR += libpciaccess
     SUBDIR += libpeas
+    SUBDIR += libpeas1
     SUBDIR += libphonenumber
     SUBDIR += libplist
     SUBDIR += libpthread-stubs
