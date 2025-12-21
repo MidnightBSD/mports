@@ -1,6 +1,6 @@
 PORTNAME=	gedit
 PORTVERSION=	44.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
@@ -19,7 +19,7 @@ BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
 LIB_DEPENDS=	libamtk-5.so:x11-toolkits/amtk \
 		libenchant.so:textproc/enchant \
 		libgspell-1.so:textproc/gspell \
-		libpeas-gtk-1.0.so:devel/libpeas \
+		libpeas-gtk-1.0.so:devel/libpeas1 \
 		libsoup-2.4.so:devel/libsoup \
 		libtepl-6.so:x11-toolkits/tepl6
 
