@@ -1,6 +1,6 @@
 PORTNAME=	simpleagenda
 PORTVERSION=	0.46
-PORTREVISION=	2
+PORTREVISION=	3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	deskutils gnustep
 DISTNAME=	SimpleAgenda-${PORTVERSION}
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple calendar and agenda application
 WWW=		https://mediawiki.gnustep.org/index.php/SimpleAgenda.app
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 LIB_DEPENDS=	libical.so:devel/libical \
 		libuuid.so:misc/libuuid
