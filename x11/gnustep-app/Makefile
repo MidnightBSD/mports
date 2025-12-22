@@ -1,6 +1,6 @@
 PORTNAME=	gnustep-app
 PORTVERSION=	2.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnustep
 MASTER_SITES=   # empty
 DISTFILES=      # empty
@@ -19,7 +19,7 @@ APP_DIR=	${LOCALBASE}/GNUstep/System/Applications
 RUN_DEPENDS=	aclock>0:x11-clocks/aclock \
 		addresses>0:mail/addresses \
 		addresses-goodies>0:mail/addresses-goodies \
-		${APP_DIR}/Affiche.app/Affiche:deskutils/affiche \
+		affiche>0:deskutils/affiche \
 		appwrapper>0:deskutils/appwrapper \
 		batmon>0:sysutils/batmon \
 		camera>0:graphics/camera \

@@ -1,5 +1,6 @@
     COMMENT = Biology
 
+    SUBDIR += biococoa
     SUBDIR += linux-foldingathome
     SUBDIR += ruby-bio
     SUBDIR += rubygem-bio
