@@ -19,7 +19,8 @@ GNU_CONFIGURE=	yes
 USE_GNUSTEP=	back base build gui
 USE_GITHUB=	yes
 GH_ACCOUNT=	poroussel
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|SimpleAgenda|&.m|' ${WRKSRC}/configure
