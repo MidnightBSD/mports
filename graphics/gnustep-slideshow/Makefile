@@ -1,5 +1,3 @@
-
-
 PORTNAME=	slideshow
 PORTVERSION=	0.3.5
 PORTREVISION=	4
@@ -10,12 +8,13 @@ DISTNAME=	SlideShow-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SlideShow Viewer
+WWW=		https://web.archive.org/web/20160201113524/http://home.gna.org/gsimageapps/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
 USES=		tar:bzip2 gnustep
 USE_GNUSTEP=	back build
-LIB_DEPENDS=	libSlideShow.so:${PORTSDIR}/graphics/gnustep-slideshowkit
+LIB_DEPENDS=	libSlideShow.so:graphics/gnustep-slideshowkit
 
 OBJCFLAGS+=	-Dsel_eq=sel_isEqual
 
