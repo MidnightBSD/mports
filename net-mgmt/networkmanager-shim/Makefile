@@ -24,6 +24,8 @@ GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	NetworkManager
 GL_PROJECT=	NetworkManager
 
+NO_TEST=	yes
+
 MESON_ARGS=	-Dconcheck=false \
 		-Dcrypto=null \
 		-Ddbus_conf_dir=disabled \
