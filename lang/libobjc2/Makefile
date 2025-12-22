@@ -1,7 +1,6 @@
 PORTNAME=	libobjc2
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.1
-PORTREVISION=	3
+DISTVERSION=	2.2.1
 CATEGORIES=	lang devel gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,11 +8,12 @@ COMMENT=	Replacement Objective-C runtime supporting modern Objective-C features
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${LOCALBASE}/include/tsl/robin_map.h:devel/robin-map
+
 USES=		cmake compiler objc:compiler
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gnustep
-GH_TUPLE=	Tessil:robin-map:757de82:robin_map/third_party/robin-map
 
 USE_LDCONFIG=	yes
 
@@ -22,7 +22,8 @@ LDFLAGS+=	-lm
 #TEST_TARGET=	test
 NO_TEST=	yes
 
-CMAKE_ARGS+=	-DLIB_INSTALL_PATH=lib
+CMAKE_ARGS+=	-DLIB_INSTALL_PATH=lib \
+		-DLOCALBASE=${LOCALBASE}
 
 LDFLAGS_armv7=	-Wl,-znotext
 SSP_UNSAFE=	yes
@@ -33,6 +34,10 @@ SHLIB_MAJOR=	4
 SHLIB_MINOR=	6
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH:Mpowerpc*} || ${ARCH:Mriscv64*}
+CMAKE_ARGS+=	-DTESTS:BOOL=OFF
+.endif
 
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 CXXFLAGS+=	-stdlib=libstdc++

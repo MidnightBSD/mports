@@ -1,5 +1,5 @@
 PORTNAME=	gnustep-make
-PORTVERSION=	2.9.1
+PORTVERSION=	2.9.2
 CATEGORIES=	devel gnustep
 MASTER_SITES=	GNUSTEP/core \
 		https://github.com/gnustep/tools-make/releases/download/make-2_9_1/

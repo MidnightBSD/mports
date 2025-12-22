@@ -6,7 +6,7 @@ CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI backend
-WWW=		http://www.gnustep.org/
+WWW=		https://www.gnustep.org/
 
 LICENSE_COMB=	multi
 LICENSE=	gpl3 lgpl3
