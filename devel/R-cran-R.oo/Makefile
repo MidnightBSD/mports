@@ -10,6 +10,7 @@ WWW=		https://cran.r-project.org/package=R.oo
 LICENSE=	lgpl2.1 lgpl3
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS+=	R-cran-R.methodsS3>=1.8.2:devel/R-cran-R.methodsS3
 RUN_DEPENDS=	R-cran-R.methodsS3>=1.8.2:devel/R-cran-R.methodsS3
 
 USES=		cran:auto-plist
