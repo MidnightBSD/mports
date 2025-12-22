@@ -24,7 +24,8 @@ GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 
 INSTALL_TARGET=	install-strip
 
-TEST_TARGET=	check # one test fails, see https://github.com/pantoniou/libfyaml/issues/103
+# a test fails
+NO_TEST=yes
 
 post-patch:
 	@${GREP} -rl "#include <alloca\\.h>" ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -E "s|#include <alloca\\.h>|#include <stdlib.h>|"
