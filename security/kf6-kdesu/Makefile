@@ -5,7 +5,7 @@ CATEGORIES=	security kde kde-frameworks
 COMMENT=	User interface for running shell commands with root privileges
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gettext kde:6 qt:6 tar:xz xorg
+USES=		cmake gettext kde:6 kfhack qt:6 tar:xz xorg
 USE_KDE=	config coreaddons i18n pty \
 		ecm:build
 USE_QT=		base
