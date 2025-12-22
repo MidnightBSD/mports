@@ -1,5 +1,3 @@
-
-
 PORTNAME=	price
 PORTVERSION=	1.3.0
 PORTREVISION=	5
@@ -9,6 +7,7 @@ DISTNAME=	PRICE-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image filtering and manipulation using GNUstep
+WWW: https://price.sourceforge.net/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
