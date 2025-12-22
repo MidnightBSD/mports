@@ -6,7 +6,7 @@ CATEGORIES=	devel gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Object Relationship Modeller
-WWW=		http://www.gnustep.org/experience/Gorm.html
+WWW=		https://www.gnustep.org/experience/Gorm.html
 
 LICENSE=	gpl3
 
