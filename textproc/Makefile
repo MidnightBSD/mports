@@ -423,6 +423,7 @@
     SUBDIR += py-zope.i18nmessageid
     SUBDIR += qt5-xml
     SUBDIR += qt5-xmlpatterns
+    SUBDIR += quickwit
     SUBDIR += raptor2
     SUBDIR += rarian
     SUBDIR += rasqal
