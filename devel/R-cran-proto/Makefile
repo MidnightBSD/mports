@@ -12,4 +12,6 @@ LICENSE=	gpl2
 
 USES=	cran:auto-plist
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
