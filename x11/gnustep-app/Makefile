@@ -70,7 +70,7 @@ RUN_DEPENDS=	aclock>0:x11-clocks/aclock \
 		gnustep-notebook>0:deskutils/gnustep-notebook \
 		paje>0:science/paje \
 		pantomime>0:mail/pantomime \
-		pixen>0:graphics/pixen \
+		pikopixel>0:graphics/pikopixel \
 		plopfolio>0:deskutils/plopfolio \
 		poe>0:multimedia/poe \
 		popup>0:textproc/popup \

@@ -289,8 +289,8 @@
     SUBDIR += php82-gd
     SUBDIR += php83-exif
     SUBDIR += php83-gd
+    SUBDIR += pikopixel
     SUBDIR += pixd
-    SUBDIR += pixen
     SUBDIR += plasma6-spectacle
     SUBDIR += plotutils
     SUBDIR += png
