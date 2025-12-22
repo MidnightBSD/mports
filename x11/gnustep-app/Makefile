@@ -22,6 +22,7 @@ RUN_DEPENDS=	aclock>0:x11-clocks/aclock \
 		affiche>0:deskutils/affiche \
 		appwrapper>0:deskutils/appwrapper \
 		batmon>0:sysutils/batmon \
+		biococoa>0:biology/biococoa \
 		camera>0:graphics/camera \
 		camerakit>0:graphics/camerakit \
 		cartotheque>0:deskutils/cartotheque \
