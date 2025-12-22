@@ -1,5 +1,3 @@
-
-
 PORTNAME=	paje
 PORTVERSION=	1.97
 PORTREVISION=	6
@@ -10,6 +8,7 @@ EXTRACT_SUFX=	.tar.gz.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic visualization tool for GNUstep (Gantt chart and more)
+WWW=		http://www-id.imag.fr/Logiciels/paje/
 
 LICENSE=	lgpl2.1
 
@@ -17,6 +16,8 @@ USES=		gnustep
 USE_GNUSTEP=	gui base back build
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
+
+CPPFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-patch:
 	${REINPLACE_CMD} -e 's|^GNUSTEP_INSTALLATION_DOMAIN|#GNUSTEP_INSTALLATION_DOMAIN|' \
