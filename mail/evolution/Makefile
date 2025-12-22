@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated mail, calendar and address book distributed suite
 WWW=		https://wiki.gnome.org/Apps/Evolution
 
-LICENSE=	gfdl gpl2 lgpl2.1 mpl OPENLDAP
+LICENSE=	gfdl gpl2 lgpl2.1 MPL20 OPENLDAP
 LICENSE_COMB=	multi
 LICENSE_NAME_OPENLDAP=	OpenLDAP Public License
 LICENSE_FILE_OPENLDAP=	${WRKSRC}/COPYING.OPENLDAP
