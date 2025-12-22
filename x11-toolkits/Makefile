@@ -10,6 +10,8 @@
     SUBDIR += gnustep-gui
     SUBDIR += gstreamer1-plugins-gtk
     SUBDIR += gstreamer1-plugins-pango
+    SUBDIR += gstreamer1-plugins-qt5
+    SUBDIR += gstreamer1-plugins-qt6
     SUBDIR += gtk-layer-shell
     SUBDIR += gtk-sharp-beans
     SUBDIR += gtk-sharp20
