@@ -8,7 +8,8 @@ DIST_SUBDIR=	AbiWord
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source, cross-platform WYSIWYG word processor
-WWW=		https://gitlab.gnome.org/World/AbiWord
+WWW=		https://gitlab.gnome.org/World/AbiWord \
+		https://web.archive.org/web/20251018090637/https://www.abisource.com/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
