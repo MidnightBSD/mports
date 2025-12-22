@@ -9,7 +9,7 @@ PATCHFILES=	37913d006d96a6bdcb963f4ca4889888dcce6094.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
-WWW=		http://www.gnustep.org/
+WWW=		https://www.gnustep.org/
 
 LICENSE=	gpl lgpl
 LICENSE_COMB=	multi
