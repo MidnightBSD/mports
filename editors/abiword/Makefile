@@ -1,6 +1,6 @@
 PORTNAME=	abiword
 PORTVERSION=	3.0.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/abiword/${PORTVERSION}/source/ \
 		https://dev.alpinelinux.org/archive/${PORTNAME}/
@@ -31,7 +31,7 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libwmf.so:graphics/libwmf
 RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSerif.ttf:x11-fonts/dejavu
 
-USES=		compiler:c++17-lang cpe desktop-file-utils gmake gnome iconv jpeg \
+USES=		compiler:c++11-lang cpe desktop-file-utils gmake gnome iconv jpeg \
 		libtool pathfix pkgconfig readline
 USE_GNOME=	libxml2 cairo gtk30 librsvg2 libxslt
 USE_XORG+=	x11
