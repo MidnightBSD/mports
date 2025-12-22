@@ -1,7 +1,7 @@
 PORTNAME=	gnustep-gui
 DISTVERSIONPREFIX=	gui-
-DISTVERSION=	0_28_0
-PORTREVISION=	2
+DISTVERSION=	0_31_1
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,13 +11,13 @@ WWW=		http://www.gnustep.org/
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
 
-LIB_DEPENDS+=	libtiff.so:graphics/tiff
-LIB_DEPENDS+=	libpng.so:graphics/png
-LIB_DEPENDS+=	libgif.so:graphics/giflib
-LIB_DEPENDS+=	libicui18n.so:devel/icu
-LIB_DEPENDS+=	libsndfile.so:audio/libsndfile
-LIB_DEPENDS+=	libao.so:audio/libao
-LIB_DEPENDS+=	libflite.so:audio/flite
+LIB_DEPENDS+=	libtiff.so:graphics/tiff \
+		libpng.so:graphics/png \
+		libgif.so:graphics/giflib \
+		libicui18n.so:devel/icu \
+		libsndfile.so:audio/libsndfile \
+		libao.so:audio/libao \
+		libflite.so:audio/flite
 
 USES=		gnustep jpeg pkgconfig xorg
 USE_GNUSTEP=	base build
