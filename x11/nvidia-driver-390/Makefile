@@ -5,4 +5,6 @@ PORTREVISION=	0
 MASTERDIR=	${.CURDIR}/../nvidia-driver
 PKGNAMESUFFIX=	-390
 
+DISTINFO_FILE=	${.CURDIR}/distinfo
+
 .include "${MASTERDIR}/Makefile"
