@@ -1,5 +1,3 @@
-# Created by: Dmitry Marakasov <amdmi3@FreeBSD.org>
-
 PORTNAME=	nvidia-texture-tools
 PORTVERSION=	2.0.8.1 # needed to not bump PORTEPOCH; remove on next update
 PORTREVISION=	3
@@ -7,6 +5,7 @@ CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Texture Tools with support for DirectX 10 texture formats
+WWW=		https://github.com/castano/nvidia-texture-tools
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/NVIDIA_Texture_Tools_LICENSE.txt
@@ -22,7 +21,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	castano
 GH_TAGNAME=	${PORTVERSION:R}
 
-USES=		alias cmake compiler:c++11-lang jpeg
+USES=		cmake compiler:c++11-lang jpeg
 CMAKE_ARGS=	-DNVTT_SHARED=TRUE
 
 CFLAGS+=	-fPIC
