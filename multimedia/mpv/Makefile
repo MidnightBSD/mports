@@ -19,7 +19,7 @@ LIB_DEPENDS=	libplacebo.so:graphics/libplacebo \
 		libavcodec.so:multimedia/ffmpeg \
 		libass.so:multimedia/libass
 
-USES=		compiler:c11 cpe desktop-file-utils iconv jpeg \
+USES=		compiler:c11 cpe desktop-file-utils iconv:wchar_t jpeg \
 		meson pkgconfig python:build shebangfix tar:bz2
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	TOOLS/*.py
