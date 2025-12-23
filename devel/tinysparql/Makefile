@@ -2,7 +2,7 @@ PORTNAME=	tinysparql
 PORTVERSION=	3.8.2
 PORTREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER= 	ports@MidnightBSD.org
@@ -21,7 +21,8 @@ LIB_DEPENDS=	libavahi-glib.so:net/avahi-app \
 		libicutu.so:devel/icu \
 		libjson-glib-1.0.so:devel/json-glib \
 
-USES=		gettext gnome meson pkgconfig sqlite vala:build python:build
+USES=		gettext gnome meson localbase:ldflags pkgconfig sqlite vala:build python:build \
+		tar:xz
 USE_GNOME=	glib20 libxml2 introspection:build pygobject3
 CONFIGURE_ARGS=	-Dsystemd_user_services=false \
 		-Dbash_completion=true \
