@@ -1,6 +1,6 @@
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	http://freebsd.nsu.ru/distfiles/wdm/:wdm GENTOO:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \
@@ -13,6 +13,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WINGs Display Manager; an xdm replacement
+WWW=		https://github.com/voins/wdm
 
 LICENSE=	gpl2
 
@@ -48,6 +49,8 @@ WDMDIR=		${PREFIX}/lib/X11/wdm
 
 PAM_CONFIGURE_OFF=	--disable-pam
 PAM_CONFIGURE_ON=	--with-pamdir=${LOCALBASE}/etc/pam.d/
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-patch:
 	@${REINPLACE_CMD} -e \
