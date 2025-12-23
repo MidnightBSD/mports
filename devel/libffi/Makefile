@@ -18,7 +18,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--disable-multi-os-directory
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 INSTALL_TARGET=	install-strip
 NO_TEST=	yes
 
