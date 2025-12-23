@@ -20,6 +20,7 @@ SUBDIR += qemu
 SUBDIR += qemu7
 SUBDIR += qemu8
 SUBDIR += qemu-user-static
+SUBDIR += snes9x-gtk
 SUBDIR += tpm-emulator
 SUBDIR += vba
 SUBDIR += vgb-bin
