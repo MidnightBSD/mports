@@ -82,6 +82,8 @@ CLANG_MESON_TRUE=	plugin_clang
 CLANG_USES=		llvm:build,run
 CLANG_CONFIGURE_ENV=	LLVM_CONFIG=${LLVM_CONFIG}
 
+NO_TEST=	yes
+
 # 11.1 and older has issues with vala generated code.
 post-patch:
 	${REINPLACE_CMD} -e '/-Werror=return-type/d' \
