@@ -1,5 +1,5 @@
 PORTNAME=	rust
-PORTVERSION=	1.87.0
+PORTVERSION=	1.88.0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/
 PKGNAMEPREFIX=	${FLAVOR:S/_/-/g}-
