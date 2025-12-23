@@ -10,4 +10,6 @@ PLIST=		${.CURDIR}/pkg-plist
 
 _GPGME_BINDING=	qt
 
+NO_TEST=	yes
+
 .include "${MASTERDIR}/Makefile"
