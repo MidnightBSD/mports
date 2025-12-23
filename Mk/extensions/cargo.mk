@@ -96,15 +96,9 @@ WRKSRC_crate_${_crate}=	${WRKDIR}/${_wrksrc}
 
 CARGO_BUILDDEP?=	yes
 .  if ${CARGO_BUILDDEP:tl} == "yes"
-BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.70.0:lang/${RUST_DEFAULT}
-LIB_DEPENDS+=    libcurl.so:ftp/curl \
-                libgit2.so:devel/libgit2 \
-                libssh2.so:security/libssh2
+BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.87.0:lang/${RUST_DEFAULT}
 .  elif ${CARGO_BUILDDEP:tl} == "any-version"
 BUILD_DEPENDS+=	${RUST_DEFAULT}>=0:lang/${RUST_DEFAULT}
-LIB_DEPENDS+=    libcurl.so:ftp/curl \
-                libgit2.so:devel/libgit2 \
-                libssh2.so:security/libssh2
 .  endif
 
 # Location of toolchain (default to lang/rust's toolchain)
@@ -142,7 +136,7 @@ CARGO_ENV+= \
 
 CARGO_ENV+=	RUST_BACKTRACE=1
 
-.  if !defined(LTO_UNSAFE)
+.  if !defined(WITHOUT_LTO)
 _CARGO_MSG=	"===>   Additional optimization to port applied"
 WITH_LTO=	yes
 .  endif
@@ -150,13 +144,16 @@ WITH_LTO=	yes
 # Adjust -C target-cpu if -march/-mcpu is set by bsd.cpu.mk
 .  if ${ARCH} == amd64 || ${ARCH} == i386
 RUSTFLAGS+=	${CFLAGS:M-march=*:S/-march=/-C target-cpu=/}
+.  elif ${ARCH} == aarch64 || ${ARCH} == armv7
+RUSTFLAGS+=	-C target-cpu=${CPUTYPE:C/\+.+//g}
 .  else
 RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/}
 .  endif
 
 # Helper to shorten cargo calls.
-_CARGO_RUN=		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${CARGO_ENV} ${CARGO}
-CARGO_CARGO_RUN=	cd ${WRKSRC}; ${SETENVI} ${WRK_ENV} CARGO_FREEBSD_PORTS_SKIP_GIT_UPDATE=1 ${_CARGO_RUN}
+_CARGO_RUN=		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${CARGO_ENV} ${CARGO}
+CARGO_CARGO_RUN=	cd ${WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${CARGO_ENV} \
+			CARGO_FREEBSD_PORTS_SKIP_GIT_UPDATE=1 ${CARGO}
 
 # User arguments for cargo targets.
 CARGO_BUILD_ARGS?=
@@ -212,20 +209,6 @@ CARGO_ENV+=	GETTEXT_BIN_DIR=${LOCALBASE}/bin \
 BUILD_DEPENDS+=	gmake:devel/gmake
 .  endif
 
-.for libc in ${CARGO_CRATES:Mlibc-[0-9]*}
-# FreeBSD 12.0 changed ABI: r318736 and r320043
-# https://github.com/rust-lang/libc/commit/78f93220d70e
-# https://github.com/rust-lang/libc/commit/969ad2b73cdc
-_libc_VER=	${libc:C/.*-//}
-. if ${_libc_VER:R:R} == 0 && (${_libc_VER:R:E} < 2 || ${_libc_VER:R:E} == 2 && ${_libc_VER:E} < 38)
-DEV_ERROR+=	"CARGO_CRATES=${libc} may be unstable on MidnightBSD 3.0. Consider updating to the latest version \(higher than 0.2.37\)."
-. endif
-. if ${_libc_VER:R:R} == 0 && (${_libc_VER:R:E} < 2 || ${_libc_VER:R:E} == 2 && ${_libc_VER:E} < 49)
-DEV_ERROR+=	"CARGO_CRATES=${libc} may be unstable on aarch64 or not build on armv6, armv7. Consider updating to the latest version \(higher than 0.2.49\)."
-. endif
-.undef _libc_VER
-.endfor
-
 .  if ${_CARGO_CRATES:Mlibgit2-sys}
 # Use the system's libgit2 instead of building the bundled version
 CARGO_ENV+=	LIBGIT2_SYS_USE_PKG_CONFIG=1
@@ -243,18 +226,7 @@ CARGO_ENV+=	LIBSSH2_SYS_USE_PKG_CONFIG=1
 # RUSTONIG_SYSTEM_LIBONIG is not necessary, but will force onig_sys to
 # always use the system's libonig as returned by `pkg-config oniguruma`.
 CARGO_ENV+=	RUSTONIG_SYSTEM_LIBONIG=1
-.endif
-
-.if ${CARGO_CRATES:Mopenssl-0.[0-9].*}
-# https://github.com/sfackler/rust-openssl/commit/276577553501
-. if !exists(${PATCHDIR}/patch-openssl-1.1.1) # skip if backported
-_openssl_VER=	${CARGO_CRATES:Mopenssl-0.[0-9].*:C/.*-//}
-.  if ${_openssl_VER:R:R} == 0 && (${_openssl_VER:R:E} < 10 || ${_openssl_VER:R:E} == 10 && ${_openssl_VER:E} < 4)
-DEV_WARNING+=	"CARGO_CRATES=openssl-0.10.3 or older do not support OpenSSL 1.1.1. Consider updating to the latest version."
 .  endif
-. endif
-.undef _openssl_VER
-.endif
 
 .  if ${_CARGO_CRATES:Mopenssl-src}
 DEV_WARNING+=	"Please make sure this port uses the system OpenSSL and consider removing CARGO_CRATES=${CARGO_CRATES:Mopenssl-src-[0-9]*} (a vendored copy of OpenSSL) from the build, e.g., by patching Cargo.toml appropriately."
@@ -346,6 +318,7 @@ cargo-configure:
 		${ECHO_CMD} "[profile.release]" >> ${CARGO_CARGOTOML}; \
 		${ECHO_CMD} "opt-level = 2" >> ${CARGO_CARGOTOML}; \
 		${ECHO_CMD} "debug = false" >> ${CARGO_CARGOTOML}; \
+		${ECHO_CMD} 'strip = "symbols"' >> ${CARGO_CARGOTOML}; \
 	fi
 	@${ECHO_MSG} "===>   Updating Cargo.lock"
 	@${CARGO_CARGO_RUN} update \
@@ -409,7 +382,7 @@ cargo-crates: cargo-crates-generate-lockfile
 cargo-crates-generate-lockfile: extract
 	@if [ ! -r "${CARGO_CARGOLOCK}" ]; then \
 		${ECHO_MSG} "===> ${CARGO_CARGOLOCK} not found.  Trying to generate it..."; \
-		cd ${WRKSRC}; ${_CARGO_RUN} generate-lockfile \
+		cd ${CARGO_CARGOLOCK:H}; ${_CARGO_RUN} generate-lockfile \
 			--manifest-path ${CARGO_CARGOTOML} \
 			--verbose; \
 	fi
