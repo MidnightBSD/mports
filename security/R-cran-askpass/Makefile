@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/askpass/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	R-cran-sys>=2.1:devel/R-cran-sys
 RUN_DEPENDS=	R-cran-sys>=2.1:devel/R-cran-sys
 
 USES=		cran:auto-plist,compiles
