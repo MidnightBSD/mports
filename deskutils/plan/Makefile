@@ -12,6 +12,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X/Motif schedule planner with calendar
 WWW=		https://www.bitrot.de/plan.html
 
+LICENSE=	gpl2
+
 USES=		motif
 USE_XORG=	xt sm ice x11 xext
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/src
