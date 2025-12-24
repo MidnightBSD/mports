@@ -1,4 +1,4 @@
---- src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c.orig	2025-04-19 18:17:03 UTC
+--- src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c.orig	2023-10-01 03:54:04 UTC
 +++ src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c
 @@ -58,6 +58,7 @@
  #include <unistd.h>
@@ -8,7 +8,7 @@
  #include <vm/vm_param.h>
  #endif
  
-@@ -178,23 +179,45 @@ Java_com_sun_management_internal_OperatingSystemImpl_g
+@@ -177,23 +178,43 @@ Java_com_sun_management_internal_OperatingSystemImpl_g
      }
      return t_info.virtual_size;
  #elif defined(__FreeBSD__)
@@ -59,15 +59,13 @@
 +        if (kve->kve_structsize == 0)
 +            break;
 +        bp += kve->kve_structsize;
-+    /*    if (kve->kve_type != KVME_TYPE_VNODE)
-+                continue;*/
 +        total += kve->kve_end - kve->kve_start;
 +    }
 +    free(buf);
      return total;
  #else /* _ALLBSD_SOURCE */
      /*
-@@ -404,6 +427,21 @@ Java_com_sun_management_internal_OperatingSystemImpl_g
+@@ -403,6 +424,21 @@ Java_com_sun_management_internal_OperatingSystemImpl_g
      return nfiles;
  #elif defined(__OpenBSD__)
      return getdtablecount();

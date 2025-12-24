@@ -7,7 +7,7 @@ PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Java Development Kit ${JDK_MAJOR_VERSION}
-WWW=		https://openjdk.java.net/projects/jdk/19/
+WWW=		https://openjdk.java.net/projects/jdk/20/
 
 LICENSE=	gpl2
 
@@ -33,7 +33,7 @@ CPE_VENDOR=	oracle
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	battleblow
-GH_PROJECT=	jdk19u
+GH_PROJECT=	jdk20u
 
 NO_CCACHE=	yes
 
@@ -62,13 +62,13 @@ INSTALLDIR=	${PREFIX}/${PKGBASE}
 
 NOPRECIOUSMAKEVARS=	yes
 
-JDK_MAJOR_VERSION=	19
+JDK_MAJOR_VERSION=	20
 JDK_MINOR_VERSION=	0
 JDK_PATCH_VERSION=	2
-JDK_BUILD_NUMBER=	7
+JDK_BUILD_NUMBER=	9
 BSD_JDK_VERSION=	1
 
-JDK_BUG_URL=	https://github.com/midnightbsd/mports
+JDK_BUG_URL=	https://bugs.freebsd.org/bugzilla/enter_bug.cgi?product=Ports%20%26%20Packages&component=Individual%20Port(s)&short_desc=java/${PORTNAME}${JDK_MAJOR_VERSION}%3A%20
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CC=${CC} \
@@ -116,7 +116,7 @@ JDK_BUILD_TYPE=		release
 
 .include <bsd.port.pre.mk>
 
-BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk19 ${LOCALBASE}/openjdk18
+BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk20 ${LOCALBASE}/openjdk19
 
 # do we have valid native jdk installed?
 .for BJDK in ${BOOTSTRAP_JDKS}
@@ -127,8 +127,8 @@ BOOTSTRAPJDKDIR=	${BJDK}
 
 # if no valid jdk found, set dependency
 .if !defined(BOOTSTRAPJDKDIR)
-BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk18
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/openjdk18
+BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk19
+BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/openjdk19
 .endif
 
 JDK_BUILD_JVM=	server
@@ -154,7 +154,6 @@ CONFIGURE_ARGS+=	--with-extra-cxxflags="${EXTRA_CFLAGS}"
 .if ${ARCH} == aarch64
 CONFIGURE_ARGS+=	--with-boot-jdk-jvmargs=-XX:-UseCompressedClassPointers --disable-dtrace
 MAKE_ENV+=		JAVA_TOOL_OPTIONS="-XX:-UseCompressedClassPointers"
-EXTRA_PATCHES=		${PATCHDIR}/extra-patch-src_hotspot_share_runtime_arguments.cpp
 .endif
 
 .if empty(ICONV_LIB)
@@ -166,6 +165,7 @@ ICONV_LIBS=	${ICONV_LIB}
 .endif
 
 post-patch:
+	@${RM} ${WRKSRC}/src/hotspot/os_cpu/bsd_ppc/thread_bsd_ppc.cpp
 	@${FIND} ${WRKSRC} -name '*.orig' -delete
 	@${CHMOD} 755 ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
