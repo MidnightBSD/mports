@@ -1,26 +1,26 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
-PORTREVISION=	3
+PORTREVISION=	1
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Java Development Kit ${JDK_MAJOR_VERSION}
-WWW=		https://openjdk.java.net/projects/jdk/18/
+WWW=		https://openjdk.java.net/
 
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	zip:archivers/zip \
 		autoconf>0:devel/autoconf \
-		${LOCALBASE}/include/cups/cups.h:print/cups \
 		bash:shells/bash \
 		gsed:textproc/gsed
 LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libgif.so:graphics/giflib \
-		libharfbuzz.so:print/harfbuzz \
 		liblcms2.so:graphics/lcms2 \
 		libpng.so:graphics/png
 RUN_DEPENDS=	javavm:java/javavmwrapper \
@@ -28,12 +28,13 @@ RUN_DEPENDS=	javavm:java/javavmwrapper \
 
 USES=		compiler:features cpe gmake iconv jpeg pkgconfig xorg
 USE_XORG=	x11 xext xi xrandr xrender xt xtst
+USE_LDCONFIG=	${INSTALLDIR}/lib/server
 
 CPE_VENDOR=	oracle
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	battleblow
-GH_PROJECT=	jdk18u
+GH_PROJECT=	jdk11u
 
 NO_CCACHE=	yes
 
@@ -48,8 +49,8 @@ MAKE_ENV=	LANG="C" \
 		CPP=${CPP} \
 		MAKEFLAGS=""
 
-JDK_OSARCH=	bsd-${ARCH:S/amd64/x86_64/:S/i386/x86/:S/powerpc64/ppc64/}
-JDK_BUILDDIR=	${WRKSRC}/build/${JDK_OSARCH}-${JDK_BUILD_JVM}-${JDK_BUILD_TYPE}
+JDK_OSARCH=	bsd-${ARCH:S/amd64/x86_64/:C/armv.*/arm/:S/i386/x86/:S/powerpc/ppc/}
+JDK_BUILDDIR=	${WRKSRC}/build/${JDK_OSARCH}-normal-${JDK_BUILD_JVM}-${JDK_BUILD_TYPE}
 .if defined(BUILD_JRE)
 JDK_IMAGEDIR=	${JDK_BUILDDIR}/images/jre
 .else
@@ -59,13 +60,22 @@ INSTALLDIR=	${PREFIX}/${PKGBASE}
 
 NOPRECIOUSMAKEVARS=	yes
 
-JDK_MAJOR_VERSION=	18
+JDK_MAJOR_VERSION=	11
 JDK_MINOR_VERSION=	0
-JDK_PATCH_VERSION=	2
-JDK_BUILD_NUMBER=	9
+JDK_PATCH_VERSION=	27
+JDK_BUILD_NUMBER=	6
 BSD_JDK_VERSION=	1
 
 JDK_BUG_URL=	https://github.com/midnightbsd/mports
+
+OPTIONS_DEFINE=		CUPS
+OPTIONS_DEFAULT=	CUPS
+
+CUPS_CONFIGURE_ON=	--with-cups=${LOCALBASE}
+CUPS_CONFIGURE_OFF=	--with-cups-include=${WRKDIR}/cups-${CUPS_INC_VER}
+CUPS_BUILD_DEPENDS=	${LOCALBASE}/include/cups/cups.h:print/cups
+CUPS_INC_VER=		2.4.2
+CUPS_DISTFILES_OFF=	OpenPrinting-cups-v${CUPS_INC_VER}_GH0.tar.gz:cups
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CC=${CC} \
@@ -76,8 +86,11 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--disable-ccache \
 		--disable-javac-server \
 		--disable-hotspot-gtest \
+		--with-jvm-features=shenandoahgc \
 		--with-alsa=${LOCALBASE} \
-		--with-cups=${LOCALBASE} \
+		--with-extra-cflags="${CFLAGS}" \
+		--with-extra-cxxflags="${CXXFLAGS}" \
+		--with-extra-ldflags="${LDFLAGS}" \
 		--with-fontconfig=${LOCALBASE} \
 		--with-freetype=system \
 		--with-freetype-include=${LOCALBASE}/include/freetype2 \
@@ -86,7 +99,6 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--with-giflib=system \
 		--with-giflib-include=${LOCALBASE}/include \
 		--with-giflib-lib=${LOCALBASE}/lib \
-		--with-harfbuzz=system \
 		--with-libpng=system \
 		--with-zlib=system \
 		--with-lcms=system \
@@ -99,7 +111,6 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--with-vendor-url="https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/" \
 		--with-vendor-bug-url="${JDK_BUG_URL}" \
 		--with-vendor-vm-bug-url="${JDK_BUG_URL}"
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 
 JAVAVMS_COMMENT=	OpenJDK${JDK_MAJOR_VERSION}
 
@@ -112,11 +123,12 @@ JDK_BUILD_TYPE=		release
 
 .include <bsd.port.pre.mk>
 
-BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk18
-.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
-BOOTSTRAP_JDKS+=	${LOCALBASE}/bootstrap-openjdk17
+.if !${PORT_OPTIONS:MCUPS}
+MASTER_SITES+=	https://codeload.github.com/OpenPrinting/cups/tar.gz/v${CUPS_INC_VER}?dummy=/:cups
 .endif
-BOOTSTRAP_JDKS+=	${LOCALBASE}/openjdk17
+
+BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk11 \
+		${LOCALBASE}/bootstrap-openjdk11
 
 # do we have valid native jdk installed?
 .for BJDK in ${BOOTSTRAP_JDKS}
@@ -127,16 +139,16 @@ BOOTSTRAPJDKDIR=	${BJDK}
 
 # if no valid jdk found, set dependency
 .if !defined(BOOTSTRAPJDKDIR)
-.  if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
-BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk17
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/bootstrap-openjdk17
-.  else
-BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk17
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/openjdk17
-.  endif
+BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk11
+BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/bootstrap-openjdk11
 .endif
 
+.if ${ARCH} == powerpc
+CONFIGURE_ARGS+=	--with-jvm-variants=zero
+JDK_BUILD_JVM=	zero
+.else
 JDK_BUILD_JVM=	server
+.endif
 
 MAKE_ENV+=		--with-toolchain-type=${COMPILER_TYPE}
 CONFIGURE_ARGS+=	--with-toolchain-type=${COMPILER_TYPE}
@@ -144,22 +156,28 @@ CONFIGURE_ARGS+=	--disable-warnings-as-errors
 
 .if ${COMPILER_TYPE} == gcc
 USE_GCC=	yes
-CONFIGURE_ARGS+=	--with-extra-ldflags="-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT} -L${LOCALBASE}/lib/gcc${GCC_DEFAULT}" \
-			--with-extra-cflags="-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}" \
-			--with-extra-cxxflags="-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}"
+LDFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT} -L${LOCALBASE}/lib/gcc${GCC_DEFAULT}
+CFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}
+CXXFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}
+CONFIGURE_ARGS+=--disable-precompiled-headers
 .else
 MAKE_ENV+=	USE_CLANG=true
-EXTRA_CFLAGS+=		-Wno-unused-but-set-parameter
-EXTRA_CFLAGS+=		-Wno-bitwise-instead-of-logical
-EXTRA_CFLAGS+=		-Wno-deprecated-non-prototype
-CONFIGURE_ARGS+=	--with-extra-cflags="${EXTRA_CFLAGS}"
-CONFIGURE_ARGS+=	--with-extra-cxxflags="${EXTRA_CFLAGS}"
+.if ${ARCH:Mpowerpc64*}
+LLVM_VER=	12
+BUILD_DEPENDS+=	clang${LLVM_VER}:devel/llvm${LLVM_VER}
+CC=		${LOCALBASE}/bin/clang${LLVM_VER}
+CXX=		${LOCALBASE}/bin/clang++${LLVM_VER}
+.endif
 .endif
 
-.if ${ARCH} == aarch64
-CONFIGURE_ARGS+=	--with-boot-jdk-jvmargs=-XX:-UseCompressedClassPointers --disable-dtrace
-MAKE_ENV+=		JAVA_TOOL_OPTIONS="-XX:-UseCompressedClassPointers"
-EXTRA_PATCHES=		${PATCHDIR}/extra-patch-src_hotspot_share_runtime_arguments.cpp
+.if ${ARCH} == aarch64 || ${ARCH:Marmv*}
+CONFIGURE_ARGS+=	--disable-dtrace
+.endif
+.if ${ARCH:Mpowerpc64*}
+CONFIGURE_ARGS+=	--disable-precompiled-headers
+.endif
+.if ${ARCH} != amd64
+CONFIGURE_ARGS+=	--enable-aot=no
 .endif
 
 .if empty(ICONV_LIB)
@@ -180,6 +198,12 @@ post-patch:
 		-e 's|%%ICONV_LDFLAGS%%|${ICONV_LDFLAGS}|' \
 		-e 's|%%ICONV_LIBS%%|${ICONV_LIBS}|' \
 		${WRKSRC}/make/autoconf/libraries.m4
+
+post-build:
+.if defined(OPENJDK_SYMLINK_CACERTS)
+	@${RM} ${JDK_IMAGEDIR}/lib/security/cacerts
+	@${LN} -sf ${OPENJDK_SYMLINK_CACERTS} ${JDK_IMAGEDIR}/lib/security/cacerts
+.endif
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${INSTALLDIR}

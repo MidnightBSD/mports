@@ -1,13 +1,13 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Java Development Kit ${JDK_MAJOR_VERSION}
-WWW=		https://openjdk.java.net/projects/jdk/18/
+WWW=		https://openjdk.java.net/projects/jdk/19/
 
 LICENSE=	gpl2
 
@@ -33,7 +33,7 @@ CPE_VENDOR=	oracle
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	battleblow
-GH_PROJECT=	jdk18u
+GH_PROJECT=	jdk19u
 
 NO_CCACHE=	yes
 
@@ -59,10 +59,10 @@ INSTALLDIR=	${PREFIX}/${PKGBASE}
 
 NOPRECIOUSMAKEVARS=	yes
 
-JDK_MAJOR_VERSION=	18
+JDK_MAJOR_VERSION=	19
 JDK_MINOR_VERSION=	0
 JDK_PATCH_VERSION=	2
-JDK_BUILD_NUMBER=	9
+JDK_BUILD_NUMBER=	7
 BSD_JDK_VERSION=	1
 
 JDK_BUG_URL=	https://github.com/midnightbsd/mports
@@ -75,7 +75,6 @@ CONFIGURE_ENV=	CC=${CC} \
 CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--disable-ccache \
 		--disable-javac-server \
-		--disable-hotspot-gtest \
 		--with-alsa=${LOCALBASE} \
 		--with-cups=${LOCALBASE} \
 		--with-fontconfig=${LOCALBASE} \
@@ -99,6 +98,7 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--with-vendor-url="https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/" \
 		--with-vendor-bug-url="${JDK_BUG_URL}" \
 		--with-vendor-vm-bug-url="${JDK_BUG_URL}"
+
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 
 JAVAVMS_COMMENT=	OpenJDK${JDK_MAJOR_VERSION}
@@ -112,11 +112,7 @@ JDK_BUILD_TYPE=		release
 
 .include <bsd.port.pre.mk>
 
-BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk18
-.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
-BOOTSTRAP_JDKS+=	${LOCALBASE}/bootstrap-openjdk17
-.endif
-BOOTSTRAP_JDKS+=	${LOCALBASE}/openjdk17
+BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk19 ${LOCALBASE}/openjdk18
 
 # do we have valid native jdk installed?
 .for BJDK in ${BOOTSTRAP_JDKS}
@@ -127,13 +123,8 @@ BOOTSTRAPJDKDIR=	${BJDK}
 
 # if no valid jdk found, set dependency
 .if !defined(BOOTSTRAPJDKDIR)
-.  if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
-BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk17
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/bootstrap-openjdk17
-.  else
-BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk17
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/openjdk17
-.  endif
+BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk18
+BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/openjdk18
 .endif
 
 JDK_BUILD_JVM=	server
@@ -151,7 +142,7 @@ CONFIGURE_ARGS+=	--with-extra-ldflags="-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFA
 MAKE_ENV+=	USE_CLANG=true
 EXTRA_CFLAGS+=		-Wno-unused-but-set-parameter
 EXTRA_CFLAGS+=		-Wno-bitwise-instead-of-logical
-EXTRA_CFLAGS+=		-Wno-deprecated-non-prototype
+EXTRA_CFLAGS+=		-Wno-error=deprecated-non-prototype
 CONFIGURE_ARGS+=	--with-extra-cflags="${EXTRA_CFLAGS}"
 CONFIGURE_ARGS+=	--with-extra-cxxflags="${EXTRA_CFLAGS}"
 .endif
