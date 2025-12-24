@@ -57,9 +57,11 @@ SUBDIR += openjdk11-bin
 SUBDIR += openjdk13-bin
 SUBDIR += openjdk17-bin
 SUBDIR += openjdk18-bin
+SUBDIR += openjfx14
 SUBDIR += phpeclipse
 SUBDIR += proguard
-SUBDIR += springframework
+SUBDIR += veditor
 SUBDIR += visualvm
+SUBDIR += wildfly
 
 .include <bsd.port.subdir.mk>

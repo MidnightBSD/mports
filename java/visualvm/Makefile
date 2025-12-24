@@ -1,5 +1,5 @@
 PORTNAME=	visualvm
-DISTVERSION=	2.1.5
+DISTVERSION=	2.1.9
 CATEGORIES=	java devel
 MASTER_SITES=	https://github.com/oracle/visualvm/releases/download/${PORTVERSION}/
 DISTNAME=	visualvm_${PORTVERSION:S/.//g}
@@ -14,10 +14,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		desktop-file-utils java zip:infozip
+
 NO_BUILD=	yes
-JAVA_VERSION=	8+
-WRKSRC=		${WRKDIR}/visualvm_${PORTVERSION:S/.//g}
 SUB_FILES=	visualvm.desktop
+
+WRKSRC=		${WRKDIR}/visualvm_${PORTVERSION:S/.//g}
 
 post-extract:
 	@${FIND} ${WRKSRC} -type f \( -name '*.bak' -or -name '*.dll' -or -name '*.exe' \) -delete
