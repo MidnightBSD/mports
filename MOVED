@@ -584,3 +584,4 @@ databases/php81-pdo_mysql|databases/php82-pdo_mysql|2023-12-31|Has expired: Secu
 net/libutp|net-p2p/libutp|2025-12-17|Moved to a more adequated category
 lang/go120|lang/go123|2025-12-18|Upstream EOL soon
 science/gtamsanalyzer||2025-12-19|Has expired: Upstream unmaintained as last release was in 2004
+java/netbeans8|java/netbeans|2025-12-23|Very old version removed

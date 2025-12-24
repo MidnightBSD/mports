@@ -49,7 +49,6 @@ SUBDIR += maven3
 SUBDIR += maven33
 SUBDIR += maven39
 SUBDIR += netbeans
-SUBDIR += netbeans8
 SUBDIR += netty
 SUBDIR += openjdk8
 SUBDIR += openjdk8-bin
