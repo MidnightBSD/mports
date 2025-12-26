@@ -585,3 +585,5 @@ net/libutp|net-p2p/libutp|2025-12-17|Moved to a more adequated category
 lang/go120|lang/go123|2025-12-18|Upstream EOL soon
 science/gtamsanalyzer||2025-12-19|Has expired: Upstream unmaintained as last release was in 2004
 java/netbeans8|java/netbeans|2025-12-23|Very old version removed
+sysutils/tracker-miners||2025-12-26|Retired upstream
+sysutils/tracker||2025-12-26|Replaced long ago by tracker3 and now tinysparql
