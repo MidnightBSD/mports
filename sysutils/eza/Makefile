@@ -1,40 +1,30 @@
 PORTNAME=	eza
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.17.3
+DISTVERSION=	0.23.4
+PORTREVISION=	2
 CATEGORIES=	sysutils
+MASTER_SITES=	https://github.com/eza-community/${PORTNAME}/releases/download/v${DISTVERSION}/man-${DISTVERSION}.tar.gz?dummy=/:man
+DISTFILES=	${PORTNAME}-man-${DISTVERSION}.tar.gz:man
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modern, maintained replacement for ls
 WWW=		https://eza.rocks/
 
-LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENCE
+LICENSE=	EUPL12
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		cargo
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	eza-community
-
-NO_TEST=	yes
-
-OPTIONS_DEFINE=	MANPAGES
-
-MANPAGES_BUILD_DEPENDS=	pandoc:textproc/hs-pandoc
 
 PLIST_FILES=	bin/${PORTNAME} \
 		etc/bash_completion.d/${PORTNAME}.bash \
 		share/fish/completions/${PORTNAME}.fish \
+		share/man/man1/eza.1.gz \
+		share/man/man5/eza_colors-explanation.5.gz \
+		share/man/man5/eza_colors.5.gz \
 		share/zsh/site-functions/_${PORTNAME}
-
-_MARKDOWN_FILES=	eza.1 eza_colors-explanation.5 eza_colors.5
-.for i in ${_MARKDOWN_FILES}
-MANPAGES_PLIST_FILES+=	share/man/man${i:C/.*\.//}/${i}.gz
-.endfor
-
-post-build-MANPAGES-on:
-.for i in ${_MARKDOWN_FILES}
-	cd ${WRKSRC}/man && \
-		pandoc ${i}.md -s -t man > ${i}
-.endfor
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
@@ -43,11 +33,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/completions/fish/${PORTNAME}.fish ${STAGEDIR}${PREFIX}/share/fish/completions/${PORTNAME}.fish
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions
 	${INSTALL_DATA} ${WRKSRC}/completions/zsh/_${PORTNAME} ${STAGEDIR}${PREFIX}/share/zsh/site-functions/_${PORTNAME}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-
-post-install-MANPAGES-on:
-.for i in ${_MARKDOWN_FILES}
-	${INSTALL_MAN} ${WRKSRC}/man/${i} ${FAKE_DESTDIR}${PREFIX}/share/man/man${i:C/.*\.//}
-.endfor
+	${INSTALL_MAN} ${WRKDIR}/target/man-${DISTVERSION}/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKDIR}/target/man-${DISTVERSION}/*.5 ${STAGEDIR}${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>
