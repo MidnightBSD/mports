@@ -21,6 +21,7 @@ USES=		compiler:c++17-lang meson pkgconfig tar:xz
 
 CPPFLAGS+=	-I${LOCALBASE}/include/kainjow
 CXXFLAGS+=	-I${LOCALBASE}/include/kainjow
+LDFLAGS+=	-pthread
 
 PLIST_SUB=	DISTVERSION=${DISTVERSION} DISTMAJ=${DISTVERSION:C/\..*//}
 
