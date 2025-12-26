@@ -270,8 +270,6 @@
     SUBDIR += terraform-switcher
     SUBDIR += timemon
     SUBDIR += tmux
-    SUBDIR += tracker
-    SUBDIR += tracker-miners
     SUBDIR += tracker3
     SUBDIR += tree
     SUBDIR += u-boot-a13-olinuxino
