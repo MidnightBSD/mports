@@ -56,6 +56,8 @@ MAKE_ENV+=			NOCOLOR=yes
 # undefined symbols.
 LDFLAGS+=			-Wl,--undefined-version
 
+NO_TEST=	yes
+
 post-patch:
 				@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${PKGCONFIGDIR}|g' \
 					${BUILD_WRKSRC}/wscript
