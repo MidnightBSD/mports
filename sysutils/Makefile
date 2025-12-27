@@ -368,6 +368,7 @@
     SUBDIR += xosview
     SUBDIR += xxd
     SUBDIR += zeitgeist
+    SUBDIR += zellij
     SUBDIR += zetaback
     SUBDIR += znapzend
     SUBDIR += zoxide
