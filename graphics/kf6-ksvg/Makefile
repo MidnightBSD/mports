@@ -5,7 +5,7 @@ CATEGORIES=	graphics kde kde-frameworks
 COMMENT=	Components for handling SVGs
 MAINTAINER=	ports@MidnightBSD.org
 
-USES=		cmake gl kde:6 qt:6 tar:xz
+USES=		cmake gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	archive colorscheme config coreaddons guiaddons kirigami2 \
 		ecm:build
