@@ -370,6 +370,7 @@
     SUBDIR += tomcat9
     SUBDIR += validator
     SUBDIR += varnish7
+    SUBDIR += varnish-libvmod-maxminddb
     SUBDIR += w3m
     SUBDIR += webalizer
     SUBDIR += webinject
