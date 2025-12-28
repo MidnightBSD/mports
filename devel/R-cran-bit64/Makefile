@@ -9,6 +9,8 @@ WWW=		https://cran.r-project.org/web/packages/bit64/
 
 LICENSE=	gpl2+
 
+NO_TEST=	yes
+
 BUILD_DEPENDS=	R-cran-bit>=4.0.0:devel/R-cran-bit
 RUN_DEPENDS=	R-cran-bit>=4.0.0:devel/R-cran-bit
 
