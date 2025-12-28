@@ -115,7 +115,6 @@ SUBDIR += scala
 SUBDIR += spidermonkey78
 SUBDIR += spidermonkey91
 SUBDIR += spidermonkey102
-SUBDIR += spidermonkey115
 SUBDIR += spidermonkey128
 SUBDIR += tcl-wrapper
 SUBDIR += tcl86
