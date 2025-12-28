@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	R Interface to the 'PostgreSQL' Database System
 WWW=		https://cran.r-project.org/web/packages/RPostgreSQL/
 
-LICENSE=	bpl3
+LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	R-cran-DBI>=0.3:databases/R-cran-DBI
