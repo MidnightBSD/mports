@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/RgoogleMaps/
 
 LICENSE=	gpl2+
 
+BUILD_DEPENDS=	R-cran-png>0:graphics/R-cran-png
 RUN_DEPENDS=	R-cran-png>0:graphics/R-cran-png
 
 USES=		cran:auto-plist
