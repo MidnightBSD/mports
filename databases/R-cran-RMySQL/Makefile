@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/RMySQL/
 
 LICENSE=	gpl2
 
+BUILD_DEPENDS=	R-cran-DBI>=0.4:databases/R-cran-DBI
 RUN_DEPENDS=	R-cran-DBI>=0.4:databases/R-cran-DBI
 
 USES=		cpe cran:auto-plist,compiles mysql
