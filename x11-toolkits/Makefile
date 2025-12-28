@@ -145,5 +145,6 @@
     SUBDIR += xforms
     SUBDIR += xmhtml
     SUBDIR += xwallpaper
+    SUBDIR += ztoolkit
 
 .include <bsd.port.subdir.mk>
