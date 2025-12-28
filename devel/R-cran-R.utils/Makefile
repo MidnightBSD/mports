@@ -10,6 +10,8 @@ WWW=		https://cran.r-project.org/package=R.utils
 LICENSE=	lgpl2.1 lgpl3
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	R-cran-R.methodsS3>0:devel/R-cran-R.methodsS3 \
+		R-cran-R.oo>0:devel/R-cran-R.oo
 RUN_DEPENDS=	R-cran-R.methodsS3>0:devel/R-cran-R.methodsS3 \
 		R-cran-R.oo>0:devel/R-cran-R.oo
 TEST_DEPENDS=	R-cran-digest>=0.6.10:security/R-cran-digest
