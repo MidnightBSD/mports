@@ -98,6 +98,7 @@
     SUBDIR += mod_fastcgi
     SUBDIR += mod_fcgid
     SUBDIR += mod_http2
+    SUBDIR += mod_maxminddb
     SUBDIR += mod_perl2
     SUBDIR += mod_php82
     SUBDIR += mod_php83
