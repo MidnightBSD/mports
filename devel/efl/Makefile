@@ -5,6 +5,9 @@ CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 DIST_SUBDIR=	enlightenment
 
+PATCH_SITES=	https://git.enlightenment.org/enlightenment/${PORTNAME}/commit/
+PATCHFILES=	6c3630ffda0884b86e6ffc9d00d7315ab67858e5.patch:-p1
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enlightenment Foundation Libraries
 WWW=		https://docs.enlightenment.org/efl/current/
