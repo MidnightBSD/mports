@@ -1,5 +1,5 @@
 PORTNAME=	gtk
-PORTVERSION=	4.14.2
+PORTVERSION=	4.16.3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
@@ -13,7 +13,8 @@ LICENSE=	lgpl
 
 PORTSCOUT=	limit:1,even
 
-BUILD_DEPENDS=	sassc>0:textproc/sassc
+BUILD_DEPENDS=	${LOCALBASE}/include/libdrm/drm_fourcc.h:graphics/libdrm \
+		sassc>0:textproc/sassc
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff \
@@ -37,7 +38,7 @@ LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	1.1400.2
+LIBVERSION=	1.1600.3
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo4.gschema.xml \
