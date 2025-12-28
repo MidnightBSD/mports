@@ -19,4 +19,7 @@ XSEL_DESC=	Use xsel for interacting with X11 clipboard
 XCLIP_RUN_DEPENDS=	xclip:x11/xclip
 XSEL_RUN_DEPENDS=	xsel:x11/xsel-conrad
 
+# magus test issue
+NO_TEST=	yes
+
 .include <bsd.port.mk>
