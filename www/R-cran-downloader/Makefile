@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/downloader/
 
 LICENSE=	gpl2
 
+BUILD_DEPENDS=	R-cran-digest>0:security/R-cran-digest
 RUN_DEPENDS=	R-cran-digest>0:security/R-cran-digest
 
 USES=		cran:auto-plist
