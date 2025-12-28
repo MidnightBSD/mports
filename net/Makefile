@@ -231,6 +231,7 @@
     SUBDIR += py-impacket
     SUBDIR += py-ldap3
     SUBDIR += py-ldapdomaindump
+    SUBDIR += py-maxminddb
     SUBDIR += py-mpi4py
     SUBDIR += py-netaddr
     SUBDIR += py-netifaces
