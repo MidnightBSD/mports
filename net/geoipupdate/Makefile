@@ -1,5 +1,5 @@
 PORTNAME=	geoipupdate
-PORTVERSION=	4.10.0
+PORTVERSION=	7.0.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net geography
 
@@ -12,10 +12,8 @@ LICENSE_COMB=	dual
 LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
-RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
-
 USES=		gmake go:modules,no_targets
-GO_MODULE=	github.com/maxmind/geoipupdate/v4
+GO_MODULE=	github.com/maxmind/geoipupdate/v7
 
 MAKE_ENV+=	${GO_ENV} \
 		CONFFILE=${PREFIX}/etc/GeoIP.conf \
@@ -56,5 +54,8 @@ do-install-DOCS-on:
 do-install-MANPAGES-on:
 	${INSTALL_MAN} ${WRKSRC}/build/geoipupdate.1 ${FAKE_DESTDIR}${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/build/GeoIP.conf.5  ${FAKE_DESTDIR}${PREFIX}/share/man/man5
+
+do-test:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=off ${GO_CMD} test ${GO_TESTFLAGS} ./...
 
 .include <bsd.port.mk>
