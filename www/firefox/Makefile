@@ -26,7 +26,8 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		autoconf2.13:devel/autoconf2.13 \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
-		zip:archivers/zip
+		zip:archivers/zip \
+		python3:lang/python3
 
 LIB_DEPENDS+=   libvpx.so:multimedia/libvpx \
                 libevent.so:devel/libevent \
