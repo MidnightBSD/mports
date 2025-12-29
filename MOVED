@@ -588,3 +588,4 @@ java/netbeans8|java/netbeans|2025-12-23|Very old version removed
 sysutils/tracker-miners||2025-12-26|Retired upstream
 sysutils/tracker||2025-12-26|Replaced long ago by tracker3 and now tinysparql
 lang/spidermonkey115|lang/spidermonkey128|2025-12-28|Removed out of date version no longer in use.
+databases/firebird25|databases/firebird30|2025-12-29|Migrate to suppported firebird release

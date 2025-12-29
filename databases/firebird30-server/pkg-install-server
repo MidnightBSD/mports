@@ -8,9 +8,6 @@ cat <<EOF
 
                              ** IMPORTANT **
 
-Keep in mind that if you build firebird server as 'root', this may cause
-conflicts with SysV semaphores of running services.
-
 If you want to cancel it, press ctrl-C now if you need check some things
 before of build it.
 
@@ -37,7 +34,7 @@ do
 done
 
 touch firebird.log
-chown firebird:firebird firebird.log security2.fdb
+chown firebird:firebird firebird.log security3.fdb
 
 ;;
 
