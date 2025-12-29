@@ -7,9 +7,6 @@ PKGNAMESUFFIX=	${PYTHON_SUFFIX}
 DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
-PATCH_SITES=	https://github.com/python/cpython/commit/
-PATCHFILES=	4398b788ffc1f954a2c552da285477d42a571292.patch:-p1
-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interpreted object-oriented programming language
 WWW=		https://www.python.org/
