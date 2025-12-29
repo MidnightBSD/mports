@@ -35,7 +35,7 @@ COROSYNC_DEFAULT?=	2
 # Possible_values: full canna nox devel_full devel_nox
 #EMACS_DEFAULT?=	let the flavor be the default if not explicitly set
 # Possible values: 2.5, 3.0, 4.0
-FIREBIRD_DEFAULT?=	2.5
+FIREBIRD_DEFAULT?=	3.0
 # Possible values: flang (experimental), gfortran
 FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
