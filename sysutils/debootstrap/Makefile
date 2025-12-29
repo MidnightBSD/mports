@@ -1,6 +1,6 @@
 PORTNAME=	debootstrap
 PORTVERSION=	${DEB_VERSION}n${DEB_NMU}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	DEBIAN
 DISTNAME=	${PORTNAME}_${DEB_VERSION}+nmu${DEB_NMU}
@@ -16,8 +16,9 @@ FAKE_OPTS=	trueprefix
 
 RUN_DEPENDS=	wget:ftp/wget \
 		bash:shells/bash \
-		${LOCALBASE}/bin/grep:textproc/gnugrep \
+		${LOCALBASE}/bin/ggrep:textproc/gnugrep \
 		gpgv2:security/gnupg \
+		gtar:archivers/gtar \
 		${LOCALBASE}/share/keyrings/ubuntu-archive-keyring.gpg:security/ubuntu-keyring
 
 USES=		gmake perl5
@@ -42,7 +43,10 @@ post-patch:
 		${XARGS} ${REINPLACE_CMD} -e 's,/usr/share/keyrings,${LOCALBASE}/share/keyrings,g'
 
 	# Workaround for bin/255525
-	@${REINPLACE_CMD} -e 's,grep,${LOCALBASE}/bin/grep,g' \
+	@${REINPLACE_CMD} -e 's,grep,${LOCALBASE}/bin/ggrep,g' \
+		${WRKSRC}/functions
+
+	@${REINPLACE_CMD} -e 's, tar , ${LOCALBASE}/bin/gtar ,g' \
 		${WRKSRC}/functions
 
 post-install:
