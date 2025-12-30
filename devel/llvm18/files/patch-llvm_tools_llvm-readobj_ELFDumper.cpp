@@ -3,7 +3,8 @@
 @@ -1086,6 +1086,7 @@
    {"CloudABI",     "CloudABI",             ELF::ELFOSABI_CLOUDABI},
    {"CUDA",         "NVIDIA - CUDA",        ELF::ELFOSABI_CUDA},
-   {"Standalone",   "Standalone App",       ELF::ELFOSABI_STANDALONE}
+-  {"Standalone",   "Standalone App",       ELF::ELFOSABI_STANDALONE}
++  {"Standalone",   "Standalone App",       ELF::ELFOSABI_STANDALONE},
 +  {"MidnightBSD",  "UNIX - MidnightBSD",   ELF::ELFOSABI_FREEBSD},
  };
  
