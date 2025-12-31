@@ -1,5 +1,6 @@
 PORTNAME=	ebur128
 DISTVERSION=	0.1.10
+PORTREVISION=	10
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,7 +25,7 @@ do-build:
 do-install:
 	@${CARGO_CARGO_RUN} cinstall --verbose --verbose \
 		--destdir "${FAKE_DESTDIR}" \
-		--prefix "${TRUE_PREFIX}" \
+		--prefix "${PREFIX}" \
 		${CARGO_INSTALL_ARGS}
 
 .include <bsd.port.mk>
