@@ -221,6 +221,7 @@
     SUBDIR += cvsps-devel
     SUBDIR += cvsweb3
     SUBDIR += cxxopts
+    SUBDIR += d-spy
     SUBDIR += darts
     SUBDIR += date
     SUBDIR += dbus
