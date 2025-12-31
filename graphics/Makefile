@@ -309,6 +309,7 @@
     SUBDIR += py-cairo
     SUBDIR += py-cairocffi
     SUBDIR += py-cairosvg
+    SUBDIR += py-fiona
     SUBDIR += py-gdal
     SUBDIR += py-graphviz
     SUBDIR += py-imagesize
