@@ -143,6 +143,7 @@
     SUBDIR += apr1
     SUBDIR += argp-standalone
     SUBDIR += arm-none-eabi-gcc
+    SUBDIR += astyle
     SUBDIR += atf
     SUBDIR += autoconf
     SUBDIR += autoconf-archive
