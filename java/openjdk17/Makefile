@@ -176,6 +176,11 @@ post-patch:
 		-e 's|%%ICONV_LDFLAGS%%|${ICONV_LDFLAGS}|' \
 		-e 's|%%ICONV_LIBS%%|${ICONV_LIBS}|' \
 		${WRKSRC}/make/autoconf/libraries.m4
+	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' \
+                ${WRKSRC}/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/utilities/PlatformInfo.java \
+                ${WRKSRC}/src/java.desktop/share/classes/java/awt/GraphicsEnvironment.java \
+                ${WRKSRC}/src/java.desktop/share/classes/sun/print/PSPrinterJob.java \
+                ${WRKSRC}/src/java.base/unix/classes/sun/net/PortConfig.java
 
 post-build:
 .if defined(OPENJDK_SYMLINK_CACERTS)
