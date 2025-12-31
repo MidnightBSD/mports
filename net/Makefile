@@ -155,6 +155,7 @@
     SUBDIR += miniupnpc
     SUBDIR += mosquitto
     SUBDIR += motsognir
+    SUBDIR += mpich
     SUBDIR += mtr
     SUBDIR += mtr-nox11
     SUBDIR += nanomsg
