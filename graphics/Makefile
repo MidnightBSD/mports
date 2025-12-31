@@ -319,6 +319,7 @@
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
+    SUBDIR += py-yaswfp
     SUBDIR += qgis
     SUBDIR += qt5-3d
     SUBDIR += qt5-graphicaleffects
