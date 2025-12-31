@@ -101,6 +101,7 @@
     SUBDIR += libssh2
     SUBDIR += libtasn1
     SUBDIR += libtatsu
+    SUBDIR += libtomcrypt
     SUBDIR += libxcrypt
     SUBDIR += libyubikey
     SUBDIR += libzrtpcppcore
