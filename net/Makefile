@@ -248,6 +248,7 @@
     SUBDIR += py-s3cmd
     SUBDIR += py-s3transfer
     SUBDIR += py-siosocks
+    SUBDIR += py-socksio
     SUBDIR += py-speedtest-cli
     SUBDIR += py-trio
     SUBDIR += py-trio-websocket
