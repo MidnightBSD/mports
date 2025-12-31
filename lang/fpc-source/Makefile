@@ -1,5 +1,6 @@
 PORTNAME=	fpc
 PORTVERSION=	3.2.3
+PORTREVISION=	1
 DISTVERSIONSUFFIX=.source
 CATEGORIES=	lang
 PKGNAMESUFFIX=	-source
@@ -16,13 +17,14 @@ USE_GITLAB=	yes
 GL_SITE=	https://gitlab.com/freepascal.org
 GL_ACCOUNT=	fpc
 GL_PROJECT=	source
-GL_TAGNAME=	3d2b1f062e1e79d64b56a496f9eecd6084fa5803
+GL_TAGNAME=	4cdc5b1cdff8e81a6d1de622ec586f65c50091c7
 
 PLIST=		${WRKDIR}/pkg-plist
 PATCHDIR=	${PORTSDIR}/lang/fpc/files
 DATADIR=	${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 WRKSRC=		${WRKDIR}/source-${GL_TAGNAME}
 
+FPC_COMMIT_DATE=20251007
 FPCSRCDIR=	source-${GL_TAGNAME}
 
 .include <bsd.port.pre.mk>
@@ -32,6 +34,9 @@ FPC_ARCH=	i386
 .elif ${ARCH} == "amd64"
 FPC_ARCH=	x86_64
 .endif
+
+post-extract:
+	${RM} -R ${WRKSRC}/.git*
 
 post-patch:
 	@${REINPLACE_CMD} -i "" -e 's|900044|${OSVERSION}|g' \
@@ -93,6 +98,7 @@ post-patch:
 		${WRKSRC}/packages/rexx/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/zorba/fpmake.pp
+	${FIND} ${WRKSRC} -type f -iname "*.bak" -delete
 
 pre-install:
 	@${RM} -f ${PLIST}
