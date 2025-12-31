@@ -79,6 +79,7 @@
     SUBDIR += R-cran-pkgconfig
     SUBDIR += R-cran-pkgdepends
     SUBDIR += R-cran-pkgload
+    SUBDIR += R-cran-pkgsearch
     SUBDIR += R-cran-plogr
     SUBDIR += R-cran-plyr
     SUBDIR += R-cran-praise
