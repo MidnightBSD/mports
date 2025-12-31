@@ -91,6 +91,7 @@
     SUBDIR += R-cran-proto
     SUBDIR += R-cran-purrr
     SUBDIR += R-cran-rJava
+    SUBDIR += R-cran-randomForest
     SUBDIR += R-cran-rappdirs
     SUBDIR += R-cran-registry
     SUBDIR += R-cran-rematch2
