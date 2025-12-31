@@ -10,6 +10,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Pascal compiler with Turbo and Delphi compatibility (source)
 WWW=		https://www.freepascal.org/
 
+LICENSE=	lgpl2.1+
+
 ONLY_FOR_ARCHS=	amd64 i386
 NO_BUILD=	yes
 
