@@ -31,6 +31,7 @@
     SUBDIR += R-cran-zoo
     SUBDIR += adol-c
     SUBDIR += analitza
+    SUBDIR += arpack-ng
     SUBDIR += asl
     SUBDIR += atlas
     SUBDIR += blas
