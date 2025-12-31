@@ -132,6 +132,7 @@
     SUBDIR += libsrtp2
     SUBDIR += libvncserver
     SUBDIR += libwebsockets
+    SUBDIR += libyang2
     SUBDIR += libzapojit
     SUBDIR += libzmq4
     SUBDIR += liferea
