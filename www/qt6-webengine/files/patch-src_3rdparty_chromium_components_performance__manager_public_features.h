@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/components/performance_manager/public/features.h.orig	2023-11-03 10:09:45 UTC
+--- src/3rdparty/chromium/components/performance_manager/public/features.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/components/performance_manager/public/features.h
-@@ -28,7 +28,7 @@ BASE_DECLARE_FEATURE(kRunOnDedicatedThreadPoolThread);
+@@ -17,7 +17,7 @@ namespace performance_manager::features {
  
  #if !BUILDFLAG(IS_ANDROID)
  

@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/components/live_caption/caption_util.h.orig	2023-07-16 15:47:57 UTC
+--- src/3rdparty/chromium/components/live_caption/caption_util.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/components/live_caption/caption_util.h
-@@ -14,7 +14,7 @@ class PrefService;
+@@ -15,7 +15,7 @@ namespace captions {
  namespace captions {
  
  #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || \

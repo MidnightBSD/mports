@@ -1,8 +1,8 @@
---- src/3rdparty/chromium/third_party/blink/renderer/platform/scheduler/common/thread.cc.orig	2023-04-28 17:01:32 UTC
+--- src/3rdparty/chromium/third_party/blink/renderer/platform/scheduler/common/thread.cc.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/third_party/blink/renderer/platform/scheduler/common/thread.cc
-@@ -82,7 +82,7 @@ void Thread::CreateAndSetCompositorThread() {
-       std::make_unique<scheduler::CompositorThread>(params);
-   compositor_thread->Init();
+@@ -87,7 +87,7 @@ void Thread::CreateAndSetCompositorThread() {
+             "Compositor");
+       }));
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && !BUILDFLAG(IS_OPENBSD)

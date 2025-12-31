@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/cc/base/features.cc.orig	2024-07-03 01:14:49 UTC
+--- src/3rdparty/chromium/cc/base/features.cc.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/cc/base/features.cc
-@@ -89,7 +89,7 @@ BASE_FEATURE(kNormalPriorityImageDecoding,
+@@ -52,7 +52,7 @@ const base::FeatureParam<int> kDeferImplInvalidationFr
  // Note that kUseDMSAAForTiles only controls vulkan launch on android. We will
  // be using a separate flag to control the launch on GL.
  

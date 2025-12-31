@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/components/device_signals/core/browser/user_permission_service_impl.h.orig	2023-07-16 15:47:57 UTC
+--- src/3rdparty/chromium/components/device_signals/core/browser/user_permission_service_impl.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/components/device_signals/core/browser/user_permission_service_impl.h
-@@ -39,7 +39,7 @@ class UserPermissionServiceImpl : public UserPermissio
+@@ -38,7 +38,7 @@ class UserPermissionServiceImpl : public UserPermissio
  
    // UserPermissionService:
    bool ShouldCollectConsent() const override;

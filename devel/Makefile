@@ -99,6 +99,7 @@
     SUBDIR += R-cran-rprojroot
     SUBDIR += R-cran-rstudioapi
     SUBDIR += R-cran-sessioninfo
+    SUBDIR += R-cran-sfsmisc
     SUBDIR += R-cran-sourcetools
     SUBDIR += R-cran-sparsevctrs
     SUBDIR += R-cran-sys

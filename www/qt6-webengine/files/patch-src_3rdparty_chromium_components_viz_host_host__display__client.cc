@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/components/viz/host/host_display_client.cc.orig	2024-01-30 07:53:34 UTC
+--- src/3rdparty/chromium/components/viz/host/host_display_client.cc.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/components/viz/host/host_display_client.cc
-@@ -64,7 +64,7 @@ void HostDisplayClient::AddChildWindowToBrowser(
+@@ -65,7 +65,7 @@ void HostDisplayClient::AddChildWindowToBrowser(
  }
  #endif
  

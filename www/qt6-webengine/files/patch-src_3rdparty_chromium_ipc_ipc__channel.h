@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/ipc/ipc_channel.h.orig	2024-01-30 07:53:34 UTC
+--- src/3rdparty/chromium/ipc/ipc_channel.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/ipc/ipc_channel.h
-@@ -240,7 +240,7 @@ class COMPONENT_EXPORT(IPC) Channel : public Sender {
+@@ -218,7 +218,7 @@ class COMPONENT_EXPORT(IPC) Channel : public Sender {
    static std::string GenerateUniqueRandomChannelID();
  #endif
  

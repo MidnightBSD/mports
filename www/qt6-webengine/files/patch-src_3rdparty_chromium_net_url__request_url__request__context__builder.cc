@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/net/url_request/url_request_context_builder.cc.orig	2024-02-23 21:04:38 UTC
+--- src/3rdparty/chromium/net/url_request/url_request_context_builder.cc.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/net/url_request/url_request_context_builder.cc
-@@ -434,7 +434,7 @@ std::unique_ptr<URLRequestContext> URLRequestContextBu
+@@ -447,7 +447,7 @@ std::unique_ptr<URLRequestContext> URLRequestContextBu
    }
  
    if (!proxy_resolution_service_) {

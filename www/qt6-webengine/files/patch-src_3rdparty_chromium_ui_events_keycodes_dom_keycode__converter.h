@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/ui/events/keycodes/dom/keycode_converter.h.orig	2024-02-23 21:04:38 UTC
+--- src/3rdparty/chromium/ui/events/keycodes/dom/keycode_converter.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/ui/events/keycodes/dom/keycode_converter.h
-@@ -63,7 +63,7 @@ class KeycodeConverter {
+@@ -64,7 +64,7 @@ class KeycodeConverter {
    // Convert a DomCode into a native keycode.
    static int DomCodeToNativeKeycode(DomCode code);
  
