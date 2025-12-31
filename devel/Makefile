@@ -453,6 +453,7 @@
     SUBDIR += libdbusmenu
     SUBDIR += libdbusmenu-qt
     SUBDIR += libdevq
+    SUBDIR += libdex
     SUBDIR += libedit
     SUBDIR += libelf
     SUBDIR += libepoll-shim
