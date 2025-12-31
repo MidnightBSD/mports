@@ -56,6 +56,7 @@
     SUBDIR += grilo
     SUBDIR += grilo-plugins
     SUBDIR += gstreamer1-plugins-srtp
+    SUBDIR += gstreamer1-plugins-sctp
     SUBDIR += gtk-vnc
     SUBDIR += hostapd
     SUBDIR += hping
