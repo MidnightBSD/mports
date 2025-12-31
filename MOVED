@@ -590,3 +590,4 @@ sysutils/tracker||2025-12-26|Replaced long ago by tracker3 and now tinysparql
 lang/spidermonkey115|lang/spidermonkey128|2025-12-28|Removed out of date version no longer in use.
 databases/firebird25|databases/firebird30|2025-12-29|Migrate to suppported firebird release
 devel/llvm16|devel/llvm17|2025-12-30|unused and removed
+devel/swig30|devel/swig|2025-12-30|swig 3 replaced by 4
