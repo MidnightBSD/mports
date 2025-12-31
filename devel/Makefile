@@ -1503,6 +1503,7 @@
     SUBDIR += py-pyproject-hooks
     SUBDIR += py-pyproject-metadata
     SUBDIR += py-pyrfc3339
+    SUBDIR += py-pyright
     SUBDIR += py-pyrsistent
     SUBDIR += py-pytest
     SUBDIR += py-pytest-asyncio
