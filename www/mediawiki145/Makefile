@@ -1,8 +1,9 @@
 PORTNAME=	mediawiki
-PORTVERSION=	1.43.6
+PORTVERSION=	1.45.1
 CATEGORIES=	www
-MASTER_SITES=	https://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
-PKGNAMESUFFIX=	143${PHP_PKGNAMESUFFIX}
+MASTER_SITES=	https://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/ \
+		FREEBSD_LOCAL/wen
+PKGNAMESUFFIX=	145${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wiki engine used by Wikipedia
@@ -10,7 +11,7 @@ WWW=		https://www.mediawiki.org/
 
 LICENSE=	gpl2
 
-CONFLICTS=	mediawiki139 mediawiki144 mediawiki145
+CONFLICTS=	mediawiki139 mediawiki143 mediawiki144
 
 USES=		cpe php:flavors shebangfix
 SHEBANG_FILES=	maintenance/storage/make-blobs

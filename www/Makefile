@@ -86,6 +86,8 @@
     SUBDIR += mattermost-webapp
     SUBDIR += mediawiki139
     SUBDIR += mediawiki143
+    SUBDIR += mediawiki144
+    SUBDIR += mediawiki145
     SUBDIR += mhonarc
     SUBDIR += midori
     SUBDIR += minio
