@@ -104,6 +104,7 @@
     SUBDIR += mod_php82
     SUBDIR += mod_php83
     SUBDIR += mod_security
+    SUBDIR += mod_tls
     SUBDIR += mod_webauth
     SUBDIR += mod_webkit
     SUBDIR += mod_wsgi4
