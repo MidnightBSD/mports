@@ -58,6 +58,7 @@
     SUBDIR += libdazzle
     SUBDIR += libdecor
     SUBDIR += libgdiplus
+    SUBDIR += libgedit-gtksourceview
     SUBDIR += libhandy
     SUBDIR += libshumate
     SUBDIR += libspelling
