@@ -6,6 +6,7 @@
     SUBDIR += glclock
     SUBDIR += kteatime
     SUBDIR += ktimer
+    SUBDIR += mouseclock
     SUBDIR += oclock
     SUBDIR += wmbinclock
     SUBDIR += wmcalclock
