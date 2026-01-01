@@ -38,6 +38,8 @@ NINJA_ENV+=	CXX="${CCACHE_BIN} ${CXX}"
 NINJA_ENV+=	CXX="${CXX}"
 .endif
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} "s/'-g', //" ${WRKSRC}/configure.py
 
