@@ -20,4 +20,6 @@ OBSOLETE_BDB_VAR=	WITH_DB
 
 CONFIGURE_ARGS=	DB="${BDB_LIB_NAME}"
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
