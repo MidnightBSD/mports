@@ -220,7 +220,6 @@
     SUBDIR += linux-c7-glx-utils
     SUBDIR += linux-c7-graphite2
     SUBDIR += linux-c7-imageformats-libs
-    SUBDIR += linux-c7-jasper
     SUBDIR += linux-c7-libdrm
     SUBDIR += linux-c7-libepoxy
     SUBDIR += linux-c7-libglvnd
