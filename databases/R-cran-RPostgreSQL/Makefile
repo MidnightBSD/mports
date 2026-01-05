@@ -11,6 +11,7 @@ LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	R-cran-DBI>=0.3:databases/R-cran-DBI
+BUILD_DEPENDS=	R-cran-DBI>=0.3:databases/R-cran-DBI
 
 USES=		cran:auto-plist,compiles pgsql shebangfix
 
