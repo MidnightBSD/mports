@@ -60,6 +60,7 @@
     SUBDIR += libgdiplus
     SUBDIR += libgedit-gtksourceview
     SUBDIR += libhandy
+    SUBDIR += libpanel
     SUBDIR += libshumate
     SUBDIR += libspelling
     SUBDIR += libunique3
