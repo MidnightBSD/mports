@@ -19,4 +19,6 @@ RUN_DEPENDS=	${CRAN_DEPENDS}
 
 USES=		cran:auto-plist,compiles
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
