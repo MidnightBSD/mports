@@ -286,6 +286,7 @@
     SUBDIR += sig2dot
     SUBDIR += signify
     SUBDIR += snort
+    SUBDIR += ssdeep
     SUBDIR += sshguard
     SUBDIR += sshpass
     SUBDIR += sudo
