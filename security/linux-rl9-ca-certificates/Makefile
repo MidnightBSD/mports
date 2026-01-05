@@ -12,6 +12,8 @@ USES=		linux:rl9
 USE_LINUX=	p11-kit
 USE_LINUX_RPM=	noarch
 
+BUILD_DEPENDS+=	${RUN_DEPENDS}
+
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
