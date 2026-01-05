@@ -87,17 +87,17 @@ do-install:
 .if !empty(COMPAT32_CFLAGS_${ARCH})
 	@(cd ${WRKSRC32} && ${SETENV} PATH=${LINUXBASE}/usr/bin \
 		${LOCALBASE}/bin/gmake install-strip \
-		DESTDIR=${STAGEDIR}${LINUXBASE})
-	${RM} -r ${STAGEDIR}${LINUXBASE}/usr/lib/alsa-lib/*.la
+		DESTDIR=${FAKE_DESTDIR}${LINUXBASE})
+	${RM} -r ${FAKE_DESTDIR}${LINUXBASE}/usr/lib/alsa-lib/*.la
 .endif
 	@(cd ${WRKSRC} && ${SETENV} PATH=${LINUXBASE}/usr/bin \
 		${LOCALBASE}/bin/gmake install-strip \
-		DESTDIR=${STAGEDIR}${LINUXBASE})
-	${RM} -r ${STAGEDIR}${LINUXBASE}${LIBDIR_${ARCH}}/alsa-lib/*.la
-	${MKDIR} -p ${STAGEDIR}${LINUXBASE}/etc/alsa/conf.d
+		DESTDIR=${FAKE_DESTDIR}${LINUXBASE})
+	${RM} -r ${FAKE_DESTDIR}${LINUXBASE}${LIBDIR_${ARCH}}/alsa-lib/*.la
+	${MKDIR} -p ${FAKE_DESTDIR}${LINUXBASE}/etc/alsa/conf.d
 	${LN} -sf ../../../usr/share/alsa/alsa.conf.d/50-oss.conf \
-		${STAGEDIR}${LINUXBASE}/etc/alsa/conf.d
-	${RM} -r ${STAGEDIR}${LINUXBASE}/usr/etc
+		${FAKE_DESTDIR}${LINUXBASE}/etc/alsa/conf.d
+	${RM} -r ${FAKE_DESTDIR}${LINUXBASE}/usr/etc
 
 post-install:
 .if defined(WRKDIRPREFIX) && !empty(WRKDIRPREFIX)
