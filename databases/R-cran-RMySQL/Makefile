@@ -16,4 +16,6 @@ USES=		cpe cran:auto-plist,compiles mysql
 
 CPE_VENDOR=	r-consortium
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
