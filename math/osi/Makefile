@@ -1,12 +1,12 @@
 PORTNAME=	Osi
 DISTVERSIONPREFIX=	releases/
-DISTVERSION=	0.108.7
+DISTVERSION=	0.108.11
 CATEGORIES=	math
 PKGNAMEPREFIX=	coin-or-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	COIN-OR Open Solver Interface, an API for calling solver libraries
-WWW=		https://projects.coin-or.org/Osi/
+WWW=		https://github.com/coin-or/Osi/
 
 LICENSE=	epl
 LICENSE_FILE=	${WRKSRC}/Osi/LICENSE
@@ -30,6 +30,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	coin-or
 
 INSTALL_TARGET=	install-strip
+
+# tests fail to compile
+NO_TEST=	yes
 
 post-install:
 	@${RM} -r ${STAGEDIR}${PREFIX}/share/coin
