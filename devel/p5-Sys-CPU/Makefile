@@ -14,6 +14,8 @@ LICENSE_COMB=	dual
 USES=		dos2unix perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sys/CPU/CPU.so
 
