@@ -93,6 +93,7 @@
     SUBDIR += gtkspell
     SUBDIR += gtkspell3
     SUBDIR += heirloom-doctools
+    SUBDIR += hevea
     SUBDIR += highlight
     SUBDIR += hs-pandoc
     SUBDIR += hspell
