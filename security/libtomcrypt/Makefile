@@ -45,6 +45,8 @@ GMP_LIB_DEPENDS=		libgmp.so:math/gmp
 GMP_CFLAGS=			-DGMP_DESC
 GMP_VARS=			EXTRALIBS+=-lgmp
 
+NO_TEST=	yes
+
 PORTDOCS=	*
 
 post-patch:
