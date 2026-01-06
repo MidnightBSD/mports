@@ -1,5 +1,5 @@
 PORTNAME=	openmpi
-DISTVERSION=	5.0.5
+DISTVERSION=	5.0.6
 CATEGORIES=	net parallel
 MASTER_SITES=	https://download.open-mpi.org/release/open-mpi/v${PORTVERSION:R}/
 
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libhwloc.so:devel/hwloc2 \
 		libevent.so:devel/libevent \
 		libmunge.so:security/munge
 
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd13.4
 
 # :keepla because port uses lt_dlopen
 USES=		compiler:c11 fortran gmake libtool:keepla localbase perl5 \
@@ -42,6 +42,7 @@ CONFIGURE_ARGS+=	--program-prefix= \
 			--with-wrapper-ldflags=-Wl,-rpath=-Wl,-rpath=${LOCALBASE}/lib/gcc${_GCC_VER}
 TEST_TARGET=		check
 CFLAGS+=		${CFLAGS_F2018}
+LDFLAGS+=		-lpthread
 CONFLICTS_INSTALL=	openmpi4-4*
 
 DOCSDIR=	${PREFIX}/${MPIDIR}/share/doc
@@ -49,6 +50,7 @@ MANDIRS=	${PREFIX}/${MPIDIR}/share/man
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 PLIST_SUB+=	MPIDIR=${MPIDIR}
 PORTDOCS=	*
+PIE_UNSAFE=	yes
 
 OPTIONS_DEFINE=			AVX DEBUG DOCS IPV6 ROMIO SLURM
 OPTIONS_DEFAULT=		ROMIO
@@ -86,7 +88,7 @@ SLURM_CONFIGURE_WITH=	slurm
 
 .include <bsd.port.pre.mk>
 
-.if ${FORTRAN_DEFAULT} == gfortran && ${GCC_DEFAULT} >= 10
+.if ${FORTRAN_DEFAULT} == gfortran
 FCFLAGS+=	-fallow-argument-mismatch
 .endif
 
