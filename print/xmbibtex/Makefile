@@ -11,6 +11,8 @@ WRKSRC_SUBDIR=	src
 USES=		imake:noman motif xorg
 USE_XORG=	ice sm x11 xext xmu xt xpm
 
+USE_CXXSTD=	c++14
+
 PLIST_FILES=	bin/xmbibtex lib/X11/app-defaults/XmBibTeX
 
 .include <bsd.port.mk>
