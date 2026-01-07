@@ -9,15 +9,14 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	3D penguin racing game using OpenGL
+WWW=		https://tuxracer.sourceforge.net/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 
+USE_GL=	yes
 USE_SDL=	mixer sdl
-USE_GL=		gl
 USE_XORG=	x11 xt xmu xi
-USES=		gmake tk tcl
-USE_TK=	yes
-USE_TCL=	yes
+USES=		gl gmake tk tcl xorg
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-tcl-inc="${TCL_INCLUDEDIR}" \
 		--with-tcl-libs="${LOCALBASE}/lib" \
@@ -26,6 +25,7 @@ CONFIGURE_ARGS=	--with-tcl-inc="${TCL_INCLUDEDIR}" \
 		--with-gl-inc="${LOCALBASE}/include" \
 		--with-data-dir=${DATADIR}
 CPPFLAGS+=	-DGLX_GLXEXT_LEGACY
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
