@@ -13,7 +13,7 @@ WWW=		https://allenmonroesmith.bitbucket.io/Allenroids/
 
 LICENSE=	other
 
-USES=		gmake
+USES=		gl sdl gmake
 USE_SDL=	sound
 USE_GL=		glut glu gl
 
