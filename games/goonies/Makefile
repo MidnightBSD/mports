@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Remake of the 8 bit classic game 'The Goonies'
 WWW=		https://goonies.jorito.net/
 
-LICENSE=	other
+LICENSE=	NONE
 
 USES=		gl gmake sdl tar:tgz
 USE_SDL=	sdl mixer image
