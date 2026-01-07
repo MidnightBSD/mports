@@ -39,6 +39,7 @@
     SUBDIR += linux-c7-lz4
     SUBDIR += linux-rl9-brotli
     SUBDIR += linux-rl9-lz4
+    SUBDIR += lzfse
     SUBDIR += lzip
     SUBDIR += lzma
     SUBDIR += lzo2
