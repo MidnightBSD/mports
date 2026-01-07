@@ -17,6 +17,8 @@ USE_SDL=	sdl mixer image
 USE_GL=		gl glu
 USE_CXXSTD=	c++98
 
+USE_GCC=	yes
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 PORTDATA=	*
