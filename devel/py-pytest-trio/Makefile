@@ -21,5 +21,6 @@ USES=		python
 USE_PYTHON=	autoplist distutils pytest
 TEST_ARGS=	--pyargs pytest_trio
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
