@@ -180,7 +180,7 @@ post-build:
 post-install:
 	for lib in ${STAGEDIR}${PREFIX}/${QT_LIBDIR_REL}/*.so.${_QT_VERSION:C/-.*//} ; \
 	do \
-		${BRANDELF} -t MidnightBSD $$lib ; \
+		${BRANDELF} -t FreeBSD $$lib ; \
 	done
 	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
