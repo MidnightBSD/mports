@@ -13,8 +13,11 @@ LICENSE_NAME_CW=	Charlotte Wickham COPYRIGHT
 LICENSE_FILE_CW=	${WRKSRC}/LICENSE
 LICENSE_PERMS_CW=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+BUILD_DEPENDS=	R-cran-colorspace>0:graphics/R-cran-colorspace
 RUN_DEPENDS=	R-cran-colorspace>0:graphics/R-cran-colorspace
 
 USES=		cran:auto-plist
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
