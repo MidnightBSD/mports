@@ -592,3 +592,4 @@ databases/firebird25|databases/firebird30|2025-12-29|Migrate to suppported fireb
 devel/llvm16|devel/llvm17|2025-12-30|unused and removed
 devel/swig30|devel/swig|2025-12-30|swig 3 replaced by 4
 databases/mongodb50|databases/mongodb60|2026-01-07|Has expired: EOL from October 2024, see https://www.mongodb.com/legal/support-policy/lifecycles, please use databases/mongodb60
+mail/cclient|mail/panda-cclient|2026-01-07|Has expired: Last upstream release was in 2007 so use the fork mail/panda-cclient
