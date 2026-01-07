@@ -1,50 +1,55 @@
-PORTNAME=	minetest
-PORTVERSION=	5.4.1
-PORTREVISION=	2
+PORTNAME=	luanti
+DISTVERSION=	5.14.0
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Near-infinite-world block sandbox game
+WWW=		https://www.minetest.net/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/doc/lgpl-2.1.txt
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
-		libjsoncpp.so:devel/jsoncpp
+		libjsoncpp.so:devel/jsoncpp \
+		libzstd.so:archivers/zstd
 
-USES=		cmake compiler:c11 iconv:wchar_t sqlite
+USES=		cmake compiler:c++17-lang cpe iconv:wchar_t sdl ssl sqlite
+GH_ACCOUNT=	luanti-org
+GH_PROJECT=	luanti
 USE_GITHUB=	yes
+USE_SDL=	sdl2
+CMAKE_ARGS=	-DCUSTOM_EXAMPLE_CONF_DIR="${PREFIX}/etc" \
+CMAKE_ON=	ENABLE_SYSTEM_JSONCPP
+CMAKE_OFF=	BUILD_DOCUMENTATION
 
-CMAKE_ARGS=	-DCUSTOM_MANDIR="${PREFIX}/man" \
-		-DCUSTOM_EXAMPLE_CONF_DIR="${PREFIX}/etc" \
-		-DENABLE_SYSTEM_JSONCPP=ON
+TEST_ENV=	${MAKE_ENV} LC_ALL=C.UTF-8
 
 LDFLAGS_i386=	-Wl,-znotext
+
+DATADIR=	${PREFIX}/share/luanti
 
 PORTDATA=	*
 PORTDOCS=	*
 
-OPTIONS_DEFINE=	CURL SOUND FREETYPE NCURSES LUAJIT \
+OPTIONS_DEFINE=	CURL SOUND NCURSES LUAJIT TEST \
 		DOCS EXAMPLES NLS
 OPTIONS_MULTI=	COMP
 OPTIONS_GROUP=	DATABASE
+OPTIONS_MULTI_COMP=	CLIENT SERVER
+OPTIONS_GROUP_DATABASE=	PGSQL LEVELDB REDIS SPATIAL
+OPTIONS_DEFAULT=	CLIENT SERVER \
+			CURL SOUND NCURSES LUAJIT
+OPTIONS_SUB=		yes
 
 COMP_DESC=		Software components
-OPTIONS_MULTI_COMP=	CLIENT SERVER
-
 DATABASE_DESC=		Database support
-OPTIONS_GROUP_DATABASE=	PGSQL LEVELDB REDIS SPATIAL
-
-OPTIONS_DEFAULT=	CLIENT SERVER \
-			CURL SOUND FREETYPE NCURSES LUAJIT
-OPTIONS_SUB=		yes
 
 CLIENT_DESC=		Build client
 CLIENT_CMAKE_BOOL=	BUILD_CLIENT
 CLIENT_LIB_DEPENDS=	libpng.so:graphics/png \
-			libIrrlicht.so:x11-toolkits/irrlicht
+			libfreetype.so:print/freetype2
 CLIENT_USES=		gl jpeg xorg
-CLIENT_USE=		GL=gl XORG=x11,xext,xxf86vm
+CLIENT_USE=		GL=gl XORG=x11,xext,xi
 SERVER_DESC=		Build server
 SERVER_CMAKE_BOOL=	BUILD_SERVER
 
@@ -53,16 +58,13 @@ CURL_CMAKE_BOOL=	ENABLE_CURL
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 SOUND_DESC=		Enable sound
 SOUND_CMAKE_BOOL=	ENABLE_SOUND
-FREETYPE_DESC=		Support for TrueType fonts with unicode
-FREETYPE_CMAKE_BOOL=	ENABLE_FREETYPE
-FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
 NCURSES_DESC=		Enable ncurses console
 NCURSES_CMAKE_BOOL=	ENABLE_CURSES
 NCURSES_USES=		ncurses
 
 LUAJIT_DESC=		LuaJIT support
 LUAJIT_CMAKE_BOOL=	ENABLE_LUAJIT REQUIRE_LUAJIT
-LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
+LUAJIT_USES=		luajit:luajit-openresty
 
 PGSQL_USES=		pgsql
 PGSQL_CMAKE_BOOL=	ENABLE_POSTGRESQL
@@ -80,6 +82,8 @@ NLS_CMAKE_BOOL=		ENABLE_GETTEXT
 NLS_USES=		gettext
 NLS_LDFLAGS=		-L${LOCALBASE}/lib
 
+TEST_CMAKE_BOOL=	BUILD_UNITTESTS
+
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MCLIENT} && ${PORT_OPTIONS:MSOUND}
@@ -89,17 +93,9 @@ LIB_DEPENDS+=	libvorbis.so:audio/libvorbis \
 .endif
 
 .if ${PORT_OPTIONS:MSERVER}
-USE_RC_SUBR=	${PORTNAME}
-USERS=		${PORTNAME}
-GROUPS=		${PORTNAME}
-.endif
-
-# hacky way to not bring irrlicht and X11 depends for server only
-.if ! ${PORT_OPTIONS:MCLIENT} && ${PORT_OPTIONS:MSERVER}
-BUILD_DEPENDS+=	${NONEXISTENT}:x11-toolkits/irrlicht:patch
-IRRLICHT_INCLUDE_DIR=	`${MAKE} -C ${PORTSDIR}/x11-toolkits/irrlicht -V WRKSRC`/include
-CMAKE_ARGS+=	-DIRRLICHT_INCLUDE_DIR:STRING="${IRRLICHT_INCLUDE_DIR}"
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-irrlichtdepend
+USE_RC_SUBR=	minetest
+USERS=		minetest
+GROUPS=		minetest
 .endif
 
 post-extract:
@@ -111,6 +107,12 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
 		${WRKSRC}/cmake/Modules/*.cmake
 
-pre-fake:
-	${MKDIR} ${PREFIX}/share/minetest/games/minetest_game
+do-test-TEST-on:
+.if ${PORT_OPTIONS:MCLIENT}
+	cd ${WRKDIR} && ${SETENV} ${TEST_ENV} ${FAKE_DESTDIR}${PREFIX}/bin/luanti --run-unittests
+.endif
+.if ${PORT_OPTIONS:MSERVER}
+	cd ${WRKDIR} && ${SETENV} ${TEST_ENV} ${FAKE_DESTDIR}${PREFIX}/bin/luantiserver --run-unittests
+.endif
+
 .include <bsd.port.mk>
