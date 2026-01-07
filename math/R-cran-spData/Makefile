@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/spData/
 
 LICENSE=	CC0-1.0
 
+BUILD_DEPENDS=	R-cran-sp>0:math/R-cran-sp
 RUN_DEPENDS=	R-cran-sp>0:math/R-cran-sp
 
 USES=		cran:auto-plist
