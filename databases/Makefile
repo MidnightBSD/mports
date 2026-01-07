@@ -60,9 +60,9 @@
     SUBDIR += mariadb114-server
     SUBDIR += mdbtools
     SUBDIR += memcached
-    SUBDIR += mongodb50
     SUBDIR += mongodb60
     SUBDIR += mongodb70
+    SUBDIR += mongodb80
     SUBDIR += mysql-connector-c++
     SUBDIR += mysql-connector-j
     SUBDIR += mysql-connector-java51
