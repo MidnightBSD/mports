@@ -7,11 +7,10 @@ PKGNAMESUFFIX=	-libs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FUSE allows filesystem implementation in userspace
+WWW=		https://github.com/libfuse/libfuse
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
-
-PORTSCOUT=	limit:^2\.
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	libfuse
@@ -24,6 +23,9 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
+
+PORTSCOUT=	limit:^2\.
+
 PLIST_SUB=	VERSION=${PORTVERSION}
 PORTDOCS=	*
 
