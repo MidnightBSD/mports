@@ -9,7 +9,8 @@ WWW=		https://cran.r-project.org/web/packages/RCurl/
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	curl-config:ftp/curl
+BUILD_DEPENDS=	curl-config:ftp/curl \
+		R-cran-bitops>0:devel/R-cran-bitops
 LIB_DEPENDS=	libcurl.so:ftp/curl
 RUN_DEPENDS=	R-cran-bitops>0:devel/R-cran-bitops
 
