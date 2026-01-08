@@ -1,10 +1,12 @@
 PORTNAME=	reportlab
-DISTVERSION=	4.4.1
+DISTVERSION=	4.4.3
+PORTREVISION=	1
 CATEGORIES=	print python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI:python \
+	FREEBSD_LOCAL/bofh/print/py-${PORTNAME}:pfbfer
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		${PFBFER}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:python \
+	${PFBFER}:pfbfer
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -52,9 +54,6 @@ post-patch-DOCS-on:
 			  -e 's|%%PYTHON_SITELIBDIR%%|${PYTHON_SITELIBDIR}|' \
 				${WRKSRC}/docs/${f}
 .endfor
-
-post-install:
-	-${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/reportlab/*/*.so
 
 post-install-DOCS-on:
 	cd ${WRKSRC}/docs && ${PYTHON_CMD} genAll.py
