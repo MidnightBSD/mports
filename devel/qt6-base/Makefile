@@ -111,6 +111,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%OPENSSLLIB%%|${OPENSSLLIB}|g' \
 		${WRKSRC}/src/plugins/tls/openssl/qsslsocket_openssl_symbols.cpp
 
+post-fake:
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX} -type f -name '*.orig' -delete
+
 post-install:
 # Install symlinks for user-facing tools
 	while read line; do \

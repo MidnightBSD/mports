@@ -3972,6 +3972,10 @@ lib/cmake/Qt6XmlPrivate/Qt6XmlPrivateVersionlessTargets.cmake
 %%QT_MKSPECDIR%%/macx-xcode/default.xcscheme
 %%QT_MKSPECDIR%%/macx-xcode/qmake.conf
 %%QT_MKSPECDIR%%/macx-xcode/qplatformdefs.h
+%%QT_MKSPECDIR%%/midnightbsd-clang/qmake.conf
+%%QT_MKSPECDIR%%/midnightbsd-clang/qplatformdefs.h
+%%QT_MKSPECDIR%%/midnightbsd-g++/qmake.conf
+%%QT_MKSPECDIR%%/midnightbsd-g++/qplatformdefs.h
 %%QT_MKSPECDIR%%/modules/README
 %%QT_MKSPECDIR%%/modules/qt_lib_concurrent.pri
 %%QT_MKSPECDIR%%/modules/qt_lib_core.pri
@@ -4416,3 +4420,5 @@ libdata/pkgconfig/Qt6Xml.pc
 %%QT_DATADIR%%/wayland/protocols/xdg-toplevel-icon/REUSE.toml
 %%QT_DATADIR%%/wayland/protocols/xdg-toplevel-icon/qt_attribution.json
 %%QT_DATADIR%%/wayland/protocols/xdg-toplevel-icon/xdg-toplevel-icon-v1.xml
+@dir %%QT_INCDIR%%
+@dir %%QT_DATADIR%%
