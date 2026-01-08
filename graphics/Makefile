@@ -41,6 +41,7 @@
     SUBDIR += argyllcms
     SUBDIR += cairo
     SUBDIR += cairomm
+    SUBDIR += cairomm11
     SUBDIR += camera
     SUBDIR += camerakit
     SUBDIR += cenon

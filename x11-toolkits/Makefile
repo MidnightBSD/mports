@@ -86,6 +86,7 @@
     SUBDIR += p5-Tk
     SUBDIR += pango
     SUBDIR += pangomm
+    SUBDIR += pangomm24
     SUBDIR += pangox-compat
     SUBDIR += plasma6-kdeplasma-addons
     SUBDIR += py-qt5-charts
