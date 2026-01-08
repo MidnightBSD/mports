@@ -25,7 +25,7 @@ do-build:
 do-install:
 	@${CARGO_CARGO_RUN} cinstall --verbose --verbose \
 		--destdir "${FAKE_DESTDIR}" \
-		--prefix "${PREFIX}" \
+		--prefix "${TRUE_PREFIX}" \
 		${CARGO_INSTALL_ARGS}
 
 .include <bsd.port.mk>
