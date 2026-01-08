@@ -1,10 +1,13 @@
---- src/corelib/CMakeLists.txt.orig	2025-05-14 09:43:58 UTC
-+++ src/corelib/CMakeLists.txt
-@@ -412,6 +412,10 @@ endif()
+--- src/corelib/CMakeLists.txt.orig	2025-11-12 05:17:57.000000000 -0500
++++ src/corelib/CMakeLists.txt	2026-01-08 08:34:04.022255000 -0500
+@@ -416,6 +416,13 @@
      target_link_libraries(Platform INTERFACE Threads::Threads)
  endif()
  
 +if(CMAKE_SYSTEM_NAME STREQUAL FreeBSD)
++  target_link_libraries(Core PRIVATE kvm procstat)
++endif()
++if(CMAKE_SYSTEM_NAME STREQUAL MidnightBSD)
 +  target_link_libraries(Core PRIVATE kvm procstat)
 +endif()
 +
