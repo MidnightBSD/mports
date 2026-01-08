@@ -34,6 +34,7 @@
     SUBDIR += hiredis
     SUBDIR += kyotocabinet
     SUBDIR += ldb25
+    SUBDIR += ldb28
     SUBDIR += leveldb
     SUBDIR += libgda5
     SUBDIR += libgda5-bdb

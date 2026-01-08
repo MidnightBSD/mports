@@ -281,6 +281,7 @@
     SUBDIR += rubygem-uri
     SUBDIR += samba413
     SUBDIR += samba416
+    SUBDIR += samba419
     SUBDIR += sdl_net
     SUBDIR += seaweedfs
     SUBDIR += smbldap-tools
