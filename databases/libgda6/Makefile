@@ -39,4 +39,6 @@ GL_ACCOUNT=	GNOME
 GL_TAGNAME=	c149606b
 SNAPDATE=	20250302
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
