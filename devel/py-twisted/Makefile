@@ -58,6 +58,9 @@ post-patch:
 	${GREP} -F -Rl TLS_METHOD ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} \
 		-e 's,TLS_METHOD,TLSv1_2_METHOD,'
 
+pre-build:
+	${FIND} ${WRKSRC} -name '*.bak' -delete
+
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/ -name '*.so' -exec ${STRIP_CMD} {} +
 
