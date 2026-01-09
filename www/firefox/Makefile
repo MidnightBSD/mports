@@ -28,7 +28,8 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		yasm:devel/yasm \
 		zip:archivers/zip \
 		python3:lang/python3 \
-		clang15:devel/llvm15
+		clang15:devel/llvm15 \
+		cargo:lang/rust
 
 LIB_DEPENDS+=   libvpx.so:multimedia/libvpx \
                 libevent.so:devel/libevent \
