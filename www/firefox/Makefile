@@ -99,7 +99,7 @@ LLVM_VERSION=	15
 MBSD64_TARGET=	x86_64-mports-freebsd12.3
 CONFIGURE_TARGET=	${MBSD64_TARGET}
 HAS_CONFIGURE=	yes
-CONFIGURE_ENV+= BINDGEN_CFLAGS="-I${LOCALBASE}/include"
+CONFIGURE_ENV+= BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
 CONFIGURE_OUTSOURCE=    yes
 LDFLAGS+=               -Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
 #BINARY_ALIAS+=  python3=${PYTHON_CMD}
