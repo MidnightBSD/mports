@@ -27,7 +27,7 @@ CMAKE_ARGS=	-DClang_DIR:PATH="${LLVM_PREFIX}/lib/cmake/clang" \
 # major.minor version of llvm for this variable. Since LLVM_VERSION only provides
 # the major version, we pass the full version via a command and let CMake process
 # it during the configure stage.
-CMAKE_ARGS+=	-DQDOC_USER_CLANG_VERSION:STRING="`${LLVM_CONFIG} --version | awk '/version/ {print $3}' | sed 's/LLVM version //'`"
+CMAKE_ARGS+=	-DQDOC_USER_CLANG_VERSION:STRING="`${LLVM_CONFIG} --version | awk '/version/ {print $3}' | sed -e 's/LLVM version //' -e 's/^[ \t]*//'`"
 
 post-install:
 # Install symlinks for user-facing tools
