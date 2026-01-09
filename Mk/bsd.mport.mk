@@ -508,7 +508,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		ldap libarchive libedit libtool llvm localbase lua \
 		metaport makeself meson mlt mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt readline ruby samba scons sdl sqlite ssl \
-		tar tcl tk tex trigger uniquefiles wx xfce zip 7z
+		tar tcl tk tex trigger uniquefiles varnish wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
 .  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" || ${EXT:tl} == "ruby" || ${EXT:tl} == "cabal" || ${EXT:tl} == "gstreamer") 
