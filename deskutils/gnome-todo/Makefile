@@ -19,7 +19,8 @@ LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts \
 		libical.so:devel/libical \
 		libpeas-1.0.so:devel/libpeas1 \
 		libsecret-1.so:security/libsecret \
-		libsoup-2.4.so:devel/libsoup
+		libsoup-2.4.so:devel/libsoup \
+		libuuid.so:misc/libuuid
 
 PORTSCOUT=	limitw:1,even
 
