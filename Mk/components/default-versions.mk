@@ -110,8 +110,8 @@ RUST_DEFAULT?=		rust
 .else
 RUST_DEFAULT?=		rust-bin
 .endif
-# Possible values: 4.13
-SAMBA_DEFAULT?=		4.13
+# Possible values: 4.16, 4.19, ... 
+SAMBA_DEFAULT?=		4.16
 # Possible values: base, openssl, openssl111, openssl31, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
