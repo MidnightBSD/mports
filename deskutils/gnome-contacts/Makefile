@@ -35,7 +35,7 @@ LIB_DEPENDS=	libchamplain-0.12.so:graphics/libchamplain \
 PORTSCOUT=	limitw:1,even
 
 USE_GL=		egl
-USE_GNOME=	cairo evolutiondataserver3 gdkpixbuf2 gnomedesktop3 gtk30 \
+USE_GNOME=	cairo evolutiondataserver3 gdkpixbuf gnomedesktop3 gtk30 \
 		intlhack introspection:build
 USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr
 USES=		compiler:c11 gettext gl gnome localbase meson perl5 pkgconfig \
