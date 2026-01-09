@@ -125,7 +125,7 @@ OPTIONS_SUB=			yes
 
 OPTIONS_DEFINE=			AD_DC ADS CLUSTER CUPS DOCS FAM GPGME \
 				LDAP MANDOC PROFILE PYTHON3 QUOTAS \
-				SPOTLIGHT SYSLOG UTMP
+				SYSLOG UTMP
 #OPTIONS_DEFINE+=		DEVELOPER MEMORY_DEBUG
 
 OPTIONS_GROUP=			VFS
@@ -150,7 +150,6 @@ FAM_DESC=			File Alteration Monitor
 GPGME_DESC=			GpgME support
 LDAP_DESC=			LDAP client
 LIBZFS_DESC=			LibZFS
-SPOTLIGHT_DESC=			Spotlight server-side search support
 MANDOC_DESC=			Build manpages from DOCBOOK templates
 MEMORY_DEBUG_DESC=		Debug memory allocator
 PICKY_DEVELOPER_DESC=		Treat compiler warnings as errors(implies DEVELOPER)
@@ -288,7 +287,7 @@ SAMBA4_BUNDLED_LIBS+=		replace
 # Don't use external libcom_err
 SAMBA4_BUNDLED_LIBS+=		com_err
 # Set the test environment variables
-TEST_USES=			python
+TEST_USES=			python:-3.11
 TEST_ENV=			PYTHON="${PYTHON_CMD}" \
 				SHA1SUM=/sbin/sha1 \
 				SHA256SUM=/sbin/sha256 \
@@ -315,7 +314,8 @@ CONFIGURE_ARGS+=		\
 				--without-systemd \
 				--with-libarchive \
 				--with-acl-support \
-				--disable-ctdb-tests
+				--disable-ctdb-tests \
+				--disable-spotlight
 #sendfile broken?
 #				--with-sendfile-support \
 #				${ICONV_CONFIGURE_BASE}
@@ -343,7 +343,6 @@ MDNSRESPONDER_LDFLAGS+=         -Ddns_sd
 MEMORY_DEBUG_IMPLIES=		DEBUG
 MEMORY_DEBUG_CONFIGURE_ENV=	ADDITIONAL_CFLAGS="-DENABLE_JEMALLOC `pkg-config --cflags jemalloc`" ADDITIONAL_LDFLAGS="`pkg-config --libs jemalloc`"
 MEMORY_DEBUG_LIB_DEPENDS=	libjemalloc.so.2:devel/jemalloc
-# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=194046
 GDB_CMD?=			${LOCALBASE}/bin/gdb
 # https://bugzilla.samba.org/show_bug.cgi?id=8969
 PICKY_DEVELOPER_IMPLIES=	DEVELOPER
@@ -413,14 +412,6 @@ PROFILE_CONFIGURE_WITH=		profiling-data
 
 QUOTAS_CONFIGURE_WITH=		quotas
 
-SPOTLIGHT_CONFIGURE_ENABLE=	spotlight
-SPOTLIGHT_BUILD_DEPENDS=	tracker>=1.4.1:sysutils/tracker
-SPOTLIGHT_RUN_DEPENDS=		tracker>=1.4.1:sysutils/tracker
-# ICU
-SPOTLIGHT_LIB_DEPENDS=		libicuuc.so:devel/icu
-SPOTLIGHT_USES=			bison gnome
-SPOTLIGHT_USE=			gnome=glib20
-
 SYSLOG_CONFIGURE_WITH=		syslog
 
 UTMP_CONFIGURE_WITH=		utmp
@@ -443,7 +434,6 @@ SAMBA4_MODULES+=		idmap_nss idmap_autorid \
 				idmap_rid idmap_hash idmap_tdb idmap_tdb2 idmap_script \
 				nss-info_hash
 # List of extra modules taken from RHEL build
-# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=197320
 .if ${PORT_OPTIONS:MADS}
 SAMBA4_MODULES+=		idmap_ad idmap_rfc2307 nss-info_template \
 				nss-info_rfc2307 nss-info_sfu nss-info_sfu20
@@ -461,7 +451,8 @@ SAMBA4_MODULES+=              vfs_acl_tdb vfs_acl_xattr vfs_aio_fork vfs_aio_pth
                               vfs_shadow_copy vfs_shadow_copy2 vfs_shell_snap \
                               vfs_streams_depot vfs_streams_xattr vfs_syncops \
                               vfs_time_audit vfs_unityed_media vfs_virusfilter \
-                              vfs_widelinks vfs_worm vfs_xattr_tdb vfs_zfsacl
+                              vfs_widelinks vfs_worm vfs_xattr_tdb 
+#vfs_zfsacl
 
 .if ${PORT_OPTIONS:MDEVELOPER}
 SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry \
@@ -472,10 +463,10 @@ SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry \
 .endif
 # Python bindings
 .if ! ${PORT_OPTIONS:MPYTHON3} || defined(NO_PYTHON)
-USES+=				python:build,test
+USES+=				python:build,test,-3.11
 CONFIGURE_ARGS+=		--disable-python
 .else
-USES+=				python
+USES+=				python:-3.11
 PLIST+=				${PKGDIR}/pkg-plist.python
 # Don't cache Python modules
 CONFIGURE_ARGS+=		--nopycache
@@ -609,6 +600,8 @@ post-patch:
 					${PATCH_WRKSRC}/buildtools/scripts/abi_gen.sh
 				@${REINPLACE_CMD} -e 's|%%SAMBA4_CONFIG%%|${SAMBA4_CONFIG}|g' \
 					${PATCH_WRKSRC}/dynconfig/wscript
+				${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' \
+					${WRKSRC}/wscript
 
 # Use threading (or multiprocessing) but not thread (renamed in python 3+).
 pre-configure:
