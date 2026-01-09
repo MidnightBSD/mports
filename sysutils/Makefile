@@ -88,7 +88,6 @@
     SUBDIR += gconf-editor
     SUBDIR += genisoimage
     SUBDIR += gigolo
-    SUBDIR += gksu
     SUBDIR += gnome-control-center
     SUBDIR += gnome-power-manager
     SUBDIR += gnome-settings-daemon
