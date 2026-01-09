@@ -25,8 +25,8 @@ pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/polkit-1/actions
-	${CP} ${FILESDIR}/mport-manager.desktop ${PREFIX}/share/applications/
-	${CP} ${FILESDIR}/*.policy ${PREFIX}/share/polkit-1/actions/
+	${CP} ${FILESDIR}/mport-manager.desktop ${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/
+	${CP} ${FILESDIR}/org.midnightbsd.mport-manager.policy ${FAKE_DESTDIR}${TRUE_PREFIX}/share/polkit-1/actions/org.midnightbsd.mport-manager.policy
 
 post-install:
 	${CP} ${WRKSRC}/icon.png ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/mport-manager.png
