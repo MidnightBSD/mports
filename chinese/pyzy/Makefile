@@ -9,6 +9,7 @@ WWW=		https://github.com/pyzy/pyzy
 
 LICENSE=	lgpl2.1
 
+BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 
 USES=		autoreconf compiler:c++11-lang gettext-runtime gmake gnome \
