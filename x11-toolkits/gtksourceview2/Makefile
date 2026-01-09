@@ -11,7 +11,6 @@ COMMENT=	Widget that adds syntax highlighting to GtkTextView
 
 LICENSE=	gpl2
 
-USE_GCC=	yes
 USES=		gettext gmake gnome libtool localbase pathfix pkgconfig tar:bzip2
 USE_GNOME=	gnomeprefix gtk20 libxml2 intlhack
 USE_LDCONFIG=	yes
