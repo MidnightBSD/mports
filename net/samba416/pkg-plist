@@ -165,7 +165,7 @@ include/samba4/wbclient.h
 %%SAMBA4_LIBDIR%%/libtevent-util.so.0
 %%SAMBA4_LIBDIR%%/libwbclient.so
 %%SAMBA4_LIBDIR%%/libwbclient.so.0
-lib/nss_winbind.so.1
+@comment lib/nss_winbind.so.1
 lib/nss_wins.so.1
 lib/pam_winbind.so
 %%CUPS%%libexec/samba/smbspool_krb5_wrapper
