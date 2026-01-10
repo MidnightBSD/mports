@@ -1,45 +1,30 @@
-# Created by: Koop Mast <kwm@FreeBSD.org>
-
 PORTNAME=	gnome-contacts
-PORTVERSION=	41.0
-PORTREVISION=	3
+PORTVERSION=	47.1.1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Contacts manager for gnome
+WWW=		https://wiki.gnome.org/Apps/Contacts
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vala>=0.14.0:lang/vala
-LIB_DEPENDS=	libchamplain-0.12.so:graphics/libchamplain \
-		libclutter-1.0.so:graphics/clutter \
-		libclutter-gtk-1.0.so:graphics/clutter-gtk3 \
-		libcogl.so:graphics/cogl \
-		libdrm.so:graphics/libdrm \
-		libexpat.so:textproc/expat2 \
-		libfolks.so:net-im/folks \
+LIB_DEPENDS=	libfolks.so:net-im/folks \
 		libgee-0.8.so:devel/libgee \
 		libgeocode-glib.so:net/geocode-glib \
 		libgoa-1.0.so:net/gnome-online-accounts \
 		libgstreamer-1.0.so:multimedia/gstreamer1 \
-		libhandy-1.so:x11-toolkits/libhandy \
-		libjson-glib-1.0.so:devel/json-glib \
-		libnotify.so:devel/libnotify \
-		libnspr4.so:devel/nspr \
-		libsecret-1.so:security/libsecret \
-		libsoup-2.4.so:devel/libsoup \
-		libtelepathy-glib.so:net-im/telepathy-glib
-
-PORTSCOUT=	limitw:1,even
+		libportal-gtk4.so:deskutils/libportal-gtk4 \
+		libqrencode.so:graphics/libqrencode
 
 USE_GL=		egl
 USE_GNOME=	cairo evolutiondataserver3 gdkpixbuf gnomedesktop3 gtk30 \
-		intlhack introspection:build
+		intlhack introspection:build libadwaita
 USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr
 USES=		compiler:c11 gettext gl gnome localbase meson perl5 pkgconfig \
-		python:3.4+,build sqlite tar:xz xorg
+		python:build sqlite tar:xz vala:build xorg
 
 GLIB_SCHEMAS=	org.gnome.Contacts.gschema.xml
 
@@ -47,19 +32,10 @@ OPTIONS_SUB=		yes
 OPTIONS_DEFINE=		MANPAGES
 OPTIONS_DEFAULT=	MANPAGES
 
-OPTIONS_DEFINE_i386=	CHEESE
-OPTIONS_DEFINE_amd64=	CHEESE
-OPTIONS_DEFAULT_i386=	CHEESE
-OPTIONS_DEFAULT_amd64=	CHEESE
-
 MANPAGES_MESON_TRUE=	manpage
 MANPAGES_USE=		GNOME=libxslt:build
 MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
 			docbook-xsl-ns>=0:textproc/docbook-xsl-ns \
 			docbook-xsl>=0:textproc/docbook-xsl
-
-CHEESE_DESC=		Cheese webcam support
-CHEESE_MESON_ENABLED=	cheese
-CHEESE_LIB_DEPENDS=	libcheese-gtk.so:multimedia/cheese
 
 .include <bsd.port.mk>
