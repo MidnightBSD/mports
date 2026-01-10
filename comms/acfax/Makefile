@@ -1,6 +1,6 @@
 PORTNAME=	acfax
 PORTVERSION=	0.981011
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	comms hamradio
 MASTER_SITES=	ftp://ftp.funet.fi/pub/ham/unix/Linux/misc/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/^0.//}
@@ -10,7 +10,7 @@ COMMENT=	Receive faxes using sound card and radio
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libXaw3d.so:x11-toolkits/Xaw3d \
+LIB_DEPENDS=	libXaw3d.so:x11-toolkits/libXaw3d \
 		libgnuregex.so.6:devel/libgnuregex
 
 PLIST_FILES=	bin/acfax
