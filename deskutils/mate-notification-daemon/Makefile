@@ -1,7 +1,5 @@
-# Created by: Andreas Kohn <andreas@syndrom23.de>
-
 PORTNAME=	mate-notification-daemon
-PORTVERSION=	1.26.0
+PORTVERSION=	1.28.3
 PORTREVISION=	2
 CATEGORIES=	deskutils mate
 MASTER_SITES=	MATE
@@ -9,9 +7,11 @@ DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Send small notifications to your desktop
+WWW=		https://mate-desktop.org/
 
-LICENSE=	gpl2 gpl3
+LICENSE=	gpl2+ gpl3+
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libcanberra.so:audio/libcanberra \
@@ -23,14 +23,14 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake gnome libtool localbase pathfix pkgconfig tar:xz \
+USES=		gettext gmake gnome libtool localbase pkgconfig tar:xz \
 		xorg
 USE_XORG=	x11
 USE_GNOME=	cairo glib20 gtk30 intlhack librsvg2 libwnck3
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-dbus-services=${PREFIX}/share/dbus-1/services \
-		--disable-static
-INSTALLS_ICONS=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
+CONFIGURE_ARGS=	--disable-static \
+		--with-dbus-services=${PREFIX}/share/dbus-1/services
 INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.mate.NotificationDaemon.gschema.xml

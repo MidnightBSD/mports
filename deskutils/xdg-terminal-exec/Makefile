@@ -1,6 +1,6 @@
 PORTNAME=	xdg-terminal-exec
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.12.4
+DISTVERSION=	0.14.1
 CATEGORIES=	deskutils
 
 MAINTAINER=	ports@MidnightBSD.org

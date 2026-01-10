@@ -1,7 +1,6 @@
-
-
 PORTNAME=	jlj
 PORTVERSION=	2.12
+PORTREVISION=	1
 CATEGORIES=	deskutils net
 MASTER_SITES=	http://umlautllama.com/projects/perl/ \
 		http://www.atarininja.org/~wxs/distfiles/
@@ -9,34 +8,36 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jerry's command-line LiveJournal.com entry system
+WWW=		http://umlautllama.com/projects/perl/ #jlj
 
 LICENSE=	publicdom
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
-
-USES=		perl5
+USES=		shebangfix perl5
 USE_PERL5=	run
 NO_BUILD=	yes
+NO_ARCH=	yes
 SUB_FILES=	pkg-message
 
-PLIST_FILES=	bin/jlj share/examples/jlj/dot.livejournal.rc
-PLIST_DIRS=	share/examples/jlj
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
-.if !defined(NOPORTDOCS)
+PLIST_FILES=	bin/jlj
 PORTDOCS=	README
-.endif
+PORTEXAMPLES=	dot.livejournal.rc
 
-post-patch:
-	@${REINPLACE_CMD} -e 's!/usr/bin/perl!${PERL}!' ${WRKSRC}/jlj.pl
+SHEBANG_FILES=	jlj.pl
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/jlj.pl ${PREFIX}/bin/jlj
-	@${MKDIR} ${PREFIX}/share/examples/jlj
+
+do-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/.livejournal.rc \
-		${PREFIX}/share/examples/jlj/dot.livejournal.rc
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.JLJ ${DOCSDIR}/README
-.endif
+		${FAKE_DESTDIR}${EXAMPLESDIR}/dot.livejournal.rc
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.JLJ ${FAKE_DESTDIR}${DOCSDIR}/README
 
 .include <bsd.port.mk>
