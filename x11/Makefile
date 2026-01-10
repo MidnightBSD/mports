@@ -215,6 +215,7 @@
     SUBDIR += xdesktopwaves
     SUBDIR += xdg-desktop-portal-gnome
     SUBDIR += xdg-desktop-portal-gtk
+    SUBDIR += xdg-desktop-portal-hyprland
     SUBDIR += xditview
     SUBDIR += xdm
     SUBDIR += xdotool

@@ -1830,6 +1830,7 @@
     SUBDIR += samurai
     SUBDIR += sbt
     SUBDIR += scons
+    SUBDIR += sdbus-cpp
     SUBDIR += sdl12
     SUBDIR += sdl12-compat
     SUBDIR += sdl20
