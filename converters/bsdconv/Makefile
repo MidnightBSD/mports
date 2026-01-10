@@ -1,16 +1,15 @@
 PORTNAME=	bsdconv
-PORTVERSION=	11.5
+PORTVERSION=	11.6
 CATEGORIES=	converters
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BSD licensed charset/encoding converter library
+WWW=		https://github.com/buganini/bsdconv
 
 LICENSE=	iscl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	buganini
-
-USES=		gmake
 
 OPTIONS_DEFINE=	CHINESE EBCDIC
 OPTIONS_SUB=	yes
@@ -21,6 +20,7 @@ ALL_TARGET=	libbsdconv bsdconv-mktable meta bsdconv-man bsdconv-completion bsdco
 INSTALL_TARGET=	installdir install_main install_filters install_scorers install_basic
 MAKE_ARGS=	PREFIX=${PREFIX} STRIP=${STRIP}
 USE_LDCONFIG=	yes
+USES=		gmake
 
 CHINESE_ALL_TARGET=	codecs_chinese
 CHINESE_INSTALL_TARGET=	install_chinese
