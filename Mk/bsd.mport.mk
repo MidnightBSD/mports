@@ -4841,7 +4841,7 @@ _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
 _FAKE_SEQ+=		995:check-fake
 .endif
-.if defined(DEVELOPER)
+.if defined(DEVELOPER) || defined(MPORT_MAINTAINER_MODE)
 _FAKE_SEQ+=    996:fake-qa
 .else
 fake-qa: fake
