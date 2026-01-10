@@ -1,6 +1,5 @@
     COMMENT = X11 toolkits
 
-    SUBDIR += Xaw3d
     SUBDIR += amtk
     SUBDIR += fltk
     SUBDIR += fox16

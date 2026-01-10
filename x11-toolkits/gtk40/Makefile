@@ -1,5 +1,5 @@
 PORTNAME=	gtk
-PORTVERSION=	4.16.3
+PORTVERSION=	4.18.6
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
 WWW=		https://www.gtk.org/
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1+
 
 PORTSCOUT=	limit:1,even
 
@@ -33,15 +33,16 @@ USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_GNOME=	atk cairo gdkpixbuf introspection:build pango \
 		librsvg2:run
-MESON_ARGS=	-Dintrospection=enabled -Dbuild-testsuite=false
+MESON_ARGS=	-Dbuild-testsuite=false
 LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	1.1600.3
+LIBVERSION=	1.1800.6
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo4.gschema.xml \
+		org.gtk.gtk4.Inspector.gschema.xml \
 		org.gtk.gtk4.Settings.ColorChooser.gschema.xml \
 		org.gtk.gtk4.Settings.Debug.gschema.xml \
 		org.gtk.gtk4.Settings.EmojiChooser.gschema.xml \
