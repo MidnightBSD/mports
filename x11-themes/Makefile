@@ -33,6 +33,7 @@ SUBDIR += mate-icon-theme
 SUBDIR += mate-themes
 SUBDIR += midnightbsd-backgrounds
 SUBDIR += oxygen-icons
+SUBDIR += plasma6-aurorae
 SUBDIR += plasma6-breeze
 SUBDIR += plasma6-breeze-gtk
 SUBDIR += plasma6-kde-gtk-config
