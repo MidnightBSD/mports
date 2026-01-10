@@ -7,6 +7,6 @@ MAINTAINER=	ports@MidnightBSD.org
 
 USES=		cmake kde:6 kfhack qt:6 tar:xz
 USE_KDE=	ecm:build
-USE_QT=		base declarative
+USE_QT=		base declarative tools:build
 
 .include <bsd.port.mk>

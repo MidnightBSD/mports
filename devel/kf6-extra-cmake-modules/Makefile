@@ -4,6 +4,7 @@ CATEGORIES=	devel kde kde-frameworks
 
 COMMENT=	Extra modules and scripts for CMake
 MAINTAINER=	ports@MidnightBSD.org
+WWW=		https://api.kde.org/ecm-index.html
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING-CMAKE-SCRIPTS

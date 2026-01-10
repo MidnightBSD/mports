@@ -350,6 +350,10 @@
     SUBDIR += hwloc
     SUBDIR += hwloc2
     SUBDIR += hyperscan
+    SUBDIR += hyprlang
+    SUBDIR += hyprutils
+    SUBDIR += hyprwayland-scanner
+    SUBDIR += hyprwire
     SUBDIR += icu
     SUBDIR += imake
     SUBDIR += inih

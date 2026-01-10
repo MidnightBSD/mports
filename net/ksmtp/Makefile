@@ -4,7 +4,7 @@ CATEGORIES=	net kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Job-based library to send email through an SMTP server
-WWW=		https://github.com/KDE/mailcommon
+WWW=		https://invent.kde.org/pim/ksmtp
 
 LICENSE=	lgpl2.1
 LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2

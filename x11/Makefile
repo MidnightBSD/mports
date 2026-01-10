@@ -27,6 +27,7 @@
     SUBDIR += gnome-shell-extensions
     SUBDIR += gnome-terminal
     SUBDIR += gnustep-app
+    SUBDIR += grim
     SUBDIR += gskrab
     SUBDIR += gstreamer1-plugins-x
     SUBDIR += gstreamer1-plugins-ximagesrc
@@ -177,6 +178,7 @@
     SUBDIR += sessreg
     SUBDIR += setxkbmap
     SUBDIR += slim
+    SUBDIR += slurp
     SUBDIR += smproxy
     SUBDIR += startup-notification
     SUBDIR += terminal.app
