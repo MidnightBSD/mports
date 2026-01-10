@@ -1035,6 +1035,8 @@ reinplace()
 }
 
 prefixman() {
+	return 0 
+# todo: BSD.local.dist mtree needs work
 	if [ -d "${FAKE_DESTDIR}${PREFIX}/man" ]; then
 		warn "Installing man files in ${PREFIX}/man is no longer supported. Consider installing these files in ${PREFIX}/share/man instead."
 		ls -liTd ${FAKE_DESTDIR}${PREFIX}/man
