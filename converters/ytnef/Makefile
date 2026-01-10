@@ -1,30 +1,28 @@
-# Created by: Rodrigo Graeff <delphus@gmail.com>
-
 PORTNAME=	ytnef
-PORTVERSION=	2.0
 DISTVERSIONPREFIX=	v
+DISTVERSION=	2.1.2
 PORTEPOCH=	1
 CATEGORIES=	converters mail
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unpack data in MS Outlook TNEF format
+WWW=		https://github.com/Yeraze/ytnef
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	p5-MIME-Tools>=0:mail/p5-MIME-Tools
 
-USES=		autoreconf cpe libtool pathfix perl5 shebangfix
-
+USES=		autoreconf cpe libtool perl5 shebangfix
+CPE_VENDOR=	ytnef_project
 USE_GITHUB=	yes
 GH_ACCOUNT=	Yeraze
-CPE_VENDOR=	ytnef_project
+USE_LDCONFIG=	yes
 USE_PERL5=	run
 
 SHEBANG_FILES=	ytnef/ytnefprocess
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USE_LDCONFIG=	yes
 
 PORTDOCS=	README.md
 
