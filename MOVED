@@ -25,7 +25,6 @@
 devel/subversion-perl|devel/p5-subversion|2009-04-08|Renamed
 devel/subversion-python|devel/py-subversion|2009-04-08|Renamed
 security/pecl-hash||2009-05-01|Hash is built into PHP now.
-www/firefox|www/browser|2009-06-27|We must ship unbranded firefox.
 security/ca-roots||2009-12-28|Makes certain false security guarantees
 security/cyrus-sasl||2009-12-28|Old, insecure, and dead.
 shells/mudsh||2009-12-28|Project disappeared from the Internet.
@@ -38,7 +37,6 @@ multimedia/libdts|multimedia/libdca|2010-02-28|safer name
 databases/p5-DBD-mysql60||2010-03-12|mysql 6 is gone, so is this
 math/libgmp4|math/gmp|2010-05-07|libgmp4 to gmp 5.0
 lang/gcc42-withgcjawt||2010-05-07|broken
-www/browser|www/browser3|2010-05-08|security and png 1.4.1 incompatibility
 security/xmlsec||2010-05-08|broken on current for years
 deskutils/egroupware||2010-06-04|deleted
 lang/gcc43||2010-07-29|GCC 4.4 replaces it.
