@@ -104,6 +104,7 @@
     SUBDIR += python310
     SUBDIR += python311
     SUBDIR += python312
+    SUBDIR += python313
     SUBDIR += referenceassemblies-pcl
     SUBDIR += ruby31
     SUBDIR += ruby32

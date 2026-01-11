@@ -1,0 +1,78 @@
+--- configure.orig	2025-12-05 11:06:33.000000000 -0500
++++ configure	2026-01-11 17:26:49.265759000 -0500
+@@ -7011,9 +7011,11 @@
+   iOS) :
+     MULTIARCH="" ;; #(
+   FreeBSD*) :
++    MULTIARCH="" ;; #(
++  MidnightBSD*) :
+     MULTIARCH="" ;; #(
+   *) :
+-    MULTIARCH=$($CC --print-multiarch 2>/dev/null)
++    MULTIARCH=
+  ;;
+ esac
+ 
+@@ -7587,7 +7589,7 @@
+         PY3LIBRARY=libpython3.so
+       fi
+       ;;
+-    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*|VxWorks*)
++    Linux*|GNU*|NetBSD*|MidnightBSD*|FreeBSD*|DragonFly*|OpenBSD*|VxWorks*)
+       LDLIBRARY='libpython$(LDVERSION).so'
+       BLDLIBRARY='-L. -lpython$(LDVERSION)'
+       RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+@@ -8502,7 +8504,7 @@
+ 
+ if test "$Py_LTO" = 'true' ; then
+   case $CC in
+-    *clang*)
++    *clang*|cc)
+       LDFLAGS_NOLTO="-fno-lto"
+                   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether C compiler accepts -flto=thin" >&5
+ printf %s "checking whether C compiler accepts -flto=thin... " >&6; }
+@@ -12986,7 +12988,7 @@
+ 	Linux*|GNU*|QNX*|VxWorks*|Haiku*)
+ 		LDSHARED='$(CC) -shared'
+ 		LDCXXSHARED='$(CXX) -shared';;
+-	FreeBSD*)
++	MidnightBSD*|FreeBSD*)
+ 		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
+ 		then
+ 			LDSHARED='$(CC) -shared'
+@@ -13076,7 +13078,7 @@
+ 			CCSHARED="-fPIC"
+ 
+ fi;;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
++	MidnightBSD*|FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
+ 	Haiku*) CCSHARED="-fPIC";;
+ 	OpenUNIX*|UnixWare*)
+ 		if test "$GCC" = "yes"
+@@ -13139,7 +13141,7 @@
+ 	OpenUNIX*|UnixWare*) LINKFORSHARED="-Wl,-Bexport";;
+ 	SCO_SV*) LINKFORSHARED="-Wl,-Bexport";;
+ 	ReliantUNIX*) LINKFORSHARED="-W1 -Blargedynsym";;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
++	MidnightBSD*|FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
+ 		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
+ 		then
+ 			LINKFORSHARED="-Wl,--export-dynamic"
+@@ -16028,7 +16030,7 @@
+ fi
+ 
+ case $ac_sys_system in #(
+-  FreeBSD*) :
++  MidnightBSD*|FreeBSD*) :
+ 
+     if test -n "$PKG_CONFIG" && \
+     { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"x11\""; } >&5
+@@ -29001,7 +29003,7 @@
+ 
+     py_cv_module__scproxy=n/a
+  ;; #(
+-  FreeBSD*) :
++  MidnightBSD*|FreeBSD*) :
+ 
+ 
+     py_cv_module__scproxy=n/a
