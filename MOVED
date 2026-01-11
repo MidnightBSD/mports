@@ -594,3 +594,4 @@ devel/swig30|devel/swig|2025-12-30|swig 3 replaced by 4
 databases/mongodb50|databases/mongodb60|2026-01-07|Has expired: EOL from October 2024, see https://www.mongodb.com/legal/support-policy/lifecycles, please use databases/mongodb60
 mail/cclient|mail/panda-cclient|2026-01-07|Has expired: Last upstream release was in 2007 so use the fork mail/panda-cclient
 sysutils/gksu||2026-01-09|Has expired: Abandonware, depending on gconf2, use pkexec instead from policykit
+net/samba413|net/samba416|2026-01-10|Move to a supported samba
