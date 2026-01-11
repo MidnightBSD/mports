@@ -188,6 +188,7 @@
     SUBDIR += virtualgl
     SUBDIR += wdm
     SUBDIR += windowmaker-desktop
+    SUBDIR += wmctrl-fork
     SUBDIR += x11perf
     SUBDIR += xapp
     SUBDIR += xauth
