@@ -181,6 +181,7 @@
     SUBDIR += slurp
     SUBDIR += smproxy
     SUBDIR += startup-notification
+    SUBDIR += tecla
     SUBDIR += terminal.app
     SUBDIR += tint
     SUBDIR += viewres
