@@ -237,6 +237,7 @@
     SUBDIR += p5-Unicode-EastAsianWidth
     SUBDIR += p5-Unicode-LineBreak
     SUBDIR += p5-XML-DOM
+    SUBDIR += p5-XML-Dumper
     SUBDIR += p5-XML-Filter-BufferText
     SUBDIR += p5-XML-Grove
     SUBDIR += p5-XML-Handler-YAWriter
