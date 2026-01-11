@@ -1,5 +1,3 @@
-# Created by: Sergei Kolobov <sergei@kolobov.com>
-
 PORTNAME=	xmlto
 PORTVERSION=	0.0.28
 CATEGORIES=	textproc
@@ -14,6 +12,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Front-end to an XSL toolchain
+WWW=		https://pagure.io/xmlto/
 
 LICENSE=	gpl2
 
