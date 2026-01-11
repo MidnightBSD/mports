@@ -1,6 +1,6 @@
 PORTNAME=	setuptools
 PORTVERSION=	63.1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -26,10 +26,4 @@ CPE_VENDOR=	python
 
 NO_ARCH=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 31000
-EXTRA_PATCHES+=	${PATCHDIR}/py39
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
