@@ -593,3 +593,4 @@ databases/mongodb50|databases/mongodb60|2026-01-07|Has expired: EOL from October
 mail/cclient|mail/panda-cclient|2026-01-07|Has expired: Last upstream release was in 2007 so use the fork mail/panda-cclient
 sysutils/gksu||2026-01-09|Has expired: Abandonware, depending on gconf2, use pkexec instead from policykit
 net/samba413|net/samba416|2026-01-10|Move to a supported samba
+lang/python39|lang/python311|2026-1-11|Python 3.9 is EOL, switch to 3.11
