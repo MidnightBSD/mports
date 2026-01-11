@@ -218,6 +218,7 @@
     SUBDIR += xdg-desktop-portal-gtk
     SUBDIR += xdg-desktop-portal-hyprland
     SUBDIR += xdg-desktop-portal-luminous
+    SUBDIR += xdg-user-dirs-gtk
     SUBDIR += xditview
     SUBDIR += xdm
     SUBDIR += xdotool
