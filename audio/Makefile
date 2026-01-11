@@ -81,6 +81,7 @@
     SUBDIR += libcanberra
     SUBDIR += libcanberra-gtk2
     SUBDIR += libcanberra-gtk3
+    SUBDIR += libcanberra-pulse
     SUBDIR += libcdaudio
     SUBDIR += libcddb
     SUBDIR += libcoverart
