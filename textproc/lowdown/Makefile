@@ -1,5 +1,5 @@
 PORTNAME=	lowdown
-PORTVERSION=	1.1.0
+PORTVERSION=	2.0.4
 CATEGORIES=	textproc
 MASTER_SITES=	https://kristaps.bsd.lv/lowdown/snapshots/
 
@@ -11,7 +11,7 @@ LICENSE=	iscl
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libdiff.a:textproc/libdiff
 LDFLAGS+=	-lmd
-MAKE_ARGS=	LDFLAGS="${LDFLAGS}"
+MAKE_ARGS=	LDFLAGS="${LDFLAGS}" MANDIR=${PREFIX}/share/man
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	PREFIX="${PREFIX}"
