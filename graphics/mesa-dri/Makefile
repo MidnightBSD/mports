@@ -81,12 +81,17 @@ MESON_ARGS+=	-Dandroid-libbacktrace=disabled \
 		-Dgallium-va=disabled \
 		-Dgles1=enabled \
 		-Dgles2=enabled \
+		-Dglvnd=false \
 		-Dglx=disabled \
 		-Degl=enabled \
 		-Dlmsensors=disabled \
 		-Dmicrosoft-clc=disabled \
 		-Dosmesa=false \
 		-Dvalgrind=disabled
+
+.if ${ARCH} != amd64
+MESON_ARGS+=	-Dintel-rt=disabled # https://gitlab.freedesktop.org/mesa/mesa/-/issues/10629
+.endif
 
 .for _gd in ${ALL_GALLIUM_DRIVERS}
 . if defined(GALLIUM_DRIVERS) && ${GALLIUM_DRIVERS:M${_gd}}
