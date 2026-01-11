@@ -102,6 +102,7 @@
     SUBDIR += i2c-tools
     SUBDIR += i7z
     SUBDIR += incron
+    SUBDIR += inxi
     SUBDIR += intel-epct
     SUBDIR += intel-nvmupdate-100g
     SUBDIR += intel-nvmupdate-10g

@@ -405,6 +405,7 @@
     SUBDIR += wayland-protocols
     SUBDIR += wayland-utils
     SUBDIR += webp
+    SUBDIR += webp-pixbuf-loader
     SUBDIR += wmicons
     SUBDIR += ximaging
     SUBDIR += xli
