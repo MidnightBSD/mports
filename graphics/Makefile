@@ -129,6 +129,7 @@
     SUBDIR += gstreamer1-plugins-zbar
     SUBDIR += gtk-update-icon-cache
     SUBDIR += gwenview
+    SUBDIR += hyprgraphics
     SUBDIR += hyprland-protocols
     SUBDIR += icc-profiles-adobe-cs4
     SUBDIR += icoutils
