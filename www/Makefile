@@ -285,6 +285,7 @@
     SUBDIR += py-httpx
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
+    SUBDIR += py-libsass
     SUBDIR += py-mechanize
     SUBDIR += py-multidict
     SUBDIR += py-nh3
