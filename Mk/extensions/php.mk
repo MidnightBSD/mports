@@ -185,9 +185,6 @@ PHP_EXT_INC=    hash json openssl pcre random spl
 .    elif ${PHP_VER} == 82
 PHP_EXT_DIR=   20220829
 PHP_EXT_INC=    hash json openssl pcre random spl
-.    elif ${PHP_VER} == 81
-PHP_EXT_DIR=   20210902
-PHP_EXT_INC=    hash json openssl pcre spl
 .    else
 # (rene) default to DEFAULT_VERSIONS
 PHP_EXT_DIR=   20210902
@@ -380,7 +377,6 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zephir_parser \
 		zip zlib
 # version specific components
-_USE_PHP_VER81=	${_USE_PHP_ALL}
 _USE_PHP_VER82=	${_USE_PHP_ALL}
 _USE_PHP_VER83=	${_USE_PHP_ALL}
 

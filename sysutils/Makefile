@@ -88,7 +88,6 @@
     SUBDIR += gconf-editor
     SUBDIR += genisoimage
     SUBDIR += gigolo
-    SUBDIR += gksu
     SUBDIR += gnome-control-center
     SUBDIR += gnome-power-manager
     SUBDIR += gnome-settings-daemon
@@ -196,10 +195,10 @@
     SUBDIR += plasma-pass
     SUBDIR += plasma5-libksysguard
     SUBDIR += plasma6-discover
-    SUBDIR += plasma6-drkonqi
     SUBDIR += plasma6-kde-cli-tools
     SUBDIR += plasma6-kinfocenter
     SUBDIR += plasma6-kmenuedit
+    SUBDIR += plasma6-knighttime
     SUBDIR += plasma6-ksystemstats
     SUBDIR += plasma6-libksysguard
     SUBDIR += plasma6-plasma-disks

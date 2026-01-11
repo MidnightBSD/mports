@@ -3,19 +3,21 @@ PORTVERSION=	1.4.1528
 PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	http://braingames.jorito.net/goonies/downloads/ \
-		http://mirror.amdmi3.ru/distfiles/
+		https://mirror.amdmi3.ru/distfiles/
 DISTNAME=	${PORTNAME}.src_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Remake of the 8 bit classic game 'The Goonies'
 WWW=		https://goonies.jorito.net/
 
-LICENSE=	other
+LICENSE=	NONE
 
 USES=		gl gmake sdl tar:tgz
 USE_SDL=	sdl mixer image
 USE_GL=		gl glu
 USE_CXXSTD=	c++98
+
+USE_GCC=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 

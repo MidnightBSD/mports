@@ -29,7 +29,8 @@ CONFIGURE_ENV=	OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 MAKE_ARGS=	LDFLAGS="${LDFLAGS}"
 
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 TESTING_UNSAFE=	https://github.com/rakshasa/libtorrent/issues/292
 

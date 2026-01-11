@@ -21,8 +21,10 @@
     SUBDIR += db18
     SUBDIR += db5
     SUBDIR += evolution-data-server
-    SUBDIR += firebird25-client
-    SUBDIR += firebird25-server
+    SUBDIR += firebird30-client
+    SUBDIR += firebird30-server
+    SUBDIR += firebird40-client
+    SUBDIR += firebird40-server
     SUBDIR += fortytwo-bdb
     SUBDIR += freetds
     SUBDIR += galera26
@@ -32,6 +34,7 @@
     SUBDIR += hiredis
     SUBDIR += kyotocabinet
     SUBDIR += ldb25
+    SUBDIR += ldb28
     SUBDIR += leveldb
     SUBDIR += libgda5
     SUBDIR += libgda5-bdb
@@ -58,9 +61,9 @@
     SUBDIR += mariadb114-server
     SUBDIR += mdbtools
     SUBDIR += memcached
-    SUBDIR += mongodb50
     SUBDIR += mongodb60
     SUBDIR += mongodb70
+    SUBDIR += mongodb80
     SUBDIR += mysql-connector-c++
     SUBDIR += mysql-connector-j
     SUBDIR += mysql-connector-java51

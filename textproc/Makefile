@@ -93,6 +93,7 @@
     SUBDIR += gtkspell
     SUBDIR += gtkspell3
     SUBDIR += heirloom-doctools
+    SUBDIR += hevea
     SUBDIR += highlight
     SUBDIR += hs-pandoc
     SUBDIR += hspell
@@ -409,6 +410,7 @@
     SUBDIR += py-sphinxcontrib-svg2pdfconverter
     SUBDIR += py-sphinxcontrib-towncrier
     SUBDIR += py-sphinxcontrib-websupport
+    SUBDIR += py-texttable
     SUBDIR += py-tinycss
     SUBDIR += py-tinycss2
     SUBDIR += py-toml

@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stylish to-do list with built-in productivity timer
 WWW=		https://github.com/JMoerman/Go-For-It
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcanberra.so:audio/libcanberra \

@@ -1,14 +1,13 @@
-# Created by: Konstantin Chuguev <Konstantin.Chuguev@dante.org.uk>
-
 PORTNAME=	iconv-extra
 PORTVERSION=	2.0
+PORTREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	FREEBSD_LOCAL/bland
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional charsets for the iconv library (those from the Unicode site)
 
-LICENSE=	other
+LICENSE=	bsd3
 
 FAKE_OPTS=	trueprefix
 

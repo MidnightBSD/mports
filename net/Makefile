@@ -56,6 +56,7 @@
     SUBDIR += grilo
     SUBDIR += grilo-plugins
     SUBDIR += gstreamer1-plugins-srtp
+    SUBDIR += gstreamer1-plugins-sctp
     SUBDIR += gtk-vnc
     SUBDIR += hostapd
     SUBDIR += hping
@@ -132,6 +133,7 @@
     SUBDIR += libsrtp2
     SUBDIR += libvncserver
     SUBDIR += libwebsockets
+    SUBDIR += libyang2
     SUBDIR += libzapojit
     SUBDIR += libzmq4
     SUBDIR += liferea
@@ -153,6 +155,7 @@
     SUBDIR += miniupnpc
     SUBDIR += mosquitto
     SUBDIR += motsognir
+    SUBDIR += mpich
     SUBDIR += mtr
     SUBDIR += mtr-nox11
     SUBDIR += nanomsg
@@ -246,6 +249,7 @@
     SUBDIR += py-s3cmd
     SUBDIR += py-s3transfer
     SUBDIR += py-siosocks
+    SUBDIR += py-socksio
     SUBDIR += py-speedtest-cli
     SUBDIR += py-trio
     SUBDIR += py-trio-websocket
@@ -277,6 +281,7 @@
     SUBDIR += rubygem-uri
     SUBDIR += samba413
     SUBDIR += samba416
+    SUBDIR += samba419
     SUBDIR += sdl_net
     SUBDIR += seaweedfs
     SUBDIR += smbldap-tools

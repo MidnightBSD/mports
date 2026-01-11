@@ -1,6 +1,6 @@
 PORTNAME=	mport-manager
 PORTVERSION=	0.2.3
-PORTREVISION=	1
+PORTREVISION=	2
 MASTER_SITES=	GH
 CATEGORIES=	ports-mgmt sysutils
 
@@ -10,7 +10,7 @@ WWW=		https://github.com/laffer1/mport-manager
 
 LICENSE=	bsd2
 
-RUN_DEPENDS+=	gksudo:sysutils/gksu
+RUN_DEPENDS+=	pkexec:sysutils/polkit
 
 USES=		desktop-file-utils gnome pkgconfig
 USE_GITHUB=     yes
@@ -19,12 +19,14 @@ GH_ACCOUNT=     laffer1
 USE_CSTD=       c99
 
 USE_XORG=	x11
-USE_GNOME=	gtk30 gdkpixbuf2
+USE_GNOME=	gtk30 gdkpixbuf
 
 pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/
-	${CP} ${FILESDIR}/mport-manager.desktop ${PREFIX}/share/applications/
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/polkit-1/actions
+	${CP} ${FILESDIR}/mport-manager.desktop ${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/
+	${CP} ${FILESDIR}/org.midnightbsd.mport-manager.policy ${FAKE_DESTDIR}${TRUE_PREFIX}/share/polkit-1/actions/org.midnightbsd.mport-manager.policy
 
 post-install:
 	${CP} ${WRKSRC}/icon.png ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/mport-manager.png

@@ -1,6 +1,6 @@
 PORTNAME=	gtk-layer-shell
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.1
+DISTVERSION=	0.10.0
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org

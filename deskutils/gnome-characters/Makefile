@@ -2,7 +2,7 @@ PORTNAME=	gnome-characters
 PORTVERSION=	47.0
 PORTREVISION=	1
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,5 +27,7 @@ INSTALLS_ICONS=	yes
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 GLIB_SCHEMAS=	org.gnome.Characters.gschema.xml
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

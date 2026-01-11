@@ -1,11 +1,12 @@
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${JDK_UPDATE_VERSION}.${JDK_BUILD_NUMBER}.${BSD_JDK_VERSION}
 CATEGORIES=	java devel
-MASTER_SITES=	LOCAL/jkim:jtreg
+MASTER_SITES=	FREEBSD_LOCAL/jkim:jtreg
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Java Development Kit ${JDK_MAJOR_VERSION}
+WWW=		https://openjdk.java.net/
 
 LICENSE=	gpl2
 
@@ -219,11 +220,6 @@ MAKE_ARGS+=	USE_PRECOMPILED_HEADER=1
 .else
 MAKE_ARGS+=	USE_PRECOMPILED_HEADER=0
 .endif
-.endif
-
-.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
-EXTRA_PATCHES+= ${FILESDIR}/extra-patch-ppc64-elfv2
-MAKE_ARGS+=	USE_PRECOMPILED_HEADER=0
 .endif
 
 .if ${ARCH} == powerpc64le

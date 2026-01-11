@@ -28,7 +28,7 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${MKDIR} ${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FAKE_DESTDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
 	${MKDIR} ${PREFIX}/etc/fonts/conf.avail \
 	    ${PREFIX}/etc/fonts/conf.d
 	${INSTALL_DATA} ${FILESDIR}/20-unhint-${PORTNAME}.conf \

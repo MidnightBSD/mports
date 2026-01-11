@@ -31,6 +31,7 @@
     SUBDIR += prometheus2
     SUBDIR += promscale
     SUBDIR += py-prometheus-client
+    SUBDIR += rtrlib
     SUBDIR += softflowd
     SUBDIR += subcalc
     SUBDIR += sysmon

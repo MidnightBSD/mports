@@ -4,31 +4,36 @@ PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Diagram creation program, similar to Visio
-WWW=		https://live.gnome.org/Dia
+WWW=		https://wiki.gnome.org/Apps/Dia
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	DOCS
+LIB_DEPENDS=	libpng.so:graphics/png \
+		libicudata.so:devel/icu
 
-LIB_DEPENDS=	libpng.so:graphics/png
-
-USES=		cpe desktop-file-utils gettext gmake gnome libtool pathfix \
-		pkgconfig tar:xz
+USES=		cpe desktop-file-utils gettext gmake gnome libtool \
+		localbase:ldflags pathfix pkgconfig tar:xz
+CPE_VENDOR=	gnome
 USE_GNOME=	gtk20 gnomeprefix libxslt libartlgpl2 intlhack
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LOCALBASE="${LOCALBASE}"
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib `pkg-config --libs gmodule-2.0`
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-gnome
+CONFIGURE_ENV=	LOCALBASE="${LOCALBASE}"
+
 INSTALL_TARGET=	install-strip
-CPE_VENDOR=	gnome
+
+LDFLAGS+=	`pkg-config --libs gmodule-2.0`
+
+OPTIONS_DEFINE=	DOCS
 
 DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl
+
 .include <bsd.mport.options.mk>
 
 #.if ${ARCH} == "i386"
@@ -39,6 +44,8 @@ DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc
 CONFIGURE_ARGS+=	--disable-libemf
 PLIST_SUB+=		WMF="@comment "
 #.endif
+
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \

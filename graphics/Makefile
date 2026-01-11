@@ -41,6 +41,7 @@
     SUBDIR += argyllcms
     SUBDIR += cairo
     SUBDIR += cairomm
+    SUBDIR += cairomm11
     SUBDIR += camera
     SUBDIR += camerakit
     SUBDIR += cenon
@@ -128,6 +129,7 @@
     SUBDIR += gstreamer1-plugins-zbar
     SUBDIR += gtk-update-icon-cache
     SUBDIR += gwenview
+    SUBDIR += hyprland-protocols
     SUBDIR += icc-profiles-adobe-cs4
     SUBDIR += icoutils
     SUBDIR += image-editor
@@ -220,7 +222,6 @@
     SUBDIR += linux-c7-glx-utils
     SUBDIR += linux-c7-graphite2
     SUBDIR += linux-c7-imageformats-libs
-    SUBDIR += linux-c7-jasper
     SUBDIR += linux-c7-libdrm
     SUBDIR += linux-c7-libepoxy
     SUBDIR += linux-c7-libglvnd
@@ -309,6 +310,7 @@
     SUBDIR += py-cairo
     SUBDIR += py-cairocffi
     SUBDIR += py-cairosvg
+    SUBDIR += py-fiona
     SUBDIR += py-gdal
     SUBDIR += py-graphviz
     SUBDIR += py-imagesize
@@ -319,6 +321,8 @@
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
+    SUBDIR += py-yaswfp
+    SUBDIR += qgis
     SUBDIR += qt5-3d
     SUBDIR += qt5-graphicaleffects
     SUBDIR += qt5-imageformats

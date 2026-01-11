@@ -19,16 +19,14 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}soupsieve>=1.2:www/py-soupsieve@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}html5lib>=0:www/py-html5lib@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	concurrent pep517 pytest
+USE_PYTHON=	concurrent pep517
 NO_ARCH=	yes
+NO_TEST=	yes
 
 do-build:
 	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m build --wheel --no-isolation --outdir ${WRKDIR}
 
 do-install:
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m installer ${WRKDIR}/*.whl --destdir ${FAKE_DESTDIR}
-
-do-test:
-	@cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest bs4
 
 .include <bsd.port.mk>

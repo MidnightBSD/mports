@@ -1,9 +1,9 @@
-DISTVERSION=	1.24.6
+DISTVERSION=	1.24.11
 # Always set PORTREVISION explicitly as otherwise they are inherited from lang/go-devel
-PORTREVISION=	3
-MASTER_SITES=	https://golang.org/dl/
+PORTREVISION=	0
+MASTER_SITES=	https://go.dev/dl/
 DISTFILES=	go${DISTVERSION}.src.tar.gz \
-		go1.23.7.freebsd-${GOARCH_${ARCH}}.tar.gz
+		go1.23.12.freebsd-${GOARCH_${ARCH}}.tar.gz
 
 # Avoid conflicting patch files
 PATCHFILES=

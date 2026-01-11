@@ -1,5 +1,5 @@
 PORTNAME=	common-services
-PORTVERSION=	1.8
+PORTVERSION=	1.9
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -9,10 +9,11 @@ COMMENT=        MidnightBSD Common Services
 
 LICENSE=	agg
 
-RUN_DEPENDS=	smbd:net/samba413 \
-		cupsd:print/cups \
+RUN_DEPENDS=	cupsd:print/cups \
 		dbus-daemon:devel/dbus \
 		mlogind:x11/mlogind
+
+USES=	samba:run
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES

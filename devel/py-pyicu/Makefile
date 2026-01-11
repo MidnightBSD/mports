@@ -1,32 +1,24 @@
 PORTNAME=	pyicu
-PORTVERSION=	2.4.3
-PORTREVISION=	2
+PORTVERSION=	2.15.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	PyICU-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python extension wrapping IBM's ICU C++ API #'
-WWW=		https://pypi.org/project/PyICU/
+COMMENT=	Python extension wrapping the ICU C++ API
+WWW=		https://gitlab.pyicu.org/main/pyicu
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libicudata.so:devel/icu
 
-USES=		compiler:c++11-lang python
-USE_CXXSTD=	c++11
-USE_PYTHON=	distutils autoplist
+USES=		compiler:c++17-lang pkgconfig python
+USE_PYTHON=	autoplist concurrent pep517
 
-MAKE_ENV=	PYICU_INCLUDES="${LOCALBASE}/include" \
-		PYICU_CFLAGS="${CXXFLAGS:ts:}" \
-		PYICU_LFLAGS="-L${LOCALBASE}/lib"
-CFLAGS+=	-w -DPYICU_VER=\"${PORTVERSION}\"
-
-pre-configure:
-	@if [ ! -e ${LOCALBASE}/lib/libicule.so ]; then \
-		${REINPLACE_CMD} "s/, 'icule'//" ${WRKSRC}/${PYSETUP}; \
-	fi
+post-install:
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>

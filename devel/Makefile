@@ -66,6 +66,7 @@
     SUBDIR += R-cran-magrittr
     SUBDIR += R-cran-memoise
     SUBDIR += R-cran-microbenchmark
+    SUBDIR += R-cran-mlbench
     SUBDIR += R-cran-mockery
     SUBDIR += R-cran-mockr
     SUBDIR += R-cran-modelr
@@ -79,6 +80,7 @@
     SUBDIR += R-cran-pkgconfig
     SUBDIR += R-cran-pkgdepends
     SUBDIR += R-cran-pkgload
+    SUBDIR += R-cran-pkgsearch
     SUBDIR += R-cran-plogr
     SUBDIR += R-cran-plyr
     SUBDIR += R-cran-praise
@@ -89,6 +91,7 @@
     SUBDIR += R-cran-proto
     SUBDIR += R-cran-purrr
     SUBDIR += R-cran-rJava
+    SUBDIR += R-cran-randomForest
     SUBDIR += R-cran-rappdirs
     SUBDIR += R-cran-registry
     SUBDIR += R-cran-rematch2
@@ -98,7 +101,9 @@
     SUBDIR += R-cran-roxygen2
     SUBDIR += R-cran-rprojroot
     SUBDIR += R-cran-rstudioapi
+    SUBDIR += R-cran-rversions
     SUBDIR += R-cran-sessioninfo
+    SUBDIR += R-cran-sfsmisc
     SUBDIR += R-cran-sourcetools
     SUBDIR += R-cran-sparsevctrs
     SUBDIR += R-cran-sys
@@ -141,6 +146,7 @@
     SUBDIR += apr1
     SUBDIR += argp-standalone
     SUBDIR += arm-none-eabi-gcc
+    SUBDIR += astyle
     SUBDIR += atf
     SUBDIR += autoconf
     SUBDIR += autoconf-archive
@@ -219,6 +225,7 @@
     SUBDIR += cvsps-devel
     SUBDIR += cvsweb3
     SUBDIR += cxxopts
+    SUBDIR += d-spy
     SUBDIR += darts
     SUBDIR += date
     SUBDIR += dbus
@@ -343,6 +350,10 @@
     SUBDIR += hwloc
     SUBDIR += hwloc2
     SUBDIR += hyperscan
+    SUBDIR += hyprlang
+    SUBDIR += hyprutils
+    SUBDIR += hyprwayland-scanner
+    SUBDIR += hyprwire
     SUBDIR += icu
     SUBDIR += imake
     SUBDIR += inih
@@ -447,6 +458,7 @@
     SUBDIR += libdbusmenu
     SUBDIR += libdbusmenu-qt
     SUBDIR += libdevq
+    SUBDIR += libdex
     SUBDIR += libedit
     SUBDIR += libelf
     SUBDIR += libepoll-shim
@@ -578,9 +590,9 @@
     SUBDIR += llvm-devel
     SUBDIR += llvm12
     SUBDIR += llvm15
-    SUBDIR += llvm16
     SUBDIR += llvm17
     SUBDIR += llvm18
+    SUBDIR += llvm19
     SUBDIR += lndir
     SUBDIR += log4cplus
     SUBDIR += log4cxx
@@ -1501,6 +1513,7 @@
     SUBDIR += py-pyproject-hooks
     SUBDIR += py-pyproject-metadata
     SUBDIR += py-pyrfc3339
+    SUBDIR += py-pyright
     SUBDIR += py-pyrsistent
     SUBDIR += py-pytest
     SUBDIR += py-pytest-asyncio
@@ -1817,6 +1830,7 @@
     SUBDIR += samurai
     SUBDIR += sbt
     SUBDIR += scons
+    SUBDIR += sdbus-cpp
     SUBDIR += sdl12
     SUBDIR += sdl12-compat
     SUBDIR += sdl20

@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LIB_DEPENDS=	libboost_regex.so:devel/boost-libs \
 		liblz4.so:archivers/liblz4 \
 		libprotobuf.so:devel/protobuf \
-		libzstd.so:archivers/zstd
+		libzstd.so:archivers/zstd \
+		libunwind.so:devel/libunwind
 
 USES=		cmake:noninja compiler:c++17-lang cpe gmake mysql ssl
 IGNORE_WITH_MYSQL=	105m 106m 1011m

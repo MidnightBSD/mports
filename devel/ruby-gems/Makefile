@@ -1,5 +1,5 @@
 PORTNAME=	gems
-PORTVERSION=	3.5.23
+PORTVERSION=	3.7.2
 CATEGORIES=	devel ruby
 MASTER_SITES=	https://rubygems.org/rubygems/
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
@@ -76,6 +76,7 @@ do-install:
 	cd ${WRKSRC}/ && ${SETENV} ${GEMS_ENV} ${RUBY} ${RUBY_SETUP} ${RUBY_SETUP_OPTIONS}
 	${INSTALL_SCRIPT} ${WRKSRC}/exe/gem ${PREFIX}/bin/gem
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/gem
+	${RM} ${PREFIX}/bin/gem.bak
 
 
 # Find all RDOC and RI files

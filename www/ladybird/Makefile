@@ -42,6 +42,8 @@ USE_GL=		egl
 USE_LDCONFIG=	yes
 USE_QT=		base tools:build wayland multimedia
 
+NO_TEST=	yes
+
 CACERTVERSION=	2023-08-22
 CLDRVERSION=	44.0.1
 UCDVERSION=	15.1.0

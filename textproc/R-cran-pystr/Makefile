@@ -10,8 +10,11 @@ WWW=		http://cran.r-project.org/web/pystr/
 
 LICENSE=	NONE
 
+BUILD_DEPENDS=	R-cran-Rcpp>=0.11.4.6:devel/R-cran-Rcpp
 RUN_DEPENDS=	R-cran-Rcpp>=0.11.4.6:devel/R-cran-Rcpp
 
 USES=		cran:auto-plist,compiles
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

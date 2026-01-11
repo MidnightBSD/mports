@@ -219,3 +219,4 @@ share/man/man3/libswscale.3.gz
 %%DATADIR%%/libvpx-720p.ffpreset
 %%DATADIR%%/libvpx-720p50_60.ffpreset
 @dir %%LOCALBASE%%/ffmpeg4
+@preexec mkdir -p %%LOCALBASE%%/ffmpeg4

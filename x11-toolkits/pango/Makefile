@@ -1,12 +1,12 @@
 PORTNAME=	pango
-PORTVERSION=	1.56.1
+PORTVERSION=	1.56.4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source framework for the layout and rendering of i18n text
-WWW=		https://www.pango.org/
+WWW=		https://www.gtk.org/docs/architecture/pango
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -14,6 +14,7 @@ RUN_DEPENDS=	R-cran-digest>=0.6.13:security/R-cran-digest \
 		R-cran-R.methodsS3>=1.8.1:devel/R-cran-R.methodsS3 \
 		R-cran-R.oo>=1.24.0:devel/R-cran-R.oo \
 		R-cran-R.utils>=2.10.10:devel/R-cran-R.utils
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		cran:auto-plist
 

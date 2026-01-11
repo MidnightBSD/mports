@@ -1,5 +1,3 @@
-
-
 PORTNAME=	atslog
 PORTVERSION=	2.1.1
 PORTREVISION=	3
@@ -8,8 +6,10 @@ MASTER_SITES=	BERLIOS
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Software for collecting and analyzing calls from different PBX models
+WWW=		http://www.atslog.com/en/about/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 OPTIONS_DEFINE=	LIBWRAP WWW WWWGD DOCS
 OPTIONS_DEFAULT=	LIBWRAP WWW WWWGF

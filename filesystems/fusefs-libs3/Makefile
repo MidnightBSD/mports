@@ -1,17 +1,18 @@
 PORTNAME=	fusefs-libs3
-DISTVERSION=	3.11.0
+DISTVERSION=	3.17.1
 CATEGORIES=	filesystems sysutils
 MASTER_SITES=	https://github.com/libfuse/libfuse/releases/download/fuse-${DISTVERSION}/
 DISTNAME=	fuse-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FUSE library version 3 for filesystems implemented in userspace
+WWW=		https://github.com/libfuse/libfuse/wiki/Filesystems
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler iconv meson tar:xz
+USES=		compiler iconv meson ninja
 USE_LDCONFIG=	yes
 
 LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}

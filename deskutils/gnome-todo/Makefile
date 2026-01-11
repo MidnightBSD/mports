@@ -2,7 +2,7 @@ PORTNAME=	gnome-todo
 PORTVERSION=	41.0
 PORTREVISION=	5
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +19,8 @@ LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts \
 		libical.so:devel/libical \
 		libpeas-1.0.so:devel/libpeas1 \
 		libsecret-1.so:security/libsecret \
-		libsoup-2.4.so:devel/libsoup
+		libsoup-2.4.so:devel/libsoup \
+		libuuid.so:misc/libuuid
 
 PORTSCOUT=	limitw:1,even
 

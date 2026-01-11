@@ -508,7 +508,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		ldap libarchive libedit libtool llvm localbase lua \
 		metaport makeself meson mlt mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt readline ruby samba scons sdl sqlite ssl \
-		tar tcl tk tex trigger uniquefiles wx xfce zip 7z
+		tar tcl tk tex trigger uniquefiles varnish wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
 .  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt" || ${EXT:tl} == "php" || ${EXT:tl} == "kde" || ${EXT:tl} == "ruby" || ${EXT:tl} == "cabal" || ${EXT:tl} == "gstreamer") 
@@ -1916,7 +1916,7 @@ CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
 _EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${PREFIX}/share
-CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
+CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} ${${ARCH}_CONFIGURE_ARGS} $${_LATE_CONFIGURE_ARGS}
 .      if defined(CROSS_TOOLCHAIN)
 CROSS_HOST=		${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
 CONFIGURE_ARGS+=	--host=${CROSS_HOST}
@@ -4841,7 +4841,7 @@ _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
 _FAKE_SEQ+=		995:check-fake
 .endif
-.if defined(DEVELOPER)
+.if defined(DEVELOPER) || defined(MPORT_MAINTAINER_MODE)
 _FAKE_SEQ+=    996:fake-qa
 .else
 fake-qa: fake

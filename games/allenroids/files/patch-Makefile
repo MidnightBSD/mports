@@ -1,5 +1,5 @@
---- Makefile.orig	2003-11-10 14:31:45.000000000 -0500
-+++ Makefile	2018-10-15 20:27:44.495953000 -0400
+--- Makefile.orig	2003-11-10 19:31:45 UTC
++++ Makefile
 @@ -1,6 +1,15 @@
 -CC = gcc
 -LIBS = -lglut -lGL -lGLU -lSDL

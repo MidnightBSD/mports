@@ -1,3 +1,5 @@
-TIMESTAMP = 1747252970
-SHA256 (KDE/frameworks/6.14/kirigami-6.14.1.tar.xz) = 2c91b4e2951444f7d6f3d6add96dc41c62bf9dbf747a8594d5d2fc918d27309f
-SIZE (KDE/frameworks/6.14/kirigami-6.14.1.tar.xz) = 565888
+TIMESTAMP = 1765808404
+SHA256 (KDE/frameworks/6.21/kirigami-6.21.0.tar.xz) = ebe0ea75d121e2f450849ce93942d46e3f06a3e241d00ca3b3bda01ddc980bd9
+SIZE (KDE/frameworks/6.21/kirigami-6.21.0.tar.xz) = 578664
+SHA256 (KDE/frameworks/6.21/19127672cd812d177192cf84da4107f9abed2934.patch) = adf16335171434f6316953aa5cfa24462451eaecf41323c75aefa8843fccf89b
+SIZE (KDE/frameworks/6.21/19127672cd812d177192cf84da4107f9abed2934.patch) = 1209

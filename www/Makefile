@@ -85,8 +85,9 @@
     SUBDIR += mattermost-server
     SUBDIR += mattermost-webapp
     SUBDIR += mediawiki139
-    SUBDIR += mediawiki142
     SUBDIR += mediawiki143
+    SUBDIR += mediawiki144
+    SUBDIR += mediawiki145
     SUBDIR += mhonarc
     SUBDIR += midori
     SUBDIR += minio
@@ -103,6 +104,7 @@
     SUBDIR += mod_php82
     SUBDIR += mod_php83
     SUBDIR += mod_security
+    SUBDIR += mod_tls
     SUBDIR += mod_webauth
     SUBDIR += mod_webkit
     SUBDIR += mod_wsgi4

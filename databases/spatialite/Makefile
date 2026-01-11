@@ -1,6 +1,5 @@
 PORTNAME=	spatialite
-PORTVERSION=	5.0.1
-PORTREVISION=	1
+PORTVERSION=	5.1.0
 CATEGORIES=	databases geography
 MASTER_SITES=	http://www.gaia-gis.it/gaia-sins/libspatialite-sources/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}

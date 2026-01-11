@@ -1,7 +1,3 @@
-# New ports collection makefile for:	hot-babe
-# Date created:		2004-11-06
-# Whom:			Roman Bogorodskiy <bogorodskiy@inbox.ru>
-
 PORTNAME=	hot-babe
 PORTVERSION=	0.2.2
 PORTREVISION=	3
@@ -10,7 +6,7 @@ MASTER_SITES=	http://dindinx.net/hotbabe/downloads/ \
 		FREEBSD_LOCAL/novel
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Small utility which displays the system activity in a very special way
+COMMENT=	Small utility which displays the system activity in a special way
 LICENSE=	artistic
 
 USES=		gnome pkgconfig tar:bzip2
@@ -26,7 +22,7 @@ pre-everything::
 	@${ECHO_MSG} "You might hit Ctrl-C to abort."
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/hot-babe.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/hot-babe.1 ${PREFIX}/share/man/man1
 	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
 	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}

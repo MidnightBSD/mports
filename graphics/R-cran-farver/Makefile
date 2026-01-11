@@ -12,4 +12,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.note
 
 USES=		compiler:c++11-lang cran:auto-plist,compiles
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

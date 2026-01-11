@@ -12,6 +12,7 @@ LICENSE=	artistic2
 
 RUN_DEPENDS=	R-cran-RCurl>0:ftp/R-cran-RCurl \
 		R-cran-digest>0:security/R-cran-digest
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=	cran:auto-plist
 

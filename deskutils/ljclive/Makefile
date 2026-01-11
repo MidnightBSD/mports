@@ -1,5 +1,3 @@
-
-
 PORTNAME=	ljclive
 PORTVERSION=	0.4.10
 PORTREVISION=	1
@@ -9,6 +7,7 @@ DISTFILES=	clive-${PORTVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line client for posting LiveJournal entries
+WWW=		https://sourceforge.net/projects/ljclive/
 
 LICENSE=	bsd3
 

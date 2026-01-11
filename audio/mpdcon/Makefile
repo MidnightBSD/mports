@@ -7,14 +7,18 @@ DISTNAME=	MPDCon-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPD client for GNUstep
+WWW=		https://gap.nongnu.org/mpdcon/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/Documentation/COPYING
 
 USES=		gnustep
 USE_GNUSTEP=	base gui back build
 
-LIB_DEPENDS=	libmpdclient.so.2:${PORTSDIR}/audio/libmpdclient \
-		libSQLClient.so:${PORTSDIR}/databases/sqlclient
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
+LIB_DEPENDS=	libmpdclient.so.2:audio/libmpdclient \
+		libSQLClient.so:databases/sqlclient
 
 post-patch:
 	${REINPLACE_CMD} -e \

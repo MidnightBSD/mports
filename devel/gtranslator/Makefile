@@ -2,7 +2,8 @@ PORTNAME=	gtranslator
 DISTVERSION=	47.1
 PORTREVISION=	1
 CATEGORIES=	devel gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME application for creating GNU gettext translation files

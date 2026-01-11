@@ -5,6 +5,7 @@ MASTER_SITES=	SF/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Menu generator for X Window Managers and desktop environments
+WWW=		https://menumaker.sourceforge.net/
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -1,23 +1,25 @@
-# Created by: Naram Qashat <cyberbotx@cyberbotx.com>
-
 PORTNAME=	libspiro
-DISTVERSION=	20200505
+DISTVERSION=	20240903
 PORTEPOCH=	1
 CATEGORIES=	graphics
+MASTER_SITES=	https://github.com/fontforge/${PORTNAME}/releases/download/${DISTVERSION}/
+DISTNAME=	${PORTNAME}-dist-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to convert clothoid splines into Bezier splines
+WWW=		https://github.com/fontforge/libspiro
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf gmake libtool pathfix
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	fontforge
+USES=		cpe libtool pathfix
+CPE_VENDOR=	libspiro_project
+USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
+
 INSTALL_TARGET=	install-strip
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 .include <bsd.port.mk>

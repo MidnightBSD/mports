@@ -24,6 +24,7 @@
     SUBDIR += openbox
     SUBDIR += plasma6-kdecoration
     SUBDIR += plasma6-kwin
+    SUBDIR += plasma6-kwin-x11
     SUBDIR += ratpoison
     SUBDIR += twm
     SUBDIR += windowmaker

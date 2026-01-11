@@ -28,6 +28,6 @@ USES=		libtool pathfix pkgconfig
 
 FREETYPE_CONFIGURE_WITH=freetype
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
-FREETYPE_USES=		iconv
+FREETYPE_USES=		iconv:wchar_t
 
 .include <bsd.port.mk>

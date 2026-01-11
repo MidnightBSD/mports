@@ -1,7 +1,7 @@
 PORTNAME=	examples
 PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
 CATEGORIES=	misc
-MASTER_SITES=	QT/official_releases/qt/${QT5_VERSION:R}/${QT5_VERSION}/single
+MASTER_SITES=	QT/archive/qt/${QT5_VERSION:R}/${QT5_VERSION}/single
 PKGNAMEPREFIX=	qt5-
 DISTNAME=	qt-everywhere-opensource-src-${QT5_VERSION}
 WRKSRC=		${WRKDIR}/qt-everywhere-src-${QT5_VERSION}
@@ -10,6 +10,8 @@ DIST_SUBDIR=	KDE/Qt/${QT5_VERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 5 examples sourcecode
 WWW=		https://www.qt.io/
+
+LICENSE=	gpl3
 
 NO_ARCH=	yes
 NO_BUILD=	yes

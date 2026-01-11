@@ -7,6 +7,7 @@ DISTNAME=	py${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python binding for the LZMA compression library
+WWW=		https://www.joachim-bauch.de/projects/python/pylzma
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -30,4 +31,8 @@ post-install-DOCS-on:
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}/${PYTHONPREFIX_SITELIBDIR}/pylzma*.so
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+CFLAGS+=	-Wno-error=int-conversion
+
+.include <bsd.port.post.mk>

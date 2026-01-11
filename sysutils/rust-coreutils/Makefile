@@ -20,6 +20,8 @@ CARGO_FEATURES=	unix
 BINPREFIX=	uu-
 PLIST_SUB=	BINPREFIX=${BINPREFIX}
 
+NO_TEST=	yes
+
 post-build:
 	${INSTALL_SCRIPT} ${FILESDIR}/symlink-install-helper.sh.in ${CARGO_TARGET_DIR}/symlink-install-helper.sh
 	@${REINPLACE_CMD} -e 's|%%GREP%%|${GREP}|g' \

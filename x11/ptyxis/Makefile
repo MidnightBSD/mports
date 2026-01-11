@@ -17,7 +17,7 @@ LIB_DEPENDS=	libportal-gtk4.so:deskutils/libportal-gtk4 \
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
 USES=		cpe desktop-file-utils gettext gnome localbase:ldflags meson pkgconfig
-USE_GNOME=	dconf gdkpixbuf2 glib20 gtk40 intltool libadwaita pango vte3
+USE_GNOME=	dconf gdkpixbuf glib20 gtk40 intltool libadwaita pango vte3
 
 GLIB_SCHEMAS=	org.gnome.Ptyxis.gschema.xml
 

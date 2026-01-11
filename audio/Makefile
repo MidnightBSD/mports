@@ -11,7 +11,7 @@
     SUBDIR += csound
     SUBDIR += dssi
     SUBDIR += eawpats
-    SUBDIR += eburl128
+    SUBDIR += ebur128
     SUBDIR += esound
     SUBDIR += espeak-ng
     SUBDIR += exaile

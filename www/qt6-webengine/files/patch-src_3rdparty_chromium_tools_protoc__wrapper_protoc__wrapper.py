@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/tools/protoc_wrapper/protoc_wrapper.py.orig	2023-10-11 18:22:24 UTC
+--- src/3rdparty/chromium/tools/protoc_wrapper/protoc_wrapper.py.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/tools/protoc_wrapper/protoc_wrapper.py
-@@ -179,15 +179,19 @@ def main(argv):
+@@ -183,15 +183,19 @@ def main(argv):
      if not options.exclude_imports:
        protoc_cmd += ["--include_imports"]
  

@@ -20,4 +20,6 @@ USE_LDCONFIG=	yes
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	BUILD_TESTING
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

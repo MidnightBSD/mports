@@ -1,5 +1,6 @@
 PORTNAME=	meson-python
-DISTVERSION=	0.14.0
+DISTVERSION=	0.16.0
+PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,23 +14,18 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	meson:devel/meson@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}packaging>=0.19.0:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR} \
+		${PY_TOMLI}
 RUN_DEPENDS=	meson:devel/meson@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}packaging>=0.19.0:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR} \
+		${PY_TOMLI}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} >= 31200
-BUILD_DEPENDS+=	${PY_SETUPTOOLS}
-.endif
-.if ${PYTHON_REL} < 31100
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tomli>=1.0.0:textproc/py-tomli@${PY_FLAVOR}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tomli>=1.0.0:textproc/py-tomli@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

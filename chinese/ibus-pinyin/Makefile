@@ -10,7 +10,8 @@ WWW=		http://code.google.com/p/ibus
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}xdg>0:devel/py-xdg@${PY_FLAVOR} \
-		${LOCALBASE}/share/gir-1.0/IBus-1.0.gir:textproc/ibus
+		${LOCALBASE}/share/gir-1.0/IBus-1.0.gir:textproc/ibus \
+		/usr/local/lib/libsqlite3.so:databases/sqlite3
 LIB_DEPENDS=	libpyzy-1.0.so:chinese/pyzy \
 		libibus-1.0.so:textproc/ibus \
 		libsqlite3.so:databases/sqlite3

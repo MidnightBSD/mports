@@ -7,10 +7,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Various GStreamer plugins written in Rust
 WWW=		https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs
 
-LICENSE=	lgpl2.1+ mit
-LICENSE_COMB=	multi
-LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
+LICENSE=		Apache-2.0 lgpl2.1+ mit MPL20
+LICENSE_COMB=		multi
+LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/LICENSE-LGPLv2
+LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
+LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE-MPL-2.0
 
 BUILD_DEPENDS=	cargo-cbuild:devel/cargo-c \
 		${PY_TOMLI}
@@ -25,7 +27,10 @@ USE_GSTREAMER=	webrtc
 
 SHEBANG_FILES=	dependencies.py
 
-MESON_ARGS=	-Ddoc=disabled
+MESON_ARGS=	-Ddoc=disabled -Dskia=disabled
+# vvdec support requires multimedia/vvdec version 3.0.0 or higher, which is not
+# in the ports tree as of time of writing (2025-08-02).
+MESON_ARGS+=	-Dvvdec=disabled
 
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
@@ -38,6 +43,8 @@ MAKE_ENV=	${CARGO_ENV}
 LTO_UNSAFE=	yes
 CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false
 .endif
+
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 OPTIONS_DEFINE=		ASM CAIRO CSOUND DAV1D GTK4 PANGO SODIUM WEBP
 OPTIONS_DEFAULT=	ASM CAIRO CSOUND DAV1D GTK4 PANGO SODIUM WEBP

@@ -34,20 +34,20 @@ BDB_DEFAULT?=		5
 COROSYNC_DEFAULT?=	2
 # Possible_values: full canna nox devel_full devel_nox
 #EMACS_DEFAULT?=	let the flavor be the default if not explicitly set
-# Possible values: 2.5, 3.0, 4.0
-FIREBIRD_DEFAULT?=	2.5
+# Possible values: 3.0, 4.0
+FIREBIRD_DEFAULT?=	3.0
 # Possible values: flang (experimental), gfortran
 FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
-# Possible values: 11, 12, 13, 14
-GCC_DEFAULT?=		13
+# Possible values: 12, 13, 14, 15
+GCC_DEFAULT?=		14
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
 # Possible values: 10
 GHOSTSCRIPT_DEFAULT?=	10
-# Possible values: 1.20, 1.21, 1.22
-GO_DEFAULT?=            1.21
+# Possible values: 1.20, 1.21, 1.22, 1.23, 1.24
+GO_DEFAULT?=            1.24
 # Possible values: 1.8, 2.2, 3.0
 GUILE_DEFAULT?=         2.2
 # Possible values: 7, 8, 11, 13, 17, 18
@@ -91,7 +91,7 @@ PERL5_DEFAULT:=         ${_PERL5_FROM_BIN:R}
 # Possible values: 10, 11, 12, 13, 14
 PGSQL_DEFAULT?=		14
 # Possible values: 8.0, 8.1, 8.2, 8.3
-PHP_DEFAULT?=		8.1
+PHP_DEFAULT?=		8.2
 # Possible values: rust, legacy
 .  if empty(ARCH:Naarch64:Namd64:Narmv7:Ni386:Npowerpc64:Npowerpc64le:Npowerpc:Nriscv64)
 PYCRYPTOGRAPHY_DEFAULT?=	rust
@@ -110,8 +110,8 @@ RUST_DEFAULT?=		rust
 .else
 RUST_DEFAULT?=		rust-bin
 .endif
-# Possible values: 4.13
-SAMBA_DEFAULT?=		4.13
+# Possible values: 4.16, 4.19, ... 
+SAMBA_DEFAULT?=		4.16
 # Possible values: base, openssl, openssl111, openssl31, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version

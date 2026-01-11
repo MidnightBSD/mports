@@ -1,21 +1,20 @@
 PORTNAME=	libpeas
-PORTVERSION=	1.34.0
-PORTREVISION?=	2
+PORTVERSION=	1.36.0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
+PKGNAMESUFFIX=	1
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Next evolution of the Gedit plugins engine
-WWW=		https://wiki.gnome.org/Projects/Libpeas
+COMMENT?=	Gobject-based plugins engine (Peas 1.0 API)
+WWW=		https://gitlab.gnome.org/GNOME/libpeas
 
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	valac:lang/vala
-
-USES=		cpe gettext gnome meson pkgconfig tar:xz
-USE_GNOME=	cairo introspection libxml2
+USES=		cpe gettext gnome meson pathfix pkgconfig tar:xz \
+		vala:build
+USE_GNOME=	introspection libxml2
 CPE_VENDOR=	gnome
 
 MESON_ARGS=	-Dglade_catalog=false \
@@ -26,8 +25,6 @@ NO_TEST=	yes
 LIBPEAS_SLAVE?=	no
 
 .if ${LIBPEAS_SLAVE} == no
-PORTSCOUT=	limitw:1,even
-
 USE_GNOME+=	gtk30
 USE_LDCONFIG=	yes
 
@@ -38,7 +35,8 @@ PLIST=		${.CURDIR}/pkg-plist
 OPTIONS_DEFINE=	DEMOS DOCS
 OPTIONS_SUB=	yes
 
-DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
+DOCS_USES=		python
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR}
 DOCS_MESON_TRUE=	gtk_doc
 
 DEMOS_DESC=		Build demo programs
@@ -51,8 +49,7 @@ pre-build:
 		tests/libpeas/plugins/embedded/embedded-resources.h
 
 .if ${LIBPEAS_SLAVE} == python
-LIB_DEPENDS+=	libpeas-1.0.so:devel/libpeas
-PORTSCOUT=	limitw:1,even
+LIB_DEPENDS+=	libpeas-1.0.so:devel/libpeas1
 
 USES+=		python
 USE_PYTHON=	flavors

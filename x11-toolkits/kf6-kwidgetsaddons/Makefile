@@ -12,4 +12,6 @@ USE_QT=		base tools
 
 NO_TEST=	yes
 
+CMAKE_OFF=	BUILD_PYTHON_BINDINGS
+
 .include <bsd.port.mk>

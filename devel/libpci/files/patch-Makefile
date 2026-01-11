@@ -1,4 +1,4 @@
---- Makefile.orig	2024-05-30 15:58:01 UTC
+--- Makefile.orig	2024-02-24 23:10:18 UTC
 +++ Makefile
 @@ -1,8 +1,8 @@
  # Makefile for The PCI Utilities
@@ -9,9 +9,9 @@
 +#OPT=-O2
 +CFLAGS+=$(OPT) -Wall -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes
  
- VERSION=3.13.0
- DATE=2024-05-30
-@@ -32,11 +32,11 @@ HWDB=
+ VERSION=3.11.1
+ DATE=2024-02-25
+@@ -32,11 +32,11 @@ ABI_VERSION=3
  ABI_VERSION=3
  
  # Installation directories
@@ -25,7 +25,7 @@
  MANDIR:=$(shell if [ -d $(PREFIX)/share/man ] ; then echo $(PREFIX)/share/man ; else echo $(PREFIX)/man ; fi)
  INCDIR=$(PREFIX)/include
  LIBDIR=$(PREFIX)/lib
-@@ -48,9 +48,9 @@ DIRINSTALL=install -d
+@@ -48,9 +48,9 @@ STRIP+=--strip-program $(CROSS_COMPILE)strip
  STRIP=-s
  ifdef CROSS_COMPILE
  STRIP+=--strip-program $(CROSS_COMPILE)strip

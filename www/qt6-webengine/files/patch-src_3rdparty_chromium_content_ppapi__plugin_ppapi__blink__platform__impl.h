@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/content/ppapi_plugin/ppapi_blink_platform_impl.h.orig	2024-02-23 21:04:38 UTC
+--- src/3rdparty/chromium/content/ppapi_plugin/ppapi_blink_platform_impl.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/content/ppapi_plugin/ppapi_blink_platform_impl.h
-@@ -34,7 +34,7 @@ class PpapiBlinkPlatformImpl : public BlinkPlatformImp
+@@ -36,7 +36,7 @@ class PpapiBlinkPlatformImpl : public BlinkPlatformImp
    blink::WebString DefaultLocale() override;
  
   private:

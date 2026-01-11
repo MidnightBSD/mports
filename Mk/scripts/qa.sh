@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -o pipefail
+
 if [ -z "${FAKE_DESTDIR}" -o -z "${PREFIX}" -o -z "${LOCALBASE}" ]; then
 	echo "FAKE_DESTDIR, PREFIX, LOCALBASE required in environment." >&2
 	exit 1
@@ -50,7 +52,13 @@ shebangonefile() {
 		badinterp="${interp}"
 		;;
 	${LINUXBASE}/*) ;;
-	/usr/bin/perl | ${LOCALBASE}/bin/perl5.* | ${PREFIX}/bin/perl5.*)
+	${LOCALBASE}/bin/perl5.* | ${PREFIX}/bin/perl5.*)
+		# lang/perl5* are allowed to have these shebangs.
+		if ! expr ${PKGORIGIN} : '^lang/perl5.*' > /dev/null; then
+			err "'${interp}' is an invalid shebang for '${f#${FAKE_DESTDIR}${PREFIX}/}' you must use ${LOCALBASE}/bin/perl."
+			err "Either pass \${PERL} to the build or use USES=shebangfix"
+			rc=1
+		fi
 		;;
 	${LOCALBASE}/*) ;;
 	${PREFIX}/*) ;;
@@ -204,7 +212,7 @@ stripped() {
 	# files with spaces are kept intact.
 	# Using readelf -h ... /ELF Header:/ will match on all ELF files.
 	find ${FAKE_DESTDIR} -type f ! -name '*.a' ! -name '*.o' \
-	    -exec sh -c 'readelf -S -- /dev/null "$@" || :' -- {} + 2>/dev/null | awk '
+	    -exec sh -c 'readelf -S -- /dev/null "$0" "$@" || :' -- {} + 2>/dev/null | awk '
 	    /File:/ {sub(/File: /, "", $0); file=$0}
 	    /[[:space:]]\.debug_info[[:space:]]*PROGBITS/ {print file}' |
 	    while read -r f; do
@@ -275,31 +283,16 @@ libperl() {
 			# No results presents a blank line from heredoc.
 			[ -z "${f}" ] && continue
 			files=$((files+1))
-			found=$(readelf -d ${f} | awk "BEGIN {libperl=1; rpath=10; runpath=100}
+			found=$(readelf -d ${f} | awk "BEGIN {libperl=1}
 				/NEEDED.*${LIBPERL}/  { libperl = 0 }
-				/RPATH.*perl.*CORE/   { rpath   = 0 }
-				/RUNPATH.*perl.*CORE/ { runpath = 0 }
-				END {print libperl+rpath+runpath}
+				END {print libperl}
 				")
 			case "${found}" in
-				*1)
+				1)
 					warn "${f} is not linked with ${LIBPERL}, not respecting lddlflags?"
 					;;
-				*0)
+				0)
 					has_some_libperl_so=1
-					# Older Perl did not USE_LDCONFIG.
-					if [ ! -f ${LOCALBASE}/${LDCONFIG_DIR}/perl5 ]; then
-						case "${found}" in
-							*1?)
-								warn "${f} does not have a rpath to ${LIBPERL}, not respecting lddlflags?"
-								;;
-						esac
-						case "${found}" in
-							1??)
-								warn "${f} does not have a runpath to ${LIBPERL}, not respecting lddlflags?"
-								;;
-						esac
-					fi
 					;;
 			esac
 		# Use heredoc to avoid losing rc from find|while subshell
@@ -308,7 +301,7 @@ libperl() {
 		EOT
 
 		if [ ${files} -gt 0 -a ${has_some_libperl_so} -eq 0 ]; then
-			err "None of the .so in ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL} are linked with ${LIBPERL}, see above for the full list."
+			err "None of the ${files} .so in ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL} are linked with ${LIBPERL}, see above for the full list."
 			return 1
 		else
 			return 0
@@ -375,7 +368,6 @@ proxydeps_suggest_uses() {
 		${pkg} = "graphics/cairomm" -o \
 		${pkg} = "devel/dconf" -o \
 		${pkg} = "devel/gconf2" -o \
-		${pkg} = "devel/gconfmm26" -o \
 		${pkg} = "devel/glib20" -o \
 		${pkg} = "devel/glibmm" -o \
 		${pkg} = "audio/gsound" -o \
@@ -390,7 +382,6 @@ proxydeps_suggest_uses() {
 		${pkg} = "x11-toolkits/gtksourceviewmm3" -o \
 		${pkg} = "databases/libgda5" -o \
 		${pkg} = "databases/libgda5-ui" -o \
-		${pkg} = "databases/libgdamm5" -o \
 		${pkg} = "devel/libglade2" -o \
 		${pkg} = "graphics/libgnomecanvas" -o \
 		${pkg} = "x11/libgnomekbd" -o \
@@ -403,7 +394,6 @@ proxydeps_suggest_uses() {
 		${pkg} = "textproc/libxml++26" -o \
 		${pkg} = "textproc/libxml2" -o \
 		${pkg} = "textproc/libxslt" -o \
-		${pkg} = "x11-wm/metacity" -o \
 		${pkg} = "x11-toolkits/pango" -o \
 		${pkg} = "x11-toolkits/pangomm" -o \
 		${pkg} = "x11-toolkits/pangox-compat" -o \
@@ -419,7 +409,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "devel/gobject-introspection" ]; then warn "you need USE_GNOME+=introspection"
 	elif [ ${pkg} = "graphics/libart_lgpl" ]; then warn "you need USE_GNOME+=libartlgpl2"
 	elif [ ${pkg} = "devel/libIDL" ]; then warn "you need USE_GNOME+=libidl"
-	elif [ ${pkg} = "x11-fm/nautilus" ]; then warn "you need USE_GNOME+=nautilus3"
+	elif [ ${pkg} = "x11-fm/nautilus" ]; then warn "you need USE_GNOME+=nautilus4"
 	elif [ ${pkg} = "graphics/librsvg2-rust" ]; then warn "you need USE_GNOME+=librsvg2"
 	# mate
 	# grep LIB_DEPENDS= Mk/Uses/mate.mk |sed -e 's|\(.*\)_LIB_DEPENDS.*:\(.*\)\/\(.*\)|elif [ ${pkg} = "\2/\3" ]; then warn "you need USE_MATE+=\1"|'
@@ -433,7 +423,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "x11/mate-panel" ]; then warn "you need USE_MATE+=panel"
 	elif [ ${pkg} = "sysutils/mate-polkit" ]; then warn "you need USE_MATE+=polkit"
 	# KDE
-	# grep -B1 _LIB= Mk/Uses/kde.mk | grep _PORT=|sed -e 's/^kde-\(.*\)_PORT=[[:space:]]*\([^[:space:]]*\).*/elif [ ${pkg} = "\2" ]; then warn "you need to use USE_KDE+=\1"/' 
+	# grep -B1 _LIB= Mk/Uses/kde.mk | grep _PORT=|sed -e 's/^kde-\(.*\)_PORT=[[:space:]]*\([^[:space:]]*\).*/elif [ ${pkg} = "\2" ]; then warn "you need to use USE_KDE+=\1"/'
 	# KDE Applications
 	elif [ ${pkg} = "net/akonadi-contacts" ]; then warn "you need to use USE_KDE+=akonadicontacts"
 	elif [ ${pkg} = "deskutils/akonadi-import-wizard" ]; then warn "you need to use USE_KDE+=akonadiimportwizard"
@@ -479,7 +469,6 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "games/libkdegames" ]; then warn "you need to use USE_KDE+=libkdegames"
 	elif [ ${pkg} = "misc/libkeduvocdocument" ]; then warn "you need to use USE_KDE+=libkeduvocdocument"
 	elif [ ${pkg} = "graphics/libkexiv2" ]; then warn "you need to use USE_KDE+=libkexiv2"
-	elif [ ${pkg} = "graphics/libkipi" ]; then warn "you need to use USE_KDE+=libkipi"
 	elif [ ${pkg} = "graphics/libksane" ]; then warn "you need to use USE_KDE+=libksane"
 	elif [ ${pkg} = "astro/marble" ]; then warn "you need to use USE_KDE+=marble"
 	elif [ ${pkg} = "graphics/okular" ]; then warn "you need to use USE_KDE+=okular"
@@ -504,7 +493,6 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "x11/kf5-kded" ]; then warn "you need to use USE_KDE+=kded"
 	elif [ ${pkg} = "x11/kf5-kdelibs4support" ]; then warn "you need to use USE_KDE+=kdelibs4support"
 	elif [ ${pkg} = "security/kf5-kdesu" ]; then warn "you need to use USE_KDE+=kdesu"
-	elif [ ${pkg} = "www/kf5-kdewebkit" ]; then warn "you need to use USE_KDE+=kdewebkit"
 	elif [ ${pkg} = "www/kf5-khtml" ]; then warn "you need to use USE_KDE+=khtml"
 	elif [ ${pkg} = "devel/kf5-kio" ]; then warn "you need to use USE_KDE+=kio"
 	elif [ ${pkg} = "lang/kf5-kross" ]; then warn "you need to use USE_KDE+=kross"
@@ -566,6 +554,9 @@ proxydeps_suggest_uses() {
 	# Qt5
 	elif expr ${pkg} : '.*/qt5-.*' > /dev/null; then
 		warn "you need USES=qt:5 and USE_QT+=$(echo ${pkg} | sed -E 's|.*/qt5-||')"
+	# Qt6
+	elif expr ${pkg} : '.*/qt6-.*' > /dev/null; then
+		warn "you need USES=qt:6 and USE_QT+=$(echo ${pkg} | sed -E 's|.*/qt6-||')"
 	# MySQL
 	elif expr ${lib_file} : "${LOCALBASE}/lib/mysql/[^/]*$" > /dev/null; then
 		warn "you need USES+=mysql"
@@ -582,7 +573,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "databases/firebird25-client" ]; then
 		warn "you need USES+=firebird"
 	# fuse
-	elif [ ${pkg} = "sysutils/fusefs-libs" ]; then
+	elif [ ${pkg} = "filesystems/fusefs-libs" ]; then
 		warn "you need USES+=fuse"
 	# gnustep
 	elif [ ${pkg} = "lang/gnustep-base" ]; then
@@ -628,7 +619,11 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "devel/readline" ]; then
 		warn "you need USES+=readline"
 	# ssl
+	# When updating this, please also update the versions list in
+	# default-versions.mk and ssl.mk!
 	elif [ ${pkg} = "security/openssl" -o ${pkg} = "security/openssl111" \
+	  -o ${pkg} = "security/openssl31" -o ${pkg} = "security/openssl32" \
+	  -o ${pkg} = "security/openssl33" \
 	  -o ${pkg} = "security/libressl" -o ${pkg} = "security/libressl-devel" \
 	  ]; then
 		warn "you need USES=ssl"
@@ -724,7 +719,7 @@ proxydeps() {
 
 	# Check whether all files in LIB_DPEENDS are actually linked against
 	for _library in ${WANTED_LIBRARIES} ; do
-		if ! listcontains ${_library} "${dep_lib_files}" ; then
+		if ! listcontains ${_library%%.so*}.so "${dep_lib_files}" ; then
 			warn "you might not need LIB_DEPENDS on ${_library}"
 		fi
 	done
@@ -1040,6 +1035,8 @@ reinplace()
 }
 
 prefixman() {
+	return 0 
+# todo: BSD.local.dist mtree needs work
 	if [ -d "${FAKE_DESTDIR}${PREFIX}/man" ]; then
 		warn "Installing man files in ${PREFIX}/man is no longer supported. Consider installing these files in ${PREFIX}/share/man instead."
 		ls -liTd ${FAKE_DESTDIR}${PREFIX}/man

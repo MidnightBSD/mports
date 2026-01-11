@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/base/rand_util.h.orig	2024-02-23 21:04:38 UTC
+--- src/3rdparty/chromium/base/rand_util.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/base/rand_util.h
-@@ -149,7 +149,7 @@ void RandomShuffle(Itr first, Itr last) {
+@@ -209,7 +209,7 @@ void RandomShuffle(Itr first, Itr last) {
    std::shuffle(first, last, RandomBitGenerator());
  }
  

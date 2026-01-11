@@ -6,11 +6,14 @@ MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Terminal widget with improved accessibility and I18N support
+COMMENT?=	Gtk 2 Terminal widget with improved accessibility and I18N support
+WWW=		https://www.gnome.org/
 
 LICENSE?=	lgpl
 
 USES+=		tar:xz
+
+PORTSCOUT=	ignore:1
 
 RUN_DEPENDS+=	${LOCALBASE}/libexec/gnome-pty-helper:x11-toolkits/gnome-pty-helper
 

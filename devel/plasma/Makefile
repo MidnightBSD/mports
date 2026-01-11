@@ -10,7 +10,7 @@ LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	bash:shells/bash \
-		binutils>=2:devel/binutils \
+		/usr/local/bin/as:devel/binutils@native \
 		capstone>=3:devel/capstone
 RUN_DEPENDS=	binutils>=2:devel/binutils \
 		${PYTHON_PKGNAMEPREFIX}capstone>=3:devel/py-capstone@${PY_FLAVOR} \

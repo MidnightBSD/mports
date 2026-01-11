@@ -15,10 +15,10 @@ COMMENT=	Manual display command for Japanese (EUC)
 
 LICENSE=	gpl2
 
+FAKE_OPTS=	trueprefix
+
 RUN_DEPENDS=	${LOCALBASE}/bin/groff:japanese/groff \
 		jless:japanese/less
-
-BROKEN_mips=	fails to compile: man.c:37:10: fatal error: 'config.h' file not found
 
 MAKE_ENV=	GZCAT=${GZCAT} GZIP_CMD="${GZIP_CMD}"
 USES=		shebangfix

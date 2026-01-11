@@ -1,13 +1,14 @@
 # Created by: asami
 
 PORTNAME=	nethack36
-PORTVERSION=	3.6.6
+PORTVERSION=	3.6.7
 CATEGORIES=	games
 MASTER_SITES=	https://nethack.org/download/${PORTVERSION}/
 DISTNAME=	${TRUEPORTNAME}-${PORTVERSION:S/.//g}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dungeon explorin', slashin', hackin' game
+WWW=		https://www.nethack.org/
 
 LICENSE=	nethack
 LICENSE_NAME=	NETHACK GENERAL PUBLIC LICENSE
@@ -18,7 +19,7 @@ USES=		compiler:c11 gmake ncurses tar:tgz
 
 FAKE_OPTS=	trueprefix
 
-WRKSRC=		${WRKDIR}/NetHack-NetHack-${PORTVERSION}_Released
+WRKSRC=		${WRKDIR}/NetHack-${PORTVERSION}
 
 MAKE_ENV=	GRAPHICS="${GRAPHICS}"
 PLIST_SUB=	HACKNAME="${HACKNAME}" \

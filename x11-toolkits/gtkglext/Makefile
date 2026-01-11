@@ -7,6 +7,8 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL extension to GTK+
+WWW=		https://sourceforge.net/projects/gtkglext/ \
+		https://gitlab.gnome.org/Archive/gtkglext
 
 LICENSE=	lgpl2.1 # or later
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB

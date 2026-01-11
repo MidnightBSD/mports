@@ -1,53 +1,50 @@
 PORTNAME=	camlidl
-PORTVERSION=	1.05
+DISTVERSION=	1.12
 CATEGORIES=	lang
-MASTER_SITES=	http://caml.inria.fr/distrib/bazar-ocaml/
 PKGNAMEPREFIX=	ocaml-
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
-		${PORTNAME}-${PORTVERSION}.doc.html.tar.gz
-EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stub code generator for using C/C++ libraries from OCaml
+WWW=		https://caml.inria.fr/pub/old_caml_site/camlidl/
 
 LICENSE=	lgpl lgpl2.1
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_OCAML=	yes
+USES=		gmake ocaml
+USE_GITHUB=	yes
+GH_ACCOUNT=	xavierleroy
+GH_TAGNAME=	${PORTNAME}${DISTVERSION:S/.//}
 
 MAKE_JOBS_UNSAFE=	yes
 
+DOCSDIR=	${OCAML_DOCSDIR}/${PORTNAME}
+
+OPTIONS_DEFINE=		DOCS
+DOCS_BUILD_DEPENDS=	hevea>=0:textproc/hevea
+
 NO_TEST=	yes
 
-DOCSDIR=	${PREFIX}/share/doc/ocaml/${PORTNAME}
+.include <bsd.mport.options.mk>
 
-OPTIONS_DEFINE=	DOCS
-
-post-extract:
-	@${REINPLACE_CMD} -e "s,^\(OCAMLLIB=\).*,\1${FAKE_DESTDIR}${PREFIX}/lib/ocaml,g" \
-		-e "s,^\(BINDIR=\).*,\1${FAKE_DESTDIR}${PREFIX}/bin,g" \
-		-e "s,^CFLAGS=.*,#\&,g" \
-		-e "s,^\(CPP=\).*,\1/usr/bin/cpp,g" \
-		${WRKSRC}/config/Makefile.unix
-
-	@${REINPLACE_CMD} -e \
-		"/^install/,/^$$/s,\([ \t]*\)cp,\1${INSTALL_SCRIPT},g" \
-		-e 's,$$(OCAMLC),& -warn-error -a,' \
-		${WRKSRC}/compiler/Makefile
-
-	@${REINPLACE_CMD} -e \
-		"/^install/,/^$$/s,\([ \t]*\)cp,\1${INSTALL_DATA},g" \
-		${WRKSRC}/lib/Makefile ${WRKSRC}/runtime/Makefile.unix
-
+post-patch:
 	@${LN} -sf ${WRKSRC}/config/Makefile.unix ${WRKSRC}/config/Makefile
 
+do-build-DOCS-on:
+	cd ${WRKSRC}/doc && ${SETENVI} ${MAKE_ENV} ${MAKE_CMD} \
+		tools/transf tools/texquote2 ../docs/index.html
+	${RM} ${WRKSRC}/docs/main.haux ${WRKSRC}/docs/main.htoc
+
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/ocaml/caml
+	@${MKDIR} ${STAGEDIR}${PREFIX}/${OCAML_LIBDIR}/caml \
+		${STAGEDIR}${PREFIX}/${OCAML_LIBDIR}/stublibs
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${GZCAT} ${_DISTDIR}/${PORTNAME}-${PORTVERSION}.doc.html.tar.gz \
-		| ${TAR} -C ${FAKE_DESTDIR}${DOCSDIR} -xf -
+	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}/htmlman
+
+do-test:
+	@${ECHO_CMD} "Testing IDL library"
+	cd ${WRKSRC}/tests && ${SETENVI} ${MAKE_ENV} ${MAKE_CMD} all
 
 .include <bsd.port.mk>

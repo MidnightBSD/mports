@@ -28,7 +28,8 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		autoconf2.13:devel/autoconf2.13 \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
-		zip:archivers/zip
+		zip:archivers/zip \
+		clang15:devel/llvm15
  
 #	${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
 #${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc@${LLVM_VERSION} \
@@ -39,10 +40,12 @@ CPE_PRODUCT=	${PORTNAME}_esr
 CONFLICTS_INSTALL=	firefox
 USE_MOZILLA=	-sqlite
 CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include"
-MBSD64_TARGET=  x86_64-mports-freebsd12.3
+MBSD64_TARGET=  x86_64-mports-freebsd13.4
 CONFIGURE_TARGET=       ${MBSD64_TARGET}
+LDFLAGS+=               -Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
 
-USES+=		perl5 tar:xz
+USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
+                python desktop-file-utils tar:xz
 
 MOZILLA=        browser                                                                                                                                                   
 MOZILLA_NAME=   Browser                                                                                                                                                   

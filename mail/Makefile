@@ -10,7 +10,6 @@
     SUBDIR += batv-milter
     SUBDIR += bogofilter
     SUBDIR += bogofilter-bdb
-    SUBDIR += cclient
     SUBDIR += chk4mail
     SUBDIR += claws-mail
     SUBDIR += claws-mail-address_keeper

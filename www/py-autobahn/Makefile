@@ -62,7 +62,7 @@ TWISTED_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}attrs>=20.3.0:devel/py-attrs@${PY_F
 
 post-fake:
 .if ${ARCH} !=	armv7
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_nvx_utf8validator.abi3.so
+	-${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_nvx_utf8validator.abi3.so
 .endif
 
 .include <bsd.port.mk>

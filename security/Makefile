@@ -101,6 +101,7 @@
     SUBDIR += libssh2
     SUBDIR += libtasn1
     SUBDIR += libtatsu
+    SUBDIR += libtomcrypt
     SUBDIR += libxcrypt
     SUBDIR += libyubikey
     SUBDIR += libzrtpcppcore
@@ -285,6 +286,7 @@
     SUBDIR += sig2dot
     SUBDIR += signify
     SUBDIR += snort
+    SUBDIR += ssdeep
     SUBDIR += sshguard
     SUBDIR += sshpass
     SUBDIR += sudo

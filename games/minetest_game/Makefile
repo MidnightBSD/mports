@@ -1,22 +1,25 @@
 PORTNAME=	minetest_game
-PORTVERSION=	5.4.1
+PORTVERSION=	5.8.0.20241016
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The main game for the Minetest game engine
+WWW=		https://www.minetest.net/ \
+		https://github.com/minetest/minetest_game
 
 LICENSE=	lgpl2.1 CC-BY-SA-3.0
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	minetest:games/minetest
+RUN_DEPENDS=	luanti>=0:games/luanti
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	minetest
+GH_TAGNAME=	093cd28
 
 NO_BUILD=	yes
 NO_ARCH=	yes
-DATADIR=	${TRUE_PREFIX}/share/minetest/games/${PORTNAME}
+DATADIR=	${TRUE_PREFIX}/share/luanti/games/${PORTNAME}
 #PORTDATA=	*
 PORTDOCS=	README.md game_api.txt schematic_tables.txt settingtypes.txt
 #PORTEXAMPLES=	*

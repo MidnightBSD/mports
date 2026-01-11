@@ -1,7 +1,7 @@
 PORTNAME=	nautilus
 PORTVERSION=	47.2
 CATEGORIES=	x11-fm gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -32,6 +32,8 @@ MESON_ARGS=	-Dpackagekit=false \
 		-Dtests=none
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 CPE_VENDOR=	gnome
+
+PORTSCOUT=	limit:^47\.
 
 GLIB_SCHEMAS=	org.gnome.nautilus.gschema.xml
 

@@ -39,6 +39,7 @@
     SUBDIR += linux-c7-lz4
     SUBDIR += linux-rl9-brotli
     SUBDIR += linux-rl9-lz4
+    SUBDIR += lzfse
     SUBDIR += lzip
     SUBDIR += lzma
     SUBDIR += lzo2
@@ -56,7 +57,6 @@
     SUBDIR += p5-IO-Compress
     SUBDIR += p5-IO-Compress-Lzma
     SUBDIR += p5-IO-Zlib
-    SUBDIR += p7zip
     SUBDIR += par2cmdline
     SUBDIR += pbzip2
     SUBDIR += pear-File_Archive

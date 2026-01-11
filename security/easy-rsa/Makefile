@@ -1,5 +1,5 @@
 PORTNAME=	easy-rsa
-DISTVERSION=	3.2.2
+DISTVERSION=	3.2.5
 PORTEPOCH=	1
 CATEGORIES=	security net-mgmt
 MASTER_SITES=	https://github.com/OpenVPN/easy-rsa/releases/download/v${DISTVERSION}/ \

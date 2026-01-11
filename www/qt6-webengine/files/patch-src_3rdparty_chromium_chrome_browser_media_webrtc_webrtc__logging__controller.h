@@ -1,4 +1,4 @@
---- src/3rdparty/chromium/chrome/browser/media/webrtc/webrtc_logging_controller.h.orig	2024-07-03 01:14:49 UTC
+--- src/3rdparty/chromium/chrome/browser/media/webrtc/webrtc_logging_controller.h.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/chrome/browser/media/webrtc/webrtc_logging_controller.h
 @@ -137,7 +137,7 @@ class WebRtcLoggingController
                           size_t web_app_id,

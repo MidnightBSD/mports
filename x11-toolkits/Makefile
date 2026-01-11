@@ -1,6 +1,5 @@
     COMMENT = X11 toolkits
 
-    SUBDIR += Xaw3d
     SUBDIR += amtk
     SUBDIR += fltk
     SUBDIR += fox16
@@ -58,7 +57,9 @@
     SUBDIR += libdazzle
     SUBDIR += libdecor
     SUBDIR += libgdiplus
+    SUBDIR += libgedit-gtksourceview
     SUBDIR += libhandy
+    SUBDIR += libpanel
     SUBDIR += libshumate
     SUBDIR += libspelling
     SUBDIR += libunique3
@@ -84,6 +85,7 @@
     SUBDIR += p5-Tk
     SUBDIR += pango
     SUBDIR += pangomm
+    SUBDIR += pangomm24
     SUBDIR += pangox-compat
     SUBDIR += plasma6-kdeplasma-addons
     SUBDIR += py-qt5-charts

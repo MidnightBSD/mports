@@ -30,6 +30,8 @@ USE_SDL=		sdl
 USE_XORG=		x11
 USE_GNUSTEP=		base build
 
+ADDITIONAL_CPPFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
 MAKE_ENV=		ac_cv_path_PYTHON=${PYTHON_CMD}
 # Redefine DO_MAKE_BUILD, because current gnustep in USES overrides MAKEFILE
 # without possibility to change it, as it was done in the previous implementation

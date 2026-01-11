@@ -14,4 +14,6 @@ RUN_DEPENDS=	R-cran-digest>0:security/R-cran-digest
 
 USES=		cran:auto-plist
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

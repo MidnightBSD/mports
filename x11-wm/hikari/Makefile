@@ -1,11 +1,12 @@
 PORTNAME=	hikari
-DISTVERSION=	2.3.2
-PORTREVISION=	1
-CATEGORIES=	x11-wm
+DISTVERSION=	2.3.3
+PORTREVISION=	5
+CATEGORIES=	x11-wm wayland
 MASTER_SITES=	https://hikari.acmelabs.space/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stacking Wayland compositor with tiling capabilities
+WWW=		https://hikari.acmelabs.space
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -13,13 +14,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 FAKE_OPTS=	trueprefix
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
-		wayland-protocols>=1.14:graphics/wayland-protocols \
-		wlroots>=0.14.0<0.15.0:x11-toolkits/wlroots
+		wayland-protocols>=1.14:graphics/wayland-protocols
 LIB_DEPENDS=	libinput.so:x11/libinput \
 		libucl.so:textproc/libucl \
 		libwayland-server.so:graphics/wayland \
-		libwlroots.so:x11-toolkits/wlroots \
+		libwlroots-0.15.so:x11-toolkits/wlroots015 \
 		libxkbcommon.so:x11/libxkbcommon
+RUN_DEPENDS=	unix-selfauth-helper>0:security/unix-selfauth-helper
 
 USES=		compiler:c11 gnome pkgconfig xorg
 USE_GNOME=	cairo pango
@@ -33,7 +34,7 @@ OPTIONS_DEFAULT=	GAMMA LAYERSHELL SCREENCOPY VIRTUALINPUT X11
 GAMMA_DESC=		Include gammacontrol protocol (required by, e.g., Redshift)
 LAYERSHELL_DESC=	Include layer_shell protocol (required by, e.g., waybar)
 SCREENCOPY_DESC=	Include screenshot protocol (required by, e.g., grim)
-VIRTUALINPUT_DESC=	needed for VNC support (requiered by e.g. wayvnc)
+VIRTUALINPUT_DESC=	needed for VNC support (required by e.g. wayvnc)
 
 GAMMA_MAKE_ARGS=	WITH_GAMMACONTROL=YES
 LAYERSHELL_MAKE_ARGS=	WITH_LAYERSHELL=YES

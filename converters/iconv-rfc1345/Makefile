@@ -1,7 +1,6 @@
-# Created by: Konstantin Chuguev <Konstantin.Chuguev@dante.org.uk>
-
 PORTNAME=	iconv-rfc1345
 PORTVERSION=	2.0
+PORTREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	FREEBSD_LOCAL/bland
 

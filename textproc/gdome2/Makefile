@@ -24,6 +24,7 @@ OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	*
 
+CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 post-patch:
 	@${FIND} ${WRKSRC} -type f -and \
 		'(' -name '*.[ch]' -or -name '*.xml' ')' | \

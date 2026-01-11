@@ -4,7 +4,7 @@ CATEGORIES=	net kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE library for accessing mail storages in MBox format
-WWW=		https://www.kde.org/
+WWW=		https://invent.kde.org/pim/kmbox
 
 LICENSE=	lgpl2.1
 

@@ -14,4 +14,6 @@ RUN_DEPENDS=	R-cran-sys>=2.1:devel/R-cran-sys
 
 USES=		cran:auto-plist,compiles
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

@@ -7,7 +7,7 @@ PKGNAMESUFFIX=	${LLVM_SUFFIX}
 DISTNAME=	llvm-project-${DISTVERSION}.src
 DISTFILES=	llvm-project-${DISTVERSION}.src${EXTRACT_SUFX}
 
-MAINTAINER=	brooks@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LLVM and Clang
 WWW=		https://llvm.org/
 

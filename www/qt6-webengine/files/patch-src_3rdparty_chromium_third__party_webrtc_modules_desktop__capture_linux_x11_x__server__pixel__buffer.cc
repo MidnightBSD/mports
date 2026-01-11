@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/x11/x_server_pixel_buffer.cc.orig	2023-04-28 17:01:32 UTC
+--- src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/x11/x_server_pixel_buffer.cc.orig	2025-08-15 18:30:00 UTC
 +++ src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/x11/x_server_pixel_buffer.cc
-@@ -203,6 +203,12 @@ bool XServerPixelBuffer::Init(XAtomCache* cache, Windo
+@@ -203,6 +203,12 @@ void XServerPixelBuffer::InitShm(const XWindowAttribut
  void XServerPixelBuffer::InitShm(const XWindowAttributes& attributes) {
    Visual* default_visual = attributes.visual;
    int default_depth = attributes.depth;

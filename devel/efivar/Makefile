@@ -8,13 +8,20 @@ WWW=		https://github.com/rhboot/efivar
 
 LICENSE=	lgpl2.1
 
+BUILD_DEPENDS=	gsed:textproc/gsed
 LIB_DEPENDS=	libpopt.so:devel/popt
 
-USES=		gmake localbase pkgconfig
+USES=		gmake localbase pkgconfig python
 USE_GCC=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	rhboot
 USE_LDCONFIG=	yes
+
+BINARY_ALIAS= sed=${LOCALBASE}/bin/gsed
+
+MAKE_ARGS+=	CC="${CC}" LIBDIR="${PREFIX}/lib" \
+		LDFLAGS="-Wl,-rpath,${PREFIX}/lib"
+
 
 .include <bsd.port.pre.mk>
 
