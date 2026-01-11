@@ -1,31 +1,39 @@
 PORTNAME=	xclip
-PORTVERSION=	0.13
+DISTVERSION=	0.13-99
+DISTVERSIONSUFFIX=	-g2c3b811
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface to X selections ("the clipboard") from the command line
+WWW=		https://github.com/astrand/xclip
 
 LICENSE=	gpl2
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	astrand
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf gmake iconv:wchar_t xorg
+USE_GITHUB=	yes
+GH_ACCOUNT=	astrand
 USE_XORG=	x11 xmu
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	ac_cv_header_X11_Xmu_Atoms_h=yes \
-		ac_cv_header_X11_Intrinsic_h=yes \
+CONFIGURE_ENV+=	ac_cv_header_X11_Intrinsic_h=yes \
+		ac_cv_header_X11_Xmu_Atoms_h=yes \
 		ac_cv_lib_Xmu_XmuClientWindow=yes
-CFLAGS+=	-I/usr/local/include -liconv -L/usr/local/lib
-LDFLAGS+=	-L/usr/local/lib 
+LDFLAGS+=	-liconv -L/usr/local/lib
 
-PLIST_FILES=	bin/xclip bin/xclip-copyfile bin/xclip-cutfile \
+PLIST_FILES=	bin/xclip \
+		bin/xclip-copyfile \
+		bin/xclip-cutfile \
 		bin/xclip-pastefile \
-		share/man/man1/xclip.1.gz share/man/man1/xclip-copyfile.1.gz
+		share/man/man1/xclip-copyfile.1.gz \
+		share/man/man1/xclip.1.gz
 
-post-patch:
-	${REINPLACE_CMD} 's,mktemp,mktemp -t xclip,' ${WRKSRC}/xclip-copyfile
+PORTDOCS=	README
+OPTIONS_DEFINE=	DOCS
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/README ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/xclip
