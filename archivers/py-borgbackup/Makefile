@@ -28,7 +28,7 @@ TEST_DEPENDS=	${RUN_DEPENDS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR} \
 		fakeroot:security/fakeroot
 
-USES=		pkgconfig python:3.9+ ssl
+USES=		pkgconfig pythonssl
 USE_PYTHON=	autoplist distutils
 MAKE_ENV=	BORG_OPENSSL_PREFIX=${OPENSSLBASE}
 
