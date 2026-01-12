@@ -10,10 +10,12 @@ WWW=		https://www.qt.io/
 
 LICENSE=	gpl2+
 
+SKIP_FAKE_CHECK=        (.*sdpscanner|.*\.(so|9)$)
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
-USE_LINUX=	alsalib cups-libs dbuslibs dri jpeg libxml2 png pulseaudio-libs \
-		qtbase tiff xorglibs webp
+USE_LINUX=	alsalib cups-libs dbuslibs dri imageformats-libs libxml2 pulseaudio-libs \
+		qtbase xorglibs
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 
