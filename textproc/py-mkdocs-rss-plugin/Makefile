@@ -1,7 +1,9 @@
 PORTNAME=	mkdocs-rss-plugin
-DISTVERSION=	1.16.0
+DISTVERSION=	1.17.7
 CATEGORIES=	textproc python
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	mkdocs_rss_plugin-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates a static RSS feed using git log and page.meta
@@ -10,22 +12,17 @@ WWW=		https://github.com/Guts/mkdocs-rss-plugin
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=8:devel/py-setuptools-scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cachecontrol>=0.14<1:www/py-cachecontrol@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}gitpython>=3.1<3.2:devel/py-gitpython@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}gitpython>=3.1.43<3.2:devel/py-gitpython@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.31<3:www/py-requests@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mkdocs>=1.4.1:textproc/py-mkdocs@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}mkdocs>=1.6.1<2:textproc/py-mkdocs@${PY_FLAVOR}
 
-USES=		python:3.9+
-USE_GITHUB=	yes
-GH_ACCOUNT=	Guts
-USE_PYTHON=	autoplist distutils
+USES=		python
+USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 30900
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pytz>=2024,1:devel/py-pytz@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
