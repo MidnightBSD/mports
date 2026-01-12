@@ -1,5 +1,6 @@
 PORTNAME=	scipy
 DISTVERSION=	1.11.1
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	https://docs.scipy.org/doc/${PORTNAME}-${DISTVERSION}/:doc \
 		PYPI:source \
@@ -8,6 +9,9 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:source \
 		scipy-html-${DISTVERSION}.zip:doc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+
+PATCH_SITES=	https://github.com/scipy/scipy/commit/
+PATCHFILES=	ab7d08c6148286059f6498ab5c3070268d13cbd9.patch:-p1 # https://github.com/scipy/scipy/pull/21069
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scientific tools for Python
@@ -25,7 +29,7 @@ LIB_DEPENDS=	libblas.so:math/blas \
 		libopenblas.so:math/openblas
 RUN_DEPENDS=	${PYNUMPY}
 
-USES=		compiler:c++14-lang cpe fortran python:3.9-3.11 shebangfix
+USES=		compiler:c++14-lang cpe fortran python:3.10-3.11 shebangfix
 USE_PYTHON=	autoplist concurrent cython distutils
 
 # circular dependency
