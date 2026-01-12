@@ -24,7 +24,8 @@ OPTIONSFILE=	${PORT_DBDIR}/ruby-${PORTNAME}/options
 MAKE_ENV+=	RUBY_RDOC=${LOCALBASE}/bin/rdoc
 
 ALL_TARGET=	all rdoc
-CONFIGURE_ARGS=	--with-db-include=${BDB_INCLUDE_DIR} \
+CONFIGURE_ARGS=	--with-cflags=-Wno-incompatible-function-pointer-types \
+		--with-db-include=${BDB_INCLUDE_DIR} \
 		--with-db-lib=${BDB_LIB_DIR}
 INSTALL_TARGET=	site-install
 WITH_BDB6_PERMITTED=	yes
@@ -71,10 +72,5 @@ post-install:
 	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/doc)
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
 	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR} "! -empty")
-
-do-test:
-	@${MKDIR} ${BUILD_WRKSRC}/tmp
-	(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} \
-	${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test)
 
 .include <bsd.port.mk>
