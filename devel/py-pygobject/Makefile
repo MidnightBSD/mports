@@ -1,8 +1,8 @@
 PORTNAME=	pygobject
-DISTVERSION=	3.50.0
+DISTVERSION=	3.50.2
 PORTREVISION?=	0
 CATEGORIES=	devel python
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 PKGNAMEPREFIX?=	${PYTHON_PKGNAMEPREFIX}
 DIST_SUBDIR=	gnome
 
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>=1.16:graphics/py-cairo@${PY_FLAVOR}
 LIB_DEPENDS=	libffi.so:devel/libffi
 
-USES=		gnome pkgconfig python:3.9+ tar:xz
+USES=		gnome pkgconfig python
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 PORTSCOUT=	limitw:1,even
