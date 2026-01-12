@@ -1,5 +1,6 @@
 PORTNAME=	mailman
 DISTVERSION=	3.3.10
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -29,13 +30,13 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiosmtpd>=1.4.3:mail/py-aiosmtpd@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}python-dateutil>=2.0:devel/py-python-dateutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}passlib>0:security/py-passlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sqlalchemy14>0:databases/py-sqlalchemy14@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sqlalchemy20>0:databases/py-sqlalchemy20@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.component>0:devel/py-zope.component@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.configuration>0:devel/py-zope.configuration@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.event>0:devel/py-zope.event@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=5.0:devel/py-zope.interface@${PY_FLAVOR}
 
-USES=		cpe python:3.9+
+USES=		cpe python
 
 CPE_VENDOR=	gnu
 USE_PYTHON=	autoplist concurrent pep517
