@@ -11,6 +11,8 @@ WWW=		https://www.qt.io/
 
 LICENSE=	gpl2+
 
+SKIP_FAKE_CHECK=	(.*canbusutil|.*\.(so|9)$)
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	cups-libs dbuslibs dri imageformats-libs libxml2 qtbase xorglibs
