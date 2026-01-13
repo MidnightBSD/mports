@@ -62,6 +62,7 @@ SUBDIR += openjdk18
 SUBDIR += openjdk18-bin
 SUBDIR += openjdk19
 SUBDIR += openjdk20
+SUBDIR += openjdk21-bin
 SUBDIR += openjfx14
 SUBDIR += phpeclipse
 SUBDIR += proguard

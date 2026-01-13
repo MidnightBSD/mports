@@ -20,10 +20,6 @@
 #
 # run		-	Add the JDK port to the run dependencies
 #
-# For FreeBSD committers:
-# Please send all suggested changes to the maintainer instead of committing
-# them yourself.
-#
 #-------------------------------------------------------------------------------
 # Variables that each port can define:
 #
@@ -200,13 +196,15 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 .    endif
 
 # The complete list of Java versions, os and vendors supported.
-__JAVA_VERSION_LIST=	8 11 12 13 17 18
+__JAVA_VERSION_LIST=	8 11 12 13 17 18 21
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
 _JAVA_OS_LIST=			native freebsd linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava oracle openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_21_INFO=	PORT=java/openjdk21-bin			HOME=${LOCALBASE}/openjdk21 \
+											VERSION=21	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_18_INFO=	PORT=java/openjdk18-bin			HOME=${LOCALBASE}/openjdk18 \
 											VERSION=18	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_17_INFO=	PORT=java/openjdk17-bin			HOME=${LOCALBASE}/openjdk17 \
@@ -241,6 +239,7 @@ __JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_13 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_17 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_18 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_21 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_8  \
  					JAVA_PORT_NATIVE_OPENJDK_JDK_11 \
  					JAVA_PORT_NATIVE_OPENJDK_JDK_12 \

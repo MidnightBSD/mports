@@ -1,0 +1,649 @@
+openjdk21/jmods/java.security.sasl.jmod
+openjdk21/jmods/jdk.editpad.jmod
+openjdk21/jmods/java.net.http.jmod
+openjdk21/jmods/jdk.unsupported.jmod
+openjdk21/jmods/jdk.jconsole.jmod
+openjdk21/jmods/jdk.jdi.jmod
+openjdk21/jmods/jdk.jdwp.agent.jmod
+openjdk21/jmods/jdk.compiler.jmod
+openjdk21/jmods/java.datatransfer.jmod
+openjdk21/jmods/java.xml.jmod
+openjdk21/jmods/java.management.rmi.jmod
+openjdk21/jmods/java.naming.jmod
+openjdk21/jmods/jdk.security.auth.jmod
+openjdk21/jmods/jdk.crypto.ec.jmod
+openjdk21/jmods/jdk.internal.vm.ci.jmod
+openjdk21/jmods/java.se.jmod
+openjdk21/jmods/jdk.security.jgss.jmod
+openjdk21/jmods/jdk.management.jmod
+openjdk21/jmods/jdk.internal.le.jmod
+openjdk21/jmods/jdk.management.agent.jmod
+openjdk21/jmods/java.smartcardio.jmod
+openjdk21/jmods/jdk.net.jmod
+openjdk21/jmods/jdk.naming.dns.jmod
+openjdk21/jmods/jdk.jfr.jmod
+openjdk21/jmods/java.management.jmod
+openjdk21/jmods/jdk.charsets.jmod
+openjdk21/jmods/jdk.jsobject.jmod
+openjdk21/jmods/jdk.jstatd.jmod
+openjdk21/jmods/jdk.internal.vm.compiler.jmod
+openjdk21/jmods/jdk.unsupported.desktop.jmod
+openjdk21/jmods/jdk.javadoc.jmod
+openjdk21/jmods/jdk.httpserver.jmod
+openjdk21/jmods/jdk.hotspot.agent.jmod
+openjdk21/jmods/jdk.accessibility.jmod
+openjdk21/jmods/jdk.internal.ed.jmod
+openjdk21/jmods/jdk.naming.rmi.jmod
+openjdk21/jmods/java.xml.crypto.jmod
+openjdk21/jmods/java.instrument.jmod
+openjdk21/jmods/java.transaction.xa.jmod
+openjdk21/jmods/java.logging.jmod
+openjdk21/jmods/jdk.sctp.jmod
+openjdk21/jmods/jdk.nio.mapmode.jmod
+openjdk21/jmods/jdk.internal.vm.compiler.management.jmod
+openjdk21/jmods/jdk.dynalink.jmod
+openjdk21/jmods/java.desktop.jmod
+openjdk21/jmods/jdk.incubator.vector.jmod
+openjdk21/jmods/jdk.attach.jmod
+openjdk21/jmods/jdk.internal.opt.jmod
+openjdk21/jmods/jdk.jcmd.jmod
+openjdk21/jmods/jdk.jdeps.jmod
+openjdk21/jmods/jdk.jlink.jmod
+openjdk21/jmods/jdk.jartool.jmod
+openjdk21/jmods/jdk.random.jmod
+openjdk21/jmods/jdk.localedata.jmod
+openjdk21/jmods/jdk.internal.jvmstat.jmod
+openjdk21/jmods/java.security.jgss.jmod
+openjdk21/jmods/java.sql.jmod
+openjdk21/jmods/java.base.jmod
+openjdk21/jmods/java.prefs.jmod
+openjdk21/jmods/jdk.crypto.cryptoki.jmod
+openjdk21/jmods/jdk.zipfs.jmod
+openjdk21/jmods/java.compiler.jmod
+openjdk21/jmods/java.scripting.jmod
+openjdk21/jmods/jdk.jshell.jmod
+openjdk21/jmods/jdk.management.jfr.jmod
+openjdk21/jmods/jdk.xml.dom.jmod
+openjdk21/jmods/java.rmi.jmod
+openjdk21/jmods/java.sql.rowset.jmod
+openjdk21/demo/README
+openjdk21/demo/nbproject/project.xml
+openjdk21/demo/nbproject/README.txt
+openjdk21/demo/nbproject/jfc/TableExample/build.properties
+openjdk21/demo/nbproject/jfc/TableExample/build.xml
+openjdk21/demo/nbproject/jfc/TableExample/nbproject/netbeans-targets.xml
+openjdk21/demo/nbproject/jfc/TableExample/nbproject/file-targets.xml
+openjdk21/demo/nbproject/jfc/TableExample/nbproject/jdk.xml
+openjdk21/demo/nbproject/jfc/TableExample/nbproject/project.xml
+openjdk21/demo/nbproject/jfc/Metalworks/build.properties
+openjdk21/demo/nbproject/jfc/Metalworks/nbproject/project.xml
+openjdk21/demo/nbproject/jfc/Metalworks/nbproject/jdk.xml
+openjdk21/demo/nbproject/jfc/Metalworks/nbproject/netbeans-targets.xml
+openjdk21/demo/nbproject/jfc/Metalworks/nbproject/file-targets.xml
+openjdk21/demo/nbproject/jfc/Metalworks/build.xml
+openjdk21/demo/nbproject/jfc/FileChooserDemo/build.properties
+openjdk21/demo/nbproject/jfc/FileChooserDemo/nbproject/file-targets.xml
+openjdk21/demo/nbproject/jfc/FileChooserDemo/nbproject/project.xml
+openjdk21/demo/nbproject/jfc/FileChooserDemo/nbproject/jdk.xml
+openjdk21/demo/nbproject/jfc/FileChooserDemo/nbproject/netbeans-targets.xml
+openjdk21/demo/nbproject/jfc/FileChooserDemo/build.xml
+openjdk21/demo/nbproject/jfc/Notepad/build.xml
+openjdk21/demo/nbproject/jfc/Notepad/nbproject/project.xml
+openjdk21/demo/nbproject/jfc/Notepad/nbproject/file-targets.xml
+openjdk21/demo/nbproject/jfc/Notepad/nbproject/netbeans-targets.xml
+openjdk21/demo/nbproject/jfc/Notepad/nbproject/jdk.xml
+openjdk21/demo/nbproject/jfc/Notepad/build.properties
+openjdk21/demo/nbproject/jfc/SampleTree/nbproject/jdk.xml
+openjdk21/demo/nbproject/jfc/SampleTree/nbproject/project.xml
+openjdk21/demo/nbproject/jfc/SampleTree/nbproject/file-targets.xml
+openjdk21/demo/nbproject/jfc/SampleTree/nbproject/netbeans-targets.xml
+openjdk21/demo/nbproject/jfc/SampleTree/build.xml
+openjdk21/demo/nbproject/jfc/SampleTree/build.properties
+openjdk21/demo/nbproject/jfc/TransparentRuler/build.xml
+openjdk21/demo/nbproject/jfc/TransparentRuler/build.properties
+openjdk21/demo/nbproject/jfc/TransparentRuler/nbproject/netbeans-targets.xml
+openjdk21/demo/nbproject/jfc/TransparentRuler/nbproject/file-targets.xml
+openjdk21/demo/nbproject/jfc/TransparentRuler/nbproject/jdk.xml
+openjdk21/demo/nbproject/jfc/TransparentRuler/nbproject/project.xml
+openjdk21/demo/nbproject/jfc/Font2DTest/build.xml
+openjdk21/demo/nbproject/jfc/Font2DTest/nbproject/file-targets.xml
+openjdk21/demo/nbproject/jfc/Font2DTest/nbproject/jdk.xml
+openjdk21/demo/nbproject/jfc/Font2DTest/nbproject/netbeans-targets.xml
+openjdk21/demo/nbproject/jfc/Font2DTest/nbproject/project.xml
+openjdk21/demo/nbproject/jfc/Font2DTest/build.properties
+openjdk21/demo/jfc/Font2DTest/Font2DTest.jar
+openjdk21/demo/jfc/Font2DTest/README.txt
+openjdk21/demo/jfc/Font2DTest/src.zip
+openjdk21/demo/jfc/SampleTree/README.txt
+openjdk21/demo/jfc/SampleTree/src.zip
+openjdk21/demo/jfc/SampleTree/SampleTree.jar
+openjdk21/demo/jfc/CodePointIM/README_zh_CN.html
+openjdk21/demo/jfc/CodePointIM/README_ja.html
+openjdk21/demo/jfc/CodePointIM/CodePointIM.jar
+openjdk21/demo/jfc/CodePointIM/README.html
+openjdk21/demo/jfc/CodePointIM/src.zip
+openjdk21/demo/jfc/Metalworks/Metalworks.jar
+openjdk21/demo/jfc/Metalworks/README.txt
+openjdk21/demo/jfc/Metalworks/src.zip
+openjdk21/demo/jfc/TransparentRuler/src.zip
+openjdk21/demo/jfc/TransparentRuler/TransparentRuler.jar
+openjdk21/demo/jfc/TransparentRuler/README.txt
+openjdk21/demo/jfc/J2Ddemo/J2Ddemo.jar
+openjdk21/demo/jfc/J2Ddemo/README.txt
+openjdk21/demo/jfc/J2Ddemo/src.zip
+openjdk21/demo/jfc/Stylepad/README.txt
+openjdk21/demo/jfc/Stylepad/src.zip
+openjdk21/demo/jfc/Stylepad/Stylepad.jar
+openjdk21/demo/jfc/TableExample/README.txt
+openjdk21/demo/jfc/TableExample/TableExample.jar
+openjdk21/demo/jfc/TableExample/src.zip
+openjdk21/demo/jfc/FileChooserDemo/FileChooserDemo.jar
+openjdk21/demo/jfc/FileChooserDemo/src.zip
+openjdk21/demo/jfc/FileChooserDemo/README.txt
+openjdk21/demo/jfc/SwingSet2/README.txt
+openjdk21/demo/jfc/SwingSet2/src.zip
+openjdk21/demo/jfc/SwingSet2/SwingSet2.jar
+openjdk21/demo/jfc/Notepad/README.txt
+openjdk21/demo/jfc/Notepad/src.zip
+openjdk21/demo/jfc/Notepad/Notepad.jar
+openjdk21/include/jvmti.h
+openjdk21/include/jdwpTransport.h
+openjdk21/include/jvmticmlr.h
+openjdk21/include/jawt.h
+openjdk21/include/classfile_constants.h
+openjdk21/include/freebsd/jawt_md.h
+openjdk21/include/freebsd/jni_md.h
+openjdk21/include/jni.h
+openjdk21/man/man1/jdb.1
+openjdk21/man/man1/jmap.1
+openjdk21/man/man1/jrunscript.1
+openjdk21/man/man1/jarsigner.1
+openjdk21/man/man1/jstack.1
+openjdk21/man/man1/javap.1
+openjdk21/man/man1/jhsdb.1
+openjdk21/man/man1/java.1
+openjdk21/man/man1/jdeps.1
+openjdk21/man/man1/jconsole.1
+openjdk21/man/man1/jdeprscan.1
+openjdk21/man/man1/jcmd.1
+openjdk21/man/man1/jstat.1
+openjdk21/man/man1/jstatd.1
+openjdk21/man/man1/jwebserver.1
+openjdk21/man/man1/serialver.1
+openjdk21/man/man1/jar.1
+openjdk21/man/man1/jlink.1
+openjdk21/man/man1/jmod.1
+openjdk21/man/man1/javac.1
+openjdk21/man/man1/jps.1
+openjdk21/man/man1/jinfo.1
+openjdk21/man/man1/jshell.1
+openjdk21/man/man1/rmiregistry.1
+openjdk21/man/man1/jfr.1
+openjdk21/man/man1/javadoc.1
+openjdk21/man/man1/keytool.1
+openjdk21/release
+openjdk21/bin/jrunscript
+openjdk21/bin/jfr
+openjdk21/bin/jdeprscan
+openjdk21/bin/jmod
+openjdk21/bin/rmiregistry
+openjdk21/bin/jstack
+openjdk21/bin/jshell
+openjdk21/bin/java
+openjdk21/bin/javadoc
+openjdk21/bin/jar
+openjdk21/bin/jdeps
+openjdk21/bin/jcmd
+openjdk21/bin/serialver
+openjdk21/bin/jimage
+openjdk21/bin/jinfo
+openjdk21/bin/jmap
+openjdk21/bin/javap
+openjdk21/bin/keytool
+openjdk21/bin/jwebserver
+openjdk21/bin/jhsdb
+openjdk21/bin/javac
+openjdk21/bin/jconsole
+openjdk21/bin/jstatd
+openjdk21/bin/jdb
+openjdk21/bin/jlink
+openjdk21/bin/jarsigner
+openjdk21/bin/jstat
+openjdk21/bin/jps
+openjdk21/conf/management/management.properties
+openjdk21/conf/management/jmxremote.password.template
+openjdk21/conf/management/jmxremote.access
+openjdk21/conf/security/java.policy
+openjdk21/conf/security/policy/README.txt
+openjdk21/conf/security/policy/unlimited/default_local.policy
+openjdk21/conf/security/policy/unlimited/default_US_export.policy
+openjdk21/conf/security/policy/limited/default_local.policy
+openjdk21/conf/security/policy/limited/default_US_export.policy
+openjdk21/conf/security/policy/limited/exempt_local.policy
+openjdk21/conf/security/java.security
+openjdk21/conf/jaxp.properties
+openjdk21/conf/net.properties
+openjdk21/conf/sound.properties
+openjdk21/conf/logging.properties
+openjdk21/lib/libj2pcsc.so
+openjdk21/lib/libsaproc.so
+openjdk21/lib/libsyslookup.so
+openjdk21/lib/classlist
+openjdk21/lib/libnet.so
+openjdk21/lib/libextnet.so
+openjdk21/lib/jfr/default.jfc
+openjdk21/lib/jfr/profile.jfc
+openjdk21/lib/libnio.so
+openjdk21/lib/libverify.so
+openjdk21/lib/libjaas.so
+openjdk21/lib/libfontmanager.so
+openjdk21/lib/libprefs.so
+openjdk21/lib/psfontj2d.properties
+openjdk21/lib/security/public_suffix_list.dat
+openjdk21/lib/security/cacerts
+openjdk21/lib/security/blocked.certs
+openjdk21/lib/security/default.policy
+openjdk21/lib/modules
+openjdk21/lib/libj2gss.so
+openjdk21/lib/tzdb.dat
+openjdk21/lib/libinstrument.so
+openjdk21/lib/libawt_headless.so
+openjdk21/lib/libmanagement.so
+openjdk21/lib/src.zip
+openjdk21/lib/libjavajpeg.so
+openjdk21/lib/fontconfig.bfc
+openjdk21/lib/jspawnhelper
+openjdk21/lib/libdt_socket.so
+openjdk21/lib/liblcms.so
+openjdk21/lib/jrt-fs.jar
+openjdk21/lib/psfont.properties.ja
+openjdk21/lib/libawt.so
+openjdk21/lib/fontconfig.properties.src
+openjdk21/lib/libj2pkcs11.so
+openjdk21/lib/libjdwp.so
+openjdk21/lib/libzip.so
+openjdk21/lib/libjawt.so
+openjdk21/lib/jvm.cfg
+openjdk21/lib/ct.sym
+openjdk21/lib/libjimage.so
+openjdk21/lib/libjsound.so
+openjdk21/lib/libawt_xawt.so
+openjdk21/lib/libjsig.so
+openjdk21/lib/libjli.so
+openjdk21/lib/libmanagement_ext.so
+openjdk21/lib/libsplashscreen.so
+openjdk21/lib/libmlib_image.so
+openjdk21/lib/libjava.so
+openjdk21/lib/libattach.so
+openjdk21/lib/librmi.so
+openjdk21/lib/libsctp.so
+openjdk21/lib/libmanagement_agent.so
+openjdk21/lib/server/libjsig.so
+openjdk21/lib/server/classes_nocoops.jsa
+openjdk21/lib/server/libjvm.so
+openjdk21/lib/server/classes.jsa
+openjdk21/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.crypto.ec/LICENSE
+openjdk21/legal/java.desktop/pipewire.md
+openjdk21/legal/java.base/siphash.md
+openjdk21/legal/jdk.management/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.management/LICENSE
+openjdk21/legal/jdk.management/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.httpserver/LICENSE
+openjdk21/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.httpserver/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jconsole/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jconsole/LICENSE
+openjdk21/legal/java.net.http/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.net.http/LICENSE
+openjdk21/legal/java.net.http/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.security.jgss/LICENSE
+openjdk21/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.security.jgss/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.security.auth/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.security.auth/LICENSE
+openjdk21/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.unsupported/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.unsupported/LICENSE
+openjdk21/legal/java.management/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.management/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.management/LICENSE
+openjdk21/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.naming.rmi/LICENSE
+openjdk21/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.dynalink/dynalink.md
+openjdk21/legal/jdk.dynalink/LICENSE
+openjdk21/legal/jdk.dynalink/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.vm.compiler.management/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.vm.compiler.management/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.internal.vm.compiler.management/LICENSE
+openjdk21/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.zipfs/LICENSE
+openjdk21/legal/jdk.zipfs/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jshell/LICENSE
+openjdk21/legal/jdk.jshell/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.localedata/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.localedata/cldr.md
+openjdk21/legal/jdk.localedata/LICENSE
+openjdk21/legal/jdk.localedata/thaidict.md
+openjdk21/legal/jdk.jdeps/LICENSE
+openjdk21/legal/jdk.jdeps/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.compiler/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.compiler/LICENSE
+openjdk21/legal/java.compiler/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.net/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.net/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.net/LICENSE
+openjdk21/legal/java.instrument/LICENSE
+openjdk21/legal/java.instrument/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.instrument/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.crypto.cryptoki/pkcs11wrapper.md
+openjdk21/legal/jdk.crypto.cryptoki/LICENSE
+openjdk21/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md
+openjdk21/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.ed/LICENSE
+openjdk21/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jartool/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jartool/LICENSE
+openjdk21/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.desktop/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.desktop/mesa3d.md
+openjdk21/legal/java.desktop/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.desktop/LICENSE
+openjdk21/legal/java.desktop/colorimaging.md
+openjdk21/legal/java.desktop/xwd.md
+openjdk21/legal/jdk.sctp/LICENSE
+openjdk21/legal/jdk.sctp/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.sql.rowset/LICENSE
+openjdk21/legal/java.sql.rowset/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.transaction.xa/LICENSE
+openjdk21/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.transaction.xa/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.random/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.random/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.random/LICENSE
+openjdk21/legal/jdk.jsobject/LICENSE
+openjdk21/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jsobject/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.rmi/LICENSE
+openjdk21/legal/java.rmi/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.rmi/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.management.agent/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.management.agent/LICENSE
+openjdk21/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.accessibility/LICENSE
+openjdk21/legal/jdk.accessibility/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.javadoc/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.javadoc/LICENSE
+openjdk21/legal/jdk.javadoc/jqueryUI.md
+openjdk21/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.javadoc/jquery.md
+openjdk21/legal/java.sql/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.sql/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.sql/LICENSE
+openjdk21/legal/jdk.incubator.vector/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.incubator.vector/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.incubator.vector/LICENSE
+openjdk21/legal/java.base/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.base/unicode.md
+openjdk21/legal/java.base/public_suffix.md
+openjdk21/legal/java.base/asm.md
+openjdk21/legal/java.base/aes.md
+openjdk21/legal/java.base/icu.md
+openjdk21/legal/java.base/cldr.md
+openjdk21/legal/java.base/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.base/c-libutl.md
+openjdk21/legal/java.base/LICENSE
+openjdk21/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.jvmstat/LICENSE
+openjdk21/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jcmd/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jcmd/LICENSE
+openjdk21/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.hotspot.agent/LICENSE
+openjdk21/legal/java.logging/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.logging/LICENSE
+openjdk21/legal/java.logging/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.security.jgss/LICENSE
+openjdk21/legal/jdk.unsupported.desktop/LICENSE
+openjdk21/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.vm.ci/LICENSE
+openjdk21/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.charsets/LICENSE
+openjdk21/legal/jdk.charsets/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.security.sasl/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.security.sasl/LICENSE
+openjdk21/legal/java.se/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.se/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.se/LICENSE
+openjdk21/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.nio.mapmode/LICENSE
+openjdk21/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.xml.crypto/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.xml.crypto/santuario.md
+openjdk21/legal/java.xml.crypto/LICENSE
+openjdk21/legal/jdk.internal.le/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.le/LICENSE
+openjdk21/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.internal.le/jline.md
+openjdk21/legal/java.xml/LICENSE
+openjdk21/legal/java.xml/xerces.md
+openjdk21/legal/java.xml/bcel.md
+openjdk21/legal/java.xml/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.xml/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.xml/xalan.md
+openjdk21/legal/java.xml/jcup.md
+openjdk21/legal/java.xml/dom.md
+openjdk21/legal/jdk.management.jfr/LICENSE
+openjdk21/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jdi/LICENSE
+openjdk21/legal/jdk.jdi/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.xml.dom/LICENSE
+openjdk21/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.management.rmi/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.management.rmi/LICENSE
+openjdk21/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jdwp.agent/LICENSE
+openjdk21/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.naming/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.naming/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.naming/LICENSE
+openjdk21/legal/jdk.attach/LICENSE
+openjdk21/legal/jdk.attach/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.attach/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jfr/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jfr/LICENSE
+openjdk21/legal/jdk.internal.vm.compiler/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.internal.vm.compiler/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.vm.compiler/LICENSE
+openjdk21/legal/jdk.jstatd/LICENSE
+openjdk21/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jstatd/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.editpad/LICENSE
+openjdk21/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.editpad/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.datatransfer/LICENSE
+openjdk21/legal/java.datatransfer/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.jlink/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.jlink/LICENSE
+openjdk21/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.scripting/ASSEMBLY_EXCEPTION
+openjdk21/legal/java.scripting/LICENSE
+openjdk21/legal/java.scripting/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.prefs/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.prefs/LICENSE
+openjdk21/legal/java.prefs/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.opt/jopt-simple.md
+openjdk21/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.internal.opt/LICENSE
+openjdk21/legal/jdk.compiler/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.compiler/LICENSE
+openjdk21/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/jdk.naming.dns/LICENSE
+openjdk21/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION
+openjdk21/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO
+openjdk21/legal/java.smartcardio/pcsclite.md
+openjdk21/legal/java.smartcardio/LICENSE
+openjdk21/legal/java.smartcardio/ASSEMBLY_EXCEPTION
+@dir openjdk21/jmods
+@dir openjdk21/demo/nbproject/management/JTop/nbproject
+@dir openjdk21/demo/nbproject/management/JTop
+@dir openjdk21/demo/nbproject/management/FullThreadDump/nbproject
+@dir openjdk21/demo/nbproject/management/FullThreadDump
+@dir openjdk21/demo/nbproject/management/MemoryMonitor/nbproject
+@dir openjdk21/demo/nbproject/management/MemoryMonitor
+@dir openjdk21/demo/nbproject/management/VerboseGC/nbproject
+@dir openjdk21/demo/nbproject/management/VerboseGC
+@dir openjdk21/demo/nbproject/management
+@dir openjdk21/demo/nbproject/jfc/SwingApplet/nbproject
+@dir openjdk21/demo/nbproject/jfc/SwingApplet
+@dir openjdk21/demo/nbproject/jfc/TableExample/nbproject
+@dir openjdk21/demo/nbproject/jfc/TableExample
+@dir openjdk21/demo/nbproject/jfc/Metalworks/nbproject
+@dir openjdk21/demo/nbproject/jfc/Metalworks
+@dir openjdk21/demo/nbproject/jfc/FileChooserDemo/nbproject
+@dir openjdk21/demo/nbproject/jfc/FileChooserDemo
+@dir openjdk21/demo/nbproject/jfc/Notepad/nbproject
+@dir openjdk21/demo/nbproject/jfc/Notepad
+@dir openjdk21/demo/nbproject/jfc/SampleTree/nbproject
+@dir openjdk21/demo/nbproject/jfc/SampleTree
+@dir openjdk21/demo/nbproject/jfc/TransparentRuler/nbproject
+@dir openjdk21/demo/nbproject/jfc/TransparentRuler
+@dir openjdk21/demo/nbproject/jfc/Font2DTest/nbproject
+@dir openjdk21/demo/nbproject/jfc/Font2DTest
+@dir openjdk21/demo/nbproject/jfc
+@dir openjdk21/demo/nbproject/scripting/jconsole-plugin/nbproject
+@dir openjdk21/demo/nbproject/scripting/jconsole-plugin
+@dir openjdk21/demo/nbproject/scripting
+@dir openjdk21/demo/nbproject
+@dir openjdk21/demo/jfc/Font2DTest
+@dir openjdk21/demo/jfc/SampleTree
+@dir openjdk21/demo/jfc/CodePointIM
+@dir openjdk21/demo/jfc/Metalworks
+@dir openjdk21/demo/jfc/TransparentRuler
+@dir openjdk21/demo/jfc/J2Ddemo
+@dir openjdk21/demo/jfc/Stylepad
+@dir openjdk21/demo/jfc/TableExample
+@dir openjdk21/demo/jfc/FileChooserDemo
+@dir openjdk21/demo/jfc/SwingSet2
+@dir openjdk21/demo/jfc/Notepad
+@dir openjdk21/demo/jfc
+@dir openjdk21/demo
+@dir openjdk21/include/midnightbsd
+@dir openjdk21/include/freebsd
+@dir openjdk21/include
+@dir openjdk21/man/man1
+@dir openjdk21/man
+@dir openjdk21/bin
+@dir openjdk21/conf/management
+@dir openjdk21/conf/security/policy/unlimited
+@dir openjdk21/conf/security/policy/limited
+@dir openjdk21/conf/security/policy
+@dir openjdk21/conf/security
+@dir openjdk21/conf
+@dir openjdk21/lib/jfr
+@dir openjdk21/lib/security
+@dir openjdk21/lib/server
+@dir openjdk21/lib
+@dir openjdk21/legal/jdk.crypto.ec
+@dir openjdk21/legal/jdk.management
+@dir openjdk21/legal/jdk.httpserver
+@dir openjdk21/legal/jdk.jconsole
+@dir openjdk21/legal/java.net.http
+@dir openjdk21/legal/java.security.jgss
+@dir openjdk21/legal/jdk.security.auth
+@dir openjdk21/legal/jdk.unsupported
+@dir openjdk21/legal/java.management
+@dir openjdk21/legal/jdk.naming.rmi
+@dir openjdk21/legal/jdk.dynalink
+@dir openjdk21/legal/jdk.internal.vm.compiler.management
+@dir openjdk21/legal/jdk.zipfs
+@dir openjdk21/legal/jdk.jshell
+@dir openjdk21/legal/jdk.localedata
+@dir openjdk21/legal/jdk.jdeps
+@dir openjdk21/legal/java.compiler
+@dir openjdk21/legal/jdk.net
+@dir openjdk21/legal/java.instrument
+@dir openjdk21/legal/jdk.crypto.cryptoki
+@dir openjdk21/legal/jdk.internal.ed
+@dir openjdk21/legal/jdk.jartool
+@dir openjdk21/legal/java.desktop
+@dir openjdk21/legal/jdk.sctp
+@dir openjdk21/legal/java.sql.rowset
+@dir openjdk21/legal/java.transaction.xa
+@dir openjdk21/legal/jdk.random
+@dir openjdk21/legal/jdk.jsobject
+@dir openjdk21/legal/java.rmi
+@dir openjdk21/legal/jdk.management.agent
+@dir openjdk21/legal/jdk.accessibility
+@dir openjdk21/legal/jdk.javadoc
+@dir openjdk21/legal/java.sql
+@dir openjdk21/legal/jdk.incubator.vector
+@dir openjdk21/legal/java.base
+@dir openjdk21/legal/jdk.internal.jvmstat
+@dir openjdk21/legal/jdk.jcmd
+@dir openjdk21/legal/jdk.hotspot.agent
+@dir openjdk21/legal/java.logging
+@dir openjdk21/legal/jdk.security.jgss
+@dir openjdk21/legal/jdk.unsupported.desktop
+@dir openjdk21/legal/jdk.internal.vm.ci
+@dir openjdk21/legal/jdk.charsets
+@dir openjdk21/legal/java.security.sasl
+@dir openjdk21/legal/java.se
+@dir openjdk21/legal/jdk.nio.mapmode
+@dir openjdk21/legal/java.xml.crypto
+@dir openjdk21/legal/jdk.internal.le
+@dir openjdk21/legal/java.xml
+@dir openjdk21/legal/jdk.management.jfr
+@dir openjdk21/legal/jdk.jdi
+@dir openjdk21/legal/jdk.xml.dom
+@dir openjdk21/legal/java.management.rmi
+@dir openjdk21/legal/jdk.jdwp.agent
+@dir openjdk21/legal/jdk.incubator.foreign
+@dir openjdk21/legal/java.naming
+@dir openjdk21/legal/jdk.attach
+@dir openjdk21/legal/jdk.jfr
+@dir openjdk21/legal/jdk.internal.vm.compiler
+@dir openjdk21/legal/jdk.jstatd
+@dir openjdk21/legal/jdk.editpad
+@dir openjdk21/legal/java.datatransfer
+@dir openjdk21/legal/jdk.jlink
+@dir openjdk21/legal/java.scripting
+@dir openjdk21/legal/java.prefs
+@dir openjdk21/legal/jdk.internal.opt
+@dir openjdk21/legal/jdk.compiler
+@dir openjdk21/legal/jdk.naming.dns
+@dir openjdk21/legal/java.smartcardio
+@dir openjdk21/legal
+@dir openjdk21
+@postexec /usr/local/bin/registervm '/usr/local/openjdk21/bin/java'
+@preunexec /usr/local/bin/unregistervm '/usr/local/openjdk21/bin/java'
