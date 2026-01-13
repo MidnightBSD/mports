@@ -33,8 +33,8 @@ include/dns/dnsrps.h
 include/dns/dnssec.h
 include/dns/dnstap.h
 include/dns/ds.h
-include/dns/dsync.h
 include/dns/dsdigest.h
+include/dns/dsync.h
 include/dns/dyndb.h
 include/dns/ecs.h
 include/dns/ede.h
@@ -242,15 +242,15 @@ include/ns/update.h
 include/ns/xfrout.h
 lib/bind/filter-a.so
 lib/bind/filter-aaaa.so
-lib/libdns-9.20.15.so
+lib/libdns-9.20.17.so
 lib/libdns.so
-lib/libisc-9.20.15.so
+lib/libisc-9.20.17.so
 lib/libisc.so
-lib/libisccc-9.20.15.so
+lib/libisccc-9.20.17.so
 lib/libisccc.so
-lib/libisccfg-9.20.15.so
+lib/libisccfg-9.20.17.so
 lib/libisccfg.so
-lib/libns-9.20.15.so
+lib/libns-9.20.17.so
 lib/libns.so
 @comment share/man/man1/arpaname.1.gz
 @comment share/man/man1/delv.1.gz
