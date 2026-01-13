@@ -11,6 +11,8 @@ WWW=		https://www.freedesktop.org/Software/dbus
 
 LICENSE=	gpl2+
 
+SKIP_FAKE_CHECK=        (.*sdpscanner|.*\.(so|13|4)$)
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	expat systemd-libs
