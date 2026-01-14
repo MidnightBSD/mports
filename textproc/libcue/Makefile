@@ -1,7 +1,5 @@
-# Created by: buganini@gmail.com
-
 PORTNAME=	libcue
-PORTVERSION=	2.1.0
+PORTVERSION=	2.3.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 
@@ -18,5 +16,7 @@ GH_ACCOUNT=	lipnitsk
 
 USE_LDCONFIG=	yes
 USES=		bison cmake pathfix
+CMAKE_ARGS+=	-DBUILD_SHARED_LIBS=1
+PLIST_SUB=	SOVERSION=${PORTVERSION}
 
 .include <bsd.port.mk>
