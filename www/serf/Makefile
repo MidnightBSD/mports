@@ -1,5 +1,6 @@
 PORTNAME=	serf
 PORTVERSION=	1.3.10
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	APACHE/serf
 
@@ -11,8 +12,10 @@ LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS+=	libapr-1.so:devel/apr1
+LIB_DEPENDS+=libexpat.so:textproc/expat2
+LIB_DEPENDS+=libgdbm.so:databases/gdbm
 
-USES=		scons ssl tar:bzip2 cpe
+USES=		iconv scons ssl tar:bzip2 cpe
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	serf_project
@@ -30,10 +33,11 @@ GSSAPI_MIT_LIB_DEPENDS=		libkrb5.so.3:security/krb5
 SCONS_ARGS=	APR=${LOCALBASE}/bin/apr-1-config
 SCONS_ARGS+=	APU=${LOCALBASE}/bin/apu-1-config
 SCONS_ARGS+=	OPENSSL=${OPENSSLBASE}
-SCONS_ARGS+=	PREFIX=${PREFIX}
+SCONS_ARGS+=	PREFIX=${TRUE_PREFIX}
+SCONS_ARGS+=	DESTDIR=${FAKE_DESTDIR}
 SCONS_ARGS+=	CC=${CC}
 SCONS_ARGS+=	CFLAGS="${CFLAGS}"
-INSTALL_TARGET=	install --install-sandbox=${STAGEDIR}
+INSTALL_TARGET=	install --install-sandbox=${FAKE_DESTDIR}
 #TEST_TARGET=	check  # some tests fail
 NO_TEST=	yes
 
