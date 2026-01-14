@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphics applications for KDE (meta port)
 WWW=		https://apps.kde.org/categories/graphics/
 
+LICENSE=	bsd2
+
 USES=		kde:6 metaport qt:6
 
 OPTIONS_DEFINE=	COLORD \
