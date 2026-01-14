@@ -13,7 +13,6 @@ CONFLICTS=	openjdk21-*
 
 USES=		tar:xz xorg
 USE_XORG=       x11 xext xi xrender xt xtst
-ONLY_FOR_ARCH=	amd64
 NO_BUILD=	yes
 
 DISTINFO_FILE=  ${.CURDIR}/distinfo.${ARCH}
@@ -32,7 +31,6 @@ PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
 
 VER=    21.0.8
 DISTFILES=	openjdk21-21.0.8+9.1_1.pkg
-ARCH=	amd64
 
 do-install:
 	${MV} ${WRKDIR}/usr/local/openjdk21 ${FAKE_DESTDIR}/${LOCALBASE}/
