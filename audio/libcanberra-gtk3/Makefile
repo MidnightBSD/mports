@@ -1,5 +1,6 @@
 MASTERDIR=	${.CURDIR:H}/libcanberra
 SLAVEPORT=	gtk3
+CANBERRA=	gtk3
 
 post-install:
 	@${MKDIR} ${STAGEDIR}/${PREFIX}/include/canberra-gtk3
