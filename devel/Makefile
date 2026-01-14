@@ -629,6 +629,7 @@
     SUBDIR += npth
     SUBDIR += nsgenbind
     SUBDIR += nspr
+    SUBDIR += ocaml-ocamlbuild
     SUBDIR += ocl-icd
     SUBDIR += onetbb
     SUBDIR += oniguruma
