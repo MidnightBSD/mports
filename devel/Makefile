@@ -1314,6 +1314,7 @@
     SUBDIR += py-deprecation
     SUBDIR += py-diff-cover
     SUBDIR += py-dill
+    SUBDIR += py-dirty-equals
     SUBDIR += py-distlib
     SUBDIR += py-docopt
     SUBDIR += py-doctest-ignore-unicode
