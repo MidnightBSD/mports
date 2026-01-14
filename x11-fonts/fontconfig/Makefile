@@ -1,8 +1,8 @@
 PORTNAME=	fontconfig
-DISTVERSION=	2.16.0
+DISTVERSION=	2.17.1
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
-MASTER_SITES=	https://www.freedesktop.org/software/fontconfig/release/
+MASTER_SITES=	https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/${PORTNAME}/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-based font configuration API for X Windows
@@ -11,7 +11,6 @@ WWW=		https://www.freedesktop.org/wiki/Software/fontconfig/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	python3:lang/python3
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libexpat.so:textproc/expat2
 
@@ -23,22 +22,26 @@ USE_LDCONFIG=	yes
 SHEBANG_FILES=	conf.d/link_confs.py \
 		conf.d/write-35-lang-normalize-conf.py \
 		fc-case/fc-case.py \
-		fc-lang/fc-lang.py
+		fc-lang/fc-lang.py \
+		src/cutout.py \
+		src/makealias.py \
+		test/run-test-map.sh \
+		test/run-test.sh
 
+NO_TEST=	yes
 TEST_TARGET=	test
-SUB_FILES=	pkg-install pkg-message
-SUB_LIST=	PREFIX=${PREFIX}
 
-# Custom configuration variables
-FCDEFAULTFONTS=	${PREFIX}/share/fonts
-FCADDFONTS=	${LOCALBASE}/lib/X11/fonts
+SUB_FILES=	pkg-install pkg-message
+SUB_LIST=	LOCALBASE=${LOCALBASE} PREFIX=${PREFIX}
 
 # To avoid circular dependency rebuild of docs (including manpages) needs to be
 # disabled as they depend on textproc/docbook-utils which requires fontconfig
-MESON_ARGS=	-Ddefault_library=both -Ddoc=disabled -Dcache-build=disabled \
-		-Ddefault-fonts-dirs=${PREFIX}/share/fonts \
-		-Dadditional-fonts-dirs=${LOCALBASE}/lib/X11/fonts \
+MESON_ARGS=	-Dadditional-fonts-dirs=${LOCALBASE}/lib/X11/fonts \
+		-Dcache-build=disabled \
 		-Dcache-dir=/var/db/fontconfig \
+		-Ddefault_library=both \
+		-Ddefault-fonts-dirs=${PREFIX}/share/fonts \
+		-Ddoc=disabled \
 		-Dtemplate-dir=${LOCALBASE}/etc/fonts/conf.avail \
 		-Dxml-dir=${LOCALBASE}/etc/fonts
 
@@ -60,18 +63,14 @@ HINTING_${opt}_MESON_ON=	-Ddefault-hinting=${opt:tl}
 BITMAPS_DESC=	Enable bitmap fonts by default
 HINTING_DESC=	Preferred pixel hinting configuration
 
-NLS_USES=		gettext-tools
+BITMAPS_MESON_YES=	bitmap-conf
+
+NLS_USES=		gettext-runtime gettext-tools
 NLS_MESON_ENABLED=	nls
 
+TEST_TEST_DEPENDS=	bash:shells/bash
 TEST_MESON_ENABLED=	tests
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|%%FCDEFAULTFONTS%%|${FCDEFAULTFONTS}|g' \
-	    ${PATCH_WRKSRC}/meson.build
-	@${REINPLACE_CMD} -e 's|%%FCADDFONTS%%|${FCADDFONTS}|g' \
-	    ${PATCH_WRKSRC}/meson.build
-	@${REINPLACE_CMD} -e 's|%%FCPREFERREDHINTING%%|${PREFERRED_HINTING}|g' \
-	    ${PATCH_WRKSRC}/conf.d/meson.build
+TESTING_UNSAFE=		Requires network access for fetching fonts
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/fc-*/*.1 ${PREFIX}/share/man/man1
@@ -83,12 +82,5 @@ post-install:
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${FAKE_DESTDIR}${DOCSDIR}
-
-post-install-BITMAPS-off:
-	${RLN} ${FAKE_DESTDIR}${PREFIX}/etc/fonts/conf.avail/70-no-bitmaps.conf ${FAKE_DESTDIR}${PREFIX}/etc/fonts/conf.d/70-no-bitmaps.conf
-
-post-install-BITMAPS-on:
-	-${RM} ${FAKE_DESTDIR}${PREFIX}/etc/fonts/conf.d/70-no-bitmaps.conf
-	${RLN} ${FAKE_DESTDIR}${PREFIX}/etc/fonts/conf.avail/70-yes-bitmaps.conf ${FAKE_DESTDIR}${PREFIX}/etc/fonts/conf.d/70-yes-bitmaps.conf
 
 .include <bsd.port.mk>
