@@ -15,7 +15,7 @@ WWW=		https://unicode.org/ucd/
 
 LICENSE=	Unicode_License_Agreement
 LICENSE_NAME=	Unicode License Agreement
-LICENSE_FILE=	${_DISTDIR}/LICENSE.md
+LICENSE_FILE=	${_DISTDIR}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 OPTIONS_DEFINE=	HAN
