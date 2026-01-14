@@ -342,6 +342,7 @@
     SUBDIR += ucspi-tcp
     SUBDIR += uif2iso
     SUBDIR += upower
+    SUBDIR += usbhid-dump
     SUBDIR += usbutils
     SUBDIR += userboot-freebsd
     SUBDIR += vixie-cron
