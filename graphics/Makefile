@@ -52,6 +52,7 @@
     SUBDIR += cogl
     SUBDIR += colord
     SUBDIR += colord-gtk
+    SUBDIR += colord-kde
     SUBDIR += dia
     SUBDIR += djvulibre
     SUBDIR += drawio
