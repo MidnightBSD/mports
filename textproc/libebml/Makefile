@@ -1,5 +1,5 @@
 PORTNAME=	libebml
-DISTVERSION=	1.4.4
+DISTVERSION=	1.4.5
 CATEGORIES=	textproc
 MASTER_SITES=	https://dl.matroska.org/downloads/libebml/
 
@@ -7,12 +7,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	EBML (Extensible Binary Meta Language), sort of binary version of XML
 WWW=		https://www.matroska.org/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE.LGPL
 
-USES=		cmake compiler:c++11-lang cpe tar:xz
+BUILD_DEPENDS=	${LOCALBASE}/include/utf8cpp/utf8/checked.h:devel/utf8cpp
+
+USES=		cmake compiler:c++14-lang cpe localbase pathfix tar:xz
 USE_LDCONFIG=	yes
 CPE_VENDOR=	matroska
+
+EXTRACT_AFTER_ARGS=	--exclude src/lib
 
 CMAKE_ARGS=	-DBUILD_SHARED_LIBS=YES
 
