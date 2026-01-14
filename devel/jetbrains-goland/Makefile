@@ -1,5 +1,5 @@
 PORTNAME=	goland
-DISTVERSION=	2024.3.5
+DISTVERSION=	2025.2.4
 CATEGORIES=	devel
 MASTER_SITES=	https://download-cdn.jetbrains.com/go/
 PKGNAMEPREFIX=	jetbrains-
@@ -18,15 +18,15 @@ ONLY_FOR_ARCHS=	aarch64 amd64
 
 BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	intellij-fsnotifier>0:java/intellij-fsnotifier \
-		jetbrains-pty4j>=0.13.2:devel/jetbrains-pty4j \
-		jetbrains-restarter>=241.15989.150:devel/jetbrains-restarter \
+		jetbrains-pty4j>=0.13.11:devel/jetbrains-pty4j \
+		jetbrains-restarter>=2025.2.2:devel/jetbrains-restarter \
 		jetbrains-sqlite>=241.15989.150:devel/jetbrains-sqlite \
 		lsof:sysutils/lsof
 
 USES=		cpe java python:run
 
 CPE_VENDOR=	jetbrains
-JAVA_VERSION=	17+
+JAVA_VERSION=	21+
 
 DATADIR=	${PREFIX}/share/jetbrains/${PORTNAME}
 
@@ -65,10 +65,12 @@ do-install:
 		${WRKSRC}/lib/jna \
 		${WRKSRC}/lib/native \
 		${WRKSRC}/lib/pty4j \
+		${WRKSRC}/lib/skiko-awt-runtime-all \
 		${WRKSRC}/plugins/cwm-plugin \
 		${WRKSRC}/plugins/gateway-plugin/lib/remote-dev-workers \
 		${WRKSRC}/plugins/go-plugin/lib/dlv \
-		${WRKSRC}/plugins/remote-dev-server
+		${WRKSRC}/plugins/remote-dev-server \
+		${WRKSRC}/plugins/station-plugin/toolbox
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
 		"! -name *\.bak ! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh ! -name *\.exe")
@@ -92,6 +94,8 @@ do-install:
 # Use sqlite replacement provided by devel/jetbrains-sqlite
 	${MKDIR} ${STAGEDIR}${DATADIR}/lib/native/${_SQLITE_ARCH}
 	${LN} -sf ../../../../sqlite/${ARCH}/libsqliteij.so ${STAGEDIR}${DATADIR}/lib/native/${_SQLITE_ARCH}/libsqliteij.so
+# Disable automatic updates
+	${ECHO} "ide.no.platform.update=MidnightBSD Ports" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
 
 do-install-DELVE-on:
 	${ECHO} "dlv.path=${PREFIX}/bin/dlv" >> ${FAKE_DESTDIR}${DATADIR}/bin/idea.properties
