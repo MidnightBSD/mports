@@ -1,0 +1,20 @@
+--- amdgpukmsfw/Makefile.orig	2026-01-14 18:44:43.640710000 -0500
++++ amdgpukmsfw/Makefile	2026-01-14 18:45:30.704546000 -0500
+@@ -1,7 +1,5 @@
+-# $FreeBSD$
+-
+ .if !defined(OSVERSION)
+-OSVERSION!=	awk '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' ${SYSDIR}/sys/param.h 
++OSVERSION!=	awk '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' ${SYSDIR}/sys/param.h 
+ .endif
+ 
+ _VALID_AMDGPUKMODS=	aldebaran \
+@@ -74,7 +72,7 @@
+ 			verde \
+ 			yellow_carp
+ 
+-.if ${OSVERSION} >= 1301000
++.if ${OSVERSION} >= 400000
+ _VALID_AMDGPUKMODS+=	dimgrey_cavefish \
+ 			green_sardine \
+ 			sienna_cichlid \
