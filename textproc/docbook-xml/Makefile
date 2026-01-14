@@ -1,15 +1,20 @@
 PORTNAME=	docbook
 PORTVERSION=	5.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc
-MASTER_SITES=	${DBFILES:C,(.*):(.*),http://www.docbook.org/xml/\1/:\2,:C,:docbook-xml-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,:C,:docbook-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,}
+MASTER_SITES=	${DBFILES:C,(.*):(.*),https://docbook.org/xml/\1/:\2,:C,:docbook-xml-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,:C,:docbook-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,}
 PKGNAMESUFFIX=	-xml
 DISTFILES=	${DBFILES:C,.*:(.*),\1.zip:\1,:C,:docbook-xml-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,:C,:docbook-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook XML DTD
+WWW=		https://www.oasis-open.org/docbook/
 
-LICENSE=	unknown
+LICENSE=	DOCBOOK
+LICENSE_NAME=	DocBook License
+LICENSE_FILE=	${FILESDIR}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
 
 EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:archivers/libarchive
 
@@ -73,5 +78,6 @@ post-install:
 	${REINPLACE_CMD} -i'' -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/share/xml/docbook/catalog.xml \
 		${PREFIX}/share/xml/docbook/catalog
+	${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/xml/docbook/catalog-e ${FAKE_DESTDIR}${TRUE_PREFIX}/share/xml/docbook/catalog.xml-e
 
 .include <bsd.port.mk>
