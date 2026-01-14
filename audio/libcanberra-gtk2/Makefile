@@ -1,8 +1,9 @@
 MASTERDIR=	${.CURDIR:H}/libcanberra
 SLAVEPORT=	gtk2
+CANBERRA=	gtk2
 
 post-install:
-	@${MKDIR} ${STAGEDIR}/${PREFIX}/include/canberra-gtk2
-	@${MV} ${STAGEDIR}/${PREFIX}/include/canberra-gtk.h ${STAGEDIR}/${PREFIX}/include/canberra-gtk2
+	${MKDIR} ${FAKE_DESTDIR}/${TRUE_PREFIX}/include/canberra-gtk2
+	${MV} ${FAKE_DESTDIR}/${TRUE_PREFIX}/include/canberra-gtk.h ${FAKE_DESTDIR}/${TRUE_PREFIX}/include/canberra-gtk2
 
 .include "${MASTERDIR}/Makefile"
