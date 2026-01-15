@@ -1,5 +1,5 @@
 PORTNAME=	gpu-firmware-amd-kmod
-PORTVERSION=	20230210
+PORTVERSION=	20230625
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -53,7 +53,7 @@ USES=		kmod uidfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
 GH_PROJECT=	drm-kmod-firmware
-GH_TAGNAME=	20230210_3
+GH_TAGNAME=	20230625_8
 
 MAKE_ENV=	KMODS="amdgpukmsfw"
 MAKE_ENV+=	AMDGPUKMODS="${FLAVOR}"
