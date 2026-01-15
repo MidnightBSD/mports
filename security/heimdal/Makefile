@@ -1,5 +1,6 @@
 PORTNAME=	heimdal
 PORTVERSION=	7.8.0
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/heimdal/heimdal/releases/download/${DISTNAME}/
 
@@ -43,7 +44,8 @@ CONFIGURE_ARGS=	--with-berkeley-db \
 		--sysconfdir="${PREFIX}/etc"
 # XXX --with-readline picks up libreadline even if found in /usr/lib.
 MAKE_ENV=	INSTALL_CATPAGES=no
-LDFLAGS=	-Wl,--undefined-version
+CFLAGS+=	-Wno-implicit-function-declaration
+LDFLAGS+=	-Wl,--undefined-version
 INSTALL_TARGET=	install-strip
 .if !exists(/etc/rc.d/ipropd_master)
 USE_RC_SUBR=	ipropd_master ipropd_slave
