@@ -4,7 +4,6 @@
     SUBDIR += R-cran-curl
     SUBDIR += axel
     SUBDIR += curl
-    SUBDIR += curl812
     SUBDIR += filezilla
     SUBDIR += freebsd-ftpd
     SUBDIR += ftpcopy
