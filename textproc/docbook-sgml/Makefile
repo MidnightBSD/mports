@@ -8,8 +8,9 @@ DISTFILES=	${DBFILES:C,.*:(.*),\1.zip:\1,:C,:docbook-([0-9]+).([0-9]+),:db\1\2,}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook SGML DTD
+WWW=		https://www.oasis-open.org/docbook/
 
-LICENSE=	unknown
+LICENSE=	mit
 
 EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:archivers/libarchive
 
