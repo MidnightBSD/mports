@@ -7,6 +7,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Namespace-aware DocBook XSLT stylesheets
+WWW=		https://docbook.sourceforge.net
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

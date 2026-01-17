@@ -5,10 +5,12 @@ MASTER_SITES=	https://www.oasis-open.org/docbook/xmlschema/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook W3C XML Schema
+WWW=		https://www.oasis-open.org/docbook/xmlschema/1.0b1/
 
-LICENSE=	unknown
+LICENSE=	NONE
 
 USES=		zip
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
