@@ -5,7 +5,9 @@ CATEGORIES=	x11-themes
 MASTER_SITES=	SF/clearlooks/clearlooks/clearlooks%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	GTK+ 2.x engine based on Bluecurve
+COMMENT?=	GTK 2.x engine based on Bluecurve
+WWW=		https://clearlooks.sourceforge.net/
+
 LICENSE=	unknown
 
 GNU_CONFIGURE=	yes
@@ -27,10 +29,10 @@ METACITY_DESC=	Depend on MetaCity Theme
 .include <bsd.mport.options.mk>
 
 .if !defined(PKGNAMESUFFIX)
-CONFLICTS+=	gtk-engines2-[0-9]* clearlooks-themes[0-9]*
+CONFLICTS+=	gtk-engines2 clearlooks-themes[0-9]*
 PLIST_SUB+=	ENGINE=""
 .else
-CONFLICTS+=	clearlooks-[0-9]*
+CONFLICTS+=	clearlooks
 
 BUILD_DEPENDS+=	gtk-engines2>=2.7.5_1:x11-themes/gtk-engines2
 RUN_DEPENDS+=	gtk-engines2>=2.7.5_1:x11-themes/gtk-engines2
