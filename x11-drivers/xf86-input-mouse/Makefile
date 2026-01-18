@@ -12,6 +12,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		pathfix xorg-cat:driver
 
-CONFIGURE_TARGET=      ${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=      ${ARCH}-portbld-freebsd13.4
 
 .include <bsd.port.mk>

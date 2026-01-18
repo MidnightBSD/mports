@@ -26,7 +26,7 @@ USES=		gl xorg-cat:driver tar:xz
 USE_GL=		gbm
 
 CONFIGURE_ARGS+=--disable-udev
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 
 PLIST_FILES=	lib/xorg/modules/drivers/amdgpu_drv.so \
 		share/man/man4/amdgpu.4x.gz \
