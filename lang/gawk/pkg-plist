@@ -47,6 +47,13 @@ share/awk/strtonum.awk
 share/awk/tocsv.awk
 share/awk/walkarray.awk
 share/awk/zerofile.awk
+share/info/gawk_api-figure1.png
+share/info/gawk_api-figure2.png
+share/info/gawk_api-figure3.png
+share/info/gawk_array-elements.png
+share/info/gawk_general-program.png
+share/info/gawk_process-flow.png
+share/info/gawk_statist.jpg
 %%NLS%%share/locale/bg/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/ca/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/da/LC_MESSAGES/gawk.mo
@@ -57,6 +64,7 @@ share/awk/zerofile.awk
 %%NLS%%share/locale/id/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/it/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/gawk.mo
+%%NLS%%share/locale/ka/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/ms/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/gawk.mo
@@ -66,6 +74,7 @@ share/awk/zerofile.awk
 %%NLS%%share/locale/ro/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/sr/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/gawk.mo
+%%NLS%%share/locale/tr/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/uk/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/gawk.mo
