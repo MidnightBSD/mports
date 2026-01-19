@@ -52,6 +52,10 @@
     SUBDIR += consolehm
     SUBDIR += consolekit2
     SUBDIR += coreutils
+    SUBDIR += cpu-microcode
+    SUBDIR += cpu-microcode-amd
+    SUBDIR += cpu-microcode-intel
+    SUBDIR += cpu-microcode-rc
     SUBDIR += ddrescue
     SUBDIR += debootstrap
     SUBDIR += devcpu-data
