@@ -20,9 +20,11 @@ USE_RC_SUBR=	microcode_update
 DATADIR=	${PREFIX}/share/cpucontrol
 NO_ARCH=	yes
 NO_BUILD=	yes
-NO_INSTALL=	yes
 SUB_FILES=	pkg-message
 
 NO_WRKSUBDIR=	yes
+
+do-install:
+	${MKDIR} ${DATADIR}
 
 .include <bsd.port.mk>

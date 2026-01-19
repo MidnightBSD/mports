@@ -596,4 +596,5 @@ net/samba413|net/samba416|2026-01-10|Move to a supported samba
 lang/python39|lang/python311|2026-01-11|Python 3.9 is EOL, switch to 3.11
 multimedia/dirac||2026-01-11|No longer maintaned.  Use ffmpeg to decode files.
 lang/rust186|lang/rust|2026-01-16|Migrated and updated rust port
-rust186
+devcpu-data-amd|cpu-microcode-amd|2026-01-19|reorganized cpu microcode 
+devcpu-data-intel|cpu-microcode-intel|2026-01-19|reorganized cpu microcode 

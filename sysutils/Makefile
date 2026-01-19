@@ -58,9 +58,6 @@
     SUBDIR += cpu-microcode-rc
     SUBDIR += ddrescue
     SUBDIR += debootstrap
-    SUBDIR += devcpu-data
-    SUBDIR += devcpu-data-amd
-    SUBDIR += devcpu-data-intel
     SUBDIR += di
     SUBDIR += dirdiff
     SUBDIR += dmidecode
