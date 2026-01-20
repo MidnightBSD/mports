@@ -12,6 +12,8 @@ WWW=		https://tochnog.sourceforge.net/
 
 LICENSE=	gpl2
 
+USE_GCC=	yes
+
 BUILD_DEPENDS=	${LOCALBASE}/lib/libf2c.a:lang/f2c
 
 OPTIONS_DEFINE=	ATLAS EXAMPLES
@@ -19,7 +21,7 @@ ATLAS_DESC=	Use ATLAS instead of BLAS/LAPACK
 
 WRKSRC=		${WRKDIR}/Sources/Tochnog-Latest-jan-2014
 MAKEFILE=	makefile
-USES=		compiler:c++17-lang fortran zip dos2unix
+USES=		fortran zip dos2unix
 DOS2UNIX_FILES=	time.cc time.h tnlapack.h tnsuplu.h
 
 # You can set GIDDIR to share/gid to install the scripts to be used
