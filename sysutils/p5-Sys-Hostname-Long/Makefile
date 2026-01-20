@@ -12,7 +12,8 @@ WWW=		https://metacpan.org/release/Sys-Hostname-Long
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
-USES=	perl5
+USES=		perl5 shebangfix
+SHEBANG_FILES=	testall.pl
 USE_PERL5=	configure
 NO_ARCH=	yes
 
