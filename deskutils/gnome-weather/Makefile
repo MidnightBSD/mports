@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Weather application for GNOME
 WWW=		https://apps.gnome.org/Weather/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING.md
 
 PORTSCOUT=	limit:^47\.

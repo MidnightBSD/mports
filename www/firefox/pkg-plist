@@ -11,6 +11,7 @@ lib/firefox/libmozavcodec.so
 lib/firefox/libmozavutil.so
 lib/firefox/libmozgtk.so
 lib/firefox/libmozsqlite3.so
+lib/firefox/libmozwayland.so
 lib/firefox/libxul.so
 lib/firefox/omni.ja
 lib/firefox/pingsender

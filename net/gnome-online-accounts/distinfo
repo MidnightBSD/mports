@@ -1,5 +1,3 @@
-TIMESTAMP = 1722620742
-SHA256 (gnome-online-accounts-3.44.0.tar.xz) = 381d5d4106f435b6f87786aa049be784774e15996adcc02789807afc87ea7342
-SIZE (gnome-online-accounts-3.44.0.tar.xz) = 859564
-SHA256 (b9638e2418408be4906752297e700506766dcf20.patch) = 0539ae02b50f6a45f40dd4057928a59e27e1f94a133ecbb346742ed753ca13b2
-SIZE (b9638e2418408be4906752297e700506766dcf20.patch) = 698
+TIMESTAMP = 1754163646
+SHA256 (gnome/gnome-online-accounts-3.54.5.tar.xz) = e8f127b532295a29912d1c00734931df9affa4ebfc44ad0de5c296c3d27d2c95
+SIZE (gnome/gnome-online-accounts-3.54.5.tar.xz) = 485912
