@@ -1,5 +1,6 @@
 PORTNAME=	accountsservice
 PORTVERSION=	23.13.9
+PORTREVISION=	3
 CATEGORIES=	sysutils devel
 MASTER_SITES=	https://www.freedesktop.org/software/${PORTNAME}/
 
@@ -14,8 +15,6 @@ BUILD_DEPENDS=	dbus>0:devel/dbus
 LIB_DEPENDS=	libpolkit-gobject-1.so:sysutils/polkit \
 		libconsolekit.so:sysutils/consolekit2
 
-WRKSRC=		${WRKDIR}/accountsservice-1ad459450480baa3e2024db4edee0a30ca0edc20
-
 USES=		cpe gettext gnome meson pkgconfig tar:xz
 CPE_VENDOR=	freedesktop
 USE_GNOME=	glib20 intltool libxslt introspection:build
@@ -24,12 +23,18 @@ MESON_ARGS=	-Dconsolekit=true \
 		-Dgdmconffile=${LOCALBASE}/etc/gdm/custom.conf \
 		-Dlightdmconffile=${LOCALBASE}/etc/lightdm/lightdm.conf \
 		-Dsystemdsystemunitdir=no \
-		-Dvapi=false \
 		-Dtests=false
 
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	arrowd
-GL_TAGNAME=	1ad459450480baa3e2024db4edee0a30ca0edc20
+GL_TAGNAME=	665c4390164f47283f234970087105e52245ae67
+
+OPTIONS_DEFINE=		VAPI
+OPTIONS_DEFAULT=	VAPI
+OPTIONS_SUB=		yes
+
+VAPI_USES=		vala:build
+VAPI_MESON_TRUE=	vapi
 
 .include <bsd.port.mk>
