@@ -1,5 +1,5 @@
 PORTNAME?=	mariadb
-PORTVERSION=	11.4.5
+PORTVERSION=	11.4.9
 PORTREVISION?=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://mirror.nodesdirect.com/${SITESDIR}/ \
@@ -194,6 +194,7 @@ LZO_LIB_DEPENDS=	liblzo2.so:archivers/lzo2
 MSGPACK_LIB_DEPENDS=	libmsgpackc.so:devel/msgpack-c
 OQGRAPH_LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 			libJudy.so:devel/judy
+ROCKSDB_BROKEN=		RocksDB engine build failyure "jemalloc_helper.h:65:61: error: use of undeclared identifier 'nothrow'"
 ROCKSDB_USES=		python
 ROCKSDB_CMAKE_ON=	-DPYTHON_SHEBANG=${PYTHON_CMD} -DWITH_ROCKSDB_zstd=ON
 S3_LIB_DEPENDS=		libcurl.so:ftp/curl
