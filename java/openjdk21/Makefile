@@ -4,13 +4,11 @@ DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JD
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
-MAINTAINER=	java@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Java Development Kit ${JDK_MAJOR_VERSION}
 WWW=		https://openjdk.java.net/projects/jdk/21/
 
-LICENSE=	GPLv2
-
-ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64 powerpc64le
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	zip:archivers/zip \
 		autoconf>0:devel/autoconf \
