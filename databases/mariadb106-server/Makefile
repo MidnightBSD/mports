@@ -22,7 +22,8 @@ WWW=		https://mariadb.org/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-#EXPIRATION_DATE=	2026-07-01
+DEPRECATED=           End-of-Life approaching, please switch to 11.8 (or 11.4)
+EXPIRATION_DATE=	2026-06-30
 
 LIB_DEPENDS+=	libpcre2-8.so:devel/pcre2 \
 		libzstd.so:archivers/zstd
@@ -125,6 +126,7 @@ CONFLICTS_INSTALL=	mariadb10[0-57-9]-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
 			mariadb1011-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
 			mysql[0-9]*-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
 			mysqlwsrep* \
+			mytop \
 			percona[0-9]*-${PKGNAMESUFFIX:C/^[0-9]*-//}-*
 
 FASTMTX_CMAKE_BOOL=	WITH_FAST_MUTEXES
@@ -203,6 +205,13 @@ CMAKE_ARGS+=		-DPLUGIN_${PLUGIN}=NO
 .endif # ${PKGNAMESUFFIX:M*-client}
 
 .include <bsd.mport.options.mk>
+
+SHEBANG_FILES+= bin/mariadb-setpermission \
+                bin/mariadb-access \
+                bin/mariadb-convert-table-format \
+                bin/mariadb-find-rows \
+                bin/mariadb-dumpslow \
+                bin/mariadb-hotcopy
 
 .if ${OPSYS} == FreeBSD
 SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
