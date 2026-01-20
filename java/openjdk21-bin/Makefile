@@ -32,6 +32,10 @@ PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
 VER=    21.0.8
 DISTFILES=	openjdk21-21.0.8+9.1_1.pkg
 
+.if ${ARCH} == "i386"
+COMPONENT=.${ARCH}
+.endif
+
 do-install:
 	${MV} ${WRKDIR}/usr/local/openjdk21 ${FAKE_DESTDIR}/${LOCALBASE}/
 	cd ${PREFIX}/openjdk21/include && ${LN} -sf freebsd midnightbsd
