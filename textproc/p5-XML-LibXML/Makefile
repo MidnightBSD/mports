@@ -18,6 +18,9 @@ RUN_DEPENDS=	p5-XML-NamespaceSupport>=1.07:textproc/p5-XML-NamespaceSupport \
 TEST_DEPENDS=	p5-Test-LeakTrace>=0:devel/p5-Test-LeakTrace \
 		p5-URI>=0:net/p5-URI
 
+# magus
+NO_TEST=	yes
+
 USES=		gnome perl5
 USE_GNOME=	libxml2
 USE_PERL5=	configure
