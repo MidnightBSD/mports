@@ -1,5 +1,5 @@
 PORTNAME?=	mariadb
-PORTVERSION=	10.6.21
+PORTVERSION=	10.6.24
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	https://mirror.nodesdirect.com/${SITESDIR}/ \
@@ -37,7 +37,8 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 USE_LDCONFIG=	${PREFIX}/lib/mysql
-SHEBANG_FILES=	scripts/*.sh
+SHEBANG_FILES=	scripts/*.sh \
+		scripts/*.pl
 SITESDIR=	mariadb/mariadb-${PORTVERSION}/source
 DOCSDIR=	${PREFIX}/share/doc/mysql
 
@@ -206,13 +207,6 @@ CMAKE_ARGS+=		-DPLUGIN_${PLUGIN}=NO
 
 .include <bsd.mport.options.mk>
 
-SHEBANG_FILES+= bin/mariadb-setpermission \
-                bin/mariadb-access \
-                bin/mariadb-convert-table-format \
-                bin/mariadb-find-rows \
-                bin/mariadb-dumpslow \
-                bin/mariadb-hotcopy
-
 .if ${OPSYS} == FreeBSD
 SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
 .else
@@ -234,6 +228,8 @@ PLIST_SUB+=	WSREP="@comment "
 post-patch:
 	${CP} ${WRKSRC}/cmake/os/FreeBSD.cmake \
 		${WRKSRC}/cmake/os/MidnightBSD.cmake
+	${REINPLACE_CMD} -e 's|/usr/bin/perl|/usr/local/bin/perl|g' ${WRKSRC}/scripts/CMakeLists.txt
+	${REINPLACE_CMD} -e 's|/usr/bin/perl|/usr/local/bin/perl|g' ${WRKSRC}/scripts/*.pl
 
 pre-configure:
 	${REINPLACE_CMD} 's|\(CHECK_LIBRARY_EXISTS.*\) "" HAVE_|\1 ${LOCALBASE}/lib HAVE_|' \
