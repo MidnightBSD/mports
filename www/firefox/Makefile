@@ -27,7 +27,6 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip \
-		python3:lang/python3 \
 		clang15:devel/llvm15 \
 		cargo:lang/rust \
 		cbindgen:devel/rust-cbindgen
@@ -52,14 +51,15 @@ LIB_DEPENDS+=   libvpx.so:multimedia/libvpx \
                 libdbus-glib-1.so:devel/dbus-glib \
                 libatk-1.0.so:accessibility/at-spi2-core \
                 libaom.so:multimedia/aom \
-                libdav1d.so:multimedia/dav1d
+                libdav1d.so:multimedia/dav1d \
+		libproxy.so:net/libproxy
 
 USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
                 python desktop-file-utils tar:xz
 CPE_VENDOR=     mozilla
 USE_GL=         gl
 USE_GNOME=      cairo gdkpixbuf gtk30
-USE_XORG=       x11 xcb xcomposite xdamage xext xfixes xrender xt ice sm
+USE_XORG=       x11 xcb xcomposite xdamage xext xfixes xrandr xrender xt ice sm
 
 QMAKE_ARGS=		--enable-application=browser \
 			--enable-chrome-format=omni \
@@ -102,7 +102,7 @@ HAS_CONFIGURE=	yes
 CONFIGURE_ENV+= BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
 CONFIGURE_OUTSOURCE=    yes
 LDFLAGS+=               -Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
-#BINARY_ALIAS+=  python3=${PYTHON_CMD}
+BINARY_ALIAS+=  python3=${PYTHON_CMD}
 
 MOZ_OPTIONS+=   --with-libclang-path="${LLVM_PREFIX:S/${PREFIX}/${LOCALBASE}/}/lib"
 .    if !exists(/usr/bin/llvm-objdump)
