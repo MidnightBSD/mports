@@ -9,6 +9,8 @@ WWW=		https://www.alsa-project.org/
 
 LICENSE=	gpl3
 
+SKIP_FAKE_CHECK=        (.*sdpscanner|.*\.(so|2\.0\.0)$)
+
 RUN_DEPENDS=	alsa-lib>0:audio/alsa-lib
 
 USES=		linux:rl9
