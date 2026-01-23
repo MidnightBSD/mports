@@ -14,7 +14,8 @@ USE_XORG=	xorgproto
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
-MESON_ARGS+=	-Dgallium-drivers="svga" \
+MESON_ARGS+=	-Dvideo-codecs="vc1dec,h264dec,h264enc,h265dec,h265enc,av1dec,av1enc,vp9dec" \
+		-Dgallium-drivers="svga" \
 		-Dvulkan-drivers="" \
 		-Dplatforms="" \
 		-Dandroid-libbacktrace=disabled \
