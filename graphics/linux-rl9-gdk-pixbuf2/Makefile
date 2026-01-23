@@ -1,18 +1,20 @@
 PORTNAME=	gdk-pixbuf2
 PORTVERSION=	2.42.6
-DISTVERSIONSUFFIX=	-4.el9_4
-PORTREVISION=	5
+DISTVERSIONSUFFIX=	-6.el9_6
+PORTREVISION=	8
 CATEGORIES=	graphics linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphic library for GTK+ (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://developer.gnome.org/gdk-pixbuf/
 
+LICENSE=	lgpl+
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	gdk-pixbuf
 USE_LDCONFIG=	yes
-USE_LINUX=	gnutls jpeg libproxy png tiff xorglibs
+USE_LINUX=	gnutls imageformats-libs xorglibs
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 
