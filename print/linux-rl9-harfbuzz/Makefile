@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenType text shaping engine (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://harfbuzz.github.io/
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	graphite2
