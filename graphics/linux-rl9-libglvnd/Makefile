@@ -8,6 +8,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GL Vendor-Neutral Dispatch library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/NVIDIA/libglvnd
 
+LICENSE=        Apache-2.0 mit
+LICENSE_COMB=   multi
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	xorglibs
