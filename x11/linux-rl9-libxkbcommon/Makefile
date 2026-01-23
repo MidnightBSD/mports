@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Keymap handling library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://xkbcommon.org/
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	xkbcommon
 USE_LDCONFIG=	yes

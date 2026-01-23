@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-level pixel manipulation library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://pixman.org
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
