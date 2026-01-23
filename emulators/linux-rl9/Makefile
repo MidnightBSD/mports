@@ -1,6 +1,6 @@
 PORTNAME=	linux-rl9
 PORTVERSION=	${LINUX_DIST_VER}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,8 @@ WWW=		https://rockylinux.org
 LICENSE=	bsd2
 
 USES=		linux:rl9 metaport
-USE_LINUX=	alsalib alsa-lib-devel alsa-plugins-oss alsa-plugins-pulseaudio \
+# alsa-plugins-oss
+USE_LINUX=	alsalib alsa-lib-devel alsa-plugins-pulseaudio \
 		at-spi2-atk at-spi2-core atk avahi-libs brotli \
 		ca-certificates cairo cairo-gobject cups-libs curl cyrus-sasl2 \
 		dbuslibs devtools dri elfutils-libelf elfutils-libs expat \
