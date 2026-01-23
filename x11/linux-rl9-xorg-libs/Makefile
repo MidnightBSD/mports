@@ -7,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Xorg libraries (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://x.org
 
+LICENSE=	mit
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	fontconfig python3 systemd-libs
