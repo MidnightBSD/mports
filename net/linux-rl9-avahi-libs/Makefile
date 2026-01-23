@@ -1,13 +1,15 @@
 PORTNAME=	avahi
 PORTVERSION=	0.8
-DISTVERSIONSUFFIX=	-21.el9
-PORTREVISION=	5
+DISTVERSIONSUFFIX=	-23.el9
+PORTREVISION=	8
 CATEGORIES=	net linux
 PKGNAMESUFFIX=	-libs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for Avahi (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.avahi.org/
+
+LICENSE=	lgpl2.1+
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
