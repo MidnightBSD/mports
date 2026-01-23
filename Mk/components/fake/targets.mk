@@ -106,7 +106,7 @@ _CHKFAKE_ARGS= -f ${TMPPLIST} -d ${FAKE_DESTDIR} -p ${PREFIX}
 _CHKFAKE_ARGS+=	-s "${SKIP_FAKE_CHECK}"
 .endif
 
-.if !target(check-fake)
+.if !target(check-fake) && !defined(SKIP_FAKE_ALL)
 check-fake:
 #	/usr/mports/Tools/scripts/chkfake.pl ${_CHKFAKE_ARGS}
 	@${MPORT_CHECK_FAKE} ${_CHKFAKE_ARGS}

@@ -10,13 +10,17 @@ COMMENT=	Base set of packages needed in Linux mode (Rocky Linux ${LINUX_DIST_VER
 
 LICENSE=	bsd2
 
+SKIP_FAKE_ALL=	yes
+
 USES=		linux:rl9
 USE_LINUX=	# empty
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 PLIST=                 ${PKGDIR}/pkg-plist.${ARCH}
 
-CONFLICTS_INSTALL=	linux-${linux_ARGS}-libsigsegv
+# lib64/gconv/ stuff that is loaded dynamically and has rpath
+NO_SHLIB_REQUIRES_GLOB=	libCNS.so* libGB.so* libISOIR165.so* \
+			libJIS.so* libJISX0213.so* libKSC.so*
 
 .include	"${.CURDIR}/Makefile.version"
 
@@ -38,6 +42,7 @@ BIN_DISTNAMES=	bash-${bash_ver} \
 		ncurses-${ncurses_ver} \
 		sed-${sed_ver} \
 		setserial-${setserial_ver} \
+		sqlite-${sqlite_ver} \
 		util-linux-${util_ver} \
 		util-linux-core-${util_ver} \
 		which-${which_ver}
@@ -57,6 +62,7 @@ LIB_DISTNAMES=	bzip2-libs-${bzip2_ver} \
 		libacl-${libacl_ver} \
 		libattr-${libattr_ver} \
 		libblkid-${util_ver} \
+		libbrotli-${brotli_ver} \
 		libcap-${libcap_ver}  \
 		libcom_err-${e2fsprogs_ver} \
 		libdatrie-${libdatrie_ver} \
@@ -67,14 +73,18 @@ LIB_DISTNAMES=	bzip2-libs-${bzip2_ver} \
 		libffi-${libffi_ver} \
 		libgcc-${gcc_ver} \
 		libgudev-${libgudev_ver} \
+		libidn2-${libidn2_ver} \
 		libmount-${util_ver} \
 		libnsl-${glibc_ver} \
 		libproxy-${libproxy_ver} \
+		libpsl-${libpsl_ver} \
 		libselinux-${selinux_ver} \
 		libsepol-${sepol_ver} \
 		libsigsegv-${libsigsegv_ver} \
 		libsmartcols-${util_ver} \
+		libsoup-${libsoup_ver} \
 		libstdc++-${gcc_ver} \
+		libunistring-${libunistring_ver} \
 		libuuid-${util_ver} \
 		libverto-${libverto_ver} \
 		libxcrypt-${libxcrypt_ver} \
@@ -92,6 +102,7 @@ LIB_DISTNAMES=	bzip2-libs-${bzip2_ver} \
 		popt-${popt_ver} \
 		readline-${readline_ver} \
 		slang-${slang_ver} \
+		sqlite-libs-${sqlite_ver} \
 		xz-libs-${xz_ver} \
 		zlib-${zlib_ver}
 
@@ -134,6 +145,7 @@ SRC_DISTFILES=	acl-${libacl_ver}${SRC_SUFX}:SOURCE \
 		libselinux-${selinux_ver}${SRC_SUFX}:SOURCE \
 		libsepol-${sepol_ver}${SRC_SUFX}:SOURCE \
 		libsigsegv-${libsigsegv_ver}${SRC_SUFX}:SOURCE \
+		libsoup-${libsoup_ver}${SRC_SUFX}:SOURCE \
 		libverto-${libverto_ver}${SRC_SUFX}:SOURCE \
 		libxcrypt-${libxcrypt_ver}${SRC_SUFX}:SOURCE \
 		mpfr-${mpfr_ver}${SRC_SUFX}:SOURCE \
