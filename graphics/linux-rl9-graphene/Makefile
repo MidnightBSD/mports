@@ -7,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Optimizations for speeding up vector operations (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://ebassi.github.io/graphene/
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
