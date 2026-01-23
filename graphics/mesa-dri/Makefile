@@ -6,6 +6,7 @@ COMMENT=	OpenGL hardware acceleration drivers for DRI2+
 WWW=		https://www.mesa3d.org/
 
 LIB_DEPENDS+=	libglapi.so:graphics/mesa-libs
+LIB_DEPENDS+=	libudev.so:devel/libudev-devd
 
 USES+=		llvm:lib,noexport
 
