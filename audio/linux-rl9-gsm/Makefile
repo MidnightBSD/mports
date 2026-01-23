@@ -8,6 +8,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GSM audio codec (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://kbs.cs.tu-berlin.de/~jutta/toast.html
 
+LICENSE=        TU-BERLIN
+LICENSE_NAME=   Technische Universitaet Berlin copyright
+LICENSE_FILE=   ${WRKSRC}/usr/share/licenses/gsm/COPYRIGHT
+LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
