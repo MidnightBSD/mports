@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reading and writing files containing sampled sound (like WAV or AIFF) (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://www.mega-nerd.com/libsndfile/
 
+LICENSE=	lgpl2.1+
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	flac gsm libogg libvorbis

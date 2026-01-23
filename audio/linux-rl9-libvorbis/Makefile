@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio compression codec library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://xiph.org/vorbis/
 
+LICENSE=	bsd3
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	libogg
