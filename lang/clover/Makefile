@@ -9,10 +9,12 @@ WWW=		https://dri.freedesktop.org/wiki/GalliumCompute/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
-BUILD_DEPENDS=	libclc>=0.3.0:devel/libclc \
+BUILD_DEPENDS=	libclc-${LLVM_PORT:T}>0:devel/libclc@${LLVM_PORT:T} \
+		spirv-tools>=0:graphics/spirv-tools \
 		opencl>=0:devel/opencl
 LIB_DEPENDS=	libOpenCL.so:devel/ocl-icd \
 		libLLVM-${LLVM_VERSION}.so:devel/${LLVM_PORT:T} \
+		libLLVMSPIRVLib.so.${LLVM_VERSION}:devel/spirv-llvm-translator@${LLVM_PORT:T} \
 		libzstd.so:archivers/zstd
 RUN_DEPENDS=	libclc-${LLVM_PORT:T}>0:devel/libclc@${LLVM_PORT:T} \
 		opencl>=0:devel/opencl
@@ -20,7 +22,7 @@ RUN_DEPENDS=	libclc-${LLVM_PORT:T}>0:devel/libclc@${LLVM_PORT:T} \
 ONLY_FOR_ARCHS=		i386 amd64
 ONLY_FOR_ARCHS_REASON=	Clover needs a GPU supported by the Radeon KMS driver
 
-USES=	llvm:lib,max=16
+USES=	llvm:lib,max=15
 
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
@@ -50,6 +52,15 @@ MESON_ARGS+=	-Dplatforms="" \
 
 LDFLAGS_i386=		-Wl,-znotext
 
+CONFIGURE_ENV+=	PKG_CONFIG_PATH="${LLVM_PREFIX}/libdata/pkgconfig"
+
 .include "${MASTERDIR}/Makefile.targets"
+
+pre-patch:
+	@if [ -e ${LOCALBASE}/bin/llvm-config${LLVM_VERSION} ] && \
+		! [ -e ${LOCALBASE}/bin/clang${LLVM_VERSION} ]; then \
+		${ECHO_MSG} "Your llvm${LLVM_VERSION} is not built with clang support, which is required."; \
+		${FALSE}; \
+	fi
 
 .include <bsd.port.post.mk>
