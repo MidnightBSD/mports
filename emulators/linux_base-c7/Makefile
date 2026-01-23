@@ -1,6 +1,6 @@
 PORTNAME=	c7
 PORTVERSION=	${LINUX_DIST_VER}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators linux
 PKGNAMEPREFIX=	linux_base-
 EXTRACT_ONLY=	${DISTFILES:N*${SRC_SUFX}*:Nfilesystem-*:C/:[^:]+$//}
@@ -10,10 +10,16 @@ COMMENT=	Base set of packages needed in Linux mode (Linux CentOS ${LINUX_DIST_VE
 
 LICENSE=	agg
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LINUX=	# empty
 USE_LINUX_RPM=	yes
 PLIST=                 ${PKGDIR}/pkg-plist.${ARCH}
+
+# lib64/gconv/ stuff that is loaded dynamically and has rpath
+NO_SHLIB_REQUIRES_GLOB=	libCNS.so* libGB.so* libISOIR165.so* \
+			libJIS.so* libJISX0213.so* libKSC.so*
 
 BIN_DISTNAMES=	bash-4.2.46-35.el7_9 \
 		bzip2-1.0.6-13.el7 \
