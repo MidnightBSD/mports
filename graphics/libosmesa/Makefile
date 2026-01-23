@@ -30,6 +30,7 @@ MESON_ARGS+=	-Dgallium-drivers="swrast" \
 		-Dgallium-nine=false \
 		-Dgles1=disabled \
 		-Dgles2=disabled \
+		-Dglvnd=false \
 		-Dlmsensors=disabled \
 		-Dmicrosoft-clc=disabled \
 		-Dopengl=true \
