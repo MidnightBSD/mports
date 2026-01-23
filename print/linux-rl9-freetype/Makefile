@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Font rendering engine (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.freetype.org/
 
+LICENSE=	gpl2+
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	imageformats-libs
