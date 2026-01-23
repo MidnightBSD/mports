@@ -7,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-based font configuration API for X Windows (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.freedesktop.org/wiki/Software/fontconfig/
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	brotli expat freetype harfbuzz libxml2
