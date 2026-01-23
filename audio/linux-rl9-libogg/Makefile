@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ogg bitstream library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.xiph.org/ogg/
 
+LICENSE=	bsd3
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
