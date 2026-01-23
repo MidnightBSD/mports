@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wayland compositor libraries (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://wayland.freedesktop.org/
 
+LICENSE=	mit
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
