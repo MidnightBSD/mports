@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
-USES=		gmake tar:xz pkgconfig xorg
+USES=		gmake pkgconfig libtool tar:xz xorg
 USE_LDCONFIG=	yes
 USE_XORG=	xcb xorg-macros
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
