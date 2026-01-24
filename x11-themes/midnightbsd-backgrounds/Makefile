@@ -1,10 +1,6 @@
-# New ports collection makefile for: midnightbsd-desktop
-# Date created:		September 24, 2008
-# Whom:			Lucas Holt <luke@midnightbsd.org>
-
 PORTNAME=	midnightbsd-backgrounds
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-themes graphics gnome
 MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 
@@ -27,5 +23,6 @@ do-install:
 	${INSTALL_DATA}	 ${WRKSRC}/${b} ${PREFIX}/share/backgrounds/midnightbsd/${b}
 	${INSTALL_DATA}  ${WRKSRC}/${b}.desktop ${PREFIX}/share/backgrounds/midnightbsd/${b}.desktop
 .endfor
+	cd ${PREFIX}/share && ${LN} -sf backgrounds wallpapers
 
 .include <bsd.port.mk>
