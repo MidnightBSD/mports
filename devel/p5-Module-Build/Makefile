@@ -22,4 +22,7 @@ PORTSCOUT=	skipv:0.31011,0.31012
 post-patch:
 	@${RM} ${WRKSRC}/bin/config_data
 
+post-fake:
+	${RM} ${FAKE_DESTDIR}/usr/local/lib/perl5/site_perl/auto/Module/Build/.packlist 
+
 .include <bsd.port.mk>
