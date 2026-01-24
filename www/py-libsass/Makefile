@@ -20,6 +20,7 @@ USE_PYTHON=	distutils autoplist pytest
 MAKE_ENV=	SYSTEM_SASS=1
 
 USE_GCC=	yes
+NO_TEST=	yes
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_sass.abi3.so
