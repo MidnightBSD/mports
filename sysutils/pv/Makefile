@@ -32,7 +32,7 @@ post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/pv
 
 post-install-DOCS-on:
-	@${MKDIR} ${FAKEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/docs/|} ${FAKEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/docs/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
