@@ -277,6 +277,7 @@
     SUBDIR += py-scramp
     SUBDIR += py-service-identity
     SUBDIR += py-trustme
+    SUBDIR += qgpgme
     SUBDIR += qtkeychain
     SUBDIR += rhash
     SUBDIR += rustls-ffi
