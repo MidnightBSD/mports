@@ -28,6 +28,7 @@ MESON_ARGS=	-Dclutter-gdk=enabled \
 		-Dxcomposite=enabled \
 		-Dxdamage=enabled \
 		-Dxinerama=enabled
+LDFLAGS+=	-lm
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
