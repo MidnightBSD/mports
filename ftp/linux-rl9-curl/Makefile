@@ -1,6 +1,7 @@
 PORTNAME=	curl
 DISTVERSION=	7.76.1
-DISTVERSIONSUFFIX=	-31.el9
+DISTVERSIONSUFFIX=	-34.el9
+PORTREVISION=	1
 CATEGORIES=	ftp linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +12,7 @@ LICENSE=	mit
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
-USE_LINUX=	libidn2 libnghttp2 libpsl libssh libxcrypt nspr nss openldap
+USE_LINUX=	libnghttp2 libssh nspr nss openldap
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 

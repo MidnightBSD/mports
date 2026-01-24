@@ -1,5 +1,5 @@
 PORTNAME=	wayland-utils
-DISTVERSION=	1.2.0
+DISTVERSION=	1.3.0
 CATEGORIES=	graphics wayland
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,7 @@ WWW=		https://gitlab.freedesktop.org/wayland/wayland-utils
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	wayland-protocols>=1.20:graphics/wayland-protocols
+BUILD_DEPENDS=	wayland-protocols>=1.44:graphics/wayland-protocols
 LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 
 USES=		meson pkgconfig
