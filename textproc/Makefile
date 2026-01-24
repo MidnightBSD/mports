@@ -142,6 +142,7 @@
     SUBDIR += libwpd010
     SUBDIR += libxml++26
     SUBDIR += libxml2
+    SUBDIR += libxml2-python
     SUBDIR += libxmlb
     SUBDIR += libxslt
     SUBDIR += libyaml
