@@ -1,5 +1,5 @@
 PORTNAME=	microcode
-PORTVERSION=	20250729
+PORTVERSION=	20251202
 CATEGORIES=	sysutils
 MASTER_SITES=	https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/amd-ucode/
 PKGNAMEPREFIX=	cpu-
@@ -37,17 +37,17 @@ NO_WRKSUBDIR=	yes
 PLIST_FILES=	${DISTFILES:S/^/${DATADIR}\//g:C/\?.*//} \
 		${FWDIR}/amd-ucode.bin
 
-_REV=		3768c184de68a85b9df6697e7f93a2f61de90a99
+_REV=		2b318c8e4159234ddbcc1cadc90cf32d17d9ee82
 
 post-extract:
 	${CAT} ${WRKSRC}/microcode_amd* > ${WRKSRC}/amd-ucode.bin
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}/
 	${MKDIR} ${FAKE_DESTDIR}${FWDIR}
 	${INSTALL_DATA} ${WRKSRC}/amd-ucode.bin ${FAKE_DESTDIR}${FWDIR}/
 .for f in ${DISTFILES}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DATADIR}/${f:C/\?.*//}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DATADIR}/${f:C/\?.*//}
 .endfor
 
 .include <bsd.port.mk>
