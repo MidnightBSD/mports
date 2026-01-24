@@ -12,7 +12,7 @@ WWW=		https://libtom.net/
 LICENSE=	publicdom
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cpe gmake libtool:build tar:xz
+USES=		cpe gmake libtool:build pathfix tar:xz
 CPE_VENDOR=	libtom
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -56,6 +56,7 @@ post-patch:
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtomcrypt.so.1
+	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/libdata/pkgconfig/libtomcrypt.pc
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
