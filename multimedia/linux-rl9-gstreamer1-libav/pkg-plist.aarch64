@@ -3,4 +3,4 @@ usr/lib64/gstreamer-1.0/libgstlibav.so
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%PORTDOCS%%%%DOCSDIR%%/README.md
-usr/share/licenses/gstreamer1-libav/COPYING
+usr/share/licenses/gstreamer1-plugin-libav/COPYING
