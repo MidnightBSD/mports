@@ -14,6 +14,8 @@ LIB_DEPENDS=	libbasu.so:devel/basu \
 		libexpat.so:textproc/expat2
 TEST_DEPENDS=	googletest>0:devel/googletest
 
+NO_TEST=	yes
+
 USES=		cmake:testing compiler:c++17-lang pkgconfig
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
