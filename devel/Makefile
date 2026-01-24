@@ -438,6 +438,7 @@
     SUBDIR += kyua
     SUBDIR += lcov
     SUBDIR += lemon
+    SUBDIR += level-zero
     SUBDIR += libIDL
     SUBDIR += libappindicator
     SUBDIR += libast
