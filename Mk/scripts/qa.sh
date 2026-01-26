@@ -63,6 +63,8 @@ shebangonefile() {
 	${LOCALBASE}/*) ;;
 	${PREFIX}/*) ;;
 	/bin/csh) ;;
+	/bin/ksh) ;;
+	/bin/mksh) ;;
 	/bin/sh) ;;
 	/bin/tcsh) ;;
 	/usr/bin/awk) ;;
