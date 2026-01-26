@@ -9,7 +9,9 @@ COMMENT=	Benchmarks compilation speeds
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:run
+USES=		python:run shebangfix
+
+SHEBANG_FILES=	benchmark
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	nordlow
