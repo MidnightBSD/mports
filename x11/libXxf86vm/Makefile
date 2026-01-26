@@ -1,9 +1,10 @@
 PORTNAME=	libXxf86vm
-PORTVERSION=	1.1.5
+PORTVERSION=	1.1.7
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Vidmode Extension
+WWW=		https://gitlab.freedesktop.org/xorg/lib/libxxf86vm
 
 LICENSE=	mit
 

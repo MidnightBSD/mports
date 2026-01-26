@@ -1,3 +1,4 @@
-This package contains the XKB file library.
-
-WWW: http://www.freedesktop.org/Software/xorg
+This package contains library for the XFree86-VidMode X extension.
+These functions provide an interface to the server extension
+XFree86-VidModeExtension which allows the video modes to be queried
+and adjusted dynamically and mode switching to be controlled.
