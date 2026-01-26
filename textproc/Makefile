@@ -318,7 +318,6 @@
     SUBDIR += py-interegular
     SUBDIR += py-junit-xml
     SUBDIR += py-latexcodec
-    SUBDIR += py-libxml2
     SUBDIR += py-license-expression
     SUBDIR += py-m2r
     SUBDIR += py-mako
