@@ -38,7 +38,7 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 USE_LDCONFIG=	${PREFIX}/lib/mysql
-SHEBANG_FILES?=	scripts/*.sh support-files/*.sh
+SHEBANG_FILES?=	scripts/*.sh scripts/mariadb-* support-files/*.sh
 SITESDIR=	mariadb/mariadb-${PORTVERSION}/source
 DOCSDIR=	${PREFIX}/share/doc/mysql
 
@@ -180,7 +180,7 @@ ${ENGINE}_CMAKE_ON=	-DPLUGIN_${ENGINE}=DYNAMIC
 .endfor
 AWS_KEY_MGMT_CMAKE_ON=	-DPLUGIN_AWS_KEY_MANAGEMENT=ON
 INNOBASE_VARS_OFF=	disabled_plugins+=INNOBASE
-#COLUMNSTORE_BROKEN=	ColumnStore engine build failure "fatal error: 'sys/prctl.h' file not found"
+COLUMNSTORE_BROKEN=	ColumnStore engine build failure "fatal error: 'sys/prctl.h' file not found"
 CONNECT_EXTRA_LIB_DEPENDS=	libodbc.so:databases/unixODBC
 CONNECT_EXTRA_USE=		gnome=libxml2
 CONNECT_EXTRA_USES=		gnome
@@ -253,6 +253,12 @@ post-install:
 		${PREFIX}/include/mysql/server \
 		${ETCDIR}/init.d \
 		${PREFIX}/lib/mysql/pkgconfig
+	${REINPLACE_CMD} -i '' -e 's|/usr/bin/perl|/usr/local/bin/perl|g' ${PREFIX}/bin/mariadb-access \
+		${PREFIX}/bin/mariadb-convert-table-format \
+		${PREFIX}/bin/mariadb-setpermission \
+		${PREFIX}/bin/mariadb-hotcopy \
+		${PREFIX}/bin/mariadb-find-rows \
+		${PREFIX}/bin/mariadb-dumpslow
 
 post-install-GSSAPI_NONE-off:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/mysql/plugin/auth_gssapi_client.so
