@@ -18,4 +18,7 @@ RUN_DEPENDS=	p5-Algorithm-Diff>=0:devel/p5-Algorithm-Diff \
 USES=		perl5
 USE_PERL5=	modbuild
 
+post-install:
+	${RM} ${PREFIX}/lib/perl5/site_perl/auto/Text/WordDiff/.packlist
+
 .include <bsd.port.mk>
