@@ -49,7 +49,7 @@ post-install:
 	@${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
 	${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
 	@${FIND} -s ${STAGEDIR}${WWWDIR} -type d | \
-	${SED} -e 's#^${STAGEDIR}#@dir #' >> ${TMPPLIST}
+	${SED} -e 's#^${FAKE_DESTDIR}#@dir #' >> ${TMPPLIST}
 	${INSTALL_DATA} ${WRKSRC}/sql-ledger.conf.default \
 	${STAGEDIR}/${WWWDIR}/sql-ledger.conf.sample
 	@${ECHO} @sample ${WWWDIR_REL}/sql-ledger.conf.sample >> ${TMPPLIST}
