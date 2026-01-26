@@ -1,18 +1,36 @@
-
-
 PORTNAME=	pr
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	comms net
-MASTER_SITES=	http://www.chelcom.ru/~anton/projects/files/
-DISTNAME=	pr-${PORTVERSION}
+MASTER_SITES=	https://BSDforge.com/projects/source/comms/pr/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A daemon that connects local terminal device to a terminal server
+COMMENT=	Daemon that connects local terminal device to a terminal server
+WWW=		https://BSDforge.com/projects/comms/pr/
 
-LICENSE=	unknown
+LICENSE=	artistic
 
-WRKSRC=		${WRKDIR}/pr
-
+USES=		shebangfix tar:xz
+SHEBANG_FILES=	sbin/PortRedirector sbin/PortTest
 NO_BUILD=	YES
+
+WRKSRC=		${WRKDIR}/${PORTNAME}
+PROGRAMS=	PortRedirector PortTest
+ETCFLS=		PortRedirector.conf.sample
+RCDFILES=	pr.sh.sample
+
+OPTIONS_DEFINE=	DOCS
+
+do-install:
+	(cd ${WRKSRC}/sbin && \
+		${INSTALL_SCRIPT} ${PROGRAMS} ${STAGEDIR}${PREFIX}/sbin)
+	(cd ${WRKSRC}/etc/rc.d && \
+		${INSTALL_DATA} ${RCDFILES} ${STAGEDIR}${PREFIX}/etc/rc.d)
+	(cd ${WRKSRC}/etc && \
+		${INSTALL_DATA} ${ETCFLS} ${STAGEDIR}${PREFIX}/etc)
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/share/doc/pr/PR.html ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
