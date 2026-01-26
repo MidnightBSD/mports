@@ -4,6 +4,7 @@
     SUBDIR += awesome
     SUBDIR += blackbox
     SUBDIR += cage
+    SUBDIR += chamfer
     SUBDIR += compiz
     SUBDIR += compton
     SUBDIR += emwm
