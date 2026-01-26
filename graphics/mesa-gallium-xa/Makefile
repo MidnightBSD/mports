@@ -8,14 +8,16 @@ WWW=		https://www.mesa3d.org/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
+ONLY_FOR_ARCHS=		amd64 i386
+ONLY_FOR_ARCHS_REASON=	used only by VMware supported architectures
+
 USES=		llvm:lib,noexport xorg
 USE_XORG=	xorgproto
 
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
-MESON_ARGS+=	-Dvideo-codecs="vc1dec,h264dec,h264enc,h265dec,h265enc,av1dec,av1enc,vp9dec" \
-		-Dgallium-drivers="svga" \
+MESON_ARGS+=	-Dgallium-drivers="svga" \
 		-Dvulkan-drivers="" \
 		-Dplatforms="" \
 		-Dandroid-libbacktrace=disabled \
@@ -35,11 +37,11 @@ MESON_ARGS+=	-Dvideo-codecs="vc1dec,h264dec,h264enc,h265dec,h265enc,av1dec,av1en
 		-Dshared-glapi=disabled \
 		-Dosmesa=false \
 		-Dvalgrind=disabled \
+		-Dglvnd=disabled \
 		-Dxlib-lease=disabled
 
 LDFLAGS_i386=		-Wl,-znotext
 
 MESON_ARGS+=	-Dgallium-xa=enabled
 
-.include "${MASTERDIR}/Makefile.targets"
 .include <bsd.port.post.mk>

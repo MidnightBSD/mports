@@ -7,6 +7,7 @@ COMMENT=	Off-Screen Mesa implementation of the OpenGL API
 WWW=		https://www.mesa3d.org/
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
 LIB_DEPENDS+=	libglapi.so:graphics/mesa-libs
 
@@ -30,7 +31,7 @@ MESON_ARGS+=	-Dgallium-drivers="swrast" \
 		-Dgallium-nine=false \
 		-Dgles1=disabled \
 		-Dgles2=disabled \
-		-Dglvnd=false \
+		-Dglvnd=disabled \
 		-Dlmsensors=disabled \
 		-Dmicrosoft-clc=disabled \
 		-Dopengl=true \
@@ -44,8 +45,6 @@ MESON_ARGS+=	-Dgallium-drivers="swrast" \
 LDFLAGS_i386=		-Wl,-znotext
 
 MESON_ARGS+=	-Dosmesa=true
-
-.include "${MASTERDIR}/Makefile.targets"
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/include/GL
