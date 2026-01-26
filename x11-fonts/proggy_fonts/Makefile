@@ -22,8 +22,10 @@ EXTRACT_ONLY=	ProggyClean.pcf.zip ProggySquare.pcf.zip \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The perfect monospaced bitmap programming fonts
+WWW=		http://upperbounds.net/
 
-LICENSE=	unknown
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/Licence.txt
 
 ALREADY_UNZIP=	${DISTDIR}/Opti.pcf.gz ${DISTDIR}/OptiSmall.pcf.gz \
 	        ${DISTDIR}/PixelCarnageMono.pcf.gz
