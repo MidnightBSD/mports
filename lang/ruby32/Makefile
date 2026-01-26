@@ -22,7 +22,7 @@ RUN_DEPENDS=	libffi>=0:devel/libffi
 
 FAKE_OPTS=    trueprefix
 
-USES=		autoreconf cpe localbase ruby:none ssl tar:xz
+USES=		autoreconf cpe localbase ncurses ruby:none ssl tar:xz
 CPE_VENDOR=	ruby-lang
 CPE_VERSION=	${RUBY_RELVERSION}
 CPE_UPDATE=	p${RUBY_PATCHLEVEL}
@@ -185,7 +185,7 @@ post-install:
 	${LN} -fs ${FILE}${RUBY_SUFFIX}.1.gz ${PREFIX}/share/man/man1/${FILE}.1.gz
 . endfor
 .endif
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+	${REINPLACE_CMD} -i "" -e 's|${FAKE_DESTDIR}||g' \
                 ${PREFIX}/lib/ruby/3.2/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
                 ${PREFIX}/libdata/pkgconfig/ruby-3.2.pc
 
