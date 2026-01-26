@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-#
+
 # PROVIDE: atslogd
 # REQUIRE: mysql postgresql
 # KEYWORD: shutdown 
