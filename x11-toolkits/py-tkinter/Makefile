@@ -1,6 +1,6 @@
 PORTNAME=	tkinter
 DISTVERSION=	${PYTHON_DISTVERSION}
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,8 +11,9 @@ COMMENT=	Python bindings to the Tk widget set
 
 LICENSE=	python
 
+USES=		compiler:c11 python tar:xz tk:86 xorg
 USE_PYTHON=	distutils autoplist allflavors
-USES=		compiler:c11 python:2.7+ tar:xz tk
+USE_XORG=	x11
 
 CFLAGS+=	-I${LOCALBASE}/include/tcl8.6/generic/
 
@@ -20,15 +21,26 @@ DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC_SUBDIR=	Modules
 
-PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
+SUB_LIST+=	DISTVERSION=${DISTVERSION} \
+		TK_VER=${TK_VER}
+SUB_FILES=	pyproject.toml \
+		setup.py
+PLIST_FILES=	${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;}/lib-dynload/_tkinter${PYTHON_SOABI}.so
+
+#PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
+
+PORTSCOUT=	ignore:1
 
 .include <bsd.port.pre.mk>
 
-post-extract:
-.if ${PYTHON_REL} < 30000
-	@${SED} -e "s|%%TK_VER%%|${TK_VER}|" ${FILESDIR}/setup.py > ${WRKSRC}/setup.py
-.else
-	@${SED} -e "s|%%TK_VER%%|${TK_VER}|" ${FILESDIR}/setup3.py > ${WRKSRC}/setup.py
-.endif
+pre-configure:
+	@${MV} ${WRKDIR}/pyproject.toml ${WRKSRC}
+	@${MV} ${WRKDIR}/setup.py ${WRKSRC}
+
+post-install:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_tkinter${PYTHON_SOABI}.so
+	# lib-dynload is the expected location
+	${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload
+	(cd ${FAKE_DESTDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload && ${LN} -s ../site-packages/_tkinter${PYTHON_SOABI}.so)
 
 .include <bsd.port.post.mk>
