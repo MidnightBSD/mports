@@ -38,6 +38,7 @@ MESON_ARGS+=	-Dplatforms="" \
 		-Dgallium-xa=disabled \
 		-Dgles1=disabled \
 		-Dgles2=disabled \
+		-Dglvnd=disabled \
 		-Dmicrosoft-clc=disabled \
 		-Dopengl=false \
 		-Dglx=disabled \
@@ -54,7 +55,9 @@ LDFLAGS_i386=		-Wl,-znotext
 
 CONFIGURE_ENV+=	PKG_CONFIG_PATH="${LLVM_PREFIX}/libdata/pkgconfig"
 
-.include "${MASTERDIR}/Makefile.targets"
+.if ${ARCH} != amd64
+MESON_ARGS+=	-Dintel-rt=disabled # https://gitlab.freedesktop.org/mesa/mesa/-/issues/10629
+.endif
 
 pre-patch:
 	@if [ -e ${LOCALBASE}/bin/llvm-config${LLVM_VERSION} ] && \

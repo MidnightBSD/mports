@@ -252,6 +252,7 @@
     SUBDIR += linux-rl9-wayland
     SUBDIR += mesa-demos
     SUBDIR += mesa-dri
+    SUBDIR += mesa-gallium-vdpau
     SUBDIR += mesa-gallium-xa
     SUBDIR += mesa-libs
     SUBDIR += ming
