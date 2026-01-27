@@ -14,7 +14,7 @@ RUN_DEPENDS=	p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-USES=		perl5
+USES=		perl5 shebangfix
 USE_PERL5=	run
 SHEBANG_FILES=	slowloris.pl
 
