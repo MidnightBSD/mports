@@ -11,11 +11,12 @@ COMMENT=		Enhanced nedit with utf-8 support
 
 LICENSE=		gpl2
 
-LIB_DEPENDS=		libpcre.so:devel/pcre
+LIB_DEPENDS=		libpcre.so:devel/pcre \
+			libfontconfig.so:x11-fonts/fontconfig
 
 USES=			motif pkgconfig
 
-USES_XORG=		x11 xt xext
+USES_XORG=		x11 xft xt xext xrender ice sm
 
 WRKSRC=			${WRKDIR}/xnedit
 
@@ -26,6 +27,6 @@ post-patch:
 	${REINPLACE_CMD} -e 's|$$(PREFIX)|$$(DESTDIR)$$(PREFIX)|g' ${WRKSRC}/Makefile
 
 post-fake:
-	${REINPLACE_CMD} -e "s|${FAKE_DESTDIR}||g" ${FAKE_DESTDIR}${PREFIX}/share/applications/xnedit.desktop
+	${REINPLACE_CMD} -i "" -e "s|${FAKE_DESTDIR}||g" ${FAKE_DESTDIR}${PREFIX}/share/applications/xnedit.desktop
 
 .include <bsd.port.mk>
