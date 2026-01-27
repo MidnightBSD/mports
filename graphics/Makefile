@@ -298,6 +298,7 @@
     SUBDIR += plotutils
     SUBDIR += png
     SUBDIR += podofo
+    SUBDIR += polyclipping
     SUBDIR += poppler
     SUBDIR += poppler-data
     SUBDIR += poppler-glib
