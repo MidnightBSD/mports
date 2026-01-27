@@ -362,7 +362,7 @@ do-install:
 .    endif # ! USES=gmake
 .  endif # modbuild
 
-PACKLIST_DIR?=	${PREFIX}/${SITE_ARCH_REL}/auto
+PACKLIST_DIR?=	${PREFIX}/${SITE_PERL_REL}/auto
 
 # In all those, don't use - before the command so that the user does
 # not wonder what has been ignored by this message "*** Error code 1 (ignored)"
