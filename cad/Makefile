@@ -16,6 +16,8 @@
     SUBDIR += p5-Verilog-Perl
     SUBDIR += py-edalize
     SUBDIR += py-vunit-hdl
+    SUBDIR += qcad
+    SUBDIR += qflow
     SUBDIR += rubygem-gdsii
     SUBDIR += silice
     SUBDIR += sumo
