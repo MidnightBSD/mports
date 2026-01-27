@@ -13,12 +13,14 @@
     SUBDIR += libopencad
     SUBDIR += logisim
     SUBDIR += opencascade
+    SUBDIR += p5-GDS2
     SUBDIR += p5-Verilog-Perl
     SUBDIR += py-edalize
     SUBDIR += py-vunit-hdl
     SUBDIR += qcad
     SUBDIR += qflow
     SUBDIR += rubygem-gdsii
+    SUBDIR += scotch
     SUBDIR += silice
     SUBDIR += sumo
     SUBDIR += surelog

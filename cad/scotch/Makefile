@@ -1,0 +1,93 @@
+PORTNAME=	scotch
+DISTVERSION=	6.0.4-aster7
+CATEGORIES=	cad science
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Package for graph and mesh partitioning and sparse matrix ordering
+WWW=		https://www.labri.fr/perso/pelegrin/scotch/
+
+LICENSE=	CeCILL_C
+LICENSE_NAME=	CeCILL-C
+LICENSE_FILE=	${WRKSRC}/doc/CeCILL-C_V1-en.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+USES=		bison:alias gmake localbase
+
+CONFLICTS_INSTALL=	gbase gmap # bin/gbase bin/gmap
+
+MAKE_JOBS_UNSAFE=yes
+
+OPTIONS_DEFINE=	DOCS EXAMPLES MPICH
+OPTIONS_DEFAULT=MPICH
+OPTIONS_SUB=	yes
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:R}
+BUILD_WRKSRC=	${WRKSRC}/src
+INSTALL_WRKSRC=	${BUILD_WRKSRC}
+TEST_WRKSRC=	${BUILD_WRKSRC}
+ALL_TARGET=	esmumps
+TEST_TARGET=	check
+CFLAGS=		-Wno-implicit-function-declaration
+MAKE_ENV=	prefix=${FAKE_DESTDIR}${PREFIX} mandir=${FAKE_DESTDIR}${PREFIX}/share/man	\
+		-DSCOTCH_PTHREAD_NUMBER=2
+USE_LDCONFIG=	yes
+
+DOCVER=		${PORTVERSION:R:R}
+PORTDOCS=	ptscotch_user${DOCVER}.pdf scotch_user${DOCVER}.pdf scotch_example.f
+LIBS=		esmumps scotch scotcherr scotcherrexit scotchmetis
+
+MPICH_USES=		mpi:mpich
+MPICH_ALL_TARGET=	ptesmumps
+MPICH_TEST_TARGET=	ptcheck
+MPICH_LIBS+=	ptesmumps ptscotch ptscotcherr ptscotcherrexit ptscotchparmetis
+
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+MF=	i686
+.else
+MF=	x86-64
+.endif
+
+pre-everything::
+.if !defined(WITHOUT_MPICH)
+	@${ECHO_MSG}
+	@${ECHO_MSG} "Define WITHOUT_MPI if PT-Scotch is not wanted."
+	@${ECHO_MSG}
+.endif
+
+pre-configure:
+	${REINPLACE_CMD} -e 's/-lthread/-pthread/;s/-lpthread/-pthread/'\
+		${WRKSRC}/src/Make.inc/Makefile.inc.${MF}_pc_freebsd
+	${LN} -sf ${WRKSRC}/src/Make.inc/Makefile.inc.${MF}_pc_freebsd	\
+		${WRKSRC}/src/Makefile.inc
+	${REINPLACE_CMD} -E -e 's|cd (.*) ; * \$$\(MAKE\)|\$$(MAKE) -C \1|'	\
+		-e 's|\&\& \$$\(MAKE\)||' ${WRKSRC}/src/Makefile
+
+post-stage:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/* ${FAKE_DESTDIR}${PREFIX}/lib/lib*
+.for l in ${LIBS}
+	${MV} ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so.0
+	${LN} -sf lib${l}.so.0 ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so
+.endfor
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+do-install-EXAMPLES-on:
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/grf ${FAKE_DESTDIR}${EXAMPLESDIR}/tgt
+	${INSTALL_DATA} ${WRKSRC}/grf/* ${FAKE_DESTDIR}${EXAMPLESDIR}/grf
+	${INSTALL_DATA} ${WRKSRC}/tgt/* ${FAKE_DESTDIR}${EXAMPLESDIR}/tgt
+
+.if !defined(WITHOUT_MPI)
+pre-test:
+. if !exists(${HOME}/.mpd.conf)
+	@${ECHO_CMD} "MPD_SECRETWORD=change_on_install" > ${HOME}/.mpd.conf
+	${CHMOD} go-r ${HOME}/.mpd.conf
+	@${ECHO_MSG} "${HOME}/.mpd.conf has been generated - please change the secret word!"
+. endif
+.endif
+
+.include "${.CURDIR}/../../french/aster/bsd.aster.mk"
+.include <bsd.port.mk>
