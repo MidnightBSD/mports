@@ -363,7 +363,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = 'databases/sqlite2' ]; then
 		warn "you need USES+=sqlite:2"
 	# Gnome -> same as port
-	# grep LIB_DEPENDS= Mk/Uses/gnome.mk |sed -e 's|\(.*\)_LIB_DEPENDS.*:\(.*\)\/\(.*\)|[ "\1" = "\3" ] \&\& echo "\\${pkg} = \\\"\2/\3\\\" -o \\\\"|'|sort|sh
+	# grep LIB_DEPENDS= Mk/extensions/gnome.mk |sed -e 's|\(.*\)_LIB_DEPENDS.*:\(.*\)\/\(.*\)|[ "\1" = "\3" ] \&\& echo "\\${pkg} = \\\"\2/\3\\\" -o \\\\"|'|sort|sh
 	elif [ ${pkg} = "accessibility/atk" -o \
 		${pkg} = "accessibility/atkmm" -o \
 		${pkg} = "graphics/cairo" -o \
@@ -403,7 +403,7 @@ proxydeps_suggest_uses() {
 		${pkg} = "x11-toolkits/vte3" ]; then
 		warn "you need USE_GNOME+=${pkg#*/}"
 	# Gnome different as port
-	# grep LIB_DEPENDS= Mk/Uses/gnome.mk |sed -e 's|\(.*\)_LIB_DEPENDS.*:\(.*\)\/\(.*\)|[ "\1" = "\3" ] \|\| echo "elif [ \\${pkg} = \\\"\2/\3\\\" ]; then; warn \\\"you need USE_GNOME+=\1\\\""|'|sort|sh
+	# grep LIB_DEPENDS= Mk/extensions/gnome.mk |sed -e 's|\(.*\)_LIB_DEPENDS.*:\(.*\)\/\(.*\)|[ "\1" = "\3" ] \|\| echo "elif [ \\${pkg} = \\\"\2/\3\\\" ]; then; warn \\\"you need USE_GNOME+=\1\\\""|'|sort|sh
 	elif [ ${pkg} = "databases/evolution-data-server" ]; then warn "you need USE_GNOME+=evolutiondataserver3"
 	elif [ ${pkg} = "graphics/gdk-pixbuf" ]; then warn "you need USE_GNOME+=gdkpixbuf"
 	elif [ ${pkg} = "graphics/gdk-pixbuf2" ]; then warn "you need USE_GNOME+=gdkpixbuf"
@@ -414,7 +414,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "x11-fm/nautilus" ]; then warn "you need USE_GNOME+=nautilus4"
 	elif [ ${pkg} = "graphics/librsvg2-rust" ]; then warn "you need USE_GNOME+=librsvg2"
 	# mate
-	# grep LIB_DEPENDS= Mk/Uses/mate.mk |sed -e 's|\(.*\)_LIB_DEPENDS.*:\(.*\)\/\(.*\)|elif [ ${pkg} = "\2/\3" ]; then warn "you need USE_MATE+=\1"|'
+	# grep LIB_DEPENDS= Mk/extensions/mate.mk |sed -e 's|\(.*\)_LIB_DEPENDS.*:\(.*\)\/\(.*\)|elif [ ${pkg} = "\2/\3" ]; then warn "you need USE_MATE+=\1"|'
 	elif [ ${pkg} = "x11-fm/caja" ]; then warn "you need USE_MATE+=caja"
 	elif [ ${pkg} = "sysutils/mate-control-center" ]; then warn "you need USE_MATE+=controlcenter"
 	elif [ ${pkg} = "x11/mate-desktop" ]; then warn "you need USE_MATE+=desktop"
@@ -425,7 +425,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "x11/mate-panel" ]; then warn "you need USE_MATE+=panel"
 	elif [ ${pkg} = "sysutils/mate-polkit" ]; then warn "you need USE_MATE+=polkit"
 	# KDE
-	# grep -B1 _LIB= Mk/Uses/kde.mk | grep _PORT=|sed -e 's/^kde-\(.*\)_PORT=[[:space:]]*\([^[:space:]]*\).*/elif [ ${pkg} = "\2" ]; then warn "you need to use USE_KDE+=\1"/'
+	# grep -B1 _LIB= Mk/extensions/kde.mk | grep _PORT=|sed -e 's/^kde-\(.*\)_PORT=[[:space:]]*\([^[:space:]]*\).*/elif [ ${pkg} = "\2" ]; then warn "you need to use USE_KDE+=\1"/'
 	# KDE Applications
 	elif [ ${pkg} = "net/akonadi-contacts" ]; then warn "you need to use USE_KDE+=akonadicontacts"
 	elif [ ${pkg} = "deskutils/akonadi-import-wizard" ]; then warn "you need to use USE_KDE+=akonadiimportwizard"
@@ -742,8 +742,8 @@ sonames() {
 		[ "${f}" == "${f%.debug}" ] || continue
 		if ! readelf -d ${f} | grep SONAME > /dev/null; then
 			warn "${f} doesn't have a SONAME."
-			warn "pkg(8) will not register it as being provided by the port."
-			warn "If another port depend on it, pkg will not be able to know where it comes from."
+			warn "mport(8) will not register it as being provided by the port."
+			warn "If another port depend on it, mport will not be able to know where it comes from."
 			case "${f}" in
 				${FAKE_DESTDIR}${PREFIX}/lib/*/*)
 					warn "It is in a subdirectory, it may not be used in another port."
