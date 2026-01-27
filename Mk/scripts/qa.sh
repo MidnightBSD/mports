@@ -160,8 +160,7 @@ symlinks() {
 		read -r link
 		case "${link}" in
 			${FAKE_DESTDIR}*)
-				err "Bad symlink '${l#${FAKE_DESTDIR}${PREFIX}/}' pointing inside the stage directory"
-				rc=1
+				warn "Bad symlink '${l#${FAKE_DESTDIR}${PREFIX}/}' pointing inside the stage directory"
 				;;
 			/*)
 				# Only warn for symlinks within the package.

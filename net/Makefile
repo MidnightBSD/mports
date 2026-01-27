@@ -105,7 +105,6 @@
     SUBDIR += krfb
     SUBDIR += ksmtp
     SUBDIR += ktnef
-    SUBDIR += ldap2dns
     SUBDIR += ldapdiff
     SUBDIR += libarcus
     SUBDIR += libcloudproviders
