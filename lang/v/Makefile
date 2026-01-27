@@ -1,5 +1,5 @@
 PORTNAME=	v
-PORTVERSION=	0.4.7
+PORTVERSION=	0.4.12
 CATEGORIES=	lang
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +10,8 @@ WWW=		https://vlang.io/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_i386=	error: mismatched types
+
 USES=		compiler:c11 gmake
 
 ALL_TARGET=	v
@@ -18,7 +20,7 @@ NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_TUPLE=	vlang:v:${PORTVERSION} \
-		vlang:vc:8c681ed:vc/vc
+		vlang:vc:e377b42:vc/vc
 
 PORTSCOUT=	limit:^[0-9\.]*$$
 
