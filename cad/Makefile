@@ -1,5 +1,6 @@
     COMMENT = CAD tools
 
+    SUBDIR += PrusaSlicer
     SUBDIR += abc
     SUBDIR += cascade
     SUBDIR += digital
@@ -11,6 +12,7 @@
     SUBDIR += iverilog
     SUBDIR += libopencad
     SUBDIR += logisim
+    SUBDIR += opencascade
     SUBDIR += p5-Verilog-Perl
     SUBDIR += py-edalize
     SUBDIR += py-vunit-hdl

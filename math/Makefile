@@ -88,6 +88,7 @@
     SUBDIR += mpdecimal
     SUBDIR += mpfr
     SUBDIR += nauty
+    SUBDIR += nlopt
     SUBDIR += ntl
     SUBDIR += openblas
     SUBDIR += osi
