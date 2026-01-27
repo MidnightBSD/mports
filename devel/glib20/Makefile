@@ -149,9 +149,9 @@ post-install:
 	@${FIND} ${PREFIX} -name \*.pyc -delete
 	(cd ${PREFIX} && \
 	python${PYTHON_VER} ${PYTHON_LIBDIR}/compileall.py \
-		-d ${CODEGENDIR} -f ${CODEGENDIR:S;${PREFIX}/;;} && \
+		-d ${CODEGENDIR:S;${FAKE_DESTDIR};;} -f ${CODEGENDIR:S;${PREFIX}/;;} && \
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-d ${CODEGENDIR} -f ${CODEGENDIR:S;${PREFIX}/;;})
+		-d ${CODEGENDIR:S;${FAKE_DESTDIR};;} -f ${CODEGENDIR:S;${PREFIX}/;;})
 	# install bash completion regardless if bash is present
 	@${MKDIR} ${PREFIX}/share/bash-completion/completions
 .for file in gapplication gdbus gio gresource gsettings
