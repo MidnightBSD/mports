@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python interface to (lib)inotify
+WWW=		https://github.com/seb-m/pyinotify
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -14,7 +15,5 @@ LIB_DEPENDS=	libinotify.so:devel/libinotify
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
-
-NO_ARCH=	yes
 
 .include <bsd.port.mk>
