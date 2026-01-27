@@ -1,5 +1,5 @@
 PORTNAME=	makemkv
-DISTVERSION=	1.17.6
+DISTVERSION=	1.17.7
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.makemkv.com/download/:makemkv \
 		http://www.makemkv.com/download/old/:makemkv \
@@ -27,7 +27,7 @@ LICENSE_DISTFILES_lgpl2.1+ =	${DISTFL_FFMPEG}
 LICENSE_DISTFILES_MAKEMKV=	${DISTFL_MAKEMKV}
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386
-USES=		gmake linux pkgconfig
+USES=		gmake linux:c7 pkgconfig
 USE_CSTD=	c11
 USE_CXXSTD=	c++11
 USE_LINUX=	base expat \
@@ -49,7 +49,7 @@ SUB_LIST=	LINUXBASE=${LINUXBASE}
 PLIST_SUB=	LINUXBASE=${LINUXBASE}
 
 FDKAACVERSION=	2.0.3
-FFMPEGVERSION=	6.1.1
+FFMPEGVERSION=	6.1.2
 
 DISTFL_MAKEMKV=	makemkv-oss-${DISTVERSION}.tar.gz \
 		makemkv-bin-${DISTVERSION}.tar.gz
@@ -65,7 +65,7 @@ TARGET_ORDER_OVERRIDE=	290:pre-configure-FDK_AAC-on
 CC=		${LINUXBASE}/bin/gcc
 CXX=		${LINUXBASE}/bin/g++
 CPPFLAGS+=	-D_linux_ -DFORCE_OPENSSL_NO_EC \
-		${${OSVERSION}<1300000:?-Dcaddr_t=void\* -D__daddr_t_defined:}
+		${${OSVERSION}<400000:?-Dcaddr_t=void\* -D__daddr_t_defined:}
 PATCHELF_CMD?=	${LOCALBASE}/bin/patchelf
 LINUXSYSROOT=	${WRKDIR}/gnuroot
 HAS_CONFIGURE=	yes
@@ -116,9 +116,9 @@ post-install:
 		${MKDIR} tmp; \
 		${ECHO_CMD} accepted > tmp/eula_accepted; \
 		${MAKE_CMD} DESTDIR=${FAKE_DESTDIR} PREFIX=${TRUE_PREFIX} install
-		${PATCHELF_CMD} --set-rpath ${PREFIX}/lib/makemkv \
+		${PATCHELF_CMD} --set-rpath ${TRUE_PREFIX}/lib/makemkv \
 			${PREFIX}/bin/makemkvcon
-		${REINPLACE_CMD} -e 's:/sys/bus/scsi:/etc/makemkv/:' \
+		${REINPLACE_CMD} -i "" -e 's:/sys/bus/scsi:/etc/makemkv/:' \
 			${PREFIX}/bin/makemkvcon
 		${BRANDELF} -t Linux ${PREFIX}/bin/makemkvcon
 		${INSTALL_SCRIPT} ${WRKDIR}/update-makemkv-drives \
