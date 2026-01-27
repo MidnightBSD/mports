@@ -65,18 +65,20 @@ pre-fake:
 #	${LN} -sf gem${RUBY_VER_SHORT} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/gem
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${GEMS_BASE_DIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${GEMS_BASE_DIR}/build_info
-	${MKDIR} ${STAGEDIR}${PREFIX}/${CACHE_DIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${DOC_DIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${EXT_DIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${GEMS_DIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${PLUGINS_DIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${SPEC_DIR}
+	${MKDIR} ${PREFIX}/${GEMS_BASE_DIR}
+	${MKDIR} ${PREFIX}/${GEMS_BASE_DIR}/build_info
+	${MKDIR} ${PREFIX}/${CACHE_DIR}
+	${MKDIR} ${PREFIX}/${DOC_DIR}
+	${MKDIR} ${PREFIX}/${EXT_DIR}
+	${MKDIR} ${PREFIX}/${GEMS_DIR}
+	${MKDIR} ${PREFIX}/${PLUGINS_DIR}
+	${MKDIR} ${PREFIX}/${SPEC_DIR}
 	cd ${WRKSRC}/ && ${SETENV} ${GEMS_ENV} ${RUBY} ${RUBY_SETUP} ${RUBY_SETUP_OPTIONS}
 	${INSTALL_SCRIPT} ${WRKSRC}/exe/gem ${PREFIX}/bin/gem
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/gem
-	${RM} ${PREFIX}/bin/gem.bak
+	${RM} ${PREFIX}/bin/gem.bak ${PREFIX}/lib/ruby/site_ruby/${RUBY_VER_SHORT}/rubygems/platform.rb.orig
+	${RM} ${FAKE_DESTDIR}${RUBY}
+	-${RM} ${FAKE_DESTDIR}${FAKE_DESTDIR}/${TRUE_PREFIX}/bin/gem
 
 
 # Find all RDOC and RI files
