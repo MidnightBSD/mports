@@ -53,6 +53,7 @@
     SUBDIR += libetpan
     SUBDIR += libmilter
     SUBDIR += libspf2
+    SUBDIR += libtlsrpt
     SUBDIR += mailman
     SUBDIR += mailman-postfix
     SUBDIR += mailman3
