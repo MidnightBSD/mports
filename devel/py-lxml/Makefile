@@ -1,5 +1,5 @@
 PORTNAME=	lxml
-PORTVERSION=	4.9.3
+DISTVERSION=	6.0.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,9 +12,12 @@ WWW=		https://lxml.de/ \
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
-USES=		compiler cpe gnome python uniquefiles:dirs
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		compiler cpe gnome python
 USE_GNOME=	libxml2 libxslt
-USE_PYTHON=	autoplist concurrent cython distutils
+USE_PYTHON=	autoplist concurrent cython pep517
 
 LDFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib
 
@@ -22,10 +25,6 @@ DOCS_FILES=	CHANGES.txt CREDITS.txt TODO.txt README.rst
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
-
-# needed for test to work
-PYDISTUTILS_BUILD_TARGET=	build_ext
-PYDISTUTILS_BUILDARGS=		--inplace
 
 # force regeneration of cython files
 post-extract:
