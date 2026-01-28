@@ -1,6 +1,6 @@
 PORTNAME=	ca_root_nss
 PORTVERSION=	${VERSION_NSS}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/nss/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 DISTNAME=	nss-${VERSION_NSS}${NSS_SUFFIX}
@@ -31,14 +31,16 @@ ETCSYMLINK_CONFLICTS_INSTALL=	ca-roots-[0-9]*
 CERTDIR?=	share/certs
 PLIST_SUB+=	CERTDIR=${CERTDIR}
 
-VERSION_NSS=	3.108
+VERSION_NSS=	3.117
 CERTDATA_TXT_PATH=	lib/ckfw/builtins/certdata.txt
 BUNDLE_PROCESSOR=	MAca-bundle.pl
 
-SUB_FILES=	MAca-bundle.pl pkg-message
-SUB_LIST=	VERSION_NSS=${VERSION_NSS}
+CERTCTL_CMD?=	/usr/sbin/certctl
 
-do-build: apply-slist
+SUB_FILES=	MAca-bundle.pl pkg-deinstall pkg-install pkg-message
+SUB_LIST=	CERTCTL_CMD=${CERTCTL_CMD} VERSION_NSS=${VERSION_NSS}
+
+do-build:
 	@${SETENV} PATH=${LOCALBASE}/bin:$${PATH} \
 		${PERL} ${WRKDIR}/${BUNDLE_PROCESSOR} \
 	    < ${WRKSRC}/${CERTDATA_TXT_PATH} > \
