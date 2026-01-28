@@ -14,7 +14,6 @@
 %%DATADIR%%/mods/sethome/locale/sethome.ru.tr
 %%DATADIR%%/mods/sethome/locale/sethome.it.tr
 %%DATADIR%%/mods/sethome/locale/sethome.fr.tr
-%%DATADIR%%/mods/sethome/locale/sethome.se.tr
 %%DATADIR%%/mods/sethome/README.txt
 %%DATADIR%%/mods/stairs/mod.conf
 %%DATADIR%%/mods/stairs/textures/stairs_obsidian_glass_outer_stairside.png
@@ -25,7 +24,6 @@
 %%DATADIR%%/mods/stairs/textures/stairs_glass_outer_stairside.png
 %%DATADIR%%/mods/stairs/locale/stairs.pt_BR.tr
 %%DATADIR%%/mods/stairs/locale/stairs.id.tr
-%%DATADIR%%/mods/stairs/locale/stairs.se.tr
 %%DATADIR%%/mods/stairs/locale/stairs.fr.tr
 %%DATADIR%%/mods/stairs/locale/stairs.it.tr
 %%DATADIR%%/mods/stairs/locale/stairs.ru.tr
@@ -50,7 +48,6 @@
 %%DATADIR%%/mods/fireflies/locale/fireflies.fr.tr
 %%DATADIR%%/mods/fireflies/locale/fireflies.jbo.tr
 %%DATADIR%%/mods/fireflies/locale/fireflies.zh_CN.tr
-%%DATADIR%%/mods/fireflies/locale/fireflies.se.tr
 %%DATADIR%%/mods/fireflies/locale/fireflies.zh_TW.tr
 %%DATADIR%%/mods/fireflies/locale/fireflies.it.tr
 %%DATADIR%%/mods/fireflies/locale/fireflies.ru.tr
@@ -75,7 +72,6 @@
 %%DATADIR%%/mods/bucket/locale/bucket.it.tr
 %%DATADIR%%/mods/bucket/locale/bucket.zh_TW.tr
 %%DATADIR%%/mods/bucket/locale/bucket.fr.tr
-%%DATADIR%%/mods/bucket/locale/bucket.se.tr
 %%DATADIR%%/mods/bucket/locale/bucket.es.tr
 %%DATADIR%%/mods/bucket/locale/bucket.pt_BR.tr
 %%DATADIR%%/mods/bucket/locale/bucket.jbo.tr
@@ -96,7 +92,6 @@
 %%DATADIR%%/mods/bones/locale/bones.it.tr
 %%DATADIR%%/mods/bones/locale/bones.ru.tr
 %%DATADIR%%/mods/bones/locale/bones.fr.tr
-%%DATADIR%%/mods/bones/locale/bones.se.tr
 %%DATADIR%%/mods/bones/locale/bones.zh_TW.tr
 %%DATADIR%%/mods/bones/locale/bones.zh_CN.tr
 %%DATADIR%%/mods/bones/locale/bones.es.tr
@@ -119,7 +114,6 @@
 %%DATADIR%%/mods/map/locale/map.zh_TW.tr
 %%DATADIR%%/mods/map/locale/map.jbo.tr
 %%DATADIR%%/mods/map/locale/map.zh_CN.tr
-%%DATADIR%%/mods/map/locale/map.se.tr
 %%DATADIR%%/mods/map/locale/map.fr.tr
 %%DATADIR%%/mods/map/locale/map.ru.tr
 %%DATADIR%%/mods/map/locale/map.it.tr
@@ -166,17 +160,12 @@
 %%DATADIR%%/mods/doors/mod.conf
 %%DATADIR%%/mods/doors/init.lua
 %%DATADIR%%/mods/doors/README.txt
-%%DATADIR%%/mods/doors/models/door_a2.obj
-%%DATADIR%%/mods/doors/models/door_a.obj
-%%DATADIR%%/mods/doors/models/door_b2.obj
-%%DATADIR%%/mods/doors/models/door_b.obj
 %%DATADIR%%/mods/doors/models/doors_fencegate_closed.obj
 %%DATADIR%%/mods/doors/models/doors_fencegate_open.obj
 %%DATADIR%%/mods/doors/locale/doors.pt_BR.tr
 %%DATADIR%%/mods/doors/locale/doors.it.tr
 %%DATADIR%%/mods/doors/locale/doors.ru.tr
 %%DATADIR%%/mods/doors/locale/doors.fr.tr
-%%DATADIR%%/mods/doors/locale/doors.se.tr
 %%DATADIR%%/mods/doors/locale/doors.id.tr
 %%DATADIR%%/mods/doors/locale/doors.zh_CN.tr
 %%DATADIR%%/mods/doors/locale/doors.de.tr
@@ -197,7 +186,6 @@
 %%DATADIR%%/mods/butterflies/license.txt
 %%DATADIR%%/mods/butterflies/locale/butterflies.ru.tr
 %%DATADIR%%/mods/butterflies/locale/butterflies.it.tr
-%%DATADIR%%/mods/butterflies/locale/butterflies.se.tr
 %%DATADIR%%/mods/butterflies/locale/butterflies.fr.tr
 %%DATADIR%%/mods/butterflies/locale/butterflies.pt_BR.tr
 %%DATADIR%%/mods/butterflies/locale/butterflies.id.tr
@@ -240,7 +228,6 @@
 %%DATADIR%%/mods/flowers/locale/flowers.ru.tr
 %%DATADIR%%/mods/flowers/locale/template.txt
 %%DATADIR%%/mods/flowers/locale/flowers.fr.tr
-%%DATADIR%%/mods/flowers/locale/flowers.se.tr
 %%DATADIR%%/mods/creative/README.txt
 %%DATADIR%%/mods/creative/init.lua
 %%DATADIR%%/mods/creative/license.txt
@@ -258,7 +245,6 @@
 %%DATADIR%%/mods/creative/locale/creative.ru.tr
 %%DATADIR%%/mods/creative/locale/creative.it.tr
 %%DATADIR%%/mods/creative/locale/creative.fr.tr
-%%DATADIR%%/mods/creative/locale/creative.se.tr
 %%DATADIR%%/mods/creative/textures/creative_clear_icon.png
 %%DATADIR%%/mods/creative/textures/creative_prev_icon.png
 %%DATADIR%%/mods/creative/textures/creative_trash_icon.png
@@ -268,7 +254,6 @@
 %%DATADIR%%/mods/binoculars/mod.conf
 %%DATADIR%%/mods/binoculars/locale/template.txt
 %%DATADIR%%/mods/binoculars/locale/binoculars.fr.tr
-%%DATADIR%%/mods/binoculars/locale/binoculars.se.tr
 %%DATADIR%%/mods/binoculars/locale/binoculars.pt_BR.tr
 %%DATADIR%%/mods/binoculars/locale/binoculars.ru.tr
 %%DATADIR%%/mods/binoculars/locale/binoculars.it.tr
@@ -297,7 +282,6 @@
 %%DATADIR%%/mods/boats/locale/boats.it.tr
 %%DATADIR%%/mods/boats/locale/boats.ru.tr
 %%DATADIR%%/mods/boats/locale/boats.fr.tr
-%%DATADIR%%/mods/boats/locale/boats.se.tr
 %%DATADIR%%/mods/boats/locale/template.txt
 %%DATADIR%%/mods/boats/locale/boats.pt_BR.tr
 %%DATADIR%%/mods/boats/locale/boats.es.tr
@@ -316,7 +300,6 @@
 %%DATADIR%%/mods/wool/locale/wool.it.tr
 %%DATADIR%%/mods/wool/locale/wool.ru.tr
 %%DATADIR%%/mods/wool/locale/wool.fr.tr
-%%DATADIR%%/mods/wool/locale/wool.se.tr
 %%DATADIR%%/mods/wool/locale/wool.id.tr
 %%DATADIR%%/mods/wool/locale/wool.zh_TW.tr
 %%DATADIR%%/mods/wool/locale/wool.zh_CN.tr
@@ -338,7 +321,6 @@
 %%DATADIR%%/mods/wool/textures/wool_green.png
 %%DATADIR%%/mods/wool/textures/wool_yellow.png
 %%DATADIR%%/mods/wool/textures/wool_dark_grey.png
-%%DATADIR%%/mods/farming/locale/farming.se.tr
 %%DATADIR%%/mods/farming/locale/farming.fr.tr
 %%DATADIR%%/mods/farming/locale/farming.ru.tr
 %%DATADIR%%/mods/farming/locale/farming.it.tr
@@ -414,7 +396,6 @@
 %%DATADIR%%/mods/vessels/locale/vessels.pt_BR.tr
 %%DATADIR%%/mods/vessels/locale/vessels.it.tr
 %%DATADIR%%/mods/vessels/locale/vessels.ru.tr
-%%DATADIR%%/mods/vessels/locale/vessels.se.tr
 %%DATADIR%%/mods/vessels/locale/vessels.fr.tr
 %%DATADIR%%/mods/vessels/locale/vessels.zh_TW.tr
 %%DATADIR%%/mods/vessels/locale/vessels.jbo.tr
@@ -457,7 +438,6 @@
 %%DATADIR%%/mods/walls/locale/walls.ru.tr
 %%DATADIR%%/mods/walls/locale/walls.it.tr
 %%DATADIR%%/mods/walls/locale/walls.fr.tr
-%%DATADIR%%/mods/walls/locale/walls.se.tr
 %%DATADIR%%/mods/walls/locale/walls.zh_CN.tr
 %%DATADIR%%/mods/walls/locale/walls.jbo.tr
 %%DATADIR%%/mods/walls/locale/template.txt
@@ -471,7 +451,6 @@
 %%DATADIR%%/mods/game_commands/README.txt
 %%DATADIR%%/mods/game_commands/locale/game_commands.ru.tr
 %%DATADIR%%/mods/game_commands/locale/game_commands.it.tr
-%%DATADIR%%/mods/game_commands/locale/game_commands.se.tr
 %%DATADIR%%/mods/game_commands/locale/game_commands.fr.tr
 %%DATADIR%%/mods/game_commands/locale/template.txt
 %%DATADIR%%/mods/game_commands/locale/game_commands.id.tr
@@ -492,7 +471,6 @@
 %%DATADIR%%/mods/screwdriver/locale/screwdriver.zh_TW.tr
 %%DATADIR%%/mods/screwdriver/locale/screwdriver.it.tr
 %%DATADIR%%/mods/screwdriver/locale/screwdriver.ru.tr
-%%DATADIR%%/mods/screwdriver/locale/screwdriver.se.tr
 %%DATADIR%%/mods/screwdriver/locale/screwdriver.fr.tr
 %%DATADIR%%/mods/screwdriver/locale/screwdriver.es.tr
 %%DATADIR%%/mods/screwdriver/locale/screwdriver.jbo.tr
@@ -520,7 +498,6 @@
 %%DATADIR%%/mods/sfinv/locale/template.txt
 %%DATADIR%%/mods/sfinv/locale/sfinv.it.tr
 %%DATADIR%%/mods/sfinv/locale/sfinv.ru.tr
-%%DATADIR%%/mods/sfinv/locale/sfinv.se.tr
 %%DATADIR%%/mods/sfinv/locale/sfinv.fr.tr
 %%DATADIR%%/mods/sfinv/locale/sfinv.pt_BR.tr
 %%DATADIR%%/mods/sfinv/locale/sfinv.jbo.tr
@@ -544,7 +521,6 @@
 %%DATADIR%%/mods/fire/locale/fire.it.tr
 %%DATADIR%%/mods/fire/locale/fire.ru.tr
 %%DATADIR%%/mods/fire/locale/fire.zh_CN.tr
-%%DATADIR%%/mods/fire/locale/fire.se.tr
 %%DATADIR%%/mods/fire/locale/fire.jbo.tr
 %%DATADIR%%/mods/fire/locale/fire.zh_TW.tr
 %%DATADIR%%/mods/fire/locale/fire.fr.tr
@@ -609,7 +585,6 @@
 %%DATADIR%%/mods/default/sounds/default_dirt_footstep.2.ogg
 %%DATADIR%%/mods/default/sounds/default_sand_footstep.1.ogg
 %%DATADIR%%/mods/default/sounds/default_hard_footstep.1.ogg
-%%DATADIR%%/mods/default/sounds/default_water_footstep.4.ogg
 %%DATADIR%%/mods/default/sounds/default_water_footstep.3.ogg
 %%DATADIR%%/mods/default/sounds/default_grass_footstep.1.ogg
 %%DATADIR%%/mods/default/sounds/default_tool_breaks.1.ogg
@@ -732,7 +707,6 @@
 %%DATADIR%%/mods/default/textures/default_mese_post_light_side_dark.png
 %%DATADIR%%/mods/default/textures/default_large_cactus_seedling.png
 %%DATADIR%%/mods/default/textures/default_furnace_fire_fg.png
-%%DATADIR%%/mods/default/textures/default_key.png
 %%DATADIR%%/mods/default/textures/default_coniferous_litter.png
 %%DATADIR%%/mods/default/textures/default_copper_lump.png
 %%DATADIR%%/mods/default/textures/default_clay_brick.png
@@ -760,7 +734,6 @@
 %%DATADIR%%/mods/default/textures/default_silver_sand.png
 %%DATADIR%%/mods/default/textures/gui_hb_bg.png
 %%DATADIR%%/mods/default/textures/default_stone_brick.png
-%%DATADIR%%/mods/default/textures/default_key_skeleton.png
 %%DATADIR%%/mods/default/textures/default_cactus_top.png
 %%DATADIR%%/mods/default/textures/default_grass_side.png
 %%DATADIR%%/mods/default/textures/default_mese_crystal_fragment.png
@@ -931,7 +904,6 @@
 %%DATADIR%%/mods/default/locale/default.id.tr
 %%DATADIR%%/mods/default/locale/default.pt_BR.tr
 %%DATADIR%%/mods/default/locale/default.fr.tr
-%%DATADIR%%/mods/default/locale/default.se.tr
 %%DATADIR%%/mods/default/locale/default.it.tr
 %%DATADIR%%/mods/default/locale/default.ru.tr
 %%DATADIR%%/mods/default/locale/default.zh_CN.tr
@@ -981,7 +953,6 @@
 %%DATADIR%%/mods/carts/locale/carts.es.tr
 %%DATADIR%%/mods/carts/locale/carts.zh_TW.tr
 %%DATADIR%%/mods/carts/locale/carts.zh_CN.tr
-%%DATADIR%%/mods/carts/locale/carts.se.tr
 %%DATADIR%%/mods/carts/locale/carts.fr.tr
 %%DATADIR%%/mods/carts/locale/carts.jbo.tr
 %%DATADIR%%/mods/carts/locale/carts.ru.tr
@@ -1007,12 +978,10 @@
 %%DATADIR%%/mods/beds/textures/beds_bed_side_top.png
 %%DATADIR%%/mods/beds/textures/beds_bed_top1.png
 %%DATADIR%%/mods/beds/textures/beds_bed.png
-%%DATADIR%%/mods/beds/textures/beds_transparent.png
 %%DATADIR%%/mods/beds/init.lua
 %%DATADIR%%/mods/beds/locale/beds.ru.tr
 %%DATADIR%%/mods/beds/locale/beds.it.tr
 %%DATADIR%%/mods/beds/locale/beds.fr.tr
-%%DATADIR%%/mods/beds/locale/beds.se.tr
 %%DATADIR%%/mods/beds/locale/beds.id.tr
 %%DATADIR%%/mods/beds/locale/beds.zh_TW.tr
 %%DATADIR%%/mods/beds/locale/beds.jbo.tr
@@ -1034,7 +1003,6 @@
 %%DATADIR%%/mods/xpanes/locale/xpanes.pt_BR.tr
 %%DATADIR%%/mods/xpanes/locale/template.txt
 %%DATADIR%%/mods/xpanes/locale/xpanes.fr.tr
-%%DATADIR%%/mods/xpanes/locale/xpanes.se.tr
 %%DATADIR%%/mods/xpanes/locale/xpanes.ru.tr
 %%DATADIR%%/mods/xpanes/locale/xpanes.it.tr
 %%DATADIR%%/mods/xpanes/locale/xpanes.zh_TW.tr
@@ -1072,7 +1040,6 @@
 %%DATADIR%%/mods/tnt/locale/tnt.it.tr
 %%DATADIR%%/mods/tnt/locale/template.txt
 %%DATADIR%%/mods/tnt/locale/tnt.fr.tr
-%%DATADIR%%/mods/tnt/locale/tnt.se.tr
 %%DATADIR%%/mods/tnt/locale/tnt.id.tr
 %%DATADIR%%/mods/tnt/mod.conf
 %%DATADIR%%/mods/tnt/README.txt
@@ -1113,7 +1080,6 @@
 %%DATADIR%%/mods/dye/locale/dye.it.tr
 %%DATADIR%%/mods/dye/locale/dye.ru.tr
 %%DATADIR%%/mods/dye/locale/template.txt
-%%DATADIR%%/mods/dye/locale/dye.se.tr
 %%DATADIR%%/mods/dye/locale/dye.fr.tr
 %%DATADIR%%/mods/dye/locale/dye.pt_BR.tr
 %%DATADIR%%/mods/dye/locale/dye.id.tr
