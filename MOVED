@@ -599,3 +599,4 @@ lang/rust186|lang/rust|2026-01-16|Migrated and updated rust port
 devcpu-data-amd|cpu-microcode-amd|2026-01-19|reorganized cpu microcode 
 devcpu-data-intel|cpu-microcode-intel|2026-01-19|reorganized cpu microcode 
 lang/ruby31|lang/ruby32|2026-01-27|ruby 3.1 is EOL, move to 3.2
+security/openssl31|security/openssl36|2026-01-27|openssl 3.1 is eol. move to 3.6
