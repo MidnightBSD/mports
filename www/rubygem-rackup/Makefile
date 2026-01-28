@@ -1,5 +1,5 @@
 PORTNAME=	rackup
-PORTVERSION=	2.2.1
+PORTVERSION=	2.3.1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -10,7 +10,7 @@ WWW=		https://github.com/rack/rackup
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
-RUN_DEPENDS=	rubygem-rack>=3,3:www/rubygem-rack
+RUN_DEPENDS=	rubygem-rack>=3:www/rubygem-rack
 
 USES=		gem
 
