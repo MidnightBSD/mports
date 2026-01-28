@@ -88,6 +88,7 @@
     SUBDIR += libmediainfo
     SUBDIR += libmpeg2
     SUBDIR += libmtp
+    SUBDIR += librespot
     SUBDIR += librist
     SUBDIR += libtheora
     SUBDIR += libuvc
