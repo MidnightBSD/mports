@@ -43,6 +43,7 @@
     SUBDIR += firefox-freebsd
     SUBDIR += furl
     SUBDIR += gitea
+    SUBDIR += gitlab
     SUBDIR += glassfish
     SUBDIR += glassfish4
     SUBDIR += gnome-user-share
@@ -333,12 +334,14 @@
     SUBDIR += qt6-webview
     SUBDIR += raphael
     SUBDIR += rubygem-actionpack4
+    SUBDIR += rubygem-activeresource4
     SUBDIR += rubygem-addressable
     SUBDIR += rubygem-cgi
     SUBDIR += rubygem-crass
     SUBDIR += rubygem-erubis
     SUBDIR += rubygem-hpricot
     SUBDIR += rubygem-httpclient
+    SUBDIR += rubygem-jquery-rails
     SUBDIR += rubygem-rack
     SUBDIR += rubygem-rack-accept
     SUBDIR += rubygem-rack-attack
@@ -346,6 +349,11 @@
     SUBDIR += rubygem-rack-contrib
     SUBDIR += rubygem-rack-cors
     SUBDIR += rubygem-rack-mount
+    SUBDIR += rubygem-rack-openid
+    SUBDIR += rubygem-rack-protection
+    SUBDIR += rubygem-rack-protection1
+    SUBDIR += rubygem-rack-protection2
+    SUBDIR += rubygem-rack-protection3
     SUBDIR += rubygem-rack-proxy
     SUBDIR += rubygem-rack-session
     SUBDIR += rubygem-rack-session10
@@ -357,6 +365,11 @@
     SUBDIR += rubygem-rack_csrf
     SUBDIR += rubygem-rackup
     SUBDIR += rubygem-rackup10
+    SUBDIR += rubygem-rails4
+    SUBDIR += rubygem-railties4
+    SUBDIR += rubygem-turbolinks
+    SUBDIR += rubygem-turbolinks-source
+    SUBDIR += rubygem-uglifier
     SUBDIR += rubygem-webrick
     SUBDIR += serf
     SUBDIR += sitecopy
