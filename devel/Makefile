@@ -1774,6 +1774,7 @@
     SUBDIR += rubygem-activesupport5
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-binding_of_caller
+    SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
     SUBDIR += rubygem-cairo-gobject
     SUBDIR += rubygem-concurrent-ruby
@@ -1782,6 +1783,7 @@
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-drb
+    SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-fiddle
     SUBDIR += rubygem-getoptlong
@@ -1794,6 +1796,7 @@
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-launchy2
     SUBDIR += rubygem-logger
+    SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-mini_portile2
     SUBDIR += rubygem-minitest
     SUBDIR += rubygem-msgpack
@@ -1807,6 +1810,7 @@
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-racc
     SUBDIR += rubygem-rails-deprecated_sanitizer
+    SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rake
     SUBDIR += rubygem-rdoc
     SUBDIR += rubygem-rspec
@@ -1826,6 +1830,7 @@
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo-data
     SUBDIR += rubygem-tzinfo1
+    SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-yajl-ruby
     SUBDIR += rubygem-zentest
     SUBDIR += rust-analyzer
