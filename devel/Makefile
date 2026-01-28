@@ -4,6 +4,7 @@
     SUBDIR += R-cran-BH
     SUBDIR += R-cran-Defaults
     SUBDIR += R-cran-Hmisc
+    SUBDIR += R-cran-ModelMetrics
     SUBDIR += R-cran-R.cache
     SUBDIR += R-cran-R.methodsS3
     SUBDIR += R-cran-R.oo
@@ -11,6 +12,7 @@
     SUBDIR += R-cran-R6
     SUBDIR += R-cran-RUnit
     SUBDIR += R-cran-Rcpp
+    SUBDIR += R-cran-RcppProgress
     SUBDIR += R-cran-S7
     SUBDIR += R-cran-abind
     SUBDIR += R-cran-bindr
@@ -1772,6 +1774,7 @@
     SUBDIR += rubygem-activejob4
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport5
+    SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
@@ -1784,6 +1787,7 @@
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-drb
     SUBDIR += rubygem-equalizer
+    SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-fiddle
     SUBDIR += rubygem-getoptlong
@@ -1804,6 +1808,7 @@
     SUBDIR += rubygem-mustache
     SUBDIR += rubygem-mutex_m
     SUBDIR += rubygem-native-package-installer
+    SUBDIR += rubygem-naught
     SUBDIR += rubygem-nori
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-ostruct
@@ -1819,7 +1824,11 @@
     SUBDIR += rubygem-rspec-mocks
     SUBDIR += rubygem-rspec-support
     SUBDIR += rubygem-rubyinline
+    SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
+    SUBDIR += rubygem-spring
+    SUBDIR += rubygem-sprockets3
+    SUBDIR += rubygem-sprockets-rails-rails4
     SUBDIR += rubygem-stringio
     SUBDIR += rubygem-strptime
     SUBDIR += rubygem-svn2git
