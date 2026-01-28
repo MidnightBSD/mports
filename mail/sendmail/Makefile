@@ -188,7 +188,7 @@ do-configure:
 	  ${FALSE}; \
 	  fi)
 .endif
-	${REINPLACE_CMD} ${SED_SCRIPT} ${WRKSRC}/devtools/OS/FreeBSD
+	${REINPLACE_CMD} -i "" ${SED_SCRIPT} ${WRKSRC}/devtools/OS/FreeBSD
 	${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
 		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
 		${SITE} > ${WCONF}/site.config.m4
@@ -260,7 +260,7 @@ pre-install:
 	 -e "s=\([ 	]\)/.*$$=\\1${SENDMAIL}=" \
 	 ${FILESDIR}/mailer.conf \
 	 > ${PREFIX}/etc/mail/mailer.conf.sendmail
-	${REINPLACE_CMD} -e "s|${FAKE_DESTDIR}||g" ${PREFIX}/etc/mail/mailer.conf.sendmail
+	${REINPLACE_CMD} -i "" -e "s|${FAKE_DESTDIR}||g" ${PREFIX}/etc/mail/mailer.conf.sendmail
 
 # We want mail.local and rmail for our system.
 # the build install catmans only, we have to fix this.
