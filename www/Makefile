@@ -340,8 +340,12 @@
     SUBDIR += rubygem-crass
     SUBDIR += rubygem-erubis
     SUBDIR += rubygem-hpricot
+    SUBDIR += rubygem-http
+    SUBDIR += rubygem-http-form_data
     SUBDIR += rubygem-httpclient
     SUBDIR += rubygem-jquery-rails
+    SUBDIR += rubygem-llhttp-ffi
+    SUBDIR += rubygem-multipart-post
     SUBDIR += rubygem-rack
     SUBDIR += rubygem-rack-accept
     SUBDIR += rubygem-rack-attack
