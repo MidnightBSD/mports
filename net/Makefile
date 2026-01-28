@@ -208,6 +208,8 @@
     SUBDIR += p5-XMLRPC-Lite
     SUBDIR += p5-perl-ldap
     SUBDIR += pear-Horde_Ldap
+    SUBDIR += pear-Horde_Rpc
+    SUBDIR += pear-Horde_Scribe
     SUBDIR += pear-Horde_Socket_Client
     SUBDIR += pear-Horde_Url
     SUBDIR += pear-Net_IPv4

@@ -10,6 +10,7 @@ WWW=		https://github.com/rack/rack-test
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE.txt
 
+BUILD_DEPENDS=	rubygem-rack>=1.3:www/rubygem-rack
 RUN_DEPENDS=	rubygem-rack>=1.3:www/rubygem-rack
 
 USES=		gem
