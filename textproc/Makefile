@@ -433,6 +433,7 @@
     SUBDIR += ripgrep
     SUBDIR += rubygem-asciidoctor
     SUBDIR += rubygem-diff-lcs
+    SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-loofah
     SUBDIR += rubygem-loofah222
     SUBDIR += rubygem-ltsv
@@ -445,6 +446,8 @@
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-rexml
     SUBDIR += rubygem-ronn
+    SUBDIR += rubygem-sass
+    SUBDIR += rubygem-sass-rails-rails4
     SUBDIR += sassc
     SUBDIR += scdoc
     SUBDIR += scim

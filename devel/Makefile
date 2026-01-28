@@ -1776,6 +1776,7 @@
     SUBDIR += rubygem-activesupport5
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-ast
+    SUBDIR += rubygem-attr_required
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
@@ -1804,6 +1805,7 @@
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
     SUBDIR += rubygem-json_pure
+    SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
     SUBDIR += rubygem-logger
     SUBDIR += rubygem-memoizable
@@ -1824,6 +1826,7 @@
     SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rake
     SUBDIR += rubygem-rdoc
+    SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rspec
     SUBDIR += rubygem-rspec-core
     SUBDIR += rubygem-rspec-expectations
