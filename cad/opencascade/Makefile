@@ -145,7 +145,7 @@ DOXYGEN_RUN_DEPENDS=	${LOCALBASE}/www/MathJax/MathJax.js:www/mathjax
 DOXYGEN_CMAKE_ON=	-DBUILD_DOC_Overview:BOOL=ON	\
 			-DINSTALL_DOC_Overview:BOOL=ON
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == mips || ${ARCH} == powerpc || ${ARCH} == powerpcspe || ${ARCH} == "i386"
 BITS=	32
