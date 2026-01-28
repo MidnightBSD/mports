@@ -1,5 +1,5 @@
 PORTNAME=	gnutls
-DISTVERSION=	3.8.9
+DISTVERSION=	3.8.10
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/${PORTNAME}/v${DISTVERSION:C/(\.[^.]*).*/\1/}
 
@@ -16,7 +16,7 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 		libunistring.so:devel/libunistring
 
 USES=		compiler:c11 cpe gmake iconv libtool localbase makeinfo \
-		pkgconfig tar:xz
+		pathfix pkgconfig tar:xz
 CPE_VENDOR=	gnu
 USE_LDCONFIG=	yes
 
