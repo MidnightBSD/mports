@@ -1,7 +1,10 @@
 PORTNAME=	gnutls
-DISTVERSION=	3.8.10
+DISTVERSION=	3.8.11
 CATEGORIES=	security net
-MASTER_SITES=	GNUPG/${PORTNAME}/v${DISTVERSION:C/(\.[^.]*).*/\1/}
+MASTER_SITES=	GNUPG/${PORTNAME}/v${DISTVERSION:C/(\.[^.]*).*/\1/} \
+		https://gitlab.com/gnutls/gnutls/-/raw/${DISTVERSION}/tests/:test
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ktls_utils.h:test
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
@@ -10,10 +13,12 @@ WWW=		https://gnutls.org/
 LICENSE=	gpl3+ lgpl2.1+
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libgmp.so:math/gmp \
+LIB_DEPENDS=	libbrotlienc.so:archivers/brotli \
+		libgmp.so:math/gmp \
 		libnettle.so:security/nettle \
 		libtasn1.so:security/libtasn1 \
-		libunistring.so:devel/libunistring
+		libunistring.so:devel/libunistring \
+		libzstd.so:archivers/zstd
 
 USES=		compiler:c11 cpe gmake iconv libtool localbase makeinfo \
 		pathfix pkgconfig tar:xz
@@ -29,11 +34,11 @@ CONFIGURE_ARGS=	--disable-rpath \
 		--enable-openssl-compatibility \
 		--with-default-trust-store-dir=/etc/ssl/certs \
 		--with-system-priority-file=${PREFIX}/etc/gnutls/config \
-		--without-brotli \
+		--with-brotli \
 		--without-included-libtasn1 \
 		--without-tpm \
 		--without-tpm2 \
-		--without-zstd
+		--with-zstd
 
 MAKE_ENV=	MAKEINFOFLAGS=--no-split
 INSTALL_TARGET=	install-strip
@@ -45,11 +50,12 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION:C/(\.[^.]*\.[^.]*).*/\1/}
 
 INFO=		gnutls
 
-OPTIONS_DEFINE=		DANE EXAMPLES IDN MAN3 NLS P11KIT SRP
-OPTIONS_DEFAULT=	IDN MAN3 P11KIT
+OPTIONS_DEFINE=		DANE EXAMPLES IDN KTLS MAN3 NLS P11KIT SRP
+OPTIONS_DEFAULT=	IDN KTLS MAN3 P11KIT
 OPTIONS_SUB=		yes
 
 DANE_DESC=		Certificate verification via DNSSEC
+KTLS_DESC=		Enable support for in-kernel TLS
 MAN3_DESC=		Install API manpages (section 3)
 P11KIT_DESC=		PKCS\#11 and p11-kit support
 SRP_DESC=		Secure Remote Password support
@@ -59,6 +65,8 @@ DANE_CONFIGURE_ENABLE=	libdane
 
 IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
 IDN_CONFIGURE_WITH=	idn
+
+KTLS_CONFIGURE_ENABLE=	ktls
 
 NLS_USES=		gettext
 NLS_CONFIGURE_OFF=	ac_cv_lib_intl_gettext=no
@@ -73,6 +81,7 @@ SRP_CONFIGURE_ENABLE=	srp-authentication
 .include <bsd.mport.options.mk>
 
 post-patch:
+	@${CP} -p ${DISTDIR}/ktls_utils.h ${WRKSRC}/tests/
 	@${RM} ${WRKSRC}/doc/*.info*
 	@${REINPLACE_CMD} 's,/usr/share,${PREFIX}/share,' \
 		${WRKSRC}/doc/manpages/*.[13]
