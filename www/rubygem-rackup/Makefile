@@ -10,6 +10,7 @@ WWW=		https://github.com/rack/rackup
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	rubygem-rack>=3:www/rubygem-rack
 RUN_DEPENDS=	rubygem-rack>=3:www/rubygem-rack
 
 USES=		gem
