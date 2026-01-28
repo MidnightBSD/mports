@@ -1779,7 +1779,11 @@
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
+    SUBDIR += rubygem-byebug
     SUBDIR += rubygem-cairo-gobject
+    SUBDIR += rubygem-coffee-rails41
+    SUBDIR += rubygem-coffee-script
+    SUBDIR += rubygem-coffee-script-source
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-cool.io
     SUBDIR += rubygem-csv
@@ -1788,6 +1792,7 @@
     SUBDIR += rubygem-drb
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
+    SUBDIR += rubygem-execjs
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-fiddle
     SUBDIR += rubygem-getoptlong
@@ -1796,6 +1801,7 @@
     SUBDIR += rubygem-gobject-introspection
     SUBDIR += rubygem-i18n
     SUBDIR += rubygem-iobuffer
+    SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-launchy2
