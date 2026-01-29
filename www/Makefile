@@ -404,6 +404,7 @@
     SUBDIR += rubygem-rackup10
     SUBDIR += rubygem-rails4
     SUBDIR += rubygem-railties4
+    SUBDIR += rubygem-swd
     SUBDIR += rubygem-turbolinks
     SUBDIR += rubygem-turbolinks-source
     SUBDIR += rubygem-uglifier
