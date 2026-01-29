@@ -1841,6 +1841,7 @@
     SUBDIR += rubygem-sprockets-rails-rails4
     SUBDIR += rubygem-stringio
     SUBDIR += rubygem-strptime
+    SUBDIR += rubygem-sumbur
     SUBDIR += rubygem-svn2git
     SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-thor
