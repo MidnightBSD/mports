@@ -1844,6 +1844,7 @@
     SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-thor
     SUBDIR += rubygem-thread_safe
+    SUBDIR += rubygem-timeliness
     SUBDIR += rubygem-timeout
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo-data
