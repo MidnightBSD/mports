@@ -246,6 +246,7 @@
     SUBDIR += rsyslog8
     SUBDIR += rubygem-bundler
     SUBDIR += rubygem-chef-winrm
+    SUBDIR += rubygem-chef-winrm-elevated
     SUBDIR += rubygem-fluent-mixin-plaintextformatter
     SUBDIR += rubygem-fluent-plugin-config-expander
     SUBDIR += rubygem-fluent-plugin-file-alternative
