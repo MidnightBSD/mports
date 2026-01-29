@@ -441,6 +441,7 @@
     SUBDIR += rubygem-nokogiri-diff
     SUBDIR += rubygem-psych
     SUBDIR += rubygem-rails-dom-testing
+    SUBDIR += rubygem-rails-dom-testing-rails-gitlab
     SUBDIR += rubygem-rails-dom-testing1
     SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rdiscount
