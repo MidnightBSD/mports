@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENCE.md
 
 RUN_DEPENDS=	rubygem-logger>=0:devel/rubygem-logger \
 		rubygem-mime-types-data>=3.2025.0507<4:misc/rubygem-mime-types-data
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
