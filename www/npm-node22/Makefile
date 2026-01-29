@@ -40,6 +40,6 @@ post-patch:
 do-install:
 	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/
 	${ECHO_CMD} 'python=${PYTHON_CMD}' > ${STAGEDIR}${PREFIX}/etc/npmrc
-	${PYTHON_CMD} -m compileall -d ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -f ${STAGEDIR}${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -o 0 -o 1
+	${PYTHON_CMD} -m compileall -d ${TRUE_PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -f ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -o 0 -o 1
 
 .include <bsd.port.mk>
