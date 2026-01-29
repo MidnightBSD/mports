@@ -1815,6 +1815,7 @@
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
     SUBDIR += rubygem-google-apis-storage_v1
+    SUBDIR += rubygem-google-apis-storage_v1-gitlab
     SUBDIR += rubygem-google-cloud-common
     SUBDIR += rubygem-google-iam-credentials
     SUBDIR += rubygem-google-iam-credentials-v1
