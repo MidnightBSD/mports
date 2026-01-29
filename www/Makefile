@@ -338,6 +338,7 @@
     SUBDIR += rubygem-addressable
     SUBDIR += rubygem-cgi
     SUBDIR += rubygem-crass
+    SUBDIR += rubygem-erubi
     SUBDIR += rubygem-erubis
     SUBDIR += rubygem-hpricot
     SUBDIR += rubygem-http
