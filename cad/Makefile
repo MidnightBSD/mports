@@ -7,6 +7,7 @@
     SUBDIR += fidocadj
     SUBDIR += gdsreader
     SUBDIR += ghdl
+    SUBDIR += graywolf
     SUBDIR += gtkwave
     SUBDIR += impact
     SUBDIR += iverilog
