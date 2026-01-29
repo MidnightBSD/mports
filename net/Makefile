@@ -281,6 +281,7 @@
     SUBDIR += rubygem-oauth-tty
     SUBDIR += rubygem-openid_connect
     SUBDIR += rubygem-serverengine
+    SUBDIR += rubygem-simple_oauth
     SUBDIR += rubygem-t
     SUBDIR += rubygem-train
     SUBDIR += rubygem-train-core
