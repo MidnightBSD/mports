@@ -1,0 +1,19 @@
+PORTNAME=	faraday-follow_redirects
+PORTVERSION=	0.5.0
+CATEGORIES=	www rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Faraday 2.x compatible extraction of FaradayMiddleware::FollowRedirects
+WWW=		https://github.com/tisba/faraday-follow-redirects
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+RUN_DEPENDS=	rubygem-faraday>=1<3:www/rubygem-faraday
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

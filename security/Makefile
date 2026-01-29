@@ -280,6 +280,10 @@
     SUBDIR += qgpgme
     SUBDIR += qtkeychain
     SUBDIR += rhash
+    SUBDIR += rubygem-googleauth
+    SUBDIR += rubygem-gssapi
+    SUBDIR += rubygem-rack-oauth2
+    SUBDIR += rubygem-rack-oauth2-gitlab
     SUBDIR += rustls-ffi
     SUBDIR += s2n-tls
     SUBDIR += seahorse
