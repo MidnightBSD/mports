@@ -85,6 +85,7 @@
     SUBDIR += p5-Gtk3
     SUBDIR += p5-Pango
     SUBDIR += p5-Tk
+    SUBDIR += p5-Tk-WaitBox
     SUBDIR += pango
     SUBDIR += pangomm
     SUBDIR += pangomm24
