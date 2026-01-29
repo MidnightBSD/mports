@@ -9,7 +9,8 @@ WWW=		https://github.com/seattlerb/image_science
 
 LICENSE=	mit
 
-RUN_DEPENDS=	rubygem-rubyinline>=3.9<4:devel/rubygem-rubyinline
+BUILD_DEPENDS=	rubygem-rubyinline>=3.9:devel/rubygem-rubyinline
+RUN_DEPENDS=	rubygem-rubyinline>=3.9:devel/rubygem-rubyinline
 
 USES=		gem
 
