@@ -1806,6 +1806,7 @@
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
+    SUBDIR += rubygem-google-api-client
     SUBDIR += rubygem-google-apis-admin_directory_v1
     SUBDIR += rubygem-google-apis-cloudkms_v1
     SUBDIR += rubygem-google-apis-cloudresourcemanager_v1
@@ -1814,6 +1815,10 @@
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
     SUBDIR += rubygem-google-apis-storage_v1
+    SUBDIR += rubygem-google-cloud-common
+    SUBDIR += rubygem-google-iam-credentials
+    SUBDIR += rubygem-google-iam-credentials-v1
+    SUBDIR += rubygem-google-iam-v1
     SUBDIR += rubygem-google-protobuf
     SUBDIR += rubygem-google-protobuf3
     SUBDIR += rubygem-google-logging-utils
