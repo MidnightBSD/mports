@@ -31,7 +31,7 @@ makeplist:
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
-		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^share/licenses|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
+		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/^extra:[ \t]//' | ${EGREP} -v "^share/licenses|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
 		for file in $$new; do \
 			if [ ! -L $$file ] && [ -d $$file ]; then \
 				tree=`${FIND} -d $$file -type f -or -type d -or -type l `; \
@@ -58,11 +58,10 @@ makeplist:
 		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dir :' >> ${GENPLIST};
 .	endif
 
-
 .	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
 		@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST}
 		@cd ${FAKE_DESTDIR}${LINUXBASE_REL}; directoriess=""; files=""; \
-		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/\s*extra$$//'`; \
+		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/extra:[ \t]//'`; \
 		for file in $$new; do \
 			if [ -d $$file ]; then \
 				tree=`${FIND} -d $$file -type f -or -type d | ${EGREP} -v "man/man[123456789]"`; \
