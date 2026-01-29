@@ -18,6 +18,7 @@ SUBDIR += kate
 SUBDIR += lazarus
 SUBDIR += lazarus-qt5
 SUBDIR += lazarus-qt6
+SUBDIR += libreoffice
 SUBDIR += linux-openoffice3
 SUBDIR += linux-sublime
 SUBDIR += linux-sublime-text4
