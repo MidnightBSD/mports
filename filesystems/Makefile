@@ -72,6 +72,7 @@
     SUBDIR += py-s3fs
     SUBDIR += py-zfs-autobackup
     SUBDIR += rar2fs
+    SUBDIR += rubygem-chef-winrm-fs
     SUBDIR += s3backer
     SUBDIR += s3fs
     SUBDIR += sandboxfs

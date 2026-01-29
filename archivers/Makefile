@@ -86,6 +86,7 @@
     SUBDIR += rar
     SUBDIR += rpm2cpio
     SUBDIR += rpm4
+    SUBDIR += rubygem-rubyzip
     SUBDIR += sharutils
     SUBDIR += snappy
     SUBDIR += snappy-java

@@ -1,7 +1,7 @@
 PORTNAME=	beats
 DISTVERSIONPREFIX=	v
 DISTVERSION=	7.17.11
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 PKGNAMESUFFIX?=	7
 
@@ -13,7 +13,7 @@ LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/mage:devel/mage
 
-USES=		go:modules
+USES=		go:1.22,modules
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	elastic
