@@ -1777,6 +1777,11 @@
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-attr_required
+    SUBDIR += rubygem-azure_graph_rbac
+    SUBDIR += rubygem-azure_mgmt_key_vault
+    SUBDIR += rubygem-azure_mgmt_resources
+    SUBDIR += rubygem-azure_mgmt_security
+    SUBDIR += rubygem-azure_mgmt_storage
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
@@ -1827,6 +1832,7 @@
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-mini_portile2
     SUBDIR += rubygem-minitest
+    SUBDIR += rubygem-ms_rest_azure
     SUBDIR += rubygem-msgpack
     SUBDIR += rubygem-multi_json
     SUBDIR += rubygem-murmurhash3
