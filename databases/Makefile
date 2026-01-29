@@ -207,9 +207,13 @@
     SUBDIR += ruby-xapian
     SUBDIR += rubygem-activemodel4
     SUBDIR += rubygem-activemodel5
+    SUBDIR += rubygem-activemodel72
+    SUBDIR += rubygem-activemodel80
     SUBDIR += rubygem-activerecord-import
     SUBDIR += rubygem-activerecord4
     SUBDIR += rubygem-activerecord5
+    SUBDIR += rubygem-activerecord72
+    SUBDIR += rubygem-activerecord80
     SUBDIR += rubygem-arel6
     SUBDIR += rubygem-arel8
     SUBDIR += rubygem-couchrest
@@ -235,6 +239,7 @@
     SUBDIR += rubygem-sqlite3
     SUBDIR += rubygem-sqlite3-ruby
     SUBDIR += rubygem-sqlite31
+    SUBDIR += rubygem-tarantool
     SUBDIR += rubygem-trilogy
     SUBDIR += sfcgal
     SUBDIR += spatialite
