@@ -1,0 +1,14 @@
+PORTNAME=	bin_utils
+PORTVERSION=	0.0.7
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Extracting binary integers from binary string and packing back
+WWW=		https://github.com/funny-falcon/bin_utils
+
+LICENSE=	mit
+
+USES=		gem
+
+.include <bsd.port.mk>

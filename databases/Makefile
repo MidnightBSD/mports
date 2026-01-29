@@ -205,10 +205,12 @@
     SUBDIR += rrdtool
     SUBDIR += ruby-bdb
     SUBDIR += ruby-xapian
+    SUBDIR += rubygem-active_model_serializers
     SUBDIR += rubygem-activemodel4
     SUBDIR += rubygem-activemodel5
     SUBDIR += rubygem-activemodel72
     SUBDIR += rubygem-activemodel80
+    SUBDIR += rubygem-activerecord-gitlab
     SUBDIR += rubygem-activerecord-import
     SUBDIR += rubygem-activerecord4
     SUBDIR += rubygem-activerecord5
@@ -219,6 +221,7 @@
     SUBDIR += rubygem-couchrest
     SUBDIR += rubygem-gdbm
     SUBDIR += rubygem-globalid
+    SUBDIR += rubygem-google-cloud-datastore-v1
     SUBDIR += rubygem-hiredis
     SUBDIR += rubygem-jdbc-mysql
     SUBDIR += rubygem-memcache

@@ -1777,6 +1777,7 @@
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-attr_required
+    SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
@@ -1800,6 +1801,17 @@
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
+    SUBDIR += rubygem-google-apis-compute_v1
+    SUBDIR += rubygem-google-apis-core
+    SUBDIR += rubygem-google-apis-iam_v1
+    SUBDIR += rubygem-google-apis-monitoring_v3
+    SUBDIR += rubygem-google-apis-storage_v1
+    SUBDIR += rubygem-google-protobuf
+    SUBDIR += rubygem-google-protobuf3
+    SUBDIR += rubygem-googleapis-common-protos
+    SUBDIR += rubygem-googleapis-common-protos-gitlab
+    SUBDIR += rubygem-googleapis-common-protos-types
+    SUBDIR += rubygem-googleapis-common-protos-types-gitlab
     SUBDIR += rubygem-i18n
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-jbuilder
