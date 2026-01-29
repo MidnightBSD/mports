@@ -14,6 +14,7 @@
     SUBDIR += libbgcode
     SUBDIR += libopencad
     SUBDIR += logisim
+    SUBDIR += magic
     SUBDIR += opencascade
     SUBDIR += p5-GDS2
     SUBDIR += p5-Verilog-Perl
