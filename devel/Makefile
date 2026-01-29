@@ -1816,6 +1816,7 @@
     SUBDIR += rubygem-google-apis-storage_v1
     SUBDIR += rubygem-google-protobuf
     SUBDIR += rubygem-google-protobuf3
+    SUBDIR += rubygem-google-logging-utils
     SUBDIR += rubygem-googleapis-common-protos
     SUBDIR += rubygem-googleapis-common-protos-gitlab
     SUBDIR += rubygem-googleapis-common-protos-types
