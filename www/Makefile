@@ -377,6 +377,7 @@
     SUBDIR += rubygem-http-form_data
     SUBDIR += rubygem-httpclient
     SUBDIR += rubygem-jquery-rails
+    SUBDIR += rubygem-json-jwt-gitlab
     SUBDIR += rubygem-llhttp-ffi
     SUBDIR += rubygem-multipart-post
     SUBDIR += rubygem-rack
@@ -404,6 +405,7 @@
     SUBDIR += rubygem-rackup10
     SUBDIR += rubygem-rails4
     SUBDIR += rubygem-railties4
+    SUBDIR += rubygem-socksify
     SUBDIR += rubygem-swd
     SUBDIR += rubygem-turbolinks
     SUBDIR += rubygem-turbolinks-source
