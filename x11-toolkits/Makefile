@@ -1,6 +1,7 @@
     COMMENT = X11 toolkits
 
     SUBDIR += amtk
+    SUBDIR += blt
     SUBDIR += fltk
     SUBDIR += fox16
     SUBDIR += gdl
