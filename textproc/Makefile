@@ -432,6 +432,7 @@
     SUBDIR += redland
     SUBDIR += ripgrep
     SUBDIR += rubygem-asciidoctor
+    SUBDIR += rubygem-chef-gyoku
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-inifile
