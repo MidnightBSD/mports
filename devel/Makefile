@@ -1848,7 +1848,13 @@
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo-data
     SUBDIR += rubygem-tzinfo1
+    SUBDIR += rubygem-valid
+    SUBDIR += rubygem-validatable
+    SUBDIR += rubygem-validate_email
+    SUBDIR += rubygem-validates_timeliness
+    SUBDIR += rubygem-validates_timeliness7
     SUBDIR += rubygem-web-console2
+    SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-yajl-ruby
     SUBDIR += rubygem-zentest
     SUBDIR += rust-analyzer
