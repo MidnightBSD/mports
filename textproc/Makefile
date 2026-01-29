@@ -434,6 +434,7 @@
     SUBDIR += rubygem-asciidoctor
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-htmlentities
+    SUBDIR += rubygem-inifile
     SUBDIR += rubygem-loofah
     SUBDIR += rubygem-loofah222
     SUBDIR += rubygem-ltsv

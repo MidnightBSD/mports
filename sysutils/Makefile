@@ -251,6 +251,7 @@
     SUBDIR += rubygem-fluent-plugin-file-alternative
     SUBDIR += rubygem-fluent-plugin-tail-asis
     SUBDIR += rubygem-fluentd
+    SUBDIR += rubygem-winrm
     SUBDIR += rust-coreutils
     SUBDIR += screen
     SUBDIR += screenie
