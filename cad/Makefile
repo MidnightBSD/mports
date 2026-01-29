@@ -10,6 +10,7 @@
     SUBDIR += gtkwave
     SUBDIR += impact
     SUBDIR += iverilog
+    SUBDIR += libbgcode
     SUBDIR += libopencad
     SUBDIR += logisim
     SUBDIR += opencascade
