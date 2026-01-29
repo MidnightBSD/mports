@@ -1814,6 +1814,7 @@
     SUBDIR += rubygem-minitest
     SUBDIR += rubygem-msgpack
     SUBDIR += rubygem-multi_json
+    SUBDIR += rubygem-murmurhash3
     SUBDIR += rubygem-mustache
     SUBDIR += rubygem-mutex_m
     SUBDIR += rubygem-native-package-installer
