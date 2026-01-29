@@ -10,6 +10,7 @@ COMMENT=	Daylight-savings aware timezone support for Ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-thread_safe>=0.1<1:devel/rubygem-thread_safe
 RUN_DEPENDS=	rubygem-thread_safe>=0.1<1:devel/rubygem-thread_safe
 
 USES=		gem
