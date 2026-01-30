@@ -1801,6 +1801,7 @@
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-execjs
+    SUBDIR += rubygem-faraday-excon1
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
