@@ -512,6 +512,7 @@
     SUBDIR += libpthread-stubs
     SUBDIR += librest
     SUBDIR += librttopo
+    SUBDIR += libsavitar
     SUBDIR += libsigc++20
     SUBDIR += libsigc++30
     SUBDIR += libsigsegv

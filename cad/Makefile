@@ -3,6 +3,8 @@
     SUBDIR += PrusaSlicer
     SUBDIR += abc
     SUBDIR += cascade
+    SUBDIR += cura
+    SUBDIR += cura-engine
     SUBDIR += digital
     SUBDIR += fidocadj
     SUBDIR += gdsreader
