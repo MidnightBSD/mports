@@ -1772,6 +1772,7 @@
     SUBDIR += ruby-gems
     SUBDIR += rubygem-actionview4
     SUBDIR += rubygem-activejob4
+    SUBDIR += rubygem-activesupport-gitlab
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport5
     SUBDIR += rubygem-activesupport72
