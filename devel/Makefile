@@ -1780,6 +1780,7 @@
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport5
     SUBDIR += rubygem-activesupport72
+    SUBDIR += rubygem-activesupport80
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-attr_required
     SUBDIR += rubygem-azure_graph_rbac
