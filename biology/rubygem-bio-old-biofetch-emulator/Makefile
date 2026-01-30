@@ -10,6 +10,7 @@ WWW=		https://github.com/ngoto/bioruby-old-biofetch-emulator
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	rubygem-bio>=1.4.2:biology/rubygem-bio
 RUN_DEPENDS=	rubygem-bio>=1.4.2:biology/rubygem-bio
 
 USES=		gem
