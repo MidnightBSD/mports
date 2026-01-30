@@ -31,6 +31,7 @@
     SUBDIR += sumo
     SUBDIR += surelog
     SUBDIR += sweethome3d
+    SUBDIR += tkgate
     SUBDIR += tochnog
     SUBDIR += uhdm
     SUBDIR += uranium
