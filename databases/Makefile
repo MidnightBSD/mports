@@ -210,6 +210,7 @@
     SUBDIR += rubygem-activemodel5
     SUBDIR += rubygem-activemodel72
     SUBDIR += rubygem-activemodel80
+    SUBDIR += rubygem-activemodel-gitlab
     SUBDIR += rubygem-activerecord-gitlab
     SUBDIR += rubygem-activerecord-import
     SUBDIR += rubygem-activerecord4
