@@ -198,6 +198,7 @@
     SUBDIR += p5-Net-XWhois
     SUBDIR += p5-POE-Component-Client-Keepalive
     SUBDIR += p5-POE-Component-Generic
+    SUBDIR += p5-POEx-Role-TCPServer
     SUBDIR += p5-RPC-XML
     SUBDIR += p5-SOAP-Lite
     SUBDIR += p5-Socket
