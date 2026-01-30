@@ -383,6 +383,7 @@
     SUBDIR += rubygem-json-jwt-gitlab
     SUBDIR += rubygem-llhttp-ffi
     SUBDIR += rubygem-multipart-post
+    SUBDIR += rubygem-patron
     SUBDIR += rubygem-rack
     SUBDIR += rubygem-rack-accept
     SUBDIR += rubygem-rack-attack
