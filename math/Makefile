@@ -124,6 +124,7 @@
     SUBDIR += py-networkx
     SUBDIR += py-numexpr
     SUBDIR += py-numpy
+    SUBDIR += py-numpy-stl
     SUBDIR += py-pandas
     SUBDIR += py-pyclipper
     SUBDIR += py-random2
