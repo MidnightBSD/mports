@@ -1838,6 +1838,7 @@
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
     SUBDIR += rubygem-logger
+    SUBDIR += rubygem-logger-gitlab
     SUBDIR += rubygem-logging
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-mini_portile2
