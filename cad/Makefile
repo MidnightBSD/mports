@@ -6,6 +6,7 @@
     SUBDIR += cura
     SUBDIR += cura-engine
     SUBDIR += digital
+    SUBDIR += fdm_materials
     SUBDIR += fidocadj
     SUBDIR += gdsreader
     SUBDIR += ghdl
