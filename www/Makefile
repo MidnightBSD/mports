@@ -341,6 +341,7 @@
     SUBDIR += rubygem-crass
     SUBDIR += rubygem-erubi
     SUBDIR += rubygem-erubis
+    SUBDIR += rubygem-ethon-gitlab
     SUBDIR += rubygem-faraday
     SUBDIR += rubygem-faraday-em_http
     SUBDIR += rubygem-faraday-em_http1
@@ -410,6 +411,7 @@
     SUBDIR += rubygem-swd
     SUBDIR += rubygem-turbolinks
     SUBDIR += rubygem-turbolinks-source
+    SUBDIR += rubygem-typhoeus-gitlab
     SUBDIR += rubygem-uglifier
     SUBDIR += rubygem-webrick
     SUBDIR += serf
