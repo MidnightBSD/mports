@@ -37,6 +37,7 @@
     SUBDIR += tochnog
     SUBDIR += uhdm
     SUBDIR += uranium
+    SUBDIR += verilator
     SUBDIR += veroroute
     SUBDIR += xcircuit
     SUBDIR += xyce
