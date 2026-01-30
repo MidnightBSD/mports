@@ -285,6 +285,7 @@
     SUBDIR += rubygem-gssapi
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-rack-oauth2-gitlab
+    SUBDIR += rubygem-securerandom
     SUBDIR += rustls-ffi
     SUBDIR += s2n-tls
     SUBDIR += seahorse
