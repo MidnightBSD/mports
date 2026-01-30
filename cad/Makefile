@@ -24,6 +24,7 @@
     SUBDIR += py-vunit-hdl
     SUBDIR += qcad
     SUBDIR += qflow
+    SUBDIR += qrouter
     SUBDIR += rubygem-gdsii
     SUBDIR += scotch
     SUBDIR += silice
