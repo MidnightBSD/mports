@@ -1802,6 +1802,7 @@
     SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-execjs
     SUBDIR += rubygem-ffi
+    SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
     SUBDIR += rubygem-getoptlong
     SUBDIR += rubygem-gio2
