@@ -337,6 +337,7 @@
     SUBDIR += qt6-webview
     SUBDIR += raphael
     SUBDIR += rubygem-actionpack4
+    SUBDIR += rubygem-actionpack5
     SUBDIR += rubygem-activeresource4
     SUBDIR += rubygem-addressable
     SUBDIR += rubygem-cgi
