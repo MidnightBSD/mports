@@ -133,6 +133,7 @@
     SUBDIR += qhull5
     SUBDIR += rocs
     SUBDIR += rubygem-bigdecimal
+    SUBDIR += rubygem-bigdecimal-gitlab
     SUBDIR += rubygem-matrix
     SUBDIR += sleef
     SUBDIR += suitesparse
