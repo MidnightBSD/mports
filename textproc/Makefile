@@ -452,6 +452,7 @@
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-sass
     SUBDIR += rubygem-sass-rails-rails4
+    SUBDIR += rubygem-unf
     SUBDIR += sassc
     SUBDIR += scdoc
     SUBDIR += scim

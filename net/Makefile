@@ -275,6 +275,7 @@
     SUBDIR += remotedesk
     SUBDIR += rsync
     SUBDIR += rubygem-connection_pool
+    SUBDIR += rubygem-domain_name
     SUBDIR += rubygem-http_parser.rb
     SUBDIR += rubygem-net-protocol
     SUBDIR += rubygem-oauth

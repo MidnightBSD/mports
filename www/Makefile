@@ -374,6 +374,7 @@
     SUBDIR += rubygem-faraday_middleware0
     SUBDIR += rubygem-hpricot
     SUBDIR += rubygem-http
+    SUBDIR += rubygem-http-cookie
     SUBDIR += rubygem-http-form_data
     SUBDIR += rubygem-httpclient
     SUBDIR += rubygem-jquery-rails
