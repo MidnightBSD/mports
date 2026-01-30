@@ -495,6 +495,7 @@
     SUBDIR += libltdl
     SUBDIR += libmaa
     SUBDIR += libmtdev
+    SUBDIR += libnest2d-ultimaker
     SUBDIR += libnotify
     SUBDIR += libnsutils
     SUBDIR += liboil
@@ -1519,6 +1520,7 @@
     SUBDIR += py-pygobject
     SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
+    SUBDIR += py-pynest2d
     SUBDIR += py-pyparsing
     SUBDIR += py-pyproject-api
     SUBDIR += py-pyproject-hooks
