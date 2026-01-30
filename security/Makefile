@@ -286,6 +286,7 @@
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-rack-oauth2-gitlab
     SUBDIR += rubygem-securerandom
+    SUBDIR += rubygem-net-scp1
     SUBDIR += rubygem-net-ssh
     SUBDIR += rustls-ffi
     SUBDIR += s2n-tls
