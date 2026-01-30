@@ -17,6 +17,7 @@
     SUBDIR += magic
     SUBDIR += netgen-lvs
     SUBDIR += opencascade
+    SUBDIR += openroad
     SUBDIR += p5-GDS2
     SUBDIR += p5-Verilog-Perl
     SUBDIR += py-edalize
