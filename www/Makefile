@@ -200,6 +200,7 @@
     SUBDIR += p5-POE-Component-Server-SOAP
     SUBDIR += p5-POE-Component-Server-SimpleHTTP
     SUBDIR += p5-POE-Filter-HTTP-Parser
+    SUBDIR += p5-POEx-Role-PSGIServer
     SUBDIR += p5-ParallelUserAgent
     SUBDIR += p5-Plack
     SUBDIR += p5-Router-Simple
