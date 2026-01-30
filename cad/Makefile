@@ -15,6 +15,7 @@
     SUBDIR += libopencad
     SUBDIR += logisim
     SUBDIR += magic
+    SUBDIR += netgen-lvs
     SUBDIR += opencascade
     SUBDIR += p5-GDS2
     SUBDIR += p5-Verilog-Perl
