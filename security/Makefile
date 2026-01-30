@@ -289,6 +289,7 @@
     SUBDIR += rubygem-net-scp
     SUBDIR += rubygem-net-scp1
     SUBDIR += rubygem-net-ssh
+    SUBDIR += rubygem-net-ssh6
     SUBDIR += rustls-ffi
     SUBDIR += s2n-tls
     SUBDIR += seahorse
