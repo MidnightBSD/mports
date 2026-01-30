@@ -923,6 +923,7 @@
     SUBDIR += p5-POE
     SUBDIR += p5-POE-API-Peek
     SUBDIR += p5-POE-Test-Loops
+    SUBDIR += p5-POEx-Types
     SUBDIR += p5-POSIX-strftime-Compiler
     SUBDIR += p5-POSIX-strptime
     SUBDIR += p5-Package-Constants
