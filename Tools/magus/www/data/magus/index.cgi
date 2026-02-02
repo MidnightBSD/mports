@@ -11,6 +11,10 @@ use Magus;
 use CGI::Fast;
 use Scalar::Util 'looks_like_number';
 use String::Clean::XSS;
+use HTML::Template;
+use JSON::XS;
+use DateTime;
+use DateTime::Format::Pg;
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -21,6 +25,13 @@ use String::Clean::XSS;
     package Magus::DBI;
     use Class::DBI::AbstractSearch;
 }
+
+Magus::Port->set_sql(last_twenty => qq{
+      SELECT __ESSENTIAL__
+      FROM __TABLE__
+      WHERE status!='untested'
+      ORDER BY updated DESC LIMIT 20
+  });
 
 while (my $cgi = CGI::Fast->new) {
 	eval {
@@ -64,11 +75,6 @@ sub main {
   } elsif ($path =~ m:^/async/machine-events:) {
     async_machine_events($p);
     return;
-  }
-
-  BEGIN{
-  require HTML::Template;
-  HTML::Template->import();
   }
 
   if ($path eq '' || $path eq '/') {
@@ -122,10 +128,6 @@ sub is_number {
 sub api_runs {
   my ($p) = @_;
 
-  require JSON::XS;
-  JSON::XS->import();
-  require DateTime::Format::Pg;
-
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
   my @runOut;
 
@@ -143,11 +145,6 @@ sub api_runs {
 sub api_run_port_stats { 
   my ($p) = @_;
 
-    BEGIN{
-  require JSON::XS;
-  JSON::XS->import();      
-  }
-  
   my $run    = $p->param('run');
   my $status = $p->param('status');
 
@@ -189,13 +186,6 @@ sub api_run_port_stats {
 
 sub api_latest {
   my ($p) = @_;
-
-  BEGIN{
-    require JSON::XS;
-    JSON::XS->import();
-    require DateTime;
-    require DateTime::Format::Pg;
-  }
 
   my %results;
   my $status = 'pass';
@@ -354,14 +344,7 @@ sub compare_runs {
 
 sub summary_page {
   my ($p) = @_;
-  
-  Magus::Port->set_sql(last_twenty => qq{
-      SELECT __ESSENTIAL__
-      FROM __TABLE__
-      WHERE status!='untested'
-      ORDER BY updated DESC LIMIT 20
-  });
-  
+
   my @results = map {{
     summary   => $_->status // '',
     port      => $_->name // '',
@@ -757,11 +740,6 @@ sub search {
 sub async_machine_events {
   my ($p) = @_;
 
-  BEGIN{
-  require JSON::XS;
-  JSON::XS->import();      
-  }
-  
   my $run     = $p->param('run');
   my $machine = $p->param('machine');
 
@@ -792,11 +770,6 @@ sub async_machine_events {
 sub async_run_port_stats {
   my ($p) = @_;
 
-  BEGIN{
-  require JSON::XS;
-  JSON::XS->import();      
-  }
-  
   my $run    = $p->param('run');
   my $status = $p->param('status');
 

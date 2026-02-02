@@ -1,5 +1,6 @@
 package Magus::Chroot;
 #
+# Copyright (c) 2008-2025 Lucas Holt
 # Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -23,10 +24,6 @@ package Magus::Chroot;
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-
-#
-# MAINTAINER=   ctriv@MidnightBSD.org
 #
 
 use strict;
@@ -156,7 +153,7 @@ sub _create_reference_dir {
     
     chomp($refdirsum);
     
-    # if the checksums are the same, then the right tarball is alread extracted, and we're done.
+    # if the checksums are the same, then the right tarball is already extracted, and we're done.
     return if $refdirsum eq $tarballsum;
   }
     
