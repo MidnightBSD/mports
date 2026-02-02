@@ -22,6 +22,13 @@ use String::Clean::XSS;
     use Class::DBI::AbstractSearch;
 }
 
+Magus::Port->set_sql(last_twenty => qq{
+      SELECT __ESSENTIAL__
+      FROM __TABLE__
+      WHERE status!='untested'
+      ORDER BY updated DESC LIMIT 20
+  });
+
 while (my $cgi = CGI::Fast->new) {
 	eval {
   		main($cgi);
@@ -354,14 +361,7 @@ sub compare_runs {
 
 sub summary_page {
   my ($p) = @_;
-  
-  Magus::Port->set_sql(last_twenty => qq{
-      SELECT __ESSENTIAL__
-      FROM __TABLE__
-      WHERE status!='untested'
-      ORDER BY updated DESC LIMIT 20
-  });
-  
+
   my @results = map {{
     summary   => $_->status // '',
     port      => $_->name // '',
