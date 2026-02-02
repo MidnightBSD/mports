@@ -126,6 +126,11 @@
     <li>Loading CVE information...</li>
 </ul>
 
+<h3>LLM</h3>
+<button class="btn" onclick="javascript:llmcheck()">Analyze</button>
+<div id="llmlog" class="llmlogs">
+</div>
+
 <script type="text/javascript">
 $(document).ready(function() {
     var cpe = '<TMPL_VAR NAME=cpe>';
@@ -158,6 +163,35 @@ $(document).ready(function() {
             $('#cveList').html('<li>Error loading CVE information.</li>');
         }
     });
+
+    window.llmcheck = function() {
+        var logmsg = $('pre.log').text().slice(-2000);
+        var llmAPI = '/magus/auth/llm.cgi';
+
+        $.ajax({
+        url: llmAPI,
+        method: 'POST',
+        data: { content: logmsg },
+        dataType: 'json',
+        success: function(data) {
+            var $llm = $('#llmlog');
+            $llm.empty();
+
+            if (data.error) {
+                $llm.append('<p>Error: ' + data.error + '</p>');
+            } else if (data.length === 0) {
+                $llm.append('<p>No LLM analysis.</p>');
+            } else {
+                $.each(data, function(index, llmresp) {
+                    $llm.append(llmresp);
+                });
+            }
+        },
+        error: function() {
+            $('#llmlog').html('<p>Error loading LLM analysis.</p>');
+        }
+        });
+    }
 });
 </script>
 
