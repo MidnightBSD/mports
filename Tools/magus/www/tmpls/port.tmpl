@@ -165,7 +165,9 @@ $(document).ready(function() {
     });
 
     window.llmcheck = function() {
-        var logmsg = $('pre.log').text().slice(-500);
+        var port = $('h2').text();
+        var logdata = $('pre.log').text().slice(-2000);
+        var logmsg = "Analyze the MidnightBSD package build error for " + port + " and suggest a fix:\n\n" + logdata;
         var llmAPI = '/magus/auth/llm.cgi';
 
         $.ajax({
