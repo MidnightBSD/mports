@@ -9,6 +9,7 @@ WWW=		https://github.com/banister/binding_of_caller
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	rubygem-debug_inspector>=1.2.0:devel/rubygem-debug_inspector
 RUN_DEPENDS=	rubygem-debug_inspector>=1.2.0:devel/rubygem-debug_inspector
 
 USES=		gem
