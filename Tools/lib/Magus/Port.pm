@@ -54,6 +54,12 @@ __PACKAGE__->has_many(critical => ['Magus::CriticalPorts' => 'pkgname' ] => 'pkg
 
 __PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=?');
 __PACKAGE__->set_sql(single_ready_port => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=? LIMIT 1');
+__PACKAGE__->set_sql(last_twenty => qq{
+      SELECT __ESSENTIAL__
+      FROM __TABLE__
+      WHERE status!='untested'
+      ORDER BY updated DESC LIMIT 20
+  });
 
 =head2 Magus::Port->get_ready_port($run);
 
