@@ -23,6 +23,6 @@ post-patch:
 	@${RM} ${WRKSRC}/bin/config_data
 
 post-fake:
-	${RM} ${FAKE_DESTDIR}/usr/local/lib/perl5/site_perl/auto/Module/Build/.packlist 
+	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}/usr/local/lib/perl5/site_perl/auto/Module/Build/.packlist 
 
 .include <bsd.port.mk>
