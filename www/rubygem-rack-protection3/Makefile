@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/License
 
 RUN_DEPENDS=	rubygem-base64>=0.1.0:converters/rubygem-base64 \
 		rubygem-rack22>=2.2.4,3<3,3:www/rubygem-rack22
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
