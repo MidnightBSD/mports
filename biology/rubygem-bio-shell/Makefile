@@ -12,6 +12,7 @@ LICENSE_COMB=	dual
 LICENSE_FILE_bsd2=${WRKSRC}/BSDL
 LICENSE_FILE_ruby=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	rubygem-bio>=2.0.0:biology/rubygem-bio
 RUN_DEPENDS=	rubygem-bio>=2.0.0:biology/rubygem-bio
 
 USES=		gem
