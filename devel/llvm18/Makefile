@@ -438,6 +438,7 @@ COMPILER_RT_ARCHS=	x86_64
 COMPILER_RT_ARCHS+=	i386
 .endif
 .elif ${ARCH} == "i386"
+MAKE_JOBS_UNSAFE=yes
 COMPILER_RT_ARCHS=	i386
 .elif ${ARCH} == "powerpc"
 COMPILER_RT_ARCHS=	powerpc
