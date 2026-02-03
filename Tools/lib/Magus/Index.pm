@@ -43,7 +43,9 @@ sub sync {
   my $osversion;
   my %visited;
 
-  if ($osrel eq "4.0") {
+  if ($osrel eq "4.1") {
+    $osversion = 401000;
+  } elsif ($osrel eq "4.0") {
     $osversion = 400002;
   } elsif ($osrel eq "3.2") {
     $osversion = 302001;
@@ -66,7 +68,7 @@ sub sync {
   } elsif ($osrel eq "1.0") {
     $osversion = 100000;
   } else {
-    $osversion = 201001;
+    $osversion = 500000;
   }
   
   $root ||= "$Magus::Config{MasterDataDir}/$Magus::Config{MportsVcsDir}";
@@ -229,7 +231,7 @@ sub sync {
     $class->sync_categories(\%dump, $port, $arch);
 
     if ($dump{is_interactive}) {
-      print "\n\tIGNORE set.  Marking as skippped.";
+      print "\n\tIGNORE set.  Marking as skipped.";
       $port->set_result_skip("Port is marked as interactive.");
     }
    }
