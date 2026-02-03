@@ -1,20 +1,21 @@
 PORTNAME=	liblangtag
-PORTVERSION=	0.5.7
+PORTVERSION=	0.6.7
+PORTREVISION=	1
 CATEGORIES=	devel textproc
 MASTER_SITES=	https://bitbucket.org/tagoh/liblangtag/downloads/ \
 		FREEBSD_LOCAL/jkim
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface library to access tags for identifying languages
+WWW=		https://bitbucket.org/tagoh/liblangtag/wiki/Home
 
 LICENSE=	lgpl3 MPL20
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libxml2.so:textproc/libxml2
-
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		gmake iconv libtool pathfix pkgconfig tar:bzip2
+USES=		iconv gnome libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	libxml2
 INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS=	--disable-introspection
