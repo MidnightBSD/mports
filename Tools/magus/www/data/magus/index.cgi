@@ -570,13 +570,16 @@ sub port_page {
   if (@depends) {
     $tmpl->param(depends => \@depends);
   }
-  
-  my @depends_of = map { {
-    port   => $_->name,
-    id     => $_->id,
-    status => $_->status
-  } } map { Magus::Port->retrieve($_->port) } Magus::Depend->search(dependency => $port);
-  
+ 
+  my @depends_of = map {
+  my $p = $_->port;  # Magus::Port
+  +{
+    port   => $p->name,
+    id     => $p->id,
+    status => $p->status,
+  }
+  } Magus::Depend->search(dependency => $port);
+ 
   if ($port->log) {
     $tmpl->param(log => $port->log);
   }
