@@ -12,6 +12,7 @@ LICENSE=	gpl2 ruby
 LICENSE_COMB=	dual
 LICENSE_FILE_ruby=	${WRKSRC}/LICENSE.rdoc
 
+BUILD_DEPENDS=	rubygem-psych>=4.0.0:textproc/rubygem-psych
 RUN_DEPENDS=	rubygem-psych>=4.0.0:textproc/rubygem-psych
 
 USES=		cpe gem

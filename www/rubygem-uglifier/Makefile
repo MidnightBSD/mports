@@ -10,6 +10,7 @@ WWW=		https://github.com/lautis/uglifier
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	rubygem-execjs>=0.3.0<3:devel/rubygem-execjs
 RUN_DEPENDS=	rubygem-execjs>=0.3.0<3:devel/rubygem-execjs
 
 USES=		gem

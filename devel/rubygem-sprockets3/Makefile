@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-concurrent-ruby>=1.0<2:devel/rubygem-concurrent-ruby \
 		rubygem-rack22>=1,3<3,3:www/rubygem-rack22
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		cpe gem
 

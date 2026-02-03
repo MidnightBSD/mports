@@ -451,6 +451,7 @@
     SUBDIR += rubygem-rexml
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-sass
+    SUBDIR += rubygem-sass-listen
     SUBDIR += rubygem-sass-rails-rails4
     SUBDIR += rubygem-unf
     SUBDIR += sassc

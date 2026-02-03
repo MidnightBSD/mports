@@ -18,6 +18,7 @@ RUN_DEPENDS=	rubygem-actionview4>=${PORTVERSION}:devel/rubygem-actionview4 \
 		rubygem-rack-test>=0.6.2:www/rubygem-rack-test \
 		rubygem-rails-dom-testing1>=1.0.5<2:textproc/rubygem-rails-dom-testing1 \
 		rubygem-rails-html-sanitizer>=1.0.2<2:textproc/rubygem-rails-html-sanitizer
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
