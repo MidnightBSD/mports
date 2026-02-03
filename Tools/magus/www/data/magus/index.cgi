@@ -566,23 +566,32 @@ sub port_page {
   my @fullDepends = Magus::Depend->search( port => $port->id, { order_by=> 'type, dependency' });
 
       foreach my $item (@fullDepends) {
-		my %h;
-		$h{id} = $item->dependency->id;
-		$h{port} = $item->dependency->name;
-		$h{status} = $item->dependency->status;
- 		$h{type} = $item->type;
-              push @depends, \%h;
+        my $dep = eval { $item->dependency };
+        next unless $dep && $dep->can('id');    # skip if dependency missing
+
+        my %h = (
+            id     => $dep->id // 0,
+            port   => $dep->name // '',
+            status => $dep->status // '',
+            type   => $item->type // '',
+        );
+        push @depends, \%h;
       }
 
   if (@depends) {
     $tmpl->param(depends => \@depends);
   }
-  
-  my @depends_of = map { {
-    port   => $_->name,
-    id     => $_->id,
-    status => $_->status
-  } } map { Magus::Port->retrieve($_->port) } Magus::Depend->search(dependency => $port);
+
+  my @depends_of;
+  foreach my $d (Magus::Depend->search(dependency => $port)) {
+    my $pobj = eval { Magus::Port->retrieve($d->port) };
+    next unless $pobj && $pobj->can('id');
+    push @depends_of, {
+        port   => $pobj->name // '',
+        id     => $pobj->id   // 0,
+        status => $pobj->status // '',
+    };
+  }
   
   if ($port->log) {
     $tmpl->param(log => $port->log);
@@ -591,8 +600,8 @@ sub port_page {
   if (@depends_of) {
     $tmpl->param(depends_of => \@depends_of);
   }
-  
-  my @cats = map {{ category => $_->category }} $port->categories;
+
+  my @cats = map {{ category => ($_->category // '') }} $port->categories;
   
   $tmpl->param(cats => \@cats);
   print $p->header, $tmpl->output;
