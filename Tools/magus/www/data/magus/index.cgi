@@ -593,8 +593,12 @@ sub port_page {
   }
   
   my @cats = map {{ category => $_->category }} $port->categories;
-  
   $tmpl->param(cats => \@cats);
+
+  # license perms
+  my @perms = map {{ perm => $_->perm }} $port->perms;
+  $tmpl->param(perms => \@perms);
+
   print $p->header, $tmpl->output;
 }
 
