@@ -542,14 +542,19 @@ sub port_page {
     cpe       => $port->cpe,
     tm        => time()
   );
-  
-  my @events = map { { 
-    machine_id => $_->machine->id,
-    machine    => $_->machine->name,
-    type       => $_->type,
-    msg        => $_->msg,
-    time       => $_->time,
-  } } $port->events;
+
+  my @events = map {
+    my $event_obj = $_;
+    my $machine_obj = $event_obj->machine; # Get the machine object, could be undef
+
+    {
+      machine_id => $machine_obj ? $machine_obj->id : undef,
+          machine    => $machine_obj ? $machine_obj->name : undef,
+          type       => $event_obj->type,
+          msg        => $event_obj->msg,
+          time       => $event_obj->time,
+    }
+  } $port->events;
   
   if (@events) {
     $tmpl->param(events => \@events);
