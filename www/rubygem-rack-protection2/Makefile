@@ -12,6 +12,7 @@ WWW=		https://github.com/sinatra/sinatra/tree/master/rack-protection
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/License
 
+BUILD_DEPENDS=	rubygem-rack22>=0,3:www/rubygem-rack22
 RUN_DEPENDS=	rubygem-rack22>=0,3:www/rubygem-rack22
 
 USES=		gem
