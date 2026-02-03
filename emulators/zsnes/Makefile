@@ -23,6 +23,7 @@ USES=		gmake localbase sdl tar:bzip2
 USE_SDL=	sdl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-cpucheck
+CONFIGURE_ENV=	CXXFLAGS="${CXXFLAGS} -std=gnu++03"
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION:S/./_/}/src
 
