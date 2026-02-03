@@ -10,6 +10,7 @@ WWW=		https://github.com/lostisland/faraday-multipart
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-multipart-post>=2.0<3:www/rubygem-multipart-post
 RUN_DEPENDS=	rubygem-multipart-post>=2.0<3:www/rubygem-multipart-post
 
 USES=		gem

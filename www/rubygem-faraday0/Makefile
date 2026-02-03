@@ -11,6 +11,7 @@ WWW=		https://github.com/lostisland/faraday
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-multipart-post>=1.2<3:www/rubygem-multipart-post
 RUN_DEPENDS=	rubygem-multipart-post>=1.2<3:www/rubygem-multipart-post
 
 USES=		cpe gem

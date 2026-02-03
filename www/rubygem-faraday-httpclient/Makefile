@@ -10,6 +10,7 @@ WWW=		https://github.com/lostisland/faraday-httpclient
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-httpclient>=2.2:www/rubygem-httpclient
 RUN_DEPENDS=	rubygem-httpclient>=2.2:www/rubygem-httpclient
 
 USES=		gem

@@ -22,6 +22,7 @@ RUN_DEPENDS=	rubygem-faraday-em_http1>=1.0<2:www/rubygem-faraday-em_http1 \
 		rubygem-faraday-rack1>=1.0<2:www/rubygem-faraday-rack1 \
 		rubygem-faraday-retry1>=1.0<2:www/rubygem-faraday-retry1 \
 		rubygem-ruby2_keywords>=0.0.4:devel/rubygem-ruby2_keywords
+BUILD_DEPENDS+=	${RUN_DEPENDS}
 
 USES=		cpe gem
 

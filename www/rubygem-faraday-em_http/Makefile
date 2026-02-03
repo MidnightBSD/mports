@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 RUN_DEPENDS=	rubygem-em-http-request>=1.1:www/rubygem-em-http-request \
 		rubygem-faraday>=2.0<3:www/rubygem-faraday
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
