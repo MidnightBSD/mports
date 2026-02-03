@@ -6,6 +6,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of utilities for KDE (meta port)
 WWW=		https://www.kde.org/applications/utilities/
 
+LICENSE=	bsd2
+
 USES=		kde:6 metaport
 
 OPTIONS_DEFINE=	ARK FILELIGHT KCALC KCHARSELECT KDEBUGSETTINGS \
