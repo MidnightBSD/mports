@@ -43,11 +43,10 @@ my $response = $ua->request($req);
 
 if ($response->is_success) {
     my $data = decode_json($response->decoded_content);
-    print $data->{choices}[0]{message}{content}, "\n";
+    print encode_json([ $data->{choices}[0]{message}{content} ]);
 } else {
 	print encode_json({
 		error => "API request failed",
 		status => $response->status_line
 	});
 }
-
