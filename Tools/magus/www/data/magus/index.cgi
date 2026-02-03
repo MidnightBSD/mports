@@ -26,13 +26,6 @@ use DateTime::Format::Pg;
     use Class::DBI::AbstractSearch;
 }
 
-Magus::Port->set_sql(last_twenty => qq{
-      SELECT __ESSENTIAL__
-      FROM __TABLE__
-      WHERE status!='untested'
-      ORDER BY updated DESC LIMIT 20
-  });
-
 while (my $cgi = CGI::Fast->new) {
 	eval {
   		main($cgi);
