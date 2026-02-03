@@ -155,8 +155,8 @@ PYQT6WEBENGINE_DISTNAME=	pyqt6_webengine-${PYQT6WEBENGINE_VERSION}
 PYQT5_DISTINFO_FILE=	${.CURDIR:H:H}/devel/${PYQT_RELNAME}/distinfo
 PYQT6_DISTINFO_FILE=	${.CURDIR:H:H}/devel/${PYQT_RELNAME}/distinfo
 
-PYQT5_LICENSE=		GPLv3
-PYQT6_LICENSE=		GPLv3
+PYQT5_LICENSE=		gpl3
+PYQT6_LICENSE=		gpl3
 
 _USE_PYQT_ALL=		pyqt5 pyqt6 3d charts graphs datavis3d networkauth webengine
 _USE_SIP_ALL=		pysip sip
