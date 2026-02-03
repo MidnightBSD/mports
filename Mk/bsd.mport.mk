@@ -3855,7 +3855,7 @@ describe-yaml:
 			version        => q(${PKGVERSION}), \
 			description    => qq(${COMMENT:S/'/\x27/g}), \
 			license        => [qw(${LICENSE})], \
-			license_perms  => [qw(${LICENSE_PERMS})], \
+			license_perms  => [qw(${_LICENSE_PERMS})], \
 			license_name   => q(${LICENSE_NAME}), \
 			license_text   => q(${LICENSE_TEXT}), \
 			categories     => [qw(${CATEGORIES})], \
