@@ -1,13 +1,7 @@
 PORTNAME=	inkscape
-DISTVERSION=	1.4.2
-PORTREVISION=	4
+DISTVERSION=	1.4.3
 CATEGORIES=	graphics gnome
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
-
-PATCH_SITES=	https://gitlab.com/${PORTNAME}/${PORTNAME}/-/merge_requests/
-PATCHFILES=		7261.patch:-p1
-PATCHFILES+=	7449.patch:-p1
-PATCHFILES+=	7502.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Full featured open source SVG editor
@@ -15,6 +9,9 @@ WWW=		https://inkscape.org
 
 LICENSE=	gpl2+ gpl3+ lgpl2.1+ lgpl3+ MPL11
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/LICENSES/GPL-2.0-or-later.txt
+LICENSE_FILE_lgpl3+ =	${WRKSRC}/LICENSES/LGPL-3.0-or-later.txt
+LICENSE_FILE_MPL11  =	${WRKSRC}/LICENSES/MPL-1.1.txt
 
 BUILD_DEPENDS=	ragel:devel/ragel
 LIB_DEPENDS=	libboost_filesystem.so:devel/boost-libs \
@@ -46,11 +43,11 @@ USES=		compiler:c++20-lang cmake:testing cpe desktop-file-utils ghostscript:run 
 		gnome jpeg pathfix pkgconfig python \
 		readline shebangfix tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf glibmm gtkmm30 gtksourceview4 libxml2 libxslt
-USE_PYTHON=	cython3
+USE_PYTHON=	cython
 USE_XORG=	sm ice x11 xext
 USE_LDCONFIG=	yes
 
-DATETAG=	2025-05-08_ebf0e940d0
+DATETAG=	2025-12-25_0d15f75042
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}_${DATETAG}
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
