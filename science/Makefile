@@ -1,5 +1,6 @@
     COMMENT = Scientific applications
 
+    SUBDIR += R-cran-DCluster
     SUBDIR += R-cran-e1071
     SUBDIR += hdf5
     SUBDIR += hdf5-110
