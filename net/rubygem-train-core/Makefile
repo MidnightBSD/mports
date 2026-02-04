@@ -16,6 +16,7 @@ RUN_DEPENDS=	rubygem-addressable>=2.5<3:www/rubygem-addressable \
 		rubygem-mixlib-shellout>=2.0<4.0:devel/rubygem-mixlib-shellout \
 		rubygem-net-scp>=1.2<5.0:security/rubygem-net-scp \
 		rubygem-net-ssh6>=2.9<8.0:security/rubygem-net-ssh6
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
