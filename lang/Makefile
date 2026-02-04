@@ -7,7 +7,6 @@
     SUBDIR += cjs
     SUBDIR += clover
     SUBDIR += cython
-    SUBDIR += cython3
     SUBDIR += duktape
     SUBDIR += duktape-lib
     SUBDIR += elixir

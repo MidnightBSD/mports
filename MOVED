@@ -601,3 +601,4 @@ devcpu-data-intel|cpu-microcode-intel|2026-01-19|reorganized cpu microcode
 lang/ruby31|lang/ruby32|2026-01-27|ruby 3.1 is EOL, move to 3.2
 security/openssl31|security/openssl36|2026-01-27|openssl 3.1 is eol. move to 3.6
 audio/spotify-tui||2026-01-28|Has expired: dead upstream and doesn't build
+lang/cython3|lang/cython|2026-02-04|Remove obsoleted port. Use lang/cython instead
