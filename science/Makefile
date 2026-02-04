@@ -1,21 +1,22 @@
-COMMENT= Scientific applications
+    COMMENT = Scientific applications
 
-SUBDIR += R-cran-e1071
-SUBDIR += hdf5
-SUBDIR += libaec
-SUBDIR += libkml
-SUBDIR += netcdf
-SUBDIR += openbabel
-SUBDIR += paje
-SUBDIR += py-scikit-learn
-SUBDIR += py-scikit-sparse
-SUBDIR += py-scipy
-SUBDIR += qt6-quick3dphysics
-SUBDIR += sigrok-firmware
-SUBDIR += sigrok-firmware-fx2lafw
-SUBDIR += sigrok-firmware-utils
-SUBDIR += step
-SUBDIR += trilinos
-SUBDIR += udunits
+    SUBDIR += R-cran-e1071
+    SUBDIR += hdf5
+    SUBDIR += hdf5-110
+    SUBDIR += libaec
+    SUBDIR += libkml
+    SUBDIR += netcdf
+    SUBDIR += openbabel
+    SUBDIR += paje
+    SUBDIR += py-scikit-learn
+    SUBDIR += py-scikit-sparse
+    SUBDIR += py-scipy
+    SUBDIR += qt6-quick3dphysics
+    SUBDIR += sigrok-firmware
+    SUBDIR += sigrok-firmware-fx2lafw
+    SUBDIR += sigrok-firmware-utils
+    SUBDIR += step
+    SUBDIR += trilinos
+    SUBDIR += udunits
 
 .include <bsd.port.subdir.mk>
