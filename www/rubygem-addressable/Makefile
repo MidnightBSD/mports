@@ -10,6 +10,7 @@ WWW=		https://github.com/sporkmonger/addressable
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	rubygem-public_suffix>=2.0.2:dns/rubygem-public_suffix
 RUN_DEPENDS=	rubygem-public_suffix>=2.0.2:dns/rubygem-public_suffix
 
 USES=		cpe gem
