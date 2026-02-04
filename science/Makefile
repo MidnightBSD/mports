@@ -1,5 +1,6 @@
     COMMENT = Scientific applications
 
+    SUBDIR += PETSc
     SUBDIR += R-cran-DCluster
     SUBDIR += R-cran-Epi
     SUBDIR += R-cran-FAdist
@@ -32,6 +33,7 @@
     SUBDIR += step
     SUBDIR += trilinos
     SUBDIR += udunits
+    SUBDIR += yoda
     SUBDIR += zotero
 
 .include <bsd.port.subdir.mk>
