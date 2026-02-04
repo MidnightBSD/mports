@@ -1847,6 +1847,7 @@
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
+    SUBDIR += rubygem-little-plugger
     SUBDIR += rubygem-logger
     SUBDIR += rubygem-logger-gitlab
     SUBDIR += rubygem-logging
