@@ -1798,6 +1798,7 @@
     SUBDIR += rubygem-builder
     SUBDIR += rubygem-byebug
     SUBDIR += rubygem-cairo-gobject
+    SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-coffee-rails41
     SUBDIR += rubygem-coffee-script
     SUBDIR += rubygem-coffee-script-source
