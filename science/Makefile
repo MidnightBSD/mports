@@ -6,6 +6,7 @@
     SUBDIR += R-cran-bayesm
     SUBDIR += R-cran-cmprsk
     SUBDIR += R-cran-e1071
+    SUBDIR += R-cran-eco
     SUBDIR += R-cran-epicalc
     SUBDIR += R-cran-etm
     SUBDIR += R-cran-fastICA
@@ -31,5 +32,6 @@
     SUBDIR += step
     SUBDIR += trilinos
     SUBDIR += udunits
+    SUBDIR += zotero
 
 .include <bsd.port.subdir.mk>
