@@ -597,7 +597,7 @@ sub port_page {
   $tmpl->param(cats => \@cats);
 
   # license perms
-  my @perms = map {{ perm => $_->perm }} $port->perms;
+  my @perms = map {{ perm => $_ }} $port->perms;
   $tmpl->param(perms => \@perms);
 
   print $p->header, $tmpl->output;
