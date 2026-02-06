@@ -165,5 +165,6 @@
     SUBDIR += xtensor
     SUBDIR += yices
     SUBDIR += zarray
+    SUBDIR += zn_poly
 
 .include <bsd.port.subdir.mk>
