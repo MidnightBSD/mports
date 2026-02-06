@@ -1820,6 +1820,7 @@
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
     SUBDIR += rubygem-getoptlong
+    SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
@@ -1891,10 +1892,12 @@
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-sprockets-rails-rails4
+    SUBDIR += rubygem-storable
     SUBDIR += rubygem-stringio
     SUBDIR += rubygem-strptime
     SUBDIR += rubygem-sumbur
     SUBDIR += rubygem-svn2git
+    SUBDIR += rubygem-sysinfo
     SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-thor
     SUBDIR += rubygem-thread_safe
