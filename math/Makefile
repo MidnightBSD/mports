@@ -80,6 +80,7 @@
     SUBDIR += lapack
     SUBDIR += lapacke
     SUBDIR += ldouble
+    SUBDIR += lemon
     SUBDIR += lib2geom
     SUBDIR += libqalculate
     SUBDIR += libtommath
