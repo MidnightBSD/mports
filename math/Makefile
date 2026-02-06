@@ -2,6 +2,7 @@
 
     SUBDIR += Imath
     SUBDIR += R
+    SUBDIR += R-cran-FNN
     SUBDIR += R-cran-Formula
     SUBDIR += R-cran-RcppEigen
     SUBDIR += R-cran-assertthat
