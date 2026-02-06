@@ -1795,6 +1795,7 @@
     SUBDIR += rubygem-azure_mgmt_security
     SUBDIR += rubygem-azure_mgmt_storage
     SUBDIR += rubygem-bin_utils
+    SUBDIR += rubygem-bindata
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
@@ -1829,6 +1830,9 @@
     SUBDIR += rubygem-google-apis-core
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
+    SUBDIR += rubygem-google-apis-sheets_v4
+    SUBDIR += rubygem-google-apis-sqladmin_v1beta4
+    SUBDIR += rubygem-google-apis-sqladmin_v1beta4-gitlab
     SUBDIR += rubygem-google-apis-storage_v1
     SUBDIR += rubygem-google-apis-storage_v1-gitlab
     SUBDIR += rubygem-google-cloud-common
