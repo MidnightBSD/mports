@@ -138,6 +138,7 @@
     SUBDIR += tepl6
     SUBDIR += tk-wrapper
     SUBDIR += tk86
+    SUBDIR += tk90
     SUBDIR += tkshape
     SUBDIR += unique
     SUBDIR += vte
