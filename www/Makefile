@@ -386,6 +386,7 @@
     SUBDIR += rubygem-json-jwt-gitlab
     SUBDIR += rubygem-llhttp-ffi
     SUBDIR += rubygem-multipart-post
+    SUBDIR += rubygem-net-http
     SUBDIR += rubygem-net-http-gitlab
     SUBDIR += rubygem-net-http-persistent
     SUBDIR += rubygem-patron
