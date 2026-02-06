@@ -453,6 +453,8 @@
     SUBDIR += rubygem-sass
     SUBDIR += rubygem-sass-listen
     SUBDIR += rubygem-sass-rails-rails4
+    SUBDIR += rubygem-sassc
+    SUBDIR += rubygem-sassc-rails-rails4
     SUBDIR += rubygem-unf
     SUBDIR += sassc
     SUBDIR += scdoc
