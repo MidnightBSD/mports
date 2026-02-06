@@ -50,6 +50,7 @@
     SUBDIR += coin-or-mumps
     SUBDIR += coinmp
     SUBDIR += coinutils
+    SUBDIR += cudd
     SUBDIR += djbfft
     SUBDIR += edenmath
     SUBDIR += eigen3
