@@ -1120,6 +1120,7 @@
     SUBDIR += p5-XXX
     SUBDIR += p5-aliased
     SUBDIR += p5-asa
+    SUBDIR += p5-autobox
     SUBDIR += p5-bareword-filehandles
     SUBDIR += p5-common-sense
     SUBDIR += p5-goto-file
