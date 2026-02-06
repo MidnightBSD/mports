@@ -1783,6 +1783,7 @@
     SUBDIR += rubygem-activesupport-gitlab
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport5
+    SUBDIR += rubygem-activesupport61
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-activesupport80
     SUBDIR += rubygem-annoy
