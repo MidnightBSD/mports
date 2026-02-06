@@ -1878,6 +1878,7 @@
     SUBDIR += rubygem-rspec-expectations
     SUBDIR += rubygem-rspec-mocks
     SUBDIR += rubygem-rspec-support
+    SUBDIR += rubygem-ruby2_keywords
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
