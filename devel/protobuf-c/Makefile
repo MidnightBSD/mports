@@ -1,32 +1,42 @@
-PORTNAME=		protobuf-c
-PORTVERSION=		1.4.1
-DISTVERSIONPREFIX=	v
-CATEGORIES=		devel
+PORTNAME=	protobuf-c
+DISTVERSION=	1.5.1
+PORTREVISION=	3
+CATEGORIES=	devel
+MASTER_SITES=	https://github.com/protobuf-c/protobuf-c/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Code generator and libraries to use Protocol Buffers from pure C
+WWW=		https://github.com/protobuf-c/protobuf-c
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libprotobuf.so:devel/protobuf
+LIB_DEPENDS=	libabsl_log_internal_check_op.so:devel/abseil \
+		libprotobuf.so:devel/protobuf
 
-USES=		autoreconf compiler:c++11-lang gmake libtool pkgconfig
-GNU_CONFIGURE=	yes
-USE_GITHUB=	yes
+USES=		compiler:c++17-lang gmake libtool pkgconfig
+USE_CXXSTD=	c++17
 USE_LDCONFIG=	yes
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-static
 
-OPTIONS_DEFINE=	DOCS
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
+
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libprotobuf-c.so.1.0.0
 
 PORTDOCS=	*
 
-ALL_TARGET=	all
-INSTALL_TARGET=	install-strip
+OPTIONS_DEFINE=	DOXYGEN DOCS
+OPTIONS_DEFAULT=	DOXYGEN
 
-tests: build
-	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check)
+DOXYGEN_IMPLIES=	DOCS
+DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen
+DOXYGEN_ALL_TARGET=	html-local
+
+post-install-DOXYGEN-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/html/* ${FAKE_DESTDIR}${DOCSDIR}/html
 
 .include <bsd.port.mk>
