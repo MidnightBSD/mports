@@ -107,6 +107,7 @@
     SUBDIR += ktnef
     SUBDIR += ldapdiff
     SUBDIR += libarcus
+    SUBDIR += libcharon
     SUBDIR += libcloudproviders
     SUBDIR += libdnet
     SUBDIR += libgravatar
