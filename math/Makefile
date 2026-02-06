@@ -94,6 +94,7 @@
     SUBDIR += nlopt
     SUBDIR += ntl
     SUBDIR += openblas
+    SUBDIR += or-tools
     SUBDIR += osi
     SUBDIR += p5-Bit-Vector
     SUBDIR += p5-Data-Float
