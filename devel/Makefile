@@ -1313,6 +1313,7 @@
     SUBDIR += py-coverage
     SUBDIR += py-coverage_enable_subprocess
     SUBDIR += py-coveralls
+    SUBDIR += py-cppy
     SUBDIR += py-curio
     SUBDIR += py-cycler
     SUBDIR += py-cython-test-exception-raiser
