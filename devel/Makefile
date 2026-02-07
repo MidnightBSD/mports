@@ -1780,6 +1780,7 @@
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-gems
     SUBDIR += rubygem-actionview4
+    SUBDIR += rubygem-actionview5
     SUBDIR += rubygem-activejob4
     SUBDIR += rubygem-activesupport-gitlab
     SUBDIR += rubygem-activesupport4
