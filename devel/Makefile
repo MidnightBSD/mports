@@ -1912,6 +1912,7 @@
     SUBDIR += rubygem-valid
     SUBDIR += rubygem-validatable
     SUBDIR += rubygem-validate_email
+    SUBDIR += rubygem-validate_url
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
     SUBDIR += rubygem-web-console2
