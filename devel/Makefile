@@ -1813,6 +1813,7 @@
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
+    SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
