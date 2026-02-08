@@ -1313,6 +1313,7 @@
     SUBDIR += py-coverage
     SUBDIR += py-coverage_enable_subprocess
     SUBDIR += py-coveralls
+    SUBDIR += py-cppy
     SUBDIR += py-curio
     SUBDIR += py-cycler
     SUBDIR += py-cython-test-exception-raiser
@@ -1780,6 +1781,7 @@
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-gems
     SUBDIR += rubygem-actionview4
+    SUBDIR += rubygem-actionview5
     SUBDIR += rubygem-activejob4
     SUBDIR += rubygem-activesupport-gitlab
     SUBDIR += rubygem-activesupport4
@@ -1811,6 +1813,7 @@
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
+    SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
@@ -1910,6 +1913,7 @@
     SUBDIR += rubygem-valid
     SUBDIR += rubygem-validatable
     SUBDIR += rubygem-validate_email
+    SUBDIR += rubygem-validate_url
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
     SUBDIR += rubygem-web-console2

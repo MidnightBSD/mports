@@ -23,6 +23,7 @@ RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-minitest>=5.1:devel/rubygem-minitest \
 		rubygem-securerandom>=0.3:security/rubygem-securerandom \
 		rubygem-tzinfo>=2.0.5<3:devel/rubygem-tzinfo
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		cpe gem
 
