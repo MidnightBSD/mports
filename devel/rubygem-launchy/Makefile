@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 RUN_DEPENDS=	rubygem-addressable>=2.8<3:www/rubygem-addressable \
 		rubygem-childprocess>=5.0<6:devel/rubygem-childprocess \
 		rubygem-logger>=1.6<2:devel/rubygem-logger
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
