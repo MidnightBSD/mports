@@ -11,6 +11,8 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe ncurses pkgconfig readline ssl tar:xz
 CONFIGURE_ENV=	SVNVERSION="echo midnightbsd"
 CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
