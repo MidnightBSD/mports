@@ -1953,6 +1953,7 @@
     SUBDIR += subversion-lts
     SUBDIR += swig
     SUBDIR += sysconftool
+    SUBDIR += systemc
     SUBDIR += t1lib
     SUBDIR += talloc
     SUBDIR += talloc1
