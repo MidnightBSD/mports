@@ -4,7 +4,7 @@ CATEGORIES=	net kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common libraries for KDEPim
-WWW=		https://github.com/KDE/mailcommon
+WWW=		https://invent.kde.org/pim/mailcommon
 
 LICENSE=	lgpl2.1
 
@@ -12,8 +12,8 @@ BUILD_DEPENDS=	${LOCALBASE}/include/boost/range/algorithm.hpp:devel/boost-libs
 LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libgpg-error.so:security/libgpg-error \
 		libgpgme.so:security/gpgme \
-		libgpgmepp.so:security/gpgme-cpp \
-		libqgpgmeqt6.so:security/gpgme-qt@qt6
+		libgpgmepp.so:security/gpgmepp \
+		libqgpgmeqt6.so:security/qgpgme@qt6
 
 USES=		cmake compiler:c++11-lib gettext kde:6 qt:6 tar:xz xorg
 USE_KDE=	archive auth codecs completion config configwidgets coreaddons \
