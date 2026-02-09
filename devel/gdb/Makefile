@@ -1,6 +1,6 @@
 PORTNAME=	gdb
-DISTVERSION=	12.1
-PORTREVISION=	3
+DISTVERSION=	15.1
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -11,12 +11,16 @@ WWW=		https://www.gnu.org/software/gdb/
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING3
 
-LIB_DEPENDS=	libgmp.so:math/gmp \
-		libmpfr.so:math/mpfr
+LIB_DEPENDS=	libexpat.so:textproc/expat2 \
+		libgmp.so:math/gmp \
+		libmpfr.so:math/mpfr \
+		libzstd.so:archivers/zstd
 TEST_DEPENDS=	runtest:misc/dejagnu
 
-USES=		compiler:c++11-lang cpe gmake libtool makeinfo pkgconfig tar:xz
+USES=		compiler:c++17-lang cpe gmake libtool makeinfo pkgconfig tar:xz
 USE_PYTHON=	flavors py3kplist
+
+BUILD_CONFICTS=	gnulibiberty
 
 #TEST_TARGET=	check
 NO_TEST=	yes
@@ -24,54 +28,25 @@ NO_TEST=	yes
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
-CONFIGURE_ARGS=	--program-suffix=${DISTVERSION:S/.//g} \
+CONFIGURE_ARGS=	--program-suffix=${VER} \
+		--disable-sim \
 		--enable-targets=all --enable-64-bit-bfd \
 		--with-separate-debug-dir=/usr/lib/debug \
+		--with-additional-debug-dirs=${LOCALBASE}/lib/debug \
 		${ICONV_CONFIGURE_ARG} \
-		--with-expat=yes --with-libexpat-prefix=${LOCALBASE} \
-		--without-libunwind-ia64 --with-system-zlib
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
+		--without-libunwind-ia64
 CONFIGURE_OUTSOURCE=	yes
 CFLAGS:=	${CFLAGS:C/ +$//}	# blanks at EOL creep in sometimes
 CFLAGS+=	-DRL_NO_COMPAT
-EXCLUDE=	dejagnu expect sim texinfo intl
+EXCLUDE=	dejagnu expect texinfo intl
 EXTRACT_AFTER_ARGS=	${EXCLUDE:S/^/--exclude /}
-EXTRA_PATCHES=	${FILESDIR}/commit-711b0b6698f \
-		${FILESDIR}/commit-922c2fc18e4 \
-		${FILESDIR}/commit-b1babce7c31 \
-		${FILESDIR}/commit-a49ce729c80 \
-		${FILESDIR}/commit-c77282d8ba9 \
-		${FILESDIR}/commit-041a4212d37 \
-		${FILESDIR}/commit-4bd817e71ee \
-		${FILESDIR}/commit-1570c37c340 \
-		${FILESDIR}/commit-6719bc690e2 \
-		${FILESDIR}/commit-983b1119bc3 \
-		${FILESDIR}/commit-a3627b54280 \
-		${FILESDIR}/commit-065a00b3a46 \
-		${FILESDIR}/commit-e330d4c033e \
-		${FILESDIR}/commit-a171378aa47 \
-		${FILESDIR}/commit-b5c2367c3ac \
-		${FILESDIR}/commit-f3215e1526d \
-		${FILESDIR}/commit-c13566fdd57 \
-		${FILESDIR}/commit-3181aed81c9 \
-		${FILESDIR}/commit-8e6afe4013f \
-		${FILESDIR}/commit-40c23d88038 \
-		${FILESDIR}/commit-92d48a1e4ea \
-		${FILESDIR}/commit-099fbce0acc \
-		${FILESDIR}/commit-2e686a74dc4 \
-		${FILESDIR}/commit-684943d213b \
-		${FILESDIR}/commit-414d5848bb2 \
-		${FILESDIR}/commit-0a765c1a8e9 \
-		${FILESDIR}/commit-f9fbb7636a5 \
-		${FILESDIR}/commit-b7fe5463cf0 \
-		${FILESDIR}/commit-b2fdd31b03e
 
 VER=		${DISTVERSION:S/.//g}
 PLIST_SUB=	VER=${VER}
 
-OPTIONS_DEFINE=	EXPAT GDB_LINK GUILE KGDB NLS PYTHON SOURCE_HIGHLIGHT \
-		TUI XXHASH
-OPTIONS_DEFAULT=	EXPAT GDB_LINK KGDB NLS PYTHON SOURCE_HIGHLIGHT \
+OPTIONS_DEFINE=	DEBUGINFOD GDB_LINK GUILE KGDB NLS PYTHON \
+		SOURCE_HIGHLIGHT TUI XXHASH
+OPTIONS_DEFAULT=	GDB_LINK KGDB NLS PYTHON SOURCE_HIGHLIGHT \
 			TUI XXHASH
 OPTIONS_DEFAULT+=	PORT_READLINE PORT_ICONV SYSTEM_ZLIB
 
@@ -80,6 +55,7 @@ OPTIONS_SINGLE_READLINE=	BUNDLED_READLINE PORT_READLINE
 OPTIONS_SINGLE_ICONV=	PORT_ICONV SYSTEM_ICONV
 OPTIONS_SINGLE_ZLIB=	BUNDLED_ZLIB SYSTEM_ZLIB
 
+DEBUGINFOD_DESC=	Build gdb with debuginfod server support
 GDB_LINK_DESC=		Create ${PREFIX}/bin/gdb symlink
 KGDB_DESC=		Kernel debugging support
 BUNDLED_READLINE_DESC=	from gdb distfile
@@ -95,10 +71,10 @@ XXHASH_DESC=		Use xxHash for hashing (faster)
 OPTIONS_SUB=	yes
 
 BUNDLED_READLINE_CONFIGURE_OFF=	--with-system-readline
-EXPAT_CONFIGURE_OFF=	--with-expat=no
-EXPAT_LIB_DEPENDS=	libexpat.so:textproc/expat2
-GUILE_CONFIGURE_WITH=	guile
-GUILE_LIB_DEPENDS=	libguile-2.2.so:lang/guile2
+DEBUGINFOD_CONFIGURE_WITH=	debuginfod
+DEBUGINFOD_LIB_DEPENDS=	libdebuginfod.so:devel/elfutils
+GUILE_CONFIGURE_WITH=	guile=guile-${GUILE_VER}
+GUILE_USES=		guile:2.2,3.0
 NLS_USES=	gettext-runtime
 PORT_READLINE_USES=	readline
 PORT_ICONV_USES=	iconv:wchar_t
@@ -107,12 +83,15 @@ PYTHON_CONFIGURE_OFF=	--without-python
 PYTHON_USES=		python
 SOURCE_HIGHLIGHT_CONFIGURE_ENABLE=	source-highlight
 SOURCE_HIGHLIGHT_LIB_DEPENDS=	\
+	libboost_regex.so:devel/boost-libs \
 	libsource-highlight.so:textproc/source-highlight
 SYSTEM_ICONV_USES=	iconv
-SYSTEM_ZLIB_WITH=	system-zlib
+SYSTEM_ZLIB_CONFIGURE_WITH=	system-zlib
 TUI_CONFIGURE_ENABLE=	tui
 XXHASH_CONFIGURE_OFF=	--with-xxhash=no
 XXHASH_LIB_DEPENDS=	libxxhash.so:devel/xxhash
+
+ALL_TARGET=	all-gdb
 
 .include <bsd.port.pre.mk>
 
@@ -128,7 +107,7 @@ USE_GITHUB=	nodefault
 
 GH_ACCOUNT=	bsdjhb:libcxx
 GH_PROJECT=	libcxx-gdbpy:libcxx
-GH_TAGNAME=	03d0d9b:libcxx
+GH_TAGNAME=	4bb8585:libcxx
 
 # Workaround USE_GITHUB preventing the default DISTFILES
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -150,7 +129,7 @@ EXCLUDE+=	zlib
 .endif
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd12.4
+CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
 .endif
 
 post-patch:
@@ -165,9 +144,9 @@ do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/gdb/gdb \
 		${PREFIX}/bin/gdb${VER}
 	${INSTALL_MAN} ${WRKSRC}/gdb/doc/gdb.1 \
-		${PREFIX}/share/man/man1/gdb${VER}.1
-	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-syscalls )
+		${STAGEDIR}${PREFIX}/share/man/man1/gdb${VER}.1
+	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; ${SETENVI} ${WRK_ENV} \
+		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-syscalls )
 
 do-install-KGDB-on:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/gdb/kgdb \
@@ -187,17 +166,18 @@ do-install-GDB_LINK-on:
 .endif
 
 do-install-PYTHON-on:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/gdb/python/gdb
-	(cd ${INSTALL_WRKSRC}/gdb ; \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-python )
-	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-python )
-	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/python && \
+	(cd ${INSTALL_WRKSRC}/gdb ; ${SETENVI} ${WRK_ENV} \
+		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
+	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; ${SETENVI} ${WRK_ENV} \
+		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
+	@(cd ${STAGEDIR}${PREFIX}/share/gdb/python && \
 		${PYTHON_CMD} -m compileall .)
-	${FIND} ${FAKE_DESTDIR}${PREFIX}/share/gdb/python -iname "*.py*" -exec ${CHMOD} 644 {} \;
+. for f in gdb gdb/command gdb/function gdb/printer
+	@(cd ${STAGEDIR}${PREFIX}/share/gdb/python/${f} ; ${CHMOD} 644 *.py* )
+. endfor
 .if exists(/usr/lib/libc++.so.1) || exists(/lib/libc++.so.1)
-	@(cd ${WRKSRC_libcxx} ; \
-		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} \
+	@(cd ${WRKSRC_libcxx} ; ${SETENVI} ${WRK_ENV} \
+		${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} \
 		    LIBCXX_DIR="${LIBCXX_DIR}" install )
 	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/auto-load/${LIBCXX_DIR} && \
 		${PYTHON_CMD} -m compileall .)
