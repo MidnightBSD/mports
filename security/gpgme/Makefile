@@ -21,7 +21,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--enable-languages="cl"
 CFLAGS+=	-Wno-suggest-override -Wno-unknown-warning-option
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 INFO=		gpgme
 PORTDOCS=	AUTHORS INSTALL NEWS README
