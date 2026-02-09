@@ -11,6 +11,7 @@ WWW=		https://github.com/josh/rack-mount
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-rack>=1.0.0,3:www/rubygem-rack
 RUN_DEPENDS=	rubygem-rack>=1.0.0,3:www/rubygem-rack
 
 NO_ARCH=	yes
