@@ -20,6 +20,9 @@ LIBYAML_DESC=	Use textproc/libyaml for faster parsing
 
 LIBYAML_LIB_DEPENDS=	libyaml.so:textproc/libyaml
 
+# magus broken
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MLIBYAML}
