@@ -1,5 +1,6 @@
 PORTNAME=	cassandra
 DISTVERSION=	4.0-beta2
+PORTREVISION=	1
 CATEGORIES=	databases java
 MASTER_SITES=	https://archive.apache.org/dist/${PORTNAME}/${DISTVERSION}/:apache \
 		https://repo1.maven.org/maven2/com/github/luben/zstd-jni/1.4.5-4/:maven \
@@ -19,7 +20,8 @@ WWW=		https://cassandra.apache.org/
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-FETCH_DEPENDS=        ant:devel/apache-ant
+FETCH_DEPENDS=	${JAVA}:${JAVA_PORT} \
+		ant:devel/apache-ant
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java \
 		netty>0:java/netty
 
@@ -32,6 +34,7 @@ CONFLICTS=	cassandra3
 JAVA_VERSION=	8 11
 JAVA_VENDOR=	openjdk
 
+FETCH_ENV+=	JAVA_HOME=${JAVA_HOME}
 SUB_LIST=	JAVA_HOME=${JAVA_HOME}
 
 USERS=		cassandra
@@ -84,10 +87,10 @@ do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
 
 do-build-DOCS-on:
-	cd ${WRKSRC} && ${SETENV} CASSANDRA_LOG_DIR=${WRKDIR}/gen-doc-log ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} ${USEJDK11} -Dpycmd=${PYTHON_CMD} -Dpyver=${PYTHON_VER} freebsd-stage-doc
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} CASSANDRA_LOG_DIR=${WRKDIR}/gen-doc-log ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} ${USEJDK11} -Dpycmd=${PYTHON_CMD} -Dpyver=${PYTHON_VER} freebsd-stage-doc
 
 do-build-DOCS-off:
-	cd ${WRKSRC} && ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} ${USEJDK11} freebsd-stage
+	cd ${WRKSRC} && ${MAKE_ENV} ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} ${USEJDK11} freebsd-stage
 
 post-build:
 .for f in ${SCRIPT_FILES}
@@ -128,7 +131,7 @@ do-install:
 .include <bsd.port.pre.mk>
 
 .if ${JAVA_PORT_VERSION} == 11
-USEJDK11=	-Duse.jdk11=true
+USEJDK11=	-Duse.jdk11=true -Drat.skip=true
 .endif
 
 .if ${ARCH} == amd64
