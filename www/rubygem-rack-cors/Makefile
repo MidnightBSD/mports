@@ -10,6 +10,7 @@ WWW=		https://github.com/cyu/rack-cors
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	rubygem-rack>=2.0.0,3:www/rubygem-rack
 RUN_DEPENDS=	rubygem-rack>=2.0.0,3:www/rubygem-rack
 
 USES=		gem
