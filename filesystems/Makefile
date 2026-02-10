@@ -47,6 +47,7 @@
     SUBDIR += libfshfs
     SUBDIR += libfsntfs
     SUBDIR += libfsxfs
+    SUBDIR += libgedit-gfls
     SUBDIR += libmodi
     SUBDIR += linux-c7-dosfstools
     SUBDIR += lkl
