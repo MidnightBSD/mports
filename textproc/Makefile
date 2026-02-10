@@ -177,10 +177,12 @@
     SUBDIR += opensearch-dashboards210
     SUBDIR += opensearch-dashboards213
     SUBDIR += opensearch-dashboards216
+    SUBDIR += opensearch-dashboards219
     SUBDIR += opensearch13
     SUBDIR += opensearch210
     SUBDIR += opensearch213
     SUBDIR += opensearch216
+    SUBDIR += opensearch219
     SUBDIR += opensp
     SUBDIR += openvanilla-framework
     SUBDIR += p5-CAM-PDF
