@@ -1,5 +1,5 @@
 PORTNAME=	cgi
-PORTVERSION=	0.4.1
+PORTVERSION=	0.5.1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -9,7 +9,7 @@ WWW=		https://github.com/ruby/cgi
 
 LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
-LICENSE_FILE_BSD2CLAUSE=${WRKSRC}/LICENSE.txt
+LICENSE_FILE_bsd2=${WRKSRC}/BSDL
 
 USES=		cpe gem
 
