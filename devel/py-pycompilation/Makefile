@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Package for compilation (meta programming)
+WWW=		https://github.com/bjodah/pycompilation
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
