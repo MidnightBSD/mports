@@ -20,6 +20,5 @@ BABEL_DESC=	I18n support through the Babel plugin
 BABEL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Babel>=0.8:devel/py-babel@${PY_FLAVOR}
 
 NO_TEST=	yes
-NO_ARCH=	yes
 
 .include <bsd.port.mk>
