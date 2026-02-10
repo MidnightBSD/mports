@@ -13,6 +13,9 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extended version of pdfTeX using Lua
 
+LICENSE=	mit gpl2
+LICENSE_COMB=	multi
+
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libgmp.so:math/gmp \
 		libgraphite2.so:graphics/graphite2 \
