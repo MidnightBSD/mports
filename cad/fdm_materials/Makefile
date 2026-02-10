@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FDM Material database for 3D printers
 WWW=		https://github.com/Ultimaker/fdm_materials
 
-LICENSE=	apgl
+LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cmake
