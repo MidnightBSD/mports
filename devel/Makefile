@@ -896,6 +896,7 @@
     SUBDIR += p5-MooX-Types-MooseLike-Numeric
     SUBDIR += p5-Moose
     SUBDIR += p5-Moose-Autobox
+    SUBDIR += p5-MooseX-CompileTime-Traits
     SUBDIR += p5-MooseX-ConfigFromFile
     SUBDIR += p5-MooseX-Declare
     SUBDIR += p5-MooseX-Getopt
