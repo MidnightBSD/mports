@@ -19,6 +19,6 @@ USES=		perl5
 USE_PERL5=	modbuild
 
 post-install:
-	${RM} ${PREFIX}/lib/perl5/site_perl/auto/Text/WordDiff/.packlist
+	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/lib/perl5/site_perl/auto/Text/WordDiff/.packlist
 
 .include <bsd.port.mk>
