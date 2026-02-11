@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0.83.0:devel/py-dbus@${PY_FLAVOR} \
 		${LOCALBASE}/share/unicode/ucd/NamesList.txt:textproc/UCD \
-		${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
+		iso-codes>0:misc/iso-codes \
 		gtkdocize:textproc/gtk-doc \
 		bash:shells/bash
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0.83.0:devel/py-dbus@${PY_FLAVOR} \
