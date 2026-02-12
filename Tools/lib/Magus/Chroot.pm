@@ -220,6 +220,15 @@ sub _mount_loopbacks {
 
   $self->_mkdir('compat/linux/proc');
   system("/sbin/mount -t linprocfs linprocfs $self->{root}/compat/linux/proc");
+
+  $self->_mkdir('compat/linux/sys');
+  system("/sbin/mount -t linsysfs linsysfs $self->{root}/compat/linux/sys");
+
+  $self->_mkdir('compat/linux/dev');
+  system("/sbin/mount -t devfs devfs $self->{root}/compat/linux/dev");
+
+  $self->_mkdir('compat/linux/dev/fd');
+  system("/sbin/mount -t fdescfs fdescfs $self->{root}/compat/linux/dev/fd");
 } 
 
 sub _unmount_loopbacks {
