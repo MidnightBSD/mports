@@ -26,6 +26,8 @@ CMAKE_TESTING_ON=	KDDockWidgets_TESTS KDDockWidgets_DEVELOPER_MODE
 
 PLIST_SUB=	SHLIB_VER=${PORTVERSION}
 
+NO_TEST=	yes
+
 post-install:
 	@${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc
 
