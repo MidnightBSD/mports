@@ -1,13 +1,16 @@
 PORTNAME=	seahorse
-PORTVERSION=	41.0
-PORTREVISION=	4
+PORTVERSION=	47.0.1
 CATEGORIES=	security gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
+
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/seahorse/-/commit/
+PATCHFILES+=	aa68522cc696fa491ccfdff735b77bcf113168d0.patch:-p1 # Fix build with GpgME 2.0.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME application for managing encryption keys (PGP, SSH)
-WWW=		https://wiki.gnome.org/Apps/Seahorse
+WWW=		https://wiki.gnome.org/Apps/Seahorse \
+		https://gitlab.gnome.org/GNOME/seahorse
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -19,7 +22,7 @@ LIB_DEPENDS=	libgcr-base-3.so:security/gcr3 \
 		libhandy-1.so:x11-toolkits/libhandy \
 		libpwquality.so:security/libpwquality \
 		libsecret-1.so:security/libsecret \
-		libsoup-2.4.so:devel/libsoup
+		libsoup-3.0.so:devel/libsoup3
 RUN_DEPENDS=	gnupg>=2.1.4:security/gnupg
 
 USES=		cpe gettext gnome localbase:ldflags meson pkgconfig \

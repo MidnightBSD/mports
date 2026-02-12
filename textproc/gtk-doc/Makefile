@@ -1,30 +1,29 @@
 PORTNAME=	gtk-doc
-DISTVERSION=	1.33.2
-PORTREVISION=	2
+DISTVERSION=	1.35.1
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Code documentation system, originally for GTK
-WWW=		https://www.gtk.org/
+MAINTAINER=	ports@MidnighBSD.org
+COMMENT=	Documentation generator for GLib/GTK based code
+WWW=		https://gitlab.gnome.org/GNOME/gtk-doc
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=0:textproc/py-pygments@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>0:textproc/py-pygments@${PY_FLAVOR} \
 		docbook-xml>0:textproc/docbook-xml \
-		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
-		itstool:textproc/itstool \
-		yelp-tools>=0:textproc/yelp-tools \
-		xsltproc:textproc/libxslt
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=0:textproc/py-pygments@${PY_FLAVOR} \
+		docbook-xsl>0:textproc/docbook-xsl
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>0:textproc/py-pygments@${PY_FLAVOR} \
 		docbook-xml>0:textproc/docbook-xml \
-		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
-		xsltproc:textproc/libxslt
+		docbook-xsl>0:textproc/docbook-xsl
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}parameterized>0:devel/py-parameterized@${PY_FLAVOR}
 
-USES=		gettext-tools meson python pkgconfig tar:xz
+USES=		gnome meson python pkgconfig tar:xz
+USE_GNOME=	glib20 libxslt
 
-MESON_ARGS=	-Dtests=false
+MESON_ARGS=	-Dyelp_manual=false
 
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR} \
 		CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML} \
@@ -32,13 +31,15 @@ PLIST_SUB=	XMLCATMGR=${XMLCATMGR} \
 
 
 NO_ARCH=	yes
+TEST_ENV=	CC=${CC}
+BINARY_ALIAS= python3=${PYTHON_CMD}
 
 post-install:
 	${PYTHON_CMD:S,${FAKE_DESTDIR},,} ${PYTHON_LIBDIR}/compileall.py \
-		-f -d ${DATADIR}/python/gtkdoc \
+		-f -d ${DATADIR:S,${FAKE_DESTDIR},,}/python/gtkdoc \
 		${STAGEDIR}${DATADIR}/python/gtkdoc
 	${PYTHON_CMD:S,${FAKE_DESTDIR},,} -O ${PYTHON_LIBDIR}/compileall.py \
-		-f -d ${DATADIR}/python/gtkdoc \
+		-f -d ${DATADIR:S,${FAKE_DESTDIR},,}/python/gtkdoc \
 		${STAGEDIR}${DATADIR}/python/gtkdoc
 
 .include <bsd.port.mk>

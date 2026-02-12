@@ -74,7 +74,7 @@ do-install:
 	#
 	# Only 9 dictionaries can be enabled
 	#
-	@${ECHO_CMD} dicdir ${DATADIR} > ${STAGEDIR}${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicdir ${LOCALBASE}/${DATADIR_REL} > ${STAGEDIR}${DATADIR}/.xjdicrc
 	@${ECHO_CMD} dicfile edict >> ${STAGEDIR}${DATADIR}/.xjdicrc
 	@${ECHO_CMD} dicfile enamdict >> ${STAGEDIR}${DATADIR}/.xjdicrc
 	@${ECHO_CMD} dicfile compdic >> ${STAGEDIR}${DATADIR}/.xjdicrc

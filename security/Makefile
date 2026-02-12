@@ -58,8 +58,6 @@
     SUBDIR += go-cve-dictionary
     SUBDIR += gpgme
     SUBDIR += gpgmepp
-    SUBDIR += gpgme-cpp
-    SUBDIR += gpgme-qt
     SUBDIR += gsasl
     SUBDIR += gstreamer1-plugins-dtls
     SUBDIR += gvm-libs

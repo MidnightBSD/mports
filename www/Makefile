@@ -75,7 +75,9 @@
     SUBDIR += lighttpd
     SUBDIR += links
     SUBDIR += links1
+    SUBDIR += linux-brave
     SUBDIR += linux-c7-qtwebkit
+    SUBDIR += linux-chrome
     SUBDIR += linux-rl9-libnghttp2
     SUBDIR += linux-rl9-qt5-qtwebchannel
     SUBDIR += linux-rl9-qt5-qtwebsockets
@@ -386,6 +388,8 @@
     SUBDIR += rubygem-json-jwt-gitlab
     SUBDIR += rubygem-llhttp-ffi
     SUBDIR += rubygem-multipart-post
+    SUBDIR += rubygem-net-http
+    SUBDIR += rubygem-net-http-gitlab
     SUBDIR += rubygem-net-http-persistent
     SUBDIR += rubygem-patron
     SUBDIR += rubygem-rack

@@ -2,6 +2,7 @@
 
     SUBDIR += Imath
     SUBDIR += R
+    SUBDIR += R-cran-FNN
     SUBDIR += R-cran-Formula
     SUBDIR += R-cran-RcppEigen
     SUBDIR += R-cran-assertthat
@@ -50,6 +51,7 @@
     SUBDIR += coin-or-mumps
     SUBDIR += coinmp
     SUBDIR += coinutils
+    SUBDIR += cudd
     SUBDIR += djbfft
     SUBDIR += edenmath
     SUBDIR += eigen3
@@ -78,6 +80,7 @@
     SUBDIR += lapack
     SUBDIR += lapacke
     SUBDIR += ldouble
+    SUBDIR += lemon
     SUBDIR += lib2geom
     SUBDIR += libqalculate
     SUBDIR += libtommath
@@ -91,6 +94,7 @@
     SUBDIR += nlopt
     SUBDIR += ntl
     SUBDIR += openblas
+    SUBDIR += or-tools
     SUBDIR += osi
     SUBDIR += p5-Bit-Vector
     SUBDIR += p5-Data-Float
@@ -163,5 +167,6 @@
     SUBDIR += xtensor
     SUBDIR += yices
     SUBDIR += zarray
+    SUBDIR += zn_poly
 
 .include <bsd.port.subdir.mk>

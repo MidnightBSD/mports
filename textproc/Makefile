@@ -177,10 +177,12 @@
     SUBDIR += opensearch-dashboards210
     SUBDIR += opensearch-dashboards213
     SUBDIR += opensearch-dashboards216
+    SUBDIR += opensearch-dashboards219
     SUBDIR += opensearch13
     SUBDIR += opensearch210
     SUBDIR += opensearch213
     SUBDIR += opensearch216
+    SUBDIR += opensearch219
     SUBDIR += opensp
     SUBDIR += openvanilla-framework
     SUBDIR += p5-CAM-PDF
@@ -432,6 +434,7 @@
     SUBDIR += redland
     SUBDIR += ripgrep
     SUBDIR += rubygem-asciidoctor
+    SUBDIR += rubygem-case_transform
     SUBDIR += rubygem-chef-gyoku
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-emot
@@ -446,6 +449,15 @@
     SUBDIR += rubygem-rails-dom-testing
     SUBDIR += rubygem-rails-dom-testing-rails-gitlab
     SUBDIR += rubygem-rails-dom-testing1
+    SUBDIR += rubygem-rails-dom-testing-rails5
+    SUBDIR += rubygem-rails-dom-testing-rails50
+    SUBDIR += rubygem-rails-dom-testing-rails52
+    SUBDIR += rubygem-rails-dom-testing-rails60
+    SUBDIR += rubygem-rails-dom-testing-rails61
+    SUBDIR += rubygem-rails-dom-testing-rails70
+    SUBDIR += rubygem-rails-dom-testing-rails71
+    SUBDIR += rubygem-rails-dom-testing-rails72
+    SUBDIR += rubygem-rails-dom-testing-rails80
     SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-rexml
@@ -453,6 +465,8 @@
     SUBDIR += rubygem-sass
     SUBDIR += rubygem-sass-listen
     SUBDIR += rubygem-sass-rails-rails4
+    SUBDIR += rubygem-sassc
+    SUBDIR += rubygem-sassc-rails-rails4
     SUBDIR += rubygem-unf
     SUBDIR += sassc
     SUBDIR += scdoc

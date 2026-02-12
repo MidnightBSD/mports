@@ -13,6 +13,9 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extended version of pdfTeX using Lua
 
+LICENSE=	mit gpl2
+LICENSE_COMB=	multi
+
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libgmp.so:math/gmp \
 		libgraphite2.so:graphics/graphite2 \
@@ -95,7 +98,7 @@ pre-install:
 		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/lualatex/wallcalendar/doc/examples/diff-cal.sh
 
 post-fake:
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' \
 		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luajittex/luajittex.log \
 		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luatex/dviluatex.log \
 		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luatex/luatex.log \

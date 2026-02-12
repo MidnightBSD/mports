@@ -1,6 +1,5 @@
 PORTNAME=	tcl
 DISTVERSION=	${TCL_VERSION}${TCL_RC}
-PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	SF/tcl/Tcl/${TCL_VERSION}
 PKGNAMESUFFIX=	${SHORT_TCL_VER}
@@ -49,7 +48,7 @@ ALL_TARGET=	all
 INSTALL_TARGET=	install-strip install-libraries install-private-headers
 TEST_TARGET=	test-tcl
 
-TCL_VERSION=	8.6.14
+TCL_VERSION=	8.6.17
 TCL_VER=	${TCL_VERSION:R}
 TCL_RC=
 SHORT_TCL_VER=	${TCL_VER:S/.//}
@@ -65,8 +64,15 @@ TCLMAN_INSTALL_TARGET=	install-doc
 TZDATA_INSTALL_TARGET=	install-tzdata
 THREADS_CONFIGURE_ENABLE=	threads
 DEBUG_CONFIGURE_ENABLE=	symbols
+DTRACE_CONFIGURE_ENABLE=	dtrace
 
 .include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDTRACE}
+PLIST_SUB+=	DTRACE=""
+.else
+PLIST_SUB+=	DTRACE="@comment "
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -e \

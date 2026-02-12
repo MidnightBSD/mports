@@ -10,6 +10,7 @@ WWW=		https://github.com/turbolinks/turbolinks
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-turbolinks-source>=5.2<6:www/rubygem-turbolinks-source
 RUN_DEPENDS=	rubygem-turbolinks-source>=5.2<6:www/rubygem-turbolinks-source
 
 USES=		gem

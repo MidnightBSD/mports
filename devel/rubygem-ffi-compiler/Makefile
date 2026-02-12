@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-ffi>=1.15.5:devel/rubygem-ffi \
 		rubygem-rake>=0:devel/rubygem-rake
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

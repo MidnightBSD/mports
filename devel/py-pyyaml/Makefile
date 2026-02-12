@@ -1,10 +1,8 @@
 PORTNAME=	pyyaml
-PORTVERSION=	6.0.1
-PORTREVISION=	1
+DISTVERSION=	6.0.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	PyYAML-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python YAML parser
@@ -13,16 +11,17 @@ WWW=		https://pyyaml.org/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython>=0:lang/cython@${PY_FLAVOR}
-
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USES=		localbase python
+USE_PYTHON=	autoplist concurrent cython distutils
 
 OPTIONS_DEFINE=	LIBYAML EXAMPLES
 OPTIONS_DEFAULT=LIBYAML
 LIBYAML_DESC=	Use textproc/libyaml for faster parsing
 
 LIBYAML_LIB_DEPENDS=	libyaml.so:textproc/libyaml
+
+# magus broken
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 

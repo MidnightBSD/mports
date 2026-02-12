@@ -3,6 +3,7 @@
     SUBDIR += R-cran-arabic2kansuji
     SUBDIR += R-cran-base64enc
     SUBDIR += R-cran-jsonlite
+    SUBDIR += base64
     SUBDIR += bsdconv
     SUBDIR += dos2unix
     SUBDIR += enca

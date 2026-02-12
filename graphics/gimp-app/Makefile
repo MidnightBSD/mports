@@ -14,7 +14,7 @@ WWW=		https://www.gimp.org/
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
+BUILD_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		glib-networking>=0:net/glib-networking \
 		mypaint-brushes>0:graphics/mypaint-brushes
 

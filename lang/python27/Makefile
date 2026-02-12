@@ -11,17 +11,32 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses pkgconfig readline ssl tar:xz
+SKIP_FAKE_ALL=  yes
+
+DEPRECATED=   EOLed upstream
+EXPIRATION_DATE=      2020-12-31
+
+USES=		cpe ncurses pkgconfig readline shebangfix ssl tar:xz
+PATHFIX_MAKEFILEIN=	Makefile.pre.in
 CONFIGURE_ENV=	SVNVERSION="echo midnightbsd"
 CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --host=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --target=${ARCH}-portbld-midnightbsd${OSREL}
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+SHEBANG_FILES=	Lib/lib2to3/pgen2/*.py Lib/lib2to3/tests/*.py Lib/lib2to3/tests/data/*.py \
+		Lib/idlelib/*.py Lib/encodings/*.py Lib/test/*.py Lib/UserString.py \
+		Lib/base64.py Lib/cProfile.py Lib/keyword.py Lib/mimify.py Lib/pdb.py \
+		Lib/platform.py Lib/profile.py Lib/pydoc.py Lib/quopri.py Lib/smtpd.py \
+		Lib/smtplib.py Lib/symbol.py Lib/tabnanny.py Lib/timeit.py Lib/trace.py \
+		Lib/uu.py Lib/webbrowser.py
 
 CPE_VENDOR=	python
 CPE_PRODUCT=	${CPE_VENDOR}
 CPE_VERSION=	${DISTVERSION}
+
+
+python_CMD=	${TRUE_PREFIX}/bin/python${PYTHON_DISTVERSION:R}
 
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ENV+=		ac_cv_opt_olimit_ok=no OPT=""				# Null out OPT to respect user CFLAGS and remove optimizations
@@ -98,6 +113,8 @@ PLIST_SUB+=	NO_NIS=""
 post-patch:
 	${CP} -r ${WRKSRC}/Lib/plat-freebsd8 \
 		${WRKSRC}/Lib/plat-midnightbsd${OSMAJOR}
+	@${REINPLACE_CMD} -e 's|/usr/local/bin/python|${python_CMD}|' \
+		${WRKSRC}/Lib/cgi.py
 	@${REINPLACE_CMD} -e \
 		's,/usr/doc/python-docs-,${PREFIX}/share/doc/python,g' \
 		${PATCH_WRKSRC}/Lib/pydoc.py

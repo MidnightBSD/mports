@@ -1,16 +1,15 @@
 PORTNAME=	palemoon
-PORTVERSION=	32.5.0
-PORTREVISION=	1
+PORTVERSION=	34.0.1
+PORTREVISION=	0
 CATEGORIES=	www
-MASTER_SITES=	https://archive.palemoon.org/palemoon/32.x/${PORTVERSION}/FreeBSD/
-DISTFILES=	palemoon-32.5.0.freebsd12.3-x86_64-gtk3.tar.xz
+MASTER_SITES=	https://archive.palemoon.org/palemoon/34.x/${PORTVERSION}/FreeBSD/
+DISTFILES=	palemoon-34.0.1.freebsd13.5-x86_64-gtk3.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pale Moon for FreeBSD
 WWW=		https://www.palemoon.org/
 
 LICENSE=	MPL20
-LICENSE_FILE=	${FAKE_DESTDIR}/${LOCALBASE}/${PORTNAME}/license.txt
 
 LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libvpx.so:multimedia/libvpx \

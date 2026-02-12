@@ -12,6 +12,7 @@ LICENSE=	Apache-2.0
 RUN_DEPENDS=	rubygem-httpclient>=2.8<3:www/rubygem-httpclient \
 		rubygem-mime-types>=1.15:misc/rubygem-mime-types \
 		rubygem-multi_json>=1.7<2:devel/rubygem-multi_json
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

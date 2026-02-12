@@ -100,6 +100,7 @@
     SUBDIR += R-cran-remotes
     SUBDIR += R-cran-reshape
     SUBDIR += R-cran-rlang
+    SUBDIR += R-cran-rngtools
     SUBDIR += R-cran-roxygen2
     SUBDIR += R-cran-rprojroot
     SUBDIR += R-cran-rstudioapi
@@ -896,6 +897,7 @@
     SUBDIR += p5-MooX-Types-MooseLike-Numeric
     SUBDIR += p5-Moose
     SUBDIR += p5-Moose-Autobox
+    SUBDIR += p5-MooseX-CompileTime-Traits
     SUBDIR += p5-MooseX-ConfigFromFile
     SUBDIR += p5-MooseX-Declare
     SUBDIR += p5-MooseX-Getopt
@@ -1120,6 +1122,7 @@
     SUBDIR += p5-XXX
     SUBDIR += p5-aliased
     SUBDIR += p5-asa
+    SUBDIR += p5-autobox
     SUBDIR += p5-bareword-filehandles
     SUBDIR += p5-common-sense
     SUBDIR += p5-goto-file
@@ -1312,6 +1315,7 @@
     SUBDIR += py-coverage
     SUBDIR += py-coverage_enable_subprocess
     SUBDIR += py-coveralls
+    SUBDIR += py-cppy
     SUBDIR += py-curio
     SUBDIR += py-cycler
     SUBDIR += py-cython-test-exception-raiser
@@ -1779,10 +1783,12 @@
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-gems
     SUBDIR += rubygem-actionview4
+    SUBDIR += rubygem-actionview5
     SUBDIR += rubygem-activejob4
     SUBDIR += rubygem-activesupport-gitlab
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport5
+    SUBDIR += rubygem-activesupport61
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-activesupport80
     SUBDIR += rubygem-annoy
@@ -1793,7 +1799,9 @@
     SUBDIR += rubygem-azure_mgmt_resources
     SUBDIR += rubygem-azure_mgmt_security
     SUBDIR += rubygem-azure_mgmt_storage
+    SUBDIR += rubygem-azure_service_fabric
     SUBDIR += rubygem-bin_utils
+    SUBDIR += rubygem-bindata
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
@@ -1808,6 +1816,7 @@
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
+    SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
@@ -1816,7 +1825,9 @@
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
+    SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-getoptlong
+    SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
@@ -1828,6 +1839,14 @@
     SUBDIR += rubygem-google-apis-core
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
+    SUBDIR += rubygem-google-apis-monitoring_v3-gitlab
+    SUBDIR += rubygem-google-apis-playcustomapp_v1
+    SUBDIR += rubygem-google-apis-pubsub_v1
+    SUBDIR += rubygem-google-apis-pubsub_v1-gitlab
+    SUBDIR += rubygem-google-apis-serviceusage_v1
+    SUBDIR += rubygem-google-apis-sheets_v4
+    SUBDIR += rubygem-google-apis-sqladmin_v1beta4
+    SUBDIR += rubygem-google-apis-sqladmin_v1beta4-gitlab
     SUBDIR += rubygem-google-apis-storage_v1
     SUBDIR += rubygem-google-apis-storage_v1-gitlab
     SUBDIR += rubygem-google-cloud-common
@@ -1845,6 +1864,7 @@
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
+    SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
@@ -1878,19 +1898,23 @@
     SUBDIR += rubygem-rspec-expectations
     SUBDIR += rubygem-rspec-mocks
     SUBDIR += rubygem-rspec-support
+    SUBDIR += rubygem-ruby2_keywords
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-sprockets-rails-rails4
+    SUBDIR += rubygem-storable
     SUBDIR += rubygem-stringio
     SUBDIR += rubygem-strptime
     SUBDIR += rubygem-sumbur
     SUBDIR += rubygem-svn2git
+    SUBDIR += rubygem-sysinfo
     SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-thor
     SUBDIR += rubygem-thread_safe
+    SUBDIR += rubygem-tilt
     SUBDIR += rubygem-timeliness
     SUBDIR += rubygem-timeout
     SUBDIR += rubygem-tzinfo
@@ -1899,6 +1923,7 @@
     SUBDIR += rubygem-valid
     SUBDIR += rubygem-validatable
     SUBDIR += rubygem-validate_email
+    SUBDIR += rubygem-validate_url
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
     SUBDIR += rubygem-web-console2
@@ -1938,6 +1963,7 @@
     SUBDIR += subversion-lts
     SUBDIR += swig
     SUBDIR += sysconftool
+    SUBDIR += systemc
     SUBDIR += t1lib
     SUBDIR += talloc
     SUBDIR += talloc1

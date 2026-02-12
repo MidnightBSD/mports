@@ -29,6 +29,8 @@ MESON_ARGS=	--auto-features=disabled \
 		-Dsyslog=enabled \
 		-Dzlib=enabled
 
+LDFLAGS+=	-licuuc
+
 PORTDOCS=	AUTHORS README.md NEWS
 
 SUB_FILES=	pkg-message

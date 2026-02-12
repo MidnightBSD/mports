@@ -114,8 +114,10 @@
     SUBDIR += spidermonkey128
     SUBDIR += spidermonkey78
     SUBDIR += spidermonkey91
+    SUBDIR += tcl-manual
     SUBDIR += tcl-wrapper
     SUBDIR += tcl86
+    SUBDIR += tcl90
     SUBDIR += tolua
     SUBDIR += tolua++
     SUBDIR += v

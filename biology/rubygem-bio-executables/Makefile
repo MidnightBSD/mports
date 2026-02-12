@@ -14,6 +14,7 @@ LICENSE_FILE_ruby=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	rubygem-bio>=2.0.0:biology/rubygem-bio \
 		rubygem-bio-old-biofetch-emulator>=0.0.1:biology/rubygem-bio-old-biofetch-emulator
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

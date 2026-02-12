@@ -285,6 +285,8 @@
     SUBDIR += rubygem-openid_connect
     SUBDIR += rubygem-rsync
     SUBDIR += rubygem-ruby-openid
+    SUBDIR += rubygem-rubyntlm
+    SUBDIR += rubygem-rubytter
     SUBDIR += rubygem-rudy
     SUBDIR += rubygem-rye
     SUBDIR += rubygem-serverengine

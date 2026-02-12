@@ -10,6 +10,7 @@ WWW=		https://github.com/mjackson/rack-accept
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	rubygem-rack>=0.4,3:www/rubygem-rack
 RUN_DEPENDS=	rubygem-rack>=0.4,3:www/rubygem-rack
 
 NO_ARCH=	yes

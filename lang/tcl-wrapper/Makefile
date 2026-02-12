@@ -1,6 +1,6 @@
 PORTNAME=	wrapper
 PORTVERSION=	1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang tcl
 MASTER_SITES=	# empty
 PKGNAMEPREFIX=	${TX_PORT}-
@@ -53,7 +53,7 @@ SUB_LIST+=	ECHO_CMD="${ECHO_CMD}" GREP="${GREP}" LS="${LS}" \
 		TX_SHELL="${TX_SHELL}" TX_SHELL_U="${TX_SHELL:tu}" \
 		TX_PORT="${TX_PORT}" TX_PORT_U="${TX_PORT_U}" \
 		TX_CAT="${TX_CAT}" TX_VER="${TX_VER}" TX_CONF="${TX_CONF}" \
-		TX_CONF_FULL="${TX_CONF_FULL}"
+		TX_CONF_FULL="${TX_CONF_FULL:S/${FAKE_DESTDIR}//}"
 
 do-build: apply-slist
 	${MAKE_ENV} ${LOCALBASE}/bin/shc -r -f ${WRKDIR}/wrapper
