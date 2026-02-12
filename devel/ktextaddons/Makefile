@@ -15,7 +15,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	libqt6keychain.so:security/qtkeychain@qt6
 
-USES=		gettext cmake kde:6 qt:6 tar:xz xorg
+USES=		gettext cmake kde:6 kfhack qt:6 tar:xz xorg
 USE_KDE=	archive auth codecs completion config configwidgets \
 		coreaddons i18n jobwidgets kio service solid sonnet \
 		syntaxhighlighting widgetsaddons windowsystem \
