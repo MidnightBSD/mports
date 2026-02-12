@@ -434,6 +434,7 @@
     SUBDIR += redland
     SUBDIR += ripgrep
     SUBDIR += rubygem-asciidoctor
+    SUBDIR += rubygem-case_transform
     SUBDIR += rubygem-chef-gyoku
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-emot
