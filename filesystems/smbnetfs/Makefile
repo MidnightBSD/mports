@@ -1,5 +1,6 @@
 PORTNAME=	smbnetfs
 PORTVERSION=	0.6.3
+PORTREVISION=	1
 CATEGORIES=	filesystems net
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/SMBNetFS-${PORTVERSION}
 PKGNAMEPREFIX=	fusefs-
@@ -25,8 +26,8 @@ USE_GNOME=	glib20:build
 GNU_CONFIGURE=	yes
 # A hack to disable gratuitous linking with -lglib-2.0
 CONFIGURE_ENV+=	GLIB_LIBS=-L/var/empty
-CFLAGS+=	-I${SAMBAINCLUDES} -DFUSE_USE_VERSION=${FUSE_VERSION}
-LDFLAGS+=	-L${SAMBALIBS}
+CFLAGS+=	-I${SAMBA_INCLUDEDIR} -DFUSE_USE_VERSION=${FUSE_VERSION}
+LDFLAGS+=	-L${SAMBA_LIBDIR}
 SUB_FILES=	pkg-message
 # configure just generated config.h -- we do not need to redo it:
 MAKE_ARGS+=	AUTOHEADER=${TRUE}
