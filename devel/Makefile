@@ -1825,6 +1825,7 @@
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
+    SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-getoptlong
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
