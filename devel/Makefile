@@ -341,6 +341,7 @@
     SUBDIR += gradle62
     SUBDIR += gradle761
     SUBDIR += gradle8
+    SUBDIR += grantlee5
     SUBDIR += gsettings-desktop-schemas
     SUBDIR += gsoap
     SUBDIR += gstreamer1-plugins-soup
