@@ -1,6 +1,6 @@
 package Magus::Chroot;
 #
-# Copyright (c) 2008-2025 Lucas Holt
+# Copyright (c) 2008-2026 Lucas Holt
 # Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -85,6 +85,8 @@ sub new {
     distfiles   => '/magus/distfiles',
     workdir     => '/magus/work',    
     logs        => '/magus/logs',
+    memoryDisk  => $Magus::Config{MemoryDiskEnabled},
+    memoryDiskSize => $Magus::Config{MemoryDiskSize},
     loopbacks   => {
       "$Magus::Config{SlaveMportsDir}" => "/usr/mports",
       "$Magus::Config{SlaveSrcDir}"    => "/usr/src",
@@ -121,8 +123,19 @@ sub _init {
   
   # nuke it if it is dead.
   $self->delete if -e "$self->{root}/.dead";
-  
-  mkpath($self->{root}); 
+
+  mkpath($self->{root});
+
+  if ($self->{memoryDisk}) {
+    system("/sbin/mdconfig -a -t swap -s $self->{memoryDiskSize} -u $self->{workerid}") == 0
+      or die "Couldn't create memory disk: $?\n";
+
+    system("/sbin/newfs /dev/md$self->{workerid}") == 0
+      or die "Couldn't newfs memory disk: $?\n";
+
+    system("/sbin/mount /dev/md$self->{workerid} $self->{root}") == 0
+      or die "Couldn't mount memory disk: $?\n";
+  }
    
   $self->_sync_reference_dir;
   $self->_mount_loopbacks;
@@ -367,9 +380,17 @@ sub delete {
   my ($self) = @_;
   
   $self->_unmount_loopbacks;
-  $self->_clear_flags("/");
-  
-  rmtree($self->root) || die "Couldn't rmtree $self->{root}: $!\n";
+
+  if ($self->{memoryDisk}) {
+    system("/sbin/umount $self->{root}") == 0
+      or die "Couldn't unmount memory disk: $?\n";
+
+    system("/sbin/mdconfig -d -u $self->{workerid}") == 0
+      or die "Couldn't destroy memory disk: $?\n";
+  } else {
+    $self->_clear_flags("/");
+    rmtree($self->root) || die "Couldn't rmtree $self->{root}: $!\n";
+  }
 }
 
 =head2 $chroot->mark_dirty
