@@ -100,6 +100,7 @@
     SUBDIR += R-cran-remotes
     SUBDIR += R-cran-reshape
     SUBDIR += R-cran-rlang
+    SUBDIR += R-cran-rngtools
     SUBDIR += R-cran-roxygen2
     SUBDIR += R-cran-rprojroot
     SUBDIR += R-cran-rstudioapi
@@ -1798,6 +1799,7 @@
     SUBDIR += rubygem-azure_mgmt_resources
     SUBDIR += rubygem-azure_mgmt_security
     SUBDIR += rubygem-azure_mgmt_storage
+    SUBDIR += rubygem-azure_service_fabric
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
     SUBDIR += rubygem-binding_of_caller
@@ -1836,6 +1838,11 @@
     SUBDIR += rubygem-google-apis-core
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
+    SUBDIR += rubygem-google-apis-monitoring_v3-gitlab
+    SUBDIR += rubygem-google-apis-playcustomapp_v1
+    SUBDIR += rubygem-google-apis-pubsub_v1
+    SUBDIR += rubygem-google-apis-pubsub_v1-gitlab
+    SUBDIR += rubygem-google-apis-serviceusage_v1
     SUBDIR += rubygem-google-apis-sheets_v4
     SUBDIR += rubygem-google-apis-sqladmin_v1beta4
     SUBDIR += rubygem-google-apis-sqladmin_v1beta4-gitlab

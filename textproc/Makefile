@@ -449,6 +449,15 @@
     SUBDIR += rubygem-rails-dom-testing
     SUBDIR += rubygem-rails-dom-testing-rails-gitlab
     SUBDIR += rubygem-rails-dom-testing1
+    SUBDIR += rubygem-rails-dom-testing-rails5
+    SUBDIR += rubygem-rails-dom-testing-rails50
+    SUBDIR += rubygem-rails-dom-testing-rails52
+    SUBDIR += rubygem-rails-dom-testing-rails60
+    SUBDIR += rubygem-rails-dom-testing-rails61
+    SUBDIR += rubygem-rails-dom-testing-rails70
+    SUBDIR += rubygem-rails-dom-testing-rails71
+    SUBDIR += rubygem-rails-dom-testing-rails72
+    SUBDIR += rubygem-rails-dom-testing-rails80
     SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-rexml
