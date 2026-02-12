@@ -43,7 +43,7 @@ use Magus::App::Logger;
 use Magus::App::Slave::Worker;
 
 use Sys::Syslog;
-use POSIX qw(setsid :sys_wait_h);
+use POSIX qw(setsid :sys_wait_h sigprocmask SIG_BLOCK SIG_UNBLOCK SIG_SETMASK SIGCHLD);
 use Getopt::Std qw(getopts);
 use File::Path qw(rmtree mkpath);
 
@@ -89,7 +89,10 @@ $SIG{CHLD} = sub {
 
   while (($pid = waitpid(-1, WNOHANG)) > 0) {
     # we don't care about children that aren't magus.pls (make and what not also go thru this).
-    my $info = delete $Children{$pid} || return;
+    my $info = delete $Children{$pid};
+
+    next unless $info;
+
     push(@DeadChildren, { lock => $info->{lock}, exitcode => $? >> 8, pid => $pid });
     $Children--;
     $WorkerIDs{$info->{worker_id}} = 1;
@@ -204,7 +207,11 @@ sub start_child {
   my $worker_id = (keys %WorkerIDs)[0] || die "No worker IDs\n";
   delete $WorkerIDs{$worker_id};
   
-  # XXX Block signals
+  my $sigset = POSIX::SigSet->new(SIGCHLD);
+  my $oldset = POSIX::SigSet->new;
+
+  sigprocmask(SIG_BLOCK, $sigset, $oldset);
+
   my $pid = fork;
   
   if ($pid) {
@@ -213,10 +220,13 @@ sub start_child {
     # parent return
     $Children{$pid} = { lock => $lock, worker_id => $worker_id };
     $Children++;
-        
+
+    sigprocmask(SIG_SETMASK, $oldset);
+
     X();
     return;
   } elsif (defined($pid)) {
+    sigprocmask(SIG_SETMASK, $oldset);
     $0 = "Magus - worker $worker_id";
     Magus::App::Slave::Worker->run(
       lock 	=> $lock, 
@@ -225,6 +235,7 @@ sub start_child {
     ); 
     exit(0);
   } else {
+    sigprocmask(SIG_SETMASK, $oldset);
     die "Couldn't fork: $!\n";
   }
 }
