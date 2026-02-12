@@ -49,7 +49,7 @@ sub run {
 sub prep_chroot {
   my ($self) = @_;
  
-  $self->log->debug("Preping chroot $self->{worker_id}");
+  $self->log->debug("Preparing chroot $self->{worker_id}");
   
   $self->{chroot} = Magus::Chroot->new(
     workerid => $self->{worker_id},

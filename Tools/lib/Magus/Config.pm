@@ -63,6 +63,8 @@ sub load_config {
         VcsRoot        => 'https://github.com/midnightbsd/',
         SlaveSrcDir    => '/usr/src',
         SlavePidFile   => '/var/run/magus.pid',
+        MemoryDiskSize  => '32G',
+        MemoryDiskEnabled => 0,
 
         # file values override defaults
         %filecfg,
