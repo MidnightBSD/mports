@@ -504,7 +504,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		ada ansible apache bdb cabal cargo cmake cpe cran display dos2unix \
 		eburl128 efl eigen elixir emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
-		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde \
+		gl gnome gnustep go grantlee groff gssapi gstreamer iconv imake jpeg kde \
 		ldap libarchive libedit libtool llvm localbase lua \
 		metaport makeself meson mlt mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt readline ruby samba scons sdl sqlite ssl \
