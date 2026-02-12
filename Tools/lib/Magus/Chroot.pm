@@ -234,7 +234,7 @@ sub _mount_loopbacks {
 sub _unmount_loopbacks {
   my ($self) = @_;
 
-  for ("/dev", "/proc", "/compat/linux/proc", values %{$self->{loopbacks}}) {
+  for ("/dev", "/proc", "/compat/linux/proc", "/compat/linux/sys", "/compat/linux/dev/fd", "/compat/linux/dev", values %{$self->{loopbacks}}) {
     # if umount failed it is probably because nothing was mounted.
     # therefore we ignore the error code here 
     system("/sbin/umount $self->{root}$_"); 
