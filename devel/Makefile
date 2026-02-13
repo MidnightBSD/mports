@@ -999,6 +999,7 @@
     SUBDIR += p5-Sub-Name
     SUBDIR += p5-Sub-Quote
     SUBDIR += p5-Sub-Uplevel
+    SUBDIR += p5-Syntax-Keyword-Junction
     SUBDIR += p5-Syntax-Keyword-Match
     SUBDIR += p5-Syntax-Keyword-Try
     SUBDIR += p5-Sys-CPU
