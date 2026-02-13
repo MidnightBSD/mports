@@ -306,6 +306,7 @@
     SUBDIR += git-svn
     SUBDIR += git-sync
     SUBDIR += git-tools
+    SUBDIR += gitaly
     SUBDIR += gitg
     SUBDIR += github-backup-utils
     SUBDIR += gitolite
