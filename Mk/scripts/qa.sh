@@ -996,9 +996,9 @@ depends_blacklist()
 			lang/go)
 				instead="USES=go"
 				;;
-			lang/mono)
-				instead="USES=mono"
-				;;
+#			lang/mono)
+#				instead="USES=mono"
+#				;;
 			devel/llvm)
 				instead="USES=llvm"
 				;;
