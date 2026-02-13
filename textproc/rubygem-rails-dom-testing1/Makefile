@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/rails-dom-testing
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport4>=4.2.0:devel/rubygem-activesupport4 \
 		rubygem-nokogiri>=1.6:textproc/rubygem-nokogiri \
 		rubygem-rails-deprecated_sanitizer>=1.0.1:devel/rubygem-rails-deprecated_sanitizer
