@@ -215,6 +215,7 @@
     SUBDIR += rubygem-activerecord-import
     SUBDIR += rubygem-activerecord4
     SUBDIR += rubygem-activerecord5
+    SUBDIR += rubygem-activerecord50
     SUBDIR += rubygem-activerecord72
     SUBDIR += rubygem-activerecord80
     SUBDIR += rubygem-arel6
