@@ -1815,6 +1815,7 @@
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-cool.io
     SUBDIR += rubygem-csv
+    SUBDIR += rubygem-daemons
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-docile
