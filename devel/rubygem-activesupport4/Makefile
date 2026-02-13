@@ -12,6 +12,7 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-i18n>=0.7,2:devel/rubygem-i18n \
 		rubygem-minitest>=5.1<6:devel/rubygem-minitest \
 		rubygem-thread_safe>=0.3.4<1:devel/rubygem-thread_safe \
