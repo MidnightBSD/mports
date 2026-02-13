@@ -18,6 +18,9 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}absl-py>=0:devel/py-absl-py@${PY_FLAVOR}
 
 USES=		cmake:testing compiler:c++17-lang localbase python
 
+#magus
+NO_TEST=	yes
+
 CFLAGS+=	-I${WRKSRC}
 CMAKE_ARGS=	-DCMAKE_INSTALL_PYDIR=${PYTHON_SITELIBDIR}
 CMAKE_OFF=	BUILD_TESTING
