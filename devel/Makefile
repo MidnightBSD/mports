@@ -1903,6 +1903,7 @@
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
+    SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-sprockets-rails-rails4
