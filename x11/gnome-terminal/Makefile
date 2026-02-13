@@ -45,5 +45,6 @@ NAUTILUS_DESC=		Open in terminal extension for nautilus
 post-patch:
 	${REINPLACE_CMD} -e 's|SystemdService|#SystemdService|' \
 		${WRKSRC}/src/org.gnome.Terminal.service.in
+	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>
