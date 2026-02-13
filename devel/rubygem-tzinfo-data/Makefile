@@ -11,6 +11,7 @@ WWW=		https://tzinfo.github.io/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-tzinfo>=1.0.0:devel/rubygem-tzinfo
 RUN_DEPENDS=	rubygem-tzinfo>=1.0.0:devel/rubygem-tzinfo
 
 USES=		gem
