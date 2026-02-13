@@ -1,5 +1,5 @@
 PORTNAME=	spidermonkey
-DISTVERSION=	128.12.0
+DISTVERSION=	128.14.0
 CATEGORIES=	lang
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source \
 		MOZILLA/firefox/candidates/${DISTVERSION}esr-candidates/build1/source
@@ -53,9 +53,9 @@ PLIST_SUB=	SP_VER=${SP_VER}
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd12.4
+CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
 .else
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd13.4
 .endif
 
 .if ${CHOSEN_COMPILER_TYPE} == gcc
@@ -70,7 +70,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|icu-i18n|icu-uc icu-i18n|g' ${WRKSRC}/js/moz.configure
 	@${FIND} ${WRKSRC}/python/mozbuild -name *.py -exec \
 		${REINPLACE_CMD} 's|"rU"|"r"|g' {} \;
-	${REINPLACE_CMD} -e "s|midnightbsd${OSREL}|freebsd12.4|g" \
+	${REINPLACE_CMD} -e "s|midnightbsd${OSREL}|freebsd13.4|g" \
 		${WRKSRC}/build/autoconf/config.guess ${WRKSRC}/build/autoconf/config.sub
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
 		${WRKSRC}/testing/mozbase/mozinfo/mozinfo/mozinfo.py
