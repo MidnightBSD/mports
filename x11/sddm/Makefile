@@ -35,6 +35,8 @@ USE_QT=		base declarative \
 USE_RC_SUBR=	sddm
 USE_XORG=	xau xcb
 
+LDFLAGS+=	-lutil
+
 CMAKE_ARGS=	-DACCOUNTSSERVICE_DATA_DIR:PATH=/var/db/AccountsService \
 		-DCMAKE_INSTALL_SYSCONFDIR:PATH=${LOCALBASE}/etc \
 		-DRST2MAN_EXECUTABLE=${LOCALBASE}/bin/rst2man \
