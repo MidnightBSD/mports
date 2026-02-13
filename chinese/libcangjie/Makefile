@@ -11,6 +11,7 @@ WWW=		https://github.com/Cangjians/libcangjie
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3		\
 		libfreetype.so:print/freetype2          \
 		libdbus-1.so:devel/dbus
