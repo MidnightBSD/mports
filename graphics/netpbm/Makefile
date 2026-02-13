@@ -31,6 +31,10 @@ MAKE_JOBS_UNSAFE=	yes
 
 CFLAGS+=	-DPNG_DEPSTRUCT= -Iutil
 
+SHEBANG_FILES=  buildtools/makeman \
+                editor/pnmflip editor/pnmquant editor/ppmfade \
+                editor/ppmquant editor/ppmshadow generator/ppmrainbow \
+
 OPTIONS_DEFINE=	X11 MANPAGES DOCS
 OPTIONS_SUB=	yes
 
