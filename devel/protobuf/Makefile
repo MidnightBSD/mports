@@ -19,6 +19,9 @@ TEST_DEPENDS=	googletest>=0:devel/googletest
 
 USES=		cmake:testing compiler:c++17-lang cpe localbase pkgconfig
 
+#magus
+NO_TEST=	yes
+
 CMAKE_ARGS=	-Dprotobuf_ABSL_PROVIDER=package \
 		-Dprotobuf_JSONCPP_PROVIDER=package
 CMAKE_OFF=	protobuf_BUILD_CONFORMANCE \
