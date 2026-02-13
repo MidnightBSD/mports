@@ -110,6 +110,7 @@
     SUBDIR += libcharon
     SUBDIR += libcloudproviders
     SUBDIR += libdnet
+    SUBDIR += libfabric
     SUBDIR += libgravatar
     SUBDIR += libgrss
     SUBDIR += libgweather
