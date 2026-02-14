@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libglade2
 PORTVERSION=	2.6.4
 DISTVERSIONSUFFIX=	-11.el7
@@ -11,6 +9,8 @@ COMMENT=	GNOME glade library (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/usr/share/doc/${PORTNAME}-${PORTVERSION}/COPYING
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
