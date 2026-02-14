@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libtasn1
 PORTVERSION=	4.10
 DISTVERSIONSUFFIX=	-1.el7
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes

@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libgpg-error
 PORTVERSION=	1.12
 DISTVERSIONSUFFIX=	-3.el7
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common error values for all GnuPG components (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
