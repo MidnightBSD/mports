@@ -13,7 +13,7 @@ LICENSE_COMB=	multi
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
-USE_LINUX=	libgcrypt libpsl
+USE_LINUX=	libgcrypt
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 

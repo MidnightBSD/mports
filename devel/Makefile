@@ -577,7 +577,6 @@
     SUBDIR += linux-rl9-libsoup
     SUBDIR += linux-rl9-libthai
     SUBDIR += linux-rl9-libtool-ltdl
-    SUBDIR += linux-rl9-libunistring
     SUBDIR += linux-rl9-lld
     SUBDIR += linux-rl9-lldb
     SUBDIR += linux-rl9-llvm
