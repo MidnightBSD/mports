@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	flac
 PORTVERSION=	1.3.0
 DISTVERSIONSUFFIX=	-5.el7_1
@@ -12,6 +10,8 @@ COMMENT=	Free lossless audio codec (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=        bsd3 gpl2 lgpl2.1
 LICENSE_COMB=   multi
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
