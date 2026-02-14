@@ -321,6 +321,7 @@
     SUBDIR += py-png
     SUBDIR += py-pycha
     SUBDIR += py-pydot
+    SUBDIR += py-pyglet1
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
