@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	sdl
 PORTVERSION=	1.2.15
 DISTVERSIONSUFFIX=	-17.el7
@@ -11,6 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform multi-media development API (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

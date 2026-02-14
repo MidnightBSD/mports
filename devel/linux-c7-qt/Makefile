@@ -8,6 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of QT4 (Linux CentOS ${LINUX_DIST_VER})
 WWW=		https://qt-project.org
 
+LICENSE=	lgpl
+
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 CPE_VENDOR=	qt
 USE_LDCONFIG=	yes

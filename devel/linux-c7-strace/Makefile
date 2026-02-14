@@ -10,6 +10,8 @@ WWW=		https://sourceforge.net/projects/strace/
 
 LICENSE=	other
 
+SKIP_FAKE_ALL=  yes
+
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libdw.so.1:devel/linux-c7-elfutils-libs
 
 USES=		cpe linux:c7

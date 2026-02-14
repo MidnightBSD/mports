@@ -10,6 +10,8 @@ COMMENT=	Cross-platform multi-media development API (Linux CentOS ${LINUX_DIST_V
 
 LICENSE=	zlib
 
+SKIP_FAKE_ALL=  yes
+
 ONLY_FOR_ARCHS=	amd64
 
 USES=		linux:c7
