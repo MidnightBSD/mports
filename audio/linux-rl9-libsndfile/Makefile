@@ -10,6 +10,8 @@ WWW=		http://www.mega-nerd.com/libsndfile/
 
 LICENSE=	lgpl2.1+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	flac gsm libogg libvorbis
