@@ -10,6 +10,8 @@ WWW=		https://gcc.gnu.org/
 LICENSE=	gpl2 gpl3 lgpl
 LICENSE_COMB=	multi
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 NO_SHLIB_REQUIRES_GLOB=	libquadmath.so.0:Linux*

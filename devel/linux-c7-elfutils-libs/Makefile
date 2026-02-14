@@ -8,7 +8,9 @@ PKGNAMESUFFIX=	-libs
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ELF file handling libraries (CentOS ${LINUX_DIST_VER})
 
-LICENSE=	other
+LICENSE=	lgpl
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
