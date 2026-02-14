@@ -10,6 +10,8 @@ WWW=		https://wiki.gnome.org/Projects/Libsecret/
 
 LICENSE=	lgpl+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	libgcrypt libgpg-error
