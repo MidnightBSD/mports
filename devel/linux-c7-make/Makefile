@@ -9,6 +9,8 @@ COMMENT=	GNU make utility (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	gpl3
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LINUX_RPM=	nolib
 

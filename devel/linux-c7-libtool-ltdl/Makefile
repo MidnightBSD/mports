@@ -1,5 +1,3 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	libtool-ltdl
 PORTVERSION=	2.4.2
 DISTVERSIONSUFFIX=	-22.el7_3
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Runtime libraries for GNU libtool (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

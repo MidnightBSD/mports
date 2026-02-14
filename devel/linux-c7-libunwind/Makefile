@@ -1,5 +1,3 @@
-# Created by: David Naylor <dbn@FreeBSD.org>
-
 PORTNAME=	libunwind
 PORTVERSION=	1.2
 DISTVERSIONSUFFIX=	-2.el7
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic stack unwinding library (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

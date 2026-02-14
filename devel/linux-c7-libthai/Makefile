@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libthai
 PORTVERSION=	0.1.14
 DISTVERSIONSUFFIX=	-9.el7
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Thai language support library (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

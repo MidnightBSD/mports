@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libsigc++20
 PORTVERSION=	2.10.0
 DISTVERSIONSUFFIX=	-1.el7
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++ (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
