@@ -9,6 +9,8 @@ WWW=		https://lse.sourceforge.net/io/aio.html
 
 LICENSE=	NONE
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
