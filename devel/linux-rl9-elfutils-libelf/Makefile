@@ -11,6 +11,8 @@ WWW=		https://sourceware.org/elfutils/
 LICENSE=        lgpl3 gpl2+ gpl3+
 LICENSE_COMB=   multi
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
