@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	sqlite
 PORTVERSION=	3.7.17
 DISTVERSIONSUFFIX=	-8.el7_7.1
@@ -11,7 +9,9 @@ COMMENT=	Library that implements an embeddable SQL database engine (Linux CentOS
 
 LICENSE=	publicdom
 
-USES=		linux:c7
+SKIP_FAKE_ALL=  yes
+
+USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

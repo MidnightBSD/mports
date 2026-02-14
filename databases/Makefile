@@ -49,6 +49,8 @@
     SUBDIR += libmemcached
     SUBDIR += linux-c7-sqlite3
     SUBDIR += linux-c7-unixODBC
+    SUBDIR += linux-oracle-instantclient-basic
+    SUBDIR += linux-oracle-instantclient-sdk
     SUBDIR += linux-rl9-libtracker-sparql
     SUBDIR += linux-rl9-sqlite3
     SUBDIR += lmdb
