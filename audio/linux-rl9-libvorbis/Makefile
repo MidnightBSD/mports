@@ -10,6 +10,8 @@ WWW=		https://xiph.org/vorbis/
 
 LICENSE=	bsd3
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	libogg
