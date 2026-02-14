@@ -142,7 +142,7 @@ while (1) {
     local $_ = $@;
     
     # Check ping in case a dropped DB caused some other exception.
-    if ((m/lost\s+connection/i || m/can't\s+connect/i || m/server\s+shutdown/i || m/gone\s+away/i) || !Magus::DBI->ping) {
+    if ((m/lost\s+connection/i || m/can't\s+connect/i || m/server\s+shutdown/i || m/gone\s+away/i || m/server\s+closed\s+the\s+connection/i) || !Magus::DBI->ping) {
       while (1) {
         $Logger->err("Could not connect to database ($@) waiting $Magus::Config{'LostDBWaitPeriod'} seconds");
         sleep($Magus::Config{'LostDBWaitPeriod'});
