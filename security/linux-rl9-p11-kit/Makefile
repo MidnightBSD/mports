@@ -8,6 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for loading and enumerating of PKCS\#11 modules (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://p11-glue.freedesktop.org/p11-kit.html
 
+LICENSE=	bsd3
+
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	libtasn1
