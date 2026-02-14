@@ -8,6 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Thai language support library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://linux.thai.net/projects/libthai/
 
+LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
