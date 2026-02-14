@@ -12,6 +12,8 @@ WWW=		https://www.xiph.org/flac/
 LICENSE=        bsd3 gpl2 gfdl lgpl2.1
 LICENSE_COMB=   multi
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	libogg
