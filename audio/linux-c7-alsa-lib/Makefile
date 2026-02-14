@@ -9,6 +9,8 @@ WWW=		https://www.alsa-project.org/
 
 LICENSE=	gpl3
 
+SKIP_FAKE_ALL=  yes
+
 RUN_DEPENDS=	alsa-lib>0:audio/alsa-lib
 
 USES=		linux:c7

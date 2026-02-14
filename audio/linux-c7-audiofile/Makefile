@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	audiofile
 PORTVERSION=	0.3.6
 DISTVERSIONSUFFIX=	-9.el7
@@ -11,7 +9,9 @@ COMMENT=	Implementation of the Audio File Library (Linux CentOS ${LINUX_DIST_VER
 
 LICENSE=	lgpl2.1
 
-USES=		linux:c7
+SKIP_FAKE_ALL=  yes
+
+USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

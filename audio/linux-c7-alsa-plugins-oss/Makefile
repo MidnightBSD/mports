@@ -17,6 +17,8 @@ WWW=		https://www.alsa-project.org/
 
 LICENSE=	lgpl2.1+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		autoreconf:build gmake libtool:build linux:c7 pkgconfig
 USE_LDCONFIG=	yes
 USE_LINUX=	alsalib:build,run alsa-lib-devel:build base:build devtools:build

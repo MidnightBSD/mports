@@ -10,6 +10,8 @@ WWW=		https://github.com/google/brotli
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
