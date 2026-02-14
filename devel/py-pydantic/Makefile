@@ -21,7 +21,4 @@ CPE_VENDOR=	pydantic_project
 
 NO_TEST=	yes
 
-post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/pydantic/*${PYTHON_TAG}.so
-
 .include <bsd.port.mk>
