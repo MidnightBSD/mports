@@ -1,21 +1,24 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	expat
 PORTVERSION=	2.1.0
-DISTVERSIONSUFFIX=	-12.el7
-PORTREVISION=	4
+DISTVERSIONSUFFIX=	-15.el7_9
+PORTREVISION=	5
 CATEGORIES=	textproc linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML 1.0 parser written in C (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://github.com/libexpat/libexpat
 
 LICENSE=	mit
 
-USES=		linux:c7
+SKIP_FAKE_ALL=  yes
+
+USES=		cpe linux:c7
+CPE_VENDOR=	${CPE_PRODUCT}_project
+CPE_PRODUCT=	lib${PORTNAME}
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 
-CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
+CONFLICTS=	linux-c6-${PORTNAME}
 DESCR=		${.CURDIR}/../${PORTNAME}2/pkg-descr
 
 OPTIONS_DEFINE=	DOCS

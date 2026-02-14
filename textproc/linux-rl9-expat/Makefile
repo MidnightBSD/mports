@@ -10,6 +10,8 @@ WWW=		https://github.com/libexpat/libexpat
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	${CPE_PRODUCT}_project
 CPE_PRODUCT=	lib${PORTNAME}
