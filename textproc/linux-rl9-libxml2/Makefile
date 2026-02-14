@@ -1,7 +1,7 @@
 PORTNAME=	libxml2
 PORTVERSION=	2.9.13
-DISTVERSIONSUFFIX=	-6.el9_5.2
-PORTREVISION=	6
+DISTVERSIONSUFFIX=	-12.el9_6
+PORTREVISION=	8
 CATEGORIES=	textproc linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +9,8 @@ COMMENT=	Library providing XML and HTML support (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://xmlsoft.org/
 
 LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	xmlsoft
