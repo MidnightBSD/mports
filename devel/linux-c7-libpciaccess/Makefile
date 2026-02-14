@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libpciaccess
 PORTVERSION=	0.14
 DISTVERSIONSUFFIX=	-1.el7
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic PCI access library (CentOS ${LINUX_DIST_VER})
 
 LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
