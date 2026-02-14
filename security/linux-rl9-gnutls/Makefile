@@ -11,6 +11,8 @@ WWW=		https://gnutls.org/
 LICENSE=        gpl3 lgpl2.1
 LICENSE_COMB=   multi
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnu
 USE_LDCONFIG=	yes

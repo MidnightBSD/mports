@@ -11,6 +11,8 @@ WWW=		https://gnutls.org/
 
 LICENSE=	gpl3
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnu
 USE_LINUX=	gnutls libassuan libgcrypt libgpg-error libksba npth openldap sqlite3
