@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	dbus-glib
 PORTVERSION=	0.100
 DISTVERSIONSUFFIX=	-7.el7
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib bindings for D-Bus (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	gpl2
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
