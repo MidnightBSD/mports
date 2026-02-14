@@ -8,6 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-level cryptographic library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.lysator.liu.se/~nisse/nettle/
 
+LICENSE=	MPL20
+
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
