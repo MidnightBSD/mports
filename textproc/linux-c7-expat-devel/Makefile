@@ -11,6 +11,8 @@ WWW=		https://github.com/libexpat/libexpat
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 USE_LINUX=	expat
 CPE_VENDOR=	${CPE_PRODUCT}_project
