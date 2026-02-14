@@ -43,6 +43,7 @@
     SUBDIR += qt5-style-plugins
     SUBDIR += sierra-gtk-themes
     SUBDIR += slim-themes
+    SUBDIR += xapp-symbolic-icons
     SUBDIR += xcursor-themes
     SUBDIR += xfce-icons-elementary
     SUBDIR += yaru-gtk-themes
