@@ -28,8 +28,6 @@
     SUBDIR += libpsl
     SUBDIR += linux-c7-libasyncns
     SUBDIR += linux-rl9-libasyncns
-    SUBDIR += linux-rl9-libidn2
-    SUBDIR += linux-rl9-libpsl
     SUBDIR += mDNSResponder_nss
     SUBDIR += mdnsd
     SUBDIR += nslint

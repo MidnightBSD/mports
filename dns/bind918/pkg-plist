@@ -5,7 +5,7 @@ bin/named-journalprint
 %%LMDB%%bin/named-nzd2nzf
 @sample etc/mtree/BIND.chroot.dist.sample
 @sample etc/mtree/BIND.chroot.local.dist.sample
-%%ETCDIR%%/bind.keys
+@comment %%ETCDIR%%/bind.keys
 %%ETCDIR%%/primary/empty.db
 %%ETCDIR%%/primary/localhost-forward.db
 %%ETCDIR%%/primary/localhost-reverse.db

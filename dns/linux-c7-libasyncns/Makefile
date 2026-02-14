@@ -10,6 +10,8 @@ WWW=		https://0pointer.de/lennart/projects/libasyncns/
 
 LICENSE=	lgpl2.1+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
