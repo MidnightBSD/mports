@@ -10,6 +10,8 @@ COMMENT=	Libraries for accessing systemd (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl2.1
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	elfutils-libs libgcrypt libgpg-error lz4
