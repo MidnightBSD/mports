@@ -1793,6 +1793,7 @@
     SUBDIR += rubygem-activesupport5
     SUBDIR += rubygem-activesupport50
     SUBDIR += rubygem-activesupport61
+    SUBDIR += rubygem-activesupport70
     SUBDIR += rubygem-activesupport71
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-activesupport80
