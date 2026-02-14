@@ -12,6 +12,7 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel5>=${PORTVERSION}:databases/rubygem-activemodel5 \
 		rubygem-activesupport5>=${PORTVERSION}:devel/rubygem-activesupport5 \
 		rubygem-arel8>=8.0,1:databases/rubygem-arel8

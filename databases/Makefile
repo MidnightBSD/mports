@@ -208,6 +208,7 @@
     SUBDIR += rubygem-active_model_serializers
     SUBDIR += rubygem-activemodel4
     SUBDIR += rubygem-activemodel5
+    SUBDIR += rubygem-activemodel50
     SUBDIR += rubygem-activemodel72
     SUBDIR += rubygem-activemodel80
     SUBDIR += rubygem-activemodel-gitlab
@@ -215,6 +216,7 @@
     SUBDIR += rubygem-activerecord-import
     SUBDIR += rubygem-activerecord4
     SUBDIR += rubygem-activerecord5
+    SUBDIR += rubygem-activerecord50
     SUBDIR += rubygem-activerecord72
     SUBDIR += rubygem-activerecord80
     SUBDIR += rubygem-arel6

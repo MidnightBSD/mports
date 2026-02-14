@@ -10,6 +10,7 @@ WWW=		https://github.com/rails/rails-observers
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-activemodel4>=4.0:databases/rubygem-activemodel4
 RUN_DEPENDS=	rubygem-activemodel4>=4.0:databases/rubygem-activemodel4
 
 NO_ARCH=	yes

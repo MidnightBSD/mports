@@ -10,6 +10,7 @@ WWW=		https://github.com/typhoeus/typhoeus
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-ethon>=0.9.0:www/rubygem-ethon
 RUN_DEPENDS=	rubygem-ethon>=0.9.0:www/rubygem-ethon
 
 USES=		gem

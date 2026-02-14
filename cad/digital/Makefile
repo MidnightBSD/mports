@@ -38,7 +38,7 @@ post-build:
 	@cd ${WRKDIR} && ${TAR} czf ${DISTDIR}/${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX} .m2
 	@${ECHO} "(!!!) Please upload the maven deps archive: ${DISTDIR}/${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX}"
 .else
-MASTER_SITES+=	LOCAL/yuri/:maven
+MASTER_SITES+=	FREEBSD_LOCAL/yuri/:maven
 DISTFILES+=	${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX}:maven
 MVN_ARGS=	--offline
 .endif
@@ -71,7 +71,7 @@ do-install:
 	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 	# install desktop file
 	${SED} -e '\
-		s|<EXEC_LOCATION>|${PREFIX}/bin/${PORTNAME}| ; \
+		s|<EXEC_LOCATION>|${TRUE_PREFIX}/bin/${PORTNAME}| ; \
 		s|<ICON_LOCATION>|${ICON_NAME}|' \
 		< ${WRKSRC}/distribution/linux/desktop.template \
 		> ${STAGEDIR}${PREFIX}/share/applications/${PORTNAME}.desktop
@@ -82,6 +82,6 @@ do-install:
 .endfor
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps
 	${INSTALL_DATA} ${WRKSRC}/src/main/svg/icon.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/${ICON_NAME}.svg
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/digital
+	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/digital
 
 .include <bsd.port.mk>

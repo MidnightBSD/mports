@@ -9,14 +9,10 @@ WWW=		https://cran.r-project.org/web/packages/jsonlite/
 
 LICENSE=	mit
 
-TEST_DEPENDS=	R-cran-httr>0:www/R-cran-httr \
-		R-cran-knitr>0:print/R-cran-knitr \
-		R-cran-R.rsp>0:textproc/R-cran-R.rsp \
-		R-cran-rmarkdown>0:textproc/R-cran-rmarkdown \
-		R-cran-sf>0:math/R-cran-sf \
-		R-cran-testthat>0:devel/R-cran-testthat \
-		R-cran-vctrs>0:devel/R-cran-vctrs
+# tests have circular depends.
 
 USES=		cran:auto-plist,compiles
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

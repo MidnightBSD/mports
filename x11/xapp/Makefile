@@ -1,39 +1,59 @@
 PORTNAME=	xapp
-PORTVERSION=	2.2.8
-PORTREVISION=	1
+DISTVERSION=	3.2.2
 CATEGORIES=	x11 gnome
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-desktop libraries and common resources
+WWW=		https://github.com/linuxmint/xapp
 
 LICENSE=	lgpl3
 LICENSE_FILE?=	${WRKSRC}/COPYING.LESSER
 
-BUILD_DEPENDS=	vapigen:lang/vala
-LIB_DEPENDS=	libdbus-1.so:devel/dbus \
-		libdbusmenu-gtk3.so:devel/libdbusmenu
-RUN_DEPENDS=	bash:shells/bash
+LIB_DEPENDS=	libdbusmenu-gtk3.so:devel/libdbusmenu
+RUN_DEPENDS=	bash:shells/bash \
+		xapp-symbolic-icons>0:x11-themes/xapp-symbolic-icons
 
-USES=		gettext-tools gnome meson pkgconfig python:3.5+ shebangfix xorg
+USES=		gettext-tools gnome meson pkgconfig python shebangfix xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
-USE_GNOME=	cairo gdkpixbuf glib20 gtk30 introspection:build intltool \
-		libgnomekbd pygobject3
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30 libgnomekbd
 USE_LDCONFIG=	yes
 USE_XORG=	x11
 GLIB_SCHEMAS=	org.x.apps.gschema.xml
-INSTALLS_ICONS=	yes
-SHEBANG_FILES=	data libxapp meson-scripts schemas scripts status-applets \
-		test-scripts
+SHEBANG_FILES=	data schemas scripts status-applets test-scripts
 
 PLIST_SUB+=	LIBVERSION=${PORTVERSION}
+MESON_ARGS=	"-Dpython_target=['${PYTHON_VERSION}']"
 
 PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=		DOCS INTROSPECTION MATE STATUS VAPI XFCE
+OPTIONS_DEFAULT=	INTROSPECTION MATE STATUS VAPI XFCE
+OPTIONS_SUB=		yes
 
 DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
-DOCS_MESON_ON=		-Ddocs=true
+DOCS_MESON_TRUE=	docs
+
+INTROSPECTION_DESC=	Enable GObject introspection
+INTROSPECTION_MESON_TRUE=	introspection
+INTROSPECTION_USE=		GNOME=pygobject3,introspection:build
+
+MATE_DESC=		Install mate specific items
+MATE_MESON_TRUE=	mate
+
+STATUS_DESC=		Build the XApp StatusNotifier service
+STATUS_MESON_TRUE=	status-notifier
+
+VAPI_MESON_TRUE=	vapi
+VAPI_USES=		vala:build
+VAPI_IMPLIES=		INTROSPECTION
+
+XFCE_DESC=		Install xfce specific items
+XFCE_MESON_TRUE=	xfce
+
+post-patch:
+	${REINPLACE_CMD} -e 's|/usr/bin|${PREFIX}/bin|g' \
+		${WRKSRC}/scripts/upload-system-info
 
 .include <bsd.port.mk>

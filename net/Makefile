@@ -110,6 +110,7 @@
     SUBDIR += libcharon
     SUBDIR += libcloudproviders
     SUBDIR += libdnet
+    SUBDIR += libfabric
     SUBDIR += libgravatar
     SUBDIR += libgrss
     SUBDIR += libgweather
@@ -278,7 +279,9 @@
     SUBDIR += rsync
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-domain_name
+    SUBDIR += rubygem-google-cloud-errors
     SUBDIR += rubygem-http_parser.rb
+    SUBDIR += rubygem-iproto
     SUBDIR += rubygem-net-protocol
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth-tty

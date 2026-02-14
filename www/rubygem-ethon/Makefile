@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libcurl.so:ftp/curl
 RUN_DEPENDS=	rubygem-ffi>=1.15.0:devel/rubygem-ffi \
 		rubygem-logger>=0:devel/rubygem-logger
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

@@ -8,7 +8,8 @@ WWW=		https://www.kde.org/
 
 USES=		cmake compiler:c++11-lang gettext kde:6 qt:6 tar:xz
 USE_KDE=	auth codecs config configwidgets coreaddons crash doctools \
-		i18n iconthemes notifications notifyconfig sonnet textwidgets \
+		i18n iconthemes notifications notifyconfig statusnotifieritem \
+		sonnet textwidgets \
 		widgetsaddons xmlgui \
 		ecm:build
 USE_QT=		base

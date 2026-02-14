@@ -108,6 +108,7 @@
     SUBDIR += fslsfonts
     SUBDIR += gbdfed
     SUBDIR += geminifonts
+    SUBDIR += gentium
     SUBDIR += gentium-basic
     SUBDIR += gentium-plus
     SUBDIR += gnu-unifont

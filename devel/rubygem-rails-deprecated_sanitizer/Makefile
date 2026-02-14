@@ -9,6 +9,7 @@ WWW=		https://github.com/rails/rails-deprecated_sanitizer
 
 LICENSE=	mit
 
+BUILD_DEPENDS=  ${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport4>=4.2.0:devel/rubygem-activesupport4
 
 USES=		gem

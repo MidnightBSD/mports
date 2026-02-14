@@ -306,6 +306,7 @@
     SUBDIR += git-svn
     SUBDIR += git-sync
     SUBDIR += git-tools
+    SUBDIR += gitaly
     SUBDIR += gitg
     SUBDIR += github-backup-utils
     SUBDIR += gitolite
@@ -341,6 +342,7 @@
     SUBDIR += gradle62
     SUBDIR += gradle761
     SUBDIR += gradle8
+    SUBDIR += grantlee5
     SUBDIR += gsettings-desktop-schemas
     SUBDIR += gsoap
     SUBDIR += gstreamer1-plugins-soup
@@ -998,6 +1000,7 @@
     SUBDIR += p5-Sub-Name
     SUBDIR += p5-Sub-Quote
     SUBDIR += p5-Sub-Uplevel
+    SUBDIR += p5-Syntax-Keyword-Junction
     SUBDIR += p5-Syntax-Keyword-Match
     SUBDIR += p5-Syntax-Keyword-Try
     SUBDIR += p5-Sys-CPU
@@ -1788,6 +1791,7 @@
     SUBDIR += rubygem-activesupport-gitlab
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport5
+    SUBDIR += rubygem-activesupport50
     SUBDIR += rubygem-activesupport61
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-activesupport80
@@ -1814,6 +1818,7 @@
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-cool.io
     SUBDIR += rubygem-csv
+    SUBDIR += rubygem-daemons
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-docile
@@ -1902,6 +1907,7 @@
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
+    SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-sprockets-rails-rails4

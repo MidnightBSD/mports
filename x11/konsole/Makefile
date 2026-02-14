@@ -26,4 +26,6 @@ USE_XORG=	x11
 
 OPTIONS_DEFINE=	DOCS
 
+LDFLAGS+=	-lutil
+
 .include <bsd.port.mk>

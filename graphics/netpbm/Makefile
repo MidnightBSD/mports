@@ -20,7 +20,7 @@ LIB_DEPENDS=	libtiff.so:graphics/tiff \
 		libjasper.so:graphics/jasper \
 		libxml2.so:textproc/libxml2
 
-USES=		tar:tgz gmake jpeg perl5 shebangfix
+USES=		tar:tgz gmake iconv:wchar_t jpeg perl5 shebangfix
 CFLAGS+=	-DPNG_DEPSTRUCT= -Iutil
 MAKE_ENV=	LN="${LN}" RANLIB="${RANLIB}"
 MAKEFILE=	GNUmakefile
@@ -30,6 +30,10 @@ USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
 
 CFLAGS+=	-DPNG_DEPSTRUCT= -Iutil
+
+SHEBANG_FILES=  buildtools/makeman \
+                editor/pnmflip editor/pnmquant editor/ppmfade \
+                editor/ppmquant editor/ppmshadow generator/ppmrainbow \
 
 OPTIONS_DEFINE=	X11 MANPAGES DOCS
 OPTIONS_SUB=	yes

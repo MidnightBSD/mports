@@ -20,6 +20,7 @@ RUN_DEPENDS=	p5-DBI>=0:databases/p5-DBI \
 USES=		perl5 shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
+GH_TAGNAME=	f1a90b0
 
 OPTIONS_DEFINE=		DOCS HTTPS
 OPTIONS_DEFAULT=	HTTPS PGSQL
@@ -56,7 +57,7 @@ pre-everything::
 
 pre-install:
 	@${REINPLACE_CMD} -e "s#^\(templates .*\)/etc#\1/share#"	\
-	                  -e "s#^prefix\( *= *\).*#prefix\1${PREFIX}#"	\
+	                  -e "s#^prefix\( *= *\).*#prefix\1${TRUE_PREFIX}#"	\
 	                  ${WRKSRC}/portscout.conf
 	@${REINPLACE_CMD} -e "s#^\(.*PREFIX.*=> *\)'.*'#\1'${TRUE_PREFIX}'#"	\
 	                  ${WRKSRC}/Portscout/Const.pm
