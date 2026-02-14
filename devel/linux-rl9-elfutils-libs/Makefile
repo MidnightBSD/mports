@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ELF file handling libraries (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://sourceware.org/elfutils/
 
-LICENSE=	lgpl2+ lgpl3+ gpl3+
+LICENSE=	lgpl+ lgpl3+ gpl3+
 LICENSE_COMB=	multi
 
 SKIP_FAKE_ALL=  yes
