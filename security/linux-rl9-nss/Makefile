@@ -10,6 +10,8 @@ WWW=		https://developer.mozilla.org/docs/Mozilla/Projects/NSS
 
 LICENSE=	MPL20
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	mozilla
 USE_LDCONFIG=	yes

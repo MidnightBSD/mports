@@ -9,6 +9,8 @@ WWW=		https://www.gnupg.org/software/libgcrypt/index.html
 
 LICENSE=	lgpl2.1+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnupg
 USE_LDCONFIG=	yes
