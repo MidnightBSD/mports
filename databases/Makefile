@@ -220,6 +220,7 @@
     SUBDIR += rubygem-activerecord72
     SUBDIR += rubygem-activerecord80
     SUBDIR += rubygem-arel6
+    SUBDIR += rubygem-arel7
     SUBDIR += rubygem-arel8
     SUBDIR += rubygem-couchrest
     SUBDIR += rubygem-gdbm
