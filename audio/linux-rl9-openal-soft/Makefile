@@ -8,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	3D positional spatialized sound library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://openal-soft.org/
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	alsalib

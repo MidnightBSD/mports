@@ -13,6 +13,8 @@ LICENSE_NAME=   Technische Universitaet Berlin copyright
 LICENSE_FILE=   ${WRKSRC}/usr/share/licenses/gsm/COPYRIGHT
 LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
