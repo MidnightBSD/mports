@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	alsa-utils
 PORTVERSION=	1.1.8
 DISTVERSIONSUFFIX=	-2.el7
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced Linux Sound Architecture utilities (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	gpl3
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LINUX=	alsalib alsa-plugins-oss

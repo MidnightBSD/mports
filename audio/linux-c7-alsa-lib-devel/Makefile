@@ -10,6 +10,8 @@ WWW=		https://www.alsa-project.org/
 
 LICENSE=	lgpl2.1+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LINUX=	alsalib
 USE_LINUX_RPM=	yes

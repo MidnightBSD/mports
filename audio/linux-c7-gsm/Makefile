@@ -9,6 +9,8 @@ COMMENT=	GSM audio codec (CentOS ${LINUX_DIST_VER})
 LICENSE=        other
 # fairly loose, bsdish.
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

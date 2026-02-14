@@ -10,6 +10,8 @@ WWW=		https://gitlab.gnome.org/GNOME/at-spi2-core
 
 LICENSE=	lgpl+
 
+SKIP_FAKE_ALL=  yes
+
 RUN_DEPENDS=	at-spi2-core>=2.28.0:accessibility/at-spi2-core
 
 USES=		linux:rl9

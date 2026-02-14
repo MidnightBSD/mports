@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libogg
 PORTVERSION=	1.3.0
 DISTVERSIONSUFFIX=	-7.el7
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ogg bitstream library (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	bsd3
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

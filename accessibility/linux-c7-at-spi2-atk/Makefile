@@ -9,6 +9,8 @@ WWW=		https://gitlab.gnome.org/GNOME/at-spi2-atk
 
 LICENSE=	lgpl
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	at-spi2-core atk dbuslibs

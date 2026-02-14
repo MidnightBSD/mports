@@ -36,6 +36,7 @@ use warnings;
 
 __PACKAGE__->table('locks');
 __PACKAGE__->columns(Essential => qw(id port machine));
+__PACKAGE__->sequence('locks_id_seq');
 
 __PACKAGE__->has_a(machine => "Magus::Machine");
 __PACKAGE__->has_a(port    => "Magus::Port");

@@ -10,6 +10,8 @@ COMMENT=	Libraries for PulseAudio clients (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	gpl3
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	dbuslibs libasyncns libsndfile systemd-libs tcp_wrappers-libs \

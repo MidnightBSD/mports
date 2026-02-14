@@ -14,6 +14,8 @@ LICENSE=	gpl2
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	sdl12
