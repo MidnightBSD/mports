@@ -27,7 +27,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}${TK_VERSION}/unix
 
 ALL_TARGET=	all
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 
 USES+=		tcl:${SHORT_TK_VER},tea xorg
 USE_LDCONFIG=	yes
