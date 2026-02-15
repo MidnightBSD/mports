@@ -1,6 +1,6 @@
 PORTNAME=	silgraphite
 PORTVERSION=	2.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics devel
 MASTER_SITES=	SF
 
@@ -28,6 +28,6 @@ USES=		libtool pathfix pkgconfig
 
 FREETYPE_CONFIGURE_WITH=freetype
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
-FREETYPE_USES=		iconv:wchar_t
+FREETYPE_USES=		iconv
 
 .include <bsd.port.mk>
