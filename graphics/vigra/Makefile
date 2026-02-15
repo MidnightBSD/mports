@@ -1,7 +1,6 @@
 PORTNAME=	vigra
-DISTVERSIONPREFIX=v
-DISTVERSION=	1.11.1
-PORTREVISION=	21
+DISTVERSIONPREFIX=	Version-
+DISTVERSION=	1-12-3
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,23 +8,20 @@ COMMENT=	VIGRA stands for "Vision with Generic Algorithms"
 WWW=		https://ukoethe.github.io/vigra/
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 LIB_DEPENDS=	libImath.so:math/Imath \
 		libsz.so:science/libaec
 
 USES=		cmake compiler:c++14-lang python:run shebangfix
-
 USE_GITHUB=	yes
-GH_ACCOUNT=     ukoethe
-GH_TAGNAME=     8acd73a
+GH_ACCOUNT=	ukoethe
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
 CFLAGS+=	-I${LOCALBASE}/include/Imath
 
 CMAKE_ARGS=	-DDEPENDENCY_SEARCH_PREFIX:PATH=${LOCALBASE} \
 		-DDOCINSTALL:PATH=${DOCSDIR_REL}
-
 SHEBANG_FILES=	config/vigra-config.in
 
 OPTIONS_DEFINE=		HDF5 OPENEXR NUMPY DOCS FFTW
