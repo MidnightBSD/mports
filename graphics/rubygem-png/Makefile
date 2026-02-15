@@ -10,6 +10,7 @@ WWW=		https://www.zenspider.com/projects/png.html \
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	rubygem-rubyinline>=3.9<4:devel/rubygem-rubyinline
 RUN_DEPENDS=	rubygem-rubyinline>=3.9<4:devel/rubygem-rubyinline
 
 USES=		gem
