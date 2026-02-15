@@ -628,9 +628,9 @@ _PYTHONPKGLIST=	${WRKDIR}/.PLIST.pymodtmp
 
 # cryptography* support
 .  if ${PYCRYPTOGRAPHY_DEFAULT} == rust
-CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=46.0.4,1:security/py-cryptography@${PY_FLAVOR}
+CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=0:security/py-cryptography@${PY_FLAVOR}
 .  else
-CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography-legacy>=3.4.8_3,1:security/py-cryptography-legacy@${PY_FLAVOR}
+CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography-legacy>=0:security/py-cryptography-legacy@${PY_FLAVOR}
 .  endif
 
 .  if defined(_PYTHON_FEATURE_CRYPTOGRAPHY_BUILD)
@@ -707,7 +707,7 @@ _CURRENTPORT:=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools44>0:devel/py-setuptools44@${PY_FLAVOR}
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools44>0:devel/py-setuptools44@${PY_FLAVOR}
 .    else
-BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools>=63.1.0:devel/py-setuptools@${PY_FLAVOR}
+BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
 .    endif
 .  endif
 
