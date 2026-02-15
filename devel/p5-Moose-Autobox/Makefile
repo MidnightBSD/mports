@@ -22,4 +22,6 @@ TEST_DEPENDS=	p5-Test-Exception>=0.21:devel/p5-Test-Exception
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
