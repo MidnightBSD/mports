@@ -10,7 +10,7 @@ WWW=		https://git.causal.agency/catgirl/
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler:c++11-lang ncurses pkgconfig
+USES=		compiler:c++11-lang localbase ncurses pkgconfig
 
 LIB_DEPENDS+=	libtls.so:security/libretls
 
