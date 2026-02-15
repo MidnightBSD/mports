@@ -27,4 +27,7 @@ RUN_DEPENDS=	\
 USES=		perl5
 USE_PERL5=	configure
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
