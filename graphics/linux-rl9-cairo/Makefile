@@ -1,6 +1,6 @@
 PORTNAME=	cairo
 PORTVERSION=	1.17.4
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-7.el9
 CATEGORIES=	graphics linux
 
@@ -9,6 +9,8 @@ COMMENT=	Vector graphics library Cairo (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.cairographics.org/
 
 LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

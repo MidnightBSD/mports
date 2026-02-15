@@ -11,6 +11,8 @@ WWW=		https://github.com/NVIDIA/libglvnd
 LICENSE=        Apache-2.0 mit
 LICENSE_COMB=   multi
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	xorglibs

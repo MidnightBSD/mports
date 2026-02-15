@@ -10,6 +10,8 @@ WWW=		https://developer.gnome.org/gdk-pixbuf/
 
 LICENSE=	lgpl+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	gdk-pixbuf

@@ -11,6 +11,8 @@ WWW=		https://www.cairographics.org/
 
 LICENSE=	lgpl2.1
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LINUX=	cairo dri fontconfig freetype imageformats-libs pixman xorglibs
 USE_LINUX_RPM=	yes

@@ -9,6 +9,8 @@ COMMENT=	Mesa libGL runtime libraries (Rocky Linux ${LINUX_DIST_VER})
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	elfutils-libelf expat libdrm libglvnd llvm spirv-tools wayland xorglibs

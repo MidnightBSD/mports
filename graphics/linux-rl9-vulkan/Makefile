@@ -10,6 +10,8 @@ WWW=		https://github.com/KhronosGroup/Vulkan-Loader
 
 LICENSE=	Apache-2.0
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	wayland xorglibs
