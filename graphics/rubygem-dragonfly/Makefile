@@ -11,6 +11,7 @@ WWW=		https://markevans.github.io/dragonfly/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.3<3:www/rubygem-addressable \
 		rubygem-multi_json>=1.0<2:devel/rubygem-multi_json \
 		rubygem-ostruct>=0.6<1:devel/rubygem-ostruct \
