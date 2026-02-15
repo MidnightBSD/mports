@@ -316,6 +316,7 @@
     SUBDIR += py-cairosvg
     SUBDIR += py-fiona
     SUBDIR += py-gdal
+    SUBDIR += py-geopandas
     SUBDIR += py-graphviz
     SUBDIR += py-imagesize
     SUBDIR += py-pillow
@@ -324,6 +325,7 @@
     SUBDIR += py-pydot
     SUBDIR += py-pyglet1
     SUBDIR += py-pygraphviz
+    SUBDIR += py-pyproj
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
     SUBDIR += py-yaswfp
