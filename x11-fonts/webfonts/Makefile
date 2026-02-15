@@ -1,8 +1,6 @@
-
-
 PORTNAME=	webfonts
 PORTVERSION=	0.30
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF/corefonts/the%20fonts/final:group1 \
 		ftp://ftp.botik.ru/rented/znamensk/distributions/ftp.vsu.ru/pub/tex/font-packs/mscore/:group1 \
@@ -33,7 +31,8 @@ EXTRACT_CMD=		${LOCALBASE}/bin/cabextract
 EXTRACT_BEFORE_ARGS=	-qLF '[a-uw-z]*.ttf' -d ${WRKSRC}
 EXTRACT_AFTER_ARGS=
 
-OPTIONS_DEFINE=	EXTRAFONTS CLEARTYPE NEWVERDANA DOCS
+OPTIONS_DEFINE=	EXTRAFONTS CLEARTYPE NEWVERDANA DOCS COMIC
+OPTIONS_DEFAULT=	COMIC
 OPTIONS_SUB=	yes
 
 EXTRAFONTS_DESC=	Fonts licensed under MS Windows license
@@ -43,8 +42,11 @@ CLEARTYPE_DESC=	Install ClearType fonts
 CLEARTYPE_DISTFILES=	PowerPointViewer.exe:group3
 
 NEWVERDANA_DESC=	Install y2006 version of Verdana (broken bold N, W)
+COMIC_DESC=		Install Comic Sans
 
 SUB_FILES=	pkg-message
+
+NO_ARCH=	yes
 
 .include <bsd.mport.options.mk>
 
@@ -63,6 +65,9 @@ post-extract-NEWVERDANA-off:
 
 post-extract-NEWVERDANA-on:
 	${EXTRACT_CMD} -qLF 'v*.ttf' -d ${WRKSRC} ${_DISTDIR}/EUupdate.EXE
+
+post-extract-COMIC-off:
+	${RM} ${WRKSRC}/comic.ttf ${WRKSRC}/comicbd.ttf
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${FONTSDIR}

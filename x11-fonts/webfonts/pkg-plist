@@ -17,8 +17,8 @@
 %%CLEARTYPE%%%%FONTSDIR_REL%%/candarab.ttf
 %%CLEARTYPE%%%%FONTSDIR_REL%%/candarai.ttf
 %%CLEARTYPE%%%%FONTSDIR_REL%%/candaraz.ttf
-%%FONTSDIR_REL%%/comic.ttf
-%%FONTSDIR_REL%%/comicbd.ttf
+%%COMIC%%%%FONTSDIR_REL%%/comic.ttf
+%%COMIC%%%%FONTSDIR_REL%%/comicbd.ttf
 %%CLEARTYPE%%%%FONTSDIR_REL%%/consola.ttf
 %%CLEARTYPE%%%%FONTSDIR_REL%%/consolab.ttf
 %%CLEARTYPE%%%%FONTSDIR_REL%%/consolai.ttf
