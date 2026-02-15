@@ -179,6 +179,7 @@
     SUBDIR += libdrm
     SUBDIR += libemf
     SUBDIR += libepoxy
+    SUBDIR += libertiff
     SUBDIR += libexif
     SUBDIR += libfpx
     SUBDIR += libgeotiff
