@@ -8,6 +8,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.tcl.tk/
 
+LICENSE=        TclTk
+LICENSE_NAME=   Tcl/Tk License
+LICENSE_TEXT=	The authors hereby grant permission to use, copy, modify, distribute, and license this software and its documentation for any purpose, provided that existing copyright notices are retained in all copies and that this notice is included verbatim in any distributions.
+LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

@@ -13,6 +13,8 @@ LICENSE_NAME=   Tcl/Tk License
 LICENSE_TEXT=	Tcl/Tk License
 LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
