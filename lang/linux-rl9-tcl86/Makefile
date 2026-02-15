@@ -10,7 +10,7 @@ WWW=		https://www.tcl.tk/
 
 LICENSE=        TclTk
 LICENSE_NAME=   Tcl/Tk License
-LICENSE_TEXT=	The authors hereby grant permission to use, copy, modify, distribute, and license this software and its documentation for any purpose, provided that existing copyright notices are retained in all copies and that this notice is included verbatim in any distributions.
+LICENSE_TEXT=	See https://www.tcl-lang.org/software/tcltk/license.html
 LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 SKIP_FAKE_ALL=  yes
