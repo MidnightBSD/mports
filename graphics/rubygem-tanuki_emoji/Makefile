@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/tanuki_emoji
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	rubygem-i18n>=1.14,2:devel/rubygem-i18n
 RUN_DEPENDS=	rubygem-i18n>=1.14,2:devel/rubygem-i18n
 
 USES=		gem
