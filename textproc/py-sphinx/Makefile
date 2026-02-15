@@ -34,7 +34,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinxcontrib-applehelp>=0:textproc/py-sphin
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}html5lib>=0:www/py-html5lib@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10-3.12
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
@@ -44,16 +44,10 @@ NO_TEST=	yes
 # https://github.com/sphinx-doc/sphinx/issues/2395
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 31000
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=4.8:devel/py-importlib-metadata@${PY_FLAVOR}
-.endif
-
 PYTEST_BROKEN_TESTS=	test_latex_images \
 			test_ext_imgconverter \
 			test_defaults \
 			test_defaults_json \
 			test_anchors_ignored
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

@@ -10,6 +10,8 @@ WWW=		https://xkbcommon.org/
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	xkbcommon
 USE_LDCONFIG=	yes

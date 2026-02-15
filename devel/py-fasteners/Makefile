@@ -1,19 +1,21 @@
 PORTNAME=	fasteners
-PORTVERSION=	0.16
+PORTVERSION=	0.20
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python package that provides useful locks
+WWW=		https://github.com/harlowja/fasteners
 
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
