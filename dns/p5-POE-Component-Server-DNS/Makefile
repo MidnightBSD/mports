@@ -21,6 +21,7 @@ RUN_DEPENDS=	p5-Net-DNS>=0.58:dns/p5-Net-DNS \
 		p5-POE-Filter-DNS-TCP>=0.04:dns/p5-POE-Filter-DNS-TCP
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
