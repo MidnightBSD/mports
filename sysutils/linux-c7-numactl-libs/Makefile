@@ -10,6 +10,8 @@ COMMENT=	Simple NUMA policy support (CentOS ${LINUX_DIST_VER})
 
 LICENSE=	unknown
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
