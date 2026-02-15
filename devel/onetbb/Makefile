@@ -10,6 +10,8 @@ WWW=		https://software.intel.com/oneapi/onetbb
 
 LICENSE=	Apache-2.0
 
+SKIP_FAKE_ALL=  yes
+
 LIB_DEPENDS=	libhwloc.so:devel/hwloc2
 
 USES=		cmake:testing compiler:c++11-lang localbase:ldflags pathfix pkgconfig
