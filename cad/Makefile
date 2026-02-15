@@ -2,6 +2,7 @@
 
     SUBDIR += PrusaSlicer
     SUBDIR += abc
+    SUBDIR += astk-serveur
     SUBDIR += cascade
     SUBDIR += cura
     SUBDIR += cura-engine
