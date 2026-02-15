@@ -9,6 +9,8 @@ WWW=		https://graphite.sil.org
 
 LICENSE=	lgpl2.1
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 CPE_VENDOR=	sil
 USE_LDCONFIG=	yes

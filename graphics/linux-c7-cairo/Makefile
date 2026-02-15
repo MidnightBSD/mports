@@ -11,6 +11,8 @@ WWW=		https://www.cairographics.org/
 LICENSE=	lgpl2.1 MPL11
 LICENSE_COMB=	dual
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	dri fontconfig imageformats-libs pixman xorglibs

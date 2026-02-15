@@ -8,6 +8,8 @@ COMMENT=	Library to handle OpenGL function pointer management (Linux CentOS ${LI
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

@@ -17,6 +17,8 @@ LICENSE_NAME_LIBPNG=	libpng license
 LICENSE_FILE_LIBPNG=	${WRKSRC}/usr/share/doc/libpng-1.5.13/LICENSE
 LICENSE_PERMS_LIBPNG=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
