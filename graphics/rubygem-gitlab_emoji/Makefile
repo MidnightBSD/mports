@@ -11,6 +11,7 @@ WWW=		https://gitlab.com/gitlab-org/gitlab_emoji
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-gemojione>=2.2.1:graphics/rubygem-gemojione
 RUN_DEPENDS=	rubygem-gemojione>=2.2.1:graphics/rubygem-gemojione
 
 USES=		gem
