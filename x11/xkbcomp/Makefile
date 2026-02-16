@@ -1,15 +1,16 @@
 PORTNAME=	xkbcomp
-DISTVERSION=	1.4.7
+DISTVERSION=	1.5.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Compile XKB keyboard description
+COMMENT=	XKB keyboard description compiler
+WWW=		https://gitlab.freedesktop.org/xorg/app/xkbcomp
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_XORG=	x11 xkbfile
 USES=		pathfix tar:xz xorg xorg-cat:app
+USE_XORG=	x11 xkbfile xorgproto
 
 PLIST_FILES=	bin/xkbcomp \
 		libdata/pkgconfig/xkbcomp.pc \
