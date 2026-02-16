@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libtheora
 PORTVERSION=	1.1.1
 DISTVERSIONSUFFIX=	-8.el7
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Theora Video Compression Codec (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	bsd3
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

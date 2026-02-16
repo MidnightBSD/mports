@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libv4l
 PORTVERSION=	0.9.5
 DISTVERSIONSUFFIX=	-4.el7
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Video4Linux library (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	lgpl
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

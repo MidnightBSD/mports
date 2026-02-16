@@ -10,6 +10,8 @@ WWW=		https://www.webmproject.org/
 
 LICENSE=	bsd3
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

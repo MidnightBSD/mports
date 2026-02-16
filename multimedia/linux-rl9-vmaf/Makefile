@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/usr/share/licenses/libvmaf/LICENSE
 LICENSE_NAME=	BSD-2-Clause Plus Patent License
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+SKIP_FAKE_ALL=  yes
+
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	only Intel GPUs on x86-64 are supported
 

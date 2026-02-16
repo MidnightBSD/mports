@@ -10,6 +10,8 @@ WWW=		https://linuxtv.org/wiki/index.php/V4l-utils
 
 LICENSE=	lgpl+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

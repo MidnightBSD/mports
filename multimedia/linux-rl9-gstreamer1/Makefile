@@ -10,6 +10,8 @@ WWW=		https://gstreamer.freedesktop.org/
 
 LICENSE=	lgpl+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	libnghttp2 orc vulkan

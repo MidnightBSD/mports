@@ -1,7 +1,6 @@
 PORTNAME=	libva
-PORTVERSION=	2.20.0
+PORTVERSION=	2.22.0
 DISTVERSIONSUFFIX=	-1.el9
-PORTREVISION=	1
 CATEGORIES=	multimedia linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +8,8 @@ COMMENT?=	VAAPI wrapper and dummy driver (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://github.com/intel/libva
 
 LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes
@@ -25,6 +26,6 @@ DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 
 OPTIONS_DEFINE=	DOCS
 
-PLIST_SUB+=	LIBVERSION=2.2000.0
+PLIST_SUB+=	LIBVERSION=2.2200.0
 
 .include <bsd.port.mk>

@@ -13,6 +13,8 @@ WWW=		https://ffmpeg.org/
 LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	aom cairo fontconfig freetype fribidi gsm gnutls imageformats-libs \
