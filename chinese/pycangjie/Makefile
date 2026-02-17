@@ -10,6 +10,7 @@ WWW=		https://cangjians.github.io/projects/pycangjie/
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 LIB_DEPENDS=	libcangjie.so:chinese/libcangjie
 
 USES=		autoreconf gmake libtool pkgconfig sqlite python
