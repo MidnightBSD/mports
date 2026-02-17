@@ -1,6 +1,6 @@
 PORTNAME=	spirv-tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2024.4.rc2
+DISTVERSION=	2026.1 # please always bump all dependencies when updated because at least graphics/shaderc links in static libraries
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,15 +9,29 @@ WWW=		https://github.com/KhronosGroup/SPIRV-Tools
 
 LICENSE=	Apache-2.0
 
-USES=		cmake compiler:c++11-lib python:build shebangfix
-USE_LDCONFIG=	yes
-SHEBANG_FILES=	tools/lesspipe/spirv-lesspipe.sh
+USES=		cmake:testing compiler:c++11-lib python:build shebangfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	SPIRV-Tools
-GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-386-g3f17b2a:headers/external/spirv-headers
+# for GH_TAGNAME in GH_TUPLE
+# git clone --quiet https://github.com/KhronosGroup/SPIRV-Headers.git && git -C SPIRV-Headers describe <COMMIT_HASH>
+# for COMMIT_HASH see ${WRKSRC}/DEPS
+GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-461-g04f10f6:headers/external/spirv-headers
 
-CMAKE_ON=	SPIRV_SKIP_TESTS
+USE_LDCONFIG=	yes
+
+SHEBANG_FILES=	tools/lesspipe/spirv-lesspipe.sh
+
+CMAKE_ON=		SPIRV_SKIP_TESTS
+CMAKE_TESTING_OFF=	SPIRV_SKIP_TESTS
+
+PORTDOCS=	CHANGES CONTRIBUTING.md README.md SECURITY.md
+
+OPTIONS_DEFINE=	DOCS
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
