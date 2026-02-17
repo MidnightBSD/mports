@@ -18,4 +18,7 @@ TEST_DEPENDS=	p5-Test-Requires>0:devel/p5-Test-Requires
 USES=		perl5
 USE_PERL5=	configure
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
