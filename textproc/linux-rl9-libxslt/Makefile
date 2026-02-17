@@ -1,7 +1,7 @@
 PORTNAME=	libxslt
 PORTVERSION=	1.1.34
-DISTVERSIONSUFFIX=	-9.el9_5.3
-PORTREVISION=	2
+DISTVERSIONSUFFIX=	-13.el9_6
+PORTREVISION=	3
 CATEGORIES=	textproc linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +9,8 @@ COMMENT=	XSLT C library for GNOME (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://gitlab.gnome.org/GNOME/libxslt/
 
 LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	xmlsoft
