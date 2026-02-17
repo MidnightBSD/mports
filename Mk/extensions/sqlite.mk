@@ -13,10 +13,9 @@ SQLITE_VER?=	3
 
 # USE_SQLITE is specified incorrectly, so mark this as IGNORE
 .if ${SQLITE_VER} == 3
-.	if ${OSVERSION} < 2000
-LIB_DEPENDS+=	sqlite${_SQLITE_VER}:databases/sqlite${_SQLITE_VER}
-SQLITE_VER=	${_SQLITE_VER}
-.	endif
+BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
+LIB_DEPENDS+=	libsqlite3.so:databases/sqlite3
+SQLITE_VER=	${SQLITE_VER}
 .elif ${SQLITE_VER} == 2
 LIB_DEPENDS+=	libsqlite.so:databases/sqlite${SQLITE_VER}
 .else

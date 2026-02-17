@@ -286,8 +286,14 @@
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth-tty
     SUBDIR += rubygem-openid_connect
+    SUBDIR += rubygem-right_gogrid
+    SUBDIR += rubygem-right_http_connection
+    SUBDIR += rubygem-right_slicehost
     SUBDIR += rubygem-rsync
+    SUBDIR += rubygem-ruby-growl
     SUBDIR += rubygem-ruby-openid
+    SUBDIR += rubygem-ruby-yadis
+    SUBDIR += rubygem-ruby_smb
     SUBDIR += rubygem-rubyntlm
     SUBDIR += rubygem-rubytter
     SUBDIR += rubygem-rudy
