@@ -11,6 +11,7 @@ COMMENT=	Yet another converter from text file to postscript (with Japanese suppo
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	kcc:japanese/kcc
 RUN_DEPENDS=	kcc:japanese/kcc
 
 do-install:
