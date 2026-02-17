@@ -1,5 +1,5 @@
 PORTNAME=	loofah
-PORTVERSION=	2.24.1
+PORTVERSION=	2.25.0
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
@@ -10,6 +10,7 @@ WWW=		https://github.com/flavorjones/loofah
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-crass>=1.0.2<1.1:www/rubygem-crass \
 		rubygem-nokogiri>=1.12.0:textproc/rubygem-nokogiri
 

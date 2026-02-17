@@ -10,6 +10,7 @@ WWW=		https://github.com/postmodern/nokogiri-diff
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-nokogiri>=1.5<2:textproc/rubygem-nokogiri \
 		rubygem-tdiff>=0.4<1:devel/rubygem-tdiff
 
