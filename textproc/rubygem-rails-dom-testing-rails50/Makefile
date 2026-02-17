@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/rails-dom-testing
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=  ${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport50>=5.0.0:devel/rubygem-activesupport50 \
 		rubygem-minitest>=0:devel/rubygem-minitest \
 		rubygem-nokogiri>=1.6:textproc/rubygem-nokogiri

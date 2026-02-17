@@ -1833,6 +1833,7 @@
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
     SUBDIR += rubygem-rb-fsevent
+    SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-getoptlong
     SUBDIR += rubygem-gibbler
