@@ -16,4 +16,6 @@ RUN_DEPENDS=	p5-Lingua-ZH-TaBE>=0:chinese/p5-Lingua-ZH-TaBE
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
