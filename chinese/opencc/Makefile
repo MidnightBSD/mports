@@ -13,6 +13,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	BYVoid
 GH_PROJECT=	OpenCC
 
+USE_GCC=	yes
+
 USES=		cmake compiler:c++11-lib python:build
 USE_LDCONFIG=	yes
 
