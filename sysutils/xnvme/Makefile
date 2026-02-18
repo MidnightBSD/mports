@@ -9,10 +9,10 @@ WWW=		https://xnvme.io/
 
 LICENSE=	bsd3
 
-NOT_FOR_ARCHS=	armv7 i386 powerpc
+NOT_FOR_ARCHS=	armv7 i386
 NOT_FOR_ARCHS_REASON=	use of types with platform-specific length
 
-USES=		meson pkgconfig
+USES=		meson pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 MESON_ARGS=	-Dforce_completions=true \
@@ -35,5 +35,8 @@ TESTS_MESON_TRUE=	tests
 TOOLS_MESON_TRUE=	tools
 
 NO_TEST=	yes
+
+CONFIGURE_ARGS+="-Db_lto=false"
+LDFLAGS+= -Wl,--undefined-version
 
 .include <bsd.port.mk>
