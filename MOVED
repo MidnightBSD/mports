@@ -603,6 +603,6 @@ security/openssl31|security/openssl36|2026-01-27|openssl 3.1 is eol. move to 3.6
 audio/spotify-tui||2026-01-28|Has expired: dead upstream and doesn't build
 lang/cython3|lang/cython|2026-02-04|Remove obsoleted port. Use lang/cython instead
 security/gpgme-cpp|security/gpgmepp|2026-02-09|Gpgme C++ bindings have been split into a separate project
-security/gpgme-qt@qt5|security/qgpgme@qt5|2025-02-09|Gpgme Qt5 bindings have been split into a separate project
-security/gpgme-qt@qt6|security/qgpgme@qt6|2025-02-09|Gpgme Qt6 bindings have been split into a separate project
-
+security/gpgme-qt@qt5|security/qgpgme@qt5|2026-02-09|Gpgme Qt5 bindings have been split into a separate project
+security/gpgme-qt@qt6|security/qgpgme@qt6|2026-02-09|Gpgme Qt6 bindings have been split into a separate project
+sysutils/system-tools-backends||2026-02-18|No longer used
