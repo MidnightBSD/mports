@@ -5,7 +5,7 @@ CATEGORIES=	lang kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 multi-language application scripting
 
-USES=		cmake compiler:c++11-lib gettext gl kde:5 qt:5 tar:xz xorg
+USES=		cmake compiler:c++11-lib gettext gl kde:5 kfhack qt:5 tar:xz xorg
 USE_GL=		gl
 USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		coreaddons i18n iconthemes itemviews \
