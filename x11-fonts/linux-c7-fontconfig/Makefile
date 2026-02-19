@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	fontconfig
 PORTVERSION=	2.13.0
 DISTVERSIONSUFFIX=	-4.3.el7
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-based font configuration API for X Windows (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes
