@@ -1,12 +1,12 @@
-# Created by: Roman Bogorodskiy <novel@FreeBSD.org>
-
 PORTNAME=	osinfo-db-tools
-PORTVERSION=	1.8.0
+DISTVERSION=	1.12.0
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	https://releases.pagure.org/libosinfo/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools for managing the osinfo database
+WWW=		https://libosinfo.org/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 		libsoup-2.4.so:devel/libsoup
 
-USES=		gettext gmake gnome libarchive pkgconfig tar:xz meson
-USE_GNOME=	glib20 intltool libxml2 libxslt
+USES=		gettext gnome libarchive meson pkgconfig tar:xz
+USE_GNOME=	glib20 intltool libxml2
 
 .include <bsd.port.mk>
