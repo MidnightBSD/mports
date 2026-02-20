@@ -24,7 +24,7 @@ USE_LINUX=	brotli ca-certificates cairo cairo-gobject cups-libs curl \
                 fontconfig freetype fribidi gdkpixbuf2 gnupg gnutls \
                 harfbuzz icu \
                 imageformats-libs libassuan libasyncns libdrm libepoxy libevent \
-                libgcrypt libglvnd libgpg-error libidn2 libksba libnghttp2 \
+                libgcrypt libglvnd libgpg-error libksba libnghttp2 \
                 libpciaccess libpsl librsvg2 libsecret libsigc++20 \
                 libsndfile libsoup libssh libstemmer libtasn1 libthai libtheora libtool-ltdl \
                 libtracker-sparql libunistring libusb libv4l libva libvdpau \
