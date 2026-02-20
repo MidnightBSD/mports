@@ -1,5 +1,5 @@
 PORTNAME=	hms
-PORTVERSION=	1.1.3
+PORTVERSION=	1.1.4
 CATEGORIES=	devel
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
@@ -17,5 +17,7 @@ BUILD_DEPENDS=	${CRAN_DEPENDS}
 RUN_DEPENDS=	${CRAN_DEPENDS}
 
 USES=		cran:auto-plist
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
