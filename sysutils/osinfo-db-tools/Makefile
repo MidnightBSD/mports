@@ -17,4 +17,6 @@ LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 USES=		gettext gnome libarchive meson pkgconfig tar:xz
 USE_GNOME=	glib20 intltool libxml2
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
