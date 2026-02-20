@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/xml2/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-cli>0:devel/R-cran-cli \
 		R-cran-rlang>=1.1.0:devel/R-cran-rlang
 
