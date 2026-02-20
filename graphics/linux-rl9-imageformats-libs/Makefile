@@ -18,6 +18,8 @@ LICENSE_NAME_LIBPNG=	libpng license
 LICENSE_FILE_LIBPNG=	${WRKSRC}/usr/share/licenses/libpng/LICENSE
 LICENSE_PERMS_LIBPNG=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	libjxl
