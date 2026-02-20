@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/tidyselect/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-cli>=3.3.0:devel/R-cran-cli \
 		R-cran-glue>=1.3.0:devel/R-cran-glue \
 		R-cran-lifecycle>=1.0.3:devel/R-cran-lifecycle \
