@@ -279,6 +279,7 @@
     SUBDIR += rsync
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-domain_name
+    SUBDIR += rubygem-google-cloud-env
     SUBDIR += rubygem-google-cloud-errors
     SUBDIR += rubygem-http_parser.rb
     SUBDIR += rubygem-iproto
