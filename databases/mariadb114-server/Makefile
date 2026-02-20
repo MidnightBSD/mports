@@ -1,6 +1,6 @@
 PORTNAME?=	mariadb
-PORTVERSION=	11.4.9
-PORTREVISION?=	1
+PORTVERSION=	11.4.10
+PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	https://mirror.nodesdirect.com/${SITESDIR}/ \
 		https://mirror.one.com/${SITESDIR}/ \
