@@ -1,20 +1,20 @@
---- configure.orig	2020-10-19 10:49:13.082118000 -0400
-+++ configure	2020-10-19 10:49:52.339387000 -0400
-@@ -3399,7 +3399,7 @@
-    *-mingw*) default_enable_minimal=yes; default_enable_debugalloc=no;
-              need_nanosleep=no;;
-    *-cygwin*) default_enable_heap_checker=no; default_enable_cpu_profiler=no;;
--   *-freebsd*) default_enable_heap_checker=no;;
-+   *-freebsd*|*-midnightbsd*) default_enable_heap_checker=no;;
-    *-darwin*) default_enable_heap_checker=no;;
- esac
- 
-@@ -7116,7 +7116,7 @@
+--- configure.orig	2025-08-15 13:38:40.000000000 -0400
++++ configure	2026-02-20 11:36:31.405475000 -0500
+@@ -8840,7 +8840,7 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
  
--  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
-+  bitrig* | darwin* | dragonfly* | midnightbsd* | freebsd* | netbsd* | openbsd*)
+-  darwin* | dragonfly* | freebsd* | midnightbsd* | netbsd* | openbsd*)
++  darwin* | dragonfly* | midnightbsd* | freebsd* | midnightbsd* | netbsd* | openbsd*)
      # This has been around since 386BSD, at least.  Likely further.
      if test -x /sbin/sysctl; then
        lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
+@@ -16788,7 +16788,7 @@
+       { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ printf "%s\n" "yes" >&6; }
+       ;;
+-    freebsd*)
++    midnightbsd*|freebsd*)
+       if $STRIP -V 2>&1 | $GREP "elftoolchain" >/dev/null; then
+         old_striplib="$STRIP --strip-debug"
+         striplib="$STRIP --strip-unneeded"
