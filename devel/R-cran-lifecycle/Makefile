@@ -16,4 +16,6 @@ RUN_DEPENDS=	R-cran-glue>0:devel/R-cran-glue \
 
 USES=		cran:auto-plist
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
