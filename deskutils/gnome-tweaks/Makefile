@@ -43,11 +43,12 @@ post-patch:
 # if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
 # with these files when module is imported from root user
 post-install:
-#	${FIND} ${PREFIX} -name \*.pyc -delete
-
-#	${PYTHON_CMD:S,${FAKE_DESTDIR},,} ${PYTHON_LIBDIR}/compileall.py \
-#		-f -d ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/gtweak \
-#		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/gtweak
-
+	${FIND} ${PREFIX} -name \*.pyc -delete
+	${PYTHON_CMD:S,${FAKE_DESTDIR},,} ${PYTHON_LIBDIR}/compileall.py \
+		-f -d ${PYTHONPREFIX_SITELIBDIR}/gtweak \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/gtweak
+	${PYTHON_CMD:S,${FAKE_DESTDIR},,} -O ${PYTHON_LIBDIR}/compileall.py \
+		-f -d ${PYTHONPREFIX_SITELIBDIR}/gtweak \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/gtweak
 
 .include <bsd.port.mk>
