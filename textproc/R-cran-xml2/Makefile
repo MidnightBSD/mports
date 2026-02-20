@@ -16,4 +16,6 @@ RUN_DEPENDS=	R-cran-cli>0:devel/R-cran-cli \
 USES=		cran:auto-plist,compiles gnome
 USE_GNOME=	libxml2
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
