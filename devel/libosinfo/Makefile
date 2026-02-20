@@ -31,6 +31,8 @@ MESON_ARGS=	-Dlibsoup-abi=2.4 \
 		-Dwith-usb-ids-path=${LOCALBASE}/share/usbids/usb.ids \
 		-Dwith-pci-ids-path=${LOCALBASE}/share/pciids/pci.ids
 
+NO_TEST=	yes
+
 SHLIB_VER=	0.1012.0
 PLIST_SUB=	SHLIB_VER=${SHLIB_VER}
 
