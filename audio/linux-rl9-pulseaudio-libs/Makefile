@@ -9,6 +9,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for PulseAudio clients (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://pulseaudio.org/
 
+LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	dbuslibs libasyncns libsndfile systemd-libs xorglibs
