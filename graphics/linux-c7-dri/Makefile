@@ -9,6 +9,8 @@ COMMENT=	Mesa libGL runtime libraries (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	elfutils-libelf expat libdrm libglvnd wayland xorglibs
