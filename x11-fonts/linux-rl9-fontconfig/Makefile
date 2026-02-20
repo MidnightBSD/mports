@@ -9,6 +9,8 @@ WWW=		https://www.freedesktop.org/wiki/Software/fontconfig/
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	brotli expat freetype harfbuzz libxml2
