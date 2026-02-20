@@ -12,6 +12,7 @@ WWW=		https://rspec.info/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-diff-lcs>=1.2.0<2.0:textproc/rubygem-diff-lcs \
 		rubygem-rspec-support>=${PORTVERSION:R}.0<3.14:devel/rubygem-rspec-support
 
