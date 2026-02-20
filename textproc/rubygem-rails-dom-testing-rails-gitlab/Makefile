@@ -1,5 +1,5 @@
 PORTNAME=	rails-dom-testing
-PORTVERSION=	2.2.0
+PORTVERSION=	2.3.0
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-rails-gitlab
@@ -19,5 +19,6 @@ RUN_DEPENDS=	rubygem-activesupport-gitlab>=5.0.0:devel/rubygem-activesupport-git
 USES=		gem
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
