@@ -1,10 +1,9 @@
 PORTNAME=	thunderbird
-PORTVERSION=	78.8.0
-PORTREVISION=	1
+PORTVERSION=	147.0.2
+PORTREVISION=	0
 CATEGORIES=	mail
-MASTER_SITES=	http://www.midnightbsd.org/ftp/MidnightBSD/mports/distfiles/ \
-		https://pkg.freebsd.org/FreeBSD:11:amd64/quarterly/All/
-DISTFILES=	thunderbird-78.8.0.txz hunspell-1.7.0_2.txz
+MASTER_SITES=	http://www.midnightbsd.org/ftp/MidnightBSD/mports/distfiles/
+DISTFILES=	thunderbird-147.0.2.pkg
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Thunderbird for FreeBSD
@@ -14,12 +13,35 @@ LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
 
 LIB_DEPENDS+=	libicui18n.so:devel/icu \
-		libvpx.so:multimedia/libvpx \
 		libjson-c.so:devel/json-c \
-		libbotan-2.so:security/botan2
+		libvpx.so:multimedia/libvpx \
+                libevent.so:devel/libevent \
+                libstartup-notification-1.so:x11/startup-notification \
+                libnspr4.so:devel/nspr \
+                libnss3.so:security/nss \
+                libharfbuzz.so:print/harfbuzz \
+                libgraphite2.so.3:graphics/graphite2 \
+                libpng16.so:graphics/png \
+                libavcodec.so:multimedia/ffmpeg \
+                libffi.so:devel/libffi \
+                libpixman-1.so:x11/pixman \
+                libwebp.so:graphics/webp \
+                libfontconfig.so:x11-fonts/fontconfig \
+                libfreetype.so:print/freetype2 \
+                libpci.so:devel/libpci \
+                libdbus-1.so:devel/dbus \
+                libdbus-glib-1.so:devel/dbus-glib \
+                libatk-1.0.so:accessibility/at-spi2-core \
+                libaom.so:multimedia/aom \
+                libdav1d.so:multimedia/dav1d
 
-USES=	gnome tar:xz
-USE_GNOME=	gtk20
+
+USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
+                python desktop-file-utils tar:xz
+CPE_VENDOR=     mozilla
+USE_GL=         gl
+USE_GNOME=      cairo gdkpixbuf gtk30
+USE_XORG=       x11 xcb xcomposite xdamage xext xfixes xrandr xrender xt ice sm
 
 ONLY_FOR_ARCHS=	amd64
 
@@ -33,11 +55,5 @@ do-extract:
 
 do-install:
 	${NOOP}
-
-post-fake:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/man1
-	${CP} ${FAKE_DESTDIR}${PREFIX}/man/man1/* ${FAKE_DESTDIR}${PREFIX}/share/man/man1
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/man3
-	${CP} ${FAKE_DESTDIR}${PREFIX}/man/man3/* ${FAKE_DESTDIR}${PREFIX}/share/man/man3
 
 .include <bsd.port.mk>
