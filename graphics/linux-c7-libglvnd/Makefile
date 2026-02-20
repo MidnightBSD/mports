@@ -9,6 +9,8 @@ WWW=		https://github.com/NVIDIA/libglvnd
 
 LICENSE=	other
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	xorglibs
