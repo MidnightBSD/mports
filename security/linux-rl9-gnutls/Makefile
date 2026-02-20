@@ -1,7 +1,7 @@
 PORTNAME=	gnutls
 PORTVERSION=	3.8.3
-DISTVERSIONSUFFIX=	-4.el9_4
-PORTREVISION=	1
+DISTVERSIONSUFFIX=	-9.el9.0.1
+PORTREVISION=	5
 CATEGORIES=	security linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,7 +16,7 @@ SKIP_FAKE_ALL=  yes
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnu
 USE_LDCONFIG=	yes
-USE_LINUX=	libidn2 libtasn1 nettle p11-kit
+USE_LINUX=	libtasn1 nettle p11-kit
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 
