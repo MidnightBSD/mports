@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
 		liblmdb.so:databases/lmdb
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake gettext gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	config coreaddons crash dbusaddons filemetadata i18n idletime \
 		kio solid \
