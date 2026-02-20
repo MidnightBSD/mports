@@ -10,7 +10,8 @@ WWW=		https://github.com/sparklemotion/sqlite3-ruby
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	swig:devel/swig
+BUILD_DEPENDS=	swig:devel/swig \
+		rubygem-sqlite3>=1.3.3:databases/rubygem-sqlite3
 RUN_DEPENDS=	rubygem-sqlite3>=1.3.3:databases/rubygem-sqlite3
 
 USES=		gem sqlite
