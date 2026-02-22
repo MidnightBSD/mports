@@ -1,6 +1,6 @@
 PORTNAME=	hikari
 DISTVERSION=	2.3.3
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-wm wayland
 MASTER_SITES=	https://hikari.acmelabs.space/releases/
 
