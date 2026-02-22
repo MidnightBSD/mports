@@ -127,11 +127,13 @@
     SUBDIR += node22
     SUBDIR += node23
     SUBDIR += node24
+    SUBDIR += node25
     SUBDIR += npm
     SUBDIR += npm-node18
     SUBDIR += npm-node20
     SUBDIR += npm-node22
     SUBDIR += npm-node24
+    SUBDIR += npm-node25
     SUBDIR += otter-browser
     SUBDIR += p5-Apache-LogFormat-Compiler
     SUBDIR += p5-CGI
