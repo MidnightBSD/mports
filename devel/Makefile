@@ -1610,6 +1610,7 @@
     SUBDIR += py-rfc3339-validator
     SUBDIR += py-rpds-py
     SUBDIR += py-rstr
+    SUBDIR += py-rtree
     SUBDIR += py-ruamel.yaml
     SUBDIR += py-ruamel.yaml.clib
     SUBDIR += py-sarif-om
