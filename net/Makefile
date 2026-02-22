@@ -287,6 +287,7 @@
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth-tty
     SUBDIR += rubygem-openid_connect
+    SUBDIR += rubygem-rbvmomi
     SUBDIR += rubygem-rbvmomi2
     SUBDIR += rubygem-right_aws
     SUBDIR += rubygem-right_flexiscale
