@@ -44,8 +44,8 @@ MBSD64_TARGET=  x86_64-mports-freebsd13.4
 CONFIGURE_TARGET=       ${MBSD64_TARGET}
 LDFLAGS+=               -Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
 
-USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
-                python desktop-file-utils tar:xz
+USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
+		perl5 pkgconfig python desktop-file-utils tar:xz
 
 MOZILLA=        browser                                                                                                                                                   
 MOZILLA_NAME=   Browser                                                                                                                                                   
