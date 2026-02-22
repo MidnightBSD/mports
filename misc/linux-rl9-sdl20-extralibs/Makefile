@@ -10,6 +10,8 @@ WWW=		https://www.libsdl.org/
 
 LICENSE=	lgpl+
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LINUX=	imageformats-libs sdl20
 USE_LINUX_RPM=	yes
