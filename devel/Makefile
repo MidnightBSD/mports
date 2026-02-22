@@ -1896,6 +1896,7 @@
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-nori
     SUBDIR += rubygem-observer
+    SUBDIR += rubygem-optimist
     SUBDIR += rubygem-ostruct
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-racc
