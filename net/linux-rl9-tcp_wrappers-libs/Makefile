@@ -9,6 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries tcp wrappers (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.centos.org
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	xorglibs
