@@ -10,6 +10,7 @@ WWW=		https://github.com/lostisland/faraday_middleware
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-faraday1>=1.0<2:www/rubygem-faraday1
 RUN_DEPENDS=	rubygem-faraday1>=1.0<2:www/rubygem-faraday1
 
 USES=		gem
