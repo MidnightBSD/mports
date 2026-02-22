@@ -1874,6 +1874,7 @@
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
     SUBDIR += rubygem-jsonapi-renderer
+    SUBDIR += rubygem-json-gitlab
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
