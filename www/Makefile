@@ -459,6 +459,8 @@
     SUBDIR += yarn-node18
     SUBDIR += yarn-node20
     SUBDIR += yarn-node22
+    SUBDIR += yarn-node24
+    SUBDIR += yarn-node25
     SUBDIR += youtube
     SUBDIR += yt-dlp
     SUBDIR += yuicompressor
