@@ -27,4 +27,6 @@ DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
