@@ -11,6 +11,7 @@ WWW=		https://github.com/typhoeus/ethon
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-ffi>=1.15.0:devel/rubygem-ffi
 LIB_DEPENDS=	libcurl.so:ftp/curl
 RUN_DEPENDS=	rubygem-ffi>=1.15.0:devel/rubygem-ffi
 
