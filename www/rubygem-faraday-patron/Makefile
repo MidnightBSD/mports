@@ -10,6 +10,7 @@ WWW=		https://github.com/lostisland/faraday-patron
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-patron>=0.4.2:www/rubygem-patron
 RUN_DEPENDS=	rubygem-patron>=0.4.2:www/rubygem-patron
 
 USES=		gem
