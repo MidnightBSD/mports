@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/activemodel \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab
 
 USES=		gem
