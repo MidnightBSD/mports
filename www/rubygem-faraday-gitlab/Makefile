@@ -22,5 +22,6 @@ USES=		cpe gem
 CPE_VENDOR=	faraday_project
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
