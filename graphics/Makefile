@@ -318,6 +318,7 @@
     SUBDIR += py-gdal
     SUBDIR += py-geopandas
     SUBDIR += py-graphviz
+    SUBDIR += py-imageio
     SUBDIR += py-imagesize
     SUBDIR += py-pillow
     SUBDIR += py-png
@@ -329,6 +330,8 @@
     SUBDIR += py-pyproj
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
+    SUBDIR += py-scikit-image
+    SUBDIR += py-tifffile
     SUBDIR += py-yaswfp
     SUBDIR += qgis
     SUBDIR += qt5-3d

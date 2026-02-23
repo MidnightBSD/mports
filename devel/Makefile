@@ -1433,6 +1433,7 @@
     SUBDIR += py-lazr.delegates
     SUBDIR += py-lazr.restfulclient
     SUBDIR += py-lazr.uri
+    SUBDIR += py-lazy_loader
     SUBDIR += py-lazy-object-proxy
     SUBDIR += py-libevdev
     SUBDIR += py-libpeas
