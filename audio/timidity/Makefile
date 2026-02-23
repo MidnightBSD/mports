@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 FAKE_OPTS+=	trueprefix
 SKIP_FAKE_CHECK=	lib/timidity/goemon/gsdrum40/gsdrum40.bak
 
-CONFLICTS=	timidity++-2.*
+CONFLICTS_INSTALL=	timidity++
 
 USES=		ncurses
 
