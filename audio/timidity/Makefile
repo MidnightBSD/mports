@@ -40,6 +40,8 @@ GOEMON_DISTFILES=	goemon.tgz:tiins
 GOEMON_VARS=		TDIR="${PREFIX}/lib/timidity" \
 			TCONFIG=goemon.cfg
 
+MAKE_JOBS_UNSAFE=	yes
+
 post-patch:
 	${REINPLACE_CMD} -i '' -e 's,machine/soundcard.h,sys/soundcard.h,' \
 		${WRKSRC}/linux_a.c
