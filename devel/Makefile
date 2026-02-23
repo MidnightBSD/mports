@@ -1827,6 +1827,7 @@
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
+    SUBDIR += rubygem-drydock
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-execjs
