@@ -1,5 +1,5 @@
 PORTNAME=	alsa-lib
-PORTVERSION=	1.2.12
+PORTVERSION=	1.2.14
 DISTVERSIONSUFFIX=	-1.el9
 CATEGORIES=	audio linux
 PKGNAMESUFFIX=	-devel
@@ -9,6 +9,8 @@ COMMENT=	Advanced Linux Sound Architecture headers (Rocky Linux ${LINUX_DIST_VER
 WWW=		https://www.alsa-project.org/
 
 LICENSE=	lgpl2.1+
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:rl9
 USE_LINUX=	alsalib

@@ -2022,6 +2022,7 @@
     SUBDIR += yaml-cpp
     SUBDIR += yasm
     SUBDIR += yyjson
+    SUBDIR += zix
     SUBDIR += zookeeper
     SUBDIR += zthread
     SUBDIR += zziplib
