@@ -458,6 +458,7 @@
     SUBDIR += rubygem-rails-dom-testing-rails80
     SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rdiscount
+    SUBDIR += rubygem-representable
     SUBDIR += rubygem-rexml
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-sass

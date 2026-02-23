@@ -322,6 +322,7 @@
     SUBDIR += py-pillow
     SUBDIR += py-png
     SUBDIR += py-pycha
+    SUBDIR += py-pycollada
     SUBDIR += py-pydot
     SUBDIR += py-pyglet1
     SUBDIR += py-pygraphviz
