@@ -1,11 +1,9 @@
-# Created by: Bruce Simpson
-
 PORTNAME=	kBuild
 DISTVERSION=	${KBUILD_VERSION}
-PORTREVISION=	15
+PORTREVISION=	17
 CATEGORIES=	devel
-MASTER_SITES=	FREEBSD_LOCAL/jkim
-DISTNAME=	${PORTNAME}-${DISTVERSION}r3127-src
+MASTER_SITES=	FREEBSD_LOCAL/vvd
+DISTNAME=	${PORTNAME}-${DISTVERSION}r3687
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Makefile framework
@@ -14,17 +12,10 @@ WWW=		https://svn.netlabs.org/kbuild
 LICENSE=	gpl3+ bsd3
 LICENSE_COMB=	multi
 
-NOT_FOR_ARCHS=		aarch64 armv6 armv7 mips mips64
-NOT_FOR_ARCHS_REASON=	./kBuild/env.sh: unknown cpu/arch
-
 USES=		autoreconf:build gmake makeinfo tar:xz
 
-CONFLICTS_INSTALL=	kBuild-devel-[0-9]*
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
-
 KBUILD_VERSION=	0.1.9998
-KBUILD_ARCH=	${MACHINE_ARCH:S/i386/x86/:S/x86_64/amd64/:C/powerpc.*/ppc32/:C/armv.*/arm/}
+KBUILD_ARCH=	${MACHINE_ARCH:S/aarch64/arm64/:S/i386/x86/:S/x86_64/amd64/:C/powerpc64.*/ppc64/:C/powerpc.*/ppc32/:C/armv.*/arm32/}
 KBUILD_ENV=	AUTORECONF=${AUTORECONF} \
 		AUTOPOINT=true \
 		CC="${CC}" CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" \
