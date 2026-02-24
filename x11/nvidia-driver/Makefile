@@ -325,7 +325,7 @@ post-install: .SILENT
 .elif ${NVVERSION} < 465.01901
 	${REINPLACE_CMD} -e '/lib32\/libnvidia-glvkspirv\.so/d' ${TMPPLIST}
 .endif
-.if ${NVVERSION} < 470.074
+.if ${NVVERSION} < 470.074 || ${NVVERSION} >= 545.000
 	${REINPLACE_CMD} -e '/libnvidia-vulkan-producer\.so/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 495.02905
@@ -335,6 +335,9 @@ post-install: .SILENT
 .if ${NVVERSION} < 525.08902
 	${REINPLACE_CMD} -e '/libnvidia-allocator\.so/d ; \
 		/nvidia-drm_gbm\.so/d' ${TMPPLIST}
+.endif
+.if ${NVVERSION} < 545.000
+	${REINPLACE_CMD} -e '/libnvidia-gpucomp\.so/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 410.057
 # Rename some libraries and install a libmap file to resolve conflict with

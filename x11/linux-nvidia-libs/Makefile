@@ -129,7 +129,15 @@ PLIST_RE+=	'\,${LINUXBASE}.*libGLESv(1_CM|2)_nvidia\.so,d' \
 		'\,${LINUXBASE}.*libGLX_(nvidia|indirect)\.so,d' \
 		'\,${LINUXBASE}.*libnvidia-ptxjitcompiler\.so,d'
 .endif
-.if ${NVVERSION} >= 495.02905 # 495.29.05
+.if ${NVVERSION} >= 545.00000 # 545.00
+LINUX_LIBS+=	libnvidia-egl-wayland.so.1.1.12
+LINUX_LINKS+=	libnvidia-egl-wayland.so.1.1.12 libnvidia-egl-wayland.so.1
+PLIST_RE+=	'\,${LINUXBASE},s/(libnvidia-egl-wayland\.so)\.X/\1.1.1.12/'
+.elif ${NVVERSION} >= 535.05403 # 535.54.03
+LINUX_LIBS+=	libnvidia-egl-wayland.so.1.1.11
+LINUX_LINKS+=	libnvidia-egl-wayland.so.1.1.11 libnvidia-egl-wayland.so.1
+PLIST_RE+=	'\,${LINUXBASE},s/(libnvidia-egl-wayland\.so)\.X/\1.1.1.11/'
+.elif ${NVVERSION} >= 495.02905 # 495.29.05
 LINUX_LIBS+=	libnvidia-egl-wayland.so.1.1.9
 LINUX_LINKS+=	libnvidia-egl-wayland.so.1.1.9 libnvidia-egl-wayland.so.1
 PLIST_RE+=	'\,${LINUXBASE},s/(libnvidia-egl-wayland\.so)\.X/\1.1.1.9/'
@@ -272,6 +280,10 @@ LINUX32_LIBS+=	libnvidia-glvkspirv.so.${PORTVERSION}
 .else
 PLIST_RE+=	'\,${LINUXBASE}.*libnvidia-glvkspirv\.so,d'
 .endif
+.if ${NVVERSION} >= 545.00000 # 545.00
+LINUX_LIBS+=	libnvidia-gpucomp.so.${PORTVERSION}
+LINUX32_LIBS+=  libnvidia-gpucomp.so.${PORTVERSION}
+.endif # 545.00
 
 PLIST_SUB+=	LINUXBASE=${LINUXBASE} \
 		LINUX_LIBDIR=${LINUX_LIBDIR} \
