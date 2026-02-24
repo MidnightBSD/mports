@@ -412,6 +412,8 @@
     SUBDIR += vulkan-headers
     SUBDIR += vulkan-loader
     SUBDIR += vulkan-tools
+    SUBDIR += waifu2x-converter-cpp
+    SUBDIR += waifu2x-ncnn-vulkan
     SUBDIR += wayland
     SUBDIR += wayland-protocols
     SUBDIR += wayland-utils
