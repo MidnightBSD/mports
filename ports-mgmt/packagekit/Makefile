@@ -14,8 +14,7 @@ BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docb
 		vapigen:lang/vala \
 		xsltproc:textproc/libxslt
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
-		libpolkit-gobject-1.so:sysutils/polkit \
-		libpkg.so:${PKG_ORIGIN}
+		libpolkit-gobject-1.so:sysutils/polkit
 RUN_DEPENDS=	console-kit-daemon:sysutils/consolekit2
 
 USES=		cpe gettext gnome meson pkgconfig \
@@ -27,8 +26,9 @@ USE_LDCONFIG=	yes
 CPE_VENDOR=	packagekit_project
 SHEBANG_FILES=	contrib/cron/packagekit-background.cron
 
+# TODO: port our own backend for mport
 MESON_ARGS=	-Dsysconfdir=${PREFIX}/etc \
-		-Dpackaging_backend=freebsd -Dsystemd=false -Doffline_update=false \
+		-Dpackaging_backend=dummy -Dsystemd=false -Doffline_update=false \
 		-Dbash_completion=false -Dbash_command_not_found=false \
 		-Dgstreamer_plugin=false
 
