@@ -1,8 +1,9 @@
 PORTNAME=	scipy
 DISTVERSION=	1.11.1
-PORTREVISION=	1
+PORTREVISION=	2
+PORTEPOCH=	1
 CATEGORIES=	science python
-MASTER_SITES=	https://docs.scipy.org/doc/${PORTNAME}-${DISTVERSION}/:doc \
+MASTER_SITES=	https://docs.scipy.org/doc/scipy-${DISTVERSION}/:doc \
 		PYPI:source \
 		SF:source
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -29,8 +30,8 @@ LIB_DEPENDS=	libblas.so:math/blas \
 		libopenblas.so:math/openblas
 RUN_DEPENDS=	${PYNUMPY}
 
-USES=		compiler:c++14-lang cpe fortran python:3.10-3.11 shebangfix
-USE_PYTHON=	autoplist concurrent cython distutils
+USES=		compiler:c++14-lang cpe fortran python:3.10-3.12 shebangfix
+USE_PYTHON=	autoplist concurrent cython0 distutils
 
 # circular dependency
 NO_TEST=	yes
@@ -39,6 +40,8 @@ FFLAGS+=	-std=legacy
 LDFLAGS+=	-shared
 PYDISTUTILS_BUILDARGS=	--fcompiler=gnu95
 PYDISTUTILS_CONFIGUREARGS=	--fcompiler=gnu95
+
+PIE_UNSAFE=	yes
 
 PORTDOCS=	*
 
