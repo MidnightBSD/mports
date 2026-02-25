@@ -1,6 +1,6 @@
 PORTNAME=	libplacebo
 DISTVERSIONPREFIX=	v
-DISTVERSION=	6.338.2
+DISTVERSION=	7.351.0
 PORTREVISION=	1
 CATEGORIES=	graphics
 
@@ -10,9 +10,6 @@ WWW=		https://code.videolan.org/videolan/libplacebo
 
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
-		${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers	
 
 USES=		compiler:c11 localbase:ldflags meson pkgconfig python:build
 USE_GITHUB=	nodefault
@@ -49,15 +46,15 @@ OPENGL_MESON_ENABLED=	opengl
 SHADERC_DESC=		libshaderc SPIR-V compiler
 SHADERC_LIB_DEPENDS=	libshaderc_shared.so:graphics/shaderc
 SHADERC_MESON_ENABLED=	shaderc
-SHADERC_MESON_DISABLED=	shaderc
 SHADERC_IMPLIES=	VULKAN
 
 TEST_MESON_TRUE=	tests
 
 VULKAN_DESC=		Vulkan-based renderer
-VULKAN_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
+VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
+			${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
-VULKAN_MESON_ENABLED=	vulkan vk-proc-addr
+VULKAN_MESON_ENABLED=	vulkan
 
 XXHASH_DESC=		Faster replacement for internal siphash
 XXHASH_BUILD_DEPENDS=	xxhash>0:devel/xxhash
