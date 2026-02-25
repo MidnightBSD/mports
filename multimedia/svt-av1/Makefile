@@ -1,6 +1,6 @@
 PORTNAME=	svt-av1
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1.2
+DISTVERSION=	3.1.2
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,6 +24,8 @@ GL_PROJECT=	SVT-AV1
 CMAKE_OFF=	NATIVE
 PLIST_SUB=	VERSION=${DISTVERSION:C/-.*//}
 
+CONFLICTS_INSTALL=	svt-av1-hdr # bin/SvtAv1EncApp
+
 OPTIONS_DEFINE=	LTO
 OPTIONS_DEFAULT=LTO
 OPTIONS_EXCLUDE_riscv64=	LTO # bug 262871
@@ -35,7 +37,7 @@ LTO_CMAKE_ON=		-DCMAKE_POLICY_DEFAULT_CMP0069:STRING=NEW
 LTO_LDFLAGS=		-fuse-ld=lld
 .endif
 
-post-patch:
-	${REINPLACE_CMD} -e 's/DragonFly/MidnightBSD/g' ${WRKSRC}/third_party/cpuinfo/CMakeLists.txt
+#post-patch:
+#	${REINPLACE_CMD} -e 's/DragonFly/MidnightBSD/g' ${WRKSRC}/third_party/cpuinfo/CMakeLists.txt
 
 .include <bsd.port.mk>
