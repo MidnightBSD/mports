@@ -5,11 +5,14 @@ CATEGORIES=	filesystems sysutils linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utilities for MS-DOS FAT filesystems (CentOS ${LINUX_DIST_VER})
+WWW=		https://github.com/dosfstools/dosfstools
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
-USES=		linux:c7
+USES=		cpe linux:c7
 USE_LINUX_RPM=	nolib
+CPE_VENDOR=	dosfstools_project
+
 OPTIONS_DEFINE=	DOCS
 PLIST=		${PKGDIR}/pkg-plist
 
