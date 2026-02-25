@@ -331,6 +331,7 @@
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
     SUBDIR += py-scikit-image
+    SUBDIR += py-svg.path
     SUBDIR += py-tifffile
     SUBDIR += py-yaswfp
     SUBDIR += qgis
