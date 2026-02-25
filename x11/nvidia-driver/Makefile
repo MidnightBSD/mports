@@ -76,7 +76,7 @@ SUB_PATCHES+=	extra-patch-src-nvidia_dev.c \
 # Temporarily disable GSP firmware as it is known to cause
 # issues with suspend/resume
 .if ${NVVERSION} >= 565.00000
-SUB_PATCHES+=	extra-gsp-patch-src-nvidia_subr.c
+SUB_PATCHES+=	extra-gsp-patch-src-common-inc-nv_firmware_registry.h
 .endif
 
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
