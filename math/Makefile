@@ -131,6 +131,7 @@
     SUBDIR += py-numpy-stl
     SUBDIR += py-pandas
     SUBDIR += py-pyclipper
+    SUBDIR += py-python-fcl
     SUBDIR += py-random2
     SUBDIR += py-scikit-umfpack
     SUBDIR += py-sympy
