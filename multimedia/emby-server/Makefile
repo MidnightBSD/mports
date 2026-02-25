@@ -1,5 +1,5 @@
 PORTNAME=	emby-server
-DISTVERSION?=	4.8.3.0
+DISTVERSION?=	4.8.4.0
 PORTREVISION?=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://github.com/MediaBrowser/Emby.Releases/releases/download/${DISTVERSION}/ \
@@ -53,7 +53,9 @@ LIB_DEPENDS=	libaribb24.so:multimedia/aribb24 \
 		libwebp.so:graphics/webp \
 		libx264.so:multimedia/libx264 \
 		libx265.so:multimedia/x265 \
-		libzvbi.so:devel/libzvbi
+		libzvbi.so:devel/libzvbi \
+		libexpat.so:textproc/expat2 \
+		libfftw3.so:math/fftw3
 
 RUN_DEPENDS=	icu>0:devel/icu \
 		krb5>0:security/krb5 \
@@ -69,8 +71,9 @@ RUN_DEPENDS=	icu>0:devel/icu \
 		pango>0:x11-toolkits/pango \
 		tiff>0:graphics/tiff
 
-USES=		compiler:c11 gmake iconv localbase:ldflags magick:6 pkgconfig sqlite ssl:run
+USES=		compiler:c11 gmake gnome iconv libarchive localbase:ldflags magick:6 pkgconfig sqlite ssl:run
 USE_RC_SUBR=	${PORTNAME}
+USE_GNOME=	cairo glib20 librsvg2
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--cc="${CC}" \
