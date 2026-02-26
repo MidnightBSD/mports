@@ -2,6 +2,8 @@ You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
 20260226:
+	PHP_DEFAULT updated to 8.3
+
 	The JAVA_DEFAULT is now bumped from 8 to 17. 
 
 	dns/ddclient updated to 4.0.  The config file moved from
