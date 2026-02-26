@@ -1,5 +1,5 @@
 PORTNAME=	sqlite3
-DISTVERSION=	3.50.2
+DISTVERSION=	3.50.4
 # SECURITY WARNING: when updating this port, also file vuxml entry
 # for ports/databases/linux-c7-sqlite3 (but mind it has a different EPOCH)
 # and coordinate with ports/emulators/linux_base which also ships sqlite3.
@@ -85,7 +85,7 @@ OPTIONS_DEFINE+=	ARMOR DBPAGE DBSTAT DIRECT_READ DQS EXTENSION FTS3_TOKEN \
 			UPDATE_LIMIT URI URI_AUTHORITY
 .endif
 OPTIONS_DEFAULT=	DBPAGE DBSTAT DIRECT_READ EXTENSION FTS3_TOKEN FTS4 FTS5 LIBEDIT METADATA \
-			RTREE SECURE_DELETE STRIP THREADS TS1 UNICODE61 UNLOCK_NOTIFY URI
+			RTREE SECURE_DELETE SESSION STRIP THREADS TS1 UNICODE61 UNLOCK_NOTIFY URI
 # SECURE_DELETE, UNLOCK_NOTIFY, DBSTAT (since 41.0) used by www/firefox et al.
 # RTREE used by graphics/mapnik, databases/spatialite
 # FTS3_TOKEN used by audio/clementine-player, mail/thunderbird, www/seamonkey
