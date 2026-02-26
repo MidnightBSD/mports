@@ -37,6 +37,8 @@
     SUBDIR += sysmon
     SUBDIR += tcpreplay
     SUBDIR += tcptrack
+    SUBDIR += unifi9
+    SUBDIR += unifi10
     SUBDIR += virt-viewer
     SUBDIR += whatmask
     SUBDIR += wifimgr
