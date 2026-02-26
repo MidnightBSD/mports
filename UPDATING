@@ -12,3 +12,8 @@ you update your ports collection, before attempting any port upgrades.
 
 	net-mgmt/librenms updated and installation of mysql-client is now 
 	a manual step.
+
+20260225:
+	nvidia-driver updated to 570 version.  You will need to update
+	graphics/nvidia-drm-510 as well as x11/linux-nvidia-libs and
+	x11/nvidia-driver
