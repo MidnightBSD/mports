@@ -50,8 +50,8 @@ GHOSTSCRIPT_DEFAULT?=	10
 GO_DEFAULT?=            1.24
 # Possible values: 1.8, 2.2, 3.0
 GUILE_DEFAULT?=         2.2
-# Possible values: 7, 8, 11, 13, 17, 18
-JAVA_DEFAULT?=          8
+# Possible values: 8, 11, 13, 17, 18, 19, 20, 21
+JAVA_DEFAULT?=          11
 # Possible values: 6, 6-nox11, 7, 7-nox11
 IMAGEMAGICK_DEFAULT?=	7
 LAZARUS_DEFAULT?=	2.2.0
