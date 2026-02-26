@@ -9,3 +9,6 @@ you update your ports collection, before attempting any port upgrades.
 
 	cython was recently updated.  lang/cython is now the current version.
 	if you need cython 0.x, use lang/cython0 aka USE_PYTHON=cython0
+
+	net-mgmt/librenms updated and installation of mysql-client is now 
+	a manual step.
