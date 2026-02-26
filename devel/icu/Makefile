@@ -1,6 +1,6 @@
 PORTNAME=	icu
 DISTVERSION=	76_1
-PORTREVISION?=	2 # keep for icu-lx
+PORTREVISION?=	3 # keep for icu-lx
 PORTEPOCH?=	1
 CATEGORIES?=	devel
 MASTER_SITES=	https://github.com/unicode-org/${PORTNAME}/releases/download/release-${DISTVERSION:S/rc/-&/:S/_/-/g}/
@@ -8,7 +8,8 @@ DISTNAME=	icu4c-${DISTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	International Components for Unicode (from IBM)
-WWW=		https://icu.unicode.org/
+WWW=		https://icu.unicode.org/ \
+		https://github.com/unicode-org/icu
 
 LICENSE=	icu
 LICENSE_NAME=	ICU license
