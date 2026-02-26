@@ -1303,6 +1303,7 @@
     SUBDIR += py-cmdtest
     SUBDIR += py-codecov
     SUBDIR += py-colorama
+    SUBDIR += py-colorlog
     SUBDIR += py-commandlines
     SUBDIR += py-configargparse
     SUBDIR += py-configobj
