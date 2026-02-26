@@ -90,8 +90,8 @@ PERL5_DEFAULT:=         ${_PERL5_FROM_BIN:R}
 .  endif
 # Possible values: 10, 11, 12, 13, 14
 PGSQL_DEFAULT?=		14
-# Possible values: 8.0, 8.1, 8.2, 8.3
-PHP_DEFAULT?=		8.2
+# Possible values: 8.1, 8.2, 8.3
+PHP_DEFAULT?=		8.3
 # Possible values: rust, legacy
 .  if empty(ARCH:Naarch64:Namd64:Narmv7:Ni386:Npowerpc64:Npowerpc64le:Npowerpc:Nriscv64)
 PYCRYPTOGRAPHY_DEFAULT?=	rust
