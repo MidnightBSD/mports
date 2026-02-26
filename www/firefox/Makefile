@@ -54,8 +54,8 @@ LIB_DEPENDS+=   libvpx.so:multimedia/libvpx \
                 libdav1d.so:multimedia/dav1d \
 		libproxy.so:net/libproxy
 
-USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase perl5 pkgconfig \
-                python desktop-file-utils tar:xz
+USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
+		perl5 pkgconfig python desktop-file-utils tar:xz
 CPE_VENDOR=     mozilla
 USE_GL=         gl
 USE_GNOME=      cairo gdkpixbuf gtk30

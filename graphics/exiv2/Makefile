@@ -1,6 +1,6 @@
 PORTNAME=	exiv2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.28.3
+DISTVERSION=	0.28.7
 PORTEPOCH=	1
 CATEGORIES=	graphics
 
@@ -13,8 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 		libexpat.so:textproc/expat2 \
-		libinih.so:devel/inih \
-		libpng.so:graphics/png
+		libinih.so:devel/inih
 
 USES=		cmake compiler:c++17-lang cpe dos2unix gettext-tools iconv \
 		localbase:ldflags pathfix shebangfix
@@ -30,6 +29,9 @@ CMAKE_OFF=	EXIV2_ENABLE_EXTERNAL_XMP
 
 LDFLAGS_mips=	-lintl
 LDFLAGS_mips64=	-lintl
+
+PLIST_SUB=	SOVER=${DISTVERSION:R:E} \
+		SOVERSION=${DISTVERSION}
 
 OPTIONS_DEFINE=	DOCS DOXYGEN NLS SAMPLE
 OPTIONS_SUB=	yes

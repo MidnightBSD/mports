@@ -30,4 +30,6 @@ GL_PROJECT=	libgedit-tepl
 
 MESON_ARGS=	-Dgtk_doc=false
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

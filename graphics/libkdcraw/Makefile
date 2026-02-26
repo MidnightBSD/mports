@@ -5,7 +5,7 @@ PKGNAMESUFFIX?=	-${FLAVOR}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LibRaw interface for KDE
-WWW=		https://www.digikam.org/
+WWW=		https://invent.kde.org/graphics/libkdcraw
 
 LICENSE=	gpl2+
 

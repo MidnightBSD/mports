@@ -1,10 +1,11 @@
---- ./config.h.orig	1996-06-01 07:54:49.000000000 -0500
-+++ ./config.h	2013-04-21 10:18:23.000000000 -0500
-@@ -217,6 +217,22 @@
+--- config.h.orig	1996-06-01 08:54:49.000000000 -0400
++++ config.h	2026-02-23 15:11:24.247267000 -0500
+@@ -216,6 +216,22 @@
+ # error No byte sex defined
  # endif
  #endif /* linux */
- 
-+#ifdef __FreeBSD__
++
++#if defined(__FreeBSD__) || defined(__MidnightBSD__)
 +#include <errno.h>
 +#include <machine/endian.h>
 +#if BYTE_ORDER == LITTLE_ENDIAN
@@ -19,7 +20,6 @@
 +#define USE_LDEXP
 +#define PI M_PI
 +#endif
-+
+ 
  /* Win32 on Intel machines */
  #ifdef __WIN32__
- #  define LITTLE_ENDIAN

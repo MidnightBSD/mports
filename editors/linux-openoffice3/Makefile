@@ -14,6 +14,8 @@ LICENSE=	lgpl3
 
 RUN_DEPENDS+=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux
 USE_LINUX=	imageformats-libs xorglibs
 USE_GCPIO=	yes

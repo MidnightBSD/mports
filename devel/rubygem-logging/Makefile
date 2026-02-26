@@ -10,6 +10,7 @@ WWW=		https://github.com/TwP/logging
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-little-plugger>=1.1<2:devel/rubygem-little-plugger \
 		rubygem-multi_json>=1.14<2:devel/rubygem-multi_json
 

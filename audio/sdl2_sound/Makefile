@@ -1,10 +1,12 @@
 PORTNAME=	sdl2_sound
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.1
+DISTVERSION=	2.0.4
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstract SDL soundfile decoder
+WWW=		https://icculus.org/SDL_sound/ \
+		https://github.com/icculus/SDL_sound
 
 LICENSE=	zlib
 LICENSE_FILE_ZLIB=${WRKSRC}/LICENSE.txt
@@ -15,6 +17,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	icculus
 GH_PROJECT=	SDL_sound
 USE_LDCONFIG=	yes
+CMAKE_OFF=	SDLSOUND_BUILD_DOCS
 
 PORTDOCS=	*
 PORTEXAMPLES=	*
@@ -33,8 +36,7 @@ post-install:
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	cd ${WRKSRC}/docs && ${INSTALL_DATA} CHANGELOG.txt \
-		CREDITS.txt README.txt ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} README.md docs/CHANGELOG.txt docs/CREDITS.txt ${FAKE_DESTDIR}${DOCSDIR}/
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

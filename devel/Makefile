@@ -1433,6 +1433,7 @@
     SUBDIR += py-lazr.delegates
     SUBDIR += py-lazr.restfulclient
     SUBDIR += py-lazr.uri
+    SUBDIR += py-lazy_loader
     SUBDIR += py-lazy-object-proxy
     SUBDIR += py-libevdev
     SUBDIR += py-libpeas
@@ -1610,6 +1611,7 @@
     SUBDIR += py-rfc3339-validator
     SUBDIR += py-rpds-py
     SUBDIR += py-rstr
+    SUBDIR += py-rtree
     SUBDIR += py-ruamel.yaml
     SUBDIR += py-ruamel.yaml.clib
     SUBDIR += py-sarif-om
@@ -1825,9 +1827,11 @@
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
+    SUBDIR += rubygem-drydock
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-execjs
+    SUBDIR += rubygem-faraday-cookie_jar
     SUBDIR += rubygem-faraday-excon1
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
@@ -1869,11 +1873,13 @@
     SUBDIR += rubygem-googleapis-common-protos-gitlab
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-googleapis-common-protos-types-gitlab
+    SUBDIR += rubygem-highline
     SUBDIR += rubygem-i18n
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
     SUBDIR += rubygem-jsonapi-renderer
+    SUBDIR += rubygem-json-gitlab
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
@@ -1894,6 +1900,7 @@
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-nori
     SUBDIR += rubygem-observer
+    SUBDIR += rubygem-optimist
     SUBDIR += rubygem-ostruct
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-racc
@@ -2019,6 +2026,7 @@
     SUBDIR += yaml-cpp
     SUBDIR += yasm
     SUBDIR += yyjson
+    SUBDIR += zix
     SUBDIR += zookeeper
     SUBDIR += zthread
     SUBDIR += zziplib

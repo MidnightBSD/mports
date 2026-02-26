@@ -1,14 +1,14 @@
---- kBuild/header.kmk.orig	2017-11-28 16:27:32.000000000 -0500
-+++ kBuild/header.kmk	2019-11-03 12:41:41.361323000 -0500
+--- kBuild/header.kmk.orig	2026-01-31 15:06:40.000000000 -0500
++++ kBuild/header.kmk	2026-02-23 15:40:12.251635000 -0500
 @@ -196,7 +196,7 @@
  # this keyword namespace is shared between OSes, architectures, cpus and
  # build types. (PORTME)
  #
 -KBUILD_OSES      := darwin dos dragonfly freebsd gnuhurd gnukfbsd gnuknbsd haiku l4 linux netbsd nt openbsd os2 solaris win os-agnostic
 +KBUILD_OSES      := darwin dos dragonfly midnightbsd freebsd gnuhurd gnukfbsd gnuknbsd haiku l4 linux netbsd nt openbsd os2 solaris win os-agnostic
- KBUILD_ARCHES    := x86 amd64 noarch alpha arm32 arm64 hppa32 hppa64 ia64 m68k mips32 mips64 ppc32 ppc64 s390 s390x sh32 sh64 sparc32 sparc64 x32
- KBUILD_ARCHES_64 := amd64 alpha arm64 hppa64 ia64 mips64 ppc64 s390x sh64 sparc64 x32
- KBUILD_ARCHES_32 := x86 arm32 hppa32 m68k mips32 ppc32 s390 sh32 sparc32
+ KBUILD_ARCHES    := x86 amd64 noarch alpha arm32 arm64 hppa32 hppa64 ia64 m68k loongarch64 mips32 mips64 ppc32 ppc64 riscv32 riscv64 s390 s390x sh32 sh64 sparc32 sparc64 x32
+ KBUILD_ARCHES_64 := amd64 alpha arm64 hppa64 ia64 loongarch64 mips64 ppc64 riscv64 s390x sh64 sparc64 x32
+ KBUILD_ARCHES_32 := x86 arm32 hppa32 m68k mips32 ppc32 riscv32 s390 sh32 sparc32
 @@ -211,6 +211,8 @@
  KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.darwin.amd64    = x86_64-apple-darwin* amd64-apple-darwin*
  KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.freebsd.x86     = i?86-*freebsd*
@@ -18,7 +18,7 @@
  KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.linux.x86       = i?86-*linux-gnu
  KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.linux.amd64     = x86_64-*linux-gnu amd64-*linux-gnu
  KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.netbsd.x86      = i?86-*netbsd*
-@@ -602,7 +604,7 @@
+@@ -612,7 +614,7 @@
  HOSTSUFF_EXE        := .exe
  HOST_PATH_SEP       := $(SEMICOLON)
  
@@ -27,7 +27,7 @@
  # Unix (like) systems with wine.
  EXEC_X86_WIN32      := wine
  HOSTSUFF_EXE        :=
-@@ -648,7 +650,7 @@
+@@ -658,7 +660,7 @@
  SUFF_LIB    := .a
  SUFF_DLL    := .so
  SUFF_EXE    :=
@@ -36,7 +36,7 @@
  SUFF_SYS    := .ko
   else
  SUFF_SYS    :=
-@@ -1382,7 +1384,7 @@
+@@ -1488,7 +1490,7 @@
  	/Developer/usr/
   KBUILD_LIB_SEARCH_SUBS  := lib/
  

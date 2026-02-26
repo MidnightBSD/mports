@@ -7,6 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LDAP libraries (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.OpenLDAP.org/
 
+LICENSE=	openldap2.8
+
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	cyrus-sasl2 nspr nss

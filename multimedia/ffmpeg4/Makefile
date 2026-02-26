@@ -1,6 +1,6 @@
 PORTNAME=	ffmpeg
 PORTVERSION=	4.4.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia audio net
 MASTER_SITES=	https://ffmpeg.org/releases/
 PKGNAMESUFFIX=	4
@@ -655,6 +655,7 @@ post-patch:
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 
 pre-install:
+	${MKDIR} ${TRUE_PREFIX}
 	${MKDIR} ${PREFIX}
 	${MKDIR} ${PREFIX}/libdata/ldconfig/
 	touch ${PREFIX}/libdata/ldconfig/ffmpeg4

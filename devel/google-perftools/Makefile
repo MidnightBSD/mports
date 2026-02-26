@@ -1,32 +1,54 @@
-# Created by: Yuri Victorovich <yuri@rawbw.com>
-
 PORTNAME=	google-perftools
 DISTVERSIONPREFIX=	gperftools-
-DISTVERSION=	2.8
+DISTVERSION=	2.17.2
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/gperftools/gperftools/releases/download/gperftools-${PORTVERSION}/
 DISTNAME=	gperftools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, multi-threaded malloc() and nifty performance analysis tools
+WWW=		https://github.com/gperftools/gperftools
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c11 gmake libtool
-GNU_CONFIGURE=	yes
+BROKEN_aarch64=	link fails: ld: error: undefined symbol: brk, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=278009
+BROKEN_armv7=	error: use of undeclared identifier '_URC_NO_REASON', see https://github.com/gperftools/gperftools/issues/1360
+BROKEN_riscv64=	error: Cannot calculate stack trace: will need to write for your environment, see https://github.com/gperftools/gperftools/issues/1359
+
+USES=		compiler:c11 gmake libtool localbase:ldflags perl5 # tests also require c++17 compiler
 USE_LDCONFIG=	yes
+USE_PERL5=	test
 NO_TEST=	yes
+
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
+
+TEST_TARGET=	check # 7 tests are failing, see https://github.com/gperftools/gperftools/issues/1572
+TESTING_UNSAFE=	yes
 
 LIBS+=		-lexecinfo
 
 DOCSDIR=	${PREFIX}/share/doc/gperftools
 
-OPTIONS_DEFINE=		DOCS
-OPTIONS_SINGLE=		PAGESIZE ALIGN
-OPTIONS_SINGLE_ALIGN=	ALIGN8 ALIGN16
+OPTIONS_DEFINE=			DOCS PROFILER
+OPTIONS_SINGLE=			PAGESIZE ALIGN
+OPTIONS_SINGLE_ALIGN=		ALIGN8 ALIGN16
 OPTIONS_SINGLE_PAGESIZE=	PAGE8K PAGE32K PAGE64K
-OPTIONS_DEFAULT=	PAGE8K ALIGN16
+OPTIONS_DEFAULT=		PAGE8K ALIGN16
+OPTIONS_DEFAULT_aarch64=	# PROFILER  is disabled: WARNING: Could not find the PC. Will not try to compile libprofiler, see https://github.com/gperftools/gperftools/issues/1362
+OPTIONS_DEFAULT_amd64=		PROFILER
+OPTIONS_DEFAULT_armv6=		# PROFILER is disabled: WARNING: Could not find the PC. Will not try to compile libprofiler.
+OPTIONS_DEFAULT_armv7=		# PROFILER is disabled: WARNING: Could not find the PC. Will not try to compile libprofiler.
+OPTIONS_DEFAULT_i386=		PROFILER
+OPTIONS_DEFAULT_powerpc=	PROFILER
+OPTIONS_DEFAULT_powerpc64=	PROFILER
+OPTIONS_DEFAULT_powerpc64le=	PROFILER
+OPTIONS_DEFAULT_riscv64=	PROFILER
+OPTIONS_SUB=		yes
+
+PROFILER_DESC=		Enable CPU profiler
+PROFILER_CONFIGURE_ENABLE=	cpu-profiler
 
 ALIGN_DESC=	The tcmalloc allocation alignment
 ALIGN8_DESC=	8 bytes allocation alignment
@@ -46,7 +68,7 @@ PORTDOCS=	*
 
 .include <bsd.port.pre.mk>
 
-.if ${COMPILER_TYPE} == "clang" && !defined(USE_GCC)
+.if ${CHOSEN_COMPILER_TYPE} == "clang" && !defined(USE_GCC)
 # clang cannot disable builtins individually
 CXXFLAGS+=	-fno-builtin
 .endif
@@ -56,12 +78,19 @@ CONFIGURE_ARGS+=--enable-frame-pointers
 .endif
 
 # keep in sync with all platforms where libunwind is available
-.if (${ARCH} == amd64 || ${ARCH} == i386)
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386
 LIB_DEPENDS+=	libunwind.so:devel/libunwind
+LIBS+=		-lunwind
 .endif
 
+post-build:
+	@${ECHO}
+	@${ECHO} "Please run 'make check' (requires bash)."
+	@${ECHO} "Two testcases are known to fail. Testsuite is known to be"
+	@${ECHO} "unreliable and give false positives and negatives (PR#661)."
+	@${ECHO}
+
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/bin/pprof ${STAGEDIR}${PREFIX}/bin/perftools-pprof
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so.*
 
 .include <bsd.port.post.mk>

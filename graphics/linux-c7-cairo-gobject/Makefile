@@ -8,8 +8,10 @@ PKGNAMESUFFIX=	-gobject
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library Cairo (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	lgpl2.1 mpl
+LICENSE=	lgpl2.1 MPL20
 LICENSE_COMB=	dual
+
+SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:c7
 USE_LINUX=	cairo dri fontconfig freetype imageformats-libs pixman xorglibs

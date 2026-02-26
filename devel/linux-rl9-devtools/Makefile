@@ -10,6 +10,8 @@ WWW=		https://gcc.gnu.org/
 LICENSE=	gpl2+ gpl3+ lgpl2.1+
 LICENSE_COMB=	multi
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	elfutils-libs

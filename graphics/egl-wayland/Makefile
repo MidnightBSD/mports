@@ -1,10 +1,11 @@
 PORTNAME=	egl-wayland
-DISTVERSION=	1.1.11
+DISTVERSION=	1.1.19
 PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	EGLStream-based Wayland external platform
+WWW=		https://github.com/NVIDIA/egl-wayland
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING

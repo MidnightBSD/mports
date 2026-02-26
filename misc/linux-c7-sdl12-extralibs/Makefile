@@ -8,9 +8,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional SDL 1.2 libraries (Linux CentOS ${LINUX_DIST_VER})
 WWW=		https://www.libsdl.org/
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 
 ONLY_FOR_ARCHS=	aarch64 amd64
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LINUX=	sdl12

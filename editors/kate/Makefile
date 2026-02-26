@@ -10,6 +10,8 @@ BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:textproc/docbook-
 		docbook-xml>0:textproc/docbook-xml
 LIB_DEPENDS=	libqt6keychain.so:security/qtkeychain@qt6
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext kde:6 \
 		pkgconfig qt:6 tar:xz xorg
 USE_KDE=	activities attica auth bookmarks codecs completion config \
@@ -23,5 +25,8 @@ USE_QT=		base
 USE_XORG=	x11
 
 OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	${REINPLACE_CMD} "s,/bin/bash,/bin/sh," ${WRKSRC}/apps/lib/exec_inspect.sh
 
 .include <bsd.port.mk>

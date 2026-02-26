@@ -1,13 +1,17 @@
 PORTNAME=	pulseaudio
 PORTVERSION=	15.0
-DISTVERSIONSUFFIX=	-2.el9
-PORTREVISION=	1
+DISTVERSIONSUFFIX=	-3.el9
+PORTREVISION=	2
 CATEGORIES=	audio linux
 PKGNAMESUFFIX=	-libs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for PulseAudio clients (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://pulseaudio.org/
+
+LICENSE=	lgpl2.1
+
+SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

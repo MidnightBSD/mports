@@ -8,7 +8,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Font rendering engine (Linux CentOS ${LINUX_DIST_VER})
 WWW=		https://www.freetype.org/
 
-LICENSE=	other
+LICENSE=	gpl2+
+
+SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:c7
 USE_LDCONFIG=	yes

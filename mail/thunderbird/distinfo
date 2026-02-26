@@ -1,5 +1,3 @@
-TIMESTAMP = 1615216996
-SHA256 (thunderbird-78.8.0.txz) = dccb255aa22e26d50b21a3d934898c01c9b7e198e9f8e8c79825e6160065492e
-SIZE (thunderbird-78.8.0.txz) = 49437548
-SHA256 (hunspell-1.7.0_2.txz) = e52f1901f003741ccf6f6e57a00a61dc0a9d51ba824556508d6d87ade372d8db
-SIZE (hunspell-1.7.0_2.txz) = 333516
+TIMESTAMP = 1771624931
+SHA256 (thunderbird-147.0.2.pkg) = 19dee0c2a131a12c65292996305a623cb7ebf9c46d5c084a0c8358bd72bb3bb5
+SIZE (thunderbird-147.0.2.pkg) = 82049316

@@ -13,6 +13,8 @@ LICENSE=	gpl3
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:c7
 CPE_VENDOR=	qt
 USE_LDCONFIG=	yes

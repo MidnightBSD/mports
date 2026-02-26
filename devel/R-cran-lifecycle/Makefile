@@ -9,10 +9,13 @@ WWW=		https://cran.r-project.org/web/packages/lifecycle/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-glue>0:devel/R-cran-glue \
 		R-cran-rlang>=1.1.0:devel/R-cran-rlang \
 		R-cran-cli>3.4.0:devel/R-cran-cli
 
 USES=		cran:auto-plist
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

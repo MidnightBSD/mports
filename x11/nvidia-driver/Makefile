@@ -11,7 +11,7 @@
 PORTNAME?=	nvidia-driver
 DISTVERSION?=	${NVIDIA_DISTVERSION}
 # Always try to set PORTREVISION as it can be overridden by the slave ports
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11
 MASTER_SITES=	NVIDIA/XFree86/FreeBSD-${ARCH_SUFX}/${DISTVERSION}
 DISTNAME=	NVIDIA-FreeBSD-${ARCH_SUFX}-${DISTVERSION}
@@ -73,9 +73,15 @@ SUB_PATCHES+=	extra-patch-src-nvidia_dev.c \
 		extra-patch-src-nvidia_pci.c
 .endif
 
+# Temporarily disable GSP firmware as it is known to cause
+# issues with suspend/resume
+.if ${NVVERSION} >= 565.00000
+SUB_PATCHES+=	extra-gsp-patch-src-common-inc-nv_firmware_registry.h
+.endif
+
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
 MODULESDIR=	lib/xorg/modules
-EXTENSIONSDIR?=	${MODULESDIR}/extensions/.nvidia
+EXTENSIONSDIR=	${MODULESDIR}/extensions/.nvidia
 PORTDOCS=	*
 
 .if ${NVVERSION} >= 331.013
@@ -129,11 +135,6 @@ PLIST_SUB+=	EXTENSIONSDIR=${EXTENSIONSDIR}
 .else
 PLIST_SUB+=	EXTENSIONSDIR="@comment "
 .endif
-.if defined(LIBGLDIR)
-PLIST_SUB+=	LIBGLDIR=${LIBGLDIR} LIBGLMAP="@comment "
-.else
-PLIST_SUB+=	LIBGLDIR="@comment " LIBGLMAP=""
-.endif
 
 .if ${NVVERSION} >= 515.04304
 PLIST_FILES+=	lib/libnvidia-wayland-client.so.${DISTVERSION}
@@ -155,6 +156,9 @@ EXTRA_PATCHES+=	${WRKDIR}/${p}
 .endfor
 
 post-patch: .SILENT
+.if ${NVVERSION} >= 390
+	${REINPLACE_CMD} -e 's|/man/man1|/share/man/man1|' ${WRKSRC}/nvml/man/Makefile
+.endif
 # We should support -CURRENT: kill the check (first #if __FreeBSD_version)
 	linenum=$$(${SED} -ne '/^#if __FreeBSD_version/ { = ; q ; }' \
 		${WRKSRC}/src/${NVSRC}/nv-freebsd.h) ; ${REINPLACE_CMD} \
@@ -325,7 +329,7 @@ post-install: .SILENT
 .elif ${NVVERSION} < 465.01901
 	${REINPLACE_CMD} -e '/lib32\/libnvidia-glvkspirv\.so/d' ${TMPPLIST}
 .endif
-.if ${NVVERSION} < 470.074
+.if ${NVVERSION} < 470.074 || ${NVVERSION} >= 545.000
 	${REINPLACE_CMD} -e '/libnvidia-vulkan-producer\.so/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 495.02905
@@ -336,6 +340,14 @@ post-install: .SILENT
 	${REINPLACE_CMD} -e '/libnvidia-allocator\.so/d ; \
 		/nvidia-drm_gbm\.so/d' ${TMPPLIST}
 .endif
+.if ${NVVERSION} < 545.000
+	${REINPLACE_CMD} -e '/libnvidia-gpucomp\.so/d' ${TMPPLIST}
+.endif
+.if ${NVVERSION} < 560.02803
+	${REINPLACE_CMD} -e '/nvidia_gsp_ga10x_fw\.ko/d' ${TMPPLIST}
+	${REINPLACE_CMD} -e '/nvidia_gsp_tu10x_fw\.ko/d' ${TMPPLIST}
+.endif
+
 .if ${NVVERSION} < 410.057
 # Rename some libraries and install a libmap file to resolve conflict with
 # Mesa libraries.
@@ -358,31 +370,9 @@ post-install: .SILENT
 		${STAGEDIR}${PREFIX}/lib/libGLESv2-NVIDIA.so.2
 	${RM} ${STAGEDIR}${PREFIX}/lib/libGLESv2.so
 .  endif
-# Configuration of Nvidia as secondary GPU requires preserving libglvnd or mesa
-# libraries as default implementation; a libmap must not override in this case.
-.  if !defined(LIBGLDIR)
 	@${MKDIR} ${PREFIX}/etc/libmap.d/
 	${INSTALL_DATA} ${WRKDIR}/nvidia.conf \
 		${PREFIX}/etc/libmap.d/
-.  else
-# libgl proxies require a library path containing unrenamed lib*GL*.so
-	${MKDIR} ${PREFIX}/${LIBGLDIR}
-	${RLN} ${PREFIX}/lib/libGL-NVIDIA.so.1 \
-		${PREFIX}/${LIBGLDIR}/libGL.so.1
-	${RLN} ${PREFIX}/lib/libEGL-NVIDIA.so.1 \
-		${PREFIX}/${LIBGLDIR}/libEGL.so.1
-	${RLN} ${PREFIX}/lib/libGLESv2-NVIDIA.so.2 \
-		${PREFIX}/${LIBGLDIR}/libGLESv2.so.2
-.  endif
-# Configuration of Nvidia as secondary GPU requires preserving xorg-server's
-# libglx.so and moving Nvidia's glx to where it can be found by a secondary
-# Xorg instance.
-# Not needed since 410.057: Nvidia driver finds libglxserver_nvidia.so instead.
-.  if ${EXTENSIONSDIR} != ${MODULESDIR}/extensions/.nvidia
-	${MKDIR} ${STAGEDIR}${PREFIX}/${EXTENSIONSDIR}
-	${MV} ${STAGEDIR}${PREFIX}/${MODULESDIR}/extensions/.nvidia/* \
-		${STAGEDIR}${PREFIX}/${EXTENSIONSDIR}/
-.  endif
 .else
 	${REINPLACE_CMD} -E '/-NVIDIA/d ; \
 		/lib(Open)?E?GLX?(ESv[12](_CM)?|dispatch)?\.so/d' \

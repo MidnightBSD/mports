@@ -1,85 +1,55 @@
-include/hunspell/hunvisapi.h
-include/hunspell/w_char.hxx
-include/hunspell/hunspell.hxx
-include/hunspell/atypes.hxx
-include/hunspell/hunspell.h
-share/applications/thunderbird.desktop
 share/pixmaps/thunderbird.png
-share/man/man1/hunzip.1.gz
-share/man/man1/hzip.1.gz
-share/man/man1/hunspell.1.gz
-man/man5/hunspell.5.gz
-man/hu/man1/hunspell.1.gz
-share/man/man3/hunspell.3.gz
-bin/hunzip
-bin/affixcompress
-bin/hunspell
-bin/ispellaff2myspell
-bin/chmorph
-bin/wordforms
-bin/hzip
-bin/makealias
-bin/munch
-bin/analyze
+share/applications/thunderbird.desktop
+%%LIB32DIR%%/thunderbird/chrome/icons/default/calendar-alarm-dialog.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/TB-symbolic.svg
+%%LIB32DIR%%/thunderbird/chrome/icons/default/calendar-general-dialog.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default256.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow48.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default32.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default64.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default16.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default24.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default128.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default48.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow32.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow24.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/default22.png
+%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow16.png
+%%LIB32DIR%%/thunderbird/thunderbird-bin
+%%LIB32DIR%%/thunderbird/removed-files
+%%LIB32DIR%%/thunderbird/glxtest
+%%LIB32DIR%%/thunderbird/interesting_serverknobs.json
+%%LIB32DIR%%/thunderbird/application.ini
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%xul.so
+%%LIB32DIR%%/thunderbird/thunderbird
+%%LIB32DIR%%/thunderbird/omni.ja
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozgtk.so
+%%LIB32DIR%%/thunderbird/pingsender
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%rnp.so
+%%LIB32DIR%%/thunderbird/rnp-cli
+%%LIB32DIR%%/thunderbird/vaapitest
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozavcodec.so
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozsqlite3.so
+%%LIB32DIR%%/thunderbird/dependent%%LIB32DIR%%s.list
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozavutil.so
+%%LIB32DIR%%/thunderbird/isp/POPFile.sfd
+%%LIB32DIR%%/thunderbird/isp/SpamAssassin.sfd
+%%LIB32DIR%%/thunderbird/isp/SpamPal.sfd
+%%LIB32DIR%%/thunderbird/isp/Bogofilter.sfd
+%%LIB32DIR%%/thunderbird/isp/DSPAM.sfd
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%lgpl%%LIB32DIR%%s.so
+%%LIB32DIR%%/thunderbird/defaults/pref/channel-prefs.js
+%%LIB32DIR%%/thunderbird/defaults/messenger/mailViews.dat
+%%LIB32DIR%%/thunderbird/rnpkeys
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%gkcodecs.so
+%%LIB32DIR%%/thunderbird/platform.ini
+%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozwayland.so
 bin/thunderbird
-bin/wordlist2hunspell
-bin/unmunch
-lib/libhunspell-1.7.so.0
-lib/libhunspell-1.7.so.0.0.1
-lib/libhunspell-1.7.so
-lib/thunderbird/removed-files
-lib/thunderbird/platform.ini
-lib/thunderbird/chrome/icons/default/default256.png
-lib/thunderbird/chrome/icons/default/calendar-event-summary-dialog.png
-lib/thunderbird/chrome/icons/default/calendar-event-dialog.png
-lib/thunderbird/chrome/icons/default/default32.png
-lib/thunderbird/chrome/icons/default/default24.png
-lib/thunderbird/chrome/icons/default/calendar-alarm-dialog.png
-lib/thunderbird/chrome/icons/default/default64.png
-lib/thunderbird/chrome/icons/default/calendar-task-dialog.png
-lib/thunderbird/chrome/icons/default/default16.png
-lib/thunderbird/chrome/icons/default/default48.png
-lib/thunderbird/chrome/icons/default/default128.png
-lib/thunderbird/chrome/icons/default/calendar-task-summary-dialog.png
-lib/thunderbird/chrome/icons/default/default22.png
-lib/thunderbird/application.ini
-lib/thunderbird/libmozsqlite3.so
-lib/thunderbird/features/wetransfer@extensions.thunderbird.net.xpi
-lib/thunderbird/gtk2/libmozgtk.so
-lib/thunderbird/libxul.so
-lib/thunderbird/libmozwayland.so
-lib/thunderbird/pingsender
-lib/thunderbird/thunderbird-bin
-lib/thunderbird/librnp.so
-lib/thunderbird/thunderbird
-lib/thunderbird/isp/POPFile.sfd
-lib/thunderbird/isp/Bogofilter.sfd
-lib/thunderbird/isp/SpamAssassin.sfd
-lib/thunderbird/isp/SpamPal.sfd
-lib/thunderbird/isp/DSPAM.sfd
-lib/thunderbird/libldap60.so
-lib/thunderbird/libldif60.so
-lib/thunderbird/libmozgtk.so
-lib/thunderbird/liblgpllibs.so
-lib/thunderbird/plugin-container
-lib/thunderbird/omni.ja
-lib/thunderbird/defaults/messenger/mailViews.dat
-lib/thunderbird/defaults/pref/channel-prefs.js
-lib/thunderbird/dependentlibs.list
-lib/thunderbird/libprldap60.so
-lib/libhunspell-1.7.la
-lib/libhunspell-1.7.a
-libdata/pkgconfig/hunspell.pc
-@dir include/hunspell
-@dir man/hu/man1
-@dir man/hu
-@dir lib/thunderbird/chrome/icons/default
-@dir lib/thunderbird/chrome/icons
-@dir lib/thunderbird/chrome
-@dir lib/thunderbird/features
-@dir lib/thunderbird/gtk2
-@dir lib/thunderbird/isp
-@dir lib/thunderbird/defaults/messenger
-@dir lib/thunderbird/defaults/pref
-@dir lib/thunderbird/defaults
-@dir lib/thunderbird
+@dir %%LIB32DIR%%/thunderbird/chrome/icons/default
+@dir %%LIB32DIR%%/thunderbird/chrome/icons
+@dir %%LIB32DIR%%/thunderbird/chrome
+@dir %%LIB32DIR%%/thunderbird/isp
+@dir %%LIB32DIR%%/thunderbird/defaults/pref
+@dir %%LIB32DIR%%/thunderbird/defaults/messenger
+@dir %%LIB32DIR%%/thunderbird/defaults
+@dir %%LIB32DIR%%/thunderbird

@@ -27,6 +27,8 @@ NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 
 pre-configure:
+	${CP} ${MPORTSDIR}/Template/config.sub ${WRKSRC}/
+	${CP} ${MPORTSDIR}/Template/config.guess ${WRKSRC}/
 	cd ${WRKSRC} && ./autogen.sh
 
 .include <bsd.port.mk>

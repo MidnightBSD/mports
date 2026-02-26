@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 FAKE_OPTS+=	trueprefix
 SKIP_FAKE_CHECK=	lib/timidity/goemon/gsdrum40/gsdrum40.bak
 
-CONFLICTS=	timidity++-2.*
+CONFLICTS_INSTALL=	timidity++
 
 USES=		ncurses
 
@@ -39,6 +39,8 @@ GOEMON_MASTER_SITES=	http://www.anime.net/~goemon/timidity/:tiins
 GOEMON_DISTFILES=	goemon.tgz:tiins
 GOEMON_VARS=		TDIR="${PREFIX}/lib/timidity" \
 			TCONFIG=goemon.cfg
+
+MAKE_JOBS_UNSAFE=	yes
 
 post-patch:
 	${REINPLACE_CMD} -i '' -e 's,machine/soundcard.h,sys/soundcard.h,' \

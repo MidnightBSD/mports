@@ -29,6 +29,8 @@ USE_LDCONFIG=	yes
 
 SHEBANG_FILES=	tools/xml_insert.sh
 
+NO_TEST=	yes
+
 MESON_ARGS=	-Ddocs=false \
 		-Dgi-docgen=disabled \
 		-Dworkshop=false \

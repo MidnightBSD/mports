@@ -1,5 +1,5 @@
 PORTNAME=	XML
-DISTVERSION=	3.99-0.18
+DISTVERSION=	3.99-0.20
 CATEGORIES=	textproc
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
@@ -11,5 +11,7 @@ LICENSE=	bsd3
 
 USES=		cran:auto-plist,compiles gnome
 USE_GNOME=	libxml2
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

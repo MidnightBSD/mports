@@ -10,6 +10,8 @@ WWW=		https://harfbuzz.github.io/
 
 LICENSE=	mit
 
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes
 USE_LINUX=	graphite2

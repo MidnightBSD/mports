@@ -8,6 +8,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pango library (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.pango.org/
 
+LICENSE=	lgpl
+
+SKIP_FAKE_ALL=  yes
+
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes

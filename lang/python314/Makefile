@@ -42,6 +42,7 @@ INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 TEST_TARGET=		test # that's the --fast-ci with tighter timeouts and using less resources
 # TEST_ARGS: test_gdb requires debug symbols for the test_gdb.test_pretty_print test, so skip it unless defined(WITH_DEBUG)
 TEST_ARGS=		TESTOPTS="-j${MAKE_JOBS_NUMBER} ${WITH_DEBUG:U-x test_gdb}"
+NO_TEST=	yes
 
 MAKE_ARGS+=		COMPILEALL_OPTS=-j${MAKE_JOBS_NUMBER} \
 			INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library

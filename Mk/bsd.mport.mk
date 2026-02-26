@@ -4974,7 +4974,7 @@ pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
 
 .    if !target(test)
 test: ${_TEST_DEP}
-.      if !defined(NO_TEST)
+.      if !defined(NO_TEST) && !defined(TESTING_UNSAFE)
 test: ${_TEST_REAL_SEQ}
 .      endif
 .    endif

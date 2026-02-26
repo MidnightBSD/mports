@@ -1,6 +1,6 @@
 PORTNAME?=	mariadb
-PORTVERSION=	11.4.9
-PORTREVISION?=	1
+PORTVERSION=	11.4.10
+PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	https://mirror.nodesdirect.com/${SITESDIR}/ \
 		https://mirror.one.com/${SITESDIR}/ \
@@ -217,7 +217,7 @@ CMAKE_ARGS+=		-DPLUGIN_${PLUGIN}=NO
 
 .include <bsd.mport.options.mk>
 
-.if ${OPSYS} == FreeBSD
+.if ${OPSYS} == MidnightBSD
 SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
 .else
 SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
@@ -265,6 +265,14 @@ post-install-GSSAPI_NONE-off:
 
 .else # ! ${PKGNAMESUFFIX:M*-client}
 post-install:
+	${REINPLACE_CMD} -i '' -e 's|/usr/bin/perl|/usr/local/bin/perl|g' ${PREFIX}/bin/mariadb-setpermission \
+		${PREFIX}/bin/mariadb-access \
+		${PREFIX}/bin/mariadb-find-rows \
+		${PREFIX}/bin/mariadb-hotcopy \
+		${PREFIX}/bin/mariadb-multi \
+		${PREFIX}/bin/mariadb-fix-extensions \
+		${PREFIX}/bin/mariadb-convert-table-format \
+		${PREFIX}/bin/mariadb-dumpslow
 	${INSTALL_DATA} ${WRKDIR}/server.cnf.sample \
 		${ETCDIR}/conf.d/server.cnf.sample
 	${MV} ${PREFIX}/share/user_map.conf \
