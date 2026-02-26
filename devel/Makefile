@@ -1946,6 +1946,7 @@
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-yajl-ruby
+    SUBDIR += rubygem-zeitwerk
     SUBDIR += rubygem-zentest
     SUBDIR += rust-analyzer
     SUBDIR += rust-bindgen-cli
