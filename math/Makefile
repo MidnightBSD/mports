@@ -135,6 +135,7 @@
     SUBDIR += py-random2
     SUBDIR += py-scikit-umfpack
     SUBDIR += py-sympy
+    SUBDIR += py-triangle
     SUBDIR += qhull
     SUBDIR += qhull5
     SUBDIR += rocs
@@ -163,6 +164,7 @@
     SUBDIR += superlu
     SUBDIR += tlfloat
     SUBDIR += tomsfastmath
+    SUBDIR += triangle
     SUBDIR += vtk9
     SUBDIR += xfce4-calculator-plugin
     SUBDIR += xtensor
