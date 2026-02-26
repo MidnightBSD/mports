@@ -3,3 +3,9 @@ you update your ports collection, before attempting any port upgrades.
 
 20260226:
 	The JAVA_DEFAULT is now bumped from 8 to 17. 
+
+	dns/ddclient updated to 4.0.  The config file moved from
+	/usr/local/etc/ to /usr/local/etc/ddclient
+
+	cython was recently updated.  lang/cython is now the current version.
+	if you need cython 0.x, use lang/cython0 aka USE_PYTHON=cython0

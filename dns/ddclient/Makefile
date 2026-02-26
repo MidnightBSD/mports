@@ -1,6 +1,6 @@
 PORTNAME=	ddclient
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.11.2
+DISTVERSION=	4.0.0
 CATEGORIES=	dns
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,10 +15,11 @@ RUN_DEPENDS=	p5-Data-Validate-IP>0:net-mgmt/p5-Data-Validate-IP \
 		curl:ftp/curl
 
 USES=		autoreconf gmake perl5 tar:bzip2
-GNU_CONFIGURE=	yes
 USE_GITHUB=	yes
 USE_PERL5=	run
 USE_RC_SUBR=	${PORTNAME}
+
+GNU_CONFIGURE=	yes
 
 NO_ARCH=	yes
 SUB_FILES=	pkg-message ddclient_force
@@ -32,20 +33,18 @@ OPTIONS_DEFINE=	DOCS
 post-patch:
 	@${GREP} -lR '/usr' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -e \
 		's|/usr|${PREFIX}|g'
-	@${REINPLACE_CMD} -e 's|%%ETCDIR%%|${PREFIX}/etc| ; \
-		 s|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/ddclient.in
+	@${REINPLACE_CMD} -e 's|%%ETCDIR%%|${ETCDIR}| ; \
+		 s|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/${PORTNAME}.in
 
 do-install:
-	(cd ${WRKSRC} && ${INSTALL_DATA} ddclient.conf \
-		${STAGEDIR}${PREFIX}/etc/ddclient.conf.sample)
-	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ddclient \
-		${STAGEDIR}${PREFIX}/sbin)
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily
-	(cd ${WRKDIR} && ${INSTALL_SCRIPT} ddclient_force \
-		${STAGEDIR}${PREFIX}/etc/periodic/daily/ddclient_force)
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for i in ${PORTDOCS}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} ${STAGEDIR}${DOCSDIR})
-.endfor
+	${MKDIR} ${STAGEDIR}${ETCDIR} \
+		 ${STAGEDIR}${PREFIX}/etc/periodic/daily
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf ${STAGEDIR}${ETCDIR}/${PORTNAME}.conf.sample
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}_force ${STAGEDIR}${PREFIX}/etc/periodic/daily
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
