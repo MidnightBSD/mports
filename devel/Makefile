@@ -1801,6 +1801,7 @@
     SUBDIR += rubygem-activesupport80
     SUBDIR += rubygem-annoy
     SUBDIR += rubygem-ast
+    SUBDIR += rubygem-attic
     SUBDIR += rubygem-attr_required
     SUBDIR += rubygem-azure_graph_rbac
     SUBDIR += rubygem-azure_mgmt_key_vault
