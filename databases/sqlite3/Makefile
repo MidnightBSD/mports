@@ -280,6 +280,7 @@ post-configure:
 
 post-install:
 .if !defined(TEA)
+	${INSTALL_DATA} ${WRKSRC}/sqlite_cfg.h ${PREFIX}/include
 	${INSTALL_MAN} "${WRKSRC}/${PORTNAME}.1" "${PREFIX}/share/man/man1"
 	-${RM} "${PREFIX}/include/msvc.h"
 	${SETENV} LD_LIBMAP_DISABLE=1 ldd -a "${PREFIX}/bin/${PORTNAME}" "${PREFIX}/lib/lib${PORTNAME}.so"
