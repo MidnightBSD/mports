@@ -16,6 +16,7 @@ USES=		cmake:indirect desktop-file-utils gettext-tools gnome libtool \
 		meson perl5 pkgconfig tar:xz xfce
 USE_GNOME=	gdkpixbuf glib20 gtk30 gtksourceview4 intltool
 GLIB_SCHEMAS=	org.xfce.mousepad.gschema.xml
+INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dpolkit=enabled \
 		-Dgtksourceview4=enabled
