@@ -1,5 +1,5 @@
 PORTNAME=	curl
-PORTVERSION=	8.17.0
+PORTVERSION=	8.18.0
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
@@ -168,7 +168,7 @@ post-install:
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/ ${FAKE_DESTDIR}${DOCSDIR}/internals/ ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
 	${INSTALL_DATA} ${WRKSRC}/docs/internals/*.md ${FAKE_DESTDIR}${DOCSDIR}/internals/
-	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} FAQ INSTALL KNOWN_BUGS THANKS TODO options-in-versions *.md ${FAKE_DESTDIR}${DOCSDIR}/
+	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} INSTALL THANKS options-in-versions *.md ${FAKE_DESTDIR}${DOCSDIR}/
 	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI.md libcurl.m4 *.pl symbols-in-versions ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
 
 post-install-EXAMPLES-on:
