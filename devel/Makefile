@@ -1632,6 +1632,7 @@
     SUBDIR += py-setuptools_scm_git_archive
     SUBDIR += py-sgmllib3k
     SUBDIR += py-shapely
+    SUBDIR += py-shellingham
     SUBDIR += py-shtab
     SUBDIR += py-simplejson
     SUBDIR += py-sip
@@ -1675,6 +1676,7 @@
     SUBDIR += py-twisted
     SUBDIR += py-txaio
     SUBDIR += py-typeguard
+    SUBDIR += py-typer
     SUBDIR += py-types-Jinja2
     SUBDIR += py-types-MarkupSafe
     SUBDIR += py-types-PyYAML
