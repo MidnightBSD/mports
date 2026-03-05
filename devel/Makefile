@@ -1632,6 +1632,7 @@
     SUBDIR += py-setuptools_scm_git_archive
     SUBDIR += py-sgmllib3k
     SUBDIR += py-shapely
+    SUBDIR += py-shellingham
     SUBDIR += py-shtab
     SUBDIR += py-simplejson
     SUBDIR += py-sip
@@ -1675,6 +1676,7 @@
     SUBDIR += py-twisted
     SUBDIR += py-txaio
     SUBDIR += py-typeguard
+    SUBDIR += py-typer
     SUBDIR += py-types-Jinja2
     SUBDIR += py-types-MarkupSafe
     SUBDIR += py-types-PyYAML
@@ -1801,6 +1803,7 @@
     SUBDIR += rubygem-activesupport80
     SUBDIR += rubygem-annoy
     SUBDIR += rubygem-ast
+    SUBDIR += rubygem-attic
     SUBDIR += rubygem-attr_required
     SUBDIR += rubygem-azure_graph_rbac
     SUBDIR += rubygem-azure_mgmt_key_vault
@@ -1946,6 +1949,7 @@
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-yajl-ruby
+    SUBDIR += rubygem-zeitwerk
     SUBDIR += rubygem-zentest
     SUBDIR += rust-analyzer
     SUBDIR += rust-bindgen-cli

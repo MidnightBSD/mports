@@ -50,8 +50,8 @@ GHOSTSCRIPT_DEFAULT?=	10
 GO_DEFAULT?=            1.24
 # Possible values: 1.8, 2.2, 3.0
 GUILE_DEFAULT?=         2.2
-# Possible values: 7, 8, 11, 13, 17, 18
-JAVA_DEFAULT?=          8
+# Possible values: 8, 11, 13, 17, 18, 19, 20, 21
+JAVA_DEFAULT?=          17
 # Possible values: 6, 6-nox11, 7, 7-nox11
 IMAGEMAGICK_DEFAULT?=	7
 LAZARUS_DEFAULT?=	2.2.0
@@ -90,8 +90,8 @@ PERL5_DEFAULT:=         ${_PERL5_FROM_BIN:R}
 .  endif
 # Possible values: 10, 11, 12, 13, 14
 PGSQL_DEFAULT?=		14
-# Possible values: 8.0, 8.1, 8.2, 8.3
-PHP_DEFAULT?=		8.2
+# Possible values: 8.1, 8.2, 8.3
+PHP_DEFAULT?=		8.3
 # Possible values: rust, legacy
 .  if empty(ARCH:Naarch64:Namd64:Narmv7:Ni386:Npowerpc64:Npowerpc64le:Npowerpc:Nriscv64)
 PYCRYPTOGRAPHY_DEFAULT?=	rust

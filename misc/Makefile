@@ -76,6 +76,8 @@
     SUBDIR += pciids
     SUBDIR += php82-calendar
     SUBDIR += php83-calendar
+    SUBDIR += py-hf-xet
+    SUBDIR += py-huggingface-hub
     SUBDIR += py-pexpect
     SUBDIR += py-pytorch
     SUBDIR += py-spdx-tools

@@ -1,7 +1,7 @@
 PORTNAME=	dojo
-PORTVERSION=	1.12.3
+PORTVERSION=	1.17.3
 CATEGORIES=	www
-MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/
+MASTER_SITES=	https://download.dojotoolkit.org/release-${PORTVERSION}/
 DISTNAME=	dojo-release-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org

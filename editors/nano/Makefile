@@ -1,5 +1,5 @@
 PORTNAME=	nano
-PORTVERSION=	8.5
+PORTVERSION=	8.7
 CATEGORIES=	editors
 MASTER_SITES=	https://www.nano-editor.org/dist/v${PORTVERSION:R}/ GNU
 

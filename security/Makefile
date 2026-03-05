@@ -61,6 +61,7 @@
     SUBDIR += gsasl
     SUBDIR += gstreamer1-plugins-dtls
     SUBDIR += gvm-libs
+    SUBDIR += hashcat
     SUBDIR += heimdal
     SUBDIR += horcrux
     SUBDIR += ipfilter2dshield

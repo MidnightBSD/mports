@@ -1,5 +1,5 @@
 PORTNAME=	freetype2
-DISTVERSION=	2.13.3
+DISTVERSION=	2.14.1
 CATEGORIES=	print
 MASTER_SITES=	SAVANNAH/${PORTNAME:S/2//} \
 		SF/freetype/${PORTNAME}/${DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}/
@@ -76,24 +76,24 @@ pre-patch:
 
 post-patch:
 .if defined(SUBPIXEL_HINTING_MODE)
-	@${REINPLACE_CMD} -i '.hinting.bak' \
+	@${REINPLACE_CMD} -i '' \
 		-e 's|^\(#define TT_CONFIG_OPTION_SUBPIXEL_HINTING\).*|\1 \
 	${SELECTED_MODE:sh}|' \
 		${WRKSRC}/include/freetype/config/ftoption.h
 .else
-	@${REINPLACE_CMD} -i '.hinting.bak' \
+	@${REINPLACE_CMD} -i '' \
 		-e 's|^\(#define TT_CONFIG_OPTION_SUBPIXEL_HINTING.*\)|/* \1 */|' \
 		${WRKSRC}/include/freetype/config/ftoption.h
 .endif
 
 post-patch-DEBUG-on:
-	@${REINPLACE_CMD} -i '.debug.bak' \
+	@${REINPLACE_CMD} -i '' \
 		-e 's|.*\(#define FT_DEBUG_LEVEL_TRACE\).*|\1|' \
 		-e 's|.*\(#define FT_DEBUG_MEMORY\).*|\1|' \
 		${WRKSRC}/include/freetype/config/ftoption.h
 
 post-patch-LONG_PCF_NAMES-on:
-	@${REINPLACE_CMD} -i '.names.bak' \
+	@${REINPLACE_CMD} -i '' \
 		-e 's|.*\(#define PCF_CONFIG_OPTION_LONG_FAMILY_NAMES\).*|\1|' \
 		${WRKSRC}/include/freetype/config/ftoption.h
 
@@ -102,7 +102,7 @@ post-patch-TABLE_VALIDATION-on:
 		${WRKSRC}/modules.cfg
 
 post-patch-TT_SIZE_METRICS-on:
-	@${REINPLACE_CMD} -i '.metrics.bak' \
+	@${REINPLACE_CMD} -i '' \
 		-e 's|.*\(#define AF_CONFIG_OPTION_TT_SIZE_METRICS\).*|\1|' \
 		${WRKSRC}/include/freetype/config/ftoption.h
 

@@ -11,7 +11,7 @@
 PORTNAME?=	nvidia-driver
 DISTVERSION?=	${NVIDIA_DISTVERSION}
 # Always try to set PORTREVISION as it can be overridden by the slave ports
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11
 MASTER_SITES=	NVIDIA/XFree86/FreeBSD-${ARCH_SUFX}/${DISTVERSION}
 DISTNAME=	NVIDIA-FreeBSD-${ARCH_SUFX}-${DISTVERSION}
@@ -265,16 +265,16 @@ post-install: .SILENT
 		${STAGEDIR}${PREFIX}/lib/libGLESv2-NVIDIA.so.2
 	${RM} ${STAGEDIR}${PREFIX}/lib/libGLESv2.so
 .  endif
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/libmap.d/
+	@${MKDIR} ${PREFIX}/etc/libmap.d/
 	${INSTALL_DATA} ${WRKDIR}/nvidia.conf \
-		${STAGEDIR}${PREFIX}/etc/libmap.d/
+		${PREFIX}/etc/libmap.d/
 .else
 	${REINPLACE_CMD} -E '/-NVIDIA/d ; \
 		/lib(Open)?E?GLX?(ESv[12](_CM)?|dispatch)?\.so/d' \
 		${TMPPLIST}
 # Override mesa.conf if GLX_EXT_libglvnd is missing
 	@${ECHO_CMD} "libGLX_indirect.so.0 libGLX_nvidia.so.0" \
-		>${STAGEDIR}${PREFIX}/etc/libmap.d/nvidia.conf
+		>${PREFIX}/etc/libmap.d/nvidia.conf
 .endif
 
 .include <bsd.port.post.mk>

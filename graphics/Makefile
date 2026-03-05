@@ -332,6 +332,7 @@
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
     SUBDIR += py-scikit-image
+    SUBDIR += py-svg.path
     SUBDIR += py-tifffile
     SUBDIR += py-yaswfp
     SUBDIR += qgis
@@ -413,6 +414,8 @@
     SUBDIR += vulkan-headers
     SUBDIR += vulkan-loader
     SUBDIR += vulkan-tools
+    SUBDIR += waifu2x-converter-cpp
+    SUBDIR += waifu2x-ncnn-vulkan
     SUBDIR += wayland
     SUBDIR += wayland-protocols
     SUBDIR += wayland-utils
