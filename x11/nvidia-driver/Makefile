@@ -1,8 +1,8 @@
 # Starting with version 1.0-7667, NVidia has dropped support for numerous
 # "legacy" GPUs.  Consult NVidia README (the Appendix) to find out whether
 # you need to use legacy driver version and install one of corresponding
-# slave ports instead (`x11/nvidia-driver-390', `x11/nvidia-driver-340',
-# or `x11/nvidia-driver-304').
+# slave ports instead (`x11/nvidia-driver-470', `x11/nvidia-driver-390',
+# `x11/nvidia-driver-340', or `x11/nvidia-driver-304').
 #
 # To simplify testing of new feature branches and beta driver versions,
 # the port aims to support building against arbitrary DISTVERSION, i.e.
@@ -27,6 +27,12 @@ LICENSE_FILE=	${WRKSRC}/doc/license.txt
 
 NO_SHLIB_REQUIRES_GLOB=*:32
 
+# Choose proper distinfo file using PKGNAMESUFFIX for slave ports.
+# Kept for switching to centralized distinfo with suffixes.
+.ifdef PKGNAMESUFFIX
+DISTINFO_FILE=	${.CURDIR}/distinfo
+.endif
+
 # Pull GNU sed(1) for "binary" patching of obj/libglvnd/libEGL.so.1 and
 # obj/libEGL_nvidia.so.0 (see below)
 .if ${NVVERSION} >= 410.057
@@ -35,16 +41,24 @@ BUILD_DEPENDS=	pkg-config:devel/pkgconf
 LIB_DEPENDS=	libOpenGL.so:graphics/libglvnd
 .endif
 
+RUN_DEPENDS=	${KMODDIR}/nvidia.ko:x11/nvidia-kmod${PKGNAMESUFFIX}
+
 .if ${NVVERSION} >= 415.013
-LIB_DEPENDS+= libnvidia-egl-wayland.so:graphics/egl-wayland
+LIB_DEPENDS+=	libnvidia-egl-wayland.so:graphics/egl-wayland
 .endif
 
-USES=		kmod uidfix xorg
+.if ${NVVERSION} >= 580.00000
+LIB_DEPENDS+=	libnvidia-egl-xcb.so:graphics/egl-x11
+.endif
+
+USES=		uidfix xorg
 .if ${NVVERSION} >= 470.04201
 USES+=		tar:xz
 .endif
 USE_XORG=	x11 xorg-server xext
 USE_LDCONFIG=	yes
+
+PIE_UNSAFE=	yes
 
 EGL_JSON_PATH=		${PREFIX}/share/egl/egl_external_platform.d
 GLVND_JSON_PATH=	${PREFIX}/share/glvnd/egl_vendor.d
@@ -63,21 +77,6 @@ SUB_FILES=	pkg-message
 .if !defined(LIBGLDIR)
 SUB_FILES+=	nvidia.conf
 .endif
-.if ${NVVERSION} < 410.057
-SUB_FILES+=	pkg-deinstall pkg-install
-.endif
-SUB_PATCHES=	extra-patch-src-Makefile \
-		extra-patch-src-nv-freebsd.h
-.if ${NVVERSION} < 510.03901
-SUB_PATCHES+=	extra-patch-src-nvidia_dev.c \
-		extra-patch-src-nvidia_pci.c
-.endif
-
-# Temporarily disable GSP firmware as it is known to cause
-# issues with suspend/resume
-.if ${NVVERSION} >= 565.00000
-SUB_PATCHES+=	extra-gsp-patch-src-common-inc-nv_firmware_registry.h
-.endif
 
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
 MODULESDIR=	lib/xorg/modules
@@ -90,44 +89,7 @@ SUB_LIST+=	NVGL=""
 SUB_LIST+=	NVGL="\# "
 .endif
 
-.if ${NVVERSION} < 355.006
-NVSRC=		.
-.else
-NVSRC=		nvidia
-.endif
-
-.if ${NVVERSION} >= 530.03002 && ${NVVERSION} < 545.00
-SUB_PATCHES += extra-patch-src_nvidia-modeset_nvidia-modeset-freebsd.c
-.endif
-
-.if ${NVVERSION} < 460.039
-.  if ${NVVERSION} >= 358.009
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_nvidia-modeset_nvidia-modeset-freebsd.c
-.  endif
-SUB_PATCHES+=	extra-patch-src-nvidia_ctl.c \
-		extra-patch-src-nvidia_linux.c
-.elif ${NVVERSION} < 510.03901
-EXTRA_PATCHES+=	${FILESDIR}/460-patch-src-nvidia-nvidia_ctl.c \
-		${FILESDIR}/460-patch-src-nvidia-nvidia_linux.c \
-		${FILESDIR}/460-patch-src_nvidia-modeset_nvidia-modeset-freebsd.c
-.endif
-.if ${NVVERSION} < 470.04201
-SUB_PATCHES+=	extra-patch-src-nv-misc.h
-.endif
-
-OPTIONS_DEFINE=	ACPI_PM LINUX WBINVD DOCS
-OPTIONS_DEFINE_i386=	PAE
-OPTIONS_DEFAULT=	LINUX
-
-ACPI_PM_DESC=		ACPI Power Management support
-LINUX_DESC=		Linux compatibility support
-PAE_DESC=		Physical Address Extensions support
-WBINVD_DESC=		Flush CPU caches directly with WBINVD
-
-.if ${NVVERSION} < 310.014
-OPTIONS_DEFINE+=	FREEBSD_AGP
-FREEBSD_AGP_DESC=	Use FreeBSD AGP GART driver
-.endif
+OPTIONS_DEFINE=	DOCS
 
 PLIST_SUB+=	MODULESDIR=${MODULESDIR}
 .if ${NVVERSION} < 410.057
@@ -136,14 +98,12 @@ PLIST_SUB+=	EXTENSIONSDIR=${EXTENSIONSDIR}
 PLIST_SUB+=	EXTENSIONSDIR="@comment "
 .endif
 
+# Not part of the pkg-plist because DISTVERSION is not on PLIST_SUB
 .if ${NVVERSION} >= 515.04304
 PLIST_FILES+=	lib/libnvidia-wayland-client.so.${DISTVERSION}
 .endif
 
-CONFLICTS_INSTALL+=	nvidia-driver nvidia-driver-*
-.if ${PORTNAME} != nvidia-secondary-driver
-CONFLICTS_INSTALL+=	nvidia-secondary-driver
-.endif
+CONFLICTS_INSTALL+=	nvidia-driver*
 
 .include <bsd.port.pre.mk>
 
@@ -156,43 +116,14 @@ EXTRA_PATCHES+=	${WRKDIR}/${p}
 .endfor
 
 post-patch: .SILENT
+# Patch only needed for non-kmod
+	${REINPLACE_CMD} -e '/SUBDIR=\tsrc \\/d' -e 's/\tlib/SUBDIR=\tlib/' \
+		${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e '/\.if exists(firmware)/,/\.endif/d' \
+		${WRKSRC}/Makefile
+
 .if ${NVVERSION} >= 390
 	${REINPLACE_CMD} -e 's|/man/man1|/share/man/man1|' ${WRKSRC}/nvml/man/Makefile
-.endif
-# We should support -CURRENT: kill the check (first #if __FreeBSD_version)
-	linenum=$$(${SED} -ne '/^#if __FreeBSD_version/ { = ; q ; }' \
-		${WRKSRC}/src/${NVSRC}/nv-freebsd.h) ; ${REINPLACE_CMD} \
-		-e "$$linenum,+2d" ${WRKSRC}/src/${NVSRC}/nv-freebsd.h
-# Adjust Linux headers #include's after FreeBSD src r246085
-	${REINPLACE_CMD} -E '/#include "machine\/\.\.\/linux(32)?\/linux.h"/ \
-		{ x ; s/.*/#include "machine\/..\/..\/compat\/linux\/linux_ioctl.h"/ ; H ; x ; }' \
-			${WRKSRC}/src/${NVSRC}/nvidia_linux.c
-# Fix bogus memset() call
-	${REINPLACE_CMD} -e '/memset/s/sizeof(ci/sizeof(*ci/' \
-		${WRKSRC}/src/${NVSRC}/nvidia_subr.c
-# Chase `sys/capability.h' rename to `sys/capsicum.h' in FreeBSD src r263232
-	${REINPLACE_CMD} -e 's:sys/capability\.h:sys/capsicum.h:' \
-		${WRKSRC}/src/${NVSRC}/nv-freebsd.h
-.if ${NVVERSION} >= 358.009
-	${REINPLACE_CMD} -e 's:sys/capability\.h:sys/capsicum.h:' \
-		${WRKSRC}/src/nvidia-modeset/nvidia-modeset-freebsd.c
-.endif
-# KPI of kmem_alloc_contig(),kmem_free() changed in FreeBSD src r338143,r338318
-	${REINPLACE_CMD} \
-	    -e 's/kmem_alloc_contig(kmem_arena, /kmem_alloc_contig(/' \
-	    -e 's/kmem_free(kmem_arena, /kmem_free(/' \
-		${WRKSRC}/src/${NVSRC}/nvidia_subr.c
-# Pull the right header after FreeBSD src r347984
-.if ${OSVERSION} >= 1300029 && ${NVVERSION} >= 358.009
-	${REINPLACE_CMD} -e '/^#include/s:lock\.h:mutex.h:' \
-		${WRKSRC}/src/nvidia-modeset/nvidia-modeset-freebsd.c
-.endif
-# After src df38ada2931f, `sys/module.h' must be included after `sys/param.h'
-.if ${NVVERSION} >= 358.009
-	@${REINPLACE_CMD} -e '/^#include <sys\/param\.h>/d; \
-		/^#include <sys\/module\.h>/ { x; \
-		s:^:#include <sys/param.h>:; G; }' \
-		${WRKSRC}/src/nvidia-modeset/nvidia-modeset-freebsd.c
 .endif
 # Disable installation of Linux libraries (provided by the corresponding
 # `x11/linux-nvidia-libs' port or its slaves)
@@ -241,30 +172,11 @@ post-patch: .SILENT
 	gsed ${REINPLACE_ARGS} -E "s,/etc/egl/egl_external_platform\.d.{$$padding},${EGL_JSON_PATH}\x00," \
 		${WRKSRC}/obj/libEGL_nvidia.so.0
 .endif
-# Finally, process OPTIONS
-.if ${PORT_OPTIONS:MFREEBSD_AGP}
-	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_OS_AGP)/define \1/' \
-		${WRKSRC}/src/${NVSRC}/nv-freebsd.h
-.endif
-.if ${PORT_OPTIONS:MACPI_PM}
-	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_ACPI_PM)/define \1/' \
-		${WRKSRC}/src/${NVSRC}/nv-freebsd.h
-.endif
-.if ! ${PORT_OPTIONS:MLINUX}
-	${REINPLACE_CMD} -E 's/define (NV_SUPPORT_LINUX_COMPAT)/undef \1/' \
-		${WRKSRC}/src/${NVSRC}/nv-freebsd.h
-.  if ${NVVERSION} >= 358.009
-	${REINPLACE_CMD} -E 's/define (NVKMS_SUPPORT_LINUX_COMPAT)/undef \1/' \
-		${WRKSRC}/src/nvidia-modeset/nvidia-modeset-freebsd.c
-.  endif
-.endif
-.if ${PORT_OPTIONS:MPAE}
-	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_PAE)/define \1/' \
-		${WRKSRC}/src/${NVSRC}/nv-freebsd.h
-.endif
-.if ${PORT_OPTIONS:MWBINVD}
-	${REINPLACE_CMD} -E 's/undef (NV_USE_WBINVD)/define \1/' \
-		${WRKSRC}/src/${NVSRC}/nv-freebsd.h
+# Move symlinks under PREFIX
+.if ${NVVERSION} >= 525.08902
+	${REINPLACE_CMD} -e '/ln/s/$${LOCALBASE}\/lib/../' \
+		-e '/LIBDIR/!s/$${LOCALBASE}/$${DESTDIR}$${PREFIX}/' \
+		${WRKSRC}/lib/libnvidia-allocator/Makefile
 .endif
 # Conditionally install documentation (but you generally want it)
 .if ! ${PORT_OPTIONS:MDOCS}
@@ -279,16 +191,6 @@ post-install: .SILENT
 	${INSTALL_SCRIPT} ${WRKSRC}/obj/nvidia-bug-report.sh \
 		${PREFIX}/bin
 # pkg-plist is already overbloated, so use these hacks instead of PLIST_SUB's
-# hack for nvidia-secondary
-.if defined(LIBGLDIR)
-	${REINPLACE_CMD} -e '/nvidia_icd\.json/d ; /nvidia_layers\.json/d ; /10_nvidia\.json/d' ${TMPPLIST}
-.endif
-
-# hack for newer drivers.
-.if ${NVVERSION:R} > 460
-	${REINPLACE_CMD} -e '/10_nvidia\.json/d ; \
-		/nvidia_icd\.json/d ; /nvidia_layers\.json/d' ${TMPPLIST}
-.endif
 .if ${NVVERSION:R} < 460
 	${REINPLACE_CMD} -e '/libnvidia-glvkspirv\.so/d ; \
 		/nvidia_icd\.json/d ; /nvidia_layers\.json/d' ${TMPPLIST}
@@ -308,9 +210,6 @@ post-install: .SILENT
 .endif
 .if ${NVVERSION} < 352.009
 	${REINPLACE_CMD} -E '/(lib)?nvidia-(debugdump|smi|ml)/d' ${TMPPLIST}
-.endif
-.if ${NVVERSION} < 358.009
-	${REINPLACE_CMD} -e '/nvidia-modeset\.ko/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 410.057
 	${REINPLACE_CMD} -E '/lib(EGL|GLESv[12].*)_nvidia/d ; \
@@ -342,10 +241,6 @@ post-install: .SILENT
 .endif
 .if ${NVVERSION} < 545.000
 	${REINPLACE_CMD} -e '/libnvidia-gpucomp\.so/d' ${TMPPLIST}
-.endif
-.if ${NVVERSION} < 560.02803
-	${REINPLACE_CMD} -e '/nvidia_gsp_ga10x_fw\.ko/d' ${TMPPLIST}
-	${REINPLACE_CMD} -e '/nvidia_gsp_tu10x_fw\.ko/d' ${TMPPLIST}
 .endif
 
 .if ${NVVERSION} < 410.057
@@ -379,7 +274,7 @@ post-install: .SILENT
 		${TMPPLIST}
 # Override mesa.conf if GLX_EXT_libglvnd is missing
 	@${ECHO_CMD} "libGLX_indirect.so.0 libGLX_nvidia.so.0" \
-		>${STAGEDIR}${PREFIX}/etc/libmap.d/nvidia.conf
+		>${PREFIX}/etc/libmap.d/nvidia.conf
 .endif
 
 .include <bsd.port.post.mk>

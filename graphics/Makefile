@@ -60,6 +60,7 @@
     SUBDIR += drm-fbsd11.2-kmod
     SUBDIR += drm-fbsd12.0-kmod
     SUBDIR += egl-wayland
+    SUBDIR += egl-x11
     SUBDIR += eglexternalplatform
     SUBDIR += eog
     SUBDIR += eog-plugins
