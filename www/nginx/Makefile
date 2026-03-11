@@ -1,6 +1,7 @@
 PORTNAME=	nginx
-PORTVERSION=	1.28.0
-PORTREVISION=	1
+PORTVERSION=	${NGINX_VERSION}
+.include "version.mk"
+PORTREVISION=	12
 PORTEPOCH=	3
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/ \
@@ -70,8 +71,7 @@ OPTIONS_GROUP_HTTPGRP=	GOOGLE_PERFTOOLS HTTP HTTP_ADDITION HTTP_AUTH_REQ \
 	HTTP_CACHE HTTP_DAV HTTP_DEGRADATION HTTP_FLV HTTP_GUNZIP_FILTER \
 	HTTP_GZIP_STATIC HTTP_IMAGE_FILTER HTTP_MP4 HTTP_PERL \
 	HTTP_RANDOM_INDEX HTTP_REALIP HTTP_SECURE_LINK HTTP_SLICE HTTP_SSL \
-	HTTP_STATUS HTTP_SUB HTTP_XSLT HTTPV2 HTTPV3 HTTPV3_BORING HTTPV3_LSSL \
-	HTTPV3_QTLS
+	HTTP_STATUS HTTP_SUB HTTP_XSLT HTTPV2 HTTPV3 HTTPV3_BORING HTTPV3_LSSL
 
 OPTIONS_GROUP_MAILGRP=	MAIL MAIL_IMAP MAIL_POP3 MAIL_SMTP MAIL_SSL
 
@@ -172,15 +172,11 @@ HTTPV3_CONFIGURE_ON=		--with-http_v3_module
 HTTPV3_BORING_BUILD_DEPENDS=	${LOCALBASE}/bin/bssl:security/boringssl
 HTTPV3_BORING_RUN_DEPENDS=	${LOCALBASE}/bin/bssl:security/boringssl
 HTTPV3_BORING_IMPLIES=		HTTPV3
-HTTPV3_BORING_PREVENTS=		HTTPV3_LSSL HTTPV3_QTLS
+HTTPV3_BORING_PREVENTS=		HTTPV3_LSSL
 HTTPV3_LSSL_BUILD_DEPENDS=	${LOCALBASE}/include/tls.h:security/libressl-devel
 HTTPV3_LSSL_RUN_DEPENDS=	${LOCALBASE}/include/tls.h:security/libressl-devel
 HTTPV3_LSSL_IMPLIES=		HTTPV3
-HTTPV3_LSSL_PREVENTS=		HTTPV3_BORING HTTPV3_QTLS
-HTTPV3_QTLS_BUILD_DEPENDS=	${LOCALBASE}/include/openssl/quic.h:security/openssl-quictls
-HTTPV3_QTLS_RUN_DEPENDS=	${LOCALBASE}/include/openssl/quic.h:security/openssl-quictls
-HTTPV3_QTLS_IMPLIES=		HTTPV3
-HTTPV3_QTLS_PREVENTS=		HTTPV3_BORING HTTPV3_LSSL
+HTTPV3_LSSL_PREVENTS=		HTTPV3_BORING
 MAIL_VARS=			DSO_BASEMODS+=mail
 MAIL_IMAP_CONFIGURE_OFF=	--without-mail_imap_module
 MAIL_POP3_CONFIGURE_OFF=	--without-mail_pop3_module
@@ -331,15 +327,15 @@ do-configure-NJS-on:
 
 .if !target(do-install)
 do-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${MKDIR} ${STAGEDIR}${NGINX_TMPDIR}
-	${MKDIR} ${STAGEDIR}${NGINX_LOGDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/objs/nginx ${STAGEDIR}${PREFIX}/sbin
+	${MKDIR} ${ETCDIR}
+	${MKDIR} ${NGINX_TMPDIR}
+	${MKDIR} ${NGINX_LOGDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/objs/nginx ${PREFIX}/sbin
 .for i in koi-utf koi-win win-utf
-	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${ETCDIR}
 .endfor
 .for i in fastcgi_params mime.types scgi_params uwsgi_params
-	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${STAGEDIR}${ETCDIR}/${i}-dist
+	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${ETCDIR}/${i}-dist
 .endfor
 
 do-install-HTTP_PERL-on:
@@ -366,10 +362,10 @@ do-install-NAXSI-on:
 
 .if !target(post-install)
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/vim/vimfiles
-	cd ${WRKSRC}/contrib/vim && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/vim/vimfiles
-	${INSTALL_MAN} ${WRKSRC}/objs/nginx.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${CAT} ${WRKSRC}/conf/nginx.conf >> ${STAGEDIR}${ETCDIR}/nginx.conf-dist
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/vim/vimfiles
+	cd ${WRKSRC}/contrib/vim && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/share/vim/vimfiles
+	${INSTALL_MAN} ${WRKSRC}/objs/nginx.8 ${FAKE_DESTDIR}${PREFIX}/share/man/man8
+	${CAT} ${WRKSRC}/conf/nginx.conf >> ${FAKE_DESTDIR}${ETCDIR}/nginx.conf-dist
 
 post-install-WWW-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/www/nginx-dist
