@@ -812,7 +812,7 @@ timestamp-authority:*:862:862::0:0:Timestamp Authority:/nonexistent:/usr/sbin/no
 trillian:*:863:863::0:0:trillian user:/nonexistent:/usr/sbin/nologin
 mediamtx:*:864:864::0:0:mediamtx:/nonexistent:/usr/sbin/nologin
 z2m:*:865:865::0:0:zigbee2mqtt:/usr/local/z2m:/usr/sbin/nologin
-# free: 866
+aged:*:866:866::0:0:aged user:/nonexistent:/usr/sbin/nologin
 sqlpage:*:867:867::0:0:SQLPage:/nonexistent:/usr/sbin/nologin
 jellyfin:*:868:868::0:0:Jellyfin:/nonexistent:/usr/sbin/nologin
 keyd:*:869:869::0:0:Key remapping daemon for evdev:/nonexistent:/usr/sbin/nologin
