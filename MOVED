@@ -609,6 +609,7 @@ sysutils/system-tools-backends||2026-02-18|No longer used
 textproc/opensearch-dashboards213||2025-09-02|Has expired: Depends on expired www/npm-node18
 textproc/opensearch-dashboards210||2025-09-02|Has expired: Depends on expired www/npm-node18
 textproc/opensearch-dashboards216||2025-09-02|Has expired: Depends on expired www/npm-node18
-www/yarn-node18||2025-09-02|Has expired: Depeneds on expired www/node18. Node.js 18.* has reached its EoL on 2025-04-30
-www/npm-node18||2025-09-03|Has expired: Depeneds on expired www/node18. Node.js 18.* has reached its EoL on 2025-04-30
-www/node18||2025-09-03|Has expired: Node.js 18.* has reached its EoL on 2025-04-30. Use Node.js 22.* (www/node22) instead
+www/yarn-node18|www/yarn-node22|2026-03-01|Has expired: Depeneds on expired www/node18. Node.js 18.* has reached its EoL on 2025-04-30
+www/npm-node18|www/npm-node22|2026-03-01|Has expired: Depeneds on expired www/node18. Node.js 18.* has reached its EoL on 2025-04-30
+www/node18|www/node22|2026-03-01|Has expired: Node.js 18.* has reached its EoL on 2025-04-30. Use Node.js 22.* (www/node22) instead
+lang/go121|lang/go125|2026-03-14|Has reached EOL. Use lang/go125 instead.
