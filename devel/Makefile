@@ -1853,6 +1853,7 @@
     SUBDIR += rubygem-google-apis-cloudresourcemanager_v1
     SUBDIR += rubygem-google-apis-compute_v1
     SUBDIR += rubygem-google-apis-core
+    SUBDIR += rubygem-google-apis-generator
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
     SUBDIR += rubygem-google-apis-monitoring_v3-gitlab
