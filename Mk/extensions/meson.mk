@@ -2,6 +2,10 @@
 #
 # Feature:		meson
 # Usage:		USES=meson
+# Valid ARGS:		muon
+#
+# muon			use muon instead of meson, intended for bootstrapping
+#			dependencies that python uses
 #
 # The following files are bundled in source tar files.
 # meson.build		- Instructions for meson like autoconf configure,
@@ -18,23 +22,33 @@
 .if !defined(_INCLUDE_USES_MESON_MK)
 _INCLUDE_USES_MESON_MK=	yes
 
-_valid_ARGS=            trueprefix
+_valid_ARGS=		muon trueprefix
 
 # Sanity check
-.  for arg in ${meson_ARGS}
-.    if empty(_valid_ARGS:M${arg})
-IGNORE= Incorrect 'USES+= meson:${meson_ARGS}' usage: argument [${arg}] is not recognized
+.  for _arg in ${meson_ARGS}
+.    if empty(_valid_ARGS:M${_arg})
+IGNORE=	'USES+= meson:${meson_ARGS}' usage: argument [${_arg}] is not recognized
 .    endif
 .  endfor
 
-BUILD_DEPENDS+=		python3.11:lang/python311 \
-			meson:devel/meson
+BUILD_DEPENDS+=		python3.11:lang/python311
+
+.  if !empty(meson_ARGS:Mmuon)
+BUILD_DEPENDS+=	muon:devel/muon
+.  else
+BUILD_DEPENDS+=	meson:devel/meson
+.  endif
 
 # meson uses ninja
 .include "${PORTSDIR}/Mk/extensions/ninja.mk"
 
 # meson might have issues with non-unicode locales
 USE_LOCALE?=	en_US.UTF-8
+
+# Enable muon's meson compatibility mode
+.  if !empty(meson_ARGS:Mmuon)
+CONFIGURE_ARGS+=	meson
+.  endif
 
 . if ${meson_ARGS} == trueprefix
 CONFIGURE_ARGS+=	--prefix ${TRUE_PREFIX} \
@@ -74,8 +88,21 @@ CONFIGURE_ARGS+=	--buildtype release \
 			--strip
 .  endif
 
+.  for _bool in true false enabled disabled
+.    if defined(MESON_${_bool:tu})
+.      for _meson_arg in ${MESON_${_bool:tu}}
+MESON_ARGS+=		-D${_meson_arg}=${_bool}
+.      endfor
+.    endif
+.  endfor
+
 HAS_CONFIGURE=		yes
+.  if !empty(meson_ARGS:Mmuon)
+CONFIGURE_CMD=		muon
+.  else
 CONFIGURE_CMD=		meson
+.  endif
+
 # Pull in manual set settings and from options
 CONFIGURE_ARGS+=	${MESON_ARGS}
 

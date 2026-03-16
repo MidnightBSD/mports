@@ -624,6 +624,7 @@
     SUBDIR += mono-addins
     SUBDIR += msbuild
     SUBDIR += msgpack-c
+    SUBDIR += muon
     SUBDIR += mustache
     SUBDIR += nasm
     SUBDIR += ncurses
