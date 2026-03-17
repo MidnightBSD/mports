@@ -166,8 +166,8 @@
     SUBDIR += lucene
     SUBDIR += makepatch
     SUBDIR += man2html
+    SUBDIR += mandoc
     SUBDIR += mantra
-    SUBDIR += mdocml
     SUBDIR += meld
     SUBDIR += minixmlto
     SUBDIR += mythes
