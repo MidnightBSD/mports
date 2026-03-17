@@ -1843,6 +1843,7 @@
     SUBDIR += rubygem-rb-fsevent
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-gapic-common
+    SUBDIR += rubygem-gems
     SUBDIR += rubygem-getoptlong
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
