@@ -1857,6 +1857,7 @@
     SUBDIR += rubygem-google-apis-core
     SUBDIR += rubygem-google-apis-discovery_v1
     SUBDIR += rubygem-google-apis-generator
+    SUBDIR += rubygem-google-apis-core-gitlab
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
     SUBDIR += rubygem-google-apis-monitoring_v3-gitlab
