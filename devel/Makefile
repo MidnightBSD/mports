@@ -381,6 +381,7 @@
     SUBDIR += jsonrpc-glib
     SUBDIR += judy
     SUBDIR += kBuild
+    SUBDIR += kdsingleapplication
     SUBDIR += kf5-kauth
     SUBDIR += kf5-kbookmarks
     SUBDIR += kf5-kcmutils
