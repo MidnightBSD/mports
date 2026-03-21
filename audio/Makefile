@@ -195,6 +195,7 @@
     SUBDIR += spotifyd
     SUBDIR += sratom
     SUBDIR += stk
+    SUBDIR += strawberry
     SUBDIR += suil
     SUBDIR += swhplugins
     SUBDIR += taglib
