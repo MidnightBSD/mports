@@ -181,6 +181,9 @@ $(document).ready(function() {
         timeout: 300000,
         data: { content: logmsg },
         dataType: 'json',
+	xhrFields: {
+       	 withCredentials: true
+	},
         success: function(data) {
             var $llm = $('#llmlog');
             $llm.empty();
