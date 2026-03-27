@@ -796,10 +796,10 @@ p0f:*:852:
 _geodns:*:853:
 ebusd:*:854:
 opensearch:*:855:
-# free: 856
-# free: 857
-# free: 858
-# free: 859
+age4p:*:856
+age13p:*:857
+age16p:*:858
+age18p:*:859
 plocate:*:860:
 rekor:*:861:
 timestamp-authority:*:862:
