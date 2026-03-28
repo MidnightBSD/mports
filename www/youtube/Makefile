@@ -11,7 +11,7 @@ WWW=		https://github.com/kkdai/youtube
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.23,modules
+USES=		go:modules
 
 GO_MODULE=	github.com/kkdai/youtube/v2
 GO_TARGET=	./cmd/youtubedr
