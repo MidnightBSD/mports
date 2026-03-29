@@ -1,9 +1,9 @@
-DISTVERSION=	1.25.5
+DISTVERSION=	1.25.8
 # Always set PORTREVISION explicitly as otherwise they are inherited from lang/go-devel
 PORTREVISION=	0
 MASTER_SITES=	https://go.dev/dl/
 DISTFILES=	go${DISTVERSION}.src.tar.gz \
-		go1.24.6.freebsd-${GOARCH_${ARCH}}.tar.gz
+		go1.24.13.freebsd-${GOARCH_${ARCH}}.tar.gz
 EXTRACT_ONLY=	${DISTFILES:[1]}
 
 # Avoid conflicting patch files
@@ -27,5 +27,8 @@ pre-extract:
 	cd ${BOOTSTRAP_WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
 		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:[2]} \
 		--strip-components 1 ${EXTRACT_AFTER_ARGS}
+
+post-build:
+	${RM} ${WRKSRC}/src/*.bak
 
 .include "${MASTERDIR}/Makefile"
