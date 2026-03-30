@@ -10,7 +10,7 @@ WWW=		https://www.phpliteadmin.org/
 
 LICENSE=	gpl3
 
-USES=		cpe php:web zip
+USES=		cpe php:web sqlite3 zip
 
 NO_ARCH=	yes
 NO_BUILD=	yes
