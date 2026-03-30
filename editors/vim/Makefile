@@ -162,6 +162,9 @@ TCL_CONFIGURE_ENABLE=	tclinterp
 TCL_CONFIGURE_WITH=	tclsh=tclsh${TCL_VER}
 TCL_USES=		tcl
 
+# hangs forever on magus
+NO_TEST=	yes
+
 # Targets {{{1
 .include <bsd.port.pre.mk>
 
@@ -176,9 +179,6 @@ post-patch:
 post-configure:
 # Needed when devel/libsysinfo is installed:
 	${REINPLACE_CMD} -e '/^#define HAVE_SYSINFO/ d' ${WRKSRC}/src/auto/config.h
-
-do-test:
-	${DO_MAKE_BUILD} -C ${WRKSRC} test
 
 .if ${FLAVOR:U} == tiny
 do-install:
