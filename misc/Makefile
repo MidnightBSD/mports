@@ -4,6 +4,7 @@
     SUBDIR += R-cran-mime
     SUBDIR += R-cran-xfun
     SUBDIR += artikulate
+    SUBDIR += chatgpt-shell-cli
     SUBDIR += chef
     SUBDIR += chmlib
     SUBDIR += cinnamon-translations
