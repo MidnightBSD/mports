@@ -218,7 +218,7 @@ _OSRELEASE!=	${UNAME} -r
 _EXPORTED_VARS+=	_OSRELEASE
 
 # Get the operating system revision
-OSREL?=	${_OSRELEASE:C/-.*//}
+OSREL?=	${_OSRELEASE:C/^\([0-9]*\.[0-9]*\).*/\1/}
 _EXPORTED_VARS+=	OSREL
 
 # Get __MidnightBSD_version
