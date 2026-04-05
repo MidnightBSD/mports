@@ -91,7 +91,7 @@ _OSRELEASE!=		${UNAME} -r
 .  endif
 _EXPORTED_VARS+=	_OSRELEASE
 .  if !defined(OSREL)
-OSREL=	${_OSRELEASE:C/[-(].*//}
+OSREL=	${_OSRELEASE:C/^\([0-9]*\.[0-9]*\).*/\1/}
 .  endif
 _EXPORTED_VARS+=	OSREL
 
