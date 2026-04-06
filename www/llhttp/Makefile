@@ -1,0 +1,29 @@
+PORTNAME=	llhttp
+PORTVERSION=	9.3.0
+DISTVERSIONPREFIX=	release/v
+CATEGORIES=	www
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Port of http_parser to llparse
+WWW=		https://llhttp.org/ \
+		https://github.com/nodejs/llhttp
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE-MIT
+
+USES=		cmake cpe
+
+CMAKE_ON=	BUILD_SHARED_LIBS
+
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	nodejs
+
+OPTIONS_DEFINE=	STATIC
+OPTIONS_DEFAULT=STATIC
+OPTIONS_SUB=	yes
+
+STATIC_CMAKE_BOOL=	BUILD_STATIC_LIBS
+
+.include <bsd.port.mk>

@@ -81,6 +81,7 @@
     SUBDIR += linux-rl9-libnghttp2
     SUBDIR += linux-rl9-qt5-qtwebchannel
     SUBDIR += linux-rl9-qt5-qtwebsockets
+    SUBDIR += llhttp
     SUBDIR += lynx
     SUBDIR += man2web
     SUBDIR += mathjax
