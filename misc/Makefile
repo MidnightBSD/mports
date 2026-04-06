@@ -26,6 +26,7 @@
     SUBDIR += dnetc
     SUBDIR += e2fsprogs-libuuid
     SUBDIR += findutils
+    SUBDIR += gemini-cli
     SUBDIR += getopt
     SUBDIR += gnome-getting-started-docs
     SUBDIR += gnome-icon-theme
