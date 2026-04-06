@@ -65,7 +65,7 @@ do-install:
 		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}
 	# update
 	${REINPLACE_CMD} -i '' \
-		-e "s|#!/usr/bin/env node|#!${PREFIX}/bin/node|" \
+		-e "s|#!/usr/bin/env node|#!${TRUE_PREFIX}/bin/node|" \
 		${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/dist/index.js
 	# set exec bit
 	@${CHMOD} +x ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/dist/index.js
