@@ -33,6 +33,7 @@
     SUBDIR += chromium-bin
     SUBDIR += clearsilver
     SUBDIR += codeigniter
+    SUBDIR += corepack
     SUBDIR += dojo
     SUBDIR += drupal10
     SUBDIR += drupal7
