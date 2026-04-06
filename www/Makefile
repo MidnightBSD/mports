@@ -70,6 +70,7 @@
     SUBDIR += libhubbub
     SUBDIR += libmicrohttpd
     SUBDIR += libnghttp2
+    SUBDIR += libnghttp3
     SUBDIR += libwpe
     SUBDIR += libwww
     SUBDIR += lighttpd
