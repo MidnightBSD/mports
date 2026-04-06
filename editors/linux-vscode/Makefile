@@ -19,15 +19,15 @@ SKIP_FAKE_ALL=  yes
 
 USES=		desktop-file-utils gnome linux:rl9 ssl tar:bzip2
 INSTALLS_ICONS=	yes
-USE_LINUX=	brotli ca-certificates cairo cairo-gobject cups-libs curl \
+USE_LINUX=	atk at-spi2-atk brotli ca-certificates cairo cairo-gobject cups-libs curl \
                 dbuslibs devtools dri elfutils-libelf elfutils-libs expat \
-                fontconfig freetype fribidi gdkpixbuf2 gnupg gnutls \
+                fontconfig freetype fribidi gdkpixbuf2 gnupg gnutls gtk3 \
                 harfbuzz icu \
                 imageformats-libs libassuan libasyncns libdrm libepoxy libevent \
                 libgcrypt libglvnd libgpg-error libksba libnghttp2 \
                 libpciaccess libpsl librsvg2 libsecret libsigc++20 \
                 libsndfile libsoup libssh libstemmer libtasn1 libthai libtheora libtool-ltdl \
-                libtracker-sparql libunistring libusb libv4l libva libvdpau \
+                libtracker-sparql libunistring libv4l libva libvdpau \
                 libxkbcommon libxml2 libxslt llvm \
                 lz4 nettle npth nspr nss ocl-icd orc \
                 p11-kit pango pixman python3 \
