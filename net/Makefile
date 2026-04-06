@@ -123,6 +123,7 @@
     SUBDIR += libndp
     SUBDIR += libnet
     SUBDIR += libnfs
+    SUBDIR += libngtcp2
     SUBDIR += liboauth
     SUBDIR += libpaho-mqtt3
     SUBDIR += libpcap
