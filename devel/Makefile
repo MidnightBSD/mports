@@ -1973,6 +1973,7 @@
     SUBDIR += sigar
     SUBDIR += signal-fts5-extension
     SUBDIR += silc-toolkit
+    SUBDIR += simdjson
     SUBDIR += simpleini
     SUBDIR += skalibs
     SUBDIR += slf4j
