@@ -169,6 +169,11 @@ _JAVA_ARGS:=	${_JAVA_ARGS:Nrun}
 .  endif # !empty(java_ARGS)
 
 #-------------------------------------------------------------------------------
+# Ensure JAVA_DEFAULT is set to 17 during indexing for package builds
+.if defined(MAGUS) && defined(INDEXING)
+JAVA_DEFAULT=	17
+.endif
+
 # Stage 1: Define constants
 #
 
@@ -374,6 +379,16 @@ _JAVA_PORTS_POSSIBLE=		${__JAVA_PORTS_POSSIBLE:C/ [ ]+/ /g}
 
 # Find an installed JDK port that matches the requirements of the port
 
+.if defined(MAGUS) && defined(INDEXING)
+# During indexing, ignore local installations and pick the first possible JDK
+.    for i in ${_JAVA_PORTS_POSSIBLE}
+.        if !defined(_JAVA_PORTS_POSSIBLE_shortcircuit)
+_JAVA_PORT=	$i
+_JAVA_PORTS_POSSIBLE_shortcircuit=	1
+.        endif
+.    endfor
+.else
+
 .		undef _JAVA_PORTS_INSTALLED_POSSIBLE
 
 .    for A_JAVA_PORT in ${_JAVA_PORTS_POSSIBLE}
@@ -397,6 +412,8 @@ _JAVA_PORTS_POSSIBLE_shortcircuit=	1
 .        endif
 .      endfor
 .    endif
+
+.endif
 
 _JAVA_PORT_INFO:=		${_JAVA_PORT:S/^/\${_/:S/$/_INFO}/}
 JAVA_PORT=				${_JAVA_PORT_INFO:MPORT=*:S,PORT=,,}

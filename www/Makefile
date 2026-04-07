@@ -33,6 +33,7 @@
     SUBDIR += chromium-bin
     SUBDIR += clearsilver
     SUBDIR += codeigniter
+    SUBDIR += corepack
     SUBDIR += dojo
     SUBDIR += drupal10
     SUBDIR += drupal7
@@ -70,6 +71,7 @@
     SUBDIR += libhubbub
     SUBDIR += libmicrohttpd
     SUBDIR += libnghttp2
+    SUBDIR += libnghttp3
     SUBDIR += libwpe
     SUBDIR += libwww
     SUBDIR += lighttpd
@@ -81,6 +83,7 @@
     SUBDIR += linux-rl9-libnghttp2
     SUBDIR += linux-rl9-qt5-qtwebchannel
     SUBDIR += linux-rl9-qt5-qtwebsockets
+    SUBDIR += llhttp
     SUBDIR += lynx
     SUBDIR += man2web
     SUBDIR += mathjax
