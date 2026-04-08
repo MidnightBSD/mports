@@ -1,5 +1,6 @@
 PORTNAME=	go
 DISTVERSION=	${GO_DEFAULT}
+PORTREVISION=	20
 PORTEPOCH=	2
 CATEGORIES=	lang
 MASTER_SITES=	# not applicable
@@ -9,7 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port for the default version of the Go programming language
 WWW=		https://golang.org
 
-LICENSE=	bsd2
+LICENSE=	NA
+LICENSE_COMB=	single
+LICENSE_NAME=	Non applicable
+LICENSE_TEXT=	No licenses are applicable to metaports
+LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
 
 RUN_DEPENDS=	go${GO_SUFFIX}:lang/go${GO_SUFFIX}
 
@@ -22,7 +27,7 @@ GO_SUFFIX=	${GO_DEFAULT:S/.//:C/.*-devel/-devel/}
 
 do-install:
 .for f in go gofmt
-	cd ${PREFIX}/bin && ${LN} -sf ${f}${GO_SUFFIX} ${f}
+	@${LN} -sf ${f}${GO_SUFFIX} ${STAGEDIR}${PREFIX}/bin/${f}
 .endfor
 
 .include <bsd.port.mk>
