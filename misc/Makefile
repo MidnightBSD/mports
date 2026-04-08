@@ -119,5 +119,6 @@
     SUBDIR += xfce4-weather-plugin
     SUBDIR += xfce4-wm-themes
     SUBDIR += xtail
+    SUBDIR += zoneinfo
 
 .include <bsd.port.subdir.mk>
