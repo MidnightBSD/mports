@@ -90,6 +90,7 @@
     SUBDIR += mathjax3
     SUBDIR += mattermost-server
     SUBDIR += mattermost-webapp
+    SUBDIR += mcp-server-browserbase
     SUBDIR += mediawiki139
     SUBDIR += mediawiki143
     SUBDIR += mediawiki144
