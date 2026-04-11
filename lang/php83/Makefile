@@ -1,5 +1,6 @@
 PORTNAME=	php83
 DISTVERSION=	8.3.23
+PORTREVISION=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${DISTVERSION}
@@ -472,7 +473,11 @@ USE_PHP=	pdo:build
 
 .if ${PHP_MODNAME} == "pdo_sqlite"
 USES+=			localbase sqlite
+.if exists(/usr/lib/libsqlite3.so) && exists(/usr/include/sqlite3.h)
+CONFIGURE_ARGS+=	--with-pdo-sqlite=/usr
+.else
 CONFIGURE_ARGS+=	--with-pdo-sqlite=${LOCALBASE}
+.endif
 
 USE_PHP=	pdo:build
 .endif
@@ -547,7 +552,11 @@ LIB_DEPENDS+=		libsodium.so:security/libsodium
 
 .if ${PHP_MODNAME} == "sqlite3"
 USES+=			localbase pkgconfig sqlite
+.if exists(/usr/lib/libsqlite3.so) && exists(/usr/include/sqlite3.h)
+CONFIGURE_ARGS+=	--with-sqlite3=/usr
+.else
 CONFIGURE_ARGS+=	--with-sqlite3=${LOCALBASE}
+.endif
 .endif
 
 .if ${PHP_MODNAME} == "sysvmsg"
