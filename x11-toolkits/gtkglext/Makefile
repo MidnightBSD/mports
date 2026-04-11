@@ -30,7 +30,7 @@ post-patch:
 		 s|-DGDK_DISABLE_DEPRECATED||g'
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/reference/gtkglext/html/* ${STAGEDIR}${DOCSDIR}/
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/reference/gtkglext/html/* ${DOCSDIR}/
 
 .include <bsd.port.mk>

@@ -38,8 +38,8 @@ post-patch:
 	@${FIND} ${WRKSRC}/ -name '*.bak' -delete
 
 do-install:
-	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/
-	${ECHO_CMD} 'python=${PYTHON_CMD}' > ${STAGEDIR}${PREFIX}/etc/npmrc
-	${PYTHON_CMD} -m compileall -d ${TRUE_PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -f ${STAGEDIR}${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -o 0 -o 1
+	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${PREFIX}/
+	${ECHO_CMD} 'python=${PYTHON_CMD}' > ${PREFIX}/etc/npmrc
+	${PYTHON_CMD} -m compileall -d ${TRUE_PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -f ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -o 0 -o 1
 
 .include <bsd.port.mk>

@@ -22,8 +22,8 @@ PLIST_FILES=	"${FONTSDIR}/Linden Hill Italic.otf" \
 		"${FONTSDIR}/Linden Hill.otf"
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} "Linden Hill Italic.otf" \
-		"Linden Hill.otf" ${STAGEDIR}${FONTSDIR}
+		"Linden Hill.otf" ${FONTSDIR}
 
 .include <bsd.port.mk>

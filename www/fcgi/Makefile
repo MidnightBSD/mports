@@ -28,14 +28,14 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.mport.options.mk>
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libfcgi.so.0.0.0
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libfcgi++.so.0.0.0
-	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_MAN} ${WRKSRC}/doc/*.3 ${STAGEDIR}${PREFIX}/share/man/man3/
+	${STRIP_CMD} ${PREFIX}/lib/libfcgi.so.0.0.0
+	${STRIP_CMD} ${PREFIX}/lib/libfcgi++.so.0.0.0
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/doc/*.3 ${PREFIX}/share/man/man3/
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
-	@${RM} -f ${STAGEDIR}${DOCSDIR}/*.[13]
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR}
+	@${RM} -f ${DOCSDIR}/*.[13]
 .endif
 
 .include <bsd.port.mk>

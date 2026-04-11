@@ -26,7 +26,7 @@ post-extract:
 	${MV} ${WRKDIR}/CODE2000.HTM ${WRKSRC}/${FONTNAME}.html
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/* ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/* ${FONTSDIR}
 
 .include <bsd.port.mk>

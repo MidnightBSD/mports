@@ -19,10 +19,10 @@ post-patch:
 	    ${WRKSRC}/tkfont
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/tkfont ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/tkfont
+	${INSTALL_SCRIPT} ${WRKSRC}/tkfont ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/lib/tkfont
 .for file in COPYING Bugs.txt FileMenu.txt FindFont FontDirs.txt FontTypes.txt HelpText.txt README WhatsNew.txt
-	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${PREFIX}/lib/tkfont
+	${INSTALL_DATA} ${WRKSRC}/${file} ${PREFIX}/lib/tkfont
 .endfor
 
 .include <bsd.port.mk>

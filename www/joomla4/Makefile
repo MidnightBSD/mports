@@ -50,6 +50,6 @@ pre-install:
 	@${ECHO_CMD} "@owner" >> ${PLIST}
 
 do-install:
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${JOOMLADIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/${JOOMLADIR}
 
 .include <bsd.port.mk>

@@ -86,8 +86,8 @@ post-configure:
 	${CP} ${_DISTDIR}/cacert-${CACERTVERSION}.pem ${CONFIGURE_WRKSRC}/Lagom/cacert.pem
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/256x256/apps
+	${MKDIR} ${PREFIX}/share/icons/hicolor/256x256/apps
 	${INSTALL_DATA} ${WRKSRC}/Ladybird/Icons/ladybird.png \
-	    ${STAGEDIR}${PREFIX}/share/icons/hicolor/256x256/apps/
+	    ${PREFIX}/share/icons/hicolor/256x256/apps/
 
 .include <bsd.port.mk>

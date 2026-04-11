@@ -36,6 +36,6 @@ do-install-DOCS-on:
 	${INSTALL_MAN} ${WRKSRC}/README ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/xclip
+	${STRIP_CMD} ${PREFIX}/bin/xclip
 
 .include <bsd.port.mk>

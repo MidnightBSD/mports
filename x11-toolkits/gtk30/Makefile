@@ -86,9 +86,9 @@ pre-build:
 	-${RM} -r ${WRKSRC}/docs/gtk.info*
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/modules
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
+	@${MKDIR} ${PREFIX}/lib/gtk-3.0/modules
+	@${MKDIR} ${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
+	@${MKDIR} ${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
 
 #pre-test:
 #	${RM} ${CONFIGURE_COOKIE} ${BUILD_COOKIE}

@@ -19,7 +19,7 @@ FONTS=	anorexia.de aqui.de cure.de drift.de edges.de fkp.de gelly.de \
 FILES=	${FONTS:S,$,.pcf,} ${WRKSRC}/fonts.alias
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${FILES} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${FILES} ${FONTSDIR}
 
 .include <bsd.port.mk>

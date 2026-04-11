@@ -49,10 +49,10 @@ do-build:
 .endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	(cd ${WRKSRC}/sgi-fonts/sgi && ${INSTALL_DATA} fonts.alias \
-		${STAGEDIR}${FONTSDIR})
+		${FONTSDIR})
 	(cd ${WRKSRC}/sgi-fonts/sgi && ${INSTALL_DATA} *.pcf.gz \
-		${STAGEDIR}${FONTSDIR})
+		${FONTSDIR})
 
 .include <bsd.port.mk>

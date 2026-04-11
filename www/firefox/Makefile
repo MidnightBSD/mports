@@ -148,14 +148,14 @@ post-patch:
 		>> ${WRKSRC}/.mozconfig
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps \
-		${STAGEDIR}${PREFIX}/share/applications
+	${MKDIR} ${PREFIX}/share/pixmaps \
+		${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKDIR}/firefox.desktop \
-		${STAGEDIR}${PREFIX}/share/applications/
-	(cd ${STAGEDIR}${PREFIX}/share/pixmaps &&\
+		${PREFIX}/share/applications/
+	(cd ${PREFIX}/share/pixmaps &&\
 	${LN} -sf ../../lib/firefox/browser/chrome/icons/default/default48.png firefox.png)
 	# Rewrite symlink to make it relative instead of absolute
-	(cd ${STAGEDIR}${PREFIX}/bin &&\
+	(cd ${PREFIX}/bin &&\
 	${LN} -sf ../lib/firefox/firefox firefox)
 
 .include <bsd.port.mk>

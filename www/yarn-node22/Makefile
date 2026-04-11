@@ -37,12 +37,12 @@ post-patch:
 		${WRKSRC}/bin/yarn
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/node_modules/yarn
-	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/node_modules/yarn)
-	${RLN} ${STAGEDIR}${PREFIX}/lib/node_modules/yarn/bin/yarn.js \
-		${STAGEDIR}${PREFIX}/bin/yarn.js
-	${RLN} ${STAGEDIR}${PREFIX}/lib/node_modules/yarn/bin/yarnpkg \
-		${STAGEDIR}${PREFIX}/bin/yarnpkg
+	${MKDIR} ${PREFIX}/lib/node_modules/yarn
+	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${PREFIX}/lib/node_modules/yarn)
+	${RLN} ${PREFIX}/lib/node_modules/yarn/bin/yarn.js \
+		${PREFIX}/bin/yarn.js
+	${RLN} ${PREFIX}/lib/node_modules/yarn/bin/yarnpkg \
+		${PREFIX}/bin/yarnpkg
 
 do-install-HADOOPCOMPAT-off:
 	${RLN} ${FAKE_DESTDIR}${PREFIX}/lib/node_modules/yarn/bin/yarn \

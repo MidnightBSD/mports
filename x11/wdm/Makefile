@@ -71,8 +71,8 @@ post-patch:
 		's|/etc/X11/wdm|${WDMDIR}|g' ${WRKSRC}/doc/wdmLogin.man
 
 post-install:
-	@${MV} ${STAGEDIR}${WDMDIR}/wdm-config ${WDMDIR}/wdm-config.sample
-	@${MV} ${STAGEDIR}${WDMDIR}/Xsetup_0 ${WDMDIR}/Xsetup_0.sample
+	@${MV} ${WDMDIR}/wdm-config ${WDMDIR}/wdm-config.sample
+	@${MV} ${WDMDIR}/Xsetup_0 ${WDMDIR}/Xsetup_0.sample
 .for file in beastie.xpm daemon1-HQ-1280x960.jpg
 	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WDMDIR}/pixmaps
 .endfor

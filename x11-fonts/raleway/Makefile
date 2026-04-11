@@ -19,7 +19,7 @@ NO_BUILD=	yes
 PLIST_FILES=	${FONTSDIR}/"Raleway Thin.otf"
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/"Raleway Thin.otf" ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/"Raleway Thin.otf" ${FONTSDIR}
 
 .include <bsd.port.mk>

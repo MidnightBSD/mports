@@ -24,8 +24,8 @@ PLIST_FILES=	${FONTSDIR}/inconsolatalgc.ttf \
 		${FONTSDIR}/inconsolatalgcitalic.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/*.ttf \
-		${STAGEDIR}${FONTSDIR}
+		${FONTSDIR}
 
 .include <bsd.port.mk>

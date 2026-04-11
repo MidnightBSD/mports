@@ -30,8 +30,8 @@ pre-everything::
 	@${ECHO_MSG} "========================================================="
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
-	${INSTALL_DATA} ${WRKDIR}/${APMOD_FILE} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/${PORTNAME}.so
+	@${MKDIR} ${PREFIX}/${APACHEETCDIR}/modules.d
+	${INSTALL_DATA} ${WRKDIR}/${APMOD_FILE} ${PREFIX}/${APACHEETCDIR}/modules.d
+	${STRIP_CMD} ${PREFIX}/${APACHEMODDIR}/${PORTNAME}.so
 
 .include <bsd.port.mk>

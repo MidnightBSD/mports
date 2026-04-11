@@ -21,7 +21,7 @@ FONTS=	anorexia.se aqui.se cure.se drift.se edges.se fkp.se gelly.se \
 FILES=	${FONTS:S,$,.pcf,} ${WRKSRC}/fonts.alias
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${FILES} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${FILES} ${FONTSDIR}
 
 .include <bsd.port.mk>

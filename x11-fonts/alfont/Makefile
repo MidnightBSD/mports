@@ -58,11 +58,11 @@ do-build:
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/libalfont.so.${PORTVERSION} \
-		${STAGEDIR}${PREFIX}/lib
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libalfont.so.${PORTVERSION}
-	@(cd ${STAGEDIR}${PREFIX}/lib ; ${LN} -sf libalfont.so.${PORTVERSION} \
+		${PREFIX}/lib
+	${STRIP_CMD} ${PREFIX}/lib/libalfont.so.${PORTVERSION}
+	@(cd ${PREFIX}/lib ; ${LN} -sf libalfont.so.${PORTVERSION} \
 		libalfont.so)
-	${INSTALL_DATA} ${WRKSRC}/include/alfont*.h ${STAGEDIR}${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/include/alfont*.h ${PREFIX}/include
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

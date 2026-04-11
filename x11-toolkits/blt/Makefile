@@ -38,8 +38,8 @@ post-patch:
 	    ${REINPLACE_CMD} -e 's|../src/bltwish|${LOCALBASE}/bin/bltwish|'
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	${STRIP_CMD} ${PREFIX}/bin/*
+	${STRIP_CMD} ${PREFIX}/lib/*.so
 
 .include <bsd.port.pre.mk>
 

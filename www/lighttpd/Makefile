@@ -135,21 +135,21 @@ post-patch:
 		${WRKSRC}/doc/config/conf.d/cgi.conf
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/conf.d ${STAGEDIR}${ETCDIR}/vhosts.d
+	@${MKDIR} ${ETCDIR}/conf.d ${ETCDIR}/vhosts.d
 .for FILE in ${LIGHTTPD_CONF_FILES}
 	${INSTALL_DATA} ${WRKSRC}/doc/config/${FILE} \
-		${STAGEDIR}${ETCDIR}/${FILE}.sample
+		${ETCDIR}/${FILE}.sample
 .endfor
 .for FILE in ${LIGHTTPD_CONF_D_FILES}
 	${INSTALL_DATA} ${WRKSRC}/doc/config/conf.d/${FILE} \
-		${STAGEDIR}${ETCDIR}/conf.d/${FILE}.sample
+		${ETCDIR}/conf.d/${FILE}.sample
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/doc/config/vhosts.d/vhosts.template \
-		${STAGEDIR}${ETCDIR}/vhosts.d/vhosts.template
-	@${MKDIR} ${STAGEDIR}${WWWDIR}
-	@${MKDIR} -m 0700 ${STAGEDIR}${CACHEDIR}
-	@${MKDIR} -m 0700 ${STAGEDIR}${HOMEDIR}/sockets
-	@${MKDIR} -m 0700 ${STAGEDIR}${LOGDIR}
+		${ETCDIR}/vhosts.d/vhosts.template
+	@${MKDIR} ${WWWDIR}
+	@${MKDIR} -m 0700 ${CACHEDIR}
+	@${MKDIR} -m 0700 ${HOMEDIR}/sockets
+	@${MKDIR} -m 0700 ${LOGDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

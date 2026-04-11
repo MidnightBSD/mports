@@ -167,6 +167,6 @@ CARGO_CRATES=	addr2line-0.17.0 \
 		xi-unicode-0.3.0
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/ncgopher.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/ncgopher.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

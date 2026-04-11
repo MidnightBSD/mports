@@ -29,6 +29,6 @@ PLIST_FILES=	lib/libtcnative-1.a \
 		lib/libtcnative-1.so.0.${SOVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtcnative-1.so.0.${SOVERSION}
+	${STRIP_CMD} ${PREFIX}/lib/libtcnative-1.so.0.${SOVERSION}
 
 .include <bsd.port.mk>

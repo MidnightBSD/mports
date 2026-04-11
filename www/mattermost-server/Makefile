@@ -38,13 +38,13 @@ GROUPS=		${MATTERMOSTD_GROUP}
 NO_TEST=	yes
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/bin/mattermost ${STAGEDIR}${PREFIX}/bin/mattermostd
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mattermost
+	${MV} ${PREFIX}/bin/mattermost ${PREFIX}/bin/mattermostd
+	${MKDIR} ${PREFIX}/etc/mattermost
 	${SETENV} OUTPUT_CONFIG=${WRKSRC}/config/default.json ${WRKDIR}/bin/config_generator
-	${INSTALL_DATA} ${WRKSRC}/config/default.json ${STAGEDIR}${PREFIX}/etc/mattermost/config.json.sample
-	${RM} ${STAGEDIR}${PREFIX}/bin/config_generator
-	${MKDIR} ${STAGEDIR}${WWWDIR}/templates
-	cd ${GO_WRKSRC} && ${COPYTREE_SHARE} 'fonts i18n' ${STAGEDIR}${WWWDIR}
-	cd ${GO_WRKSRC}/templates && ${CP} *.html *.js ${STAGEDIR}${WWWDIR}/templates
+	${INSTALL_DATA} ${WRKSRC}/config/default.json ${PREFIX}/etc/mattermost/config.json.sample
+	${RM} ${PREFIX}/bin/config_generator
+	${MKDIR} ${WWWDIR}/templates
+	cd ${GO_WRKSRC} && ${COPYTREE_SHARE} 'fonts i18n' ${WWWDIR}
+	cd ${GO_WRKSRC}/templates && ${CP} *.html *.js ${WWWDIR}/templates
 
 .include <bsd.port.mk>

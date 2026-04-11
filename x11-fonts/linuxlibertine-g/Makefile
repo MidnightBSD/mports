@@ -23,8 +23,8 @@ WRKSRC=	${WRKDIR}/${FONTNAME}
 PLIST_SUB+=	FONTSDIR_REL=share/fonts/LinLibertineG
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC} &&	\
-		${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
+		${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

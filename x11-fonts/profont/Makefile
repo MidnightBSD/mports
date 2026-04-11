@@ -49,7 +49,7 @@ do-build-X11-on:
 	${GZIP_CMD} ${WRKSRC}/*.pcf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 
 do-install-VT-on:
 	${INSTALL_DATA} ${WRKSRC}/*.fnt ${FAKE_DESTDIR}${FONTSDIR}

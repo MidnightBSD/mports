@@ -67,8 +67,8 @@ post-install:
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .endfor
 	${INSTALL_DATA} ${BUILD_WRKSRC}/dialogs/images/qtlogo-64.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/qt5logo.png
-	${RLN} ${STAGEDIR}${QT_BINDIR}/uic ${STAGEDIR}${PREFIX}/bin/uic-qt5
+		${PREFIX}/share/pixmaps/qt5logo.png
+	${RLN} ${QT_BINDIR}/uic ${PREFIX}/bin/uic-qt5
 	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
 

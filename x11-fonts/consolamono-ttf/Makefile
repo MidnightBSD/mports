@@ -17,7 +17,7 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/Consola\ Mono
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}/
-	cd ${WRKSRC}/ && ${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR}/
+	${MKDIR} ${FONTSDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} *.ttf ${FONTSDIR}/
 
 .include <bsd.port.mk>

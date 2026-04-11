@@ -91,7 +91,7 @@ post-patch:
 
 .if exists(${PREFIX}/share/gnome/wm-properties)
 pre-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/share/gnome/wm-properties
+	${MKDIR} /${PREFIX}/share/gnome/wm-properties
 .endif
 
 .include <bsd.port.post.mk>

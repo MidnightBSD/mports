@@ -32,11 +32,11 @@ GLASSFISH_BIN_FILES=	appclient appclient.js asadmin capture-schema capture-schem
 do-install:
 	@${FIND} ${WRKSRC} -name '*.bat' -delete
 	@${FIND} ${WRKSRC} -name '*.exe' -delete
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${DATADIR})
-	@${CHMOD} ${BINMODE} ${STAGEDIR}${DATADIR}/bin/*
-	@${CHMOD} ${BINMODE} ${STAGEDIR}${DATADIR}/mq/bin/*
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${DATADIR})
+	@${CHMOD} ${BINMODE} ${DATADIR}/bin/*
+	@${CHMOD} ${BINMODE} ${DATADIR}/mq/bin/*
 .for x in ${GLASSFISH_BIN_FILES}
-	@${CHMOD} ${BINMODE} ${STAGEDIR}${DATADIR}/glassfish/bin/${x}
+	@${CHMOD} ${BINMODE} ${DATADIR}/glassfish/bin/${x}
 .endfor
 
 .include <bsd.port.post.mk>

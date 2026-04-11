@@ -17,8 +17,8 @@ SUB_FILES=	pkg-message
 WRKSRC=		${WRKDIR}/Fonts
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.TTF ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.TTF ${FONTSDIR}
 
 .include <bsd.port.mk>

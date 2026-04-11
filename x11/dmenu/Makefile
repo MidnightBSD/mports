@@ -38,7 +38,7 @@ XINERAMA_MAKE_ARGS_OFF=	XINERAMAFLAGS= \
 			XINERAMALIBS=
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/dmenu \
-		${STAGEDIR}${PREFIX}/bin/stest
+	@${STRIP_CMD} ${PREFIX}/bin/dmenu \
+		${PREFIX}/bin/stest
 
 .include <bsd.port.mk>

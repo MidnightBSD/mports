@@ -50,12 +50,12 @@ post-extract:
 		${WRKSRC}/usr/share/applications/com.google.Chrome.desktop
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/google-chrome ${STAGEDIR}${PREFIX}/bin
-	cd ${WRKSRC}/opt/google && ${CP} -r chrome ${STAGEDIR}${PREFIX}/share
-	cd ${WRKSRC}/usr/share && ${COPYTREE_SHARE} \* ${STAGEDIR}${PREFIX}/share
+	${INSTALL_SCRIPT} ${WRKDIR}/google-chrome ${PREFIX}/bin
+	cd ${WRKSRC}/opt/google && ${CP} -r chrome ${PREFIX}/share
+	cd ${WRKSRC}/usr/share && ${COPYTREE_SHARE} \* ${PREFIX}/share
 .for sz in 16 24 32 48 64 128 256
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps
-	${CP} ${STAGEDIR}${DATADIR}/product_logo_${sz}.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps/google-chrome.png
+	${MKDIR} ${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps
+	${CP} ${DATADIR}/product_logo_${sz}.png ${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps/google-chrome.png
 .endfor
 
 .include <bsd.port.mk>

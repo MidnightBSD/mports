@@ -23,6 +23,6 @@ SHEBANG_FILES=	mkitalic
 NO_BUILD=	yes
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/mkitalic ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/mkitalic ${PREFIX}/bin
 
 .include <bsd.port.mk>

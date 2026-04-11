@@ -23,10 +23,10 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 do-install:
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR} \
 		'! ( -name fr -o -name frftp ) ')
-	${INSTALL_SCRIPT} ${WRKSRC}/fr ${WRKSRC}/frftp ${STAGEDIR}${DATADIR}
-	${RLN} ${STAGEDIR}${DATADIR}/fr ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/fr ${WRKSRC}/frftp ${DATADIR}
+	${RLN} ${DATADIR}/fr ${PREFIX}/bin
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX} -type f -iname '*.orig' -delete
 
 .include <bsd.port.mk>

@@ -21,7 +21,7 @@ NO_BUILD=	yes
 PLIST_FILES=	${FONTSDIR}/LeagueSpartan-Bold.otf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/LeagueSpartan-Bold.otf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/LeagueSpartan-Bold.otf ${FONTSDIR}
 
 .include <bsd.port.mk>

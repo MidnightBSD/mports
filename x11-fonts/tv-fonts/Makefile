@@ -25,9 +25,9 @@ FONTS=		caption.pcf.gz captioni.pcf.gz led-iso10646-1.pcf.gz \
 		teletext4i.pcf.gz
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for font in ${FONTS}
-	${INSTALL_DATA} ${WRKSRC}/${font} ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${font} ${FONTSDIR}
 .endfor
 
 .include <bsd.port.mk>

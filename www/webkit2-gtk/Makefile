@@ -135,7 +135,7 @@ post-patch:
 		${WRKSRC}/Source/WTF/wtf/PlatformJSCOnly.cmake
 
 post-install:
-	@${MV} ${STAGEDIR}${PREFIX}/bin/WebKitWebDriver \
-		${STAGEDIR}${PREFIX}/bin/WebKitWebDriver-${API_VERSION}
+	@${MV} ${PREFIX}/bin/WebKitWebDriver \
+		${PREFIX}/bin/WebKitWebDriver-${API_VERSION}
 
 .include <bsd.port.mk>

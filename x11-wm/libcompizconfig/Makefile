@@ -42,7 +42,7 @@ post-patch:
 
 post-install:
 .for l in compizconfig/backends/libini.so compiz/libccp.so libcompizconfig.so.0.0.0
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${l}
+	${STRIP_CMD} ${PREFIX}/lib/${l}
 .endfor
 
 .include <bsd.port.post.mk>

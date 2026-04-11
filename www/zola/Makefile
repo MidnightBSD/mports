@@ -32,16 +32,16 @@ PORTDOCS=	*
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/zola
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d \
-		${STAGEDIR}${PREFIX}/share/fish/completions \
-		${STAGEDIR}${PREFIX}/share/zsh/site-functions
-	${STAGEDIR}${PREFIX}/bin/zola completion bash > \
-		${STAGEDIR}${PREFIX}/etc/bash_completion.d/zola.bash
-	${STAGEDIR}${PREFIX}/bin/zola completion fish > \
-		${STAGEDIR}${PREFIX}/share/fish/completions/zola.fish
-	${STAGEDIR}${PREFIX}/bin/zola completion zsh > \
-		${STAGEDIR}${PREFIX}/share/zsh/site-functions/_zola
+	${STRIP_CMD} ${PREFIX}/bin/zola
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d \
+		${PREFIX}/share/fish/completions \
+		${PREFIX}/share/zsh/site-functions
+	${PREFIX}/bin/zola completion bash > \
+		${PREFIX}/etc/bash_completion.d/zola.bash
+	${PREFIX}/bin/zola completion fish > \
+		${PREFIX}/share/fish/completions/zola.fish
+	${PREFIX}/bin/zola completion zsh > \
+		${PREFIX}/share/zsh/site-functions/_zola
 
 post-install-DOCS-on:
 	@cd ${WRKSRC}/docs && \

@@ -23,9 +23,9 @@ NO_BUILD=	yes
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${FILESDIR}/fonts.alias \
-		${WRKSRC}/pcf/*.pcf ${STAGEDIR}${FONTSDIR}
+		${WRKSRC}/pcf/*.pcf ${FONTSDIR}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

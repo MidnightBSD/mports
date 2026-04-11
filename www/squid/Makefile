@@ -267,13 +267,13 @@ post-patch-IPV6-off:
 		${WRKSRC}/src/cf.data.pre
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/weekly \
-		  ${STAGEDIR}${EXAMPLESDIR} \
-		  ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${PREFIX}/etc/periodic/weekly \
+		  ${EXAMPLESDIR} \
+		  ${DOCSDIR}
 	${INSTALL_SCRIPT} ${WRKDIR}/900.squid-rotate-log \
-		${STAGEDIR}${PREFIX}/etc/periodic/weekly
+		${PREFIX}/etc/periodic/weekly
 	${INSTALL_DATA} ${WRKSRC}/src/auth/basic/DB/passwd.sql \
-		${STAGEDIR}${EXAMPLESDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${MYDOCS} ${STAGEDIR}${DOCSDIR})
+		${EXAMPLESDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${MYDOCS} ${DOCSDIR})
 
 .include <bsd.port.mk>

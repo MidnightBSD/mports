@@ -19,7 +19,7 @@ post-patch:
 		${SED} -e 's/_v1.0//;s/_/-/'`; done
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

@@ -20,7 +20,7 @@ NO_BUILD=	yes
 WRKSRC_SUBDIR=		OTF
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.otf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.otf ${FONTSDIR}
 
 .include <bsd.port.mk>

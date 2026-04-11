@@ -14,8 +14,8 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC}/TTF && \
-		${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR}
+		${INSTALL_DATA} *.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

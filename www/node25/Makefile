@@ -105,7 +105,7 @@ post-configure:
 	${FIND} ${WRKSRC}/out -type f -print0 | ${XARGS} -0 ${REINPLACE_CMD} -e "s|-I${LOCALBASE}/include||g"
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/node
+	${STRIP_CMD} ${PREFIX}/bin/node
 
 post-install-BUNDLED_SSL-on:
 	cd ${FAKE_DESTDIR}${PREFIX} && ${FIND} include/node/openssl/ -type f >> ${TMPPLIST}

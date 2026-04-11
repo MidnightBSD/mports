@@ -81,7 +81,7 @@ post-patch:
 	     ${WRKSRC}/tkConfig.sh.in
 	${REINPLACE_CMD} \
 		-e '/^CONFIG_INSTALL_DIR/s|= .*$$|= $${SCRIPT_INSTALL_DIR}|' \
-		-e 's|$$(LIB_INSTALL_DIR)/pkgconfig|${STAGEDIR}${PREFIX}/libdata/pkgconfig|g' \
+		-e 's|$$(LIB_INSTALL_DIR)/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
 		-e 's|pkgconfig/tk.pc|pkgconfig/tk${SHORT_TCL_VER}.pc|' \
 		-e 's|strip -x|strip --strip-unneeded|' \
 		-e 's|TCL_BUILD_LIB_SPEC|TCL_LIB_SPEC|' \
@@ -92,8 +92,8 @@ post-patch:
 
 post-install:
 	# Make sure users of USES=tk:90 are able to look up the library
-	${LN} -fs lib${TCL_PKG_LIB_PREFIX}tk${TK_VER}.so ${STAGEDIR}${PREFIX}/lib/libtk${PKGNAMESUFFIX}.so
-	${LN} -fs lib${TCL_PKG_LIB_PREFIX}tk${TK_VER}.so ${STAGEDIR}${PREFIX}/lib/libtk${PKGNAMESUFFIX}.so.1
+	${LN} -fs lib${TCL_PKG_LIB_PREFIX}tk${TK_VER}.so ${PREFIX}/lib/libtk${PKGNAMESUFFIX}.so
+	${LN} -fs lib${TCL_PKG_LIB_PREFIX}tk${TK_VER}.so ${PREFIX}/lib/libtk${PKGNAMESUFFIX}.so.1
 
 do-test:
 	cd ${WRKSRC} && ${MAKE} test

@@ -65,13 +65,13 @@ GLVND_JSON_PATH=	${PREFIX}/share/glvnd/egl_vendor.d
 VKICD_PATH=		${PREFIX}/share/vulkan/icd.d
 VKLAYERS_PATH=		${PREFIX}/share/vulkan/implicit_layer.d
 MAKE_ENV=	DEBUG_FLAGS=${DEBUG_FLAGS} \
-		EGL_GLVND_JSON_PATH=${STAGEDIR}${GLVND_JSON_PATH} \
-		VKICD_PATH=${STAGEDIR}${VKICD_PATH} \
-		VKLAYERS_PATH=${STAGEDIR}${VKLAYERS_PATH}
+		EGL_GLVND_JSON_PATH=${GLVND_JSON_PATH} \
+		VKICD_PATH=${VKICD_PATH} \
+		VKLAYERS_PATH=${VKLAYERS_PATH}
 .if ${NVVERSION} < 495.02905
-MAKE_ENV+=	EGL_WAYLAND_JSON_PATH=${STAGEDIR}${EGL_JSON_PATH}
+MAKE_ENV+=	EGL_WAYLAND_JSON_PATH=${EGL_JSON_PATH}
 .else
-MAKE_ENV+=	EGL_EXTERNAL_PLATFORM_JSON_PATH=${STAGEDIR}${EGL_JSON_PATH}
+MAKE_ENV+=	EGL_EXTERNAL_PLATFORM_JSON_PATH=${EGL_JSON_PATH}
 .endif
 SUB_FILES=	pkg-message
 .if !defined(LIBGLDIR)
@@ -184,8 +184,8 @@ post-patch: .SILENT
 .endif
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${MODULESDIR}/drivers \
-		${STAGEDIR}${PREFIX}/${MODULESDIR}/extensions
+	@${MKDIR} ${PREFIX}/${MODULESDIR}/drivers \
+		${PREFIX}/${MODULESDIR}/extensions
 
 post-install: .SILENT
 	${INSTALL_SCRIPT} ${WRKSRC}/obj/nvidia-bug-report.sh \
@@ -202,7 +202,7 @@ post-install: .SILENT
 	${REINPLACE_CMD} -e '/libXvMCNVIDIA/d' ${TMPPLIST}
 .else	# some applications need this symlink (see PR ports/72877)
 	${LN} -sf libXvMCNVIDIA.so.1 \
-		${STAGEDIR}${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
+		${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
 .endif
 .if ${NVVERSION} < 331.013 || ${ARCH} == amd64 && ${NVVERSION} < 334.016
 	${REINPLACE_CMD} -E '/lib(nvidia-)?(EGL|eglcore|GLESv|glsi)/d' \
@@ -247,23 +247,23 @@ post-install: .SILENT
 # Rename some libraries and install a libmap file to resolve conflict with
 # Mesa libraries.
 	${LN} -sf libGL-NVIDIA.so.1 \
-		${STAGEDIR}${PREFIX}/lib/libGL-NVIDIA.so
-	${MV} -f ${STAGEDIR}${PREFIX}/lib/libGL.so.1 \
-		${STAGEDIR}${PREFIX}/lib/libGL-NVIDIA.so.1
-	${RM} ${STAGEDIR}${PREFIX}/lib/libGL.so
+		${PREFIX}/lib/libGL-NVIDIA.so
+	${MV} -f ${PREFIX}/lib/libGL.so.1 \
+		${PREFIX}/lib/libGL-NVIDIA.so.1
+	${RM} ${PREFIX}/lib/libGL.so
 .  if ${NVVERSION} >= 331.013
 	${LN} -sf libEGL-NVIDIA.so.1 \
-		${STAGEDIR}${PREFIX}/lib/libEGL-NVIDIA.so
-	${MV} -f ${STAGEDIR}${PREFIX}/lib/libEGL.so.1 \
-		${STAGEDIR}${PREFIX}/lib/libEGL-NVIDIA.so.1
-	${RM} ${STAGEDIR}${PREFIX}/lib/libEGL.so
-	${RM} ${STAGEDIR}${PREFIX}/lib/libGLESv1_CM.so
-	${RM} ${STAGEDIR}${PREFIX}/lib/libGLESv1_CM.so.1
+		${PREFIX}/lib/libEGL-NVIDIA.so
+	${MV} -f ${PREFIX}/lib/libEGL.so.1 \
+		${PREFIX}/lib/libEGL-NVIDIA.so.1
+	${RM} ${PREFIX}/lib/libEGL.so
+	${RM} ${PREFIX}/lib/libGLESv1_CM.so
+	${RM} ${PREFIX}/lib/libGLESv1_CM.so.1
 	${LN} -sf libGLESv2-NVIDIA.so.2 \
-		${STAGEDIR}${PREFIX}/lib/libGLESv2-NVIDIA.so
-	${MV} -f ${STAGEDIR}${PREFIX}/lib/libGLESv2.so.2 \
-		${STAGEDIR}${PREFIX}/lib/libGLESv2-NVIDIA.so.2
-	${RM} ${STAGEDIR}${PREFIX}/lib/libGLESv2.so
+		${PREFIX}/lib/libGLESv2-NVIDIA.so
+	${MV} -f ${PREFIX}/lib/libGLESv2.so.2 \
+		${PREFIX}/lib/libGLESv2-NVIDIA.so.2
+	${RM} ${PREFIX}/lib/libGLESv2.so
 .  endif
 	@${MKDIR} ${PREFIX}/etc/libmap.d/
 	${INSTALL_DATA} ${WRKDIR}/nvidia.conf \

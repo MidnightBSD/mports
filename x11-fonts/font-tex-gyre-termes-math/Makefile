@@ -20,7 +20,7 @@ FONTNAME=	OTF
 PLIST_FILES=	${FONTSDIR}/${PORTNAME:S/font-//:S/-//:S/-//}.otf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/fonts/OTF
-	${INSTALL_DATA} ${WRKSRC}/opentype/* ${STAGEDIR}${PREFIX}/share/fonts/OTF
+	@${MKDIR} ${PREFIX}/share/fonts/OTF
+	${INSTALL_DATA} ${WRKSRC}/opentype/* ${PREFIX}/share/fonts/OTF
 
 .include <bsd.port.mk>

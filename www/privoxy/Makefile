@@ -96,22 +96,22 @@ post-patch-DOCS-on:
 		${WRKSRC}/config
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/privoxy/templates
-	${INSTALL_PROGRAM} ${WRKSRC}/privoxy ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_DATA} ${WRKSRC}/templates/[a-z]* ${STAGEDIR}${PREFIX}/etc/privoxy/templates
+	@${MKDIR} ${PREFIX}/etc/privoxy/templates
+	${INSTALL_PROGRAM} ${WRKSRC}/privoxy ${PREFIX}/sbin
+	${INSTALL_DATA} ${WRKSRC}/templates/[a-z]* ${PREFIX}/etc/privoxy/templates
 .for privoxy_tool in privoxy-log-parser.pl privoxy-regression-test.pl uagen.pl url-pattern-translator.pl
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/${privoxy_tool} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/${privoxy_tool} ${PREFIX}/bin
 .endfor
 .for defaultfile in default.action default.filter regression-tests.action
-	${INSTALL_DATA} ${WRKSRC}/${defaultfile} ${STAGEDIR}${PREFIX}/etc/privoxy
+	${INSTALL_DATA} ${WRKSRC}/${defaultfile} ${PREFIX}/etc/privoxy
 .endfor
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 .for examplefile in config match-all.action trust user.action
-	${INSTALL_DATA} ${WRKSRC}/${examplefile} ${STAGEDIR}${EXAMPLESDIR}/
+	${INSTALL_DATA} ${WRKSRC}/${examplefile} ${EXAMPLESDIR}/
 .endfor
-	${INSTALL_MAN}  ${WRKSRC}/privoxy.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/user-manual
-	${INSTALL_DATA} ${WRKSRC}/doc/webserver/user-manual/[a-z]* ${STAGEDIR}${DOCSDIR}/user-manual
-	${INSTALL_DATA} ${WRKSRC}/doc/webserver/p_doc.css ${STAGEDIR}${DOCSDIR}/user-manual
+	${INSTALL_MAN}  ${WRKSRC}/privoxy.8 ${PREFIX}/share/man/man8
+	@${MKDIR} ${DOCSDIR}/user-manual
+	${INSTALL_DATA} ${WRKSRC}/doc/webserver/user-manual/[a-z]* ${DOCSDIR}/user-manual
+	${INSTALL_DATA} ${WRKSRC}/doc/webserver/p_doc.css ${DOCSDIR}/user-manual
 
 .include <bsd.port.mk>

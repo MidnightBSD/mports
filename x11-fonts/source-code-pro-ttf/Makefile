@@ -23,7 +23,7 @@ SUB_FILES=	pkg-message
 PORTSCOUT=	skipv:variable-fonts
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/TTF/*.ttf ${STAGEDIR}${FONTSDIR}/
+	${MKDIR} ${FONTSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/TTF/*.ttf ${FONTSDIR}/
 
 .include <bsd.port.mk>

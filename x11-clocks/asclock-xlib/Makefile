@@ -31,8 +31,8 @@ pre-configure:
 post-install:
 .for i in Freeamp Newstone Orb Stone beats classic penguin shaped
 	(cd ${WRKSRC}/themes/${i}; \
-	  ${MKDIR} ${STAGEDIR}${PREFIX}/share/asclock/${i}; \
-	  ${INSTALL_DATA} *.xpm config ${STAGEDIR}${PREFIX}/share/asclock/${i}/ )
+	  ${MKDIR} ${PREFIX}/share/asclock/${i}; \
+	  ${INSTALL_DATA} *.xpm config ${PREFIX}/share/asclock/${i}/ )
 .endfor
 	-${MKDIR} ${PREFIX}/share/man/man1
 	-${CP} ${PREFIX}/man/man1/* ${PREFIX}/share/man/man1/

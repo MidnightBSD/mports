@@ -100,7 +100,7 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/actions/fm-actions.h \
-		${STAGEDIR}${PREFIX}/include/${PORTNAME}
+		${PREFIX}/include/${PORTNAME}
 .endif
 
 .include <bsd.port.mk>

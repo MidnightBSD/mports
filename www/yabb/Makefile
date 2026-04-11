@@ -54,10 +54,10 @@ post-patch:
 	@${CHMOD} -R u+w ${WDIR}/Attachments ${WDIR}/Templates
 
 do-install:
-	${INSTALL} -d ${STAGEDIR}${DIR}
-	@cd ${WCGI} && ${COPYTREE_SHARE} . ${STAGEDIR}${DIR}/
-	@cd ${WDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${DIR}/
-	@${CHMOD} a=rx ${STAGEDIR}${DIR}
+	${INSTALL} -d ${DIR}
+	@cd ${WCGI} && ${COPYTREE_SHARE} . ${DIR}/
+	@cd ${WDIR} && ${COPYTREE_SHARE} . ${DIR}/
+	@${CHMOD} a=rx ${DIR}
 
 # Maintainer section
 # The result goest to ISOFILES

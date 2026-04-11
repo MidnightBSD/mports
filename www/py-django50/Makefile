@@ -62,7 +62,7 @@ post-build-HTMLDOCS-on:
 	cd ${WRKSRC}/docs && ${MAKE_CMD} html SPHINXBUILD=sphinx-build-${PYTHON_VER}
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/docs/man/* ${STAGEDIR}/${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/docs/man/* /${PREFIX}/share/man/man1
 	@${ECHO_MSG}	""
 	@${ECHO_MSG}	"	* See http://docs.djangoproject.com/ for complete documentation"
 	@${ECHO_MSG}	""

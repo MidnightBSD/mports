@@ -39,7 +39,7 @@ post-extract:
 
 do-install:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . \
-		${STAGEDIR}${WWWDIR})
+		${WWWDIR})
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

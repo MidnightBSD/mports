@@ -21,7 +21,7 @@ post-patch:
 	@${REINPLACE_CMD} -e "/GNUSTEP_INSTALLATION_DIR/d" ${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Tools/gsks \
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Tools/gsks \
 		${PREFIX}/GNUstep/System/Library/Frameworks/GSKrab.framework/Versions/0/libGSKrab.so
 
 .include <bsd.port.mk>

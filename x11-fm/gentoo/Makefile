@@ -31,13 +31,13 @@ post-patch:
 		${WRKSRC}/src/odmultibutton.c
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/docs/gentoo.1x ${STAGEDIR}${PREFIX}/share/man/man1/gentoo.1
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/docs/gentoo.1x ${PREFIX}/share/man/man1/gentoo.1
+	@${MKDIR} ${DOCSDIR}
 .for file in BUGS CONFIG-CHANGES CREDITS NEWS README README.NLS README.gtkrc \
 	TODO
-	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
 .endfor
-	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
-	${RM} ${STAGEDIR}${DOCSDIR}/gentoo.1x
+	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${DOCSDIR}
+	${RM} ${DOCSDIR}/gentoo.1x
 
 .include <bsd.port.mk>

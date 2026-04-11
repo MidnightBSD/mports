@@ -31,7 +31,7 @@ PLIST_FILES=	bin/xdotool \
 		share/man/man1/xdotool.1.gz
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/xdotool \
-		${STAGEDIR}${PREFIX}/lib/libxdo.so.3
+	${STRIP_CMD} ${PREFIX}/bin/xdotool \
+		${PREFIX}/lib/libxdo.so.3
 
 .include <bsd.port.mk>

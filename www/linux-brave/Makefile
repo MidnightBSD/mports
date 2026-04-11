@@ -48,12 +48,12 @@ post-extract:
 		${WRKSRC}/usr/share/applications/brave-browser.desktop
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/brave-browser ${STAGEDIR}${PREFIX}/bin
-	cd ${WRKSRC}/opt/brave.com && ${CP} -r brave ${STAGEDIR}${PREFIX}/share
-	cd ${WRKSRC}/usr/share && ${COPYTREE_SHARE} \* ${STAGEDIR}${PREFIX}/share
+	${INSTALL_SCRIPT} ${WRKDIR}/brave-browser ${PREFIX}/bin
+	cd ${WRKSRC}/opt/brave.com && ${CP} -r brave ${PREFIX}/share
+	cd ${WRKSRC}/usr/share && ${COPYTREE_SHARE} \* ${PREFIX}/share
 .for sz in 16 24 32 48 64 128 256
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps
-	${CP} ${STAGEDIR}${DATADIR}/product_logo_${sz}.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps/brave-browser.png
+	${MKDIR} ${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps
+	${CP} ${DATADIR}/product_logo_${sz}.png ${PREFIX}/share/icons/hicolor/${sz}x${sz}/apps/brave-browser.png
 .endfor
 	${MKDIR} ${FAKE_DESTDIR}/etc/brave/policies/managed
 	${INSTALL_DATA} ${FILESDIR}/brave.json ${FAKE_DESTDIR}/etc/brave/policies/managed

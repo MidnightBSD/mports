@@ -53,7 +53,7 @@ post-patch: .SILENT
 
 post-install:
 .for f in wmii wmii9menu wmiir
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${f}
+	@${STRIP_CMD} ${PREFIX}/bin/${f}
 .endfor
 
 .include <bsd.port.mk>

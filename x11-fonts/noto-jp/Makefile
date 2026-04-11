@@ -51,7 +51,7 @@ NOTO_JP_FONTS=	NotoSansCJKjp-Black.otf \
 		NotoSerifJP-SemiBold.otf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_JP_FONTS} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_JP_FONTS} ${FONTSDIR}
 
 .include <bsd.port.mk>

@@ -21,7 +21,7 @@ NO_BUILD=	yes
 PLIST_FILES=	${FONTSDIR}/Prociono.otf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/Prociono.otf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/Prociono.otf ${FONTSDIR}
 
 .include <bsd.port.mk>

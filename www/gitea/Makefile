@@ -64,14 +64,14 @@ post-patch:
 do-install:
 	# Go binary is statically linked and cannot be stripped, so use
 	# INSTALL_SCRIPT.
-	${INSTALL_SCRIPT} ${WRKSRC}/gitea ${STAGEDIR}${PREFIX}/sbin
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/conf
-	${INSTALL_DATA} ${WRKDIR}/app.ini.sample ${STAGEDIR}${ETCDIR}/conf/app.ini.sample
-	${INSTALL_DATA} ${WRKSRC}/custom/conf/app.example.ini ${STAGEDIR}${ETCDIR}/conf/app.ini.defaults
+	${INSTALL_SCRIPT} ${WRKSRC}/gitea ${PREFIX}/sbin
+	@${MKDIR} ${ETCDIR}/conf
+	${INSTALL_DATA} ${WRKDIR}/app.ini.sample ${ETCDIR}/conf/app.ini.sample
+	${INSTALL_DATA} ${WRKSRC}/custom/conf/app.example.ini ${ETCDIR}/conf/app.ini.defaults
 
-	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/db/${PORTNAME}
-	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/log/${PORTNAME}
-	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/run/${PORTNAME}
+	@${MKDIR} ${DESTDIR}/var/db/${PORTNAME}
+	@${MKDIR} ${DESTDIR}/var/log/${PORTNAME}
+	@${MKDIR} ${DESTDIR}/var/run/${PORTNAME}
 
 do-install-BINDATA-off:
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "options public templates" ${FAKE_DESTDIR}${DATADIR}
