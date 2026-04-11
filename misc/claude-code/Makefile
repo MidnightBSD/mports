@@ -41,20 +41,20 @@ post-extract:
 
 do-install:
 	# install files
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib
+	@${MKDIR} ${PREFIX}/lib
 	@cd ${WRKSRC} && \
-		${COPYTREE_SHARE} node_modules ${STAGEDIR}${PREFIX}/lib
+		${COPYTREE_SHARE} node_modules ${PREFIX}/lib
 	# update shebang
 	${REINPLACE_CMD} -i '' \
-		-e "s|#!/usr/bin/env node|#!${PREFIX}/bin/node|" \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
+		-e "s|#!/usr/bin/env node|#!${TRUE_PREFIX}/bin/node|" \
+		${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
 	# set exec bit
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
+	@${CHMOD} +x ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
 	# create wrapper script that uses system ripgrep
-	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
-	@${ECHO_CMD} '#!/bin/sh' > ${STAGEDIR}${PREFIX}/bin/claude
-	@${ECHO_CMD} 'export USE_BUILTIN_RIPGREP=false' >> ${STAGEDIR}${PREFIX}/bin/claude
-	@${ECHO_CMD} 'exec ${TRUE_PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js "$$@"' >> ${STAGEDIR}${PREFIX}/bin/claude
+	@${MKDIR} ${PREFIX}/bin
+	@${ECHO_CMD} '#!/bin/sh' > ${PREFIX}/bin/claude
+	@${ECHO_CMD} 'export USE_BUILTIN_RIPGREP=false' >> ${PREFIX}/bin/claude
+	@${ECHO_CMD} 'exec ${TRUE_PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js "$$@"' >> ${PREFIX}/bin/claude
 	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/claude
 	# remove bundled ripgrep
 	@${RM} -r ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/ripgrep
