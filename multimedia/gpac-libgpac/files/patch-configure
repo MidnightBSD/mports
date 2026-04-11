@@ -7,7 +7,7 @@
 -    FreeBSD)
 +    FreeBSD|MidnightBSD)
          make="gmake"
-         LDFLAGS="$LDFLAGS -export-dynamic"
+         LDFLAGS="$LDFLAGS -Wl,-export-dynamic"
          CFLAGS="$CFLAGS -pthread"
 @@ -708,7 +708,7 @@
  
