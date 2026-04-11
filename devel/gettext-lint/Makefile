@@ -26,8 +26,8 @@ post-patch:
 do-install:
 .for i in POFileChecker POFileClean POFileConsistency POFileEquiv POFileFill \
 	POFileGlossary POFileSpell POFileStatus
-	${INSTALL_SCRIPT} ${WRKSRC}/src/${i} ${STAGEDIR}${PREFIX}/bin/${i}
-	${INSTALL_MAN} ${WRKSRC}/doc/${i}.1 ${STAGEDIR}${PREFIX}/share/man/man1/${i}.1
+	${INSTALL_SCRIPT} ${WRKSRC}/src/${i} ${PREFIX}/bin/${i}
+	${INSTALL_MAN} ${WRKSRC}/doc/${i}.1 ${PREFIX}/share/man/man1/${i}.1
 .endfor
 	@${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/src/*.py \

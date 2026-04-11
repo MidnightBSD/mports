@@ -26,6 +26,6 @@ CONFIGURE_ARGS=	--localstatedir=${PREFIX}/share
 GLIB_SCHEMAS=	org.gnome.five-or-more.gschema.xml
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/games
+	@${MKDIR} ${PREFIX}/share/games
 
 .include <bsd.port.mk>

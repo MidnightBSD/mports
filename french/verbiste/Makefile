@@ -39,10 +39,10 @@ PLIST_SUB+=	HASGTK="@comment "
 .endif
 
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
 .for f in README *.java *.c
-	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${EXAMPLESDIR}
 .endfor
-	${INSTALL_SCRIPT} ${WRKSRC}/examples/*.pl ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/examples/*.pl ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

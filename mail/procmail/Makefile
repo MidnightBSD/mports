@@ -32,8 +32,8 @@ post-patch:
 	@${FIND} ${WRKSRC} -name 'Makefile*' | ${XARGS} ${REINPLACE_CMD} -E -e 's|cd (.+); (\$$\(MAKE\))|\2 -C \1|' -e '/^MANDIR/s|/man|/share/man|'
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}/
-	cd ${WRKSRC}/examples/ && ${INSTALL_DATA} ${PORTEXAMPLES} ${STAGEDIR}${EXAMPLESDIR}/
+	${MKDIR} ${DOCSDIR}/ ${EXAMPLESDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/
+	cd ${WRKSRC}/examples/ && ${INSTALL_DATA} ${PORTEXAMPLES} ${EXAMPLESDIR}/
 
 .include <bsd.port.mk>

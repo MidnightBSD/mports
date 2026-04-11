@@ -42,10 +42,10 @@ pre-configure:
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/libzn_poly-${DISTVERSION}.so		\
-		${STAGEDIR}${PREFIX}/lib/libzn_poly-${DISTVERSION}.so.0.0.0
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libzn_poly-${DISTVERSION}.so.0.0.0	\
-		${STAGEDIR}${PREFIX}/lib/libzn_poly-${DISTVERSION:R}.so.0
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libzn_poly-${DISTVERSION}.so.0.0.0	\
-		${STAGEDIR}${PREFIX}/lib/libzn_poly-${DISTVERSION:R}.so
+		${PREFIX}/lib/libzn_poly-${DISTVERSION}.so.0.0.0
+	${RLN} ${PREFIX}/lib/libzn_poly-${DISTVERSION}.so.0.0.0	\
+		${PREFIX}/lib/libzn_poly-${DISTVERSION:R}.so.0
+	${RLN} ${PREFIX}/lib/libzn_poly-${DISTVERSION}.so.0.0.0	\
+		${PREFIX}/lib/libzn_poly-${DISTVERSION:R}.so
 
 .include <bsd.port.mk>

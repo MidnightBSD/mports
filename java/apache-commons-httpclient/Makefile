@@ -38,14 +38,14 @@ post-patch:
 
 do-install:
 	@${ECHO_MSG} -n ">> Installing JAR file as ${JAVAJARDIR}/${PORTNAME}.jar..."
-	@${INSTALL_DATA} ${WRKSRC}/dist/${PORTNAME}.jar ${STAGEDIR}${JAVAJARDIR}/
+	@${INSTALL_DATA} ${WRKSRC}/dist/${PORTNAME}.jar ${JAVAJARDIR}/
 	@${ECHO_MSG} " [DONE]"
 
 do-install-DOCS-on:
 	@${ECHO_MSG} -n ">> Installing documentation..."
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	@cd ${WRKSRC}/dist/docs && ${FIND} api \
-	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DOCSDIR} > /dev/null 2>&1
+	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR} > /dev/null 2>&1
 	@${ECHO_MSG} " [DONE]"
 
 .include <bsd.port.mk>

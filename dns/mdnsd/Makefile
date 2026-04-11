@@ -24,8 +24,8 @@ PLIST_FILES=	bin/mdnsd bin/mquery lib/liblibmdnsd.so
 
 do-install:
 	cd ${CONFIGURE_WRKSRC} && ${INSTALL_PROGRAM} mdnsd mquery \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	${INSTALL_LIB} ${CONFIGURE_WRKSRC}/libmdnsd/liblibmdnsd.so \
-		${STAGEDIR}${PREFIX}/lib
+		${PREFIX}/lib
 
 .include <bsd.port.mk>

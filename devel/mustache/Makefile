@@ -22,7 +22,7 @@ PLIST_FILES=	include/kainjow/catch.hpp \
 		include/kainjow/mustache.hpp
 
 do-install: # https://github.com/kainjow/Mustache/issues/39
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${GH_ACCOUNT}
-	${INSTALL_DATA} ${WRKSRC}/*.hpp ${STAGEDIR}${PREFIX}/include/${GH_ACCOUNT}
+	${MKDIR} ${PREFIX}/include/${GH_ACCOUNT}
+	${INSTALL_DATA} ${WRKSRC}/*.hpp ${PREFIX}/include/${GH_ACCOUNT}
 
 .include <bsd.port.mk>

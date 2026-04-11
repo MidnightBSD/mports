@@ -43,8 +43,8 @@ do-build:
 
 do-install:
 .for _path in ${PLUGIN_PATHS}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${ECLIPSE}/${_path}
-	@${CP} -r ${WRKSRC}/${_path}/* ${STAGEDIR}${PREFIX}/${ECLIPSE}/${_path}/
+	@${MKDIR} ${PREFIX}/${ECLIPSE}/${_path}
+	@${CP} -r ${WRKSRC}/${_path}/* ${PREFIX}/${ECLIPSE}/${_path}/
 .endfor
 
 plist: build

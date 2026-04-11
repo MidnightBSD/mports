@@ -110,6 +110,6 @@ pre-install:
 
 do-install:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . \
-		${STAGEDIR}${DATADIR})
+		${DATADIR})
 
 .include <bsd.port.post.mk>

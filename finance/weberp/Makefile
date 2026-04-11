@@ -32,7 +32,7 @@ pre-install:
 	@${ECHO_CMD} -e '@owner root\n@group wheel' >> ${PLIST}
 
 do-install:
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}
-	@${CHMOD} -R 755 ${STAGEDIR}${WWWDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR}
+	@${CHMOD} -R 755 ${WWWDIR}
 
 .include <bsd.port.mk>

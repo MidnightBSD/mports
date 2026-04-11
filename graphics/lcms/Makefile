@@ -43,8 +43,8 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^testcms_LDFLAGS = / s|$$| -static|' ${WRKSRC}/testbed/Makefile.in
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/
+	${MKDIR} ${DOCSDIR}/
 	cd ${WRKSRC}/ && ${INSTALL_DATA} doc/LCMSAPI.TXT doc/TUTORIAL.TXT tifficc/tifficc.c \
-		jpegicc/jpegicc.c jpegicc/iccjpeg.c samples/wtpt.c samples/icctrans.c ${STAGEDIR}${DOCSDIR}/
+		jpegicc/jpegicc.c jpegicc/iccjpeg.c samples/wtpt.c samples/icctrans.c ${DOCSDIR}/
 
 .include <bsd.port.mk>

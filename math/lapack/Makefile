@@ -130,44 +130,44 @@ pre-install:
 	cd ${WRKDIR} && ${FIND} man/man3 -type f | ${GREP} -v '/\._' | \
 	tee ${WRKDIR}/manpages | ${SED} 's|^|share/|; s|$$|.gz|' >> ${TMPPLIST}
 	cd ${WRKDIR} && \
-	${XARGS} -J @ ${INSTALL_MAN} @ ${STAGEDIR}${PREFIX}/share/man/man3 < ${WRKDIR}/manpages
+	${XARGS} -J @ ${INSTALL_MAN} @ ${PREFIX}/share/man/man3 < ${WRKDIR}/manpages
 .endif
 
 post-install:
 .if defined(BLAS_SLAVEPORT)
-	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/BLAS/SRC/${BLASLIB} ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/BLAS/blas.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/BLAS/SRC/${BLASLIB} ${PREFIX}/lib
+	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/BLAS/blas.pc ${PREFIX}/libdata/pkgconfig
 .elif defined(CBLAS_SLAVEPORT)
 	# Avoid conflict with OpenBLAS
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/cblas
-	${MV} ${STAGEDIR}${PREFIX}/include/*.h ${STAGEDIR}${PREFIX}/include/cblas/
-	${INSTALL_DATA} ${BUILD_WRKSRC}/src/${CBLASLIB} ${STAGEDIR}${PREFIX}/lib
+	${MKDIR} ${PREFIX}/include/cblas
+	${MV} ${PREFIX}/include/*.h ${PREFIX}/include/cblas/
+	${INSTALL_DATA} ${BUILD_WRKSRC}/src/${CBLASLIB} ${PREFIX}/lib
 .elif defined(LAPACKE_SLAVEPORT)
 	# Avoid conflict with OpenBLAS
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/lapacke
-	${MV} ${STAGEDIR}${PREFIX}/include/*.h ${STAGEDIR}${PREFIX}/include/lapacke/
-	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/LAPACKE/${LAPACKELIB} ${STAGEDIR}${PREFIX}/lib
+	${MKDIR} ${PREFIX}/include/lapacke
+	${MV} ${PREFIX}/include/*.h ${PREFIX}/include/lapacke/
+	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/LAPACKE/${LAPACKELIB} ${PREFIX}/lib
 .elif defined(XLAPACK_SLAVEPORT)
-	${INSTALL_DATA} ${BUILD_WRKSRC}/SRC/liblapack.a ${STAGEDIR}${PREFIX}/lib/libxlapack.a
+	${INSTALL_DATA} ${BUILD_WRKSRC}/SRC/liblapack.a ${PREFIX}/lib/libxlapack.a
 	${INSTALL_DATA} ${BUILD_WRKSRC}/TESTING/MATGEN/libtmglib.a	\
-		${STAGEDIR}${PREFIX}/lib/libxtmglib.a
-	${MV} ${STAGEDIR}${PREFIX}/lib/liblapack.so	\
-		${STAGEDIR}${PREFIX}/lib/libxlapack.so.${PORTVERSION}
-	${LN} -sf libxlapack.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libxlapack.so
+		${PREFIX}/lib/libxtmglib.a
+	${MV} ${PREFIX}/lib/liblapack.so	\
+		${PREFIX}/lib/libxlapack.so.${PORTVERSION}
+	${LN} -sf libxlapack.so.${PORTVERSION} ${PREFIX}/lib/libxlapack.so
 	${LN} -sf libxlapack.so.${PORTVERSION}	\
-		${STAGEDIR}${PREFIX}/lib/libxlapack.so.${SVERSION}
-	${MV} ${STAGEDIR}${PREFIX}/lib/libtmglib.so	\
-		${STAGEDIR}${PREFIX}/lib/libxtmglib.so.${PORTVERSION}
-	${LN} -sf libxtmglib.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libxtmglib.so
+		${PREFIX}/lib/libxlapack.so.${SVERSION}
+	${MV} ${PREFIX}/lib/libtmglib.so	\
+		${PREFIX}/lib/libxtmglib.so.${PORTVERSION}
+	${LN} -sf libxtmglib.so.${PORTVERSION} ${PREFIX}/lib/libxtmglib.so
 	${LN} -sf libxtmglib.so.${PORTVERSION}	\
-		${STAGEDIR}${PREFIX}/lib/libxtmglib.so.${SVERSION}
+		${PREFIX}/lib/libxtmglib.so.${SVERSION}
 	${SED} -e 's|lapack|xlapack|g;s|LAPACK|XLAPACK|'		\
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/lapack.pc	\
-		> ${STAGEDIR}${PREFIX}/libdata/pkgconfig/xlapack.pc
-	${RM} ${STAGEDIR}${PREFIX}/libdata/pkgconfig/lapack.pc
+		${PREFIX}/libdata/pkgconfig/lapack.pc	\
+		> ${PREFIX}/libdata/pkgconfig/xlapack.pc
+	${RM} ${PREFIX}/libdata/pkgconfig/lapack.pc
 .else # Lapack
-	${INSTALL_DATA} ${BUILD_WRKSRC}/SRC/liblapack.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_DATA} ${BUILD_WRKSRC}/TESTING/MATGEN/libtmglib.a ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_DATA} ${BUILD_WRKSRC}/SRC/liblapack.a ${PREFIX}/lib
+	${INSTALL_DATA} ${BUILD_WRKSRC}/TESTING/MATGEN/libtmglib.a ${PREFIX}/lib
 .endif
 
 .include <bsd.port.post.mk>

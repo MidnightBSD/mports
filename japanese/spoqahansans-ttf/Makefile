@@ -34,7 +34,7 @@ ORIGINAL_VARS=		SRCFONTSDIR=SpoqaHanSans_jp_original
 SUBSET_VARS=		SRCFONTSDIR=SpoqaHanSans_jp_subset
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${SRCFONTSDIR}/*.ttf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${SRCFONTSDIR}/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

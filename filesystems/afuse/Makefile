@@ -29,7 +29,7 @@ OPTIONS_DEFINE=	DOCS
 DOCS_SUB_FILES=	pkg-message
 
 post-install:
-	${INSTALL_MAN} ${FILESDIR}/afuse.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${FILESDIR}/afuse.1 ${PREFIX}/share/man/man1
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

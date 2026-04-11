@@ -39,8 +39,8 @@ post-patch:
 
 do-install:
 .for v in ${VERSIONS}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/tcl${v:R:S/.//}
-	${CP} -R ${WRKSRC}/tcl${v}/html/* ${STAGEDIR}${PREFIX}/share/doc/tcl${v:R:S/.//}
+	${MKDIR} ${PREFIX}/share/doc/tcl${v:R:S/.//}
+	${CP} -R ${WRKSRC}/tcl${v}/html/* ${PREFIX}/share/doc/tcl${v:R:S/.//}
 .endfor
 
 .include <bsd.port.mk>

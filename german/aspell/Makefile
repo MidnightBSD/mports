@@ -18,19 +18,19 @@ USE_PERL5=	build
 SHEBANG_FILES=	bin/myspellfixprefix.pl
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/aspell \
-	    ${STAGEDIR}${PREFIX}/lib/aspell-0.60
+	@${MKDIR} ${PREFIX}/share/aspell \
+	    ${PREFIX}/lib/aspell-0.60
 .for lang in de_DE de_AT de_CH
 	${INSTALL_DATA} ${WRKSRC}/aspell/${lang}.dat \
 	    ${WRKSRC}/aspell/${lang}_affix.dat \
-	    ${STAGEDIR}${PREFIX}/lib/aspell-0.60
+	    ${PREFIX}/lib/aspell-0.60
 	${INSTALL_DATA} ${WRKSRC}/aspell/${lang}.rws \
 	    ${WRKSRC}/aspell/${lang}.multi \
-	    ${STAGEDIR}${PREFIX}/share/aspell
+	    ${PREFIX}/share/aspell
 .endfor
-	${ECHO} "add de_DE.multi" > ${STAGEDIR}${PREFIX}/share/aspell/deutsch.alias
-	${ECHO} "add de_DE.multi" > ${STAGEDIR}${PREFIX}/share/aspell/german.alias
-	${ECHO} "add de_CH.multi" > ${STAGEDIR}${PREFIX}/share/aspell/swiss.alias
-	${ECHO} "add de_DE.multi" > ${STAGEDIR}${PREFIX}/share/aspell/de.alias
+	${ECHO} "add de_DE.multi" > ${PREFIX}/share/aspell/deutsch.alias
+	${ECHO} "add de_DE.multi" > ${PREFIX}/share/aspell/german.alias
+	${ECHO} "add de_CH.multi" > ${PREFIX}/share/aspell/swiss.alias
+	${ECHO} "add de_DE.multi" > ${PREFIX}/share/aspell/de.alias
 
 .include <bsd.port.mk>

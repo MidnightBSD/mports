@@ -52,6 +52,6 @@ do-extract:
 	${TAR} -xf ${DISTDIR}/libyuv-${LIBYUV_HASH}.tar.gz  -C ${WRKSRC}
 
 post-install:
-	(cd ${WRKDIR} && ${INSTALL_DATA} libyuv.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig)
+	(cd ${WRKDIR} && ${INSTALL_DATA} libyuv.pc ${PREFIX}/libdata/pkgconfig)
 
 .include <bsd.port.mk>

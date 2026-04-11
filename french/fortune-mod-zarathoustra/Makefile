@@ -23,7 +23,7 @@ do-build:
 	@cd ${WRKSRC} && ${STRCMD} zarathoustra
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/games/fortune
-	${INSTALL_DATA} ${WRKSRC}/zarathoustra* ${STAGEDIR}${PREFIX}/share/games/fortune
+	@${MKDIR} ${PREFIX}/share/games/fortune
+	${INSTALL_DATA} ${WRKSRC}/zarathoustra* ${PREFIX}/share/games/fortune
 
 .include <bsd.port.mk>

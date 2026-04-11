@@ -36,9 +36,9 @@ post-patch:
 		${WRKSRC}/autoconf/Makefile.in
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
+	${MKDIR} ${PREFIX}/share/man/ja/man1
 	${INSTALL_MAN} ${JDOCSRC}/slrn.1 \
-		${STAGEDIR}${PREFIX}/share/man/ja/man1
-	${CP} -a ${JDOCSRC} ${STAGEDIR}${PREFIX}/share/doc/slrn/ja
+		${PREFIX}/share/man/ja/man1
+	${CP} -a ${JDOCSRC} ${PREFIX}/share/doc/slrn/ja
 
 .include <bsd.port.mk>

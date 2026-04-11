@@ -20,9 +20,9 @@ OPTIONS_DEFINE=	DOCS
 PORTDOCS=	*
 
 do-install:
-	${MKDIR} ${STAGEDIR}${AC_SUBDIR}/
-	${INSTALL_DATA} ${WRKSRC}/ocaml.m4 ${STAGEDIR}${AC_SUBDIR}/
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/ocaml.m4.txt ${STAGEDIR}${DOCSDIR}/
+	${MKDIR} ${AC_SUBDIR}/
+	${INSTALL_DATA} ${WRKSRC}/ocaml.m4 ${AC_SUBDIR}/
+	${MKDIR} ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/ocaml.m4.txt ${DOCSDIR}/
 
 .include <bsd.port.mk>

@@ -92,8 +92,8 @@ pre-configure:
 	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf2.13)
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/lib/libjs_static.ajs
-	${LN} -fs libmozjs-${SP_VER}.so ${STAGEDIR}${PREFIX}/lib/libmozjs-${SP_VER}.so.1
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmozjs-${SP_VER}.*
+	${RM} ${PREFIX}/lib/libjs_static.ajs
+	${LN} -fs libmozjs-${SP_VER}.so ${PREFIX}/lib/libmozjs-${SP_VER}.so.1
+	${STRIP_CMD} ${PREFIX}/lib/libmozjs-${SP_VER}.*
 
 .include <bsd.port.post.mk>

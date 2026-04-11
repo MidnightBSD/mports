@@ -239,17 +239,17 @@ do-install:
 # regular pkg-plist, because several libraries have a computed
 # filename based on the absolute path of the source files.  As it
 # is user-specific, we cannot know their filename in advance.
-	@${RM}	${STAGEDIR}${DOCSDIR}/*.old \
-		${STAGEDIR}${PREFIX}/lib/rustlib/components \
-		${STAGEDIR}${PREFIX}/lib/rustlib/install.log \
-		${STAGEDIR}${PREFIX}/lib/rustlib/manifest-* \
-		${STAGEDIR}${PREFIX}/lib/rustlib/rust-installer-version \
-		${STAGEDIR}${PREFIX}/lib/rustlib/uninstall.sh
-	@${FIND} ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${PREFIX}/lib \
-		${STAGEDIR}${PREFIX}/libexec -exec ${FILE} -i {} + | \
+	@${RM}	${DOCSDIR}/*.old \
+		${PREFIX}/lib/rustlib/components \
+		${PREFIX}/lib/rustlib/install.log \
+		${PREFIX}/lib/rustlib/manifest-* \
+		${PREFIX}/lib/rustlib/rust-installer-version \
+		${PREFIX}/lib/rustlib/uninstall.sh
+	@${FIND} ${PREFIX}/bin ${PREFIX}/lib \
+		${PREFIX}/libexec -exec ${FILE} -i {} + | \
 		${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
-	@${FIND} ${STAGEDIR}${PREFIX} -not -type d | \
-		${SED} -E -e 's,^${STAGEDIR}${PREFIX}/,,' \
+	@${FIND} ${PREFIX} -not -type d | \
+		${SED} -E -e 's,^${PREFIX}/,,' \
 			-e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 post-install-DOCS-on:

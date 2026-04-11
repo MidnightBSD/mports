@@ -16,16 +16,16 @@ RUN_DEPENDS=	kcc:japanese/kcc
 
 do-install:
 .for i in cmt prn psconv
-	(cd ${WRKSRC} && ${INSTALL_PROGRAM} ${i} ${STAGEDIR}${PREFIX}/bin)
+	(cd ${WRKSRC} && ${INSTALL_PROGRAM} ${i} ${PREFIX}/bin)
 .endfor
-	${LN} -sf prn ${STAGEDIR}${PREFIX}/bin/cprn
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} cmtdefs ${STAGEDIR}${DATADIR})
+	${LN} -sf prn ${PREFIX}/bin/cprn
+	@${MKDIR} ${DATADIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} cmtdefs ${DATADIR})
 .for i in cmt cprn prn psconv
 	(cd ${WRKSRC} && ${INSTALL_MAN} ${i}.jman \
-		${STAGEDIR}${PREFIX}/share/man/man1/${i}.1)
+		${PREFIX}/share/man/man1/${i}.1)
 .endfor
 	(cd ${WRKSRC} && ${INSTALL_MAN} cmtdefs.jman \
-		${STAGEDIR}${PREFIX}/share/man/man5/cmtdefs.5)
+		${PREFIX}/share/man/man5/cmtdefs.5)
 
 .include <bsd.port.mk>

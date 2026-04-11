@@ -28,11 +28,11 @@ PLIST_FILES=	include/duk_config.h \
 		libdata/pkgconfig/duktape.pc
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/duktape.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
-	${INSTALL_LIB} ${WRKSRC}/libduktape.so.${MAJOR}.${MINOR} ${STAGEDIR}${PREFIX}/lib
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libduktape.so.${MAJOR}.${MINOR} ${STAGEDIR}${PREFIX}/lib/libduktape.so
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libduktape.so.${MAJOR}.${MINOR} ${STAGEDIR}${PREFIX}/lib/libduktape.so.${MAJOR}
-	${INSTALL_DATA} ${WRKSRC}/src/duk_config.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/src/duktape.h ${STAGEDIR}${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/duktape.pc ${PREFIX}/libdata/pkgconfig
+	${INSTALL_LIB} ${WRKSRC}/libduktape.so.${MAJOR}.${MINOR} ${PREFIX}/lib
+	${RLN} ${PREFIX}/lib/libduktape.so.${MAJOR}.${MINOR} ${PREFIX}/lib/libduktape.so
+	${RLN} ${PREFIX}/lib/libduktape.so.${MAJOR}.${MINOR} ${PREFIX}/lib/libduktape.so.${MAJOR}
+	${INSTALL_DATA} ${WRKSRC}/src/duk_config.h ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/src/duktape.h ${PREFIX}/include
 
 .include <bsd.port.mk>

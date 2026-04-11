@@ -16,7 +16,7 @@ RUN_DEPENDS=	tuxpaint:games/tuxpaint
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-MAKE_ARGS=	DATA_PREFIX="${STAGEDIR}${DATADIR}/"
+MAKE_ARGS=	DATA_PREFIX="${DATADIR}/"
 INSTALL_TARGET=	install-all
 
 DATADIR=	${PREFIX}/share/tuxpaint

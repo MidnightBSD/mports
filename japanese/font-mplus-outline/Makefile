@@ -31,17 +31,17 @@ PORTDOCS=	README_E LICENSE_J README_J
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
+	${MKDIR} ${PREFIX}/etc/fonts/conf.avail \
+	    ${PREFIX}/etc/fonts/conf.d
 	${INSTALL_DATA} ${FILESDIR}/20-unhint-${FONTNAME}.conf \
 	    ${FILESDIR}/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail
+	    ${PREFIX}/etc/fonts/conf.avail
 	${LN} -s -f ../conf.avail/20-unhint-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
 	${LN} -s -f ../conf.avail/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -33,6 +33,6 @@ post-patch:
 	${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' ${WRKSRC}/a2ps-j
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/a2ps-j ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/a2ps-j ${PREFIX}/bin
 
 .include <bsd.port.mk>

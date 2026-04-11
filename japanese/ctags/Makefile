@@ -25,8 +25,8 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/jexctags
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+	@${STRIP_CMD} ${PREFIX}/bin/jexctags
 
 .include <bsd.port.mk>

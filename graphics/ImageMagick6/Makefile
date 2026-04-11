@@ -343,8 +343,8 @@ pre-configure:
 
 post-install:
 .for i in ${SAMPLE_FILES}
-	@${MV} ${STAGEDIR}${PREFIX}/etc/ImageMagick-6/${i} \
-		${STAGEDIR}${PREFIX}/etc/ImageMagick-6/${i}.sample
+	@${MV} ${PREFIX}/etc/ImageMagick-6/${i} \
+		${PREFIX}/etc/ImageMagick-6/${i}.sample
 .endfor
 
 do-test:

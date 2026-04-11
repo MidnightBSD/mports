@@ -16,9 +16,9 @@ PLIST_FILES=	bin/xtriangles \
 		share/man/man1/xtriangles.1.gz
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/xtriangles ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/xtriangles ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/Triangles.ad \
-		 ${STAGEDIR}${PREFIX}/lib/X11/app-defaults/Triangles
-	${INSTALL_MAN} ${WRKSRC}/xtriangles.man ${STAGEDIR}${PREFIX}/share/man/man1/xtriangles.1
+		 ${PREFIX}/lib/X11/app-defaults/Triangles
+	${INSTALL_MAN} ${WRKSRC}/xtriangles.man ${PREFIX}/share/man/man1/xtriangles.1
 
 .include <bsd.port.mk>

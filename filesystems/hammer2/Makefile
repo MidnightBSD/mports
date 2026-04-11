@@ -17,20 +17,20 @@ GH_ACCOUNT=	kusumi
 GH_PROJECT=	freebsd_hammer2
 
 do-install:
-	${INSTALL_KLD} ${WRKSRC}/src/sys/fs/hammer2/hammer2.ko ${STAGEDIR}${KMODDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/hammer2/hammer2 ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/newfs_hammer2/newfs_hammer2 ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/mount_hammer2/mount_hammer2 ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/fsck_hammer2/fsck_hammer2 ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/src/sbin/hammer2/hammer2.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${INSTALL_MAN} ${WRKSRC}/src/sbin/newfs_hammer2/newfs_hammer2.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${INSTALL_MAN} ${WRKSRC}/src/sbin/mount_hammer2/mount_hammer2.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${INSTALL_MAN} ${WRKSRC}/src/sbin/fsck_hammer2/fsck_hammer2.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_KLD} ${WRKSRC}/src/sys/fs/hammer2/hammer2.ko ${KMODDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/hammer2/hammer2 ${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/newfs_hammer2/newfs_hammer2 ${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/mount_hammer2/mount_hammer2 ${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/src/sbin/fsck_hammer2/fsck_hammer2 ${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/src/sbin/hammer2/hammer2.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/src/sbin/newfs_hammer2/newfs_hammer2.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/src/sbin/mount_hammer2/mount_hammer2.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/src/sbin/fsck_hammer2/fsck_hammer2.8 ${PREFIX}/share/man/man8
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/hammer2
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/newfs_hammer2
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/mount_hammer2
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/fsck_hammer2
+	${STRIP_CMD} ${PREFIX}/sbin/hammer2
+	${STRIP_CMD} ${PREFIX}/sbin/newfs_hammer2
+	${STRIP_CMD} ${PREFIX}/sbin/mount_hammer2
+	${STRIP_CMD} ${PREFIX}/sbin/fsck_hammer2
 
 .include <bsd.port.mk>

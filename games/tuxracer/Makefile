@@ -28,8 +28,8 @@ CPPFLAGS+=	-DGLX_GLXEXT_LEGACY
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	(cd ${WORKDATA} ${WRKDIR}/${PORTNAME}-data-${PORTVERSION} \
-		&& ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
+		&& ${COPYTREE_SHARE} . ${DATADIR})
 
 .include <bsd.port.mk>

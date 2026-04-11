@@ -22,10 +22,10 @@ PLIST_FILES=	bin/hns-setup bin/todayhns
 PORTDATA=	*
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${CP} -pR ${WRKSRC}/ ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/hns-setup ${STAGEDIR}${PREFIX}/bin/hns-setup
+	@${MKDIR} ${DATADIR}
+	${CP} -pR ${WRKSRC}/ ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/hns-setup ${PREFIX}/bin/hns-setup
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/todayhns/todayhns \
-		${STAGEDIR}${PREFIX}/bin/todayhns
+		${PREFIX}/bin/todayhns
 
 .include <bsd.port.mk>

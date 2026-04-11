@@ -20,8 +20,8 @@ post-patch:
 		${WRKSRC}/sleuth
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/sleuth ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/sleuth ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/sleuth.conf \
-		${STAGEDIR}${PREFIX}/etc/sleuth.conf.sample
+		${PREFIX}/etc/sleuth.conf.sample
 
 .include <bsd.port.mk>

@@ -67,7 +67,7 @@ post-install:
 	(cd ${WRKSRC}/doc && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} manpages)
 	${INSTALL_DATA} ${WRKSRC}/win/X11/JNetHack.ad \
-		${STAGEDIR}${PREFIX}/lib/X11/app-defaults/JNetHack
+		${PREFIX}/lib/X11/app-defaults/JNetHack
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

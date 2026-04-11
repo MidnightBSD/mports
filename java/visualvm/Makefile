@@ -27,15 +27,15 @@ post-patch:
 	@${REINPLACE_CMD} 's|%%JAVA_HOME%%|${JAVA_HOME}|' ${WRKSRC}/bin/visualvm
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/visualvm ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/visualvm
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/visualvm ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/share/visualvm
 .for i in platform visualvm
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} ${i} ${STAGEDIR}${PREFIX}/share/visualvm/)
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} ${i} ${PREFIX}/share/visualvm/)
 .endfor
 .for i in visualvm.conf visualvm.clusters visualvm.icns visualvm.import
-	${INSTALL_DATA} ${WRKSRC}/etc/${i} ${STAGEDIR}${PREFIX}/etc/${i}.sample
+	${INSTALL_DATA} ${WRKSRC}/etc/${i} ${PREFIX}/etc/${i}.sample
 .endfor
-	@${UNZIP_CMD} -q -j -d ${STAGEDIR}${DATADIR} ${WRKSRC}/visualvm/modules/org-graalvm-visualvm-application.jar org/graalvm/visualvm/application/resources/visualvm.png
-	${INSTALL_DATA} ${WRKDIR}/*.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	@${UNZIP_CMD} -q -j -d ${DATADIR} ${WRKSRC}/visualvm/modules/org-graalvm-visualvm-application.jar org/graalvm/visualvm/application/resources/visualvm.png
+	${INSTALL_DATA} ${WRKDIR}/*.desktop ${PREFIX}/share/applications/
 
 .include <bsd.port.mk>

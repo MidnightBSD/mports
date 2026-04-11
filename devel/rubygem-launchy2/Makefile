@@ -20,6 +20,6 @@ NO_ARCH=	yes
 PORTSCOUT=	limit:^2\.
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/launchy
+	${RM} ${PREFIX}/bin/launchy
 
 .include <bsd.port.mk>

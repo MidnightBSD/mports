@@ -25,7 +25,7 @@ PLIST_FILES=	share/man/man8/zxfer.8.gz \
 		sbin/zxfer
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/zxfer ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/zxfer.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_SCRIPT} ${WRKSRC}/zxfer ${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/zxfer.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

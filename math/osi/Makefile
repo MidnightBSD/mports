@@ -35,6 +35,6 @@ INSTALL_TARGET=	install-strip
 NO_TEST=	yes
 
 post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/share/coin
+	@${RM} -r ${PREFIX}/share/coin
 
 .include <bsd.port.mk>

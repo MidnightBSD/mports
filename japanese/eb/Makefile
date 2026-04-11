@@ -75,9 +75,9 @@ post-extract:
 .endfor
 
 post-install:
-	(cd ${WRKDIR}/appendix && ${COPYTREE_SHARE} . ${STAGEDIR}${APPENDIXDIR} )
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${STAGEDIR}${DOCSDIR}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libeb.so
+	(cd ${WRKDIR}/appendix && ${COPYTREE_SHARE} . ${APPENDIXDIR} )
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${DOCSDIR}
+	${STRIP_CMD} ${PREFIX}/lib/libeb.so
 
 .include <bsd.port.mk>

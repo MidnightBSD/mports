@@ -47,15 +47,15 @@ do-build:
 	${TOUCH} ${WRKSRC}/sdk/NuGetFallbackFolder/${DISTVERSION}.dotnetSentinel
 
 do-install:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR}
 .for bin in ${BINFILES}
-	${RM} ${STAGEDIR}${DATADIR}/${bin}
-	${INSTALL_PROGRAM} ${WRKSRC}/${bin} ${STAGEDIR}${DATADIR}/${bin}
+	${RM} ${DATADIR}/${bin}
+	${INSTALL_PROGRAM} ${WRKSRC}/${bin} ${DATADIR}/${bin}
 .endfor
 .for bin in ${SCRIPTFILES}
-	${RM} ${STAGEDIR}${DATADIR}/${bin}
-	${INSTALL_SCRIPT} ${WRKSRC}/${bin} ${STAGEDIR}${DATADIR}/${bin}
+	${RM} ${DATADIR}/${bin}
+	${INSTALL_SCRIPT} ${WRKSRC}/${bin} ${DATADIR}/${bin}
 .endfor
-	${RM} ${STAGEDIR}${DATADIR}/LICENSE.txt
+	${RM} ${DATADIR}/LICENSE.txt
 
 .include <bsd.port.mk>

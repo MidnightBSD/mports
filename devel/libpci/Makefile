@@ -41,11 +41,11 @@ post-build:
 	@cd ${WRKSRC}/lib/ && ${CC} ${CFLAGS} ${STRIP} -Wl,-soname=libpci.so.3 -shared *.o -lz -o libpci.so.3
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/pci/ ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${PREFIX}/include/pci/ ${DATADIR}/
 .for file in ${LIBPCI_FILES}
-	${INSTALL_DATA} ${WRKSRC}/lib/${file:T} ${STAGEDIR}${PREFIX}/${file}
+	${INSTALL_DATA} ${WRKSRC}/lib/${file:T} ${PREFIX}/${file}
 .endfor
-	${LN} -fs libpci.so.3 ${STAGEDIR}${PREFIX}/lib/libpci.so
-	${INSTALL_DATA} ${WRKSRC}/lib/config.mk ${STAGEDIR}${DATADIR}/
+	${LN} -fs libpci.so.3 ${PREFIX}/lib/libpci.so
+	${INSTALL_DATA} ${WRKSRC}/lib/config.mk ${DATADIR}/
 
 .include <bsd.port.mk>

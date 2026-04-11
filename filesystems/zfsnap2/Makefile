@@ -29,17 +29,17 @@ post-patch:
 .endfor
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/sbin/zfsnap.sh ${STAGEDIR}${PREFIX}/sbin/zfsnap
-	cd ${WRKSRC}/share && ${COPYTREE_SHARE} zfsnap ${STAGEDIR}${PREFIX}/share/
-	cd ${WRKSRC} && ${COPYTREE_SHARE} completion ${STAGEDIR}${PREFIX}/share/zfsnap
+	${INSTALL_SCRIPT} ${WRKSRC}/sbin/zfsnap.sh ${PREFIX}/sbin/zfsnap
+	cd ${WRKSRC}/share && ${COPYTREE_SHARE} zfsnap ${PREFIX}/share/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} completion ${PREFIX}/share/zfsnap
 .for period in daily weekly monthly
-	@${MKDIR} ${STAGEDIR}${PERIODICDIR}/${period}
-	${INSTALL_SCRIPT} ${WRKSRC}/periodic/${period}_zfsnap.sh ${STAGEDIR}${PERIODICDIR}/${period}/402.zfsnap
+	@${MKDIR} ${PERIODICDIR}/${period}
+	${INSTALL_SCRIPT} ${WRKSRC}/periodic/${period}_zfsnap.sh ${PERIODICDIR}/${period}/402.zfsnap
 .endfor
-	${INSTALL_MAN} ${WRKSRC}/man/man8/zfsnap.8 ${STAGEDIR}${PREFIX}/share/man/man8/zfsnap.8
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/man/man8/zfsnap.8 ${PREFIX}/share/man/man8/zfsnap.8
+	${MKDIR} ${DOCSDIR}
 .for file in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}/${file}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}/${file}
 .endfor
 
 post-install-BASH-on:

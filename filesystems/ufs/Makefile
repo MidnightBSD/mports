@@ -19,7 +19,7 @@ GH_PROJECT=	fuse-ufs
 CARGO_INSTALL_PATH=	fuse-ufs
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/docs/fuse-ufs.8 ${STAGEDIR}${PREFIX}/share/man/man8/
-	${LN} ${STAGEDIR}${PREFIX}/bin/fuse-ufs ${STAGEDIR}${PREFIX}/bin/mount.ufs
+	${INSTALL_MAN} ${WRKSRC}/docs/fuse-ufs.8 ${PREFIX}/share/man/man8/
+	${LN} ${PREFIX}/bin/fuse-ufs ${PREFIX}/bin/mount.ufs
 
 .include <bsd.port.mk>

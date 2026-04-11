@@ -28,7 +28,7 @@ MAKE_ENV=	LDLIBS=-linotify
 
 post-install:
 	${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} -C ${WRKSRC}/icon install
-	${INSTALL_DATA} ${WRKSRC}/sxiv.desktop ${STAGEDIR}${DESKTOPDIR}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/sxiv
+	${INSTALL_DATA} ${WRKSRC}/sxiv.desktop ${DESKTOPDIR}
+	@${STRIP_CMD} ${PREFIX}/bin/sxiv
 
 .include <bsd.port.mk>

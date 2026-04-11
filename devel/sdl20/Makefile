@@ -173,6 +173,6 @@ post-patch:
 		${WRKSRC}/configure ${WRKSRC}/src/video/SDL_blit_A.c
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libSDL2.so
+	@${STRIP_CMD} ${PREFIX}/lib/libSDL2.so
 
 .include <bsd.port.post.mk>

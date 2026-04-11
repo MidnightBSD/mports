@@ -82,14 +82,14 @@ do-build:
 
 do-install:
 	-${RM} -r ${MYDESTDIR}
-	${INSTALL_MAN} ${WRKSRC}/bbbike.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/bbbike.1 ${PREFIX}/share/man/man1
 	${FIND} ${WRKSRC} | ${XARGS} ${CHMOD} ugo+r
 	${FIND} ${WRKSRC} -perm -u=x | ${XARGS} ${CHMOD} go+x
 	${CP} -rp ${WRKSRC} ${MYDESTDIR}
 	${RM} ${MYDESTDIR}/bbbike.1
 .for f in ${BBBIKE_PERL_EXE}
-	-${RM} ${STAGEDIR}${PREFIX}/bin/$f
-	${LN} -s  ../BBBike/$f ${STAGEDIR}${PREFIX}/bin/$f
+	-${RM} ${PREFIX}/bin/$f
+	${LN} -s  ../BBBike/$f ${PREFIX}/bin/$f
 .endfor
 
 .include <bsd.port.post.mk>

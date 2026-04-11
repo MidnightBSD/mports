@@ -270,7 +270,7 @@ post-build:
 
 post-install:
 .for f in bochs bxhub bximage
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${f}
+	${STRIP_CMD} ${PREFIX}/bin/${f}
 .endfor
 
 post-install-PLUGINS-on:

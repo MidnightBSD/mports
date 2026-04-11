@@ -30,8 +30,8 @@ NO_BUILD=	yes
 DESCR=		${.CURDIR:H:H}/devel/qt5/pkg-descr
 
 do-install:
-	${MKDIR} ${STAGEDIR}${QT_DOCDIR} && \
+	${MKDIR} ${QT_DOCDIR} && \
 		cd ${WRKSRC}/doc/global && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${PREFIX}/${QT_DOCDIR_REL}/global
+		${COPYTREE_SHARE} \* ${PREFIX}/${QT_DOCDIR_REL}/global
 
 .include <bsd.port.mk>

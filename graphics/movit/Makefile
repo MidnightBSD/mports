@@ -38,8 +38,8 @@ post-patch:
 		${WRKSRC}/demo.cpp
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so.*
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+	${STRIP_CMD} ${PREFIX}/lib/lib${PORTNAME}.so.*
 
 .include <bsd.port.mk>

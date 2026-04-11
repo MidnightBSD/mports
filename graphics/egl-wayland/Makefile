@@ -26,8 +26,8 @@ post-patch:
 		${WRKSRC}/meson.build
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/egl/egl_external_platform.d
+	${MKDIR} ${PREFIX}/share/egl/egl_external_platform.d
 	${INSTALL_DATA} ${FILESDIR}/10_nvidia_wayland.json \
-		${STAGEDIR}${PREFIX}/share/egl/egl_external_platform.d
+		${PREFIX}/share/egl/egl_external_platform.d
 
 .include <bsd.port.mk>

@@ -97,9 +97,9 @@ LIB_DEPENDS+=	libwmflite.so:graphics/libwmf-nox11
 .endif
 
 post-install-Q8BIT-off:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/GraphicsMagick/modules-Q16/coders ${STAGEDIR}${PREFIX}/lib/GraphicsMagick/modules-Q16/filters
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/GraphicsMagick/modules-Q16/coders ${PREFIX}/lib/GraphicsMagick/modules-Q16/filters
 
 post-install-Q8BIT-on:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/GraphicsMagick/modules-Q8/coders ${STAGEDIR}${PREFIX}/lib/GraphicsMagick/modules-Q8/filters
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/GraphicsMagick/modules-Q8/coders ${PREFIX}/lib/GraphicsMagick/modules-Q8/filters
 
 .include <bsd.port.mk>

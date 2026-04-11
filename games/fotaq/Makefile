@@ -52,12 +52,12 @@ post-extract:
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/queen.1c ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKDIR}/fotaq.desktop ${STAGEDIR}${PREFIX}/share/applications
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/queen.1c ${DATADIR}
+	${INSTALL_DATA} ${WRKDIR}/fotaq.desktop ${PREFIX}/share/applications
 .if !${PORT_OPTIONS:MLANG_DE} && !${PORT_OPTIONS:MLANG_HE}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme.txt ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme.txt ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>

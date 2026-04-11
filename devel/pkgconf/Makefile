@@ -30,6 +30,6 @@ OPTIONS_DEFINE=	DOCS
 TESTING_UNSAFE=	tests/Kyuafile:5: Non-existent test program 'tests/basic'
 
 post-install:
-	${LN} -sf pkgconf ${STAGEDIR}${PREFIX}/bin/pkg-config
+	${LN} -sf pkgconf ${PREFIX}/bin/pkg-config
 
 .include <bsd.port.mk>

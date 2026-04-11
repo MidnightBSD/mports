@@ -44,23 +44,23 @@ do-install:
 		${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/windows32/ \
 		${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/windows64/ \
 		${WRKSRC}/plugins/performanceTesting/bin/
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
+	${MKDIR} ${DATADIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR} \
 		"! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh")
-	@(cd ${WRKSRC} && ${COPYTREE_BIN} . ${STAGEDIR}${DATADIR} "-name *\.sh")
+	@(cd ${WRKSRC} && ${COPYTREE_BIN} . ${DATADIR} "-name *\.sh")
 	${INSTALL_LIB} ${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/freebsd32/libjansi.so \
-		${STAGEDIR}${DATADIR}/plugins/maven/lib/maven3/lib/jansi-native/freebsd32/
+		${DATADIR}/plugins/maven/lib/maven3/lib/jansi-native/freebsd32/
 	${INSTALL_LIB} ${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/freebsd64/libjansi.so \
-		${STAGEDIR}${DATADIR}/plugins/maven/lib/maven3/lib/jansi-native/freebsd64/
-	${INSTALL_SCRIPT} ${WRKDIR}/idea ${STAGEDIR}${PREFIX}/bin/idea
-	${INSTALL_MAN} ${FILESDIR}/idea.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_DATA} ${WRKDIR}/idea.desktop ${STAGEDIR}${PREFIX}/share/applications/
+		${DATADIR}/plugins/maven/lib/maven3/lib/jansi-native/freebsd64/
+	${INSTALL_SCRIPT} ${WRKDIR}/idea ${PREFIX}/bin/idea
+	${INSTALL_MAN} ${FILESDIR}/idea.1 ${PREFIX}/share/man/man1
+	${INSTALL_DATA} ${WRKDIR}/idea.desktop ${PREFIX}/share/applications/
 # Use fsnotifier replacement provided by java/intellij-fsnotifier
-	${ECHO} "idea.filewatcher.executable.path=${PREFIX}/intellij/bin/fsnotifier" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
+	${ECHO} "idea.filewatcher.executable.path=${PREFIX}/intellij/bin/fsnotifier" >> ${DATADIR}/bin/idea.properties
 # Fix "Typeahead timeout is exceeded" error
-	${ECHO} "action.aware.typeAhead=false" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
+	${ECHO} "action.aware.typeAhead=false" >> ${DATADIR}/bin/idea.properties
 # Fix slow render
-	${ECHO} "-Dsun.java2d.xrender=false" >> ${STAGEDIR}${DATADIR}/bin/idea.vmoptions
-	${ECHO} "-Dsun.java2d.xrender=false" >> ${STAGEDIR}${DATADIR}/bin/idea64.vmoptions
+	${ECHO} "-Dsun.java2d.xrender=false" >> ${DATADIR}/bin/idea.vmoptions
+	${ECHO} "-Dsun.java2d.xrender=false" >> ${DATADIR}/bin/idea64.vmoptions
 
 .include <bsd.port.mk>

@@ -207,8 +207,8 @@ ExportPATH?=	/tmp/maillages
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|PREFER_SHARED_LIBS=False|PREFER_SHARED_LIBS=True|'	\
-		-e 's|/opt/aster|${STAGEDIR}${inst_dir}|' ${WRKSRC}/setup.cfg
-	${REINPLACE_CMD} -e 's|?ASTER_ROOT?|${STAGEDIR}${inst_dir}|'	\
+		-e 's|/opt/aster|${inst_dir}|' ${WRKSRC}/setup.cfg
+	${REINPLACE_CMD} -e 's|?ASTER_ROOT?|${inst_dir}|'	\
 		${WRKSRC}/products.py
 	${REINPLACE_CMD} -e "s|'gfortran'|'${FC}'|g;s|'gcc'|'${CC}'|g"	\
 		-e "s|'g++'|'${CXX}'|g" ${WRKSRC}/check_compilers.py
@@ -327,27 +327,27 @@ pre-configure:
 do-configure:
 	(cd ${CONFIGURE_WRKSRC}	\
 	&& TMPDIR=${WRKDIR} ${MAKE_ENV} ${PYTHON_CMD} setup.py ${DEBUG_FLAGS}	\
-		--prefix=${STAGEDIR}${inst_dir} test | tee ${CONFIGURE_LOG})
+		--prefix=${inst_dir} test | tee ${CONFIGURE_LOG})
 	@${ECHO_MSG} "---------------- Debug ------------------"
 	${CAT} ${CONFIGURE_WRKSRC}/setup.log
 	@${ECHO_MSG} "------------ Fin debug ------------------"
 
 post-configure:
-	${MKDIR} ${STAGEDIR}${inst_dir}/etc
-	${CP} -R ${LOCALBASE}/aster/etc/codeaster ${STAGEDIR}${inst_dir}/etc/
-	${ECHO_CMD} "#?vers : VVV?" >> ${STAGEDIR}${inst_dir}/etc/codeaster/aster
+	${MKDIR} ${inst_dir}/etc
+	${CP} -R ${LOCALBASE}/aster/etc/codeaster ${inst_dir}/etc/
+	${ECHO_CMD} "#?vers : VVV?" >> ${inst_dir}/etc/codeaster/aster
 	${CP} -R ${LOCALBASE}/aster/ASTK/ASTK_SERV/bin		\
 		${LOCALBASE}/aster/ASTK/ASTK_SERV/asrun		\
 		${LOCALBASE}/aster/ASTK/ASTK_SERV/share		\
-		${STAGEDIR}${inst_dir}
-	${REINPLACE_CMD} -e 's|${LOCALBASE}/aster|${STAGEDIR}${inst_dir}|'	\
-		${STAGEDIR}${inst_dir}/bin/as_run
-	${MV} ${STAGEDIR}${inst_dir}/etc/codeaster/profile_astk.sh	\
-		${STAGEDIR}${inst_dir}/etc/codeaster/profile.sh
+		${inst_dir}
+	${REINPLACE_CMD} -e 's|${LOCALBASE}/aster|${inst_dir}|'	\
+		${inst_dir}/bin/as_run
+	${MV} ${inst_dir}/etc/codeaster/profile_astk.sh	\
+		${inst_dir}/etc/codeaster/profile.sh
 .for sf in etc/codeaster/profile.sh asrun/installation.py
-	${REINPLACE_CMD} -e 's|${LOCALBASE}/aster/ASTK/ASTK_SERV|${STAGEDIR}${inst_dir}|g'	\
-		-e 's|${LOCALBASE}/aster|${STAGEDIR}${inst_dir}|g'	\
-		${STAGEDIR}${inst_dir}/${sf}
+	${REINPLACE_CMD} -e 's|${LOCALBASE}/aster/ASTK/ASTK_SERV|${inst_dir}|g'	\
+		-e 's|${LOCALBASE}/aster|${inst_dir}|g'	\
+		${inst_dir}/${sf}
 .endfor
 
 pre-build:
@@ -360,7 +360,7 @@ pre-build:
 do-build:
 	(cd ${BUILD_WRKSRC} &&	\
 	TMPDIR=${WRKDIR} ${MAKE_ENV} ${PYTHON_CMD} setup.py ${DEBUG_FLAGS} install aster	\
-		--prefix=${STAGEDIR}${inst_dir} | tee ${BUILD_WRKSRC}/build.log)
+		--prefix=${inst_dir} | tee ${BUILD_WRKSRC}/build.log)
 
 do-install:
 	# build: already did the installation
@@ -368,53 +368,53 @@ do-install:
 
 post-install:
 .for f in ${PFX2FIX}
-	${REINPLACE_CMD} -e 's|${STAGEDIR}||g' ${STAGEDIR}${inst_dir}/${f}
+	${REINPLACE_CMD} -e 's|||g' ${inst_dir}/${f}
 .endfor
 .for f in ${POSTBASH2FIX}
 	${REINPLACE_CMD} -e 's|/bin/bash|${LOCALBASE}/bin/bash|'	\
-		${STAGEDIR}${inst_dir}/${VE}/share/aster/${f}
+		${inst_dir}/${VE}/share/aster/${f}
 .endfor
 	${REINPLACE_CMD} -e 's|LINUX64|LINUX64, FREEBSD|'	\
-		${STAGEDIR}${inst_dir}/asrun/core/default_configuration.py
-	(cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py	\
+		${inst_dir}/asrun/core/default_configuration.py
+	(cd ${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py	\
 		-d ${PREFIX} -f ${inst_dir:S|${PREFIX}/||})
-	(cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py	\
+	(cd ${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py	\
 		-d ${PREFIX} -f ${inst_dir:S|${PREFIX}/||})
-	${CP} -p ${STAGEDIR}${inst_dir}/${VE}/bin/aster					\
-		${STAGEDIR}${inst_dir}/${VE}/bin/asterd
-	${STRIP_CMD} ${STAGEDIR}${inst_dir}/${VE}/bin/aster
+	${CP} -p ${inst_dir}/${VE}/bin/aster					\
+		${inst_dir}/${VE}/bin/asterd
+	${STRIP_CMD} ${inst_dir}/${VE}/bin/aster
 	${SED} -e 's|%%VER%%|${VE}|' < ${FILESDIR}/astout.export	\
-		> ${STAGEDIR}${inst_dir}/${VE}/astout.export
-	(cd ${STAGEDIR}${inst_dir} &&	\
-		${LN} -fs ${VE} ${STAGEDIR}${inst_dir}/STA${VE})
+		> ${inst_dir}/${VE}/astout.export
+	(cd ${inst_dir} &&	\
+		${LN} -fs ${VE} ${inst_dir}/STA${VE})
 .for conf in config.txt profile.sh
-	(cd ${STAGEDIR} && ${LN} -fs ${inst_dir}/${VE}/share/aster/${conf}	\
-		${STAGEDIR}${inst_dir}/STA${VE}/${conf})
+	(cd  && ${LN} -fs ${inst_dir}/${VE}/share/aster/${conf}	\
+		${inst_dir}/STA${VE}/${conf})
 .endfor
-	${MKDIR} ${STAGEDIR}${tools_dir}
+	${MKDIR} ${tools_dir}
 .for outil in ${tools}
-	${LN} -fs ${LOCALBASE}/bin/${outil} ${STAGEDIR}${tools_dir}/${outil}
+	${LN} -fs ${LOCALBASE}/bin/${outil} ${tools_dir}/${outil}
 .endfor
 .if !defined(WITHOUT_ASTK_CLI)
-	${MKDIR} ${STAGEDIR}${PREFIX}/aster/ASTK/ASTK_SERV/etc/codeaster/astkrc
+	${MKDIR} ${PREFIX}/aster/ASTK/ASTK_SERV/etc/codeaster/astkrc
 	${LN} -fs ${ASTKDIR}/etc/astkrc/*	\
-		${STAGEDIR}${PREFIX}/aster/ASTK/ASTK_SERV/etc/codeaster/astkrc
+		${PREFIX}/aster/ASTK/ASTK_SERV/etc/codeaster/astkrc
 . for outil in astk bsf
-	${LN} -fs ${ASTKDIR}/bin/${outil} ${STAGEDIR}${tools_dir}/${outil}
+	${LN} -fs ${ASTKDIR}/bin/${outil} ${tools_dir}/${outil}
 . endfor
 .endif
 	${MKDIR} ${WRKDIR}/AvoidConflictWithASTK
 .for f in aster.install_${VE} profile.sh
-	${MV} ${STAGEDIR}${inst_dir}/etc/codeaster/${f} ${WRKDIR}/AvoidConflictWithASTK/
+	${MV} ${inst_dir}/etc/codeaster/${f} ${WRKDIR}/AvoidConflictWithASTK/
 .endfor
-	${RM} -r ${STAGEDIR}${inst_dir}/etc/codeaster/*
+	${RM} -r ${inst_dir}/etc/codeaster/*
 .for f in aster.install_${VE} profile.sh
-	${MV} ${WRKDIR}/AvoidConflictWithASTK/${f} ${STAGEDIR}${inst_dir}/etc/codeaster/
+	${MV} ${WRKDIR}/AvoidConflictWithASTK/${f} ${inst_dir}/etc/codeaster/
 .endfor
 .for f in aster_pkginfo.cpython-${PYTHON_SUFFIX}.pyc aster_pkginfo.cpython-${PYTHON_SUFFIX}.opt-1.pyc
-	${RM} ${STAGEDIR}${inst_dir}/${VE}/lib/aster/__pycache__/${f}
+	${RM} ${inst_dir}/${VE}/lib/aster/__pycache__/${f}
 .endfor
-	${FIND} ${STAGEDIR}${PREFIX} -name "*.bak" -delete
+	${FIND} ${PREFIX} -name "*.bak" -delete
 
 .if defined(MAINTAINER_MODE)
 regression-test:	install

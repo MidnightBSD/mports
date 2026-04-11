@@ -33,7 +33,7 @@ PLIST_FILES=	${FONTSDIR:S,^${PREFIX}/,,}/elisau10.pcf.gz \
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/fonts.alias ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts.alias ${FONTSDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

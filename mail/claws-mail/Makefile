@@ -84,7 +84,7 @@ post-patch:
 	${WRKSRC}/src/common/ssl.c
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	(cd ${WRKSRC}/tools && \
 		${INSTALL_SCRIPT} acroread2claws-mail.pl \
 		calypso_convert.pl claws-mail-compose-insert-files.pl \
@@ -97,7 +97,7 @@ post-install:
 		tb2claws-mail tbird2claws.py textviewer.pl textviewer.sh \
 		thunderbird-filters-convertor.pl update-po uudec uuooffice \
 		vcard2xml.py \
-		${STAGEDIR}${DATADIR})
+		${DATADIR})
 
 post-install-DOCS-on:
 	(cd ${WRKSRC} && ${INSTALL_DATA} NEWS README TODO ${FAKE_DESTDIR}${DOCSDIR})

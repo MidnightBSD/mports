@@ -43,14 +43,14 @@ WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 WEBP_CMAKE_BOOL=	LIBWEBP_SUPPORT
 
 post-install:
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libleptonica.so.5.4.0 \
-		${STAGEDIR}${PREFIX}/lib/liblept.so
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libleptonica.so.5.4.0 \
-		${STAGEDIR}${PREFIX}/lib/liblept.so.5
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libleptonica.so.5.4.0 \
-		${STAGEDIR}${PREFIX}/lib/liblept.so.5.4.0
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/cmake/Modules
+	${RLN} ${PREFIX}/lib/libleptonica.so.5.4.0 \
+		${PREFIX}/lib/liblept.so
+	${RLN} ${PREFIX}/lib/libleptonica.so.5.4.0 \
+		${PREFIX}/lib/liblept.so.5
+	${RLN} ${PREFIX}/lib/libleptonica.so.5.4.0 \
+		${PREFIX}/lib/liblept.so.5.4.0
+	${MKDIR} ${PREFIX}/share/cmake/Modules
 	${INSTALL_DATA} ${WRKSRC}/cmake/FindLeptonica.cmake \
-		${STAGEDIR}${PREFIX}/share/cmake/Modules/
+		${PREFIX}/share/cmake/Modules/
 
 .include <bsd.port.mk>

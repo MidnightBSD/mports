@@ -21,8 +21,8 @@ pre-install:
 	@${REINPLACE_CMD} 's,/include,/include/EGL,' ${WRKSRC}/_build/meson-private/${PORTNAME}.pc
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/EGL
-	${INSTALL_DATA} ${WRKSRC}/interface/* ${STAGEDIR}${PREFIX}/include/EGL
-	${INSTALL_DATA} ${WRKSRC}/_build/meson-private/*.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${MKDIR} ${PREFIX}/include/EGL
+	${INSTALL_DATA} ${WRKSRC}/interface/* ${PREFIX}/include/EGL
+	${INSTALL_DATA} ${WRKSRC}/_build/meson-private/*.pc ${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>

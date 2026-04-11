@@ -33,7 +33,7 @@ INOTIFY_CFLAGS=		-I${LOCALBASE}/include
 INOTIFY_LDFLAGS=	-L${LOCALBASE}/lib -linotify
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

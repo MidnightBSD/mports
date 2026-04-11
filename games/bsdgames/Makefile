@@ -43,8 +43,8 @@ pre-install:
 post-install:
 # avoid conflict with games/bs and shells/fish
 .for prog in bs fish
-	${MV} ${STAGEDIR}${PREFIX}/bin/${prog} ${STAGEDIR}${PREFIX}/bin/${prog}-game
-	${MV} ${STAGEDIR}${PREFIX}/share/man/man6/${prog}.6.gz ${STAGEDIR}${PREFIX}/share/man/man6/${prog}-game.6.gz
+	${MV} ${PREFIX}/bin/${prog} ${PREFIX}/bin/${prog}-game
+	${MV} ${PREFIX}/share/man/man6/${prog}.6.gz ${PREFIX}/share/man/man6/${prog}-game.6.gz
 .endfor
 
 	@${TOUCH} ${FAKE_DESTDIR}/var/games/atc_score

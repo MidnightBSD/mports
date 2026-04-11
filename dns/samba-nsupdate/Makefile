@@ -92,7 +92,7 @@ post-patch:
 		${PATCH_WRKSRC}/doc/man/${PORTNAME}.1in
 
 do-install:
-		${INSTALL_MAN} ${INSTALL_WRKSRC}/doc/man/${PORTNAME}.1in ${STAGEDIR}${PREFIX}/share/man/man1/${PKGBASE}.1
-		${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/bin/nsupdate/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PKGBASE}
+		${INSTALL_MAN} ${INSTALL_WRKSRC}/doc/man/${PORTNAME}.1in ${PREFIX}/share/man/man1/${PKGBASE}.1
+		${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/bin/nsupdate/${PORTNAME} ${PREFIX}/bin/${PKGBASE}
 
 .include <bsd.port.post.mk>

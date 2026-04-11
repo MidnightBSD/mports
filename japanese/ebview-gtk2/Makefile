@@ -38,9 +38,9 @@ post-patch:
 
 post-install:
 	(cd ${WRKDIR} && ${INSTALL_DATA} ${SUB_FILES} \
-		${STAGEDIR}${DESKTOPDIR})
+		${DESKTOPDIR})
 	(cd ${WRKSRC}/pixmaps && ${INSTALL_DATA} ebview.xpm \
-		${STAGEDIR}${PREFIX}/share/pixmaps)
+		${PREFIX}/share/pixmaps)
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -53,7 +53,7 @@ pre-configure-NLS-on:
 	@(cd ${WRKSRC} && ${LOCALBASE}/bin/glib-gettextize -f -c)
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/samples/* ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/samples/* ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

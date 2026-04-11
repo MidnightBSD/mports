@@ -19,12 +19,12 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/bible_names-fpw/biblenam/data
+	@${MKDIR} ${PREFIX}/share/dict/bible_names-fpw/biblenam/data
 	${INSTALL_DATA} ${WRKSRC}/biblenam/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/bible_names-fpw/biblenam/data
+		${PREFIX}/share/dict/bible_names-fpw/biblenam/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/bible_names-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/bible_names-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

@@ -72,6 +72,6 @@ USE_GCC=	yes
 .endif
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libblis.so.4.0.0
+	@${STRIP_CMD} ${PREFIX}/lib/libblis.so.4.0.0
 
 .include <bsd.port.post.mk>

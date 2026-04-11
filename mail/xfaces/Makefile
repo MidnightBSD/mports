@@ -26,7 +26,7 @@ USES=		imake gmake tar:Z xorg
 USE_XORG=	ice sm x11 xaw xext xmu xt xpm
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/images
-	${INSTALL_DATA} ${WRKSRC}/images/* ${STAGEDIR}${DATADIR}/images
+	@${MKDIR} ${DATADIR}/images
+	${INSTALL_DATA} ${WRKSRC}/images/* ${DATADIR}/images
 
 .include <bsd.port.mk>

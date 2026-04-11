@@ -48,7 +48,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.6.0:devel/py-typing-ex
 .endif
 
 post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/

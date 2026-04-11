@@ -48,11 +48,11 @@ do-build:
 		${SETENVI} ${CONFIGURE_ENV} ${NINJA_ENV} ${PYTHON_CMD} configure.py --bootstrap --verbose)
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/ninja ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/ninja ${PREFIX}/bin
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && \
 	    ${INSTALL_DATA} README.md doc/manual.asciidoc \
-	    ${STAGEDIR}${DOCSDIR})
+	    ${DOCSDIR})
 
 do-install-BASH-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/bash-completion/completions/

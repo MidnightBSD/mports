@@ -23,9 +23,9 @@ DICDIR=		share/canna/dic/canna
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${DICDIR}
+	@${MKDIR} ${PREFIX}/${DICDIR}
 	cd ${WRKSRC} && \
-	    ${INSTALL_DATA} ${DICS} ${DICSFILE} ${STAGEDIR}${PREFIX}/${DICDIR}
+	    ${INSTALL_DATA} ${DICS} ${DICSFILE} ${PREFIX}/${DICDIR}
 	${INSTALL_DATA} ${WRKDIR}/README.FreeBSD ${WRKSRC}
 
 post-install-DOCS-on:

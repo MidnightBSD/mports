@@ -19,6 +19,6 @@ USE_GNUSTEP=	back base build gui
 CPPFLAGS+=	-fcommon
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Applications/Jishyo.app/Jishyo
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Jishyo.app/Jishyo
 
 .include <bsd.port.mk>

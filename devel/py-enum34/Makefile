@@ -18,7 +18,7 @@ DOCSDIR=	${PREFIX}/share/doc/py-${PORTNAME}
 NO_ARCH=	yes
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC}/enum/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC}/enum/doc && ${COPYTREE_SHARE} . ${DOCSDIR})
 
 .include <bsd.port.mk>

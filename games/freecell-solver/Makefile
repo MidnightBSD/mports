@@ -53,10 +53,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|"python3"|"${PYTHON_VERSION}"|' ${WRKSRC}/CMakeLists.txt
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for f in AUTHORS.asciidoc HACKING.asciidoc INSTALL.asciidoc NEWS.asciidoc README.asciidoc \
 	README.win32.txt TODO.asciidoc USAGE.asciidoc
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

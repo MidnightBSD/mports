@@ -88,7 +88,7 @@ pre-install:
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/kterm.1.gz \
-	    ${STAGEDIR}${PREFIX}/share/man/ja.UTF-8/man1
+	    ${PREFIX}/share/man/ja.UTF-8/man1
 
 pre-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

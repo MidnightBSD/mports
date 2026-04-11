@@ -112,12 +112,12 @@ post-patch:
 
 post-install:
 .if !defined(UTILS_ONLY) && !defined(LIB_ONLY)
-	${MV} ${STAGEDIR}${ETCDIR}/knot.sample.conf \
-		${STAGEDIR}${ETCDIR}/knot.conf.sample
+	${MV} ${ETCDIR}/knot.sample.conf \
+		${ETCDIR}/knot.conf.sample
 	@${MKDIR} ${FAKE_DESTDIR}/var/run/knot ${FAKE_DESTDIR}/var/db/knot
 .endif
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}/
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
 
 .include "knotdns.mk"
 .include <bsd.port.mk>

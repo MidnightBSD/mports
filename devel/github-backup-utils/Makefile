@@ -30,8 +30,8 @@ post-patch:
 	-${RM} ${WRKSRC}/share/github-backup-utils/ghe-backup-config.bak
 
 do-install:
-	cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/docs/backup.config-example ${STAGEDIR}${PREFIX}/etc/github.backup.config.sample
-	cd ${WRKSRC}/share/github-backup-utils && ${COPYTREE_BIN} . ${STAGEDIR}${DATADIR}
+	cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/docs/backup.config-example ${PREFIX}/etc/github.backup.config.sample
+	cd ${WRKSRC}/share/github-backup-utils && ${COPYTREE_BIN} . ${DATADIR}
 
 .include <bsd.port.mk>

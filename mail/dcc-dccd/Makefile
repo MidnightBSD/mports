@@ -102,9 +102,9 @@ post-patch:
 			${WRKSRC}/homedir/Makefile.in ${WRKSRC}/misc/Makefile.in
 
 post-install:
-	@${MV} ${STAGEDIR}${PREFIX}/dcc/cgi-bin/footer-dist \
-		${STAGEDIR}${PREFIX}/dcc/cgi-bin/footer.sample
-	@${MV} ${STAGEDIR}${PREFIX}/dcc/cgi-bin/header-dist \
-		${STAGEDIR}${PREFIX}/dcc/cgi-bin/header.sample
+	@${MV} ${PREFIX}/dcc/cgi-bin/footer-dist \
+		${PREFIX}/dcc/cgi-bin/footer.sample
+	@${MV} ${PREFIX}/dcc/cgi-bin/header-dist \
+		${PREFIX}/dcc/cgi-bin/header.sample
 
 .include <bsd.port.mk>

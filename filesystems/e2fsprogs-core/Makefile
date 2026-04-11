@@ -277,30 +277,30 @@ post-build:
 .endif
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/fsck_ext2fs ${STAGEDIR}${PREFIX}/sbin/
-	${LN} -fs e2fsck ${STAGEDIR}${PREFIX}/sbin/fsck.ext2
-	${LN} -fs e2fsck ${STAGEDIR}${PREFIX}/sbin/fsck.ext3
-	${LN} -fs e2fsck ${STAGEDIR}${PREFIX}/sbin/fsck.ext4
+	${INSTALL_PROGRAM} ${WRKSRC}/fsck_ext2fs ${PREFIX}/sbin/
+	${LN} -fs e2fsck ${PREFIX}/sbin/fsck.ext2
+	${LN} -fs e2fsck ${PREFIX}/sbin/fsck.ext3
+	${LN} -fs e2fsck ${PREFIX}/sbin/fsck.ext4
 	# now the remainder of the usual post-install jobs:
-	${INSTALL_MAN} ${FILESDIR}/fsck_ext2fs.8 ${STAGEDIR}${PREFIX}/share/man/man8/
+	${INSTALL_MAN} ${FILESDIR}/fsck_ext2fs.8 ${PREFIX}/share/man/man8/
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
 	# remove or relocate files installed by other ports already, or shadowing system files:
-#	cd ${STAGEDIR}${PREFIX} && \
+#	cd ${PREFIX} && \
 #		${XARGS} <${FILESDIR}/unwanted ${RM} && \
 #		${RMDIR} include/e2fsprogs/blkid
-	${MV} ${STAGEDIR}${PREFIX}/bin/compile_et ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
-	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/compile_et.1 ${STAGEDIR}${PREFIX}/share/man/man1/e2fsprogs-compile_et.1
-	${MKDIR} ${STAGEDIR}${DATADIR}/et/
-	${MV} ${STAGEDIR}${PREFIX}/share/et/* ${STAGEDIR}${DATADIR}/et/
-	${REINPLACE_CMD} -e 's}^DIR=.*$$}DIR=${TRUE_PREFIX}/${DATADIR_REL}/et}' -i '' ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
-	${RMDIR} ${STAGEDIR}${PREFIX}/share/et
-	${MV} -f ${STAGEDIR}${PREFIX}/share/man/man3/com_err.3 \
-		 ${STAGEDIR}${PREFIX}/share/man/man3/e2fsprogs-com_err.3
+	${MV} ${PREFIX}/bin/compile_et ${PREFIX}/bin/e2fsprogs-compile_et
+	${MV} ${PREFIX}/share/man/man1/compile_et.1 ${PREFIX}/share/man/man1/e2fsprogs-compile_et.1
+	${MKDIR} ${DATADIR}/et/
+	${MV} ${PREFIX}/share/et/* ${DATADIR}/et/
+	${REINPLACE_CMD} -e 's}^DIR=.*$$}DIR=${TRUE_PREFIX}/${DATADIR_REL}/et}' -i '' ${PREFIX}/bin/e2fsprogs-compile_et
+	${RMDIR} ${PREFIX}/share/et
+	${MV} -f ${PREFIX}/share/man/man3/com_err.3 \
+		 ${PREFIX}/share/man/man3/e2fsprogs-com_err.3
 
 #
 # the next line closes .if ${MASTERDIR} == ${.CURDIR}

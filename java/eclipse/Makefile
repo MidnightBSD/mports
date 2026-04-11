@@ -85,13 +85,13 @@ do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAVEN_ENV} mvn --offline ${MAVEN_REPO} ${MAVEN_ECLIPSE} -DskipTests clean verify
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${TAR} -x --directory ${STAGEDIR}${DATADIR}/.. --file ${WRKSRC}/${ECLIPSE_RESULT}
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${DATADIR}
+	${TAR} -x --directory ${DATADIR}/.. --file ${WRKSRC}/${ECLIPSE_RESULT}
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin
 
 # generate dynamic plist, to cater for different ARCHS
 post-install:
-	cd ${STAGEDIR}${PREFIX} && ${FIND} -s bin/${PORTNAME} share/${PORTNAME} -not -type d >> ${TMPPLIST}
-	cd ${STAGEDIR}${PREFIX} && ${FIND} -ds share/${PORTNAME} -type d | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
+	cd ${PREFIX} && ${FIND} -s bin/${PORTNAME} share/${PORTNAME} -not -type d >> ${TMPPLIST}
+	cd ${PREFIX} && ${FIND} -ds share/${PORTNAME} -type d | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

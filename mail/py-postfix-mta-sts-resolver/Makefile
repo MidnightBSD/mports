@@ -43,6 +43,6 @@ post-extract:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/config_examples/mta-sts-daemon.yml.internal \
-			${STAGEDIR}${PREFIX}/etc/mta-sts-daemon.yml.sample
+			${PREFIX}/etc/mta-sts-daemon.yml.sample
 
 .include <bsd.port.mk>

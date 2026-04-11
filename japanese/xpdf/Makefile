@@ -37,7 +37,7 @@ do-install:
 	${MKDIR} ${DATADIR}/japanese
 	cd ${WRKSRC} && \
 	    ${INSTALL_DATA} ${INSTALL_FILES} ${DATADIR}/japanese
-	${MKDIR} ${STAGEDIR}${DATADIR}/japanese/CMap
+	${MKDIR} ${DATADIR}/japanese/CMap
 #	cd ${DATADIR}/japanese/CMap && \
 #	    ${FIND} ${FAKE_DESTDIR}${ADOBECMAPDIR}/aj16/CMap ${FAKE_DESTDIR}${ADOBECMAPDIR}/aj20/CMap \
 #		-type f -exec ${LN} -s -f {} . \;

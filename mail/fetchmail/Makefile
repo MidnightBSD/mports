@@ -90,11 +90,11 @@ post-build:
 	${MAKE_CMD} -C ${WRKSRC} check ; { r=$$? ; ( set -x ; ${CAT} "${WRKSRC}/test-suite.log" ) ; exit $$r ; }
 
 post-install:
-	${INSTALL} -d ${STAGEDIR}/var/run/fetchmail
+	${INSTALL} -d /var/run/fetchmail
 	${INSTALL_DATA} ${FILESDIR}/fetchmailrc.sample \
-		${STAGEDIR}${PREFIX}/etc/fetchmailrc.sample
-	${RM} ${STAGEDIR}${PREFIX}/bin/fetchmailconf
-	${RM} ${STAGEDIR}${PREFIX}/share/man/man1/fetchmailconf.1*
+		${PREFIX}/etc/fetchmailrc.sample
+	${RM} ${PREFIX}/bin/fetchmailconf
+	${RM} ${PREFIX}/share/man/man1/fetchmailconf.1*
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

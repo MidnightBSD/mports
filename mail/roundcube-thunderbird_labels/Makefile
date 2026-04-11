@@ -40,9 +40,9 @@ x-generate-plist: build
 	    >${.CURDIR}/pkg-plist.tmp
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PLUGINDIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PLUGINDIR}
-	cd ${STAGEDIR}${PLUGINDIR} && \
+	@${MKDIR} ${PLUGINDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PLUGINDIR}
+	cd ${PLUGINDIR} && \
 		${MV} config.inc.php.dist config.inc.php.sample && \
 		${RM} docs/_config.yml 
 

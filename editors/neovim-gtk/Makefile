@@ -19,16 +19,16 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	Lyude
 
 post-install:
-	( cd ${WRKSRC} && ${COPYTREE_SHARE} runtime ${STAGEDIR}${PREFIX}/share/nvim-gtk )
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/applications
-	${SED} -e "s|Exec=nvim-gtk|Exec=${PREFIX}/bin/nvim-gtk|" ${WRKSRC}/desktop/org.daa.NeovimGtk.desktop >${STAGEDIR}${PREFIX}/share/applications/org.daa.NeovimGtk.desktop
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps/
-	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk_128.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps/org.daa.NeovimGtk.png
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/
-	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk_48.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/org.daa.NeovimGtk.png
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/
-	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/symbolic/apps/
-	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk-symbolic.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/symbolic/apps/
+	( cd ${WRKSRC} && ${COPYTREE_SHARE} runtime ${PREFIX}/share/nvim-gtk )
+	${MKDIR} ${PREFIX}/share/applications
+	${SED} -e "s|Exec=nvim-gtk|Exec=${PREFIX}/bin/nvim-gtk|" ${WRKSRC}/desktop/org.daa.NeovimGtk.desktop >${PREFIX}/share/applications/org.daa.NeovimGtk.desktop
+	${MKDIR} ${PREFIX}/share/icons/hicolor/128x128/apps/
+	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk_128.png ${PREFIX}/share/icons/hicolor/128x128/apps/org.daa.NeovimGtk.png
+	${MKDIR} ${PREFIX}/share/icons/hicolor/48x48/apps/
+	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk_48.png ${PREFIX}/share/icons/hicolor/48x48/apps/org.daa.NeovimGtk.png
+	${MKDIR} ${PREFIX}/share/icons/hicolor/scalable/apps/
+	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk.svg ${PREFIX}/share/icons/hicolor/scalable/apps/
+	${MKDIR} ${PREFIX}/share/icons/hicolor/symbolic/apps/
+	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk-symbolic.svg ${PREFIX}/share/icons/hicolor/symbolic/apps/
 
 .include <bsd.port.mk>

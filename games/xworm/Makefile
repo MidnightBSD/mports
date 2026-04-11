@@ -22,10 +22,10 @@ PLIST_FILES=	bin/xworm \
 		${DATA:S/^/%%DATADIR%%\/xworm./}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/xworm ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/xworm
+	${INSTALL_PROGRAM} ${WRKSRC}/xworm ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/share/xworm
 .for file in ${DATA}
-	${INSTALL_DATA} ${WRKSRC}/xworm.${file} ${STAGEDIR}${PREFIX}/share/xworm
+	${INSTALL_DATA} ${WRKSRC}/xworm.${file} ${PREFIX}/share/xworm
 .endfor
 
 .include <bsd.port.mk>

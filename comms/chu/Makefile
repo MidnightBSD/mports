@@ -24,10 +24,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|gcc -O2|${CC} ${CFLAGS}|g' ${WRKSRC}/Makefile
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/chu ${STAGEDIR}${PREFIX}/sbin
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/testsignal ${STAGEDIR}${DATADIR}
-	${INSTALL_MAN} ${WRKSRC}/chu.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_PROGRAM} ${WRKSRC}/chu ${PREFIX}/sbin
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/testsignal ${DATADIR}
+	${INSTALL_MAN} ${WRKSRC}/chu.8 ${PREFIX}/share/man/man8
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

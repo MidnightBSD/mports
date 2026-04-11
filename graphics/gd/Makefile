@@ -127,9 +127,9 @@ pre-build:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/gdhelpers.h \
-		${STAGEDIR}${PREFIX}/include/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgd.so.6*
+		${PREFIX}/include/
+	${STRIP_CMD} ${PREFIX}/lib/libgd.so.6*
 	${INSTALL_SCRIPT} ${WRKDIR}/gdlib-config \
-		${STAGEDIR}${PREFIX}/bin/
+		${PREFIX}/bin/
 
 .include <bsd.port.mk>

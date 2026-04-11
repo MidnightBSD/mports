@@ -22,6 +22,6 @@ do-build:
 	${CC} -o ${WRKSRC}/${PORTNAME} ${CFLAGS} ${WRKSRC}/${PORTNAME}.c
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

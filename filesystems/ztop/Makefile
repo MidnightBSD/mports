@@ -19,6 +19,6 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/man/man1/${PORTNAME}.1.gz
 
 post-install:
-		${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+		${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

@@ -22,6 +22,6 @@ NOT_FOR_ARCHS=	armv6 i386
 .include <bsd.port.pre.mk>
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Math/Int128/Int128.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Math/Int128/Int128.so
 
 .include <bsd.port.post.mk>

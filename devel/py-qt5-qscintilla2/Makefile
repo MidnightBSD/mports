@@ -37,6 +37,6 @@ do-install:
 	(cd ${WRKSRC} ; ${MAKE} -C ./build install INSTALL_ROOT=${FAKE_DESTDIR} )
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5/Qsci.abi3.so
+	${STRIP_CMD} ${PYTHONPREFIX_SITELIBDIR}/PyQt5/Qsci.abi3.so
 
 .include <bsd.port.mk>

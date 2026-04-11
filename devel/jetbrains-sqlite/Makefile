@@ -31,9 +31,9 @@ do-build:
 		${SETENV} JAVA_HOME=${JAVA_HOME} OS=freebsd ARCH=${ARCH} ./make.sh)
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/${ARCH}
+	${MKDIR} ${DATADIR}/${ARCH}
 	${INSTALL_LIB} \
 		${WRKSRC}/target/sqlite/freebsd-${ARCH}/libsqliteij.so \
-		${STAGEDIR}${DATADIR}/${ARCH}
+		${DATADIR}/${ARCH}
 
 .include <bsd.port.mk>

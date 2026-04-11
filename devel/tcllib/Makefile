@@ -28,8 +28,8 @@ NO_TEST=	yes
 PORTDOCS=	*
 .endif
 
-INSTALL_ARGS=	-pkgs -pkg-path ${STAGEDIR}${PREFIX}/lib/tcllib \
-		-apps -app-path ${STAGEDIR}${PREFIX}/bin \
+INSTALL_ARGS=	-pkgs -pkg-path ${PREFIX}/lib/tcllib \
+		-apps -app-path ${PREFIX}/bin \
 		-no-wait -no-gui -no-examples
 
 .include <bsd.mport.options.mk>
@@ -39,7 +39,7 @@ INSTALL_ARGS=	-pkgs -pkg-path ${STAGEDIR}${PREFIX}/lib/tcllib \
 #
 .if ${PORT_OPTIONS:MMANPAGES} && !(defined(ALL_TARGET) && !empty(ALL_TARGET:Mcritcl))
 ALL_TARGET+=	nroff-doc
-INSTALL_ARGS+=	-nroff-path ${STAGEDIR}${PREFIX}/share/man/mann
+INSTALL_ARGS+=	-nroff-path ${PREFIX}/share/man/mann
 .else
 INSTALL_ARGS+=	-no-nroff
 .endif
@@ -49,7 +49,7 @@ INSTALL_ARGS+=	-no-nroff
 #
 .if ${PORT_OPTIONS:MDOCS} && !(defined(ALL_TARGET) && !empty(ALL_TARGET:Mcritcl))
 ALL_TARGET+=	html-doc
-INSTALL_ARGS+=	-html-path ${STAGEDIR}${DOCSDIR}
+INSTALL_ARGS+=	-html-path ${DOCSDIR}
 .else
 INSTALL_ARGS+=	-no-html
 .endif

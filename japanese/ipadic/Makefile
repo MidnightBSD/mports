@@ -15,13 +15,13 @@ BUILD_DEPENDS=	chasen:japanese/chasen-base
 RUN_DEPENDS=	chasen:japanese/chasen-base
 
 CONFIGURE_ARGS=	--with-dicdir=${PREFIX}/share/chasen/dic \
-		--with-chasenrc-path=${STAGEDIR}${PREFIX}/share/chasen/dic/ipadic
+		--with-chasenrc-path=${PREFIX}/share/chasen/dic/ipadic
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/chasen/dic/ipadic
+	${MKDIR} ${PREFIX}/share/chasen/dic/ipadic
 	${INSTALL_DATA} ${WRKSRC}/chasenrc \
-	    ${STAGEDIR}${PREFIX}/share/chasen/dic/ipadic/chasenrc.sample
+	    ${PREFIX}/share/chasen/dic/ipadic/chasenrc.sample
 
 .include <bsd.port.mk>

@@ -40,14 +40,14 @@ post-extract:
 
 do-install:
 	(cd ${WRKSRC} && ${INSTALL_PROGRAM} mka2bkvf mka2nvf mkn2avf mkp2nvf \
-		${STAGEDIR}${PREFIX}/bin)
+		${PREFIX}/bin)
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} "${TARGETDIRS}" \
-		${STAGEDIR}${FONTSDIR})
-	${INSTALL_DATA} ${WRKSRC}/jfm/* ${STAGEDIR}${FONTSDIR}/vf-a2bk
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${FONTSDIR})
+	${INSTALL_DATA} ${WRKSRC}/jfm/* ${FONTSDIR}/vf-a2bk
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_SCRIPT} MKASC2BKall MKASC2NTT MKNTT2ASC \
-		MKPTEX2PNTT ${STAGEDIR}${DOCSDIR})
+		MKPTEX2PNTT ${DOCSDIR})
 	(cd ${WRKSRC} && ${INSTALL_DATA} Makefile README vfdata.doc \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

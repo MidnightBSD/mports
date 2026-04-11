@@ -115,27 +115,27 @@ pre-configure: pretty-print-config
 .endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/dnsmasq ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_DATA} ${WRKSRC}/dnsmasq.conf.example ${STAGEDIR}${PREFIX}/etc/dnsmasq.conf.sample
-	${REINPLACE_CMD} -i '' 's}%%PREFIX%%}${PREFIX}}' ${STAGEDIR}${PREFIX}/etc/dnsmasq.conf.sample
+	${INSTALL_PROGRAM} ${WRKSRC}/src/dnsmasq ${PREFIX}/sbin
+	${INSTALL_DATA} ${WRKSRC}/dnsmasq.conf.example ${PREFIX}/etc/dnsmasq.conf.sample
+	${REINPLACE_CMD} -i '' 's}%%PREFIX%%}${PREFIX}}' ${PREFIX}/etc/dnsmasq.conf.sample
 	${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.8 ${PREFIX}/share/man/man8
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/trust-anchors.conf ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/trust-anchors.conf ${DATADIR}/
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 .endif
 .if ${PORT_OPTIONS:MNLS}
 .for i in de es fi fr id it no pl pt_BR ro
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/locale/${i}/LC_MESSAGES
+	${MKDIR} ${PREFIX}/share/locale/${i}/LC_MESSAGES
 	${INSTALL_DATA} ${WRKSRC}/src/${i}.mo \
-		${STAGEDIR}${PREFIX}/share/locale/${i}/LC_MESSAGES/${PORTNAME}.mo
+		${PREFIX}/share/locale/${i}/LC_MESSAGES/${PORTNAME}.mo
 .endfor
 .endif
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/dynamic-dnsmasq ${STAGEDIR}${EXAMPLESDIR}/dnslist
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/dynamic-dnsmasq/dynamic-dnsmasq.pl ${STAGEDIR}${EXAMPLESDIR}/dynamic-dnsmasq/
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/dnslist/dnslist.pl ${STAGEDIR}${EXAMPLESDIR}/dnslist/
-	${INSTALL_DATA} ${WRKSRC}/contrib/dnslist/dhcp.css ${STAGEDIR}${EXAMPLESDIR}/dnslist/
-	${INSTALL_DATA} ${WRKSRC}/contrib/dnslist/dnslist.tt2 ${STAGEDIR}${EXAMPLESDIR}/dnslist/
+	${MKDIR} ${EXAMPLESDIR}/dynamic-dnsmasq ${EXAMPLESDIR}/dnslist
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/dynamic-dnsmasq/dynamic-dnsmasq.pl ${EXAMPLESDIR}/dynamic-dnsmasq/
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/dnslist/dnslist.pl ${EXAMPLESDIR}/dnslist/
+	${INSTALL_DATA} ${WRKSRC}/contrib/dnslist/dhcp.css ${EXAMPLESDIR}/dnslist/
+	${INSTALL_DATA} ${WRKSRC}/contrib/dnslist/dnslist.tt2 ${EXAMPLESDIR}/dnslist/
 
 .include <bsd.port.post.mk>

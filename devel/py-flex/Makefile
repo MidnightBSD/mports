@@ -36,7 +36,7 @@ USE_PYTHON=	autoplist concurrent distutils pytest
 PYTEST_BROKEN_TESTS=	test_request_parameter_array_extraction[tsv-1\t2\t3] \
 			test_werkzeug
 
-TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	PYTHONPATH=${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes
 

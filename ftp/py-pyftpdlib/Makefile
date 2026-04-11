@@ -28,7 +28,7 @@ EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
 PORTEXAMPLES=	*
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${CP} -R ${WRKSRC}/demo/ ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${CP} -R ${WRKSRC}/demo/ ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

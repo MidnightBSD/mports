@@ -140,13 +140,13 @@ post-patch-LIBEDIT_DL-on:
 		${WRKSRC}/src/lua.c
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${LUA_LIB_SHARED}
-	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/lua.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/${LUA_CMD}.1
-	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/luac.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/${LUAC_CMD}.1
+	${STRIP_CMD} ${PREFIX}/lib/${LUA_LIB_SHARED}
+	${MV} ${PREFIX}/share/man/man1/lua.1 \
+		${PREFIX}/share/man/man1/${LUA_CMD}.1
+	${MV} ${PREFIX}/share/man/man1/luac.1 \
+		${PREFIX}/share/man/man1/${LUAC_CMD}.1
 	${INSTALL_DATA} ${WRKDIR}/${LUA_PC_FILE} \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig
+		${PREFIX}/libdata/pkgconfig
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

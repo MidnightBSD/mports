@@ -26,20 +26,20 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 pre-patch: dos2unix
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 .for f in PHPMailerAutoload.php class.phpmailer.php class.pop3.php \
 	class.smtp.php composer.json
-	${INSTALL_DATA} ${WRKSRC}/$f ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/$f ${DATADIR}
 .endfor
 .for d in extras language
-	@${MKDIR} ${STAGEDIR}${DATADIR}/$d
-	${INSTALL_DATA} ${WRKSRC}/$d/* ${STAGEDIR}${DATADIR}/$d
+	@${MKDIR} ${DATADIR}/$d
+	${INSTALL_DATA} ${WRKSRC}/$d/* ${DATADIR}/$d
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for f in LICENSE
-	${INSTALL_DATA} ${WRKSRC}/$f ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/$f ${DOCSDIR}
 .endfor
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	@cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	@cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

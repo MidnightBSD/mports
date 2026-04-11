@@ -67,15 +67,15 @@ FONTCONFIG_IMPLIES=		GUI
 FONTCONFIG_CMAKE_BOOL_OFF=	NO_FONTCONFIG
 
 post-install:
-		@cd ${STAGEDIR}${PREFIX}; \
+		@cd ${PREFIX}; \
 		${LN} -sf ../libexec/xpdf/xpdf bin/xpdf
-		${INSTALL_DATA} ${WRKSRC}/doc/sample-xpdfrc ${STAGEDIR}${PREFIX}/etc/xpdfrc.sample
+		${INSTALL_DATA} ${WRKSRC}/doc/sample-xpdfrc ${PREFIX}/etc/xpdfrc.sample
 		${INSTALL_DATA} ${WRKDIR}/xpdf-man.conf \
-			${STAGEDIR}${PREFIX}/etc/man.d/xpdf.conf
-		${INSTALL_DATA} ${FILESDIR}/xpdf.desktop ${STAGEDIR}${DESKTOPDIR}
-		${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/256x256
-		${INSTALL_DATA} ${WRKSRC}/xpdf-qt/xpdf-icon.ico ${STAGEDIR}${PREFIX}/share/icons/hicolor/256x256/xpdf.png
-		${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable
-		${INSTALL_DATA} ${WRKSRC}/xpdf-qt/xpdf-icon.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/xpdf.svg
+			${PREFIX}/etc/man.d/xpdf.conf
+		${INSTALL_DATA} ${FILESDIR}/xpdf.desktop ${DESKTOPDIR}
+		${MKDIR} ${PREFIX}/share/icons/hicolor/256x256
+		${INSTALL_DATA} ${WRKSRC}/xpdf-qt/xpdf-icon.ico ${PREFIX}/share/icons/hicolor/256x256/xpdf.png
+		${MKDIR} ${PREFIX}/share/icons/hicolor/scalable
+		${INSTALL_DATA} ${WRKSRC}/xpdf-qt/xpdf-icon.svg ${PREFIX}/share/icons/hicolor/scalable/xpdf.svg
 
 .include <bsd.port.mk>

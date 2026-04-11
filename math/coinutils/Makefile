@@ -34,6 +34,6 @@ GH_ACCOUNT=	coin-or
 INSTALL_TARGET=	install-strip
 
 post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/share/coin
+	@${RM} -r ${PREFIX}/share/coin
 
 .include <bsd.port.mk>

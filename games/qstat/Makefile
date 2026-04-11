@@ -30,11 +30,11 @@ post-patch:
 		${WRKSRC}/scripts/version.sh
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/info ${STAGEDIR}${DOCSDIR}/template
+	@${MKDIR} ${DOCSDIR}/info ${DOCSDIR}/template
 	${INSTALL_DATA} ${WRKSRC}/CHANGES.txt ${WRKSRC}/qstatdoc.html \
-		${STAGEDIR}${DOCSDIR}
+		${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/template/*.html ${WRKSRC}/template/*.txt \
-		${STAGEDIR}${DOCSDIR}/template
-	${INSTALL_DATA} ${WRKSRC}/info/*.txt ${STAGEDIR}${DOCSDIR}/info
+		${DOCSDIR}/template
+	${INSTALL_DATA} ${WRKSRC}/info/*.txt ${DOCSDIR}/info
 
 .include <bsd.port.mk>

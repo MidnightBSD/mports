@@ -24,8 +24,8 @@ post-extract:
 	@${TAR} -xf ${WRKDIR}/bluej-dist.jar -C ${WRKSRC}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/bluej
-	cd ${WRKSRC}; ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/bluej
-	${INSTALL_SCRIPT} ${WRKDIR}/bluej ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${PREFIX}/bluej
+	cd ${WRKSRC}; ${COPYTREE_SHARE} . ${PREFIX}/bluej
+	${INSTALL_SCRIPT} ${WRKDIR}/bluej ${PREFIX}/bin
 
 .include <bsd.port.mk>

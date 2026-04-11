@@ -23,6 +23,6 @@ NO_ARCH=	yes
 CPE_VENDOR=	sprockets_project
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/bin/sprockets
+	@${RM} ${PREFIX}/bin/sprockets
 
 .include <bsd.port.mk>

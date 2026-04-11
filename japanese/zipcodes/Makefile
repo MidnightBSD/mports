@@ -19,7 +19,7 @@ NO_WRKSUBDIR=	yes
 MAKE_ENV=	INSTALL_DATA="${INSTALL_DATA}" \
 		SCRIPTDIR=${SCRIPTDIR} \
 		PERL=${PERL} \
-		STAGEDIR=${STAGEDIR}
+		STAGEDIR=
 MAKEFILE=	${FILESDIR}/Makefile
 PLIST_FILES=	share/misc/jp-zipcodes/jigyosyo-euc.csv \
 		share/misc/jp-zipcodes/ken_all-euc.csv \

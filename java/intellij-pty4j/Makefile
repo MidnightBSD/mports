@@ -46,9 +46,9 @@ NO_BUILD=	yes
 
 do-install:
 .if ${PTY4J_ARCH} != ""
-	${MKDIR} ${STAGEDIR}${IDEA_HOME}/lib/libpty/freebsd/${PTY4J_ARCH}
+	${MKDIR} ${IDEA_HOME}/lib/libpty/freebsd/${PTY4J_ARCH}
 # See above why we always use freebsd/x86-64/ here
-	${INSTALL_LIB} ${WRKSRC}/os/freebsd/x86-64/libpty.so ${STAGEDIR}${IDEA_HOME}/lib/libpty/freebsd/${PTY4J_ARCH}/
+	${INSTALL_LIB} ${WRKSRC}/os/freebsd/x86-64/libpty.so ${IDEA_HOME}/lib/libpty/freebsd/${PTY4J_ARCH}/
 .endif
 
 .include <bsd.port.mk>

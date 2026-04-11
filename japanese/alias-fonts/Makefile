@@ -23,7 +23,7 @@ PLIST_FILES=	%%FONTSDIR%%/fonts.alias
 SUB_FILES=	pkg-message
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${FILESDIR}/fonts.alias ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${FILESDIR}/fonts.alias ${FONTSDIR}
 
 .include <bsd.port.mk>

@@ -343,8 +343,8 @@ pre-configure:
 
 post-install:
 .for i in ${SAMPLE_FILES}
-	@${MV} ${STAGEDIR}${PREFIX}/etc/ImageMagick-7/${i} \
-		${STAGEDIR}${PREFIX}/etc/ImageMagick-7/${i}.sample
+	@${MV} ${PREFIX}/etc/ImageMagick-7/${i} \
+		${PREFIX}/etc/ImageMagick-7/${i}.sample
 .endfor
 
 .include <bsd.port.mk>

@@ -16,8 +16,8 @@ ALL_TARGET=
 PLIST_FILES=	bin/qkc share/man/ja/man1/qkc.1.gz
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/qkc ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
-	${INSTALL_MAN} ${WRKSRC}/qkc.1 ${STAGEDIR}${PREFIX}/share/man/ja/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/qkc ${PREFIX}/bin
+	${MKDIR} ${PREFIX}/share/man/ja/man1
+	${INSTALL_MAN} ${WRKSRC}/qkc.1 ${PREFIX}/share/man/ja/man1
 
 .include <bsd.port.mk>

@@ -80,14 +80,14 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' ${WRKSRC}/Source/init.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/devilutionx ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/Packaging/nix/devilutionx.desktop ${STAGEDIR}${PREFIX}/share/applications
-	${INSTALL_DATA} ${WRKSRC}/Packaging/nix/devilutionx-hellfire.desktop ${STAGEDIR}${PREFIX}/share/applications
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/512x512/apps
-	${INSTALL_DATA} ${WRKSRC}/Packaging/resources/icon.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/512x512/apps/devilutionx.png
-	${INSTALL_DATA} ${WRKSRC}/Packaging/resources/hellfire.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/512x512/apps/devilutionx-hellfire.png
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${DISTDIR}/devilutionx.mpq?tag=${DATA_VERSION} ${STAGEDIR}${DATADIR}/devilutionx.mpq
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/devilutionx ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/Packaging/nix/devilutionx.desktop ${PREFIX}/share/applications
+	${INSTALL_DATA} ${WRKSRC}/Packaging/nix/devilutionx-hellfire.desktop ${PREFIX}/share/applications
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/512x512/apps
+	${INSTALL_DATA} ${WRKSRC}/Packaging/resources/icon.png ${PREFIX}/share/icons/hicolor/512x512/apps/devilutionx.png
+	${INSTALL_DATA} ${WRKSRC}/Packaging/resources/hellfire.png ${PREFIX}/share/icons/hicolor/512x512/apps/devilutionx-hellfire.png
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${DISTDIR}/devilutionx.mpq?tag=${DATA_VERSION} ${DATADIR}/devilutionx.mpq
 
 do-test-TEST-on:
 	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${LOCALBASE}/bin/ctest -V

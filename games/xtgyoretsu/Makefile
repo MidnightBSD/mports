@@ -25,7 +25,7 @@ PORTDOCS=	*
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/Readme ${STAGEDIR}${DOCSDIR}/
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/Readme ${DOCSDIR}/
 
 .include <bsd.port.mk>

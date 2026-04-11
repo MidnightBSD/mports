@@ -197,34 +197,34 @@ pre-configure:
 .endif
 
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKDIR}/mailman.newsyslog.sample ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKDIR}/mailman.newsyslog.sample ${EXAMPLESDIR}
 .for i in admindb admin confirm create edithtml listinfo options private \
 	rmlist roster subscribe
-	${STRIP_CMD} ${STAGEDIR}${MAILMANDIR}/cgi-bin/${i}
+	${STRIP_CMD} ${MAILMANDIR}/cgi-bin/${i}
 .endfor
 .if ${PORT_OPTIONS:MHTDIG}
 .for i in htdig mmsearch
-	${STRIP_CMD} ${STAGEDIR}${MAILMANDIR}/cgi-bin/${i}
+	${STRIP_CMD} ${MAILMANDIR}/cgi-bin/${i}
 .endfor
 .endif
-	${STRIP_CMD} ${STAGEDIR}${MAILMANDIR}/mail/mailman
+	${STRIP_CMD} ${MAILMANDIR}/mail/mailman
 # Compile additional Python scripts:
 .for dir in bin
-	(cd ${STAGEDIR}${MAILMANDIR} \
+	(cd ${MAILMANDIR} \
 	    && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 	    -d ${MAILMANDIR}/${dir} ${dir})
 .endfor
 	-${RM} ${MAILMANDIR}/pythonlib/*.egg-info
 	@# mm_cfg.py is handled by pkg-plist, no need to archive a copy:
-	@${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.py
-	@${RM} ${STAGEDIR}${MAILMANDIR}/Mailman/mm_cfg.pyc
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${IMGDIR}
-	${CP} -p ${STAGEDIR}${MAILMANDIR}/icons/* ${STAGEDIR}${PREFIX}/${IMGDIR}
+	@${RM} ${MAILMANDIR}/Mailman/mm_cfg.py
+	@${RM} ${MAILMANDIR}/Mailman/mm_cfg.pyc
+	@${MKDIR} ${PREFIX}/${IMGDIR}
+	${CP} -p ${MAILMANDIR}/icons/* ${PREFIX}/${IMGDIR}
 	${INSTALL_DATA} ${FILESDIR}/powerlogo.png \
-	  ${STAGEDIR}${PREFIX}/${IMGDIR}/
+	  ${PREFIX}/${IMGDIR}/
 	${INSTALL_DATA} ${FILESDIR}/powerlogo.png \
-	  ${STAGEDIR}${MAILMANDIR}/icons/
+	  ${MAILMANDIR}/icons/
 .if ${PORT_OPTIONS:MDOCS}
 	${CP} -R ${WRKSRC}/doc/* ${WRKSRC}/
 	@${MKDIR} ${DOCSDIR}
@@ -233,10 +233,10 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${docfile} ${DOCSDIR}
 .endfor
 .endif
-	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
-	${ECHO} "This marker file ensures that Python's upgrade-site-packages handles ${PKGNAME}." >${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/mailman-info.txt
-	${INSTALL_SCRIPT} ${PKGINSTALL} ${STAGEDIR}${MAILMANDIR}/bin/MidnightBSD-post-install
-	${MKDIR} ${STAGEDIR}${MAILMANDIR}/templates/site/en
-	${INSTALL_DATA} ${FILESDIR}/templates_site_README.txt ${STAGEDIR}${MAILMANDIR}/templates/site/README.txt
+	@${MKDIR} ${PYTHONPREFIX_SITELIBDIR}
+	${ECHO} "This marker file ensures that Python's upgrade-site-packages handles ${PKGNAME}." >${PYTHONPREFIX_SITELIBDIR}/mailman-info.txt
+	${INSTALL_SCRIPT} ${PKGINSTALL} ${MAILMANDIR}/bin/MidnightBSD-post-install
+	${MKDIR} ${MAILMANDIR}/templates/site/en
+	${INSTALL_DATA} ${FILESDIR}/templates_site_README.txt ${MAILMANDIR}/templates/site/README.txt
 
 .include <bsd.port.mk>

@@ -31,8 +31,8 @@ SQ_DESC=	SonarQube server support
 SQ_RUN_DEPENDS=	sonarqube>=0:devel/sonarqube
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${DISTDIR}/${DISTFILES} \
-		${STAGEDIR}${DATADIR}/${PORTNAME}${EXTRACT_SUFX}
+		${DATADIR}/${PORTNAME}${EXTRACT_SUFX}
 
 .include <bsd.port.mk>

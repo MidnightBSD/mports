@@ -39,8 +39,8 @@ post-install:
 # modules listed in the *_DEPENDS variables:
 		${PYTHON_CMD} ${WRKSRC}/fetchmailconf.py -V
 # then install:
-		${INSTALL_SCRIPT} ${WRKDIR}/fetchmailconf ${STAGEDIR}${PREFIX}/bin
-		${RM} ${STAGEDIR}${PREFIX}/share/man/man1/fetchmail.1*
+		${INSTALL_SCRIPT} ${WRKDIR}/fetchmailconf ${PREFIX}/bin
+		${RM} ${PREFIX}/share/man/man1/fetchmail.1*
 
 MASTERDIR=	${.CURDIR}/../fetchmail
 

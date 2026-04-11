@@ -63,7 +63,7 @@ post-extract:
 	@${RM} -r ${WRKSRC}/fonts/locale/vi_docs
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/tuxpaint
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/tuxpaint/plugins/*.so
+	@${STRIP_CMD} ${PREFIX}/bin/tuxpaint
+	@${STRIP_CMD} ${PREFIX}/lib/tuxpaint/plugins/*.so
 
 .include <bsd.port.mk>

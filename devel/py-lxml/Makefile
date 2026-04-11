@@ -35,9 +35,9 @@ post-install:
 		-name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOCS_FILES:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${DOCS_FILES:S,^,${WRKSRC}/,} ${DOCSDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${DOCSDIR}
 
 .include <bsd.port.pre.mk>
 

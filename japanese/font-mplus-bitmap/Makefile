@@ -32,11 +32,11 @@ post-extract:
 	    fonts_j/fonts.alias | ${SORT} -r > ${WRKDIR}/fonts.alias
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC} && \
-	    ${SETENV} DESTDIR="${STAGEDIR}${FONTSDIR}" \
+	    ${SETENV} DESTDIR="${FONTSDIR}" \
 	    ${SH} ${WRKSRC}/install_mplus_fonts
-	${INSTALL_DATA} ${WRKDIR}/fonts.alias ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKDIR}/fonts.alias ${FONTSDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -39,13 +39,13 @@ do-build:
 	cd ${WRKSRC}/lpsolve55 ; ${BUILDENV} ${SH} -x ccc
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/lp_solve/bin/${LPSOLVE_ARCH}/lp_solve ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/lpsolve55/bin/${LPSOLVE_ARCH}/liblpsolve55.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_LIB} ${WRKSRC}/lpsolve55/bin/${LPSOLVE_ARCH}/liblpsolve55.so ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf liblpsolve55.so ${STAGEDIR}${PREFIX}/lib/liblpsolve55.so.1
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/lpsolve
+	${INSTALL_PROGRAM} ${WRKSRC}/lp_solve/bin/${LPSOLVE_ARCH}/lp_solve ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/lpsolve55/bin/${LPSOLVE_ARCH}/liblpsolve55.a ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/lpsolve55/bin/${LPSOLVE_ARCH}/liblpsolve55.so ${PREFIX}/lib
+	${LN} -sf liblpsolve55.so ${PREFIX}/lib/liblpsolve55.so.1
+	@${MKDIR} ${PREFIX}/include/lpsolve
 .for i in declare.h fortify.h ini.h lp_*.h lpkit.h lpsolve.h ufortify.h yacc_read.h
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${PREFIX}/include/lpsolve
+	${INSTALL_DATA} ${WRKSRC}/${i} ${PREFIX}/include/lpsolve
 .endfor
 
 .include <bsd.port.post.mk>

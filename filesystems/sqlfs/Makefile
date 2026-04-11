@@ -28,7 +28,7 @@ do-build:
 		-o sqlfs)
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/sqlfs ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/sqlfs ${PREFIX}/bin
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -20,6 +20,6 @@ USE_PERL5=	configure
 #pre-install:	test
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Opcodes/Opcodes.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Opcodes/Opcodes.so
 
 .include <bsd.port.mk>

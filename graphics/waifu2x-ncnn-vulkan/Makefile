@@ -34,8 +34,8 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	(cd ${WRKSRC}/models && ${COPYTREE_SHARE} "${PORTDATA}" \
-		${STAGEDIR}${DATADIR})
+		${DATADIR})
 
 .include <bsd.port.mk>

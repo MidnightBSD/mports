@@ -30,28 +30,28 @@ ROOT_SCRIPTS=	admin.pl am.pl ap.pl ar.pl bp.pl ca.pl cp.pl ct.pl gl.pl hr.pl \
 
 .include <bsd.port.pre.mk>
 do-install:
-	${INSTALL_DATA} ${WRKDIR}/sql-ledger-httpd.conf ${STAGEDIR}${PREFIX}/etc/
-	@${MKDIR} ${STAGEDIR}/${WWWDIR}
+	${INSTALL_DATA} ${WRKDIR}/sql-ledger-httpd.conf ${PREFIX}/etc/
+	@${MKDIR} /${WWWDIR}
 .for dir in ${ROOT_DIRS}
-	@${MKDIR} ${STAGEDIR}/${WWWDIR}/${dir}
-	@cd ${WRKSRC}/${dir} && ${COPYTREE_SHARE} . ${STAGEDIR}/${WWWDIR}/${dir}
+	@${MKDIR} /${WWWDIR}/${dir}
+	@cd ${WRKSRC}/${dir} && ${COPYTREE_SHARE} . /${WWWDIR}/${dir}
 .endfor
 .for f in ${ROOT_FILES}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}/${WWWDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} /${WWWDIR}
 .endfor
 .for f in ${ROOT_SCRIPTS}
-	${INSTALL_SCRIPT} ${WRKSRC}/${f} ${STAGEDIR}/${WWWDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/${f} /${WWWDIR}
 .endfor
 
 post-install:
 	@${ECHO_CMD} "@owner ${WWWOWN}" >> ${TMPPLIST}
 	@${ECHO_CMD} "@group ${WWWGRP}" >> ${TMPPLIST}
-	@${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
-	${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
-	@${FIND} -s ${STAGEDIR}${WWWDIR} -type d | \
+	@${FIND} -s ${WWWDIR} -not -type d | ${SORT} | \
+	${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
+	@${FIND} -s ${WWWDIR} -type d | \
 	${SED} -e 's#^${FAKE_DESTDIR}#@dir #' >> ${TMPPLIST}
 	${INSTALL_DATA} ${WRKSRC}/sql-ledger.conf.default \
-	${STAGEDIR}/${WWWDIR}/sql-ledger.conf.sample
+	/${WWWDIR}/sql-ledger.conf.sample
 	@${ECHO} @sample ${WWWDIR_REL}/sql-ledger.conf.sample >> ${TMPPLIST}
 	@${ECHO_CMD} "etc/sql-ledger-httpd.conf" >> ${TMPPLIST}
 	@${ECHO_CMD} "@group" >> ${TMPPLIST}

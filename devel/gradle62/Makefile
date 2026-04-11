@@ -28,7 +28,7 @@ PLIST_FILES=	bin/gradle${PKGNAMESUFFIX}
 PORTDATA=	*
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/gradle ${STAGEDIR}${PREFIX}/bin/gradle${PKGNAMESUFFIX}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} lib ${STAGEDIR}${DATADIR})
+	${INSTALL_SCRIPT} ${WRKDIR}/gradle ${PREFIX}/bin/gradle${PKGNAMESUFFIX}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} lib ${DATADIR})
 
 .include <bsd.port.mk>

@@ -19,16 +19,16 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/wdic-fpw/wdic/data
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/wdic-fpw/wdic/gaiji
+	@${MKDIR} ${PREFIX}/share/dict/wdic-fpw/wdic/data
+	@${MKDIR} ${PREFIX}/share/dict/wdic-fpw/wdic/gaiji
 	${INSTALL_DATA} ${WRKSRC}/wdic/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/wdic-fpw/wdic/data
+		${PREFIX}/share/dict/wdic-fpw/wdic/data
 	${INSTALL_DATA} ${WRKSRC}/wdic/gaiji/gai16h \
-		${STAGEDIR}${PREFIX}/share/dict/wdic-fpw/wdic/gaiji
+		${PREFIX}/share/dict/wdic-fpw/wdic/gaiji
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/wdic-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/wdic-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme.1st readme.txt \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

@@ -22,7 +22,7 @@ SUB_FILES=	pkg-message
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKDIR}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKDIR}/doc && ${COPYTREE_SHARE} . ${DOCSDIR}
 
 .include <bsd.port.mk>

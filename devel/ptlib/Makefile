@@ -119,11 +119,11 @@ pre-configure:
 	(cd ${WRKSRC}/plugins/ && ${AUTORECONF} -fi)
 
 post-install:
-	${LN} -sf libpt.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PVERSION_MAJOR}
-	${LN} -sf libpt.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PVERSION_MINOR}
-	@${CHMOD} 0755 ${STAGEDIR}${PREFIX}/lib/libpt.so.${PORTVERSION} \
-		${STAGEDIR}${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PORTVERSION}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
+	${LN} -sf libpt.so.${PORTVERSION} ${PREFIX}/lib/libpt.so.${PVERSION_MAJOR}
+	${LN} -sf libpt.so.${PORTVERSION} ${PREFIX}/lib/libpt.so.${PVERSION_MINOR}
+	@${CHMOD} 0755 ${PREFIX}/lib/libpt.so.${PORTVERSION} \
+		${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/libpt.so.${PORTVERSION}
+	@${STRIP_CMD} ${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
 
 .include <bsd.port.post.mk>

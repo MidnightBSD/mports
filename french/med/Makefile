@@ -60,7 +60,7 @@ post-patch-EXAMPLES-off:
 	${REINPLACE_CMD} -e '/SUBDIRS/ s|tests||' ${WRKSRC}/Makefile.in
 
 post-install:
-	(cd ${STAGEDIR}${PREFIX}/bin && ${LN} -sf mdump3 mdump	\
+	(cd ${PREFIX}/bin && ${LN} -sf mdump3 mdump	\
 		&& ${LN} -sf xmdump3 xmdump)
 
 .include "${.CURDIR}/../../french/aster/bsd.aster.mk"

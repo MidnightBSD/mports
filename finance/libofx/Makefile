@@ -31,6 +31,6 @@ CPE_VENDOR=	libofx_project
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${RM} -f ${STAGEDIR}${DOCSDIR}/COPYING
+	${RM} -f ${DOCSDIR}/COPYING
 
 .include <bsd.port.mk>

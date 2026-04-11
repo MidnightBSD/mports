@@ -49,6 +49,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|add_subdirectory.*googletest.*|link_directories(${LOCALBASE}/lib)|' ${WRKSRC}/test/CMakeLists.txt
 
 post-install:
-	@${RM} -r ${STAGEDIR}${EXAMPLESDIR}/CMake*
+	@${RM} -r ${EXAMPLESDIR}/CMake*
 
 .include <bsd.port.mk>

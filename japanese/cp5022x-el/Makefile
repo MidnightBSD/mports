@@ -25,9 +25,9 @@ do-build:
 	    ${GZIP_CMD} cp5022x.el
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR} && \
+	${MKDIR} ${PREFIX}/${EMACS_SITE_LISPDIR} && \
 	cd ${INSTALL_WRKSRC} && \
 	    ${INSTALL_DATA} cp5022x.elc cp5022x.el.gz \
-		${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
+		${PREFIX}/${EMACS_SITE_LISPDIR}
 
 .include <bsd.port.mk>

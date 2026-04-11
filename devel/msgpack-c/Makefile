@@ -31,14 +31,14 @@ pre-test:
 # msgpack keeps changing its name and I'm over it. Link from the old filenames
 # until upstream makes up its mind.
 post-install:
-	${LN} -sf msgpack-c.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/msgpack.pc
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/cmake/msgpackc
+	${LN} -sf msgpack-c.pc ${PREFIX}/libdata/pkgconfig/msgpack.pc
+	${MKDIR} ${PREFIX}/lib/cmake/msgpackc
 .for tgt in config-version config targets-${CMAKE_BUILD_TYPE:tl} targets
 	${LN} -sf ../msgpack-c/msgpack-c-${tgt}.cmake \
-		${STAGEDIR}${PREFIX}/lib/cmake/msgpackc/msgpackc-${tgt}.cmake
+		${PREFIX}/lib/cmake/msgpackc/msgpackc-${tgt}.cmake
 .endfor
 .for ext in a so so.2 so.2.0.0
-	${LN} -sf libmsgpack-c.${ext} ${STAGEDIR}${PREFIX}/lib/libmsgpackc.${ext}
+	${LN} -sf libmsgpack-c.${ext} ${PREFIX}/lib/libmsgpackc.${ext}
 .endfor
 
 .include <bsd.port.post.mk>

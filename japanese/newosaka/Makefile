@@ -14,6 +14,6 @@ do-build:
 	(cd ${WRKSRC}; ${CC} ${CFLAGS} -o osaka osaka.c -I${WRKSRC})
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/osaka ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/osaka ${PREFIX}/bin
 
 .include <bsd.port.mk>

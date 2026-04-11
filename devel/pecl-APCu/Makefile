@@ -21,7 +21,7 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 PLIST_FILES=	${DATADIR}/apc.php
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/apc.php ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/apc.php ${DATADIR}
 
 .include <bsd.port.mk>

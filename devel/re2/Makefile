@@ -22,6 +22,6 @@ USE_CXXSTD=	c++17
 USE_LDCONFIG=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libre2.so
+	${STRIP_CMD} ${PREFIX}/lib/libre2.so
 
 .include <bsd.port.mk>

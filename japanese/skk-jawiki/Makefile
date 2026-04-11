@@ -44,8 +44,8 @@ do-build:
 		-f utf-8 -t ${CSET} ${WRKSRC}/mecab-userdic.csv
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${MECABDIR}
-	${INSTALL_DATA} ${WRKSRC}/${MECABDIC} ${STAGEDIR}${PREFIX}/${MECABDIR}
+	${MKDIR} ${PREFIX}/${MECABDIR}
+	${INSTALL_DATA} ${WRKSRC}/${MECABDIC} ${PREFIX}/${MECABDIR}
 .else
 SKKDIR=		share/skk
 SKKDIC=		SKK-JISYO.${PORTNAME}
@@ -96,8 +96,8 @@ do-build:
 .endfor
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${SKKDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DICS} ${STAGEDIR}${PREFIX}/${SKKDIR}
+	${MKDIR} ${PREFIX}/${SKKDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DICS} ${PREFIX}/${SKKDIR}
 .endif
 
 .include <bsd.port.mk>

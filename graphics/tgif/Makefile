@@ -56,11 +56,11 @@ pre-configure:
 		) > ${WRKSRC}/Tgif.tmpl-freebsdports
 post-install:
 .for D in demo spice
-		${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/${D}
+		${MKDIR} ${EXAMPLESDIR}/${D}
 		cd ${WRKSRC}/${D:S/demo//} \
-			&& ${INSTALL_DATA} ${EXAMPLES.${D}} ${STAGEDIR}${EXAMPLESDIR}/${D}
+			&& ${INSTALL_DATA} ${EXAMPLES.${D}} ${EXAMPLESDIR}/${D}
 .endfor
-		${MKDIR} ${STAGEDIR}${DOCSDIR}
-		cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+		${MKDIR} ${DOCSDIR}
+		cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>

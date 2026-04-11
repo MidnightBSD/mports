@@ -158,14 +158,14 @@ do-build:
 
 # it's not recommended to install openjfx inside openjdk directory
 do-install:
-	@${MKDIR} ${STAGEDIR}${_INSTALLDIR} \
-		${STAGEDIR}${_INSTALLDIR}/lib \
-		${STAGEDIR}${_INSTALLDIR}/jmods
-	${INSTALL_DATA} ${WRKSRC}/build/javafx-exports.zip ${STAGEDIR}${_INSTALLDIR}
-	(cd ${WRKSRC}/build/artifacts/javafx-sdk-14.0.2.1/lib && ${COPYTREE_SHARE} . ${STAGEDIR}${_INSTALLDIR}/lib)
-	@${MV} ${STAGEDIR}${_INSTALLDIR}/lib/src.zip ${STAGEDIR}${_INSTALLDIR}/lib/javafx-src.zip
-	(cd ${WRKSRC}/build/artifacts/javafx-jmods-14.0.2.1 && ${COPYTREE_SHARE} . ${STAGEDIR}${_INSTALLDIR}/jmods)
-	@${FIND} ${STAGEDIR}${_INSTALLDIR}/lib -name '*.so' -exec ${STRIP_CMD} \{\} \;
+	@${MKDIR} ${_INSTALLDIR} \
+		${_INSTALLDIR}/lib \
+		${_INSTALLDIR}/jmods
+	${INSTALL_DATA} ${WRKSRC}/build/javafx-exports.zip ${_INSTALLDIR}
+	(cd ${WRKSRC}/build/artifacts/javafx-sdk-14.0.2.1/lib && ${COPYTREE_SHARE} . ${_INSTALLDIR}/lib)
+	@${MV} ${_INSTALLDIR}/lib/src.zip ${_INSTALLDIR}/lib/javafx-src.zip
+	(cd ${WRKSRC}/build/artifacts/javafx-jmods-14.0.2.1 && ${COPYTREE_SHARE} . ${_INSTALLDIR}/jmods)
+	@${FIND} ${_INSTALLDIR}/lib -name '*.so' -exec ${STRIP_CMD} \{\} \;
 
 do-test-TEST-on:
 	@cd ${WRKSRC} && ${_GRADLE_RUN} check test

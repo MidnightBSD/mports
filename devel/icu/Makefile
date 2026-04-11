@@ -40,15 +40,15 @@ PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUVER=${PORTVERSION:C/r.?/1/}
 
 .ifndef PKGNAMESUFFIX
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/g* \
-		${STAGEDIR}${PREFIX}/bin/*conv \
-		${STAGEDIR}${PREFIX}/bin/icuexportdata \
-		${STAGEDIR}${PREFIX}/bin/icuinfo \
-		${STAGEDIR}${PREFIX}/bin/derb \
-		${STAGEDIR}${PREFIX}/bin/pkgdata
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/*
+	@${STRIP_CMD} ${PREFIX}/bin/g* \
+		${PREFIX}/bin/*conv \
+		${PREFIX}/bin/icuexportdata \
+		${PREFIX}/bin/icuinfo \
+		${PREFIX}/bin/derb \
+		${PREFIX}/bin/pkgdata
+	@${STRIP_CMD} ${PREFIX}/sbin/*
 # Filename varies by endianness: icudt<major>b.dat vs. icudt<major>l.dat
-	@(cd ${STAGEDIR}${PREFIX} && ${ECHO_CMD} \
+	@(cd ${PREFIX} && ${ECHO_CMD} \
 		${DATADIR_REL}/${PORTVERSION:C/r.?/1/}/icudt*.dat >>${TMPPLIST})
 # hack for firefox
 	cd ${PREFIX}/lib && ${LN} -sf libicui18n.so libicui18n.so.67

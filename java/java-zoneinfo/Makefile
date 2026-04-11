@@ -16,7 +16,7 @@ NO_BUILD=	yes
 JAVASHAREDIR=	${PREFIX}/share/java
 
 do-install:
-	${MKDIR} ${STAGEDIR}${JAVASHAREDIR}/zi
-	(cd ${WRKSRC}/zi && ${COPYTREE_SHARE} . ${STAGEDIR}${JAVASHAREDIR}/zi)
+	${MKDIR} ${JAVASHAREDIR}/zi
+	(cd ${WRKSRC}/zi && ${COPYTREE_SHARE} . ${JAVASHAREDIR}/zi)
 
 .include <bsd.port.mk>

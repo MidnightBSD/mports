@@ -21,6 +21,6 @@ CFLAGS+=	${CPPFLAGS}
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Term/ReadLine/Gnu/Gnu.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Term/ReadLine/Gnu/Gnu.so
 
 .include <bsd.port.mk>

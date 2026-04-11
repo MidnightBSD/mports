@@ -47,6 +47,6 @@ post-patch:
 		| ${XARGS} ${REINPLACE_CMD} -e 's|<malloc.h>|<stdlib.h>|g'
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaa.so
+	@${STRIP_CMD} ${PREFIX}/lib/libaa.so
 
 .include <bsd.port.mk>

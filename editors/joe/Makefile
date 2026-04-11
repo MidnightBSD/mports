@@ -28,7 +28,7 @@ post-patch:
 
 post-install:
 .for rc in ftyperc jmacsrc joerc jpicorc jstarrc rjoerc
-	${MV} ${STAGEDIR}${ETCDIR}/${rc} ${STAGEDIR}${ETCDIR}/${rc}.sample
+	${MV} ${ETCDIR}/${rc} ${ETCDIR}/${rc}.sample
 .endfor
 
 .include <bsd.port.mk>

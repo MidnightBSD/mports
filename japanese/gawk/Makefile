@@ -30,7 +30,7 @@ post-configure:
 		${WRKSRC}/Makefile ${WRKSRC}/doc/Makefile ${WRKSRC}/awklib/Makefile
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} OREADME.MB README.MB ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} OREADME.MB README.MB ${DOCSDIR})
 
 .include <bsd.port.mk>

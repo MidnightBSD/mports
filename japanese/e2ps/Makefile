@@ -18,9 +18,9 @@ post-patch:
 	${REINPLACE_CMD} -e '/Times-Roman$$/,/^Gothic-Medium.Katakana$$/{s,$$,\\,;}' ${WRKSRC}/ps-font.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/e2ps ${STAGEDIR}${PREFIX}/bin
-	${LN} -sf ${PREFIX}/bin/e2ps ${STAGEDIR}${PREFIX}/bin/e2lpr
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/e2ps ${PREFIX}/bin
+	${LN} -sf ${PREFIX}/bin/e2ps ${PREFIX}/bin/e2lpr
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

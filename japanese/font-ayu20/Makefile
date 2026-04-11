@@ -27,7 +27,7 @@ OPTIONS_DEFINE=	DOCS
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/fonts.alias \
-	    ${STAGEDIR}${FONTSDIR}
+	    ${FONTSDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

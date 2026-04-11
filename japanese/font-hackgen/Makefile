@@ -46,18 +46,18 @@ HACKGEN_FONTS+=	HackGen35Console-Regular HackGen35Console-Bold
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 .for FONT in ${HACKGEN_FONTS}
-	${INSTALL_DATA} ${WRKSRC}/${FONT}.ttf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${FONT}.ttf ${FONTSDIR}
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d
+	${MKDIR} ${PREFIX}/etc/fonts/conf.avail \
+	    ${PREFIX}/etc/fonts/conf.d
 	${INSTALL_DATA} ${FILESDIR}/20-unhint-${FONTNAME}.conf \
 	    ${FILESDIR}/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail
+	    ${PREFIX}/etc/fonts/conf.avail
 	${LN} -s -f ../conf.avail/20-unhint-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
 	${LN} -s -f ../conf.avail/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
 
 .include <bsd.port.mk>

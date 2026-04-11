@@ -12,7 +12,7 @@ LICENSE=	other
 NO_BUILD=	yes
 USES=		magick:6,run perl5
 
-PKG_DIR=	${STAGEDIR}${PREFIX}/share/dict/lookup-package
+PKG_DIR=	${PREFIX}/share/dict/lookup-package
 
 PLIST_FILES=	share/dict/lookup-package/srd-fpw.el \
 		share/dict/lookup-package/extract-srd.pl
@@ -24,7 +24,7 @@ do-install:
 	@${MKDIR} ${PKG_DIR}
 	${INSTALL_DATA} ${WRKSRC}/srd-fpw.el ${PKG_DIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/extract-srd.pl ${PKG_DIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA}	${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA}	${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

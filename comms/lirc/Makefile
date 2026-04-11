@@ -57,8 +57,8 @@ post-patch:
 		${WRKSRC}/configure.ac
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/lircd.conf ${STAGEDIR}${PREFIX}/etc/lircd.conf.sample
-	@${MKDIR} ${STAGEDIR}/var/run/lirc
+	${INSTALL_DATA} ${WRKDIR}/lircd.conf ${PREFIX}/etc/lircd.conf.sample
+	@${MKDIR} /var/run/lirc
 
 post-install-MINIMAL-on:
 	# bacause --with-driver is specified, it installs remotes/dvico/lircd.conf.fusionHDTV to etc/lircd/

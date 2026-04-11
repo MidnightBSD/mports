@@ -23,11 +23,11 @@ PLIST_SUB=	SYSCOLORDIR=${SYSCOLORDIR}
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKDIR}/Adobe\ ICC\ Profiles\ \(end-user\) && ${COPYTREE_SHARE} \*.pdf ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKDIR}/Adobe\ ICC\ Profiles\ \(end-user\) && ${COPYTREE_SHARE} \*.pdf ${DOCSDIR})
 .for d in CMYK RGB
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SYSCOLORDIR}/Adobe/${d}
-	(cd ${WRKDIR}/Adobe\ ICC\ Profiles\ \(end-user\)/${d} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${SYSCOLORDIR}/Adobe/${d})
+	@${MKDIR} ${PREFIX}/${SYSCOLORDIR}/Adobe/${d}
+	(cd ${WRKDIR}/Adobe\ ICC\ Profiles\ \(end-user\)/${d} && ${COPYTREE_SHARE} . ${PREFIX}/${SYSCOLORDIR}/Adobe/${d})
 .endfor
 
 .include <bsd.port.mk>

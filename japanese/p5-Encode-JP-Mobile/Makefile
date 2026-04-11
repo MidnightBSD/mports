@@ -24,7 +24,7 @@ USE_PERL5=	configure
 NO_TEST=	yes
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Encode/JP/Mobile/Mobile.so
+	@${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Encode/JP/Mobile/Mobile.so
 
 .include <bsd.port.pre.mk>
 

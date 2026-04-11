@@ -21,6 +21,6 @@ USES=		python
 USE_PYTHON=	cython distutils autoplist
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/stl/_speedups*.so
+	${STRIP_CMD} ${PYTHON_SITELIBDIR}/stl/_speedups*.so
 
 .include <bsd.port.mk>

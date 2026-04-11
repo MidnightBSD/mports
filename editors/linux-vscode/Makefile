@@ -1,7 +1,7 @@
 PORTNAME=	vscode
-PORTVERSION=	1.105.0
+PORTVERSION=	1.30.0
 CATEGORIES=	editors linux
-MASTER_SITES=	https://update.code.visualstudio.com/latest/linux-x64/
+MASTER_SITES=	https://update.code.visualstudio.com/${PORTVERSION}/linux-x64/
 PKGNAMEPREFIX=	linux-
 PKGNAMESUFFIX=	3
 DISTFILES=	stable
@@ -21,7 +21,7 @@ USES=		desktop-file-utils gnome linux:rl9 ssl tar:bzip2
 INSTALLS_ICONS=	yes
 USE_LINUX=	atk at-spi2-atk brotli ca-certificates cairo cairo-gobject cups-libs curl \
                 dbuslibs devtools dri elfutils-libelf elfutils-libs expat \
-                fontconfig freetype fribidi gdkpixbuf2 gnupg gnutls gtk3 \
+                fontconfig freetype fribidi gconf2 gdkpixbuf2 gnupg gnutls gtk3 \
                 harfbuzz icu \
                 imageformats-libs libassuan libasyncns libdrm libepoxy libevent \
                 libgcrypt libglvnd libgpg-error libksba libnghttp2 \

@@ -35,6 +35,6 @@ post-extract:
 	${CP} ${DISTDIR}/${OLDFW_FILE}${OLDFW_SUFX} ${WRKDIR}/usr/lib/firmware/intel/${OLDFW_FILE}
 
 do-install:
-	cd ${WRKDIR}/usr/lib/firmware/intel && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
+	cd ${WRKDIR}/usr/lib/firmware/intel && ${COPYTREE_SHARE} . ${DATADIR}
 
 .include <bsd.port.mk>

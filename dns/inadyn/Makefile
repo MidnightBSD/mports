@@ -38,8 +38,8 @@ post-patch:
 		${WRKSRC}/examples/README.md ${WRKSRC}/examples/inadyn.conf
 
 post-install:
-	${MV} ${STAGEDIR}${DOCSDIR}/examples ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${STAGEDIR}${EXAMPLESDIR}/inadyn.conf ${STAGEDIR}${PREFIX}/etc/inadyn.conf.sample
+	${MV} ${DOCSDIR}/examples ${EXAMPLESDIR}
+	${INSTALL_DATA} ${EXAMPLESDIR}/inadyn.conf ${PREFIX}/etc/inadyn.conf.sample
 	${MKDIR} ${FAKE_DESTDIR}/var/cache/inadyn
 	${MKDIR} ${FAKE_DESTDIR}/var/run/inadyn
 

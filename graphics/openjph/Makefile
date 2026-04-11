@@ -33,6 +33,6 @@ CMAKE_ON+=	OJPH_DISABLE_SIMD
 .endif
 
 post-install:
-	${LN} -s libopenjph.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libopenjph.so.${PORTVERSION:R:R}
+	${LN} -s libopenjph.so.${PORTVERSION} ${PREFIX}/lib/libopenjph.so.${PORTVERSION:R:R}
 
 .include <bsd.port.mk>

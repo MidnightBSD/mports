@@ -94,6 +94,6 @@ post-configure:
 		${WRKSRC}/mcs/jay/Makefile
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/mono
+	${MKDIR} ${PREFIX}/mono
 
 .include <bsd.port.mk>

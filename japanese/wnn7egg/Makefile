@@ -15,7 +15,7 @@ USES=		tar:tgz
 
 NO_BUILD=	yes
 
-EMACSDIR=	${STAGEDIR}${PREFIX}/share/emacs/site-lisp
+EMACSDIR=	${PREFIX}/share/emacs/site-lisp
 ELISPDIR=	${EMACSDIR}/wnn7egg
 MANIFEST=	MANIFEST.wnn7egg
 WRKSRC=		${WRKDIR}/wnn7/elisp
@@ -30,7 +30,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/emacs20/its-v309/*.el ${ELISPDIR}/its-v309
 
 	${INSTALL_DATA} ${WRKSRC}/emacs20/eggrc-wnn7 ${ELISPDIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

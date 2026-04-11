@@ -70,24 +70,24 @@ do-build:
 .endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/compface/compface ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/compface/uncompface ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/compface/compface.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.so.1 ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf libcompface.so.1 ${STAGEDIR}${PREFIX}/lib/libcompface.so
-	${INSTALL_MAN} ${WRKSRC}/compface/compface.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/compface/compface.3 ${STAGEDIR}${PREFIX}/share/man/man3
-	${INSTALL_SCRIPT} ${FILESDIR}/ikon2xbm ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${FILESDIR}/xbm2ikon ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${FILESDIR}/xbmcut48 ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${FILESDIR}/xbmsize48 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/compface/compface ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/compface/uncompface ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/compface/compface.h ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.a ${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.so.1 ${PREFIX}/lib
+	${LN} -sf libcompface.so.1 ${PREFIX}/lib/libcompface.so
+	${INSTALL_MAN} ${WRKSRC}/compface/compface.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/compface/compface.3 ${PREFIX}/share/man/man3
+	${INSTALL_SCRIPT} ${FILESDIR}/ikon2xbm ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/xbm2ikon ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/xbmcut48 ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/xbmsize48 ${PREFIX}/bin
 .if ${PORT_OPTIONS:MX11}
-	${INSTALL_PROGRAM} ${WRKSRC}/faces/faces ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/faces/faces.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_DATA} ${WRKSRC}/faces/Faces.ad ${STAGEDIR}${LOCALBASE}/lib/X11/app-defaults/Faces
+	${INSTALL_PROGRAM} ${WRKSRC}/faces/faces ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/faces/faces.1 ${PREFIX}/share/man/man1
+	${INSTALL_DATA} ${WRKSRC}/faces/Faces.ad ${LOCALBASE}/lib/X11/app-defaults/Faces
 .endif
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 
 .include <bsd.port.mk>

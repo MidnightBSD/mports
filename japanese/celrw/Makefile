@@ -30,8 +30,8 @@ post-extract:
 .endfor
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/celrw ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/celrw ${PREFIX}/bin
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 
 .include <bsd.port.post.mk>

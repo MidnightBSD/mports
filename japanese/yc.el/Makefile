@@ -35,8 +35,8 @@ do-build:
 	${EMACS_CMD} -batch -f batch-byte-compile yc.el)
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${YC_LISPDIR}
+	@${MKDIR} ${YC_LISPDIR}
 	(cd ${WRKSRC} && \
-		${INSTALL_SCRIPT} yc.el yc.elc ${STAGEDIR}${YC_LISPDIR})
+		${INSTALL_SCRIPT} yc.el yc.elc ${YC_LISPDIR})
 
 .include <bsd.port.mk>

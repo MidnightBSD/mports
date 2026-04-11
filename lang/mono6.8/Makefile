@@ -117,10 +117,10 @@ post-patch:
 	${TOUCH} ${WRKSRC}/external/llvm/cmake/config.sub
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/mono
+	${MKDIR} ${PREFIX}/mono
 # XXX Drop after devel/msbuild >= 16.0 per https://github.com/mono/msbuild/commit/48f3571f4036
-	${RLN} ${STAGEDIR}${PREFIX}/lib/mono/msbuild/Current \
-		${STAGEDIR}${PREFIX}/lib/mono/msbuild/15.0
+	${RLN} ${PREFIX}/lib/mono/msbuild/Current \
+		${PREFIX}/lib/mono/msbuild/15.0
 	${ECHO_CMD} lib/mono/msbuild/15.0 >>${TMPPLIST}
 
 .include <bsd.port.post.mk>

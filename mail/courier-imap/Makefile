@@ -122,14 +122,14 @@ post-configure-INOTIFY-on:
 	@${ECHO_CMD} '#define HAVE_INOTIFY_INIT1 1' >>${WRKSRC}/libs/maildir/config.h
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/makeimapaccess ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_SCRIPT} ${WRKSRC}/makedat ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/makeimapaccess ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/makedat ${PREFIX}/bin/
 .for i in imapd pop3d
-	${INSTALL_DATA} ${WRKSRC}/libs/imap/${i}.cnf ${STAGEDIR}${CONFDIR}/${i}.cnf.dist
+	${INSTALL_DATA} ${WRKSRC}/libs/imap/${i}.cnf ${CONFDIR}/${i}.cnf.dist
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for a in ${EXTRA_DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${a} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${a} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.post.mk>

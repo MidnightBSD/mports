@@ -159,10 +159,10 @@ check-test: do-install
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKDIR} && ${COPYTREE_SHARE} htmlman ${STAGEDIR}${DOCSDIR})
-	${INSTALL_DATA} ${_DISTDIR}${DOCSDISTNAME}-refman.ps.gz ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${_DISTDIR}${DOCSDISTNAME}-refman.pdf ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	(cd ${WRKDIR} && ${COPYTREE_SHARE} htmlman ${DOCSDIR})
+	${INSTALL_DATA} ${_DISTDIR}${DOCSDISTNAME}-refman.ps.gz ${DOCSDIR}
+	${INSTALL_DATA} ${_DISTDIR}${DOCSDISTNAME}-refman.pdf ${DOCSDIR}
 .endif
 # Spacetime profiling is only available for native code on 64-bit targets
 .if ${ARCH} == armv7 || ${ARCH} == i386 || ${ARCH} == powerpc

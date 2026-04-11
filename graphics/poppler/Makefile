@@ -122,13 +122,13 @@ PLIST_SUB+=    SHLIB_VER=144 \
 post-install:
 .if ${_SLAVE_PORT} == glib
 	${INSTALL_DATA} ${WRKSRC}/poppler-glib.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig
+		${PREFIX}/libdata/pkgconfig
 .elif ${_SLAVE_PORT} == qt5
 	${INSTALL_DATA} ${WRKSRC}/poppler-qt5.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig
+		${PREFIX}/libdata/pkgconfig
 .elif ${_SLAVE_PORT} == qt6
 	${INSTALL_DATA} ${WRKSRC}/poppler-qt6.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig
+		${PREFIX}/libdata/pkgconfig
 .endif
 
 .include <bsd.port.post.mk>

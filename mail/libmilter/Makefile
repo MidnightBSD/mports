@@ -55,13 +55,13 @@ do-build-MILTER_SHARED-on:
 		${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/libmilter
+	${MKDIR} ${PREFIX}/include/libmilter
 	${INSTALL_DATA} ${WRKSRC}/include/libmilter/mfapi.h \
 		${WRKSRC}/include/libmilter/mfdef.h \
-		${STAGEDIR}${PREFIX}/include/libmilter/
+		${PREFIX}/include/libmilter/
 	${INSTALL_DATA} \
 		${WRKSRC}/obj.`${WRKSRC}/devtools/bin/Build -A`/libmilter/libmilter.a \
-		${STAGEDIR}${PREFIX}/lib/
+		${PREFIX}/lib/
 
 post-install-MILTER_SHARED-on:
 	${INSTALL_LIB} \

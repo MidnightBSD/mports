@@ -29,7 +29,7 @@ OPTIONS_DEFINE=	DOCS
 
 post-install:
 	(cd ${WRKSRC}/manual && ${COPYTREE_SHARE} \
-		. ${STAGEDIR}${DOCSDIR} "! -name Makefile \
+		. ${DOCSDIR} "! -name Makefile \
 		! -name Makefile.am ! -name Makefile.in")
 
 .include <bsd.port.mk>

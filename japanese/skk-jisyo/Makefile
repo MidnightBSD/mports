@@ -72,10 +72,10 @@ do-build:
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${SKKDIR}
+	${MKDIR} ${PREFIX}/${SKKDIR}
 .for type in ${SKK_JISYO_TYPE}
 	${INSTALL_DATA} ${WRKSRC}/SKK-JISYO.${type}${CDBSUFFIX} \
-		${STAGEDIR}${PREFIX}/${SKKDIR}/
+		${PREFIX}/${SKKDIR}/
 .endfor
 
 .include <bsd.port.mk>

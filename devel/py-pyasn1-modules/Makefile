@@ -26,8 +26,8 @@ TOOLS=		cmcdump.py cmpdump.py crldump.py crmfdump.py ocspclient.py \
 		x509dump.py
 
 post-install:
-	${INSTALL_SCRIPT} ${TOOLS:S|^|${WRKSRC}/tools/|} ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_SCRIPT} ${TOOLS:S|^|${WRKSRC}/tools/|} ${PREFIX}/bin
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

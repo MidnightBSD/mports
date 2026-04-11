@@ -21,6 +21,6 @@ PORTSCOUT=	limit:^[0-9\.]*$$
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Function/Parameters/Parameters.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Function/Parameters/Parameters.so
 
 .include <bsd.port.mk>

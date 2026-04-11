@@ -190,11 +190,11 @@ do-install:
 
 .else  # flavor != tiny
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${STAGEDIR}${DATADIR}/${VIM_VER}
-	${RM} ${STAGEDIR}${PREFIX}/bin/ex
-	${RM} ${STAGEDIR}${PREFIX}/bin/view
-	${RM} ${STAGEDIR}${PREFIX}/bin/xxd
-	${FIND} ${STAGEDIR}${PREFIX} -name xxd.1 -delete
+	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${DATADIR}/${VIM_VER}
+	${RM} ${PREFIX}/bin/ex
+	${RM} ${PREFIX}/bin/view
+	${RM} ${PREFIX}/bin/xxd
+	${FIND} ${PREFIX} -name xxd.1 -delete
 .  for F in eview evim gview gvim gvimdiff rgview rgvim rview rvim vimdiff
 	${LN} -sf vim ${PREFIX}/bin/$F
 .  endfor

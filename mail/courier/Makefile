@@ -364,32 +364,32 @@ post-build:
 
 post-install:
 .for _cfgfile in ${_CNFFILES}
-	-${MV} ${STAGEDIR}${SYSCONFDIR}/${_cfgfile} ${STAGEDIR}${SYSCONFDIR}/${_cfgfile:S/.cnf/.cnf.sample/g}
+	-${MV} ${SYSCONFDIR}/${_cfgfile} ${SYSCONFDIR}/${_cfgfile:S/.cnf/.cnf.sample/g}
 .endfor
 .for _cfgfile in ${_DISTEXFILES}
-	-${MV} ${STAGEDIR}${SYSCONFDIR}/${_cfgfile} ${STAGEDIR}${SYSCONFDIR}/${_cfgfile:S/.dist/.sample/g}
+	-${MV} ${SYSCONFDIR}/${_cfgfile} ${SYSCONFDIR}/${_cfgfile:S/.dist/.sample/g}
 .endfor
-	${INSTALL} -lrs ${STAGEDIR}${SYSCONFDIR}/maildrop ${STAGEDIR}${SYSCONFDIR}/maildropfilter
-	${INSTALL_DATA} /dev/null ${STAGEDIR}${SYSCONFDIR}/locallowercase
-	${INSTALL_DATA} ${WRKDIR}/crontab ${STAGEDIR}${SYSCONFDIR}/
-	${INSTALL_SCRIPT} ${WRKDIR}/sharedindexupdate ${STAGEDIR}${DATADIR}/
+	${INSTALL} -lrs ${SYSCONFDIR}/maildrop ${SYSCONFDIR}/maildropfilter
+	${INSTALL_DATA} /dev/null ${SYSCONFDIR}/locallowercase
+	${INSTALL_DATA} ${WRKDIR}/crontab ${SYSCONFDIR}/
+	${INSTALL_SCRIPT} ${WRKDIR}/sharedindexupdate ${DATADIR}/
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/html
+	${MKDIR} ${DOCSDIR}
+	${MKDIR} ${DOCSDIR}/html
 .for f in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 .for f in ${HTMLDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/html
 .endfor
-	${INSTALL_DATA} ${STAGEDIR}${DATADIR}/htmldoc/* ${STAGEDIR}${DOCSDIR}/html
+	${INSTALL_DATA} ${DATADIR}/htmldoc/* ${DOCSDIR}/html
 .endif
 .if ${PORT_OPTIONS:MCERTSDIR}
-	${MKDIR} ${STAGEDIR}${SYSCONFDIR}/.pem
+	${MKDIR} ${SYSCONFDIR}/.pem
 .endif
-	${RM} -r ${STAGEDIR}${DATADIR}/htmldoc
-	${CHMOD} -R a+r ${STAGEDIR}${DATADIR}/courierwebadmin
-	${CHMOD} -R a-w ${STAGEDIR}${DATADIR} ${STAGEDIR}${LIBEXECDIR}/courier
-	${CHMOD} 550 ${STAGEDIR}${LIBEXECDIR}/courier/modules/esmtp/courieresmtp*
+	${RM} -r ${DATADIR}/htmldoc
+	${CHMOD} -R a+r ${DATADIR}/courierwebadmin
+	${CHMOD} -R a-w ${DATADIR} ${LIBEXECDIR}/courier
+	${CHMOD} 550 ${LIBEXECDIR}/courier/modules/esmtp/courieresmtp*
 
 .include <bsd.port.mk>

@@ -72,16 +72,16 @@ PORTDOCS=	README
 PORTEXAMPLES=	greylist.conf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mail
+	${MKDIR} ${PREFIX}/etc/mail
 	${INSTALL_MAN} ${WRKSRC}/greylist.conf.5 \
-		${STAGEDIR}${PREFIX}/man/man5/
+		${PREFIX}/man/man5/
 	${INSTALL_MAN} ${WRKSRC}/milter-greylist.8 \
-		${STAGEDIR}${PREFIX}/man/man8/
+		${PREFIX}/man/man8/
 	${INSTALL_PROGRAM} ${WRKSRC}/milter-greylist \
-		${STAGEDIR}${PREFIX}/libexec/
+		${PREFIX}/libexec/
 	${INSTALL_DATA} ${WRKSRC}/greylist.conf \
-		${STAGEDIR}${PREFIX}/etc/mail/greylist.conf.sample
-	@${MKDIR} ${STAGEDIR}/var/milter-greylist
+		${PREFIX}/etc/mail/greylist.conf.sample
+	@${MKDIR} /var/milter-greylist
 
 do-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

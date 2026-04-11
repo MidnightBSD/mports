@@ -59,10 +59,10 @@ post-extract:
 
 .if ${PORT_OPTIONS:MMSMTPQ}
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtp-queue ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtpq ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/README.msmtpq ${STAGEDIR}${DOCSDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtp-queue ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtpq ${PREFIX}/bin
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/README.msmtpq ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>

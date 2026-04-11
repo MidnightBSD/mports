@@ -258,19 +258,19 @@ post-install:
 		${PREFIX}/${_ARCH_LIB}/Config.pm ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl
 # Restore Config.pm's timestamp so that Perl's build system does not think it
 # needs to rebuild everything.
-	@${TOUCH} -r ${PREFIX}/${_ARCH_LIB}/Config.pm.bak ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/Config.pm
-	@${TOUCH} -r ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/Config_heavy.pl
-	@${RM} ${PREFIX}/${_ARCH_LIB}/Config.pm.bak ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak
+	@${TOUCH} -r ${PREFIX}/${_ARCH_LIB}/Config.pm.bak ${PREFIX}/${_ARCH_LIB}/Config.pm
+	@${TOUCH} -r ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl
+	@${RM} ${PREFIX}/${_ARCH_LIB}/Config.pm.bak ${PREFIX}/${_ARCH_LIB}/Config_heavy.pl.bak
 .endif
 
-	${MKDIR} ${STAGEDIR}${SITE_MAN1} ${STAGEDIR}${SITE_MAN3}
-	${MKDIR} ${STAGEDIR}${SITE_ARCH}/auto
-	${MKDIR} ${STAGEDIR}${SITE_PERL}/auto
+	${MKDIR} ${SITE_MAN1} ${SITE_MAN3}
+	${MKDIR} ${SITE_ARCH}/auto
+	${MKDIR} ${SITE_PERL}/auto
 .if defined(IAMDEFAULTPERL)
-	${LN} -sf perl ${STAGEDIR}${PREFIX}/bin/perl${PERL_VERSION}
+	${LN} -sf perl ${PREFIX}/bin/perl${PERL_VERSION}
 .endif
-	${LN} -sf libperl.so.${PERL_VERSION} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so
-	${LN} -sf libperl.so.${PERL_VERSION} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so.${PERL_VER}
+	${LN} -sf libperl.so.${PERL_VERSION} ${PREFIX}/${_ARCH_LIB}/CORE/libperl.so
+	${LN} -sf libperl.so.${PERL_VERSION} ${PREFIX}/${_ARCH_LIB}/CORE/libperl.so.${PERL_VER}
 	${STRIP_CMD} ${PREFIX}/bin/perl${PERL_VERSION}
 	${MKDIR} ${SITE_ARCH}/machine
 	${MKDIR} ${SITE_ARCH}/sys
@@ -278,7 +278,7 @@ post-install:
 # staged, so, use the one in WRKDIR
 	(cd /usr/include && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
 		${WRKSRC}/perl -I ${WRKSRC}/lib ${PREFIX}/bin/h2ph${BINSUFFIX} \
-		-d ${STAGEDIR}${SITE_ARCH} *.h machine/*.h sys/*.h >/dev/null)
+		-d ${SITE_ARCH} *.h machine/*.h sys/*.h >/dev/null)
 	@${FIND} ${SITE_ARCH} -name '*.ph' | sed -e 's|${FAKE_DESTDIR}||' >> ${TMPPLIST}
 	${FIND} ${FAKE_DESTDIR} -name '*.so*' -type f | while read f; \
 		do \

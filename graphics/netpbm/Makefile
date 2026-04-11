@@ -64,14 +64,14 @@ do-configure:
 	cd ${WRKSRC} && buildtools/stamp-date > ${WRKSRC}/lib/compile.h
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/lib/util/pm_c_util.h ${STAGEDIR}${PREFIX}/include/
-	${INSTALL_MAN} ${WRKSRC}/doc/netpbm.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/USERDOC ${STAGEDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/lib/util/pm_c_util.h ${PREFIX}/include/
+	${INSTALL_MAN} ${WRKSRC}/doc/netpbm.1 ${PREFIX}/share/man/man1/
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/USERDOC ${DOCSDIR}/
 
 post-install-MANPAGES-on:
-	${INSTALL_MAN} ${WRKDIR}/doc/*.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_MAN} ${WRKDIR}/doc/*.3 ${STAGEDIR}${PREFIX}/share/man/man3/
-	${INSTALL_MAN} ${WRKDIR}/doc/*.5 ${STAGEDIR}${PREFIX}/share/man/man5/
+	${INSTALL_MAN} ${WRKDIR}/doc/*.1 ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKDIR}/doc/*.3 ${PREFIX}/share/man/man3/
+	${INSTALL_MAN} ${WRKDIR}/doc/*.5 ${PREFIX}/share/man/man5/
 
 .include <bsd.port.mk>

@@ -55,16 +55,16 @@ PLIST_DIRS+=	%%DATADIR%%/fonts/locale/${${l:tu}_CODE}_docs
 
 # Install seleted fonts.
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/fonts/locale
+	@${MKDIR} ${DATADIR}/fonts/locale
 .for l in ${LANGS}
 .	if ${PORT_OPTIONS:M${l:tu}}
 		${INSTALL_DATA} \
 			${WRKSRC}/${PORTNAME}-ttf-${${l:tu}_DISTNAME}/${${l:tu}_CODE}.ttf \
-			${STAGEDIR}${DATADIR}/fonts/locale
-		@${MKDIR} ${STAGEDIR}${DATADIR}/fonts/locale/${${l:tu}_CODE}_docs
+			${DATADIR}/fonts/locale
+		@${MKDIR} ${DATADIR}/fonts/locale/${${l:tu}_CODE}_docs
 		${INSTALL_DATA} \
 			${WRKSRC}/${PORTNAME}-ttf-${${l:tu}_DISTNAME}/*.txt \
-			${STAGEDIR}${DATADIR}/fonts/locale/${${l:tu}_CODE}_docs
+			${DATADIR}/fonts/locale/${${l:tu}_CODE}_docs
 .	endif
 .endfor
 

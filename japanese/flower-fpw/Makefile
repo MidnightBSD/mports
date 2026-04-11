@@ -19,12 +19,12 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/flower-fpw/flower/data
+	@${MKDIR} ${PREFIX}/share/dict/flower-fpw/flower/data
 	${INSTALL_DATA} ${WRKSRC}/flower/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/flower-fpw/flower/data
+		${PREFIX}/share/dict/flower-fpw/flower/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/flower-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/flower-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

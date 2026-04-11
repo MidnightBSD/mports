@@ -74,14 +74,14 @@ post-install:
 	bnserver-D2XP.ini bnserver-WAR3.ini bnserver.ini icons-WAR3.bni \
 	icons.bni icons_STAR.bni ver-ix86-1.mpq
 
-	${INSTALL_DATA} ${WRKSRC}/${SUPPORT_FILES}/${i} ${STAGEDIR}${DATADIR}/files
+	${INSTALL_DATA} ${WRKSRC}/${SUPPORT_FILES}/${i} ${DATADIR}/files
 .endfor
 
 ## Additional documentation
 
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 .for i in INSTALL.unix PORTS README.fdwatch README.storage bnmotd.txt
-	${INSTALL_DATA} ${WRKSRC}/../docs/${i} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/../docs/${i} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

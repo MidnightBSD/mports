@@ -295,8 +295,8 @@ post-patch:
 .endif
 
 post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
-	@(cd ${STAGEDIR}${PREFIX} && ${FIND} libexec/emacs/${DISTVERSION}/${CONFIGURE_TARGET}/ -name emacs-*.pdmp >> ${TMPPLIST})
+	@${RM} -r ${PREFIX}/lib/systemd
+	@(cd ${PREFIX} && ${FIND} libexec/emacs/${DISTVERSION}/${CONFIGURE_TARGET}/ -name emacs-*.pdmp >> ${TMPPLIST})
 	${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/emacs/info/dir
 
 post-install-MAILUTILS-on:

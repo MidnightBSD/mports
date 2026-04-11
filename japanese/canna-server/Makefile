@@ -31,7 +31,7 @@ MAKE_ARGS+=	CCOPTIONS="-Wno-error=int-conversion"
 post-install:
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} \
 	    ${MAKEFILE} ${MAKE_ARGS} install.man
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc && ${CP} -R ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC}/doc && ${CP} -R ${PORTDOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>

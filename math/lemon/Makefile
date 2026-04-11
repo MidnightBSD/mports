@@ -34,6 +34,6 @@ GLPK_CMAKE_BOOL=	LEMON_ENABLE_GLPK
 GLPK_LIB_DEPENDS=	libglpk.so:math/glpk
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-0.x-to-1.x.sh
+	@${RM} ${PREFIX}/bin/${PORTNAME}-0.x-to-1.x.sh
 
 .include <bsd.port.mk>

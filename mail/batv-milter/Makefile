@@ -50,13 +50,13 @@ pre-configure:
 
 post-install:
 .if !defined(WITH_DEBUG)
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/batv-filter
+	@${STRIP_CMD} ${PREFIX}/bin/batv-filter
 .endif
 	-${RM} ${PREFIX}/share/man/cat8/batv-filter.8 ${PREFIX}/share/man/cat8/batv-filter.8.gz
-	${INSTALL_MAN} ${WRKSRC}/*/batv-filter.8 ${STAGEDIR}${PREFIX}/share/man/man8/
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/*/batv-filter.8 ${PREFIX}/share/man/man8/
+	${MKDIR} ${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.post.mk>

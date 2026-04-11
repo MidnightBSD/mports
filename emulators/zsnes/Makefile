@@ -57,7 +57,7 @@ post-patch:
 		${WRKSRC}/tools/varrep.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/zsnes ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/linux/zsnes.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/zsnes ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/linux/zsnes.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

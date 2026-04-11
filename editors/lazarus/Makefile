@@ -131,51 +131,51 @@ pre-install:
 do-install:
 .for DIRE in components converter debugger designer doceditor ide images install languages lazarus.app lcl \
 	packager tools units
-		@${MKDIR} ${STAGEDIR}${DATADIR}/${DIRE}
+		@${MKDIR} ${DATADIR}/${DIRE}
 		@cd ${WRKSRC}/${DIRE} && \
-			${FIND} * -type d -exec ${MKDIR} "${STAGEDIR}${DATADIR}/${DIRE}/{}" \; && \
-				${FIND} * -type f -exec ${INSTALL_DATA} -p {} "${STAGEDIR}${DATADIR}/${DIRE}/{}" \;
+			${FIND} * -type d -exec ${MKDIR} "${DATADIR}/${DIRE}/{}" \; && \
+				${FIND} * -type f -exec ${INSTALL_DATA} -p {} "${DATADIR}/${DIRE}/{}" \;
 .endfor
-	@${CHMOD} +x ${STAGEDIR}${DATADIR}/tools/svn2revisioninc ${STAGEDIR}${DATADIR}/tools/lazres ${STAGEDIR}${DATADIR}/tools/lrstolfm \
-		${STAGEDIR}${DATADIR}/tools/updatepofiles
+	@${CHMOD} +x ${DATADIR}/tools/svn2revisioninc ${DATADIR}/tools/lazres ${DATADIR}/tools/lrstolfm \
+		${DATADIR}/tools/updatepofiles
 
 .for FILE in lazarus lazbuild startlazarus
-	${INSTALL_PROGRAM} ${WRKSRC}/${FILE} ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/${FILE} ${DATADIR}
 .endfor
 
 	@cd ${WRKDIR}/docs && \
-		${FIND} * -type d -exec ${MKDIR} "${STAGEDIR}${DOCSDIR}/{}" \; && \
-			${FIND} * -type f -exec ${INSTALL_DATA} {} "${STAGEDIR}${DOCSDIR}/{}" \;
-	@${LN} -sf ${DOCSDIR} ${STAGEDIR}${DATADIR}/docs
+		${FIND} * -type d -exec ${MKDIR} "${DOCSDIR}/{}" \; && \
+			${FIND} * -type f -exec ${INSTALL_DATA} {} "${DOCSDIR}/{}" \;
+	@${LN} -sf ${DOCSDIR} ${DATADIR}/docs
 
 	@cd ${WRKDIR}/examples && \
-		${FIND} * -type d -exec ${MKDIR} "${STAGEDIR}${EXAMPLESDIR}/{}" \; && \
-			${FIND} * -type f -exec ${INSTALL_DATA} {} "${STAGEDIR}${EXAMPLESDIR}/{}" \;
-	@${LN} -sf ${EXAMPLESDIR} ${STAGEDIR}${DATADIR}/examples
+		${FIND} * -type d -exec ${MKDIR} "${EXAMPLESDIR}/{}" \; && \
+			${FIND} * -type f -exec ${INSTALL_DATA} {} "${EXAMPLESDIR}/{}" \;
+	@${LN} -sf ${EXAMPLESDIR} ${DATADIR}/examples
 
 .for RESO in 128 16 256 32 48 64
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${RESO}x${RESO}/apps
-	${INSTALL_DATA} ${WRKSRC}/images/icons/${PORTNAME}${RESO}x${RESO}.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/${RESO}x${RESO}/apps/${PORTNAME}.png
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/${RESO}x${RESO}/apps
+	${INSTALL_DATA} ${WRKSRC}/images/icons/${PORTNAME}${RESO}x${RESO}.png ${PREFIX}/share/icons/hicolor/${RESO}x${RESO}/apps/${PORTNAME}.png
 .endfor
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/mimetypes
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/48x48/mimetypes
 	@cd ${WRKSRC}/images/mimetypes && \
-		${FIND} * -type f -name "*.png" -exec ${INSTALL_DATA} {} ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/mimetypes/{} \;
+		${FIND} * -type f -name "*.png" -exec ${INSTALL_DATA} {} ${PREFIX}/share/icons/hicolor/48x48/mimetypes/{} \;
 
-	@${INSTALL_DATA} ${WRKSRC}/install/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications/${PORTNAME}.desktop
+	@${INSTALL_DATA} ${WRKSRC}/install/${PORTNAME}.desktop ${PREFIX}/share/applications/${PORTNAME}.desktop
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps
-	@${INSTALL_DATA} ${WRKSRC}/images/icons/${PORTNAME}.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/${PORTNAME}.svg
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/scalable/apps
+	@${INSTALL_DATA} ${WRKSRC}/images/icons/${PORTNAME}.svg ${PREFIX}/share/icons/hicolor/scalable/apps/${PORTNAME}.svg
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/mime/packages
-	@${INSTALL_DATA} ${WRKSRC}/install/${PORTNAME}-mime.xml ${STAGEDIR}${PREFIX}/share/mime/packages/${PORTNAME}.xml
+	@${MKDIR} ${PREFIX}/share/mime/packages
+	@${INSTALL_DATA} ${WRKSRC}/install/${PORTNAME}-mime.xml ${PREFIX}/share/mime/packages/${PORTNAME}.xml
 
-	${INSTALL_SCRIPT} ${WRKSRC}/localize.sh ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/lazarus-wrapper ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${INSTALL_DATA}	${WRKSRC}/Makefile* ${WRKSRC}/fpmake*  ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/localize.sh ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/lazarus-wrapper ${PREFIX}/bin/${PORTNAME}
+	${INSTALL_DATA}	${WRKSRC}/Makefile* ${WRKSRC}/fpmake*  ${DATADIR}
 .for FILE in ${MAN1S}
-	${INSTALL_MAN} ${WRKDIR}/man1/${FILE} ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKDIR}/man1/${FILE} ${PREFIX}/share/man/man1
 .endfor
-	${LN} -sf ${DATADIR}/lazbuild ${STAGEDIR}${PREFIX}/bin/lazbuild
+	${LN} -sf ${DATADIR}/lazbuild ${PREFIX}/bin/lazbuild
 
 .include <bsd.port.mk>
