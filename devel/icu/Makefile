@@ -1,6 +1,6 @@
 PORTNAME=	icu
 DISTVERSION=	76_1
-PORTREVISION?=	3 # keep for icu-lx
+PORTREVISION?=	4 # keep for icu-lx
 PORTEPOCH?=	1
 CATEGORIES?=	devel
 MASTER_SITES=	https://github.com/unicode-org/${PORTNAME}/releases/download/release-${DISTVERSION:S/rc/-&/:S/_/-/g}/
@@ -28,7 +28,7 @@ CONFIGURE_ARGS+=--with-data-packaging=archive \
 CPPFLAGS+=	-DICU_NO_USER_DATA_OVERRIDE
 MAKE_ARGS=	VERBOSE=1
 NO_TEST=	yes
-USES+=		compiler:c++11-lib cpe gmake pathfix python:build tar:tgz
+USES+=		compiler:c++11-lang cpe gmake pathfix python:build tar:tgz
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/icu/source
 
