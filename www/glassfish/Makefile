@@ -1,8 +1,8 @@
 PORTNAME=	glassfish
-PORTVERSION=	5.1.0
+DISTVERSION=	8.0.0
 PORTREVISION=	1
 CATEGORIES=	www java
-MASTER_SITES=	ECLIPSE/glassfish
+MASTER_SITES=	ECLIPSE/ee4j/${PORTNAME}
 PKGNAMEPREFIX=	eclipse-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,31 +12,46 @@ WWW=		https://projects.eclipse.org/projects/ee4j.glassfish
 LICENSE=	epl
 
 USES=		java zip
+JAVA_VERSION=	21+
+USE_RC_SUBR=	${PORTNAME}
 
+CONFLICTS_INSTALL=	${PORTNAME}4
+
+DATADIR=	${PREFIX}/${PORTNAME}-${DISTVERSION}
+EXTRACT_BEFORE_ARGS=	-qo -x '*.bat' -x '*.exe'
+
+NO_ARCH=	yes
 NO_BUILD=	yes
-CONFLICTS_INSTALL=	glassfish4
 
-WRKSRC=		${WRKDIR}/glassfish5
-DATADIR=	${PREFIX}/${PORTNAME}-${PORTVERSION}
-
-# Since we USE_JAVA, we propagate the received JAVA_HOME variable to the
+# Since we USES=java, we propagate the received JAVA_HOME variable to the
 # template files, since it is used by the rc script.
-SUB_LIST=	GLASSFISHVERSION=${PORTVERSION} \
+SUB_LIST=	GLASSFISHVERSION=${DISTVERSION} \
 		JAVA_HOME=${JAVA_HOME}
 
-USE_RC_SUBR=	glassfish
-GLASSFISH_BIN_FILES=	appclient appclient.js asadmin capture-schema capture-schema.1m jspc package-appclient schemagen startserv stopserv wscompile wsdeploy wsgen wsimport xjc
+WRKSRC=		${WRKDIR}/${PORTNAME}${DISTVERSION:R:R}
 
-.include <bsd.port.pre.mk>
+post-patch:
+	${SED} -i '' 's|#!/bin/bash|#!/bin/sh|' \
+		${bin/asadmin \
+		bin/debug-asadmin \
+		bin/startserv \
+		bin/stopserv \
+		glassfish/bin/appclient \
+		glassfish/bin/asadmin \
+		glassfish/bin/jspc \
+		glassfish/bin/package-appclient \
+		glassfish/bin/schemagen \
+		glassfish/bin/startserv \
+		glassfish/bin/stopserv \
+		glassfish/bin/wsgen \
+		glassfish/bin/wsimport \
+		glassfish/bin/xjc:L:S|^|${WRKSRC}/|}
 
 do-install:
-	@${FIND} ${WRKSRC} -name '*.bat' -delete
-	@${FIND} ${WRKSRC} -name '*.exe' -delete
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${DATADIR})
-	@${CHMOD} ${BINMODE} ${DATADIR}/bin/*
-	@${CHMOD} ${BINMODE} ${DATADIR}/mq/bin/*
-.for x in ${GLASSFISH_BIN_FILES}
-	@${CHMOD} ${BINMODE} ${DATADIR}/glassfish/bin/${x}
-.endfor
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR})
+	${FIND} ${DATADIR}/glassfish/domains -path "*/config/*" -type f -exec ${MV} {} {}.sample \;
+	${CHMOD} ${BINMODE} ${DATADIR}/bin/* \
+		${DATADIR}/mq/bin/* \
+		${DATADIR}/glassfish/bin/*
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
