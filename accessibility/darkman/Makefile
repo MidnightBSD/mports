@@ -11,6 +11,8 @@ WWW=		https://gitlab.com/WhyNotHugo/darkman
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
+CGO_ENABLED=	0
+
 USES=		go:modules
 USE_GITHUB=	nodefault
 USE_GITLAB=	yes
