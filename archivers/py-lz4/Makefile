@@ -23,7 +23,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psutil>=0:sysutils/py-psutil@${PY_FLAVOR}
 USES=		localbase python
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
-CONFIGURE_ENV=	PYLZ4_USE_SYSTEM_LZ4=1
+MAKE_ENV+=	PYLZ4_USE_SYSTEM_LZ4=1
 
 post-patch:
 # Clean up bundled libraries
