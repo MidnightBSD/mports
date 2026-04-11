@@ -32,12 +32,12 @@ post-patch:
 		>> ${WRKSRC}/hostapd/.config
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/hostapd/hostapd ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/hostapd/hostapd ${PREFIX}/sbin
 	${INSTALL_PROGRAM} ${WRKSRC}/hostapd/hostapd_cli \
-		${STAGEDIR}${PREFIX}/sbin
+		${PREFIX}/sbin
 	${INSTALL_MAN} ${WRKSRC}/hostapd/hostapd_cli.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/hostapd/hostapd.8 \
-		${STAGEDIR}${PREFIX}/share/man/man8
+		${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

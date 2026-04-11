@@ -75,16 +75,16 @@ post-build:
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 .endif
 .if ${PORT_OPTIONS:MEXAMPLES}
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/ruby/* ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/ruby/* ${EXAMPLESDIR}
 .endif
-	${MV} ${STAGEDIR}${PREFIX}/etc/kismet.conf \
-		${STAGEDIR}${PREFIX}/etc/kismet.conf.sample
-	${MV} ${STAGEDIR}${PREFIX}/etc/kismet_drone.conf \
-		${STAGEDIR}${PREFIX}/etc/kismet_drone.conf.sample
+	${MV} ${PREFIX}/etc/kismet.conf \
+		${PREFIX}/etc/kismet.conf.sample
+	${MV} ${PREFIX}/etc/kismet_drone.conf \
+		${PREFIX}/etc/kismet_drone.conf.sample
 
 .include <bsd.port.post.mk>

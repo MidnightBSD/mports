@@ -45,9 +45,9 @@ do-install:
 	  echo "LD_LIBRARY_PATH=${LINUXBASE_REL}/opt/zoom ${LINUXBASE_REL}/opt/zoom/zoom \"$$"@"\"" \
 	) > ${PREFIX}/bin/${PORTNAME}
 	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/${PORTNAME}
-	${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${INSTALL_DATA} ${WRKDIR}/usr/share/applications/Zoom.desktop ${STAGEDIR}${PREFIX}/share/applications
-	${REINPLACE_CMD} -i '' -e 's|/usr/bin/zoom|${LOCALBASE}/bin/zoom|' ${STAGEDIR}${PREFIX}/share/applications/Zoom.desktop
-	${INSTALL_DATA} ${WRKDIR}/usr/share/pixmaps/Zoom.png ${STAGEDIR}${PREFIX}/share/pixmaps/Zoom.png
+	${CHMOD} +x ${PREFIX}/bin/${PORTNAME}
+	${INSTALL_DATA} ${WRKDIR}/usr/share/applications/Zoom.desktop ${PREFIX}/share/applications
+	${REINPLACE_CMD} -i '' -e 's|/usr/bin/zoom|${LOCALBASE}/bin/zoom|' ${PREFIX}/share/applications/Zoom.desktop
+	${INSTALL_DATA} ${WRKDIR}/usr/share/pixmaps/Zoom.png ${PREFIX}/share/pixmaps/Zoom.png
 
 .include <bsd.port.mk>

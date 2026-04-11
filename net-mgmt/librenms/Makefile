@@ -162,44 +162,44 @@ post-patch:
 	${RM} -rf ${WRKSRC}/logs
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${WWWDIR}
+	${MKDIR} /${WWWDIR}
 .for dir in ${_ROOT_DIRS}
-	${MKDIR} ${STAGEDIR}/${WWWDIR}/${dir}
-	(cd ${WRKSRC}/${dir} && ${COPYTREE_SHARE} . ${STAGEDIR}/${WWWDIR}/${dir})
+	${MKDIR} /${WWWDIR}/${dir}
+	(cd ${WRKSRC}/${dir} && ${COPYTREE_SHARE} . /${WWWDIR}/${dir})
 .endfor
 .for f in ${_ROOT_FILES}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}/${WWWDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} /${WWWDIR}
 .endfor
 .for f in ${_SCRIPT_FILES}
-	${INSTALL_SCRIPT} ${WRKSRC}/${f} ${STAGEDIR}/${WWWDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/${f} /${WWWDIR}
 .endfor
 # avoid: Error: lnms file is owned by root, it should be owned and ran by a non-privileged user
 	${ECHO_CMD} "@(www,wheel,0555) www/${PORTNAME}/lnms" >> ${TMPPLIST}
 
-	${MKDIR} ${STAGEDIR}/${WWWDIR}/vendor
-	(cd ${WRKDIR}/${PORTNAME}-vendor-${PORTVERSION} && ${COPYTREE_SHARE} . ${STAGEDIR}/${WWWDIR}/vendor)
+	${MKDIR} /${WWWDIR}/vendor
+	(cd ${WRKDIR}/${PORTNAME}-vendor-${PORTVERSION} && ${COPYTREE_SHARE} . /${WWWDIR}/vendor)
 
 # As of 1.66_1, the package installs bootstrap/cache
 # This was previously left to the code to populate.
 # That causese problems when the code doesn't do that update.
-	${MV} ${STAGEDIR}/${WWWDIR}/vendor/bootstrap-cache/* ${STAGEDIR}/${WWWDIR}/bootstrap/cache/
-	${RM} -rf ${STAGEDIR}/${WWWDIR}/vendor/bootstrap-cache
+	${MV} /${WWWDIR}/vendor/bootstrap-cache/* /${WWWDIR}/bootstrap/cache/
+	${RM} -rf /${WWWDIR}/vendor/bootstrap-cache
 
 # similarly with html/js/lang
-	${MV} ${STAGEDIR}/${WWWDIR}/vendor/html-js-lang/* ${STAGEDIR}/${WWWDIR}/html/js/lang/
-	${RM} -rf ${STAGEDIR}/${WWWDIR}/vendor/html-js-lang
+	${MV} /${WWWDIR}/vendor/html-js-lang/* /${WWWDIR}/html/js/lang/
+	${RM} -rf /${WWWDIR}/vendor/html-js-lang
 
 # Files in scripts dir should be executable
-	${FIND} ${STAGEDIR}/${WWWDIR}/scripts -type f -exec ${CHMOD} +x {} \;
+	${FIND} /${WWWDIR}/scripts -type f -exec ${CHMOD} +x {} \;
 # Ensure PHP and Python scripts are executable
-	${FIND} ${STAGEDIR}/${WWWDIR} -type f -name '*.py' -or -type f -name \
+	${FIND} /${WWWDIR} -type f -name '*.py' -or -type f -name \
 	       '*.php' -exec ${CHMOD} +x {} \;
 # these values should be outside the www tree now
 	${MKDIR} ${FAKE_DESTDIR}/var/log/${PORTNAME}
 	${MKDIR} ${FAKE_DESTDIR}${DBDIR}
 	${MKDIR} ${FAKE_DESTDIR}${DBDIR}/storage
 	${MKDIR} ${FAKE_DESTDIR}/var/run/${PORTNAME}
-	(cd ${STAGEDIR}/${WWWDIR} && ${LN} -s ../../../..${DBDIR}/storage)
+	(cd /${WWWDIR} && ${LN} -s ../../../..${DBDIR}/storage)
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}/${DOCSDIR}
@@ -215,13 +215,13 @@ do-install-EXAMPLES-on:
 .endfor
 
 post-install:
-	${FIND} -s ${STAGEDIR}${WWWDIR} -type f '(' -name '*.orig' -or -name '*.bak' -or -name '.gitignore' ')' -delete
-	${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
+	${FIND} -s ${WWWDIR} -type f '(' -name '*.orig' -or -name '*.bak' -or -name '.gitignore' ')' -delete
+	${FIND} -s ${WWWDIR} -not -type d | ${SORT} | \
 		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' | grep -v www/librenms/lnms >> ${TMPPLIST}
 
 # we do this file separately because it needs a different chmod/chown
 # it will eventually contains secrets
-	${INSTALL_DATA} ${WRKSRC}/.env.example ${STAGEDIR}/${WWWDIR}
+	${INSTALL_DATA} ${WRKSRC}/.env.example /${WWWDIR}
 	${ECHO_CMD} "@dir(www,www,0775) ${DBDIR}/storage" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir(www,www,0775) ${DBDIR}" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir(www,www,0775) ${WWWDIR}/html/images/custommap/background" >> ${TMPPLIST}
@@ -231,26 +231,26 @@ post-install:
 	${ECHO_CMD} "@dir(www,www,0775) ${WWWDIR}/bootstrap/cache" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir(www,www,0775) /var/run/${PORTNAME}" >> ${TMPPLIST}
 .for f in ${_STORAGE_DIRS}
-	${MKDIR} ${STAGEDIR}/${DBDIR}/storage/${f}
+	${MKDIR} /${DBDIR}/storage/${f}
 	${ECHO_CMD} "@dir(root,www,0775) ${DBDIR}/storage/${f}" >> ${TMPPLIST}
 .endfor
 .for f in ${_OTHER_DIRS}
 	${ECHO_CMD} "@dir(root,www,0775) ${WWWDIR}/${f}" >> ${TMPPLIST}
 .endfor
 
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
-	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf.sample ${STAGEDIR}/${PREFIX}/etc/newsyslog.conf.d/librenms.conf.sample
+	${MKDIR} ${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf.sample /${PREFIX}/etc/newsyslog.conf.d/librenms.conf.sample
 	${ECHO_CMD} "@dir etc/newsyslog.conf.d" >> ${TMPPLIST}
 	${ECHO_CMD} "@sample etc/newsyslog.conf.d/librenms.conf.sample" >> ${TMPPLIST}
 
-	${MKDIR} ${STAGEDIR}/${WWWDIR} ${STAGEDIR}${PREFIX}/etc/cron.d/
-	${INSTALL_DATA} ${WRKSRC}/dist/librenms-scheduler.cron ${STAGEDIR}${PREFIX}/etc/cron.d/librenms
+	${MKDIR} /${WWWDIR} ${PREFIX}/etc/cron.d/
+	${INSTALL_DATA} ${WRKSRC}/dist/librenms-scheduler.cron ${PREFIX}/etc/cron.d/librenms
 	${ECHO_CMD} "@dir etc/cron.d" >> ${TMPPLIST}
 	${ECHO_CMD} "etc/cron.d/librenms" >> ${TMPPLIST}
 
 # avoid the "Global lnms shortcut not installed." validataion warning.
 # this can also be run as root.
-	${RLN} ${STAGEDIR}${WWWDIR}/lnms ${STAGEDIR}${PREFIX}/bin/lnms
+	${RLN} ${WWWDIR}/lnms ${PREFIX}/bin/lnms
 	${ECHO_CMD} "bin/lnms" >> ${TMPPLIST}
 
 .include <bsd.port.mk>

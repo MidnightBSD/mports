@@ -54,24 +54,24 @@ post-patch:
 	# 	${WRKSRC}/deps/rabbit/docs/*
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/rabbitmq_server-${PORTVERSION}
-	(cd ${WRKSRC} && ${COPYTREE_BIN}   escript ${STAGEDIR}${PREFIX}/lib/rabbitmq_server-${PORTVERSION}/)
-	(cd ${WRKSRC} && ${COPYTREE_BIN}      sbin ${STAGEDIR}${PREFIX}/lib/rabbitmq_server-${PORTVERSION}/)
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} plugins ${STAGEDIR}${PREFIX}/lib/rabbitmq_server-${PORTVERSION}/)
+	${MKDIR} ${PREFIX}/lib/rabbitmq_server-${PORTVERSION}
+	(cd ${WRKSRC} && ${COPYTREE_BIN}   escript ${PREFIX}/lib/rabbitmq_server-${PORTVERSION}/)
+	(cd ${WRKSRC} && ${COPYTREE_BIN}      sbin ${PREFIX}/lib/rabbitmq_server-${PORTVERSION}/)
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} plugins ${PREFIX}/lib/rabbitmq_server-${PORTVERSION}/)
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/rabbitmq
-	@${MKDIR} ${STAGEDIR}/var/db/rabbitmq/mnesia
-	@${MKDIR} ${STAGEDIR}/var/log/rabbitmq
+	@${MKDIR} ${PREFIX}/etc/rabbitmq
+	@${MKDIR} /var/db/rabbitmq/mnesia
+	@${MKDIR} /var/log/rabbitmq
 	# ${INSTALL_DATA} ${WRKSRC}/deps/rabbit/docs/advanced.config.example \
-	# ${STAGEDIR}${PREFIX}/etc/rabbitmq/advanced.config.sample
+	# ${PREFIX}/etc/rabbitmq/advanced.config.sample
 	# ${INSTALL_DATA} ${WRKSRC}/deps/rabbit/docs/rabbitmq.conf.example \
-	# ${STAGEDIR}${PREFIX}/etc/rabbitmq/rabbitmq.conf.sample
+	# ${PREFIX}/etc/rabbitmq/rabbitmq.conf.sample
 .for _file in rabbitmq-defaults rabbitmq-diagnostics rabbitmq-env rabbitmq-plugins rabbitmq-queues rabbitmq-server rabbitmq-streams rabbitmq-tanzu rabbitmq-upgrade rabbitmqctl vmware-rabbitmq
-	${LN} -s ../lib/rabbitmq_server-${PORTVERSION}/sbin/${_file} ${STAGEDIR}${PREFIX}/sbin
+	${LN} -s ../lib/rabbitmq_server-${PORTVERSION}/sbin/${_file} ${PREFIX}/sbin
 .endfor
-	${INSTALL_MAN} ${WRKSRC}/share/man/man5/*.5.gz  ${STAGEDIR}${PREFIX}/share/man/man5
-	${INSTALL_MAN} ${WRKSRC}/share/man/man8/*.8.gz  ${STAGEDIR}${PREFIX}/share/man/man8
-	# ${INSTALL} ${WRKSRC}/plugins/rabbitmq_management-*/priv/www/cli/rabbitmqadmin ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/share/man/man5/*.5.gz  ${PREFIX}/share/man/man5
+	${INSTALL_MAN} ${WRKSRC}/share/man/man8/*.8.gz  ${PREFIX}/share/man/man8
+	# ${INSTALL} ${WRKSRC}/plugins/rabbitmq_management-*/priv/www/cli/rabbitmqadmin ${PREFIX}/bin
 
 .include <bsd.port.mk>

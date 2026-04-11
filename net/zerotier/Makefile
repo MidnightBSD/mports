@@ -36,9 +36,9 @@ SUB_LIST+=	ZEROTIER_SYSLOG="-s debug -T zerotier"
 SUB_LIST+=	ZEROTIER_IF_TAP="if_tap"
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/zerotier-one ${STAGEDIR}${PREFIX}/sbin/
+	${INSTALL_PROGRAM} ${WRKSRC}/zerotier-one ${PREFIX}/sbin/
 .for l in zerotier-cli zerotier-idtool
-	${RLN} ${STAGEDIR}${PREFIX}/sbin/zerotier-one ${STAGEDIR}${PREFIX}/bin/${l}
+	${RLN} ${PREFIX}/sbin/zerotier-one ${PREFIX}/bin/${l}
 .endfor
 
 .include <bsd.port.post.mk>

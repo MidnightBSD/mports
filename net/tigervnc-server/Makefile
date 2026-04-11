@@ -94,8 +94,8 @@ post-build:
 post-fake:
 	# Install v1.10.0 vncserver script and manpage.
 	# See: https://cgit.freebsd.org/ports/commit/net/tigervnc-server?id=e6d3d07
-	${INSTALL_SCRIPT} ${FILESDIR}/v1.10.0-vncserver ${STAGEDIR}${PREFIX}/bin/vncserver
-	${INSTALL_MAN} ${FILESDIR}/v1.10.0-vncserver.man ${STAGEDIR}${PREFIX}/share/man/man8/vncserver.8
+	${INSTALL_SCRIPT} ${FILESDIR}/v1.10.0-vncserver ${PREFIX}/bin/vncserver
+	${INSTALL_MAN} ${FILESDIR}/v1.10.0-vncserver.man ${PREFIX}/share/man/man8/vncserver.8
 
 post-install:
 	cd ${WRKSRC}/unix/xserver/hw/vnc/ && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-strip

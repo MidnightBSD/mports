@@ -79,6 +79,6 @@ IGNORE=		RIPNGD requires IPV6 option.
 
 post-install:
 	@( cd ${WRKSRC}/doc; ${RM} -f zebra*info*; ${MAKE} ${FAKE_MAKEARGS} zebra.info install )
-	${INSTALL_SCRIPT} ${WRKDIR}/zebractl ${STAGEDIR}${PREFIX}/sbin/zebractl
+	${INSTALL_SCRIPT} ${WRKDIR}/zebractl ${PREFIX}/sbin/zebractl
 
 .include <bsd.port.mk>

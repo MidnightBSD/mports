@@ -40,7 +40,7 @@ GNUTLS_CONFIGURE_ENV_OFF=	ac_cv_header_gnutls_gnutls_h=no \
 				ac_cv_lib_gnutls_gnutls_init=no
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tt++ ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/tt++ ${PREFIX}/bin/
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/

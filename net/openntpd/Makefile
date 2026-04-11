@@ -32,10 +32,10 @@ pre-build:
 	    ${WRKSRC}/src/ntpd.conf.5 ${WRKSRC}/src/ntpd.8
 
 post-install:
-	cd ${STAGEDIR}${PREFIX}/etc && ${MV} ntpd.conf ntpd.conf.sample
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily
+	cd ${PREFIX}/etc && ${MV} ntpd.conf ntpd.conf.sample
+	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${WRKDIR}/480.status-openntpd \
-		${STAGEDIR}${PREFIX}/etc/periodic/daily
+		${PREFIX}/etc/periodic/daily
 
 .include <bsd.port.pre.mk>
 

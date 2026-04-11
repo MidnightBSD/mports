@@ -34,10 +34,10 @@ PORTDOCS=	CHANGELOG README-LUA README.es README.md
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/tg-server.pub ${STAGEDIR}${ETCDIR}/server.pub
-	${INSTALL_MAN} ${WRKSRC}/telegram.1 ${STAGEDIR}${PREFIX}/share/man/man1/${PORTNAME}.1
+	@${MKDIR} ${ETCDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/tg-server.pub ${ETCDIR}/server.pub
+	${INSTALL_MAN} ${WRKSRC}/telegram.1 ${PREFIX}/share/man/man1/${PORTNAME}.1
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

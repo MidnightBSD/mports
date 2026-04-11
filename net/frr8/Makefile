@@ -29,10 +29,10 @@ post-patch:
 		${WRKSRC}/tools/generate_support_bundle.py
 
 do-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/frr-reload.py ${STAGEDIR}${PREFIX}/sbin/
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/generate_support_bundle.py ${STAGEDIR}${PREFIX}/sbin/
-	${INSTALL_DATA} ${WRKSRC}/tools/etc/frr/support_bundle_commands.conf ${STAGEDIR}${ETCDIR}/
+	${MKDIR} ${ETCDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/frr-reload.py ${PREFIX}/sbin/
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/generate_support_bundle.py ${PREFIX}/sbin/
+	${INSTALL_DATA} ${WRKSRC}/tools/etc/frr/support_bundle_commands.conf ${ETCDIR}/
 .else
 
 LIB_DEPENDS=	libcares.so:dns/c-ares \

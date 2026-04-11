@@ -18,6 +18,6 @@ USE_PERL5=	configure
 USES=		perl5
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Socket/Socket.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Socket/Socket.so
 
 .include <bsd.port.mk>

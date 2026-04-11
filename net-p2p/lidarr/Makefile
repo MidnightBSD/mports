@@ -46,11 +46,11 @@ post-extract:
 	${RM} -rf ${WRKSRC}/Lidarr.Update
 
 do-install:
-	${INSTALL} -d -m 755 ${STAGEDIR}/${DATADIR}/bin/
-	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR}/bin/ "! -name Lidarr"
-	${INSTALL_PROGRAM} ${WRKSRC}/Lidarr ${STAGEDIR}/${DATADIR}/bin/
+	${INSTALL} -d -m 755 /${DATADIR}/bin/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} \* /${DATADIR}/bin/ "! -name Lidarr"
+	${INSTALL_PROGRAM} ${WRKSRC}/Lidarr /${DATADIR}/bin/
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/package_info ${STAGEDIR}/${DATADIR}/
+	${INSTALL_DATA} ${WRKDIR}/package_info /${DATADIR}/
 
 .include <bsd.port.mk>

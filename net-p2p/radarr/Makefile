@@ -45,12 +45,12 @@ post-extract:
 	${RM} -rf ${WRKSRC}/Radarr.Update
 
 do-install:
-	${INSTALL} -d -m 755 ${STAGEDIR}/${DATADIR}/bin/
-	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR}/bin/ "! -name Radarr -and ! -name ffprobe"
-	${INSTALL_PROGRAM} ${WRKSRC}/Radarr ${STAGEDIR}/${DATADIR}/bin/
-	${INSTALL_PROGRAM} ${WRKSRC}/ffprobe ${STAGEDIR}/${DATADIR}/bin/
+	${INSTALL} -d -m 755 /${DATADIR}/bin/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} \* /${DATADIR}/bin/ "! -name Radarr -and ! -name ffprobe"
+	${INSTALL_PROGRAM} ${WRKSRC}/Radarr /${DATADIR}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/ffprobe /${DATADIR}/bin/
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/package_info ${STAGEDIR}/${DATADIR}/
+	${INSTALL_DATA} ${WRKDIR}/package_info /${DATADIR}/
 
 .include <bsd.port.mk>

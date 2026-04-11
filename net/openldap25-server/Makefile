@@ -404,7 +404,7 @@ post-build:
 
 pre-install:
 .if !defined(CLIENT_ONLY)
-	${MKDIR} ${STAGEDIR}${DATABASEDIR}
+	${MKDIR} ${DATABASEDIR}
 .endif
 
 post-install:
@@ -412,14 +412,14 @@ post-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}
 	for dir in drafts rfc; do \
-		${MKDIR} ${STAGEDIR}${DOCSDIR}/$${dir}; \
-		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${STAGEDIR}${DOCSDIR}/$${dir}; \
+		${MKDIR} ${DOCSDIR}/$${dir}; \
+		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${DOCSDIR}/$${dir}; \
 	done
 	for prog in ldapcompare ldapdelete ldapexop ldapmodify ldapmodrdn ldappasswd ldapsearch ldapurl ldapvc ldapwhoami; do\
-		${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/$${prog}; \
+		${STRIP_CMD} ${PREFIX}/bin/$${prog}; \
 	done
 	for library in lber ldap; do \
-		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib$${library}-${OPENLDAP_MAJOR}.so.${OPENLDAP_SHLIB_MAJOR}; \
+		${STRIP_CMD} ${PREFIX}/lib/lib$${library}-${OPENLDAP_MAJOR}.so.${OPENLDAP_SHLIB_MAJOR}; \
 	done
 .else
 	${MKDIR} ${FAKE_DESTDIR}${LDAP_RUN_DIR}
@@ -429,11 +429,11 @@ post-install:
 		${MAKE_ARGS} prefix="${PREFIX}" install)
 .endfor
 .for cleanfile in ${CONTRIB_CLEANFILES}
-	${RM} ${STAGEDIR}${PREFIX}/libexec/openldap/${cleanfile}
+	${RM} ${PREFIX}/libexec/openldap/${cleanfile}
 .endfor
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/openldap/*.so
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/slapd
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/openldap
+	${STRIP_CMD} ${PREFIX}/libexec/openldap/*.so
+	${STRIP_CMD} ${PREFIX}/libexec/slapd
+	${MKDIR} ${PREFIX}/libexec/openldap
 .endif # defined(CLIENT_ONLY)
 
 post-install-SLAPI-on:

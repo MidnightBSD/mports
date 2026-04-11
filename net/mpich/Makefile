@@ -126,6 +126,6 @@ post-patch:
 	${MKDIR} ${WRKDIR}/include && ${LN} -s ${LOCALBASE}/include/rdma ${WRKDIR}/include/
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/etc/mpixxx_opts.conf ${STAGEDIR}${PREFIX}/etc/mpixxx_opts.conf.sample
+	${MV} ${PREFIX}/etc/mpixxx_opts.conf ${PREFIX}/etc/mpixxx_opts.conf.sample
 
 .include <bsd.port.post.mk>

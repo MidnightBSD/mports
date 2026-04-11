@@ -19,6 +19,6 @@ GH_PROJECT=	paho.mqtt.c
 CMAKE_ARGS+=	-DPAHO_WITH_SSL=BOOL:TRUE
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/man/man1/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/man/man1/*.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

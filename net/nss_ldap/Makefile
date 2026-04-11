@@ -68,8 +68,8 @@ post-configure:
 	@${ECHO} "#define HAVE_RESOLV_H 1" >> ${WRKSRC}/config.h
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/nss_ldap.so ${STAGEDIR}/${PREFIX}/lib/nss_ldap.so.1
-	${INSTALL_DATA} ${WRKSRC}/ldap.conf ${STAGEDIR}/${PREFIX}/etc/nss_ldap.conf.sample
-	${INSTALL_MAN} ${WRKSRC}/nss_ldap.5 ${STAGEDIR}/${PREFIX}/share/man/man5
+	${INSTALL_PROGRAM} ${WRKSRC}/nss_ldap.so /${PREFIX}/lib/nss_ldap.so.1
+	${INSTALL_DATA} ${WRKSRC}/ldap.conf /${PREFIX}/etc/nss_ldap.conf.sample
+	${INSTALL_MAN} ${WRKSRC}/nss_ldap.5 /${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>

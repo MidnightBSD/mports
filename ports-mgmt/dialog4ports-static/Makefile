@@ -11,6 +11,6 @@ PLIST_FILES=	bin/dialog4ports-static
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/dialog4ports \
-		${STAGEDIR}${PREFIX}/bin/dialog4ports-static
+		${PREFIX}/bin/dialog4ports-static
 
 .include "${MASTERDIR}/Makefile"

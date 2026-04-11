@@ -42,14 +42,14 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr|${PREFIX}|' ${WRKSRC}/tsocks
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/inspectsocks ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/validateconf ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/inspectsocks ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/validateconf ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/tsocks.conf.simple.example \
-		${STAGEDIR}${PREFIX}/etc/tsocks.conf.sample
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.example ${STAGEDIR}${EXAMPLESDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/INSTALL ${STAGEDIR}${DOCSDIR}/README
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so
+		${PREFIX}/etc/tsocks.conf.sample
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.example ${EXAMPLESDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DOCSDIR}/README
+	${STRIP_CMD} ${PREFIX}/lib/lib${PORTNAME}.so
 
 .include <bsd.port.mk>

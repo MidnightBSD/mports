@@ -37,7 +37,7 @@ post-extract:
 	@${REINPLACE_CMD} -e 's/prefix/PREFIX/g' ${WRKSRC}/src/Makefile
 
 #post-install:
-#@${STRIP_CMD} ${STAGEDIR}${LUA_MODLIBDIR:S|^${LOCALBASE}|${TRUE_PREFIX}|}/*/*.so
+#@${STRIP_CMD} ${LUA_MODLIBDIR:S|^${LOCALBASE}|${TRUE_PREFIX}|}/*/*.so
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}/${DOCSDIR}
