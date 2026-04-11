@@ -41,9 +41,9 @@ PLIST=		${PKGDIR}/pkg-plist.${BACKEND}
 MESON_ARGS+=	-Dbackend-${BACKEND}=enabled
 
 post-install:
-	@cd ${STAGEDIR}${PREFIX} && \
+	@cd ${PREFIX} && \
 		${CAT} ${PKGDIR}/pkg-plist | ${SED} -e 's/^%%VAPI%%//' | ${XARGS} ${RM}
-	@${FIND} ${STAGEDIR}${PREFIX} -type d -empty -delete
+	@${FIND} ${PREFIX} -type d -empty -delete
 .endif
 
 .include <bsd.port.mk>

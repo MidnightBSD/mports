@@ -45,11 +45,11 @@ post-patch:
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}/${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/*.so
 	${CP} ${WRKSRC}/docs/*.txt ${WRKSRC}/docs/tutorial/*.txt ${WRKSRC}/
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}/)
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/)
 	${CP} ${WRKSRC}/examples/*.py ${WRKSRC}/
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ${PORTEXAMPLES} \
-		${STAGEDIR}${EXAMPLESDIR}/)
+		${EXAMPLESDIR}/)
 
 .include <bsd.port.mk>

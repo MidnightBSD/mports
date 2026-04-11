@@ -25,16 +25,16 @@ USE_CXXSTD=	c++11
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/zopfli ${WRKSRC}/zopflipng ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/zopfli ${STAGEDIR}${PREFIX}/include/zopflipng/lodepng
-	${INSTALL_DATA} ${WRKSRC}/src/zopfli/*.h ${STAGEDIR}${PREFIX}/include/zopfli
-	${INSTALL_DATA} ${WRKSRC}/src/zopflipng/*.h ${STAGEDIR}${PREFIX}/include/zopflipng
-	${INSTALL_DATA} ${WRKSRC}/src/zopflipng/lodepng/*.h ${STAGEDIR}${PREFIX}/include/zopflipng/lodepng
-	${INSTALL_DATA} ${WRKSRC}/libzopfli.a ${WRKSRC}/libzopflipng.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_LIB} ${WRKSRC}/libzopfli.so.${PORTVERSION} ${WRKSRC}/libzopflipng.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib
-	${LN} -s libzopfli.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libzopfli.so
-	${LN} -s libzopfli.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libzopfli.so.${PORTVERSION:R:R}
-	${LN} -s libzopflipng.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libzopflipng.so
-	${LN} -s libzopflipng.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libzopflipng.so.${PORTVERSION:R:R}
+	${INSTALL_PROGRAM} ${WRKSRC}/zopfli ${WRKSRC}/zopflipng ${PREFIX}/bin
+	${MKDIR} ${PREFIX}/include/zopfli ${PREFIX}/include/zopflipng/lodepng
+	${INSTALL_DATA} ${WRKSRC}/src/zopfli/*.h ${PREFIX}/include/zopfli
+	${INSTALL_DATA} ${WRKSRC}/src/zopflipng/*.h ${PREFIX}/include/zopflipng
+	${INSTALL_DATA} ${WRKSRC}/src/zopflipng/lodepng/*.h ${PREFIX}/include/zopflipng/lodepng
+	${INSTALL_DATA} ${WRKSRC}/libzopfli.a ${WRKSRC}/libzopflipng.a ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/libzopfli.so.${PORTVERSION} ${WRKSRC}/libzopflipng.so.${PORTVERSION} ${PREFIX}/lib
+	${LN} -s libzopfli.so.${PORTVERSION} ${PREFIX}/lib/libzopfli.so
+	${LN} -s libzopfli.so.${PORTVERSION} ${PREFIX}/lib/libzopfli.so.${PORTVERSION:R:R}
+	${LN} -s libzopflipng.so.${PORTVERSION} ${PREFIX}/lib/libzopflipng.so
+	${LN} -s libzopflipng.so.${PORTVERSION} ${PREFIX}/lib/libzopflipng.so.${PORTVERSION:R:R}
 
 .include <bsd.port.mk>

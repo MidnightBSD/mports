@@ -32,13 +32,13 @@ OPTIONS_SUB=	yes
 #TESTS_DESC=	Install tests
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	cd ${WRKSRC} && ${FIND} ${ADODB_SUBDIRS} -type d \
-		-exec ${MKDIR} ${STAGEDIR}${DATADIR}/{} \;
+		-exec ${MKDIR} ${DATADIR}/{} \;
 	cd ${WRKSRC} && ${FIND} . ! -path './*/*' -type f \( -name '*.php' -or -name '*.dtd' -or -name '*.zip' \) \
-		-exec ${INSTALL_DATA} ${WRKSRC}/{} ${STAGEDIR}${DATADIR}/{} \;
+		-exec ${INSTALL_DATA} ${WRKSRC}/{} ${DATADIR}/{} \;
 	cd ${WRKSRC} && ${FIND} ${ADODB_SUBDIRS} -type f \
-		-exec ${INSTALL_DATA} ${WRKSRC}/{} ${STAGEDIR}${DATADIR}/{} \;
+		-exec ${INSTALL_DATA} ${WRKSRC}/{} ${DATADIR}/{} \;
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -19,11 +19,11 @@ MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} -I." LN="${LN} -sf" \
 USE_LDCONFIG=	yes
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/arccat ${STAGEDIR}/${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/${SOLIB}.${SOVERSION} ${STAGEDIR}/${PREFIX}/lib
-	${LN} -sf ${SOLIB}.${SOVERSION} ${STAGEDIR}/${PREFIX}/lib/${SOLIB}
-	@${MKDIR} ${STAGEDIR}/${PREFIX}/include/libarc
-	${INSTALL_DATA} ${WRKSRC}/libarc/* ${STAGEDIR}/${PREFIX}/include/libarc
-	(cd ${WRKSRC} && ${INSTALL_DATA} unlzh.h zip.h ${STAGEDIR}/${PREFIX}/include/libarc)
+	${INSTALL_PROGRAM} ${WRKSRC}/arccat /${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${SOLIB}.${SOVERSION} /${PREFIX}/lib
+	${LN} -sf ${SOLIB}.${SOVERSION} /${PREFIX}/lib/${SOLIB}
+	@${MKDIR} /${PREFIX}/include/libarc
+	${INSTALL_DATA} ${WRKSRC}/libarc/* /${PREFIX}/include/libarc
+	(cd ${WRKSRC} && ${INSTALL_DATA} unlzh.h zip.h /${PREFIX}/include/libarc)
 
 .include <bsd.port.mk>

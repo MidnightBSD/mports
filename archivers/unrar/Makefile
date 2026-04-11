@@ -38,6 +38,6 @@ OPENSSL_AES_LDFLAGS=	${${OPENSSLLIB} == /usr/lib :? :-L${OPENSSLLIB}} -lcrypto
 OPENSSL_AES_USES=	ssl
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/unrar ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/unrar ${PREFIX}/bin/
 
 .include <bsd.port.mk>

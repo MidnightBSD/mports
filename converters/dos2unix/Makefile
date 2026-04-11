@@ -26,7 +26,7 @@ NLS_USES=		gettext
 NLS_MAKE_ARGS_OFF=	ENABLE_NLS=
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/dos2unix
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/unix2dos
+	${STRIP_CMD} ${PREFIX}/bin/dos2unix
+	${STRIP_CMD} ${PREFIX}/bin/unix2dos
 
 .include <bsd.port.mk>

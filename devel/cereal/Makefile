@@ -28,6 +28,6 @@ NO_ARCH=	yes
 NO_TEST=	yes
 
 post-install:
-	${FIND} ${STAGEDIR}${PREFIX} -name LICENSE -delete
+	${FIND} ${PREFIX} -name LICENSE -delete
 
 .include <bsd.port.mk>

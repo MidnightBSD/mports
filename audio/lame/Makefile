@@ -36,7 +36,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/lame_init_old/d' ${WRKSRC}/include/libmp3lame.sym
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmp3lame.so.0
+	${STRIP_CMD} ${PREFIX}/lib/libmp3lame.so.0
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

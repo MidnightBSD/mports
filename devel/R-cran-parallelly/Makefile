@@ -14,6 +14,6 @@ USES=		cran:auto-plist,compiles
 NO_ARCH_IGNORE=	parallelly.so
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/parallelly/libs/parallelly.so
+	${STRIP_CMD} ${PREFIX}/lib/R/library/parallelly/libs/parallelly.so
 
 .include <bsd.port.mk>

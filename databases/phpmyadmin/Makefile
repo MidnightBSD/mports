@@ -93,13 +93,13 @@ post-patch:
 do-install:
 	cd ${WRKSRC} ; \
 	for src in $$( ${FIND} . ! -name .cvsignore ! -name '*.bak' ) ; do \
-	    dst=${STAGEDIR}${WWWDIR}$${src#.} ; \
+	    dst=${WWWDIR}$${src#.} ; \
 	    if ${TEST} -d "$$src" ; then \
 		${MKDIR} "$$dst" ; \
 	    else \
 		${INSTALL_DATA} "$$src" "$$dst" ; \
 	    fi \
 	done
-	@${MKDIR} ${STAGEDIR}${WWWDIR}/tmp
+	@${MKDIR} ${WWWDIR}/tmp
 
 .include <bsd.port.mk>

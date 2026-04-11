@@ -35,6 +35,6 @@ post-extract-SNDIO-on:
 	@${CP} ${FILESDIR}/audio_sndio.c ${WRKSRC}
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/madtime ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/madtime ${PREFIX}/bin
 
 .include <bsd.port.mk>

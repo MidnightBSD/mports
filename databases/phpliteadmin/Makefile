@@ -22,10 +22,10 @@ PLIST_FILES=	${WWWDIR}/phpliteadmin.php \
 SUB_FILES=	pkg-message
 
 do-install:
-	@${MKDIR} ${STAGEDIR}/${WWWDIR}
+	@${MKDIR} /${WWWDIR}
 	${INSTALL_DATA} ${WRKDIR}/phpliteadmin.php \
-		${STAGEDIR}${WWWDIR}
+		${WWWDIR}
 	${INSTALL_DATA} ${WRKDIR}/phpliteadmin.config.sample.php \
-		${STAGEDIR}${WWWDIR}
+		${WWWDIR}
 
 .include <bsd.port.mk>

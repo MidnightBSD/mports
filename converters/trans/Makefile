@@ -20,25 +20,25 @@ post-patch:
 		${WRKSRC}/src/Makefile
 
 do-install:
-	cd ${WRKSRC}/src && ${INSTALL_PROGRAM} ${MANS:R} ${STAGEDIR}${PREFIX}/bin
+	cd ${WRKSRC}/src && ${INSTALL_PROGRAM} ${MANS:R} ${PREFIX}/bin
 .for m in ${MANS}
-	${INSTALL_MAN} ${WRKSRC}/src/${m:R}.man ${STAGEDIR}${PREFIX}/share/man/man1/${m}
+	${INSTALL_MAN} ${WRKSRC}/src/${m:R}.man ${PREFIX}/share/man/man1/${m}
 .endfor
-	@${MKDIR} ${STAGEDIR}${LIBDIR}/cedf ${STAGEDIR}${LIBDIR}/xlt \
-		${STAGEDIR}${LIBDIR}/doc ${STAGEDIR}${LIBDIR}/bin \
-		${STAGEDIR}${LIBDIR}/src
+	@${MKDIR} ${LIBDIR}/cedf ${LIBDIR}/xlt \
+		${LIBDIR}/doc ${LIBDIR}/bin \
+		${LIBDIR}/src
 	cd ${WRKSRC}/src && \
 		${INSTALL_SCRIPT} checkall chkuni mkhtml mklist mkxlt \
-		${STAGEDIR}${LIBDIR}/src
+		${LIBDIR}/src
 	cd ${WRKSRC} && \
-		${INSTALL_DATA} README encoding.lis ${STAGEDIR}${LIBDIR}
+		${INSTALL_DATA} README encoding.lis ${LIBDIR}
 	cd ${WRKSRC}/src && \
-		${INSTALL_DATA} datatype.h ${STAGEDIR}${LIBDIR}/src
+		${INSTALL_DATA} datatype.h ${LIBDIR}/src
 	cd ${WRKSRC}/bin && \
 		${INSTALL_DATA} one trans.[ch] trans.man utimbuf.h utf.[ch] \
-		${STAGEDIR}${LIBDIR}/bin
-	${INSTALL_DATA} ${WRKSRC}/cedf/* ${STAGEDIR}${LIBDIR}/cedf
-	${INSTALL_DATA} ${WRKSRC}/doc/* ${STAGEDIR}${LIBDIR}/doc
-	${INSTALL_DATA} ${WRKSRC}/xlt/* ${STAGEDIR}${LIBDIR}/xlt
+		${LIBDIR}/bin
+	${INSTALL_DATA} ${WRKSRC}/cedf/* ${LIBDIR}/cedf
+	${INSTALL_DATA} ${WRKSRC}/doc/* ${LIBDIR}/doc
+	${INSTALL_DATA} ${WRKSRC}/xlt/* ${LIBDIR}/xlt
 
 .include <bsd.port.mk>

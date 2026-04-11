@@ -16,6 +16,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME:C/4c/4/}
 PLIST_FILES=	bin/scimark4
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/scimark4 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/scimark4 ${PREFIX}/bin
 
 .include <bsd.port.mk>

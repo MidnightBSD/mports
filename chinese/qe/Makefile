@@ -18,8 +18,8 @@ post-configure:
 	@${REINPLACE_CMD} -e '49s,-s,,' ${WRKSRC}/src/Makefile
 
 post-install:
-	${CHMOD} u+w ${STAGEDIR}${PREFIX}/bin/qe
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/qe
-	${CHMOD} u-w ${STAGEDIR}${PREFIX}/bin/qe
+	${CHMOD} u+w ${PREFIX}/bin/qe
+	${STRIP_CMD} ${PREFIX}/bin/qe
+	${CHMOD} u-w ${PREFIX}/bin/qe
 
 .include <bsd.port.mk>

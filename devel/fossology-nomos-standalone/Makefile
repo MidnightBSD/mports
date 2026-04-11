@@ -26,7 +26,7 @@ ALL_TARGET=	nomossa
 PLIST_FILES=	bin/nomossa
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/nomos/agent/nomossa ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/src/nomos/agent/nomossa ${PREFIX}/bin
 
 do-test:
 	@${FAKE_DESTDIR}${PREFIX}/bin/nomossa ${WRKSRC}/src/nomos/agent/nomos.c | ${GREP} GPL-2.0

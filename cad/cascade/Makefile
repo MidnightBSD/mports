@@ -18,12 +18,12 @@ CONFLICTS_INSTALL=	cascade-compiler
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/cascade ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/cascade.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/cascade ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/cascade.1 ${PREFIX}/share/man/man1
+	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/examples/* \
-		${WRKSRC}/cascade-mode.el ${STAGEDIR}${EXAMPLESDIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+		${WRKSRC}/cascade-mode.el ${EXAMPLESDIR}
+	${MKDIR} ${DOCSDIR}
+	@cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>

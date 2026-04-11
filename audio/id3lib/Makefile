@@ -21,6 +21,6 @@ GH_ACCOUNT=	thekhalifa
 GH_TAGNAME=	497fe49
 
 post-install:
-	cd ${WRKSRC}/include/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/
+	cd ${WRKSRC}/include/ && ${COPYTREE_SHARE} . ${PREFIX}/include/
 
 .include <bsd.port.mk>

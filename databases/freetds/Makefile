@@ -78,6 +78,6 @@ post-patch:
 		${WRKSRC}/configure
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/interfaces ${STAGEDIR}${ETCDIR}/interfaces.sample
+	${INSTALL_DATA} ${WRKSRC}/interfaces ${ETCDIR}/interfaces.sample
 
 .include <bsd.port.mk>

@@ -18,7 +18,7 @@ CONFIGURE_ARGS=	--with-tcl=${TCL_LIBDIR} --with-tk=${TK_LIBDIR}
 
 post-install:
 .for f in qrouter.so qrouterexec qrouternullg
-	@${STRIP_CMD} ${STAGEDIR}/${DATADIR}/${f}
+	@${STRIP_CMD} /${DATADIR}/${f}
 .endfor
 
 .include <bsd.port.mk>

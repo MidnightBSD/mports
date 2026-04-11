@@ -41,13 +41,13 @@ post-extract:
 	(cd ${WRKSRC} && ${CP} antlr.jar antlrall.jar)
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}
-	${INSTALL_DATA} ${WRKSRC}/antlr.jar ${STAGEDIR}${JAVAJARDIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/antlr.sh ${STAGEDIR}${PREFIX}/bin/antlr
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}
+	@${MKDIR} ${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKSRC}/antlr.jar ${JAVAJARDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/antlr.sh ${PREFIX}/bin/antlr
+	@${MKDIR} ${PREFIX}/include/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/lib/cpp/antlr/*.hpp \
-		${STAGEDIR}${PREFIX}/include/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/lib/cpp/src/libantlr.a ${STAGEDIR}${PREFIX}/lib
+		${PREFIX}/include/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/lib/cpp/src/libantlr.a ${PREFIX}/lib
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -21,9 +21,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	Cangjians
 
 post-install:
-	(cd ${STAGEDIR}${PREFIX} \
+	(cd ${PREFIX} \
   	&& ${PYTHON_CMD} ${PYTHON_LIBDIR}/*.py \
    	-d ${PREFIX} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
-	@(${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PYTHON_VERSION}/site-packages/cangjie/*.so)
+	@(${STRIP_CMD} ${PREFIX}/lib/${PYTHON_VERSION}/site-packages/cangjie/*.so)
 
 .include <bsd.port.mk>

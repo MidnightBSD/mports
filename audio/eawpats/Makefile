@@ -30,19 +30,19 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/home/user/eawpats|${DATADIR}|' ${WRKSRC}/linuxconfig/timidity.cfg
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/*.cfg ${WRKSRC}/*.pat ${WRKSRC}/*.ini ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/*.cfg ${WRKSRC}/*.pat ${WRKSRC}/*.ini ${DATADIR}
 .for subdir in ${PATCH_SUBDIRS}
-	${MKDIR} ${STAGEDIR}${DATADIR}/${subdir}
-	${INSTALL_DATA} ${WRKSRC}/${subdir}/*.pat ${STAGEDIR}${DATADIR}/${subdir}
+	${MKDIR} ${DATADIR}/${subdir}
+	${INSTALL_DATA} ${WRKSRC}/${subdir}/*.pat ${DATADIR}/${subdir}
 .endfor
-	${MKDIR} ${STAGEDIR}${TIMIDITY_DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/linuxconfig/timidity.cfg ${STAGEDIR}${TIMIDITY_DATADIR}/timidity.cfg-eawpats
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.txt ${WRKSRC}/*.hlp ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${TIMIDITY_DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/linuxconfig/timidity.cfg ${TIMIDITY_DATADIR}/timidity.cfg-eawpats
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.txt ${WRKSRC}/*.hlp ${DOCSDIR}
 .for subdir in ${DOC_SUBDIRS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/${subdir}
-	${INSTALL_DATA} ${WRKSRC}/${subdir}/*.txt ${STAGEDIR}${DOCSDIR}/${subdir}
+	${MKDIR} ${DOCSDIR}/${subdir}
+	${INSTALL_DATA} ${WRKSRC}/${subdir}/*.txt ${DOCSDIR}/${subdir}
 .endfor
 
 .include <bsd.port.mk>

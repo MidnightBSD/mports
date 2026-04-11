@@ -61,8 +61,8 @@ post-build:
 		${WRKSRC}/sentinel.conf > ${WRKDIR}/valkey-sentinel.conf
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/valkey.conf ${STAGEDIR}${PREFIX}/etc/valkey.conf.sample
-	${INSTALL_DATA} ${WRKDIR}/valkey-sentinel.conf ${STAGEDIR}${PREFIX}/etc/valkey-sentinel.conf.sample
+	${INSTALL_DATA} ${WRKDIR}/valkey.conf ${PREFIX}/etc/valkey.conf.sample
+	${INSTALL_DATA} ${WRKDIR}/valkey-sentinel.conf ${PREFIX}/etc/valkey-sentinel.conf.sample
 	${MKDIR} ${FAKE_DESTDIR}${VALKEY_LOGDIR} \
 		${FAKE_DESTDIR}${VALKEY_DBDIR} \
 		${FAKE_DESTDIR}${VALKEY_RUNDIR}

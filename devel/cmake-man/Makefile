@@ -32,6 +32,6 @@ PLIST_SUB=	CMAKEVERSION="${DISTVERSION:S/.//g:C/-.*//}"
 
 post-install:
 # Installed by devel/cmake-gui
-	@${RM} ${STAGEDIR}${PREFIX}/share/man/man1/cmake-gui.1
+	@${RM} ${PREFIX}/share/man/man1/cmake-gui.1
 
 .include <bsd.port.mk>

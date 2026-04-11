@@ -22,9 +22,9 @@ NO_BUILD=	yes
 TTF=		TW-Kai-98_1.ttf TW-Sung-98_1.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for f in ${TTF}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${f} ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${f} ${FONTSDIR}
 .endfor
 
 .include "${.CURDIR}/../ttfm/Makefile.ttf"

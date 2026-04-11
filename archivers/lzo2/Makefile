@@ -29,14 +29,14 @@ post-build:
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblzo2.so.2
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${STRIP_CMD} ${PREFIX}/lib/liblzo2.so.2
+	${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${REINPLACE_CMD} -e 's,doc/,,' NEWS README
 .for i in AUTHORS BUGS COPYING NEWS README THANKS
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}/
 .endfor
-	${INSTALL_DATA}	${WRKSRC}/doc/* ${STAGEDIR}${DOCSDIR}/
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA}	${WRKSRC}/examples/[a-z]*.[ch] ${STAGEDIR}${EXAMPLESDIR}/
+	${INSTALL_DATA}	${WRKSRC}/doc/* ${DOCSDIR}/
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA}	${WRKSRC}/examples/[a-z]*.[ch] ${EXAMPLESDIR}/
 
 .include <bsd.port.mk>

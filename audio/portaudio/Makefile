@@ -62,32 +62,32 @@ post-patch:
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libportaudio.so.2
+	${STRIP_CMD} ${PREFIX}/lib/libportaudio.so.2
 
 .if ${PORT_OPTIONS:MEXAMPLES}
 .for f in ${EXAMPLES_BIN}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${PREFIX}/bin/
 .endfor
 .endif
 
 .if ${PORT_OPTIONS:MPATEST}
 .for f in ${PATEST_BIN}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${PREFIX}/bin/
 .endfor
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${DOCSDIR}
 .endif
 
 .if ${PORT_OPTIONS:MDOXYGEN} && ${PORT_OPTIONS:MDOCS}
 	@cd ${WRKSRC} && doxygen
-	@(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${STAGEDIR}${DOCSDIR})
+	@(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${DOCSDIR})
 .endif 
 
 .if ${PORT_OPTIONS:MEXAMPLES}
-	@(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
+	@(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${EXAMPLESDIR})
 .endif
 
 .include <bsd.port.mk>

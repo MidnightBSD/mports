@@ -25,6 +25,6 @@ post-patch:
 	@${REINPLACE_CMD} '23,26d' ${WRKSRC}/configure
 
 post-install:
-	@-${RM} ${STAGEDIR}${PREFIX}/info/dir
+	@-${RM} ${PREFIX}/info/dir
 
 .include <bsd.port.mk>

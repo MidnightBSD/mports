@@ -57,6 +57,6 @@ post-patch:
 		 s|"lv2core"|"_lv2core_"|' ${WRKSRC}/configure
 
 post-install:
-	@${TOUCH} ${STAGEDIR}${PREFIX}/lib/linuxsampler/plugins/.keep_me
+	@${TOUCH} ${PREFIX}/lib/linuxsampler/plugins/.keep_me
 
 .include <bsd.port.mk>

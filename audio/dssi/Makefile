@@ -48,12 +48,12 @@ post-patch:
 
 post-install:
 .for l in trivial_synth less_trivial_synth trivial_sampler karplong
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/dssi/${l}.so
+	${STRIP_CMD} ${PREFIX}/lib/dssi/${l}.so
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_PROGRAM} ${EXAMPLES_FILES1:S|^|${EXAMPLESSRCDIR}/|} \
-		${STAGEDIR}${EXAMPLESDIR}
+		${EXAMPLESDIR}
 
 .include <bsd.port.mk>

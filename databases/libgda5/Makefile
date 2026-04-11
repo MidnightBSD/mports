@@ -144,13 +144,13 @@ pre-build:
 
 .if ${LIBGDA5_SLAVE}==no
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/etc/libgda-${VERSION}/config \
-		${STAGEDIR}${PREFIX}/etc/libgda-${VERSION}/config.sample
+	${MV} ${PREFIX}/etc/libgda-${VERSION}/config \
+		${PREFIX}/etc/libgda-${VERSION}/config.sample
 .endif
 .if ${LIBGDA5_SLAVE}==ui
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/libgda-ui-5.0.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/
+		${PREFIX}/libdata/pkgconfig/
 .endif
 
 .include <bsd.port.mk>

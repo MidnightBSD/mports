@@ -42,7 +42,7 @@ SPEEX_CONFIGURE_OFF=	--without-speex
 
 post-install:
 # sanitize links
-	cd ${STAGEDIR}${PREFIX}/etc/alsa/conf.d && for i in [0-9][0-9]-*.conf ; do \
+	cd ${PREFIX}/etc/alsa/conf.d && for i in [0-9][0-9]-*.conf ; do \
 		${LN} -sf ../../../share/alsa/alsa.conf.d/$$i . ; done
 
 .include <bsd.port.mk>

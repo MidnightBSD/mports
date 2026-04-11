@@ -50,10 +50,10 @@ post-patch:
 		${WRKSRC}/uinput.h
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/linux/
+	@${MKDIR} ${PREFIX}/include/linux/
 .for i in ${DISTFILES}
 	${INSTALL_DATA} ${WRKSRC}/${i} \
-		${STAGEDIR}${PREFIX}/include/linux/
+		${PREFIX}/include/linux/
 .endfor
 
 .include <bsd.port.mk>

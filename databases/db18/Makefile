@@ -73,12 +73,12 @@ CONFIGURE_ARGS+=	--with-mutex=POSIX/pthreads
 
 post-install:
 .for i in ${DBLIBS}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so
-	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so ${STAGEDIR}${PREFIX}/lib
-	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so ${STAGEDIR}${PREFIX}/lib/${i}-${BDBMAJ}.so
-	${LN} -s -f ${i}-${BDBVER}.a ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}.a
+	${STRIP_CMD} ${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so
+	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so ${PREFIX}/lib
+	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so ${PREFIX}/lib/${i}-${BDBMAJ}.so
+	${LN} -s -f ${i}-${BDBVER}.a ${PREFIX}/lib/${PORTNAME}/${i}.a
 .endfor
-	cd ${STAGEDIR}${PREFIX}/bin/${PORTNAME}; \
+	cd ${PREFIX}/bin/${PORTNAME}; \
 	for i in *; do ${LN} -s -f ${PORTNAME}/$$i ../$$i-${BDBVER} ; done
 
 post-install-JAVA-off:

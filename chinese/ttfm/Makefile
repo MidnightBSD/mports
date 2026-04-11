@@ -27,12 +27,12 @@ post-patch:
 		${WRKSRC}/ttfm.sh
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/ttfinfo ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_SCRIPT} ${WRKSRC}/ttfm.sh ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/ttfm.sh.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/ttfinfo ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/ttfm.sh ${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/ttfm.sh.1 ${PREFIX}/share/man/man1/
+	@${MKDIR} ${DATADIR}
 .for module in gscjk.ttfm xttfm.ttfm
-	${INSTALL_SCRIPT} ${WRKSRC}/modules/${module} ${STAGEDIR}${DATADIR}/
+	${INSTALL_SCRIPT} ${WRKSRC}/modules/${module} ${DATADIR}/
 .endfor
 
 do-install-DOCS-on:

@@ -38,6 +38,6 @@ post-extract:
 	${WRKSRC}/Makefile.in
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libck.so.${DISTVERSION}
+	@${STRIP_CMD} ${PREFIX}/lib/libck.so.${DISTVERSION}
 
 .include <bsd.port.mk>

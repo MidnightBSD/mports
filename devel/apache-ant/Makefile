@@ -52,7 +52,7 @@ do-install:
 
 .for d in etc lib
 	@${ECHO_MSG} -n ">> Installing data directory '${d}'..."
-	cd ${WRKSRC} && ${COPYTREE_SHARE} ${d} ${STAGEDIR}${DATADIR}/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} ${d} ${DATADIR}/
 	@${ECHO_MSG} " [ DONE ]"
 .endfor
 

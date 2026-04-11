@@ -20,12 +20,12 @@ pre-patch:
 	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|' ${WRKSRC}/hclib.c
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/chinese
-	${INSTALL_PROGRAM} ${WRKSRC}/hc ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/b2g ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/g2b ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/hc.tab ${STAGEDIR}${PREFIX}/share/chinese
-	${INSTALL_DATA} ${DISTDIR}/hc-supp.tab ${STAGEDIR}${PREFIX}/share/chinese
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	@${MKDIR} ${PREFIX}/share/chinese
+	${INSTALL_PROGRAM} ${WRKSRC}/hc ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/b2g ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/g2b ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/hc.tab ${PREFIX}/share/chinese
+	${INSTALL_DATA} ${DISTDIR}/hc-supp.tab ${PREFIX}/share/chinese
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

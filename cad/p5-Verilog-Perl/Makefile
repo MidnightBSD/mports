@@ -19,7 +19,7 @@ CONFIGURE_ENV=	CXX=${CXX}\
 		CC=${CC}
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Verilog/Parser/*.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Verilog/Preproc/*.so
+	@${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Verilog/Parser/*.so
+	@${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Verilog/Preproc/*.so
 
 .include <bsd.port.mk>

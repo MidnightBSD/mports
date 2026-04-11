@@ -21,6 +21,6 @@ PLIST_FILES=	%%RUBY_SITEARCHLIBDIR%%/pasori.so
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${RUBY_SITEARCHLIBDIR}
+	@${MKDIR} ${RUBY_SITEARCHLIBDIR}
 
 .include <bsd.port.mk>

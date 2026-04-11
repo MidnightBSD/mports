@@ -59,6 +59,6 @@ post-patch:
 		${WRKSRC}/Makefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/yosys
+	${STRIP_CMD} ${PREFIX}/bin/yosys
 
 .include <bsd.port.mk>

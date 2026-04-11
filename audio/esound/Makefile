@@ -28,6 +28,6 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/esd.conf ${STAGEDIR}${PREFIX}/etc/esd.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/esd.conf ${PREFIX}/etc/esd.conf.sample
 
 .include <bsd.port.mk>

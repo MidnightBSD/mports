@@ -18,6 +18,6 @@ USES=		gem
 NO_ARCH=	yes
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/build
+	${RM} ${PREFIX}/bin/build
 
 .include <bsd.port.mk>

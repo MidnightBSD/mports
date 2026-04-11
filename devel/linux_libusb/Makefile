@@ -70,21 +70,21 @@ do-build:
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/usr/${LIBDIR_${ARCH}}
+	${MKDIR} ${PREFIX}/usr/${LIBDIR_${ARCH}}
 	${INSTALL_LIB} ${WRKSRC}/${LIBDIR_${ARCH}}/libusb.so.3 \
-		${STAGEDIR}${PREFIX}/usr/${LIBDIR_${ARCH}}
+		${PREFIX}/usr/${LIBDIR_${ARCH}}
 	${LN} -s libusb.so.3 \
-		${STAGEDIR}${PREFIX}/usr/${LIBDIR_${ARCH}}/libusb-0.1.so.4
+		${PREFIX}/usr/${LIBDIR_${ARCH}}/libusb-0.1.so.4
 	${LN} -s libusb.so.3 \
-		${STAGEDIR}${PREFIX}/usr/${LIBDIR_${ARCH}}/libusb-1.0.so.0
+		${PREFIX}/usr/${LIBDIR_${ARCH}}/libusb-1.0.so.0
 .if ${ARCH} == amd64 && ${FLAVOR} == c7
-	${MKDIR} ${STAGEDIR}${PREFIX}/usr/lib
+	${MKDIR} ${PREFIX}/usr/lib
 	${INSTALL_LIB} ${WRKSRC}/lib/libusb.so.3 \
-		${STAGEDIR}${PREFIX}/usr/lib
+		${PREFIX}/usr/lib
 	${LN} -s libusb.so.3 \
-		${STAGEDIR}${PREFIX}/usr/lib/libusb-0.1.so.4
+		${PREFIX}/usr/lib/libusb-0.1.so.4
 	${LN} -s libusb.so.3 \
-		${STAGEDIR}${PREFIX}/usr/lib/libusb-1.0.so.0
+		${PREFIX}/usr/lib/libusb-1.0.so.0
 .endif
 
 .include <bsd.port.post.mk>

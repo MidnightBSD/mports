@@ -18,6 +18,6 @@ SHEBANG_FILES=	bun-x.pl
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/CDB_File/CDB_File.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/CDB_File/CDB_File.so
 
 .include <bsd.port.mk>

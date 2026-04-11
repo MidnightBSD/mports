@@ -56,6 +56,6 @@ pre-install:
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/Utilities/Sphinx/man/cmake-gui.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

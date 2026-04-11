@@ -22,6 +22,6 @@ USES=		python
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
-TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
+TEST_ENV=	PYTHONPATH=${PYTHON_SITELIBDIR}
 
 .include <bsd.port.mk>

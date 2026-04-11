@@ -27,7 +27,7 @@ do-extract:
 .	endfor
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/db ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/db.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/db ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/db.1 ${PREFIX}/man/man1
 
 .include <bsd.port.mk>

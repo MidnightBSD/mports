@@ -64,7 +64,7 @@ post-build:
 post-install:
 .if !defined(DEBUG_FLAGS)
 .for f in gcin* gtab-merge juyin-learn phoa2* sim2trad trad2sim ts-edit tsa2d32 tsd2a32 tsin2gtab-phrase tslearn
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${f}
+	@${STRIP_CMD} ${PREFIX}/bin/${f}
 .endfor
 .endif
 

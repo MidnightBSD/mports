@@ -29,10 +29,10 @@ pre-install:
 	${RM} ${WRKSRC}/log4j-to-slf4j-${PORTVERSION}.jar
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}
+	@${MKDIR} ${JAVAJARDIR}
 	cd ${WRKSRC} && \
 	for j in `${FIND} . -name "*${PORTVERSION}.jar"`; do \
-		${INSTALL_DATA} $$j ${STAGEDIR}${JAVAJARDIR}/`echo $$j | ${SED} -e 's|-${PORTVERSION}||'`; \
+		${INSTALL_DATA} $$j ${JAVAJARDIR}/`echo $$j | ${SED} -e 's|-${PORTVERSION}||'`; \
 	done
 
 do-install-DOCS-on:

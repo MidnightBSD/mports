@@ -29,9 +29,9 @@ OPTIONS_DEFINE=	EXAMPLES
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/*.c ${STAGEDIR}${EXAMPLESDIR}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librest-0.7.so.0
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librest-extras-0.7.so.0
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/*.c ${EXAMPLESDIR}
+	@${STRIP_CMD} ${PREFIX}/lib/librest-0.7.so.0
+	@${STRIP_CMD} ${PREFIX}/lib/librest-extras-0.7.so.0
 
 .include <bsd.port.mk>

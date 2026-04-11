@@ -28,9 +28,9 @@ CPE_VENDOR=	rarlab
 
 do-install:
 	${MKDIR} ${PREFIX}/share/man/cat1
-	${INSTALL_PROGRAM} ${WRKSRC}/rar ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/rarfiles.lst ${STAGEDIR}${PREFIX}/etc
-	${INSTALL_DATA} ${WRKSRC}/default.sfx ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_MAN} ${WRKSRC}/rar.txt ${STAGEDIR}${PREFIX}/share/man/cat1/rar.1
+	${INSTALL_PROGRAM} ${WRKSRC}/rar ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/rarfiles.lst ${PREFIX}/etc
+	${INSTALL_DATA} ${WRKSRC}/default.sfx ${PREFIX}/lib
+	${INSTALL_MAN} ${WRKSRC}/rar.txt ${PREFIX}/share/man/cat1/rar.1
 
 .include <bsd.port.mk>

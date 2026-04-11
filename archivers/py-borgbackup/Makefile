@@ -47,10 +47,10 @@ post-patch:
 	${CP} ${FILESDIR}/acl_extended_file_np.c ${WRKSRC}/src/borg/platform/
 
 _BORGHOME=${WRKDIR}/testhome
-_BORGENV=-i BORG_PASSPHRASE=secret123 PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR} HOME=${_BORGHOME}
+_BORGENV=-i BORG_PASSPHRASE=secret123 PYTHONPATH=${PYTHON_SITELIBDIR} HOME=${_BORGHOME}
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_MAN} ${WRKSRC}/docs/man/* ${STAGEDIR}${PREFIX}/share/man/man1/
+	${MKDIR} ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/docs/man/* ${PREFIX}/share/man/man1/
 	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/borg/ -name "*.so" \
 		-exec ${STRIP_CMD} {} \;
 

@@ -55,9 +55,9 @@ post-patch:
 	${ECHO_CMD} > ${WRKSRC}/CPP/7zip/warn_clang.mak
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/b/c/7zz ${STAGEDIR}/${PREFIX}/bin
-	${LN} -sf 7zz ${STAGEDIR}/${PREFIX}/bin/7z
-	${INSTALL_MAN} ${FILESDIR}/7zz.1 ${STAGEDIR}/${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/b/c/7zz /${PREFIX}/bin
+	${LN} -sf 7zz /${PREFIX}/bin/7z
+	${INSTALL_MAN} ${FILESDIR}/7zz.1 /${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR} && \

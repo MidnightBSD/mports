@@ -60,7 +60,7 @@ PLIST_SUB+=	CLASSIC=""
 .endif
 
 post-install:
-	@cd ${STAGEDIR}${PREFIX} && ${STRIP_CMD} \
+	@cd ${PREFIX} && ${STRIP_CMD} \
 		lib/libjack*.so \
 		lib/jack/*.so \
 		$$(ls bin/* | ${GREP} -v jack_control)

@@ -38,9 +38,9 @@ do-build:
 .endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/netio ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/netio ${PREFIX}/bin
 .if ${PORT_OPTIONS:MIPV6}
-	${INSTALL_PROGRAM} ${WRKSRC}/netio6 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/netio6 ${PREFIX}/bin
 .endif
 
 .include <bsd.port.mk>

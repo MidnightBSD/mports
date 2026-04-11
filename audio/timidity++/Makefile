@@ -65,23 +65,23 @@ pre-patch:
 	@${RM} ${WRKSRC}/utils/mblock.h
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${TIMID_LIBDIR}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/timidity
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man5
+	@${MKDIR} ${PREFIX}/${TIMID_LIBDIR}
+	@${MKDIR} ${PREFIX}/share/timidity
+	@${MKDIR} ${PREFIX}/share/man/ja/man1
+	@${MKDIR} ${PREFIX}/share/man/ja/man5
 
 post-install::
 	(cd ${WRKSRC}/doc/ja_JP.eucJP && ${INSTALL_MAN} timidity.1 \
-		${STAGEDIR}${PREFIX}/share/man/ja/man1)
+		${PREFIX}/share/man/ja/man1)
 	(cd ${WRKSRC}/doc/ja_JP.eucJP && ${INSTALL_MAN} timidity.cfg.5 \
-		${STAGEDIR}${PREFIX}/share/man/ja/man5)
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/man/ja/man5)
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC}/doc/C && ${INSTALL_DATA} ${DOCFILES} \
-		${STAGEDIR}${DOCSDIR})
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME}
+		${DOCSDIR})
+	@${MKDIR} ${PREFIX}/share/doc/ja/${PORTNAME}
 	(cd ${WRKSRC}/doc/ja_JP.eucJP && ${INSTALL_DATA} ${DOCFILES} \
-		${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME})
-	@${RMDIR} ${STAGEDIR}${PREFIX}/share/timidity
+		${PREFIX}/share/doc/ja/${PORTNAME})
+	@${RMDIR} ${PREFIX}/share/timidity
 
 .endif # PKGNAMESUFFIX
 .include <bsd.port.mk>

@@ -52,15 +52,15 @@ post-patch:
 	-e '/^free/d' ${WRKSRC}/linux/config.sh
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${MKDIR} ${STAGEDIR}${DATADIR}/linux
+	${MKDIR} ${DATADIR}
+	${MKDIR} ${DATADIR}/linux
 	for f in vdbench.jar build_sds.txt swatcharts.txt; do \
-		${INSTALL_DATA} ${WRKSRC}/$${f} ${STAGEDIR}${DATADIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$${f} ${DATADIR}; \
 	done
-	${INSTALL_DATA} ${WRKSRC}/linux/linux${LINUX_ARCH}.so ${STAGEDIR}${DATADIR}/linux
-	${INSTALL_SCRIPT} ${WRKSRC}/linux/config.sh ${STAGEDIR}${DATADIR}/linux
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${DATADIR}
-	${RLN} ../${DATADIR_REL}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PKGNAMEPREFIX}${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/linux/linux${LINUX_ARCH}.so ${DATADIR}/linux
+	${INSTALL_SCRIPT} ${WRKSRC}/linux/config.sh ${DATADIR}/linux
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${DATADIR}
+	${RLN} ../${DATADIR_REL}/${PORTNAME} ${PREFIX}/bin/${PKGNAMEPREFIX}${PORTNAME}
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

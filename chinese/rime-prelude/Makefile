@@ -28,11 +28,11 @@ PLIST_FILES=	\
 	share/rime-data/symbols.yaml
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data
-	${INSTALL_DATA} ${WRKSRC}/default.yaml ${STAGEDIR}${PREFIX}/share/rime-data
-	${INSTALL_DATA} ${WRKSRC}/key_bindings.yaml ${STAGEDIR}${PREFIX}/share/rime-data
-	${INSTALL_DATA} ${WRKSRC}/punctuation.yaml ${STAGEDIR}${PREFIX}/share/rime-data
-	${INSTALL_DATA} ${WRKSRC}/symbols.yaml ${STAGEDIR}${PREFIX}/share/rime-data
+	@${MKDIR} ${PREFIX}/share/rime-data
+	${INSTALL_DATA} ${WRKSRC}/default.yaml ${PREFIX}/share/rime-data
+	${INSTALL_DATA} ${WRKSRC}/key_bindings.yaml ${PREFIX}/share/rime-data
+	${INSTALL_DATA} ${WRKSRC}/punctuation.yaml ${PREFIX}/share/rime-data
+	${INSTALL_DATA} ${WRKSRC}/symbols.yaml ${PREFIX}/share/rime-data
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

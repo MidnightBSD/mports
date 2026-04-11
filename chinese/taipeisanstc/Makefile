@@ -26,9 +26,9 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for type in ${TYPES}
-	${INSTALL_DATA} ${WRKSRC}/TaipeiSansTC${DISTVERSION}-${type}.ttf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/TaipeiSansTC${DISTVERSION}-${type}.ttf ${FONTSDIR}
 .endfor
 
 .include <bsd.port.mk>

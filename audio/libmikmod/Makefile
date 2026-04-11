@@ -18,6 +18,6 @@ USE_LDCONFIG=	yes
 INFO=		mikmod
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}.so.3.3.0
+	@${STRIP_CMD} ${PREFIX}/lib/${PORTNAME}.so.3.3.0
 
 .include <bsd.port.mk>

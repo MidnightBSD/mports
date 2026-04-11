@@ -301,17 +301,17 @@ do-install:
 		${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}; \
 	done
 .  if defined(SERVER_ONLY)
-	@ ${MKDIR} ${STAGEDIR}${PREFIX}/share/postgresql ;\
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily ;\
+	@ ${MKDIR} ${PREFIX}/share/postgresql ;\
+	${MKDIR} ${PREFIX}/etc/periodic/daily ;\
 	${INSTALL_SCRIPT} ${WRKDIR}/502.pgsql \
-			${STAGEDIR}${PREFIX}/etc/periodic/daily
+			${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
 	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-local
 .  endif
 	@ if [ -r ${PKGMESSAGE} ]; then \
-		${MKDIR} ${STAGEDIR}${DOCSDIR} ;\
-		${INSTALL_DATA} ${PKGMESSAGE} ${STAGEDIR}${DOCSDIR}/README${COMPONENT} ;\
+		${MKDIR} ${DOCSDIR} ;\
+		${INSTALL_DATA} ${PKGMESSAGE} ${DOCSDIR}/README${COMPONENT} ;\
 	fi
 .endif # !NO_BUILD
 

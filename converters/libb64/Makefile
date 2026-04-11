@@ -20,6 +20,6 @@ CMAKE_OFF=	LIBB64_BUILD_EXAMPLES LIBB64_BUILD_PROGRAMS LIBB64_ENABLE_TESTS
 CMAKE_ON=	LIBB64_SHARED
 
 post-install:
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libb64.so ${STAGEDIR}${PREFIX}/lib/libb64.so.0
+	${RLN} ${PREFIX}/lib/libb64.so ${PREFIX}/lib/libb64.so.0
 
 .include <bsd.port.mk>

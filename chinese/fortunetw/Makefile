@@ -11,9 +11,9 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/games/fortune/
+	${MKDIR} ${PREFIX}/share/games/fortune/
 .for file in bsdchat folksong liuyong stephehchow tangshi xiaoxing yijing
-	${INSTALL_DATA} ${WRKSRC}/${file} ${WRKSRC}/${file}.dat ${STAGEDIR}${PREFIX}/share/games/fortune/
+	${INSTALL_DATA} ${WRKSRC}/${file} ${WRKSRC}/${file}.dat ${PREFIX}/share/games/fortune/
 .endfor
 
 .include <bsd.port.mk>

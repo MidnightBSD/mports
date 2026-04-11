@@ -167,8 +167,8 @@ do-build:
 
 pre-install:
 # always create the modules directory
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/apr-util-1
-	${ECHO} "keep me" > ${STAGEDIR}${PREFIX}/lib/apr-util-1/.keep.me
+	@${MKDIR} ${PREFIX}/lib/apr-util-1
+	${ECHO} "keep me" > ${PREFIX}/lib/apr-util-1/.keep.me
 
 do-install:
 	@(cd ${APR_WRKDIR} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} ${INSTALL_TARGET})

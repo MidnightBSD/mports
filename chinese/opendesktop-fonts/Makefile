@@ -25,10 +25,10 @@ post-patch:
 	@${FIND} ${WRKSRC} -name "*.bak" -delete
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for i in ${TTF}
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${FONTSDIR}
 .endfor
-	${INSTALL_DATA} ${FILESDIR}/local.conf-odo ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${FILESDIR}/local.conf-odo ${FONTSDIR}
 
 .include <bsd.port.mk>

@@ -64,15 +64,15 @@ post-build-TINDERBOX-on:
 	@${TAR} -C ${WRKDIR}/tb -cpf ${WRKSRC}/${PORTNAME}.tar opt
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/ccache ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/ccache ${PREFIX}/bin
 	# Memcached uses the 3.5 dev branch which requires asciidoc to generate
 	# ccache.1.
-	${INSTALL_MAN} ${WRKSRC}/doc/ccache.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${MKDIR} ${STAGEDIR}${PREFIX}/${CCLINKDIR}/world
+	${INSTALL_MAN} ${WRKSRC}/doc/ccache.1 ${PREFIX}/share/man/man1
+	${MKDIR} ${PREFIX}/${CCLINKDIR}/world
 	${INSTALL_SCRIPT} ${WRKDIR}/world-ccache \
-		${STAGEDIR}${PREFIX}/${CCLINKDIR}/world/ccache
+		${PREFIX}/${CCLINKDIR}/world/ccache
 	${INSTALL_SCRIPT} ${WRKDIR}/ccache-update-links.sh \
-		${STAGEDIR}${PREFIX}/bin/ccache-update-links
+		${PREFIX}/bin/ccache-update-links
 
 do-install-TINDERBOX-on:
 	${MKDIR} ${FAKE_DESTDIR}${DATADIR}

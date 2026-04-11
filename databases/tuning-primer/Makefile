@@ -21,6 +21,6 @@ PLIST_FILES=	bin/${PORTNAME}
 
 do-install:
 	${INSTALL_SCRIPT} ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}.sh \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+		${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

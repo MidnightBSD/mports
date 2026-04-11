@@ -48,8 +48,8 @@ post-patch:
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/tools/ipod-time-sync \
-		${STAGEDIR}${PREFIX}/bin
-	@${RM} ${STAGEDIR}${PREFIX}/libdata/pkgconfig/libgpod-sharp.pc
+		${PREFIX}/bin
+	@${RM} ${PREFIX}/libdata/pkgconfig/libgpod-sharp.pc
 
 post-install-DOCS-on:
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}

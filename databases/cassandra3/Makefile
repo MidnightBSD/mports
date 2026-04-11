@@ -116,7 +116,7 @@ do-install:
 	cd ${DIST_DIR} && ${COPYTREE_BIN} tools/bin ${DATADIR}/
 	cd ${DIST_DIR} && ${INSTALL_DATA} tools/bin/cassandra.in.sh ${DATADIR}/tools/bin/
 .for f in ${SCRIPT_FILES}
-	${RLN} ${STAGEDIR}${DATADIR}/bin/${f} ${PREFIX}/bin/${f}
+	${RLN} ${DATADIR}/bin/${f} ${PREFIX}/bin/${f}
 .endfor
 	${LN} -s ${JAVAJARDIR}/snappy-java.jar ${DATADIR}/lib/snappy-java.jar
 

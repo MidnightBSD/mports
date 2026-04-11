@@ -69,9 +69,9 @@ DEMO_LIST=	cdemo81.c	\
 
 WRKSRC=		${WRKDIR}/instantclient_10_2/sdk
 
-INSTLIBSDIR=	${STAGEDIR}${PREFIX}/usr/lib/oracle/${ORACLEVERSION}/client/lib
-INSTINCSDIR=	${STAGEDIR}${PREFIX}/usr/include/oracle/${ORACLEVERSION}/client
-INSTDEMODIR=	${STAGEDIR}${PREFIX}/usr/share/oracle/${ORACLEVERSION}/client
+INSTLIBSDIR=	${PREFIX}/usr/lib/oracle/${ORACLEVERSION}/client/lib
+INSTINCSDIR=	${PREFIX}/usr/include/oracle/${ORACLEVERSION}/client
+INSTDEMODIR=	${PREFIX}/usr/share/oracle/${ORACLEVERSION}/client
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 

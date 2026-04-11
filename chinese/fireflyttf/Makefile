@@ -43,8 +43,8 @@ post-extract:
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${TTF} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${FILESDIR}/local.conf-sung ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${TTF} ${FONTSDIR}
+	${INSTALL_DATA} ${FILESDIR}/local.conf-sung ${FONTSDIR}
 
 .include <bsd.port.mk>

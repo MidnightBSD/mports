@@ -40,12 +40,12 @@ post-patch:
 		 s|-fpic|-fPIC|g' ${WRKSRC}/configure
 
 post-install:
-	cd ${STAGEDIR}${PREFIX}/share/xcircuit && ${STRIP_CMD} xcircuit.so xcircexec xcircdnull
-	@${MKDIR} ${STAGEDIR}/${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/.xcircuitrc ${STAGEDIR}/${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/*.lgf ${STAGEDIR}/${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/*.lps ${STAGEDIR}/${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/*.ps ${STAGEDIR}/${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/*.sim ${STAGEDIR}/${EXAMPLESDIR}
+	cd ${PREFIX}/share/xcircuit && ${STRIP_CMD} xcircuit.so xcircexec xcircdnull
+	@${MKDIR} /${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/.xcircuitrc /${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/*.lgf /${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/*.lps /${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/*.ps /${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/*.sim /${EXAMPLESDIR}
 
 .include <bsd.port.mk>

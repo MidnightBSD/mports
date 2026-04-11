@@ -28,6 +28,6 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^#SHLIB_TEENY *=/ s|#||' ${WRKSRC}/maa/Makefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmaa.so
+	${STRIP_CMD} ${PREFIX}/lib/libmaa.so
 
 .include <bsd.port.mk>
