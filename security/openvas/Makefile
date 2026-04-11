@@ -57,6 +57,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|vendor_version_get ()|vendor_version_get (void)|g' ${WRKSRC}/misc/vendorversion.c
 
 post-install:
-	@${MKDIR} ${STAGEDIR}/var/run/ospd
+	@${MKDIR} /var/run/ospd
 
 .include <bsd.port.post.mk>

@@ -55,7 +55,7 @@ post-patch:
 		${WRKSRC}/makefile.shared ${WRKSRC}/makefile_include.mk
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtomcrypt.so.1
+	@${STRIP_CMD} ${PREFIX}/lib/libtomcrypt.so.1
 	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/libdata/pkgconfig/libtomcrypt.pc
 
 post-install-DOCS-on:

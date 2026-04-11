@@ -43,11 +43,11 @@ MESON_ARGS+=		-Dglib_prefix=${LOCALBASE}
 .endif
 
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${MV} ${STAGEDIR}${PREFIX}/etc/pkcs11/pkcs11.conf.example ${STAGEDIR}${EXAMPLESDIR}
-	${RMDIR} ${STAGEDIR}${PREFIX}/etc/pkcs11
-	${MKDIR} ${STAGEDIR}${DATADIR}/certs
-	${LN} -s /usr/share/certs/trusted ${STAGEDIR}${DATADIR}/certs/anchors
-	${LN} -s /usr/share/certs/blacklisted ${STAGEDIR}${DATADIR}/certs/blocklist
+	${MKDIR} ${EXAMPLESDIR}
+	${MV} ${PREFIX}/etc/pkcs11/pkcs11.conf.example ${EXAMPLESDIR}
+	${RMDIR} ${PREFIX}/etc/pkcs11
+	${MKDIR} ${DATADIR}/certs
+	${LN} -s /usr/share/certs/trusted ${DATADIR}/certs/anchors
+	${LN} -s /usr/share/certs/blacklisted ${DATADIR}/certs/blocklist
 
 .include <bsd.port.mk>

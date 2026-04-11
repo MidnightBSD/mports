@@ -24,12 +24,12 @@ OPTIONS_SUB=	yes
 YUBIKEY_DESC=	Install Yubikey IAM helper script
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/fish/completions
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions
-	${INSTALL_DATA} ${WRKSRC}/contrib/completions/bash/aws-vault.bash ${STAGEDIR}${PREFIX}/etc/bash_completion.d
-	${INSTALL_DATA} ${WRKSRC}/contrib/completions/fish/aws-vault.fish ${STAGEDIR}${PREFIX}/share/fish/completions
-	${INSTALL_DATA} ${WRKSRC}/contrib/completions/zsh/aws-vault.zsh ${STAGEDIR}${PREFIX}/share/zsh/site-functions
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d
+	@${MKDIR} ${PREFIX}/share/fish/completions
+	@${MKDIR} ${PREFIX}/share/zsh/site-functions
+	${INSTALL_DATA} ${WRKSRC}/contrib/completions/bash/aws-vault.bash ${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/contrib/completions/fish/aws-vault.fish ${PREFIX}/share/fish/completions
+	${INSTALL_DATA} ${WRKSRC}/contrib/completions/zsh/aws-vault.zsh ${PREFIX}/share/zsh/site-functions
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

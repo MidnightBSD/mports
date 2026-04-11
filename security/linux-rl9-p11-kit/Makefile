@@ -29,9 +29,9 @@ OPTIONS_SUB=	yes
 .include <bsd.mport.options.mk>
 
 post-install:
-	${RLN} ${STAGEDIR}${PREFIX}/usr/lib64/pkcs11/p11-kit-trust.so ${STAGEDIR}${PREFIX}/usr/lib64/libnssckbi.so
+	${RLN} ${PREFIX}/usr/lib64/pkcs11/p11-kit-trust.so ${PREFIX}/usr/lib64/libnssckbi.so
 .if ${ARCH} == amd64
-	${RLN} ${STAGEDIR}${PREFIX}/usr/lib/pkcs11/p11-kit-trust.so ${STAGEDIR}${PREFIX}/usr/lib/libnssckbi.so
+	${RLN} ${PREFIX}/usr/lib/pkcs11/p11-kit-trust.so ${PREFIX}/usr/lib/libnssckbi.so
 .endif
 
 .include <bsd.port.mk>

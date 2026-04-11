@@ -58,12 +58,12 @@ post-patch:
 		${WRKSRC}/vpnc.8.template
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/vpnc ${STAGEDIR}${PREFIX}/sbin/vpnc
+	${INSTALL_PROGRAM} ${WRKSRC}/vpnc ${PREFIX}/sbin/vpnc
 	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-disconnect \
-		${STAGEDIR}${PREFIX}/sbin/vpnc-disconnect
+		${PREFIX}/sbin/vpnc-disconnect
 	${INSTALL_DATA} ${WRKSRC}/vpnc.conf \
-		${STAGEDIR}${PREFIX}/etc/vpnc.conf.sample
-	${INSTALL_MAN} ${WRKSRC}/vpnc.8 ${STAGEDIR}${PREFIX}/share/man/man8
+		${PREFIX}/etc/vpnc.conf.sample
+	${INSTALL_MAN} ${WRKSRC}/vpnc.8 ${PREFIX}/share/man/man8
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

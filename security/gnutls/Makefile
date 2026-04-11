@@ -128,9 +128,9 @@ post-patch:
 		${WRKSRC}/doc/stamp_functions
 
 post-install:
-	@${RM} ${STAGEDIR}${DOCSDIR}/*.png
-	@${RMDIR} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/examples/*.[ch] ${STAGEDIR}${EXAMPLESDIR}
+	@${RM} ${DOCSDIR}/*.png
+	@${RMDIR} ${DOCSDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/examples/*.[ch] ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

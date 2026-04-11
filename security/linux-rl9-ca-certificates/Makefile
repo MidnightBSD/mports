@@ -50,7 +50,7 @@ post-fake:
 		${LINUXBASE}/usr/share/p11-kit/modules/p11-kit-trust.module > \
 		${WRKDIR}/.config/pkcs11/modules/p11-kit-trust.module
 # 4. If we're building as root, the nobody user wouldn't be able to write into
-#    ${STAGEDIR}. Change the owner to allow that.
+#    . Change the owner to allow that.
 .if ${UID} == 0
 	${CHOWN} -R nobody ${FAKE_DESTDIR}
 .endif

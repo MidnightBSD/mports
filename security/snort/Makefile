@@ -113,16 +113,16 @@ post-build:
 	@${FIND} ${WRKSRC}/src -name '*.0' -type f -exec ${STRIP_CMD} {} \;
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR} ${STAGEDIR}${RULES_DIR} ${STAGEDIR}${LOGS_DIR} \
-		${STAGEDIR}${PREPROC_RULE_DIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${ETCDIR} ${RULES_DIR} ${LOGS_DIR} \
+		${PREPROC_RULE_DIR} ${DOCSDIR}
 
 .for f in ${CONFIG_FILES}
-	${INSTALL_DATA} ${WRKSRC}/etc/${f} ${STAGEDIR}${ETCDIR}/${f}-sample
+	${INSTALL_DATA} ${WRKSRC}/etc/${f} ${ETCDIR}/${f}-sample
 .endfor
 
 .for f in ${PREPROC_RULES}
-	${INSTALL_DATA} ${WRKSRC}/preproc_rules/${f} ${STAGEDIR}${PREPROC_RULE_DIR}/${f}-sample
+	${INSTALL_DATA} ${WRKSRC}/preproc_rules/${f} ${PREPROC_RULE_DIR}/${f}-sample
 .endfor
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR})
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR})
 
 .include <bsd.port.mk>

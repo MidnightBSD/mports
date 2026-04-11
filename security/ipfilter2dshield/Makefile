@@ -35,9 +35,9 @@ pre-install:
 		pkg-message > ${PKGMESSAGE}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/${DISTNAME} \
-		${STAGEDIR}${ETCDIR}/${DISTNAME}.sample
-	${INSTALL} -m 760 ${WRKSRC}/${DISTNAME} ${STAGEDIR}${PREFIX}/sbin
+		${ETCDIR}/${DISTNAME}.sample
+	${INSTALL} -m 760 ${WRKSRC}/${DISTNAME} ${PREFIX}/sbin
 
 .include <bsd.port.mk>

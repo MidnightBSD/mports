@@ -15,7 +15,7 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/keyrings
-	${INSTALL_DATA} ${WRKSRC}/keyrings/* ${STAGEDIR}${PREFIX}/share/keyrings/
+	@${MKDIR} ${PREFIX}/share/keyrings
+	${INSTALL_DATA} ${WRKSRC}/keyrings/* ${PREFIX}/share/keyrings/
 
 .include <bsd.port.mk>

@@ -68,38 +68,38 @@ do-build:
 	${FIND} ${WRKSRC} -type f \( -name \*.orig -o -name \*.bak \) -delete
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/detectrotate \
-		  ${STAGEDIR}${DBDIR} \
-		  ${STAGEDIR}${DOCSDIR} \
-		  ${STAGEDIR}${ETCDIR} \
-		  ${STAGEDIR}${ETCDIR}/logcheck.logfiles.d \
-		  ${STAGEDIR}${EXAMPLESDIR} \
-		  ${STAGEDIR}${RUNDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/src/logcheck-test ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/src/logcheck ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail2 ${STAGEDIR}${PREFIX}/sbin
+	@${MKDIR} ${DATADIR}/detectrotate \
+		  ${DBDIR} \
+		  ${DOCSDIR} \
+		  ${ETCDIR} \
+		  ${ETCDIR}/logcheck.logfiles.d \
+		  ${EXAMPLESDIR} \
+		  ${RUNDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/src/logcheck-test ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/src/logcheck ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail2 ${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/etc/logcheck.conf \
-		${STAGEDIR}${ETCDIR}/logcheck.conf.sample
+		${ETCDIR}/logcheck.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/etc/logcheck.logfiles \
-		${STAGEDIR}${ETCDIR}/
+		${ETCDIR}/
 	${INSTALL_DATA} ${WRKSRC}/etc/logcheck.logfiles.d/syslog.logfiles \
-		${STAGEDIR}${ETCDIR}/logcheck.logfiles.d/syslog.logfiles.sample
+		${ETCDIR}/logcheck.logfiles.d/syslog.logfiles.sample
 .for i in ${CONFIG_DIRS}
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/${i}
+	@${MKDIR} ${ETCDIR}/${i}
 	${INSTALL_DATA} ${WRKSRC}/rulefiles/linux/${i}/* \
-		${STAGEDIR}${ETCDIR}/${i}
+		${ETCDIR}/${i}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/src/detectrotate/*.dtr \
-		${STAGEDIR}${DATADIR}/detectrotate
+		${DATADIR}/detectrotate
 	${INSTALL_DATA} ${WRKSRC}/debian/logcheck.cron.d \
-		${STAGEDIR}${EXAMPLESDIR}/crontab.in
+		${EXAMPLESDIR}/crontab.in
 .for i in ${MAN1_FILES}
-	${INSTALL_MAN} ${WRKSRC}/docs/$i ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/docs/$i ${PREFIX}/share/man/man1
 .endfor
 .for i in ${MAN8_FILES}
-	${INSTALL_MAN} ${WRKSRC}/docs/$i ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/docs/$i ${PREFIX}/share/man/man8
 .endfor
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 
 .include <bsd.port.post.mk>

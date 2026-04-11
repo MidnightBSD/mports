@@ -64,8 +64,8 @@ post-build-MANPAGES-on:
 	cd ${WRKSRC}/docs && sphinx-build-${PYTHON_VER} -N -b man . _build/man
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/weekly
-	${INSTALL_SCRIPT} ${WRKDIR}/500.certbot ${STAGEDIR}${PREFIX}/etc/periodic/weekly/500.certbot-${PYTHON_VER}
+	${MKDIR} ${PREFIX}/etc/periodic/weekly
+	${INSTALL_SCRIPT} ${WRKDIR}/500.certbot ${PREFIX}/etc/periodic/weekly/500.certbot-${PYTHON_VER}
 
 post-install-MANPAGES-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/man1 ${FAKE_DESTDIR}${PREFIX}/share/man/man7

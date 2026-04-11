@@ -39,7 +39,7 @@ pre-configure:
 	@${WRKSRC}/scripts/config.py set MBEDTLS_THREADING_PTHREAD
 
 post-install:
-	@cd ${STAGEDIR}${PREFIX}/bin && for f in *; do \
+	@cd ${PREFIX}/bin && for f in *; do \
 		${MV} "$$f" "mbedtls_$$f"; \
 	done
 

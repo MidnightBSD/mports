@@ -92,6 +92,6 @@ post-patch:
 		${WRKSRC}/src/build-data/cc/clang.txt
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/botan${_BOTANMAJOR} ${STAGEDIR}${PREFIX}/lib/libbotan-${_BOTANMAJOR}.so.${_SOABIVER}.${_SHLIBVER}.${_SHLIBVERPATCH}
+	${STRIP_CMD} ${PREFIX}/bin/botan${_BOTANMAJOR} ${PREFIX}/lib/libbotan-${_BOTANMAJOR}.so.${_SOABIVER}.${_SHLIBVER}.${_SHLIBVERPATCH}
 
 .include <bsd.port.mk>

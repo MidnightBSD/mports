@@ -31,11 +31,11 @@ post-patch:
 
 do-install:
 .for i in srm sfill sswap smem
-	${INSTALL_PROGRAM} ${WRKSRC}/${i} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${i}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/${i} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${i}.1 ${PREFIX}/share/man/man1
 .endfor
-	${INSTALL_SCRIPT} ${WRKSRC}/the_cleaner.sh ${STAGEDIR}${PREFIX}/bin
-	${LN} -sf srm ${STAGEDIR}${PREFIX}/bin/sdel
+	${INSTALL_SCRIPT} ${WRKSRC}/the_cleaner.sh ${PREFIX}/bin
+	${LN} -sf srm ${PREFIX}/bin/sdel
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

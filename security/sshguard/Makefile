@@ -24,8 +24,8 @@ post-patch:
 		${WRKSRC}/examples/sshguard.conf.sample
 
 post-install:
-	${INSTALL} -d ${STAGEDIR}${PREFIX}/etc
+	${INSTALL} -d ${PREFIX}/etc
 	${INSTALL_DATA} ${WRKSRC}/examples/sshguard.conf.sample \
-		${STAGEDIR}${PREFIX}/etc
+		${PREFIX}/etc
 
 .include <bsd.port.mk>

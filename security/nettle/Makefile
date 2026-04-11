@@ -39,8 +39,8 @@ post-patch:
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so
-	${INSTALL_DATA} ${WRKSRC}/nettle.info ${STAGEDIR}${PREFIX}/${INFO_PATH}/nettle.info
+	${STRIP_CMD} ${PREFIX}/lib/lib*.so
+	${INSTALL_DATA} ${WRKSRC}/nettle.info ${PREFIX}/${INFO_PATH}/nettle.info
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

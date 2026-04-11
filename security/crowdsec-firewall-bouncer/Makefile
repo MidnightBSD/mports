@@ -39,14 +39,14 @@ do-install:
 	#
 
 	${INSTALL_PROGRAM} ${WRKDIR}/bin/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+		${PREFIX}/bin/${PORTNAME}
 
 	#
 	# Configuration
 	#
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/config/${PORTNAME}.yaml \
-		${STAGEDIR}${ETCDIR}/${PORTNAME}.yaml.sample
+		${ETCDIR}/${PORTNAME}.yaml.sample
 
 .include <bsd.port.mk>

@@ -44,13 +44,13 @@ PLIST_FILES=	bin/doas \
 _GLOBAL_PATH?=	${LOCALBASE}/sbin:${LOCALBASE}/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/vidoas.final ${STAGEDIR}${PREFIX}/bin/vidoas
-	${INSTALL_SCRIPT} ${WRKSRC}/doasedit ${STAGEDIR}${PREFIX}/bin/doasedit
-	${INSTALL_MAN} ${WRKSRC}/doas.1.final ${STAGEDIR}${PREFIX}/share/man/man1/doas.1
-	${INSTALL_MAN} ${WRKSRC}/doas.conf.5.final ${STAGEDIR}${PREFIX}/share/man/man5/doas.conf.5
-	${INSTALL_MAN} ${WRKSRC}/vidoas.8.final ${STAGEDIR}${PREFIX}/share/man/man8/vidoas.8
-	${INSTALL_MAN} ${WRKSRC}/doasedit.8 ${STAGEDIR}${PREFIX}/share/man/man8/doasedit.8
-	${INSTALL_DATA} ${WRKSRC}/doas.conf.sample ${STAGEDIR}${PREFIX}/etc/doas.conf.sample
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/vidoas.final ${PREFIX}/bin/vidoas
+	${INSTALL_SCRIPT} ${WRKSRC}/doasedit ${PREFIX}/bin/doasedit
+	${INSTALL_MAN} ${WRKSRC}/doas.1.final ${PREFIX}/share/man/man1/doas.1
+	${INSTALL_MAN} ${WRKSRC}/doas.conf.5.final ${PREFIX}/share/man/man5/doas.conf.5
+	${INSTALL_MAN} ${WRKSRC}/vidoas.8.final ${PREFIX}/share/man/man8/vidoas.8
+	${INSTALL_MAN} ${WRKSRC}/doasedit.8 ${PREFIX}/share/man/man8/doasedit.8
+	${INSTALL_DATA} ${WRKSRC}/doas.conf.sample ${PREFIX}/etc/doas.conf.sample
 
 .include <bsd.port.mk>

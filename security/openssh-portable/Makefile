@@ -222,15 +222,15 @@ post-configure-BLACKLISTD-on:
 	@${ECHO_CMD} "#define USE_BLACKLIST 1" >> ${WRKSRC}/config.h
 
 post-install:
-	${MV} ${STAGEDIR}${ETCDIR}/moduli \
-	    ${STAGEDIR}${ETCDIR}/moduli.sample
-	${MV} ${STAGEDIR}${ETCDIR}/ssh_config \
-	    ${STAGEDIR}${ETCDIR}/ssh_config.sample
-	${MV} ${STAGEDIR}${ETCDIR}/sshd_config \
-	    ${STAGEDIR}${ETCDIR}/sshd_config.sample
+	${MV} ${ETCDIR}/moduli \
+	    ${ETCDIR}/moduli.sample
+	${MV} ${ETCDIR}/ssh_config \
+	    ${ETCDIR}/ssh_config.sample
+	${MV} ${ETCDIR}/sshd_config \
+	    ${ETCDIR}/sshd_config.sample
 .if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/HPN-README ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/HPN-README ${DOCSDIR}
 .endif
 
 .include <bsd.port.post.mk>

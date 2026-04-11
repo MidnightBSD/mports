@@ -33,9 +33,9 @@ post-patch:
 	${REINPLACE_CMD} -e '/malloc\.h/d' ${WRKSRC}/src/rfc2440.c
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	@${INSTALL_DATA} ${WRKSRC}/doc/sample.mcryptrc ${STAGEDIR}${EXAMPLESDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@cd  ${WRKSRC}/doc && ${INSTALL_DATA} FORMAT magic ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	@${INSTALL_DATA} ${WRKSRC}/doc/sample.mcryptrc ${EXAMPLESDIR}
+	@${MKDIR} ${DOCSDIR}
+	@cd  ${WRKSRC}/doc && ${INSTALL_DATA} FORMAT magic ${DOCSDIR}
 
 .include <bsd.port.mk>

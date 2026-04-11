@@ -67,7 +67,7 @@ post-patch-NSS-on:
 	    ${PATCH_WRKSRC}/apps/Makefile.in
 
 post-install:
-	${RMDIR} ${STAGEDIR}${DOCSDIR}/css
-	${RM} ${STAGEDIR}${PREFIX}/bin/xmlsec_unit_tests
+	${RMDIR} ${DOCSDIR}/css
+	${RM} ${PREFIX}/bin/xmlsec_unit_tests
 
 .include <bsd.port.mk>
