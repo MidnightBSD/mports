@@ -13,8 +13,8 @@ LICENSE=	bsd3
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/OpenVanilla
+	${MKDIR} ${PREFIX}/include/OpenVanilla
 	${INSTALL_DATA} ${WRKSRC}/Framework/Headers/* \
-		${STAGEDIR}${PREFIX}/include/OpenVanilla
+		${PREFIX}/include/OpenVanilla
 
 .include <bsd.port.mk>

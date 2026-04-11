@@ -43,7 +43,7 @@ post-build:
 
 do-install:
 	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/x86_64-unknown-freebsd/release/coreutils \
-		${STAGEDIR}${PREFIX}/bin/${BINPREFIX}coreutils
+		${PREFIX}/bin/${BINPREFIX}coreutils
 	${CARGO_TARGET_DIR}/symlink-install-helper.sh
 
 .include <bsd.port.mk>

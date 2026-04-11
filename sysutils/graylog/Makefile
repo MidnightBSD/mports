@@ -52,16 +52,16 @@ post-extract:
 	${WRKSRC}/graylog.conf.example
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/plugin
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/server
-	@${MKDIR} ${STAGEDIR}${GRAYLOG_DATA_DIR}/journal
-	@${MKDIR} ${STAGEDIR}${GRAYLOG_LOGS_DIR}
-	${INSTALL_DATA} ${WRKSRC}/graylog.jar ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}/plugin
+	@${MKDIR} ${ETCDIR}/server
+	@${MKDIR} ${GRAYLOG_DATA_DIR}/journal
+	@${MKDIR} ${GRAYLOG_LOGS_DIR}
+	${INSTALL_DATA} ${WRKSRC}/graylog.jar ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/graylog.conf.example \
-		${STAGEDIR}${ETCDIR}/graylog.conf.sample
+		${ETCDIR}/graylog.conf.sample
 	${INSTALL_DATA} ${WRKDIR}/log4j2.xml \
-		${STAGEDIR}${ETCDIR}/log4j2.xml.sample
+		${ETCDIR}/log4j2.xml.sample
 	cd ${WRKSRC}/plugin && \
-	    ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/plugin/
+	    ${COPYTREE_SHARE} . ${DATADIR}/plugin/
 
 .include <bsd.port.mk>

@@ -23,8 +23,8 @@ NO_ARCH=	yes
 OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 	(cd ${WRKSRC}/examples/ && ${INSTALL_SCRIPT} \
-		fileman-example synopsis synopsis-big tui-sample ${STAGEDIR}${EXAMPLESDIR})
+		fileman-example synopsis synopsis-big tui-sample ${EXAMPLESDIR})
 
 .include <bsd.port.mk>

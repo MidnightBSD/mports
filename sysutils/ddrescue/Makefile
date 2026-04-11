@@ -25,10 +25,10 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 .for i in ddrescue ddrescuelog
-	${INSTALL_PROGRAM} ${WRKSRC}/${i} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/${i}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/${i} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/doc/${i}.1 ${PREFIX}/share/man/man1
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/doc/ddrescue.info ${STAGEDIR}${PREFIX}/${INFO_PATH}
+	${INSTALL_DATA} ${WRKSRC}/doc/ddrescue.info ${PREFIX}/${INFO_PATH}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -26,12 +26,12 @@ PLIST_FILES=	bin/stemwords \
 		lib/libstemmer.so.0.0.0
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/stemwords ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/include/libstemmer.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_LIB} ${WRKSRC}/libstemmer.so.0.0.0 ${STAGEDIR}${PREFIX}/lib
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libstemmer.so.0.0.0 \
-		${STAGEDIR}${PREFIX}/lib/libstemmer.so.0
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libstemmer.so.0.0.0 \
-		${STAGEDIR}${PREFIX}/lib/libstemmer.so
+	${INSTALL_PROGRAM} ${WRKSRC}/stemwords ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/include/libstemmer.h ${PREFIX}/include
+	${INSTALL_LIB} ${WRKSRC}/libstemmer.so.0.0.0 ${PREFIX}/lib
+	${RLN} ${PREFIX}/lib/libstemmer.so.0.0.0 \
+		${PREFIX}/lib/libstemmer.so.0
+	${RLN} ${PREFIX}/lib/libstemmer.so.0.0.0 \
+		${PREFIX}/lib/libstemmer.so
 
 .include <bsd.port.mk>

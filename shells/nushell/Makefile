@@ -611,7 +611,7 @@ DATAFRAME_BROKEN=	see https://github.com/nushell/nushell/issues/7665
 NO_TEST=	yes
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/nu
+	@${STRIP_CMD} ${PREFIX}/bin/nu
 
 #do-test:
 #	@${CARGO_CARGO_RUN} test --workspace

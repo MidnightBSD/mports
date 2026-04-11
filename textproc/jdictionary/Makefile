@@ -20,8 +20,8 @@ DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 SUB_FILES=	jdictionary.sh
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/jdictionary.jar ${STAGEDIR}${DATADIR}/
-	${INSTALL_SCRIPT} ${WRKDIR}/jdictionary.sh ${STAGEDIR}${PREFIX}/bin/jdictionary
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/jdictionary.jar ${DATADIR}/
+	${INSTALL_SCRIPT} ${WRKDIR}/jdictionary.sh ${PREFIX}/bin/jdictionary
 
 .include <bsd.port.mk>

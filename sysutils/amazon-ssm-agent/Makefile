@@ -43,9 +43,9 @@ pre-build:
 #		GOOS=freebsd GOARCH=amd64 ${GO_CMD} build ${GO_BUILDFLAGS} -o ${WRKDIR}/bin/ssm-agent-worker -v agent/agent.go agent/agent_unix.go agent/agent_parser.go
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/amazon/ssm
-	${INSTALL_DATA} ${WRKSRC}/amazon-ssm-agent.json.template ${STAGEDIR}${PREFIX}/etc/amazon/ssm
-	${INSTALL_DATA} ${WRKSRC}/seelog_unix.xml ${STAGEDIR}${PREFIX}/etc/amazon/ssm/seelog_unix.xml.template
+	${MKDIR} ${PREFIX}/etc/amazon/ssm
+	${INSTALL_DATA} ${WRKSRC}/amazon-ssm-agent.json.template ${PREFIX}/etc/amazon/ssm
+	${INSTALL_DATA} ${WRKSRC}/seelog_unix.xml ${PREFIX}/etc/amazon/ssm/seelog_unix.xml.template
 #	${CP} ${WRKDIR}/bin/ssm-agent-worker ${PREFIX}/bin/ssm-agent-worker
 
 .include <bsd.port.mk>

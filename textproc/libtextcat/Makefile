@@ -21,14 +21,14 @@ OPTIONS_DEFINE=	DOCS
 PORTDOCS=	README TODO
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/src/textcat.h ${STAGEDIR}${PREFIX}/include/
-	${MKDIR} ${STAGEDIR}${DATADIR}/LM
+	${INSTALL_DATA} ${WRKSRC}/src/textcat.h ${PREFIX}/include/
+	${MKDIR} ${DATADIR}/LM
 	@${ECHO_MSG} "Installing language models provided in Gertjan van Noord's TextCat package"
 	(cd ${WRKSRC}/langclass/LM &&		\
-	${FIND} . -name "*.lm" -exec ${INSTALL_DATA} "{}" "${STAGEDIR}${DATADIR}/LM/{}" \;)
-	${INSTALL_DATA} ${WRKSRC}/langclass/conf.txt "${STAGEDIR}${DATADIR}"
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${FIND} . -name "*.lm" -exec ${INSTALL_DATA} "{}" "${DATADIR}/LM/{}" \;)
+	${INSTALL_DATA} ${WRKSRC}/langclass/conf.txt "${DATADIR}"
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 regression-test:
 	(cd ${WRKSRC}/langclass/ &&		\

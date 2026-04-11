@@ -21,7 +21,7 @@ PLIST_FILES=	sbin/zsd \
 		share/man/man8/zsd.8.gz
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/zsd ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/zsd.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_SCRIPT} ${WRKSRC}/zsd ${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/zsd.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

@@ -38,8 +38,8 @@ post-patch:	.SILENT
 	${RM} ${WRKSRC}/doc/*.info*
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${CP} -r ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}/
-	${RM} ${STAGEDIR}${EXAMPLESDIR}/Makefile.am
+	@${MKDIR} ${EXAMPLESDIR}
+	${CP} -r ${WRKSRC}/examples/* ${EXAMPLESDIR}/
+	${RM} ${EXAMPLESDIR}/Makefile.am
 
 .include <bsd.port.mk>

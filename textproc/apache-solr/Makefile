@@ -36,18 +36,18 @@ JTS_RUN_DEPENDS=	jts>0:math/jts
 
 do-install:
 	${FIND} ${WRKSRC} -name '*.orig' -delete
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${CPE_PRODUCT}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/post ${STAGEDIR}${PREFIX}/${CPE_PRODUCT}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/postlogs ${STAGEDIR}${PREFIX}/${CPE_PRODUCT}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/solr ${STAGEDIR}${PREFIX}/${CPE_PRODUCT}/bin
-	${INSTALL_DATA} ${WRKSRC}/bin/solr.in.sh ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
-	${ECHO} '' >> ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
-	${ECHO} 'SOLR_HOME="/var/db/solr"' >> ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
-	${ECHO} '# LOG4J_PROPS="/var/db/solr/log4j2.xml"' >> ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
-	${ECHO} 'SOLR_LOGS_DIR="/var/log/solr"' >> ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
-	${ECHO} 'SOLR_PORT="8983"' >> ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
-	${ECHO} 'SOLR_PID_DIR="/var/db/solr"' >> ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
-	${ECHO} 'SOLR_OPTS="$$SOLR_OPTS -Djetty.host=localhost -Dlog4j2.formatMsgNoLookups=true"' >> ${STAGEDIR}${PREFIX}/etc/solr.in.sh.sample
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/${CPE_PRODUCT}
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/post ${PREFIX}/${CPE_PRODUCT}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/postlogs ${PREFIX}/${CPE_PRODUCT}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/solr ${PREFIX}/${CPE_PRODUCT}/bin
+	${INSTALL_DATA} ${WRKSRC}/bin/solr.in.sh ${PREFIX}/etc/solr.in.sh.sample
+	${ECHO} '' >> ${PREFIX}/etc/solr.in.sh.sample
+	${ECHO} 'SOLR_HOME="/var/db/solr"' >> ${PREFIX}/etc/solr.in.sh.sample
+	${ECHO} '# LOG4J_PROPS="/var/db/solr/log4j2.xml"' >> ${PREFIX}/etc/solr.in.sh.sample
+	${ECHO} 'SOLR_LOGS_DIR="/var/log/solr"' >> ${PREFIX}/etc/solr.in.sh.sample
+	${ECHO} 'SOLR_PORT="8983"' >> ${PREFIX}/etc/solr.in.sh.sample
+	${ECHO} 'SOLR_PID_DIR="/var/db/solr"' >> ${PREFIX}/etc/solr.in.sh.sample
+	${ECHO} 'SOLR_OPTS="$$SOLR_OPTS -Djetty.host=localhost -Dlog4j2.formatMsgNoLookups=true"' >> ${PREFIX}/etc/solr.in.sh.sample
 
 	${MKDIR} ${FAKE_DESTDIR}/var/db/solr
 	${MKDIR} ${FAKE_DESTDIR}/var/log/solr
@@ -57,8 +57,8 @@ do-install-JTS-on:
 	${LN} -sf ${JAVALIBDIR}/jts-core.jar ${FAKE_DESTDIR}${PREFIX}/${CPE_PRODUCT}/server/solr-webapp/webapp/WEB-INF/lib/
 
 post-install:
-	${FIND} -s ${STAGEDIR}${PREFIX}/${CPE_PRODUCT} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/${CPE_PRODUCT} -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	@${ECHO_CMD} "@dir(solr,solr) /var/db/solr" >> ${TMPPLIST}
 	@${ECHO_CMD} "@dir(solr,solr) /var/log/solr" >> ${TMPPLIST}
 	@${ECHO_CMD} "@sample etc/solr.in.sh.sample" >> ${TMPPLIST}

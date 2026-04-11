@@ -26,6 +26,6 @@ NO_BUILD=	yes
 PLIST_FILES=	sbin/epct
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${ARCH:S/amd64/FreeBSDx64/:S/i386/FreeBSD32/}/epct* ${STAGEDIR}${PREFIX}/sbin/epct
+	${INSTALL_PROGRAM} ${WRKSRC}/${ARCH:S/amd64/FreeBSDx64/:S/i386/FreeBSD32/}/epct* ${PREFIX}/sbin/epct
 
 .include <bsd.port.mk>

@@ -40,13 +40,13 @@ post-patch:
 
 do-install:
 .for f in synergyc synergys synergy-core
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/bin/${f} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/bin/${f} ${PREFIX}/bin
 .endfor
 .for f in synergyc synergys
 	${INSTALL_MAN} ${WRKSRC}/doc/${f}.man \
-		${STAGEDIR}${PREFIX}/share/man/man1/${f}.1
+		${PREFIX}/share/man/man1/${f}.1
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/doc/synergy.conf.example-basic ${STAGEDIR}${PREFIX}/etc/synergy.conf.sample # server config
+	${INSTALL_DATA} ${WRKSRC}/doc/synergy.conf.example-basic ${PREFIX}/etc/synergy.conf.sample # server config
 
 do-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

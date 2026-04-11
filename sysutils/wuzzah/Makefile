@@ -21,8 +21,8 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

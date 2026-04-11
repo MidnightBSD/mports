@@ -60,9 +60,9 @@ FREEIPMI_CONFIGURE_ENABLE=	intf-free
 .include <bsd.mport.options.mk>
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${PERIODIC_DIR}
+	@${MKDIR} ${PREFIX}/${PERIODIC_DIR}
 	${INSTALL_SCRIPT} ${WRKDIR}/status-ipmi.sh \
-		${STAGEDIR}${PREFIX}/${PERIODIC_DIR}/400.status-ipmi
+		${PREFIX}/${PERIODIC_DIR}/400.status-ipmi
 	${INSTALL_DATA} ${DISTDIR}/enterprise-numbers-20240907.txt \
-		${STAGEDIR}${DATADIR}/enterprise-numbers
+		${DATADIR}/enterprise-numbers
 .include <bsd.port.mk>

@@ -23,7 +23,7 @@ MAKE_ARGS+=	DEBUG=1
 .endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bsdhwmon ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/bsdhwmon.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_PROGRAM} ${WRKSRC}/bsdhwmon ${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/bsdhwmon.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

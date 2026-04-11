@@ -22,7 +22,7 @@ NO_BUILD=	yes
 SUB_FILES=	pkg-message
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} "! -path \./\.* ! -name *\.bak ! -name *\.orig"
+	@${MKDIR} ${DATADIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR} "! -path \./\.* ! -name *\.bak ! -name *\.orig"
 
 .include <bsd.port.mk>

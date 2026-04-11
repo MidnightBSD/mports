@@ -71,19 +71,19 @@ post-patch:
 	${RM} ${WRKSRC}/lib/jna-*.jar
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/opensearch
+	${MKDIR} ${PREFIX}/etc/opensearch
 .for f in ${CONFIG_FILES}
 	${INSTALL} ${WRKSRC}/config/${f} ${PREFIX}/${ETCDIR_REL}/${f}.sample
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/opensearch/bin
+	${MKDIR} ${PREFIX}/lib/opensearch/bin
 .for f in ${BINS}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${STAGEDIR}${PREFIX}/lib/opensearch/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${PREFIX}/lib/opensearch/bin
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/opensearch/lib
-	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "lib modules" ${STAGEDIR}${PREFIX}/lib/opensearch/)
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/opensearch
-	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${PREFIX}/lib/opensearch/config
-	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${STAGEDIR}${PREFIX}/lib/opensearch/lib/jna.jar
+	${MKDIR} ${PREFIX}/lib/opensearch/lib
+	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "lib modules" ${PREFIX}/lib/opensearch/)
+	${MKDIR} ${PREFIX}/libexec/opensearch
+	${INSTALL} -lrs ${ETCDIR} ${PREFIX}/lib/opensearch/config
+	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${PREFIX}/lib/opensearch/lib/jna.jar
 
 do-install-PLUGINS-on:
 	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/opensearch-observability \

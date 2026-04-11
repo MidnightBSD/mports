@@ -26,6 +26,6 @@ PLIST_FILES=	bin/xe \
 		share/zsh/site-functions/_xe
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/xe
+	@${STRIP_CMD} ${PREFIX}/bin/xe
 
 .include <bsd.port.mk>

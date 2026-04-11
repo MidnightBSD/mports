@@ -56,7 +56,7 @@ INSTALL_TARGET=	install-strip
 post-install:
 .for script in ck-system-hibernate ck-system-hybridsleep \
 	ck-system-restart ck-system-stop ck-system-suspend
-	cd ${STAGEDIR}${PREFIX}/lib/ConsoleKit/scripts && \
+	cd ${PREFIX}/lib/ConsoleKit/scripts && \
 		${MV} ${script} ${script}.sample
 .endfor
 

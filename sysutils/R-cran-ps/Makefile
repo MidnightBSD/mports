@@ -25,6 +25,6 @@ TEST_DEPENDS=	R-cran-callr>0:devel/R-cran-callr \
 USES=		cran:auto-plist,compiles
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/ps/bin/px
+	@${STRIP_CMD} ${PREFIX}/lib/R/library/ps/bin/px
 
 .include <bsd.port.mk>

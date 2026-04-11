@@ -21,7 +21,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^#CHECK_FLAGS/ s|#||' ${WRKSRC}/scripts/ispell
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/ispell ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/spell ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/ispell ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/spell ${PREFIX}/bin
 
 .include <bsd.port.mk>

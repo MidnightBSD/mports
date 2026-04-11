@@ -16,7 +16,7 @@ PLIST_FILES=	sbin/${PORTNAME}
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/lsblk.sh \
-	${STAGEDIR}${PREFIX}/sbin/${PORTNAME}
+	${PREFIX}/sbin/${PORTNAME}
 
 .include <bsd.port.mk>
 

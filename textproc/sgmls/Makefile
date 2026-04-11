@@ -30,9 +30,9 @@ post-build:
 .endfor
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

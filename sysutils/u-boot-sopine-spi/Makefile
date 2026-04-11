@@ -17,9 +17,9 @@ post-build:
 	mkimage -C none -A arm64 -T script -d ${.CURDIR}/../u-boot-sopine-spi/files/boot.cmd ${WRKSRC}/boot.scr
 
 post-fake:
-	makefs -t msdos -s 5m ${WRKDIR}/sopine-spi-flash.msdos ${STAGEDIR}/${INST}
-	mkimg -v -s mbr -p fat32::5M:1M -o ${STAGEDIR}/${INST}/sopine-spi-flasher.img
-	dd if=${WRKDIR}/sopine-spi-flash.msdos of=${STAGEDIR}/${INST}/sopine-spi-flasher.img bs=1M oseek=1 conv=notrunc
-	dd if=${STAGEDIR}/${INST}/u-boot-sunxi-with-spl.bin of=${STAGEDIR}/${INST}/sopine-spi-flasher.img bs=1k oseek=8 conv=notrunc
+	makefs -t msdos -s 5m ${WRKDIR}/sopine-spi-flash.msdos /${INST}
+	mkimg -v -s mbr -p fat32::5M:1M -o /${INST}/sopine-spi-flasher.img
+	dd if=${WRKDIR}/sopine-spi-flash.msdos of=/${INST}/sopine-spi-flasher.img bs=1M oseek=1 conv=notrunc
+	dd if=/${INST}/u-boot-sunxi-with-spl.bin of=/${INST}/sopine-spi-flasher.img bs=1k oseek=8 conv=notrunc
 
 .include "${MASTERDIR}/Makefile"

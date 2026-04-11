@@ -150,6 +150,6 @@ pre-configure:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/etc/slurm.conf.example \
-		${STAGEDIR}${PREFIX}/etc/slurm.conf.sample
+		${PREFIX}/etc/slurm.conf.sample
 
 .include <bsd.port.mk>

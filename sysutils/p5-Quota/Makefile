@@ -18,6 +18,6 @@ pre-configure:
 	${LN} -sf ${WRKSRC}/hints/bsd.h ${WRKSRC}/myconfig.h
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Quota/Quota.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Quota/Quota.so
 
 .include <bsd.port.mk>

@@ -19,8 +19,8 @@ PORTDOCS=	*.pdf
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 	${FIND} ${WRKSRC}/manuals/en \
-		-name "*.pdf" -exec ${INSTALL_DATA} {} ${STAGEDIR}${DOCSDIR}/ \;
+		-name "*.pdf" -exec ${INSTALL_DATA} {} ${DOCSDIR}/ \;
 
 .include <bsd.port.mk>

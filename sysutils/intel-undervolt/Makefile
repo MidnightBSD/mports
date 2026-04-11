@@ -28,8 +28,8 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/bin/
+		${PREFIX}/bin/
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf \
-		${STAGEDIR}${PREFIX}/etc/${PORTNAME}.conf.sample
+		${PREFIX}/etc/${PORTNAME}.conf.sample
 
 .include <bsd.port.mk>

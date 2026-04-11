@@ -138,25 +138,25 @@ post-patch:
 	@${FIND} ${WRKSRC} -type f | ${XARGS} ${REINPLACE_CMD} -i '' -e 's|/usr/local/ups|${PREFIX}|'
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/libexec/nut
+	@${MKDIR} ${PREFIX}/libexec/nut
 .if ${PORT_OPTIONS:MUSB}
 	@${REINPLACE_CMD} -e 's/device-name\*/cdev/g' ${WRKSRC}/scripts/devd/nut-usb.conf
 .endif
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${STATEDIR}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/syslog.d
+	@${MKDIR} ${STATEDIR}
+	@${MKDIR} ${PREFIX}/etc/syslog.d
 .if ${PORT_OPTIONS:MBASH}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
-	${INSTALL_DATA} ${WRKSRC}/scripts/misc/nut.bash_completion ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d/
+	${INSTALL_DATA} ${WRKSRC}/scripts/misc/nut.bash_completion ${PREFIX}/etc/bash_completion.d/
 .endif
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/cables
-	${INSTALL_DATA} ${WRKSRC}/docs/cables/*.txt ${STAGEDIR}${DOCSDIR}/cables
-	${INSTALL_DATA} ${WRKSRC}/docs/*.txt ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/FAQ.txt ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}/cables
+	${INSTALL_DATA} ${WRKSRC}/docs/cables/*.txt ${DOCSDIR}/cables
+	${INSTALL_DATA} ${WRKSRC}/docs/*.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/FAQ.txt ${DOCSDIR}
 .for file in AUTHORS COPYING ChangeLog INSTALL MAINTAINERS NEWS README
-	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
 .endfor
 .endif
 	${MKDIR} ${EXAMPLESDIR}

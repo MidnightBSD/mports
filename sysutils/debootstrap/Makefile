@@ -51,6 +51,6 @@ post-patch:
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/debootstrap.8 \
-		${STAGEDIR}${PREFIX}/share/man/man8/debootstrap.8
+		${PREFIX}/share/man/man8/debootstrap.8
 
 .include <bsd.port.mk>

@@ -53,9 +53,9 @@ PLIST_FILES=	bin/bundle \
 post-install:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/bundle ${PREFIX}/bin/bundler
 .for i in 1 5
-	for f in ${STAGEDIR}${PREFIX}/${GEM_LIB_DIR}/lib/bundler/man/*.${i}; do \
+	for f in ${PREFIX}/${GEM_LIB_DIR}/lib/bundler/man/*.${i}; do \
 		${GZIP_CMD} $${f}; \
-		${RLN} $${f}.gz ${STAGEDIR}${PREFIX}/share/man/man${i}/$$(basename $${f}).gz; \
+		${RLN} $${f}.gz ${PREFIX}/share/man/man${i}/$$(basename $${f}).gz; \
 	done
 .endfor
 

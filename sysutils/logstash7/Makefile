@@ -60,20 +60,20 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/config/${x} ${ETCDIR}/${x}.sample
 .endfor
 	${RM} -rf ${WRKSRC}/config
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${LOGSTASH_HOME})
-	${CHMOD} ${BINMODE} ${STAGEDIR}${LOGSTASH_HOME}/bin/*
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${LOGSTASH_HOME})
+	${CHMOD} ${BINMODE} ${LOGSTASH_HOME}/bin/*
 .for x in ${LOGSTASH_JRUBY_BIN_FILES}
-	${CHMOD} ${BINMODE} ${STAGEDIR}${LOGSTASH_HOME}/${LOGSTASH_JRUBY_SUBDIR}/${x}
+	${CHMOD} ${BINMODE} ${LOGSTASH_HOME}/${LOGSTASH_JRUBY_SUBDIR}/${x}
 .endfor
-	${FIND} ${STAGEDIR}${LOGSTASH_HOME}/vendor/bundle/jruby/2.5.0/gems \
-        	${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/ruby/gems/shared/gems \
+	${FIND} ${LOGSTASH_HOME}/vendor/bundle/jruby/2.5.0/gems \
+        	${LOGSTASH_HOME}/vendor/jruby/lib/ruby/gems/shared/gems \
 		-type d -empty -delete
-	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${LOGSTASH_HOME}/config
-	${RM} -rf ${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/jni
-	${MKDIR} ${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/jni
+	${INSTALL} -lrs ${ETCDIR} ${LOGSTASH_HOME}/config
+	${RM} -rf ${LOGSTASH_HOME}/vendor/jruby/lib/jni
+	${MKDIR} ${LOGSTASH_HOME}/vendor/jruby/lib/jni
 	(cd ${WRKSRC}/vendor/jruby/lib/jni && \
 	 ${COPYTREE_SHARE} ${ARCH:S/amd64/x86_64/}-FreeBSD \
-	 ${STAGEDIR}${LOGSTASH_HOME}/vendor/jruby/lib/jni)
+	 ${LOGSTASH_HOME}/vendor/jruby/lib/jni)
 
 post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/logstash.conf.sample" >> ${TMPPLIST}

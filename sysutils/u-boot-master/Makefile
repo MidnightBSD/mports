@@ -264,10 +264,10 @@ pre-install:
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${INST}
+	${MKDIR} /${INST}
 .for i in ${UBOOT_PLIST}
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}/${INST}
+	${INSTALL_DATA} ${WRKSRC}/${i} /${INST}
 .endfor
-	${INSTALL_DATA} ${DESCR} ${STAGEDIR}/${INST}/README
+	${INSTALL_DATA} ${DESCR} /${INST}/README
 
 .include <bsd.port.mk>

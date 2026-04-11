@@ -27,9 +27,9 @@ OPTIONS_DEFINE=		DOCS
 OPTIONS_DEFAULT=	DOCS
 
 post-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA}	${WRKSRC}/config/quickwit.yaml ${STAGEDIR}${ETCDIR}/quickwit.yaml.sample
-	${RM} -v ${STAGEDIR}${PREFIX}/bin/generate_markdown
+	${MKDIR} ${ETCDIR}
+	${INSTALL_DATA}	${WRKSRC}/config/quickwit.yaml ${ETCDIR}/quickwit.yaml.sample
+	${RM} -v ${PREFIX}/bin/generate_markdown
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

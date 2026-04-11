@@ -100,21 +100,21 @@ do-build:
 		--devdir=${_DEVDIR})
 
 do-install:
-	${MKDIR} ${STAGEDIR}${WWWDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${STAGEDIR}${ETCDIR}/kibana.yml.sample
-	${INSTALL_DATA} ${WRKSRC}/config/node.options ${STAGEDIR}${ETCDIR}/node.options.sample
+	${MKDIR} ${WWWDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${ETCDIR}/kibana.yml.sample
+	${INSTALL_DATA} ${WRKSRC}/config/node.options ${ETCDIR}/node.options.sample
 	-(cd ${WRKSRC} && \
 		${RM} -r config node optimize && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR} && \
-		${COPYTREE_BIN} bin ${STAGEDIR}${WWWDIR})
-	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${WWWDIR}/config
-	${MKDIR} ${STAGEDIR}${WWWDIR}/node/bin
-	${LN} -s ${LOCALBASE}/bin/node ${STAGEDIR}${WWWDIR}/node/bin/node
-	-${RM} ${STAGEDIR}${WWWDIR}/node_modules/re2/build/Release/re2.node
+		${COPYTREE_SHARE} . ${WWWDIR} && \
+		${COPYTREE_BIN} bin ${WWWDIR})
+	${INSTALL} -lrs ${ETCDIR} ${WWWDIR}/config
+	${MKDIR} ${WWWDIR}/node/bin
+	${LN} -s ${LOCALBASE}/bin/node ${WWWDIR}/node/bin/node
+	-${RM} ${WWWDIR}/node_modules/re2/build/Release/re2.node
 	${INSTALL_LIB} ${_RE2DIR}/build/Release/re2.node \
-		${STAGEDIR}${WWWDIR}/node_modules/re2/build/Release/re2.node
+		${WWWDIR}/node_modules/re2/build/Release/re2.node
 .for f in ${BINS}
-	${INSTALL} -l rs ${STAGEDIR}${WWWDIR}/bin/${f} ${STAGEDIR}${PREFIX}/bin/${f}
+	${INSTALL} -l rs ${WWWDIR}/bin/${f} ${PREFIX}/bin/${f}
 	${ECHO} "bin/${f}" >> ${TMPPLIST}
 .endfor
 

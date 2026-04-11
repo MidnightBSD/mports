@@ -33,6 +33,6 @@ post-build:
 	@cd ${WRKSRC}/ && ${PYTHON_CMD} -m asciidoc.a2x -f manpage doc/asciidoc.1.txt
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/a2x.1 ${WRKSRC}/doc/asciidoc.1 ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/doc/a2x.1 ${WRKSRC}/doc/asciidoc.1 ${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>

@@ -21,8 +21,8 @@ post-patch:
 		${WRKSRC}/vpnc-script
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-script ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-script-sshd ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-script-ptrtd ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-script ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-script-sshd ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/vpnc-script-ptrtd ${PREFIX}/sbin
 
 .include <bsd.port.mk>

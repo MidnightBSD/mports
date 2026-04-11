@@ -42,10 +42,10 @@ IGNORE=		is a metaport; there is nothing to build
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/
-	${INSTALL_DATA} ${WRKSRC}/build/${PLAT}/release/${BL31} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/
+	${MKDIR} /${PREFIX}/share/${PORTNAME}-${PLAT}/
+	${INSTALL_DATA} ${WRKSRC}/build/${PLAT}/release/${BL31} /${PREFIX}/share/${PORTNAME}-${PLAT}/
 .if defined(FIP)
-	${INSTALL_DATA} ${WRKSRC}/build/${PLAT}/release/${FIP} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/
+	${INSTALL_DATA} ${WRKSRC}/build/${PLAT}/release/${FIP} /${PREFIX}/share/${PORTNAME}-${PLAT}/
 .endif
 
 .include <bsd.port.mk>

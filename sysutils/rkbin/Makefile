@@ -23,11 +23,11 @@ PLIST_FILES=	share/${PORTNAME}/rk35/rk3566_ddr_1056MHz_v1.21.bin \
 		share/${PORTNAME}/rk35/rk3588_bl31_v1.47.elf
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}
-	${MKDIR} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}/rk35
-	${INSTALL_DATA} ${WRKSRC}/rk3566_ddr_1056MHz_v1.21.bin ${STAGEDIR}/${PREFIX}/share/${PORTNAME}/rk35/
-	${INSTALL_DATA} ${WRKSRC}/rk3568_bl31_v1.44.elf ${STAGEDIR}/${PREFIX}/share/${PORTNAME}/rk35/
-	${INSTALL_DATA} ${WRKSRC}/rk3588_ddr_lp4_2112MHz_lp5_2400MHz_v1.18.bin ${STAGEDIR}/${PREFIX}/share/${PORTNAME}/rk35/
-	${INSTALL_DATA} ${WRKSRC}/rk3588_bl31_v1.47.elf ${STAGEDIR}/${PREFIX}/share/${PORTNAME}/rk35/
+	${MKDIR} /${PREFIX}/share/${PORTNAME}
+	${MKDIR} /${PREFIX}/share/${PORTNAME}/rk35
+	${INSTALL_DATA} ${WRKSRC}/rk3566_ddr_1056MHz_v1.21.bin /${PREFIX}/share/${PORTNAME}/rk35/
+	${INSTALL_DATA} ${WRKSRC}/rk3568_bl31_v1.44.elf /${PREFIX}/share/${PORTNAME}/rk35/
+	${INSTALL_DATA} ${WRKSRC}/rk3588_ddr_lp4_2112MHz_lp5_2400MHz_v1.18.bin /${PREFIX}/share/${PORTNAME}/rk35/
+	${INSTALL_DATA} ${WRKSRC}/rk3588_bl31_v1.47.elf /${PREFIX}/share/${PORTNAME}/rk35/
 
 .include <bsd.port.mk>

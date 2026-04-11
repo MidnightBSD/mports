@@ -18,6 +18,6 @@ PLIST_FILES=	bin/minimunin
 SUB_FILES=	pkg-message
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/minimunin ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/minimunin ${PREFIX}/bin
 
 .include <bsd.port.mk>

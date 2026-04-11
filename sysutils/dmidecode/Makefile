@@ -28,7 +28,7 @@ PLIST_SUB+=	X86="@comment "
 .endif
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily/
-	${INSTALL_SCRIPT} ${WRKDIR}/dmidecode ${STAGEDIR}${PREFIX}/etc/periodic/daily/
+	${MKDIR} ${PREFIX}/etc/periodic/daily/
+	${INSTALL_SCRIPT} ${WRKDIR}/dmidecode ${PREFIX}/etc/periodic/daily/
 
 .include <bsd.port.post.mk>

@@ -33,9 +33,9 @@ do-configure:
 	(cd ${WRKSRC}/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} tools-only_defconfig)
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tools/dumpimage ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/tools/fit_info ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/tools/mkenvimage ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/tools/mkimage ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/dumpimage ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/fit_info ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/mkenvimage ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/mkimage ${PREFIX}/bin
 
 .include <bsd.port.mk>

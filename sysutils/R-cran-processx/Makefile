@@ -26,7 +26,7 @@ USES=		cran:auto-plist,compiles
 TESTING_UNSAFE=	Fail because of wrong R-cran-ps (see PR280006)
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/processx/bin/px
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/processx/bin/sock
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/processx/bin/supervisor
+	@${STRIP_CMD} ${PREFIX}/lib/R/library/processx/bin/px
+	@${STRIP_CMD} ${PREFIX}/lib/R/library/processx/bin/sock
+	@${STRIP_CMD} ${PREFIX}/lib/R/library/processx/bin/supervisor
 .include <bsd.port.mk>

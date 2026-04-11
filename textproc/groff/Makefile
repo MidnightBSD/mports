@@ -55,7 +55,7 @@ UCHARDET_USES=		pkgconfig
 UCHARDET_CONFIGURE_OFF=	--with-uchardet=no
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/mdoc.local ${STAGEDIR}${PREFIX}/share/groff/site-tmac
-	${REINPLACE_CMD} -i "" -e "s/missing/gs/" ${STAGEDIR}${DATADIR}/font/devhtml/DESC
+	${INSTALL_DATA} ${FILESDIR}/mdoc.local ${PREFIX}/share/groff/site-tmac
+	${REINPLACE_CMD} -i "" -e "s/missing/gs/" ${DATADIR}/font/devhtml/DESC
 
 .include <bsd.port.mk>

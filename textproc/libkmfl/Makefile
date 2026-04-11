@@ -37,9 +37,9 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 . for doc in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 . endfor
 
 .include <bsd.port.mk>

@@ -35,6 +35,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' ${WRKSRC}/doc/catdoc.1.in
 
 post-install:
-	cd ${STAGEDIR}${PREFIX}/bin && ${STRIP_CMD} catdoc catppt xls2csv
+	cd ${PREFIX}/bin && ${STRIP_CMD} catdoc catppt xls2csv
 
 .include <bsd.port.mk>

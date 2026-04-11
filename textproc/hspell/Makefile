@@ -23,6 +23,6 @@ SUB_FILES=	pkg-message
 SHEBANG_FILES=	pmerge multispell
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libhspell.so
+	@${STRIP_CMD} ${PREFIX}/lib/libhspell.so
 
 .include <bsd.port.mk>

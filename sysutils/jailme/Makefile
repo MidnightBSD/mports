@@ -15,6 +15,6 @@ GH_ACCOUNT=	Intermedix
 PLIST_FILES=	"@(,,4751) sbin/jailme"
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/jailme ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/jailme ${PREFIX}/sbin
 
 .include <bsd.port.mk>

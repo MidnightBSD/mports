@@ -80,23 +80,23 @@ post-extract:
 
 do-install:
 .for m in ${MODULES}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${INSTDIR}/${m}
+	${MKDIR} ${PREFIX}/${INSTDIR}/${m}
 	dirs=$$(${FIND} ${WRKSRC}/${m} -type d | ${SED} 's|^${WRKSRC}/${m}||g'); \
 	for d in $${dirs}; do \
 		files=$$(${FIND} ${WRKSRC}/${m}/$${d} -type f); \
-		${MKDIR} ${STAGEDIR}${PREFIX}/${INSTDIR}/${m}/$${d}; \
+		${MKDIR} ${PREFIX}/${INSTDIR}/${m}/$${d}; \
 		for i in $${files}; do \
-			${INSTALL_DATA} $${i} ${STAGEDIR}${PREFIX}/${INSTDIR}/${m}/$${d}; \
+			${INSTALL_DATA} $${i} ${PREFIX}/${INSTDIR}/${m}/$${d}; \
 		done; \
 	done; \
 	files=$$(${FIND} ${WRKSRC}/${m} -type f -depth 1); \
 	for i in $${files}; do \
-		${INSTALL_DATA} $${i} ${STAGEDIR}${PREFIX}/${INSTDIR}/${m}; \
+		${INSTALL_DATA} $${i} ${PREFIX}/${INSTDIR}/${m}; \
 	done
 .endfor
 	files=$$(${FIND} ${WRKSRC} -type f -depth 1); \
 	for i in $${files}; do \
-		${INSTALL_DATA} $${i} ${STAGEDIR}${PREFIX}/${INSTDIR}; \
+		${INSTALL_DATA} $${i} ${PREFIX}/${INSTDIR}; \
 	done
 
 do-install-DOCS-on:
