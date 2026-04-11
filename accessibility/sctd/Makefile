@@ -11,7 +11,7 @@ LICENSE=	CC0-1.0 mit
 LICENSE_COMB=	multi
 LICENSE_FILE_CC0-1.0=	${WRKSRC}/LICENSE
 
-USES=			cargo xorg
+USES=			cargo pkgconfig xorg
 USE_GITHUB=		yes
 GH_ACCOUNT=		amir
 USE_XORG=		x11 xrandr
