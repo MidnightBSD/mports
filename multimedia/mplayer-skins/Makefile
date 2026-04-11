@@ -62,13 +62,13 @@ PLIST_SUB+=	${f}="@comment " WITHOUT_SKIN_${f}=""
 do-install:
 # both anotate and create target directories
 	@for dir in `cd ${myWRKSRC} && ${FIND} . -type d | ${SORT} -r` ; do \
-		${MKDIR} "${STAGEDIR}${PREFIX}/${myDATADIR}/$${dir#./}" ; \
+		${MKDIR} "${PREFIX}/${myDATADIR}/$${dir#./}" ; \
 	done
 # both anotate installed and install files
 	@for f in `cd ${myWRKSRC} && ${FIND} . -type f | ${SORT}` ; do \
-		${INSTALL_DATA} "${myWRKSRC}/$${f#./}" ${STAGEDIR}${PREFIX}/${myDATADIR}/$${f#./} ; \
+		${INSTALL_DATA} "${myWRKSRC}/$${f#./}" ${PREFIX}/${myDATADIR}/$${f#./} ; \
 	done
 # Create link to the default skin
-	@${LN} -sfh Blue ${STAGEDIR}${PREFIX}/${myDATADIR}/default
+	@${LN} -sfh Blue ${PREFIX}/${myDATADIR}/default
 
 .include <bsd.port.post.mk>

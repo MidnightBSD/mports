@@ -29,10 +29,10 @@ ELISP_FILES=	compat-25.el compat-25.elc compat-26.el compat-26.elc \
 		compat-29.el compat-29.elc compat-macs.el compat.el compat.elc
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/compat
+	@${MKDIR} ${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/compat
 	${INSTALL_DATA}  ${ELISP_FILES:C/^/${WRKSRC}\//} \
-		${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/compat
-	${INSTALL_DATA} ${WRKSRC}/*.info ${STAGEDIR}${PREFIX}/${INFO_PATH}
+		${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/compat
+	${INSTALL_DATA} ${WRKSRC}/*.info ${PREFIX}/${INFO_PATH}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

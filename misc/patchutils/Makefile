@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 SHEBANG_FILES=	patchview/gitdiff scripts/*.in
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}/${PREFIX}/share/man/man1
-	${MV} ${STAGEDIR}${PREFIX}/bin/svndiff ${STAGEDIR}${PREFIX}/bin/svndiff.patchutils
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 /${PREFIX}/share/man/man1
+	${MV} ${PREFIX}/bin/svndiff ${PREFIX}/bin/svndiff.patchutils
 
 .include <bsd.port.mk>

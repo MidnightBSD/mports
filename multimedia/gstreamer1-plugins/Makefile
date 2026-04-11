@@ -139,7 +139,7 @@ BROKEN=		unknown DIST setting
 .endif
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/gstreamer-${_GST1_LIB_VER}
+	${MKDIR} ${PREFIX}/lib/gstreamer-${_GST1_LIB_VER}
 
 makesum-gst1:
 	${MAKE} DIST=makesum makesum

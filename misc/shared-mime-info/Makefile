@@ -42,7 +42,7 @@ post-patch:
 
 post-install:
 	for dir in ${MIMESUBDIRS} ; do \
-		${MKDIR} ${STAGEDIR}${PREFIX}/share/mime/$${dir} ; \
+		${MKDIR} ${PREFIX}/share/mime/$${dir} ; \
 	done
 
 .include <bsd.port.mk>

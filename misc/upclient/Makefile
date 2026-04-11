@@ -39,13 +39,13 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/products/upclient \
-		${STAGEDIR}${PREFIX}/sbin
+		${PREFIX}/sbin
 	${INSTALL_MAN} ${WRKSRC}/src/products/upclient.8 \
-		${STAGEDIR}${PREFIX}/share/man/man8
+		${PREFIX}/share/man/man8
 	${INSTALL_DATA} -m 640 ${WRKSRC}/src/products/upclient.conf \
-		${STAGEDIR}${PREFIX}/etc/upclient.conf.sample
+		${PREFIX}/etc/upclient.conf.sample
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/upchk ${WRKSRC}/scripts/clientchk \
-		${STAGEDIR}${PREFIX}/sbin
+		${PREFIX}/sbin
 	@(cd ${WRKSRC}/src; ${MAKE_CMD} destdir=${FAKE_DESTDIR} install-locales)
 
 do-install-DOCS-on:

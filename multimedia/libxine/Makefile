@@ -179,8 +179,8 @@ post-patch:
 .endif
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${PLUGINSDIR}/*.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${PLUGINSDIR}/post/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/*.so
+	@${STRIP_CMD} ${PREFIX}/${PLUGINSDIR}/*.so
+	@${STRIP_CMD} ${PREFIX}/${PLUGINSDIR}/post/*.so
 
 .include <bsd.port.post.mk>

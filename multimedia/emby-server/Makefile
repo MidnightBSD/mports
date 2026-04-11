@@ -144,19 +144,19 @@ pre-configure:
 	${REINPLACE_CMD} -i.bak -e 's|freebsd|midnightbsd|g' ${WRKDIR}/ffmpeg-${FFVERSION}_public/configure
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/bin
-	(${INSTALL_PROGRAM} ${WRKDIR}/bin/ffdetect ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
-	(${INSTALL_PROGRAM} ${WRKSRC}/ffmpeg ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
-	(${INSTALL_PROGRAM} ${WRKSRC}/ffprobe ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/lib
-	(cd ${WRKDIR}/lib && ${COPYTREE_BIN} . ${STAGEDIR}${PREFIX}/lib/emby-server/lib)
-	${RLN} ${LOCALBASE}/lib/libimagequant.so.0.0.0 ${STAGEDIR}${PREFIX}/lib/emby-server/lib/libimagequant.so.0
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/system
-	(${INSTALL_DATA} ${WRKDIR}/SQLitePCLRaw.provider.sqlite3.dll.config ${STAGEDIR}${PREFIX}/lib/emby-server/system)
-	(cd ${WRKDIR}/system && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/emby-server/system "! -name EmbyServer")
-	(${INSTALL_PROGRAM} ${WRKDIR}/system/EmbyServer ${STAGEDIR}${PREFIX}/lib/emby-server/system)
+	@${MKDIR} ${PREFIX}/lib/emby-server/bin
+	(${INSTALL_PROGRAM} ${WRKDIR}/bin/ffdetect ${PREFIX}/lib/emby-server/bin)
+	(${INSTALL_PROGRAM} ${WRKSRC}/ffmpeg ${PREFIX}/lib/emby-server/bin)
+	(${INSTALL_PROGRAM} ${WRKSRC}/ffprobe ${PREFIX}/lib/emby-server/bin)
+	@${MKDIR} ${PREFIX}/lib/emby-server/lib
+	(cd ${WRKDIR}/lib && ${COPYTREE_BIN} . ${PREFIX}/lib/emby-server/lib)
+	${RLN} ${LOCALBASE}/lib/libimagequant.so.0.0.0 ${PREFIX}/lib/emby-server/lib/libimagequant.so.0
+	@${MKDIR} ${PREFIX}/lib/emby-server/system
+	(${INSTALL_DATA} ${WRKDIR}/SQLitePCLRaw.provider.sqlite3.dll.config ${PREFIX}/lib/emby-server/system)
+	(cd ${WRKDIR}/system && ${COPYTREE_SHARE} . ${PREFIX}/lib/emby-server/system "! -name EmbyServer")
+	(${INSTALL_PROGRAM} ${WRKDIR}/system/EmbyServer ${PREFIX}/lib/emby-server/system)
 
 post-install:
-	@${FIND} -s ${STAGEDIR}${PREFIX}/lib -not -type d | ${SORT} | ${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+	@${FIND} -s ${PREFIX}/lib -not -type d | ${SORT} | ${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

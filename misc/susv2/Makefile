@@ -22,7 +22,7 @@ IGNORE=		may not be redistributed because of licensing reasons. Please visit htt
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} '*' ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} '*' ${DOCSDIR}
 
 .include <bsd.port.post.mk>

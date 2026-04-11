@@ -660,8 +660,8 @@ pre-install:
 	${MKDIR} ${PREFIX}/libdata/ldconfig/
 	touch ${PREFIX}/libdata/ldconfig/ffmpeg4
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \
-		"${DOC_FILES}" ${STAGEDIR}${DOCSDIR})
+		"${DOC_FILES}" ${DOCSDIR})
 	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} \
-		"${DOC_DOCFILES}" ${STAGEDIR}${DOCSDIR})
+		"${DOC_DOCFILES}" ${DOCSDIR})
 
 .include <bsd.port.post.mk>

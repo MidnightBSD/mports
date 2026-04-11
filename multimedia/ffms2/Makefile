@@ -42,7 +42,7 @@ post-patch:
 		${WRKSRC}/Makefile.am
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${LN} -sf ../lib${PORTNAME}.so ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}
+	${LN} -sf ../lib${PORTNAME}.so ${DATADIR}/
 
 .include <bsd.port.mk>

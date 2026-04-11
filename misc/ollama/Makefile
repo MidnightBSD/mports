@@ -56,6 +56,6 @@ pre-build:
 			./...
 
 post-install: # pending https://github.com/ollama/ollama/issues/6407
-	${INSTALL_SCRIPT} ${FILESDIR}/ollama-limit-gpu-layers ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/ollama-limit-gpu-layers ${PREFIX}/bin
 
 .include <bsd.port.mk>

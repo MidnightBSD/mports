@@ -62,9 +62,9 @@ VERSION=	0
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${BINDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/dnetc ${STAGEDIR}${BINDIR}
-	${INSTALL_MAN} ${WRKSRC}/dnetc.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_DATA} ${FILESDIR}/dnetc.ini ${STAGEDIR}${BINDIR}/dnetc.ini.sample
+	@${MKDIR} ${BINDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/dnetc ${BINDIR}
+	${INSTALL_MAN} ${WRKSRC}/dnetc.1 ${PREFIX}/share/man/man1
+	${INSTALL_DATA} ${FILESDIR}/dnetc.ini ${BINDIR}/dnetc.ini.sample
 
 .include <bsd.port.post.mk>

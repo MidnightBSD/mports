@@ -32,6 +32,6 @@ MAKE_ENV=	${CARGO_ENV}
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/hf_xet/*.so
+	@${STRIP_CMD} ${PYTHONPREFIX_SITELIBDIR}/hf_xet/*.so
 
 .include <bsd.port.mk>

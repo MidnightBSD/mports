@@ -25,8 +25,8 @@ PLIST_FILES=	bin/run-mailcap etc/mime.types \
 SHEBANG_FILES=	mailcap/run-mailcap
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/mailcap/run-mailcap ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/media-types/mime.types ${STAGEDIR}${PREFIX}/etc
-	${INSTALL_MAN} ${WRKSRC}/mailcap/run-mailcap.man ${STAGEDIR}${PREFIX}/share/man/man1/run-mailcap.1
+	${INSTALL_SCRIPT} ${WRKSRC}/mailcap/run-mailcap ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/media-types/mime.types ${PREFIX}/etc
+	${INSTALL_MAN} ${WRKSRC}/mailcap/run-mailcap.man ${PREFIX}/share/man/man1/run-mailcap.1
 
 .include <bsd.port.mk>
