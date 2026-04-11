@@ -17,7 +17,7 @@ USE_PERL5=	configure
 NO_ARCH=	yes
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Text/PDF/examples
-	${INSTALL_DATA} ${WRKSRC}/examples/* ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Text/PDF/examples
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/Text/PDF/examples
+	${INSTALL_DATA} ${WRKSRC}/examples/* ${PREFIX}/${SITE_PERL_REL}/Text/PDF/examples
 
 .include <bsd.port.mk>

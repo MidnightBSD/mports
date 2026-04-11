@@ -98,8 +98,8 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/tin.defaults \
-	    ${STAGEDIR}${PREFIX}/etc/tin.defaults.sample
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/tin
-	${RLN} tin ${STAGEDIR}${PREFIX}/bin/rtin
+	    ${PREFIX}/etc/tin.defaults.sample
+	${STRIP_CMD} ${PREFIX}/bin/tin
+	${RLN} tin ${PREFIX}/bin/rtin
 
 .include <bsd.port.mk>

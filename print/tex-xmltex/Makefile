@@ -24,7 +24,7 @@ TEXHASHDIRS=	${TEXMFDISTDIR}
 
 do-install:
 	${TAR} -Jxf ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
-		-C ${STAGEDIR}${PREFIX}/share \
+		-C ${PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner
 
 .if defined(MAINTAINER_MODE)

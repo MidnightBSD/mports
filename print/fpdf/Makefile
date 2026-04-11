@@ -37,10 +37,10 @@ do-fetch:
 	fi
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${FPDF_DIR}
-	${INSTALL_DATA} ${WRKSRC}/fpdf.php ${STAGEDIR}${PREFIX}/${FPDF_DIR}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} "font makefont" ${STAGEDIR}${PREFIX}/${FPDF_DIR}/)
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} "${DOCS}" ${STAGEDIR}${DOCSDIR}/)
+	${MKDIR} ${PREFIX}/${FPDF_DIR}
+	${INSTALL_DATA} ${WRKSRC}/fpdf.php ${PREFIX}/${FPDF_DIR}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} "font makefont" ${PREFIX}/${FPDF_DIR}/)
+	${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} "${DOCS}" ${DOCSDIR}/)
 
 .include <bsd.port.mk>

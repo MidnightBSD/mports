@@ -27,7 +27,7 @@ PLIST_FILES=	\
 		${FW_FILES:S,^,share/sigrok-firmware/,} \
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/asix-sigma/LICENSE.Sigma ${STAGEDIR}${PREFIX}/share/sigrok-firmware
-	${INSTALL_DATA} ${WRKSRC}/sysclk-lwla/LICENSE.LWLA ${STAGEDIR}${PREFIX}/share/sigrok-firmware
+	${INSTALL_DATA} ${WRKSRC}/asix-sigma/LICENSE.Sigma ${PREFIX}/share/sigrok-firmware
+	${INSTALL_DATA} ${WRKSRC}/sysclk-lwla/LICENSE.LWLA ${PREFIX}/share/sigrok-firmware
 
 .include <bsd.port.mk>

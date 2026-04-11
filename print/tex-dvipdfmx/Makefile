@@ -40,7 +40,7 @@ EXTRACT_FILES=	am \
 		build-aux \
 		texk/dvipdfm-x
 EXTRACT_AFTER_ARGS_TEXMF= \
-	| ${TAR} -xf - -C ${STAGEDIR}${PREFIX}/share \
+	| ${TAR} -xf - -C ${PREFIX}/share \
 	--strip-components 1 --no-same-permission --no-same-owner \
 	${EXCLUDE_FILES_TEXMF:S,^,--exclude ${DISTNAME_TEXMF}/,} \
 	${EXTRACT_FILES_TEXMF:S,^,${DISTNAME_TEXMF}/,}
@@ -72,6 +72,6 @@ pre-install:
 
 post-install:
 	${LN} -f -s ${LOCALBASE}/share/fonts/adobe-cmaps \
-		${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/fonts/cmap/adobe-cmaps
+		${PREFIX}/${TEXMFDISTDIR}/fonts/cmap/adobe-cmaps
 
 .include <bsd.port.mk>

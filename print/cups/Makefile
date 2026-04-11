@@ -121,9 +121,9 @@ post-patch-DOCS-off:
 		-e 's|[Hh][Rr][Ee][Ff]="/*help/|href="https://openprinting.github.io/cups/doc/|g' {} +
 
 post-install:
-	${LN} -sf lpr ${STAGEDIR}${PREFIX}/bin/lpr-cups
+	${LN} -sf lpr ${PREFIX}/bin/lpr-cups
 	${INSTALL_DATA} ${FILESDIR}/cups.conf.sample \
-		${STAGEDIR}${PREFIX}/etc/devd
-	${INSTALL_DATA} ${FILESDIR}/cups ${STAGEDIR}${PREFIX}/etc/pam.d
+		${PREFIX}/etc/devd
+	${INSTALL_DATA} ${FILESDIR}/cups ${PREFIX}/etc/pam.d
 
 .include <bsd.port.post.mk>

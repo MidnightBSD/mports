@@ -31,13 +31,13 @@ MAKE_ARGS+=	INSTALLFLAGS="${COPY}" \
 
 post-install:
 	for i in hr_HR hu_HU pl_PL ro_RO; do \
-		${LN} -sf cs_CZ.ps ${STAGEDIR}${PREFIX}/lib/X11/fig2dev/$${i}.ps; \
+		${LN} -sf cs_CZ.ps ${PREFIX}/lib/X11/fig2dev/$${i}.ps; \
 	done
 	for i in ja ja_JP.EUC ja_JP.eucJP ja_JP ja_JP.ujis ; do \
-		${LN} -sf japanese.ps ${STAGEDIR}${PREFIX}/lib/X11/fig2dev/$${i}.ps; \
+		${LN} -sf japanese.ps ${PREFIX}/lib/X11/fig2dev/$${i}.ps; \
 	done
 	for i in ko ko_KR.EUC ko_KR.eucKR ko_KR ko_KR.ujis; do \
-		${LN} -sf korean.ps ${STAGEDIR}${PREFIX}/lib/X11/fig2dev/$${i}.ps; \
+		${LN} -sf korean.ps ${PREFIX}/lib/X11/fig2dev/$${i}.ps; \
 	done
 
 .include <bsd.port.mk>

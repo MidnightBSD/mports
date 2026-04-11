@@ -65,7 +65,7 @@ EXTRACT_FILES=	build-aux \
 		libs/xpdf \
 		texk/web2c
 EXTRACT_AFTER_ARGS_TEXMF= \
-	| ${TAR} -xf - -C ${STAGEDIR}${PREFIX}/share \
+	| ${TAR} -xf - -C ${PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner \
 		${EXTRACT_FILES_TEXMF:S,^,${DISTNAME_TEXMF}/,}
 EXTRACT_FILES_TEXMF= \
@@ -97,7 +97,7 @@ pre-configure:
 		${MAKE}
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share
+	${MKDIR} ${PREFIX}/share
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/texlive-${TEXLIVE_VERSION}-texmf${EXTRACT_SUFX} \
 		${EXTRACT_AFTER_ARGS_TEXMF}
 

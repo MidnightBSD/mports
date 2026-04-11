@@ -162,7 +162,7 @@ post-patch:
 		${WRKSRC}/utils/driverless.1
 
 post-install:
-	@${MV} ${STAGEDIR}${PREFIX}/etc/cups/cups-browsed.conf \
-		${STAGEDIR}${PREFIX}/etc/cups/cups-browsed.conf.sample
+	@${MV} ${PREFIX}/etc/cups/cups-browsed.conf \
+		${PREFIX}/etc/cups/cups-browsed.conf.sample
 
 .include <bsd.port.post.mk>

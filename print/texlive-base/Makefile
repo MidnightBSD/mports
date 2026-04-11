@@ -154,13 +154,13 @@ post-patch:
 
 post-install-fmtutil:
 	for D in ${TEXHASHDIRS}; do \
-		${MKDIR} ${STAGEDIR}${PREFIX}/$$D; \
-		${TOUCH} ${STAGEDIR}${PREFIX}/$$D/.keep_me; \
+		${MKDIR} ${PREFIX}/$$D; \
+		${TOUCH} ${PREFIX}/$$D/.keep_me; \
 	done
-	${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFCONFIGDIR}/web2c
-	${TOUCH} ${STAGEDIR}${PREFIX}/${TEXMFCONFIGDIR}/web2c/.keep_me
-	${INSTALL_DATA} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/web2c/fmtutil.cnf \
-	    ${STAGEDIR}${PREFIX}/${FMTUTIL_CNF}
+	${MKDIR} ${PREFIX}/${TEXMFCONFIGDIR}/web2c
+	${TOUCH} ${PREFIX}/${TEXMFCONFIGDIR}/web2c/.keep_me
+	${INSTALL_DATA} ${PREFIX}/${TEXMFDISTDIR}/web2c/fmtutil.cnf \
+	    ${PREFIX}/${FMTUTIL_CNF}
 
 post-install: post-install-fmtutil
 .ORDER: post-install-fmtutil do-texhash
