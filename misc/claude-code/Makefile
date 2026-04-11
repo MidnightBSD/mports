@@ -1,6 +1,5 @@
 PORTNAME=	claude-code
 DISTVERSION=	2.1.90
-PORTREVISION=	0
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +12,8 @@ FETCH_DEPENDS=	npm:www/npm \
 RUN_DEPENDS=	rg:textproc/ripgrep
 
 USES=		nodejs:run
+
+EXTRACT_SUFX=	.tar.gz
 
 NO_BUILD=	yes
 NO_ARCH=	yes
@@ -55,8 +56,13 @@ do-install:
 	@${ECHO_CMD} '#!/bin/sh' > ${PREFIX}/bin/claude
 	@${ECHO_CMD} 'export USE_BUILTIN_RIPGREP=false' >> ${PREFIX}/bin/claude
 	@${ECHO_CMD} 'exec ${TRUE_PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js "$$@"' >> ${PREFIX}/bin/claude
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/claude
+	@${CHMOD} +x ${PREFIX}/bin/claude
 	# remove bundled ripgrep
-	@${RM} -r ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/ripgrep
+	@${RM} -r ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/ripgrep
+	# remove non-BSD audio-capture binaries
+	@${RM} -r ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/arm64-darwin
+	@${RM} -r ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/arm64-win32
+	@${RM} -r ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/x64-darwin
+	@${RM} -r ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/x64-win32
 
 .include <bsd.port.mk>
