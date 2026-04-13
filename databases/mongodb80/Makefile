@@ -160,17 +160,17 @@ do-build:
 
 do-install:
 .for f in mongod mongos
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${f}
+	-${STRIP_CMD} ${PREFIX}/bin/${f}
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/rpm/mongod.conf ${STAGEDIR}${PREFIX}/etc/mongodb.conf.sample
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/rpm/mongod.conf ${PREFIX}/etc/mongodb.conf.sample
+	${MKDIR} ${DOCSDIR}
 .for doc in LICENSE-Community.txt MPL-2 README THIRD-PARTY-NOTICES
-	${MV} ${STAGEDIR}${PREFIX}/${doc} ${STAGEDIR}${DOCSDIR}/
+	${MV} ${PREFIX}/${doc} ${DOCSDIR}/
 .endfor
-	${INSTALL_MAN} ${WRKSRC}/debian/mongod.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_MAN} ${WRKSRC}/debian/mongos.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_MAN} ${WRKSRC}/debian/mongodb-parameters.5 ${STAGEDIR}${PREFIX}/share/man/man5/
-	${RM} ${STAGEDIR}${PREFIX}/bin/resmoke.py
+	${INSTALL_MAN} ${WRKSRC}/debian/mongod.1 ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/debian/mongos.1 ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/debian/mongodb-parameters.5 ${PREFIX}/share/man/man5/
+	${RM} ${PREFIX}/bin/resmoke.py
 
 do-test:
 	${SH} ${FILESDIR}/make.test.sh "${STAGEDIR}${PREFIX}/bin"
