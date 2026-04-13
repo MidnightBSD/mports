@@ -1918,6 +1918,7 @@
     SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rake
     SUBDIR += rubygem-rdoc
+    SUBDIR += rubygem-reline
     SUBDIR += rubygem-retriable
     SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rspec
