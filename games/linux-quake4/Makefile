@@ -54,24 +54,24 @@ do-build:
 
 do-install:
 	# Executables
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${Q4DIR}
+	@${MKDIR} ${PREFIX}/${Q4DIR}
 .for FILE in quake4 q4ded
-	${INSTALL_SCRIPT} ${WRKSRC}/${PKGNAMEPREFIX}${FILE}.sh ${STAGEDIR}${PREFIX}/bin/${PKGNAMEPREFIX}${FILE}
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/FreeBSD/x86/${FILE}.x86 ${STAGEDIR}${PREFIX}/${Q4DIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/${PKGNAMEPREFIX}${FILE}.sh ${PREFIX}/bin/${PKGNAMEPREFIX}${FILE}
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/FreeBSD/x86/${FILE}.x86 ${PREFIX}/${Q4DIR}
 .endfor
 
 	# Punkbuster
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${Q4DIR}/pb/htm
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${Q4DIR}/q4base
+	@${MKDIR} ${PREFIX}/${Q4DIR}/pb/htm
+	@${MKDIR} ${PREFIX}/${Q4DIR}/q4base
 	@cd ${WRKSRC} && \
 		${FIND} -E pb -type f -iregex ".*\.(so)" \
-			-exec ${INSTALL_DATA} {} "${STAGEDIR}${PREFIX}/${Q4DIR}/{}" \; && \
+			-exec ${INSTALL_DATA} {} "${PREFIX}/${Q4DIR}/{}" \; && \
 		${FIND} -E pb/htm -type f -iregex ".*\.(htm)" \
-			-exec ${INSTALL_DATA} {} "${STAGEDIR}${PREFIX}/${Q4DIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${PREFIX}/${Q4DIR}/{}" \;
 	# Q4base
 	 @cd ${WRKSRC} && \
 		${FIND} -E q4base -type f -iregex ".*\.(cfg|scriptcfg|pk4|off)" \
-			-exec ${INSTALL_DATA} {} "${STAGEDIR}${PREFIX}/${Q4DIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${PREFIX}/${Q4DIR}/{}" \;
 
 # All version (except germany) or only germany version
 do-install-GERMANY-on:

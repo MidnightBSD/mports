@@ -25,6 +25,6 @@ post-extract:
 post-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-	${INSTALL_DATA} ${WRKDIR}/libublio.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
+	${INSTALL_DATA} ${WRKDIR}/libublio.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>

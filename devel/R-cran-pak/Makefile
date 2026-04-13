@@ -39,7 +39,7 @@ post-install:
 	@${ECHO_CMD} "@dir ${R_MOD_DIR}/libs" >> ${TMPPLIST}
 .for binfile in ps/bin/px processx/bin/sock processx/bin/px \
 	processx/bin/supervisor zip/bin/cmdunzip zip/bin/cmdzip
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${R_MOD_DIR}/library/${binfile}
+	@${STRIP_CMD} ${PREFIX}/${R_MOD_DIR}/library/${binfile}
 .endfor
 
 .include <bsd.port.mk>

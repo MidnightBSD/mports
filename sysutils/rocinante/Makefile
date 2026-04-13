@@ -22,7 +22,7 @@ do-install:
 post-install:
 	${MKDIR} ${PREFIX}/etc
 	${MKDIR} ${PREFIX}/libexec/${PORTNAME}
-	(cd ${WRKSRC}/${LOCALBASE}/libexec/${PORTNAME} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/libexec/${PORTNAME})
-	${INSTALL_DATA} ${WRKSRC}${LOCALBASE}/etc/rocinante.conf ${STAGEDIR}${PREFIX}/etc/rocinante.conf.sample
+	(cd ${WRKSRC}/${LOCALBASE}/libexec/${PORTNAME} && ${COPYTREE_SHARE} . ${PREFIX}/libexec/${PORTNAME})
+	${INSTALL_DATA} ${WRKSRC}${LOCALBASE}/etc/rocinante.conf ${PREFIX}/etc/rocinante.conf.sample
 
 .include <bsd.port.mk>

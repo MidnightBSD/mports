@@ -26,9 +26,9 @@ post-patch:
 			${WRKSRC}/lib/freebsd-g++/tmake.conf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	cd ${WRKSRC}/bin/ && ${INSTALL_SCRIPT} progen tmake ${STAGEDIR}${PREFIX}/bin/
-	cd ${WRKSRC}/lib/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}/
+	cd ${WRKSRC}/bin/ && ${INSTALL_SCRIPT} progen tmake ${PREFIX}/bin/
+	cd ${WRKSRC}/lib/ && ${COPYTREE_SHARE} . ${DATADIR}/
 	@${ECHO_MSG}
 	@${ECHO_MSG} "Make sure to set your TMAKEPATH environment variable"
 	@${ECHO_MSG} "to ${DATADIR}/freebsd-g++."

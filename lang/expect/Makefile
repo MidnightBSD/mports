@@ -28,8 +28,8 @@ WRKSRC=               ${WRKDIR}/${DISTNAME}
 
 post-install:
 	${LN} -sf expect${PORTVERSION}/libexpect${PORTVERSION}.so \
-	    	${STAGEDIR}${PREFIX}/lib/libexpect.so.1
+	    	${PREFIX}/lib/libexpect.so.1
 	${LN} -sf libexpect.so.1 \
-		${STAGEDIR}${PREFIX}/lib/libexpect.so
+		${PREFIX}/lib/libexpect.so
 
 .include <bsd.port.mk>

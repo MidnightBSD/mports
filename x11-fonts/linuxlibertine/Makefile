@@ -36,13 +36,13 @@ PORTDOCS=	Bugs.txt \
 		Readme-TEX.txt
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for ext in ttf otf
-	${INSTALL_DATA} ${WRKSRC}/Fonts/*.${ext} ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/Fonts/*.${ext} ${FONTSDIR}
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/$i ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/$i ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

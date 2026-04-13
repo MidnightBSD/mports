@@ -66,11 +66,11 @@ post-build:
 	${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} rdoc)
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${RUBY_SITEARCHLIBDIR}/bdb.so
+	${STRIP_CMD} ${RUBY_SITEARCHLIBDIR}/bdb.so
 	${MKDIR} ${DOCSDIR}/doc
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR})
-	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/doc)
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
-	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR} "! -empty")
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR})
+	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${DOCSDIR}/doc)
+	${MKDIR} ${EXAMPLESDIR}/
+	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${EXAMPLESDIR} "! -empty")
 
 .include <bsd.port.mk>

@@ -48,9 +48,9 @@ post-patch:
 	${CP} ${WRKSRC}/src/c/Makefile-freebsd-x86-64.gmake ${WRKSRC}/src/c/Makefile-midnightbsd-x86-64.gmake
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC} && ${CP} -rp bin conf lib test ${STAGEDIR}${DATADIR}
-	${STRIP_CMD} ${STAGEDIR}${DATADIR}/bin/wrapper
+	@${MKDIR} ${DATADIR}
+	cd ${WRKSRC} && ${CP} -rp bin conf lib test ${DATADIR}
+	${STRIP_CMD} ${DATADIR}/bin/wrapper
 	cd ${PREFIX} && ${LN} -sf ../${DATADIR_REL}/bin/wrapper bin/${PORTNAME}
 
 do-install-DOCS-on:

@@ -90,6 +90,6 @@ post-patch:
 		${WRKSRC}/man/mozroots.1
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/mono
+	${MKDIR} ${PREFIX}/mono
 
 .include <bsd.port.mk>

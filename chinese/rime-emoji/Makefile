@@ -22,9 +22,9 @@ NO_BUILD=	yes
 PORTDOCS=	AUTHORS README.md
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data
-	${INSTALL_DATA} ${WRKSRC}/emoji_suggestion.yaml ${STAGEDIR}${PREFIX}/share/rime-data
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} opencc ${STAGEDIR}${PREFIX}/share/rime-data)
+	@${MKDIR} ${PREFIX}/share/rime-data
+	${INSTALL_DATA} ${WRKSRC}/emoji_suggestion.yaml ${PREFIX}/share/rime-data
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} opencc ${PREFIX}/share/rime-data)
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

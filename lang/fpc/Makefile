@@ -65,7 +65,7 @@ MAKE_ARGS+=	FPCMAKE=${NEWFPCMAKE} \
 		INSTALL="${INSTALL_DATA} -p" \
 		INSTALLEXE="${INSTALL_PROGRAM}" \
 		INSTALLSCR="${INSTALL_SCRIPT}" \
-		INSTALL_PREFIX=${STAGEDIR}${PREFIX} \
+		INSTALL_PREFIX=${PREFIX} \
 		FPC_LDPATH=${FPC_LDPATH} \
 		BSDs=midnightbsd freebsd netbsd openbsd darwin dragonfly
 NEWPPC=		PP=${WRKSRC}/compiler/${PPNAME}
@@ -169,19 +169,19 @@ do-install:
 		${MAKE_CMD} install ${MAKE_ARGS} ${BOOTPPC})
 
 	# Installing manpages
-	${INSTALL_MAN} ${WRKDIR}/man/man1/* ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKDIR}/man/man5/* ${STAGEDIR}${PREFIX}/share/man/man5
+	${INSTALL_MAN} ${WRKDIR}/man/man1/* ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKDIR}/man/man5/* ${PREFIX}/share/man/man5
 	# symlinking compiler
-	(cd ${STAGEDIR}${PREFIX}/bin && ${LN} -sf ../lib/fpc/${PORTVERSION}/${PPNAME})
+	(cd ${PREFIX}/bin && ${LN} -sf ../lib/fpc/${PORTVERSION}/${PPNAME})
 	# creating sample configuration file
-	${SH} "${STAGEDIR}${PREFIX}/lib/fpc/${PORTVERSION}/samplecfg" \
-		"${STAGEDIR}${PREFIX}/lib/fpc/${PORTVERSION}" \
-		"${STAGEDIR}${PREFIX}/etc"
-	@${REINPLACE_CMD} -i "" -e 's|${STAGEDIR}||' \
+	${SH} "${PREFIX}/lib/fpc/${PORTVERSION}/samplecfg" \
+		"${PREFIX}/lib/fpc/${PORTVERSION}" \
+		"${PREFIX}/etc"
+	@${REINPLACE_CMD} -i "" -e 's|||' \
 		-e 's|^#-Fl/lib;/usr/lib|-Fl${LOCALBASE}/lib;${LOCALBASE}/lib/qt5;${LOCALBASE}/lib/qt6|g' \
-			${STAGEDIR}${PREFIX}/etc/fpc.cfg.sample \
-			${STAGEDIR}${PREFIX}/etc/fppkg.cfg.sample \
-			${STAGEDIR}${PREFIX}/etc/fppkg/default \
-			${STAGEDIR}${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg
+			${PREFIX}/etc/fpc.cfg.sample \
+			${PREFIX}/etc/fppkg.cfg.sample \
+			${PREFIX}/etc/fppkg/default \
+			${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg
 
 .include <bsd.port.post.mk>

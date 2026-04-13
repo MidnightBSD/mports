@@ -52,7 +52,7 @@ MAKE_JOBS_UNSAFE=	yes
 EXTRACT_AFTER_ARGS=	${EXTRACT_FILES:S,^,${DISTNAME}/,}
 EXTRACT_FILES=			build-aux libs/xpdf libs/lua53 libs/luajit \
 				libs/pplib texk/web2c
-EXTRACT_AFTER_ARGS_TEXMF=	| ${TAR} -xf - -C ${STAGEDIR}${PREFIX}/share \
+EXTRACT_AFTER_ARGS_TEXMF=	| ${TAR} -xf - -C ${PREFIX}/share \
 				--strip-components 1 --no-same-permission \
 				--no-same-owner \
 				${EXTRACT_FILES_TEXMF:S,^,${DISTNAME_TEXMF}/,}
@@ -95,7 +95,7 @@ pre-install:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/texlive-${TEXLIVE_VERSION}-texmf${EXTRACT_SUFX} \
 	    ${EXTRACT_AFTER_ARGS_TEXMF}
 	${REINPLACE_CMD} -i '' -e 's|/bin/bash|${TRUE_PREFIX}/bin/bash|' \
-		${STAGEDIR}${PREFIX}/share/texmf-dist/doc/lualatex/wallcalendar/doc/examples/diff-cal.sh
+		${PREFIX}/share/texmf-dist/doc/lualatex/wallcalendar/doc/examples/diff-cal.sh
 
 post-fake:
 	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' \
@@ -105,10 +105,10 @@ post-fake:
 		${FAKE_DESTDIR}${TRUE_PREFIX}/share/texmf-var/web2c/luatex/pdfcsplain.log
 
 post-install:
-	${FIND} -s ${STAGEDIR}${PREFIX}/share/texmf-dist -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${PREFIX}/share/texmf-dist -type d -empty | ${SORT} -r | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/share/texmf-dist -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/share/texmf-dist -type d -empty | ${SORT} -r | \
+		${SED} -e 's#^${PREFIX}/#@dir #' >> ${TMPPLIST}
 	${ECHO_CMD} "share/texmf-var/web2c/luatex/lollipop.log" >> ${TMPPLIST}
 	${ECHO_CMD} "share/texmf-var/web2c/luatex/lollipop.fmt" >> ${TMPPLIST}
 

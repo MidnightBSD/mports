@@ -22,8 +22,8 @@ PLIST_SUB=	XAPPLRESDIR=${XAPPLRESDIR}
 XAPPLRESDIR=	lib/X11/ja_JP.eucJP/app-defaults
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${XAPPLRESDIR}
+	${MKDIR} ${PREFIX}/${XAPPLRESDIR}
 	${INSTALL_DATA} ${FILESDIR}/Tgif.in \
-	    ${STAGEDIR}${PREFIX}/${XAPPLRESDIR}/Tgif.sample
+	    ${PREFIX}/${XAPPLRESDIR}/Tgif.sample
 
 .include <bsd.port.mk>

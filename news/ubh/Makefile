@@ -22,9 +22,9 @@ SHEBANG_FILES=	ubh
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/ubh ${STAGEDIR}${PREFIX}/bin
-	${CP} -R ${WRKSRC}/examples ${STAGEDIR}${PREFIX}/share/ubh
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ubh
-	${INSTALL_DATA} ${WRKSRC}/doc/ubh.html ${STAGEDIR}${PREFIX}/share/doc/ubh
+	${INSTALL_SCRIPT} ${WRKSRC}/ubh ${PREFIX}/bin
+	${CP} -R ${WRKSRC}/examples ${PREFIX}/share/ubh
+	${MKDIR} ${PREFIX}/share/doc/ubh
+	${INSTALL_DATA} ${WRKSRC}/doc/ubh.html ${PREFIX}/share/doc/ubh
 
 .include <bsd.port.mk>

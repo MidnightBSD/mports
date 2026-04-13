@@ -40,11 +40,11 @@ PLIST_SUB+= BROKE=""
 
 do-install:
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
-		${MAKE_ARGS:NDESTDIR=*:S,^--prefix=,&${STAGEDIR},} ${INSTALL_TARGET}
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/cmake -type f -exec \
+		${MAKE_ARGS:NDESTDIR=*:S,^--prefix=,&,} ${INSTALL_TARGET}
+	@${FIND} ${PREFIX}/lib/cmake -type f -exec \
 		${REINPLACE_CMD} -i '' -e 's,${FAKE_DESTDIR},,' {} +
 # For some reasons BJAM forget about the links
-	@cd ${WRKSRC}/stage/ && ${FIND} lib -type l | ${PAX} -rw -p p ${STAGEDIR}${PREFIX}
+	@cd ${WRKSRC}/stage/ && ${FIND} lib -type l | ${PAX} -rw -p p ${PREFIX}
 
 # display pkg-message
 post-install:
@@ -53,7 +53,7 @@ post-install:
 	@${CAT} ${PKG_MESSAGE_FILE_THREADS} >> ${PKGMESSAGE}
 	@${ECHO_CMD} >> ${PKGMESSAGE}
 
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/*.so
 
 	@${REINPLACE_CMD} \
 		-e "s|%%LOCALBASE%%|${LOCALBASE}|g" \

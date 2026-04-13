@@ -19,6 +19,6 @@ USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
 
 do-test:
-	${SETENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} ${PYTHON_CMD} ${WRKSRC}/test/test.py
+	${SETENV} PYTHONPATH=${PYTHONPREFIX_SITELIBDIR} ${PYTHON_CMD} ${WRKSRC}/test/test.py
 
 .include <bsd.port.mk>

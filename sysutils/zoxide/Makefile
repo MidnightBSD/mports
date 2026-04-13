@@ -128,6 +128,6 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		zerocopy-derive-0.8.25
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/man/man1/* ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/man1/* ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

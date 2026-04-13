@@ -30,7 +30,7 @@ BASIC_FONTS=	NotoMono-Regular.ttf \
 		NotoSerif-Regular.ttf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${BASIC_FONTS} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${BASIC_FONTS} ${FONTSDIR}
 
 .include <bsd.port.mk>

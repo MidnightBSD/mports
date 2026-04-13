@@ -100,10 +100,10 @@ pre-configure-NLS-on:
 	cd ${WRKSRC} && ${LOCALBASE}/bin/intltoolize -f -c
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/x*.xml ${STAGEDIR}${DATADIR}/config/
-	${INSTALL_DATA} ${WRKDIR}/*.desktop ${STAGEDIR}${DESKTOPDIR}/
-	${RM} ${STAGEDIR}${PREFIX}/etc/pam.d/xscreensaver
+	${INSTALL_DATA} ${FILESDIR}/x*.xml ${DATADIR}/config/
+	${INSTALL_DATA} ${WRKDIR}/*.desktop ${DESKTOPDIR}/
+	${RM} ${PREFIX}/etc/pam.d/xscreensaver
 	${LN} -s ${LOCALBASE}/etc/pam.d/unix-selfauth \
-		${STAGEDIR}${PREFIX}/etc/pam.d/xscreensaver
+		${PREFIX}/etc/pam.d/xscreensaver
 
 .include <bsd.port.mk>

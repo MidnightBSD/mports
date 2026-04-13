@@ -50,7 +50,7 @@ post-patch:
 		${WRKSRC}/include/IrrCompileConfig.h
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libIrrlicht.so
+	@${STRIP_CMD} ${PREFIX}/lib/libIrrlicht.so
 
 post-install-EXAMPLES-on:
 	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} "${EXAMPLEDIRS}" \

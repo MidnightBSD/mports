@@ -62,7 +62,7 @@ post-patch:
 
 post-install:
 	@${LN} -f ${WRKSRC:H}/examples/pseudo-file.example ${WRKSRC:H}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC:H}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC:H}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

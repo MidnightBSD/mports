@@ -127,7 +127,7 @@ post-patch-APPS-off:
 		${WRKSRC}/Makefile.in
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libCHART-${MAJORVER}.so.${SOVERSION}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libFOX-${MAJORVER}.so.${SOVERSION}
+	@${STRIP_CMD} ${PREFIX}/lib/libCHART-${MAJORVER}.so.${SOVERSION}
+	@${STRIP_CMD} ${PREFIX}/lib/libFOX-${MAJORVER}.so.${SOVERSION}
 
 .include <bsd.port.post.mk>

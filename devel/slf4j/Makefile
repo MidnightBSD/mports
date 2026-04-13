@@ -25,13 +25,13 @@ PLIST_FILES=	${JAVALIBDIR}/slf4j-api.jar \
 		${JARFILES:C|(.+)|${JAVAJARDIR}/\1.jar|}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${JAVAJARDIR}
+	${MKDIR} ${JAVAJARDIR}
 .for jarfile in ${JARFILES}
 	${INSTALL_DATA} \
 		${DISTDIR}/${jarfile:C|(.+)|slf4j/\1/${DISTVERSION}/\1-${DISTVERSION}.jar|} \
-		${STAGEDIR}${JAVAJARDIR}/${jarfile}.jar
+		${JAVAJARDIR}/${jarfile}.jar
 .endfor
-	${RLN} ${STAGEDIR}${JAVAJARDIR}/slf4j-api.jar \
-		${STAGEDIR}${JAVALIBDIR}/slf4j-api.jar
+	${RLN} ${JAVAJARDIR}/slf4j-api.jar \
+		${JAVALIBDIR}/slf4j-api.jar
 
 .include <bsd.port.mk>

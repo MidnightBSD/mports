@@ -36,8 +36,8 @@ do-build:
 	@cd ${WRKSRC} && HOME=${WRKDIR} ./bootstrap
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/manpages/*.1 ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/manpages/*.1 ${PREFIX}/share/man/man1/
 
 do-install-BASH-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/bash-completion/completions

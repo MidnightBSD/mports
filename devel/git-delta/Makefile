@@ -151,6 +151,6 @@ do-install-BASH-on:
 	${INSTALL_DATA} ${WRKSRC}/etc/completion/completion.bash \
 			${FAKE_DESTDIR}${LOCALBASE}/etc/bash_completion.d/_delta.bash
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/delta
+	${STRIP_CMD} ${PREFIX}/bin/delta
 
 .include <bsd.port.mk>

@@ -25,6 +25,6 @@ SUB_LIST=	MIMEDIRS="${MIMEDIRS}"
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/misc/desktop-entry-mode.el \
-		${STAGEDIR}${PREFIX}/share/emacs/site-lisp/desktop-entry-mode.el
+		${PREFIX}/share/emacs/site-lisp/desktop-entry-mode.el
 
 .include <bsd.port.mk>

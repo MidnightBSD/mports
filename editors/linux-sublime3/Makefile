@@ -33,15 +33,15 @@ DISTNAME_amd64=	sublime_text_3_build_3211_x64
 DISTNAME_i386=	sublime_text_3_build_3211_x32
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 .for res in 16 32 48 128 256
 	@${MKDIR} \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/${res}x${res}/apps/
+		${PREFIX}/share/icons/hicolor/${res}x${res}/apps/
 	${INSTALL_DATA} ${WRKSRC}/Icon/${res}x${res}/sublime-text.png \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/${res}x${res}/apps/
+		${PREFIX}/share/icons/hicolor/${res}x${res}/apps/
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/sublime_text.desktop ${STAGEDIR}${PREFIX}/share/applications/
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/sublime ${STAGEDIR}${PREFIX}/bin/sublime
+	${INSTALL_DATA} ${WRKSRC}/sublime_text.desktop ${PREFIX}/share/applications/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/sublime ${PREFIX}/bin/sublime
 
 .include <bsd.port.mk>

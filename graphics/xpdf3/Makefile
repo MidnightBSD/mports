@@ -62,14 +62,14 @@ post-patch:
 		${WRKSRC}/xpdf/XPDFViewer.h
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for file in ANNOUNCE CHANGES README misc/hello.pdf
-	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
 .endfor
-	@cd ${STAGEDIR}${PREFIX}; \
+	@cd ${PREFIX}; \
 	${LN} -sf ../libexec/xpdf/xpdf bin/xpdf
 	${INSTALL_DATA} ${WRKDIR}/xpdf-man.conf \
-		${STAGEDIR}${PREFIX}/etc/man.d/xpdf.conf
+		${PREFIX}/etc/man.d/xpdf.conf
 
 post-install-X11-on:
 	${INSTALL_DATA} ${FILESDIR}/xpdf.desktop ${FAKE_DESTDIR}${DESKTOPDIR}

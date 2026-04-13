@@ -8,6 +8,7 @@
     SUBDIR += chef
     SUBDIR += chmlib
     SUBDIR += cinnamon-translations
+    SUBDIR += claude-code
     SUBDIR += cldr-emoji-annotation
     SUBDIR += compat.el
     SUBDIR += compat10x

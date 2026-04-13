@@ -23,12 +23,12 @@ MAKE_ARGS+=	SO_LDFLAGS="-shared -Wl,-soname=${LIBARGON2}" \
 		ARGON2_VERSION="${PORTVERSION}"
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/include/argon2.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/libargon2.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_LIB} ${WRKSRC}/libargon2.so ${STAGEDIR}${PREFIX}/lib/libargon2.so.0
-	${RLN} ${STAGEDIR}${PREFIX}/lib/${LIBARGON2} ${STAGEDIR}${PREFIX}/lib/libargon2.so
-	${INSTALL_PROGRAM} ${WRKSRC}/argon2 ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/man/argon2.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_DATA} ${WRKSRC}/libargon2.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/libargon2.pc
+	${INSTALL_DATA} ${WRKSRC}/include/argon2.h ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/libargon2.a ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/libargon2.so ${PREFIX}/lib/libargon2.so.0
+	${RLN} ${PREFIX}/lib/${LIBARGON2} ${PREFIX}/lib/libargon2.so
+	${INSTALL_PROGRAM} ${WRKSRC}/argon2 ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/man/argon2.1 ${PREFIX}/share/man/man1
+	${INSTALL_DATA} ${WRKSRC}/libargon2.pc ${PREFIX}/libdata/pkgconfig/libargon2.pc
 
 .include <bsd.port.mk>

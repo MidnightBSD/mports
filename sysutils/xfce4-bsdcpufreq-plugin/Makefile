@@ -23,9 +23,9 @@ GH_ACCOUNT=	riggs-
 GH_TAGNAME=	345edc2
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/xfce4/panel/plugins
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/xfce4/panel/plugins
-	${INSTALL_LIB} ${WRKSRC}/libbsdcpufreq.so ${STAGEDIR}${PREFIX}/lib/xfce4/panel/plugins
-	${INSTALL_DATA} ${WRKSRC}/bsdcpufreq.desktop ${STAGEDIR}${PREFIX}/share/xfce4/panel/plugins
+	${MKDIR} ${PREFIX}/lib/xfce4/panel/plugins
+	${MKDIR} ${PREFIX}/share/xfce4/panel/plugins
+	${INSTALL_LIB} ${WRKSRC}/libbsdcpufreq.so ${PREFIX}/lib/xfce4/panel/plugins
+	${INSTALL_DATA} ${WRKSRC}/bsdcpufreq.desktop ${PREFIX}/share/xfce4/panel/plugins
 
 .include <bsd.port.mk>

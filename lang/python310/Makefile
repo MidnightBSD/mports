@@ -135,9 +135,9 @@ post-patch:
 
 post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
-	${RM} ${STAGEDIR}${PREFIX}/lib/libpython3.so						# Upstream Issue: https://bugs.python.org/issue17975
+	${RM} ${PREFIX}/lib/libpython3.so						# Upstream Issue: https://bugs.python.org/issue17975
 .endif
-	${LN} -sf libpython${PYTHON_VER}${ABIFLAGS}.so.1.0 ${STAGEDIR}${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1
+	${LN} -sf libpython${PYTHON_VER}${ABIFLAGS}.so.1.0 ${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1
 # This code block exists for the qemu-user enabled cross build environment.
 # When using this environment in poudriere, CC is not set to the default
 # of /usr/bin/cc and a cross-compile toolchain is used.  We need to hand
@@ -145,20 +145,20 @@ post-install:
 # FreeBSD base system provides.  sbruno 02Aug2017
 .if ${CC} == /nxb-bin/usr/bin/cc
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_${ABIFLAGS}_midnightbsd${OSREL:R}_.py
+		${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_${ABIFLAGS}_midnightbsd${OSREL:R}_.py
 	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
 		./python -E -m compileall -d ${PREFIX}/lib/python${PYTHON_VER} \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_${ABIFLAGS}_midnightbsd${OSREL:R}_.py
+		${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_${ABIFLAGS}_midnightbsd${OSREL:R}_.py
 	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
 		./python -E -O -m compileall -d ${PREFIX}/lib/python${PYTHON_VER} \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_${ABIFLAGS}_midnightbsd${OSREL:R}_.py
+		${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_${ABIFLAGS}_midnightbsd${OSREL:R}_.py
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/config-${PYTHON_VER}${ABIFLAGS}/Makefile
+		${PREFIX}/lib/python${PYTHON_VER}/config-${PYTHON_VER}${ABIFLAGS}/Makefile
 .endif
-	for i in ${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/lib-dynload/*.so; do \
+	for i in ${PREFIX}/lib/python${PYTHON_VER}/lib-dynload/*.so; do \
 		${STRIP_CMD} $$i; done								# Strip shared extensions
 	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
-		${STAGEDIR}${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1.0-gdb.py
+		${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1.0-gdb.py
 	-${CP} ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>

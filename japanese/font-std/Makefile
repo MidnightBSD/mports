@@ -36,9 +36,9 @@ do-fetch:
 	@${DO_NADA}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${FONTSDIR}/std.ja_JP
+	${MKDIR} ${PREFIX}/${FONTSDIR}/std.ja_JP
 .for F in ${STD}
-	${LN} -s -f ${STD_${F}} ${STAGEDIR}${PREFIX}/${FONTSDIR}/std.ja_JP/${F}
+	${LN} -s -f ${STD_${F}} ${PREFIX}/${FONTSDIR}/std.ja_JP/${F}
 .endfor
 
 .include <bsd.port.mk>

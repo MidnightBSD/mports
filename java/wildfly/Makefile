@@ -63,19 +63,19 @@ post-extract:
 	${RM} -r ${WRKSRC}/bin/init.d
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${PORTNAME}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${PORTNAME})
-	${RM} -rf ${STAGEDIR}${PREFIX}/${PORTNAME}/.installation
+	${MKDIR} ${PREFIX}/${PORTNAME}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/${PORTNAME})
+	${RM} -rf ${PREFIX}/${PORTNAME}/.installation
 .for FILE in ${CONFIG_FILES}
-	${MV} ${STAGEDIR}${PREFIX}/${PORTNAME}/${FILE} \
-		${STAGEDIR}${PREFIX}/${PORTNAME}/${FILE}.sample
+	${MV} ${PREFIX}/${PORTNAME}/${FILE} \
+		${PREFIX}/${PORTNAME}/${FILE}.sample
 .endfor
-	${FIND} -s ${STAGEDIR}${PREFIX}/${PORTNAME} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
+	${FIND} -s ${PREFIX}/${PORTNAME} -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' | \
 		${SED} -E -e '/sample$$/ s#^#@sample #' | \
 		${SED} -E -e '/bin\/.*sh$$/ s#^#@(,,755) #'>> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${PORTNAME} -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
+	${FIND} -s ${PORTNAME} -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/#@dir #' >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/.installation" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/.well-known/acme-challenge" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/domain/tmp/auth" >> ${TMPPLIST}

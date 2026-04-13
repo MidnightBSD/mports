@@ -17,12 +17,12 @@ USES=		fonts zip
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC} && \
-		${INSTALL_DATA} TTF/Vollkorn-*.ttf ${STAGEDIR}${FONTSDIR}
+		${INSTALL_DATA} TTF/Vollkorn-*.ttf ${FONTSDIR}
 
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && \
-		${INSTALL_DATA} Fontlog.txt OFL-FAQ.txt ${STAGEDIR}${DOCSDIR}
+		${INSTALL_DATA} Fontlog.txt OFL-FAQ.txt ${DOCSDIR}
 
 .include <bsd.port.mk>

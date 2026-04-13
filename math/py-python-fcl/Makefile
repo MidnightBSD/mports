@@ -24,6 +24,6 @@ USE_PYTHON=	autoplist concurrent cython0 distutils
 PYDISTUTILS_BUILD_TARGET=	build_ext
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/fcl/fcl*.so
+	${STRIP_CMD} ${PYTHON_SITELIBDIR}/fcl/fcl*.so
 
 .include <bsd.port.mk>

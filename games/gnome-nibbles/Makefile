@@ -39,6 +39,6 @@ USE_XORG=	x11 xcomposite xdamage xext xi xfixes xrandr
 GLIB_SCHEMAS=	org.gnome.Nibbles.gschema.xml
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/games
+	@${MKDIR} ${PREFIX}/share/games
 
 .include <bsd.port.mk>

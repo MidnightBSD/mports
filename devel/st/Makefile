@@ -27,11 +27,11 @@ post-patch:
 	@${CP} ${FILESDIR}/Makefile.examples ${WRKSRC}/examples/Makefile
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/public.h ${STAGEDIR}${PREFIX}/include/st.h
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/docs/,} ${STAGEDIR}${DOCSDIR}/
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/public.h ${PREFIX}/include/st.h
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/docs/,} ${DOCSDIR}/
+	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${EXAMPLES:S,^,${WRKSRC}/examples/,} \
-		${STAGEDIR}${EXAMPLESDIR}/
+		${EXAMPLESDIR}/
 
 .include <bsd.port.mk>

@@ -52,7 +52,7 @@ post-fake:
 	${FIND} ${FAKE_DESTDIR}${PREFIX}/bin -type l -name ansible-\* -lname ansible \
 		-execdir ${RLN} ansible-${PYTHON_VER} {} \;
 # USE_PYTHON=autoplist doesn't add this file to pkg-plist.
-	${RM} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
+	${RM} ${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
 
 .include <bsd.port.mk>
 

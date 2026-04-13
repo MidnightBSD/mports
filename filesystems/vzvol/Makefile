@@ -35,11 +35,11 @@ VIRTUALBOX_DESC=	Support .VMDK creation with VirtualBox tools
 XFS_DESC=		Install support for XFS filesystem
 
 do-install:
-	${INSTALL_MAN} ${WRKSRC}/man/freebsd/vzvol.8 ${STAGEDIR}${PREFIX}/share/man/man8/
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/vzvol ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/man/freebsd/vzvol.8 ${PREFIX}/share/man/man8/
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/vzvol ${PREFIX}/sbin
 .for dir in shared freebsd linux
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/vzvol/lib/${dir}
-	${INSTALL_SCRIPT} ${WRKSRC}/lib/${dir}/* ${STAGEDIR}${PREFIX}/lib/vzvol/lib/${dir}
+	@${MKDIR} ${PREFIX}/lib/vzvol/lib/${dir}
+	${INSTALL_SCRIPT} ${WRKSRC}/lib/${dir}/* ${PREFIX}/lib/vzvol/lib/${dir}
 .endfor
 
 do-install-DOCS-on:

@@ -99,7 +99,7 @@ post-patch-UNHANDLED_HACK-on:
 		's#;hostprops=42\"#;hostprops=10\"#g' ${WRKSRC}/html/side.php
 
 post-install:
-	@${RMDIR} ${STAGEDIR}${PREFIX}/libexec/nagios
-	@${MV} ${STAGEDIR}${WWWDIR}/config.inc.php ${STAGEDIR}${WWWDIR}/config.inc.php.sample
+	@${RMDIR} ${PREFIX}/libexec/nagios
+	@${MV} ${WWWDIR}/config.inc.php ${WWWDIR}/config.inc.php.sample
 
 .include <bsd.port.mk>

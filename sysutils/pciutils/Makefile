@@ -30,7 +30,7 @@ do-configure:
 	${CP} ${LOCALBASE}/share/libpci/config.mk ${WRKSRC}/lib/config.mk
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/lspci ${WRKSRC}/setpci ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/lspci.8 ${WRKSRC}/setpci.8 ${STAGEDIR}${PREFIX}/share/man/man8/
+	${INSTALL_PROGRAM} ${WRKSRC}/lspci ${WRKSRC}/setpci ${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/lspci.8 ${WRKSRC}/setpci.8 ${PREFIX}/share/man/man8/
 
 .include <bsd.port.mk>

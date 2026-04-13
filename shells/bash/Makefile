@@ -111,11 +111,11 @@ pre-build:
 
 post-install:
 	cd ${PREFIX}/bin && ${LN} -sf bash rbash
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/FAQ \
-		${WRKSRC}/doc/INTRO ${STAGEDIR}${DOCSDIR}
+		${WRKSRC}/doc/INTRO ${DOCSDIR}
 	for d in ${PORTDOCS:NFAQ:NINTRO:N*html}; do \
-		${INSTALL_DATA} ${WRKSRC}/$${d} ${STAGEDIR}${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$${d} ${DOCSDIR}; \
 	done
 
 regress: build

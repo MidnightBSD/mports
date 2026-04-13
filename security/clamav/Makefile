@@ -120,9 +120,9 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/clamav-config.h ${PREFIX}/include
-	@${MKDIR} ${STAGEDIR}${_DBDIR} \
-		  ${STAGEDIR}${_LOGDIR} \
-		  ${STAGEDIR}${_RUNDIR}
+	@${MKDIR} ${_DBDIR} \
+		  ${_LOGDIR} \
+		  ${_RUNDIR}
 
 post-install-DOCS-on:
 	${MV} ${FAKE_DESTDIR}${PREFIX}/share/doc/ClamAV ${FAKE_DESTDIR}${DOCSDIR}

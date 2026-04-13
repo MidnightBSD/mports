@@ -47,8 +47,8 @@ post-patch:
 
 post-install:
 .for f in ${CFFILES}
-	@${MV} ${STAGEDIR}${PREFIX}/etc/X11/xdm/${f} ${STAGEDIR}${PREFIX}/etc/X11/xdm/${f}.sample
+	@${MV} ${PREFIX}/etc/X11/xdm/${f} ${PREFIX}/etc/X11/xdm/${f}.sample
 .endfor
-	@${MKDIR} ${STAGEDIR}/var/db/xdm
+	@${MKDIR} /var/db/xdm
 
 .include <bsd.port.mk>

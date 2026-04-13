@@ -34,8 +34,8 @@ LDFLAGS+=	-lpthread
 SUB_FILES=	pkg-message
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${STAGEDIR}${PREFIX}/etc/aide.conf.sample
-	${MKDIR} ${STAGEDIR}/var/db/aide/databases
-	${CHMOD} 0700 ${STAGEDIR}/var/db/aide ${STAGEDIR}/var/db/aide/databases
+	${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${PREFIX}/etc/aide.conf.sample
+	${MKDIR} ${FAKE_DESTDIR}/var/db/aide/databases
+	${CHMOD} 0700 ${FAKE_DESTDIR}/var/db/aide ${FAKE_DESTDIR}/var/db/aide/databases
 
 .include <bsd.port.mk>

@@ -51,46 +51,46 @@ post-patch:
 		-e '/argv/s/unsigned//'
 
 do-install:
-	(cd ${WRKSRC} && ${INSTALL_PROGRAM} ${BINFILES} ${STAGEDIR}${PREFIX}/bin)
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${CP} ${_DISTDIR}/edicth ${STAGEDIR}${DATADIR}
+	(cd ${WRKSRC} && ${INSTALL_PROGRAM} ${BINFILES} ${PREFIX}/bin)
+	@${MKDIR} ${DATADIR}
+	${CP} ${_DISTDIR}/edicth ${DATADIR}
 .for f in edict enamdict compdic j_places kanjidic kanjd212 geodic
-	${GZIP_CMD} -cd ${_DISTDIR}/${f}.gz > ${STAGEDIR}${DATADIR}/${f}
+	${GZIP_CMD} -cd ${_DISTDIR}/${f}.gz > ${DATADIR}/${f}
 .endfor
 .for f in ediclsd3 lawgledt lingdic pandpdic aviation findic mktdic \
 	4jword3_edict concrete
-	cd ${STAGEDIR}${DATADIR} && \
+	cd ${DATADIR} && \
 		${TAR} -xf ${_DISTDIR}/${f}.zip ${f:S|edict|edict.euc|}
 .endfor
 .for dict in ${DICTFILES:S|_edict|_edict.euc|}
-	(cd ${STAGEDIR}${DATADIR} && ${STAGEDIR}${PREFIX}/bin/xjdxgen ${dict:R})
-	(cd ${STAGEDIR}${DATADIR} && ${CHMOD} ${SHAREMODE} \
+	(cd ${DATADIR} && ${PREFIX}/bin/xjdxgen ${dict:R})
+	(cd ${DATADIR} && ${CHMOD} ${SHAREMODE} \
 		${dict:R} ${dict:R}.xjdx)
 .endfor
-	${RM} ${STAGEDIR}${PREFIX}/bin/xjdic
-	(cd ${STAGEDIR}${PREFIX}/bin && ${LN} -s xjdic_sa xjdic)
+	${RM} ${PREFIX}/bin/xjdic
+	(cd ${PREFIX}/bin && ${LN} -s xjdic_sa xjdic)
 	(cd ${WRKSRC} && ${INSTALL_DATA} radicals.tm radkfile kanjstroke \
-		romkana.cnv vconj ${STAGEDIR}${DATADIR})
+		romkana.cnv vconj ${DATADIR})
 	#
 	# Only 9 dictionaries can be enabled
 	#
-	@${ECHO_CMD} dicdir ${LOCALBASE}/${DATADIR_REL} > ${STAGEDIR}${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile edict >> ${STAGEDIR}${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile enamdict >> ${STAGEDIR}${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile compdic >> ${STAGEDIR}${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile ediclsd3 >> ${STAGEDIR}${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile j_places >> ${STAGEDIR}${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicdir ${LOCALBASE}/${DATADIR_REL} > ${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile edict >> ${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile enamdict >> ${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile compdic >> ${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile ediclsd3 >> ${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile j_places >> ${DATADIR}/.xjdicrc
 	# @${ECHO_CMD} dicfile lawgledt >> ${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile geodic >> ${STAGEDIR}${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile geodic >> ${DATADIR}/.xjdicrc
 	# @${ECHO_CMD} dicfile pandpdic >> ${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile aviation >> ${STAGEDIR}${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile aviation >> ${DATADIR}/.xjdicrc
 	# @${ECHO_CMD} dicfile findic >> ${DATADIR}/.xjdicrc
 	# @${ECHO_CMD} dicfile mktdic >> ${DATADIR}/.xjdicrc
-	@${ECHO_CMD} dicfile 4jword3_edict.euc >> ${STAGEDIR}${DATADIR}/.xjdicrc
+	@${ECHO_CMD} dicfile 4jword3_edict.euc >> ${DATADIR}/.xjdicrc
 	# @${ECHO_CMD} dicfile concrete.doc >> ${DATADIR}/.xjdicrc
 	# @${ECHO_CMD} dicfile lingdic >> ${DATADIR}/.xjdicrc
-	@${CHMOD} ${SHAREMODE} ${STAGEDIR}${DATADIR}/.xjdicrc
-	${INSTALL_MAN} ${WRKSRC}/xjdic.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	@${CHMOD} ${SHAREMODE} ${DATADIR}/.xjdicrc
+	${INSTALL_MAN} ${WRKSRC}/xjdic.1 ${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

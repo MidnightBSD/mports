@@ -42,15 +42,15 @@ post-extract:
 
 do-install:
 	${RM} -r ${WRKSRC}/help ${WRKSRC}/.install/.download
-	( cd ${WRKSRC} ; ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/google-cloud-sdk )
+	( cd ${WRKSRC} ; ${COPYTREE_SHARE} . ${PREFIX}/google-cloud-sdk )
 .for x in bq docker-credential-gcloud gcloud git-credential-gcloud.sh gsutil
-	${CHMOD} +x ${STAGEDIR}${PREFIX}/google-cloud-sdk/bin/${x}
-	${RLN} ${STAGEDIR}${PREFIX}/google-cloud-sdk/bin/${x} \
-		${STAGEDIR}${PREFIX}/bin/${x}
+	${CHMOD} +x ${PREFIX}/google-cloud-sdk/bin/${x}
+	${RLN} ${PREFIX}/google-cloud-sdk/bin/${x} \
+		${PREFIX}/bin/${x}
 .endfor
 
 post-install:
-	@(cd ${STAGEDIR}${PREFIX} && \
+	@(cd ${PREFIX} && \
 		${FIND} -s google-cloud-sdk -type f -o -type l >> ${TMPPLIST})
 
 .include <bsd.port.mk>

@@ -27,19 +27,19 @@ MAKE_FLAGS=	MK_MAN=no
 do-install:
 .for f in ctm ctm_dequeue ctm_rmail ctm_smail
 		${INSTALL_PROGRAM} ${WRKSRC}/${f}/${f} \
-			${STAGEDIR}${PREFIX}/sbin
+			${PREFIX}/sbin
 .endfor
 .for f in ctm ctm_rmail
 		${INSTALL_MAN} ${WRKSRC}/${f}/${f}.8 \
-			${STAGEDIR}${PREFIX}/share/man/man8/
+			${PREFIX}/share/man/man8/
 .endfor
 .for f in ctm_dequeue ctm_smail
-		${LN} ${STAGEDIR}${PREFIX}/share/man/man8/ctm_rmail.8 \
-			${STAGEDIR}${PREFIX}/share/man/man8/${f}.8
+		${LN} ${PREFIX}/share/man/man8/ctm_rmail.8 \
+			${PREFIX}/share/man/man8/${f}.8
 .endfor
 		${INSTALL_MAN} ${WRKSRC}/ctm/ctm.5 \
-			${STAGEDIR}${PREFIX}/share/man/man5/
-		${MKDIR} ${STAGEDIR}${DOCSDIR}
-		${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}/
+			${PREFIX}/share/man/man5/
+		${MKDIR} ${DOCSDIR}
+		${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}/
 
 .include <bsd.port.mk>

@@ -260,22 +260,22 @@ do-configure:
 	${FIND} ${WRKSRC} -name "*.bak" -delete
 
 do-install:
-	${MKDIR} ${STAGEDIR}${inst_dir}
-	${CP} -R ${WRKSRC} ${STAGEDIR}${inst_dir}
+	${MKDIR} ${inst_dir}
+	${CP} -R ${WRKSRC} ${inst_dir}
 .if !defined(CLIENT_SEUL)
-	${MKDIR} ${STAGEDIR}${inst_dir}/ASTK_SERV/etc/codeaster/astkrc	\
-		${STAGEDIR}/${ETCDIR}
-	${TOUCH} ${STAGEDIR}${inst_dir}/ASTK_SERV/etc/codeaster/astkrc/.keep_me
-	${CP} -R ${WRKSRC}/etc/* ${STAGEDIR}${ETCDIR}
-	(cd ${STAGEDIR}${PREFIX} \
+	${MKDIR} ${inst_dir}/ASTK_SERV/etc/codeaster/astkrc	\
+		/${ETCDIR}
+	${TOUCH} ${inst_dir}/ASTK_SERV/etc/codeaster/astkrc/.keep_me
+	${CP} -R ${WRKSRC}/etc/* ${ETCDIR}
+	(cd ${PREFIX} \
 		 && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		 -d ${PREFIX} -f aster)
-	(cd ${STAGEDIR}${PREFIX} \
+	(cd ${PREFIX} \
 		 && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
 		 -d ${PREFIX} -f aster)
-	${MV} ${STAGEDIR}${ETCDIR}/profile.sh ${STAGEDIR}${ETCDIR}/profile_astk.sh
+	${MV} ${ETCDIR}/profile.sh ${ETCDIR}/profile_astk.sh
 . if defined(WITH_MPI)
-	${ECHO_CMD} "localhost" > ${STAGEDIR}${PREFIX}/aster/aster-mpihosts
+	${ECHO_CMD} "localhost" > ${PREFIX}/aster/aster-mpihosts
 . endif
 .endif
 

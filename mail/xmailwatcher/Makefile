@@ -14,6 +14,6 @@ USES=		imake xorg
 USE_XORG=	ice sm x11 xaw xext xmu xpm xt
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/xmailwatcher
+	${STRIP_CMD} ${PREFIX}/bin/xmailwatcher
 
 .include <bsd.port.mk>

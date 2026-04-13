@@ -42,9 +42,9 @@ post-install:
 		${FIND} * -type f -or -type l | ${SED} -e 's|^share/man/.*|&.gz|' >> ${TMPPLIST}
 	# strip binaries
 	@${STRIP_CMD} \
-		${STAGEDIR}${PREFIX}/bin/ntpfrob \
-		${STAGEDIR}${PREFIX}/bin/ntptime \
-		${STAGEDIR}${PREFIX}/lib/libntpc.so.1.1.0 \
-		${STAGEDIR}${PREFIX}/sbin/ntpd
+		${PREFIX}/bin/ntpfrob \
+		${PREFIX}/bin/ntptime \
+		${PREFIX}/lib/libntpc.so.1.1.0 \
+		${PREFIX}/sbin/ntpd
 
 .include <bsd.port.mk>

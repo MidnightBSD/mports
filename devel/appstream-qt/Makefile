@@ -15,8 +15,8 @@ PLIST=		${.CURDIR}/pkg-plist
 
 post-install:
 	# remove files belonging to the master port
-	${XARGS} -L 1 -I % ${RM} -rf ${STAGEDIR}${PREFIX}/% < ${MASTERDIR}/pkg-plist
-	${FIND} ${STAGEDIR}${PREFIX} -empty -delete
-	${RM} -rf ${STAGEDIR}${PREFIX}/etc ${STAGEDIR}${PREFIX}/share/man
+	${XARGS} -L 1 -I % ${RM} -rf ${PREFIX}/% < ${MASTERDIR}/pkg-plist
+	${FIND} ${PREFIX} -empty -delete
+	${RM} -rf ${PREFIX}/etc ${PREFIX}/share/man
 
 .include	"${MASTERDIR}/Makefile"

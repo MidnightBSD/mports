@@ -114,15 +114,15 @@ pre-configure:
 	fi
 
 post-install:
-	@${RLN} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-5.0/jsc \
-		${STAGEDIR}${PREFIX}/bin/jsc-5
-	@${RLN} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-5.0/MiniBrowser \
-		${STAGEDIR}${PREFIX}/bin/MiniBrowser-5
-	@${MV} ${STAGEDIR}${PREFIX}/bin/WebKitWebDriver \
-		${STAGEDIR}${PREFIX}/bin/WebKitWebDriver-5
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so.*.*
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/webkit2gtk-5.0/injected-bundle/*.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-5.0/*
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/WebKitWebDriver-5
+	@${RLN} ${PREFIX}/libexec/webkit2gtk-5.0/jsc \
+		${PREFIX}/bin/jsc-5
+	@${RLN} ${PREFIX}/libexec/webkit2gtk-5.0/MiniBrowser \
+		${PREFIX}/bin/MiniBrowser-5
+	@${MV} ${PREFIX}/bin/WebKitWebDriver \
+		${PREFIX}/bin/WebKitWebDriver-5
+	@${STRIP_CMD} ${PREFIX}/lib/*.so.*.*
+	@${STRIP_CMD} ${PREFIX}/lib/webkit2gtk-5.0/injected-bundle/*.so
+	@${STRIP_CMD} ${PREFIX}/libexec/webkit2gtk-5.0/*
+	@${STRIP_CMD} ${PREFIX}/bin/WebKitWebDriver-5
 
 .include <bsd.port.post.mk>

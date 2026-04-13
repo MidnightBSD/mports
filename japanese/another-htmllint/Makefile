@@ -50,10 +50,10 @@ do-build-W3M-on:
 	@${SED} -i.bak -e 's|^#$$W3M|$$W3M|' ${WRKSRC}/htmllint.env
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/rule ${STAGEDIR}${DATADIR}/html
-	cd ${WRKSRC} && ${INSTALL_SCRIPT} ../htmllint ${STAGEDIR}${PREFIX}/bin
-	cd ${WRKSRC} && ${INSTALL_SCRIPT} ${HTML} ${STAGEDIR}${DATADIR}/html
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PM} ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${RULE} ${STAGEDIR}${DATADIR}/rule
+	${MKDIR} ${DATADIR}/rule ${DATADIR}/html
+	cd ${WRKSRC} && ${INSTALL_SCRIPT} ../htmllint ${PREFIX}/bin
+	cd ${WRKSRC} && ${INSTALL_SCRIPT} ${HTML} ${DATADIR}/html
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PM} ${DATADIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${RULE} ${DATADIR}/rule
 
 .include <bsd.port.mk>

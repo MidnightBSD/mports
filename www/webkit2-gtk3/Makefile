@@ -107,13 +107,13 @@ pre-configure:
 
 post-install:
 	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	@${RLN} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-4.0/jsc \
-		${STAGEDIR}${PREFIX}/bin/jsc-4
-	@${RLN} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-4.0/MiniBrowser \
-		${STAGEDIR}${PREFIX}/bin/MiniBrowser-4
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so.*.*
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/webkit2gtk-4.0/injected-bundle/*.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-4.0/*
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/WebKitWebDriver
+	@${RLN} ${PREFIX}/libexec/webkit2gtk-4.0/jsc \
+		${PREFIX}/bin/jsc-4
+	@${RLN} ${PREFIX}/libexec/webkit2gtk-4.0/MiniBrowser \
+		${PREFIX}/bin/MiniBrowser-4
+	@${STRIP_CMD} ${PREFIX}/lib/*.so.*.*
+	@${STRIP_CMD} ${PREFIX}/lib/webkit2gtk-4.0/injected-bundle/*.so
+	@${STRIP_CMD} ${PREFIX}/libexec/webkit2gtk-4.0/*
+	@${STRIP_CMD} ${PREFIX}/bin/WebKitWebDriver
 
 .include <bsd.port.mk>

@@ -200,31 +200,31 @@ post-patch:
 
 .if !defined(BIND_TOOLS_SLAVE)
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mtree
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${PREFIX}/etc/mtree
+	${MKDIR} ${ETCDIR}
 .  for i in dynamic primary secondary working
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/$i
+	@${MKDIR} ${ETCDIR}/$i
 .  endfor
-	${INSTALL_DATA} ${WRKDIR}/named.conf ${STAGEDIR}${ETCDIR}/named.conf.sample
-	${INSTALL_DATA} ${FILESDIR}/named.root ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/empty.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
+	${INSTALL_DATA} ${WRKDIR}/named.conf ${ETCDIR}/named.conf.sample
+	${INSTALL_DATA} ${FILESDIR}/named.root ${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/empty.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${PREFIX}/etc/mtree/BIND.chroot.dist.sample
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
+	${MKDIR} ${DOCSDIR}/arm
 	${INSTALL_DATA} ${WRKSRC}/CHANGES* \
-		${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc/arm/_build/html && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/arm
+		${WRKSRC}/README.md ${DOCSDIR}
+	cd ${WRKSRC}/doc/arm/_build/html && ${COPYTREE_SHARE} . ${DOCSDIR}/arm
 .else
 
 do-install:
 	for dir in bin lib doc/man; do \
 		(cd ${INSTALL_WRKSRC}/$$dir && ${SETENV} ${MAKE_ENV} ${FAKEROOT} ${MAKE_CMD} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}) ; \
 	done
-	@${RM} -r ${STAGEDIR}${PREFIX}/include
+	@${RM} -r ${PREFIX}/include
 
 .endif	# BIND_TOOLS_SLAVE
 

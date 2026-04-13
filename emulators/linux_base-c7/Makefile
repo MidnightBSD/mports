@@ -1,6 +1,6 @@
 PORTNAME=	c7
 PORTVERSION=	${LINUX_DIST_VER}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	emulators linux
 PKGNAMEPREFIX=	linux_base-
 EXTRACT_ONLY=	${DISTFILES:N*${SRC_SUFX}*:Nfilesystem-*:C/:[^:]+$//}
@@ -193,15 +193,15 @@ post-patch:
 .endif
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/etc/krb5.conf \
-		${STAGEDIR}${PREFIX}/etc/krb5.conf.sample
-	${MV} ${STAGEDIR}${PREFIX}/etc/nsswitch.conf \
-		${STAGEDIR}${PREFIX}/etc/nsswitch.conf.sample
-	${MV} ${STAGEDIR}${PREFIX}/usr/lib/locale/locale-archive.tmpl \
-		${STAGEDIR}${PREFIX}/usr/lib/locale/locale-archive
-	${LN} -sf "../proc/self/mounts" ${STAGEDIR}${PREFIX}/etc/mtab
-	${LN} -sf ${LOCALBASE}/share/icons ${STAGEDIR}${PREFIX}/usr/share/icons
-	${LN} -sf /var/run ${STAGEDIR}${PREFIX}/run
-	${LN} -sf /var/tmp ${STAGEDIR}${PREFIX}/usr/tmp
+	${MV} ${PREFIX}/etc/krb5.conf \
+		${PREFIX}/etc/krb5.conf.sample
+	${MV} ${PREFIX}/etc/nsswitch.conf \
+		${PREFIX}/etc/nsswitch.conf.sample
+	${MV} ${PREFIX}/usr/lib/locale/locale-archive.tmpl \
+		${PREFIX}/usr/lib/locale/locale-archive
+	${LN} -sf "../proc/self/mounts" ${PREFIX}/etc/mtab
+	${LN} -sf ${LOCALBASE}/share/icons ${PREFIX}/usr/share/icons
+	${LN} -sf /var/run ${PREFIX}/run
+	${LN} -sf /var/tmp ${PREFIX}/usr/tmp
 
 .include <bsd.port.mk>

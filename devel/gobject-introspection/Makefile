@@ -87,7 +87,7 @@ post-fake:
 		"${FAKE_DESTDIR}${PREFIX}/lib/${PORTNAME}"
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/lib/gobject-introspection/giscanner/doctemplates/*/meson.build*
+	@${RM} ${PREFIX}/lib/gobject-introspection/giscanner/doctemplates/*/meson.build*
 .if ${FLAVOR:U} == bootstrap
 	echo "/usr/local/gobject-introspection-bootstrap/lib" >> ${FAKE_DESTDIR}/usr/local/gobject-introspection-bootstrap/libdata/ldconfig/gobject-introspection-bootstrap
 .endif

@@ -284,23 +284,23 @@ post-build-TZUPDATE-on:
 	@${LN} -sf ${LOCALBASE}/share/java/zi ${JRE_IMAGEDIR}/lib
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${INSTALLDIR}
+	@${MKDIR} ${INSTALLDIR}
 .if !defined(BUILD_JRE)
-	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${INSTALLDIR}
-	@cd ${STAGEDIR}${INSTALLDIR} && \
+	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${INSTALLDIR}
+	@cd ${INSTALLDIR} && \
 	${FIND} bin jre/bin -type f -exec ${CHMOD} ${BINMODE} {} \; && \
 	${CHMOD} ${BINMODE} jre/${JDK_JVMDIR}/jexec \
 	    jre/${JDK_JVMDIR}/jspawnhelper ${JDK_JVMDIR}/jexec
 	@${ECHO_CMD} "@dir ${INSTALLDIR}/jre/lib/applet" >> ${TMPPLIST}
 .else
-	@cd ${JRE_IMAGEDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${INSTALLDIR}
-	@cd ${STAGEDIR}${INSTALLDIR} && \
+	@cd ${JRE_IMAGEDIR} && ${COPYTREE_SHARE} . ${INSTALLDIR}
+	@cd ${INSTALLDIR} && \
 	${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \; && \
 	${CHMOD} ${BINMODE} ${JDK_JVMDIR}/jexec ${JDK_JVMDIR}/jspawnhelper
 	@${ECHO_CMD} "@dir ${INSTALLDIR}/lib/applet" >> ${TMPPLIST}
 .endif
 	@${ECHO_CMD} "@javavm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
-	@${FIND} ${STAGEDIR}${INSTALLDIR} -not -type d | ${SORT} | \
-	    ${SED} -e 's|^${STAGEDIR}${PREFIX}/||' >> ${TMPPLIST}
+	@${FIND} ${INSTALLDIR} -not -type d | ${SORT} | \
+	    ${SED} -e 's|^${PREFIX}/||' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>

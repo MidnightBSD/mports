@@ -88,9 +88,9 @@ post-patch:
 		${REINPLACE_CMD} "s|'rU'|'r'|g" {} \;
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/lib/libjs_static.ajs
-	${LN} -fs libmozjs-${SP_VER}.so ${STAGEDIR}${PREFIX}/lib/libmozjs-${SP_VER}.so.1
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/js${SP_VER}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmozjs-${SP_VER}.*
+	${RM} ${PREFIX}/lib/libjs_static.ajs
+	${LN} -fs libmozjs-${SP_VER}.so ${PREFIX}/lib/libmozjs-${SP_VER}.so.1
+	${STRIP_CMD} ${PREFIX}/bin/js${SP_VER}
+	${STRIP_CMD} ${PREFIX}/lib/libmozjs-${SP_VER}.*
 
 .include <bsd.port.post.mk>

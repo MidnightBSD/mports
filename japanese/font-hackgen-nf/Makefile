@@ -34,9 +34,9 @@ HACKGEN_FONTS+=	HackGen35ConsoleNF-Regular HackGen35ConsoleNF-Bold
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 .for FONT in ${HACKGEN_FONTS}
-	${INSTALL_DATA} ${WRKSRC}/${FONT}.ttf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${FONT}.ttf ${FONTSDIR}
 .endfor
 
 .include <bsd.port.mk>

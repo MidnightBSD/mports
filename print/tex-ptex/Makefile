@@ -53,13 +53,13 @@ pre-configure:
 
 pre-install:
 	${TAR} -Jxf ${DISTDIR}/${DIST_SUBDIR}/texlive-${TEXLIVE_VERSION}-texmf-japanese_tex-ptex-freebsd${EXTRACT_SUFX} \
-		-C ${STAGEDIR}${PREFIX}/share \
+		-C ${PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner
 
 post-install:
-	${FIND} -s ${STAGEDIR}${PREFIX}/share -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${PREFIX}/share -type d -empty | ${SORT} -r | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/share -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/share -type d -empty | ${SORT} -r | \
+		${SED} -e 's#^${PREFIX}/#@dir #' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

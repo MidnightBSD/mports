@@ -21,16 +21,16 @@ VERAFPW_VER=	1.0.3
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/vera-fpw/vera/data
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/vera-fpw/vera/gaiji
+	@${MKDIR} ${PREFIX}/share/dict/vera-fpw/vera/data
+	@${MKDIR} ${PREFIX}/share/dict/vera-fpw/vera/gaiji
 	${INSTALL_DATA} ${WRKSRC}/vera/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/vera-fpw/vera/data
+		${PREFIX}/share/dict/vera-fpw/vera/data
 	${INSTALL_DATA} ${WRKSRC}/vera/gaiji/gai16h \
-		${STAGEDIR}${PREFIX}/share/dict/vera-fpw/vera/gaiji
+		${PREFIX}/share/dict/vera-fpw/vera/gaiji
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/vera-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/vera-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme.txt vera.tex \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

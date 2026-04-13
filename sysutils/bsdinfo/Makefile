@@ -21,6 +21,6 @@ X256_CONFIGURE_ON=	--x256
 PLIST_FILES+=	bin/bsdinfo
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bsdinfo ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/bsdinfo ${PREFIX}/bin
 
 .include <bsd.port.mk>

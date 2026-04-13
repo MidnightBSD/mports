@@ -42,8 +42,8 @@ pre-build:
 	@cd ${WRKSRC} && ${GMAKE} clean
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/iozone ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/iozone ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKDIR}/${DISTNAME}/docs/iozone.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

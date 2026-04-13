@@ -39,14 +39,14 @@ do-fetch:
 	fi
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/node_modules/${PORTNAME}
+	@${MKDIR} ${PREFIX}/lib/node_modules/${PORTNAME}
 	cd ${WRKSRC} && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/node_modules/${PORTNAME}
-	${RLN} ${STAGEDIR}${PREFIX}/${TOP_JS} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+		${COPYTREE_SHARE} . ${PREFIX}/lib/node_modules/${PORTNAME}
+	${RLN} ${PREFIX}/${TOP_JS} ${PREFIX}/bin/${PORTNAME}
 	# Update shebang
 	${REINPLACE_CMD} -i '' -e '1s|#!/usr/bin/env node|#!${LOCALBASE}/bin/node|' \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PORTNAME}/node_modules/${PACKAGE_NAME}/cli.js
+		${PREFIX}/lib/node_modules/${PORTNAME}/node_modules/${PACKAGE_NAME}/cli.js
 	# make the top file executable
-	${CHMOD} +x ${STAGEDIR}${PREFIX}/${TOP_JS}
+	${CHMOD} +x ${PREFIX}/${TOP_JS}
 
 .include <bsd.port.mk>

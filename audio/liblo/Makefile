@@ -39,11 +39,11 @@ post-install:
 .endfor
 .if ${PORT_OPTIONS:MDOXYGEN}
 	(cd ${WRKSRC}/doc/man/man3 && ${INSTALL_MAN} l*.3 p*.3 \
-		${STAGEDIR}${MAN3PREFIX}/man/man3/)
-	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${STAGEDIR}${DOCSDIR})
+		${MAN3PREFIX}/man/man3/)
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${DOCSDIR})
 .endif
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_SCRIPT} ${PORTEXAMPLES:S|^|${WRKSRC}/examples/|} \
-		${STAGEDIR}${EXAMPLESDIR}
+		${EXAMPLESDIR}
 
 .include <bsd.port.mk>

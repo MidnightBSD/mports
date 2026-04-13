@@ -37,7 +37,7 @@ NOTO_HK_FONTS=	NotoSansCJKhk-Black.otf \
 		NotoSansMonoCJKhk-Regular.otf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_HK_FONTS} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_HK_FONTS} ${FONTSDIR}
 
 .include <bsd.port.mk>

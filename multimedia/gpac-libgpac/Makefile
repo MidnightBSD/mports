@@ -59,6 +59,6 @@ post-patch:
 		/CFLAGS=/s/-O3//' ${WRKSRC}/configure
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/gpac.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/gpac.pc ${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>

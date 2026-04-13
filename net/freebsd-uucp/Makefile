@@ -84,8 +84,8 @@ pre-install:
 		${FAKE_DESTDIR}${TRUE_PREFIX}/etc/mtree/uucp-local.mtree
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${INFO_PATH}
-	${INSTALL_DATA} ${WRKSRC}/uucp/doc/uucp.info ${STAGEDIR}${PREFIX}/${INFO_PATH}
+	${MKDIR} ${PREFIX}/${INFO_PATH}
+	${INSTALL_DATA} ${WRKSRC}/uucp/doc/uucp.info ${PREFIX}/${INFO_PATH}
 .if ${PORT_OPTIONS:MVAR_LOG}
 	${MKDIR} ${FAKE_DESTDIR}/var/log/uucp
 .endif

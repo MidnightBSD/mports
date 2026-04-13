@@ -192,19 +192,19 @@ pre-configure:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/webalizer \
-		${STAGEDIR}${PREFIX}/bin/${PKGNAMEPREFIX}webalizer
+		${PREFIX}/bin/${PKGNAMEPREFIX}webalizer
 	${INSTALL_PROGRAM} ${WRKSRC}/wcmgr \
-		${STAGEDIR}${PREFIX}/bin/${PKGNAMEPREFIX}wcmgr
+		${PREFIX}/bin/${PKGNAMEPREFIX}wcmgr
 	${LN} -sf ${PKGNAMEPREFIX}webalizer \
-		${STAGEDIR}${PREFIX}/bin/${PKGNAMEPREFIX}webazolver
+		${PREFIX}/bin/${PKGNAMEPREFIX}webazolver
 	${INSTALL_DATA} ${WRKSRC}/sample.conf \
-		${STAGEDIR}${PREFIX}/etc/${PKGNAMEPREFIX}webalizer.conf-dist ;
+		${PREFIX}/etc/${PKGNAMEPREFIX}webalizer.conf-dist ;
 .for i in ${LMAN1}
-	${INSTALL_MAN} ${WRKSRC}/${i:S/^${PKGNAMEPREFIX}//} ${STAGEDIR}${PREFIX}/share/man/man1/${i}
+	${INSTALL_MAN} ${WRKSRC}/${i:S/^${PKGNAMEPREFIX}//} ${PREFIX}/share/man/man1/${i}
 .endfor
 .if ${PORT_OPTIONS:MGEODB} || ${PORT_OPTIONS:MGEOIP}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/geolizer
-	${INSTALL_DATA} ${WRKDIR}/flags/* ${STAGEDIR}${PREFIX}/share/geolizer/
+	${MKDIR} ${PREFIX}/share/geolizer
+	${INSTALL_DATA} ${WRKDIR}/flags/* ${PREFIX}/share/geolizer/
 .endif
 
 do-install-DOCS-on:

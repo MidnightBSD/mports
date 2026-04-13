@@ -50,8 +50,8 @@ FIREWALL_BOUNCER_DESC=	Depend on security/crowdsec-firewall-bouncer
 FIREWALL_BOUNCER_RUN_DEPENDS=	crowdsec-firewall-bouncer>=0.0.27:security/crowdsec-firewall-bouncer
 
 PLUGIN_DIR=	${PREFIX}/lib/crowdsec/plugins
-STAGE_PLUGINS=	${STAGEDIR}${PLUGIN_DIR}
-STAGE_BIN=	${STAGEDIR}${PREFIX}/bin
+STAGE_PLUGINS=	${PLUGIN_DIR}
+STAGE_BIN=	${PREFIX}/bin
 
 post-patch:
 	@${REINPLACE_CMD} 's,/etc/crowdsec/,${ETCDIR}/,g' \
@@ -82,97 +82,97 @@ do-install:
 	# Configuration
 	#
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	@(cd ${WRKSRC}/config && ${COPYTREE_SHARE} . ${STAGEDIR}${ETCDIR})
+	@${MKDIR} ${ETCDIR}
+	@(cd ${WRKSRC}/config && ${COPYTREE_SHARE} . ${ETCDIR})
 
-	@${MV} ${STAGEDIR}${ETCDIR}/acquis.yaml \
-		${STAGEDIR}${ETCDIR}/acquis.yaml.sample
+	@${MV} ${ETCDIR}/acquis.yaml \
+		${ETCDIR}/acquis.yaml.sample
 
-	@${MV} ${STAGEDIR}${ETCDIR}/config.yaml \
-		${STAGEDIR}${ETCDIR}/config.yaml.sample
+	@${MV} ${ETCDIR}/config.yaml \
+		${ETCDIR}/config.yaml.sample
 
-	@${MV} ${STAGEDIR}${ETCDIR}/console.yaml \
-		${STAGEDIR}${ETCDIR}/console.yaml.sample
+	@${MV} ${ETCDIR}/console.yaml \
+		${ETCDIR}/console.yaml.sample
 
-	@${MV} ${STAGEDIR}${ETCDIR}/profiles.yaml \
-		${STAGEDIR}${ETCDIR}/profiles.yaml.sample
+	@${MV} ${ETCDIR}/profiles.yaml \
+		${ETCDIR}/profiles.yaml.sample
 
 	# managed by "cscli simulation"
-	@${MV} ${STAGEDIR}${ETCDIR}/simulation.yaml \
-		${STAGEDIR}${ETCDIR}/simulation.yaml.sample
+	@${MV} ${ETCDIR}/simulation.yaml \
+		${ETCDIR}/simulation.yaml.sample
 
 	#
 	# Plugin configuration
 	#
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/notifications
+	@${MKDIR} ${ETCDIR}/notifications
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/notifications/email
+	@${MKDIR} ${ETCDIR}/notifications/email
 	@${MV} ${WRKSRC}/cmd/notification-email/email.yaml \
-		${STAGEDIR}${ETCDIR}/notifications/email.yaml.sample
+		${ETCDIR}/notifications/email.yaml.sample
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/notifications/http
+	@${MKDIR} ${ETCDIR}/notifications/http
 	@${MV} ${WRKSRC}/cmd/notification-http/http.yaml \
-		${STAGEDIR}${ETCDIR}/notifications/http.yaml.sample
+		${ETCDIR}/notifications/http.yaml.sample
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/notifications/sentinel
+	@${MKDIR} ${ETCDIR}/notifications/sentinel
 	@${MV} ${WRKSRC}/cmd/notification-sentinel/sentinel.yaml \
-		${STAGEDIR}${ETCDIR}/notifications/sentinel.yaml.sample
+		${ETCDIR}/notifications/sentinel.yaml.sample
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/notifications/slack
+	@${MKDIR} ${ETCDIR}/notifications/slack
 	@${MV} ${WRKSRC}/cmd/notification-slack/slack.yaml \
-		${STAGEDIR}${ETCDIR}/notifications/slack.yaml.sample
+		${ETCDIR}/notifications/slack.yaml.sample
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/notifications/splunk
+	@${MKDIR} ${ETCDIR}/notifications/splunk
 	@${MV} ${WRKSRC}/cmd/notification-splunk/splunk.yaml \
-		${STAGEDIR}${ETCDIR}/notifications/splunk.yaml.sample
+		${ETCDIR}/notifications/splunk.yaml.sample
 
 	# updated by "cscli machines" at first service start
-	@${MV} ${STAGEDIR}${ETCDIR}/local_api_credentials.yaml \
-		${STAGEDIR}${ETCDIR}/local_api_credentials.yaml.sample
+	@${MV} ${ETCDIR}/local_api_credentials.yaml \
+		${ETCDIR}/local_api_credentials.yaml.sample
 
 	# updated by "cscli capi" at first service start
-	@${MV} ${STAGEDIR}${ETCDIR}/online_api_credentials.yaml \
-		${STAGEDIR}${ETCDIR}/online_api_credentials.yaml.sample
+	@${MV} ${ETCDIR}/online_api_credentials.yaml \
+		${ETCDIR}/online_api_credentials.yaml.sample
 
 	#
 	# Data
 	#
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/hub
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/acquis.d
-	@${MKDIR} ${STAGEDIR}/var/db/crowdsec/data
-	@${MKDIR} ${STAGEDIR}/var/db/crowdsec/data/trace
+	@${MKDIR} ${ETCDIR}/hub
+	@${MKDIR} ${ETCDIR}/acquis.d
+	@${MKDIR} /var/db/crowdsec/data
+	@${MKDIR} /var/db/crowdsec/data/trace
 
 	#
 	# Cron
 	#
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/libexec/crowdsec
+	@${MKDIR} ${PREFIX}/libexec/crowdsec
 	${INSTALL_DATA} ${WRKDIR}/upgrade-hub \
-		${STAGEDIR}${PREFIX}/libexec/crowdsec/upgrade-hub
+		${PREFIX}/libexec/crowdsec/upgrade-hub
 
 	#
 	# Cleanup
 	#
 
-	@${RM} ${STAGEDIR}${ETCDIR}/acquis_win.yaml
-	@${RM} ${STAGEDIR}${ETCDIR}/config_win_no_lapi.yaml
-	@${RM} ${STAGEDIR}${ETCDIR}/config_win.yaml
-	@${RM} ${STAGEDIR}${ETCDIR}/crowdsec.cron.daily
-	@${RM} ${STAGEDIR}${ETCDIR}/crowdsec.service
-	@${RM} ${STAGEDIR}${ETCDIR}/context.yaml
-	@${RM} ${STAGEDIR}${ETCDIR}/detect.yaml
-	@${RM} ${STAGEDIR}${ETCDIR}/dev.yaml
-	@${RM} ${STAGEDIR}${ETCDIR}/user.yaml
-	@${RMDIR} ${STAGEDIR}${ETCDIR}/notifications/email
-	@${RMDIR} ${STAGEDIR}${ETCDIR}/notifications/http
-	@${RMDIR} ${STAGEDIR}${ETCDIR}/notifications/sentinel
-	@${RMDIR} ${STAGEDIR}${ETCDIR}/notifications/slack
-	@${RMDIR} ${STAGEDIR}${ETCDIR}/notifications/splunk
+	@${RM} ${ETCDIR}/acquis_win.yaml
+	@${RM} ${ETCDIR}/config_win_no_lapi.yaml
+	@${RM} ${ETCDIR}/config_win.yaml
+	@${RM} ${ETCDIR}/crowdsec.cron.daily
+	@${RM} ${ETCDIR}/crowdsec.service
+	@${RM} ${ETCDIR}/context.yaml
+	@${RM} ${ETCDIR}/detect.yaml
+	@${RM} ${ETCDIR}/dev.yaml
+	@${RM} ${ETCDIR}/user.yaml
+	@${RMDIR} ${ETCDIR}/notifications/email
+	@${RMDIR} ${ETCDIR}/notifications/http
+	@${RMDIR} ${ETCDIR}/notifications/sentinel
+	@${RMDIR} ${ETCDIR}/notifications/slack
+	@${RMDIR} ${ETCDIR}/notifications/splunk
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/cron.d
-	${INSTALL_DATA} ${WRKDIR}/crowdsec.cron ${STAGEDIR}${PREFIX}/etc/cron.d/crowdsec
+	@${MKDIR} ${PREFIX}/etc/cron.d
+	${INSTALL_DATA} ${WRKDIR}/crowdsec.cron ${PREFIX}/etc/cron.d/crowdsec
 
 .include <bsd.port.mk>

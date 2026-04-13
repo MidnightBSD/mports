@@ -20,6 +20,6 @@ STRIP=
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/tsMuxeR ${WRKSRC}/tsMuxerGUI \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 
 .include <bsd.port.mk>

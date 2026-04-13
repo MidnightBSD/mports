@@ -28,6 +28,6 @@ post-patch:
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/xft-config \
-		${STAGEDIR}${PREFIX}/bin/
+		${PREFIX}/bin/
 
 .include <bsd.port.mk>

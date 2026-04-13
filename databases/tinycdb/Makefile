@@ -21,6 +21,6 @@ INSTALL_TARGET=	install install-sharedlib
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/cdb ${STAGEDIR}${PREFIX}/lib/libcdb.so.1
+	${STRIP_CMD} ${PREFIX}/bin/cdb ${PREFIX}/lib/libcdb.so.1
 
 .include <bsd.port.mk>

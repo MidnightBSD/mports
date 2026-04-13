@@ -66,9 +66,9 @@ post-patch:
 		${WRKSRC}/src/scim_kmfl_imengine.cpp
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 . for doc in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 . endfor
 
 .include <bsd.port.mk>

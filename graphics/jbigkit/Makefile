@@ -22,22 +22,22 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${INSTALL_PROGRAM}	\
-		${BINS:S|^|${WRKSRC}/pbmtools/|} ${STAGEDIR}${PREFIX}/bin
+		${BINS:S|^|${WRKSRC}/pbmtools/|} ${PREFIX}/bin
 
 	${INSTALL_MAN}	\
-		${MANS:S|^|${WRKSRC}/pbmtools/|} ${STAGEDIR}${PREFIX}/share/man/man1
+		${MANS:S|^|${WRKSRC}/pbmtools/|} ${PREFIX}/share/man/man1
 
-	${INSTALL_DATA} ${WRKSRC}/libjbig/*.h ${STAGEDIR}${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/libjbig/*.h ${PREFIX}/include
 
 	${INSTALL_DATA}	\
-		${LIBA:S|^|${WRKSRC}/libjbig/|} ${STAGEDIR}${PREFIX}/lib
+		${LIBA:S|^|${WRKSRC}/libjbig/|} ${PREFIX}/lib
 	${INSTALL_LIB}	\
-		${LIBS:S|^|${WRKSRC}/libjbig/|} ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf libjbig.so.2 ${STAGEDIR}${PREFIX}/lib/libjbig.so
-	${LN} -sf libjbig85.so.1 ${STAGEDIR}${PREFIX}/lib/libjbig85.so
+		${LIBS:S|^|${WRKSRC}/libjbig/|} ${PREFIX}/lib
+	${LN} -sf libjbig.so.2 ${PREFIX}/lib/libjbig.so
+	${LN} -sf libjbig85.so.1 ${PREFIX}/lib/libjbig85.so
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/libjbig/jbig.txt ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/libjbig/jbig.txt ${DOCSDIR}
 
 regression-test test:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/libjbig ${MAKE} test

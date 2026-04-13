@@ -1,5 +1,5 @@
 PORTNAME=	redis
-PORTVERSION=	5.4.0
+PORTVERSION=	5.4.1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
@@ -18,6 +18,6 @@ USES=		gem
 NO_ARCH=	yes
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/build
+	${RM} ${PREFIX}/bin/build
 
 .include <bsd.port.mk>

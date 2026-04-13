@@ -29,8 +29,8 @@ post-patch:
 		${WRKSRC}/usr/share/fontconfig
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc
-	${LN} -s ${LOCALBASE}/etc/fonts ${STAGEDIR}${PREFIX}/etc/
-	${MKDIR} ${STAGEDIR}${PREFIX}/var/db/fontconfig
+	${MKDIR} ${PREFIX}/etc
+	${LN} -s ${LOCALBASE}/etc/fonts ${PREFIX}/etc/
+	${MKDIR} ${PREFIX}/var/db/fontconfig
 
 .include <bsd.port.mk>

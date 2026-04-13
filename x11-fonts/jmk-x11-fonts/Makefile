@@ -15,7 +15,7 @@ BUILD_DEPENDS=	bdftopcf:x11-fonts/bdftopcf \
 USES=		fonts imake
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${FONTSDIR}
 
 .include <bsd.port.mk>

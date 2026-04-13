@@ -122,9 +122,9 @@ ZEROMQ_LIB_DEPENDS=	libzmq.so:net/libzmq4
 ZEROMQ_CONFIGURE_ON=	--enable-remotebackend-zeromq
 
 post-install::
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} ${FAKE_DESTDIR}/var/run/pdns
-	@${STAGEDIR}${PREFIX}/sbin/pdns_server --module-dir=${STAGEDIR}${PREFIX}/lib/pdns \
-		--launch="pipe bind ${MODULES}" --config > ${STAGEDIR}${EXAMPLESDIR}/pdns.conf
-	@${REINPLACE_CMD} -e 's;${FAKE_DESTDIR};;' -i '' ${STAGEDIR}${EXAMPLESDIR}/pdns.conf
+	@${MKDIR} ${EXAMPLESDIR} ${FAKE_DESTDIR}/var/run/pdns
+	@${PREFIX}/sbin/pdns_server --module-dir=${PREFIX}/lib/pdns \
+		--launch="pipe bind ${MODULES}" --config > ${EXAMPLESDIR}/pdns.conf
+	@${REINPLACE_CMD} -e 's;${FAKE_DESTDIR};;' -i '' ${EXAMPLESDIR}/pdns.conf
 
 .include <bsd.port.mk>

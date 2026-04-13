@@ -14,7 +14,7 @@ NO_BUILD=	yes
 USES=		fonts tar:bzip2
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/lfp-fix/*.pcf.gz ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/lfp-fix/*.pcf.gz ${FONTSDIR}
 
 .include <bsd.port.mk>

@@ -27,7 +27,7 @@ post-extract:
 	${CP} ${DISTDIR}/${DISTNAME} ${WRKDIR}
 
 do-install:
-	${INSTALL_DATA} ${WRKDIR}/${DISTNAME} ${STAGEDIR}${JAVAJARDIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/jrdesktop ${STAGEDIR}${PREFIX}/bin/jrdesktop
+	${INSTALL_DATA} ${WRKDIR}/${DISTNAME} ${JAVAJARDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/jrdesktop ${PREFIX}/bin/jrdesktop
 
 .include <bsd.port.mk>

@@ -34,13 +34,13 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/usr.bin/signify/signify \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/src/usr.bin/signify/signify.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+		${PREFIX}/share/man/man1
+	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${FILESDIR}/openbsd-*.pub \
-		${STAGEDIR}${ETCDIR}
-	cd ${STAGEDIR}${PREFIX} && \
+		${ETCDIR}
+	cd ${PREFIX} && \
 		${FIND} ${ETCDIR_REL} -name 'openbsd-*.pub' -type f >> ${TMPPLIST}
 
 .include <bsd.port.mk>

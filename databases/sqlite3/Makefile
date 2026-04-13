@@ -286,7 +286,7 @@ post-install:
 	${SETENV} LD_LIBMAP_DISABLE=1 ldd -a "${PREFIX}/bin/${PORTNAME}" "${PREFIX}/lib/lib${PORTNAME}.so"
 	${INSTALL_PROGRAM} "${WRKSRC}/sqldiff" "${PREFIX}/bin"
 .else
-	${RM} "${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so.${DISTVERSION}" "${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.a"
+	${RM} "${PREFIX}/lib/lib${PORTNAME}.so.${DISTVERSION}" "${PREFIX}/lib/lib${PORTNAME}.a"
 .endif
 
 post-install-STRIP-on:

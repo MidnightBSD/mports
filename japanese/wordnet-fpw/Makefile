@@ -21,12 +21,12 @@ WN_VER=		1.6
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/wordnet-fpw/wordnet/data
+	@${MKDIR} ${PREFIX}/share/dict/wordnet-fpw/wordnet/data
 	${INSTALL_DATA} ${WRKSRC}/wordnet/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/wordnet-fpw/wordnet/data
+		${PREFIX}/share/dict/wordnet-fpw/wordnet/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/wordnet-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/wordnet-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

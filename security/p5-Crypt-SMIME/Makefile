@@ -30,6 +30,6 @@ post-patch:
 	@${RM} ${WRKSRC}/t/*.orig
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Crypt/SMIME/SMIME.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Crypt/SMIME/SMIME.so
 
 .include <bsd.port.mk>

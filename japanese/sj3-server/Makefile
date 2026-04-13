@@ -61,6 +61,6 @@ pre-configure:
 	${INSTALL_DATA} ${WRKDIR}/sj3_freebsd.tmpl ${WRKSRC}/sj3_freebsd.tmpl
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/sj3/dict/user
+	${MKDIR} ${PREFIX}/lib/sj3/dict/user
 
 .include <bsd.port.post.mk>

@@ -202,11 +202,11 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-boost-boost_1_77_0-boost-move-detail-typ
 
 .if !defined(CLIENT_ONLY)
 post-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKDIR}/my.cnf.sample ${STAGEDIR}${ETCDIR}/my.cnf.sample
-	${MKDIR} ${STAGEDIR}${ETCDIR}/keyring
-	${MKDIR} ${STAGEDIR}${MY_SECDIR}
-	${MKDIR} ${STAGEDIR}${MY_TMPDIR}
+	${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKDIR}/my.cnf.sample ${ETCDIR}/my.cnf.sample
+	${MKDIR} ${ETCDIR}/keyring
+	${MKDIR} ${MY_SECDIR}
+	${MKDIR} ${MY_TMPDIR}
 .endif
 
 .include <bsd.port.post.mk>

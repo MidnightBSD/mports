@@ -31,6 +31,6 @@ USE_LDCONFIG=	yes
 SLAVEDIRS=	net/libngtcp2-gnutls net/libngtcp2-wolfssl
 
 post-install:
-	cd ${WRKSRC}/crypto/includes/ngtcp2/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/ngtcp2
+	cd ${WRKSRC}/crypto/includes/ngtcp2/ && ${COPYTREE_SHARE} . ${PREFIX}/include/ngtcp2
 
 .include <bsd.port.mk>

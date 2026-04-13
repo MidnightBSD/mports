@@ -34,7 +34,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|PREFIX|"${PREFIX}/9"|' ${WRKSRC}/lib9/get9root.c
 
 post-install:
-	@${FILE} ${STAGEDIR}${PREFIX}/9/bin/* | ${AWK} -F: '/ not stripped/{print $$1}' | \
+	@${FILE} ${PREFIX}/9/bin/* | ${AWK} -F: '/ not stripped/{print $$1}' | \
 		${XARGS} ${STRIP_CMD}
 
 .include <bsd.port.mk>

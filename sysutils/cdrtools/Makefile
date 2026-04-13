@@ -139,85 +139,85 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/btcflash/OBJ/${CDRTLSTARGET}/btcflash \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 .if ${PORT_OPTIONS:MCDDA2MP3}
-	${INSTALL_SCRIPT} ${WRKSRC}/cdda2wav/cdda2mp3 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/cdda2wav/cdda2mp3 ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/cdda2wav/cdda2ogg.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/cdda2mp3.1
+		${PREFIX}/share/man/man1/cdda2mp3.1
 .endif
 .if ${PORT_OPTIONS:MCDDA2OGG}
-	${INSTALL_SCRIPT} ${WRKSRC}/cdda2wav/cdda2ogg ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/cdda2wav/cdda2ogg ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/cdda2wav/cdda2ogg.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 .endif
 	${INSTALL_PROGRAM} ${WRKSRC}/cdda2wav/OBJ/${CDRTLSTARGET}/cdda2wav \
-		${STAGEDIR}${PREFIX}/bin
-	${LN} -sf cdda2wav ${STAGEDIR}${PREFIX}/bin/list_audio_tracks
+		${PREFIX}/bin
+	${LN} -sf cdda2wav ${PREFIX}/bin/list_audio_tracks
 	${INSTALL_PROGRAM} ${WRKSRC}/cdrecord/OBJ/${CDRTLSTARGET}/cdrecord \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 .for i in devdump isodebug isodump isoinfo isovfy
 	${INSTALL_PROGRAM} ${WRKSRC}/mkisofs/diag/OBJ/${CDRTLSTARGET}/${i} \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 .endfor
 	${INSTALL_PROGRAM} ${WRKSRC}/mkisofs/OBJ/${CDRTLSTARGET}/mkisofs \
-		${STAGEDIR}${PREFIX}/bin
-	${LN} -sf mkisofs ${STAGEDIR}${PREFIX}/bin/mkhybrid
+		${PREFIX}/bin
+	${LN} -sf mkisofs ${PREFIX}/bin/mkhybrid
 	${INSTALL_PROGRAM} ${WRKSRC}/readcd/OBJ/${CDRTLSTARGET}/readcd \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 .if ${PORT_OPTIONS:MRSCSI}
 	${INSTALL_PROGRAM} ${WRKSRC}/rscsi/OBJ/${CDRTLSTARGET}/rscsi \
-		${STAGEDIR}${PREFIX}/sbin
+		${PREFIX}/sbin
 .endif
 	${INSTALL_PROGRAM} ${WRKSRC}/scgcheck/OBJ/${CDRTLSTARGET}/scgcheck \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/btcflash/btcflash.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/cdda2wav/cdda2wav.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/cdrecord/cdrecord.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/readcd/readcd.1 ${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/readcd/readcd.1 ${PREFIX}/share/man/man1
 .if ${PORT_OPTIONS:MRSCSI}
-	@${INSTALL_MAN} ${WRKSRC}/rscsi/rscsi.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	@${INSTALL_MAN} ${WRKSRC}/rscsi/rscsi.1 ${PREFIX}/share/man/man1
 .endif
 	${INSTALL_MAN} ${WRKSRC}/scgcheck/scgcheck.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/mkisofs/mkisofs.8 ${STAGEDIR}${PREFIX}/share/man/man8
+		${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/mkisofs/mkisofs.8 ${PREFIX}/share/man/man8
 	${INSTALL_MAN} ${WRKSRC}/mkisofs/diag/isoinfo.8 \
-		${STAGEDIR}${PREFIX}/share/man/man8
+		${PREFIX}/share/man/man8
 	${INSTALL_DATA} ${WRKSRC}/cdrecord/cdrecord.dfl \
-		${STAGEDIR}${PREFIX}/etc/cdrecord.sample
-.if !exists(${STAGEDIR}${PREFIX}/etc/cdrecord)
+		${PREFIX}/etc/cdrecord.sample
+.if !exists(${PREFIX}/etc/cdrecord)
 	${INSTALL_DATA} ${WRKSRC}/cdrecord/cdrecord.dfl \
-		${STAGEDIR}${PREFIX}/etc/cdrecord
+		${PREFIX}/etc/cdrecord
 .endif
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/siconv
+	${MKDIR} ${PREFIX}/lib/siconv
 .for i in ${SICONVTABLES}
 	${INSTALL_DATA} ${WRKSRC}/libsiconv/tables/${i} \
-		${STAGEDIR}${PREFIX}/lib/siconv
+		${PREFIX}/lib/siconv
 .endfor
 .if ${PORT_OPTIONS:MRSCSI}
 	${INSTALL_DATA} ${WRKSRC}/rscsi/rscsi.dfl \
-		${STAGEDIR}${PREFIX}/etc/rscsi.sample
-.if !exists(${STAGEDIR}${PREFIX}/etc/rscsi)
-	${INSTALL_DATA} ${WRKSRC}/rscsi/rscsi.dfl ${STAGEDIR}${PREFIX}/etc/rscsi
+		${PREFIX}/etc/rscsi.sample
+.if !exists(${PREFIX}/etc/rscsi)
+	${INSTALL_DATA} ${WRKSRC}/rscsi/rscsi.dfl ${PREFIX}/etc/rscsi
 .endif
 .endif
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 .for i in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/cdda2wav
+	${MKDIR} ${DOCSDIR}/cdda2wav
 .for i in ${CDDA2WAVDOCS}
-	${INSTALL_DATA} ${WRKSRC}/cdda2wav/${i} ${STAGEDIR}${DOCSDIR}/cdda2wav
+	${INSTALL_DATA} ${WRKSRC}/cdda2wav/${i} ${DOCSDIR}/cdda2wav
 .endfor
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/cdrecord
+	${MKDIR} ${DOCSDIR}/cdrecord
 .for i in ${CDRECORDDOCS}
-	${INSTALL_DATA} ${WRKSRC}/cdrecord/${i} ${STAGEDIR}${DOCSDIR}/cdrecord
+	${INSTALL_DATA} ${WRKSRC}/cdrecord/${i} ${DOCSDIR}/cdrecord
 .endfor
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/mkisofs
+	${MKDIR} ${DOCSDIR}/mkisofs
 .for i in ${MKISOFSDOCS}
-	${INSTALL_DATA} ${WRKSRC}/mkisofs/${i} ${STAGEDIR}${DOCSDIR}/mkisofs
+	${INSTALL_DATA} ${WRKSRC}/mkisofs/${i} ${DOCSDIR}/mkisofs
 .endfor
 
 .include <bsd.port.mk>

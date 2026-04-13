@@ -22,7 +22,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/NotoColorEmoji.ttf ${DISTDIR}/${DIST_SUBDIR}/NotoEmoji-Regular.ttf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/NotoColorEmoji.ttf ${DISTDIR}/${DIST_SUBDIR}/NotoEmoji-Regular.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

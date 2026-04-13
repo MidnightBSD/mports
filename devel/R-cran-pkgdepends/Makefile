@@ -33,7 +33,7 @@ USES=		cran:auto-plist
 NO_ARCH_IGNORE=	pkgdepends.so
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/pkgdepends/libs/pkgdepends.so
+	${STRIP_CMD} ${PREFIX}/lib/R/library/pkgdepends/libs/pkgdepends.so
 	@${ECHO_CMD} "@dir ${R_MOD_DIR}/help/figures" >> ${TMPPLIST}
 
 .include <bsd.port.mk>

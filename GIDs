@@ -811,7 +811,7 @@ sqlpage:*:867:
 jellyfin:*:868:
 keyd:*:869:
 buildbot:*:870:
-# free: 871
+vglusers:*:871:
 bitmark:*:872:
 bitmark-recorder:*:873:
 librespeed:*:874:

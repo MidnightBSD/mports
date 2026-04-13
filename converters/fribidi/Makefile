@@ -20,6 +20,6 @@ post-patch:
 		${FILESDIR}/fribidi-config > ${WRKDIR}/fribidi-config
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/fribidi-config ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKDIR}/fribidi-config ${PREFIX}/bin
 
 .include <bsd.port.mk>

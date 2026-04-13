@@ -46,13 +46,13 @@ do-build:
 	cd ${BUILD_WRKSRC}; for x in com ${Z88_BIN_SUFFIXES}; do ${SETENV} ${MAKE_ENV} ${MAKE} -f z88$$x.mk.gcc64 z88$$x ; done
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/z88com ${STAGEDIR}${DATADIR}
-	for x in ${Z88_BIN_SUFFIXES}; do ${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/z88$$x ${STAGEDIR}${PREFIX}/bin; done
-	${INSTALL_DATA} ${Z88_DATA:S,^,${INSTALL_WRKSRC}/,} ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${FILESDIR}/z88 ${STAGEDIR}${PREFIX}/bin
-	${SED} -i '' 's,%%DATADIR%%,${DATADIR},' ${STAGEDIR}${PREFIX}/bin/z88
-	${SED} -i '' 's,%%Z88_DATA%%,${Z88_DATA},' ${STAGEDIR}${PREFIX}/bin/z88
+	${MKDIR} ${DATADIR}
+	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/z88com ${DATADIR}
+	for x in ${Z88_BIN_SUFFIXES}; do ${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/z88$$x ${PREFIX}/bin; done
+	${INSTALL_DATA} ${Z88_DATA:S,^,${INSTALL_WRKSRC}/,} ${DATADIR}
+	${INSTALL_SCRIPT} ${FILESDIR}/z88 ${PREFIX}/bin
+	${SED} -i '' 's,%%DATADIR%%,${DATADIR},' ${PREFIX}/bin/z88
+	${SED} -i '' 's,%%Z88_DATA%%,${Z88_DATA},' ${PREFIX}/bin/z88
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

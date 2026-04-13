@@ -26,6 +26,6 @@ NO_BUILD=	yes
 PLIST_FILES=	bin/${PORTNAME}
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} /${PREFIX}/bin
 
 .include <bsd.port.mk>

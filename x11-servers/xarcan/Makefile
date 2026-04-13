@@ -48,6 +48,6 @@ DEFAULT_FONTPATH_LIST= \
 do-install:
 # XXX Prevent Meson from installing unrelated files
 	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/hw/kdrive/arcan/Xarcan \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 
 .include <bsd.port.mk>

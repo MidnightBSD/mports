@@ -29,10 +29,10 @@ post-extract:
 	@(cd ${WRKSRC} && ${SH} EUCsetup )
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/xtr ${STAGEDIR}${PREFIX}/bin/xtr
-	${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/sample/*.xtr ${STAGEDIR}${PREFIX}/share/${PORTNAME}
+	${INSTALL_PROGRAM} ${WRKSRC}/src/xtr ${PREFIX}/bin/xtr
+	${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.1 ${PREFIX}/share/man/man1
+	@${MKDIR} ${PREFIX}/share/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/sample/*.xtr ${PREFIX}/share/${PORTNAME}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

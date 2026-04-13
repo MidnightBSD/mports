@@ -153,13 +153,13 @@ do-install:
 	# install binaries (workaround for error: found a virtual manifest at `xx` instead of a package manifest)
 	${INSTALL_PROGRAM} \
 		${WRKDIR}/target/release/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	# install the resources directory
 	@cd ${WRKSRC} && \
-		${COPYTREE_SHARE} resources ${STAGEDIR}${DATADIR}
+		${COPYTREE_SHARE} resources ${DATADIR}
 	${INSTALL_DATA} \
 		${WRKDIR}/sudachi-dictionary-20220519/system_core.dic \
-		${STAGEDIR}${DATADIR}/resources/system.dic
-	@${RM} ${STAGEDIR}${DATADIR}/resources/.gitkeep
+		${DATADIR}/resources/system.dic
+	@${RM} ${DATADIR}/resources/.gitkeep
 
 .include <bsd.port.mk>

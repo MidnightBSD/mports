@@ -29,7 +29,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tzdata>=0:devel/py-tzdata@${PY_FLAVOR}
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
-TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} LC_ALL=en_US.UTF-8
+TEST_ENV=	PYTHONPATH=${PYTHONPREFIX_SITELIBDIR} LC_ALL=en_US.UTF-8
 
 NO_ARCH=	yes
 PLIST_FILES=	${PYTHON_SITELIBDIR}/spdx_tools/spdx/parser/tagvalue/parser.out
@@ -41,10 +41,10 @@ pre-build:
 	${SETENVI} PYTHONPATH=${WRKSRC}/src:${PYTHON_LIBDIR} ${PYTHON_CMD} ${FILESDIR}/generate-parser.py
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${FIND} ${WRKSRC}/examples -type f -exec ${INSTALL_DATA} {} ${STAGEDIR}${EXAMPLESDIR} \;
+	@${MKDIR} ${EXAMPLESDIR}
+	${FIND} ${WRKSRC}/examples -type f -exec ${INSTALL_DATA} {} ${EXAMPLESDIR} \;
 	${INSTALL_DATA} ${WRKSRC}/src/spdx_tools/spdx/parser/tagvalue/parser.out \
-		${STAGEDIR}${PYTHON_SITELIBDIR}/spdx_tools/spdx/parser/tagvalue
+		${PYTHON_SITELIBDIR}/spdx_tools/spdx/parser/tagvalue
 
 # This test requires https://github.com/RDFLib/pySHACL, which is not currently
 # in the ports tree. Using PYTEST_IGNORED_TESTS doesn't seem to work in this

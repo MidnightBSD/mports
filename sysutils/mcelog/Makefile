@@ -32,7 +32,7 @@ post-patch:
 		${WRKSRC}/Makefile
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/mcelog ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/mcelog.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_PROGRAM} ${WRKSRC}/mcelog ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/mcelog.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

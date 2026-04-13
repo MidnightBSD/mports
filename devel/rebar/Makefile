@@ -26,18 +26,18 @@ ZSH_PLIST_FILES=	share/zsh/site-functions/_rebar
 .include <bsd.mport.options.mk>
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
 .if ${PORT_OPTIONS:MBASH}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/bash-completion/completions
+	@${MKDIR} ${PREFIX}/share/bash-completion/completions
 	${INSTALL_DATA} ${WRKSRC}/priv/shell-completion/bash/rebar \
-		${STAGEDIR}${PREFIX}/share/bash-completion/completions/rebar
+		${PREFIX}/share/bash-completion/completions/rebar
 .endif
 .if ${PORT_OPTIONS:MZSH}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions/
+	@${MKDIR} ${PREFIX}/share/zsh/site-functions/
 	${INSTALL_DATA} ${WRKSRC}/priv/shell-completion/zsh/_rebar \
-		${STAGEDIR}${PREFIX}/share/zsh/site-functions/
+		${PREFIX}/share/zsh/site-functions/
 .endif
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/rebar.config.sample ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/rebar.config.sample ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

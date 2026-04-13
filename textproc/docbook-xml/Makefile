@@ -52,7 +52,7 @@ post-extract:
 	@${RMDIR} ${WRKDIR}/docbook-5.0/docbook-5.0
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${DBKDIR}
+	@${MKDIR} ${PREFIX}/${DBKDIR}
 	${ECHO_CMD} "CATALOG \"${LOCALBASE}/share/xml/xmlcharent/catalog\"" \
 	    > ${DBCAT_SGML}
 	${XMLCATMGR_CMD} -c ${DBCAT_XML} create
@@ -61,14 +61,14 @@ pre-install:
 
 .for D in ${DBFILES:C,:.*,,}
 do-install-${D:S/./_/g}:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${DBKDIR}/$D
+	@${MKDIR} ${PREFIX}/${DBKDIR}/$D
 	cd ${WRKDIR}/${DBFILES:M${D}\:*:C,.*:,,} && \
-	    ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${DBKDIR}/$D
-	${XMLCATMGR_CMD} -c ${STAGEDIR}${DBCAT_XML} \
+	    ${COPYTREE_SHARE} . ${PREFIX}/${DBKDIR}/$D
+	${XMLCATMGR_CMD} -c ${DBCAT_XML} \
 	    add nextCatalog "${PREFIX}/${DBKDIR}/$D/catalog.xml"
 	test "$D" = 5.0 || test "$D" = 4.1.2 || \
 	    ${ECHO_CMD} "CATALOG \"${PREFIX}/${DBKDIR}/$D/docbook.cat\"" \
-	    >> ${STAGEDIR}${DBCAT_SGML}
+	    >> ${DBCAT_SGML}
 do-install: do-install-${D:S/./_/g}
 .endfor
 

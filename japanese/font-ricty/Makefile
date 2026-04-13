@@ -63,22 +63,22 @@ pre-install:
 
 do-install:
 	@${MKDIR} \
-	    ${STAGEDIR}${FONTSDIR} \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d
+	    ${FONTSDIR} \
+	    ${PREFIX}/etc/fonts/conf.avail \
+	    ${PREFIX}/etc/fonts/conf.d
 .if ${SLAVE_PORT} == no
 	${INSTALL_DATA} ${WRKDIR}/fonts.dir ${WRKSRC}/Ricty-*.ttf \
-	    ${STAGEDIR}${FONTSDIR}
+	    ${FONTSDIR}
 .else
 	${INSTALL_DATA} ${WRKDIR}/fonts.dir ${WRKSRC}/RictyDiscord-*.ttf \
-	    ${STAGEDIR}${FONTSDIR}
+	    ${FONTSDIR}
 .endif
 	${INSTALL_DATA} ${FILESDIR}/20-unhint-${FONTNAME}.conf \
 	    ${FILESDIR}/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail
-	${RLN} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail/20-unhint-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
-	${RLN} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.avail
+	${RLN} ${PREFIX}/etc/fonts/conf.avail/20-unhint-${FONTNAME}.conf \
+	    ${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
+	${RLN} ${PREFIX}/etc/fonts/conf.avail/62-fonts-${FONTNAME}.conf \
+	    ${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
 
 .include <bsd.port.mk>

@@ -71,31 +71,31 @@ do-install:
 		${WRKSRC}/plugins/go-plugin/lib/dlv \
 		${WRKSRC}/plugins/remote-dev-server \
 		${WRKSRC}/plugins/station-plugin/toolbox
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
+	${MKDIR} ${DATADIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR} \
 		"! -name *\.bak ! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh ! -name *\.exe")
-	@(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${DATADIR}/bin/ \
+	@(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${DATADIR}/bin/ \
 		"-name *\.sh -o -name *\.py")
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin/${PORTNAME}
+	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.1 ${PREFIX}/share/man/man1/
+	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.desktop ${PREFIX}/share/applications/
 # Use fsnotifier replacement provided by java/intellij-fsnotifier
-	${ECHO} "idea.filewatcher.executable.path=${PREFIX}/bin/fsnotifier" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
+	${ECHO} "idea.filewatcher.executable.path=${PREFIX}/bin/fsnotifier" >> ${DATADIR}/bin/idea.properties
 # Install FreeBSD native lib provided by devel/jna
 	@${MKDIR} ${WRKDIR}/jna
 	@(cd ${WRKDIR}/jna && ${JAR} xf ${JAVAJARDIR}/jna-platform.jar libjnidispatch.so)
-	${MKDIR} ${STAGEDIR}${DATADIR}/lib/jna/${ARCH}
-	${INSTALL_LIB} ${WRKDIR}/jna/libjnidispatch.so ${STAGEDIR}${DATADIR}/lib/jna/${ARCH}/
+	${MKDIR} ${DATADIR}/lib/jna/${ARCH}
+	${INSTALL_LIB} ${WRKDIR}/jna/libjnidispatch.so ${DATADIR}/lib/jna/${ARCH}/
 # Use pty4j replacement provided by devel/jetbrains-pty4j
-	${MKDIR} ${STAGEDIR}${DATADIR}/lib/pty4j/${_PTY4J_ARCH}
-	${LN} -sf ../../../../../pty4j/${ARCH}/libpty.so ${STAGEDIR}${DATADIR}/lib/pty4j/${_PTY4J_ARCH}/libpty.so
+	${MKDIR} ${DATADIR}/lib/pty4j/${_PTY4J_ARCH}
+	${LN} -sf ../../../../../pty4j/${ARCH}/libpty.so ${DATADIR}/lib/pty4j/${_PTY4J_ARCH}/libpty.so
 # Use restarter provided by devel/jetbrains-restarter
-	${LN} -sf ../../restarter/restarter ${STAGEDIR}${DATADIR}/bin/restarter
+	${LN} -sf ../../restarter/restarter ${DATADIR}/bin/restarter
 # Use sqlite replacement provided by devel/jetbrains-sqlite
-	${MKDIR} ${STAGEDIR}${DATADIR}/lib/native/${_SQLITE_ARCH}
-	${LN} -sf ../../../../sqlite/${ARCH}/libsqliteij.so ${STAGEDIR}${DATADIR}/lib/native/${_SQLITE_ARCH}/libsqliteij.so
+	${MKDIR} ${DATADIR}/lib/native/${_SQLITE_ARCH}
+	${LN} -sf ../../../../sqlite/${ARCH}/libsqliteij.so ${DATADIR}/lib/native/${_SQLITE_ARCH}/libsqliteij.so
 # Disable automatic updates
-	${ECHO} "ide.no.platform.update=MidnightBSD Ports" >> ${STAGEDIR}${DATADIR}/bin/idea.properties
+	${ECHO} "ide.no.platform.update=MidnightBSD Ports" >> ${DATADIR}/bin/idea.properties
 
 do-install-DELVE-on:
 	${ECHO} "dlv.path=${PREFIX}/bin/dlv" >> ${FAKE_DESTDIR}${DATADIR}/bin/idea.properties

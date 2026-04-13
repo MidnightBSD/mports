@@ -33,7 +33,7 @@ CONFIGURE_ENV=	OBJCFLAGS='-fobjc-runtime=gnustep-2.0 -fblocks'
 MAKE_FLAGS=	OPTFLAG="${CFLAGS}"
 
 ETCDIR=		${LOCALBASE}/etc
-STAGEHEADER=	${STAGEDIR}${PREFIX}/GNUstep/System/Library/Headers
+STAGEHEADER=	${PREFIX}/GNUstep/System/Library/Headers
 
 PLIST_SUB+=	BASEVERSION=${PORTVERSION:R}
 

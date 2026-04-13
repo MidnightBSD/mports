@@ -32,8 +32,8 @@ DOCS_BUILD_DEPENDS=	makeinfo:print/texinfo \
 DOCS_INSTALL_TARGET=	installdocs
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/dmalloc
-	@(cd ${STAGEDIR}${PREFIX}/lib; \
+	${STRIP_CMD} ${PREFIX}/bin/dmalloc
+	@(cd ${PREFIX}/lib; \
 		${STRIP_CMD} libdmalloc.so.1; \
 		${LN} -sf libdmalloc.so.1 libdmalloc.so; \
 		${STRIP_CMD} libdmallocxx.so.1; \

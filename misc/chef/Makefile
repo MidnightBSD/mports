@@ -22,6 +22,6 @@ do-build:
 	(cd ${WRKSRC} && lex chef.x && ${CC} ${CFLAGS} -o chef lex.yy.c -ll)
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/chef ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/chef ${PREFIX}/bin
 
 .include <bsd.port.mk>

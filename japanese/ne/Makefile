@@ -18,12 +18,12 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/ne ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/src/ne_en.1 ${STAGEDIR}${PREFIX}/share/man/man1/ne.1
-	${INSTALL_MAN} ${WRKSRC}/src/ne.1 ${STAGEDIR}${PREFIX}/share/man/ja/man1
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/src/ne ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/src/ne_en.1 ${PREFIX}/share/man/man1/ne.1
+	${INSTALL_MAN} ${WRKSRC}/src/ne.1 ${PREFIX}/share/man/ja/man1
+	@${MKDIR} ${ETCDIR}
 .for i in key* nerc* term*
-	${INSTALL_DATA} ${WRKSRC}/etc/${i} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/etc/${i} ${ETCDIR}
 .endfor
 
 do-install-DOCS-on:

@@ -20,8 +20,8 @@ PLIST_FILES=	bin/webbench \
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/webbench ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/webbench.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/webbench ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/webbench.1 ${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

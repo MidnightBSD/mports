@@ -44,6 +44,6 @@ post-build:
 	}' < ${WRKSRC}/fonts.dir >> ${WRKSRC}/fonts.alias
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 
 .include <bsd.port.mk>

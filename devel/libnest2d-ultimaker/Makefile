@@ -31,6 +31,6 @@ post-extract:
 	@${CP} ${FILESDIR}/Findclipper.cmake ${WRKSRC}/cmake
 
 do-install:
-	@${CP} -r ${WRKSRC}/include/libnest2d ${STAGEDIR}${PREFIX}/include
+	@${CP} -r ${WRKSRC}/include/libnest2d ${PREFIX}/include
 
 .include <bsd.port.mk>

@@ -20,6 +20,6 @@ NO_ARCH=	yes
 SHEBANG_FILES=	bin/example
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/example
+	${RM} ${PREFIX}/bin/example
 
 .include <bsd.port.mk>

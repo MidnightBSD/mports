@@ -124,7 +124,7 @@ post-install:
 	-${MV} ${PREFIX}/etc/gdm/Init/Default \
 		${PREFIX}/etc/gdm/Init/Default.sample
 	-${MV} ${PREFIX}/etc/gdm/Xsession \
-		${STAGEDIR}${PREFIX}/etc/gdm/Xsession.sample
+		${PREFIX}/etc/gdm/Xsession.sample
 	-${MV} ${PREFIX}/etc/dbus-1/system.d/gdm.conf \
 		${PREFIX}/etc/dbus-1/system.d/gdm.conf.sample
 

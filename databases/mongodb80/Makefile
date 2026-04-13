@@ -173,6 +173,6 @@ do-install:
 	${RM} ${PREFIX}/bin/resmoke.py
 
 do-test:
-	${SH} ${FILESDIR}/make.test.sh "${STAGEDIR}${PREFIX}/bin"
+	${SH} ${FILESDIR}/make.test.sh "${PREFIX}/bin"
 
 .include <bsd.port.post.mk>

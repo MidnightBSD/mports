@@ -16,7 +16,7 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/*.h ${STAGEDIR}${PREFIX}/include/${PORTNAME}
+	${MKDIR} ${PREFIX}/include/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/*.h ${PREFIX}/include/${PORTNAME}
 
 .include <bsd.port.mk>

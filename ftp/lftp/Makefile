@@ -48,8 +48,8 @@ GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 GNUTLS_USES=	pkgconfig
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/etc/lftp.conf \
-		${STAGEDIR}${PREFIX}/etc/lftp.conf.sample
+	${MV} ${PREFIX}/etc/lftp.conf \
+		${PREFIX}/etc/lftp.conf.sample
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

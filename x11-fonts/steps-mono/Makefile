@@ -23,7 +23,7 @@ PLIST_FILES=	${FONTSDIR}/Steps-Mono-Thin.otf \
 		${FONTSDIR}/Steps-Mono.otf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/*.otf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/*.otf ${FONTSDIR}
 
 .include <bsd.port.mk>

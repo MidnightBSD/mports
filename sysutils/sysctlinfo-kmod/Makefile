@@ -28,10 +28,10 @@ OPTIONS_DEFAULT=	EXAMPLES
 .include <bsd.port.pre.mk>
 
 do-install:
-	${INSTALL_KLD} ${WRKSRC}/sysctlinfo.ko ${STAGEDIR}${KMODDIR}
-	${INSTALL_DATA} ${WRKSRC}/sysctlinfo.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_MAN} ${WRKSRC}/sysctlinfo.3 ${STAGEDIR}${PREFIX}/share/man/man3
-	${INSTALL_MAN} ${WRKSRC}/sysctlinfo.4 ${STAGEDIR}${PREFIX}/share/man/man4
+	${INSTALL_KLD} ${WRKSRC}/sysctlinfo.ko ${KMODDIR}
+	${INSTALL_DATA} ${WRKSRC}/sysctlinfo.h ${PREFIX}/include
+	${INSTALL_MAN} ${WRKSRC}/sysctlinfo.3 ${PREFIX}/share/man/man3
+	${INSTALL_MAN} ${WRKSRC}/sysctlinfo.4 ${PREFIX}/share/man/man4
 
 do-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

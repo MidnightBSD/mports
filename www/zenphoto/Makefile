@@ -30,8 +30,8 @@ post-patch:
 	@${RM} ${WRKSRC}/zp-core/Zenphoto.package
 
 do-install:
-	${MKDIR} ${STAGEDIR}${WWWDIR}/
-	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/
+	${MKDIR} ${WWWDIR}/
+	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${WWWDIR}/
 
 # maintainer section:
 

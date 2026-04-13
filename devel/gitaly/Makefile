@@ -46,14 +46,14 @@ post-patch:
 	${MV} ${WRKSRC}/config.toml.example ${WRKSRC}/config.toml.sample
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/bin
+	${MKDIR} ${DATADIR}/bin
 	${FIND} ${WRKSRC} -name '*.orig' -delete
-	(cd ${WRKSRC}/_build/bin/ && ${COPYTREE_BIN} .  ${STAGEDIR}${DATADIR}/bin && \
-	cd ${WRKSRC} && ${COPYTREE_SHARE} config.toml.sample  ${STAGEDIR}${DATADIR})
+	(cd ${WRKSRC}/_build/bin/ && ${COPYTREE_BIN} .  ${DATADIR}/bin && \
+	cd ${WRKSRC} && ${COPYTREE_SHARE} config.toml.sample  ${DATADIR})
 
 post-install:
-	${FIND} -s ${STAGEDIR}${DATADIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
+	${FIND} -s ${DATADIR} -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' | \
 		${SED} -E -e '/sample$$/ s#^#@sample #; \
 		/gitlab-shell-hook$$/ s#^#@(,,755) #; \
 		s#${DATADIR_REL}/bin#@(,,555) ${DATADIR_REL}/bin#; ' >> ${TMPPLIST}

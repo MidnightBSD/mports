@@ -42,13 +42,13 @@ post-patch:
 
 post-install:
 	${SED} -e '/cafile/s,/usr/local,${LOCALBASE},' \
-		${STAGEDIR}${ETCDIR}/mosquitto.conf > \
-		${STAGEDIR}${ETCDIR}/mosquitto.conf.sample
-	${MV} ${STAGEDIR}${ETCDIR}/pwfile.example \
-		${STAGEDIR}${ETCDIR}/pwfile.sample
-	${MV} ${STAGEDIR}${ETCDIR}/pskfile.example \
-		${STAGEDIR}${ETCDIR}/pskfile.sample
-	${MV} ${STAGEDIR}${ETCDIR}/aclfile.example \
-		${STAGEDIR}${ETCDIR}/aclfile.sample
+		${ETCDIR}/mosquitto.conf > \
+		${ETCDIR}/mosquitto.conf.sample
+	${MV} ${ETCDIR}/pwfile.example \
+		${ETCDIR}/pwfile.sample
+	${MV} ${ETCDIR}/pskfile.example \
+		${ETCDIR}/pskfile.sample
+	${MV} ${ETCDIR}/aclfile.example \
+		${ETCDIR}/aclfile.sample
 
 .include <bsd.port.mk>

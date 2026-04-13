@@ -279,14 +279,14 @@ post-install:
 		${PREFIX}/etc/mysql/user_map.conf.sample
 	${MV} ${PREFIX}/share/pam_user_map.so \
 		${PREFIX}/lib/mysql/
-	${RM} -r ${STAGEDIR}${PREFIX}/share/mysql/policy \
-		${STAGEDIR}${PREFIX}/include/mysql/server/private \
-		${STAGEDIR}${PREFIX}/lib/mysql/pkgconfig \
-		${STAGEDIR}${PREFIX}/libexec/rcmysql \
+	${RM} -r ${PREFIX}/share/mysql/policy \
+		${PREFIX}/include/mysql/server/private \
+		${PREFIX}/lib/mysql/pkgconfig \
+		${PREFIX}/libexec/rcmysql \
 		${FAKE_DESTDIR}/suite \
-		${STAGEDIR}${ETCDIR}/init.d \
-		${STAGEDIR}${ETCDIR}/logrotate.d \
-		${STAGEDIR}${DOCSDIR}/COPYING
+		${ETCDIR}/init.d \
+		${ETCDIR}/logrotate.d \
+		${DOCSDIR}/COPYING
 	${MV} ${ETCDIR}/conf.d/mysql-clients.cnf \
 		${ETCDIR}/conf.d/mysql-clients.cnf.sample
 	${MKDIR} ${FAKE_DESTDIR}${MARIADB_LOGDIR}

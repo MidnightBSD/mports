@@ -92,7 +92,7 @@ post-patch:
 	${SED} -i '' -e 's=-I./include/ldns=-I${LOCALBASE}/include/ldns=' ${WRKSRC}/Makefile.in
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DNS/LDNS/LDNS.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/DNS/LDNS/LDNS.so
 .else
 ALL_TARGET=	all
 INSTALL_TARGET=	install-lib install-h install-config
@@ -119,14 +119,14 @@ post-build:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/libldns.pc \
-		 ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+		 ${PREFIX}/libdata/pkgconfig
 	${INSTALL_MAN} ${WRKSRC}/packaging/ldns-config.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/doc/man/man3/ldns_*.3 \
-		${STAGEDIR}${PREFIX}/share/man/man3
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so.3
+		${PREFIX}/share/man/man3
+	${STRIP_CMD} ${PREFIX}/lib/lib${PORTNAME}.so.3
 .if ${PORT_OPTIONS:MDRILL}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/drill
+	${STRIP_CMD} ${PREFIX}/bin/drill
 .endif
 .if ${PORT_OPTIONS:MEXAMPLES}
 	for p in ldns-chaos ldns-compare-zones ldns-dane ldns-dpa ldns-gen-zone ldns-key2ds \
@@ -134,11 +134,11 @@ post-install:
 		ldns-read-zone ldns-resolver ldns-revoke ldns-rrsig ldns-signzone \
 		ldns-test-edns ldns-testns ldns-update ldns-verify-zone ldns-version \
 		ldns-walk ldns-zcat ldns-zsplit ldnsd; do \
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/$$p; done
+			${STRIP_CMD} ${PREFIX}/bin/$$p; done
 .endif
 .if ${PORT_OPTIONS:MDOXYGEN}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/html
-	${INSTALL_DATA} ${HTMLDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}/html
+	${MKDIR} ${DOCSDIR}/html
+	${INSTALL_DATA} ${HTMLDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}/html
 .endif
 
 .endif # BUILD_PYLDNS || BUILD_P5PERL
@@ -146,7 +146,7 @@ post-install:
 .if (defined(BUILD_PYLDNS))
 post-install:
 # file /usr/local/lib/python3.11/site-packages/_ldns.so.3.6.0
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PYTHON_VERSION}/site-packages/_ldns.so.3.6.0
+	${STRIP_CMD} ${PREFIX}/lib/${PYTHON_VERSION}/site-packages/_ldns.so.3.6.0
 .endif # BUILD_PYLDNS
 
 .include <bsd.port.post.mk>

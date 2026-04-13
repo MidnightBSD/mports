@@ -24,7 +24,7 @@ post-build:
 		${FILESDIR}/Makefile.example
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/dht
+	${MKDIR} ${PREFIX}/include/dht
 
 post-install:
 	${SETENV} ${MAKE_ENV} ${MAKE} -C ${WRKSRC} -f \

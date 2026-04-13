@@ -27,10 +27,10 @@ FCDIR?=		etc/fonts/conf.avail
 FCDIR_LINKS=	${FCDIR:S|conf.avail|conf.d|}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/hinted/*.ttf ${STAGEDIR}${FONTSDIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${FCDIR}/ ${STAGEDIR}${PREFIX}/${FCDIR_LINKS}/
-	${INSTALL_DATA} ${FILESDIR}/*.conf ${STAGEDIR}${PREFIX}/${FCDIR}/
-	cd ${STAGEDIR}${PREFIX}/${FCDIR_LINKS}/ && ${LN} -fs ../conf.avail/*.conf .
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/hinted/*.ttf ${FONTSDIR}
+	${MKDIR} ${PREFIX}/${FCDIR}/ ${PREFIX}/${FCDIR_LINKS}/
+	${INSTALL_DATA} ${FILESDIR}/*.conf ${PREFIX}/${FCDIR}/
+	cd ${PREFIX}/${FCDIR_LINKS}/ && ${LN} -fs ../conf.avail/*.conf .
 
 .include <bsd.port.mk>

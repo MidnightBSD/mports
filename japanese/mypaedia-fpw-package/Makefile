@@ -19,7 +19,7 @@ USES=		magick:6,run
 NO_BUILD=	yes
 PLIST_SUB=	PKGNAME=${PKGNAME}
 
-PKG_DIR=	${STAGEDIR}${PREFIX}/share/dict/lookup-package
+PKG_DIR=	${PREFIX}/share/dict/lookup-package
 
 OPTIONS_DEFINE=	DOCS
 
@@ -27,8 +27,8 @@ do-install:
 	@${MKDIR} ${PKG_DIR}
 	${INSTALL_DATA} ${WRKSRC}/mypaedia-fpw.el ${PKG_DIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/extract-mypaedia.pl ${PKG_DIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} ChangeLog README.TXT \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

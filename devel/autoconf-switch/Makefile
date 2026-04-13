@@ -14,9 +14,9 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME} ${PREFIX}/bin/
 .for l in autoheader autom4te autoreconf autoscan autoupdate ifnames
-	${LN} ${STAGEDIR}${PREFIX}/bin/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${l}
+	${LN} ${PREFIX}/bin/${PORTNAME} ${PREFIX}/bin/${l}
 .endfor
 
 .include <bsd.port.mk>

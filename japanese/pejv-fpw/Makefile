@@ -19,12 +19,12 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/pejv-fpw/pejv/data
+	@${MKDIR} ${PREFIX}/share/dict/pejv-fpw/pejv/data
 	${INSTALL_DATA} ${WRKSRC}/pejv/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/pejv-fpw/pejv/data
-	${INSTALL_DATA} ${WRKSRC}/catalogs ${STAGEDIR}${PREFIX}/share/dict/pejv-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/pejv-fpw/pejv/data
+	${INSTALL_DATA} ${WRKSRC}/catalogs ${PREFIX}/share/dict/pejv-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme legumin.doc pejvo.doc \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

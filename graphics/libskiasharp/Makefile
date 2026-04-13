@@ -76,8 +76,8 @@ do-configure:
 
 do-install:
 	${INSTALL_DATA} ${BUILD_WRKSRC}/libSkiaSharp.so.${SOVERSION} \
-		${STAGEDIR}${PREFIX}/lib
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libSkiaSharp.so.${SOVERSION} \
-		${STAGEDIR}${PREFIX}/lib/libSkiaSharp.so
+		${PREFIX}/lib
+	${RLN} ${PREFIX}/lib/libSkiaSharp.so.${SOVERSION} \
+		${PREFIX}/lib/libSkiaSharp.so
 
 .include <bsd.port.mk>

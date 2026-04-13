@@ -35,8 +35,8 @@ do-build:
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/dependency-check-cli/target/dependency-check-${PORTVERSION}-jar-with-dependencies.jar \
-		${STAGEDIR}${JAVAJARDIR}/owasp-dependency-check-${PORTVERSION}-jar-with-dependencies.jar
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}/var/cache/owasp-dependency-check
+		${JAVAJARDIR}/owasp-dependency-check-${PORTVERSION}-jar-with-dependencies.jar
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin
+	${MKDIR} /var/cache/owasp-dependency-check
 
 .include <bsd.port.mk>

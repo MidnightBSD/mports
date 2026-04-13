@@ -78,6 +78,6 @@ LDFLAGS+=-Wl,-z,notext
 post-install:
 # Fallback if GLX_EXT_libglvnd is missing or vendor library doesn't exist
 	@${ECHO_CMD} "libGLX_indirect.so.0 libGLX_mesa.so.0" \
-		>${STAGEDIR}${PREFIX}/etc/libmap.d/mesa.conf
+		>${PREFIX}/etc/libmap.d/mesa.conf
 
 .include <bsd.port.post.mk>

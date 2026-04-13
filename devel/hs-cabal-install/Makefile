@@ -63,6 +63,6 @@ do-build:
 		${PYTHON_CMD} bootstrap/bootstrap.py -d bootstrap/linux-8.10.1.json
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/_build/bin/cabal ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/_build/bin/cabal ${PREFIX}/bin/
 
 .include <bsd.port.post.mk>

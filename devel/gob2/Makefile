@@ -29,9 +29,9 @@ EXAMPLES=	GNOME_Foo_SomeInterface.idl \
 		my-person.gob
 
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
 .for f in ${EXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/${f} ${EXAMPLESDIR}
 .endfor
 
 .include <bsd.port.mk>

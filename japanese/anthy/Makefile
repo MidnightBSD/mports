@@ -69,9 +69,9 @@ post-patch:
 	${ICONV_CMD} -f utf-8 -t euc-jp ${WRKSRC}/src-util/rkhelper.c.orig >  ${WRKSRC}/src-util/rkhelper.c
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${ELISPDIR}
-	${INSTALL_DATA} ${WRKSRC}/src-util/*.el ${STAGEDIR}${PREFIX}/${ELISPDIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/ELISP ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${PREFIX}/${ELISPDIR}
+	${INSTALL_DATA} ${WRKSRC}/src-util/*.el ${PREFIX}/${ELISPDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/ELISP ${DOCSDIR}
 
 .include <bsd.port.mk>

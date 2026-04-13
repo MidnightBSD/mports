@@ -21,8 +21,8 @@ PLIST_FILES=	%%DATADIR%%/gecko/wine_gecko-%%GECKO_VERSION%%-x86.msi
 PLIST_DIRSTRY=	%%DATADIR%%/gecko %%DATADIR%%
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/gecko
+	@${MKDIR} ${DATADIR}/gecko
 	${INSTALL_DATA} ${DISTDIR}/wine_gecko-${DISTVERSION}-x86.msi \
-		${STAGEDIR}${DATADIR}/gecko
+		${DATADIR}/gecko
 
 .include <bsd.port.mk>

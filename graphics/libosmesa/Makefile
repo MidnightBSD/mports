@@ -51,8 +51,8 @@ MESON_ARGS+=	-Dintel-rt=disabled # https://gitlab.freedesktop.org/mesa/mesa/-/is
 .endif
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/GL
+	@${MKDIR} ${PREFIX}/include/GL
 	${INSTALL_DATA} ${WRKSRC}/include/GL/osmesa.h \
-		${STAGEDIR}${PREFIX}/include/GL
+		${PREFIX}/include/GL
 
 .include <bsd.port.post.mk>

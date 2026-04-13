@@ -32,18 +32,18 @@ PORTDOCS=	Bitstream-COPYRIGHT.txt Mplus-LICENSE_E.txt \
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC}/opfc-ModuleHP-1.1.1_withIPAFonts_and_Mplus && \
-	    ${COPYTREE_SHARE} . ${STAGEDIR}/${FONTSDIR}/..
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d
+	    ${COPYTREE_SHARE} . /${FONTSDIR}/..
+	@${MKDIR} ${PREFIX}/etc/fonts/conf.avail \
+	    ${PREFIX}/etc/fonts/conf.d
 	${INSTALL_DATA} ${FILESDIR}/20-unhint-${FONTNAME}.conf \
 	    ${FILESDIR}/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail
+	    ${PREFIX}/etc/fonts/conf.avail
 	${LN} -s -f ../conf.avail/20-unhint-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
 	${LN} -s -f ../conf.avail/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

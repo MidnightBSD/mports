@@ -19,8 +19,8 @@ post-patch:
 		s|= XawClientLibs|= -lneXtaw -lXmu -lXt -lX11|g' ${WRKSRC}/Imakefile
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/X11/ja_JP.eucJP/app-defaults
+	${MKDIR} ${PREFIX}/lib/X11/ja_JP.eucJP/app-defaults
 	${INSTALL_DATA} ${WRKSRC}/NeXFontSel-ja.ad \
-		${STAGEDIR}${PREFIX}/lib/X11/ja_JP.eucJP/app-defaults/NeXFontSel
+		${PREFIX}/lib/X11/ja_JP.eucJP/app-defaults/NeXFontSel
 
 .include <bsd.port.mk>

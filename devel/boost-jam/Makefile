@@ -20,7 +20,7 @@ WRKSRC_SUBDIR=	tools/build/src/engine
 .include "${.CURDIR}/../boost-all/common.mk"
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/bjam ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/bjam ${PREFIX}/bin
 
 .include <bsd.port.mk>

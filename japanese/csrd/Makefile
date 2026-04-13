@@ -28,15 +28,15 @@ PORTDOCS=	README csrd.doc
 SUB_FILES=	pkg-message
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/csrd ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/csrd.fmt ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/csrd.gai ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/quiet.fmt ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/quiet.gai ${STAGEDIR}${DATADIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/csrd ${PREFIX}/bin
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/csrd.fmt ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/csrd.gai ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/quiet.fmt ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/quiet.gai ${DATADIR}
+	${MKDIR} ${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

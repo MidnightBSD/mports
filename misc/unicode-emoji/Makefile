@@ -20,9 +20,9 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/unicode/emoji
+	@${MKDIR} ${PREFIX}/share/unicode/emoji
 .for f in ${DISTFILES}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${f} ${STAGEDIR}${PREFIX}/share/unicode/emoji/$f
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${f} ${PREFIX}/share/unicode/emoji/$f
 .endfor
 
 .for f in ${DISTFILES}

@@ -34,8 +34,8 @@ FILTER_DESC=		Control (Ignore or Extend) reader names reported by PCSC
 FILTER_CONFIGURE_ENABLE=	filter
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/pcsc/drivers
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/pcsc/services
+	@${MKDIR} ${PREFIX}/lib/pcsc/drivers
+	@${MKDIR} ${PREFIX}/lib/pcsc/services
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

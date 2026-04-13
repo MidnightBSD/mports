@@ -47,18 +47,18 @@ do-build:
 .endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data/opencc
-	${INSTALL_DATA} ${WRKSRC}/opencc/* ${STAGEDIR}${PREFIX}/share/rime-data/opencc
-	${INSTALL_DATA} ${WRKSRC}/*.yaml ${STAGEDIR}${PREFIX}/share/rime-data
-	(cd ${MY_OUTDIR} && ${COPYTREE_SHARE} build ${STAGEDIR}${PREFIX}/share/rime-data)
+	@${MKDIR} ${PREFIX}/share/rime-data
+	@${MKDIR} ${PREFIX}/share/rime-data/opencc
+	${INSTALL_DATA} ${WRKSRC}/opencc/* ${PREFIX}/share/rime-data/opencc
+	${INSTALL_DATA} ${WRKSRC}/*.yaml ${PREFIX}/share/rime-data
+	(cd ${MY_OUTDIR} && ${COPYTREE_SHARE} build ${PREFIX}/share/rime-data)
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/demo
-	${INSTALL_DATA} ${WRKSRC}/demo/* ${STAGEDIR}${DOCSDIR}/demo
-	${INSTALL_MAN} ${WRKSRC}/README.md ${STAGEDIR}/${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/README-cmn.md ${STAGEDIR}/${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/README-en.md ${STAGEDIR}/${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}/demo
+	${INSTALL_DATA} ${WRKSRC}/demo/* ${DOCSDIR}/demo
+	${INSTALL_MAN} ${WRKSRC}/README.md /${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/README-cmn.md /${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/README-en.md /${DOCSDIR}
 
 .include <bsd.port.mk>

@@ -19,12 +19,12 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/ebd-fpw/ebd/data
+	@${MKDIR} ${PREFIX}/share/dict/ebd-fpw/ebd/data
 	${INSTALL_DATA} ${WRKSRC}/ebd/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/ebd-fpw/ebd/data
-	${INSTALL_DATA} ${WRKSRC}/catalogs ${STAGEDIR}${PREFIX}/share/dict/ebd-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/ebd-fpw/ebd/data
+	${INSTALL_DATA} ${WRKSRC}/catalogs ${PREFIX}/share/dict/ebd-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme.1st readme.txt \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

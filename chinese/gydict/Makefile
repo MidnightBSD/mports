@@ -22,6 +22,6 @@ NO_ARCH=	yes
 PLIST_FILES=	bin/gydict
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/gydict.py ${STAGEDIR}${PREFIX}/bin/gydict
+	${INSTALL_SCRIPT} ${WRKSRC}/gydict.py ${PREFIX}/bin/gydict
 
 .include <bsd.port.mk>

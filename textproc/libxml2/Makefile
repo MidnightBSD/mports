@@ -55,11 +55,11 @@ post-patch:
 post-install:
 .if !defined(LIBXML2_SLAVE)
 # Documentation should be in DOCSDIR
-	@${MV} ${STAGEDIR}${PREFIX}/share/gtk-doc/html/libxml2 \
-		${STAGEDIR}${DOCSDIR}/devhelp
-	@${RM} -r ${STAGEDIR}${PREFIX}/share/gtk-doc
+	@${MV} ${PREFIX}/share/gtk-doc/html/libxml2 \
+		${DOCSDIR}/devhelp
+	@${RM} -r ${PREFIX}/share/gtk-doc
 # Install remaining documentation that's not connected to autotools
-	${INSTALL_MAN} ${WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/doc/*.html ${DOCSDIR}
 .else
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_LIBDIR}/site-packages/libxml2mod${PYTHON_SOABI}.so
 .endif

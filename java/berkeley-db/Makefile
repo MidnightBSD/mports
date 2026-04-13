@@ -39,8 +39,8 @@ post-patch:
 	    ${REINPLACE_CMD} -i "" -E 's,[^[:print:]]+, ,g'
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/build/lib/je.jar ${STAGEDIR}${JAVAJARDIR}/je-${PORTVERSION}.jar
-	${LN} -s -f je-${PORTVERSION}.jar ${STAGEDIR}${JAVAJARDIR}/je.jar
+	${INSTALL_DATA} ${WRKSRC}/build/lib/je.jar ${JAVAJARDIR}/je-${PORTVERSION}.jar
+	${LN} -s -f je-${PORTVERSION}.jar ${JAVAJARDIR}/je.jar
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -26,6 +26,6 @@ post-patch:
 		${WRKSRC}/usr/share/doc/alsa-lib
 
 post-install:
-	${LN} -sf ${LOCALBASE}/etc/asound.conf ${STAGEDIR}${PREFIX}/etc
+	${LN} -sf ${LOCALBASE}/etc/asound.conf ${PREFIX}/etc
 
 .include <bsd.port.mk>

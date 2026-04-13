@@ -27,12 +27,12 @@ PLIST_FILES+=	${DATADIR}/${ALIAS}.aff \
 .endfor
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/fr-moderne.aff ${STAGEDIR}${DATADIR}/fr_FR.aff
-	${INSTALL_DATA} ${WRKSRC}/fr-moderne.dic ${STAGEDIR}${DATADIR}/fr_FR.dic
+	${MKDIR} ${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/fr-moderne.aff ${DATADIR}/fr_FR.aff
+	${INSTALL_DATA} ${WRKSRC}/fr-moderne.dic ${DATADIR}/fr_FR.dic
 .for ALIAS in ${FRALIASES}
-	${LN} -sf fr_FR.aff ${STAGEDIR}${DATADIR}/${ALIAS}.aff
-	${LN} -sf fr_FR.dic ${STAGEDIR}${DATADIR}/${ALIAS}.dic
+	${LN} -sf fr_FR.aff ${DATADIR}/${ALIAS}.aff
+	${LN} -sf fr_FR.dic ${DATADIR}/${ALIAS}.dic
 .endfor
 
 .include <bsd.port.mk>

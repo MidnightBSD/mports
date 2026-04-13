@@ -25,7 +25,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's|-pd|-pR|g' ${WRKSRC}/main/Makefile
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${DOCSDIR}
 
 .include <bsd.port.mk>

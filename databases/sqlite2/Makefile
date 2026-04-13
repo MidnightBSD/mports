@@ -64,8 +64,8 @@ post-patch-THREADS-on:
 		>> ${WRKSRC}/freebsd.hints
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/sqlite
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libsqlite.so
+	${STRIP_CMD} ${PREFIX}/bin/sqlite
+	${STRIP_CMD} ${PREFIX}/lib/libsqlite.so
 
 post-install-TCL-on:
 	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-tcl)

@@ -44,10 +44,10 @@ post-patch:
 
 do-install:
 	@cd ${WRKSRC}/units && \
-		${INSTALL_PROGRAM} transgui ${STAGEDIR}${PREFIX}/bin
+		${INSTALL_PROGRAM} transgui ${PREFIX}/bin
 	@cd ${WRKSRC} && \
-		${COPYTREE_SHARE} lang ${STAGEDIR}${DATADIR}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps
-	${INSTALL_DATA} ${WRKSRC}/transgui.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/transgui.png
+		${COPYTREE_SHARE} lang ${DATADIR}
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/48x48/apps
+	${INSTALL_DATA} ${WRKSRC}/transgui.png ${PREFIX}/share/icons/hicolor/48x48/apps/transgui.png
 
 .include <bsd.port.mk>

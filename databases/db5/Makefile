@@ -82,17 +82,17 @@ post-patch:
 	${REINPLACE_CMD} -i '' -Ee 's/[[:<:]]atomic_init[[:>:]]/db_atomic_init/g' ${WRKSRC}/../src/mp/mp* ${WRKSRC}/../src/mutex/mut_*
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/db5/db_*
-	${RM} -r ${STAGEDIR}${DOCSDIR}/bdb-sql
+	${STRIP_CMD} ${PREFIX}/bin/db5/db_*
+	${RM} -r ${DOCSDIR}/bdb-sql
 .for i in ${DBLIBS}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so.0
-	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib
-	${LN} -s -f ${PORTNAME}/${i}-${BDBMAJ}.so ${STAGEDIR}${PREFIX}/lib
-	${LN} -s -f ${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib/${i}-${BDBVER}.so
-	${LN} -s -f ${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib/${i}-${BDBMAJ}.so.0
-	${LN} -s -f ${i}-${BDBVER}.a ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}.a
+	${STRIP_CMD} ${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so.0
+	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so.0 ${PREFIX}/lib
+	${LN} -s -f ${PORTNAME}/${i}-${BDBMAJ}.so ${PREFIX}/lib
+	${LN} -s -f ${i}-${BDBVER}.so.0 ${PREFIX}/lib/${i}-${BDBVER}.so
+	${LN} -s -f ${i}-${BDBVER}.so.0 ${PREFIX}/lib/${i}-${BDBMAJ}.so.0
+	${LN} -s -f ${i}-${BDBVER}.a ${PREFIX}/lib/${PORTNAME}/${i}.a
 .endfor
-	cd ${STAGEDIR}${PREFIX}/bin/${PORTNAME}; \
+	cd ${PREFIX}/bin/${PORTNAME}; \
 	for i in *; do ${LN} -s -f ${PORTNAME}/$$i ../$$i-${BDBVER} ; \
 		       ${LN} -s -f ${PORTNAME}/$$i ../$$i-${BDBMAJ} ; done
 

@@ -136,12 +136,12 @@ XINE_DESC=		Enable xine module
 XINE_CMAKE_BOOL=	MOD_XINE
 
 pre-configure:
-	${RM} ${STAGEDIR}${PREFIX}/man/man1/melt.1
+	${RM} ${PREFIX}/man/man1/melt.1
 
 common-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/melt-7
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmlt-7.so.${PORTVERSION}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmlt++-7.so.${PORTVERSION}
+	${STRIP_CMD} ${PREFIX}/bin/melt-7
+	${STRIP_CMD} ${PREFIX}/lib/libmlt-7.so.${PORTVERSION}
+	${STRIP_CMD} ${PREFIX}/lib/libmlt++-7.so.${PORTVERSION}
 
 post-install-DOCS-on:
 .for f in ${PORTDOCS}
@@ -164,7 +164,7 @@ INSTALL_WRKSRC?=	${BUILD_WRKSRC}
 .endif
 
 post-install: common-post-install
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/* 2>/dev/null || ${TRUE}
-	@${RMDIR} -p ${STAGEDIR}${PREFIX}/lib/${PORTNAME} 2>/dev/null || ${TRUE}
+	${STRIP_CMD} ${PREFIX}/lib/${PORTNAME}/* 2>/dev/null || ${TRUE}
+	@${RMDIR} -p ${PREFIX}/lib/${PORTNAME} 2>/dev/null || ${TRUE}
 
 .include <bsd.port.mk>

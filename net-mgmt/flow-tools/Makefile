@@ -53,7 +53,7 @@ post-patch:
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/libft.so.0.0.0
+	${STRIP_CMD} /${PREFIX}/lib/libft.so.0.0.0
 
 post-fake:
 .for f in asn.sym filter.cfg ip-prot.sym ip-type.sym map.cfg mask.cfg stat.cfg \

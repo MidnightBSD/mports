@@ -41,10 +41,10 @@ PLIST_FILES=	lib/libunrar.a \
 		include/${PORTNAME}/dll.hpp
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/libunrar.a ${STAGEDIR}${PREFIX}/lib/libunrar.a
-	${INSTALL_LIB} ${WRKSRC}/libunrar.so ${STAGEDIR}${PREFIX}/lib/${SONAME}
-	${RLN} ${STAGEDIR}${PREFIX}/lib/${SONAME} ${STAGEDIR}${PREFIX}/lib/${SONAME:R}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/dll.hpp ${STAGEDIR}${PREFIX}/include/${PORTNAME}/dll.hpp
+	${INSTALL_DATA} ${WRKSRC}/libunrar.a ${PREFIX}/lib/libunrar.a
+	${INSTALL_LIB} ${WRKSRC}/libunrar.so ${PREFIX}/lib/${SONAME}
+	${RLN} ${PREFIX}/lib/${SONAME} ${PREFIX}/lib/${SONAME:R}
+	@${MKDIR} ${PREFIX}/include/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/dll.hpp ${PREFIX}/include/${PORTNAME}/dll.hpp
 
 .include <bsd.port.mk>

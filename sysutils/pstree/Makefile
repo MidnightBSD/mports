@@ -21,7 +21,7 @@ do-build:
 	cd ${WRKSRC} && ${CC} ${CFLAGS} -o pstree pstree.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/pstree ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/pstree.1 ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_PROGRAM} ${WRKSRC}/pstree ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/pstree.1 ${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>

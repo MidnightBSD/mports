@@ -46,5 +46,5 @@ post-build:
 		CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" BUILD_QMAKE=1 \
 		${CONFIGURE_ENV} ${CONFIGURE_CMD} ${CONFIGURE_ARGS}
 post-install:
-	${RLN} ${STAGEDIR}${QT_BINDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-qt5
+	${RLN} ${QT_BINDIR}/${PORTNAME} ${PREFIX}/bin/${PORTNAME}-qt5
 .include <bsd.port.mk>

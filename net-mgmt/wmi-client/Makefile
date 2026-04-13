@@ -25,7 +25,7 @@ CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 do-install:
 .for x in ${PROGS}
-	${INSTALL_PROGRAM} ${WRKSRC}/Samba/source/${x} ${STAGEDIR}${PREFIX}/${x}
+	${INSTALL_PROGRAM} ${WRKSRC}/Samba/source/${x} ${PREFIX}/${x}
 .endfor
 
 .include <bsd.port.mk>

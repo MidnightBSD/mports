@@ -29,7 +29,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|^#!TCLSH_PATH$$|#!${TCLSH}|' ${WRKSRC}/scripts/*.tcl.in
 
 post-install:
-	@cd ${STAGEDIR}${PREFIX}/share/qflow/bin && \
+	@cd ${PREFIX}/share/qflow/bin && \
 		${STRIP_CMD} vlog2Spice vlog2Verilog vlog2Def vlog2Cel vlogFanout DEF2Verilog addspacers vesta spice2delay rc2dly blif2BSpice blif2Verilog blifFanout && \
 		${RM} yosys-abc && ${LN} -s ${LOCALBASE}/bin/abc yosys-abc # https://github.com/RTimothyEdwards/qflow/issues/6
 

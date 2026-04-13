@@ -45,19 +45,19 @@ post-patch:
 
 do-install:
 .for s in 16 20 24 32 40 48 60 64 72 80 96 128 256 512
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps
+	${MKDIR} ${PREFIX}/share/icons/hicolor/${s}x${s}/apps
 	${INSTALL_DATA} ${WRKSRC}/usr/share/icons/hicolor/${s}x${s}/mimetypes/*.png \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps/
+		${PREFIX}/share/icons/hicolor/${s}x${s}/apps/
 .endfor
 .for d in ${WPS_DESK}
 	${INSTALL_DATA} ${WRKSRC}/opt/kingsoft/${PORTNAME}/desktops/${PORTNAME}-${d}.desktop \
-		${STAGEDIR}${DESKTOPDIR}
+		${DESKTOPDIR}
 .endfor
-	${MKDIR} ${STAGEDIR}${LINUXBASE}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} opt ${STAGEDIR}${LINUXBASE})
+	${MKDIR} ${LINUXBASE}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} opt ${LINUXBASE})
 .for b in ${WPS_BINS}
-	${INSTALL_SCRIPT} ${WRKSRC}/usr/bin/${b} ${STAGEDIR}${PREFIX}/bin
-	${CHMOD} +x ${STAGEDIR}${LINUXBASE}/opt/kingsoft/wps-office/office6/${b}
+	${INSTALL_SCRIPT} ${WRKSRC}/usr/bin/${b} ${PREFIX}/bin
+	${CHMOD} +x ${LINUXBASE}/opt/kingsoft/wps-office/office6/${b}
 .endfor
 
 .include <bsd.port.mk>

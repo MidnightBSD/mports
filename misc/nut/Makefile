@@ -45,12 +45,12 @@ post-patch:
 		 s|$$(OPT)||'
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/nut ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/nut.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${WRKSRC}/raw.data && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/nut ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/nut.1 ${PREFIX}/share/man/man1
+	@${MKDIR} ${DATADIR}
+	(cd ${WRKSRC}/raw.data && ${COPYTREE_SHARE} . ${DATADIR})
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 do-install-FLTK-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/fltk/Nut ${FAKE_DESTDIR}${PREFIX}/bin

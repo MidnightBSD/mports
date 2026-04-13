@@ -68,14 +68,14 @@ do-configure:
 	@${CP} ${FILESDIR}/Makefile.config  ${WRKSRC}
 
 post-install:
-	cd ${STAGEDIR}${PREFIX}/bin && ${LN} -sf netsurf-gtk3 \
+	cd ${PREFIX}/bin && ${LN} -sf netsurf-gtk3 \
 		netsurf-gtk
 .for d in applications pixmaps
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/${d}
+	${MKDIR} ${PREFIX}/share/${d}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/frontends/gtk/res/netsurf-gtk.desktop \
-		${STAGEDIR}${PREFIX}/share/applications
+		${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/frontends/gtk/res/netsurf.xpm \
-		${STAGEDIR}${PREFIX}/share/pixmaps
+		${PREFIX}/share/pixmaps
 
 .include <bsd.port.mk>

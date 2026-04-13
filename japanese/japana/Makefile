@@ -25,9 +25,9 @@ post-patch:
 		${WRKSRC}/${PORTNAME}* ${WRKSRC}/default.conf
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKSRC}/default.conf \
-		${STAGEDIR}${PREFIX}/etc/${PORTNAME}.conf.default
+		${PREFIX}/etc/${PORTNAME}.conf.default
 
 .include <bsd.port.mk>

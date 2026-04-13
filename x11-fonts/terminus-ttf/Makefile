@@ -19,7 +19,7 @@ SUB_FILES=	pkg-message
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}/
+	${MKDIR} ${FONTSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}/
 
 .include <bsd.port.mk>

@@ -50,12 +50,12 @@ post-configure:
 		`${FIND} ${WRKSRC} -name Makefile`
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk/extralibs.ld
-	@${RMDIR} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/Tk.so
+	@${RM} ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk/extralibs.ld
+	@${RMDIR} ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/Tk.so
 .for i in Canvas Compound Entry Event HList IO InputO JPEG Listbox Menubutton Mwm NBFrame PNG Pixmap Scale Scrollbar TList Text TixGrid WinPhoto X Xlib
 		${STRIP_CMD} \
-		    ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/${i}/${i}.so
+		    ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/${i}/${i}.so
 .endfor
 
 .include <bsd.port.mk>

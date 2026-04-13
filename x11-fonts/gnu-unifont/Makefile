@@ -24,10 +24,10 @@ FONTFILES?=	unifont
 FONTSUFFIX?=	.pcf.gz
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 .for i in ${FONTFILES}
 	${INSTALL_DATA} ${DISTDIR}/${i}-${PORTVERSION}${FONTSUFFIX} \
-	    ${STAGEDIR}${FONTSDIR}/${i}${FONTSUFFIX}
+	    ${FONTSDIR}/${i}${FONTSUFFIX}
 .endfor
 
 .include <bsd.port.mk>

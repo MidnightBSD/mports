@@ -55,8 +55,8 @@ HPACK_CMAKE_BOOL=	ENABLE_HPACK_TOOLS
 HPACK_LIB_DEPENDS=	libjansson.so:devel/jansson
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/nghttpx/
-	${INSTALL_DATA} ${FILESDIR}/nghttpx.conf.sample ${STAGEDIR}${PREFIX}/etc/nghttpx/nghttpx.conf.sample
+	${MKDIR} ${PREFIX}/etc/nghttpx/
+	${INSTALL_DATA} ${FILESDIR}/nghttpx.conf.sample ${PREFIX}/etc/nghttpx/nghttpx.conf.sample
 
 post-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/

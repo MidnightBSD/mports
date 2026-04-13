@@ -107,17 +107,17 @@ post-patch:
 		${WRKSRC}/plugins/sudoers/Makefile.in
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/pam.conf ${STAGEDIR}${PREFIX}/etc/pam.d/sudo.default
-	${MV} ${STAGEDIR}${PREFIX}/etc/sudo.conf ${STAGEDIR}${PREFIX}/etc/sudo.conf.sample
-	${MV} ${STAGEDIR}${PREFIX}/etc/sudo_logsrvd.conf ${STAGEDIR}${PREFIX}/etc/sudo_logsrvd.conf.sample
-	${RM} ${STAGEDIR}${PREFIX}/etc/sudoers
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/cvtsudoers
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/sudoreplay
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/sudo_logsrvd
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/sudo_sendlog
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/visudo
+	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/sudo.default
+	${MV} ${PREFIX}/etc/sudo.conf ${PREFIX}/etc/sudo.conf.sample
+	${MV} ${PREFIX}/etc/sudo_logsrvd.conf ${PREFIX}/etc/sudo_logsrvd.conf.sample
+	${RM} ${PREFIX}/etc/sudoers
+	${STRIP_CMD} ${PREFIX}/bin/cvtsudoers
+	${STRIP_CMD} ${PREFIX}/bin/sudoreplay
+	${STRIP_CMD} ${PREFIX}/sbin/sudo_logsrvd
+	${STRIP_CMD} ${PREFIX}/sbin/sudo_sendlog
+	${STRIP_CMD} ${PREFIX}/sbin/visudo
 .for f in audit_json.so group_file.so libsudo_util.so sudoers.so system_group.so
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/sudo/${f}
+	${STRIP_CMD} ${PREFIX}/libexec/sudo/${f}
 .endfor
 
 post-install-PYTHON-on:

@@ -22,7 +22,7 @@ FONTS=		anorexia aqui cure cursor drift edges gelly glisp-bold \
 SUB_FILES=	pkg-message
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${FONTSDIR}
 
 .include <bsd.port.mk>

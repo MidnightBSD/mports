@@ -65,7 +65,7 @@ post-install:
 	${CP} ${FILESDIR}/background.jpg ${PREFIX}/share/slim/themes/default/background.jpg
 
 .	if ${PORT_OPTIONS:MPAM}
-	${INSTALL_DATA} ${FILESDIR}/pam.conf ${STAGEDIR}${PREFIX}/etc/pam.d/slim.default
+	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/slim.default
 .	endif
 
 .include <bsd.port.mk>

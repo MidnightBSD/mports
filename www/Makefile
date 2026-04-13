@@ -46,7 +46,6 @@
     SUBDIR += gitea
     SUBDIR += gitlab
     SUBDIR += glassfish
-    SUBDIR += glassfish4
     SUBDIR += gnome-user-share
     SUBDIR += google-sitemapgen
     SUBDIR += googler

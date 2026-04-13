@@ -132,29 +132,29 @@ post-build:
 	@${RM} ${BUILD_DIST_DIR}/lib/licenses/zstd-jni*
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 .for f in CHANGES LICENSE NEWS NOTICE
-	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} ${f}.txt ${STAGEDIR}${DATADIR}/
+	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} ${f}.txt ${DATADIR}/
 .endfor
 .for d in lib pylib tools
-	cd ${BUILD_DIST_DIR} && ${COPYTREE_SHARE} ${d} ${STAGEDIR}${DATADIR}/ "! -path '*/bin/*'"
+	cd ${BUILD_DIST_DIR} && ${COPYTREE_SHARE} ${d} ${DATADIR}/ "! -path '*/bin/*'"
 .endfor
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	cd ${BUILD_DIST_DIR}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${ETCDIR}/
-	cd ${BUILD_DIST_DIR} && ${COPYTREE_BIN} bin ${STAGEDIR}${DATADIR}
-	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} bin/cassandra.in.sh ${STAGEDIR}${DATADIR}/bin/
-	cd ${BUILD_DIST_DIR} && ${COPYTREE_BIN} tools/bin ${STAGEDIR}${DATADIR}/
-	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} tools/bin/cassandra.in.sh ${STAGEDIR}${DATADIR}/tools/bin/
-	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} tools/lib/fqltool.jar ${STAGEDIR}${DATADIR}/tools/lib/
-	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} tools/lib/stress.jar ${STAGEDIR}${DATADIR}/tools/lib/
+	${MKDIR} ${ETCDIR}
+	cd ${BUILD_DIST_DIR}/conf && ${COPYTREE_SHARE} . ${ETCDIR}/
+	cd ${BUILD_DIST_DIR} && ${COPYTREE_BIN} bin ${DATADIR}
+	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} bin/cassandra.in.sh ${DATADIR}/bin/
+	cd ${BUILD_DIST_DIR} && ${COPYTREE_BIN} tools/bin ${DATADIR}/
+	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} tools/bin/cassandra.in.sh ${DATADIR}/tools/bin/
+	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} tools/lib/fqltool.jar ${DATADIR}/tools/lib/
+	cd ${BUILD_DIST_DIR} && ${INSTALL_DATA} tools/lib/stress.jar ${DATADIR}/tools/lib/
 .for f in ${SCRIPT_FILES}
-	${RLN} ${STAGEDIR}${DATADIR}/bin/${f} ${STAGEDIR}${PREFIX}/bin/${f}
+	${RLN} ${DATADIR}/bin/${f} ${PREFIX}/bin/${f}
 .endfor
-	${RLN} ${STAGEDIR}${DATADIR}/bin/cqlsh ${STAGEDIR}${PREFIX}/bin/cqlsh
-	${LN} -s ${JAVAJARDIR}/snappy-java.jar ${STAGEDIR}${DATADIR}/lib/snappy-java.jar
+	${RLN} ${DATADIR}/bin/cqlsh ${PREFIX}/bin/cqlsh
+	${LN} -s ${JAVAJARDIR}/snappy-java.jar ${DATADIR}/lib/snappy-java.jar
 
 do-test:
-	@cd ${WRKSRC} && ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocal.repository=${REPO_DIR} ${USEJDK11} -Dstagedlib=${STAGEDIR}${DATADIR}/lib test
+	@cd ${WRKSRC} && ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocal.repository=${REPO_DIR} ${USEJDK11} -Dstagedlib=${DATADIR}/lib test
 
 .include <bsd.port.pre.mk>
 
@@ -180,9 +180,9 @@ ZSTD_DISTFILE=
 .endif
 
 post-install:
-	${LN} -s ${JAVAJARDIR}/netty.jar ${STAGEDIR}${DATADIR}/lib/netty.jar
+	${LN} -s ${JAVAJARDIR}/netty.jar ${DATADIR}/lib/netty.jar
 .if ${ARCH} == amd64 || ${ARCH} == i386
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/zstd-jni-${ZSTDJNI_VERSION}-freebsd_${ARCH}.jar ${STAGEDIR}${DATADIR}/lib/
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/zstd-jni-${ZSTDJNI_VERSION}-freebsd_${ARCH}.jar ${DATADIR}/lib/
 .endif
 
 post-install-DOCS-on:

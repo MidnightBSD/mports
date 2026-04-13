@@ -39,8 +39,8 @@ post-patch:
 		${WRKSRC}/examples/config.yml
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/${PORTNAME}
+	${MKDIR} ${PREFIX}/etc/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/examples/config.yml \
-		${STAGEDIR}${PREFIX}/etc/${PORTNAME}/config.yml.example
+		${PREFIX}/etc/${PORTNAME}/config.yml.example
 
 .include <bsd.port.mk>

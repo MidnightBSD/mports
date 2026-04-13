@@ -23,6 +23,6 @@ MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnsbmp.so
+	${STRIP_CMD} ${PREFIX}/lib/libnsbmp.so
 
 .include <bsd.port.mk>

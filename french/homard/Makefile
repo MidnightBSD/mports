@@ -56,22 +56,22 @@ do-build:
 	${BRANDELF} -t Linux ${WRKSRC}/Linux/${HOMARDPG}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${HOMARDDIR} ${STAGEDIR}${PREFIX}/apps/${OPSYS}
+	${MKDIR} ${HOMARDDIR} ${PREFIX}/apps/${OPSYS}
 	${INSTALL_PROGRAM} ${WRKSRC}/Linux/${HOMARDPG}	\
-		${STAGEDIR}${PREFIX}/apps/${OPSYS}
+		${PREFIX}/apps/${OPSYS}
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME}_base	\
-		${STAGEDIR}${HOMARDDIR}/${PORTNAME}
-	${CP} -R ${WRKSRC}/ASTER_HOMARD/${AHPY} ${STAGEDIR}${HOMARDDIR}
-	(cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py	\
+		${HOMARDDIR}/${PORTNAME}
+	${CP} -R ${WRKSRC}/ASTER_HOMARD/${AHPY} ${HOMARDDIR}
+	(cd ${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py	\
 		-d ${PREFIX} -f ${HOMARDDIR:S|${PREFIX}/||})
-	(cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py	\
+	(cd ${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py	\
 		-d ${PREFIX} -f ${HOMARDDIR:S|${PREFIX}/||})
-	${MKDIR} ${STAGEDIR}${ASTER_TOOLS}/
-	${LN} -fs ${HOMARDDIR}/homard ${STAGEDIR}${ASTER_TOOLS}/
-	${LN} -fs ${HOMARDDIR}/aster_homard_py ${STAGEDIR}${ASTER_TOOLS}/
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${ASTER_TOOLS}/
+	${LN} -fs ${HOMARDDIR}/homard ${ASTER_TOOLS}/
+	${LN} -fs ${HOMARDDIR}/aster_homard_py ${ASTER_TOOLS}/
+	${MKDIR} ${DOCSDIR}
 .for doc in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
 
 .include "${.CURDIR}/../../french/aster/bsd.aster.mk"

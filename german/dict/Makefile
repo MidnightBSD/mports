@@ -47,7 +47,7 @@ do-configure:
 .endif
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/dict.sh ${STAGEDIR}${PREFIX}/bin/de-dict
-	${INSTALL_DATA} ${WRKSRC}/ger-eng.txt ${STAGEDIR}${PREFIX}/share/
+	${INSTALL_SCRIPT} ${WRKSRC}/dict.sh ${PREFIX}/bin/de-dict
+	${INSTALL_DATA} ${WRKSRC}/ger-eng.txt ${PREFIX}/share/
 
 .include <bsd.port.mk>

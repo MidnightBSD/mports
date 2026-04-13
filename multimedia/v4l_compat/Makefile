@@ -36,23 +36,23 @@ BASE_HEADERS= \
 	linux/usb/video.h
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/linux/dvb
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/linux/usb
+	@${MKDIR} ${PREFIX}/include/linux/dvb
+	@${MKDIR} ${PREFIX}/include/linux/usb
 
 .for F in ${BASE_HEADERS}
 	${INSTALL_DATA} \
 		${LINUXDIR}/include/uapi/${F} \
-		${STAGEDIR}${PREFIX}/include/${F}
+		${PREFIX}/include/${F}
 .endfor
 
 # V4L1 is dead in upstream Linux, however libv4l still supports it.
 	${INSTALL_DATA} \
 		${FILESDIR}/videodev.h \
-		${STAGEDIR}${PREFIX}/include/linux/
+		${PREFIX}/include/linux/
 
 # Install types header file
 	${INSTALL_DATA} \
 		${FILESDIR}/types.h \
-		${STAGEDIR}${PREFIX}/include/linux/
+		${PREFIX}/include/linux/
 
 .include "${MASTERDIR}/Makefile"

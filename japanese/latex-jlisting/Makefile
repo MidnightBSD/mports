@@ -21,7 +21,7 @@ do-extract:
 		> ${WRKSRC}/jlisting.sty)
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${JLDIR}
-	${INSTALL_DATA} ${WRKSRC}/jlisting.sty ${STAGEDIR}${PREFIX}/${JLDIR}
+	@${MKDIR} ${PREFIX}/${JLDIR}
+	${INSTALL_DATA} ${WRKSRC}/jlisting.sty ${PREFIX}/${JLDIR}
 
 .include <bsd.port.mk>

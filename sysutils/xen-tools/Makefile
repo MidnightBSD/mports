@@ -99,6 +99,6 @@ do-install:
 	${MAKE_CMD} -j${MAKE_JOBS_NUMBER} -C ${WRKSRC} ${MAKE_ARGS} ${INSTALL_TARGET}
 
 post-install:
-	${MKDIR} ${STAGEDIR}/var/run/xen
+	${MKDIR} /var/run/xen
 
 .include <bsd.port.mk>

@@ -21,7 +21,7 @@ PLIST_FILES=	bin/msghack \
 SHEBANG_FILES=	msghack.py
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/msghack.py ${STAGEDIR}${PREFIX}/bin/msghack
-	${INSTALL_MAN} ${WRKSRC}/msghack.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_SCRIPT} ${WRKSRC}/msghack.py ${PREFIX}/bin/msghack
+	${INSTALL_MAN} ${WRKSRC}/msghack.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

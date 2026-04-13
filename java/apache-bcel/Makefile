@@ -25,8 +25,8 @@ PORTDOCS=	*
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}-${PORTVERSION}.jar \
-	    ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC}/apidocs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} "-not -empty")
+	    ${JAVAJARDIR}/${PORTNAME}.jar
+	${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC}/apidocs && ${COPYTREE_SHARE} . ${DOCSDIR} "-not -empty")
 
 .include <bsd.port.mk>

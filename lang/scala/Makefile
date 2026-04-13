@@ -31,13 +31,13 @@ pre-patch:
 	@${ECHO_MSG} "   SCALA_HOME:    ${SCALA_HOME}"
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${SCALA_HOME}/bin
+	@${MKDIR} ${SCALA_HOME}/bin
 .for f in ${SCALA_BINS}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${STAGEDIR}${SCALA_HOME}/bin/${f}
-	${RLN} ${STAGEDIR}${SCALA_HOME}/bin/${f} ${STAGEDIR}${PREFIX}/bin/${f}
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${SCALA_HOME}/bin/${f}
+	${RLN} ${SCALA_HOME}/bin/${f} ${PREFIX}/bin/${f}
 .endfor
 .for d in ${SCALA_SHRDIRS}
-	(cd ${WRKSRC}/${d} && ${COPYTREE_SHARE} . ${STAGEDIR}${SCALA_HOME}/${d})
+	(cd ${WRKSRC}/${d} && ${COPYTREE_SHARE} . ${SCALA_HOME}/${d})
 .endfor
 
 .include <bsd.port.mk>

@@ -54,6 +54,6 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/cinnamon-screensaver.pam \
-		${STAGEDIR}${PREFIX}/etc/pam.d/cinnamon-screensaver
+		${PREFIX}/etc/pam.d/cinnamon-screensaver
 
 .include <bsd.port.mk>

@@ -12,6 +12,6 @@ MAKE_JOBS_UNSAFE=	yes
 PLIST_FILES=	bin/schwobifyer
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 
 .include <bsd.port.mk>

@@ -17,7 +17,7 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/maps
-	${INSTALL_DATA} ${WRKSRC}/*.map ${STAGEDIR}${DATADIR}/maps/
+	${MKDIR} ${DATADIR}/maps
+	${INSTALL_DATA} ${WRKSRC}/*.map ${DATADIR}/maps/
 
 .include <bsd.port.mk>

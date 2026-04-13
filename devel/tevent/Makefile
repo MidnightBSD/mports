@@ -63,10 +63,10 @@ post-patch:
 					${BUILD_WRKSRC}/wscript
 
 post-install:
-				${RM} ${STAGEDIR}${PREFIX}/lib/tevent/libcmocka-tevent.so
-				${RM} ${STAGEDIR}${PREFIX}/lib/tevent/libpytalloc-util.cpython-${PYTHON_SUFFIX}-tevent.so
-				${RMDIR} ${STAGEDIR}${PREFIX}/lib/tevent
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtevent.so
+				${RM} ${PREFIX}/lib/tevent/libcmocka-tevent.so
+				${RM} ${PREFIX}/lib/tevent/libpytalloc-util.cpython-${PYTHON_SUFFIX}-tevent.so
+				${RMDIR} ${PREFIX}/lib/tevent
+				${STRIP_CMD} ${PREFIX}/lib/libtevent.so
 
 post-install-PYTHON-on:
 				${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_tevent*.so

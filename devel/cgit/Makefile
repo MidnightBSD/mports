@@ -55,7 +55,7 @@ post-patch:
 		${WRKSRC}/git/Makefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${WWWDIR}/cgit.cgi
+	${STRIP_CMD} ${WWWDIR}/cgit.cgi
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

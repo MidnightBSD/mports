@@ -63,8 +63,8 @@ post-patch:
 
 post-install:
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py -d \
-		${PREFIX}/${dir}/gnumeric -f ${STAGEDIR}${PREFIX}/lib/gnumeric/${PORTVERSION}
+		${PREFIX}/${dir}/gnumeric -f ${PREFIX}/lib/gnumeric/${PORTVERSION}
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -d \
-		${PREFIX}/${dir}/gnumeric -f ${STAGEDIR}${PREFIX}/lib/gnumeric/${PORTVERSION}
+		${PREFIX}/${dir}/gnumeric -f ${PREFIX}/lib/gnumeric/${PORTVERSION}
 
 .include <bsd.port.mk>

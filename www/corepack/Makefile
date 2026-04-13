@@ -20,8 +20,8 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/node_modules/
-	cd ${WRKSRC}/package/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/node_modules/corepack/
-	${LN} -s ../lib/node_modules/corepack/dist/corepack.js ${STAGEDIR}${PREFIX}/bin/corepack
+	${MKDIR} ${PREFIX}/lib/node_modules/
+	cd ${WRKSRC}/package/ && ${COPYTREE_SHARE} . ${PREFIX}/lib/node_modules/corepack/
+	${LN} -s ../lib/node_modules/corepack/dist/corepack.js ${PREFIX}/bin/corepack
 
 .include <bsd.port.mk>

@@ -20,6 +20,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/\(^ *default:\)/\1break;/' ${WRKSRC}/interface/utils.h
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libcdda_*.so
+	@${STRIP_CMD} ${PREFIX}/lib/libcdda_*.so
 
 .include <bsd.port.mk>

@@ -37,15 +37,15 @@ pre-build-LIBS-on:
 .endfor
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/* ${STAGEDIR}${PREFIX}/bin
-	${LN} -sf ncftpbatch ${STAGEDIR}${PREFIX}/bin/ncftpspooler
-	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/Strn/Strn.3 ${STAGEDIR}${PREFIX}/share/man/man3
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/* ${PREFIX}/bin
+	${LN} -sf ncftpbatch ${PREFIX}/bin/ncftpspooler
+	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/Strn/Strn.3 ${PREFIX}/share/man/man3
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
-	-${RM} -r ${STAGEDIR}${DOCSDIR}/man
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR})
+	-${RM} -r ${DOCSDIR}/man
 
 do-install-LIBS-on:
 	${INSTALL_LIB} ${WRKSRC}/Strn/${LIBSTRN} ${FAKE_DESTDIR}${PREFIX}/lib

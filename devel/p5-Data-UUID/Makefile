@@ -15,6 +15,6 @@ USE_PERL5=	configure
 CONFIGURE_ARGS=	</dev/null
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Data/UUID/UUID.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Data/UUID/UUID.so
 
 .include <bsd.port.mk>

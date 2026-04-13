@@ -37,7 +37,7 @@ PLIST_FILES+=	%%DATADIR%%/hyph_${ALIAS}.dic
 
 post-install:
 .for ALIAS in ${USALIASES}
-	${LN} -s hyph_en_US.dic ${STAGEDIR}${DATADIR}/hyph_${ALIAS}.dic
+	${LN} -s hyph_en_US.dic ${DATADIR}/hyph_${ALIAS}.dic
 .endfor
 
 .include <bsd.port.mk>

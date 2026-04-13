@@ -26,8 +26,8 @@ SUB_FILES+=	lmdb.pc
 SUB_LIST+=	PORTVERSION=${PORTVERSION}
 
 post-install:
-	${LN} -sf liblmdb.so.0 ${STAGEDIR}${PREFIX}/lib/liblmdb.so
-	${INSTALL_DATA} ${WRKDIR}/lmdb.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${LN} -sf liblmdb.so.0 ${PREFIX}/lib/liblmdb.so
+	${INSTALL_DATA} ${WRKDIR}/lmdb.pc ${PREFIX}/libdata/pkgconfig
 
 do-test:
 	${MKDIR} ${WRKSRC}/testdb

@@ -49,8 +49,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/es\.conf|${PREFIX}/etc/es.conf|;s|sockname|socketfile|g' ${WRKSRC}/INSTALL
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}; ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${FILESDIR}/es.conf.sample ${STAGEDIR}${PREFIX}/etc
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC}; ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	${INSTALL_DATA} ${FILESDIR}/es.conf.sample ${PREFIX}/etc
 
 .include <bsd.port.mk>

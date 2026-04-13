@@ -19,8 +19,8 @@ PLIST_FILES=	bin/motsognir \
 		share/man/man8/motsognir.8.gz
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/motsognir ${STAGEDIR}${PREFIX}/bin/motsognir
-	${INSTALL_DATA} ${WRKSRC}/motsognir.conf ${STAGEDIR}${PREFIX}/etc/motsognir.conf.sample
-	${INSTALL_MAN} ${WRKSRC}/motsognir.8.gz ${STAGEDIR}${PREFIX}/share/man/man8/motsognir.8.gz
+	${INSTALL_PROGRAM} ${WRKSRC}/motsognir ${PREFIX}/bin/motsognir
+	${INSTALL_DATA} ${WRKSRC}/motsognir.conf ${PREFIX}/etc/motsognir.conf.sample
+	${INSTALL_MAN} ${WRKSRC}/motsognir.8.gz ${PREFIX}/share/man/man8/motsognir.8.gz
 
 .include <bsd.port.mk>

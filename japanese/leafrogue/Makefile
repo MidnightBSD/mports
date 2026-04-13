@@ -17,12 +17,12 @@ DOC_FILES=	readme.txt lf_rogue.html lf_rogue.txt guide.tex guide.txt
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/rogue_s
-	${INSTALL_DATA} ${WRKSRC}/leaf.msg ${STAGEDIR}${PREFIX}/share/rogue_s
-	${INSTALL_SCRIPT} ${FILESDIR}/leafrogue ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${PREFIX}/share/rogue_s
+	${INSTALL_DATA} ${WRKSRC}/leaf.msg ${PREFIX}/share/rogue_s
+	${INSTALL_SCRIPT} ${FILESDIR}/leafrogue ${PREFIX}/bin
+	${MKDIR} ${DOCSDIR}
 	for file in ${DOC_FILES}; do \
-		${INSTALL_DATA} ${WRKSRC}/"$$file" ${STAGEDIR}${DOCSDIR} ; \
+		${INSTALL_DATA} ${WRKSRC}/"$$file" ${DOCSDIR} ; \
 	done
 
 .include <bsd.port.mk>

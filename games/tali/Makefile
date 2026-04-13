@@ -25,6 +25,6 @@ BINARY_ALIAS=	python3=${PYTHON_CMD}
 GLIB_SCHEMAS=	org.gnome.Tali.gschema.xml
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/games
+	@${MKDIR} ${PREFIX}/share/games
 
 .include <bsd.port.mk>

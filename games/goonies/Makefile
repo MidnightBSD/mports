@@ -33,9 +33,9 @@ post-patch:
 		${WRKSRC}/src/TheGoonies.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} 'graphics maps sound' ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/build/linux/${PORTNAME}.png ${STAGEDIR}${PREFIX}/share/pixmaps
-	${INSTALL_DATA} ${WRKSRC}/build/linux/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} 'graphics maps sound' ${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/build/linux/${PORTNAME}.png ${PREFIX}/share/pixmaps
+	${INSTALL_DATA} ${WRKSRC}/build/linux/${PORTNAME}.desktop ${PREFIX}/share/applications
 
 .include <bsd.port.mk>

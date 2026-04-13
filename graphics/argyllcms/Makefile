@@ -30,8 +30,8 @@ do-install:
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} PREFIX=${TRUE_PREFIX} \
 		REFSUBDIR=share/argyll/ref \
 		jam -dx -q -fJambase -j${MAKE_JOBS_NUMBER} install
-	@${MV} ${STAGEDIR}${PREFIX}/bin/License.txt \
-		${STAGEDIR}${PREFIX}/share/argyll/
+	@${MV} ${PREFIX}/bin/License.txt \
+		${PREFIX}/share/argyll/
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/*

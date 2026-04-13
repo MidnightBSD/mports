@@ -34,12 +34,12 @@ do-install:
 .endfor
 	@${ECHO_MSG} " [ DONE ]"
 	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	@(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${DOCSDIR})
 	@${ECHO_MSG} " [ DONE ]"
 	@${ECHO_MSG} -n ">> Installing samples in ${EXAMPLESDIR}..."
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} "data samples" ${STAGEDIR}${EXAMPLESDIR})
+	@${MKDIR} ${EXAMPLESDIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} "data samples" ${EXAMPLESDIR})
 	@${ECHO_MSG} " [ DONE ]"
 
 .include <bsd.port.mk>

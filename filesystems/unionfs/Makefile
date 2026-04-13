@@ -26,7 +26,7 @@ PLIST_FILES=	bin/unionfs \
 		share/man/man8/unionfs.8.gz
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
+	@${STRIP_CMD} ${PREFIX}/bin/*
 
 pre-test:
 	${RLN} ${BUILD_WRKSRC}/src/unionfs ${WRKSRC}/src/unionfs

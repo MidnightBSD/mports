@@ -19,7 +19,7 @@ USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/ladspa_sdk_${PORTVERSION}
 PROGRAM_FILES=	analyseplugin applyplugin listplugins
 PLUGIN_FILES=	amp.so delay.so filter.so noise.so sine.so
-PLUGIN_DIR?=	${STAGEDIR}${PREFIX}/lib/ladspa/
+PLUGIN_DIR?=	${PREFIX}/lib/ladspa/
 ALL_TARGET=	targets
 BUILD_WRKSRC=	${WRKSRC}/src
 

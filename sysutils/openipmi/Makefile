@@ -131,7 +131,7 @@ post-patch:
 		${WRKSRC}/sample/ipmi_serial_bmc_emu.c
 
 do-install-PYTHON-on:
-	@${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${STAGEDIR}${PYTHON_SITELIBDIR} && \
-	  ${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${STAGEDIR}${PYTHON_SITELIBDIR}
+	@${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${PYTHON_SITELIBDIR} && \
+	  ${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${PYTHON_SITELIBDIR}
 
 .include <bsd.port.mk>

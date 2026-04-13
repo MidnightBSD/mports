@@ -36,14 +36,14 @@ do-build:
 	@cd ${WRKSRC} && ${SH} buildall
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/lib
-	@${MKDIR} ${STAGEDIR}${DATADIR}/res
+	@${MKDIR} ${DATADIR}/lib
+	@${MKDIR} ${DATADIR}/res
 .for f in hfsx resview unhfs
-	cd ${WRKSRC} && ${INSTALL_SCRIPT} dist/bin/${f} ${STAGEDIR}${PREFIX}/bin
+	cd ${WRKSRC} && ${INSTALL_SCRIPT} dist/bin/${f} ${PREFIX}/bin
 .endfor
-	cd ${WRKSRC} && ${INSTALL_SCRIPT} dist/bin/hfsexplorer ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	cd ${WRKSRC} && ${INSTALL_DATA} dist/lib/*.jar ${STAGEDIR}${DATADIR}/lib
-	cd ${WRKSRC} && ${INSTALL_DATA} dist/res/icon.png ${STAGEDIR}${DATADIR}/res
+	cd ${WRKSRC} && ${INSTALL_SCRIPT} dist/bin/hfsexplorer ${PREFIX}/bin/${PORTNAME}
+	cd ${WRKSRC} && ${INSTALL_DATA} dist/lib/*.jar ${DATADIR}/lib
+	cd ${WRKSRC} && ${INSTALL_DATA} dist/res/icon.png ${DATADIR}/res
 
 do-install-DOCS-on:
 	cd ${WRKSRC}/dist/doc && ${COPYTREE_SHARE} html ${FAKE_DESTDIR}${DOCSDIR}/

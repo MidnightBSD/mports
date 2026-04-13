@@ -40,15 +40,15 @@ post-build:
 		${WRKSRC}/bindings/Hamlib-pl.mk
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Hamlib/Hamlib.so
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Hamlib/Hamlib.so
+	@${MKDIR} ${DOCSDIR}
 .for d in ${WRKSRC}/AUTHORS ${WRKSRC}/COPYING ${WRKSRC}/COPYING.LIB \
 		${WRKSRC}/ChangeLog ${WRKSRC}/INSTALL ${WRKSRC}/LICENSE \
 		${WRKSRC}/NEWS ${WRKSRC}/PLAN ${WRKSRC}/README \
 		${WRKSRC}/README.betatester ${WRKSRC}/README.osx \
 		${WRKSRC}/README.developer ${WRKSRC}/README.freqranges \
 		${WRKSRC}/README.multicast ${WRKSRC}/THANKS
-	${INSTALL_DATA} ${WRKSRC}/${d} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${d} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

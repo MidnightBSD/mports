@@ -80,14 +80,14 @@ do-build:
 	@${CP} -p ${WRKSRC}/data/.htaccess ${WRKSRC}/attach/.htaccess
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily
-	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${STAGEDIR}${PREFIX}/etc/periodic/daily
-	@${MKDIR} ${STAGEDIR}${SQUIRRELDIR}
-	${INSTALL_DATA} ${WRKSRC}/index.php ${STAGEDIR}${SQUIRRELDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/configure ${STAGEDIR}${SQUIRRELDIR}
+	@${MKDIR} ${PREFIX}/etc/periodic/daily
+	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${PREFIX}/etc/periodic/daily
+	@${MKDIR} ${SQUIRRELDIR}
+	${INSTALL_DATA} ${WRKSRC}/index.php ${SQUIRRELDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/configure ${SQUIRRELDIR}
 	(cd ${WRKSRC} && \
 		${COPYTREE_SHARE} "attach class config data functions help images include locale plugins po scripts src themes" \
-			${STAGEDIR}${SQUIRRELDIR})
+			${SQUIRRELDIR})
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

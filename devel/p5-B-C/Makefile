@@ -32,8 +32,8 @@ post-patch:
 	${MKDIR} ${PERL_INC_STAGE}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/B/C/C.so
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/B/Stash/Stash.so
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/ByteLoader/ByteLoader.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/B/C/C.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/B/Stash/Stash.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/ByteLoader/ByteLoader.so
 
 .include <bsd.port.mk>

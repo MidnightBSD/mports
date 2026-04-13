@@ -21,12 +21,12 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 .for file in ${EPWPROGS}
-	${INSTALL_PROGRAM} ${WRKSRC}/${file} ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/${file} ${PREFIX}/bin
+	${MKDIR} ${PREFIX}/share/man/ja/man1
 	${INSTALL_MAN} ${WRKSRC}/${file}.man \
-		${STAGEDIR}${PREFIX}/share/man/ja/man1/${file}.1
+		${PREFIX}/share/man/ja/man1/${file}.1
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

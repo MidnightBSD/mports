@@ -68,12 +68,12 @@ post-patch:
 .endif # ${PORT_OPTIONS:MPARALLEL_DIMS}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${THEMEDIR}
+	${MKDIR} ${THEMEDIR}
 .for n in ${OPTIONS_MULTI_THEME}
 .if ${PORT_OPTIONS:M${n}}
-	${MKDIR} ${STAGEDIR}${THEMEDIR}/${${n}_DDIR}
+	${MKDIR} ${THEMEDIR}/${${n}_DDIR}
 	cd "${WRKSRC}/${${n}_SDIR}" && \
-	  ${COPYTREE_SHARE} . ${STAGEDIR}${THEMEDIR}/${${n}_DDIR}
+	  ${COPYTREE_SHARE} . ${THEMEDIR}/${${n}_DDIR}
 .endif # ${PORT_OPTIONS:M${n}}
 .endfor
 

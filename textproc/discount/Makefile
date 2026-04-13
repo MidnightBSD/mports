@@ -41,7 +41,7 @@ SAMPLES_INSTALL_TARGET=	install.samples
 TAB8_CONFIGURE_ON=	--with-tabstops=8
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/libmarkdown.a ${STAGEDIR}${PREFIX}/lib/libmarkdown.a
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmarkdown.so
+	${INSTALL_DATA} ${WRKSRC}/libmarkdown.a ${PREFIX}/lib/libmarkdown.a
+	${STRIP_CMD} ${PREFIX}/lib/libmarkdown.so
 
 .include <bsd.port.mk>

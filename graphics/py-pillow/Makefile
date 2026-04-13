@@ -25,7 +25,7 @@ USE_PYTHON=	autoplist concurrent pep517
 PEP517_BUILD_CONFIG_SETTING=	\
 		--config-setting jpeg=enable \
 		--config-setting zlib=enable
-TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
+TEST_ENV=	PYTHONPATH=${PYTHON_SITELIBDIR}
 
 CPE_VENDOR=	python
 

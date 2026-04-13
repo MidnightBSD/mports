@@ -26,12 +26,12 @@ WRKSRC_SUBDIR=	native/restarter
 PLIST_FILES=	share/jetbrains/${PORTNAME}/restarter
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 	${INSTALL_PROGRAM} \
 		${CARGO_TARGET_DIR}/x86_64-unknown-freebsd/*/restarter \
-		${STAGEDIR}${DATADIR}
+		${DATADIR}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${DATADIR}/restarter
+	${STRIP_CMD} ${DATADIR}/restarter
 
 .include <bsd.port.mk>

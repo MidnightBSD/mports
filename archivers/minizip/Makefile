@@ -25,7 +25,7 @@ post-patch:
 	@${REINPLACE_CMD} 's/#ifdef unix || __APPLE__/#ifdef unix/' ${WRKSRC}/mini???.c
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/*.1 ${PREFIX}/share/man/man1
 
 regression-test:
 	${RM} -rf ${WRKDIR}/regression-test1

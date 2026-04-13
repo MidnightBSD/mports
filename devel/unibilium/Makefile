@@ -21,6 +21,6 @@ GH_ACCOUNT=	neovim
 TEST_TARGET=	test
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libunibilium.so
+	${STRIP_CMD} ${PREFIX}/lib/libunibilium.so
 
 .include <bsd.port.mk>

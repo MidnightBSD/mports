@@ -19,9 +19,9 @@ NO_BUILD=	yes
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC} && \
-	${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} *.ttf ${FONTSDIR}
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

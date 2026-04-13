@@ -43,27 +43,27 @@ post-patch:
 	@${SED} -e 's|@ETQWDIR@|${ETQWDIR}|' ${FILESDIR}/etqwded.in > ${WRKSRC}/etqwded
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${ETQWDIR}
+	@${MKDIR} ${ETQWDIR}
 
-	${INSTALL_SCRIPT} ${WRKSRC}/etqwded ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/data/etqwded.x86 ${STAGEDIR}${ETQWDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/etqwded ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/data/etqwded.x86 ${ETQWDIR}
 	@cd ${WRKSRC}/data && \
 		${FIND} -E . -type f -iregex ".*\.so\.[0-9]+" \
-			-exec ${INSTALL_DATA} {} "${STAGEDIR}${ETQWDIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${ETQWDIR}/{}" \;
 
-	@${MKDIR} ${STAGEDIR}${ETQWDIR}/base/bots
+	@${MKDIR} ${ETQWDIR}/base/bots
 	@cd ${WRKSRC}/data && \
 		${FIND} base -type f \
-			-exec ${INSTALL_DATA} {} "${STAGEDIR}${ETQWDIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${ETQWDIR}/{}" \;
 
-	@${MKDIR} ${STAGEDIR}${ETQWDIR}/pb/htm
+	@${MKDIR} ${ETQWDIR}/pb/htm
 	@cd ${WRKSRC}/data && \
 		${FIND} pb -type f \
-			-exec ${INSTALL_DATA} {} "${STAGEDIR}${ETQWDIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${ETQWDIR}/{}" \;
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for FILE in EULA.txt README.txt copyrights.txt etqwtv.txt readme_1_5_patch.txt server_readme.txt pb/PBEULA.txt
-	@${INSTALL_DATA} ${WRKSRC}/data/${FILE} ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/data/${FILE} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

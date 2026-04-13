@@ -17,8 +17,8 @@ NO_ARCH=	yes
 USES=		gettext meson tar:xz
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/cinnamon-background-properties
-	@${FIND} ${STAGEDIR}${PREFIX}/share/gnome-background-properties -type f -name '*.xml' \
-		-exec ${RLN} {} ${STAGEDIR}${PREFIX}/share/cinnamon-background-properties \;
+	@${MKDIR} ${PREFIX}/share/cinnamon-background-properties
+	@${FIND} ${PREFIX}/share/gnome-background-properties -type f -name '*.xml' \
+		-exec ${RLN} {} ${PREFIX}/share/cinnamon-background-properties \;
 
 .include <bsd.port.mk>

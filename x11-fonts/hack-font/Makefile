@@ -22,7 +22,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${WRKSRC}/build/ttf/*.ttf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${WRKSRC}/build/ttf/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

@@ -43,9 +43,9 @@ post-patch:
 do-install:
 	@(cd ${WRKSRC} \
 		&& ${RM} README.md changes.txt include/.gitignore)
-	@${MKDIR} ${STAGEDIR}${WWWDIR}
+	@${MKDIR} ${WWWDIR}
 	@(cd ${WRKSRC} \
-		&& ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
+		&& ${COPYTREE_SHARE} . ${WWWDIR})
 
 post-install:
 	@${MKDIR} ${ETCDIR}/subversion

@@ -84,6 +84,6 @@ post-patch-ICON-off:
 	@${REINPLACE_CMD} -e '/^# icon$$/,/^$$/d' ${WRKSRC}/CMakeLists.txt
 
 post-install:
-	${LN} -sf weechat ${STAGEDIR}${PREFIX}/bin/weechat-curses
+	${LN} -sf weechat ${PREFIX}/bin/weechat-curses
 
 .include <bsd.port.post.mk>

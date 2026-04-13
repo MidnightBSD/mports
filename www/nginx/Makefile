@@ -339,11 +339,11 @@ do-install:
 .endfor
 
 do-install-HTTP_PERL-on:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/nginx
+	${MKDIR} ${PREFIX}/${SITE_ARCH_REL}/auto/nginx
 	${INSTALL_PROGRAM} ${WRKSRC}/objs/src/http/modules/perl/blib/arch/auto/nginx/nginx.so \
-		${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/nginx
+		${PREFIX}/${SITE_ARCH_REL}/auto/nginx
 	${INSTALL_DATA} ${WRKSRC}/objs/src/http/modules/perl/blib/lib/nginx.pm \
-		${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/
+		${PREFIX}/${SITE_ARCH_REL}/
 
 # Install dynamic modules
 do-install-DSO-on:
@@ -352,25 +352,25 @@ do-install-DSO-on:
 		-exec ${INSTALL_PROGRAM} {} ${FAKE_DESTDIR}${MODULESDIR} \;)
 
 do-install-LINK-on:
-	${INSTALL_DATA} ${WRKSRC_link}/src/ngx_link_func_module.h ${FAKE_DESTDIR}${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC_link}/src/ngx_link_func_module.h ${PREFIX}/include
 
 do-install-NAXSI-on:
 	${INSTALL_DATA} \
 	${WRKDIR}/naxsi-${NAXSI_NGINX_VER}/naxsi_rules/naxsi_core.rules \
-	${FAKE_DESTDIR}${ETCDIR}
+	${ETCDIR}
 .endif
 
 .if !target(post-install)
 post-install:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/vim/vimfiles
-	cd ${WRKSRC}/contrib/vim && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/share/vim/vimfiles
-	${INSTALL_MAN} ${WRKSRC}/objs/nginx.8 ${FAKE_DESTDIR}${PREFIX}/share/man/man8
-	${CAT} ${WRKSRC}/conf/nginx.conf >> ${FAKE_DESTDIR}${ETCDIR}/nginx.conf-dist
+	${MKDIR} ${PREFIX}/share/vim/vimfiles
+	cd ${WRKSRC}/contrib/vim && ${COPYTREE_SHARE} . ${PREFIX}/share/vim/vimfiles
+	${INSTALL_MAN} ${WRKSRC}/objs/nginx.8 ${PREFIX}/share/man/man8
+	${CAT} ${WRKSRC}/conf/nginx.conf >> ${ETCDIR}/nginx.conf-dist
 
 post-install-WWW-on:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/www/nginx-dist
-	(cd ${WRKSRC}/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/www/nginx-dist && \
-	${TOUCH} ${FAKE_DESTDIR}${PREFIX}/www/nginx-dist/EXAMPLE_DIRECTORY-DONT_ADD_OR_TOUCH_ANYTHING)
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/www/nginx-dist
+	(cd ${WRKSRC}/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${TRUE_PREFIX}/www/nginx-dist && \
+	${TOUCH} ${FAKE_DESTDIR}${TRUE_PREFIX}/www/nginx-dist/EXAMPLE_DIRECTORY-DONT_ADD_OR_TOUCH_ANYTHING)
 .endif
 
 .include <bsd.port.post.mk>

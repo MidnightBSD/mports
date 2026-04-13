@@ -39,18 +39,18 @@ do-build:
 .endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for f in ${FONTS}
-	${INSTALL_DATA} ${WRKSRC}/${f}/*.pcf.gz ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f}/*.pcf.gz ${FONTSDIR}
 	[ ! -f ${WRKSRC}/${f}/fonts.alias ] || \
-		${CAT} ${WRKSRC}/${f}/fonts.alias >> ${STAGEDIR}${FONTSDIR}/fonts.alias
+		${CAT} ${WRKSRC}/${f}/fonts.alias >> ${FONTSDIR}/fonts.alias
 .endfor
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}/TrueType
-	${INSTALL_DATA} ${WRKSRC}/TrueType/*.* ${STAGEDIR}${FONTSDIR}/TrueType
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}/Type1
-	${INSTALL_DATA} ${WRKSRC}/Type1/*.* ${STAGEDIR}${FONTSDIR}/Type1
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FONTSDIR}/TrueType
+	${INSTALL_DATA} ${WRKSRC}/TrueType/*.* ${FONTSDIR}/TrueType
+	@${MKDIR} ${FONTSDIR}/Type1
+	${INSTALL_DATA} ${WRKSRC}/Type1/*.* ${FONTSDIR}/Type1
+	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${WRKSRC}/Emacs.ap ${WRKSRC}/NEWS \
-		${STAGEDIR}${DOCSDIR}
+		${DOCSDIR}
 
 .include <bsd.port.mk>

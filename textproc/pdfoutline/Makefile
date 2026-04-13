@@ -33,7 +33,7 @@ post-patch:
 .endfor
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/pdf-extract-outline ${WRKSRC}/pdfoutline ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/pdf-extract-outline.1 ${WRKSRC}/pdfoutline.1 ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_SCRIPT} ${WRKSRC}/pdf-extract-outline ${WRKSRC}/pdfoutline ${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/pdf-extract-outline.1 ${WRKSRC}/pdfoutline.1 ${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>

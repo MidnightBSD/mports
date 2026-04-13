@@ -26,7 +26,7 @@ NO_ARCH=	yes
 post-patch:
 	@${FIND} ${WRKSRC} -name "*.orig" -delete
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/uranium/scripts
-	cd ${WRKSRC}/scripts && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/uranium/scripts
+	${MKDIR} ${PREFIX}/share/uranium/scripts
+	cd ${WRKSRC}/scripts && ${COPYTREE_SHARE} . ${PREFIX}/share/uranium/scripts
 
 .include <bsd.port.mk>

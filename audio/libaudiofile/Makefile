@@ -24,6 +24,6 @@ GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaudiofile.so.1
+	@${STRIP_CMD} ${PREFIX}/lib/libaudiofile.so.1
 
 .include <bsd.port.mk>

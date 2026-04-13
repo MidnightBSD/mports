@@ -295,8 +295,8 @@ post-patch:
 
 .if !defined(PIDGIN_SLAVE) && ${PORT_OPTIONS:MPERL}
 post-install:
-	@${SED} -i '' -e 's|^${STAGEDIR}||g' \
-		${STAGEDIR}${PREFIX}/lib/purple-2/perl/auto/Purple/.packlist
+	@${SED} -i '' -e 's|^||g' \
+		${PREFIX}/lib/purple-2/perl/auto/Purple/.packlist
 .endif
 
 .include <bsd.port.mk>

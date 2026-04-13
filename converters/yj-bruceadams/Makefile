@@ -72,6 +72,6 @@ CONFLICTS_INSTALL=	yj
 PLIST_FILES=	bin/yj
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

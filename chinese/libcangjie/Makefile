@@ -24,6 +24,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	Cangjians
 
 post-install:
-	@(${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so)
+	@(${STRIP_CMD} ${PREFIX}/lib/*.so)
 
 .include <bsd.port.mk>

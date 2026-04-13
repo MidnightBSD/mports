@@ -21,7 +21,7 @@ NO_BUILD=	yes
 PLIST_FILES=	${FONTSDIR}/MaterialIcons-Regular.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/dist/fonts/*.ttf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/dist/fonts/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

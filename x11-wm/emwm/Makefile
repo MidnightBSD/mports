@@ -20,14 +20,14 @@ post-patch:
 	${LN} -sf ${WRKSRC}/mf/Makefile.FreeBSD ${WRKSRC}/mf/Makefile.MidnightBSD
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/emwm ${STAGEDIR}${PREFIX}/bin/emwm
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/src/emwm.1 ${STAGEDIR}${PREFIX}/share/man/man1/emwm.1
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man4
-	${INSTALL_MAN} ${WRKSRC}/src/emwmrc.4 ${STAGEDIR}${PREFIX}/share/man/man4/emwmrc.4
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11
-	${INSTALL_DATA} ${WRKSRC}/src/system.emwmrc ${STAGEDIR}${PREFIX}/etc/X11/system.emwmrc
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/app-defaults
-	${INSTALL_DATA} ${WRKSRC}/src/Emwm.ad ${STAGEDIR}${PREFIX}/etc/X11/app-defaults/Emwm
+	${INSTALL_PROGRAM} ${WRKSRC}/src/emwm ${PREFIX}/bin/emwm
+	${MKDIR} ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/src/emwm.1 ${PREFIX}/share/man/man1/emwm.1
+	${MKDIR} ${PREFIX}/share/man/man4
+	${INSTALL_MAN} ${WRKSRC}/src/emwmrc.4 ${PREFIX}/share/man/man4/emwmrc.4
+	${MKDIR} ${PREFIX}/etc/X11
+	${INSTALL_DATA} ${WRKSRC}/src/system.emwmrc ${PREFIX}/etc/X11/system.emwmrc
+	${MKDIR} ${PREFIX}/etc/X11/app-defaults
+	${INSTALL_DATA} ${WRKSRC}/src/Emwm.ad ${PREFIX}/etc/X11/app-defaults/Emwm
 
 .include <bsd.port.mk>

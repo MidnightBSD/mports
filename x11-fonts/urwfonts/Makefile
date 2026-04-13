@@ -17,12 +17,12 @@ USES=		fonts
 SUB_FILES=	pkg-message
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for FILE in Fontmap
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${FILE} ${FONTSDIR}
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/*.pfb ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.afm ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.pfm ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.pfb ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.afm ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.pfm ${FONTSDIR}
 
 .include <bsd.port.mk>

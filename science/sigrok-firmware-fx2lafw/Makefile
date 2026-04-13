@@ -33,14 +33,14 @@ PLIST_FILES=	${FW_FILES:S,^,share/sigrok-firmware/,}
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for docfile in README NEWS
-	${INSTALL_DATA} ${WRKSRC}/${docfile} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${docfile} ${DOCSDIR}
 .endfor
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/sigrok-firmware
+	@${MKDIR} ${PREFIX}/share/sigrok-firmware
 .for fwfile in ${FW_FILES}
 	${INSTALL_DATA} ${WRKSRC}/${fwfile} \
-		${STAGEDIR}${PREFIX}/share/sigrok-firmware/
+		${PREFIX}/share/sigrok-firmware/
 .endfor
 
 .include <bsd.port.mk>

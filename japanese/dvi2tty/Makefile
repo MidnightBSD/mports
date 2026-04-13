@@ -23,8 +23,8 @@ post-patch:
 	${REINPLACE_CMD} -e "s/getline/get_line/g" ${WRKSRC}/dvistuff.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/jdvi2tty ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/disdvi ${STAGEDIR}${PREFIX}/bin/jdisdvi
-	${INSTALL_MAN} ${WRKSRC}/dvi2tty.1 ${STAGEDIR}${PREFIX}/share/man/man1/jdvi2tty.1
+	${INSTALL_PROGRAM} ${WRKSRC}/jdvi2tty ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/disdvi ${PREFIX}/bin/jdisdvi
+	${INSTALL_MAN} ${WRKSRC}/dvi2tty.1 ${PREFIX}/share/man/man1/jdvi2tty.1
 
 .include <bsd.port.mk>

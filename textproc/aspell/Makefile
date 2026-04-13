@@ -45,6 +45,6 @@ CFLAGS+=		-O
 .endif
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/aspell.ver ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_DATA} ${WRKDIR}/aspell.ver ${PREFIX}/etc
 
 .include <bsd.port.mk>

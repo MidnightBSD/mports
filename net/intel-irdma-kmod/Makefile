@@ -28,7 +28,7 @@ SUB_FILES=	pkg-message
 SUB_LIST=	PORTNAME=${PORTNAME}
 
 do-install:
-	${INSTALL_KLD} ${WRKSRC}/src/${PORTNAME}.ko ${STAGEDIR}${KMODDIR}/${PORTNAME}_updated.ko
-	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.4.gz ${STAGEDIR}${PREFIX}/share/man/man4/
+	${INSTALL_KLD} ${WRKSRC}/src/${PORTNAME}.ko ${KMODDIR}/${PORTNAME}_updated.ko
+	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.4.gz ${PREFIX}/share/man/man4/
 
 .include <bsd.port.mk>

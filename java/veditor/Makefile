@@ -29,8 +29,8 @@ ECLIPSE=	lib/eclipse
 PLUGINS=	plugins
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${ECLIPSE}/${PLUGINS}
+	@${MKDIR} ${PREFIX}/${ECLIPSE}/${PLUGINS}
 	${INSTALL_DATA} ${DISTDIR}/${DISTFILES} \
-		${STAGEDIR}${PREFIX}/${ECLIPSE}/${PLUGINS}
+		${PREFIX}/${ECLIPSE}/${PLUGINS}
 
 .include <bsd.port.mk>

@@ -31,11 +31,11 @@ post-build:
 	@cd ${WRKSRC} && ${CC} ${CFLAGS} ${LDFLAGS} -DTRILIBRARY -shared -fPIC -Wl,-soname,lib${PORTNAME}.so.${PORTVERSION} -o lib${PORTNAME}.so.${PORTVERSION} ${PORTNAME}.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${WRKSRC}/showme ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/lib${PORTNAME}.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib
-	cd ${STAGEDIR}${PREFIX}/lib && ${LN} -s lib${PORTNAME}.so.${PORTVERSION} lib${PORTNAME}.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so.${PORTVERSION}
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${WRKSRC}/showme ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.h ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/lib${PORTNAME}.so.${PORTVERSION} ${PREFIX}/lib
+	cd ${PREFIX}/lib && ${LN} -s lib${PORTNAME}.so.${PORTVERSION} lib${PORTNAME}.so
+	@${STRIP_CMD} ${PREFIX}/lib/lib${PORTNAME}.so.${PORTVERSION}
 
 do-test:
 	@cd ${INSTALL_WRKSRC} && ./${PORTNAME} -p A.poly && ./showme A.1.poly

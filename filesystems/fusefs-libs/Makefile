@@ -35,7 +35,7 @@ pre-configure:
 	${CP} ${LOCALBASE}/share/gettext/config.rpath ${WRKSRC}
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/include/fuse_kernel.h ${STAGEDIR}${PREFIX}/include/fuse
+	${INSTALL_DATA} ${WRKSRC}/include/fuse_kernel.h ${PREFIX}/include/fuse
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/libs

@@ -50,7 +50,7 @@ post-extract:
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/fonts.alias.${PKGNAMESUFFIX} \
-	    ${STAGEDIR}${FONTSDIR}/fonts.alias.${PKGNAMESUFFIX}
+	    ${FONTSDIR}/fonts.alias.${PKGNAMESUFFIX}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

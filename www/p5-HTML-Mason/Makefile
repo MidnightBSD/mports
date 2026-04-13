@@ -35,6 +35,6 @@ post-patch:
 	@${REINPLACE_CMD} -e '/bin\/convert/d' ${WRKSRC}/Makefile.PL
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/blib/script/mason.pl ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/blib/script/mason.pl ${PREFIX}/bin/
 
 .include <bsd.port.mk>

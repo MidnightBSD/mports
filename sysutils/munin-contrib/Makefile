@@ -39,9 +39,9 @@ post-extract:
 	@${MV} ${WRKSRC_bind9stats}/bind9stats-munin.py ${WRKSRC}/plugins/bind9stats
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${COPYTREE_BIN} ${EXAMPLES_DIRS:Q} ${STAGEDIR}${EXAMPLESDIR}
-	@cd ${STAGEDIR}${PREFIX} && ${FIND} -f * '(' -type f -o -type l ')' >> ${TMPPLIST}
+	@${MKDIR} ${DOCSDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${DOCSDIR}
+	cd ${WRKSRC} && ${COPYTREE_BIN} ${EXAMPLES_DIRS:Q} ${EXAMPLESDIR}
+	@cd ${PREFIX} && ${FIND} -f * '(' -type f -o -type l ')' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

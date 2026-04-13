@@ -378,8 +378,8 @@ post-extract:
 	@${RLN} ${WRKSRC_azure_azure_sdk_for_go_azcore}/sdk/azcore ${WRKSRC}/vendor/github.com/Azure/azure-sdk-for-go/sdk/azcore
 
 post-install:
-	@${CP} ${WRKSRC}/cmd/loki/loki-local-config.yaml ${STAGEDIR}${PREFIX}/etc/loki.yaml.sample
-	@${CP} ${WRKSRC}/clients/cmd/promtail/promtail-local-config.yaml ${STAGEDIR}${PREFIX}/etc/promtail.yaml.sample
+	@${CP} ${WRKSRC}/cmd/loki/loki-local-config.yaml ${PREFIX}/etc/loki.yaml.sample
+	@${CP} ${WRKSRC}/clients/cmd/promtail/promtail-local-config.yaml ${PREFIX}/etc/promtail.yaml.sample
 	@${MKDIR} ${FAKE_DESTDIR}${LOKI_DATADIR}
 	@${MKDIR} ${FAKE_DESTDIR}${LOKI_DATADIR}/rules-temp
 	@${MKDIR} ${FAKE_DESTDIR}${PROMTAIL_DATADIR}

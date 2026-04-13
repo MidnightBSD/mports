@@ -53,7 +53,7 @@ void load_depends(sqlite3 *, connection &, int, const char *, const char *);
 int
 main(int argc, char *argv[])
 {
-    char query_def[1000];
+    char query_def[2048];
     int runid;
     sqlite3 *db = NULL;
     sqlite3_stmt *stmt;
@@ -84,7 +84,12 @@ main(int argc, char *argv[])
 		return -1;
     }
 
-    sprintf(query_def,
+    if (!C2.is_open()) {
+		cout << "Secondary connection failed! Check username and password." << endl;
+		return -1;
+    }
+
+    snprintf(query_def, sizeof(query_def),
       "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version, restricted from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;", runid);
 
     nontransaction N(C);
@@ -102,7 +107,8 @@ main(int argc, char *argv[])
         {
 
 		string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
-		asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
+		if (asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str()) == -1)
+			errx(1, "Could not allocate file path");
 		fileHash = SHA256_File(filePath, NULL);
 		if (fileHash == NULL)
 		{
@@ -113,12 +119,13 @@ main(int argc, char *argv[])
 
 		if (row[6].as(bool()))
 		{
-			fprintf(stderr, "File %s is restricted and will be removed.\n", filePath);	
+			fprintf(stderr, "File %s is restricted and will be removed.\n", filePath);
 			unlink(filePath);
+			free(fileHash);
+			free(filePath);
 			continue;
 		}
 
-           if (ln.c_str())
            {
                if (sqlite3_prepare_v2(db,
                    "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash, type) VALUES(?,?,?,?,?,?,?)",
@@ -189,7 +196,7 @@ main(int argc, char *argv[])
     }
 
     printf("Load the MOVED list\n");
-    sprintf(query_def, "SELECT port, moved_to, why, date FROM moved where run=%d order by id", runid);
+    snprintf(query_def, sizeof(query_def), "SELECT port, moved_to, why, date FROM moved where run=%d order by id", runid);
     result R3(N.exec(string(query_def)));
     if (!R3.empty())
     {
@@ -218,7 +225,7 @@ main(int argc, char *argv[])
     }
 
 	printf("Load ALIASES not included in current run\n");
-	sprintf(query_def, "select distinct(pkgname, name, moved_to), pkgname, name, moved.moved_to from ports inner join runs on ports.run = runs.id left join moved on moved.port = ports.name where moved.run = %d and ports.run < %d and moved.port not in (SELECT name from ports where run = %d) and runs.arch = (select arch from runs where id = %d) group by pkgname, name, moved_to order by pkgname, name, moved_to;", runid, runid, runid, runid);
+	snprintf(query_def, sizeof(query_def), "select distinct(pkgname, name, moved_to), pkgname, name, moved.moved_to from ports inner join runs on ports.run = runs.id left join moved on moved.port = ports.name where moved.run = %d and ports.run < %d and moved.port not in (SELECT name from ports where run = %d) and runs.arch = (select arch from runs where id = %d) group by pkgname, name, moved_to order by pkgname, name, moved_to;", runid, runid, runid, runid);
 	result R4(N.exec(string(query_def)));
 	if (!R4.empty())
 	{
@@ -263,7 +270,9 @@ open_indexdb(int runid)
          errx(1, "Could not malloc filename");
     }
     unlink(filename);
-    sqlite3_open(filename, &db);
+    if (sqlite3_open(filename, &db) != SQLITE_OK) {
+        errx(1, "Could not open index db: %s", sqlite3_errmsg(db));
+    }
     free(filename);
     return db;
 }
@@ -312,33 +321,25 @@ exec_indexdb(sqlite3 *db, const char *fmt, ...)
 void
 create_indexdb(sqlite3 *db)
 {
-	puts("exec 1");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
-	puts("exec 2");
 	exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
-	puts("exec 3");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL, type int NOT NULL)");
-	puts("exec4");
 	exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
-	puts("exec5");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
-	puts("exec6");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
-	puts("exec7");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS moved (port text NOT NULL, moved_to text, why text, date text)");
-	puts("exec8");
 }
 
 void
 load_depends(sqlite3 *db, connection & C, int runid, const char *pkg_name, const char *version)
 {
-	char query_def[1000];
+	char query_def[2048];
 	sqlite3_stmt *stmt;
 
 	printf("---->\tProcessing dependencies for %s - %s\n", pkg_name, version);
 
-	sprintf(query_def, "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s' and d.type in ('run','lib', 'pkg')",
-		runid, runid, pkg_name, version); 
+	snprintf(query_def, sizeof(query_def), "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s' and d.type in ('run','lib', 'pkg')",
+		runid, runid, pkg_name, version);
 
     if (C.is_open())
     {

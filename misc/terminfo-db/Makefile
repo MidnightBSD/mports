@@ -25,7 +25,7 @@ do-build:
 	tic -sx -o ${WRKSRC}/${PORTNAME} ${WRKSRC}/${PORTNAME}.src
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC}/${PORTNAME}; ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
+	cd ${WRKSRC}/${PORTNAME}; ${COPYTREE_SHARE} . ${DATADIR}
 
 .include <bsd.port.mk>

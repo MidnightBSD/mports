@@ -35,6 +35,6 @@ NO_ARCH=	yes
 SHEBANG_FILES=	bin/scraper
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/scraper ${STAGEDIR}${PREFIX}/bin/scraper
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/scraper ${PREFIX}/bin/scraper
 
 .include <bsd.port.mk>

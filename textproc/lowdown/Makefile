@@ -18,7 +18,7 @@ CONFIGURE_ARGS=	PREFIX="${PREFIX}"
 INSTALL_TARGET=	install install_libs
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-diff
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}-diff
 
 .include <bsd.port.mk>

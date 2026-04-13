@@ -29,6 +29,6 @@ post-patch-BUNDLED_SQLITE-off:
 	${REINPLACE_CMD} -e 's/if ( 0 )/if ( 1 )/' ${WRKSRC}/Makefile.PL
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DBD/SQLite/SQLite.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/DBD/SQLite/SQLite.so
 
 .include <bsd.port.mk>

@@ -45,7 +45,7 @@ PLIST_SUB+=	COREDUMP=""
 .endif
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/unwind.h ${STAGEDIR}${PREFIX}/include
-	cd ${STAGEDIR}${PREFIX}/ && ${FIND} libexec/libunwind -type f >> ${TMPPLIST}
+	${INSTALL_DATA} ${FILESDIR}/unwind.h ${PREFIX}/include
+	cd ${PREFIX}/ && ${FIND} libexec/libunwind -type f >> ${TMPPLIST}
 
 .include <bsd.port.mk>

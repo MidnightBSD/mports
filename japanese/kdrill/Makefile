@@ -34,14 +34,14 @@ post-build:
 post-install:
 .for i in makedic makeedict
 	(cd ${WRKSRC}/makedic && ${INSTALL_PROGRAM} ${i} \
-		${STAGEDIR}${PREFIX}/bin)
+		${PREFIX}/bin)
 	(cd ${WRKSRC}/makedic && ${INSTALL_MAN} ${i}.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1)
+		${PREFIX}/share/man/man1)
 .endfor
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 .for i in fullkatahira.edic hira.edic hiraplus.edic kata.edic kataplus.edic
 	(cd ${WRKSRC}/makedic && ${INSTALL_DATA} ${i} \
-		${STAGEDIR}${DATADIR})
+		${DATADIR})
 .endfor
 
 .include <bsd.port.mk>

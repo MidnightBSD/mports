@@ -26,9 +26,9 @@ PLIST_FILES=	bin/xli bin/xlito bin/xview bin/xsetbg \
 XLI_SNAPVER=	2006-11-10
 
 post-install:
-	${RLN} ${STAGEDIR}${PREFIX}/share/man/man1/xli.1.gz \
-		${STAGEDIR}${PREFIX}/share/man/man1/xview.1.gz
-	${RLN} ${STAGEDIR}${PREFIX}/share/man/man1/xli.1.gz \
-		${STAGEDIR}${PREFIX}/share/man/man1/xsetbg.1.gz
+	${RLN} ${PREFIX}/share/man/man1/xli.1.gz \
+		${PREFIX}/share/man/man1/xview.1.gz
+	${RLN} ${PREFIX}/share/man/man1/xli.1.gz \
+		${PREFIX}/share/man/man1/xsetbg.1.gz
 
 .include <bsd.port.mk>

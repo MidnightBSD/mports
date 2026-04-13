@@ -37,6 +37,6 @@ do-install:
 		--destdir "${FAKE_DESTDIR}" \
 		--prefix "${TRUE_PREFIX}" \
 		${CARGO_INSTALL_ARGS}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/*.so
 
 .include <bsd.port.mk>

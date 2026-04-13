@@ -238,9 +238,9 @@ post-build:
 
 pre-install:
 	${MKDIR} ${FAKE_DESTDIR}/etc/mail \
-		${STAGEDIR}${PREFIX}/share/man/cat1 \
-		${STAGEDIR}${PREFIX}/share/man/cat5 \
-		${STAGEDIR}${PREFIX}/share/man/cat8
+		${PREFIX}/share/man/cat1 \
+		${PREFIX}/share/man/cat5 \
+		${PREFIX}/share/man/cat8
 	@${CAT} ${PKGDIR}/pkg-plist >${PLIST}
 	if ! pw groupshow smmsp; then pw groupadd smmsp -g 25; fi
 	if ! pw usershow smmsp; then pw useradd smmsp -g smmsp -u 25 \

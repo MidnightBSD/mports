@@ -26,8 +26,8 @@ NO_WRKSUBDIR=	yes
 PLIST_FILES=	${FONTSDIR}/kaputaunicode.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/kaputaunicode.ttf \
-		${STAGEDIR}${FONTSDIR}/
+		${FONTSDIR}/
 
 .include <bsd.port.mk>

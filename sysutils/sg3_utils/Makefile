@@ -24,6 +24,6 @@ CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd12.4
 PLIST_SUB=	SOVERSION=${DISTVERSION}
 
 post-install:
-		@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libsgutils2*.so.*
+		@${STRIP_CMD} ${PREFIX}/lib/libsgutils2*.so.*
 
 .include <bsd.port.mk>

@@ -120,14 +120,14 @@ post-patch:
 	${REINPLACE_CMD} -e 's:%%LOG_DIR%%:${LOG_DIR}:g ; s:%%DATA_DIR%%:${DATA_DIR}:g ; s:%%TEMP_DIR%%:${TEMP_DIR}:g' ${WRKSRC}/conf/sonar.properties.sample
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${APP_DIR}/elasticsearch/plugins
-	${MKDIR} ${STAGEDIR}${LOG_DIR} ${STAGEDIR}${PID_DIR} \
-		${STAGEDIR}${DATA_DIR} ${STAGEDIR}${TEMP_DIR}
+	${MKDIR} ${PREFIX}/${APP_DIR}/elasticsearch/plugins
+	${MKDIR} ${LOG_DIR} ${PID_DIR} \
+		${DATA_DIR} ${TEMP_DIR}
 .for dir in conf elasticsearch extensions jres lib web
-	cd ${WRKSRC}; ${COPYTREE_SHARE} ${dir} ${STAGEDIR}${PREFIX}/${APP_DIR} "! -name *\.orig"
+	cd ${WRKSRC}; ${COPYTREE_SHARE} ${dir} ${PREFIX}/${APP_DIR} "! -name *\.orig"
 .endfor
 #	 ${LN} -s ${JAVASHAREDIR}/classes/jna.jar \
-#		${STAGEDIR}${PREFIX}/${APP_DIR}/elasticsearch/lib/jna.jar
+#		${PREFIX}/${APP_DIR}/elasticsearch/lib/jna.jar
 
 gen-plist:
 	${ECHO} '@sample ${APP_DIR}/conf/sonar.properties.sample' >${PLIST}.new
@@ -137,8 +137,8 @@ gen-plist:
 	${ECHO} '@dir %%APP_DIR%%/elasticsearch/plugins' >>${PLIST}.new
 #	${ECHO} '@dir(sonarqube,sonarqube,755) %%APP_DIR%%/extensions' >>${PLIST}.new
 .for dir in conf elasticsearch jres lib web
-	${FIND} ${STAGEDIR}${PREFIX}/${APP_DIR}/${dir} -type f -o -type l |  \
-	    ${SED} -e "s:${STAGEDIR}${PREFIX}/::g ; \
+	${FIND} ${PREFIX}/${APP_DIR}/${dir} -type f -o -type l |  \
+	    ${SED} -e "s:${PREFIX}/::g ; \
 		s:${JAR_VERSION}:%%JAR_VERSION%%:g ; \
 		s:sonar-csharp-plugin-[0-9.]*.jar:sonar-csharp-plugin-%%SONARCSHARP_VER%%.jar:g ; \
 		s:sonar-java-plugin-[0-9.]*.jar:sonar-java-plugin-%%SONARJAVA_VER%%.jar:g ; \
@@ -152,11 +152,11 @@ gen-plist:
 	${ECHO} '@owner sonarqube' >>${PLIST}.new
 	${ECHO} '@group sonarqube' >>${PLIST}.new
 .for dir in extensions
-	${FIND} ${STAGEDIR}${PREFIX}/${APP_DIR}/${dir} -type d | \
-	    ${SED} -e "s:${STAGEDIR}${PREFIX}/:@dir(sonarqube,sonarqube,755) :g" | \
+	${FIND} ${PREFIX}/${APP_DIR}/${dir} -type d | \
+	    ${SED} -e "s:${PREFIX}/:@dir(sonarqube,sonarqube,755) :g" | \
 	    ${SORT} >> ${PLIST}.new
-	${FIND} ${STAGEDIR}${PREFIX}/${APP_DIR}/${dir} -type f | \
-	    ${SED} -e "s:${STAGEDIR}${PREFIX}/::g ; \
+	${FIND} ${PREFIX}/${APP_DIR}/${dir} -type f | \
+	    ${SED} -e "s:${PREFIX}/::g ; \
 		s:${JAR_VERSION}:%%JAR_VERSION%%:g" | \
 	    ${SORT} >> ${PLIST}.new
 .endfor

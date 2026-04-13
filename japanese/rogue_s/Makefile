@@ -45,17 +45,17 @@ post-build:
 	nkf -e ${WRKDIR}/mesg_utmc > ${WRKDIR}/mesg_utmc.euc
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/rogue ${STAGEDIR}${PREFIX}/bin/rogue_s
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man6/
-	${INSTALL_MAN} ${WRKDIR}/rogue_s.6 ${STAGEDIR}${PREFIX}/share/man/ja/man6/rogue_s.6
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/mesg ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/mesg_E ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKDIR}/mesg_fj ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKDIR}/mesg_utmc.euc ${STAGEDIR}${DATADIR}/mesg_utmc
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/rogue ${PREFIX}/bin/rogue_s
+	${MKDIR} ${PREFIX}/share/man/ja/man6/
+	${INSTALL_MAN} ${WRKDIR}/rogue_s.6 ${PREFIX}/share/man/ja/man6/rogue_s.6
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/mesg ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/mesg_E ${DATADIR}
+	${INSTALL_DATA} ${WRKDIR}/mesg_fj ${DATADIR}
+	${INSTALL_DATA} ${WRKDIR}/mesg_utmc.euc ${DATADIR}/mesg_utmc
+	${MKDIR} ${DOCSDIR}
 	for _file in ${PORTDOCS}; do \
-		${INSTALL_DATA} ${WRKSRC}/"$$_file" ${STAGEDIR}${DOCSDIR} ; \
+		${INSTALL_DATA} ${WRKSRC}/"$$_file" ${DOCSDIR} ; \
 	done
 
 .include <bsd.port.mk>

@@ -35,7 +35,7 @@ do-extract:
 	${RM} ${WRKDIR}/a1
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${NETPORTABLEDIR}
+	${MKDIR} ${PREFIX}/${NETPORTABLEDIR}
 # XXX: tar(1)'s 'g' flag is broken on BSD.
 #      Repeat the pattern as a workaround.
 	/usr/local/bin/bsdtar -xC ${PREFIX}/${NETPORTABLEDIR} -f ${WRKDIR}/PortableReferenceAssemblies.zip \

@@ -35,6 +35,6 @@ CPPFLAGS+=	-Wno-format-nonliteral
 GLIB_SCHEMAS=	org.gnome.Vino.enums.xml org.gnome.Vino.gschema.xml
 
 post-install:
-	@${RM} -rf ${STAGEDIR}${PREFIX}/lib/systemd/
+	@${RM} -rf ${PREFIX}/lib/systemd/
 
 .include <bsd.port.mk>

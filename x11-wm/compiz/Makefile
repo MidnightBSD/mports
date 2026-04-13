@@ -77,6 +77,6 @@ CONFIGURE_ARGS+=	--disable-dbus --disable-dbus-glib
 .endif
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/compiz-manager ${STAGEDIR}${PREFIX}/bin/compiz-manager
+	${INSTALL_SCRIPT} ${WRKDIR}/compiz-manager ${PREFIX}/bin/compiz-manager
 
 .include <bsd.port.mk>

@@ -51,7 +51,7 @@ NOTO_KR_FONTS=	NotoSansCJKkr-Black.otf \
 		NotoSerifKR-SemiBold.otf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_KR_FONTS} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_KR_FONTS} ${FONTSDIR}
 
 .include <bsd.port.mk>

@@ -32,11 +32,11 @@ OPTIONS_DEFINE=	EXAMPLES
 OPTIONS_DEFAULT=	EXAMPLES
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/sysctlmibinfo2.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/libsysctlmibinfo2.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_LIB} ${WRKSRC}/libsysctlmibinfo2.so.2.0.1 ${STAGEDIR}${PREFIX}/lib
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libsysctlmibinfo2.so.2.0.1 ${STAGEDIR}${PREFIX}/lib/libsysctlmibinfo2.so
-	${INSTALL_MAN} ${WRKSRC}/sysctlmibinfo2.3.gz ${STAGEDIR}${PREFIX}/share/man/man3
+	${INSTALL_DATA} ${WRKSRC}/sysctlmibinfo2.h ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/libsysctlmibinfo2.a ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/libsysctlmibinfo2.so.2.0.1 ${PREFIX}/lib
+	${RLN} ${PREFIX}/lib/libsysctlmibinfo2.so.2.0.1 ${PREFIX}/lib/libsysctlmibinfo2.so
+	${INSTALL_MAN} ${WRKSRC}/sysctlmibinfo2.3.gz ${PREFIX}/share/man/man3
 
 do-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

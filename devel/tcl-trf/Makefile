@@ -30,15 +30,15 @@ CONFIGURE_ARGS+=--enable-static-zlib --enable-static-bzlib  \
 CONFIGURE_ENV+=	CC=${CC}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/Trf
+	${MKDIR} ${PREFIX}/lib/Trf
 	${INSTALL_DATA} ${WRKSRC}/libTrf${PORTVERSION}.so \
-		${WRKSRC}/pkgIndex.tcl ${STAGEDIR}${PREFIX}/lib/Trf/
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/mann/
+		${WRKSRC}/pkgIndex.tcl ${PREFIX}/lib/Trf/
+	${MKDIR} ${PREFIX}/share/man/mann/
 	for m in ${WRKSRC}/doc/man/*.n	;	\
 	do	\
-		${INSTALL_MAN} $$m ${STAGEDIR}${PREFIX}/share/man/mann/ ;\
+		${INSTALL_MAN} $$m ${PREFIX}/share/man/mann/ ;\
 	done
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/Trf/libTrf${PORTVERSION}.so
+	${STRIP_CMD} ${PREFIX}/lib/Trf/libTrf${PORTVERSION}.so
 
 do-test:
 	cd ${WRKSRC} && ${SETENV} TCLLIBPATH="${WRKSRC}" ${TCLSH} \

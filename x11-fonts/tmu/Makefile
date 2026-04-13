@@ -26,8 +26,8 @@ NO_WRKSUBDIR=	yes
 PLIST_FILES=	${FONTSDIR}/tmu.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/TibMachUni-${DISTVERSION}.ttf \
-		${STAGEDIR}${FONTSDIR}/tmu.ttf
+		${FONTSDIR}/tmu.ttf
 
 .include <bsd.port.mk>

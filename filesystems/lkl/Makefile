@@ -35,7 +35,7 @@ MAKE_ARGS+=	PATH="${LOCALBASE}/bin:${PATH}" CC="${CC}" HOSTCC="${CC}"
 PLIST_FILES=	bin/lklfuse lib/liblkl.a
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/lklfuse ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/liblkl.a ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_PROGRAM} ${WRKSRC}/lklfuse ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/liblkl.a ${PREFIX}/lib
 
 .include <bsd.port.mk>

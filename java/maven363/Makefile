@@ -34,12 +34,12 @@ post-extract:
 
 do-install:
 	cd ${WRKSRC} && ${FIND} . -type d -exec ${MKDIR} \
-		${STAGEDIR}${DATADIR}/{} \;
+		${DATADIR}/{} \;
 	cd ${WRKSRC} && ${FIND} . -type f -not -path "\./bin/" \
-		-exec ${INSTALL_DATA} {} ${STAGEDIR}${DATADIR}/{} \;
-	${INSTALL_DATA} ${WRKSRC}/bin/m2.conf ${STAGEDIR}${DATADIR}/bin
-	${INSTALL_SCRIPT} ${WRKDIR}/mvn.sh ${STAGEDIR}${DATADIR}/bin/mvn
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${INSTANCES_DIR}
+		-exec ${INSTALL_DATA} {} ${DATADIR}/{} \;
+	${INSTALL_DATA} ${WRKSRC}/bin/m2.conf ${DATADIR}/bin
+	${INSTALL_SCRIPT} ${WRKDIR}/mvn.sh ${DATADIR}/bin/mvn
+	@${MKDIR} ${PREFIX}/${INSTANCES_DIR}
 	${INSTALL_DATA} ${WRKSRC}/${INSTANCE_FILE} \
 		${FAKE_DESTDIR}${TRUE_PREFIX}/${INSTANCES_DIR}
 

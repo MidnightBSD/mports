@@ -34,8 +34,8 @@ post-patch:
 		-e 's@bash@sh@' ${WRKSRC}/Makefile.in
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/mbuffer
-	${MV} ${STAGEDIR}${PREFIX}/etc/mbuffer.rc \
-		${STAGEDIR}${PREFIX}/etc/mbuffer.rc.sample
+	${STRIP_CMD} ${PREFIX}/bin/mbuffer
+	${MV} ${PREFIX}/etc/mbuffer.rc \
+		${PREFIX}/etc/mbuffer.rc.sample
 
 .include <bsd.port.mk>

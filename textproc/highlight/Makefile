@@ -38,8 +38,8 @@ post-patch:
 		${WRKSRC}/src/${MAKEFILE}
 
 post-install:
-	@cd ${STAGEDIR}${PREFIX}/etc/highlight && ${MV} filetypes.conf \
+	@cd ${PREFIX}/etc/highlight && ${MV} filetypes.conf \
 		filetypes.conf.sample
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/highlight
+	@${STRIP_CMD} ${PREFIX}/bin/highlight
 
 .include <bsd.port.mk>

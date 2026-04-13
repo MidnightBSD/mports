@@ -67,22 +67,22 @@ pre-install:
 	-${RM} ${WRKSRC}/docs/*.bak
 
 do-install:
-	${MKDIR} ${STAGEDIR}${WWWDIR}
-	${MKDIR} ${STAGEDIR}${WWWDIR}/tools
-	${MKDIR} ${STAGEDIR}${WWWDIR}/cgi-bin
+	${MKDIR} ${WWWDIR}
+	${MKDIR} ${WWWDIR}/tools
+	${MKDIR} ${WWWDIR}/cgi-bin
 .for f in awstats_buildstaticpages.pl awstats_configure.pl \
 	awstats_exportlib.pl awstats_updateall.pl geoip_generator.pl \
 	logresolvemerge.pl maillogconvert.pl urlaliasbuilder.pl
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/$f ${STAGEDIR}${WWWDIR}/tools
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/$f ${WWWDIR}/tools
 .endfor
 .for f in awdownloadcsv.pl awredir.pl awstats.model.conf awstats.pl
-	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/$f ${STAGEDIR}${WWWDIR}/cgi-bin
+	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/$f ${WWWDIR}/cgi-bin
 .endfor
-	(cd ${WRKSRC}/wwwroot/cgi-bin && ${COPYTREE_SHARE} "lang lib plugins" ${STAGEDIR}${WWWDIR}/cgi-bin)
-	(cd ${WRKSRC}/wwwroot && ${COPYTREE_SHARE} "css icon js" ${STAGEDIR}${WWWDIR})
-	(cd ${WRKSRC}/tools && ${COPYTREE_SHARE} xslt ${STAGEDIR}${WWWDIR}/tools)
-	${MKDIR} ${STAGEDIR}${WWWDIR}/classes
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/classes/awgraphapplet.jar ${STAGEDIR}${WWWDIR}/classes
+	(cd ${WRKSRC}/wwwroot/cgi-bin && ${COPYTREE_SHARE} "lang lib plugins" ${WWWDIR}/cgi-bin)
+	(cd ${WRKSRC}/wwwroot && ${COPYTREE_SHARE} "css icon js" ${WWWDIR})
+	(cd ${WRKSRC}/tools && ${COPYTREE_SHARE} xslt ${WWWDIR}/tools)
+	${MKDIR} ${WWWDIR}/classes
+	${INSTALL_DATA} ${WRKSRC}/wwwroot/classes/awgraphapplet.jar ${WWWDIR}/classes
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

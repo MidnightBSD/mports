@@ -15,6 +15,6 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 QT_BINARIES=	yes
 
 post-install:
-	${RLN} ${STAGEDIR}${QT_BINDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-qt5
+	${RLN} ${QT_BINDIR}/${PORTNAME} ${PREFIX}/bin/${PORTNAME}-qt5
 
 .include <bsd.port.mk>

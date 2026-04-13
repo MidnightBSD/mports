@@ -30,10 +30,10 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.port.pre.mk>
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/${MODULENAME}.so.0.0.0
-	${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
+	${STRIP_CMD} ${PREFIX}/${APACHEMODDIR}/${MODULENAME}.so.0.0.0
+	${MKDIR} ${PREFIX}/${APACHEETCDIR}/modules.d
 	${INSTALL_DATA} ${WRKDIR}/001-mod_tls.conf \
-		${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d/001-mod_tls.conf.sample
-	${RM} ${STAGEDIR}${DOCSDIR}/LICENSE
+		${PREFIX}/${APACHEETCDIR}/modules.d/001-mod_tls.conf.sample
+	${RM} ${DOCSDIR}/LICENSE
 
 .include <bsd.port.post.mk>

@@ -33,15 +33,15 @@ post-patch:
 		${WRKSRC}/lib/bio/io/registry.rb
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bioinformatics
+	@${MKDIR} ${PREFIX}/etc/bioinformatics
 .for f in etc/bioinformatics/seqdatabase.ini
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/${f}.sample
+	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/${f}.sample
 .endfor
-	@${MKDIR} ${STAGEDIR}${RUBY_MODEXAMPLESDIR}
-	${CP} -R ${WRKSRC}/sample/ ${STAGEDIR}${RUBY_MODEXAMPLESDIR}/
-	@${MKDIR} ${STAGEDIR}${RUBY_MODDOCDIR}/ja
-	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${WRKSRC}/README.rdoc ${STAGEDIR}${RUBY_MODDOCDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.rd ${STAGEDIR}${RUBY_MODDOCDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.rd.ja ${STAGEDIR}${RUBY_MODDOCDIR}/ja/
+	@${MKDIR} ${RUBY_MODEXAMPLESDIR}
+	${CP} -R ${WRKSRC}/sample/ ${RUBY_MODEXAMPLESDIR}/
+	@${MKDIR} ${RUBY_MODDOCDIR}/ja
+	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${WRKSRC}/README.rdoc ${RUBY_MODDOCDIR}/
+	${INSTALL_DATA} ${WRKSRC}/doc/*.rd ${RUBY_MODDOCDIR}/
+	${INSTALL_DATA} ${WRKSRC}/doc/*.rd.ja ${RUBY_MODDOCDIR}/ja/
 
 .include <bsd.port.mk>

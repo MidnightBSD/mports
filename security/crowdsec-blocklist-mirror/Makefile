@@ -36,14 +36,14 @@ do-install:
 	#
 
 	${INSTALL_PROGRAM} ${WRKSRC}/crowdsec-blocklist-mirror \
-		${STAGEDIR}${PREFIX}/bin/crowdsec-blocklist-mirror
+		${PREFIX}/bin/crowdsec-blocklist-mirror
 
 	#
 	# Configuration
 	#
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/config/crowdsec-blocklist-mirror.yaml \
-		${STAGEDIR}${ETCDIR}/crowdsec-blocklist-mirror.yaml.sample
+		${ETCDIR}/crowdsec-blocklist-mirror.yaml.sample
 
 .include <bsd.port.mk>

@@ -159,7 +159,7 @@ post-install-SHARED-on:
 .endfor
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/openssl
+	${STRIP_CMD} ${PREFIX}/bin/openssl
 	cd ${PREFIX}/lib && ${LN} -sf libssl.so libssl.so.7
 
 .include <bsd.port.post.mk>

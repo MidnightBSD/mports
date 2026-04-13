@@ -62,7 +62,7 @@ fix-plist:
 	${REINPLACE_CMD} -e 's|^${BUILDBOT_REMOVE_ME}$$||' ${TMPPLIST}
 
 post-install:
-	${RM} -r ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/buildbot/reporters/templates
+	${RM} -r ${PYTHONPREFIX_SITELIBDIR}/buildbot/reporters/templates
 
 do-test:
 	@cd ${WRKSRC} && PYTHONPATH=${WRKSRC} TZ=UTC ${LOCALBASE}/bin/trial-${PYTHON_VER} buildbot

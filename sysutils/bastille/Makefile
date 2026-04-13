@@ -26,16 +26,16 @@ post-patch:
 		${WRKSRC}/usr/local/etc/rc.d/bastille
 
 do-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/usr/local/bin/bastille ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${ETCDIR}
+	${MKDIR} ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/usr/local/bin/bastille ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/usr/local/etc/bastille/bastille.conf.sample \
-		${STAGEDIR}${ETCDIR}/${PORTNAME}.conf.sample
+		${ETCDIR}/${PORTNAME}.conf.sample
 	${INSTALL_SCRIPT} ${WRKSRC}/usr/local/etc/rc.d/bastille \
-		${STAGEDIR}${PREFIX}/etc/rc.d
+		${PREFIX}/etc/rc.d
 	(cd ${WRKSRC}/usr/local/share/bastille && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
+		${COPYTREE_SHARE} . ${DATADIR})
 	(cd ${WRKSRC}/usr/local/share/man && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/man)
+		${COPYTREE_SHARE} . ${PREFIX}/share/man)
 
 .include <bsd.port.mk>

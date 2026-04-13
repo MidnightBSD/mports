@@ -23,8 +23,8 @@ PLIST_FILES=	bin/wcurl \
 		share/man/man1/wcurl.1.gz
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/wcurl ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/wcurl.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_SCRIPT} ${WRKSRC}/wcurl ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/wcurl.1 ${PREFIX}/share/man/man1
 
 do-test:
 	cd ${WRKSRC} && ./tests/tests.sh

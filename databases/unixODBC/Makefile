@@ -31,8 +31,8 @@ post-patch:
 	touch ${WRKSRC}/Interix/config.sub
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} \
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR} \
 	    "-not -name 'Makefile*'"
 
 .include <bsd.port.mk>

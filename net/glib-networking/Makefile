@@ -31,7 +31,7 @@ NO_TEST=	yes
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
-	-${RM} -r ${STAGEDIR}${PREFIX}/share/installed-tests
+	${RM} -r ${PREFIX}/lib/systemd
+	-${RM} -r ${PREFIX}/share/installed-tests
 
 .include <bsd.port.mk>

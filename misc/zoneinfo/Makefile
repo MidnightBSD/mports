@@ -78,10 +78,10 @@ do-build:
 		-y ${.OBJDIR}/yearistype ${TZFILES}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/zoneinfo
-	(cd ${WRKSRC}/zoneinfo && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/zoneinfo)
-	${INSTALL_DATA} ${WRKSRC}/zone.tab ${STAGEDIR}${PREFIX}/share/zoneinfo
-	${INSTALL_DATA} ${WRKSRC}/zone1970.tab ${STAGEDIR}${PREFIX}/share/zoneinfo
+	${MKDIR} ${PREFIX}/share/zoneinfo
+	(cd ${WRKSRC}/zoneinfo && ${COPYTREE_SHARE} . ${PREFIX}/share/zoneinfo)
+	${INSTALL_DATA} ${WRKSRC}/zone.tab ${PREFIX}/share/zoneinfo
+	${INSTALL_DATA} ${WRKSRC}/zone1970.tab ${PREFIX}/share/zoneinfo
 
 # check-plist is too lenient for us; it doesn't care if there are
 # files in the stage dir that are commented out in plist due to port
@@ -93,7 +93,7 @@ do-install:
 # STAGEDIR not accounted for by .plist-files-no-comments.
 
 test-pkgplist: check-plist
-	@(cd ${STAGEDIR} && ${FIND} . -type f -print) | \
+	@(cd  && ${FIND} . -type f -print) | \
 		${SED} -e 's:^[.]::' | ${SORT} | \
 		${COMM} -23 -- - ${WRKDIR}/.plist-files-no-comments | \
 		while read -r f; do ${ECHO_CMD} "MISSING FROM PLIST: $$f" >&2; ${ECHO_CMD} fail; done | \

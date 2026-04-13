@@ -197,13 +197,13 @@ post-build:
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${INSTALLDIR}
-	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${INSTALLDIR}
-	@cd ${STAGEDIR}${INSTALLDIR} && \
+	@${MKDIR} ${INSTALLDIR}
+	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${INSTALLDIR}
+	@cd ${INSTALLDIR} && \
 		${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \;
-	@${CHMOD} ${BINMODE} ${STAGEDIR}${INSTALLDIR}/lib/jspawnhelper
+	@${CHMOD} ${BINMODE} ${INSTALLDIR}/lib/jspawnhelper
 	@${ECHO} "@javavm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
-	@${FIND} ${STAGEDIR}${INSTALLDIR} -not -type d | ${SORT} | \
-		${SED} -e 's|^${STAGEDIR}${PREFIX}/||' >> ${TMPPLIST}
+	@${FIND} ${INSTALLDIR} -not -type d | ${SORT} | \
+		${SED} -e 's|^${PREFIX}/||' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>

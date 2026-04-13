@@ -35,6 +35,6 @@ pre-configure:
 .endfor
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Curses/Curses.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Curses/Curses.so
 
 .include <bsd.port.mk>

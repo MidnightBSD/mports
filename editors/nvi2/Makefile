@@ -41,12 +41,12 @@ post-patch:
 	    ${WRKSRC}/CMakeLists.txt
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/nvi ${STAGEDIR}${PREFIX}/bin
-	${LN} ${STAGEDIR}${PREFIX}/bin/nvi ${STAGEDIR}${PREFIX}/bin/nex
-	${LN} ${STAGEDIR}${PREFIX}/bin/nvi ${STAGEDIR}${PREFIX}/bin/nview
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/nvi ${PREFIX}/bin
+	${LN} ${PREFIX}/bin/nvi ${PREFIX}/bin/nex
+	${LN} ${PREFIX}/bin/nvi ${PREFIX}/bin/nview
 	${INSTALL_MAN} ${WRKSRC}/man/vi.1 \
-	    ${STAGEDIR}${PREFIX}/share/man/man1/nvi.1
-	${LN} -sf nvi.1 ${STAGEDIR}${PREFIX}/share/man/man1/nex.1
-	${LN} -sf nvi.1 ${STAGEDIR}${PREFIX}/share/man/man1/nview.1
+	    ${PREFIX}/share/man/man1/nvi.1
+	${LN} -sf nvi.1 ${PREFIX}/share/man/man1/nex.1
+	${LN} -sf nvi.1 ${PREFIX}/share/man/man1/nview.1
 
 .include <bsd.port.mk>

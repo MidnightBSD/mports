@@ -50,6 +50,6 @@ do-install-DOCS-on:
 	${INSTALL_DATA} ${WRKSRC}/../doc/* ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libntl.so.*
+	${STRIP_CMD} ${PREFIX}/lib/libntl.so.*
 
 .include <bsd.port.mk>

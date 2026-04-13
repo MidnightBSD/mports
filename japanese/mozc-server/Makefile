@@ -164,12 +164,12 @@ do-build-mozc_server:
 do-install-mozc_server:
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/mozc_server \
-	    ${STAGEDIR}${PREFIX}/bin
+	    ${PREFIX}/bin
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/mozc_emacs_helper \
-	    ${STAGEDIR}${PREFIX}/libexec
+	    ${PREFIX}/libexec
 	${INSTALL_SCRIPT} \
-	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
+	    ${WRKDIR}/mozc /${PREFIX}/bin
 .endif
 
 # mozc_tool
@@ -191,15 +191,15 @@ do-build-mozc_tool:
 do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/mozc_tool \
-	    ${STAGEDIR}${PREFIX}/libexec
-	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
+	    ${PREFIX}/libexec
+	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${PREFIX}/bin
+	@${MKDIR} ${DATADIR}/icons
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-	    ${STAGEDIR}${DATADIR}/icons/product_logo.png
+	    ${DATADIR}/icons/product_logo.png
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-	    ${STAGEDIR}${DATADIR}/icons/update_uptodate.png
+	    ${DATADIR}/icons/update_uptodate.png
 .endif
 
 # ibus_mozc
@@ -235,24 +235,24 @@ do-build-ibus_mozc:
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/mozc_renderer \
-	    ${STAGEDIR}${PREFIX}/libexec/mozc_renderer
+	    ${PREFIX}/libexec/mozc_renderer
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/ibus_mozc \
-	    ${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/ibus/component
+	    ${PREFIX}/libexec/ibus-engine-mozc
+	${MKDIR} ${PREFIX}/share/ibus/component
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/gen/unix/ibus/mozc.xml \
-	    ${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
-	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
+	    ${PREFIX}/share/ibus/component/mozc.xml
+	@${MKDIR} ${DATADIR}/icons
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/${F}.png \
-	    ${STAGEDIR}${DATADIR}/icons/${F:S/^ui-//}.png
+	    ${DATADIR}/icons/${F:S/^ui-//}.png
 .endfor
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-	    ${STAGEDIR}${DATADIR}/icons/product_icon.png
+	    ${DATADIR}/icons/product_icon.png
 .endif
 
 # uim_mozc
@@ -291,18 +291,18 @@ do-build-uim_mozc:
 	    unix/uim/uim.gyp:uim-mozc
 
 do-install-uim_mozc:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/uim/plugin
+	${MKDIR} ${PREFIX}/lib/uim/plugin
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/libuim-mozc.so \
-	    ${STAGEDIR}${PREFIX}/lib/uim/plugin
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	    ${PREFIX}/lib/uim/plugin
+	${MKDIR} ${DATADIR}
 	cd ${WRKSRC_MU}/Mozc/scm && \
 	    ${INSTALL_DATA} mozc.scm mozc-custom.scm mozc-key-custom.scm \
-	    ${STAGEDIR}${DATADIR}
-	${MKDIR} ${STAGEDIR}${DATADIR}/pixmaps
+	    ${DATADIR}
+	${MKDIR} ${DATADIR}/pixmaps
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
-	    ${STAGEDIR}${DATADIR}/pixmaps/mozc.png
+	    ${DATADIR}/pixmaps/mozc.png
 .endif
 
 # fcitx_mozc
@@ -339,32 +339,32 @@ do-build-fcitx_mozc:
 
 do-install-fcitx_mozc:
 	@${MKDIR} \
-	    ${STAGEDIR}${PREFIX}/lib/fcitx \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/addon \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/inputmethod
+	    ${PREFIX}/lib/fcitx \
+	    ${PREFIX}/share/fcitx/addon \
+	    ${PREFIX}/share/fcitx/inputmethod
 	${INSTALL_LIB} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/fcitx-mozc.so \
-	    ${STAGEDIR}${PREFIX}/lib/fcitx/fcitx-mozc.so
+	    ${PREFIX}/lib/fcitx/fcitx-mozc.so
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/fcitx/fcitx-mozc.conf \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/addon/fcitx-mozc.conf
+	    ${PREFIX}/share/fcitx/addon/fcitx-mozc.conf
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/fcitx/mozc.conf \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/inputmethod/mozc.conf
-	@${MKDIR} ${STAGEDIR}${DATADIR}/icon
+	    ${PREFIX}/share/fcitx/inputmethod/mozc.conf
+	@${MKDIR} ${DATADIR}/icon
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/${F}.png \
-	    ${STAGEDIR}${DATADIR}/icon/${F:S,^ui-,mozc-,}.png
+	    ${DATADIR}/icon/${F:S,^ui-,mozc-,}.png
 .endfor
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
-	    ${STAGEDIR}${DATADIR}/icon/mozc.png
+	    ${DATADIR}/icon/mozc.png
 .for L in ja zh_CN zh_TW
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/gen/unix/fcitx/po/${L}.mo \
-	    ${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
+	    ${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
 .endfor
 .endif
 
@@ -392,12 +392,12 @@ do-build-mozc_el:
 	    ${GZIP_CMD} mozc.el
 
 do-install-mozc_el:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
+	@${MKDIR} ${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/emacs/mozc.el.gz \
 	    ${BUILD_WRKSRC}/unix/emacs/mozc.elc \
 	    ${FILESDIR}/leim-list.el \
-	    ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/
+	    ${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/
 .endif
 
 do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}

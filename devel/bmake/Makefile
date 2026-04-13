@@ -29,11 +29,11 @@ do-build:
 		-m ${WRKDIR}/mk objdir=${WRKDIR}/obj prefix=${PREFIX}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/obj/bmake ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKDIR}/bmake/bmake.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${SH} ${WRKSRC}/mk/install-mk -v ${STAGEDIR}${PREFIX}/share/mk
-	${CHMOD} -x ${STAGEDIR}${PREFIX}/share/mk/meta2deps.py
-	cd ${STAGEDIR}${PREFIX} ;					\
+	${INSTALL_PROGRAM} ${WRKDIR}/obj/bmake ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKDIR}/bmake/bmake.1 ${PREFIX}/share/man/man1
+	${SH} ${WRKSRC}/mk/install-mk -v ${PREFIX}/share/mk
+	${CHMOD} -x ${PREFIX}/share/mk/meta2deps.py
+	cd ${PREFIX} ;					\
 	    ${FIND} share/mk -type f -o -type l				\
 		| ${SORT}						\
 		>${WRKDIR}/PLIST.share-mk

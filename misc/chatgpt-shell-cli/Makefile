@@ -38,6 +38,6 @@ post-patch:
 		${REINPLACE_CMD} 's/open \("$${image_url}"\)/xdg-open \1/g' ${WRKSRC}/chatgpt.sh
 
 do-install:
-		${INSTALL_SCRIPT} ${WRKSRC}/chatgpt.sh ${STAGEDIR}${PREFIX}/bin/chatgpt
+		${INSTALL_SCRIPT} ${WRKSRC}/chatgpt.sh ${PREFIX}/bin/chatgpt
 
 .include <bsd.port.mk>

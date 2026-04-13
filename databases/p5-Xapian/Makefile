@@ -43,6 +43,6 @@ OPTIONS_DEFINE=	DOCS
 DOCS_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-perl-Makefile.in
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Xapian/Xapian.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Xapian/Xapian.so
 
 .include <bsd.port.mk>

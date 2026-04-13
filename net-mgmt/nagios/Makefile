@@ -103,6 +103,6 @@ post-patch:
 .endif
 
 post-install:
-	@${MV} ${STAGEDIR}${PREFIX}/${NAGIOSWWWDIR}/config.inc.php ${STAGEDIR}${PREFIX}/${NAGIOSWWWDIR}/config.inc.php.sample
+	@${MV} ${PREFIX}/${NAGIOSWWWDIR}/config.inc.php ${PREFIX}/${NAGIOSWWWDIR}/config.inc.php.sample
 
 .include <bsd.port.mk>

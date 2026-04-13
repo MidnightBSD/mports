@@ -19,11 +19,11 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/CGdic-fpw/cg/data
+	@${MKDIR} ${PREFIX}/share/dict/CGdic-fpw/cg/data
 	${INSTALL_DATA} ${WRKSRC}/cg/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/CGdic-fpw/cg/data
-	${INSTALL_DATA} ${WRKSRC}/catalogs ${STAGEDIR}${PREFIX}/share/dict/CGdic-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/CGdic-fpw/cg/data
+	${INSTALL_DATA} ${WRKSRC}/catalogs ${PREFIX}/share/dict/CGdic-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

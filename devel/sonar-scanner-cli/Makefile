@@ -43,18 +43,18 @@ post-extract:
 	${RM} ${WRKSRC}/bin/*.bat
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${APP_DIR}
-	${INSTALL} ${WRKDIR}/sonar-scanner ${STAGEDIR}${PREFIX}/bin/
+	${MKDIR} ${PREFIX}/${APP_DIR}
+	${INSTALL} ${WRKDIR}/sonar-scanner ${PREFIX}/bin/
 .for dir in bin conf lib
-	cd ${WRKSRC}; ${COPYTREE_SHARE} ${dir} ${STAGEDIR}${PREFIX}/${APP_DIR} "! -name *\.orig"
+	cd ${WRKSRC}; ${COPYTREE_SHARE} ${dir} ${PREFIX}/${APP_DIR} "! -name *\.orig"
 .endfor
 
 gen-plist:
 	${ECHO} '@sample ${APP_DIR}/conf/sonar-scanner.properties.sample' >${PLIST}.new
 	${ECHO} 'bin/sonar-scanner' >>${PLIST}.new
 .for dir in bin conf lib
-	${FIND} ${STAGEDIR}${PREFIX}/${APP_DIR}/${dir} -type f |  \
-	    ${SED} -e "s:${STAGEDIR}${PREFIX}/::g ; \
+	${FIND} ${PREFIX}/${APP_DIR}/${dir} -type f |  \
+	    ${SED} -e "s:${PREFIX}/::g ; \
 		s:${JAR_VERSION}:%%JAR_VERSION%%:g" | \
 	    ${GREP} -v conf/sonar-scanner.properties | ${SORT} >> ${PLIST}.new
 .endfor

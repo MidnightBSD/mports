@@ -17,6 +17,6 @@ USE_GNUSTEP=	back build
 USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Library/Frameworks/HighlighterKit.framework/Versions/0/libHighlighterKit.so
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Library/Frameworks/HighlighterKit.framework/Versions/0/libHighlighterKit.so
 
 .include <bsd.port.mk>

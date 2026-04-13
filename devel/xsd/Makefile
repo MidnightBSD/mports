@@ -42,7 +42,7 @@ do-install:
 post-install:
 # Rename the xsd binary to xsdcxx, as lang/mono already installs an executable
 # called `xsd'.
-	@cd ${STAGEDIR}${PREFIX}/bin && ${MV} xsd xsdcxx
-	@cd ${STAGEDIR}${PREFIX}/share/man/man1 && ${MV} xsd.1 xsdcxx.1
+	@cd ${PREFIX}/bin && ${MV} xsd xsdcxx
+	@cd ${PREFIX}/share/man/man1 && ${MV} xsd.1 xsdcxx.1
 
 .include <bsd.port.mk>

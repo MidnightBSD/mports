@@ -30,6 +30,6 @@ SSE2_DESC=	Use SSE2 for floating point
 SSE2_CONFIGURE_ENABLE=	sse
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/xapian-inspect ${STAGEDIR}${PREFIX}/bin/xapian-inspect
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/xapian-inspect ${PREFIX}/bin/xapian-inspect
 
 .include <bsd.port.mk>

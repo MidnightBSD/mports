@@ -33,7 +33,7 @@ post-patch:
 
 # use a native openldap configuration directories/files
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc
-	${LN} -sf ${LOCALBASE}/etc/openldap ${STAGEDIR}${PREFIX}/etc/openldap
+	${MKDIR} ${PREFIX}/etc
+	${LN} -sf ${LOCALBASE}/etc/openldap ${PREFIX}/etc/openldap
 
 .include <bsd.port.mk>

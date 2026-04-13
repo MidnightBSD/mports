@@ -27,6 +27,6 @@ NO_TEST=	yes
 SHEBANG_FILES=	scripts/*.pl
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/dkim*.pl ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/dkim*.pl ${PREFIX}/bin
 
 .include <bsd.port.mk>

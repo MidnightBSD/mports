@@ -56,8 +56,8 @@ post-configure:
 
 post-install:
 .for config_file in autostart environment menu.xml rc.xml
-	@${MV} ${STAGEDIR}${ETCDIR}/${config_file} \
-		${STAGEDIR}${ETCDIR}/${config_file}.sample
+	@${MV} ${ETCDIR}/${config_file} \
+		${ETCDIR}/${config_file}.sample
 .endfor
 
 .include <bsd.port.mk>

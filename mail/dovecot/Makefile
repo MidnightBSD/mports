@@ -155,9 +155,9 @@ post-patch-LUA-on:
 		${WRKSRC}/src/lib-lua/Makefile.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} ${STAGEDIR}${DOCSDIR}
-	${MV} ${STAGEDIR}${DOCSDIR}/dovecot-openssl.cnf ${STAGEDIR}${EXAMPLESDIR}
-	${MV} ${STAGEDIR}${DOCSDIR}/mkcert.sh ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR} ${DOCSDIR}
+	${MV} ${DOCSDIR}/dovecot-openssl.cnf ${EXAMPLESDIR}
+	${MV} ${DOCSDIR}/mkcert.sh ${EXAMPLESDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

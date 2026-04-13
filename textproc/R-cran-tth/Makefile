@@ -12,7 +12,7 @@ LICENSE=	gpl2
 USES=		compiler:c++17-lang cran:auto-plist,compiles
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/tth/libs/tth
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/tth/libs/ttm
+	${STRIP_CMD} ${PREFIX}/lib/R/library/tth/libs/tth
+	${STRIP_CMD} ${PREFIX}/lib/R/library/tth/libs/ttm
 
 .include <bsd.port.mk>

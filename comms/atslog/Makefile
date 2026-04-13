@@ -64,43 +64,43 @@ post-patch:
 	    -e 's|data.sql|${DATADIR}/sql/data.sql|' ${WRKSRC}/data/sql/install-sql.pl
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${USE_RC_SUBR}/${USE_RC_SUBR} ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ru.KOI8-R/man8
+	${INSTALL_PROGRAM} ${WRKSRC}/${USE_RC_SUBR}/${USE_RC_SUBR} ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/share/man/ru.KOI8-R/man8
 .for i in ${USE_RC_SUBR} ${PORTNAME}master
-	${INSTALL_MAN} ${WRKSRC}/man/en/${i}.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${INSTALL_MAN} ${WRKSRC}/man/ru.KOI8-R/${i}.8 ${STAGEDIR}${PREFIX}/share/man/ru.KOI8-R/man8
+	${INSTALL_MAN} ${WRKSRC}/man/en/${i}.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/man/ru.KOI8-R/${i}.8 ${PREFIX}/share/man/ru.KOI8-R/man8
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/include/${PORTNAME}.conf.default ${STAGEDIR}${PREFIX}/etc/${PORTNAME}.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/include/${PORTNAME}.conf.default.rus ${STAGEDIR}${PREFIX}/etc/${PORTNAME}.conf.rus.sample
+	${INSTALL_DATA} ${WRKSRC}/include/${PORTNAME}.conf.default ${PREFIX}/etc/${PORTNAME}.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/include/${PORTNAME}.conf.default.rus ${PREFIX}/etc/${PORTNAME}.conf.rus.sample
 .for i in atslogcleardb.pl atslogdb.pl atslogmaster
-	${INSTALL_SCRIPT} ${WRKSRC}/include/${i} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/include/${i} ${PREFIX}/bin
 .endfor
-	@${MKDIR} ${STAGEDIR}${DATADIR}/lang
+	@${MKDIR} ${DATADIR}/lang
 	(cd ${WRKSRC}/include && \
 	${FIND} lang -type f ! -iregex ".*Makefile" -exec \
-		${INSTALL_DATA} {} "${STAGEDIR}${DATADIR}/{}" \;)
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/textlogs
+		${INSTALL_DATA} {} "${DATADIR}/{}" \;)
+	@${MKDIR} ${EXAMPLESDIR}/textlogs
 	(cd ${WRKSRC}/data && \
 	${FIND} textlogs -type f -exec \
-		${INSTALL_DATA} {} "${STAGEDIR}${EXAMPLESDIR}/{}" \;)
-	@${MKDIR} ${STAGEDIR}${DATADIR}/sql
+		${INSTALL_DATA} {} "${EXAMPLESDIR}/{}" \;)
+	@${MKDIR} ${DATADIR}/sql
 	(cd ${WRKSRC}/data && \
 	${FIND} sql -type f -iregex ".*\.sql" -exec \
-		${INSTALL_DATA} {} "${STAGEDIR}${DATADIR}/{}" \;)
-	${INSTALL_SCRIPT} ${WRKSRC}/data/sql/install-sql.pl ${STAGEDIR}${DATADIR}/sql
-	@${MKDIR} ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}
+		${INSTALL_DATA} {} "${DATADIR}/{}" \;)
+	${INSTALL_SCRIPT} ${WRKSRC}/data/sql/install-sql.pl ${DATADIR}/sql
+	@${MKDIR} ${PREFIX}/libexec/${PORTNAME}
 	(cd ${WRKSRC}/libexec && \
 	${FIND} -E . -type f ! -iregex ".*\.(sh|orig)" -exec \
-		${INSTALL_DATA} {} "${STAGEDIR}${PREFIX}/libexec/${PORTNAME}/{}" \;)
-	${INSTALL_SCRIPT} ${WRKSRC}/libexec/genindex.sh ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}
+		${INSTALL_DATA} {} "${PREFIX}/libexec/${PORTNAME}/{}" \;)
+	${INSTALL_SCRIPT} ${WRKSRC}/libexec/genindex.sh ${PREFIX}/libexec/${PORTNAME}
 
-	@${MKDIR} ${STAGEDIR}${WWWDIR}
+	@${MKDIR} ${WWWDIR}
 	cd ${WRKSRC}/www && \
 	${FIND} . -type d ! -empty -exec \
-		${MKDIR} "${STAGEDIR}${WWWDIR}/{}" \; && \
+		${MKDIR} "${WWWDIR}/{}" \; && \
 	${FIND} -E . -type f ! -iregex "(.*Makefile|.*\.orig)" -exec \
-		${INSTALL_DATA} {} "${STAGEDIR}${WWWDIR}/{}" \;
-	${MV} ${STAGEDIR}${WWWDIR}/include/config.inc.php.default ${STAGEDIR}${WWWDIR}/include/config.inc.php.sample
+		${INSTALL_DATA} {} "${WWWDIR}/{}" \;
+	${MV} ${WWWDIR}/include/config.inc.php.default ${WWWDIR}/include/config.inc.php.sample
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

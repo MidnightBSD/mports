@@ -70,12 +70,12 @@ post-patch:
 	@${REINPLACE_CMD} -e "s/-o 0 -g 0//g" ${WRKSRC}/Makefile.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/setup_chroot.sh ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/config.h ${STAGEDIR}${EXAMPLESDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/setup_chroot.sh ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/config.h ${EXAMPLESDIR}
+	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/$i ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/$i ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

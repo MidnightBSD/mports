@@ -28,12 +28,12 @@ GH_TUPLE=	sylefeb:LibSL-small:b1942d5:LibSL_small/src/libs/LibSL-small \
 SHEBANG_GLOB=	*.sh *.py
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/silice-make.py ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/silice-make.py ${PREFIX}/bin
 	${REINPLACE_CMD} \
 		-i '' \
 		-e 's|frameworks_dir = os.path.realpath(os.path.join(make_dir,"../frameworks/"))|frameworks_dir = "${DATADIR}/frameworks"|' \
-		${STAGEDIR}${PREFIX}/bin/silice-make.py
-	cd ${WRKSRC} && ${COPYTREE_SHARE} frameworks ${STAGEDIR}${DATADIR}
+		${PREFIX}/bin/silice-make.py
+	cd ${WRKSRC} && ${COPYTREE_SHARE} frameworks ${DATADIR}
 
 .include <bsd.port.mk>

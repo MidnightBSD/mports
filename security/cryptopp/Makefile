@@ -73,16 +73,16 @@ pre-configure-FULL_DEBUG-on:
 .  endif
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/libcryptopp.a ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_LIB} ${WRKSRC}/libcryptopp.so ${STAGEDIR}${PREFIX}/lib/libcryptopp.so.${PORTVERSION}
-	${LN} -fs libcryptopp.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libcryptopp.so.${SOVERSION}
-	${LN} -fs libcryptopp.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libcryptopp.so
-	${INSTALL_DATA} ${WRKSRC}/libcryptopp.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/cryptopp
+	${INSTALL_DATA} ${WRKSRC}/libcryptopp.a ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/libcryptopp.so ${PREFIX}/lib/libcryptopp.so.${PORTVERSION}
+	${LN} -fs libcryptopp.so.${PORTVERSION} ${PREFIX}/lib/libcryptopp.so.${SOVERSION}
+	${LN} -fs libcryptopp.so.${PORTVERSION} ${PREFIX}/lib/libcryptopp.so
+	${INSTALL_DATA} ${WRKSRC}/libcryptopp.pc ${PREFIX}/libdata/pkgconfig
+	@${MKDIR} ${PREFIX}/include/cryptopp
 	(for i in `${FIND} ${WRKSRC}/ -name '*.h' \
 			-and -not -name 'dll.h' \
 			-and -not -name 'resource.h'`; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/include/cryptopp; \
+		${INSTALL_DATA} $$i ${PREFIX}/include/cryptopp; \
 	done)
 
 do-install-DOCS-on:

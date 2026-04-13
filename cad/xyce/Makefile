@@ -60,13 +60,13 @@ hidden-test: # one test is known to fail, see https://github.com/Xyce/Xyce/issue
 	# run tests
 	@cd ${TEST_WRKSRC} && ( \
 		${ECHO} "running tests ..."; \
-		eval `${WRKDIR}/Xyce_Regression/TestScripts/suggestXyceTagList.sh ${STAGEDIR}${PREFIX}/bin/Xyce` ; \
+		eval `${WRKDIR}/Xyce_Regression/TestScripts/suggestXyceTagList.sh ${PREFIX}/bin/Xyce` ; \
 		${SETENV} ${TEST_ENV} ${WRKDIR}/Xyce_Regression/TestScripts/run_xyce_regression \
 			--output=${WRKDIR}/Xyce_Test \
 			--xyce_test="${WRKDIR}/Xyce_Regression" \
 			--resultfile=${WRKDIR}/serial_results \
 			--taglist="$$TAGLIST" \
-			${STAGEDIR}${PREFIX}/bin/Xyce \
+			${PREFIX}/bin/Xyce \
 	)
 	# Testssuite doesn't stop when Ctrl-C is pressed: https://github.com/Xyce/Xyce_Regression/issues/1
 

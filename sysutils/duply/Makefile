@@ -28,8 +28,8 @@ post-patch:
 	${REINPLACE_CMD} -e "s,/etc/duply,${ETCDIR},g" ${WRKSRC}/duply
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/duply ${STAGEDIR}${PREFIX}/bin/duply
-	@${MKDIR} ${STAGEDIR}${PERIODICDIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/periodic_duply ${STAGEDIR}${PERIODICDIR}/${PERIODICFILE}
+	${INSTALL_SCRIPT} ${WRKSRC}/duply ${PREFIX}/bin/duply
+	@${MKDIR} ${PERIODICDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/periodic_duply ${PERIODICDIR}/${PERIODICFILE}
 
 .include <bsd.port.mk>

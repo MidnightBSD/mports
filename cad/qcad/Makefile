@@ -81,20 +81,20 @@ pre-configure:
 		${WRKSRC}/src/core/RSettings.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${RESDIR}/qcad-bin ${STAGEDIR}${PREFIX}/bin/
-	${LN} -sf qcad-bin ${STAGEDIR}${PREFIX}/bin/qcad
+	${INSTALL_PROGRAM} ${RESDIR}/qcad-bin ${PREFIX}/bin/
+	${LN} -sf qcad-bin ${PREFIX}/bin/qcad
 .for lib in ${SHRLIBS:C|^|lib|:C|$|.so|}
-	${INSTALL_LIB} ${RESDIR}/${lib} ${STAGEDIR}${PREFIX}/lib/${lib}.0
-	${LN} -sf ${lib}.0 ${STAGEDIR}${PREFIX}/lib/${lib}
+	${INSTALL_LIB} ${RESDIR}/${lib} ${PREFIX}/lib/${lib}.0
+	${LN} -sf ${lib}.0 ${PREFIX}/lib/${lib}
 .endfor
 .for lib in ${STALIBS:C|^|lib|:C|$|.a|}
-	${INSTALL_DATA} ${RESDIR}/${lib} ${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_DATA} ${RESDIR}/${lib} ${PREFIX}/lib/
 .endfor
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 .for dir in ${SHRDIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} ${dir} ${STAGEDIR}${DATADIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} ${dir} ${DATADIR}
 .endfor
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
+	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

@@ -97,10 +97,10 @@ post-patch:
 
 post-install:
 	${INSTALL_SCRIPT} ${BUILD_WRKSRC}/contrib/macusers/macusers \
-		${STAGEDIR}${PREFIX}/bin/macusers
+		${PREFIX}/bin/macusers
 
 .if ${PORT_OPTIONS:MPAM}
-	${INSTALL_DATA} ${FILESDIR}/pam.conf ${STAGEDIR}${PREFIX}/etc/pam.d/netatalk.sample
+	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/netatalk.sample
 .endif
 
 .include <bsd.port.post.mk>

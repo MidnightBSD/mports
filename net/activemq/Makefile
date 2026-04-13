@@ -32,21 +32,21 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 do-install:
 	@${REINPLACE_CMD} -i '' -e 's|$\{sys:activemq.data\}\/audit.log|\$\{sys:activemq.logs\}\/audit.log|g' ${WRKSRC}/conf/log4j2.properties
 	@${REINPLACE_CMD} -i '' -e 's|$\{sys:activemq.data\}\/activemq.log|\$\{sys:activemq.logs\}\/activemq.log|g' ${WRKSRC}/conf/log4j2.properties
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${ETCDIR}
 	cd ${WRKSRC}/conf && for f in *; do \
-		${INSTALL_DATA} ${WRKSRC}/conf/$$f ${STAGEDIR}${ETCDIR}/$$f.sample; \
+		${INSTALL_DATA} ${WRKSRC}/conf/$$f ${ETCDIR}/$$f.sample; \
 	done
-	@${MKDIR} ${STAGEDIR}${DATADIR}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/activemq* ${STAGEDIR}${DATADIR}/bin
-	${RLN} ${STAGEDIR}${DATADIR}/bin/activemq ${STAGEDIR}${PREFIX}/bin
-	${RLN} ${STAGEDIR}${DATADIR}/bin/activemq-diag ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${DATADIR}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/activemq* ${DATADIR}/bin
+	${RLN} ${DATADIR}/bin/activemq ${PREFIX}/bin
+	${RLN} ${DATADIR}/bin/activemq-diag ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/bin/activemq.jar ${WRKSRC}/bin/wrapper.jar \
-		${STAGEDIR}${DATADIR}/bin
+		${DATADIR}/bin
 	@${MKDIR} ${FAKE_DESTDIR}/var/db/activemq
-	${RLN} ${FAKE_DESTDIR}/var/db/activemq ${STAGEDIR}${DATADIR}/data
-	${RLN} ${STAGEDIR}${ETCDIR} ${STAGEDIR}${DATADIR}/conf
+	${RLN} ${FAKE_DESTDIR}/var/db/activemq ${DATADIR}/data
+	${RLN} ${ETCDIR} ${DATADIR}/conf
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "lib webapps webapps-demo" \
-		${STAGEDIR}${DATADIR}
+		${DATADIR}
 
 do-install-DOCS-on:
 	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}

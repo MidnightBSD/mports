@@ -15,8 +15,8 @@ USES=		libtool pkgconfig
 GNU_CONFIGURE=	yes
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/uhd/
-	cd ${WRKSRC}/include/uhd/ && ${INSTALL_DATA} *.h ${STAGEDIR}${PREFIX}/include/uhd/
-	${INSTALL_DATA} ${WRKSRC}/lib/.libs/libuhd.a ${STAGEDIR}${PREFIX}/lib/
+	${MKDIR} ${PREFIX}/include/uhd/
+	cd ${WRKSRC}/include/uhd/ && ${INSTALL_DATA} *.h ${PREFIX}/include/uhd/
+	${INSTALL_DATA} ${WRKSRC}/lib/.libs/libuhd.a ${PREFIX}/lib/
 
 .include <bsd.port.mk>

@@ -38,7 +38,7 @@ do-build:
 	@${RM} ${WRKSRC}/freefont/Fontmap.bak
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/freefont/* ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/freefont/* ${FONTSDIR}
 
 .include <bsd.port.mk>

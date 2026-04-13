@@ -204,33 +204,33 @@ check regression-test test: build
 do-install:
 .for i in libatlas libcblas libf77blas liblapack libptcblas libptf77blas
 	${INSTALL_DATA} ${WRKSRC}/static/lib/${i}.a \
-		${STAGEDIR}${PREFIX}/lib/${i:S|lapack|alapack|}.a
+		${PREFIX}/lib/${i:S|lapack|alapack|}.a
 	${INSTALL_DATA} ${WRKSRC}/shared/lib/${i}.a \
-		${STAGEDIR}${PREFIX}/lib/${i:S|lapack|alapack|}_pic.a
+		${PREFIX}/lib/${i:S|lapack|alapack|}_pic.a
 	${INSTALL_LIB} ${WRKSRC}/shared/lib/${i:S|lapack|alapack|}.so.2 \
-		${STAGEDIR}${PREFIX}/lib
+		${PREFIX}/lib
 	${LN} -sf ${i:S|lapack|alapack|}.so.2 \
-		${STAGEDIR}${PREFIX}/lib/${i:S|lapack|alapack|}.so
+		${PREFIX}/lib/${i:S|lapack|alapack|}.so
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/include/cblas.h ${WRKSRC}/include/clapack.h \
-		${STAGEDIR}${PREFIX}/include
+		${PREFIX}/include
 .for opt in shared static
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/atlas/${opt}
+	@${MKDIR} ${PREFIX}/include/atlas/${opt}
 	${INSTALL_DATA} ${WRKSRC}/${opt}/include/* \
-		${STAGEDIR}${PREFIX}/include/atlas/${opt}
+		${PREFIX}/include/atlas/${opt}
 .    if ${PORT_OPTIONS:MDATA}
-	@${MKDIR} ${STAGEDIR}${DATADIR}/${opt}
+	@${MKDIR} ${DATADIR}/${opt}
 	(cd ${WRKSRC}/${opt}/bin; \
-		${COPYTREE_SHARE} INSTALL_LOG ${STAGEDIR}${DATADIR}/${opt})
+		${COPYTREE_SHARE} INSTALL_LOG ${DATADIR}/${opt})
 	(cd ${WRKSRC}/${opt}/ARCHS; \
-		${COPYTREE_SHARE} "*" ${STAGEDIR}${DATADIR}/${opt} \
+		${COPYTREE_SHARE} "*" ${DATADIR}/${opt} \
 		"! -name Makefile -and ! -name *.tgz")
-	@${FIND} ${STAGEDIR}${DATADIR}/${opt} -type d -empty -delete
+	@${FIND} ${DATADIR}/${opt} -type d -empty -delete
 .    endif
 .endfor
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/* ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/* ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>

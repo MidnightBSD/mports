@@ -117,8 +117,8 @@ do-install:
 PORTDOCS=	manual.pdf
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/manual/manual.pdf ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/manual/manual.pdf ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>

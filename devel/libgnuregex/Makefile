@@ -30,6 +30,6 @@ do-extract:
 		${FILESDIR}/Makefile ${WRKSRC}
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/gnu
+	${MKDIR} ${PREFIX}/include/gnu
 
 .include <bsd.port.mk>

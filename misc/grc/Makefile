@@ -36,14 +36,14 @@ post-patch:
 
 do-install:
 .for i in grc grcat
-	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ${i} ${STAGEDIR}${PREFIX}/bin)
-	(cd ${WRKSRC} && ${INSTALL_MAN} ${i}.1 ${STAGEDIR}${PREFIX}/share/man/man1)
+	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ${i} ${PREFIX}/bin)
+	(cd ${WRKSRC} && ${INSTALL_MAN} ${i}.1 ${PREFIX}/share/man/man1)
 .endfor
-	(cd ${WRKSRC} && ${INSTALL_DATA} grc.conf ${STAGEDIR}${PREFIX}/etc)
+	(cd ${WRKSRC} && ${INSTALL_DATA} grc.conf ${PREFIX}/etc)
 .for s in grc.zsh grc.sh grc.fish
 	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ${s} ${PREFIX}/etc/)
 .endfor
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} colourfiles/conf.* ${STAGEDIR}${DATADIR})
+	@${MKDIR} ${DATADIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} colourfiles/conf.* ${DATADIR})
 
 .include <bsd.port.mk>

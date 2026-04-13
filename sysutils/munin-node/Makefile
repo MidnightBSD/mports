@@ -94,19 +94,19 @@ post-patch:
 	${CP} -r ${WRKSRC}/plugins/node.d.freebsd ${WRKSRC}/plugins/node.d.midnightbsd
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DBDIR}/plugin-state ${STAGEDIR}${SPOOLDIR}/async
-	${INSTALL_SCRIPT} ${.CURDIR}/plugins/* ${STAGEDIR}${DATADIR}/plugins/
+	${MKDIR} ${DBDIR}/plugin-state ${SPOOLDIR}/async
+	${INSTALL_SCRIPT} ${.CURDIR}/plugins/* ${DATADIR}/plugins/
 	${INSTALL_DATA} ${WRKSRC}/build/node/munin-node.conf \
-		${STAGEDIR}${ETCDIR}/munin-node.conf.sample
+		${ETCDIR}/munin-node.conf.sample
 	${INSTALL_DATA} ${WRKDIR}/plugins.conf \
-		${STAGEDIR}${ETCDIR}/plugins.conf.sample
+		${ETCDIR}/plugins.conf.sample
 	(cd ${WRKSRC}/node/blib/bindoc; \
-		${INSTALL_MAN} munin-node-configure.1 munin-node.1 munin-run.1 ${STAGEDIR}${PREFIX}/share/man/man1; \
+		${INSTALL_MAN} munin-node-configure.1 munin-node.1 munin-run.1 ${PREFIX}/share/man/man1; \
 	)
 	(cd ${WRKSRC}/build/doc; \
-		${INSTALL_MAN} munin-node.conf.5 ${STAGEDIR}${PREFIX}/share/man/man5; \
-		${INSTALL_MAN} munin.8 ${STAGEDIR}${PREFIX}/share/man/man8; \
+		${INSTALL_MAN} munin-node.conf.5 ${PREFIX}/share/man/man5; \
+		${INSTALL_MAN} munin.8 ${PREFIX}/share/man/man8; \
 	)
-	${INSTALL_DATA} ${FILESDIR}/newsyslog ${STAGEDIR}${ETCDIR}/munin-node.newsyslog
+	${INSTALL_DATA} ${FILESDIR}/newsyslog ${ETCDIR}/munin-node.newsyslog
 
 .include <bsd.port.mk>

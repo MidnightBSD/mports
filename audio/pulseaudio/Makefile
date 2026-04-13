@@ -103,12 +103,12 @@ post-patch:
 
 post-install:
 	${RM} -r ${FAKE_DESTDIR}/lib
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/pulse
+	@${MKDIR} ${PREFIX}/etc/pulse
 .for ii in default.pa daemon.conf client.conf system.pa
-	${MV} ${STAGEDIR}${PREFIX}/etc/pulse/${ii} \
-		${STAGEDIR}${PREFIX}/etc/pulse/${ii}.sample
+	${MV} ${PREFIX}/etc/pulse/${ii} \
+		${PREFIX}/etc/pulse/${ii}.sample
 .endfor
-# Delete ${STAGEDIR}${PREFIX}/libexec/pulse directory, if it's empty
-	${RMDIR} ${STAGEDIR}${PREFIX}/libexec || ${TRUE}
+# Delete ${PREFIX}/libexec/pulse directory, if it's empty
+	${RMDIR} ${PREFIX}/libexec || ${TRUE}
 
 .include <bsd.port.mk>

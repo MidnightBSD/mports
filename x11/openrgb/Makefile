@@ -32,6 +32,6 @@ USE_QT=		buildtools core gui linguisttools widgets
 PLIST_FILES=	bin/openrgb
 
 do-install:
-		${INSTALL_PROGRAM} ${WRKSRC}/openrgb ${STAGEDIR}${PREFIX}/bin
+		${INSTALL_PROGRAM} ${WRKSRC}/openrgb ${PREFIX}/bin
 
 .include <bsd.port.mk>

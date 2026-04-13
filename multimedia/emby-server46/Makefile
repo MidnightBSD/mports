@@ -120,13 +120,13 @@ pre-patch:
 	cd ${WRKSRC} && ${PATCH} < ${FILESDIR}/extra-patch-ffmpeg-configure 
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/system
-	(${INSTALL_DATA} ${WRKDIR}/ImageMagickSharp.dll.config ${STAGEDIR}${PREFIX}/lib/emby-server/system)
-	(${INSTALL_DATA} ${WRKDIR}/SQLitePCLRaw.provider.sqlite3.dll.config ${STAGEDIR}${PREFIX}/lib/emby-server/system)
-	(cd ${WRKDIR}/system && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/emby-server/system)
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/bin
-	(${INSTALL_PROGRAM} ${WRKDIR}/bin/ffdetect ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
-	(${INSTALL_PROGRAM} ${WRKSRC}/ffmpeg ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
-	(${INSTALL_PROGRAM} ${WRKSRC}/ffprobe ${STAGEDIR}${PREFIX}/lib/emby-server/bin)
+	@${MKDIR} ${PREFIX}/lib/emby-server/system
+	(${INSTALL_DATA} ${WRKDIR}/ImageMagickSharp.dll.config ${PREFIX}/lib/emby-server/system)
+	(${INSTALL_DATA} ${WRKDIR}/SQLitePCLRaw.provider.sqlite3.dll.config ${PREFIX}/lib/emby-server/system)
+	(cd ${WRKDIR}/system && ${COPYTREE_SHARE} . ${PREFIX}/lib/emby-server/system)
+	@${MKDIR} ${PREFIX}/lib/emby-server/bin
+	(${INSTALL_PROGRAM} ${WRKDIR}/bin/ffdetect ${PREFIX}/lib/emby-server/bin)
+	(${INSTALL_PROGRAM} ${WRKSRC}/ffmpeg ${PREFIX}/lib/emby-server/bin)
+	(${INSTALL_PROGRAM} ${WRKSRC}/ffprobe ${PREFIX}/lib/emby-server/bin)
 
 .include <bsd.port.mk>

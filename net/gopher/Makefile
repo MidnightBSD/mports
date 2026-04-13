@@ -20,14 +20,14 @@ pre-patch:
 	@${FIND} ${WRKSRC} -name '*.[ch]' | ${XARGS} ${REINPLACE_CMD} -e \
 		's,<malloc.h>,<stdlib.h>,'
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/gopher/gopher ${STAGEDIR}${PREFIX}/bin/gopher
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/gopher
-	${INSTALL_DATA} ${WRKSRC}/gopher/gopher.rc ${STAGEDIR}${PREFIX}/etc/gopher/gopher.rc
-	${INSTALL_DATA} ${WRKSRC}/gopher/gopherremote.rc ${STAGEDIR}${PREFIX}/etc/gopher/gopherremote.rc
-	${INSTALL_DATA} ${WRKSRC}/gopher/gopher.hlp ${STAGEDIR}${PREFIX}/etc/gopher/gopher.hlp
-	${INSTALL_PROGRAM} ${WRKSRC}/gophfilt/gophfilt ${STAGEDIR}${PREFIX}/bin/gophfilt
-	${INSTALL_MAN} ${WRKSRC}/doc/gopher.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/gophfilt.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/gopherrc.5 ${STAGEDIR}${PREFIX}/share/man/man5
+	${INSTALL_PROGRAM} ${WRKSRC}/gopher/gopher ${PREFIX}/bin/gopher
+	@${MKDIR} ${PREFIX}/etc/gopher
+	${INSTALL_DATA} ${WRKSRC}/gopher/gopher.rc ${PREFIX}/etc/gopher/gopher.rc
+	${INSTALL_DATA} ${WRKSRC}/gopher/gopherremote.rc ${PREFIX}/etc/gopher/gopherremote.rc
+	${INSTALL_DATA} ${WRKSRC}/gopher/gopher.hlp ${PREFIX}/etc/gopher/gopher.hlp
+	${INSTALL_PROGRAM} ${WRKSRC}/gophfilt/gophfilt ${PREFIX}/bin/gophfilt
+	${INSTALL_MAN} ${WRKSRC}/doc/gopher.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/gophfilt.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/gopherrc.5 ${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>

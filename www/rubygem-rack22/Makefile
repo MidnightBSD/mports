@@ -22,6 +22,6 @@ PORTSCOUT=	limit:^2\.2\.
 
 post-install:
 # Avoid CONFLICTS_INSTALL with www/rubygem-rackup
-	${RM} ${STAGEDIR}${PREFIX}/bin/rackup
+	${RM} ${PREFIX}/bin/rackup
 
 .include <bsd.port.mk>

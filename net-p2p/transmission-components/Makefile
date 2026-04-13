@@ -165,31 +165,31 @@ pre-install:
 	@${FIND} ${WRKSRC}/news \( -name 'news-[0-3]*' -o -name '*beta*' \) -delete
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC} ; ${CP} AUTHORS ${STAGEDIR}${DOCSDIR} ;\
-	       	${CP} COPYING ${STAGEDIR}${DOCSDIR} ;\
-	       	${CP} README.md ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC}/docs ; ${CP} rpc-spec.md ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC}/extras ; ${CP} send-email-when-torrent-done.sh ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/news
-	@cd ${WRKSRC}/news ; ${CP} -R . ${STAGEDIR}${DOCSDIR}/news
+	@${MKDIR} ${DOCSDIR}
+	@cd ${WRKSRC} ; ${CP} AUTHORS ${DOCSDIR} ;\
+	       	${CP} COPYING ${DOCSDIR} ;\
+	       	${CP} README.md ${DOCSDIR}
+	@cd ${WRKSRC}/docs ; ${CP} rpc-spec.md ${DOCSDIR}
+	@cd ${WRKSRC}/extras ; ${CP} send-email-when-torrent-done.sh ${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}/news
+	@cd ${WRKSRC}/news ; ${CP} -R . ${DOCSDIR}/news
 .endif
 
 .if ${FLAVOR} == qt
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps
+	${MKDIR} ${PREFIX}/share/icons/hicolor/scalable/apps
 	${INSTALL_DATA}	${WRKSRC}/qt/icons/transmission.svg \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/transmission-qt.svg
+		${PREFIX}/share/icons/hicolor/scalable/apps/transmission-qt.svg
 .endif
 
 .if ${FLAVOR} == daemon
 post-install:
-	        ${MKDIR} ${STAGEDIR}${ETCDIR}/home
+	        ${MKDIR} ${ETCDIR}/home
 .endif
 
 .if ${FLAVOR} == web
 do-install:
-		( cd ${WRKSRC}/web && ${COPYTREE_SHARE} public_html ${STAGEDIR}${DATADIR} )
+		( cd ${WRKSRC}/web && ${COPYTREE_SHARE} public_html ${DATADIR} )
 .endif
 
 post-install-TESTS-on:

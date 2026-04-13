@@ -37,6 +37,6 @@ post-patch:
 		${WRKSRC}/src/gn/exec_process_unittest.cc
 
 do-install:
-	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/${PORTNAME} ${PREFIX}/bin
 
 .include <bsd.port.mk>

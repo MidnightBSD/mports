@@ -25,13 +25,13 @@ USE_LINUX=	sdl12-extralibs
 WRKSRC=		${WRKDIR}/slimeforest
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 	(cd ${WRKSRC}/jquest && \
-	${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
+	${COPYTREE_SHARE} . ${DATADIR} \
 		'! -name *\.bak -and ! -name *\.txt -and ! -name jquest64')
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}.sh
-	@${LN} -sf slimeforest.sh ${STAGEDIR}${PREFIX}/bin/slimeforest-fs
-	@${LN} -sf slimeforest.sh ${STAGEDIR}${PREFIX}/bin/slimeforest-win
+		${PREFIX}/bin/${PORTNAME}.sh
+	@${LN} -sf slimeforest.sh ${PREFIX}/bin/slimeforest-fs
+	@${LN} -sf slimeforest.sh ${PREFIX}/bin/slimeforest-win
 
 .include <bsd.port.mk>

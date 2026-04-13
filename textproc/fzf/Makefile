@@ -41,10 +41,10 @@ TMUX_PLIST_FILES=	bin/fzf-tmux share/man/man1/fzf-tmux.1.gz
 NO_TEST=	yes
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 ${PREFIX}/share/man/man1
+	${MKDIR} ${EXAMPLESDIR}
 	(cd ${WRKSRC} && \
-	    ${COPYTREE_SHARE} shell ${STAGEDIR}${EXAMPLESDIR})
+	    ${COPYTREE_SHARE} shell ${EXAMPLESDIR})
 
 post-install-TMUX-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/${PORTNAME}-tmux ${FAKE_DESTDIR}${PREFIX}/bin

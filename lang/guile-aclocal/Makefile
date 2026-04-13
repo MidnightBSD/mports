@@ -12,7 +12,7 @@ PLIST=		# disable MASTERDIR's plist
 PLIST_FILES=	${PREFIX}/share/aclocal/guile.m4
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/aclocal/
-	${INSTALL_DATA} ${WRKSRC}/meta/guile.m4 ${STAGEDIR}${PREFIX}/share/aclocal/
+	${MKDIR} ${PREFIX}/share/aclocal/
+	${INSTALL_DATA} ${WRKSRC}/meta/guile.m4 ${PREFIX}/share/aclocal/
 
 .include "${MASTERDIR}/Makefile"

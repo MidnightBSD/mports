@@ -21,10 +21,10 @@ PORTDATA=	*
 BROKEN_sparc64=		Fails to install: runaway process
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 .for l in ${PORTDATA}
-	@${CP} ${WRKSRC}/*.traineddata ${STAGEDIR}${DATADIR}/
+	@${CP} ${WRKSRC}/*.traineddata ${DATADIR}/
 .endfor
-	@cd ${STAGEDIR}${DATADIR} ; ${CHMOD} ${BINMODE} ${PORTDATA}
+	@cd ${DATADIR} ; ${CHMOD} ${BINMODE} ${PORTDATA}
 
 .include <bsd.port.mk>

@@ -36,17 +36,17 @@ post-build:
 	@${RM} ${WRKSRC}/bin/*/*.[os]
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/lmbench
-	${CP} ${FILESDIR}/Makefile ${STAGEDIR}${PREFIX}/lib/lmbench
+	@${MKDIR} ${PREFIX}/lib/lmbench
+	${CP} ${FILESDIR}/Makefile ${PREFIX}/lib/lmbench
 	tar --exclude \*.orig -C ${WRKSRC} -cf - bin scripts results | \
-	  tar -C ${STAGEDIR}${PREFIX}/lib/lmbench -xf -
-	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/*.3 ${STAGEDIR}${PREFIX}/share/man/man3
-	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${ECHO_CMD}  ${STAGEDIR}${PREFIX}/lib/lmbench/bin/*/[^l]* \
-		${STAGEDIR}${PREFIX}/lib/lmbench/bin/*/l[iao]* \
-		${STAGEDIR}${PREFIX}/lib/lmbench/bin/*/lmdd \
-		${STAGEDIR}${PREFIX}/lib/lmbench/bin/*/lmhttp \
+	  tar -C ${PREFIX}/lib/lmbench -xf -
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/*.3 ${PREFIX}/share/man/man3
+	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${PREFIX}/share/man/man8
+	${ECHO_CMD}  ${PREFIX}/lib/lmbench/bin/*/[^l]* \
+		${PREFIX}/lib/lmbench/bin/*/l[iao]* \
+		${PREFIX}/lib/lmbench/bin/*/lmdd \
+		${PREFIX}/lib/lmbench/bin/*/lmhttp \
 		| ${XARGS} ${STRIP_CMD}
 
 .include <bsd.port.mk>

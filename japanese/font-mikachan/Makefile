@@ -36,13 +36,13 @@ PLIST_FILES=	%%DATADIR%%/fonts.dir \
 		%%FONTSDIR%%/mika.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} \
 	    ${WRKSRC}/mika.ttf ${FILESDIR}/fonts.dir \
-	    ${STAGEDIR}${DATADIR}
+	    ${DATADIR}
 
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${STAGEDIR}${FONTSDIR} && \
+	@${MKDIR} ${FONTSDIR}
+	cd ${FONTSDIR} && \
 	    ${LN} -s ../../../${DATADIR_REL}/*.ttf .
 
 .include <bsd.port.mk>

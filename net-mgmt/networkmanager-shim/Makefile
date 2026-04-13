@@ -57,14 +57,14 @@ do-build:
 		${BUILD_WRKSRC}/src/libnm-client-public/nm-enum-types.c
 
 do-install:
-	${MKDIR} -p ${STAGEDIR}${PREFIX}/include/libnm
-	cd ${WRKSRC}/src/libnm-client-public && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/libnm "-name *\.h"
-	cd ${BUILD_WRKSRC}/src/libnm-client-public && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/libnm "-name *\.h"
-	cd ${WRKSRC}/src/libnm-core-public && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/libnm "-name *\.h"
-	cd ${BUILD_WRKSRC}/src/libnm-core-public && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/libnm "-name *\.h"
-	${REINPLACE_CMD} "/#include[[:space:]]*<linux\/.*>/d" ${STAGEDIR}${PREFIX}/include/libnm/*.h
-	${INSTALL_LIB} ${BUILD_WRKSRC}/libnm.so.0 ${STAGEDIR}${PREFIX}/lib/
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libnm.so.0 ${STAGEDIR}${PREFIX}/lib/libnm.so
-	${INSTALL_DATA} ${BUILD_WRKSRC}/meson-private/libnm.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${MKDIR} -p ${PREFIX}/include/libnm
+	cd ${WRKSRC}/src/libnm-client-public && ${COPYTREE_SHARE} . ${PREFIX}/include/libnm "-name *\.h"
+	cd ${BUILD_WRKSRC}/src/libnm-client-public && ${COPYTREE_SHARE} . ${PREFIX}/include/libnm "-name *\.h"
+	cd ${WRKSRC}/src/libnm-core-public && ${COPYTREE_SHARE} . ${PREFIX}/include/libnm "-name *\.h"
+	cd ${BUILD_WRKSRC}/src/libnm-core-public && ${COPYTREE_SHARE} . ${PREFIX}/include/libnm "-name *\.h"
+	${REINPLACE_CMD} "/#include[[:space:]]*<linux\/.*>/d" ${PREFIX}/include/libnm/*.h
+	${INSTALL_LIB} ${BUILD_WRKSRC}/libnm.so.0 ${PREFIX}/lib/
+	${RLN} ${PREFIX}/lib/libnm.so.0 ${PREFIX}/lib/libnm.so
+	${INSTALL_DATA} ${BUILD_WRKSRC}/meson-private/libnm.pc ${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>

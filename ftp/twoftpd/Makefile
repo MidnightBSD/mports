@@ -44,14 +44,14 @@ do-configure:
 do-install:
 .for f in twoftpd-anon twoftpd-anon-conf twoftpd-auth twoftpd-bind-port \
 	twoftpd-conf twoftpd-drop twoftpd-switch twoftpd-xfer
-	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${PREFIX}/bin/
 .endfor
 .for f in twoftpd-auth.1 twoftpd-switch.1 twoftpd-xfer.1
-	${INSTALL_MAN} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/${f} ${PREFIX}/share/man/man1/
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for i in NEWS README TODO
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} ${STAGEDIR}${DOCSDIR})
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} ${DOCSDIR})
 .endfor
 
 .include <bsd.port.mk>

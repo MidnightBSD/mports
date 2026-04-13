@@ -22,6 +22,6 @@ USES=		shebangfix perl5
 SHEBANG_FILES=	sig2dot.pl
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/sig2dot.pl ${STAGEDIR}${PREFIX}/bin/sig2dot
+	${INSTALL_SCRIPT} ${WRKSRC}/sig2dot.pl ${PREFIX}/bin/sig2dot
 
 .include <bsd.port.mk>

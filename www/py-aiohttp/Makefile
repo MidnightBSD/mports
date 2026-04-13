@@ -44,6 +44,6 @@ pre-configure:
 .endfor
 
 post-install:
-	${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${PYTHONPREFIX_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.post.mk>

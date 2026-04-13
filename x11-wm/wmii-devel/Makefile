@@ -34,9 +34,9 @@ post-patch:
 		${WRKSRC}/config.mk
 
 post-install:
-	@${RM} ${STAGEDIR}${DOCSDIR}/LICENSE
+	@${RM} ${DOCSDIR}/LICENSE
 .for f in bin/wimenu bin/wmii bin/wmii9menu bin/wmiir lib/libwmii_hack.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${f}
+	@${STRIP_CMD} ${PREFIX}/${f}
 .endfor
 
 .include <bsd.port.mk>

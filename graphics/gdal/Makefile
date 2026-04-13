@@ -263,10 +263,10 @@ post-patch:
 .endif
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
-	${INSTALL_DATA} ${WRKSRC}/scripts/gdal-bash-completion.sh ${STAGEDIR}${PREFIX}/etc/bash_completion.d
-	cd ${WRKSRC}/ && ${INSTALL_DATA} ${HEADER_FILES} ${STAGEDIR}${PREFIX}/include/
-#	${INSTALL_DATA} ${WRKSRC}/libgdal.a ${STAGEDIR}${PREFIX}/lib/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgdal.so
+	${MKDIR} ${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/scripts/gdal-bash-completion.sh ${PREFIX}/etc/bash_completion.d
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${HEADER_FILES} ${PREFIX}/include/
+#	${INSTALL_DATA} ${WRKSRC}/libgdal.a ${PREFIX}/lib/
+	${STRIP_CMD} ${PREFIX}/lib/libgdal.so
 
 .include <bsd.port.mk>

@@ -29,6 +29,6 @@ post-patch:
 
 post-install:
 	${CHMOD} ${BINMODE} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/spf.py
-	${RLN} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/spf.py ${STAGEDIR}${PREFIX}/bin/
+	${RLN} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/spf.py ${PREFIX}/bin/
 
 .include <bsd.port.mk>

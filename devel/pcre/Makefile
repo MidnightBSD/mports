@@ -95,6 +95,6 @@ post-patch:
 	@${REINPLACE_CMD} -e "s/£//g" ${WRKSRC}/doc/pcre_compile2.3
 
 post-install:
-	${LN} -s libpcre.so.1 ${STAGEDIR}${PREFIX}/lib/libpcre.so.3
+	${LN} -s libpcre.so.1 ${PREFIX}/lib/libpcre.so.3
 
 .include <bsd.port.post.mk>

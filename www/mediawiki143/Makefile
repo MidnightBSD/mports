@@ -57,7 +57,7 @@ pre-install:
 	@${ECHO} @dir ${MEDIAWIKIDIR} >> ${PLIST}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${MEDIAWIKIDIR}
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${MEDIAWIKIDIR}
+	@${MKDIR} ${PREFIX}/${MEDIAWIKIDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/${MEDIAWIKIDIR}
 
 .include <bsd.port.mk>

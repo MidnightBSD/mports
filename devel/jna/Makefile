@@ -48,9 +48,9 @@ post-build-DOCS-on:
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/build/midnightbsd-${ANT_ARCH}.jar \
-		${STAGEDIR}${JAVAJARDIR}/jna-platform.jar
+		${JAVAJARDIR}/jna-platform.jar
 	${INSTALL_DATA} ${WRKSRC}/build/jna.jar \
-		${STAGEDIR}${JAVAJARDIR}/jna.jar
+		${JAVAJARDIR}/jna.jar
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

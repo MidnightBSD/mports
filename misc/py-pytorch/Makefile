@@ -66,7 +66,7 @@ BINARY_ALIAS=	make=${GMAKE}
 
 POST_PLIST=	fix-plist
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/test
 
 .include <bsd.mport.options.mk>
@@ -81,10 +81,10 @@ post-patch:
 
 post-install: # strip binaries
 	@${STRIP_CMD} \
-		${STAGEDIR}${PYTHON_SITELIBDIR}/torch/bin/torch_shm_manager \
-		${STAGEDIR}${PYTHON_SITELIBDIR}/torch/_C${PYTHON_EXT_SUFFIX}.so \
-		${STAGEDIR}${PYTHON_SITELIBDIR}/functorch/_C${PYTHON_EXT_SUFFIX}.so \
-		${STAGEDIR}${PYTHON_SITELIBDIR}/torch/lib/lib*.so
+		${PYTHON_SITELIBDIR}/torch/bin/torch_shm_manager \
+		${PYTHON_SITELIBDIR}/torch/_C${PYTHON_EXT_SUFFIX}.so \
+		${PYTHON_SITELIBDIR}/functorch/_C${PYTHON_EXT_SUFFIX}.so \
+		${PYTHON_SITELIBDIR}/torch/lib/lib*.so
 
 fix-plist: # remove the stray %%PYTHON_SITELIBDIR%%/caffe2 file
 	@${REINPLACE_CMD} -e "s|.*/caffe2$$||" ${TMPPLIST}

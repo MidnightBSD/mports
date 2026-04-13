@@ -17,6 +17,6 @@ USE_PERL5=	configure
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Time/HiRes/HiRes.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Time/HiRes/HiRes.so
 
 .include <bsd.port.mk>

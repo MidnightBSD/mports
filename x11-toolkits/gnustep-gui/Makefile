@@ -69,6 +69,6 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 
 post-install-DOCS-off:
-	@${FIND} -d ${STAGEDIR}${PREFIX}/GNUstep/System/Library/Documentation -type d -empty -delete
+	@${FIND} -d ${PREFIX}/GNUstep/System/Library/Documentation -type d -empty -delete
 
 .include <bsd.port.mk>

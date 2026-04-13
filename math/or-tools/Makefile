@@ -66,6 +66,6 @@ post-patch:
 	@${REINPLACE_CMD} -e '17,19d' ${WRKSRC}/ortools/base/logging.h
 
 post-install:
-	@${FIND} ${STAGEDIR}${PREFIX} -type d -empty -delete
+	@${FIND} ${PREFIX} -type d -empty -delete
 
 .include <bsd.port.mk>

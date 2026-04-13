@@ -20,8 +20,8 @@ PLIST_FILES=	%%DATADIR%%/mono/wine-mono-%%MONO_VERSION%%.msi
 PLIST_DIRSTRY=	%%DATADIR%%/mono %%DATADIR%%
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/mono
+	@${MKDIR} ${DATADIR}/mono
 	${INSTALL_DATA} ${DISTDIR}/wine-mono-${DISTVERSION}.msi \
-		${STAGEDIR}${DATADIR}/mono
+		${DATADIR}/mono
 
 .include <bsd.port.mk>

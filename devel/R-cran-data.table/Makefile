@@ -23,6 +23,6 @@ MAKE_ENV=	LC_ALL=C.UTF-8
 NO_ARCH_IGNORE=	data_table.so
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/R/library/data.table/libs/data_table.so
+	${STRIP_CMD} ${PREFIX}/lib/R/library/data.table/libs/data_table.so
 
 .include <bsd.port.mk>

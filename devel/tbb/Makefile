@@ -52,20 +52,20 @@ post-build-DOCS-on:
 do-install:
 	cd ${WRKSRC}; \
 	${INSTALL_LIB} build/MidnightBSD*release/libtbb.so \
-		${STAGEDIR}${PREFIX}/lib/libtbb.so.2; \
+		${PREFIX}/lib/libtbb.so.2; \
 	${LN} -sf libtbb.so.2 \
-		${STAGEDIR}${PREFIX}/lib/libtbb.so; \
+		${PREFIX}/lib/libtbb.so; \
 	${INSTALL_LIB} build/MidnightBSD*release/libtbbmalloc.so \
-		${STAGEDIR}${PREFIX}/lib/libtbbmalloc.so.2; \
+		${PREFIX}/lib/libtbbmalloc.so.2; \
 	${LN} -sf libtbbmalloc.so.2 \
-		${STAGEDIR}${PREFIX}/lib/libtbbmalloc.so; \
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/tbb/; \
+		${PREFIX}/lib/libtbbmalloc.so; \
+	${MKDIR} ${PREFIX}/include/tbb/; \
 	cd include/tbb/ && \
 		${COPYTREE_SHARE} \
-			. ${STAGEDIR}${PREFIX}/include/tbb/ "! -name *\.html"
+			. ${PREFIX}/include/tbb/ "! -name *\.html"
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/tbb.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${INSTALL_DATA} ${WRKDIR}/tbb.pc ${PREFIX}/libdata/pkgconfig
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

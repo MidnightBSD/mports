@@ -71,10 +71,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|libhdf5|libhdf5${PKGNAMESUFFIX}|g' ${WRKSRC}/test/test_libinfo.sh.in
 
 post-install:
-	-${MV} ${STAGEDIR}${PREFIX}/bin/h5cc ${STAGEDIR}${PREFIX}/bin/h5cc${PKGNAMESUFFIX}
-	-${MV} ${STAGEDIR}${PREFIX}/bin/h5fc ${STAGEDIR}${PREFIX}/bin/h5fc${PKGNAMESUFFIX}
-	-${MV} ${STAGEDIR}${PREFIX}/bin/h5pcc ${STAGEDIR}${PREFIX}/bin/h5pcc${PKGNAMESUFFIX}
-	-${MV} ${STAGEDIR}${PREFIX}/bin/h5pfc ${STAGEDIR}${PREFIX}/bin/h5pfc${PKGNAMESUFFIX}
-	${MV} ${STAGEDIR}${PREFIX}/lib/libhdf5.settings	${STAGEDIR}${PREFIX}/lib/libhdf5${PKGNAMESUFFIX}.settings
+	-${MV} ${PREFIX}/bin/h5cc ${PREFIX}/bin/h5cc${PKGNAMESUFFIX}
+	-${MV} ${PREFIX}/bin/h5fc ${PREFIX}/bin/h5fc${PKGNAMESUFFIX}
+	-${MV} ${PREFIX}/bin/h5pcc ${PREFIX}/bin/h5pcc${PKGNAMESUFFIX}
+	-${MV} ${PREFIX}/bin/h5pfc ${PREFIX}/bin/h5pfc${PKGNAMESUFFIX}
+	${MV} ${PREFIX}/lib/libhdf5.settings	${PREFIX}/lib/libhdf5${PKGNAMESUFFIX}.settings
 
 .include <bsd.port.mk>

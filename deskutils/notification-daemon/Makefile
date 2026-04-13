@@ -27,8 +27,8 @@ PORTSCOUT=	limitw:1,even
 SUB_FILES=	org.freedesktop.Notifications.service
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dbus-1/services
+	@${MKDIR} ${PREFIX}/share/dbus-1/services
 	${INSTALL_DATA} ${WRKDIR}/org.freedesktop.Notifications.service \
-		${STAGEDIR}${PREFIX}/share/dbus-1/services
+		${PREFIX}/share/dbus-1/services
 
 .include <bsd.port.mk>

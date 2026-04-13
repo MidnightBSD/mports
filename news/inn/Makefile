@@ -228,22 +228,22 @@ post-build:
 
 post-install:
 .for FILE in ${TO_BE_STRIPPED}
-	-${TEST} -f ${STAGEDIR}${INN_NEWSBASE}/${FILE} && \
-		${STRIP_CMD} ${STAGEDIR}${INN_NEWSBASE}/${FILE}
+	-${TEST} -f ${INN_NEWSBASE}/${FILE} && \
+		${STRIP_CMD} ${INN_NEWSBASE}/${FILE}
 .endfor
-	${MKDIR} ${STAGEDIR}${INN_NEWSSPOOL}
-	${MKDIR} ${STAGEDIR}${INN_CONFDIR}
+	${MKDIR} ${INN_NEWSSPOOL}
+	${MKDIR} ${INN_CONFDIR}
 .for FILE in ${CONFIG_FILES}
-	${CP} -p ${STAGEDIR}${EXAMPLESDIR}/${FILE} ${STAGEDIR}${INN_CONFDIR}/${FILE}.sample
+	${CP} -p ${EXAMPLESDIR}/${FILE} ${INN_CONFDIR}/${FILE}.sample
 .endfor
-	${MKDIR} ${STAGEDIR}${INN_DBDIR}
+	${MKDIR} ${INN_DBDIR}
 .for FILE in active active.times newsgroups
-	${MV} ${STAGEDIR}${INN_DBDIR}/${FILE} \
-		${STAGEDIR}${INN_DBDIR}/${FILE}.sample
+	${MV} ${INN_DBDIR}/${FILE} \
+		${INN_DBDIR}/${FILE}.sample
 .endfor
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 .for FILE in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.post.mk>

@@ -24,10 +24,10 @@ PLIST_FILES+=	${DATADIR}/hyph_${ALIAS}.dic
 .endfor
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/hyph_de_DE.dic ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/hyph_de_DE.dic ${DATADIR}/
 .for ALIAS in ${DEALIASES}
-	${LN} -s hyph_de_DE.dic ${STAGEDIR}${DATADIR}/hyph_${ALIAS}.dic
+	${LN} -s hyph_de_DE.dic ${DATADIR}/hyph_${ALIAS}.dic
 .endfor
 
 .include <bsd.port.mk>

@@ -19,13 +19,13 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/edict-fpw/edict/data
+	@${MKDIR} ${PREFIX}/share/dict/edict-fpw/edict/data
 	${INSTALL_DATA} ${WRKSRC}/edict/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/edict-fpw/edict/data
+		${PREFIX}/share/dict/edict-fpw/edict/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/edict-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/edict-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme.pkg edict.txt \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

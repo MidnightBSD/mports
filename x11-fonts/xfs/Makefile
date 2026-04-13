@@ -26,8 +26,8 @@ post-build:
 	@cd ${WRKSRC}/config/ && ${MAKE_CMD} config
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/fs
+	@${MKDIR} ${PREFIX}/etc/X11/fs
 	${INSTALL_SCRIPT} ${WRKSRC}/config/config \
-		${STAGEDIR}${PREFIX}/etc/X11/fs/config.sample
+		${PREFIX}/etc/X11/fs/config.sample
 
 .include <bsd.port.mk>

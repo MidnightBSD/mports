@@ -38,15 +38,15 @@ do-build:
 	(cd ${WRKSRC} && ${LOCALBASE}/bin/bash ./clamav-unofficial-sigs.sh -c manpage.conf --install-man)
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/clamav-unofficial-sigs.sh ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/clamav-unofficial-sigs.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_SCRIPT} ${WRKSRC}/clamav-unofficial-sigs.sh ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/clamav-unofficial-sigs.8 ${PREFIX}/share/man/man8
 
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKSRC}/config/master.conf ${STAGEDIR}${ETCDIR}/master.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/config/os/os.freebsd.conf ${STAGEDIR}${ETCDIR}/os.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/config/user.conf ${STAGEDIR}${ETCDIR}/user.conf.sample
+	@${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/config/master.conf ${ETCDIR}/master.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/config/os/os.freebsd.conf ${ETCDIR}/os.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/config/user.conf ${ETCDIR}/user.conf.sample
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} INSTALL.md LICENSE README.md ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} INSTALL.md LICENSE README.md ${DOCSDIR})
 
 .include <bsd.port.mk>

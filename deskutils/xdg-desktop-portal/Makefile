@@ -38,6 +38,6 @@ MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
 MANPAGES_MESON_ENABLED=	man-pages
 
 post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
+	@${RM} -r ${PREFIX}/lib/systemd
 
 .include <bsd.port.mk>

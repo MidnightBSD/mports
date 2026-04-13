@@ -28,6 +28,6 @@ LDFLAGS+=	${ICONV_LIB}
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libhubbub.so*
+	${STRIP_CMD} ${PREFIX}/lib/libhubbub.so*
 
 .include <bsd.port.mk>

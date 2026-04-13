@@ -35,15 +35,15 @@ post-extract:
 
 do-install:
 .for d in build conf lib
-	@${MKDIR} ${STAGEDIR}${DATADIR}/${d}
+	@${MKDIR} ${DATADIR}/${d}
 .endfor
 	@cd ${BUILD_WRKSRC} && \
-	    ${INSTALL_DATA} build/*.[jw]ar ${STAGEDIR}${DATADIR}/build && \
-	    ${INSTALL_DATA} lib/*.jar lib/README.txt ${STAGEDIR}${DATADIR}/lib && \
-	    ${INSTALL_DATA} conf/fop.xconf ${STAGEDIR}${DATADIR}/conf && \
-	    ${COPYTREE_SHARE} hyph ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${BUILD_WRKSRC}/${PORTNAME} ${STAGEDIR}${DATADIR}
-	${LN} -s ../${DATADIR_REL}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	    ${INSTALL_DATA} build/*.[jw]ar ${DATADIR}/build && \
+	    ${INSTALL_DATA} lib/*.jar lib/README.txt ${DATADIR}/lib && \
+	    ${INSTALL_DATA} conf/fop.xconf ${DATADIR}/conf && \
+	    ${COPYTREE_SHARE} hyph ${DATADIR}
+	${INSTALL_SCRIPT} ${BUILD_WRKSRC}/${PORTNAME} ${DATADIR}
+	${LN} -s ../${DATADIR_REL}/${PORTNAME} ${PREFIX}/bin/${PORTNAME}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -55,7 +55,7 @@ post-configure:
 			${WRKSRC}/completions/*
 
 post-install:
-	${RM} ${STAGEDIR}${DATADIR}/completions/makepkg
+	${RM} ${DATADIR}/completions/makepkg
 
 do-test:
 .for test in runCompletion runInstall runUnit

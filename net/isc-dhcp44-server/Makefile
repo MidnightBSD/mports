@@ -139,31 +139,31 @@ do-install:
 	${SETENV} DESTDIR=${FAKE_DESTDIR} ${MAKE} -C ${WRKSRC}/omapip install
 	${SETENV} DESTDIR=${FAKE_DESTDIR} ${MAKE} -C ${WRKSRC}/includes install
 	${SETENV} DESTDIR=${FAKE_DESTDIR} ${MAKE} -C ${WRKSRC}/common install
-	${INSTALL_DATA} ${WRKSRC}/dhcpctl/dhcpctl.h ${STAGEDIR}${PREFIX}/include
-	${MV} ${STAGEDIR}${PREFIX}/etc/dhcpd.conf.example ${STAGEDIR}${PREFIX}/etc/dhcpd.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/dhcpctl/dhcpctl.h ${PREFIX}/include
+	${MV} ${PREFIX}/etc/dhcpd.conf.example ${PREFIX}/etc/dhcpd.conf.sample
 .if ${PORT_OPTIONS:MIPV6}
 	${INSTALL_DATA} ${WRKSRC}/doc/examples/dhcpd-dhcpv6.conf \
-		${STAGEDIR}${PREFIX}/etc/dhcpd6.conf.sample
+		${PREFIX}/etc/dhcpd6.conf.sample
 .endif
 .if ${PORT_OPTIONS:MLDAP}
-	@${MKDIR} ${STAGEDIR}${SCHEMA_DIR}
-	${INSTALL_DATA} ${LDAP_SCHEMA} ${STAGEDIR}${SCHEMA_DIR}
-	${INSTALL_SCRIPT} ${LDAP_SCRIPT} ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${SCHEMA_DIR}
+	${INSTALL_DATA} ${LDAP_SCHEMA} ${SCHEMA_DIR}
+	${INSTALL_SCRIPT} ${LDAP_SCRIPT} ${PREFIX}/bin
 .endif
 .if ${PORT_OPTIONS:MLDAP}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${LDAP_README} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${LDAP_README} ${DOCSDIR}
 .endif
 .endif
 .if ${SUBSYS} == client
-	${INSTALL_SCRIPT} ${WRKSRC}/client/scripts/freebsd ${STAGEDIR}${PREFIX}/sbin/dhclient-script
+	${INSTALL_SCRIPT} ${WRKSRC}/client/scripts/freebsd ${PREFIX}/sbin/dhclient-script
 .elif ${SUBSYS} == server
 .if ${PORT_OPTIONS:MIPV6}
-	@${LN} -sf isc-dhcpd ${STAGEDIR}${PREFIX}/etc/rc.d/isc-dhcpd6
+	@${LN} -sf isc-dhcpd ${PREFIX}/etc/rc.d/isc-dhcpd6
 .endif
 .elif ${SUBSYS} == relay
 .if ${PORT_OPTIONS:MIPV6}
-	@${LN} -sf isc-dhcrelay ${STAGEDIR}${PREFIX}/etc/rc.d/isc-dhcrelay6
+	@${LN} -sf isc-dhcrelay ${PREFIX}/etc/rc.d/isc-dhcrelay6
 .endif
 .endif
 	@${SED} ${PKGMESSAGE_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \

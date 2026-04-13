@@ -22,8 +22,8 @@ PLIST_FILES=	sbin/${PORTNAME} \
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/sbin/${PORTNAME}
+		${PREFIX}/sbin/${PORTNAME}
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 \
-		${STAGEDIR}${PREFIX}/share/man/man8/
+		${PREFIX}/share/man/man8/
 
 .include <bsd.port.mk>

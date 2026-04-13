@@ -38,9 +38,9 @@ HUNSPELL_LIB_DEPENDS=	libhunspell-1.7.so:textproc/hunspell
 HUNSPELL_QMAKE_OFF=	CONFIG+=nohunspell
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/tea ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/icons/tea_icon_v2.png ${STAGEDIR}${PREFIX}/share/pixmaps
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/tea ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/icons/tea_icon_v2.png ${PREFIX}/share/pixmaps
 	(cd ${WRKSRC}/manuals \
-		&& ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+		&& ${COPYTREE_SHARE} . ${DOCSDIR})
 
 .include <bsd.port.mk>

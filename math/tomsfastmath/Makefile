@@ -34,7 +34,7 @@ post-patch:
 		${WRKSRC}/src/sqr/fp_sqr_comba.c
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/src/headers/tfm.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/libtfm.a ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/src/headers/tfm.h ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/libtfm.a ${PREFIX}/lib
 
 .include <bsd.port.post.mk>

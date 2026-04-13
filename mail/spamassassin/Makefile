@@ -199,7 +199,7 @@ post-patch::
 .endfor
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	${INSTALL_LIB} ${WRKSRC}/spamc/libspamc.so ${PREFIX}/lib/libspamc.so.0
 	${LN} -sf libspamc.so.0 ${PREFIX}/lib/libspamc.so
 .if ${PORT_OPTIONS:MSSL}

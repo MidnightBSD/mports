@@ -40,7 +40,7 @@ post-patch:
 		 /COPYING/s|^|#|' ${WRKSRC}/Makefile.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} README.md ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} README.md ${DOCSDIR})
 
 .include <bsd.port.mk>

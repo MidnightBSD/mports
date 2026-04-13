@@ -36,8 +36,8 @@ GDBM_CONFIGURE_OFF=	--without-gdbm
 GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/hypermail \
-		${STAGEDIR}/${PREFIX}/bin/msg2archive \
-		${STAGEDIR}/${PREFIX}/bin/rdmsg
+	${STRIP_CMD} /${PREFIX}/bin/hypermail \
+		/${PREFIX}/bin/msg2archive \
+		/${PREFIX}/bin/rdmsg
 
 .include <bsd.port.mk>

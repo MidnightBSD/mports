@@ -76,7 +76,7 @@ pre-install:
 	${FIND} ${WRKSRC} -type f \( -name \*.orig -o -name \*.bak \) -delete
 
 post-install:
-	${STRIP_CMD} ${STRIP_FILES:S|^|${STAGEDIR}${PREFIX}/bin/|}
+	${STRIP_CMD} ${STRIP_FILES:S|^|${PREFIX}/bin/|}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

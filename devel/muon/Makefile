@@ -46,10 +46,10 @@ do-configure:
 
 do-install:
 	@(${SETENVI} ${MAKE_ENV} ${BUILD_WRKSRC}/muon -C ${BUILD_WRKSRC} install)
-	@${INSTALL_MAN} ${WRKDIR}/man/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	@${INSTALL_MAN} ${WRKDIR}/man/*.5 ${STAGEDIR}${PREFIX}/share/man/man5
+	@${INSTALL_MAN} ${WRKDIR}/man/*.1 ${PREFIX}/share/man/man1
+	@${INSTALL_MAN} ${WRKDIR}/man/*.5 ${PREFIX}/share/man/man5
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	@${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

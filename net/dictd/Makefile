@@ -23,6 +23,6 @@ SUB_LIST=	PORTSDIR=${PORTSDIR}
 USE_RC_SUBR=	dictd
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/dictd.conf ${STAGEDIR}${PREFIX}/etc/dictd.conf.sample
+	${INSTALL_DATA} ${WRKDIR}/dictd.conf ${PREFIX}/etc/dictd.conf.sample
 
 .include <bsd.port.mk>

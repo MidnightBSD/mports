@@ -21,6 +21,6 @@ USE_PERL5=	configure
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/NKF.mod
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/NKF/NKF.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/NKF/NKF.so
 
 .include <bsd.port.mk>

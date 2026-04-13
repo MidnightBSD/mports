@@ -26,8 +26,8 @@ USE_LDCONFIG=	yes
 BINARY_ALIAS=	freetype-config=true
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/.libs/glfont ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/.libs/glfont ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/.libs/showfont \
-		${STAGEDIR}${PREFIX}/bin/sdl-showfont
+		${PREFIX}/bin/sdl-showfont
 
 .include <bsd.port.mk>

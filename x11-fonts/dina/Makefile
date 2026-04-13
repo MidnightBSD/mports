@@ -24,7 +24,7 @@ do-build:
 	${GZIP_CMD} ${WRKSRC}/BDF/*.pcf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/BDF/*.pcf.gz ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/BDF/*.pcf.gz ${FONTSDIR}
 
 .include <bsd.port.mk>

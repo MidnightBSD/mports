@@ -37,8 +37,8 @@ STATIC_BUILD_DEPENDS+=	${LOCALBASE}/lib/libuv.a:devel/libuv
 STATIC_CMAKE_ON=	-DBUILD_STATIC=ON
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/.build/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKSRC}/src/config.json ${STAGEDIR}${ETCDIR}/config.json.sample
+	${INSTALL_PROGRAM} ${WRKDIR}/.build/${PORTNAME} ${PREFIX}/bin
+	@${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/src/config.json ${ETCDIR}/config.json.sample
 
 .include <bsd.port.mk>

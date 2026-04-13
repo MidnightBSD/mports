@@ -18,8 +18,8 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
-	(cd ${WRKSRC}/webfonts && ${COPYTREE_SHARE} . ${STAGEDIR}${FONTSDIR})
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
+	(cd ${WRKSRC}/webfonts && ${COPYTREE_SHARE} . ${FONTSDIR})
 
 .include <bsd.port.mk>

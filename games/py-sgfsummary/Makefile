@@ -24,6 +24,6 @@ NO_ARCH=	yes
 PLIST_FILES=	bin/sgfsummary.py
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/sgfsummary.py ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/sgfsummary.py ${PREFIX}/bin
 
 .include <bsd.port.mk>

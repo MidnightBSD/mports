@@ -369,66 +369,66 @@ post-build-COMPILER_RT-on:
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
-	    ${STAGEDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
+	    ${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
 .for command in ${COMMANDS:C/^/XXXX/1:NXXXX*}
-	${LN} -f ${STAGEDIR}${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX} \
-	    ${STAGEDIR}${PREFIX}/bin/${command}${LLVM_SUFFIX}
+	${LN} -f ${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX} \
+	    ${PREFIX}/bin/${command}${LLVM_SUFFIX}
 .endfor
 
 post-install-DOCS-on:
-	${RM} -r ${STAGEDIR}${DOCSDIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/doc/* ${STAGEDIR}${DOCSDIR}
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc
+	${RM} -r ${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${MV} ${LLVM_PREFIX}/share/doc/* ${DOCSDIR}
+	${RMDIR} ${LLVM_PREFIX}/share/doc
 .for _man in ${MAN1SRCS}
-	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/${_man} \
-	    ${STAGEDIR}${PREFIX}/share/man/man1/${_man:R}${LLVM_SUFFIX}.1
+	${MV} ${LLVM_PREFIX}/share/man/man1/${_man} \
+	    ${PREFIX}/share/man/man1/${_man:R}${LLVM_SUFFIX}.1
 .endfor
 .if ! ${PORT_OPTIONS:MLIT}
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/lit.1
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
+	${RM} ${LLVM_PREFIX}/share/man/man1/lit.1
+	${RM} ${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/
+	${RMDIR} ${LLVM_PREFIX}/share/man/man1/
+	${RMDIR} ${LLVM_PREFIX}/share/man/
 
 .if ${PORT_OPTIONS:MCLANG}
 post-install-DOCS-off:
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/
+	${RM} ${LLVM_PREFIX}/share/man/man1/scan-build.1
+	${RMDIR} ${LLVM_PREFIX}/share/man/man1/
+	${RMDIR} ${LLVM_PREFIX}/share/man/
 .endif
 
 post-install-CLANG-on:
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/clang \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/clang-cpp
+	${LN} -f ${LLVM_PREFIX}/bin/clang \
+	    ${LLVM_PREFIX}/bin/clang-cpp
 
 post-install-COMPILER_RT-on:
 	cd ${WRKDIR}/compiler-rt-build && \
 	    ${MAKE_ENV} ${MAKE_CMD} ${INSTALL_TARGET}
 .if ${ARCH} == "amd64"
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/lib/freebsd/libclang_rt*i386*
+	${RM} ${LLVM_PREFIX}/lib/freebsd/libclang_rt*i386*
 .endif
-	${MKDIR} ${STAGEDIR}${PREFIX}/${_CRTLIBDIR}
-	${MV} ${STAGEDIR}${LLVM_PREFIX}/lib/freebsd/* \
-	    ${STAGEDIR}${PREFIX}/${_CRTLIBDIR}
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/lib/freebsd
+	${MKDIR} ${PREFIX}/${_CRTLIBDIR}
+	${MV} ${LLVM_PREFIX}/lib/freebsd/* \
+	    ${PREFIX}/${_CRTLIBDIR}
+	${RMDIR} ${LLVM_PREFIX}/lib/freebsd
 
 post-install-LIT-on:
 	${INSTALL_SCRIPT} ${PATCH_WRKSRC}/utils/lit/lit.py \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/lit
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/llvm-lit
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
-	    ${STAGEDIR}${PREFIX}/bin/lit${LLVM_SUFFIX}
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
-	    ${STAGEDIR}${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
-	${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
+	    ${LLVM_PREFIX}/bin/lit
+	${LN} -f ${LLVM_PREFIX}/bin/lit \
+	    ${LLVM_PREFIX}/bin/llvm-lit
+	${LN} -f ${LLVM_PREFIX}/bin/lit \
+	    ${PREFIX}/bin/lit${LLVM_SUFFIX}
+	${LN} -f ${LLVM_PREFIX}/bin/lit \
+	    ${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
+	${MKDIR} ${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_DATA} ${WRKSRC}/utils/lit/lit/*.py \
-	    ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
+	    ${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_PROGRAM} ${WRKDIR}/.build/bin/FileCheck \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/FileCheck \
-	    ${STAGEDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
+	    ${LLVM_PREFIX}/bin/
+	${LN} -f ${LLVM_PREFIX}/bin/FileCheck \
+	    ${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
 
 TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 do-test:
@@ -450,18 +450,18 @@ build-plist:
 	${ECHO_CMD} %%LIT%%bin/${command}${LLVM_SUFFIX} >> ${PLIST}.tmp
 	${ECHO_CMD} %%LIT%%${LLVM_PREFIX:S|${PREFIX}/||}/bin/${command} >> ${PLIST}.tmp
 .endfor
-	${FIND} ${STAGEDIR}${LLVM_PREFIX} -type f -o -type l | \
+	${FIND} ${LLVM_PREFIX} -type f -o -type l | \
 	    ${GREP} -v '_blacklist.txt$$' | \
 	    ${GREP} -v '[/-]lit$$' | ${GREP} -v 'FileCheck$$' | \
-	    ${GREP} -v share/man/man1 | ${SED} -e 's|${STAGEDIR}${PREFIX}/||' \
+	    ${GREP} -v share/man/man1 | ${SED} -e 's|${PREFIX}/||' \
 	    -e 's|${PYTHON_SITELIBDIR:C|${PREFIX}/||}|%%PYTHON_SITELIBDIR%%|' \
 	    -e 's|${PORTVERSION}|%%PORTVERSION%%|' \
 	    -e 's|release.cmake|%%CMAKE_BUILD_TYPE%%.cmake|' \
 	    -e 's|${LLVM_RELEASE:C/\./\\./g}|%%LLVM_RELEASE%%|' \
 	    -e 's|${LLVM_MAJOR:C/\./\\./}|%%LLVM_MAJOR%%|' \
 	    | ${SORT} >> ${PLIST}.tmp
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
-	    ${SED} -e 's|${STAGEDIR}${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' \
+	${FIND} ${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
+	    ${SED} -e 's|${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' \
 	    -e 's|${LLVM_RELEASE:C/\./\\./g}|%%LLVM_RELEASE%%|' \
 	    -e 's|${LLVM_MAJOR:C/\./\\./}|%%LLVM_MAJOR%%|' | \
 	    ${SORT} >> ${PLIST}.tmp
@@ -482,7 +482,7 @@ build-plist:
 
 check-commands:
 .for command in ${COMMANDS}
-	test -e ${STAGEDIR}${LLVM_PREFIX}/bin/${command}
+	test -e ${LLVM_PREFIX}/bin/${command}
 .endfor
 
 .include <bsd.port.post.mk>

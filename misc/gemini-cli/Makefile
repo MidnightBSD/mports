@@ -62,12 +62,12 @@ do-build:
 do-install:
 	# install files
 	@cd ${WRKSRC} && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}
+		${COPYTREE_SHARE} . ${PREFIX}
 	# update
 	${REINPLACE_CMD} -i '' \
 		-e "s|#!/usr/bin/env -S node|#!${TRUE_PREFIX}/bin/node|" \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/bundle/gemini.js
+		${PREFIX}/lib/node_modules/${PACKAGE_NAME}/bundle/gemini.js
 	# set exec bit
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/bundle/gemini.js
+	@${CHMOD} +x ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/bundle/gemini.js
 
 .include <bsd.port.mk>

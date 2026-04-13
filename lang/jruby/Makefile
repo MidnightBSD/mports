@@ -52,14 +52,14 @@ post-patch:
 	@${REINPLACE_CMD} -i "" ${REPLACE_LIST_TEMP} ${WRKSRC}/bin/jruby
 
 do-install:
-	${MKDIR} ${STAGEDIR}${JRUBY_HOME}/bin ${STAGEDIR}${JRUBY_HOME}/lib
-	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${JRUBY_HOME}/bin/)
-	(cd ${WRKSRC}/lib && ${COPYTREE_SHARE} . ${STAGEDIR}${JRUBY_HOME}/lib)
+	${MKDIR} ${JRUBY_HOME}/bin ${JRUBY_HOME}/lib
+	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${JRUBY_HOME}/bin/)
+	(cd ${WRKSRC}/lib && ${COPYTREE_SHARE} . ${JRUBY_HOME}/lib)
 .for f in jruby jirb jgem
-	${RLN} ${STAGEDIR}${JRUBY_HOME}/bin/${f} ${STAGEDIR}${PREFIX}/bin/${f}
+	${RLN} ${JRUBY_HOME}/bin/${f} ${PREFIX}/bin/${f}
 .endfor
-	${RLN} ${STAGEDIR}${JRUBY_HOME}/bin/rake ${STAGEDIR}${PREFIX}/bin/jrake
-	${FIND} ${STAGEDIR}${JRUBY_HOME}/lib/jni/x86_64-FreeBSD -type f -name '*\.so' -exec ${STRIP_CMD} {} \;
+	${RLN} ${JRUBY_HOME}/bin/rake ${PREFIX}/bin/jrake
+	${FIND} ${JRUBY_HOME}/lib/jni/x86_64-FreeBSD -type f -name '*\.so' -exec ${STRIP_CMD} {} \;
 
 do-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

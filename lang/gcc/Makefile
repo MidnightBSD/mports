@@ -25,7 +25,7 @@ PLIST_FILES=	bin/g++ bin/gcc bin/gfortran
 
 do-install:
 .for c in gfortran g++ gcc
-	    ${LN} -s ${c}${GCC_DEFAULT} ${STAGEDIR}${PREFIX}/bin/${c}
+	    ${LN} -s ${c}${GCC_DEFAULT} ${PREFIX}/bin/${c}
 .endfor
 
 .include <bsd.port.mk>

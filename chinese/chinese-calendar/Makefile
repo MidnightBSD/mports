@@ -35,6 +35,6 @@ post-patch:
 		src/main.cpp
 
 post-install:
-	-${MV} ${FAKE_DESTDIR}/etc/xdg ${STAGEDIR}${PREFIX}/etc
+	-${MV} ${FAKE_DESTDIR}/etc/xdg ${PREFIX}/etc
 
 .include <bsd.port.mk>

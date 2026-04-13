@@ -24,7 +24,7 @@ SUB_FILES=	pkg-message
 USES=		fonts
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKDIR}/sharefont/* ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKDIR}/sharefont/* ${FONTSDIR}
 
 .include <bsd.port.mk>

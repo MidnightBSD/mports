@@ -20,9 +20,9 @@ NO_BUILD=	yes
 PLIST_FILES=	${FONTSDIR}/AnomalyMono-Powerline.otf \
 		${FONTSDIR}/AnomalyMono-Regular.otf
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for i in Regular Powerline
-	${INSTALL_DATA} ${WRKSRC}/AnomalyMono-${i}.otf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/AnomalyMono-${i}.otf ${FONTSDIR}
 .endfor
 
 .include <bsd.port.mk>

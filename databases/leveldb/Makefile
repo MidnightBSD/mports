@@ -36,11 +36,11 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%SHLIB_MAJOR%%|${SHLIB_MAJOR}|; s|%%SHLIB_MINOR%%|${SHLIB_MINOR}|' ${WRKSRC}/CMakeLists.txt
 
 post-install:
-	${AR} cq ${STAGEDIR}${PREFIX}/lib/libleveldb.a ${BUILD_WRKSRC}/CMakeFiles/leveldb.dir/*/*.o
+	${AR} cq ${PREFIX}/lib/libleveldb.a ${BUILD_WRKSRC}/CMakeFiles/leveldb.dir/*/*.o
 # backward compatibility (for databases/p5-Tie-LevelDB)
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${ECHO_CMD} "PLATFORM_CFLAGS=-std=c++11 -D_REENTRANT -DOS_FREEBSD -DLEVELDB_PLATFORM_POSIX ${SNAPPY_CFLAGS}" > ${STAGEDIR}${DATADIR}/build_config.mk
-	${ECHO_CMD} "PORT_CFLAGS=-std=c++11 -D_REENTRANT -DOS_FREEBSD -DLEVELDB_PLATFORM_POSIX ${SNAPPY_CFLAGS}" >> ${STAGEDIR}${DATADIR}/build_config.mk
-	${ECHO_CMD} "SNAPPY=${SNAPPY}" >> ${STAGEDIR}${DATADIR}/build_config.mk
+	${MKDIR} ${DATADIR}/
+	${ECHO_CMD} "PLATFORM_CFLAGS=-std=c++11 -D_REENTRANT -DOS_FREEBSD -DLEVELDB_PLATFORM_POSIX ${SNAPPY_CFLAGS}" > ${DATADIR}/build_config.mk
+	${ECHO_CMD} "PORT_CFLAGS=-std=c++11 -D_REENTRANT -DOS_FREEBSD -DLEVELDB_PLATFORM_POSIX ${SNAPPY_CFLAGS}" >> ${DATADIR}/build_config.mk
+	${ECHO_CMD} "SNAPPY=${SNAPPY}" >> ${DATADIR}/build_config.mk
 
 .include <bsd.port.mk>

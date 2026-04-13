@@ -53,8 +53,8 @@ post-patch:	.SILENT
 		${WRKSRC}/src/gtk+-2.x/ctkappprofile.c
 
 post-install:	.SILENT
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnvidia-gtk3.so.${PORTVERSION}
-	${RM} ${STAGEDIR}/${PREFIX}/lib/libnvidia-wayland-client.so.${PORTVERSION}
+	${STRIP_CMD} ${PREFIX}/lib/libnvidia-gtk3.so.${PORTVERSION}
+	${RM} /${PREFIX}/lib/libnvidia-wayland-client.so.${PORTVERSION}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.desktop \
 		${DESKTOPDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.png \

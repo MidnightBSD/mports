@@ -20,10 +20,10 @@ MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
 PORTDOCS=	AUTHORS BUGS INSTALL NEWS README
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/wmix ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/wmix ${PREFIX}/bin
+	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

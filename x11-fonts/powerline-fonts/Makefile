@@ -61,15 +61,15 @@ do-install-DOCS-on:
 	${CP} ${WRKSRC}/ProFont/LICENSE ${FAKE_DESTDIR}${DOCSDIR}/LICENSE_ProFont.txt
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 .for font in ${OTF_FONTS}
-	${INSTALL_DATA} ${WRKSRC}/${font}/*.otf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${font}/*.otf ${FONTSDIR}
 .endfor
 .for font in ${TTF_FONTS}
-	${INSTALL_DATA} ${WRKSRC}/${font}/*.ttf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${font}/*.ttf ${FONTSDIR}
 .endfor
 .for font in ${PCF_FONTS}
-	${INSTALL_DATA} ${WRKSRC}/${font}/PCF/*.pcf.gz ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${font}/PCF/*.pcf.gz ${FONTSDIR}
 .endfor
 
 .include <bsd.port.mk>

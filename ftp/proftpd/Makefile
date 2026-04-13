@@ -217,21 +217,21 @@ pre-build:
 	@cd ${WRKSRC} && ${MAKE_CMD} include/buildstamp.h
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/libexec/proftpd
+	@${MKDIR} ${PREFIX}/libexec/proftpd
 
 .else
 post-install:
-	@${MKDIR} ${STAGEDIR}/var/run/proftpd
+	@${MKDIR} /var/run/proftpd
 .if ${PORT_OPTIONS:MDOCS}
-	@${INSTALL} -d ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC} && ${CP} README* RELEASE_NOTES ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC}/doc/ && ${INSTALL_DATA} license.txt ${STAGEDIR}${DOCSDIR}
+	@${INSTALL} -d ${DOCSDIR}
+	@cd ${WRKSRC} && ${CP} README* RELEASE_NOTES ${DOCSDIR}
+	@cd ${WRKSRC}/doc/ && ${INSTALL_DATA} license.txt ${DOCSDIR}
 . if ${PORT_OPTIONS:MHTMLDOCS}
-	@${INSTALL} -d ${STAGEDIR}${DOCSDIR}/html
-	@cd ${WRKSRC}/doc/ && ${INSTALL_DATA} faq.html ${STAGEDIR}${DOCSDIR}/html
-	@${CP} -RP ${WRKSRC}/doc/contrib ${STAGEDIR}${DOCSDIR}/html/contrib
-	@${CP} -RP ${WRKSRC}/doc/modules ${STAGEDIR}${DOCSDIR}/html/modules
-	@${CP} -RP ${WRKSRC}/doc/howto ${STAGEDIR}${DOCSDIR}/html/howto
+	@${INSTALL} -d ${DOCSDIR}/html
+	@cd ${WRKSRC}/doc/ && ${INSTALL_DATA} faq.html ${DOCSDIR}/html
+	@${CP} -RP ${WRKSRC}/doc/contrib ${DOCSDIR}/html/contrib
+	@${CP} -RP ${WRKSRC}/doc/modules ${DOCSDIR}/html/modules
+	@${CP} -RP ${WRKSRC}/doc/howto ${DOCSDIR}/html/howto
 . endif
 .endif
 	@${INSTALL_MAN} ${WRKSRC}/src/ftpdctl.8 ${PREFIX}/share/man/man8/

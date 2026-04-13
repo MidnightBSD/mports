@@ -21,6 +21,6 @@ post-patch:
 		${WRKSRC}/src/Makefile.in
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmpd.so
+	${STRIP_CMD} ${PREFIX}/lib/libmpd.so
 
 .include <bsd.port.mk>

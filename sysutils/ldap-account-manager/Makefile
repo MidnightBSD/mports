@@ -40,7 +40,7 @@ do-install:
 	@${FIND} -ds ${WRKSRC}/${I} -type d | ${SED} -e 's,^${WRKSRC},@dir ${WWWDIR_REL},' >> ${TMPPLIST}
 .endfor
 	@${ECHO_CMD} '@dir ${WWWDIR_REL}' >> ${TMPPLIST}
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} "${LAMDATA}" ${STAGEDIR}${WWWDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} "${LAMDATA}" ${WWWDIR}
 .for DIR in ${WRITEABLES}
 	@${ECHO_CMD} '@postexec ${CHOWN} -R ${WWWOWN} %D/${WWWDIR_REL}/${DIR}' >> ${TMPPLIST}
 	@${ECHO_CMD} '@postexec ${CHMOD} -R u+w %D/${WWWDIR_REL}/${DIR}' >> ${TMPPLIST}

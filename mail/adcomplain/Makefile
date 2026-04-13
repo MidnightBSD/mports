@@ -25,6 +25,6 @@ TARGET_ORDER_OVERRIDE= 750:fix-shebang
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/adcomplain.pl \
-		${STAGEDIR}${PREFIX}/bin/adcomplain
+		${PREFIX}/bin/adcomplain
 
 .include <bsd.port.mk>

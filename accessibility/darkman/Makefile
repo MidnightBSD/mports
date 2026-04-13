@@ -11,6 +11,8 @@ WWW=		https://gitlab.com/WhyNotHugo/darkman
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
+CGO_ENABLED=	0
+
 USES=		go:modules
 USE_GITHUB=	nodefault
 USE_GITLAB=	yes
@@ -54,12 +56,12 @@ post-patch:
 		${WRKSRC}/contrib/dbus/*.service
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/dbus-1/services
+	${MKDIR} ${PREFIX}/share/dbus-1/services
 	${INSTALL_DATA} ${WRKSRC}/contrib/dbus/*.service \
-		${STAGEDIR}${PREFIX}/share/dbus-1/services/
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/xdg-desktop-portal/portals
+		${PREFIX}/share/dbus-1/services/
+	${MKDIR} ${PREFIX}/share/xdg-desktop-portal/portals
 	${INSTALL_DATA} ${WRKSRC}/contrib/portal/${PORTNAME}.portal \
-		${STAGEDIR}${PREFIX}/share/xdg-desktop-portal/portals/
+		${PREFIX}/share/xdg-desktop-portal/portals/
 
 do-build-MANPAGES-on:
 	scdoc < ${WRKSRC}/${PORTNAME}.1.scd >${WRKSRC}/${PORTNAME}.1

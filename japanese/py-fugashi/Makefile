@@ -20,10 +20,10 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipadic>0:japanese/py-ipadic@${PY_FLAVOR}
 USES=		python
 USE_PYTHON=	autoplist cython3 distutils pytest # many tests fail, see https://github.com/polm/fugashi/issues/102
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/fugashi/tests
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/fugashi/fugashi${PYTHON_EXT_SUFFIX}.so
+	@${STRIP_CMD} ${PYTHON_SITELIBDIR}/fugashi/fugashi${PYTHON_EXT_SUFFIX}.so
 
 .include <bsd.port.mk>

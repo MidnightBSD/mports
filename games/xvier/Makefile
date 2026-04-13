@@ -29,16 +29,16 @@ DESKTOP_ENTRIES="Xvier" "" "${PORTNAME}" \
 		"${PORTNAME}" "Game;ArcadeGame;" ""
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME}_prog \
-		${STAGEDIR}${PREFIX}/libexec/
+		${PREFIX}/libexec/
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.man \
-		${STAGEDIR}${PREFIX}/share/man/man6/${PORTNAME}.6
+		${PREFIX}/share/man/man6/${PORTNAME}.6
 
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/
+		${PREFIX}/share/pixmaps/
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

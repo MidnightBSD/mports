@@ -63,7 +63,9 @@ RPKI_LIB_DEPENDS=	libssh.so:security/libssh
 
 .include <bsd.mport.options.mk>
 
-.if ${FLAVOR:U} != rtsock
+.if ${FLAVOR:U} == rtsock
+CONFIGURE_ARGS+=--with-sysconfig=bsd-rtsock
+.else
 CONFIGURE_ARGS+=--with-sysconfig=bsd-netlink
 .endif
 

@@ -19,15 +19,15 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/foldoc-fpw/foldoc/data
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/foldoc-fpw/foldoc/gaiji
+	@${MKDIR} ${PREFIX}/share/dict/foldoc-fpw/foldoc/data
+	@${MKDIR} ${PREFIX}/share/dict/foldoc-fpw/foldoc/gaiji
 	${INSTALL_DATA} ${WRKSRC}/foldoc/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/foldoc-fpw/foldoc/data
+		${PREFIX}/share/dict/foldoc-fpw/foldoc/data
 	${INSTALL_DATA} ${WRKSRC}/foldoc/gaiji/gai16h \
-		${STAGEDIR}${PREFIX}/share/dict/foldoc-fpw/foldoc/gaiji
+		${PREFIX}/share/dict/foldoc-fpw/foldoc/gaiji
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/foldoc-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme.txt ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/foldoc-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme.txt ${DOCSDIR}
 
 .include <bsd.port.mk>

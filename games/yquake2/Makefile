@@ -27,14 +27,14 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/release/q2ded \
-		${STAGEDIR}${PREFIX}/bin/yq2ded
+		${PREFIX}/bin/yq2ded
 	${INSTALL_PROGRAM} ${WRKSRC}/release/quake2 \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/baseq2
+		${PREFIX}/bin/${PORTNAME}
+	@${MKDIR} ${PREFIX}/lib/${PORTNAME}/baseq2
 	${INSTALL_LIB} ${WRKSRC}/release/baseq2/game.so \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}/baseq2
+		${PREFIX}/lib/${PORTNAME}/baseq2
 	${INSTALL_LIB} ${WRKSRC}/release/ref_*.so \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
+		${PREFIX}/lib/${PORTNAME}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -69,16 +69,16 @@ post-build:
 	(cd ${WRKDIR}/Sources/tools && ${CXX} ${CXXFLAGS} -o aba2tn aba2tn.cc)
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tochnog ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKDIR}/Sources/tools/aba2tn ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKDIR}/Sources/tools/*.awk ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${GID_PTYPES}/tochnog.gid
+	${INSTALL_PROGRAM} ${WRKSRC}/tochnog ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKDIR}/Sources/tools/aba2tn ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKDIR}/Sources/tools/*.awk ${PREFIX}/bin
+	${MKDIR} ${GID_PTYPES}/tochnog.gid
 	${INSTALL_DATA} ${WRKDIR}/Sources/gid/tochnog.gid/tochnog.cnd	\
-	  ${STAGEDIR}${GID_PTYPES}/tochnog.gid
+	  ${GID_PTYPES}/tochnog.gid
 	${INSTALL_DATA} ${WRKDIR}/Sources/gid/tochnog.gid/tochnog.mat	\
-	  ${STAGEDIR}${GID_PTYPES}/tochnog.gid
+	  ${GID_PTYPES}/tochnog.gid
 	${INSTALL_SCRIPT} ${WRKDIR}/Sources/gid/tochnog.gid/tochnog.ba*	\
-	  ${STAGEDIR}${GID_PTYPES}/tochnog.gid
+	  ${GID_PTYPES}/tochnog.gid
 
 do-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

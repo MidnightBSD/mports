@@ -19,9 +19,9 @@ FONTS=		anorexia aqui cure cursor drift edges fkp gelly \
 FILES=		${FONTS:S,$,.pcf,}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for f in ${FILES}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FONTSDIR}
 .endfor
 
 .include <bsd.port.mk>

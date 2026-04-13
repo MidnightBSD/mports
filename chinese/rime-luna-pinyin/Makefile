@@ -49,9 +49,9 @@ do-build:
 .endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data
-	${INSTALL_DATA} ${WRKSRC}/*.yaml ${STAGEDIR}${PREFIX}/share/rime-data
-	(cd ${MY_OUTDIR} && ${COPYTREE_SHARE} build ${STAGEDIR}${PREFIX}/share/rime-data)
+	@${MKDIR} ${PREFIX}/share/rime-data
+	${INSTALL_DATA} ${WRKSRC}/*.yaml ${PREFIX}/share/rime-data
+	(cd ${MY_OUTDIR} && ${COPYTREE_SHARE} build ${PREFIX}/share/rime-data)
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

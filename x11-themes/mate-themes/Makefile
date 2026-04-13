@@ -41,8 +41,8 @@ LOCALES=	af am an ar ar_SA as ast az be bg bn bn_IN br \
 
 post-install:
 .for l in ${LOCALES}
-	@${RMDIR} ${STAGEDIR}${PREFIX}/share/locale/${l}/LC_MESSAGES
-	@${RMDIR} ${STAGEDIR}${PREFIX}/share/locale/${l}
+	@${RMDIR} ${PREFIX}/share/locale/${l}/LC_MESSAGES
+	@${RMDIR} ${PREFIX}/share/locale/${l}
 .endfor
 
 .include <bsd.port.mk>

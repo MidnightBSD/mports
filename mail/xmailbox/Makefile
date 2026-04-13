@@ -20,9 +20,9 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/XMailbox.ad
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/dingdong.au ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/ugotmail.au ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/dingdong.au ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/ugotmail.au ${DATADIR}
 	${MKDIR} ${PREFIX}/share/man
 
 post-install-DOCS-on:

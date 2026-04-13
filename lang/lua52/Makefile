@@ -58,7 +58,7 @@ post-patch:
 		${WRKSRC}/Makefile
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblua-${LUA_VER}.so
+	@${STRIP_CMD} ${PREFIX}/lib/liblua-${LUA_VER}.so
 	@${MV} ${PREFIX}/share/man/man1/lua.1 \
 		${PREFIX}/share/man/man1/lua52.1
 	@${MV} ${PREFIX}/share/man/man1/luac.1 \

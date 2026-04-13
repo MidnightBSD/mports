@@ -181,10 +181,10 @@ CONF_FILES=	\
 		virtxend.conf
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/qemu/networks/autostart
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${ETCDIR}/qemu/networks/autostart
+	@${MKDIR} ${DOCSDIR}
 .for doc in AUTHORS.rst NEWS.rst README.rst
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
 
 .for dir in run/libvirt/network \
@@ -205,9 +205,9 @@ post-install:
 .endfor
 
 .for file in ${CONF_FILES}
-	@if test -f ${STAGEDIR}${ETCDIR}/${file}; then \
-		${MV} ${STAGEDIR}${ETCDIR}/${file} \
-		${STAGEDIR}${ETCDIR}/${file}.sample; fi
+	@if test -f ${ETCDIR}/${file}; then \
+		${MV} ${ETCDIR}/${file} \
+		${ETCDIR}/${file}.sample; fi
 .endfor
 
 .include <bsd.port.pre.mk>

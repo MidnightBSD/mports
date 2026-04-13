@@ -25,8 +25,8 @@ post-patch:
 		${WRKSRC}/src/tests/${MAKEFILE}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/tolua ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/include/tolua.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/lib/libtolua.a ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/tolua ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/include/tolua.h ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/lib/libtolua.a ${PREFIX}/lib
 
 .include <bsd.port.mk>

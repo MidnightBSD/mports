@@ -92,17 +92,17 @@ post-build:
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/c-client
+	${MKDIR} ${PREFIX}/include/c-client
 .for f in ${HEADERS}
-	${INSTALL_DATA} ${WRKSRC}/c-client/${f} ${STAGEDIR}${PREFIX}/include/c-client
+	${INSTALL_DATA} ${WRKSRC}/c-client/${f} ${PREFIX}/include/c-client
 .endfor
-	${INSTALL_LIB} ${WRKSRC}/c-client/${SHLIBNAME} ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf ${SHLIBNAME} ${STAGEDIR}${PREFIX}/lib/lib${SHLIBBASE}.so
+	${INSTALL_LIB} ${WRKSRC}/c-client/${SHLIBNAME} ${PREFIX}/lib
+	${LN} -sf ${SHLIBNAME} ${PREFIX}/lib/lib${SHLIBBASE}.so
 	${INSTALL_DATA} ${WRKSRC}/c-client/c-client.a \
-		${STAGEDIR}${PREFIX}/lib/lib${SHLIBBASE}.a
-	${INSTALL_DATA} ${WRKSRC}/c-client/CFLAGS ${STAGEDIR}${PREFIX}/include/c-client
-	${INSTALL_DATA} ${WRKSRC}/c-client/LDFLAGS ${STAGEDIR}${PREFIX}/include/c-client
-	${INSTALL_DATA} ${WRKSRC}/c-client/OSCFLAGS ${STAGEDIR}${PREFIX}/include/c-client
-	${INSTALL_DATA} ${PORTREV_H} ${STAGEDIR}${PREFIX}/include/c-client
+		${PREFIX}/lib/lib${SHLIBBASE}.a
+	${INSTALL_DATA} ${WRKSRC}/c-client/CFLAGS ${PREFIX}/include/c-client
+	${INSTALL_DATA} ${WRKSRC}/c-client/LDFLAGS ${PREFIX}/include/c-client
+	${INSTALL_DATA} ${WRKSRC}/c-client/OSCFLAGS ${PREFIX}/include/c-client
+	${INSTALL_DATA} ${PORTREV_H} ${PREFIX}/include/c-client
 
 .include <bsd.port.mk>

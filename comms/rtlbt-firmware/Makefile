@@ -25,6 +25,6 @@ EXTRACT_FILES=	usr/lib/firmware/rtl_bt \
 		usr/share/doc/firmware-realtek/copyright
 
 do-install:
-	cd ${WRKDIR}/usr/lib/firmware/rtl_bt && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
+	cd ${WRKDIR}/usr/lib/firmware/rtl_bt && ${COPYTREE_SHARE} . ${DATADIR}
 
 .include <bsd.port.mk>

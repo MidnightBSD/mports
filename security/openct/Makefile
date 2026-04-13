@@ -59,7 +59,7 @@ post-patch:
 		${WRKSRC}/doc/Makefile.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA}	${WRKDIR}/etoken.conf ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA}	${WRKDIR}/etoken.conf ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

@@ -20,6 +20,6 @@ GH_ACCOUNT=	gvnn3
 PLIST_FILES=	bin/SMHasher
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/SMHasher ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/SMHasher ${PREFIX}/bin
 
 .include <bsd.port.mk>

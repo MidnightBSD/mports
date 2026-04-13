@@ -19,8 +19,8 @@ AVAHI_SLAVE=	header
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/include/avahi-ui
+	${MKDIR} /${PREFIX}/include/avahi-ui
 	${INSTALL_DATA} ${BUILD_WRKSRC}/avahi-ui.h \
-		${STAGEDIR}/${PREFIX}/include/avahi-ui/
+		/${PREFIX}/include/avahi-ui/
 
 .include "${MASTERDIR}/Makefile"

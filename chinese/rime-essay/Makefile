@@ -24,8 +24,8 @@ PORTDOCS=	AUTHORS README.md
 PLIST_FILES=	share/rime-data/essay.txt
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data
-	${INSTALL_DATA} ${WRKSRC}/essay.txt ${STAGEDIR}${PREFIX}/share/rime-data
+	@${MKDIR} ${PREFIX}/share/rime-data
+	${INSTALL_DATA} ${WRKSRC}/essay.txt ${PREFIX}/share/rime-data
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

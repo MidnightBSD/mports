@@ -117,20 +117,20 @@ pre-install:
 	${FIND} ${WRKSRC} -type f \( -name "*.orig" -or -name "*.bak" \) -delete
 
 do-install:	.SILENT
-	@${MKDIR} ${STAGEDIR}${WWWDIR}
+	@${MKDIR} ${WWWDIR}
 	${FIND} ${WRKSRC} \! -type d -maxdepth 1 \! -name "UPGRADING*" -exec \
-		${INSTALL_SCRIPT} {} ${STAGEDIR}${WWWDIR} \;
-	@${MKDIR} ${DATA_DIRS_LIST:S!^!${STAGEDIR}${WWWDIR}/!}
+		${INSTALL_SCRIPT} {} ${WWWDIR} \;
+	@${MKDIR} ${DATA_DIRS_LIST:S!^!${WWWDIR}/!}
 .for D in ${DATA_DIRS_LIST}
-	(cd ${WRKSRC}/${D} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/${D})
+	(cd ${WRKSRC}/${D} && ${COPYTREE_SHARE} . ${WWWDIR}/${D})
 .endfor
-	${TAR} -C ${WRKSRC} -cf - Bugzilla template | ${TAR} --unlink -C ${STAGEDIR}${WWWDIR} -xf -
-	@${MKDIR} ${EMPTY_DIRS_LIST:S!^!${STAGEDIR}${WWWDIR}/!}
-	@${MKDIR} ${STAGEDIR}${WWWDIR}/contrib
-	(cd ${WRKSRC}/contrib && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/contrib)
-	@${MKDIR} ${STAGEDIR}${WWWDIR}/extensions/MoreBugUrl
-	(cd ${WRKSRC}/extensions/MoreBugUrl && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/extensions/MoreBugUrl)
-	@${MKDIR} ${STAGEDIR}${WWWDIR}/extensions/Voting
-	(cd ${WRKSRC}/extensions/Voting && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/extensions/Voting)
+	${TAR} -C ${WRKSRC} -cf - Bugzilla template | ${TAR} --unlink -C ${WWWDIR} -xf -
+	@${MKDIR} ${EMPTY_DIRS_LIST:S!^!${WWWDIR}/!}
+	@${MKDIR} ${WWWDIR}/contrib
+	(cd ${WRKSRC}/contrib && ${COPYTREE_SHARE} . ${WWWDIR}/contrib)
+	@${MKDIR} ${WWWDIR}/extensions/MoreBugUrl
+	(cd ${WRKSRC}/extensions/MoreBugUrl && ${COPYTREE_SHARE} . ${WWWDIR}/extensions/MoreBugUrl)
+	@${MKDIR} ${WWWDIR}/extensions/Voting
+	(cd ${WRKSRC}/extensions/Voting && ${COPYTREE_SHARE} . ${WWWDIR}/extensions/Voting)
 
 .include <bsd.port.mk>

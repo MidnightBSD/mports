@@ -23,6 +23,6 @@ MAKE_ENV+=	COMPONENT_TYPE="lib-shared" \
 PLIST_FILES=	bin/nsgenbind
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
+	${STRIP_CMD} ${PREFIX}/bin/*
 
 .include <bsd.port.mk>

@@ -42,11 +42,11 @@ OPTIONS_DEFINE=	OPTIMIZED_CFLAGS
 OPTIMIZED_CFLAGS_VARS=	CFLAGS+=-O3
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/cmake/zstd
-	${INSTALL_DATA} ${FILESDIR}/zstdConfig.cmake ${STAGEDIR}${PREFIX}/lib/cmake/zstd/zstdConfig.cmake
-	${INSTALL_DATA} ${WRKDIR}/zstdConfigVersion.cmake ${STAGEDIR}${PREFIX}/lib/cmake/zstd/zstdConfigVersion.cmake
-	${INSTALL_DATA} ${WRKDIR}/zstdTargets-BUILD_TYPE.cmake ${STAGEDIR}${PREFIX}/lib/cmake/zstd/zstdTargets-${BUILD_TYPE:tl}.cmake
-	${INSTALL_DATA} ${FILESDIR}/zstdTargets.cmake ${STAGEDIR}${PREFIX}/lib/cmake/zstd/zstdTargets.cmake
-	${LN} -s zstd.1.gz ${STAGEDIR}${PREFIX}/share/man/man1/zstdmt.1.gz
+	${MKDIR} ${PREFIX}/lib/cmake/zstd
+	${INSTALL_DATA} ${FILESDIR}/zstdConfig.cmake ${PREFIX}/lib/cmake/zstd/zstdConfig.cmake
+	${INSTALL_DATA} ${WRKDIR}/zstdConfigVersion.cmake ${PREFIX}/lib/cmake/zstd/zstdConfigVersion.cmake
+	${INSTALL_DATA} ${WRKDIR}/zstdTargets-BUILD_TYPE.cmake ${PREFIX}/lib/cmake/zstd/zstdTargets-${BUILD_TYPE:tl}.cmake
+	${INSTALL_DATA} ${FILESDIR}/zstdTargets.cmake ${PREFIX}/lib/cmake/zstd/zstdTargets.cmake
+	${LN} -s zstd.1.gz ${PREFIX}/share/man/man1/zstdmt.1.gz
 
 .include <bsd.port.mk>

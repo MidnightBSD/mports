@@ -29,6 +29,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	AyatanaIndicators
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libayatana-appindicator3.so.*
+	${STRIP_CMD} ${PREFIX}/lib/libayatana-appindicator3.so.*
 
 .include <bsd.port.mk>

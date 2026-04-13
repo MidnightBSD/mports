@@ -20,9 +20,9 @@ USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/lib/libfakeroot-0.so \
-		${STAGEDIR}${PREFIX}/lib/libfakeroot.so.0
+	${MV} ${PREFIX}/lib/libfakeroot-0.so \
+		${PREFIX}/lib/libfakeroot.so.0
 	${LN} -sf libfakeroot.so.0 \
-		${STAGEDIR}${PREFIX}/lib/libfakeroot-0.so
+		${PREFIX}/lib/libfakeroot-0.so
 
 .include <bsd.port.mk>
