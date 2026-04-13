@@ -1900,6 +1900,7 @@
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-mini_portile2
     SUBDIR += rubygem-minitest
+    SUBDIR += rubygem-ms_rest
     SUBDIR += rubygem-ms_rest_azure
     SUBDIR += rubygem-msgpack
     SUBDIR += rubygem-multi_json
