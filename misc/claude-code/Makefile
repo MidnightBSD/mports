@@ -6,6 +6,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Agentic coding tool from Anthropic that lives in your terminal
 WWW=		https://github.com/anthropics/claude-code
 
+LICENSE=	anthropic
+LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE_TEXT=	See https://www.anthropic.com/legal/commercial-terms
+
 FETCH_DEPENDS=	npm:www/npm \
 		jq:textproc/jq \
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
