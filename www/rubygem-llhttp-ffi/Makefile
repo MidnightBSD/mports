@@ -10,6 +10,8 @@ WWW=		https://github.com/bryanp/llhttp/tree/main/ffi
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-ffi-compiler>=1.0<2:devel/rubygem-ffi-compiler \
+		rubygem-rake>=13.0<14:devel/rubygem-rake
 RUN_DEPENDS=	rubygem-ffi-compiler>=1.0<2:devel/rubygem-ffi-compiler \
 		rubygem-rake>=13.0<14:devel/rubygem-rake
 

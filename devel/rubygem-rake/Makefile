@@ -15,8 +15,13 @@ USES=		cpe gem
 
 NO_ARCH=	yes
 
-PLIST_FILES=	bin/rake
+PLIST_FILES=	bin/rake \
+		bin/rake${RUBY_SUFFIX}
 
 CPE_VENDOR=	ruby-lang
+
+post-install:
+	${LN} -sf ${TRUE_PREFIX}/bin/rake \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/bin/rake${RUBY_SUFFIX}
 
 .include <bsd.port.mk>
