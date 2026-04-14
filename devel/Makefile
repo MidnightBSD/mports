@@ -1885,6 +1885,7 @@
     SUBDIR += rubygem-grpc-google-iam-v1
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-i18n
+    SUBDIR += rubygem-io-console
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
