@@ -1,6 +1,5 @@
 PORTNAME=	wolfssl
-PORTVERSION=	5.8.0
-PORTREVISION=	1
+PORTVERSION=	5.9.0
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.wolfssl.com/ \
 		FREEBSD_LOCAL/fox
@@ -9,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embedded SSL C-Library
 WWW=		https://www.wolfssl.com/
 
-LICENSE=	gpl2+
+LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe libtool zip
@@ -18,15 +17,18 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-certgen \
+		--enable-context-extra-user-data \
 		--enable-des3 \
 		--enable-dh \
 		--enable-dsa \
 		--enable-dtls \
 		--enable-ecc \
+		--enable-haproxy \
 		--enable-ipv6 \
 		--enable-keygen \
 		--enable-opensslall \
 		--enable-opensslextra \
+		--enable-quic \
 		--enable-ripemd \
 		--enable-sessioncerts \
 		--enable-sha512 \
@@ -36,11 +38,13 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-static \
 		--enable-tls13 \
 		--enable-tls13-draft18 \
-		--enable-haproxy \
-		--enable-quic \
-		--enable-context-extra-user-data
-
-CFLAGS+=	-DWOLFSSL_ALT_NAMES -DWOLFSSL_GETRANDOM=1
+		--enable-keying-material
+TEST_TARGET=	check
+CFLAGS+=	-DWOLFSSL_ALT_NAMES -DWOLFSSL_GETRANDOM=1 -DWOLFSSL_TLS13_MIDDLEBOX_COMPAT
+CFLAGS_i386=	-DWOLFSSL_SHA224
+CFLAGS_powerpc=	-DWOLFSSL_SHA224
+CFLAGS_powerpc64=	-DWOLFSSL_SHA224
+CFLAGS_powerpc64le=	-DWOLFSSL_SHA224
 
 OPTIONS_DEFINE=	DEBUG DOCS
 
