@@ -1,5 +1,5 @@
 PORTNAME=	wolfssl
-PORTVERSION=	5.9.0
+PORTVERSION=	5.9.1
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.wolfssl.com/ \
 		FREEBSD_LOCAL/fox
