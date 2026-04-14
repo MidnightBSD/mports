@@ -64,6 +64,12 @@ pre-patch:
 	@${RM} ${WRKSRC}/libarc/*.h
 	@${RM} ${WRKSRC}/utils/mblock.h
 
+post-patch:
+	@${REINPLACE_CMD} \
+		-e 's/__byte_swap_word(x)/__builtin_bswap16(x)/g' \
+		-e 's/__byte_swap_long(x)/__builtin_bswap32(x)/g' \
+		${WRKSRC}/timidity/sysdep.h
+
 pre-install:
 	@${MKDIR} ${PREFIX}/${TIMID_LIBDIR}
 	@${MKDIR} ${PREFIX}/share/timidity
