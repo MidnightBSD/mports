@@ -284,6 +284,7 @@
     SUBDIR += rubygem-google-cloud-env
     SUBDIR += rubygem-google-cloud-errors
     SUBDIR += rubygem-grpc
+    SUBDIR += rubygem-grpc-gitlab
     SUBDIR += rubygem-http_parser.rb
     SUBDIR += rubygem-iproto
     SUBDIR += rubygem-net-protocol

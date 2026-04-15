@@ -29,6 +29,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libcurl.so:ftp/curl
 RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod-legacy
 
+USE_GCC=12	
 USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 USE_GNOME=	libxml2
 
@@ -188,6 +189,8 @@ KMK_BUILDDIR=	${WRKSRC}/out/${KMK_ARCH}/${KMK_BUILDTYPE}
 KMK_CONFIG=	VBOX_LIBPATH_X11=${LOCALBASE} VBOX_FREEBSD_SRC=${SRC_BASE}/sys
 KMK_FLAGS+=	-j${MAKE_JOBS_NUMBER}
 
+MAKE_ENV+=	FREEBSD=12 _FreeBSD_version=1204500
+
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_MAJOR_VER} >= 3
@@ -294,7 +297,7 @@ post-patch:
 	    ${WRKSRC}/src/VBox/Runtime/Makefile.kmk
 	@${ECHO_CMD} 'VBOX_ICONV_DEFS = LIBICONV_PLUG' >> ${WRKSRC}/LocalConfig.kmk
 .endif
-.if ${CHOSEN_COMPILER_TYPE} == clang && ${OPSYS} == FreeBSD && ${ARCH} == i386
+.if ${CHOSEN_COMPILER_TYPE} == clang && ${ARCH} == i386
 	@${ECHO_CMD} 'VBOX_FREEBSD = -fPIC' >> ${WRKSRC}/LocalConfig.kmk
 .endif
 	@${REINPLACE_CMD} -e 's|%%VBOX_DIR%%|${VBOX_DIR}|g' \
@@ -304,10 +307,6 @@ post-patch:
 	@${REINPLACE_CMD} \
 	    -e 's|^versions =.*|versions = ["${PYTHON_VER}${PYTHON_ABIVER}"]|' \
 	    ${WRKSRC}/src/libs/xpcom18a4/python/gen_python_deps.py
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400093
-	@${REINPLACE_CMD} -e 's|enum vtype|enum enum_vtype_uint8|g' \
-	    ${WRKSRC}/src/VBox/Additions/freebsd/vboxvfs/vboxvfs*.[ch]
-.endif
 
 do-build:
 	cd ${WRKSRC} && ${SH} -c '. ${WRKSRC}/env.sh && \

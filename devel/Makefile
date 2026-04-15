@@ -1883,8 +1883,10 @@
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-googleapis-common-protos-types-gitlab
     SUBDIR += rubygem-grpc-google-iam-v1
+    SUBDIR += rubygem-hashie
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-i18n
+    SUBDIR += rubygem-io-console
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
@@ -1900,6 +1902,7 @@
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-mini_portile2
     SUBDIR += rubygem-minitest
+    SUBDIR += rubygem-ms_rest
     SUBDIR += rubygem-ms_rest_azure
     SUBDIR += rubygem-msgpack
     SUBDIR += rubygem-multi_json
@@ -1918,6 +1921,7 @@
     SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rake
     SUBDIR += rubygem-rdoc
+    SUBDIR += rubygem-reline
     SUBDIR += rubygem-retriable
     SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rspec

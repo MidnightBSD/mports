@@ -89,10 +89,6 @@ post-patch:
 		${WRKSRC}/man/mono.1 \
 		${WRKSRC}/man/mozroots.1
 
-post-configure:
-	${REINPLACE_CMD} -e 's|share\/man|man|g' \
-		${WRKSRC}/mcs/jay/Makefile
-
 post-install:
 	${MKDIR} ${PREFIX}/mono
 

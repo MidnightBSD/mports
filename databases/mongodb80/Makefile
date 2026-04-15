@@ -160,7 +160,7 @@ do-build:
 
 do-install:
 .for f in mongod mongos
-	${STRIP_CMD} ${PREFIX}/bin/${f}
+	-${STRIP_CMD} ${PREFIX}/bin/${f}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/rpm/mongod.conf ${PREFIX}/etc/mongodb.conf.sample
 	${MKDIR} ${DOCSDIR}
