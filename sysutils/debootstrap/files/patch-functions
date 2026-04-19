@@ -1,6 +1,21 @@
---- functions.orig	2023-02-24 08:27:34 UTC
-+++ functions
-@@ -658,7 +658,7 @@ download_release_sig () {
+--- functions.orig	2024-12-29 13:30:24.000000000 -0500
++++ functions	2026-04-19 13:26:08.073548000 -0400
+@@ -233,11 +233,11 @@
+ detect_container () {
+ 	if [ "$container" = lxc ]; then
+ 		CONTAINER="lxc"
+-	elif grep -qs container=lxc-libvirt /proc/1/environ; then
++	elif /usr/local/bin/ggrep -qs container=lxc-libvirt /proc/1/environ; then
+ 		CONTAINER="lxc-libvirt"
+-	elif grep -qs ^systemd-nspawn$ /run/systemd/container || grep -qs systemd-nspawn /proc/1/environ || [ "$container" = "systemd-nspawn" ]; then
++	elif /usr/local/bin/ggrep -qs ^systemd-nspawn$ /run/systemd/container || /usr/local/bin/ggrep -qs systemd-nspawn /proc/1/environ || [ "$container" = "systemd-nspawn" ]; then
+ 		CONTAINER="systemd-nspawn"
+-	elif grep -qs '[[:space:]]/docker/.*/sys/fs/cgroup' /proc/1/mountinfo || [ -e "/.dockerenv" ]; then
++	elif /usr/local/bin/ggrep -qs '[[:space:]]/docker/.*/sys/fs/cgroup' /proc/1/mountinfo || [ -e "/.dockerenv" ]; then
+ 		CONTAINER="docker"
+ 	else
+ 		CONTAINER=""
+@@ -658,7 +658,7 @@
  		info RELEASESIG "Checking Release signature"
  		# Don't worry about the exit status from gpgv; parsing the output will
  		# take care of that.
@@ -9,7 +24,163 @@
  		 "$relsigdest" "$reldest" || true) | read_gpg_status
  		progress 100 100 DOWNRELSIG "Downloading Release file signature"
  	fi
-@@ -1706,7 +1706,7 @@ read_gpg_status () {
+@@ -680,7 +680,7 @@
+ 
+ 		extract_release_components "$reldest"
+ 
+-		acquirebyhash=$(grep "^Acquire-By-Hash: yes$" "$reldest" || true)
++		acquirebyhash=$(/usr/local/bin/ggrep "^Acquire-By-Hash: yes$" "$reldest" || true)
+ 		totalpkgs=0
+ 		for c in $COMPONENTS; do
+ 			subpath="$c/binary-$ARCH/Packages"
+@@ -978,7 +978,7 @@
+ extract_dpkg_deb_data () {
+ 	local pkg="$1"
+ 
+-	dpkg-deb --fsys-tarfile "$pkg" | tar $EXTRACT_DEB_TAR_OPTIONS -xf - || error 1 FILEEXIST "Tried to extract package, but file already exists. Exit..."
++	dpkg-deb --fsys-tarfile "$pkg" | gtar $EXTRACT_DEB_TAR_OPTIONS -xf - || error 1 FILEEXIST "Tried to extract package, but file already exists. Exit..."
+ }
+ 
+ # Raw .deb extractors
+@@ -986,7 +986,7 @@
+ 	local pkg field tarball
+ 	pkg="$1"
+ 	field="$2"
+-	tarball=$(ar -t "$pkg" | grep "^control\.tar")
++	tarball=$(ar -t "$pkg" | /usr/local/bin/ggrep "^control\.tar")
+ 
+ 	case "$tarball" in
+ 		control.tar.gz) cat_cmd=zcat ;;
+@@ -998,8 +998,8 @@
+ 
+ 	if in_path $cat_cmd; then
+ 		ar -p "$pkg" "$tarball" | $cat_cmd |
+-		    tar -O -xf - control ./control 2>/dev/null |
+-		    grep -i "^$field:" | sed -e 's/[^:]*: *//' | head -n 1
++		    gtar -O -xf - control ./control 2>/dev/null |
++		    /usr/local/bin/ggrep -i "^$field:" | sed -e 's/[^:]*: *//' | head -n 1
+ 	else
+ 		error 1 UNPACKCMDUNVL "Extracting %s requires the %s command, which is not available" "$pkg" "$cat_cmd"
+ 	fi
+@@ -1008,7 +1008,7 @@
+ extract_ar_deb_data () {
+ 	local pkg tarball
+ 	pkg="$1"
+-	tarball="$(ar -t "$pkg" | grep "^data.tar")"
++	tarball="$(ar -t "$pkg" | /usr/local/bin/ggrep "^data.tar")"
+ 
+ 	case "$tarball" in
+ 		data.tar.gz)  cat_cmd=zcat ;;
+@@ -1020,7 +1020,7 @@
+ 	esac
+ 
+ 	if in_path "$cat_cmd"; then
+-		ar -p "$pkg" "$tarball" | "$cat_cmd" | tar $EXTRACT_DEB_TAR_OPTIONS -xf -
++		ar -p "$pkg" "$tarball" | "$cat_cmd" | gtar $EXTRACT_DEB_TAR_OPTIONS -xf -
+ 	else
+ 		error 1 UNPACKCMDUNVL "Extracting %s requires the %s command, which is not available" "$pkg" "$cat_cmd"
+ 	fi
+@@ -1095,7 +1095,7 @@
+ 		msg="See %s for details"
+ 		if [ -e "$TARGET/debootstrap/debootstrap.log" ]; then
+ 			arg="$TARGET/debootstrap/debootstrap.log"
+-			local pkg="$(grep '^dpkg: error processing ' "$TARGET/debootstrap/debootstrap.log" | head -n 1 | sed 's/\(error processing \)\(package \|archive \)/\1/' | cut -d ' ' -f 4)"
++			local pkg="$(/usr/local/bin/ggrep '^dpkg: error processing ' "$TARGET/debootstrap/debootstrap.log" | head -n 1 | sed 's/\(error processing \)\(package \|archive \)/\1/' | cut -d ' ' -f 4)"
+ 			if [ -n "$pkg" ]; then
+ 				msg="$msg (possibly the package $pkg is at fault)"
+ 			fi
+@@ -1177,7 +1177,7 @@
+ 
+ setup_proc () {
+ 	case "$HOST_OS" in
+-	    *freebsd*)
++	    *freebsd*|*midnightbsd*)
+ 		umount_on_exit /dev
+ 		umount_on_exit /dev/fd
+ 		umount_on_exit /proc
+@@ -1213,7 +1213,7 @@
+ 			umount_on_exit /proc
+ 		fi
+ 		if [ -n "$(ls -A "$TARGET/sys")" ] && \
+-			grep -qs '[[:space:]]sysfs' "$TARGET/proc/filesystems" || \
++			/usr/local/bin/ggrep -qs '[[:space:]]sysfs' "$TARGET/proc/filesystems" || \
+                    [ "$CONTAINER" = "docker" ]; then
+ 				umount_on_exit /sys
+ 				umount "$TARGET/sys" 2>/dev/null || true
+@@ -1244,6 +1244,8 @@
+ 	    kfreebsd*)
+ 		;;
+ 	    freebsd)
++		;;
++	    midnightbsd)
+ 		;;
+ 	    hurd*)
+ 		;;
+@@ -1269,7 +1271,7 @@
+ 	case "$HOST_OS" in
+ 	    kfreebsd*)
+ 		in_target mount -t devfs devfs /dev ;;
+-	    freebsd)
++	    freebsd|midnightbsd)
+ 		mount -t devfs devfs "$TARGET/dev"
+ 		mount -t fdescfs -o linrdlnk fdescfs "$TARGET/dev/fd" ;;
+ 	    hurd*)
+@@ -1524,9 +1526,9 @@
+ if in_path perl; then
+ 	PKGDETAILS=pkgdetails_perl
+ 
+-	# test if grep supports --perl-regexp
++	# test if /usr/local/bin/ggrep supports --perl-regexp
+ 	set +e
+-	echo x | grep --perl-regexp . >/dev/null 2>&1
++	echo x | /usr/local/bin/ggrep --perl-regexp . >/dev/null 2>&1
+ 	if [ $? -eq 2 ]; then
+ 	    gropt=-E
+         else
+@@ -1614,7 +1616,7 @@
+ }' "$@"
+ 		elif [ "$1" = "GETDEPS" ]; then
+ 			local pkgdest="$2"; shift; shift
+-LC_ALL=C grep "$gropt" '^$|^Package:|^Depends:|^Pre-Depends:'  $pkgdest | perl -e '
++LC_ALL=C pcre2grep '^$|^Package:|^Depends:|^Pre-Depends:' $pkgdest | perl -e '
+ %seen = map { $_ => 1 } @ARGV;
+ while (<STDIN>) {
+ 	if (/^Package: (.*)$/) {
+@@ -1642,13 +1644,13 @@
+ 			local m="$2"
+ 			local p="$3"
+ 			shift; shift; shift
+-			LC_ALL=C grep "$gropt" '^$|^Architecture:|^Filename:|^MD5sum:|^Package:|^Priority:|^SHA256:|^Size:|^Version:|^Depends:|^Pre-Depends:' "$p" | pkgdetails_field 1 Package: "$m" "$@"
++			LC_ALL=C pcre2grep '^$|^Architecture:|^Filename:|^MD5sum:|^Package:|^Priority:|^SHA256:|^Size:|^Version:|^Depends:|^Pre-Depends:' "$p" | pkgdetails_field 1 Package: "$m" "$@"
+ 		elif [ "$1" = "FIELD" ]; then
+ 			local f="$2"
+ 			local m="$3"
+ 			local p="$4"
+ 			shift; shift; shift; shift
+-			LC_ALL=C grep "$gropt" '^$|^Package:|^Priority:' "$p" | pkgdetails_field 0 "$f" "$m" "$@"
++			LC_ALL=C pcre2grep '^$|^Package:|^Priority:' "$p" | pkgdetails_field 0 "$f" "$m" "$@"
+ 		elif [ "$1" = "STANZAS" ]; then
+ 			local pkgdest="$2"; shift; shift
+ 			perl -e '
+@@ -1740,7 +1742,7 @@
+ get_next_predep () {
+ 	local stanza="$(in_target_nofail dpkg --predep-package)"
+ 	[ "$stanza" ] || return 1
+-	echo "$stanza" | grep '^Package:' | sed 's/^Package://; s/^ *//'
++	echo "$stanza" | /usr/local/bin/ggrep '^Package:' | sed 's/^Package://; s/^ *//'
+ }
+ 
+ ################################################################### helpers
+@@ -1752,7 +1754,7 @@
+ 	mkdir -p "$1"
+ 
+ 	case "$HOST_OS" in
+-	    *freebsd*|hurd*)
++	    *freebsd*|hurd*|*midnightbsd*)
+ 		;;
+ 	    *)
+ 		if ! doing_variant fakechroot; then
+@@ -1805,7 +1807,7 @@
  	elif [ "$unkkey" ]; then
  		error 1 UNKNOWNRELSIG "Release signed by unknown key (key id %s)\n   The specified keyring $KEYRING may be incorrect or out of date.\n   You can find the latest Debian release key at https://ftp-master.debian.org/keys.html" "$unkkey"
  	else

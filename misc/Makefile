@@ -10,6 +10,7 @@
     SUBDIR += cinnamon-translations
     SUBDIR += claude-code
     SUBDIR += cldr-emoji-annotation
+    SUBDIR += codex
     SUBDIR += compat.el
     SUBDIR += compat10x
     SUBDIR += compat11x

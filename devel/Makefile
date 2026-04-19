@@ -1993,6 +1993,7 @@
     SUBDIR += spirv-llvm-translator
     SUBDIR += splint
     SUBDIR += st
+    SUBDIR += stb
     SUBDIR += subversion
     SUBDIR += subversion-lts
     SUBDIR += swig

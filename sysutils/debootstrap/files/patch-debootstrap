@@ -1,21 +1,21 @@
---- debootstrap.orig	2022-10-14 11:16:30 UTC
-+++ debootstrap
+--- debootstrap.orig	2024-12-29 13:30:24.000000000 -0500
++++ debootstrap	2026-04-19 13:20:26.855001000 -0400
 @@ -1,4 +1,4 @@
 -#!/bin/sh
-+#!%%LOCALBASE%%/bin/bash
++#!/usr/local/bin/bash
  set -e
  
  VERSION='@VERSION@'
-@@ -14,7 +14,7 @@ if [ -z "$DEBOOTSTRAP_DIR" ]; then
+@@ -14,7 +14,7 @@
  	if [ -x /debootstrap/debootstrap ]; then
  		DEBOOTSTRAP_DIR=/debootstrap
  	else
 -		DEBOOTSTRAP_DIR=/usr/share/debootstrap
-+		DEBOOTSTRAP_DIR=%%DATADIR%%
++		DEBOOTSTRAP_DIR=/usr/local/share/debootstrap
  	fi
  fi
  
-@@ -379,8 +379,8 @@ if [ $# != 0 ] ; then
+@@ -382,8 +382,8 @@
  		shift
  		;;
  	    --keyring|--keyring=?*)
@@ -26,7 +26,7 @@
  		fi
  		if [ "$1" = "--keyring" ] && [ -n "$2" ]; then
  			KEYRING="$2"
-@@ -536,13 +536,7 @@ fi
+@@ -539,13 +539,7 @@
  
  ###########################################################################
  
@@ -41,13 +41,17 @@
  	HOST_ARCH=$(cat "$DEBOOTSTRAP_DIR/arch")
  fi
  HOST_OS="$HOST_ARCH"
-@@ -562,6 +556,14 @@ if [ -z "$HOST_OS" ]; then
+@@ -564,7 +558,18 @@
+ 		FreeBSD*)
  			HOST_OS=freebsd
  		;;
++		MidnightBSD*)
++			HOST_OS=midnightbsd
++		;;
  	esac
 +fi
 +
-+if [ "$HOST_OS" = "freebsd" -a -z "$HOST_ARCH" ]; then
++if [ "$HOST_OS" = "midnightbsd" -a -z "$HOST_ARCH" ]; then
 +	HOST_ARCH=`/sbin/sysctl -n hw.machine_arch`
 +	if [ "$HOST_ARCH" = "aarch64" ]; then
 +		HOST_ARCH=arm64
@@ -56,3 +60,12 @@
  fi
  
  if [ -z "$ARCH" ]; then
+@@ -576,7 +581,7 @@
+ 
+ fi
+ 
+-if [ "$HOST_OS" = "kfreebsd" ] || [ "$HOST_OS" = "freebsd" ]; then
++if [ "$HOST_OS" = "kfreebsd" ] || [ "$HOST_OS" = "midnightbsd" ]; then
+ 	for module in linprocfs fdescfs tmpfs linsysfs; do
+ 		kldstat -m "$module" > /dev/null 2>&1 || warning SANITYCHECK "Probably required module %s is not loaded" "$module"
+ 	done

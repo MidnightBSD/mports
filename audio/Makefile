@@ -149,6 +149,7 @@
     SUBDIR += lv2
     SUBDIR += madplay
     SUBDIR += mikmod
+    SUBDIR += miniaudio
     SUBDIR += moc
     SUBDIR += mp3lint
     SUBDIR += mpdcon
