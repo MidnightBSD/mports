@@ -1,5 +1,5 @@
 PORTNAME=	nss
-PORTVERSION=	3.120
+PORTVERSION=	3.122
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -11,7 +11,6 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
-BUILD_DEPENDS_powerpc64le=	as:devel/binutils
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
@@ -59,9 +58,9 @@ TESTING_UNSAFE=	Fatal DOMSUF env. variable is not defined
 
 .if ! ${PORT_OPTIONS:MDEBUG}
 MAKE_ENV+=	BUILD_OPT=1
-BINS=		${DIST}/${OPSYS}${OSREL}_OPT.OBJ
+BINS=		${DIST}/${OPSYS}${_OSRELEASE}_OPT.OBJ
 .else
-BINS=		${DIST}/${OPSYS}${OSREL}_DBG.OBJ
+BINS=		${DIST}/${OPSYS}${_OSRELEASE}_DBG.OBJ
 .endif
 
 .if ${ARCH} == armv6
