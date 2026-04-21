@@ -1,5 +1,5 @@
 PORTNAME=	libgcrypt
-DISTVERSION=	1.11.0
+DISTVERSION=	1.12.0
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -13,13 +13,13 @@ LICENSE_COMB=	multi
 BUILD_DEPENDS=	libgpg-error>=1.32:security/libgpg-error
 RUN_DEPENDS=	libgpg-error>=1.32:security/libgpg-error
 
-USES=		cpe libtool makeinfo tar:bzip2
+USES=		cpe libtool makeinfo pathfix tar:bzip2
 CPE_VENDOR=	gnupg
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-drng-support
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd12.4
+CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd13.4
 USE_LDCONFIG=	yes
 #TEST_TARGET=	check
 # magus issues
