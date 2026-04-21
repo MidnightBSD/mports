@@ -6,7 +6,7 @@ MASTER_SITES=	https://assets.keltia.net/calife/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight alternative to sudo
-WWW=		https://www.keltia.net/programs/calife
+WWW=		https://keltia.net/programs/calife
 
 LICENSE=	gpl2
 
