@@ -1841,11 +1841,13 @@
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
+    SUBDIR == rubygem-forwardable
     SUBDIR += rubygem-rb-fsevent
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-gems
     SUBDIR += rubygem-getoptlong
+    SUBDIR += rubygem-gettext
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
@@ -1896,6 +1898,7 @@
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
     SUBDIR += rubygem-little-plugger
+    SUBDIR += rubygem-locale
     SUBDIR += rubygem-logger
     SUBDIR += rubygem-logger-gitlab
     SUBDIR += rubygem-logging
@@ -1933,6 +1936,7 @@
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
+    SUBDIR += rubygem-singleton
     SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets3
