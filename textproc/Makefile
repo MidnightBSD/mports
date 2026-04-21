@@ -460,6 +460,9 @@
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-representable
     SUBDIR += rubygem-rexml
+    SUBDIR += rubygem-rouge-gitlab
+    SUBDIR += rubygem-rouge
+    SUBDIR += rubygem-rouge3
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-sass
