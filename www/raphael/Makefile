@@ -1,6 +1,6 @@
 PORTNAME=	raphael
-PORTVERSION=	9.1
-PORTREVISION=	3
+PORTVERSION=	9.3
+PORTREVISION=	0
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,11 +13,11 @@ LICENSE_COMB=	multi
 CONFLICTS_INSTALL=	midori
 
 LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
-		libsoup-2.4.so:devel/libsoup \
+		libsoup-3.0.so:devel/libsoup3 \
 		libp11-kit.so:security/p11-kit \
 		libgcr-base-3.so:security/gcr3 \
 		libpeas-1.0.so:devel/libpeas1 \
-		libwebkit2gtk-4.0.so:www/webkit2-gtk@40 \
+		libwebkit2gtk-4.1.so:www/webkit2-gtk@41 \
 		libharfbuzz.so:print/harfbuzz
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
