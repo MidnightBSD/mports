@@ -47,5 +47,7 @@ post-patch:
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/debootstrap.8 \
 		${PREFIX}/share/man/man8/debootstrap.8
+	${LN} -sf ${PREFIX}/share/debootstrap/scripts/gutsy \
+		${PREFIX}/share/debootstrap/scripts/noble
 
 .include <bsd.port.mk>

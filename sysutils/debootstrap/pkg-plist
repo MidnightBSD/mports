@@ -49,6 +49,7 @@ sbin/debootstrap
 %%DATADIR%%/scripts/lucid
 %%DATADIR%%/scripts/maverick
 %%DATADIR%%/scripts/natty
+%%DATADIR%%/scripts/noble
 %%DATADIR%%/scripts/oldoldstable
 %%DATADIR%%/scripts/oldstable
 %%DATADIR%%/scripts/oneiric
