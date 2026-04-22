@@ -75,6 +75,8 @@ post-extract:
 		-e 's/var EP5=60000;/var EP5=86400000;/' \
 		-e 's/API_TIMEOUT_MS||String(600000)/API_TIMEOUT_MS||String(86400000)/' \
 		-e 's/DEFAULT_TIMEOUT=600000;/DEFAULT_TIMEOUT=86400000;/' \
+		-e 's#}async function Gt(){#}async function Gt(){if(process.argv[1]\&\&(process.argv[1].includes("/usr/local/lib/node_modules")||process.argv[1].includes("/usr/lib/node_modules")))return"package-manager";#' \
+		-e 's#f==="development"){N("AutoUpdater: Cannot auto-update development build")#f==="development"||f==="package-manager"){N("AutoUpdater: Cannot auto-update development build")#' \
 		${CLI_JS}
 
 post-extract-AUDIO_CAPTURE-on:
