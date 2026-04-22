@@ -1,6 +1,6 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
-DISTVERSION=	0.87.0
+DISTVERSION=	0.88.0
 CATEGORIES=	misc devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -54,6 +54,8 @@ COMPLETIONS_PLIST_FILES=etc/bash_completion.d/${PORTNAME} \
 			share/zsh/site-functions/_${PORTNAME}
 
 post-patch:
+	@${FIND} ${WRKDIR} -name Cargo.toml -path '*/tokio-tungstenite-*/Cargo.toml' | \
+		${XARGS} ${REINPLACE_CMD} -e 's|git = "ssh://git@github.com/JakkuSakura/tungstenite-rs.git"|git = "https://github.com/JakkuSakura/tungstenite-rs"|'
 	@${REINPLACE_CMD} -e 's|0\.0\.0|${DISTVERSION}|' \
 		${BUILD_WRKSRC}/app-server/tests/suite/user_agent.rs
 	@${REINPLACE_CMD} -e 's|/bin/bash|${LOCALBASE}&|' \
