@@ -1,5 +1,5 @@
 PORTNAME=	claude-code
-DISTVERSION=	2.1.110
+DISTVERSION=	2.1.112
 CATEGORIES=	misc # machine-learning
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
@@ -75,8 +75,8 @@ post-extract:
 		-e 's/var EP5=60000;/var EP5=86400000;/' \
 		-e 's/API_TIMEOUT_MS||String(600000)/API_TIMEOUT_MS||String(86400000)/' \
 		-e 's/DEFAULT_TIMEOUT=600000;/DEFAULT_TIMEOUT=86400000;/' \
-		-e 's#}async function Gt(){#}async function Gt(){if(process.argv[1]\&\&(process.argv[1].includes("/usr/local/lib/node_modules")||process.argv[1].includes("/usr/lib/node_modules")))return"package-manager";#' \
-		-e 's#f==="development"){N("AutoUpdater: Cannot auto-update development build")#f==="development"||f==="package-manager"){N("AutoUpdater: Cannot auto-update development build")#' \
+		-e 's#}async function Rt(){#}async function Rt(){if(process.argv[1]\&\&(process.argv[1].includes("/usr/local/lib/node_modules")||process.argv[1].includes("/usr/lib/node_modules")))return"package-manager";#' \
+		-e 's#f==="development"){E("AutoUpdater: Cannot auto-update development build")#f==="development"||f==="package-manager"){E("AutoUpdater: Cannot auto-update development build")#' \
 		${CLI_JS}
 
 post-extract-AUDIO_CAPTURE-on:
@@ -89,7 +89,7 @@ post-extract-USE_CURL_USER_AGENT-on:
 	# patch cli.js to use a curl-style User-Agent for web fetching
 	@_V=$$(${LOCALBASE}/bin/curl --version 2>/dev/null | head -1 | ${AWK} '{print $$2}'); \
 	${REINPLACE_CMD} -i '' \
-		-e 's|function rgq(){return`Claude-User ($${oA()}; +https://support.anthropic.com/)`}|function rgq(){return"curl/'"$$_V"'"}|' \
+		-e 's|function dUq(){return`Claude-User ($${yA()}; +https://support.anthropic.com/)`}|function dUq(){return"curl/'"$$_V"'"}|' \
 		${CLI_JS}
 
 do-build:
