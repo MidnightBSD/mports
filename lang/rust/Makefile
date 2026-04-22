@@ -46,7 +46,7 @@ MAKE_ENV=	DESTDIR=${FAKE_DESTDIR} \
 TEST_ENV=	${MAKE_ENV} \
 		ALLOW_NONZERO_RLIMIT_CORE=1
 
-CONFLICTS_INSTALL?=	rust-nightly
+CONFLICTS_INSTALL?=	rust-nightly rust188
 
 # rustc stashes intermediary files in TMPDIR (default /tmp) which
 # might cause issues for users that for some reason space limit
