@@ -204,11 +204,6 @@ do-configure:
 .if ${PORT_OPTIONS:MLTO}
 	@${ECHO_CMD} 'thin-lto=true' >> ${WRKSRC}/config.toml
 .endif
-.if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
-	@${ECHO_CMD} 'ccache="${CCACHE_BIN}"' >> ${WRKSRC}/config.toml
-.else
-	@${ECHO_CMD} 'ccache=false' >> ${WRKSRC}/config.toml
-.endif
 	@${ECHO_CMD} 'ninja=true' >> ${WRKSRC}/config.toml
 .for _target in ${_RUST_TARGETS}
 	@${ECHO_CMD} '[target.${_target}]' >> ${WRKSRC}/config.toml
@@ -229,6 +224,8 @@ do-configure:
 	@${ECHO_CMD} 'src-tarball=false' >> ${WRKSRC}/config.toml
 
 do-build:
+	@cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py build --stage 2 --jobs=${MAKE_JOBS_NUMBER}
 	@cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
