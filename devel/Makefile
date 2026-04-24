@@ -1841,7 +1841,7 @@
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
-    SUBDIR == rubygem-forwardable
+    SUBDIR += rubygem-forwardable
     SUBDIR += rubygem-rb-fsevent
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-gapic-common
