@@ -168,6 +168,40 @@ If a port's license is not in the standard list, define a custom license using `
 
 When updating an existing port, always verify the license is still accurate — upstream projects sometimes relicense. If a license change is detected, **do not update the `LICENSE` field automatically**; present the old and new values to the user and ask them to confirm before making the change.
 
+## Core framework: Mk/bsd.mport.mk
+
+`Mk/bsd.mport.mk` is the central file of the mports build system, included by every port's `Makefile` (directly or via `Mk/bsd.port.subdir.mk`). It defines all standard targets, variables, and the build pipeline. It is derived from FreeBSD's `bsd.port.mk` and adapted for MidnightBSD.
+
+**Do not modify `Mk/bsd.mport.mk` without consulting the maintainer** (`luke@MidnightBSD.org`). The file carries a strong warning against unauthorized changes.
+
+Key things defined in `bsd.mport.mk`:
+
+| Item | Description |
+|------|-------------|
+| `PORTSDIR` | Root of the ports tree (`/usr/mports`) |
+| `FAKE_DESTDIR` | Staging directory root for `bmake fake` |
+| `TRUE_PREFIX` | Runtime install prefix (usually `/usr/local`) |
+| `WRKDIR` | Per-port working directory for extracted sources |
+| `LOCALBASE` | Base for installed software (`/usr/local`) |
+| `DISTDIR` | Where distfiles are downloaded (`Distfiles/`) |
+
+Standard build pipeline targets (in order):
+
+```
+fetch → checksum → extract → patch → configure → build → fake → package
+```
+
+Each stage has `pre-`, `do-`, and `post-` hook targets that ports can override (e.g. `post-patch`, `pre-configure`, `do-install`).
+
+`bsd.mport.mk` also orchestrates all includes, pulling in:
+- `Mk/components/` — options, licenses, fake targets, sanity checks, sites, default versions
+- `Mk/extensions/` — `USES` keyword implementations
+- `Mk/bsd.destdir.mk` — `DESTDIR`/chroot support
+- `Mk/bsd.gcc.mk` — GCC toolchain handling
+- `Masterdir/Makefile.inc`, `Makefile.local` — per-category and per-port overrides
+
+When debugging unexpected build behavior, `bsd.mport.mk` is the authoritative reference for how targets and variables interact.
+
 ## Porting software
 
 MidnightBSD 4.0 is based on FreeBSD 13-stable; MidnightBSD 3.2 is based on FreeBSD 12.4. FreeBSD-oriented software often works with small portability fixes:
