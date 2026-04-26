@@ -50,6 +50,32 @@ Patch file conventions:
 
 Ports must work on stable/4.0. Support for stable/3.2 is maintained where practical. The master branch (4.1) tracks ongoing development and may have additional capabilities.
 
+## Quarterly snapshot branches
+
+Quarterly snapshot branches are named `YYYYQn` where `n` is 1–4 (e.g., `2026Q2` for April–June 2026). They provide stable snapshots of the ports tree for users who prefer infrequent, tested updates over rolling master.
+
+Quarter mapping:
+- Q1: January–March
+- Q2: April–June
+- Q3: July–September
+- Q4: October–December
+
+At the start of any session, check whether the current quarter's branch exists on the remote:
+
+```sh
+git fetch origin
+git branch -r | grep origin/$(date +%YQ)$(($(date +%-m)/4+1))
+```
+
+If the branch is absent, notify the user and offer to create it from master:
+
+```sh
+git checkout -b 2026Q2 origin/master
+git push -u origin 2026Q2
+```
+
+Do not create the branch automatically — ask the user to confirm first.
+
 ## Porting software
 
 MidnightBSD 4.0 is based on FreeBSD 13-stable; MidnightBSD 3.2 is based on FreeBSD 12.4. FreeBSD-oriented software often works with small portability fixes:
