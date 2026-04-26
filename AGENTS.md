@@ -1,41 +1,35 @@
 # AGENTS.md
 
-Instructions for coding agents working in this repository.
-
-If an AI-assisted commit is created, include the appropriate `AI-Assisted-by:` trailer for the agent actually used. Also, use git commit -s to signoff on commits.
+Instructions for coding agents working in MidnightBSD mports.
 
 ## Overview
 
 This is the MidnightBSD mports, a collection of ports Makefiles and patches to
-build applications on the MidnightBSD operating system. 
+build applications on the MidnightBSD operating system.
 
-All software in this repository must support the latest stable release and the latest development version of MidnightBSD.
+All changes must support the current stable release and the current development branch of MidnightBSD.
+
+If an AI-assisted commit is created, use `git commit -s` and include an `AI-Assisted-by:` trailer for the agent actually used.
 
 ## Building ports
 
-By default, MidnightBSD uses "bmake" or BSD make to build software.  Ports should prefer bmake unless the software requires another build tool such as gmake, cmake, ninja, maven, gradle, etc. 
+Prefer `bmake` (BSD make) unless the port requires another tool (e.g., `gmake`, `cmake`, `ninja`, `maven`, `gradle`).
 
-Targets inside ports include:
-fetch - downloads source code or binaries for the build
-patch - applies patches
-fake - stages the installation into the ${FAKE_DESTDIR}
-package - builds packages
-deinstall - uninstalls the software
-reinstall - reinstalls the software
-install - installs the software for the first time
-test - runs tests for ports that have them.  Not all do.  If NO_TEST is set, tests will not run.  This is needed with unreliable test harness.
+When developing or updating a port, validate it end-to-end:
+- `bmake patch`
+- `bmake`
+- `bmake fake`
+- `bmake package`
+- `bmake test` (if available; if tests fail, ask whether to fix or to disable with `NO_TEST` and why)
 
-When developing a port, always compile it and run the fake target to confirm it can be staged properly.  Also use the package target to make sure a package can be installed.  Run tests if present and if there are failures, ask if they should be excluded or if they are failures that must be addressed. 
-
-do-install, fake-install will include the FAKE_DESTDIR within PREFIX.  For targets starting with do-install- or do-fake- they will not include FAKE_DESTDIR as part of PREFIX and will need it applied.  FAKE_DESTDIR is similar to STAGEDIR in FreeBSD ports.
+Staging notes:
+- `fake` installs into `${FAKE_DESTDIR}` (similar to FreeBSD `STAGEDIR`).
+- `do-install`/`fake-install` include `${FAKE_DESTDIR}` within `PREFIX`; `do-install-*`/`do-fake-*` do not, so apply `${FAKE_DESTDIR}` explicitly if needed.
 
 ## Porting software
 
-MidnightBSD 4.0 is based on FreeBSD 13-stable.  MidnightBSD 3.2 is based on FreeBSD 12.4.  Often, software written for FreeBSD will work on MidnightBSD, but may need patches to add midnightbsd to configure scripts or cmake, or possibly impersonation of FreeBSD versions to function.
-
-MidnightBSD has additional features in libc such as OpenBSD's ohash library as well as extra functionality in libutil that may differ from FreeBSD.  MidnightBSD 4.0.4 and higher include age attenstion/verification api  in libutil:
-int * agev_get_age_bracket(const char *username);
-
-The MidnightBSD os bundles a system sqlite3 with a pkgconfig file. Versions prior to 4.0 included Perl in the base system, but now requires a package.
-
-MidnightBSD uses mport for package management rather than FreeBSD pkg.  
+MidnightBSD 4.0 is based on FreeBSD 13-stable; MidnightBSD 3.2 is based on FreeBSD 12.4. FreeBSD-oriented software often works with small portability fixes:
+- Add `midnightbsd` to configure/cmake OS detection when needed (or use compatible FreeBSD version checks where appropriate).
+- libc includes OpenBSD `ohash`; libutil differs from FreeBSD. MidnightBSD 4.0.4+ provides `agev_get_age_bracket(const char *username)`.
+- Base includes `sqlite3` with a `pkg-config` file. Perl is not in base on 4.0+ (use a package if needed).
+- Package management uses `mport` (not FreeBSD `pkg`).
