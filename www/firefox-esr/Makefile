@@ -92,7 +92,6 @@ QMAKE_ARGS=	--enable-application=browser \
 		--prefix=${PREFIX} \
 		--with-intl-api \
 		--with-system-icu \
-		--with-system-jpeg \
 		--with-system-libevent \
 		--with-system-nspr \
 		--with-system-nss \
