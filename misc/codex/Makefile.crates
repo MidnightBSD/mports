@@ -91,7 +91,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		colorchoice-1.0.4 \
 		combine-4.6.7 \
 		compact_str-0.8.1 \
-		compact_str-0.9.0 \
 		concurrent-queue-2.5.0 \
 		console-0.15.11 \
 		const-hex-1.17.0 \
@@ -147,7 +146,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		display_container-0.9.0 \
 		displaydoc-0.2.5 \
 		doc-comment-0.3.3 \
-		document-features-0.2.12 \
 		dotenvy-0.15.7 \
 		downcast-rs-1.2.1 \
 		dtor-0.1.0 \
@@ -282,7 +280,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		jni-sys-0.3.0 \
 		jobserver-0.1.34 \
 		js-sys-0.3.77 \
-		kasuari-0.4.11 \
 		keyring-3.6.3 \
 		kqueue-1.1.1 \
 		kqueue-sys-1.0.4 \
@@ -298,7 +295,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		linux-raw-sys-0.4.15 \
 		linux-raw-sys-0.9.4 \
 		litemap-0.8.0 \
-		litrs-1.0.0 \
 		local-waker-0.1.4 \
 		lock_api-0.4.13 \
 		log-0.4.29 \
@@ -429,7 +425,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		rand_core-0.6.4 \
 		rand_core-0.9.3 \
 		rand_xorshift-0.4.0 \
-		ratatui-core-0.1.0 \
 		ratatui-macros-0.6.0 \
 		redox_syscall-0.5.15 \
 		redox_users-0.4.6 \
@@ -576,6 +571,7 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		tokio-rustls-0.26.2 \
 		tokio-stream-0.1.18 \
 		tokio-test-0.4.4 \
+		tokio-tungstenite-0.21.0 \
 		tokio-util-0.7.18 \
 		toml-0.5.11 \
 		toml-0.9.5 \
@@ -608,7 +604,7 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		try-lock-0.2.5 \
 		ts-rs-11.1.0 \
 		ts-rs-macros-11.1.0 \
-		tui-scrollbar-0.2.2 \
+		tungstenite-0.21.0 \
 		typenum-1.18.0 \
 		uds_windows-1.1.0 \
 		uname-0.1.1 \
@@ -618,7 +614,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		unicode-linebreak-0.1.5 \
 		unicode-segmentation-1.12.0 \
 		unicode-truncate-1.1.0 \
-		unicode-truncate-2.0.0 \
 		unicode-width-0.1.14 \
 		unicode-width-0.2.1 \
 		unicode-xid-0.2.6 \
@@ -659,7 +654,6 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		web-time-1.1.0 \
 		webbrowser-1.0.6 \
 		webpki-root-certs-1.0.4 \
-		webpki-roots-0.26.11 \
 		webpki-roots-1.0.2 \
 		weezl-0.1.10 \
 		which-8.0.0 \
@@ -764,6 +758,4 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		zvariant_derive-4.2.0 \
 		zvariant_utils-2.1.0 \
 		ratatui@git+https://github.com/nornagon/ratatui?branch=nornagon-v0.29.0-patch\#9b2ad1298408c45918ee9f8241a6f95498cdbed2 \
-		tokio-tungstenite@git+https://github.com/JakkuSakura/tokio-tungstenite?rev=2ae536b0de793f3ddf31fc2f22d445bf1ef2023d\#2ae536b0de793f3ddf31fc2f22d445bf1ef2023d \
-		tungstenite@git+https://github.com/JakkuSakura/tungstenite-rs?rev=f514de8644821113e5d18a027d6d28a5c8cc0a6e\#f514de8644821113e5d18a027d6d28a5c8cc0a6e \
 		crossterm@git+https://github.com/nornagon/crossterm?branch=nornagon%2Fcolor-query\#87db8bfa6dc99427fd3b071681b07fc31c6ce995
