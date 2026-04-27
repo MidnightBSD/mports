@@ -4,6 +4,7 @@ PORTREVISION=	0
 CATEGORIES=	mail
 MASTER_SITES=	http://www.midnightbsd.org/ftp/MidnightBSD/mports/distfiles/
 DISTFILES=	thunderbird-147.0.2.pkg
+PKGNAMESUFFIX=	-freebsd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Thunderbird for FreeBSD
