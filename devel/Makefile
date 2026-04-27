@@ -2032,6 +2032,15 @@
     SUBDIR += uthash
     SUBDIR += valgrind
     SUBDIR += viewvc-devel
+    SUBDIR += wasi-compiler-rt
+    SUBDIR += wasi-compiler-rt17
+    SUBDIR += wasi-compiler-rt18
+    SUBDIR += wasi-compiler-rt19
+    SUBDIR += wasi-libc
+    SUBDIR += wasi-libcxx
+    SUBDIR += wasi-libcxx17
+    SUBDIR += wasi-libcxx18
+    SUBDIR += wasi-libcxx19
     SUBDIR += websvn
     SUBDIR += wininfo
     SUBDIR += wizardkit

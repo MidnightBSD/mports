@@ -11,7 +11,7 @@ https://reviews.llvm.org/D77776
 --- vendor/cc-1.1.18/src/tool.rs.orig	2025-06-08 20:17:28 UTC
 +++ vendor/cc-1.1.18/src/tool.rs
 @@ -174,9 +174,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -24,7 +24,7 @@ https://reviews.llvm.org/D77776
 --- vendor/cc-1.2.0/src/tool.rs.orig	2024-12-10 13:16:09 UTC
 +++ vendor/cc-1.2.0/src/tool.rs
 @@ -174,9 +174,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -37,7 +37,7 @@ https://reviews.llvm.org/D77776
 --- vendor/cc-1.2.13/src/tool.rs.orig	2025-04-01 18:22:03 UTC
 +++ vendor/cc-1.2.13/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -50,7 +50,7 @@ https://reviews.llvm.org/D77776
 --- vendor/cc-1.2.16/src/tool.rs.orig	2025-04-01 18:22:03 UTC
 +++ vendor/cc-1.2.16/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -63,7 +63,7 @@ https://reviews.llvm.org/D77776
 --- vendor/cc-1.2.19/src/tool.rs.orig	2025-04-01 18:22:03 UTC
 +++ vendor/cc-1.2.19/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -76,20 +76,7 @@ https://reviews.llvm.org/D77776
 --- vendor/cc-1.2.20/src/tool.rs.orig	2025-04-01 18:22:03 UTC
 +++ vendor/cc-1.2.20/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
- 
-             match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
-                 (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
--                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
--                    zig_cc: is_zig_cc(path, cargo_output),
--                }),
-+                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Gnu),
-                 (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
-                 (false, false, false, false, false) => {
-                     cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
---- vendor/cc-1.2.23/src/tool.rs.orig	2025-04-01 18:22:03 UTC
-+++ vendor/cc-1.2.23/src/tool.rs
-@@ -141,9 +141,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -102,7 +89,7 @@ https://reviews.llvm.org/D77776
 --- vendor/cc-1.2.26/src/tool.rs.orig	2025-04-01 18:22:03 UTC
 +++ vendor/cc-1.2.26/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -112,10 +99,10 @@ https://reviews.llvm.org/D77776
                  (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
                  (false, false, false, false, false) => {
                      cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
---- vendor/cc-1.2.27/src/tool.rs.orig	2025-04-01 18:22:03 UTC
-+++ vendor/cc-1.2.27/src/tool.rs
+--- vendor/cc-1.2.28/src/tool.rs.orig	2025-10-28 12:34:00 UTC
++++ vendor/cc-1.2.28/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
- 
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
@@ -125,10 +112,23 @@ https://reviews.llvm.org/D77776
                  (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
                  (false, false, false, false, false) => {
                      cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
---- vendor/cc-1.2.30/src/tool.rs.orig	2025-04-01 18:22:03 UTC
-+++ vendor/cc-1.2.30/src/tool.rs
+--- vendor/cc-1.2.33/src/tool.rs.orig	2025-10-28 12:34:00 UTC
++++ vendor/cc-1.2.33/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
- 
+
+             match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
+                 (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
+-                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
+-                    zig_cc: is_zig_cc(path, cargo_output),
+-                }),
++                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Gnu),
+                 (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
+                 (false, false, false, false, false) => {
+                     cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
+--- vendor/cc-1.2.35/src/tool.rs.orig	2025-10-28 12:34:00 UTC
++++ vendor/cc-1.2.35/src/tool.rs
+@@ -158,9 +158,7 @@ impl Tool {
+
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
 -                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
