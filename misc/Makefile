@@ -37,6 +37,7 @@
     SUBDIR += gnome-icon-theme-extras
     SUBDIR += gnome-mime-data
     SUBDIR += gnome-user-docs
+    SUBDIR += goplaces
     SUBDIR += grc
     SUBDIR += help2man
     SUBDIR += hicolor-icon-theme
