@@ -37,9 +37,9 @@ WASI_SYSROOT=	${PREFIX}/share/wasi-sysroot
 TRIPLE=		wasm32-wasip1
 
 CMAKE_INSTALL_PREFIX=	${WASI_SYSROOT}
-CMAKE_ARGS=	-DCMAKE_AR=llvm-ar${LLVM_VERSION} \
-		-DCMAKE_NM=llvm-nm${LLVM_VERSION} \
-		-DCMAKE_RANLIB=llvm-ranlib${LLVM_VERSION} \
+CMAKE_ARGS=	-DCMAKE_AR=${LLVM_PREFIX}/bin/llvm-ar \
+		-DCMAKE_NM=${LLVM_PREFIX}/bin/llvm-nm \
+		-DCMAKE_RANLIB=${LLVM_PREFIX}/bin/llvm-ranlib \
 		-DTARGET_TRIPLE=${TRIPLE} \
 		-DBUILTINS_LIB=${LLVM_PREFIX:S|${PREFIX}|${LOCALBASE}|}/lib/clang/${LLVM_VERSION}/lib/${TRIPLE:S|-|-unknown-|}/libclang_rt.builtins.a \
 		-DBUILD_SHARED=OFF

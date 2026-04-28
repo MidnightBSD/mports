@@ -19,6 +19,7 @@ LICENSE_FILE=	${WRKSRC}/llvm/LICENSE.TXT
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		cmake tar:xz
+EXTRACT_AFTER_ARGS=	--exclude '*/llvm/cmake/config.guess'
 
 .if ${DISTVERSION} == 0
 IGNORE=		is a meta port; there is nothing to build
@@ -47,8 +48,8 @@ CMAKE_SOURCE_PATH=	${WRKSRC}/runtimes
 CMAKE_ARGS=	-DCMAKE_SYSTEM_NAME=WASI \
 		-DCMAKE_SYSTEM_VERSION=1 \
 		-DCMAKE_SYSTEM_PROCESSOR=wasm32 \
-		-DCMAKE_AR=${LOCALBASE}/bin/llvm-ar${LLVM_VERSION} \
-		-DCMAKE_RANLIB=${LOCALBASE}/bin/llvm-ranlib${LLVM_VERSION} \
+		-DCMAKE_AR=${LLVM_PREFIX}/bin/llvm-ar \
+		-DCMAKE_RANLIB=${LLVM_PREFIX}/bin/llvm-ranlib \
 		-DCMAKE_C_COMPILER_TARGET=${TRIPLE} \
 		-DCMAKE_CXX_COMPILER_TARGET=${TRIPLE} \
 		-DCMAKE_ASM_COMPILER_TARGET=${TRIPLE} \
@@ -84,5 +85,10 @@ CMAKE_ARGS=	-DCMAKE_SYSTEM_NAME=WASI \
 		-DLIBCXX_INCLUDE_TESTS=OFF \
 		-DLIBCXX_INCLUDE_BENCHMARKS=OFF \
 		-DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi"
+
+# The bundled llvm/cmake/config.guess can be too old to recognize MidnightBSD.
+post-extract:
+	@${CP} ${PORTSDIR}/Templates/config.sub ${WRKSRC}/llvm/cmake/config.sub
+	@${CP} ${PORTSDIR}/Templates/config.guess ${WRKSRC}/llvm/cmake/config.guess
 
 .include <bsd.port.mk>

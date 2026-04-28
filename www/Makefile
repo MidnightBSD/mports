@@ -447,6 +447,7 @@
     SUBDIR += varnish7
     SUBDIR += varnish-libvmod-maxminddb
     SUBDIR += w3m
+    SUBDIR += waterfox
     SUBDIR += webalizer
     SUBDIR += webinject
     SUBDIR += webkit2-gtk
