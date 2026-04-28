@@ -9,6 +9,8 @@
     SUBDIR += cython
     SUBDIR += duktape
     SUBDIR += duktape-lib
+    SUBDIR += dotnet-host 
+
     SUBDIR += elixir
     SUBDIR += erlang
     SUBDIR += erlang-man
