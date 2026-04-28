@@ -238,9 +238,13 @@ post-clean:
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/bin/objformat|/usr/bin/true|g' \
+		${WRKSRC}/hints/midnightbsd.sh
+	@${REINPLACE_CMD} -e '/libswanted=.*malloc/s|$$|; libswanted=`echo $$libswanted \| sed "s/ bind / /"`; libswanted=`echo $$libswanted \| sed "s/ c / /"`; libswanted=`echo $$libswanted \| sed "s/ pthread / /"`|' \
+		${WRKSRC}/hints/midnightbsd.sh
 .if ${LOCALBASE} != /usr/local
 	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/Configure ${WRKSRC}/hints/freebsd.sh
+		${WRKSRC}/Configure ${WRKSRC}/hints/freebsd.sh ${WRKSRC}/hints/midnightbsd.sh
 .endif
 .if !defined(IAMDEFAULTPERL)
 	${REINPLACE_CMD} -e '/do_installprivlib = 0 if .versiononly/d; \
