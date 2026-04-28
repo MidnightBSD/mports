@@ -53,7 +53,7 @@ LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libjson-c.so:devel/json-c
 
 USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
-		pkgconfig python desktop-file-utils tar:xz
+		perl pkgconfig python desktop-file-utils tar:xz
 CPE_VENDOR=	mozilla
 USE_GL=		gl
 USE_GNOME=	cairo gdkpixbuf gtk30
