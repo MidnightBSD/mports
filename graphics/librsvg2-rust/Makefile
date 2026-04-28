@@ -1,5 +1,5 @@
 PORTNAME=	librsvg
-PORTVERSION=	2.56.0
+PORTVERSION=	2.56.4
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2-rust
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libharfbuzz.so:print/harfbuzz \
 		libpng.so:graphics/png
 
-USES=		cargo compiler:c11 cpe gettext gmake gnome libtool pkgconfig tar:xz vala:build
+USES=		cargo compiler:c11 cpe gettext gmake gnome libtool pathfix pkgconfig tar:xz vala:build
 CPE_VENDOR=	gnome
 USE_GNOME=	cairo gdkpixbuf libxml2 pango introspection:build
 USE_LDCONFIG=	yes
@@ -44,6 +44,8 @@ OPTIONS_DEFINE=	DOCS
 
 DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
 DOCS_CONFIGURE_ENABLE=	gtk-doc
+
+TESTING_UNSAFE=	ld: error: undefined symbol: pthread_condattr_init
 
 post-patch:
 # Add explicit <triple> subdir for --target from USES=cargo
