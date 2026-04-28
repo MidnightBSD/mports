@@ -26,10 +26,11 @@ USES=			autoreconf compiler:c11 gmake \
 			ncurses perl5 python:build shebangfix \
 			tar:xz
 
+GHC_ARCH=		${ARCH:S/amd64/x86_64/:C/armv.*/arm/}
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
 CONFIGURE_ENV=		ALEX=/usr/bin/true HAPPY=/usr/bin/true
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=	${GHC_ARCH}-portbld-freebsd
 INSTALL_TARGET=		install-strip
 USE_LOCALE=		en_US.UTF-8
 USE_PERL5=		build
@@ -157,7 +158,6 @@ IGNORE=			Building with Hadrian requires both DYNAMIC and PROFILE for now
 .  endif
 .endif
 
-GHC_ARCH=		${ARCH:S/amd64/x86_64/:C/armv.*/arm/}
 CONFIGURE_TARGET=	${GHC_ARCH}-portbld-freebsd
 BOOT_DIR=		${WRKDIR}/ghc-${BOOT_GHC_VERSION}-boot
 BOOT_INSTALL_DIR=	${WRKDIR}/ghc-boot-install
@@ -218,7 +218,7 @@ pre-configure:
 	cd ${WRKSRC}/ && ${BOOT_SCRIPT}
 # If we are using bootstrap compiler, configure and install it into ${BOOT_DIR}
 .if empty(PORT_OPTIONS:MBOOT)
-	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_ENV_BOOTSTRAP} ${CONFIGURE_CMD} --prefix=${BOOT_DIR} --build=${ARCH}-portbld-freebsd12.4 --host=${ARCH}-portbld-freebsd12.4 --target=${ARCH}-portbld-freebsd12.4
+	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_ENV_BOOTSTRAP} ${CONFIGURE_CMD} --prefix=${BOOT_INSTALL_DIR} --build=${CONFIGURE_TARGET} --host=${CONFIGURE_TARGET} --target=${CONFIGURE_TARGET}
 	cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install
 .endif
 .ifdef USE_HADRIAN
