@@ -99,6 +99,7 @@
     SUBDIR += shared-mime-info
     SUBDIR += shc
     SUBDIR += soapysdr
+    SUBDIR += sonoscli
     SUBDIR += susv2
     SUBDIR += susv3
     SUBDIR += susv4
