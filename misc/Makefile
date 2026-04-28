@@ -58,6 +58,7 @@
     SUBDIR += mate-user-guide
     SUBDIR += mbuffer
     SUBDIR += mc
+    SUBDIR += memo
     SUBDIR += metalink-tools
     SUBDIR += mime-support
     SUBDIR += minuet
