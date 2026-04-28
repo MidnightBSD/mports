@@ -13,7 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd \
 		libdbus-1.so:devel/dbus \
-		libonig.so:devel/oniguruma
+		libonig.so:devel/oniguruma \
+		libasound.so:audio/alsa-lib
 RUN_DEPENDS=	bash:shells/bash \
 		rg:textproc/ripgrep
 TEST_DEPENDS=	bash:shells/bash
