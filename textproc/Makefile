@@ -313,6 +313,7 @@
     SUBDIR += py-gi-docgen
     SUBDIR += py-griffe
     SUBDIR += py-hexdump
+    SUBDIR += py-html2text
     SUBDIR += py-htmlmin2
     SUBDIR += py-interegular
     SUBDIR += py-junit-xml
