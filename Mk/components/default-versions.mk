@@ -79,7 +79,7 @@ PERL5_DEFAULT?=		5.32
 .if ${OSVERSION} < 302001
 PERL5_DEFAULT?=		5.36
 .endif
-.if ${OSVERSION} > 302000 && (!exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && defined(PACKAGE_BUILDING)))
+.if ${OSVERSION} > 302000
 PERL5_DEFAULT?=         5.40
 .  elif !defined(PERL5_DEFAULT)
 .    if !defined(_PERL5_FROM_BIN)
