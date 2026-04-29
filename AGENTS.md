@@ -28,6 +28,7 @@ When developing or updating a port, validate it end-to-end:
 For new ports, generate an initial `pkg-plist` after staging:
 - `bmake fake && bmake makeplist — this generates a gen-plist file in the port directory` — review and trim the result; do not include directories owned by other ports.
 - Add `@dir` commands near the bottom of `pkg-plist` for any directories the port creates that are not owned by a dependency (e.g., `@dir lib/myapp`).
+- For x11-fonts ports that install fonts, add this to the bottom of the `pkg-plist` file  `@postexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true`
 
 If `portlint` is available, run it before committing. If it is not installed, skip this step — do not install it automatically.
 
