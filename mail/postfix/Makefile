@@ -1,6 +1,6 @@
 PORTNAME=	postfix
-DISTVERSION=	3.10.8
-PORTREVISION?=	1
+DISTVERSION=	3.11.1
+PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	mail
 MASTER_SITES=	https://postfix-mirror.horus-it.com/postfix-release/ \
@@ -88,7 +88,7 @@ SHEBANG_FILES=	auxiliary/qshape/qshape.pl
 
 SCRIPTS_ENV+=	POSTFIX_DEFAULT_MTA="${POSTFIX_DEFAULT_MTA}"
 
-PORTSCOUT=	limit:^3\.9\.
+PORTSCOUT=	limit:^3\.11\.
 
 CONFLICTS_INSTALL=	courier-0.* opensmtpd opensmtpd-devel \
 			postfix postfix-base postfix-ldap-sasl \
