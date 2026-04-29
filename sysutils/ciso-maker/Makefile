@@ -1,5 +1,5 @@
 PORTNAME=	ciso-maker
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
