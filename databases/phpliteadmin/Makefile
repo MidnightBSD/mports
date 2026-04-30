@@ -10,7 +10,7 @@ WWW=		https://www.phpliteadmin.org/
 
 LICENSE=	gpl3
 
-USES=		cpe php:web sqlite3 zip
+USES=		cpe php:web zip
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -22,7 +22,7 @@ PLIST_FILES=	${WWWDIR}/phpliteadmin.php \
 SUB_FILES=	pkg-message
 
 do-install:
-	@${MKDIR} /${WWWDIR}
+	@${MKDIR} ${WWWDIR}
 	${INSTALL_DATA} ${WRKDIR}/phpliteadmin.php \
 		${WWWDIR}
 	${INSTALL_DATA} ${WRKDIR}/phpliteadmin.config.sample.php \
