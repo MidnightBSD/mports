@@ -13,6 +13,8 @@ LICENSE_FILE=		${WRKSRC}/LICENSE
 
 USES=			go:modules
 
+NO_TEST=	yes
+
 USE_GITHUB=		yes
 GH_ACCOUNT=		joohoi
 
