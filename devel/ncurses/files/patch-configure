@@ -1,14 +1,50 @@
---- configure.orig	2018-12-22 22:58:42 UTC
-+++ configure
-@@ -8780,7 +8780,10 @@ case $host_os in
+--- configure.orig	2024-04-10 04:09:48.000000000 -0400
++++ configure	2025-02-18 18:06:07.228391000 -0500
+@@ -1689,7 +1689,7 @@
+ if test "x$prefix" = "xNONE" ; then
+ 	case "$cf_cv_system_name" in
+ 		# non-vendor systems don't have a conflict
+-	(openbsd*|freebsd*|mirbsd*|linux*|cygwin*|msys*|k*bsd*-gnu|mingw*)
++	(openbsd*|midnightbsd*|freebsd*|mirbsd*|linux*|cygwin*|msys*|k*bsd*-gnu|mingw*)
+ 		prefix=/usr
+ 		;;
+ 	(*)	prefix=$ac_default_prefix
+@@ -3147,7 +3147,7 @@
+ 	LDCONFIG=:
+ else
+ 	case "$cf_cv_system_name" in
+-	(dragonfly*|mirbsd*|freebsd*)
++	(dragonfly*|mirbsd*|midnightbsd*|freebsd*)
+ 		test -z "$LDCONFIG" && LDCONFIG="/sbin/ldconfig -R"
+ 		;;
+ 	(*) LDPATH=$PATH:/sbin:/usr/sbin
+@@ -6442,7 +6442,7 @@
+ 			LD_RPATH_OPT="-rpath "
+ 		fi
+ 		;;
+-	(linux*|gnu*|k*bsd*-gnu|freebsd*)
++	(linux*|gnu*|k*bsd*-gnu|midnightbsd*|freebsd*)
+ 		LD_RPATH_OPT="-Wl,-rpath,"
+ 		;;
+ 	(openbsd[2-9].*|mirbsd*)
+@@ -6984,7 +6984,7 @@
+ 		MK_SHARED_LIB='${LD} ${LDFLAGS} -Bshareable -o $@'
+ 		test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
+ 		;;
+-	(dragonfly*|freebsd*)
++	(dragonfly*|freebsd*|midnightbsd*)
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		if test "$DFT_LWR_MODEL" = "shared" && test "$cf_cv_enable_rpath" = yes ; then
+ 			LOCAL_LDFLAGS="${cf_ld_rpath_opt}\$(LOCAL_LIBDIR)"
+@@ -10400,7 +10400,10 @@
  	cf_xopen_source="-D_DARWIN_C_SOURCE"
  	cf_XOPEN_SOURCE=
  	;;
 -(freebsd*|dragonfly*|midnightbsd*)
-+(freebsd*)
++(midnightbsd*|freebsd*)
 +	cf_XOPEN_SOURCE=
 +	;;
-+(dragonfly*|midnightbsd*)
++(dragonfly*)
  	# 5.x headers associate
  	#	_XOPEN_SOURCE=600 with _POSIX_C_SOURCE=200112L
  	#	_XOPEN_SOURCE=500 with _POSIX_C_SOURCE=199506L
