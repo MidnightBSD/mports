@@ -1,6 +1,6 @@
 PORTNAME=	libcangjie
 PORTVERSION=	1.3
-PORTREVISION=	2
+PORTREVISION=	3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	chinese
 
@@ -11,14 +11,9 @@ WWW=		https://github.com/Cangjians/libcangjie
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libsqlite3.so:databases/sqlite3		\
-		libfreetype.so:print/freetype2          \
-		libdbus-1.so:devel/dbus
-
-USES=		autoreconf gmake libtool localbase pkgconfig sqlite xorg
+USES=		autoreconf gmake libtool localbase pkgconfig sqlite
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_XORG=	xi
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Cangjians
