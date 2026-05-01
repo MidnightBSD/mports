@@ -443,6 +443,7 @@
     SUBDIR += tomcat101
     SUBDIR += tomcat110
     SUBDIR += tomcat9
+    SUBDIR += ungoogled-chromium
     SUBDIR += validator
     SUBDIR += varnish7
     SUBDIR += varnish-libvmod-maxminddb

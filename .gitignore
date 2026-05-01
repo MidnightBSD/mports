@@ -13,4 +13,5 @@ Tools/magus/distcheck/distcheck
 *.sw[p-z]
 README.html
 *.idea
+gen-plist
 security/vuxml/vuln.xml.tidy

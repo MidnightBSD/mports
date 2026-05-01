@@ -1,9 +1,8 @@
-# Created by: Autrijus Tang <autrijus@autrijus.org>
-
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl bindings for Version control system
+WWW=		https://subversion.apache.org/
 
 USES=		perl5 sqlite:3
 USE_PERL5=	build run
@@ -23,10 +22,13 @@ CATEGORIES+=	perl5
 BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 RUN_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 
-CONFIGURE_ARGS+=	--without-gnome-keyring \
+CONFIGURE_ARGS+=	--with-swig-perl=${PERL} \
+			--without-gnome-keyring \
+			--without-swig-python \
+			--without-swig-ruby \
 			--without-kwallet \
 			--with-apxs=no \
-			-with-sqlite=/usr/local
+			--with-sqlite=/usr/local
 
 ALL_TARGET=	swig-pl-lib swig-pl
 INSTALL_TARGET=	install-swig-pl
