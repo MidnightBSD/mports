@@ -1,0 +1,23 @@
+{
+  "model": {
+    "name": "gemini-3-pro"
+  },
+  "general": {
+    "defaultApprovalMode": "auto_edit",
+    "plan": {
+      "enabled": true,
+      "modelRouting": true
+    }
+  },
+  "tools": {
+    "excludeTools": [
+      "ShellTool(rm -rf /)",
+      "ShellTool(shutdown)",
+      "ShellTool(kldload)",
+      "ShellTool(kldunload)",
+    ]
+  },
+  "context": {
+    "fileName": ["AGENTS.md" ]
+  }
+}
