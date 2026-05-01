@@ -32,6 +32,23 @@ For new ports, generate an initial `pkg-plist` after staging:
 
 If `portlint` is available, run it before committing. If it is not installed, skip this step — do not install it automatically.
 
+## Bumping dependent ports (PORTREVISION)
+
+When a port is upgraded and its shared library version changes (e.g., `libfoo.so.1` becomes `libfoo.so.2`), all ports that depend on it must have their `PORTREVISION` bumped to ensure they are rebuilt against the new library.
+
+Use the `Tools/scripts/bump_revision.pl` script:
+
+1.  **Ensure a valid INDEX exists:** The script requires an `INDEX` file matching the major OS version (e.g., `INDEX-4`) in the root of the ports tree. If it's missing or outdated, you can generate it with `bmake index` (this is a slow process).
+2.  **Run the script:** Run it from the ports tree root. Use the `-f` flag for in-place updates and `-l` for shallow (direct) dependencies.
+    ```sh
+    ./Tools/scripts/bump_revision.pl -f -l <category>/<portname>
+    ```
+3.  **Dry-run:** To see which ports would be affected without making changes, add the `-n` flag:
+    ```sh
+    ./Tools/scripts/bump_revision.pl -n -f -l <category>/<portname>
+    ```
+4.  **Verification:** Review the modified `Makefile`s and commit the changes alongside the port upgrade.
+
 Staging notes:
 - `fake` installs into `${FAKE_DESTDIR}` (similar to FreeBSD `STAGEDIR`).
 - `do-install` and `fake-install` targets receive `${FAKE_DESTDIR}` pre-pended to `${PREFIX}` automatically.
