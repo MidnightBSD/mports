@@ -1,12 +1,20 @@
---- builds/posix/prefix.freebsd.orig	2022-06-07 08:18:52 UTC
+--- builds/posix/prefix.freebsd.orig
 +++ builds/posix/prefix.freebsd
-@@ -20,5 +20,14 @@
+@@ -14,11 +14,20 @@
+ # Copyright (C) 2000 Inprise Corporation
+ # All Rights Reserved.
+ # Contributor(s): ______________________________________.
+-# Start of file prefix.freebsd:	$(VERSION)	@PLATFORM@
++# Start of file prefix.freebsd:	$(VERSION)	FREEBSD
+ #
+ # 2 Oct 2002, Nickolay Samofatov - Major Cleanup
  
- EXE_LINK_OPTIONS+=-Wl,-rpath,../gen/firebird/lib
+-EXE_LINK_OPTIONS+=-Wl,-rpath,../gen/firebird/lib
++EXE_LINK_OPTIONS+=-Wl,-rpath,'$$ORIGIN/../lib'
  
 -PROD_FLAGS=-O -fno-builtin -DFREEBSD -pipe -MMD -fPIC
 -DEV_FLAGS=-ggdb -DFREEBSD -pipe -MMD -p -fPIC -Wall -Wno-non-virtual-dtor
-+COMMON_FLAGS=-DFREEBSD -pipe -MMD -fPIC
++COMMON_FLAGS=-DFREEBSD -pipe -MMD -fPIC -Wno-dynamic-exception-spec
 +PROD_FLAGS=$(COMMON_FLAGS) -O0 -g -fno-builtin -Wno-deprecated
 +DEV_FLAGS=$(COMMON_FLAGS) -ggdb -p -Wall -Wno-non-virtual-dtor
 +
@@ -15,5 +23,5 @@
 +
 +# These files are generated incorrectly (e.g. array.epp => array.cpp)
 +%/array.o %/blob.o %/alice_meta.o %/restore.o %/backup.o: COMMON_FLAGS += -Wno-narrowing
-+%/OdsDetection.o %/dba.o: COMMON_FLAGS += -Wno-narrowing
++%/OdsDetection.o %/dba.o %/StatementMetadata.o %/ini.o %/isql.o: COMMON_FLAGS += -Wno-narrowing
 +
