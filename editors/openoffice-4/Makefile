@@ -404,7 +404,7 @@ do-build:
 	. ../${FREEBSD_ENV_SET} ;					  \
 	build.pl --all -P$${numproc} -- -P$${dmproc}
 
-PYDL=	${FAKE_DESTDIR}${OOPATH}/program/python-core-2.7.18/lib/lib-dynload
+PYDL=	${OOPATH}/program/python-core-2.7.18/lib/lib-dynload
 
 do-install:
 	@${MKDIR} ${PRINSTALLATION_BASEDIR} \
@@ -447,16 +447,16 @@ do-install:
 		PREFIX=openoffice${AOOVERSION1}			\
 		${SH} ${CREATE_TREE} ;				\
 	    ${INSTALL_DATA} apacheopenoffice.xml		\
-		/${PREFIX}/share/mime/packages
+		${PREFIX}/share/mime/packages
 	@cd ${DESKTOPDIR}; for i in base calc draw impress \
 		javafilter math printeradmin qstart startcenter writer ; do \
 			${LN} -sf ${XDGREL}/$${i}.desktop ${EXECBASE}-$${i}.desktop ; \
 	done
 
 do-install-SDK-on:
-	${TAR} -s '|./[^/]*/||' -xz -C ${PRINSTALLATION_BASEDIR} \
+	${TAR} -s '|./[^/]*/||' -xz -C ${FAKE_DESTDIR}${PRINSTALLATION_BASEDIR} \
 		-f ${WRKSRC}/instsetoo_native/unxfbsd*.pro/Apache_OpenOffice_SDK/archive/install/${LOCALIZED_LANG}/*.tar.gz
-	@f=${OOPATH}/sdk/bin/unoapploader ; \
+	@f=${FAKE_DESTDIR}${OOPATH}/sdk/bin/unoapploader ; \
 		${CHMOD} 644 $${f} ; ${STRIP_CMD} $${f} ; ${CHMOD} 444 $${f}
 
 post-install:
