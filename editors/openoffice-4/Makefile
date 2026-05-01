@@ -26,7 +26,7 @@ LICENSE=		Apache-2.0 ADOBE bsd3 bsd4 mit MPL20 \
 			python TWAIN W3C
 LICENSE_COMB=		multi
 LICENSE_NAME_ADOBE=	Adobe Systems Incorporated license
-LICENSE_TEXT_ADOBE=	"What the web can't be"
+LICENSE_TEXT_ADOBE=	What the web can't be
 LICENSE_NAME_TWAIN=	TWAIN Working Group license
 LICENSE_TEXT_TWAIN=	twain
 LICENSE_NAME_W3C=	W3C license
