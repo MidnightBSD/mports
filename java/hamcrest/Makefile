@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of matchers for building test expressions
 WWW=		https://hamcrest.org/
 
-LICENSE=	unknown
+LICENSE=	bsd2
 
 USES=		java
 NO_ARCH=	yes

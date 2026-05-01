@@ -5,7 +5,7 @@ CATEGORIES=	devel
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create dependencies in makefiles using 'gcc -M'
 
-LICENSE=	unknown
+LICENSE=	mit
 
 USES=		tar:xz xorg-cat:util
 
