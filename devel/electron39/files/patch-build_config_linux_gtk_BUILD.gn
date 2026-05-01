@@ -1,0 +1,10 @@
+--- build/config/linux/gtk/BUILD.gn.orig	2025-02-03 00:00:00 UTC
++++ build/config/linux/gtk/BUILD.gn
+@@ -29,6 +29,7 @@ group("gtk") {
+   visibility = [
+     # These are allow-listed for WebRTC builds.  Nothing in else should depend
+     # on GTK.
++    "//electron:*",
+     "//examples:peerconnection_client",
+     "//remoting/host:common",
+     "//remoting/host:remoting_me2me_host_static",
