@@ -652,11 +652,11 @@ dt/config/ja_JP.UTF-8/Xresources.d/0120.session
 dt/config/ja_JP.UTF-8/Xresources.d/0140.session
 dt/config/ja_JP.UTF-8/sys.font
 dt/config/ja_JP.UTF-8/dtfile.config
-dt/config/Xservers.sample
-dt/config/Xstartup.sample
-dt/config/Xfailsafe.sample
-dt/config/Xconfig.sample
-dt/config/sys.dtprofile.sample
+@sample dt/config/Xservers.sample
+@sample dt/config/Xstartup.sample
+@sample dt/config/Xfailsafe.sample
+@sample dt/config/Xconfig.sample
+@sample dt/config/sys.dtprofile.sample
 dt/config/fr_FR.UTF-8/sys.session
 dt/config/fr_FR.UTF-8/sys.font
 dt/config/fr_FR.UTF-8/Xresources.d/0160.session
@@ -678,8 +678,8 @@ dt/config/de_DE.UTF-8/sys.font
 dt/config/de_DE.UTF-8/dtfile.config
 dt/config/de_DE.UTF-8/Xresources
 dt/config/dtterm.ti
-dt/config/Xsetup.sample
-dt/config/Xaccess.sample
+@sample dt/config/Xsetup.sample
+@sample dt/config/Xaccess.sample
 dt/config/svc/CDE.lcx
 dt/config/it_IT.UTF-8/sys.resources
 dt/config/it_IT.UTF-8/sys.font
@@ -717,7 +717,7 @@ dt/config/C/Xresources.d/0100.session
 dt/config/C/Xresources.d/0140.session
 dt/config/C/Xresources.d/0120.session
 dt/config/C/dtfile.config
-dt/config/Xreset.sample
+@sample dt/config/Xreset.sample
 dt/man
 dt/share/backdrops/Lattice.pm
 dt/share/backdrops/Convex.pm
