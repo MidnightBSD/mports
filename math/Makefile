@@ -142,6 +142,7 @@
     SUBDIR += rubygem-bigdecimal
     SUBDIR += rubygem-bigdecimal-gitlab
     SUBDIR += rubygem-matrix
+    SUBDIR += rubygem-prime
     SUBDIR += sleef
     SUBDIR += suitesparse
     SUBDIR += suitesparse-amd
