@@ -1,0 +1,11 @@
+--- third_party/devtools-frontend/src/front_end/ui/components/docs/BUILD.gn.orig	2025-02-03 00:00:00 UTC
++++ third_party/devtools-frontend/src/front_end/ui/components/docs/BUILD.gn
+@@ -11,7 +11,6 @@ group("docs") {
+   public_deps = [
+     ":bundle",
+     ":component_doc_styles",
+     "../../../Images",
+-    "../../../panels/timeline/fixtures/traces",
+     "./breadcrumbs_perf",
+     "./button",
+     "./color_swatch",

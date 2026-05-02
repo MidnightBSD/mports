@@ -25,7 +25,7 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 CONFLICTS_INSTALL=	firebird40
 
 USES=		cpe gmake pkgconfig localbase:ldflags libedit tar:bzip2
-USE_CXXSTD=	gnu++03
+USE_CXXSTD=	gnu++17
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 CPE_VENDOR=	firebirdsql
@@ -49,7 +49,7 @@ CONFIGURE_ENV+=	PTHREAD_LIBS="-lpthread" \
 		ac_cv_header_atomic_ops_h="no" \
 		ac_cv_lib_atomic_ops_main="no"
 CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd13.4
-CPPFLAGS+=	-DU_NOEXCEPT= -fno-delete-null-pointer-checks # For USE_CXXSTD=gnu++98
+CPPFLAGS+=	-fno-delete-null-pointer-checks -fno-sized-deallocation
 
 LOCALSTATEDIR=	/var/db/firebird
 CONFDIR=	etc/firebird

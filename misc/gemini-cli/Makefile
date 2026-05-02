@@ -1,5 +1,5 @@
 PORTNAME=	gemini-cli
-DISTVERSION=	0.39.1
+DISTVERSION=	0.40.1
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	ports@MidnightBSD.org

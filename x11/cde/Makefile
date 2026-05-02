@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common Desktop Environment
 WWW=		https://sourceforge.net/p/cdesktopenv/wiki/Home/
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
 BUILD_DEPENDS=	bdftopcf:x11-fonts/bdftopcf \
 		mkfontscale>=0:x11-fonts/mkfontscale \

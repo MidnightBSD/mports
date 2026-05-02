@@ -26,7 +26,7 @@ LICENSE=		Apache-2.0 ADOBE bsd3 bsd4 mit MPL20 \
 			python TWAIN W3C
 LICENSE_COMB=		multi
 LICENSE_NAME_ADOBE=	Adobe Systems Incorporated license
-LICENSE_TEXT_ADOBE=	"What the web can't be"
+LICENSE_TEXT_ADOBE=	What the web can't be
 LICENSE_NAME_TWAIN=	TWAIN Working Group license
 LICENSE_TEXT_TWAIN=	twain
 LICENSE_NAME_W3C=	W3C license
@@ -404,7 +404,7 @@ do-build:
 	. ../${FREEBSD_ENV_SET} ;					  \
 	build.pl --all -P$${numproc} -- -P$${dmproc}
 
-PYDL=	${FAKE_DESTDIR}${OOPATH}/program/python-core-2.7.18/lib/lib-dynload
+PYDL=	${OOPATH}/program/python-core-2.7.18/lib/lib-dynload
 
 do-install:
 	@${MKDIR} ${PRINSTALLATION_BASEDIR} \
@@ -447,16 +447,16 @@ do-install:
 		PREFIX=openoffice${AOOVERSION1}			\
 		${SH} ${CREATE_TREE} ;				\
 	    ${INSTALL_DATA} apacheopenoffice.xml		\
-		/${PREFIX}/share/mime/packages
+		${PREFIX}/share/mime/packages
 	@cd ${DESKTOPDIR}; for i in base calc draw impress \
 		javafilter math printeradmin qstart startcenter writer ; do \
 			${LN} -sf ${XDGREL}/$${i}.desktop ${EXECBASE}-$${i}.desktop ; \
 	done
 
 do-install-SDK-on:
-	${TAR} -s '|./[^/]*/||' -xz -C ${PRINSTALLATION_BASEDIR} \
+	${TAR} -s '|./[^/]*/||' -xz -C ${FAKE_DESTDIR}${PRINSTALLATION_BASEDIR} \
 		-f ${WRKSRC}/instsetoo_native/unxfbsd*.pro/Apache_OpenOffice_SDK/archive/install/${LOCALIZED_LANG}/*.tar.gz
-	@f=${OOPATH}/sdk/bin/unoapploader ; \
+	@f=${FAKE_DESTDIR}${OOPATH}/sdk/bin/unoapploader ; \
 		${CHMOD} 644 $${f} ; ${STRIP_CMD} $${f} ; ${CHMOD} 444 $${f}
 
 post-install:
