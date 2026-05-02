@@ -1,5 +1,5 @@
 PORTNAME=     firefox
-DISTVERSION=  135.0.1
+DISTVERSION=  145.0.1
 PORTEPOCH=    2
 CATEGORIES=   www wayland
 MASTER_SITES= MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -27,7 +27,7 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip \
-		clang15:devel/llvm15 \
+		clang19:devel/llvm19 \
 		cargo:lang/rust \
 		cbindgen:devel/rust-cbindgen
 
@@ -80,6 +80,7 @@ QMAKE_ARGS=		--enable-application=browser \
 			--disable-profiling \
 			--disable-pulseaudio \
 			--disable-tests \
+			--disable-necko-wifi \
 			--disable-updater \
 			--disable-webrtc \
 			--disable-hardening \
@@ -95,12 +96,13 @@ QMAKE_ARGS=		--enable-application=browser \
 
 # --with-system-jpeg
 
-LLVM_VERSION=	15
-MBSD64_TARGET=	x86_64-mports-freebsd12.3
+LLVM_VERSION=	19
+MBSD64_TARGET=	x86_64-mports-freebsd13.4
 CONFIGURE_TARGET=	${MBSD64_TARGET}
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV+= BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
 CONFIGURE_OUTSOURCE=    yes
+MAKE_ENV+=		__FreeBSD__=13 __FreeBSD__version=1303501
 LDFLAGS+=               -Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
 BINARY_ALIAS+=  python3=${PYTHON_CMD}
 
@@ -148,14 +150,14 @@ post-patch:
 		>> ${WRKSRC}/.mozconfig
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps \
-		${STAGEDIR}${PREFIX}/share/applications
+	${MKDIR} ${PREFIX}/share/pixmaps \
+		${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKDIR}/firefox.desktop \
-		${STAGEDIR}${PREFIX}/share/applications/
-	(cd ${STAGEDIR}${PREFIX}/share/pixmaps &&\
+		${PREFIX}/share/applications/
+	(cd ${PREFIX}/share/pixmaps &&\
 	${LN} -sf ../../lib/firefox/browser/chrome/icons/default/default48.png firefox.png)
 	# Rewrite symlink to make it relative instead of absolute
-	(cd ${STAGEDIR}${PREFIX}/bin &&\
+	(cd ${PREFIX}/bin &&\
 	${LN} -sf ../lib/firefox/firefox firefox)
 
 .include <bsd.port.mk>

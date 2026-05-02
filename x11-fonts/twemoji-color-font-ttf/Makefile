@@ -22,7 +22,7 @@ NO_ARCH=	yes
 PLIST_FILES=	${FONTSDIR}/TwitterColorEmoji-SVGinOT.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}/
+	@${MKDIR} ${FONTSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}/
 
 .include <bsd.port.mk>

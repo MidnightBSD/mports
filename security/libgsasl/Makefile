@@ -39,7 +39,7 @@ NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/lib/gl/.libs/liblgl.a ${STAGEDIR}${PREFIX}/lib
+	@${INSTALL_DATA} ${WRKSRC}/lib/gl/.libs/liblgl.a ${PREFIX}/lib
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR} ${FAKE_DESTDIR}${DOCSDIR}/reference

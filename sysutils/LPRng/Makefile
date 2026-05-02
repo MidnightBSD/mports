@@ -54,11 +54,11 @@ NLS_LDFLAGS=		-lintl
 post-install:
 .for i in lpd.perms printcap
 	(cd ${WRKSRC}/conf && $ ${INSTALL_DATA} ${i} \
-		${STAGEDIR}/${PREFIX}/etc/${i}.sample)
+		/${PREFIX}/etc/${i}.sample)
 .endfor
 .for i in lpd.conf
 	(cd ${WRKSRC}/src && $ ${INSTALL_DATA} ${i} \
-		${STAGEDIR}/${PREFIX}/etc/${i}.sample)
+		/${PREFIX}/etc/${i}.sample)
 .endfor
 
 .include <bsd.port.mk>

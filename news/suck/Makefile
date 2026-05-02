@@ -81,9 +81,9 @@ pre-configure:
 
 .if ${PORT_OPTIONS:MEXAMPLES}
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_SCRIPT} ${EX_SCRIPTS:S=^=${WRKSRC}/sample/=} ${STAGEDIR}${EXAMPLESDIR}/
-	${INSTALL_DATA} ${EX_DATA:S=^=${WRKSRC}/sample/=} ${STAGEDIR}${EXAMPLESDIR}/
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${EX_SCRIPTS:S=^=${WRKSRC}/sample/=} ${EXAMPLESDIR}/
+	${INSTALL_DATA} ${EX_DATA:S=^=${WRKSRC}/sample/=} ${EXAMPLESDIR}/
 .endif
 
 .include <bsd.port.mk>

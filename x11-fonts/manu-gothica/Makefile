@@ -28,8 +28,8 @@ NO_ARCH=	yes
 PLIST_FILES=	${FONTSDIR}/manugot19.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} manugot19.ttf \
-		${STAGEDIR}${FONTSDIR})
+		${FONTSDIR})
 
 .include <bsd.port.mk>

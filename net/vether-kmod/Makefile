@@ -26,9 +26,9 @@ pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}/boot/modules
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/man/man4
-	${INSTALL_DATA} ${WRKSRC}/if_vether.4 ${STAGEDIR}${PREFIX}/man/man4
-	@${RLN} ${STAGEDIR}${PREFIX}/man/man4/if_vether.4 \
-		${STAGEDIR}${PREFIX}/man/man4/vether.4
+	@${MKDIR} ${PREFIX}/man/man4
+	${INSTALL_DATA} ${WRKSRC}/if_vether.4 ${PREFIX}/man/man4
+	@${RLN} ${PREFIX}/man/man4/if_vether.4 \
+		${PREFIX}/man/man4/vether.4
 
 .include <bsd.port.mk>

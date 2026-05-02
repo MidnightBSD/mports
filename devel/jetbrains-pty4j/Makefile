@@ -30,9 +30,9 @@ PLIST_FILES=	share/jetbrains/${PORTNAME}/${ARCH}/libpty.so
 .include <bsd.mport.options.mk>
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/${ARCH}
+	${MKDIR} ${DATADIR}/${ARCH}
 	${INSTALL_LIB} \
 		${WRKSRC}/os/freebsd/${ARCH:S/amd64/x86-64/:S/powerpc64le/ppc64le/}/libpty.so \
-		${STAGEDIR}${DATADIR}/${ARCH}
+		${DATADIR}/${ARCH}
 
 .include <bsd.port.mk>

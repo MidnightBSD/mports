@@ -1,0 +1,962 @@
+package-lock.json
+bin/gemini
+%%LIB32DIR%%/node_modules/@google/gemini-cli/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-arm64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-x64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linuxmusl-x64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-ia32/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/win32-x64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linuxmusl-arm64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-arm/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/darwin-arm64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linuxmusl-arm/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/win32-arm64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/darwin-x64/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/win32-ia32/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-armv7l/keytar.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/binding.gyp
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/LICENSE.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/%%LIB32DIR%%/keytar.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/script/download-node-%%LIB32DIR%%-win-arm64.ps1
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/script/cibuild
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/script/install.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/async.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/keytar.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/credentials.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/main.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/keytar_mac.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/keytar_win.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/async.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src/keytar_posix.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/keytar.d.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/napi-inl.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/common.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/node_addon_api.gyp
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/napi-inl.deprecated.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/except.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/nothing.c
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/noexcept.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/napi.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/tools/check-napi.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/tools/clang-format.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/tools/conversion.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/tools/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/package-support.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/LICENSE.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/index.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/node_api.gyp
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty/1.23.251008001/win10-x64/OpenConsole.exe
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty/1.23.251008001/win10-x64/conpty.dll
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty/1.23.251008001/win10-arm64/OpenConsole.exe
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty/1.23.251008001/win10-arm64/conpty.dll
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/windowsTerminal.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/eventEmitter2.test.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/index.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/unix/spawn-helper.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/unix/pty.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/tsconfig.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/testUtils.test.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/windowsConoutConnection.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/unixTerminal.test.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/worker/conoutSocketWorker.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/shared/conout.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/types.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/win/conpty_console_list.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/win/winpty.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/win/conpty.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/win/conpty.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/win/path_util.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/win/path_util.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/utils.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/terminal.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/windowsPtyAgent.test.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/windowsPtyAgent.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/windowsTerminal.test.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/conpty_console_list_agent.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/interfaces.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/terminal.test.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/unixTerminal.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/native.d.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/eventEmitter2.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/terminal.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsTerminal.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/terminal.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/unixTerminal.test.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/unixTerminal.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsPtyAgent.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/types.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/eventEmitter2.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/conpty_console_list_agent.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/eventEmitter2.test.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/unixTerminal.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/terminal.test.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/index.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/unixTerminal.test.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsPtyAgent.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/conpty_console_list_agent.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/eventEmitter2.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/utils.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/interfaces.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsPtyAgent.test.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/worker/conoutSocketWorker.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/worker/conoutSocketWorker.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/shared/conout.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/shared/conout.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/types.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/testUtils.test.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsTerminal.test.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsConoutConnection.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsTerminal.test.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/eventEmitter2.test.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsTerminal.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/index.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/testUtils.test.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsConoutConnection.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/windowsPtyAgent.test.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/terminal.test.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/utils.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/interfaces.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/node_modules/node-addon-api/node_addon_api_except.target.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/node_modules/node-addon-api/node_addon_api.target.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/node_modules/node-addon-api/node_addon_api_maybe.target.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/node_modules/node-addon-api/node_addon_api.Makefile
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/pty.target.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/config.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/binding.Makefile
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/Release/pty.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/Makefile
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/binding.gyp
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/winpty.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/conpty_console_list.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/winpty-agent.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/conpty/OpenConsole.exe
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/conpty/conpty.dll
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/conpty.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/winpty.dll
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/pty.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/pty.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/conpty.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/conpty_console_list.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/winpty-agent.exe
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/darwin-arm64/pty.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/darwin-arm64/spawn-helper
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/pty.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/pty.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/winpty-agent.exe
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/conpty_console_list.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/winpty-agent.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/winpty.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/conpty.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/conpty/OpenConsole.exe
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/conpty/conpty.dll
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/conpty_console_list.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/winpty.dll
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/conpty.pdb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/darwin-x64/pty.node
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/darwin-x64/spawn-helper
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/index.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/napi-inl.deprecated.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/node_addon_api.gyp
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/LICENSE.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/node_api.gyp
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/noexcept.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/except.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/package-support.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/napi-inl.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/napi.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/nothing.c
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/common.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/tools/conversion.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/tools/clang-format.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/tools/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/tools/check-napi.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/tools/eslint-format.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/typings/node-pty.d.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/scripts/post-install.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/scripts/gen-compile-commands.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/scripts/prebuild.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/scripts/increment-version.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/.editorconfig
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/LICENSE
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/VERSION.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ScreenBufferFreezeInactive.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/FreezePerfTest.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/EnableExtendedFlags.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/build64.sh
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/VeryLargeRead.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/MouseInputNotes.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/SetFont.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/winbug-15048.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/SetBufferSize.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/UnicodeWideTest1.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/FontSurvey.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/TestUtil.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/FormatChar.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/GetConsolePos.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ScreenBufferTest.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ShowArgv.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/UnicodeWideTest2.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/UnicodeDoubleWidthTest.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ConoutMode.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/WindowsBugCrashReader.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/SetWindowRect.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win32Test1.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ClearConsole.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/WriteConsole.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Spew.py
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/UnixEcho.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Notes.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ShowConsoleInput.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/SetCursorPos.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ConinMode.ps1
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/MoveConsoleWindow.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/CP936.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/MinimumWindowWidths.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/CP950.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/Results.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/Windows10SetFontBugginess.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/CP437-Consolas.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/CP932.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/CP949.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016/CP437-Lucida.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win32Test2.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win32Test3.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win32Write1.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win10ResizeWhileFrozen.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/GetFont.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/IdentifyConsoleWindow.ps1
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/DebugServer.py
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/GetCh.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ChangeScreenBuffer.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win32Echo2.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/VkEscapeTest.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/DumpLines.py
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win10WrapTest2.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/color-test.sh
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ConinMode.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/OSVersion.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/BufferResizeTests.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/font-notes.txt
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/build32.sh
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Utf16Echo.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/IsNewConsole.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win32Echo1.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/SelectAllTest.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/DebugClient.py
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Win10WrapTest1.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/ScreenBufferTest2.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/ship/common_ship.py
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/ship/build-pty4j-%%LIB32DIR%%pty.bat
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/ship/ship.py
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/ship/make_msvc_package.py
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/winpty.gyp
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/include/winpty.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/include/winpty_constants.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/tests/trivial_test.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/tests/subdir.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/debugserver/subdir.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/debugserver/DebugServer.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/subdir.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Win32Console.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/AgentCreateDesktop.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleLine.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleInputReencoding.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Scraper.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/InputMap.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/main.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/LargeConsoleRead.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Win32Console.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleInputReencoding.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/DsrSender.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleInput.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleFont.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Coord.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/AgentCreateDesktop.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Scraper.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Terminal.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/InputMap.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Terminal.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleLine.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Win32ConsoleBuffer.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/NamedPipe.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Agent.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/DebugShowInput.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Win32ConsoleBuffer.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/EventLoop.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/UnicodeEncodingTest.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/DebugShowInput.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/SmallRect.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/LargeConsoleRead.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/UnicodeEncoding.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleInput.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/EventLoop.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/NamedPipe.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/ConsoleFont.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/SimplePool.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/DefaultInputMap.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/Agent.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent/DefaultInputMap.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/subdir.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/WakeupFd.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/OutputHandler.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/WakeupFd.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/Util.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/InputHandler.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/Util.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/subdir.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/OutputHandler.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/main.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter/InputHandler.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WindowsSecurity.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WinptyException.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WindowsVersion.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/GenRandom.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/OsModule.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/GetCommitHash.bat
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/StringBuilderTest.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/DebugClient.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/OwnedHandle.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/winpty_snprintf.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WindowsSecurity.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WinptyException.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/UnixCtrlChars.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/DebugClient.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WinptyAssert.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/PrecompiledHeader.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/OwnedHandle.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WinptyVersion.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WinptyAssert.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/Mutex.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/TimeMeasurement.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/StringBuilder.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/Buffer.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/Buffer.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WindowsVersion.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/UpdateGenVersion.bat
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/StringUtil.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/StringUtil.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/BackgroundDesktop.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/AgentMsg.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/GenRandom.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/BackgroundDesktop.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared/WinptyVersion.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/configurations.gypi
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/%%LIB32DIR%%winpty/AgentLocation.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/%%LIB32DIR%%winpty/subdir.mk
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/%%LIB32DIR%%winpty/WinptyInternal.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/%%LIB32DIR%%winpty/AgentLocation.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/%%LIB32DIR%%winpty/LibWinptyException.h
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/%%LIB32DIR%%winpty/winpty.cc
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/vcbuild.bat
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/.drone.yml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/Makefile
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/configure
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/RELEASES.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/.gitattributes
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/LICENSE
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/LICENSE
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/index.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/types.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/windowsConoutConnection.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/windowsTerminal.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/interfaces.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/terminal.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/node-pty.d.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/worker/conoutSocketWorker.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/eventEmitter2.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/shared/conout.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/utils.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/conpty_console_list_agent.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/requireBinary.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/unixTerminal.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/windowsPtyAgent.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/liteRtServerManager-JHBFWDI6.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/chrome-devtools-mcp.mjs
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryUseErrorMatchingDictionaryNotUsed.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementNonOpaqueColor.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/connectionAllowlistInvalidUrlPattern.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieExcludeDomainNonAscii.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryUseErrorCrossOriginNoCorsRequest.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementGeolocationDeprecated.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriValidationFailedSignatureExpired.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsNoCorsRedirectModeNotFollow.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/deprecation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementInvalidDisplayStyle.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryUseErrorUnexpectedContentDictionaryHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriValidationFailedIntegrityMismatch.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementUntrustedEvent.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderMissingLabel.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriMissingSignatureInputHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/stylesheetLateImport.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieExcludeBlockedWithinRelatedWebsiteSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestErrorFetchingSignin.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/clientHintMetaTagAllowListInvalidOrigin.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteExcludeContextDowngradeRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cspInlineViolation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementFencedFrameDisallowed.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arInsecureContext.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementRequestInProgress.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestTooManyRequests.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementInvalidType.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementPaddingBottomUnsupported.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arNoRegisterOsSourceHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriInvalidSignatureHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericNavigationEntryMarkedSkippable.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieExcludeThirdPartyPhaseoutRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/selectElementAccessibilityDisallowedOptGroupChild.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/unencodedDigestIncorrectDigestType.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arUntrustworthyReportingOrigin.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arNavigationRegistrationUniqueScopeAlreadySet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cspTrustedTypesSinkViolation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestManifestHttpNotFound.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorFeatureDisabled.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriValidationFailedSignatureMismatch.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/fetchingPartitionedBlobURL.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/CookieAttributeValueExceedsMaxSize.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cspEvalViolation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieExcludePortMismatch.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieWarnDomainNonAscii.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestIdTokenNoResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestInvalidConfigOrWellKnown.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNonListMatchDestField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNonStringInMatchDestList.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieWarnMetadataGrantSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteNoneInsecureWarnRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormInputWithNoLabelError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestNotIframe.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNonIntegerTTLField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorCossOriginNoCorsRequest.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieWarnThirdPartyPhaseoutSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arInvalidRegisterSourceHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedArrayBuffer.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsAllowCredentialsRequired.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericResponseWasBlockedByORB.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNonStringIdField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/selectElementAccessibilityInteractiveContentLegendChild.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/placeholderDescriptionForInvisibleIssues.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormEmptyIdAndNameAttributesForInputError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestAccountsNoResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementActivationDisabledWithOccluderParent.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementTypeNotSupported.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementFontSizeTooSmall.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestIdTokenInvalidResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorDisallowedBySettings.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestNotSignedInWithIdp.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestIdTokenInvalidRequest.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arInvalidRegisterTriggerHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsLocalNetworkAccessPermissionDenied.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorTooLongIdField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorUnsupportedType.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arOsSourceIgnored.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriInvalidSignatureInputHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementInsetBoxShadowUnsupported.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderValueMissingComponents.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arTriggerIgnored.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arSourceIgnored.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorShuttingDown.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsOriginMismatch.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureHeaderValueIsParameterized.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsPreflightResponseInvalid.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementPermissionsPolicyBlocked.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteExcludeNavigationContextDowngrade.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteUnspecifiedLaxAllowUnsafeRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/propertyRuleIssue.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureHeaderValueIsNotByteSequence.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteNoneInsecureErrorRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestInvalidSigninResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieExcludeSchemeMismatch.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderInvalidParameter.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/CompatibilityModeQuirks.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderInvalidDerivedComponentParameter.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNonStringMatchField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderValueNotInnerList.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestErrorIdToken.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderKeyIdLength.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderInvalidHeaderComponentParameter.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arInvalidRegisterOsSourceHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestNotPotentiallyTrustworthy.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/unencodedDigestMalformedDictionary.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/unencodedDigestIncorrectDigestLength.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteWarnCrossDowngradeRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/propertyRuleInvalidNameIssue.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestIdTokenHttpNotFound.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementFontSizeTooLarge.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/heavyAd.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestNoApiPermission.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsWildcardOriginNotAllowed.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorInvalidMatchField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementRegistrationFailed.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arPermissionPolicyDisabled.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsDisabledScheme.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestAccountsInvalidResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormDuplicateIdForInputError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/CoepCorpNotSameOrigin.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arInvalidInfoHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/connectionAllowlistInvalidAllowlistItemType.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorInvalidTTLField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsHeaderDisallowedByPreflightResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestApprovalDeclined.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cspURLViolation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/LowTextContrast.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieCrossSiteRedirectDowngrade.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/connectionAllowlistItemNotInnerList.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementPaddingRightUnsupported.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/selectElementAccessibilityNonPhrasingContentOptionChild.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryUseErrorDictionaryLoadFailure.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/CoepCoopSandboxedIframeCannotNavigateToCoopPage.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestAccountsHttpNotFound.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNonSecureContext.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arInvalidRegisterOsTriggerHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderMissingRequiredParameters.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cspTrustedTypesPolicyViolation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementInvalidTypeActivation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/clientHintMetaTagModifiedHTML.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arSourceAndTriggerHeaders.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestNoAccountSharingPermission.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteExcludeContextDowngradeSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/bounceTrackingMitigations.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormLabelForMatchesNonExistingIdError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/CoepFrameResourceNeedsCoepHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsDisallowedByMode.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormAriaLabelledByToNonExistingIdError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementCspFrameAncestorsMissing.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arNoRegisterTriggerHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderInvalidComponentType.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementActivationDisabledWithOccluder.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/CoepCorpNotSameSite.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorExpiredResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteWarnStrictLaxDowngradeStrict.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/navigatingPartitionedBlobURL.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestNotSameOrigin.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arNoRegisterOsTriggerHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arNavigationRegistrationWithoutTransientUserActivation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNoMatchField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorInvalidStructuredHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorRequestAborted.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriValidationFailedInvalidLength.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureHeaderValueIsIncorrectLength.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestInvalidAccountsResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/selectElementAccessibilityDisallowedSelectChild.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arNoWebOrOsSupport.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arOsTriggerIgnored.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormInputHasWrongButWellIntendedAutocompleteValueError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arWebAndOsHeaders.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthUserInfoRequestNoReturningUserFromFetchedAccounts.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementActivationDisabled.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementInvalidSizeValue.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/connectionAllowlistMoreThanOneList.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriSignatureInputHeaderInvalidComponentName.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteWarnCrossDowngradeSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/selectElementAccessibilityInteractiveContentOptionChild.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/mixedContent.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestManifestInvalidResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsMethodDisallowedByPreflightResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormInputAssignedAutocompleteValueToIdOrNameAttributeError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/CoepCorpNotSameOriginAfterDefaultedToSameOriginByCoep.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/stylesheetRequestFailed.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteNoneInsecureWarnSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/selectElementAccessibilityInteractiveContentAttributesSelectDescendant.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieWarnMetadataGrantRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNonTokenTypeField.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsInvalidHeaderValues.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/connectionAllowlistInvalidHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormLabelHasNeitherForNorNestedInputError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestCanceled.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormLabelForNameError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/corsRedirectContainsCredentials.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementSecurityChecksFailed.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorInsufficientResources.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/summaryElementAccessibilityInteractiveContentSummaryDescendant.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteNoneInsecureErrorSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/connectionAllowlistReportingEndpointNotToken.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieExcludeThirdPartyPhaseoutSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/arNoRegisterSourceHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/genericFormAutocompleteAttributeEmptyError.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/unencodedDigestUnknownAlgorithm.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/federatedAuthRequestManifestNoResponse.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sriMissingSignatureHeader.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/permissionElementLowContrast.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/cookieWarnThirdPartyPhaseoutRead.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/sharedDictionaryWriteErrorNavigationRequest.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions/SameSiteUnspecifiedLaxAllowUnsafeSet.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/index.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/THIRD_PARTY_NOTICES
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/bundled-packages.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/tree-sitter-XSXMMIUZ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/getMachineId-unsupported-5U5DOEYY.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/interactiveCli-VO2T47FA.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/interactiveCli-ND2AVROW.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/start-H6E5SBV7.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/events-XB7DADIJ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/devtoolsService-K4I6YCD4.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/core-UFCQUVAZ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/liteRtServerManager-KR4G6HVQ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/gemini-RYFDQAFM.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-C45QOW2J.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/cleanup-P53J5X4G.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/sandbox-macos-strict-open.sb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/sandbox-macos-permissive-open.sb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/liteRtServerManager-ESWH5RRJ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/multipart-parser-KPBZEGQU.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-B6PIKVSF.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-SVRZDVKN.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/oauth2-provider-HPAQM7LS.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-664ZODQF.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/cleanup-7VP4F7GR.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/gemini-OEXUXD4F.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/devtoolsService-UBZYOZNR.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-3XIE7V2G.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/cleanup-PLWTY4UK.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/sandbox-macos-permissive-proxied.sb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-TV3H5VBI.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-RJTRUG2J.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-DMTQDMOD.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-MKP6YHAI.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/cleanup-MNQ2UZZG.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/sandbox-macos-restrictive-open.sb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/getMachineId-linux-SHIFKOOX.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/oauth2-provider-25JJN4A4.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/memoryDiscovery-CZURD35O.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/devtoolsService-F4BITN2L.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/index.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/types.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/index.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/types.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/index.d.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/_client-assets.js.map
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/_client-assets.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/types.d.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src/_client-assets.d.ts
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/client/main.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-DQXPDCC3.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/oauth2-provider-RQPXCAE5.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/ide-integration/ide-companion-spec.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/ide-integration/index.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/reference/memport.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/reference/configuration.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/reference/policy-engine.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/reference/tools.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/reference/commands.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/reference/keyboard-shortcuts.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/release-confidence.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/local-development.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/npm.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/extensions/index.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/extensions/releasing.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/extensions/writing-extensions.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/extensions/reference.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/extensions/best-practices.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/index.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/examples/proxy-script.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/issue-and-pr-automation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/changelogs/index.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/changelogs/latest.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/changelogs/preview.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/sidebar.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/integration-tests.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/activate-skill.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/memory.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/web-fetch.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/planning.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/tracker.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/file-system.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/todos.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/shell.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/web-search.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/mcp-resources.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/ask-user.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/mcp-server.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools/internal-docs.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/releases.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-tokyonight-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-solarized-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-google-light.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-default-light.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-holiday-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/connected_devtools.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/monitoring-dashboard-metrics.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-ayu-light.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-ayu-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-github-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-ansi-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/monitoring-dashboard-overview.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-dracula-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-default-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-github-light.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-xcode-light.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/monitoring-dashboard-logs.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-solarized-light.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/gemini-screenshot.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/release_patch.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-shades-of-purple-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-custom.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-atom-one-dark.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets/theme-ansi-light.png
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/auto-memory.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/enterprise.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/sandbox.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/gemini-ignore.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/creating-skills.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/model.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/file-management.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/plan-mode-steering.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/shell-commands.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/web-tools.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/task-planning.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/skills-getting-started.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/memory-management.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/automation.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/mcp-setup.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials/session-management.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/gemini-md.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/checkpointing.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/notifications.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/headless.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/telemetry.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/acp-mode.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/skills.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/settings.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/git-worktrees.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/token-caching.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/themes.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/custom-commands.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/plan-mode.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/trusted-folders.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/model-steering.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/system-prompt.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/session-management.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/generation-settings.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/cli-reference.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/rewind.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/model-routing.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/get-started/gemini-3.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/get-started/index.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/get-started/authentication.mdx
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/get-started/installation.mdx
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/hooks/best-practices.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/hooks/writing-hooks.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/hooks/index.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/hooks/reference.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/CONTRIBUTING.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/resources/uninstall.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/resources/faq.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/resources/tos-privacy.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/resources/quota-and-pricing.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/resources/troubleshooting.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/core/local-model-routing.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/core/subagents.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/core/index.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/core/remote-agents.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/mermaid/render-path.mmd
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/mermaid/context.mmd
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/admin/enterprise-controls.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/redirects.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-WCG76BEG.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-F5YK2O2Q.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/start-KGL2CIOG.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/gemini-ZYQZGZWC.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-HKIALAT6.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/devtools-36NN55EP.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/oauth2-provider-IJ4VRZ7W.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/tree-sitter-bash-LMFXTVOP.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/sandbox-macos-restrictive-proxied.sb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/gemini.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/dist-KBXYTOD4.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/builtin/skill-creator/scripts/validate_skill.cjs
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/builtin/skill-creator/scripts/package_skill.cjs
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/builtin/skill-creator/scripts/init_skill.cjs
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/builtin/skill-creator/SKILL.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/gemini-3OZCG3O2.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/getMachineId-win-6KLLGOI4.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-VKQT3B2X.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/sandbox-macos-strict-proxied.sb
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/memoryDiscovery-GZLXKRGB.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-5AUYMPVF.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-4NKEZSZL.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-34MYV7JD.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/dist-RP6V5FR5.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/src-QVCVGIUX.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/read-only.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/memory-manager.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/discovered.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/sandbox-default.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/plan.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/yolo.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/agents.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/write.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/non-interactive.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies/conseca.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-VWLKCG5Q.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-DAHVX5MI.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-5PS3AYFU.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/getMachineId-bsd-TXG52NKR.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-UN6XCVMJ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-F73F75XM.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-IUUIT4SU.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/dist-T73EYRDX.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-H4FKMO4N.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/interactiveCli-M2JHWWJW.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/getMachineId-darwin-7OE4DDZ6.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/dist-CRAFZ4EV.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-2ABM66ZR.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/liteRtServerManager-HMMIC3TU.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/interactiveCli-ZSLDJYKZ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/start-PATVFSB6.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-BJ6YFFH2.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-SDLMN2WK.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/start-2XU4BDSD.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-GT76ECCD.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/devtoolsService-TPQOS3XD.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-RDM3AHIW.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/themes-example/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/themes-example/gemini-extension.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/skills/skills/greeter/SKILL.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/skills/gemini-extension.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/mcp-server/example.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/mcp-server/gemini-extension.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/mcp-server/package.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/mcp-server/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/exclude-tools/gemini-extension.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/hooks/gemini-extension.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/hooks/hooks/hooks.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/hooks/scripts/on-start.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/custom-commands/gemini-extension.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/custom-commands/commands/fs/grep-code.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/policies/gemini-extension.json
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/policies/policies/policies.toml
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/policies/README.md
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-A3XZVE6S.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-B2OARGJJ.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-RP4KDMW3.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/chunk-UHHRGNIO.js
+%%LIB32DIR%%/node_modules/@google/gemini-cli/LICENSE
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-arm64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-x64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linuxmusl-x64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-ia32
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/win32-x64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linuxmusl-arm64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-arm
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/darwin-arm64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linuxmusl-arm
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/win32-arm64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/darwin-x64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/win32-ia32
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds/linux-armv7l
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/prebuilds
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/%%LIB32DIR%%
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/script
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar/src
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github/keytar
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@github
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api/tools
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-addon-api
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty/1.23.251008001/win10-x64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty/1.23.251008001/win10-arm64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty/1.23.251008001
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party/conpty
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/third_party
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/unix
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/worker
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/shared
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src/win
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/src
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/worker
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%/shared
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/%%LIB32DIR%%
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/node_modules/node-addon-api
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/node_modules
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build/Release
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/build
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64/conpty
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-x64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/darwin-arm64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64/conpty
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/win32-arm64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds/darwin-x64
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/prebuilds
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api/tools
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules/node-addon-api
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/node_modules
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/typings
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/scripts
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc/Font-Report-June2016
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/misc
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/ship
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/include
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/tests
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/debugserver
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/agent
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/unix-adapter
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/shared
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src/%%LIB32DIR%%winpty
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty/src
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps/winpty
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty/deps
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/node-pty
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/worker
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty/shared
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell/node-pty
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules/@lydell
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/node_modules
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party/issue-descriptions
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled/third_party
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/bundled
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/src
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist/client
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools/dist
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google/gemini-cli-devtools
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules/@google
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/node_modules
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/ide-integration
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/reference
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/extensions
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/examples
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/changelogs
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/tools
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/assets
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli/tutorials
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/cli
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/get-started
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/hooks
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/resources
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/core
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/mermaid
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs/admin
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/docs
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/builtin/skill-creator/scripts
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/builtin/skill-creator
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/builtin
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/policies
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/themes-example
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/skills/skills/greeter
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/skills/skills
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/skills
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/mcp-server
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/exclude-tools
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/hooks/hooks
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/hooks/scripts
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/hooks
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/custom-commands/commands/fs
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/custom-commands/commands
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/custom-commands
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/policies/policies
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples/policies
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle/examples
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli/bundle
+@dir %%LIB32DIR%%/node_modules/@google/gemini-cli
+@dir %%LIB32DIR%%/node_modules/@google
+@dir %%LIB32DIR%%/node_modules

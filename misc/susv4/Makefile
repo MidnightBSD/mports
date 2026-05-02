@@ -27,9 +27,9 @@ IGNORE=		may not be redistributed because of licensing reasons. Please visit htt
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && \
 		${FIND} . -name '*~' -delete && \
-		${COPYTREE_SHARE} '*' ${STAGEDIR}${DOCSDIR}
+		${COPYTREE_SHARE} '*' ${DOCSDIR}
 
 .include <bsd.port.post.mk>

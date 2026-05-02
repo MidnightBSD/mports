@@ -23,9 +23,9 @@ PORTDOCS=	FONTLOG.txt OFL-FAQ.txt OFL.txt README.txt
 SUB_FILES=	pkg-message
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	@(cd ${WRKSRC} ; ${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR})
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@(cd ${WRKSRC} ; ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${FONTSDIR}
+	@(cd ${WRKSRC} ; ${INSTALL_DATA} *.ttf ${FONTSDIR})
+	@${MKDIR} ${DOCSDIR}
+	@(cd ${WRKSRC} ; ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
 
 .include <bsd.port.mk>

@@ -44,11 +44,11 @@ CONFIGURE_ARGS+=	--enable-openssl-base=${LOCALBASE}
 
 do-install:
 .for f in filan procan socat
-	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${PREFIX}/bin
 .endfor
-	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${FILESDIR}/socat-instances.conf.sample ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 ${PREFIX}/share/man/man1
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	${INSTALL_DATA} ${FILESDIR}/socat-instances.conf.sample ${PREFIX}/etc
 
 .include <bsd.port.post.mk>

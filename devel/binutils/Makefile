@@ -175,30 +175,30 @@ post-patch:
 post-install:
 .if ${FLAVOR} == native
 	@${STRIP_CMD} \
-		${STAGEDIR}${PREFIX}/lib/lib*.so* \
-		${STAGEDIR}${PREFIX}/lib/bfd-plugins/libdep.so
-	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${STAGEDIR}${PREFIX}/include/
-	@${FIND} -ds ${STAGEDIR}${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
-		${SED} -e 's,^${STAGEDIR}${PREFIX}/,,' >> ${TMPPLIST}
+		${PREFIX}/lib/lib*.so* \
+		${PREFIX}/lib/bfd-plugins/libdep.so
+	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${PREFIX}/include/
+	@${FIND} -ds ${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
+		${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}
 .else
 .if ${PKGNAMEPREFIX:S/-$//} != ${BUTARGET}
 	${RM} -r ${PREFIX}/${PKGNAMEPREFIX:S/-$//}
 .endif
-	${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
-	${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/stamp
-	@if [ -d ${STAGEDIR}${PREFIX}/${INFO_PATH:H} ] ; then ${RM} -rf ${STAGEDIR}${PREFIX}/${INFO_PATH:H}; fi
-	${LN} -fs ../../bin/${BUTARGET}-size ${STAGEDIR}${PREFIX}/${BUTARGET}/bin/size
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/bfd-plugins
+	${RM} ${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
+	${RM} ${PREFIX}/${BUTARGET}/lib/ldscripts/stamp
+	@if [ -d ${PREFIX}/${INFO_PATH:H} ] ; then ${RM} -rf ${PREFIX}/${INFO_PATH:H}; fi
+	${LN} -fs ../../bin/${BUTARGET}-size ${PREFIX}/${BUTARGET}/bin/size
+	${RM} -r ${PREFIX}/lib/bfd-plugins
 .endif
 .for tool in ${BUREMOVE}
-	@${RM} ${STAGEDIR}${PREFIX}/bin/${BUTARGET}-${tool} \
-	    ${STAGEDIR}${PREFIX}/bin/${tool} \
-	    ${STAGEDIR}${PREFIX}/share/man/man1/${BUTARGET}-${tool}.1 \
-	    ${STAGEDIR}${PREFIX}/share/man/man1/${tool}.1 \
-	    ${STAGEDIR}${PREFIX}/${BUTARGET}/bin/${tool}
+	@${RM} ${PREFIX}/bin/${BUTARGET}-${tool} \
+	    ${PREFIX}/bin/${tool} \
+	    ${PREFIX}/share/man/man1/${BUTARGET}-${tool}.1 \
+	    ${PREFIX}/share/man/man1/${tool}.1 \
+	    ${PREFIX}/${BUTARGET}/bin/${tool}
 .endfor
 .if defined(BUREMOVE) && ${BUREMOVE:Mld}
-	@${RM} -r ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts
+	@${RM} -r ${PREFIX}/${BUTARGET}/lib/ldscripts
 .endif
 
 .include <bsd.port.post.mk>

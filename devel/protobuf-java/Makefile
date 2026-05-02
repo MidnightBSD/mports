@@ -23,6 +23,6 @@ NO_BUILD=	yes
 PLIST_FILES=	${JAVAJARDIR}/${PORTNAME}.jar
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/${DISTNAME}.jar ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
+	${INSTALL_DATA} ${WRKSRC}/${DISTNAME}.jar ${JAVAJARDIR}/${PORTNAME}.jar
 
 .include <bsd.port.mk>

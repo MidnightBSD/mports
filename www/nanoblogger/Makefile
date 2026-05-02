@@ -38,7 +38,7 @@ do-install:
 		( cd ${WRKSRC}/${data} && \
 			${COPYTREE_SHARE} \* ${DATADIR}/${data} "! -name *.orig" )
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/welcome-to-nb.txt ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/welcome-to-nb.txt ${DATADIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

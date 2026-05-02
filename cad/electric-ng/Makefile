@@ -68,19 +68,19 @@ post-extract:
 		com/sun/electric/tool/user/help/helphtml/iconplug.png)
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}${PKGNAMESUFFIX}
-	${INSTALL_DATA} ${DISTDIR}/ElectricManual-${PORTVERSION}.pdf ${STAGEDIR}${DOCSDIR}${PKGNAMESUFFIX}
-	${INSTALL_DATA} ${DISTDIR}/${JARFILE} ${STAGEDIR}${JAVAJARDIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/electric-ng ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${JAVAJARDIR}
+	@${MKDIR} ${DOCSDIR}${PKGNAMESUFFIX}
+	${INSTALL_DATA} ${DISTDIR}/ElectricManual-${PORTVERSION}.pdf ${DOCSDIR}${PKGNAMESUFFIX}
+	${INSTALL_DATA} ${DISTDIR}/${JARFILE} ${JAVAJARDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/electric-ng ${PREFIX}/bin
 
 	${INSTALL_DATA} ${WRKDIR}/com/sun/electric/tool/user/help/helphtml/iconplug.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/${PORTNAME}${PKGNAMESUFFIX}.png
+		${PREFIX}/share/pixmaps/${PORTNAME}${PKGNAMESUFFIX}.png
 
 .if defined(PLUGINS)
 	# Install plugins
-	@${MKDIR} ${STAGEDIR}${PLUGINDIR}/
-	${INSTALL_DATA} ${DISTDIR}/electricSFS-${PORTVERSION}.jar ${STAGEDIR}${PLUGINDIR}/
+	@${MKDIR} ${PLUGINDIR}/
+	${INSTALL_DATA} ${DISTDIR}/electricSFS-${PORTVERSION}.jar ${PLUGINDIR}/
 .endif
 
 .include <bsd.port.mk>

@@ -37,8 +37,8 @@ post-extract:
 	${CP} -r ${WRKDIR}/${PORTNAME}-${PORTVERSION}/syntax ${GO_WRKSRC}/syntax;
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/bin/alloy ${STAGEDIR}${PREFIX}/bin/alloy
-	${INSTALL_DATA} ${WRKSRC}/example-config.alloy ${STAGEDIR}${PREFIX}/etc/alloy.flow.sample
+	${INSTALL_PROGRAM} ${WRKDIR}/bin/alloy ${PREFIX}/bin/alloy
+	${INSTALL_DATA} ${WRKSRC}/example-config.alloy ${PREFIX}/etc/alloy.flow.sample
 	${MKDIR} ${FAKE_DESTDIR}/var/alloy
 
 .include <bsd.port.mk>

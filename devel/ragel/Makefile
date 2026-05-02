@@ -25,8 +25,8 @@ TEXDOCS_BUILD_DEPENDS=	fig2dev:print/transfig
 .include <bsd.mport.options.mk>
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/ragel/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/ragel/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.1 ${PREFIX}/share/man/man1
 
 do-install-TEXDOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -243,37 +243,37 @@ do-build-REH-on:
 	# cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} yarn gulp vscode-reh-web-linux-x64-min
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
+	${MKDIR} ${PREFIX}/etc/bash_completion.d
 	${INSTALL_DATA} ${WRKSRC}/resources/completions/bash/code \
-		${STAGEDIR}${PREFIX}/etc/bash_completion.d/code-oss
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions
+		${PREFIX}/etc/bash_completion.d/code-oss
+	${MKDIR} ${PREFIX}/share/zsh/site-functions
 	${INSTALL_DATA} ${WRKSRC}/resources/completions/zsh/_code \
-		${STAGEDIR}${PREFIX}/share/zsh/site-functions/_code-oss
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/appdata
+		${PREFIX}/share/zsh/site-functions/_code-oss
+	${MKDIR} ${PREFIX}/share/appdata
 	${INSTALL_DATA} ${WRKSRC}/resources/linux/code.appdata.xml \
-		${STAGEDIR}${PREFIX}/share/appdata/code-oss.appdata.xml
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/applications
+		${PREFIX}/share/appdata/code-oss.appdata.xml
+	${MKDIR} ${PREFIX}/share/applications
 .for f in code.desktop code-url-handler.desktop
 	${INSTALL_DATA} ${WRKSRC}/resources/linux/${f} \
-		${STAGEDIR}${PREFIX}/share/applications/${f:S/code/code-oss/}
+		${PREFIX}/share/applications/${f:S/code/code-oss/}
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
+	${MKDIR} ${PREFIX}/share/pixmaps
 	${INSTALL_DATA} ${WRKSRC}/resources/linux/code.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/com.visualstudio.code.oss.png
-	${MKDIR} ${STAGEDIR}${DATADIR}
+		${PREFIX}/share/pixmaps/com.visualstudio.code.oss.png
+	${MKDIR} ${DATADIR}
 	cd ${WRKDIR}/VSCode-linux-x64 && \
-		${TAR} -cf - . | ${TAR} -xf - -C ${STAGEDIR}${DATADIR}
-	cd ${STAGEDIR}${DATADIR}/resources/app/node_modules.asar.unpacked && \
+		${TAR} -cf - . | ${TAR} -xf - -C ${DATADIR}
+	cd ${DATADIR}/resources/app/node_modules.asar.unpacked && \
 		${FIND} . -type f -exec ${FILE} {} ';' | \
 		${GREP} 'ELF.*FreeBSD' | ${AWK} -F ':' '{print $$1}' | ${XARGS} ${STRIP_CMD}
 .for f in chromedriver mksnapshot v8_context_snapshot_generator
-	${RM} ${STAGEDIR}${DATADIR}/${f}
+	${RM} ${DATADIR}/${f}
 .endfor
-	${RM} -r ${STAGEDIR}${DATADIR}/gen
-	${RM} -r ${STAGEDIR}${DATADIR}/node_headers
-	${RM} -r ${STAGEDIR}${DATADIR}/resources/completions
-	${RLN} ${STAGEDIR}${DATADIR}/bin/code-oss ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${FILESDIR}/wrapper.sh ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${RM} -r ${DATADIR}/gen
+	${RM} -r ${DATADIR}/node_headers
+	${RM} -r ${DATADIR}/resources/completions
+	${RLN} ${DATADIR}/bin/code-oss ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/wrapper.sh ${PREFIX}/bin/${PORTNAME}
 
 pre-test:
 	# setup electron dependency for unit tests

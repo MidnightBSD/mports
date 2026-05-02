@@ -19,6 +19,6 @@ ALL_TARGET=	httpfs2
 PLIST_FILES=	bin/httpfs2
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/httpfs2 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/httpfs2 ${PREFIX}/bin
 
 .include <bsd.port.mk>

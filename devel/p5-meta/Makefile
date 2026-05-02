@@ -1,5 +1,5 @@
 PORTNAME=	meta
-PORTVERSION=	0.008
+PORTVERSION=	0.015
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:PEVANS
@@ -13,7 +13,7 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE_gpl+ =	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	p5-Test-Simple>=1.302199:devel/p5-Test-Simple
+TEST_DEPENDS=	p5-Test-Simple>=1.302200:devel/p5-Test-Simple
 
 USES=		perl5
 USE_PERL5=	modbuild

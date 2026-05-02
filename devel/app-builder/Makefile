@@ -75,7 +75,7 @@ pre-build:
 	cd ${WRKSRC} && ${MAKE_CMD} assets
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

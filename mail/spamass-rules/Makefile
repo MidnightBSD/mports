@@ -88,10 +88,10 @@ PLIST_FILES+=	${DATADIR_REL}/${${opt}_CONF}
 .endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 .for opt in ${PORT_OPTIONS}
 .  if defined(${opt}_CONF)
-	${INSTALL_DATA} ${WRKSRC}/${${opt}_CONF} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/${${opt}_CONF} ${DATADIR}
 .  endif
 .endfor
 

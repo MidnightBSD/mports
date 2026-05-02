@@ -39,13 +39,13 @@ do-extract:
 		${MV} edustds2.ttf moe_sungsym.ttf )
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 .for ttf in ${EXE_TTF}
-	${INSTALL_DATA} ${WRKSRC}/${ttf} ${STAGEDIR}${FONTSDIR}/${ttf}
+	${INSTALL_DATA} ${WRKSRC}/${ttf} ${FONTSDIR}/${ttf}
 .endfor
 .for ttf in ${REG_TTF}
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${ttf} \
-		${STAGEDIR}${FONTSDIR}/${ttf}
+		${FONTSDIR}/${ttf}
 .endfor
 
 .include "${.CURDIR}/../ttfm/Makefile.ttf"

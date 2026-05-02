@@ -40,7 +40,7 @@ post-build:
 	    fmtcnv031127
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/lab/fmtcnv031127 ${STAGEDIR}${PREFIX}/bin
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libqdbm.so.14.14.0
+	${INSTALL_PROGRAM} ${WRKSRC}/lab/fmtcnv031127 ${PREFIX}/bin
+	${STRIP_CMD} ${PREFIX}/lib/libqdbm.so.14.14.0
 
 .include <bsd.port.mk>

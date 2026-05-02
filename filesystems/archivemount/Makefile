@@ -22,7 +22,7 @@ PLIST_FILES=	bin/archivemount \
 SUB_FILES=	pkg-message
 
 post-install:
-		${RLN} ${STAGEDIR}${PREFIX}/bin/archivemount \
-		    ${STAGEDIR}${PREFIX}/sbin/mount_archive
+		${RLN} ${PREFIX}/bin/archivemount \
+		    ${PREFIX}/sbin/mount_archive
 
 .include <bsd.port.mk>

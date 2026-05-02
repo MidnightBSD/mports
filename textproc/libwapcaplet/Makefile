@@ -25,6 +25,6 @@ MAKE_ENV=	BUILD_CC="${CC}" \
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libwapcaplet.so
+	${STRIP_CMD} ${PREFIX}/lib/libwapcaplet.so
 
 .include <bsd.port.mk>

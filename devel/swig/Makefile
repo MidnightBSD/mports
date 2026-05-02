@@ -33,7 +33,7 @@ post-configure:
 	@${REINPLACE_CMD} -e 's#null#&|| true#' ${WRKSRC}/Makefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/ccache-swig ${STAGEDIR}${PREFIX}/bin/swig
+	${STRIP_CMD} ${PREFIX}/bin/ccache-swig ${PREFIX}/bin/swig
 
 post-install-DOCS-on:
 	cd ${WRKSRC}/Doc/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}/${PORTVERSION}

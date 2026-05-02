@@ -38,13 +38,13 @@ do-build:
 .endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${Q4DIR}/q4base
+	@${MKDIR} ${PREFIX}/${Q4DIR}/q4base
 .for FILE in quake4 q4ded
 	${INSTALL_SCRIPT} ${WRKSRC}/${PKGNAMEPREFIX}${FILE}.sh \
-		${STAGEDIR}${PREFIX}/bin/${PKGNAMEPREFIX}${FILE}-demo
+		${PREFIX}/bin/${PKGNAMEPREFIX}${FILE}-demo
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/FreeBSD/x86/${FILE}.x86 \
-		${STAGEDIR}${PREFIX}/${Q4DIR}
+		${PREFIX}/${Q4DIR}
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/q4base/* ${STAGEDIR}${PREFIX}/${Q4DIR}/q4base
+	${INSTALL_DATA} ${WRKSRC}/q4base/* ${PREFIX}/${Q4DIR}/q4base
 
 .include <bsd.port.mk>

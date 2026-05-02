@@ -33,6 +33,6 @@ OPENCC_CONFIGURE_ENABLE=	opencc
 OPENCC_LIB_DEPENDS=		libopencc.so:chinese/opencc
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}-1.0.so
+	@${STRIP_CMD} ${PREFIX}/lib/lib${PORTNAME}-1.0.so
 
 .include <bsd.port.mk>

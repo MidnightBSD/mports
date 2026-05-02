@@ -31,9 +31,9 @@ OPTIONS_DEFINE=	EXAMPLES
 CONFLICTS_INSTALL=	gh-bc
 
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
 .for f in ${PORTEXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/Examples/${f} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/Examples/${f} ${EXAMPLESDIR}
 .endfor
 
 .include <bsd.port.mk>

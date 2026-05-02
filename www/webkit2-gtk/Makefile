@@ -1,5 +1,6 @@
 PORTNAME=	webkit
 DISTVERSION=	2.46.6
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://webkitgtk.org/releases/
 PKGNAMESUFFIX=	2-gtk_${FLAVOR}
@@ -135,7 +136,7 @@ post-patch:
 		${WRKSRC}/Source/WTF/wtf/PlatformJSCOnly.cmake
 
 post-install:
-	@${MV} ${STAGEDIR}${PREFIX}/bin/WebKitWebDriver \
-		${STAGEDIR}${PREFIX}/bin/WebKitWebDriver-${API_VERSION}
+	@${MV} ${PREFIX}/bin/WebKitWebDriver \
+		${PREFIX}/bin/WebKitWebDriver-${API_VERSION}
 
 .include <bsd.port.mk>

@@ -29,11 +29,11 @@ USE_LDCONFIG32=	${TARGET32_DIR}
 .endif
 
 do-install:
-	@${MKDIR} -m 0755 ${STAGEDIR}${TARGET_DIR}
-	(cd ${WRKSRC}/lib && ${INSTALL_LIB} *.so.* ${STAGEDIR}${TARGET_DIR})
+	@${MKDIR} -m 0755 ${TARGET_DIR}
+	(cd ${WRKSRC}/lib && ${INSTALL_LIB} *.so.* ${TARGET_DIR})
 .if ${ARCH} == amd64
-	@${MKDIR} ${STAGEDIR}${TARGET32_DIR}
-	(cd ${WRKSRC}/lib32 && ${INSTALL_LIB} *.so.* ${STAGEDIR}${TARGET32_DIR})
+	@${MKDIR} ${TARGET32_DIR}
+	(cd ${WRKSRC}/lib32 && ${INSTALL_LIB} *.so.* ${TARGET32_DIR})
 .endif
 
 .include <bsd.port.post.mk>

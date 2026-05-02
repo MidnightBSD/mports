@@ -20,12 +20,12 @@ WEBFPW_VER=	1.1.2
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/web-fpw/web/data
+	@${MKDIR} ${PREFIX}/share/dict/web-fpw/web/data
 	${INSTALL_DATA} ${WRKSRC}/web/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/web-fpw/web/data
+		${PREFIX}/share/dict/web-fpw/web/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/web-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/web-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

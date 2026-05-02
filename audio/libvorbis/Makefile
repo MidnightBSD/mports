@@ -27,6 +27,6 @@ TEST_TARGET=	check
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	cd ${STAGEDIR}${PREFIX}/share/doc && ${MV} ${DISTNAME} libvorbis
+	cd ${PREFIX}/share/doc && ${MV} ${DISTNAME} libvorbis
 
 .include <bsd.port.mk>

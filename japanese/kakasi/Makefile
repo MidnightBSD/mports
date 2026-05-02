@@ -29,9 +29,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/-Wno-unused-result//' ${WRKSRC}/configure
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1/
+	${MKDIR} ${PREFIX}/share/man/ja/man1/
 	${INSTALL_MAN} ${WRKSRC}/man/kakasi.1.ja \
-		${STAGEDIR}${PREFIX}/share/man/ja/man1/kakasi.1
+		${PREFIX}/share/man/ja/man1/kakasi.1
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

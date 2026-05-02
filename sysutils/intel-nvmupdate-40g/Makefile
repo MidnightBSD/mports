@@ -35,9 +35,9 @@ SUB_LIST=	NVMUPDATE_DIR=${NVMUPDATE_DIR}
 NVMUPDATE_DIR=	intel-nvmupdate-40g
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${NVMUPDATE_DIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${NVMUPDATE_DIR} "! -name 'nvmupdate64e'"
-	${INSTALL_PROGRAM} ${WRKSRC}/nvmupdate64e ${STAGEDIR}${PREFIX}/${NVMUPDATE_DIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/nvmupdate-40g ${STAGEDIR}${PREFIX}/sbin/
+	${MKDIR} ${PREFIX}/${NVMUPDATE_DIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/${NVMUPDATE_DIR} "! -name 'nvmupdate64e'"
+	${INSTALL_PROGRAM} ${WRKSRC}/nvmupdate64e ${PREFIX}/${NVMUPDATE_DIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/nvmupdate-40g ${PREFIX}/sbin/
 
 .include <bsd.port.mk>

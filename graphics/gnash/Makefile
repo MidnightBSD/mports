@@ -157,9 +157,9 @@ post-patch:
 
 post-install:
 	# eglinfo conflicts with mesa-demos
-	${MV} ${STAGEDIR}/${PREFIX}/bin/eglinfo ${STAGEDIR}/${PREFIX}/bin/eglinfo-gnash
+	${MV} /${PREFIX}/bin/eglinfo /${PREFIX}/bin/eglinfo-gnash
 .for conf in ${CONFIG_FILES}
-	${MV} ${STAGEDIR}/${SYSCONFIGDIR}/${conf} ${STAGEDIR}${SYSCONFIGDIR}/${conf}.dist
+	${MV} /${SYSCONFIGDIR}/${conf} ${SYSCONFIGDIR}/${conf}.dist
 .endfor
 
 .include <bsd.port.post.mk>

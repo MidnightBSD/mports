@@ -60,15 +60,15 @@ post-extract:
 	@${RM} ${WRKSRC}/lib/opengrok/WEB-INF/classes/sample.c # clean cruft
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/etc ${STAGEDIR}${DATADIR}/lib \
-		${STAGEDIR}${PREFIX}/${WEBAPPS_DIR}/${PORTNAME} \
-		${STAGEDIR}/var/log/opengrok
+	@${MKDIR} ${DATADIR}/etc ${DATADIR}/lib \
+		${PREFIX}/${WEBAPPS_DIR}/${PORTNAME} \
+		/var/log/opengrok
 	(cd ${WRKSRC}/lib/opengrok && ${COPYTREE_SHARE} . \
-		${STAGEDIR}${PREFIX}/${WEBAPPS_DIR}/${PORTNAME})
-	(cd ${STAGEDIR}${PREFIX}/${WEBAPPS_DIR}/${PORTNAME}/WEB-INF && \
+		${PREFIX}/${WEBAPPS_DIR}/${PORTNAME})
+	(cd ${PREFIX}/${WEBAPPS_DIR}/${PORTNAME}/WEB-INF && \
 		${MV} web.xml web.xml.sample)
-	${INSTALL_DATA} ${WRKSRC}/doc/logging.properties ${STAGEDIR}${DATADIR}/etc/logging.properties.sample
-	${INSTALL_SCRIPT} ${WRKDIR}/opengrok ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/doc/logging.properties ${DATADIR}/etc/logging.properties.sample
+	${INSTALL_SCRIPT} ${WRKDIR}/opengrok ${PREFIX}/bin
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

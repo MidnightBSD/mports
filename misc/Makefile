@@ -4,10 +4,15 @@
     SUBDIR += R-cran-mime
     SUBDIR += R-cran-xfun
     SUBDIR += artikulate
+    SUBDIR += blogwatcher
+    SUBDIR += camsnap
+    SUBDIR += chatgpt-shell-cli
     SUBDIR += chef
     SUBDIR += chmlib
     SUBDIR += cinnamon-translations
+    SUBDIR += claude-code
     SUBDIR += cldr-emoji-annotation
+    SUBDIR += codex
     SUBDIR += compat.el
     SUBDIR += compat10x
     SUBDIR += compat11x
@@ -25,12 +30,14 @@
     SUBDIR += dnetc
     SUBDIR += e2fsprogs-libuuid
     SUBDIR += findutils
+    SUBDIR += gemini-cli
     SUBDIR += getopt
     SUBDIR += gnome-getting-started-docs
     SUBDIR += gnome-icon-theme
     SUBDIR += gnome-icon-theme-extras
     SUBDIR += gnome-mime-data
     SUBDIR += gnome-user-docs
+    SUBDIR += goplaces
     SUBDIR += grc
     SUBDIR += help2man
     SUBDIR += hicolor-icon-theme
@@ -54,6 +61,7 @@
     SUBDIR += mate-user-guide
     SUBDIR += mbuffer
     SUBDIR += mc
+    SUBDIR += memo
     SUBDIR += metalink-tools
     SUBDIR += mime-support
     SUBDIR += minuet
@@ -95,6 +103,7 @@
     SUBDIR += shared-mime-info
     SUBDIR += shc
     SUBDIR += soapysdr
+    SUBDIR += sonoscli
     SUBDIR += susv2
     SUBDIR += susv3
     SUBDIR += susv4
@@ -107,6 +116,7 @@
     SUBDIR += upclient
     SUBDIR += usbids
     SUBDIR += utouch-kmod
+    SUBDIR += wacli
     SUBDIR += wmScoreBoard
     SUBDIR += wmcalendar
     SUBDIR += wmjulia
@@ -117,5 +127,7 @@
     SUBDIR += xfce4-weather-plugin
     SUBDIR += xfce4-wm-themes
     SUBDIR += xtail
+    SUBDIR += zine
+    SUBDIR += zoneinfo
 
 .include <bsd.port.subdir.mk>

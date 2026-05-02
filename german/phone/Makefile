@@ -15,6 +15,6 @@ NO_BUILD=	YES
 PLIST_FILES=	share/misc/de.phone
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/${DISTNAME}.csv ${STAGEDIR}${PREFIX}/share/misc/de.phone
+	${INSTALL_DATA} ${WRKSRC}/${DISTNAME}.csv ${PREFIX}/share/misc/de.phone
 
 .include <bsd.port.mk>

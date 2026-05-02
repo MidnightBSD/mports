@@ -65,14 +65,14 @@ pre-install:
 	@(cd ${WRKSRC}/jar/all-in-one && ${JAR} uvf ${PORTNAME}-all-${PORTVERSION}.Final.jar META-INF/native/libnetty_transport_native_kqueue*.so)
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}
-	${INSTALL_DATA} ${WRKSRC}/jar/all-in-one/${PORTNAME}-all-${PORTVERSION}.Final.jar ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}-${PORTVERSION}.jar
-	${LN} -nfs ${PORTNAME}-${PORTVERSION}.jar ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
+	@${MKDIR} ${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKSRC}/jar/all-in-one/${PORTNAME}-all-${PORTVERSION}.Final.jar ${JAVAJARDIR}/${PORTNAME}-${PORTVERSION}.jar
+	${LN} -nfs ${PORTNAME}-${PORTVERSION}.jar ${JAVAJARDIR}/${PORTNAME}.jar
 .for DIR in ${DOCDIRS}
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} ${DIR} ${STAGEDIR}${DOCSDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} ${DIR} ${DOCSDIR}
 .endfor
 .for FILE in ${DOCFILES}
-	${INSTALL_MAN} ${WRKSRC}/${FILE} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/${FILE} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.post.mk>

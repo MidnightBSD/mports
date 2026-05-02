@@ -26,9 +26,9 @@ NO_BUILD=	yes
 WRKSRC_SUBDIR=	ofl/${FONTNAME}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/Inconsolata-Bold.ttf \
 			${WRKSRC}/Inconsolata-Regular.ttf \
-			${STAGEDIR}/${FONTSDIR}
+			/${FONTSDIR}
 
 .include <bsd.port.mk>

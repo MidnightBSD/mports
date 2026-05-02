@@ -60,7 +60,7 @@ post-patch:
 				${BUILD_WRKSRC}/wscript
 
 post-install:
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtalloc.so.2
+				${STRIP_CMD} ${PREFIX}/lib/libtalloc.so.2
 
 post-install-PYTHON-on:
 			${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libpytalloc-util*.so

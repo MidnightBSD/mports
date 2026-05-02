@@ -50,7 +50,7 @@ do-install:
 	cd ${WRKSRC} ;					 \
 	for src in $$( ${FIND} . ! -name .cvsignore	 \
 		! -name .gitignore ! -name *.orig ) ; do \
-	    dst=${STAGEDIR}${WWWDIR}$${src#.} ;		 \
+	    dst=${WWWDIR}$${src#.} ;		 \
 	    if ${TEST} -d $$src ; then			 \
 		${MKDIR} $$dst ;			 \
 	    else					 \

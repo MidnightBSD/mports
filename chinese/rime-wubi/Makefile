@@ -47,11 +47,11 @@ do-build:
 .endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/rime-data/build
-	${INSTALL_DATA} ${WRKSRC}/*.yaml ${STAGEDIR}${PREFIX}/share/rime-data
+	@${MKDIR} ${PREFIX}/share/rime-data
+	@${MKDIR} ${PREFIX}/share/rime-data/build
+	${INSTALL_DATA} ${WRKSRC}/*.yaml ${PREFIX}/share/rime-data
 	${INSTALL_DATA} ${MY_OUTDIR}/build/wubi* \
-		${STAGEDIR}${PREFIX}/share/rime-data/build
+		${PREFIX}/share/rime-data/build
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

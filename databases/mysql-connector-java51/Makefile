@@ -24,7 +24,7 @@ CONFLICTS_INSTALL=	mysql-connector-java # share/java/classes/mysql-connector-jav
 NO_ARCH=	yes
 JAVA_VERSION=	8
 BUILDDIR=	${WRKDIR}/${DISTNAME}
-APIDOCSDIR=	${STAGEDIR}${DOCSDIR}/javadoc
+APIDOCSDIR=	${DOCSDIR}/javadoc
 SRCDIR=		${WRKDIR}/${DISTNAME}/src
 JAVADOCDIR=	${WRKDIR}/${DISTNAME}/javadoc
 DESTJARFILE=	${PORTNAME}.jar
@@ -55,7 +55,7 @@ do-build-DOCS-on:
 
 do-install:
 	@${ECHO_MSG} -n ">> Installing .jar files..."
-	${INSTALL_DATA} ${BUILDDIR}/${JARFILE} ${STAGEDIR}${JAVAJARDIR}/${DESTJARFILE}
+	${INSTALL_DATA} ${BUILDDIR}/${JARFILE} ${JAVAJARDIR}/${DESTJARFILE}
 	@${ECHO_MSG} " [ DONE ]"
 
 do-install-DOCS-on:

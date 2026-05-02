@@ -200,6 +200,6 @@ BUILD_ARGS+=   --disable-optimization
 post-install-EMBED_DATA-off:
 	cd ${CABAL_DEPSDIR}/${PORTNAME}-${PORTVERSION} && ${COPYTREE_SHARE} data ${FAKE_DESTDIR}${DATADIR}
 post-install:
-	${INSTALL_MAN} ${CABAL_DEPSDIR}/${PORTNAME}-${PORTVERSION}/man/pandoc.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${CABAL_DEPSDIR}/${PORTNAME}-${PORTVERSION}/man/pandoc.1 ${MAN1PREFIX}/man/man1
 
 .include <bsd.port.post.mk>

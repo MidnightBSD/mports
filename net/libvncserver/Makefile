@@ -49,6 +49,6 @@ OPENSSL_CMAKE_BOOL=	WITH_OPENSSL
 OPENSSL_USES=		ssl
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/rfb/default8x16.h ${STAGEDIR}${PREFIX}/include/rfb
+	${INSTALL_DATA} ${WRKSRC}/rfb/default8x16.h ${PREFIX}/include/rfb
 
 .include <bsd.port.mk>

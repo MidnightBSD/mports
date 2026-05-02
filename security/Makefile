@@ -281,6 +281,7 @@
     SUBDIR += rhash
     SUBDIR += rubygem-aes_key_wrap
     SUBDIR += rubygem-googleauth
+    SUBDIR += rubygem-googleauth-gitlab
     SUBDIR += rubygem-gssapi
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-rack-oauth2-gitlab

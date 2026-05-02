@@ -37,7 +37,7 @@ post-patch:
 post-install:
 # Replace sdl12 with sdl12-compat at runtime
 	@${ECHO_CMD} ${PLIST_FILES:T:M*.so.?:_:S/${SUFFIX}//} $_ \
-		>${STAGEDIR}${PREFIX}/etc/libmap.d/${PORTNAME}.conf
+		>${PREFIX}/etc/libmap.d/${PORTNAME}.conf
 
 pre-test:
 # Enable RPATH for test executables to avoid LD_LIBRARY_PATH

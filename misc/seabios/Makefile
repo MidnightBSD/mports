@@ -23,7 +23,7 @@ USE_BINUTILS=	yes
 PLIST_FILES=	${DATADIR}/bios.bin
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/out/bios.bin ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/bios.bin ${DATADIR}
 
 .include <bsd.port.mk>

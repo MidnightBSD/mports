@@ -33,10 +33,10 @@ post-patch:
 		 s| -g | |g' ${WRKSRC}/Makefile.in
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/xcoral ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/SmacLib/* ${STAGEDIR}${DATADIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/Doc/* ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/xcoral ${PREFIX}/bin
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/SmacLib/* ${DATADIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/Doc/* ${DOCSDIR}
 
 .include <bsd.port.post.mk>

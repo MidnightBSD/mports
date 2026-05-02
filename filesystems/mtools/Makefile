@@ -53,6 +53,6 @@ post-patch:
 		${WRKSRC}/mtools.conf
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/mtools.conf ${STAGEDIR}${PREFIX}/etc/mtools.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/mtools.conf ${PREFIX}/etc/mtools.conf.sample
 
 .include <bsd.port.mk>

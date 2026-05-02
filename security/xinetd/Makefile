@@ -37,11 +37,11 @@ post-patch:
 	@${REINPLACE_CMD} 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/xinetd/xconfig.h
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/xinetd/xinetd ${STAGEDIR}${PREFIX}/sbin/xinetd
-	${INSTALL_SCRIPT} ${WRKSRC}/xinetd/xconv.pl ${STAGEDIR}${PREFIX}/bin/xconv
-	${INSTALL_MAN} ${WRKSRC}/xinetd/xinetd.conf.man ${STAGEDIR}${PREFIX}/share/man/man5/xinetd.conf.5
-	${INSTALL_MAN} ${WRKSRC}/xinetd/xconv.pl.8 ${STAGEDIR}${PREFIX}/share/man/man8/xconv.8
-	${INSTALL_MAN} ${WRKSRC}/xinetd/xinetd.man ${STAGEDIR}${PREFIX}/share/man/man8/xinetd.8
-	${INSTALL_MAN} ${WRKSRC}/xinetd/xinetd.log.man ${STAGEDIR}${PREFIX}/share/man/man8/xinetd.log.8
+	${INSTALL_PROGRAM} ${WRKSRC}/xinetd/xinetd ${PREFIX}/sbin/xinetd
+	${INSTALL_SCRIPT} ${WRKSRC}/xinetd/xconv.pl ${PREFIX}/bin/xconv
+	${INSTALL_MAN} ${WRKSRC}/xinetd/xinetd.conf.man ${PREFIX}/share/man/man5/xinetd.conf.5
+	${INSTALL_MAN} ${WRKSRC}/xinetd/xconv.pl.8 ${PREFIX}/share/man/man8/xconv.8
+	${INSTALL_MAN} ${WRKSRC}/xinetd/xinetd.man ${PREFIX}/share/man/man8/xinetd.8
+	${INSTALL_MAN} ${WRKSRC}/xinetd/xinetd.log.man ${PREFIX}/share/man/man8/xinetd.log.8
 
 .include <bsd.port.mk>

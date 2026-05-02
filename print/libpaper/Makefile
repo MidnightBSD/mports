@@ -28,6 +28,6 @@ post-configure:
 post-install:
 	cd ${WRKDIR} && \
 	    ${INSTALL_DATA} papersize.a4 papersize.letter \
-	    ${STAGEDIR}${PREFIX}/etc
+	    ${PREFIX}/etc
 
 .include <bsd.port.mk>

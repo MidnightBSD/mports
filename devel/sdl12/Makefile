@@ -82,11 +82,11 @@ post-patch-SNDIO-on:
 	@${CP} ${FILESDIR}/SDL_sndioaudio.* ${WRKSRC}/src/audio/sndio
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR} &&\
-		${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}/ &&\
+	${MKDIR} ${DOCSDIR} &&\
+		${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/ &&\
 	cd ${WRKSRC} &&\
-		${COPYTREE_SHARE} docs ${STAGEDIR}${DOCSDIR}/ "! -regex .*/man3.*"
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} &&\
-		${INSTALL_DATA} ${EXAMPLES:S,^,${WRKSRC}/,} ${STAGEDIR}${EXAMPLESDIR}/
+		${COPYTREE_SHARE} docs ${DOCSDIR}/ "! -regex .*/man3.*"
+	${MKDIR} ${EXAMPLESDIR} &&\
+		${INSTALL_DATA} ${EXAMPLES:S,^,${WRKSRC}/,} ${EXAMPLESDIR}/
 
 .include <bsd.port.mk>

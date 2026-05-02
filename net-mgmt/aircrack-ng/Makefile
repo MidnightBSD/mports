@@ -65,6 +65,6 @@ post-patch:
 		${WRKSRC}/scripts/airodump-ng-oui-update
 
 post-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
 
 .include <bsd.port.post.mk>

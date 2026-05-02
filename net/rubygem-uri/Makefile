@@ -9,7 +9,8 @@ WWW=		https://github.com/ruby/uri
 
 LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
-LICENSE_FILE_bsd2=${WRKSRC}/LICENSE.txt
+LICENSE_FILE_bsd2=${WRKSRC}/BSDL
+LICENSE_FILE_ruby=	${WRKSRC}/COPYING
 
 USES=		gem
 

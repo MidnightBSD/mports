@@ -29,6 +29,6 @@ PLIST_FILES=	bin/xdaliclock \
 
 # workaround: missing share/glib-2.0/schemas dir in stage
 pre-install:
-	${MKDIR}	${STAGEDIR}/${PREFIX}/share/glib-2.0/schemas
+	${MKDIR}	/${PREFIX}/share/glib-2.0/schemas
 
 .include <bsd.port.mk>

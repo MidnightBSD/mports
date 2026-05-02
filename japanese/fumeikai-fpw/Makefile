@@ -19,12 +19,12 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/fumeikai-fpw/fumeikai/data
+	@${MKDIR} ${PREFIX}/share/dict/fumeikai-fpw/fumeikai/data
 	${INSTALL_DATA} ${WRKSRC}/fumeikai/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/fumeikai-fpw/fumeikai/data
+		${PREFIX}/share/dict/fumeikai-fpw/fumeikai/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/fumeikai-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/fumeikai-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

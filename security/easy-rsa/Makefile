@@ -31,13 +31,13 @@ PORTDOCS=	${_pd_dirs} ${_pd_files}
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
-		${MKDIR} ${STAGEDIR}${PREFIX}/bin
-		${MKDIR} ${STAGEDIR}${DATADIR}/x509-types/
-		${INSTALL_SCRIPT} ${WRKSRC}/easyrsa ${STAGEDIR}${PREFIX}/bin/
-		${LN} -fh ${STAGEDIR}${PREFIX}/bin/easyrsa ${STAGEDIR}${PREFIX}/bin/easy-rsa
-		${INSTALL_DATA} ${WRKSRC}/vars.example ${STAGEDIR}${DATADIR}/
-		${INSTALL_DATA} ${WRKSRC}/openssl-easyrsa.cnf ${STAGEDIR}${DATADIR}/openssl-easyrsa.cnf.example
-		(cd ${WRKSRC}/x509-types/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/x509-types/)
+		${MKDIR} ${PREFIX}/bin
+		${MKDIR} ${DATADIR}/x509-types/
+		${INSTALL_SCRIPT} ${WRKSRC}/easyrsa ${PREFIX}/bin/
+		${LN} -fh ${PREFIX}/bin/easyrsa ${PREFIX}/bin/easy-rsa
+		${INSTALL_DATA} ${WRKSRC}/vars.example ${DATADIR}/
+		${INSTALL_DATA} ${WRKSRC}/openssl-easyrsa.cnf ${DATADIR}/openssl-easyrsa.cnf.example
+		(cd ${WRKSRC}/x509-types/ && ${COPYTREE_SHARE} . ${DATADIR}/x509-types/)
 
 do-install-DOCS-on:
 		${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

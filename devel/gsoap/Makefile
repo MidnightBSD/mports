@@ -47,10 +47,10 @@ post-patch:
 	    ${WRKSRC}/configure.ac
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gsoap
+	@${MKDIR} ${PREFIX}/lib/gsoap
 	${INSTALL_DATA} ${WRKSRC}/gsoap/stdsoap2.c ${WRKSRC}/gsoap/dom.cpp \
-	    ${STAGEDIR}${PREFIX}/lib/gsoap
-	@${LN} -fs stdsoap2.c ${STAGEDIR}${PREFIX}/lib/gsoap/stdsoap2.cpp
-	@${LN} -fs dom.cpp ${STAGEDIR}${PREFIX}/lib/gsoap/dom.c
+	    ${PREFIX}/lib/gsoap
+	@${LN} -fs stdsoap2.c ${PREFIX}/lib/gsoap/stdsoap2.cpp
+	@${LN} -fs dom.cpp ${PREFIX}/lib/gsoap/dom.c
 
 .include <bsd.port.mk>

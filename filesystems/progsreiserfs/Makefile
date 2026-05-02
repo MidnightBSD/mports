@@ -39,6 +39,6 @@ post-patch:
 		${WRKSRC}/libreiserfs/tools.c ${WRKSRC}/include/reiserfs/*
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	${STRIP_CMD} ${PREFIX}/lib/*.so
 
 .include <bsd.port.mk>

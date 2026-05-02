@@ -15,6 +15,6 @@ PLIST_FILES=	bin/ja-xv
 OPTIONS_EXCLUDE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/.build/src/xv ${STAGEDIR}${PREFIX}/bin/ja-xv
+	${INSTALL_PROGRAM} ${WRKDIR}/.build/src/xv ${PREFIX}/bin/ja-xv
 
 .include "${MASTERDIR}/Makefile"

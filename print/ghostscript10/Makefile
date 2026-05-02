@@ -99,23 +99,23 @@ post-patch:
 		${PATCH_WRKSRC}/man/gs.1
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/bin/gsc ${STAGEDIR}${PREFIX}/bin/gs
-	${RM} ${STAGEDIR}${PREFIX}/bin/gsx
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/gs \
-		${STAGEDIR}${PREFIX}/lib/libgs.so.${GS_MAJOR_VERSION}.${GS_MINOR_VERSION}
-	${RM} ${STAGEDIR}${PREFIX}/bin/lprsetup.sh
-	${RM} ${STAGEDIR}${PREFIX}/bin/unix-lpr.sh
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/color/icc
-	${MV} ${STAGEDIR}${DATADIR}/iccprofiles \
-		${STAGEDIR}${PREFIX}/share/color/icc/ghostscript
-	${RLN} ${STAGEDIR}${PREFIX}/share/color/icc/ghostscript \
-		${STAGEDIR}${DATADIR}/iccprofiles
-	${RM} -r ${STAGEDIR}${PREFIX}/share/doc/${PORTNAME}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/cmap
-	${MV} ${STAGEDIR}${DATADIR}/Resource/CMap/Identity* \
-		${STAGEDIR}${PREFIX}/share/cmap
-	${RM} -r ${STAGEDIR}${DATADIR}/Resource/CMap
-	${RLN} ${STAGEDIR}${PREFIX}/share/cmap \
-		${STAGEDIR}${DATADIR}/Resource/CMap
+	${MV} ${PREFIX}/bin/gsc ${PREFIX}/bin/gs
+	${RM} ${PREFIX}/bin/gsx
+	${STRIP_CMD} ${PREFIX}/bin/gs \
+		${PREFIX}/lib/libgs.so.${GS_MAJOR_VERSION}.${GS_MINOR_VERSION}
+	${RM} ${PREFIX}/bin/lprsetup.sh
+	${RM} ${PREFIX}/bin/unix-lpr.sh
+	${MKDIR} ${PREFIX}/share/color/icc
+	${MV} ${DATADIR}/iccprofiles \
+		${PREFIX}/share/color/icc/ghostscript
+	${RLN} ${PREFIX}/share/color/icc/ghostscript \
+		${DATADIR}/iccprofiles
+	${RM} -r ${PREFIX}/share/doc/${PORTNAME}
+	${MKDIR} ${PREFIX}/share/cmap
+	${MV} ${DATADIR}/Resource/CMap/Identity* \
+		${PREFIX}/share/cmap
+	${RM} -r ${DATADIR}/Resource/CMap
+	${RLN} ${PREFIX}/share/cmap \
+		${DATADIR}/Resource/CMap
 
 .include <bsd.port.mk>

@@ -25,12 +25,12 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|'lualib',||; s|lua|lua-${LUA_VER}|g" ${WRKSRC}/config_posix.py
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${TGT_INCDIR} ${STAGEDIR}${TGT_LIBDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/tolua++ ${STAGEDIR}${PREFIX}/bin
-	${LN} -sf tolua++ ${STAGEDIR}${PREFIX}/bin/tolua++-${LUA_VER}
-	${INSTALL_DATA} ${WRKSRC}/include/tolua++.h ${STAGEDIR}${TGT_INCDIR}
-	${INSTALL_DATA} ${WRKSRC}/lib/libtolua++.a ${STAGEDIR}${TGT_LIBDIR}
-	${INSTALL_LIB} ${WRKSRC}/lib/libtolua++.so ${STAGEDIR}${TGT_LIBDIR}
-	${INSTALL_LIB} ${WRKSRC}/lib/libtolua++.so ${STAGEDIR}${PREFIX}/lib/libtolua++-${LUA_VER}.so
+	@${MKDIR} ${TGT_INCDIR} ${TGT_LIBDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/tolua++ ${PREFIX}/bin
+	${LN} -sf tolua++ ${PREFIX}/bin/tolua++-${LUA_VER}
+	${INSTALL_DATA} ${WRKSRC}/include/tolua++.h ${TGT_INCDIR}
+	${INSTALL_DATA} ${WRKSRC}/lib/libtolua++.a ${TGT_LIBDIR}
+	${INSTALL_LIB} ${WRKSRC}/lib/libtolua++.so ${TGT_LIBDIR}
+	${INSTALL_LIB} ${WRKSRC}/lib/libtolua++.so ${PREFIX}/lib/libtolua++-${LUA_VER}.so
 
 .include <bsd.port.mk>

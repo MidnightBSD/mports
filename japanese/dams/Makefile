@@ -21,6 +21,6 @@ ALL_TARGET=	all dic
 INSTALL_TARGET=	install install-dic install-strip
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/.libs/dams ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/src/.libs/dams ${PREFIX}/bin
 
 .include <bsd.port.mk>

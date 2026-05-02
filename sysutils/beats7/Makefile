@@ -379,20 +379,20 @@ do-build:
 .endfor
 
 do-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
 .for BEATMOD in ${GO_TARGETS}
-	${MKDIR} ${STAGEDIR}/var/db/beats/${BEATMOD}
+	${MKDIR} /var/db/beats/${BEATMOD}
 	${INSTALL_PROGRAM} ${GO_WRKSRC}/${BEATMOD}/${BEATMOD} \
-		${STAGEDIR}${PREFIX}/sbin
+		${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/${BEATMOD}/${BEATMOD}.yml \
-		${STAGEDIR}${ETCDIR}/${BEATMOD}.yml.sample
+		${ETCDIR}/${BEATMOD}.yml.sample
 	${INSTALL_DATA} ${WRKSRC}/${BEATMOD}/${BEATMOD}.reference.yml \
-		${STAGEDIR}${ETCDIR}/${BEATMOD}.yml.reference
+		${ETCDIR}/${BEATMOD}.yml.reference
 .endfor
 .for BEATMOD in ${GO_TARGETS}
 	(MODULE_SRC=${WRKDIR}/${BEATMOD}-${DISTVERSION}-darwin-x86_64/module; \
 	 if [ -d $${MODULE_SRC} ]; then \
-	   MODULE_DEST=${STAGEDIR}${DATADIR}/${BEATMOD}/module && \
+	   MODULE_DEST=${DATADIR}/${BEATMOD}/module && \
 	   ${MKDIR} $${MODULE_DEST} && \
 	   cd $${MODULE_SRC} && ${COPYTREE_SHARE} . $${MODULE_DEST} && \
 	   cd $${MODULE_DEST} && \
@@ -403,7 +403,7 @@ do-install:
 	 fi)
 	(MODULESD_SRC=${WRKDIR}/${BEATMOD}-${DISTVERSION}-darwin-x86_64/modules.d; \
 	 if [ -d $${MODULESD_SRC} ]; then \
-	   MODULESD_DEST=${STAGEDIR}${EXAMPLESDIR}/${BEATMOD}.modules.d && \
+	   MODULESD_DEST=${EXAMPLESDIR}/${BEATMOD}.modules.d && \
 	   ${MKDIR} $${MODULESD_DEST} && \
 	   cd $${MODULESD_SRC} && ${COPYTREE_SHARE} . $${MODULESD_DEST} && \
 	   cd $${MODULESD_DEST} && \
@@ -411,14 +411,14 @@ do-install:
 	   ${SED} -e 's,^\.,@dir ${EXAMPLESDIR_REL}/${BEATMOD}.modules.d,' >> ${TMPPLIST} && \
 	   ${FIND} . -not -type d | ${SORT} | \
 	   ${SED} -e 's,^\.,${EXAMPLESDIR_REL}/${BEATMOD}.modules.d,' >> ${TMPPLIST}; \
-	   ${MKDIR} ${STAGEDIR}${ETCDIR}/${BEATMOD}.modules.d && \
+	   ${MKDIR} ${ETCDIR}/${BEATMOD}.modules.d && \
 	   echo "The modules.d files are now in ${LOCALBASE}/${EXAMPLESDIR_REL}/${BEATMOD}.modules.d" > \
 	     ${ETCDIR}/${BEATMOD}.modules.d/README; \
 	   echo ${ETCDIR_REL}/${BEATMOD}.modules.d/README >> ${TMPPLIST}; \
 	 fi)
 	(MONITORSD_SRC=${WRKDIR}/${BEATMOD}-${DISTVERSION}-darwin-x86_64/monitors.d; \
 	 if [ -d $${MONITORSD_SRC} ]; then \
-	   MONITORSD_DEST=${STAGEDIR}${EXAMPLESDIR}/${BEATMOD}.monitors.d && \
+	   MONITORSD_DEST=${EXAMPLESDIR}/${BEATMOD}.monitors.d && \
 	   ${MKDIR} $${MONITORSD_DEST} && \
 	   cd $${MONITORSD_SRC} && ${COPYTREE_SHARE} . $${MONITORSD_DEST} && \
 	   cd $${MONITORSD_DEST} && \
@@ -426,14 +426,14 @@ do-install:
 	   ${SED} -e 's,^\.,@dir ${EXAMPLESDIR_REL}/${BEATMOD}.monitors.d,' >> ${TMPPLIST} && \
 	   ${FIND} . -not -type d | ${SORT} | \
 	   ${SED} -e 's,^\.,${EXAMPLESDIR_REL}/${BEATMOD}.monitors.d,' >> ${TMPPLIST}; \
-	   ${MKDIR} ${STAGEDIR}${ETCDIR}/${BEATMOD}.monitors.d && \
+	   ${MKDIR} ${ETCDIR}/${BEATMOD}.monitors.d && \
 	   echo "The monitors.d files are now in ${LOCALBASE}/${EXAMPLESDIR_REL}/${BEATMOD}.monitors.d" > \
-	     ${STAGEDIR}${ETCDIR}/${BEATMOD}.monitors.d/README; \
+	     ${ETCDIR}/${BEATMOD}.monitors.d/README; \
 	   echo ${ETCDIR_REL}/${BEATMOD}.monitors.d/README >> ${TMPPLIST}; \
 	 fi)
 	(KIBANA_SRC=${WRKDIR}/${BEATMOD}-${DISTVERSION}-darwin-x86_64/kibana; \
 	 if [ -d $${KIBANA_SRC} ]; then \
-	   KIBANA_PATH=${STAGEDIR}${DATADIR}/${BEATMOD}/kibana; \
+	   KIBANA_PATH=${DATADIR}/${BEATMOD}/kibana; \
 	   ${MKDIR} $${KIBANA_PATH} && \
 	   cd $${KIBANA_SRC} && ${COPYTREE_SHARE} . $${KIBANA_PATH}; \
 	   cd $${KIBANA_PATH} && \

@@ -34,7 +34,7 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}-${PORTNAME}
 
 NO_ARCH=	yes
 
-TEST_ENV+=	PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
+TEST_ENV+=	PYTHONPATH=${PYTHON_SITELIBDIR}
 
 # Optional tests that depend on `dir` (windows) and `hg_git` (no longer in ports) will be skipped
 

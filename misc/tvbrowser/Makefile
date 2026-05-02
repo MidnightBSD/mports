@@ -22,12 +22,12 @@ do-install:
 	@${REINPLACE_CMD} -e "s/${PORTNAME}\.sh/${PORTNAME}/" \
 		${WRKSRC}/${PORTNAME}.desktop
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop \
-		${STAGEDIR}${PREFIX}/share/applications/
+		${PREFIX}/share/applications/
 	@${RM} ${WRKSRC}/${PORTNAME}.desktop ${WRKSRC}/${PORTNAME}.desktop.bak
 	@cd ${WRKSRC} && ${FIND} . -type d -exec \
-		${MKDIR} "${STAGEDIR}${DATADIR}/{}" \;
+		${MKDIR} "${DATADIR}/{}" \;
 	@cd ${WRKSRC} && ${FIND} . -type f -exec \
-		${INSTALL_DATA} {} "${STAGEDIR}${DATADIR}/{}" \;
-	${INSTALL_SCRIPT} ${WRKDIR}/tvbrowser ${STAGEDIR}${PREFIX}/bin
+		${INSTALL_DATA} {} "${DATADIR}/{}" \;
+	${INSTALL_SCRIPT} ${WRKDIR}/tvbrowser ${PREFIX}/bin
 
 .include <bsd.port.mk>

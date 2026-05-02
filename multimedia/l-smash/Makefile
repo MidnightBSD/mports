@@ -38,6 +38,6 @@ post-patch:
 		${WRKSRC}/${MAKEFILE}
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/lib/liblsmash.a
+	@${RM} ${PREFIX}/lib/liblsmash.a
 
 .include <bsd.port.mk>

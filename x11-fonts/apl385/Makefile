@@ -20,7 +20,7 @@ NO_WRKSUBDIR=	yes
 PLIST_FILES=	${FONTSDIR}/Apl385.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/Apl385.ttf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/Apl385.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

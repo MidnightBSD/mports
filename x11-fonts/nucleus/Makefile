@@ -18,7 +18,7 @@ do-build:
 	@cd ${WRKSRC}/src && ./compile
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}/*.gz ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}/*.gz ${FONTSDIR}
 
 .include <bsd.port.mk>

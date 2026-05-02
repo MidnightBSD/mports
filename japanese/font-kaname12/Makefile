@@ -27,7 +27,7 @@ PORTDOCS=	readme readme.kaname_bdf kaname.doc \
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/fonts.alias ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${FILESDIR}/fonts.alias ${FONTSDIR}
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc/kaname12/readme

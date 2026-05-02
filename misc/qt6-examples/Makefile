@@ -33,10 +33,10 @@ EXTRACT_AFTER_ARGS+=	${DISTNAME:S/-opensource//}/qtsvg/tests/manual/examples
 do-install:
 .for example in ${EXAMPLES}
 	cd ${WRKSRC}/${example}/examples && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR}
+		${COPYTREE_SHARE} \* ${EXAMPLESDIR}
 .endfor
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/svg
+	@${MKDIR} ${EXAMPLESDIR}/svg
 	cd ${WRKSRC}/qtsvg/tests/manual/examples && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR}/svg
+		${COPYTREE_SHARE} \* ${EXAMPLESDIR}/svg
 
 .include <bsd.port.mk>

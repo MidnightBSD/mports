@@ -36,7 +36,7 @@ post-patch:
 		${WRKSRC}/Makefile.am
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/gmock-config ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/gmock_doctor.py ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/gmock-config ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/gmock_doctor.py ${PREFIX}/bin
 
 .include <bsd.port.mk>

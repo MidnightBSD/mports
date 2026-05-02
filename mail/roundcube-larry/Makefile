@@ -27,8 +27,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	${PKGNAMEPREFIX:S/-//}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${WWWDIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
+	@${MKDIR} ${WWWDIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR})
 	@(cd ${WRKSRC}; ${FIND} . -not -type d) | ${SORT} | \
 		${SED} -e 's,^\.,${WWWDIR_REL},' >> ${TMPPLIST}
 

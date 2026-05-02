@@ -30,10 +30,10 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/${PORTNAME}/src/designer/images/designer.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/designer-qt5.png
+		${PREFIX}/share/pixmaps/designer-qt5.png
 	# The generated .pc file refers to a nonexistent other .pc file
 	${REINPLACE_CMD} -e '/^Requires/s/Qt5UiPlugin//' \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/Qt5Designer.pc
+		${PREFIX}/libdata/pkgconfig/Qt5Designer.pc
 	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5Designer/Qt5DesignerConfig.cmake
 

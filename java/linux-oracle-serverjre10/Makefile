@@ -52,7 +52,7 @@ IGNORE?=You must manually fetch the J2SE RE download for the Linux platform (${D
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${APP_HOME}
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${APP_HOME}
+	@${MKDIR} ${APP_HOME}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${APP_HOME}
 
 .include <bsd.port.post.mk>

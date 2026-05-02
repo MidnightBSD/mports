@@ -31,8 +31,8 @@ NLS_USES=		gettext
 PORTDOCS=	*.htm NEWS AUTHORS README ABOUT-NLS BUGS ChangeLog
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/*.htm ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS:N\*.htm} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/*.htm ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS:N\*.htm} ${DOCSDIR}
 
 .include <bsd.port.mk>

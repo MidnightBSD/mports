@@ -35,14 +35,14 @@ post-patch:
 		${WRKSRC}/doc/Makefile
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR} ${STAGEDIR}${PREFIX}/${INFO_PATH}
+	${MKDIR} ${DATADIR} ${PREFIX}/${INFO_PATH}
 .for p in check-module gnulib-tool
-	${INSTALL_SCRIPT} ${WRKSRC}/${p} ${STAGEDIR}${DATADIR}/
-	${LN} -s ../${DATADIR_REL}/${p} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/${p} ${DATADIR}/
+	${LN} -s ../${DATADIR_REL}/${p} ${PREFIX}/bin/
 .endfor
 	${TAR} -cf - -C ${WRKSRC} build-aux config doc lib m4 modules \
-		tests top | ${TAR} -xof - -C ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/gnulib.info ${STAGEDIR}${PREFIX}/${INFO_PATH}
+		tests top | ${TAR} -xof - -C ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/gnulib.info ${PREFIX}/${INFO_PATH}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

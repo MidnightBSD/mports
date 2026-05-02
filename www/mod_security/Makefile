@@ -66,20 +66,20 @@ AP_EXTRAS+=	-DWITH_LIBXML2
 CONFIGURE_ARGS+=--with-apxs=${APXS} --with-pcre2=${LOCALBASE} --with-yajl=${LOCALBASE} --with-curl=${LOCALBASE}
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}
+	@${MKDIR} ${PREFIX}/${APACHEMODDIR}
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/modsecurity.conf-recommended \
-		${STAGEDIR}${ETCDIR}/modsecurity.conf.sample
+		${ETCDIR}/modsecurity.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/unicode.mapping \
-		${STAGEDIR}${ETCDIR}/unicode.mapping
+		${ETCDIR}/unicode.mapping
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${STAGEDIR}${DOCSDIR})
-	${INSTALL_DATA} ${WRKDIR}/README ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${DOCSDIR})
+	${INSTALL_DATA} ${WRKDIR}/README ${DOCSDIR}
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
-	${INSTALL_DATA} ${WRKDIR}/${APMOD_FILE}.sample ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
+	@${MKDIR} ${PREFIX}/${APACHEETCDIR}/modules.d
+	${INSTALL_DATA} ${WRKDIR}/${APMOD_FILE}.sample ${PREFIX}/${APACHEETCDIR}/modules.d
 
 .include <bsd.port.mk>

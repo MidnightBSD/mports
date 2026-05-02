@@ -21,6 +21,6 @@ PLIST_FILES=	bin/${PORTNAME}
 
 do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 
 .include <bsd.port.mk>

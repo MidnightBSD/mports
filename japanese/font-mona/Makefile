@@ -22,6 +22,6 @@ MAKE_ENV=	FONTSDIR="${FONTSDIR}"
 ALL_TARGET=	bdf
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/fonts.alias ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${FILESDIR}/fonts.alias ${FONTSDIR}
 
 .include <bsd.port.mk>

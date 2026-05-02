@@ -72,12 +72,12 @@ post-build:
 	${SETENV} CATDUMPFLAGS="-e sjis" fpwmake catalogs
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/eijiro-fpw/eijiro/data \
-		${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${PREFIX}/share/dict/eijiro-fpw/eijiro/data \
+		${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/eijiro-fpw/eijiro/data
+		${PREFIX}/share/dict/eijiro-fpw/eijiro/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/eijiro-fpw
-	${INSTALL_DATA} ${WRKSRC}/readme.sjis ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/eijiro-fpw
+	${INSTALL_DATA} ${WRKSRC}/readme.sjis ${DOCSDIR}
 
 .include <bsd.port.mk>

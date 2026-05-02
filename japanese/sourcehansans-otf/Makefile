@@ -45,8 +45,8 @@ DESCR=			${.CURDIR}/pkg-descr
 PLIST=			${.CURDIR}/pkg-plist
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${SRCFONTSDIR}/*.otf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${SRCFONTSDIR}/*.otf ${FONTSDIR}
 
 post-install-HW-on:
 	${INSTALL_DATA} ${WRKSRC}/OTF/${SHS_HW_LANG}HW/*.otf ${FAKE_DESTDIR}${FONTSDIR}

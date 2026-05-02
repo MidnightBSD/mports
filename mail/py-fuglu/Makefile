@@ -60,6 +60,6 @@ post-extract:
 		${WRKSRC}/src/tools/fuglu_debug
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${LOGDIR}
+	@${MKDIR} ${LOGDIR}
 
 .include <bsd.port.mk>

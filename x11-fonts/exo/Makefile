@@ -16,7 +16,7 @@ NO_ARCH=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	(cd ${WRKSRC} ; ${INSTALL_DATA} *.otf ${STAGEDIR}${FONTSDIR})
+	@${MKDIR} ${FONTSDIR}
+	(cd ${WRKSRC} ; ${INSTALL_DATA} *.otf ${FONTSDIR})
 
 .include <bsd.port.mk>

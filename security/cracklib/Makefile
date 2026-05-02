@@ -34,7 +34,7 @@ pre-build:
 	cd ${WRKSRC}/lib && ${MAKE_CMD} libcrack.la
 
 do-test:
-	@(cd ${BUILD_WKRSRC} && ${SETENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} \
+	@(cd ${BUILD_WKRSRC} && ${SETENV} PYTHONPATH=${PYTHONPREFIX_SITELIBDIR} \
 		${PYTHON_CMD} -c \
 		"from test_${PORTNAME} import run; run(use_dictpath=\"${DICTFILE:S|^${PREFIX}/|${LOCALBASE}/|}\")")
 .else
@@ -51,10 +51,10 @@ NLS_USES=	gettext
 CONFIGURE_ARGS+=--without-python
 
 post-install:
-	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.3 ${STAGEDIR}${PREFIX}/share/man/man3/
-	${LN} -s ${PORTNAME}.3 ${STAGEDIR}${PREFIX}/share/man/man3/FascistCheck.3
-	@${MKDIR} ${STAGEDIR}${DICTPATH}
-	@PATH=$${PATH}:${STAGEDIR}${PREFIX}/sbin LD_LIBRARY_PATH=/lib:/usr/lib:${STAGEDIR}${PREFIX}/lib ${STAGEDIR}${PREFIX}/sbin/create-cracklib-dict -o ${STAGEDIR}${DICTPATH}/cracklib-words ${_DISTDIR}/${WORDS_DISTFILE}
+	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.3 ${PREFIX}/share/man/man3/
+	${LN} -s ${PORTNAME}.3 ${PREFIX}/share/man/man3/FascistCheck.3
+	@${MKDIR} ${DICTPATH}
+	@PATH=$${PATH}:${PREFIX}/sbin LD_LIBRARY_PATH=/lib:/usr/lib:${PREFIX}/lib ${PREFIX}/sbin/create-cracklib-dict -o ${DICTPATH}/cracklib-words ${_DISTDIR}/${WORDS_DISTFILE}
 .endif
 
 .include <bsd.port.mk>

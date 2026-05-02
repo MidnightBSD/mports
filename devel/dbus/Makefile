@@ -76,9 +76,9 @@ post-patch:
 		${WRKSRC}/dbus/dbus-sysdeps-util-unix.c
 
 post-install:
-	${MV} ${STAGEDIR}${DOCSDIR}/examples ${STAGEDIR}${EXAMPLESDIR}
+	${MV} ${DOCSDIR}/examples ${EXAMPLESDIR}
 .for file in session.conf system.conf
-	@cd ${STAGEDIR}${ETCDIR}-1/ && \
+	@cd ${ETCDIR}-1/ && \
 		${MV} ${file} ${file}.sample
 .endfor
 

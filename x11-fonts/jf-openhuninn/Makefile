@@ -18,7 +18,7 @@ NO_BUILD=	yes
 PLIST_FILES=	${FONTSDIR}/jf-openhuninn-${PORTVERSION}.ttf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/jf-openhuninn-${PORTVERSION}.ttf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/jf-openhuninn-${PORTVERSION}.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

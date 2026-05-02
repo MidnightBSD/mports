@@ -43,9 +43,9 @@ post-patch:
 	${RM} ${WRKSRC}/boot/kernel8.img
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${INSTALL_DIR}
-	cd ${WRKSRC}/boot && ${COPYTREE_SHARE} . ${STAGEDIR}/${INSTALL_DIR}/
+	${MKDIR} /${INSTALL_DIR}
+	cd ${WRKSRC}/boot && ${COPYTREE_SHARE} . /${INSTALL_DIR}/
 	${INSTALL_DATA} ${WRKSRC_pscimon}/armstub8.bin \
-	    ${WRKSRC_pscimon}/armstub8-gic.bin ${STAGEDIR}/${INSTALL_DIR}/
+	    ${WRKSRC_pscimon}/armstub8-gic.bin /${INSTALL_DIR}/
 
 .include <bsd.port.mk>

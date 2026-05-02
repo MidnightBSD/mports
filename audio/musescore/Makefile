@@ -65,14 +65,14 @@ CMAKE_ARGS=	-DMUSE_APP_BUILD_MODE="release"
 post-install:
 	# workaround for https://github.com/musescore/MuseScore/issues/26103
 	@${RM} -r \
-		${STAGEDIR}${PREFIX}/include \
-		${STAGEDIR}${PREFIX}/lib \
-		${STAGEDIR}${PREFIX}/libdata
+		${PREFIX}/include \
+		${PREFIX}/lib \
+		${PREFIX}/libdata
 	# workaround for https://github.com/musescore/MuseScore/issues/26104
-	@${INSTALL_DATA} ${FILESDIR}/mscore.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	@${INSTALL_DATA} ${FILESDIR}/mscore.desktop ${PREFIX}/share/applications/
 	@${REINPLACE_CMD} -i '' -e "\
 		s|^Version=.*|Version=${PORTVERSION}|; \
 		s|^Name=.*|Name=MuseScore|; \
-		"  ${STAGEDIR}${PREFIX}/share/applications/mscore.desktop
+		"  ${PREFIX}/share/applications/mscore.desktop
 
 .include <bsd.port.mk>

@@ -68,10 +68,10 @@ post-patch:
 
 do-install:
 	(cd ${WRKSRC} && ${INSTALL_PROGRAM} zangband \
-		${STAGEDIR}${PREFIX}/bin)
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${ANGBANDLIB}
+		${PREFIX}/bin)
+	@${MKDIR} ${PREFIX}/${ANGBANDLIB}
 	(cd ${WRKSRC}/lib && ${FIND} . ! -name "makefile.zb" \
 		-a ! -name "*.bak" -a ! -name "*.orig" | \
-		${CPIO} -dump -L ${STAGEDIR}${PREFIX}/${ANGBANDLIB})
+		${CPIO} -dump -L ${PREFIX}/${ANGBANDLIB})
 
 .include <bsd.port.mk>

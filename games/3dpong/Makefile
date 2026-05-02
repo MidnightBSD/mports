@@ -34,13 +34,13 @@ post-patch:
 		${WRKSRC}/src/3dpong.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/sounds/*.au ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/sounds/*.au ${DATADIR}
 	${INSTALL_MAN} ${WRKSRC}/src/${PORTNAME}.6 \
-		${STAGEDIR}${PREFIX}/share/man/man6/
+		${PREFIX}/share/man/man6/
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/
+		${PREFIX}/share/pixmaps/
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

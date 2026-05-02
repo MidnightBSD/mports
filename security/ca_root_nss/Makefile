@@ -47,10 +47,10 @@ do-build:
 	    ${WRKDIR}/ca-root-nss.crt
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${CERTDIR}
-	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/${CERTDIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/ssl
-	${LN} -sf ../../${CERTDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/etc/ssl/cert.pem.sample
+	${MKDIR} ${PREFIX}/${CERTDIR}
+	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${PREFIX}/${CERTDIR}
+	${MKDIR} ${PREFIX}/etc/ssl
+	${LN} -sf ../../${CERTDIR}/ca-root-nss.crt ${PREFIX}/etc/ssl/cert.pem.sample
 
 do-install-ETCSYMLINK-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/openssl

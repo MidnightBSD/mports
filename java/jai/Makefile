@@ -40,8 +40,8 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 # documentation
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
 # jars
 	@${MKDIR} ${TARGET_DIR}
 	@${INSTALL_DATA} ${WRKSRC}/lib/jai_codec.jar ${TARGET_DIR}

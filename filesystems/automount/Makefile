@@ -29,10 +29,10 @@ EXFAT_RUN_DEPENDS=	fusefs-exfat>=0:filesystems/exfat \
 			exfat-utils>=0:filesystems/exfat-utils
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/automount ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKDIR}/automount ${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKDIR}/automount_devd.conf \
-		${STAGEDIR}${PREFIX}/etc/devd
+		${PREFIX}/etc/devd
 	${INSTALL_DATA} ${WRKDIR}/automount.conf \
-		${STAGEDIR}${PREFIX}/etc/automount.conf.sample
+		${PREFIX}/etc/automount.conf.sample
 
 .include <bsd.port.mk>

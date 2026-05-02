@@ -62,26 +62,26 @@ do-build:
 		package
 do-install:
 	# install jar
-	${INSTALL_DATA} ${WRKSRC}/target/Digital.jar ${STAGEDIR}${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKSRC}/target/Digital.jar ${JAVAJARDIR}
 	# install shell wrapper
 	@(echo "#!/bin/sh"; \
 	  echo ""; \
 	  echo "${JAVA} -jar ${JAVAJARDIR}/Digital.jar \""$$"@\"" \
-	) > ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	) > ${PREFIX}/bin/${PORTNAME}
+	@${CHMOD} +x ${PREFIX}/bin/${PORTNAME}
 	# install desktop file
 	${SED} -e '\
 		s|<EXEC_LOCATION>|${TRUE_PREFIX}/bin/${PORTNAME}| ; \
 		s|<ICON_LOCATION>|${ICON_NAME}|' \
 		< ${WRKSRC}/distribution/linux/desktop.template \
-		> ${STAGEDIR}${PREFIX}/share/applications/${PORTNAME}.desktop
+		> ${PREFIX}/share/applications/${PORTNAME}.desktop
 	# install icons
 .for SZ in ${ICON_SIZES}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${SZ}x${SZ}/apps
-	${INSTALL_DATA} ${WRKSRC}/src/main/resources/icons/icon${SZ}.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/${SZ}x${SZ}/apps/${ICON_NAME}.png
+	${MKDIR} ${PREFIX}/share/icons/hicolor/${SZ}x${SZ}/apps
+	${INSTALL_DATA} ${WRKSRC}/src/main/resources/icons/icon${SZ}.png ${PREFIX}/share/icons/hicolor/${SZ}x${SZ}/apps/${ICON_NAME}.png
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps
-	${INSTALL_DATA} ${WRKSRC}/src/main/svg/icon.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/${ICON_NAME}.svg
+	${MKDIR} ${PREFIX}/share/icons/hicolor/scalable/apps
+	${INSTALL_DATA} ${WRKSRC}/src/main/svg/icon.svg ${PREFIX}/share/icons/hicolor/scalable/apps/${ICON_NAME}.svg
 	${REINPLACE_CMD} -i '' -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/digital
 
 .include <bsd.port.mk>

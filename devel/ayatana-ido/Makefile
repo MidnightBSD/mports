@@ -24,7 +24,7 @@ GH_ACCOUNT=	AyatanaIndicators
 PORTDOCS=	AUTHORS ChangeLog INSTALL.md NEWS README.md
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libayatana-ido3-0.4.so.*
+	${STRIP_CMD} ${PREFIX}/lib/libayatana-ido3-0.4.so.*
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -26,8 +26,8 @@ post-extract:
 	@${FIND} ${WRKDIR} -name __MACOSX | ${XARGS} ${RM} -r
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${FIND} ${WRKDIR} -name \*.ttf -exec ${INSTALL_DATA} {} ${STAGEDIR}${FONTSDIR} \;
-	${FIND} ${WRKDIR} -name \*.otf -exec ${INSTALL_DATA} {} ${STAGEDIR}${FONTSDIR} \;
+	@${MKDIR} ${FONTSDIR}
+	${FIND} ${WRKDIR} -name \*.ttf -exec ${INSTALL_DATA} {} ${FONTSDIR} \;
+	${FIND} ${WRKDIR} -name \*.otf -exec ${INSTALL_DATA} {} ${FONTSDIR} \;
 
 .include <bsd.port.mk>

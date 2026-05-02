@@ -27,8 +27,8 @@ post-patch:
 		's|/usr/lib/plain2|${DATADIR}|g' ${BUILD_WRKSRC}/plain2.h
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/lib/*.p2 ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/lib/*.p2 ${DATADIR}
 
 .include <bsd.port.mk>

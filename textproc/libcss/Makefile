@@ -25,6 +25,6 @@ LDFLAGS+=	${ICONV_LIB}
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libcss.so
+	${STRIP_CMD} ${PREFIX}/lib/libcss.so
 
 .include <bsd.port.mk>

@@ -30,7 +30,7 @@ pre-install:
 	${STRIP_CMD} ${WRKSRC}/blib/arch/auto/MeCab/MeCab.so
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/test.pl ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/test.pl ${EXAMPLESDIR}
 
 .include <bsd.port.post.mk>

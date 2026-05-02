@@ -26,12 +26,12 @@ GO_BUILDFLAGS=	-ldflags "\
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.1 ${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d \
-		${STAGEDIR}${PREFIX}/share/zsh/site-functions
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d \
+		${PREFIX}/share/zsh/site-functions
 
 	${INSTALL_DATA} ${WRKSRC}/misc/bash_completion/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/etc/bash_completion.d
+		${PREFIX}/etc/bash_completion.d
 	${INSTALL_DATA} ${WRKSRC}/misc/zsh_completion/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/share/zsh/site-functions/_${PORTNAME}
+		${PREFIX}/share/zsh/site-functions/_${PORTNAME}
 
 .include <bsd.port.mk>

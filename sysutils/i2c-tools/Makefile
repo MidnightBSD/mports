@@ -18,8 +18,8 @@ SHEBANG_FILES=	eeprom/decode-dimms
 
 do-install:
 	${INSTALL_MAN} ${WRKSRC}/eeprom/decode-dimms.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 	${INSTALL_SCRIPT} ${WRKSRC}/eeprom/decode-dimms \
-		${STAGEDIR}${PREFIX}/sbin
+		${PREFIX}/sbin
 
 .include <bsd.port.mk>

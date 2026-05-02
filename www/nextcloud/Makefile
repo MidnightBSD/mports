@@ -75,13 +75,13 @@ post-patch:
 	@${MV} ${WRKSRC}/apps ${WRKSRC}/apps-pkg
 
 do-install:
-	@${MKDIR} -m 0755 ${STAGEDIR}${WWWDIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
+	@${MKDIR} -m 0755 ${WWWDIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR})
 	${INSTALL_SCRIPT} ${WRKDIR}/config.sample.php \
-		${STAGEDIR}${WWWDIR}/config/config.php
+		${WWWDIR}/config/config.php
 	${CP} ${WWWDIR}/.htaccess.dist ${WWWDIR}/.htaccess
-	@${MKDIR} ${STAGEDIR}${WWWDIR}/data ${STAGEDIR}${WWWDIR}/apps \
-		${STAGEDIR}/var/log/${PORTNAME}
+	@${MKDIR} ${WWWDIR}/data ${WWWDIR}/apps \
+		/var/log/${PORTNAME}
 	(cd ${WRKSRC}; ${FIND} . -type f -or -type l) | ${SORT} | \
 		${SED} -Ee '/^\.\/\.(htaccess\.dist|user\.ini)/d' \
 			-e '/^\.\/config\/config\.sample\.php/d' \

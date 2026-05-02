@@ -34,10 +34,10 @@ pre-install-TOR-off:
 	    ${WRKDIR}/pkg-message
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/monthly
+	${MKDIR} ${PREFIX}/etc/periodic/monthly
 	${INSTALL_SCRIPT} ${WRKDIR}/300.statistics \
-		${STAGEDIR}${PREFIX}/etc/periodic/monthly
+		${PREFIX}/etc/periodic/monthly
 	${INSTALL_SCRIPT} ${WRKDIR}/bsdstats-send \
-		${STAGEDIR}${PREFIX}/bin/bsdstats-send
+		${PREFIX}/bin/bsdstats-send
 
 .include <bsd.port.mk>

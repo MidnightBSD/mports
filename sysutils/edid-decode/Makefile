@@ -18,8 +18,8 @@ PLIST_FILES=	bin/edid-decode \
 		share/man/man1/edid-decode.1.gz
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 
 dist: clean
 	@${MKDIR} ${WRKSRC}

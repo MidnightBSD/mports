@@ -170,14 +170,14 @@ post-patch:
 
 do-install:
 	(cd ${BUILD_WRKSRC} && ${INSTALL_PROGRAM} wpa_supplicant wpa_cli \
-		wpa_passphrase ${STAGEDIR}${PREFIX}/sbin)
+		wpa_passphrase ${PREFIX}/sbin)
 	${INSTALL_DATA} ${BUILD_WRKSRC}/wpa_supplicant.conf \
-		${STAGEDIR}${PREFIX}/etc/wpa_supplicant.conf.sample
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/etc/wpa_supplicant.conf.sample
+	@${MKDIR} ${DOCSDIR}
 	(cd ${BUILD_WRKSRC} && \
-		${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
+		${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
 .if ${PORT_OPTIONS:MPRIVSEP}
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/wpa_priv ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/wpa_priv ${PREFIX}/sbin
 .endif
 
 .include <bsd.port.post.mk>

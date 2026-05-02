@@ -18,6 +18,6 @@ WRKSRC=		${WRKDIR}/VeroRoute
 WRKSRC_SUBDIR=	Src
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/veroroute
+	@${STRIP_CMD} ${PREFIX}/bin/veroroute
 
 .include <bsd.port.mk>

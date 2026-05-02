@@ -59,9 +59,9 @@ post-patch:
 
 post-install:
 	for p in guile guild guile-tools guile-config guile-snarf; do \
-	  ${LN} -s $${p}-${GUILE_VER} ${STAGEDIR}${PREFIX}/bin/$${p}${GUILE_SFX}; \
+	  ${LN} -s $${p}-${GUILE_VER} ${PREFIX}/bin/$${p}${GUILE_SFX}; \
 	done
-	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/guile-${GUILE_VER}.1 \
-	      ${STAGEDIR}${PREFIX}/share/man/man1/guile${GUILE_SFX}.1
+	${MV} ${PREFIX}/share/man/man1/guile-${GUILE_VER}.1 \
+	      ${PREFIX}/share/man/man1/guile${GUILE_SFX}.1
 
 .include <bsd.port.mk>

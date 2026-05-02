@@ -74,23 +74,23 @@ post-patch:
 	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/bin/elasticsearch-env
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/elasticsearch
+	${MKDIR} ${PREFIX}/etc/elasticsearch
 .for f in ${CONFIG_FILES}
-	${INSTALL} ${WRKSRC}/config/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
+	${INSTALL} ${WRKSRC}/config/${f} ${ETCDIR}/${f}.sample
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/elasticsearch/bin
+	${MKDIR} ${PREFIX}/lib/elasticsearch/bin
 .for f in ${BINS}
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${STAGEDIR}${PREFIX}/lib/elasticsearch/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${PREFIX}/lib/elasticsearch/bin
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/elasticsearch/lib
-	(cd ${WRKSRC}/lib && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/elasticsearch/lib/ "-name *\.jar")
+	${MKDIR} ${PREFIX}/lib/elasticsearch/lib
+	(cd ${WRKSRC}/lib && ${COPYTREE_SHARE} . ${PREFIX}/lib/elasticsearch/lib/ "-name *\.jar")
 
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/elasticsearch/modules
-	(cd ${WRKSRC}/modules && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/elasticsearch/modules/)
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/elasticsearch/plugins
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/elasticsearch
-	${INSTALL} -lrs ${STAGEDIR}${ETCDIR} ${STAGEDIR}${PREFIX}/lib/elasticsearch/config
-	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${STAGEDIR}${PREFIX}/lib/elasticsearch/lib/jna-0.0.0.jar
+	${MKDIR} ${PREFIX}/lib/elasticsearch/modules
+	(cd ${WRKSRC}/modules && ${COPYTREE_SHARE} . ${PREFIX}/lib/elasticsearch/modules/)
+	${MKDIR} ${PREFIX}/lib/elasticsearch/plugins
+	${MKDIR} ${PREFIX}/libexec/elasticsearch
+	${INSTALL} -lrs ${ETCDIR} ${PREFIX}/lib/elasticsearch/config
+	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${PREFIX}/lib/elasticsearch/lib/jna-0.0.0.jar
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
@@ -104,8 +104,8 @@ post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/jvm.options.sample" >> ${TMPPLIST}
 	${ECHO} "@sample ${ETCDIR_REL}/roles.yml.sample" >> ${TMPPLIST}
 	${ECHO} "@sample ${ETCDIR_REL}/role_mapping.yml.sample" >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${PREFIX}/lib/elasticsearch -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${PREFIX}/lib/elasticsearch -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir lib/elasticsearch/plugins" >> ${TMPPLIST}
 	${ECHO} "@dir libexec/elasticsearch" >> ${TMPPLIST}
 	${ECHO} "@dir(elasticsearch,elasticsearch,0755) ${ETCDIR_REL}" >> ${TMPPLIST}

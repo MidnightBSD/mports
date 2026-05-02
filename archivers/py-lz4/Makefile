@@ -23,11 +23,23 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psutil>=0:sysutils/py-psutil@${PY_FLAVOR}
 USES=		localbase python
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
-CONFIGURE_ENV=	PYLZ4_USE_SYSTEM_LZ4=1
+MAKE_ENV+=	PYLZ4_USE_SYSTEM_LZ4=1
+
+# The stream module is experimental and only built with PYLZ4_EXPERIMENTAL=1.
+# Match the upstream default tox env which only tests block and frame.
+TEST_ARGS=	tests/block tests/frame
 
 post-patch:
 # Clean up bundled libraries
 	@${RM} -r ${WRKSRC}/lz4libs/
+
+pre-test:
+# The pep517 wheel build places compiled C extensions in the build/ directory,
+# not in the source lz4/ tree.  pytest runs from WRKSRC and imports the source
+# lz4/ package, which then fails to load ._version and ._block etc.
+# setup.cfg sets [build_ext] inplace=1, so this copies the .so files into the
+# source tree, making the package importable without a prior install.
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} setup.py build_ext
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +

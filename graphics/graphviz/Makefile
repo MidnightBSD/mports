@@ -266,6 +266,6 @@ pre-install-PHP-on:
 
 post-install: install-ldconfig-file
 	cd ${WRKSRC} && \
-		${INSTALL_DATA} ${FIX_INCLUDE} ${STAGEDIR}${PREFIX}/include/graphviz/
+		${INSTALL_DATA} ${FIX_INCLUDE} ${PREFIX}/include/graphviz/
 
 .include <bsd.port.post.mk>

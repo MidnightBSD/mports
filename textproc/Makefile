@@ -166,8 +166,8 @@
     SUBDIR += lucene
     SUBDIR += makepatch
     SUBDIR += man2html
+    SUBDIR += mandoc
     SUBDIR += mantra
-    SUBDIR += mdocml
     SUBDIR += meld
     SUBDIR += minixmlto
     SUBDIR += mythes
@@ -183,6 +183,7 @@
     SUBDIR += opensp
     SUBDIR += openvanilla-framework
     SUBDIR += p5-CAM-PDF
+    SUBDIR += p5-HTML-Entities-Numbered
     SUBDIR += p5-HTML-Format
     SUBDIR += p5-HTML-Tidy
     SUBDIR += p5-Hash-Merge
@@ -313,6 +314,7 @@
     SUBDIR += py-gi-docgen
     SUBDIR += py-griffe
     SUBDIR += py-hexdump
+    SUBDIR += py-html2text
     SUBDIR += py-htmlmin2
     SUBDIR += py-interegular
     SUBDIR += py-junit-xml
@@ -460,12 +462,17 @@
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-representable
     SUBDIR += rubygem-rexml
+    SUBDIR += rubygem-rouge-gitlab
+    SUBDIR += rubygem-rouge
+    SUBDIR += rubygem-rouge3
     SUBDIR += rubygem-ronn
+    SUBDIR += rubygem-rttool
     SUBDIR += rubygem-sass
     SUBDIR += rubygem-sass-listen
     SUBDIR += rubygem-sass-rails-rails4
     SUBDIR += rubygem-sassc
     SUBDIR += rubygem-sassc-rails-rails4
+    SUBDIR += rubygem-text
     SUBDIR += rubygem-unf
     SUBDIR += sassc
     SUBDIR += scdoc

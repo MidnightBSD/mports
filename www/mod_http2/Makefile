@@ -32,18 +32,18 @@ CFLAGS+=	-Wno-error=tautological-constant-out-of-range-compare
 .endif
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
+	${MKDIR} ${PREFIX}/${APACHEETCDIR}/modules.d
 	${INSTALL_DATA} ${WRKDIR}/200_mod_http2.conf \
-		${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d/200_mod_h2.conf.sample
+		${PREFIX}/${APACHEETCDIR}/modules.d/200_mod_h2.conf.sample
 	${INSTALL_DATA} ${WRKDIR}/300_mod_proxy_http2.conf \
-		${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d/300_mod_proxy_h2.conf.sample
+		${PREFIX}/${APACHEETCDIR}/modules.d/300_mod_proxy_h2.conf.sample
 	# Rename mod_http2 to mod_h2 to avoid conflict with Apache24
-	${MV} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/mod_http2.so \
-		${STAGEDIR}${PREFIX}/${APACHEMODDIR}/${MODULENAME}.so
-	${MV} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/mod_proxy_http2.so \
-		${STAGEDIR}${PREFIX}/${APACHEMODDIR}/mod_proxy_h2.so
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/${MODULENAME}.so \
-		${STAGEDIR}${PREFIX}/${APACHEMODDIR}/mod_proxy_h2.so
-	${RM} ${STAGEDIR}${DOCSDIR}/LICENSE
+	${MV} ${PREFIX}/${APACHEMODDIR}/mod_http2.so \
+		${PREFIX}/${APACHEMODDIR}/${MODULENAME}.so
+	${MV} ${PREFIX}/${APACHEMODDIR}/mod_proxy_http2.so \
+		${PREFIX}/${APACHEMODDIR}/mod_proxy_h2.so
+	${STRIP_CMD} ${PREFIX}/${APACHEMODDIR}/${MODULENAME}.so \
+		${PREFIX}/${APACHEMODDIR}/mod_proxy_h2.so
+	${RM} ${DOCSDIR}/LICENSE
 
 .include <bsd.port.post.mk>

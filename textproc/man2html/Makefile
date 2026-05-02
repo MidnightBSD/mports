@@ -24,9 +24,9 @@ PLIST_FILES=	bin/man2html \
 		www/cgi-bin/man.cgi
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/man2html ${STAGEDIR}/${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/man2html.1 ${STAGEDIR}/${PREFIX}/share/man/man1
-	${MKDIR} ${STAGEDIR}${CGIDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/man.cgi ${STAGEDIR}${CGIDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/man2html /${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/doc/man2html.1 /${PREFIX}/share/man/man1
+	${MKDIR} ${CGIDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/man.cgi ${CGIDIR}
 
 .include <bsd.port.mk>

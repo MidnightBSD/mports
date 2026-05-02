@@ -49,9 +49,9 @@ do-build:
 do-install:
 .for GO_TARGET in ${GO_TARGETS}
 	${INSTALL_PROGRAM} ${GO_WRKSRC}/${GO_TARGET}/${GO_TARGET} \
-		${STAGEDIR}${PREFIX}/sbin
+		${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/${GO_TARGET}/${GO_TARGET}.yml \
-		${STAGEDIR}${PREFIX}/etc/${GO_TARGET}.yml.sample
+		${PREFIX}/etc/${GO_TARGET}.yml.sample
 	(DEST_COMPONENT_PATH_UNSTAGED=/var/db/beats/${GO_TARGET}/kibana; \
 		DEST_COMPONENT_PATH=${FAKE_DESTDIR}$${DEST_COMPONENT_PATH_UNSTAGED}; \
 		${MKDIR} $${DEST_COMPONENT_PATH}; \
@@ -63,9 +63,9 @@ do-install:
 		done)
 .endfor
 .for BEATMOD in filebeat metricbeat
-	${MKDIR} ${STAGEDIR}${ETCDIR}/${BEATMOD}.modules.d ${STAGEDIR}${DATADIR}/${BEATMOD}/module
-	(cd ${WRKSRC}/${BEATMOD}/module && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/${BEATMOD}/module ${FIND_ARGS})
-	(cd ${WRKSRC}/${BEATMOD}/modules.d && ${COPYTREE_SHARE} . ${STAGEDIR}${ETCDIR}/${BEATMOD}.modules.d)
+	${MKDIR} ${ETCDIR}/${BEATMOD}.modules.d ${DATADIR}/${BEATMOD}/module
+	(cd ${WRKSRC}/${BEATMOD}/module && ${COPYTREE_SHARE} . ${DATADIR}/${BEATMOD}/module ${FIND_ARGS})
+	(cd ${WRKSRC}/${BEATMOD}/modules.d && ${COPYTREE_SHARE} . ${ETCDIR}/${BEATMOD}.modules.d)
 .endfor
 
 .include <bsd.port.mk>

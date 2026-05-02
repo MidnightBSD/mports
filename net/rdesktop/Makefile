@@ -70,11 +70,11 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/rdesktop ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/rdesktop.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${DATADIR}/keymaps
-	${INSTALL_DATA} ${WRKSRC}/keymaps/* ${STAGEDIR}${DATADIR}/keymaps
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/rdesktop ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/doc/rdesktop.1 ${PREFIX}/share/man/man1
+	@${MKDIR} ${DATADIR}/keymaps
+	${INSTALL_DATA} ${WRKSRC}/keymaps/* ${DATADIR}/keymaps
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>

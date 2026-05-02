@@ -51,8 +51,8 @@ post-patch:
 	@${FIND} ${WRKSRC} -name '*.orig' -delete
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/ReleaseNotes ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/Eterm_reference.html ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/ReleaseNotes ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/Eterm_reference.html ${DOCSDIR}
 
 .include <bsd.port.mk>

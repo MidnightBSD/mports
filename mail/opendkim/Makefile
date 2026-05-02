@@ -164,8 +164,8 @@ post-patch-LCOV-on:
 	${FIND} ${WRKSRC} -type f -name \*-helper.sh -exec ${CHMOD} 755 {} +
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/mail
+	@${MKDIR} ${PREFIX}/etc/mail
 	${INSTALL_DATA} ${WRKSRC}/opendkim/opendkim.conf.sample \
-	    ${STAGEDIR}${PREFIX}/etc/mail/
+	    ${PREFIX}/etc/mail/
 
 .include <bsd.port.mk>

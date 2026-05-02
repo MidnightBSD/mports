@@ -59,7 +59,7 @@ pre-build:
 	${LN} -sf ${LOCALBASE}/lib/libgtest.so ${WRKSRC}/libgtest.a
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so.*
+	${STRIP_CMD} ${PREFIX}/lib/lib${PORTNAME}.so.*
 
 post-install-PLUGINS-on:
 	${MKDIR} ${FAKE_DESTDIR}${WEBPLUGIN_DIR}

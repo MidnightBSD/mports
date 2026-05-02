@@ -26,22 +26,22 @@ SUB_FILES=	sublime
 CONFLICTS_INSTALL=	linux-sublime3-[0-9]*
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/16x16/apps/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/32x32/apps/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/256x256/apps/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/applications
-	@${INSTALL_DATA} ${FILESDIR}/sublime_text.desktop ${STAGEDIR}${PREFIX}/share/applications
-	@${INSTALL_DATA} ${WRKSRC}/Icon/16x16/sublime_text.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/16x16/apps/
-	@${INSTALL_DATA} ${WRKSRC}/Icon/32x32/sublime_text.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/32x32/apps/
-	@${INSTALL_DATA} ${WRKSRC}/Icon/48x48/sublime_text.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/
-	@${INSTALL_DATA} ${WRKSRC}/Icon/128x128/sublime_text.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps/
-	@${INSTALL_DATA} ${WRKSRC}/Icon/256x256/sublime_text.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/256x256/apps/
+	@${MKDIR} ${DATADIR}
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/16x16/apps/
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/32x32/apps/
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/48x48/apps/
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/128x128/apps/
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/256x256/apps/
+	@${MKDIR} ${PREFIX}/share/applications
+	@${INSTALL_DATA} ${FILESDIR}/sublime_text.desktop ${PREFIX}/share/applications
+	@${INSTALL_DATA} ${WRKSRC}/Icon/16x16/sublime_text.png ${PREFIX}/share/icons/hicolor/16x16/apps/
+	@${INSTALL_DATA} ${WRKSRC}/Icon/32x32/sublime_text.png ${PREFIX}/share/icons/hicolor/32x32/apps/
+	@${INSTALL_DATA} ${WRKSRC}/Icon/48x48/sublime_text.png ${PREFIX}/share/icons/hicolor/48x48/apps/
+	@${INSTALL_DATA} ${WRKSRC}/Icon/128x128/sublime_text.png ${PREFIX}/share/icons/hicolor/128x128/apps/
+	@${INSTALL_DATA} ${WRKSRC}/Icon/256x256/sublime_text.png ${PREFIX}/share/icons/hicolor/256x256/apps/
 	@${RM} -r ${WRKSRC}/Icon/
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
-	@${CHMOD} +x ${STAGEDIR}${DATADIR}/sublime_text
-	@${INSTALL_SCRIPT} ${WRKDIR}/sublime ${STAGEDIR}${PREFIX}/bin/sublime
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR}
+	@${CHMOD} +x ${DATADIR}/sublime_text
+	@${INSTALL_SCRIPT} ${WRKDIR}/sublime ${PREFIX}/bin/sublime
 
 .include <bsd.port.mk>

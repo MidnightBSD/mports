@@ -39,6 +39,6 @@ post-patch:
 	${REINPLACE_CMD} -e 's|__freebsd__|__midnightbsd__|g' ${WRKSRC}/timestamp.c
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/doas
+	${STRIP_CMD} ${PREFIX}/bin/doas
 
 .include <bsd.port.mk>

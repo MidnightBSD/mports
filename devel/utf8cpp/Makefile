@@ -20,7 +20,7 @@ GH_PROJECT=	utfcpp
 CONFLICTS_INSTALL=	utf8cpp3
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/utf8cpp/
-	cd ${WRKSRC}/source/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/utf8cpp/
+	${MKDIR} ${PREFIX}/include/utf8cpp/
+	cd ${WRKSRC}/source/ && ${COPYTREE_SHARE} . ${PREFIX}/include/utf8cpp/
 
 .include <bsd.port.mk>

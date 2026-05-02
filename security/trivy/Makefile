@@ -26,8 +26,8 @@ NO_TEST=	yes
 post-install:
 	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/contrib/*.tpl ${DATADIR}/
-	${FIND} -s ${STAGEDIR}${DATADIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
+	${FIND} -s ${DATADIR} -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' | \
 		${SED} -E -e '/sample$$/ s#^#@sample #; \
 		s#${DATADIR_REL}/bin#@(,,555) ${DATADIR_REL}/bin#; ' >> ${TMPPLIST}
 	cat ${TMPPLIST}

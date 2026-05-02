@@ -49,9 +49,9 @@ post-patch:
 	${REINPLACE_CMD} "s|/opt/plexWatch|${DATADIR}|" ${WRKSRC}/config.pl-dist
 
 do-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${MKDIR} -m 777 ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/plexWatch.pl ${STAGEDIR}${PREFIX}/sbin/
-	${INSTALL_DATA} ${WRKSRC}/config.pl-dist ${STAGEDIR}${ETCDIR}/
+	${MKDIR} ${ETCDIR}
+	${MKDIR} -m 777 ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/plexWatch.pl ${PREFIX}/sbin/
+	${INSTALL_DATA} ${WRKSRC}/config.pl-dist ${ETCDIR}/
 
 .include <bsd.port.mk>

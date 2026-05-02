@@ -27,8 +27,8 @@ post-extract:
 	@cd ${FILESDIR} && ${CP} -p zookeeper.jute.* ${WRKSRC}/generated/
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/* ${STAGEDIR}${PREFIX}/lib/*.so
-	${LN} -sf libzookeeper_mt.so.2 ${STAGEDIR}${PREFIX}/lib/libzookeeper_mt.so
-	${LN} -sf libzookeeper_st.so.2 ${STAGEDIR}${PREFIX}/lib/libzookeeper_st.so
+	@${STRIP_CMD} ${PREFIX}/bin/* ${PREFIX}/lib/*.so
+	${LN} -sf libzookeeper_mt.so.2 ${PREFIX}/lib/libzookeeper_mt.so
+	${LN} -sf libzookeeper_st.so.2 ${PREFIX}/lib/libzookeeper_st.so
 
 .include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	ciso-maker
-PORTVERSION=	1.05
+PORTVERSION=	1.1.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USE_GITHUB=     yes
 GH_PROJECT=     ${PORTNAME}
 GH_ACCOUNT=     laffer1
-GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      1eed35b
 
 FAKE_OPTS=	trueprefix
 

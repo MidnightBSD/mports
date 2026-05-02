@@ -67,12 +67,12 @@ post-build:
 	cd ${WRKSRC}; fpwmake catalogs
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/waeijiro-fpw/waeijiro/data \
-		${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${PREFIX}/share/dict/waeijiro-fpw/waeijiro/data \
+		${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/waeijiro-fpw/waeijiro/data
+		${PREFIX}/share/dict/waeijiro-fpw/waeijiro/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/waeijiro-fpw
-	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/waeijiro-fpw
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 
 .include <bsd.port.mk>

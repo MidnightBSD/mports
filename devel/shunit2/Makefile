@@ -29,7 +29,7 @@ post-extract:
 		${WRKSRC}/test_runner
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/shunit2 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/shunit2 ${PREFIX}/bin
 
 #do-test:
 #	@cd ${WRKSRC} && SHELL=${LOCALBASE}/bin/bash bash ./test_runner -s ${LOCALBASE}/bin/bash

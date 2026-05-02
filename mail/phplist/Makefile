@@ -39,9 +39,9 @@ do-install:
 	@${FIND} ${WRKSRC}/public_html/ -type f -regex '.*[^!-~].*' -delete
 	@${FIND} ${WRKSRC}/public_html/ -type l -delete
 	@${FIND} ${WRKSRC}/public_html/ -type d -empty -delete
-	${MKDIR} ${STAGEDIR}${WWWDIR}/
-	(cd ${WRKSRC}/public_html/ && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
-	${INSTALL_SCRIPT} ${WRKDIR}/phplist ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${WWWDIR}/
+	(cd ${WRKSRC}/public_html/ && ${COPYTREE_SHARE} . ${WWWDIR})
+	${INSTALL_SCRIPT} ${WRKDIR}/phplist ${PREFIX}/bin
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

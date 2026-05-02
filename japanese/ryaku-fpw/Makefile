@@ -19,12 +19,12 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/ryaku-fpw/ryaku/data
+	@${MKDIR} ${PREFIX}/share/dict/ryaku-fpw/ryaku/data
 	${INSTALL_DATA} ${WRKSRC}/ryaku/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/ryaku-fpw/ryaku/data
+		${PREFIX}/share/dict/ryaku-fpw/ryaku/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/ryaku-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/ryaku-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

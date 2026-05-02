@@ -23,6 +23,6 @@ MAKE_ENV=	BUILD_CC="${CC}" COMPONENT_TYPE="lib-shared"
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnsutils.so
+	${STRIP_CMD} ${PREFIX}/lib/libnsutils.so
 
 .include <bsd.port.mk>

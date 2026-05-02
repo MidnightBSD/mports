@@ -90,7 +90,7 @@ MAKE_ENV=	CALIBRE_CONFIG_DIRECTORY=${WRKDIR}/calibre-config \
 		SIP_DIR=${PYQT_SIPDIR} \
 		WITH_USB=yes \
 		XDG_CONFIG_HOME=${WRKDIR}/xdg-config \
-		XDG_DATA_DIRS=${STAGEDIR}${PREFIX}/share \
+		XDG_DATA_DIRS=${PREFIX}/share \
 		XDG_UTILS_INSTALL_MODE=system
 SUB_LIST=	PYTHON_VERSION=${PYTHON_VERSION}
 
@@ -125,20 +125,20 @@ do-build:
 	@${RMDIR} ${LOCALBASE}/libexec/qt6/locales 2>/dev/null || ${TRUE}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/${PYTHON_VERSION}/site-packages \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor \
-		${STAGEDIR}${PREFIX}/share/applications \
-		${STAGEDIR}${PREFIX}/share/desktop-directories \
-		${STAGEDIR}${PREFIX}/share/mime/packages
+	@${MKDIR} ${PREFIX}/lib/${PYTHON_VERSION}/site-packages \
+		${PREFIX}/share/icons/hicolor \
+		${PREFIX}/share/applications \
+		${PREFIX}/share/desktop-directories \
+		${PREFIX}/share/mime/packages
 	# Create this file to avoid what looks like a bug in xdg-desktop-menu
-	@${TOUCH} ${STAGEDIR}${PREFIX}/share/applications/defaults.list
+	@${TOUCH} ${PREFIX}/share/applications/defaults.list
 	(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
 		${PYSETUP} install --prefix ${PREFIX} \
-		--staging-root ${STAGEDIR}${PREFIX})
-	@${RM} ${STAGEDIR}${PREFIX}/bin/calibre-uninstall \
-		${STAGEDIR}${PREFIX}/share/applications/defaults.list
-	@${RMDIR} ${STAGEDIR}${PREFIX}/share/desktop-directories
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/calibre/calibre/plugins/*
+		--staging-root ${PREFIX})
+	@${RM} ${PREFIX}/bin/calibre-uninstall \
+		${PREFIX}/share/applications/defaults.list
+	@${RMDIR} ${PREFIX}/share/desktop-directories
+	@${STRIP_CMD} ${PREFIX}/lib/calibre/calibre/plugins/*
 
 update-recent-uas: patch
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \

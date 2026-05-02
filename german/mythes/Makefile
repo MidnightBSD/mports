@@ -27,11 +27,11 @@ PLIST_FILES+=	${DATADIR}/th_${ALIAS}_v2.idx \
 .endfor
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/th_de_DE_v2.dat ${WRKSRC}/th_de_DE_v2.idx ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/th_de_DE_v2.dat ${WRKSRC}/th_de_DE_v2.idx ${DATADIR}/
 .for ALIAS in ${DEALIASES}
-	${LN} -s th_de_DE_v2.dat ${STAGEDIR}${DATADIR}/th_${ALIAS}_v2.dat
-	${LN} -s th_de_DE_v2.idx ${STAGEDIR}${DATADIR}/th_${ALIAS}_v2.idx
+	${LN} -s th_de_DE_v2.dat ${DATADIR}/th_${ALIAS}_v2.dat
+	${LN} -s th_de_DE_v2.idx ${DATADIR}/th_${ALIAS}_v2.idx
 .endfor
 
 .include <bsd.port.mk>

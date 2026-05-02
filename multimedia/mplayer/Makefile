@@ -80,18 +80,18 @@ pre-everything::
 post-patch: common-post-patch
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	@${CHMOD} 755 ${STAGEDIR}${DATADIR}
-	@${MKDIR} ${STAGEDIR}${DATADIR}/examples/etc
-	@${CHMOD} 755 ${STAGEDIR}${DATADIR}/examples/etc
+	@${MKDIR} ${DATADIR}
+	@${CHMOD} 755 ${DATADIR}
+	@${MKDIR} ${DATADIR}/examples/etc
+	@${CHMOD} 755 ${DATADIR}/examples/etc
 .for conf in ${CONFFILES}
-	${INSTALL_DATA} ${WRKSRC}/etc/${conf} ${STAGEDIR}${DATADIR}/examples/etc
+	${INSTALL_DATA} ${WRKSRC}/etc/${conf} ${DATADIR}/examples/etc
 .endfor
 .if ${PORT_OPTIONS:MGUI} && ${PORT_OPTIONS:MX11}
-	@${LN} -sf mplayer ${STAGEDIR}${PREFIX}/bin/gmplayer
-	@(cd ${STAGEDIR}${PREFIX}/share/man/man1 && ${LN} -sf mplayer.1.gz gmplayer.1.gz)
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
-	${CP} -f ${WRKSRC}/etc/mplayer256x256.png ${STAGEDIR}${PREFIX}/share/pixmaps/mplayer.png
+	@${LN} -sf mplayer ${PREFIX}/bin/gmplayer
+	@(cd ${PREFIX}/share/man/man1 && ${LN} -sf mplayer.1.gz gmplayer.1.gz)
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${CP} -f ${WRKSRC}/etc/mplayer256x256.png ${PREFIX}/share/pixmaps/mplayer.png
 .endif
 
 .include <bsd.port.post.mk>

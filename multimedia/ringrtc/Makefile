@@ -152,6 +152,6 @@ pre-build:
 # /usr/local/share/ringrtc instead?
 do-install:
 	${INSTALL_LIB} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/libringrtc.so \
-		${STAGEDIR}${PREFIX}/lib/
+		${PREFIX}/lib/
 
 .include <bsd.port.mk>

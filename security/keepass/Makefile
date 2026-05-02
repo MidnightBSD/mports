@@ -54,12 +54,12 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/xbuild /t:KeePass /p:Configuration=${CONFIG})
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/Build/KeePass/${CONFIG}/KeePass.exe ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/Ext/KeePass.config.xml ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/Ext/KeePass.exe.config ${STAGEDIR}${DATADIR}
-	@(cd ${WRKSRC}/Ext && ${COPYTREE_SHARE} XSL ${STAGEDIR}${DATADIR})
+	@${MKDIR} ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/Build/KeePass/${CONFIG}/KeePass.exe ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/Ext/KeePass.config.xml ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/Ext/KeePass.exe.config ${DATADIR}
+	@(cd ${WRKSRC}/Ext && ${COPYTREE_SHARE} XSL ${DATADIR})
 .for size in 16 32 48 256
 	@${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/share/icons/hicolor/${size}x${size}/apps
 	${INSTALL_DATA} ${WRKSRC}/KeePass_*_${size}x${size}x32.png \

@@ -29,7 +29,7 @@ do-build:
 	${PREFIX}/bin/bdftopcf -t ${WRKSRC}/suxus-iso-8859-1.bdf | ${GZIP_CMD} > ${WRKSRC}/suxus-iso-8859-1.pcf.gz
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${FONTSDIR}
 
 .include <bsd.port.mk>

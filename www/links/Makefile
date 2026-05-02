@@ -107,7 +107,7 @@ post-patch:
 
 .if ${PORT_OPTIONS:MX11}
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/graphics/links.xpm ${STAGEDIR}${PREFIX}/share/pixmaps/links.xpm
+	@${INSTALL_DATA} ${WRKSRC}/graphics/links.xpm ${PREFIX}/share/pixmaps/links.xpm
 .endif
 
 .include <bsd.port.mk>

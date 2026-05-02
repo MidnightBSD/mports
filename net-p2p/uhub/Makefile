@@ -40,16 +40,16 @@ post-patch:
 		's|"/etc/uhub/|"${ETCDIR}/|' ${WRKSRC}/src/uhub.h
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/uhub ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/uhub-passwd ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/uhub
-	${INSTALL_LIB} ${WRKSRC}/mod_*.so ${STAGEDIR}${PREFIX}/lib/uhub
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/uhub ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/uhub-passwd ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/lib/uhub
+	${INSTALL_LIB} ${WRKSRC}/mod_*.so ${PREFIX}/lib/uhub
+	@${MKDIR} ${ETCDIR}
 .for i in uhub.conf users.conf
-	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${STAGEDIR}${ETCDIR}/${i}.sample
+	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${ETCDIR}/${i}.sample
 .endfor
 .for i in motd.txt rules.txt
-	@${ECHO_CMD} -n > ${STAGEDIR}${ETCDIR}/${i}.sample
+	@${ECHO_CMD} -n > ${ETCDIR}/${i}.sample
 .endfor
 
 .include <bsd.port.post.mk>

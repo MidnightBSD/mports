@@ -85,16 +85,16 @@ do-build:
 		${CC} ${CFLAGS} ${LDFLAGS} ${LIBS} -o cups-pdf cups-pdf.c)
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/libexec/cups/backend
+	@${MKDIR} ${PREFIX}/libexec/cups/backend
 	${INSTALL_PROGRAM} ${WRKSRC}/src/cups-pdf \
-		${STAGEDIR}${PREFIX}/libexec/cups/backend/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/cups/model
+		${PREFIX}/libexec/cups/backend/
+	@${MKDIR} ${PREFIX}/share/cups/model
 	${INSTALL_DATA} ${WRKSRC}/extra/CUPS-PDF_opt.ppd \
 		${WRKSRC}/extra/CUPS-PDF_noopt.ppd \
-		${STAGEDIR}${PREFIX}/share/cups/model/
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+		${PREFIX}/share/cups/model/
+	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/extra/cups-pdf.conf \
-		${STAGEDIR}${ETCDIR}/cups-pdf.conf.sample
+		${ETCDIR}/cups-pdf.conf.sample
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

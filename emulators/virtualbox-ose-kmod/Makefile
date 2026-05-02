@@ -97,11 +97,11 @@ pre-build:
 	    '. ${WRKSRC}/env.sh && ${KMK_CONFIG} ${LOCALBASE}/bin/kmk ${KMK_FLAGS}'
 
 do-install:
-	${MKDIR} ${STAGEDIR}${KMODDIR}
+	${MKDIR} ${KMODDIR}
 .for i in ${VBOX_KMODS}
-	${INSTALL_KLD} ${VBOX_BIN}/${i}/${i}.ko ${STAGEDIR}${KMODDIR}
+	${INSTALL_KLD} ${VBOX_BIN}/${i}/${i}.ko ${KMODDIR}
 .if ${PORT_OPTIONS:MDEBUG}
-	${INSTALL_KLD} ${VBOX_BIN}/${i}/${i}.ko.${SYMBOLSUFFIX} ${STAGEDIR}${KMODDIR}
+	${INSTALL_KLD} ${VBOX_BIN}/${i}/${i}.ko.${SYMBOLSUFFIX} ${KMODDIR}
 .endif
 .endfor
 

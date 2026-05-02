@@ -71,8 +71,8 @@ pre-build-MANPAGES-off:
 				${INSTALL_MAN} ${FILESDIR}/tdb*.8 ${BUILD_WRKSRC}/bin/default/man
 
 post-install:
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/tdb*
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtdb.so.1
+				${STRIP_CMD} ${PREFIX}/bin/tdb*
+				${STRIP_CMD} ${PREFIX}/lib/libtdb.so.1
 
 post-install-PYTHON-on:
 				${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/tdb*.so

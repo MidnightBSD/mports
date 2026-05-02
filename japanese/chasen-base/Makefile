@@ -30,7 +30,7 @@ post-patch:
 		-e 's/-liconv/${ICONV_LIB}/' ${WRKSRC}/configure
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/chasen/dic
+	${MKDIR} ${PREFIX}/share/chasen/dic
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

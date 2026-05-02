@@ -389,10 +389,10 @@ post-patch:
 	@${CP} ${WRKSRC}/src/android/error.c ${WRKSRC}/src/posix
 
 post-install:
-	@(cd ${STAGEDIR}${PREFIX} && ${FIND} -s lib/vlc -not -name '*.la' \
+	@(cd ${PREFIX} && ${FIND} -s lib/vlc -not -name '*.la' \
 		-type f -o -type l >> ${TMPPLIST})
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/vlc/plugins/*/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/vlc/plugins/*/*.so
 	# plugin cache becomes stale after strip. Regenerate it:
-	${WRKSRC}/bin/vlc-cache-gen ${STAGEDIR}${PREFIX}/lib/vlc/plugins
+	${WRKSRC}/bin/vlc-cache-gen ${PREFIX}/lib/vlc/plugins
 
 .include <bsd.port.mk>

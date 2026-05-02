@@ -29,6 +29,6 @@ NO_TEST=	yes
 post-install:
 # For legacy API consumers e.g., aom, x265
 	(cd ${WRKSRC:H} && ${COPYTREE_SHARE} "model" \
-		${STAGEDIR}${DATADIR:H} "-name *.json")
+		${DATADIR:H} "-name *.json")
 
 .include <bsd.port.mk>

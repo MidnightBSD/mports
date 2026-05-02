@@ -25,13 +25,13 @@ PORTDOCS=	README.md
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/gitup.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/gitup.conf.5 \
-		${STAGEDIR}${PREFIX}/share/man/man5
+		${PREFIX}/share/man/man5
 	${INSTALL_DATA} ${WRKSRC}/gitup.conf \
-		${STAGEDIR}${PREFIX}/etc/gitup.conf.sample
+		${PREFIX}/etc/gitup.conf.sample
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

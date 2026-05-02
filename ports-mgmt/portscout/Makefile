@@ -68,30 +68,30 @@ pre-install-SQLITE-on:
 	@${REINPLACE_CMD} 's/^#\(.*DBI:SQLite.*\)$$/\1/g' ${WRKSRC}/portscout.conf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout/DataSrc
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout/SiteHandler
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout/SQL
-	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout/
-	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/DataSrc/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout/DataSrc/
-	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/SiteHandler/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout/SiteHandler/
-	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/SQL/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout/SQL/
-	${INSTALL_SCRIPT} ${WRKSRC}/Portscout.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Portscout.pm
-	${INSTALL_SCRIPT} ${WRKSRC}/portscout.pl ${STAGEDIR}${PREFIX}/bin/portscout
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/Portscout
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/Portscout/DataSrc
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/Portscout/SiteHandler
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/Portscout/SQL
+	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/*.pm ${PREFIX}/${SITE_PERL_REL}/Portscout/
+	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/DataSrc/*.pm ${PREFIX}/${SITE_PERL_REL}/Portscout/DataSrc/
+	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/SiteHandler/*.pm ${PREFIX}/${SITE_PERL_REL}/Portscout/SiteHandler/
+	${INSTALL_SCRIPT} ${WRKSRC}/Portscout/SQL/*.pm ${PREFIX}/${SITE_PERL_REL}/Portscout/SQL/
+	${INSTALL_SCRIPT} ${WRKSRC}/Portscout.pm ${PREFIX}/${SITE_PERL_REL}/Portscout.pm
+	${INSTALL_SCRIPT} ${WRKSRC}/portscout.pl ${PREFIX}/bin/portscout
 
-	${INSTALL_DATA} ${WRKSRC}/portscout.pod ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}
+	${INSTALL_DATA} ${WRKSRC}/portscout.pod ${PREFIX}/${SITE_PERL_REL}
 
 	pod2man ${WRKSRC}/portscout.pod ${WRKSRC}/portscout.1
-	${INSTALL_MAN} ${WRKSRC}/portscout.1 ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/portscout.1 ${PREFIX}/share/man/man1/
 
-	@${MKDIR} ${STAGEDIR}${DATADIR}/templates
+	@${MKDIR} ${DATADIR}/templates
 	cd ${WRKSRC}/templates \
-	  && ${INSTALL_DATA} * ${STAGEDIR}${DATADIR}/templates
+	  && ${INSTALL_DATA} * ${DATADIR}/templates
 
-	@${MKDIR} ${STAGEDIR}${DATADIR}/sql
-	cd ${WRKSRC}/sql && ${INSTALL_DATA} *.sql ${STAGEDIR}${DATADIR}/sql
+	@${MKDIR} ${DATADIR}/sql
+	cd ${WRKSRC}/sql && ${INSTALL_DATA} *.sql ${DATADIR}/sql
 
-	${INSTALL_DATA} ${WRKSRC}/portscout.conf ${STAGEDIR}${PREFIX}/etc/portscout.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/portscout.conf ${PREFIX}/etc/portscout.conf.sample
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

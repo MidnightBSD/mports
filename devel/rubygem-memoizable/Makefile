@@ -10,6 +10,7 @@ WWW=		https://github.com/dkubb/memoizable
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-thread_safe>=0.3.1<1:devel/rubygem-thread_safe
 RUN_DEPENDS=	rubygem-thread_safe>=0.3.1<1:devel/rubygem-thread_safe
 
 USES=		gem

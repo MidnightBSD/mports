@@ -27,6 +27,6 @@ DESKTOP_ENTRIES="Yudit" "${COMMENT}" "${PREFIX}/share/pixmaps/yudit.xpm" \
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/icons/SS_Yudit_XPM.xpm \
-		${STAGEDIR}${PREFIX}/share/pixmaps/yudit.xpm
+		${PREFIX}/share/pixmaps/yudit.xpm
 
 .include <bsd.port.mk>

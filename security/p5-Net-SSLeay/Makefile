@@ -23,9 +23,9 @@ PORTEXAMPLES=	*
 SHEBANG_FILES=	examples/*.pl
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Net/SSLeay/SSLeay.so
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/examples/*.pl ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/req.conf ${STAGEDIR}${EXAMPLESDIR}/req.conf
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Net/SSLeay/SSLeay.so
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/examples/*.pl ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/req.conf ${EXAMPLESDIR}/req.conf
 
 .include <bsd.port.mk>

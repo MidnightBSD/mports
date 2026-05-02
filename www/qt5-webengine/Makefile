@@ -178,7 +178,7 @@ post-build:
 .endfor
 
 post-install:
-	for lib in ${STAGEDIR}${PREFIX}/${QT_LIBDIR_REL}/*.so.${_QT_VERSION:C/-.*//} ; \
+	for lib in ${PREFIX}/${QT_LIBDIR_REL}/*.so.${_QT_VERSION:C/-.*//} ; \
 	do \
 		${BRANDELF} -t FreeBSD $$lib ; \
 	done

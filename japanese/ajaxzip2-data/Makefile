@@ -23,8 +23,8 @@ do-build:
 	cd ${WRKSRC}/work && ${DATADIR}/csv2jsonzip.pl ../KEN_ALL.CSV ../JIGYOSYO.CSV
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/data
-	cd ${WRKSRC}/data && ${INSTALL_DATA} zip-???.json ${STAGEDIR}${DATADIR}/data/
+	${MKDIR} ${DATADIR}/data
+	cd ${WRKSRC}/data && ${INSTALL_DATA} zip-???.json ${DATADIR}/data/
 
 # for maintenance.
 fetch1:

@@ -67,6 +67,6 @@ post-patch-DOCS-off:
 
 post-install:
 	# make check-plist happy
-	${RMDIR} ${STAGEDIR}${DATADIR}
+	${RMDIR} ${DATADIR}
 
 .include <bsd.port.mk>

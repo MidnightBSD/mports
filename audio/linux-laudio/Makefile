@@ -22,8 +22,8 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${BRANDELF} -t Linux ${WRKDIR}/la
-	${INSTALL_PROGRAM} ${WRKDIR}/la ${STAGEDIR}${PREFIX}/bin/laudio
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKDIR}/readme.txt ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKDIR}/la ${PREFIX}/bin/laudio
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKDIR}/readme.txt ${DOCSDIR}
 
 .include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	gnutls
-DISTVERSION=	3.8.11
+DISTVERSION=	3.8.13
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/${PORTNAME}/v${DISTVERSION:C/(\.[^.]*).*/\1/} \
 		https://gitlab.com/gnutls/gnutls/-/raw/${DISTVERSION}/tests/:test
@@ -128,9 +128,9 @@ post-patch:
 		${WRKSRC}/doc/stamp_functions
 
 post-install:
-	@${RM} ${STAGEDIR}${DOCSDIR}/*.png
-	@${RMDIR} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/examples/*.[ch] ${STAGEDIR}${EXAMPLESDIR}
+	@${RM} ${DOCSDIR}/*.png
+	@${RMDIR} ${DOCSDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/examples/*.[ch] ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

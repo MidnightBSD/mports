@@ -19,13 +19,13 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/wwasw-fpw/wwasw/data
+	@${MKDIR} ${PREFIX}/share/dict/wwasw-fpw/wwasw/data
 	${INSTALL_DATA} ${WRKSRC}/wwasw/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/wwasw-fpw/wwasw/data
+		${PREFIX}/share/dict/wwasw-fpw/wwasw/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/wwasw-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/wwasw-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme.pkg readme.txt \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

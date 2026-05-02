@@ -19,14 +19,14 @@ OPTIONS_SUB=	yes
 DOCSDIR=	${PREFIX}/share/doc/m17n
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/en
-	${INSTALL_MAN} ${WRKSRC}/man/man1/* ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/man/man3/* ${STAGEDIR}${PREFIX}/share/man/man3
-	${INSTALL_MAN} ${WRKSRC}/man/man5/* ${STAGEDIR}${PREFIX}/share/man/man5
-	${INSTALL_MAN} ${WRKSRC}/usr/latex/m17n-lib.pdf ${STAGEDIR}${DOCSDIR}/en
-	(cd ${WRKSRC}/usr/ && ${COPYTREE_SHARE} html ${STAGEDIR}${DOCSDIR}/en/)
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/ja
-	${INSTALL_MAN} ${WRKSRC}/ja/latex/m17n-lib.pdf ${STAGEDIR}${DOCSDIR}/ja
-	(cd ${WRKSRC}/ja/ && ${COPYTREE_SHARE} html ${STAGEDIR}${DOCSDIR}/ja/)
+	@${MKDIR} ${DOCSDIR}/en
+	${INSTALL_MAN} ${WRKSRC}/man/man1/* ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/man3/* ${PREFIX}/share/man/man3
+	${INSTALL_MAN} ${WRKSRC}/man/man5/* ${PREFIX}/share/man/man5
+	${INSTALL_MAN} ${WRKSRC}/usr/latex/m17n-lib.pdf ${DOCSDIR}/en
+	(cd ${WRKSRC}/usr/ && ${COPYTREE_SHARE} html ${DOCSDIR}/en/)
+	@${MKDIR} ${DOCSDIR}/ja
+	${INSTALL_MAN} ${WRKSRC}/ja/latex/m17n-lib.pdf ${DOCSDIR}/ja
+	(cd ${WRKSRC}/ja/ && ${COPYTREE_SHARE} html ${DOCSDIR}/ja/)
 
 .include <bsd.port.mk>

@@ -28,7 +28,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|cp -ur|cp -pr|g' ${WRKSRC}/install.sh
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/themes
-	${WRKSRC}/install.sh -d ${STAGEDIR}${PREFIX}/share/themes
+	@${MKDIR} ${PREFIX}/share/themes
+	${WRKSRC}/install.sh -d ${PREFIX}/share/themes
 
 .include <bsd.port.mk>

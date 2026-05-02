@@ -1,0 +1,13 @@
+TIMESTAMP = 1775813421
+SHA256 (go1.26.2.src.tar.gz) = 2e91ebb6947a96e9436fb2b3926a8802efe63a6d375dffec4f82aa9dbd6fd43b
+SIZE (go1.26.2.src.tar.gz) = 34120738
+SHA256 (go1.25.9.freebsd-arm64.tar.gz) = 4c0fe53977412036fc8081e8d0992bbaabe4d3e1926137271ba11c2f5753300f
+SIZE (go1.25.9.freebsd-arm64.tar.gz) = 57028673
+SHA256 (go1.25.9.freebsd-amd64.tar.gz) = 9152d0c0badbfeb0c0e148e47c12bec28099d8cf2db60958810c879e0b679d07
+SIZE (go1.25.9.freebsd-amd64.tar.gz) = 59516726
+SHA256 (go1.25.9.freebsd-arm.tar.gz) = 437dca59604ad4a806a6a88e3d7ec1cd98ac9b402a3671629f4e553dd8b9888f
+SIZE (go1.25.9.freebsd-arm.tar.gz) = 58261252
+SHA256 (go1.25.9.freebsd-386.tar.gz) = 2d67dbdfd09c6fcaa0e64485367ef43b8837ea200c663d6417183237bcddf83d
+SIZE (go1.25.9.freebsd-386.tar.gz) = 58218991
+SHA256 (go1.25.9.freebsd-riscv64.tar.gz) = d6087cdd1c084bd186132f29e0d032852a745f3c7619003d0fd5612c1fa58c8a
+SIZE (go1.25.9.freebsd-riscv64.tar.gz) = 58053430

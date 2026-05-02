@@ -22,7 +22,7 @@ USE_GNUSTEP=	back build
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Applications/Ladder.app/Ladder
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Ladder.app/Ladder
 
 
 .include <bsd.port.mk>

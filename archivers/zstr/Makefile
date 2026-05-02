@@ -20,6 +20,6 @@ PLIST_FILES=	include/strict_fstream.hpp \
 		include/zstr.hpp
 
 do-install:
-	cd ${WRKSRC}/src && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include
+	cd ${WRKSRC}/src && ${COPYTREE_SHARE} . ${PREFIX}/include
 
 .include <bsd.port.mk>

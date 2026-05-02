@@ -46,9 +46,9 @@ post-patch:
 	@${FIND} ${WRKSRC} -name "*.orig" -delete
 
 do-install:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${DATADIR}
-	cd ${STAGEDIR}${PREFIX} && ${LN} -sf ../${PORTNAME}-${PORTVERSION}/bin/netbeans bin/${PORTNAME}
-	cd ${STAGEDIR}${PREFIX} && ${LN} -sf ../${PORTNAME}-${PORTVERSION}/bin/netbeans bin/${PORTNAME}-${PORTVERSION}
-	${RM} -rf ${STAGEDIR}${DATADIR}/profiler/lib/deployed/jdk16/linux-arm*
+	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${DATADIR}
+	cd ${PREFIX} && ${LN} -sf ../${PORTNAME}-${PORTVERSION}/bin/netbeans bin/${PORTNAME}
+	cd ${PREFIX} && ${LN} -sf ../${PORTNAME}-${PORTVERSION}/bin/netbeans bin/${PORTNAME}-${PORTVERSION}
+	${RM} -rf ${DATADIR}/profiler/lib/deployed/jdk16/linux-arm*
 
 .include <bsd.port.mk>

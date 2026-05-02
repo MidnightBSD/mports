@@ -95,21 +95,21 @@ do-configure:
 	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} gn gen out/Release --args='${GN_ARGS}'
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/cppgc ${STAGEDIR}${PREFIX}/include/libplatform
-	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/d8 ${STAGEDIR}${PREFIX}/bin/d8
-	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/mkgrokdump ${STAGEDIR}${PREFIX}/bin/mkgrokdump
-	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/mksnapshot ${STAGEDIR}${PREFIX}/bin/mksnapshot
-	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/v8_shell ${STAGEDIR}${PREFIX}/bin/v8_shell
-	${INSTALL_LIB} ${WRKSRC}/out/Release/libchrome_zlib.so ${STAGEDIR}${PREFIX}/lib/libchrome_zlib.so
-	${INSTALL_LIB} ${WRKSRC}/out/Release/libcppgc.so ${STAGEDIR}${PREFIX}/lib/libcppgc.so
-	${INSTALL_LIB} ${WRKSRC}/out/Release/libv8.so ${STAGEDIR}${PREFIX}/lib/libv8.so
-	${INSTALL_LIB} ${WRKSRC}/out/Release/libv8_libbase.so ${STAGEDIR}${PREFIX}/lib/libv8_libbase.so
-	${INSTALL_LIB} ${WRKSRC}/out/Release/libv8_libplatform.so ${STAGEDIR}${PREFIX}/lib/libv8_libplatform.so
-	${INSTALL_DATA} ${WRKSRC}/include/*.h ${STAGEDIR}${PREFIX}/include/
-	cd ${WRKSRC}/include/cppgc && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/cppgc '-name *\.h'
-	${INSTALL_DATA} ${WRKSRC}/include/libplatform/*.h ${STAGEDIR}${PREFIX}/include/libplatform/
-	${INSTALL_DATA} ${WRKDIR}/v8*.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/v8_simple_* ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${PREFIX}/include/cppgc ${PREFIX}/include/libplatform
+	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/d8 ${PREFIX}/bin/d8
+	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/mkgrokdump ${PREFIX}/bin/mkgrokdump
+	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/mksnapshot ${PREFIX}/bin/mksnapshot
+	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/v8_shell ${PREFIX}/bin/v8_shell
+	${INSTALL_LIB} ${WRKSRC}/out/Release/libchrome_zlib.so ${PREFIX}/lib/libchrome_zlib.so
+	${INSTALL_LIB} ${WRKSRC}/out/Release/libcppgc.so ${PREFIX}/lib/libcppgc.so
+	${INSTALL_LIB} ${WRKSRC}/out/Release/libv8.so ${PREFIX}/lib/libv8.so
+	${INSTALL_LIB} ${WRKSRC}/out/Release/libv8_libbase.so ${PREFIX}/lib/libv8_libbase.so
+	${INSTALL_LIB} ${WRKSRC}/out/Release/libv8_libplatform.so ${PREFIX}/lib/libv8_libplatform.so
+	${INSTALL_DATA} ${WRKSRC}/include/*.h ${PREFIX}/include/
+	cd ${WRKSRC}/include/cppgc && ${COPYTREE_SHARE} . ${PREFIX}/include/cppgc '-name *\.h'
+	${INSTALL_DATA} ${WRKSRC}/include/libplatform/*.h ${PREFIX}/include/libplatform/
+	${INSTALL_DATA} ${WRKDIR}/v8*.pc ${PREFIX}/libdata/pkgconfig/
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/out/Release/v8_simple_* ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

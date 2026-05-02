@@ -17,8 +17,8 @@ do-fecth:
 	@${DO_NADA}
 
 do-install:
-	${MKDIR} "${STAGEDIR}${ETCDIR}/instances.d"
-	${INSTALL_SCRIPT} "${WRKDIR}/mvn.sh" "${STAGEDIR}${PREFIX}/bin/mvn"
-	${INSTALL_SCRIPT} "${WRKDIR}/mvn.sh" "${STAGEDIR}${PREFIX}/bin/mvnDebug"
+	${MKDIR} "${ETCDIR}/instances.d"
+	${INSTALL_SCRIPT} "${WRKDIR}/mvn.sh" "${PREFIX}/bin/mvn"
+	${INSTALL_SCRIPT} "${WRKDIR}/mvn.sh" "${PREFIX}/bin/mvnDebug"
 
 .include <bsd.port.mk>

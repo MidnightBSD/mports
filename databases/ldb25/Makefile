@@ -159,10 +159,10 @@ pre-build-MANPAGES-off:
 
 post-install:
 .for lib in ${LDB_BINS} ${LDB_LIBS}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${lib}
+	${STRIP_CMD} ${PREFIX}/${lib}
 .endfor
 .if ${PORT_OPTIONS:MPYTHON3} && !defined(NO_PYTHON)
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpyldb-util.so
+	${STRIP_CMD} ${PREFIX}/lib/libpyldb-util.so
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ldb.so
 .endif
 

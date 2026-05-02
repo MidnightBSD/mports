@@ -36,7 +36,7 @@ post-extract:
 	@cd ${WRKSRC} && ${RM} ${BASIC_FONTS} ${EMOJI_FONTS}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

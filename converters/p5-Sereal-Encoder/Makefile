@@ -29,6 +29,6 @@ MAKE_JOBS_UNSAFE=	yes
 PORTSCOUT=	limit:^[0-9\.]*$$
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Encoder/Encoder.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Encoder/Encoder.so
 
 .include <bsd.port.mk>

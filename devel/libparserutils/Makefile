@@ -24,6 +24,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libparserutils.so
+	${STRIP_CMD} ${PREFIX}/lib/libparserutils.so
 
 .include <bsd.port.mk>

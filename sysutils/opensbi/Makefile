@@ -34,6 +34,6 @@ PLATFORM_RISCV_ABI=	lp64
 
 post-install:
 	${STRIP_CMD} ${GENERIC_STRIP_ARGS} \
-	    ${STAGEDIR}${DATADIR}/${PLATFORM_RISCV_ABI}/generic/firmware/fw_*.elf
+	    ${DATADIR}/${PLATFORM_RISCV_ABI}/generic/firmware/fw_*.elf
 
 .include <bsd.port.mk>

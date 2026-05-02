@@ -109,12 +109,12 @@ post-build:
 		${WRKSRC}/Doc/zshall.1)
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/site-functions
-	${LN} -f ${STAGEDIR}${PREFIX}/bin/zsh ${STAGEDIR}${PREFIX}/bin/rzsh
+	${MKDIR} ${DATADIR}/site-functions
+	${LN} -f ${PREFIX}/bin/zsh ${PREFIX}/bin/rzsh
 # Precompile completions and functions
-	(${STAGEDIR}${PREFIX}/bin/zsh -fc ' \
+	(${PREFIX}/bin/zsh -fc ' \
 		setopt extendedglob nomark_dirs; \
-		cd ${STAGEDIR}/${DATADIR}/${ZSH_VER} ; \
+		cd /${DATADIR}/${ZSH_VER} ; \
 		${RM} -f functions/**/*.orig ; \
 		for i in functions/**/*(/) ; do \
 			zcompile -U -M $$i.zwc $$i/*~*.zwc(^/) ; \

@@ -42,10 +42,10 @@ post-patch:
 		${WRKSRC}/GLextensions.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${PROGRAMS:S,^,${WRKSRC}/,} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${SCRIPTS:S,^,${WRKSRC}/,} ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/X11/glclock
+	${INSTALL_PROGRAM} ${PROGRAMS:S,^,${WRKSRC}/,} ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${SCRIPTS:S,^,${WRKSRC}/,} ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/lib/X11/glclock
 	${INSTALL_DATA} ${TEXTURES:S,^,${WRKSRC}/,} \
-		${STAGEDIR}${PREFIX}/lib/X11/glclock
+		${PREFIX}/lib/X11/glclock
 
 .include <bsd.port.mk>

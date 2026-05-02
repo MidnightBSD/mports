@@ -53,7 +53,7 @@ post-patch:
 	@${REINPLACE_CMD} 's|^_NAME|NAME|' ${WRKSRC}/data/*.pad.in
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

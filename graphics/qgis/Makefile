@@ -187,8 +187,8 @@ pre-configure:
 	${MKDIR} ${CONFIGURE_WRKSRC}/bin && ${LN} -s ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/bin/python3
 
 post-install:
-	@${RM} ${STAGEDIR}${DATADIR}/python/pytz/tzfile.py.bak
-	@${FIND} ${STAGEDIR}${LOCALBASE} -name "__pycache__" -delete
+	@${RM} ${DATADIR}/python/pytz/tzfile.py.bak
+	@${FIND} ${LOCALBASE} -name "__pycache__" -delete
 	@${RM} /tmp/srs.db
 
 check:

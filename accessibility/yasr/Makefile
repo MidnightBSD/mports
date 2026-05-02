@@ -31,9 +31,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/bin/bash|/bin/csh|' ${WRKSRC}/yasr.conf
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for doc in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

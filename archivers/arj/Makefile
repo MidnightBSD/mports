@@ -66,10 +66,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's!^static !!' ${WRKSRC}/integr.c
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC}/doc && ${INSTALL_DATA} COPYING debug.txt \
-		${STAGEDIR}${DOCSDIR}
+		${DOCSDIR}
 	cd ${WRKSRC}/resource/en && ${INSTALL_DATA} arjl.txt arjs.txt \
-		history.txt readme.txt unix.txt ${STAGEDIR}${DOCSDIR}
+		history.txt readme.txt unix.txt ${DOCSDIR}
 
 .include <bsd.port.mk>

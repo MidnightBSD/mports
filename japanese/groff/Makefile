@@ -60,14 +60,14 @@ post-build:
 
 post-install:
 	cd ${WRKDIR}/${TMAC_DISTNAME} && ${INSTALL_DATA} \
-	    ${TMACFILES} ${STAGEDIR}${DATADIR}/${PORTVERSION}/tmac
+	    ${TMACFILES} ${DATADIR}/${PORTVERSION}/tmac
 	cd ${WRKDIR}/${TMAC_DISTNAME}/mdoc && ${INSTALL_DATA} \
-	    ${MDOCFILES} ${STAGEDIR}${DATADIR}/${PORTVERSION}/tmac/mdoc
-	${INSTALL_DATA} ${WRKDIR}/mdoc.local ${STAGEDIR}${DATADIR}/site-tmac
+	    ${MDOCFILES} ${DATADIR}/${PORTVERSION}/tmac/mdoc
+	${INSTALL_DATA} ${WRKDIR}/mdoc.local ${DATADIR}/site-tmac
 	${INSTALL_DATA} ${WRKSRC}/doc/groff.info \
-	    ${STAGEDIR}${PREFIX}/${INFO_PATH}
+	    ${PREFIX}/${INFO_PATH}
 	for F in eqn neqn pic tbl; do \
-		${LN} -sf $$F ${STAGEDIR}${PREFIX}/bin/g$$F; \
+		${LN} -sf $$F ${PREFIX}/bin/g$$F; \
 	done
 
 post-install-DOCS-on:

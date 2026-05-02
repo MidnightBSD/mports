@@ -15,6 +15,6 @@ USE_XORG=	x11
 PLIST_FILES=	bin/xtruco
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/xtruco ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/xtruco ${PREFIX}/bin
 
 .include <bsd.port.mk>

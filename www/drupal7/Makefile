@@ -36,15 +36,15 @@ MYSQL_USES=	mysql
 MYSQL_USE=	PHP=pdo_mysql
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DRUPAL_DIR}/sites/default/files
+	@${MKDIR} ${DRUPAL_DIR}/sites/default/files
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} ".htaccess cron.php authorize.php \
 		includes index.php install.php misc modules profiles \
 		robots.txt scripts themes update.php web.config xmlrpc.php" \
-		${STAGEDIR}${DRUPAL_DIR})
+		${DRUPAL_DIR})
 	(cd ${WRKSRC}/sites && ${COPYTREE_SHARE} "example.sites.php all" \
-		${STAGEDIR}${DRUPAL_DIR}/sites)
+		${DRUPAL_DIR}/sites)
 	${INSTALL_DATA} ${WRKSRC}/sites/default/default.settings.php \
-		${STAGEDIR}${DRUPAL_DIR}/sites/default/default.settings.php.sample
+		${DRUPAL_DIR}/sites/default/default.settings.php.sample
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

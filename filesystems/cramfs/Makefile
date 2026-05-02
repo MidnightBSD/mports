@@ -21,7 +21,7 @@ PLIST_FILES=	sbin/cramfsck sbin/mkcramfs
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/cramfsck ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/mkcramfs ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/cramfsck ${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/mkcramfs ${PREFIX}/sbin
 
 .include <bsd.port.mk>

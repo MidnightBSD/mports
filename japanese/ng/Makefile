@@ -40,11 +40,11 @@ MYPORTDOCS=	CHANGES.1_3 CHANGES.doc Ng.FAQ Ng.doc Ng.ref Ng.tut \
 
 do-install:
 	(cd ${WRKSRC} && ${INSTALL_PROGRAM} ng \
-		${STAGEDIR}${PREFIX}/bin)
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/bin)
+	@${MKDIR} ${DOCSDIR}
 .for i in ${MYPORTDOCS}
 	(cd ${WRKSRC}/docs && ${INSTALL_DATA} ${i} \
-		${STAGEDIR}${DOCSDIR}/${i:S/$/.euc-jp/})
+		${DOCSDIR}/${i:S/$/.euc-jp/})
 .endfor
 
 .include <bsd.port.mk>

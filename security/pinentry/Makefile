@@ -81,7 +81,7 @@ PINENTRY_BIN=	${PINENTRY_${gui}}
 do-install:
 	cd ${PREFIX}/bin/ && ${LN} -sf ${PINENTRY_BIN} pinentry
 	${MKDIR} ${PREFIX}/${INFO_PATH}
-	${INSTALL_DATA} ${WRKSRC}/doc/pinentry.info ${STAGEDIR}${PREFIX}/${INFO_PATH}
+	${INSTALL_DATA} ${WRKSRC}/doc/pinentry.info ${PREFIX}/${INFO_PATH}
 
 .else # !defined(PINENTRY_GUI)
 PKGNAMESUFFIX=	-${PINENTRY_GUI}
@@ -176,8 +176,8 @@ post-extract:
 	@(cd ${WRKSRC}/qt5/icons && ${MV} pinentry.png pinentry-qt5.png)
 
 post-install:
-	-${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
-		${STAGEDIR}${PREFIX}/share/info/pinentry.info
+	-${RM} ${PREFIX}/bin/pinentry \
+		${PREFIX}/share/info/pinentry.info
 
 .endif # !defined(PINENTRY_GUI)
 

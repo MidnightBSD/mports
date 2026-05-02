@@ -21,8 +21,8 @@ CPE_VENDOR=	mozilla
 LANGDIR=	${WWWDIR}/template/ja
 
 do-install:
-	@-${MKDIR} ${STAGEDIR}${LANGDIR}/default
-	(cd ${WRKSRC}/default && ${COPYTREE_SHARE} . ${STAGEDIR}${LANGDIR}/default)
+	@-${MKDIR} ${LANGDIR}/default
+	(cd ${WRKSRC}/default && ${COPYTREE_SHARE} . ${LANGDIR}/default)
 
 # Maintainer
 plist: patch

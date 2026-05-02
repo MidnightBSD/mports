@@ -30,10 +30,10 @@ PORTDOCS=	history.txt optipng.man.html optipng.man.pdf optipng.man.txt \
 		png_optimization.html todo.txt
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/optipng/optipng ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/src/optipng/man/optipng.1 ${STAGEDIR}${PREFIX}/share/man/man1/
+	${INSTALL_PROGRAM} ${WRKSRC}/src/optipng/optipng ${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/src/optipng/man/optipng.1 ${PREFIX}/share/man/man1/
 
-	${INSTALL} -d ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${STAGEDIR}${DOCSDIR}/
+	${INSTALL} -d ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${DOCSDIR}/
 
 .include <bsd.port.mk>

@@ -15,7 +15,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/cmake/Modules
-	${INSTALL_DATA} ${WRKSRC}/* ${STAGEDIR}${PREFIX}/share/cmake/Modules
+	${MKDIR} ${PREFIX}/share/cmake/Modules
+	${INSTALL_DATA} ${WRKSRC}/* ${PREFIX}/share/cmake/Modules
 
 .include <bsd.port.mk>

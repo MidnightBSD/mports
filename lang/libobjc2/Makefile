@@ -44,6 +44,6 @@ CXXFLAGS+=	-stdlib=libstdc++
 .endif
 
 post-install:
-	${LN} -sf libobjc.so.${SHLIB_MAJOR}.${SHLIB_MINOR} ${STAGEDIR}${PREFIX}/lib/libobjc.so.${SHLIB_MAJOR}
+	${LN} -sf libobjc.so.${SHLIB_MAJOR}.${SHLIB_MINOR} ${PREFIX}/lib/libobjc.so.${SHLIB_MAJOR}
 
 .include <bsd.port.post.mk>

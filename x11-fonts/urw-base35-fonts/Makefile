@@ -21,10 +21,10 @@ RUN_DEPENDS=    fc-cache:x11-fonts/fontconfig
 PLIST_SUB=      FONTSDIR="${FONTSDIR:S|${PREFIX}/||}"
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/*.otf ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/*.ttf ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/*.afm ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/*.t1 ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/*.otf ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/*.ttf ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/*.afm ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/*.t1 ${FONTSDIR}
 
 .include <bsd.port.mk>

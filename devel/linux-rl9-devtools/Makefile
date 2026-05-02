@@ -68,18 +68,18 @@ PLIST_SUB=	BUVERSION=${BUVERSION} \
 .include <bsd.mport.options.mk>
 
 post-install:
-	${LN} -sf ld.bfd ${STAGEDIR}${PREFIX}/usr/bin/ld
+	${LN} -sf ld.bfd ${PREFIX}/usr/bin/ld
 .if ${ARCH} == aarch64
 	${LN} -sfh ../../../../lib64/libgcc_s.so.1 \
-	${STAGEDIR}${PREFIX}/usr/lib/gcc/aarch64-redhat-linux/11/libgcc_s.so
+	${PREFIX}/usr/lib/gcc/aarch64-redhat-linux/11/libgcc_s.so
 .elif ${ARCH} == amd64
 	${LN} -sfh ../../../../lib64/libgcc_s.so.1 \
-	${STAGEDIR}${PREFIX}/usr/lib/gcc/x86_64-redhat-linux/11/libgcc_s.so
+	${PREFIX}/usr/lib/gcc/x86_64-redhat-linux/11/libgcc_s.so
 	${LN} -sfh ../../../../libgcc_s.so.1 \
-	${STAGEDIR}${PREFIX}/usr/lib/gcc/x86_64-redhat-linux/11/32/libgcc_s.so
+	${PREFIX}/usr/lib/gcc/x86_64-redhat-linux/11/32/libgcc_s.so
 .	if defined(WANT_LINUX32)
 		${LN} -sfh ../../../libgcc_s.so.1 \
-		${STAGEDIR}${PREFIX}/usr/lib/gcc/i686-redhat-linux/11/libgcc_s.so
+		${PREFIX}/usr/lib/gcc/i686-redhat-linux/11/libgcc_s.so
 .	endif
 .endif
 

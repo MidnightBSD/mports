@@ -44,6 +44,6 @@ PLIST_FILES=	bin/garbd \
 		lib/libgalera_smm.so
 
 post-install:
-	${RLN} ${STAGEDIR}/${PREFIX}/lib/libgalera_smm.so ${STAGEDIR}/${PREFIX}/lib/libgalera.so
+	${RLN} /${PREFIX}/lib/libgalera_smm.so /${PREFIX}/lib/libgalera.so
 
 .include <bsd.port.mk>

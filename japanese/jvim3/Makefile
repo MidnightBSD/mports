@@ -88,10 +88,10 @@ post-build:
 	${ECHO_CMD} "${JVIM3RC}" > ${WRKSRC}/jvim3rc.dist
 
 post-install:
-	${LN} -sf jvim3 ${STAGEDIR}${PREFIX}/bin/jvim
-	${INSTALL_PROGRAM} ${WRKSRC}/src/grep.bin ${STAGEDIR}${PREFIX}/bin/jgrep
-	${INSTALL_DATA} ${WRKSRC}/jvim3rc.dist ${STAGEDIR}${PREFIX}/etc/
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc.j && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+	${LN} -sf jvim3 ${PREFIX}/bin/jvim
+	${INSTALL_PROGRAM} ${WRKSRC}/src/grep.bin ${PREFIX}/bin/jgrep
+	${INSTALL_DATA} ${WRKSRC}/jvim3rc.dist ${PREFIX}/etc/
+	${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC}/doc.j && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>

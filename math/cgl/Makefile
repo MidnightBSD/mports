@@ -31,6 +31,6 @@ GNU_CONFIGURE=	yes
 TEST_TARGET=	test
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libCgl.so.*
+	@${STRIP_CMD} ${PREFIX}/lib/libCgl.so.*
 
 .include <bsd.port.mk>

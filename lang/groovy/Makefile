@@ -31,18 +31,18 @@ DOCS_DISTFILES=	apache-groovy-docs-${PORTVERSION}${EXTRACT_SUFX}
 
 do-install:
 	@${ECHO_MSG} -n ">> Staging JAR as ${JAVAJARDIR}/${PORTNAME}.jar..."
-	${INSTALL_DATA} ${WRKSRC}/embeddable/${PORTNAME}-all-${DISTVERSION:tu}.jar ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
+	${INSTALL_DATA} ${WRKSRC}/embeddable/${PORTNAME}-all-${DISTVERSION:tu}.jar ${JAVAJARDIR}/${PORTNAME}.jar
 	@${ECHO_MSG} " [ DONE ]"
 	@${ECHO_MSG} -n ">> Staging data files in ${DATADIR}..."
 	cd ${WRKSRC} \
-	  && ${FIND} ${DATAFILES} -type d -exec ${MKDIR} ${STAGEDIR}${DATADIR}/{} \; \
-	  && ${FIND} ${DATAFILES} -type f -exec ${INSTALL_DATA} {} ${STAGEDIR}${DATADIR}/{} \;
+	  && ${FIND} ${DATAFILES} -type d -exec ${MKDIR} ${DATADIR}/{} \; \
+	  && ${FIND} ${DATAFILES} -type f -exec ${INSTALL_DATA} {} ${DATADIR}/{} \;
 	@${ECHO_MSG} " [ DONE ]"
 	@${ECHO_MSG} -n ">> Staging executables in ${PREFIX}/bin..."
 	@${REINPLACE_CMD} -f ${WRKDIR}/set-groovy_home.sed ${WRKSRC}/bin/startGroovy
 .for file in ${SCRIPTFILES}
 	@${ECHO_MSG} -n " ${file}"
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/${file} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/${file} ${PREFIX}/bin/
 .endfor
 	@${ECHO_MSG} " [ DONE ]"
 

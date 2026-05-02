@@ -55,9 +55,9 @@ post-patch-FLUSH_LOG-off:
 		${WRKSRC}/config.h
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/thttpd.conf.sample ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_DATA} ${WRKDIR}/thttpd.conf.sample ${PREFIX}/etc
 	${PRINTF} "/var/log/thttpd.log\t  ${WWWOWN}:${WWWGRP}\t640 7 * @T00\
 		J\t/var/run/thttpd.pid\n" > \
-		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf
+		${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf
 
 .include <bsd.port.mk>

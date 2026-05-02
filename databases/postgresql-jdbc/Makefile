@@ -21,6 +21,6 @@ do-extract:
 do-build:
 
 do-install:
-	${INSTALL_DATA} ${DISTDIR}/${DISTFILES} ${STAGEDIR}${JAVAJARDIR}/postgresql.jar
+	${INSTALL_DATA} ${DISTDIR}/${DISTFILES} ${JAVAJARDIR}/postgresql.jar
 
 .include <bsd.port.mk>

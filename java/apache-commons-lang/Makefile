@@ -38,10 +38,10 @@ MAKE_ARGS+=	-Djdk.javadoc=${JDK_API}
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/target/${JARFILE} \
-		${STAGEDIR}${JAVAJARDIR}/${DESTJARFILE}
+		${JAVAJARDIR}/${DESTJARFILE}
 .if ${PORT_OPTIONS:MDOCS}
 	(cd ${WRKSRC}/target/apidocs && ${COPYTREE_SHARE} . \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 .endif
 
 .include <bsd.port.post.mk>

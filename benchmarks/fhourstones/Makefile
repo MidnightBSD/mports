@@ -30,10 +30,10 @@ post-build:
 		>> ${WRKSRC}/fhourstones
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/fhourstones ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT}  ${WRKSRC}/fhourstones ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA}    ${WRKSRC}/inputs ${STAGEDIR}${DATADIR}
+	${MKDIR} ${PREFIX}/libexec/fhourstones ${DATADIR}
+	${INSTALL_SCRIPT}  ${WRKSRC}/fhourstones ${PREFIX}/bin
+	${INSTALL_DATA}    ${WRKSRC}/inputs ${DATADIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/SearchGame \
-		${STAGEDIR}${PREFIX}/libexec/fhourstones
+		${PREFIX}/libexec/fhourstones
 
 .include <bsd.port.mk>

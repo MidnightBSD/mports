@@ -58,9 +58,9 @@ pre-install:
 		${WRKSRC}/wp-config.php.sample ${WRKSRC}/wp-config.php; fi
 
 do-install:
-	${INSTALL} -d -m 755 ${STAGEDIR}${WWWDIR}/
-	${CP} -R ${WRKSRC}/ ${STAGEDIR}${WWWDIR}/
-	${FIND} ${STAGEDIR}${WWWDIR}/ -type d -exec ${CHMOD} g+w {} \;
+	${INSTALL} -d -m 755 ${WWWDIR}/
+	${CP} -R ${WRKSRC}/ ${WWWDIR}/
+	${FIND} ${WWWDIR}/ -type d -exec ${CHMOD} g+w {} \;
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/

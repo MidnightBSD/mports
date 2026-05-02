@@ -25,10 +25,10 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/src/utarray.h \
 		${WRKSRC}/src/uthash.h \
 		${WRKSRC}/src/utlist.h \
-		${WRKSRC}/src/utstring.h ${STAGEDIR}${PREFIX}/include/
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${WRKSRC}/src/utstring.h ${PREFIX}/include/
+	@${MKDIR} ${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/doc/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/${f} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

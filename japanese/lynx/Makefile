@@ -64,7 +64,7 @@ post-patch:
 
 post-install-DOCS-on:
 .for doc in COPYHEADER COPYING
-	${RLN} ${FAKE_DESTDIR}${DOCSDIR}/${doc} ${STAGEDIR}${L_HELP}
+	${RLN} ${FAKE_DESTDIR}${DOCSDIR}/${doc} ${L_HELP}
 .endfor
 
 .include <bsd.port.mk>

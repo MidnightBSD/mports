@@ -49,10 +49,10 @@ do-build:
 
 do-install:
 .for bin in ${KBUILD_BINS}
-	${INSTALL_PROGRAM} ${WRKSRC}/out/${KBUILD_TARGET}.${KBUILD_ARCH}/release/stage${TRUE_PREFIX}/bin/${bin} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${KBUILD_TARGET}.${KBUILD_ARCH}/release/stage${TRUE_PREFIX}/bin/${bin} ${PREFIX}/bin
 .endfor
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${WRKSRC}/out/${KBUILD_TARGET}.${KBUILD_ARCH}/release/stage${TRUE_PREFIX}/share/kBuild && ${COPYTREE_SHARE} \* ${STAGEDIR}${DATADIR})
+	${MKDIR} ${DATADIR}
+	(cd ${WRKSRC}/out/${KBUILD_TARGET}.${KBUILD_ARCH}/release/stage${TRUE_PREFIX}/share/kBuild && ${COPYTREE_SHARE} \* ${DATADIR})
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

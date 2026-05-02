@@ -1,5 +1,5 @@
 PORTNAME=	DateTime
-PORTVERSION=	1.65
+PORTVERSION=	1.66
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -31,6 +31,6 @@ USE_PERL5=	configure
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DateTime/DateTime.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/DateTime/DateTime.so
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	type1inst
 PORTVERSION=	0.6.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-fonts perl5
 MASTER_SITES=	SUNSITE/X11/xutils
 PKGNAMEPREFIX=	p5-
@@ -24,11 +24,11 @@ X11_RUN_DEPENDS=	${LOCALBASE}/bin/mkfontscale:x11-fonts/mkfontscale
 
 do-install:
 	(cd ${WRKSRC} && ${INSTALL_SCRIPT} type1inst t1embed \
-		${STAGEDIR}${PREFIX}/bin)
+		${PREFIX}/bin)
 	${INSTALL_MAN} ${WRKSRC}/type1inst.man \
-		${STAGEDIR}${PREFIX}/share/man/man1/type1inst.1
+		${PREFIX}/share/man/man1/type1inst.1
 
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 
 .include <bsd.port.mk>

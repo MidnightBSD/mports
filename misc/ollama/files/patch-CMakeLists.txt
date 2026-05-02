@@ -1,0 +1,43 @@
+--- CMakeLists.txt.orig	1979-11-30 00:00:00.000000000 -0500
++++ CMakeLists.txt	2026-04-19 15:17:50.386492000 -0400
+@@ -52,6 +52,10 @@
+     set(CMAKE_BUILD_RPATH "@loader_path")
+     set(CMAKE_INSTALL_RPATH "@loader_path")
+     set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
++elseif(UNIX)
++    set(CMAKE_BUILD_RPATH "$ORIGIN")
++    set(CMAKE_INSTALL_RPATH "$ORIGIN")
++    set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+ endif()
+ 
+ set(OLLAMA_BUILD_DIR ${CMAKE_BINARY_DIR}/lib/ollama)
+@@ -101,8 +105,6 @@
+ endforeach()
+ 
+ install(TARGETS ggml-base ${CPU_VARIANTS}
+-    RUNTIME_DEPENDENCIES
+-        PRE_EXCLUDE_REGEXES ".*"
+     RUNTIME DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT CPU
+     LIBRARY DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT CPU
+     FRAMEWORK DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT CPU
+@@ -185,9 +187,6 @@
+         add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ml/backend/ggml/ggml/src/ggml-vulkan)
+         target_include_directories(ggml-vulkan PRIVATE ${GGML_INCLUDE_DIRS})
+         install(TARGETS ggml-vulkan
+-            RUNTIME_DEPENDENCIES
+-                PRE_INCLUDE_REGEXES vulkan
+-                PRE_EXCLUDE_REGEXES ".*"
+             RUNTIME DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT Vulkan
+             LIBRARY DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT Vulkan
+         )
+@@ -229,10 +228,6 @@
+     endif()
+ 
+     install(TARGETS mlx mlxc
+-        RUNTIME_DEPENDENCIES
+-            DIRECTORIES ${MLX_RUNTIME_DIRS}
+-            PRE_INCLUDE_REGEXES ${MLX_INCLUDE_REGEXES}
+-            PRE_EXCLUDE_REGEXES ".*"
+         RUNTIME DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX
+         LIBRARY DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX
+         FRAMEWORK DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX

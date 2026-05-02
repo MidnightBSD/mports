@@ -236,11 +236,11 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/_build/mpd \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}/
+		${PREFIX}/bin/${PORTNAME}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/doc/mpdconf.example \
-		${STAGEDIR}${PREFIX}/etc/${PORTNAME}.conf.sample
+		${PREFIX}/etc/${PORTNAME}.conf.sample
 
 do-install-MANPAGES-on:
 	${INSTALL_MAN} ${WRKSRC}/_build/doc/${PORTNAME}.1 \

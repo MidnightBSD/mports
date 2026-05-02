@@ -169,6 +169,11 @@ _JAVA_ARGS:=	${_JAVA_ARGS:Nrun}
 .  endif # !empty(java_ARGS)
 
 #-------------------------------------------------------------------------------
+# Ensure JAVA_DEFAULT is set to 17 during indexing for package builds
+.if defined(MAGUS) && defined(INDEXING)
+JAVA_DEFAULT=	17
+.endif
+
 # Stage 1: Define constants
 #
 
@@ -196,7 +201,7 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 .    endif
 
 # The complete list of Java versions, os and vendors supported.
-__JAVA_VERSION_LIST=	8 11 12 13 17 18 19 20 21 24
+__JAVA_VERSION_LIST=	8 11 13 17 18 19 20 21 24
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
 _JAVA_OS_LIST=			native freebsd linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava oracle openjdk
@@ -241,24 +246,24 @@ _JAVA_OS_native=	Native
 _JAVA_OS_linux=		Linux
 _JAVA_OS_freebsd=	FreeBSD
 
-# List all JDK ports
-__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
-			JAVA_PORT_FREEBSD_OPENJDK_JDK_11 \
-			JAVA_PORT_FREEBSD_OPENJDK_JDK_13 \
+__JAVA_PORTS_LTS=	JAVA_PORT_FREEBSD_OPENJDK_JDK_21 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_17 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_11 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
+ 			JAVA_PORT_NATIVE_OPENJDK_JDK_21 \
+ 			JAVA_PORT_NATIVE_OPENJDK_JDK_17 \
+ 			JAVA_PORT_NATIVE_OPENJDK_JDK_11 \
+			JAVA_PORT_NATIVE_OPENJDK_JDK_8
+__JAVA_PORTS_NON_LTS=	JAVA_PORT_FREEBSD_OPENJDK_JDK_24 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_18 \
-			JAVA_PORT_FREEBSD_OPENJDK_JDK_21 \
-			JAVA_PORT_FREEBSD_OPENJDK_JDK_24 \
-					JAVA_PORT_NATIVE_OPENJDK_JDK_8  \
- 					JAVA_PORT_NATIVE_OPENJDK_JDK_11 \
- 					JAVA_PORT_NATIVE_OPENJDK_JDK_12 \
- 					JAVA_PORT_NATIVE_OPENJDK_JDK_13 \
- 					JAVA_PORT_NATIVE_OPENJDK_JDK_17 \
- 					JAVA_PORT_NATIVE_OPENJDK_JDK_18 \
- 					JAVA_PORT_NATIVE_OPENJDK_JDK_19 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_13 \
  					JAVA_PORT_NATIVE_OPENJDK_JDK_20 \
- 					JAVA_PORT_NATIVE_OPENJDK_JDK_21 \
-					JAVA_PORT_LINUX_ORACLE_JDK_8
+ 					JAVA_PORT_NATIVE_OPENJDK_JDK_19 \
+ 					JAVA_PORT_NATIVE_OPENJDK_JDK_18 \
+ 					JAVA_PORT_NATIVE_OPENJDK_JDK_13
+__JAVA_PORTS_ALL=	${__JAVA_PORTS_LTS} \
+			${__JAVA_PORTS_NON_LTS} \
+			JAVA_PORT_LINUX_ORACLE_JDK_8
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 				JAVA_PORT_FREEBSD_OPENJDK_JDK_${JAVA_DEFAULT} \
 					${__JAVA_PORTS_ALL}
@@ -374,6 +379,16 @@ _JAVA_PORTS_POSSIBLE=		${__JAVA_PORTS_POSSIBLE:C/ [ ]+/ /g}
 
 # Find an installed JDK port that matches the requirements of the port
 
+.if defined(MAGUS) && defined(INDEXING)
+# During indexing, ignore local installations and pick the first possible JDK
+.    for i in ${_JAVA_PORTS_POSSIBLE}
+.        if !defined(_JAVA_PORTS_POSSIBLE_shortcircuit)
+_JAVA_PORT=	$i
+_JAVA_PORTS_POSSIBLE_shortcircuit=	1
+.        endif
+.    endfor
+.else
+
 .		undef _JAVA_PORTS_INSTALLED_POSSIBLE
 
 .    for A_JAVA_PORT in ${_JAVA_PORTS_POSSIBLE}
@@ -397,6 +412,8 @@ _JAVA_PORTS_POSSIBLE_shortcircuit=	1
 .        endif
 .      endfor
 .    endif
+
+.endif
 
 _JAVA_PORT_INFO:=		${_JAVA_PORT:S/^/\${_/:S/$/_INFO}/}
 JAVA_PORT=				${_JAVA_PORT_INFO:MPORT=*:S,PORT=,,}

@@ -44,7 +44,7 @@ EXTRACT_AFTER_ARGS+=	${DISTNAME:S/-opensource//}/${example}/examples
 do-install:
 .for example in ${EXAMPLES}
 	cd ${WRKSRC}/${example}/examples && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR}
+		${COPYTREE_SHARE} \* ${EXAMPLESDIR}
 .endfor
 
 .include <bsd.port.mk>

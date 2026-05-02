@@ -31,8 +31,8 @@ post-extract:
 	${RM} -r ${WRKSRC}/global
 
 do-install:
-	${MKDIR} ${STAGEDIR}${QT_DOCDIR}
+	${MKDIR} ${QT_DOCDIR}
 	cd ${WRKSRC} && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${QT_DOCDIR}
+		${COPYTREE_SHARE} \* ${QT_DOCDIR}
 
 .include <bsd.port.mk>

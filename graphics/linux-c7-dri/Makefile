@@ -51,11 +51,11 @@ OPTIONS_DEFINE=	DOCS
 post-install:
 .if ${ARCH} == amd64  ||  ${ARCH} == i386
 	${LN} -sf libGLX_mesa.so.0 \
-		${STAGEDIR}${PREFIX}/usr/lib/libGLX_system.so.0
+		${PREFIX}/usr/lib/libGLX_system.so.0
 .endif
 .if ${ARCH} == aarch64 || ${ARCH} == amd64
 	${LN} -sf libGLX_mesa.so.0 \
-		${STAGEDIR}${PREFIX}/usr/lib64/libGLX_system.so.0
+		${PREFIX}/usr/lib64/libGLX_system.so.0
 .endif
 
 .include <bsd.port.mk>

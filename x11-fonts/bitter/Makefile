@@ -18,8 +18,8 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC}/fonts/otf && \
-		${INSTALL_DATA} *.otf ${STAGEDIR}${FONTSDIR}
+		${INSTALL_DATA} *.otf ${FONTSDIR}
 
 .include <bsd.port.mk>

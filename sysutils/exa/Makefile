@@ -67,12 +67,12 @@ PLIST_FILES=	bin/exa \
 		share/zsh/site-functions/_exa
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
-	${INSTALL_DATA} ${WRKSRC}/completions/completions.bash ${STAGEDIR}${PREFIX}/etc/bash_completion.d/exa.bash
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/fish/completions
-	${INSTALL_DATA} ${WRKSRC}/completions/completions.fish ${STAGEDIR}${PREFIX}/share/fish/completions/exa.fish
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions
-	${INSTALL_DATA} ${WRKSRC}/completions/completions.zsh ${STAGEDIR}${PREFIX}/share/zsh/site-functions/_exa
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/exa
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/completions/completions.bash ${PREFIX}/etc/bash_completion.d/exa.bash
+	@${MKDIR} ${PREFIX}/share/fish/completions
+	${INSTALL_DATA} ${WRKSRC}/completions/completions.fish ${PREFIX}/share/fish/completions/exa.fish
+	@${MKDIR} ${PREFIX}/share/zsh/site-functions
+	${INSTALL_DATA} ${WRKSRC}/completions/completions.zsh ${PREFIX}/share/zsh/site-functions/_exa
+	${STRIP_CMD} ${PREFIX}/bin/exa
 
 .include <bsd.port.mk>

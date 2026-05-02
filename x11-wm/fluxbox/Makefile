@@ -62,6 +62,6 @@ post-patch-NLS-off:
 
 post-install-DOCS-on:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} "AUTHORS ChangeLog NEWS README TODO" \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

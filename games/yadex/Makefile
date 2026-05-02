@@ -56,8 +56,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,1000000ul,1000000l,' ${WRKSRC}/src/input.cc
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/*.[^6]* ${WRKSRC}/doc/README \
-		${STAGEDIR}${DOCSDIR}
+		${DOCSDIR}
 
 .include <bsd.port.mk>

@@ -181,14 +181,14 @@ post-patch:
 .if !target(post-install)
 post-install:
 .if ! ${PORT_OPTIONS:MPYTHON}
-	-${RM} ${STAGEDIR}${DATADIR}/dvd-handler
+	-${RM} ${DATADIR}/dvd-handler
 .endif
 .if defined(WITH_CLIENT_ONLY)
 	${MV} ${ETCDIR}/bconsole.conf ${ETCDIR}/bconsole.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/examples/sample-query.sql ${FAKE_DESTDIR}${LOCALBASE}/share/bacula/query.sql.sample
 .else
-	${INSTALL_SCRIPT} ${FILESDIR}/chio-bacula ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_DATA} ${FILESDIR}/bacula-barcodes ${STAGEDIR}${ETCDIR}/bacula-barcodes.sample
+	${INSTALL_SCRIPT} ${FILESDIR}/chio-bacula ${PREFIX}/sbin
+	${INSTALL_DATA} ${FILESDIR}/bacula-barcodes ${ETCDIR}/bacula-barcodes.sample
 	# bacula-dir attempts to install query.sql as bpart of bacula-server, but that should only installed by bacula-client.
 	${RM} ${FAKE_DESTDIR}${LOCALBASE}/share/bacula/query.sql
 
@@ -203,7 +203,7 @@ post-install:
 	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/libbacfind.so
 .endif
 	for na in ${CONFFILES}; do \
-		${MV} ${STAGEDIR}${ETCDIR}/bacula-$$na.conf ${STAGEDIR}${ETCDIR}/bacula-$$na.conf.sample; \
+		${MV} ${ETCDIR}/bacula-$$na.conf ${ETCDIR}/bacula-$$na.conf.sample; \
 	done
 .endif
 .else

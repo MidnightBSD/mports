@@ -58,24 +58,24 @@ LDFLAGS+=	-L${OPENSSLLIB}
 
 do-install:
 .if !defined(CPANEL)
-	${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${STAGEDIR}${PREFIX}/libexec
+	${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${PREFIX}/libexec
 .else
-	${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${STAGEDIR}${PREFIX}/libexec/obspamd
+	${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${PREFIX}/libexec/obspamd
 .endif
-	${INSTALL_PROGRAM} ${WRKSRC}/spamlogd/spamlogd ${STAGEDIR}${PREFIX}/libexec
-	${INSTALL_PROGRAM} ${WRKSRC}/spamd-setup/spamd-setup ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/spamdb/spamdb ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/etc/spamd.conf.5 ${STAGEDIR}${PREFIX}/share/man/man5
-	${INSTALL_MAN} ${WRKSRC}/spamd/spamd.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${INSTALL_MAN} ${WRKSRC}/spamd-setup/spamd-setup.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${INSTALL_MAN} ${WRKSRC}/spamdb/spamdb.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	${INSTALL_MAN} ${WRKSRC}/spamlogd/spamlogd.8 ${STAGEDIR}${PREFIX}/share/man/man8
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKSRC}/etc/spamd.conf ${STAGEDIR}${ETCDIR}/spamd.conf.sample
+	${INSTALL_PROGRAM} ${WRKSRC}/spamlogd/spamlogd ${PREFIX}/libexec
+	${INSTALL_PROGRAM} ${WRKSRC}/spamd-setup/spamd-setup ${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/spamdb/spamdb ${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/etc/spamd.conf.5 ${PREFIX}/share/man/man5
+	${INSTALL_MAN} ${WRKSRC}/spamd/spamd.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/spamd-setup/spamd-setup.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/spamdb/spamdb.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/spamlogd/spamlogd.8 ${PREFIX}/share/man/man8
+	@${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/etc/spamd.conf ${ETCDIR}/spamd.conf.sample
 
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${STAGEDIR}${DOCSDIR}/
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${DOCSDIR}/
 
-	${INSTALL_SCRIPT} ${FILESDIR}/add-spamd-to-etc-service ${STAGEDIR}${PREFIX}/sbin/
+	${INSTALL_SCRIPT} ${FILESDIR}/add-spamd-to-etc-service ${PREFIX}/sbin/
 
 .include <bsd.port.post.mk>

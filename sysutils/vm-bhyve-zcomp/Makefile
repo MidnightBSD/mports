@@ -21,7 +21,7 @@ NO_BUILD=	yes
 PLIST_FILES=	share/zsh/site-functions/_vm
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions/
-	${INSTALL_DATA} ${WRKSRC}/_vm ${STAGEDIR}${PREFIX}/share/zsh/site-functions/
+	${MKDIR} ${PREFIX}/share/zsh/site-functions/
+	${INSTALL_DATA} ${WRKSRC}/_vm ${PREFIX}/share/zsh/site-functions/
 
 .include <bsd.port.mk>

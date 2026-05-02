@@ -26,6 +26,6 @@ rackup_CMD=	${LOCALBASE}/bin/rackup
 
 # Avoid CONFLICTS_INSTALL with www/rubygem-rackup
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/rackup
+	${RM} ${PREFIX}/bin/rackup
 
 .include <bsd.port.mk>

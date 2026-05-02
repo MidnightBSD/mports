@@ -147,23 +147,23 @@ post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
 	${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/libpython3.so						
 .endif
-	${LN} -sf libpython${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.so.1.0 ${STAGEDIR}${PREFIX}/lib/libpython${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.so.1
+	${LN} -sf libpython${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.so.1.0 ${PREFIX}/lib/libpython${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.so.1
 .if ${CC} == /nxb-bin/usr/bin/cc
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/_sysconfigdata_${THREADFLAG}${ABIFLAGS}_midnightbsd${OSREL:R}_.py
+		${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/_sysconfigdata_${THREADFLAG}${ABIFLAGS}_midnightbsd${OSREL:R}_.py
 	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
 		./python -E -m compileall -d ${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG} \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/_sysconfigdata_${THREADFLAG}${ABIFLAGS}_midnightbsd${OSREL:R}_.py
+		${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/_sysconfigdata_${THREADFLAG}${ABIFLAGS}_midnightbsd${OSREL:R}_.py
 	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
 		./python -E -O -m compileall -d ${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG} \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/_sysconfigdata_${THREADFLAG}${ABIFLAGS}_midnightbsd${OSREL:R}_.py
+		${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/_sysconfigdata_${THREADFLAG}${ABIFLAGS}_midnightbsd${OSREL:R}_.py
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/config-${PYTHON_BASEVER}${ABIFLAGS}/Makefile
+		${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/config-${PYTHON_BASEVER}${ABIFLAGS}/Makefile
 .endif
-	for i in ${STAGEDIR}${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/lib-dynload/*.so; do \
+	for i in ${PREFIX}/lib/python${PYTHON_BASEVER}${THREADFLAG}/lib-dynload/*.so; do \
 		${STRIP_CMD} $$i; done								# Strip shared extensions
 	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
-		${STAGEDIR}${PREFIX}/lib/libpython${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.so.1.0-gdb.py
+		${PREFIX}/lib/libpython${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.so.1.0-gdb.py
 	-${CP} ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.post.mk>

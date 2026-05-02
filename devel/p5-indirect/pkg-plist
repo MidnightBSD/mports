@@ -1,3 +1,11 @@
 %%PERL5_MAN3%%/indirect.3.gz
 %%SITE_ARCH%%/indirect.pm
 %%SITE_ARCH%%/auto/indirect/indirect.so
+@dir %%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_ARCH%%/auto/indirect
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/%%PERL_ARCH%%
+@dir %%SITE_PERL%%
+@dir %%LIB32DIR%%/perl5

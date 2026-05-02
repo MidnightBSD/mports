@@ -27,13 +27,13 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/zsh/site-functions/_${PORTNAME}
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
-	${INSTALL_DATA} ${WRKSRC}/completions/bash/${PORTNAME} ${STAGEDIR}${PREFIX}/etc/bash_completion.d/${PORTNAME}.bash
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/fish/completions
-	${INSTALL_DATA} ${WRKSRC}/completions/fish/${PORTNAME}.fish ${STAGEDIR}${PREFIX}/share/fish/completions/${PORTNAME}.fish
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions
-	${INSTALL_DATA} ${WRKSRC}/completions/zsh/_${PORTNAME} ${STAGEDIR}${PREFIX}/share/zsh/site-functions/_${PORTNAME}
-	${INSTALL_MAN} ${WRKDIR}/target/man-${DISTVERSION}/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKDIR}/target/man-${DISTVERSION}/*.5 ${STAGEDIR}${PREFIX}/share/man/man5
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/completions/bash/${PORTNAME} ${PREFIX}/etc/bash_completion.d/${PORTNAME}.bash
+	@${MKDIR} ${PREFIX}/share/fish/completions
+	${INSTALL_DATA} ${WRKSRC}/completions/fish/${PORTNAME}.fish ${PREFIX}/share/fish/completions/${PORTNAME}.fish
+	@${MKDIR} ${PREFIX}/share/zsh/site-functions
+	${INSTALL_DATA} ${WRKSRC}/completions/zsh/_${PORTNAME} ${PREFIX}/share/zsh/site-functions/_${PORTNAME}
+	${INSTALL_MAN} ${WRKDIR}/target/man-${DISTVERSION}/*.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKDIR}/target/man-${DISTVERSION}/*.5 ${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>

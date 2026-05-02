@@ -14,6 +14,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/FileHandle/Fmode/Fmode.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/FileHandle/Fmode/Fmode.so
 
 .include <bsd.port.mk>

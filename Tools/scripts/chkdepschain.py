@@ -9,10 +9,6 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
-#
-# MAINTAINER= sobomax@FreeBSD.org <- any unapproved commits to this file are
-#                                    highly discouraged!!!
-#
 
 import os, os.path, popen2, types, sys, getopt, pickle
 

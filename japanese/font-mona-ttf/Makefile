@@ -23,8 +23,8 @@ PLIST_FILES=	${FONTSDIR:S,${PREFIX}/,,}/fonts.dir \
 		${FONTSDIR:S,${PREFIX}/,,}/mona.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/mona.ttf ${FILESDIR}/fonts.dir \
-	    ${STAGEDIR}${FONTSDIR}
+	    ${FONTSDIR}
 
 .include <bsd.port.mk>

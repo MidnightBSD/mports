@@ -55,12 +55,12 @@ post-patch-EXAMPLES-on:
 	@${TAR} -C ${WRKDIR}/.build -xf ${WRKSRC}/../HDF5Examples-1.12.9-Source.tar.gz
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	-${RM} ${STAGEDIR}${PREFIX}/share/COPYING
-	-${RM} ${STAGEDIR}${DATADIR}/COPYING
-	cd ${STAGEDIR}${PREFIX}/share && ${MV} RELEASE.txt USING_HDF5_CMake.txt ${STAGEDIR}${DATADIR}/
-	${LN} -fs hdf5.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/hdf5-${PORTVERSION}.pc
-	${LN} -fs hdf5_hl.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/hdf5_hl-${PORTVERSION}.pc
+	${MKDIR} ${DATADIR}
+	-${RM} ${PREFIX}/share/COPYING
+	-${RM} ${DATADIR}/COPYING
+	cd ${PREFIX}/share && ${MV} RELEASE.txt USING_HDF5_CMake.txt ${DATADIR}/
+	${LN} -fs hdf5.pc ${PREFIX}/libdata/pkgconfig/hdf5-${PORTVERSION}.pc
+	${LN} -fs hdf5_hl.pc ${PREFIX}/libdata/pkgconfig/hdf5_hl-${PORTVERSION}.pc
 
 post-install-CXX-on:
 	${LN} -fs hdf5_cpp.pc ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/hdf5_cpp-${PORTVERSION}.pc

@@ -13,6 +13,8 @@ LICENSE_FILE=		${WRKSRC}/LICENSE
 
 USES=			go:modules
 
+NO_TEST=	yes
+
 USE_GITHUB=		yes
 GH_ACCOUNT=		joohoi
 
@@ -78,8 +80,8 @@ post-patch:
 post-install:
 	${MKDIR} ${FAKE_DESTDIR}/var/db/acme-dns
 	${MKDIR} ${FAKE_DESTDIR}/var/run/acme-dns
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/acme-dns
-	${CP} ${WRKSRC}/config.cfg ${STAGEDIR}${PREFIX}/etc/acme-dns/config.cfg.sample
-	${MV} ${STAGEDIR}${PREFIX}/bin/acme-dns ${STAGEDIR}${PREFIX}/libexec/acme-dns
+	${MKDIR} ${PREFIX}/etc/acme-dns
+	${CP} ${WRKSRC}/config.cfg ${PREFIX}/etc/acme-dns/config.cfg.sample
+	${MV} ${PREFIX}/bin/acme-dns ${PREFIX}/libexec/acme-dns
 
 .include <bsd.port.mk>

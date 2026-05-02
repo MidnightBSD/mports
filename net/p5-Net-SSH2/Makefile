@@ -24,6 +24,6 @@ post-install-EXAMPLES-on:
 	${INSTALL_DATA} ${WRKSRC}/example/* ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Net/SSH2/SSH2.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Net/SSH2/SSH2.so
 
 .include <bsd.port.mk>

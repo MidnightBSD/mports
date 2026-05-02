@@ -53,11 +53,11 @@ post-patch:
 		${WRKSRC}/slsh/Makefile.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for f in NEWS changes.txt
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
-	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/slsh
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR})
+	${STRIP_CMD} ${PREFIX}/bin/slsh
 
 .include <bsd.port.post.mk>

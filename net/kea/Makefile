@@ -55,12 +55,12 @@ post-build:
 	for i in *.8.rst; do rst2man $$i > $$(basename $$i .rst); done
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/kea ${STAGEDIR}/var/db/kea \
-	${STAGEDIR}/var/run/kea
-	@${RM} -rf ${STAGEDIR}${PREFIX}/var
+	@${MKDIR} ${PREFIX}/etc/kea /var/db/kea \
+	/var/run/kea
+	@${RM} -rf ${PREFIX}/var
 	@cd ${WRKSRC}/doc/sphinx/man; \
-	${CP} *.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${CP} *.8 ${PREFIX}/share/man/man8
 	@cd ${WRKSRC}/_build/src/bin/keactrl; \
-	for i in *.conf; do ${CP} $$i ${STAGEDIR}${PREFIX}/etc/kea/$$i.sample; done
+	for i in *.conf; do ${CP} $$i ${PREFIX}/etc/kea/$$i.sample; done
 
 .include <bsd.port.mk>

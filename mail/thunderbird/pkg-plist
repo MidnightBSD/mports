@@ -1,55 +1,55 @@
+bin/thunderbird
 share/pixmaps/thunderbird.png
 share/applications/thunderbird.desktop
-%%LIB32DIR%%/thunderbird/chrome/icons/default/calendar-alarm-dialog.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/TB-symbolic.svg
-%%LIB32DIR%%/thunderbird/chrome/icons/default/calendar-general-dialog.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default256.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow48.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default32.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default64.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default16.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default24.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default128.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default48.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow32.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow24.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/default22.png
-%%LIB32DIR%%/thunderbird/chrome/icons/default/msgcomposeWindow16.png
-%%LIB32DIR%%/thunderbird/thunderbird-bin
-%%LIB32DIR%%/thunderbird/removed-files
-%%LIB32DIR%%/thunderbird/glxtest
-%%LIB32DIR%%/thunderbird/interesting_serverknobs.json
-%%LIB32DIR%%/thunderbird/application.ini
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%xul.so
-%%LIB32DIR%%/thunderbird/thunderbird
-%%LIB32DIR%%/thunderbird/omni.ja
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozgtk.so
-%%LIB32DIR%%/thunderbird/pingsender
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%rnp.so
-%%LIB32DIR%%/thunderbird/rnp-cli
-%%LIB32DIR%%/thunderbird/vaapitest
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozavcodec.so
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozsqlite3.so
-%%LIB32DIR%%/thunderbird/dependent%%LIB32DIR%%s.list
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozavutil.so
-%%LIB32DIR%%/thunderbird/isp/POPFile.sfd
-%%LIB32DIR%%/thunderbird/isp/SpamAssassin.sfd
-%%LIB32DIR%%/thunderbird/isp/SpamPal.sfd
-%%LIB32DIR%%/thunderbird/isp/Bogofilter.sfd
-%%LIB32DIR%%/thunderbird/isp/DSPAM.sfd
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%lgpl%%LIB32DIR%%s.so
-%%LIB32DIR%%/thunderbird/defaults/pref/channel-prefs.js
-%%LIB32DIR%%/thunderbird/defaults/messenger/mailViews.dat
-%%LIB32DIR%%/thunderbird/rnpkeys
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%gkcodecs.so
-%%LIB32DIR%%/thunderbird/platform.ini
-%%LIB32DIR%%/thunderbird/%%LIB32DIR%%mozwayland.so
-bin/thunderbird
-@dir %%LIB32DIR%%/thunderbird/chrome/icons/default
-@dir %%LIB32DIR%%/thunderbird/chrome/icons
-@dir %%LIB32DIR%%/thunderbird/chrome
-@dir %%LIB32DIR%%/thunderbird/isp
-@dir %%LIB32DIR%%/thunderbird/defaults/pref
-@dir %%LIB32DIR%%/thunderbird/defaults/messenger
-@dir %%LIB32DIR%%/thunderbird/defaults
-@dir %%LIB32DIR%%/thunderbird
+lib/thunderbird/rnp-cli
+lib/thunderbird/vaapitest
+lib/thunderbird/librnp.so
+lib/thunderbird/dependentlibs.list
+lib/thunderbird/defaults/messenger/mailViews.dat
+lib/thunderbird/defaults/pref/channel-prefs.js
+lib/thunderbird/omni.ja
+lib/thunderbird/libxul.so
+lib/thunderbird/thunderbird
+lib/thunderbird/platform.ini
+lib/thunderbird/libmozavutil.so
+lib/thunderbird/liblgpllibs.so
+lib/thunderbird/libgkcodecs.so
+lib/thunderbird/isp/DSPAM.sfd
+lib/thunderbird/isp/SpamAssassin.sfd
+lib/thunderbird/isp/SpamPal.sfd
+lib/thunderbird/isp/Bogofilter.sfd
+lib/thunderbird/isp/POPFile.sfd
+lib/thunderbird/glxtest
+lib/thunderbird/libmozwayland.so
+lib/thunderbird/chrome/icons/default/msgcomposeWindow16.png
+lib/thunderbird/chrome/icons/default/default32.png
+lib/thunderbird/chrome/icons/default/msgcomposeWindow24.png
+lib/thunderbird/chrome/icons/default/calendar-general-dialog.png
+lib/thunderbird/chrome/icons/default/msgcomposeWindow32.png
+lib/thunderbird/chrome/icons/default/default64.png
+lib/thunderbird/chrome/icons/default/default16.png
+lib/thunderbird/chrome/icons/default/default24.png
+lib/thunderbird/chrome/icons/default/default48.png
+lib/thunderbird/chrome/icons/default/TB-symbolic.svg
+lib/thunderbird/chrome/icons/default/default128.png
+lib/thunderbird/chrome/icons/default/default22.png
+lib/thunderbird/chrome/icons/default/msgcomposeWindow48.png
+lib/thunderbird/chrome/icons/default/default256.png
+lib/thunderbird/chrome/icons/default/calendar-alarm-dialog.png
+lib/thunderbird/application.ini
+lib/thunderbird/rnpkeys
+lib/thunderbird/removed-files
+lib/thunderbird/thunderbird-bin
+lib/thunderbird/interesting_serverknobs.json
+lib/thunderbird/libmozsqlite3.so
+lib/thunderbird/libmozavcodec.so
+lib/thunderbird/pingsender
+lib/thunderbird/libmozgtk.so
+@dir lib/thunderbird/defaults/messenger
+@dir lib/thunderbird/defaults/pref
+@dir lib/thunderbird/defaults
+@dir lib/thunderbird/isp
+@dir lib/thunderbird/chrome/icons/default
+@dir lib/thunderbird/chrome/icons
+@dir lib/thunderbird/chrome
+@dir lib/thunderbird

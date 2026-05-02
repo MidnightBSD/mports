@@ -50,6 +50,6 @@ post-patch-EXAMPLES-off:
 		${WRKSRC}/Makefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/feh
+	${STRIP_CMD} ${PREFIX}/bin/feh
 
 .include <bsd.port.mk>

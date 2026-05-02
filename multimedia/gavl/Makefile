@@ -35,7 +35,7 @@ post-patch-OPTIMIZED_CFLAGS-off:
 		${WRKSRC}/configure
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 
 .include <bsd.port.mk>

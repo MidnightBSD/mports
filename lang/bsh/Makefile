@@ -25,8 +25,8 @@ PLIST_FILES=	${JAVAJARDIR}/${PORTNAME}.jar \
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/dist/${PORTNAME}-${DISTVERSION}.jar \
-		${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
+		${JAVAJARDIR}/${PORTNAME}.jar
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+		${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

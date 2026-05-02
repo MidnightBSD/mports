@@ -20,8 +20,8 @@ PLIST_FILES=	bin/pixd \
 		man/man1/pixd.1.gz
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/pixd ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/pixd.1 ${STAGEDIR}${PREFIX}/man/man1
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/pixd
+	${INSTALL_SCRIPT} ${WRKSRC}/pixd ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/pixd.1 ${PREFIX}/man/man1
+	@${STRIP_CMD} ${PREFIX}/bin/pixd
 
 .include <bsd.port.mk>

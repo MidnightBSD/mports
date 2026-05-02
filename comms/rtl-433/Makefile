@@ -21,6 +21,6 @@ GH_PROJECT=	rtl_433
 USE_RC_SUBR=	rtl_433
 
 post-install:
-	${INSTALL} ${WRKSRC}/conf/rtl_433.example.conf ${STAGEDIR}${PREFIX}/etc/rtl_433.conf
+	${INSTALL} ${WRKSRC}/conf/rtl_433.example.conf ${PREFIX}/etc/rtl_433.conf
 
 .include <bsd.port.mk>

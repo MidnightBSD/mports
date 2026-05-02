@@ -32,23 +32,23 @@ LIBNFS_LIB_DEPENDS=	libnfs.so:net/libnfs
 LIBNFS_CONFIGURE_ENABLE=	libnfs
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/fio ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/fio_generate_plots ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/fio.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_MAN} ${WRKSRC}/tools/fio_generate_plots.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}/compiler
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}/lib
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}/arch
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}/os
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}/oslib
-	${INSTALL_DATA} ${WRKSRC}/compiler/compiler.h ${STAGEDIR}${PREFIX}/include/${PORTNAME}/compiler
-	${INSTALL_DATA} ${WRKSRC}/os/os.h ${STAGEDIR}${PREFIX}/include/${PORTNAME}/os
-	${INSTALL_DATA} ${WRKSRC}/os/os-freebsd.h ${STAGEDIR}${PREFIX}/include/${PORTNAME}/os
-	${INSTALL_DATA} ${WRKSRC}/oslib/getopt.h ${STAGEDIR}${PREFIX}/include/${PORTNAME}/oslib
-	${INSTALL_DATA} ${WRKSRC}/lib/*.h ${STAGEDIR}${PREFIX}/include/${PORTNAME}/lib
-	@(cd ${WRKSRC}/arch/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/${PORTNAME}/arch)
-	${INSTALL_DATA} ${WRKSRC}/*.h ${STAGEDIR}${PREFIX}/include/${PORTNAME}
+	${INSTALL_PROGRAM} ${WRKSRC}/fio ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/fio_generate_plots ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/fio.1 ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/tools/fio_generate_plots.1 ${PREFIX}/share/man/man1
+	${MKDIR} ${PREFIX}/include/${PORTNAME}
+	${MKDIR} ${PREFIX}/include/${PORTNAME}/compiler
+	${MKDIR} ${PREFIX}/include/${PORTNAME}/lib
+	${MKDIR} ${PREFIX}/include/${PORTNAME}/arch
+	${MKDIR} ${PREFIX}/include/${PORTNAME}/os
+	${MKDIR} ${PREFIX}/include/${PORTNAME}/oslib
+	${INSTALL_DATA} ${WRKSRC}/compiler/compiler.h ${PREFIX}/include/${PORTNAME}/compiler
+	${INSTALL_DATA} ${WRKSRC}/os/os.h ${PREFIX}/include/${PORTNAME}/os
+	${INSTALL_DATA} ${WRKSRC}/os/os-freebsd.h ${PREFIX}/include/${PORTNAME}/os
+	${INSTALL_DATA} ${WRKSRC}/oslib/getopt.h ${PREFIX}/include/${PORTNAME}/oslib
+	${INSTALL_DATA} ${WRKSRC}/lib/*.h ${PREFIX}/include/${PORTNAME}/lib
+	@(cd ${WRKSRC}/arch/ && ${COPYTREE_SHARE} . ${PREFIX}/include/${PORTNAME}/arch)
+	${INSTALL_DATA} ${WRKSRC}/*.h ${PREFIX}/include/${PORTNAME}
 
 do-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

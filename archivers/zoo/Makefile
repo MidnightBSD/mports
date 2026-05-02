@@ -21,8 +21,8 @@ MAKEFILE=	makefile
 
 do-install:
 .for f in fiz zoo
-	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${f}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${f}.1 ${PREFIX}/share/man/man1
 .endfor
 
 .include <bsd.port.mk>

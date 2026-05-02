@@ -31,8 +31,8 @@ pre-configure:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/dump_xsettings ${WRKSRC}/xsettingsd \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/dump_xsettings.1 ${WRKSRC}/xsettingsd.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 
 .include <bsd.port.post.mk>

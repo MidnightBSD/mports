@@ -99,7 +99,7 @@ post-patch:
 		${WRKSRC}/doc/bitlbee.8
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${ETCDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

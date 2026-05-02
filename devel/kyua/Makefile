@@ -41,10 +41,10 @@ TEST_RUN_DEPENDS=	atf>=0.21:devel/atf
 TEST_CONFIGURE_ENABLE=	atf
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/kyua
+	@${MKDIR} ${PREFIX}/etc/kyua
 	${INSTALL_DATA} ${WRKDIR}/kyua.conf \
-		${STAGEDIR}${PREFIX}/etc/kyua/kyua.conf.sample
+		${PREFIX}/etc/kyua/kyua.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/examples/Kyuafile.top \
-		${STAGEDIR}${PREFIX}/tests/Kyuafile
+		${PREFIX}/tests/Kyuafile
 
 .include <bsd.port.mk>

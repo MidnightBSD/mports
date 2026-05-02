@@ -21,6 +21,6 @@ PLIST_FILES=	bin/${PORTNAME} share/man/man1/${PORTNAME}.1.gz
 INSTALL_TARGET=	install-strip
 
 post-install:
-		${INSTALL_MAN} ${WRKDIR}/debian/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+		${INSTALL_MAN} ${WRKDIR}/debian/${PORTNAME}.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

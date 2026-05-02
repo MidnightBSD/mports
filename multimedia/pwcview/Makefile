@@ -25,8 +25,8 @@ post-patch:
 		-e 's|sdl-config|${SDL_CONFIG}|g' ${WRKSRC}/Makefile
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/pwcview ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/pwcsnap ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/pwcview ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/pwcsnap ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.post.mk>

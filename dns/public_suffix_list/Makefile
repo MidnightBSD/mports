@@ -24,7 +24,7 @@ GH_TAGNAME=	4e6c53c
 USE_GITHUB=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/public_suffix_list.dat ${WRKSRC}/tests/test_psl.txt ${STAGEDIR}${DATADIR}/
+	${MKDIR} ${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/public_suffix_list.dat ${WRKSRC}/tests/test_psl.txt ${DATADIR}/
 
 .include <bsd.port.mk>

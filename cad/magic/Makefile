@@ -58,6 +58,6 @@ pre-build:
 		${MAKEFILE} ${MAKE_ARGS} database/database.h
 
 post-install:
-	@cd ${STAGEDIR}${PREFIX}/lib/magic/tcl && ${STRIP_CMD} magicexec magicdnull tclmagic.so
+	@cd ${PREFIX}/lib/magic/tcl && ${STRIP_CMD} magicexec magicdnull tclmagic.so
 
 .include <bsd.port.post.mk>

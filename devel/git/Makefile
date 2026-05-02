@@ -1,5 +1,5 @@
 PORTNAME=	git
-DISTVERSION=	2.52.0
+DISTVERSION=	2.54.0
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -243,16 +243,16 @@ post-build-CONTRIB-on:
 
 post-install:
 	(cd ${WRKDIR}/man1/ && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/man/man1)
+		${COPYTREE_SHARE} . ${PREFIX}/share/man/man1)
 	(cd ${WRKDIR}/man5/ && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/man/man5)
+		${COPYTREE_SHARE} . ${PREFIX}/share/man/man5)
 	(cd ${WRKDIR}/man7/ && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/man/man7)
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
+		${COPYTREE_SHARE} . ${PREFIX}/share/man/man7)
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/completion/git-completion.bash \
-		${STAGEDIR}${PREFIX}/etc/bash_completion.d/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/scalar \
-		${STAGEDIR}${PREFIX}/libexec/git-core/scalar
+		${PREFIX}/etc/bash_completion.d/
+	${STRIP_CMD} ${PREFIX}/bin/scalar \
+		${PREFIX}/libexec/git-core/scalar
 
 post-install-DOCS-on:
 	# Manually remove the index.html symlink before installing, and then
@@ -286,73 +286,73 @@ post-install-GITWEB-on:
 .elif ${SUBPORT} == gui
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/git-core \
-		 ${STAGEDIR}${PREFIX}/share/git-gui/lib/msgs \
-		 ${STAGEDIR}${PREFIX}/share/gitk/lib/msgs
+	${MKDIR} ${PREFIX}/libexec/git-core \
+		 ${PREFIX}/share/git-gui/lib/msgs \
+		 ${PREFIX}/share/gitk/lib/msgs
 	${INSTALL_SCRIPT} ${WRKSRC}/gitk-git/gitk \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/git-gui/git-gui \
-		${STAGEDIR}${PREFIX}/libexec/git-core/
-	${LN} ${STAGEDIR}${PREFIX}/libexec/git-core/git-gui \
-		${STAGEDIR}${PREFIX}/libexec/git-core/git-citool
+		${PREFIX}/libexec/git-core/
+	${LN} ${PREFIX}/libexec/git-core/git-gui \
+		${PREFIX}/libexec/git-core/git-citool
 	${INSTALL_SCRIPT} ${WRKSRC}/git-gui/git-gui--askpass.sh \
-		${STAGEDIR}${PREFIX}/libexec/git-core/git-gui--askpass
+		${PREFIX}/libexec/git-core/git-gui--askpass
 	${INSTALL_DATA} ${WRKSRC}/git-gui/lib/tclIndex \
-		${STAGEDIR}${PREFIX}/share/git-gui/lib/
+		${PREFIX}/share/git-gui/lib/
 	${INSTALL_DATA} ${WRKSRC}/git-gui/lib/*.ico \
-		${STAGEDIR}${PREFIX}/share/git-gui/lib/
+		${PREFIX}/share/git-gui/lib/
 	${INSTALL_DATA} ${WRKSRC}/git-gui/lib/*.js \
-		${STAGEDIR}${PREFIX}/share/git-gui/lib/
+		${PREFIX}/share/git-gui/lib/
 	${INSTALL_DATA} ${WRKSRC}/git-gui/lib/*.tcl \
-		${STAGEDIR}${PREFIX}/share/git-gui/lib/
+		${PREFIX}/share/git-gui/lib/
 	${INSTALL_DATA} ${WRKSRC}/git-gui/po/*.msg \
-		${STAGEDIR}${PREFIX}/share/git-gui/lib/msgs/
+		${PREFIX}/share/git-gui/lib/msgs/
 	${INSTALL_DATA} ${WRKSRC}/gitk-git/po/*.msg \
-		${STAGEDIR}${PREFIX}/share/gitk/lib/msgs/
+		${PREFIX}/share/gitk/lib/msgs/
 	${INSTALL_DATA} ${WRKDIR}/man1/git-citool.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 	${INSTALL_DATA} ${WRKDIR}/man1/git-gui.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 	${INSTALL_DATA} ${WRKDIR}/man1/gitk.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 
 .elif ${SUBPORT} == cvs
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/git-core
-	${INSTALL_SCRIPT} ${WRKSRC}/git-cvsserver ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${PREFIX}/libexec/git-core
+	${INSTALL_SCRIPT} ${WRKSRC}/git-cvsserver ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/git-cvsexportcommit \
-		${STAGEDIR}${PREFIX}/libexec/git-core/
+		${PREFIX}/libexec/git-core/
 	${INSTALL_SCRIPT} ${WRKSRC}/git-cvsimport \
-		${STAGEDIR}${PREFIX}/libexec/git-core/
+		${PREFIX}/libexec/git-core/
 	${INSTALL_SCRIPT} ${WRKSRC}/git-cvsserver \
-		${STAGEDIR}${PREFIX}/libexec/git-core/
+		${PREFIX}/libexec/git-core/
 	${INSTALL_DATA} ${WRKDIR}/man1/git-cvsimport.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 	${INSTALL_DATA} ${WRKDIR}/man1/git-cvsexportcommit.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 	${INSTALL_DATA} ${WRKDIR}/man1/git-cvsserver.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 	${INSTALL_DATA} ${WRKDIR}/man7/gitcvs-migration.7 \
-		${STAGEDIR}${PREFIX}/share/man/man7/
+		${PREFIX}/share/man/man7/
 
 .elif ${SUBPORT} == p4
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/git-core
+	${MKDIR} ${PREFIX}/libexec/git-core
 	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py \
-		${STAGEDIR}${PREFIX}/libexec/git-core/git-p4
+		${PREFIX}/libexec/git-core/git-p4
 	${INSTALL_DATA} ${WRKDIR}/man1/git-p4.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 
 .elif ${SUBPORT} == svn
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/git-core
+	${MKDIR} ${PREFIX}/libexec/git-core
 	${INSTALL_SCRIPT} ${WRKSRC}/git-svn \
-		${STAGEDIR}${PREFIX}/libexec/git-core/
+		${PREFIX}/libexec/git-core/
 	${INSTALL_DATA} ${WRKDIR}/man1/git-svn.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/
+		${PREFIX}/share/man/man1/
 .endif
 
 .include <bsd.port.mk>

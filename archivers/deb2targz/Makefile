@@ -15,6 +15,6 @@ NO_ARCH=	yes
 PLIST_FILES=	bin/deb2targz
 
 do-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME}.sh ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME}.sh ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

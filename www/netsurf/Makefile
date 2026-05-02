@@ -12,8 +12,6 @@ LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN=		failed to load "frontends/gtk/res/netsurf.xpm": Couldn?t recognize the image file format for file ?frontends/gtk/res/netsurf.xpm?
-
 FAKE_OPTS=	trueprefix
 
 BUILD_DEPENDS=	duk:lang/duktape \
@@ -40,7 +38,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss \
 USES=		bison cpe desktop-file-utils gmake gnome iconv:translit jpeg \
 		localbase pkgconfig shebangfix ssl
 CPE_VENDOR=	${PORTNAME}-browser
-USE_GNOME=	cairo glib20 gtk30 librsvg2
+USE_GNOME=	cairo gdkpixbufextra glib20 gtk30 librsvg2
 
 MAKE_ARGS=	CC="${CC}" \
 		CCOPT="" \
@@ -70,14 +68,14 @@ do-configure:
 	@${CP} ${FILESDIR}/Makefile.config  ${WRKSRC}
 
 post-install:
-	cd ${STAGEDIR}${PREFIX}/bin && ${LN} -sf netsurf-gtk3 \
+	cd ${PREFIX}/bin && ${LN} -sf netsurf-gtk3 \
 		netsurf-gtk
 .for d in applications pixmaps
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/${d}
+	${MKDIR} ${PREFIX}/share/${d}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/frontends/gtk/res/netsurf-gtk.desktop \
-		${STAGEDIR}${PREFIX}/share/applications
+		${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/frontends/gtk/res/netsurf.xpm \
-		${STAGEDIR}${PREFIX}/share/pixmaps
+		${PREFIX}/share/pixmaps
 
 .include <bsd.port.mk>

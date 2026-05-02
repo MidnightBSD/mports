@@ -1,5 +1,5 @@
 PORTNAME=	xorg
-PORTVERSION=	21.1.20
+PORTVERSION=	21.1.22
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
@@ -123,18 +123,18 @@ LIB_DEPENDS+=	libunwind.so:devel/libunwind
 
 .if ${FLAVOR} == xorg
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
-	@${MKDIR} ${STAGEDIR}${FONTPATHD}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/X11/xorg.conf.d
+	@${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
+	@${MKDIR} ${FONTPATHD}
+	@${MKDIR} ${PREFIX}/share/X11/xorg.conf.d
 	@${INSTALL_DATA} ${FILESDIR}/20-evdev-kbd.conf \
-		${STAGEDIR}${PREFIX}/share/X11/xorg.conf.d
-	${MKDIR} -p ${STAGEDIR}/var/lib/xkb
+		${PREFIX}/share/X11/xorg.conf.d
+	${MKDIR} -p ${FAKE_DESTDIR}/var/lib/xkb
 .else
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/xorg/protocol.txt
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/xorg
-	${RM} ${STAGEDIR}${PREFIX}/share/man/man1/Xserver.1
-	${MKDIR} -p ${STAGEDIR}/var/lib/xkb
+	${RM} -r ${PREFIX}/lib/xorg/protocol.txt
+	${RMDIR} ${PREFIX}/lib/xorg
+	${RM} ${PREFIX}/share/man/man1/Xserver.1
+	${MKDIR} -p ${FAKE_DESTDIR}/var/lib/xkb
 .endif
 
 .include <bsd.port.post.mk>

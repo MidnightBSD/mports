@@ -30,7 +30,7 @@ post-extract:
 	${CP} ${DISTDIR}/waf-2.0.19 ${WRKSRC}/waf
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/include/normApi.h ${STAGEDIR}${PREFIX}/include/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnorm.so.1.0.0
+	${INSTALL_DATA} ${WRKSRC}/include/normApi.h ${PREFIX}/include/
+	${STRIP_CMD} ${PREFIX}/lib/libnorm.so.1.0.0
 
 .include <bsd.port.mk>

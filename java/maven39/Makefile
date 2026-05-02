@@ -1,5 +1,5 @@
 PORTNAME=	maven
-DISTVERSION=	3.9.4
+DISTVERSION=	3.9.14
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE/maven/maven-3/${DISTVERSION}/binaries
 PKGNAMESUFFIX=	${DISTVERSION:R:S/.//}
@@ -40,15 +40,15 @@ post-patch:
 
 do-install:
 	@cd ${WRKSRC} && ${FIND} . -type d -exec ${MKDIR} \
-		${STAGEDIR}${DATADIR}/{} \;
+		${DATADIR}/{} \;
 	cd ${WRKSRC} && ${FIND} . -type f -not -path "\./bin/" \
-		-exec ${INSTALL_DATA} {} ${STAGEDIR}${DATADIR}/{} \;
-	@cd ${STAGEDIR}${DATADIR} && ${FIND} conf -type f -exec ${CP} \
+		-exec ${INSTALL_DATA} {} ${DATADIR}/{} \;
+	@cd ${DATADIR} && ${FIND} conf -type f -exec ${CP} \
 		'{}' '{}'.sample \;
-	${INSTALL_DATA} ${WRKSRC}/bin/m2.conf ${STAGEDIR}${DATADIR}/bin/m2.conf.sample
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/mvn ${STAGEDIR}${DATADIR}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/mvnDebug ${STAGEDIR}${DATADIR}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/mvnyjp ${STAGEDIR}${DATADIR}/bin
+	${INSTALL_DATA} ${WRKSRC}/bin/m2.conf ${DATADIR}/bin/m2.conf.sample
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/mvn ${DATADIR}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/mvnDebug ${DATADIR}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/bin/mvnyjp ${DATADIR}/bin
 	@${MKDIR} ${FAKE_DESTDIR}${INSTANCES_DIR}
 	${INSTALL_DATA} ${WRKDIR}/${INSTANCE_ID} \
 		${FAKE_DESTDIR}${INSTANCES_DIR}

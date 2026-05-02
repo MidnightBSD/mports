@@ -22,6 +22,6 @@ PROGRAMS=	gds2dump gdsdump2gds modgds2 gdslayers testgds2 \
 
 post-install:
 	cd ${WRKSRC}/Examples/ && \
-	    ${INSTALL_SCRIPT} ${PROGRAMS} ${STAGEDIR}${PREFIX}/bin
+	    ${INSTALL_SCRIPT} ${PROGRAMS} ${PREFIX}/bin
 
 .include <bsd.port.mk>

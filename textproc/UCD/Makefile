@@ -35,14 +35,14 @@ DISTFILES+=	Unihan.zip:src
 DATADIR=	${PREFIX}/share/unicode/ucd
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${STAGEDIR}${DATADIR} &&	\
+	${MKDIR} ${DATADIR}
+	(cd ${DATADIR} &&	\
 	${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${PORTNAME}.zip ${EXTRACT_AFTER_ARGS})
 .if ${PORT_OPTIONS:MHAN}
-	(cd ${STAGEDIR}${DATADIR} &&	\
+	(cd ${DATADIR} &&	\
 	${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/Unihan.zip ${EXTRACT_AFTER_ARGS})
 	# Gucharmap also needs this zipfile
-	${INSTALL_DATA} ${_DISTDIR}/Unihan.zip ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${_DISTDIR}/Unihan.zip ${DATADIR}
 .endif
 
 .include <bsd.port.mk>

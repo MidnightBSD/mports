@@ -15,6 +15,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Devel/Size/Size.so
+	@${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Devel/Size/Size.so
 
 .include <bsd.port.mk>

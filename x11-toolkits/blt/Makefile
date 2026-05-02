@@ -1,6 +1,6 @@
 PORTNAME=	blt
 PORTVERSION=	2.5.3
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-toolkits tk
 MASTER_SITES=	SF/wize
 DISTNAME=	${PORTNAME}-src-${PORTVERSION}
@@ -38,8 +38,8 @@ post-patch:
 	    ${REINPLACE_CMD} -e 's|../src/bltwish|${LOCALBASE}/bin/bltwish|'
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	${STRIP_CMD} ${PREFIX}/bin/*
+	${STRIP_CMD} ${PREFIX}/lib/*.so
 
 .include <bsd.port.pre.mk>
 

@@ -39,7 +39,7 @@ do-extract:
 	${CP} ${_DISTDIR}/composer.phar ${WRKSRC}/
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/composer.phar ${STAGEDIR}${PREFIX}/bin/
-	${LN} -s composer.phar ${STAGEDIR}${PREFIX}/bin/composer
+	${INSTALL_SCRIPT} ${WRKSRC}/composer.phar ${PREFIX}/bin/
+	${LN} -s composer.phar ${PREFIX}/bin/composer
 
 .include <bsd.port.mk>

@@ -17,10 +17,10 @@ WRKSRC=		${WRKDIR}
 
 do-install:
 	@${ECHO_CMD} "MANPATH ${TRUE_PREFIX}/lib/erlang/man" > ${WRKDIR}/erlang.conf
-	${INSTALL_DATA} ${WRKDIR}/erlang.conf ${STAGEDIR}${PREFIX}/etc/man.d/erlang.conf
+	${INSTALL_DATA} ${WRKDIR}/erlang.conf ${PREFIX}/etc/man.d/erlang.conf
 	for SECTION in 1 3 4 6 7; do \
-		cd ${WRKSRC}/man/ && ${COPYTREE_SHARE} man$${SECTION} ${STAGEDIR}${PREFIX}/lib/erlang; \
+		cd ${WRKSRC}/man/ && ${COPYTREE_SHARE} man$${SECTION} ${PREFIX}/lib/erlang; \
 	done
-	-${RM} -r ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/man/cat?
+	-${RM} -r ${PREFIX}/lib/${ERLANG_LIB}/man/cat?
 
 .include <bsd.port.mk>

@@ -52,9 +52,9 @@ post-patch:
 		${WRKSRC}/meson.build
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/libpeas-2/loaders/
+	${MKDIR} ${PREFIX}/lib/libpeas-2/loaders/
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/loaders/python/libpythonloader.so \
-		${STAGEDIR}${PREFIX}/lib/libpeas-2/loaders/
+		${PREFIX}/lib/libpeas-2/loaders/
 .endif
 
 .include <bsd.port.mk>

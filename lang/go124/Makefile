@@ -1,4 +1,4 @@
-DISTVERSION=	1.24.11
+DISTVERSION=	1.24.13
 # Always set PORTREVISION explicitly as otherwise they are inherited from lang/go-devel
 PORTREVISION=	0
 MASTER_SITES=	https://go.dev/dl/
@@ -15,6 +15,8 @@ MASTERDIR=	${.CURDIR}/../go-devel
 WRKSRC=		${WRKDIR}/go
 DISTINFO_FILE=	${.CURDIR}/distinfo
 EXTRACT_ONLY=	${DISTFILES:[1]}
+
+SKIP_FAKE_ALL=  yes
 
 SHEBANG_FILES=	lib/wasm/go_js_wasm_exec lib/wasm/go_wasip1_wasm_exec
 

@@ -82,14 +82,14 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/unzip \
 		${PREFIX}/bin
 	cd ${WRKSRC} && \
-		${INSTALL_PROGRAM} funzip unzipsfx ${STAGEDIR}${PREFIX}/bin
+		${INSTALL_PROGRAM} funzip unzipsfx ${PREFIX}/bin
 	${LN} -sf unzip ${PREFIX}/bin/zipinfo
-	${INSTALL_SCRIPT} ${WRKSRC}/unix/zipgrep ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/unix/zipgrep ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/man/unzip.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
+		${PREFIX}/share/man/man1
 	cd ${WRKSRC}/man && ${INSTALL_MAN} ${MANPAGES:Nunzip.1:Ninfo-unzip.1} \
-		${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/man/man1
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>

@@ -48,19 +48,19 @@ post-patch-DOCS-on:
 			${WRKSRC}/Makefile.in
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/dbus-1.0/dbus/
+	${MKDIR} ${PREFIX}/include/dbus-1.0/dbus/
 	${INSTALL_DATA} ${WRKSRC}/include/dbus/dbus-python.h \
-		${STAGEDIR}${PREFIX}/include/dbus-1.0/dbus/dbus-python.h
+		${PREFIX}/include/dbus-1.0/dbus/dbus-python.h
 	${INSTALL_DATA} ${WRKSRC}/dbus-python.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/dbus-python.pc
+		${PREFIX}/libdata/pkgconfig/dbus-python.pc
 
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} && \
-		${INSTALL_DATA} ${WRKSRC}/examples/*.py ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR} && \
+		${INSTALL_DATA} ${WRKSRC}/examples/*.py ${EXAMPLESDIR}
 
-	${MKDIR} ${STAGEDIR}${DOCSDIR} && \
-		${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${STAGEDIR}${DOCSDIR} && \
-		${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR} && \
-		${INSTALL_DATA} ${WRKSRC}/NEWS ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR} && \
+		${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${DOCSDIR} && \
+		${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR} && \
+		${INSTALL_DATA} ${WRKSRC}/NEWS ${DOCSDIR}
 
 do-install-HTMLDOCS-on:
 	${INSTALL_DATA} ${WRKSRC}/doc/_build/*.html ${FAKE_DESTDIR}${DOCSDIR}
@@ -73,9 +73,9 @@ USES+=		python
 USE_PYTHON=	flavors py3kplist
 
 post-install:
-	-${RM} -r ${STAGEDIR}${PREFIX}/include/dbus-1.0 \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/dbus-python.pc
-	-${RM} -r ${STAGEDIR}/${DOCSDIR}
+	-${RM} -r ${PREFIX}/include/dbus-1.0 \
+		${PREFIX}/libdata/pkgconfig/dbus-python.pc
+	-${RM} -r /${DOCSDIR}
 .endif # end of slaving block
 
 .include <bsd.port.mk>

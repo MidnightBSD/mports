@@ -26,7 +26,7 @@ LICENSE=		Apache-2.0 ADOBE bsd3 bsd4 mit MPL20 \
 			python TWAIN W3C
 LICENSE_COMB=		multi
 LICENSE_NAME_ADOBE=	Adobe Systems Incorporated license
-LICENSE_TEXT_ADOBE=	"What the web can't be"
+LICENSE_TEXT_ADOBE=	What the web can't be
 LICENSE_NAME_TWAIN=	TWAIN Working Group license
 LICENSE_TEXT_TWAIN=	twain
 LICENSE_NAME_W3C=	W3C license
@@ -404,33 +404,33 @@ do-build:
 	. ../${FREEBSD_ENV_SET} ;					  \
 	build.pl --all -P$${numproc} -- -P$${dmproc}
 
-PYDL=	${FAKE_DESTDIR}${OOPATH}/program/python-core-2.7.18/lib/lib-dynload
+PYDL=	${OOPATH}/program/python-core-2.7.18/lib/lib-dynload
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PRINSTALLATION_BASEDIR} \
-		${STAGEDIR}${PREFIX}/share/mime/packages
+	@${MKDIR} ${PRINSTALLATION_BASEDIR} \
+		${PREFIX}/share/mime/packages
 	@cd ${WRKSRC} ; \
 		. ${FREEBSD_ENV_SET} ; \
 		cd instsetoo_native/$${INPATH}/Apache_OpenOffice/archive/install/${LOCALIZED_LANG}/ ; \
 		for i in *.tar.?z ; do \
 			${ECHO_CMD} "extracting $$i" ; \
 			${TAR} -s '|./[^/]*/||' -xz -f $$i \
-				-C ${STAGEDIR}${PRINSTALLATION_BASEDIR} ; \
+				-C ${PRINSTALLATION_BASEDIR} ; \
 		done
 	-${RM} ${PYDL}/_sqlite3.so ${PYDL}/gdbm.so ${PYDL}/readline.so
-	${FIND} ${STAGEDIR}${PRINSTALLATION_BASEDIR} -type d -exec ${CHMOD} 755 {} \;
+	${FIND} ${PRINSTALLATION_BASEDIR} -type d -exec ${CHMOD} 755 {} \;
 	${REINPLACE_CMD} \
 		-e '/^UserInstallation/s/=.*/=$$SYSUSERCONFIG\/${AOOUDIR}/' \
-		${STAGEDIR}${OOPATH}/program/bootstraprc
-	@${RM} ${STAGEDIR}${OOPATH}/program/bootstraprc.bak
+		${OOPATH}/program/bootstraprc
+	@${RM} ${OOPATH}/program/bootstraprc.bak
 	@${ECHO_CMD} "adding wrapper scripts";
 	@${CP} ${FILESDIR}/openoffice-wrapper ${WRKDIR}/
 	@${REINPLACE_CMD} -e 's#%%OOPATH%%#${OOPATH}#g' \
 			-e 's#%%EXECBASE%%#${EXECBASE}#g' \
 			${WRKDIR}/openoffice-wrapper
 	${INSTALL_SCRIPT} ${WRKDIR}/openoffice-wrapper \
-		${STAGEDIR}${PREFIX}/bin/${EXECBASE}
-	@cd ${STAGEDIR}${PREFIX}/bin; for i in printeradmin sbase scalc sdraw \
+		${PREFIX}/bin/${EXECBASE}
+	@cd ${PREFIX}/bin; for i in printeradmin sbase scalc sdraw \
 		simpress smath spadmin swriter ; do \
 			${LN} -f ${EXECBASE} ${EXECBASE}-$${i} ; \
 	done
@@ -438,7 +438,7 @@ do-install:
 	@cd ${WRKSRC} ;						\
 	    . ${FREEBSD_ENV_SET} ;				\
 	    cd sysui/$${INPATH}/misc/openoffice ;		\
-	    DESTDIR=${STAGEDIR}					\
+	    DESTDIR=					\
 		GNOMEDIR=${PREFIX}				\
 		ICON_PREFIX=openoffice${AOOVERSION1}		\
 		ICON_SOURCE_DIR=${WRKSRC}/sysui/desktop/icons	\
@@ -447,21 +447,21 @@ do-install:
 		PREFIX=openoffice${AOOVERSION1}			\
 		${SH} ${CREATE_TREE} ;				\
 	    ${INSTALL_DATA} apacheopenoffice.xml		\
-		${STAGEDIR}/${PREFIX}/share/mime/packages
-	@cd ${STAGEDIR}${DESKTOPDIR}; for i in base calc draw impress \
+		${PREFIX}/share/mime/packages
+	@cd ${DESKTOPDIR}; for i in base calc draw impress \
 		javafilter math printeradmin qstart startcenter writer ; do \
 			${LN} -sf ${XDGREL}/$${i}.desktop ${EXECBASE}-$${i}.desktop ; \
 	done
 
 do-install-SDK-on:
-	${TAR} -s '|./[^/]*/||' -xz -C ${STAGEDIR}${PRINSTALLATION_BASEDIR} \
+	${TAR} -s '|./[^/]*/||' -xz -C ${FAKE_DESTDIR}${PRINSTALLATION_BASEDIR} \
 		-f ${WRKSRC}/instsetoo_native/unxfbsd*.pro/Apache_OpenOffice_SDK/archive/install/${LOCALIZED_LANG}/*.tar.gz
-	@f=${STAGEDIR}${OOPATH}/sdk/bin/unoapploader ; \
+	@f=${FAKE_DESTDIR}${OOPATH}/sdk/bin/unoapploader ; \
 		${CHMOD} 644 $${f} ; ${STRIP_CMD} $${f} ; ${CHMOD} 444 $${f}
 
 post-install:
 	@${ECHO_CMD} "generating plist";
-	@cd ${STAGEDIR}${PREFIX} ; (\
+	@cd ${PREFIX} ; (\
 		${FIND} -s bin -name "${EXECBASE}*" ; \
 		${FIND} -s ${INSTALLATION_BASEDIR} share/applications \
 			share/application-registry share/icons \

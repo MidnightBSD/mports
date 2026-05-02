@@ -283,30 +283,30 @@ post-build:
 .endif
 
 post-install: strip-files install-config-files install-doc-files
-	@${MKDIR} ${STAGEDIR}/var/agentx
-	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libnetsnmp.so.${SHLIB_VERSION} libnetsnmp.so)
-	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libnetsnmpagent.so.${SHLIB_VERSION} libnetsnmpagent.so)
-	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libnetsnmphelpers.so.${SHLIB_VERSION} libnetsnmphelpers.so)
-	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libnetsnmpmibs.so.${SHLIB_VERSION} libnetsnmpmibs.so)
-	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libnetsnmptrapd.so.${SHLIB_VERSION} libnetsnmptrapd.so)
+	@${MKDIR} /var/agentx
+	@(cd ${PREFIX}/lib && ${LN} -sf libnetsnmp.so.${SHLIB_VERSION} libnetsnmp.so)
+	@(cd ${PREFIX}/lib && ${LN} -sf libnetsnmpagent.so.${SHLIB_VERSION} libnetsnmpagent.so)
+	@(cd ${PREFIX}/lib && ${LN} -sf libnetsnmphelpers.so.${SHLIB_VERSION} libnetsnmphelpers.so)
+	@(cd ${PREFIX}/lib && ${LN} -sf libnetsnmpmibs.so.${SHLIB_VERSION} libnetsnmpmibs.so)
+	@(cd ${PREFIX}/lib && ${LN} -sf libnetsnmptrapd.so.${SHLIB_VERSION} libnetsnmptrapd.so)
 .if ${PORT_OPTIONS:MNEWSYSLOG}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
-	${INSTALL_DATA} ${FILESDIR}/net-snmp.conf ${STAGEDIR}${DATADIR}/newsyslog.conf.sample
+	@${MKDIR} ${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} ${FILESDIR}/net-snmp.conf ${DATADIR}/newsyslog.conf.sample
 .endif
 
 strip-files:
-	(cd ${STAGEDIR}${PREFIX}/bin; ${STRIP_CMD} ${BIN_FILES})
-	(cd ${STAGEDIR}${PREFIX}/lib; ${STRIP_CMD} ${LIB_FILES})
-	(cd ${STAGEDIR}${PREFIX}/sbin; ${STRIP_CMD} ${SBIN_FILES})
+	(cd ${PREFIX}/bin; ${STRIP_CMD} ${BIN_FILES})
+	(cd ${PREFIX}/lib; ${STRIP_CMD} ${LIB_FILES})
+	(cd ${PREFIX}/sbin; ${STRIP_CMD} ${SBIN_FILES})
 
 install-config-files:
-	${INSTALL_DATA} ${WRKSRC}/EXAMPLE.conf ${STAGEDIR}${DATADIR}/snmpd.conf.example
+	${INSTALL_DATA} ${WRKSRC}/EXAMPLE.conf ${DATADIR}/snmpd.conf.example
 
 install-doc-files:
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 . for filename in ${DOC_FILES}
-	${INSTALL_DATA} ${WRKSRC}/${filename} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${filename} ${DOCSDIR}
 . endfor
 .endif
 

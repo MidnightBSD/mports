@@ -105,12 +105,12 @@ post-patch:
 
 post-install:
 .  for f in ${_SD_ETCFILES}
-	@${MV} ${STAGEDIR}${ETCDIR}/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
+	@${MV} ${ETCDIR}/${f} ${ETCDIR}/${f}.sample
 .  endfor
-	@${RM} -r ${STAGEDIR}${DATADIR}/conf
-	@${RMDIR} ${STAGEDIR}${DATADIR} || ${TRUE}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${RM} -r ${DATADIR}/conf
+	@${RMDIR} ${DATADIR} || ${TRUE}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .else
 

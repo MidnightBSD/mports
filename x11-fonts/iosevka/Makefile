@@ -76,8 +76,8 @@ EXPERIMENTAL_DISTFILES=		experimental-${PORTNAME}-aile-${DISTVERSION}${EXTRACT_S
 				experimental-${PORTNAME}-slab-extended-${DISTVERSION}${EXTRACT_SUFX}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${FONTSDIR}
 
 regenerate-plist: fake
 	${MAKE} makeplist 2>/dev/null | \

@@ -72,9 +72,9 @@ GROUPS=		${PORTNAME}
 NO_TEST=	yes
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}-syslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf.sample
-	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.yml ${STAGEDIR}${PREFIX}/etc/${PORTNAME}.yml.sample
-	${INSTALL} -d ${STAGEDIR}/var/db/${PORTNAME}
+	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}-syslog.conf ${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf.sample
+	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.yml ${PREFIX}/etc/${PORTNAME}.yml.sample
+	${INSTALL} -d /var/db/${PORTNAME}
 
 pre-configure:
 	${REINPLACE_CMD} -e "s|%%BUILDTIME%%|$$(date +%s)|g" ${WRKSRC}/build/meta.go

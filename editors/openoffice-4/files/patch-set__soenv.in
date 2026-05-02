@@ -1,0 +1,86 @@
+--- set_soenv.in.orig	2026-05-01 11:59:37.211297000 -0400
++++ set_soenv.in	2026-05-01 13:39:54.086470000 -0400
+@@ -356,7 +356,7 @@
+ 
+    $INPATH         = $OUTPATH.$PROEXT;
+ }
+-elsif ( $platform =~ m/freebsd/ ) 
++elsif ( $platform =~ m/freebsd|midnightbsd/ ) 
+ {     $BIG_SVX        = "TRUE";
+       $COM            = "@COM_IS@";
+       $COMPATH        = '@COMPATH@' . '/bin'; 
+@@ -1072,7 +1072,7 @@
+                         $L.$USR_DT.$LIB.
+                         $L.$USR_OPENWIN.$LIB;
+ }
+-elsif ($platform =~ m/linux|netbsd|osf1|freebsd|aix/)
++elsif ($platform =~ m/linux|netbsd|osf1|freebsd|midnightbsd|aix/)
+ {
+    $SOLAREXTRALIB     = $L.$par_dir.$LIB64;
+ }
+@@ -1137,7 +1137,7 @@
+ }
+      
+ # The general environment path.
+-if ($platform =~ m/linux|netbsd|odf1|freebsd|aix|solaris/)
++if ($platform =~ m/linux|netbsd|odf1|freebsd|midnightbsd|aix|solaris/)
+ {  $PATH              = $cur_dir.
+                         $ps.'$SOLARENV'.$ds.'$INPATH'.$BIN.
+                         $ps.'$SOLARENV'.$BIN;
+@@ -1365,7 +1365,7 @@
+                         $L.$JRETHREADDIR.
+                         $L.$XLIB;
+ }
+-elsif ($platform =~ m/linux|netbasd|osf1|aix|freebsd/)
++elsif ($platform =~ m/linux|netbasd|osf1|aix|freebsd|midnightbsd/)
+ {  $SOLARLIB          = $L.$par_dir.$LIB.
+                         $L.'$SOLARENV'.$ds.'$OUTPATH'.$LIB.
+                         $L.'$SOLARVER'.$ds.'$INPATH'.$LIB.
+@@ -1401,9 +1401,9 @@
+                         $I.'$SOLARENV'.$INC.
+                         $I.'$SRC_ROOT'.$ds."res";
+ 
+-if ($platform =~ m/solaris|linux|osf1|freebsd|netbsd/)
++if ($platform =~ m/solaris|linux|osf1|freebsd|midnightbsd|netbsd/)
+ {
+-if ($platform =~ m/linux|freebsd|netbsd/)
++if ($platform =~ m/linux|freebsd|midnightbsd|netbsd/)
+ {
+ # This simply adds an include path, so even cases that break the FHS work
+ }
+@@ -1434,7 +1434,7 @@
+    		elsif  ($platform =~ m/linux|osf1/)
+    		{  $SOLARINC   .=$I.'$JAVA_HOME'.$INCLUDE.$ds."linux";
+    		}
+-   		elsif ($platform =~ m/freebsd/)
++   		elsif ($platform =~ m/freebsd|midnightbsd/)
+    		{
+       		$SOLARINC   .=$I.'$JAVA_HOME'.$INCLUDE.$ds."freebsd";
+       		$SOLARINC   .=$I.'$JAVA_HOME'.$INCLUDE.$ds."bsd";
+@@ -1449,7 +1449,7 @@
+    		$SOLARINC .=$I.'$JAVA_HOME'.$INCLUDE.$ds."native_threads".$ds."include";
+ 	}
+     #The tail, if needed
+-    if ($platform =~ m/linux|freebsd|netbsd/)
++    if ($platform =~ m/linux|freebsd|midnightbsd|netbsd/)
+     {  $SOLARINC  .= $I.$XINC;
+     }
+     elsif ($platform =~ m/osf1/)
+@@ -1744,7 +1744,7 @@
+     ToFile( "MACOSX_DEPLOYMENT_TARGET",       "@MACOSX_DEPLOYMENT_TARGET@",       "e" );
+     ToFile( "MACOSX_SDK_PATH",       "@MACOSX_SDK_PATH@",       "e" );
+ }
+-if ( $platform =~ m/freebsd/ )
++if ( $platform =~ m/freebsd|midnightbsd/ )
+ {
+     ToFile( "FBSD_GCC_RPATH",       "@FBSD_GCC_RPATH@", "e" );
+     ToFile( "LIBINTL_PREFIX",       "@LIBINTL_PREFIX@", "e" );
+@@ -2107,7 +2107,7 @@
+ }
+ 
+ # on Solaris, MacOSX and FreeBSD (and Windows) set GNUPATCH and GPERF
+-if ($platform =~ m/solaris|darwin|freebsd|cygwin/)
++if ($platform =~ m/solaris|darwin|freebsd|midnightbsd|cygwin/)
+ {
+   ToFile( "GNUPATCH",   "@GNUPATCH@",	"e");
+   ToFile( "GPERF", "@GPERF@",	"e");

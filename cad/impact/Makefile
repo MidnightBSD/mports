@@ -49,9 +49,9 @@ post-extract:
 
 do-install:
 	(cd ${WRKDIR} && ${INSTALL_SCRIPT} impact impactgui \
-		${STAGEDIR}${PREFIX}/bin)
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
+		${PREFIX}/bin)
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR})
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps
+		${PREFIX}/share/pixmaps
 
 .include <bsd.port.mk>

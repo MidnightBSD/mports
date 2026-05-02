@@ -29,7 +29,7 @@ CONFIGURE_ARGS=	LD="${CC}" LDXX="${CXX}"
 CONFIGURE_ARGS+=	LDXXFLAGS="${LDFLAGS}"
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmpdec.so.${DISTVERSION}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmpdec++.so.${DISTVERSION}
+	${STRIP_CMD} ${PREFIX}/lib/libmpdec.so.${DISTVERSION}
+	${STRIP_CMD} ${PREFIX}/lib/libmpdec++.so.${DISTVERSION}
 
 .include <bsd.port.post.mk>

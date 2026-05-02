@@ -62,10 +62,10 @@ post-build:
 .endfor
 
 post-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
 .for cfg in filer master notification replication security
 	${INSTALL_DATA} ${WRKDIR}/${cfg}.toml \
-		${STAGEDIR}${ETCDIR}/${cfg}.toml.sample
+		${ETCDIR}/${cfg}.toml.sample
 .endfor
 
 .include <bsd.port.post.mk>

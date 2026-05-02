@@ -22,9 +22,9 @@ post-build:
 	${CAT} ${MASTERDIR}/pkg-plist >> ${WRKDIR}/PLIST
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/netplan.dir
-	${CHMOD} 1777 ${STAGEDIR}${DATADIR}/netplan.dir
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${.CURDIR}/files/plan_calEUC.ps ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DATADIR}/netplan.dir
+	${CHMOD} 1777 ${DATADIR}/netplan.dir
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${.CURDIR}/files/plan_calEUC.ps ${DOCSDIR}
 
 .include	"${MASTERDIR}/Makefile"

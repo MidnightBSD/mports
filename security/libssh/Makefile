@@ -55,6 +55,6 @@ post-patch:
 	-${RM} ${WRKSRC}/cmake/Modules/UseDoxygen.cmake
 
 post-install:
-	${INSTALL_DATA} ${INSTALL_WRKSRC}/src/libssh.a ${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/src/libssh.a ${PREFIX}/lib/
 
 .include <bsd.port.mk>

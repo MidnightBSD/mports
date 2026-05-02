@@ -81,9 +81,9 @@ do-build-DOCS-on:
 
 # This also means separate install steps for documentation.
 do-install-DOCS-on:
-	${CMAKE_BIN} --install ${BUILD_WRKSRC} --prefix ${STAGEDIR}${PREFIX} \
+	${CMAKE_BIN} --install ${BUILD_WRKSRC} --prefix ${PREFIX} \
 	    --component qch_docs
-	${CMAKE_BIN} --install ${BUILD_WRKSRC} --prefix ${STAGEDIR}${PREFIX} \
+	${CMAKE_BIN} --install ${BUILD_WRKSRC} --prefix ${PREFIX} \
 	    --component html_docs
 
 .include <bsd.port.mk>

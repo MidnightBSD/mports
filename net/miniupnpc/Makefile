@@ -31,9 +31,9 @@ CFLAGS+=	-DDEBUG
 USE_RC_SUBR=	miniupnpc
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/upnpc \
-		${STAGEDIR}${PREFIX}/bin/upnp-listdevices \
-		${STAGEDIR}${PREFIX}/lib/libminiupnpc.so.18
+	${STRIP_CMD} ${PREFIX}/bin/upnpc \
+		${PREFIX}/bin/upnp-listdevices \
+		${PREFIX}/lib/libminiupnpc.so.18
 .endif
 
 .include <bsd.port.post.mk>

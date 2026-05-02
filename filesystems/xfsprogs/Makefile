@@ -41,7 +41,7 @@ post-patch:
 post-install:
 .for f in mkfs.xfs xfs_copy xfs_db xfs_estimate xfs_fsr xfs_growfs xfs_io \
      xfs_logprint xfs_mdrestore xfs_quota xfs_repair xfs_rtcp
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/${f}
+	${STRIP_CMD} ${PREFIX}/sbin/${f}
 .endfor
 
 .include <bsd.port.mk>

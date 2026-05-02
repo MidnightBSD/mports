@@ -37,11 +37,11 @@ post-patch:
 		 s|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/${PORTNAME}.in
 
 do-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR} \
-		 ${STAGEDIR}${PREFIX}/etc/periodic/daily
-	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf ${STAGEDIR}${ETCDIR}/${PORTNAME}.conf.sample
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}_force ${STAGEDIR}${PREFIX}/etc/periodic/daily
+	${MKDIR} ${ETCDIR} \
+		 ${PREFIX}/etc/periodic/daily
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf ${ETCDIR}/${PORTNAME}.conf.sample
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}_force ${PREFIX}/etc/periodic/daily
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -534,9 +534,6 @@ post-patch-LLD-on:
 	    ${WRKSRC}/lld/docs/conf.py
 
 post-install:
-.for CRT_ARCH in ${COMPILER_RT_ARCHS}
-	-cd ${PREFIX}/${_CRTLIBDIR} && ${LN} -sf ${CRT_ARCH}-portbld-${FTARGET} ${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}
-.endfor
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
 	    ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
 .for command in ${COMMANDS:C/^/XXXX/1:NXXXX*}
@@ -582,6 +579,15 @@ post-install-CLANG-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/toolchains/
 	${INSTALL_DATA} ${WRKDIR}/xtoolchain.mk \
 	    ${FAKE_DESTDIR}${PREFIX}/share/toolchains/llvm${LLVM_SUFFIX}.mk
+.for CRT_ARCH in ${COMPILER_RT_ARCHS}
+	-${RM} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	${MKDIR} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	-${CP} -R "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${FTARGET}/"* "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}/"
+.endfor
+	-${RM} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	-${MKDIR} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	-${CP} -R "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${FTARGET}/"* "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}/"
+
 
 post-install-EXTRAS-on:
 	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/clang-tidy/misc/ConfusableTable
@@ -643,7 +649,8 @@ build-plist:
 	${ECHO_CMD} bin/${command}%%LLVM_SUFFIX%% >> ${PLIST}.tmp
 .endfor
 .for CRT_ARCH in ${COMPILER_RT_ARCHS}
-	${ECHO_CMD} "@dir ${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}" >> ${PLIST}.tmp
+	@${ECHO_CMD} "@dir ${_CRTLIBDIR}/${CRT_ARCH}-portbld-${FTARGET}" >> ${PLIST}.tmp
+	@${ECHO_CMD} "@dir ${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}" >> ${PLIST}.tmp
 .endfor
 .for command in ${LIT_COMMANDS}
 	${ECHO_CMD} %%LIT%%bin/${command}%%LLVM_SUFFIX%% >> ${PLIST}.tmp

@@ -43,9 +43,9 @@ post-configure:
 		${WRKSRC}/Makefile
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${LIBDIR}
+	@${MKDIR} ${LIBDIR}
 	${INSTALL_DATA} ${WRKSRC}/pkgIndex.tcl	\
-		${WRKSRC}/libpgtcl${PORTVERSION}.so ${STAGEDIR}${LIBDIR}
+		${WRKSRC}/libpgtcl${PORTVERSION}.so ${LIBDIR}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

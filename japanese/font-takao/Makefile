@@ -32,17 +32,17 @@ post-extract:
 	cd ${WRKSRC} && for F in *.ttf; do ${MV} $${F} $${F%.ttf}.otf; done
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.otf ${STAGEDIR}${FONTSDIR}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.otf ${FONTSDIR}
+	@${MKDIR} ${PREFIX}/etc/fonts/conf.avail \
+	    ${PREFIX}/etc/fonts/conf.d
 	${INSTALL_DATA} ${FILESDIR}/20-unhint-${FONTNAME}.conf \
 	    ${FILESDIR}/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail
+	    ${PREFIX}/etc/fonts/conf.avail
 	${LN} -s -f ../conf.avail/20-unhint-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/20-unhint-${FONTNAME}.conf
 	${LN} -s -f ../conf.avail/62-fonts-${FONTNAME}.conf \
-	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
+	    ${PREFIX}/etc/fonts/conf.d/62-fonts-${FONTNAME}.conf
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -18,9 +18,9 @@ USE_PERL5=	build test
 TEST_TARGET=	test
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/unterm
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/vterm-ctrl
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/vterm-dump
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libvterm.so
+	${STRIP_CMD} ${PREFIX}/bin/unterm
+	${STRIP_CMD} ${PREFIX}/bin/vterm-ctrl
+	${STRIP_CMD} ${PREFIX}/bin/vterm-dump
+	${STRIP_CMD} ${PREFIX}/lib/libvterm.so
 
 .include <bsd.port.mk>

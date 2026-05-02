@@ -44,7 +44,7 @@ post-patch:
 		${WRKSRC}/kmfl_compiler/kmfl_compiler.c
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@${INSTALL_DATA} -v ${DOCS} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	@${INSTALL_DATA} -v ${DOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>

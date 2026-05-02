@@ -60,10 +60,10 @@ pre-build: build-yafaray
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/install/${JARNAME} \
-		${STAGEDIR}${JAVAJARDIR}/${JARNAME}
+		${JAVAJARDIR}/${JARNAME}
 	${INSTALL_SCRIPT} ${WRKDIR}/sweethome3d.sh \
-		${STAGEDIR}${PREFIX}/bin/sweethome3d
+		${PREFIX}/bin/sweethome3d
 	${INSTALL_DATA} ${WRKSRC}/deploy/SweetHome3DIcon32x32.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/sweethome3d-icon.png
+		${PREFIX}/share/pixmaps/sweethome3d-icon.png
 
 .include <bsd.port.mk>

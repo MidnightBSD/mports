@@ -34,7 +34,7 @@ FLOPPY_DESC=	Image for creating bootable Floppy Drive
 FLOPPY_DISTFILES=	${DISTNAME}-floppy${EXTRACT_SUFX}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 
 do-install-USB-on:
 	${INSTALL_DATA} ${WRKSRC}/memtest86-usb.img ${FAKE_DESTDIR}${DATADIR}

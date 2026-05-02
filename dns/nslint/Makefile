@@ -28,7 +28,7 @@ post-patch:
 			${WRKSRC}/${PORTNAME}.8
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/nslint ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/nslint.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_PROGRAM} ${WRKSRC}/nslint ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/nslint.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

@@ -22,8 +22,8 @@ do-build:
 	${CC} ${CFLAGS} -o ${WRKSRC}/ttcp ${WRKSRC}/ttcp.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/ttcp ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/ttcp.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/ttcp ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/ttcp.1 ${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -132,21 +132,21 @@ post-install: avahi-post-install
 avahi-post-install:
 .if defined(MANPAGES) && ${AVAHI_SLAVE} != gtk
 .for f in ${MANPAGES}
-	${INSTALL_DATA} ${WRKSRC}/man/${f} ${STAGEDIR}${PREFIX}/share/man/man${f:E}/${f}
+	${INSTALL_DATA} ${WRKSRC}/man/${f} ${PREFIX}/share/man/man${f:E}/${f}
 .endfor
 .endif
 .for f in ${AVAHI_PKGCONFIG}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/libdata/pkgconfig
 .endfor
 .for f in ${DAEMON_CONFIG_FILES}
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/avahi
+	${MKDIR} ${PREFIX}/etc/avahi
 	${INSTALL_DATA} ${WRKSRC}/avahi-daemon/${f} \
-		${STAGEDIR}${PREFIX}/etc/avahi/${f}.sample
+		${PREFIX}/etc/avahi/${f}.sample
 .endfor
 .if ${AVAHI_SLAVE}==no
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/dbus-1/system-services
+	${MKDIR} ${PREFIX}/share/dbus-1/system-services
 	${INSTALL_DATA} ${WRKSRC}/avahi-daemon/org.freedesktop.Avahi.service \
-		${STAGEDIR}${PREFIX}/share/dbus-1/system-services
+		${PREFIX}/share/dbus-1/system-services
 .endif
 .endif # ! avahi-header
 

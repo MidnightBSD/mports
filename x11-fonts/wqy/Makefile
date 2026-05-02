@@ -62,22 +62,22 @@ do-build:
 	${CP} ${WRKSRC}/wqy-microhei/README.txt ${WRKSRC}/wqy-microhei/README.microhei
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR} ${STAGEDIR}${PREFIX}/${CONFDDIR} ${STAGEDIR}${PREFIX}/${CONFAVAILDIR}
+	${MKDIR} ${FONTSDIR} ${PREFIX}/${CONFDDIR} ${PREFIX}/${CONFAVAILDIR}
 # WQY Bitmap Song
-	${INSTALL_DATA} ${WRKSRC}/wqy-bitmapsong/*.pcf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/wqy-bitmapsong/*.pcf ${FONTSDIR}
 # WQY Bitmap Song
-	${INSTALL_DATA} ${WRKSRC}/wqy-unibit/wqy-unibit.pcf ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/wqy-unibit/wqy-unibit.pcf ${FONTSDIR}
 # WQY TrueType Zenhei
-	${INSTALL_DATA} ${WRKSRC}/wqy-zenhei/wqy-zenhei.ttc ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/wqy-zenhei/wqy-zenhei.ttc ${FONTSDIR}
 # WQY TrueType MicroHei Lite
-	${INSTALL_DATA} ${WRKSRC}/wqy-microhei-lite/wqy-microhei-lite.ttc ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/wqy-microhei-lite/wqy-microhei-lite.ttc ${FONTSDIR}
 # WQY TrueType MicroHei
-	${INSTALL_DATA} ${WRKSRC}/wqy-microhei/wqy-microhei.ttc ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/wqy-microhei/wqy-microhei.ttc ${FONTSDIR}
 
-	${INSTALL_DATA} ${FILESDIR}/85-wqy.conf ${STAGEDIR}${PREFIX}/${CONFAVAILDIR}
-	${LN} -sf ${PREFIX}/${CONFAVAILDIR}/85-wqy.conf ${STAGEDIR}${PREFIX}/${CONFDDIR}/85-wqy.conf
+	${INSTALL_DATA} ${FILESDIR}/85-wqy.conf ${PREFIX}/${CONFAVAILDIR}
+	${LN} -sf ${PREFIX}/${CONFAVAILDIR}/85-wqy.conf ${PREFIX}/${CONFDDIR}/85-wqy.conf
 
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} \
 		${WRKSRC}/wqy-bitmapsong/AUTHORS.bitmap \
 		${WRKSRC}/wqy-bitmapsong/ChangeLog.bitmap \
@@ -95,6 +95,6 @@ do-install:
 		${WRKSRC}/wqy-microhei/README.microhei \
 		${WRKSRC}/wqy-microhei/LICENSE_Apache2.txt \
 		${WRKSRC}/wqy-microhei/LICENSE_GPLv3.txt \
-			${STAGEDIR}${DOCSDIR}
+			${DOCSDIR}
 
 .include <bsd.port.mk>

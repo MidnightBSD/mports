@@ -74,12 +74,12 @@ post-patch:
 		${WRKSRC}/etc/barnyard2.conf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS1:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS2:S|^|${WRKSRC}/doc/|} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/schemas/|} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/src/barnyard2 ${STAGEDIR}${PREFIX}/bin/
-	${CP} ${WRKSRC}/etc/barnyard2.conf ${STAGEDIR}${PREFIX}/etc/barnyard2.conf.sample
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS1:S|^|${WRKSRC}/|} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS2:S|^|${WRKSRC}/doc/|} ${DOCSDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/schemas/|} ${EXAMPLESDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/src/barnyard2 ${PREFIX}/bin/
+	${CP} ${WRKSRC}/etc/barnyard2.conf ${PREFIX}/etc/barnyard2.conf.sample
 
 .include <bsd.port.mk>

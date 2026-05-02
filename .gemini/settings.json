@@ -1,0 +1,54 @@
+{
+  "general": {
+    "defaultApprovalMode": "auto_edit",
+    "plan": {
+      "enabled": true,
+      "modelRouting": true
+    }
+  },
+  "tools": {
+    "excludeTools": [
+      "ShellTool(rm -rf /)",
+      "ShellTool(shutdown)",
+      "ShellTool(kldload)",
+      "ShellTool(kldunload)"
+    ],
+"core": [
+      "run_shell_command(bmake)",
+      "run_shell_command(make)",
+      "run_shell_command(ninja)",
+      "run_shell_command(gmake)",
+      "run_shell_command(cmake)",
+      "run_shell_command(mvn)",
+      "run_shell_command(gradle)",
+      "run_shell_command(ant)",
+      "run_shell_command(cargo)",
+      "run_shell_command(npm)",
+      "run_shell_command(git)",
+      "run_shell_command(ps)",
+      "read_file",
+      "write_file",
+      "list_directory",
+      "glob",
+      "grep_search",
+      "replace"
+    ]
+  },
+  "context": {
+    "fileName": ["AGENTS.md" ]
+  },
+  "hooks": {
+    "BeforeTool": [
+      {
+        "name": "audit-before-write",
+        "matcher": "write_file|replace",
+        "type": "command",
+        "command": "./.gemini/hooks/security-audit.sh"
+      }
+    ]
+  },
+  "planning": {
+    "skills": ["Security Auditor"],
+    "enforceSecurityCheck": true
+  }
+}

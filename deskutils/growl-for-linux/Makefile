@@ -45,6 +45,6 @@ post-patch:
 		${WRKSRC}/Makefile.am
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/lib/libgolplug.a
+	${RM} ${PREFIX}/lib/libgolplug.a
 
 .include <bsd.port.mk>

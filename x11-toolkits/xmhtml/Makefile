@@ -28,11 +28,11 @@ CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 do-install:
 	(cd ${WRKSRC}/lib && ${LIBTOOL} --mode=install ${INSTALL_DATA} \
-		libXmHTML.la ${STAGEDIR}${PREFIX}/lib)
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libXmHTML.so
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/XmHTML
+		libXmHTML.la ${PREFIX}/lib)
+	${STRIP_CMD} ${PREFIX}/lib/libXmHTML.so
+	@${MKDIR} ${PREFIX}/include/XmHTML
 	${INSTALL_DATA} ${WRKSRC}/include/XmHTML/*.h \
-		${STAGEDIR}${PREFIX}/include/XmHTML
+		${PREFIX}/include/XmHTML
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

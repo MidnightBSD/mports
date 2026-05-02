@@ -83,18 +83,18 @@ pre-configure:
 ETCDIR?=	${PREFIX}/etc
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/etc/etcscreenrc \
-		${STAGEDIR}${EXAMPLESDIR}/screenrc.sample-1
+		${EXAMPLESDIR}/screenrc.sample-1
 	${INSTALL_DATA} ${FILESDIR}/screenrc.sample \
-		${STAGEDIR}${EXAMPLESDIR}/screenrc.sample-2
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+		${EXAMPLESDIR}/screenrc.sample-2
+	@${MKDIR} ${ETCDIR}
 .if ${PORT_OPTIONS:MSYSTEM_SCREENRC}
 	${INSTALL_DATA} ${FILESDIR}/screenrc.sample \
-		${STAGEDIR}${ETCDIR}/screenrc.sample
+		${ETCDIR}/screenrc.sample
 .else
 	${INSTALL_DATA} ${WRKSRC}/etc/etcscreenrc \
-		${STAGEDIR}${ETCDIR}/screenrc.sample
+		${ETCDIR}/screenrc.sample
 .endif
 
 .include <bsd.port.mk>

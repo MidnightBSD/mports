@@ -29,21 +29,21 @@ do-configure:
 		${WRKSRC}/Makefile
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/dtaus ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/dtaus.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${INSTALL_MAN} ${WRKSRC}/dtaus.5 ${STAGEDIR}${PREFIX}/share/man/man5/
+	${INSTALL_PROGRAM} ${WRKSRC}/dtaus ${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/dtaus.1 ${PREFIX}/share/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/dtaus.5 ${PREFIX}/share/man/man5/
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 .for doc in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${doc} \
-		${STAGEDIR}${DOCSDIR}/
+		${DOCSDIR}/
 .endfor
 .endif
 .if ${PORT_OPTIONS:MEXAMPLES}
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
 .for doc in ${PORTEXAMPLES}
 	${INSTALL_DATA} ${WRKSRC}/${doc} \
-		${STAGEDIR}${EXAMPLESDIR}/
+		${EXAMPLESDIR}/
 .endfor
 .endif
 

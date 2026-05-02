@@ -19,6 +19,6 @@ NO_BUILD=	yes
 PLIST_FILES=	sbin/dual-dhclient
 
 do-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/dual-dhclient ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${FILESDIR}/dual-dhclient ${PREFIX}/sbin
 
 .include <bsd.port.mk>

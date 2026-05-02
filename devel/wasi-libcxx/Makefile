@@ -1,0 +1,94 @@
+PORTNAME=	libcxx
+DISTVERSION?=	0
+PORTREVISION?=	0
+CATEGORIES=	devel lang
+MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/ \
+		https://${PRE_}releases.llvm.org/${LLVM_RELEASE}/${RCDIR}/
+PKGNAMEPREFIX=	wasi-
+PKGNAMESUFFIX=	${LLVM_VERSION}
+DISTNAME=	llvm-project-${DISTVERSION}.src
+DISTFILES=	llvm-project-${DISTVERSION}.src${EXTRACT_SUFX}
+
+MAINTAINER=	vishwin@FreeBSD.org
+COMMENT=	C++ standard library for WebAssembly System Interface
+WWW=		https://llvm.org/
+
+LICENSE=	LLVM2
+LICENSE_NAME=	Apache License 2.0 with LLVM Exceptions
+LICENSE_FILE=	${WRKSRC}/llvm/LICENSE.TXT
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+USES=		cmake tar:xz
+EXTRACT_AFTER_ARGS=	--exclude '*/llvm/cmake/config.guess'
+
+.if ${DISTVERSION} == 0
+IGNORE=		is a meta port; there is nothing to build
+PKGNAMESUFFIX=	-master
+.else
+BUILD_DEPENDS=	${WASI_SYSROOT}/include/${TRIPLE}/stdlib.h:devel/wasi-libc@${LLVM_VERSION} \
+		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
+USES+=		llvm:${LLVM_SUFFIX}
+.endif
+
+LLVM_RELEASE=	${DISTVERSION:C/rc.*//}
+LLVM_SUFFIX=	${LLVM_RELEASE:C/\.[0-9]\.[0-9]$//}
+DISTINFO_FILE=	${PORTSDIR}/${LLVM_PORT}/distinfo
+SSP_UNSAFE=	yes
+NO_ARCH=	yes
+PLIST=		${.CURDIR}/pkg-plist
+PLIST_SUB=	TRIPLE=${TRIPLE}
+
+WASI_SYSROOT=	${LOCALBASE}/share/wasi-sysroot
+TRIPLE=		wasm32-wasip1
+WITHOUT_CPU_CFLAGS=	yes
+# try to sync with https://github.com/WebAssembly/wasi-sdk
+# wasi-sdk.cmake and cmake/wasi-sdk-sysroot.cmake
+CMAKE_INSTALL_PREFIX=	${PREFIX}/share/wasi-sysroot
+CMAKE_SOURCE_PATH=	${WRKSRC}/runtimes
+CMAKE_ARGS=	-DCMAKE_SYSTEM_NAME=WASI \
+		-DCMAKE_SYSTEM_VERSION=1 \
+		-DCMAKE_SYSTEM_PROCESSOR=wasm32 \
+		-DCMAKE_AR=${LLVM_PREFIX}/bin/llvm-ar \
+		-DCMAKE_RANLIB=${LLVM_PREFIX}/bin/llvm-ranlib \
+		-DCMAKE_C_COMPILER_TARGET=${TRIPLE} \
+		-DCMAKE_CXX_COMPILER_TARGET=${TRIPLE} \
+		-DCMAKE_ASM_COMPILER_TARGET=${TRIPLE} \
+		-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER \
+		-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
+		-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY \
+		-DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY \
+		-DCMAKE_C_COMPILER_WORKS=ON \
+		-DCMAKE_CXX_COMPILER_WORKS=ON \
+		-DCMAKE_SYSROOT=${WASI_SYSROOT} \
+		-DLIBCXX_ENABLE_THREADS:BOOL=OFF \
+		-DLIBCXX_HAS_PTHREAD_API:BOOL=OFF \
+		-DLIBCXX_HAS_EXTERNAL_THREAD_API:BOOL=OFF \
+		-DLIBCXX_HAS_WIN32_THREAD_API:BOOL=OFF \
+		-DLLVM_COMPILER_CHECKED=ON \
+		-DLIBCXX_ENABLE_SHARED:BOOL=OFF \
+		-DLIBCXX_ENABLE_EXCEPTIONS:BOOL=OFF \
+		-DLIBCXX_ENABLE_FILESYSTEM:BOOL=OFF \
+		-DLIBCXX_CXX_ABI=libcxxabi \
+		-DLIBCXX_HAS_MUSL_LIBC:BOOL=OFF \
+		-DLIBCXX_ABI_VERSION=2 \
+		-DLIBCXXABI_ENABLE_EXCEPTIONS:BOOL=OFF \
+		-DLIBCXXABI_ENABLE_SHARED:BOOL=OFF \
+		-DLIBCXXABI_SILENT_TERMINATE:BOOL=ON \
+		-DLIBCXXABI_ENABLE_THREADS:BOOL=OFF \
+		-DLIBCXXABI_HAS_PTHREAD_API:BOOL=OFF \
+		-DLIBCXXABI_HAS_EXTERNAL_THREAD_API:BOOL=OFF \
+		-DLIBCXXABI_HAS_WIN32_THREAD_API:BOOL=OFF \
+		-DLIBCXXABI_USE_LLVM_UNWINDER:BOOL=OFF \
+		-DUNIX:BOOL=ON \
+		-DLIBCXX_LIBDIR_SUFFIX=/${TRIPLE} \
+		-DLIBCXXABI_LIBDIR_SUFFIX=/${TRIPLE} \
+		-DLIBCXX_INCLUDE_TESTS=OFF \
+		-DLIBCXX_INCLUDE_BENCHMARKS=OFF \
+		-DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi"
+
+# The bundled llvm/cmake/config.guess can be too old to recognize MidnightBSD.
+post-extract:
+	@${CP} ${PORTSDIR}/Templates/config.sub ${WRKSRC}/llvm/cmake/config.sub
+	@${CP} ${PORTSDIR}/Templates/config.guess ${WRKSRC}/llvm/cmake/config.guess
+
+.include <bsd.port.mk>

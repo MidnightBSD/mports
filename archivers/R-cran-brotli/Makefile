@@ -20,6 +20,6 @@ TEST_DEPENDS=	R-cran-ggplot2>0:graphics/R-cran-ggplot2 \
 USES=		cran:auto-plist,compiles
 
 post-stage:
-	${RMDIR} ${STAGEDIR}${PREFIX}/${R_MOD_DIR}/bin
+	${RMDIR} ${PREFIX}/${R_MOD_DIR}/bin
 
 .include <bsd.port.mk>

@@ -24,6 +24,6 @@ USE_PERL5=	configure
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/autobox/autobox.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/autobox/autobox.so
 
 .include <bsd.port.mk>

@@ -18,13 +18,13 @@ GH_PROJECT=	Montserrat
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 .for docfile in AUTHOR.txt CONTRIBUTORS.txt README.md
 	cd ${WRKSRC} && \
-		${INSTALL_DATA} ${docfile} ${STAGEDIR}${DOCSDIR}
+		${INSTALL_DATA} ${docfile} ${DOCSDIR}
 .endfor
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC}/fonts/otf && \
-		${INSTALL_DATA} *.otf ${STAGEDIR}${FONTSDIR}
+		${INSTALL_DATA} *.otf ${FONTSDIR}
 
 .include <bsd.port.mk>

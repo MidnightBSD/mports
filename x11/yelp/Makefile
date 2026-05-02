@@ -40,6 +40,6 @@ post-patch:
 		${WRKSRC}/libyelp/yelp-man-parser.c
 
 post-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/yelp-groff ${STAGEDIR}${PREFIX}/libexec
+	${INSTALL_SCRIPT} ${FILESDIR}/yelp-groff ${PREFIX}/libexec
 
 .include <bsd.port.mk>

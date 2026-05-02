@@ -17,6 +17,6 @@ NO_ARCH=	yes
 PLIST_FILES=	bin/zfs-stats
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/zfs-stats ${STAGEDIR}${PREFIX}/bin/zfs-stats
+	${INSTALL_SCRIPT} ${WRKSRC}/zfs-stats ${PREFIX}/bin/zfs-stats
 
 .include <bsd.port.mk>

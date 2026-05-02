@@ -93,7 +93,7 @@ post-install:
 	${MKDIR} ${PREFIX}/lib/vmware-tools/modules/input
 	${INSTALL_DATA} ${WRKSRC}/modules/midnightbsd/vmblock.ko ${PREFIX}/lib/vmware-tools/modules/drivers/vmblock.ko
 	${INSTALL_DATA} ${WRKSRC}/modules/midnightbsd/vmmemctl.ko ${PREFIX}/lib/vmware-tools/modules/drivers/vmmemctl.ko
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/tools.conf \
 		${DATADIR}/tools.conf.sample
 	${MKDIR} ${PREFIX}/share/open-vm-tools/scripts/vmware/

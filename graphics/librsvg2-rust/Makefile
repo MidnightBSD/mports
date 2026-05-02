@@ -1,10 +1,10 @@
 PORTNAME=	librsvg
-PORTVERSION=	2.54.7
-PORTREVISION=	1
+PORTVERSION=	2.58.0
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2-rust
-DIST_SUBDIR=	gnome2
+# XXX Teach USES=cargo to have proper default
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for parsing and rendering SVG vector-graphic files
@@ -12,39 +12,44 @@ WWW=		https://live.gnome.org/LibRsvg
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${RUST_DEFAULT}>=1.52.0:lang/${RUST_DEFAULT} \
-		rst2man:textproc/py-docutils
-LIB_DEPENDS=	libfreetype.so:print/freetype2 \
-		libfontconfig.so:x11-fonts/fontconfig \
-		libpng.so:graphics/png \
-		libcroco-0.6.so:textproc/libcroco
+BUILD_DEPENDS=	rst2man:textproc/py-docutils
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz \
+		libpng.so:graphics/png
 
-USES=		gettext gmake gnome libtool pkgconfig tar:xz vala:build
-USE_GNOME=	cairo gdkpixbuf libxml2 pango gnomeprefix introspection:build
+USES=		cargo compiler:c11 cpe gettext gmake gnome libtool pathfix pkgconfig tar:xz vala:build
+CPE_VENDOR=	gnome
+USE_GNOME=	cairo gdkpixbuf libxml2 pango introspection:build
 USE_LDCONFIG=	yes
 
+PORTSCOUT=	limitw:1,even
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-vala \
-		--disable-Bsymbolic \
+CONFIGURE_ARGS=	--disable-Bsymbolic \
 		--disable-dependency-tracking \
 		--disable-static \
-		--disable-gtk-doc
-# Make sure it uses the Rust toolchain from ports.
-CONFIGURE_ENV=	CARGO=${LOCALBASE}/bin/cargo \
-		RUSTC=${LOCALBASE}/bin/rustc
-MAKE_ENV=	RUSTC=${LOCALBASE}/bin/rustc
+		--enable-vala
+CONFIGURE_ENV=	${CARGO_ENV}
+MAKE_ENV=	${CARGO_ENV}
+CARGO_ENV=	RUST_TARGET=${CARGO_BUILD_TARGET}
+CARGO_BUILD=	no
+CARGO_INSTALL=	no
+CARGO_TEST=	no
 INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 CONFLICTS_INSTALL=	librsvg2
 
 OPTIONS_DEFINE=	DOCS
 
-post-patch:
-# Disable vendor checksums
-	@${REINPLACE_CMD} -e 's/"files":{[^}]*}/"files":{}/' \
-		${WRKSRC}/vendor/*/.cargo-checksum.json
+DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
+DOCS_CONFIGURE_ENABLE=	gtk-doc
 
-pre-configure:
-	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${LOCALBASE}/bin/cargo update
+TESTING_UNSAFE=	ld: error: undefined symbol: pthread_condattr_init
+
+post-patch:
+# Add explicit <triple> subdir for --target from USES=cargo
+	@${REINPLACE_CMD} 's/test "x$$cross_compiling" = "xyes"/true/' \
+		${WRKSRC}/configure
 
 .include <bsd.port.mk>

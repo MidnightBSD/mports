@@ -9,6 +9,8 @@
     SUBDIR += cython
     SUBDIR += duktape
     SUBDIR += duktape-lib
+    SUBDIR += dotnet-host 
+
     SUBDIR += elixir
     SUBDIR += erlang
     SUBDIR += erlang-man
@@ -36,11 +38,10 @@
     SUBDIR += gnustep-base
     SUBDIR += go
     SUBDIR += go-devel
-    SUBDIR += go121
-    SUBDIR += go122
     SUBDIR += go123
     SUBDIR += go124
     SUBDIR += go125
+    SUBDIR += go126
     SUBDIR += groovy
     SUBDIR += gscheme
     SUBDIR += guile
@@ -111,6 +112,7 @@
     SUBDIR += rust
     SUBDIR += rust-bin
     SUBDIR += rust-bootstrap
+    SUBDIR += rust188
     SUBDIR += scala
     SUBDIR += spidermonkey102
     SUBDIR += spidermonkey128

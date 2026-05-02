@@ -24,7 +24,7 @@ PORTSCOUT=	skipv:variable-fonts
 FONTNAME=	MaterialDesign-Webfont
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/fonts/*.ttf ${STAGEDIR}${FONTSDIR}/
+	${MKDIR} ${FONTSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/fonts/*.ttf ${FONTSDIR}/
 
 .include <bsd.port.mk>

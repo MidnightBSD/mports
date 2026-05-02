@@ -21,7 +21,7 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${WWWDIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}
+	${MKDIR} ${WWWDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR}
 
 .include <bsd.port.mk>

@@ -32,6 +32,6 @@ post-patch:
 		${WRKSRC}/python/*.py.in
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/netgen/tcl/netgenexec ${STAGEDIR}${PREFIX}/lib/netgen/tcl/tclnetgen.so
+	@${STRIP_CMD} ${PREFIX}/lib/netgen/tcl/netgenexec ${PREFIX}/lib/netgen/tcl/tclnetgen.so
 
 .include <bsd.port.mk>

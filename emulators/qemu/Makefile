@@ -241,8 +241,8 @@ do-install:
 .if !target(post-install)
 post-install:
 .if ${FLAVOR:U} != tools && ${FLAVOR:U} != guestagent
-	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifup.sample ${STAGEDIR}${PREFIX}/etc
-	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifdown.sample ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifup.sample ${PREFIX}/etc
+	${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifdown.sample ${PREFIX}/etc
 .endif
 
 post-install-DOCS-on:

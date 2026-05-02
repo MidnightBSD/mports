@@ -84,14 +84,14 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/misc/ncurses-config.in
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/lib/libncurses.so
-	${ECHO} "INPUT(libncurses.so.${PORTVERSION:R} AS_NEEDED(-ltinfo))" > ${STAGEDIR}${PREFIX}/lib/libncurses.so
+	${RM} ${PREFIX}/lib/libncurses.so
+	${ECHO} "INPUT(libncurses.so.${PORTVERSION:R} AS_NEEDED(-ltinfo))" > ${PREFIX}/lib/libncurses.so
 
 	${STRIP_CMD} ${PREFIX}/lib/*.so.${DISTVERSION}
 
 	# backwards compatibility
-	${RLN} ${STAGEDIR}${PREFIX}/lib/libncurses.so ${STAGEDIR}${PREFIX}/lib/libncursesw.so
-	${RLN} ${STAGEDIR}${PREFIX}/libdata/pkgconfig/ncurses.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/ncursesw.pc
+	${RLN} ${PREFIX}/lib/libncurses.so ${PREFIX}/lib/libncursesw.so
+	${RLN} ${PREFIX}/libdata/pkgconfig/ncurses.pc ${PREFIX}/libdata/pkgconfig/ncursesw.pc
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

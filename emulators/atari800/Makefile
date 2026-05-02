@@ -82,16 +82,16 @@ pre-configure:
 	@${UNZIP_CMD} -q -L -o ${DISTDIR}/${DIST_SUBDIR}/xf25.zip ${ATARI_XF} -d ${WRKSRC}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/atari800 ${STAGEDIR}${PREFIX}/bin/atari800
-	${INSTALL_MAN} ${WRKSRC}/atari800.man ${STAGEDIR}${PREFIX}/share/man/man1/atari800.1
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/atari800.cfg ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/atari800 ${PREFIX}/bin/atari800
+	${INSTALL_MAN} ${WRKSRC}/atari800.man ${PREFIX}/share/man/man1/atari800.1
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/atari800.cfg ${DATADIR}
 .for rom in ${ATARI_XF}
-	${INSTALL_DATA} ${WRKSRC}/${rom} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/${rom} ${DATADIR}
 .endfor
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for docfile in BUGS CHANGES.OLD CREDITS ChangeLog FAQ README TODO USAGE
-	${INSTALL_DATA} ${WRKSRC}/../DOC/${docfile} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/../DOC/${docfile} ${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>

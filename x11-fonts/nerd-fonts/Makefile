@@ -16,16 +16,16 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	(cd ${WRKSRC}/patched-fonts && \
-	${COPYTREE_SHARE} . ${STAGEDIR}${FONTSDIR} "! -name *Windows* -and ! \
+	${COPYTREE_SHARE} . ${FONTSDIR} "! -name *Windows* -and ! \
 	-name *Awesome* -and ! -name *Pomicons* -and ! -name *Octicons* \
 	-and ! -name *.md -and ! -name *Linux*")
-	@${RMDIR} ${STAGEDIR}${FONTSDIR}/ProFont/ProFontWinTweaked/complete \
-		${STAGEDIR}${FONTSDIR}/ProFont/ProFontWinTweaked \
-		${STAGEDIR}${FONTSDIR}/ProFont/profont-x11 \
-		${STAGEDIR}${FONTSDIR}/Terminus/BDF \
-		${STAGEDIR}${FONTSDIR}/Terminus/PCF \
-		${STAGEDIR}${FONTSDIR}/Terminus/PSF \
+	@${RMDIR} ${FONTSDIR}/ProFont/ProFontWinTweaked/complete \
+		${FONTSDIR}/ProFont/ProFontWinTweaked \
+		${FONTSDIR}/ProFont/profont-x11 \
+		${FONTSDIR}/Terminus/BDF \
+		${FONTSDIR}/Terminus/PCF \
+		${FONTSDIR}/Terminus/PSF \
 
 .include <bsd.port.mk>

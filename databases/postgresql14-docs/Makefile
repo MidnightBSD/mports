@@ -33,13 +33,13 @@ do-build:
 	${MAKE_CMD} -C ${WRKSRC} html
 
 do-install:
-	@ ${MKDIR} ${STAGEDIR}${PGDOCSDIR}
+	@ ${MKDIR} ${PGDOCSDIR}
 	( cd ${WRKSRC}/doc/src/sgml/html && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PGDOCSDIR} )
+		${COPYTREE_SHARE} . ${PGDOCSDIR} )
 
 post-install:
-	@(cd ${STAGEDIR}${PREFIX} && ${FIND} ${PGDOCSREL} -type f) >> ${TMPPLIST}
-	@(cd ${STAGEDIR}${PREFIX} && ${FIND} ${PGDOCSREL} -type d) | ${SORT} -r | \
+	@(cd ${PREFIX} && ${FIND} ${PGDOCSREL} -type f) >> ${TMPPLIST}
+	@(cd ${PREFIX} && ${FIND} ${PGDOCSREL} -type d) | ${SORT} -r | \
 	     ${SED} 's,.*,@unexec rmdir %D/& 2>/dev/null || true,' >>${TMPPLIST}
 
 .include "${MASTERDIR}/Makefile"

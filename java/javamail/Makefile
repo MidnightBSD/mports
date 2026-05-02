@@ -36,22 +36,22 @@ ALL_TARGET=	all docs
 
 do-install:
 	@${ECHO_MSG} -n ">> Install JAR files in ${JAVAJARDIR}..."
-	@${INSTALL_DATA} ${WRKSRC}/target/release/mail.jar ${STAGEDIR}${JAVAJARDIR}/
+	@${INSTALL_DATA} ${WRKSRC}/target/release/mail.jar ${JAVAJARDIR}/
 	@${ECHO_MSG} " [ DONE ]"
 .if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	@cd ${WRKSRC}/target/release && ${FIND} *.txt \
-	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DOCSDIR} > /dev/null 2>&1
+	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR} > /dev/null 2>&1
 	@cd ${WRKSRC}/target/release/docs && ${FIND} *.txt javadocs \
-	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DOCSDIR} > /dev/null 2>&1
+	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR} > /dev/null 2>&1
 	@${ECHO_MSG} " [ DONE ]"
 .endif
 .if ${PORT_OPTIONS:MEXAMPLES}
 	@${ECHO_MSG} -n ">> Installing samples in ${EXAMPLESDIR}..."
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 	@cd ${WRKSRC}/demo && ${FIND} src \
-	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${EXAMPLESDIR} > /dev/null 2>&1
+	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${EXAMPLESDIR} > /dev/null 2>&1
 	@${ECHO_MSG} " [ DONE ]"
 .endif
 

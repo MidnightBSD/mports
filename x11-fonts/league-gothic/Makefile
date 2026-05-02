@@ -19,6 +19,6 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.otf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.otf ${FONTSDIR}
 .include <bsd.port.mk>

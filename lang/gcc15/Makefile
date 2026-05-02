@@ -1,6 +1,6 @@
 PORTNAME=	gcc
-PORTVERSION=	15.1.0
-PORTREVISION=	1
+PORTVERSION=	15.2.0
+PORTREVISION=	0
 CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
@@ -162,22 +162,22 @@ full-regression-test: build
 .endif
 
 post-stage:
-	${RM} ${STAGEDIR}${PREFIX}/share/man/man7/*
-	${RM} -r ${STAGEDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
+	${RM} ${PREFIX}/share/man/man7/*
+	${RM} -r ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Install ISO_Fortran_binding.h in an easily findable directory
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/gcc${SUFFIX}
-	${INSTALL_DATA} ${STAGEDIR}${PREFIX}/lib/gcc${SUFFIX}/gcc/${CONFIGURE_TARGET}/${GCC_VERSION}/include/ISO_Fortran_binding.h	\
-		${STAGEDIR}${PREFIX}/include/gcc${SUFFIX}
+	${MKDIR} ${PREFIX}/include/gcc${SUFFIX}
+	${INSTALL_DATA} ${PREFIX}/lib/gcc${SUFFIX}/gcc/${CONFIGURE_TARGET}/${GCC_VERSION}/include/ISO_Fortran_binding.h	\
+		${PREFIX}/include/gcc${SUFFIX}
 	# Add target libraries and include files to packaging list.
 	${RM} ${WRKDIR}/PLIST.lib
 
 .if (${ARCH} == amd64 || ${ARCH} == powerpc64) && ${PORT_OPTIONS:MMULTILIB}
-	${MKDIR} ${STAGEDIR}${TARGLIB32}
-	${MV} ${STAGEDIR}${PREFIX}/lib/lib32 ${STAGEDIR}${TARGLIB32}/gcc${SUFFIX}
+	${MKDIR} ${TARGLIB32}
+	${MV} ${PREFIX}/lib/lib32 ${TARGLIB32}/gcc${SUFFIX}
 .endif
 
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${TARGLIB32:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
-	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
+	cd ${PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
 	fi
 .endfor

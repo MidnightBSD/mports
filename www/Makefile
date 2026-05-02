@@ -33,6 +33,7 @@
     SUBDIR += chromium-bin
     SUBDIR += clearsilver
     SUBDIR += codeigniter
+    SUBDIR += corepack
     SUBDIR += dojo
     SUBDIR += drupal10
     SUBDIR += drupal7
@@ -45,7 +46,6 @@
     SUBDIR += gitea
     SUBDIR += gitlab
     SUBDIR += glassfish
-    SUBDIR += glassfish4
     SUBDIR += gnome-user-share
     SUBDIR += google-sitemapgen
     SUBDIR += googler
@@ -70,6 +70,7 @@
     SUBDIR += libhubbub
     SUBDIR += libmicrohttpd
     SUBDIR += libnghttp2
+    SUBDIR += libnghttp3
     SUBDIR += libwpe
     SUBDIR += libwww
     SUBDIR += lighttpd
@@ -81,12 +82,14 @@
     SUBDIR += linux-rl9-libnghttp2
     SUBDIR += linux-rl9-qt5-qtwebchannel
     SUBDIR += linux-rl9-qt5-qtwebsockets
+    SUBDIR += llhttp
     SUBDIR += lynx
     SUBDIR += man2web
     SUBDIR += mathjax
     SUBDIR += mathjax3
     SUBDIR += mattermost-server
     SUBDIR += mattermost-webapp
+    SUBDIR += mcp-server-browserbase
     SUBDIR += mediawiki139
     SUBDIR += mediawiki143
     SUBDIR += mediawiki144
@@ -440,10 +443,12 @@
     SUBDIR += tomcat101
     SUBDIR += tomcat110
     SUBDIR += tomcat9
+    SUBDIR += ungoogled-chromium
     SUBDIR += validator
     SUBDIR += varnish7
     SUBDIR += varnish-libvmod-maxminddb
     SUBDIR += w3m
+    SUBDIR += waterfox
     SUBDIR += webalizer
     SUBDIR += webinject
     SUBDIR += webkit2-gtk

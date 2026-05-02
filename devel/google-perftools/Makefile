@@ -91,6 +91,6 @@ post-build:
 	@${ECHO}
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so.*
+	@${STRIP_CMD} ${PREFIX}/lib/lib*.so.*
 
 .include <bsd.port.post.mk>

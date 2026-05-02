@@ -18,7 +18,7 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/Meslo\ LG\ v${DISTVERSION}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
 
 .include <bsd.port.mk>

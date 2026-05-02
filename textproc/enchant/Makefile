@@ -56,7 +56,7 @@ post-patch:
 		${WRKSRC}/install-sh
 
 post-install:
-	@cd ${STAGEDIR}${PREFIX}/share/enchant/ && \
+	@cd ${PREFIX}/share/enchant/ && \
 		${MV} enchant.ordering enchant1.ordering
 
 .include <bsd.port.mk>

@@ -74,6 +74,6 @@ NO_TEST=	yes
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/org.gnome.settings-daemon.plugins.power.gschema.xml.override \
-		${STAGEDIR}${PREFIX}/share/glib-2.0/schemas/
+		${PREFIX}/share/glib-2.0/schemas/
 
 .include <bsd.port.mk>

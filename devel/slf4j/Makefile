@@ -1,7 +1,12 @@
 PORTNAME=	slf4j
-PORTVERSION=	1.7.21
+DISTVERSION=	1.7.36
 CATEGORIES=	devel java
-MASTER_SITES=	http://www.slf4j.org/dist/
+MASTER_SITES=	https://repo1.maven.org/maven2/org/:source1
+JARFILES=	integration jcl-over-slf4j jul-to-slf4j log4j-over-slf4j \
+		osgi-over-slf4j slf4j-android slf4j-api slf4j-ext slf4j-jcl \
+		slf4j-jdk14 slf4j-migrator slf4j-nop slf4j-reload4j slf4j-simple
+DISTFILES=	${JARFILES:C|(.+)|slf4j/\1/${DISTVERSION}/\1-${DISTVERSION}.jar:source1|}
+EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple facade or abstraction for various logging frameworks
@@ -11,29 +16,22 @@ LICENSE=	mit
 
 USES=		cpe java
 CPE_VENDOR=	qos
-NO_BUILD=	YES
 
-JARFILES=	slf4j-migrator.jar \
-		slf4j-simple.jar \
-		jcl-over-slf4j.jar \
-		log4j-over-slf4j.jar \
-		slf4j-ext.jar \
-		slf4j-jdk14.jar \
-		slf4j-nop.jar \
-		jul-to-slf4j.jar \
-		slf4j-jcl.jar \
-		slf4j-log4j12.jar
+NO_ARCH=	yes
+NO_BUILD=	yes
 
-
-PLIST_FILES=	%%JAVAJARDIR%%/slf4j-api.jar \
-		${JARFILES:S,^,%%DATADIR%%/,}
-PLIST_DIRS=	%%DATADIR%%
+JAVAJARDIR=	${JAVASHAREDIR}/${PORTNAME}
+PLIST_FILES=	${JAVALIBDIR}/slf4j-api.jar \
+		${JARFILES:C|(.+)|${JAVAJARDIR}/\1.jar|}
 
 do-install:
-	@${INSTALL_DATA} ${WRKSRC}/slf4j-api-${PORTVERSION}.jar ${JAVAJARDIR}/slf4j-api.jar
-	@${MKDIR} ${DATADIR}
+	${MKDIR} ${JAVAJARDIR}
 .for jarfile in ${JARFILES}
-	@${INSTALL_DATA} ${WRKSRC}/${jarfile:S,.jar$,-${PORTVERSION}.jar,} ${DATADIR}/${jarfile}
+	${INSTALL_DATA} \
+		${DISTDIR}/${jarfile:C|(.+)|slf4j/\1/${DISTVERSION}/\1-${DISTVERSION}.jar|} \
+		${JAVAJARDIR}/${jarfile}.jar
 .endfor
+	${RLN} ${JAVAJARDIR}/slf4j-api.jar \
+		${JAVALIBDIR}/slf4j-api.jar
 
 .include <bsd.port.mk>

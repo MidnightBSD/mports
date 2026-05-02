@@ -43,8 +43,7 @@
     SUBDIR += maven
     SUBDIR += maven-ant-tasks
     SUBDIR += maven-wrapper
-    SUBDIR += maven3
-    SUBDIR += maven33
+    SUBDIR += maven363
     SUBDIR += maven39
     SUBDIR += netbeans
     SUBDIR += netty

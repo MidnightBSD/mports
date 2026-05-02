@@ -32,10 +32,10 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/msbuild /t:KeePassRPC /p:Configuration=${CONFIG})
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	(cd ${WRKSRC}/KeePassRPC/bin/${CONFIG} && \
 		${RM} ./KeePass.exe && \
 		${RM} ./KeePass.exe.config && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
+		${COPYTREE_SHARE} . ${DATADIR})
 
 .include <bsd.port.mk>

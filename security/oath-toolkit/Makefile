@@ -40,10 +40,10 @@ PORTDOCS=	*
 
 post-install:
 .for f in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}/${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/${f} /${DOCSDIR}/
 .endfor
-	${MKDIR} ${STAGEDIR}/${DOCSDIR}/pam_oath
+	${MKDIR} /${DOCSDIR}/pam_oath
 	${INSTALL_DATA} ${WRKSRC}/pam_oath/README \
-		${STAGEDIR}/${DOCSDIR}/pam_oath/
+		/${DOCSDIR}/pam_oath/
 
 .include <bsd.port.mk>

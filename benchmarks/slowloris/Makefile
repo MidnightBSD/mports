@@ -30,6 +30,6 @@ RUN_DEPENDS+=	p5-threads-shared>=0:devel/p5-threads-shared
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/slowloris.pl \
-		${STAGEDIR}/${PREFIX}/bin/slowloris
+		/${PREFIX}/bin/slowloris
 
 .include <bsd.port.mk>

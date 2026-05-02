@@ -55,11 +55,11 @@ FONT_FAMILY+=	UDEVGothic35LG
 FONT_STYLE=	Bold BoldItalic Italic Regular
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 .for FAMILY in ${FONT_FAMILY}
 .  for STYLE in ${FONT_STYLE}
 	${INSTALL_DATA} ${WRKSRC}/${FAMILY}-${STYLE}.ttf \
-		${STAGEDIR}${FONTSDIR}
+		${FONTSDIR}
 	@${ECHO_CMD} ${FONTSDIR:S,${PREFIX}/,,}/${FAMILY}-${STYLE}.ttf >> ${TMPPLIST}
 .  endfor
 .endfor

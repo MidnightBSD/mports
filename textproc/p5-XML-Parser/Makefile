@@ -75,7 +75,7 @@ pre-build:
 	@cd ${WRKDIR} && ${PERL} ${FILESDIR}/check_nfs.pl 2>/dev/null || (${ECHO_MSG} "===>  lockf in \$$TMPDIR required"; ${FALSE})
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/XML/Parser/Expat/Expat.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/XML/Parser/Expat/Expat.so
 
 # maintainer section:
 # require: p5-XML-Encoding

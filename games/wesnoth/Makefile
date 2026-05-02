@@ -126,6 +126,6 @@ post-patch:
 		${WRKSRC}/src/utils/config_filters.hpp
 
 #post-install:
-#	${FIND} ${STAGEDIR}${PREFIX}/man -type d -empty -delete
+#	${FIND} ${PREFIX}/man -type d -empty -delete
 
 .include <bsd.port.mk>

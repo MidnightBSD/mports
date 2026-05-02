@@ -19,18 +19,18 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/jargon-fpw/jargon/data
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/jargon-fpw/jargon/gaiji
+	@${MKDIR} ${PREFIX}/share/dict/jargon-fpw/jargon/data
+	@${MKDIR} ${PREFIX}/share/dict/jargon-fpw/jargon/gaiji
 	${INSTALL_DATA} ${WRKSRC}/jargon/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/jargon-fpw/jargon/data
+		${PREFIX}/share/dict/jargon-fpw/jargon/data
 	${INSTALL_DATA} ${WRKSRC}/jargon/gaiji/gai16f \
-		${STAGEDIR}${PREFIX}/share/dict/jargon-fpw/jargon/gaiji
+		${PREFIX}/share/dict/jargon-fpw/jargon/gaiji
 	${INSTALL_DATA} ${WRKSRC}/jargon/gaiji/gai16h \
-		${STAGEDIR}${PREFIX}/share/dict/jargon-fpw/jargon/gaiji
+		${PREFIX}/share/dict/jargon-fpw/jargon/gaiji
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/jargon-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/jargon-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme.1st readme.txt \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

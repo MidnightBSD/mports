@@ -23,12 +23,12 @@ post-patch:
 		${WRKSRC}/Makefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/
-	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.desktop ${STAGEDIR}${DESKTOPDIR}
+		${PREFIX}/share/pixmaps/
+	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.desktop ${DESKTOPDIR}
 
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

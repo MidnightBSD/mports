@@ -31,10 +31,10 @@ DOCS_CONFIGURE_ON=	-Dgtk_doc=true
 .include <bsd.mport.options.mk>
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/vala/vapi
+	@${MKDIR} ${PREFIX}/share/vala/vapi
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgexiv2.so
-	-${RM} -r ${STAGEDIR}${PREFIX}/lib/python*
+	${STRIP_CMD} ${PREFIX}/lib/libgexiv2.so
+	-${RM} -r ${PREFIX}/lib/python*
 
 .include <bsd.port.mk>

@@ -24,6 +24,6 @@ CFLAGS+=	-Wno-gnu-statement-expression
 TEST_TARGET=	check
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libcrypt.so.2.0.0
+	@${STRIP_CMD} ${PREFIX}/lib/libcrypt.so.2.0.0
 
 .include <bsd.port.mk>

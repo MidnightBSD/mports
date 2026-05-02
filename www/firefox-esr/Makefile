@@ -1,5 +1,5 @@
 PORTNAME=	firefox
-DISTVERSION=	128.12.0
+DISTVERSION=	128.14.0
 PORTEPOCH=	1
 CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
@@ -8,11 +8,13 @@ PKGNAMESUFFIX=	-esr
 DISTFILES=	${DISTNAME}esr.source${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Web browser based on the browser portion of Mozilla
+COMMENT=	Web browser based on the browser portion of Mozilla (ESR)
 WWW=		https://www.mozilla.com/firefox
 
 LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
+
+CONFLICTS_INSTALL=	firefox
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nss>=3.101:security/nss \
@@ -29,84 +31,134 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip \
-		clang15:devel/llvm15
- 
-#	${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
-#${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc@${LLVM_VERSION} \
-#		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
+		clang15:devel/llvm15 \
+		cargo:lang/rust \
+		cbindgen:devel/rust-cbindgen
 
-USE_GECKO=	gecko
-CPE_PRODUCT=	${PORTNAME}_esr
-CONFLICTS_INSTALL=	firefox
-USE_MOZILLA=	-sqlite
-CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include"
-MBSD64_TARGET=  x86_64-mports-freebsd13.4
-CONFIGURE_TARGET=       ${MBSD64_TARGET}
-LDFLAGS+=               -Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
+LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
+		libevent.so:devel/libevent \
+		libstartup-notification-1.so:x11/startup-notification \
+		libnspr4.so:devel/nspr \
+		libnss3.so:security/nss \
+		libicui18n.so:devel/icu \
+		libharfbuzz.so:print/harfbuzz \
+		libgraphite2.so.3:graphics/graphite2 \
+		libpng16.so:graphics/png \
+		libavcodec.so:multimedia/ffmpeg \
+		libffi.so:devel/libffi \
+		libpixman-1.so:x11/pixman \
+		libwebp.so:graphics/webp \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libpci.so:devel/libpci \
+		libdbus-1.so:devel/dbus \
+		libdbus-glib-1.so:devel/dbus-glib \
+		libatk-1.0.so:accessibility/at-spi2-core \
+		libaom.so:multimedia/aom \
+		libdav1d.so:multimedia/dav1d \
+		libproxy.so:net/libproxy
 
-USES=           compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
+USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
 		perl5 pkgconfig python desktop-file-utils tar:xz
+CPE_VENDOR=	mozilla
+CPE_PRODUCT=	firefox_esr
+USE_GL=		gl
+USE_GNOME=	cairo gdkpixbuf gtk30
+USE_XORG=	x11 xcb xcomposite xdamage xext xfixes xrandr xrender xt ice sm
 
-MOZILLA=        browser                                                                                                                                                   
-MOZILLA_NAME=   Browser                                                                                                                                                   
-#MOZ_OPTIONS=    --program-transform-name='s/firefox/${MOZILLA}/'                                                                                                          
-FIREFOX_ICON=		${MOZILLA}.png
-FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
-FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/${MOZILLA}-snap/${MOZILLA}.desktop
-MOZ_OPTIONS=	--enable-application=browser \
+QMAKE_ARGS=	--enable-application=browser \
+		--enable-chrome-format=omni \
+		--enable-default-toolkit=cairo-gtk3 \
 		--enable-install-strip \
+		--disable-official-branding \
 		--enable-optimize \
+		--enable-release \
 		--enable-strip \
 		--enable-libproxy \
-		--disable-official-branding \
-		--disable-webrtc \
-		--disable-tests \
-		--disable-updater \
-		--disable-hardening \
-		--without-wasm-sandboxed-libraries \
+		--enable-system-ffi \
+		--enable-system-pixman \
+		--disable-alsa \
+		--disable-crashreporter \
 		--disable-debug \
 		--disable-debug-symbols \
-		--disable-profiling \
 		--disable-dtrace \
-		--disable-crashreporter \
-		--disable-alsa \
-                --disable-jack \
-                --disable-pulseaudio \
+		--disable-jack \
+		--disable-profiling \
+		--disable-pulseaudio \
+		--disable-tests \
+		--disable-updater \
+		--disable-webrtc \
+		--disable-hardening \
+		--prefix=${PREFIX} \
 		--with-intl-api \
-                --with-system-icu \
-                --with-system-jpeg \
-                --with-system-libevent \
-                --with-system-nspr \
-                --with-system-nss \
-                --with-system-png \
-                --with-system-zlib \
-                --without-wasm-sandboxed-libraries
+		--with-system-icu \
+		--with-system-libevent \
+		--with-system-nspr \
+		--with-system-nss \
+		--with-system-png \
+		--with-system-zlib \
+		--without-wasm-sandboxed-libraries
 
-MAKE_ENV+=    __FreeBSD__=13 __FreeBSD__version=1303501
+LLVM_VERSION=	15
+MBSD64_TARGET=	x86_64-mports-freebsd13.4
+CONFIGURE_TARGET=	${MBSD64_TARGET}
+HAS_CONFIGURE=	yes
+CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
+CONFIGURE_OUTSOURCE=	yes
+LDFLAGS+=	-Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
+BINARY_ALIAS+=	python3=${PYTHON_CMD}
+MAKE_ENV+=	__FreeBSD__=13 __FreeBSD__version=1303501
 
-.include "Makefile.options"
+MOZ_OPTIONS+=	--with-libclang-path="${LLVM_PREFIX:S/${PREFIX}/${LOCALBASE}/}/lib"
+.if !exists(/usr/bin/llvm-objdump)
+MOZ_EXPORT+=	LLVM_OBJDUMP="${LOCALBASE}/bin/llvm-objdump${LLVM_VERSION}"
+.endif
+# Require newer Clang than what's in base system unless user opted out
+.if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
+CPP=		${LOCALBASE}/bin/clang-cpp${LLVM_VERSION}
+CC=		${LOCALBASE}/bin/clang${LLVM_VERSION}
+CXX=		${LOCALBASE}/bin/clang++${LLVM_VERSION}
+USES:=		${USES:Ncompiler\:*} # XXX avoid warnings
+.endif
 
-#BUILD_DEPENDS+= ${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx \
-#		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc \
-#		${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/clang/${LLVM_VERSION}/lib/wasi/libclang_rt.builtins-wasm32.a:devel/wasi-compiler-rt${LLVM_DEFAULT}
-#MOZ_OPTIONS+=	--with-wasi-sysroot=${LOCALBASE}/share/wasi-sysroot
+post-extract:
+	${SED} -e 's|@FIREFOX_ICON@|firefox|;s|@MOZILLA@|firefox|' \
+		< ${FILESDIR}/firefox.desktop.in \
+		> ${WRKDIR}/firefox.desktop
 
 post-patch:
-	-${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
-		-e '/^Icon/s/=.*/=${FIREFOX_ICON:R}/' \
-		${FIREFOX_DESKTOP}
-	-${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
+	(cd ${WRKSRC}/gfx/angle/checkout/src/compiler/translator && \
+		${REINPLACE_CMD} -e 's|<math.h>|<cmath>|' \
+		InfoSink.h IntermNode.cpp)
 	# disable SCTP
 	${REINPLACE_CMD} -e 's|MOZ_SCTP|MOZ_DISABLE_SCTP|' \
 		${WRKSRC}/netwerk/moz.build
+	# disable rust checksums
 	${REINPLACE_CMD} -e 's/"files":{[^}]*}/"files":{}/' \
-		 ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
-	echo "DEFINES['MOZ_DISABLE_NSWIFI_SCANNER'] = True" >> ${WRKSRC}/moz.build
+		${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
+	# Fix midnight
+	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD64_TARGET}|" \
+		${WRKSRC}/build/autoconf/config.guess
+	# Set mozilla options
+	@${ECHO_CMD} "--=> Setting configuration <=--"
+	@for arg in ${QMAKE_ARGS}; do \
+		${ECHO_CMD} ".mozconfig <<  $$arg" ;\
+		${ECHO_CMD} ac_add_options $$arg >> ${WRKSRC}/.mozconfig ;\
+	done
+	@${ECHO_CMD} LDFLAGS=\"-lm ${MOZLDFLAGS} -Wl,-rpath,${PREFIX}/lib/firefox\" \
+		>> ${WRKSRC}/.mozconfig
 
 post-install:
-	${INSTALL_DATA} ${FIREFOX_DESKTOP} ${PREFIX}/share/applications/
-	${MKDIR} ${PREFIX}/share/pixmaps
-	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+	${MKDIR} ${PREFIX}/share/pixmaps \
+		${PREFIX}/share/applications
+	${INSTALL_DATA} ${WRKDIR}/firefox.desktop \
+		${PREFIX}/share/applications/
+	(cd ${PREFIX}/share/pixmaps &&\
+	${LN} -sf ../../lib/firefox/browser/chrome/icons/default/default48.png firefox.png)
+	# Rewrite symlink to make it relative instead of absolute
+	(cd ${PREFIX}/bin &&\
+	${LN} -sf ../lib/firefox/firefox firefox)
 
 .include <bsd.port.mk>

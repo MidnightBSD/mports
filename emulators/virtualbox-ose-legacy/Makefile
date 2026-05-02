@@ -29,6 +29,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libcurl.so:ftp/curl
 RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod-legacy
 
+USE_GCC=12	
 USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 USE_GNOME=	libxml2
 
@@ -188,6 +189,8 @@ KMK_BUILDDIR=	${WRKSRC}/out/${KMK_ARCH}/${KMK_BUILDTYPE}
 KMK_CONFIG=	VBOX_LIBPATH_X11=${LOCALBASE} VBOX_FREEBSD_SRC=${SRC_BASE}/sys
 KMK_FLAGS+=	-j${MAKE_JOBS_NUMBER}
 
+MAKE_ENV+=	FREEBSD=12 _FreeBSD_version=1204500
+
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_MAJOR_VER} >= 3
@@ -294,7 +297,7 @@ post-patch:
 	    ${WRKSRC}/src/VBox/Runtime/Makefile.kmk
 	@${ECHO_CMD} 'VBOX_ICONV_DEFS = LIBICONV_PLUG' >> ${WRKSRC}/LocalConfig.kmk
 .endif
-.if ${CHOSEN_COMPILER_TYPE} == clang && ${OPSYS} == FreeBSD && ${ARCH} == i386
+.if ${CHOSEN_COMPILER_TYPE} == clang && ${ARCH} == i386
 	@${ECHO_CMD} 'VBOX_FREEBSD = -fPIC' >> ${WRKSRC}/LocalConfig.kmk
 .endif
 	@${REINPLACE_CMD} -e 's|%%VBOX_DIR%%|${VBOX_DIR}|g' \
@@ -304,10 +307,6 @@ post-patch:
 	@${REINPLACE_CMD} \
 	    -e 's|^versions =.*|versions = ["${PYTHON_VER}${PYTHON_ABIVER}"]|' \
 	    ${WRKSRC}/src/libs/xpcom18a4/python/gen_python_deps.py
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400093
-	@${REINPLACE_CMD} -e 's|enum vtype|enum enum_vtype_uint8|g' \
-	    ${WRKSRC}/src/VBox/Additions/freebsd/vboxvfs/vboxvfs*.[ch]
-.endif
 
 do-build:
 	cd ${WRKSRC} && ${SH} -c '. ${WRKSRC}/env.sh && \
@@ -319,91 +318,91 @@ do-build:
 
 do-install:
 .if ${PORT_OPTIONS:MPYTHON} || ${PORT_OPTIONS:MWEBSERVICE}
-	${MKDIR} ${STAGEDIR}${DATADIR}/sdk
+	${MKDIR} ${DATADIR}/sdk
 .endif
 	cd ${KMK_BUILDDIR}/bin/sdk/bindings/xpcom && \
-	    ${COPYTREE_SHARE} "idl samples" ${STAGEDIR}${DATADIR}
+	    ${COPYTREE_SHARE} "idl samples" ${DATADIR}
 
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/virtualbox
+	${MKDIR} ${PREFIX}/include/virtualbox
 	cd ${KMK_BUILDDIR}/bin/sdk/bindings/xpcom/include && \
-	    ${COPYTREE_SHARE} "*" ${STAGEDIR}${PREFIX}/include/virtualbox
+	    ${COPYTREE_SHARE} "*" ${PREFIX}/include/virtualbox
 
-	${MKDIR} ${STAGEDIR}${VBOX_DIR}
+	${MKDIR} ${VBOX_DIR}
 	cd ${KMK_BUILDDIR}/bin && ${COPYTREE_SHARE} \
-	    "*.fd *.r0 *.rc *.so components" ${STAGEDIR}${VBOX_DIR}
+	    "*.fd *.r0 *.rc *.so components" ${VBOX_DIR}
 .if ${PORT_OPTIONS:MPYTHON} || ${PORT_OPTIONS:MWEBSERVICE}
-	${RLN} ${STAGEDIR}${DATADIR}/sdk ${STAGEDIR}${VBOX_DIR}
+	${RLN} ${DATADIR}/sdk ${VBOX_DIR}
 .endif
 
 	${INSTALL_SCRIPT} ${WRKSRC}/src/VBox/Installer/freebsd/VBox.sh \
-	    ${STAGEDIR}${VBOX_DIR}
+	    ${VBOX_DIR}
 .for f in ${VBOX_PROGS} ${VBOX_UTILS}
-	${INSTALL_PROGRAM} ${KMK_BUILDDIR}/bin/${f} ${STAGEDIR}${VBOX_DIR}
+	${INSTALL_PROGRAM} ${KMK_BUILDDIR}/bin/${f} ${VBOX_DIR}
 .endfor
 .for f in ${VBOX_PROGS} ${VBOX_LINKS}
-	${LN} -fs ../${VBOX_DIR_REL}/VBox.sh ${STAGEDIR}${PREFIX}/bin/${f}
+	${LN} -fs ../${VBOX_DIR_REL}/VBox.sh ${PREFIX}/bin/${f}
 .endfor
 .for f in ${VBOX_PROGS}
-	${LN} -fs ../${VBOX_DIR_REL}/VBox.sh ${STAGEDIR}${PREFIX}/bin/${f:tl}
+	${LN} -fs ../${VBOX_DIR_REL}/VBox.sh ${PREFIX}/bin/${f:tl}
 .endfor
 
 .if ${PORT_OPTIONS:MGUESTADDITIONS}
-	${MKDIR} ${STAGEDIR}${VBOX_DIR}/additions
+	${MKDIR} ${VBOX_DIR}/additions
 	${INSTALL_DATA} ${DISTDIR}/${GUESTADDITIONS} \
-	    ${STAGEDIR}${VBOX_DIR}/additions/
-	${RLN} ${STAGEDIR}${VBOX_DIR}/additions/${GUESTADDITIONS} \
-	    ${STAGEDIR}${VBOX_DIR}/additions/VBoxGuestAdditions.iso
+	    ${VBOX_DIR}/additions/
+	${RLN} ${VBOX_DIR}/additions/${GUESTADDITIONS} \
+	    ${VBOX_DIR}/additions/VBoxGuestAdditions.iso
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKDIR}/VirtualBox-docs-${PORTVERSION}/UserManual.pdf \
-	    ${STAGEDIR}${DOCSDIR}
+	    ${DOCSDIR}
 .endif
 
 .if ${PORT_OPTIONS:MNLS}
 	cd ${KMK_BUILDDIR}/obj/VirtualBox/qtnls && \
-	    ${COPYTREE_SHARE} "*.qm" ${STAGEDIR}${DATADIR}/nls
+	    ${COPYTREE_SHARE} "*.qm" ${DATADIR}/nls
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
 	cd ${KMK_BUILDDIR}/bin/sdk/installer && \
 	    ${SETENV} VBOX_INSTALL_PATH="${VBOX_DIR}" \
-	    ${PYTHON_CMD} vboxapisetup.py install --root=${STAGEDIR}
+	    ${PYTHON_CMD} vboxapisetup.py install --root=
 
-	@${MKDIR} ${STAGEDIR}${PYTHON_SITELIBDIR}/xpcom
+	@${MKDIR} ${PYTHON_SITELIBDIR}/xpcom
 	cd ${KMK_BUILDDIR}/bin/sdk/bindings/xpcom/python/xpcom && \
-	    ${COPYTREE_SHARE} "*" ${STAGEDIR}${PYTHON_SITELIBDIR}/xpcom
-	@${MKDIR} ${STAGEDIR}${DATADIR}/sdk/bindings/xpcom/python
-	${RLN} ${STAGEDIR}${PYTHON_SITELIBDIR}/xpcom \
-	    ${STAGEDIR}${DATADIR}/sdk/bindings/xpcom/python
+	    ${COPYTREE_SHARE} "*" ${PYTHON_SITELIBDIR}/xpcom
+	@${MKDIR} ${DATADIR}/sdk/bindings/xpcom/python
+	${RLN} ${PYTHON_SITELIBDIR}/xpcom \
+	    ${DATADIR}/sdk/bindings/xpcom/python
 .endif
 
 .if ${PORT_OPTIONS:MQT5}
 	${INSTALL_DATA} \
 	    ${WRKSRC}/src/VBox/Frontends/VirtualBox/images/OSE/VirtualBox_48px.png \
-	    ${STAGEDIR}${PREFIX}/share/pixmaps/VBox.png
+	    ${PREFIX}/share/pixmaps/VBox.png
 	${INSTALL_DATA} \
 	    ${WRKSRC}/src/VBox/Installer/freebsd/virtualbox.desktop \
-	    ${STAGEDIR}${PREFIX}/share/applications/virtualbox.desktop
+	    ${PREFIX}/share/applications/virtualbox.desktop
 .endif
 
 .if ${PORT_OPTIONS:MVNC}
-	${MKDIR} ${STAGEDIR}${VBOX_DIR}/ExtensionPacks/VNC/${KMK_ARCH}
+	${MKDIR} ${VBOX_DIR}/ExtensionPacks/VNC/${KMK_ARCH}
 	${INSTALL_DATA} ${KMK_BUILDDIR}/bin/ExtensionPacks/VNC/ExtPack* \
-	    ${STAGEDIR}${VBOX_DIR}/ExtensionPacks/VNC/
+	    ${VBOX_DIR}/ExtensionPacks/VNC/
 	${INSTALL_LIB} ${KMK_BUILDDIR}/bin/ExtensionPacks/VNC/${KMK_ARCH}/* \
-	    ${STAGEDIR}${VBOX_DIR}/ExtensionPacks/VNC/${KMK_ARCH}/
+	    ${VBOX_DIR}/ExtensionPacks/VNC/${KMK_ARCH}/
 .endif
 
 .if ${PORT_OPTIONS:MWEBSERVICE}
-	${MKDIR} ${STAGEDIR}${DATADIR}/sdk/bindings/webservice
+	${MKDIR} ${DATADIR}/sdk/bindings/webservice
 	${INSTALL_DATA} ${KMK_BUILDDIR}/obj/webservice/vboxweb.wsdl \
-	    ${STAGEDIR}${DATADIR}/sdk/bindings/webservice/
+	    ${DATADIR}/sdk/bindings/webservice/
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/virtualbox/*.so \
-		${STAGEDIR}${PREFIX}/lib/virtualbox/components/*.so
+	${STRIP_CMD} ${PREFIX}/lib/virtualbox/*.so \
+		${PREFIX}/lib/virtualbox/components/*.so
 
 .include <bsd.port.post.mk>

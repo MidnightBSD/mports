@@ -119,17 +119,17 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/system.fvwm2rc \
-		${STAGEDIR}${PREFIX}/etc/system.fvwm2rc.dist
+		${PREFIX}/etc/system.fvwm2rc.dist
 	${INSTALL_MAN} ${WRKSRC}/doc/fvwm/fvwm.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/fvwm.1
+		${PREFIX}/share/man/man1/fvwm.1
 	${INSTALL_MAN} ${WRKSRC}/doc/fvwm/fvwm.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/fvwm2.1
-	${GZIP_CMD} ${STAGEDIR}${PREFIX}/share/man/man1/fvwm.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/fvwm2.1
+		${PREFIX}/share/man/man1/fvwm2.1
+	${GZIP_CMD} ${PREFIX}/share/man/man1/fvwm.1 \
+		${PREFIX}/share/man/man1/fvwm2.1
 .if ${PORT_OPTIONS:MICONS}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/fvwm/pixmaps
+	${MKDIR} ${PREFIX}/share/fvwm/pixmaps
 	${INSTALL_DATA} ${WRKDIR}/icons/${FVWM_ICONS}/*.xpm \
-		${STAGEDIR}${PREFIX}/share/fvwm/pixmaps
+		${PREFIX}/share/fvwm/pixmaps
 .endif
 
 .include <bsd.port.post.mk>

@@ -22,7 +22,7 @@ FILES=	${FONTS:S,$,.bdf,}
 PLIST_FILES=	${FILES:S,^,${FONTSDIR}/,}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${FILES} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${FILES} ${FONTSDIR}
 
 .include <bsd.port.mk>

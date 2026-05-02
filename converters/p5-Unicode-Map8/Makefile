@@ -20,6 +20,6 @@ USE_PERL5=	configure
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Unicode/Map8/Map8.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Unicode/Map8/Map8.so
 
 .include <bsd.port.mk>

@@ -24,6 +24,6 @@ NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/mkbold ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/mkbold ${PREFIX}/bin
 
 .include <bsd.port.mk>

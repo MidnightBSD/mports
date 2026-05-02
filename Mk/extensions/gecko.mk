@@ -76,6 +76,11 @@ CONFIGURE_OUTSOURCE=	yes
 LDFLAGS+=		-Wl,--as-needed -Wl,--undefined-version
 BINARY_ALIAS+=	python3=${PYTHON_CMD}
 
+# The LLVM ports toolchain targets FreeBSD; define __MidnightBSD__ so base
+# headers expose the correct ABI/feature surface for MidnightBSD.
+CFLAGS+=		-D__MidnightBSD__
+CXXFLAGS+=		-D__MidnightBSD__
+
 ELF_FEATURES+=	+wxneeded:dist/bin/${MOZILLA} +wxneeded:dist/bin/${MOZILLA}-bin
 
 BUNDLE_LIBS=	yes
@@ -87,21 +92,23 @@ LIB_DEPENDS+=	libdrm.so:graphics/libdrm
 RUN_DEPENDS+=	${LOCALBASE}/lib/libpci.so:devel/libpci
 LIB_DEPENDS+=	libepoll-shim.so:devel/libepoll-shim
 MOZ_EXPORT+=	${CONFIGURE_ENV} \
-				PERL="${PERL}" \
 				PYTHON3="${PYTHON_CMD}" \
 				RUSTFLAGS="${RUSTFLAGS}"
+.    if ${ARCH:Marm*} && !${ARCH:Maarch64}
+MOZ_EXPORT+=	PERL="${PERL}"
+.    endif
 MOZ_OPTIONS+=	--prefix="${PREFIX}"
 MOZ_MK_OPTIONS+=MOZ_OBJDIR="${BUILD_WRKSRC}"
 
 MOZ_OPTIONS+=	--with-libclang-path="${LLVM_PREFIX:S/${PREFIX}/${LOCALBASE}/}/lib"
 .    if !exists(/usr/bin/llvm-objdump)
-MOZ_EXPORT+=	LLVM_OBJDUMP="${LOCALBASE}/bin/llvm-objdump${LLVM_VERSION}"
+MOZ_EXPORT+=	LLVM_OBJDUMP="${LLVM_PREFIX}/bin/llvm-objdump"
 .    endif
 # Require newer Clang than what's in base system unless user opted out
 .    if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
-CPP=			${LOCALBASE}/bin/clang-cpp${LLVM_VERSION}
-CC=				${LOCALBASE}/bin/clang${LLVM_VERSION}
-CXX=			${LOCALBASE}/bin/clang++${LLVM_VERSION}
+CPP=			${LLVM_PREFIX}/bin/clang-cpp
+CC=				${LLVM_PREFIX}/bin/clang
+CXX=			${LLVM_PREFIX}/bin/clang++
 USES:=			${USES:Ncompiler\:*} # XXX avoid warnings
 .    endif
 

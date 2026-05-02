@@ -32,10 +32,10 @@ do-build:
 
 do-install:
 .for sFile in ${STUFFIT_FILES}
-	${INSTALL_PROGRAM} ${WRKSRC}/${sFile} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${sFile} ${PREFIX}/bin
 .endfor
 .for mFile in ${STUFFIT_MAN}
-	${INSTALL_MAN} ${WRKSRC}/${mFile} ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/${mFile} ${PREFIX}/share/man/man1
 .endfor
 
 .include <bsd.port.mk>

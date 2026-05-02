@@ -23,6 +23,6 @@ PLIST_FILES=	bin/catgirl \
 .include <bsd.port.pre.mk>
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/catgirl
+	${STRIP_CMD} ${PREFIX}/bin/catgirl
 
 .include <bsd.port.post.mk>

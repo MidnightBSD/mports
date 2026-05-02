@@ -102,8 +102,8 @@ do-build:
 	@cd ${WRKSRC}/n/v4; make all
 
 do-install:
-	@cd ${WRKSRC}/bg/v4; ${SETENV} ${MAKE_ENV} KMODDIR="${STAGEDIR}${KMODDIR}" make install
-	@cd ${WRKSRC}/lp/v4; ${SETENV} ${MAKE_ENV} KMODDIR="${STAGEDIR}${KMODDIR}" make install
-	@cd ${WRKSRC}/n/v4; ${SETENV} ${MAKE_ENV} KMODDIR="${STAGEDIR}${KMODDIR}" make install
+	@cd ${WRKSRC}/bg/v4; ${SETENV} ${MAKE_ENV} KMODDIR="${KMODDIR}" make install
+	@cd ${WRKSRC}/lp/v4; ${SETENV} ${MAKE_ENV} KMODDIR="${KMODDIR}" make install
+	@cd ${WRKSRC}/n/v4; ${SETENV} ${MAKE_ENV} KMODDIR="${KMODDIR}" make install
 
 .include <bsd.port.mk>

@@ -35,7 +35,7 @@ USES+=		desktop-file-utils python pyqt:5 shebangfix
 USE_PYTHON=	flavors
 USE_PYQT=	qscintilla2 webengine \
 		pyqt5
-INSTALL_PY=	install.py -c -f eric6config.freebsd -i ${STAGEDIR}
+INSTALL_PY=	install.py -c -f eric6config.freebsd -i 
 SHEBANG_FILES=	*.py eric/eric6/*.py eric/scripts/*.py
 SUB_FILES=	eric6.desktop
 MASTERPORT=	yes
@@ -65,13 +65,13 @@ do-install:
 	${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_PY})
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/eric6.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	${INSTALL_DATA} ${WRKDIR}/eric6.desktop ${PREFIX}/share/applications/
 	${LN} -sf ${DATADIR:C|${PREFIX}(/share(/pixmaps)?)?||:C|/[^/]+|../|g}eric6/icons/default/eric.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/eric6.png
-	@${MKDIR} ${STAGEDIR}${DATADIR}/i18n
-	${REINPLACE_CMD} -e 's|${STAGEDIR}|${DATADIR}|g' \
+		${PREFIX}/share/pixmaps/eric6.png
+	@${MKDIR} ${DATADIR}/i18n
+	${REINPLACE_CMD} -e 's||${DATADIR}|g' \
 			 -e 's|${WRKSRC}|${DATADIR}|g' \
-			${STAGEDIR}/${DATADIR}/eric6install.json
-	@${RM}	${STAGEDIR}/${DATADIR}/eric6install.json.bak
+			/${DATADIR}/eric6install.json
+	@${RM}	/${DATADIR}/eric6install.json.bak
 
 .include <bsd.port.mk>

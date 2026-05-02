@@ -34,28 +34,28 @@ post-patch:
 	${REINPLACE_CMD} -e 's/^# GRAPHIC_TESTS = defined/GRAPHIC_TESTS = defined/' ${WRKSRC}/Makefile
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/unixbench ${STAGEDIR}${PREFIX}/bin/
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/unixbench
-	${INSTALL_SCRIPT} ${WRKSRC}/Run ${STAGEDIR}${PREFIX}/libexec/unixbench
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/unixbench/pgms
+	${INSTALL_SCRIPT} ${WRKDIR}/unixbench ${PREFIX}/bin/
+	${MKDIR} ${PREFIX}/libexec/unixbench
+	${INSTALL_SCRIPT} ${WRKSRC}/Run ${PREFIX}/libexec/unixbench
+	${MKDIR} ${PREFIX}/libexec/unixbench/pgms
 	for f in ${WRKSRC}/pgms/* ; do \
 		case $$f in \
 			*.sh|*gfx-x11) \
 				${INSTALL_SCRIPT} $${f} \
-					${STAGEDIR}${PREFIX}/libexec/unixbench/pgms/ ;; \
+					${PREFIX}/libexec/unixbench/pgms/ ;; \
 			*.logo|*.base) \
 				${INSTALL_DATA} $${f} \
-					${STAGEDIR}${PREFIX}/libexec/unixbench/pgms/ ;; \
+					${PREFIX}/libexec/unixbench/pgms/ ;; \
 			*.orig|*.rej|*~) \
 				;;\
 			*) \
 				${INSTALL_PROGRAM} $${f} \
-					${STAGEDIR}${PREFIX}/libexec/unixbench/pgms/ ;; \
+					${PREFIX}/libexec/unixbench/pgms/ ;; \
 		esac ; \
 	done
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/unixbench/testdir
-	${INSTALL_DATA} ${WRKSRC}/testdir/* ${STAGEDIR}${PREFIX}/libexec/unixbench/testdir/
-	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${PREFIX}/libexec/unixbench/
-	${INSTALL_DATA} ${WRKSRC}/Makefile ${STAGEDIR}${PREFIX}/libexec/unixbench/
+	${MKDIR} ${PREFIX}/libexec/unixbench/testdir
+	${INSTALL_DATA} ${WRKSRC}/testdir/* ${PREFIX}/libexec/unixbench/testdir/
+	${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/libexec/unixbench/
+	${INSTALL_DATA} ${WRKSRC}/Makefile ${PREFIX}/libexec/unixbench/
 
 .include <bsd.port.mk>

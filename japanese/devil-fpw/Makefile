@@ -19,13 +19,13 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/devil-fpw/devil/data
+	@${MKDIR} ${PREFIX}/share/dict/devil-fpw/devil/data
 	${INSTALL_DATA} ${WRKSRC}/devil/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/devil-fpw/devil/data
+		${PREFIX}/share/dict/devil-fpw/devil/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/devil-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/devil-fpw
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} readme.pkg readme.txt \
-		${STAGEDIR}${DOCSDIR})
+		${DOCSDIR})
 
 .include <bsd.port.mk>

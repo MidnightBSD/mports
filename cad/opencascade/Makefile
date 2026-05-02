@@ -79,7 +79,7 @@ CMAKE_ARGS+=	-DINSTALL_DIR=${OCCROOT}				\
 		-D3RDPARTY_DRACO_LIBRARY_DIR:PATH=${LOCALBASE}/lib	\
 		-D3RDPARTY_DRACO_INCLUDE_DIR:PATH=${LOCALBASE}/include/draco	\
 		-D3RDPARTY_VTK_INCLUDE_DIR:PATH=${LOCALBASE}/include/vtk-${VTK_VER}
-CONFIGURE_ENV+=	DESTDIR=${STAGEDIR}
+CONFIGURE_ENV+=	DESTDIR=
 
 .if defined(MAINTAINER_MODE)
 CMAKE_ARGS+=	-DCMAKE_MESSAGE_CONTEXT_SHOW:BOOL=ON	\
@@ -174,9 +174,9 @@ pre-configure:
 .endfor
 
 post-fake:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/cmake/OpenCASCADE
-	${MV} ${STAGEDIR}${PREFIX}/lib/cmake/*.cmake	\
-		${STAGEDIR}${PREFIX}/lib/cmake/OpenCASCADE
+	${MKDIR} ${PREFIX}/lib/cmake/OpenCASCADE
+	${MV} ${PREFIX}/lib/cmake/*.cmake	\
+		${PREFIX}/lib/cmake/OpenCASCADE
 
 post-install:
 	${MV} ${OCCROOT}/bin/DRAWEXE-${PORTVERSION} ${PREFIX}/bin/DRAWEXE

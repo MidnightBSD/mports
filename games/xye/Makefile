@@ -83,13 +83,13 @@ post-patch:
 .endif
 
 post-install:
-	@(cd ${WRKDIR} && ${COPYTREE_SHARE} "*.xye *.txt" ${STAGEDIR}${DATADIR}/levels)
+	@(cd ${WRKDIR} && ${COPYTREE_SHARE} "*.xye *.txt" ${DATADIR}/levels)
 
 .if ${PORT_OPTIONS:MSKINS}
-	@(cd ${WRKDIR}/skins && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/res)
+	@(cd ${WRKDIR}/skins && ${COPYTREE_SHARE} . ${DATADIR}/res)
 .endif
 
-	${RLN} ${STAGEDIR}${DATADIR}/res/detailed_icon.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps/${PORTNAME}.png
+	${RLN} ${DATADIR}/res/detailed_icon.png \
+		${PREFIX}/share/pixmaps/${PORTNAME}.png
 
 .include <bsd.port.mk>

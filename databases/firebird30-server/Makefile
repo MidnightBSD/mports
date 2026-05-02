@@ -25,7 +25,7 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 CONFLICTS_INSTALL=	firebird40
 
 USES=		cpe gmake pkgconfig localbase:ldflags libedit tar:bzip2
-USE_CXXSTD=	gnu++03
+USE_CXXSTD=	gnu++17
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 CPE_VENDOR=	firebirdsql
@@ -49,7 +49,7 @@ CONFIGURE_ENV+=	PTHREAD_LIBS="-lpthread" \
 		ac_cv_header_atomic_ops_h="no" \
 		ac_cv_lib_atomic_ops_main="no"
 CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd13.4
-CPPFLAGS+=	-DU_NOEXCEPT= -fno-delete-null-pointer-checks # For USE_CXXSTD=gnu++98
+CPPFLAGS+=	-fno-delete-null-pointer-checks -fno-sized-deallocation
 
 LOCALSTATEDIR=	/var/db/firebird
 CONFDIR=	etc/firebird
@@ -106,7 +106,7 @@ FB_DOCS_DIRS=	sql.extensions license upgrade
 .endif
 
 MAKE_ENV+=	FIREBIRD_TMP="${WRKDIR}" FIREBIRD_LOCK="${WRKDIR}"
-#MAKE_ARGS+=	PREFIX="${STAGEDIR}${PREFIX}"
+#MAKE_ARGS+=	PREFIX="${PREFIX}"
 
 .include <bsd.port.pre.mk>
 
@@ -134,57 +134,57 @@ pre-build:
 
 do-install:
 .if !defined(CLIENT_ONLY)
-	${INSTALL_PROGRAM} ${UTIL_BIN:S!^!${WRKSRC}/gen/Release/firebird/bin/!} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${UTIL_SBIN:S!^!${WRKSRC}/gen/Release/firebird/bin/!} ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${UTIL_BIN:S!^!${WRKSRC}/gen/Release/firebird/bin/!} ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${UTIL_SBIN:S!^!${WRKSRC}/gen/Release/firebird/bin/!} ${PREFIX}/sbin
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${CONFDIR}
-	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/databases.conf ${STAGEDIR}${PREFIX}/${CONFDIR}/databases.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/fbtrace.conf ${STAGEDIR}${PREFIX}/${CONFDIR}/fbtrace.conf
-	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins.conf ${STAGEDIR}${PREFIX}/${CONFDIR}/plugins.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins/udr_engine.conf ${STAGEDIR}${PREFIX}/${CONFDIR}/udr_engine.conf.sample
+	@${MKDIR} ${PREFIX}/${CONFDIR}
+	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/databases.conf ${PREFIX}/${CONFDIR}/databases.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/fbtrace.conf ${PREFIX}/${CONFDIR}/fbtrace.conf
+	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins.conf ${PREFIX}/${CONFDIR}/plugins.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins/udr_engine.conf ${PREFIX}/${CONFDIR}/udr_engine.conf.sample
 
-	${MKDIR} ${STAGEDIR}${LIBEXECDIR}/udf ${STAGEDIR}${LOCALSTATEDIR}/help ${STAGEDIR}${LIBEXECDIR}/intl \
-		${STAGEDIR}${LIBEXECDIR}/plugins ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${LIBEXECDIR}/udf ${LOCALSTATEDIR}/help ${LIBEXECDIR}/intl \
+		${LIBEXECDIR}/plugins ${EXAMPLESDIR}
 
-	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/lib/libib_util.so ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/lib/libib_util.so ${PREFIX}/lib
 
-	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/intl/fbintl.conf ${STAGEDIR}${LIBEXECDIR}/intl/fbintl.conf
-	${INSTALL_FB} -m 0555 ${UDF_SO:S!^!${WRKSRC}/gen/Release/firebird/UDF/!} ${STAGEDIR}${LIBEXECDIR}/udf
-	${INSTALL_FB} -m 0444 ${UDF_SQL:S!^!${WRKSRC}/gen/Release/firebird/UDF/!} ${STAGEDIR}${LIBEXECDIR}/udf
-	${INSTALL_FB} -m 0555 ${PLUGIN_SO:S!^!${WRKSRC}/gen/Release/firebird/plugins/!} ${STAGEDIR}${LIBEXECDIR}/plugins
+	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/intl/fbintl.conf ${LIBEXECDIR}/intl/fbintl.conf
+	${INSTALL_FB} -m 0555 ${UDF_SO:S!^!${WRKSRC}/gen/Release/firebird/UDF/!} ${LIBEXECDIR}/udf
+	${INSTALL_FB} -m 0444 ${UDF_SQL:S!^!${WRKSRC}/gen/Release/firebird/UDF/!} ${LIBEXECDIR}/udf
+	${INSTALL_FB} -m 0555 ${PLUGIN_SO:S!^!${WRKSRC}/gen/Release/firebird/plugins/!} ${LIBEXECDIR}/plugins
 
-	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security3.fdb ${STAGEDIR}${LOCALSTATEDIR}/security3.fdb.sample
-	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employee.fdb ${STAGEDIR}${EXAMPLESDIR}/employee.fdb
+	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security3.fdb ${LOCALSTATEDIR}/security3.fdb.sample
+	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employee.fdb ${EXAMPLESDIR}/employee.fdb
 
-	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${STAGEDIR}${LOCALSTATEDIR}/help
+	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${LOCALSTATEDIR}/help
 
-	${INSTALL_FB} -m 0555 ${WRKSRC}/gen/Release/firebird/intl/libfbintl.so ${STAGEDIR}${LIBEXECDIR}/intl/libfbintl.so
+	${INSTALL_FB} -m 0555 ${WRKSRC}/gen/Release/firebird/intl/libfbintl.so ${LIBEXECDIR}/intl/libfbintl.so
 .else
 # defined CLIENT_ONLY
-	${INSTALL_PROGRAM} ${CLIENT_BIN:S!^!${WRKSRC}/gen/Release/firebird/bin/!} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${CLIENT_BIN:S!^!${WRKSRC}/gen/Release/firebird/bin/!} ${PREFIX}/bin
 
 	${SED} -e "s=%%PREFIX%%=${PREFIX}=g" ${WRKSRC}/gen/Release/firebird/firebird.conf > ${WRKDIR}/firebird.conf
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${CONFDIR}
-	${INSTALL_DATA} ${WRKDIR}/firebird.conf ${STAGEDIR}${PREFIX}/${CONFDIR}/firebird.conf.sample
+	@${MKDIR} ${PREFIX}/${CONFDIR}
+	${INSTALL_DATA} ${WRKDIR}/firebird.conf ${PREFIX}/${CONFDIR}/firebird.conf.sample
 
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/lib/libfbclient.so.${PORTVERSION} \
-		${STAGEDIR}${PREFIX}/lib
+		${PREFIX}/lib
 
-	${LN} -fs libfbclient.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libfbclient.so.3
-	${LN} -fs libfbclient.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libfbclient.so
+	${LN} -fs libfbclient.so.${PORTVERSION} ${PREFIX}/lib/libfbclient.so.3
+	${LN} -fs libfbclient.so.${PORTVERSION} ${PREFIX}/lib/libfbclient.so
 
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/firebird
-	${INSTALL_DATA} ${CLIENT_HEADER:S!^!${WRKSRC}/gen/Release/firebird/include/!} ${STAGEDIR}${PREFIX}/include
-
-	@cd ${WRKSRC}/gen/Release/firebird/include/firebird && \
-		${FIND} * -type d -exec ${MKDIR} "${STAGEDIR}${PREFIX}/include/firebird/{}" \;
+	@${MKDIR} ${PREFIX}/include/firebird
+	${INSTALL_DATA} ${CLIENT_HEADER:S!^!${WRKSRC}/gen/Release/firebird/include/!} ${PREFIX}/include
 
 	@cd ${WRKSRC}/gen/Release/firebird/include/firebird && \
-		${FIND} * -type f -exec ${INSTALL_DATA} "{}" "${STAGEDIR}${PREFIX}/include/firebird/{}" \;
+		${FIND} * -type d -exec ${MKDIR} "${PREFIX}/include/firebird/{}" \;
 
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/*.msg ${STAGEDIR}${DATADIR}
+	@cd ${WRKSRC}/gen/Release/firebird/include/firebird && \
+		${FIND} * -type f -exec ${INSTALL_DATA} "{}" "${PREFIX}/include/firebird/{}" \;
+
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/*.msg ${DATADIR}
 
 post-install-DOCS-on:
 	@${ECHO_MSG} "===>   Installing documentation for ${PKGNAME}"

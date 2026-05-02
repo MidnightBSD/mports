@@ -74,7 +74,7 @@ PLATFORM_DIR_SUFFIX=	Default
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/target/snappy-java-*.jar \
-		${STAGEDIR}${JAVAJARDIR}/snappy-java.jar
+		${JAVAJARDIR}/snappy-java.jar
 	${INSTALL_LIB} ${WRKSRC}/target/snappy-${PORTVERSION:R}-${PLATFORM_DIR_SUFFIX}/libsnappyjava.so \
 		${FAKE_DESTDIR}${LOCALBASE}/lib
 

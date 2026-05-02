@@ -1,0 +1,9 @@
+--- buildtools/third_party/libc++/BUILD.gn.orig	2025-02-03 00:00:00 UTC
++++ buildtools/third_party/libc++/BUILD.gn
+@@ -479,6 +479,7 @@ target(libcxx_target_type, "libc++") {
+   visibility = [
+     "//build/config:common_deps",
++    "//electron:*",
+     "//third_party/catapult/devil",
+   ]
+   if (is_linux) {

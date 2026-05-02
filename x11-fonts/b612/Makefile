@@ -25,7 +25,7 @@ GH_ACCOUNT=	polarsys
 USE_GITHUB=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/fonts/ttf/*.ttf ${STAGEDIR}${FONTSDIR}/
+	${MKDIR} ${FONTSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/fonts/ttf/*.ttf ${FONTSDIR}/
 
 .include <bsd.port.mk>

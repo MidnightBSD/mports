@@ -24,7 +24,7 @@ do-build:
 		${CC} ${CFLAGS} 915resolution.c -o 915resolution
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/915resolution ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/915resolution ${PREFIX}/sbin
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

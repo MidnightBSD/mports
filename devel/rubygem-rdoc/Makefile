@@ -24,8 +24,8 @@ PLIST_FILES=	bin/rdoc bin/ri share/man/man1/ri.1.gz
 CPE_VENDOR=	ruby-lang
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_DATA} ${WRKSRC}/man/ri.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${MKDIR} ${PREFIX}/share/man/man1
+	${INSTALL_DATA} ${WRKSRC}/man/ri.1 ${PREFIX}/share/man/man1
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/rdoc ${PREFIX}/bin/ri
 
 .include <bsd.port.mk>

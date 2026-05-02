@@ -35,9 +35,9 @@ do-build:
 		yaml.c emitter.c parser.c scanner.c
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${LUA_MODLIBDIR} ${STAGEDIR}${LUA_MODSHAREDIR}/${PORTNAME}
-	${INSTALL_LIB} ${WRKSRC}/ext/yaml/yaml.so ${STAGEDIR}${LUA_MODLIBDIR}
-	${INSTALL_DATA} ${WRKSRC}/lib/${PORTNAME}/*.lua ${STAGEDIR}${LUA_MODSHAREDIR}/${PORTNAME}
+	@${MKDIR} ${LUA_MODLIBDIR} ${LUA_MODSHAREDIR}/${PORTNAME}
+	${INSTALL_LIB} ${WRKSRC}/ext/yaml/yaml.so ${LUA_MODLIBDIR}
+	${INSTALL_DATA} ${WRKSRC}/lib/${PORTNAME}/*.lua ${LUA_MODSHAREDIR}/${PORTNAME}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/modules

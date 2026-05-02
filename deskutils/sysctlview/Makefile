@@ -29,15 +29,15 @@ DESKTOP_ENTRIES=	"Sysctlview" \
 .include <bsd.port.pre.mk>
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/sysctlview ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/sysctlview.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/sysctlview ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/sysctlview.1 ${PREFIX}/share/man/man1
 .for i in 16 22 24 32 36 48 64 72 96 128 192 256
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${i}x${i}/apps/
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/${i}x${i}/apps/
 	${INSTALL_DATA} ${WRKSRC}/icon/sysctlview-${i}.png \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/${i}x${i}/apps/sysctlview.png
+		${PREFIX}/share/icons/hicolor/${i}x${i}/apps/sysctlview.png
 .endfor
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/scalable/apps/
 	${INSTALL_DATA} ${WRKSRC}/icon/sysctlview.svg \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/sysctlview.svg
+		${PREFIX}/share/icons/hicolor/scalable/apps/sysctlview.svg
 
 .include <bsd.port.post.mk>

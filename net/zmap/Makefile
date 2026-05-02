@@ -49,7 +49,7 @@ post-patch:
 
 post-install:
 .for cnf in blocklist.conf zmap.conf
-	@${MV} ${STAGEDIR}${ETCDIR}/${cnf} ${STAGEDIR}${ETCDIR}/${cnf}.sample
+	@${MV} ${ETCDIR}/${cnf} ${ETCDIR}/${cnf}.sample
 .endfor
 
 .include <bsd.port.mk>

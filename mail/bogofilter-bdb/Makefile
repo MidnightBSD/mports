@@ -65,9 +65,9 @@ post-build:
 		|| { r=$$? ; head -n30000 ${WRKSRC}/src/tests/test-suite.log ; exit $$r ; }
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/contrib
+	@${MKDIR} ${DOCSDIR}/contrib
 .for i in html programmer xml
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/${i}
+	@${MKDIR} ${DOCSDIR}/${i}
 .endfor
 .for i in AUTHORS COPYING INSTALL NEWS README README.git \
 	doc/README.validation TODO GETTING.STARTED \
@@ -75,25 +75,25 @@ post-install:
 	doc/integrating-with-postfix doc/integrating-with-qmail \
 	doc/bogofilter-tuning.HOWTO.html doc/bogofilter-SA-* \
 	doc/bogofilter-faq.html doc/bogofilter-faq-fr.html
-	  ${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+	  ${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .for i in README.randomtrain README.contrib
-	${INSTALL_DATA} ${WRKSRC}/contrib/${i} ${STAGEDIR}${DOCSDIR}/contrib/${i}
+	${INSTALL_DATA} ${WRKSRC}/contrib/${i} ${DOCSDIR}/contrib/${i}
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/trio/AUTHORS ${STAGEDIR}${DOCSDIR}/AUTHORS.trio
-	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}/html
-	${INSTALL_DATA} ${WRKSRC}/doc/*.xml ${STAGEDIR}${DOCSDIR}/xml
-	${INSTALL_DATA} ${WRKSRC}/doc/programmer/README.freebsd ${STAGEDIR}${DOCSDIR}/programmer
-	${INSTALL_PROGRAM} ${WRKSRC}/bogogrep ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_DATA} ${WRKSRC}/trio/AUTHORS ${DOCSDIR}/AUTHORS.trio
+	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/doc/*.xml ${DOCSDIR}/xml
+	${INSTALL_DATA} ${WRKSRC}/doc/programmer/README.freebsd ${DOCSDIR}/programmer
+	${INSTALL_PROGRAM} ${WRKSRC}/bogogrep ${PREFIX}/bin/
 .for i in bfproxy.pl bogofilter-milter.pl bogo.R bogofilter-qfe.sh \
 		mime.get.rfc822.pl parmtest.sh printmaildir.pl \
 		bogominitrain.pl \
 		randomtrain.sh scramble.sh spamitarium.pl stripsearch.pl trainbogo.sh
-	  ${INSTALL_SCRIPT} ${WRKSRC}/contrib/${i} ${STAGEDIR}${DOCSDIR}/contrib/${i}
+	  ${INSTALL_SCRIPT} ${WRKSRC}/contrib/${i} ${DOCSDIR}/contrib/${i}
 .endfor
 .for i in dot-qmail-bogofilter-default \
 	mailfilter.example procmailrc.example vm-bogofilter.el
-	${INSTALL_DATA} ${WRKSRC}/contrib/${i} ${STAGEDIR}${DOCSDIR}/contrib/${i}
+	${INSTALL_DATA} ${WRKSRC}/contrib/${i} ${DOCSDIR}/contrib/${i}
 .endfor
 
 .include <bsd.port.post.mk>

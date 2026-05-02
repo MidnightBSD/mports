@@ -36,6 +36,6 @@ SSL_CONFIGURE_ON=	--ssl
 SSL_CONFIGURE_OFF=	--nossl
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DBD/mysql/mysql.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/DBD/mysql/mysql.so
 
 .include <bsd.port.mk>

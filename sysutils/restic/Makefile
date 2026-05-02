@@ -21,12 +21,12 @@ PLIST_SUB=	PORTNAME=${PORTNAME}
 NO_TEST=	yes
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL} -d ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
+	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${PREFIX}/share/man/man1
+	${INSTALL} -d ${PREFIX}/etc/bash_completion.d/
 	${INSTALL_SCRIPT} ${WRKSRC}/doc/bash-completion.sh \
-		${STAGEDIR}${PREFIX}/etc/bash_completion.d/${PORTNAME}.sh
-	${INSTALL} -d ${STAGEDIR}${PREFIX}/share/zsh/site-functions/
+		${PREFIX}/etc/bash_completion.d/${PORTNAME}.sh
+	${INSTALL} -d ${PREFIX}/share/zsh/site-functions/
 	${INSTALL_DATA} ${WRKSRC}/doc/zsh-completion.zsh \
-		${STAGEDIR}${PREFIX}/share/zsh/site-functions/_${PORTNAME}
+		${PREFIX}/share/zsh/site-functions/_${PORTNAME}
 
 .include <bsd.port.mk>

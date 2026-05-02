@@ -14,6 +14,6 @@ USE_PERL5=	configure
 USES=		perl5
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Ref/Util/XS/XS.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Ref/Util/XS/XS.so
 
 .include <bsd.port.mk>

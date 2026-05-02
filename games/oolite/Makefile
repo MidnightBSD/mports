@@ -78,13 +78,13 @@ post-patch: .SILENT
 	${CP} ${PORTSDIR}/Templates/config.sub ${WRKSRC}/deps/mozilla/js/src/build/autoconf
 
 do-install:
-	(cd ${RELEASEDIR} && ${COPYTREE_SHARE} "${PORTDATA}" ${STAGEDIR}${DATADIR})
-	${INSTALL_SCRIPT} ${WRKDIR}/oolite ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${RELEASEDIR}/oolite ${STAGEDIR}${DATADIR}
+	(cd ${RELEASEDIR} && ${COPYTREE_SHARE} "${PORTDATA}" ${DATADIR})
+	${INSTALL_SCRIPT} ${WRKDIR}/oolite ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${RELEASEDIR}/oolite ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/installers/FreeDesktop/oolite.desktop \
-		${STAGEDIR}${PREFIX}/share/applications
+		${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/installers/FreeDesktop/oolite-icon.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps
-	(cd ${WRKSRC}/Doc && ${COPYTREE_SHARE} "${PORTDOCS}" ${STAGEDIR}${DOCSDIR})
+		${PREFIX}/share/pixmaps
+	(cd ${WRKSRC}/Doc && ${COPYTREE_SHARE} "${PORTDOCS}" ${DOCSDIR})
 
 .include <bsd.port.mk>

@@ -31,8 +31,8 @@ PORTDOCS=	*
 
 do-install:
 .for p in ${PLIST_FILES:Mbin*:T}
-	${INSTALL_PROGRAM} ${WRKSRC}/${p} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/man/${p}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/${p} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/man/${p}.1 ${PREFIX}/share/man/man1
 .endfor
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC}/ && ${INSTALL_DATA} CHANGES README* TODO WHATSNEW WHERE ${DOCSDIR}

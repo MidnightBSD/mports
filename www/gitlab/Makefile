@@ -413,7 +413,7 @@ do-install:
 	${CP} ${WRKSRC}/config/database.yml.postgresql ${WRKSRC}/config/database.yml.sample
 	# TODO: Vendored gems are installing binaries not into STAGEDIR, this needs to be fixed.
 	# As intermediate solution, the binaries are not disabled by patches
-	#(cd ${WRKSRC} && ${RM} Gemfile.lock && bundle config set path ${STAGEDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER} && ${WRK_ENV} ${GEM_ENV} bundle install --local)
+	#(cd ${WRKSRC} && ${RM} Gemfile.lock && bundle config set path ${PREFIX}/lib/ruby/gems/${RUBY_VER} && ${WRK_ENV} ${GEM_ENV} bundle install --local)
 	(cd ${WRKSRC} && bundle config set --local bin .bin)
 	# should skip development and test, but does not work
 	#(cd ${WRKSRC} && bundle config set --local without development test)
@@ -443,27 +443,27 @@ do-install:
 	${MV} ${WRKSRC}/lib/support/nginx/gitlab ${WRKSRC}/lib/support/nginx/gitlab.sample
 	${MV} ${WRKSRC}/lib/support/nginx/gitlab-ssl ${WRKSRC}/lib/support/nginx/gitlab-ssl.sample
 	${MV} ${WRKSRC}/public/robots.txt ${WRKSRC}/public/robots.txt.sample
-	${MKDIR} ${STAGEDIR}${WWWDIR}/app/assets/builds
-	${MKDIR} ${STAGEDIR}${WWWDIR}/config/helpers/tailwind
-	${MKDIR} ${STAGEDIR}${WWWDIR}/public/assets
-	${MKDIR} ${STAGEDIR}${WWWDIR}/public/uploads
-	${MKDIR} ${STAGEDIR}${WWWDIR}/tmp/cache
-	${MKDIR} ${STAGEDIR}${WWWDIR}/tmp/sessions
-	${MKDIR} ${STAGEDIR}${WWWDIR}/tmp/backups
-	${MKDIR} ${STAGEDIR}${WWWDIR}/tmp/sockets/private/internal
-	${MKDIR} ${STAGEDIR}${WWWDIR}/shared/external-diffs
-	${MKDIR} ${STAGEDIR}${WWWDIR}/shared/tmp
-	${MKDIR} ${STAGEDIR}${WWWDIR}/shared/artifacts/tmp/work
-	${MKDIR} ${STAGEDIR}${WWWDIR}/vendor/assets/stylesheets
-	${MKDIR} ${STAGEDIR}${WWWDIR}/workhorse/changelogs/unreleased
+	${MKDIR} ${WWWDIR}/app/assets/builds
+	${MKDIR} ${WWWDIR}/config/helpers/tailwind
+	${MKDIR} ${WWWDIR}/public/assets
+	${MKDIR} ${WWWDIR}/public/uploads
+	${MKDIR} ${WWWDIR}/tmp/cache
+	${MKDIR} ${WWWDIR}/tmp/sessions
+	${MKDIR} ${WWWDIR}/tmp/backups
+	${MKDIR} ${WWWDIR}/tmp/sockets/private/internal
+	${MKDIR} ${WWWDIR}/shared/external-diffs
+	${MKDIR} ${WWWDIR}/shared/tmp
+	${MKDIR} ${WWWDIR}/shared/artifacts/tmp/work
+	${MKDIR} ${WWWDIR}/vendor/assets/stylesheets
+	${MKDIR} ${WWWDIR}/workhorse/changelogs/unreleased
 	# Skip file having an executable bit
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR} "-not ( -type f -perm -a=x )")
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR} "-not ( -type f -perm -a=x )")
 	# now copy all files having an execution bit and preserve to x bit (this fixes some issues we saw)
-	(cd ${WRKSRC} && ${COPYTREE_BIN} . ${STAGEDIR}${WWWDIR} "-type f -perm -a=x")
+	(cd ${WRKSRC} && ${COPYTREE_BIN} . ${WWWDIR} "-type f -perm -a=x")
 
 post-install:
-	${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
+	${FIND} -s ${WWWDIR} -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' | \
 		${SED} -E -e '/sample$$/ s#^#@sample #; \
 		/secrets.yml.sample$$/ s#^@sample #@sample(git,www,0600) #; \
 		/database.yml.sample$$/ s#^@sample #@sample(git,www,0600) #; \

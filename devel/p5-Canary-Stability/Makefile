@@ -19,7 +19,7 @@ NO_BUILD=	yes
 
 # Install empty stub
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Canary
-	${INSTALL_DATA} ${FILESDIR}/Stability.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/Canary
+	${MKDIR} ${PREFIX}/${SITE_PERL_REL}/Canary
+	${INSTALL_DATA} ${FILESDIR}/Stability.pm ${PREFIX}/${SITE_PERL_REL}/Canary
 
 .include <bsd.port.mk>

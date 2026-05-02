@@ -16,10 +16,10 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	(cd ${WRKSRC}/'Px437 (TrueType - DOS charset)' && \
-		${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR})
+		${INSTALL_DATA} *.ttf ${FONTSDIR})
 	(cd ${WRKSRC}/'PxPlus (TrueType - extended charset)' && \
-		${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR})
+		${INSTALL_DATA} *.ttf ${FONTSDIR})
 
 .include <bsd.port.mk>

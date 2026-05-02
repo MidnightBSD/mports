@@ -43,6 +43,6 @@ PLIST_FILES=	sbin/mount.webdavfs sbin/mount_webdavfs
 SUB_FILES=	pkg-message mount_webdavfs
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/mount_webdavfs ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKDIR}/mount_webdavfs ${PREFIX}/sbin
 
 .include <bsd.port.mk>

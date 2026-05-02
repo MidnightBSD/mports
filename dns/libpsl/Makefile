@@ -44,6 +44,6 @@ IDN2_MESON_ON=		-Druntime=libidn2
 IDN2_USES=		iconv
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/psl-make-dafsa ${STAGEDIR}${PREFIX}/share/man/man1/psl-make-dafsa.1
+	${RM} ${PREFIX}/bin/psl-make-dafsa ${PREFIX}/share/man/man1/psl-make-dafsa.1
 
 .include <bsd.port.mk>

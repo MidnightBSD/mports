@@ -63,7 +63,7 @@ post-patch:
 pre-install:
 	@${RM} ${WRKSRC}/docs/man/man1/wildmidi.1${REINPLACE_ARGS:S/-i//} \
 		${WRKSRC}/docs/man/man5/wildmidi.cfg.5${REINPLACE_ARGS:S/-i//}
-	${MKDIR} ${STAGEDIR}${DATADIR} ; \
-	${CP} ${WRKSRC}/cfg/wildmidi.cfg ${STAGEDIR}${DATADIR}/wildmidi.cfg.sample
+	${MKDIR} ${DATADIR} ; \
+	${CP} ${WRKSRC}/cfg/wildmidi.cfg ${DATADIR}/wildmidi.cfg.sample
 
 .include <bsd.port.mk>

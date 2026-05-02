@@ -30,7 +30,7 @@ post-patch:
 post-install:
 	${SED} -e "s:%%PREFIX%%:${PREFIX}:g" ${FILESDIR}/xfstt.in \
 		> ${WRKSRC}/xfstt
-	${INSTALL_SCRIPT} ${WRKSRC}/xfstt ${STAGEDIR}${PREFIX}/etc/rc.d/
+	${INSTALL_SCRIPT} ${WRKSRC}/xfstt ${PREFIX}/etc/rc.d/
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

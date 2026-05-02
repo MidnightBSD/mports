@@ -25,8 +25,8 @@ PLIST_SUB=	MATTERMOSTD_USER=${MATTERMOSTD_USER} \
 		MATTERMOSTD_GROUP=${MATTERMOSTD_GROUP}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${WWWDIR}
-	cd ${WRKDIR}/mattermost && ${COPYTREE_SHARE} client ${STAGEDIR}${WWWDIR}
-	${MKDIR} ${STAGEDIR}${WWWDIR}/client/plugins
+	${MKDIR} ${WWWDIR}
+	cd ${WRKDIR}/mattermost && ${COPYTREE_SHARE} client ${WWWDIR}
+	${MKDIR} ${WWWDIR}/client/plugins
 
 .include <bsd.port.mk>

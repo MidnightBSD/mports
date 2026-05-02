@@ -1,5 +1,5 @@
 PORTNAME=	powerdns
-DISTVERSION=	5.0.1
+DISTVERSION=	5.0.3
 CATEGORIES=	dns
 MASTER_SITES=	https://downloads.powerdns.com/releases/
 DISTNAME=	pdns-${DISTVERSION}
@@ -14,7 +14,8 @@ NOT_FOR_ARCHS=	i386
 NOT_FOR_ARCHS_REASON=	archs with 32-bits time_t are no longer supported by upstream
 
 LIB_DEPENDS=	libboost_program_options.so:devel/boost-libs \
-		libcurl.so:ftp/curl
+		libcurl.so:ftp/curl \
+		libsodium.so:security/libsodium
 
 USES=		autoreconf compiler:c++11-lib cpe gmake libtool \
 		localbase:ldflags pathfix pkgconfig ssl tar:bzip2
@@ -28,7 +29,7 @@ CONFIGURE_ARGS=	--disable-static \
 		--sysconfdir="${PREFIX}/etc/pdns" \
 		--with-boost="${LOCALBASE}" \
 		--with-dynmodules="pipe bind ${MODULES}" \
-		--with-libsodium=no \
+		--with-libsodium=yes \
 		--with-modules=""
 
 SCRIPTS_ENV=	CURDIR2="${.CURDIR}" \
@@ -121,9 +122,9 @@ ZEROMQ_LIB_DEPENDS=	libzmq.so:net/libzmq4
 ZEROMQ_CONFIGURE_ON=	--enable-remotebackend-zeromq
 
 post-install::
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} ${FAKE_DESTDIR}/var/run/pdns
-	@${STAGEDIR}${PREFIX}/sbin/pdns_server --module-dir=${STAGEDIR}${PREFIX}/lib/pdns \
-		--launch="pipe bind ${MODULES}" --config > ${STAGEDIR}${EXAMPLESDIR}/pdns.conf
-	@${REINPLACE_CMD} -e 's;${FAKE_DESTDIR};;' -i '' ${STAGEDIR}${EXAMPLESDIR}/pdns.conf
+	@${MKDIR} ${EXAMPLESDIR} ${FAKE_DESTDIR}/var/run/pdns
+	@${PREFIX}/sbin/pdns_server --module-dir=${PREFIX}/lib/pdns \
+		--launch="pipe bind ${MODULES}" --config > ${EXAMPLESDIR}/pdns.conf
+	@${REINPLACE_CMD} -e 's;${FAKE_DESTDIR};;' -i '' ${EXAMPLESDIR}/pdns.conf
 
 .include <bsd.port.mk>

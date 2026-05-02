@@ -41,13 +41,13 @@ FONT_FAMILY+=	PlemolJP35Console
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 .for FAMILY in ${FONT_FAMILY}
 .  for STYLE in Bold BoldItalic ExtraLight ExtraLightItalic Italic \
 		Light LightItalic Medium MediumItalic Regular \
 		SemiBold SemiBoldItalic Text TextItalic Thin ThinItalic
 	${INSTALL_DATA} ${WRKSRC}/${FAMILY}/${FAMILY}-${STYLE}.ttf \
-		${STAGEDIR}${FONTSDIR}
+		${FONTSDIR}
 	@${ECHO_CMD} ${FONTSDIR:S,${PREFIX}/,,}/${FAMILY}-${STYLE}.ttf >> ${TMPPLIST}
 .  endfor
 .endfor

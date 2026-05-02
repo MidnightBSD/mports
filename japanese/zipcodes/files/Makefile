@@ -16,7 +16,7 @@ CSV=	ken_all.csv
 EUCCSV=	${CSV:%.csv=%.euc-csv}
 PERL?=	/usr/bin/perl
 NKF?=	${LOCALBASE}/bin/nkf
-_DESTDIR=${STAGEDIR}${PREFIX}/share/misc/jp-zipcodes
+_DESTDIR=${PREFIX}/share/misc/jp-zipcodes
 
 all:	zipcodes.5digits zipcodes.7digits
 

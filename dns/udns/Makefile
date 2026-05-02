@@ -51,7 +51,7 @@ do-install:
 .endfor
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/libudns.pc ${STAGEDIR}${PKGCONFIGDIR}/
+	${INSTALL_DATA} ${WRKDIR}/libudns.pc ${PKGCONFIGDIR}/
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

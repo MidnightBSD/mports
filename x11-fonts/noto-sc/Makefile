@@ -51,7 +51,7 @@ NOTO_SC_FONTS=	NotoSansCJKsc-Black.otf \
 		NotoSerifSC-SemiBold.otf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_SC_FONTS} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${NOTO_SC_FONTS} ${FONTSDIR}
 
 .include <bsd.port.mk>

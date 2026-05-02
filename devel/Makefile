@@ -254,6 +254,7 @@
     SUBDIR += efl
     SUBDIR += eggdbus
     SUBDIR += electron28
+    SUBDIR += electron39
     SUBDIR += elfutils
     SUBDIR += epm
     SUBDIR += erlang-unicode_util_compat
@@ -381,6 +382,7 @@
     SUBDIR += jsonrpc-glib
     SUBDIR += judy
     SUBDIR += kBuild
+    SUBDIR += kdsingleapplication
     SUBDIR += kf5-kauth
     SUBDIR += kf5-kbookmarks
     SUBDIR += kf5-kcmutils
@@ -624,6 +626,7 @@
     SUBDIR += mono-addins
     SUBDIR += msbuild
     SUBDIR += msgpack-c
+    SUBDIR += muon
     SUBDIR += mustache
     SUBDIR += nasm
     SUBDIR += ncurses
@@ -1839,10 +1842,13 @@
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiddle
+    SUBDIR += rubygem-forwardable
     SUBDIR += rubygem-rb-fsevent
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-gapic-common
+    SUBDIR += rubygem-gems
     SUBDIR += rubygem-getoptlong
+    SUBDIR += rubygem-gettext
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
@@ -1853,6 +1859,9 @@
     SUBDIR += rubygem-google-apis-cloudresourcemanager_v1
     SUBDIR += rubygem-google-apis-compute_v1
     SUBDIR += rubygem-google-apis-core
+    SUBDIR += rubygem-google-apis-discovery_v1
+    SUBDIR += rubygem-google-apis-generator
+    SUBDIR += rubygem-google-apis-core-gitlab
     SUBDIR += rubygem-google-apis-iam_v1
     SUBDIR += rubygem-google-apis-monitoring_v3
     SUBDIR += rubygem-google-apis-monitoring_v3-gitlab
@@ -1876,8 +1885,11 @@
     SUBDIR += rubygem-googleapis-common-protos-gitlab
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-googleapis-common-protos-types-gitlab
+    SUBDIR += rubygem-grpc-google-iam-v1
+    SUBDIR += rubygem-hashie
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-i18n
+    SUBDIR += rubygem-io-console
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
@@ -1887,12 +1899,14 @@
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
     SUBDIR += rubygem-little-plugger
+    SUBDIR += rubygem-locale
     SUBDIR += rubygem-logger
     SUBDIR += rubygem-logger-gitlab
     SUBDIR += rubygem-logging
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-mini_portile2
     SUBDIR += rubygem-minitest
+    SUBDIR += rubygem-ms_rest
     SUBDIR += rubygem-ms_rest_azure
     SUBDIR += rubygem-msgpack
     SUBDIR += rubygem-multi_json
@@ -1911,6 +1925,8 @@
     SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rake
     SUBDIR += rubygem-rdoc
+    SUBDIR += rubygem-reline
+    SUBDIR += rubygem-retriable
     SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rspec
     SUBDIR += rubygem-rspec-core
@@ -1921,6 +1937,7 @@
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
+    SUBDIR += rubygem-singleton
     SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets3
@@ -1946,6 +1963,7 @@
     SUBDIR += rubygem-validate_url
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
+    SUBDIR += rubygem-version_gem
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-yajl-ruby
@@ -1966,6 +1984,7 @@
     SUBDIR += sigar
     SUBDIR += signal-fts5-extension
     SUBDIR += silc-toolkit
+    SUBDIR += simdjson
     SUBDIR += simpleini
     SUBDIR += skalibs
     SUBDIR += slf4j
@@ -1980,6 +1999,7 @@
     SUBDIR += spirv-llvm-translator
     SUBDIR += splint
     SUBDIR += st
+    SUBDIR += stb
     SUBDIR += subversion
     SUBDIR += subversion-lts
     SUBDIR += swig
@@ -2014,6 +2034,15 @@
     SUBDIR += uthash
     SUBDIR += valgrind
     SUBDIR += viewvc-devel
+    SUBDIR += wasi-compiler-rt
+    SUBDIR += wasi-compiler-rt17
+    SUBDIR += wasi-compiler-rt18
+    SUBDIR += wasi-compiler-rt19
+    SUBDIR += wasi-libc
+    SUBDIR += wasi-libcxx
+    SUBDIR += wasi-libcxx17
+    SUBDIR += wasi-libcxx18
+    SUBDIR += wasi-libcxx19
     SUBDIR += websvn
     SUBDIR += wininfo
     SUBDIR += wizardkit

@@ -101,9 +101,9 @@ post-patch:
 	@cd ${WRKSRC}/include && ${LN} -s linux freebsd
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${APP_HOME}
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${APP_HOME}
-	@cd ${STAGEDIR}${APP_HOME} && \
+	@${MKDIR} ${APP_HOME}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${APP_HOME}
+	@cd ${APP_HOME} && \
 	    ${CHMOD} ${BINMODE} ${BIN_DIRS:S|$|/*|} ${LIB_DIRS:S|$|/jexec|}
 
 .include <bsd.port.post.mk>

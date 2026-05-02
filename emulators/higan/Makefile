@@ -88,11 +88,11 @@ do-build:
 .endfor
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/higan/out/higan ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_PROGRAM} ${WRKSRC}/icarus/out/icarus ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_DATA} ${WRKSRC}/higan/target-higan/resource/higan.png ${STAGEDIR}${PREFIX}/share/pixmaps/
-	${INSTALL_DATA} ${WRKSRC}/higan/target-higan/resource/higan.desktop ${STAGEDIR}${PREFIX}/share/applications/
-	(cd ${WRKSRC}/higan/System && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/)
-	(cd ${WRKSRC}/icarus/Database && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icarus/Database/)
+	${INSTALL_PROGRAM} ${WRKSRC}/higan/out/higan ${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/icarus/out/icarus ${PREFIX}/bin/
+	${INSTALL_DATA} ${WRKSRC}/higan/target-higan/resource/higan.png ${PREFIX}/share/pixmaps/
+	${INSTALL_DATA} ${WRKSRC}/higan/target-higan/resource/higan.desktop ${PREFIX}/share/applications/
+	(cd ${WRKSRC}/higan/System && ${COPYTREE_SHARE} . ${DATADIR}/)
+	(cd ${WRKSRC}/icarus/Database && ${COPYTREE_SHARE} . ${PREFIX}/share/icarus/Database/)
 
 .include <bsd.port.mk>

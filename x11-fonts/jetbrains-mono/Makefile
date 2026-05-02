@@ -21,6 +21,6 @@ NO_WRKSUBDIR=	yes
 do-install:
 	@${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/fonts/ttf/*.ttf ${FONTSDIR}
-	${LS} ${STAGEDIR}${FONTSDIR}/*.ttf | ${SED} -e's,^${FAKE_DESTDIR},,' >> ${TMPPLIST}
+	${LS} ${FONTSDIR}/*.ttf | ${SED} -e's,^${FAKE_DESTDIR},,' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

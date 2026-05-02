@@ -60,12 +60,12 @@ METIS_LIB_DEPENDS=	libmetis.so:math/metis
 METIS_CONFIGURE_ON=	--with-metis=1 # --with-parmetis=1 to use include/parmetis.h
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpetsc.so.${DISTVERSION}
-	@${FIND} ${STAGEDIR}${PREFIX} -name "*.html" -delete
-	@cd ${STAGEDIR}${PREFIX} && ${RM} -r bin/win32fe lib/petsc/conf/uninstall.py
-	@${REINPLACE_CMD} -i '' -e 's|^PYTHON = .*|PYTHON = ${PYTHON_CMD}|' ${STAGEDIR}${PREFIX}/lib/petsc/conf/petscvariables
-	@${REINPLACE_CMD} -i '' -e 's|#!/.*|#!${PYTHON_CMD}|' ${STAGEDIR}${PREFIX}/lib/petsc/conf/reconfigure-arch-*-c-debug.py
-	@${RMDIR} ${STAGEDIR}${PREFIX}/lib/petsc/bin/__pycache__ # stray directory
+	@${STRIP_CMD} ${PREFIX}/lib/libpetsc.so.${DISTVERSION}
+	@${FIND} ${PREFIX} -name "*.html" -delete
+	@cd ${PREFIX} && ${RM} -r bin/win32fe lib/petsc/conf/uninstall.py
+	@${REINPLACE_CMD} -i '' -e 's|^PYTHON = .*|PYTHON = ${PYTHON_CMD}|' ${PREFIX}/lib/petsc/conf/petscvariables
+	@${REINPLACE_CMD} -i '' -e 's|#!/.*|#!${PYTHON_CMD}|' ${PREFIX}/lib/petsc/conf/reconfigure-arch-*-c-debug.py
+	@${RMDIR} ${PREFIX}/lib/petsc/bin/__pycache__ # stray directory
 
 # the file /usr/local/share/petsc/examples/config/gmakegen.py is expected by some dependencies, at least by math/slepc
 

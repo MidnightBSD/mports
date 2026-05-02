@@ -63,11 +63,11 @@ pre-install:
 	${FIND} ${WRKSRC} \( -name \*.bak -or -name \*.orig \) -delete
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/www/validator/htdocs
-	${MKDIR} ${STAGEDIR}${PREFIX}/www/validator/httpd
-	${MKDIR} ${STAGEDIR}${PREFIX}/www/validator/share
-	(cd ${WRKSRC}/htdocs && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/htdocs/)
-	(cd ${WRKSRC}/httpd && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/httpd/)
-	(cd ${WRKSRC}/share && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/share/)
+	${MKDIR} ${PREFIX}/www/validator/htdocs
+	${MKDIR} ${PREFIX}/www/validator/httpd
+	${MKDIR} ${PREFIX}/www/validator/share
+	(cd ${WRKSRC}/htdocs && ${COPYTREE_SHARE} . ${WWWDIR}/htdocs/)
+	(cd ${WRKSRC}/httpd && ${COPYTREE_SHARE} . ${WWWDIR}/httpd/)
+	(cd ${WRKSRC}/share && ${COPYTREE_SHARE} . ${WWWDIR}/share/)
 
 .include <bsd.port.mk>

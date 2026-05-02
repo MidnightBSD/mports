@@ -47,20 +47,20 @@ post-patch-GUI-on:
 		${WRKSRC}/gputest_gui.py
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}
+	@${MKDIR} ${PREFIX}/lib/${PORTNAME}
 	cd ${WRKSRC} && ${COPYTREE_SHARE} data \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
-	${INSTALL_LIB} ${WRKSRC}/*.so ${STAGEDIR}${PREFIX}/lib/${PORTNAME}
+		${PREFIX}/lib/${PORTNAME}
+	${INSTALL_LIB} ${WRKSRC}/*.so ${PREFIX}/lib/${PORTNAME}
 	${INSTALL_PROGRAM} ${WRKSRC}/GpuTest \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
+		${PREFIX}/lib/${PORTNAME}
 	${INSTALL_SCRIPT} ${WRKSRC}/start_*.sh \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
+		${PREFIX}/lib/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/_geeks3d_gputest_scores.csv \
-		${STAGEDIR}${PREFIX}/lib/${PORTNAME}
+		${PREFIX}/lib/${PORTNAME}
 	${PRINTF} '#!/bin/sh\n\ncd ${TRUE_PREFIX}/lib/${PORTNAME} || exit\
 		1\n\nexec ./GpuTest "$$@"\n' > \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+		${PREFIX}/bin/${PORTNAME}
+	${CHMOD} +x ${PREFIX}/bin/${PORTNAME}
 
 do-install-GUI-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/gputest_gui.py ${FAKE_DESTDIR}${PREFIX}/bin

@@ -1,5 +1,5 @@
 PORTNAME=	rust
-PORTVERSION=	1.88.0
+PORTVERSION=	1.89.0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/
 PKGNAMEPREFIX=	${FLAVOR:S/_/-/g}-
@@ -126,10 +126,10 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/rust-bootstrap/${FLAVOR}
+	@${MKDIR} ${PREFIX}/rust-bootstrap/${FLAVOR}
 	${INSTALL_DATA} ${WRKDIR}/_build/dist/*-${_RUST_ARCH_${FLAVOR}:U${FLAVOR}}-unknown-${OPSYS:tl}${EXTRACT_SUFX} \
-		${STAGEDIR}${PREFIX}/rust-bootstrap/${FLAVOR}
-	@cd ${STAGEDIR}${PREFIX} && \
+		${PREFIX}/rust-bootstrap/${FLAVOR}
+	@cd ${PREFIX} && \
 		${FIND} rust-bootstrap -type f >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>

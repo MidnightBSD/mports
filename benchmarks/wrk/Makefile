@@ -45,6 +45,6 @@ CFLAGS+=	-march=i586
 .endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 
 .include <bsd.port.post.mk>

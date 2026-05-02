@@ -43,7 +43,7 @@ post-install:
 			$$4, $$4, "${TMPPLIST}", "${INSTALL_DATA}", \
 			"${WRKSRC}", $$3, "${PREFIX}", $$4}' | \
 		${SH}
-	@${FIND} ${WRKSRC}/dsssl -type f -depth 1 -exec ${INSTALL_DATA} {} ${STAGEDIR}/${DATADIR} \;
+	@${FIND} ${WRKSRC}/dsssl -type f -depth 1 -exec ${INSTALL_DATA} {} /${DATADIR} \;
 
 .include <bsd.port.pre.mk>
 

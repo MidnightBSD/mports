@@ -65,7 +65,7 @@ post-install:
 	# - surelog fails to create package files on some systems, and succeeds on others
 	# - so we remove this directory altogether for now
 	@${RM} -r \
-		${STAGEDIR}${DATADIR}
+		${DATADIR}
 
 post-test: # 9 tests fail, see https://github.com/chipsalliance/Surelog/issues/3971
 	@cd ${BUILD_WRKSRC} && ctest

@@ -91,7 +91,7 @@ CONFLICTS_INSTALL=	googletest # installs files into the same place, problematic 
 
 post-install:
 	# remove MPI headers that it installs
-	@${RM} ${STAGEDIR}${PREFIX}/include/mpi*.h
+	@${RM} ${PREFIX}/include/mpi*.h
 
 # Tests fail to compile, see https://github.com/trilinos/Trilinos/issues/14748
 

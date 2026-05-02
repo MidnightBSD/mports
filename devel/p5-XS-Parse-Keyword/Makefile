@@ -23,6 +23,6 @@ USES=		perl5
 USE_PERL5=	modbuild
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/perl5/site_perl/auto/XS/Parse/Keyword/Keyword.so
+	${STRIP_CMD} ${PREFIX}/lib/perl5/site_perl/auto/XS/Parse/Keyword/Keyword.so
 
 .include <bsd.port.mk>

@@ -37,14 +37,14 @@ do-extract:
 	@${CP} ${FILESDIR}/* ${WRKSRC}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.parsepe ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.parsepe ${DOCSDIR}
 .for fil in ${PY_FILES}
-	${INSTALL_SCRIPT} ${WRKSRC}/${fil} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/${fil} ${PREFIX}/bin
 .endfor
 .for fil in ${EX_FILES}
-	${INSTALL_SCRIPT} ${WRKSRC}/${fil} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${fil}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_SCRIPT} ${WRKSRC}/${fil} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${fil}.1 ${PREFIX}/share/man/man1
 .endfor
 
 .include <bsd.port.mk>

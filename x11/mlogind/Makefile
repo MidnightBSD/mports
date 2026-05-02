@@ -1,6 +1,7 @@
 PORTNAME=	mlogind
-PORTVERSION=	1.3.9
-PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+PORTVERSION=	1.4.0
+PORTREVISION=	0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
@@ -9,25 +10,26 @@ WWW=		http://github.com/laffer1/mlogind
 
 LICENSE=	gpl2
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
+#WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		cmake compiler:c++11-lang cpe jpeg pkgconfig xorg
+USES=		cmake compiler:c++11-lang cpe gnome jpeg pkgconfig xorg
 USE_GITHUB=     yes
 GH_PROJECT=     mlogind
 GH_ACCOUNT=     midnightbsd
-GH_TAGNAME=     0b71ed7
+USE_GNOME=	librsvg2
 USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrandr \
 		xrender xt
 USE_RC_SUBR=	mlogind
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS= -DBUILD_SLIMLOCK=no \
-	-DBUILD_SHARED_LIBS=yes
+	-DBUILD_SHARED_LIBS=yes \
+	-DUSE_RSVG=yes
 
 OPTIONS_DEFINE=		UTF8 CONSOLEKIT
 OPTIONS_DEFAULT=	CONSOLEKIT
@@ -54,7 +56,6 @@ CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
 .endif
 
 post-patch:
-	@${CP} ${WRKSRC}/mlogind.conf ${WRKSRC}/mlogind.conf.sample
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/mlogind.conf.sample
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \

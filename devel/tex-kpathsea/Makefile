@@ -33,13 +33,13 @@ PLIST_SUB= VERSION=${PORTVERSION}
 post-install:
 	(cd ${WRKDIR}/${DISTNAME}/texk/texlive/linked_scripts/texlive-extra && \
 	    for f in kpsetool kpsewhere; do \
-		${INSTALL_SCRIPT} $${f}.sh ${STAGEDIR}${PREFIX}/bin/$$f; \
+		${INSTALL_SCRIPT} $${f}.sh ${PREFIX}/bin/$$f; \
 		${INSTALL_MAN} ../../tl_support/$${f}.1 \
-		    ${STAGEDIR}${PREFIX}/share/man/man1/$${f}.1; \
+		    ${PREFIX}/share/man/man1/$${f}.1; \
 	    done; \
 	    for l in kpsexpand kpsepath; do \
-		${LN} -sf kpsetool ${STAGEDIR}${PREFIX}/bin/$$l; \
-		${LN} -sf kpsetool.1 ${STAGEDIR}${PREFIX}/share/man/man1/$${l}.1; \
+		${LN} -sf kpsetool ${PREFIX}/bin/$$l; \
+		${LN} -sf kpsetool.1 ${PREFIX}/share/man/man1/$${l}.1; \
 	    done)
 
 .include <bsd.port.mk>

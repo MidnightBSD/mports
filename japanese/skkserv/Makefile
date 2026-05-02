@@ -27,6 +27,6 @@ SKKJISYO_SIZE?=	L
 SKKJISYO?=	SKK-JISYO.${SKKJISYO_SIZE}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/skkserv/skkserv ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/skkserv/skkserv ${PREFIX}/sbin
 
 .include <bsd.port.mk>

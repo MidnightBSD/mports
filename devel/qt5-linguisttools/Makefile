@@ -23,8 +23,8 @@ post-install:
                 ${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
 .for f in lrelease lupdate
 	${INSTALL_MAN} ${WRKSRC}/src/linguist/${f}/${f}.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1
-	${RLN} ${STAGEDIR}${QT_BINDIR}/${f} ${STAGEDIR}${PREFIX}/bin/${f}-qt5
+		${PREFIX}/share/man/man1
+	${RLN} ${QT_BINDIR}/${f} ${PREFIX}/bin/${f}-qt5
 .endfor
 
 .include <bsd.port.mk>

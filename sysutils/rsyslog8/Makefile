@@ -158,8 +158,8 @@ post-patch:
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/rsyslog.d
-	${INSTALL_DATA} ${FILESDIR}/rsyslog.conf ${STAGEDIR}${PREFIX}/etc/rsyslog.conf.sample
+	${MKDIR} ${PREFIX}/etc/rsyslog.d
+	${INSTALL_DATA} ${FILESDIR}/rsyslog.conf ${PREFIX}/etc/rsyslog.conf.sample
 
 post-install-DOCS-on:
 .for SQL in ${PORTDOCS:M*.sql}

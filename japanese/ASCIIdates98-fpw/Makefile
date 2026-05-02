@@ -18,12 +18,12 @@ EXTRACT_BEFORE_ARGS=	-qL
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dict/ASCIIdates98-fpw/ascdates/data
+	@${MKDIR} ${PREFIX}/share/dict/ASCIIdates98-fpw/ascdates/data
 	${INSTALL_DATA} ${WRKSRC}/ascdates/data/honmon \
-		${STAGEDIR}${PREFIX}/share/dict/ASCIIdates98-fpw/ascdates/data
+		${PREFIX}/share/dict/ASCIIdates98-fpw/ascdates/data
 	${INSTALL_DATA} ${WRKSRC}/catalogs \
-		${STAGEDIR}${PREFIX}/share/dict/ASCIIdates98-fpw
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/share/dict/ASCIIdates98-fpw
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/readme ${DOCSDIR}
 
 .include <bsd.port.mk>

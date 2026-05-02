@@ -1,0 +1,11 @@
+--- src/llvm-project/llvm/cmake/config.guess.orig	2025-11-28 15:52:31.752817000 -0500
++++ src/llvm-project/llvm/cmake/config.guess	2025-11-28 16:03:05.834450000 -0500
+@@ -791,7 +791,7 @@
+     *:BSD/OS:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
+ 	exit ;;
+-    *:FreeBSD:*:*)
++    *:MidnightBSD:*:*)
+ 	UNAME_PROCESSOR=`/usr/bin/uname -p`
+ 	case ${UNAME_PROCESSOR} in
+ 	    amd64)

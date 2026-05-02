@@ -38,11 +38,11 @@ DISTFILES:=	${OPTIONS_SINGLE_VARIANT:@.opt.@${${.opt.}_DISTFILES}@}
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
 	cd ${WRKSRC}/OTF && \
-		${INSTALL_DATA} *.otf ${STAGEDIR}${FONTSDIR}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${INSTALL_DATA} *.otf ${FONTSDIR}
+	${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && \
-		${INSTALL_DATA} README.md ${STAGEDIR}${DOCSDIR}
+		${INSTALL_DATA} README.md ${DOCSDIR}
 
 .include <bsd.port.mk>

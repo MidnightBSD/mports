@@ -45,13 +45,13 @@ post-patch:
 		 s|/var/lib/clamav|/var/db/clamav|g' ${WRKSRC}/lib/*.pm
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/ClamTk
-	${INSTALL_DATA} ${WRKSRC}/lib/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/ClamTk
-	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications
-	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.png ${STAGEDIR}${PREFIX}/share/pixmaps
-	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.xpm ${STAGEDIR}${PREFIX}/share/pixmaps
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/share/man/man1
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/ClamTk
+	${INSTALL_DATA} ${WRKSRC}/lib/*.pm ${PREFIX}/${SITE_PERL_REL}/ClamTk
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop ${PREFIX}/share/applications
+	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.png ${PREFIX}/share/pixmaps
+	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.xpm ${PREFIX}/share/pixmaps
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

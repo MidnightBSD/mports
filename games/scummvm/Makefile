@@ -91,7 +91,7 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/dists/${PORTNAME}.desktop \
-		${STAGEDIR}${DESKTOPDIR}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+		${DESKTOPDIR}
+	@${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.post.mk>

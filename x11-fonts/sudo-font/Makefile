@@ -23,9 +23,9 @@ NO_BUILD=	yes
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/Webfonts/*.woff* ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/Webfonts/*.woff* ${FONTSDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

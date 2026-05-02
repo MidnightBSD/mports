@@ -50,7 +50,8 @@ MAKE_ENV=	LANG="C" \
 		CXX=${CXX} \
 		CPP=${CPP} \
 		LOG=cmdlines \
-		MAKEFLAGS=""
+		MAKEFLAGS="" \
+		_BSDONLY_SOURCE=1
 
 JDK_OSARCH=	bsd-${ARCH:S/amd64/x86_64/:C/armv.*/arm/:S/i386/x86/:S/powerpc/ppc/}
 JDK_BUILDDIR=	${WRKSRC}/build/${JDK_OSARCH}-normal-${JDK_BUILD_JVM}-${JDK_BUILD_TYPE}
@@ -225,13 +226,13 @@ post-build:
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${INSTALLDIR}
-	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${INSTALLDIR}
-	@cd ${STAGEDIR}${INSTALLDIR} && \
+	@${MKDIR} ${INSTALLDIR}
+	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${INSTALLDIR}
+	@cd ${INSTALLDIR} && \
 		${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \;
-	@${CHMOD} ${BINMODE} ${STAGEDIR}${INSTALLDIR}/lib/jspawnhelper
+	@${CHMOD} ${BINMODE} ${INSTALLDIR}/lib/jspawnhelper
 	@${ECHO} "@javavm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
-	@${FIND} ${STAGEDIR}${INSTALLDIR} -not -type d | ${SORT} | \
-		${SED} -e 's|^${STAGEDIR}${PREFIX}/||' >> ${TMPPLIST}
+	@${FIND} ${INSTALLDIR} -not -type d | ${SORT} | \
+		${SED} -e 's|^${PREFIX}/||' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>

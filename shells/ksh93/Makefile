@@ -66,9 +66,9 @@ do-build:
 	@cd ${WRKSRC}/ && ${SETENV} -i ${MAKE_ENV} ${SH} bin/package flat make ksh93
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/ksh ${STAGEDIR}${PREFIX}/bin/${PNAME}
-	${INSTALL_MAN} ${WRKSRC}/man/man1/sh.1 ${STAGEDIR}${PREFIX}/share/man/man1/${PNAME}.1
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/fun/ && ${INSTALL_SCRIPT} dirs popd pushd ${STAGEDIR}${EXAMPLESDIR}/
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/ksh ${PREFIX}/bin/${PNAME}
+	${INSTALL_MAN} ${WRKSRC}/man/man1/sh.1 ${PREFIX}/share/man/man1/${PNAME}.1
+	${MKDIR} ${EXAMPLESDIR}/
+	cd ${WRKSRC}/fun/ && ${INSTALL_SCRIPT} dirs popd pushd ${EXAMPLESDIR}/
 
 .include <bsd.port.post.mk>

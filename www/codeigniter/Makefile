@@ -57,9 +57,9 @@ PGSQL_USE=	PHP=pgsql
 SQLITE_USE=	PHP=sqlite3
 
 do-install:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} "application index.php system" ${STAGEDIR}${WWWDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} "application index.php system" ${WWWDIR}
 .for ci_conf_file in ${CI_CONF_FILES}
-	${INSTALL_DATA} ${WRKSRC}/${ci_conf_file} ${STAGEDIR}${WWWDIR}/${ci_conf_file}.sample
+	${INSTALL_DATA} ${WRKSRC}/${ci_conf_file} ${WWWDIR}/${ci_conf_file}.sample
 .endfor
 
 do-install-APACHE-on:

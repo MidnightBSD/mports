@@ -73,11 +73,11 @@ post-configure:
 
 post-install:
 .if ${PORT_OPTIONS:MEMACS}
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp
+	${MKDIR} ${PREFIX}/lib/xemacs/site-lisp
 	${LN} -sf ${PREFIX}/share/emacs/site-lisp/a2ps-print.el \
-		  ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/a2ps-print.el
+		  ${PREFIX}/lib/xemacs/site-lisp/a2ps-print.el
 	${LN} -sf ${PREFIX}/share/emacs/site-lisp/a2ps.el \
-		  ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/a2ps.el
+		  ${PREFIX}/lib/xemacs/site-lisp/a2ps.el
 .endif
 	cd ${WRKSRC}/doc && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${.MAKEFLAGS} ${MAKE_ARGS} ${INSTALL_TARGET}

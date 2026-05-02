@@ -25,9 +25,9 @@ do-extract:
 	${GZCAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTFILES} > ${WRKSRC}/kcode
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/kcode ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/kcode ${PREFIX}/bin
 	pod2man -u ${WRKSRC}/kcode ${WRKSRC}/kcode.1
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
-	${INSTALL_MAN} ${WRKSRC}/kcode.1 ${STAGEDIR}${PREFIX}/share/man/ja/man1
+	${MKDIR} ${PREFIX}/share/man/ja/man1
+	${INSTALL_MAN} ${WRKSRC}/kcode.1 ${PREFIX}/share/man/ja/man1
 
 .include <bsd.port.mk>

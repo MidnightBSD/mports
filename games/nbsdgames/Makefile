@@ -41,11 +41,11 @@ _GAMES=	battleship \
 	tugow
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/nbsdgames.desktop ${STAGEDIR}${PREFIX}/share/applications/
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/
-	${INSTALL_DATA} ${WRKSRC}/nbsdgames.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/
+	${INSTALL_DATA} ${WRKSRC}/nbsdgames.desktop ${PREFIX}/share/applications/
+	${MKDIR} ${PREFIX}/share/icons/hicolor/scalable/apps/
+	${INSTALL_DATA} ${WRKSRC}/nbsdgames.svg ${PREFIX}/share/icons/hicolor/scalable/apps/
 .for game in ${_GAMES}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${game}
+	${STRIP_CMD} ${PREFIX}/bin/${game}
 .endfor
 
 .include <bsd.port.mk>

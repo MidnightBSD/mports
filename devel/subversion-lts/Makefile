@@ -136,13 +136,13 @@ post-build-TOOLS-on:
 
 post-install:	${MKREPOS_TARGET}
 	for F in ${BINS_TO_STRIP} ; do \
-	 ${STRIP_CMD} "${STAGEDIR}${PREFIX}/bin/$${F}" ; \
+	 ${STRIP_CMD} "${PREFIX}/bin/$${F}" ; \
 	done
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${WRKSRC}/tools.examples && ${TAR} --exclude '*.in' -cf - * | ${TAR} -C ${STAGEDIR}${DATADIR} -xof - )
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${STRIP_CMD} ${PREFIX}/lib/*.so
+	@${MKDIR} ${DATADIR}
+	(cd ${WRKSRC}/tools.examples && ${TAR} --exclude '*.in' -cf - * | ${TAR} -C ${DATADIR} -xof - )
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
 post-install-SVNSERVE_WRAPPER-on:
 	@${INSTALL_SCRIPT} ${FILESDIR}/svnserve.wrapper ${FAKE_DESTDIR}${PREFIX}/bin/svnserve.sample

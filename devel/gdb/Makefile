@@ -144,7 +144,7 @@ do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/gdb/gdb \
 		${PREFIX}/bin/gdb${VER}
 	${INSTALL_MAN} ${WRKSRC}/gdb/doc/gdb.1 \
-		${STAGEDIR}${PREFIX}/share/man/man1/gdb${VER}.1
+		${PREFIX}/share/man/man1/gdb${VER}.1
 	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; ${SETENVI} ${WRK_ENV} \
 		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-syscalls )
 
@@ -170,10 +170,10 @@ do-install-PYTHON-on:
 		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
 	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; ${SETENVI} ${WRK_ENV} \
 		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
-	@(cd ${STAGEDIR}${PREFIX}/share/gdb/python && \
+	@(cd ${PREFIX}/share/gdb/python && \
 		${PYTHON_CMD} -m compileall .)
 . for f in gdb gdb/command gdb/function gdb/printer
-	@(cd ${STAGEDIR}${PREFIX}/share/gdb/python/${f} ; ${CHMOD} 644 *.py* )
+	@(cd ${PREFIX}/share/gdb/python/${f} ; ${CHMOD} 644 *.py* )
 . endfor
 .if exists(/usr/lib/libc++.so.1) || exists(/lib/libc++.so.1)
 	@(cd ${WRKSRC_libcxx} ; ${SETENVI} ${WRK_ENV} \

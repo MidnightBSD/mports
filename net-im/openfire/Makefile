@@ -76,36 +76,36 @@ do-build:
 	@(cd ${WRKSRC} && JAVA_VERSION=${JAVA_VERSION} ${MVN} ${MVN_OPTS} ${MVN_TARGET})
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}/lib
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	@${MKDIR} ${STAGEDIR}${VARDB}
-	@${MKDIR} ${STAGEDIR}${VARLOG}
+	@${MKDIR} ${DATADIR}/lib
+	@${MKDIR} ${ETCDIR}
+	@${MKDIR} ${VARDB}
+	@${MKDIR} ${VARLOG}
 
-	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 *.jar ${STAGEDIR}${DATADIR}/lib)
-	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 log4j2.xml ${STAGEDIR}${DATADIR}/lib)
+	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 *.jar ${DATADIR}/lib)
+	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 log4j2.xml ${DATADIR}/lib)
 
 	(cd ${INSTALL_WRKSRC}/resources && \
 	    ${FIND} . \! -path ./security\* \! -path ./nativeAuth\* | \
 	    ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} \
-	        ${STAGEDIR}${DATADIR}/resources)
+	        ${DATADIR}/resources)
 
 	(cd ${INSTALL_WRKSRC}/plugins/admin && ${FIND} . \
-	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DATADIR}/plugins/admin)
+	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/plugins/admin)
 
-	${LN} -sf ${ETCDIR} ${STAGEDIR}${DATADIR}/conf
-	${LN} -sf ${ETCDIR} ${STAGEDIR}${DATADIR}/resources/security
-	${LN} -sf ${VARDB} ${STAGEDIR}${DATADIR}/embedded-db
-	${LN} -sf ${VARLOG} ${STAGEDIR}${DATADIR}/logs
+	${LN} -sf ${ETCDIR} ${DATADIR}/conf
+	${LN} -sf ${ETCDIR} ${DATADIR}/resources/security
+	${LN} -sf ${VARDB} ${DATADIR}/embedded-db
+	${LN} -sf ${VARLOG} ${DATADIR}/logs
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/${PORTNAME}.xml \
-		${STAGEDIR}${ETCDIR}/${PORTNAME}.xml.sample
+		${ETCDIR}/${PORTNAME}.xml.sample
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/security.xml \
-		${STAGEDIR}${ETCDIR}/security.xml.sample
+		${ETCDIR}/security.xml.sample
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/crowd.properties \
-		${STAGEDIR}${ETCDIR}/crowd.properties.sample
+		${ETCDIR}/crowd.properties.sample
 	${INSTALL} -m 600 ${INSTALL_WRKSRC}/resources/security/truststore \
-		${STAGEDIR}${ETCDIR}/truststore.sample
+		${ETCDIR}/truststore.sample
 	${INSTALL} -m 600 ${INSTALL_WRKSRC}/resources/security/keystore \
-		${STAGEDIR}${ETCDIR}/keystore.sample
+		${ETCDIR}/keystore.sample
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

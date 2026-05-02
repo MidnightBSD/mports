@@ -40,6 +40,12 @@ NO_CCACHE=	yes
 # Suppress passing -j to do-build target via Mk/bsd.port.mk
 # In the JDK build the number of parallel jobs is passed in via configure --with-num-cores=N
 _MAKE_JOBS=
+MAKE_JOBS_UNSAFE=	yes
+.if defined(MAKE_JOBS_UNSAFE)
+CONFIGURE_ARGS+=       --with-jobs=1
+.elif defined(MAKE_JOBS_NUMBER)
+CONFIGURE_ARGS+=       --with-jobs=${MAKE_JOBS_NUMBER}
+.endif
 MAKE_ENV=	LANG="C" \
 		LC_ALL="C" \
 		CLASSPATH="" \
@@ -49,7 +55,8 @@ MAKE_ENV=	LANG="C" \
 		CXX=${CXX} \
 		CPP=${CPP} \
 		LOG=cmdlines \
-		MAKEFLAGS=""
+		MAKEFLAGS="" \
+		_JAVA_OPTIONS="-XX:UseAVX=0"
 
 JDK_OSARCH=	bsd-${ARCH:S/amd64/x86_64/:S/i386/x86/:S/powerpc64/ppc64/}
 JDK_BUILDDIR=	${WRKSRC}/build/${JDK_OSARCH}-${JDK_BUILD_JVM}-${JDK_BUILD_TYPE}
@@ -180,7 +187,8 @@ post-patch:
                 ${WRKSRC}/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/utilities/PlatformInfo.java \
                 ${WRKSRC}/src/java.desktop/share/classes/java/awt/GraphicsEnvironment.java \
                 ${WRKSRC}/src/java.desktop/share/classes/sun/print/PSPrinterJob.java \
-                ${WRKSRC}/src/java.base/unix/classes/sun/net/PortConfig.java
+                ${WRKSRC}/src/java.base/unix/classes/sun/net/PortConfig.java \
+		${WRKSRC}/src/jdk.jcmd/bsd/classes/sun/tools/common/ProcessHelper.java
 
 post-build:
 .if defined(OPENJDK_SYMLINK_CACERTS)
@@ -189,13 +197,13 @@ post-build:
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${INSTALLDIR}
-	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${INSTALLDIR}
-	@cd ${STAGEDIR}${INSTALLDIR} && \
+	@${MKDIR} ${INSTALLDIR}
+	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${INSTALLDIR}
+	@cd ${INSTALLDIR} && \
 		${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \;
-	@${CHMOD} ${BINMODE} ${STAGEDIR}${INSTALLDIR}/lib/jspawnhelper
+	@${CHMOD} ${BINMODE} ${INSTALLDIR}/lib/jspawnhelper
 	@${ECHO} "@javavm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
-	@${FIND} ${STAGEDIR}${INSTALLDIR} -not -type d | ${SORT} | \
-		${SED} -e 's|^${STAGEDIR}${PREFIX}/||' >> ${TMPPLIST}
+	@${FIND} ${INSTALLDIR} -not -type d | ${SORT} | \
+		${SED} -e 's|^${PREFIX}/||' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>

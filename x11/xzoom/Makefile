@@ -14,7 +14,7 @@ USE_XORG=	x11 xext
 PLIST_FILES=	bin/xzoom share/man/man1/xzoom.1.gz
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/xzoom ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/xzoom.man ${STAGEDIR}${PREFIX}/share/man/man1/xzoom.1
+	${INSTALL_PROGRAM} ${WRKSRC}/xzoom ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/xzoom.man ${PREFIX}/share/man/man1/xzoom.1
 
 .include <bsd.port.mk>

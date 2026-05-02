@@ -46,11 +46,11 @@ post-install-DOCS-on:
 	cd ${WRKDIR}/doc/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/elixir/lib
+	${MKDIR} ${PREFIX}/lib/elixir/lib
 	cd ${WRKSRC}/lib/ && for lib in *; do \
-		${MKDIR} ${STAGEDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \
+		${MKDIR} ${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 		cd ${WRKSRC}/lib/$${lib}/lib && \
-			${COPYTREE_SHARE} \* ${STAGEDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \
+			${COPYTREE_SHARE} \* ${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 	done
 
 .include <bsd.port.mk>

@@ -16,7 +16,7 @@ USE_XORG=	x11
 NO_BUILD=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/*.pcf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/*.pcf ${FONTSDIR}
 
 .include <bsd.port.mk>

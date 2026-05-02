@@ -36,7 +36,7 @@ GO_MODULE=	github.com/caddyserver/caddy/v2
 #.include "${.CURDIR}/modules.mk"
 
 post-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKDIR}/Caddyfile.sample ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKDIR}/Caddyfile.sample ${ETCDIR}
 
 .include <bsd.port.mk>

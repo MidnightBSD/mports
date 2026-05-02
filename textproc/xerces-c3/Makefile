@@ -40,6 +40,6 @@ post-patch:
 	@${REINPLACE_CMD} -e "s,@DEFS@,& -D__STDC_LIMIT_MACROS," ${WRKSRC}/src/Makefile.in
 
 post-install:
-	${LN} -s libxerces-c-${PORTVERSION:R}.so ${STAGEDIR}${PREFIX}/lib/libxerces-c.so.${PORTVERSION:R:R}
+	${LN} -s libxerces-c-${PORTVERSION:R}.so ${PREFIX}/lib/libxerces-c.so.${PORTVERSION:R:R}
 
 .include <bsd.port.post.mk>

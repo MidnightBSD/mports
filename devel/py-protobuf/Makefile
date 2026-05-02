@@ -19,6 +19,6 @@ USE_PYTHON=	autoplist concurrent distutils
 CPE_VENDOR=	google
 
 post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>

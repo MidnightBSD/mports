@@ -56,7 +56,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/lsof ${PREFIX}/sbin
 	(cd ${WRKSRC} && /usr/bin/soelim Lsof.8 > ${WRKSRC}/lsof.8)
 	${INSTALL_MAN} ${WRKSRC}/lsof.8 ${PREFIX}/share/man/man8/lsof.8
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/lsof
+	@${MKDIR} ${PREFIX}/share/lsof
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/* ${PREFIX}/share/lsof
 	@${CHMOD} 0444 ${PREFIX}/share/lsof/00*
 

@@ -58,9 +58,9 @@ pre-everything::
 .endif
 
 do-install:
-	@ cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${PHPBBDIR} "! -name config.php"
-	@ ${TOUCH} ${STAGEDIR}${PREFIX}/${PHPBBDIR}/config.php.sample
-	@ ${CHMOD} -R 0755 ${STAGEDIR}${PREFIX}/${PHPBBDIR}
+	@ cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/${PHPBBDIR} "! -name config.php"
+	@ ${TOUCH} ${PREFIX}/${PHPBBDIR}/config.php.sample
+	@ ${CHMOD} -R 0755 ${PREFIX}/${PHPBBDIR}
 
 post-install-DOCS-on:
 	@ ${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

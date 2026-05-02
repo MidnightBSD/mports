@@ -23,11 +23,11 @@ OPTIONS_DEFINE=	DOCS
 
 do-install:
 	(cd ${WRKSRC}/sbin && \
-		${INSTALL_SCRIPT} ${PROGRAMS} ${STAGEDIR}${PREFIX}/sbin)
+		${INSTALL_SCRIPT} ${PROGRAMS} ${PREFIX}/sbin)
 	(cd ${WRKSRC}/etc/rc.d && \
-		${INSTALL_DATA} ${RCDFILES} ${STAGEDIR}${PREFIX}/etc/rc.d)
+		${INSTALL_DATA} ${RCDFILES} ${PREFIX}/etc/rc.d)
 	(cd ${WRKSRC}/etc && \
-		${INSTALL_DATA} ${ETCFLS} ${STAGEDIR}${PREFIX}/etc)
+		${INSTALL_DATA} ${ETCFLS} ${PREFIX}/etc)
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

@@ -50,9 +50,9 @@ post-patch:
 		${WRKSRC}/src/sdl/debugger.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${PROG_FILES} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${PROG_FILES} ${PREFIX}/bin
 	${SED} -e 's|filter=0|filter=1|' ${DATA_FILES} > ${DATA_FILES}-default
-	${INSTALL_DATA} ${DATA_FILES}-default ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_DATA} ${DATA_FILES}-default ${PREFIX}/bin
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

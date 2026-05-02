@@ -29,16 +29,16 @@ SUB_FILES=	j-jconsole.sh jw.sh
 SUB_LIST=	PORTVERSION=${PORTVERSION:S/b//g}
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/j-jconsole.sh ${STAGEDIR}${PREFIX}/bin/j-jconsole
-	${INSTALL_SCRIPT} ${WRKDIR}/jw.sh ${STAGEDIR}${PREFIX}/bin/jw
-	${INSTALL_MAN} ${WRKSRC}/j${PORTVERSION:S/b//g}/system/extras/help/man/jconsole.1 ${STAGEDIR}${PREFIX}/share/man/man1/${MAN1}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/j
+	${INSTALL_SCRIPT} ${WRKDIR}/j-jconsole.sh ${PREFIX}/bin/j-jconsole
+	${INSTALL_SCRIPT} ${WRKDIR}/jw.sh ${PREFIX}/bin/jw
+	${INSTALL_MAN} ${WRKSRC}/j${PORTVERSION:S/b//g}/system/extras/help/man/jconsole.1 ${PREFIX}/share/man/man1/${MAN1}
+	@${MKDIR} ${PREFIX}/lib/j
 	cd ${WRKSRC}/j${PORTVERSION:S/b//g} && \
 		${COPYTREE_SHARE} "system user profile.ijs j.jar" \
-			${STAGEDIR}${PREFIX}/lib/j
+			${PREFIX}/lib/j
 	${BRANDELF} -t Linux ${WRKSRC}/j${PORTVERSION:S/b//g}/jconsole
-	${INSTALL_PROGRAM} ${WRKSRC}/j${PORTVERSION:S/b//g}/jconsole ${STAGEDIR}${PREFIX}/lib/j/jconsole
+	${INSTALL_PROGRAM} ${WRKSRC}/j${PORTVERSION:S/b//g}/jconsole ${PREFIX}/lib/j/jconsole
 
-	${MV} ${STAGEDIR}${PREFIX}/share/man/man1/jconsole.1 ${STAGEDIR}${PREFIX}/share/man/man1/j-jconsole.1
+	${MV} ${PREFIX}/share/man/man1/jconsole.1 ${PREFIX}/share/man/man1/j-jconsole.1
 
 .include <bsd.port.mk>

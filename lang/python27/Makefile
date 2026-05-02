@@ -138,18 +138,18 @@ post-install:
 # FreeBSD base system provides.  sbruno 02Aug2017
 .if ${CC} == /nxb-bin/usr/bin/cc
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python2.7/_sysconfigdata.py
+		${PREFIX}/lib/python2.7/_sysconfigdata.py
 	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
 		./python -E -m compileall -d ${PREFIX}/lib/python2.7 \
-		${STAGEDIR}${PREFIX}/lib/python2.7/_sysconfigdata.py
+		${PREFIX}/lib/python2.7/_sysconfigdata.py
 	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
 		./python -E -O -m compileall -d ${PREFIX}/lib/python2.7 \
-		${STAGEDIR}${PREFIX}/lib/python2.7/_sysconfigdata.py
+		${PREFIX}/lib/python2.7/_sysconfigdata.py
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python2.7/config/Makefile
+		${PREFIX}/lib/python2.7/config/Makefile
 .endif
 	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
-		${STAGEDIR}${PREFIX}/lib/libpython2.7.so.1-gdb.py
+		${PREFIX}/lib/libpython2.7.so.1-gdb.py
 
 regression-test: build
 	@cd ${WRKSRC} && ${MAKE} TESTOPTS=-j${MAKE_JOBS_NUMBER} buildbottest

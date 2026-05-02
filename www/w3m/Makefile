@@ -78,22 +78,22 @@ post-patch:
 		-exec ${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' {} +
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ja/w3m
+	@${MKDIR} ${PREFIX}/share/doc/ja/w3m
 	@cd ${WRKSRC}/doc-jp; \
 	for i in ${DOCS_JP} ; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/share/doc/ja/w3m/ ; \
+		${INSTALL_DATA} $$i ${PREFIX}/share/doc/ja/w3m/ ; \
 	done
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/de/w3m
+	@${MKDIR} ${PREFIX}/share/doc/de/w3m
 	@cd ${WRKSRC}/doc-de; \
 	for i in ${DOCS_DE} ; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/share/doc/de/w3m/ ; \
+		${INSTALL_DATA} $$i ${PREFIX}/share/doc/de/w3m/ ; \
 	done
 	@cd ${WRKSRC}/doc; \
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/w3m/; \
+	${MKDIR} ${PREFIX}/share/doc/w3m/; \
 	for i in ${DOCS_COMMON} ; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/share/doc/w3m/ ; \
+		${INSTALL_DATA} $$i ${PREFIX}/share/doc/w3m/ ; \
 	done
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
-	${INSTALL_MAN} ${WRKSRC}/scripts/w3mman/w3mman.1 ${STAGEDIR}${PREFIX}/share/man/ja/man1
+	${MKDIR} ${PREFIX}/share/man/ja/man1
+	${INSTALL_MAN} ${WRKSRC}/scripts/w3mman/w3mman.1 ${PREFIX}/share/man/ja/man1
 
 .include <bsd.port.mk>

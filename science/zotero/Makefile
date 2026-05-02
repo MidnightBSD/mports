@@ -44,13 +44,13 @@ WRKSRC=		${WRKDIR}/Zotero_FreeBSD-${ARCH}
 
 NO_BUILD=	yes
 
-INSTALLDIR=	${STAGEDIR}/${LOCALBASE}/lib/${PORTNAME}
+INSTALLDIR=	/${LOCALBASE}/lib/${PORTNAME}
 
 do-install:
 	@${MKDIR} ${INSTALLDIR}
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${INSTALLDIR})
-	${CP} ${INSTALLDIR}/zotero.desktop ${STAGEDIR}${PREFIX}/share/applications
-	${LN} -sf ${PREFIX}/lib/zotero/icons/icon128.png ${STAGEDIR}${PREFIX}/share/pixmaps/zotero.png
-	${RLN} ${INSTALLDIR}/zotero ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${CP} ${INSTALLDIR}/zotero.desktop ${PREFIX}/share/applications
+	${LN} -sf ${PREFIX}/lib/zotero/icons/icon128.png ${PREFIX}/share/pixmaps/zotero.png
+	${RLN} ${INSTALLDIR}/zotero ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

@@ -40,17 +40,17 @@ post-patch:
 	-${RM} -r ${WRKSRC}/plugins/reportsDashboards/.chromium
 
 do-install:
-	${MKDIR} ${STAGEDIR}${WWWDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKSRC}/config/opensearch_dashboards.yml ${STAGEDIR}${ETCDIR}/opensearch_dashboards.yml.sample
+	${MKDIR} ${WWWDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/config/opensearch_dashboards.yml ${ETCDIR}/opensearch_dashboards.yml.sample
 	(cd ${WRKSRC} && \
-		${COPYTREE_SHARE} "data node_modules package.json plugins src" ${STAGEDIR}${WWWDIR} && \
-		${COPYTREE_BIN} bin ${STAGEDIR}${WWWDIR})
+		${COPYTREE_SHARE} "data node_modules package.json plugins src" ${WWWDIR} && \
+		${COPYTREE_BIN} bin ${WWWDIR})
 	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX} -type f -iname '*.bak' -delete
 
 post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/opensearch_dashboards.yml.sample" >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${WWWDIR} -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(www,www) ${WWWDIR}/data" >> ${TMPPLIST}
 	${ECHO} "@dir ${WWWDIR}/plugins/reportsDashboards/node_modules/set-interval-async/test/resources/legacy" >> ${TMPPLIST}
 	${ECHO} "@dir ${WWWDIR}/plugins/reportsDashboards/node_modules/set-interval-async/test/resources/fixed" >> ${TMPPLIST}

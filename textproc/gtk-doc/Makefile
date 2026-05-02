@@ -38,9 +38,9 @@ BINARY_ALIAS= python3=${PYTHON_CMD}
 post-install:
 	${PYTHON_CMD:S,${FAKE_DESTDIR},,} ${PYTHON_LIBDIR}/compileall.py \
 		-f -d ${DATADIR:S,${FAKE_DESTDIR},,}/python/gtkdoc \
-		${STAGEDIR}${DATADIR}/python/gtkdoc
+		${DATADIR}/python/gtkdoc
 	${PYTHON_CMD:S,${FAKE_DESTDIR},,} -O ${PYTHON_LIBDIR}/compileall.py \
 		-f -d ${DATADIR:S,${FAKE_DESTDIR},,}/python/gtkdoc \
-		${STAGEDIR}${DATADIR}/python/gtkdoc
+		${DATADIR}/python/gtkdoc
 
 .include <bsd.port.mk>

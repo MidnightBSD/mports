@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of matchers for building test expressions
 WWW=		https://hamcrest.org/
 
-LICENSE=	unknown
+LICENSE=	bsd2
 
 USES=		java
 NO_ARCH=	yes
@@ -23,7 +23,7 @@ PLIST_FILES=	%%JAVAJARDIR%%/hamcrest.jar \
 do-install:
 	${INSTALL_DATA} ${DISTDIR}/${PORTNAME}-all-${PORTVERSION}.jar \
 		 ${JAVAJARDIR}/${PORTNAME}.jar
-	${LN} -sf ${PORTNAME}.jar ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}1.3.jar
+	${LN} -sf ${PORTNAME}.jar ${JAVAJARDIR}/${PORTNAME}1.3.jar
 	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${DISTDIR}/${PORTNAME}-all-${PORTVERSION}-sources.jar \
 		${DATADIR}/src.jar

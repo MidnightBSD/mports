@@ -31,6 +31,6 @@ BUILD_WRKSRC=	${WRKSRC}/build
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 post-install:
-		${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+		${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

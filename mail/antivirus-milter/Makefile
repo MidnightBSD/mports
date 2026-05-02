@@ -1,7 +1,8 @@
 PORTNAME=	antivirus
 PORTVERSION=	3.30
+PORTREVISION=	1
 CATEGORIES=	mail
-MASTER_SITES=	LOCAL/dinoex
+MASTER_SITES=	FREEBSD_LOCAL/dinoex
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sendmail milter wich uses McAfee Virus Scan or clamav

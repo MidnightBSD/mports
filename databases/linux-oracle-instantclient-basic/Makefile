@@ -40,8 +40,8 @@ LIBS_LIST=		libclntsh.so.10.1	\
 
 WRKSRC=			${WRKDIR}/instantclient_10_2
 
-INSTBINSDIR=		${STAGEDIR}${PREFIX}/usr/bin
-INSTLIBSDIR=		${STAGEDIR}${PREFIX}/usr/lib/oracle/${ORACLEVERSION}/client/lib
+INSTBINSDIR=		${PREFIX}/usr/bin
+INSTLIBSDIR=		${PREFIX}/usr/lib/oracle/${ORACLEVERSION}/client/lib
 
 USE_LDCONFIG=		yes
 
@@ -70,8 +70,8 @@ IGNORE=\
 do-install:
 	${MKDIR} -m 0755 ${INSTBINSDIR}
 	${MKDIR} -m 0755 ${INSTLIBSDIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/ld.so.conf.d
-	${ECHO} /usr/lib/oracle/${ORACLEVERSION}/client/lib > ${STAGEDIR}${PREFIX}/etc/ld.so.conf.d/oracle10.conf
+	${MKDIR} ${PREFIX}/etc/ld.so.conf.d
+	${ECHO} /usr/lib/oracle/${ORACLEVERSION}/client/lib > ${PREFIX}/etc/ld.so.conf.d/oracle10.conf
 .for i in ${BINS_LIST}
 	${INSTALL_PROGRAM} ${WRKSRC}/${i} ${INSTBINSDIR}/${i}
 .endfor

@@ -21,7 +21,7 @@ PLIST_FILES=	libexec/cups/backend/smb
 SUB_FILES=	pkg-message
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/cups/backend
-	${LN} -fs ${PREFIX}/bin/smbspool ${STAGEDIR}${PREFIX}/libexec/cups/backend/smb
+	${MKDIR} ${PREFIX}/libexec/cups/backend
+	${LN} -fs ${PREFIX}/bin/smbspool ${PREFIX}/libexec/cups/backend/smb
 
 .include <bsd.port.mk>

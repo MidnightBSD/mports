@@ -52,10 +52,10 @@ post-patch:
 	    xargs ${REINPLACE_CMD} -e "s/^extern[ 	]*int[ 	]*errno;/#include <errno.h>/"
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmh.so.3
+	${STRIP_CMD} ${PREFIX}/bin/*
+	${STRIP_CMD} ${PREFIX}/lib/libmh.so.3
 .for i in ap conflict dp fmtdump install-mh mhl post rcvdist rcvpack rcvstore rcvtty slocal spost
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/mh/${i}
+	${STRIP_CMD} ${PREFIX}/lib/mh/${i}
 .endfor
 
 post-install-DOCS-on:

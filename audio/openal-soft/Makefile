@@ -1,11 +1,7 @@
 PORTNAME=	openal-soft
-PORTVERSION=	1.24.2
-PORTREVISION=	2
+PORTVERSION=	1.25.1
 CATEGORIES=	audio
 MASTER_SITES=	https://openal-soft.org/openal-releases/
-
-PATCH_SITES=	https://github.com/kcat/openal-soft/commit/
-PATCHFILES+=	9fdf662bcbd86cf26202f8718d6c5ca24655652e.patch:-p1 # Fix casts on 32-bit archs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Software implementation of the OpenAL specification

@@ -1,5 +1,6 @@
 PORTNAME=	opencc
 DISTVERSION=	1.1.6
+PORTREVISION=	1
 DISTVERSIONPREFIX=	ver.
 CATEGORIES=	chinese converters
 
@@ -13,9 +14,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	BYVoid
 GH_PROJECT=	OpenCC
 
-USE_GCC=	yes
-
-USES=		cmake compiler:c++11-lib python:build
+USES=		cmake compiler:c++17-lang python:build
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	TESTS

@@ -69,6 +69,6 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^check_conflicts()/d' ${WRKSRC}/Makefile.PL
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Moose/Moose.so
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Moose/Moose.so
 
 .include <bsd.port.mk>

@@ -204,21 +204,21 @@ do-build:
 	(cd ${WRKDIR}/edk2-${GH_TAGNAME} && ${SETENV} ${MAKE_ENV} BaseTools/BinWrappers/PosixLike/build -a ${PLAT_ARCH} -p ${PLATFILE} -n ${MAKE_JOBS_NUMBER} -t GCC5 -b ${PLAT_TARGET} ${PLAT_ARGS})
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/
-	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME}
+	${MKDIR} /${PREFIX}/share/${PORTNAME}-${PLAT}/
+	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT} /${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME}
 .if defined(PLAT_FILENAME_CODE)
-	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT_CODE} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_CODE}
+	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT_CODE} /${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_CODE}
 .endif
 .if defined(PLAT_FILENAME_VARS)
-	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT_VARS} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_VARS}
+	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT_VARS} /${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_VARS}
 .endif
 .if ${FLAVOR} == bhyve
-	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT_CODE} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME}
+	${INSTALL_DATA} ${WRKDIR}/Build/${PLAT_RESULT_CODE} /${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME}
 	# For backwards compatibility
-	${MKDIR} ${STAGEDIR}/${PREFIX}/share/uefi-firmware/
-	${RLN} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME} ${STAGEDIR}/${PREFIX}/share/uefi-firmware/${PLAT_FILENAME}
-	${RLN} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_CODE} ${STAGEDIR}/${PREFIX}/share/uefi-firmware/${PLAT_FILENAME_CODE}
-	${RLN} ${STAGEDIR}/${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_VARS} ${STAGEDIR}/${PREFIX}/share/uefi-firmware/${PLAT_FILENAME_VARS}
+	${MKDIR} /${PREFIX}/share/uefi-firmware/
+	${RLN} /${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME} /${PREFIX}/share/uefi-firmware/${PLAT_FILENAME}
+	${RLN} /${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_CODE} /${PREFIX}/share/uefi-firmware/${PLAT_FILENAME_CODE}
+	${RLN} /${PREFIX}/share/${PORTNAME}-${PLAT}/${PLAT_FILENAME_VARS} /${PREFIX}/share/uefi-firmware/${PLAT_FILENAME_VARS}
 .endif
 
 .include <bsd.port.post.mk>

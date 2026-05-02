@@ -26,10 +26,11 @@ USES=			autoreconf compiler:c11 gmake \
 			ncurses perl5 python:build shebangfix \
 			tar:xz
 
+GHC_ARCH=		${ARCH:S/amd64/x86_64/:C/armv.*/arm/}
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
 CONFIGURE_ENV=		ALEX=/usr/bin/true HAPPY=/usr/bin/true
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=	${GHC_ARCH}-portbld-freebsd
 INSTALL_TARGET=		install-strip
 USE_LOCALE=		en_US.UTF-8
 USE_PERL5=		build
@@ -157,7 +158,6 @@ IGNORE=			Building with Hadrian requires both DYNAMIC and PROFILE for now
 .  endif
 .endif
 
-GHC_ARCH=		${ARCH:S/amd64/x86_64/:C/armv.*/arm/}
 CONFIGURE_TARGET=	${GHC_ARCH}-portbld-freebsd
 BOOT_DIR=		${WRKDIR}/ghc-${BOOT_GHC_VERSION}-boot
 BOOT_INSTALL_DIR=	${WRKDIR}/ghc-boot-install
@@ -218,7 +218,7 @@ pre-configure:
 	cd ${WRKSRC}/ && ${BOOT_SCRIPT}
 # If we are using bootstrap compiler, configure and install it into ${BOOT_DIR}
 .if empty(PORT_OPTIONS:MBOOT)
-	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_ENV_BOOTSTRAP} ${CONFIGURE_CMD} --prefix=${BOOT_DIR} --build=${ARCH}-portbld-freebsd12.4 --host=${ARCH}-portbld-freebsd12.4 --target=${ARCH}-portbld-freebsd12.4
+	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_ENV_BOOTSTRAP} ${CONFIGURE_CMD} --prefix=${BOOT_INSTALL_DIR} --build=${CONFIGURE_TARGET} --host=${CONFIGURE_TARGET} --target=${CONFIGURE_TARGET}
 	cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install
 .endif
 .ifdef USE_HADRIAN
@@ -235,23 +235,23 @@ pre-install:
 post-install:
 .ifdef USE_HADRIAN
 # Hadrian doesn't have --docdir
-	${MV} ${STAGEDIR}${DOCSDIR}-${GHC_VERSION} ${STAGEDIR}${DOCSDIR}
+	${MV} ${DOCSDIR}-${GHC_VERSION} ${DOCSDIR}
 # These includes are duplicated in lib/ghc-X.Y.Z/lib/<triple>/rts-X.Y.Z/include
-	${RM} -r ${STAGEDIR}${PREFIX}/include/*
+	${RM} -r ${PREFIX}/include/*
 .endif
-	${FIND} ${STAGEDIR}${DOCSDIR} -name .buildinfo -delete
+	${FIND} ${DOCSDIR} -name .buildinfo -delete
 # For some reason, INSTALL_TARGET=install-strip doesn't cause libraries to be stripped
 # Run strip on them manually
-	${FIND} ${STAGEDIR}${PREFIX}/lib/ghc-${GHC_VERSION} -type f -perm +111 -exec ${STRIP_CMD} {} +
-	${FIND} ${STAGEDIR}${PREFIX}/lib/ghc-${GHC_VERSION} -name '*.so' -exec ${STRIP_CMD} {} +
-	${RM} ${STAGEDIR}${PREFIX}/bin/haddock
+	${FIND} ${PREFIX}/lib/ghc-${GHC_VERSION} -type f -perm +111 -exec ${STRIP_CMD} {} +
+	${FIND} ${PREFIX}/lib/ghc-${GHC_VERSION} -name '*.so' -exec ${STRIP_CMD} {} +
+	${RM} ${PREFIX}/bin/haddock
 .if ${SLAVE_PORT} == "yes"
 .  ifndef USE_HADRIAN
-	${MV} ${STAGEDIR}${PREFIX}/bin/hsc2hs ${STAGEDIR}${PREFIX}/bin/hsc2hs-ghc-${GHC_VERSION}
+	${MV} ${PREFIX}/bin/hsc2hs ${PREFIX}/bin/hsc2hs-ghc-${GHC_VERSION}
 .  endif
-	${FIND} ${STAGEDIR}${PREFIX}/bin -not -type d -not -regex '.*-${GHC_VERSION}' -delete
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/ghc-${GHC_VERSION}/html
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/ghc-${GHC_VERSION}/latex
+	${FIND} ${PREFIX}/bin -not -type d -not -regex '.*-${GHC_VERSION}' -delete
+	${RM} -r ${PREFIX}/lib/ghc-${GHC_VERSION}/html
+	${RM} -r ${PREFIX}/lib/ghc-${GHC_VERSION}/latex
 .endif
 
 post-install-DOCS-off:
@@ -259,7 +259,7 @@ post-install-DOCS-off:
 # to pass WITH_HADDOCK=no to the build.mk to skip their generation.
 # However, we don't want to do that because this would cause Haddock itself not
 # to be built.
-	${RM} -r ${STAGEDIR}${DOCSDIR}/html
+	${RM} -r ${DOCSDIR}/html
 
 .if exists(${BOOT_INSTALL_DIR}/bin/runhaskell)
 RUNHASKELL?=	${BOOT_INSTALL_DIR}/bin/runhaskell

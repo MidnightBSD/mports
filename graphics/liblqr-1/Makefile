@@ -45,8 +45,8 @@ post-build-HTMLDOCS-on:
 	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} ${MAKE} html
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/* ${EXAMPLESDIR}
 
 post-install-HTMLDOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

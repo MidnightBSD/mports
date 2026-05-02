@@ -158,7 +158,7 @@
     SUBDIR += squirrelmail
     SUBDIR += sympa
     SUBDIR += textmail
-    SUBDIR += thunderbird
+    SUBDIR += thunderbird-freebsd
     SUBDIR += vrfy
     SUBDIR += wpop3d
     SUBDIR += xbuffy

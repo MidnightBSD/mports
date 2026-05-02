@@ -20,11 +20,11 @@ do-build:
 		${WRKSRC}/quit.c ${LDFLAGS} -lncurses
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/quit ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${PREFIX}/man/ja/man1
-	${INSTALL_MAN} ${WRKSRC}/quit.1 ${STAGEDIR}${PREFIX}/share/man/ja/man1
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/quit ${PREFIX}/bin
+	${MKDIR} ${PREFIX}/man/ja/man1
+	${INSTALL_MAN} ${WRKSRC}/quit.1 ${PREFIX}/share/man/ja/man1
+	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${WRKSRC}/quit.txt \
-		${STAGEDIR}${DOCSDIR}
+		${DOCSDIR}
 
 .include <bsd.port.mk>

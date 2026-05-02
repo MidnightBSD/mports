@@ -82,6 +82,7 @@
     SUBDIR += firstboot-pkgs
     SUBDIR += flashback
     SUBDIR += flock
+    SUBDIR += framework-system
     SUBDIR += freebsd-shar
     SUBDIR += freecolor
     SUBDIR += freeipmi

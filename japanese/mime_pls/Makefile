@@ -19,8 +19,8 @@ LIBS=		mimer.pl mimew.pl
 PLIST_FILES=	${BINS:C,^,bin/,} ${LIBS:C,^,${SITE_PERL_REL}/,}
 
 do-install:
-	${INSTALL_SCRIPT} ${BINS:C,^,${WRKSRC}/,} ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}
-	${INSTALL_DATA}   ${LIBS:C,^,${WRKSRC}/,} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}
+	${INSTALL_SCRIPT} ${BINS:C,^,${WRKSRC}/,} ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}
+	${INSTALL_DATA}   ${LIBS:C,^,${WRKSRC}/,} ${PREFIX}/${SITE_PERL_REL}
 
 .include <bsd.port.mk>

@@ -33,7 +33,7 @@ pre-configure:
 		${WRKSRC}/po/Makevars
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/sample.weexrc ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/sample.weexrc ${EXAMPLESDIR}
 
 .include <bsd.port.mk>

@@ -34,7 +34,7 @@ post-build-TEST-on:
 	@${LN} -fs libmy.so.1 ${BUILD_WRKSRC}/pr/tests/dll/libmy.so
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/*.so
 
 do-test-TEST-on:
 	${TEST_WRKSRC}/lib/tests/string

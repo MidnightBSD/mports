@@ -21,8 +21,8 @@ PLIST_FILES=	bin/${PORTNAME} \
 ONLY_FOR_ARCHS=	i386 amd64
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/doc/${PORTNAME}.man \
-		${STAGEDIR}${PREFIX}/share/man/man1/${PORTNAME}.1
+		${PREFIX}/share/man/man1/${PORTNAME}.1
 
 .include <bsd.port.mk>

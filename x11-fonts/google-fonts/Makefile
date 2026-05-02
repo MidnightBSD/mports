@@ -88,10 +88,10 @@ EXCLUSIONS=	apache/arimo \
 		ufl/*
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	(cd ${WRKSRC} && ${RM} -r ${EXCLUSIONS})
 	${FIND} ${WRKSRC} -name \*wght\* -delete
-	${FIND} ${WRKSRC} -name \*.ttf -exec ${INSTALL_DATA} {} ${STAGEDIR}${FONTSDIR} \;
+	${FIND} ${WRKSRC} -name \*.ttf -exec ${INSTALL_DATA} {} ${FONTSDIR} \;
 
 post-install-DOCS-on:
 	for dir in $$(${FIND} ${WRKSRC} -name \*.ttf -exec ${DIRNAME} {} \; | ${SORT} -u); do \

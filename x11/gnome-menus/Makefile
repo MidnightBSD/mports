@@ -18,8 +18,8 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
 post-install:
-	@${MKDIR} -p ${STAGEDIR}${PREFIX}/etc/xdg/menus/
+	@${MKDIR} -p ${PREFIX}/etc/xdg/menus/
 	@${INSTALL_DATA} ${WRKSRC}/layout/gnome-applications.menu \
-		${STAGEDIR}${PREFIX}/etc/xdg/menus/gnome-applications.menu
+		${PREFIX}/etc/xdg/menus/gnome-applications.menu
 
 .include <bsd.port.mk>

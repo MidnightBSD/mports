@@ -48,6 +48,6 @@ IPLOOKUP_CONFIGURE_ENABLE=	iplookup
 PROXY_CONFIGURE_ENABLE=		proxy
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/script/
+	${MKDIR} ${DATADIR}/script/
 
 .include <bsd.port.mk>

@@ -14,7 +14,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 CONFLICTS=	pwlib-1.*
 
-USES=		autoreconf:build bison compiler:c11 gmake localbase:ldflags \
+USES=		autoreconf:build bison:wrapper compiler:c11 gmake localbase:ldflags \
 		pathfix pkgconfig ssl tar:xz
 BROKEN_SSL=	openssl openssl31
 BROKEN_SSL_REASON=	Uses OpenSSL 3.0.0 deprecated BIO_s_file_internal
@@ -102,13 +102,13 @@ CONFIGURE_ARGS+=	--disable-dc
 
 .include <bsd.port.pre.mk>
 
-.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 160
+.if ${COMPILER_TYPE} == clang
 CPPFLAGS+=	-Dregister= -Wno-error=dynamic-exception-spec
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/RTF_WASCLONED/0x20000/' ${WRKSRC}/src/ptlib/unix/socket.cxx
-.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 160
+.if ${COMPILER_TYPE} == clang
 	@${REINPLACE_CMD} -e 's|auto_ptr|unique_ptr|' \
 		${WRKSRC}/include/ptlib/psharedptr.h
 	@${REINPLACE_CMD} -e 's|public binary_function|public __binary_function|' \
@@ -119,11 +119,11 @@ pre-configure:
 	(cd ${WRKSRC}/plugins/ && ${AUTORECONF} -fi)
 
 post-install:
-	${LN} -sf libpt.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PVERSION_MAJOR}
-	${LN} -sf libpt.so.${PORTVERSION} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PVERSION_MINOR}
-	@${CHMOD} 0755 ${STAGEDIR}${PREFIX}/lib/libpt.so.${PORTVERSION} \
-		${STAGEDIR}${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpt.so.${PORTVERSION}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
+	${LN} -sf libpt.so.${PORTVERSION} ${PREFIX}/lib/libpt.so.${PVERSION_MAJOR}
+	${LN} -sf libpt.so.${PORTVERSION} ${PREFIX}/lib/libpt.so.${PVERSION_MINOR}
+	@${CHMOD} 0755 ${PREFIX}/lib/libpt.so.${PORTVERSION} \
+		${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/libpt.so.${PORTVERSION}
+	@${STRIP_CMD} ${PREFIX}/lib/ptlib-${PORTVERSION}/devices/*/*.so
 
 .include <bsd.port.post.mk>

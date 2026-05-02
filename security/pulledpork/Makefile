@@ -38,17 +38,17 @@ post-patch:
 		${WRKSRC}/etc/pulledpork.conf
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/pulledpork.pl ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} -m 750 ${STAGEDIR}${ETCDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/pulledpork.pl ${PREFIX}/bin
+	@${MKDIR} -m 750 ${ETCDIR}
 # pulledpork.conf contains the snort user registration key, do not install world readable
-	${INSTALL} -m 640 ${WRKSRC}/etc/pulledpork.conf ${STAGEDIR}${ETCDIR}/pulledpork.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/etc/disablesid.conf ${STAGEDIR}${ETCDIR}/disablesid.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/etc/dropsid.conf    ${STAGEDIR}${ETCDIR}/dropsid.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/etc/enablesid.conf  ${STAGEDIR}${ETCDIR}/enablesid.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/etc/modifysid.conf  ${STAGEDIR}${ETCDIR}/modifysid.conf.sample
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/contrib/README.CONTRIB ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/oink-conv.pl ${STAGEDIR}${DATADIR}
+	${INSTALL} -m 640 ${WRKSRC}/etc/pulledpork.conf ${ETCDIR}/pulledpork.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/etc/disablesid.conf ${ETCDIR}/disablesid.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/etc/dropsid.conf    ${ETCDIR}/dropsid.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/etc/enablesid.conf  ${ETCDIR}/enablesid.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/etc/modifysid.conf  ${ETCDIR}/modifysid.conf.sample
+	@${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/contrib/README.CONTRIB ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/oink-conv.pl ${DATADIR}
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

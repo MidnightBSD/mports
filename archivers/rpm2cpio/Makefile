@@ -18,8 +18,8 @@ PLIST_FILES=	bin/rpm2cpio.pl \
 		bin/rpm2cpio
 
 do-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME} ${PREFIX}/bin/
 # Also install as rpm2cpio.pl to not break existing scripts
-	${LN} -f ${STAGEDIR}${PREFIX}/bin/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}.pl
+	${LN} -f ${PREFIX}/bin/${PORTNAME} ${PREFIX}/bin/${PORTNAME}.pl
 
 .include <bsd.port.mk>

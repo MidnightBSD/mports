@@ -64,9 +64,9 @@ post-install:
 	${SETENV} ${MAKE_ENV} ${MAKE_CMD} -f Makefile.fip ${MAKE_ARGS} ${FAKE_MAKEARGS} \
 		-C ${INSTALL_WRKSRC} ${INSTALL_TARGET}
 	${LN} -sf libfreeimageplus.so.3 \
-		${STAGEDIR}${PREFIX}/lib/libfreeimageplus.so
+		${PREFIX}/lib/libfreeimageplus.so
 	${LN} -sf libfreeimageplus-${PORTVERSION}.so \
-		${STAGEDIR}${PREFIX}/lib/libfreeimageplus.so.3
-	${INSTALL_DATA} ${WRKDIR}/freeimage.pc ${STAGEDIR}${PKGCONFIGDIR}/
+		${PREFIX}/lib/libfreeimageplus.so.3
+	${INSTALL_DATA} ${WRKDIR}/freeimage.pc ${PKGCONFIGDIR}/
 
 .include <bsd.port.mk>

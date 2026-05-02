@@ -70,10 +70,10 @@ post-extract-COMIC-off:
 	${RM} ${WRKSRC}/comic.ttf ${WRKSRC}/comicbd.ttf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ttf ${STAGEDIR}${FONTSDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/licen.txt ${STAGEDIR}${DOCSDIR}/LICENSE
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/licen.txt ${DOCSDIR}/LICENSE
 
 post-install-CLEARTYPE-on:
 	${INSTALL_DATA} ${WRKSRC}/eula.txt ${FAKE_DESTDIR}${DOCSDIR}

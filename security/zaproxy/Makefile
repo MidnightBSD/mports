@@ -68,9 +68,9 @@ do-build:
 		${GRADLE_ARGS} --build-cache :zap:distCore ${EXCLUDE_TASK}
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/zap/build/distFiles/zap.sh ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	cd ${WRKSRC}/zap/build/distFiles/ && ${COPYTREE_SHARE} "db lang lib license plugin README xml zap-${DISTVERSION}.jar" ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}
-	cd ${WRKDIR}/mainAddOns && ${COPYTREE_SHARE} ./ ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}/plugin
-	${INSTALL_DATA} ${WRKSRC}/zap/src/main/resources/resource/zap64x64.png ${STAGEDIR}${PREFIX}/share/pixmaps/zaproxy.png
+	${INSTALL_SCRIPT} ${WRKSRC}/zap/build/distFiles/zap.sh ${PREFIX}/bin/${PORTNAME}
+	cd ${WRKSRC}/zap/build/distFiles/ && ${COPYTREE_SHARE} "db lang lib license plugin README xml zap-${DISTVERSION}.jar" ${JAVAJARDIR}/${PORTNAME}
+	cd ${WRKDIR}/mainAddOns && ${COPYTREE_SHARE} ./ ${JAVAJARDIR}/${PORTNAME}/plugin
+	${INSTALL_DATA} ${WRKSRC}/zap/src/main/resources/resource/zap64x64.png ${PREFIX}/share/pixmaps/zaproxy.png
 
 .include <bsd.port.mk>

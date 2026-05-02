@@ -78,6 +78,6 @@ post-install-NLS-off:
 	@${RM} -r ${FAKE_DESTDIR}${DATADIR}/translations
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${ETCDIR}
 
 .include <bsd.port.mk>

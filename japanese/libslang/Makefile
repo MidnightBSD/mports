@@ -30,7 +30,7 @@ JP_VERSION=	2
 
 post-install:
 	(cd ${WRKSRC} && ${INSTALL_DATA} slang-j.doc \
-		${STAGEDIR}${DOCSDIR})
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libslang.so.[0-9]*
+		${DOCSDIR})
+	@${STRIP_CMD} ${PREFIX}/lib/libslang.so.[0-9]*
 
 .include <bsd.port.mk>

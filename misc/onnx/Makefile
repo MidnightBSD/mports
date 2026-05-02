@@ -30,7 +30,7 @@ CXXFLAGS+=	-Dstat64=stat
 NO_TEST=	yes
 
 post-install:
-	@${FIND} ${STAGEDIR}${PREFIX}/include -type d -empty -delete
+	@${FIND} ${PREFIX}/include -type d -empty -delete
 
 #post-test:
 #	cd ${BUILD_WRKSRC} && ./onnx_gtests

@@ -1,0 +1,10 @@
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -29,7 +29,8 @@
+ MATH(EXPR SIZEOF_VOID_P_BITS "${CMAKE_SIZEOF_VOID_P}*8")
+
+ # Ignore no-implicit-function-declaration warnings for now, since there are so many - and it then becomes
+ # easier to see other warnings popping up.
+-add_definitions("-DSIZEOF_VOID_P=${SIZEOF_VOID_P_BITS} -Wno-implicit-function-declaration")
++add_compile_definitions(SIZEOF_VOID_P=${SIZEOF_VOID_P_BITS})
++add_compile_options(-Wno-implicit-function-declaration)

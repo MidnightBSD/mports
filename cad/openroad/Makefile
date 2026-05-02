@@ -73,11 +73,11 @@ post-patch: # override the TCL version to be the same as USES=tcl sets
 			s|PATHS $${TCL_LIB_PARENT1}|PATHS $${FREEBSD_TCL_INCLUDEDIR} $${TCL_LIB_PARENT1}|'
 
 post-install: # unnecessarily installs bundled OpenSTA project: https://github.com/The-OpenROAD-Project/OpenROAD/issues/597
-	${RM} -r ${STAGEDIR}${PREFIX}/include/sta ${STAGEDIR}${PREFIX}/lib/libOpenSTA.a
+	${RM} -r ${PREFIX}/include/sta ${PREFIX}/lib/libOpenSTA.a
 
 do-test: # some tests are known to fail
 	@${MKDIR} ${WRKSRC}/build/src
-	@[ -f ${WRKSRC}/build/src/openroad ] || ${LN} ${STAGEDIR}${PREFIX}/bin/openroad ${WRKSRC}/build/src/openroad
+	@[ -f ${WRKSRC}/build/src/openroad ] || ${LN} ${PREFIX}/bin/openroad ${WRKSRC}/build/src/openroad
 	@${ECHO} "==> Unit tests"
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} test/regression
 	@${ECHO} "==> Flow tests"

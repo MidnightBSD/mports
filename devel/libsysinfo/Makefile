@@ -31,6 +31,6 @@ SUB_FILES=	libsysinfo.pc
 SUB_LIST=	PREFIX="${TRUE_PREFIX}" PORTVERSION="${PORTVERSION}" COMMENT="${COMMENT}"
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/libsysinfo.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
+	${INSTALL_DATA} ${WRKDIR}/libsysinfo.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>

@@ -65,16 +65,16 @@ post-patch:
 
 post-install:
 # Install xsession.desktop to launch .xinitrc via sddm.
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/xsessions
-	${INSTALL_DATA} ${FILESDIR}/sddm.conf.default ${STAGEDIR}${PREFIX}/etc
-	${INSTALL_DATA} ${WRKDIR}/xinitrc.desktop ${STAGEDIR}${PREFIX}/share/xsessions
-	${INSTALL_SCRIPT} ${WRKDIR}/xinit-session ${STAGEDIR}${PREFIX}/share/sddm/scripts
+	${MKDIR} ${PREFIX}/share/xsessions
+	${INSTALL_DATA} ${FILESDIR}/sddm.conf.default ${PREFIX}/etc
+	${INSTALL_DATA} ${WRKDIR}/xinitrc.desktop ${PREFIX}/share/xsessions
+	${INSTALL_SCRIPT} ${WRKDIR}/xinit-session ${PREFIX}/share/sddm/scripts
 # Install our own PAM configs. Upstream is no longer providing these for any
 # platform and now just leaves this part to downstream packagers.
 # https://github.com/sddm/sddm/commit/b82f9be9cbd25e734958ad5eb3465579befcd0c0
 # https://github.com/sddm/sddm/commit/ae072f901671b68861da9577e3e12e350a9053d5
-	${CP} ${FILESDIR}/sddm.default ${STAGEDIR}${PREFIX}/etc/pam.d
-	${CP} ${FILESDIR}/sddm-autologin.default ${STAGEDIR}${PREFIX}/etc/pam.d
-	${CP} ${FILESDIR}/sddm-greeter.default ${STAGEDIR}${PREFIX}/etc/pam.d
+	${CP} ${FILESDIR}/sddm.default ${PREFIX}/etc/pam.d
+	${CP} ${FILESDIR}/sddm-autologin.default ${PREFIX}/etc/pam.d
+	${CP} ${FILESDIR}/sddm-greeter.default ${PREFIX}/etc/pam.d
 
 .include <bsd.port.mk>

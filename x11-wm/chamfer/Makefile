@@ -44,15 +44,15 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${DATADIR}/shaders
+		${PREFIX}/bin
+	${MKDIR} ${DATADIR}/shaders
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/*.spv \
-		${STAGEDIR}${DATADIR}/shaders
-	${MKDIR} ${STAGEDIR}${DATADIR}/config
+		${DATADIR}/shaders
+	${MKDIR} ${DATADIR}/config
 	${INSTALL_DATA} ${WRKSRC}/config/config.py \
-		${STAGEDIR}${DATADIR}/config/config.py.sample
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/xsessions/
+		${DATADIR}/config/config.py.sample
+	${MKDIR} ${PREFIX}/share/xsessions/
 	${INSTALL_DATA} ${WRKSRC}/share/${PORTNAME}.desktop \
-		${STAGEDIR}${PREFIX}/share/xsessions/
+		${PREFIX}/share/xsessions/
 
 .include <bsd.port.mk>

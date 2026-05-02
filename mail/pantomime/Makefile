@@ -7,9 +7,10 @@ DISTNAME=	Pantomime-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail/MIME handling library for GNUstep
-WWW=		https://www.nongnu.org/gnustep-nonfsf/gnumail/index.html
+WWW=		https://www.nongnu.org/gnustep-nonfsf/gnumail/
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/Documentation/LICENSE
 
 # The use of libiconv shouldn't be necessary, but a build dependency installs
 # it and we end up picking up the header.

@@ -20,6 +20,6 @@ USE_CABAL=	ghc-paths-0.1.0.12_1 \
 haddock_DATADIR_VARS=	haddock-api
 
 post-install:
-	cd ${WRKSRC}/haddock-api-${PORTVERSION}/resources/ && ${COPYTREE_SHARE} \* ${STAGEDIR}${DATADIR}
+	cd ${WRKSRC}/haddock-api-${PORTVERSION}/resources/ && ${COPYTREE_SHARE} \* ${DATADIR}
 
 .include <bsd.port.mk>

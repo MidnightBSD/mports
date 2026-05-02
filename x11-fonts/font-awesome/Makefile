@@ -22,7 +22,7 @@ PLIST_FILES=	${FONTSDIR}/Font\ Awesome\ 6\ Brands-Regular-400.otf \
 		${FONTSDIR}/Font\ Awesome\ 6\ Free-Solid-900.otf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/otfs/*.otf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/otfs/*.otf ${FONTSDIR}
 
 .include <bsd.port.mk>

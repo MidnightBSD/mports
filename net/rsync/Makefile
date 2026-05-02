@@ -1,5 +1,6 @@
 PORTNAME=	rsync
 DISTVERSION=	3.4.1
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	https://www.mirrorservice.org/sites/rsync.samba.org/src/ \
 		http://rsync.mirror.garr.it/src/ \
@@ -97,9 +98,9 @@ pre-configure:
 	@(cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_CMD} -f prepare-source.mak)
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/rsyncd.conf.sample ${STAGEDIR}${ETCDIR}/
-	${INSTALL_SCRIPT} ${WRKSRC}/support/rrsync ${STAGEDIR}${PREFIX}/sbin
+	@${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/rsyncd.conf.sample ${ETCDIR}/
+	${INSTALL_SCRIPT} ${WRKSRC}/support/rrsync ${PREFIX}/sbin
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

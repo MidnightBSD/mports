@@ -26,7 +26,7 @@ USE_XORG=	x11 xcb xext xi
 SUB_FILES=	kde.pam
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/pam.d
-	${INSTALL_DATA} ${WRKDIR}/kde.pam ${STAGEDIR}${PREFIX}/etc/pam.d/kde
+	${MKDIR} ${PREFIX}/etc/pam.d
+	${INSTALL_DATA} ${WRKDIR}/kde.pam ${PREFIX}/etc/pam.d/kde
 
 .include <bsd.port.mk>

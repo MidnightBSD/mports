@@ -1,5 +1,5 @@
 PORTNAME=	gnupg
-DISTVERSION=	2.4.8
+DISTVERSION=	2.4.9
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -70,8 +70,8 @@ pre-build:
 	${TOUCH} ${WRKSRC}/doc/*.texi
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/bin/gpgsplit ${STAGEDIR}${PREFIX}/bin/gpgsplit2
-	${MV} ${STAGEDIR}${DATADIR}/help*.txt ${STAGEDIR}${DOCSDIR}
+	${MV} ${PREFIX}/bin/gpgsplit ${PREFIX}/bin/gpgsplit2
+	${MV} ${DATADIR}/help*.txt ${DOCSDIR}
 
 # Necessary because of --enable-gpg-is-gpg2
 pre-test:

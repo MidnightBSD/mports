@@ -21,8 +21,8 @@ PORTDOCS=	CHANGES README TODO
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tree ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/tree ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

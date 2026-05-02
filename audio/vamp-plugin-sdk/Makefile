@@ -19,8 +19,8 @@ USE_LDCONFIG=	yes
 
 post-install:
 	${STRIP_CMD} \
-		${STAGEDIR}${PREFIX}/bin/* \
-		${STAGEDIR}${PREFIX}/lib/*.so \
-		${STAGEDIR}${PREFIX}/lib/vamp/*.so
+		${PREFIX}/bin/* \
+		${PREFIX}/lib/*.so \
+		${PREFIX}/lib/vamp/*.so
 
 .include <bsd.port.mk>

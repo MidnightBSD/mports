@@ -43,8 +43,8 @@ pre-patch:
 
 post-install-DOXYGEN-on:
 	@${RM} ${WRKDIR}/PLIST.doc ; \
-	${FIND} ${STAGEDIR}${DOCSDIR}/html -type f | \
-		${SED} 's|${STAGEDIR}${PREFIX}/||' \
+	${FIND} ${DOCSDIR}/html -type f | \
+		${SED} 's|${PREFIX}/||' \
 		>> ${WRKDIR}/PLIST.doc ; \
 	(cd ${WRKDIR} ; ${SED} -i -e '/PLIST.doc/ r PLIST.doc' ${TMPPLIST})
 

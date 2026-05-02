@@ -23,11 +23,11 @@ PLIST_FILES=	bin/${PORTNAME}_tracker \
 
 do-install:
 	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/${PORTNAME}_tracker \
-		${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+		${PREFIX}/bin
+	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/Tracker/xbt_tracker.sql \
-		${STAGEDIR}${DATADIR}
+		${DATADIR}
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/Tracker/xbt_tracker.conf.default \
-		${STAGEDIR}${PREFIX}/etc/xbt_tracker.conf.sample
+		${PREFIX}/etc/xbt_tracker.conf.sample
 
 .include <bsd.port.mk>

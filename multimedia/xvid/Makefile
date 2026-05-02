@@ -63,6 +63,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-cflags
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libxvidcore.so
+	${STRIP_CMD} ${PREFIX}/lib/libxvidcore.so
 
 .include <bsd.port.post.mk>

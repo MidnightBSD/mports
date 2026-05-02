@@ -6,7 +6,7 @@ MASTER_SITES=	https://assets.keltia.net/calife/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight alternative to sudo
-WWW=		https://www.keltia.net/programs/calife
+WWW=		https://keltia.net/programs/calife
 
 LICENSE=	gpl2
 
@@ -18,10 +18,10 @@ CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc
 CONFIGURE_ARGS+=	--with-pam
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/calife ${STAGEDIR}${PREFIX}/bin/calife
-	${INSTALL_MAN} ${WRKSRC}/calife.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${INSTALL_MAN} ${WRKSRC}/calife.auth.5 ${STAGEDIR}${PREFIX}/share/man/man5
-	${INSTALL_DATA} ${WRKSRC}/calife.auth-dist ${STAGEDIR}${PREFIX}/etc/calife.auth.sample
-	${INSTALL_DATA} ${WRKSRC}/pam/freebsd9 ${STAGEDIR}${PREFIX}/etc/pam.d/calife.sample
+	${INSTALL_PROGRAM} ${WRKSRC}/calife ${PREFIX}/bin/calife
+	${INSTALL_MAN} ${WRKSRC}/calife.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/calife.auth.5 ${PREFIX}/share/man/man5
+	${INSTALL_DATA} ${WRKSRC}/calife.auth-dist ${PREFIX}/etc/calife.auth.sample
+	${INSTALL_DATA} ${WRKSRC}/pam/freebsd9 ${PREFIX}/etc/pam.d/calife.sample
 
 .include <bsd.port.mk>

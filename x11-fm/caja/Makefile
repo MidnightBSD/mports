@@ -36,6 +36,6 @@ GLIB_SCHEMAS=	org.mate.caja.gschema.xml \
 		org.mate.media-handling.gschema.xml
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/caja/extensions-2.0
+	@${MKDIR} ${PREFIX}/lib/caja/extensions-2.0
 
 .include <bsd.port.mk>

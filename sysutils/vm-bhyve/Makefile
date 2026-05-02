@@ -29,10 +29,10 @@ GRUB2_BHYVE_RUN_DEPENDS=       grub2-bhyve>0:sysutils/grub2-bhyve
 TMUX_RUN_DEPENDS=              tmux:sysutils/tmux
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/vm ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/rc.d/vm ${STAGEDIR}${PREFIX}/etc/rc.d
-	(cd ${WRKSRC}/lib/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/vm-bhyve)
-	(cd ${WRKSRC}/sample-templates/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-	${INSTALL_MAN} ${WRKSRC}/vm.8 ${STAGEDIR}${PREFIX}/share/man/man8
+	${INSTALL_SCRIPT} ${WRKSRC}/vm ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/rc.d/vm ${PREFIX}/etc/rc.d
+	(cd ${WRKSRC}/lib/ && ${COPYTREE_SHARE} . ${PREFIX}/lib/vm-bhyve)
+	(cd ${WRKSRC}/sample-templates/ && ${COPYTREE_SHARE} . ${EXAMPLESDIR})
+	${INSTALL_MAN} ${WRKSRC}/vm.8 ${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

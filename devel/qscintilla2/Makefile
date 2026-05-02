@@ -47,13 +47,13 @@ post-patch-NLS-off:
 
 post-install:
 	cd ${WRKSRC} &&\
-		${MKDIR} ${STAGEDIR}${DOCSDIR}/html ${STAGEDIR}${DOCSDIR}/Scintilla &&\
-		${INSTALL_DATA} NEWS ${STAGEDIR}${DOCSDIR} &&\
-		${INSTALL_DATA} doc/html/* ${STAGEDIR}${DOCSDIR}/html &&\
-		${INSTALL_DATA} doc/Scintilla/* ${STAGEDIR}${DOCSDIR}/Scintilla
+		${MKDIR} ${DOCSDIR}/html ${DOCSDIR}/Scintilla &&\
+		${INSTALL_DATA} NEWS ${DOCSDIR} &&\
+		${INSTALL_DATA} doc/html/* ${DOCSDIR}/html &&\
+		${INSTALL_DATA} doc/Scintilla/* ${DOCSDIR}/Scintilla
 	cd ${WRKSRC}/example &&\
-		${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/images &&\
-		${INSTALL_DATA} *.* ${STAGEDIR}${EXAMPLESDIR} &&\
-		${INSTALL_DATA} images/* ${STAGEDIR}${EXAMPLESDIR}/images
+		${MKDIR} ${EXAMPLESDIR}/images &&\
+		${INSTALL_DATA} *.* ${EXAMPLESDIR} &&\
+		${INSTALL_DATA} images/* ${EXAMPLESDIR}/images
 
 .include <bsd.port.mk>

@@ -202,11 +202,11 @@ PLIST_FILES+=	share/quake3/server.cfg
 # Generate install target
 do-install: ${Q3INSTALL}
 .for dir in ${PLIST_DIRS}
-	${MKDIR} ${STAGEDIR}${PREFIX}/${dir}
+	${MKDIR} ${PREFIX}/${dir}
 .endfor
 .for inst in ${IOQ3_INST}
 	${INSTALL_${inst:C/;.*//}} ${BUILDDIR}/${inst:C/[^;]*;//:C/;.*//} \
-		${STAGEDIR}${PREFIX}/${inst:C/.*;//}
+		${PREFIX}/${inst:C/.*;//}
 .endfor
 # additional rules for our custom server.cfg from filesdir
 .if ${IOQ3:MSERVER}

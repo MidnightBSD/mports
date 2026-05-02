@@ -36,8 +36,8 @@ do-build-DOCS-on:
 	${RM} ${WRKSRC}/docs/main.haux ${WRKSRC}/docs/main.htoc
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${OCAML_LIBDIR}/caml \
-		${STAGEDIR}${PREFIX}/${OCAML_LIBDIR}/stublibs
+	@${MKDIR} ${PREFIX}/${OCAML_LIBDIR}/caml \
+		${PREFIX}/${OCAML_LIBDIR}/stublibs
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

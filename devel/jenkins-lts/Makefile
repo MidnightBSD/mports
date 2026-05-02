@@ -51,8 +51,8 @@ PLIST_SUB+=	JENKINS_USER=${JENKINS_USER} \
 .include <bsd.port.pre.mk>
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR} ${STAGEDIR}${JENKINS_HOME}
+	${MKDIR} ${DATADIR} ${JENKINS_HOME}
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
-		${STAGEDIR}${DATADIR}
+		${DATADIR}
 
 .include <bsd.port.post.mk>

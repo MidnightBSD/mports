@@ -141,12 +141,12 @@ post-build:
 	if test "$$*" != "1" ; then ( set -x ; ldd -a ${WRKSRC}/src/openvpn/openvpn ) ; ${PRINTF} '%s\n' "$$a" ; ${ECHO_CMD} >&2 "${.CURDIR} FAILED: either of ${_tlslibs} libraries linked multiple times" ; ${RM} ${BUILD_COOKIE} ; exit 1 ; fi
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-auth-pam.so
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-down-root.so
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.up ${STAGEDIR}${PREFIX}/libexec/openvpn-client.up
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.down ${STAGEDIR}${PREFIX}/libexec/openvpn-client.down
-	${INSTALL_SCRIPT} ${WRKDIR}/openvpn-client ${STAGEDIR}${PREFIX}/sbin/openvpn-client
-	${MKDIR} ${STAGEDIR}${PREFIX}/include
+	${STRIP_CMD} ${PREFIX}/lib/openvpn/plugins/openvpn-plugin-auth-pam.so
+	${STRIP_CMD} ${PREFIX}/lib/openvpn/plugins/openvpn-plugin-down-root.so
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.up ${PREFIX}/libexec/openvpn-client.up
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.down ${PREFIX}/libexec/openvpn-client.down
+	${INSTALL_SCRIPT} ${WRKDIR}/openvpn-client ${PREFIX}/sbin/openvpn-client
+	${MKDIR} ${PREFIX}/include
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
