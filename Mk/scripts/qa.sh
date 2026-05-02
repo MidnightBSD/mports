@@ -811,7 +811,7 @@ perlcore() {
 			EOT
 		fi
 	done
-	if [ -n "${gotsome}" ] && ! mport info devel/p5-Module-CoreList; then
+	if [ -n "${gotsome}" ] && ! mport info p5-Module-CoreList; then
 		notice "You have some Perl modules as dependencies but you do not have devel/p5-Module-CoreList installed, the perlcore QA check gets better results when using it, especially with older Perl versions."
 	fi
 }
