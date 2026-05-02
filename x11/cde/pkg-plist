@@ -7949,3 +7949,4 @@ libdata/ldconfig/cde
 @dir dt/include
 @dir dt/backdrops
 @dir dt
+@dir /var/spool/calendar
