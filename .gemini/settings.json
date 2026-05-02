@@ -1,7 +1,4 @@
 {
-  "model": {
-    "name": "gemini-3-flash"
-  },
   "general": {
     "defaultApprovalMode": "auto_edit",
     "plan": {
@@ -14,7 +11,7 @@
       "ShellTool(rm -rf /)",
       "ShellTool(shutdown)",
       "ShellTool(kldload)",
-      "ShellTool(kldunload)",
+      "ShellTool(kldunload)"
     ],
 "core": [
       "run_shell_command(bmake)",
@@ -50,10 +47,8 @@
       }
     ]
   },
-{
   "planning": {
     "skills": ["Security Auditor"],
     "enforceSecurityCheck": true
   }
-}
 }
