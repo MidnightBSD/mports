@@ -128,4 +128,4 @@ Tools/magus/www/data/magus/auth/mcp.cgi
 ```
 
 It requires HTTP Basic Auth (configured via `Tools/magus/www/data/magus/auth/.htaccess`).
-The credentials file is `/home/mbsd/magus/magus-passwd` on the server.
+The credentials file is on the server.
