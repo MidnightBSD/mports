@@ -87,16 +87,24 @@ OPENSSL_PORT=		security/${SSL_DEFAULT}
 # Get OPENSSL_SHLIBVER from the port
 .sinclude <${PORTSDIR}/${OPENSSL_PORT}/version.mk>
 
-.    if !defined(OPENSSL_SHLIBVER) || "aws-lc" == SSL_DEFAULT
+.    if !defined(OPENSSL_SHLIBVER) && "aws-lc" != SSL_DEFAULT
 .error You are using an unsupported SSL provider ${SSL_DEFAULT}
 .    endif
 
 OPENSSLDIR?=		${OPENSSLBASE}/openssl
 .    if defined(_SSL_BUILD_DEP)
+.      if ${SSL_DEFAULT} == aws-lc
+BUILD_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so:${OPENSSL_PORT}
+.      else
 BUILD_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so.${OPENSSL_SHLIBVER}:${OPENSSL_PORT}
+.      endif
 .    endif
 .    if defined(_SSL_RUN_DEP)
+.      if ${SSL_DEFAULT} == aws-lc
+RUN_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so:${OPENSSL_PORT}
+.      else
 RUN_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so.${OPENSSL_SHLIBVER}:${OPENSSL_PORT}
+.      endif
 .    endif
 OPENSSLRPATH=		${LOCALBASE}/lib
 
