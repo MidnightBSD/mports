@@ -12,6 +12,7 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport4>=${PORTVERSION}:devel/rubygem-activesupport4 \
 		rubygem-globalid>=0.3.0:databases/rubygem-globalid
 
