@@ -103,6 +103,7 @@ USE_GNOME=	gdkpixbuf gdkpixbuf2xlib gtk20 libxslt glib20
 JAVA_BUILD=	jdk
 JAVA_RUN=	jdk
 JAVA_VENDOR=	openjdk
+JAVA_VERSION=	1.8
 USE_PERL5=	build
 USE_XORG=	ice sm x11 xau xaw xcomposite xcursor xdamage xext xfixes xi \
 		xinerama xrandr xrender xt
@@ -332,6 +333,12 @@ post-patch:
 	${REINPLACE_CMD} -e "s|%%JAVA_HOME%%|${JAVA_HOME}|" \
 		${WRKSRC}/desktop/scripts/soffice.sh
 	${REINPLACE_CMD} -e '/^mkdir -p/,$$d' ${CREATE_TREE}
+	# Teach the embedded ICU's config.guess about MidnightBSD so that
+	# ICU's own configure step recognizes the platform during the build.
+	${CAT} ${FILESDIR}/icu-midnightbsd.patch >> ${WRKSRC}/icu/icu4c-4_0_1-src.patch
+	# Same fix for embedded Python 2.7.18 and xmlsec1.
+	${CAT} ${FILESDIR}/python-midnightbsd.patch >> ${WRKSRC}/python/python-freebsd.patch
+	${CAT} ${FILESDIR}/xmlsec-midnightbsd.patch >> ${WRKSRC}/libxmlsec/xmlsec1-update-config-sub-and-guess.patch
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 	# g++49 -Os sometimes leaves inline class methods undefined,
 	# affects fmgridif.cxx and ColumnControl.cxx

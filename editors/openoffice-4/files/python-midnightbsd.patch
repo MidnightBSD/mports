@@ -1,0 +1,73 @@
+diff -ruN misc/Python-2.7.18/config.guess misc/build/Python-2.7.18/config.guess
+--- misc/Python-2.7.18/config.guess	2019-10-19 13:38:44.000000000 -0500
++++ misc/build/Python-2.7.18/config.guess	2026-05-01 00:00:00.000000000 +0000
+@@ -843,6 +843,17 @@
+ 	esac
+ 	echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
+ 	exit ;;
++    *:MidnightBSD:*:*)
++	UNAME_PROCESSOR=`/usr/bin/uname -p`
++	case ${UNAME_PROCESSOR} in
++	    amd64)
++		UNAME_PROCESSOR=x86_64 ;;
++	    i386)
++		UNAME_PROCESSOR=i586 ;;
++	esac
++	echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
++	exit ;;
+     i*:CYGWIN*:*)
+ 	echo ${UNAME_MACHINE}-pc-cygwin
+ 	exit ;;
+
+diff -ruN misc/Python-2.7.18/configure misc/build/Python-2.7.18/configure
+--- misc/Python-2.7.18/configure	2019-10-19 13:38:44.000000000 -0500
++++ misc/build/Python-2.7.18/configure	2026-05-01 00:00:00.000000000 +0000
+@@ -5485,7 +5485,7 @@
+-    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*)
++    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*|MidnightBSD*)
+ 	  LDLIBRARY='libpython$(VERSION).so'
+ 	  BLDLIBRARY='-L. -lpython$(VERSION)'
+ 	  RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ 	  INSTSONAME="$LDLIBRARY".$SOVERSION
+ 	  ;;
+@@ -8690,7 +8690,7 @@
+ 		fi;;
+-	NetBSD*|DragonFly*)
++	NetBSD*|DragonFly*|MidnightBSD*)
+ 		LDSHARED='$(CC) -shared'
+ 		LDCXXSHARED='$(CXX) -shared';;
+ 	OpenUNIX*|UnixWare*)
+@@ -8736,7 +8736,7 @@
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
++	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*|MidnightBSD*) CCSHARED="-fPIC";;
+ 	SCO_SV*) CCSHARED="-belf";;
+@@ -8788,7 +8788,7 @@
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
++	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*|MidnightBSD*)
+ 		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
+ 		then
+ 			LINKFORSHARED="-Wl,--export-dynamic"
+ 		fi;;
+
+diff -ruN misc/Python-2.7.18/Modules/_ctypes/libffi/config.guess misc/build/Python-2.7.18/Modules/_ctypes/libffi/config.guess
+--- misc/Python-2.7.18/Modules/_ctypes/libffi/config.guess	2013-06-10 00:00:00.000000000 +0000
++++ misc/build/Python-2.7.18/Modules/_ctypes/libffi/config.guess	2026-05-01 00:00:00.000000000 +0000
+@@ -816,6 +816,17 @@
+ 	    *)
+ 		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
+ 	esac
+ 	exit ;;
++    *:MidnightBSD:*:*)
++	UNAME_PROCESSOR=`/usr/bin/uname -p`
++	case ${UNAME_PROCESSOR} in
++	    amd64)
++		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	    i386)
++		echo i586-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	    *)
++		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	esac
++	exit ;;
+     i*:CYGWIN*:*)
+ 	echo ${UNAME_MACHINE}-pc-cygwin
+ 	exit ;;
