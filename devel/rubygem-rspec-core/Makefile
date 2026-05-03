@@ -12,6 +12,7 @@ WWW=		https://rspec.info/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-rspec-support>=${PORTVERSION:R}.0<3.14:devel/rubygem-rspec-support
 RUN_DEPENDS=	rubygem-rspec-support>=${PORTVERSION:R}.0<3.14:devel/rubygem-rspec-support
 
 USES=		gem
