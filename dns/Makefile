@@ -69,6 +69,7 @@
     SUBDIR += unbound
     SUBDIR += vhostcname
     SUBDIR += whoseip
+    SUBDIR += yandex-ddns
     SUBDIR += zdns
     SUBDIR += zkt
     SUBDIR += zns
