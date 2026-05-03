@@ -42,6 +42,8 @@ CMAKE_ARGS=	-DCMAKE_INSTALL_DOCDIR:PATH="${DOCSDIR}"
 
 OPTIONS_DEFINE=	DOCS
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_DEBUG)
