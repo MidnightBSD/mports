@@ -69,6 +69,7 @@
     SUBDIR += unbound
     SUBDIR += vhostcname
     SUBDIR += whoseip
+    SUBDIR += zdns
     SUBDIR += zkt
     SUBDIR += zns
     SUBDIR += zonenotify
