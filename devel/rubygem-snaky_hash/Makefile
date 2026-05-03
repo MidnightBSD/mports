@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/oauth-xx/snaky_hash
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-hashie>=0.1.0<6:devel/rubygem-hashie \
 		rubygem-version_gem>=1.1.8<3:devel/rubygem-version_gem
 
