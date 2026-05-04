@@ -279,6 +279,7 @@
     SUBDIR += remotedesk
     SUBDIR += rsync
     SUBDIR += rubygem-connection_pool
+    SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-domain_name
     SUBDIR += rubygem-google-cloud-core
     SUBDIR += rubygem-google-cloud-env

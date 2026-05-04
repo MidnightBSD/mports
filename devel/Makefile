@@ -1839,6 +1839,7 @@
     SUBDIR += rubygem-drydock
     SUBDIR += rubygem-equalizer
     SUBDIR += rubygem-eventmachine
+    SUBDIR += rubygem-excon
     SUBDIR += rubygem-execjs
     SUBDIR += rubygem-faraday-cookie_jar
     SUBDIR += rubygem-faraday-excon1
