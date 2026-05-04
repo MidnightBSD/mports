@@ -469,6 +469,7 @@
     SUBDIR += libdbusmenu-qt
     SUBDIR += libdevq
     SUBDIR += libdex
+    SUBDIR += libdispatch
     SUBDIR += libedit
     SUBDIR += libelf
     SUBDIR += libepoll-shim
