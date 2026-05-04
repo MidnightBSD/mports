@@ -25,7 +25,6 @@ SUBDIR += sendxmpp
 SUBDIR += signal-cli
 SUBDIR += slack-term
 SUBDIR += ssh-chat
-SUBDIR += telegram-cli
 SUBDIR += telegram-purple
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-idle
