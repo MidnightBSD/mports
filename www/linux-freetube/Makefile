@@ -4,16 +4,16 @@ DISTVERSION=	0.23.13-beta
 PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/FreeTubeApp/FreeTube/releases/download/${DISTVERSIONFULL}/ \
-		LOCAL/nivit/${PKGNAMEPREFIX}${PORTNAME}/:icons
+		FREEBSD_LOCAL/nivit/${PKGNAMEPREFIX}${PORTNAME}/:icons
 PKGNAMEPREFIX=	linux-
 DISTFILES=	freetube-${DISTVERSION}-linux-x64-portable.zip \
 		${PKGNAMEPREFIX}${PORTNAME}-icons-0.1.3.zip:icons
 
-MAINTAINER=	nivit@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Private YouTube Client (Linux version)
 WWW=		https://freetubeapp.io/
 
-LICENSE=	AGPLv3 BSD3CLAUSE LGPL21 MIT MPL11
+LICENSE=	agpl3 bsd3 lgpl2.1 mit MPL11
 LICENSE_COMB=	multi
 
 ONLY_FOR_ARCHS=	amd64
