@@ -26,6 +26,7 @@ SUBDIR += signal-cli
 SUBDIR += slack-term
 SUBDIR += ssh-chat
 SUBDIR += tde2e
+SUBDIR += telegram-desktop
 SUBDIR += telegram-purple
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-idle
