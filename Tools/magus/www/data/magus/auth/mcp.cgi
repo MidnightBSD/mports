@@ -37,11 +37,9 @@ unless ($cgi->request_method eq 'POST') {
     exit;
 }
 
-# Read raw POST body.
-my $body = '';
-if (defined $ENV{CONTENT_LENGTH} && $ENV{CONTENT_LENGTH} > 0) {
-    read(STDIN, $body, $ENV{CONTENT_LENGTH});
-}
+# CGI->new already consumed STDIN; for non-form content types it stashes
+# the raw body in POSTDATA instead of parsing it as form fields.
+my $body = $cgi->param('POSTDATA') // '';
 
 unless (length $body) {
     rpc_error(undef, -32700, 'Parse error: empty request body');

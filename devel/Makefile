@@ -252,11 +252,11 @@
     SUBDIR += e_dbus
     SUBDIR += efivar
     SUBDIR += efl
-	    SUBDIR += eggdbus
-	    SUBDIR += electron28
-	    SUBDIR += electron39
-	    SUBDIR += elfutils
-	    SUBDIR += epm
+    SUBDIR += eggdbus
+    SUBDIR += electron28
+    SUBDIR += electron39
+    SUBDIR += elfutils
+    SUBDIR += epm
     SUBDIR += erlang-unicode_util_compat
     SUBDIR += evdev-proto
     SUBDIR += fam
@@ -1963,6 +1963,7 @@
     SUBDIR += rubygem-validate_url
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
+    SUBDIR += rubygem-version_gem
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-yajl-ruby

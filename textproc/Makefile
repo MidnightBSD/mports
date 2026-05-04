@@ -183,6 +183,7 @@
     SUBDIR += opensp
     SUBDIR += openvanilla-framework
     SUBDIR += p5-CAM-PDF
+    SUBDIR += p5-HTML-Entities-Numbered
     SUBDIR += p5-HTML-Format
     SUBDIR += p5-HTML-Tidy
     SUBDIR += p5-Hash-Merge

@@ -5,6 +5,7 @@
     SUBDIR += R-cran-xfun
     SUBDIR += artikulate
     SUBDIR += blogwatcher
+    SUBDIR += box2d
     SUBDIR += camsnap
     SUBDIR += chatgpt-shell-cli
     SUBDIR += chef

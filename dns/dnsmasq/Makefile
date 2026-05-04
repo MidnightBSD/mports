@@ -1,5 +1,5 @@
 PORTNAME=	dnsmasq
-DISTVERSION=	2.91
+DISTVERSION=	2.92
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	dns
@@ -117,7 +117,7 @@ pre-configure: pretty-print-config
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/dnsmasq ${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/dnsmasq.conf.example ${PREFIX}/etc/dnsmasq.conf.sample
-	${REINPLACE_CMD} -i '' 's}%%PREFIX%%}${PREFIX}}' ${PREFIX}/etc/dnsmasq.conf.sample
+	${REINPLACE_CMD} -i '' 's}%%PREFIX%%}${TRUE_PREFIX}}' ${PREFIX}/etc/dnsmasq.conf.sample
 	${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.8 ${PREFIX}/share/man/man8
 	${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/trust-anchors.conf ${DATADIR}/

@@ -7,21 +7,17 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stop parsing the current file and move on to a different one
+WWW=		https://metacpan.org/release/goto-file
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	p5-Test2-Suite>=0.000074:devel/p5-Test2-Suite
+TEST_DEPENDS=	p5-Test-Simple>=1.302200:devel/p5-Test-Simple
 
-NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
 
-.include <bsd.port.pre.mk>
+NO_ARCH=	yes
 
-.if ${PERL_LEVEL} < 502705
-TEST_DEPENDS+=	p5-Test-Simple>=1.302095:devel/p5-Test-Simple
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

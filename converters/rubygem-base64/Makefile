@@ -1,5 +1,5 @@
 PORTNAME=	base64
-PORTVERSION=	0.2.0
+PORTVERSION=	0.3.0
 CATEGORIES=	converters rubygems
 MASTER_SITES=	RG
 
@@ -9,7 +9,7 @@ WWW=		https://github.com/ruby/base64
 
 LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
-LICENSE_FILE_bsd2=${WRKSRC}/LICENSE.txt
+LICENSE_FILE_bsd2=${WRKSRC}/BSDL
 
 USES=		gem
 

@@ -16,19 +16,7 @@ Add the following to your Claude Code MCP settings. The recommended location is
 your user-level settings file (`~/.claude/settings.json`) so the server is
 available in every project.
 
-```json
-{
-  "mcpServers": {
-    "magus": {
-      "type": "http",
-      "url": "https://www.midnightbsd.org/magus/auth/mcp.cgi",
-      "headers": {
-        "Authorization": "Basic <base64-encoded-user:password>"
-      }
-    }
-  }
-}
-```
+claude mcp add --transport http magus https://www.midnightbsd.org/magus/auth/mcp.cgi --header "Authorization: <base64-encoded-user:password>"
 
 Replace `<base64-encoded-user:password>` with the Base64 encoding of your
 credentials:
@@ -40,6 +28,17 @@ printf 'myuser:mypassword' | base64
 Paste the output directly into the `Authorization` header value after `Basic `.
 
 ---
+
+## codex configuration
+
+export MAGUS_BASIC_AUTH='Basic <base64-encoded-user:password>'
+
+  Then add this to ~/.codex/config.toml:
+
+  [mcp_servers.magus]
+  transport = "streamable_http"
+  url = "https://www.midnightbsd.org/magus/auth/mcp.cgi"
+  env_http_headers = { Authorization = "MAGUS_BASIC_AUTH" }
 
 ## Available tools
 
@@ -129,4 +128,4 @@ Tools/magus/www/data/magus/auth/mcp.cgi
 ```
 
 It requires HTTP Basic Auth (configured via `Tools/magus/www/data/magus/auth/.htaccess`).
-The credentials file is `/home/mbsd/magus/magus-passwd` on the server.
+The credentials file is on the server.

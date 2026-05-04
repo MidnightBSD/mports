@@ -10,6 +10,7 @@ WWW=		https://github.com/zzak/sdoc
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-rdoc>=5.0:devel/rubygem-rdoc
 RUN_DEPENDS=	rubygem-rdoc>=5.0:devel/rubygem-rdoc
 
 USES=		gem

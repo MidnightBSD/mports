@@ -1,49 +1,6 @@
 --- configure.orig	2025-01-02 14:08:29.772283000 -0500
 +++ configure	2025-01-02 14:08:57.344197000 -0500
-@@ -7114,6 +7114,42 @@
- 
- 
- 
-+    vars="md2d.c"
-+    for i in $vars; do
-+	case $i in
-+	    \$*)
-+		# allow $-var names
-+		PKG_SOURCES="$PKG_SOURCES $i"
-+		PKG_OBJECTS="$PKG_OBJECTS $i"
-+		;;
-+	    *)
-+		# check for existence - allows for generic/win/unix VPATH
-+		# To add more dirs here (like 'src'), you have to update VPATH
-+		# in Makefile.in as well
-+		if test ! -f "${srcdir}/$i" -a ! -f "${srcdir}/generic/$i" \
-+		    -a ! -f "${srcdir}/win/$i" -a ! -f "${srcdir}/unix/$i" \
-+		    ; then
-+		    { { echo "$as_me:$LINENO: error: could not find source file '$i'" >&5
-+echo "$as_me: error: could not find source file '$i'" >&2;}
-+   { (exit 1); exit 1; }; }
-+		fi
-+		PKG_SOURCES="$PKG_SOURCES $i"
-+		# this assumes it is in a VPATH dir
-+		i=`basename $i`
-+		# handle user calling this before or after TEA_SETUP_COMPILER
-+		if test x"${OBJEXT}" != x ; then
-+		    j="`echo $i | sed -e 's/\.[^.]*$//'`.${OBJEXT}"
-+		else
-+		    j="`echo $i | sed -e 's/\.[^.]*$//'`.\${OBJEXT}"
-+		fi
-+		PKG_OBJECTS="$PKG_OBJECTS $j"
-+		;;
-+	esac
-+    done
-+
-+
-+
-+
-     vars="rs_ecc.c"
-     for i in $vars; do
- 	case $i in
-@@ -11047,7 +11083,7 @@
+@@ -11047,7 +11047,7 @@
  	    UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
  	    TCL_LIB_VERSIONS_OK=nodots
  	    ;;
@@ -52,7 +9,7 @@
  	    # FreeBSD 3.* and greater have ELF.
  	    # NetBSD 2.* has ELF and can use 'cc -shared' to build shared libs
  	    SHLIB_CFLAGS="-fPIC"
-@@ -11967,7 +12003,7 @@
+@@ -11967,7 +11967,7 @@
  	    AIX-*) ;;
  	    BSD/OS*) ;;
  	    IRIX*) ;;

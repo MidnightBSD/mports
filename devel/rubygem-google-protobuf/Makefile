@@ -11,6 +11,7 @@ WWW=		https://protobuf.dev/ \
 
 LICENSE=	bsd3
 
+BUILD_DEPENDS=	rubygem-rake>=13:devel/rubygem-rake
 RUN_DEPENDS=	rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
 		rubygem-rake>=13:devel/rubygem-rake
 

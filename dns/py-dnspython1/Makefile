@@ -14,7 +14,7 @@ LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python:2.7 zip
-USE_PYTHON=	autoplist concurrent cython0 distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 

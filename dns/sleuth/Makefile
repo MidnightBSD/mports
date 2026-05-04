@@ -1,5 +1,5 @@
 PORTNAME=	sleuth
-PORTVERSION=	1.4.4
+DISTVERSION=	1.4.4
 CATEGORIES=	dns
 MASTER_SITES=	https://mj.ucw.cz/download/net/
 

@@ -10,6 +10,7 @@ WWW=		https://rubygems.org/gems/annoy
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	rubygem-highline>=1.5.0:devel/rubygem-highline
 RUN_DEPENDS=	rubygem-highline>=1.5.0:devel/rubygem-highline
 
 NO_ARCH=	yes
