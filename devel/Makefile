@@ -215,6 +215,7 @@
     SUBDIR += concurrencykit
     SUBDIR += courier-unicode
     SUBDIR += cppunit
+    SUBDIR += crc32c
     SUBDIR += cscope
     SUBDIR += ctags
     SUBDIR += cunit
