@@ -341,6 +341,7 @@
     SUBDIR += tigervnc-viewer
     SUBDIR += tintin++
     SUBDIR += tiny-network-utilities
+    SUBDIR += torsocks
     SUBDIR += tshark
     SUBDIR += tsocks
     SUBDIR += uhttpmock
