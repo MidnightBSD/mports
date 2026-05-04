@@ -9,6 +9,7 @@ COMMENT=	Library for handling money and different currencies
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-i18n>=0.6.4:devel/rubygem-i18n
 RUN_DEPENDS=	rubygem-i18n>=0.6.4:devel/rubygem-i18n
 
 USES=		gem
