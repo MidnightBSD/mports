@@ -1,5 +1,5 @@
 PORTNAME=	tor
-DISTVERSION=	0.4.8.14
+DISTVERSION=	0.4.9.6
 CATEGORIES=	security net
 MASTER_SITES=	TOR
 
@@ -9,8 +9,7 @@ WWW=		https://www.torproject.org/
 
 LICENSE=	bsd3
 
-USES=		compiler:c11 cpe gmake pkgconfig # should be compiler:c99 or compiler:gnu99
-USE_CSTD=	gnu99 # until this bug report is closed: https://trac.torproject.org/projects/tor/ticket/27900
+USES=		compiler:c11 cpe gmake pkgconfig
 
 CPE_VENDOR=	torproject
 GNU_CONFIGURE=	yes
