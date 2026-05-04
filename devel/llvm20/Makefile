@@ -31,6 +31,9 @@ LICENSE_PERMS_REGEX=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 # TODO: fix this
 NO_TEST=	yes
 
+# These .inc files are legitimately empty in LLVM 20 (tablegen-generated with no content)
+SKIP_FAKE_CHECK=	.*(Diagnostic.*Enums|ArmSMEOpsConversions)\.inc$$
+
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 FLAVORS=	default lite
@@ -508,6 +511,9 @@ COMPILER_RT_IGNORELISTS:=	${COMPILER_RT_IGNORELISTS} ${RT}_ignorelist.txt
 .endfor
 # Strip empty element
 COMPILER_RT_IGNORELISTS:=${COMPILER_RT_IGNORELISTS:N^$$}
+
+PLIST_SUB+=	CRT_TRIPLE=${COMPILER_RT_ARCHS:Unone}-portbld-${OPSYS:tl}${OSREL} \
+		ARCH_TRIPLE=${ARCH}-portbld-${OPSYS:tl}${OSREL}
 
 .if ${ARCH} == "armv6"
 BUILD_DEPENDS+=	${LOCALBASE}/bin/ld:devel/binutils
