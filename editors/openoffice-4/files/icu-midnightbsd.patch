@@ -1,0 +1,15 @@
+diff -u misc/icu/source/config.guess misc/build/icu/source/config.guess
+--- misc/icu/source/config.guess	2008-01-01 00:00:00.000000000 +0000
++++ misc/build/icu/source/config.guess	2026-05-01 00:00:00.000000000 +0000
+@@ -779,6 +779,16 @@
+ 	esac
+ 	exit ;;
++    *:MidnightBSD:*:*)
++	case ${UNAME_MACHINE} in
++	    amd64)
++		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	    *)
++		echo ${UNAME_MACHINE}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	esac
++	exit ;;
+     i*:CYGWIN*:*)

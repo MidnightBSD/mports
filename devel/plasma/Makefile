@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	bash:shells/bash \
 		/usr/local/bin/as:devel/binutils@native \
 		capstone>=3:devel/capstone
-RUN_DEPENDS=	binutils>=2:devel/binutils \
+RUN_DEPENDS=	native-binutils>=2:devel/binutils@native \
 		${PYTHON_PKGNAMEPREFIX}capstone>=3:devel/py-capstone@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}future>=0:devel/py-future@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}keystone-engine>=:devel/py-keystone-engine@${PY_FLAVOR} \

@@ -11,6 +11,7 @@ WWW=		https://github.com/copiousfreetime/launchy
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-addressable>=2.8<3:www/rubygem-addressable
 RUN_DEPENDS=	rubygem-addressable>=2.8<3:www/rubygem-addressable
 
 USES=		gem

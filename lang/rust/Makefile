@@ -236,9 +236,9 @@ do-install:
 	${TAR} xf ${WRKDIR}/_build/dist/${_c}.tar.xz -C ${WRKDIR}/_extractdist
 	cd ${WRKDIR}/_extractdist/${_c} && \
 		${SH} install.sh \
-		--docdir="${STAGEDIR}${DOCSDIR}" \
-		--mandir="${STAGEDIR}${PREFIX}/share/man" \
-		--prefix="${STAGEDIR}${PREFIX}"
+		--docdir="${FAKE_DESTDIR}${DOCSDIR}" \
+		--mandir="${FAKE_DESTDIR}${PREFIX}/share/man" \
+		--prefix="${FAKE_DESTDIR}${PREFIX}"
 	${RM} -r ${WRKDIR}/_extractdist
 .endfor
 
@@ -246,17 +246,17 @@ do-install:
 # regular pkg-plist, because several libraries have a computed
 # filename based on the absolute path of the source files.  As it
 # is user-specific, we cannot know their filename in advance.
-	@${RM}	${STAGEDIR}${DOCSDIR}/*.old \
-		${STAGEDIR}${PREFIX}/lib/rustlib/components \
-		${STAGEDIR}${PREFIX}/lib/rustlib/install.log \
-		${STAGEDIR}${PREFIX}/lib/rustlib/manifest-* \
-		${STAGEDIR}${PREFIX}/lib/rustlib/rust-installer-version \
-		${STAGEDIR}${PREFIX}/lib/rustlib/uninstall.sh
-	@${FIND} ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${PREFIX}/lib \
-		${STAGEDIR}${PREFIX}/libexec -exec ${FILE} -i {} + | \
+	@${RM}	${FAKE_DESTDIR}${DOCSDIR}/*.old \
+		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/components \
+		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/install.log \
+		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/manifest-* \
+		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/rust-installer-version \
+		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/uninstall.sh
+	@${FIND} ${FAKE_DESTDIR}${PREFIX}/bin ${FAKE_DESTDIR}${PREFIX}/lib \
+		${FAKE_DESTDIR}${PREFIX}/libexec -exec ${FILE} -i {} + | \
 		${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
-	@${FIND} ${PREFIX} -not -type d | \
-		${SED} -E -e 's,^${PREFIX}/,,' \
+	@${FIND} ${FAKE_DESTDIR}${PREFIX} -not -type d | \
+		${SED} -E -e 's,^${FAKE_DESTDIR}${PREFIX}/,,' \
 			-e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 post-install-DOCS-on:

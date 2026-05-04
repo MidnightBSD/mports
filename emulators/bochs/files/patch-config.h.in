@@ -1,0 +1,11 @@
+--- config.h.in.orig	2024-11-26 04:03:31 UTC
++++ config.h.in
+@@ -752,7 +752,7 @@
+ #define BX_CPP_INLINE inline
+ 
+ // On gcc2.95+ x86 only
+-#if BX_FAST_FUNC_CALL && defined(__i386__) && defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 95))
++#if BX_FAST_FUNC_CALL && defined(__i386__) && defined(__GNUC__) && !defined(__clang__) && (__GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 95))
+ #if BX_USE_CPU_SMF == 1
+ #  define BX_CPP_AttrRegparmN(X) __attribute__((regparm(X)))
+ #else

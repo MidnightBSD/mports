@@ -7,7 +7,7 @@ MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Ruby wrapper for libinotify, using ffi
 WWW=		https://github.com/guard/rb-inotify
 
-LICENSE=	MIT
+LICENSE=	mit
 
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 RUN_DEPENDS=	rubygem-ffi>=1.0<2:devel/rubygem-ffi

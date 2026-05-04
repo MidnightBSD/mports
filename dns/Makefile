@@ -31,6 +31,7 @@
     SUBDIR += mDNSResponder_nss
     SUBDIR += mdnsd
     SUBDIR += nslint
+    SUBDIR += nsnotifyd
     SUBDIR += nss_mdns
     SUBDIR += p5-Mozilla-PublicSuffix
     SUBDIR += p5-Net-DNS
@@ -68,7 +69,10 @@
     SUBDIR += unbound
     SUBDIR += vhostcname
     SUBDIR += whoseip
+    SUBDIR += yandex-ddns
+    SUBDIR += zdns
     SUBDIR += zkt
+    SUBDIR += zns
     SUBDIR += zonenotify
 
 .include <bsd.port.subdir.mk>
