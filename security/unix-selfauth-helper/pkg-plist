@@ -1,0 +1,3 @@
+etc/pam.d/unix-selfauth
+libexec/unix-selfauth-helper
+share/man/man8/unix-selfauth-helper.8.gz

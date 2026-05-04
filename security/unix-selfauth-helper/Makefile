@@ -1,5 +1,5 @@
 PORTNAME=	unix-selfauth-helper
-DISTVERSION=	1.0.1
+DISTVERSION=	1.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
 
@@ -9,12 +9,13 @@ WWW=		https://github.com/Zirias/unix-selfauth-helper
 
 LICENSE=	bsd2
 
-USES=		uidfix
+FAKE_OPTS=	trueprefix
+
+MAKE_ARGS+=	MANDIR=${PREFIX}/share/man/man
+
+USES=		tar:xz uidfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Zirias
-
-PLIST_FILES=	libexec/unix-selfauth-helper \
-		man/man8/unix-selfauth-helper.8.gz
 
 .include <bsd.port.mk>
