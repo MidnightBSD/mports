@@ -215,6 +215,7 @@
     SUBDIR += concurrencykit
     SUBDIR += courier-unicode
     SUBDIR += cppunit
+    SUBDIR += crc32c
     SUBDIR += cscope
     SUBDIR += ctags
     SUBDIR += cunit
@@ -447,6 +448,7 @@
     SUBDIR += lemon
     SUBDIR += level-zero
     SUBDIR += libIDL
+    SUBDIR += libada
     SUBDIR += libappindicator
     SUBDIR += libast
     SUBDIR += libatomic_ops
@@ -467,6 +469,7 @@
     SUBDIR += libdbusmenu-qt
     SUBDIR += libdevq
     SUBDIR += libdex
+    SUBDIR += libdispatch
     SUBDIR += libedit
     SUBDIR += libelf
     SUBDIR += libepoll-shim

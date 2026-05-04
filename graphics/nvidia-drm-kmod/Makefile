@@ -1,5 +1,6 @@
 PORTNAME=	nvidia-drm-kmod
-PORTVERSION=	${NVIDIA_DISTVERSION}
+DISTVERSION?=	${NVIDIA_DISTVERSION}
+PORTREVISION?=	0
 CATEGORIES=	graphics kld
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +19,12 @@ BROKEN_MidnightBSD_3.2=      too old
 .include "${.CURDIR}/../../x11/nvidia-driver/Makefile.version"
 .include <bsd.port.pre.mk>
 
-RUN_DEPENDS+=  ${KMODDIR}/nvidia-drm.ko:graphics/nvidia-drm-510-kmod
+.  if ${OSVERSION} >= 400000
+RUN_DEPENDS+=  ${KMODDIR}/nvidia-drm.ko:graphics/nvidia-drm-510-kmod${PKGNAMESUFFIX}
+.  endif
+
+RUN_DEPENDS+=  nvidia-driver${PKGNAMESUFFIX}>0:x11/nvidia-driver${PKGNAMESUFFIX}
+
+CONFLICTS_INSTALL=	nvidia-drm-kmod*
 
 .include <bsd.port.post.mk>
