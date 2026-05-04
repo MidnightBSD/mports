@@ -448,6 +448,7 @@
     SUBDIR += lemon
     SUBDIR += level-zero
     SUBDIR += libIDL
+    SUBDIR += libada
     SUBDIR += libappindicator
     SUBDIR += libast
     SUBDIR += libatomic_ops
