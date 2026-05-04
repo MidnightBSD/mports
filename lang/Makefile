@@ -7,10 +7,10 @@
     SUBDIR += cjs
     SUBDIR += clover
     SUBDIR += cython
+    SUBDIR += cython0
     SUBDIR += duktape
     SUBDIR += duktape-lib
     SUBDIR += dotnet-host 
-
     SUBDIR += elixir
     SUBDIR += erlang
     SUBDIR += erlang-man
