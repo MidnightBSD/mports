@@ -16,7 +16,7 @@ WWW=		https://wiki.znc.in/ZNC
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler:c++11-lib cpe cmake:run iconv:wchar_t pathfix pkgconfig python:3.5+
+USES=		compiler:c++17-lang cpe cmake:run iconv:wchar_t pathfix pkgconfig python:3.5+
 
 USE_RC_SUBR=	znc
 
@@ -67,6 +67,12 @@ TCL_USES=	tcl
 post-patch:
 	@${REINPLACE_CMD} -e 's|python3|python${PYTHON_VER}|g' \
 		${WRKSRC}/znc-buildmod.cmake.in
+	@${REINPLACE_CMD} -e 's|set(CMAKE_CXX_STANDARD 11)|set(CMAKE_CXX_STANDARD 17)|' \
+		${WRKSRC}/CMakeLists.txt
+
+post-patch-PYTHON-on:
+	@${PERL} -0pi -e 's/\#if PY_VERSION_HEX>=0x03000000\s+assert\(0\); \/\* Should never reach here in Python 3 \*\/\s+\#endif\s+\*cptr = SWIG_Python_str_AsChar\(obj\);/\#if PY_VERSION_HEX<0x03000000\n\t\t\t\t\t\t*cptr = SWIG_Python_str_AsChar(obj);\n\#else\n\t\t\t\t\t\treturn SWIG_RuntimeError;\n\#endif/s' \
+		${WRKSRC}/modules/modpython/codegen.pl
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
