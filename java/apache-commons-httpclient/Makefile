@@ -1,6 +1,6 @@
 PORTNAME=	commons-httpclient
 DISTVERSION=	3.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	java www
 MASTER_SITES=	APACHE/httpcomponents/${PORTNAME}/source
 PKGNAMEPREFIX=	apache-
@@ -19,6 +19,7 @@ RUN_DEPENDS+=	${JAVALIBDIR}/commons-codec.jar:java/apache-commons-codec
 
 OPTIONS_DEFINE=	DOCS
 
+JAVA_VERSION=	1.8
 USES+=		cpe java:ant,run
 CPE_VENDOR=	apache
 MAKE_ENV=	ANT_INCLUDE_SHARED_JARS=YES
