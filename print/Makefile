@@ -34,6 +34,7 @@ SUBDIR += harfbuzz-icu
 SUBDIR += hs-hscolour
 SUBDIR += indexinfo
 SUBDIR += libijs
+SUBDIR += libmspub01
 SUBDIR += libotf
 SUBDIR += libpaper
 SUBDIR += libraqm
