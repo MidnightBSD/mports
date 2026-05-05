@@ -221,6 +221,7 @@
     SUBDIR += libwmf-nox11
     SUBDIR += libwpg03
     SUBDIR += libyuv
+    SUBDIR += libzmf
     SUBDIR += linux-c7-cairo
     SUBDIR += linux-c7-cairo-gobject
     SUBDIR += linux-c7-dri

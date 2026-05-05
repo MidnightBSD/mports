@@ -109,6 +109,7 @@
     SUBDIR += libarcus
     SUBDIR += libcharon
     SUBDIR += libcloudproviders
+    SUBDIR += libcmis
     SUBDIR += libdnet
     SUBDIR += libfabric
     SUBDIR += libgravatar
