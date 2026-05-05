@@ -16,6 +16,7 @@ makepatch:
 
 
 GENPLIST?=				${.CURDIR}/gen-plist
+GENPLIST_STAGE?=		${GENPLIST}.stage
 
 # This needs to be something egrep can understand
 MAKEPLIST_IGNORE?=		(\.packlist$$)  
@@ -27,7 +28,8 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${TRUE} > ${GENPLIST}
+	@${RM} ${GENPLIST_STAGE} ${GENPLIST_STAGE}.filtered ${GENPLIST}.tmp
+	@${TRUE} > ${GENPLIST_STAGE}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -47,20 +49,20 @@ makeplist:
 			fi; \
 		done; \
 		for file in $$files; do \
-			${ECHO_CMD} $$file >> ${GENPLIST}; \
+			${ECHO_CMD} $$file >> ${GENPLIST_STAGE}; \
 		done; \
 		for dir in $$directories; do \
-			${ECHO_CMD} "@dir $$dir" >> ${GENPLIST}; \
+			${ECHO_CMD} "@dir $$dir" >> ${GENPLIST_STAGE}; \
 		done;
 .	else 
 		@cd ${FAKE_DESTDIR}${PREFIX}; \
-		${FIND} -d . ! -type d	| ${SED} -e 's:^\./::' >> ${GENPLIST}; \
-		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dir :' >> ${GENPLIST};
+		${FIND} -d . ! -type d	| ${SED} -e 's:^\./::' >> ${GENPLIST_STAGE}; \
+		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dir :' >> ${GENPLIST_STAGE};
 .	endif
 
 .	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
-		@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST}
-		@cd ${FAKE_DESTDIR}${LINUXBASE_REL}; directoriess=""; files=""; \
+	@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST_STAGE}
+	@cd ${FAKE_DESTDIR}${LINUXBASE_REL}; directories=""; files=""; \
 		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/extra:[ \t]//'`; \
 		for file in $$new; do \
 			if [ -d $$file ]; then \
@@ -77,14 +79,14 @@ makeplist:
 			fi; \
 		done; \
 		for file in $$files; do \
-			${ECHO_CMD} $$file >> ${GENPLIST}; \
+			${ECHO_CMD} $$file >> ${GENPLIST_STAGE}; \
 		done; \
 		for dir in $$directories; do \
-			${ECHO_CMD} "@dir " >> ${GENPLIST}; \
+			${ECHO_CMD} "@dir $$dir" >> ${GENPLIST_STAGE}; \
 		done;
-		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
+		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST_STAGE}
 .	endif
-	@${SED} -i '' -e '/extra:/d' ${GENPLIST}
+	@${SED} -i '' -e '/extra:/d' ${GENPLIST_STAGE}
 	@perl -mstrict -mwarnings -e '\
 		my $$raw = q`${PLIST_SUB}`; \
 		my %sub; \
@@ -102,9 +104,25 @@ makeplist:
 		} \
 		$$subst .= "print; }}"; \
 		$$subst = eval $$subst || die "Could not eval sub: $$@\n"; \
-		$$subst->();' <${GENPLIST} >${GENPLIST}.tmp
-	@${EGREP} -v "${MAKEPLIST_IGNORE}" < ${GENPLIST}.tmp >${GENPLIST}
-	@${RM} ${GENPLIST}.tmp
+		$$subst->();' <${GENPLIST_STAGE} >${GENPLIST}.tmp
+	@if ${EGREP} -v "${MAKEPLIST_IGNORE}" < ${GENPLIST}.tmp > ${GENPLIST_STAGE}.filtered; then \
+		if [ ! -s ${GENPLIST_STAGE}.filtered ]; then \
+			${ECHO_MSG} "** Generated plist is empty for ${PKGNAME}."; \
+			${RM} ${GENPLIST_STAGE} ${GENPLIST_STAGE}.filtered ${GENPLIST}.tmp; \
+			exit 1; \
+		fi; \
+		${MV} -f ${GENPLIST_STAGE}.filtered ${GENPLIST}; \
+	else \
+		_status=$$?; \
+		if [ $$_status -eq 1 ]; then \
+			${ECHO_MSG} "** Generated plist is empty for ${PKGNAME}."; \
+		else \
+			${ECHO_MSG} "** Failed to filter generated plist for ${PKGNAME}."; \
+		fi; \
+		${RM} ${GENPLIST_STAGE} ${GENPLIST_STAGE}.filtered ${GENPLIST}.tmp; \
+		exit $$_status; \
+	fi
+	@${RM} ${GENPLIST_STAGE} ${GENPLIST}.tmp
 
 .endif
 
