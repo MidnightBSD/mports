@@ -1,5 +1,5 @@
 PORTNAME=	rust
-PORTVERSION?=	1.91.0
+PORTVERSION?=	1.94.0
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
@@ -30,10 +30,9 @@ ONLY_FOR_ARCHS?=	aarch64 amd64 armv7 i386 powerpc64 powerpc64le powerpc \
 			riscv64
 ONLY_FOR_ARCHS_REASON?=	requires prebuilt bootstrap compiler
 
-FAKE_OPTS=    trueprefix
-NO_TEST=      yes
+FAKE_OPTS=	trueprefix
+NO_TEST=	yes
 
-BUILD_DEPENDS=	cmake:devel/cmake-core
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
 USES=		cmake:indirect cpe ninja:build pkgconfig python:build ssl tar:xz
@@ -71,7 +70,7 @@ DOCS_VARS=		_RUST_BUILD_DOCS=true \
 			_COMPONENTS+="rust-docs-${_PACKAGE_VERS}-${_RUST_TARGET} rust-docs-json-${_PACKAGE_VERS}-${_RUST_TARGET}"
 DOCS_VARS_OFF=		_RUST_BUILD_DOCS=false
 GDB_RUN_DEPENDS=	${LOCALBASE}/bin/gdb:devel/gdb
-PORT_LLVM_USES=		llvm:min=19,lib,noexport
+PORT_LLVM_USES=		llvm:min=${_LLVM_VERSION},lib,noexport
 PORT_LLVM_MAKE_ENV=	RUSTFLAGS="-Lnative=${LOCALBASE}/lib"
 SOURCES_VARS=		_COMPONENTS+=rust-src-${_PACKAGE_VERS} \
 			_RUST_TOOLS+=src
@@ -79,8 +78,11 @@ WASM_VARS=		_COMPONENTS+="rust-analysis-${_PACKAGE_VERS}-wasm32-unknown-unknown 
 			_RUST_TARGETS+=wasm32-unknown-unknown
 
 # See WRKSRC/src/stage0 for the date and version values
-BOOTSTRAPS_DATE?=		2025-09-18
-RUST_BOOTSTRAP_VERSION?=	1.90.0
+BOOTSTRAPS_DATE?=		2026-01-22
+LLVM_VERSION=			20
+RUST_BOOTSTRAP_VERSION?=	1.93.0
+
+_LLVM_VERSION=	20
 
 CARGO_VENDOR_DIR?=		${WRKSRC}/vendor
 
@@ -181,6 +183,11 @@ do-configure:
 	@${ECHO_CMD} 'cargo="${WRKDIR}/bootstrap/bin/cargo"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'rustc="${WRKDIR}/bootstrap/bin/rustc"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'tools=[${_RUST_TOOLS:@.tool.@"${.tool.}"@:ts,}]' >> ${WRKSRC}/config.toml
+.if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
+	@${ECHO_CMD} 'ccache="${CCACHE_BIN}"' >> ${WRKSRC}/config.toml
+.else
+	@${ECHO_CMD} 'ccache=false' >> ${WRKSRC}/config.toml
+.endif
 	@${ECHO_CMD} '[install]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'prefix="${PREFIX}"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'sysconfdir="${PREFIX}/etc"' >> ${WRKSRC}/config.toml
@@ -201,31 +208,56 @@ do-configure:
 	@${ECHO_CMD} 'remap-debuginfo=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} '[llvm]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'download-ci-llvm=false' >> ${WRKSRC}/config.toml
+.if ${PORT_OPTIONS:MWASM}
+	@${ECHO_CMD} 'clang=true' >> ${WRKSRC}/config.toml
+.endif
 .if ${PORT_OPTIONS:MLTO}
 	@${ECHO_CMD} 'thin-lto=true' >> ${WRKSRC}/config.toml
 .endif
 	@${ECHO_CMD} 'ninja=true' >> ${WRKSRC}/config.toml
+.if ${ARCH} == powerpc
+# Rust doesn't call the system compiler with the full version of the target.
+# This makes powerpc miscompile due to the secure-plt ABI change.
+# Additionally, force using ld.bfd to work around a linking problem in rustc_mir
+	@${PRINTF} '#!/bin/sh\nexec ${CC} "$$@" --target=powerpc-unknown-freebsd13.5' > ${WRKDIR}/cc-wrapper
+	@${CHMOD} +x ${WRKDIR}/cc-wrapper
+	@${PRINTF} '#!/bin/sh\nexec ${CXX} "$$@" --target=powerpc-unknown-freebsd13.5' > ${WRKDIR}/cxx-wrapper
+	@${CHMOD} +x ${WRKDIR}/cxx-wrapper
+.endif
 .for _target in ${_RUST_TARGETS}
 	@${ECHO_CMD} '[target.${_target}]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'ar="${AR}"' >> ${WRKSRC}/config.toml
 .if ${ARCH} == powerpc
 	@${ECHO_CMD} 'cc="${WRKDIR}/cc-wrapper"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'cxx="${WRKDIR}/cxx-wrapper"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'linker="${CC}"' >> ${WRKSRC}/config.toml
+.else
+# use the builtin clang when not using PORT_LLVM
+.if ${_target} == "wasm32-unknown-unknown"
+.if ${PORT_OPTIONS:MPORT_LLVM}
+	@${ECHO_CMD} 'cc="${LOCALBASE}/bin/clang${LLVM_VERSION}"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'cxx="${LOCALBASE}/bin/clang++${LLVM_VERSION}"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'linker="${LOCALBASE}/bin/clang${LLVM_VERSION}"' >> ${WRKSRC}/config.toml
+.else
+	@${ECHO_CMD} 'cc="${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'cxx="${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang++"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'linker="${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang"' >> ${WRKSRC}/config.toml
+.endif
 .else
 	@${ECHO_CMD} 'cc="${CC}"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'cxx="${CXX}"' >> ${WRKSRC}/config.toml
-.endif
 	@${ECHO_CMD} 'linker="${CC}"' >> ${WRKSRC}/config.toml
+.endif
+.endif
 .if ${PORT_OPTIONS:MPORT_LLVM}
 	@${ECHO_CMD} 'llvm-config="${LOCALBASE}/bin/${LLVM_CONFIG}"' >> ${WRKSRC}/config.toml
 .endif
 .endfor
 	@${ECHO_CMD} '[dist]' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'compression-formats=["xz"]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'src-tarball=false' >> ${WRKSRC}/config.toml
 
 do-build:
-	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py build --stage 2 --jobs=${MAKE_JOBS_NUMBER}
 	@cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py dist --jobs=${MAKE_JOBS_NUMBER}
 
@@ -236,9 +268,9 @@ do-install:
 	${TAR} xf ${WRKDIR}/_build/dist/${_c}.tar.xz -C ${WRKDIR}/_extractdist
 	cd ${WRKDIR}/_extractdist/${_c} && \
 		${SH} install.sh \
-		--docdir="${FAKE_DESTDIR}${DOCSDIR}" \
-		--mandir="${FAKE_DESTDIR}${PREFIX}/share/man" \
-		--prefix="${FAKE_DESTDIR}${PREFIX}"
+		--docdir="${DOCSDIR}" \
+		--mandir="${PREFIX}/share/man" \
+		--prefix="${PREFIX}"
 	${RM} -r ${WRKDIR}/_extractdist
 .endfor
 
@@ -246,17 +278,16 @@ do-install:
 # regular pkg-plist, because several libraries have a computed
 # filename based on the absolute path of the source files.  As it
 # is user-specific, we cannot know their filename in advance.
-	-${RM}	${FAKE_DESTDIR}${DOCSDIR}/*.old \
-		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/components \
-		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/install.log \
-		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/manifest-* \
-		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/rust-installer-version \
-		${FAKE_DESTDIR}${PREFIX}/lib/rustlib/uninstall.sh
-	-${FIND} ${FAKE_DESTDIR}${PREFIX}/bin ${FAKE_DESTDIR}${PREFIX}/lib \
-		${FAKE_DESTDIR}${PREFIX}/libexec -exec ${FILE} -i {} + | \
+	-${RM}	${DOCSDIR}/*.old \
+		${PREFIX}/lib/rustlib/components \
+		${PREFIX}/lib/rustlib/install.log \
+		${PREFIX}/lib/rustlib/manifest-* \
+		${PREFIX}/lib/rustlib/rust-installer-version \
+		${PREFIX}/lib/rustlib/uninstall.sh
+	-${FIND} ${PREFIX}/bin ${PREFIX}/lib ${PREFIX}/libexec -exec ${FILE} -i {} + | \
 		${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
-	-${FIND} ${FAKE_DESTDIR}${PREFIX} -not -type d | \
-		${SED} -E -e 's,^${FAKE_DESTDIR}${PREFIX}/,,' \
+	-${FIND} ${PREFIX} -not -type d | \
+		${SED} -E -e 's,^${PREFIX}/,,' \
 			-e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 post-install-DOCS-on:
