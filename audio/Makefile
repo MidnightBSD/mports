@@ -87,7 +87,7 @@
     SUBDIR += libcoverart
     SUBDIR += libdiscid
     SUBDIR += libdssialsacompat
-    SUBDIR += libeburl128
+    SUBDIR += libebur128
     SUBDIR += libechonest
     SUBDIR += libgig
     SUBDIR += libgme
@@ -205,9 +205,12 @@
     SUBDIR += timemachine
     SUBDIR += timidity
     SUBDIR += timidity++
+    SUBDIR += timidity++-emacs
     SUBDIR += timidity++-gtk
+    SUBDIR += timidity++-motif
     SUBDIR += timidity++-slang
     SUBDIR += timidity++-xaw
+    SUBDIR += timidity++-xskin
     SUBDIR += twolame
     SUBDIR += vamp-plugin-sdk
     SUBDIR += vorbis-tools
