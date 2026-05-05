@@ -36,6 +36,7 @@ SUBDIR += indexinfo
 SUBDIR += libijs
 SUBDIR += libmspub01
 SUBDIR += libotf
+SUBDIR += libpagemaker
 SUBDIR += libpaper
 SUBDIR += libraqm
 SUBDIR += libspectre
