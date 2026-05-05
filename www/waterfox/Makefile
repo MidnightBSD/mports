@@ -70,9 +70,9 @@ MOZ_OPTIONS=	--enable-application=browser \
 
 .include "${.CURDIR}/Makefile.options"
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
-.if ${ARCH} == i386 && ${MACHINE_CPU:Msse2}
+.if ${ARCH} == i386 && !empty(MACHINE_CPU:Msse2)
 # is not enabled on i386 by default
 # Fix for error: always_inline function '_mm_setzero_si64' requires target feature 'sse2'
 CFLAGS_i386+=	-msse2
@@ -96,4 +96,4 @@ post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
 	${LN} -sf ${FIREFOX_ICON_SRC} ${STAGEDIR}${PREFIX}/share/pixmaps/${FIREFOX_ICON}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
