@@ -603,6 +603,8 @@
     SUBDIR += llvm17
     SUBDIR += llvm18
     SUBDIR += llvm19
+    SUBDIR += llvm20
+    SUBDIR += llvm21
     SUBDIR += lndir
     SUBDIR += log4cplus
     SUBDIR += log4cxx
@@ -2042,11 +2044,15 @@
     SUBDIR += wasi-compiler-rt17
     SUBDIR += wasi-compiler-rt18
     SUBDIR += wasi-compiler-rt19
+    SUBDIR += wasi-compiler-rt20
+    SUBDIR += wasi-compiler-rt21
     SUBDIR += wasi-libc
     SUBDIR += wasi-libcxx
     SUBDIR += wasi-libcxx17
     SUBDIR += wasi-libcxx18
     SUBDIR += wasi-libcxx19
+    SUBDIR += wasi-libcxx20
+    SUBDIR += wasi-libcxx21
     SUBDIR += websvn
     SUBDIR += wininfo
     SUBDIR += wizardkit
