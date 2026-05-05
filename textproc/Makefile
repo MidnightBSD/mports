@@ -122,6 +122,7 @@
     SUBDIR += libcss
     SUBDIR += libcue
     SUBDIR += libdiff
+    SUBDIR += libe-book
     SUBDIR += libebml
     SUBDIR += libepubgen
     SUBDIR += libexttextcat
