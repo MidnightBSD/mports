@@ -1,7 +1,7 @@
 diff -u misc/icu/source/config.guess misc/build/icu/source/config.guess
 --- misc/icu/source/config.guess	2008-01-01 00:00:00.000000000 +0000
 +++ misc/build/icu/source/config.guess	2026-05-01 00:00:00.000000000 +0000
-@@ -779,6 +779,16 @@
+@@ -778,3 +778,11 @@
  	esac
  	exit ;;
 +    *:MidnightBSD:*:*)
