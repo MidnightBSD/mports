@@ -508,6 +508,7 @@
     SUBDIR += libnotify
     SUBDIR += libnsutils
     SUBDIR += liboil
+    SUBDIR += liborcus
     SUBDIR += libosinfo
     SUBDIR += libpafe
     SUBDIR += libpafe-ruby
@@ -622,6 +623,7 @@
     SUBDIR += mage
     SUBDIR += makedepend
     SUBDIR += marisa-trie
+    SUBDIR += mdds
     SUBDIR += mercurial
     SUBDIR += meson
     SUBDIR += meson-python

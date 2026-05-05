@@ -126,6 +126,7 @@
     SUBDIR += libexttextcat
     SUBDIR += libfyaml
     SUBDIR += libgepub
+    SUBDIR += libixion
     SUBDIR += libkmfl
     SUBDIR += libkolabxml
     SUBDIR += liblrdf
