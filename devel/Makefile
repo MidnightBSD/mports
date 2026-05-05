@@ -462,6 +462,7 @@
     SUBDIR += libclc
     SUBDIR += libconfig
     SUBDIR += libconfuse
+    SUBDIR += libcuckoo
     SUBDIR += libcutl
     SUBDIR += libdaemon
     SUBDIR += libdatrie
