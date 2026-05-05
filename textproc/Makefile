@@ -117,6 +117,7 @@
     SUBDIR += kibana8
     SUBDIR += kmflcomp
     SUBDIR += latex-service
+    SUBDIR += libabw
     SUBDIR += libcroco
     SUBDIR += libcss
     SUBDIR += libcue
