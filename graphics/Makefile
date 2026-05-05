@@ -181,7 +181,9 @@
     SUBDIR += libemf
     SUBDIR += libepoxy
     SUBDIR += libertiff
+    SUBDIR += libetonyek01
     SUBDIR += libexif
+    SUBDIR += libfreehand
     SUBDIR += libfpx
     SUBDIR += libgeotiff
     SUBDIR += libglvnd
