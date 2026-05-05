@@ -33,8 +33,10 @@ SUB_LIST=	PREFIX=${PREFIX}
 
 do-install:
 	${MKDIR} ${PREFIX}/lib/linux-claude
-	${INSTALL_PROGRAM} ${WRKSRC}/claude ${PREFIX}/lib/linux-claude/claude
-	brandelf -t Linux ${PREFIX}/lib/linux-claude/claude
+	${CP} ${WRKSRC}/package.json ${PREFIX}/lib/linux-claude/
+	${INSTALL_DATA} ${WRKSRC}/claude ${PREFIX}/lib/linux-claude/claude
+	chmod 555 ${PREFIX}/lib/linux-claude/claude
+#	brandelf -t Linux ${PREFIX}/lib/linux-claude/claude
 	${INSTALL_SCRIPT} ${WRKDIR}/claude ${PREFIX}/bin/claude
 
 .include <bsd.port.mk>

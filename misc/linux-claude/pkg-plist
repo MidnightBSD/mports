@@ -1,3 +1,4 @@
 bin/claude
 lib/linux-claude/claude
+lib/linux-claude/package.json
 @dir lib/linux-claude
