@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	3.11.1
+PORTVERSION=	3.14.0
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -82,6 +82,9 @@ post-install:
 		${FAKE_DESTDIR}/var/log/rspamd \
 		${FAKE_DESTDIR}/var/db/rspamd \
 		${FAKE_DESTDIR}/var/run/rspamd
+	# Linux specific
+	${RM} ${FAKE_DESTDIR}/${ETCDIR}/rspamd.systemd.conf
+	${RM} ${FAKE_DESTDIR}/${ETCDIR}/rspamd.sysvinit.conf
 	${INSTALL_DATA} ${WRKDIR}/rspamd.newsyslog.conf.sample ${ETCDIR}
 	@${MKDIR} ${PREFIX}/etc/newsyslog.conf.d
 	${LN} -sf ${ETCDIR}/rspamd.newsyslog.conf ${PREFIX}/etc/newsyslog.conf.d
