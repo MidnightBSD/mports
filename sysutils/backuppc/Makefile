@@ -1,5 +1,6 @@
 PORTNAME=	backuppc
 PORTVERSION=	3.3.2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/backuppc/backuppc/releases/download/${PORTVERSION}/ \
 		SF
@@ -90,7 +91,7 @@ do-install:
 		--batch				\
 		--backuppc-user ${USERS}	\
 		--bin-path perl=${PERL}		\
-		--config-dir ${ETCDIR}		\
+		--config-dir ${TRUE_PREFIX}/etc/backuppc		\
 		--cgi-dir ${CGIDIR}		\
 		--data-dir /var/db/BackupPC	\
 		--dest-dir ${FAKE_DESTDIR}		\
@@ -118,8 +119,13 @@ do-install:
 	${MKDIR} ${PREFIX}/libexec/backuppc
 	${CP} ${WRKSRC}/update.pl ${PREFIX}/libexec/backuppc/update.pl
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/lib/BackupPC/Lib.pm \
-		${PREFIX}/share/doc/backuppc/BackupPC.html \
-		${PREFIX}/share/doc/backuppc/BackupPC.pod
+		${DOCSDIR}/BackupPC.html \
+		${DOCSDIR}/BackupPC.pod \
+		${WWWDIR}/BackupPC.html
+	@${RM} ${PREFIX}/lib/BackupPC/Lib.pm.bak \
+		${DOCSDIR}/BackupPC.html.bak \
+		${DOCSDIR}/BackupPC.pod.bak \
+		${WWWDIR}/BackupPC.html.bak
 
 
 .include <bsd.port.mk>
