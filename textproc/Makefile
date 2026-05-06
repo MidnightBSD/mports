@@ -132,6 +132,7 @@
     SUBDIR += libkmfl
     SUBDIR += libkolabxml
     SUBDIR += liblrdf
+    SUBDIR += libmwaw03
     SUBDIR += librevenge
     SUBDIR += libsass
     SUBDIR += libtextcat
