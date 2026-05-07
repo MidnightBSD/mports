@@ -12,6 +12,8 @@ LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-loofah>=2.21<3:textproc/rubygem-loofah \
 		rubygem-nokogiri>=1.15.7<2:textproc/rubygem-nokogiri
+BUILD_DEPENDS+=	rubygem-loofah>=2.21<3:textproc/rubygem-loofah \
+		rubygem-nokogiri>=1.15.7<2:textproc/rubygem-nokogiri
 
 USES=		cpe gem
 
