@@ -88,6 +88,7 @@
     SUBDIR += py-hf-xet
     SUBDIR += py-huggingface-hub
     SUBDIR += py-pexpect
+    SUBDIR += py-python-utils
     SUBDIR += py-pytorch
     SUBDIR += py-spdx-tools
     SUBDIR += py-tqdm
