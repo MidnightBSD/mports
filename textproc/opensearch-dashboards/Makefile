@@ -1,6 +1,5 @@
 PORTNAME=	opensearch-dashboards
-DISTVERSION?=	2.17.1
-PORTREVISION?=	1
+DISTVERSION?=	3.6.0
 DISTVERSIONSUFFIX=	-linux-x64
 CATEGORIES=	textproc www
 MASTER_SITES=	https://artifacts.opensearch.org/releases/bundle/${PORTNAME}/${DISTVERSION}/
@@ -12,11 +11,11 @@ WWW=		https://opensearch.org
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-CONFLICTS?=	opensearch-dashboards210 opensearch-dashboards213 opensearch-dashboards216
+CONFLICTS?=	opensearch-dashboards210 opensearch-dashboards213 opensearch-dashboards216 opensearch-dashboards217
 
-BUILD_DEPENDS=	npm-node18>0:www/npm-node18
+BUILD_DEPENDS=	npm-node22>0:www/npm-node22
 
-USES=		nodejs:18,build,run python:build
+USES=		nodejs:22,build,run python:build
 USE_RC_SUBR=	${PORTNAME}
 
 SUB_FILES=	pkg-deinstall
@@ -26,7 +25,7 @@ SUB_LIST=	PORTNAME="${PORTNAME}" \
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-NODE_VER=	18.18.0
+NODE_VER=	22.22.0
 NO_BUILD=	yes
 
 _DEVDIR=	${WRKDIR}/.devdir
