@@ -1,5 +1,5 @@
 PORTNAME=	linux-claude
-DISTVERSION=	2.1.132
+DISTVERSION=	2.1.128
 CATEGORIES=	misc linux
 
 # npm tarball for the Linux x64 native binary package
@@ -21,7 +21,7 @@ ONLY_FOR_ARCHS_REASON=	Only Linux x86_64 binary is provided upstream
 
 # Requires Rocky Linux 9 base for glibc 2.34+
 USES=		linux:rl9
-USE_LINUX=	base
+USE_LINUX=	base devtools elfutils-libs libtool-ltdl
 
 NO_BUILD=	yes
 
