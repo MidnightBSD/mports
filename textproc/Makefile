@@ -135,6 +135,7 @@
     SUBDIR += libmwaw03
     SUBDIR += libnumbertext
     SUBDIR += libodfgen01
+    SUBDIR += libqxp
     SUBDIR += librevenge
     SUBDIR += libsass
     SUBDIR += libtextcat
