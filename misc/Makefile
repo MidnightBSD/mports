@@ -101,6 +101,8 @@
     SUBDIR += qt6ct
     SUBDIR += rubygem-mime-types
     SUBDIR += rubygem-mime-types-data
+    SUBDIR += rubygem-mime-types-gitlab
+    SUBDIR += rubygem-rabbit
     SUBDIR += seabios
     SUBDIR += shared-mime-info
     SUBDIR += shc

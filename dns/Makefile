@@ -62,6 +62,8 @@
     SUBDIR += py-pycares
     SUBDIR += py-tld
     SUBDIR += py-tldextract
+    SUBDIR += rubygem-google-apis-dns_v1
+    SUBDIR += rubygem-google-apis-dns_v1-gitlab
     SUBDIR += rubygem-public_suffix
     SUBDIR += samba-nsupdate
     SUBDIR += sleuth
