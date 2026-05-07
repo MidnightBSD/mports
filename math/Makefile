@@ -90,6 +90,7 @@
     SUBDIR += mpc
     SUBDIR += mpdecimal
     SUBDIR += mpfr
+    SUBDIR += mumps
     SUBDIR += nauty
     SUBDIR += nlopt
     SUBDIR += ntl
