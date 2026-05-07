@@ -6,3 +6,7 @@ add the following to /etc/sysctl.conf:
 Or apply it immediately without rebooting:
 
     sysctl compat.linux.debug=0
+
+If you are installing linux emulation for this port, 
+    sysrc linux_enable=YES
+    service linux start
