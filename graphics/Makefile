@@ -208,6 +208,7 @@
     SUBDIR += libosmesa
     SUBDIR += libplacebo
     SUBDIR += libpotrace
+    SUBDIR += libQGLViewer
     SUBDIR += libqrencode
     SUBDIR += libraw
     SUBDIR += librsvg2

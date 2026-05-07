@@ -57,6 +57,7 @@
     SUBDIR += eigen3
     SUBDIR += facile
     SUBDIR += fast_float
+    SUBDIR += fcl05
     SUBDIR += fftw3
     SUBDIR += fftw3-float
     SUBDIR += fftw3-long
@@ -82,6 +83,7 @@
     SUBDIR += ldouble
     SUBDIR += lemon
     SUBDIR += lib2geom
+    SUBDIR += libccd
     SUBDIR += libqalculate
     SUBDIR += libtommath
     SUBDIR += lp_solve
@@ -94,6 +96,8 @@
     SUBDIR += nauty
     SUBDIR += nlopt
     SUBDIR += ntl
+    SUBDIR += octomap
+    SUBDIR += octave
     SUBDIR += openblas
     SUBDIR += or-tools
     SUBDIR += osi
@@ -139,6 +143,7 @@
     SUBDIR += py-triangle
     SUBDIR += qhull
     SUBDIR += qhull5
+    SUBDIR += qrupdate
     SUBDIR += rocs
     SUBDIR += rubygem-bigdecimal
     SUBDIR += rubygem-bigdecimal-gitlab
@@ -163,6 +168,7 @@
     SUBDIR += suitesparse-spex
     SUBDIR += suitesparse-spqr
     SUBDIR += suitesparse-umfpack
+    SUBDIR += sundials
     SUBDIR += superlu
     SUBDIR += tlfloat
     SUBDIR += tomsfastmath
