@@ -216,6 +216,7 @@
     SUBDIR += libspiro
     SUBDIR += libspng
     SUBDIR += libsvg
+    SUBDIR += libultrahdr
     SUBDIR += libvisual04
     SUBDIR += libwmf
     SUBDIR += libwmf-nox11
