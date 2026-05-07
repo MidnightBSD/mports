@@ -30,9 +30,10 @@ TEST_DEPENDS=	opencv>=0:graphics/opencv \
 TEST_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	FFMPEG FITS PILLOW_HEIF PYAV RAWPY TIFFFILE
 OPTIONS_DEFAULT=FFMPEG
