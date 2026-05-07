@@ -279,6 +279,7 @@
     SUBDIR += remmina
     SUBDIR += remotedesk
     SUBDIR += rsync
+    SUBDIR += rubygem-azure-core
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-domain_name
