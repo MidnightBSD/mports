@@ -14,6 +14,9 @@ LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 RUN_DEPENDS=	rubygem-activesupport60>=5.0.0:devel/rubygem-activesupport60 \
 		rubygem-minitest>=0:devel/rubygem-minitest \
 		rubygem-nokogiri>=1.6:textproc/rubygem-nokogiri
+BUILD_DEPENDS+=	rubygem-activesupport60>=5.0.0:devel/rubygem-activesupport60 \
+		rubygem-minitest>=0:devel/rubygem-minitest \
+		rubygem-nokogiri>=1.6:textproc/rubygem-nokogiri
 
 USES=		gem
 
