@@ -10,6 +10,8 @@ COMMENT=	Base set of packages needed in Linux mode (Rocky Linux ${LINUX_DIST_VER
 
 LICENSE=	bsd2
 
+CONFLICTS=	linux_base-c7-*
+
 SKIP_FAKE_ALL=	yes
 
 USES=		linux:rl9
