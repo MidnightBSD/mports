@@ -53,6 +53,7 @@ JDK_MAJOR_VERSION=	8
 JDK_UPDATE_VERSION=	332
 JDK_BUILD_NUMBER=	09
 BSD_JDK_VERSION=	1
+PORTREVISION=	1
 JTREG_VERSION=		4.1
 JTREG_BUILD_NUMBER=	b08
 
@@ -82,14 +83,17 @@ CONFIGURE_ARGS+=	--disable-freetype-bundling \
 			--with-jvm-variants=${JDK_BUILD_JVM} \
 			--with-milestone=fcs \
 			--with-package-path=${LOCALBASE} \
-			--with-zlib=system
+			--with-zlib=system \
+			--with-extra-cflags="-fno-delete-null-pointer-checks -Wno-register" \
+			--with-extra-cxxflags="-fno-delete-null-pointer-checks -Wno-register" \
+			--with-extra-ldflags="-Wl,--undefined-version"
 CONFIGURE_SCRIPT=	../../configure
 CONFIGURE_WRKSRC=	${WRKSRC}/common/autoconf
 
 OPTIONS_DEFINE=		ALSA POLICY TZUPDATE X11 FONTCONFIG
 OPTIONS_DEFINE_armv6=	FPUHACK
 OPTIONS_DEFINE_armv7=	FPUHACK
-OPTIONS_DEFAULT=	ALSA POLICY TZUPDATE X11
+OPTIONS_DEFAULT=	ALSA POLICY TZUPDATE X11 FONTCONFIG
 OPTIONS_DEFAULT_armv6=	FPUHACK
 OPTIONS_DEFAULT_armv7=	FPUHACK
 FPUHACK_DESC=		Hack denormalized numbers in flush-to-zero mode
@@ -202,14 +206,6 @@ LIB_DEPENDS+=	libffi.so:devel/libffi
 .if ${COMPILER_TYPE} == clang
 MAKE_ENV+=	COMPILER_WARNINGS_FATAL=false USE_CLANG=true
 CONFIGURE_ENV+=	LIBCXX="-lc++"
-.if ${COMPILER_VERSION} >= 130
-# PR258954: OpenJDK <= 13 crash due to undefined behavior with clang >= 13
-# See also https://bugs.openjdk.java.net/browse/JDK-8229258
-LLVM_VER=	12
-BUILD_DEPENDS+=	clang${LLVM_VER}:devel/llvm${LLVM_VER}
-CC=		${LOCALBASE}/bin/clang${LLVM_VER}
-CXX=		${LOCALBASE}/bin/clang++${LLVM_VER}
-.endif
 .endif
 
 # GCC is broken with PCH: https://lists.freebsd.org/pipermail/svn-src-all/2015-March/101722.html
@@ -245,14 +241,16 @@ post-patch:
 	    -e 's|%%OBJCOPY%%|${OBJCOPY}|' \
 	    ${WRKSRC}/configure \
 	    ${WRKSRC}/common/autoconf/toolchain.m4 \
-	    ${WRKSRC}/jdk/make/lib/Awt2dLibraries.gmk \
 	    ${WRKSRC}/jdk/make/lib/NioLibraries.gmk \
 	    ${WRKSRC}/jdk/src/share/classes/com/sun/java/swing/plaf/gtk/Metacity.java \
 	    ${WRKSRC}/jdk/src/share/classes/sun/print/PSPrinterJob.java \
 	    ${WRKSRC}/jdk/src/solaris/classes/sun/nio/fs/BsdFileSystemProvider.java
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
+	    -e 's|%%ICONV_CPPFLAGS%%|${ICONV_CPPFLAGS}|' \
+	    -e 's|%%ICONV_LDFLAGS%%|${ICONV_LDFLAGS}|' \
+	    ${WRKSRC}/jdk/make/lib/Awt2dLibraries.gmk
 	@${REINPLACE_CMD} -e 's|%%ICONV_CPPFLAGS%%|${ICONV_CPPFLAGS}|' \
 	    -e 's|%%ICONV_LDFLAGS%%|${ICONV_LDFLAGS}|' \
-	    ${WRKSRC}/jdk/make/lib/Awt2dLibraries.gmk \
 	    ${WRKSRC}/jdk/make/lib/CoreLibraries.gmk \
 	    ${WRKSRC}/jdk/make/lib/ServiceabilityLibraries.gmk
 .if defined(BUILD_JRE)
@@ -291,15 +289,17 @@ do-install:
 	${FIND} bin jre/bin -type f -exec ${CHMOD} ${BINMODE} {} \; && \
 	${CHMOD} ${BINMODE} jre/${JDK_JVMDIR}/jexec \
 	    jre/${JDK_JVMDIR}/jspawnhelper ${JDK_JVMDIR}/jexec
-	@${ECHO_CMD} "@dir ${INSTALLDIR}/jre/lib/applet" >> ${TMPPLIST}
+	@${ECHO_CMD} "@dir ${PKGBASE}/jre/lib/applet" >> ${TMPPLIST}
 .else
 	@cd ${JRE_IMAGEDIR} && ${COPYTREE_SHARE} . ${INSTALLDIR}
 	@cd ${INSTALLDIR} && \
 	${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \; && \
 	${CHMOD} ${BINMODE} ${JDK_JVMDIR}/jexec ${JDK_JVMDIR}/jspawnhelper
-	@${ECHO_CMD} "@dir ${INSTALLDIR}/lib/applet" >> ${TMPPLIST}
+	@${ECHO_CMD} "@dir ${PKGBASE}/lib/applet" >> ${TMPPLIST}
 .endif
-	@${ECHO_CMD} "@javavm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
+	@${ECHO_CMD} "@javavm ${PKGBASE}/bin/java" >> ${TMPPLIST}
+	@-${FIND} ${INSTALLDIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
+	@-${FIND} ${INSTALLDIR} -type f -perm +111 -exec ${STRIP_CMD} {} +
 	@${FIND} ${INSTALLDIR} -not -type d | ${SORT} | \
 	    ${SED} -e 's|^${PREFIX}/||' >> ${TMPPLIST}
 
