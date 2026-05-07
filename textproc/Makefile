@@ -231,6 +231,7 @@
     SUBDIR += p5-Text-Balanced
     SUBDIR += p5-Text-CSV
     SUBDIR += p5-Text-CSV_XS
+    SUBDIR += p5-Text-CharWidth
     SUBDIR += p5-Text-Diff
     SUBDIR += p5-Text-Glob
     SUBDIR += p5-Text-ParseWords
@@ -243,6 +244,7 @@
     SUBDIR += p5-Text-Template
     SUBDIR += p5-Text-TestBase
     SUBDIR += p5-Text-WordDiff
+    SUBDIR += p5-Text-WrapI18N
     SUBDIR += p5-Unicode-EastAsianWidth
     SUBDIR += p5-Unicode-LineBreak
     SUBDIR += p5-XML-DOM
@@ -300,6 +302,7 @@
     SUBDIR += php83-xmlreader
     SUBDIR += php83-xmlwriter
     SUBDIR += php83-xsl
+    SUBDIR += po4a
     SUBDIR += popup
     SUBDIR += pugixml
     SUBDIR += py-CommonMark
@@ -395,7 +398,9 @@
     SUBDIR += py-sphinx-autodoc-typehints
     SUBDIR += py-sphinx-basic-ng
     SUBDIR += py-sphinx-copybutton
+    SUBDIR += py-sphinx-design
     SUBDIR += py-sphinx-inline-tabs
+    SUBDIR += py-sphinx-issues
     SUBDIR += py-sphinx-markdown-tables
     SUBDIR += py-sphinx-me
     SUBDIR += py-sphinx-multiversion-zrepl
@@ -442,10 +447,12 @@
     SUBDIR += redland
     SUBDIR += ripgrep
     SUBDIR += rubygem-asciidoctor
+    SUBDIR += rubygem-asciidoctor-pdf
     SUBDIR += rubygem-case_transform
     SUBDIR += rubygem-chef-gyoku
     SUBDIR += rubygem-coderay
     SUBDIR += rubygem-colorator
+    SUBDIR += rubygem-css_parser
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-emot
     SUBDIR += rubygem-fog-xml

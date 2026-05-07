@@ -26,6 +26,7 @@
     SUBDIR += bwi-firmware-kmod
     SUBDIR += bwn-firmware-kmod
     SUBDIR += calendarsupport
+    SUBDIR += cppzmq
     SUBDIR += czmq
     SUBDIR += daq
     SUBDIR += dhcp6
@@ -165,6 +166,7 @@
     SUBDIR += netcat
     SUBDIR += netclasses
     SUBDIR += nload
+    SUBDIR += nng
     SUBDIR += norm
     SUBDIR += nss_ldap
     SUBDIR += ntp

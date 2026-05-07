@@ -39,6 +39,7 @@
     SUBDIR += gnome-mime-data
     SUBDIR += gnome-user-docs
     SUBDIR += goplaces
+    SUBDIR += gpsim
     SUBDIR += grc
     SUBDIR += help2man
     SUBDIR += hicolor-icon-theme
@@ -53,6 +54,7 @@
     SUBDIR += klettres
     SUBDIR += kwordquiz
     SUBDIR += libkeduvocdocument
+    SUBDIR += libspnav
     SUBDIR += libuuid
     SUBDIR += linux-c7-sdl12-extralibs
     SUBDIR += linux-rl9-sdl12-extralibs

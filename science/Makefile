@@ -26,6 +26,9 @@
     SUBDIR += netcdf
     SUBDIR += openbabel
     SUBDIR += paje
+    SUBDIR += py-h5py
+    SUBDIR += py-meshio
+    SUBDIR += py-netCDF4
     SUBDIR += py-scikit-learn
     SUBDIR += py-scikit-sparse
     SUBDIR += py-scipy

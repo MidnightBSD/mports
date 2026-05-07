@@ -19,7 +19,9 @@
     SUBDIR += gtk20
     SUBDIR += gtk30
     SUBDIR += gtk40
+    SUBDIR += gtkextra
     SUBDIR += gtkglext
+    SUBDIR += gtkglextmm
     SUBDIR += gtkmm24
     SUBDIR += gtkmm30
     SUBDIR += gtkmm40
@@ -137,6 +139,7 @@
     SUBDIR += sdl2_pango
     SUBDIR += sdl_pango
     SUBDIR += shared-desktop-ontologies
+    SUBDIR += soqt
     SUBDIR += tepl6
     SUBDIR += tk-wrapper
     SUBDIR += tk86

@@ -62,6 +62,7 @@
     SUBDIR += fftw3
     SUBDIR += fftw3-float
     SUBDIR += fftw3-long
+    SUBDIR += fparser
     SUBDIR += gf2x
     SUBDIR += glm
     SUBDIR += glpk
@@ -96,7 +97,9 @@
     SUBDIR += mpc
     SUBDIR += mpdecimal
     SUBDIR += mpfr
+    SUBDIR += mpir
     SUBDIR += mumps
+    SUBDIR += muparser
     SUBDIR += nauty
     SUBDIR += nlopt
     SUBDIR += ntl
@@ -125,6 +128,7 @@
     SUBDIR += php83-bcmath
     SUBDIR += php83-gmp
     SUBDIR += py-MutatorMath
+    SUBDIR += py-altgraph
     SUBDIR += py-bottleneck
     SUBDIR += py-contourpy
     SUBDIR += py-gmpy2
@@ -138,6 +142,7 @@
     SUBDIR += py-numexpr
     SUBDIR += py-numpy
     SUBDIR += py-numpy-stl
+    SUBDIR += py-numpy1
     SUBDIR += py-pandas
     SUBDIR += py-pyclipper
     SUBDIR += py-python-fcl
@@ -154,6 +159,7 @@
     SUBDIR += rubygem-matrix
     SUBDIR += rubygem-prime
     SUBDIR += sleef
+    SUBDIR += spooles
     SUBDIR += suitesparse
     SUBDIR += suitesparse-amd
     SUBDIR += suitesparse-btf

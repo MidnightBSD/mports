@@ -1,5 +1,6 @@
     COMMENT = Graphics tools and libraries
 
+    SUBDIR += Coin
     SUBDIR += GraphicsMagick
     SUBDIR += Hermes
     SUBDIR += ImageMagick6
@@ -95,6 +96,7 @@
     SUBDIR += gimp-data-extras
     SUBDIR += gle
     SUBDIR += glew
+    SUBDIR += glew-wayland
     SUBDIR += glfw
     SUBDIR += glitz
     SUBDIR += glslang
@@ -104,6 +106,7 @@
     SUBDIR += gnustep-slideshow
     SUBDIR += gnustep-slideshowkit
     SUBDIR += gocr
+    SUBDIR += goocanvas2
     SUBDIR += goom
     SUBDIR += gpu-firmware-amd-kmod
     SUBDIR += gpu-firmware-intel-kmod
@@ -170,6 +173,7 @@
     SUBDIR += lcms2
     SUBDIR += leptonica
     SUBDIR += lerc
+    SUBDIR += lib3ds
     SUBDIR += libGLU
     SUBDIR += libart_lgpl
     SUBDIR += libavif
@@ -275,6 +279,7 @@
     SUBDIR += nvidia-texture-tools
     SUBDIR += ocrad
     SUBDIR += okular
+    SUBDIR += opencsg
     SUBDIR += opencv
     SUBDIR += openexr
     SUBDIR += openjpeg
@@ -304,7 +309,9 @@
     SUBDIR += plasma6-spectacle
     SUBDIR += plotutils
     SUBDIR += png
+    SUBDIR += pnglite
     SUBDIR += podofo
+    SUBDIR += podofo09
     SUBDIR += polyclipping
     SUBDIR += poppler
     SUBDIR += poppler-data
@@ -322,12 +329,15 @@
     SUBDIR += py-cairosvg
     SUBDIR += py-fiona
     SUBDIR += py-gdal
+    SUBDIR += py-geomdl
     SUBDIR += py-geopandas
     SUBDIR += py-graphviz
     SUBDIR += py-imageio
     SUBDIR += py-imageio-ffmpeg
     SUBDIR += py-imagesize
     SUBDIR += py-pillow
+    SUBDIR += py-pivy
+    SUBDIR += py-plotly
     SUBDIR += py-png
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
@@ -407,9 +417,11 @@
     SUBDIR += sekrit-twc-zimg
     SUBDIR += shaderc
     SUBDIR += silgraphite
+    SUBDIR += simage
     SUBDIR += skanlite
     SUBDIR += spirv-tools
     SUBDIR += svgalib
+    SUBDIR += svgpp
     SUBDIR += sxiv
     SUBDIR += tesseract
     SUBDIR += tesseract-data

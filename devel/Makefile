@@ -198,6 +198,8 @@
     SUBDIR += capstone
     SUBDIR += cargo-c
     SUBDIR += catch
+    SUBDIR += catch2
+    SUBDIR += cbang
     SUBDIR += ccache
     SUBDIR += cereal
     SUBDIR += cgit
@@ -214,6 +216,7 @@
     SUBDIR += compiler-rt
     SUBDIR += concurrencykit
     SUBDIR += courier-unicode
+    SUBDIR += cpptest
     SUBDIR += cppunit
     SUBDIR += crc32c
     SUBDIR += cscope
@@ -251,6 +254,7 @@
     SUBDIR += doxygen
     SUBDIR += dulwich
     SUBDIR += e_dbus
+    SUBDIR += easyexif
     SUBDIR += efivar
     SUBDIR += efl
     SUBDIR += eggdbus
@@ -269,6 +273,7 @@
     SUBDIR += fossology-nomos-standalone
     SUBDIR += freebsd-sysroot
     SUBDIR += fstrm
+    SUBDIR += fungw
     SUBDIR += fxdiv
     SUBDIR += gamin
     SUBDIR += gccmakedep
@@ -279,6 +284,7 @@
     SUBDIR += gdcm
     SUBDIR += geany
     SUBDIR += gengetopt
+    SUBDIR += genht
     SUBDIR += gettext
     SUBDIR += gettext-lint
     SUBDIR += gettext-msghack
@@ -338,6 +344,7 @@
     SUBDIR += googletest
     SUBDIR += gorm
     SUBDIR += gperf
+    SUBDIR += gputils
     SUBDIR += gradle
     SUBDIR += gradle-completion
     SUBDIR += gradle6
@@ -482,6 +489,7 @@
     SUBDIR += libffi
     SUBDIR += libfmt
     SUBDIR += libftdi
+    SUBDIR += libftdi1
     SUBDIR += libfwnt
     SUBDIR += libgdata
     SUBDIR += libgee
@@ -532,6 +540,7 @@
     SUBDIR += libsoup3
     SUBDIR += libspice-server
     SUBDIR += libstatgrab
+    SUBDIR += libstroke
     SUBDIR += libsysctlmibinfo2
     SUBDIR += libsysinfo
     SUBDIR += libtextstyle
@@ -1254,6 +1263,7 @@
     SUBDIR += py-apispec-webframeworks
     SUBDIR += py-appdirs
     SUBDIR += py-argcomplete
+    SUBDIR += py-arpeggio
     SUBDIR += py-arrow
     SUBDIR += py-asn1crypto
     SUBDIR += py-aspectlib
@@ -1306,6 +1316,7 @@
     SUBDIR += py-cffi
     SUBDIR += py-cfgv
     SUBDIR += py-cfn-lint
+    SUBDIR += py-cftime
     SUBDIR += py-characteristic
     SUBDIR += py-cheetah3
     SUBDIR += py-cliapp
@@ -1361,6 +1372,7 @@
     SUBDIR += py-factory-boy
     SUBDIR += py-fasteners
     SUBDIR += py-fastimport
+    SUBDIR += py-find-libpython
     SUBDIR += py-fixtures
     SUBDIR += py-flake8
     SUBDIR += py-flaky
@@ -1428,6 +1440,7 @@
     SUBDIR += py-joblib
     SUBDIR += py-jsbeautifier
     SUBDIR += py-jschema-to-python
+    SUBDIR += py-jschon
     SUBDIR += py-jsmin
     SUBDIR += py-jsondiff
     SUBDIR += py-jsonform
@@ -1463,6 +1476,7 @@
     SUBDIR += py-marshmallow
     SUBDIR += py-maturin
     SUBDIR += py-mccabe
+    SUBDIR += py-memory-profiler
     SUBDIR += py-mergedeep
     SUBDIR += py-mock
     SUBDIR += py-molecule
@@ -1541,6 +1555,8 @@
     SUBDIR += py-pygobject
     SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
+    SUBDIR += py-pyinstaller
+    SUBDIR += py-pyinstaller-hooks-contrib
     SUBDIR += py-pynest2d
     SUBDIR += py-pyparsing
     SUBDIR += py-pyproject-api
@@ -1560,6 +1576,7 @@
     SUBDIR += py-pytest-console-scripts
     SUBDIR += py-pytest-cov
     SUBDIR += py-pytest-datadir
+    SUBDIR += py-pytest-drop-dup-tests
     SUBDIR += py-pytest-enabler
     SUBDIR += py-pytest-env
     SUBDIR += py-pytest-flake8
@@ -1602,6 +1619,7 @@
     SUBDIR += py-pytz
     SUBDIR += py-pytzdata
     SUBDIR += py-pyudev
+    SUBDIR += py-pyusb
     SUBDIR += py-pyyaml
     SUBDIR += py-pyyaml_env_tag
     SUBDIR += py-qt5
@@ -1667,6 +1685,7 @@
     SUBDIR += py-subprocess-tee
     SUBDIR += py-subversion
     SUBDIR += py-sure
+    SUBDIR += py-tables
     SUBDIR += py-tabulate
     SUBDIR += py-tblib
     SUBDIR += py-tempora
@@ -1746,6 +1765,8 @@
     SUBDIR += pydbus-common
     SUBDIR += pygobject-common
     SUBDIR += pylint
+    SUBDIR += pyside6
+    SUBDIR += pyside6-tools
     SUBDIR += qca
     SUBDIR += qcoro
     SUBDIR += qgit
@@ -1838,6 +1859,7 @@
     SUBDIR += rubygem-aliyun-sdk
     SUBDIR += rubygem-aliyun-sdk-gitlab
     SUBDIR += rubygem-annoy
+    SUBDIR += rubygem-ascii85
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-async
     SUBDIR += rubygem-attic
@@ -2036,6 +2058,7 @@
     SUBDIR += rubygem-forwardable
     SUBDIR += rubygem-gapic-common-gitlab
     SUBDIR += rubygem-graphql
+    SUBDIR += rubygem-hashery
     SUBDIR += rubygem-hashie-gitlab
     SUBDIR += rubygem-ice_nine
     SUBDIR += rubygem-io-endpoint
@@ -2210,6 +2233,7 @@
     SUBDIR += sdl12-compat
     SUBDIR += sdl20
     SUBDIR += serd
+    SUBDIR += shiboken6
     SUBDIR += shunit2
     SUBDIR += sigar
     SUBDIR += signal-fts5-extension
@@ -2263,6 +2287,7 @@
     SUBDIR += utf8cpp
     SUBDIR += uthash
     SUBDIR += valgrind
+    SUBDIR += vcglib
     SUBDIR += viewvc-devel
     SUBDIR += wasi-compiler-rt
     SUBDIR += wasi-compiler-rt17

@@ -1,0 +1,24 @@
+PORTNAME=	pdf-core
+PORTVERSION=	0.9.0
+CATEGORIES=	print rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	09
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	Ruby library to render PDF documents
+WWW=		https://prawnpdf.org/ \
+		https://github.com/prawnpdf/pdf-core
+
+LICENSE=	gpl2 gpl3 ruby
+LICENSE_COMB=	dual
+LICENSE_FILE_gpl2=	${WRKSRC}/gpl2
+LICENSE_FILE_gpl3=	${WRKSRC}/gpl3
+LICENSE_FILE_ruby=	${WRKSRC}/LICENSE
+
+USES=		gem
+
+NO_ARCH=	yes
+
+PORTSCOUT=	limit:^0\.9\.
+
+.include <bsd.port.mk>

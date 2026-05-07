@@ -46,6 +46,7 @@
     SUBDIR += gscheme
     SUBDIR += guile
     SUBDIR += guile-aclocal
+    SUBDIR += guile1
     SUBDIR += guile2
     SUBDIR += guile3
     SUBDIR += jruby
@@ -97,6 +98,7 @@
     SUBDIR += php82-extensions
     SUBDIR += php83
     SUBDIR += php83-extensions
+    SUBDIR += py-textX
     SUBDIR += python
     SUBDIR += python2
     SUBDIR += python27
