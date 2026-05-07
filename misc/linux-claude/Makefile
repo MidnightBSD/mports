@@ -1,5 +1,5 @@
 PORTNAME=	linux-claude
-DISTVERSION=	2.1.128
+DISTVERSION=	2.1.132
 CATEGORIES=	misc linux
 
 # npm tarball for the Linux x64 native binary package
