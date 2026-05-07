@@ -1186,6 +1186,7 @@
     SUBDIR += pear-Horde_Support
     SUBDIR += pear-Horde_Timezone
     SUBDIR += pear-Horde_Token
+    SUBDIR += pear-Horde_Thrift
     SUBDIR += pear-Horde_Translation
     SUBDIR += pear-Horde_Tree
     SUBDIR += pear-Horde_Util

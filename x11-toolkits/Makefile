@@ -96,6 +96,7 @@
     SUBDIR += py-qt5-charts
     SUBDIR += py-qt5-datavis3d
     SUBDIR += py-tkinter
+    SUBDIR += py-wxPython4
     SUBDIR += qt5-charts
     SUBDIR += qt5-datavis3d
     SUBDIR += qt5-declarative

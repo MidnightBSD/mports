@@ -31,6 +31,7 @@
     SUBDIR += gdbm
     SUBDIR += gnats4
     SUBDIR += gom
+    SUBDIR += grass8
     SUBDIR += hiredis
     SUBDIR += kyotocabinet
     SUBDIR += ldb25
