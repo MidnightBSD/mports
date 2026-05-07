@@ -96,7 +96,9 @@ PERL_LEVEL=	${perl_major}${perl_minor}${perl_patch}
 PERL_LEVEL=0
 .  endif # !defined(PERL_LEVEL) && defined(PERL_VERSION)
 
-.  if ${PERL_LEVEL} >= 504000
+.  if ${PERL_LEVEL} >= 504200
+PERL_PORT?=     perl5.42
+.  elif ${PERL_LEVEL} >= 504000
 PERL_PORT?=     perl5.40
 .  elif ${PERL_LEVEL} >= 503800
 PERL_PORT?=     perl5.38
