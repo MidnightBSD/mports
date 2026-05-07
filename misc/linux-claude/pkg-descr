@@ -1,0 +1,10 @@
+Claude Code is Anthropic's AI assistant CLI that enables interactive coding
+assistance directly from the terminal.  It can read and edit files, run
+commands, understand codebases, and help automate software engineering tasks.
+
+This port installs the official Linux x86_64 binary via MidnightBSD's Linux
+emulation layer (Rocky Linux 9 / glibc).  The wrapper script sets the
+required BUN_JSC_useBBQJIT=0 environment variable needed for Bun-based
+runtimes under Linux emulation.
+
+WWW: https://claude.ai/code

@@ -1,0 +1,11 @@
+--- configure.orig	2026-05-05 22:13:33.186191000 -0400
++++ configure	2026-05-05 22:14:05.729500000 -0400
+@@ -15554,7 +15554,7 @@
+ case "$host" in #(
+   *-*-linux*|*-*-cygwin*|*-gnu*) :
+     WM_OSDEP="linux" ; CPPFLAGS="$CPPFLAGS -D_XOPEN_SOURCE=700" ;; #(
+-  *-*-freebsd*|*-k*bsd-gnu*) :
++  *-*-midnightbsd*|*-*-freebsd*|*-k*bsd-gnu*) :
+     WM_OSDEP="bsd"   ; CPPFLAGS="$CPPFLAGS -D_XOPEN_SOURCE=700 -DFREEBSD" ;; #(
+   *-*-netbsd*) :
+     WM_OSDEP="bsd"   ; CPPFLAGS="$CPPFLAGS -DNETBSD" ;; #(

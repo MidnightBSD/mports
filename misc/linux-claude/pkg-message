@@ -1,0 +1,8 @@
+To suppress invalid syscall messages in the kernel log while running claude(1),
+add the following to /etc/sysctl.conf:
+
+    compat.linux.debug=0
+
+Or apply it immediately without rebooting:
+
+    sysctl compat.linux.debug=0

@@ -148,6 +148,8 @@ LIBCLANG_RT_LIBS_riscv64= \
 	ubsan_standalone_cxx.a.syms
 
 RT_ARCHES+=x86_64
+# MidnightBSD/FreeBSD: Linux-only sanitizers (dd, dyndd, fuzzer, msan, xray,
+# tsan, profile) are not built; keep only what compiler-rt produces here.
 LIBCLANG_RT_LIBS_x86_64= \
 	asan-preinit.a \
 	asan_static.a \
@@ -159,29 +161,9 @@ LIBCLANG_RT_LIBS_x86_64= \
 	builtins.a \
 	cfi.a \
 	cfi_diag.a \
-	dd.a \
-	dyndd.so \
-	fuzzer.a \
-	fuzzer_interceptors.a \
-	fuzzer_no_main.a \
-	msan.a \
-	msan.a.syms \
-	msan_cxx.a \
-	msan_cxx.a.syms \
-	xray-basic.a \
-	xray-dso.a \
-	xray-fdr.a \
-	xray-profiling.a \
-	xray.a \
-	profile.a \
 	safestack.a \
 	stats.a \
 	stats_client.a \
-	tsan.a \
-	tsan.a.syms \
-	tsan.so \
-	tsan_cxx.a \
-	tsan_cxx.a.syms \
 	ubsan_minimal.a \
 	ubsan_minimal.a.syms \
 	ubsan_minimal.so \

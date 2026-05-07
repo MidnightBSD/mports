@@ -2,7 +2,7 @@
 
 PORTNAME=	ipfilter2dshield
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	http://www.dshield.org/clients/
 DISTNAME=	dshield-freebsd.pl
@@ -15,11 +15,11 @@ LICENSE=	publicdom
 
 RUN_DEPENDS=	p5-Net-Netmask>=0:net-mgmt/p5-Net-Netmask
 
-USES=		perl5
+USES=		perl5 shebangfix
 SHEBANG_FILES=	${DISTNAME}
 
-PKGMESSAGE=	${WRKDIR}/pkg-message
-PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
+SUB_FILES=	pkg-message
+SUB_LIST=	DISTNAME=${DISTNAME}
 
 NO_BUILD=	yes
 NO_ARCH=	yes
@@ -29,15 +29,10 @@ do-extract:
 	@${MKDIR} ${WRKSRC}
 	${CP} ${DISTDIR}/${DISTFILES} ${WRKSRC}/${DISTNAME}
 
-pre-install:
-	@${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
-		-e "s=%%DISTNAME%%=${DISTNAME}=g" \
-		pkg-message > ${PKGMESSAGE}
-
 do-install:
 	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/${DISTNAME} \
 		${ETCDIR}/${DISTNAME}.sample
-	${INSTALL} -m 760 ${WRKSRC}/${DISTNAME} ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/${DISTNAME} ${PREFIX}/sbin/${DISTNAME}
 
 .include <bsd.port.mk>
