@@ -16,10 +16,13 @@
     SUBDIR += R-cran-snow
     SUBDIR += R-cran-som
     SUBDIR += R-cran-udunits2
+    SUBDIR += cgnslib
+    SUBDIR += getdp
     SUBDIR += hdf5
     SUBDIR += hdf5-110
     SUBDIR += libaec
     SUBDIR += libkml
+    SUBDIR += mmg
     SUBDIR += netcdf
     SUBDIR += openbabel
     SUBDIR += paje
@@ -34,6 +37,7 @@
     SUBDIR += tfel-edf
     SUBDIR += trilinos
     SUBDIR += udunits
+    SUBDIR += voro++
     SUBDIR += yoda
     SUBDIR += zotero
 

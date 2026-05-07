@@ -2,6 +2,7 @@
 
     SUBDIR += PrusaSlicer
     SUBDIR += abc
+    SUBDIR += astk-client
     SUBDIR += astk-serveur
     SUBDIR += cascade
     SUBDIR += cura
@@ -11,6 +12,7 @@
     SUBDIR += fidocadj
     SUBDIR += gdsreader
     SUBDIR += ghdl
+    SUBDIR += gmsh
     SUBDIR += graywolf
     SUBDIR += gtkwave
     SUBDIR += impact

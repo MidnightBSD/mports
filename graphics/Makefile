@@ -414,6 +414,7 @@
     SUBDIR += tesseract-data
     SUBDIR += tgif
     SUBDIR += tiff
+    SUBDIR += tkpng
     SUBDIR += viewnior
     SUBDIR += vigra
     SUBDIR += vips

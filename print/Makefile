@@ -24,6 +24,7 @@ SUBDIR += fpdf
 SUBDIR += freetype2
 SUBDIR += ghostscript10
 SUBDIR += gimp-gutenprint
+SUBDIR += gl2ps
 SUBDIR += gsfonts
 SUBDIR += gspdf
 SUBDIR += gutenprint

@@ -31,6 +31,7 @@
     SUBDIR += R-cran-xts
     SUBDIR += R-cran-zoo
     SUBDIR += adol-c
+    SUBDIR += alglib
     SUBDIR += analitza
     SUBDIR += arpack-ng
     SUBDIR += asl
@@ -70,6 +71,7 @@
     SUBDIR += gnubc
     SUBDIR += gnumeric
     SUBDIR += gnuplot
+    SUBDIR += grace
     SUBDIR += gsl
     SUBDIR += igraph
     SUBDIR += ipopt
@@ -88,6 +90,8 @@
     SUBDIR += libtommath
     SUBDIR += lp_solve
     SUBDIR += matio
+    SUBDIR += mathex
+    SUBDIR += mesquite
     SUBDIR += metis
     SUBDIR += mpc
     SUBDIR += mpdecimal
