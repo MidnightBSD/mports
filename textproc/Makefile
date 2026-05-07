@@ -138,6 +138,7 @@
     SUBDIR += libqxp
     SUBDIR += librevenge
     SUBDIR += libsass
+    SUBDIR += libstaroffice
     SUBDIR += libtextcat
     SUBDIR += libtre
     SUBDIR += libucl
