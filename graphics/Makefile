@@ -322,6 +322,7 @@
     SUBDIR += preview
     SUBDIR += price
     SUBDIR += proj
+    SUBDIR += py-OWSLib
     SUBDIR += py-PyOpenGL
     SUBDIR += py-beziers
     SUBDIR += py-cairo
