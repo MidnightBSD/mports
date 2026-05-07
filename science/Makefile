@@ -31,6 +31,7 @@
     SUBDIR += sigrok-firmware-fx2lafw
     SUBDIR += sigrok-firmware-utils
     SUBDIR += step
+    SUBDIR += tfel-edf
     SUBDIR += trilinos
     SUBDIR += udunits
     SUBDIR += yoda
