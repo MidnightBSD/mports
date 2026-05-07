@@ -117,6 +117,7 @@
     SUBDIR += upclient
     SUBDIR += usbids
     SUBDIR += utouch-kmod
+    SUBDIR += vxl
     SUBDIR += wacli
     SUBDIR += wmScoreBoard
     SUBDIR += wmcalendar

@@ -8,7 +8,7 @@ COMMENT=	Run external commands on Unix or Windows
 WWW=		https://www.chef.io/ \
 		https://github.com/chef/mixlib-shellout
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-chef-utils>=0:sysutils/rubygem-chef-utils

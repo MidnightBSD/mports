@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python 2/3 implementation of tree structure
 WWW=		https://treelib.readthedocs.io/en/latest/
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.13.0:devel/py-six@${PY_FLAVOR}
 

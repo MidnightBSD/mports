@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Click-based argument and option decorators for Python GIS cli
 WWW=		https://pypi.org/project/cligj/
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>4.0:devel/py-click@${PY_FLAVOR}
 
