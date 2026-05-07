@@ -39,7 +39,14 @@ PORTSCOUT=	skipv:5.7.2.1
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	snmpd snmptrapd
 USE_LDCONFIG=	yes
-USES=		cpe libtool perl5 ssl
+LIB_DEPENDS=	libpcre.so:devel/pcre \
+		libpcap.so:net/libpcap \
+		libelf.so:devel/elfutils
+
+USES=		cpe libtool perl5 shebangfix ssl
+SHEBANG_FILES=	local/checkbandwidth local/mib2c local/net-snmp-cert \
+		local/traptoemail local/snmpconf.in local/fixproc \
+		local/tkmib local/ipf-mod.pl local/snmp-bridge-mib
 CPE_VENDOR=	net-snmp
 USE_PERL5=	build run
 USE_CSTD=	c99
