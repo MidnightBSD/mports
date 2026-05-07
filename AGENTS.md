@@ -218,6 +218,7 @@ Each stage has `pre-`, `do-`, and `post-` hook targets that ports can override (
 - `Mk/bsd.destdir.mk` — `DESTDIR`/chroot support
 - `Mk/bsd.gcc.mk` — GCC toolchain handling
 - `Masterdir/Makefile.inc`, `Makefile.local` — per-category and per-port overrides
+- bsd.mport.options.mk is similar to freebsd ports bsd.port.options.mk 
 
 When debugging unexpected build behavior, `bsd.mport.mk` is the authoritative reference for how targets and variables interact.
 
@@ -228,3 +229,6 @@ MidnightBSD 4.0 is based on FreeBSD 13-stable; MidnightBSD 3.2 is based on FreeB
 - libc includes OpenBSD `ohash`; libutil differs from FreeBSD. MidnightBSD 4.0.4+ provides `agev_get_age_bracket(const char *username)`.
 - Base includes `sqlite3` with a `pkg-config` file. Perl is not in base on 4.0+ (use a package if needed).
 - Package management uses `mport` (not FreeBSD `pkg`). Do not reference `pkg` in user-facing instructions, scripts, or documentation; use `mport install` instead.
+
+## Formatting mports Makefile
+- portfmt is an optional utillity that might be installed and can help format Makefiles and check for issues similar to portlint. It's in `ports-mgmt/portfmt` port
