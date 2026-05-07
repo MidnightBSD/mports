@@ -1311,6 +1311,8 @@
     SUBDIR += py-click
     SUBDIR += py-click-default-group
     SUBDIR += py-click-help-colors
+    SUBDIR += py-click-plugins
+    SUBDIR += py-cligj
     SUBDIR += py-cmdtest
     SUBDIR += py-codecov
     SUBDIR += py-colorama
@@ -1468,6 +1470,7 @@
     SUBDIR += py-moto
     SUBDIR += py-msgpack
     SUBDIR += py-multipart
+    SUBDIR += py-munch
     SUBDIR += py-mypy
     SUBDIR += py-mypy_extensions
     SUBDIR += py-natsort

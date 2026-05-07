@@ -325,6 +325,7 @@
     SUBDIR += py-geopandas
     SUBDIR += py-graphviz
     SUBDIR += py-imageio
+    SUBDIR += py-imageio-ffmpeg
     SUBDIR += py-imagesize
     SUBDIR += py-pillow
     SUBDIR += py-png
