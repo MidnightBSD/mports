@@ -10,7 +10,7 @@ COMMENT=	Build backend for CMake based projects
 WWW=		https://scikit-build-core.readthedocs.io/en/latest/ \
 		https://github.com/scikit-build/scikit-build-core
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
