@@ -232,3 +232,6 @@ MidnightBSD 4.0 is based on FreeBSD 13-stable; MidnightBSD 3.2 is based on FreeB
 
 ## Formatting mports Makefile
 - portfmt is an optional utillity that might be installed and can help format Makefiles and check for issues similar to portlint. It's in `ports-mgmt/portfmt` port
+
+## Finding outdated ports
+- portscout is a tool that is optionally installed to find outdated mports that need updating. It's port is located in `ports-mgmt/portscout` and when installed, must be run from it's configuration directory in `/usr/local/etc`  where the portscout.conf file lives. 
