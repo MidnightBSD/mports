@@ -12,7 +12,6 @@ LICENSE_COMB=	multi
 
 BROKEN_armv6=	kokkos assumes a 64-bit build; i.e., 8-byte pointers, but found 4-byte
 BROKEN_armv7=	kokkos assumes a 64-bit build; i.e., 8-byte pointers, but found 4-byte
-BROKEN_i386=	kokkos assumes a 64-bit build; i.e., 8-byte pointers, but found 4-byte
 
 BUILD_DEPENDS=	bash:shells/bash \
 		boost-libs>0:devel/boost-libs \
@@ -94,5 +93,11 @@ post-install:
 	@${RM} ${PREFIX}/include/mpi*.h
 
 # Tests fail to compile, see https://github.com/trilinos/Trilinos/issues/14748
+
+# On 32-bit (i386), sizeof(size_t)=4 < sizeof(long long)=8, which trips a
+# static_assert in Tpetra_Distributor.hpp; disable long long ETI to work around it.
+.if ${ARCH} == i386
+CMAKE_ARGS+=	-DTpetra_INST_INT_LONG_LONG:BOOL=OFF
+.endif
 
 .include <bsd.port.mk>
