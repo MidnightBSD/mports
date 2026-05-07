@@ -1648,6 +1648,7 @@
     SUBDIR += py-ruamel.yaml
     SUBDIR += py-ruamel.yaml.clib
     SUBDIR += py-sarif-om
+    SUBDIR += py-scikit-build-core
     SUBDIR += py-scripttest
     SUBDIR += py-semantic-version
     SUBDIR += py-semver
