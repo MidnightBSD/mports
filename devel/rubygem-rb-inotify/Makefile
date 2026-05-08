@@ -10,6 +10,7 @@ WWW=		https://github.com/guard/rb-inotify
 LICENSE=	mit
 
 LIB_DEPENDS=	libinotify.so:devel/libinotify
+BUILD_DEPENDS=	rubygem-ffi>=1.0<2:devel/rubygem-ffi
 RUN_DEPENDS=	rubygem-ffi>=1.0<2:devel/rubygem-ffi
 
 USES=		gem
