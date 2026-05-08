@@ -361,7 +361,10 @@
     SUBDIR += rubygem-async-pool
     SUBDIR += rubygem-async-rest
     SUBDIR += rubygem-cgi
+    SUBDIR += rubygem-cookiejar
     SUBDIR += rubygem-crass
+    SUBDIR += rubygem-em-http-request
+    SUBDIR += rubygem-em-socksify
     SUBDIR += rubygem-erubi
     SUBDIR += rubygem-erubis
     SUBDIR += rubygem-ethon
