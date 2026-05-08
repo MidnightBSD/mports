@@ -25,8 +25,8 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 
 CONFLICTS_INSTALL=	firebird30
 
-USES=		cpe gmake pkgconfig localbase:ldflags libedit tar:xz
-USE_CXXSTD=	c++11
+USES=		cpe gmake iconv pkgconfig localbase:ldflags libedit tar:xz
+USE_CXXSTD=	c++17
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 CPE_VENDOR=	firebirdsql
@@ -127,6 +127,7 @@ MAKE_ENV+=	IsServer=Y
 
 post-patch:
 	${FIND} ${WRKSRC} -name "*.sh" -exec ${CHMOD} +x {} \+
+	${FIND} ${WRKSRC}/src/include/firebird -name "*.orig" -exec ${RM} {} +
 	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
 		${WRKSRC}/builds/install/misc/firebird.conf
 

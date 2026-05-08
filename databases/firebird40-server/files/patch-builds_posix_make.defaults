@@ -1,7 +1,28 @@
 --- builds/posix/make.defaults	2020-10-20 03:40:05.000000000 -0500
 +++ builds/posix/make.defaults	2021-06-25 00:23:49.718147000 -0500
-@@ -134,7 +134,7 @@
+@@ -139,33 +139,37 @@
+ # multiple-precision integer library
  MATHLIB=@MATHLIB@
+ DECLIB=-ldecFloat$(CROSS)
+-RE2LIB=-lre2
++ifeq ($(RE2_BUILD_FLG), Y)
++  RE2LIB=$(LIB)/libre2.a
++else
++  RE2LIB=-lre2
++endif
+ ifeq ($(ABSEIL_BUILD_FLG), Y)
+   I128LIB=-li128$(CROSS)
+ else
+   I128LIB=
+ endif
+ 
+ # crypt library
+ CRYPTLIB=@CRYPTLIB@
+ 
+ LSB_FLG=@LSB_FLG@
+ ifeq ($(LSB_FLG), Y)
+   LSB_UNDEF=-Wl,--allow-shlib-undefined
+ endif
  
  # switch to make sed edit files inplace
 -INLINE_EDIT_SED:= -i
@@ -9,7 +30,9 @@
  
  # Default programs and tools to be used in the build process
  
-@@ -144,7 +144,7 @@
+ SH=			sh -c
+ RM=			rm -f
+ RM_R=		rm -rf
  CHMOD=			chmod
  CHMOD_6=		chmod 666
  CHMOD_7=		chmod 777
