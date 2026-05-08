@@ -10,6 +10,7 @@ WWW=		https://github.com/ocaml/ocamlbuild
 
 LICENSE=	gpl2
 
+USE_OCAML=	yes
 USES=		gmake ocaml
 USE_GITHUB=	yes
 GH_ACCOUNT=	ocaml
