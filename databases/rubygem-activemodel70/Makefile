@@ -12,7 +12,8 @@ WWW=		https://github.com/rails/rails/tree/main/activemodel \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-activesupport70>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport70
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-activesupport70>=${PORTVERSION}:devel/rubygem-activesupport70
 
 USES=		gem
 
