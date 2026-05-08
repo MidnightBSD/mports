@@ -1708,6 +1708,7 @@
     SUBDIR += py-tox
     SUBDIR += py-traceback2
     SUBDIR += py-traitlets
+    SUBDIR += py-treelib
     SUBDIR += py-trimesh
     SUBDIR += py-trove-classifiers
     SUBDIR += py-ttystatus
