@@ -41,6 +41,8 @@ CONFIGURE_ARGS=	--prefix=${PREFIX:S|^${DESTDIR}||} \
 		--shared-ngtcp2 \
 		--shared-simdjson \
 		--shared-sqlite \
+		--shared-sqlite-includes=${LOCALBASE}/include \
+		--shared-sqlite-libpath=${LOCALBASE}/lib \
 		--shared-zlib \
 		--shared-zstd \
 		--dest-os=freebsd \
