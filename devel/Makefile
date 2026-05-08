@@ -1316,6 +1316,7 @@
     SUBDIR += py-cffi
     SUBDIR += py-cfgv
     SUBDIR += py-cfn-lint
+    SUBDIR += py-check-manifest
     SUBDIR += py-cftime
     SUBDIR += py-characteristic
     SUBDIR += py-cheetah3
@@ -1371,6 +1372,7 @@
     SUBDIR += py-extras
     SUBDIR += py-factory-boy
     SUBDIR += py-fasteners
+    SUBDIR += py-fastjsonschema
     SUBDIR += py-fastimport
     SUBDIR += py-find-libpython
     SUBDIR += py-fixtures
@@ -1453,6 +1455,7 @@
     SUBDIR += py-jsonschema-path
     SUBDIR += py-jsonschema-specifications
     SUBDIR += py-jsonsir
+    SUBDIR += py-jupyter-core
     SUBDIR += py-keystone-engine
     SUBDIR += py-kitchen
     SUBDIR += py-lark
@@ -1489,6 +1492,7 @@
     SUBDIR += py-mypy
     SUBDIR += py-mypy_extensions
     SUBDIR += py-natsort
+    SUBDIR += py-nbformat
     SUBDIR += py-node-semver
     SUBDIR += py-nodeenv
     SUBDIR += py-nose
@@ -1514,6 +1518,7 @@
     SUBDIR += py-pdm-pep517
     SUBDIR += py-pefile
     SUBDIR += py-pendulum
+    SUBDIR += py-pep440
     SUBDIR += py-pep8-naming
     SUBDIR += py-phx-class-registry
     SUBDIR += py-pid
