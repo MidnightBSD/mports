@@ -2036,6 +2036,7 @@
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-date
+    SUBDIR += rubygem-declarative
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
@@ -2212,11 +2213,13 @@
     SUBDIR += rubygem-timeliness
     SUBDIR += rubygem-timeout
     SUBDIR += rubygem-traces
+    SUBDIR += rubygem-trailblazer-option
     SUBDIR += rubygem-treetop
     SUBDIR += rubygem-trollop1
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo-data
     SUBDIR += rubygem-tzinfo1
+    SUBDIR += rubygem-uber
     SUBDIR += rubygem-useragent
     SUBDIR += rubygem-valid
     SUBDIR += rubygem-validatable
