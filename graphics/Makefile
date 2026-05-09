@@ -346,6 +346,7 @@
     SUBDIR += py-pyglet1
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyproj
+    SUBDIR += py-pyrsgis
     SUBDIR += py-pyqrcode
     SUBDIR += py-qt5-3d
     SUBDIR += py-scikit-image

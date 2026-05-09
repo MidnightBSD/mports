@@ -136,6 +136,7 @@
     SUBDIR += py-kiwisolver
     SUBDIR += py-matplotlib
     SUBDIR += py-matplotlib-inline
+    SUBDIR += py-matplotlib-scalebar
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-networkx
