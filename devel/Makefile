@@ -2138,6 +2138,7 @@
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-googleapis-common-protos-types-gitlab
     SUBDIR += rubygem-grpc-google-iam-v1
+    SUBDIR += rubygem-gyoku
     SUBDIR += rubygem-hashie
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-i18n

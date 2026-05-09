@@ -82,6 +82,8 @@
     SUBDIR += freexl
     SUBDIR += fzf
     SUBDIR += gdome2
+    SUBDIR += gitlab-code-parser
+    SUBDIR += gitlab-elasticsearch-indexer
     SUBDIR += gnugrep
     SUBDIR += go-md2man
     SUBDIR += groff
