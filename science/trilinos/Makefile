@@ -96,8 +96,13 @@ post-install:
 
 # On 32-bit (i386), sizeof(size_t)=4 < sizeof(long long)=8, which trips a
 # static_assert in Tpetra_Distributor.hpp; disable long long ETI to work around it.
-.if ${ARCH} == i386
-CMAKE_ARGS+=	-DTpetra_INST_INT_LONG_LONG:BOOL=OFF
+.if "${ARCH}" == "i386"
+CMAKE_ARGS+=	-DTpetra_INST_INT_INT:BOOL=ON \
+		-DTpetra_INST_INT_LONG_LONG:BOOL=OFF \
+		-DTrilinos_ENABLE_ThyraEpetraAdapters:BOOL=ON
+PLIST_SUB+=	I386=""
+.else
+PLIST_SUB+=	I386="@comment "
 .endif
 
 .include <bsd.port.mk>
