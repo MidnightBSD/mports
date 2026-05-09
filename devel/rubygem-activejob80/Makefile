@@ -12,7 +12,8 @@ WWW=		https://github.com/rails/rails/tree/main/activejob \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport80 \
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}:devel/rubygem-activesupport80 \
 		rubygem-globalid-rails80>=0.3.6:databases/rubygem-globalid-rails80
 
 USES=		cpe gem

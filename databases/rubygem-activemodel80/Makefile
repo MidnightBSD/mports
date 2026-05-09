@@ -1,5 +1,5 @@
 PORTNAME=	activemodel
-PORTVERSION=	8.0.2
+PORTVERSION=	8.0.5
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	80
@@ -12,8 +12,8 @@ WWW=		https://github.com/rails/rails/tree/main/activemodel \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-BUILD_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport80
-RUN_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport80
+BUILD_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}:devel/rubygem-activesupport80
+RUN_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}:devel/rubygem-activesupport80
 
 USES=		gem
 

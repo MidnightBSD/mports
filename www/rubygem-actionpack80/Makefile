@@ -12,8 +12,9 @@ WWW=		https://github.com/rails/rails/tree/main/actionpack \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-actionview80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-actionview80 \
-		rubygem-activesupport80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport80 \
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-actionview80>=${PORTVERSION}:devel/rubygem-actionview80 \
+		rubygem-activesupport80>=${PORTVERSION}:devel/rubygem-activesupport80 \
 		rubygem-nokogiri>=1.8.5:textproc/rubygem-nokogiri \
 		rubygem-rack>=2.2.4,3:www/rubygem-rack \
 		rubygem-rack-session>=1.0.1:www/rubygem-rack-session \
