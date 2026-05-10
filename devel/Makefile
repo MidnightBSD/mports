@@ -2195,6 +2195,7 @@
     SUBDIR += rubygem-singleton
     SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-snaky_hash-gitlab
+    SUBDIR += rubygem-soap4r
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-sprockets-rails-rails4
