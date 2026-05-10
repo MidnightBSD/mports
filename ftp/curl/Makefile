@@ -1,6 +1,6 @@
 PORTNAME=	curl
 PORTVERSION=	8.19.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
@@ -161,6 +161,13 @@ ZSTD_CONFIGURE_WITH=	zstd
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 .include <bsd.port.pre.mk>
+
+# wolfssl/wolfcrypt/types.h CTC_SETTINGS enum requires SIZEOF_LONG_LONG when
+# SIZEOF_LONG==4.  curl's configure only checks sizeof(long), not long long,
+# so SIZEOF_LONG_LONG is absent from curl_config.h on 32-bit platforms.
+.if ${PORT_OPTIONS:MWOLFSSL} && ${ARCH} == i386
+CFLAGS+=	-DSIZEOF_LONG_LONG=8
+.endif
 
 .if ((!${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MOPENSSL}) || (${PORT_OPTIONS:MOPENSSL} && ${SSL_DEFAULT:Mlibressl*})) && ${PORT_OPTIONS:MTLS_SRP}
 IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
