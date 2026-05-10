@@ -2021,6 +2021,7 @@
     SUBDIR += rubygem-bin_struct
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
+    SUBDIR += rubygem-bindata24
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
@@ -2223,6 +2224,7 @@
     SUBDIR += rubygem-tzinfo1
     SUBDIR += rubygem-uber
     SUBDIR += rubygem-useragent
+    SUBDIR += rubygem-uuid
     SUBDIR += rubygem-valid
     SUBDIR += rubygem-validatable
     SUBDIR += rubygem-validate_email
@@ -2230,6 +2232,7 @@
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
     SUBDIR += rubygem-version_gem
+    SUBDIR += rubygem-windows_error
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-yajl-ruby

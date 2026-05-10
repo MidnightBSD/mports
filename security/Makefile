@@ -288,6 +288,9 @@
     SUBDIR += rubygem-omniauth-gl
     SUBDIR += rubygem-omniauth-multipassword2
     SUBDIR += rubygem-omniauth1
+    SUBDIR += rubygem-openssl
+    SUBDIR += rubygem-openssl-ccm
+    SUBDIR += rubygem-openssl-cmac
     SUBDIR += rubygem-pyu-ruby-sasl
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-rack-oauth2-gitlab
