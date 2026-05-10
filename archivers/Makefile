@@ -79,6 +79,7 @@
     SUBDIR += py-brotlicffi
     SUBDIR += py-brotlipy
     SUBDIR += py-bz2file
+    SUBDIR += py-laszip
     SUBDIR += py-libarchive-c
     SUBDIR += py-lz4
     SUBDIR += py-lzma

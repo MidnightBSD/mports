@@ -89,6 +89,7 @@
     SUBDIR += php83-calendar
     SUBDIR += py-hf-xet
     SUBDIR += py-huggingface-hub
+    SUBDIR += py-laspy
     SUBDIR += py-pexpect
     SUBDIR += py-python-utils
     SUBDIR += py-pytorch

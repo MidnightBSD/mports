@@ -348,6 +348,7 @@
     SUBDIR += py-pyproj
     SUBDIR += py-pyrsgis
     SUBDIR += py-pyqrcode
+    SUBDIR += py-rasterio
     SUBDIR += py-qt5-3d
     SUBDIR += py-scikit-image
     SUBDIR += py-svg.path

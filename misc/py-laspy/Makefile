@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and tools to read/write LAS files with lidar data
 WWW=		https://laspy.readthedocs.io/en/latest/
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

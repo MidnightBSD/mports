@@ -59,6 +59,7 @@
     SUBDIR += facile
     SUBDIR += fast_float
     SUBDIR += fcl05
+    SUBDIR += fftw
     SUBDIR += fftw3
     SUBDIR += fftw3-float
     SUBDIR += fftw3-long
@@ -74,6 +75,7 @@
     SUBDIR += gnuplot
     SUBDIR += grace
     SUBDIR += gsl
+    SUBDIR += highs
     SUBDIR += igraph
     SUBDIR += ipopt
     SUBDIR += kalgebra
@@ -128,6 +130,7 @@
     SUBDIR += php83-bcmath
     SUBDIR += php83-gmp
     SUBDIR += py-MutatorMath
+    SUBDIR += py-affine
     SUBDIR += py-altgraph
     SUBDIR += py-bottleneck
     SUBDIR += py-contourpy

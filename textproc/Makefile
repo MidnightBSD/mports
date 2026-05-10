@@ -362,6 +362,7 @@
     SUBDIR += py-mkdocstrings-python
     SUBDIR += py-mkdocstrings-python-legacy
     SUBDIR += py-myst-parser
+    SUBDIR += py-nltk
     SUBDIR += py-openstep-plist
     SUBDIR += py-paginate
     SUBDIR += py-parse
@@ -437,6 +438,7 @@
     SUBDIR += py-towncrier
     SUBDIR += py-typogrify
     SUBDIR += py-wcmatch
+    SUBDIR += py-xlrd
     SUBDIR += py-xmlschema
     SUBDIR += py-youseedee
     SUBDIR += py-zope.i18nmessageid
