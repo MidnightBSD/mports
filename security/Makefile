@@ -318,6 +318,7 @@
     SUBDIR += trousers
     SUBDIR += ubuntu-keyring
     SUBDIR += unix-selfauth-helper
+    SUBDIR += veracrypt
     SUBDIR += vlock
     SUBDIR += vm-to-tor
     SUBDIR += vpnc
