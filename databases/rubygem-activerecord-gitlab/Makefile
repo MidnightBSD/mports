@@ -12,15 +12,16 @@ WWW=		https://github.com/rails/rails/tree/main/activerecord \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-activemodel-gitlab>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel-gitlab \
-		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab \
+RUN_DEPENDS=	rubygem-activemodel-gitlab>=${PORTVERSION}:databases/rubygem-activemodel-gitlab \
+		rubygem-activesupport-gitlab>=${PORTVERSION}:devel/rubygem-activesupport-gitlab \
 		rubygem-timeout>=0.4.0:devel/rubygem-timeout
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
 NO_ARCH=	yes
 
-PORTSCOUT=	limit:^7\.1\.
+PORTSCOUT=	limit:^7\.2\.
 
 .include "${.CURDIR}/../../www/gitlab/Makefile.common"
 .include <bsd.port.mk>
