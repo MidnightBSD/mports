@@ -48,8 +48,8 @@ OPTIONS_DEFINE=	DOCS
 
 DOCFILES=	HOWTO-authenticate-in-rack HOWTO-make-io HOWTO-make-plugin \
 		HOWTO-make-theme HOWTO-testing-tDiary HOWTO-use-plugin \
-		HOWTO-write-tDiary.en HOWTO-write-tDiary INSTALL-paas INSTALL \
-		README.en README UPGRADE
+		HOWTO-write-tDiary.en HOWTO-write-tDiary INSTALL-cgi INSTALL-paas \
+		INSTALL-rack INSTALL README.en README UPGRADE
 HTML=		${DOCFILES:S/$/.html/}
 MD=		${DOCFILES:S/$/.md/}
 
@@ -99,7 +99,7 @@ do-install:
 	${TAR} --exclude doc --exclude LICENSE -C ${WRKSRC} -cf - . | ${TAR} --unlink -C ${WWWDIR} -xf -
 
 do-install-DOCS-on:
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
