@@ -6,6 +6,7 @@
     SUBDIR += artikulate
     SUBDIR += blogwatcher
     SUBDIR += box2d
+    SUBDIR += bun-decompile
     SUBDIR += camsnap
     SUBDIR += chatgpt-shell-cli
     SUBDIR += chef
