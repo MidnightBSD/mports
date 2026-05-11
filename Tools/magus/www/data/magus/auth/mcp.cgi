@@ -26,7 +26,14 @@ my @SUPPORTED_PROTOCOL_VERSIONS = qw(2025-06-18 2025-03-26 2024-11-05);
 my $collect_responses = 0;
 my @collected_responses;
 
-# Only accept POST for JSON-RPC; everything else gets a 405.
+# GET opens a Streamable HTTP SSE channel. This server currently has no
+# server-initiated messages, so emit keepalives and let the CGI request end.
+if ($cgi->request_method eq 'GET') {
+    handle_sse_get();
+    exit;
+}
+
+# Only accept POST for JSON-RPC messages; everything else gets a 405.
 unless ($cgi->request_method eq 'POST') {
     print $cgi->header(
         -type   => 'application/json',
@@ -560,6 +567,49 @@ sub is_number($n) {
 sub acknowledge_notification() {
     return if $collect_responses;
     print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+}
+
+sub handle_sse_get() {
+    unless (validate_mcp_protocol_header()) {
+        print $cgi->header(
+            -type   => 'application/json',
+            -status => '400 Bad Request',
+        );
+        print $json->encode({
+            jsonrpc => '2.0',
+            id      => undef,
+            error   => {
+                code    => -32600,
+                message => 'Unsupported MCP-Protocol-Version header',
+            },
+        });
+        return;
+    }
+
+    $| = 1;
+    print $cgi->header(
+        -type          => 'text/event-stream',
+        -cache_control => 'no-cache',
+        -expires       => 'now',
+        -pragma        => 'no-cache',
+    );
+
+    my $keepalives = $ENV{MCP_SSE_KEEPALIVES} // 6;
+    $keepalives = 6 unless is_number($keepalives);
+    $keepalives = int($keepalives);
+    $keepalives = 1  if $keepalives < 1;
+    $keepalives = 60 if $keepalives > 60;
+
+    my $interval = $ENV{MCP_SSE_KEEPALIVE_INTERVAL} // 10;
+    $interval = 10 unless is_number($interval);
+    $interval = int($interval);
+    $interval = 1  if $interval < 1;
+    $interval = 60 if $interval > 60;
+
+    for (1 .. $keepalives) {
+        print ": magus-mcp keepalive\n\n";
+        sleep $interval if $_ < $keepalives;
+    }
 }
 
 sub negotiated_protocol_version($requested) {
