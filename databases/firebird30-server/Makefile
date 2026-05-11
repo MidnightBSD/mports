@@ -24,7 +24,7 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 
 CONFLICTS_INSTALL=	firebird40
 
-USES=		cpe gmake pkgconfig localbase:ldflags libedit tar:bzip2
+USES=		cpe gmake iconv pkgconfig localbase:ldflags libedit tar:bzip2
 USE_CXXSTD=	gnu++17
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
@@ -48,7 +48,7 @@ CONFIGURE_ARGS=	--prefix=${LOCALSTATEDIR} \
 CONFIGURE_ENV+=	PTHREAD_LIBS="-lpthread" \
 		ac_cv_header_atomic_ops_h="no" \
 		ac_cv_lib_atomic_ops_main="no"
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd13.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 CPPFLAGS+=	-fno-delete-null-pointer-checks -fno-sized-deallocation
 
 LOCALSTATEDIR=	/var/db/firebird
@@ -143,7 +143,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins.conf ${PREFIX}/${CONFDIR}/plugins.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins/udr_engine.conf ${PREFIX}/${CONFDIR}/udr_engine.conf.sample
 
-	${MKDIR} ${LIBEXECDIR}/udf ${LOCALSTATEDIR}/help ${LIBEXECDIR}/intl \
+	${MKDIR} ${LIBEXECDIR}/udf ${FAKE_DESTDIR}${LOCALSTATEDIR}/help ${LIBEXECDIR}/intl \
 		${LIBEXECDIR}/plugins ${EXAMPLESDIR}
 
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/lib/libib_util.so ${PREFIX}/lib
@@ -153,10 +153,10 @@ do-install:
 	${INSTALL_FB} -m 0444 ${UDF_SQL:S!^!${WRKSRC}/gen/Release/firebird/UDF/!} ${LIBEXECDIR}/udf
 	${INSTALL_FB} -m 0555 ${PLUGIN_SO:S!^!${WRKSRC}/gen/Release/firebird/plugins/!} ${LIBEXECDIR}/plugins
 
-	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security3.fdb ${LOCALSTATEDIR}/security3.fdb.sample
+	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security3.fdb ${FAKE_DESTDIR}${LOCALSTATEDIR}/security3.fdb.sample
 	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employee.fdb ${EXAMPLESDIR}/employee.fdb
 
-	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${LOCALSTATEDIR}/help
+	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${FAKE_DESTDIR}${LOCALSTATEDIR}/help
 
 	${INSTALL_FB} -m 0555 ${WRKSRC}/gen/Release/firebird/intl/libfbintl.so ${LIBEXECDIR}/intl/libfbintl.so
 .else
