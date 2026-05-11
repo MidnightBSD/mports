@@ -22,6 +22,7 @@ use CGI qw(-no_xhtml);
 
 my $json = JSON::XS->new->utf8->allow_nonref->allow_blessed->canonical;
 my $cgi  = CGI->new;
+my @SUPPORTED_PROTOCOL_VERSIONS = qw(2025-06-18 2025-03-26 2024-11-05);
 
 # Only accept POST for JSON-RPC; everything else gets a 405.
 unless ($cgi->request_method eq 'POST') {
@@ -62,9 +63,9 @@ if ($method eq 'initialize') {
     handle_initialize($id, $params);
 
 } elsif ($method eq 'notifications/initialized') {
-    # Notification — no JSON-RPC response; just acknowledge with HTTP 202.
+    # Notification: acknowledge at HTTP level only; JSON-RPC notifications
+    # must not receive a response body.
     print $cgi->header(-type => 'application/json', -status => '202 Accepted');
-    print '{}';
 
 } elsif ($method eq 'tools/list') {
     handle_tools_list($id);
@@ -84,7 +85,7 @@ exit;
 
 sub handle_initialize($id, $params) {
     rpc_result($id, {
-        protocolVersion => '2024-11-05',
+        protocolVersion => negotiated_protocol_version($params->{protocolVersion}),
         capabilities    => { tools => {} },
         serverInfo      => { name => 'magus-mcp', version => '1.0.0' },
         instructions    =>
@@ -509,6 +510,16 @@ sub _latest_runs_per_arch() {
 
 sub is_number($n) {
     return looks_like_number($n) && $n !~ /inf|nan/i;
+}
+
+sub negotiated_protocol_version($requested) {
+    return $SUPPORTED_PROTOCOL_VERSIONS[0] unless defined $requested;
+
+    for my $version (@SUPPORTED_PROTOCOL_VERSIONS) {
+        return $version if $requested eq $version;
+    }
+
+    return $SUPPORTED_PROTOCOL_VERSIONS[0];
 }
 
 sub tool_result($id, $text, $is_error) {
