@@ -2026,6 +2026,7 @@
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-builder
     SUBDIR += rubygem-byebug
+    SUBDIR += rubygem-caesars
     SUBDIR += rubygem-cairo-gobject
     SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-clio

@@ -1,0 +1,4 @@
+Caesars supports rapid DSL prototyping in Ruby.
+
+It provides a small framework for defining command-oriented DSLs and
+configuration-driven Ruby interfaces.
