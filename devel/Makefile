@@ -272,6 +272,7 @@
     SUBDIR += fortytwo-encore
     SUBDIR += fossology-nomos-standalone
     SUBDIR += freebsd-sysroot
+    SUBDIR += fstrcmp
     SUBDIR += fstrm
     SUBDIR += fungw
     SUBDIR += fxdiv
@@ -392,6 +393,7 @@
     SUBDIR += judy
     SUBDIR += kBuild
     SUBDIR += kdsingleapplication
+    SUBDIR += kodi-platform
     SUBDIR += kf5-kauth
     SUBDIR += kf5-kbookmarks
     SUBDIR += kf5-kcmutils
@@ -470,6 +472,7 @@
     SUBDIR += libclc
     SUBDIR += libconfig
     SUBDIR += libconfuse
+    SUBDIR += libcrossguid
     SUBDIR += libcuckoo
     SUBDIR += libcutl
     SUBDIR += libdaemon

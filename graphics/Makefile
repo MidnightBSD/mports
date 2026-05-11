@@ -212,6 +212,7 @@
     SUBDIR += libosmesa
     SUBDIR += libplacebo
     SUBDIR += libpotrace
+    SUBDIR += libprojectm
     SUBDIR += libQGLViewer
     SUBDIR += libqrencode
     SUBDIR += libraw
@@ -441,6 +442,7 @@
     SUBDIR += waifu2x-ncnn-vulkan
     SUBDIR += wayland
     SUBDIR += wayland-protocols
+    SUBDIR += waylandpp
     SUBDIR += wayland-utils
     SUBDIR += webp
     SUBDIR += webp-pixbuf-loader

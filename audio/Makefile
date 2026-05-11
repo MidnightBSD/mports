@@ -184,6 +184,7 @@
     SUBDIR += sdl_audiolib
     SUBDIR += sdl_mixer
     SUBDIR += sdl_sound
+    SUBDIR += shairplay
     SUBDIR += shortwave
     SUBDIR += sndio
     SUBDIR += sonata
