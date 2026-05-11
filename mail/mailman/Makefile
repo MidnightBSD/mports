@@ -213,7 +213,7 @@ post-install:
 .for dir in bin
 	(cd ${MAILMANDIR} \
 	    && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-	    -d ${MAILMANDIR}/${dir} ${dir})
+	    -d ${TRUE_PREFIX}/${MM_DIR}/${dir} ${dir})
 .endfor
 	-${RM} ${MAILMANDIR}/pythonlib/*.egg-info
 	@# mm_cfg.py is handled by pkg-plist, no need to archive a copy:
