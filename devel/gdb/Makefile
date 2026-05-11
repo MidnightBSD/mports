@@ -1,6 +1,6 @@
 PORTNAME=	gdb
 DISTVERSION=	15.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -130,6 +130,8 @@ EXCLUDE+=	zlib
 
 .if ${ARCH} == amd64
 CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
+.elif ${ARCH} == i386
+CONFIGURE_TARGET=	i386-portbld-freebsd13.4
 .endif
 
 post-patch:
