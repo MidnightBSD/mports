@@ -56,6 +56,11 @@ if ($@ || !ref $req) {
     exit;
 }
 
+unless (validate_mcp_protocol_header()) {
+    rpc_error(undef, -32600, 'Unsupported MCP-Protocol-Version header');
+    exit;
+}
+
 if (ref $req eq 'ARRAY') {
     unless (@$req) {
         rpc_error(undef, -32600, 'Invalid Request: empty batch');
@@ -565,6 +570,17 @@ sub negotiated_protocol_version($requested) {
     }
 
     return $SUPPORTED_PROTOCOL_VERSIONS[0];
+}
+
+sub validate_mcp_protocol_header() {
+    my $version = $ENV{HTTP_MCP_PROTOCOL_VERSION} // '';
+    return 1 unless length $version;
+
+    for my $supported (@SUPPORTED_PROTOCOL_VERSIONS) {
+        return 1 if $version eq $supported;
+    }
+
+    return 0;
 }
 
 sub tool_result($id, $text, $is_error) {
