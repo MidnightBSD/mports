@@ -10,6 +10,8 @@ use Magus;
 use Scalar::Util qw(looks_like_number);
 use JSON::XS;
 use CGI qw(-no_xhtml);
+use LWP::UserAgent;
+use URI::Escape qw(uri_escape);
 
 #
 # Inject AbstractSearch into Magus::DBI so we can use search_where()
@@ -264,6 +266,32 @@ sub handle_tools_list($id) {
                 required => ['port_id'],
             },
         },
+        {
+            name        => 'get_port_cves',
+            description =>
+                'Look up CVE information for a Magus port using the port CPE. '
+              . 'Pass either port_id or a port origin/name. Uses the same '
+              . 'sec.midnightbsd.org partial CPE match API as get_cves.cgi.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    port_id => {
+                        type        => 'integer',
+                        description => 'The Magus port ID.',
+                    },
+                    name => {
+                        type        => 'string',
+                        description =>
+                            'Port origin path (e.g. "www/apache24") or bare name. '
+                          . 'Used only when port_id is omitted.',
+                    },
+                    include_raw => {
+                        type        => 'boolean',
+                        description => 'Include the raw JSON returned by the CVE API.',
+                    },
+                },
+            },
+        },
     ]});
 }
 
@@ -277,6 +305,7 @@ sub handle_tools_call($id, $params) {
         list_runs        => \&tool_list_runs,
         get_port_log     => \&tool_get_port_log,
         get_port_details => \&tool_get_port_details,
+        get_port_cves    => \&tool_get_port_cves,
     );
 
     if (my $handler = $dispatch{$name}) {
@@ -552,6 +581,47 @@ sub tool_get_port_details($id, $args) {
     tool_result($id, $text, 0);
 }
 
+sub tool_get_port_cves($id, $args) {
+    my $port = resolve_port_arg($args);
+    return tool_result($id,
+        "Error: pass a valid 'port_id' or 'name' argument.", 1) unless $port;
+
+    my $cpe = $port->cpe // '';
+    $cpe =~ s/^\s+|\s+$//g;
+    unless (length $cpe) {
+        return tool_result($id,
+            sprintf("No CPE is recorded for %s (port_id=%d).",
+                $port->name, $port->id), 0);
+    }
+
+    my $encoded_cpe = uri_escape($cpe);
+    my $url = "https://sec.midnightbsd.org/api/cpe/partial-match"
+            . "?includeVersion=true&cpe=$encoded_cpe";
+
+    my ($raw, $error) = fetch_cve_api($url);
+    if (defined $error) {
+        return tool_result($id, "CVE API request failed for $cpe: $error", 1);
+    }
+
+    my $data = eval { $json->decode($raw) };
+    if ($@) {
+        return tool_result($id,
+            "CVE API returned invalid JSON for $cpe: $@", 1);
+    }
+
+    my $text = sprintf(
+        "CVE information for %s\n  port_id=%d  pkgname=%s  version=%s\n  cpe=%s\n",
+        $port->name, $port->id, $port->pkgname, $port->version // '', $cpe,
+    );
+    $text .= format_cve_data($data);
+
+    if ($args->{include_raw}) {
+        $text .= "\nRaw CVE API response:\n" . $json->encode($data) . "\n";
+    }
+
+    tool_result($id, $text, 0);
+}
+
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
@@ -583,6 +653,132 @@ sub _latest_runs_per_arch() {
     }
 
     return @result;
+}
+
+sub resolve_port_arg($args) {
+    if (defined $args->{port_id} && is_number($args->{port_id})) {
+        return eval { Magus::Port->retrieve(int($args->{port_id})) };
+    }
+
+    my $name = $args->{name} // '';
+    $name =~ s/[^\w\/.\-+]//g;
+    return unless length $name;
+
+    my @runs = _latest_runs_per_arch();
+    for my $run (@runs) {
+        my @ports;
+        if ($name =~ m|/|) {
+            @ports = Magus::Port->search(run => $run->id, name => $name,
+                { order_by => 'id DESC' });
+        } else {
+            @ports = Magus::Port->search_where(
+                { run => $run->id, name => { like => "%/$name" } },
+                { order_by => 'id DESC' },
+            );
+            unless (@ports) {
+                @ports = Magus::Port->search_where(
+                    { run => $run->id, name => { like => "%$name%" } },
+                    { order_by => 'id DESC' },
+                );
+            }
+        }
+
+        return $ports[0] if @ports;
+    }
+
+    return;
+}
+
+sub fetch_cve_api($url) {
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(30);
+    my $response = $ua->get($url);
+    return ($response->decoded_content, undef) if $response->is_success;
+
+    if ($response->status_line =~ /Protocol scheme 'https' is not supported/) {
+        my $content = '';
+        if (open(my $fh, '-|', '/usr/bin/fetch', '-qo', '-', $url)) {
+            local $/;
+            $content = <$fh> // '';
+            close $fh;
+            return ($content, undef) if $? == 0;
+        }
+        chomp $content;
+        return (undef, $content || 'fetch fallback failed');
+    }
+
+    return (undef, $response->status_line);
+}
+
+sub format_cve_data($data) {
+    my @items = cve_items_from_data($data);
+    return "\nNo matching CVE records were returned by the API.\n" unless @items;
+
+    my $text = sprintf("\nMatching CVE records: %d\n", scalar @items);
+    my $shown = 0;
+    for my $item (@items) {
+        last if $shown >= 20;
+        $shown++;
+        $text .= format_cve_item($item);
+    }
+    $text .= sprintf("... and %d more records\n", scalar(@items) - $shown)
+        if @items > $shown;
+
+    return $text;
+}
+
+sub cve_items_from_data($data) {
+    return @$data if ref $data eq 'ARRAY';
+    return @{$data->{results}}         if ref $data eq 'HASH' && ref $data->{results} eq 'ARRAY';
+    return @{$data->{vulnerabilities}} if ref $data eq 'HASH' && ref $data->{vulnerabilities} eq 'ARRAY';
+    return @{$data->{cves}}            if ref $data eq 'HASH' && ref $data->{cves} eq 'ARRAY';
+    return @{$data->{data}}            if ref $data eq 'HASH' && ref $data->{data} eq 'ARRAY';
+    return ($data) if ref $data eq 'HASH' && keys %$data;
+    return;
+}
+
+sub format_cve_item($item) {
+    return "  $item\n" unless ref $item eq 'HASH';
+
+    my $id = first_defined(
+        $item->{cveId}, $item->{cve_id}, $item->{cve}, $item->{name}, $item->{id},
+        ref $item->{cve} eq 'HASH' ? $item->{cve}{id} : undef,
+    ) // 'unknown';
+    my $severity = first_defined(
+        $item->{severity},
+        $item->{baseSeverity},
+        $item->{cvss_severity},
+        cvss_metric_field($item, 'baseSeverity'),
+        $item->{impact},
+    ) // '';
+    my $summary = first_defined($item->{summary}, $item->{description}, $item->{title}) // '';
+    my $url = first_defined($item->{url}, $item->{href}, $item->{link}) // '';
+
+    my $text = "  $id";
+    $text .= "  severity=$severity" if length $severity;
+    $text .= "\n";
+    $text .= "    $summary\n" if length $summary;
+    $text .= "    $url\n" if length $url;
+
+    return $text;
+}
+
+sub cvss_metric_field($item, $field) {
+    return undef unless ref $item eq 'HASH';
+    for my $key (qw(cvssMetrics3 cvssMetricV31 cvssMetricV30 cvssMetrics2 cvssMetricV2)) {
+        next unless ref $item->{$key} eq 'ARRAY' && @{$item->{$key}};
+        return $item->{$key}[0]{$field} if defined $item->{$key}[0]{$field};
+    }
+
+    return undef;
+}
+
+sub first_defined(@values) {
+    for my $value (@values) {
+        return $value if defined $value && !ref $value;
+    }
+
+    return undef;
 }
 
 sub is_number($n) {
