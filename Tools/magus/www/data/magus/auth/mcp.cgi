@@ -29,21 +29,26 @@ my @collected_responses;
 # GET opens a Streamable HTTP SSE channel. This server currently has no
 # server-initiated messages, so emit keepalives and let the CGI request end.
 if ($cgi->request_method eq 'GET') {
+    unless (accepts_content_type('text/event-stream')) {
+        http_json_error('406 Not Acceptable', undef, -32600,
+            'Accept header must include text/event-stream');
+        exit;
+    }
     handle_sse_get();
     exit;
 }
 
 # Only accept POST for JSON-RPC messages; everything else gets a 405.
 unless ($cgi->request_method eq 'POST') {
-    print $cgi->header(
-        -type   => 'application/json',
-        -status => '405 Method Not Allowed',
-    );
-    print $json->encode({
-        jsonrpc => '2.0',
-        id      => undef,
-        error   => { code => -32600, message => 'Use POST with a JSON-RPC 2.0 body' },
-    });
+    http_json_error('405 Method Not Allowed', undef, -32600,
+        'Use POST with a JSON-RPC 2.0 body');
+    exit;
+}
+
+unless (accepts_content_type('application/json')
+    && accepts_content_type('text/event-stream')) {
+    http_json_error('406 Not Acceptable', undef, -32600,
+        'Accept header must include application/json and text/event-stream');
     exit;
 }
 
@@ -63,7 +68,7 @@ if ($@ || !ref $req) {
     exit;
 }
 
-unless (validate_mcp_protocol_header()) {
+unless (is_initialize_request($req) || validate_mcp_protocol_header()) {
     rpc_error(undef, -32600, 'Unsupported MCP-Protocol-Version header');
     exit;
 }
@@ -74,16 +79,27 @@ if (ref $req eq 'ARRAY') {
         exit;
     }
 
+    if (effective_protocol_version() eq '2025-06-18') {
+        rpc_error(undef, -32600,
+            'JSON-RPC batch requests are not supported for MCP 2025-06-18');
+        exit;
+    }
+
+    if (batch_contains_initialize($req)) {
+        rpc_error(undef, -32600, 'initialize must not be part of a JSON-RPC batch');
+        exit;
+    }
+
     @collected_responses = ();
     $collect_responses = 1;
     dispatch_request($_) for @$req;
     $collect_responses = 0;
 
     if (@collected_responses) {
-        print $cgi->header(-type => 'application/json');
+        print json_header();
         print $json->encode(\@collected_responses);
     } else {
-        print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+        print json_header(-status => '202 Accepted');
     }
 
 } elsif (ref $req eq 'HASH') {
@@ -102,9 +118,19 @@ sub dispatch_request($req) {
         return rpc_error(undef, -32600, 'Invalid Request');
     }
 
+    unless (defined $req->{jsonrpc} && $req->{jsonrpc} eq '2.0') {
+        return rpc_error(undef, -32600, 'Invalid Request: jsonrpc must be "2.0"');
+    }
+
+    if (!exists $req->{method}) {
+        return acknowledge_notification()
+            if is_jsonrpc_response($req);
+        return rpc_error($req->{id}, -32600, 'Invalid Request');
+    }
+
     my $has_id = exists $req->{id};   # requests have ids; notifications do not
     my $id     = $req->{id};
-    my $method = $req->{method} // '';
+    my $method = $req->{method};
     my $params = $req->{params}  // {};
 
     if ($method eq 'initialize') {
@@ -114,8 +140,7 @@ sub dispatch_request($req) {
     } elsif ($method eq 'notifications/initialized') {
         # Notification: acknowledge at HTTP level only; JSON-RPC notifications
         # must not receive a response body.
-        return if $collect_responses;
-        print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+        acknowledge_notification();
 
     } elsif ($method eq 'tools/list') {
         return acknowledge_notification() unless $has_id;
@@ -566,29 +591,20 @@ sub is_number($n) {
 
 sub acknowledge_notification() {
     return if $collect_responses;
-    print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+    print json_header(-status => '202 Accepted');
 }
 
 sub handle_sse_get() {
     unless (validate_mcp_protocol_header()) {
-        print $cgi->header(
-            -type   => 'application/json',
-            -status => '400 Bad Request',
-        );
-        print $json->encode({
-            jsonrpc => '2.0',
-            id      => undef,
-            error   => {
-                code    => -32600,
-                message => 'Unsupported MCP-Protocol-Version header',
-            },
-        });
+        http_json_error('400 Bad Request', undef, -32600,
+            'Unsupported MCP-Protocol-Version header');
         return;
     }
 
     $| = 1;
     print $cgi->header(
         -type          => 'text/event-stream',
+        -charset       => 'UTF-8',
         -cache_control => 'no-cache',
         -expires       => 'now',
         -pragma        => 'no-cache',
@@ -612,6 +628,61 @@ sub handle_sse_get() {
     }
 }
 
+sub json_header(%args) {
+    return $cgi->header(
+        -type    => 'application/json',
+        -charset => 'UTF-8',
+        %args,
+    );
+}
+
+sub http_json_error($status, $id, $code, $message) {
+    print json_header(-status => $status);
+    print $json->encode({
+        jsonrpc => '2.0',
+        id      => $id,
+        error   => { code => $code + 0, message => $message },
+    });
+}
+
+sub accepts_content_type($wanted) {
+    my $accept = $ENV{HTTP_ACCEPT} // '';
+    return 0 unless length $accept;
+
+    my ($wanted_type, $wanted_subtype) = split m{/}, lc $wanted, 2;
+    for my $entry (split /,/, $accept) {
+        $entry =~ s/^\s+|\s+$//g;
+        my ($media_type) = split /\s*;\s*/, lc $entry, 2;
+        my ($type, $subtype) = split m{/}, $media_type, 2;
+        next unless defined $type && defined $subtype;
+        return 1 if $type eq '*' && $subtype eq '*';
+        return 1 if $type eq $wanted_type && $subtype eq '*';
+        return 1 if $type eq $wanted_type && $subtype eq $wanted_subtype;
+    }
+
+    return 0;
+}
+
+sub is_initialize_request($req) {
+    return ref $req eq 'HASH'
+        && defined $req->{method}
+        && $req->{method} eq 'initialize';
+}
+
+sub batch_contains_initialize($batch) {
+    for my $message (@$batch) {
+        return 1 if is_initialize_request($message);
+    }
+
+    return 0;
+}
+
+sub is_jsonrpc_response($req) {
+    return 0 unless exists $req->{id};
+    return 0 if exists $req->{result} && exists $req->{error};
+    return exists $req->{result} || exists $req->{error};
+}
+
 sub negotiated_protocol_version($requested) {
     return $SUPPORTED_PROTOCOL_VERSIONS[0] unless defined $requested;
 
@@ -623,14 +694,18 @@ sub negotiated_protocol_version($requested) {
 }
 
 sub validate_mcp_protocol_header() {
-    my $version = $ENV{HTTP_MCP_PROTOCOL_VERSION} // '';
-    return 1 unless length $version;
+    my $version = effective_protocol_version();
 
     for my $supported (@SUPPORTED_PROTOCOL_VERSIONS) {
         return 1 if $version eq $supported;
     }
 
     return 0;
+}
+
+sub effective_protocol_version() {
+    my $version = $ENV{HTTP_MCP_PROTOCOL_VERSION} // '';
+    return length $version ? $version : '2025-03-26';
 }
 
 sub tool_result($id, $text, $is_error) {
@@ -651,7 +726,7 @@ sub rpc_result($id, $result) {
         return;
     }
 
-    print $cgi->header(-type => 'application/json');
+    print json_header();
     print $json->encode($response);
 }
 
@@ -666,6 +741,6 @@ sub rpc_error($id, $code, $message) {
         return;
     }
 
-    print $cgi->header(-type => 'application/json', -status => '400 Bad Request');
+    print json_header(-status => '400 Bad Request');
     print $json->encode($response);
 }
