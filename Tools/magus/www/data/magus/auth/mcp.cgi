@@ -23,6 +23,8 @@ use CGI qw(-no_xhtml);
 my $json = JSON::XS->new->utf8->allow_nonref->allow_blessed->canonical;
 my $cgi  = CGI->new;
 my @SUPPORTED_PROTOCOL_VERSIONS = qw(2025-06-18 2025-03-26 2024-11-05);
+my $collect_responses = 0;
+my @collected_responses;
 
 # Only accept POST for JSON-RPC; everything else gets a 405.
 unless ($cgi->request_method eq 'POST') {
@@ -54,30 +56,68 @@ if ($@ || !ref $req) {
     exit;
 }
 
-my $id     = $req->{id};          # undef for notifications
-my $method = $req->{method} // '';
-my $params = $req->{params}  // {};
+if (ref $req eq 'ARRAY') {
+    unless (@$req) {
+        rpc_error(undef, -32600, 'Invalid Request: empty batch');
+        exit;
+    }
 
-# Dispatch.
-if ($method eq 'initialize') {
-    handle_initialize($id, $params);
+    @collected_responses = ();
+    $collect_responses = 1;
+    dispatch_request($_) for @$req;
+    $collect_responses = 0;
 
-} elsif ($method eq 'notifications/initialized') {
-    # Notification: acknowledge at HTTP level only; JSON-RPC notifications
-    # must not receive a response body.
-    print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+    if (@collected_responses) {
+        print $cgi->header(-type => 'application/json');
+        print $json->encode(\@collected_responses);
+    } else {
+        print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+    }
 
-} elsif ($method eq 'tools/list') {
-    handle_tools_list($id);
-
-} elsif ($method eq 'tools/call') {
-    handle_tools_call($id, $params);
+} elsif (ref $req eq 'HASH') {
+    dispatch_request($req);
 
 } else {
-    rpc_error($id, -32601, "Method not found: $method");
+    rpc_error(undef, -32600, 'Invalid Request');
 }
 
 exit;
+
+# Dispatch one JSON-RPC message. In batch mode, responses are collected by
+# rpc_result()/rpc_error(); notifications intentionally produce no response.
+sub dispatch_request($req) {
+    unless (ref $req eq 'HASH') {
+        return rpc_error(undef, -32600, 'Invalid Request');
+    }
+
+    my $has_id = exists $req->{id};   # requests have ids; notifications do not
+    my $id     = $req->{id};
+    my $method = $req->{method} // '';
+    my $params = $req->{params}  // {};
+
+    if ($method eq 'initialize') {
+        return acknowledge_notification() unless $has_id;
+        handle_initialize($id, $params);
+
+    } elsif ($method eq 'notifications/initialized') {
+        # Notification: acknowledge at HTTP level only; JSON-RPC notifications
+        # must not receive a response body.
+        return if $collect_responses;
+        print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+
+    } elsif ($method eq 'tools/list') {
+        return acknowledge_notification() unless $has_id;
+        handle_tools_list($id);
+
+    } elsif ($method eq 'tools/call') {
+        return acknowledge_notification() unless $has_id;
+        handle_tools_call($id, $params);
+
+    } else {
+        return acknowledge_notification() unless $has_id;
+        rpc_error($id, -32601, "Method not found: $method");
+    }
+}
 
 # ---------------------------------------------------------------------------
 # MCP protocol handlers
@@ -512,6 +552,11 @@ sub is_number($n) {
     return looks_like_number($n) && $n !~ /inf|nan/i;
 }
 
+sub acknowledge_notification() {
+    return if $collect_responses;
+    print $cgi->header(-type => 'application/json', -status => '202 Accepted');
+}
+
 sub negotiated_protocol_version($requested) {
     return $SUPPORTED_PROTOCOL_VERSIONS[0] unless defined $requested;
 
@@ -530,19 +575,31 @@ sub tool_result($id, $text, $is_error) {
 }
 
 sub rpc_result($id, $result) {
-    print $cgi->header(-type => 'application/json');
-    print $json->encode({
+    my $response = {
         jsonrpc => '2.0',
         id      => $id,
         result  => $result,
-    });
+    };
+    if ($collect_responses) {
+        push @collected_responses, $response;
+        return;
+    }
+
+    print $cgi->header(-type => 'application/json');
+    print $json->encode($response);
 }
 
 sub rpc_error($id, $code, $message) {
-    print $cgi->header(-type => 'application/json', -status => '400 Bad Request');
-    print $json->encode({
+    my $response = {
         jsonrpc => '2.0',
         id      => $id,
         error   => { code => $code + 0, message => $message },
-    });
+    };
+    if ($collect_responses) {
+        push @collected_responses, $response;
+        return;
+    }
+
+    print $cgi->header(-type => 'application/json', -status => '400 Bad Request');
+    print $json->encode($response);
 }
