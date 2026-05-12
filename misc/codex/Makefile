@@ -1,6 +1,6 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
-DISTVERSION=	0.125.0
+DISTVERSION=	0.130.0
 CATEGORIES=	misc devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,8 +10,6 @@ WWW=		https://openai.com/codex \
 
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_i386=	fails to build: rustc-LLVM ERROR: out of memory
 
 BUILD_DEPENDS=	gn:devel/gn
 LIB_DEPENDS=	libzstd.so:archivers/zstd \
@@ -23,6 +21,11 @@ RUN_DEPENDS=	bash:shells/bash \
 TEST_DEPENDS=	bash:shells/bash
 
 USES=		cargo llvm:min=19 ninja:build python:test shebangfix ssl
+
+BROKEN_i386=	fails to build: rustc-LLVM ERROR: out of memory
+
+MAKE_JOBS_UNSAFE=	yes
+WITHOUT_LTO=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	openai
@@ -44,8 +47,10 @@ CARGO_CARGOTOML=	${BUILD_WRKSRC}/Cargo.toml
 CARGO_CARGOLOCK=	${BUILD_WRKSRC}/Cargo.lock
 CARGO_BUILD_ARGS=	--bin ${PORTNAME}
 CARGO_INSTALL_PATH=	codex-rs
-CARGO_TEST_ARGS=	--all-features --no-fail-fast
+CODEX_TEST_ARGS=	--workspace --exclude codex-v8-poc --no-fail-fast
 CARGO_ENV=		OPENSSL_NO_VENDOR=1 \
+			CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16 \
+			CARGO_PROFILE_RELEASE_LTO=false \
 			V8_FROM_SOURCE=1 \
 			GN=${LOCALBASE}/bin/gn \
 			NINJA=${NINJA_CMD} \
@@ -87,7 +92,6 @@ post-patch:
 		${BUILD_WRKSRC}/shell-escalation/src/unix/escalate_server.rs \
 		${BUILD_WRKSRC}/tui/src/exec_command.rs
 	@${REINPLACE_CMD} -e 's|python3|${PYTHON_VERSION}|' \
-		${BUILD_WRKSRC}/app-server/src/config_api.rs \
 		${BUILD_WRKSRC}/app-server/tests/suite/v2/command_exec.rs \
 		${BUILD_WRKSRC}/app-server/tests/suite/v2/thread_resume.rs \
 		${BUILD_WRKSRC}/app-server/tests/suite/v2/thread_shell_command.rs \
@@ -99,7 +103,6 @@ post-patch:
 		${BUILD_WRKSRC}/core-skills/src/invocation_utils.rs \
 		${BUILD_WRKSRC}/core-skills/src/invocation_utils_tests.rs \
 		${BUILD_WRKSRC}/core/src/command_canonicalization_tests.rs \
-		${BUILD_WRKSRC}/core/src/config_loader/tests.rs \
 		${BUILD_WRKSRC}/core/src/exec_policy.rs \
 		${BUILD_WRKSRC}/core/src/exec_policy_tests.rs \
 		${BUILD_WRKSRC}/core/src/mcp_tool_call_tests.rs \
@@ -152,5 +155,13 @@ do-install-COMPLETIONS-on:
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_MAN} ${PORTDOCS:S|^|${BUILD_WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+do-test:
+	@${CARGO_CARGO_RUN} test \
+		--manifest-path ${CARGO_CARGOTOML} \
+		--verbose \
+		--verbose \
+		--profile ci-test \
+		${CODEX_TEST_ARGS}
 
 .include <bsd.port.mk>
