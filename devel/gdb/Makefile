@@ -1,6 +1,6 @@
 PORTNAME=	gdb
 DISTVERSION=	15.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -128,11 +128,7 @@ PLIST_SUB+=	LIBCXX="@comment "
 EXCLUDE+=	zlib
 .endif
 
-.if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
-.elif ${ARCH} == i386
-CONFIGURE_TARGET=	i386-portbld-freebsd13.4
-.endif
+CONFIGURE_TARGET=	${ARCH:S/amd64/x86_64/}-portbld-freebsd13.4
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$$| [GDB v${PORTVERSION} for MidnightBSD]|' \
@@ -188,7 +184,8 @@ do-install-PYTHON-on:
 .endif
 
 do-install-GUILE-on:
-	(cd ${INSTALL_WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
+	(cd ${INSTALL_WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
 	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
 
