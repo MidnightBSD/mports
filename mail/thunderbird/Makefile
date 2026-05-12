@@ -1,5 +1,5 @@
 PORTNAME=	thunderbird
-DISTVERSION=	147.0
+DISTVERSION=	147.0.2
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
@@ -53,7 +53,7 @@ LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libjson-c.so:devel/json-c
 
 USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
-		perl pkgconfig python desktop-file-utils tar:xz
+		perl5 pkgconfig python desktop-file-utils tar:xz
 CPE_VENDOR=	mozilla
 USE_GL=		gl
 USE_GNOME=	cairo gdkpixbuf gtk30

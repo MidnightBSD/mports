@@ -1,6 +1,6 @@
 --- netwerk/wifi/freebsd/FreeBsdWifiScanner.cpp.orig	2025-01-01 00:00:00.000000000 +0000
 +++ netwerk/wifi/freebsd/FreeBsdWifiScanner.cpp
-@@ -18,5 +18,14 @@
+@@ -18,3 +18,13 @@
  #else
 -#  include <net80211/ieee80211_ioctl.h>
 +/* On MidnightBSD, ieee80211req and ieee80211req_scan_result are guarded by
