@@ -145,6 +145,7 @@
     SUBDIR += phonon
     SUBDIR += phonon-mpv
     SUBDIR += pipewire
+    SUBDIR += playerctl
     SUBDIR += plexmediaserver
     SUBDIR += plexmediaserver-plexpass
     SUBDIR += plexwatch
@@ -172,6 +173,8 @@
     SUBDIR += vmaf
     SUBDIR += webcamd
     SUBDIR += webcamoid
+    SUBDIR += wf-recorder
+    SUBDIR += wireplumber
     SUBDIR += x264
     SUBDIR += x265
     SUBDIR += xanim

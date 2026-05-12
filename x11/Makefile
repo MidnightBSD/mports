@@ -4,6 +4,7 @@
     SUBDIR += appmenu-registrar
     SUBDIR += appres
     SUBDIR += babl
+    SUBDIR += bemenu
     SUBDIR += beforelight
     SUBDIR += bgs
     SUBDIR += bitmap
@@ -18,6 +19,7 @@
     SUBDIR += eterm
     SUBDIR += evilvte
     SUBDIR += foot
+    SUBDIR += fuzzel
     SUBDIR += fstobdf
     SUBDIR += gdm
     SUBDIR += gnome
@@ -189,14 +191,18 @@
     SUBDIR += slurp
     SUBDIR += smproxy
     SUBDIR += startup-notification
+    SUBDIR += swaybg
     SUBDIR += tecla
     SUBDIR += terminal.app
     SUBDIR += tint
     SUBDIR += viewres
     SUBDIR += virtualgl
+    SUBDIR += waybar
     SUBDIR += wdm
     SUBDIR += windowmaker-desktop
     SUBDIR += wmctrl-fork
+    SUBDIR += wl-clipboard
+    SUBDIR += wofi
     SUBDIR += x11perf
     SUBDIR += xapp
     SUBDIR += xauth

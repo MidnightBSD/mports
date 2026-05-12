@@ -27,6 +27,7 @@
     SUBDIR += plasma6-kwin
     SUBDIR += plasma6-kwin-x11
     SUBDIR += ratpoison
+    SUBDIR += sway
     SUBDIR += twm
     SUBDIR += windowmaker
     SUBDIR += wmii
