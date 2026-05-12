@@ -30,6 +30,7 @@
     SUBDIR += dejagnu
     SUBDIR += dict-de
     SUBDIR += dnetc
+    SUBDIR += dotenv-linter
     SUBDIR += e2fsprogs-libuuid
     SUBDIR += findutils
     SUBDIR += gemini-cli
