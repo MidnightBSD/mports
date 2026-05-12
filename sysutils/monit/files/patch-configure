@@ -91,10 +91,9 @@
        library_names_spec='$libname$release$shared_ext$versuffix $libname$shared_ext$versuffix'
        need_version=yes
        ;;
-@@ -19498,6 +19498,11 @@
+@@ -21123,5 +21123,10 @@
  fi
  
-    with_pam=0 # No PAM on OpenBSD (supports BSD Auth API instead of PAM)
 +elif test "$architecture" = "MidnightBSD"
 +then
 +   ARCH="FREEBSD"
