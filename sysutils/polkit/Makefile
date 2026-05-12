@@ -1,5 +1,5 @@
 PORTNAME=	polkit
-DISTVERSION=	125
+DISTVERSION=	127
 CATEGORIES=	sysutils gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,16 +10,19 @@ LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
-		libdbus-1.so:devel/dbus
+		libdbus-1.so:devel/dbus \
+		libduktape.so:lang/duktape-lib
 
 USERS=		polkitd
 GROUPS=		polkitd
 
-USES=		compiler:c++17-lang cpe gettext gnome localbase meson \
-		pathfix pkgconfig shebangfix tar:bz2
-USE_GNOME=	glib20 intltool introspection:build
-SHEBANG_FILES=	${WRKSRC}/src/polkitbackend/toarray.pl
+USES=		compiler:c++17-lang cpe gettext-tools gnome \
+		localbase meson pathfix perl5 pkgconfig python:test shebangfix
+USE_GNOME=	glib20 introspection:build
+SHEBANG_FILES=	src/polkitbackend/toarray.pl \
+		test/wrapper.py
 USE_LDCONFIG=	yes
+USE_PERL5=	build
 CPE_VENDOR=	polkit_project
 
 USE_GITHUB=	yes
@@ -32,30 +35,21 @@ MESON_ARGS=	-Dpam_include=system \
 		-Dsession_tracking=ConsoleKit \
 		-Dtests=false \
 		-Dintrospection=true \
-		-Dgtk_doc=false
+		-Dgtk_doc=false \
+		-Dgettext=true
 
 OPTIONS_DEFINE=		MANPAGES
-OPTIONS_DEFAULT=	DUKTAPE
 
-OPTIONS_SINGLE=		JS
-OPTIONS_SINGLE_JS=	DUKTAPE SPIDERMONKEY
-
-JS_DESC=		JavaScript engines
-DUKTAPE_DESC=		Duktape JavaScript backend
-SPIDERMONKEY_DESC=	SpiderMonkey JavaScript backend
-
-DUKTAPE_LIB_DEPENDS=	libduktape.so:lang/duktape-lib
-DUKTAPE_MESON_ON=	-Djs_engine='duktape'
-
-SPIDERMONKEY_LIB_DEPENDS=	libmozjs-102.so:lang/spidermonkey102
-SPIDERMONKEY_MESON_ON=		-Djs_engine='mozjs'
+OPTIONS_SUB=		yes
 
 MANPAGES_BUILD_DEPENDS=	docbook-sgml>0:textproc/docbook-sgml \
 			docbook-xsl>0:textproc/docbook-xsl
 MANPAGES_USE=		gnome=libxslt:build
 MANPAGES_MESON_TRUE=	man
 
-OPTIONS_SUB=		yes
+.ifdef ALLOW_SYSTEM_AFFECTING_TESTS
+TEST_ENV+=		ALLOW_SYSTEM_AFFECTING_TESTS=1
+.endif
 
 .include <bsd.port.pre.mk>
 
