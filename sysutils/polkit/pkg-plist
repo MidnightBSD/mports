@@ -85,8 +85,8 @@ share/locale/zh_TW/LC_MESSAGES/polkit-1.mo
 share/polkit-1/actions/org.freedesktop.policykit.policy
 share/polkit-1/policyconfig-1.dtd
 share/polkit-1/polkitd.conf
-@dir(polkitd,,700) etc/polkit-1/rules.d
-@dir(polkitd,,700) share/polkit-1/rules.d
+@dir(polkitd,,755) etc/polkit-1/rules.d
+@dir(polkitd,,755) share/polkit-1/rules.d
 @dir etc/polkit-1/localauthority/90-mandatory.d
 @dir etc/polkit-1/localauthority/50-local.d
 @dir etc/polkit-1/localauthority/30-site.d
