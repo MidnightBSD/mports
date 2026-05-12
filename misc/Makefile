@@ -42,6 +42,7 @@
     SUBDIR += goplaces
     SUBDIR += gpsim
     SUBDIR += grc
+    SUBDIR += grok-cli
     SUBDIR += help2man
     SUBDIR += hicolor-icon-theme
     SUBDIR += hwdata
