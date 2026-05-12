@@ -2245,6 +2245,7 @@
     SUBDIR += rust-analyzer
     SUBDIR += rust-bindgen-cli
     SUBDIR += rust-cbindgen
+    SUBDIR += simde
     SUBDIR += samurai
     SUBDIR += sbt
     SUBDIR += scons
@@ -2277,6 +2278,7 @@
     SUBDIR += subversion
     SUBDIR += subversion-lts
     SUBDIR += swig
+    SUBDIR += tllist
     SUBDIR += sysconftool
     SUBDIR += systemc
     SUBDIR += t1lib

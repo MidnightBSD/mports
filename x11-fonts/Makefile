@@ -1,6 +1,7 @@
     COMMENT = X11 fonts and font utilities
 
     SUBDIR += 3270font
+    SUBDIR += fcft
     SUBDIR += Hasklig
     SUBDIR += afdko
     SUBDIR += agave
@@ -165,6 +166,7 @@
     SUBDIR += mourier
     SUBDIR += moveable-type-fonts
     SUBDIR += nerd-fonts
+    SUBDIR += nerd-fonts-symbols
     SUBDIR += nexfontsel
     SUBDIR += noto
     SUBDIR += noto-basic

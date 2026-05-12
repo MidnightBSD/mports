@@ -1,5 +1,6 @@
     COMMENT = Ports to support the X window system
 
+    SUBDIR += alacritty
     SUBDIR += appmenu-registrar
     SUBDIR += appres
     SUBDIR += babl
@@ -16,6 +17,7 @@
     SUBDIR += emwm-utils
     SUBDIR += eterm
     SUBDIR += evilvte
+    SUBDIR += foot
     SUBDIR += fstobdf
     SUBDIR += gdm
     SUBDIR += gnome
@@ -41,6 +43,7 @@
     SUBDIR += kde
     SUBDIR += kde-baseapps
     SUBDIR += kde-gear
+    SUBDIR += kitty
     SUBDIR += keybinder
     SUBDIR += keybinder-gtk3
     SUBDIR += kf5-frameworkintegration
