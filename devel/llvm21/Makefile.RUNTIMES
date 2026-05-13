@@ -59,10 +59,6 @@ LIBCLANG_RT_LIBS_i386= \
 	builtins.a \
 	cfi.a \
 	cfi_diag.a \
-	fuzzer.a \
-	fuzzer_interceptors.a \
-	fuzzer_no_main.a \
-	profile.a \
 	safestack.a \
 	stats.a \
 	stats_client.a \
@@ -180,4 +176,3 @@ COMPILER_RT_LIBS_${CRT_ARCH}:=${LIBCLANG_RT_LIBS_${CRT_ARCH}:S|^|libclang_rt.|}
 COMPILER_RT_LIBS_${CRT_ARCH}:= ${COMPILER_RT_LIBS_${CRT_ARCH}} ${RT_LIBS_${CRT_ARCH}}
 .endif
 .endfor
-

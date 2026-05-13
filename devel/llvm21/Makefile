@@ -613,6 +613,9 @@ post-install-CLANG-on:
 	-${RM} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
 	-${MKDIR} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
 	-${CP} -R "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${FTARGET}/"* "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}/"
+.for CRT_ARCH in ${COMPILER_RT_ARCHS}
+	-${RM} -r "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${FTARGET}"
+.endfor
 
 
 post-install-EXTRAS-on:
