@@ -2,6 +2,7 @@
 
     SUBDIR += alisp
     SUBDIR += bcc
+    SUBDIR += bun
     SUBDIR += bsh
     SUBDIR += chaiscript
     SUBDIR += cjs
