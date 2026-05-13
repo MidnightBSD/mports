@@ -1,5 +1,5 @@
 PORTNAME=	openclaw
-DISTVERSION=	2026.4.24
+DISTVERSION=	2026.5.7
 CATEGORIES=	misc # machine-learning
 PKGNAMESUFFIX=	-ai-gateway
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
@@ -63,9 +63,9 @@ FETCH_SCRIPT=	${PORTSDIR}/Tools/scripts/npmjs-fetch-with-dependencies.sh
 dep_sharp_npm_name=		sharp
 dep_sharp_version=		0.34.5
 dep_koffi_npm_name=		koffi
-dep_koffi_version=		2.16.1
+dep_koffi_version=		2.16.2
 dep_node_addon_api_npm_name=	node-addon-api
-dep_node_addon_api_version=	8.5.0
+dep_node_addon_api_version=	8.7.0
 
 DISTFILES+=	sharp-${dep_sharp_version}${EXTRACT_SUFX} \
 		koffi-${dep_koffi_version}${EXTRACT_SUFX} \
