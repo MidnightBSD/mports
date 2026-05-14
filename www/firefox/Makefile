@@ -1,5 +1,5 @@
 PORTNAME=     firefox
-DISTVERSION=  145.0.1
+DISTVERSION=  146.0.1
 PORTEPOCH=    2
 CATEGORIES=   www wayland
 MASTER_SITES= MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -75,7 +75,6 @@ QMAKE_ARGS=		--enable-application=browser \
 			--disable-alsa \
 			--disable-debug \
 			--disable-debug-symbols \
-			--disable-dtrace \
 			--disable-jack \
 			--disable-profiling \
 			--disable-pulseaudio \
