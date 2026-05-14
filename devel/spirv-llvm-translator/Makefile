@@ -18,7 +18,7 @@ WWW=		https://github.com/KhronosGroup/SPIRV-LLVM-Translator
 LICENSE=	ncsa
 LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
-BUILD_DEPENDS=	${LOCALBASE}/${FLAVOR}/lib/libLLVMMipsCodeGen.a:devel/${FLAVOR}
+BUILD_DEPENDS=	${LOCALBASE}/${FLAVOR}/lib/libLLVMCore.a:devel/${FLAVOR}
 LIB_DEPENDS=	libLLVM-${FLAVOR:S/llvm//}.so:devel/${FLAVOR}
 
 FLAVORS=	${21 20 19 18 17 15 12:L:S/^/llvm/}
