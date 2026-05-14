@@ -1,6 +1,6 @@
 PORTNAME=	chromaprint
 DISTVERSION=	1.5.1.20221217
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 #MASTER_SITES=	https://github.com/acoustid/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -12,7 +12,7 @@ LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	multi
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE.md
 
-LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
+LIB_DEPENDS=	libswresample.so:multimedia/ffmpeg
 
 USES=		cmake compiler:c++11-lib pathfix
 USE_GITHUB=	yes
@@ -22,7 +22,7 @@ USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DBUILD_TOOLS:BOOL=true \
 		-DAUDIO_PROCESSOR_LIB=swresample \
-		-DFFT_LIB:STRING=avfft
+		-DFFT_LIB:STRING=kissfft
 
 OPTIONS_DEFINE=		DOCS DOXYGEN
 
