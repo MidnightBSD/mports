@@ -1,6 +1,10 @@
 PORTNAME=	faust
-DISTVERSION=	2.54.9
+DISTVERSION=	2.85.5
 CATEGORIES=	audio devel
+MASTER_SITES=	https://github.com/grame-cncm/faust/releases/download/${DISTVERSION}/
+
+PATCH_SITES=	https://github.com/grame-cncm/faust/commit/
+PATCHFILES+=	e4e9e51a1a12ef0806fc7c8439fa817a98ec57ce.patch:-p1 # https://github.com/grame-cncm/faust/pull/1170: Fix compilation flags for generated projects: use c++17 instead of c++14
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language for realtime audio signal processing
@@ -9,18 +13,23 @@ WWW=		https://faust.grame.fr/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
-LIB_DEPENDS=	libLLVM-${LLVM_VERSION}.so:devel/llvm${LLVM_VERSION}
+LLVM_VER=	19
+
+LIB_DEPENDS=	libLLVM-${LLVM_VERSION}.so:devel/llvm${LLVM_VERSION} \
+		libzstd.so:archivers/zstd
 RUN_DEPENDS=	bash:shells/bash
 
-USES=		compiler:c++14-lang cmake llvm:min=15,lib ncurses python pkgconfig shebangfix # llvm: versions <11 lacked dump() function(s) that cause unresolved symbols in libfaust.so
+USES=		compiler:c++17-lang cmake localbase:ldflags llvm:min=${LLVM_VER},lib ncurses python pkgconfig shebangfix # llvm: versions <11 lacked dump() function(s) that cause unresolved symbols in libfaust.so
 USE_LDCONFIG=	yes
 
-USE_GITHUB=	yes
+USE_GITHUB=	nodefault
 GH_ACCOUNT=	grame-cncm
-GH_TUPLE=	\
-		grame-cncm:faustlibraries:f9efea9:grame_cncm_faustlibraries/libraries
 
-SHEBANG_FILES=	tools/faust2appls/* tools/benchmark/faustbench tools/sound2faust/sound2reader
+SHEBANG_FILES=	tools/faust-config \
+		tools/faust2appls/* \
+		tools/faust2clap/faust2clap.py \
+		tools/benchmark/faustbench \
+		tools/sound2faust/sound2reader
 
 CMAKE_SOURCE_PATH=	${WRKSRC}/build
 CMAKE_ON=	INCLUDE_DYNAMIC # only installs headers and not libs without INCLUDE_DYNAMIC or INCLUDE_STATIC: https://github.com/grame-cncm/faust/issues/553
@@ -40,12 +49,13 @@ EXAMPLES_CMAKE_BOOL=	FREEBSD_INSTALL_EXAMPLES
 HIGHLIGHT_DESC=		Syntax highlighting in Kate, gedit, Highlight, vim
 HTTPD_LIB_DESC=		Build httpd support library
 
-HTTPD_CMAKE_BOOL=	INCLUDE_HTTP
+HTTPD_LIB_CMAKE_BOOL=	INCLUDE_HTTP HTTPDYNAMIC
 HTTPD_LIB_LIB_DEPENDS=	libmicrohttpd.so:www/libmicrohttpd
 
 PORTEXAMPLES=		*
 
 post-patch:
+	@${FIND} ${WRKSRC} -name "*.orig" -delete
 	# change qmake (5) -> qmake6
 	@cd ${WRKSRC} && \
 		${REINPLACE_CMD} -i '' -e 's|echo qmake)|echo qmake6)|; s|echo qmake-qt5)|echo qmake6)|' \
@@ -53,6 +63,9 @@ post-patch:
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/faust
+	@${RM} -r ${PREFIX}/lib/faust
+	@${FIND} ${PREFIX} -name android | ${XARGS} ${RM} -r
+	${REINPLACE_CMD} -i '' -e 's| printsupport||g' ${PREFIX}/bin/faust2*
 
 post-install-HIGHLIGHT-on:
 	# 1) kate
