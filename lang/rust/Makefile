@@ -239,9 +239,14 @@ do-configure:
 	@${ECHO_CMD} 'cxx="${LOCALBASE}/bin/clang++${LLVM_VERSION}"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'linker="${LOCALBASE}/bin/clang${LLVM_VERSION}"' >> ${WRKSRC}/config.toml
 .else
-	@${ECHO_CMD} 'cc="${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang"' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'cxx="${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang++"' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'linker="${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang"' >> ${WRKSRC}/config.toml
+	@${MKDIR} ${WRKDIR}/wasm-bin
+	@${PRINTF} '#!/bin/sh\nexec "${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang" "$$@"\n' > ${WRKDIR}/wasm-bin/cc
+	@${CHMOD} +x ${WRKDIR}/wasm-bin/cc
+	@${PRINTF} '#!/bin/sh\nexec "${WRKDIR}/_build/${_RUST_TARGET}/llvm/bin/clang++" "$$@"\n' > ${WRKDIR}/wasm-bin/c++
+	@${CHMOD} +x ${WRKDIR}/wasm-bin/c++
+	@${ECHO_CMD} 'cc="${WRKDIR}/wasm-bin/cc"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'cxx="${WRKDIR}/wasm-bin/c++"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'linker="${WRKDIR}/wasm-bin/cc"' >> ${WRKSRC}/config.toml
 .endif
 .else
 	@${ECHO_CMD} 'cc="${CC}"' >> ${WRKSRC}/config.toml
