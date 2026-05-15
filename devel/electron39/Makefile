@@ -108,12 +108,13 @@ DISTFILES+=		${NPM_CMDNAME}-${NPM_VER}.tgz \
 			${_DISTFILE_NODE_MODULES}
 
 # `corepack` places shims in PATH; keep those private to the port.
-NPM_BINDIR=	${WRKDIR}/.bin
+NPM_BINDIR=		${WRKDIR}/.bin
+YARN_COREPACK_HOME=	${WRKDIR}/.corepack-home
 
 YARN_TGZ=	${DISTDIR}/${DIST_SUBDIR}/${NPM_CMDNAME}-${NPM_VER}.tgz
 NODE_MODULES_TARBALL=	${DISTDIR}/${DIST_SUBDIR}/${_DISTFILE_NODE_MODULES}
 
-YARN_NPM_URL=	https://registry.npmjs.org/${NPM_CMDNAME}/-/${NPM_CMDNAME}-${NPM_VER}.tgz
+YARN_NPM_URL=	https://registry.npmjs.org/@yarnpkg/cli-dist/-/cli-dist-${NPM_VER}.tgz
 
 pre-fetch: electron-fetch-node-package-manager electron-fetch-node-modules electron-archive-node-modules
 
@@ -125,6 +126,15 @@ electron-fetch-node-package-manager:
 		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
 		${FETCH_CMD} -o ${YARN_TGZ} ${YARN_NPM_URL}; \
 	fi
+	${MKDIR} ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}
+	${TAR} -xzOf ${YARN_TGZ} package/bin/yarn.js > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	${CHMOD} 755 ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	hash=$$(sha512 -q ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js); \
+	printf '{"locator":{"name":"yarn","reference":"${NPM_VER}"},"bin":["yarn","yarnpkg"],"hash":"sha512.%s"}\n' "$${hash}" > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/.corepack; \
+	printf '{"yarn":"%s+sha512.%s"}\n' "${NPM_VER}" "$${hash}" > \
+		${YARN_COREPACK_HOME}/lastKnownGood.json
 
 electron-fetch-node-modules:
 	@set -e; \
@@ -141,7 +151,6 @@ electron-fetch-node-modules:
 	${MV} ${WRKDIR}/.npm-prefetch/$${pkgdir} ${NPM_EXTRACT_WRKSRC}; \
 	${MKDIR} ${NPM_BINDIR}; \
 	${SETENV} ${MAKE_ENV} corepack enable --install-directory ${NPM_BINDIR}; \
-	${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH corepack install -g ${YARN_TGZ}; \
 	${ECHO_MSG} "===>  Copying ${NPM_PKGFILE} and ${NPM_LOCKFILE} to ${NPM_EXTRACT_WRKSRC}"; \
 	for f in `${FIND} ${PKGJSONSDIR} -type f \\( -name ${NPM_PKGFILE} -o -name ${NPM_LOCKFILE} \\) -print | ${SED} -e 's|${PKGJSONSDIR}/||'`; do \
 		${MKDIR} -p `${DIRNAME} ${NPM_EXTRACT_WRKSRC}/$${f}`; \
@@ -367,6 +376,10 @@ LDFLAGS_i386=	-Wl,-znotext
 MAKE_ENV+=	C_INCLUDE_PATH=${LOCALBASE}/include \
 		CPLUS_INCLUDE_PATH=${LOCALBASE}/include
 
+# corepack: use pre-seeded home, no network
+MAKE_ENV+=	COREPACK_HOME=${YARN_COREPACK_HOME} \
+		COREPACK_ENABLE_NETWORK=0
+
 # rust
 MAKE_ENV+=	RUSTC_BOOTSTRAP=1
 GN_ARGS+=	enable_rust=true \
@@ -424,9 +437,16 @@ pre-patch:
 pre-configure:
 	# Install Electron's node_modules using the prefetched Yarn cache.
 	# (The node-modules distfile is an offline Yarn cache, not a full node_modules tree.)
-	@${MKDIR} ${NPM_BINDIR}
+	@${MKDIR} ${NPM_BINDIR} ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}
 	${SETENV} ${MAKE_ENV} corepack enable --install-directory ${NPM_BINDIR}
-	${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH corepack install -g ${YARN_TGZ}
+	${TAR} -xzOf ${YARN_TGZ} package/bin/yarn.js > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	${CHMOD} 755 ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	hash=$$(sha512 -q ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js); \
+	printf '{"locator":{"name":"yarn","reference":"${NPM_VER}"},"bin":["yarn","yarnpkg"],"hash":"sha512.%s"}\n' "$${hash}" > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/.corepack; \
+	printf '{"yarn":"%s+sha512.%s"}\n' "${NPM_VER}" "$${hash}" > \
+		${YARN_COREPACK_HOME}/lastKnownGood.json
 	${RM} -rf ${WRKSRC}/electron/${NPM_MODULE_CACHE}
 	cd ${WRKSRC}/electron && ${TAR} -xf ${NODE_MODULES_TARBALL}
 	cd ${WRKSRC}/electron && ${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH ${NPM_CACHE_SETUP_CMD}
