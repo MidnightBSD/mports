@@ -1,0 +1,4 @@
+File::XDG provides a basic implementation of the XDG base directory
+specification as published by freedesktop.org. It determines paths for
+configuration, data, and cache files, respecting environment variables
+and falling back to the defaults defined in the specification.
