@@ -109,6 +109,7 @@ A subagent call blocks the main agent, so main agent + 1 subagent is sequential 
 - Keep PRs small and scoped to one concern.
 - Do not force-push to main/master.
 - Do not use `--no-verify` or `--no-gpg-sign`.
+- For every port added or modified, create a dedicated branch and open a PR. Branch naming convention: `<category>/<portname>` (e.g., `devel/gh`). One port per branch/PR.
 
 ## Completion
 
