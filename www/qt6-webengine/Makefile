@@ -81,7 +81,9 @@ USE_XORG+=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 CMAKE_ON+=	QT_FEATURE_qtwebengine_build
 CMAKE_OFF+=	QT_FEATURE_qtpdf_build
 
-CXXFLAGS+=	-I${LOCALBASE}/include/libepoll-shim
+CXXFLAGS+=	-I${LOCALBASE}/include/libepoll-shim \
+		-I${LOCALBASE}/include/nss \
+		-I${LOCALBASE}/include/nspr
 
 SYS_LIBS=	freetype harfbuzz-ng libdrm libpng libxml libxslt openh264 opus
 .endif
