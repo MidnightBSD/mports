@@ -4,6 +4,7 @@
     SUBDIR += alsa-plugins
     SUBDIR += alsa-utils
     SUBDIR += audacity
+    SUBDIR += audio-editing
     SUBDIR += audiocd-kio
     SUBDIR += cddb-bundle
     SUBDIR += cdparanoia
