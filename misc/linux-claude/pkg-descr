@@ -6,5 +6,3 @@ This port installs the official Linux x86_64 binary via MidnightBSD's Linux
 emulation layer (Rocky Linux 9 / glibc).  The wrapper script sets the
 required BUN_JSC_useBBQJIT=0 environment variable needed for Bun-based
 runtimes under Linux emulation.
-
-WWW: https://claude.ai/code
