@@ -110,6 +110,7 @@ A subagent call blocks the main agent, so main agent + 1 subagent is sequential 
 - Do not force-push to main/master.
 - Do not use `--no-verify` or `--no-gpg-sign`.
 - For every port added or modified, create a dedicated branch and open a PR. Branch naming convention: `<category>/<portname>` (e.g., `devel/gh`). One port per branch/PR.
+- When `gh` (GitHub CLI) is available, prefer it for all GitHub operations: creating branches, opening PRs, checking PR status, and managing issues. Fall back to raw `git` and API calls only if `gh` is not installed.
 
 ## Completion
 
