@@ -219,6 +219,7 @@
     SUBDIR += p5-WWW-Curl
     SUBDIR += p5-WWW-Form-UrlEncoded
     SUBDIR += p5-WWW-Mechanize
+    SUBDIR += p5-WWW-Mechanize-Cached
     SUBDIR += p5-WWW-RobotRules
     SUBDIR += p5-Web-Query
     SUBDIR += p5-Web-Scraper

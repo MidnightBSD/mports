@@ -1,8 +1,6 @@
 PORTNAME=	linux-claude
-DISTVERSION=	2.1.139
+DISTVERSION=	2.1.142
 CATEGORIES=	misc linux
-
-# npm tarball for the Linux x64 native binary package
 MASTER_SITES=	https://registry.npmjs.org/@anthropic-ai/claude-code-linux-x64/-/
 DISTNAME=	claude-code-linux-x64-${DISTVERSION}
 EXTRACT_SUFX=	.tgz
@@ -35,7 +33,7 @@ do-install:
 	${MKDIR} ${PREFIX}/lib/linux-claude
 	${CP} ${WRKSRC}/package.json ${PREFIX}/lib/linux-claude/
 	${INSTALL_DATA} ${WRKSRC}/claude ${PREFIX}/lib/linux-claude/claude
-	chmod 555 ${PREFIX}/lib/linux-claude/claude
+	${CHMOD} 555 ${PREFIX}/lib/linux-claude/claude
 #	brandelf -t Linux ${PREFIX}/lib/linux-claude/claude
 	${INSTALL_SCRIPT} ${WRKDIR}/claude ${PREFIX}/bin/claude
 

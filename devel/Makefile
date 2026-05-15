@@ -836,6 +836,7 @@
     SUBDIR += p5-File-Tail
     SUBDIR += p5-File-Temp
     SUBDIR += p5-File-Type
+    SUBDIR += p5-File-XDG
     SUBDIR += p5-File-chdir
     SUBDIR += p5-File-pushd
     SUBDIR += p5-FileHandle-Fmode
