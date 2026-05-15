@@ -216,6 +216,7 @@
     SUBDIR += compiler-rt
     SUBDIR += concurrencykit
     SUBDIR += courier-unicode
+    SUBDIR += cppcheck
     SUBDIR += cpptest
     SUBDIR += cppunit
     SUBDIR += crc32c
