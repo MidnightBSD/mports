@@ -1,6 +1,7 @@
 PORTNAME=	z88
 DISTVERSIONPREFIX=	v
 DISTVERSION=	15
+PORTREVISION=	1
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -51,7 +52,7 @@ do-install:
 	for x in ${Z88_BIN_SUFFIXES}; do ${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/z88$$x ${PREFIX}/bin; done
 	${INSTALL_DATA} ${Z88_DATA:S,^,${INSTALL_WRKSRC}/,} ${DATADIR}
 	${INSTALL_SCRIPT} ${FILESDIR}/z88 ${PREFIX}/bin
-	${SED} -i '' 's,%%DATADIR%%,${DATADIR},' ${PREFIX}/bin/z88
+	${SED} -i '' 's,%%DATADIR%%,${LOCALBASE}/share/${PORTNAME},' ${PREFIX}/bin/z88
 	${SED} -i '' 's,%%Z88_DATA%%,${Z88_DATA},' ${PREFIX}/bin/z88
 
 do-install-DOCS-on:
