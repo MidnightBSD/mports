@@ -238,7 +238,7 @@ CARGO_ENV+=	OPENSSL_LIB_DIR=${OPENSSLLIB} \
 		OPENSSL_INCLUDE_DIR=${OPENSSLINC}
 .  endif
 
-.if ${CARGO_CRATES:Mpkg-config}
+.if ${_CARGO_CRATES:Mpkg-config}
 .include "${MPORTEXTENSIONS}/pkgconfig.mk"
 .endif
 
