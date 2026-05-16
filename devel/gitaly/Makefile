@@ -37,7 +37,8 @@ GO_MODULE=	gitlab.com/gitlab-org/gitaly/v18
 
 MAKE_ENV=	GOFLAGS="${GO_BUILDFLAGS}"
 # make sure to pass go build options into make process
-MAKE_ENV+=	${GO_ENV}
+MAKE_ENV+=	GIT_APPEND_BUILD_OPTIONS="NEEDS_LIBICONV=YesPlease ICONVDIR=${LOCALBASE}" \
+		${GO_ENV}
 # parallel build failed in my tests, so disable it here
 MAKE_JOBS_UNSAFE=yes
 

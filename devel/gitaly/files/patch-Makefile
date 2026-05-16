@@ -1,0 +1,7 @@
+--- Makefile.orig	2026-05-15 19:19:51 UTC
++++ Makefile
+@@ -756,2 +756,2 @@ ${DEPENDENCY_DIR}/protoc.version: dependency-version |
+-# something else. We thus depend on the Makefile instead.
+-${DEPENDENCY_DIR}/git-%/Makefile: ${DEPENDENCY_DIR}/git-%.version
++# something else. We thus depend on the extracted Makefile instead.
++${DEPENDENCY_DIR}/git-%/Makefile:
