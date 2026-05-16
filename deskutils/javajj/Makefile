@@ -1,6 +1,6 @@
 PORTNAME=	javajj
 PORTVERSION=	1.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	deskutils java
 #MASTER_SITES=	http://www.justjournal.com/software/
 #DISTFILES=	justjournal-${PORTVERSION}${EXTRACT_SUFX}
@@ -21,6 +21,7 @@ GH_ACCOUNT=	JustJournal
 GH_PROJECT=	justjournal-client-java
 
 USES=		java tar:bzip2
+JAVA_VERSION=	11
 
 SUB_FILES=	${PORTNAME}.sh
 PLIST_FILES+=	bin/${PORTNAME}
