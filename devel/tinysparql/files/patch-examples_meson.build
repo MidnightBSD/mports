@@ -1,0 +1,9 @@
+--- examples/meson.build.orig	2024-12-13 13:08:09 UTC
++++ examples/meson.build
+@@ -1,5 +1,5 @@
+ subdir('libtinysparql')
+
+-if get_option('introspection').enabled()
++if get_option('tests') and get_option('introspection').enabled()
+     subdir('python')
+ endif
