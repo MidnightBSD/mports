@@ -1,5 +1,6 @@
 PORTNAME=	aws-sdk-cpp
 DISTVERSION=	1.11.560
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -61,7 +62,11 @@ post-patch:
 		${WRKSRC}/cmake/compiler_settings.cmake
 
 post-fake:
+	@${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/cmake/AWSSDK/*.bak
 	@cd ${FAKE_DESTDIR}/${TRUE_PREFIX} && \
 	${FIND} -s -d * -type f > ${TMPPLIST}
+	@${ECHO_CMD} "share/licenses/${PKGNAME}/catalog.mk" >> ${TMPPLIST}
+	@${ECHO_CMD} "share/licenses/${PKGNAME}/LICENSE" >> ${TMPPLIST}
+	@${ECHO_CMD} "share/licenses/${PKGNAME}/${LICENSE}" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
