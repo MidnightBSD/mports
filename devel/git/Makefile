@@ -142,6 +142,8 @@ RUN_DEPENDS+=	cvsps:devel/cvsps
 USES+=		tk
 MAKE_ARGS+=	TCL_PATH=${TCLSH} TCLTK_PATH=${WISH}
 . elif ${SUBPORT} == svn
+USES+=		perl5
+CONFIGURE_ARGS+=	--with-perl=${PERL}
 RUN_DEPENDS+=	p5-Term-ReadKey>=0:devel/p5-Term-ReadKey
 .  if ${WITH_SUBVERSION_VER:U} == LTS
 RUN_DEPENDS+=	p5-subversion-lts>=0:devel/p5-subversion
