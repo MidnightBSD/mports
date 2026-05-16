@@ -1,6 +1,6 @@
 PORTNAME=	rJava
 DISTVERSION=	1.0-11
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel java
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
@@ -9,6 +9,8 @@ COMMENT=	R to Java interface
 WWW=		https://cran.r-project.org/package=rJava
 
 LICENSE=	lgpl2.1
+
+BROKEN_i386=	no working JVM available for i386 on MidnightBSD 4.0; openjdk*-bin are amd64-only and openjdk source builds fail
 
 LIB_DEPENDS=	libicuuc.so:devel/icu	\
 		libpcre2-8.so:devel/pcre2
