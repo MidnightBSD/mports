@@ -292,6 +292,28 @@ sub handle_tools_list($id) {
                 },
             },
         },
+        {
+            name        => 'top_blockers',
+            description =>
+                'List the highest-weight failed or skipped ports blocking other ports '
+              . 'from building. The weight is an approximate priority score, not an '
+              . 'exact reverse-dependency count. Higher weights should be fixed first.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    run_id => {
+                        type        => 'integer',
+                        description =>
+                            'Run ID to analyze. Omit to use the latest complete blessed '
+                          . 'run per architecture.',
+                    },
+                    limit => {
+                        type        => 'integer',
+                        description => 'Maximum number of blockers to return per run (default: 20, max: 100).',
+                    },
+                },
+            },
+        },
     ]});
 }
 
@@ -306,6 +328,7 @@ sub handle_tools_call($id, $params) {
         get_port_log     => \&tool_get_port_log,
         get_port_details => \&tool_get_port_details,
         get_port_cves    => \&tool_get_port_cves,
+        top_blockers     => \&tool_top_blockers,
     );
 
     if (my $handler = $dispatch{$name}) {
@@ -622,6 +645,60 @@ sub tool_get_port_cves($id, $args) {
     tool_result($id, $text, 0);
 }
 
+sub tool_top_blockers($id, $args) {
+    my $limit = $args->{limit} // 20;
+    $limit = 20 unless is_number($limit);
+    $limit = int($limit);
+    $limit = 1   if $limit < 1;
+    $limit = 100 if $limit > 100;
+
+    my @runs;
+    if (defined $args->{run_id}) {
+        unless (is_number($args->{run_id})) {
+            return tool_result($id, "Error: 'run_id' must be a valid integer.", 1);
+        }
+
+        my $run = eval { Magus::Run->retrieve(int($args->{run_id})) };
+        return tool_result($id, "Run ID $args->{run_id} not found.", 1) unless $run;
+        push @runs, $run;
+    } else {
+        @runs = _latest_runs_per_arch();
+        return tool_result($id, "No completed build runs found.", 0) unless @runs;
+    }
+
+    my $text = "Top blockers\n";
+    $text .= "Weights are rough priority scores based on dependency propagation; "
+           . "they are not exact counts of blocked ports.\n";
+
+    for my $run (@runs) {
+        my @blockers = top_blockers_for_run($run, $limit);
+
+        $text .= sprintf(
+            "\nRun %d  arch=%s  osversion=%s  status=%s  blessed=%s\n",
+            $run->id, $run->arch, $run->osversion, $run->status,
+            ($run->blessed ? 'yes' : 'no'),
+        );
+
+        unless (@blockers) {
+            $text .= "  No failed or skipped blockers found.\n";
+            next;
+        }
+
+        $text .= sprintf("%-6s  %-8s  %-6s  %-9s  %-30s  %s\n",
+            'Weight', 'Port ID', 'Run', 'Status', 'Origin', 'Pkgname');
+        $text .= '-' x 78 . "\n";
+
+        for my $b (@blockers) {
+            $text .= sprintf("%-6d  %-8d  %-6d  %-9s  %-30s  %s\n",
+                $b->{weight}, $b->{port_id}, $b->{run_id}, $b->{status},
+                $b->{name}, $b->{pkgname});
+        }
+    }
+
+    $text .= "\nUse get_port_details with a port_id before fetching logs or patching a port.";
+    tool_result($id, $text, 0);
+}
+
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
@@ -687,6 +764,50 @@ sub resolve_port_arg($args) {
     }
 
     return;
+}
+
+sub top_blockers_for_run($run, $limit) {
+    my %blocking;
+    my %objs;
+
+    my $ports = Magus::Port->search(run => $run->id, status => 'untested');
+    while (my $port = $ports->next) {
+        my $port_id = $port->id;
+        my $add = $blocking{$port_id} || 1;
+        $objs{$port_id} ||= $port;
+
+        for my $dep ($port->depends) {
+            next unless $dep->status =~ /^(fail|skip|untested)$/;
+
+            my $dep_id = $dep->id;
+            $objs{$dep_id} ||= $dep;
+            $blocking{$dep_id} += $add;
+        }
+    }
+
+    my @blockers;
+    for my $port_id (sort { $blocking{$b} <=> $blocking{$a} || $a <=> $b } keys %blocking) {
+        my $port = $objs{$port_id};
+        next unless $port;
+        next if $port->status eq 'untested';
+
+        push @blockers, {
+            weight    => $blocking{$port_id} + 0,
+            port_id   => $port->id + 0,
+            run_id    => $run->id + 0,
+            name      => $port->name,
+            pkgname   => $port->pkgname,
+            version   => $port->version // '',
+            status    => $port->status,
+            flavor    => $port->flavor // '',
+            arch      => $run->arch,
+            osversion => $run->osversion,
+        };
+
+        last if @blockers >= $limit;
+    }
+
+    return @blockers;
 }
 
 sub fetch_cve_api($url) {
