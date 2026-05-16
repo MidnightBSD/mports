@@ -58,6 +58,10 @@ CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd13.4
 .endif
 
+.if ${ARCH} == i386
+MAKE_JOBS_UNSAFE=	yes
+.endif
+
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 CONFIGURE_ENV+=	LLVM_CONFIG=${LLVM_CONFIG} \
 		LLVM_OBJDUMP=llvm-objdump${LLVM_VERSION}
