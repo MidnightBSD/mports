@@ -7,7 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line flag parser inspired by Python\'s optparse
 WWW=		https://cran.r-project.org/web/packages/optparse/
 
-LICENSE=	gpl2+LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 CRAN_DEPENDS=	R-cran-getopt>=1.20.2:devel/R-cran-getopt
 BUILD_DEPENDS=	${CRAN_DEPENDS}

@@ -7,7 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Accept short and long flags in Rscript
 WWW=		https://cran.r-project.org/web/packages/getopt/
 
-LICENSE=	gpl2LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cran:auto-plist
 

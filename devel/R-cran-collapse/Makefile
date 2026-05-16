@@ -7,7 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced and Fast Data Transformation
 WWW=		https://cran.r-project.org/package=collapse
 
-LICENSE=	gpl2+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CRAN_DEPENDS=	R-cran-Rcpp>=1.0.1:devel/R-cran-Rcpp
 BUILD_DEPENDS=	${CRAN_DEPENDS}
