@@ -9,6 +9,7 @@ WWW=		https://github.com/tagomoris/fluent-mixin-plaintextformatter
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	\
 	rubygem-fluentd>0:sysutils/rubygem-fluentd \
 	rubygem-ltsv>0:textproc/rubygem-ltsv

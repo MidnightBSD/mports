@@ -10,6 +10,7 @@ WWW=		https://github.com/moomerman/twitter_oauth
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=1.8.0:devel/rubygem-json \
 		rubygem-mime-types>=1.16:misc/rubygem-mime-types \
 		rubygem-oauth>=0.4.7:net/rubygem-oauth

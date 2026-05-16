@@ -11,6 +11,7 @@ WWW=		https://github.com/googleapis/ruby-cloud-env
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0.2<1:converters/rubygem-base64 \
 		rubygem-faraday-gitlab>=1.0<3.0:www/rubygem-faraday-gitlab
 

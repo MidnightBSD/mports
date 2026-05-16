@@ -11,6 +11,7 @@ WWW=		https://github.com/SmallLars/openssl-cmac
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-openssl>=3.0:security/rubygem-openssl
 
 USES=		gem

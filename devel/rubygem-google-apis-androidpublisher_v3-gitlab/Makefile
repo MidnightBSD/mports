@@ -11,6 +11,7 @@ WWW=		https://github.com/google/google-api-ruby-client
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-apis-core-gitlab>=0.15.0<2.0:devel/rubygem-google-apis-core-gitlab
 
 USES=		gem

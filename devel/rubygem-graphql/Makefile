@@ -9,6 +9,7 @@ WWW=		https://github.com/rmosolgo/graphql-ruby
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-fiber-storage>=0:devel/rubygem-fiber-storage \
 		rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab

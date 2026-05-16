@@ -9,6 +9,7 @@ WWW=		https://github.com/Absolight/epp-client
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-builder>=2.1.2:devel/rubygem-builder \
 		rubygem-epp-client-base=${PORTVERSION}:net/rubygem-epp-client-base \
 		rubygem-epp-client-rgp=${PORTVERSION}:net/rubygem-epp-client-rgp \

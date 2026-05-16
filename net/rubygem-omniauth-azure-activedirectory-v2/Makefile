@@ -10,6 +10,7 @@ WWW=		https://github.com/RIPGlobal/omniauth-azure-activedirectory-v2
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-omniauth-oauth2-gitlab>=1.8<3:net/rubygem-omniauth-oauth2-gitlab
 
 USES=		gem

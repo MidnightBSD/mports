@@ -10,6 +10,7 @@ WWW=		https://github.com/twitter4r/twitter4r-core
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=1.1.1:devel/rubygem-json \
 		rubygem-oauth>=0.4.1:net/rubygem-oauth
 

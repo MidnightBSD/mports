@@ -11,6 +11,7 @@ WWW=		https://octokit.github.io/octokit.rb/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=1<3:www/rubygem-faraday \
 		rubygem-sawyer>=0.9<1:www/rubygem-sawyer
 

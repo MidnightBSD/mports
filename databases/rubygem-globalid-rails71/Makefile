@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/globalid
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport71>=6.1:devel/rubygem-activesupport71
 
 USES=		gem

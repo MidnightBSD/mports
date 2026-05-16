@@ -13,6 +13,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-resource_manager
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-apis-cloudresourcemanager_v1>=0.1<1:devel/rubygem-google-apis-cloudresourcemanager_v1 \
 		rubygem-google-cloud-core>=1.6<2:net/rubygem-google-cloud-core \
 		rubygem-googleauth>=0.16.2<2.0:security/rubygem-googleauth

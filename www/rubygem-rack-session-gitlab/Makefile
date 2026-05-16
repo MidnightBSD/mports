@@ -11,6 +11,7 @@ WWW=		https://github.com/rack/rack-session
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rack-gitlab>=2<3:www/rubygem-rack-gitlab
 
 USES=		gem

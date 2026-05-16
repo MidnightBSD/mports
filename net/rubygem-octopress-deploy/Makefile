@@ -10,6 +10,7 @@ WWW=		https://github.com/octopress/deploy
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-colorator>=0:textproc/rubygem-colorator
 
 USES=		gem

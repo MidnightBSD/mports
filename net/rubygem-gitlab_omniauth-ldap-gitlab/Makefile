@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/omniauth-ldap
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-net-ldap>=0.16<1:net/rubygem-net-ldap \
 		rubygem-omniauth-gl>=1.3<3:security/rubygem-omniauth-gl \
 		rubygem-pyu-ruby-sasl>=0.0.3.3<0.1:security/rubygem-pyu-ruby-sasl \

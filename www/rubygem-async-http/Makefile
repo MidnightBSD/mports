@@ -11,6 +11,7 @@ WWW=		https://socketry.github.io/async-http/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-async>=2.10.2:devel/rubygem-async \
 		rubygem-async-pool>=0.11<1:www/rubygem-async-pool \
 		rubygem-io-endpoint>=0.14<1:devel/rubygem-io-endpoint \

@@ -14,6 +14,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-storage/latest/ 
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.8<3:www/rubygem-addressable \
 		rubygem-digest-crc>=0.4<1:security/rubygem-digest-crc \
 		rubygem-google-apis-iamcredentials_v1-gitlab>=0.18<1:devel/rubygem-google-apis-iamcredentials_v1-gitlab \

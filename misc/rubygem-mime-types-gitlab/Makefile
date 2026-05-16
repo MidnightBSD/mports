@@ -11,6 +11,7 @@ WWW=		https://github.com/mime-types/ruby-mime-types
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENCE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
 		rubygem-mime-types-data>=3.2025.0507<4:misc/rubygem-mime-types-data
 

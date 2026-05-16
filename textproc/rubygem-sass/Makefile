@@ -10,6 +10,7 @@ WWW=		https://sass-lang.com/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-sass-listen>=4.0.0<4.1:textproc/rubygem-sass-listen
 
 USES=		gem shebangfix

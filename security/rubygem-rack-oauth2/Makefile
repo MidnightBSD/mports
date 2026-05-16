@@ -10,6 +10,7 @@ WWW=		https://github.com/nov/rack-oauth2
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport61>=0:devel/rubygem-activesupport61 \
 		rubygem-attr_required>=0:devel/rubygem-attr_required \
 		rubygem-faraday>=2.0<3:www/rubygem-faraday \

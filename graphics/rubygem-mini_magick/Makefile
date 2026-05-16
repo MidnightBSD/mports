@@ -10,6 +10,7 @@ WWW=		https://github.com/minimagick/minimagick
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-benchmark>=0:benchmarks/rubygem-benchmark \
 		rubygem-logger>=0:devel/rubygem-logger
 

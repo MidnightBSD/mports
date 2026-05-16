@@ -12,6 +12,7 @@ LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 LIB_DEPENDS=	libcurl.so:ftp/curl
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=1<3:devel/rubygem-json
 
 USES=		gem gnome

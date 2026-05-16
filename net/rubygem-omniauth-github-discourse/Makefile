@@ -10,6 +10,7 @@ WWW=		https://github.com/omniauth/omniauth-github
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-omniauth1>=1.0<2:security/rubygem-omniauth1 \
 		rubygem-omniauth-oauth2>=1.1<2:net/rubygem-omniauth-oauth2
 

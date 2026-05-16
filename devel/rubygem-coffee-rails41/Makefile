@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/coffee-rails
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS?=	rubygem-coffee-script>=2.2.0:devel/rubygem-coffee-script \
 		rubygem-railties4>=4.0.0:www/rubygem-railties4
 

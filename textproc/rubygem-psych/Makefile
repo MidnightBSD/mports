@@ -11,6 +11,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libyaml.so:textproc/libyaml
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-stringio>=0:devel/rubygem-stringio
 
 USES=		gem

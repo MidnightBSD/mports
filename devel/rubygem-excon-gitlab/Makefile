@@ -11,6 +11,7 @@ WWW=		https://github.com/excon/excon
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab
 
 USES=		cpe gem

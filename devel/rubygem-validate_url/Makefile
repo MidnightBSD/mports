@@ -11,6 +11,7 @@ WWW=		https://github.com/perfectline/validates_url/tree/master
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel-gitlab>=3.0:databases/rubygem-activemodel-gitlab \
 		rubygem-public_suffix>=0:dns/rubygem-public_suffix
 

@@ -9,6 +9,7 @@ WWW=		https://github.com/fnando/svg_optimizer
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-nokogiri>=0:textproc/rubygem-nokogiri
 
 USES=		gem

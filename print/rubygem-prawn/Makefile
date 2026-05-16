@@ -14,6 +14,7 @@ LICENSE_FILE_gpl2=	${WRKSRC}/gpl2
 LICENSE_FILE_gpl3=	${WRKSRC}/gpl3
 LICENSE_FILE_ruby=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-matrix>=0.4<1:math/rubygem-matrix \
 		rubygem-pdf-core>=0.10.0<0.11:print/rubygem-pdf-core \
 		rubygem-ttfunk>=1.8<2:print/rubygem-ttfunk

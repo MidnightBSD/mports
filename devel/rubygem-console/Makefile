@@ -11,6 +11,7 @@ WWW=		https://socketry.github.io/console/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fiber-annotation>=0:devel/rubygem-fiber-annotation \
 		rubygem-fiber-local>=1.1<2:devel/rubygem-fiber-local \
 		rubygem-json>=0:devel/rubygem-json

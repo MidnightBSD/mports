@@ -13,6 +13,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-monitoring/lates
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-cloud-core>=1.6<2:net/rubygem-google-cloud-core \
 		rubygem-google-cloud-monitoring-dashboard-v1>=0.14<2.0:net/rubygem-google-cloud-monitoring-dashboard-v1 \
 		rubygem-google-cloud-monitoring-metrics_scope-v1>=0.5<2.0:net/rubygem-google-cloud-monitoring-metrics_scope-v1 \

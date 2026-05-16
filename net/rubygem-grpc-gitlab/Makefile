@@ -11,6 +11,7 @@ WWW=		https://github.com/grpc/grpc/tree/master/src/ruby
 LICENSE=	bsd3
 
 LIB_DEPENDS=	libgrpc.so:devel/grpc
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		rubygem-googleapis-common-protos-types>=1.0<2:devel/rubygem-googleapis-common-protos-types \
 		rubygem-google-protobuf>=3.25<5.0:devel/rubygem-google-protobuf

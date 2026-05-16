@@ -10,6 +10,7 @@ WWW=		https://github.com/httprb/http
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.8<3:www/rubygem-addressable \
 		rubygem-http-cookie>=1.0<2:www/rubygem-http-cookie \
 		rubygem-http-form_data>=2.2<3:www/rubygem-http-form_data \

@@ -10,6 +10,7 @@ WWW=		http://rubyamqp.info/
 LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-amq-protocol>=2.2.0:net/rubygem-amq-protocol \
 		rubygem-eventmachine>=0:devel/rubygem-eventmachine
 

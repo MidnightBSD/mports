@@ -10,6 +10,7 @@ WWW=		https://github.com/hassox/url_mount
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rack>=0:www/rubygem-rack
 
 NO_ARCH=	yes

@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/ruby-oauth/oauth-tty
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-version_gem>=1.1.9<2:devel/rubygem-version_gem
 
 USES=		gem

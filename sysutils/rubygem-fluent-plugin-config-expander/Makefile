@@ -9,6 +9,7 @@ WWW=		https://github.com/tagomoris/fluent-plugin-config-expander
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fluentd>0:sysutils/rubygem-fluentd
 
 USES=		gem

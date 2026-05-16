@@ -10,6 +10,7 @@ WWW=		https://github.com/baldowl/rack_csrf
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.rdoc
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rack>=1.1.0,3:www/rubygem-rack
 TEST_DEPENDS=	rubygem-rspec>0:devel/rubygem-rspec
 

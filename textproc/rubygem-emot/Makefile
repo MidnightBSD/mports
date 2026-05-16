@@ -10,6 +10,7 @@ WWW=		https://github.com/melborne/emot
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-thor>=0:devel/rubygem-thor
 
 USES=		gem

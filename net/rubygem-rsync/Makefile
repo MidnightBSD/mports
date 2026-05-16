@@ -11,6 +11,7 @@ WWW=		https://github.com/jbussdieker/ruby-rsync
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rsync:net/rsync
 
 NO_ARCH=	yes

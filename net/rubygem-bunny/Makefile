@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby-amqp/bunny
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-amq-protocol>=2.2.0:net/rubygem-amq-protocol
 
 NO_ARCH=	yes

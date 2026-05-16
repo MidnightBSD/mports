@@ -11,6 +11,7 @@ WWW=		http://solutious.com/projects/rudy/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-amazon-ec2>=0.9.10:net/rubygem-amazon-ec2 \
 		rubygem-aws-s3>=0.6.1:net/rubygem-aws-s3 \
 		rubygem-annoy>=0.5.6:devel/rubygem-annoy \

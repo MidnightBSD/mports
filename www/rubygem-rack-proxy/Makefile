@@ -10,6 +10,7 @@ WWW=		https://github.com/ncr/rack-proxy
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rack>=0,3:www/rubygem-rack
 
 USES=		gem

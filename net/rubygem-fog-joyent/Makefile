@@ -11,6 +11,7 @@ WWW=		https://github.com/fog/fog-joyent
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core1>=1.42<2:devel/rubygem-fog-core1 \
 		rubygem-fog-json>=1.0:devel/rubygem-fog-json
 

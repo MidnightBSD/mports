@@ -10,6 +10,7 @@ WWW=		https://ultraauth.com/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-omniauth_openid_connect>=0.3.0:net/rubygem-omniauth_openid_connect
 
 USES=		gem

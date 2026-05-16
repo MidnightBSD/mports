@@ -10,6 +10,7 @@ WWW=		https://rubygems.org/gems/spamcheck
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-grpc-gitlab>=1.63<2.0:net/rubygem-grpc-gitlab
 
 USES=		gem

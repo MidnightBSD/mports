@@ -11,6 +11,7 @@ WWW=		https://github.com/redis/hiredis-rb
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	redis>=0:databases/redis
 
 USES=		gem gmake

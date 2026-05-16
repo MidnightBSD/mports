@@ -13,6 +13,7 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack52>=${PORTVERSION}:www/rubygem-actionpack52 \
 		rubygem-activerecord52>=${PORTVERSION}:databases/rubygem-activerecord52 \
 		rubygem-marcel>=1.0.0<2:devel/rubygem-marcel

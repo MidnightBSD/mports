@@ -10,6 +10,7 @@ WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/data/azure_event_g
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-ms_rest_azure>=0.12.0<0.13:devel/rubygem-ms_rest_azure
 
 USES=		gem

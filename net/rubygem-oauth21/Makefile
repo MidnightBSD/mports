@@ -12,6 +12,7 @@ WWW=		https://github.com/oauth-xx/oauth2
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=0.17.3<3.0:www/rubygem-faraday \
 		rubygem-jwt2>=1.0<3.0:www/rubygem-jwt2 \
 		rubygem-multi_json>=1.3<2:devel/rubygem-multi_json \

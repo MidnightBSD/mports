@@ -14,6 +14,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-storage_transfer
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-gapic-common-gitlab>=0.21.1<2:devel/rubygem-gapic-common-gitlab \
 		rubygem-google-cloud-errors>=1.0<2:net/rubygem-google-cloud-errors
 

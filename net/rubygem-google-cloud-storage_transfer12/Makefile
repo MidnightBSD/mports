@@ -11,6 +11,7 @@ WWW=		https://github.com/googleapis/google-cloud-ruby
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-cloud-core>=1.6<2:net/rubygem-google-cloud-core \
 		rubygem-google-cloud-storage_transfer-v1>=0.5<2:net/rubygem-google-cloud-storage_transfer-v1
 

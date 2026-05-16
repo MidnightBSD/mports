@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/activerecord \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel72>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel72 \
 		rubygem-activesupport72>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport72 \
 		rubygem-timeout>=0.4.0:devel/rubygem-timeout

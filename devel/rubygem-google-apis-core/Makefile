@@ -11,6 +11,7 @@ WWW=		https://github.com/googleapis/google-api-ruby-client/tree/main/google-apis
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.5.1<3:www/rubygem-addressable \
 		rubygem-googleauth>=1.9<2:security/rubygem-googleauth \
 		rubygem-httpclient>=2.8.3<3.0:www/rubygem-httpclient \

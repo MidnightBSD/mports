@@ -12,6 +12,7 @@ WWW=		https://github.com/josh/rack-ssl
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rack>=0,3:www/rubygem-rack
 
 NO_ARCH=	yes

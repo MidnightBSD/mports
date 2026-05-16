@@ -11,6 +11,7 @@ WWW=		https://github.com/googleapis/google-cloud-ruby/tree/main/google-cloud-big
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-concurrent-ruby>=1.0<2:devel/rubygem-concurrent-ruby \
 		rubygem-google-api-client>=0.33<1:devel/rubygem-google-api-client \
 		rubygem-google-cloud-core>=1.2<2:net/rubygem-google-cloud-core \

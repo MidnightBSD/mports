@@ -12,6 +12,7 @@ LICENSE_COMB=	dual
 LICENSE_FILE_bsd2=${WRKSRC}/BSDL
 LICENSE_FILE_ruby=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-stringio>=0:devel/rubygem-stringio \
 		rubygem-time>=0:devel/rubygem-time \
 		rubygem-uri>=0:net/rubygem-uri

@@ -10,6 +10,7 @@ WWW=		https://github.com/drewblas/aws-ses
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-builder>=0:devel/rubygem-builder \
 		rubygem-mail>=2.2.5:mail/rubygem-mail \
 		rubygem-mime-types>=0:misc/rubygem-mime-types \

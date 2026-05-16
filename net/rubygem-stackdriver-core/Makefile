@@ -13,6 +13,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/stackdriver-core/latest/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-cloud-core>=1.2<2:net/rubygem-google-cloud-core
 
 USES=		gem

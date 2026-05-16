@@ -10,6 +10,7 @@ WWW=		https://github.com/socketry/cloudflare
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-async-rest>=0.18<1:www/rubygem-async-rest
 
 USES=		gem

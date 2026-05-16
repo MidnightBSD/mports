@@ -10,6 +10,7 @@ WWW=		https://github.com/premailer/css_parser
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=0:www/rubygem-addressable
 
 USES=		gem

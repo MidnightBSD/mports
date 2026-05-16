@@ -11,6 +11,7 @@ WWW=		https://github.com/voloko/twitter-stream
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-eventmachine>=0.12.8:devel/rubygem-eventmachine \
 		rubygem-http_parser.rb>=0.5.1:net/rubygem-http_parser.rb \
 		rubygem-simple_oauth>=0.1.4:net/rubygem-simple_oauth

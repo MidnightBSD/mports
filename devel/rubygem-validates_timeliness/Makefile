@@ -10,6 +10,7 @@ WWW=		https://github.com/adzap/validates_timeliness
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel80>=8.0.0<9:databases/rubygem-activemodel80 \
 		rubygem-timeliness>=0.3.10<1:devel/rubygem-timeliness
 

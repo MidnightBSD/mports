@@ -13,6 +13,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-spanner/latest/ 
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>=3.0<5:math/rubygem-bigdecimal \
 		rubygem-concurrent-ruby>=1.0<2:devel/rubygem-concurrent-ruby \
 		rubygem-google-cloud-core>=1.7<2:net/rubygem-google-cloud-core \
