@@ -1,5 +1,6 @@
 PORTNAME=	cmake
 DISTVERSION=	${_CMAKE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-gui
 
@@ -11,8 +12,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
 BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
-LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libexpat.so:textproc/expat2 \
+LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libjsoncpp.so:devel/jsoncpp \
 		libuv.so:devel/libuv \
 		librhash.so:security/rhash
@@ -25,7 +25,6 @@ CMAKE_ARGS=	-DCMAKE_DATA_DIR:STRING="/${DATADIR_REL}" \
 		-DCMAKE_DOC_DIR:STRING="/${DOCSDIR_REL}" \
 		-DCMake_QT_MAJOR_VERSION=6
 CMAKE_ON=	BUILD_QtDialog \
-		CMAKE_USE_SYSTEM_CURL \
 		CMAKE_USE_SYSTEM_EXPAT \
 		CMAKE_USE_SYSTEM_FORM \
 		CMAKE_USE_SYSTEM_JSONCPP \
@@ -35,7 +34,8 @@ CMAKE_ON=	BUILD_QtDialog \
 		SPHINX_MAN
 CMAKE_OFF=	BUILD_CursesDialog \
 		CMake_SPHINX_DEPEND_ON_EXECUTABLES \
-		CMAKE_USE_SYSTEM_CPPDAP
+		CMAKE_USE_SYSTEM_CPPDAP \
+		CMAKE_USE_SYSTEM_CURL
 
 ALL_TARGET=	cmake-gui documentation
 
