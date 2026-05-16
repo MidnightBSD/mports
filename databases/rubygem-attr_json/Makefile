@@ -3,11 +3,11 @@ PORTVERSION=	2.5.0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Serialized json-hash-backed ActiveRecord attributes
 WWW=		https://github.com/jrochkind/attr_json
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		gem

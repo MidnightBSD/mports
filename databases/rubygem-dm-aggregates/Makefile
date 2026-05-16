@@ -3,11 +3,11 @@ PORTVERSION=	1.2.0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DataMapper plugin providing support for aggregates
 WWW=		https://github.com/datamapper/dm-aggregates
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-dm-core>=${PORTVERSION}:databases/rubygem-dm-core

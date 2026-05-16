@@ -4,11 +4,11 @@ PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	antoine@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Helpers to construct database queries with ActiveRecord and Arel
 WWW=		https://github.com/camertron/arel-helpers
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord71>=7.1:databases/rubygem-activerecord71

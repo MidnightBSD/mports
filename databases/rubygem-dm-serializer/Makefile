@@ -4,11 +4,11 @@ PORTREVISION=	2
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DataMapper plugin for serializing Resources and Collections
 WWW=		https://github.com/datamapper/dm-serializer
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

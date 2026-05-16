@@ -3,11 +3,11 @@ PORTVERSION=	1.1.1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Add useful scopes targeting ActiveRecord boolean and datetime attributes
 WWW=		https://github.com/mirego/microscope
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

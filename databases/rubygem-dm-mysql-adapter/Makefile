@@ -3,11 +3,11 @@ PORTVERSION=	1.2.0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MySQL Adapter for DataMapper
 WWW=		https://github.com/datamapper/dm-mysql-adapter
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-dm-do-adapter>=${PORTVERSION}:databases/rubygem-dm-do-adapter \

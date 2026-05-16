@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Redis store for OpenID
 WWW=		https://github.com/dekart/openid-redis-store
 

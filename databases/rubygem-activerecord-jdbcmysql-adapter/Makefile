@@ -3,11 +3,11 @@ PORTVERSION=	51.0
 CATEGORIES=	databases rubygems java
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ActiveRecord driver for MySQL using JDBC running under JRuby
 WWW=		https://github.com/jruby/activerecord-jdbc-adapter
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

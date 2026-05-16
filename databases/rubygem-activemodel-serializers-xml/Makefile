@@ -3,11 +3,11 @@ PORTVERSION=	1.0.3
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML serialization for Active Model objects and Active Record models
 WWW=		https://github.com/rails/activemodel-serializers-xml
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

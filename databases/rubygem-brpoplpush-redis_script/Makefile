@@ -3,11 +3,11 @@ PORTVERSION=	0.1.3
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bring your own LUA scripts into redis
 WWW=		https://github.com/brpoplpush/brpoplpush-redis_script
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

@@ -7,7 +7,7 @@ MAINTAINER=	voldern@hoeggen.net
 COMMENT=	Unified Ruby API for popular databases
 WWW=		https://github.com/datamapper/do
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

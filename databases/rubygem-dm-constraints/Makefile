@@ -4,11 +4,11 @@ PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DataMapper plugin constraining relationships
 WWW=		https://github.com/datamapper/dm-constraints
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-dm-core>=${PORTVERSION}:databases/rubygem-dm-core

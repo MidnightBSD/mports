@@ -4,11 +4,11 @@ PORTREVISION=	2
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Attach comments to your ActiveRecord queries
 WWW=		https://github.com/basecamp/marginalia
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

@@ -4,11 +4,11 @@ PORTREVISION=	2
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PostgreSQL Adapter for DataMapper
 WWW=		https://github.com/datamapper/dm-postgres-adapter
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-dm-do-adapter>=${PORTVERSION}:databases/rubygem-dm-do-adapter \

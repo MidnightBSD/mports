@@ -3,14 +3,14 @@ PORTVERSION=	2.11.0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official library for Google Cloud Datastore
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-datastore/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \
 		https://github.com/googleapis/google-cloud-ruby/tree/main/google-cloud-datastore \
 		https://github.com/googleapis/google-cloud-ruby
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

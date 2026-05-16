@@ -3,11 +3,11 @@ PORTVERSION=	1.9.1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embeds the SQLite database engine in a Ruby extension
 WWW=		https://github.com/copiousfreetime/amalgalite
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

@@ -4,11 +4,11 @@ PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, thread-safe, object-relational mapper
 WWW=		http://datamapper.org
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-dm-aggregates>=${PORTVERSION}:databases/rubygem-dm-aggregates \

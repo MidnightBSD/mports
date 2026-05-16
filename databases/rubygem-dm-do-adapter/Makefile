@@ -3,11 +3,11 @@ PORTVERSION=	1.2.0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DataObjects Adapter for DataMapper
 WWW=		https://github.com/datamapper/dm-do-adapter
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-data_objects>=0.10.6:databases/rubygem-data_objects \

@@ -3,13 +3,13 @@ PORTVERSION=	2.1.0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby Client for the Cloud Firestore V1 API
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-firestore-v1/latest/ \
 		https://github.com/googleapis/google-cloud-ruby/tree/main/google-cloud-firestore-v1 \
 		https://github.com/googleapis/google-cloud-ruby
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

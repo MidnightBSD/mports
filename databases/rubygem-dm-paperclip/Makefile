@@ -3,11 +3,11 @@ PORTVERSION=	2.5.0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File attachments as attributes for DataMapper
 WWW=		https://github.com/krobertson/dm-paperclip
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-dm-core>=1.2.0:databases/rubygem-dm-core \

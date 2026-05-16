@@ -3,11 +3,11 @@ PORTVERSION=	0.3.2
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby nearest neighbor search for Rails and Postgres
 WWW=		https://github.com/ankane/neighbor
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord70>=6.1:databases/rubygem-activerecord70

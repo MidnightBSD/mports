@@ -3,11 +3,11 @@ PORTVERSION=	1.2.1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby distributed lock using Redis, with emphasis in transparency
 WWW=		https://github.com/marioizquierdo/mario-redis-lock
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-redis>=3.0.5:databases/rubygem-redis

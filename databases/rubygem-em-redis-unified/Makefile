@@ -3,11 +3,11 @@ PORTVERSION=	1.0.1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Eventmachine-based implementation of the Redis protocol
 WWW=		https://github.com/portertech/em-redis
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-eventmachine>=0.12.10:devel/rubygem-eventmachine

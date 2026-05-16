@@ -3,11 +3,11 @@ PORTVERSION=	2.0.3
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	puppet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Ruby client library for PuppetDB API
 WWW=		https://rubygems.org/gems/pl-puppetdb-ruby
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

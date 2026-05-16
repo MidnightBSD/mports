@@ -3,11 +3,11 @@ PORTVERSION=	51.0
 CATEGORIES=	databases rubygems java
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JDBC adapter for ActiveRecord, for use within JRuby on Rails
 WWW=		https://github.com/jruby/activerecord-jdbc-adapter
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${RUN_DEPENDS}

@@ -3,11 +3,11 @@ PORTVERSION=	0.3.1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows performing chunked queries
 WWW=		https://github.com/postmodern/dm-chunked_query
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-dm-aggregates>=1.0:databases/rubygem-dm-aggregates \

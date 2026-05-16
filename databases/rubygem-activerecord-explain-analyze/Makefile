@@ -4,11 +4,11 @@ PORTREVISION=	5
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extends ActiveRecord\#explain with additional features
 WWW=		https://github.com/6/activerecord-explain-analyze
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord70>=4:databases/rubygem-activerecord70 \

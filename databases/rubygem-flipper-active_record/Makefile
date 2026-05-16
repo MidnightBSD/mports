@@ -3,12 +3,12 @@ PORTVERSION=	1.3.4
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ActiveRecord feature flag adapter for Flipper
 WWW=		https://www.flippercloud.io/ \
 		https://github.com/flippercloud/flipper
 
-LICENSE=	MIT
+LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord80>=4.2<9:databases/rubygem-activerecord80 \
