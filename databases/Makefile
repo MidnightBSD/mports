@@ -2,6 +2,8 @@
 
     SUBDIR += adodb5
     SUBDIR += akonadi
+    SUBDIR += arrow
+    SUBDIR += arrow-glib
     SUBDIR += c3p0
     SUBDIR += cassandra-cpp-driver
     SUBDIR += cassandra3
@@ -209,6 +211,7 @@
     SUBDIR += ruby-bdb
     SUBDIR += ruby-xapian
     SUBDIR += rubygem-active_model_serializers
+    SUBDIR += rubygem-active_record_query_trace
     SUBDIR += rubygem-activemodel-gitlab
     SUBDIR += rubygem-activemodel-serializers-xml
     SUBDIR += rubygem-activemodel4
@@ -249,9 +252,11 @@
     SUBDIR += rubygem-arel8
     SUBDIR += rubygem-attr_json
     SUBDIR += rubygem-awesome_nested_set
+    SUBDIR += rubygem-bdb1
     SUBDIR += rubygem-bigrecord
     SUBDIR += rubygem-brpoplpush-redis_script
     SUBDIR += rubygem-couchrest
+    SUBDIR += rubygem-dalli
     SUBDIR += rubygem-data_objects
     SUBDIR += rubygem-datamapper
     SUBDIR += rubygem-dbd-mysql
@@ -260,6 +265,7 @@
     SUBDIR += rubygem-dbf
     SUBDIR += rubygem-dbf4
     SUBDIR += rubygem-dbi
+    SUBDIR += rubygem-dbm
     SUBDIR += rubygem-dm-aggregates
     SUBDIR += rubygem-dm-chunked_query
     SUBDIR += rubygem-dm-constraints
@@ -280,6 +286,7 @@
     SUBDIR += rubygem-do_postgres
     SUBDIR += rubygem-do_sqlite3
     SUBDIR += rubygem-em-redis-unified
+    SUBDIR += rubygem-fabrication
     SUBDIR += rubygem-familia
     SUBDIR += rubygem-flipper-active_record
     SUBDIR += rubygem-flipper-active_record-rails-gitlab
@@ -303,7 +310,9 @@
     SUBDIR += rubygem-google-cloud-firestore-v1
     SUBDIR += rubygem-her
     SUBDIR += rubygem-hiredis
+    SUBDIR += rubygem-influxdb
     SUBDIR += rubygem-jdbc-mysql
+    SUBDIR += rubygem-leo_manager_client
     SUBDIR += rubygem-marginalia
     SUBDIR += rubygem-mario-redis-lock
     SUBDIR += rubygem-memcache
@@ -316,6 +325,7 @@
     SUBDIR += rubygem-paranoia
     SUBDIR += rubygem-pg
     SUBDIR += rubygem-pg_array_parser
+    SUBDIR += rubygem-pg_query
     SUBDIR += rubygem-pghero
     SUBDIR += rubygem-pghero-rails5
     SUBDIR += rubygem-pghero-rails50
@@ -323,6 +333,11 @@
     SUBDIR += rubygem-postgres_ext
     SUBDIR += rubygem-puppetdb_cli
     SUBDIR += rubygem-rbase
+    SUBDIR += rubygem-red-arrow
+    SUBDIR += rubygem-red-arrow-dataset
+    SUBDIR += rubygem-red-arrow-flight
+    SUBDIR += rubygem-red-gandiva
+    SUBDIR += rubygem-red-parquet
     SUBDIR += rubygem-redis
     SUBDIR += rubygem-redis-actionpack
     SUBDIR += rubygem-redis-actionpack-rails-gitlab
