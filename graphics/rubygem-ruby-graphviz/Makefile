@@ -10,6 +10,7 @@ WWW=		https://github.com/glejeune/Ruby-Graphviz
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	gxl2dot:graphics/graphviz \
 		rubygem-rexml>=0:textproc/rubygem-rexml
 

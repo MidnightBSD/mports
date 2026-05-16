@@ -11,6 +11,7 @@ WWW=		https://github.com/lostisland/sawyer
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.3.5:www/rubygem-addressable \
 		rubygem-faraday>=0.17.3<3:www/rubygem-faraday
 

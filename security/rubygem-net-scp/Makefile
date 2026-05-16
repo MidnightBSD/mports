@@ -10,6 +10,7 @@ WWW=		https://github.com/net-ssh/net-scp
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-net-ssh6>=2.6.5<7.0.0:security/rubygem-net-ssh6
 
 USES=		gem

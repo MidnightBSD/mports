@@ -10,6 +10,7 @@ WWW=		https://github.com/yob/pdf-reader
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-afm>=0.2.1<2:print/rubygem-afm \
 		rubygem-ascii85>=1.0<3.0:devel/rubygem-ascii85 \
 		rubygem-hashery>=2.0<3:devel/rubygem-hashery \

@@ -9,6 +9,7 @@ WWW=		https://github.com/kuroda/mail-iso-2022-jp
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-mail>=2.6.1,2<2.8.1_99,2:mail/rubygem-mail
 
 USES=		gem

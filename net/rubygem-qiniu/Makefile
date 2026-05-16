@@ -10,6 +10,7 @@ WWW=		https://github.com/qiniu/ruby-sdk
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-mime-types>=3.1<4:misc/rubygem-mime-types \
 		rubygem-rest-client>=2.0<3:www/rubygem-rest-client \
 		rubygem-rexml>=3.2<4:textproc/rubygem-rexml

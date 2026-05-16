@@ -10,6 +10,7 @@ WWW=		https://github.com/rails/ruby-coffee-script
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-coffee-script-source>=0:devel/rubygem-coffee-script-source \
 		rubygem-execjs>=0:devel/rubygem-execjs
 

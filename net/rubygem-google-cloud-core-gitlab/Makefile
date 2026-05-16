@@ -14,6 +14,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-core/latest/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-cloud-env-gitlab>=1.0<3.0:net/rubygem-google-cloud-env-gitlab \
 		rubygem-google-cloud-errors>=1.0<2:net/rubygem-google-cloud-errors
 

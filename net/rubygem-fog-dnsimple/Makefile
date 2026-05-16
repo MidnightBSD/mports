@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-dnsimple
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core>=1.38<3:devel/rubygem-fog-core \
 		rubygem-fog-json>=0:devel/rubygem-fog-json
 

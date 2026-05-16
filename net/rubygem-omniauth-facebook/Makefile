@@ -9,6 +9,7 @@ WWW=		https://github.com/simi/omniauth-facebook
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
 		rubygem-omniauth-oauth2>=1.2<3:net/rubygem-omniauth-oauth2
 

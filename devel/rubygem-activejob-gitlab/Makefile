@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/activejob \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab \
 		rubygem-globalid-rails-gitlab>=0.3.6:databases/rubygem-globalid-rails-gitlab
 

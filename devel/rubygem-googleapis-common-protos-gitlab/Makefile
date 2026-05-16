@@ -11,6 +11,7 @@ WWW=		https://github.com/googleapis/common-protos-ruby/tree/main/googleapis-comm
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-protobuf>=3.18<5.0:devel/rubygem-google-protobuf \
 		rubygem-googleapis-common-protos-types>=1.20<2:devel/rubygem-googleapis-common-protos-types \
 		rubygem-grpc-gitlab>=1.41<2:net/rubygem-grpc-gitlab

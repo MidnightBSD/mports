@@ -11,6 +11,7 @@ WWW=		https://socketry.github.io/async/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-console>=1.29<2:devel/rubygem-console \
 		rubygem-fiber-annotation>=0:devel/rubygem-fiber-annotation \
 		rubygem-io-event>=1.11<2:devel/rubygem-io-event \

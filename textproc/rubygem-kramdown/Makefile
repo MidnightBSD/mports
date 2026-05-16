@@ -10,6 +10,7 @@ WWW=		https://kramdown.gettalong.org/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rexml>=3.4.4:textproc/rubygem-rexml
 
 USES=		cpe gem

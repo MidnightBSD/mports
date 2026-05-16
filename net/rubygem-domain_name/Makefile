@@ -11,6 +11,7 @@ LICENSE=	bsd2 bsd3 MPL20
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-unf>=0.0.5<1.0.0:textproc/rubygem-unf
 
 USES=		gem

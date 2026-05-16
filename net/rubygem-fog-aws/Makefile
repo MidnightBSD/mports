@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-aws
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0.2<0.4:converters/rubygem-base64 \
 		rubygem-fog-core>=2.6<3:devel/rubygem-fog-core \
 		rubygem-fog-json>=1.1<2:devel/rubygem-fog-json \

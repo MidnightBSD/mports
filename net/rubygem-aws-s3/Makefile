@@ -7,6 +7,7 @@ MAINTAINER=	ruby@FreeBSD.org
 COMMENT=	Client library for Amazon S3 REST API
 WWW=		https://rubygems.org/gems/aws-s3
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-xml-simple>=0:textproc/rubygem-xml-simple \
 		rubygem-builder>=0:devel/rubygem-builder \
 		rubygem-mime-types>=0:misc/rubygem-mime-types

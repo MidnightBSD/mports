@@ -9,6 +9,7 @@ WWW=		https://github.com/arunagw/omniauth-twitter
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-omniauth-oauth>=1.1<2:net/rubygem-omniauth-oauth \
 		rubygem-rack>=0,3:www/rubygem-rack
 

@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-vmfusion
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fission>=0:emulators/rubygem-fission \
 		rubygem-fog-core>=0:devel/rubygem-fog-core
 

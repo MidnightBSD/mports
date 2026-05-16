@@ -11,6 +11,7 @@ WWW=		https://github.com/marsz/lita-gems
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-gems>=0.8.0:devel/rubygem-gems \
 		rubygem-lita>=2.6:net-im/rubygem-lita
 

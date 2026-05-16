@@ -11,6 +11,7 @@ WWW=		https://github.com/nov/openid_connect
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel-gitlab>=0:databases/rubygem-activemodel-gitlab \
 		rubygem-attr_required>=1.0.0:devel/rubygem-attr_required \
 		rubygem-email_validator>=0:mail/rubygem-email_validator \

@@ -10,6 +10,7 @@ WWW=		https://github.com/jruby/activerecord-jdbc-adapter/tree/master/jdbc-mysql
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	jruby:lang/jruby
 
 NO_ARCH=	yes

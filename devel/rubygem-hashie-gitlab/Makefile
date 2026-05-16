@@ -11,6 +11,7 @@ WWW=		https://github.com/hashie/hashie
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab
 
 USES=		gem

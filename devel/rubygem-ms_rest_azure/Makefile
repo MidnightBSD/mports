@@ -12,6 +12,7 @@ WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/runtime/ms_rest_az
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-concurrent-ruby>=1.0<2:devel/rubygem-concurrent-ruby \
 		rubygem-faraday1>=0.9<2.0.0:www/rubygem-faraday1 \
 		rubygem-faraday-cookie_jar>=0.0.6<0.1:devel/rubygem-faraday-cookie_jar \

@@ -12,6 +12,7 @@ LICENSE_COMB=	dual
 LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING.txt
 LICENSE_FILE_ruby=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-nkf>=0.1<1.0:net/rubygem-nkf
 
 NO_ARCH=	yes

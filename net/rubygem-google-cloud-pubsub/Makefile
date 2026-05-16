@@ -13,6 +13,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-pubsub/latest/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-concurrent-ruby>=1.3<2:devel/rubygem-concurrent-ruby \
 		rubygem-google-cloud-core>=1.8<2:net/rubygem-google-cloud-core \
 		rubygem-google-cloud-pubsub-v1>=1.11<2:net/rubygem-google-cloud-pubsub-v1 \

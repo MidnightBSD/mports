@@ -10,6 +10,7 @@ WWW=		https://github.com/omniauth/omniauth-oauth2
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-oauth2>=2.0.2<3:net/rubygem-oauth2 \
 		rubygem-omniauth>=1.9<3:security/rubygem-omniauth
 

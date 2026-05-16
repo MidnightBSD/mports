@@ -12,6 +12,7 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel52>=${PORTVERSION}:databases/rubygem-activemodel52 \
 		rubygem-activesupport52>=${PORTVERSION}:devel/rubygem-activesupport52 \
 		rubygem-arel>=9.0:databases/rubygem-arel

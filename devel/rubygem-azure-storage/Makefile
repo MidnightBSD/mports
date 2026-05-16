@@ -11,6 +11,7 @@ WWW=		https://github.com/Azure/azure-storage-ruby
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-azure-core>=0.1<1:net/rubygem-azure-core \
 		rubygem-faraday0>=0.9<1:www/rubygem-faraday0 \
 		rubygem-faraday_middleware0>=0.10<1:www/rubygem-faraday_middleware0 \

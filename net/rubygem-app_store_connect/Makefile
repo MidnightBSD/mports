@@ -10,6 +10,7 @@ WWW=		https://github.com/kyledecot/app_store_connect
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=6.0.0:devel/rubygem-activesupport-gitlab \
 		rubygem-jwt>=1.4:www/rubygem-jwt
 

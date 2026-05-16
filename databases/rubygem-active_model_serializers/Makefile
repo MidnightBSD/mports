@@ -10,6 +10,7 @@ WWW=		https://github.com/rails-api/active_model_serializers
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel5>=4.1:databases/rubygem-activemodel5 \
 		rubygem-actionpack5>=4.1:www/rubygem-actionpack5 \
 		rubygem-case_transform>=0.2:textproc/rubygem-case_transform \

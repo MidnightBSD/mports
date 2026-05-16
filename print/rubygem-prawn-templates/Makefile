@@ -12,6 +12,7 @@ LICENSE_COMB=	dual
 LICENSE_FILE_gpl2=	${WRKSRC}/gpl2
 LICENSE_FILE_gpl3=	${WRKSRC}/gpl3
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-pdf-reader>=2.0<3:print/rubygem-pdf-reader \
 		rubygem-prawn>=2.2<3:print/rubygem-prawn
 

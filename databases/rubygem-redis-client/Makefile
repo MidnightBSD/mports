@@ -10,6 +10,7 @@ WWW=		https://github.com/redis-rb/redis-client
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-connection_pool>=0:net/rubygem-connection_pool
 
 USES=		gem

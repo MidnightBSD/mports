@@ -10,6 +10,7 @@ WWW=		https://github.com/chef/chef-winrm-fs
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-benchmark>=0.5.0<0.6:benchmarks/rubygem-benchmark \
 		rubygem-chef-winrm>=2.4<3:sysutils/rubygem-chef-winrm \
 		rubygem-csv>=3.3<4:devel/rubygem-csv \

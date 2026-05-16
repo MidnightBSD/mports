@@ -11,6 +11,7 @@ WWW=		https://puma.io/ \
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-nio4r>=2.0<3:devel/rubygem-nio4r
 
 USES=		cpe gem ssl

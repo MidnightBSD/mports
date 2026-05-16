@@ -11,6 +11,7 @@ WWW=		https://github.com/googleapis/google-cloud-ruby
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-gapic-common-gitlab>=0.20.0<2.0:devel/rubygem-gapic-common-gitlab \
 		rubygem-google-cloud-common>=1.0<2:devel/rubygem-google-cloud-common \
 		rubygem-google-cloud-errors>=1.0<2:net/rubygem-google-cloud-errors

@@ -10,6 +10,7 @@ WWW=		https://github.com/sferik/multi_xml
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>=3.1<5:math/rubygem-bigdecimal
 
 USES=		cpe gem

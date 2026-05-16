@@ -10,6 +10,7 @@ WWW=		https://github.com/wpeterson/emoji
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=0:devel/rubygem-json
 
 USES=		gem

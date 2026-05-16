@@ -11,6 +11,7 @@ WWW=		https://github.com/delano/rye/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-annoy>=0:devel/rubygem-annoy \
 		rubygem-docile>=1.0.1:devel/rubygem-docile \
 		rubygem-highline>=1.5.1:devel/rubygem-highline \

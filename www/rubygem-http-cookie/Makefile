@@ -10,6 +10,7 @@ WWW=		https://github.com/sparklemotion/http-cookie
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-domain_name>=0.5<1:net/rubygem-domain_name
 
 USES=		gem

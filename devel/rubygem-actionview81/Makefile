@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/actionview \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport81>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport81 \
 		rubygem-builder>=3.1<4:devel/rubygem-builder \
 		rubygem-erubi>=1.11<2:www/rubygem-erubi \

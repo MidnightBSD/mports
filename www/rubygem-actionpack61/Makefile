@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/actionpack \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionview61>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-actionview61 \
 		rubygem-activesupport61>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport61 \
 		rubygem-rack22>=2.0.9,3<3,3:www/rubygem-rack22 \

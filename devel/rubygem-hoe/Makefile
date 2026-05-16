@@ -10,6 +10,7 @@ WWW=		https://docs.seattlerb.org/hoe/ \
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rake>=13.0<14:devel/rubygem-rake
 
 USES=		gem

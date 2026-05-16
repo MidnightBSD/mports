@@ -10,6 +10,7 @@ WWW=		https://www.dropbox.com/developers
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=0:devel/rubygem-json
 
 USES=		gem

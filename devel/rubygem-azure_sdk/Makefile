@@ -10,6 +10,7 @@ WWW=		https://github.com/Azure/azure-sdk-for-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-azure-storage>=0.15.0p0<0.15.1:devel/rubygem-azure-storage \
 		rubygem-azure_cognitiveservices_anomalydetector>=0.17.1<0.18:devel/rubygem-azure_cognitiveservices_anomalydetector \
 		rubygem-azure_cognitiveservices_autosuggest>=0.17.2<0.18:devel/rubygem-azure_cognitiveservices_autosuggest \

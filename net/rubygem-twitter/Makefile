@@ -11,6 +11,7 @@ WWW=		https://sferik.github.io/twitter/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.8<3:www/rubygem-addressable \
 		rubygem-buftok>=0.3.0<0.4:devel/rubygem-buftok \
 		rubygem-equalizer>=0.0.11<0.1:devel/rubygem-equalizer \

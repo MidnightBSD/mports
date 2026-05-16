@@ -10,6 +10,7 @@ WWW=		https://github.com/cjheath/treetop
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-polyglot>=0.3<1:devel/rubygem-polyglot
 
 USES=		gem

@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/cluster-integration/gitlab-agent
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-grpc-gitlab>=1.0<2.0:net/rubygem-grpc-gitlab
 
 USES=		gem

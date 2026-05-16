@@ -11,6 +11,7 @@ WWW=		https://github.com/jetruby/apollo_upload_server-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack-gitlab>=6.1.6:www/rubygem-actionpack-gitlab \
 		rubygem-graphql>=1.8:devel/rubygem-graphql
 

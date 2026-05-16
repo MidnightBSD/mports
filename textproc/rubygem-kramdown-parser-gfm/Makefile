@@ -10,6 +10,7 @@ WWW=		https://github.com/kramdown/parser-gfm
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-kramdown>=2.0<3:textproc/rubygem-kramdown
 
 USES=		gem

@@ -12,6 +12,7 @@ WWW=		https://rmagick.github.io/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-observer>=0.1<1:devel/rubygem-observer \
 		rubygem-pkg-config>=1.4<2:devel/rubygem-pkg-config
 

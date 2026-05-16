@@ -12,6 +12,7 @@ WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-datastore-v1/lat
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-gapic-common>=1.0<2:devel/rubygem-gapic-common \
 		rubygem-google-cloud-errors>=1.0<2:net/rubygem-google-cloud-errors
 

@@ -12,6 +12,7 @@ WWW=		https://github.com/fog/fog-json
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core-gitlab>=0:devel/rubygem-fog-core-gitlab \
 		rubygem-multi_json-gitlab>=1.10<2:devel/rubygem-multi_json-gitlab
 

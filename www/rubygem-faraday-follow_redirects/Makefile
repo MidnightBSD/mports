@@ -10,6 +10,7 @@ WWW=		https://github.com/tisba/faraday-follow-redirects
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=1<3:www/rubygem-faraday
 
 USES=		gem

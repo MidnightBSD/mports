@@ -11,6 +11,7 @@ WWW=		https://sferik.github.io/x-ruby/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0.2:converters/rubygem-base64
 
 USES=		gem

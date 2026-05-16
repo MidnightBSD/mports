@@ -9,6 +9,7 @@ WWW=		https://github.com/assaf/uuid
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-macaddr>=1.0:net/rubygem-macaddr
 
 NO_ARCH=	yes

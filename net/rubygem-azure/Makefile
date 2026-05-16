@@ -11,6 +11,7 @@ WWW=		https://github.com/Azure/azure-sdk-for-ruby
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.3<3:www/rubygem-addressable \
 		rubygem-azure-core>=0.1<1:net/rubygem-azure-core \
 		rubygem-faraday0>=0.9<1:www/rubygem-faraday0 \

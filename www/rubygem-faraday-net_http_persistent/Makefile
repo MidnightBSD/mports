@@ -10,6 +10,7 @@ WWW=		https://github.com/lostisland/faraday-net_http_persistent
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=2.5<3:www/rubygem-faraday \
 		rubygem-net-http-persistent>=4.0.4<5:www/rubygem-net-http-persistent
 

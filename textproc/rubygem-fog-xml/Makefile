@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-xml
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core>=0:devel/rubygem-fog-core \
 		rubygem-nokogiri>=1.5.11<2.0.0:textproc/rubygem-nokogiri
 

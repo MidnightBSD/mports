@@ -10,6 +10,7 @@ WWW=		https://www.zenspider.com/projects/rubyinline.html
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-zentest>=4.3:devel/rubygem-zentest
 
 USES=		gem shebangfix

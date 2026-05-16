@@ -11,6 +11,7 @@ WWW=		https://github.com/fog/fog-profitbricks
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core>=1.42:devel/rubygem-fog-core \
 		rubygem-fog-json>=1.0<2:devel/rubygem-fog-json
 

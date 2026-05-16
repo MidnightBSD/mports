@@ -11,6 +11,7 @@ WWW=		https://github.com/nov/webfinger
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=3.0:devel/rubygem-activesupport-gitlab \
 		rubygem-faraday-gitlab>=2.0<3:www/rubygem-faraday-gitlab \
 		rubygem-faraday-follow_redirects-gitlab>=0:www/rubygem-faraday-follow_redirects-gitlab

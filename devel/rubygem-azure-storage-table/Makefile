@@ -10,6 +10,7 @@ WWW=		https://github.com/Azure/azure-storage-ruby/tree/master/table \
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-azure-storage-common>=2.0<3:devel/rubygem-azure-storage-common \
 		rubygem-nokogiri>=1.10.8<2:textproc/rubygem-nokogiri
 

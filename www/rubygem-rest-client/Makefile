@@ -10,6 +10,7 @@ WWW=		https://github.com/rest-client/rest-client
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-http-accept>=1.7.0:www/rubygem-http-accept \
 		rubygem-http-cookie>=1.0.2<2.0:www/rubygem-http-cookie \
 		rubygem-mime-types>=1.16<4.0:misc/rubygem-mime-types \

@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby-ldap/ruby-net-ldap
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/License.rdoc
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-ostruct>=0:devel/rubygem-ostruct
 

@@ -7,6 +7,7 @@ MAINTAINER=	ruby@FreeBSD.org
 COMMENT=	Library for accessing the Amazon Web Services APIs
 WWW=		https://github.com/grempe/amazon-ec2
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-xml-simple>=1.0.12:textproc/rubygem-xml-simple
 
 NO_ARCH=	yes

@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/rails-html-sanitizer
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-loofah-gitlab>=2.21<3:textproc/rubygem-loofah-gitlab \
 		rubygem-nokogiri>=1.15.7<2:textproc/rubygem-nokogiri
 

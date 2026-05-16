@@ -11,6 +11,7 @@ WWW=		https://github.com/fog/fog-azure
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-azure>=0.6<1:net/rubygem-azure \
 		rubygem-fog-core1>=1.27<2:devel/rubygem-fog-core1 \
 		rubygem-fog-json>=1.0<2:devel/rubygem-fog-json \

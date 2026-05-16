@@ -12,6 +12,7 @@ WWW=		https://github.com/nov/rack-oauth2
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=0:devel/rubygem-activesupport-gitlab \
 		rubygem-attr_required>=0:devel/rubygem-attr_required \
 		rubygem-faraday-gitlab>=2.0<3:www/rubygem-faraday-gitlab \

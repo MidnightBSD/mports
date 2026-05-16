@@ -11,6 +11,7 @@ WWW=		https://ruby-gnome.github.io/ \
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-clutter>=${PORTVERSION}<${PORTVERSION}_99:graphics/rubygem-clutter \
 		rubygem-gdk3>=${PORTVERSION}<${PORTVERSION}_99:x11-toolkits/rubygem-gdk3
 

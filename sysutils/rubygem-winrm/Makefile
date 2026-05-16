@@ -10,6 +10,7 @@ WWW=		https://github.com/WinRb/WinRM
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-builder>=2.1.2:devel/rubygem-builder \
 		rubygem-erubi>=1.8:www/rubygem-erubi \
 		rubygem-gssapi>=1.2:security/rubygem-gssapi \
