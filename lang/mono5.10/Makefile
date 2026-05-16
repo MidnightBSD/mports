@@ -1,6 +1,6 @@
 PORTNAME=	mono
 PORTVERSION=	5.10.1.57
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	lang
 MASTER_SITES=	https://download.mono-project.com/sources/mono/
 PKGNAMESUFFIX=	5.10
@@ -12,6 +12,8 @@ WWW=		https://www.mono-project.com/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN=		fails to build class library bootstrap (secxml/System.dll); use lang/mono5.20 instead
 
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		bash:shells/bash \

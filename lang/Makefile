@@ -11,7 +11,9 @@
     SUBDIR += cython0
     SUBDIR += duktape
     SUBDIR += duktape-lib
+    SUBDIR += dotnet
     SUBDIR += dotnet-host 
+    SUBDIR += dotnet8
     SUBDIR += elixir
     SUBDIR += erlang
     SUBDIR += erlang-man

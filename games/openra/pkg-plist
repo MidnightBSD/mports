@@ -31,3 +31,6 @@ share/metainfo/openra-ra.metainfo.xml
 share/mime/packages/openra-cnc.xml
 share/mime/packages/openra-d2k.xml
 share/mime/packages/openra-ra.xml
+share/mime/x-scheme-handler/openra-cnc-release-20210321.xml
+share/mime/x-scheme-handler/openra-d2k-release-20210321.xml
+share/mime/x-scheme-handler/openra-ra-release-20210321.xml

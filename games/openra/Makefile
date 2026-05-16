@@ -1,7 +1,7 @@
 PORTNAME=	openra
 DISTVERSIONPREFIX=	release-
 DISTVERSION=	20210321
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	https://download.ip2location.com/lite/:ip2location
 DISTFILES=	IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP:ip2location
@@ -55,6 +55,7 @@ MAKE_ENV=	prefix="${PREFIX}" \
 ALL_TARGET=	all
 INSTALL_TARGET=	install install-man install-linux-appdata install-linux-shortcuts
 PORTDATA=	*
+SKIP_FAKE_CHECK=	share/openra/mods/d2k/bits/tex/.*\.tmp
 
 .include <bsd.port.pre.mk>
 

@@ -1,6 +1,6 @@
 PORTNAME=	gdb
 DISTVERSION=	15.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -129,6 +129,7 @@ EXCLUDE+=	zlib
 .endif
 
 CONFIGURE_TARGET=	${ARCH:S/amd64/x86_64/}-portbld-freebsd13.4
+CONFIGURE_ARGS+=	--host=${CONFIGURE_TARGET}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$$| [GDB v${PORTVERSION} for MidnightBSD]|' \

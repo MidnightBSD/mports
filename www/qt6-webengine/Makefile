@@ -14,7 +14,7 @@ PORTNAME?=	webengine
 DISTVERSION=	${QT6_VERSION}
 # This is the parent port of print/qt6-pdf. Please always keep 'PORTREVISION?='
 # and reset the value to '0' only after increasing QT6_VERSION in Mk/Uses/qt.mk.
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	www
 PKGNAMEPREFIX=	qt6-
 
@@ -81,7 +81,10 @@ USE_XORG+=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 CMAKE_ON+=	QT_FEATURE_qtwebengine_build
 CMAKE_OFF+=	QT_FEATURE_qtpdf_build
 
-CXXFLAGS+=	-I${LOCALBASE}/include/libepoll-shim
+CXXFLAGS+=	-I${LOCALBASE}/include/freetype2 \
+		-I${LOCALBASE}/include/libepoll-shim \
+		-I${LOCALBASE}/include/nss \
+		-I${LOCALBASE}/include/nspr
 
 SYS_LIBS=	freetype harfbuzz-ng libdrm libpng libxml libxslt openh264 opus
 .endif

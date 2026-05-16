@@ -1,0 +1,6 @@
+This meta-port installs a practical set of audio editing, processing, and
+codec tools.  It includes Audacity for waveform editing, MuseScore for music
+composition and notation, SoX for command-line sample conversion and effects,
+and common encode/decode libraries and utilities for MP3, FLAC, Opus, Vorbis,
+MP2, WavPack, AAC, sampled-sound files, resampling, time stretching, and
+LADSPA effects.
