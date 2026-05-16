@@ -1,3 +1,2 @@
-Assorted git-related scripts and tools
-
-WWW: https://github.com/MestreLion/git-tools
+Assorted git-related scripts and tools for branch renaming, partial cloning,
+repository scans, rebase workflows, restoring mtimes, and stripping merges.
