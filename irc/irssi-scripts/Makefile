@@ -14,8 +14,8 @@ RUN_DEPENDS=	irssi:irc/irssi
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		shebangfix tar:xz
-#SHEBANG_FILES=	scripts/*.pl
-#perl_OLD_CMD=	/usr/pkg/bin/perl /usr/bin/irssi
+SHEBANG_FILES=	scripts/*.pl
+perl_OLD_CMD=	/usr/pkg/bin/perl /usr/bin/irssi
 NO_BUILD=	yes
 NO_ARCH=	yes
 
