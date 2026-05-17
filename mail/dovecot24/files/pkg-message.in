@@ -1,0 +1,43 @@
+[
+{ type: install
+  message: <<EOM
+ You must create the configuration files yourself. A minimal example
+ configuration has been installed to %%ETCDIR%%/dovecot.conf.
+ Edit it to suit your needs.
+
+ For full configuration documentation, see:
+ https://doc.dovecot.org/
+
+ Next, enable dovecot in /etc/rc.conf:
+
+ 	dovecot_enable="YES"
+
+
+ To avoid a risk of mailbox corruption, do not set the
+ security.bsd.see_other_uids or .see_other_gids sysctls to 0
+ if Dovecot is storing mail for multiple concurrent users (PR 218392).
+
+ Similarly, setting sysctls security.bsd.hardlink_check_uid or
+ security.bsd.hardlink_check_gid to 1 might result in non-working
+ mailboxes, depending on what mailbox locking mechanism is used
+ (PR 242223).
+
+
+ IMPORTANT: Dovecot 2.4.x is NOT backward compatible with Dovecot 2.3.x.
+ If you are upgrading from Dovecot 2.3, you MUST read the migration guide
+ before starting Dovecot 2.4:
+
+   https://doc.dovecot.org/2.4.0/installation/upgrade/2.3-to-2.4.html
+
+ The configuration format has changed significantly. Review and update
+ your configuration files before starting the new version.
+EOM
+}
+{
+  type: remove
+  message: <<EOM
+If you are removing dovecot permanently, you should 'rm -rf /var/db/dovecot' to
+clear out any remaining data.
+EOM
+}
+]
