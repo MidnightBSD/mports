@@ -1,6 +1,6 @@
 PORTNAME=	rustls-ffi
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.13.0
+DISTVERSION=	0.15.3
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,8 @@ LICENSE_FILE_apache2=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_iscl=	${WRKSRC}/LICENSE-ISC
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
-BUILD_DEPENDS=	cargo-cbuild:devel/cargo-c
+BUILD_DEPENDS=	cargo-cbuild:devel/cargo-c \
+		cmake:devel/cmake
 
 USES=		cargo
 USE_LDCONFIG=	yes
@@ -24,10 +25,13 @@ GH_ACCOUNT=	rustls
 NO_TEST=	yes
 
 do-build:
-	@${CARGO_CARGO_RUN} cbuild --verbose --verbose ${CARGO_BUILD_ARGS}
+	@${CARGO_CARGO_RUN} cbuild --verbose --verbose \
+	    --manifest-path ${WRKSRC}/librustls/Cargo.toml \
+	    ${CARGO_BUILD_ARGS}
 
 do-install:
 	@${CARGO_CARGO_RUN} cinstall --verbose --verbose \
+	    --manifest-path ${WRKSRC}/librustls/Cargo.toml \
 	    --destdir "${FAKE_DESTDIR}" \
 	    --prefix "${TRUE_PREFIX}" \
 	    ${CARGO_INSTALL_ARGS}
