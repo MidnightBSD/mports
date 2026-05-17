@@ -100,6 +100,8 @@ if (defined $model_param && $model_param ne '') {
 }
 
 my $ua = LWP::UserAgent->new;
+# Ensure LWP knows we might need to ignore certs if fetch is fallback
+$ua->ssl_opts(verify_hostname => 0);
 $ua->timeout(300);
 
 my $url;
