@@ -130,8 +130,24 @@
     <li>Loading CVE information...</li>
 </ul>
 
-<h3>LLM</h3>
-<button class="btn btn-info" onclick="javascript:llmcheck()">Analyze</button>
+<h3>LLM Analysis</h3>
+<div class="form-group" style="margin-bottom: 10px;">
+    <label for="llm_model">Model:</label>
+    <select id="llm_model" class="form-control" style="width: auto; display: inline-block;">
+        <option value="qwen2.5-coder:14b">qwen2.5-coder:14b</option>
+        <option value="phi4">phi4</option>
+        <option value="deepseek-coder:6.7b">deepseek-coder:6.7b</option>
+        <option value="llama3.2:3b">llama3.2:3b</option>
+        <option value="gemma4:latest">gemma4:latest</option>
+        <option value="mistral-nemo:latest">mistral-nemo:latest</option>
+        <option value="mistral:7b">mistral:7b</option>
+        <option value="gemma3:latest">gemma3:latest</option>
+        <option value="mistral-small-latest">mistral-small-latest</option>
+        <option value="mistral-medium-latest">mistral-medium-latest</option>
+        <option value="mistral-large-latest">mistral-large-latest</option>
+    </select>
+    <button class="btn btn-info" onclick="javascript:llmcheck()">Analyze</button>
+</div>
 <div id="llmlog" class="llmlogs">
 </div>
 
@@ -174,12 +190,15 @@ $(document).ready(function() {
         var logdata = $('pre.log').text().slice(-500);
         var logmsg = "Analyze the MidnightBSD package build error for " + port + " and suggest a fix:\n\n" + logdata;
         var llmAPI = '/magus/auth/llm.cgi';
+        var selectedModel = $('#llm_model').val();
+
+        $('#llmlog').html('<p>Analyzing build log with ' + selectedModel + '...</p>');
 
         $.ajax({
         url: llmAPI,
         method: 'POST',
         timeout: 300000,
-        data: { content: logmsg },
+        data: { content: logmsg, model: selectedModel },
         dataType: 'json',
 	xhrFields: {
        	 withCredentials: true
