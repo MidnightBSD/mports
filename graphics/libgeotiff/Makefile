@@ -1,6 +1,5 @@
 PORTNAME=	libgeotiff
-PORTVERSION=	1.7.1
-PORTREVISION=	1
+PORTVERSION=	1.7.4
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.osgeo.org/geotiff/libgeotiff/ \
 		FREEBSD_LOCAL/sunpoet
