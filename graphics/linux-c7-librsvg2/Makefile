@@ -20,8 +20,6 @@ USE_LINUX=	cairo fontconfig freetype gdkpixbuf2 imageformats-libs libcroco \
 		libxml2 pango
 USE_LINUX_RPM=	yes
 
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
-
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>
