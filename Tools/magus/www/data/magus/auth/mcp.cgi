@@ -652,34 +652,42 @@ sub tool_get_port_details($id, $args) {
     my $port = eval { Magus::Port->retrieve($port_id) };
     return tool_result($id, "Port ID $port_id not found.", 1) unless $port;
 
+    # Extract single fields directly instead of triggering multiple lazy loads
+    my $run = $port->run;
+
     my $text = sprintf("Port: %s\n", $port->name);
     $text .= sprintf("  port_id:     %d\n",   $port->id);
     $text .= sprintf("  pkgname:     %s\n",   $port->pkgname);
     $text .= sprintf("  version:     %s\n",   $port->version  // '');
     $text .= sprintf("  status:      %s\n",   $port->status);
     $text .= sprintf("  flavor:      %s\n",   $port->flavor   // '');
-    $text .= sprintf("  arch:        %s\n",   $port->run->arch);
-    $text .= sprintf("  osversion:   %s\n",   $port->run->osversion);
-    $text .= sprintf("  run_id:      %d\n",   $port->run->id);
+    $text .= sprintf("  arch:        %s\n",   $run->arch);
+    $text .= sprintf("  osversion:   %s\n",   $run->osversion);
+    $text .= sprintf("  run_id:      %d\n",   $run->id);
     $text .= sprintf("  description: %s\n",   $port->description // '');
     $text .= sprintf("  www:         %s\n",   $port->www         // '');
     $text .= sprintf("  license:     %s\n",   $port->license     // '');
     $text .= sprintf("  cpe:         %s\n",   $port->cpe         // '');
 
-    # Build events (failures, warnings, info messages)
-    my @events = $port->events;
-    if (@events) {
+    my $dbh = Magus::DBI->db_Main();
+
+    # Build events (failures, warnings, info messages) using direct SQL
+    my $sth_events = $dbh->prepare("SELECT time, type, msg FROM events WHERE port = ? ORDER BY time");
+    $sth_events->execute($port_id);
+    my $events = $sth_events->fetchall_arrayref({});
+    $sth_events->finish;
+
+    if (@$events) {
         $text .= "\nBuild events:\n";
-        for my $ev (@events) {
+        for my $ev (@$events) {
             $text .= sprintf("  [%s] type=%-10s  %s\n",
-                $ev->time // '?', $ev->type // '?', $ev->msg // '');
+                $ev->{time} // '?', $ev->{type} // '?', $ev->{msg} // '');
         }
     } else {
         $text .= "\nNo build events recorded.\n";
     }
 
-    # Direct dependencies
-    my $dbh = Magus::DBI->db_Main();
+    # Direct dependencies using direct SQL
     my $sth = $dbh->prepare("
         SELECT d.type, p.name, p.status, p.id
         FROM depends d
@@ -687,7 +695,7 @@ sub tool_get_port_details($id, $args) {
         WHERE d.port = ?
         ORDER BY d.type, p.name
     ");
-    $sth->execute($port->id);
+    $sth->execute($port_id);
     my $deps = $sth->fetchall_arrayref({});
     $sth->finish;
 
@@ -709,7 +717,7 @@ sub tool_get_port_details($id, $args) {
         WHERE d.dependency = ?
         ORDER BY p.name
     ");
-    $sth->execute($port->id);
+    $sth->execute($port_id);
     my $rdeps = $sth->fetchall_arrayref({});
     $sth->finish;
 
