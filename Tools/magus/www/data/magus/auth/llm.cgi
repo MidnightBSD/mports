@@ -168,29 +168,14 @@ if ($response->is_success) {
             my $api_key = $config->{MistralApiKey} // '';
             push @args, '--http-header', "Authorization: Bearer $api_key";
             push @args, '--http-header', "Content-Type: application/json; charset=utf-8";
-        }
-
-        # We have to trick fetch into doing a POST by giving it a data file.
-        # But fetch natively doesn't have a -X POST option, it Infers POST from -f or from environment.
-        $ENV{HTTP_METHOD} = 'POST';
-        push @args, '--http-header', "Content-Length: " . length($json_payload);
-
-        # Actually fetch accepts input from stdin if file is - but we need to post.
-        # Using curl if available might be safer but the standard is fetch.
-        # In FreeBSD/MidnightBSD fetch, passing a file via stdin for POST requires using standard shell piping if not using -f
-
-        my $pid = open(my $pipe, "-|");
-        if (!defined $pid) {
-             unlink $filename;
-             print_json_response('500 Internal Error', { error => "Failed to run fetch command for https" });
-        }
-
-        if ($pid == 0) {
-             # Child process
-             open(STDIN, "<", $filename) or die "Cannot redirect STDIN";
-             exec(@args, $url) or die "Cannot exec fetch";
         } else {
-             # Parent process
+            push @args, '--http-header', "Content-Type: application/json; charset=utf-8";
+        }
+
+        # Tell fetch to POST the file
+        $ENV{HTTP_METHOD} = 'POST';
+
+        if (open(my $pipe, '-|', @args, $url, '<', $filename)) {
              local $/;
              $content = <$pipe> // '';
              close $pipe;
@@ -207,7 +192,12 @@ if ($response->is_success) {
                       print_json_response('500 Internal Error', { error => "JSON Parsing failed (fetch fallback): $@", raw => $content });
                   }
                   exit; # we handled it with fetch
+             } else {
+                 print_json_response('502 Bad Gateway', { error => "Fetch fallback failed with exit code $?", raw => $content });
              }
+        } else {
+            unlink $filename if -e $filename;
+            print_json_response('500 Internal Error', { error => "Failed to run fetch command for https" });
         }
     }
 
