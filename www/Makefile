@@ -408,6 +408,7 @@
     SUBDIR += rubygem-http-form_data
     SUBDIR += rubygem-http_router
     SUBDIR += rubygem-httpclient
+    SUBDIR += rubygem-httparty
     SUBDIR += rubygem-jquery-rails
     SUBDIR += rubygem-json-jwt-gitlab
     SUBDIR += rubygem-jwt
