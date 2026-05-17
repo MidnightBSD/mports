@@ -44,7 +44,7 @@ MPI_LIB_DEPENDS=	libmpich.so:net/mpich
 .include <bsd.mport.options.mk>
 
 .if ${OSVERSION} >= 400000
-CONFIGURE_TARGET=${ARCH}-portbld-freebsd14.0
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd13.2
 .elif ${OSVERSION} > 300000
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
 .else

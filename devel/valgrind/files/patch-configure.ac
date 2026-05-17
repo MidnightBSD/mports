@@ -32,8 +32,8 @@
             esac
             ;;
 +        4.*)
-+           AC_MSG_RESULT([FreeBSD 14.x (${kernel})])
-+           AC_DEFINE([FREEBSD_VERS], FREEBSD_14, [FreeBSD version])
-+           freebsd_vers=$freebsd_14
++           AC_MSG_RESULT([FreeBSD 13.x (${kernel})])
++           AC_DEFINE([FREEBSD_VERS], FREEBSD_13_2, [FreeBSD version])
++           freebsd_vers=$freebsd_13_2
 +           ;;
          13.*)
