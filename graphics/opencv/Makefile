@@ -1,10 +1,6 @@
 PORTNAME=	opencv
-DISTVERSION=	4.6.0
-PORTREVISION=	1
+DISTVERSION=	4.13.0
 CATEGORIES=	graphics
-
-PATCH_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/commit/
-PATCHFILES=	496eed950f6d0e7fd92619d47e3cec8f06e96ace.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source Computer Vision library
@@ -14,44 +10,28 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
-		libgflags.so:devel/gflags \
-		libglog.so:devel/glog \
 		libharfbuzz.so:print/harfbuzz \
 		libhdf5.so:science/hdf5
 
-USES=		cmake compiler:c++14-lang cpe localbase:ldflags pkgconfig
+USES=		cmake compiler:c++14-lang cpe gnome localbase:ldflags pkgconfig
 USE_GITHUB=	yes
-GH_ACCOUNT=	WeChatCV:wechat
-GH_PROJECT=	opencv_contrib:contrib \
-		ade:ade \
-		opencv_3rdparty:extra_mod_3rdparty_boost_descr \
-		opencv_3rdparty:extra_mod_3rdparty_vgg \
-		opencv_3rdparty:wechat \
-		opencv_3rdparty:face \
-		opencv_3rdparty:ippicv
-GH_TAGNAME=	v0.1.1f:ade \
-		34e4206aef44d50e6bbcd0ab06354b52e7466d26:extra_mod_3rdparty_boost_descr \
-		fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d:extra_mod_3rdparty_vgg \
-		a8b69ccc738421293254aec5ddb38bd523503252:wechat \
-		8afa57abc8229d611c4937165d20e2a2d9fc5a12:face \
-		a56b6ac6f030c312b2dce17430eef13aed9af274:ippicv
+GH_PROJECT=	ade:ade opencv_3rdparty:ippicv opencv_contrib:contrib
+GH_TAGNAME=	7f55c0c26be418d494615afca15218566775c725:ippicv v0.1.2e:ade
+USE_LDCONFIG=	yes
 
-CMAKE_ON=	OPENCV_GENERATE_PKGCONFIG
-CMAKE_OFF=	OPENCV_GENERATE_SETUPVARS \
-		BUILD_opencv_python2 \
-		BUILD_TESTS
 CMAKE_ARGS=	-DOPENCV_EXTRA_MODULES_PATH="${WRKSRC}/contrib/modules"
+CMAKE_ON=	OPENCV_GENERATE_PKGCONFIG OPENCV_SKIP_CMAKE_CXX_STANDARD
+CMAKE_OFF=	BUILD_opencv_python2 BUILD_TESTS OPENCV_GENERATE_SETUPVARS WITH_KLEIDICV
 
 DATADIR=	${PREFIX}/share/${PORTNAME}4
 
-PLIST_SUB=	SHLIB_VER=${DISTVERSION}
+PLIST_SUB=	SHLIB_VER=${DISTVERSION} SHORTVERSION=${DISTVERSION:R:S/.//g}
 
 OPTIONS_DEFINE=		EIGEN GDAL GDCM HARDENING JAVA LTO OPENCL \
 			PATENTED PROTOBUF PYTHON TBB TESSERACT
-
 OPTIONS_GROUP=		GUI IMAGE VIDEO
 OPTIONS_GROUP_GUI=	GTK3 VTK
-OPTIONS_GROUP_IMAGE=	GPHOTO2 JPEG OPENEXR PNG TIFF
+OPTIONS_GROUP_IMAGE=	AVIF GPHOTO2 JPEG OPENEXR PNG TIFF
 OPTIONS_GROUP_VIDEO=	DC1394 FFMPEG GSTREAMER V4L VULKAN WEBP XINE
 
 OPTIONS_SINGLE=		BLAS
@@ -67,9 +47,11 @@ OPTIONS_DEFAULT=	EIGEN GDAL GDCM OPENCL PROTOBUF PYTHON \
 			OPENJPEG
 OPTIONS_SUB=		yes
 
-# Normal options (EIGEN GDAL GDCM HARDENING JAVA LTO OPENCL PATENTED PROTOBUF PYTHON TBB)
+# Normal options
 EIGEN_DESC=		Add Eigen v3 Support, builds sfm modules
 EIGEN_CMAKE_BOOL=	WITH_EIGEN
+EIGEN_LIB_DEPENDS=	libgflags.so:devel/gflags \
+			libglog.so:devel/glog
 EIGEN_USES=		eigen:3
 
 GDAL_DESC=		Add Geospatial Data Abstraction Library Support
@@ -85,7 +67,8 @@ HARDENING_CMAKE_BOOL=	ENABLE_BUILD_HARDENING
 
 JAVA_DESC=		Enable Java Support
 JAVA_BUILD_DEPENDS=	ant:devel/apache-ant
-JAVA_CMAKE_BOOL=	BUILD_opencv_java BUILD_opencv_java_bindings_generator BUILD_JAVA
+JAVA_CMAKE_BOOL=	BUILD_JAVA BUILD_opencv_java \
+			BUILD_opencv_java_bindings_generator
 JAVA_MAKE_ENV=		JAVACMD=${JAVA}
 JAVA_USE=		JAVA=yes
 
@@ -102,7 +85,6 @@ PATENTED_CMAKE_BOOL=	OPENCV_ENABLE_NONFREE
 
 PROTOBUF_DESC=		Enable protobuf support, builds dnn modules
 PROTOBUF_CMAKE_BOOL=	WITH_PROTOBUF
-PROTOBUF_LIB_DEPENDS=	libprotobuf.so:devel/protobuf
 
 PYTHON_DESC=		Enable Python Support 3.6 or greater
 PYTHON_BUILD_DEPENDS=	${PYNUMPY}
@@ -120,9 +102,8 @@ TESSERACT_LIB_DEPENDS=	libtesseract.so:graphics/tesseract
 TESSERACT_CMAKE_BOOL=	WITH_TESSERACT
 ###
 
-# GUI group options (GTK3 VTK)
-GTK3_USES=		gnome
-GTK3_USE=		gnome=gtk30
+# GUI group options
+GTK3_USE=		GNOME=cairo,gdkpixbuf,gtk30
 GTK3_CMAKE_BOOL=	WITH_GTK
 
 VTK_DESC=		Include VTK library support (build opencv_viz module)
@@ -132,7 +113,10 @@ VTK_USES=		qt:5
 VTK_USE=		QT=buildtools:build,qmake:build
 ###
 
-# IMAGE group options (GPHOTO2 JPEG OPENEXR PNG TIFF)
+# IMAGE group options
+AVIF_LIB_DEPENDS=	libavif.so:graphics/libavif
+AVIF_CMAKE_BOOL=	WITH_AVIF
+
 GPHOTO2_DESC=		Add Gphoto2 Support
 GPHOTO2_CMAKE_BOOL=	WITH_GPHOTO2
 GPHOTO2_LIB_DEPENDS=	libgphoto2.so:graphics/libgphoto2
@@ -154,7 +138,7 @@ TIFF_CMAKE_BOOL=	WITH_TIFF
 TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
 ###
 
-# VIDEO group options (DC1394 FFMPEG GSTREAMER V4L VULKAN WEBP XINE)
+# VIDEO group options
 DC1394_DESC=		IEEE 1394 camera support
 DC1394_CMAKE_BOOL=	WITH_1394
 DC1394_LIB_DEPENDS=	libdc1394.so:multimedia/libdc1394
@@ -166,6 +150,7 @@ FFMPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
 GSTREAMER_DESC=		Add GSTREAMER Support
 GSTREAMER_CMAKE_BOOL=	WITH_GSTREAMER
 GSTREAMER_USES=		gstreamer
+GSTREAMER_USE=		GNOME=glib20
 
 V4L_DESC=		Enable support for Video for Linux
 V4L_CMAKE_BOOL=		WITH_V4L WITH_LIBV4L
@@ -186,7 +171,7 @@ XINE_CMAKE_BOOL=	WITH_XINE
 XINE_LIB_DEPENDS=	libxine.so:multimedia/libxine
 ###
 
-# BLAS group options (ATLAS OPENBLAS NOBLAS)
+# BLAS group options
 ATLAS_DESC=		ATLAS blas implementation with lapacke
 ATLAS_USES=		blaslapack:atlas
 ATLAS_BUILD_DEPENDS=	cblas>0:math/cblas \
@@ -201,7 +186,7 @@ NOBLAS_DESC=		Disable support for lapack/blas
 NOBLAS_CMAKE_BOOL_OFF=	WITH_LAPACK
 ###
 
-# JPEG2K group options (JASPER OPENJPEG)
+# JPEG2K group options
 JASPER_DESC=		Add Jasper Support for JPEG2000
 JASPER_CMAKE_BOOL=	WITH_JASPER
 JASPER_LIB_DEPENDS=	libjasper.so:graphics/jasper
@@ -211,36 +196,29 @@ OPENJPEG_CMAKE_BOOL=	WITH_OPENJPEG
 OPENJPEG_LIB_DEPENDS=	libopenjp2.so:graphics/openjpeg
 ###
 
-_IPPICV_i386=		ippicv/ippicv_2020_lnx_ia32_20191018_general.tgz
-_IPPICV_amd64=		ippicv/ippicv_2020_lnx_intel64_20191018_general.tgz
+_IPPICV_amd64=	ippicv/ippicv_2021.12.0_lnx_intel64_20240425_general.tgz
+_IPPICV_i386=	ippicv/ippicv_2021.12.0_lnx_ia32_20240425_general.tgz
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.options.mk>
 
 post-extract:
 	# Handle contrib
 	${MV} ${WRKSRC_contrib} ${WRKSRC}/contrib
-	# Handle prefetched ade modul
+	# Handle prefetched ade module
 	${MKDIR} ${BUILD_WRKSRC}/3rdparty/ade
 	${MV} ${WRKSRC_ade} ${BUILD_WRKSRC}/3rdparty/ade
-	# Handle prefetched xfeatures2d
-	${MKDIR} ${BUILD_WRKSRC}/downloads/xfeatures2d
-	${CP} ${WRKSRC_extra_mod_3rdparty_boost_descr}/* ${BUILD_WRKSRC}/downloads/xfeatures2d
-	${CP} ${WRKSRC_extra_mod_3rdparty_vgg}/* ${BUILD_WRKSRC}/downloads/xfeatures2d
-	# Handle prefetched wechat
-	${MKDIR} ${BUILD_WRKSRC}/downloads/wechat_qrcode
-	${CP} ${WRKSRC_wechat}/* ${BUILD_WRKSRC}/downloads/wechat_qrcode/
-	# Handle Face
-	${MKDIR} ${BUILD_WRKSRC}/share/opencv4/testdata/cv/face
-	${CP} ${WRKSRC_face}/* ${BUILD_WRKSRC}/share/opencv4/testdata/cv/face
 	# Handle ippicv
 .if defined(_IPPICV_${ARCH})
 	${MKDIR} ${BUILD_WRKSRC}/3rdparty/ippicv
-	(cd ${BUILD_WRKSRC}/3rdparty/ippicv && ${EXTRACT_CMD} -xf ${WRKSRC_ippicv}/${_IPPICV_${ARCH}})
+	(cd ${BUILD_WRKSRC}/3rdparty/ippicv && \
+		${EXTRACT_CMD} -xf ${WRKSRC_ippicv}/${_IPPICV_${ARCH}})
 .endif
 
 post-patch:
-	${REINPLACE_CMD} -e 's|/usr/lib/atlas-base|${LOCALBASE}/lib|g' ${WRKSRC}/cmake/OpenCVFindAtlas.cmake
-	${REINPLACE_CMD} -e 's|/usr/include/atlas|${LOCALBASE}/include|g' ${WRKSRC}/cmake/OpenCVFindAtlas.cmake
+	${REINPLACE_CMD} -e 's|/usr/lib/atlas-base|${LOCALBASE}/lib|g' \
+		${WRKSRC}/cmake/OpenCVFindAtlas.cmake
+	${REINPLACE_CMD} -e 's|/usr/include/atlas|${LOCALBASE}/include|g' \
+		${WRKSRC}/cmake/OpenCVFindAtlas.cmake
 
 .include <../../math/vtk9/Makefile.version>
 .include <bsd.port.mk>
