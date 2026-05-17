@@ -12,7 +12,7 @@ COMMENT=	Compiler for Writing C Extensions for the Python Language
 WWW=		https://cython.org/ \
 		https://github.com/cython/cython
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 DEPRECATED=	Legacy version. Does not work with newer Python versions. Use lang/cython instead
