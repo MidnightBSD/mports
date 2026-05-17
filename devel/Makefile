@@ -2075,6 +2075,7 @@
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-console
     SUBDIR += rubygem-cool.io
+    SUBDIR += rubygem-cri
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-date
