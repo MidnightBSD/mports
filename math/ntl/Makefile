@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.shoup.net/ntl/
 
-MAINTAINER=	ports@MidngihtBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Victor Shoup's Number Theory Library
 WWW=		https://www.shoup.net/
 
