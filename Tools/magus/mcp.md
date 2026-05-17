@@ -108,6 +108,7 @@ Analyze the build log of a failed port to explain the error using a local LLM.
 | Parameter | Type    | Required | Description |
 |-----------|---------|----------|-------------|
 | `port_id` | integer | yes      | Port ID of the failed build (from `lookup_port` or `get_port_details`) |
+| `model`   | string  | no       | The LLM to use. Default is `phi4`. Options: `phi4`, `deepseek-coder:6.7b`, `llama3.2:3b`, `qwen2.5-coder:14b`, `gemma4:latest`, `mistral-nemo:latest`, `mistral:7b`, `gemma3:latest` |
 
 ---
 
@@ -135,7 +136,7 @@ get_port_details port_id=12345
 
 # 3. Pull the build log to analyze the failure or use the automated log analysis
 get_port_log port_id=12345
-analyze_build_log port_id=12345
+analyze_build_log port_id=12345 model="qwen2.5-coder:14b"
 
 # 4. Check overall run health for the run that contains the failure
 get_run_stats run_id=99

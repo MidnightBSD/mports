@@ -48,12 +48,37 @@ if ($content =~ /^\s*$/) {
 	print_json_response('400 Bad Request', { error => "Content parameter contains only whitespace" });
 }
 
+my %ALLOWED_MODELS = map { $_ => 1 } qw(
+    phi4
+    deepseek-coder:6.7b
+    llama3.2:3b
+    qwen2.5-coder:14b
+    gemma4:latest
+    mistral-nemo:latest
+    mistral:7b
+    gemma3:latest
+);
+
+my $model_param = $cgi->param('model');
+my $model = "phi4"; # Default
+
+if (defined $model_param && $model_param ne '') {
+    my $requested_model = lc $model_param;
+    if ($ALLOWED_MODELS{$requested_model}) {
+        $model = $requested_model;
+    } elsif ($ALLOWED_MODELS{$model_param}) {
+        $model = $model_param;
+    } else {
+        print_json_response('400 Bad Request', { error => "Model '$model_param' is not supported." });
+    }
+}
+
 my $ua = LWP::UserAgent->new;
 $ua->timeout(300);
 my $url = 'http://llm.midnightbsd.org:11434/v1/chat/completions';
 
 my $payload = {
-    model => "phi4",
+    model => $model,
     messages => [
         { role => "user", content => $content }
     ],

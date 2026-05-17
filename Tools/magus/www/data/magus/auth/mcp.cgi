@@ -28,6 +28,18 @@ my @SUPPORTED_PROTOCOL_VERSIONS = qw(2025-06-18 2025-03-26 2024-11-05);
 my $collect_responses = 0;
 my @collected_responses;
 
+# Allowed LLM models for analyze_build_log
+my %ALLOWED_MODELS = map { $_ => 1 } qw(
+    phi4
+    deepseek-coder:6.7b
+    llama3.2:3b
+    qwen2.5-coder:14b
+    gemma4:latest
+    mistral-nemo:latest
+    mistral:7b
+    gemma3:latest
+);
+
 # GET opens a Streamable HTTP SSE channel. This server currently has no
 # server-initiated messages, so emit keepalives and let the CGI request end.
 if ($cgi->request_method eq 'GET') {
@@ -326,6 +338,10 @@ sub handle_tools_list($id) {
                         type        => 'integer',
                         description => 'The port ID to analyze.',
                     },
+                    model => {
+                        type        => 'string',
+                        description => 'The LLM to use. Default is "phi4". Options: phi4, deepseek-coder:6.7b, llama3.2:3b, qwen2.5-coder:14b, gemma4:latest, mistral-nemo:latest, mistral:7b, gemma3:latest',
+                    },
                 },
                 required => ['port_id'],
             },
@@ -367,6 +383,20 @@ sub tool_analyze_build_log($id, $args) {
         return tool_result($id, "Error: 'port_id' must be a valid integer.", 1);
     }
 
+    my $model = "phi4";
+    if (defined $args->{model}) {
+        my $requested_model = lc $args->{model};
+        # some loose matching since model names are exact in ollama usually
+        # fallback to what they asked if it's in the allowed list
+        if ($ALLOWED_MODELS{$requested_model}) {
+            $model = $requested_model;
+        } elsif ($ALLOWED_MODELS{$args->{model}}) {
+             $model = $args->{model};
+        } else {
+             return tool_result($id, "Error: Model '$args->{model}' is not supported. Try 'phi4', 'deepseek-coder:6.7b', 'llama3.2:3b', etc.", 1);
+        }
+    }
+
     my $port_id = int($args->{port_id});
     my $port = eval { Magus::Port->retrieve($port_id) };
     return tool_result($id, "Port ID $port_id not found.", 1) unless $port;
@@ -394,7 +424,7 @@ sub tool_analyze_build_log($id, $args) {
     my $url = 'http://llm.midnightbsd.org:11434/api/generate';
 
     my $payload = {
-        model => "phi4",
+        model => $model,
         prompt => $prompt,
         stream => \0,
     };
@@ -414,7 +444,7 @@ sub tool_analyze_build_log($id, $args) {
         }
 
         my $analysis = $data->{response} // "No analysis returned.";
-        tool_result($id, "Analysis of build failure for " . $port->name . ":\n\n" . $analysis, 0);
+        tool_result($id, "Analysis of build failure for " . $port->name . " (using model: $model):\n\n" . $analysis, 0);
     } else {
         tool_result($id, "Failed to call ollama: " . $response->status_line, 1);
     }
