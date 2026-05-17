@@ -318,7 +318,7 @@ sub handle_tools_list($id) {
             name        => 'analyze_build_log',
             description =>
                 'Analyze the build log of a failed port to explain the error '
-              . 'using a local LLM via llm.cgi.',
+              . 'using a local LLM.',
             inputSchema => {
                 type       => 'object',
                 properties => {
@@ -391,29 +391,32 @@ sub tool_analyze_build_log($id, $args) {
 
     my $ua = LWP::UserAgent->new;
     $ua->timeout(300);
-    my $url = 'https://www.midnightbsd.org/magus/auth/llm.cgi';
+    my $url = 'http://llm.midnightbsd.org:11434/api/generate';
 
-    # We are calling our local API directly, bypass CORS/auth issues since we are on the same machine
-    # But if llm.cgi expects an HTTP request:
-    my $response = $ua->post($url, { content => $prompt });
+    my $payload = {
+        model => "phi4",
+        prompt => $prompt,
+        stream => \0,
+    };
+    my $json_payload = $json->encode($payload);
+
+    my $req = HTTP::Request->new('POST', $url);
+    $req->header('Content-Type' => 'application/json');
+    $req->content($json_payload);
+
+    my $response = $ua->request($req);
 
     if ($response->is_success) {
         my $raw_content = $response->decoded_content;
         my $data = eval { $json->decode($raw_content) };
         if ($@) {
-             return tool_result($id, "Failed to parse response from llm.cgi: $@", 1);
+             return tool_result($id, "Failed to parse response from ollama: $@", 1);
         }
 
-        my $analysis = "";
-        if (ref $data eq 'ARRAY' && @$data) {
-             $analysis = $data->[0];
-        } else {
-             $analysis = "No analysis returned.";
-        }
-
+        my $analysis = $data->{response} // "No analysis returned.";
         tool_result($id, "Analysis of build failure for " . $port->name . ":\n\n" . $analysis, 0);
     } else {
-        tool_result($id, "Failed to call llm.cgi: " . $response->status_line, 1);
+        tool_result($id, "Failed to call ollama: " . $response->status_line, 1);
     }
 }
 
