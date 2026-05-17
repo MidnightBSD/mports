@@ -151,7 +151,67 @@ if ($response->is_success) {
         print_json_response('500 Internal Error', { error => "JSON Parsing failed: $@", raw => $raw_content });
     }
 } else {
-	print_json_response('502 Bad Gateway', { 
+    # Fallback to fetch if https is not supported by LWP
+    if ($response->status_line =~ /Protocol scheme 'https' is not supported/) {
+        my $content = '';
+        my $fetch_cmd = '/usr/bin/fetch';
+
+        # We must write the payload to a temp file for fetch to POST it
+        use File::Temp qw/tempfile/;
+        my ($fh, $filename) = tempfile();
+        print $fh $json_payload;
+        close $fh;
+
+        my @args = ($fetch_cmd, '-qo', '-', '--no-verify-peer');
+
+        if ($is_mistral) {
+            my $api_key = $config->{MistralApiKey} // '';
+            push @args, '--http-header', "Authorization: Bearer $api_key";
+            push @args, '--http-header', "Content-Type: application/json; charset=utf-8";
+        }
+
+        # We have to trick fetch into doing a POST by giving it a data file.
+        # But fetch natively doesn't have a -X POST option, it Infers POST from -f or from environment.
+        $ENV{HTTP_METHOD} = 'POST';
+        push @args, '--http-header', "Content-Length: " . length($json_payload);
+
+        # Actually fetch accepts input from stdin if file is - but we need to post.
+        # Using curl if available might be safer but the standard is fetch.
+        # In FreeBSD/MidnightBSD fetch, passing a file via stdin for POST requires using standard shell piping if not using -f
+
+        my $pid = open(my $pipe, "-|");
+        if (!defined $pid) {
+             unlink $filename;
+             print_json_response('500 Internal Error', { error => "Failed to run fetch command for https" });
+        }
+
+        if ($pid == 0) {
+             # Child process
+             open(STDIN, "<", $filename) or die "Cannot redirect STDIN";
+             exec(@args, $url) or die "Cannot exec fetch";
+        } else {
+             # Parent process
+             local $/;
+             $content = <$pipe> // '';
+             close $pipe;
+
+             # Clean up temp file
+             unlink $filename;
+
+             if ($? == 0 && length $content > 0) {
+                  eval {
+                      my $data = decode_json($content);
+                      print_json_response('200 OK', [ $data->{choices}[0]{message}{content} ]);
+                  };
+                  if ($@) {
+                      print_json_response('500 Internal Error', { error => "JSON Parsing failed (fetch fallback): $@", raw => $content });
+                  }
+                  exit; # we handled it with fetch
+             }
+        }
+    }
+
+	print_json_response('502 Bad Gateway', {
         error => "Upstream API failed", 
         status => $response->status_line 
 	});
