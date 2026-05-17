@@ -439,7 +439,7 @@ sub tool_analyze_build_log($id, $args) {
     if ($is_mistral) {
         $url = 'https://api.mistral.ai/v1/chat/completions';
     } else {
-        $url = 'http://llm.midnightbsd.org:11434/v1/chat/completions';
+        $url = 'http://llm.midnightbsd.org:11434/api/chat';
     }
 
     my $payload = {
@@ -453,7 +453,7 @@ sub tool_analyze_build_log($id, $args) {
     my $json_payload = $json->encode($payload);
 
     my $req = HTTP::Request->new('POST', $url);
-    $req->header('Content-Type' => 'application/json; charset=utf-8');
+    $req->header('Content-Type' => 'application/json');
 
     if ($is_mistral) {
         # Read configuration for API keys
@@ -484,7 +484,12 @@ sub tool_analyze_build_log($id, $args) {
              return tool_result($id, "Failed to parse response from llm: $@", 1);
         }
 
-        my $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
+        my $analysis;
+        if ($is_mistral) {
+            $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
+        } else {
+            $analysis = $data->{message}{content} // "No analysis returned.";
+        }
 
         tool_result($id, "Analysis of build failure for " . $port->name . " (using model: $model):\n\n" . $analysis, 0);
     } else {
