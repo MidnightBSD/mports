@@ -2091,10 +2091,12 @@
     SUBDIR += rubygem-excon-gitlab
     SUBDIR += rubygem-excon0
     SUBDIR += rubygem-execjs
+    SUBDIR += rubygem-extlib
     SUBDIR += rubygem-extpp
     SUBDIR += rubygem-facets
     SUBDIR += rubygem-faraday-cookie_jar
     SUBDIR += rubygem-faraday-excon1
+    SUBDIR += rubygem-fastercsv
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiber-annotation
@@ -2185,6 +2187,7 @@
     SUBDIR += rubygem-json-gitlab
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
+    SUBDIR += rubygem-json_pure1
     SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
@@ -2248,6 +2251,7 @@
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-storable
     SUBDIR += rubygem-stringio
+    SUBDIR += rubygem-stringex
     SUBDIR += rubygem-strptime
     SUBDIR += rubygem-sumbur
     SUBDIR += rubygem-svn2git

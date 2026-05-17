@@ -280,6 +280,8 @@
     SUBDIR += qtkeychain
     SUBDIR += rhash
     SUBDIR += rubygem-aes_key_wrap
+    SUBDIR += rubygem-bcrypt
+    SUBDIR += rubygem-bcrypt-ruby
     SUBDIR += rubygem-digest-crc
     SUBDIR += rubygem-googleauth
     SUBDIR += rubygem-googleauth-gitlab
