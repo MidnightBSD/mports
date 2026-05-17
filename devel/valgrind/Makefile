@@ -1,6 +1,7 @@
 PORTNAME=	valgrind
 PORTVERSION=	3.22.0
 PORTEPOCH=	1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/valgrind
 
@@ -42,7 +43,9 @@ MPI_LIB_DEPENDS=	libmpich.so:net/mpich
 
 .include <bsd.mport.options.mk>
 
-.if ${OSVERSION} > 300000
+.if ${OSVERSION} >= 400000
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd14.0
+.elif ${OSVERSION} > 300000
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
 .else
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4
