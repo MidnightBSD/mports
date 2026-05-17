@@ -1,0 +1,13 @@
+--- src/libgtk-vnc_sym.version.orig	2018-01-01 00:00:00 UTC
++++ src/libgtk-vnc_sym.version
+@@ -71,10 +71,6 @@
+
+     vnc_display_request_update;
+
+-    vnc_image_framebuffer_get_type;
+-    vnc_image_framebuffer_new;
+-    vnc_image_framebuffer_get_image;
+-
+     vnc_cairo_framebuffer_get_type;
+     vnc_cairo_framebuffer_new;
+     vnc_cairo_framebuffer_get_surface;
