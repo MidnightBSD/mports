@@ -1,0 +1,46 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<div class="row-fluid">
+  <div class="col-md-offset-1 col-md-10">
+    <section>
+      <h2>Available Port Updates</h2>
+      <p class="lead">The following updates were detected by portscout.</p>
+
+      <TMPL_IF NAME="error">
+        <div class="alert alert-danger">
+          <TMPL_VAR NAME="error">
+        </div>
+      <TMPL_ELSE>
+        <TMPL_IF NAME="maintainers">
+          <TMPL_LOOP NAME="maintainers">
+            <h3><TMPL_VAR NAME="email"></h3>
+            <table class="table table-striped table-bordered port-results">
+              <thead>
+                <tr>
+                  <th>Port</th>
+                  <th>Old Version</th>
+                  <th>New Version</th>
+                </tr>
+              </thead>
+              <tbody>
+                <TMPL_LOOP NAME="updates">
+                  <tr>
+                    <td><a href="<TMPL_VAR NAME="browse_root">/<TMPL_VAR NAME="port">"><TMPL_VAR NAME="port"></a></td>
+                    <td><TMPL_VAR NAME="old_version"></td>
+                    <td><TMPL_VAR NAME="new_version"></td>
+                  </tr>
+                </TMPL_LOOP>
+              </tbody>
+            </table>
+          </TMPL_LOOP>
+        <TMPL_ELSE>
+          <div class="alert alert-info">
+            No updates currently available.
+          </div>
+        </TMPL_IF>
+      </TMPL_IF>
+    </section>
+  </div>
+</div>
+
+<TMPL_INCLUDE NAME="footer.tmpl">
