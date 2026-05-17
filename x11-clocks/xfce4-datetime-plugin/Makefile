@@ -1,8 +1,7 @@
 # Created by: Martin Wilke (miwi@FreeBSD.org)
 
 PORTNAME=	xfce4-datetime-plugin
-PORTVERSION=	0.8.1
-PORTREVISION=	1
+PORTVERSION=	0.8.3
 CATEGORIES=	x11-clocks xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
