@@ -194,30 +194,30 @@ OPTIONS_DEFAULT+=	${opt}
 .  endif
 .endfor
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MCOMPUTE} || ${PORT_OPTIONS:MFLIGHT} || ${PORT_OPTIONS:MGANDIVA}
+.if !empty(PORT_OPTIONS:MCOMPUTE) || !empty(PORT_OPTIONS:MFLIGHT) || !empty(PORT_OPTIONS:MGANDIVA)
 PLIST_FILES+=	lib/cmake/Arrow/Findre2Alt.cmake
 .endif
 
-.if ${PORT_OPTIONS:MIPC} && ${PORT_OPTIONS:MBUILD_UTILITIES}
+.if !empty(PORT_OPTIONS:MIPC) && !empty(PORT_OPTIONS:MBUILD_UTILITIES)
 PLIST_FILES+=	bin/arrow-file-to-stream \
 		bin/arrow-stream-to-file
 .endif
-.if ${PORT_OPTIONS:MGANDIVA} || ${PORT_OPTIONS:MCOMPUTE}
+.if !empty(PORT_OPTIONS:MGANDIVA) || !empty(PORT_OPTIONS:MCOMPUTE)
 PLIST_FILES+=	lib/cmake/Arrow/Findutf8proc.cmake
 .endif
-.if ${PORT_OPTIONS:MGANDIVA} || ${PORT_OPTIONS:MZSTD}
+.if !empty(PORT_OPTIONS:MGANDIVA) || !empty(PORT_OPTIONS:MZSTD)
 PLIST_FILES+=	lib/cmake/Gandiva/FindzstdAlt.cmake
 .endif
 
-.if ${PORT_OPTIONS:MPYTHON} == "PYTHON" && ${PORT_OPTIONS:MFLIGHT} == "FLIGHT"
+.if !empty(PORT_OPTIONS:MPYTHON) && !empty(PORT_OPTIONS:MFLIGHT)
     PLIST_SUB+=	PYTHONFLIGHT=""
 .else
     PLIST_SUB+=	PYTHONFLIGHT="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MTESTING} && ${PORT_OPTIONS:MFLIGHT} == "FLIGHT"
+.if !empty(PORT_OPTIONS:MTESTING) && !empty(PORT_OPTIONS:MFLIGHT)
     PLIST_SUB+=	TESTINGFLIGHT=""
 .else
     PLIST_SUB+=	TESTINGFLIGHT="@comment "
