@@ -39,6 +39,7 @@
     SUBDIR += dcc-dccd
     SUBDIR += dkfilter
     SUBDIR += dovecot
+    SUBDIR += dovecot24
     SUBDIR += dovecot-pigeonhole
     SUBDIR += evolution
     SUBDIR += evolution-ews
