@@ -1,7 +1,7 @@
 # Created by: jessekempf@gmail.com
 
 PORTNAME=	mock
-PORTVERSION=	3.0.5
+PORTVERSION=	5.2.0
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
