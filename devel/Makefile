@@ -1903,6 +1903,7 @@
     SUBDIR += rubygem-aliyun-sdk
     SUBDIR += rubygem-aliyun-sdk-gitlab
     SUBDIR += rubygem-annoy
+    SUBDIR += rubygem-arrayfields
     SUBDIR += rubygem-ascii85
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-async
@@ -2176,6 +2177,7 @@
     SUBDIR += rubygem-io-event
     SUBDIR += rubygem-io-stream
     SUBDIR += rubygem-iobuffer
+    SUBDIR += rubygem-irb
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-json
     SUBDIR += rubygem-json-gitlab
@@ -2214,6 +2216,8 @@
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-platform
     SUBDIR += rubygem-polyglot
+    SUBDIR += rubygem-pp
+    SUBDIR += rubygem-prettyprint
     SUBDIR += rubygem-racc
     SUBDIR += rubygem-rails-deprecated_sanitizer
     SUBDIR += rubygem-rails-observers
@@ -2259,12 +2263,14 @@
     SUBDIR += rubygem-trailblazer-option
     SUBDIR += rubygem-treetop
     SUBDIR += rubygem-trollop1
+    SUBDIR += rubygem-tsort
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo-data
     SUBDIR += rubygem-tzinfo1
     SUBDIR += rubygem-uber
     SUBDIR += rubygem-useragent
     SUBDIR += rubygem-uuid
+    SUBDIR += rubygem-uuidtools
     SUBDIR += rubygem-valid
     SUBDIR += rubygem-validatable
     SUBDIR += rubygem-validate_email
