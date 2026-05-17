@@ -172,10 +172,22 @@ if ($response->is_success) {
             push @args, '--http-header', "Content-Type: application/json; charset=utf-8";
         }
 
-        # Tell fetch to POST the file
+        # We have to trick fetch into doing a POST by giving it a data file.
         $ENV{HTTP_METHOD} = 'POST';
+        push @args, '--http-header', "Content-Length: " . length($json_payload);
 
-        if (open(my $pipe, '-|', @args, $url, '<', $filename)) {
+        my $pid = open(my $pipe, "-|");
+        if (!defined $pid) {
+             unlink $filename;
+             print_json_response('500 Internal Error', { error => "Failed to run fetch command for https" });
+        }
+
+        if ($pid == 0) {
+             # Child process
+             open(STDIN, "<", $filename) or die "Cannot redirect STDIN";
+             exec(@args, $url) or die "Cannot exec fetch";
+        } else {
+             # Parent process
              local $/;
              $content = <$pipe> // '';
              close $pipe;
@@ -195,9 +207,6 @@ if ($response->is_success) {
              } else {
                  print_json_response('502 Bad Gateway', { error => "Fetch fallback failed with exit code $?", raw => $content });
              }
-        } else {
-            unlink $filename if -e $filename;
-            print_json_response('500 Internal Error', { error => "Failed to run fetch command for https" });
         }
     }
 
