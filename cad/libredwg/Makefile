@@ -1,9 +1,9 @@
 PORTNAME=	libredwg
-PORTVERSION=	0.12.4
+PORTVERSION=	0.13.3
 CATEGORIES=	cad devel
 MASTER_SITES=	GNU
 
-MAINTAINER=	danfe@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and command line tools to handle DWG files
 WWW=		https://www.gnu.org/software/libredwg/
 

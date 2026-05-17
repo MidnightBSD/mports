@@ -1,12 +1,11 @@
---- examples/Makefile.in.orig	2021-03-18 08:57:40 UTC
+--- examples/Makefile.in.orig
 +++ examples/Makefile.in
-@@ -90,8 +90,7 @@ host_triplet = @host@
+@@ -90,7 +90,7 @@
  build_triplet = @build@
  host_triplet = @host@
  @USE_WRITE_TRUE@bin_PROGRAMS = dwgadd$(EXEEXT)
--check_PROGRAMS = load_dwg$(EXEEXT) dwg2svg2$(EXEEXT) dwgfuzz$(EXEEXT) \
--	llvmfuzz_standalone$(EXEEXT)
+-check_PROGRAMS = load_dwg$(EXEEXT) dwg2svg2$(EXEEXT) dwgfuzz$(EXEEXT)
 +check_PROGRAMS = load_dwg$(EXEEXT) dwg2svg2$(EXEEXT)
  EXTRA_PROGRAMS = unknown$(EXEEXT) bd$(EXEEXT) bits$(EXEEXT) \
- 	llvmfuzz$(EXEEXT)
- @ENABLE_GCOV_TRUE@am__append_1 = @GCOV_CFLAGS@
+ 	llvmfuzz$(EXEEXT) llvmfuzz_standalone$(EXEEXT) \
+ 	odaversion$(EXEEXT)
