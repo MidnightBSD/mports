@@ -29,6 +29,8 @@ USE_XORG=	pixman
 
 LDFLAGS+=	-pthread
 
+NO_TEST=	yes
+
 PLIST_SUB=	SOVERSION_MAJOR=3 \
 		SOVERSION_FULL=${DISTVERSION:C/-.*//}
 
