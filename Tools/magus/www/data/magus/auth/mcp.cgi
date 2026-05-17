@@ -840,31 +840,38 @@ sub resolve_port_arg($args) {
 
 sub top_blockers_for_run($run, $limit) {
     my %blocking;
-    my %objs;
 
-    my $ports = Magus::Port->search(run => $run->id, status => 'untested');
-    while (my $port = $ports->next) {
-        my $port_id = $port->id;
-        my $add = $blocking{$port_id} || 1;
-        $objs{$port_id} ||= $port;
+    # Pre-fetch untested ports for this run directly from the DB rather than Class::DBI object per row
+    my $dbh = Magus::DBI->db_Main();
 
-        for my $dep ($port->depends) {
-            next unless $dep->status =~ /^(fail|skip|untested)$/;
+    # We want to find all failed/skipped dependencies that caused ports to be untested.
+    # Rather than N+1 queries through Class::DBI relationships, we can use a direct query.
+    my $sth = $dbh->prepare(q{
+        SELECT d.dependency, COUNT(p.id) as blocked_count
+        FROM ports p
+        JOIN depends d ON p.id = d.port
+        JOIN ports dep ON d.dependency = dep.id
+        WHERE p.run = ?
+          AND p.status = 'untested'
+          AND dep.status IN ('fail', 'skip', 'untested')
+        GROUP BY d.dependency
+        ORDER BY blocked_count DESC
+    });
 
-            my $dep_id = $dep->id;
-            $objs{$dep_id} ||= $dep;
-            $blocking{$dep_id} += $add;
-        }
-    }
+    $sth->execute($run->id);
 
     my @blockers;
-    for my $port_id (sort { $blocking{$b} <=> $blocking{$a} || $a <=> $b } keys %blocking) {
-        my $port = $objs{$port_id};
+    while (my $row = $sth->fetchrow_hashref) {
+        my $port_id = $row->{dependency};
+        my $count = $row->{blocked_count};
+
+        # We only retrieve the port object for the top blockers to save memory/DB time
+        my $port = Magus::Port->retrieve($port_id);
         next unless $port;
-        next if $port->status eq 'untested';
+        next if $port->status eq 'untested'; # We just want the root cause (fail/skip), not the intermediate untested ones
 
         push @blockers, {
-            weight    => $blocking{$port_id} + 0,
+            weight    => $count + 0,
             port_id   => $port->id + 0,
             run_id    => $run->id + 0,
             name      => $port->name,
@@ -878,6 +885,8 @@ sub top_blockers_for_run($run, $limit) {
 
         last if @blockers >= $limit;
     }
+
+    $sth->finish;
 
     return @blockers;
 }
