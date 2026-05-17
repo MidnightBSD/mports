@@ -1,0 +1,26 @@
+PORTNAME=	redis-rack
+PORTVERSION=	3.0.0
+PORTREVISION=	2
+CATEGORIES=	www rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	-gitlab
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Redis Store for Rack
+WWW=		https://redis-store.org/redis-rack/ \
+		https://github.com/redis-store/redis-rack
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
+
+RUN_DEPENDS=	rubygem-rack-session-gitlab>=0.2.0:www/rubygem-rack-session-gitlab \
+		rubygem-redis-store-gitlab>=1.2<2:devel/rubygem-redis-store-gitlab
+
+USES=		gem
+
+NO_ARCH=	yes
+
+post-install:
+	${RM} ${STAGEDIR}${PREFIX}/bin/appraisal ${STAGEDIR}${PREFIX}/bin/rake
+
+.include <bsd.port.mk>

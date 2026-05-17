@@ -2237,6 +2237,7 @@
     SUBDIR += rubygem-rdoc
     SUBDIR += rubygem-reline
     SUBDIR += rubygem-redis-store
+    SUBDIR += rubygem-redis-store-gitlab
     SUBDIR += rubygem-retriable
     SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rspec

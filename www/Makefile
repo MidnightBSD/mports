@@ -455,6 +455,8 @@
     SUBDIR += rubygem-rails4
     SUBDIR += rubygem-railties4
     SUBDIR += rubygem-railties80
+    SUBDIR += rubygem-redis-rack
+    SUBDIR += rubygem-redis-rack-gitlab
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rest-client-gitlab
     SUBDIR += rubygem-sawyer
