@@ -1,6 +1,6 @@
 PORTNAME=	apache-ant
 DISTVERSION=	1.10.13
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel java
 MASTER_SITES=	APACHE/ant/binaries:bin \
 		https://deb.debian.org/debian/pool/main/a/ant/:man
@@ -15,6 +15,7 @@ WWW=		https://ant.apache.org/
 LICENSE=	Apache-2.0
 
 USES=		cpe java tar:bzip2
+JAVA_VERSION=	8
 CPE_VENDOR=	apache
 CPE_PRODUCT=	ant
 
