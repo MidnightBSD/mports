@@ -101,6 +101,29 @@ their statuses, and reverse-dependency count.
 
 ---
 
+### `analyze_build_log`
+
+Analyze the build log of a failed port to explain the error using a local LLM.
+
+| Parameter | Type    | Required | Description |
+|-----------|---------|----------|-------------|
+| `port_id` | integer | yes      | Port ID of the failed build (from `lookup_port` or `get_port_details`) |
+
+---
+
+### `top_blockers`
+
+List the highest-weight failed or skipped ports blocking other ports from building.
+The weight is an approximate priority score, not an exact reverse-dependency count.
+Higher weights should be fixed first.
+
+| Parameter | Type    | Required | Description |
+|-----------|---------|----------|-------------|
+| `run_id`  | integer | no       | Run ID to analyze. Omit to use the latest complete blessed run per architecture. |
+| `limit`   | integer | no       | Maximum number of blockers to return per run (default: 20, max: 100). |
+
+---
+
 ## Example workflow
 
 ```
@@ -110,11 +133,15 @@ lookup_port name="devel/git"
 # 2. If a failure is found, get details to understand the dependency chain
 get_port_details port_id=12345
 
-# 3. Pull the build log to analyze the failure
+# 3. Pull the build log to analyze the failure or use the automated log analysis
 get_port_log port_id=12345
+analyze_build_log port_id=12345
 
 # 4. Check overall run health for the run that contains the failure
 get_run_stats run_id=99
+
+# 5. Check which ports are blocking the most other ports
+top_blockers limit=10
 ```
 
 ---
