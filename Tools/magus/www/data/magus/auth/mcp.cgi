@@ -355,6 +355,16 @@ sub handle_tools_list($id) {
                 required => ['port_id'],
             },
         },
+        {
+            name        => 'list_port_updates',
+            description =>
+                'Returns a list of ports that have new versions available, '
+              . 'as detected by portscout.',
+            inputSchema => {
+                type       => 'object',
+                properties => {},
+            },
+        },
     ]});
 }
 
@@ -371,6 +381,7 @@ sub handle_tools_call($id, $params) {
         get_port_cves     => \&tool_get_port_cves,
         top_blockers      => \&tool_top_blockers,
         analyze_build_log => \&tool_analyze_build_log,
+        list_port_updates => \&tool_list_port_updates,
     );
 
     if (my $handler = $dispatch{$name}) {
@@ -386,6 +397,68 @@ sub handle_tools_call($id, $params) {
 # ---------------------------------------------------------------------------
 # Tool implementations
 # ---------------------------------------------------------------------------
+
+sub tool_list_port_updates($id, $args) {
+    my @cmd = ('/usr/local/bin/portscout', 'showupdates');
+    my $run_dir = '/usr/local/etc';
+
+    use Cwd qw(getcwd);
+    my $orig_dir = getcwd();
+
+    my $output = '';
+    my $error  = '';
+
+    if (chdir($run_dir)) {
+        my $pid = open(my $pipe, "-|");
+        if (!defined $pid) {
+            $error = "Failed to run portscout: $!";
+        } elsif ($pid == 0) {
+            open(STDERR, ">&STDOUT");
+            exec(@cmd) or die "Failed to execute '@cmd': $!";
+        } else {
+            local $/;
+            $output = <$pipe> // '';
+            close($pipe);
+
+            if ($? != 0) {
+                my $exit_val = $? >> 8;
+                my $signal   = $? & 127;
+                $error = "portscout failed: " . ($exit_val ? "exit code $exit_val" : "signal $signal");
+            }
+        }
+        chdir($orig_dir);
+    } else {
+        $error = "Could not chdir to $run_dir: $!";
+    }
+
+    if ($error) {
+        return tool_result($id, "Error fetching updates: $error\n\nOutput: $output", 1);
+    }
+
+    my @lines = split /\n/, $output;
+    my $text = "Portscout Available Updates:\n\n";
+    my $current_maintainer = '';
+    my $updates_found = 0;
+
+    for my $line (@lines) {
+        next if $line =~ /^\s*$/;
+        next if $line =~ /^portscout\s+v\d+/;
+
+        if ($line =~ /^([^']+)'s ports:/) {
+            $current_maintainer = $1;
+            $text .= "\nMaintainer: $current_maintainer\n";
+        } elsif ($line =~ /^\s+(\S+)\s+(\S+)\s+->\s+(\S+)/) {
+            $text .= sprintf("  %-30s %-15s -> %s\n", $1, $2, $3);
+            $updates_found++;
+        }
+    }
+
+    if (!$updates_found) {
+        $text = "No port updates currently detected by portscout.";
+    }
+
+    tool_result($id, $text, 0);
+}
 
 sub tool_analyze_build_log($id, $args) {
     unless (defined $args->{port_id} && is_number($args->{port_id})) {

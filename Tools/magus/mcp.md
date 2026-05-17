@@ -125,6 +125,15 @@ Higher weights should be fixed first.
 
 ---
 
+### `list_port_updates`
+
+Returns a list of ports that have new versions available, as detected by portscout.
+
+| Parameter | Type    | Required | Description |
+|-----------|---------|----------|-------------|
+
+---
+
 ## Example workflow
 
 ```
@@ -143,6 +152,9 @@ get_run_stats run_id=99
 
 # 5. Check which ports are blocking the most other ports
 top_blockers limit=10
+
+# 6. Check for available port updates
+list_port_updates
 ```
 
 ---
