@@ -439,7 +439,7 @@ sub tool_analyze_build_log($id, $args) {
     if ($is_mistral) {
         $url = 'https://api.mistral.ai/v1/chat/completions';
     } else {
-        $url = 'http://llm.midnightbsd.org:11434/api/chat';
+        $url = 'http://llm.midnightbsd.org:11434/v1/chat/completions';
     }
 
     my $payload = {
@@ -453,7 +453,7 @@ sub tool_analyze_build_log($id, $args) {
     my $json_payload = $json->encode($payload);
 
     my $req = HTTP::Request->new('POST', $url);
-    $req->header('Content-Type' => 'application/json');
+    $req->header('Content-Type' => 'application/json; charset=utf-8');
 
     if ($is_mistral) {
         # Read configuration for API keys
@@ -484,15 +484,74 @@ sub tool_analyze_build_log($id, $args) {
              return tool_result($id, "Failed to parse response from llm: $@", 1);
         }
 
-        my $analysis;
-        if ($is_mistral) {
-            $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
-        } else {
-            $analysis = $data->{message}{content} // "No analysis returned.";
-        }
+        my $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
 
         tool_result($id, "Analysis of build failure for " . $port->name . " (using model: $model):\n\n" . $analysis, 0);
     } else {
+
+        # Fallback to fetch if https is not supported by LWP
+        if ($response->status_line =~ /Protocol scheme 'https' is not supported/) {
+            my $content = '';
+            my $fetch_cmd = '/usr/bin/fetch';
+
+            # We must write the payload to a temp file for fetch to POST it
+            use File::Temp qw/tempfile/;
+            my ($fh, $filename) = tempfile();
+            print $fh $json_payload;
+            close $fh;
+
+            my @args = ($fetch_cmd, '-qo', '-', '--no-verify-peer');
+
+            if ($is_mistral) {
+                my $config_path = '/usr/magus/config.yaml';
+                my $config = {};
+                if (-e $config_path) {
+                    eval {
+                        $config = YAML::Tiny->read($config_path)->[0] || {};
+                    };
+                }
+                my $api_key = $config->{MistralApiKey} // '';
+                push @args, '--http-header', "Authorization: Bearer $api_key";
+                push @args, '--http-header', "Content-Type: application/json; charset=utf-8";
+            }
+
+            # We have to trick fetch into doing a POST by giving it a data file.
+            $ENV{HTTP_METHOD} = 'POST';
+            push @args, '--http-header', "Content-Length: " . length($json_payload);
+
+            my $pid = open(my $pipe, "-|");
+            if (!defined $pid) {
+                 unlink $filename;
+                 return tool_result($id, "Failed to run fetch command for https", 1);
+            }
+
+            if ($pid == 0) {
+                 # Child process
+                 open(STDIN, "<", $filename) or die "Cannot redirect STDIN";
+                 exec(@args, $url) or die "Cannot exec fetch";
+            } else {
+                 # Parent process
+                 local $/;
+                 $content = <$pipe> // '';
+                 close $pipe;
+
+                 # Clean up temp file
+                 unlink $filename;
+
+                 if ($? == 0 && length $content > 0) {
+                      eval {
+                          my $data = $json->decode($content);
+                          my $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
+                          tool_result($id, "Analysis of build failure for " . $port->name . " (using model: $model):\n\n" . $analysis, 0);
+                      };
+                      if ($@) {
+                          return tool_result($id, "JSON Parsing failed (fetch fallback): $@", 1);
+                      }
+                      return; # we handled it with fetch
+                 }
+            }
+        }
+
         tool_result($id, "Failed to call llm: " . $response->status_line, 1);
     }
 }
