@@ -1,6 +1,5 @@
 PORTNAME=	uw-ttyp0
-PORTVERSION=	1.3
-PORTREVISION=	2
+PORTVERSION=	2.1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/
 
