@@ -15,6 +15,8 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3
 
 CONFLICTS_INSTALL=	sol
+NOT_FOR_ARCHS=		i386
+NOT_FOR_ARCHS_REASON=	dependencies do not support i386
 PORTSCOUT=	limitw:1,even
 
 USES=		desktop-file-utils gettext meson gnome guile:2.2,3.0 \
