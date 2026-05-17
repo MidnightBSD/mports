@@ -2090,6 +2090,7 @@
     SUBDIR += rubygem-dry-inflector
     SUBDIR += rubygem-drydock
     SUBDIR += rubygem-equalizer
+    SUBDIR += rubygem-et-orbi
     SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-excon
     SUBDIR += rubygem-excon-gitlab
@@ -2116,6 +2117,7 @@
     SUBDIR += rubygem-fog-json-gitlab
     SUBDIR += rubygem-formatador
     SUBDIR += rubygem-forwardable
+    SUBDIR += rubygem-fugit
     SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-gapic-common-gitlab
     SUBDIR += rubygem-gems

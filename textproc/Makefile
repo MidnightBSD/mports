@@ -492,6 +492,7 @@
     SUBDIR += rubygem-rails-dom-testing-rails80
     SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rails-html-sanitizer-gitlab
+    SUBDIR += rubygem-raabro
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-rdtool
     SUBDIR += rubygem-representable
