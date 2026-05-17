@@ -12,6 +12,7 @@ use JSON::XS;
 use CGI qw(-no_xhtml);
 use LWP::UserAgent;
 use URI::Escape qw(uri_escape);
+use YAML::Tiny;
 
 #
 # Inject AbstractSearch into Magus::DBI so we can use search_where()
@@ -29,7 +30,7 @@ my $collect_responses = 0;
 my @collected_responses;
 
 # Allowed LLM models for analyze_build_log
-my %ALLOWED_MODELS = map { $_ => 1 } qw(
+my %OLLAMA_MODELS = map { $_ => 1 } qw(
     phi4
     deepseek-coder:6.7b
     llama3.2:3b
@@ -39,6 +40,14 @@ my %ALLOWED_MODELS = map { $_ => 1 } qw(
     mistral:7b
     gemma3:latest
 );
+
+my %MISTRAL_MODELS = map { $_ => 1 } qw(
+    mistral-small-latest
+    mistral-medium-latest
+    mistral-large-latest
+);
+
+my %ALLOWED_MODELS = (%OLLAMA_MODELS, %MISTRAL_MODELS);
 
 # GET opens a Streamable HTTP SSE channel. This server currently has no
 # server-initiated messages, so emit keepalives and let the CGI request end.
@@ -340,7 +349,7 @@ sub handle_tools_list($id) {
                     },
                     model => {
                         type        => 'string',
-                        description => 'The LLM to use. Default is "qwen2.5-coder:14b". Options: phi4, deepseek-coder:6.7b, llama3.2:3b, qwen2.5-coder:14b, gemma4:latest, mistral-nemo:latest, mistral:7b, gemma3:latest',
+                        description => 'The LLM to use. Default is "qwen2.5-coder:14b". Options: phi4, deepseek-coder:6.7b, llama3.2:3b, qwen2.5-coder:14b, gemma4:latest, mistral-nemo:latest, mistral:7b, gemma3:latest, mistral-small-latest, mistral-medium-latest, mistral-large-latest',
                     },
                 },
                 required => ['port_id'],
@@ -393,7 +402,7 @@ sub tool_analyze_build_log($id, $args) {
         } elsif ($ALLOWED_MODELS{$args->{model}}) {
              $model = $args->{model};
         } else {
-             return tool_result($id, "Error: Model '$args->{model}' is not supported. Try 'phi4', 'deepseek-coder:6.7b', 'llama3.2:3b', etc.", 1);
+             return tool_result($id, "Error: Model '$args->{model}' is not supported. Try 'qwen2.5-coder:14b', 'mistral-small-latest', etc.", 1);
         }
     }
 
@@ -423,7 +432,15 @@ sub tool_analyze_build_log($id, $args) {
 
     my $ua = LWP::UserAgent->new;
     $ua->timeout(300);
-    my $url = 'http://llm.midnightbsd.org:11434/api/chat';
+
+    my $url;
+    my $is_mistral = $MISTRAL_MODELS{$model} || 0;
+
+    if ($is_mistral) {
+        $url = 'https://api.mistral.ai/v1/chat/completions';
+    } else {
+        $url = 'http://llm.midnightbsd.org:11434/api/chat';
+    }
 
     my $payload = {
         model => $model,
@@ -437,6 +454,25 @@ sub tool_analyze_build_log($id, $args) {
 
     my $req = HTTP::Request->new('POST', $url);
     $req->header('Content-Type' => 'application/json');
+
+    if ($is_mistral) {
+        # Read configuration for API keys
+        my $config_path = '/usr/magus/config.yaml';
+        my $config = {};
+        if (-e $config_path) {
+            eval {
+                $config = YAML::Tiny->read($config_path)->[0] || {};
+            };
+        }
+
+        my $api_key = $config->{MistralApiKey} // '';
+        unless ($api_key) {
+            return tool_result($id, "Mistral API key not configured in $config_path", 1);
+        }
+        $req->header('User-Agent' => 'MistralPerlClient/1.0');
+        $req->header('Authorization' => "Bearer $api_key");
+    }
+
     $req->content($json_payload);
 
     my $response = $ua->request($req);
@@ -445,13 +481,19 @@ sub tool_analyze_build_log($id, $args) {
         my $raw_content = $response->decoded_content;
         my $data = eval { $json->decode($raw_content) };
         if ($@) {
-             return tool_result($id, "Failed to parse response from ollama: $@", 1);
+             return tool_result($id, "Failed to parse response from llm: $@", 1);
         }
 
-        my $analysis = $data->{message}{content} // "No analysis returned.";
+        my $analysis;
+        if ($is_mistral) {
+            $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
+        } else {
+            $analysis = $data->{message}{content} // "No analysis returned.";
+        }
+
         tool_result($id, "Analysis of build failure for " . $port->name . " (using model: $model):\n\n" . $analysis, 0);
     } else {
-        tool_result($id, "Failed to call ollama: " . $response->status_line, 1);
+        tool_result($id, "Failed to call llm: " . $response->status_line, 1);
     }
 }
 
