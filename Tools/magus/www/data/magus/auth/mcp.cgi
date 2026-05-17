@@ -431,6 +431,7 @@ sub tool_analyze_build_log($id, $args) {
     my $system_prompt = "Provide a technical analysis of error logs for building software applications in the MidnightBSD ports tree. MidnightBSD uses mport rather than pkg and magus rather than poudriere.";
 
     my $ua = LWP::UserAgent->new;
+    $ua->ssl_opts(verify_hostname => 0);
     $ua->timeout(300);
 
     my $url;
