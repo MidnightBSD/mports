@@ -512,32 +512,41 @@ sub tool_get_run_stats($id, $args) {
     my $dbh  = Magus::DBI->db_Main();
     my $text = '';
 
-    for my $run (@runs) {
+    # Use a single query for all runs using GROUP BY and IN clause
+    my @run_ids = map { $_->id } @runs;
+    if (@run_ids) {
+        my $in_clause = join(',', map { '?' } @run_ids);
         my $sth = $dbh->prepare(
-            'SELECT COUNT(*) AS count, status FROM ports WHERE run=? GROUP BY status ORDER BY status'
+            "SELECT run, status, COUNT(*) AS count FROM ports WHERE run IN ($in_clause) GROUP BY run, status"
         );
-        $sth->execute($run->id);
-        my $rows = $sth->fetchall_arrayref({});
+        $sth->execute(@run_ids);
+
+        my %stats;
+        while (my $row = $sth->fetchrow_hashref) {
+            $stats{$row->{run}}{$row->{status}} = $row->{count} + 0;
+        }
         $sth->finish;
 
-        my %c = map { $_->{status} => $_->{count} + 0 } @$rows;
-        my $total = 0;
-        $total += $_ for values %c;
+        for my $run (@runs) {
+            my $run_stats = $stats{$run->id} || {};
+            my $total = 0;
+            $total += $_ for values %$run_stats;
 
-        $text .= sprintf(
-            "Run %d\n  arch=%-8s  osversion=%-6s  status=%-10s  blessed=%s\n  created=%s\n",
-            $run->id, $run->arch, $run->osversion, $run->status,
-            ($run->blessed ? 'yes' : 'no'), $run->created,
-        );
-        $text .= sprintf(
-            "  Packages: total=%-5d  pass=%-5d  fail=%-5d  skip=%-5d  warn=%-5d  untested=%d\n\n",
-            $total,
-            $c{pass}     // 0,
-            $c{fail}     // 0,
-            $c{skip}     // 0,
-            $c{warn}     // 0,
-            $c{untested} // 0,
-        );
+            $text .= sprintf(
+                "Run %d\n  arch=%-8s  osversion=%-6s  status=%-10s  blessed=%s\n  created=%s\n",
+                $run->id, $run->arch, $run->osversion, $run->status,
+                ($run->blessed ? 'yes' : 'no'), $run->created,
+            );
+            $text .= sprintf(
+                "  Packages: total=%-5d  pass=%-5d  fail=%-5d  skip=%-5d  warn=%-5d  untested=%d\n\n",
+                $total,
+                $run_stats->{pass}     // 0,
+                $run_stats->{fail}     // 0,
+                $run_stats->{skip}     // 0,
+                $run_stats->{warn}     // 0,
+                $run_stats->{untested} // 0,
+            );
+        }
     }
 
     tool_result($id, $text, 0);
