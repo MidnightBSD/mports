@@ -2229,6 +2229,7 @@
     SUBDIR += rubygem-rails-deprecated_sanitizer
     SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rake
+    SUBDIR += rubygem-rbtree
     SUBDIR += rubygem-rb-fsevent
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-rdoc
