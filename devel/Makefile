@@ -131,6 +131,7 @@
     SUBDIR += eggdbus
     SUBDIR += electron28
     SUBDIR += electron39
+    SUBDIR += electron40
     SUBDIR += elfutils
     SUBDIR += epm
     SUBDIR += erlang-unicode_util_compat
@@ -2235,6 +2236,7 @@
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-rdoc
     SUBDIR += rubygem-reline
+    SUBDIR += rubygem-redis-store
     SUBDIR += rubygem-retriable
     SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rspec
