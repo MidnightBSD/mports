@@ -135,6 +135,7 @@
     SUBDIR += elfutils
     SUBDIR += epm
     SUBDIR += erlang-unicode_util_compat
+    SUBDIR += esbuild
     SUBDIR += evdev-proto
     SUBDIR += fam
     SUBDIR += fifechan
@@ -1872,6 +1873,7 @@
     SUBDIR += rubygem-actionview-gitlab
     SUBDIR += rubygem-actionview4
     SUBDIR += rubygem-actionview5
+    SUBDIR += rubygem-actionview50
     SUBDIR += rubygem-actionview52
     SUBDIR += rubygem-actionview60
     SUBDIR += rubygem-actionview61
