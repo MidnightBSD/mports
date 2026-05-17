@@ -104,6 +104,8 @@ sub main {
     compare_runs($p);
   } elsif ($path =~m:^/blockers/(.*):) {
     blockers($p, $1);
+  } elsif ($path =~m:^/updates:) {
+    updates_page($p);
   } else {
     print $p->header(
               -type=>'text/plain',
@@ -861,6 +863,115 @@ sub browse {
     print $p->header. $tmpl->output;
 }
 
+sub updates_page {
+    my ($p) = @_;
+    my $tmpl = template($p, 'updates.tmpl');
+    $tmpl->param(title => 'Magus // Port Updates');
+
+    # Define the command and its arguments.
+    my @cmd = ('/usr/local/bin/portscout', 'showupdates');
+
+    # The directory where portscout must be run.
+    my $run_dir = '/usr/local/etc';
+
+    # Store the current directory so we can return to it.
+    use Cwd qw(getcwd);
+    my $orig_dir = getcwd();
+
+    my $output = '';
+    my $error  = '';
+
+    # Change to the required directory.
+    if (chdir($run_dir)) {
+        # Open a pipe from the command.
+        my $pid = open(my $pipe, "-|");
+        if (!defined $pid) {
+            $error = "Failed to run portscout: $!";
+        } elsif ($pid == 0) {
+            # In the child process.
+            # (Optional) You might want to redirect STDERR to STDOUT to capture errors in output.
+            open(STDERR, ">&STDOUT");
+            exec(@cmd) or die "Failed to execute '@cmd': $!";
+        } else {
+            # In the parent process.
+            local $/;
+            $output = <$pipe> // '';
+            close($pipe);
+
+            if ($? != 0) {
+                # Determine the nature of the failure (exit code vs signal).
+                my $exit_val = $? >> 8;
+                my $signal   = $? & 127;
+                $error = "portscout failed: " . ($exit_val ? "exit code $exit_val" : "signal $signal");
+                # Optionally append the output so far to the error message for debugging.
+                # $error .= "\nOutput was: $output";
+            }
+        }
+        # Change back to the original directory.
+        chdir($orig_dir) or do {
+            # If changing back fails, it's a serious issue, though for a CGI script
+            # it might just terminate soon anyway. Still, good to flag.
+            $error .= " (Also failed to return to $orig_dir: $!)";
+        };
+    } else {
+        $error = "Could not chdir to $run_dir: $!";
+    }
+
+    if ($error) {
+        $tmpl->param(error => $error);
+    } else {
+        # Parse the output.
+        # Example output structure:
+        #
+        # portscout v0.8.1, by Shaun Amott
+        #
+        # ctriv@midnightbsd.org's ports:
+        #   databases/p5-DBD-SQLite 1.74 -> 1.76
+        #
+        # danfe@freebsd.org's ports:
+        #   cad/libredwg 0.12.4 -> 0.13.3
+
+        my @lines = split /\n/, $output;
+        my @maintainers;
+        my $current_maintainer;
+
+        for my $line (@lines) {
+            # Skip empty lines or the portscout banner
+            next if $line =~ /^\s*$/;
+            next if $line =~ /^portscout\s+v\d+/;
+
+            if ($line =~ /^([^']+)'s ports:/) {
+                # Found a new maintainer section
+                if ($current_maintainer) {
+                    push @maintainers, $current_maintainer;
+                }
+                $current_maintainer = {
+                    email   => $1,
+                    updates => [],
+                };
+            } elsif ($line =~ /^\s+(\S+)\s+(\S+)\s+->\s+(\S+)/) {
+                # Found a port update line under the current maintainer
+                if ($current_maintainer) {
+                    push @{$current_maintainer->{updates}}, {
+                        port        => $1,
+                        old_version => $2,
+                        new_version => $3,
+                    };
+                }
+            }
+        }
+        # Don't forget the last maintainer section
+        if ($current_maintainer) {
+            push @maintainers, $current_maintainer;
+        }
+
+        $tmpl->param(maintainers => \@maintainers);
+    }
+
+    print $p->header(-type => 'text/html', -charset => 'utf-8');
+    print $tmpl->output;
+}
+
 sub template {
   my ($p, $file) = @_;
   
@@ -891,4 +1002,3 @@ sub template {
   
   return $tmpl;
 }
-  
