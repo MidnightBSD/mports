@@ -434,42 +434,44 @@ sub tool_lookup_port($id, $args) {
     }
 
     my @results;
-    for my $run (@candidate_runs) {
-        my @ports;
-        if ($name =~ m|/|) {
-            # Exact origin like "www/apache24"
-            @ports = Magus::Port->search(run => $run->id, name => $name,
-                { order_by => 'name' });
-        } else {
-            # Partial: match "category/name" suffix or substring
-            @ports = Magus::Port->search_where(
-                { run => $run->id, name => { like => "%/$name" } },
-                { order_by => 'name' },
-            );
-            # Broaden to substring if no suffix match
-            unless (@ports) {
-                @ports = Magus::Port->search_where(
-                    { run => $run->id, name => { like => "%$name%" } },
-                    { order_by => 'name' },
-                );
-            }
-        }
 
-        for my $port (@ports) {
-            push @results, {
-                port_id   => $port->id   + 0,
-                name      => $port->name,
-                pkgname   => $port->pkgname,
-                version   => $port->version // '',
-                status    => $port->status,
-                flavor    => $port->flavor // '',
-                arch      => $run->arch,
-                osversion => $run->osversion,
-                run_id    => $run->id    + 0,
-                blessed   => $run->blessed ? 1 : 0,
-            };
-        }
+    # Pre-fetch the run IDs to do one large query instead of looping queries
+    my @run_ids = map { $_->id } @candidate_runs;
+    return tool_result($id, "No completed build runs found in Magus.", 0) unless @run_ids;
+
+    my $dbh = Magus::DBI->db_Main();
+    my $in_clause = join(',', map { '?' } @run_ids);
+    my $query;
+    my @bind_params;
+
+    if ($name =~ m|/|) {
+        # Exact origin like "www/apache24"
+        $query = "SELECT p.*, r.arch, r.osversion, r.blessed FROM ports p JOIN runs r ON p.run = r.id WHERE p.run IN ($in_clause) AND p.name = ? ORDER BY p.name";
+        @bind_params = (@run_ids, $name);
+    } else {
+        # Match substring
+        $query = "SELECT p.*, r.arch, r.osversion, r.blessed FROM ports p JOIN runs r ON p.run = r.id WHERE p.run IN ($in_clause) AND p.name LIKE ? ORDER BY p.name";
+        @bind_params = (@run_ids, "%$name%");
     }
+
+    my $sth = $dbh->prepare($query);
+    $sth->execute(@bind_params);
+
+    while (my $row = $sth->fetchrow_hashref) {
+        push @results, {
+            port_id   => $row->{id} + 0,
+            name      => $row->{name},
+            pkgname   => $row->{pkgname},
+            version   => $row->{version} // '',
+            status    => $row->{status},
+            flavor    => $row->{flavor} // '',
+            arch      => $row->{arch},
+            osversion => $row->{osversion},
+            run_id    => $row->{run} + 0,
+            blessed   => $row->{blessed} ? 1 : 0,
+        };
+    }
+    $sth->finish;
 
     unless (@results) {
         return tool_result($id,
