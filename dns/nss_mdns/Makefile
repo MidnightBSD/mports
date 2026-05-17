@@ -22,6 +22,11 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--sysconfdir=/etc
 
+# The shared map-file version script lists symbols for all six library
+# variants; lld errors when a listed symbol is absent from the objects
+# being linked (GNU ld silently ignores such entries).
+LDFLAGS+=	-Wl,--undefined-version
+
 INSTALL_TARGET=	install-strip
 
 CONFLICTS_INSTALL=	mDNSResponder_nss-[0-9]*
