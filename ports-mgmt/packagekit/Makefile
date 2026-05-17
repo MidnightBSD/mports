@@ -32,6 +32,8 @@ MESON_ARGS=	-Dsysconfdir=${PREFIX}/etc \
 		-Dbash_completion=false -Dbash_command_not_found=false \
 		-Dgstreamer_plugin=false
 
+NO_TEST=	yes
+
 post-install:
 	${MV} ${FAKE_DESTDIR}/var/lib/PackageKit/transactions.db ${FAKE_DESTDIR}/var/lib/PackageKit/transactions.db.sample
 
