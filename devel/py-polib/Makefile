@@ -1,7 +1,7 @@
 # Created by: Oleg Ukraincev <oleg@ht-systems.ru>
 
 PORTNAME=	polib
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
