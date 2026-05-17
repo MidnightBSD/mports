@@ -1,6 +1,5 @@
 PORTNAME=	libayatana-indicator
-PORTVERSION=	0.9.1
-PORTREVISION=	1
+PORTVERSION=	0.9.4
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
