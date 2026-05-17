@@ -778,28 +778,34 @@ sub tool_top_blockers($id, $args) {
 # Returns the most recent complete+blessed run per (arch, osversion).
 # Falls back to any complete run if no blessed runs exist.
 sub _latest_runs_per_arch() {
-    my %seen;
+    my $dbh = Magus::DBI->db_Main();
+
+    # Use a single query with row_number() window function to find the most recent run
+    # for each arch/osversion combination, prioritizing blessed runs.
+    # This avoids loading potentially hundreds of run objects into memory just to
+    # keep the first one seen per arch.
+    my $sth = $dbh->prepare(q{
+        SELECT id FROM (
+            SELECT id, arch, osversion, blessed,
+                   ROW_NUMBER() OVER (
+                       PARTITION BY arch, osversion
+                       ORDER BY blessed DESC, created DESC
+                   ) as rn
+            FROM runs
+            WHERE status = 'complete'
+        ) AS latest_runs
+        WHERE rn = 1
+        ORDER BY osversion DESC, arch
+    });
+
+    $sth->execute();
+
     my @result;
-
-    for my $run (Magus::Run->search(
-            status  => 'complete',
-            blessed => 1,
-            { order_by => 'created DESC, osversion DESC, arch' })) {
-        my $key = $run->arch . '-' . $run->osversion;
-        next if $seen{$key}++;
-        push @result, $run;
+    while (my $row = $sth->fetchrow_hashref) {
+        my $run = Magus::Run->retrieve($row->{id});
+        push @result, $run if $run;
     }
-
-    # If no blessed runs at all, fall back to unblessed complete runs.
-    unless (@result) {
-        for my $run (Magus::Run->search(
-                status => 'complete',
-                { order_by => 'created DESC, osversion DESC, arch' })) {
-            my $key = $run->arch . '-' . $run->osversion;
-            next if $seen{$key}++;
-            push @result, $run;
-        }
-    }
+    $sth->finish;
 
     return @result;
 }
