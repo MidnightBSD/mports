@@ -399,32 +399,29 @@ sub handle_tools_call($id, $params) {
 # ---------------------------------------------------------------------------
 
 sub tool_list_port_updates($id, $args) {
-    my @cmd = ('/usr/local/bin/portscout', 'showupdates');
     my $run_dir = '/usr/local/etc';
+    my $output = '';
+    my $error  = '';
 
     use Cwd qw(getcwd);
     my $orig_dir = getcwd();
 
-    my $output = '';
-    my $error  = '';
-
     if (chdir($run_dir)) {
-        my $pid = open(my $pipe, "-|");
-        if (!defined $pid) {
-            $error = "Failed to run portscout: $!";
-        } elsif ($pid == 0) {
-            open(STDERR, ">&STDOUT");
-            exec(@cmd) or die "Failed to execute '@cmd': $!";
-        } else {
-            local $/;
-            $output = <$pipe> // '';
-            close($pipe);
+        # FastCGI environments often have issues with standard pipe opens
+        # Let's try capturing using backticks instead to avoid the FCGI::Stream handle issue
+        # Note: Backticks execute in a subshell, but are simpler to use in FastCGI if standard open("-|") fails.
+        local %ENV = %ENV; # Localize environment just in case
+        eval {
+            $output = `cd $run_dir && /usr/local/bin/portscout showupdates 2>&1`;
 
             if ($? != 0) {
                 my $exit_val = $? >> 8;
                 my $signal   = $? & 127;
                 $error = "portscout failed: " . ($exit_val ? "exit code $exit_val" : "signal $signal");
             }
+        };
+        if ($@) {
+             $error = "Failed to run portscout: $@";
         }
         chdir($orig_dir);
     } else {

@@ -883,34 +883,28 @@ sub updates_page {
 
     # Change to the required directory.
     if (chdir($run_dir)) {
-        # Open a pipe from the command.
-        my $pid = open(my $pipe, "-|");
-        if (!defined $pid) {
-            $error = "Failed to run portscout: $!";
-        } elsif ($pid == 0) {
-            # In the child process.
-            # (Optional) You might want to redirect STDERR to STDOUT to capture errors in output.
-            open(STDERR, ">&STDOUT");
-            exec(@cmd) or die "Failed to execute '@cmd': $!";
-        } else {
-            # In the parent process.
-            local $/;
-            $output = <$pipe> // '';
-            close($pipe);
+        # FastCGI environments often have issues with standard pipe opens
+        # Let's try capturing using backticks instead to avoid the FCGI::Stream handle issue
+        # Note: Backticks execute in a subshell, but are simpler to use in FastCGI if standard open("-|") fails.
+        local %ENV = %ENV; # Localize environment just in case
+        eval {
+            # Use backticks rather than open "-|"
+            $output = `cd $run_dir && /usr/local/bin/portscout showupdates 2>&1`;
 
             if ($? != 0) {
-                # Determine the nature of the failure (exit code vs signal).
                 my $exit_val = $? >> 8;
                 my $signal   = $? & 127;
                 $error = "portscout failed: " . ($exit_val ? "exit code $exit_val" : "signal $signal");
-                # Optionally append the output so far to the error message for debugging.
-                # $error .= "\nOutput was: $output";
+                # Optional: log the error output
+                # print STDERR "portscout error: $output\n";
             }
+        };
+        if ($@) {
+             $error = "Failed to run portscout: $@";
         }
+
         # Change back to the original directory.
         chdir($orig_dir) or do {
-            # If changing back fails, it's a serious issue, though for a CGI script
-            # it might just terminate soon anyway. Still, good to flag.
             $error .= " (Also failed to return to $orig_dir: $!)";
         };
     } else {
