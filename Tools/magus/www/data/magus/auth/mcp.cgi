@@ -314,6 +314,22 @@ sub handle_tools_list($id) {
                 },
             },
         },
+        {
+            name        => 'analyze_build_log',
+            description =>
+                'Analyze the build log of a failed port to explain the error '
+              . 'using a local LLM via llm.cgi.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    port_id => {
+                        type        => 'integer',
+                        description => 'The port ID to analyze.',
+                    },
+                },
+                required => ['port_id'],
+            },
+        },
     ]});
 }
 
@@ -322,13 +338,14 @@ sub handle_tools_call($id, $params) {
     my $args = $params->{arguments} // {};
 
     my %dispatch = (
-        lookup_port      => \&tool_lookup_port,
-        get_run_stats    => \&tool_get_run_stats,
-        list_runs        => \&tool_list_runs,
-        get_port_log     => \&tool_get_port_log,
-        get_port_details => \&tool_get_port_details,
-        get_port_cves    => \&tool_get_port_cves,
-        top_blockers     => \&tool_top_blockers,
+        lookup_port       => \&tool_lookup_port,
+        get_run_stats     => \&tool_get_run_stats,
+        list_runs         => \&tool_list_runs,
+        get_port_log      => \&tool_get_port_log,
+        get_port_details  => \&tool_get_port_details,
+        get_port_cves     => \&tool_get_port_cves,
+        top_blockers      => \&tool_top_blockers,
+        analyze_build_log => \&tool_analyze_build_log,
     );
 
     if (my $handler = $dispatch{$name}) {
@@ -344,6 +361,61 @@ sub handle_tools_call($id, $params) {
 # ---------------------------------------------------------------------------
 # Tool implementations
 # ---------------------------------------------------------------------------
+
+sub tool_analyze_build_log($id, $args) {
+    unless (defined $args->{port_id} && is_number($args->{port_id})) {
+        return tool_result($id, "Error: 'port_id' must be a valid integer.", 1);
+    }
+
+    my $port_id = int($args->{port_id});
+    my $port = eval { Magus::Port->retrieve($port_id) };
+    return tool_result($id, "Port ID $port_id not found.", 1) unless $port;
+
+    my $log = $port->log;
+    unless (defined $log && length $log) {
+        return tool_result($id,
+            sprintf(
+                "No build log available for %s (port_id=%d, status=%s, arch=%s, run=%d).",
+                $port->name, $port->id, $port->status, $port->run->arch, $port->run->id,
+            ), 0);
+    }
+
+    # Keep the tail of the log where failures appear
+    my $max_bytes = 100 * 1024;
+    my $truncated = length($log) > $max_bytes;
+    $log = substr($log, -$max_bytes) if $truncated;
+
+    my $prompt = "Please analyze this build failure for the MidnightBSD port "
+               . $port->name . ".\n\n"
+               . "Here is the end of the build log:\n\n" . $log;
+
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(300);
+    my $url = 'https://www.midnightbsd.org/magus/auth/llm.cgi';
+
+    # We are calling our local API directly, bypass CORS/auth issues since we are on the same machine
+    # But if llm.cgi expects an HTTP request:
+    my $response = $ua->post($url, { content => $prompt });
+
+    if ($response->is_success) {
+        my $raw_content = $response->decoded_content;
+        my $data = eval { $json->decode($raw_content) };
+        if ($@) {
+             return tool_result($id, "Failed to parse response from llm.cgi: $@", 1);
+        }
+
+        my $analysis = "";
+        if (ref $data eq 'ARRAY' && @$data) {
+             $analysis = $data->[0];
+        } else {
+             $analysis = "No analysis returned.";
+        }
+
+        tool_result($id, "Analysis of build failure for " . $port->name . ":\n\n" . $analysis, 0);
+    } else {
+        tool_result($id, "Failed to call llm.cgi: " . $response->status_line, 1);
+    }
+}
 
 sub tool_lookup_port($id, $args) {
     my $name = $args->{name} // '';
