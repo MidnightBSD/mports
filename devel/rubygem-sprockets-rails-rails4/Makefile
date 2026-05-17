@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/sprockets-rails
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack4>=4.0:www/rubygem-actionpack4 \
 		rubygem-activesupport4>=4.0:devel/rubygem-activesupport4 \
 		rubygem-sprockets3>=3.0.0:devel/rubygem-sprockets3

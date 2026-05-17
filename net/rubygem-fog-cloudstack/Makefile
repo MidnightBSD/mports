@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-cloudstack
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core>=2.1<3:devel/rubygem-fog-core \
 		rubygem-fog-json>=1.1<2:devel/rubygem-fog-json \
 		rubygem-fog-xml>=0.1<1:textproc/rubygem-fog-xml

@@ -12,6 +12,7 @@ WWW=		https://github.com/googleapis/gapic-generator-ruby/tree/master/gapic-commo
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday-gitlab>=1.9<3:www/rubygem-faraday-gitlab \
 		rubygem-faraday-retry-gitlab>=1.0<3:www/rubygem-faraday-retry-gitlab \
 		rubygem-google-protobuf>=3.25<5.0:devel/rubygem-google-protobuf \

@@ -1,6 +1,6 @@
 PORTNAME=	ted
 PORTVERSION=	2.23
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	editors
 MASTER_SITES=	ftp://ftp.nluug.nl/pub/editors/ted/ \
 		http://fossies.org/linux/misc/
@@ -47,6 +47,9 @@ GTK2_USES_OFF=		motif
 GTK2_CONFIGURE_OFF=	--with-MOTIF
 
 .include <bsd.port.pre.mk>
+
+post-configure:
+	@${REINPLACE_CMD} -e 's|-lXft|-lXft -lfreetype|g' ${WRKSRC}/Ted/makefile
 
 post-extract:
 	@cd ${WRKSRC}/tedPackage && ${TAR} xf TedDatadir.tar

@@ -9,6 +9,7 @@ WWW=		https://github.com/fnando/svg_sprite
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-nokogiri>=0:textproc/rubygem-nokogiri \
 		rubygem-svg_optimizer>=0:graphics/rubygem-svg_optimizer \
 		rubygem-thor>=0:devel/rubygem-thor

@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/ruby-oauth/oauth
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0.1<1:converters/rubygem-base64 \
 		rubygem-oauth-tty>=1.0.6<2:net/rubygem-oauth-tty \
 		rubygem-snaky_hash>=2.0<3:devel/rubygem-snaky_hash \

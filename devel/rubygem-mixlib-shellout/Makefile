@@ -11,6 +11,7 @@ WWW=		https://www.chef.io/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-chef-utils>=0:sysutils/rubygem-chef-utils
 
 USES=		gem

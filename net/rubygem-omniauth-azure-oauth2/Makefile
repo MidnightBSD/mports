@@ -10,6 +10,7 @@ WWW=		https://github.com/KonaTeam/omniauth-azure-oauth2
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-jwt2>=1.0<3:www/rubygem-jwt2 \
 		rubygem-omniauth>=1.0<3:security/rubygem-omniauth \
 		rubygem-omniauth-oauth2>=1.4<2:net/rubygem-omniauth-oauth2

@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-local
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core>=1.27<3.0:devel/rubygem-fog-core
 
 USES=		gem

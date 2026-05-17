@@ -11,6 +11,7 @@ WWW=		https://github.com/jgraichen/omniauth-multipassword
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-omniauth>=2.0<3:security/rubygem-omniauth
 
 USES=		gem

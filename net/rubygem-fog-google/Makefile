@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-google
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.7.0:www/rubygem-addressable \
 		rubygem-fog-core>=2.5<3:devel/rubygem-fog-core \
 		rubygem-fog-json>=1.2<2:devel/rubygem-fog-json \

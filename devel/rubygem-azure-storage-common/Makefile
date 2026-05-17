@@ -11,6 +11,7 @@ WWW=		https://github.com/Azure/azure-storage-ruby/tree/master/common \
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday1>=1.0<2:www/rubygem-faraday1 \
 		rubygem-faraday_middleware>=1.0.0<2:www/rubygem-faraday_middleware \
 		rubygem-net-http-persistent>=4.0<5:www/rubygem-net-http-persistent \

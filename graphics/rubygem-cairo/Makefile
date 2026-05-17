@@ -11,6 +11,7 @@ WWW=		https://rcairo.github.io/ \
 LICENSE=	gpl2+ ruby
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-native-package-installer>=1.0.3:devel/rubygem-native-package-installer \
 		rubygem-pkg-config>=1.2.2:devel/rubygem-pkg-config \
 		rubygem-red-colors>=0:graphics/rubygem-red-colors

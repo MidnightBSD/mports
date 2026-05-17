@@ -10,6 +10,7 @@ WWW=		https://github.com/packetfu/packetfu
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-pcaprub>=0:net/rubygem-pcaprub
 
 NO_ARCH=	yes

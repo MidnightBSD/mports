@@ -9,6 +9,7 @@ WWW=		https://github.com/zquestz/omniauth-google-oauth2
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-jwt>=2.9.2:www/rubygem-jwt \
 		rubygem-oauth2>=2.0<3:net/rubygem-oauth2 \
 		rubygem-omniauth>=2.0<3:security/rubygem-omniauth \

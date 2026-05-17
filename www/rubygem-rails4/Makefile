@@ -11,6 +11,7 @@ WWW=		https://rubyonrails.org/ \
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionmailer4>=${PORTVERSION}:mail/rubygem-actionmailer4 \
 		rubygem-actionpack4>=${PORTVERSION}:www/rubygem-actionpack4 \
 		rubygem-actionview4>=${PORTVERSION}:devel/rubygem-actionview4 \

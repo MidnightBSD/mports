@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/activerecord \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel61>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel61 \
 		rubygem-activesupport61>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport61
 

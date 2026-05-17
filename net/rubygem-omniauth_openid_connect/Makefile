@@ -11,6 +11,7 @@ WWW=		https://github.com/m0n9oose/omniauth_openid_connect
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-omniauth-gl>=1.9<3:security/rubygem-omniauth-gl \
 		rubygem-openid_connect>=2.2<3:net/rubygem-openid_connect
 

@@ -1,6 +1,6 @@
 PORTNAME=	firefox
 PORTVERSION=	${VER}
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	www
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 PKGNAMESUFFIX=	-freebsd

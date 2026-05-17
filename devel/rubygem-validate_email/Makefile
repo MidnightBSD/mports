@@ -10,6 +10,7 @@ WWW=		https://github.com/perfectline/validates_email/tree/master
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel70>=3.0:databases/rubygem-activemodel70 \
 		rubygem-mail>=2.2.5:mail/rubygem-mail
 

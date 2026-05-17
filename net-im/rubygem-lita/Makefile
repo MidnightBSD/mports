@@ -11,6 +11,7 @@ WWW=		https://github.com/litaio/lita
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	redis>=0:databases/redis \
 		rubygem-bundler>=2.0:sysutils/rubygem-bundler \
 		rubygem-faraday1>=1.0:www/rubygem-faraday1 \

@@ -10,6 +10,7 @@ WWW=		https://github.com/googleapis/google-api-ruby-client
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-google-apis-core>=0.1<1:devel/rubygem-google-apis-core \
 		rubygem-google-apis-generator>=0.1<1:devel/rubygem-google-apis-generator
 

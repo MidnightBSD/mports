@@ -12,6 +12,7 @@ WWW=		https://github.com/lostisland/faraday-net_http
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-net-http-gitlab>=0:www/rubygem-net-http-gitlab
 
 USES=		gem

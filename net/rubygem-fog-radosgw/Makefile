@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-radosgw
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fog-core>=1.21.0:devel/rubygem-fog-core \
 		rubygem-fog-json>=0:devel/rubygem-fog-json \
 		rubygem-fog-xml>=0.0.1:textproc/rubygem-fog-xml

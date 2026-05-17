@@ -9,6 +9,7 @@ WWW=		https://github.com/googleapis/common-protos-ruby
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-googleapis-common-protos-types>=1.7<2:devel/rubygem-googleapis-common-protos-types \
 		rubygem-google-protobuf>=3.18<5:devel/rubygem-google-protobuf
 

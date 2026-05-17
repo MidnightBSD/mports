@@ -10,6 +10,7 @@ WWW=		https://github.com/fog/fog-core
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-builder>=0:devel/rubygem-builder \
 		rubygem-excon>=1.0<2:devel/rubygem-excon \
 		rubygem-formatador>=0.2<2.0:devel/rubygem-formatador \

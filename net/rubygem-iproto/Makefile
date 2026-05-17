@@ -7,6 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby implementation of Mail.Ru iproto protocol
 WWW=		https://github.com/mailru/iproto-ruby
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bin_utils>=0.0.3:devel/rubygem-bin_utils
 
 LICENSE=	bsd2

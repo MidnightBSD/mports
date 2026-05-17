@@ -14,6 +14,7 @@ WWW=		https://github.com/omniauth/omniauth
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-hashie-gitlab>=3.4.6:devel/rubygem-hashie-gitlab \
 		rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
 		rubygem-rack-gitlab>=2.2.3:www/rubygem-rack-gitlab \

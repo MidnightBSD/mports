@@ -10,6 +10,7 @@ WWW=		https://github.com/felipec/soap4r
 LICENSE=	gpl2+ ruby
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-httpclient>=2.1.1:www/rubygem-httpclient
 
 NO_ARCH=	yes

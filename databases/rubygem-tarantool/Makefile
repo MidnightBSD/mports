@@ -10,6 +10,7 @@ WWW=		https://github.com/tarantool/tarantool-ruby
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bin_utils>=0.0.3<0.1:devel/rubygem-bin_utils \
 		rubygem-iproto>=0.3.17:net/rubygem-iproto \
 		rubygem-murmurhash3>=0.1.1:devel/rubygem-murmurhash3 \

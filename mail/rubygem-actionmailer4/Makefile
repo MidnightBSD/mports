@@ -12,6 +12,7 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack4>=${PORTVERSION}:www/rubygem-actionpack4 \
 		rubygem-actionview4>=${PORTVERSION}:devel/rubygem-actionview4 \
 		rubygem-activejob4>=${PORTVERSION}:devel/rubygem-activejob4 \

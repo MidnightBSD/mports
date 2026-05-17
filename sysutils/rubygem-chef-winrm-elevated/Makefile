@@ -10,6 +10,7 @@ WWW=		https://github.com/chef/chef-winrm-elevated
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-chef-winrm>=2.3.11:sysutils/rubygem-chef-winrm \
 		rubygem-chef-winrm-fs>=1.3.7:filesystems/rubygem-chef-winrm-fs \
 		rubygem-erubi>=1.8:www/rubygem-erubi

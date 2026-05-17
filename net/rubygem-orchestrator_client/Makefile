@@ -9,6 +9,7 @@ WWW=		https://github.com/puppetlabs/orchestrator_client-ruby
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=2.0:www/rubygem-faraday \
 		rubygem-faraday-net_http_persistent>=2.0:www/rubygem-faraday-net_http_persistent
 

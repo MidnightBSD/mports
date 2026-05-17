@@ -9,6 +9,7 @@ WWW=		https://github.com/jugyo/rubytter
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=1.1.3:devel/rubygem-json \
 		rubygem-oauth>=0.3.6:net/rubygem-oauth
 

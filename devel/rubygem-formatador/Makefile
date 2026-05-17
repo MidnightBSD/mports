@@ -10,6 +10,7 @@ WWW=		https://github.com/geemus/formatador
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-reline>=0:devel/rubygem-reline
 
 USES=		gem

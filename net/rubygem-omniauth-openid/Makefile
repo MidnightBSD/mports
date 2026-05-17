@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby-openid/omniauth-openid
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-omniauth>=1.1:security/rubygem-omniauth \
 		rubygem-rack-openid>=1.4<2:www/rubygem-rack-openid \
 		rubygem-ruby-openid>=2.1.8<3:net/rubygem-ruby-openid \

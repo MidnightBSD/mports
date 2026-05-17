@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/gitlab-fog-azure-rm
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday-gitlab>=2.0<3:www/rubygem-faraday-gitlab \
 		rubygem-faraday-follow_redirects-gitlab>=0.3.0<0.4:www/rubygem-faraday-follow_redirects-gitlab \
 		rubygem-faraday-net_http_persistent-gitlab>=2.0<3:www/rubygem-faraday-net_http_persistent-gitlab \

@@ -11,6 +11,7 @@ WWW=		https://oauth2.galtzo.com/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=0.17.3<4.0:www/rubygem-faraday \
 		rubygem-jwt>=1.0<4.0:www/rubygem-jwt \
 		rubygem-logger>=1.2<2:devel/rubygem-logger \

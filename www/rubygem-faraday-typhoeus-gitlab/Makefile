@@ -12,6 +12,7 @@ WWW=		https://github.com/dleavitt/faraday-typhoeus
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday-gitlab>=2.0<3:www/rubygem-faraday-gitlab \
 		rubygem-typhoeus-gitlab>=1.4<2:www/rubygem-typhoeus-gitlab
 

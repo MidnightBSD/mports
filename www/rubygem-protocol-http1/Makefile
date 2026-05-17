@@ -11,6 +11,7 @@ WWW=		https://socketry.github.io/protocol-http1/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-protocol-http>=0.62<1:www/rubygem-protocol-http
 
 USES=		gem

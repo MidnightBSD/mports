@@ -11,6 +11,7 @@ WWW=		https://socketry.github.io/fiber-local/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fiber-storage>=0:devel/rubygem-fiber-storage
 
 USES=		gem

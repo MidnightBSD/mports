@@ -1,6 +1,6 @@
 PORTNAME=	thunderbird
 PORTVERSION=	147.0.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.midnightbsd.org/ftp/MidnightBSD/mports/distfiles/
 DISTFILES=	thunderbird-147.0.2.pkg

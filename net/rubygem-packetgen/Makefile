@@ -10,6 +10,7 @@ WWW=		https://github.com/lemontree55/packetgen
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bin_struct>=0.5.0<0.6:devel/rubygem-bin_struct \
 		rubygem-digest-crc>=0<1:security/rubygem-digest-crc \
 		rubygem-interfacez>=1.0<2:net/rubygem-interfacez \

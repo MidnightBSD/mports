@@ -14,6 +14,7 @@ LICENSE_FILE_gpl2=	${WRKSRC}/gpl2
 LICENSE_FILE_gpl3=	${WRKSRC}/gpl3
 LICENSE_FILE_ruby=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-prawn>=1.1.0<3.0.0:print/rubygem-prawn
 
 USES=		gem

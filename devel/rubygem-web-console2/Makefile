@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/web-console
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel4>=4.0:databases/rubygem-activemodel4 \
 		rubygem-binding_of_caller>=0.7.2:devel/rubygem-binding_of_caller \
 		rubygem-railties4>=4.0:www/rubygem-railties4 \

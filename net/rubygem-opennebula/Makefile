@@ -11,6 +11,7 @@ WWW=		https://opennebula.io/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-ipaddress>=0:net/rubygem-ipaddress \
 		rubygem-json>=0:devel/rubygem-json \
 		rubygem-nokogiri>=0:textproc/rubygem-nokogiri \

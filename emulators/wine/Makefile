@@ -1,6 +1,6 @@
 PORTNAME=	wine
 DISTVERSION=	9.0
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://dl.winehq.org/wine/source/9.0/
@@ -144,7 +144,7 @@ _LLVM_VERSION=	${LLVM_DEFAULT}
 
 # --libdir is required since Wine defaults to "${PREFIX}/lib64" on amd64.
 CONFIGURE_ARGS+=	--enable-win64 --libdir=${PREFIX}/lib
-PLIST_SUB+=		WINE32="@comment " WINE64="" WINEARCH="x86_64"
+PLIST_SUB+=		WINE32="@comment " WINE64="" WINEARCH="x86_64" WINEIMPORTDIR="x86_64-unix"
 
 # Wine assumes a WoW64 package is available, which is not the case
 post-patch:
@@ -152,7 +152,7 @@ post-patch:
 
 .else
 EXTRA_PATCHES+=	files/extra-patch-tools-winebuild-res32
-PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386"
+PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386" WINEIMPORTDIR="i386-windows"
 .endif
 
 pre-build:

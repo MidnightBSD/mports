@@ -12,6 +12,7 @@ LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 LICENSE_FILE_bsd2=${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-timeout>=0:devel/rubygem-timeout
 
 USES=		gem

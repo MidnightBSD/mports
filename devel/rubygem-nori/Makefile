@@ -10,6 +10,7 @@ WWW=		https://github.com/savonrb/nori
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>0:math/rubygem-bigdecimal
 
 USES=		gem

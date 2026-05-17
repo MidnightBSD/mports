@@ -1,0 +1,21 @@
+PORTNAME=	red-parquet
+PORTVERSION=	19.0.1
+CATEGORIES=	databases rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Ruby bindings of Apache Parquet
+WWW=		https://arrow.apache.org/ \
+		https://github.com/apache/arrow/tree/master/ruby/red-parquet
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+BUILD_DEPENDS=	rubygem-rake>=0:devel/rubygem-rake
+RUN_DEPENDS=	rubygem-red-arrow>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-red-arrow
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

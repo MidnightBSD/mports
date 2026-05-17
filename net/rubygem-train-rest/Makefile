@@ -10,6 +10,7 @@ WWW=		https://github.com/tecracer-chef/train-rest
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-aws-sigv4>=1.5<2:devel/rubygem-aws-sigv4 \
 		rubygem-rest-client>=2.1<3:www/rubygem-rest-client \
 		rubygem-train-core>=3.0<4:net/rubygem-train-core

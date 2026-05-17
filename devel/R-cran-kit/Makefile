@@ -1,0 +1,15 @@
+PORTNAME=	kit
+DISTVERSION=	0.0.20
+CATEGORIES=	devel
+DISTNAME=	${PORTNAME}_${DISTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Data Manipulation Functions Implemented in C
+WWW=		https://cran.r-project.org/package=kit
+
+LICENSE=	gpl3
+USES=		cran:auto-plist,compiles
+
+TESTING_UNSAFE=	https://github.com/2005m/kit/issues/40
+
+.include <bsd.port.mk>

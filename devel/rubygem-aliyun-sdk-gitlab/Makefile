@@ -10,6 +10,7 @@ WWW=		https://github.com/aliyun/aliyun-oss-ruby-sdk
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-nokogiri>=1.6<2:textproc/rubygem-nokogiri \
 		rubygem-rest-client-gitlab>=2.0<3:www/rubygem-rest-client-gitlab
 

@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/activesupport \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
 		rubygem-concurrent-ruby>=1.3.1<2:devel/rubygem-concurrent-ruby \

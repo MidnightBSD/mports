@@ -11,6 +11,7 @@ WWW=		https://docs.asciidoctor.org/pdf-converter/latest/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-asciidoctor>=2.0<3:textproc/rubygem-asciidoctor \
 		rubygem-concurrent-ruby>=1.3<2:devel/rubygem-concurrent-ruby \
 		rubygem-matrix>=0.4<1:math/rubygem-matrix \

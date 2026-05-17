@@ -12,6 +12,7 @@ WWW=		https://rspec.info/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rspec-core>=${PORTVERSION:R}.0<3.14:devel/rubygem-rspec-core \
 		rubygem-rspec-expectations>=${PORTVERSION:R}.0<3.14:devel/rubygem-rspec-expectations \
 		rubygem-rspec-mocks>=${PORTVERSION:R}.0<3.14:devel/rubygem-rspec-mocks

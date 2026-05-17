@@ -11,6 +11,7 @@ WWW=		https://github.com/dougbarth/amqp-utils
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/License.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-amqp>=0.7.1:net/rubygem-amqp \
 		rubygem-clio>=0.3.0:devel/rubygem-clio \
 		rubygem-facets>=2.9:devel/rubygem-facets \

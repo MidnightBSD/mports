@@ -9,6 +9,7 @@ WWW=		https://github.com/igrigorik/em-socksify
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-eventmachine>=1.0.0.beta.4:devel/rubygem-eventmachine
 

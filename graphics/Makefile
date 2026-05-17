@@ -216,7 +216,6 @@
     SUBDIR += libQGLViewer
     SUBDIR += libqrencode
     SUBDIR += libraw
-    SUBDIR += librsvg2
     SUBDIR += librsvg2-rust
     SUBDIR += libskiasharp
     SUBDIR += libspiro

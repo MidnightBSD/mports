@@ -9,6 +9,7 @@ WWW=		https://gitlab.com/gitlab-org/gitaly-proto
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-grpc>=1.0:net/rubygem-grpc
 
 USES=		gem

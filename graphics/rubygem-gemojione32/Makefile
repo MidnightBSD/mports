@@ -11,6 +11,7 @@ WWW=		https://github.com/jonathanwiesel/gemojione
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=0:devel/rubygem-json
 
 USES=		gem

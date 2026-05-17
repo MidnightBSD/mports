@@ -11,6 +11,7 @@ WWW=		https://github.com/thbishop/fission
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-CFPropertyList>=2.2:devel/rubygem-CFPropertyList
 
 USES=		gem

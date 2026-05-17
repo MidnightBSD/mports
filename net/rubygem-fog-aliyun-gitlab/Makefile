@@ -12,6 +12,7 @@ WWW=		https://github.com/fog/fog-aliyun
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=2.8.0<2.9:www/rubygem-addressable \
 		rubygem-aliyun-sdk-gitlab>=0.8.0<0.9:devel/rubygem-aliyun-sdk-gitlab \
 		rubygem-fog-core-gitlab>=0:devel/rubygem-fog-core-gitlab \

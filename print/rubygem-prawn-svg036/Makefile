@@ -11,6 +11,7 @@ WWW=		https://github.com/mogest/prawn-svg
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-css_parser>=1.6<2:textproc/rubygem-css_parser \
 		rubygem-matrix>=0.4.2<0.5:math/rubygem-matrix \
 		rubygem-prawn>=0.11.1<3:print/rubygem-prawn \

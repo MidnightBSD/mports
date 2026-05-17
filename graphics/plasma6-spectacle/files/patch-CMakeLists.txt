@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2025-01-01 00:00:00 UTC
++++ CMakeLists.txt
+@@ -88,7 +88,7 @@ find_package(XCB REQUIRED COMPONENTS
+     XCBIMAGE
+ )
+ find_package(X11 REQUIRED)
+-find_package(OpenCV 4.7 REQUIRED)
++find_package(OpenCV 4.6 REQUIRED)
+ 
+ find_package(PipeWire 0.3)
+ find_package(epoxy)
