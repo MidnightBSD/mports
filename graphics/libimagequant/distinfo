@@ -1,4 +1,4 @@
-TIMESTAMP = 1694389730
+TIMESTAMP = 1779060837
 SHA256 (rust/crates/adler-1.0.2.crate) = f26201604c87b1e01bd3d98f8d5d9a8fcbb815e8cedb41ffccbeb4bf593a35fe
 SIZE (rust/crates/adler-1.0.2.crate) = 12778
 SHA256 (rust/crates/ahash-0.8.3.crate) = 2c99f64d1e06488f620f932677e24bc6e2897582980441ae90a671415bd7ec2f
@@ -59,5 +59,5 @@ SHA256 (rust/crates/thread_local-1.1.7.crate) = 3fdd6f064ccff2d6567adcb3873ca630
 SIZE (rust/crates/thread_local-1.1.7.crate) = 13585
 SHA256 (rust/crates/version_check-0.9.4.crate) = 49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f
 SIZE (rust/crates/version_check-0.9.4.crate) = 14895
-SHA256 (ImageOptim-libimagequant-4.2.1_GH0.tar.gz) = 14193219fa194d6baee4347bd13bd01fd46d09fe3b59ae35c89b698da96d1198
-SIZE (ImageOptim-libimagequant-4.2.1_GH0.tar.gz) = 87620
+SHA256 (ImageOptim-libimagequant-4.4.1_GH0.tar.gz) = 2464a3e922b5a220b633d674062b82f0670114f8f3dd30d1935a621c95965f1b
+SIZE (ImageOptim-libimagequant-4.4.1_GH0.tar.gz) = 88873
