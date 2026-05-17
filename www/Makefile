@@ -345,6 +345,7 @@
     SUBDIR += qt6-websockets
     SUBDIR += qt6-webview
     SUBDIR += raphael
+    SUBDIR += rubygem-actioncable80
     SUBDIR += rubygem-actionpack-gitlab
     SUBDIR += rubygem-actionpack4
     SUBDIR += rubygem-actionpack5
@@ -471,6 +472,8 @@
     SUBDIR += rubygem-uglifier
     SUBDIR += rubygem-url_mount
     SUBDIR += rubygem-webrick
+    SUBDIR += rubygem-websocket-driver
+    SUBDIR += rubygem-websocket-extensions
     SUBDIR += serf
     SUBDIR += sitecopy
     SUBDIR += spawn-fcgi
