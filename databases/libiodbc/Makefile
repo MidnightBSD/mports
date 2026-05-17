@@ -4,7 +4,7 @@
 #        databases/unixODBC.
 
 PORTNAME=	libiodbc
-PORTVERSION=	3.52.9
+PORTVERSION=	3.52.16
 CATEGORIES=	databases
 MASTER_SITES=	SF/iodbc/iodbc/${PORTVERSION}
 
