@@ -199,7 +199,7 @@ OPENJPEG_LIB_DEPENDS=	libopenjp2.so:graphics/openjpeg
 _IPPICV_amd64=	ippicv/ippicv_2021.12.0_lnx_intel64_20240425_general.tgz
 _IPPICV_i386=	ippicv/ippicv_2021.12.0_lnx_ia32_20240425_general.tgz
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-extract:
 	# Handle contrib
