@@ -457,6 +457,7 @@
     SUBDIR += rubygem-rackup10
     SUBDIR += rubygem-rails4
     SUBDIR += rubygem-railties4
+    SUBDIR += rubygem-railties72
     SUBDIR += rubygem-railties80
     SUBDIR += rubygem-redis-rack
     SUBDIR += rubygem-redis-rack-gitlab
