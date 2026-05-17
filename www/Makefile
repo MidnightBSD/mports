@@ -345,6 +345,7 @@
     SUBDIR += qt6-websockets
     SUBDIR += qt6-webview
     SUBDIR += raphael
+    SUBDIR += rubygem-actioncable72
     SUBDIR += rubygem-actioncable80
     SUBDIR += rubygem-actionpack-gitlab
     SUBDIR += rubygem-actionpack4
