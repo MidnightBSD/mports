@@ -60,7 +60,7 @@ my %ALLOWED_MODELS = map { $_ => 1 } qw(
 );
 
 my $model_param = $cgi->param('model');
-my $model = "phi4"; # Default
+my $model = "qwen2.5-coder:14b"; # Default
 
 if (defined $model_param && $model_param ne '') {
     my $requested_model = lc $model_param;
@@ -80,6 +80,7 @@ my $url = 'http://llm.midnightbsd.org:11434/v1/chat/completions';
 my $payload = {
     model => $model,
     messages => [
+        { role => "system", content => "Provide a technical analysis of error logs for building software applications in the MidnightBSD ports tree. MidnightBSD uses mport rather than pkg and magus rather than poudriere." },
         { role => "user", content => $content }
     ],
     stream => \0, 

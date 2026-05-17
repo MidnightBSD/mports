@@ -340,7 +340,7 @@ sub handle_tools_list($id) {
                     },
                     model => {
                         type        => 'string',
-                        description => 'The LLM to use. Default is "phi4". Options: phi4, deepseek-coder:6.7b, llama3.2:3b, qwen2.5-coder:14b, gemma4:latest, mistral-nemo:latest, mistral:7b, gemma3:latest',
+                        description => 'The LLM to use. Default is "qwen2.5-coder:14b". Options: phi4, deepseek-coder:6.7b, llama3.2:3b, qwen2.5-coder:14b, gemma4:latest, mistral-nemo:latest, mistral:7b, gemma3:latest',
                     },
                 },
                 required => ['port_id'],
@@ -383,7 +383,7 @@ sub tool_analyze_build_log($id, $args) {
         return tool_result($id, "Error: 'port_id' must be a valid integer.", 1);
     }
 
-    my $model = "phi4";
+    my $model = "qwen2.5-coder:14b";
     if (defined $args->{model}) {
         my $requested_model = lc $args->{model};
         # some loose matching since model names are exact in ollama usually
@@ -419,13 +419,18 @@ sub tool_analyze_build_log($id, $args) {
                . $port->name . ".\n\n"
                . "Here is the end of the build log:\n\n" . $log;
 
+    my $system_prompt = "Provide a technical analysis of error logs for building software applications in the MidnightBSD ports tree. MidnightBSD uses mport rather than pkg and magus rather than poudriere.";
+
     my $ua = LWP::UserAgent->new;
     $ua->timeout(300);
-    my $url = 'http://llm.midnightbsd.org:11434/api/generate';
+    my $url = 'http://llm.midnightbsd.org:11434/api/chat';
 
     my $payload = {
         model => $model,
-        prompt => $prompt,
+        messages => [
+            { role => "system", content => $system_prompt },
+            { role => "user", content => $prompt }
+        ],
         stream => \0,
     };
     my $json_payload = $json->encode($payload);
@@ -443,7 +448,7 @@ sub tool_analyze_build_log($id, $args) {
              return tool_result($id, "Failed to parse response from ollama: $@", 1);
         }
 
-        my $analysis = $data->{response} // "No analysis returned.";
+        my $analysis = $data->{message}{content} // "No analysis returned.";
         tool_result($id, "Analysis of build failure for " . $port->name . " (using model: $model):\n\n" . $analysis, 0);
     } else {
         tool_result($id, "Failed to call ollama: " . $response->status_line, 1);
