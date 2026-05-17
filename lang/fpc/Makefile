@@ -66,8 +66,7 @@ MAKE_ARGS+=	FPCMAKE=${NEWFPCMAKE} \
 		INSTALLEXE="${INSTALL_PROGRAM}" \
 		INSTALLSCR="${INSTALL_SCRIPT}" \
 		INSTALL_PREFIX=${PREFIX} \
-		FPC_LDPATH=${FPC_LDPATH} \
-		BSDs=midnightbsd freebsd netbsd openbsd darwin dragonfly
+		FPC_LDPATH=${FPC_LDPATH}
 NEWPPC=		PP=${WRKSRC}/compiler/${PPNAME}
 NEWFPC=		FPC=${WRKSRC}/compiler/${PPNAME}
 BOOTDIR=	${PPNAME}-${BOOTVER}-freebsd
