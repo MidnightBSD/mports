@@ -565,19 +565,44 @@ sub tool_list_runs($id, $args) {
     $filter{arch}   = $args->{arch}
         if defined $args->{arch}   && $args->{arch}   =~ /^\w+$/;
 
-    my @runs = Magus::Run->search(%filter, { order_by => 'id DESC' });
-    @runs = @runs[0 .. $limit - 1] if @runs > $limit;
+    # Fetch rows directly to avoid hydrating Class::DBI objects we don't fully need
+    my $dbh = Magus::DBI->db_Main();
 
-    return tool_result($id, "No runs found matching the given criteria.", 0) unless @runs;
+    my $where_clause = "";
+    my @bind_params;
+
+    if (%filter) {
+        my @conditions;
+        if ($filter{status}) {
+            push @conditions, "status = ?";
+            push @bind_params, $filter{status};
+        }
+        if ($filter{arch}) {
+            push @conditions, "arch = ?";
+            push @bind_params, $filter{arch};
+        }
+        $where_clause = "WHERE " . join(" AND ", @conditions);
+    }
+
+    my $sth = $dbh->prepare(
+        "SELECT id, arch, osversion, status, blessed, created FROM runs $where_clause ORDER BY id DESC LIMIT ?"
+    );
+    push @bind_params, $limit;
+
+    $sth->execute(@bind_params);
+    my $runs = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    return tool_result($id, "No runs found matching the given criteria.", 0) unless @$runs;
 
     my $text = sprintf("%-6s  %-8s  %-6s  %-10s  %-7s  %s\n",
         'Run', 'Arch', 'OS', 'Status', 'Blessed', 'Created');
     $text .= '-' x 60 . "\n";
 
-    for my $run (@runs) {
+    for my $run (@$runs) {
         $text .= sprintf("%-6d  %-8s  %-6s  %-10s  %-7s  %s\n",
-            $run->id, $run->arch, $run->osversion, $run->status,
-            ($run->blessed ? 'yes' : 'no'), $run->created);
+            $run->{id}, $run->{arch}, $run->{osversion}, $run->{status},
+            ($run->{blessed} ? 'yes' : 'no'), $run->{created});
     }
 
     tool_result($id, $text, 0);
@@ -654,34 +679,53 @@ sub tool_get_port_details($id, $args) {
     }
 
     # Direct dependencies
-    my @deps = Magus::Depend->search(port => $port->id, { order_by => 'type, dependency' });
-    if (@deps) {
-        $text .= sprintf("\nDependencies (%d):\n", scalar @deps);
-        for my $dep (@deps) {
-            my $d = $dep->dependency;
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare("
+        SELECT d.type, p.name, p.status, p.id
+        FROM depends d
+        JOIN ports p ON d.dependency = p.id
+        WHERE d.port = ?
+        ORDER BY d.type, p.name
+    ");
+    $sth->execute($port->id);
+    my $deps = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    if (@$deps) {
+        $text .= sprintf("\nDependencies (%d):\n", scalar @$deps);
+        for my $dep (@$deps) {
             $text .= sprintf("  [%-8s] %-35s  status=%-9s  port_id=%d\n",
-                $dep->type, $d->name, $d->status, $d->id);
+                $dep->{type}, $dep->{name}, $dep->{status}, $dep->{id});
         }
     } else {
         $text .= "\nNo dependencies.\n";
     }
 
     # Reverse dependencies (ports that need this one)
-    my @rdeps = Magus::Depend->search(dependency => $port->id);
-    if (@rdeps) {
+    $sth = $dbh->prepare("
+        SELECT p.name, p.status, p.id
+        FROM depends d
+        JOIN ports p ON d.port = p.id
+        WHERE d.dependency = ?
+        ORDER BY p.name
+    ");
+    $sth->execute($port->id);
+    my $rdeps = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    if (@$rdeps) {
         my $shown_max = 20;
         $text .= sprintf("\nRequired by (%d port%s):\n",
-            scalar @rdeps, @rdeps == 1 ? '' : 's');
+            scalar @$rdeps, @$rdeps == 1 ? '' : 's');
         my $shown = 0;
-        for my $rdep (@rdeps) {
+        for my $rdep (@$rdeps) {
             last if $shown >= $shown_max;
-            my $p = $rdep->port;
             $text .= sprintf("  %-35s  status=%-9s  port_id=%d\n",
-                $p->name, $p->status, $p->id);
+                $rdep->{name}, $rdep->{status}, $rdep->{id});
             $shown++;
         }
-        $text .= sprintf("  ... and %d more\n", scalar(@rdeps) - $shown_max)
-            if @rdeps > $shown_max;
+        $text .= sprintf("  ... and %d more\n", scalar(@$rdeps) - $shown_max)
+            if @$rdeps > $shown_max;
     }
 
     tool_result($id, $text, 0);
