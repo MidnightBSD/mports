@@ -1905,6 +1905,7 @@
     SUBDIR += rubygem-annoy
     SUBDIR += rubygem-arrayfields
     SUBDIR += rubygem-ascii85
+    SUBDIR += rubygem-aspectr
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-async
     SUBDIR += rubygem-attic
@@ -2079,6 +2080,7 @@
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-declarative
+    SUBDIR += rubygem-deprecated2
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
     SUBDIR += rubygem-dry-inflector

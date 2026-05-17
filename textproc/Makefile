@@ -475,6 +475,7 @@
     SUBDIR += rubygem-nokogiri
     SUBDIR += rubygem-nokogiri-diff
     SUBDIR += rubygem-parse-cron
+    SUBDIR += rubygem-prism
     SUBDIR += rubygem-psych
     SUBDIR += rubygem-rails-dom-testing
     SUBDIR += rubygem-rails-dom-testing-rails-gitlab
