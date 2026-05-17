@@ -1,7 +1,7 @@
 # Created by: Florian Limberger <flo@snakeoilproductions.net>
 
 PORTNAME=	league-gothic
-DISTVERSION=	g20140319
+DISTVERSION=	1.601
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
