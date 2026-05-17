@@ -518,6 +518,8 @@ sub tool_analyze_build_log($id, $args) {
                 my $api_key = $config->{MistralApiKey} // '';
                 push @args, '--http-header', "Authorization: Bearer $api_key";
                 push @args, '--http-header', "Content-Type: application/json; charset=utf-8";
+            } else {
+                push @args, '--http-header', "Content-Type: application/json; charset=utf-8";
             }
 
             # We have to trick fetch into doing a POST by giving it a data file.
@@ -546,13 +548,20 @@ sub tool_analyze_build_log($id, $args) {
                  if ($? == 0 && length $content > 0) {
                       eval {
                           my $data = $json->decode($content);
-                          my $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
+                          my $analysis;
+                          if ($is_mistral) {
+                              $analysis = $data->{choices}[0]{message}{content} // "No analysis returned.";
+                          } else {
+                              $analysis = $data->{message}{content} // "No analysis returned.";
+                          }
                           tool_result($id, "Analysis of build failure for " . $port->name . " (using model: $model):\n\n" . $analysis, 0);
                       };
                       if ($@) {
                           return tool_result($id, "JSON Parsing failed (fetch fallback): $@", 1);
                       }
                       return; # we handled it with fetch
+                 } else {
+                     return tool_result($id, "Fetch fallback failed with exit code $?", 1);
                  }
             }
         }
