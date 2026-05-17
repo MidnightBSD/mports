@@ -1,5 +1,5 @@
 PORTNAME=	hevea
-PORTVERSION=	2.36
+PORTVERSION=	2.38
 CATEGORIES=	textproc
 MASTER_SITES=	http://moscova.inria.fr/~maranget/${PORTNAME}/distri/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
