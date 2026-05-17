@@ -883,28 +883,42 @@ sub resolve_port_arg($args) {
     return unless length $name;
 
     my @runs = _latest_runs_per_arch();
-    for my $run (@runs) {
-        my @ports;
-        if ($name =~ m|/|) {
-            @ports = Magus::Port->search(run => $run->id, name => $name,
-                { order_by => 'id DESC' });
-        } else {
-            @ports = Magus::Port->search_where(
-                { run => $run->id, name => { like => "%/$name" } },
-                { order_by => 'id DESC' },
-            );
-            unless (@ports) {
-                @ports = Magus::Port->search_where(
-                    { run => $run->id, name => { like => "%$name%" } },
-                    { order_by => 'id DESC' },
-                );
-            }
-        }
 
-        return $ports[0] if @ports;
+    return unless @runs;
+
+    # Use direct SQL instead of N+1 search queries
+    my $dbh = Magus::DBI->db_Main();
+    my @run_ids = map { $_->id } @runs;
+    my $in_clause = join(',', map { '?' } @run_ids);
+
+    my $query;
+    my @bind_params;
+
+    if ($name =~ m|/|) {
+        $query = "SELECT id FROM ports WHERE run IN ($in_clause) AND name = ? ORDER BY id DESC LIMIT 1";
+        @bind_params = (@run_ids, $name);
+    } else {
+        # Check for suffix first
+        $query = "SELECT id FROM ports WHERE run IN ($in_clause) AND name LIKE ? ORDER BY id DESC LIMIT 1";
+        @bind_params = (@run_ids, "%/$name");
+
+        my $sth = $dbh->prepare($query);
+        $sth->execute(@bind_params);
+        my $row = $sth->fetchrow_hashref;
+        $sth->finish;
+
+        return Magus::Port->retrieve($row->{id}) if $row;
+
+        # Fall back to generic substring
+        @bind_params = (@run_ids, "%$name%");
     }
 
-    return;
+    my $sth = $dbh->prepare($query);
+    $sth->execute(@bind_params);
+    my $row = $sth->fetchrow_hashref;
+    $sth->finish;
+
+    return $row ? Magus::Port->retrieve($row->{id}) : undef;
 }
 
 sub top_blockers_for_run($run, $limit) {
