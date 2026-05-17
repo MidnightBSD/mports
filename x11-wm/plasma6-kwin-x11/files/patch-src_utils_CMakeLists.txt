@@ -1,0 +1,11 @@
+--- src/utils/CMakeLists.txt.orig	2026-05-17 14:57:25.138758000 -0400
++++ src/utils/CMakeLists.txt	2026-05-17 14:57:34.402370000 -0400
+@@ -19,7 +19,7 @@
+ 
+ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+     target_sources(kwin PRIVATE executable_path_proc.cpp)
+-elseif(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++elseif(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+     target_sources(kwin PRIVATE executable_path_sysctl.cpp)
+ else()
+     message(FATAL_ERROR "Unsupported platform ${CMAKE_SYSTEM_NAME}")
