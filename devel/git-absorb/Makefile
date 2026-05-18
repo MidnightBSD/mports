@@ -1,5 +1,5 @@
 PORTNAME=	git-absorb
-DISTVERSION=	0.6.10
+DISTVERSION=	0.9.0
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
