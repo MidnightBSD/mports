@@ -1,5 +1,5 @@
 PORTNAME=	dsbmd
-PORTVERSION=	1.11.4
+PORTVERSION=	1.12
 CATEGORIES=	filesystems sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
