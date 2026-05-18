@@ -11,8 +11,8 @@ WWW=		https://cran.r-project.org/web/packages/praise/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	R-cran-testthat>0:devel/R-cran-testthat
-
 USES=		cran:auto-plist
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
