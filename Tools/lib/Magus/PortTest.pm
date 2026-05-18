@@ -171,10 +171,12 @@ sub run {
 
 sub check_for_skip {
   my ($self, $results) = @_;
+  my $flavor =  $self->{port}->flavor;
   
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
   
-  chomp(my $ignore = make_var('IGNORE'));
+  my $ignore = length $flavor ? `$MAKE -V IGNORE FLAVOR=$flavor` : make_var('IGNORE');
+  chomp($ignore);
   
   if ($ignore) {
     $results->{skips} = [{
@@ -226,6 +228,5 @@ sub _set_env {
 
 1;
 __END__
-
 
 
