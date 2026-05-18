@@ -44,6 +44,15 @@ sub invalid_license_warning {
   m/Invalid LICENSE: (\S+)/ && return "Invalid license set: $1";
 }
 
+sub fake_qa_warning {
+  return unless m/^====>\s+Running Q\/A tests \(fake-qa\)$/m;
+
+  my @messages = m/^(?:Error|Warning):\s*(.+)$/mg;
+  return unless @messages;
+
+  return "fake-qa reported: " . join("; ", @messages);
+}
+
 
 =head1 fetch rules
 
@@ -140,6 +149,10 @@ sub FakeDestdirInFile :error {
 sub FakedOutsideDestdir :error {
   m:^    .* installed in /:m
     && return "A file was installed in the final dir instead of the fake dir.";
+}
+
+sub FakeQA :warning {
+  Magus::OutcomeRules::fake_qa_warning();
 }
 
 
