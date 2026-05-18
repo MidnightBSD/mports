@@ -1,6 +1,6 @@
 PORTNAME=	znc
 PORTVERSION=	1.8.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	irc
 MASTER_SITES=	https://znc.in/releases/ \
 		https://znc.in/releases/archive/
@@ -71,8 +71,17 @@ post-patch:
 		${WRKSRC}/CMakeLists.txt
 
 post-patch-PYTHON-on:
-	@${PERL} -0pi -e 's/\#if PY_VERSION_HEX>=0x03000000\s+assert\(0\); \/\* Should never reach here in Python 3 \*\/\s+\#endif\s+\*cptr = SWIG_Python_str_AsChar\(obj\);/\#if PY_VERSION_HEX<0x03000000\n\t\t\t\t\t\t*cptr = SWIG_Python_str_AsChar(obj);\n\#else\n\t\t\t\t\t\treturn SWIG_RuntimeError;\n\#endif/s' \
-		${WRKSRC}/modules/modpython/codegen.pl
+	@${PYTHON_CMD} -c "\
+import re; \
+f = open('${WRKSRC}/modules/modpython/codegen.pl', 'r'); \
+s = f.read(); \
+f.close(); \
+s = re.sub(r'#if PY_VERSION_HEX>=0x03000000\s+assert\(0\); /\* Should never reach here in Python 3 \*/\s+#endif\s+\*cptr = SWIG_Python_str_AsChar\(obj\);', \
+'#if PY_VERSION_HEX<0x03000000\n\t\t\t\t\t\t*cptr = SWIG_Python_str_AsChar(obj);\n#else\n\t\t\t\t\t\treturn SWIG_RuntimeError;\n#endif', \
+s, flags=re.DOTALL); \
+f = open('${WRKSRC}/modules/modpython/codegen.pl', 'w'); \
+f.write(s); \
+f.close()"
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
