@@ -1,4 +1,4 @@
-TIMESTAMP = 1680826339
+TIMESTAMP = 1779062631
 SHA256 (rust/crates/ansi_term-0.11.0.crate) = ee49baf6cb617b853aa8d93bf420db2383fab46d314482ca2803b40d5fde979b
 SIZE (rust/crates/ansi_term-0.11.0.crate) = 17087
 SHA256 (rust/crates/anyhow-1.0.33.crate) = a1fd36ffbb1fb7c834eac128ea8d0e310c5aeb635548f9d58861e1308d46e71c
@@ -133,5 +133,5 @@ SHA256 (rust/crates/winapi-i686-pc-windows-gnu-0.4.0.crate) = ac3b87c63620426dd9
 SIZE (rust/crates/winapi-i686-pc-windows-gnu-0.4.0.crate) = 2918815
 SHA256 (rust/crates/winapi-x86_64-pc-windows-gnu-0.4.0.crate) = 712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f
 SIZE (rust/crates/winapi-x86_64-pc-windows-gnu-0.4.0.crate) = 2947998
-SHA256 (tummychow-git-absorb-0.6.10_GH0.tar.gz) = 6cc58d2ae50027a212811faa065623666ccb6e8bd933e801319aaf92b164aa0a
-SIZE (tummychow-git-absorb-0.6.10_GH0.tar.gz) = 24265
+SHA256 (tummychow-git-absorb-0.9.0_GH0.tar.gz) = a0f74e6306d7fbd746d2b4a6856621d46a7f82e3e88b6bb8b6fc0480cf811f53
+SIZE (tummychow-git-absorb-0.9.0_GH0.tar.gz) = 38209
