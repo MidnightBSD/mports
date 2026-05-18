@@ -1,8 +1,7 @@
 # Created by: Remington Lang <MrL0Lz@gmail.com>
 
 PORTNAME=	geany
-PORTVERSION=	1.36
-PORTREVISION=	2
+PORTVERSION=	2.1
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.geany.org/ SF
 
