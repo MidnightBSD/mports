@@ -1,7 +1,7 @@
 
 
 PORTNAME=	libdiscid
-PORTVERSION=	0.6.1
+PORTVERSION=	0.6.5
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/${PORTNAME}/ \
 		http://ftp.osuosl.org/pub/musicbrainz/${PORTNAME}/
