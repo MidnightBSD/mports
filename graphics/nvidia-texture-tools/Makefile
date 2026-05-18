@@ -1,6 +1,6 @@
 PORTNAME=	nvidia-texture-tools
-PORTVERSION=	2.0.8.1 # needed to not bump PORTEPOCH; remove on next update
-PORTREVISION=	3
+PORTVERSION=	2.1.2
+
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +19,6 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	castano
-GH_TAGNAME=	${PORTVERSION:R}
 
 USES=		cmake compiler:c++11-lang jpeg
 CMAKE_ARGS=	-DNVTT_SHARED=TRUE
