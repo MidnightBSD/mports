@@ -1,26 +1,23 @@
 PORTNAME=	comic-neue
-PORTVERSION=	2.4
-DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTVERSION=	2.51
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Comic Sans alternative
+WWW=		http://comicneue.com/
 
 LICENSE=	OFL11
-LICENSE_FILE=	${WRKDIR}/comicneue-${PORTVERSION}/SIL-License.txt
+LICENSE_FILE=	${WRKSRC}/OFL.txt
 
-USES=		fonts
+USES=		fonts zip
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	crozynski
-GH_PROJECT=	comicneue
+MASTER_SITES=	http://comicneue.com/
 
+NO_ARCH=	yes
 NO_BUILD=	yes
-WRKSRC_SUBDIR=		OTF
 
 do-install:
-	${MKDIR} ${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.otf ${FONTSDIR}
+	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	cd ${WRKSRC}/OTF && ${INSTALL_DATA} ComicNeue-Angular/*.otf ComicNeue/*.otf ${STAGEDIR}${FONTSDIR}
 
 .include <bsd.port.mk>
