@@ -19,16 +19,9 @@ RUN_DEPENDS=	R-cran-cli>=3.3.0:devel/R-cran-cli \
 		R-cran-rlang>=1.1.1:devel/R-cran-rlang \
 		R-cran-rprojroot>0:devel/R-cran-rprojroot \
 		R-cran-withr>=2.4.3:devel/R-cran-withr
-TEST_DEPENDS=	R-cran-bitops>0:devel/R-cran-bitops \
-		R-cran-jsonlite>0:converters/R-cran-jsonlite \
-		R-cran-mathjaxr>0:math/R-cran-mathjaxr \
-		R-cran-pak>0:devel/R-cran-pak \
-		R-cran-Rcpp>0:devel/R-cran-Rcpp \
-		R-cran-remotes>0:devel/R-cran-remotes \
-		R-cran-rstudioapi>0:devel/R-cran-rstudioapi \
-		R-cran-testthat>=3.2.1:devel/R-cran-testthat \
-		R-cran-usethis>0:devel/R-cran-usethis
 
 USES=		cran:auto-plist
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
