@@ -3859,6 +3859,7 @@ describe-yaml:
 			license_name   => q(${LICENSE_NAME}), \
 			license_text   => q(${LICENSE_TEXT}), \
 			categories     => [qw(${CATEGORIES})], \
+			ignore         => qq(${IGNORE:S/'/\x27/g}), \
 			is_interactive => q(${IS_INTERACTIVE}) ? 1 : 0, \
 			restricted     => q(${RESTRICTED}) ? 1 : 0, \
 			flavor         => q(${FLAVOR}), \

@@ -157,10 +157,7 @@ sub sync {
       
     $class->sync_categories(\%dump, $port, $arch);
       
-    if ($dump{is_interactive}) {
-      print "\n\tIGNORE set.  Marking as skippped.";
-      $port->set_result_skip("Port is marked as interactive.");
-    }
+    $class->mark_ignored(\%dump, $port);
 
    foreach my $flav (@{$dump{'flavors'}}) {
      print "Flavor: $flav\n";
@@ -168,7 +165,7 @@ sub sync {
        print "Default flavor $flav processed.\n";
        next;
      }
-     $yaml = `__MAKE_CONF=/dev/null SSL_DEFAULT=base INDEXING=1 ARCH=$arch PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml FLAVOR=$flav`;
+     $yaml = `__MAKE_CONF=/dev/null SSL_DEFAULT=base INDEXING=1 ARCH=$arch OSREL=$osrel OSVERSION=$osversion PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml FLAVOR=$flav`;
     eval {
       %dump = %{ Load($yaml) };
     };
@@ -230,10 +227,7 @@ sub sync {
 
     $class->sync_categories(\%dump, $port, $arch);
 
-    if ($dump{is_interactive}) {
-      print "\n\tIGNORE set.  Marking as skipped.";
-      $port->set_result_skip("Port is marked as interactive.");
-    }
+    $class->mark_ignored(\%dump, $port);
    }
     
     print "done.\n";
@@ -326,6 +320,19 @@ sub sync_categories {
     for (@{$dump->{'categories'}}) {
       my $cat = Magus::Category->find_or_create({ category => $_});
       $port->add_to_categories({ category => $cat });
+    }
+}
+
+sub mark_ignored {
+    my ($class, $dump, $port) = @_;
+    my $ignore = $dump->{ignore} // "";
+
+    if ($dump->{is_interactive}) {
+      print "\n\tIGNORE set.  Marking as skipped.";
+      $port->set_result_skip("Port is marked as interactive.");
+    } elsif (length $ignore) {
+      print "\n\tIGNORE set.  Marking as skipped.";
+      $port->set_result_skip($ignore);
     }
 }
   
