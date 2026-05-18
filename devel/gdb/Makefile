@@ -1,6 +1,6 @@
 PORTNAME=	gdb
 DISTVERSION=	15.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -169,10 +169,10 @@ do-install-PYTHON-on:
 		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
 	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; ${SETENVI} ${WRK_ENV} \
 		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
-	@(cd ${PREFIX}/share/gdb/python && \
+	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/python && \
 		${PYTHON_CMD} -m compileall .)
 . for f in gdb gdb/command gdb/function gdb/printer
-	@(cd ${PREFIX}/share/gdb/python/${f} ; ${CHMOD} 644 *.py* )
+	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/python/${f} ; ${CHMOD} 644 *.py* )
 . endfor
 .if exists(/usr/lib/libc++.so.1) || exists(/lib/libc++.so.1)
 	@(cd ${WRKSRC_libcxx} ; ${SETENVI} ${WRK_ENV} \
