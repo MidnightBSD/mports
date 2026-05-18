@@ -29,6 +29,21 @@ package Magus::OutcomeRules;
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
 
+sub missing_license_warning {
+  m/LICENSE not set/i
+    || m/has not defined LICENSE/i
+    || m/no licenses present in LICENSE/i
+    and return "LICENSE is not set.";
+}
+
+sub empty_license_warning {
+  m/empty license/i && return "LICENSE is empty.";
+}
+
+sub invalid_license_warning {
+  m/Invalid LICENSE: (\S+)/ && return "Invalid license set: $1";
+}
+
 
 =head1 fetch rules
 
@@ -37,6 +52,18 @@ package Magus::OutcomeRules;
 package Magus::OutcomeRules::fetch;
 
 use base qw(Magus::OutcomeRules::Base);
+
+sub NoLicense :warning {
+  Magus::OutcomeRules::missing_license_warning();
+}
+
+sub EmptyLicense :warning {
+  Magus::OutcomeRules::empty_license_warning();
+}
+
+sub InvalidLicense :warning {
+  Magus::OutcomeRules::invalid_license_warning();
+}
 
 sub FetchFailed :error {
   m/Couldn't fetch it/ && return "Fetch failed.";
@@ -62,15 +89,15 @@ package Magus::OutcomeRules::patch;
 use base qw(Magus::OutcomeRules::Base);
 
 sub NoLicense :warning {
-  m/LICENSE not set/ && return "LICENSE is not set.";
+  Magus::OutcomeRules::missing_license_warning();
 }
 
 sub EmptyLicense :warning {
-  m/empty license/ && return "LICENSE is empty.";
+  Magus::OutcomeRules::empty_license_warning();
 }
 
 sub InvalidLicense :warning {
-  m/Invalid LICENSE: (\S+)/ && return "Invalid license set: $1";
+  Magus::OutcomeRules::invalid_license_warning();
 }
 
 =head1 configure rules
@@ -170,4 +197,3 @@ use base qw(Magus::OutcomeRules::Base);
 
 1;
 __END__
-
