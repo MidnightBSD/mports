@@ -97,6 +97,7 @@
     SUBDIR += pcc
     SUBDIR += perl5.38
     SUBDIR += perl5.40
+    SUBDIR += perl5.42
     SUBDIR += php82
     SUBDIR += php82-extensions
     SUBDIR += php83
@@ -119,6 +120,7 @@
     SUBDIR += rust-bootstrap
     SUBDIR += rust188
     SUBDIR += scala
+    SUBDIR += smalltalk
     SUBDIR += spidermonkey102
     SUBDIR += spidermonkey128
     SUBDIR += spidermonkey78

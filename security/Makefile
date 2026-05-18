@@ -147,6 +147,7 @@
     SUBDIR += oinkmaster
     SUBDIR += openct
     SUBDIR += opendoas
+    SUBDIR += openrasp
     SUBDIR += opensc
     SUBDIR += openssh-askpass
     SUBDIR += openssh-portable
@@ -256,6 +257,7 @@
     SUBDIR += py-joserfc
     SUBDIR += py-keyring
     SUBDIR += py-keyrings.alt
+    SUBDIR += py-notus-scanner
     SUBDIR += py-ntlm-auth
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib

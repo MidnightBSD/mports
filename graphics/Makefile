@@ -138,6 +138,7 @@
     SUBDIR += hyprland-protocols
     SUBDIR += icc-profiles-adobe-cs4
     SUBDIR += icoutils
+    SUBDIR += image-editing
     SUBDIR += image-editor
     SUBDIR += imageviewer
     SUBDIR += imlib2

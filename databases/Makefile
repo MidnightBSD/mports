@@ -63,6 +63,7 @@
     SUBDIR += mysql-connector-c++
     SUBDIR += mysql-connector-j
     SUBDIR += mysql-connector-java51
+    SUBDIR += mysql2pgsql
     SUBDIR += mysql80-client
     SUBDIR += mysql80-server
     SUBDIR += mysql84-client

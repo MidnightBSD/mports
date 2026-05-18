@@ -303,6 +303,7 @@
     SUBDIR += py-multidict
     SUBDIR += py-nh3
     SUBDIR += py-pecan
+    SUBDIR += py-postorius
     SUBDIR += py-priority
     SUBDIR += py-priority1
     SUBDIR += py-pyjwt

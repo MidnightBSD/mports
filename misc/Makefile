@@ -13,6 +13,7 @@
     SUBDIR += chmlib
     SUBDIR += cinnamon-translations
     SUBDIR += claude-code
+    SUBDIR += clawhub
     SUBDIR += cldr-emoji-annotation
     SUBDIR += codex
     SUBDIR += compat.el
@@ -60,6 +61,7 @@
     SUBDIR += libspnav
     SUBDIR += libuuid
     SUBDIR += linux-c7-sdl12-extralibs
+    SUBDIR += linux-claude
     SUBDIR += linux-rl9-sdl12-extralibs
     SUBDIR += linux-rl9-sdl20-extralibs
     SUBDIR += llama-cpp
@@ -76,6 +78,7 @@
     SUBDIR += nut
     SUBDIR += ollama
     SUBDIR += onnx
+    SUBDIR += openclaw
     SUBDIR += openvdb
     SUBDIR += osinfo-db
     SUBDIR += ossp-uuid

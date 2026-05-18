@@ -46,6 +46,7 @@
     SUBDIR += faces
     SUBDIR += fetchmail
     SUBDIR += fetchmailconf
+    SUBDIR += geary
     SUBDIR += gmime26
     SUBDIR += gmime30
     SUBDIR += gnumail
@@ -159,6 +160,7 @@
     SUBDIR += squirrelmail
     SUBDIR += sympa
     SUBDIR += textmail
+    SUBDIR += thunderbird
     SUBDIR += thunderbird-freebsd
     SUBDIR += vrfy
     SUBDIR += wpop3d

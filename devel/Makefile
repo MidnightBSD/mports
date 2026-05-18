@@ -134,6 +134,7 @@
     SUBDIR += electron40
     SUBDIR += elfutils
     SUBDIR += epm
+    SUBDIR += eric6
     SUBDIR += erlang-unicode_util_compat
     SUBDIR += esbuild
     SUBDIR += evdev-proto
@@ -213,6 +214,7 @@
     SUBDIR += gob2
     SUBDIR += gobject-introspection
     SUBDIR += goffice
+    SUBDIR += goffice06
     SUBDIR += google-perftools
     SUBDIR += googlemock
     SUBDIR += googletest
@@ -444,6 +446,7 @@
     SUBDIR += linux-c7-elfutils-libs
     SUBDIR += linux-c7-icu
     SUBDIR += linux-c7-libaio
+    SUBDIR += linux-c7-libgfortran
     SUBDIR += linux-c7-libglade2
     SUBDIR += linux-c7-libpciaccess
     SUBDIR += linux-c7-libsigc++20
@@ -2182,6 +2185,7 @@
     SUBDIR += rubygem-hashie
     SUBDIR += rubygem-hashie-gitlab
     SUBDIR += rubygem-highline
+    SUBDIR += rubygem-hoe
     SUBDIR += rubygem-i18n
     SUBDIR += rubygem-ice_nine
     SUBDIR += rubygem-io-console
@@ -2210,6 +2214,7 @@
     SUBDIR += rubygem-metrics
     SUBDIR += rubygem-mini_portile2
     SUBDIR += rubygem-minitest
+    SUBDIR += rubygem-mixlib-shellout
     SUBDIR += rubygem-ms_rest
     SUBDIR += rubygem-ms_rest_azure
     SUBDIR += rubygem-msgpack
@@ -2225,6 +2230,7 @@
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-ostruct
+    SUBDIR += rubygem-parser
     SUBDIR += rubygem-pathname
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-platform

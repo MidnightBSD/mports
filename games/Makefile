@@ -139,6 +139,7 @@
     SUBDIR += py-pychess
     SUBDIR += py-pysol-cards
     SUBDIR += py-sgflib
+    SUBDIR += py-sgfsummary
     SUBDIR += qqwing
     SUBDIR += qstat
     SUBDIR += quadra

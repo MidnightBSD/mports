@@ -19,10 +19,12 @@
     SUBDIR += b43-fwcutter
     SUBDIR += backuppc
     SUBDIR += bacula9-client
+    SUBDIR += bacula9-client-static
     SUBDIR += bacula9-docs
     SUBDIR += bacula9-server
     SUBDIR += baloo-widgets
     SUBDIR += bamf
+    SUBDIR += bastille
     SUBDIR += batmon
     SUBDIR += battmond
     SUBDIR += beadm
@@ -246,6 +248,7 @@
     SUBDIR += rpi-firmware
     SUBDIR += rsyslog8
     SUBDIR += rubygem-bundler
+    SUBDIR += rubygem-chef-utils
     SUBDIR += rubygem-chef-winrm
     SUBDIR += rubygem-chef-winrm-elevated
     SUBDIR += rubygem-fluent-mixin-plaintextformatter

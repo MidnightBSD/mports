@@ -8,6 +8,7 @@
     SUBDIR += beforelight
     SUBDIR += bgs
     SUBDIR += bitmap
+    SUBDIR += cde
     SUBDIR += cinnamon
     SUBDIR += cinnamon-desktop
     SUBDIR += cinnamon-menus
