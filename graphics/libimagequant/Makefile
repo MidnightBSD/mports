@@ -1,6 +1,5 @@
 PORTNAME=	libimagequant
-PORTVERSION=	4.2.1
-PORTREVISION=	1
+PORTVERSION=	4.4.1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
