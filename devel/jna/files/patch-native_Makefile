@@ -12,7 +12,7 @@
                          -e 's/NetBSD/netbsd/g' \
                          -e 's/GNU\/kFreeBSD/kfreebsd/g' \
                          -e 's/FreeBSD/freebsd/g' \
-+                        -e 's/MidnightBSD/midnightbsd/g' \
++                        -e 's/MidnightBSD/freebsd/g' \
                          -e 's/OpenBSD/openbsd/g' \
                          -e 's/Darwin.*/darwin/g' \
                          -e 's/AIX.*/aix/g' \
