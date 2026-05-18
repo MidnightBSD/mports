@@ -278,7 +278,7 @@ do-build:
 
 .    if !target(do-install)
 do-install:
-	(cd ${WRKSRC} ; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE} -C ./build install INSTALL_ROOT=${STAGEDIR} )
+	(cd ${WRKSRC} ; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} INSTALL_ROOT=${STAGEDIR} ${MAKE} -C ./build install INSTALL_ROOT=${STAGEDIR} )
 .    endif  # !target(do-install)
 
 .  endif  # defined(_PYQT_DIST)
