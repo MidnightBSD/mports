@@ -1,6 +1,5 @@
 PORTNAME=		openldap
-DISTVERSION=		2.5.19
-PORTREVISION=		${OPENLDAP_PORTREVISION}
+DISTVERSION=		2.5.20
 CATEGORIES=		net databases
 MASTER_SITES=		https://www.openldap.org/software/download/OpenLDAP/%SUBDIR%/ \
 			http://gpl.savoirfairelinux.net/pub/mirrors/openldap/%SUBDIR%/ \
