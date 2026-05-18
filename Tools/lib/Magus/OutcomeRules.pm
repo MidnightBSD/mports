@@ -44,7 +44,6 @@ sub invalid_license_warning {
   m/Invalid LICENSE: (\S+)/ && return "Invalid license set: $1";
 }
 
-
 sub fake_qa_warning {
   return unless m/^====>\s+Running Q\/A tests \(fake-qa\)$/m;
 
