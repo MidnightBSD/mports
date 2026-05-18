@@ -225,6 +225,7 @@
     SUBDIR += pinentry-gnome
     SUBDIR += pinentry-gtk2
     SUBDIR += pinentry-qt5
+    SUBDIR += pinentry-qt6
     SUBDIR += pinentry-tty
     SUBDIR += pkcs11-helper
     SUBDIR += plasma6-kscreenlocker
