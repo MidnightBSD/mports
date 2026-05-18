@@ -82,6 +82,7 @@ CMAKE_ON+=	QT_FEATURE_qtwebengine_build
 CMAKE_OFF+=	QT_FEATURE_qtpdf_build
 
 CXXFLAGS+=	-I${LOCALBASE}/include/freetype2 \
+		-I${LOCALBASE}/include/harfbuzz \
 		-I${LOCALBASE}/include/libepoll-shim \
 		-I${LOCALBASE}/include/nss \
 		-I${LOCALBASE}/include/nspr
