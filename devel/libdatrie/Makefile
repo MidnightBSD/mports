@@ -1,5 +1,5 @@
 PORTNAME=	libdatrie
-PORTVERSION=	0.2.13
+PORTVERSION=	0.2.14
 CATEGORIES=	devel
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/
 
