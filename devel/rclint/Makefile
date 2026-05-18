@@ -1,7 +1,7 @@
 PORTNAME=	rclint
 PORTVERSION=	1.3.0
 CATEGORIES=	devel textproc python
-MASTER_SITES=	http://www.bayofrum.net/dist/rclint/	\
+MASTER_SITES=	https://www.bayofrum.net/dist/rclint/	\
 		FREEBSD_LOCAL/crees/
 
 MAINTAINER=	ports@MidnightBSD.org
