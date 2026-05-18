@@ -115,6 +115,7 @@ sub run {
   my %results = (summary => 'pass');
   
   $self->check_for_skip(\%results) && return \%results;
+  $self->check_master_sites(\%results);
 
   
   foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall test)) {
@@ -193,6 +194,27 @@ sub check_for_skip {
   return;
 }    
 
+sub check_master_sites {
+  my ($self, $results) = @_;
+  my %seen;
+  my @insecure = grep { !$seen{$_}++ }
+                 grep { m{^(?:http|ftp)://}i }
+                 map  { $_->url } $self->{port}->master_sites;
+
+  return unless @insecure;
+
+  my @shown = @insecure > 5 ? @insecure[0..4] : @insecure;
+  my $extra = @insecure > @shown ? sprintf(" and %d more", scalar(@insecure) - scalar(@shown)) : "";
+
+  push(@{$results->{warnings}}, {
+    phase => 'prerun',
+    msg   => "MASTER_SITES contains non-HTTPS URLs: " . join(", ", @shown) . $extra,
+    name  => 'InsecureMasterSites',
+  });
+
+  $results->{summary} = 'warn' if $results->{summary} eq 'pass';
+}
+
 
 sub _run_make {
   my ($self, $target) = @_;
@@ -228,5 +250,4 @@ sub _set_env {
 
 1;
 __END__
-
 
