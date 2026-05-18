@@ -38,6 +38,10 @@ COMPLETIONS_PLIST_FILES=	share/bash-completion/completions/${PORTNAME} \
 				share/fish/vendor_completions.d/${PORTNAME}.fish \
 				share/zsh/site-functions/_${PORTNAME}
 
+do-install:
+	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/${PORTNAME} \
+		${PREFIX}/bin/${PORTNAME}
+
 do-build-MANPAGES-on:
 	(cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} ${GO_ENV} ${GO_CMD} run ${GO_BUILDFLAGS} \
