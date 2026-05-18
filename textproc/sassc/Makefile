@@ -1,5 +1,5 @@
 PORTNAME=	sassc
-PORTVERSION=	3.6.1
+PORTVERSION=	3.6.2
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
