@@ -2083,6 +2083,7 @@
     SUBDIR += rubygem-caesars
     SUBDIR += rubygem-cairo-gobject
     SUBDIR += rubygem-CFPropertyList
+    SUBDIR += rubygem-CFPropertyList-gitlab
     SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-clio
     SUBDIR += rubygem-coffee-rails41
