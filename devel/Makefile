@@ -2109,9 +2109,11 @@
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-declarative
     SUBDIR += rubygem-device_detector
+    SUBDIR += rubygem-devise-rails-gitlab
     SUBDIR += rubygem-deprecated2
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
+    SUBDIR += rubygem-drb-gitlab
     SUBDIR += rubygem-dry-inflector
     SUBDIR += rubygem-drydock
     SUBDIR += rubygem-equalizer
@@ -2126,6 +2128,8 @@
     SUBDIR += rubygem-facets
     SUBDIR += rubygem-faraday-cookie_jar
     SUBDIR += rubygem-faraday-excon1
+    SUBDIR += rubygem-faraday_middleware-aws-sigv4-gitlab
+    SUBDIR += rubygem-fast_blank
     SUBDIR += rubygem-fastercsv
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
@@ -2217,6 +2221,7 @@
     SUBDIR += rubygem-io-stream
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-irb
+    SUBDIR += rubygem-irb-gitlab
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-json
@@ -2253,6 +2258,7 @@
     SUBDIR += rubygem-nori
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
+    SUBDIR += rubygem-orm_adapter
     SUBDIR += rubygem-os
     SUBDIR += rubygem-ostruct
     SUBDIR += rubygem-parser
@@ -2270,6 +2276,7 @@
     SUBDIR += rubygem-rb-fsevent
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-rdoc
+    SUBDIR += rubygem-rdoc-gitlab
     SUBDIR += rubygem-reline
     SUBDIR += rubygem-redis-store
     SUBDIR += rubygem-redis-store-gitlab
@@ -2329,6 +2336,7 @@
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
     SUBDIR += rubygem-version_gem
+    SUBDIR += rubygem-warden
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-windows_error

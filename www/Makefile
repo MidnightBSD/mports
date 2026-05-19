@@ -457,14 +457,17 @@
     SUBDIR += rubygem-rack22
     SUBDIR += rubygem-rack_csrf
     SUBDIR += rubygem-rackup
+    SUBDIR += rubygem-rackup-gitlab
     SUBDIR += rubygem-rackup10
     SUBDIR += rubygem-rails4
+    SUBDIR += rubygem-railties-gitlab
     SUBDIR += rubygem-railties4
     SUBDIR += rubygem-railties72
     SUBDIR += rubygem-railties80
     SUBDIR += rubygem-redis-rack
     SUBDIR += rubygem-redis-rack-gitlab
     SUBDIR += rubygem-redis-rack2
+    SUBDIR += rubygem-responders-rails-gitlab
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rest-client-gitlab
     SUBDIR += rubygem-sawyer
