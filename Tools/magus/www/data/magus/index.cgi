@@ -104,6 +104,8 @@ sub main {
     compare_runs($p);
   } elsif ($path =~m:^/blockers/(.*):) {
     blockers($p, $1);
+  } elsif ($path =~m:^/api/?$:) {
+    api_docs($p);
   } elsif ($path =~m:^/updates:) {
     updates_page($p);
   } else {
@@ -177,6 +179,19 @@ sub api_run_port_stats {
   }
       
   print $p->header(-type => 'application/json'), encode_json(\@results);
+}
+
+sub api_docs {
+  my ($p) = @_;
+
+  my $tmpl = template($p, 'api.tmpl');
+
+  $tmpl->param(
+    latest_api_url => 'https://www.midnightbsd.org/magus/api/latest',
+  );
+
+  print $p->header(-type => 'text/html', -charset => 'utf-8');
+  print $tmpl->output;
 }
 
 sub api_latest {
