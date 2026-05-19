@@ -1,4 +1,4 @@
---- src/l2_packet/l2_packet_freebsd.c.orig	2015-03-15 17:30:39 UTC
+--- src/l2_packet/l2_packet_freebsd.c.orig	2024-07-20 18:04:37 UTC
 +++ src/l2_packet/l2_packet_freebsd.c
 @@ -8,7 +8,10 @@
   */
