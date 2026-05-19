@@ -183,61 +183,90 @@ sub api_latest {
   my ($p) = @_;
 
   my %results;
-  my $status = 'pass';
-  my %arch;
-  
-  my @runs = Magus::Run->search(status => 'complete', blessed => 1, { order_by=> 'created DESC, osversion DESC, arch'});
+  my $dbh = Magus::DBI->db_Main();
 
-  my $dt;
-  foreach my $run (@runs) {
-    if (defined($arch{$run->arch})) {
-	next;
+  my $runs_sth = $dbh->prepare(q{
+    SELECT DISTINCT ON (arch) id, created
+      FROM runs
+     WHERE status = 'complete'
+       AND blessed = 1
+     ORDER BY arch, created DESC, osversion DESC
+  });
+  $runs_sth->execute;
+
+  my @run_ids;
+  my $latest_created;
+  while (my $run = $runs_sth->fetchrow_hashref) {
+    push @run_ids, $run->{id};
+    if (!defined($latest_created) || $run->{created} gt $latest_created) {
+      $latest_created = $run->{created};
     }
-    if (!defined($dt)) {
-	$dt = DateTime::Format::Pg->parse_datetime( $run->{created} );
-    }
-    $arch{$run->arch} = 1;
-    my @ports = Magus::Port->search(run => $run, status => $status, { order_by=> 'name'});
-	
-    foreach my $port (@ports) {
-      if (defined($results{$port->pkgname})) {
+  }
+  $runs_sth->finish;
+
+  if (@run_ids) {
+    my $in_clause = join(',', ('?') x @run_ids);
+    my $ports_sth = $dbh->prepare(qq{
+      SELECT p.pkgname, p.version, p.name, p.description, p.license, p.www,
+             p.flavor, p.cpe, r.osversion, r.created, r.arch,
+             STRING_AGG(c.category, ',' ORDER BY c.category) AS categories
+        FROM ports p
+        JOIN runs r ON r.id = p.run
+        LEFT JOIN port_categories pc ON pc.port = p.id
+        LEFT JOIN categories c ON c.id = pc.category
+       WHERE p.run IN ($in_clause)
+         AND p.status = 'pass'
+       GROUP BY p.id, p.pkgname, p.version, p.name, p.description, p.license,
+                p.www, p.flavor, p.cpe, r.osversion, r.created, r.arch
+       ORDER BY r.created DESC, r.osversion DESC, r.arch, p.name
+    });
+    $ports_sth->execute(@run_ids);
+
+    while (my $port = $ports_sth->fetchrow_hashref) {
+      if (defined($results{$port->{pkgname}})) {
 	my $found = 0;
 
-        foreach my $r (@{$results{$port->pkgname}->{subpackages}}) {
-          if ($port->flavor eq $r->{name}) {
+        foreach my $r (@{$results{$port->{pkgname}}->{subpackages}}) {
+          if (($port->{flavor} // '') eq $r->{name}) {
              $found = 1;
              last;
           }
         }
-        if ($found == 0 && $port->flavor ne "") {
-	  push( @{$results{$port->pkgname}->{subpackages}}, { name => $port->flavor });
+        if ($found == 0 && ($port->{flavor} // '') ne "") {
+	  push( @{$results{$port->{pkgname}}->{subpackages}}, { name => $port->{flavor} });
         }
        } else {
-         my @cats = map {{ category => $_->category }} $port->categories;
+         my @cats = map {{ category => $_ }} grep { defined && length } split(',', $port->{categories} // '');
 
          my @subpackages; 
-         if (defined($port->flavor) && $port->flavor ne "") {
-           push(@subpackages, { name => $port->flavor });
+         if (defined($port->{flavor}) && $port->{flavor} ne "") {
+           push(@subpackages, { name => $port->{flavor} });
          }
 
-         $results{$port->pkgname} = { 
-          version => $port->{version}, port => $port->name,
-          osversion => $port->run->osversion,
-          summary => $port->description,
-          licenses => [ split(' ', $port->license) ],
-          homepages => [$port->www],
+         $results{$port->{pkgname}} = {
+          package_name => sprintf("%s-%s.%s", $port->{pkgname}, $port->{version}, $Magus::Config{'PkgExtension'}),
+          version => $port->{version}, port => $port->{name},
+          makefile_url => "https://github.com/MidnightBSD/mports/blob/master/$port->{name}/Makefile",
+          osversion => $port->{osversion},
+          summary => $port->{description},
+          licenses => [ split(' ', $port->{license} // '') ],
+          homepages => [$port->{www}],
           categories => \@cats,
           subpackages => \@subpackages,
-          cpe => $port->cpe
+          cpe => $port->{cpe}
          };
        }
     }
+    $ports_sth->finish;
   }
 
   my %meta;
   $meta{repository_name} = 'MidnightBSD mports';
-  $meta{last_update} =  $dt->strftime('%FT%TZ');
-  $meta{num_packages} = scalar(%results);
+  if (defined($latest_created)) {
+    my $dt = DateTime::Format::Pg->parse_datetime($latest_created);
+    $meta{last_update} =  $dt->strftime('%FT%TZ');
+  }
+  $meta{num_packages} = scalar(keys %results);
   $meta{packages} = \%results;
     
   print $p->header(-type => 'application/json'), encode_json(\%meta);
