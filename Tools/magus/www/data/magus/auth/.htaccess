@@ -7,3 +7,7 @@ Require valid-user
 <Files "get_cves.cgi">
     Require all granted
 </Files>
+
+<Files "mcp.cgi">
+    Require all granted
+</Files>

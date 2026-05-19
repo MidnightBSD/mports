@@ -145,6 +145,117 @@
           </tr>
         </tbody>
       </table>
+
+      <h3>Magus MCP Server</h3>
+      <p>
+        Magus also provides a public Model Context Protocol server for tools
+        that can call MCP endpoints over Streamable HTTP.
+      </p>
+
+      <table class="table table-striped table-bordered">
+        <tbody>
+          <tr>
+            <th>URL</th>
+            <td><code>https://www.midnightbsd.org/magus/auth/mcp.cgi</code></td>
+          </tr>
+          <tr>
+            <th>Protocol</th>
+            <td><code>JSON-RPC 2.0</code> over MCP Streamable HTTP</td>
+          </tr>
+          <tr>
+            <th>Methods</th>
+            <td><code>GET</code> for the event stream, <code>POST</code> for JSON-RPC messages</td>
+          </tr>
+          <tr>
+            <th>Supported MCP Versions</th>
+            <td><code>2025-06-18</code>, <code>2025-03-26</code>, <code>2024-11-05</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>POST Headers</h4>
+      <pre><code>Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2025-06-18</code></pre>
+
+      <h4>Initialize Example</h4>
+      <pre><code>curl -s https://www.midnightbsd.org/magus/auth/mcp.cgi \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H 'MCP-Protocol-Version: 2025-06-18' \
+  --data '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize",
+    "params": {
+      "protocolVersion": "2025-06-18",
+      "capabilities": {},
+      "clientInfo": {
+        "name": "example-client",
+        "version": "1.0"
+      }
+    }
+  }'</code></pre>
+
+      <h4>List Tools Example</h4>
+      <pre><code>curl -s https://www.midnightbsd.org/magus/auth/mcp.cgi \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H 'MCP-Protocol-Version: 2025-06-18' \
+  --data '{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/list",
+    "params": {}
+  }'</code></pre>
+
+      <h4>Tools</h4>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>lookup_port</code></td>
+            <td>Look up latest build results for a port name or origin across CPU architectures.</td>
+          </tr>
+          <tr>
+            <td><code>get_run_stats</code></td>
+            <td>Get package result counts and metadata for a run, or for the latest blessed runs.</td>
+          </tr>
+          <tr>
+            <td><code>list_runs</code></td>
+            <td>List recent Magus build runs with optional status and architecture filters.</td>
+          </tr>
+          <tr>
+            <td><code>get_port_log</code></td>
+            <td>Retrieve the build log for a Magus port ID.</td>
+          </tr>
+          <tr>
+            <td><code>get_port_details</code></td>
+            <td>Get port metadata, build events, dependencies, and reverse-dependency information.</td>
+          </tr>
+          <tr>
+            <td><code>get_port_cves</code></td>
+            <td>Look up CVE information for a Magus port using its CPE data.</td>
+          </tr>
+          <tr>
+            <td><code>top_blockers</code></td>
+            <td>List failed or skipped ports blocking the most dependent ports.</td>
+          </tr>
+          <tr>
+            <td><code>analyze_build_log</code></td>
+            <td>Analyze a failed port build log with an available LLM model.</td>
+          </tr>
+          <tr>
+            <td><code>list_port_updates</code></td>
+            <td>List ports with new upstream versions detected by portscout.</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </div>
 </div>
