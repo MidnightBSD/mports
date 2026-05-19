@@ -1921,6 +1921,8 @@
     SUBDIR += rubygem-async
     SUBDIR += rubygem-attic
     SUBDIR += rubygem-attr_required
+    SUBDIR += rubygem-aws-eventstream
+    SUBDIR += rubygem-aws-sigv4
     SUBDIR += rubygem-azure-storage
     SUBDIR += rubygem-azure-storage-blob
     SUBDIR += rubygem-azure-storage-common
@@ -2073,6 +2075,7 @@
     SUBDIR += rubygem-bindata24
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-buftok
+    SUBDIR += rubygem-buftok0
     SUBDIR += rubygem-builder
     SUBDIR += rubygem-byebug
     SUBDIR += rubygem-caesars

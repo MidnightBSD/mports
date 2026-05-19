@@ -140,6 +140,7 @@
     SUBDIR += R-cran-FNN
     SUBDIR += R-cran-forcats
     SUBDIR += R-cran-Formula
+    SUBDIR += R-cran-geometry
     SUBDIR += R-cran-geepack
     SUBDIR += R-cran-gower
     SUBDIR += R-cran-gtable
@@ -150,11 +151,17 @@
     SUBDIR += R-cran-labeling
     SUBDIR += R-cran-lava
     SUBDIR += R-cran-lazyeval
+    SUBDIR += R-cran-linprog
     SUBDIR += R-cran-lpSolve
+    SUBDIR += R-cran-magic
     SUBDIR += R-cran-maps
     SUBDIR += R-cran-mathjaxr
+    SUBDIR += R-cran-mclust
+    SUBDIR += R-cran-misc3d
     SUBDIR += R-cran-mvtnorm
     SUBDIR += R-cran-numDeriv
+    SUBDIR += R-cran-plot3D
+    SUBDIR += R-cran-pracma
     SUBDIR += R-cran-prodlim
     SUBDIR += R-cran-proxy
     SUBDIR += R-cran-RcppEigen
@@ -166,6 +173,7 @@
     SUBDIR += R-cran-slam
     SUBDIR += R-cran-sp
     SUBDIR += R-cran-spData
+    SUBDIR += R-cran-spdep
     SUBDIR += R-cran-SQUAREM
     SUBDIR += R-cran-units
     SUBDIR += R-cran-wk

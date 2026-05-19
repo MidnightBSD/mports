@@ -370,6 +370,7 @@
     SUBDIR += rubygem-crass
     SUBDIR += rubygem-em-http-request
     SUBDIR += rubygem-em-socksify
+    SUBDIR += rubygem-em-twitter
     SUBDIR += rubygem-erubi
     SUBDIR += rubygem-erubis
     SUBDIR += rubygem-ethon
