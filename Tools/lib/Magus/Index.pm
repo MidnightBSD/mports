@@ -353,7 +353,7 @@ sub mark_ignored {
 sub ignore_is_metaport {
     my ($class, $ignore) = @_;
 
-    return defined($ignore) && $ignore =~ /\bis a metaport; there is nothing to build\b/;
+    return defined($ignore) && $ignore =~ /\bis a meta[- ]?port; there is nothing to build\b/;
 }
   
 1;
