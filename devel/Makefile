@@ -2109,6 +2109,7 @@
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-declarative
+    SUBDIR += rubygem-device_detector
     SUBDIR += rubygem-deprecated2
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
