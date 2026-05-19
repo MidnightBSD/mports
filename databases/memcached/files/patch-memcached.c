@@ -45,15 +45,16 @@
                  APPEND_NUM_STAT(i, "UDP", "%s", "UDP");
              }
              if (conns[i]->state != conn_closed) {
-@@ -3361,7 +3361,7 @@ static void drive_machine(conn *c) {
+@@ -3317,8 +3317,8 @@ static void drive_machine(conn *c) {
              break;
  
          case conn_closing:
--            if (IS_UDP(c->transport))
-+            if IS_UDP(c->transport)
-                 conn_cleanup(c);
-             else
-                 conn_close(c);
+             if (!c->resps_suspended) {
+-                if (IS_UDP(c->transport))
++                if IS_UDP(c->transport)
+                     conn_cleanup(c);
+                 else
+                     conn_close(c);
 @@ -3552,7 +3552,7 @@ static int server_socket(const char *interface,
  #endif
  
