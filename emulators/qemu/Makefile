@@ -1,5 +1,5 @@
 PORTNAME=	qemu
-DISTVERSION=	9.0.1
+DISTVERSION=	11.0.0
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -10,12 +10,16 @@ WWW=		https://www.qemu.org/
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	bash:shells/bash
+BUILD_DEPENDS=	bash:shells/bash \
+		${PYTHON_PKGNAMEPREFIX}qemu.qmp>=0.0.5:emulators/py-qemu.qmp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+.if ${FLAVOR:U} != guestagent
+LIB_DEPENDS+=	libzstd.so:archivers/zstd
+.endif
 .if ${FLAVOR:U} != tools && ${FLAVOR:U} != guestagent
 LIB_DEPENDS+=	libfdt.so:sysutils/dtc \
 		libinotify.so:devel/libinotify \
-		libslirp.so:net/libslirp \
-		libzstd.so:archivers/zstd
+		libslirp.so:net/libslirp
 .endif
 .if (${FLAVOR:U} != nox11 && ${FLAVOR:U} != tools && ${FLAVOR:U} != guestagent)
 LIB_DEPENDS+=	libepoxy.so:graphics/libepoxy
@@ -44,7 +48,7 @@ guestagent_PLIST=		${.CURDIR}/pkg-plist-ga
 guestagent_CONFLICTS_INSTALL=	qemu qemu-devel qemu-nox11 qemu-tools qemu-utils qemu6* \
 				qemu7* qemu-guest-agent
 
-USES=		cpe gmake gnome ninja perl5 pkgconfig python:build shebangfix tar:xz
+USES=		cpe gmake gnome ninja perl5 pkgconfig python shebangfix tar:xz
 SHEBANG_FILES=	scripts/xml-preprocess.py
 USE_GNOME=	glib20
 USE_PERL5=	build
@@ -55,11 +59,24 @@ USES+=		iconv:wchar_t
 USE_GNOME+=	cairo
 .endif
 
+BINARY_ALIAS=	python3=${PYTHON_VERSION}
+
 HAS_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--cc=${CC} \
+			--disable-fuse \
+			--disable-fuse-lseek \
+			--disable-jack \
+			--disable-libnfs \
+			--disable-libssh \
+			--disable-lzfse \
 			--disable-kvm \
 			--disable-linux-aio \
 			--disable-linux-user \
+			--disable-sdl-image \
+			--disable-snappy \
+			--disable-sndio \
+			--disable-spice \
+			--disable-spice-protocol \
 			--disable-xen \
 			--extra-cflags=-I${WRKSRC}\ -I${LOCALBASE}/include\ -DPREFIX=\\\"\"${PREFIX}\\\"\" \
 			--extra-ldflags=-L${LOCALBASE}/lib \
@@ -109,15 +126,16 @@ CONFIGURE_ARGS+=	--disable-attr \
 			--disable-vnc
 .endif
 .if ${FLAVOR:U} == tools
-CONFIGURE_ARGS+=	--enable-tools
+CONFIGURE_ARGS+=	--enable-tools --enable-zstd
 .endif
 
 CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
 WITHOUT_CPU_CFLAGS=	yes #to avoid problems with register allocation
 
 PORTDOCS=	.buildinfo _static/* about/* dbus-dbusindex.html devel/* docs \
-		genindex.html index.html interop/* objects.inv search.html \
-		searchindex.js specs/* system/* tools/* user/*
+		genindex.html glossary.html index.html interop/* objects.inv \
+		qapi-qga-index.html qapi-qmp-index.html qapi-qsd-index.html \
+		search.html searchindex.js specs/* system/* tools/* user/*
 
 OPTIONS_DEFINE=			CAPSTONE CDROM_DMA CURL DEBUG DOCS GNUTLS GTK3 \
 				ISCSI JPEG OPENGL PNG SAMBA SASL STATIC_LINK \
@@ -201,13 +219,22 @@ X11_USE=			GNOME=gdkpixbuf \
 X11_CONFIGURE_ENABLE=		sdl
 .if (empty(FLAVOR) || ${FLAVOR:U} == default || ${FLAVOR:U} == nox11) && \
 	(${FLAVOR:U} != tools || ${PKGNAMESUFFIX} != "-guest-agent")
-X86_TARGETS_LIB_DEPENDS_OFF=	libdw.so:devel/elfutils
+X86_TARGETS_LIB_DEPENDS_OFF=	libdw.so:devel/elfutils \
+	liblzo2.so:archivers/lzo2
 X86_TARGETS_USES_OFF=		xorg
 X86_TARGETS_USE_OFF=		XORG=pixman,x11
 X86_TARGETS_CONFIGURE_ON=	--target-list='i386-softmmu i386-bsd-user x86_64-softmmu x86_64-bsd-user'
 .endif
 
 .include <bsd.mport.options.mk>
+
+.if ${FLAVOR:U} == tools || ${FLAVOR:U} == guestagent
+.if ${ARCH} == "i386" || ${ARCH} == "powerpc" || ${ARCH:Marmv?}
+PLIST_SUB+=	NO_I386="@comment "
+.else
+PLIST_SUB+=	NO_I386=""
+.endif
+.endif
 
 .if (empty(FLAVOR) || ${FLAVOR:U} == default || ${FLAVOR:U} == nox11) && \
 	(${FLAVOR:U} != tools || ${PKGNAMESUFFIX} != "-guest-agent")
@@ -228,6 +255,11 @@ PLIST_SUB+=	LINUXBOOT_DMA=""
 
 pre-patch:
 	${LN} -sf ${WRKSRC}/bsd-user/freebsd ${WRKSRC}/bsd-user/midnightbsd
+
+post-patch:
+.if ${FLAVOR:U} == tools
+	@${REINPLACE_CMD} -e '/keymaps/d' ${WRKSRC}/pc-bios/meson.build
+.endif
 
 post-patch-CDROM_DMA-off:
 	@${REINPLACE_CMD} -e '/USE_DMA_CDROM/d' ${WRKSRC}/hw/ide/ide-internal.h
