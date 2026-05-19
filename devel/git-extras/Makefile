@@ -1,5 +1,5 @@
 PORTNAME=	git-extras
-PORTVERSION=	6.4.0
+PORTVERSION=	7.4.0
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org

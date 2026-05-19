@@ -1,5 +1,5 @@
 PORTNAME=	ripgrep
-DISTVERSION=	13.0.0
+DISTVERSION=	15.1.0
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org

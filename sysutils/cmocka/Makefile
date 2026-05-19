@@ -1,5 +1,5 @@
 PORTNAME=	cmocka
-DISTVERSION=	1.1.5
+DISTVERSION=	2.0.2
 CATEGORIES=	sysutils
 MASTER_SITES=	https://cmocka.org/files/1.1/ \
 		FREEBSD_LOCAL/dteske

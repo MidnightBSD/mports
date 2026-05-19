@@ -1,16 +1,17 @@
 # Created by: Sergey Skvortsov <skv@protey.ru>
 
 PORTNAME=	Test-Unit
-PORTVERSION=	0.25
-PORTREVISION=	3
+PORTVERSION=	0.27
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PerlUnit testing framework
+WWW=		https://metacpan.org/release/Test-Unit
 
-LICENSE=	unknown
+LICENSE=	artistic gpl2
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Class-Inner>=0:devel/p5-Class-Inner \

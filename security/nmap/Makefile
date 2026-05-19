@@ -1,5 +1,5 @@
 PORTNAME=	nmap
-DISTVERSION=	7.94
+DISTVERSION=	7.99
 PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	https://nmap.org/dist/ \
@@ -25,6 +25,8 @@ USES=		tar:bzip2 gmake cpe
 # XXX limit results if we do a grep in the sources!
 EXTRACT_AFTER_ARGS=	--exclude ${DISTNAME}/mswin32 \
 			--no-same-owner --no-same-permissions
+
+LIB_DEPENDS=	libpcre2-16.so:devel/pcre2
 
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
@@ -53,10 +55,9 @@ STRIP_FILES+=	nmap nping
 CONFIGURE_ARGS+=--without-localdirs \
 		--without-zenmap \
 		--without-ndiff \
-		--with-libpcre=included \
 		--with-liblua=included \
-		--without-nmap-update
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+		--without-nmap-update \
+		--with-libpcre=${LOCALBASE}
 
 .include <bsd.mport.options.mk>
 

@@ -1,14 +1,14 @@
 PORTNAME=	libxmp
-PORTVERSION=	4.5.0
+PORTVERSION=	4.7.0
 CATEGORIES=	audio
-MASTER_SITES=	SF/xmp/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${PORTNAME}-${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module rendering library for xmp
-WWW=		http://xmp.sourceforge.net/
+WWW=		https://xmp.sourceforge.net/
 
 LICENSE=	lgpl2.1
-LICENSE_FILE=	${WRKSRC}/docs/COPYING.LIB
+LICENSE_FILE=	${WRKSRC}/docs/COPYING
 
 USES=		gmake pathfix
 USE_LDCONFIG=	yes
