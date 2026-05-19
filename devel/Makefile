@@ -215,7 +215,6 @@
     SUBDIR += gob2
     SUBDIR += gobject-introspection
     SUBDIR += goffice
-    SUBDIR += goffice06
     SUBDIR += google-perftools
     SUBDIR += googlemock
     SUBDIR += googletest
