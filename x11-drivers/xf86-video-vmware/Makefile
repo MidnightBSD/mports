@@ -1,6 +1,6 @@
 PORTNAME=	xf86-video-vmware
 PORTVERSION=	13.3.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +14,6 @@ ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	vmware gfx protocol is only supported on x86-compatible architectures
 
 USES=		xorg-cat:driver
-USE_XORG+=	Xi
 
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm \
 		libxatracker.so:graphics/mesa-gallium-xa
