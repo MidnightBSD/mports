@@ -244,7 +244,7 @@ sub api_latest {
          }
 
          $results{$port->{pkgname}} = {
-          package_name => $port->{pkgname},
+          package_name => sprintf("%s-%s.%s", $port->{pkgname}, $port->{version}, $Magus::Config{'PkgExtension'}),
           version => $port->{version}, port => $port->{name},
           makefile_url => "https://github.com/MidnightBSD/mports/blob/master/$port->{name}/Makefile",
           osversion => $port->{osversion},
