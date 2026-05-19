@@ -360,6 +360,7 @@
     SUBDIR += rubygem-ruby-mysql
     SUBDIR += rubygem-sdbm
     SUBDIR += rubygem-seed-fu
+    SUBDIR += rubygem-seed-fu-gitlab
     SUBDIR += rubygem-solid_cable
     SUBDIR += rubygem-solid_cable-rails72
     SUBDIR += rubygem-solid_cache
