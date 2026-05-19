@@ -245,6 +245,7 @@ sub api_latest {
 
          $results{$port->{pkgname}} = {
           version => $port->{version}, port => $port->{name},
+          makefile_url => "https://github.com/MidnightBSD/mports/blob/master/$port->{name}/Makefile",
           osversion => $port->{osversion},
           summary => $port->{description},
           licenses => [ split(' ', $port->{license} // '') ],
