@@ -2,6 +2,7 @@
 
     SUBDIR += R-cran-lmtest
     SUBDIR += R-cran-strucchange
+    SUBDIR += R-cran-timeDate
     SUBDIR += expense
     SUBDIR += libofx
     SUBDIR += prestashop

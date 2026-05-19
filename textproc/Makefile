@@ -321,6 +321,7 @@
     SUBDIR += py-docutils
     SUBDIR += py-elasticsearch
     SUBDIR += py-elementpath
+    SUBDIR += py-enchant
     SUBDIR += py-enrich
     SUBDIR += py-feedparser
     SUBDIR += py-furo
@@ -429,6 +430,7 @@
     SUBDIR += py-sphinxcontrib-towncrier
     SUBDIR += py-sphinxcontrib-websupport
     SUBDIR += py-texttable
+    SUBDIR += py-tiktoken
     SUBDIR += py-tinycss
     SUBDIR += py-tinycss2
     SUBDIR += py-toml

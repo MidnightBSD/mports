@@ -664,6 +664,7 @@
     SUBDIR += p5-Devel-CheckBin
     SUBDIR += p5-Devel-CheckCompiler
     SUBDIR += p5-Devel-CheckLib
+    SUBDIR += p5-Devel-CheckOS
     SUBDIR += p5-Devel-Cycle
     SUBDIR += p5-Devel-Declare
     SUBDIR += p5-Devel-GlobalDestruction
@@ -850,6 +851,7 @@
     SUBDIR += p5-Params-Validate
     SUBDIR += p5-Params-ValidationCompiler
     SUBDIR += p5-parent
+    SUBDIR += p5-prefork
     SUBDIR += p5-Parse-CPAN-Meta
     SUBDIR += p5-Parse-Distname
     SUBDIR += p5-Parse-Method-Signatures
@@ -952,6 +954,7 @@
     SUBDIR += p5-Test-Inter
     SUBDIR += p5-Test-Kwalitee
     SUBDIR += p5-Test-LeakTrace
+    SUBDIR += p5-Test-LectroTest
     SUBDIR += p5-Test-LongString
     SUBDIR += p5-Test-Manifest
     SUBDIR += p5-Test-Memory-Cycle
@@ -1350,6 +1353,7 @@
     SUBDIR += py-libpeas1
     SUBDIR += py-libvirt
     SUBDIR += py-linecache2
+    SUBDIR += py-llvmlite
     SUBDIR += py-littleutils
     SUBDIR += py-lockfile
     SUBDIR += py-logfury
@@ -1378,6 +1382,7 @@
     SUBDIR += py-nose
     SUBDIR += py-nose2
     SUBDIR += py-num2words
+    SUBDIR += py-numba
     SUBDIR += py-objgraph
     SUBDIR += py-olefile
     SUBDIR += py-openapi-schema-validator

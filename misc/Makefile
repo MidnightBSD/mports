@@ -97,6 +97,7 @@
     SUBDIR += py-huggingface-hub
     SUBDIR += py-lazrs
     SUBDIR += py-laspy
+    SUBDIR += py-openai-whisper
     SUBDIR += py-pexpect
     SUBDIR += py-python-utils
     SUBDIR += py-pytorch

@@ -89,6 +89,7 @@ SUBDIR += plasma6-xdg-desktop-portal-kde
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
+SUBDIR += py-send2trash
 SUBDIR += simpleagenda
 SUBDIR += spice-gtk
 SUBDIR += sysctlview
