@@ -2340,6 +2340,7 @@
     SUBDIR += sdl12
     SUBDIR += sdl12-compat
     SUBDIR += sdl20
+    SUBDIR += sdl3
     SUBDIR += serd
     SUBDIR += shiboken6
     SUBDIR += shunit2
