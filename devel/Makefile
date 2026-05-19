@@ -2131,6 +2131,7 @@
     SUBDIR += rubygem-faraday-excon1
     SUBDIR += rubygem-faraday_middleware-aws-sigv4-gitlab
     SUBDIR += rubygem-fast_blank
+    SUBDIR += rubygem-fast_gettext
     SUBDIR += rubygem-fastercsv
     SUBDIR += rubygem-ffaker
     SUBDIR += rubygem-ffi
@@ -2156,6 +2157,7 @@
     SUBDIR += rubygem-gems
     SUBDIR += rubygem-getoptlong
     SUBDIR += rubygem-gettext
+    SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
