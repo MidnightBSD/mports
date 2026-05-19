@@ -2139,6 +2139,7 @@
     SUBDIR += rubygem-fiber-local
     SUBDIR += rubygem-fiber-storage
     SUBDIR += rubygem-fiddle
+    SUBDIR += rubygem-flipper-active_support_cache_store-rails-gitlab
     SUBDIR += rubygem-flipper
     SUBDIR += rubygem-flipper-gitlab
     SUBDIR += rubygem-fog-core
