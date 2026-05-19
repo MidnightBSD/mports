@@ -2085,6 +2085,7 @@
     SUBDIR += rubygem-bindata
     SUBDIR += rubygem-bindata24
     SUBDIR += rubygem-binding_of_caller
+    SUBDIR += rubygem-bootsnap-gitlab
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-buftok0
     SUBDIR += rubygem-builder
