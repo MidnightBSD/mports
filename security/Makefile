@@ -303,6 +303,7 @@
     SUBDIR += rubygem-ruby-rc4
     SUBDIR += rubygem-securerandom
     SUBDIR += rubygem-signet
+    SUBDIR += rubygem-signet-gitlab
     SUBDIR += rubygem-net-scp
     SUBDIR += rubygem-net-scp1
     SUBDIR += rubygem-net-ssh

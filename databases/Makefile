@@ -256,6 +256,7 @@
     SUBDIR += rubygem-bdb1
     SUBDIR += rubygem-bigrecord
     SUBDIR += rubygem-brpoplpush-redis_script
+    SUBDIR += rubygem-click_house-client
     SUBDIR += rubygem-couchrest
     SUBDIR += rubygem-dalli
     SUBDIR += rubygem-data_objects
@@ -325,6 +326,7 @@
     SUBDIR += rubygem-openid-redis-store
     SUBDIR += rubygem-paranoia
     SUBDIR += rubygem-pg
+    SUBDIR += rubygem-pg-gitlab
     SUBDIR += rubygem-pg_array_parser
     SUBDIR += rubygem-pg_query
     SUBDIR += rubygem-pghero
@@ -352,6 +354,7 @@
     SUBDIR += rubygem-redis-gitlab
     SUBDIR += rubygem-redis-cluster-client
     SUBDIR += rubygem-redis-clustering
+    SUBDIR += rubygem-redis-clustering-gitlab
     SUBDIR += rubygem-redis-namespace
     SUBDIR += rubygem-redis-namespace110
     SUBDIR += rubygem-ruby-mysql

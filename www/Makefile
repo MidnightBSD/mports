@@ -415,6 +415,7 @@
     SUBDIR += rubygem-httpclient
     SUBDIR += rubygem-httparty
     SUBDIR += rubygem-jquery-rails
+    SUBDIR += rubygem-json-jwt
     SUBDIR += rubygem-json-jwt-gitlab
     SUBDIR += rubygem-jwt
     SUBDIR += rubygem-jwt2
