@@ -338,13 +338,22 @@ sub mark_ignored {
     my ($class, $dump, $port) = @_;
     my $ignore = $dump->{ignore} // "";
 
-    if ($dump->{is_interactive}) {
+    if ($class->ignore_is_metaport($ignore)) {
+      print "\n\tMetaport.  Marking as internal.";
+      $port->set_result_internal($ignore);
+    } elsif ($dump->{is_interactive}) {
       print "\n\tIGNORE set.  Marking as skipped.";
       $port->set_result_skip("Port is marked as interactive.");
     } elsif (length $ignore) {
       print "\n\tIGNORE set.  Marking as skipped.";
       $port->set_result_skip($ignore);
     }
+}
+
+sub ignore_is_metaport {
+    my ($class, $ignore) = @_;
+
+    return defined($ignore) && $ignore =~ /\bis a metaport; there is nothing to build\b/;
 }
   
 1;
