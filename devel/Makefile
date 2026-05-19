@@ -190,6 +190,7 @@
     SUBDIR += git-sync
     SUBDIR += git-tools
     SUBDIR += gitaly
+    SUBDIR += gitlab-shell
     SUBDIR += gitg
     SUBDIR += github-backup-utils
     SUBDIR += gitolite
