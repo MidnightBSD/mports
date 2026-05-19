@@ -1,14 +1,17 @@
 PORTNAME=	hicolor-icon-theme
 PORTVERSION=	0.18
 CATEGORIES=	misc gnome
-MASTER_SITES=	http://icon-theme.freedesktop.org/releases/
+MASTER_SITES=	https://icon-theme.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-color icon theme shell from the FreeDesktop project
+WWW=		https://www.freedesktop.org/Standards/icon-theme-spec
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tar:xz
-GNU_CONFIGURE=	yes
+USES=		meson tar:xz
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
