@@ -2078,11 +2078,13 @@
     SUBDIR += rubygem-azure_mgmt_web
     SUBDIR += rubygem-azure_sdk
     SUBDIR += rubygem-azure_service_fabric
+    SUBDIR += rubygem-batch-loader
     SUBDIR += rubygem-bin_struct
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
     SUBDIR += rubygem-bindata24
     SUBDIR += rubygem-binding_of_caller
+    SUBDIR += rubygem-bootsnap-gitlab
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-buftok0
     SUBDIR += rubygem-builder
@@ -2099,12 +2101,14 @@
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-console
     SUBDIR += rubygem-cool.io
+    SUBDIR += rubygem-countries
     SUBDIR += rubygem-cri
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-declarative
+    SUBDIR += rubygem-device_detector
     SUBDIR += rubygem-deprecated2
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
@@ -2205,6 +2209,7 @@
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-hoe
     SUBDIR += rubygem-i18n
+    SUBDIR += rubygem-i18n_data
     SUBDIR += rubygem-ice_nine
     SUBDIR += rubygem-io-console
     SUBDIR += rubygem-io-endpoint
@@ -2279,6 +2284,7 @@
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
+    SUBDIR += rubygem-simple_po_parser
     SUBDIR += rubygem-singleton
     SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-snaky_hash-gitlab
