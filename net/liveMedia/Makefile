@@ -1,5 +1,5 @@
 PORTNAME=	liveMedia
-DISTVERSION=	2022.06.16
+DISTVERSION=	2026.01.12
 PORTEPOCH=	2
 CATEGORIES=	net devel
 MASTER_SITES=	http://www.live555.com/liveMedia/public/ \
