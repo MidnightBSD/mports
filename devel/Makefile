@@ -1923,9 +1923,15 @@
     SUBDIR += rubygem-aspectr
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-async
+    SUBDIR += rubygem-async-gitlab
     SUBDIR += rubygem-attic
     SUBDIR += rubygem-attr_required
     SUBDIR += rubygem-aws-eventstream
+    SUBDIR += rubygem-aws-partitions
+    SUBDIR += rubygem-aws-sdk-cloudformation-gitlab
+    SUBDIR += rubygem-aws-sdk-core-gitlab
+    SUBDIR += rubygem-aws-sdk-kms-gitlab
+    SUBDIR += rubygem-aws-sdk-s3-gitlab
     SUBDIR += rubygem-aws-sigv4
     SUBDIR += rubygem-azure-storage
     SUBDIR += rubygem-azure-storage-blob
@@ -2208,6 +2214,7 @@
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-irb
     SUBDIR += rubygem-jbuilder
+    SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-json
     SUBDIR += rubygem-json-gitlab
     SUBDIR += rubygem-json1
