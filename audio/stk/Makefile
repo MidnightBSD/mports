@@ -1,5 +1,5 @@
 PORTNAME=	stk
-PORTVERSION=	4.6.2
+PORTVERSION=	5.0.1
 CATEGORIES=	audio
 MASTER_SITES=	http://ccrma.stanford.edu/software/stk/release/
 

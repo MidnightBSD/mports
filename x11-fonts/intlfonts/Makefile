@@ -1,7 +1,7 @@
 # Created by: Satoshi TAOKA <taoka@FreeBSD.org>
 
 PORTNAME=	intlfonts
-PORTVERSION=	1.2.1
+PORTVERSION=	1.4.2
 CATEGORIES=	x11-fonts
 MASTER_SITES=	GNU
 
