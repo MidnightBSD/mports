@@ -2160,6 +2160,7 @@
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-git
+    SUBDIR += rubygem-gitlab-chronic
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
@@ -2263,6 +2264,7 @@
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-nio4r
     SUBDIR += rubygem-nori
+    SUBDIR += rubygem-numerizer
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-orm_adapter
