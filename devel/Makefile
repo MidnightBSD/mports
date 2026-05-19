@@ -2129,6 +2129,7 @@
     SUBDIR += rubygem-facets
     SUBDIR += rubygem-faraday-cookie_jar
     SUBDIR += rubygem-faraday-excon1
+    SUBDIR += rubygem-faraday_middleware-aws-sigv4-gitlab
     SUBDIR += rubygem-fastercsv
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
