@@ -1,0 +1,263 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<div class="row-fluid">
+  <div class="col-md-offset-1 col-md-10">
+    <section>
+      <h2>Magus API</h2>
+      <p class="lead">Public JSON endpoints for MidnightBSD package build data.</p>
+
+      <h3>Latest Packages</h3>
+      <p>
+        Returns the latest passing packages from the most recent blessed Magus
+        runs, grouped by binary package name.
+      </p>
+
+      <table class="table table-striped table-bordered">
+        <tbody>
+          <tr>
+            <th>URL</th>
+            <td><code><TMPL_VAR NAME="latest_api_url"></code></td>
+          </tr>
+          <tr>
+            <th>Method</th>
+            <td><code>GET</code></td>
+          </tr>
+          <tr>
+            <th>Content Type</th>
+            <td><code>application/json</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Example</h4>
+      <pre><code>curl -s <TMPL_VAR NAME="latest_api_url"></code></pre>
+
+      <h4>Response Fields</h4>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>repository_name</code></td>
+            <td>Repository name.</td>
+          </tr>
+          <tr>
+            <td><code>last_update</code></td>
+            <td>Timestamp of the newest blessed run included in the response.</td>
+          </tr>
+          <tr>
+            <td><code>num_packages</code></td>
+            <td>Number of package entries in <code>packages</code>.</td>
+          </tr>
+          <tr>
+            <td><code>packages</code></td>
+            <td>Object keyed by package stem. Each value describes one package.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.package_name</code></td>
+            <td>Binary package filename, such as <code>p5-GD-2.83.mport</code>.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.port</code></td>
+            <td>Port origin, such as <code>databases/p5-DBI</code>.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.makefile_url</code></td>
+            <td>GitHub URL for the port Makefile.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.version</code></td>
+            <td>Package version string.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.osversion</code></td>
+            <td>MidnightBSD OS version for the run.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.summary</code></td>
+            <td>Port description.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.licenses</code></td>
+            <td>List of license identifiers.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.homepages</code></td>
+            <td>List of upstream homepages.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.categories</code></td>
+            <td>List of port categories.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.subpackages</code></td>
+            <td>Flavor entries when a port has flavored packages.</td>
+          </tr>
+          <tr>
+            <td><code>packages.*.cpe</code></td>
+            <td>CPE identifier when available.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Shortened Response Example</h4>
+      <pre><code>{
+  "repository_name": "MidnightBSD mports",
+  "last_update": "2026-05-19T12:00:00Z",
+  "num_packages": 1,
+  "packages": {
+    "p5-DBI": {
+      "package_name": "p5-DBI-1.647.mport",
+      "port": "databases/p5-DBI",
+      "makefile_url": "https://github.com/MidnightBSD/mports/blob/master/databases/p5-DBI/Makefile",
+      "version": "1.647",
+      "osversion": "4.1",
+      "summary": "Perl5 Database Interface",
+      "licenses": ["ART10", "GPLv1+"],
+      "homepages": ["https://dbi.perl.org/"],
+      "categories": [{"category": "databases"}, {"category": "perl5"}],
+      "subpackages": [],
+      "cpe": null
+    }
+  }
+}</code></pre>
+
+      <h3>Other Endpoints</h3>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Endpoint</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/magus/api/runs</code></td>
+            <td>Lists Magus runs with status, architecture, OS version, creation time, and blessed state.</td>
+          </tr>
+          <tr>
+            <td><code>/magus/api/run-ports-list?run=&lt;id&gt;</code></td>
+            <td>Lists ports for a run. Add <code>&amp;status=&lt;status&gt;</code> to filter by result status.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Magus MCP Server</h3>
+      <p>
+        Magus also provides a public Model Context Protocol server for tools
+        that can call MCP endpoints over Streamable HTTP.
+      </p>
+
+      <table class="table table-striped table-bordered">
+        <tbody>
+          <tr>
+            <th>URL</th>
+            <td><code>https://www.midnightbsd.org/magus/auth/mcp.cgi</code></td>
+          </tr>
+          <tr>
+            <th>Protocol</th>
+            <td><code>JSON-RPC 2.0</code> over MCP Streamable HTTP</td>
+          </tr>
+          <tr>
+            <th>Methods</th>
+            <td><code>GET</code> for the event stream, <code>POST</code> for JSON-RPC messages</td>
+          </tr>
+          <tr>
+            <th>Supported MCP Versions</th>
+            <td><code>2025-06-18</code>, <code>2025-03-26</code>, <code>2024-11-05</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>POST Headers</h4>
+      <pre><code>Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2025-06-18</code></pre>
+
+      <h4>Initialize Example</h4>
+      <pre><code>curl -s https://www.midnightbsd.org/magus/auth/mcp.cgi \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H 'MCP-Protocol-Version: 2025-06-18' \
+  --data '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize",
+    "params": {
+      "protocolVersion": "2025-06-18",
+      "capabilities": {},
+      "clientInfo": {
+        "name": "example-client",
+        "version": "1.0"
+      }
+    }
+  }'</code></pre>
+
+      <h4>List Tools Example</h4>
+      <pre><code>curl -s https://www.midnightbsd.org/magus/auth/mcp.cgi \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H 'MCP-Protocol-Version: 2025-06-18' \
+  --data '{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/list",
+    "params": {}
+  }'</code></pre>
+
+      <h4>Tools</h4>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>lookup_port</code></td>
+            <td>Look up latest build results for a port name or origin across CPU architectures.</td>
+          </tr>
+          <tr>
+            <td><code>get_run_stats</code></td>
+            <td>Get package result counts and metadata for a run, or for the latest blessed runs.</td>
+          </tr>
+          <tr>
+            <td><code>list_runs</code></td>
+            <td>List recent Magus build runs with optional status and architecture filters.</td>
+          </tr>
+          <tr>
+            <td><code>get_port_log</code></td>
+            <td>Retrieve the build log for a Magus port ID.</td>
+          </tr>
+          <tr>
+            <td><code>get_port_details</code></td>
+            <td>Get port metadata, build events, dependencies, and reverse-dependency information.</td>
+          </tr>
+          <tr>
+            <td><code>get_port_cves</code></td>
+            <td>Look up CVE information for a Magus port using its CPE data.</td>
+          </tr>
+          <tr>
+            <td><code>top_blockers</code></td>
+            <td>List failed or skipped ports blocking the most dependent ports.</td>
+          </tr>
+          <tr>
+            <td><code>analyze_build_log</code></td>
+            <td>Analyze a failed port build log with an available LLM model.</td>
+          </tr>
+          <tr>
+            <td><code>list_port_updates</code></td>
+            <td>List ports with new upstream versions detected by portscout.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+
+<TMPL_INCLUDE NAME="footer.tmpl">
