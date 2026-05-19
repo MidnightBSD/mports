@@ -14,7 +14,7 @@ LIB_DEPENDS=	pcre.so:devel/pcre
 
 USES=		gettext gmake gnome tar:bz2
 USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeprint libglade2 \
-		libgsf_gnome libgnomeui ltverhack
+		libgsf_gnome libgnomeui
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
