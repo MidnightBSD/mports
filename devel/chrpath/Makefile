@@ -1,5 +1,5 @@
 PORTNAME=	chrpath
-PORTVERSION=	0.16
+PORTVERSION=	0.18
 CATEGORIES=	devel sysutils
 MASTER_SITES=	DEBIAN_POOL
 DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
@@ -7,12 +7,12 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to modify DT_RPATH in existing ELF binaries
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake
+USES=		autoreconf gmake
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/chrpath share/man/man1/chrpath.1.gz

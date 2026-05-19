@@ -1,5 +1,5 @@
 PORTNAME=	cssutils
-PORTVERSION=	2.9.0
+PORTVERSION=	2.11.1
 PORTEPOCH=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
@@ -11,8 +11,7 @@ WWW=		https://github.com/jaraco/cssutils
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	dual
-LICENSE_FILE_gpl3=	${WRKSRC}/COPYING
-LICENSE_FILE_lgpl3=	${WRKSRC}/COPYING.LESSER
+LICENSE_FILE_lgpl3=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4.1:devel/py-setuptools-scm@${PY_FLAVOR} \

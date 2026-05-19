@@ -1,12 +1,7 @@
 PORTNAME=	hostapd
-PORTVERSION=	2.9
+PORTVERSION=	2.11
 CATEGORIES=	net
 MASTER_SITES=	https://w1.fi/releases/
-
-PATCH_SITES=	https://w1.fi/security/2020-1/
-PATCHFILES=	0001-WPS-UPnP-Do-not-allow-event-subscriptions-with-URLs-.patch:-p1 \
-		0002-WPS-UPnP-Fix-event-message-generation-using-a-long-U.patch:-p1 \
-		0003-WPS-UPnP-Handle-HTTP-initiation-failures-for-events-.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator

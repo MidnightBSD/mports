@@ -1,12 +1,14 @@
 PORTNAME=	font-misc-ethiopic
-PORTVERSION=	1.0.3
-PORTREVISION=	4
+PORTVERSION=	1.0.4
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org miscellaneous Ethiopic font
 
-LICENSE=	unknown
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+NO_ARCH=	yes
 
 USES=		xorg-cat:font
 FONTNAME=	TTF
