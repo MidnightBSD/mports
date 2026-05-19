@@ -2079,6 +2079,7 @@
     SUBDIR += rubygem-azure_mgmt_web
     SUBDIR += rubygem-azure_sdk
     SUBDIR += rubygem-azure_service_fabric
+    SUBDIR += rubygem-batch-loader
     SUBDIR += rubygem-bin_struct
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
