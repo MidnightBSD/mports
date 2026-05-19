@@ -2159,6 +2159,7 @@
     SUBDIR += rubygem-gettext
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gibbler
+    SUBDIR += rubygem-git
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection

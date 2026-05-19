@@ -495,6 +495,7 @@
     SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rails-html-sanitizer-gitlab
     SUBDIR += rubygem-raabro
+    SUBDIR += rubygem-rchardet
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-rdtool
     SUBDIR += rubygem-representable
