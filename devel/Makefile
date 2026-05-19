@@ -2150,6 +2150,7 @@
     SUBDIR += rubygem-formatador
     SUBDIR += rubygem-forwardable
     SUBDIR += rubygem-fugit
+    SUBDIR += rubygem-fugit-gitlab
     SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-gapic-common-gitlab
     SUBDIR += rubygem-gems
