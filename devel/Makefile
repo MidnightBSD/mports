@@ -2114,6 +2114,7 @@
     SUBDIR += rubygem-deprecated2
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-drb
+    SUBDIR += rubygem-drb-gitlab
     SUBDIR += rubygem-dry-inflector
     SUBDIR += rubygem-drydock
     SUBDIR += rubygem-equalizer
