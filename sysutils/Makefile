@@ -360,6 +360,7 @@
     SUBDIR += wmbsdbatt
     SUBDIR += wuzzah
     SUBDIR += xe
+    SUBDIR += xen-guest-tools
     SUBDIR += xen-tools
     SUBDIR += xfburn
     SUBDIR += xfce4-battery-plugin
