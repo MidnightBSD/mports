@@ -509,6 +509,7 @@
     SUBDIR += rubygem-sass-rails-rails4
     SUBDIR += rubygem-sassc
     SUBDIR += rubygem-sassc-rails-rails4
+    SUBDIR += rubygem-sixarm_ruby_unaccent
     SUBDIR += rubygem-text
     SUBDIR += rubygem-unf
     SUBDIR += rubygem-xml-simple

@@ -2102,6 +2102,7 @@
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-console
     SUBDIR += rubygem-cool.io
+    SUBDIR += rubygem-countries
     SUBDIR += rubygem-cri
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-daemons
@@ -2208,6 +2209,7 @@
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-hoe
     SUBDIR += rubygem-i18n
+    SUBDIR += rubygem-i18n_data
     SUBDIR += rubygem-ice_nine
     SUBDIR += rubygem-io-console
     SUBDIR += rubygem-io-endpoint
@@ -2282,6 +2284,7 @@
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-sigdump
+    SUBDIR += rubygem-simple_po_parser
     SUBDIR += rubygem-singleton
     SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-snaky_hash-gitlab
