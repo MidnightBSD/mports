@@ -22,6 +22,7 @@
     SUBDIR += hdf5-110
     SUBDIR += libaec
     SUBDIR += libkml
+    SUBDIR += linearelasticity
     SUBDIR += mmg
     SUBDIR += netcdf
     SUBDIR += openbabel

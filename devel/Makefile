@@ -249,6 +249,7 @@
     SUBDIR += imake
     SUBDIR += inih
     SUBDIR += ipython
+    SUBDIR += iscd-commons
     SUBDIR += isl
     SUBDIR += jam
     SUBDIR += jansson
@@ -2237,6 +2238,7 @@
     SUBDIR += rubygem-nori
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
+    SUBDIR += rubygem-os
     SUBDIR += rubygem-ostruct
     SUBDIR += rubygem-parser
     SUBDIR += rubygem-pathname
