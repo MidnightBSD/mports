@@ -4,6 +4,7 @@
     SUBDIR += LPRng
     SUBDIR += R-cran-processx
     SUBDIR += R-cran-ps
+    SUBDIR += R-cran-xopen
     SUBDIR += accounts-qml-module
     SUBDIR += accountsservice
     SUBDIR += alloy
