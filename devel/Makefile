@@ -1918,6 +1918,7 @@
     SUBDIR += rubygem-aliyun-sdk-gitlab
     SUBDIR += rubygem-annoy
     SUBDIR += rubygem-arrayfields
+    SUBDIR += rubygem-arr-pm
     SUBDIR += rubygem-ascii85
     SUBDIR += rubygem-aspectr
     SUBDIR += rubygem-ast
