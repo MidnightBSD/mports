@@ -191,6 +191,8 @@ Patch file conventions:
 
 Ports must work on stable/4.0. Support for stable/3.2 is maintained where practical. The master branch (4.1) tracks ongoing development and may have additional capabilities.
 
+MidnightBSD only supports i386 (x86) and amd64 (x86_64) architectures.  We plan to add support for various ARM based architectures and riscv.  Keep patches for ARM platforms, riscv, and Intel/AMD CPUs.  Do not keep sparc64 or powerpc patches.  For LLVM, in addition to the listed architectures, keep mips, web assembly and any GPU specific architectures also. 
+
 ## Quarterly snapshot branches
 
 Quarterly snapshot branches are named `YYYYQn` where `n` is 1–4 (e.g., `2026Q2` for April–June 2026). They provide stable snapshots of the ports tree for users who prefer infrequent, tested updates over rolling master.
