@@ -2131,6 +2131,7 @@
     SUBDIR += rubygem-faraday_middleware-aws-sigv4-gitlab
     SUBDIR += rubygem-fast_blank
     SUBDIR += rubygem-fastercsv
+    SUBDIR += rubygem-ffaker
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-fiber-annotation
