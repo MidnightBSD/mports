@@ -189,7 +189,7 @@ sub api_latest {
     SELECT DISTINCT ON (arch) id, created
       FROM runs
      WHERE status = 'complete'
-       AND blessed = 1
+       AND blessed
      ORDER BY arch, created DESC, osversion DESC
   });
   $runs_sth->execute;
