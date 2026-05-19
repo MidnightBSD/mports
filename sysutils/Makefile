@@ -12,7 +12,6 @@
     SUBDIR += ansible
     SUBDIR += apachetop
     SUBDIR += atf-fvp
-    SUBDIR += atf-master
     SUBDIR += atf-rk3328
     SUBDIR += atf-rk3399
     SUBDIR += atf-sun50i_a64
@@ -295,7 +294,6 @@
     SUBDIR += u-boot-cubox-hummingboard
     SUBDIR += u-boot-firefly-rk3399
     SUBDIR += u-boot-imx-serial-loader
-    SUBDIR += u-boot-master
     SUBDIR += u-boot-nanopi-a64
     SUBDIR += u-boot-nanopi-m1plus
     SUBDIR += u-boot-nanopi-neo
