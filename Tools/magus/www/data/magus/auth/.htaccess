@@ -1,8 +1,14 @@
+<Limit OPTIONS>
+    Require all granted
+</Limit>
+
+<LimitExcept OPTIONS>
 AuthType Basic
 AuthName "Authorization Required"
 AuthBasicProvider file
 AuthUserFile /home/mbsd/magus/magus-passwd
 Require valid-user
+</LimitExcept>
 
 <Files "get_cves.cgi">
     Require all granted
