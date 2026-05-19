@@ -1,7 +1,7 @@
 # Created by: brix@FreeBSD.org
 
 PORTNAME=	Module-Runtime
-PORTVERSION=	0.016
+PORTVERSION=	0.018
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
