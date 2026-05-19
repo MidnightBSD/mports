@@ -190,6 +190,7 @@
     SUBDIR += git-sync
     SUBDIR += git-tools
     SUBDIR += gitaly
+    SUBDIR += gitlab-shell
     SUBDIR += gitg
     SUBDIR += github-backup-utils
     SUBDIR += gitolite
@@ -249,6 +250,7 @@
     SUBDIR += imake
     SUBDIR += inih
     SUBDIR += ipython
+    SUBDIR += iscd-commons
     SUBDIR += isl
     SUBDIR += jam
     SUBDIR += jansson
@@ -1911,10 +1913,12 @@
     SUBDIR += rubygem-activesupport72
     SUBDIR += rubygem-activesupport80
     SUBDIR += rubygem-activesupport81
+    SUBDIR += rubygem-akismet
     SUBDIR += rubygem-aliyun-sdk
     SUBDIR += rubygem-aliyun-sdk-gitlab
     SUBDIR += rubygem-annoy
     SUBDIR += rubygem-arrayfields
+    SUBDIR += rubygem-arr-pm
     SUBDIR += rubygem-ascii85
     SUBDIR += rubygem-aspectr
     SUBDIR += rubygem-ast
@@ -2081,6 +2085,7 @@
     SUBDIR += rubygem-caesars
     SUBDIR += rubygem-cairo-gobject
     SUBDIR += rubygem-CFPropertyList
+    SUBDIR += rubygem-CFPropertyList-gitlab
     SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-clio
     SUBDIR += rubygem-coffee-rails41
@@ -2237,6 +2242,7 @@
     SUBDIR += rubygem-nori
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
+    SUBDIR += rubygem-os
     SUBDIR += rubygem-ostruct
     SUBDIR += rubygem-parser
     SUBDIR += rubygem-pathname
@@ -2275,6 +2281,7 @@
     SUBDIR += rubygem-sprockets-rails-rails4
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-state_machines
+    SUBDIR += rubygem-state_machines-gitlab
     SUBDIR += rubygem-storable
     SUBDIR += rubygem-stringio
     SUBDIR += rubygem-stringex
