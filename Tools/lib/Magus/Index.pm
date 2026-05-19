@@ -237,6 +237,7 @@ sub sync {
   
   PORT: while (my ($id, $depends) = each %depends) {
     my $port = Magus::Port->retrieve($id) || die "Got an invalid port in the depends list! ($id)";
+    my %seen_depends;
 
     foreach my $item (@$depends) {
       my $fl = $item->{flavor};
@@ -260,6 +261,16 @@ sub sync {
         $port->set_result_fail(qq(depend "$item->{name}" with flavor: "$fl" does not exist.));
         next PORT;
       }
+
+      my $depend_key = join(":", $depend->id, $item->{type});
+      if ($seen_depends{$depend_key}) {
+        warn "\tBad depends for $port: duplicate $item->{type} dependency "
+          . "$item->{name}" . (length $fl ? "\@$fl" : "")
+          . " resolves to " . $depend->name . " with flavor \""
+          . ($depend->flavor // "") . "\". Skipping duplicate.\n";
+        next;
+      }
+      $seen_depends{$depend_key} = 1;
       
       $port->add_to_depends({ 
         dependency => $depend,
