@@ -371,7 +371,9 @@
     SUBDIR += rubygem-sqlite3-ruby
     SUBDIR += rubygem-sqlite31
     SUBDIR += rubygem-state_machines-activemodel
+    SUBDIR += rubygem-state_machines-activemodel-gitlab
     SUBDIR += rubygem-state_machines-activerecord
+    SUBDIR += rubygem-state_machines-activerecord-gitlab
     SUBDIR += rubygem-state_machines-activerecord08
     SUBDIR += rubygem-tarantool
     SUBDIR += rubygem-trilogy

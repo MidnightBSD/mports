@@ -2277,6 +2277,7 @@
     SUBDIR += rubygem-sprockets-rails-rails4
     SUBDIR += rubygem-sprockets3
     SUBDIR += rubygem-state_machines
+    SUBDIR += rubygem-state_machines-gitlab
     SUBDIR += rubygem-storable
     SUBDIR += rubygem-stringio
     SUBDIR += rubygem-stringex
