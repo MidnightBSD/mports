@@ -14,7 +14,8 @@ USE_RC_SUBR=	sndiod
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--default-dev="rsnd/default" --mandir=${PREFIX}/man \
-		--prefix=${PREFIX}
+		--prefix=${PREFIX} \
+		--pkgconfdir=${PREFIX}/libdata/pkgconfig
 
 # Parallel build leads to problems, but sndio is very quick to compile
 # as is so not worth fixing
@@ -31,6 +32,6 @@ post-patch:
 post-install:
 	cd ${PREFIX}/bin && ${STRIP_CMD} \
 		aucat midicat sndioctl sndiod
-	${STRIP_CMD} ${PREFIX}/lib/libsndio.so.7.2
+	${STRIP_CMD} ${PREFIX}/lib/libsndio.so.7.3
 
 .include <bsd.port.mk>
