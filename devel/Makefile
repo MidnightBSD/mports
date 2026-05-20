@@ -2168,6 +2168,7 @@
     SUBDIR += rubygem-gitlab
     SUBDIR += rubygem-gitlab-chronic
     SUBDIR += rubygem-gitlab-dangerfiles
+    SUBDIR += rubygem-gitlab-experiment
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
@@ -2299,6 +2300,7 @@
     SUBDIR += rubygem-reline
     SUBDIR += rubygem-redis-store
     SUBDIR += rubygem-redis-store-gitlab
+    SUBDIR += rubygem-request_store
     SUBDIR += rubygem-retriable
     SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rspec
