@@ -2168,6 +2168,7 @@
     SUBDIR += rubygem-gitlab-chronic
     SUBDIR += rubygem-gitlab-dangerfiles
     SUBDIR += rubygem-gitlab-experiment
+    SUBDIR += rubygem-gitlab-labkit
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
@@ -2219,9 +2220,11 @@
     SUBDIR += rubygem-googleapis-common-protos-gitlab
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-googleapis-common-protos-types-gitlab
+    SUBDIR += rubygem-jaeger-client
     SUBDIR += rubygem-graphql
     SUBDIR += rubygem-grpc-google-iam-v1
     SUBDIR += rubygem-gyoku
+    SUBDIR += rubygem-hana
     SUBDIR += rubygem-hashery
     SUBDIR += rubygem-hashie
     SUBDIR += rubygem-hashie-gitlab
@@ -2244,6 +2247,7 @@
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
+    SUBDIR += rubygem-json_schemer
     SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
@@ -2276,6 +2280,10 @@
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-open4
+    SUBDIR += rubygem-opentelemetry-exporter-otlp-gitlab
+    SUBDIR += rubygem-opentelemetry-instrumentation-all-gitlab
+    SUBDIR += rubygem-opentelemetry-sdk-gitlab
+    SUBDIR += rubygem-opentracing
     SUBDIR += rubygem-orm_adapter
     SUBDIR += rubygem-os
     SUBDIR += rubygem-ostruct
@@ -2286,6 +2294,7 @@
     SUBDIR += rubygem-polyglot
     SUBDIR += rubygem-pp
     SUBDIR += rubygem-prettyprint
+    SUBDIR += rubygem-prometheus-client-mmap
     SUBDIR += rubygem-pstore
     SUBDIR += rubygem-racc
     SUBDIR += rubygem-rails-deprecated_sanitizer
@@ -2332,6 +2341,7 @@
     SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-thor
     SUBDIR += rubygem-thor0
+    SUBDIR += rubygem-thrift
     SUBDIR += rubygem-thread_safe
     SUBDIR += rubygem-tilt
     SUBDIR += rubygem-time
