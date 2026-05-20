@@ -65,6 +65,7 @@
     SUBDIR += rubygem-google-apis-dns_v1
     SUBDIR += rubygem-google-apis-dns_v1-gitlab
     SUBDIR += rubygem-public_suffix
+    SUBDIR += rubygem-simpleidn02
     SUBDIR += samba-nsupdate
     SUBDIR += sleuth
     SUBDIR += udns
