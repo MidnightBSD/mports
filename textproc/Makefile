@@ -501,6 +501,7 @@
     SUBDIR += rubygem-rchardet
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-rdtool
+    SUBDIR += rubygem-regexp_parser
     SUBDIR += rubygem-representable
     SUBDIR += rubygem-rexml
     SUBDIR += rubygem-rouge-gitlab
