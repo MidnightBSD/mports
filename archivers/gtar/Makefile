@@ -3,21 +3,20 @@ PORTVERSION=	1.35
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	GNU
 MASTER_SITE_SUBDIR=	tar
-DISTFILES=	tar-${PORTVERSION}.tar.xz
+DISTNAME=	tar-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU version of the traditional tape archiver
+WWW=		https://www.gnu.org/software/tar/
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-WRKSRC=		${WRKDIR}/tar-${PORTVERSION}
+USES=		charsetfix cpe iconv:${STATIC_ARGS} localbase tar:xz
 
 # only force dependencies for compressors that have a single-letter option
 #RUN_DEPENDS=	# see below
 
-INFO=		tar
-
-USES=		charsetfix cpe iconv:${STATIC_ARGS} localbase tar:xz
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
@@ -28,6 +27,8 @@ CONFIGURE_ENV=	DEFAULT_ARCHIVE=/dev/sa0 \
 		DEFAULT_RMT_COMMAND=/etc/rmt
 # supply result to skip a test that will abort configure if run as root
 CONFIGURE_ENV+=	gl_cv_func_mknod_works=yes
+
+INFO=		tar
 
 OPTIONS_DEFINE=	NLS STATIC
 OPTIONS_SUB=	yes

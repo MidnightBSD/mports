@@ -16,6 +16,7 @@ SUBDIR += linux_base-rl9
 SUBDIR += mastergear
 SUBDIR += open-vm-tools
 SUBDIR += pcem
+SUBDIR += py-qemu.qmp
 SUBDIR += qemu
 SUBDIR += qemu7
 SUBDIR += qemu8

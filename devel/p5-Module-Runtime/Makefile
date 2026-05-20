@@ -8,12 +8,14 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Runtime module handling
+WWW=		https://metacpan.org/release/Module-Runtime
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-NO_ARCH=	yes
-USE_PERL5=	modbuild
 USES=		perl5
+USE_PERL5=	configure
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
