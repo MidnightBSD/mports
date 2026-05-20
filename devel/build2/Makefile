@@ -36,7 +36,7 @@ pre-build:
 do-build:
 # phase 2
 	@cd ${WRKSRC}/build2 && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} \
-		./build2/b-boot \
+		./b/b-boot \
 		config.cxx=${CXX} \
 		config.cxx.coptions="${CXXFLAGS}" \
 		config.cxx.loptions="${LDFLAGS} -s" \
