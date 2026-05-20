@@ -2286,6 +2286,7 @@
     SUBDIR += rubygem-opentelemetry-instrumentation-active_model_serializers-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-active_support-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-all-gitlab
+    SUBDIR += rubygem-opentelemetry-instrumentation-anthropic-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-base-gitlab
     SUBDIR += rubygem-opentelemetry-registry-gitlab
     SUBDIR += rubygem-opentelemetry-semantic_conventions-gitlab
