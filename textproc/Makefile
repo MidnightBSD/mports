@@ -457,6 +457,7 @@
     SUBDIR += rubygem-case_transform
     SUBDIR += rubygem-chef-gyoku
     SUBDIR += rubygem-coderay
+    SUBDIR += rubygem-colored2
     SUBDIR += rubygem-colorator
     SUBDIR += rubygem-css_parser
     SUBDIR += rubygem-diff-lcs
@@ -468,7 +469,9 @@
     SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-inifile
     SUBDIR += rubygem-kramdown
+    SUBDIR += rubygem-kramdown-gitlab
     SUBDIR += rubygem-kramdown-parser-gfm
+    SUBDIR += rubygem-kramdown-parser-gfm-gitlab
     SUBDIR += rubygem-loofah
     SUBDIR += rubygem-loofah-gitlab
     SUBDIR += rubygem-loofah222
@@ -495,6 +498,7 @@
     SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rails-html-sanitizer-gitlab
     SUBDIR += rubygem-raabro
+    SUBDIR += rubygem-rchardet
     SUBDIR += rubygem-rdiscount
     SUBDIR += rubygem-rdtool
     SUBDIR += rubygem-representable
@@ -510,6 +514,7 @@
     SUBDIR += rubygem-sassc
     SUBDIR += rubygem-sassc-rails-rails4
     SUBDIR += rubygem-sixarm_ruby_unaccent
+    SUBDIR += rubygem-terminal-table
     SUBDIR += rubygem-text
     SUBDIR += rubygem-unf
     SUBDIR += rubygem-xml-simple
