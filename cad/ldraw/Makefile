@@ -20,14 +20,14 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/ldraw
+	@${MKDIR} ${PREFIX}/share/ldraw
 	cd ${WRKDIR}/ldraw && \
-		${COPYTREE_SHARE} p ${STAGEDIR}${PREFIX}/share/ldraw && \
-		${COPYTREE_SHARE} parts ${STAGEDIR}${PREFIX}/share/ldraw
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/LDConfig.ldr ${STAGEDIR}${PREFIX}/share/ldraw
+		${COPYTREE_SHARE} p ${PREFIX}/share/ldraw && \
+		${COPYTREE_SHARE} parts ${PREFIX}/share/ldraw
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/LDConfig.ldr ${PREFIX}/share/ldraw
 
 post-install: # autoplist: ~16k files all under share/ldraw
-	@cd ${STAGEDIR}${PREFIX} && \
+	@cd ${PREFIX} && \
 		${FIND} * -type f >> ${TMPPLIST}
 
 .include <bsd.port.mk>
