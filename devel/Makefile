@@ -2224,6 +2224,7 @@
     SUBDIR += rubygem-graphql
     SUBDIR += rubygem-grpc-google-iam-v1
     SUBDIR += rubygem-gyoku
+    SUBDIR += rubygem-hana
     SUBDIR += rubygem-hashery
     SUBDIR += rubygem-hashie
     SUBDIR += rubygem-hashie-gitlab
