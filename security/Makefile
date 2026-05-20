@@ -181,6 +181,7 @@
     SUBDIR += p5-Crypt-SMIME
     SUBDIR += p5-Crypt-SSLeay
     SUBDIR += p5-Crypt-SmbHash
+    SUBDIR += p5-Crypt-URandom
     SUBDIR += p5-CryptX
     SUBDIR += p5-Data-Entropy
     SUBDIR += p5-Data-Password
