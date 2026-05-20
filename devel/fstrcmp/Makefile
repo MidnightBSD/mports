@@ -18,6 +18,6 @@ GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libfstrcmp.so
+	${STRIP_CMD} ${PREFIX}/lib/libfstrcmp.so
 
 .include <bsd.port.mk>
