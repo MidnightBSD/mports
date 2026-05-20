@@ -1,6 +1,7 @@
     COMMENT = Monetary, financial and related applications
 
     SUBDIR += R-cran-lmtest
+    SUBDIR += R-cran-plm
     SUBDIR += R-cran-strucchange
     SUBDIR += R-cran-timeDate
     SUBDIR += expense
