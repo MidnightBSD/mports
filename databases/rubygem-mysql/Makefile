@@ -1,6 +1,6 @@
 PORTNAME=	mysql
 PORTVERSION=	2.9.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
@@ -12,6 +12,6 @@ LICENSE=	gpl2 ruby
 LICENSE_COMB=	dual
 
 USES=		gem mysql
-IGNORE_WITH_MYSQL=	80 81
+IGNORE_WITH_MYSQL=	80 81 84
 
 .include <bsd.port.mk>

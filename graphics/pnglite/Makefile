@@ -24,8 +24,9 @@ do-build:
 	cd ${WRKSRC} && ${CC} ${CFLAGS} ${LDFLAGS} -shared pnglite.c -o libpnglite.so.${SOVERSION}
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/pnglite.h ${STAGEDIR}${PREFIX}/include
-	${INSTALL_LIB} ${WRKSRC}/libpnglite.so.${SOVERSION} ${STAGEDIR}${PREFIX}/lib
-	${LN} -s libpnglite.so.${SOVERSION} ${STAGEDIR}${PREFIX}/lib/libpnglite.so
+	@${MKDIR} ${PREFIX}/include ${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/pnglite.h ${PREFIX}/include
+	${INSTALL_LIB} ${WRKSRC}/libpnglite.so.${SOVERSION} ${PREFIX}/lib
+	${LN} -s libpnglite.so.${SOVERSION} ${PREFIX}/lib/libpnglite.so
 
 .include <bsd.port.mk>

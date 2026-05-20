@@ -8,19 +8,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source disk encryption software based on Truecrypt
 WWW=		https://www.veracrypt.fr/
 
-BUILD_DEPENDS=	yasm:devel/yasm
-RUN_DEPENDS=	sudo:security/sudo
-LIB_DEPENDS=	libpcsclite.so:devel/pcsc-lite \
-		libwx_gtk3u_adv-3.0.so:x11-toolkits/wxgtk30 \
-		libwx_gtk3u_core-3.0.so:x11-toolkits/wxgtk30 \
-		libwx_baseu-3.0.so:x11-toolkits/wxgtk30
-
 LICENSE=	Apache-2.0 TrueCrypt-3.0
 LICENSE_COMB=	multi
 LICENSE_NAME_TrueCrypt-3.0=	TrueCrypt License 3.0
 LICENSE_FILE_TrueCrypt-3.0=	${WRKSRC}/License.txt
-LICENSE_PERMS_TrueCrypt-3.0=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_FILE_Apache-2.0=	${WRKSRC}/License.txt
+LICENSE_PERMS_TrueCrypt-3.0=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+BUILD_DEPENDS=	yasm:devel/yasm
+RUN_DEPENDS=	sudo:security/sudo
+LIB_DEPENDS=	libpcsclite.so:devel/pcsc-lite
 
 USES=		compiler:c++11-lang cpe desktop-file-utils fuse gmake iconv pkgconfig tar:bz2
 CPE_VENDOR=	idrix

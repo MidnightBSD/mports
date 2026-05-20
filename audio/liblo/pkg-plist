@@ -1,5 +1,6 @@
 bin/oscdump
 bin/oscsend
+bin/oscsendfile
 include/lo/lo.h
 include/lo/lo_cpp.h
 include/lo/lo_endian.h
@@ -12,7 +13,7 @@ include/lo/lo_throw.h
 include/lo/lo_types.h
 lib/liblo.so
 lib/liblo.so.7
-lib/liblo.so.7.2.0
+lib/liblo.so.7.6.1
 libdata/pkgconfig/liblo.pc
 %%DOXYGEN%%man/man3/liblo.3.gz
 %%DOXYGEN%%man/man3/liblolowlevel.3.gz

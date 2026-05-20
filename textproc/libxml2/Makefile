@@ -24,7 +24,7 @@ CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/share/ \
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
-OPTIONS_DEFINE=	DOCS ICU READLINE STATIC THREAD_ALLOC
+OPTIONS_DEFINE=	ICU READLINE STATIC THREAD_ALLOC
 OPTIONS_GROUP=	LEGACY
 OPTIONS_GROUP_LEGACY=	HTTP LZMA ZLIB
 OPTIONS_DEFAULT=	HTTP LZMA READLINE STATIC ZLIB
@@ -47,15 +47,12 @@ THREAD_ALLOC_CONFIGURE_WITH=	thread-alloc
 ZLIB_CONFIGURE_WITH=		zlib
 
 post-install:
-.if !defined(LIBXML2_SLAVE)
-# Documentation should be in DOCSDIR
-	@${MV} ${PREFIX}/share/gtk-doc/html/libxml2 \
-		${DOCSDIR}/devhelp
-	@${RM} -r ${PREFIX}/share/gtk-doc
-# Install remaining documentation that's not connected to autotools
-	${INSTALL_MAN} ${WRKSRC}/doc/*.html ${DOCSDIR}
-.else
+.if defined(LIBXML2_SLAVE)
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_LIBDIR}/site-packages/libxml2mod${PYTHON_SOABI}.so
+.else
+	@${MKDIR} ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/dist-doc/*.1 ${PREFIX}/share/man/man1
 .endif
 
 .include <bsd.port.mk>

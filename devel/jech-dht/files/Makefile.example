@@ -2,7 +2,7 @@ PROG=	dht-example
 MAN=
 
 LDADD=	-L. -ldht -lcrypt -lmd
-BINDIR=	${STAGEDIR}${PREFIX}/bin
+BINDIR=	${PREFIX}/bin
 
 WARNS=	3
 

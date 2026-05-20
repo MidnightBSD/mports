@@ -47,6 +47,7 @@
     SUBDIR += geocode-glib2
     SUBDIR += geoipupdate
     SUBDIR += gfbgraph
+    SUBDIR += gitlab-agent
     SUBDIR += gitup
     SUBDIR += glib-networking
     SUBDIR += gnet2
