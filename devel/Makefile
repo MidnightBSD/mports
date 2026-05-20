@@ -2288,6 +2288,7 @@
     SUBDIR += rubygem-opentelemetry-instrumentation-all-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-anthropic-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-aws_lambda-gitlab
+    SUBDIR += rubygem-opentelemetry-instrumentation-aws_sdk-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-base-gitlab
     SUBDIR += rubygem-opentelemetry-registry-gitlab
     SUBDIR += rubygem-opentelemetry-semantic_conventions-gitlab
