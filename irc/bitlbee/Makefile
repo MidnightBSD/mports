@@ -14,6 +14,7 @@ BUILD_DEPENDS=	xmlto:textproc/xmlto \
 		xsltproc:textproc/libxslt
 
 USES=		gettext-runtime gmake gnome pkgconfig cpe
+CPE_VENDOR=	bitlbee
 
 SUB_FILES=	pkg-message
 PORTDOCS=	AUTHORS CHANGES CREDITS FAQ README

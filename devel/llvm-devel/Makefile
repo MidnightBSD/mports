@@ -20,6 +20,7 @@ BUILD_DEPENDS=
 
 USES=		cmake compiler:c++11-lib libedit perl5 cpe \
 		shebangfix
+CPE_VENDOR=	llvm
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
 _USES_PYTHON?=	python:build:3.7+
 USES+=		${_USES_PYTHON}

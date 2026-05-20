@@ -9,6 +9,7 @@ WWW=		https://pandoc.org
 LICENSE=	gpl2
 
 USES=		cabal cpe
+CPE_VENDOR=	pandoc
 
 OPTIONS_DEFINE=		EMBED_DATA
 

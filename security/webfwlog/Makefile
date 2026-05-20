@@ -27,6 +27,7 @@ MYSQLIPV6_CONFIGURE_ENABLE=	mysql-ipv6
 
 USE_PHP=	session
 USES=		php:web cpe
+CPE_VENDOR=	webfwlog
 
 PORTDOCS=	AUTHORS COPYING CREDITS ChangeLog INSTALL \
 		README ReleaseNotes

@@ -10,6 +10,7 @@ COMMENT=	Command-line player for MPEG Layer 1, 2, and 3 audio files
 LICENSE=	lgpl2.1
 
 USES=		tar:bzip2 libtool localbase pathfix cpe
+CPE_VENDOR=	mpg123
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes

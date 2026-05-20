@@ -13,6 +13,7 @@ LICENSE=	gpl3
 SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7 cpe
+CPE_VENDOR=	pulseaudio
 USE_LDCONFIG=	yes
 USE_LINUX=	dbuslibs libasyncns libsndfile systemd-libs tcp_wrappers-libs \
 		xorglibs

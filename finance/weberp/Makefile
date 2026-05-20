@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/doc/LICENSE.txt
 PORTSCOUT=	skipv:3.12
 
 USES=		gettext php shebangfix zip cpe
+CPE_VENDOR=	weberp
 SHEBANG_FILES=	report_runner.php
 USE_PHP=	mysqli gettext
 WRKSRC=		${WRKDIR}/webERP
