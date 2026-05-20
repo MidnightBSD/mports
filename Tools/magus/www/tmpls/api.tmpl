@@ -220,7 +220,7 @@ MCP-Protocol-Version: 2025-06-18</code></pre>
         <tbody>
           <tr>
             <td><code>lookup_port</code></td>
-            <td>Look up latest build results for a port name or origin across CPU architectures.</td>
+            <td>Look up latest complete blessed and unblessed build results for a port name or origin across CPU architectures.</td>
           </tr>
           <tr>
             <td><code>get_run_stats</code></td>
@@ -235,12 +235,44 @@ MCP-Protocol-Version: 2025-06-18</code></pre>
             <td>Retrieve the build log for a Magus port ID.</td>
           </tr>
           <tr>
+            <td><code>get_log_excerpt</code></td>
+            <td>Retrieve a focused build log excerpt by literal pattern or log tail size.</td>
+          </tr>
+          <tr>
             <td><code>get_port_details</code></td>
             <td>Get port metadata, build events, dependencies, and reverse-dependency information.</td>
           </tr>
           <tr>
+            <td><code>get_port_events</code></td>
+            <td>List structured build events for a port with optional type, phase, and machine filters.</td>
+          </tr>
+          <tr>
+            <td><code>get_dependency_blockers</code></td>
+            <td>Walk a port dependency graph and show failed or skipped dependencies likely blocking it.</td>
+          </tr>
+          <tr>
+            <td><code>get_distfiles</code></td>
+            <td>Show recorded distfiles, restricted distfiles, and master sites for a port.</td>
+          </tr>
+          <tr>
             <td><code>get_port_cves</code></td>
             <td>Look up CVE information for a Magus port using its CPE data.</td>
+          </tr>
+          <tr>
+            <td><code>list_run_ports</code></td>
+            <td>List ports in a run with filters for status, origin, category, package name, and flavor.</td>
+          </tr>
+          <tr>
+            <td><code>search_ports</code></td>
+            <td>Search ports across runs with filters for name, status, architecture, OS version, flavor, and run.</td>
+          </tr>
+          <tr>
+            <td><code>compare_port_runs</code></td>
+            <td>Compare a port across two runs and show status, version, and package differences.</td>
+          </tr>
+          <tr>
+            <td><code>get_machine_events</code></td>
+            <td>List recent build events for a machine in a run.</td>
           </tr>
           <tr>
             <td><code>top_blockers</code></td>
