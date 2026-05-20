@@ -10,6 +10,8 @@ COMMENT=	Libraries for Avahi (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	gpl2
 
+SKIP_FAKE_ALL=  yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	dbuslibs
