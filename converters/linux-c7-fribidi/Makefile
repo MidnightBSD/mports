@@ -11,7 +11,8 @@ LICENSE=	lgpl2.1
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	gnu
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

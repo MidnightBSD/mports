@@ -16,7 +16,8 @@ FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	liblz4.so:archivers/liblz4
 
-USES=		gmake localbase:ldflags tar:zst
+USES=		gmake localbase:ldflags tar:zst cpe
+CPE_VENDOR=	facebook
 
 ALL_TARGET=	default
 BINARY_ALIAS=	gmd5sum=md5sum

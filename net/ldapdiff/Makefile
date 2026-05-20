@@ -10,7 +10,8 @@ COMMENT=	Utility for patching LDAP directories using LDIF files
 
 LICENSE=	gpl2
 
-USES=		iconv tar:tgz ldap
+USES=		iconv tar:tgz ldap cpe
+CPE_VENDOR=	ldapdiff
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${LOCALBASE} \
 		--with-ldap-dir=${LOCALBASE}

@@ -16,7 +16,8 @@ LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
 		liblcms2.so:${PORTSDIR}/graphics/lcms2
 
-USES=		gettext gmake jpeg libtool libarchive pathfix pkgconfig tar:xz
+USES=		gettext gmake jpeg libtool libarchive pathfix pkgconfig tar:xz cpe
+CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo gnomeprefix glib20 intlhack
 GNU_CONFIGURE=	yes

@@ -13,7 +13,8 @@ LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USES=		gmake
+USES=		gmake cpe
+CPE_VENDOR=	pdnsd
 USE_RC_SUBR=	pdnsd
 CONFIGURE_ARGS=	--with-cachedir=${PDNSDB} \
 		--disable-src-addr-disc \

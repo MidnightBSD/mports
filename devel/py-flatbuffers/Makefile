@@ -10,7 +10,8 @@ COMMENT=	FlatBuffers serialization format for Python
 LICENSE=	Apache-2.0
 #LICENSE_FILE=	Not packaged in PyPI sdist
 
-USES=		python
+USES=		python cpe
+CPE_VENDOR=	google
 USE_PYTHON=	autoplist distutils
 
 OPTIONS_DEFINE=	NUMPY
