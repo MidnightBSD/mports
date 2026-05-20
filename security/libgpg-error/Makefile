@@ -17,7 +17,7 @@ CPE_VENDOR=	gnupg
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-INSTALL_TARGET= install-strip
+INSTALL_TARGET=	install-strip
 
 DOCS=		AUTHORS ChangeLog NEWS README
 INFO=		gpgrt
