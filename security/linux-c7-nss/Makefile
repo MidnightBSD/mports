@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	nss
 PORTVERSION=	3.53.1
 DISTVERSIONSUFFIX=	-3.el7_9
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Security Services (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	MPL20
+
+SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
 USE_LDCONFIG=	yes

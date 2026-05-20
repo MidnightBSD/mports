@@ -9,6 +9,8 @@ COMMENT=	LDAP libraries (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	openldap2.8
 
+SKIP_FAKE_ALL=	yes
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX=	cyrus-sasl2 nspr nss
