@@ -2280,8 +2280,12 @@
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-open4
+    SUBDIR += rubygem-opentelemetry-api-gitlab
+    SUBDIR += rubygem-opentelemetry-common-gitlab
     SUBDIR += rubygem-opentelemetry-exporter-otlp-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-all-gitlab
+    SUBDIR += rubygem-opentelemetry-registry-gitlab
+    SUBDIR += rubygem-opentelemetry-semantic_conventions-gitlab
     SUBDIR += rubygem-opentelemetry-sdk-gitlab
     SUBDIR += rubygem-opentracing
     SUBDIR += rubygem-orm_adapter
