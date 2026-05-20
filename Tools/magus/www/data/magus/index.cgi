@@ -437,9 +437,6 @@ sub summary_page {
 sub blockers {
 	my ($p, $run) = @_;
 
-	my %objs;
-	my %blocking;
-
     if (!is_number($run)) {
         print $p->header(
             -type => 'text/plain',
@@ -449,32 +446,30 @@ sub blockers {
         return;
     }
 
-	my $ports = Magus::Port->search(run => $run, status => 'untested');
-
     my $tmpl = template($p, "blockers.tmpl");
     $tmpl->param(title => "Top Blockers for Run $run");
 
-while (my $port = $ports->next) {
-  my $add = $blocking{$port} || 1;
-  $objs{$port} ||= $port;
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare(q{
+        SELECT p.id, p.name, p.status, p.version, p.pkgname, COUNT(d.port) as weight
+        FROM ports p
+        JOIN depends d ON p.id = d.dependency
+        JOIN ports dependent_port ON d.port = dependent_port.id
+        WHERE p.run = ?
+          AND p.status IN ('fail', 'skip')
+          AND dependent_port.status = 'untested'
+        GROUP BY p.id, p.name, p.status, p.version, p.pkgname
+        ORDER BY weight DESC
+        LIMIT 20
+    });
 
-  foreach my $dep ($port->depends) {
-    next unless $dep->status eq 'fail' || $dep->status eq 'skip' || $dep->status eq 'untested';
-    
-    
-    $objs{$dep}    ||= $dep;
-    $blocking{$dep} += $add;
-  }    
-}
+    $sth->execute($run);
+    my $blocks = $sth->fetchall_arrayref({});
+    $sth->finish;
 
-my @blocks;
-foreach my $port (sort { $blocking{$b} <=> $blocking{$a} } keys %blocking) {
-  next if $objs{$port}->status eq 'untested';
-  push(@blocks, { port => $port, blocking => $blocking{$port} });
-}
-$tmpl->param(blocks => \@blocks);
-print $p->header;
-print $tmpl->output;
+    $tmpl->param(blocks => $blocks);
+    print $p->header;
+    print $tmpl->output;
 }
 
 sub run_page {
