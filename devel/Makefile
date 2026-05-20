@@ -2095,6 +2095,8 @@
     SUBDIR += rubygem-CFPropertyList
     SUBDIR += rubygem-CFPropertyList-gitlab
     SUBDIR += rubygem-childprocess
+    SUBDIR += rubygem-claide
+    SUBDIR += rubygem-claide-plugins
     SUBDIR += rubygem-clio
     SUBDIR += rubygem-coffee-rails41
     SUBDIR += rubygem-coffee-script
@@ -2102,10 +2104,13 @@
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-console
     SUBDIR += rubygem-cool.io
+    SUBDIR += rubygem-cork
     SUBDIR += rubygem-countries
     SUBDIR += rubygem-cri
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-daemons
+    SUBDIR += rubygem-danger
+    SUBDIR += rubygem-danger-gitlab
     SUBDIR += rubygem-date
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-declarative
@@ -2160,7 +2165,9 @@
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-git
+    SUBDIR += rubygem-gitlab
     SUBDIR += rubygem-gitlab-chronic
+    SUBDIR += rubygem-gitlab-dangerfiles
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
@@ -2260,6 +2267,7 @@
     SUBDIR += rubygem-murmurhash3
     SUBDIR += rubygem-mustache
     SUBDIR += rubygem-mutex_m
+    SUBDIR += rubygem-nap
     SUBDIR += rubygem-native-package-installer
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-nio4r
@@ -2267,6 +2275,7 @@
     SUBDIR += rubygem-numerizer
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-optimist
+    SUBDIR += rubygem-open4
     SUBDIR += rubygem-orm_adapter
     SUBDIR += rubygem-os
     SUBDIR += rubygem-ostruct
@@ -2277,6 +2286,7 @@
     SUBDIR += rubygem-polyglot
     SUBDIR += rubygem-pp
     SUBDIR += rubygem-prettyprint
+    SUBDIR += rubygem-pstore
     SUBDIR += rubygem-racc
     SUBDIR += rubygem-rails-deprecated_sanitizer
     SUBDIR += rubygem-rails-observers
@@ -2335,6 +2345,8 @@
     SUBDIR += rubygem-tzinfo-data
     SUBDIR += rubygem-tzinfo1
     SUBDIR += rubygem-uber
+    SUBDIR += rubygem-unicode-display_width
+    SUBDIR += rubygem-unicode-emoji
     SUBDIR += rubygem-useragent
     SUBDIR += rubygem-uuid
     SUBDIR += rubygem-uuidtools
