@@ -202,6 +202,7 @@ sub handle_tools_list($id) {
             description =>
                 'Look up the latest build results for a port by name or origin '
               . '(e.g. "www/apache24" or "apache24") across all CPU architectures. '
+              . 'Includes both blessed and unblessed complete runs. '
               . 'Returns port IDs that can be used with get_port_log or get_port_details.',
             inputSchema => {
                 type       => 'object',
@@ -649,9 +650,8 @@ sub tool_lookup_port($id, $args) {
         return tool_result($id, "Error: 'name' parameter is required and must not be empty.", 1);
     }
 
-    # Gather the latest complete+blessed run per (arch, osversion).
-    # Fall back to complete (unblessed) runs if nothing blessed exists.
-    my @candidate_runs = _latest_runs_per_arch();
+    # Gather the latest complete blessed and unblessed runs per (arch, osversion).
+    my @candidate_runs = _latest_lookup_runs_per_arch();
 
     unless (@candidate_runs) {
         return tool_result($id, "No completed build runs found in Magus.", 0);
@@ -704,11 +704,17 @@ sub tool_lookup_port($id, $args) {
             0);
     }
 
-    my $text = "Build results for '$name' (latest blessed runs per arch):\n\n";
-    for my $r (sort { $a->{arch} cmp $b->{arch} || $a->{name} cmp $b->{name} } @results) {
+    my $text = "Build results for '$name' (latest complete runs per arch; blessed and unblessed):\n\n";
+    for my $r (sort {
+        $b->{osversion} cmp $a->{osversion}
+            || $a->{arch} cmp $b->{arch}
+            || $b->{blessed} <=> $a->{blessed}
+            || $a->{name} cmp $b->{name}
+    } @results) {
         $text .= sprintf(
-            "  %-30s  status=%-9s  arch=%-8s  os=%-6s  version=%s\n",
-            $r->{name}, $r->{status}, $r->{arch}, $r->{osversion}, $r->{version},
+            "  %-30s  status=%-9s  arch=%-8s  os=%-6s  blessed=%-3s  version=%s\n",
+            $r->{name}, $r->{status}, $r->{arch}, $r->{osversion},
+            ($r->{blessed} ? 'yes' : 'no'), $r->{version},
         );
         $text .= sprintf(
             "    port_id=%-6d  run_id=%-6d  pkgname=%s%s\n",
@@ -1083,6 +1089,38 @@ sub _latest_runs_per_arch() {
         ) AS latest_runs
         WHERE rn = 1
         ORDER BY osversion DESC, arch
+    });
+
+    $sth->execute();
+
+    my @result;
+    while (my $row = $sth->fetchrow_hashref) {
+        my $run = Magus::Run->retrieve($row->{id});
+        push @result, $run if $run;
+    }
+    $sth->finish;
+
+    return @result;
+}
+
+# Returns the most recent complete run for each blessed state per
+# (arch, osversion), so lookup_port can expose current unblessed runs without
+# hiding the blessed baseline.
+sub _latest_lookup_runs_per_arch() {
+    my $dbh = Magus::DBI->db_Main();
+
+    my $sth = $dbh->prepare(q{
+        SELECT id FROM (
+            SELECT id, arch, osversion, blessed,
+                   ROW_NUMBER() OVER (
+                       PARTITION BY arch, osversion, blessed
+                       ORDER BY created DESC
+                   ) as rn
+            FROM runs
+            WHERE status = 'complete'
+        ) AS latest_runs
+        WHERE rn = 1
+        ORDER BY osversion DESC, arch, blessed DESC
     });
 
     $sth->execute();
