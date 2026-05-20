@@ -9,6 +9,9 @@ COMMENT=	Tool to measure maximum TCP and UDP bandwidth
 LICENSE=	bsd2
 
 OPTIONS_DEFINE=	DOCS IPV6 THREADS
+
+USES=		cpe
+CPE_VENDOR=	iperf_project
 OPTIONS_DEFAULT=THREADS
 
 GNU_CONFIGURE=	yes

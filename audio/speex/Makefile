@@ -17,7 +17,8 @@ GNU_CONFIGURE=	yes
 # required for magus to generate encoder
 CONFIGURE_ARGS+=	--enable-binaries
 INSTALL_TARGET=	install-strip
-USES=		libtool pathfix pkgconfig
+USES=		libtool pathfix pkgconfig cpe
+CPE_VENDOR=	xiph
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

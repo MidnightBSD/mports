@@ -10,6 +10,8 @@ COMMENT=	Ispell compatibility script for aspell
 LICENSE=	lgpl2.1
 
 RUN_DEPENDS=	aspell:textproc/aspell
+USES=		cpe
+CPE_VENDOR=	gnu
 
 NO_ARCH=	yes
 NO_BUILD=	yes

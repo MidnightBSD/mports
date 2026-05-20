@@ -11,7 +11,8 @@ COMMENT=	Simple, fast, extensible JSON encoder/decoder
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
+USES=		python cpe
+CPE_VENDOR=	simplejson_project
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_TEST=	yes

@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
 USE_LDCONFIG=	yes
 USE_LINUX=	dbuslibs
 USE_LINUX_RPM=	yes

@@ -11,7 +11,7 @@ LICENSE=	openldap2.8
 
 SKIP_FAKE_ALL=	yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
 USE_LDCONFIG=	yes
 USE_LINUX=	cyrus-sasl2 nspr nss
 USE_LINUX_RPM=	yes

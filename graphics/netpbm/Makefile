@@ -20,7 +20,8 @@ LIB_DEPENDS=	libtiff.so:graphics/tiff \
 		libjasper.so:graphics/jasper \
 		libxml2.so:textproc/libxml2
 
-USES=		tar:tgz gmake iconv:wchar_t jpeg perl5 shebangfix
+USES=		tar:tgz gmake iconv:wchar_t jpeg perl5 shebangfix cpe
+CPE_VENDOR=	netpbm_project
 CFLAGS+=	-DPNG_DEPSTRUCT= -Iutil
 MAKE_ENV=	LN="${LN}" RANLIB="${RANLIB}"
 MAKEFILE=	GNUmakefile

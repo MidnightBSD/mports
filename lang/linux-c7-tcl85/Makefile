@@ -15,7 +15,7 @@ LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 USE_LINUX_RPM_BAD_PERMS=	yes

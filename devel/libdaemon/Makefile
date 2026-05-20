@@ -14,7 +14,8 @@ LICENSE=	lgpl
 
 CONFIGURE_ARGS=	--disable-lynx
 GNU_CONFIGURE=	yes
-USES=		libtool:keepla pathfix
+USES=		libtool:keepla pathfix cpe
+CPE_VENDOR=	libdaemon_project
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
