@@ -2341,6 +2341,7 @@
     SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-thor
     SUBDIR += rubygem-thor0
+    SUBDIR += rubygem-thrift
     SUBDIR += rubygem-thread_safe
     SUBDIR += rubygem-tilt
     SUBDIR += rubygem-time
