@@ -2300,6 +2300,7 @@
     SUBDIR += rubygem-opentelemetry-instrumentation-grape-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-graphql-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-grpc-gitlab
+    SUBDIR += rubygem-opentelemetry-instrumentation-gruf-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-rack-gitlab
     SUBDIR += rubygem-opentelemetry-registry-gitlab
     SUBDIR += rubygem-opentelemetry-semantic_conventions-gitlab
