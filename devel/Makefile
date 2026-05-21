@@ -2297,6 +2297,7 @@
     SUBDIR += rubygem-opentelemetry-instrumentation-ethon-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-excon-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-faraday-gitlab
+    SUBDIR += rubygem-opentelemetry-instrumentation-grape-gitlab
     SUBDIR += rubygem-opentelemetry-instrumentation-rack-gitlab
     SUBDIR += rubygem-opentelemetry-registry-gitlab
     SUBDIR += rubygem-opentelemetry-semantic_conventions-gitlab
