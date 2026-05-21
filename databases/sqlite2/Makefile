@@ -11,7 +11,8 @@ COMMENT=	SQL database engine in a C library
 LICENSE=        publicdom
 
 GNU_CONFIGURE=	yes
-USES=		gmake libtool pathfix pkgconfig readline
+USES=		gmake libtool pathfix pkgconfig readline cpe
+CPE_VENDOR=	sqlite
 USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS=	--with-hints=freebsd.hints

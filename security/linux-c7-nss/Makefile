@@ -10,7 +10,8 @@ LICENSE=	MPL20
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	mozilla
 USE_LDCONFIG=	yes
 USE_LINUX=	nspr sqlite3
 USE_LINUX_RPM=	yes

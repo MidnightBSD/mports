@@ -21,6 +21,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-default-dict=${DICTFILE}
 INSTALL_TARGET=	install-strip
 USES=		cpe libtool tar:bz2
+CPE_VENDOR=	cracklib_project
 
 .if defined(PYTHON_SLAVEPORT)
 CATEGORIES+=	python

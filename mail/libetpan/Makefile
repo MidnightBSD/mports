@@ -12,7 +12,8 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libexpat.so:textproc/expat2 \
 		libsasl2.so:security/cyrus-sasl2
 
-USES=		autoreconf compiler:c++11-lang gmake iconv libtool localbase pkgconfig
+USES=		autoreconf compiler:c++11-lang gmake iconv libtool localbase pkgconfig cpe
+CPE_VENDOR=	libetpan_project
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip

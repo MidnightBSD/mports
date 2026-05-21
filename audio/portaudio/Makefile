@@ -13,7 +13,8 @@ COMMENT=	Portable cross-platform Audio API
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		dos2unix gmake libtool pathfix pkgconfig tar:tgz
+USES=		dos2unix gmake libtool pathfix pkgconfig tar:tgz cpe
+CPE_VENDOR=	portaudio_project
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=PKG_CONFIG_LIBDIR=${PREFIX}/libdata/pkgconfig \
 			--without-alsa

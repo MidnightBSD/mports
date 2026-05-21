@@ -133,6 +133,7 @@
     SUBDIR += R
     SUBDIR += R-cran-assertthat
     SUBDIR += R-cran-backports
+    SUBDIR += R-cran-bdsmatrix
     SUBDIR += R-cran-date
     SUBDIR += R-cran-deldir
     SUBDIR += R-cran-dplyr
@@ -156,7 +157,9 @@
     SUBDIR += R-cran-magic
     SUBDIR += R-cran-maps
     SUBDIR += R-cran-mathjaxr
+    SUBDIR += R-cran-maxLik
     SUBDIR += R-cran-mclust
+    SUBDIR += R-cran-miscTools
     SUBDIR += R-cran-misc3d
     SUBDIR += R-cran-mvtnorm
     SUBDIR += R-cran-numDeriv

@@ -22,14 +22,14 @@ OPTIONS_DEFINE=	EXAMPLES
 
 .include <bsd.mport.options.mk>
 
-.if ${OPSYS} == FreeBSD
+.if ${OPSYS} == FreeBSD || ${OPSYS} == MidnightBSD
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 .endif
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
 .for f in ${PORTEXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/doc/$f ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/$f ${EXAMPLESDIR}
 .endfor
 
 .include <bsd.port.mk>

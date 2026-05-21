@@ -15,7 +15,8 @@ BUILD_DEPENDS=	help2man:misc/help2man \
 		gm4:devel/m4
 RUN_DEPENDS=	gm4:devel/m4
 
-USES=		bison gmake libtool makeinfo
+USES=		bison gmake libtool makeinfo cpe
+CPE_VENDOR=	${PORTNAME}_project
 GNU_CONFIGURE=	yes
 # install flex header to its own dir to avoid conflict with system flex.
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/flex --disable-shared
