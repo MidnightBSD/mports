@@ -451,15 +451,15 @@ sub blockers {
 
     my $dbh = Magus::DBI->db_Main();
     my $sth = $dbh->prepare(q{
-        SELECT p.id, p.name, p.status, p.version, p.pkgname, COUNT(d.port) as weight
+        SELECT p.name AS port, COUNT(d.port) AS blocking
         FROM ports p
         JOIN depends d ON p.id = d.dependency
         JOIN ports dependent_port ON d.port = dependent_port.id
         WHERE p.run = ?
           AND p.status IN ('fail', 'skip')
           AND dependent_port.status = 'untested'
-        GROUP BY p.id, p.name, p.status, p.version, p.pkgname
-        ORDER BY weight DESC
+        GROUP BY p.id, p.name
+        ORDER BY blocking DESC
         LIMIT 20
     });
 

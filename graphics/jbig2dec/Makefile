@@ -9,7 +9,8 @@ COMMENT=	Decoder implementation of the JBIG2 image compression format
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf libtool
+USES=		autoreconf libtool cpe
+CPE_VENDOR=	artifex
 
 CONFIGURE_ENV=	ac_cv_func_getopt_long=yes
 GNU_CONFIGURE=	yes

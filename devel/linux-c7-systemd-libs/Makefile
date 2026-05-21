@@ -12,7 +12,8 @@ LICENSE=	lgpl2.1
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	systemd_project
 USE_LDCONFIG=	yes
 USE_LINUX=	elfutils-libs libgcrypt libgpg-error lz4
 USE_LINUX_RPM=	yes

@@ -12,7 +12,8 @@ LICENSE=	gpl3
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	pulseaudio
 USE_LDCONFIG=	yes
 USE_LINUX=	xorglibs pulseaudio-libs
 USE_LINUX_RPM=	nolib

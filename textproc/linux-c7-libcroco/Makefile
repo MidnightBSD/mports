@@ -11,7 +11,8 @@ LICENSE=	mit
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 USE_LINUX=	libxml2
 USE_LINUX_RPM=	yes

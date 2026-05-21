@@ -11,7 +11,8 @@ LICENSE_COMB=	multi
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	unixodbc
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

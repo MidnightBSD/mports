@@ -9,7 +9,8 @@ COMMENT=	Library that implement Microsoft's NTLM authentication
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		libtool pathfix pkgconfig
+USES=		libtool pathfix pkgconfig cpe
+CPE_VENDOR=	nongnu
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

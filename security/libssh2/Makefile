@@ -13,7 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		compiler:c11 libtool pathfix
+USES=		compiler:c11 libtool pathfix cpe
+CPE_VENDOR=	libssh2
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	GCRYPT TRACE ZLIB

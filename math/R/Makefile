@@ -16,8 +16,9 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 RUN_DEPENDS=	cmake:devel/cmake-core \
 		gmake:devel/gmake # R packages may require GNU make
 
-USES=		compiler:c++11-lang gmake iconv libtool localbase pathfix perl5 \
+USES=		compiler:c++11-lang gmake iconv libtool localbase pathfix perl5 cpe \
 		readline
+CPE_VENDOR=	r-project
 USE_LDCONFIG=	${PREFIX}/lib/R/lib
 USE_PERL5=	build
 
