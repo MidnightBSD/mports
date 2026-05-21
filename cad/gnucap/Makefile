@@ -39,12 +39,12 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/main/O/gnucap ${WRKSRC}/modelgen/O/gnucap-modelgen \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 	${INSTALL_LIB} ${WRKSRC}/lib/O/libgnucap.so ${WRKSRC}/apps/O/*.so \
-		${STAGEDIR}${PREFIX}/lib
+		${PREFIX}/lib
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc/gnucap
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc/gnucap
 
 .include <bsd.port.mk>
