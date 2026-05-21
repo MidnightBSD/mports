@@ -8,7 +8,8 @@ COMMENT=	C/C++ implementation of a Sass compiler
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf compiler:c++11-lib gmake libtool pathfix
+USES=		autoreconf compiler:c++11-lib gmake libtool pathfix cpe
+CPE_VENDOR=	sass-lang
 GH_ACCOUNT=	sass
 GNU_CONFIGURE=	yes
 USE_GITHUB=	yes

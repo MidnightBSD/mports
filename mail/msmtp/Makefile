@@ -9,7 +9,8 @@ COMMENT=	SMTP plugin for MUAs
 LICENSE=        gpl3
 
 GNU_CONFIGURE=	yes
-USES=		gmake makeinfo pkgconfig tar:xz
+USES=		gmake makeinfo pkgconfig tar:xz cpe
+CPE_VENDOR=	marlam
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INFO=	msmtp

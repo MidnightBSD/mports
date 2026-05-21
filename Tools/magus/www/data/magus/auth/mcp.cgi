@@ -202,6 +202,7 @@ sub handle_tools_list($id) {
             description =>
                 'Look up the latest build results for a port by name or origin '
               . '(e.g. "www/apache24" or "apache24") across all CPU architectures. '
+              . 'Includes both blessed and unblessed complete runs. '
               . 'Returns port IDs that can be used with get_port_log or get_port_details.',
             inputSchema => {
                 type       => 'object',
@@ -271,6 +272,35 @@ sub handle_tools_list($id) {
             },
         },
         {
+            name        => 'get_log_excerpt',
+            description =>
+                'Retrieve a focused excerpt from a port build log. Use pattern to '
+              . 'show context around the last matching line, or tail_bytes to get '
+              . 'the end of the log.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    port_id => {
+                        type        => 'integer',
+                        description => 'The Magus port ID.',
+                    },
+                    pattern => {
+                        type        => 'string',
+                        description => 'Literal text to search for in the log.',
+                    },
+                    context_lines => {
+                        type        => 'integer',
+                        description => 'Lines of context around the match (default: 8, max: 50).',
+                    },
+                    tail_bytes => {
+                        type        => 'integer',
+                        description => 'Bytes from the end of the log when pattern is omitted (default: 20000, max: 100000).',
+                    },
+                },
+                required => ['port_id'],
+            },
+        },
+        {
             name        => 'get_port_details',
             description =>
                 'Get full details for a port: metadata, build events, dependencies, '
@@ -282,6 +312,78 @@ sub handle_tools_list($id) {
                     port_id => {
                         type        => 'integer',
                         description => 'The port ID.',
+                    },
+                },
+                required => ['port_id'],
+            },
+        },
+        {
+            name        => 'get_port_events',
+            description =>
+                'Return build events for a port, optionally filtered by type, phase, '
+              . 'or machine_id.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    port_id => {
+                        type        => 'integer',
+                        description => 'The Magus port ID.',
+                    },
+                    type => {
+                        type        => 'string',
+                        description => 'Optional event type filter.',
+                    },
+                    phase => {
+                        type        => 'string',
+                        description => 'Optional event phase filter.',
+                    },
+                    machine_id => {
+                        type        => 'integer',
+                        description => 'Optional machine ID filter.',
+                    },
+                    limit => {
+                        type        => 'integer',
+                        description => 'Maximum events to return (default: 100, max: 500).',
+                    },
+                },
+                required => ['port_id'],
+            },
+        },
+        {
+            name        => 'get_dependency_blockers',
+            description =>
+                'Walk a port dependency graph and list failed or skipped dependencies '
+              . 'that are likely blocking the selected port.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    port_id => {
+                        type        => 'integer',
+                        description => 'The Magus port ID.',
+                    },
+                    max_depth => {
+                        type        => 'integer',
+                        description => 'Maximum dependency depth to walk (default: 8, max: 20).',
+                    },
+                    limit => {
+                        type        => 'integer',
+                        description => 'Maximum blockers to return (default: 50, max: 200).',
+                    },
+                },
+                required => ['port_id'],
+            },
+        },
+        {
+            name        => 'get_distfiles',
+            description =>
+                'Return distfiles, restricted distfiles, and master sites recorded '
+              . 'for a port.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    port_id => {
+                        type        => 'integer',
+                        description => 'The Magus port ID.',
                     },
                 },
                 required => ['port_id'],
@@ -311,6 +413,136 @@ sub handle_tools_list($id) {
                         description => 'Include the raw JSON returned by the CVE API.',
                     },
                 },
+            },
+        },
+        {
+            name        => 'list_run_ports',
+            description =>
+                'List ports in a run, with filters for status, name, category, '
+              . 'pkgname, and flavor.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    run_id => {
+                        type        => 'integer',
+                        description => 'Run ID to query.',
+                    },
+                    status => {
+                        type        => 'string',
+                        description => 'Optional port status filter such as fail, skip, warn, pass, or untested.',
+                    },
+                    name => {
+                        type        => 'string',
+                        description => 'Optional origin substring filter.',
+                    },
+                    category => {
+                        type        => 'string',
+                        description => 'Optional category filter such as devel or www.',
+                    },
+                    pkgname => {
+                        type        => 'string',
+                        description => 'Optional package name substring filter.',
+                    },
+                    flavor => {
+                        type        => 'string',
+                        description => 'Optional flavor filter.',
+                    },
+                    limit => {
+                        type        => 'integer',
+                        description => 'Maximum ports to return (default: 100, max: 500).',
+                    },
+                },
+                required => ['run_id'],
+            },
+        },
+        {
+            name        => 'search_ports',
+            description =>
+                'Search ports across runs using filters for name, pkgname, status, '
+              . 'arch, osversion, flavor, and run_id.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    name => {
+                        type        => 'string',
+                        description => 'Origin path or substring to search for.',
+                    },
+                    pkgname => {
+                        type        => 'string',
+                        description => 'Package name substring to search for.',
+                    },
+                    status => {
+                        type        => 'string',
+                        description => 'Optional port status filter.',
+                    },
+                    arch => {
+                        type        => 'string',
+                        description => 'Optional architecture filter.',
+                    },
+                    osversion => {
+                        type        => 'string',
+                        description => 'Optional OS version filter.',
+                    },
+                    flavor => {
+                        type        => 'string',
+                        description => 'Optional flavor filter.',
+                    },
+                    run_id => {
+                        type        => 'integer',
+                        description => 'Optional run ID filter.',
+                    },
+                    limit => {
+                        type        => 'integer',
+                        description => 'Maximum ports to return (default: 100, max: 500).',
+                    },
+                },
+            },
+        },
+        {
+            name        => 'compare_port_runs',
+            description =>
+                'Compare one port origin or name across two runs, showing matching '
+              . 'port rows and status/version differences.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    name => {
+                        type        => 'string',
+                        description => 'Port origin path or bare name.',
+                    },
+                    run_id_a => {
+                        type        => 'integer',
+                        description => 'First run ID.',
+                    },
+                    run_id_b => {
+                        type        => 'integer',
+                        description => 'Second run ID.',
+                    },
+                },
+                required => ['name', 'run_id_a', 'run_id_b'],
+            },
+        },
+        {
+            name        => 'get_machine_events',
+            description =>
+                'Return recent build events for a specific machine in a run.',
+            inputSchema => {
+                type       => 'object',
+                properties => {
+                    run_id => {
+                        type        => 'integer',
+                        description => 'Run ID to query.',
+                    },
+                    machine_id => {
+                        type        => 'integer',
+                        description => 'Machine ID to query.',
+                    },
+                    limit => {
+                        type        => 'integer',
+                        description => 'Maximum events to return (default: 100, max: 500).',
+                    },
+                },
+                required => ['run_id', 'machine_id'],
             },
         },
         {
@@ -377,8 +609,16 @@ sub handle_tools_call($id, $params) {
         get_run_stats     => \&tool_get_run_stats,
         list_runs         => \&tool_list_runs,
         get_port_log      => \&tool_get_port_log,
+        get_log_excerpt   => \&tool_get_log_excerpt,
         get_port_details  => \&tool_get_port_details,
+        get_port_events   => \&tool_get_port_events,
+        get_dependency_blockers => \&tool_get_dependency_blockers,
+        get_distfiles     => \&tool_get_distfiles,
         get_port_cves     => \&tool_get_port_cves,
+        list_run_ports    => \&tool_list_run_ports,
+        search_ports      => \&tool_search_ports,
+        compare_port_runs => \&tool_compare_port_runs,
+        get_machine_events => \&tool_get_machine_events,
         top_blockers      => \&tool_top_blockers,
         analyze_build_log => \&tool_analyze_build_log,
         list_port_updates => \&tool_list_port_updates,
@@ -649,9 +889,8 @@ sub tool_lookup_port($id, $args) {
         return tool_result($id, "Error: 'name' parameter is required and must not be empty.", 1);
     }
 
-    # Gather the latest complete+blessed run per (arch, osversion).
-    # Fall back to complete (unblessed) runs if nothing blessed exists.
-    my @candidate_runs = _latest_runs_per_arch();
+    # Gather the latest complete blessed and unblessed runs per (arch, osversion).
+    my @candidate_runs = _latest_lookup_runs_per_arch();
 
     unless (@candidate_runs) {
         return tool_result($id, "No completed build runs found in Magus.", 0);
@@ -704,11 +943,17 @@ sub tool_lookup_port($id, $args) {
             0);
     }
 
-    my $text = "Build results for '$name' (latest blessed runs per arch):\n\n";
-    for my $r (sort { $a->{arch} cmp $b->{arch} || $a->{name} cmp $b->{name} } @results) {
+    my $text = "Build results for '$name' (latest complete runs per arch; blessed and unblessed):\n\n";
+    for my $r (sort {
+        $b->{osversion} cmp $a->{osversion}
+            || $a->{arch} cmp $b->{arch}
+            || $b->{blessed} <=> $a->{blessed}
+            || $a->{name} cmp $b->{name}
+    } @results) {
         $text .= sprintf(
-            "  %-30s  status=%-9s  arch=%-8s  os=%-6s  version=%s\n",
-            $r->{name}, $r->{status}, $r->{arch}, $r->{osversion}, $r->{version},
+            "  %-30s  status=%-9s  arch=%-8s  os=%-6s  blessed=%-3s  version=%s\n",
+            $r->{name}, $r->{status}, $r->{arch}, $r->{osversion},
+            ($r->{blessed} ? 'yes' : 'no'), $r->{version},
         );
         $text .= sprintf(
             "    port_id=%-6d  run_id=%-6d  pkgname=%s%s\n",
@@ -867,6 +1112,65 @@ sub tool_get_port_log($id, $args) {
     tool_result($id, $header . $log, 0);
 }
 
+sub tool_get_log_excerpt($id, $args) {
+    my $port = port_from_args($id, $args) or return;
+    my $log = $port->log;
+    unless (defined $log && length $log) {
+        return tool_result($id,
+            sprintf(
+                "No build log available for %s (port_id=%d, status=%s, arch=%s, run=%d).",
+                $port->name, $port->id, $port->status, $port->run->arch, $port->run->id,
+            ),
+            0);
+    }
+
+    my $pattern = $args->{pattern} // '';
+    my $context = bounded_int($args->{context_lines}, 8, 0, 50);
+
+    my $text = sprintf(
+        "Build log excerpt for %s\n  port_id=%d  status=%s  arch=%s  osversion=%s  run=%d\n",
+        $port->name, $port->id, $port->status,
+        $port->run->arch, $port->run->osversion, $port->run->id,
+    );
+
+    if (length $pattern) {
+        my @lines = split /\n/, $log;
+        my $match_index;
+        for my $i (0 .. $#lines) {
+            $match_index = $i if index($lines[$i], $pattern) >= 0;
+        }
+
+        unless (defined $match_index) {
+            return tool_result($id, $text . "\nPattern not found: $pattern", 0);
+        }
+
+        my $start = $match_index - $context;
+        $start = 0 if $start < 0;
+        my $end = $match_index + $context;
+        $end = $#lines if $end > $#lines;
+
+        $text .= sprintf(
+            "\nPattern: %s\nShowing lines %d-%d around last match at line %d:\n\n",
+            $pattern, $start + 1, $end + 1, $match_index + 1,
+        );
+        for my $i ($start .. $end) {
+            $text .= sprintf("%6d%s %s\n",
+                $i + 1, ($i == $match_index ? '>' : ':'), $lines[$i]);
+        }
+
+        return tool_result($id, $text, 0);
+    }
+
+    my $tail_bytes = bounded_int($args->{tail_bytes}, 20_000, 1_000, 100_000);
+    my $truncated = length($log) > $tail_bytes;
+    my $excerpt = $truncated ? substr($log, -$tail_bytes) : $log;
+    $text .= sprintf("\nTail excerpt: final %d bytes%s\n\n",
+        length($excerpt), $truncated ? " (log truncated)" : "");
+    $text .= $excerpt;
+
+    tool_result($id, $text, 0);
+}
+
 sub tool_get_port_details($id, $args) {
     unless (defined $args->{port_id} && is_number($args->{port_id})) {
         return tool_result($id, "Error: 'port_id' must be a valid integer.", 1);
@@ -963,6 +1267,183 @@ sub tool_get_port_details($id, $args) {
     tool_result($id, $text, 0);
 }
 
+sub tool_get_port_events($id, $args) {
+    my $port = port_from_args($id, $args) or return;
+    my $limit = bounded_int($args->{limit}, 100, 1, 500);
+
+    my @where = ('e.port = ?');
+    my @bind = ($port->id);
+
+    if (defined $args->{type} && $args->{type} =~ /^[\w.-]+$/) {
+        push @where, 'e.type = ?';
+        push @bind, $args->{type};
+    }
+    if (defined $args->{phase} && $args->{phase} =~ /^[\w.-]+$/) {
+        push @where, 'e.phase = ?';
+        push @bind, $args->{phase};
+    }
+    if (defined $args->{machine_id} && is_number($args->{machine_id})) {
+        push @where, 'e.machine = ?';
+        push @bind, int($args->{machine_id});
+    }
+
+    my $where = join(' AND ', @where);
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare("
+        SELECT e.id, e.time, e.phase, e.type, e.name, e.msg, e.machine,
+               m.name AS machine_name
+        FROM events e
+        LEFT JOIN machines m ON e.machine = m.id
+        WHERE $where
+        ORDER BY e.time DESC, e.id DESC
+        LIMIT ?
+    ");
+    $sth->execute(@bind, $limit);
+    my $events = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    my $text = sprintf("Events for %s\n  port_id=%d  status=%s  run=%d\n",
+        $port->name, $port->id, $port->status, $port->run->id);
+
+    unless (@$events) {
+        return tool_result($id, $text . "\nNo matching events found.", 0);
+    }
+
+    $text .= sprintf("\nShowing %d event%s:\n", scalar @$events, @$events == 1 ? '' : 's');
+    for my $ev (@$events) {
+        $text .= sprintf(
+            "  [%s] type=%s phase=%s machine=%s%s\n    %s\n",
+            $ev->{time} // '?',
+            $ev->{type} // '',
+            $ev->{phase} // '',
+            $ev->{machine_name} // '',
+            defined $ev->{machine} ? "($ev->{machine})" : '',
+            $ev->{msg} // '',
+        );
+    }
+
+    tool_result($id, $text, 0);
+}
+
+sub tool_get_dependency_blockers($id, $args) {
+    my $port = port_from_args($id, $args) or return;
+    my $max_depth = bounded_int($args->{max_depth}, 8, 1, 20);
+    my $limit = bounded_int($args->{limit}, 50, 1, 200);
+
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare(q{
+        SELECT d.type, p.id, p.name, p.pkgname, p.version, p.status, p.flavor
+        FROM depends d
+        JOIN ports p ON d.dependency = p.id
+        WHERE d.port = ?
+        ORDER BY d.type, p.name
+    });
+
+    my @queue = ({
+        port_id => $port->id + 0,
+        path    => $port->name,
+        depth   => 0,
+    });
+    my %seen = ($port->id => 1);
+    my @blockers;
+
+    while (@queue && @blockers < $limit) {
+        my $item = shift @queue;
+        next if $item->{depth} >= $max_depth;
+
+        $sth->execute($item->{port_id});
+        my $deps = $sth->fetchall_arrayref({});
+
+        for my $dep (@$deps) {
+            next if $seen{$dep->{id}}++;
+
+            my $dep_path = "$item->{path} -> $dep->{name}";
+            if (($dep->{status} // '') =~ /^(?:fail|skip)$/) {
+                push @blockers, {
+                    %$dep,
+                    type  => $dep->{type},
+                    depth => $item->{depth} + 1,
+                    path  => $dep_path,
+                };
+                last if @blockers >= $limit;
+            }
+
+            push @queue, {
+                port_id => $dep->{id} + 0,
+                path    => $dep_path,
+                depth   => $item->{depth} + 1,
+            } if ($dep->{status} // '') eq 'untested';
+        }
+    }
+    $sth->finish;
+
+    my $text = sprintf(
+        "Dependency blockers for %s\n  port_id=%d  status=%s  run=%d  max_depth=%d\n",
+        $port->name, $port->id, $port->status, $port->run->id, $max_depth,
+    );
+
+    unless (@blockers) {
+        return tool_result($id,
+            $text . "\nNo failed or skipped dependencies found within the requested depth.",
+            0);
+    }
+
+    $text .= sprintf("\nFound %d blocker%s:\n",
+        scalar @blockers, @blockers == 1 ? '' : 's');
+    for my $b (@blockers) {
+        $text .= sprintf(
+            "  depth=%-2d [%-8s] %-35s status=%-5s port_id=%d version=%s%s\n",
+            $b->{depth}, $b->{type} // '', $b->{name}, $b->{status},
+            $b->{id}, $b->{version} // '', ($b->{flavor} ? " flavor=$b->{flavor}" : ''),
+        );
+        $text .= "    path: $b->{path}\n";
+    }
+
+    tool_result($id, $text, 0);
+}
+
+sub tool_get_distfiles($id, $args) {
+    my $port = port_from_args($id, $args) or return;
+    my $dbh = Magus::DBI->db_Main();
+
+    my $sth = $dbh->prepare("SELECT filename FROM distfiles WHERE port = ? ORDER BY filename");
+    $sth->execute($port->id);
+    my $distfiles = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    $sth = $dbh->prepare("SELECT filename FROM restricted_distfiles WHERE port = ? ORDER BY filename");
+    $sth->execute($port->id);
+    my $restricted = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    $sth = $dbh->prepare("SELECT url FROM master_sites WHERE port = ? ORDER BY url");
+    $sth->execute($port->id);
+    my $sites = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    my $text = sprintf("Distfile data for %s\n  port_id=%d  run=%d\n",
+        $port->name, $port->id, $port->run->id);
+
+    $text .= sprintf("\nDistfiles (%d):\n", scalar @$distfiles);
+    $text .= @$distfiles ? join('', map { "  $_->{filename}\n" } @$distfiles) : "  none\n";
+
+    $text .= sprintf("\nRestricted distfiles (%d):\n", scalar @$restricted);
+    $text .= @$restricted ? join('', map { "  $_->{filename}\n" } @$restricted) : "  none\n";
+
+    $text .= sprintf("\nMaster sites (%d):\n", scalar @$sites);
+    if (@$sites) {
+        for my $site (@$sites) {
+            my $url = $site->{url} // '';
+            my $flag = $url =~ m{^(?:http|ftp)://}i ? '  [non-HTTPS]' : '';
+            $text .= "  $url$flag\n";
+        }
+    } else {
+        $text .= "  none\n";
+    }
+
+    tool_result($id, $text, 0);
+}
+
 sub tool_get_port_cves($id, $args) {
     my $port = resolve_port_arg($args);
     return tool_result($id,
@@ -999,6 +1480,267 @@ sub tool_get_port_cves($id, $args) {
 
     if ($args->{include_raw}) {
         $text .= "\nRaw CVE API response:\n" . $json->encode($data) . "\n";
+    }
+
+    tool_result($id, $text, 0);
+}
+
+sub tool_list_run_ports($id, $args) {
+    unless (defined $args->{run_id} && is_number($args->{run_id})) {
+        return tool_result($id, "Error: 'run_id' must be a valid integer.", 1);
+    }
+
+    my $run_id = int($args->{run_id});
+    my $run = eval { Magus::Run->retrieve($run_id) };
+    return tool_result($id, "Run ID $run_id not found.", 1) unless $run;
+
+    my $limit = bounded_int($args->{limit}, 100, 1, 500);
+    my @where = ('p.run = ?');
+    my @bind = ($run_id);
+
+    if (defined $args->{status} && $args->{status} =~ /^[\w.-]+$/) {
+        push @where, 'p.status = ?';
+        push @bind, $args->{status};
+    }
+    if (defined $args->{name} && length $args->{name}) {
+        my $name = clean_port_search($args->{name});
+        if (length $name) {
+            push @where, 'p.name LIKE ?';
+            push @bind, "%$name%";
+        }
+    }
+    if (defined $args->{pkgname} && length $args->{pkgname}) {
+        my $pkgname = clean_port_search($args->{pkgname});
+        if (length $pkgname) {
+            push @where, 'p.pkgname LIKE ?';
+            push @bind, "%$pkgname%";
+        }
+    }
+    if (defined $args->{flavor} && $args->{flavor} =~ /^[\w.+-]*$/) {
+        push @where, 'p.flavor = ?';
+        push @bind, $args->{flavor};
+    }
+    if (defined $args->{category} && $args->{category} =~ /^[\w.+-]+$/) {
+        push @where, 'p.name LIKE ?';
+        push @bind, "$args->{category}/%";
+    }
+
+    my $where = join(' AND ', @where);
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare("
+        SELECT p.id, p.name, p.pkgname, p.version, p.status, p.flavor
+        FROM ports p
+        WHERE $where
+        ORDER BY p.status, p.name, p.flavor
+        LIMIT ?
+    ");
+    $sth->execute(@bind, $limit);
+    my $ports = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    my $text = sprintf(
+        "Ports for run %d\n  arch=%s  osversion=%s  status=%s  blessed=%s\n",
+        $run->id, $run->arch, $run->osversion, $run->status,
+        ($run->blessed ? 'yes' : 'no'),
+    );
+
+    unless (@$ports) {
+        return tool_result($id, $text . "\nNo ports matched the filters.", 0);
+    }
+
+    $text .= sprintf("\nShowing %d matching port%s (limit %d):\n",
+        scalar @$ports, @$ports == 1 ? '' : 's', $limit);
+    for my $p (@$ports) {
+        $text .= format_port_summary($p, $run);
+    }
+
+    tool_result($id, $text, 0);
+}
+
+sub tool_search_ports($id, $args) {
+    my $limit = bounded_int($args->{limit}, 100, 1, 500);
+    my @where;
+    my @bind;
+
+    if (defined $args->{run_id}) {
+        unless (is_number($args->{run_id})) {
+            return tool_result($id, "Error: 'run_id' must be a valid integer.", 1);
+        }
+        push @where, 'p.run = ?';
+        push @bind, int($args->{run_id});
+    }
+    if (defined $args->{status} && $args->{status} =~ /^[\w.-]+$/) {
+        push @where, 'p.status = ?';
+        push @bind, $args->{status};
+    }
+    if (defined $args->{arch} && $args->{arch} =~ /^[\w.-]+$/) {
+        push @where, 'r.arch = ?';
+        push @bind, $args->{arch};
+    }
+    if (defined $args->{osversion} && $args->{osversion} =~ /^[\w.-]+$/) {
+        push @where, 'r.osversion = ?';
+        push @bind, $args->{osversion};
+    }
+    if (defined $args->{flavor} && $args->{flavor} =~ /^[\w.+-]*$/) {
+        push @where, 'p.flavor = ?';
+        push @bind, $args->{flavor};
+    }
+    if (defined $args->{name} && length $args->{name}) {
+        my $name = clean_port_search($args->{name});
+        if (length $name) {
+            push @where, $name =~ m|/| ? 'p.name = ?' : 'p.name LIKE ?';
+            push @bind, $name =~ m|/| ? $name : "%$name%";
+        }
+    }
+    if (defined $args->{pkgname} && length $args->{pkgname}) {
+        my $pkgname = clean_port_search($args->{pkgname});
+        if (length $pkgname) {
+            push @where, 'p.pkgname LIKE ?';
+            push @bind, "%$pkgname%";
+        }
+    }
+
+    unless (@where) {
+        return tool_result($id,
+            "Error: provide at least one filter such as name, status, run_id, arch, or osversion.",
+            1);
+    }
+
+    my $where = join(' AND ', @where);
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare("
+        SELECT p.id, p.name, p.pkgname, p.version, p.status, p.flavor,
+               r.id AS run_id, r.arch, r.osversion, r.blessed
+        FROM ports p
+        JOIN runs r ON p.run = r.id
+        WHERE $where
+        ORDER BY r.id DESC, p.name, p.flavor
+        LIMIT ?
+    ");
+    $sth->execute(@bind, $limit);
+    my $ports = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    unless (@$ports) {
+        return tool_result($id, "No ports matched the filters.", 0);
+    }
+
+    my $text = sprintf("Search results (%d shown, limit %d):\n",
+        scalar @$ports, $limit);
+    for my $p (@$ports) {
+        $text .= sprintf(
+            "  %-35s status=%-9s arch=%-8s os=%-6s run=%-6d blessed=%-3s version=%s\n",
+            $p->{name}, $p->{status}, $p->{arch}, $p->{osversion}, $p->{run_id},
+            ($p->{blessed} ? 'yes' : 'no'), $p->{version} // '',
+        );
+        $text .= sprintf("    port_id=%d pkgname=%s%s\n",
+            $p->{id}, $p->{pkgname}, ($p->{flavor} ? " flavor=$p->{flavor}" : ''));
+    }
+
+    tool_result($id, $text, 0);
+}
+
+sub tool_compare_port_runs($id, $args) {
+    my $name = clean_port_search($args->{name} // '');
+    unless (length $name) {
+        return tool_result($id, "Error: 'name' is required.", 1);
+    }
+    for my $key (qw(run_id_a run_id_b)) {
+        unless (defined $args->{$key} && is_number($args->{$key})) {
+            return tool_result($id, "Error: '$key' must be a valid integer.", 1);
+        }
+    }
+
+    my $run_a = eval { Magus::Run->retrieve(int($args->{run_id_a})) };
+    my $run_b = eval { Magus::Run->retrieve(int($args->{run_id_b})) };
+    return tool_result($id, "Run ID $args->{run_id_a} not found.", 1) unless $run_a;
+    return tool_result($id, "Run ID $args->{run_id_b} not found.", 1) unless $run_b;
+
+    my @a = port_rows_for_run_and_name($run_a->id, $name);
+    my @b = port_rows_for_run_and_name($run_b->id, $name);
+
+    my $text = sprintf(
+        "Comparison for '%s'\n  run A: %d arch=%s os=%s blessed=%s\n  run B: %d arch=%s os=%s blessed=%s\n",
+        $name,
+        $run_a->id, $run_a->arch, $run_a->osversion, ($run_a->blessed ? 'yes' : 'no'),
+        $run_b->id, $run_b->arch, $run_b->osversion, ($run_b->blessed ? 'yes' : 'no'),
+    );
+
+    $text .= "\nRun A matches:\n";
+    $text .= @a ? join('', map { format_port_summary($_, $run_a) } @a) : "  none\n";
+
+    $text .= "\nRun B matches:\n";
+    $text .= @b ? join('', map { format_port_summary($_, $run_b) } @b) : "  none\n";
+
+    if (@a && @b) {
+        my $pa = $a[0];
+        my $pb = $b[0];
+        $text .= "\nFirst-match delta:\n";
+        $text .= sprintf("  status:  %s -> %s%s\n",
+            $pa->{status}, $pb->{status},
+            $pa->{status} eq $pb->{status} ? " (unchanged)" : "");
+        $text .= sprintf("  version: %s -> %s%s\n",
+            $pa->{version} // '', $pb->{version} // '',
+            (($pa->{version} // '') eq ($pb->{version} // '')) ? " (unchanged)" : "");
+        $text .= sprintf("  pkgname: %s -> %s%s\n",
+            $pa->{pkgname}, $pb->{pkgname},
+            $pa->{pkgname} eq $pb->{pkgname} ? " (unchanged)" : "");
+    }
+
+    tool_result($id, $text, 0);
+}
+
+sub tool_get_machine_events($id, $args) {
+    for my $key (qw(run_id machine_id)) {
+        unless (defined $args->{$key} && is_number($args->{$key})) {
+            return tool_result($id, "Error: '$key' must be a valid integer.", 1);
+        }
+    }
+    my $run_id = int($args->{run_id});
+    my $machine_id = int($args->{machine_id});
+    my $limit = bounded_int($args->{limit}, 100, 1, 500);
+
+    my $run = eval { Magus::Run->retrieve($run_id) };
+    return tool_result($id, "Run ID $run_id not found.", 1) unless $run;
+    my $machine = eval { Magus::Machine->retrieve($machine_id) };
+    return tool_result($id, "Machine ID $machine_id not found.", 1) unless $machine;
+
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare(q{
+        SELECT e.time, e.phase, e.type, e.name AS event_name, e.msg,
+               p.id AS port_id, p.name AS port_name, p.status
+        FROM events e
+        JOIN ports p ON e.port = p.id
+        WHERE p.run = ? AND e.machine = ?
+        ORDER BY e.time DESC, e.id DESC
+        LIMIT ?
+    });
+    $sth->execute($run_id, $machine_id, $limit);
+    my $events = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    my $text = sprintf(
+        "Machine events\n  run=%d arch=%s os=%s  machine=%s(%d)\n",
+        $run->id, $run->arch, $run->osversion, $machine->name, $machine->id,
+    );
+
+    unless (@$events) {
+        return tool_result($id, $text . "\nNo events found.", 0);
+    }
+
+    $text .= sprintf("\nShowing %d event%s:\n",
+        scalar @$events, @$events == 1 ? '' : 's');
+    for my $ev (@$events) {
+        $text .= sprintf(
+            "  [%s] %-35s status=%-9s port_id=%d type=%s phase=%s\n    %s\n",
+            $ev->{time} // '?',
+            $ev->{port_name},
+            $ev->{status},
+            $ev->{port_id},
+            $ev->{type} // '',
+            $ev->{phase} // '',
+            $ev->{msg} // '',
+        );
     }
 
     tool_result($id, $text, 0);
@@ -1083,6 +1825,38 @@ sub _latest_runs_per_arch() {
         ) AS latest_runs
         WHERE rn = 1
         ORDER BY osversion DESC, arch
+    });
+
+    $sth->execute();
+
+    my @result;
+    while (my $row = $sth->fetchrow_hashref) {
+        my $run = Magus::Run->retrieve($row->{id});
+        push @result, $run if $run;
+    }
+    $sth->finish;
+
+    return @result;
+}
+
+# Returns the most recent complete run for each blessed state per
+# (arch, osversion), so lookup_port can expose current unblessed runs without
+# hiding the blessed baseline.
+sub _latest_lookup_runs_per_arch() {
+    my $dbh = Magus::DBI->db_Main();
+
+    my $sth = $dbh->prepare(q{
+        SELECT id FROM (
+            SELECT id, arch, osversion, blessed,
+                   ROW_NUMBER() OVER (
+                       PARTITION BY arch, osversion, blessed
+                       ORDER BY created DESC
+                   ) as rn
+            FROM runs
+            WHERE status = 'complete'
+        ) AS latest_runs
+        WHERE rn = 1
+        ORDER BY osversion DESC, arch, blessed DESC
     });
 
     $sth->execute();
@@ -1196,6 +1970,75 @@ sub top_blockers_for_run($run, $limit) {
     $sth->finish;
 
     return @blockers;
+}
+
+sub port_from_args($id, $args) {
+    unless (defined $args->{port_id} && is_number($args->{port_id})) {
+        tool_result($id, "Error: 'port_id' must be a valid integer.", 1);
+        return;
+    }
+
+    my $port_id = int($args->{port_id});
+    my $port = eval { Magus::Port->retrieve($port_id) };
+    unless ($port) {
+        tool_result($id, "Port ID $port_id not found.", 1);
+        return;
+    }
+
+    return $port;
+}
+
+sub bounded_int($value, $default, $min, $max) {
+    my $n = defined $value && is_number($value) ? int($value) : $default;
+    $n = $min if $n < $min;
+    $n = $max if $n > $max;
+    return $n;
+}
+
+sub clean_port_search($value) {
+    $value //= '';
+    $value =~ s/[^\w\/.\-+]//g;
+    return $value;
+}
+
+sub format_port_summary($port, $run) {
+    return sprintf(
+        "  %-35s status=%-9s port_id=%-7d version=%s pkgname=%s%s\n",
+        $port->{name}, $port->{status}, $port->{id},
+        $port->{version} // '', $port->{pkgname} // '',
+        ($port->{flavor} ? " flavor=$port->{flavor}" : ''),
+    );
+}
+
+sub port_rows_for_run_and_name($run_id, $name) {
+    my $dbh = Magus::DBI->db_Main();
+    my ($query, @bind);
+
+    if ($name =~ m|/|) {
+        $query = q{
+            SELECT id, name, pkgname, version, status, flavor
+            FROM ports
+            WHERE run = ? AND name = ?
+            ORDER BY flavor, id
+        };
+        @bind = ($run_id, $name);
+    } else {
+        $query = q{
+            SELECT id, name, pkgname, version, status, flavor
+            FROM ports
+            WHERE run = ? AND name LIKE ?
+            ORDER BY name, flavor, id
+            LIMIT 20
+        };
+        @bind = ($run_id, "%$name%");
+    }
+
+    my $sth = $dbh->prepare($query);
+    $sth->execute(@bind);
+    my $rows = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    return @$rows;
 }
 
 sub fetch_cve_api($url) {

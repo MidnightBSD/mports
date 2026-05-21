@@ -12,7 +12,8 @@ LICENSE=	lgpl
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

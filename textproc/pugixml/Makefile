@@ -8,7 +8,8 @@ COMMENT=	Light-weight, simple and fast XML parser for C++ with XPath support
 
 LICENSE=	mit
 
-USES=		cmake compiler:c++11-lang
+USES=		cmake compiler:c++11-lang cpe
+CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 
 CMAKE_OFF=	BUILD_TESTS USE_VERSIONED_LIBDIR

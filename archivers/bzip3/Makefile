@@ -13,7 +13,8 @@ LICENSE_COMB=	multi
 LICENSE_FILE_apache2=	${WRKSRC}/libsais-LICENSE
 LICENSE_FILE_lgpl3+ =	${WRKSRC}/LICENSE
 
-USES=		cmake pathfix tar:xz
+USES=		cmake pathfix tar:xz cpe
+CPE_VENDOR=	bzip3_project
 USE_LDCONFIG=	yes
 
 post-patch:

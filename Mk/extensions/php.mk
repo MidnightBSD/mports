@@ -318,22 +318,22 @@ PHP_MOD_PRIO=	20
 PHP_EXT_INI_FILE=	etc/php/ext-${PHP_MOD_PRIO}-${PHP_MODNAME}.ini.sample
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/php/${PHP_EXT_DIR}
+	@${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/php/${PHP_EXT_DIR}
 	@${INSTALL_LIB} ${WRKSRC}/modules/${PHP_MODNAME}.so \
-		${STAGEDIR}${PREFIX}/lib/php/${PHP_EXT_DIR}
+		${FAKE_DESTDIR}${TRUE_PREFIX}/lib/php/${PHP_EXT_DIR}
 .    for header in ${PHP_HEADER_DIRS}
-		@${MKDIR} ${STAGEDIR}${PREFIX}/include/php/ext/${PHP_MODNAME}/${header}
+		@${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/include/php/ext/${PHP_MODNAME}/${header}
 		@${INSTALL_DATA} ${WRKSRC}/${header}/*.h \
-			${STAGEDIR}${PREFIX}/include/php/ext/${PHP_MODNAME}/${header}
+			${FAKE_DESTDIR}${TRUE_PREFIX}/include/php/ext/${PHP_MODNAME}/${header}
 .    endfor
-	@${RM} ${STAGEDIR}${PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
+	@${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
 	@${EGREP} "#define (COMPILE|HAVE|USE)_" ${WRKSRC}/config.h \
-		> ${STAGEDIR}${PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/php
+		> ${FAKE_DESTDIR}${TRUE_PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
+	@${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/etc/php
 .    if ${php_ARGS:Mzend}
-	@${ECHO_CMD} "zend_extension=${PHP_MODNAME}.so" > ${STAGEDIR}${PREFIX}/${PHP_EXT_INI_FILE}
+	@${ECHO_CMD} "zend_extension=${PHP_MODNAME}.so" > ${FAKE_DESTDIR}${TRUE_PREFIX}/${PHP_EXT_INI_FILE}
 .    else
-	@${ECHO_CMD} "extension=${PHP_MODNAME}.so" > ${STAGEDIR}${PREFIX}/${PHP_EXT_INI_FILE}
+	@${ECHO_CMD} "extension=${PHP_MODNAME}.so" > ${FAKE_DESTDIR}${TRUE_PREFIX}/${PHP_EXT_INI_FILE}
 .    endif
 
 _USES_fake+=	899:add-plist-phpext

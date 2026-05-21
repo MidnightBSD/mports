@@ -18,6 +18,7 @@ BUILD_DEPENDS=	gawk:lang/gawk
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		cpe gmake
+CPE_VENDOR=	marc_vertes
 #MAKE_ENV=	prefix=${PREFIX}
 NO_ARCH=	yes
 

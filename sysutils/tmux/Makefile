@@ -14,7 +14,8 @@ LICENSE_FILE_gpl2=		${WRKSRC_bash}/COPYING
 LICENSE_DISTFILES_iscl=		${DISTNAME}${EXTRACT_SUFX}
 LICENSE_DISTFILES_gpl2=		${DISTFILE_bash}
 
-USES=		ncurses pkgconfig
+USES=		ncurses pkgconfig cpe
+CPE_VENDOR=	tmux_project
 
 USE_GITHUB=	nodefault
 GH_TUPLE=	imomaliev:tmux-bash-completion:f5d5323:bash

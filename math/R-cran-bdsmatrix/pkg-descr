@@ -1,0 +1,2 @@
+This package provides routines for block diagonal symmetric matrices.
+It is a special case of sparse matrices, used by coxme.
