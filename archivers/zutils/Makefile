@@ -9,7 +9,7 @@ WWW=		https://www.nongnu.org/zutils/zutils.html
 
 LICENSE=	gpl2
 
-USES=		cpe tar:lz
+USES=		cpe gmake tar:lz
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
