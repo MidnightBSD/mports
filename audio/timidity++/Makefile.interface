@@ -143,38 +143,38 @@ post-patch:
 
 post-install:
 .if ${INTERFACE} == "tcltk"
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC}/doc/C && ${INSTALL_DATA} README.tk \
-		${STAGEDIR}${DOCSDIR})
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME}
+		${DOCSDIR})
+	@${MKDIR} ${PREFIX}/share/doc/ja/${PORTNAME}
 	(cd ${WRKSRC}/doc/ja_JP.eucJP && ${INSTALL_DATA} README.tk \
-		${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME})
+		${PREFIX}/share/doc/ja/${PORTNAME})
 .endif
 #
 .if ${INTERFACE} == "xaw"
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/X11/app-defaults
+	@${MKDIR} ${PREFIX}/lib/X11/app-defaults
 	cd ${INSTALL_WRKSRC} && ${INSTALL_DATA} TiMidity.ad \
-		${STAGEDIR}${PREFIX}/lib/X11/app-defaults/TiMidity
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/X11/${EUCJP_LOCALE}/app-defaults
+		${PREFIX}/lib/X11/app-defaults/TiMidity
+	@${MKDIR} ${PREFIX}/lib/X11/${EUCJP_LOCALE}/app-defaults
 	cd ${INSTALL_WRKSRC} && ${INSTALL_DATA} TiMidity-uj.ad \
-		${STAGEDIR}${PREFIX}/lib/X11/${EUCJP_LOCALE}/app-defaults/TiMidity
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+		${PREFIX}/lib/X11/${EUCJP_LOCALE}/app-defaults/TiMidity
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC}/doc/C && ${INSTALL_DATA} README.xaw \
-		${STAGEDIR}${DOCSDIR})
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME}
+		${DOCSDIR})
+	@${MKDIR} ${PREFIX}/share/doc/ja/${PORTNAME}
 	(cd ${WRKSRC}/doc/ja_JP.eucJP && ${INSTALL_DATA} README.xaw \
-		${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME})
+		${PREFIX}/share/doc/ja/${PORTNAME})
 .endif
 #
 .if ${INTERFACE} == "xskin"
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC}/doc/C && ${INSTALL_DATA} README.xskin \
-		${STAGEDIR}${DOCSDIR})
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME}
+		${DOCSDIR})
+	@${MKDIR} ${PREFIX}/share/doc/ja/${PORTNAME}
 	(cd ${WRKSRC}/doc/ja_JP.eucJP && ${INSTALL_DATA} README.xskin \
-		${STAGEDIR}${PREFIX}/share/doc/ja/${PORTNAME})
+		${PREFIX}/share/doc/ja/${PORTNAME})
 .endif
 #
 .if defined(LINK)
-	${LN} -sf timidity ${STAGEDIR}${PREFIX}/bin/${LINK}
+	${LN} -sf timidity ${PREFIX}/bin/${LINK}
 .endif
