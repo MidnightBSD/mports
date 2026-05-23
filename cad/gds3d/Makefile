@@ -32,10 +32,10 @@ post-patch: # workaround for https://github.com/trilomix/GDS3D/issues/14
 	@${REINPLACE_CMD} -e 's|Index = NULL;|Index = 0;|' ${WRKSRC}/../libgdsto3d/gdspolygon.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME:tu} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME:tu} ${PREFIX}/bin
 
 do-test:
 	@cd ${WRKSRC}/.. && \
-		${STAGEDIR}${PREFIX}/bin/${PORTNAME:tu} -a assembly/as_example.assembly
+		${PREFIX}/bin/${PORTNAME:tu} -a assembly/as_example.assembly
 
 .include <bsd.port.mk>
