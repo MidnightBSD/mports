@@ -1,12 +1,14 @@
 PORTNAME=	gtk2
 PORTVERSION=	2.24.33
 DISTVERSIONSUFFIX=	-8.el9
-PORTREVSION=	1
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK+ library, version 2.X (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.gtk.org/
+
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	gnome
