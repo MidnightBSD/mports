@@ -36,7 +36,7 @@ USE_XORG=		ice sm x11 xaw xext xmu xt xft
 CONFIGURE_ARGS+=	--with-x
 PLIST_FILES=		bin/ngspice share/man/man1/ngspice.1.gz
 post-install:
-	@cd ${STAGEDIR}${PREFIX} && \
+	@cd ${PREFIX} && \
 		${RM} -r include lib share/ngspice && \
 		${RM} bin/cmpp man/man1/cmpp.1
 .endif
