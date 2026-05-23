@@ -269,7 +269,6 @@ post-install:
 		${PREFIX}/bin/mariadb-access \
 		${PREFIX}/bin/mariadb-find-rows \
 		${PREFIX}/bin/mariadb-hotcopy \
-		${PREFIX}/bin/mariadb-multi \
 		${PREFIX}/bin/mariadb-fix-extensions \
 		${PREFIX}/bin/mariadb-convert-table-format \
 		${PREFIX}/bin/mariadb-dumpslow
