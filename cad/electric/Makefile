@@ -31,9 +31,7 @@ OPTIMIZED_CFLAGS_VARS=	FEATURES+=OPT
 
 .include <bsd.mport.options.mk>
 
-.if ${OPSYS} == FreeBSD
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types -Dregister=
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/share/electric/lib/|${DATADIR}/lib/|; \
@@ -51,6 +49,6 @@ post-patch:
 .endfor
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/electric
+	@${STRIP_CMD} ${PREFIX}/bin/electric
 
 .include <bsd.port.mk>
