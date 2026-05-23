@@ -1,5 +1,5 @@
 PORTNAME=	rust
-PORTVERSION=	1.89.0
+PORTVERSION=	1.94.0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/
 PKGNAMEPREFIX=	${FLAVOR:S/_/-/g}-
@@ -82,6 +82,11 @@ do-configure:
 	@${ECHO_CMD} 'cargo-native-static=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'cargo="${LOCALBASE}/bin/cargo"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'rustc="${LOCALBASE}/bin/rustc"' >> ${WRKSRC}/config.toml
+.if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
+	@${ECHO_CMD} 'ccache="${CCACHE_BIN}"' >> ${WRKSRC}/config.toml
+.else
+	@${ECHO_CMD} 'ccache=false' >> ${WRKSRC}/config.toml
+.endif
 #.if ${_RUST_HOST} != ${_RUST_TARGET}
 #	@${ECHO_CMD} 'host=["${_RUST_HOST}","${_RUST_TARGET}"]' >> ${WRKSRC}/config.toml
 #	@${ECHO_CMD} 'target=["${_RUST_TARGET}"]' >> ${WRKSRC}/config.toml
@@ -93,20 +98,21 @@ do-configure:
 	@${ECHO_CMD} '[llvm]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'download-ci-llvm=false' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'link-shared=false' >> ${WRKSRC}/config.toml
-.if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
-	@${ECHO_CMD} 'ccache="${CCACHE_BIN}"' >> ${WRKSRC}/config.toml
-.else
-	@${ECHO_CMD} 'ccache=false' >> ${WRKSRC}/config.toml
-.endif
 # https://github.com/rust-lang/rust/pull/72696#issuecomment-641517185
 	@${ECHO_CMD} 'ldflags="-lz"' >> ${WRKSRC}/config.toml
 # we need to make sure to always build llvm with host arch support to get a
 # host compiler that can build the host->target compiler
 	@${ECHO_CMD} 'targets="${_RUST_LLVM_TARGET};${_RUST_LLVM_TARGET_${ARCH}}"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} '[target.${_RUST_TARGET}]' >> ${WRKSRC}/config.toml
+.if ${_RUST_HOST} == ${_RUST_TARGET}
+	@${ECHO_CMD} 'cc="${CC}"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'cxx="${CXX}"' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'linker="${CC}"' >> ${WRKSRC}/config.toml
+.else
 	@${ECHO_CMD} 'cc="${LOCALBASE}/freebsd-sysroot/${FLAVOR:S/_/-/g}/bin/cc"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'cxx="${LOCALBASE}/freebsd-sysroot/${FLAVOR:S/_/-/g}/bin/c++"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'linker="${LOCALBASE}/freebsd-sysroot/${FLAVOR:S/_/-/g}/bin/cc"' >> ${WRKSRC}/config.toml
+.endif
 .for _key _util in ar ${AR} ranlib ${RANLIB}
 	@bin="$$(which ${_util})"; \
 		${ECHO_CMD} "${_key}=\"$$bin\"" >> ${WRKSRC}/config.toml
