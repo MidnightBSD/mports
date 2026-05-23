@@ -15,8 +15,8 @@ LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 USES=		cmake compiler:c++11-lib
 USE_GITHUB=	yes
 GH_ACCOUNT=	nihui
-GH_TUPLE=	KhronosGroup:glslang:11.1.0-44-g4afd6917:nglslang/ncnn/glslang \
-		Tencent:ncnn:20220419:ncnn/ncnn
+GH_TUPLE=	nihui:glslang:fe88f421038e1bb0a25cd5c1b2dfe505db82d08f:nglslang/ncnn/glslang \
+		Tencent:ncnn:20260113:ncnn/ncnn
 PLIST_FILES=	bin/${PORTNAME}
 
 do-install:
