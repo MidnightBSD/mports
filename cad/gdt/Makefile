@@ -11,6 +11,7 @@ WWW=		https://sourceforge.net/projects/gds2/
 LICENSE=	gpl2
 
 USES=		shebangfix perl5
+FAKE_OPTS=	trueprefix
 USE_PERL5=	run
 SHEBANG_FILES=	Examples/gdsinfo Examples/scalegds
 WRKSRC=		${WRKDIR}/${PORTNAME:tu}-${PORTVERSION}
@@ -27,6 +28,6 @@ post-install:
 	${INSTALL_SCRIPT} \
 	    ${WRKSRC}/Examples/gdsinfo \
 	    ${WRKSRC}/Examples/scalegds \
-	    ${PREFIX}/bin
+	    ${STAGEDIR}${PREFIX}/bin
 
 .include <bsd.port.mk>
