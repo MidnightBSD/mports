@@ -52,10 +52,10 @@ post-patch:
 
 post-install:
 .if ${FLAVOR} == tcl
-	cd ${STAGEDIR}${PREFIX}/lib/irsim/tcl && \
+	cd ${PREFIX}/lib/irsim/tcl && \
 		${STRIP_CMD} diglib.so irsimexec random.so tclirsim.so
 .else
-	cd ${STAGEDIR}${PREFIX}/bin && ${STRIP_CMD} irsim genspktbl gentbl
+	cd ${PREFIX}/bin && ${STRIP_CMD} irsim genspktbl gentbl
 .endif
 
 .include <bsd.port.mk>
