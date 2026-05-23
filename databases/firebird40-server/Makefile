@@ -150,7 +150,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins.conf ${PREFIX}/${CONFDIR}/plugins.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins/udr_engine.conf ${PREFIX}/${CONFDIR}/udr_engine.conf.sample
 
-	${MKDIR} ${LIBEXECDIR}/plugins/udr ${LOCALSTATEDIR}/help ${LIBEXECDIR}/intl \
+	${MKDIR} ${LIBEXECDIR}/plugins/udr ${FAKE_DESTDIR}${LOCALSTATEDIR}/help ${LIBEXECDIR}/intl \
 		${LIBEXECDIR}/tzdata ${EXAMPLESDIR}
 
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/lib/libib_util.so ${PREFIX}/lib
@@ -165,7 +165,7 @@ do-install:
 	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employee.fdb ${EXAMPLESDIR}/employee.fdb
 	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employe2.sql ${EXAMPLESDIR}/employe2.sql
 
-	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${LOCALSTATEDIR}/help
+	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${FAKE_DESTDIR}${LOCALSTATEDIR}/help
 
 	${INSTALL_FB} -m 0555 ${WRKSRC}/gen/Release/firebird/intl/libfbintl.so ${LIBEXECDIR}/intl/libfbintl.so
 .else
