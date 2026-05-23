@@ -34,6 +34,7 @@ SHEBANG_FILES=	packages/kokkos/bin/kokkos_launch_compiler \
 		packages/phalanx/scripts/phalanx_create_evaluator.py
 
 CXXFLAGS+=	-DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED # fails otherwise with backtrace-related symbol error explicitly printed by Boost
+CXXFLAGS+=	-DTEUCHOS_NO_ZERO_ITERATOR_CONVERSION # Iter(0) calls private libc++ __wrap_iter constructor; use Iter() instead
 LDFLAGS+=	-lexecinfo # only for kokkos (?), to prevent missing symbols
 
 CMAKE_OFF=		Trilinos_ENABLE_TESTS
