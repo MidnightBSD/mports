@@ -11,6 +11,7 @@ WWW=		https://redis-store.org/redis-rack/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rack-session>=0.2.0:www/rubygem-rack-session \
 		rubygem-redis-store>=1.2<2:devel/rubygem-redis-store
 
@@ -19,6 +20,6 @@ USES=		gem
 NO_ARCH=	yes
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/appraisal ${STAGEDIR}${PREFIX}/bin/rake
+	${RM} ${PREFIX}/bin/appraisal ${PREFIX}/bin/rake
 
 .include <bsd.port.mk>
