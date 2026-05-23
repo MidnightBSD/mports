@@ -161,7 +161,7 @@ do-install:
 	${INSTALL_FB} -m 0555 ${PLUGIN_SO:S!^!${WRKSRC}/gen/Release/firebird/plugins/!} ${LIBEXECDIR}/plugins
 	${INSTALL_FB} -m 0444 ${TZDATA_FILES:S!^!${WRKSRC}/gen/Release/firebird/tzdata/!} ${LIBEXECDIR}/tzdata
 
-	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security4.fdb ${LOCALSTATEDIR}/security4.fdb.sample
+	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security4.fdb ${FAKE_DESTDIR}${LOCALSTATEDIR}/security4.fdb.sample
 	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employee.fdb ${EXAMPLESDIR}/employee.fdb
 	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employe2.sql ${EXAMPLESDIR}/employe2.sql
 
