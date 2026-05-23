@@ -20,6 +20,6 @@ USE_PERL5=	run
 SHEBANG_FILES=	cv.pl
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/cv.pl ${STAGEDIR}${PREFIX}/bin/cv
+	${INSTALL_SCRIPT} ${WRKSRC}/cv.pl ${PREFIX}/bin/cv
 
 .include <bsd.port.mk>
