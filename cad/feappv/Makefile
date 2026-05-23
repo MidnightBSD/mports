@@ -38,11 +38,11 @@ pre-configure:
 		 s|Feappv_g.a|libfeappv.a|' ${WRKSRC}/makefile.in
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/main/feappv ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/libfeappv.a ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_PROGRAM} ${WRKSRC}/main/feappv ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/libfeappv.a ${PREFIX}/lib
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/manual/*.pdf ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/manual/*.pdf ${DOCSDIR}
 
 .include <bsd.port.mk>
