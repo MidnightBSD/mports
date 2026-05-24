@@ -114,6 +114,7 @@
     SUBDIR += python313t
     SUBDIR += python314
     SUBDIR += referenceassemblies-pcl
+    SUBDIR += rubygem-rb_sys
     SUBDIR += ruby32
     SUBDIR += rust
     SUBDIR += rust-bin
