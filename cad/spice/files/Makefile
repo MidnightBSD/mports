@@ -6,7 +6,7 @@ CONFIGFILE?=	conf/FreeBSD
 # Configuration parameters
 VARLIST=	SYS_CFLAGS LDFLAGS INTERFACE_OPTS X_DIR
 SYS_CFLAGS=	-Dbsd
-LDFLAGS=	-lm -ltermcap
+LDFLAGS=	-lm -ltinfo
 INTERFACE_OPTS=	-DWANT_MFB
 .if defined(WITH_X11) && !empty(WITH_X11)
 INTERFACE_OPTS+=-DWANT_X11
