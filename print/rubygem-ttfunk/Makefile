@@ -10,8 +10,8 @@ WWW=		https://github.com/prawnpdf/ttfunk
 
 LICENSE=	ruby gpl2 gpl3
 LICENSE_COMB=	dual
-LICENSE_FILE_gpl2=	${WRKSRC}/gpl2
-LICENSE_FILE_gpl3=	${WRKSRC}/gpl3
+LICENSE_FILE_gpl2=	${WRKSRC}/GPLv2
+LICENSE_FILE_gpl3=	${WRKSRC}/GPLv3
 LICENSE_FILE_ruby=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
