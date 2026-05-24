@@ -67,8 +67,8 @@ pre-configure:
 	${REINPLACE_CMD} -e 's|tk-private/||' ${WRKSRC}/src/cgnstools/tkogl/tkogl.c
 
 post-install:
-	${RLN} ${FAKE_DESTDIR}${PREFIX}/lib/libcgns.so.${PORTVERSION:R} \
-		${FAKE_DESTDIR}${PREFIX}/lib/libcgns.so.${PORTVERSION:R:R}
+	${RLN} ${PREFIX}/lib/libcgns.so.${PORTVERSION:R} \
+		${PREFIX}/lib/libcgns.so.${PORTVERSION:R:R}
 
 do-test:
 	cd ${TEST_WRKSRC} && \

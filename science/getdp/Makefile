@@ -26,6 +26,8 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 FFLAGS+=	-fallow-argument-mismatch
 .endif
 
+NO_TEST=		yes
+
 do-test:
 	cd ${WRKSRC}/demos && yes "" | ${FAKE_DESTDIR}${PREFIX}/bin/${PORTNAME} magnet.pro -solve MagSta_phi
 

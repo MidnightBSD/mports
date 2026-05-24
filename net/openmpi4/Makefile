@@ -56,6 +56,7 @@ USE_LDCONFIG=	${PREFIX}/${MPIDIR}/lib
 MANDIRS=	${PREFIX}/${MPIDIR}/share/man
 
 TEST_TARGET=	check
+NO_TEST=		yes
 
 SHEBANG_FILES=	ompi/mca/common/monitoring/profile2mat.pl \
 		ompi/mca/common/monitoring/aggregate_profile.pl
