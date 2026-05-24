@@ -43,13 +43,13 @@ BOOST_PORTEXAMPLES=	find_all_pp
 .include <bsd.mport.options.mk>
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 .for fname in ${PORTEXAMPLES}
-	${INSTALL_PROGRAM} ${WRKSRC}/examples/${fname} ${STAGEDIR}${EXAMPLESDIR}/
+	${INSTALL_PROGRAM} ${WRKSRC}/examples/${fname} ${FAKE_DESTDIR}${EXAMPLESDIR}/
 .endfor
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}/
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>
