@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General Ruby extensions
 WWW=		https://github.com/datamapper/extlib
 
-LICENSE=	MIT
+LICENSE=	mit
 
 NO_ARCH=	yes
 

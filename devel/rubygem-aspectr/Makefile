@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby libraries for Aspect programming
 WWW=		http://aspectr.rubyforge.org/
 
-LICENSE=	GPLv2 GPLv3
+LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes
