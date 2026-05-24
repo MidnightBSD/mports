@@ -11,7 +11,7 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=yes
 NO_TEST=	yes

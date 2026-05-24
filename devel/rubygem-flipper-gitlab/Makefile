@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Act of enabling/disabling features in your application
 WWW=		https://github.com/jnunemaker/flipper
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-concurrent-ruby<2:devel/rubygem-concurrent-ruby
