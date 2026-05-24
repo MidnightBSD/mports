@@ -10,6 +10,7 @@ COMMENT=	Open-source TCG Software Stack (Linux CentOS ${LINUX_DIST_VER})
 LICENSE=	bsd3
 
 USES=		linux:c7 cpe
+SKIP_FAKE_ALL=	yes
 CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

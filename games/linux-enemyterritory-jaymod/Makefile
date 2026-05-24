@@ -15,6 +15,7 @@ LICENSE=	other
 RUN_DEPENDS=	et:games/linux-enemyterritory
 
 USES=		linux
+SKIP_FAKE_ALL=	yes
 
 OPTIONS_DEFINE=	DOCS OMNIBOT
 OMNIBOT_DESC=	Install Omni-Bot for bot support

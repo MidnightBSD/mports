@@ -18,6 +18,7 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 RESTRICTED=	not redistributable
 
 USES=		linux zip
+SKIP_FAKE_ALL=	yes
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}

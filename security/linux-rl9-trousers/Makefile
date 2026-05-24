@@ -9,6 +9,7 @@ COMMENT=	Open-source TCG Software Stack (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://sourceforge.net/projects/trousers/
 
 USES=		cpe linux:rl9
+SKIP_FAKE_ALL=	yes
 CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes

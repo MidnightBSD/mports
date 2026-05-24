@@ -11,6 +11,7 @@ WWW=		https://curl.se/
 LICENSE=	mit
 
 USES=		cpe linux:rl9
+SKIP_FAKE_ALL=	yes
 USE_LDCONFIG=	yes
 USE_LINUX=	libnghttp2 libssh nspr nss openldap
 USE_LINUX_RPM=	yes

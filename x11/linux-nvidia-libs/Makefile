@@ -29,6 +29,7 @@ PORTSCOUT=	limit:^${DISTVERSION:R}\.\d+$$
 .endif
 
 USES=		linux
+SKIP_FAKE_ALL=	yes
 USE_LINUX=	xorglibs
 USE_LDCONFIG=	yes
 NO_BUILD=	yes
