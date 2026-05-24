@@ -29,7 +29,7 @@ LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 		libzstd.so:archivers/zstd
 RUN_DEPENDS=	corepack>=0:www/corepack
 
-USES=		compiler:c++11-lang gmake localbase pkgconfig python:build shebangfix sqlite tar:xz
+USES=		compiler:c++11-lang gmake localbase pkgconfig python:build shebangfix sqlite:port tar:xz
 
 CONFIGURE_ARGS=	--prefix=${PREFIX:S|^${DESTDIR}||} \
 		--shared-brotli \
