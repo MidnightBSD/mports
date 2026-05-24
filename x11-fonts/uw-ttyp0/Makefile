@@ -13,6 +13,7 @@ LICENSE_FILE_TTYP0=	${WRKSRC}/LICENSE
 LICENSE_PERMS_TTYP0=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	bdftopcf:x11-fonts/bdftopcf \
+		fonttosfnt:x11-fonts/fonttosfnt \
 		mkfontscale:x11-fonts/mkfontscale
 
 HAS_CONFIGURE=	yes
