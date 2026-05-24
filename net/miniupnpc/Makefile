@@ -32,7 +32,7 @@ USE_RC_SUBR=	miniupnpc
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/upnpc \
 		${PREFIX}/bin/upnp-listdevices \
-		${PREFIX}/lib/libminiupnpc.so.18
+		${PREFIX}/lib/libminiupnpc.so.21
 .endif
 
 .include <bsd.port.post.mk>
