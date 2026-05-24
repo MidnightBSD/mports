@@ -11,6 +11,7 @@ WWW=		https://github.com/redis/redis-rb
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-redis-client>=0.22.0:databases/rubygem-redis-client
 
 USES=		gem
