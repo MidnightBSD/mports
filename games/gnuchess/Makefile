@@ -19,6 +19,7 @@ USE_CXXSTD=	c++14
 SHEBANG_FILES=	doc/quotes.rb
 
 GNU_CONFIGURE=	yes
+LIBS+=		-lpthread
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 
 INFO=		gnuchess
