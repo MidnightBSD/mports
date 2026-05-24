@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/lib/node_modules/npm/LICENSE
 RUN_DEPENDS=	gmake:devel/gmake
 
 USES?=		nodejs:24,run
-USES+=		cpe python shebangfix tar:xz
+USES+=		cpe python shebangfix sqlite:port tar:xz
 
 NO_ARCH=	yes
 NO_BUILD=	yes
