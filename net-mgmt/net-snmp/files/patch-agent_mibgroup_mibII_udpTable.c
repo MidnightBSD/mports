@@ -1,14 +1,5 @@
 --- agent/mibgroup/mibII/udpTable.c.orig	2026-05-07 10:24:53.707621000 -0400
 +++ agent/mibgroup/mibII/udpTable.c	2026-05-07 10:28:34.998663000 -0400
-@@ -9,7 +9,7 @@
-  */
- /*
-  * Portions of this file are copyrighted by:
-- * Copyright © 2003 Sun Microsystems, Inc. All rights reserved.
-+ * Copyright ï¿½ 2003 Sun Microsystems, Inc. All rights reserved.
-  * Use is subject to license terms specified in the COPYING file
-  * distributed with the Net-SNMP package.
-  */
 @@ -94,10 +94,10 @@
  #define INP_NEXT_SYMBOL		inp_queue.cqe_next	/* or set via <net-snmp/system/openbsd.h> */
  #endif
