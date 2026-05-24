@@ -113,7 +113,7 @@ UDEV_LIB_DEPENDS=		libudev.so:devel/libudev-devd
 UDEV_BUILD_DEPENDS=		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 KMSDRM_CONFIGURE_ENABLE=	video-kmsdrm kmsdrm-shared
 KMSDRM_USES=			gl
-KMSDRM_USE=	 		GL=gbm
+KMSDRM_USE=			GL=gbm
 OPENGL_CONFIGURE_ENABLE=	video-opengl
 OPENGL_USES=			gl
 OPENGL_USE=			GL=opengl
