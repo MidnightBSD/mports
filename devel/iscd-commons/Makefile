@@ -11,7 +11,7 @@ WWW=		https://github.com/ISCDtoolbox/Commons
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake:testing
+USES=		cmake
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ISCDtoolbox
