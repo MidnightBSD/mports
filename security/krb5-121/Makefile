@@ -22,7 +22,7 @@ CONFLICTS=		heimdal krb5 krb5-11* krb5-120
 CONFLICTS_BUILD=	boringssl
 
 KERBEROSV_URL=		http://web.mit.edu/kerberos/
-USES=			autoreconf compiler:c++11-lang cpe gmake gettext-runtime \
+USES=			autoreconf:2.69 compiler:c++11-lang cpe gmake gettext-runtime \
 			gssapi:bootstrap,mit libtool:build localbase \
 			perl5 pkgconfig ssl
 USE_CSTD=		gnu99

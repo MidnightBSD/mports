@@ -33,4 +33,7 @@ TEST_TARGET=	check
 
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
+post-patch:
+	@${PRINTF} '\npma:\n\t@:\n' >> ${WRKSRC}/test/Makefile.in
+
 .include <bsd.port.mk>
