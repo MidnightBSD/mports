@@ -27,9 +27,9 @@ CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 .endif
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${EXAMPLESDIR}
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 .for f in ${PORTEXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/doc/$f ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/$f ${FAKE_DESTDIR}${EXAMPLESDIR}
 .endfor
 
 .include <bsd.port.mk>
