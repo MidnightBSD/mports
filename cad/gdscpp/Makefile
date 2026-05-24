@@ -25,8 +25,8 @@ PLIST_FILES=	bin/gdscpp \
 		lib/libgds.so
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${STAGEDIR}${LOCALBASE}/bin
-	${INSTALL_LIB} ${BUILD_WRKSRC}/libgds.so ${STAGEDIR}${LOCALBASE}/lib
-	cd ${WRKSRC}/include && ${COPYTREE_SHARE} ${PORTNAME} ${STAGEDIR}${LOCALBASE}/include
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${FAKE_DESTDIR}${LOCALBASE}/bin
+	${INSTALL_LIB} ${BUILD_WRKSRC}/libgds.so ${FAKE_DESTDIR}${LOCALBASE}/lib
+	cd ${WRKSRC}/include && ${COPYTREE_SHARE} ${PORTNAME} ${FAKE_DESTDIR}${LOCALBASE}/include
 
 .include <bsd.port.mk>
