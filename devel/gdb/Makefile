@@ -177,8 +177,8 @@ do-install-PYTHON-on:
 .if exists(/usr/lib/libc++.so.1) || exists(/lib/libc++.so.1)
 	@(cd ${WRKSRC_libcxx} ; ${SETENVI} ${WRK_ENV} \
 		${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} \
-		    LIBCXX_DIR="${LIBCXX_DIR}" install )
-	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/auto-load/${LIBCXX_DIR} && \
+		    DESTDIR="${FAKE_DESTDIR}" LIBCXX_DIR="${LIBCXX_DIR}" install )
+	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/auto-load${LIBCXX_DIR} && \
 		${PYTHON_CMD} -m compileall .)
 	@(cd ${FAKE_DESTDIR}${PREFIX}/share/libcxx-gdbpy/libcxx && \
 		${PYTHON_CMD} -m compileall .)
