@@ -33,7 +33,7 @@ OPTIONS_SUB=	yes
 do-install: # see https://github.com/OpenTimer/OpenTimer/issues/47
 .for e in ot-shell ot-tau15 ot-tau18 ot-utility
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/${e} \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 .endfor
 
 post-install-DOCS-on:
