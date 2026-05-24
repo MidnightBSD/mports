@@ -20,8 +20,8 @@ CMAKE_ARGS+=	-DSC_INSTALL_PREFIX=${PREFIX} \
 MANDIRS=	${PREFIX}/man
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/schema_scanner
-	@(cd ${STAGEDIR}${PREFIX} ; \
+	${STRIP_CMD} ${PREFIX}/bin/schema_scanner
+	@(cd ${PREFIX} ; \
 		${FIND} include \( -type f -or -type l \) | ${SORT} >> ${TMPPLIST})
 
 .include <bsd.port.mk>
