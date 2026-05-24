@@ -16,6 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Path-Tiny>=0:devel/p5-Path-Tiny \
 		p5-Ref-Util>=0:devel/p5-Ref-Util
+TEST_DEPENDS=	p5-Path-Class>=0:devel/p5-Path-Class
 
 USES=		perl5
 USE_PERL5=	configure
