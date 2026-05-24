@@ -11,7 +11,7 @@ WWW=		https://github.com/rails/execjs
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-USES=		gem nodejs:run
+USES=		gem nodejs:run sqlite:port
 
 NO_ARCH=	yes
 
