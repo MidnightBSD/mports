@@ -22,10 +22,12 @@ USES=		bison:alias cmake:insource cpe gl pkgconfig python:env \
 		tar:bzip2 tk xorg
 USE_GL=		gl glu
 USE_LDCONFIG=	yes
+USE_CXXSTD=	c++14
 USE_XORG=	ice sm x11 xau xcb xdamage xdmcp xext xfixes xft xi \
 		xorgproto xrender xscrnsaver xt xxf86vm
 
-CMAKE_OFF=	BRLCAD_ENABLE_STRICT
+CMAKE_OFF=	BRLCAD_ENABLE_COMPILER_WARNINGS \
+		BRLCAD_ENABLE_STRICT
 CMAKE_INSTALL_PREFIX=	${PREFIX}/${PORTNAME}
 CXXFLAGS_powerpc64=	-mvsx
 
@@ -44,6 +46,8 @@ PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 .if ${OPSYS} == FreeBSD
 USES+=	llvm:max=14
+.else
+USES+=	llvm:max=15
 .endif
 
 post-patch:
@@ -56,8 +60,8 @@ pre-install:
 
 # note that installing outside of PREFIX wigs out package stuff... :/
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/mged.sh ${STAGEDIR}${PREFIX}/bin/mged.sh
+	${MKDIR} ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/mged.sh ${PREFIX}/bin/mged.sh
 
 regression-test: build
 	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} test)
