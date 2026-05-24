@@ -5,7 +5,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple, battle-tested conventions and helpers for building web pages
 WWW=		https://github.com/rails/rails/tree/main/actionview \
 		https://rubyonrails.org/
@@ -14,12 +14,12 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab \
+RUN_DEPENDS=	rubygem-activesupport-gitlab>=${PORTVERSION}:devel/rubygem-activesupport-gitlab \
 		rubygem-builder>=3.1<4:devel/rubygem-builder \
 		rubygem-cgi>=0:www/rubygem-cgi \
 		rubygem-erubi>=1.11<2:www/rubygem-erubi \
-		rubygem-rails-dom-testing-rails-gitlab>=2.2<3:textproc/rubygem-rails-dom-testing-rails-gitlab \
-		rubygem-rails-html-sanitizer-gitlab>=1.6<2:textproc/rubygem-rails-html-sanitizer-gitlab
+		rubygem-rails-dom-testing-rails-gitlab>=2.2:textproc/rubygem-rails-dom-testing-rails-gitlab \
+		rubygem-rails-html-sanitizer-gitlab>=1.6:textproc/rubygem-rails-html-sanitizer-gitlab
 
 USES=		cpe gem
 
