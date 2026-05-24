@@ -52,10 +52,10 @@
 +	-if test "$(VERSION)" != "$(LDVERSION)"; then \
 +	  rm -f $(DESTDIR)$(BINDIR)/python$(VERSION)-config; \
 +	  (cd $(DESTDIR)$(BINDIR); $(LN) -s python$(LDVERSION)-config python$(VERSION)-config); \
-+	  rm -f $(DESTDIR)$(LIBPC)/python-$(LDVERSION).pc; \
-+	  (cd $(DESTDIR)$(LIBPC); $(LN) -s python-$(VERSION).pc python-$(LDVERSION).pc); \
-+	  rm -f $(DESTDIR)$(LIBPC)/python-$(LDVERSION)-embed.pc; \
-+	  (cd $(DESTDIR)$(LIBPC); $(LN) -s python-$(VERSION)-embed.pc python-$(LDVERSION)-embed.pc); \
++	  rm -f $(DESTDIR)$(LIBPC)/python-$(VERSION).pc; \
++	  (cd $(DESTDIR)$(LIBPC); $(LN) -s python-$(LDVERSION).pc python-$(VERSION).pc); \
++	  rm -f $(DESTDIR)$(LIBPC)/python-$(VERSION)-embed.pc; \
++	  (cd $(DESTDIR)$(LIBPC); $(LN) -s python-$(LDVERSION)-embed.pc python-$(VERSION)-embed.pc); \
 +	fi
  	$(INSTALL_SCRIPT) $(SCRIPT_IDLE) $(DESTDIR)$(BINDIR)/idle$(VERSION)
  	$(INSTALL_SCRIPT) $(SCRIPT_PYDOC) $(DESTDIR)$(BINDIR)/pydoc$(VERSION)

@@ -164,6 +164,6 @@ post-install:
 		${STRIP_CMD} $$i; done								# Strip shared extensions
 	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
 		${PREFIX}/lib/libpython${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.so.1.0-gdb.py
-	-${CP} ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
+	-${CP} ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/python-${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.post.mk>
