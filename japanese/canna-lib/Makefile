@@ -21,6 +21,8 @@ MAKE_JOBS_UNSAFE=	yes
 MAKE_ARGS+=	CCOPTIONS="-Wno-error=int-conversion"
 
 post-patch:
-	@${REINPLACE_CMD} -e '/machine\/ansi\.h/d' ${WRKSRC}/include/widedef.h
+	@if [ -f ${WRKSRC}/include/widedef.h ]; then \
+		${REINPLACE_CMD} -e '/machine\/ansi\.h/d' ${WRKSRC}/include/widedef.h; \
+	fi
 
 .include <bsd.port.mk>
