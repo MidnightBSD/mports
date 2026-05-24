@@ -104,50 +104,49 @@ post-patch:
 		${WRKDIR}/${FPCSRCDIR}/packages/fpmkunit/src/fpmkunit.pp
 
 # enable units
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/a52/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/dbus/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/dts/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|freebsd,||g' \
 		${WRKSRC}/packages/fpgtk/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|iphonesim|midnightbsd,freebsd,iphonesim|g' \
+	@${REINPLACE_CMD} -i "" -e 's|iphonesim|freebsd,iphonesim|g' \
 		${WRKSRC}/packages/gnome1/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|iphonesim|midnightbsd,freebsd,iphonesim|g' \
+	@${REINPLACE_CMD} -i "" -e 's|iphonesim|freebsd,iphonesim|g' \
 		${WRKSRC}/packages/gtk1/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|iphonesim|midnightbsd,freebsd,iphonesim|g' \
+	@${REINPLACE_CMD} -i "" -e 's|iphonesim|freebsd,iphonesim|g' \
 		${WRKSRC}/packages/imlib/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/ldap/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/libsee/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/lua/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/mad/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/modplug/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|Linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|Linux|freebsd,linux|g' \
 		${WRKSRC}/packages/newt/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/oggvorbis/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/openal/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/opencl/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/proj4/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/ptc/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|os2|midnightbsd,freebsd,os2|g' \
+	@${REINPLACE_CMD} -i "" -e 's|os2|freebsd,os2|g' \
 		${WRKSRC}/packages/rexx/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/zorba/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|FreeBSD|FreeBSD,MidnightBSD|g' \
 		${WRKSRC}/utils/fpcm/fpcmake.ini
-	@${REINPLACE_CMD} -i "" -e 's|FreeBSD|MidnightBSD,FreeBSD|g' \
-		${WRKSRC}/rtl/fpmake.pp
+
 
 do-build:
 # build fpc compiler
