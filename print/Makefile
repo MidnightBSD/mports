@@ -124,4 +124,7 @@ SUBDIR += xreader
 SUBDIR += xtexsh
 SUBDIR += yatex
 
+    SUBDIR += rubygem-prawn-svg
+
+
 .include <bsd.port.subdir.mk>

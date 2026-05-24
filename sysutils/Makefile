@@ -388,4 +388,13 @@
     SUBDIR += zsm
     SUBDIR += zyggy
 
+    SUBDIR += rubygem-ohai
+    SUBDIR += rubygem-parallel
+    SUBDIR += rubygem-sys-filesystem14
+    SUBDIR += rubygem-vmstat
+
+
+    SUBDIR += rubygem-chef-config
+
+
 .include <bsd.port.subdir.mk>

@@ -1,0 +1,21 @@
+PORTNAME=	oj-introspect
+PORTVERSION=	0.9.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Embeds start and end byte offsets of JSON objects
+WWW=		https://github.com/meinac/oj-introspect
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+MY_DEPENDS=	rubygem-oj-gitlab>=3.16.16:devel/rubygem-oj-gitlab
+BUILD_DEPENDS=	${MY_DEPENDS}
+RUN_DEPENDS=	${MY_DEPENDS}
+
+USES=		gem
+#USES+=	ruby:extconf
+#RUBY_EXTCONF_SUBDIRS=	ext/oj-introspect
+
+.include <bsd.port.mk>

@@ -393,4 +393,7 @@
     SUBDIR += xapian-bindings
     SUBDIR += xapian-core
 
+    SUBDIR += rubygem-redis-namespace-gitlab
+
+
 .include <bsd.port.subdir.mk>

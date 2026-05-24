@@ -522,4 +522,39 @@
     SUBDIR += zenphoto
     SUBDIR += zola
 
+    SUBDIR += gitlab-pages
+    SUBDIR += gitlab-workhorse
+    SUBDIR += rubygem-atlassian-jwt
+    SUBDIR += rubygem-browser5
+    SUBDIR += rubygem-carrierwave-gitlab
+    SUBDIR += rubygem-circuitbox
+    SUBDIR += rubygem-coverband
+    SUBDIR += rubygem-cssbundling-rails-rails-gitlab
+    SUBDIR += rubygem-gon-rails-gitlab
+    SUBDIR += rubygem-hamlit-gitlab
+    SUBDIR += rubygem-jsonb_accessor
+    SUBDIR += rubygem-kaminari-rails-gitlab
+    SUBDIR += rubygem-kubeclient
+    SUBDIR += rubygem-lograge-rails-gitlab
+    SUBDIR += rubygem-puma-gitlab
+    SUBDIR += rubygem-rails-gitlab
+    SUBDIR += rubygem-redcloth
+    SUBDIR += rubygem-rqrcode-gitlab
+    SUBDIR += rubygem-ruby-openai37
+    SUBDIR += rubygem-toml-rb
+
+
+    SUBDIR += rubygem-actioncable-gitlab
+    SUBDIR += rubygem-http4
+    SUBDIR += rubygem-kaminari-actionview-rails-gitlab
+    SUBDIR += rubygem-kaminari-activerecord-rails-gitlab
+    SUBDIR += rubygem-kaminari-core
+    SUBDIR += rubygem-rinku
+    SUBDIR += rubygem-rqrcode_core-gitlab
+
+
+    SUBDIR += rubygem-fuzzyurl
+    SUBDIR += rubygem-http-form_data2
+
+
 .include <bsd.port.subdir.mk>

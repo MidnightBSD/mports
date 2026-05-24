@@ -78,4 +78,14 @@
     SUBDIR += zns
     SUBDIR += zonenotify
 
+    SUBDIR += rubygem-gitlab-net-dns
+    SUBDIR += rubygem-validates_hostname-gitlab
+
+
+    SUBDIR += rubygem-simpleidn
+
+
+    SUBDIR += rubygem-idn-ruby
+
+
 .include <bsd.port.subdir.mk>

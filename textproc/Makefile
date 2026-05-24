@@ -567,4 +567,49 @@
     SUBDIR += yq
     SUBDIR += zxing-cpp
 
+    SUBDIR += gitlab-zoekt-indexer
+    SUBDIR += rubygem-asciidoctor-include-ext
+    SUBDIR += rubygem-asciidoctor-kroki
+    SUBDIR += rubygem-asciidoctor-plantuml00
+    SUBDIR += rubygem-babosa
+    SUBDIR += rubygem-charlock_holmes
+    SUBDIR += rubygem-commonmarker0
+    SUBDIR += rubygem-creole
+    SUBDIR += rubygem-diffy
+    SUBDIR += rubygem-elasticsearch-api-gitlab
+    SUBDIR += rubygem-elasticsearch-model-gitlab
+    SUBDIR += rubygem-elasticsearch-rails7
+    SUBDIR += rubygem-gitlab-glfm-markdown
+    SUBDIR += rubygem-gitlab-markup
+    SUBDIR += rubygem-google-cloud-artifact_registry-v1
+    SUBDIR += rubygem-google-cloud-profiler-v2
+    SUBDIR += rubygem-html-pipeline-gitlab
+    SUBDIR += rubygem-html2text
+    SUBDIR += rubygem-js_regex
+    SUBDIR += rubygem-opensearch-ruby-gitlab
+    SUBDIR += rubygem-org-ruby
+    SUBDIR += rubygem-parslet1
+    SUBDIR += rubygem-psych3
+    SUBDIR += rubygem-sanitize60
+    SUBDIR += rubygem-terser
+    SUBDIR += rubygem-truncato
+    SUBDIR += rubygem-version_sorter
+    SUBDIR += rubygem-wikicloth081
+
+
+    SUBDIR += rubygem-actiontext-gitlab
+    SUBDIR += rubygem-character_set
+    SUBDIR += rubygem-citrus
+    SUBDIR += rubygem-cronex
+    SUBDIR += rubygem-elasticsearch-gitlab
+    SUBDIR += rubygem-regexp_property_values
+    SUBDIR += rubygem-reverse_markdown
+    SUBDIR += rubygem-rubypants
+    SUBDIR += rubygem-tomlrb
+    SUBDIR += rubygem-twitter-text
+
+
+    SUBDIR += rubygem-elasticsearch-transport-gitlab
+
+
 .include <bsd.port.subdir.mk>

@@ -173,4 +173,16 @@
     SUBDIR += xmailwatcher
     SUBDIR += xpbiff
 
+    SUBDIR += rubygem-email_reply_trimmer
+    SUBDIR += rubygem-gitlab-mail_room
+    SUBDIR += rubygem-mail-gitlab
+    SUBDIR += rubygem-premailer-rails-rails-gitlab
+    SUBDIR += rubygem-valid_email
+
+
+    SUBDIR += rubygem-actionmailbox-gitlab
+    SUBDIR += rubygem-actionmailer-gitlab
+    SUBDIR += rubygem-premailer
+
+
 .include <bsd.port.subdir.mk>

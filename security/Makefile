@@ -352,4 +352,39 @@
     SUBDIR += yubikey-agent
     SUBDIR += zaproxy
 
+    SUBDIR += rubygem-acme-client-gitlab
+    SUBDIR += rubygem-attr_encrypted
+    SUBDIR += rubygem-cvss-suite
+    SUBDIR += rubygem-declarative_policy
+    SUBDIR += rubygem-devise-two-factor-rails-gitlab
+    SUBDIR += rubygem-doorkeeper-device_authorization_grant
+    SUBDIR += rubygem-doorkeeper-openid_connect
+    SUBDIR += rubygem-doorkeeper-rails-gitlab
+    SUBDIR += rubygem-duo_api
+    SUBDIR += rubygem-ed25519
+    SUBDIR += rubygem-gitlab-cloud-connector
+    SUBDIR += rubygem-gitlab-secret_detection
+    SUBDIR += rubygem-gpgme
+    SUBDIR += rubygem-lockbox
+    SUBDIR += rubygem-omniauth-alicloud
+    SUBDIR += rubygem-omniauth-atlassian-oauth2
+    SUBDIR += rubygem-omniauth-oauth2-generic-gitlab
+    SUBDIR += rubygem-omniauth-saml-gitlab
+    SUBDIR += rubygem-omniauth-shibboleth-redux-gitlab
+    SUBDIR += rubygem-ruby-saml-gitlab
+    SUBDIR += rubygem-ssh_data
+    SUBDIR += rubygem-webauthn
+
+
+    SUBDIR += rubygem-android_key_attestation
+    SUBDIR += rubygem-cose
+    SUBDIR += rubygem-encryptor
+    SUBDIR += rubygem-safety_net_attestation
+    SUBDIR += rubygem-ssrf_filter10
+    SUBDIR += rubygem-tpm-key_attestation
+
+
+    SUBDIR += rubygem-openssl-signature_algorithm
+
+
 .include <bsd.port.subdir.mk>

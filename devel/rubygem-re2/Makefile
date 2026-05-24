@@ -1,0 +1,20 @@
+PORTNAME=	re2
+PORTVERSION=	2.23.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Ruby bindings to re2
+WWW=		https://github.com/mudge/re2
+
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+LIB_DEPENDS=	libgmp.so:math/gmp \
+		libre2.so:devel/re2
+RUN_DEPENDS=	rubygem-mini_portile2>=2.8.9<2.9:devel/rubygem-mini_portile2
+
+USES=		gem
+CONFIGURE_ARGS=	--enable-system-libraries
+
+.include <bsd.port.mk>

@@ -219,4 +219,7 @@
     SUBDIR += zarray
     SUBDIR += zn_poly
 
+    SUBDIR += rubygem-expression_parser
+
+
 .include <bsd.port.subdir.mk>

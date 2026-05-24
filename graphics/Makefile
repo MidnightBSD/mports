@@ -462,4 +462,10 @@
     SUBDIR += zint
     SUBDIR += zphoto
 
+    SUBDIR += rubygem-invisible_captcha
+
+
+    SUBDIR += p5-Image-ExifTool
+
+
 .include <bsd.port.subdir.mk>

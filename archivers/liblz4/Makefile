@@ -15,7 +15,7 @@ LICENSE_COMB=	multi
 LICENSE_FILE_bsd2=${WRKSRC}/../../lib/LICENSE
 LICENSE_FILE_gpl2=	${WRKSRC}/../../programs/COPYING
 
-USES=		cpe meson pkgconfig python:build
+USES=		cpe meson:muon pkgconfig python:build
 
 MESON_ARGS=	--default-library=both \
 		-Dalign-test=true \

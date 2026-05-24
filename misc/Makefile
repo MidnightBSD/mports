@@ -146,4 +146,7 @@
     SUBDIR += zine
     SUBDIR += zoneinfo
 
+    SUBDIR += rubygem-dotenv
+
+
 .include <bsd.port.subdir.mk>
