@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Complete replacement to the CSV standard library
 WWW=		http://fastercsv.rubyforge.org/
 
-LICENSE=	GPLv2 RUBY
+LICENSE=	gpl2 RUBY
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes
