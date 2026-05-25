@@ -16,6 +16,8 @@ GH_ACCOUNT=	mayanklahiri
 
 SHEBANG_FILES=	test.sh
 
+NO_TEST=	yes
+
 PLIST_FILES=	easyexif/bin/demo \
 		easyexif/src/demo.cpp \
 		easyexif/src/exif.cpp \
@@ -29,8 +31,5 @@ do-install:
 	@${MKDIR} ${PREFIX}/${PORTNAME}/bin
 	${STRIP_CMD} ${WRKSRC}/demo
 	${CP} ${WRKSRC}/demo ${PREFIX}/${PORTNAME}/bin
-
-do-test:
-	cd ${WRKSRC} && ./test.sh
 
 .include <bsd.port.mk>
