@@ -12,6 +12,8 @@ LICENSE_FILE=	${WRKSRC}/../COPYING
 
 LIB_DEPENDS=	libftdi1.so:devel/libftdi1
 
+FAKE_OPTS=	trueprefix
+
 USES=		gmake pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	gregdavill
@@ -22,6 +24,6 @@ WRKSRC_SUBDIR=	${PORTNAME}
 PLIST_FILES=	bin/${PORTNAME}
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	@${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>
