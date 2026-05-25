@@ -758,6 +758,8 @@ brlcad/lib/libitk.so
 brlcad/lib/libitk.so.3
 brlcad/lib/libitk.so.3.4
 brlcad/lib/libitkstub.a
+brlcad/lib/libnetpbm.a
+brlcad/lib/libnetpbm.so
 brlcad/lib/libnmg.a
 brlcad/lib/libnmg.so
 brlcad/lib/libopenNURBS.a

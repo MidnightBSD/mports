@@ -44,11 +44,7 @@ PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 .include <bsd.mport.options.mk>
 
-.if ${OPSYS} == FreeBSD
-USES+=	llvm:max=14
-.else
 USES+=	llvm:max=15
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's+-exact Tcl 8\.6\.10+Tcl 8.6+' \
@@ -56,7 +52,7 @@ post-patch:
 
 pre-install:
 	${CP} ${FILESDIR}/mged.sh ${WRKSRC}
-	${REINPLACE_CMD} -e 's+%%BRLCAD_ROOT%%+${PREFIX}/${PORTNAME}+g;' ${WRKSRC}/mged.sh
+	${REINPLACE_CMD} -e 's+%%BRLCAD_ROOT%%+${TRUE_PREFIX}/${PORTNAME}+g;' ${WRKSRC}/mged.sh
 
 # note that installing outside of PREFIX wigs out package stuff... :/
 post-install:
