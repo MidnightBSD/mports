@@ -28,6 +28,6 @@ post-install:
 	${INSTALL_SCRIPT} \
 	    ${WRKSRC}/Examples/gdsinfo \
 	    ${WRKSRC}/Examples/scalegds \
-	    ${STAGEDIR}${PREFIX}/bin
+	    ${PREFIX}/bin
 
 .include <bsd.port.mk>
