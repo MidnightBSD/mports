@@ -15,6 +15,8 @@ LICENSE=	mit
 FLAVORS=	xorg xnest xephyr xvfb
 FLAVOR?=	${FLAVORS:[1]}
 
+RUN_DEPENDS+=	gcc14:lang/gcc14
+
 USES=		compiler:c11 cpe gl meson pkgconfig tar:xz xorg
 USE_GL=		gl
 
