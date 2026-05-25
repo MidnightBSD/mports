@@ -12,11 +12,12 @@ COMMENT=	ET Pub - An Enemy Territory Modification
 
 LICENSE=	NONE
 
+SKIP_FAKE_ALL=	yes
+
 BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 USES=		linux zip
-SKIP_FAKE_ALL=	yes
 
 RESTRICTED=	do not redistribute
 
@@ -40,8 +41,7 @@ RUN_DEPENDS+=	et-omni-bot:games/linux-enemyterritory-omni-bot
 pre-patch:
 	@${FIND} ${WRKSRC} -type f -exec ${SH} -c \
 		'${FILE} "$$0" | ${GREP} -q text && \
-		${REINPLACE_CMD} -i "" -e "s/
-$$//" "$$0"' {} \;
+		${REINPLACE_CMD} -i "" -e "s/^M$$//" "$$0"' {} \;
 
 do-build:
 .for f in et etded
