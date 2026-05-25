@@ -4,7 +4,7 @@ CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	09
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby library to render PDF documents
 WWW=		https://prawnpdf.org/ \
 		https://github.com/prawnpdf/pdf-core
