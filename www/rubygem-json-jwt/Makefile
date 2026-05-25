@@ -10,6 +10,7 @@ WWW=		https://github.com/nov/json-jwt
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport60>=4.2:devel/rubygem-activesupport60 \
 		rubygem-aes_key_wrap>=0:security/rubygem-aes_key_wrap \
 		rubygem-base64>=0:converters/rubygem-base64 \
