@@ -57,8 +57,8 @@ MPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
 MPEG_CMAKE_BOOL=	USE_MPEG
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/netgen
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/*.so
+	${STRIP_CMD} ${PREFIX}/bin/netgen
+	${STRIP_CMD} ${PREFIX}/lib/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/*.so
 
 .include <bsd.port.mk>

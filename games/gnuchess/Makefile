@@ -22,6 +22,10 @@ GNU_CONFIGURE=	yes
 LIBS+=		-lpthread
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 
+LDFLAGS+=		-lpthread
+
+NO_TEST=	yes
+
 INFO=		gnuchess
 
 OPTIONS_DEFINE=		OPENING_BOOK DOCS NLS
