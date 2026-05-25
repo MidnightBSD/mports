@@ -179,7 +179,10 @@ do-install:
 		-e 's|^#-Fl/lib;/usr/lib|-Fl${LOCALBASE}/lib;${LOCALBASE}/lib/qt5;${LOCALBASE}/lib/qt6|g' \
 			${PREFIX}/etc/fpc.cfg.sample \
 			${PREFIX}/etc/fppkg.cfg.sample \
-			${PREFIX}/etc/fppkg/default \
-			${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg
+			${PREFIX}/etc/fppkg/default
+	@if [ -f "${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg" ]; then \
+		${REINPLACE_CMD} -i "" \
+		-e 's|^#-Fl/lib;/usr/lib|-Fl${LOCALBASE}/lib;${LOCALBASE}/lib/qt5;${LOCALBASE}/lib/qt6|g' \
+		${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg ; fi
 
 .include <bsd.port.post.mk>
