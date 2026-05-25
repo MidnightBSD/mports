@@ -10,8 +10,6 @@ LICENSE_COMB=	dual
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 LICENSE_FILE_unlicense=	${WRKSRC}/UNLICENSE
 
-BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor
-
 USES=		cargo cpe
 CPE_VENDOR=	${PORTNAME}_project
 USE_GITHUB=	yes
@@ -78,9 +76,6 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		windows-sys-0.61.2 \
 		wit-bindgen-0.46.0
 
-RIPGREP_OUTDIR=	${WRKDIR}/cargo-out
-CARGO_ENV=	RIPGREP_OUTDIR=${RIPGREP_OUTDIR}
-
 PLIST_FILES=	bin/rg \
 		etc/bash_completion.d/rg.bash \
 		share/man/man1/rg.1.gz \
@@ -96,21 +91,20 @@ PCRE2_DESC=	${PCRE_DESC} version 2
 PCRE2_LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 PCRE2_VARS=	CARGO_FEATURES+=pcre2
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|OUT_DIR|RIPGREP_OUTDIR|' ${WRKSRC}/build.rs
-
 post-install:
-	${STRIP_CMD} ${PREFIX}/bin/rg
-	${INSTALL_MAN} ${RIPGREP_OUTDIR}/rg.1 ${PREFIX}/share/man/man1
-	@${MKDIR} ${PREFIX}/etc/bash_completion.d/
-	${INSTALL_DATA} ${RIPGREP_OUTDIR}/rg.bash \
-		${PREFIX}/etc/bash_completion.d/
-	@${MKDIR} ${PREFIX}/share/fish/vendor_completions.d/
-	${INSTALL_DATA} ${RIPGREP_OUTDIR}/rg.fish \
-		${PREFIX}/share/fish/vendor_completions.d/
-	@${MKDIR} ${PREFIX}/share/zsh/site-functions/
-	${INSTALL_DATA} ${WRKSRC}/complete/_rg \
-		${PREFIX}/share/zsh/site-functions/
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rg
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man1
+	${STAGEDIR}${PREFIX}/bin/rg --generate man | \
+		${GZIP_CMD} > ${STAGEDIR}${PREFIX}/share/man/man1/rg.1.gz
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
+	${STAGEDIR}${PREFIX}/bin/rg --generate complete-bash \
+		> ${STAGEDIR}${PREFIX}/etc/bash_completion.d/rg.bash
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/fish/vendor_completions.d/
+	${STAGEDIR}${PREFIX}/bin/rg --generate complete-fish \
+		> ${STAGEDIR}${PREFIX}/share/fish/vendor_completions.d/rg.fish
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions/
+	${STAGEDIR}${PREFIX}/bin/rg --generate complete-zsh \
+		> ${STAGEDIR}${PREFIX}/share/zsh/site-functions/_rg
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
