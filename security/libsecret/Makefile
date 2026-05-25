@@ -18,6 +18,7 @@ USES=		compiler gnome meson pkgconfig python tar:xz vala:build
 USE_GNOME=	glib20 intltool introspection:build libxslt:build
 
 NO_TEST=	yes
+MESON_ARGS+=	-Dbash_completion=disabled
 TESTING_UNSAFE=	gi.repository.GLib.GError: g-io-error-quark: Remote closed the output
 
 .include <bsd.port.pre.mk>
