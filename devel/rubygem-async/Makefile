@@ -18,6 +18,8 @@ RUN_DEPENDS=	rubygem-console>=1.29<2:devel/rubygem-console \
 		rubygem-metrics>=0.12<1:devel/rubygem-metrics \
 		rubygem-traces>=0.18<1:devel/rubygem-traces
 
+BROKEN=		requires Ruby 3.3 or later; MidnightBSD provides Ruby 3.2
+
 USES=		gem
 
 NO_ARCH=	yes
