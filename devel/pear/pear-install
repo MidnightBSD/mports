@@ -8,5 +8,5 @@ PKGREGDIR=${PREFIX}/share/pear/packages/$1
 
 [ "x$1" = "x" ] && exit 1
 if [ "x$2" = "xPOST-INSTALL" ]; then
-	${PEAR} install -r -n -f ${PKGREGDIR}/package.xml
+	${PEAR} -c ${PREFIX}/etc/pear.conf.sample install -r -n -f ${PKGREGDIR}/package.xml
 fi

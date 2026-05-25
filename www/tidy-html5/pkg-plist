@@ -5,6 +5,7 @@ include/tidyenum.h
 include/tidyplatform.h
 lib/libtidy.so.58
 lib/libtidy.so.%%VER%%
+lib/libtidy.so
 lib/libtidy5.so
 lib/libtidys.a
 libdata/pkgconfig/tidy.pc

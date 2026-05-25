@@ -17,4 +17,10 @@ USE_HORDE_RUN=	Horde_Role \
 		Horde_Exception \
 		Horde_Serialize
 
+post-extract:
+	${REINPLACE_CMD} -e '/<max>8\.0\.0alpha1<\/max>/d' \
+		-e '/<exclude>8\.0\.0alpha1<\/exclude>/d' \
+		-e '/js\/ckeditor\/plugins\/dialog\/dialogDefinition\.js/d' \
+		${WRKDIR}/package.xml
+
 .include <bsd.port.mk>

@@ -1,5 +1,6 @@
 PORTNAME=	horde
 PORTVERSION=	20160602
+PORTREVISION=	1
 CATEGORIES=	devel www pear
 
 MAINTAINER=	ports@MidnightBSD.org
