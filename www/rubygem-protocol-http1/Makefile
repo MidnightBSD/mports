@@ -12,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-protocol-http>=0.62<1:www/rubygem-protocol-http
+RUN_DEPENDS=	rubygem-protocol-http>=0.62:www/rubygem-protocol-http
 
 USES=		gem
 
