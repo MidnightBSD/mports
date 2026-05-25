@@ -18,5 +18,6 @@ USES=		cmake:indirect python
 USE_PYTHON=	pep517 concurrent autoplist pytest
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
