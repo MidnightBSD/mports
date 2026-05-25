@@ -42,6 +42,6 @@ PYTHON3_BUILD_DEPENDS=	${PY_SETUPTOOLS}
 TCL_USES=		tcl
 
 post-install:
-	[ '${STRIP}' = -s ] && ${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libfungw*.so.?
+	[ '${STRIP}' = -s ] && ${STRIP_CMD} ${PREFIX}/lib/libfungw*.so.?
 
 .include <bsd.port.mk>
