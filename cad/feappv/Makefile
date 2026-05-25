@@ -42,7 +42,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/libfeappv.a ${PREFIX}/lib
 
 do-install-DOCS-on:
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/manual/*.pdf ${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${FAKE_DESTDIR}${WRKSRC}/manual/*.pdf ${DOCSDIR}
 
 .include <bsd.port.mk>
