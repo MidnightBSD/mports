@@ -22,7 +22,7 @@ USE_XORG=	x11
 
 CFLAGS+=	-I${LOCALBASE}/include/tcl8.6/generic/
 
-DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
+DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_BASESUFFIX}/distinfo
 WRKSRC_SUBDIR=	Modules
 
 SUB_LIST+=	DISTVERSION=${DISTVERSION} \
