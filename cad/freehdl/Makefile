@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	SF/qucs/qucs/0.0.16/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free VHDL simulator
 WWW=		http://www.freehdl.seul.org/
 

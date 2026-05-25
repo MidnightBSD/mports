@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	0.63
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SymbiYosys (sby): Front-end for Yosys-based formal verification flows
 WWW=		https://yosyshq.readthedocs.io/projects/sby/en/latest/ \
 		https://github.com/YosysHQ/sby/

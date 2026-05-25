@@ -4,7 +4,7 @@ PORTREVISION=	24
 CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-source/${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mesh generator and solver for Finite Element problems
 WWW=		https://pdnmesh.sourceforge.net/
 

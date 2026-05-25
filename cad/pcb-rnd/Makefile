@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	http://www.repo.hu/projects/${PORTNAME}/releases/
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flexible, modular Printed Circuit Board editor
 WWW=		http://www.repo.hu/projects/pcb-rnd/
 

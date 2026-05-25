@@ -3,7 +3,7 @@ PORTVERSION=	1.1.0
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kramdown parser for the GFM dialect of Markdown
 WWW=		https://github.com/kramdown/parser-gfm
 

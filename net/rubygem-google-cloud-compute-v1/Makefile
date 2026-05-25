@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby Client for the Google Cloud Compute V1 API
 WWW=		https://github.com/googleapis/google-cloud-ruby
 

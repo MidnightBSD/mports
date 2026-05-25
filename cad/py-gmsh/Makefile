@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	${PORTNAME}-${DISTVERSION}-source
 DIST_SUBDIR=	gmsh
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatic 3D finite element mesh generator (gmsh's own binding)
 WWW=		https://gmsh.info/
 

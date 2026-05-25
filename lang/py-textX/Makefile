@@ -4,7 +4,7 @@ CATEGORIES=	lang python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-language for DSL implementation inspired by Xtext
 WWW=		https://textx.github.io/textX/ \
 		https://github.com/textX/textX/

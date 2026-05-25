@@ -3,7 +3,7 @@ PORTVERSION=	1.37.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Protobuf specifications and client libraries for Gitaly
 WWW=		https://gitlab.com/gitlab-org/gitaly-proto
 

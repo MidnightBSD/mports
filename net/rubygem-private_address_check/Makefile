@@ -3,7 +3,7 @@ PORTVERSION=	0.5.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Check address for private network (RFC 1918)
 WWW=		https://github.com/jtdowney/private_address_check
 

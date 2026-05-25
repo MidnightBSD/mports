@@ -3,7 +3,7 @@ PORTVERSION=	1.69.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby protoc gRPC plugin
 WWW=		https://github.com/google/grpc/tree/master/src/ruby/tools
 

@@ -5,7 +5,7 @@ CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby take off of p5-XML-Simple
 WWW=		https://github.com/maik/xml-simple
 

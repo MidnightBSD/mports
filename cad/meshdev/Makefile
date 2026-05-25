@@ -5,7 +5,7 @@ CATEGORIES=	cad
 MASTER_SITES=	LOCAL/gahr \
 		http://people.freebsd.org/~gahr/distfiles/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mesh comparison software
 WWW=		https://meshdev.sourceforge.net/
 

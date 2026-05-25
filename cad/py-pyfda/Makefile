@@ -6,7 +6,7 @@ CATEGORIES=	cad python devel
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI tool for designing and analysing discrete time filters
 WWW=		https://github.com/chipmuenk/pyFDA
 

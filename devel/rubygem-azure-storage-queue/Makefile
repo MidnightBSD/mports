@@ -3,7 +3,7 @@ PORTVERSION=	2.0.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Storage Queue Client Library for Ruby
 WWW=		https://github.com/Azure/azure-storage-ruby/tree/master/queue \
 		https://github.com/Azure/azure-storage-ruby

@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	1.0
 CATEGORIES=	devel
 
-MAINTAINER=	fernape@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tiny ISO-compliant C++ EXIF parsing library
 WWW=		https://github.com/mayanklahiri/easyexif
 

@@ -3,7 +3,7 @@ PORTVERSION=	0.17.2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure CognitiveservicesQnamakerruntime Client Library for Ruby
 WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/data/azure_cognitiveservices_qnamakerruntime
 

@@ -4,7 +4,7 @@ CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-rails81
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analyse and compare DOMs using Nokogiri
 WWW=		https://github.com/rails/rails-dom-testing
 

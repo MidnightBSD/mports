@@ -6,7 +6,7 @@ CATEGORIES=	devel textproc python
 #MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON toolkit for Python developers
 WWW=		https://github.com/marksparkza/jschon
 

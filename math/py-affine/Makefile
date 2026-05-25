@@ -5,7 +5,7 @@ CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Matrices describing affine transformation of the plane
 WWW=		https://github.com/sgillies/affine
 

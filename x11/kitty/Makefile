@@ -4,7 +4,7 @@ DISTVERSION=	0.46.2
 PORTREVISION=	1
 CATEGORIES=	x11 wayland
 
-MAINTAINER=	nivit@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform, fast, featureful, GPU-based terminal emulator
 WWW=		https://sw.kovidgoyal.net/kitty/
 

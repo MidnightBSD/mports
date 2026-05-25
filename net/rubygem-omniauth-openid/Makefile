@@ -3,7 +3,7 @@ PORTVERSION=	2.0.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenID strategy for OmniAuth
 WWW=		https://github.com/ruby-openid/omniauth-openid
 

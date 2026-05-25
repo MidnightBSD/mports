@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple REST client for Google Play Android API V3
 WWW=		https://github.com/google/google-api-ruby-client
 

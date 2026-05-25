@@ -4,7 +4,7 @@ CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Plugins for gedit
 WWW=		https://gitlab.gnome.org/World/gedit/gedit-plugins
 

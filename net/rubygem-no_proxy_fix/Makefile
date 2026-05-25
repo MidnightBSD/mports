@@ -3,7 +3,7 @@ PORTVERSION=	0.1.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fix for no_proxy bug
 WWW=		https://github.com/ermaker/no_proxy_fix
 

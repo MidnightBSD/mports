@@ -3,7 +3,7 @@ DISTVERSION=	0.19.3
 CATEGORIES=	x11-toolkits
 PKGNAMESUFFIX=	019
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modular Wayland compositor library (deprecated 0.19.* series)
 WWW=		https://gitlab.freedesktop.org/wlroots/wlroots
 

@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/fstrcmp/fstrcmp/${PORTVERSION:R}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for fuzzy string comparisons
 WWW=		https://fstrcmp.sourceforge.net/
 

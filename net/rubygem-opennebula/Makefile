@@ -3,7 +3,7 @@ PORTVERSION=	7.0.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries needed to talk to OpenNebula
 WWW=		https://opennebula.io/ \
 		https://github.com/OpenNebula/one

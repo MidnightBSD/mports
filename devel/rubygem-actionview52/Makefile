@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	52
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rendering framework putting the V in MVC (part of Rails)
 WWW=		https://rubyonrails.org/ \
 		https://github.com/rails/rails/tree/main/actionview

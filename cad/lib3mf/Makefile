@@ -4,7 +4,7 @@ CATEGORIES=	cad
 MASTER_SITES=	https://github.com/3MFConsortium/${PORTNAME}/releases/download/v${DISTVERSION}/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-source-with-submodules
 
-MAINTAINER=	mr@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the 3D Manufacturing Format file standard
 WWW=		http://3mf.io/
 

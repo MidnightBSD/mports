@@ -4,7 +4,7 @@ CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sanitize HTML fragments in Rails applications
 WWW=		https://github.com/rails/rails-html-sanitizer
 

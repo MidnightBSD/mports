@@ -4,7 +4,7 @@ CATEGORIES=	databases python
 PORTREVISION?=	0
 PKGNAMESUFFIX?=	${WANT_PGSQL_VER:S/.//}${COMPONENT}
 
-MAINTAINER=	pgsql@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for using Python to write SQL functions
 
 USES+=		pgsql:${WANT_PGSQL_VER} ${WANT_PYTHON_USE}

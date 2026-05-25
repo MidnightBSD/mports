@@ -3,7 +3,7 @@ PORTVERSION=	0.6.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	antoine@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the MQTT protocol
 WWW=		https://github.com/njh/ruby-mqtt
 

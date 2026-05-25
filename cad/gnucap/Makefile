@@ -4,7 +4,7 @@ CATEGORIES=	cad
 MASTER_SITES=	http://www.gnucap.org/devel/ \
 		http://www.gnucap.org/devel/archive/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Circuit Analysis Package
 WWW=		http://www.gnucap.org/
 

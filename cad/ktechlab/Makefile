@@ -4,7 +4,7 @@ DISTVERSION=	0.51.0
 PORTREVISION=	1
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IDE for microcontrollers and electronics
 WWW=		https://userbase.kde.org/KTechlab
 

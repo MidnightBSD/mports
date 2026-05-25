@@ -3,7 +3,7 @@ PORTVERSION=	0.1.4
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse cron expressions and calculates the next occurence
 WWW=		https://github.com/siebertm/parse-cron
 

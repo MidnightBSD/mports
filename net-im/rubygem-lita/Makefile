@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	net-im rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-service chat bot with extendable behavior
 WWW=		https://github.com/litaio/lita
 

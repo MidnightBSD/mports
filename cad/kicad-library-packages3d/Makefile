@@ -3,7 +3,7 @@ DISTVERSION=	10.0.1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-library-packages3d
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad 3D model libraries for rendering and MCAD integration
 WWW=		https://gitlab.com/kicad/libraries/kicad-packages3D
 

@@ -3,7 +3,7 @@ PORTVERSION=	2.5.11
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Plain-Ruby implementation of GraphQL
 WWW=		https://github.com/rmosolgo/graphql-ruby
 

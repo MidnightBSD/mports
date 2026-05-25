@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	72
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple, battle-tested conventions and helpers for building web pages
 WWW=		https://github.com/rails/rails/tree/main/actionview \
 		https://rubyonrails.org/

@@ -5,7 +5,7 @@ CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support aliyun OSS/ECS
 WWW=		https://github.com/fog/fog-aliyun
 

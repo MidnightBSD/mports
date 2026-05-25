@@ -6,7 +6,7 @@ MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
 DIST_SUBDIR=	gnome
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cairo-based canvas widget for GTK 3
 WWW=		https://sourceforge.net/projects/goocanvas/
 

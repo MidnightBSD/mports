@@ -6,7 +6,7 @@ MASTER_SITES=	https://gitlab.com/kicad/libraries/${PORTNAME}-packages3D/-/archiv
 PKGNAMESUFFIX=	-library-packages3d-devel
 DISTNAME=	${PORTNAME}-packages3D-${GL_TAGNAME}
 
-MAINTAINER=	mr@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad 3D model libraries for rendering and MCAD integration (Git snapshot)
 WWW=		https://github.com/KiCad/kicad-packages3d
 

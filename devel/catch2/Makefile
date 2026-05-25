@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	3.14.0
 CATEGORIES=	devel
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test framework for C++ (3.x series)
 WWW=		https://github.com/catchorg/Catch2
 

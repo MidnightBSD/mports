@@ -5,7 +5,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 DISTNAME=	${PORTNAME}-0.15.0.preview
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Storage Client Library for Ruby
 WWW=		https://github.com/Azure/azure-storage-ruby
 

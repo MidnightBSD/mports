@@ -3,7 +3,7 @@ PORTVERSION=	0.1.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module 'hangouts-chat' gem to talk to G Suite Hangouts Chat rooms
 WWW=		https://github.com/enzinia/hangouts-chat
 

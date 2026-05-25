@@ -3,7 +3,7 @@ PORTVERSION=	0.18.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Logic Management Client Library for Ruby
 WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/management/azure_mgmt_logic
 

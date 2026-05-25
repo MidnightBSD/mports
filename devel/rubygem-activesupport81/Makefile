@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	81
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Toolkit of support libraries and Ruby core extensions extracted from the Rails framework
 WWW=		https://github.com/rails/rails/tree/main/activesupport \
 		https://rubyonrails.org/

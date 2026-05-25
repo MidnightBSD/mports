@@ -5,7 +5,7 @@ PORTEPOCH=	1
 CATEGORIES=	cad python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Symbolic MDA Analysis Package for Linear Circuits
 WWW=		https://github.com/mph-/lcapy
 

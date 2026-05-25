@@ -5,7 +5,7 @@ PORTREVISION=	1
 CATEGORIES=	cad python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python module for creating GDSII stream files
 WWW=		https://github.com/heitzmann/gdspy/
 

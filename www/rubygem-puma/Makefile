@@ -3,7 +3,7 @@ PORTVERSION=	8.0.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, multithreaded and highly concurrent ruby web server
 WWW=		https://puma.io/ \
 		https://github.com/puma/puma

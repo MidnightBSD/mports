@@ -2,7 +2,7 @@ PORTNAME=	libretro-genesis_plus_gx
 DISTVERSION=	0.20231020
 CATEGORIES=	games
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enhanced port of Genesis Plus
 WWW=		https://github.com/libretro/Genesis-Plus-GX
 

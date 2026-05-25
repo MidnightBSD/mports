@@ -4,7 +4,7 @@ PORTREVISION=	6
 CATEGORIES=	devel
 MASTER_SITES=	http://etla.net/libstroke/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stroke translation library
 WWW=		http://www.etla.net/libstroke/
 

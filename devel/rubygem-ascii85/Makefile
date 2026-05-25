@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 DISTNAME=	Ascii85-${PORTVERSION}
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Encode/decode Adobe's binary-to-text encoding of the same name #'
 WWW=		https://github.com/DataWraith/ascii85gem
 

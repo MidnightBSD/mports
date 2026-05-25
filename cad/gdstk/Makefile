@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	1.0.0
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ library for creation and manipulation of GDSII and OASIS files
 WWW=		https://heitzmann.github.io/gdstk/ \
 		https://github.com/heitzmann/gdstk/

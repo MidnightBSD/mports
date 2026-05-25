@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1.1
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal utility for programming FPGA
 WWW=		https://github.com/trabucayre/openFPGALoader
 

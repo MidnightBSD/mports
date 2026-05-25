@@ -3,7 +3,7 @@ DISTVERSION=	3.3.3
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://codeberg.org/dnkl/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple library for font loading and glyph rasterization
 WWW=		https://codeberg.org/dnkl/fcft
 

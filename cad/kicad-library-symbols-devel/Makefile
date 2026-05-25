@@ -6,7 +6,7 @@ MASTER_SITES=	https://gitlab.com/kicad/libraries/${PORTNAME}-symbols/-/archive/$
 PKGNAMESUFFIX=	-library-symbols-devel
 DISTNAME=	${PORTNAME}-symbols-${GL_TAGNAME}
 
-MAINTAINER=	mr@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad schematic symbol libraries (Git snapshot)
 WWW=		https://github.com/KiCad/kicad-symbols
 

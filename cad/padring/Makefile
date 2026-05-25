@@ -2,7 +2,7 @@ PORTNAME=	padring
 DISTVERSION=	g20210731
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Padring generator for ASICs
 WWW=		https://github.com/donn/padring
 

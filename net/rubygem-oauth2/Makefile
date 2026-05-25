@@ -3,7 +3,7 @@ PORTVERSION=	2.0.18
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby wrapper for the OAuth 2.0 protocol
 WWW=		https://oauth2.galtzo.com/ \
 		https://github.com/ruby-oauth/oauth2

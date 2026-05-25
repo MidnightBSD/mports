@@ -4,7 +4,7 @@ CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Simple HTTP and REST client for Ruby
 WWW=		https://github.com/rest-client/rest-client
 

@@ -3,7 +3,7 @@ PORTVERSION=	0.12.21
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library aimed to provide a Gtk+ widget to display rasterized maps and markers
 WWW=		https://projects.gnome.org/libchamplain/
 

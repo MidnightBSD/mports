@@ -5,7 +5,7 @@ CATEGORIES=	cad python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GDSII manipulation library
 WWW=		https://pythonhosted.org/python-gdsii/
 

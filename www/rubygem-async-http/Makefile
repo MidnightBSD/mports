@@ -3,7 +3,7 @@ PORTVERSION=	0.95.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP client and server library
 WWW=		https://socketry.github.io/async-http/ \
 		https://github.com/socketry/async-http

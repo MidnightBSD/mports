@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/${PORTNAME}/${PORTVERSION:R}
 
-MAINTAINER=	danfe@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Useful widget set complementary to GTK 2.0
 WWW=		https://gtkextra.sourceforge.net/
 

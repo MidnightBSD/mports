@@ -4,7 +4,7 @@ DISTVERSION=	0.6.3
 PORTREVISION=	2
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt-GUI for CSXCAD
 WWW=		https://github.com/thliebig/QCSXCAD
 

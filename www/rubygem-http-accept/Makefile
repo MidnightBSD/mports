@@ -3,7 +3,7 @@ PORTVERSION=	2.2.1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse Accept and Accept-Language HTTP headers
 WWW=		https://github.com/socketry/http-accept
 

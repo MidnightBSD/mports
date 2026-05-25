@@ -2,7 +2,7 @@ PORTNAME=	waylandpp
 DISTVERSION=	1.0.1
 CATEGORIES=	graphics
 
-MAINTAINER=	eduardo@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wayland C++ bindings
 WWW=		https://github.com/NilsBrause/waylandpp
 

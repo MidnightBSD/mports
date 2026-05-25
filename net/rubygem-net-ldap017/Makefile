@@ -4,7 +4,7 @@ CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	017
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pure Ruby LDAP support library with most client features
 WWW=		https://github.com/ruby-ldap/ruby-net-ldap
 

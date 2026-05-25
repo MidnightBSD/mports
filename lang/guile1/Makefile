@@ -5,7 +5,7 @@ CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	1
 
-MAINTAINER=	bofh@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
 WWW=		https://www.gnu.org/software/guile/
 

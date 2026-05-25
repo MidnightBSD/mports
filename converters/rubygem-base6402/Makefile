@@ -4,7 +4,7 @@ CATEGORIES=	converters rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	02
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Encode and decode binary data using a Base64 representation
 WWW=		https://github.com/ruby/base64
 

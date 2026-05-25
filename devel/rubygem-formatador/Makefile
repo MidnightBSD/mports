@@ -3,7 +3,7 @@ PORTVERSION=	1.2.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	STDOUT text formatting
 WWW=		https://github.com/geemus/formatador
 

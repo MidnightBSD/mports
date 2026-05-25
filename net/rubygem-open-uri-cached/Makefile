@@ -3,7 +3,7 @@ PORTVERSION=	2.0.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenURI with transparent disk caching
 WWW=		https://github.com/tigris/open-uri-cached
 

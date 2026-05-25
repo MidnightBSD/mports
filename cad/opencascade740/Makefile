@@ -4,7 +4,7 @@ PORTREVISION=	5
 CATEGORIES=	cad science
 PKGNAMESUFFIX=	740
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open CASCADE Technology, 3D modeling & numerical simulation
 WWW=		https://www.opencascade.org/
 

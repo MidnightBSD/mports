@@ -7,7 +7,7 @@ CATEGORIES=	cad
 PATCH_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/commit/
 PATCHFILES=	6b9e7b2e.patch:-p1
 
-MAINTAINER=	lbartoletti@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parametric 2d/3d CAD
 WWW=		https://solvespace.com/
 

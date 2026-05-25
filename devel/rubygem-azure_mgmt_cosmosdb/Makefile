@@ -3,7 +3,7 @@ PORTVERSION=	0.24.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Cosmos DB Client Library for Ruby
 WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/management/azure_mgmt_cosmosdb
 

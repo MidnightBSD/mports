@@ -4,7 +4,7 @@ CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	0
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rubygem for Creating both OAuth Consumers and Service Providers
 WWW=		https://github.com/oauth-xx/oauth-ruby
 

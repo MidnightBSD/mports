@@ -6,7 +6,7 @@ MASTER_SITES=	https://gitlab.com/kicad/libraries/${PORTNAME}-templates/-/archive
 PKGNAMESUFFIX=	-library-tmpl-devel
 DISTNAME=	${PORTNAME}-templates-${GL_TAGNAME}
 
-MAINTAINER=	mr@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad project templates (Git snapshot)
 WWW=		https://github.com/KiCad/kicad-templates
 

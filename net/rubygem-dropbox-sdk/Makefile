@@ -3,7 +3,7 @@ PORTVERSION=	1.6.5
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of the Dropbox API web endpoints
 WWW=		https://www.dropbox.com/developers
 

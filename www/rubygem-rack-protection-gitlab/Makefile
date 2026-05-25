@@ -4,7 +4,7 @@ CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of Rack middleware to protect against opportunistic attack
 WWW=		https://sinatrarb.com/protection/ \
 		https://github.com/sinatra/sinatra/tree/main/rack-protection

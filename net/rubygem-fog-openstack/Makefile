@@ -3,7 +3,7 @@ PORTVERSION=	1.1.5
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support OpenStack clouds
 WWW=		https://github.com/fog/fog-openstack
 

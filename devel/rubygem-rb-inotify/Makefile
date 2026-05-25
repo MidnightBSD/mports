@@ -3,7 +3,7 @@ PORTVERSION=	0.11.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby wrapper for libinotify, using ffi
 WWW=		https://github.com/guard/rb-inotify
 

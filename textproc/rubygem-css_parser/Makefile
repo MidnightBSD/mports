@@ -3,7 +3,7 @@ PORTVERSION=	1.21.1
 CATEGORIES=	textproc www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of classes for parsing CSS in Ruby
 WWW=		https://github.com/premailer/css_parser
 

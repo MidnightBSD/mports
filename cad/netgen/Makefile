@@ -12,7 +12,7 @@ PATCHFILES+=	3d82bf88360b9d032671a72a31cd9c351bf674f8.patch:-p1
 # Issue https://github.com/NGSolve/netgen/issues/192
 PATCHFILES+=	8737bff2bfec303b4affd06be9f44acd4b13f34d.patch:-p1
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatic 3D tetrahedral mesh generator
 WWW=		https://ngsolve.org/ \
 		https://github.com/NGSolve/ngsolve/

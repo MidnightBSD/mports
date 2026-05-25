@@ -4,7 +4,7 @@ DISTVERSION=	1.5.3
 CATEGORIES=	x11 wayland
 MASTER_SITES=	https://hg.sr.ht/~scoopta/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
-MAINTAINER=	tagattie@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Launcher/menu program for wlroots-based compositors
 WWW=		https://sr.ht/~scoopta/wofi
 

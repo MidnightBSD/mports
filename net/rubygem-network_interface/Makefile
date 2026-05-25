@@ -3,7 +3,7 @@ PORTVERSION=	0.0.4
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	antoine@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get network interface information from Ruby
 WWW=		https://github.com/rapid7/network_interface
 

@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	kodiplatform-
 DISTVERSION=	20250416
 CATEGORIES=	devel
 
-MAINTAINER=	decke@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kodi platform support library
 WWW=		https://github.com/xbmc/kodi-platform
 

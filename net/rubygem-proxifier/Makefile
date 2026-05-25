@@ -3,7 +3,7 @@ PORTVERSION=	1.0.3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Add HTTP or SOCKS proxies support and force TCPSocket to use proxies
 WWW=		https://github.com/samuelkadolph/ruby-proxifier
 

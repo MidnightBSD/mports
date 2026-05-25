@@ -3,7 +3,7 @@ PORTVERSION=	1.1.3
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and easy syntax highlighting for selected languages
 WWW=		http://coderay.rubychan.de/
 

@@ -3,7 +3,7 @@ PORTVERSION=	1.4.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby Client for the Cloud Logging V2 API
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-logging-v2/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

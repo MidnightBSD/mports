@@ -3,7 +3,7 @@ PORTVERSION=	2.3.24
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert AsciiDoc documents to PDF
 WWW=		https://docs.asciidoctor.org/pdf-converter/latest/ \
 		https://github.com/asciidoctor/asciidoctor-pdf

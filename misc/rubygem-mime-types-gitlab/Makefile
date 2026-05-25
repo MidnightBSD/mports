@@ -4,7 +4,7 @@ CATEGORIES=	misc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby gem which provides a mailcap-like MIME Content-Type lookup
 WWW=		https://github.com/mime-types/ruby-mime-types
 

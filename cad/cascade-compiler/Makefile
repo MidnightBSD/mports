@@ -3,7 +3,7 @@ PORTVERSION=	g20200105.1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-compiler
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Just-In-Time Compiler for Verilog from VMware Research
 WWW=		https://github.com/vmware/cascade
 

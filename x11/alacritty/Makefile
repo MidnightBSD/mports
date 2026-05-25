@@ -6,7 +6,7 @@ MASTER_SITES=	CRATESIO
 # XXX Teach USES=cargo to have proper default
 DISTFILES=	${CARGO_DIST_SUBDIR}/${DISTNAME}${CARGO_CRATE_EXT}
 
-MAINTAINER=	vishwin@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GPU-accelerated terminal emulator
 WWW=		https://alacritty.org/
 

@@ -3,7 +3,7 @@ PORTVERSION=	0.8.3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IP address manipulation library for rubygems
 WWW=		https://github.com/bluemonk/ipaddress
 

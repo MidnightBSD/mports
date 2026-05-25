@@ -3,7 +3,7 @@ PORTVERSION=	0.18.7
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Data_Factory Client Library for Ruby
 WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/management/azure_mgmt_data_factory
 

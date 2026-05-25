@@ -4,7 +4,7 @@ DISTVERSION=	1.3.0
 PORTREVISION=	2
 CATEGORIES=	cad
 
-MAINTAINER=	thierry@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	3-axis CNC GCode simulator
 WWW=		https://camotics.org/
 

@@ -4,7 +4,7 @@ CATEGORIES=	cad python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python VCD file support
 WWW=		https://pyvcd.readthedocs.io/en/latest/
 

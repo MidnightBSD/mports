@@ -13,7 +13,7 @@ DISTFILES=	spice3f5${EXTRACT_SUFX}:srcs \
 DIST_SUBDIR=	spice
 EXTRACT_ONLY=	spice3f5${EXTRACT_SUFX}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General-purpose circuit simulation program
 WWW=		http://bwrc.eecs.berkeley.edu/Classes/IcBook/SPICE/
 

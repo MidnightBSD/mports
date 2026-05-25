@@ -3,7 +3,7 @@ PORTVERSION=	1.11.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby Client for the Cloud Spanner Database Admin V1 API
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-spanner-admin-database-v1/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

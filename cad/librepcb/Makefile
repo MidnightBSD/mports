@@ -5,7 +5,7 @@ PORTREVISION=	2
 CATEGORIES=	cad
 MASTER_SITES=	https://download.librepcb.org/releases/${DISTVERSION}/:main
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Schematic and PCB editing software
 WWW=		https://librepcb.org/ \
 		https://github.com/LibrePCB/LibrePCB/

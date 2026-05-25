@@ -4,7 +4,7 @@ DISTVERSION=	0.6.3
 PORTREVISION=	8
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ library to describe geometrical objects
 WWW=		https://github.com/thliebig/CSXCAD
 

@@ -3,7 +3,7 @@ PORTVERSION=	1.45.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby bindings for Datadog API
 WWW=		https://github.com/DataDog/dogapi-rb
 

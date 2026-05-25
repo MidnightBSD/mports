@@ -3,7 +3,7 @@ PORTVERSION=	1.6.12
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby-based DSL for text parsing and interpretation
 WWW=		https://github.com/cjheath/treetop
 

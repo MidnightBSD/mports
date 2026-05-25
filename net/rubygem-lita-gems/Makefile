@@ -4,7 +4,7 @@ PORTREVISION=	2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lita handler for rubygems.org querying
 WWW=		https://github.com/marsz/lita-gems
 

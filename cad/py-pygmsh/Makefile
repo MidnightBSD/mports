@@ -5,7 +5,7 @@ CATEGORIES=	cad python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python frontend for Gmsh (on top of Gmsh's own binding)
 WWW=		https://github.com/meshpro/pygmsh
 

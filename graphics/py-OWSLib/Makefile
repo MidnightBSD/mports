@@ -4,7 +4,7 @@ CATEGORIES=	graphics geography python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	lbartoletti@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client programming with OGC web service (hence OWS)
 WWW=		https://pypi.org/project/OWSLib/
 

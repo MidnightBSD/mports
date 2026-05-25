@@ -3,7 +3,7 @@ DISTVERSION=	0.7
 CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flash program for STM32 using the ST serial bootloader
 WWW=		https://sourceforge.net/projects/stm32flash/
 

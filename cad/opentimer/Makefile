@@ -2,7 +2,7 @@ PORTNAME=	opentimer
 DISTVERSION=	2.1.0-20250707
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance timing analysis tool for VLSI systems
 WWW=		https://github.com/OpenTimer/OpenTimer
 

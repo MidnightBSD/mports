@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8.2
 CATEGORIES=	devel
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Header-only library for SIMD intrinsics
 WWW=		https://github.com/simd-everywhere/simde
 

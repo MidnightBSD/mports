@@ -4,7 +4,7 @@ DISTVERSION=	1.13.0
 CATEGORIES=	math
 PKGNAMEPREFIX=	coin-or-
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Solver for large scale sparse linear programming (LP) problems
 WWW=		https://github.com/ERGO-Code/HiGHS
 

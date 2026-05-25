@@ -3,7 +3,7 @@ PORTVERSION=	1.57.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official library for Google Cloud Storage
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-storage/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

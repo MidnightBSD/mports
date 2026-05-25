@@ -3,7 +3,7 @@ DISTVERSION=	0.21
 CATEGORIES=	cad
 MASTER_SITES=	https://github.com/HomerReid/libGDSII/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ library and command-line utility for reading GDSII geometry files
 WWW=		https://github.com/HomerReid/libGDSII
 

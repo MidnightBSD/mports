@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	cad python
 PKGNAMESUFFIX=	-fpga
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FPGA assembly (FASM) parser and generator
 WWW=		https://github.com/SymbiFlow/fasm
 

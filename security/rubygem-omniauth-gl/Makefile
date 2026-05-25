@@ -7,7 +7,7 @@ MASTER_SITES=	RG
 # normally suffix gitlab is used, but that package already exists, so use gl here
 PKGNAMESUFFIX=	-gl
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generalized Rack framework for multiple-provider authentication
 WWW=		https://github.com/omniauth/omniauth
 

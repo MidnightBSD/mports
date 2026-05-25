@@ -3,7 +3,7 @@ PORTVERSION=	1.11.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby Client for the Cloud Bigtable V2 API
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-bigtable-v2/latest/ \
 		https://github.com/googleapis/google-cloud-ruby/tree/main/google-cloud-bigtable-v2 \

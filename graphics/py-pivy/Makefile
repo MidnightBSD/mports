@@ -3,7 +3,7 @@ PORTVERSION=	0.6.11
 CATEGORIES=	graphics python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python binding for Coin
 WWW=		https://github.com/coin3d/pivy
 

@@ -4,7 +4,7 @@ PORTREVISION=	3
 CATEGORIES=	cad python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GDS-based CAD tool for photonic and superconducting circuits
 WWW=		https://github.com/amccaugh/phidl
 

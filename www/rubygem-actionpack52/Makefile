@@ -5,7 +5,7 @@ CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	52
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Action Controller and Action View of Rails MVC Framework
 WWW=		https://rubyonrails.org/ \
 		https://github.com/rails/rails/tree/main/actionpack

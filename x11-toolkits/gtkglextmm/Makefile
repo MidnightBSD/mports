@@ -4,7 +4,7 @@ PORTREVISION=	16
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/gtkglext/${PORTNAME}/${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for GtkGLExt
 WWW=		http://gtkglext.sourceforge.net/
 

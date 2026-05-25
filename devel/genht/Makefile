@@ -3,7 +3,7 @@ DISTVERSION=	1.1.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.repo.hu/projects/genht/releases/
 
-MAINTAINER=	fuz@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple generic hash table implementation in C
 WWW=		http://www.repo.hu/projects/genht/
 

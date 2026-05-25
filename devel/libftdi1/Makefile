@@ -4,7 +4,7 @@ PORTREVISION=	9
 CATEGORIES=	devel
 MASTER_SITES=	https://www.intra2net.com/en/developer/libftdi/download/
 
-MAINTAINER=	bofh@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library (using libusb) to talk to FTDI chips
 WWW=		https://www.intra2net.com/en/developer/libftdi/
 

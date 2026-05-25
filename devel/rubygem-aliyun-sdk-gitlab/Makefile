@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby program to facilitate accessing Aliyun Object Storage Service
 WWW=		https://github.com/aliyun/aliyun-oss-ruby-sdk
 

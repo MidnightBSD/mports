@@ -5,7 +5,7 @@ MASTER_SITES=	http://chipvault.sourceforge.net/
 DISTNAME=	cv.pl
 EXTRACT_SUFX=	.gz
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Project organizer for VHDL and Verilog RTL hardware designs
 WWW=		https://chipvault.sourceforge.net/
 

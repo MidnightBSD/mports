@@ -3,7 +3,7 @@ PORTVERSION=	0.2.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support PowerDNS DNS services
 WWW=		https://github.com/fog/fog-powerdns
 

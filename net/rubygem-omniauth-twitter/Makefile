@@ -3,7 +3,7 @@ PORTVERSION=	1.4.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OmniAuth strategy for Twitter
 WWW=		https://github.com/arunagw/omniauth-twitter
 

@@ -3,7 +3,7 @@ DISTVERSION=	1.20.1
 CATEGORIES=	cad
 MASTER_SITES=	https://www.nickg.me.uk/files/
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VHDL compiler and simulator
 WWW=		https://www.nickg.me.uk/nvc/ \
 		https://github.com/nickg/nvc

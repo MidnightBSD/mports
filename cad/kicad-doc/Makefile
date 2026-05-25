@@ -3,7 +3,7 @@ DISTVERSION=	10.0.1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-doc
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KiCad Documentation and Help Files
 WWW=		https://gitlab.com/kicad/services/kicad-doc
 

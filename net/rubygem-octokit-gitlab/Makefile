@@ -4,7 +4,7 @@ CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple wrapper for the GitHub API
 WWW=		https://octokit.github.io/octokit.rb/ \
 		https://github.com/octokit/octokit.rb

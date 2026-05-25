@@ -3,7 +3,7 @@ DISTVERSION=	22.6.4
 DISTVERSIONSUFFIX=	-Piers
 CATEGORIES=	multimedia
 
-MAINTAINER=	decke@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPTV Live TV and Radio PVR client for Kodi
 WWW=		https://github.com/kodi-pvr/pvr.iptvsimple
 

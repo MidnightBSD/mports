@@ -5,7 +5,7 @@ DISTVERSIONSUFFIX=	-gbc0b91c
 CATEGORIES=	comms
 #MASTER_SITES=	https://github.com/libimobiledevice/${PORTNAME}/releases/download/${DISTVERSION}/
 
-MAINTAINER=	jhale@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Daemon for multiplexing connections over USB to iPhone/iPod Touch
 WWW=		https://www.libimobiledevice.org
 

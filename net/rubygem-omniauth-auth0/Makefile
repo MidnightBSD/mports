@@ -3,7 +3,7 @@ PORTVERSION=	3.1.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Authentication broker supporting different identity providers
 WWW=		https://github.com/auth0/omniauth-auth0
 

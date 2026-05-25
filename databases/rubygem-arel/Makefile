@@ -4,7 +4,7 @@ PORTEPOCH=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Relational Algebra for Ruby
 WWW=		https://github.com/rails/arel
 

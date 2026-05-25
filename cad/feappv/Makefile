@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=v
 DISTVERSION=	5.1.2e
 CATEGORIES=	cad education science
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Finite element analysis program (personal version)
 WWW=		http://projects.ce.berkeley.edu/feap/feappv/
 

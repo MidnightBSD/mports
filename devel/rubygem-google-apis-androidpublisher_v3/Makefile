@@ -3,7 +3,7 @@ PORTVERSION=	0.99.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple REST client for Google Play Android Developer API V3
 WWW=		https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-androidpublisher_v3 \
 		https://github.com/googleapis/google-api-ruby-client

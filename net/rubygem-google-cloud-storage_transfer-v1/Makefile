@@ -3,7 +3,7 @@ PORTVERSION=	1.8.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official library for Google Cloud Storage Transfer
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-storage_transfer-v1/latest \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

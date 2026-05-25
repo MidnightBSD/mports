@@ -2,7 +2,7 @@ PORTNAME=	gds3d
 DISTVERSION=	g20220203
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application for rendering IC (chip) layouts in 3D
 WWW=		https://github.com/trilomix/GDS3D
 

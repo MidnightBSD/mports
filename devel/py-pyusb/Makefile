@@ -4,7 +4,7 @@ DISTVERSIONPREFIX=	v
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	sbz@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python wrapper around libusb
 WWW=		https://pyusb.github.io/pyusb/
 

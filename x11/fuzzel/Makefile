@@ -3,7 +3,7 @@ DISTVERSION=	1.13.1
 CATEGORIES=	x11 wayland
 MASTER_SITES=	https://codeberg.org/dnkl/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application launcher for wlroots-based Wayland compositors
 WWW=		https://codeberg.org/dnkl/fuzzel
 

@@ -4,7 +4,7 @@ CATEGORIES=	www devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON Web Token implementation in Ruby
 WWW=		https://github.com/jwt/ruby-jwt
 

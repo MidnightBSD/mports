@@ -5,7 +5,7 @@ CATEGORIES=	science cad python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	thierry@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	I/O for many mesh formats
 WWW=		https://github.com/nschloe/meshio
 

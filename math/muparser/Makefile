@@ -3,7 +3,7 @@ PORTVERSION=	2.3.5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	math devel
 
-MAINTAINER=	nivit@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mathematical expressions parser library written in C++
 WWW=		https://beltoforion.de/en/muparser/
 

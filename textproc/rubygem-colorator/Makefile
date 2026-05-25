@@ -3,7 +3,7 @@ PORTVERSION=	1.1.0
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Colorize your text in the terminal
 WWW=		https://github.com/octopress/colorator
 

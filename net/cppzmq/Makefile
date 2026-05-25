@@ -4,7 +4,7 @@ DISTVERSIONPREFIX=	v
 PORTREVISION=	1
 CATEGORIES=	net
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ bindings for 0MQ
 WWW=		https://github.com/zeromq/cppzmq \
 		https://zeromq.org/

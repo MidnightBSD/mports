@@ -3,7 +3,7 @@ PORTVERSION=	0.4.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide abstractions for working with URLs
 WWW=		https://socketry.github.io/protocol-url/ \
 		https://github.com/socketry/protocol-url

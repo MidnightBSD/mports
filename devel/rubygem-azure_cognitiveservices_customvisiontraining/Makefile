@@ -3,7 +3,7 @@ PORTVERSION=	0.17.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Cognitive Services Custom Vision Training Client Library for Ruby
 WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/data/azure_cognitiveservices_customvisiontraining
 

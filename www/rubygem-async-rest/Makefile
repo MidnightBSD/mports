@@ -3,7 +3,7 @@ PORTVERSION=	0.20.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RESTful clients (and hopefully servers)
 WWW=		https://socketry.github.io/async-rest/ \
 		https://github.com/socketry/async-rest

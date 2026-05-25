@@ -2,7 +2,7 @@ PORTNAME=	FreeCAD
 DISTVERSION=	1.1.1
 CATEGORIES=	cad
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose 3D CAD modeller
 WWW=		https://www.freecadweb.org/
 

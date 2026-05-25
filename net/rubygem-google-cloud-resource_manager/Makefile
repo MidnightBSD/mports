@@ -3,7 +3,7 @@ PORTVERSION=	0.39.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official library for Google Cloud Resource Manager
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-resource_manager/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

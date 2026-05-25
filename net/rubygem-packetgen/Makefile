@@ -3,7 +3,7 @@ PORTVERSION=	4.1.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network packet manipulation library
 WWW=		https://github.com/lemontree55/packetgen
 

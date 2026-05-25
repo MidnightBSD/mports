@@ -6,7 +6,7 @@ MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	matplotlib_scalebar-${PORTVERSION}
 
-MAINTAINER=	rhurlin@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Artist for matplotlib to display a scale bar
 WWW=		https://github.com/ppinard/matplotlib-scalebar
 

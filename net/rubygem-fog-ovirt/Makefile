@@ -3,7 +3,7 @@ PORTVERSION=	2.0.3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support oVirt platform
 WWW=		https://github.com/fog/fog-ovirt
 

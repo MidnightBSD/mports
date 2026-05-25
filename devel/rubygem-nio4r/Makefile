@@ -3,7 +3,7 @@ PORTVERSION=	2.7.5
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform asynchronous I/O primitives
 WWW=		https://github.com/socketry/nio4r
 

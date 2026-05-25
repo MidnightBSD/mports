@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to calculate the impedance of transmission lines
 WWW=		https://atlc.sourceforge.net/
 

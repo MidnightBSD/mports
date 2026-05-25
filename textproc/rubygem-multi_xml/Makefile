@@ -3,7 +3,7 @@ PORTVERSION=	0.8.1
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby library provide swappable XML backends
 WWW=		https://github.com/sferik/multi_xml
 

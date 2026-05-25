@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	${PORTVERSION:R:R}
 DISTNAME=	${PORTNAME}${PORTVERSION:R:R}-${DISTVERSION}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python-based hardware generation, simulation, verification framework
 WWW=		https://github.com/pymtl/pymtl3
 

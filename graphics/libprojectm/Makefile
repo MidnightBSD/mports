@@ -4,7 +4,7 @@ DISTVERSION=	3.1.12
 PORTREVISION=	11
 CATEGORIES=	graphics audio
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Awesome music visualiser
 WWW=		https://github.com/projectM-visualizer/projectm
 

@@ -3,7 +3,7 @@ PORTVERSION=	1.14.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Event loop
 WWW=		https://socketry.github.io/io-event/ \
 		https://github.com/socketry/io-event

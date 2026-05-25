@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Client Core Library for Ruby SDK
 WWW=		https://github.com/Azure/azure-ruby-asm-core
 

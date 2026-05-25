@@ -3,7 +3,7 @@ PORTVERSION=	0.19.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Key Vault Client Library for Ruby
 WWW=		https://github.com/Azure/azure-sdk-for-ruby/tree/master/data/azure_key_vault
 

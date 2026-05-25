@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	${GH_PROJECT}_
 DISTVERSION=	3.49.0
 CATEGORIES=	cad
 
-MAINTAINER=	fernape@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create a 3D model of an aircraft defined by engineering parameters
 WWW=		http://www.openvsp.org/
 

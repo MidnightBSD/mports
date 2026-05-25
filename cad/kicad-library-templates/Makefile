@@ -3,7 +3,7 @@ DISTVERSION=	10.0.1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-library-tmpl
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad project templates
 WWW=		https://gitlab.com/kicad/libraries/kicad-templates
 

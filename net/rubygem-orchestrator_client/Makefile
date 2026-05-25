@@ -3,7 +3,7 @@ PORTVERSION=	0.7.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	puppet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client library for Puppet orchestration services
 WWW=		https://github.com/puppetlabs/orchestrator_client-ruby
 

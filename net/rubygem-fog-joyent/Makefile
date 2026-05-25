@@ -4,7 +4,7 @@ PORTREVISION=	2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support Joyent
 WWW=		https://github.com/fog/fog-joyent
 

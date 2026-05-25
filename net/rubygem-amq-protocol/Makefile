@@ -3,7 +3,7 @@ PORTVERSION=	2.3.4
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AMQP serialization library for Ruby
 WWW=		https://github.com/ruby-amqp/amq-protocol
 

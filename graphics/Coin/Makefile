@@ -3,7 +3,7 @@ PORTVERSION=	4.0.8
 DISTVERSIONPREFIX=	v
 CATEGORIES=	graphics
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ 3D graphics library based on the Open Inventor API
 WWW=		https://github.com/coin3d
 

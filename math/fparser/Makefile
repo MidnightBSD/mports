@@ -4,7 +4,7 @@ CATEGORIES=	math
 MASTER_SITES=	http://warp.povusers.org/FunctionParser/ # another fork exists: https://github.com/thliebig/fparser
 DISTNAME=	${PORTNAME}${DISTVERSION}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Function parser for C++
 WWW=		https://github.com/thliebig/fparser
 

@@ -7,7 +7,7 @@ MASTER_SITES=	https://waf.io/:new_waf # for Python-3.11 compatibility
 DISTFILES=	waf-2.1.1:new_waf
 EXTRACT_ONLY=	${GH_ACCOUNT}-${GH_PROJECT}-${DISTVERSIONFULL}_GH0${EXTRACT_SUFX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Schematic capture and circuit simulator
 WWW=		https://ahoi.io/
 

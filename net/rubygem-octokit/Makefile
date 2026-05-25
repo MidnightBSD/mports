@@ -3,7 +3,7 @@ PORTVERSION=	10.0.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple wrapper for the GitHub API
 WWW=		https://octokit.github.io/octokit.rb/ \
 		https://github.com/octokit/octokit.rb

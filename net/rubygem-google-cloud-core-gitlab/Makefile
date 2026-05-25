@@ -4,7 +4,7 @@ CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internal shared library for Google Cloud Client Library
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-core/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

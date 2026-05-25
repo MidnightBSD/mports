@@ -3,7 +3,7 @@ PORTVERSION=	1.7.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby Client for the Cloud Monitoring V3 API
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-monitoring-v3/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

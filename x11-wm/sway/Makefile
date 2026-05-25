@@ -3,7 +3,7 @@ DISTVERSION=	1.11
 PORTREVISION=	1
 CATEGORIES=	x11-wm wayland
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	I3-compatible Wayland compositor
 WWW=		https://swaywm.org/
 

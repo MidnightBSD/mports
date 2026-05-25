@@ -3,7 +3,7 @@ PORTVERSION=	1.7.5
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support Sakura no Cloud
 WWW=		https://github.com/fog/fog-sakuracloud
 

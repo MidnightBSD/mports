@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple REST client for IAM Service Account Credentials API V1
 WWW=		https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-iamcredentials_v1 \
 		https://github.com/googleapis/google-api-ruby-client

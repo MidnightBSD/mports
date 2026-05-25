@@ -3,7 +3,7 @@ DISTVERSION=	22.8.1
 DISTVERSIONSUFFIX=	-Piers
 CATEGORIES=	multimedia
 
-MAINTAINER=	decke@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tvheadend PVR addon for Kodi
 WWW=		https://github.com/kodi-pvr/pvr.hts
 

@@ -5,7 +5,7 @@ CATEGORIES=	cad
 MASTER_SITES=	https://sourceforge.net/projects/openctm/files/
 DISTNAME=	OpenCTM-${DISTVERSION}-src
 
-MAINTAINER=	db@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File format for compression of 3D triangle meshes
 WWW=		https://sourceforge.net/projects/openctm/
 

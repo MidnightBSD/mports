@@ -3,7 +3,7 @@ PORTVERSION=	0.73.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure SDK - Azure Client Library for Ruby
 WWW=		https://github.com/Azure/azure-sdk-for-ruby
 

@@ -3,7 +3,7 @@ PORTVERSION=	0.20.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple REST client for Identity and Access Management (IAM) API V2beta
 WWW=		https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-iam_v2beta \
 		https://github.com/googleapis/google-api-ruby-client

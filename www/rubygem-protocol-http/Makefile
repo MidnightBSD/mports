@@ -3,7 +3,7 @@ PORTVERSION=	0.59.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides abstractions to handle HTTP protocols
 WWW=		https://socketry.github.io/protocol-http/ \
 		https://github.com/socketry/protocol-http

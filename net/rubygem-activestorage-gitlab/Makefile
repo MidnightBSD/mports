@@ -4,7 +4,7 @@ CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Attach cloud and local files in Rails applications
 WWW=		https://github.com/rails/rails/tree/main/activestorage \
 		https://rubyonrails.org/

@@ -3,7 +3,7 @@ DISTVERSION=	0.7.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	romain@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby client for NATS, the cloud native messaging system
 WWW=		https://rubygems.org/gems/nats-pure
 

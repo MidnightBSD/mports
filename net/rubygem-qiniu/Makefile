@@ -3,7 +3,7 @@ PORTVERSION=	6.9.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qiniu Resource (Cloud) Storage SDK for Ruby
 WWW=		https://github.com/qiniu/ruby-sdk
 

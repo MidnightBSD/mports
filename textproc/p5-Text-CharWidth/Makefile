@@ -5,7 +5,7 @@ CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get number of occupied columns of a string on terminal
 WWW=		https://metacpan.org/release/Text-CharWidth
 

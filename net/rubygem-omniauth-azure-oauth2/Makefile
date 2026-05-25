@@ -4,7 +4,7 @@ PORTREVISION=	3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Azure OAuth2 Strategy for OmniAuth
 WWW=		https://github.com/KonaTeam/omniauth-azure-oauth2
 

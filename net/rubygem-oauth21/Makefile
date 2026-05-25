@@ -5,7 +5,7 @@ CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	1
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby wrapper for the OAuth 2.0 protocol
 WWW=		https://github.com/oauth-xx/oauth2
 

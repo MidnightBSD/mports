@@ -2,7 +2,7 @@ PORTNAME=	wireplumber
 DISTVERSION=	0.5.13
 CATEGORIES=	multimedia
 
-MAINTAINER=	arrowd@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session and policy manager for PipeWire
 WWW=		https://pipewire.pages.freedesktop.org/wireplumber/
 

@@ -5,7 +5,7 @@ CATEGORIES=	cad
 MASTER_SITES=	GNU
 DISTNAME=	${PORTNAME}-${PORTVERSION:C/^(...)\./\1/}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sophisticated electrical CAD system
 WWW=		https://www.gnu.org/software/electric/electric.html
 

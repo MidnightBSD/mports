@@ -6,7 +6,7 @@ CATEGORIES=	cad
 PKGNAMESUFFIX=	-devel
 DIST_SUBDIR=		${PORTNAME}
 
-MAINTAINER=		mr@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=		Schematic and PCB editing software
 WWW=		http://kicad-pcb.org/
 

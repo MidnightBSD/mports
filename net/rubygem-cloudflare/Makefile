@@ -3,7 +3,7 @@ PORTVERSION=	4.4.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby wrapper for the Cloudflare API
 WWW=		https://github.com/socketry/cloudflare
 

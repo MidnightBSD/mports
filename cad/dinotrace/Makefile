@@ -4,7 +4,7 @@ PORTREVISION=	11
 CATEGORIES=	cad
 MASTER_SITES=	http://www.veripool.org/ftp/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical signal trace waveform viewer
 WWW=		https://www.veripool.org/wiki/dinotrace
 

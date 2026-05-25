@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Authentiq OAuth2 Strategy for OmniAuth
 WWW=		https://github.com/AuthentiqID/omniauth-authentiq
 

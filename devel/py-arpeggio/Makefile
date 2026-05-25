@@ -6,7 +6,7 @@ MASTER_SITES=	PYPI \
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	Arpeggio-${PORTVERSION}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parser interpreter based on PEG grammars
 WWW=		https://github.com/textX/Arpeggio
 

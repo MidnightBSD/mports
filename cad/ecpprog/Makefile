@@ -3,7 +3,7 @@ DISTVERSION=	g20200725
 PORTREVISION=	1
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver for FTDI based JTAG probes, to program ECP5 FPGAs
 WWW=		https://github.com/gregdavill/ecpprog
 

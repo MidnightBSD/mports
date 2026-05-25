@@ -3,7 +3,7 @@ DISTVERSION=	0.6.23
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/Cloudef/${PORTNAME}/releases/download/${DISTVERSION}/
 
-MAINTAINER=	uzsolt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic menu library and client program inspired by dmenu
 WWW=		https://github.com/Cloudef/bemenu
 

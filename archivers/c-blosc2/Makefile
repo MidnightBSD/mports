@@ -3,7 +3,7 @@ PORTVERSION=	2.23.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	archivers
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance compressor optimized for binary data
 WWW=		https://www.blosc.org/ \
 		https://github.com/Blosc/c-blosc2

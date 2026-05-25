@@ -3,7 +3,7 @@ DISTVERSION=	0.9.5
 CATEGORIES=	cad python
 MASTER_SITES=	PYPI
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source ecosystem for open FPGA boards
 WWW=		https://github.com/FPGAwars/apio/wiki
 

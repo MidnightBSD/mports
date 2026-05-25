@@ -8,7 +8,7 @@ DISTFILES=	complete.zip:parts LDConfig.ldr:config
 DIST_SUBDIR=	${DISTNAME}-${DISTVERSION}
 EXTRACT_ONLY=	complete.zip
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LDraw-format CAD files representing many of LEGO bricks produced
 WWW=		https://www.ldraw.org/
 

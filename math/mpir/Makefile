@@ -4,7 +4,7 @@ DISTVERSION=	3.0.0
 PORTREVISION=	2
 CATEGORIES=	math
 
-MAINTAINER=	wen@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiprecision integer, rational, floating point numbers library
 WWW=		https://github.com/wbhart/mpir/
 

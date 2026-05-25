@@ -5,7 +5,7 @@ CATEGORIES=	textproc education python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	demon@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Natural language toolkit written in python
 WWW=		https://www.nltk.org/
 

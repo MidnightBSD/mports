@@ -3,7 +3,7 @@ PORTVERSION=	2.0.0
 PORTREVISION=	1
 CATEGORIES=	devel
 
-MAINTAINER=	fernape@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unit testing framework for handling automated tests in C++
 WWW=		http://cpptest.sourceforge.net/
 

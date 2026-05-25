@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secret User Agent of HTTP
 WWW=		https://github.com/lostisland/sawyer
 

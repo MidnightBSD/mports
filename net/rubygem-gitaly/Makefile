@@ -3,7 +3,7 @@ PORTVERSION=	18.7.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Auto-generated gRPC client for gitaly
 WWW=		https://gitlab.com/gitlab-org/gitaly
 

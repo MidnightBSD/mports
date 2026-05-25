@@ -5,7 +5,7 @@ MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	sphinx_design-${PORTVERSION}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx extension for designing beautiful, view size responsive web components
 WWW=		https://sphinx-design.readthedocs.io/en/latest/ \
 		https://github.com/executablebooks/sphinx-design

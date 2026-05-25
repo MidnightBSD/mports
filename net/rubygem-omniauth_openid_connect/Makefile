@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenID Connect Strategy for OmniAuth
 WWW=		https://github.com/m0n9oose/omniauth_openid_connect
 

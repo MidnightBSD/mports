@@ -4,7 +4,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	60
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Job class declarations for a variety of queueing backends
 WWW=		https://github.com/rails/rails/tree/main/activejob \
 		https://rubyonrails.org/

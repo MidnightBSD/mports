@@ -3,7 +3,7 @@ PORTVERSION=	2.5.2
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet-another-markdown-parser but fast, pure Ruby
 WWW=		https://kramdown.gettalong.org/
 

@@ -3,7 +3,7 @@ PORTVERSION=	1.8.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the AMQP protocol for RabbitMQ clients
 WWW=		http://rubyamqp.info/
 

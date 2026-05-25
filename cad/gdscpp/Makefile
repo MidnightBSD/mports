@@ -2,7 +2,7 @@ PORTNAME=	gdscpp
 DISTVERSION=	g20200611
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ library to create and read GDSII file
 WWW=		https://github.com/judefdiv/gdscpp
 

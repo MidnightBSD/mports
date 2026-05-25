@@ -3,7 +3,7 @@ PORTVERSION=	2.1.3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the NTP protocol
 WWW=		https://github.com/zencoder/net-ntp
 

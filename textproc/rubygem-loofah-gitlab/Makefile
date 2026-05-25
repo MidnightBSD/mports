@@ -4,7 +4,7 @@ CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating HTML/XML documents and fragments
 WWW=		https://github.com/flavorjones/loofah
 

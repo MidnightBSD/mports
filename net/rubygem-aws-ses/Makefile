@@ -3,7 +3,7 @@ PORTVERSION=	0.7.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client library for REST API of Amazon SES
 WWW=		https://github.com/drewblas/aws-ses
 

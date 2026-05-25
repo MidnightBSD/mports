@@ -3,7 +3,7 @@ PORTVERSION=	1.8.0
 PORTREVISION=	2
 CATEGORIES=	devel
 
-MAINTAINER=	thierry@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C! (cbang) is a library of cross-platform C++ utilities
 WWW=		https://cbang.org/
 

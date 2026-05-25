@@ -4,7 +4,7 @@ DISTVERSION=	0.2.14
 PORTREVISION=	5
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SystemVerilog language server
 WWW=		https://github.com/dalance/svls
 

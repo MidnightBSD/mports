@@ -3,7 +3,7 @@ PORTVERSION=	2.6.5
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable replacement for popen4
 WWW=		https://github.com/ahoward/systemu
 

@@ -4,7 +4,7 @@ DISTVERSION=	2.10.0
 CATEGORIES=	cad
 MASTER_SITES=	GH
 
-MAINTAINER=	pi@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gerber file viewer
 WWW=		https://gerbv.github.io/
 

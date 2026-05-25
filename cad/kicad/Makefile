@@ -4,7 +4,7 @@ PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	cad
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Schematic and PCB editing software
 WWW=		https://kicad.org/
 

@@ -4,7 +4,7 @@ CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	52
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-relational mapping layer for Rails MVC Framework
 WWW=		https://rubyonrails.org/ \
 		https://github.com/rails/rails/tree/main/activerecord

@@ -3,7 +3,7 @@ DISTVERSION=	1.8.5
 PORTREVISION=	1
 CATEGORIES=	cad
 
-MAINTAINER=	riggs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source loudspeaker enclosure designer
 WWW=		http://brouits.free.fr/qspeakers/
 

@@ -3,7 +3,7 @@ PORTVERSION=	1.3.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extraction of the JSON parsing tools between providers
 WWW=		https://github.com/fog/fog-json
 

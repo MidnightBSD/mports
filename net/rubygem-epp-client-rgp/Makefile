@@ -3,7 +3,7 @@ PORTVERSION=	0.15.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mat@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RGP EPP client library
 WWW=		https://github.com/Absolight/epp-client
 

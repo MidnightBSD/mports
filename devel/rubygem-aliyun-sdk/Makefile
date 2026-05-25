@@ -3,7 +3,7 @@ PORTVERSION=	0.8.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby program to facilitate accessing Aliyun Object Storage Service
 WWW=		https://github.com/aliyun/aliyun-oss-ruby-sdk
 

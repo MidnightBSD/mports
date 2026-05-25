@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/gputils/gputils/1.5.0
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utilities for Microchip PIC microcontrollers
 WWW=		https://gputils.sourceforge.io/
 

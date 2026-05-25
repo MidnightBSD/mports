@@ -3,7 +3,7 @@ DISTVERSION=	1.2.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	dch@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Protocol Buffers library in pure Ruby
 WWW=		https://github.com/protobuf-ruby/beefcake
 

@@ -3,7 +3,7 @@ PORTVERSION=	0.2.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby extension for Network Kanji Filter
 WWW=		https://github.com/ruby/nkf
 

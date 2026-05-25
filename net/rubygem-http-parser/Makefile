@@ -3,7 +3,7 @@ PORTVERSION=	1.2.3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Super fast http parser for Ruby
 WWW=		https://github.com/cotag/http-parser
 

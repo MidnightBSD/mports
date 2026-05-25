@@ -3,7 +3,7 @@ DISTVERSION=	10.0.1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-library-footprints
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad Footprint Libraries
 WWW=		https://gitlab.com/kicad/libraries/kicad-footprints
 

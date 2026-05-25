@@ -3,7 +3,7 @@ PORTVERSION=	1.2.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MaxMind DB Reader Ruby API
 WWW=		https://github.com/maxmind/MaxMind-DB-Reader-ruby
 

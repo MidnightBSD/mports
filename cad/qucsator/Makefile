@@ -3,7 +3,7 @@ DISTVERSION=	0.0.20-4
 DISTVERSIONSUFFIX=	-g22126bb9
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Circuit simulator of the Qucs project
 WWW=		https://github.com/Qucs/qucsator
 

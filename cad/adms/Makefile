@@ -3,7 +3,7 @@ PORTVERSION=	2.3.7
 DISTVERSIONPREFIX=	release-
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Model generator for SPICE simulators
 WWW=		https://github.com/Qucs/ADMS
 

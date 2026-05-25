@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	2.2.1.3
 CATEGORIES=	cad
 
-MAINTAINER=	jhale@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	2D CAD system
 WWW=		https://librecad.org/ \
 		https://github.com/LibreCAD/LibreCAD

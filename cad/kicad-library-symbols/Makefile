@@ -3,7 +3,7 @@ DISTVERSION=	10.0.1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-library-symbols
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad schematic symbol libraries
 WWW=		https://gitlab.com/kicad/libraries/kicad-symbols
 

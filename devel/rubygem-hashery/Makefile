@@ -3,7 +3,7 @@ PORTVERSION=	2.1.2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tight collection of Hash-like classes
 WWW=		https://rubyworks.github.io/hashery/
 

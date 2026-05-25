@@ -2,7 +2,7 @@ PORTNAME=	fortunetw
 PORTVERSION=	1.4
 CATEGORIES=	chinese
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Classic fortune file in Taiwan (UTF-8)
 
 USES=		tar:xz

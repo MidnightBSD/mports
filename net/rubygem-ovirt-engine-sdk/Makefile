@@ -3,7 +3,7 @@ PORTVERSION=	4.6.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby SDK for the oVirt Engine API
 WWW=		https://ovirt.org/ \
 		https://github.com/oVirt/ovirt-engine-sdk-ruby

@@ -3,7 +3,7 @@ PORTVERSION=	3.33.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support Amazon Web Services
 WWW=		https://github.com/fog/fog-aws
 

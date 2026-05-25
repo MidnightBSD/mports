@@ -4,7 +4,7 @@ DISTVERSION=	0.9.5
 PORTREVISION=	5
 CATEGORIES=	cad devel
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SystemVerilog linter
 WWW=		https://github.com/dalance/svlint
 

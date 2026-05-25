@@ -4,7 +4,7 @@ PORTEPOCH=	1
 CATEGORIES=	cad
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}-source-mirror/releases/download/${DISTVERSION}/
 
-MAINTAINER=	arrowd@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application to design electric diagrams
 WWW=		https://qelectrotech.org/
 

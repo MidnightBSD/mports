@@ -3,7 +3,7 @@ PORTVERSION=	1.3.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	String inflections for dry-rb
 WWW=		https://dry-rb.org/ \
 		https://github.com/dry-rb/dry-inflector

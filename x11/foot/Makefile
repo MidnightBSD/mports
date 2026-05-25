@@ -3,7 +3,7 @@ DISTVERSION=	1.26.1
 CATEGORIES=	x11 wayland
 MASTER_SITES=	https://codeberg.org/dnkl/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, lightweight and minimalistic Wayland terminal emulator
 WWW=		https://codeberg.org/dnkl/foot
 

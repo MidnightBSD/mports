@@ -2,7 +2,7 @@ PORTNAME=	libretro-pcsx_rearmed
 DISTVERSION=	0.20231025
 CATEGORIES=	games
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fork of PCSX with ARM optimizations
 WWW=		https://github.com/libretro/pcsx_rearmed
 

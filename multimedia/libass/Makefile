@@ -3,7 +3,7 @@ DISTVERSION=	0.17.2
 CATEGORIES=	multimedia devel
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
-MAINTAINER=	multimedia@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable ASS/SSA subtitle renderer
 WWW=		https://github.com/libass/libass
 

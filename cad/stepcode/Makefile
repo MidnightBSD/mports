@@ -4,7 +4,7 @@ DISTVERSIONPREFIX=	v
 PORTREVISION=	1
 CATEGORIES=	cad
 
-MAINTAINER=	fernape@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates C++ and Python from ISO10303 files
 WWW=		https://github.com/stepcode/stepcode/wiki
 

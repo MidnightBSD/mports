@@ -3,7 +3,7 @@ PORTVERSION=	2.1.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Simple HTTP and REST client for Ruby
 WWW=		https://github.com/rest-client/rest-client
 

@@ -5,7 +5,7 @@ CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	lbartoletti@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented pure Python B-Spline and NURBS library
 WWW=		https://onurraufbingol.com/NURBS-Python/
 

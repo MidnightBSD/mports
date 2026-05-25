@@ -3,7 +3,7 @@ PORTVERSION=	2.5.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	graphics
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source JPEG 2000 codec
 WWW=		https://www.openjpeg.org/ \
 		https://github.com/uclouvain/openjpeg

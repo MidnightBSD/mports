@@ -10,7 +10,7 @@ EXTRACT_SUFX=
 DISTFILES=	${APP_JARFILE} ${SFS_JARFILE}:1 ${MANUAL_FILE}:2
 EXTRACT_ONLY=
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sophisticated VLSI design system
 WWW=		https://www.staticfreesoft.com/
 

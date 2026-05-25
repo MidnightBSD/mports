@@ -5,7 +5,7 @@ CATEGORIES=	math
 MASTER_SITES=	https://www.fftw.org/ \
 		http://ftp.fftw.org/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast C routines to compute the Discrete Fourier Transform
 WWW=		https://www.fftw.org/
 

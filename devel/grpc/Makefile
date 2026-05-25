@@ -4,7 +4,7 @@ DISTVERSIONPREFIX=	v
 PORTEPOCH=	2
 CATEGORIES=	devel
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP/2-based RPC framework
 WWW=		https://grpc.io/ \
 		https://github.com/grpc/grpc

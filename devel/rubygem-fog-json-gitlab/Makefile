@@ -5,7 +5,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extraction of the JSON parsing tools between providers
 WWW=		https://github.com/fog/fog-json
 

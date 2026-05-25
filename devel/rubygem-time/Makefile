@@ -3,7 +3,7 @@ PORTVERSION=	0.4.2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extend the Time class with methods for parsing and conversion
 WWW=		https://github.com/ruby/time
 

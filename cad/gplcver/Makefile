@@ -4,7 +4,7 @@ CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION:R}${PORTVERSION:E}/
 DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}.src
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Verilog HDL simulator
 WWW=		https://sourceforge.net/projects/gplcver/
 

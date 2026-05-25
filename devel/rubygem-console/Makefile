@@ -3,7 +3,7 @@ PORTVERSION=	1.34.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Beautiful logging for Ruby
 WWW=		https://socketry.github.io/console/ \
 		https://github.com/socketry/console

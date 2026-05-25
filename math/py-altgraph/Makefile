@@ -4,7 +4,7 @@ CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	python@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python graph (network) package
 WWW=		https://altgraph.readthedocs.io/en/latest/ \
 		https://github.com/ronaldoussoren/altgraph

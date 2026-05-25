@@ -3,7 +3,7 @@ PORTVERSION=	2.0.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Azure Storage Blob Client Library for Ruby
 WWW=		https://github.com/Azure/azure-storage-ruby/tree/master/blob \
 		https://github.com/Azure/azure-storage-ruby

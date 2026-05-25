@@ -3,7 +3,7 @@ PORTVERSION=	0.45.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official library for Stackdriver Trace
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-trace/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

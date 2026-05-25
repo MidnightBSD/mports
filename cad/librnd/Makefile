@@ -3,7 +3,7 @@ DISTVERSION=	4.4.0
 CATEGORIES=	cad
 MASTER_SITES=	http://www.repo.hu/projects/${PORTNAME}/releases/
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flexible, modular two-dimensional CAD engine
 WWW=		http://www.repo.hu/projects/librnd/
 

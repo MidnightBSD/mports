@@ -3,7 +3,7 @@ PORTVERSION=	0.5.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use wrapper for Net::HTTP, Net::HTTPS and Net::FTP
 WWW=		https://github.com/ruby/open-uri
 

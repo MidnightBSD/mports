@@ -3,7 +3,7 @@ PORTVERSION=	0.11.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide a generic stream wrapper for IO instances
 WWW=		https://socketry.github.io/io-stream/ \
 		https://github.com/socketry/io-stream

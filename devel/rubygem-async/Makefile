@@ -3,7 +3,7 @@ PORTVERSION=	2.39.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modern asynchronous I/O framework for Ruby
 WWW=		https://socketry.github.io/async/ \
 		https://github.com/socketry/async

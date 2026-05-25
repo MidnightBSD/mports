@@ -4,7 +4,7 @@ CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	52
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Toolkit for building modeling frameworks
 WWW=		https://rubyonrails.org/ \
 		https://github.com/rails/rails/tree/main/activemodel

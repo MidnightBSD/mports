@@ -3,7 +3,7 @@ PORTVERSION=	0.0.5
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fog backend for provisioning users on Ceph Radosgw
 WWW=		https://github.com/fog/fog-radosgw
 

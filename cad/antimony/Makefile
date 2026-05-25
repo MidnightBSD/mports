@@ -3,7 +3,7 @@ DISTVERSION=	0.9.3-20230118
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CAD from a parallel universe
 WWW=		https://www.mattkeeter.com/projects/antimony/3/ \
 		https://github.com/mkeeter/antimony

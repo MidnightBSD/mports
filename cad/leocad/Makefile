@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	25.09
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CAD program for creating virtual LEGO models
 WWW=		https://www.leocad.org/ \
 		https://github.com/leozide/leocad/

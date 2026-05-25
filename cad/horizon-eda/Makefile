@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	2.7.2
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	EDA package for printed circuit board design
 WWW=		https://horizon-eda.org/ \
 		https://github.com/horizon-eda/horizon

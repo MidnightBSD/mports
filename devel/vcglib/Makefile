@@ -2,7 +2,7 @@ PORTNAME=	vcglib
 PORTVERSION=	2020.09
 CATEGORIES=	devel
 
-MAINTAINER=	fernape@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulation of triangle meshes
 WWW=		https://github.com/cnr-isti-vclab/vcglib
 

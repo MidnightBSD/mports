@@ -3,7 +3,7 @@ PORTVERSION=	1.2.8
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of methods to manipulate an IP address
 WWW=		https://github.com/ruby/ipaddr
 

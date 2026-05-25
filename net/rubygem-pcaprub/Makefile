@@ -3,7 +3,7 @@ PORTVERSION=	0.13.3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	antoine@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libpcap bindings for ruby
 WWW=		https://github.com/shadowbq/pcaprub
 

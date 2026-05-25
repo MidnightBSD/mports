@@ -4,7 +4,7 @@ CATEGORIES=	cad
 MASTER_SITES=	SF/gds2
 DISTNAME=	${PORTNAME:tu}-${PORTVERSION}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GDS2/GDT format translator
 WWW=		https://sourceforge.net/projects/gds2/
 

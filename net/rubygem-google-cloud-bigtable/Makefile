@@ -3,7 +3,7 @@ PORTVERSION=	2.12.3
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official library for Cloud Bigtable API
 WWW=		https://cloud.google.com/ruby/docs/reference/google-cloud-bigtable/latest/ \
 		https://googleapis.github.io/google-cloud-ruby/docs/ \

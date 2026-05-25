@@ -5,7 +5,7 @@ MASTER_SITES=	PYPI \
 		https://github.com/h5py/h5py/releases/download/${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General-purpose Python interface to the HDF5 library
 WWW=		https://www.h5py.org/ \
 		https://github.com/h5py/h5py

@@ -3,7 +3,7 @@ PORTVERSION=	1.1.4
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provider to use the SoftLayer Cloud in applications
 WWW=		https://github.com/fog/fog-softlayer
 

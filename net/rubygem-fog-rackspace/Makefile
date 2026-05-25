@@ -3,7 +3,7 @@ PORTVERSION=	0.1.6
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support Rackspace
 WWW=		https://github.com/fog/fog-rackspace
 

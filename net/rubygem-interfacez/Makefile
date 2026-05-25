@@ -3,7 +3,7 @@ PORTVERSION=	1.0.4
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simplified network interface API
 WWW=		https://github.com/picatz/interfacez
 

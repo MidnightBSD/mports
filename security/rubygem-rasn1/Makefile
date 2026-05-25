@@ -3,7 +3,7 @@ PORTVERSION=	0.16.3
 CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pure ruby ASN.1 library
 WWW=		https://codeberg.org/lemontree55/rasn1
 

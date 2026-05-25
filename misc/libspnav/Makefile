@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	1.2
 CATEGORIES=	misc devel
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for communicating with spacenavd or 3dxsrv
 WWW=		https://spacenav.sourceforge.net/
 

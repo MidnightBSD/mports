@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
-MAINTAINER=	amdmi3@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight PNG C library
 WWW=		https://sourceforge.net/projects/pnglite/
 

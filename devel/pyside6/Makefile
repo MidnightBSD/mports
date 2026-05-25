@@ -6,7 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	pyside-setup-everywhere-src-${DISTVERSION}
 DIST_SUBDIR=	KDE/Qt/${DISTVERSION}
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Qt bindings for Qt 6
 WWW=		https://wiki.qt.io/Qt_for_Python
 

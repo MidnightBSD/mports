@@ -3,7 +3,7 @@ DISTVERSION=	1.1.0
 CATEGORIES=	devel
 MASTER_SITES=	https://codeberg.org/dnkl/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C header file only implementation of a typed linked list
 WWW=		https://codeberg.org/dnkl/tllist
 

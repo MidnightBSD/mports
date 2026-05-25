@@ -3,7 +3,7 @@ PORTVERSION=	0.8.3
 CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KRB5 for Ruby
 WWW=		https://github.com/timfel/krb5-auth
 

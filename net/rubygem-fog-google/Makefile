@@ -3,7 +3,7 @@ PORTVERSION=	1.26.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support Google Cloud
 WWW=		https://github.com/fog/fog-google
 

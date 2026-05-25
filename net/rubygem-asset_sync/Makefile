@@ -3,7 +3,7 @@ PORTVERSION=	2.19.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Synchronizes Assets between Rails and S3
 WWW=		https://github.com/AssetSync/asset_sync
 

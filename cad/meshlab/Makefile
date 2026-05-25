@@ -4,7 +4,7 @@ DISTVERSION=	2020.05
 PORTREVISION=	1
 CATEGORIES=	cad
 
-MAINTAINER=	lbartoletti@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	3D triangular meshes processing and editing tool
 WWW=		https://www.meshlab.net/
 

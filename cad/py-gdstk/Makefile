@@ -6,7 +6,7 @@ CATEGORIES=	cad
 #MASTER_SITES=	PYPI # some test files are missing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for creation and manipulation of GDSII and OASIS files
 WWW=		https://heitzmann.github.io/gdstk/ \
 		https://github.com/heitzmann/gdstk/

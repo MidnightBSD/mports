@@ -4,7 +4,7 @@ DISTVERSION=	0.68
 PORTREVISION=	1
 CATEGORIES=	textproc perl5
 
-MAINTAINER=	dbaio@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Brings gettext translation tools to all kinds of docs
 WWW=		https://po4a.org/
 

@@ -3,7 +3,7 @@ PORTVERSION=	0.1.5
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extraction of the XML parsing tools shared among 'fog' providers
 WWW=		https://github.com/fog/fog-xml
 

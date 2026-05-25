@@ -2,7 +2,7 @@ PORTNAME=	libretro-fceumm
 DISTVERSION=	0.20230916
 CATEGORIES=	games
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unofficial build of FCEU Ultra by CaH4e3
 WWW=		https://github.com/libretro/libretro-fceumm
 

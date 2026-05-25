@@ -4,7 +4,7 @@ DISTVERSION=	1.1.0
 PORTREVISION=	1
 CATEGORIES=	cad haskell
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Verilog fuzzer
 WWW=		https://github.com/ymherklotz/verismith/
 

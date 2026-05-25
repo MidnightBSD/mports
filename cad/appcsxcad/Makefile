@@ -4,7 +4,7 @@ DISTVERSION=	0.2.3
 PORTREVISION=	2
 CATEGORIES=	cad
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Minimal GUI Application using the QCSXCAD library
 WWW=		https://github.com/thliebig/AppCSXCAD
 

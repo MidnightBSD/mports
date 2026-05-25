@@ -4,7 +4,7 @@ DISTVERSION=	0.5.8
 CATEGORIES=	cad python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Amaranth hardware definition language
 WWW=		https://amaranth-lang.org/docs/amaranth/latest/ \
 		https://github.com/amaranth-lang/amaranth

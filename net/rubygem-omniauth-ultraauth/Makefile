@@ -3,7 +3,7 @@ PORTVERSION=	0.0.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Passwordless authentication plugin
 WWW=		https://ultraauth.com/
 

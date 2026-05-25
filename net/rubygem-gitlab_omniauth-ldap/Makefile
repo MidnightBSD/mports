@@ -3,7 +3,7 @@ PORTVERSION=	2.3.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LDAP strategy for OmniAuth
 WWW=		https://gitlab.com/gitlab-org/omniauth-ldap
 

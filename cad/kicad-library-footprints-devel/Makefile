@@ -6,7 +6,7 @@ MASTER_SITES=	https://gitlab.com/kicad/libraries/${PORTNAME}-footprints/-/archiv
 PKGNAMESUFFIX=	-library-footprints-devel
 DISTNAME=	${PORTNAME}-footprints-${GL_TAGNAME}
 
-MAINTAINER=	mr@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official KiCad Footprint Libraries (Git snapshot)
 WWW=		https://github.com/KiCad/kicad-footprints
 

@@ -4,7 +4,7 @@ PORTEPOCH=	1
 CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 interactive printed circuit board layout system
 WWW=		https://sourceforge.net/projects/pcb/
 

@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sanpei@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official Ruby library for Google BigQuery
 WWW=		https://github.com/googleapis/google-cloud-ruby/tree/main/google-cloud-bigquery
 

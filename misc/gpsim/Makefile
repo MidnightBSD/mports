@@ -3,7 +3,7 @@ DISTVERSION=	0.32.1
 CATEGORIES=	misc
 MASTER_SITES=	https://download.sourceforge.net/project/gpsim/gpsim/0.32.0/ # SF
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Software simulator for Microchip PIC microcontrollers
 WWW=		https://gpsim.sourceforge.net/
 

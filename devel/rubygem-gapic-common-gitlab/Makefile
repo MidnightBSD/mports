@@ -5,7 +5,7 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common code for GAPIC-generated API clients
 WWW=		https://github.com/googleapis/gapic-generator-ruby/tree/master/gapic-common \
 		https://github.com/googleapis/gapic-generator-ruby

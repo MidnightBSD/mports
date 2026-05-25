@@ -5,7 +5,7 @@ CATEGORIES=	graphics print
 MASTER_SITES=	SF
 PKGNAMESUFFIX=	09
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PDF manipulation library and tools
 WWW=		https://podofo.sourceforge.net/ \
 		https://github.com/podofo/podofo

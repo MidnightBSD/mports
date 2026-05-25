@@ -5,7 +5,7 @@ CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and direct raster I/O for use with NumPy
 WWW=		https://rasterio.readthedocs.io/en/stable/ \
 		https://github.com/rasterio/rasterio

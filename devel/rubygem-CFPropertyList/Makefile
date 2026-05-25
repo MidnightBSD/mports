@@ -3,7 +3,7 @@ PORTVERSION=	4.0.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read, write and manipulate both binary and XML property lists
 WWW=		https://github.com/ckruse/CFPropertyList
 

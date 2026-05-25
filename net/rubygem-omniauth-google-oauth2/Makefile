@@ -3,7 +3,7 @@ PORTVERSION=	1.2.1
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google OAuth2 strategy for OmniAuth 1.x
 WWW=		https://github.com/zquestz/omniauth-google-oauth2
 

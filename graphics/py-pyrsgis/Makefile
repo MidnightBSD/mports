@@ -5,7 +5,7 @@ CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	rhurlin@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Processing satellite data directly from TAR files
 WWW=		https://github.com/PratyushTripathy/pyrsgis
 

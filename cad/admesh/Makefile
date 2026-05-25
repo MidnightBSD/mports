@@ -4,7 +4,7 @@ DISTVERSION=	0.98.5
 PORTREVISION=	1
 CATEGORIES=	cad
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program for processing STL triangulated solid meshes
 WWW=		https://launchpad.net/admesh
 

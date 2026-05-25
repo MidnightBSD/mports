@@ -3,7 +3,7 @@ DISTVERSION=	1.2.2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.repo.hu/projects/fungw/releases/
 
-MAINTAINER=	fuz@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C Function gateway for different programming languages
 WWW=		http://www.repo.hu/projects/fungw/
 

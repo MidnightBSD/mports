@@ -3,7 +3,7 @@ PORTVERSION=	2.6.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shared classes and tests for fog providers and services
 WWW=		https://github.com/fog/fog-core
 

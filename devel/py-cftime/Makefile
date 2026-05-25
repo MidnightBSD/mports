@@ -5,7 +5,7 @@ CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	wen@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Time-handling functionality from netcdf4-python
 WWW=		https://github.com/Unidata/cftime
 

@@ -5,7 +5,7 @@ CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
-MAINTAINER=	salvadore@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 15
 WWW=		https://gcc.gnu.org
 

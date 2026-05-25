@@ -3,7 +3,7 @@ PORTVERSION=	0.6.39
 CATEGORIES=	textproc ruby
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RD to HTML/man/etc. converter (RD is to Ruby as POD is to Perl)
 WWW=		https://github.com/uwabami/rdtool
 

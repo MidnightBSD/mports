@@ -11,7 +11,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION:R}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	python@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fundamental package for array computing in Python
 WWW=		https://www.numpy.org/
 

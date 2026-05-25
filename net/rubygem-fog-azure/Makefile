@@ -4,7 +4,7 @@ PORTREVISION=	2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support Microsoft Azure
 WWW=		https://github.com/fog/fog-azure
 

@@ -6,7 +6,7 @@ CATEGORIES=	x11-toolkits
 MASTER_SITES=	https://github.com/coin3d/soqt/releases/download/v${PORTVERSION}/
 DISTNAME=	soqt-${PORTVERSION}-src
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt5-fork of the SoQt toolkit library for Coin
 WWW=		https://github.com/coin3d/soqt/
 

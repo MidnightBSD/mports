@@ -3,7 +3,7 @@ PORTVERSION=	0.79.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple REST client for Drive API V3
 WWW=		https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-drive_v3 \
 		https://github.com/googleapis/google-api-ruby-client

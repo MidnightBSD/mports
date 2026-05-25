@@ -3,7 +3,7 @@ DISTVERSION=	5.1.1
 PORTREVISION=	6
 CATEGORIES=	cad
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Complete set of CAD tools and libraries for VLSI design
 WWW=		http://coriolis.lip6.fr/
 

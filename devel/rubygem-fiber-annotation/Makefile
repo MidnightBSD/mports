@@ -3,7 +3,7 @@ PORTVERSION=	0.2.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mechanism for annotating fibers
 WWW=		https://ioquatix.github.io/fiber-annotation/ \
 		https://github.com/ioquatix/fiber-annotation

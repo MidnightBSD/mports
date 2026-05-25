@@ -4,7 +4,7 @@ PORTREVISION=	2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OmniAuth strategy for salesforce.com
 WWW=		https://github.com/realdoug/omniauth-salesforce
 

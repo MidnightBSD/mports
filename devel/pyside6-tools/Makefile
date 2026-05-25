@@ -7,7 +7,7 @@ PKGNAMESUFFIX=	-tools
 DISTNAME=	pyside-setup-everywhere-src-${DISTVERSION}
 DIST_SUBDIR=	KDE/Qt/${DISTVERSION}
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PySide6 development tools
 WWW=		https://wiki.qt.io/Qt_for_Python
 

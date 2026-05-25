@@ -3,7 +3,7 @@ PORTVERSION=	2.4.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stripped-down fork that enables Azure Blob Storage
 WWW=		https://gitlab.com/gitlab-org/gitlab-fog-azure-rm
 

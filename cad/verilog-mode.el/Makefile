@@ -7,7 +7,7 @@ PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 DISTNAME=	${PORTNAME:R}-${PORTVERSION}.${PORTNAME:E}
 EXTRACT_SUFX=	.gz
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emacs lisp modules for the Verilog language
 WWW=		https://www.veripool.org/wiki/verilog-mode
 

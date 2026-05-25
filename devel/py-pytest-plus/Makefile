@@ -5,7 +5,7 @@ MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSION}
 
-MAINTAINER=	matthew@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pytest plus plugin :: extends pytest functionality
 WWW=		https://github.com/pytest-dev/pytest-plus
 

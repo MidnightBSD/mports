@@ -3,7 +3,7 @@ PORTVERSION=	0.11.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read and update netrc files
 WWW=		https://github.com/heroku/netrc
 

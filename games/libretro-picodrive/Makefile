@@ -2,7 +2,7 @@ PORTNAME=	libretro-picodrive
 DISTVERSION=	0.20230811
 CATEGORIES=	games
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast MegaDrive/MegaCD/32X emulator
 WWW=		https://github.com/libretro/picodrive
 

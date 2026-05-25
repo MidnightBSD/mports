@@ -4,7 +4,7 @@ DISTVERSIONSUFFIX=	-Piers
 CATEGORIES=	multimedia
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	decke@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adaptive stream support for Kodi
 WWW=		https://github.com/xbmc/inputstream.adaptive
 

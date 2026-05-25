@@ -3,7 +3,7 @@ PORTVERSION=	0.15.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Application metrics and instrumentation
 WWW=		https://github.com/socketry/metrics
 

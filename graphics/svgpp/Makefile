@@ -3,7 +3,7 @@ PORTVERSION=	1.3.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	graphics
 
-MAINTAINER=	danfe@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ header-only parsers for various SVG syntaxes
 WWW=		http://svgpp.org/
 

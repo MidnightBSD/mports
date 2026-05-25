@@ -3,7 +3,7 @@ PORTVERSION=	0.100.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	mfechner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple REST client for Kubernetes Engine API V1
 WWW=		https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-container_v1
 

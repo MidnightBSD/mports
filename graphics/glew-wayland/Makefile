@@ -3,7 +3,7 @@ PKGNAMESUFFIX=	-wayland
 CATEGORIES+=	wayland
 
 # https://github.com/nigels-com/glew/issues/172
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 
 MASTERDIR=	${.CURDIR}/../glew
 PLIST=		${.CURDIR}/pkg-plist

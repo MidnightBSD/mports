@@ -5,7 +5,7 @@ CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	1
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generalized Rack framework for multiple-provider authentication
 WWW=		https://github.com/omniauth/omniauth
 

@@ -3,7 +3,7 @@ PORTVERSION=	0.26.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low level implementation of the HTTP/2 protocol
 WWW=		https://socketry.github.io/protocol-http2/ \
 		https://github.com/socketry/protocol-http2

@@ -3,7 +3,7 @@ PORTVERSION=	3.7.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for the 'fog' gem to support vSphere
 WWW=		https://github.com/fog/fog-vsphere
 

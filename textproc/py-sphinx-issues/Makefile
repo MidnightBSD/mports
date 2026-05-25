@@ -5,7 +5,7 @@ CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	nivit@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx extension for linking to your project's issue tracker
 WWW=		https://github.com/sloria/sphinx-issues
 

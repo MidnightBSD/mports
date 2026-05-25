@@ -3,7 +3,7 @@ PORTVERSION=	1.1.9
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby take off of p5-XML-Simple
 WWW=		https://github.com/maik/xml-simple
 

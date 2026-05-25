@@ -4,7 +4,7 @@ DISTVERSION=	0.6.0
 PORTREVISION=	1
 CATEGORIES=	multimedia wayland
 
-MAINTAINER=	tagattie@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Screen recorder for wlroots-based compositors
 WWW=		https://github.com/ammen99/wf-recorder
 

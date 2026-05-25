@@ -4,7 +4,7 @@ CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for color space conversions and named lookups
 WWW=		https://metacpan.org/release/Convert-Color
 

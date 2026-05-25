@@ -4,7 +4,7 @@ DISTVERSION=	2.0.1
 CATEGORIES=	cad python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Coroutine based cosimulation library for writing VHDL and Verilog
 WWW=		https://www.cocotb.org/
 

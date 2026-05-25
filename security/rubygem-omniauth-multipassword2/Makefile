@@ -4,7 +4,7 @@ CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OmniAuth strategy using different password strategies
 WWW=		https://github.com/jgraichen/omniauth-multipassword
 
