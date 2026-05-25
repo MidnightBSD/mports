@@ -20,6 +20,6 @@ GH_ACCOUNT=	FreeSpacenav
 GNU_CONFIGURE=	yes
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libspnav.so.0.4
+	@${STRIP_CMD} ${PREFIX}/lib/libspnav.so.0.4
 
 .include <bsd.port.mk>
