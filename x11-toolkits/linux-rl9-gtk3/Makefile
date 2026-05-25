@@ -10,6 +10,8 @@ WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl2.1+
 
+SKIP_FAKE_ALL=	yes
+
 RUN_DEPENDS=	hicolor-icon-theme>0:misc/hicolor-icon-theme \
 		adwaita-icon-theme>0:x11-themes/adwaita-icon-theme
 
