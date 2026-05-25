@@ -31,7 +31,7 @@ CFGDIR=		config
 CFGFILE=	config.php
 
 PLIST=		${WRKDIR}/plist
-PLIST_FILES=	'@sample(,${GROUPS},640) ${WWWDIR_REL}/config/config.php.example ${WWWDIR_REL}/config/config.php'
+PLIST_FILES=	'@sample ${WWWDIR_REL}/config/config.php.example ${WWWDIR_REL}/config/config.php'
 
 SUB_LIST+=	PKGNAME=${PKGNAME}
 SUB_FILES+=	pkg-message
