@@ -3,7 +3,7 @@ PORTVERSION=	0.1.2
 CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Include other pdfs or combine several pdf documents into one
 WWW=		https://github.com/prawnpdf/prawn-templates
 

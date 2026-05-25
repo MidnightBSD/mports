@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Font Metrics Parser for the Prawn PDF generator
 WWW=		https://github.com/prawnpdf/ttfunk
 

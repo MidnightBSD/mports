@@ -3,7 +3,7 @@ PORTVERSION=	2.15.1
 CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PDF parser conforming as much as possible to the PDF specification
 WWW=		https://github.com/yob/pdf-reader
 

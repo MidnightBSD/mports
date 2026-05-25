@@ -4,7 +4,7 @@ CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	3
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide various icon fonts for the Prawn PDF toolkit
 WWW=		https://github.com/jessedoyle/prawn-icon
 

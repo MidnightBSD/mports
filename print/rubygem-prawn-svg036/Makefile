@@ -4,7 +4,7 @@ CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	036
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SVG renderer for Prawn PDF library
 WWW=		https://github.com/mogest/prawn-svg
 

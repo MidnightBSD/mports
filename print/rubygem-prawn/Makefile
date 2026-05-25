@@ -3,7 +3,7 @@ PORTVERSION=	2.5.0
 CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast, tiny, and nimble PDF generator for Ruby
 WWW=		https://prawnpdf.org/ \
 		https://github.com/prawnpdf/prawn

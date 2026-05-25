@@ -3,7 +3,7 @@ PORTVERSION=	1.0.0
 CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read AFM files and use the data conveniently
 WWW=		https://github.com/halfbyte/afm
 

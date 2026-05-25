@@ -3,7 +3,7 @@ PORTVERSION=	0.10.0
 CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby library to render PDF documents
 WWW=		https://prawnpdf.org/ \
 		https://github.com/prawnpdf/pdf-core

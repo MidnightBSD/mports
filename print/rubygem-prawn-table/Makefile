@@ -3,7 +3,7 @@ PORTVERSION=	0.2.2
 CATEGORIES=	print rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide tables for the Prawn PDF toolkit
 WWW=		https://github.com/prawnpdf/prawn-table
 
