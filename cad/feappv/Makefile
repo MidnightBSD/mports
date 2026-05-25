@@ -43,6 +43,6 @@ do-install:
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_DATA} ${FAKE_DESTDIR}${WRKSRC}/manual/*.pdf ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/manual/*.pdf ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
