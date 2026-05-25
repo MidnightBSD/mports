@@ -18,7 +18,9 @@ GH_TAGNAME=	8c76916c
 
 SHEBANG_FILES=	inttest/*.py
 
-TEST_TARGET=	test
+
+# magus incompatibility
+# NO_TEST=	yes
 
 PLIST_FILES=	bin/ot-shell \
 		bin/ot-tau15 \
