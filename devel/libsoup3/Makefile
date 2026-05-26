@@ -27,7 +27,7 @@ LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 
 RUN_DEPENDS=	glib-networking>0:net/glib-networking
 
-USES=		cpe gettext gnome meson pkgconfig python:build sqlite \
+USES=		cpe gettext gnome meson pkgconfig python:build sqlite:port \
 		ssl tar:xz
 USE_GNOME=	glib20 intlhack introspection:build libxml2
 USE_LDCONFIG=	yes
@@ -38,6 +38,7 @@ OPTIONS_SINGLE_GSSAPI=		GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 OPTIONS_DEFAULT=		GSSAPI_${${SSL_DEFAULT} == base :?BASE :NONE}
 
 MESON_ARGS=	-Dtests=false \
+		-Ddocs=disabled \
 		-Dinstalled_tests=false \
 		-Dsysprof=disabled \
 		-Dpkcs11_tests=disabled \
