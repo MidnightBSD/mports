@@ -19,6 +19,7 @@ ALL_TARGET=	canna
 INSTALL_TARGET=	instsgs
 MAKE_JOBS_UNSAFE=	yes
 MAKE_ARGS+=	CCOPTIONS="-Wno-error=int-conversion"
+FAKE_OPTS=	trueprefix
 
 post-patch:
 	@if [ -f ${WRKSRC}/include/widedef.h ]; then \
