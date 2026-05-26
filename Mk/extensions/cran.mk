@@ -42,7 +42,7 @@ do-test:
 .endif
 
 .if !target(do-install)
-R_POSTCMD_INSTALL_OPTIONS+=	-l ${STAGEDIR}${PREFIX}/${R_LIB_DIR}
+R_POSTCMD_INSTALL_OPTIONS+=	-l ${PREFIX}/${R_LIB_DIR}
 R_POSTCMD_INSTALL_OPTIONS+=	--install-tests
 
 .if empty(PORT_OPTIONS:MDOCS)
