@@ -10,9 +10,12 @@ WWW=		https://github.com/r-lib/desc
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	R-cran-cli>0:devel/R-cran-cli \
+CRAN_DEPENDS=	R-cran-cli>0:devel/R-cran-cli \
 		R-cran-R6>0:devel/R-cran-R6 \
 		R-cran-rprojroot>0:devel/R-cran-rprojroot
+
+BUILD_DEPENDS=	${CRAN_DEPENDS}
+RUN_DEPENDS=	${CRAN_DEPENDS}
 
 USES=		cran:auto-plist
 
