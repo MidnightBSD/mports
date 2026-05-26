@@ -7,9 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WebSocket protocol handler with pluggable I/O
 WWW=		https://github.com/faye/websocket-driver-ruby
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-websocket-extensions>=0.1.0:www/rubygem-websocket-extensions
 
