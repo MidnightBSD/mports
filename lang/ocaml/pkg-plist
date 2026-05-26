@@ -634,7 +634,6 @@ man/man3/Ast_helper.Incl.3o.gz
 %%DOCSDIR%%/htmlman/libref/type_Depend.StringMap.html
 %%DOCSDIR%%/htmlman/manual001.html
 %%DOCSDIR%%/htmlman/libgraph.gif
-%%DOCSDIR%%/htmlman/afl-fuzz.html
 %%DOCSDIR%%/htmlman/libnum.html
 %%DOCSDIR%%/htmlman/lex.html
 %%DOCSDIR%%/htmlman/native.html
