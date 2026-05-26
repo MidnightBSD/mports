@@ -48,17 +48,16 @@ MESON_ARGS=	-Dtests=false \
 		-Dntlm=disabled
 
 GSSAPI_BASE_USES=		gssapi
-GSSAPI_BASE_MESON_ON=		-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_BASE_MESON_ON=		-Dgssapi=enabled
 
 GSSAPI_HEIMDAL_USES=		gssapi:heimdal
-GSSAPI_HEIMDAL_MESON_ON=	-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_HEIMDAL_MESON_ON=	-Dgssapi=enabled
 
 GSSAPI_MIT_USES=		gssapi:mit
-GSSAPI_MIT_MESON_ON=		-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_MIT_MESON_ON=		-Dgssapi=enabled
 
 GSSAPI_NONE_MESON_DISABLED=	gssapi
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 .include <bsd.port.mk>
-
