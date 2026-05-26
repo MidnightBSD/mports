@@ -35,7 +35,7 @@ post-build:
 	@${ECHO}
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/etc/tor/torsocks.conf ${STAGEDIR}${PREFIX}/etc/tor/torsocks.conf.sample
+	${MV} ${PREFIX}/etc/tor/torsocks.conf ${PREFIX}/etc/tor/torsocks.conf.sample
 
 check: build
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check
