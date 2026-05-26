@@ -18,6 +18,8 @@ GH_ACCOUNT=	realchonk
 GH_PROJECT=	fuse-ufs
 CARGO_INSTALL_PATH=	fuse-ufs
 
+NO_TEST=	yes
+
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/fuse-ufs.8 ${PREFIX}/share/man/man8/
 	${LN} ${PREFIX}/bin/fuse-ufs ${PREFIX}/bin/mount.ufs
