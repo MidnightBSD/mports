@@ -11,6 +11,8 @@ WWW=		https://savannah.gnu.org/projects/chess
 
 LICENSE=	gpl3+
 
+USE_GCC=	yes
+
 USES=		cpe shebangfix
 CPE_VENDOR=	gnu
 CPE_PRODUCT=	chess
@@ -19,7 +21,6 @@ USE_CXXSTD=	c++14
 SHEBANG_FILES=	doc/quotes.rb
 
 GNU_CONFIGURE=	yes
-LIBS+=		-lpthread
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 
 LDFLAGS+=		-lpthread
@@ -41,8 +42,8 @@ OPENING_BOOK_EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 post-build-OPENING_BOOK-on:
 	zcat ${DISTDIR}/book_1.02.pgn.gz > ${WRKSRC}/src/book.pgn
-	cd ${WRKSRC}/src && ( ${ECHO} book add book.pgn; sleep 1; ${ECHO} quit ) | ./gnuchess
-	@${REINPLACE_CMD} -e '/Book =/s/false/true/' ${WRKSRC}/src/gnuchess.ini
+	cd ${WRKSRC}/src && ./gnuchess --addbook book.pgn < /dev/null
+	@${REINPLACE_CMD} -e '/Book =/s/false/true/' ${WRKSRC}/doc/gnuchess.ini
 
 post-install:
 	cd ${PREFIX}/bin && ${LN} -f gnuchess gnuchessx
