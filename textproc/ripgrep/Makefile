@@ -4,6 +4,7 @@ CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line search tool
+WWW=		http://blog.burntsushi.net/ripgrep/
 
 LICENSE=	mit unlicense
 LICENSE_COMB=	dual
@@ -87,24 +88,29 @@ PORTDOCS=	CHANGELOG.md FAQ.md GUIDE.md
 OPTIONS_DEFINE=	DOCS PCRE2
 OPTIONS_DEFAULT=PCRE2
 
+.if make(test)
+# Upstream tests check parent Git discovery; WRKDIR is inside the ports checkout.
+CARGO_ENV+=	TMPDIR=/tmp
+.endif
+
 PCRE2_DESC=	${PCRE_DESC} version 2
 PCRE2_LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 PCRE2_VARS=	CARGO_FEATURES+=pcre2
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rg
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man1
-	${STAGEDIR}${PREFIX}/bin/rg --generate man | \
-		${GZIP_CMD} > ${STAGEDIR}${PREFIX}/share/man/man1/rg.1.gz
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
-	${STAGEDIR}${PREFIX}/bin/rg --generate complete-bash \
-		> ${STAGEDIR}${PREFIX}/etc/bash_completion.d/rg.bash
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/fish/vendor_completions.d/
-	${STAGEDIR}${PREFIX}/bin/rg --generate complete-fish \
-		> ${STAGEDIR}${PREFIX}/share/fish/vendor_completions.d/rg.fish
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions/
-	${STAGEDIR}${PREFIX}/bin/rg --generate complete-zsh \
-		> ${STAGEDIR}${PREFIX}/share/zsh/site-functions/_rg
+	${STRIP_CMD} ${PREFIX}/bin/rg
+	@${MKDIR} ${PREFIX}/share/man/man1
+	${PREFIX}/bin/rg --generate man | \
+		${GZIP_CMD} > ${PREFIX}/share/man/man1/rg.1.gz
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d/
+	${PREFIX}/bin/rg --generate complete-bash \
+		> ${PREFIX}/etc/bash_completion.d/rg.bash
+	@${MKDIR} ${PREFIX}/share/fish/vendor_completions.d/
+	${PREFIX}/bin/rg --generate complete-fish \
+		> ${PREFIX}/share/fish/vendor_completions.d/rg.fish
+	@${MKDIR} ${PREFIX}/share/zsh/site-functions/
+	${PREFIX}/bin/rg --generate complete-zsh \
+		> ${PREFIX}/share/zsh/site-functions/_rg
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
