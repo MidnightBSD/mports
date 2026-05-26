@@ -47,12 +47,12 @@ LIB_DEPENDS=	libaacs.so:multimedia/libaacs \
 		libtinyxml.so:textproc/tinyxml \
 		libtinyxml2.so:textproc/tinyxml2 \
 		libudfread.so:multimedia/libudfread \
-		libuuid.so:misc/libuuid
+		libuuid.so:misc/e2fsprogs-libuuid
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 USES=		autoreconf:build cmake:noninja compiler:c++17-lang cpe \
 		desktop-file-utils gettext gmake gnome iconv java:build jpeg \
-		libtool pkgconfig python sqlite ssl
+		libtool pkgconfig python sqlite:port ssl
 
 KODI_CODENAME=		Piers
 LIBDVDCSS_VERSION=	1.4.3-Next-Nexus-Alpha2-2
@@ -87,9 +87,14 @@ CMAKE_ARGS=	-Dapache-commons-lang_SOURCE_DIR="${WRKSRC}/tools/depends/share/java
 		-Dapache-commons-text_SOURCE_DIR="${WRKSRC}/tools/depends/share/java/text" \
 		-DCMAKE_VERBOSE_MAKEFILE=ON \
 		-DCORE_PLATFORM_NAME:STRING="${KODI_PLATFORM}" \
+		-DCORE_SYSTEM_NAME:STRING=freebsd \
 		-DCROSSGUID_INCLUDE_DIR="${LOCALBASE}/include" \
 		-DGIT_VERSION="${DISTVERSION}-${KODI_CODENAME}" \
 		-Dgroovy_SOURCE_DIR="${WRKSRC}/tools/depends/share/groovy" \
+		-DIconv_INCLUDE_DIR:PATH="${LOCALBASE}/include" \
+		-DIconv_IS_BUILT_IN:BOOL=OFF \
+		-DIconv_LIBRARY:FILEPATH="${LOCALBASE}/lib/libiconv.so" \
+		-DENABLE_MARIADBCLIENT:BOOL=OFF \
 		-DLIBDVDCSS_URL="${DISTDIR}/${PORTNAME}/xbmc-libdvdcss-${LIBDVDCSS_VERSION}_GH0.tar.gz" \
 		-DLIBDVDNAV_URL="${DISTDIR}/${PORTNAME}/xbmc-libdvdnav-${LIBDVDNAV_VERSION}_GH0.tar.gz" \
 		-DLIBDVDREAD_URL="${DISTDIR}/${PORTNAME}/xbmc-libdvdread-${LIBDVDREAD_VERSION}_GH0.tar.gz" \
@@ -310,10 +315,10 @@ post-patch:
 		${WRKSRC}/xbmc/platform/linux/input/LibInputSettings.cpp
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/docs/manpages/kodi.bin.1 ${FAKE_DESTDIR}${PREFIX}/share/man/man1
-	cd ${FAKE_DESTDIR}${PREFIX}/share/man/man1 && ${LN} -s kodi.bin.1.gz kodi.1.gz
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/kodi-TexturePacker
-	${FIND} ${FAKE_DESTDIR}${PREFIX}/lib/kodi -type f -name '*.so' -print0 | ${XARGS} -0 ${STRIP_CMD}
-	${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/firewalld
+	${INSTALL_MAN} ${WRKSRC}/docs/manpages/kodi.bin.1 ${PREFIX}/share/man/man1
+	cd ${PREFIX}/share/man/man1 && ${LN} -sf kodi.bin.1.gz kodi.1.gz
+	${STRIP_CMD} ${PREFIX}/bin/kodi-TexturePacker
+	${FIND} ${PREFIX}/lib/kodi -type f -name '*.so' -print0 | ${XARGS} -0 ${STRIP_CMD}
+	${RM} -r ${PREFIX}/lib/firewalld
 
 .include <bsd.port.mk>
