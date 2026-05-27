@@ -20,7 +20,8 @@ LIB_DEPENDS=	libdrm.so:graphics/libdrm \
 		libwayland-client.so:graphics/wayland \
 		libxcvt.so:x11/libxcvt
 RUN_DEPENDS=	xkbcomp:x11/xkbcomp \
-		xkeyboard-config>0:x11/xkeyboard-config
+		xkeyboard-config>0:x11/xkeyboard-config \
+		gcc14:lang/gcc14
 
 CONFLICTS_INSTALL=	${PORTNAME}-devel
 
