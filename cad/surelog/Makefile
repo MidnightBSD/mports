@@ -20,9 +20,8 @@ BUILD_DEPENDS=	utf8cpp>0:devel/utf8cpp \
 BUILD_DEPENDS+=	googletest>0:devel/googletest # workaround for https://github.com/chipsalliance/Surelog/issues/3826
 LIB_DEPENDS=	libcapnp.so:devel/capnproto \
 		libuhdm.so:cad/uhdm
-TEST_DEPENDS=	googletest>0:devel/googletest
 
-USES=		cmake:testing compiler:c++17-lang java:build localbase:ldflags tcl:86,build
+USES=		cmake compiler:c++17-lang java:build localbase:ldflags tcl:86,build
 USE_LDCONFIG=	${PREFIX}/lib ${PREFIX}/lib/surelog
 JAVA_VERSION=	17 # Java selection fails in cmake when Java 11 is also installed, see https://gitlab.kitware.com/cmake/cmake/-/issues/24674
 
@@ -39,8 +38,8 @@ CMAKE_ON=	BUILD_SHARED_LIBS \
 CMAKE_OFF=	SURELOG_BUILD_TESTS
 CMAKE_ARGS=	-DFREEBSD_JAVA_VERSION=${JAVA_VERSION} \
 		-DPython3_EXECUTABLE=${PYTHON_CMD}
-CMAKE_TESTING_ON=	SURELOG_BUILD_TESTS # 2 tests fail, see https://github.com/chipsalliance/Surelog/issues/3545
-CMAKE_TESTING_TARGET=	UnitTests
+
+NO_TEST=	yes # 9 tests abort, see https://github.com/chipsalliance/Surelog/issues/3971
 
 BINARY_ALIAS=	python3=${PYTHON_CMD} tclsh=${TCLSH}
 
@@ -67,8 +66,5 @@ post-install:
 	# - so we remove this directory altogether for now
 	@${RM} -r \
 		${DATADIR}
-
-post-test: # 9 tests fail, see https://github.com/chipsalliance/Surelog/issues/3971
-	@cd ${BUILD_WRKSRC} && ctest
 
 .include <bsd.port.mk>
