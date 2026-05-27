@@ -39,5 +39,9 @@ post-patch:
 # Make each cargo subcommand very verbose
 	@${REINPLACE_CMD} -e "/cargo_options =/s/ '--/&verbose', &verbose', &/" \
 		${WRKSRC}/${PORTNAME}-gtk/src/meson.build
+# CARGO_BUILD_TARGET causes cargo to place the binary under a target-triple
+# subdirectory; patch the cp path to match
+	@${REINPLACE_CMD} -e "s|'src' / rust_target / 'podcasts-gtk'|'src' / '${CARGO_BUILD_TARGET}' / rust_target / 'podcasts-gtk'|" \
+		${WRKSRC}/${PORTNAME}-gtk/src/meson.build
 
 .include <bsd.port.mk>
