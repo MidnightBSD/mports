@@ -44,7 +44,7 @@ GTK2GL_LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext
 GTK2GL_USES=		gl
 GTK2GL_USE=		GL=gl,glu \
 			GNOME=pangox-compat \
-			XORG=x11
+			XORG=ice,sm,x11,xmu,xt
 GTK2GL_CONFIGURE_OFF=	--disable-hid_gtk2_gl
 GTK2_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2 \
@@ -72,10 +72,10 @@ WGET_RUN_DEPENDS=	wget:ftp/wget
 WGET_CONFIGURE_OFF=	--disable-lib_wget
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librnd4/plugins/*.so
+	${STRIP_CMD} ${PREFIX}/lib/*.so
+	${STRIP_CMD} ${PREFIX}/lib/librnd4/plugins/*.so
 .for l in puplug sphash scconfig/cquote scconfig/sccbox
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librnd4/${l}
+	${STRIP_CMD} ${PREFIX}/lib/librnd4/${l}
 .endfor
 
 .include <bsd.port.pre.mk>
@@ -89,7 +89,6 @@ PLIST_SUB+=	GUI="@comment "
 pre-configure:
 	${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' \
 		-e 's,%%MOTIFLIB%%,${MOTIFLIB},' \
-		${WRKSRC}/scconfig/src/gui/find_gl.c \
 		${WRKSRC}/scconfig/src/gui/find_lesstif2.c \
 		${WRKSRC}/scconfig/src/gui/find_misc.c \
 		${WRKSRC}/scconfig/src/gui/find_x.c
