@@ -1,9 +1,9 @@
 PORTNAME=	atspi
-PORTVERSION=	2.58.2
+DISTVERSION=	2.58.2
 CATEGORIES=	accessibility x11-toolkits python
-MASTER_SITES=	GNOME/sources/pyatspi/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	pyatspi-${PORTVERSION}
+DISTNAME=	pyatspi-${DISTVERSION}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,14 +12,15 @@ WWW=		https://gitlab.gnome.org/GNOME/pyatspi2
 
 LICENSE=	lgpl
 
+USES=		gnome localbase meson pkgconfig python tar:xz
+USE_PYTHON=	flavors py3kplist
+USE_GNOME=	pygobject3
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+NO_ARCH=	yes
+
 RUN_DEPENDS=	${LOCALBASE}/libexec/at-spi2-registryd:accessibility/at-spi2-core
 
 CONFLICTS=	at-spi-1.[0-9]*
 PORTSCOUT=	limitw:1,even
-
-USES=		gettext gmake gnome localbase pathfix pkgconfig python tar:xz
-USE_PYTHON=	flavors py3kplist
-USE_GNOME=	intlhack pygobject3
-GNU_CONFIGURE=	yes
 
 .include <bsd.port.mk>
