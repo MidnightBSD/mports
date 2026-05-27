@@ -16,7 +16,7 @@ LIB_DEPENDS=	libjbig.so:graphics/jbigkit \
 		libproj.so:graphics/proj \
 		libtiff.so:graphics/tiff
 
-USES=		jpeg libtool
+USES=		jpeg libtool pathfix
 
 CONFIGURE_ARGS=	--datadir=${DATADIR} \
 		--disable-doxygen-chi \
