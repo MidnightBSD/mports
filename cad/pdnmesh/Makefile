@@ -32,20 +32,21 @@ ATLAS_CONFIGURE_OFF=--with-blas=blas --with-lapack=lapack
 post-patch:
 	@${REINPLACE_CMD} -e \
 		'/^SUBDIRS/s|doc|| ; \
+		 /^SUBDIRS/s|debian|| ; \
 		 s|^pkgdata_DATA|#pkgdata_DATA|' ${WRKSRC}/Makefile.in
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	(cd ${WRKSRC} \
-		&& ${INSTALL_DATA} ChangeLog ${STAGEDIR}${DOCSDIR} \
-		&& ${INSTALL_DATA} README ${STAGEDIR}${DOCSDIR})
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/tutorial
+		&& ${INSTALL_DATA} ChangeLog ${FAKE_DESTDIR}${DOCSDIR} \
+		&& ${INSTALL_DATA} README ${FAKE_DESTDIR}${DOCSDIR})
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/tutorial
 	(cd ${WRKSRC}/doc/tutorial \
-		&& ${INSTALL_DATA} README ${STAGEDIR}${DOCSDIR}/tutorial \
-		&& ${INSTALL_DATA} tutorial.* ${STAGEDIR}${DOCSDIR}/tutorial)
+		&& ${INSTALL_DATA} README ${FAKE_DESTDIR}${DOCSDIR}/tutorial \
+		&& ${INSTALL_DATA} tutorial.* ${FAKE_DESTDIR}${DOCSDIR}/tutorial)
 post-install-EXAMPLES-on:
 	(cd ${WRKSRC}/doc/examples && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-	${RM} ${STAGEDIR}${EXAMPLESDIR}/Makefile*
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR})
+	${RM} ${FAKE_DESTDIR}${EXAMPLESDIR}/Makefile*
 
 .include <bsd.port.mk>
