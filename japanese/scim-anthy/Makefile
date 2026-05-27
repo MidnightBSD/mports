@@ -22,4 +22,6 @@ USES=		gettext-runtime gmake gnome iconv libtool:keepla pkgconfig
 USE_GNOME=	atk cairo gdkpixbuf glib20 gtk20 pango
 GNU_CONFIGURE=	yes
 
+CPPFLAGS+=	-D__STDC_ISO_10646__
+
 .include <bsd.port.mk>
