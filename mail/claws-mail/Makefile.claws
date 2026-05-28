@@ -43,11 +43,11 @@ do-build:
 .  endfor
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/claws-mail/plugins
+	@${MKDIR} ${PREFIX}/lib/claws-mail/plugins
 .  for p in ${CLAWS_PLUGINS_BUILD}
 	(cd ${WRKSRC}/src/plugins/${p} && \
 		${INSTALL_LIB} .libs/${p:S|spam_|spam|}.so \
-		${STAGEDIR}${PREFIX}/lib/claws-mail/plugins)
+		${PREFIX}/lib/claws-mail/plugins)
 .  endfor
 
 .endif
