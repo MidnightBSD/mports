@@ -24,6 +24,8 @@ USES=		cargo llvm:min=19 ninja:build python:test shebangfix ssl
 
 BROKEN_i386=	fails to build: rustc-LLVM ERROR: out of memory
 
+NO_TEST=	yes
+
 MAKE_JOBS_UNSAFE=	yes
 WITHOUT_LTO=	yes
 
