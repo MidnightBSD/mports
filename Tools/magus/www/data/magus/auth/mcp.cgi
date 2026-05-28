@@ -2158,6 +2158,11 @@ sub handle_sse_get() {
         -pragma        => 'no-cache',
     );
 
+    # Send the required MCP SSE endpoint event
+    my $endpoint = $cgi->url(-absolute => 1);
+    print "event: endpoint\n";
+    print "data: $endpoint\n\n";
+
     my $keepalives = $ENV{MCP_SSE_KEEPALIVES} // 6;
     $keepalives = 6 unless is_number($keepalives);
     $keepalives = int($keepalives);
