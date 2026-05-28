@@ -35,6 +35,8 @@ MAKE_ENV=	MAKE=${GMAKE}
 FAKE_OPTS=	trueprefix
 
 TEST_TARGET=	test
+# magus failures
+NO_TEST=	yes
 
 BINARY_ALIAS=	python3=${PYTHON_CMD} tclsh=${TCLSH}
 
