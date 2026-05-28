@@ -414,7 +414,6 @@ include/opencv4/opencv2/optflow/motempl.hpp
 include/opencv4/opencv2/optflow/pcaflow.hpp
 include/opencv4/opencv2/optflow/rlofflow.hpp
 include/opencv4/opencv2/optflow/sparse_matching_gpc.hpp
-%%OGRE3D%%include/opencv4/opencv2/ovis.hpp
 include/opencv4/opencv2/phase_unwrapping.hpp
 include/opencv4/opencv2/phase_unwrapping/histogramphaseunwrapping.hpp
 include/opencv4/opencv2/phase_unwrapping/phase_unwrapping.hpp
@@ -684,9 +683,6 @@ lib/libopencv_objdetect.so.%%SHORTVERSION%%
 lib/libopencv_optflow.so
 lib/libopencv_optflow.so.%%SHLIB_VER%%
 lib/libopencv_optflow.so.%%SHORTVERSION%%
-%%OGRE3D%%lib/libopencv_ovis.so
-%%OGRE3D%%lib/libopencv_ovis.so.%%SHLIB_VER%%
-%%OGRE3D%%lib/libopencv_ovis.so.%%SHORTVERSION%%
 lib/libopencv_phase_unwrapping.so
 lib/libopencv_phase_unwrapping.so.%%SHLIB_VER%%
 lib/libopencv_phase_unwrapping.so.%%SHORTVERSION%%
@@ -771,7 +767,6 @@ lib/libopencv_xphoto.so.%%SHORTVERSION%%
 %%EIGEN%%lib/opencv4/3rdparty/libopencv.sfm.correspondence.a
 %%EIGEN%%lib/opencv4/3rdparty/libopencv.sfm.multiview.a
 %%EIGEN%%lib/opencv4/3rdparty/libopencv.sfm.numeric.a
-%%EIGEN%%lib/opencv4/3rdparty/libopencv.sfm.simple_pipeline.a
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/Error/__init__.pyi
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/__init__.py
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/__init__.pyi
@@ -847,7 +842,6 @@ lib/libopencv_xphoto.so.%%SHORTVERSION%%
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/ogl/__init__.pyi
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/omnidir/__init__.pyi
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/optflow/__init__.pyi
-%%OGRE3D%%%%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/ovis/__init__.pyi
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/parallel/__init__.pyi
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/phase_unwrapping/__init__.pyi
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/plot/__init__.pyi
@@ -881,6 +875,23 @@ lib/libopencv_xphoto.so.%%SHORTVERSION%%
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/ximgproc/segmentation/__init__.pyi
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/cv2/xphoto/__init__.pyi
 libdata/pkgconfig/opencv4.pc
+share/licenses/opencv4/SoftFloat-COPYING.txt
+share/licenses/opencv4/ade-LICENSE
+share/licenses/opencv4/dlpack-LICENSE
+share/licenses/opencv4/flatbuffers-LICENSE.txt
+share/licenses/opencv4/ippicv-EULA.txt
+share/licenses/opencv4/ippicv-readme.htm
+share/licenses/opencv4/ippicv-third-party-programs.txt
+share/licenses/opencv4/ippiw-EULA.txt
+share/licenses/opencv4/ippiw-support.txt
+share/licenses/opencv4/ippiw-third-party-programs.txt
+share/licenses/opencv4/ittnotify-BSD-3-Clause.txt
+share/licenses/opencv4/ittnotify-GPL-2.0-only.txt
+share/licenses/opencv4/mscr-chi_table_LICENSE.txt
+share/licenses/opencv4/opencl-headers-LICENSE.txt
+share/licenses/opencv4/protobuf-LICENSE
+share/licenses/opencv4/protobuf-README.md
+share/licenses/opencv4/vasot-LICENSE.txt
 %%JAVA%%%%JAVASHAREDIR%%/opencv4/libopencv_java%%SHORTVERSION%%0.so
 %%JAVA%%%%JAVASHAREDIR%%/opencv4/opencv-%%SHORTVERSION%%0.jar
 %%DATADIR%%/haarcascades/haarcascade_eye.xml
