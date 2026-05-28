@@ -32,6 +32,7 @@ SHEBANG_GLOB=	*.py *.sh
 
 MAKE_ARGS=	ABCEXTERNAL=abc
 MAKE_ENV=	MAKE=${GMAKE}
+FAKE_OPTS=	trueprefix
 
 TEST_TARGET=	test
 
