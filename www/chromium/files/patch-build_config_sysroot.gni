@@ -1,0 +1,10 @@
+--- build/config/sysroot.gni.orig	2022-09-13 19:38:09 UTC
++++ build/config/sysroot.gni
+@@ -21,7 +21,7 @@ declare_args() {
+   # The absolute path to the sysroot that target_sysroot_dir is relative to.
+   # This can be set if you want to use a custom sysroot.
+   target_sysroot = ""
+ 
+-  use_sysroot = true
++  use_sysroot = false
+ }
