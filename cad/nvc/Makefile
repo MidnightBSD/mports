@@ -19,14 +19,13 @@ ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	compilation fails: jit-code.c:858:42: error: use of undeclared identifier 'veneer'
 
 BUILD_DEPENDS=	llvm-config${LLVM_VERSION}:devel/llvm${LLVM_VERSION} \
-		gsed:textproc/gsed
+		gsed:textproc/gsed \
+		check>0:devel/check
 LIB_DEPENDS=	libcapstone.so:devel/capstone \
 		libffi.so:devel/libffi \
 		libzstd.so:archivers/zstd
 RUN_DEPENDS=	bash:shells/bash \
 		llvm${LLVM_VERSION}>0:devel/llvm${LLVM_VERSION}
-TEST_DEPENDS=	check>0:devel/check
-
 USES=		autoreconf compiler:c++14-lang gmake localbase pkgconfig shebangfix
 
 SHEBANG_FILES=	contrib/functions.sh
