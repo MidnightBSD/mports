@@ -19,7 +19,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libicutu.so:devel/icu \
 		libjson-glib-1.0.so:devel/json-glib
 
-USES=		gettext gnome localbase:ldflags meson pkgconfig python:build sqlite tar:xz
+USES=		gettext gnome localbase:ldflags meson pkgconfig python:build sqlite:port tar:xz
 USE_GNOME=	glib20 introspection:build libxml2 pygobject3
 USE_LDCONFIG=	yes
 
@@ -48,7 +48,10 @@ VAPI_USES=		vala:build
 VAPI_MESON_ENABLED=	vapi
 
 post-install:
-	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libtracker-sparql-3.0.so.0.1001.0 \
-		libtracker-sparql-3.0.so)
+	@(cd ${PREFIX}/lib && \
+		${LN} -sf libtinysparql-3.0.so.0.1001.0 \
+			libtracker-sparql-3.0.so.0.1001.0 && \
+		${LN} -sf libtracker-sparql-3.0.so.0.1001.0 \
+			libtracker-sparql-3.0.so)
 
 .include <bsd.port.mk>
