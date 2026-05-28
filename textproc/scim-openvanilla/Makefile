@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SCIM OpenVanilla input method (IM)/output filter (OF) framework
 WWW=		https://openvanilla.org/
 
-LICENSE=	NONE
+LICENSE=	mit
 
 BUILD_DEPENDS=	scim:textproc/scim	\
 		${LOCALBASE}/include/OpenVanilla/OpenVanilla.h:textproc/openvanilla-framework
@@ -21,7 +21,7 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/Loaders/SCIM
 USES=		pkgconfig gettext iconv gmake libtool:keepla
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	OV_MODULEDIR=${PREFIX}/lib/openvanilla/
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include -D__STDC_ISO_10646__
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
