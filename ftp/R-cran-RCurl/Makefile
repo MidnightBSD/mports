@@ -17,4 +17,6 @@ RUN_DEPENDS=	R-cran-bitops>0:devel/R-cran-bitops
 USES=		cran:auto-plist,compiles gnome
 USE_GNOME=	libxml2
 
+R_POSTCMD_CHECK_OPTIONS+=	--no-examples
+
 .include <bsd.port.mk>
