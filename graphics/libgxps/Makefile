@@ -1,6 +1,5 @@
 # Created by: Gustau Perez <gustau.perez@gmail.com>
 
-
 PORTNAME=	libgxps
 PORTVERSION=	0.3.2
 CATEGORIES=	graphics gnome
@@ -9,20 +8,20 @@ DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GObject based library for rendering XPS documents
+WWW=		https://wiki.gnome.org/action/show/Projects/libgxps
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libtiff.so:${PORTSDIR}/graphics/tiff \
-		liblcms2.so:${PORTSDIR}/graphics/lcms2
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		liblcms2.so:graphics/lcms2 \
+		libpng16.so:graphics/png \
+		libtiff.so:graphics/tiff
 
-USES=		gettext gmake jpeg libtool libarchive pathfix pkgconfig tar:xz cpe
+USES=		cpe gettext gnome jpeg libarchive localbase meson pkgconfig tar:xz
 CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
-USE_GNOME=	cairo gnomeprefix glib20 intlhack
-GNU_CONFIGURE=	yes
-MAKE_ARGS+=	V=1
-CONFIGURE_ARGS+=	--enable-introspection=no
-INSTALL_TARGET=	install-strip
+USE_GNOME=	cairo glib20 introspection:build
+
+MESON_ARGS=	-Denable-test=false
 
 .include <bsd.port.mk>
