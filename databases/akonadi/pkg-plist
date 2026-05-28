@@ -87,7 +87,6 @@ include/KPim6/AkonadiCore/Akonadi/CollectionQuotaAttribute
 include/KPim6/AkonadiCore/Akonadi/CollectionStatistics
 include/KPim6/AkonadiCore/Akonadi/CollectionStatisticsJob
 include/KPim6/AkonadiCore/Akonadi/CollectionUtils
-include/KPim6/AkonadiCore/Akonadi/ColorProxyModel
 include/KPim6/AkonadiCore/Akonadi/Control
 include/KPim6/AkonadiCore/Akonadi/DifferencesAlgorithmInterface
 include/KPim6/AkonadiCore/Akonadi/EntityAnnotationsAttribute
@@ -190,7 +189,6 @@ include/KPim6/AkonadiCore/akonadi/collectionquotaattribute.h
 include/KPim6/AkonadiCore/akonadi/collectionstatistics.h
 include/KPim6/AkonadiCore/akonadi/collectionstatisticsjob.h
 include/KPim6/AkonadiCore/akonadi/collectionutils.h
-include/KPim6/AkonadiCore/akonadi/colorproxymodel.h
 include/KPim6/AkonadiCore/akonadi/config-akonadi.h
 include/KPim6/AkonadiCore/akonadi/control.h
 include/KPim6/AkonadiCore/akonadi/differencesalgorithminterface.h
@@ -365,7 +363,6 @@ lib/libKPim6AkonadiXml.so.%%KDE_APPLICATIONS_SHLIB_VER%%
 share/applications/org.kde.akonadi.configdialog.desktop
 share/config.kcfg/resourcebase.kcfg
 share/dbus-1/interfaces/org.freedesktop.Akonadi.Agent.Control.xml
-share/dbus-1/interfaces/org.freedesktop.Akonadi.Agent.Account.xml
 share/dbus-1/interfaces/org.freedesktop.Akonadi.Agent.Search.xml
 share/dbus-1/interfaces/org.freedesktop.Akonadi.Agent.Status.xml
 share/dbus-1/interfaces/org.freedesktop.Akonadi.AgentManager.xml
@@ -445,7 +442,6 @@ share/locale/fr/LC_MESSAGES/akonadi-db-migrator.mo
 share/locale/fr/LC_MESSAGES/akonadi_knut_resource.mo
 share/locale/fr/LC_MESSAGES/libakonadi6.mo
 share/locale/ga/LC_MESSAGES/akonadi_knut_resource.mo
-share/locale/ga/LC_MESSAGES/akonadi-db-migrator.mo
 share/locale/ga/LC_MESSAGES/libakonadi6.mo
 share/locale/gl/LC_MESSAGES/akonadi-db-migrator.mo
 share/locale/gl/LC_MESSAGES/akonadi_knut_resource.mo
@@ -530,8 +526,6 @@ share/locale/sl/LC_MESSAGES/akonadi-db-migrator.mo
 share/locale/sl/LC_MESSAGES/akonadi_knut_resource.mo
 share/locale/sl/LC_MESSAGES/libakonadi6.mo
 share/locale/sq/LC_MESSAGES/akonadi_knut_resource.mo
-share/locale/sq/LC_MESSAGES/akonadi-db-migrator.mo
-share/locale/sq/LC_MESSAGES/libakonadi6.mo
 share/locale/sr/LC_MESSAGES/akonadi_knut_resource.mo
 share/locale/sr/LC_MESSAGES/libakonadi6.mo
 share/locale/sr@ijekavian/LC_MESSAGES/akonadi_knut_resource.mo
