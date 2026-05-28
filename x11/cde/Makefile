@@ -115,15 +115,20 @@ post-install:
 	@${ECHO_CMD} MANPATH /usr/local/dt/share/man > \
 		${PREFIX}/etc/man.d/cde.conf
 	@${FIND} ${DT_PREFIX} -type f \
-		-exec ${SH} -c '${STRIP_CMD} {} > /dev/null 2>&1' \;
-	@${FIND} ${DT_PREFIX} -type f -name '*.bak' -delete
+		-exec ${SH} -c '${STRIP_CMD} "$$0" > /dev/null 2>&1' {} \;
+	@${RM} -f ${DT_PREFIX}/man
+	@cd ${DT_PREFIX}; ${LN} -s share/man man
 	@cd ${WRKSRC}/examples && ${FIND} . | ${CPIO} -pd \
 		${DT_PREFIX}/share
-	@cd ${DT_PREFIX}; ${LN} -s share/examples
-	${FIND} ${DT_PREFIX} -type f -name 'ecp.*' -delete
+	@${RM} -f ${DT_PREFIX}/examples
+	@cd ${DT_PREFIX}; ${LN} -s share examples
+	@${FIND} ${DT_PREFIX} -type f -name '*.bak' -delete
+	@${FIND} ${DT_PREFIX} -type f -name 'ecp.*' -delete
 .for f in ${CFFILES}
-	@${MV} ${PREFIX}/dt/config/${f} \
-		${PREFIX}/dt/config/${f}.sample
+	@if [ -f ${PREFIX}/dt/config/${f} ]; then \
+		${MV} ${PREFIX}/dt/config/${f} \
+			${PREFIX}/dt/config/${f}.sample; \
+	fi
 .endfor
 
 .include <bsd.port.mk>

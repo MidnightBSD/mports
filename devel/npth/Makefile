@@ -5,6 +5,7 @@ MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	New GNU Portable Threads
+WWW=		https://www.gnupg.org/software/npth/index.html
 
 LICENSE=	lgpl3 gpl3
 LICENSE_COMB=	dual
