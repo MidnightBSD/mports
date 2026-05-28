@@ -10,6 +10,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SCIM KMFL IMEngine platform for Keyman (KMN) language keyboards
 WWW=		https://kmfl.sourceforge.net/
 
+LICENSE=	gpl2
+
 BUILD_DEPENDS=	scim:textproc/scim
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
@@ -24,7 +26,7 @@ USE_XORG=	x11 xkbfile xorgproto
 USE_GNOME=	glib20 gtk20 intlhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include -D__STDC_ISO_10646__
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
