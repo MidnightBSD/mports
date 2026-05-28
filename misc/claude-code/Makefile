@@ -9,8 +9,8 @@ WWW=		https://github.com/anthropics/claude-code
 
 LICENSE=	anthropic
 LICENSE_NAME=	Anthropic
-LICENSE_PERMS=	dist-mirror pkg-mirror
 LICENSE_TEXT=	See https://www.anthropic.com/legal/commercial-terms
+LICENSE_PERMS=	dist-mirror pkg-mirror
 
 FETCH_DEPENDS=	cargo:lang/rust \
 		npm:www/npm \
@@ -103,34 +103,34 @@ do-install:
 	# install files
 	@${MKDIR} ${PREFIX}/lib
 	@cd ${WRKSRC} && \
-		${COPYTREE_SHARE} node_modules ${STAGEDIR}${PREFIX}/lib
+		${COPYTREE_SHARE} node_modules ${PREFIX}/lib
 	# remove *.node binaries for FreeBSD platforms
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture \
+	@${FIND} ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture \
 		-name "*.node" -delete
 .if ${PORT_OPTIONS:MAUDIO_CAPTURE}
 	# install BSD amd64 audio-capture module
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/x64-freebsd
+	@${MKDIR} ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/x64-freebsd
 	${INSTALL_LIB} ${AUDIO_CAPTURE_WRKSRC}/target/release/libaudio_capture.so \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/x64-freebsd/audio-capture.node
+		${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/audio-capture/x64-freebsd/audio-capture.node
 .endif
 	# remove Linux-only seccomp binaries (seccomp is a Linux kernel API, guarded by process.platform==="linux" in cli.js)
-	@${RM} -r ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/seccomp
+	@${RM} -r ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/seccomp
 	# remove bundled ripgrep
-	@${RM} -r ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/ripgrep
+	@${RM} -r ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor/ripgrep
 	# remove empty vendor subdirectories (and vendor/ itself when AUDIO_CAPTURE=OFF)
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor \
+	@${FIND} ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/vendor \
 		-depth -type d -empty -delete
 	# update shebang
 	${REINPLACE_CMD} -i '' \
 		-e "s|#!/usr/bin/env node|#!${TRUE_PREFIX}/bin/node|" \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
+		${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
 	# set exec bit
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
+	@${CHMOD} +x ${PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js
 	# create wrapper script that uses system ripgrep
-	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
-	@${ECHO_CMD} '#!/bin/sh' > ${STAGEDIR}${PREFIX}/bin/claude
-	@${ECHO_CMD} 'export USE_BUILTIN_RIPGREP=false' >> ${STAGEDIR}${PREFIX}/bin/claude
-	@${ECHO_CMD} 'exec ${TRUE_PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js "$$@"' >> ${STAGEDIR}${PREFIX}/bin/claude
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/claude
+	@${MKDIR} ${PREFIX}/bin
+	@${ECHO_CMD} '#!/bin/sh' > ${PREFIX}/bin/claude
+	@${ECHO_CMD} 'export USE_BUILTIN_RIPGREP=false' >> ${PREFIX}/bin/claude
+	@${ECHO_CMD} 'exec ${TRUE_PREFIX}/lib/node_modules/${PACKAGE_NAME}/cli.js "$$@"' >> ${PREFIX}/bin/claude
+	@${CHMOD} +x ${PREFIX}/bin/claude
 
 .include <bsd.port.mk>
