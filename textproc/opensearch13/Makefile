@@ -104,6 +104,6 @@ post-install:
 		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir lib/opensearch/plugins" >> ${TMPPLIST}
 	${ECHO} "@dir libexec/opensearch" >> ${TMPPLIST}
-	${ECHO} "@dir(opensearch,opensearch,0755) ${ETCDIR}" >> ${TMPPLIST}
+	${ECHO} "@dir(opensearch,opensearch,0755) ${ETCDIR_REL}" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
