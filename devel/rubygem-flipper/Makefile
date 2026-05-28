@@ -8,7 +8,7 @@ COMMENT=	Beautiful, performant feature flags for Ruby and Rails
 WWW=		https://www.flippercloud.io/ \
 		https://github.com/flippercloud/flipper
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gem
