@@ -28,7 +28,7 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		zip:archivers/zip \
 		clang19:devel/llvm19 \
 		cargo:lang/rust \
-		cbindgen:devel/rust-cbindgen
+		rust-cbindgen>=0.29.1:devel/rust-cbindgen
 
 LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libevent.so:devel/libevent \
@@ -50,6 +50,7 @@ LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libatk-1.0.so:accessibility/at-spi2-core \
 		libaom.so:multimedia/aom \
 		libdav1d.so:multimedia/dav1d \
+		libproxy.so:net/libproxy \
 		libjson-c.so:devel/json-c
 
 USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
