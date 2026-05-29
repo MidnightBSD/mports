@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 LIB_DEPENDS=	libgnutls.so:security/gnutls \
 		libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error \
+		libgmp.so:math/gmp \
 		libsasl2.so:security/cyrus-sasl2
 
 USES=		gettext gnome localbase meson perl5 pkgconfig python \
