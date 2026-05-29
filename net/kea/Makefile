@@ -62,5 +62,10 @@ post-install:
 	${CP} *.8 ${PREFIX}/share/man/man8
 	@cd ${WRKSRC}/_build/src/bin/keactrl; \
 	for i in *.conf; do ${CP} $$i ${PREFIX}/etc/kea/$$i.sample; done
+	@${RM} ${PREFIX}/etc/kea/kea-ctrl-agent.conf \
+		${PREFIX}/etc/kea/kea-dhcp-ddns.conf \
+		${PREFIX}/etc/kea/kea-dhcp4.conf \
+		${PREFIX}/etc/kea/kea-dhcp6.conf \
+		${PREFIX}/etc/kea/keactrl.conf
 
 .include <bsd.port.mk>

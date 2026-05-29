@@ -44,6 +44,15 @@
  endif
  
  #### Build Options
+@@ -163,7 +163,7 @@ SYSTEM = build_machine.system()
+ if SYSTEM == 'linux'
+     conf_data.set('OS_LINUX', true)
+     OS_TYPE = 'Linux'
+-elif SYSTEM == 'freebsd'
++elif SYSTEM == 'freebsd' or SYSTEM == 'midnightbsd'
+     conf_data.set('OS_BSD', true)
+     conf_data.set('OS_FREEBSD', true)
+     OS_TYPE = 'BSD'
 @@ -189,7 +189,7 @@ message(f'Detected system "@SYSTEM@".')
  
  #### Dependencies
