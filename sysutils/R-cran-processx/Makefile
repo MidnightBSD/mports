@@ -10,6 +10,7 @@ WWW=		https://processx.r-lib.org
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-ps>=1.2.0:sysutils/R-cran-ps \
 		R-cran-R6>0:devel/R-cran-R6
 
