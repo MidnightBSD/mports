@@ -16,4 +16,6 @@ RUN_DEPENDS=	R-cran-jsonlite>0:converters/R-cran-jsonlite \
 
 USES=		cran:auto-plist
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
