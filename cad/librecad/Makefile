@@ -36,15 +36,15 @@ pre-install:
 	@${STRIP_CMD} ${WRKSRC}/unix/resources/plugins/*.so
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/unix/librecad ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/unix/ttf2lff ${STAGEDIR}${PREFIX}/bin
-	(cd ${WRKSRC}/unix/resources && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/metainfo
+	${INSTALL_PROGRAM} ${WRKSRC}/unix/librecad ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/unix/ttf2lff ${PREFIX}/bin
+	(cd ${WRKSRC}/unix/resources && ${COPYTREE_SHARE} . ${DATADIR})
+	@${MKDIR} ${PREFIX}/share/metainfo
 	${INSTALL_DATA} ${WRKSRC}/unix/appdata/org.librecad.librecad.appdata.xml \
-		${STAGEDIR}${PREFIX}/share/metainfo
+		${PREFIX}/share/metainfo
 	${INSTALL_DATA} ${WRKSRC}/unix/appdata/librecad.desktop \
-		${STAGEDIR}${PREFIX}/share/applications
+		${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/librecad/res/main/librecad.png \
-		${STAGEDIR}${PREFIX}/share/pixmaps
+		${PREFIX}/share/pixmaps
 
 .include <bsd.port.mk>
