@@ -10,17 +10,13 @@ WWW=		https://callr.r-lib.org
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-processx>=3.6.1:sysutils/R-cran-processx \
 		R-cran-R6>0:devel/R-cran-R6
-TEST_DEPENDS=	R-cran-cli>=1.1.0:devel/R-cran-cli \
-		R-cran-covr>0:devel/R-cran-covr \
-		R-cran-mockery>0:devel/R-cran-mockery \
-		R-cran-ps>0:sysutils/R-cran-ps \
-		R-cran-rprojroot>0:devel/R-cran-rprojroot \
-		R-cran-spelling>0:textproc/R-cran-spelling \
-		R-cran-testthat>=3.2.0:devel/R-cran-testthat \
-		R-cran-withr>=2.3.0:devel/R-cran-withr
 
 USES=		cran:auto-plist
+
+# no test and no TEST_DEPENDS because of circular reference on testthat
+NO_TEST=	yes
 
 .include <bsd.port.mk>
