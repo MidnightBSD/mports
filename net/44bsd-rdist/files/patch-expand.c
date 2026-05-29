@@ -1,5 +1,8 @@
 --- expand.c.orig	2013-09-17 23:46:26.681322944 -0700
-+++ expand.c	2013-09-18 00:29:13.792410201 -0700
++++ expand.c	2026-05-29 00:00:00.000000000 -0400
+@@ -182 +182 @@ expstr(s)
+-		tp = lookup(cp, NULL, 0);
++		tp = lookup(cp, LOOKUP, NULL);
 @@ -309,7 +309,7 @@
  			return;
  		goto patherr2;
