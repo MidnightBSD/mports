@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/scales/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-cli>0:devel/R-cran-cli \
 		R-cran-farver>=2.0.3:graphics/R-cran-farver \
 		R-cran-glue>0:devel/R-cran-glue \
