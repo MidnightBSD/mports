@@ -39,7 +39,7 @@ bin/uucp
 bin/uuname
 bin/uux
 @group uucp
-@mode 06550
+@mode 06555
 libexec/uucp/uuxqt
 @group dialer
 @mode 06555
