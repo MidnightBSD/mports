@@ -6,11 +6,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to deal with Apple Wallet pass files
 WWW=		https://www.kde.org/
 
+LICENSE=	lgpl
+
 USES=		cmake compiler:c++11-lang gettext kde:6 qt:6 shared-mime-info \
 		tar:xz
+USE_GL=		gl opengl
 USE_KDE=	archive \
 		ecm:build
-USE_QT=		base
+USE_QT=		base declarative
+USE_LDCONFIG=	yes
+
 DESCR=		${.CURDIR:H:H}/deskutils/kdepim/pkg-descr
 
 OPTIONS_DEFINE=	DOCS
