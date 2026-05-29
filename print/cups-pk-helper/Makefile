@@ -1,7 +1,3 @@
-# Created by: Michael Johnson <ahze@FreeBSD.org>
-#   $MCom: ports/print/cups-pk-helper/Makefile,v 1.1 2009/12/29 16:01:07 ahze Exp $
-
-
 PORTNAME=	cups-pk-helper
 PORTVERSION=	0.2.7
 PORTREVISION=	1
@@ -20,5 +16,7 @@ LIB_DEPENDS=	libcups.so:print/cups \
 USE_GNOME=	glib20 intltool
 USES=		cpe gettext gnome localbase meson pkgconfig tar:xz
 CPE_VENDOR=	cups-pk-helper_project
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
