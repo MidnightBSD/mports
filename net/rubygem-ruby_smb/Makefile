@@ -12,7 +12,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-bindata24>=2.4.15<2.4.15_99:devel/rubygem-bindata24 \
+RUN_DEPENDS=	rubygem-bindata24=2.4.15:devel/rubygem-bindata24 \
 		rubygem-openssl-ccm>=0:security/rubygem-openssl-ccm \
 		rubygem-openssl-cmac>=0:security/rubygem-openssl-cmac \
 		rubygem-rubyntlm>=0:net/rubygem-rubyntlm \
