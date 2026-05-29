@@ -47,6 +47,7 @@ CMAKE_ON+=	QT_FEATURE_qtpdf_build
 CMAKE_OFF+=	QT_FEATURE_qtwebengine_build
 
 SYS_LIBS=	freetype
+CXXFLAGS+=	-I${LOCALBASE}/include/freetype2
 .else
 BUILD_DEPENDS+=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
 		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR}
