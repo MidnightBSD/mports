@@ -64,6 +64,7 @@ EXTERNALDB_VARS=	PKGMESSAGE+=${WRKSRC}/pkg-message.extdb \
 EXTERNALDB_VARS_OFF=	RUN_DEPENDS+=mongodb70${MONGODB_PKGNAMESUFFIX}>0:databases/mongodb70@${FLAVOR}
 
 _DIR_LIST=	conf data logs run work
+_UNIFI_REL=	share/java/unifi
 _JAX_DISTNAME=	javax.activation-api
 _JAX_VERSION=	1.2.0
 _SNAPPY_VERSION=	1.1.10.5
@@ -79,22 +80,22 @@ post-patch:
 	${RM} -r ${WRKSRC}/usr/lib/unifi/lib/native
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}${JAVASHAREDIR}/unifi
+	${MKDIR} ${JAVASHAREDIR}/unifi
 	(cd ${WRKSRC}/usr/lib/unifi && \
-		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${JAVASHAREDIR}/unifi)
+		${COPYTREE_SHARE} . ${JAVASHAREDIR}/unifi)
 # Create directories that will be writable by unifi
 .for i in data logs run work
-	${MKDIR} ${FAKE_DESTDIR}/${JAVASHAREDIR}/unifi/${i}
+	${MKDIR} ${JAVASHAREDIR}/unifi/${i}
 .endfor
 
 do-install-EXTERNALDB-off:
 	${LN} -sf ${PREFIX}/bin/mongod ${FAKE_DESTDIR}${JAVASHAREDIR}/unifi/bin/mongod
 
 post-install:
-	@${FIND} -s ${FAKE_DESTDIR}${JAVASHAREDIR}/unifi -not -type d | \
-		${SORT} | ${SED} -e 's#^${FAKE_DESTDIR}${PREFIX}/##' >> ${TMPPLIST}
+	@${FIND} -s ${JAVASHAREDIR}/unifi -not -type d | \
+		${SORT} | ${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 .for dir in ${_DIR_LIST}
-	@${ECHO} "@dir(unifi,wheel,) ${JAVASHAREDIR}/unifi/${dir}" >> \
+	@${ECHO} "@dir(unifi,wheel,) ${_UNIFI_REL}/${dir}" >> \
 		${TMPPLIST}
 .endfor
 
