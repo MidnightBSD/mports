@@ -27,4 +27,6 @@ ENCHANT_LIB_DEPENDS=	libicuuc.so:devel/icu \
 			libenchant-2.so:textproc/enchant2
 ENCHANT_MESON_ENABLED=	enchant
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
