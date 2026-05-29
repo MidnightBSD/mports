@@ -11,10 +11,13 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-omniauth_openid_connect>=0.3.0:net/rubygem-omniauth_openid_connect
+RUN_DEPENDS=	rubygem-omniauth_openid_connect>=0.3<1:net/rubygem-omniauth_openid_connect
 
 USES=		gem
 
 NO_ARCH=	yes
+
+post-patch:
+	${REINPLACE_CMD} -e 's|"~> 0.3.0"|">= 0.3", "< 1"|' ${WRKSRC}/${PORTNAME}.gemspec
 
 .include <bsd.port.mk>
