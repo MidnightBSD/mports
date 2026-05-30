@@ -13,7 +13,7 @@ WWW=		https://classic.yarnpkg.com/
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES?=		nodejs:24,run
+USES?=		nodejs:24,run sqlite3:port
 USES+=		cpe
 CPE_VENDOR=	${PORTNAME}pkg
 
