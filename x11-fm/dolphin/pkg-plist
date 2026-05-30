@@ -24,7 +24,6 @@ lib/libdolphinvcs.so.%%SHLIB_SHVER%%
 lib/systemd/user/plasma-dolphin.service
 share/applications/org.kde.dolphin.desktop
 share/config.kcfg/dolphin_compactmodesettings.kcfg
-share/config.kcfg/dolphin_contentdisplaysettings.kcfg
 share/config.kcfg/dolphin_contextmenusettings.kcfg
 share/config.kcfg/dolphin_detailsmodesettings.kcfg
 share/config.kcfg/dolphin_directoryviewpropertysettings.kcfg
@@ -36,8 +35,6 @@ share/dbus-1/services/org.kde.dolphin.FileManager1.service
 %%DATADIR%%/dolphinpartactions.desktop
 share/icons/hicolor/scalable/apps/org.kde.dolphin.svg
 share/kconf_update/dolphin_detailsmodesettings.upd
-share/kconf_update/dolphin_directorysizemode.py
-share/kconf_update/dolphin_directorysizemode.upd
 share/kconf_update/dolphin_replace_view_mode_with_view_settings_in_toolbar.py
 share/kconf_update/dolphin_replace_view_mode_with_view_settings_in_toolbar.upd
 share/kconf_update/dolphin_statusandlocationbarssettings.upd
