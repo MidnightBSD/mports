@@ -1097,7 +1097,7 @@ share/locale/zh_TW/LC_MESSAGES/kio6_recentlyused.mo
 share/locale/zh_TW/LC_MESSAGES/kio6_sftp.mo
 share/locale/zh_TW/LC_MESSAGES/kio6_smb.mo
 share/locale/zh_TW/LC_MESSAGES/kio6_thumbnail.mo
-%%SAMBA%%share/mime/inode/vnd.kde.kio.smb.printer.xml
+@comment %%SAMBA%%share/mime/inode/vnd.kde.kio.smb.printer.xml
 %%SAMBA%%share/mime/packages/org.kde.kio.smb.xml
 share/qlogging-categories6/kio-extras.categories
 share/qlogging-categories6/kio-extras.renamecategories
