@@ -11,6 +11,8 @@ WWW=		https://yosyshq.readthedocs.io/projects/sby/en/latest/ \
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FAKE_OPTS=	trueprefix
+
 RUN_DEPENDS=	yosys:cad/yosys
 
 USES=		gmake python shebangfix
