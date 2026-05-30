@@ -1,6 +1,6 @@
 --- src/modules/avformat/filter_swscale.c.orig	2025-01-01 00:00:00 UTC
 +++ src/modules/avformat/filter_swscale.c
-@@ -170,8 +170,12 @@
+@@ -170,8 +170,14 @@
          avinframe->height = iheight;
          avinframe->format = avformat;
          avinframe->sample_aspect_ratio = av_d2q(mlt_frame_get_aspect_ratio(frame), 1024);
