@@ -34,7 +34,7 @@ post-patch:
 	@${REINPLACE_CMD} -i '' \
 		-e 's|"installationMethod": "tar"|"installationMethod": "pkg"|g' \
 		${WRKSRC}/package.json
-	@${REINPLACE_CMD} -i '' -e 's%Linux)%Linux|FreeBSD)%g' \
+	@${REINPLACE_CMD} -i '' -e 's%Linux)%Linux|FreeBSD|MidnightBSD)%g' \
 		${WRKSRC}/bin/yarn
 
 do-install:
