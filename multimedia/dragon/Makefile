@@ -10,7 +10,7 @@ WWW=		https://www.kde.org/applications/multimedia/dragonplayer/
 LICENSE=	gpl2
 
 USES=		cmake compiler:c++11-lang desktop-file-utils gettext kde:6 \
-		qt:6 tar:xz xorg
+		pkgconfig qt:6 tar:xz xorg
 USE_KDE=	auth codecs completion config configwidgets coreaddons crash \
 		dbusaddons doctools i18n iconthemes jobwidgets kio kirigami2 \
 		notifications parts phonon service solid sonnet textwidgets \
