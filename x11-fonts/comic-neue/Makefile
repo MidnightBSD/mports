@@ -17,7 +17,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${WRKSRC}/OTF && ${INSTALL_DATA} ComicNeue-Angular/*.otf ComicNeue/*.otf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	cd ${WRKSRC}/OTF && ${INSTALL_DATA} ComicNeue-Angular/*.otf ComicNeue/*.otf ${FONTSDIR}
 
 .include <bsd.port.mk>
