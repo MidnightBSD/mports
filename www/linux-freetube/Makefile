@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Private YouTube Client (Linux version)
 WWW=		https://freetubeapp.io/
 
-LICENSE=	agpl3 bsd3 lgpl2.1 mit MPL11
+LICENSE=	agpl bsd3 lgpl2.1 mit MPL11
 LICENSE_COMB=	multi
 
 ONLY_FOR_ARCHS=	amd64
