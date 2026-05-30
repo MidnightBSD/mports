@@ -44,6 +44,7 @@ CONFIGURE_ARGS+=	--enable-ipv6 \
 			--disable-pdf-docs \
 			--localedir="${LOCALBASE}/share/locale" \
 			--disable-dependency-tracking \
+			--without-libcurl \
 			--host=${ARCH}-portbld-freebsd11.4 \
 			--build=${ARCH}-portbld-freebsd11.4 \
 			DOS2UNIX=true
