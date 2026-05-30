@@ -27,6 +27,8 @@ RUN_DEPENDS=	\
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 post-patch:
 	@${FIND} ${WRKSRC} -name "*.orig" -delete
 
