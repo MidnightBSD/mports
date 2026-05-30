@@ -1,6 +1,6 @@
 PORTNAME=		CuraEngine
 PORTVERSION=		5.7.0
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=		1
 CATEGORIES=		cad
 DIST_SUBDIR=		Ultimaker
@@ -19,6 +19,8 @@ LIB_DEPENDS=	libArcus.so:net/libarcus \
 		libpolyclipping.so:graphics/polyclipping \
 		libprotobuf.so:devel/protobuf \
 		libspdlog.so:devel/spdlog
+
+USE_GCC=	14
 
 USES=		compiler:c++20-lang cmake pkgconfig
 
