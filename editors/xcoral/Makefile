@@ -17,7 +17,6 @@ USES=		bison compiler:c11 xorg
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir=${PREFIX}/share
-LIBS+=		-lgnuregex
 LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS+=	-isystem ${LOCALBASE}/include
 EXTRACT_AFTER_ARGS=	--exclude BR_Parser.[ch]
