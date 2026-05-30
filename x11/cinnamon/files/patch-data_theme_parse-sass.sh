@@ -6,5 +6,5 @@
 
 -pysassc ./cinnamon-sass/cinnamon.scss cinnamon.css
 +SRC_DIR="${1:-.}"
-+
-+pysassc "$SRC_DIR/cinnamon-sass/cinnamon.scss" cinnamon.css
++cd "$SRC_DIR" || exit 1
++exec pysassc ./cinnamon-sass/cinnamon.scss cinnamon.css
