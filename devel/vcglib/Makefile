@@ -18,8 +18,8 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}
+	@${MKDIR} ${PREFIX}/include/${PORTNAME}
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} "apps eigenlib img vcg wrap" \
-	 ${STAGEDIR}${PREFIX}/include/${PORTNAME})
+	 ${PREFIX}/include/${PORTNAME})
 
 .include <bsd.port.mk>
