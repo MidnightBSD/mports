@@ -4,4 +4,4 @@
  sassc = find_program('pysassc')
 
 -run_command('parse-sass.sh', check: true)
-+run_command('parse-sass.sh', check: true, workdir: meson.current_source_dir())
++run_command('parse-sass.sh', meson.current_source_dir(), check: true)
