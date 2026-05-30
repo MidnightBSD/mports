@@ -92,8 +92,8 @@ post-patch:
 		${WRKSRC}/build/moz.configure/toolchain.configure
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/${MOZILLA_EXEC_NAME}.desktop ${STAGEDIR}${DESKTOPDIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
-	${LN} -sf ${FIREFOX_ICON_SRC} ${STAGEDIR}${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+	${INSTALL_DATA} ${WRKDIR}/${MOZILLA_EXEC_NAME}.desktop ${DESKTOPDIR}
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
 
 .include <bsd.port.post.mk>
