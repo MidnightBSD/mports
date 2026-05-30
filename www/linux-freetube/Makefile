@@ -34,7 +34,7 @@ SUB_LIST=	LINUXBASE=${LINUXBASE}
 
 NO_WRKSUBDIR=	yes
 
-STRIP_CMD=	${LINUXBASE}/usr/bin/strip
+STRIP_CMD=	${LINUXBASE_REL}/usr/bin/strip
 
 do-install:
 	@${MKDIR} ${DATADIR}
