@@ -18,10 +18,11 @@ GH_ACCOUNT=	ImageOptim
 CARGO_BUILD_ARGS=	--package imagequant-sys
 CARGO_INSTALL_ARGS:=	${CARGO_BUILD_ARGS}
 PLIST_FILES=	include/libimagequant.h \
-		lib/libimagequant.a \
-		lib/libimagequant.so \
-		lib/libimagequant.so.0.0.0 \
-		libdata/pkgconfig/imagequant.pc
+	lib/libimagequant.a \
+	lib/libimagequant.so \
+	lib/libimagequant.so.0.4 \
+	lib/libimagequant.so.0.4.1 \
+	libdata/pkgconfig/imagequant.pc
 
 do-build:
 	@${CARGO_CARGO_RUN} cbuild \
