@@ -108,13 +108,14 @@
  	$(am__DEPENDENCIES_1)
  test_rfc3961_SOURCES = test_rfc3961.c
  test_rfc3961_OBJECTS = test_rfc3961.$(OBJEXT)
-@@ -581,10 +597,12 @@ test_x500_DEPENDENCIES = libkrb5.la $(am
+@@ -581,10 +597,13 @@ test_x500_DEPENDENCIES = libkrb5.la $(am
  	$(am__DEPENDENCIES_1)
  verify_krb5_conf_SOURCES = verify_krb5_conf.c
  verify_krb5_conf_OBJECTS = verify_krb5_conf.$(OBJEXT)
 -verify_krb5_conf_LDADD = $(LDADD)
 +verify_krb5_conf_LDADD = $(LDADD) \
-+	$(top_builddir)/lib/hx509/libhx509.la
++	$(top_builddir)/lib/hx509/libhx509.la \
++	$(PTHREAD_LIBADD)
  verify_krb5_conf_DEPENDENCIES = libkrb5.la $(am__DEPENDENCIES_1) \
  	$(top_builddir)/lib/asn1/libasn1.la \
  	$(top_builddir)/lib/wind/libwind.la $(LIB_heimbase) \
