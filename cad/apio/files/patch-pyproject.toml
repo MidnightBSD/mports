@@ -16,7 +16,7 @@
 +    'pyserial>=3.5',
      'wheel>=0.35.0,<1',
 -    'scons==4.2.0',
-+    'scons>=4.2.0',
++    'scons>=3.1.2',
      'packaging>=23.2'
  ]
  
