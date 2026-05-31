@@ -49,32 +49,32 @@ post-patch:
 
 post-install:
 	(cd ${WRKSRC}/desktop && ${INSTALL_DATA} gerbv.desktop \
-		${STAGEDIR}${DESKTOPDIR})
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps
+		${DESKTOPDIR})
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/scalable/apps
 	(cd ${WRKSRC}/desktop && ${INSTALL_DATA} gerbv.svg \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps)
+		${PREFIX}/share/icons/hicolor/scalable/apps)
 .for i in 16 22 24 32 48
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${i}x${i}/apps
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/${i}x${i}/apps
 	(cd ${WRKSRC}/desktop && ${INSTALL_DATA} gerbv-${i}.png \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/${i}x${i}/apps/gerbv.png)
+		${PREFIX}/share/icons/hicolor/${i}x${i}/apps/gerbv.png)
 .endfor
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc && ${INSTALL_DATA} *.fig *.txt \
-		${STAGEDIR}${DOCSDIR})
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/PNG-print
+		${FAKE_DESTDIR}${DOCSDIR})
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/PNG-print
 	(cd ${WRKSRC}/doc/PNG-print && ${INSTALL_DATA} *.jpg *.txt \
-		${STAGEDIR}${DOCSDIR}/PNG-print)
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/eagle
+		${FAKE_DESTDIR}${DOCSDIR}/PNG-print)
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/eagle
 	(cd ${WRKSRC}/doc/eagle && ${INSTALL_DATA} *.pl *.txt \
-		${STAGEDIR}${DOCSDIR}/eagle)
+		${FAKE_DESTDIR}${DOCSDIR}/eagle)
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	@(cd ${WRKSRC}/example && ${FIND} . \
 		! \( -name "*Makefile*" -or -name ".cvsignore" \) \
 		| ${CPIO} --quiet -pdm -L -R ${SHAREOWN}:${SHAREGRP} \
-		${STAGEDIR}${EXAMPLESDIR})
+		${FAKE_DESTDIR}${EXAMPLESDIR})
 
 .include <bsd.port.mk>

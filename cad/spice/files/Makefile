@@ -22,10 +22,10 @@ ${CONFIGFILE}::
 	echo "$V=${${V}}" >> ${CONFIGFILE}
 .endfor
 
-PREFIX?=	/usr/local
+TRUE_PREFIX?=	/usr/local
 
-BINDIR=		${PREFIX}/bin
-SHAREFILESDIR=	${PREFIX}/share/spice
+BINDIR=		${TRUE_PREFIX}/bin
+SHAREFILESDIR=	${TRUE_PREFIX}/share/spice
 HELPFILESDIR=	${SHAREFILESDIR}/helpdir
 SCRIPTFILESDIR=	${SHAREFILESDIR}/scripts
 
@@ -35,7 +35,7 @@ SCRIPTFILES=	setplot spinit
 SHAREFILES=	mfbcap news
 
 MAN=	spice.1 nutmeg.1 sconvert.1 mfb.3 mfbcap.5
-MANDIR=	${PREFIX}/share/man/man
+MANDIR=	${TRUE_PREFIX}/share/man/man
 
 .for P in ${PROGRAMS}
 install:: ${DESTDIR}${BINDIR}/$P

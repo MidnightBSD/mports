@@ -27,6 +27,12 @@ OPTIONS_DEFINE=	DEBUG
 DEBUG_VARS=	BUILD_TYPE=debug
 DEBUG_VARS_OFF=	BUILD_TYPE=release
 
+post-extract:
+	${MV} ${WRKSRC}/elements/10_electric/20_manufacturers_articles/endress_hauser/endress+hauser-d*bim*tre-promag-50.elmt \
+		${WRKSRC}/elements/10_electric/20_manufacturers_articles/endress_hauser/endress+hauser-debimetre-promag-50.elmt
+	${MV} ${WRKSRC}/examples/c*blage-*clairages-sikli-v5.qet \
+		${WRKSRC}/examples/cablage-eclairages-sikli-v5.qet
+
 pre-configure:
 	${REINPLACE_CMD} -e 's,/usr/local/,${PREFIX}/,g' \
 		${WRKSRC}/${PORTNAME}.pro

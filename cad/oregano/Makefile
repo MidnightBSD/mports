@@ -27,7 +27,7 @@ GLIB_SCHEMAS=	io.ahoi.oregano.gschema.xml
 
 .include <bsd.mport.options.mk>
 
-.if ${OPSYS} == FreeBSD
+.if ${OPSYS} == FreeBSD || ${OPSYS} == MidnightBSD
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 .endif
 

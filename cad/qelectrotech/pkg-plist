@@ -1794,7 +1794,7 @@ share/mime/packages/qelectrotech.xml
 %%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress&hauser-condumax-cls21.elmt
 %%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress&hauser-indumax-cls52.elmt
 %%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress&hauser-niveau-capacitif-ec11z-.elmt
-%%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress+hauser-débimétre-promag-50.elmt
+%%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress+hauser-debimetre-promag-50.elmt
 %%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress+hauser-liquisys-m.elmt
 %%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress+hauser-mycom-l.elmt
 %%DATADIR%%/elements/10_electric/20_manufacturers_articles/endress_hauser/endress-&-hauser-liquisys-m-cpm223.elmt
@@ -9791,7 +9791,7 @@ share/mime/packages/qelectrotech.xml
 %%DATADIR%%/examples/ShellyParts.qet
 %%DATADIR%%/examples/affuteuse_250h.qet
 %%DATADIR%%/examples/convertisseur.qet
-%%DATADIR%%/examples/câblage-éclairages-sikli-v5.qet
+%%DATADIR%%/examples/cablage-eclairages-sikli-v5.qet
 %%DATADIR%%/examples/grafcet.qet
 %%DATADIR%%/examples/industrial.qet
 %%DATADIR%%/examples/iso_sfc_example.qet

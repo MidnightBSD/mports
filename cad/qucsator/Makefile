@@ -20,4 +20,6 @@ GH_ACCOUNT=	Qucs
 
 CXXFLAGS+=	-fPIC # workaround for https://github.com/Qucs/qucsator/issues/35
 
+MAKE_JOBS_UNSAFE=	yes
+
 .include <bsd.port.mk>

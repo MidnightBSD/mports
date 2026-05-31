@@ -23,4 +23,11 @@ GH_TAGNAME=	f6a56dd
 
 CMAKE_ARGS=	-DPython_EXECUTABLE=${PYTHON_CMD}
 
+post-patch:
+	@${MV} ${WRKSRC}/py/nodes/2D\ →\ 3D ${WRKSRC}/py/nodes/2D\ to\ 3D
+	@${MV} ${WRKSRC}/py/nodes/3D\ →\ 2D ${WRKSRC}/py/nodes/3D\ to\ 2D
+	@${REINPLACE_CMD} -e 's|2D → 3D|2D to 3D|g' \
+		-e 's|3D → 2D|3D to 2D|g' \
+		${WRKSRC}/app/graph/constructor/populate.cpp
+
 .include <bsd.port.mk>

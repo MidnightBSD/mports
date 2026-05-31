@@ -7,6 +7,9 @@ project(CuraEngine)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(SPDLOG_PKG REQUIRED spdlog)
+
 option(ENABLE_ARCUS "Enable support for ARCUS" ON)
 
 if (MSVC)
@@ -20,6 +23,7 @@ if(ENABLE_ARCUS)
     # this, which defaults to OFF. We need to force this option to ON instead.
     set(protobuf_MODULE_COMPATIBLE ON CACHE INTERNAL "" FORCE)
     find_package(Protobuf 3.0.0 REQUIRED)
+    pkg_check_modules(PROTOBUF_PKG REQUIRED protobuf)
     find_package(Arcus REQUIRED)
     add_definitions(-DARCUS)
     find_program(PROTOC "protoc")
@@ -310,10 +314,10 @@ else()
 endif()
 
 if (ENABLE_ARCUS)
-    target_link_libraries(_CuraEngine Arcus)
+    target_link_libraries(_CuraEngine Arcus ${PROTOBUF_PKG_LDFLAGS} ${Protobuf_PROTOC_LIBRARY})
 endif ()
 
-target_link_libraries(_CuraEngine fmt absl_log_internal_message absl_log_internal_check_op)
+target_link_libraries(_CuraEngine fmt ${SPDLOG_PKG_LDFLAGS} absl_log_internal_message absl_log_internal_check_op)
 
 set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION=\"${CURA_ENGINE_VERSION}\"")
 
@@ -340,6 +344,13 @@ else()
 endif(NOT WIN32)
 
 target_link_libraries(CuraEngine _CuraEngine)
+if(USE_SYSTEM_LIBS)
+    target_link_libraries(CuraEngine ${Polyclipping_LIBRARIES})
+endif()
+if (ENABLE_ARCUS)
+    target_link_libraries(CuraEngine Arcus ${PROTOBUF_PKG_LDFLAGS} ${Protobuf_PROTOC_LIBRARY})
+endif ()
+target_link_libraries(CuraEngine fmt ${SPDLOG_PKG_LDFLAGS} absl_log_internal_message absl_log_internal_check_op)
 set_target_properties(CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION=\"${CURA_ENGINE_VERSION}\"")
 
 # Compiling the test environment.

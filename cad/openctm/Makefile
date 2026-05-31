@@ -31,7 +31,7 @@ WRKSRC=		${WRKDIR}/OpenCTM-${DISTVERSION}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' \
-		-e 's|%%STAGEDIR%%|${STAGEDIR}|' ${WRKSRC}/Makefile.linux
+		-e 's|%%STAGEDIR%%|${FAKE_DESTDIR}|' ${WRKSRC}/Makefile.linux
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 		${WRKSRC}/tools/Makefile.linux ${WRKSRC}/Makefile.linux
 

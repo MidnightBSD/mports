@@ -38,6 +38,9 @@ WRKSRC_SUBDIR=	QT
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|"/usr/share/ldraw"|"${PREFIX}/share/ldraw"|' ${WRKSRC}/ModelViewerWidget.cpp
+	@${REINPLACE_CMD} -e 's|uname), FreeBSD|uname), MidnightBSD|g' \
+		-e 's|MAKEDEPEND = gcc -MM|MAKEDEPEND = ${CC} -MM|' \
+		${WRKSRC}/../Makefile.inc
 .if ${OPSYS} == FreeBSD
 	@${REINPLACE_CMD} -e 's|register ||' ${WRKSRC}/../LDLoader/LDrawIni.c
 .endif
@@ -46,6 +49,6 @@ pre-configure:
 	@cd ${WRKSRC} && ${LRELEASE} LDView.pro
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/LDView
+	@${STRIP_CMD} ${PREFIX}/bin/LDView
 
 .include <bsd.port.mk>
