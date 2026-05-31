@@ -26,6 +26,7 @@ SUCH DAMAGE.
 #include <iostream>
 #include <pqxx/pqxx>
 #include <cstring>
+#include <string>
 
 using namespace std;
 using namespace pqxx;
@@ -38,10 +39,25 @@ using namespace pqxx;
 #include <sys/types.h>
 #include <sha256.h>
 
+#include <ucl.h>
+#ifdef ucl_object_find_key
+#undef ucl_object_find_key
+#endif
+extern "C" const ucl_object_t *ucl_object_find_key(const ucl_object_t *, const char *);
+
 #include "sqlite3.h"
 
-const string DB_HOST = "10.1.10.11";
-const string DB_DATABASE = "magus";
+const char *CONFIG_FILE = "/usr/magus/config.yaml";
+
+struct MagusConfig {
+    string db_host;
+    string db_name;
+    string db_user;
+    string db_pass;
+};
+
+MagusConfig load_config(const char *);
+string config_string(const ucl_object_t *, const char *, const char *);
 
 /* SQLITE3 */
 sqlite3* open_indexdb(int);
@@ -61,9 +77,9 @@ main(int argc, char *argv[])
     char *fileHash;
     char *filePath;
 
-    if (argc != 5)
+    if (argc != 3)
     {
-        fprintf( stderr, "Usage: %s <run id> <pg_user> <pg_pass> <files>\n", argv[0] );
+        fprintf( stderr, "Usage: %s <run id> <files>\n", argv[0] );
         exit(1);
     }
 
@@ -74,7 +90,16 @@ main(int argc, char *argv[])
         exit(1);
     }
 
-    string connect_string = "dbname=magus user=" + string(argv[2]) + " password=" + string(argv[3]) + " hostaddr=" + DB_HOST + " port=5432";
+    MagusConfig config = load_config(CONFIG_FILE);
+
+    string connect_string = "dbname=" + config.db_name +
+        " user=" + config.db_user +
+        " host=" + config.db_host +
+        " port=5432";
+
+    if (!config.db_pass.empty())
+        connect_string += " password=" + config.db_pass;
+
     connection C(connect_string);
     connection C2(connect_string);
 
@@ -116,7 +141,7 @@ main(int argc, char *argv[])
         {
 
 		string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
-		if (asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str()) == -1)
+		if (asprintf(&filePath, "%s/%s", argv[2], row[4].as(string()).c_str()) == -1)
 			errx(1, "Could not allocate file path");
 		fileHash = SHA256_File(filePath, NULL);
 		if (fileHash == NULL)
@@ -270,6 +295,52 @@ main(int argc, char *argv[])
         pqxx::to_string(runid));
 
     return 0;
+}
+
+MagusConfig
+load_config(const char *path)
+{
+    struct ucl_parser *parser;
+    ucl_object_t *root;
+    MagusConfig config;
+
+    parser = ucl_parser_new(0);
+    if (parser == NULL)
+        errx(1, "Could not create config parser");
+
+    if (!ucl_parser_add_file(parser, path))
+        errx(1, "Could not parse %s: %s", path, ucl_parser_get_error(parser));
+
+    root = ucl_parser_get_object(parser);
+    if (root == NULL)
+        errx(1, "Could not load %s", path);
+
+    config.db_host = config_string(root, "DBHost", "localhost");
+    config.db_name = config_string(root, "DBName", "magus");
+    config.db_user = config_string(root, "DBUser", "magus");
+    config.db_pass = config_string(root, "DBPass", "");
+
+    ucl_object_unref(root);
+    ucl_parser_free(parser);
+
+    return config;
+}
+
+string
+config_string(const ucl_object_t *root, const char *key, const char *default_value)
+{
+    const ucl_object_t *obj;
+    const char *value;
+
+    obj = ucl_object_find_key(root, key);
+    if (obj == NULL)
+        return string(default_value);
+
+    value = ucl_object_tostring(obj);
+    if (value == NULL)
+        errx(1, "Config key %s must be a string", key);
+
+    return string(value);
 }
 
 sqlite3*
