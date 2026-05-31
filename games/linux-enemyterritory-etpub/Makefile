@@ -13,6 +13,7 @@ COMMENT=	ET Pub - An Enemy Territory Modification
 LICENSE=	NONE
 
 SKIP_FAKE_ALL=	yes
+SKIP_FAKE_CHECK=	lib/enemyterritory/etpub/qagame.mp.i386.so
 
 BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}

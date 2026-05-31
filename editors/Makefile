@@ -23,7 +23,6 @@
     SUBDIR += linux-sublime
     SUBDIR += linux-sublime-text4
     SUBDIR += linux-sublime3
-    SUBDIR += linux-vscode
     SUBDIR += linux-wps-office
     SUBDIR += mg
     SUBDIR += mousepad
