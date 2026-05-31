@@ -28,6 +28,6 @@ QMAKE_ARGS=	INSTALL_PREFIX=${PREFIX} \
 PORTSCOUT=	limit:^[0-9\.]*$$ # to ignore the 'continuous' tag
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/leocad
+	@${STRIP_CMD} ${PREFIX}/bin/leocad
 
 .include <bsd.port.mk>
