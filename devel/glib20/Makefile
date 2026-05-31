@@ -101,7 +101,7 @@ MESON_ARGS+=	-Dfile_monitor_backend='libinotify-kqueue'
 .if ${FLAVOR:U} == default
 post-extract:
 	${CP} -r ${LOCALBASE}/gobject-introspection-bootstrap/libdata/pkgconfig ${PKGCONFIG_LINKDIR}
-	${CP} ${LOCALBASE}/glib-bootstrap/libdata/pkgconfig/* ${PKGCONFIG_LINKDIR}
+	${CP} ${LOCALBASE}/glib-bootstrap/libdata/pkgconfig/*.pc ${PKGCONFIG_LINKDIR}
 .endif
 
 pre-build:
