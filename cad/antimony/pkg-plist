@@ -2,10 +2,10 @@ bin/antimony
 %%DATADIR%%/fab/__init__.py
 %%DATADIR%%/fab/shapes.py
 %%DATADIR%%/fab/types.py
-%%DATADIR%%/nodes/2D → 3D/Revolve/revolve_xy_x.node
-%%DATADIR%%/nodes/2D → 3D/Revolve/revolve_xy_y.node
-%%DATADIR%%/nodes/2D → 3D/extrude.node
-%%DATADIR%%/nodes/2D → 3D/loft.node
+%%DATADIR%%/nodes/2D to 3D/Revolve/revolve_xy_x.node
+%%DATADIR%%/nodes/2D to 3D/Revolve/revolve_xy_y.node
+%%DATADIR%%/nodes/2D to 3D/extrude.node
+%%DATADIR%%/nodes/2D to 3D/loft.node
 %%DATADIR%%/nodes/2D/Circles/circle_center.node
 %%DATADIR%%/nodes/2D/Circles/circle_edge.node
 %%DATADIR%%/nodes/2D/Rectangles/rectangle_center.node
@@ -17,9 +17,9 @@ bin/antimony
 %%DATADIR%%/nodes/2D/point.node
 %%DATADIR%%/nodes/2D/polygon.node
 %%DATADIR%%/nodes/2D/text.node
-%%DATADIR%%/nodes/3D → 2D/slice_xy.node
-%%DATADIR%%/nodes/3D → 2D/slice_xz.node
-%%DATADIR%%/nodes/3D → 2D/slice_yz.node
+%%DATADIR%%/nodes/3D to 2D/slice_xy.node
+%%DATADIR%%/nodes/3D to 2D/slice_xz.node
+%%DATADIR%%/nodes/3D to 2D/slice_yz.node
 %%DATADIR%%/nodes/3D/Cones/cone.node
 %%DATADIR%%/nodes/3D/Cones/cone_edge.node
 %%DATADIR%%/nodes/3D/Cones/cone_height.node
