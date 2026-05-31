@@ -1,5 +1,6 @@
 PORTNAME=	libArcus
 PORTVERSION=	5.3.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net cad
 DIST_SUBDIR=	Ultimaker
@@ -13,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sip>=0:devel/py-sip@${PY_FLAVOR}
 LIB_DEPENDS=	libprotobuf.so:devel/protobuf
-
-USE_GCC=	14
 
 USES=		cmake compiler:c++17-lang python pyqt:6
 USE_PYQT=	pysip
