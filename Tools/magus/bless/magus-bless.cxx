@@ -48,7 +48,7 @@ sqlite3* open_indexdb(int);
 void close_indexdb(sqlite3 *);
 int exec_indexdb(sqlite3 *, const char *, ...);
 void create_indexdb(sqlite3 *);
-void load_depends(sqlite3 *, connection &, int, const char *, const char *);
+void load_depends(sqlite3_stmt *, connection &, int, const char *, const char *);
 
 int
 main(int argc, char *argv[])
@@ -57,6 +57,7 @@ main(int argc, char *argv[])
     int runid;
     sqlite3 *db = NULL;
     sqlite3_stmt *stmt;
+    sqlite3_stmt *depends_stmt = NULL;
     char *fileHash;
     char *filePath;
 
@@ -102,6 +103,14 @@ main(int argc, char *argv[])
 	   cout << "Init index db file" << endl; 
         db = open_indexdb(runid);
         create_indexdb(db);
+        exec_indexdb(db, "BEGIN TRANSACTION");
+
+        if (sqlite3_prepare_v2(db,
+            "INSERT INTO depends (pkg, version, d_pkg, d_version) VALUES(?,?,?,?)",
+            -1, &depends_stmt, 0) != SQLITE_OK)
+        {
+            errx(1, "Could not prepare statement");
+        }
 
 	for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
         {
@@ -163,7 +172,7 @@ main(int argc, char *argv[])
 
                puts(ln.c_str());
 
-               load_depends(db, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
+               load_depends(depends_stmt, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
            }
         }
         printf("\n");
@@ -246,7 +255,12 @@ main(int argc, char *argv[])
 		}
 	}
 
-    close_indexdb(db);
+    if (db != NULL && depends_stmt != NULL)
+    {
+        sqlite3_finalize(depends_stmt);
+        exec_indexdb(db, "COMMIT");
+        close_indexdb(db);
+    }
 
     printf("Mark run blessed\n");
     N.exec0(
@@ -331,10 +345,9 @@ create_indexdb(sqlite3 *db)
 }
 
 void
-load_depends(sqlite3 *db, connection & C, int runid, const char *pkg_name, const char *version)
+load_depends(sqlite3_stmt *stmt, connection & C, int runid, const char *pkg_name, const char *version)
 {
 	char query_def[2048];
-	sqlite3_stmt *stmt;
 
 	printf("---->\tProcessing dependencies for %s - %s\n", pkg_name, version);
 
@@ -350,12 +363,6 @@ load_depends(sqlite3 *db, connection & C, int runid, const char *pkg_name, const
 		{
 			for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
 			{
-					if (sqlite3_prepare_v2(db,
-						"INSERT INTO depends (pkg, version, d_pkg, d_version) VALUES(?,?,?,?)",
-						-1, &stmt, 0) != SQLITE_OK)
-					{
-						errx(1, "Could not prepare statement");
-					}
 					sqlite3_bind_text(stmt, 1, pkg_name, strlen(pkg_name), SQLITE_TRANSIENT);
 					sqlite3_bind_text(stmt, 2, version, strlen(version), SQLITE_TRANSIENT);
 					sqlite3_bind_text(stmt, 3, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
@@ -364,7 +371,7 @@ load_depends(sqlite3 *db, connection & C, int runid, const char *pkg_name, const
 					if (sqlite3_step(stmt) != SQLITE_DONE)
 						errx(1,"Could not execute query");
 					sqlite3_reset(stmt);
-					sqlite3_finalize(stmt);
+					sqlite3_clear_bindings(stmt);
 			}
 		}
 	}
