@@ -34,10 +34,10 @@ EMACS_PLIST_FILES=	${EMACS_SITE_LISPDIR}/dinotrace.el ${EMACS_SITE_LISPDIR}/sim-
 post-patch:
 	@${REINPLACE_CMD} -e 's|"-O3"|""|' ${WRKSRC}/configure
 
-post-install-EMACS-on:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
+post-fake-EMACS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
 .for F in dinotrace.el sim-log.el
-	${INSTALL_DATA} ${WRKSRC}/lisp/${F} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
+	${INSTALL_DATA} ${WRKSRC}/lisp/${F} ${FAKE_DESTDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
 .endfor
 
 .include <bsd.port.mk>
