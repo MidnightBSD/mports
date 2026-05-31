@@ -47,7 +47,7 @@ do-install:
 		${DATADIR} "${_NON_DATA_FILES:S,^,! -name &,}"
 
 do-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${_DOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${_DOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
