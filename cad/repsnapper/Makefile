@@ -10,7 +10,7 @@ WWW=		https://reprap.org/wiki/RepSnapper_Manual:Introduction
 LICENSE=		bsd3 gpl2 mit
 LICENSE_COMB=		multi
 LICENSE_FILE_gpl2=	${WRKSRC}/licenses/GPL-2.0.txt
-LICENSE_FILE_mit=	${WRKSRC}/licenses/mit.txt
+LICENSE_FILE_mit=	${WRKSRC}/licenses/MIT.txt
 
 LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext \
 		libgtkglextmm-x11-1.2.so:x11-toolkits/gtkglextmm \
@@ -32,7 +32,7 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/etc/xdg/repsnapper/repsnapper.conf \
-		${STAGEDIR}${PREFIX}/etc/xdg/repsnapper/repsnapper.conf.sample
+	${MV} ${PREFIX}/etc/xdg/repsnapper/repsnapper.conf \
+		${PREFIX}/etc/xdg/repsnapper/repsnapper.conf.sample
 
 .include <bsd.port.mk>
