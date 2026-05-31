@@ -16,10 +16,12 @@ LICENSE_TEXT=	You can distribute binaries or make release packages for any OS. I
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 BUILD_DEPENDS=	et:games/linux-enemyterritory
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS=	et:games/linux-enemyterritory
 
 USES=		linux zip
 SKIP_FAKE_ALL=	yes
+SKIP_FAKE_CHECK=	lib/enemyterritory/omni-bot/omnibot_et.so \
+			lib/enemyterritory/omni-bot/qagame.mp.i386.so
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
