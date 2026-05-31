@@ -38,16 +38,16 @@ post-patch:
 	    ${WRKSRC}/src/main/HelpTasks.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/gspiceui ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/gspiceui ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/src/icons/gspiceui-48x48.xpm \
-	    ${STAGEDIR}${PREFIX}/share/pixmaps
-	${INSTALL_MAN} ${WRKSRC}/gspiceui.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} html ${STAGEDIR}${DOCSDIR} \
+	    ${PREFIX}/share/pixmaps
+	${INSTALL_MAN} ${WRKSRC}/gspiceui.1 ${PREFIX}/share/man/man1
+	@${MKDIR} ${DOCSDIR}
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} html ${DOCSDIR} \
 		"! -name Makefile")
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${EXAMPLESDIR}
 .for dir in lib sch
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} ${dir} ${STAGEDIR}${EXAMPLESDIR} \
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} ${dir} ${EXAMPLESDIR} \
 		"! -name Makefile")
 .endfor
 
