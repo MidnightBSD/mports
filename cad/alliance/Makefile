@@ -27,7 +27,7 @@ USE_GCC=	yes
 USE_TEX=	dvipsk:build latex:build
 USE_XORG=	ice sm x11 xext xt
 
-HAS_CONFIGURE=	yes
+GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	ALLIANCE_TOP=${ALLIANCE_TOP} YACC=${YACC}
 CONFIGURE_ARGS+=--mandir=${PREFIX}/share/man \
 		--prefix=${ALLIANCE_TOP} \
