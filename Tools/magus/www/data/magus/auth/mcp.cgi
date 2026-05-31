@@ -10,6 +10,8 @@ use Magus;
 use Scalar::Util qw(looks_like_number);
 use JSON::XS;
 use CGI qw(-no_xhtml);
+use Digest::SHA qw(sha256_hex);
+use IO::Socket::INET;
 use LWP::UserAgent;
 use URI::Escape qw(uri_escape);
 use YAML::Tiny;
@@ -26,6 +28,9 @@ use YAML::Tiny;
 my $json = JSON::XS->new->utf8->allow_nonref->allow_blessed->canonical;
 my $cgi  = CGI->new;
 my @SUPPORTED_PROTOCOL_VERSIONS = qw(2025-06-18 2025-03-26 2024-11-05);
+my $SESSION_HEADER = 'Mcp-Session-Id';
+my $SESSION_TTL    = $ENV{MCP_SESSION_TTL} // 86400;
+my $SESSION_ID;
 my $collect_responses = 0;
 my @collected_responses;
 
@@ -61,6 +66,16 @@ if ($cgi->request_method eq 'GET') {
     exit;
 }
 
+if ($cgi->request_method eq 'DELETE') {
+    unless (validate_mcp_protocol_header()) {
+        http_json_error('400 Bad Request', undef, -32600,
+            'Unsupported MCP-Protocol-Version header');
+        exit;
+    }
+    handle_session_delete();
+    exit;
+}
+
 # Only accept POST for JSON-RPC messages; everything else gets a 405.
 unless ($cgi->request_method eq 'POST') {
     http_json_error('405 Method Not Allowed', undef, -32600,
@@ -91,9 +106,18 @@ if ($@ || !ref $req) {
     exit;
 }
 
-unless (is_initialize_request($req) || validate_mcp_protocol_header()) {
+my $is_initialize = is_initialize_request($req);
+my $batch_has_initialize = ref $req eq 'ARRAY' && batch_contains_initialize($req);
+
+unless ($is_initialize || validate_mcp_protocol_header()) {
     rpc_error(undef, -32600, 'Unsupported MCP-Protocol-Version header');
     exit;
+}
+
+unless ($is_initialize || $batch_has_initialize) {
+    unless (validate_session_header()) {
+        exit;
+    }
 }
 
 if (ref $req eq 'ARRAY') {
@@ -184,8 +208,14 @@ sub dispatch_request($req) {
 # ---------------------------------------------------------------------------
 
 sub handle_initialize($id, $params) {
+    my $protocol_version = negotiated_protocol_version($params->{protocolVersion});
+    eval { $SESSION_ID = create_session($protocol_version, $params) };
+    if ($@) {
+        return rpc_error($id, -32002, "Could not create MCP session: $@");
+    }
+
     rpc_result($id, {
-        protocolVersion => negotiated_protocol_version($params->{protocolVersion}),
+        protocolVersion => $protocol_version,
         capabilities    => { tools => {} },
         serverInfo      => { name => 'magus-mcp', version => '1.0.0' },
         instructions    =>
@@ -2142,11 +2172,61 @@ sub acknowledge_notification() {
     print json_header(-status => '202 Accepted');
 }
 
+sub handle_session_delete() {
+    my $session_id = request_session_id();
+    unless (defined $session_id && length $session_id) {
+        print json_header(-status => '400 Bad Request');
+        print $json->encode({
+            jsonrpc => '2.0',
+            id      => undef,
+            error   => {
+                code    => -32600,
+                message => "$SESSION_HEADER header is required",
+            },
+        });
+        return;
+    }
+
+    unless (valid_session_id_syntax($session_id)) {
+        print json_header(-status => '400 Bad Request');
+        print $json->encode({
+            jsonrpc => '2.0',
+            id      => undef,
+            error   => {
+                code    => -32600,
+                message => "$SESSION_HEADER header is invalid",
+            },
+        });
+        return;
+    }
+
+    eval { redis_command('DEL', session_key($session_id)) };
+    if ($@) {
+        print json_header(-status => '503 Service Unavailable');
+        print $json->encode({
+            jsonrpc => '2.0',
+            id      => undef,
+            error   => {
+                code    => -32002,
+                message => "Could not delete MCP session: $@",
+            },
+        });
+        return;
+    }
+
+    print json_header(-status => '202 Accepted');
+}
+
 sub handle_sse_get() {
     unless (validate_mcp_protocol_header()) {
         http_json_error('400 Bad Request', undef, -32600,
             'Unsupported MCP-Protocol-Version header');
         return;
+    }
+
+    my $session_id = request_session_id();
+    if (defined $session_id && length $session_id) {
+        return unless validate_session($session_id);
     }
 
     $| = 1;
@@ -2182,6 +2262,9 @@ sub handle_sse_get() {
 }
 
 sub json_header(%args) {
+    $args{"-$SESSION_HEADER"} = $SESSION_ID
+        if defined $SESSION_ID && length $SESSION_ID;
+
     return $cgi->header(
         -type    => 'application/json',
         -charset => 'UTF-8',
@@ -2259,6 +2342,152 @@ sub validate_mcp_protocol_header() {
 sub effective_protocol_version() {
     my $version = $ENV{HTTP_MCP_PROTOCOL_VERSION} // '';
     return length $version ? $version : '2025-03-26';
+}
+
+sub request_session_id() {
+    return $ENV{HTTP_MCP_SESSION_ID} // '';
+}
+
+sub valid_session_id_syntax($session_id) {
+    return defined $session_id
+        && length($session_id) <= 128
+        && $session_id =~ /\A[!-~]+\z/;
+}
+
+sub validate_session_header() {
+    my $session_id = request_session_id();
+    unless (defined $session_id && length $session_id) {
+        http_json_error('400 Bad Request', undef, -32600,
+            "$SESSION_HEADER header is required");
+        return 0;
+    }
+
+    return validate_session($session_id);
+}
+
+sub validate_session($session_id) {
+    unless (valid_session_id_syntax($session_id)) {
+        http_json_error('400 Bad Request', undef, -32600,
+            "$SESSION_HEADER header is invalid");
+        return 0;
+    }
+
+    my $state = eval { redis_command('GET', session_key($session_id)) };
+    if ($@) {
+        http_json_error('503 Service Unavailable', undef, -32002,
+            "Could not validate MCP session: $@");
+        return 0;
+    }
+    unless (defined $state) {
+        http_json_error('404 Not Found', undef, -32001,
+            'MCP session not found or expired');
+        return 0;
+    }
+
+    eval { redis_command('EXPIRE', session_key($session_id), session_ttl()) };
+    if ($@) {
+        http_json_error('503 Service Unavailable', undef, -32002,
+            "Could not refresh MCP session: $@");
+        return 0;
+    }
+
+    $SESSION_ID = $session_id;
+    return 1;
+}
+
+sub create_session($protocol_version, $params) {
+    my $session_id = new_session_id();
+    my $client = ref $params->{clientInfo} eq 'HASH' ? $params->{clientInfo} : {};
+    my $state = {
+        protocolVersion => $protocol_version,
+        clientInfo      => $client,
+        created_at      => time,
+        touched_at      => time,
+    };
+
+    redis_command('SETEX', session_key($session_id), session_ttl(), $json->encode($state));
+    return $session_id;
+}
+
+sub session_ttl() {
+    return is_number($SESSION_TTL) && $SESSION_TTL > 0 ? int($SESSION_TTL) : 86400;
+}
+
+sub session_key($session_id) {
+    return "magus:mcp:session:$session_id";
+}
+
+sub new_session_id() {
+    my $bytes = '';
+    if (open(my $fh, '<:raw', '/dev/urandom')) {
+        my $read = sysread($fh, $bytes, 32);
+        close $fh;
+        return sha256_hex($bytes) if defined $read && $read == 32;
+    }
+
+    return sha256_hex(join(':', time, $$, rand(), {}));
+}
+
+sub redis_command(@args) {
+    my $sock = IO::Socket::INET->new(
+        PeerAddr => $ENV{MCP_REDIS_HOST} // '127.0.0.1',
+        PeerPort => $ENV{MCP_REDIS_PORT} // 6379,
+        Proto    => 'tcp',
+        Timeout  => 2,
+    ) or die "Cannot connect to Redis: $!";
+
+    $sock->autoflush(1);
+    print {$sock} redis_request('SELECT', 4);
+    redis_read_response($sock);
+    print {$sock} redis_request(@args);
+    my $response = redis_read_response($sock);
+    close $sock;
+
+    return $response;
+}
+
+sub redis_request(@args) {
+    my $request = '*' . scalar(@args) . "\r\n";
+    for my $arg (@args) {
+        $arg = '' unless defined $arg;
+        $request .= '$' . length($arg) . "\r\n$arg\r\n";
+    }
+
+    return $request;
+}
+
+sub redis_read_response($sock) {
+    my $line = <$sock>;
+    die "Redis closed the connection\n" unless defined $line;
+    $line =~ s/\r?\n\z//;
+
+    my $type = substr($line, 0, 1);
+    my $data = substr($line, 1);
+
+    if ($type eq '+') {
+        return $data;
+    } elsif ($type eq '-') {
+        die "Redis error: $data\n";
+    } elsif ($type eq ':') {
+        return int($data);
+    } elsif ($type eq '$') {
+        my $len = int($data);
+        return undef if $len < 0;
+
+        my $buf = '';
+        my $remaining = $len + 2;
+        while ($remaining > 0) {
+            my $chunk = '';
+            my $read = read($sock, $chunk, $remaining);
+            die "Redis closed the bulk response\n" unless defined $read && $read > 0;
+            $buf .= $chunk;
+            $remaining -= $read;
+        }
+        substr($buf, -2, 2, '');
+        return $buf;
+    }
+
+    die "Unsupported Redis response: $line\n";
 }
 
 sub tool_result($id, $text, $is_error) {

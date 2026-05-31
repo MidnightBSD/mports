@@ -1,6 +1,6 @@
 PORTNAME=	ungoogled-chromium
 PORTVERSION=	134.0.6998.165
-PORTREVISION=	1
+PORTREVISION=	2
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 UGVERSION=	${DISTVERSION}-1
@@ -247,12 +247,12 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in bas
 
 LLVM_DEFAULT=		19
 BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
-BINARY_ALIAS+=		cpp=${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT} \
-			cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT} \
-			c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT} \
-			ar=${LOCALBASE}/bin/llvm-ar${LLVM_DEFAULT} \
-			nm=${LOCALBASE}/bin/llvm-nm${LLVM_DEFAULT} \
-			ld=${LOCALBASE}/bin/ld.lld${LLVM_DEFAULT}
+BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
+			cc=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang \
+			c++=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++ \
+			ar=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-ar \
+			nm=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-nm \
+			ld=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/ld.lld
 
 # - swiftshader/lib/{libEGL.so,libGLESv2.so} is x86 only
 # - map ffmpeg target to ${ARCH}
