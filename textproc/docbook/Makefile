@@ -1,5 +1,3 @@
-
-
 PORTNAME=	docbook
 PORTVERSION=	1.5
 CATEGORIES=	textproc
@@ -8,8 +6,9 @@ DISTFILES=	#
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port for the different versions of the DocBook DTD
+WWW=		http://www.oasis-open.org/docbook/
 
-LICENSE=	unknown
+LICENSE=	agg
 
 RUN_DEPENDS=	${LOCALBASE}/share/sgml/docbook/catalog:${PORTSDIR}/textproc/docbook-sgml \
 		${LOCALBASE}/share/xml/docbook/catalog.xml:${PORTSDIR}/textproc/docbook-xml \
