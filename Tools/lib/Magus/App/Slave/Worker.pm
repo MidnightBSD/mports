@@ -100,6 +100,14 @@ sub inject_distfiles {
 
   foreach my $distfile ($port->distfiles) {
     my $file = $distfile->filename;
+
+    # the stored filename may carry a master site group suffix (e.g.
+    # foo.tar.gz:source2, optionally comma-separated for multiple groups)
+    # and/or a URL query string (e.g. foo.tar?a=b&c=d); strip both so we
+    # reference the real on-disk distfile name.
+    $file =~ s/:[A-Za-z0-9_,]+$//;
+    $file =~ s/\?.*$//;
+
     my $dest = join('/', $chroot->root, $chroot->distfiles);
     my $cmd = "/usr/bin/scp $Magus::Config{'DistfilesRoot'}/$run/$file $dest";
 
@@ -227,6 +235,13 @@ sub upload_distfiles {
 
   foreach my $distfile ($port->distfiles) {
     my $file = $distfile->filename;
+
+    # strip any master site group suffix and URL query string so the local
+    # path and the uploaded name match the real on-disk distfile (see
+    # inject_distfiles for details).
+    $file =~ s/:[A-Za-z0-9_,]+$//;
+    $file =~ s/\?.*$//;
+
     my $from = join('/', $chroot->root, $chroot->distfiles, $file);
 
     my $cmd = "/usr/bin/scp $from $Magus::Config{'DistfilesRoot'}/$run/$file";
