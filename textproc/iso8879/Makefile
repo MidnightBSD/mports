@@ -1,10 +1,3 @@
-# New ports collection makefile for:	iso8879
-# Date created:		June 19, 1997
-# Whom:			jfieber
-#
-
-#
-
 PORTNAME=	iso8879
 PORTVERSION=	1986
 PORTREVISION=	2
@@ -16,7 +9,11 @@ EXTRACT_SUFX=	.zip
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Character entity sets from ISO 8879:1986 (SGML)
-LICENSE=	unknown
+
+LICENSE=	ISO8879
+LICENSE_NAME=	ISO 8879 character entity sets
+LICENSE_TEXT=	Permission to copy in any form is granted for use with conforming SGML systems and applications as defined in ISO 8879, provided this notice is included in all copies.
+LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror
 
 BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
@@ -35,10 +32,9 @@ pre-install:
 	@[ -d ${INSTDIR} ] || ${MKDIR} ${INSTDIR}
 
 do-install:
-	@unzip -a -q -o ${DISTDIR}/${DISTFILES} -d ${INSTDIR}
-	@${INSTALL_DATA} ${FILESDIR}/catalog ${INSTDIR}/catalog
-	@${CHMOD} ${SHAREMODE} ${INSTDIR}/*
-	@${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTDIR}
-
+	${UNZIP_CMD} -a -q -o ${DISTDIR}/${DISTFILES} -d ${INSTDIR}
+	${INSTALL_DATA} ${FILESDIR}/catalog ${INSTDIR}/catalog
+	${CHMOD} ${SHAREMODE} ${INSTDIR}/*
+	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTDIR}
 
 .include <bsd.port.mk>
