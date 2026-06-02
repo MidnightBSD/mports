@@ -8,6 +8,7 @@
     SUBDIR += fhourstones
     SUBDIR += fio
     SUBDIR += flops
+    SUBDIR += geekbench-dev
     SUBDIR += gtkperf
     SUBDIR += hey
     SUBDIR += httperf
