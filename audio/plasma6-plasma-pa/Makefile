@@ -11,7 +11,7 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 RUN_DEPENDS=	${LOCALBASE}/share/sounds/freedesktop/index.theme:audio/freedesktop-sound-theme \
 		libcanberra-pulse>0:audio/libcanberra-pulse
 
-USES=		cmake compiler:c++17-lang gettext gl gnome kde:6 pkgconfig \
+USES=		cmake compiler:c++17-lang desktop-file-utils gettext gl gnome kde:6 pkgconfig \
 		qt:6 tar:xz
 USE_KDE=	config coreaddons dbusaddons doctools globalaccel i18n \
 		kcmutils kdeclarative kirigami2 libplasma \

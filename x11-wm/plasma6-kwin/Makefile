@@ -30,7 +30,7 @@ RUN_DEPENDS=	hwdata>0:misc/hwdata \
 		plasma6-breeze>0:x11-themes/plasma6-breeze@qt6 \
 		Xwayland:x11-servers/xwayland
 
-USES=		cmake gettext gl kde:6 pkgconfig python qt:6 shebangfix tar:xz \
+USES=		cmake desktop-file-utils gettext gl kde:6 pkgconfig python qt:6 shebangfix tar:xz \
 		xorg
 USE_GL=		egl gbm gl opengl
 USE_KDE=	auth colorscheme config \

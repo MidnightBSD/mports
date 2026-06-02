@@ -10,7 +10,7 @@ LIB_DEPENDS=	libQCoro6Core.so:devel/qcoro \
 		libaccounts-qt6.so:net-im/libaccounts-qt@qt6 \
 		libsignon-qt6.so:sysutils/signond@qt6
 
-USES=		cmake compiler:c++11-lang gettext-tools kde:6 pkgconfig qt:6 \
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext-tools kde:6 pkgconfig qt:6 \
 		tar:xz
 USE_KDE=	config coreaddons dbusaddons i18n kcmutils kdeclarative kio \
 		service wallet \

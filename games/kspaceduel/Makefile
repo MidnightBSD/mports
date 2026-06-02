@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	${${PORTNAME:tu}_DESC}
 WWW=		https://www.kde.org/applications/games/kspaceduel/
 
-USES=		cmake compiler:c++11-lang gettext kde:6 qt:6 tar:xz
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext kde:6 qt:6 tar:xz
 USE_KDE=	auth codecs completion config configwidgets coreaddons crash \
 		dbusaddons i18n libkdegames widgetsaddons xmlgui \
 		ecm:build

@@ -8,7 +8,7 @@ WWW=		https://www.kde.org
 
 LIB_DEPENDS=	libcups.so:print/cups
 
-USES=		cmake compiler:c++11-lang gettext kde:6 pkgconfig qt:6 tar:xz \
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext kde:6 pkgconfig qt:6 tar:xz \
 		xorg
 USE_KDE=	completion config configwidgets coreaddons dbusaddons i18n \
 		iconthemes jobwidgets kcmutils kio kirigami-addons libplasma \

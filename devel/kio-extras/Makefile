@@ -12,7 +12,7 @@ LIB_DEPENDS=	libtag.so:audio/taglib \
 		libKDSoapWSDiscoveryClient.so:www/kdsoap-ws-discovery-client\
 		libQCoro6Core.so:devel/qcoro
 
-USES=		cmake compiler:c++11-lib gettext gperf kde:6 pkgconfig qt:6 \
+USES=		cmake compiler:c++11-lib desktop-file-utils gettext gperf kde:6 pkgconfig qt:6 \
 		shared-mime-info shebangfix tar:xz xorg
 USE_KDE=	activities activities-stats archive auth bookmarks codecs \
 		completion config configwidgets coreaddons crash dbusaddons \

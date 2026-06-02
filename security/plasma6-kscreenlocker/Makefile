@@ -13,7 +13,7 @@ RUN_DEPENDS=	ck-list-sessions:sysutils/consolekit2 \
 		dbus-send:devel/dbus \
 		unix-selfauth-helper>=1.0:security/unix-selfauth-helper
 
-USES=		cmake gettext gl kde:6 pkgconfig qt:6 tar:xz xorg
+USES=		cmake desktop-file-utils gettext gl kde:6 pkgconfig qt:6 tar:xz xorg
 USE_KDE=	colorscheme config configwidgets coreaddons crash globalaccel \
 		i18n idletime kcmutils kio layer-shell-qt libkscreen libplasma \
 		notifications package solid svg widgetsaddons windowsystem \

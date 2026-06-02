@@ -7,7 +7,7 @@ COMMENT=	KF5 library for downloading application assets from the network
 
 LICENSE=	lgpl2.1+
 
-USES=		cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz xorg
+USES=		cmake compiler:c++11-lib desktop-file-utils gettext kde:5 qt:5 tar:xz xorg
 USE_KDE=	archive attica auth codecs completion config \
 		configwidgets coreaddons i18n iconthemes itemviews \
 		jobwidgets kio kirigami2 package service syndication \

@@ -16,7 +16,7 @@ RUN_DEPENDS=	clinfo:devel/clinfo \
 		wayland-info:graphics/wayland-utils \
 		xdpyinfo:x11/xdpyinfo
 
-USES=		cmake gettext gl kde:6 pkgconfig qt:6 tar:xz
+USES=		cmake desktop-file-utils gettext gl kde:6 pkgconfig qt:6 tar:xz
 USE_GL=		gl opengl
 USE_KDE=	auth colorscheme completion config configwidgets coreaddons \
 		doctools i18n jobwidgets kcmutils kio package service solid \

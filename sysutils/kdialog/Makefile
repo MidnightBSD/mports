@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Show nice dialog boxes from shell scripts
 WWW=		https://kde.org
 
-USES=		cmake compiler:c++11-lang gettext kde:6 pkgconfig qt:6 tar:xz \
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext kde:6 pkgconfig qt:6 tar:xz \
 		xorg
 USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		coreaddons crash dbusaddons guiaddons i18n iconthemes \

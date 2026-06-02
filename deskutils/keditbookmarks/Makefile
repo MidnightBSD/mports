@@ -6,7 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bookmark Organizer and Editor
 WWW=		https://kde.org
 
-USES=		cmake compiler:c++11-lang gettext kde:6 qt:6 tar:xz xorg
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext kde:6 qt:6 tar:xz xorg
 USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		coreaddons i18n iconthemes jobwidgets kio parts service solid \
 		sonnet textwidgets widgetsaddons windowsystem xmlgui \

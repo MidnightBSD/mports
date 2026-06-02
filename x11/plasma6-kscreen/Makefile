@@ -9,7 +9,7 @@ BUILD_DEPENDS=	wayland-protocols>0:graphics/wayland-protocols
 LIB_DEPENDS=	libxcb-util.so:x11/xcb-util \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake gettext kde:6 pkgconfig qt:6 tar:xz gl xorg
+USES=		cmake desktop-file-utils gettext kde:6 pkgconfig qt:6 tar:xz gl xorg
 USE_KDE=	colorscheme config configwidgets coreaddons dbusaddons \
 		globalaccel i18n iconthemes kcmutils kimageformats \
 		layer-shell-qt libkscreen \

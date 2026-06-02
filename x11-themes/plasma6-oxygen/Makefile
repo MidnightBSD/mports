@@ -7,7 +7,7 @@ COMMENT=	Oxygen Style for Qt/KDE Applications
 
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz xorg
+USES=		cmake desktop-file-utils gettext gl kde:6 qt:6 tar:xz xorg
 USE_GL=		gl opengl
 USE_KDE=	colorscheme completion config configwidgets coreaddons \
 		decoration frameworkintegration guiaddons i18n iconthemes \
