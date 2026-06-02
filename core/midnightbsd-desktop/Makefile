@@ -1,6 +1,5 @@
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.6.6
-PORTREVISION=	1
+PORTVERSION=	2.6.7
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -15,6 +14,7 @@ LICENSE=	bsd2
 
 RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		${LOCALBASE}/share/xsessions/xfce.desktop:x11-wm/xfce4 \
+		abiword:editors/abiword \
 		file-roller:archivers/file-roller \
 		bash:shells/bash \
 		${LOCALBASE}/etc/rc.d/bsdstats:sysutils/bsdstats \
@@ -40,6 +40,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		gconftool-2:devel/gconf2 \
 		dialog4ports:ports-mgmt/dialog4ports \
 		evolution>=0:mail/evolution \
+		gnumeric:math/gnumeric \
 		xdg-utils>=0:devel/xdg-utils \
 		xconfig>=0:x11/xconfig
 
