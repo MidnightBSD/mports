@@ -109,6 +109,8 @@ sub sync {
       default_flavor => 1,
     });     
 
+     $class->sync_phase_results($port);
+
      for (@{$dump{'master_sites'}}) {
        Magus::MasterSite->insert({
            port => $port->id,
@@ -186,6 +188,8 @@ sub sync {
       flavor      => $dump{flavor},
       default_flavor => 0,
     });
+
+     $class->sync_phase_results($port);
 
      for (@{$dump{'master_sites'}}) {
        Magus::MasterSite->insert({
@@ -334,6 +338,12 @@ sub sync_categories {
     }
 }
 
+sub sync_phase_results {
+    my ($class, $port) = @_;
+
+    Magus::PhaseResult->ensure_for_port($port);
+}
+
 sub mark_ignored {
     my ($class, $dump, $port) = @_;
     my $ignore = $dump->{ignore} // "";
@@ -341,12 +351,15 @@ sub mark_ignored {
     if ($class->ignore_is_metaport($ignore)) {
       print "\n\tMetaport.  Marking as internal.";
       $port->set_result_internal($ignore);
+      Magus::PhaseResult->mark_nonbuild_skip($port);
     } elsif ($dump->{is_interactive}) {
       print "\n\tIGNORE set.  Marking as skipped.";
       $port->set_result_skip("Port is marked as interactive.");
+      Magus::PhaseResult->mark_nonbuild_skip($port);
     } elsif (length $ignore) {
       print "\n\tIGNORE set.  Marking as skipped.";
       $port->set_result_skip($ignore);
+      Magus::PhaseResult->mark_nonbuild_skip($port);
     }
 }
 

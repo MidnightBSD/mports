@@ -67,9 +67,9 @@ sub is_empty {
   my ($self) = @_;
   
   # if there is a locked port, then there may be new ports once this one is done.
-  return 0 if Magus::Lock->search_by_run($self)->count;
+  return 0 if Magus::Lock->search_by_run_and_phase($self, 'build')->count;
 
-  return Magus::Port->get_ready_port($self) ? 0 : 1;
+  return Magus::Port->get_ready_port($self, 'build') ? 0 : 1;
 }
 
 
@@ -102,4 +102,3 @@ sub tarballpath {
 
 1;
 __END__
-

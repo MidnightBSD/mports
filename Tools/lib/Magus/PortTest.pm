@@ -107,7 +107,8 @@ $results = {
 =cut
 
 sub run {
-  my ($self) = @_;
+  my ($self, $phase) = @_;
+  $phase ||= 'build';
   
   $self->_set_env;
   $self->{chroot}->mark_dirty;
@@ -115,10 +116,9 @@ sub run {
   my %results = (summary => 'pass');
   
   $self->check_for_skip(\%results) && return \%results;
-  $self->check_master_sites(\%results);
+  $self->check_master_sites(\%results) if $phase eq 'build';
 
-  
-  foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall test)) {
+  foreach my $target ($self->targets_for_phase($phase)) {
     if (!$self->_run_make($target)) {
       my $error_code = $? >> 8;
       push(@{$results{errors}}, {
@@ -167,6 +167,16 @@ sub run {
   }
   
   return \%results;
+}
+
+sub targets_for_phase {
+  my ($self, $phase) = @_;
+
+  return qw(fetch) if $phase eq 'fetch';
+  return qw(fetch extract patch configure build fake package) if $phase eq 'build';
+  return qw(test) if $phase eq 'test';
+
+  die "Unknown Magus phase: $phase\n";
 }
 
 
@@ -250,4 +260,3 @@ sub _set_env {
 
 1;
 __END__
-

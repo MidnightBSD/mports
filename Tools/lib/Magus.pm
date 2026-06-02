@@ -8,6 +8,7 @@ BEGIN {
 }
 
 
+use Magus::Phase ();
 use Magus::Config;
 use Magus::Port ();
 use Magus::Lock ();
@@ -20,6 +21,8 @@ use Magus::Chroot ();
 use Magus::Index ();
 use Magus::Run ();
 use Magus::Log ();
+use Magus::PhaseLog ();
+use Magus::PhaseResult ();
 use Magus::Distfile ();
 use Magus::RestrictedDistfile ();
 use Magus::MasterSite ();

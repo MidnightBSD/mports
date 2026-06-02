@@ -16,7 +16,10 @@
         <th>Arch</th>
         <th>License</th>
         <th>Restricted</th>
-        <th>Status</th>
+        <th>Build</th>
+        <th>Fetch</th>
+        <th>Test</th>
+        <th>Scan</th>
         <th></th>
     </tr>
     </thead>
@@ -30,6 +33,9 @@
         <td><TMPL_IF NAME="license"><TMPL_VAR NAME="license"><TMPL_ELSE><em>No License</em></TMPL_IF></td>
         <td><TMPL_VAR NAME="restricted"></td>
         <td><TMPL_VAR NAME="status"></td>
+        <td><TMPL_VAR NAME="fetch_status"></td>
+        <td><TMPL_VAR NAME="test_status"></td>
+        <td><TMPL_VAR NAME="scan_status"></td>
         <td>
           <TMPL_IF NAME="can_reset">
             <a class="btn btn-danger" onclick="return confirm_reset()" href="/magus/auth/reset_port.cgi?id=<TMPL_VAR NAME=id>&tm=<TMPL_VAR NAME=tm>">Reset Port</a>
@@ -50,6 +56,7 @@
 <thead>
 <tr>
         <th>Machine</th>
+        <th>Phase</th>
         <th>Type</th>
         <th>Time</th>
         <th>Message</th>
@@ -60,6 +67,7 @@
 <TMPL_LOOP name="events">
 <tr class="<TMPL_IF NAME=fail>error</TMPL_IF> <TMPL_IF NAME=pass>success</TMPL_IF> <TMPL_IF NAME=warn>warning</TMPL_IF> <TMPL_VAR NAME=type>">
         <td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
+        <td><TMPL_VAR NAME="phase"></td>
         <td><TMPL_VAR NAME="type"></td>
         <td style="white-space: nowrap; font-size: smaller"><TMPL_VAR NAME="time"></td>
         <td><TMPL_VAR NAME="msg"></td>
@@ -72,8 +80,14 @@
 
     <section>
       <TMPL_IF NAME="log">
-      <h3>Log</h3>
+      <h3>Build Log</h3>
       <pre class="log"><TMPL_VAR NAME="log"></pre>
+      </TMPL_IF>
+      <TMPL_IF NAME="phase_logs">
+      <TMPL_LOOP NAME="phase_logs">
+      <h3><TMPL_VAR NAME="phase"> Log</h3>
+      <pre class="log"><TMPL_VAR NAME="data"></pre>
+      </TMPL_LOOP>
       </TMPL_IF>
     </section>
 </div>

@@ -66,6 +66,7 @@
 <thead>
 <tr>
 	<th>Port</th>
+	<th>Phase</th>
 	<th>Machine</th>
 	<th>Arch</th>
 	<th>OSVersion</th>
@@ -78,6 +79,7 @@
 <tr>
 	<td>(<a onclick="return confirm_reset()" href="/magus/auth/delete_lock.cgi?id=<TMPL_VAR NAME=id>">X</a>)
 	     <a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+	<td><TMPL_VAR NAME="phase"></td>
 	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
 	<td><TMPL_VAR name="arch"></td>
 	<td><TMPL_VAR NAME="osversion"></td>

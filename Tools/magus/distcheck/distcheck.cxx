@@ -170,6 +170,9 @@ int main(int argc, char *argv[])
 				if (!fs::exists(dest))
 				{
 					try {
+						if (dest.has_parent_path()) {
+							fs::create_directories(dest.parent_path());
+						}
 						fs::copy_file(src, dest);
 						std::cout << "Copied source " << src << " to destination " << dest << std::endl;
 						copied_count++;

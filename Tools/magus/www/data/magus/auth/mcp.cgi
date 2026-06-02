@@ -1218,6 +1218,10 @@ sub tool_get_port_details($id, $args) {
     $text .= sprintf("  pkgname:     %s\n",   $port->pkgname);
     $text .= sprintf("  version:     %s\n",   $port->version  // '');
     $text .= sprintf("  status:      %s\n",   $port->status);
+    $text .= sprintf("  fetch:       %s\n",   $port->phase_status('fetch'));
+    $text .= sprintf("  build:       %s\n",   $port->status);
+    $text .= sprintf("  test:        %s\n",   $port->phase_status('test'));
+    $text .= sprintf("  scan:        %s\n",   $port->phase_status('scan'));
     $text .= sprintf("  flavor:      %s\n",   $port->flavor   // '');
     $text .= sprintf("  arch:        %s\n",   $run->arch);
     $text .= sprintf("  osversion:   %s\n",   $run->osversion);
@@ -1230,19 +1234,19 @@ sub tool_get_port_details($id, $args) {
     my $dbh = Magus::DBI->db_Main();
 
     # Build events (failures, warnings, info messages) using direct SQL
-    my $sth_events = $dbh->prepare("SELECT time, type, msg FROM events WHERE port = ? ORDER BY time");
+    my $sth_events = $dbh->prepare("SELECT time, phase, type, msg FROM events WHERE port = ? ORDER BY time");
     $sth_events->execute($port_id);
     my $events = $sth_events->fetchall_arrayref({});
     $sth_events->finish;
 
     if (@$events) {
-        $text .= "\nBuild events:\n";
+        $text .= "\nEvents:\n";
         for my $ev (@$events) {
-            $text .= sprintf("  [%s] type=%-10s  %s\n",
-                $ev->{time} // '?', $ev->{type} // '?', $ev->{msg} // '');
+            $text .= sprintf("  [%s] phase=%-6s type=%-10s  %s\n",
+                $ev->{time} // '?', $ev->{phase} // 'build', $ev->{type} // '?', $ev->{msg} // '');
         }
     } else {
-        $text .= "\nNo build events recorded.\n";
+        $text .= "\nNo events recorded.\n";
     }
 
     # Direct dependencies using direct SQL
