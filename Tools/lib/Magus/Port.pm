@@ -46,6 +46,8 @@ __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 __PACKAGE__->has_many(perms => [ 'Magus::PortLicensePerms' => 'perm' ]);
 __PACKAGE__->has_many(events => 'Magus::Event');
+__PACKAGE__->has_many(phase_results => 'Magus::PhaseResult');
+__PACKAGE__->has_many(phase_logs => 'Magus::PhaseLog');
 __PACKAGE__->has_many(master_sites => 'Magus::MasterSite');
 __PACKAGE__->has_many(distfiles => 'Magus::Distfile');
 __PACKAGE__->has_many(restricted_distfiles => 'Magus::RestrictedDistfile');
@@ -54,6 +56,47 @@ __PACKAGE__->has_many(critical => ['Magus::CriticalPorts' => 'pkgname' ] => 'pkg
 
 __PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=?');
 __PACKAGE__->set_sql(single_ready_port => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=? LIMIT 1');
+__PACKAGE__->set_sql(ready_fetch_ports => qq{
+      SELECT __ESSENTIAL__
+      FROM __TABLE__, port_phase_results
+      WHERE port_phase_results.port=__TABLE__.id
+        AND __TABLE__.run=?
+        AND port_phase_results.phase='fetch'
+        AND port_phase_results.status='untested'
+        AND NOT EXISTS (
+          SELECT 1 FROM locks
+          WHERE locks.port=__TABLE__.id AND locks.phase='fetch'
+        )
+      ORDER BY __TABLE__.name ASC
+  });
+__PACKAGE__->set_sql(ready_test_ports => qq{
+      SELECT __ESSENTIAL__
+      FROM __TABLE__, port_phase_results
+      WHERE port_phase_results.port=__TABLE__.id
+        AND __TABLE__.run=?
+        AND port_phase_results.phase='test'
+        AND port_phase_results.status='untested'
+        AND (__TABLE__.status='pass' OR __TABLE__.status='warn')
+        AND NOT EXISTS (
+          SELECT 1 FROM locks
+          WHERE locks.port=__TABLE__.id AND locks.phase='test'
+        )
+      ORDER BY __TABLE__.name ASC
+  });
+__PACKAGE__->set_sql(ready_scan_ports => qq{
+      SELECT __ESSENTIAL__
+      FROM __TABLE__, port_phase_results
+      WHERE port_phase_results.port=__TABLE__.id
+        AND __TABLE__.run=?
+        AND port_phase_results.phase='scan'
+        AND port_phase_results.status='untested'
+        AND (__TABLE__.status='pass' OR __TABLE__.status='warn')
+        AND NOT EXISTS (
+          SELECT 1 FROM locks
+          WHERE locks.port=__TABLE__.id AND locks.phase='scan'
+        )
+      ORDER BY __TABLE__.name ASC
+  });
 __PACKAGE__->set_sql(last_twenty => qq{
       SELECT __ESSENTIAL__
       FROM __TABLE__
@@ -85,8 +128,20 @@ All the port's depends are tested and unlocked.
 =cut
 
 sub get_ready_port {
-  my ($class, $run) = @_;
-  return shift->search_single_ready_port($run)->next;
+  my ($class, $run, $phase) = @_;
+  $phase ||= 'build';
+
+  return $class->search_single_ready_port($run)->next if $phase eq 'build';
+
+  my %search = (
+    fetch => 'search_ready_fetch_ports',
+    test  => 'search_ready_test_ports',
+    scan  => 'search_ready_scan_ports',
+  );
+
+  die "Unknown Magus phase: $phase\n" unless $search{$phase};
+  my $method = $search{$phase};
+  return $class->$method($run)->next;
 }
   
 
@@ -207,8 +262,9 @@ sub _set_result {
   
   $self->status($status);
   $self->update;
+  $self->set_phase_status(build => $status);
    
-  $self->note_event($type, $msg);
+  $self->note_event($type, $msg, build => 'Result');
 }
 
 =head2 $port->reset();
@@ -224,6 +280,15 @@ sub reset {
 
   if (my $log = Magus::Log->retrieve(port => $self)) {
     $log->delete;
+  }
+
+  $self->phase_logs->delete_all if $self->phase_logs;
+  foreach my $phase_result ($self->phase_results) {
+    $phase_result->status('untested');
+    $phase_result->machine(undef);
+    $phase_result->started(undef);
+    $phase_result->finished(undef);
+    $phase_result->update;
   }
 
   $self->status('untested');
@@ -258,6 +323,43 @@ sub log {
   return $self->{__log} = $log->data;
 }
 
+=head2 $port->phase_result($phase)
+
+Returns the result row for a phase, creating it if needed.
+
+=cut
+
+sub phase_result {
+  my ($self, $phase) = @_;
+
+  return Magus::PhaseResult->retrieve(port => $self, phase => $phase) || Magus::PhaseResult->insert({
+    port   => $self,
+    phase  => $phase,
+    status => 'untested',
+  });
+}
+
+sub phase_status {
+  my ($self, $phase) = @_;
+
+  my $result = $self->phase_result($phase);
+  return $result ? $result->status : 'untested';
+}
+
+sub set_phase_status {
+  my ($self, $phase, $status, $machine) = @_;
+
+  my $result = $self->phase_result($phase);
+  $result->set_status($status, $machine || $Magus::Machine);
+}
+
+sub phase_log {
+  my ($self, $phase) = @_;
+
+  my $log = Magus::PhaseLog->retrieve(port => $self, phase => $phase) or return;
+  return $log->data;
+}
+
 =head2 $port->note_event(type => $msg);
 
 Add an event to the port of the given type with the given message
@@ -265,11 +367,13 @@ Add an event to the port of the given type with the given message
 =cut
 
 sub note_event {
-  my ($self, $type, $msg) = @_;
+  my ($self, $type, $msg, $phase, $name) = @_;
   
   $self->add_to_events({
     machine => $Magus::Machine,
+    phase   => $phase,
     type    => $type,
+    name    => $name,
     msg     => $msg,
   });
 }

@@ -57,6 +57,21 @@
 	    </ul>
 	</td>
 </tr>
+<TMPL_IF NAME="phase_stats">
+<tr>
+	<td colspan="7">
+	    <strong>Phase Results</strong>
+	    <ul class="stats">
+	      <TMPL_LOOP NAME="phase_stats">
+		<li>
+		    <TMPL_VAR NAME="phase"> / <span class="<TMPL_VAR NAME="status">"><TMPL_VAR NAME="status"></span>:
+		    <TMPL_VAR NAME="count">
+		</li>
+              </TMPL_LOOP>
+	    </ul>
+	</td>
+</tr>
+</TMPL_IF>
 <tr>
 	<td colspan="7" id="events-display"> </td>
 </tr>
@@ -77,4 +92,3 @@
                 }
         };
 </script>
-

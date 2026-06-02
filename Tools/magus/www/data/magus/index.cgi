@@ -117,6 +117,15 @@ sub main {
   }
 }
 
+sub phase_status_fields($port) {
+  return (
+    fetch_status => $port->phase_status('fetch'),
+    build_status => $port->status,
+    test_status  => $port->phase_status('test'),
+    scan_status  => $port->phase_status('scan'),
+  );
+}
+
 sub is_number {
   my $num = shift;
   return looks_like_number($num) && $num !~ /inf|nan/i;
@@ -174,7 +183,8 @@ sub api_run_port_stats {
     description => $port->description,
     license => $port->license,
     www => $port->www,
-    cpe => $port->cpe
+    cpe => $port->cpe,
+    phase_status_fields($port),
      });
   }
       
@@ -407,6 +417,7 @@ sub summary_page {
   my @locks = map {{
     port       => $_->port->name,
     port_id    => $_->port->id,
+    phase      => $_->phase,
     machine    => $_->machine->name,
     machine_id => $_->machine->id,
     arch       => $_->port->run->arch,
@@ -510,6 +521,19 @@ sub run_page {
   push(@$status_stats, { status => 'ready', count => Magus::Port->search_ready_ports($run)->count });
   $tmpl->param(status_stats => $status_stats);
 
+  my $phase_sth = $dbh->prepare("
+    SELECT phase, status, COUNT(*) AS count
+    FROM port_phase_results
+    INNER JOIN ports ON port_phase_results.port = ports.id
+    WHERE ports.run=?
+    GROUP BY phase, status
+    ORDER BY phase, status
+  ");
+  $phase_sth->execute($run->id);
+  my $phase_stats = $phase_sth->fetchall_arrayref({});
+  $phase_sth->finish;
+  $tmpl->param(phase_stats => $phase_stats);
+
   my $sth2 = $dbh->prepare("WITH hourly_events AS (
     SELECT
         DATE_TRUNC('hour', events.time) AS hour,
@@ -574,6 +598,7 @@ sub port_page {
     osversion => $port->run->osversion,
     arch      => $port->run->arch,
     status    => $port->status,
+    phase_status_fields($port),
     license   => $port->license,
     restricted => $port->restricted,
     can_reset => $port->can_reset? 1 : 0,
@@ -592,6 +617,7 @@ sub port_page {
       machine_id => $machine_obj ? $machine_obj->id : undef,
           machine    => $machine_obj ? $machine_obj->name : undef,
           type       => $event_obj->type,
+          phase      => $event_obj->phase,
           msg        => $event_obj->msg,
           time       => $event_obj->time,
     }
@@ -629,6 +655,13 @@ sub port_page {
   if ($port->log) {
     $tmpl->param(log => $port->log);
   }
+
+  my @phase_logs = map {{
+    phase => $_,
+    data  => $port->phase_log($_),
+  }} grep { defined $port->phase_log($_) } qw(fetch test scan);
+
+  $tmpl->param(phase_logs => \@phase_logs) if @phase_logs;
   
   if (@depends_of) {
     $tmpl->param(depends_of => \@depends_of);
@@ -761,6 +794,7 @@ sub search {
   
   my @results = map {{
     summary   => $_->status,
+    phase_status_fields($_),
     port      => $_->name,
     flavor    => $_->flavor,
     pkgname   => $_->pkgname,
@@ -838,6 +872,7 @@ sub async_run_port_stats {
   
   my @results = map {{
     summary   => $_->status,
+    phase_status_fields($_),
     port      => $_->name,
     flavor    => $_->flavor,
     pkgname   => $_->pkgname,

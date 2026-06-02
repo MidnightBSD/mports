@@ -10,3 +10,10 @@ ChrootTarBall: /usr/magus/0.2-CURRENT-20070901.tar
 PkgfilesRoot: /usr/magus/packages
 DistfilesRoot: /usr/magus/distfiles
 PkgExtension: mport
+WorkerPhases:
+  - build
+  - fetch
+  - scan
+  - test
+ClamAVScanner: clamscan
+ClamAVOptions: --no-summary

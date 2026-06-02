@@ -58,6 +58,9 @@ sub load_config {
         DistfilesRoot  => '/mnt/magus/distfiles',
         PkgfilesRoot   => '/mnt/magus/packages',
         PkgExtension   => 'mport',
+        WorkerPhases   => [qw(build fetch scan test)],
+        ClamAVScanner   => 'clamscan',
+        ClamAVOptions   => '--no-summary',
         MasterDataDir  => 'ftp://stargazer.midnightbsd.org/pub/magus',
         MportsSnapDir  => 'runs',
         VcsRoot        => 'https://github.com/midnightbsd/',
@@ -81,4 +84,3 @@ BEGIN {load_config("$Magus::Root/config.yaml")};
 
 1;
 __END__
-
