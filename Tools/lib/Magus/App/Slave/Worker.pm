@@ -9,6 +9,7 @@ use IO::Select;
 use IPC::Open3 qw(open3);
 use Symbol qw(gensym);
 use Text::ParseWords qw(shellwords);
+use Mport::Globals qw($MAKE);
 
 sub run {
   my ($class, %args) = @_;
@@ -159,7 +160,7 @@ sub inject_distfiles {
   foreach my $distfile ($port->distfiles) {
     my $file = $self->distfile_cache_path($distfile->filename) or next;
     my $dest = join('/', $chroot->root, $chroot->distfiles, $file);
-    mkpath(dirname($dest));
+    $self->ensure_parent_dir($dest);
 
     my $src = "$Magus::Config{'DistfilesRoot'}/$run/$file";
 
@@ -332,7 +333,7 @@ sub upload_distfiles {
     my $file = $self->distfile_cache_path($distfile->filename) or next;
     my $from = join('/', $chroot->root, $chroot->distfiles, $file);
     my $dest = "$Magus::Config{'DistfilesRoot'}/$run/$file";
-    mkpath(dirname($dest));
+    $self->ensure_parent_dir($dest);
 
     $self->log->debug("uploading: $run/$file");
 
@@ -342,6 +343,14 @@ sub upload_distfiles {
       $self->log->debug("upload failed: $run/$file $out");
     }
   }
+}
+
+sub ensure_parent_dir {
+  my ($self, $path) = @_;
+
+  my $dir = dirname($path);
+  mkpath($dir) unless -d $dir;
+  die "Couldn't create $dir: $!\n" unless -d $dir;
 }
 
 sub replace_phase_log {
@@ -364,7 +373,39 @@ sub distfile_cache_path {
     return;
   }
 
+  my $subdir = $self->distfile_subdir;
+  return join('/', $subdir, $file) if length $subdir && $file !~ m{^\Q$subdir\E/};
   return $file;
+}
+
+sub distfile_subdir {
+  my ($self) = @_;
+
+  return $self->{distfile_subdir} if defined $self->{distfile_subdir};
+
+  my @cmd = ($MAKE, '-C', $self->{port}->origin, '-V', 'DIST_SUBDIR');
+  my $flavor = $self->{port}->flavor;
+  push @cmd, "FLAVOR=$flavor" if defined $flavor && length $flavor;
+
+  my ($exit, $out) = $self->run_command(@cmd);
+  chomp($out);
+
+  if ($exit != 0) {
+    $self->log->debug("Unable to determine DIST_SUBDIR for $self->{port}: $out");
+    return $self->{distfile_subdir} = '';
+  }
+
+  if ($out =~ /[[:cntrl:]]/) {
+    $self->log->err("Unsafe DIST_SUBDIR ignored for $self->{port}: $out");
+    return $self->{distfile_subdir} = '';
+  }
+
+  if ($out =~ m{(?:^|/)\.\.(?:/|$)} || $out =~ m{^/}) {
+    $self->log->err("Unsafe DIST_SUBDIR ignored for $self->{port}: $out");
+    return $self->{distfile_subdir} = '';
+  }
+
+  return $self->{distfile_subdir} = $out;
 }
 
 sub scanner_options {
