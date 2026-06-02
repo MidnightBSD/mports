@@ -94,9 +94,12 @@
     SUBDIR += php82-calendar
     SUBDIR += php83-calendar
     SUBDIR += py-hf-xet
+    SUBDIR += py-headroom-ai
     SUBDIR += py-huggingface-hub
     SUBDIR += py-lazrs
     SUBDIR += py-laspy
+    SUBDIR += py-litellm
+    SUBDIR += py-openai
     SUBDIR += py-openai-whisper
     SUBDIR += py-pexpect
     SUBDIR += py-python-utils

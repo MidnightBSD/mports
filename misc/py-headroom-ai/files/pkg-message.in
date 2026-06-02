@@ -1,0 +1,19 @@
+[
+{ type: install
+  message: <<EOM
+Headroom includes an rc.d script for proxy mode.
+
+To enable it:
+
+sysrc headroom_enable=YES
+sysrc headroom_env="OPENAI_API_KEY=your-key"
+service headroom start
+
+The package installs the lightweight proxy startup dependencies. Some
+Headroom proxy features use heavier optional components such as Magika,
+ONNX Runtime, Transformers, MCP, and sqlite-vec. Those are not all
+available in mports yet, and ONNX Runtime is not currently suitable for
+i386 package builds.
+EOM
+}
+]

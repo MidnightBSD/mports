@@ -1137,6 +1137,8 @@
     SUBDIR += py-aiosignal
     SUBDIR += py-amalgamate
     SUBDIR += py-aniso8601
+    SUBDIR += py-annotated-doc
+    SUBDIR += py-annotated-types
     SUBDIR += py-antlr4-python3-runtime
     SUBDIR += py-anyio
     SUBDIR += py-anytree
@@ -1153,6 +1155,7 @@
     SUBDIR += py-astroid
     SUBDIR += py-astroid2
     SUBDIR += py-asttokens
+    SUBDIR += py-ast-grep-cli
     SUBDIR += py-astunparse
     SUBDIR += py-async_generator
     SUBDIR += py-async_timeout
@@ -1255,6 +1258,7 @@
     SUBDIR += py-extras
     SUBDIR += py-factory-boy
     SUBDIR += py-Faker
+    SUBDIR += py-fastuuid
     SUBDIR += py-fasteners
     SUBDIR += py-fastimport
     SUBDIR += py-fastjsonschema
@@ -1387,6 +1391,7 @@
     SUBDIR += py-numba
     SUBDIR += py-objgraph
     SUBDIR += py-olefile
+    SUBDIR += py-opentelemetry-api
     SUBDIR += py-openapi-schema-validator
     SUBDIR += py-openapi-spec-validator
     SUBDIR += py-orderedmultidict
@@ -1440,6 +1445,8 @@
     SUBDIR += py-pycompilation
     SUBDIR += py-pycparser
     SUBDIR += py-pydantic
+    SUBDIR += py-pydantic-core
+    SUBDIR += py-pydantic2
     SUBDIR += py-pyelftools
     SUBDIR += py-pyflakes
     SUBDIR += py-pygdbmi
@@ -1619,6 +1626,7 @@
     SUBDIR += py-types-urllib3
     SUBDIR += py-typing-extensions
     SUBDIR += py-typing-inspect
+    SUBDIR += py-typing-inspection
     SUBDIR += py-tzdata
     SUBDIR += py-u-msgpack-python
     SUBDIR += py-ujson

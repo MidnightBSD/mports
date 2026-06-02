@@ -57,7 +57,8 @@ __PACKAGE__->has_many(critical => ['Magus::CriticalPorts' => 'pkgname' ] => 'pkg
 __PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=?');
 __PACKAGE__->set_sql(single_ready_port => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=? LIMIT 1');
 __PACKAGE__->set_sql(ready_fetch_ports => qq{
-      SELECT __ESSENTIAL__
+      SELECT __TABLE__.id, __TABLE__.run, __TABLE__.name, __TABLE__.version,
+             __TABLE__.status, __TABLE__.pkgname, __TABLE__.flavor
       FROM __TABLE__, port_phase_results
       WHERE port_phase_results.port=__TABLE__.id
         AND __TABLE__.run=?
@@ -70,7 +71,8 @@ __PACKAGE__->set_sql(ready_fetch_ports => qq{
       ORDER BY __TABLE__.name ASC
   });
 __PACKAGE__->set_sql(ready_test_ports => qq{
-      SELECT __ESSENTIAL__
+      SELECT __TABLE__.id, __TABLE__.run, __TABLE__.name, __TABLE__.version,
+             __TABLE__.status, __TABLE__.pkgname, __TABLE__.flavor
       FROM __TABLE__, port_phase_results
       WHERE port_phase_results.port=__TABLE__.id
         AND __TABLE__.run=?
@@ -84,7 +86,8 @@ __PACKAGE__->set_sql(ready_test_ports => qq{
       ORDER BY __TABLE__.name ASC
   });
 __PACKAGE__->set_sql(ready_scan_ports => qq{
-      SELECT __ESSENTIAL__
+      SELECT __TABLE__.id, __TABLE__.run, __TABLE__.name, __TABLE__.version,
+             __TABLE__.status, __TABLE__.pkgname, __TABLE__.flavor
       FROM __TABLE__, port_phase_results
       WHERE port_phase_results.port=__TABLE__.id
         AND __TABLE__.run=?

@@ -230,7 +230,8 @@ DROP TABLE "ready_ports" CASCADE\g
    "www"   text, 
    "status"   varchar(32), 
    "updated"   timestamp, 
-   "priority"   bigint 
+   "priority"   bigint,
+   "flavor" character varying(128)
 ) */;
 
 --
@@ -343,8 +344,13 @@ create VIEW ready_ports AS
            ports.updated AS updated,
           (SELECT count(0) AS COUNT
            FROM depends
-           WHERE depends.dependency = ports.id) AS priority
+           WHERE depends.dependency = ports.id) AS priority,
+           ports.flavor AS flavor
     FROM ports
+    INNER JOIN port_phase_results fetch_phase
+        ON fetch_phase.port = ports.id
+       AND fetch_phase.phase = 'fetch'
+       AND (fetch_phase.status = 'pass' OR fetch_phase.status = 'warn')
     LEFT JOIN locks on locks.port = ports.id and locks.phase = 'build'
     LEFT JOIN depends on depends.port = ports.id
     WHERE ports.status = 'untested' and locks.id is null and

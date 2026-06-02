@@ -1,0 +1,10 @@
+--- crates/headroom-core/Cargo.toml.orig	2026-06-02 21:42:00 UTC
++++ crates/headroom-core/Cargo.toml
+@@ -125,7 +125,7 @@ http = "1"
+ [target.'cfg(not(windows))'.dependencies]
+ fastembed = { version = "5", default-features = false, features = [
+     "hf-hub-rustls-tls",
+-    "ort-download-binaries-rustls-tls",
++    "ort-load-dynamic",
+     "image-models",
+ ] }
