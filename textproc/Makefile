@@ -334,6 +334,7 @@
     SUBDIR += py-html2text
     SUBDIR += py-htmlmin2
     SUBDIR += py-interegular
+    SUBDIR += py-jiter
     SUBDIR += py-junit-xml
     SUBDIR += py-latexcodec
     SUBDIR += py-license-expression
@@ -433,6 +434,7 @@
     SUBDIR += py-sphinxcontrib-websupport
     SUBDIR += py-texttable
     SUBDIR += py-tiktoken
+    SUBDIR += py-tokenizers
     SUBDIR += py-tinycss
     SUBDIR += py-tinycss2
     SUBDIR += py-toml

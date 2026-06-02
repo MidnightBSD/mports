@@ -276,6 +276,7 @@
     SUBDIR += py-django50
     SUBDIR += py-dropbox
     SUBDIR += py-falcon
+    SUBDIR += py-fastapi
     SUBDIR += py-flasgger
     SUBDIR += py-flask
     SUBDIR += py-flask-cors
@@ -309,6 +310,7 @@
     SUBDIR += py-pyjwt
     SUBDIR += py-pylsqpack
     SUBDIR += py-python-dotenv
+    SUBDIR += py-starlette
     SUBDIR += py-qt5-webengine
     SUBDIR += py-qt6-webengine
     SUBDIR += py-requests
@@ -327,6 +329,7 @@
     SUBDIR += py-soupsieve
     SUBDIR += py-tornado
     SUBDIR += py-treq
+    SUBDIR += py-uvicorn
     SUBDIR += py-waitress
     SUBDIR += py-webob
     SUBDIR += py-websocket-client
