@@ -33,6 +33,7 @@ package Magus::Lock;
 use base qw(Magus::DBI);
 use strict;
 use warnings;
+use Magus::Phase ();
 
 __PACKAGE__->table('locks');
 __PACKAGE__->columns(Essential => qw(id port phase machine));
@@ -113,11 +114,10 @@ sub _worker_phases {
   } elsif (defined $configured && length $configured) {
     @phases = split(/\s*,\s*|\s+/, $configured);
   } else {
-    @phases = qw(build fetch scan test);
+    @phases = Magus::Phase->default_worker_order;
   }
 
-  my %valid = map { $_ => 1 } qw(fetch build test scan);
-  @phases = grep { $valid{$_} } @phases;
+  @phases = grep { Magus::Phase->is_valid($_) } @phases;
   return @phases ? @phases : qw(build);
 }
 

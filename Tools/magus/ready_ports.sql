@@ -19,12 +19,12 @@ CREATE OR REPLACE VIEW ready_ports AS
           (depends.port is null or
              not exists
                   (SELECT depends.port AS port
-                   FROM depends WHERE ports.id = depends.port and not exists
+                   FROM depends WHERE ports.id = depends.port and (not exists
                      (SELECT ports.id as dep_id
                       FROM ports
                       WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
                       or exists
                          (SELECT 1
                           FROM locks dep_locks
-                          WHERE dep_locks.port = depends.dependency and dep_locks.phase = 'build')))
+                          WHERE dep_locks.port = depends.dependency and dep_locks.phase = 'build'))))
 ORDER BY priority desc, ports.name asc;

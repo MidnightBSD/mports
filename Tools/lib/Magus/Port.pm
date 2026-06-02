@@ -284,11 +284,7 @@ sub reset {
 
   $self->phase_logs->delete_all if $self->phase_logs;
   foreach my $phase_result ($self->phase_results) {
-    $phase_result->status('untested');
-    $phase_result->machine(undef);
-    $phase_result->started(undef);
-    $phase_result->finished(undef);
-    $phase_result->update;
+    $phase_result->set_status('untested');
   }
 
   $self->status('untested');
@@ -332,7 +328,10 @@ Returns the result row for a phase, creating it if needed.
 sub phase_result {
   my ($self, $phase) = @_;
 
-  return Magus::PhaseResult->retrieve(port => $self, phase => $phase) || Magus::PhaseResult->insert({
+  my ($result) = grep { $_->phase eq $phase } $self->phase_results;
+  return $result if $result;
+
+  return Magus::PhaseResult->insert({
     port   => $self,
     phase  => $phase,
     status => 'untested',

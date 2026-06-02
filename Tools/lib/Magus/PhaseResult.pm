@@ -7,8 +7,7 @@ use strict;
 use warnings;
 
 use base qw(Magus::DBI);
-
-use constant PHASES => qw(fetch build test scan);
+use Magus::Phase ();
 
 __PACKAGE__->table('port_phase_results');
 __PACKAGE__->columns(Essential => qw/id port phase status/);
@@ -19,7 +18,7 @@ __PACKAGE__->has_a(port    => 'Magus::Port');
 __PACKAGE__->has_a(machine => 'Magus::Machine');
 
 sub phase_names {
-  return PHASES;
+  return Magus::Phase->names;
 }
 
 sub ensure_for_port {
@@ -59,15 +58,26 @@ sub set_status {
     q{
       UPDATE port_phase_results
          SET status = ?,
-             machine = ?,
+             machine = CASE WHEN ? = 'untested' THEN NULL ELSE ? END,
              updated = CURRENT_TIMESTAMP,
-             started = CASE WHEN ? = 'running' THEN CURRENT_TIMESTAMP ELSE started END,
-             finished = CASE WHEN ? != 'running' THEN CURRENT_TIMESTAMP ELSE finished END
+             started = CASE
+                         WHEN ? = 'running' THEN CURRENT_TIMESTAMP
+                         WHEN ? = 'untested' THEN NULL
+                         ELSE started
+                       END,
+             finished = CASE
+                          WHEN ? = 'running' THEN NULL
+                          WHEN ? = 'untested' THEN NULL
+                          ELSE CURRENT_TIMESTAMP
+                        END
        WHERE id = ?
     },
     undef,
     $status,
+    $status,
     $machine_id,
+    $status,
+    $status,
     $status,
     $status,
     $self->id,

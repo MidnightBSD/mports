@@ -5,6 +5,10 @@ use warnings;
 
 use File::Basename qw(dirname);
 use File::Path qw(mkpath);
+use IO::Select;
+use IPC::Open3 qw(open3);
+use Symbol qw(gensym);
+use Text::ParseWords qw(shellwords);
 
 sub run {
   my ($class, %args) = @_;
@@ -134,14 +138,14 @@ sub inject_pkgfile {
   my $run  = $port->run->id;
   my $dest = join('/', $chroot->root, $chroot->packages, 'All');
   
-  my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$run/$file $dest";
+  my $src = "$Magus::Config{'PkgfilesRoot'}/$run/$file";
   
   $self->log->debug("downloading: $run/$file");
   
-  my $out = `$cmd 2>&1`;
+  my ($exit, $out) = $self->run_command('/usr/bin/scp', $src, $dest);
   
-  if ($? != 0) {
-    die "$cmd returned non-zero: $out\n";
+  if ($exit != 0) {
+    die "scp returned non-zero: $out\n";
   }
 }
 
@@ -157,13 +161,13 @@ sub inject_distfiles {
     my $dest = join('/', $chroot->root, $chroot->distfiles, $file);
     mkpath(dirname($dest));
 
-    my $cmd = "/usr/bin/scp $Magus::Config{'DistfilesRoot'}/$run/$file $dest";
+    my $src = "$Magus::Config{'DistfilesRoot'}/$run/$file";
 
     $self->log->debug("downloading: $run/$file");
 
-    my $out = `$cmd 2>&1`;
+    my ($exit, $out) = $self->run_command('/usr/bin/scp', $src, $dest);
 
-    if ($? != 0) {
+    if ($exit != 0) {
       $self->log->debug("download failed: $run/$file $out");
     }
   }
@@ -283,10 +287,8 @@ sub run_scan_phase {
   }
 
   my $scanner = $Magus::Config{ClamAVScanner} || 'clamscan';
-  my $options = $Magus::Config{ClamAVOptions} || '';
-  my $cmd = join(' ', grep { length } ($scanner, $options, _shell_quote($pkgfile))) . ' 2>&1';
-  my $out = `$cmd`;
-  my $exit = $? >> 8;
+  my @options = $self->scanner_options;
+  my ($exit, $out) = $self->run_command($scanner, @options, $pkgfile);
 
   $self->replace_phase_log(scan => $out);
 
@@ -310,14 +312,14 @@ sub upload_pkgfile {
   my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
   my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
   
-  my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$run/$file";
+  my $dest = "$Magus::Config{'PkgfilesRoot'}/$run/$file";
 
   $self->log->debug("uploading: $run/$file");
   
-  my $out = `$cmd 2>&1`;
+  my ($exit, $out) = $self->run_command('/usr/bin/scp', $from, $dest);
 
-  if ($? != 0 ) {
-     die "$cmd returned non-zero: $out\n";
+  if ($exit != 0 ) {
+     die "scp returned non-zero: $out\n";
   }
 }
 
@@ -332,13 +334,11 @@ sub upload_distfiles {
     my $dest = "$Magus::Config{'DistfilesRoot'}/$run/$file";
     mkpath(dirname($dest));
 
-    my $cmd = "/usr/bin/scp $from $dest";
-
     $self->log->debug("uploading: $run/$file");
 
-    my $out = `$cmd 2>&1`;
+    my ($exit, $out) = $self->run_command('/usr/bin/scp', $from, $dest);
 
-    if ($? != 0 ) {
+    if ($exit != 0 ) {
       $self->log->debug("upload failed: $run/$file $out");
     }
   }
@@ -354,6 +354,8 @@ sub replace_phase_log {
 sub distfile_cache_path {
   my ($self, $file) = @_;
 
+  return unless defined $file;
+
   $file =~ s/:[A-Za-z0-9_,]+$//;
   $file =~ s/\?.*$//;
 
@@ -365,11 +367,50 @@ sub distfile_cache_path {
   return $file;
 }
 
-sub _shell_quote {
-  my ($value) = @_;
+sub scanner_options {
+  my ($self) = @_;
 
-  $value =~ s/'/'\\''/g;
-  return "'$value'";
+  my $options = $Magus::Config{ClamAVOptions};
+  return unless defined $options && length $options;
+
+  my @args = ref($options) eq 'ARRAY' ? @$options : shellwords($options);
+  foreach my $arg (@args) {
+    die "Invalid ClamAV option contains a control character.\n"
+      if !defined($arg) || $arg =~ /[[:cntrl:]]/;
+  }
+
+  return @args;
+}
+
+sub run_command {
+  my ($self, @cmd) = @_;
+
+  foreach my $arg (@cmd) {
+    die "Invalid command argument contains a control character.\n"
+      if !defined($arg) || $arg =~ /[[:cntrl:]]/;
+  }
+
+  my $err = gensym;
+  my $pid = open3(undef, my $out_fh, $err, @cmd);
+  my $selector = IO::Select->new($out_fh, $err);
+  my $out = '';
+
+  while (my @ready = $selector->can_read) {
+    foreach my $fh (@ready) {
+      my $buf = '';
+      my $read = sysread($fh, $buf, 8192);
+      if ($read) {
+        $out .= $buf;
+      } else {
+        $selector->remove($fh);
+        close($fh);
+      }
+    }
+  }
+
+  waitpid($pid, 0);
+
+  return ($? >> 8, $out);
 }
 
 sub log {

@@ -351,12 +351,13 @@ create VIEW ready_ports AS
           (depends.port is null or
              not exists
                   (SELECT depends.port AS port
-                   FROM depends WHERE ports.id = depends.port and not exists  
+                   FROM depends WHERE ports.id = depends.port and (not exists
                      (SELECT ports.id as dep_id
                       FROM ports
                       WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
                       or
     exists (select 1 from locks dep_locks where dep_locks.port = depends.dependency and dep_locks.phase = 'build')))
+          )
 ORDER BY priority desc, ports.name asc;
 
 DROP TABLE "critical_ports" CASCADE\g

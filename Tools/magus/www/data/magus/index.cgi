@@ -656,10 +656,11 @@ sub port_page {
     $tmpl->param(log => $port->log);
   }
 
-  my @phase_logs = map {{
-    phase => $_,
-    data  => $port->phase_log($_),
-  }} grep { defined $port->phase_log($_) } qw(fetch test scan);
+  my @phase_logs;
+  for my $phase (Magus::Phase->nonbuild_names) {
+    my $data = $port->phase_log($phase);
+    push @phase_logs, { phase => $phase, data => $data } if defined $data;
+  }
 
   $tmpl->param(phase_logs => \@phase_logs) if @phase_logs;
   

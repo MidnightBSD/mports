@@ -8,6 +8,7 @@ BEGIN {
 }
 
 
+use Magus::Phase ();
 use Magus::Config;
 use Magus::Port ();
 use Magus::Lock ();

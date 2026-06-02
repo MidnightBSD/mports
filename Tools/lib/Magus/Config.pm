@@ -31,6 +31,7 @@ use strict;
 use warnings;
 use YAML qw(LoadFile);
 use Sys::Hostname qw(hostname);
+use Magus::Phase ();
 
 our %Config;
 
@@ -58,7 +59,7 @@ sub load_config {
         DistfilesRoot  => '/mnt/magus/distfiles',
         PkgfilesRoot   => '/mnt/magus/packages',
         PkgExtension   => 'mport',
-        WorkerPhases   => [qw(build fetch scan test)],
+        WorkerPhases   => [Magus::Phase->default_worker_order],
         ClamAVScanner   => 'clamscan',
         ClamAVOptions   => '--no-summary',
         MasterDataDir  => 'ftp://stargazer.midnightbsd.org/pub/magus',
