@@ -58,7 +58,7 @@ sub set_status {
     q{
       UPDATE port_phase_results
          SET status = ?,
-             machine = CASE WHEN ? = 'untested' THEN NULL ELSE ? END,
+             machine = CASE WHEN ? = 'untested' THEN NULL ELSE ?::integer END,
              updated = CURRENT_TIMESTAMP,
              started = CASE
                          WHEN ? = 'running' THEN CURRENT_TIMESTAMP
