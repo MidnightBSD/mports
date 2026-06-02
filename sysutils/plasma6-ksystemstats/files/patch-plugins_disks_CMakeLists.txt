@@ -1,0 +1,11 @@
+--- plugins/disks/CMakeLists.txt.orig	2026-05-06 12:50:32 UTC
++++ plugins/disks/CMakeLists.txt
+@@ -4,7 +4,7 @@
+ add_library(ksystemstats_plugin_disk MODULE  disks.cpp)
+ target_link_libraries(ksystemstats_plugin_disk Qt::Core KF6::CoreAddons KF6::I18n KF6::KIOCore KF6::Solid KSysGuard::SystemStats)
+ 
+-if (CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+     target_link_libraries(ksystemstats_plugin_disk geom devstat)
+ endif()
+ 
