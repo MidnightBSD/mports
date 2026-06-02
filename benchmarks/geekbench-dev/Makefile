@@ -15,7 +15,8 @@ LICENSE_NAME=	Geekbench End User License Agreement
 LICENSE_TEXT=	Don't sell it
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
-USES=		linux
+USES=		linux:rl9
+USE_LINUX=	ca-certificates
 
 NO_BUILD=	yes
 
