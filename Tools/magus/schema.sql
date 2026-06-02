@@ -165,6 +165,7 @@ update_ports();
 /*!50001 DROP VIEW IF EXISTS ready_ports*/;
 CREATE INDEX "ports_run_idx" ON "ports" USING btree ("run");
 CREATE INDEX "ports_name_idx" ON "ports" USING btree ("name");
+CREATE INDEX ports_run_status_pkgname_version_idx ON ports (run, status, pkgname, version);
 
 --
 -- Temporary table structure for view ready_ports
