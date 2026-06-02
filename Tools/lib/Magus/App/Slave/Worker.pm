@@ -10,6 +10,7 @@ use IPC::Open3 qw(open3);
 use Symbol qw(gensym);
 use Text::ParseWords qw(shellwords);
 use Mport::Globals qw($MAKE);
+use Magus::Run ();
 
 sub run {
   my ($class, %args) = @_;
@@ -174,8 +175,52 @@ sub inject_distfiles {
 
     if ($exit != 0) {
       $self->log->debug("download failed: $run/$file $out");
+      $self->inject_previous_run_distfile($file, $dest);
     }
   }
+}
+
+sub inject_previous_run_distfile {
+  my ($self, $file, $dest) = @_;
+
+  my $previous_run = $self->previous_run or return;
+  my $run = $previous_run->id;
+  my $src = "$Magus::Config{'DistfilesRoot'}/$run/$file";
+
+  $self->log->debug("downloading from previous run: $run/$file");
+
+  my ($exit, $out) = $self->run_command('/usr/bin/scp', $src, $dest);
+
+  if ($exit != 0) {
+    $self->log->debug("previous run download failed: $run/$file $out");
+  } else {
+    $self->log->debug("downloaded from previous run: $run/$file");
+  }
+}
+
+sub previous_run {
+  my ($self) = @_;
+
+  return $self->{previous_run} if exists $self->{previous_run};
+
+  my $run = $self->{port}->run;
+  my $run_id = Magus::Run->db_Main->selectrow_array(
+    q{
+      SELECT id
+        FROM runs
+       WHERE arch = ?
+         AND osversion = ?
+         AND id < ?
+       ORDER BY id DESC
+       LIMIT 1
+    },
+    undef,
+    $run->arch,
+    $run->osversion,
+    $run->id,
+  );
+
+  return $self->{previous_run} = $run_id ? Magus::Run->retrieve($run_id) : undef;
 }
 
 
