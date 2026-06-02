@@ -182,6 +182,7 @@
     SUBDIR += meld
     SUBDIR += minixmlto
     SUBDIR += mythes
+    SUBDIR += obsidian
     SUBDIR += openjade
     SUBDIR += opensearch
     SUBDIR += opensearch-dashboards
@@ -566,7 +567,6 @@
     SUBDIR += yelp-xsl
     SUBDIR += yq
     SUBDIR += zxing-cpp
-
     SUBDIR += gitlab-zoekt-indexer
     SUBDIR += rubygem-asciidoctor-include-ext
     SUBDIR += rubygem-asciidoctor-kroki
@@ -595,8 +595,6 @@
     SUBDIR += rubygem-truncato
     SUBDIR += rubygem-version_sorter
     SUBDIR += rubygem-wikicloth081
-
-
     SUBDIR += rubygem-actiontext-gitlab
     SUBDIR += rubygem-character_set
     SUBDIR += rubygem-citrus
@@ -607,9 +605,6 @@
     SUBDIR += rubygem-rubypants
     SUBDIR += rubygem-tomlrb
     SUBDIR += rubygem-twitter-text
-
-
     SUBDIR += rubygem-elasticsearch-transport-gitlab
-
 
 .include <bsd.port.subdir.mk>
