@@ -1,15 +1,16 @@
 PORTNAME=	libdmtx
 PORTVERSION=	0.7.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for reading and writing Data Matrix barcodes
+WWW=		https://libdmtx.sourceforge.net/
 
 LICENSE=	bsd2
 
-LIB_DEPENDS=	libMagickWand-6.so:graphics/ImageMagick6
+LIB_DEPENDS=	libMagickWand-7.so:graphics/ImageMagick7
 
 USES=		tar:bzip2 libtool
 GNU_CONFIGURE=	yes
