@@ -522,12 +522,12 @@ sub run_page {
   $tmpl->param(status_stats => $status_stats);
 
   my $phase_sth = $dbh->prepare("
-    SELECT phase, status, COUNT(*) AS count
+    SELECT phase, port_phase_results.status, COUNT(*) AS count
     FROM port_phase_results
     INNER JOIN ports ON port_phase_results.port = ports.id
     WHERE ports.run=?
-    GROUP BY phase, status
-    ORDER BY phase, status
+    GROUP BY phase, port_phase_results.status
+    ORDER BY phase, port_phase_results.status
   ");
   $phase_sth->execute($run->id);
   my $phase_stats = $phase_sth->fetchall_arrayref({});
