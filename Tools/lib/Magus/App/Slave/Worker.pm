@@ -160,6 +160,10 @@ sub inject_distfiles {
   foreach my $distfile ($port->distfiles) {
     my $file = $self->distfile_cache_path($distfile->filename) or next;
     my $dest = join('/', $chroot->root, $chroot->distfiles, $file);
+    if (-e $dest) {
+      $self->log->debug("download skipped, already present: $run/$file");
+      next;
+    }
     $self->ensure_parent_dir($dest);
 
     my $src = "$Magus::Config{'DistfilesRoot'}/$run/$file";
@@ -333,6 +337,10 @@ sub upload_distfiles {
     my $file = $self->distfile_cache_path($distfile->filename) or next;
     my $from = join('/', $chroot->root, $chroot->distfiles, $file);
     my $dest = "$Magus::Config{'DistfilesRoot'}/$run/$file";
+    if (-e $dest) {
+      $self->log->debug("upload skipped, already present: $run/$file");
+      next;
+    }
     $self->ensure_parent_dir($dest);
 
     $self->log->debug("uploading: $run/$file");
