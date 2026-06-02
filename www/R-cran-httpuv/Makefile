@@ -17,9 +17,10 @@ CRAN_DEPENDS=	R-cran-later>=0.8.0:devel/R-cran-later \
 BUILD_DEPENDS=	${CRAN_DEPENDS}
 LIB_DEPENDS=	libuv.so:devel/libuv
 RUN_DEPENDS=	${CRAN_DEPENDS}
-TEST_DEPENDS=	R-cran-curl>0:ftp/R-cran-curl \
-		R-cran-testthat>0:devel/R-cran-testthat
 
 USES=		cran:auto-plist,compiles pkgconfig
+
+# curl needs it and it needs curl for tests..
+NO_TEST=	yes
 
 .include <bsd.port.mk>
