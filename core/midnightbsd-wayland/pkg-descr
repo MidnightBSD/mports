@@ -1,0 +1,5 @@
+MidnightBSD Wayland session metaport.
+
+This installs the core Wayland libraries and protocols, seat management,
+input and keyboard support, Xwayland compatibility, a wlroots-based
+compositor, and basic session utilities.

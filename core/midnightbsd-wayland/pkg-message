@@ -1,0 +1,21 @@
+[
+{ type: install
+  message: <<EOM
+The MidnightBSD Wayland session environment is installed.
+
+For a direct console Wayland session, add your user to the video group and
+start the compositor with seatd-launch:
+
+  # pw groupmod video -m <user>
+
+Log out and back in to refresh group membership, then run:
+
+  $ seatd-launch sway
+
+Alternatively, enable seatd as a system service:
+
+  # sysrc seatd_enable=YES
+  # service seatd start
+EOM
+}
+]
