@@ -3,6 +3,15 @@
   message: <<EOM
 The MidnightBSD Wayland session environment is installed.
 
+Wayland compositors need a GPU driver that provides kernel mode setting
+and a DRM device, usually visible as /dev/dri/card0. Intel and AMD systems
+typically need the matching drm/gpu-firmware kernel module and Mesa DRI
+installed. NVIDIA systems need a DRM-capable NVIDIA kernel module.
+
+Framebuffer-only or vesa-style graphics are not enough for a native
+Wayland session. If /dev/dri/card* is missing, load/configure the
+appropriate graphics driver before starting the compositor.
+
 For a direct console Wayland session, add your user to the video group and
 start the compositor with seatd-launch:
 
