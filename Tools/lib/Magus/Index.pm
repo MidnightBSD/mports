@@ -349,8 +349,8 @@ sub mark_ignored {
     my $ignore = $dump->{ignore} // "";
 
     if ($class->ignore_is_metaport($ignore)) {
-      print "\n\tMetaport.  Marking as internal.";
-      $port->set_result_internal($ignore);
+      print "\n\tMetaport.  Marking as skipped.";
+      $port->set_result_skip($ignore);
       Magus::PhaseResult->mark_nonbuild_skip($port);
     } elsif ($dump->{is_interactive}) {
       print "\n\tIGNORE set.  Marking as skipped.";
