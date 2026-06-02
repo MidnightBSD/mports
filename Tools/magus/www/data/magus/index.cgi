@@ -527,7 +527,14 @@ sub run_page {
     INNER JOIN ports ON port_phase_results.port = ports.id
     WHERE ports.run=?
     GROUP BY phase, port_phase_results.status
-    ORDER BY phase, port_phase_results.status
+    ORDER BY CASE phase
+               WHEN 'fetch' THEN 1
+               WHEN 'build' THEN 2
+               WHEN 'test' THEN 3
+               WHEN 'scan' THEN 4
+               ELSE 5
+             END,
+             phase, port_phase_results.status
   ");
   $phase_sth->execute($run->id);
   my $phase_stats = $phase_sth->fetchall_arrayref({});
