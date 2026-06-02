@@ -14,6 +14,7 @@
     SUBDIR += hikari
     SUBDIR += i3
     SUBDIR += icewm
+    SUBDIR += labwc
     SUBDIR += libcompizconfig
     SUBDIR += libdockapp
     SUBDIR += libwraster
