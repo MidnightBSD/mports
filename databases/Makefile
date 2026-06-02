@@ -46,7 +46,6 @@
     SUBDIR += linux-oracle-instantclient-basic
     SUBDIR += linux-oracle-instantclient-sdk
     SUBDIR += linux-rl9-libtracker-sparql
-    SUBDIR += linux-rl9-sqlite3
     SUBDIR += lmdb
     SUBDIR += lua-xapian
     SUBDIR += mariadb-connector-c
