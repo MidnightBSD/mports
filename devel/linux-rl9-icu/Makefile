@@ -1,19 +1,19 @@
 PORTNAME=	icu
 PORTVERSION=	67.1
-DISTVERSIONSUFFIX=	-9.el9
-PORTREVISION=	1
+DISTVERSIONSUFFIX=	-10.el9_6
+PORTREVISION=	2
 CATEGORIES=	devel linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	International Components for Unicode (Rocky Linux ${LINUX_DIST_VER})
 WWW=		http://site.icu-project.org/
 
-LICENSE=        icu
-LICENSE_NAME=   ICU license
+LICENSE=	icu
+LICENSE_NAME=	ICU license
 LICENSE_TEXT=	ICU License
-LICENSE_PERMS=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	${PORTNAME}-project

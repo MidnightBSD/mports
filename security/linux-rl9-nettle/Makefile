@@ -1,7 +1,6 @@
 PORTNAME=	nettle
-PORTVERSION=	3.9.1
+PORTVERSION=	3.10.1
 DISTVERSIONSUFFIX=	-1.el9
-PORTREVISION=	1
 CATEGORIES=	security linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +9,7 @@ WWW=		https://www.lysator.liu.se/~nisse/nettle/
 
 LICENSE=	MPL20
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	${PORTNAME}_project

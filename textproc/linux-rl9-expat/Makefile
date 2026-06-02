@@ -1,7 +1,7 @@
 PORTNAME=	expat
 PORTVERSION=	2.5.0
-DISTVERSIONSUFFIX=	-3.el9_5.3
-PORTREVISION=	6
+DISTVERSIONSUFFIX=	-5.el9_6
+PORTREVISION=	7
 CATEGORIES=	textproc linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/libexpat/libexpat
 
 LICENSE=	mit
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	${CPE_PRODUCT}_project
