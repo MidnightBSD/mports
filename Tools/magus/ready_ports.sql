@@ -11,7 +11,8 @@ CREATE OR REPLACE VIEW ready_ports AS
            ports.updated AS updated,
           (SELECT count(0) AS COUNT
            FROM depends
-           WHERE depends.dependency = ports.id) AS priority
+           WHERE depends.dependency = ports.id) AS priority,
+           ports.flavor AS flavor
     FROM ports
     LEFT JOIN locks on locks.port = ports.id and locks.phase = 'build'
     LEFT JOIN depends on depends.port = ports.id
