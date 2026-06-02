@@ -29,6 +29,7 @@ SUCH DAMAGE.
 #include <pqxx/pqxx>
 #include <stdexcept>
 #include <cstring>
+#include <cctype>
 #include <string>
 #include <vector>
 
@@ -44,9 +45,77 @@ using namespace pqxx;
 
 const std::string DB_DATABASE = "magus";
 
+static bool
+safe_relative_path(const std::filesystem::path &path)
+{
+    if (path.empty() || path.is_absolute())
+        return false;
+
+    for (const auto &part : path) {
+        if (part == "..")
+            return false;
+    }
+
+    return true;
+}
+
+static std::string
+normalize_distfile_name(std::string filename)
+{
+    size_t query = filename.find('?');
+    if (query != std::string::npos)
+        filename.erase(query);
+
+    size_t slash = filename.find_last_of('/');
+    size_t colon = filename.find_last_of(':');
+    if (colon != std::string::npos &&
+        (slash == std::string::npos || colon > slash)) {
+        bool tag = colon + 1 < filename.size();
+        for (size_t i = colon + 1; i < filename.size(); i++) {
+            unsigned char ch = static_cast<unsigned char>(filename[i]);
+            if (!std::isalnum(ch) && filename[i] != '_') {
+                tag = false;
+                break;
+            }
+        }
+
+        if (tag)
+            filename.erase(colon);
+    }
+
+    return filename;
+}
+
+static std::filesystem::path
+find_distfile(const std::filesystem::path &root, const std::string &filename)
+{
+    namespace fs = std::filesystem;
+    fs::path relative{normalize_distfile_name(filename)};
+
+    if (!safe_relative_path(relative))
+        return {};
+
+    fs::path direct = root / relative;
+    if (fs::exists(direct))
+        return relative;
+
+    if (!fs::exists(root))
+        return {};
+
+    fs::path basename = relative.filename();
+    for (const auto &entry : fs::recursive_directory_iterator(root)) {
+        if (!entry.is_regular_file())
+            continue;
+
+        if (entry.path().filename() == basename)
+            return fs::relative(entry.path(), root);
+    }
+
+    return {};
+}
+
 int main(int argc, char *argv[])
 {
-    char query_def[1000];
     int runid;
 
 	// Default values
@@ -151,7 +220,16 @@ int main(int argc, char *argv[])
 				std::string filename = row[4].as<std::string>();
 
 				namespace fs = std::filesystem;
-				fs::path src{string(dsrc) + "/" + filename};
+				fs::path src_root{dsrc};
+				fs::path relative = find_distfile(src_root, filename);
+				if (relative.empty())
+				{
+					std::cout << "File " << (src_root / normalize_distfile_name(filename)) << " does not exist" << std::endl;
+					missing_count++;
+					continue;
+				}
+
+				fs::path src = src_root / relative;
 				if (!fs::exists(src))
 				{
 					std::cout << "File " << src << " does not exist" << std::endl;
@@ -166,7 +244,7 @@ int main(int argc, char *argv[])
 					continue;
 				}
 
-				fs::path dest{string(ddest) + "/" + filename};
+				fs::path dest{fs::path{ddest} / relative};
 				if (!fs::exists(dest))
 				{
 					try {
@@ -208,10 +286,11 @@ int main(int argc, char *argv[])
 				std::string filename = c[4].as<std::string>();
 
 				namespace fs = std::filesystem;
-				fs::path f{string(ddest) + "/" + filename};
+				fs::path relative = find_distfile(fs::path{ddest}, filename);
+				fs::path f = relative.empty() ? fs::path{ddest} / filename : fs::path{ddest} / relative;
 				if (fs::exists(f))
 				{
-					std::cout << name << " , license: " << license << " , filename: " << filename << std::endl;
+					std::cout << name << " , license: " << license << " , filename: " << f << std::endl;
 				}
 			}
 		}
