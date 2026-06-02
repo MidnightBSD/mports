@@ -10,8 +10,8 @@ WWW=		https://www.gnupg.org/software/libgcrypt/index.html
 LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	libgpg-error>=1.32:security/libgpg-error
-RUN_DEPENDS=	libgpg-error>=1.32:security/libgpg-error
+BUILD_DEPENDS=	libgpg-error>=1.56:security/libgpg-error
+RUN_DEPENDS=	libgpg-error>=1.56:security/libgpg-error
 
 USES=		cpe libtool makeinfo pathfix tar:bzip2
 CPE_VENDOR=	gnupg

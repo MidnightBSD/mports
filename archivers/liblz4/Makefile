@@ -34,6 +34,7 @@ MESON_ARGS=	--default-library=both \
 		-Duser-memory-functions=false
 USE_LDCONFIG=	yes
 WRKSRC_SUBDIR=	build/meson
+ALL_TARGET=
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 

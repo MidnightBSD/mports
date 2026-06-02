@@ -82,7 +82,8 @@ KRB5_LOCALSTATEDIR=	"${PREFIX}/var"
 .if !defined(KRB5_RUNSTATEDIR)
 KRB5_RUNSTATEDIR=	"${PREFIX}/var/run"
 .endif
-CONFIGURE_ARGS+=	--runstatedir="${KRB5_RUNSTATEDIR}"
+# krb5 1.21 derives runstatedir from localstatedir but does not accept
+# --runstatedir as a configure option.
 CONFIGURE_ARGS+=	--localstatedir="${KRB5_LOCALSTATEDIR}"
 PLIST_SUB+=		KRB5_LOCALSTATEDIR=${KRB5_LOCALSTATEDIR}
 PLIST_SUB+=		KRB5_RUNSTATEDIR=${KRB5_RUNSTATEDIR}
