@@ -25,4 +25,6 @@ USE_PERL5=	build
 USE_GNOME=	libxml2
 INSTALL_TARGET=	install-strip
 
+PLIST_SUB=	LIBVERSION=1.0.${PORTVERSION:E}
+
 .include <bsd.port.mk>
