@@ -16,6 +16,7 @@ LICENSE_FILE_bsd2=${WRKSRC}/../../lib/LICENSE
 LICENSE_FILE_gpl2=	${WRKSRC}/../../programs/COPYING
 
 USES=		cpe meson:muon pkgconfig python:build
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 MESON_ARGS=	--default-library=both \
 		-Dalign-test=true \
