@@ -127,7 +127,11 @@ electron-fetch-node-package-manager:
 		${FETCH_CMD} -o ${YARN_TGZ} ${YARN_NPM_URL}; \
 	fi
 	${MKDIR} ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}
-	${TAR} -xzOf ${YARN_TGZ} package/bin/yarn.js > \
+	yarn_path=package/bin/yarn.js; \
+	if ! ${TAR} -tzf ${YARN_TGZ} $${yarn_path} >/dev/null 2>&1; then \
+		yarn_path=yarn/${NPM_VER}/yarn.js; \
+	fi; \
+	${TAR} -xzOf ${YARN_TGZ} $${yarn_path} > \
 		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
 	${CHMOD} 755 ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
 	hash=$$(sha512 -q ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js); \
@@ -439,7 +443,11 @@ pre-configure:
 	# (The node-modules distfile is an offline Yarn cache, not a full node_modules tree.)
 	@${MKDIR} ${NPM_BINDIR} ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}
 	${SETENV} ${MAKE_ENV} corepack enable --install-directory ${NPM_BINDIR}
-	${TAR} -xzOf ${YARN_TGZ} package/bin/yarn.js > \
+	yarn_path=package/bin/yarn.js; \
+	if ! ${TAR} -tzf ${YARN_TGZ} $${yarn_path} >/dev/null 2>&1; then \
+		yarn_path=yarn/${NPM_VER}/yarn.js; \
+	fi; \
+	${TAR} -xzOf ${YARN_TGZ} $${yarn_path} > \
 		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
 	${CHMOD} 755 ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
 	hash=$$(sha512 -q ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js); \
