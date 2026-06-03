@@ -42,7 +42,7 @@ LIBDIR?=	${PREFIX}/libexec/${PORTNAME}
 PSTDIR?=	${DATADIR}/font/devpost/postscript
 MANDIR?=	${PREFIX}/man
 
-PORTDOCS=	 *
+PORTDOCS=	*
 
 MAKE_JOBS_UNSAFE=	yes
 

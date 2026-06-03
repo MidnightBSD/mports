@@ -59,7 +59,9 @@ man/man1/tbl.1.gz
 man/man1/troff.1.gz
 man/man1/vgrind.1.gz
 man/man7/eqnchar.7.gz
+man/man7/man.7.gz
 man/man7/mcolor.7.gz
+man/man7/mdoc.7.gz
 man/man7/mpictures.7.gz
 %%DATADIR%%/font/devhtml/B
 %%DATADIR%%/font/devhtml/BI
@@ -177,8 +179,8 @@ man/man7/mpictures.7.gz
 %%DATADIR%%/font/devpost/charlib/Fl
 %%DATADIR%%/font/devpost/charlib/L1
 %%DATADIR%%/font/devpost/charlib/L1.map
-%%DATADIR%%/font/devpost/charlib/LH
 %%DATADIR%%/font/devpost/charlib/LH.map
+%%DATADIR%%/font/devpost/charlib/LH_uc
 %%DATADIR%%/font/devpost/charlib/Lb
 %%DATADIR%%/font/devpost/charlib/Lb.map
 %%DATADIR%%/font/devpost/charlib/OLD_LH
