@@ -41,14 +41,14 @@ do-build:
 		config.cxx.coptions="${CXXFLAGS}" \
 		config.cxx.loptions="${LDFLAGS} -s" \
 		config.bin.lib=static \
-		build2/exe{b} \
+		b/exe{b} \
 		-V -j ${MAKE_JOBS_NUMBER} -J ${MAKE_JOBS_NUMBER}
-	${MV} ${WRKSRC}/build2/build2/b ${WRKSRC}/build2/build2/b-boot
+	${MV} ${WRKSRC}/build2/b/b ${WRKSRC}/build2/b/b-boot
 
 do-install:
 # "stage" (local installation)
 	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} \
-		./build2/build2/b-boot configure \
+		./build2/b/b-boot configure \
 		config.cxx=${CXX} \
 		config.cxx.coptions="${CXXFLAGS}" \
 		config.cxx.loptions="${LDFLAGS} -s" \
@@ -58,10 +58,10 @@ do-install:
 		config.install.chroot=${FAKE_DESTDIR} \
 		config.install.root=${TRUE_PREFIX}
 	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${FAKE_MAKEENV} \
-		./build2/build2/b-boot install: build2/ bpkg/ bdep/ \
+		./build2/b/b-boot install: build2/ bpkg/ bdep/ \
 		-V -j ${MAKE_JOBS_NUMBER} -J ${MAKE_JOBS_NUMBER}
 	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${FAKE_MAKEENV} \
-		./build2/build2/b-boot install: '!config.install.scope=project' libbuild2-*/ \
+		./build2/b/b-boot install: '!config.install.scope=project' libbuild2-*/ \
 		-V -j ${MAKE_JOBS_NUMBER} -J ${MAKE_JOBS_NUMBER}
 
 .include <bsd.port.mk>
