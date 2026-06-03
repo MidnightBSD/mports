@@ -13,6 +13,8 @@ LICENSE=	mit
 RUN_DEPENDS=	rubygem-activerecord-gitlab>=4.2<9:databases/rubygem-activerecord-gitlab \
 		rubygem-flipper-gitlab>=${PORTVERSION}<1.4:devel/rubygem-flipper-gitlab
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
+
 USES=		gem
 
 NO_ARCH=	yes
