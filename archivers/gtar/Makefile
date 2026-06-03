@@ -42,6 +42,10 @@ STATIC_CONFIGURE_ENV=	SHLIBEXT=""
 STATIC_VARS=	STATIC_ARGS=build
 STATIC_VARS_OFF=	STATIC_ARGS=lib
 
+.if ${ARCH:U} == i386
+CONFIGURE_ARGS+=	--disable-year2038
+.endif
+
 NO_TEST=	yes
 
 .include <bsd.port.mk>
