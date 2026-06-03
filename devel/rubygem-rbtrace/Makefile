@@ -10,6 +10,7 @@ WWW=		https://github.com/tmm1/rbtrace
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-ffi>=1.0.6:devel/rubygem-ffi \
 		rubygem-msgpack>=0.4.3:devel/rubygem-msgpack \
 		rubygem-optimist>=3.0.0:devel/rubygem-optimist
@@ -19,7 +20,6 @@ USES=		gem
 CONFIGURE_ARGS=	--with-cflags=-Wno-incompatible-function-pointer-types
 
 PIE_UNSAFE=	yes
-
 
 PLIST_FILES=	bin/rbtrace
 
