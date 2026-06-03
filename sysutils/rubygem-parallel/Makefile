@@ -8,7 +8,7 @@ COMMENT=	Run any kind of code in parallel processes
 WWW=		https://github.com/grosser/parallel
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE.txt
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE.txt
 
 USES=		gem
 
