@@ -1,6 +1,12 @@
+[
+{ type: install
+  message: <<EOM
 *******************************************************************************
 *                                                                             *
 * Do not forget to add COMPAT_FREEBSD8 into                                   *
 * your kernel configuration (enabled by default).                             *
 *                                                                             *
 *******************************************************************************
+EOM
+}
+]

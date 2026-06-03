@@ -2505,6 +2505,7 @@
     SUBDIR += tradcpp
     SUBDIR += tree-sitter
     SUBDIR += trio
+    SUBDIR += uclcmd
     SUBDIR += unibilium
     SUBDIR += universal-ctags
     SUBDIR += upnp

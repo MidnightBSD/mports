@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 ---------------------------------------------------
 
 you should add in /etc/make.conf:
@@ -33,3 +36,6 @@ You may also need to update /etc/rc.conf.
 
 if you use smrsh with other tools such as GNU mailman, you will need to
 create a symlink in /usr/local/libexec/sm.bin
+EOM
+}
+]

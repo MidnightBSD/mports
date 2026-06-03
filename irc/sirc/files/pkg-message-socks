@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 
 ***************************************************************************
 	SOCKS support has been added.  To take advantage of it you
@@ -10,3 +13,6 @@ $ENV{"SOCKS_SERVER"}	=		# You must set this
 &load("socks.pl");
 ***************************************************************************
 
+EOM
+}
+]

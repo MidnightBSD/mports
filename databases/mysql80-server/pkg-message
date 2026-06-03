@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 *****************************************************************************
 
 WARNING: THIS IS STILL-IN-DEV PROJECT! USE WITH CAUTION ON PRODUCTION ENVS!
@@ -16,3 +19,6 @@ remember to replace it wit your own
 or set `mysql_optfile="$YOUR_CNF_FILE` in rc.conf.
 
 *****************************************************************************
+EOM
+}
+]

@@ -1,0 +1,2 @@
+py-ucl provides Python bindings for libucl, a parser and emitter for the
+Universal Configuration Language.

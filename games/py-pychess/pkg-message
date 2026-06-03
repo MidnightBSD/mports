@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 PyChess can let you play against others online.
 
 To play against your own computer, install one or more of the
@@ -8,3 +11,6 @@ game-engines:
 	* games/phalanx
 	* games/sjeng
 	* games/stockfish
+EOM
+}
+]

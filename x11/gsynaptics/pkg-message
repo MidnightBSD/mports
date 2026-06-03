@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 ===============================================================================
 
 			* SETUP NOTE * SETUP NOTE *
@@ -29,3 +32,6 @@ o To use your setting value at each time of starting of Xserver,
     .xsession. 
 
 ===============================================================================
+EOM
+}
+]

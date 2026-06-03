@@ -444,6 +444,7 @@
     SUBDIR += py-tomlkit
     SUBDIR += py-towncrier
     SUBDIR += py-typogrify
+    SUBDIR += py-ucl
     SUBDIR += py-wcmatch
     SUBDIR += py-xlrd
     SUBDIR += py-xmlschema

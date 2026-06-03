@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 multimedia/%%PORTNAME%% includes an RC script:
@@ -16,3 +19,6 @@ This is the PlexPass release channel of Plex. It is bleeding edge and
 new features may not function without an active PlexPass account.
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+EOM
+}
+]

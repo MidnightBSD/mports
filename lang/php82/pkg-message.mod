@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 ******************************************************************************
 
 Consider switching to php-fpm and mod_fast_cgi as per Apache httpd project
@@ -22,3 +25,6 @@ You should add the following to your Apache configuration file:
 </FilesMatch>
 
 ******************************************************************************
+EOM
+}
+]
