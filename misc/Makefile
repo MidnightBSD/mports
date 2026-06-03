@@ -57,6 +57,7 @@
     SUBDIR += kgeography
     SUBDIR += klettres
     SUBDIR += kwordquiz
+    SUBDIR += lean-ctx
     SUBDIR += libkeduvocdocument
     SUBDIR += libspnav
     SUBDIR += libuuid
