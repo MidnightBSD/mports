@@ -10,6 +10,7 @@ WWW=		https://github.com/github/ssh_data
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	rubygem-base64>=0.1<1:converters/rubygem-base64
 RUN_DEPENDS=	rubygem-base64>=0.1<1:converters/rubygem-base64
 
 USES=		gem
