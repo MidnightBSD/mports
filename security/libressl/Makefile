@@ -47,15 +47,16 @@ CFLAGS+=	-fpic -DPIC -Wl,-rpath,${PREFIX}/lib -Wl,--as-needed
 LDFLAGS+=	-pthread
 
 INSTALL_TARGET=	install-strip
+MAKE_JOBS_UNSAFE=	yes
 #TEST_TARGET=	check
 NO_TEST=	yes
 
-PLIST_SUB+=	LIBCRYPTO_SHLIBMAJ=56 \
-		LIBCRYPTO_SHLIBFULL=56.0.0 \
-		LIBSSL_SHLIBMAJ=59 \
-		LIBSSL_SHLIBFULL=59.0.1 \
-		LIBTLS_SHLIBMAJ=32 \
-		LIBTLS_SHLIBFULL=32.0.1
+PLIST_SUB+=	LIBCRYPTO_SHLIBMAJ=57 \
+		LIBCRYPTO_SHLIBFULL=57.0.2 \
+		LIBSSL_SHLIBMAJ=60 \
+		LIBSSL_SHLIBFULL=60.0.2 \
+		LIBTLS_SHLIBMAJ=33 \
+		LIBTLS_SHLIBFULL=33.0.2
 
 post-patch-MAN3-off:
 	${REINPLACE_CMD} -e '/^install-man:/s/install-man3//' \
@@ -67,8 +68,8 @@ post-install:
 	${RMDIR} ${PREFIX}/etc/ssl/certs
 	${LN} -s /etc/ssl/certs ${PREFIX}/etc/ssl/certs
 
-post-fake-MAN3-on:
-	(cd ${FAKE_DESTDIR}${MANPREFIX}; ${FIND} share/man/man3 -not -type d | \
+post-install-MAN3-on:
+	(cd ${FAKE_DESTDIR}${PREFIX}; ${FIND} share/man/man3 -not -type d | \
 		${SED} 's/$$/.gz/' >> ${TMPPLIST})
 
 .include <bsd.port.mk>
