@@ -10,6 +10,7 @@ WWW=		https://github.com/duosecurity/duo_api_ruby
 
 LICENSE=	bsd3
 
+BUILD_DEPENDS=	rubygem-base6402>=0.2.0<0.3:converters/rubygem-base6402
 RUN_DEPENDS=	rubygem-base6402>=0.2.0<0.3:converters/rubygem-base6402
 
 USES=		gem

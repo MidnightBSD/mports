@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 RUN_DEPENDS=	bash:shells/bash \
 		rubygem-bigdecimal-gitlab>=3.1<4:math/rubygem-bigdecimal-gitlab
 
+BUILD_DEPENDS=	rubygem-bigdecimal-gitlab>=3.1<4:math/rubygem-bigdecimal-gitlab
+
 USES=		gem shebangfix
 
 NO_ARCH=	yes
