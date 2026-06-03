@@ -100,6 +100,7 @@
     SUBDIR += py-lazrs
     SUBDIR += py-laspy
     SUBDIR += py-litellm
+    SUBDIR += py-litellm-proxy-extras
     SUBDIR += py-openai
     SUBDIR += py-openai-whisper
     SUBDIR += py-pexpect
