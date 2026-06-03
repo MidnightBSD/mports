@@ -15,7 +15,7 @@ NO_BUILD=	yes
 PLIST_FILES=	${DATADIR}/i18n/${PORTNAME}_${I18N_LANG}.qm
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/i18n
-	${INSTALL_DATA} ${WRKSRC}/eric/eric6/i18n/${PORTNAME}_${I18N_LANG}.qm ${STAGEDIR}${DATADIR}/i18n/
+	${MKDIR} ${DATADIR}/i18n
+	${INSTALL_DATA} ${WRKSRC}/eric/eric6/i18n/${PORTNAME}_${I18N_LANG}.qm ${DATADIR}/i18n/
 
 .include <bsd.port.mk>
