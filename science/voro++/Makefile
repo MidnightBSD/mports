@@ -17,6 +17,6 @@ USE_LDCONFIG=	yes
 CFLAGS+=	-fPIC
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/voro++
+	@${STRIP_CMD} ${PREFIX}/bin/voro++
 
 .include <bsd.port.mk>
