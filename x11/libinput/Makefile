@@ -1,5 +1,5 @@
 PORTNAME=	libinput
-DISTVERSION=	1.28.1
+DISTVERSION=	1.31.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,7 +16,7 @@ LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libudev.so:devel/libudev-devd \
 		libmtdev.so:devel/libmtdev
 
-USES=		cpe localbase meson pkgconfig python:run shebangfix
+USES=		cpe localbase lua meson pkgconfig python:run shebangfix
 USE_LDCONFIG=	yes
 
 USE_GITLAB=	yes
