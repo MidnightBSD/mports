@@ -13,8 +13,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activemodel70>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel70 \
-		rubygem-activesupport70>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport70
+RUN_DEPENDS=	rubygem-activemodel70>=${PORTVERSION}<7.1:databases/rubygem-activemodel70 \
+		rubygem-activesupport70>=${PORTVERSION}<7.1:devel/rubygem-activesupport70
 
 USES=		gem
 
