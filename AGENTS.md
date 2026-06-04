@@ -151,7 +151,7 @@ For new ports, generate an initial `pkg-plist` after staging:
 - `bmake fake && bmake makeplist — this generates a gen-plist file in the port directory` — review and trim the result; do not include directories owned by other ports.
 - Add `@dir` commands near the bottom of `pkg-plist` for any directories the port creates that are not owned by a dependency (e.g., `@dir lib/myapp`).
 - For x11-fonts ports that install fonts, add this to the bottom of the `pkg-plist` file  `@postexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true`
-- Add `@sample` before any files in the plist that end in .sample.  This will install the files with and without the suffix .sample 
+- Configuration example files typically end in `.sample`; add `@sample` before them in `pkg-plist` (e.g., `@sample etc/myfile.sample`). This installs the file with and without the `.sample` suffix.
 
 If `portlint` is available, run it before committing. If it is not installed, skip this step — do not install it automatically.
 
