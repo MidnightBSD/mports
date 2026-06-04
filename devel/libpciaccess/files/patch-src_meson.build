@@ -1,11 +1,11 @@
---- src/meson.build.orig	2025-01-24 09:27:41.930005000 -0500
-+++ src/meson.build	2025-01-24 09:27:54.753063000 -0500
-@@ -24,6 +24,8 @@
+--- src/meson.build.orig	2026-06-04 09:23:19.970525000 -0400
++++ src/meson.build	2026-06-04 09:23:50.068277000 -0400
+@@ -22,7 +22,7 @@
+ _pci_access_host_files = []
+ if host == 'linux'
    _pci_access_host_files += ['linux_sysfs.c', 'linux_devmem.c', 'common_vgaarb.c']
- elif host == 'freebsd'
+-elif ['freebsd', 'dragonfly'].contains(host)
++elif ['freebsd', 'dragonfly', 'midnightbsd'].contains(host)
    _pci_access_host_files += ['freebsd_pci.c', 'common_vgaarb_stub.c']
-+elif host == 'midnightbsd'
-+  _pci_access_host_files += ['freebsd_pci.c', 'common_vgaarb_stub.c']
  elif host == 'netbsd'
    _pci_access_host_files += ['netbsd_pci.c', 'common_vgaarb_stub.c']
- elif host == 'openbsd'

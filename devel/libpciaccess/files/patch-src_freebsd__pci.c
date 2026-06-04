@@ -1,9 +1,11 @@
---- src/freebsd_pci.c.orig	2019-07-17 16:25:27 UTC
-+++ src/freebsd_pci.c
-@@ -421,24 +421,6 @@ pci_system_freebsd_destroy( void )
+--- src/freebsd_pci.c.orig	2026-06-04 09:09:26.435789000 -0400
++++ src/freebsd_pci.c	2026-06-04 09:09:26.558511000 -0400
+@@ -399,24 +399,6 @@
+     close(freebsd_pci_sys->pcidev);
+     free(freebsd_pci_sys->pci_sys.devices);
      freebsd_pci_sys = NULL;
- }
- 
+-}
+-
 -static int
 -pci_device_freebsd_has_kernel_driver( struct pci_device *dev )
 -{
@@ -20,15 +22,13 @@
 -
 -    /* if io.pi_data is 0, no driver is attached */
 -    return io.pi_data == 0 ? 0 : 1;
--}
--
+ }
+ 
  static struct pci_io_handle *
- pci_device_freebsd_open_legacy_io( struct pci_io_handle *ret,
- 				   struct pci_device *dev, pciaddr_t base,
-@@ -614,7 +596,7 @@ static const struct pci_system_methods freebsd_pci_met
-     .fill_capabilities = pci_fill_capabilities_generic,
+@@ -574,7 +556,7 @@
      .enable = NULL,
      .boot_vga = NULL,
+     .boot_display = NULL,
 -    .has_kernel_driver = pci_device_freebsd_has_kernel_driver,
 +    .has_kernel_driver = NULL,
  

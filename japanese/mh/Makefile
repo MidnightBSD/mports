@@ -23,8 +23,6 @@ MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=	-Wno-return-type
 LLD_UNSAFE=	yes
 
-USE_LDCONFIG=	yes
-
 PORTDOCS=	00.READ.ME.1ST CHANGES.JP COMMANDS.JP FAQ.JP FEATURES.JP \
 		INSTALL.JP OPTIONS.JP READ-ME.JP TODO.JP
 DOCSDIR=	${PREFIX}/share/doc/${PKGBASE}
@@ -53,7 +51,6 @@ post-patch:
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/*
-	${STRIP_CMD} ${PREFIX}/lib/libmh.so.3
 .for i in ap conflict dp fmtdump install-mh mhl post rcvdist rcvpack rcvstore rcvtty slocal spost
 	${STRIP_CMD} ${PREFIX}/lib/mh/${i}
 .endfor
