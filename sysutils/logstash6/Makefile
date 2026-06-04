@@ -13,10 +13,9 @@ RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 EXPIRATION_DATE=2025-05-31
 
-USES=		cpe java shebangfix
+USES=		cpe java:run shebangfix
 
 CPE_VENDOR=	elastic
-JAVA_RUN=	yes
 USE_RC_SUBR=	logstash
 SHEBANG_FILES=	bin/*
 CONFLICTS=	logstash logstash8* logstash7* 
