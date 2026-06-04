@@ -33,7 +33,7 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: anthropics/claude-code-action@beta
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          anthropic_api_key: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           direct_prompt: |
             You are reviewing a pull request for the MidnightBSD mports ports tree.
 
@@ -50,7 +50,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         uses: anthropics/claude-code-action@beta
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          anthropic_api_key: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           pr_number: ${{ github.event.inputs.pr_number }}
           direct_prompt: |
             You are reviewing a pull request for the MidnightBSD mports ports tree.
