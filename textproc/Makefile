@@ -320,6 +320,7 @@
     SUBDIR += py-cmarkgfm
     SUBDIR += py-cssselect2
     SUBDIR += py-docstring-parser
+    SUBDIR += py-docstring_parser
     SUBDIR += py-docutils
     SUBDIR += py-elasticsearch
     SUBDIR += py-elementpath
@@ -394,6 +395,7 @@
     SUBDIR += py-regex
     SUBDIR += py-reno
     SUBDIR += py-rich
+    SUBDIR += py-sentencepiece
     SUBDIR += py-rst2ansi
     SUBDIR += py-scour
     SUBDIR += py-smartypants

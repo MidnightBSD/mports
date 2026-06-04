@@ -1259,6 +1259,7 @@
     SUBDIR += py-factory-boy
     SUBDIR += py-Faker
     SUBDIR += py-fastuuid
+    SUBDIR += py-filetype
     SUBDIR += py-fasteners
     SUBDIR += py-fastimport
     SUBDIR += py-fastjsonschema
@@ -1392,10 +1393,17 @@
     SUBDIR += py-objgraph
     SUBDIR += py-olefile
     SUBDIR += py-opentelemetry-api
+    SUBDIR += py-opentelemetry-exporter-credential-provider-gcp
+    SUBDIR += py-opentelemetry-exporter-otlp-proto-common
+    SUBDIR += py-opentelemetry-exporter-otlp-proto-http
+    SUBDIR += py-opentelemetry-proto
+    SUBDIR += py-opentelemetry-sdk
+    SUBDIR += py-opentelemetry-semantic-conventions
     SUBDIR += py-openapi-schema-validator
     SUBDIR += py-openapi-spec-validator
     SUBDIR += py-orderedmultidict
     SUBDIR += py-orjson
+    SUBDIR += py-ormsgpack
     SUBDIR += py-outcome
     SUBDIR += py-packaging
     SUBDIR += py-parameterized
@@ -1468,6 +1476,7 @@
     SUBDIR += py-pytest-benchmark
     SUBDIR += py-pytest-black
     SUBDIR += py-pytest-black-multipy
+    SUBDIR += py-pytest-codspeed
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-checkdocs
@@ -1489,11 +1498,12 @@
     SUBDIR += py-pytest-mypy
     SUBDIR += py-pytest-plus
     SUBDIR += py-pytest-randomly
+    SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-rerunfailures
-    SUBDIR += py-pytest-runner
-    SUBDIR += py-pytest-services
+    SUBDIR += py-pytest-socket
     SUBDIR += py-pytest-subtests
+    SUBDIR += py-pytest-services
     SUBDIR += py-pytest-sugar
     SUBDIR += py-pytest-timeout
     SUBDIR += py-pytest-trio
@@ -1586,6 +1596,7 @@
     SUBDIR += py-subprocess-tee
     SUBDIR += py-subversion
     SUBDIR += py-sure
+    SUBDIR += py-syrupy
     SUBDIR += py-tables
     SUBDIR += py-tabulate
     SUBDIR += py-tblib
