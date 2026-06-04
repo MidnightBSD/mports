@@ -1,6 +1,5 @@
 PORTNAME=     firefox
-DISTVERSION=  146.0.1
-PORTREVISION=	1
+DISTVERSION=  151.0.3
 PORTEPOCH=    2
 CATEGORIES=   www wayland
 MASTER_SITES= MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -15,7 +14,7 @@ LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.108:security/nss \
+		nss>=3.124:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
@@ -37,7 +36,6 @@ LIB_DEPENDS+=   libvpx.so:multimedia/libvpx \
                 libstartup-notification-1.so:x11/startup-notification \
                 libnspr4.so:devel/nspr \
                 libnss3.so:security/nss \
-                libicui18n.so:devel/icu \
                 libharfbuzz.so:print/harfbuzz \
                 libgraphite2.so.3:graphics/graphite2 \
                 libpng16.so:graphics/png \
@@ -86,7 +84,6 @@ QMAKE_ARGS=		--enable-application=browser \
 			--disable-hardening \
 			--prefix=${PREFIX} \
 			--with-intl-api \
-			--with-system-icu \
 			--with-system-libevent \
 			--with-system-nspr \
 			--with-system-nss \
