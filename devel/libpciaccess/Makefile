@@ -1,5 +1,5 @@
 PORTNAME=	libpciaccess
-PORTVERSION=	0.18.1
+PORTVERSION=	0.19
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
