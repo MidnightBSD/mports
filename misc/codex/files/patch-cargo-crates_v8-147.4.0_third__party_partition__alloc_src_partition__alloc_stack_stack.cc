@@ -1,5 +1,5 @@
---- cargo-crates/v8-146.4.0/third_party/partition_alloc/src/partition_alloc/stack/stack.cc.orig	2026-05-12 00:00:00 UTC
-+++ cargo-crates/v8-146.4.0/third_party/partition_alloc/src/partition_alloc/stack/stack.cc
+--- cargo-crates/v8-147.4.0/third_party/partition_alloc/src/partition_alloc/stack/stack.cc.orig	2026-05-12 00:00:00 UTC
++++ cargo-crates/v8-147.4.0/third_party/partition_alloc/src/partition_alloc/stack/stack.cc
 @@ -14,6 +14,9 @@
  #include <windows.h>
  #else

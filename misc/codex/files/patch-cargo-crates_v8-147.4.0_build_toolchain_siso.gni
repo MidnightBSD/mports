@@ -1,5 +1,5 @@
---- cargo-crates/v8-146.4.0/build/toolchain/siso.gni.orig	2026-03-28 02:50:18 UTC
-+++ cargo-crates/v8-146.4.0/build/toolchain/siso.gni
+--- cargo-crates/v8-147.4.0/build/toolchain/siso.gni.orig	2026-03-28 02:50:18 UTC
++++ cargo-crates/v8-147.4.0/build/toolchain/siso.gni
 @@ -4,12 +4,10 @@ import("//build/config/gclient_args.gni")
  # use_siso_default is default value of use_siso.
  # need to match with autoninja's logic.
