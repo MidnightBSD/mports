@@ -2,4 +2,5 @@ bin/mport-manager
 share/applications/mport-manager.desktop
 share/icons/hicolor/48x48/apps/mport-manager.png
 share/mport/icon.png
+share/polkit-1/actions/org.midnightbsd.mport-manager.policy
 @dir share/mport

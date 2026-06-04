@@ -9,7 +9,7 @@ WWW=		https://github.com/laffer1/mport-manager
 
 LICENSE=	bsd2
 
-RUN_DEPENDS+=	gksudo:sysutils/gksudo
+RUN_DEPENDS+=	pkexec:sysutils/polkit
 
 USES=		gnome pkgconfig
 USE_GITHUB=     yes
@@ -27,6 +27,9 @@ USE_GNOME=	gtk40 gdkpixbuf cairo
 pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/polkit-1/actions
+	${CP} ${FILESDIR}/org.midnightbsd.mport-manager.policy \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/polkit-1/actions/org.midnightbsd.mport-manager.policy
 
 post-fake:
 	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/mport-manager
