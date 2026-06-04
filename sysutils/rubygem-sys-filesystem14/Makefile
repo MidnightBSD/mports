@@ -11,8 +11,8 @@ WWW=		https://github.com/djberg96/sys-filesystem
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	rubygem-ffi>=1.1<2:devel/rubygem-ffi
-RUN_DEPENDS=	rubygem-ffi>=1.1<2:devel/rubygem-ffi
+BUILD_DEPENDS=	rubygem-ffi>=1.1:devel/rubygem-ffi
+RUN_DEPENDS=	rubygem-ffi>=1.1:devel/rubygem-ffi
 
 USES=		gem
 
