@@ -26,6 +26,7 @@
     SUBDIR += compat7x
     SUBDIR += compat8x
     SUBDIR += compat9x
+    SUBDIR += cpp-mcp
     SUBDIR += cpuid
     SUBDIR += ctm
     SUBDIR += dejagnu
