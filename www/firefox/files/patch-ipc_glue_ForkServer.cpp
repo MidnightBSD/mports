@@ -19,7 +19,7 @@
  #  include "BinaryPath.h"
  #  include <err.h>
  #endif
-@@ -79,7 +82,7 @@ static void ForkServerPreload(int& aArgc, char** aArgv) {
+@@ -78,5 +81,5 @@ static void ForkServerPreload(int& aArgc, char** aArgv) {
    Omnijar::ChildProcessInit(aArgc, aArgv);
 -#if defined(XP_OPENBSD)
 +#if defined(XP_OPENBSD) || defined(XP_FREEBSD)
