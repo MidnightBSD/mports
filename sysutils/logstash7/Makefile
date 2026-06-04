@@ -1,8 +1,9 @@
 PORTNAME=	logstash
-PORTVERSION=	7.17.12
+PORTVERSION=	7.17.29
 DISTVERSIONSUFFIX=	-darwin-x86_64
 CATEGORIES=	sysutils java
-MASTER_SITES=	https://artifacts.elastic.co/downloads/logstash/
+MASTER_SITES=	https://artifacts.elastic.co/downloads/logstash/ \
+		FREEBSD_LOCAL/vvd/elastic
 PKGNAMESUFFIX=	7
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,11 +16,10 @@ ONLY_FOR_ARCHS= aarch64 amd64
 
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
-USES=		cpe java shebangfix
+USES=		cpe java:run shebangfix
 
 CPE_VENDOR=	elastic
 JAVA_VERSION=	11+
-JAVA_RUN=	yes
 USE_RC_SUBR=	logstash
 
 SHEBANG_FILES=	bin/*
