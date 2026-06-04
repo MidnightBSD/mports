@@ -34,12 +34,12 @@ USE_LDCONFIG=	yes
 
 DOCVER=		${PORTVERSION:R:R}
 PORTDOCS=	ptscotch_user${DOCVER}.pdf scotch_user${DOCVER}.pdf scotch_example.f
-LIBS=		esmumps scotch scotcherr scotcherrexit scotchmetis
+SCOTCH_LIBS=	esmumps scotch scotcherr scotcherrexit scotchmetis
 
 MPICH_USES=		mpi:mpich
 MPICH_ALL_TARGET=	ptesmumps
 MPICH_TEST_TARGET=	ptcheck
-MPICH_LIBS+=	ptesmumps ptscotch ptscotcherr ptscotcherrexit ptscotchparmetis
+SCOTCH_MPICH_LIBS=	ptesmumps ptscotch ptscotcherr ptscotcherrexit ptscotchparmetis
 
 .include <bsd.mport.options.mk>
 
@@ -64,12 +64,18 @@ pre-configure:
 	${REINPLACE_CMD} -E -e 's|cd (.*) ; * \$$\(MAKE\)|\$$(MAKE) -C \1|'	\
 		-e 's|\&\& \$$\(MAKE\)||' ${WRKSRC}/src/Makefile
 
-post-stage:
+post-fake:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/* ${FAKE_DESTDIR}${PREFIX}/lib/lib*
-.for l in ${LIBS}
+.for l in ${SCOTCH_LIBS}
 	${MV} ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so.0
 	${LN} -sf lib${l}.so.0 ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so
 .endfor
+.if ${PORT_OPTIONS:MMPICH}
+.for l in ${SCOTCH_MPICH_LIBS}
+	${MV} ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so.0
+	${LN} -sf lib${l}.so.0 ${FAKE_DESTDIR}${PREFIX}/lib/lib${l}.so
+.endfor
+.endif
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
