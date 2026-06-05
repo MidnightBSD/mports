@@ -9,6 +9,7 @@ WWW=		https://github.com/mojombo/chronic
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-numerizer>=0.2<1.0:devel/rubygem-numerizer
 
 USES=		gem
