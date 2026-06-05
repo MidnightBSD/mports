@@ -10,6 +10,7 @@ WWW=		https://github.com/grosser/gettext_i18n_rails
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fast_gettext>=0.9.0:devel/rubygem-fast_gettext
 
 USES=		gem
