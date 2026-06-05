@@ -11,7 +11,8 @@ WWW=		https://pypi.org/project/pycares/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.5.0:devel/py-cffi@${PY_FLAVOR}
+BUILD_DEPENDS=	cmake:devel/cmake \
+		${PYTHON_PKGNAMEPREFIX}cffi>=1.5.0:devel/py-cffi@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.5.0:devel/py-cffi@${PY_FLAVOR}
 
 USES=		python
