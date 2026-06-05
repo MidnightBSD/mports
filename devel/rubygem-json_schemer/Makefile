@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby-json-schema/json-schema
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
 		rubygem-hana>=1.3<2:devel/rubygem-hana \
 		rubygem-regexp_parser>=2.0<3:textproc/rubygem-regexp_parser \
