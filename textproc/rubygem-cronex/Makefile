@@ -10,6 +10,7 @@ WWW=		https://github.com/alpinweis/cronex
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-tzinfo>=0:devel/rubygem-tzinfo \
 		rubygem-unicode>=0.4.4.5:devel/rubygem-unicode
 
