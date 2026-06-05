@@ -8,7 +8,7 @@ COMMENT=	Ruby library for creating slugs
 WWW=		https://github.com/norman/babosa
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 USES=		gem
 
