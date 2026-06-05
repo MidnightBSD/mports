@@ -1,0 +1,43 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<section>
+  <div class="row-fluid">
+    <div class="col-md-10 col-md-offset-1">
+      <h2><TMPL_VAR NAME="title"></h2>
+
+      <p><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">">&larr; Back to Run <TMPL_VAR NAME="run"></a></p>
+
+      <TMPL_IF NAME="count">
+      <p><strong><TMPL_VAR NAME="count"></strong> ports failed the fetch phase.</p>
+
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Port</th>
+            <th>Version</th>
+            <th>Flavor</th>
+            <th>Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <TMPL_LOOP NAME="failures">
+          <tr>
+            <td><TMPL_VAR NAME="port"></td>
+            <td><TMPL_VAR NAME="version"></td>
+            <td><TMPL_VAR NAME="flavor"></td>
+            <td><TMPL_VAR NAME="updated"></td>
+            <td><a href="<TMPL_VAR NAME="port_root">/<TMPL_VAR NAME="id">">Details</a></td>
+          </tr>
+          </TMPL_LOOP>
+        </tbody>
+      </table>
+      <TMPL_ELSE>
+      <p>No fetch failures for this run.</p>
+      </TMPL_IF>
+
+    </div>
+  </div>
+</section>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

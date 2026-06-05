@@ -104,6 +104,8 @@ sub main {
     compare_runs($p);
   } elsif ($path =~m:^/blockers/(.*):) {
     blockers($p, $1);
+  } elsif ($path =~m:^/fetch-failures/(.*):) {
+    fetch_failures($p, $1);
   } elsif ($path =~m:^/api/?$:) {
     api_docs($p);
   } elsif ($path =~m:^/updates:) {
@@ -479,6 +481,43 @@ sub blockers {
     $sth->finish;
 
     $tmpl->param(blocks => $blocks);
+    print $p->header;
+    print $tmpl->output;
+}
+
+sub fetch_failures {
+    my ($p, $run) = @_;
+
+    if (!is_number($run)) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        return;
+    }
+
+    my $tmpl = template($p, 'fetch-failures.tmpl');
+    $tmpl->param(title => "Fetch Failures for Run $run", run => $run);
+
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare(q{
+        SELECT p.id, p.name AS port, p.version, p.flavor,
+               ppr.status AS fetch_status,
+               ppr.updated
+          FROM ports p
+          JOIN port_phase_results ppr ON ppr.port = p.id
+         WHERE p.run = ?
+           AND ppr.phase = 'fetch'
+           AND ppr.status = 'fail'
+         ORDER BY p.name, p.flavor
+    });
+
+    $sth->execute($run);
+    my $failures = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    $tmpl->param(failures => $failures, count => scalar @$failures);
     print $p->header;
     print $tmpl->output;
 }
