@@ -9,6 +9,7 @@ WWW=		https://gitlab.com/gitlab-org/analytics-section/product-analytics/gl-appli
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=5.2:devel/rubygem-activesupport-gitlab \
 		rubygem-rake>=13.0<14:devel/rubygem-rake \
 		rubygem-snowplow-tracker>=0.8.0<0.9:devel/rubygem-snowplow-tracker
