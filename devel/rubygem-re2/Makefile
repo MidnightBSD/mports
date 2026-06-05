@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libre2.so:devel/re2
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-mini_portile2>=2.8.9<2.9:devel/rubygem-mini_portile2
 
 USES=		gem
