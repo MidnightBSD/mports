@@ -11,6 +11,7 @@ WWW=		https://github.com/aws/aws-sdk-ruby/tree/version-3/gems/aws-sdk-core
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-aws-eventstream>=1.3.0<2:devel/rubygem-aws-eventstream \
 		rubygem-aws-partitions>=1.992.0<2:devel/rubygem-aws-partitions \
 		rubygem-aws-sigv4>=1.9<2:devel/rubygem-aws-sigv4 \
