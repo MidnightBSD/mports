@@ -518,7 +518,28 @@ sub run_page {
   my $status_stats = $sth->fetchall_arrayref({});
   $sth->finish;
 
-  push(@$status_stats, { status => 'ready', count => Magus::Port->search_ready_ports($run)->count });
+  # Count ports whose dependencies are all satisfied and are waiting to build,
+  # regardless of whether the fetch phase has completed yet.  The ready_ports
+  # view gates on fetch='pass' for the build worker, but the UI count should
+  # reflect the full build queue so users can see what is pending.
+  my ($ready_count) = $dbh->selectrow_array(q{
+    SELECT COUNT(DISTINCT p.id)
+      FROM ports p
+      LEFT JOIN locks l ON l.port = p.id AND l.phase = 'build'
+      LEFT JOIN depends d ON d.port = p.id
+     WHERE p.run = ?
+       AND p.status = 'untested'
+       AND l.id IS NULL
+       AND (d.port IS NULL
+            OR NOT EXISTS (
+              SELECT 1
+                FROM depends d2
+                JOIN ports dep ON dep.id = d2.dependency
+               WHERE d2.port = p.id
+                 AND dep.status NOT IN ('pass', 'warn')
+            ))
+  }, undef, $run->id);
+  push(@$status_stats, { status => 'ready', count => $ready_count // 0 });
   $tmpl->param(status_stats => $status_stats);
 
   my $phase_sth = $dbh->prepare("

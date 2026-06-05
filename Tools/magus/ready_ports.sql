@@ -14,6 +14,10 @@ CREATE OR REPLACE VIEW ready_ports AS
            WHERE depends.dependency = ports.id) AS priority,
            ports.flavor AS flavor
     FROM ports
+    INNER JOIN port_phase_results fetch_phase
+        ON fetch_phase.port = ports.id
+       AND fetch_phase.phase = 'fetch'
+       AND (fetch_phase.status = 'pass' OR fetch_phase.status = 'warn')
     LEFT JOIN locks on locks.port = ports.id and locks.phase = 'build'
     LEFT JOIN depends on depends.port = ports.id
     WHERE ports.status = 'untested' and locks.id is null and
