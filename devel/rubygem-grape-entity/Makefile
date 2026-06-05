@@ -11,6 +11,7 @@ WWW=		https://github.com/ruby-grape/grape-entity
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=3.0.0:devel/rubygem-activesupport-gitlab \
 		rubygem-multi_json-gitlab>=1.0:devel/rubygem-multi_json-gitlab
 
