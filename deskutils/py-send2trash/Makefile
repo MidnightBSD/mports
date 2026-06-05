@@ -19,4 +19,7 @@ USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
+# The wheel is built with the original capitalization Send2Trash, not send2trash
+PEP517_INSTALL_CMD=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX} ${BUILD_WRKSRC}/dist/Send2Trash-${DISTVERSION}*.whl
+
 .include <bsd.port.mk>
