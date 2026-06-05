@@ -12,6 +12,7 @@ WWW=		https://redis-store.org/redis-store/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-redis-gitlab>=4<6:databases/rubygem-redis-gitlab
 
 USES=		gem
