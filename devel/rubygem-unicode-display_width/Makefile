@@ -10,6 +10,7 @@ WWW=		https://github.com/janlelis/unicode-display_width
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-unicode-emoji>=4.1<5:devel/rubygem-unicode-emoji
 
 USES=		gem
