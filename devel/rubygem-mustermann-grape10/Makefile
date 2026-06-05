@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby-grape/mustermann-grape
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-mustermann>=1.0:devel/rubygem-mustermann
 
 USES=		gem
