@@ -9,6 +9,7 @@ WWW=		https://github.com/jaynetics/js_regex
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-character_set>=1.4<2:textproc/rubygem-character_set \
 		rubygem-regexp_parser>=2.11<3:textproc/rubygem-regexp_parser \
 		rubygem-regexp_property_values>=1.0<2:textproc/rubygem-regexp_property_values
