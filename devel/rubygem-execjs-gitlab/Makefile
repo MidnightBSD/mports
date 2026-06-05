@@ -10,7 +10,7 @@ COMMENT=	ExecJS lets you run JavaScript code from Ruby
 WWW=		https://github.com/rails/execjs
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 USES=		gem nodejs:run
 
