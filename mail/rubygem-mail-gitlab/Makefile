@@ -11,6 +11,7 @@ WWW=		https://github.com/mikel/mail
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
 		rubygem-mini_mime>=0.1.1:mail/rubygem-mini_mime \
 		rubygem-net-imap>=0:mail/rubygem-net-imap \
