@@ -11,6 +11,7 @@ WWW=		https://www.ohler.com/oj/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>=3.0:math/rubygem-bigdecimal \
 		rubygem-ostruct>=0.2:devel/rubygem-ostruct
 
