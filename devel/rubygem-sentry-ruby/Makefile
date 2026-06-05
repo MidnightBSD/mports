@@ -10,6 +10,7 @@ WWW=		https://github.com/getsentry/sentry-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>0:math/rubygem-bigdecimal \
 		rubygem-concurrent-ruby>=1.0.2<2:devel/rubygem-concurrent-ruby
 
