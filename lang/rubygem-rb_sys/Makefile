@@ -13,6 +13,7 @@ LICENSE_COMB=	dual
 LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=2:devel/rubygem-json \
 		rubygem-rake-compiler-dock>=1.11.0<1.11.0_99:devel/rubygem-rake-compiler-dock
 
