@@ -1,5 +1,14 @@
     COMMENT = Databases
 
+    SUBDIR += R-cran-DBI
+    SUBDIR += R-cran-RMySQL
+    SUBDIR += R-cran-RPostgreSQL
+    SUBDIR += R-cran-RSQLite
+    SUBDIR += R-cran-cachem
+    SUBDIR += R-cran-dbplyr
+    SUBDIR += R-cran-dtplyr
+    SUBDIR += R-cran-fastmap
+    SUBDIR += R-cran-sqldf
     SUBDIR += adodb5
     SUBDIR += akonadi
     SUBDIR += arrow
@@ -78,17 +87,17 @@
     SUBDIR += p5-Class-DBI-Plugin-AbstractCount
     SUBDIR += p5-Class-DBI-Plugin-DeepAbstractSearch
     SUBDIR += p5-Class-DBI-Plugin-Pager
-    SUBDIR += p5-Data-Page
     SUBDIR += p5-DBD-CSV
-    SUBDIR += p5-DBD-mysql
-    SUBDIR += p5-DBD-mysql4
     SUBDIR += p5-DBD-Pg
     SUBDIR += p5-DBD-SQLite
+    SUBDIR += p5-DBD-mysql
+    SUBDIR += p5-DBD-mysql4
     SUBDIR += p5-DBI
     SUBDIR += p5-DBIx-Class
     SUBDIR += p5-DBIx-ContextualFetch
     SUBDIR += p5-DBIx-Simple
     SUBDIR += p5-DBM-Deep
+    SUBDIR += p5-Data-Page
     SUBDIR += p5-Ima-DBI
     SUBDIR += p5-MLDBM
     SUBDIR += p5-MLDBM-Sync
@@ -194,15 +203,6 @@
     SUBDIR += qt5-sqldrivers-sqlite3
     SUBDIR += qt5-sqldrivers-tds
     SUBDIR += qt6-base_sqldriver
-    SUBDIR += R-cran-cachem
-    SUBDIR += R-cran-DBI
-    SUBDIR += R-cran-dbplyr
-    SUBDIR += R-cran-dtplyr
-    SUBDIR += R-cran-fastmap
-    SUBDIR += R-cran-RMySQL
-    SUBDIR += R-cran-RPostgreSQL
-    SUBDIR += R-cran-RSQLite
-    SUBDIR += R-cran-sqldf
     SUBDIR += redis
     SUBDIR += redis62
     SUBDIR += redis72
@@ -350,11 +350,12 @@
     SUBDIR += rubygem-redis-actionpack-rails61
     SUBDIR += rubygem-redis-actionpack-rails70
     SUBDIR += rubygem-redis-client
-    SUBDIR += rubygem-redis-gitlab
     SUBDIR += rubygem-redis-cluster-client
     SUBDIR += rubygem-redis-clustering
     SUBDIR += rubygem-redis-clustering-gitlab
+    SUBDIR += rubygem-redis-gitlab
     SUBDIR += rubygem-redis-namespace
+    SUBDIR += rubygem-redis-namespace-gitlab
     SUBDIR += rubygem-redis-namespace110
     SUBDIR += rubygem-ruby-mysql
     SUBDIR += rubygem-sdbm
@@ -391,8 +392,5 @@
     SUBDIR += vsqlite
     SUBDIR += xapian-bindings
     SUBDIR += xapian-core
-
-    SUBDIR += rubygem-redis-namespace-gitlab
-
 
 .include <bsd.port.subdir.mk>

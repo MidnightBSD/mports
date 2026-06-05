@@ -2,18 +2,18 @@
 
     SUBDIR += alisp
     SUBDIR += bcc
-    SUBDIR += bun
     SUBDIR += bsh
+    SUBDIR += bun
     SUBDIR += chaiscript
     SUBDIR += cjs
     SUBDIR += clover
     SUBDIR += cython
     SUBDIR += cython0
-    SUBDIR += duktape
-    SUBDIR += duktape-lib
     SUBDIR += dotnet
     SUBDIR += dotnet-host 
     SUBDIR += dotnet8
+    SUBDIR += duktape
+    SUBDIR += duktape-lib
     SUBDIR += elixir
     SUBDIR += erlang
     SUBDIR += erlang-man

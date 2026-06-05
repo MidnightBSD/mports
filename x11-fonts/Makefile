@@ -1,7 +1,6 @@
     COMMENT = X11 fonts and font utilities
 
     SUBDIR += 3270font
-    SUBDIR += fcft
     SUBDIR += Hasklig
     SUBDIR += afdko
     SUBDIR += agave
@@ -52,6 +51,7 @@
     SUBDIR += fantasque-sans-mono
     SUBDIR += fanwood
     SUBDIR += farsifonts
+    SUBDIR += fcft
     SUBDIR += fifteen
     SUBDIR += fira
     SUBDIR += firacode
