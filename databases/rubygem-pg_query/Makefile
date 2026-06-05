@@ -10,7 +10,8 @@ WWW=		https://github.com/lfittl/pg_query
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	rubygem-pathname>0:devel/rubygem-pathname
+BUILD_DEPENDS=	rubygem-pathname>0:devel/rubygem-pathname \
+		rubygem-google-protobuf>=3.25.3:devel/rubygem-google-protobuf
 RUN_DEPENDS=	rubygem-google-protobuf>=3.25.3:devel/rubygem-google-protobuf
 
 USES=		gem
