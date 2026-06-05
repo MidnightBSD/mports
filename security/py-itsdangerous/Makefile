@@ -10,8 +10,9 @@ WWW=		https://github.com/mitsuhiko/itsdangerous/
 
 LICENSE=	bsd3
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3<4:devel/py-flit-core@${PY_FLAVOR}
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	pep517 autoplist
 
 NO_ARCH=	yes
 
