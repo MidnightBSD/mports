@@ -10,6 +10,7 @@ WWW=		https://github.com/soundasleep/html2text_ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-nokogiri>=1.0<2.0:textproc/rubygem-nokogiri
 
 USES=		gem
