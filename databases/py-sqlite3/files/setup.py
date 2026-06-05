@@ -21,7 +21,7 @@ sqlite_srcs = [
 
 major, minor = map(int, platform.python_version_tuple()[:2])
 
-if (major, minor) >= (3, 14):
+if (major, minor) >= (3, 13):
     inc_dirs.append("../Include/internal")
 
 if (major, minor) <= (3, 10):
