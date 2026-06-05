@@ -11,6 +11,7 @@ WWW=		https://github.com/redis/redis-rb/tree/master/cluster
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-redis-gitlab>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-redis-gitlab \
 		rubygem-redis-cluster-client>=0.10.0:databases/rubygem-redis-cluster-client
 
