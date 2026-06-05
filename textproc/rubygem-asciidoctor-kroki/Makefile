@@ -9,6 +9,7 @@ WWW=		https://github.com/Mogztter/asciidoctor-kroki
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-asciidoctor>=2.0<3:textproc/rubygem-asciidoctor
 
 USES=		gem
