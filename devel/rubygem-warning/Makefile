@@ -8,7 +8,7 @@ COMMENT=	Adds custom processing for warnings
 WWW=		https://github.com/jeremyevans/ruby-warning
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 USES=		gem
 
