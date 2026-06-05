@@ -10,6 +10,7 @@ WWW=		https://github.com/hsanson/asciidoctor-plantuml
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-asciidoctor>=2.0.17<3.0.0:textproc/rubygem-asciidoctor
 
 USES=		gem
