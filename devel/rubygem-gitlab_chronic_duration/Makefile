@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/gitlab-chronic-duration
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-numerizer>=0.2<1:devel/rubygem-numerizer
 
 USES=		gem
