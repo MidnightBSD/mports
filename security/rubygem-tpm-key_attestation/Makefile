@@ -10,6 +10,9 @@ WWW=		https://github.com/cedarcode/tpm-key_attestation
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-bindata>=2.4<3:devel/rubygem-bindata \
+		rubygem-openssl>2.0:security/rubygem-openssl \
+		rubygem-openssl-signature_algorithm>=1.0<2:security/rubygem-openssl-signature_algorithm
 RUN_DEPENDS=	rubygem-bindata>=2.4<3:devel/rubygem-bindata \
 		rubygem-openssl>2.0:security/rubygem-openssl \
 		rubygem-openssl-signature_algorithm>=1.0<2:security/rubygem-openssl-signature_algorithm
