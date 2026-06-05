@@ -11,6 +11,7 @@ WWW=		https://github.com/twitter/twitter-text
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-idn-ruby>=0:dns/rubygem-idn-ruby \
 		rubygem-unf>=0.1.0:textproc/rubygem-unf
 
