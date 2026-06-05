@@ -10,6 +10,7 @@ WWW=		https://www.flippercloud.io/ \
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord80>=4.2<9:databases/rubygem-activerecord80 \
 		rubygem-flipper>=${PORTVERSION}<1.5:devel/rubygem-flipper
 
