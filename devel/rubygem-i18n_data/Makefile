@@ -9,6 +9,7 @@ WWW=		https://github.com/grosser/i18n_data
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-simple_po_parser>=1.1<2:devel/rubygem-simple_po_parser
 
 USES=		gem
