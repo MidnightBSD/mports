@@ -9,6 +9,7 @@ WWW=		https://github.com/wallyqs/org-ruby
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rubypants>=0.2<1:textproc/rubygem-rubypants
 
 USES=		gem
