@@ -15,8 +15,9 @@ CONFLICTS_INSTALL=	dovecot-[0-9]*
 
 # Use same data/doc paths as the application package name (dovecot),
 # not the port name (dovecot24); the two versions cannot coexist anyway.
-DATADIR=	${PREFIX}/share/dovecot
-DOCSDIR=	${PREFIX}/share/doc/dovecot
+DATADIR=	${TRUE_PREFIX}/share/dovecot
+DOCSDIR=	${TRUE_PREFIX}/share/doc/dovecot
+EXAMPLESDIR=	${TRUE_PREFIX}/share/examples/${PORTNAME}
 
 FLAVORS=	default mysql pgsql
 FLAVOR?=	${FLAVORS[1]}
