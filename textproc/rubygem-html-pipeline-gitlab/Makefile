@@ -11,6 +11,7 @@ WWW=		https://github.com/jch/html-pipeline
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=2:devel/rubygem-activesupport-gitlab \
 		rubygem-nokogiri>=1.4:textproc/rubygem-nokogiri
 
