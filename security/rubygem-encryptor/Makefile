@@ -8,7 +8,7 @@ COMMENT=	Wrapper for the standard ruby OpenSSL library
 WWW=		https://github.com/attr-encrypted/encryptor
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 NO_ARCH=	yes
 USES=		gem
