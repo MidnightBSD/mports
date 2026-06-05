@@ -11,6 +11,7 @@ WWW=		https://github.com/floraison/fugit
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-et-orbi>=1.2.11<2:devel/rubygem-et-orbi \
 		rubygem-raabro>=1.4<2:textproc/rubygem-raabro
 
