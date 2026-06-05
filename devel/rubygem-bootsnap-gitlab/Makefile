@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/bootsnap
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-msgpack>=1.2<2:devel/rubygem-msgpack
 
 USES=		gem
