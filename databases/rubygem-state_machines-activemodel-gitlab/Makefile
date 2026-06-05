@@ -11,6 +11,7 @@ WWW=		https://github.com/state-machines/state_machines-activemodel
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activemodel-gitlab>=7.2:databases/rubygem-activemodel-gitlab \
 		rubygem-state_machines-gitlab>=0.100.0:devel/rubygem-state_machines-gitlab
 
