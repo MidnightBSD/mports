@@ -10,6 +10,7 @@ WWW=		https://github.com/jnunemaker/flipper
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=4.2<9:devel/rubygem-activesupport-gitlab \
 		rubygem-flipper-gitlab>=${PORTVERSION}<1.4:devel/rubygem-flipper-gitlab
 
