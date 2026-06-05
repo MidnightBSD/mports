@@ -10,6 +10,7 @@ WWW=		https://github.com/jirutka/asciidoctor-include-ext
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-asciidoctor>=1.5.6<3.0.0:textproc/rubygem-asciidoctor
 
 USES=		gem
