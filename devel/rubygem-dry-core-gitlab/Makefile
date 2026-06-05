@@ -11,6 +11,7 @@ WWW=		https://github.com/dry-rb/dry-core
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-concurrent-ruby>=1.0<2:devel/rubygem-concurrent-ruby \
 		rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
 		rubygem-zeitwerk>=2.6<3:devel/rubygem-zeitwerk
