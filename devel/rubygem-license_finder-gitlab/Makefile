@@ -12,6 +12,7 @@ WWW=		https://github.com/pivotal/LicenseFinder
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bundler>=0:sysutils/rubygem-bundler \
 		rubygem-csv>=3.2<4:devel/rubygem-csv \
 		rubygem-rubyzip-gitlab>=1<3:archivers/rubygem-rubyzip-gitlab \
