@@ -10,6 +10,7 @@ WWW=		https://github.com/CocoaPods/Cork
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-colored2>=3.1<4:textproc/rubygem-colored2
 
 USES=		gem
