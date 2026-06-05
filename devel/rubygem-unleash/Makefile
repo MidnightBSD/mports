@@ -10,6 +10,7 @@ WWW=		https://github.com/unleash/unleash-client-ruby
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-murmurhash3>=0.1.6<0.2.0:devel/rubygem-murmurhash3
 
 USES=		gem
