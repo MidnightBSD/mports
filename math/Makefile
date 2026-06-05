@@ -13,8 +13,8 @@
     SUBDIR += R-cran-bdsmatrix
     SUBDIR += R-cran-cachem
     SUBDIR += R-cran-date
-    SUBDIR += R-cran-deldir
     SUBDIR += R-cran-dbplyr
+    SUBDIR += R-cran-deldir
     SUBDIR += R-cran-dplyr
     SUBDIR += R-cran-dtplyr
     SUBDIR += R-cran-expm
