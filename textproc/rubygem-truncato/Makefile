@@ -10,6 +10,7 @@ WWW=		https://github.com/jorgemanrubia/truncato
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-htmlentities>=4.3.1:textproc/rubygem-htmlentities \
 		rubygem-nokogiri>=1.7.0:textproc/rubygem-nokogiri
 
