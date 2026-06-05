@@ -11,6 +11,7 @@ WWW=		https://github.com/icalendar/icalendar
 LICENSE=	bsd2 gpl3
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-ice_cube>=0.16<1:devel/rubygem-ice_cube \
 		rubygem-ostruct>=0:devel/rubygem-ostruct
 
