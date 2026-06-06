@@ -6,6 +6,7 @@
      'Linux': ('linux', 'node-linux-x64', 'bin', 'node'),
 +    'OpenBSD': ('openbsd', 'node-openbsd', 'bin', 'node'),
 +    'FreeBSD': ('freebsd', 'node-freebsd', 'bin', 'node'),
++    'MidnightBSD': ('freebsd', 'node-freebsd', 'bin', 'node'),
      'Windows': ('win', 'node.exe'),
    }[platform.system()])
  

@@ -5,7 +5,7 @@
    # success. This allows us to "kind of emulate" a Linux build from other
    # platforms.
 -  if "linux" not in sys.platform:
-+  if not sys.platform.startswith(tuple(['linux', 'openbsd', 'freebsd'])):
++  if not sys.platform.startswith(tuple(['linux', 'openbsd', 'freebsd', 'midnightbsd'])):
      print("[[],[],[],[],[]]")
      return 0
  
