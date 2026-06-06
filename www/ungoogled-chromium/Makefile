@@ -1,6 +1,6 @@
 PORTNAME=	ungoogled-chromium
 PORTVERSION=	134.0.6998.165
-PORTREVISION=	2
+PORTREVISION=	3
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 UGVERSION=	${DISTVERSION}-1
@@ -349,6 +349,7 @@ do-configure:
 	${LN} -sf ${WRKSRC}/buildtools/linux64/clang-format ${WRKSRC}/buildtools/freebsd
 	${LN} -sf ${WRKSRC}/out/${BUILDTYPE}/gn ${WRKSRC}/buildtools/freebsd
 	${LN} -sf /usr/bin/strip ${WRKSRC}/buildtools/freebsd/strip
+	@${LN} -sf freebsd ${WRKSRC}/buildtools/midnightbsd
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}

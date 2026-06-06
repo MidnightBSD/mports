@@ -6,6 +6,7 @@
      'windows',
 +    'openbsd',
 +    'freebsd',
++    'midnightbsd',
  ]
  
  _form_factors = [
