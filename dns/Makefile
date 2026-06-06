@@ -64,8 +64,12 @@
     SUBDIR += py-tldextract
     SUBDIR += rubygem-google-apis-dns_v1
     SUBDIR += rubygem-google-apis-dns_v1-gitlab
+    SUBDIR += rubygem-idn-ruby
+    SUBDIR += rubygem-gitlab-net-dns
     SUBDIR += rubygem-public_suffix
+    SUBDIR += rubygem-simpleidn
     SUBDIR += rubygem-simpleidn02
+    SUBDIR += rubygem-validates_hostname-gitlab
     SUBDIR += samba-nsupdate
     SUBDIR += sleuth
     SUBDIR += udns
@@ -77,15 +81,5 @@
     SUBDIR += zkt
     SUBDIR += zns
     SUBDIR += zonenotify
-
-    SUBDIR += rubygem-gitlab-net-dns
-    SUBDIR += rubygem-validates_hostname-gitlab
-
-
-    SUBDIR += rubygem-simpleidn
-
-
-    SUBDIR += rubygem-idn-ruby
-
 
 .include <bsd.port.subdir.mk>

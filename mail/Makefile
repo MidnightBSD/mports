@@ -39,8 +39,8 @@
     SUBDIR += dcc-dccd
     SUBDIR += dkfilter
     SUBDIR += dovecot
-    SUBDIR += dovecot24
     SUBDIR += dovecot-pigeonhole
+    SUBDIR += dovecot24
     SUBDIR += evolution
     SUBDIR += evolution-ews
     SUBDIR += faces
@@ -146,13 +146,21 @@
     SUBDIR += roundcube-larry
     SUBDIR += roundcube-thunderbird_labels
     SUBDIR += rspamd
+    SUBDIR += rubygem-actionmailbox-gitlab
+    SUBDIR += rubygem-actionmailer-gitlab
     SUBDIR += rubygem-actionmailer4
+    SUBDIR += rubygem-email_reply_trimmer
     SUBDIR += rubygem-email_validator
+    SUBDIR += rubygem-gitlab-mail_room
     SUBDIR += rubygem-mail
+    SUBDIR += rubygem-mail-gitlab
     SUBDIR += rubygem-mini_mime
     SUBDIR += rubygem-net-imap
     SUBDIR += rubygem-net-pop
     SUBDIR += rubygem-net-smtp
+    SUBDIR += rubygem-premailer
+    SUBDIR += rubygem-premailer-rails-rails-gitlab
+    SUBDIR += rubygem-valid_email
     SUBDIR += sendmail
     SUBDIR += spamass-rules
     SUBDIR += spamassassin
@@ -172,17 +180,5 @@
     SUBDIR += xmailbox
     SUBDIR += xmailwatcher
     SUBDIR += xpbiff
-
-    SUBDIR += rubygem-email_reply_trimmer
-    SUBDIR += rubygem-gitlab-mail_room
-    SUBDIR += rubygem-mail-gitlab
-    SUBDIR += rubygem-premailer-rails-rails-gitlab
-    SUBDIR += rubygem-valid_email
-
-
-    SUBDIR += rubygem-actionmailbox-gitlab
-    SUBDIR += rubygem-actionmailer-gitlab
-    SUBDIR += rubygem-premailer
-
 
 .include <bsd.port.subdir.mk>
