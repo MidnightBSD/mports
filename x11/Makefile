@@ -4,8 +4,8 @@
     SUBDIR += appmenu-registrar
     SUBDIR += appres
     SUBDIR += babl
-    SUBDIR += bemenu
     SUBDIR += beforelight
+    SUBDIR += bemenu
     SUBDIR += bgs
     SUBDIR += bitmap
     SUBDIR += cde
@@ -20,8 +20,8 @@
     SUBDIR += eterm
     SUBDIR += evilvte
     SUBDIR += foot
-    SUBDIR += fuzzel
     SUBDIR += fstobdf
+    SUBDIR += fuzzel
     SUBDIR += gdm
     SUBDIR += gnome
     SUBDIR += gnome-console
@@ -46,7 +46,6 @@
     SUBDIR += kde
     SUBDIR += kde-baseapps
     SUBDIR += kde-gear
-    SUBDIR += kitty
     SUBDIR += keybinder
     SUBDIR += keybinder-gtk3
     SUBDIR += kf5-frameworkintegration
@@ -67,6 +66,7 @@
     SUBDIR += kf6-kglobalaccel
     SUBDIR += kf6-krunner
     SUBDIR += kf6-kwindowsystem
+    SUBDIR += kitty
     SUBDIR += konsole
     SUBDIR += libICE
     SUBDIR += libSM
@@ -201,8 +201,8 @@
     SUBDIR += waybar
     SUBDIR += wdm
     SUBDIR += windowmaker-desktop
-    SUBDIR += wmctrl-fork
     SUBDIR += wl-clipboard
+    SUBDIR += wmctrl-fork
     SUBDIR += wofi
     SUBDIR += x11perf
     SUBDIR += xapp

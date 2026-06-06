@@ -248,6 +248,7 @@
     SUBDIR += rpi-firmware
     SUBDIR += rsyslog8
     SUBDIR += rubygem-bundler
+    SUBDIR += rubygem-chef-config
     SUBDIR += rubygem-chef-utils
     SUBDIR += rubygem-chef-winrm
     SUBDIR += rubygem-chef-winrm-elevated
@@ -256,6 +257,10 @@
     SUBDIR += rubygem-fluent-plugin-file-alternative
     SUBDIR += rubygem-fluent-plugin-tail-asis
     SUBDIR += rubygem-fluentd
+    SUBDIR += rubygem-ohai
+    SUBDIR += rubygem-parallel
+    SUBDIR += rubygem-sys-filesystem14
+    SUBDIR += rubygem-vmstat
     SUBDIR += rubygem-winrm
     SUBDIR += rust-coreutils
     SUBDIR += screen
@@ -387,14 +392,5 @@
     SUBDIR += zsd
     SUBDIR += zsm
     SUBDIR += zyggy
-
-    SUBDIR += rubygem-ohai
-    SUBDIR += rubygem-parallel
-    SUBDIR += rubygem-sys-filesystem14
-    SUBDIR += rubygem-vmstat
-
-
-    SUBDIR += rubygem-chef-config
-
 
 .include <bsd.port.subdir.mk>

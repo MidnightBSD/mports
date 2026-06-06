@@ -298,6 +298,7 @@
     SUBDIR += p5-GD-Graph
     SUBDIR += p5-GD-TextUtil
     SUBDIR += p5-GraphViz
+    SUBDIR += p5-Image-ExifTool
     SUBDIR += p5-Image-Info
     SUBDIR += p5-Image-Magick-Iterator
     SUBDIR += p5-Image-PBMlib
@@ -396,6 +397,7 @@
     SUBDIR += rubygem-image_processing
     SUBDIR += rubygem-image_science
     SUBDIR += rubygem-imagesize
+    SUBDIR += rubygem-invisible_captcha
     SUBDIR += rubygem-mini_magick
     SUBDIR += rubygem-mini_magick4
     SUBDIR += rubygem-opengl
@@ -462,11 +464,5 @@
     SUBDIR += zimg
     SUBDIR += zint
     SUBDIR += zphoto
-
-    SUBDIR += rubygem-invisible_captcha
-
-
-    SUBDIR += p5-Image-ExifTool
-
 
 .include <bsd.port.subdir.mk>

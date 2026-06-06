@@ -132,6 +132,7 @@
     SUBDIR += qt6-doc
     SUBDIR += qt6-examples
     SUBDIR += qt6ct
+    SUBDIR += rubygem-dotenv
     SUBDIR += rubygem-mime-types
     SUBDIR += rubygem-mime-types-data
     SUBDIR += rubygem-mime-types-gitlab
@@ -167,8 +168,5 @@
     SUBDIR += xtail
     SUBDIR += zine
     SUBDIR += zoneinfo
-
-    SUBDIR += rubygem-dotenv
-
 
 .include <bsd.port.subdir.mk>

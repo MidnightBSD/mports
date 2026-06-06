@@ -45,6 +45,8 @@
     SUBDIR += furl
     SUBDIR += gitea
     SUBDIR += gitlab
+    SUBDIR += gitlab-pages
+    SUBDIR += gitlab-workhorse
     SUBDIR += glassfish
     SUBDIR += gnome-user-share
     SUBDIR += google-sitemapgen
@@ -349,6 +351,7 @@
     SUBDIR += qt6-websockets
     SUBDIR += qt6-webview
     SUBDIR += raphael
+    SUBDIR += rubygem-actioncable-gitlab
     SUBDIR += rubygem-actioncable72
     SUBDIR += rubygem-actioncable80
     SUBDIR += rubygem-actionpack-gitlab
@@ -368,9 +371,15 @@
     SUBDIR += rubygem-async-http
     SUBDIR += rubygem-async-pool
     SUBDIR += rubygem-async-rest
+    SUBDIR += rubygem-atlassian-jwt
+    SUBDIR += rubygem-browser5
+    SUBDIR += rubygem-carrierwave-gitlab
     SUBDIR += rubygem-cgi
+    SUBDIR += rubygem-circuitbox
     SUBDIR += rubygem-cookiejar
+    SUBDIR += rubygem-coverband
     SUBDIR += rubygem-crass
+    SUBDIR += rubygem-cssbundling-rails-rails-gitlab
     SUBDIR += rubygem-em-http-request
     SUBDIR += rubygem-em-socksify
     SUBDIR += rubygem-em-twitter
@@ -409,11 +418,16 @@
     SUBDIR += rubygem-faraday1
     SUBDIR += rubygem-faraday_middleware
     SUBDIR += rubygem-faraday_middleware0
+    SUBDIR += rubygem-fuzzyurl
+    SUBDIR += rubygem-gon-rails-gitlab
+    SUBDIR += rubygem-hamlit-gitlab
     SUBDIR += rubygem-hpricot
     SUBDIR += rubygem-http
     SUBDIR += rubygem-http-accept
     SUBDIR += rubygem-http-cookie
     SUBDIR += rubygem-http-form_data
+    SUBDIR += rubygem-http-form_data2
+    SUBDIR += rubygem-http4
     SUBDIR += rubygem-http_router
     SUBDIR += rubygem-httpclient
     SUBDIR += rubygem-httparty
@@ -421,9 +435,16 @@
     SUBDIR += rubygem-jquery-rails
     SUBDIR += rubygem-json-jwt
     SUBDIR += rubygem-json-jwt-gitlab
+    SUBDIR += rubygem-jsonb_accessor
     SUBDIR += rubygem-jwt
     SUBDIR += rubygem-jwt2
+    SUBDIR += rubygem-kaminari-actionview-rails-gitlab
+    SUBDIR += rubygem-kaminari-activerecord-rails-gitlab
+    SUBDIR += rubygem-kaminari-core
+    SUBDIR += rubygem-kaminari-rails-gitlab
+    SUBDIR += rubygem-kubeclient
     SUBDIR += rubygem-llhttp-ffi
+    SUBDIR += rubygem-lograge-rails-gitlab
     SUBDIR += rubygem-multipart-post
     SUBDIR += rubygem-net-http
     SUBDIR += rubygem-net-http-gitlab
@@ -435,6 +456,7 @@
     SUBDIR += rubygem-protocol-http2
     SUBDIR += rubygem-protocol-url
     SUBDIR += rubygem-puma
+    SUBDIR += rubygem-puma-gitlab
     SUBDIR += rubygem-rack
     SUBDIR += rubygem-rack-accept
     SUBDIR += rubygem-rack-attack
@@ -463,20 +485,27 @@
     SUBDIR += rubygem-rackup
     SUBDIR += rubygem-rackup-gitlab
     SUBDIR += rubygem-rackup10
+    SUBDIR += rubygem-rails-gitlab
     SUBDIR += rubygem-rails4
     SUBDIR += rubygem-railties-gitlab
     SUBDIR += rubygem-railties4
     SUBDIR += rubygem-railties72
     SUBDIR += rubygem-railties80
+    SUBDIR += rubygem-redcloth
     SUBDIR += rubygem-redis-rack
     SUBDIR += rubygem-redis-rack-gitlab
     SUBDIR += rubygem-redis-rack2
     SUBDIR += rubygem-responders-rails-gitlab
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rest-client-gitlab
+    SUBDIR += rubygem-rinku
+    SUBDIR += rubygem-rqrcode-gitlab
+    SUBDIR += rubygem-rqrcode_core-gitlab
+    SUBDIR += rubygem-ruby-openai37
     SUBDIR += rubygem-sawyer
     SUBDIR += rubygem-socksify
     SUBDIR += rubygem-swd
+    SUBDIR += rubygem-toml-rb
     SUBDIR += rubygem-turbolinks
     SUBDIR += rubygem-turbolinks-source
     SUBDIR += rubygem-typhoeus
@@ -524,40 +553,5 @@
     SUBDIR += yuicompressor
     SUBDIR += zenphoto
     SUBDIR += zola
-
-    SUBDIR += gitlab-pages
-    SUBDIR += gitlab-workhorse
-    SUBDIR += rubygem-atlassian-jwt
-    SUBDIR += rubygem-browser5
-    SUBDIR += rubygem-carrierwave-gitlab
-    SUBDIR += rubygem-circuitbox
-    SUBDIR += rubygem-coverband
-    SUBDIR += rubygem-cssbundling-rails-rails-gitlab
-    SUBDIR += rubygem-gon-rails-gitlab
-    SUBDIR += rubygem-hamlit-gitlab
-    SUBDIR += rubygem-jsonb_accessor
-    SUBDIR += rubygem-kaminari-rails-gitlab
-    SUBDIR += rubygem-kubeclient
-    SUBDIR += rubygem-lograge-rails-gitlab
-    SUBDIR += rubygem-puma-gitlab
-    SUBDIR += rubygem-rails-gitlab
-    SUBDIR += rubygem-redcloth
-    SUBDIR += rubygem-rqrcode-gitlab
-    SUBDIR += rubygem-ruby-openai37
-    SUBDIR += rubygem-toml-rb
-
-
-    SUBDIR += rubygem-actioncable-gitlab
-    SUBDIR += rubygem-http4
-    SUBDIR += rubygem-kaminari-actionview-rails-gitlab
-    SUBDIR += rubygem-kaminari-activerecord-rails-gitlab
-    SUBDIR += rubygem-kaminari-core
-    SUBDIR += rubygem-rinku
-    SUBDIR += rubygem-rqrcode_core-gitlab
-
-
-    SUBDIR += rubygem-fuzzyurl
-    SUBDIR += rubygem-http-form_data2
-
 
 .include <bsd.port.subdir.mk>
