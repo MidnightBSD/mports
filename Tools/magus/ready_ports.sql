@@ -19,17 +19,15 @@ CREATE OR REPLACE VIEW ready_ports AS
        AND fetch_phase.phase = 'fetch'
        AND (fetch_phase.status = 'pass' OR fetch_phase.status = 'warn')
     LEFT JOIN locks on locks.port = ports.id and locks.phase = 'build'
-    LEFT JOIN depends on depends.port = ports.id
     WHERE ports.status = 'untested' and locks.id is null and
-          (depends.port is null or
-             not exists
-                  (SELECT depends.port AS port
-                   FROM depends WHERE ports.id = depends.port and (not exists
-                     (SELECT ports.id as dep_id
-                      FROM ports
-                      WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
-                      or exists
-                         (SELECT 1
-                          FROM locks dep_locks
-                          WHERE dep_locks.port = depends.dependency and dep_locks.phase = 'build'))))
+          not exists
+              (SELECT depends.port AS port
+               FROM depends WHERE ports.id = depends.port and (not exists
+                 (SELECT ports.id as dep_id
+                  FROM ports
+                  WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
+                  or exists
+                     (SELECT 1
+                      FROM locks dep_locks
+                      WHERE dep_locks.port = depends.dependency and dep_locks.phase = 'build')))
 ORDER BY priority desc, ports.name asc;

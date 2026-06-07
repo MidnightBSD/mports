@@ -352,18 +352,15 @@ create VIEW ready_ports AS
        AND fetch_phase.phase = 'fetch'
        AND (fetch_phase.status = 'pass' OR fetch_phase.status = 'warn')
     LEFT JOIN locks on locks.port = ports.id and locks.phase = 'build'
-    LEFT JOIN depends on depends.port = ports.id
     WHERE ports.status = 'untested' and locks.id is null and
-          (depends.port is null or
-             not exists
-                  (SELECT depends.port AS port
-                   FROM depends WHERE ports.id = depends.port and (not exists
-                     (SELECT ports.id as dep_id
-                      FROM ports
-                      WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
-                      or
+          not exists
+              (SELECT depends.port AS port
+               FROM depends WHERE ports.id = depends.port and (not exists
+                 (SELECT ports.id as dep_id
+                  FROM ports
+                  WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
+                  or
     exists (select 1 from locks dep_locks where dep_locks.port = depends.dependency and dep_locks.phase = 'build')))
-          )
 ORDER BY priority desc, ports.name asc;
 
 DROP TABLE "critical_ports" CASCADE\g
