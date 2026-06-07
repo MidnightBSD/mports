@@ -1,0 +1,49 @@
+# Copyright 2026 The Leonardo Authors.
+# Licensed under the Apache License, Version 2.0.
+#
+# Sample Leonardo server configuration.
+# Copy to %%PREFIX%%/etc/leonardo/leonardo.yaml and adjust for your deployment.
+# See docs/project-plan.md §4 for the full schema.
+
+leonardo:
+  server:
+    region: us-east-1
+    domain: s3.example.org
+    admin_port: 9001
+
+  storage:
+    base_dir: /var/leonardo
+    tmp_dir: /var/leonardo/tmp
+    fsync_on_write: true
+    max_object_size: 5497558138880   # 5 TiB
+
+  limits:
+    max_multipart_parts: 10000
+    min_part_size: 5242880           # 5 MiB
+    max_part_size: 5368709120        # 5 GiB
+    request_timeout_seconds: 900
+
+  auth:
+    source: yaml
+    api_keys_file: /var/leonardo/config/api-keys.yaml
+    allow_anonymous_read: false
+    allow_sigv2: true                # set false for SigV4-only deployments
+    presigned_url_max_ttl_seconds: 259200   # 3 days
+
+  logging:
+    access_log: /var/leonardo/logs/access.log
+    audit_log: /var/leonardo/logs/audit.log
+
+  features:
+    versioning_enabled: true
+    multipart_enabled: true
+    presigned_urls_enabled: true
+
+# Region map is parsed but not yet acted on. Becomes live in M11.
+# server:
+#   region_map:
+#     us-east-1:
+#       endpoint: s3.example.org
+#     eu-west-1:
+#       endpoint: s3-eu.example.org
+#       forward_to: https://leonardo-eu.internal:9000

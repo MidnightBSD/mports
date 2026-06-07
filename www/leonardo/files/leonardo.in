@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# PROVIDE: leonardo
+# REQUIRE: NETWORKING LOGIN DAEMON
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to enable leonardo:
+#
+# leonardo_enable="YES"
+# leonardo_config="/usr/local/etc/leonardo/leonardo.yaml"  # path to config file
+# leonardo_java_opts=""                                     # extra JVM flags
+#
+. /etc/rc.subr
+
+name="leonardo"
+desc="Leonardo S3-compatible object storage server"
+rcvar="${name}_enable"
+
+: ${leonardo_enable:="NO"}
+: ${leonardo_user:="leonardo"}
+: ${leonardo_group:="leonardo"}
+: ${leonardo_config:="%%PREFIX%%/etc/leonardo/leonardo.yaml"}
+: ${leonardo_java_opts:=""}
+: ${leonardo_flags:=""}
+: ${leonardo_chdir:="/var/leonardo"}
+: ${leonardo_log:="/var/log/leonardo/leonardo.log"}
+
+pidfile="/var/run/${name}.pid"
+command="%%JAVA%%"
+command_args="${leonardo_java_opts} \
+    -cp '%%PREFIX%%/share/java/leonardo/lib/*' \
+    org.midnightbsd.leonardo.app.LeonardoApplication \
+    --spring.config.location=${leonardo_config} \
+    --leonardo.storage.base-dir=/var/leonardo \
+    ${leonardo_flags}"
+
+start_precmd="${name}_prestart"
+start_cmd="${name}_start"
+
+leonardo_prestart()
+{
+	install -d -o ${leonardo_user} -g ${leonardo_group} -m 0750 /var/leonardo
+	install -d -o ${leonardo_user} -g ${leonardo_group} -m 0750 /var/log/leonardo
+}
+
+leonardo_start()
+{
+	echo "Starting ${name}."
+	/usr/sbin/daemon -u ${leonardo_user} -p ${pidfile} -o ${leonardo_log} \
+		${command} ${command_args}
+}
+
+load_rc_config $name
+run_rc_command "$1"
