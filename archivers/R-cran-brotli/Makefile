@@ -15,6 +15,6 @@ USES=		cran:auto-plist,compiles
 NO_TEST=	yes
 
 post-fake:
-	${RMDIR} ${PREFIX}/${R_MOD_DIR}/bin
+	${RMDIR} ${FAKE_DESTDIR}${PREFIX}/${R_MOD_DIR}/bin 2>/dev/null || ${TRUE}
 
 .include <bsd.port.mk>
