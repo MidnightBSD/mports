@@ -105,7 +105,11 @@ sub main {
   } elsif ($path =~m:^/blockers/(.*):) {
     blockers($p, $1);
   } elsif ($path =~m:^/fetch-failures/(.*):) {
-    fetch_failures($p, $1);
+    phase_failures($p, $1, 'fetch');
+  } elsif ($path =~m:^/test-failures/(.*):) {
+    phase_failures($p, $1, 'test');
+  } elsif ($path =~m:^/scan-failures/(.*):) {
+    phase_failures($p, $1, 'scan');
   } elsif ($path =~m:^/api/?$:) {
     api_docs($p);
   } elsif ($path =~m:^/updates:) {
@@ -485,8 +489,8 @@ sub blockers {
     print $tmpl->output;
 }
 
-sub fetch_failures {
-    my ($p, $run) = @_;
+sub phase_failures {
+    my ($p, $run, $phase) = @_;
 
     if (!is_number($run)) {
         print $p->header(
@@ -497,23 +501,36 @@ sub fetch_failures {
         return;
     }
 
+    if ($phase !~ /^(?:fetch|test|scan)$/) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        return;
+    }
+
     my $tmpl = template($p, 'fetch-failures.tmpl');
-    $tmpl->param(title => "Fetch Failures for Run $run", run => $run);
+    $tmpl->param(
+        title => ucfirst($phase) . " Failures for Run $run",
+        run   => $run,
+        phase => $phase,
+    );
 
     my $dbh = Magus::DBI->db_Main();
     my $sth = $dbh->prepare(q{
         SELECT p.id, p.name AS port, p.version, p.flavor,
-               ppr.status AS fetch_status,
+               ppr.status AS phase_status,
                ppr.updated
           FROM ports p
           JOIN port_phase_results ppr ON ppr.port = p.id
          WHERE p.run = ?
-           AND ppr.phase = 'fetch'
+           AND ppr.phase = ?
            AND ppr.status = 'fail'
          ORDER BY p.name, p.flavor
     });
 
-    $sth->execute($run);
+    $sth->execute($run, $phase);
     my $failures = $sth->fetchall_arrayref({});
     $sth->finish;
 
