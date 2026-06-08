@@ -11,6 +11,7 @@ LICENSE=	mit
 
 RUN_DEPENDS=	rubygem-citrus>=3.0<4:textproc/rubygem-citrus \
 		rubygem-racc>=1.7<2:devel/rubygem-racc
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
