@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-chunky_png>=1.0<2:graphics/rubygem-chunky_png \
 		rubygem-rqrcode_core-gitlab>=1.0<2:www/rubygem-rqrcode_core-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
