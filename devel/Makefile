@@ -2458,6 +2458,7 @@
     SUBDIR += rubygem-re2
     SUBDIR += rubygem-recaptcha
     SUBDIR += rubygem-recursive-open-struct1
+    SUBDIR += rubygem-rdoc
     SUBDIR += rubygem-redis-store
     SUBDIR += rubygem-redis-store-gitlab
     SUBDIR += rubygem-reline
