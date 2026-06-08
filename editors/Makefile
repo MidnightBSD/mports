@@ -30,7 +30,6 @@
     SUBDIR += neovim
     SUBDIR += neovim-gtk
     SUBDIR += neovim-qt
-    SUBDIR += nvi-devel
     SUBDIR += nvi2
     SUBDIR += openoffice-4
     SUBDIR += pico-alpine
