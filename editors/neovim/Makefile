@@ -1,6 +1,6 @@
 PORTNAME=	neovim
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.10.2
+DISTVERSION=	0.12.2
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,6 +17,7 @@ LIB_DEPENDS=	libluv.so:devel/luv \
 		libmsgpack-c.so:devel/msgpack-c \
 		libtree-sitter.so:devel/tree-sitter \
 		libunibilium.so:devel/unibilium \
+		libutf8proc.so:textproc/utf8proc \
 		libuv.so:devel/libuv \
 		libvterm.so:devel/libvterm
 
@@ -24,12 +25,12 @@ USES=		cmake cpe gettext iconv lua:51,build luajit \
 		pathfix pkgconfig
 
 USE_GITHUB=	yes
-GH_TUPLE=	tree-sitter:tree-sitter-c:v0.23.1:treesitter_c \
-		tree-sitter-grammars:tree-sitter-lua:v0.2.0:treesitter_lua \
-		MDeiml:tree-sitter-markdown:v0.3.2:treesitter_markdown \
-		tree-sitter-grammars:tree-sitter-query:v0.4.0:treesitter_query \
-		neovim:tree-sitter-vim:v0.4.0:treesitter_vim \
-		neovim:tree-sitter-vimdoc:v3.0.0:treesitter_vimdoc
+GH_TUPLE=	tree-sitter:tree-sitter-c:v0.24.2:treesitter_c \
+		tree-sitter-grammars:tree-sitter-lua:v0.5.0:treesitter_lua \
+		tree-sitter-grammars:tree-sitter-markdown:v0.5.3:treesitter_markdown \
+		tree-sitter-grammars:tree-sitter-query:v0.8.0:treesitter_query \
+		tree-sitter-grammars:tree-sitter-vim:v0.8.1:treesitter_vim \
+		neovim:tree-sitter-vimdoc:v4.1.0:treesitter_vimdoc
 
 CMAKE_ARGS=	-DLUA_PRG:FILEPATH="${LUA_CMD}" \
 		-DCMAKE_INSTALL_MANDIR:PATH="${PREFIX}/share/man" \
@@ -47,7 +48,7 @@ OPTIONS_SUB=	yes
 
 PYNVIM_DESC=	Enable support for plugins written in python
 
-NLS_CMAKE_BOOL=		ENABLE_LIBINTL
+NLS_CMAKE_BOOL=		ENABLE_LIBINTL ENABLE_TRANSLATIONS
 
 PYNVIM_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pynvim>=0.3.0:editors/py-pynvim@${PY_FLAVOR}
 PYNVIM_USES=		python:run
