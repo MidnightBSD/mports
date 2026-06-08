@@ -28,6 +28,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	GLIB_LIBS=-L/var/empty
 CFLAGS+=	-I${SAMBA_INCLUDEDIR} -DFUSE_USE_VERSION=${FUSE_VERSION}
 LDFLAGS+=	-L${SAMBA_LIBDIR}
+LIBS+=		-L${LOCALBASE}/lib ${ICONV_LIB}
 SUB_FILES=	pkg-message
 # configure just generated config.h -- we do not need to redo it:
 MAKE_ARGS+=	AUTOHEADER=${TRUE}
