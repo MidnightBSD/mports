@@ -31,6 +31,7 @@ USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
+		--disable-dtrace \
 		--disable-rpath \
 		--enable-install-static-library \
 		--enable-pthread \
@@ -219,7 +220,6 @@ post-install-DOCS-on:
 .endfor
 	@(cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${RUBY_DOCDIR}/)
 	${INSTALL_DATA} ${WRKSRC}/COPYING*	\
-			${WRKSRC}/ChangeLog	\
 			${WRKSRC}/LEGAL		\
 			${WRKSRC}/README*	\
 			${FAKE_DESTDIR}${RUBY_DOCDIR}/
