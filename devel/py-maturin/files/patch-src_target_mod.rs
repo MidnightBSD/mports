@@ -1,28 +1,28 @@
---- src/target.rs.orig	2024-09-25 23:06:33.000000000 -0400
-+++ src/target.rs	2025-12-27 00:44:50.084404000 -0500
-@@ -1,4 +1,3 @@
+--- src/target/mod.rs.orig	2025-12-03 14:04:39 UTC
++++ src/target/mod.rs
+@@ -1,6 +1,5 @@
+ use crate::PlatformTag;
+ use crate::build_options::TargetTriple;
 -use crate::cross_compile::is_cross_compiling;
  use crate::python_interpreter::InterpreterKind;
  use crate::python_interpreter::InterpreterKind::{CPython, GraalPy, PyPy};
- use crate::PlatformTag;
-@@ -223,7 +222,7 @@
-     /// Fails if the target triple isn't supported
-     pub fn from_target_triple(target_triple: Option<String>) -> Result<Self> {
-         use target_lexicon::{
+ use anyhow::{Result, anyhow, bail, format_err};
+@@ -285,5 +284,3 @@ impl Target {
+     ) -> Result<Self> {
+-        use target_lexicon::{
 -            ArmArchitecture, Mips32Architecture, Mips64Architecture, OperatingSystem,
-+            ArmArchitecture, Mips32Architecture, Mips64Architecture, 
-         };
- 
-         let rustc_version = rustc_version_meta()?;
-@@ -240,23 +239,7 @@
-             (platform, host_triple.clone())
-         };
- 
+-        };
++        use target_lexicon::{ArmArchitecture, Mips32Architecture, Mips64Architecture};
+         let platform = Triple::from_str(target_triple)
+@@ -294,22 +291,1 @@ impl Target {
 -        let os = match platform.operating_system {
--            OperatingSystem::Linux => Os::Linux,
+-            OperatingSystem::Linux => match platform.environment {
+-                Environment::Android | Environment::Androideabi => Os::Android,
+-                _ => Os::Linux,
+-            },
 -            OperatingSystem::Windows => Os::Windows,
--            OperatingSystem::MacOSX { .. } | OperatingSystem::Darwin => Os::Macos,
--            OperatingSystem::Ios => Os::Ios,
+-            OperatingSystem::MacOSX(_) | OperatingSystem::Darwin(_) => Os::Macos,
+-            OperatingSystem::IOS(_) => Os::Ios,
 -            OperatingSystem::Netbsd => Os::NetBsd,
 -            OperatingSystem::Freebsd => Os::FreeBsd,
 -            OperatingSystem::Openbsd => Os::OpenBsd,
@@ -33,27 +33,18 @@
 -            OperatingSystem::Emscripten => Os::Emscripten,
 -            OperatingSystem::Wasi | OperatingSystem::WasiP1 | OperatingSystem::WasiP2 => Os::Wasi,
 -            OperatingSystem::Aix => Os::Aix,
+-            OperatingSystem::Hurd => Os::Hurd,
+-            OperatingSystem::Cygwin => Os::Cygwin,
 -            unsupported => bail!("The operating system {:?} is not supported", unsupported),
 -        };
 +        let os = Os::FreeBsd;
- 
-         let arch = match platform.architecture {
-             Architecture::X86_64 | Architecture::X86_64h => Arch::X86_64,
-@@ -301,7 +284,7 @@
-             user_specified: target_triple.is_some(),
-             cross_compiling: false,
+@@ -362,3 +338,3 @@ impl Target {
          };
 -        target.cross_compiling = is_cross_compiling(&target)?;
 +        target.cross_compiling = false;
          Ok(target)
-     }
- 
-@@ -415,7 +398,7 @@
-             Os::Linux => "linux",
-             Os::Macos => "darwin",
-             Os::Ios => "darwin",
+@@ -482,3 +458,3 @@ impl Target {
+             Os::Ios => "ios",
 -            Os::FreeBsd => "freebsd",
 +            Os::FreeBsd => "midnightbsd",
              Os::NetBsd => "netbsd",
-             Os::OpenBsd => "openbsd",
-             Os::Dragonfly => "dragonfly",
