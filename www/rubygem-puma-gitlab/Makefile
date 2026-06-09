@@ -13,6 +13,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-nio4r>=2.0<3:devel/rubygem-nio4r
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		cpe gem ssl
 
