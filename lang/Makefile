@@ -116,6 +116,7 @@
     SUBDIR += referenceassemblies-pcl
     SUBDIR += rubygem-rb_sys
     SUBDIR += ruby32
+    SUBDIR += ruby33
     SUBDIR += rust
     SUBDIR += rust-bin
     SUBDIR += rust-bootstrap

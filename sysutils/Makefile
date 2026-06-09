@@ -236,6 +236,7 @@
     SUBDIR += py-pkginfo
     SUBDIR += py-psutil
     SUBDIR += py-ptyprocess
+    SUBDIR += py-puremagic
     SUBDIR += py-py-cpuinfo
     SUBDIR += py-scandir
     SUBDIR += py-uptime

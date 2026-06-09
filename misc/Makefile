@@ -116,6 +116,7 @@
     SUBDIR += py-lazrs
     SUBDIR += py-litellm
     SUBDIR += py-litellm-proxy-extras
+    SUBDIR += py-llm
     SUBDIR += py-mcp
     SUBDIR += py-openai
     SUBDIR += py-openai-whisper

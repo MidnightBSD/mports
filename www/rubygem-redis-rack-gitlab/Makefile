@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-rack-session-gitlab>=0.2.0:www/rubygem-rack-session-gitlab \
 		rubygem-redis-store-gitlab>=1.2<2:devel/rubygem-redis-store-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

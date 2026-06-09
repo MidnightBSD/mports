@@ -190,6 +190,9 @@
     SUBDIR += py-sqlalchemy10
     SUBDIR += py-sqlalchemy14
     SUBDIR += py-sqlalchemy20
+    SUBDIR += py-sqlite-fts4
+    SUBDIR += py-sqlite-migrate
+    SUBDIR += py-sqlite-utils
     SUBDIR += py-sqlite3
     SUBDIR += py-sqlobject
     SUBDIR += py-sqlparse

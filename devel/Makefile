@@ -1376,6 +1376,7 @@
     SUBDIR += py-click-default-group
     SUBDIR += py-click-help-colors
     SUBDIR += py-click-plugins
+    SUBDIR += py-condense-json
     SUBDIR += py-cligj
     SUBDIR += py-cmdtest
     SUBDIR += py-codecov
@@ -1792,6 +1793,7 @@
     SUBDIR += py-types-docutils
     SUBDIR += py-types-jsonschema
     SUBDIR += py-types-psutil
+    SUBDIR += py-types-pyyaml
     SUBDIR += py-types-python-dateutil
     SUBDIR += py-types-requests
     SUBDIR += py-types-setuptools

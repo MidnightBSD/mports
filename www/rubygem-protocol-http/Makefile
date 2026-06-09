@@ -11,6 +11,8 @@ WWW=		https://socketry.github.io/protocol-http/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/license.md
 
+RUBY_VER=	3.3
+
 USES=		gem
 
 NO_ARCH=	yes
