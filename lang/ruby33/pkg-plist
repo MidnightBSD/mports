@@ -194,7 +194,7 @@ include/ruby-%%RUBY_VER%%/ruby/version.h
 include/ruby-%%RUBY_VER%%/ruby/vm.h
 lib/libruby%%RUBY_SHLIBVER%%-static.a
 lib/libruby%%RUBY_SHLIBVER%%.so
-lib/libruby%%RUBY_SHLIBVER%%.so.%%RUBY_SHLIBVER%%
+lib/libruby%%RUBY_SHLIBVER%%.so.%%RUBY_VERSION%%
 %%RUBY_LIBDIR%%/English.rb
 %%RUBY_LIBDIR%%/abbrev.rb
 %%RUBY_ARCHLIBDIR%%/bigdecimal.so

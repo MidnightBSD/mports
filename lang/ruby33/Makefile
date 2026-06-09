@@ -44,7 +44,10 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--docdir="${LOCALBASE}/share/doc/ruby33" \
 		--mandir="${LOCALBASE}/man" \
 		--with-destdir=${FAKE_DESTDIR}
-CONFIGURE_ENV=	debugflags=
+CONFIGURE_ENV=	debugflags= \
+		LD="${CC}" \
+		LDSHARED="${CC} -shared" \
+		DLDSHARED="${CC} -shared"
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 # Keep this, else ruby will fail to load libraries dependent of libpthread.
@@ -126,8 +129,10 @@ INSTALLED_MANUALS=	ruby
 
 EXTSAMPLES=	bigdecimal/sample/*.rb
 
-EXTDOCS=	readline/README ripper/README stringio/README.md \
-		syslog/syslog.txt
+EXTDOCS=	ripper/README stringio/README.md syslog/syslog.txt
+
+post-extract-DOCS-on:
+	${MV} ${WRKSRC}/ChangeLog ${WRKSRC}/doc/ChangeLog
 
 # Macros to change variables in rbconfig.rb
 RB_SET_CONF_VAR=	${SH} -c \
@@ -201,7 +206,7 @@ post-install-DEBUG-off:
 #
 .if defined(STRIP) && ${STRIP} == -s
 	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/ruby${RUBY_SUFFIX}
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libruby${RUBY_SHLIBVER}.so.${RUBY_SHLIBVER}
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libruby${RUBY_SHLIBVER}.so.${RUBY_VERSION}
 #	${FIND} ${FAKE_DESTDIR}${RUBY_ARCHLIBDIR} -type f -name '*\.so' -exec ${STRIP_CMD} {} \;
 .endif
 
