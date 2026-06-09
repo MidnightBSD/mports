@@ -387,6 +387,7 @@
     SUBDIR += py-python-augeas
     SUBDIR += py-python-docs-theme
     SUBDIR += py-python-slugify
+    SUBDIR += py-python-ulid2
     SUBDIR += py-pytidylib
     SUBDIR += py-pytkdocs
     SUBDIR += py-qrcode
