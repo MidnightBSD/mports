@@ -60,7 +60,7 @@ post-build:
 		${WRKSRC}/gst-mode.el.in > ${WRKSRC}/gst-mode.el
 
 post-install:
-	@${LN} -sf gst-load.1 ${MANPREFIX}/man/man1/gst-reload.1
+	@${LN} -sf gst-load.1 ${PREFIX}/share/man/man1/gst-reload.1
 	@${MKDIR} ${DATADIR}/gtk
 	${INSTALL_DATA} ${WRKSRC}/*.el ${PREFIX}/share/emacs/site-lisp
 	@${LS} -1 ${PREFIX}/bin/gst* |grep -v config|${XARGS} ${STRIP_CMD}
