@@ -83,6 +83,7 @@
     SUBDIR += firstboot-midnightbsd-update
     SUBDIR += firstboot-pkgs
     SUBDIR += flashback
+    SUBDIR += fluent-bit
     SUBDIR += flock
     SUBDIR += framework-system
     SUBDIR += freebsd-shar
