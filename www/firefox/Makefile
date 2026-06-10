@@ -94,8 +94,9 @@ QMAKE_ARGS=		--enable-application=browser \
 # --with-system-jpeg
 
 LLVM_VERSION=	19
-MBSD64_TARGET=	x86_64-mports-freebsd13.4
-CONFIGURE_TARGET=	${MBSD64_TARGET}
+MBSD_TARGET_ARCH=	${ARCH:S/amd64/x86_64/:S/i386/i686/}
+MBSD_TARGET=	${MBSD_TARGET_ARCH}-mports-freebsd13.4
+CONFIGURE_TARGET=	${MBSD_TARGET}
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV+= BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
 CONFIGURE_OUTSOURCE=    yes
@@ -135,7 +136,7 @@ post-patch:
 		${WRKSRC}/third_party/rust/libc/.cargo-checksum.json \
 		${WRKSRC}/third_party/rust/quinn-udp/.cargo-checksum.json
 	# Fix midnight
-	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD64_TARGET}|" \
+	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD_TARGET}|" \
 		${WRKSRC}/build/autoconf/config.guess
 	# Set mozilla options
 	@${ECHO_CMD} "--=> Setting configuration <=--"

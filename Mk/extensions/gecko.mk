@@ -56,9 +56,9 @@ Gecko_Pre_Include=	bsd.gecko.mk
 
 MAINTAINER?=	ports@MidnightBSD.org
 
-# XXX: i386?
-MBSD64_TARGET=  x86_64-mports-freebsd13.4
-CONFIGURE_TARGET=       ${MBSD64_TARGET}
+MBSD_TARGET_ARCH=	${ARCH:S/amd64/x86_64/:S/i386/i686/}
+MBSD_TARGET=		${MBSD_TARGET_ARCH}-mports-freebsd13.4
+CONFIGURE_TARGET=	${MBSD_TARGET}
 
 MOZILLA?=	${PORTNAME}
 MOZILLA_VER?=	${PORTVERSION}
@@ -334,7 +334,7 @@ BUILD_DEPENDS+=	as:devel/binutils
 post-patch: gecko-post-patch
 
 gecko-post-patch:
-	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD64_TARGET}|" \
+	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD_TARGET}|" \
 		${WRKSRC}/build/autoconf/config.guess
 	@${RM} ${MOZCONFIG}
 .    if !defined(NOMOZCONFIG)
