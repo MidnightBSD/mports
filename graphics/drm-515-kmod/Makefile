@@ -9,11 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DRM drivers modules
 WWW=		https://github.com/freebsd/drm-kmod/
 
-LICENSE=	bsd2 mit gpl
+LICENSE=	bsd2 mit gpl2
 LICENSE_COMB=	multi
-
-ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64 powerpc64le
-ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64, i386, aarch64, and powerpc64
 
 FAKE_OPTS=	trueprefix
 
@@ -29,8 +26,9 @@ GH_TAGNAME=	${DRM_KMOD_GH_TAGNAME}
 
 .include <bsd.mport.options.mk>
 
-IGNORE_MidnightBSD_3.2=	Needs 4.x or higher
-IGNORE_MidnightBSD_3.1=	Needs 4.x or higher
+IGNORE_MidnightBSD_4.0=	Needs 4.1 or higher
+IGNORE_MidnightBSD_3.2=	Needs 4.1 or higher
+IGNORE_MidnightBSD_3.1=	Needs 4.1 or higher
 
 .if ${ARCH} == "amd64"
 PLIST_SUB+=	AMDGPU=""
