@@ -33,6 +33,7 @@ PORTEXAMPLES=	*
 
 .if !exists(/usr/include/sys/signalfd.h)
 LIB_DEPENDS+=	libepoll-shim.so:devel/libepoll-shim
+LDFLAGS+=	`pkg-config --libs epoll-shim`
 .endif
 
 OPTIONS_DEFINE=	EXAMPLES LIBRSVG2 MANPAGES NLS X11
