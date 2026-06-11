@@ -9,7 +9,7 @@ WWW=		https://github.com/rustls/rustls-ffi
 
 LICENSE=	Apache-2.0 iscl mit
 LICENSE_COMB=	dual
-LICENSE_FILE_apache2=	${WRKSRC}/LICENSE-APACHE
+LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_iscl=	${WRKSRC}/LICENSE-ISC
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
