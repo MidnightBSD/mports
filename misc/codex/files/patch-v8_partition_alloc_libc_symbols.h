@@ -1,5 +1,5 @@
---- cargo-crates/v8-147.4.0/third_party/partition_alloc/src/partition_alloc/shim/allocator_shim_override_libc_symbols.h.orig	2026-05-12 00:00:00 UTC
-+++ cargo-crates/v8-147.4.0/third_party/partition_alloc/src/partition_alloc/shim/allocator_shim_override_libc_symbols.h
+--- cargo-crates/v8-149.2.0/third_party/partition_alloc/src/partition_alloc/shim/allocator_shim_override_libc_symbols.h.orig	2026-05-12 00:00:00 UTC
++++ cargo-crates/v8-149.2.0/third_party/partition_alloc/src/partition_alloc/shim/allocator_shim_override_libc_symbols.h
 @@ -27,6 +27,12 @@
 
  extern "C" {
