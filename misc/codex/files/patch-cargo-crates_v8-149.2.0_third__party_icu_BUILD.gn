@@ -1,0 +1,5 @@
+--- cargo-crates/v8-149.2.0/third_party/icu/BUILD.gn.orig	2026-06-11 12:00:00.000000000 -0400
++++ cargo-crates/v8-149.2.0/third_party/icu/BUILD.gn	2026-06-11 12:00:00.000000000 -0400
+@@ -449,1 +449,1 @@
+-  data_dir = "common"
++  data_dir = "flutter_desktop"
