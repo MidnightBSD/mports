@@ -1,9 +1,3 @@
-===>  Vulnerability check disabled, database not found
-===>  License mit accepted by the user
-===> Fetching all distfiles required by py311-ast-grep-cli-0.42.3 for building
-[1m===>  Extracting for py311-ast-grep-cli-0.42.3[0m
-=> SHA256 Checksum OK for ast_grep_cli-0.42.3.tar.gz.
-===>  Moving crates to /usr/mports/devel/py-ast-grep-cli/work-py311/ast_grep_cli-0.42.3/cargo-crates
 CARGO_CRATES=	Inflector-0.11.4 \
 		aho-corasick-1.1.4 \
 		ansi_term-0.12.1 \
