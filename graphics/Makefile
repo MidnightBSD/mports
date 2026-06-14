@@ -266,6 +266,7 @@
     SUBDIR += mypaint-brushes2
     SUBDIR += netpbm
     SUBDIR += nvidia-drm-510-kmod
+    SUBDIR += nvidia-drm-510-kmod-devel
     SUBDIR += nvidia-drm-kmod
     SUBDIR += nvidia-texture-tools
     SUBDIR += ocrad
