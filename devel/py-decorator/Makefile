@@ -10,7 +10,8 @@ COMMENT=	Better living through Python with decorators
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
+USES=		python cpe
+CPE_VENDOR=	python
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

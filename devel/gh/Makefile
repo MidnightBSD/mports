@@ -1,7 +1,6 @@
 PORTNAME=	gh
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.83.2
-PORTREVISION=	3
+DISTVERSION=	2.85.0
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -38,6 +37,10 @@ COMPLETIONS_DESC=		Build and install bash, fish and zsh shell completions
 COMPLETIONS_PLIST_FILES=	share/bash-completion/completions/${PORTNAME} \
 				share/fish/vendor_completions.d/${PORTNAME}.fish \
 				share/zsh/site-functions/_${PORTNAME}
+
+do-install:
+	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/${PORTNAME} \
+		${PREFIX}/bin/${PORTNAME}
 
 do-build-MANPAGES-on:
 	(cd ${WRKSRC} && \

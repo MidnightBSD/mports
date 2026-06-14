@@ -1,0 +1,17 @@
+PORTNAME=	metrics
+PORTVERSION=	0.15.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Application metrics and instrumentation
+WWW=		https://github.com/socketry/metrics
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/license.md
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

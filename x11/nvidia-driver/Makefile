@@ -41,6 +41,8 @@ BUILD_DEPENDS=	pkg-config:devel/pkgconf
 LIB_DEPENDS=	libOpenGL.so:graphics/libglvnd
 .endif
 
+BUILD_DEPENDS+=	gcc14:lang/gcc14
+
 RUN_DEPENDS=	${KMODDIR}/nvidia.ko:x11/nvidia-kmod${PKGNAMESUFFIX}
 
 .if ${NVVERSION} >= 415.013

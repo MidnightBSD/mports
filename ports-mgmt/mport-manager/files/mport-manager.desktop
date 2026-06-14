@@ -2,7 +2,7 @@
 Name=mport Package Manager
 Comment=MidnightBSD Package Manager
 Exec=pkexec /usr/local/bin/mport-manager
-Icon=icon
+Icon=mport-manager
 Terminal=false
 Type=Application
 StartupNotify=true

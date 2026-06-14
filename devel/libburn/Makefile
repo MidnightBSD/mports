@@ -3,7 +3,7 @@ PORTVERSION=	1.5.6
 CATEGORIES=	devel
 MASTER_SITES=	http://files.libburnia-project.org/releases/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libburnia library to read/write optical discs
 WWW=		https://dev.lovelyhq.com/libburnia/web/wiki/Libburn
 

@@ -104,6 +104,16 @@ sub main {
     compare_runs($p);
   } elsif ($path =~m:^/blockers/(.*):) {
     blockers($p, $1);
+  } elsif ($path =~m:^/fetch-failures/(.*):) {
+    phase_failures($p, $1, 'fetch');
+  } elsif ($path =~m:^/test-failures/(.*):) {
+    phase_failures($p, $1, 'test');
+  } elsif ($path =~m:^/scan-failures/(.*):) {
+    phase_failures($p, $1, 'scan');
+  } elsif ($path =~m:^/api/?$:) {
+    api_docs($p);
+  } elsif ($path =~m:^/updates:) {
+    updates_page($p);
   } else {
     print $p->header(
               -type=>'text/plain',
@@ -111,6 +121,15 @@ sub main {
     );
     print "Unknown path: $path\n";
   }
+}
+
+sub phase_status_fields($port) {
+  return (
+    fetch_status => $port->phase_status('fetch'),
+    build_status => $port->status,
+    test_status  => $port->phase_status('test'),
+    scan_status  => $port->phase_status('scan'),
+  );
 }
 
 sub is_number {
@@ -170,72 +189,115 @@ sub api_run_port_stats {
     description => $port->description,
     license => $port->license,
     www => $port->www,
-    cpe => $port->cpe
+    cpe => $port->cpe,
+    phase_status_fields($port),
      });
   }
       
   print $p->header(-type => 'application/json'), encode_json(\@results);
 }
 
+sub api_docs {
+  my ($p) = @_;
+
+  my $tmpl = template($p, 'api.tmpl');
+
+  $tmpl->param(
+    latest_api_url => 'https://www.midnightbsd.org/magus/api/latest',
+  );
+
+  print $p->header(-type => 'text/html', -charset => 'utf-8');
+  print $tmpl->output;
+}
+
 sub api_latest {
   my ($p) = @_;
 
   my %results;
-  my $status = 'pass';
-  my %arch;
-  
-  my @runs = Magus::Run->search(status => 'complete', blessed => 1, { order_by=> 'created DESC, osversion DESC, arch'});
+  my $dbh = Magus::DBI->db_Main();
 
-  my $dt;
-  foreach my $run (@runs) {
-    if (defined($arch{$run->arch})) {
-	next;
+  my $runs_sth = $dbh->prepare(q{
+    SELECT DISTINCT ON (arch) id, created
+      FROM runs
+     WHERE status = 'complete'
+       AND blessed
+     ORDER BY arch, created DESC, osversion DESC
+  });
+  $runs_sth->execute;
+
+  my @run_ids;
+  my $latest_created;
+  while (my $run = $runs_sth->fetchrow_hashref) {
+    push @run_ids, $run->{id};
+    if (!defined($latest_created) || $run->{created} gt $latest_created) {
+      $latest_created = $run->{created};
     }
-    if (!defined($dt)) {
-	$dt = DateTime::Format::Pg->parse_datetime( $run->{created} );
-    }
-    $arch{$run->arch} = 1;
-    my @ports = Magus::Port->search(run => $run, status => $status, { order_by=> 'name'});
-	
-    foreach my $port (@ports) {
-      if (defined($results{$port->pkgname})) {
+  }
+  $runs_sth->finish;
+
+  if (@run_ids) {
+    my $in_clause = join(',', ('?') x @run_ids);
+    my $ports_sth = $dbh->prepare(qq{
+      SELECT p.pkgname, p.version, p.name, p.description, p.license, p.www,
+             p.flavor, p.cpe, r.osversion, r.created, r.arch,
+             STRING_AGG(c.category, ',' ORDER BY c.category) AS categories
+        FROM ports p
+        JOIN runs r ON r.id = p.run
+        LEFT JOIN port_categories pc ON pc.port = p.id
+        LEFT JOIN categories c ON c.id = pc.category
+       WHERE p.run IN ($in_clause)
+         AND p.status = 'pass'
+       GROUP BY p.id, p.pkgname, p.version, p.name, p.description, p.license,
+                p.www, p.flavor, p.cpe, r.osversion, r.created, r.arch
+       ORDER BY r.created DESC, r.osversion DESC, r.arch, p.name
+    });
+    $ports_sth->execute(@run_ids);
+
+    while (my $port = $ports_sth->fetchrow_hashref) {
+      if (defined($results{$port->{pkgname}})) {
 	my $found = 0;
 
-        foreach my $r (@{$results{$port->pkgname}->{subpackages}}) {
-          if ($port->flavor eq $r->{name}) {
+        foreach my $r (@{$results{$port->{pkgname}}->{subpackages}}) {
+          if (($port->{flavor} // '') eq $r->{name}) {
              $found = 1;
              last;
           }
         }
-        if ($found == 0 && $port->flavor ne "") {
-	  push( @{$results{$port->pkgname}->{subpackages}}, { name => $port->flavor });
+        if ($found == 0 && ($port->{flavor} // '') ne "") {
+	  push( @{$results{$port->{pkgname}}->{subpackages}}, { name => $port->{flavor} });
         }
        } else {
-         my @cats = map {{ category => $_->category }} $port->categories;
+         my @cats = map {{ category => $_ }} grep { defined && length } split(',', $port->{categories} // '');
 
          my @subpackages; 
-         if (defined($port->flavor) && $port->flavor ne "") {
-           push(@subpackages, { name => $port->flavor });
+         if (defined($port->{flavor}) && $port->{flavor} ne "") {
+           push(@subpackages, { name => $port->{flavor} });
          }
 
-         $results{$port->pkgname} = { 
-          version => $port->{version}, port => $port->name,
-          osversion => $port->run->osversion,
-          summary => $port->description,
-          licenses => [ split(' ', $port->license) ],
-          homepages => [$port->www],
+         $results{$port->{pkgname}} = {
+          package_name => sprintf("%s-%s.%s", $port->{pkgname}, $port->{version}, $Magus::Config{'PkgExtension'}),
+          version => $port->{version}, port => $port->{name},
+          makefile_url => "https://github.com/MidnightBSD/mports/blob/master/$port->{name}/Makefile",
+          osversion => $port->{osversion},
+          summary => $port->{description},
+          licenses => [ split(' ', $port->{license} // '') ],
+          homepages => [$port->{www}],
           categories => \@cats,
           subpackages => \@subpackages,
-          cpe => $port->cpe
+          cpe => $port->{cpe}
          };
        }
     }
+    $ports_sth->finish;
   }
 
   my %meta;
   $meta{repository_name} = 'MidnightBSD mports';
-  $meta{last_update} =  $dt->strftime('%FT%TZ');
-  $meta{num_packages} = scalar(%results);
+  if (defined($latest_created)) {
+    my $dt = DateTime::Format::Pg->parse_datetime($latest_created);
+    $meta{last_update} =  $dt->strftime('%FT%TZ');
+  }
+  $meta{num_packages} = scalar(keys %results);
   $meta{packages} = \%results;
     
   print $p->header(-type => 'application/json'), encode_json(\%meta);
@@ -361,6 +423,7 @@ sub summary_page {
   my @locks = map {{
     port       => $_->port->name,
     port_id    => $_->port->id,
+    phase      => $_->phase,
     machine    => $_->machine->name,
     machine_id => $_->machine->id,
     arch       => $_->port->run->arch,
@@ -391,8 +454,43 @@ sub summary_page {
 sub blockers {
 	my ($p, $run) = @_;
 
-	my %objs;
-	my %blocking;
+    if (!is_number($run)) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        return;
+    }
+
+    my $tmpl = template($p, "blockers.tmpl");
+    $tmpl->param(title => "Top Blockers for Run $run");
+
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare(q{
+        SELECT p.name AS port, COUNT(d.port) AS blocking
+        FROM ports p
+        JOIN depends d ON p.id = d.dependency
+        JOIN ports dependent_port ON d.port = dependent_port.id
+        WHERE p.run = ?
+          AND p.status IN ('fail', 'skip')
+          AND dependent_port.status = 'untested'
+        GROUP BY p.id, p.name
+        ORDER BY blocking DESC
+        LIMIT 20
+    });
+
+    $sth->execute($run);
+    my $blocks = $sth->fetchall_arrayref({});
+    $sth->finish;
+
+    $tmpl->param(blocks => $blocks);
+    print $p->header;
+    print $tmpl->output;
+}
+
+sub phase_failures {
+    my ($p, $run, $phase) = @_;
 
     if (!is_number($run)) {
         print $p->header(
@@ -403,32 +501,42 @@ sub blockers {
         return;
     }
 
-	my $ports = Magus::Port->search(run => $run, status => 'untested');
+    if ($phase !~ /^(?:fetch|test|scan)$/) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '400 Bad Request'
+        );
+        print "400 Bad Request\n";
+        return;
+    }
 
-    my $tmpl = template($p, "blockers.tmpl");
-    $tmpl->param(title => "Top Blockers for Run $run");
+    my $tmpl = template($p, 'fetch-failures.tmpl');
+    $tmpl->param(
+        title => ucfirst($phase) . " Failures for Run $run",
+        run   => $run,
+        phase => $phase,
+    );
 
-while (my $port = $ports->next) {
-  my $add = $blocking{$port} || 1;
-  $objs{$port} ||= $port;
+    my $dbh = Magus::DBI->db_Main();
+    my $sth = $dbh->prepare(q{
+        SELECT p.id, p.name AS port, p.version, p.flavor,
+               ppr.status AS phase_status,
+               ppr.updated
+          FROM ports p
+          JOIN port_phase_results ppr ON ppr.port = p.id
+         WHERE p.run = ?
+           AND ppr.phase = ?
+           AND ppr.status = 'fail'
+         ORDER BY p.name, p.flavor
+    });
 
-  foreach my $dep ($port->depends) {
-    next unless $dep->status eq 'fail' || $dep->status eq 'skip' || $dep->status eq 'untested';
-    
-    
-    $objs{$dep}    ||= $dep;
-    $blocking{$dep} += $add;
-  }    
-}
+    $sth->execute($run, $phase);
+    my $failures = $sth->fetchall_arrayref({});
+    $sth->finish;
 
-my @blocks;
-foreach my $port (sort { $blocking{$b} <=> $blocking{$a} } keys %blocking) {
-  next if $objs{$port}->status eq 'untested';
-  push(@blocks, { port => $port, blocking => $blocking{$port} });
-}
-$tmpl->param(blocks => \@blocks);
-print $p->header;
-print $tmpl->output;
+    $tmpl->param(failures => $failures, count => scalar @$failures);
+    print $p->header;
+    print $tmpl->output;
 }
 
 sub run_page {
@@ -466,8 +574,49 @@ sub run_page {
   my $status_stats = $sth->fetchall_arrayref({});
   $sth->finish;
 
-  push(@$status_stats, { status => 'ready', count => Magus::Port->search_ready_ports($run)->count });
+  # Count ports whose dependencies are all satisfied and are waiting to build,
+  # regardless of whether the fetch phase has completed yet.  The ready_ports
+  # view gates on fetch='pass' for the build worker, but the UI count should
+  # reflect the full build queue so users can see what is pending.
+  my ($ready_count) = $dbh->selectrow_array(q{
+    SELECT COUNT(DISTINCT p.id)
+      FROM ports p
+      LEFT JOIN locks l ON l.port = p.id AND l.phase = 'build'
+      LEFT JOIN depends d ON d.port = p.id
+     WHERE p.run = ?
+       AND p.status = 'untested'
+       AND l.id IS NULL
+       AND (d.port IS NULL
+            OR NOT EXISTS (
+              SELECT 1
+                FROM depends d2
+                JOIN ports dep ON dep.id = d2.dependency
+               WHERE d2.port = p.id
+                 AND dep.status NOT IN ('pass', 'warn')
+            ))
+  }, undef, $run->id);
+  push(@$status_stats, { status => 'ready', count => $ready_count // 0 });
   $tmpl->param(status_stats => $status_stats);
+
+  my $phase_sth = $dbh->prepare("
+    SELECT phase, port_phase_results.status, COUNT(*) AS count
+    FROM port_phase_results
+    INNER JOIN ports ON port_phase_results.port = ports.id
+    WHERE ports.run=?
+    GROUP BY phase, port_phase_results.status
+    ORDER BY CASE phase
+               WHEN 'fetch' THEN 1
+               WHEN 'build' THEN 2
+               WHEN 'test' THEN 3
+               WHEN 'scan' THEN 4
+               ELSE 5
+             END,
+             phase, port_phase_results.status
+  ");
+  $phase_sth->execute($run->id);
+  my $phase_stats = $phase_sth->fetchall_arrayref({});
+  $phase_sth->finish;
+  $tmpl->param(phase_stats => $phase_stats);
 
   my $sth2 = $dbh->prepare("WITH hourly_events AS (
     SELECT
@@ -533,6 +682,7 @@ sub port_page {
     osversion => $port->run->osversion,
     arch      => $port->run->arch,
     status    => $port->status,
+    phase_status_fields($port),
     license   => $port->license,
     restricted => $port->restricted,
     can_reset => $port->can_reset? 1 : 0,
@@ -551,6 +701,7 @@ sub port_page {
       machine_id => $machine_obj ? $machine_obj->id : undef,
           machine    => $machine_obj ? $machine_obj->name : undef,
           type       => $event_obj->type,
+          phase      => $event_obj->phase,
           msg        => $event_obj->msg,
           time       => $event_obj->time,
     }
@@ -588,6 +739,14 @@ sub port_page {
   if ($port->log) {
     $tmpl->param(log => $port->log);
   }
+
+  my @phase_logs;
+  for my $phase (Magus::Phase->nonbuild_names) {
+    my $data = $port->phase_log($phase);
+    push @phase_logs, { phase => $phase, data => $data } if defined $data;
+  }
+
+  $tmpl->param(phase_logs => \@phase_logs) if @phase_logs;
   
   if (@depends_of) {
     $tmpl->param(depends_of => \@depends_of);
@@ -720,6 +879,7 @@ sub search {
   
   my @results = map {{
     summary   => $_->status,
+    phase_status_fields($_),
     port      => $_->name,
     flavor    => $_->flavor,
     pkgname   => $_->pkgname,
@@ -797,6 +957,7 @@ sub async_run_port_stats {
   
   my @results = map {{
     summary   => $_->status,
+    phase_status_fields($_),
     port      => $_->name,
     flavor    => $_->flavor,
     pkgname   => $_->pkgname,
@@ -861,6 +1022,109 @@ sub browse {
     print $p->header. $tmpl->output;
 }
 
+sub updates_page {
+    my ($p) = @_;
+    my $tmpl = template($p, 'updates.tmpl');
+    $tmpl->param(title => 'Magus // Port Updates');
+
+    # Define the command and its arguments.
+    my @cmd = ('/usr/local/bin/portscout', 'showupdates');
+
+    # The directory where portscout must be run.
+    my $run_dir = '/usr/local/etc';
+
+    # Store the current directory so we can return to it.
+    use Cwd qw(getcwd);
+    my $orig_dir = getcwd();
+
+    my $output = '';
+    my $error  = '';
+
+    # Change to the required directory.
+    if (chdir($run_dir)) {
+        # FastCGI environments often have issues with standard pipe opens
+        # Let's try capturing using backticks instead to avoid the FCGI::Stream handle issue
+        # Note: Backticks execute in a subshell, but are simpler to use in FastCGI if standard open("-|") fails.
+        local %ENV = %ENV; # Localize environment just in case
+        eval {
+            # Use backticks rather than open "-|"
+            $output = `cd $run_dir && /usr/local/bin/portscout showupdates 2>&1`;
+
+            if ($? != 0) {
+                my $exit_val = $? >> 8;
+                my $signal   = $? & 127;
+                $error = "portscout failed: " . ($exit_val ? "exit code $exit_val" : "signal $signal");
+                # Optional: log the error output
+                # print STDERR "portscout error: $output\n";
+            }
+        };
+        if ($@) {
+             $error = "Failed to run portscout: $@";
+        }
+
+        # Change back to the original directory.
+        chdir($orig_dir) or do {
+            $error .= " (Also failed to return to $orig_dir: $!)";
+        };
+    } else {
+        $error = "Could not chdir to $run_dir: $!";
+    }
+
+    if ($error) {
+        $tmpl->param(error => $error);
+    } else {
+        # Parse the output.
+        # Example output structure:
+        #
+        # portscout v0.8.1, by Shaun Amott
+        #
+        # ctriv@midnightbsd.org's ports:
+        #   databases/p5-DBD-SQLite 1.74 -> 1.76
+        #
+        # danfe@freebsd.org's ports:
+        #   cad/libredwg 0.12.4 -> 0.13.3
+
+        my @lines = split /\n/, $output;
+        my @maintainers;
+        my $current_maintainer;
+
+        for my $line (@lines) {
+            # Skip empty lines or the portscout banner
+            next if $line =~ /^\s*$/;
+            next if $line =~ /^portscout\s+v\d+/;
+
+            if ($line =~ /^([^']+)'s ports:/) {
+                # Found a new maintainer section
+                if ($current_maintainer) {
+                    push @maintainers, $current_maintainer;
+                }
+                $current_maintainer = {
+                    email   => $1,
+                    updates => [],
+                };
+            } elsif ($line =~ /^\s+(\S+)\s+(\S+)\s+->\s+(\S+)/) {
+                # Found a port update line under the current maintainer
+                if ($current_maintainer) {
+                    push @{$current_maintainer->{updates}}, {
+                        port        => $1,
+                        old_version => $2,
+                        new_version => $3,
+                    };
+                }
+            }
+        }
+        # Don't forget the last maintainer section
+        if ($current_maintainer) {
+            push @maintainers, $current_maintainer;
+        }
+
+        $tmpl->param(maintainers => \@maintainers);
+    }
+
+    print $p->header(-type => 'text/html', -charset => 'utf-8');
+    print $tmpl->output;
+}
+
 sub template {
   my ($p, $file) = @_;
   
@@ -891,4 +1155,3 @@ sub template {
   
   return $tmpl;
 }
-  

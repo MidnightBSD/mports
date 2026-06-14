@@ -1,5 +1,5 @@
 PORTNAME=	aspell
-PORTVERSION=	0.60.8
+PORTVERSION=	0.60.8.2
 CATEGORIES=	textproc
 MASTER_SITES=	GNU/aspell
 PKGNAMESUFFIX=	-ispell
@@ -10,6 +10,8 @@ COMMENT=	Ispell compatibility script for aspell
 LICENSE=	lgpl2.1
 
 RUN_DEPENDS=	aspell:textproc/aspell
+USES=		cpe
+CPE_VENDOR=	gnu
 
 NO_ARCH=	yes
 NO_BUILD=	yes

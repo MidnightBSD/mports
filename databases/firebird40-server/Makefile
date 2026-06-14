@@ -1,5 +1,6 @@
 PORTNAME=	firebird
 PORTVERSION=	4.0.4
+PORTREVISION=	1
 CATEGORIES?=	databases
 MASTER_SITES=	https://github.com/FirebirdSQL/${PORTNAME}/releases/download/v${PORTVERSION}/
 PKGNAMESUFFIX?=	${PORTVERSION:R:S/.//}-server
@@ -25,8 +26,8 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 
 CONFLICTS_INSTALL=	firebird30
 
-USES=		cpe gmake pkgconfig localbase:ldflags libedit tar:xz
-USE_CXXSTD=	c++11
+USES=		cpe gmake iconv pkgconfig localbase:ldflags libedit tar:xz
+USE_CXXSTD=	c++17
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 CPE_VENDOR=	firebirdsql
@@ -127,6 +128,7 @@ MAKE_ENV+=	IsServer=Y
 
 post-patch:
 	${FIND} ${WRKSRC} -name "*.sh" -exec ${CHMOD} +x {} \+
+	${FIND} ${WRKSRC}/src/include/firebird -name "*.orig" -exec ${RM} {} +
 	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
 		${WRKSRC}/builds/install/misc/firebird.conf
 
@@ -148,7 +150,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins.conf ${PREFIX}/${CONFDIR}/plugins.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/plugins/udr_engine.conf ${PREFIX}/${CONFDIR}/udr_engine.conf.sample
 
-	${MKDIR} ${LIBEXECDIR}/plugins/udr ${LOCALSTATEDIR}/help ${LIBEXECDIR}/intl \
+	${MKDIR} ${LIBEXECDIR}/plugins/udr ${FAKE_DESTDIR}${LOCALSTATEDIR}/help ${LIBEXECDIR}/intl \
 		${LIBEXECDIR}/tzdata ${EXAMPLESDIR}
 
 	${INSTALL_DATA} ${WRKSRC}/gen/Release/firebird/lib/libib_util.so ${PREFIX}/lib
@@ -159,11 +161,11 @@ do-install:
 	${INSTALL_FB} -m 0555 ${PLUGIN_SO:S!^!${WRKSRC}/gen/Release/firebird/plugins/!} ${LIBEXECDIR}/plugins
 	${INSTALL_FB} -m 0444 ${TZDATA_FILES:S!^!${WRKSRC}/gen/Release/firebird/tzdata/!} ${LIBEXECDIR}/tzdata
 
-	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security4.fdb ${LOCALSTATEDIR}/security4.fdb.sample
+	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/security4.fdb ${FAKE_DESTDIR}${LOCALSTATEDIR}/security4.fdb.sample
 	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employee.fdb ${EXAMPLESDIR}/employee.fdb
 	${INSTALL_FB} -m 0660 ${WRKSRC}/gen/Release/firebird/examples/empbuild/employe2.sql ${EXAMPLESDIR}/employe2.sql
 
-	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${LOCALSTATEDIR}/help
+	${INSTALL_FB} -m 0440 ${WRKSRC}/gen/Release/firebird/help/help.fdb ${FAKE_DESTDIR}${LOCALSTATEDIR}/help
 
 	${INSTALL_FB} -m 0555 ${WRKSRC}/gen/Release/firebird/intl/libfbintl.so ${LIBEXECDIR}/intl/libfbintl.so
 .else

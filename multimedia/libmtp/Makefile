@@ -1,5 +1,5 @@
 PORTNAME=	libmtp
-PORTVERSION=	1.1.18
+PORTVERSION=	1.1.23
 CATEGORIES=	multimedia audio
 MASTER_SITES=	SF
 
@@ -11,7 +11,7 @@ LICENSE=	lgpl2.1+
 
 CONFLICTS_INSTALL=libosmo-sccp-[0-9]* # lib/libmtp.a
 
-USES=		cpe iconv libtool localbase pathfix pkgconfig
+USES=		cpe gmake iconv libtool localbase pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-doxygen
 INSTALL_TARGET=	install-strip

@@ -6,7 +6,7 @@ PORTREVISION?=	0
 CATEGORIES=	databases perl5
 PKGNAMESUFFIX?=	${WANT_PGSQL_VER:S/.//}${COMPONENT}
 
-MAINTAINER=	pgsql@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Write SQL functions for PostgreSQL using Perl5
 
 RUN_DEPENDS=	postgres:databases/postgresql${WANT_PGSQL_VER:S/.//}-server

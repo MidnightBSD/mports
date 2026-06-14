@@ -1,6 +1,6 @@
 PORTNAME=	canna
 PORTVERSION=	3.7p3
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	japanese
 MASTER_SITES=	OSDN/canna
 PKGNAMESUFFIX=	-lib
@@ -19,5 +19,11 @@ ALL_TARGET=	canna
 INSTALL_TARGET=	instsgs
 MAKE_JOBS_UNSAFE=	yes
 MAKE_ARGS+=	CCOPTIONS="-Wno-error=int-conversion"
+FAKE_OPTS=	trueprefix
+
+post-patch:
+	@if [ -f ${WRKSRC}/include/widedef.h ]; then \
+		${REINPLACE_CMD} -e '/machine\/ansi\.h/d' ${WRKSRC}/include/widedef.h; \
+	fi
 
 .include <bsd.port.mk>

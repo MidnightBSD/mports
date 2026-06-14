@@ -9,8 +9,9 @@ WWW=		https://fluentd.org/
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	\
-	rubygem-base64>=0.2<0.3:converters/rubygem-base64 \
+	rubygem-base64>=0.2<0.4:converters/rubygem-base64 \
 	rubygem-bundler>=0:sysutils/rubygem-bundler \
 	rubygem-cool.io>=1.4.5<2.0.0:devel/rubygem-cool.io \
 	rubygem-csv>=3.2:devel/rubygem-csv \

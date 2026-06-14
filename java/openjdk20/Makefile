@@ -1,7 +1,7 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
@@ -49,7 +49,8 @@ MAKE_ENV=	LANG="C" \
 		CXX=${CXX} \
 		CPP=${CPP} \
 		LOG=cmdlines \
-		MAKEFLAGS=""
+		MAKEFLAGS="" \
+		_JAVA_OPTIONS="-XX:UseAVX=0 -XX:TieredStopAtLevel=1"
 
 JDK_OSARCH=	bsd-${ARCH:S/amd64/x86_64/:S/i386/x86/:S/powerpc64/ppc64/}
 JDK_BUILDDIR=	${WRKSRC}/build/${JDK_OSARCH}-${JDK_BUILD_JVM}-${JDK_BUILD_TYPE}
@@ -78,6 +79,7 @@ CONFIGURE_ENV=	CC=${CC} \
 CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--disable-ccache \
 		--disable-javac-server \
+		--disable-precompiled-headers \
 		--with-alsa=${LOCALBASE} \
 		--with-cups=${LOCALBASE} \
 		--with-fontconfig=${LOCALBASE} \
@@ -106,6 +108,10 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 
 JAVAVMS_COMMENT=	OpenJDK${JDK_MAJOR_VERSION}
+
+CONFIGURE_ARGS+=	--with-extra-cflags="${CFLAGS}" \
+			--with-extra-cxxflags="${CXXFLAGS}" \
+			--with-extra-ldflags="${LDFLAGS}"
 
 .if defined(BUILD_JRE)
 ALL_TARGET=		legacy-images
@@ -143,12 +149,13 @@ CONFIGURE_ARGS+=	--with-extra-ldflags="-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFA
 			--with-extra-cflags="-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}" \
 			--with-extra-cxxflags="-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}"
 .else
+CFLAGS+=	-fno-delete-null-pointer-checks -Wno-register
+CXXFLAGS+=	-fno-delete-null-pointer-checks -Wno-register
+LDFLAGS+=	-Wl,--undefined-version
 MAKE_ENV+=	USE_CLANG=true
 EXTRA_CFLAGS+=		-Wno-unused-but-set-parameter
 EXTRA_CFLAGS+=		-Wno-bitwise-instead-of-logical
 EXTRA_CFLAGS+=		-Wno-error=deprecated-non-prototype
-CONFIGURE_ARGS+=	--with-extra-cflags="${EXTRA_CFLAGS}"
-CONFIGURE_ARGS+=	--with-extra-cxxflags="${EXTRA_CFLAGS}"
 .endif
 
 .if ${ARCH} == aarch64
@@ -182,7 +189,9 @@ do-install:
 	@cd ${INSTALLDIR} && \
 		${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \;
 	@${CHMOD} ${BINMODE} ${INSTALLDIR}/lib/jspawnhelper
-	@${ECHO} "@javavm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
+	@${ECHO} "@javavm ${PKGBASE}/bin/java" >> ${TMPPLIST}
+	@-${FIND} ${INSTALLDIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
+	@-${FIND} ${INSTALLDIR} -type f -perm +111 -exec ${STRIP_CMD} {} +
 	@${FIND} ${INSTALLDIR} -not -type d | ${SORT} | \
 		${SED} -e 's|^${PREFIX}/||' >> ${TMPPLIST}
 

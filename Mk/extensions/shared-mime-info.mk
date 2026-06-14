@@ -21,8 +21,9 @@ RUN_DEPENDS+=	update-mime-database:misc/shared-mime-info
 post-install: shared-mime-post-install
 
 shared-mime-post-install:
-# run for port post-install
-	@-update-mime-database ${PREFIX}/share/mime
+# run for port post-install; use TRUE_PREFIX so fake installs do not write
+# the regenerated database into the fake destdir
+	@-update-mime-database ${TRUE_PREFIX}/share/mime
 # plist entries for packages.
 	@${ECHO_CMD} "@exec /usr/local/bin/update-mime-database %D/share/mime" \
 		>> ${TMPPLIST}; \

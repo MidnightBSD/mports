@@ -1,6 +1,7 @@
 PORTNAME=	libssh
 PORTVERSION=	0.10.4
-DISTVERSIONSUFFIX=	-13.el9
+DISTVERSIONSUFFIX=	-15.el9_6
+PORTREVISION=	1
 CATEGORIES=	security linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +10,7 @@ WWW=		https://www.libssh.org/
 
 LICENSE=	lgpl2.1
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

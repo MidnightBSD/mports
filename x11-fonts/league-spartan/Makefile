@@ -1,7 +1,7 @@
 # Created by: Florian Limberger <flo@snakeoilproductions.net>
 
 PORTNAME=	league-spartan
-DISTVERSION=	g20140922
+DISTVERSION=	2.220
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org

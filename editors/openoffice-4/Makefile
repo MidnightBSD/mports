@@ -336,9 +336,11 @@ post-patch:
 	# Teach the embedded ICU's config.guess about MidnightBSD so that
 	# ICU's own configure step recognizes the platform during the build.
 	${CAT} ${FILESDIR}/icu-midnightbsd.patch >> ${WRKSRC}/icu/icu4c-4_0_1-src.patch
-	# Same fix for embedded Python 2.7.18 and xmlsec1.
+	# Same fix for embedded Python 2.7.18.
 	${CAT} ${FILESDIR}/python-midnightbsd.patch >> ${WRKSRC}/python/python-freebsd.patch
-	${CAT} ${FILESDIR}/xmlsec-midnightbsd.patch >> ${WRKSRC}/libxmlsec/xmlsec1-update-config-sub-and-guess.patch
+	# MidnightBSD config.guess fix for xmlsec1: copy patch into module directory
+	# so it is picked up by PATCH_FILES in libxmlsec/makefile.mk.
+	${CP} ${FILESDIR}/xmlsec-midnightbsd.patch ${WRKSRC}/libxmlsec/xmlsec1-midnightbsd.patch
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 	# g++49 -Os sometimes leaves inline class methods undefined,
 	# affects fmgridif.cxx and ColumnControl.cxx

@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/pillar/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-cli>=2.3.0:devel/R-cran-cli \
 		R-cran-glue>0:devel/R-cran-glue \
 		R-cran-lifecycle>0:devel/R-cran-lifecycle \

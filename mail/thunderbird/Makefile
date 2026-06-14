@@ -1,5 +1,5 @@
 PORTNAME=	thunderbird
-DISTVERSION=	147.0
+DISTVERSION=	147.0.2
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
@@ -28,7 +28,7 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		zip:archivers/zip \
 		clang19:devel/llvm19 \
 		cargo:lang/rust \
-		cbindgen:devel/rust-cbindgen
+		rust-cbindgen>=0.29.1:devel/rust-cbindgen
 
 LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libevent.so:devel/libevent \
@@ -50,10 +50,11 @@ LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libatk-1.0.so:accessibility/at-spi2-core \
 		libaom.so:multimedia/aom \
 		libdav1d.so:multimedia/dav1d \
+		libproxy.so:net/libproxy \
 		libjson-c.so:devel/json-c
 
 USES=		compiler:c++17-lang cpe gl gettext gmake gnome iconv jpeg localbase nodejs:24,build,env \
-		perl pkgconfig python desktop-file-utils tar:xz
+		perl5 pkgconfig python desktop-file-utils tar:xz
 CPE_VENDOR=	mozilla
 USE_GL=		gl
 USE_GNOME=	cairo gdkpixbuf gtk30
@@ -96,8 +97,9 @@ QMAKE_ARGS=	--enable-application=comm/mail \
 
 LLVM_VERSION=	19
 LLVM_PREFIX=	${LOCALBASE}/llvm${LLVM_VERSION}
-MBSD64_TARGET=	x86_64-mports-freebsd13.4
-CONFIGURE_TARGET=	${MBSD64_TARGET}
+MBSD_TARGET_ARCH=	${ARCH:S/amd64/x86_64/:S/i386/i686/}
+MBSD_TARGET=	${MBSD_TARGET_ARCH}-mports-freebsd13.4
+CONFIGURE_TARGET=	${MBSD_TARGET}
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
 CONFIGURE_OUTSOURCE=	yes
@@ -132,7 +134,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's/"files":{[^}]*}/"files":{}/' \
 		${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
 	# Fix midnight
-	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD64_TARGET}|" \
+	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD_TARGET}|" \
 		${WRKSRC}/build/autoconf/config.guess
 	# Set mozilla options
 	@${ECHO_CMD} "--=> Setting configuration <=--"

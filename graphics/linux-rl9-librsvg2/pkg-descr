@@ -1,0 +1,3 @@
+The librsvg library is a lightweight library for parsing and rendering
+vector-graphic files in SVG format. It includes functions that render
+anti-aliased fonts using freetype, including caching of glyphs.

@@ -1,0 +1,28 @@
+PORTNAME=	activejob
+PORTVERSION=	8.0.5
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	80
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Declare job classes that can be run by a variety of queuing backends
+WWW=		https://github.com/rails/rails/tree/main/activejob \
+		https://rubyonrails.org/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}:devel/rubygem-activesupport80 \
+		rubygem-globalid-rails80>=0.3.6:databases/rubygem-globalid-rails80
+
+USES=		cpe gem
+
+NO_ARCH=	yes
+
+CPE_VENDOR=	rubyonrails
+CPE_PRODUCT=	active_job
+
+PORTSCOUT=	limit:^8\.0\.
+
+.include <bsd.port.mk>

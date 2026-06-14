@@ -3,7 +3,7 @@ PORTVERSION=	${LINUX_DIST_VER}
 PORTREVISION=	2
 CATEGORIES=	devel
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux compilers and base libraries (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://gcc.gnu.org/
 

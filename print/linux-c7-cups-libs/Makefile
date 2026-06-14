@@ -11,6 +11,7 @@ WWW=		https://github.com/OpenPrinting/cups
 LICENSE=	gpl2
 
 USES=		cpe linux:c7
+SKIP_FAKE_ALL=	yes
 USE_LDCONFIG=	yes
 USE_LINUX=	avahi-libs
 USE_LINUX_RPM=	yes

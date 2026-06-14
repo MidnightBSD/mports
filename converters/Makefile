@@ -59,6 +59,7 @@
     SUBDIR += recode
     SUBDIR += rubygem-base32
     SUBDIR += rubygem-base64
+    SUBDIR += rubygem-base6402
     SUBDIR += rubygem-iconv
     SUBDIR += trans
     SUBDIR += unix2dos

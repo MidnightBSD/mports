@@ -2,7 +2,7 @@ PORTNAME=	shortwave
 DISTVERSION=	5.0.0
 CATEGORIES=	audio
 
-MAINTAINER=	decke@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Listen to internet radio
 WWW=		https://gitlab.gnome.org/World/Shortwave
 

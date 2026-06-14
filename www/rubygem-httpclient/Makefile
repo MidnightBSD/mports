@@ -13,6 +13,7 @@ LICENSE_COMB=	dual
 NO_ARCH=	yes
 USES=		gem
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-mutex_m>=0:devel/rubygem-mutex_m
 
 PLIST_FILES=	bin/httpclient

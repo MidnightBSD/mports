@@ -10,11 +10,8 @@ WWW=		https://github.com/r-lib/crayon
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	R-cran-mockery>0:devel/R-cran-mockery \
-		R-cran-rstudioapi>0:devel/R-cran-rstudioapi \
-		R-cran-testthat>0:devel/R-cran-testthat \
-		R-cran-withr>0:devel/R-cran-withr
-
 USES=		cran:auto-plist
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

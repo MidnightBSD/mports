@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2026-01-07 14:16:26 UTC
++++ CMakeLists.txt
+@@ -454,7 +454,7 @@ add_subdirectory(interactiveconsole)
+ # This ensures pressing the eject button on a CD drive ejects the disc
+ # It listens to the Solid::OpticalDrive::ejectPressed signal that is only
+ # supported by Solid in the HAL backend and does nothing with UDev
+-if(CMAKE_SYSTEM_NAME MATCHES FreeBSD)
++if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+ add_subdirectory(solidautoeject)
+ endif()
+ 

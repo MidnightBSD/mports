@@ -11,6 +11,7 @@ WWW=		https://github.com/rails/sass-rails
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-sassc-rails-rails4>=2.1.1<3:textproc/rubygem-sassc-rails-rails4
 
 USES=		gem

@@ -1,6 +1,5 @@
 PORTNAME=	gworkspace
-PORTVERSION=	1.0.0
-PORTREVISION=	1
+PORTVERSION=	1.1.0
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	GNUSTEP/usr-apps
 PKGNAMESUFFIX=	-gwmetadata${PKGNAMESUFFIX2}
@@ -18,7 +17,6 @@ LIB_DEPENDS=	libDBKit.so:deskutils/gworkspace \
 		libPreferencePanes.so:deskutils/systempreferences
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
-USE_SQLITE=	yes
 LDFLAGS+=	-lpthread
 
 WRKSRC=		${WRKDIR}/gworkspace-${PORTVERSION}/GWMetadata

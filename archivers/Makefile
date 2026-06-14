@@ -10,6 +10,7 @@
     SUBDIR += bzip2
     SUBDIR += bzip3
     SUBDIR += c-blosc
+    SUBDIR += c-blosc2
     SUBDIR += cabextract
     SUBDIR += deb2targz
     SUBDIR += draco
@@ -37,7 +38,6 @@
     SUBDIR += libunrar
     SUBDIR += libzip
     SUBDIR += linux-c7-lz4
-    SUBDIR += linux-rl9-brotli
     SUBDIR += linux-rl9-lz4
     SUBDIR += lzfse
     SUBDIR += lzip
@@ -72,14 +72,17 @@
     SUBDIR += php83-phar
     SUBDIR += php83-zip
     SUBDIR += php83-zlib
+    SUBDIR += pigz
     SUBDIR += py-borgbackup
     SUBDIR += py-brotli
     SUBDIR += py-brotlicffi
     SUBDIR += py-brotlipy
     SUBDIR += py-bz2file
+    SUBDIR += py-laszip
     SUBDIR += py-libarchive-c
     SUBDIR += py-lz4
     SUBDIR += py-lzma
+    SUBDIR += py-zstandard
     SUBDIR += py-rarfile
     SUBDIR += py-zopfli
     SUBDIR += quazip
@@ -87,6 +90,7 @@
     SUBDIR += rpm2cpio
     SUBDIR += rpm4
     SUBDIR += rubygem-rubyzip
+    SUBDIR += rubygem-rubyzip-gitlab
     SUBDIR += sharutils
     SUBDIR += snappy
     SUBDIR += snappy-java

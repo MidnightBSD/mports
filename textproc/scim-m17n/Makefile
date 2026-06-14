@@ -9,6 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SCIM IMEngine module which uses m17n library as the backend
 WWW=		https://github.com/scim-im/scim
 
+LICENSE=	gpl2
+
 BUILD_DEPENDS=	scim:textproc/scim \
 		gsed:textproc/gsed
 LIB_DEPENDS=	libm17n.so:devel/m17n-lib
@@ -16,6 +18,8 @@ RUN_DEPENDS=	scim:textproc/scim
 
 USES=		gmake pkgconfig libtool:keepla
 GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include -D__STDC_ISO_10646__
+LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 USE_CXXSTD=	c++11

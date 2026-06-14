@@ -1,5 +1,5 @@
 PORTNAME=	apache24
-PORTVERSION=	2.4.66
+PORTVERSION=	2.4.68
 PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	APACHE_HTTPD
@@ -15,7 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libapr-1.so:devel/apr1 \
-		libpcre2-8.so:devel/pcre2
+		libpcre2-8.so:devel/pcre2 \
+		libgdbm.so:databases/gdbm
 
 USES=		apache:server,2.4 autoreconf compiler:c11 cpe iconv libtool perl5 tar:bzip2
 USE_PERL5=	run

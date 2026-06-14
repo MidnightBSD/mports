@@ -1,6 +1,5 @@
 PORTNAME=	javajj
-PORTVERSION=	1.1
-PORTREVISION=	3
+PORTVERSION=	1.2
 CATEGORIES=	deskutils java
 #MASTER_SITES=	http://www.justjournal.com/software/
 #DISTFILES=	justjournal-${PORTVERSION}${EXTRACT_SUFX}
@@ -21,16 +20,17 @@ GH_ACCOUNT=	JustJournal
 GH_PROJECT=	justjournal-client-java
 
 USES=		java tar:bzip2
+JAVA_VERSION=	11
 
 SUB_FILES=	${PORTNAME}.sh
 PLIST_FILES+=	bin/${PORTNAME}
-PLIST_FILES+=	%%JAVAJARDIR%%/javajj-1.1.jar
+PLIST_FILES+=	%%JAVAJARDIR%%/javajj-1.2.jar
 
 do-build:
 	cd ${WRKSRC} && mvn clean compile package
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh ${PREFIX}/bin/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/target/javajj-1.1.jar ${JAVAJARDIR}/
+	${INSTALL_DATA} ${WRKSRC}/target/javajj-1.2.jar ${JAVAJARDIR}/
 
 .include <bsd.port.mk>

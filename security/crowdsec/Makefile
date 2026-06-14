@@ -16,7 +16,7 @@ LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 
 NO_TEST=	yes
 
-USES=		go:1.22,modules pkgconfig
+USES=		go:1.23,modules pkgconfig
 _COMMIT=	4851945a
 _BUILD_DATE=	$$(date -u "+%F_%T")
 USE_RC_SUBR=	crowdsec

@@ -9,6 +9,7 @@ COMMENT=	Library for loading and enumerating of PKCS\#11 modules (Linux CentOS $
 LICENSE=	bsd3
 
 USES=		linux:c7
+SKIP_FAKE_ALL=	yes
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

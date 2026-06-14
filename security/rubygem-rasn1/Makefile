@@ -1,0 +1,20 @@
+PORTNAME=	rasn1
+PORTVERSION=	0.16.3
+CATEGORIES=	security rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Pure ruby ASN.1 library
+WWW=		https://codeberg.org/lemontree55/rasn1
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-strptime>=0.2.5<0.3:devel/rubygem-strptime
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

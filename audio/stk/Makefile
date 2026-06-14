@@ -1,5 +1,5 @@
 PORTNAME=	stk
-PORTVERSION=	4.6.2
+PORTVERSION=	5.0.1
 CATEGORIES=	audio
 MASTER_SITES=	http://ccrma.stanford.edu/software/stk/release/
 
@@ -16,6 +16,8 @@ USES=		autoreconf compiler:c++11-lang dos2unix gmake localbase pkgconfig
 USE_LDCONFIG=	yes
 
 DOS2UNIX_GLOB=	*.cpp *.h
+STK_SHLIB_VER=	5.0.0
+PLIST_SUB=	STK_SHLIB_VER=${STK_SHLIB_VER}
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-jack --with-oss --disable-realtime
@@ -27,6 +29,6 @@ LDFLAGS+=	-pthread
 post-install:
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} rawwaves ${DATADIR}
 	-${RM} ${DATADIR}/rawwaves/._* ${DATADIR}/rawwaves/*.c
-	@${STRIP_CMD} ${PREFIX}/lib/libstk-${PORTVERSION}.so
+	@${STRIP_CMD} ${PREFIX}/lib/libstk-${STK_SHLIB_VER}.so
 
 .include <bsd.port.mk>

@@ -66,6 +66,7 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--program-transform-name="" \
 		--localstatedir=${STATEDIR} \
 		--datadir=${PREFIX}/etc/nut \
+		--mandir=${PREFIX}/share/man/nut \
 		--with-devd-dir=${PREFIX}/etc/devd \
 		--with-drvpath=${PREFIX}/libexec/nut \
 		--with-statepath=${STATEDIR} \
@@ -78,12 +79,12 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--without-python2 \
 		--with-python3=${PYTHON_CMD} \
 		--without-nut_monitor \
-		--with-ltdl --with-nut-scanner
+		--with-ltdl --with-nut-scanner \
+		--without-augeas-lenses-dir
 
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -pthread
-CPPFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
 LIB_DEPENDS+=	libltdl.so:devel/libltdl
 
 MANPAGES_CONFIGURE_ON=	--with-doc=man=auto
@@ -144,7 +145,7 @@ pre-install:
 .endif
 
 post-install:
-	@${MKDIR} ${STATEDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${STATEDIR}
 	@${MKDIR} ${PREFIX}/etc/syslog.d
 .if ${PORT_OPTIONS:MBASH}
 	@${MKDIR} ${PREFIX}/etc/bash_completion.d/

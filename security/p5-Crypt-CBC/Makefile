@@ -1,5 +1,5 @@
 PORTNAME=	Crypt-CBC
-PORTVERSION=	3.04
+PORTVERSION=	3.07
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -12,6 +12,7 @@ LICENSE=	artistic
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Crypt-PBKDF2>=0:security/p5-Crypt-PBKDF2 \
+		p5-Crypt-URandom>=0:security/p5-Crypt-URandom \
 		p5-CryptX>=0:security/p5-CryptX
 
 USES=		perl5

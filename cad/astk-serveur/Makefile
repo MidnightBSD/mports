@@ -269,10 +269,10 @@ do-install:
 	${CP} -R ${WRKSRC}/etc/* ${ETCDIR}
 	(cd ${PREFIX} \
 		 && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		 -d ${PREFIX} -f aster)
+		 -d ${TRUE_PREFIX} -f aster)
 	(cd ${PREFIX} \
 		 && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		 -d ${PREFIX} -f aster)
+		 -d ${TRUE_PREFIX} -f aster)
 	${MV} ${ETCDIR}/profile.sh ${ETCDIR}/profile_astk.sh
 . if defined(WITH_MPI)
 	${ECHO_CMD} "localhost" > ${PREFIX}/aster/aster-mpihosts

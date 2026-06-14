@@ -1,6 +1,7 @@
 PORTNAME=	node
 PORTVERSION=	${NODEJS_PORTVERSION}
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://nodejs.org/dist/v${PORTVERSION}/
 PKGNAMESUFFIX=	${PORTVERSION:R:R}
@@ -29,7 +30,7 @@ LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 		libzstd.so:archivers/zstd
 RUN_DEPENDS=	corepack>=0:www/corepack
 
-USES=		compiler:c++11-lang gmake localbase pkgconfig python:build shebangfix sqlite tar:xz
+USES=		compiler:c++11-lang gmake localbase pkgconfig python:build shebangfix sqlite:port tar:xz
 
 CONFIGURE_ARGS=	--prefix=${PREFIX:S|^${DESTDIR}||} \
 		--shared-brotli \
@@ -41,6 +42,8 @@ CONFIGURE_ARGS=	--prefix=${PREFIX:S|^${DESTDIR}||} \
 		--shared-ngtcp2 \
 		--shared-simdjson \
 		--shared-sqlite \
+		--shared-sqlite-includes=${SQLITE_PREFIX}/include \
+		--shared-sqlite-libpath=${SQLITE_PREFIX}/lib \
 		--shared-zlib \
 		--shared-zstd \
 		--dest-os=freebsd \

@@ -1,7 +1,7 @@
 PORTNAME=	libvpx
 PORTVERSION=	1.9.0
-DISTVERSIONSUFFIX=	-8.el9_5
-PORTREVISION=	2
+DISTVERSIONSUFFIX=	-9.el9_6
+PORTREVISION=	3
 CATEGORIES=	multimedia linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ WWW=		https://www.webmproject.org/
 
 LICENSE=	bsd3
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

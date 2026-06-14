@@ -1,2 +1,8 @@
+[
+{ type: install
+  message: <<EOM
 Don't forget to enable the periodic script in /etc/periodic.conf
 daily_status_security_advisorymport_enable="YES"
+EOM
+}
+]

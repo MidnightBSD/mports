@@ -1,6 +1,6 @@
 PORTNAME=	prn
 PORTVERSION=	1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	japanese print
 MASTER_SITES=	PORTS_JP
 DISTNAME=	${PORTNAME}
@@ -11,7 +11,6 @@ COMMENT=	Yet another converter from text file to postscript (with Japanese suppo
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	kcc:japanese/kcc
 RUN_DEPENDS=	kcc:japanese/kcc
 
 do-install:

@@ -1,6 +1,6 @@
 lib/libisl.a
-lib/libisl.so.23.1.0
-lib/libisl.so.23.1.0-gdb.py
+lib/libisl.so.23.4.0
+lib/libisl.so.23.4.0-gdb.py
 lib/libisl.so.23
 lib/libisl.so
 include/isl/ilp.h
@@ -65,10 +65,10 @@ include/isl/id_to_ast_expr.h
 include/isl/maybe_templ.h
 include/isl/maybe_pw_aff.h
 include/isl/constraint.h
-share/licenses/isl-0.24/mit
-share/licenses/isl-0.24/catalog.mk
-share/licenses/isl-0.24/LICENSE
+share/licenses/isl-0.27/mit
+share/licenses/isl-0.27/catalog.mk
+share/licenses/isl-0.27/LICENSE
 libdata/pkgconfig/isl.pc
 @dir include/isl
-@dir share/licenses/isl-0.24
+@dir share/licenses/isl-0.27
 @dir share/licenses

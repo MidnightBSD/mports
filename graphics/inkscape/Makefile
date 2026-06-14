@@ -1,5 +1,6 @@
 PORTNAME=	inkscape
 DISTVERSION=	1.4.3
+PORTREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 
@@ -53,6 +54,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}_${DATETAG}
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 SHEBANG_FILES=	share/extensions/*.py share/extensions/genpofiles.sh \
 		share/templates/*.py man/fix-roff-punct
+
+TESTING_UNSAFE=	Some tests fail due to missing input files, an upstream packaging problem
 
 OPTIONS_DEFINE=		OPENMP POPPLER SCRIBUS VISIO CDR WPG GVFS NLS GSPELL
 OPTIONS_DEFAULT=	POPPLER VISIO CDR WPG GM GSPELL
@@ -111,5 +114,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|"python3"|"${PYTHON_VERSION}"|g' \
 		${WRKSRC}/src/extension/implementation/script.cpp
 	@${TOUCH} ${WRKSRC}/share/extensions/gcodetools_check_for_updates.inx.h
+
+pre-test:
+	@cd ${BUILD_WRKSRC} && \
+		${SETENVI} ${WRK_ENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_TESTING_ARGS} ${CMAKE_SOURCE_PATH} && \
+		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} tests
 
 .include <bsd.port.mk>

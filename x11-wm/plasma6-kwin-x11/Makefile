@@ -24,7 +24,7 @@ LIB_DEPENDS=	libdisplay-info.so:sysutils/libdisplay-info \
 		libxkbcommon.so:x11/libxkbcommon
 RUN_DEPENDS=	hwdata>0:misc/hwdata
 
-USES=		cmake gettext gl kde:6 pkgconfig python qt:6 shebangfix tar:xz \
+USES=		cmake desktop-file-utils gettext gl kde:6 pkgconfig python qt:6 shebangfix tar:xz \
 		xorg
 USE_GL=		egl gbm gl opengl
 USE_KDE=	auth breeze colorscheme config \

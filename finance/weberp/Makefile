@@ -1,7 +1,7 @@
 # Created by: Wen heping <wenheping@gmail.com>
 
 PORTNAME=	weberp
-PORTVERSION=	4.15.1
+PORTVERSION=	4.15.2
 CATEGORIES=	finance www
 MASTER_SITES=	SF/web-erp/
 DISTNAME=	webERP_${PORTVERSION}
@@ -10,15 +10,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-Source Web-Based ERP System
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/doc/LICENSE.txt
 
 PORTSCOUT=	skipv:3.12
 
-USES=		gettext php shebangfix zip
-SHEBANG_FILES=	report_runner.php \
-		build/make_release.sh \
-		build/check_syntax.sh
+USES=		gettext php shebangfix zip cpe
+CPE_VENDOR=	weberp
+SHEBANG_FILES=	report_runner.php
 USE_PHP=	mysqli gettext
-WRKSRC=		${WRKDIR}/webERP-${PORTVERSION}
+WRKSRC=		${WRKDIR}/webERP
 
 NO_BUILD=	yes
 SUB_FILES=	pkg-message

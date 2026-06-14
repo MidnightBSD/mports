@@ -10,6 +10,14 @@ https://github.com/phatina/simple-mtpfs/issues/37
    if (libusb1_initialized)
 -     return LIBMTP_ERROR_NONE;
 +    libusb_exit(NULL);
- 
+
    if (libusb_init(NULL) < 0) {
      LIBMTP_ERROR("Libusb1 init failed\n");
+@@ -154,5 +154,5 @@ static LIBMTP_error_number_t init_usb()
+   if ((LIBMTP_debug & LIBMTP_DEBUG_USB) != 0)
+-    /*libusb_set_debug(libmtp_libusb_context,9);*/
+-    libusb_set_option(libmtp_libusb_context, LIBUSB_OPTION_LOG_LEVEL,  LIBUSB_LOG_LEVEL_DEBUG ); /* highest level */
++    libusb_set_debug(libmtp_libusb_context,9);
++    // libusb_set_option(libmtp_libusb_context, LIBUSB_OPTION_LOG_LEVEL,  LIBUSB_LOG_LEVEL_DEBUG ); /* highest level */
+   return LIBMTP_ERROR_NONE;
+ }

@@ -1,0 +1,7 @@
+TIMESTAMP = 1778431103
+SHA256 (openjdk25-25.0.1+8.f.1.x86_64.tar.xz) = 0449e5a9257d8eb7ed1518af1e4e9e546ee63e4bfaf21e1021e9ab45d2840f27
+SIZE (openjdk25-25.0.1+8.f.1.x86_64.tar.xz) = 191262784
+SHA256 (battleblow-jdk25u-jdk-25.0.3-1_GH0.tar.gz) = f0d37d97a586ae82fbb19d2392bc1a602c8593fa8d134f35795d9329ea76177c
+SIZE (battleblow-jdk25u-jdk-25.0.3-1_GH0.tar.gz) = 119667255
+SHA256 (freebsd-openjdk-jdk-25.0.3+9-1-jdk-25.0.3-ga-freebsd-1_GH0.tar.gz) = f0d37d97a586ae82fbb19d2392bc1a602c8593fa8d134f35795d9329ea76177c
+SIZE (freebsd-openjdk-jdk-25.0.3+9-1-jdk-25.0.3-ga-freebsd-1_GH0.tar.gz) = 119667255

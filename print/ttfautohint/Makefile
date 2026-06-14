@@ -1,7 +1,5 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-
 PORTNAME=	ttfautohint
-PORTVERSION=	1.8.3
+PORTVERSION=	1.8.4
 CATEGORIES=	print
 MASTER_SITES=	SAVANNAH/freetype \
 		SF/freetype/ttfautohint/${PORTVERSION}

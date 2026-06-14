@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 To use GNUstep you need to source the envoroment in your shell:
 
 for sh/bash:
@@ -13,3 +16,6 @@ csh, add it to ~/.cshrc
 
 MidnightBSD tries to source this file in shells automatically.  New
 versions of GNUstep may requires changes to your shell environment.
+EOM
+}
+]

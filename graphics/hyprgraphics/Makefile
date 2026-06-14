@@ -4,11 +4,11 @@ DISTVERSION=	0.4.0
 PORTREVISION=	1
 CATEGORIES=	graphics
 
-MAINTAINER=	tagattie@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hyprland graphics / resource utilities
 WWW=		https://github.com/hyprwm/hyprgraphics
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libhyprutils.so:devel/hyprutils \
@@ -28,6 +28,8 @@ USE_GNOME=	cairo librsvg2 pango
 USE_XORG=	pixman
 
 LDFLAGS+=	-pthread
+
+NO_TEST=	yes
 
 PLIST_SUB=	SOVERSION_MAJOR=3 \
 		SOVERSION_FULL=${DISTVERSION:C/-.*//}

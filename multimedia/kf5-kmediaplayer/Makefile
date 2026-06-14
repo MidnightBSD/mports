@@ -5,7 +5,9 @@ CATEGORIES=	multimedia kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KF5 plugin interface for media player features
 
-USES=		cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz xorg
+LICENSE=	lgpl
+
+USES=		cmake compiler:c++11-lib gettext kde:5 kfhack qt:5 tar:xz xorg
 USE_KDE=	auth codecs completion config configwidgets coreaddons \
 		i18n jobwidgets kio parts service solid sonnet textwidgets \
 		widgetsaddons windowsystem xmlgui \

@@ -10,9 +10,9 @@ LIB_DEPENDS=	libtag.so:audio/taglib \
 		libImath.so:math/Imath \
 		libkdsoap-qt6.so:www/kdsoap \
 		libKDSoapWSDiscoveryClient.so:www/kdsoap-ws-discovery-client\
-		libQCoro6Core.so:devel/qcoro@qt6
+		libQCoro6Core.so:devel/qcoro
 
-USES=		cmake compiler:c++11-lib gettext gperf kde:6 pkgconfig qt:6 \
+USES=		cmake compiler:c++11-lib desktop-file-utils gettext gperf kde:6 pkgconfig qt:6 \
 		shared-mime-info shebangfix tar:xz xorg
 USE_KDE=	activities activities-stats archive auth bookmarks codecs \
 		completion config configwidgets coreaddons crash dbusaddons \
@@ -66,5 +66,19 @@ SSH_LIB_DEPENDS=	libssh.so:security/libssh
 TAGLIB_DESC=		Needed to build the audio thumbnail kioslave
 TAGLIB_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_Taglib
 TAGLIB_LIB_DEPENDS=	libtag.so:audio/taglib
+
+post-install:
+	${RM} -f ${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/subclasses \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/globs \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/globs2 \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/magic \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/XMLnamespaces \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/aliases \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/types \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/generic-icons \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/icons \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/treemagic \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/mime.cache \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/mime/version
 
 .include <bsd.port.mk>

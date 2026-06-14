@@ -1,0 +1,11 @@
+--- make/InterimImage.gmk.orig
++++ make/InterimImage.gmk
+@@ -43,7 +43,7 @@
+ 
+ JMODS := $(patsubst %, $(INTERIM_JMODS_DIR)/%.jmod, $(INTERIM_IMAGE_MODULES))
+ 
+-JLINK_TOOL := $(JLINK) -J-Djlink.debug=true \
++JLINK_TOOL := $(JLINK) -J-Djlink.debug=true -J-XX:TieredStopAtLevel=1 -J-XX:+UseSerialGC \
+     --module-path $(INTERIM_JMODS_DIR) \
+     --endian $(OPENJDK_BUILD_CPU_ENDIAN)
+ 

@@ -1,10 +1,9 @@
 PORTNAME=	ntl
-PORTVERSION=	11.5.1
-PORTREVISION=	1
+PORTVERSION=	11.6.0
 CATEGORIES=	math
 MASTER_SITES=	http://www.shoup.net/ntl/
 
-MAINTAINER=	ports@MidngihtBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Victor Shoup's Number Theory Library
 WWW=		https://www.shoup.net/
 

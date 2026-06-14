@@ -15,6 +15,7 @@
      'linux': ['ia32', 'x64', 'noasm-x64', 'arm', 'arm-neon', 'arm64'],
 +    'openbsd': ['x64', 'arm64', 'ia32'],
 +    'freebsd': ['x64', 'arm64', 'ia32'],
++    'midnightbsd': ['x64', 'arm64', 'ia32'],
      'mac': ['x64', 'arm64'],
      'win': ['ia32', 'x64', 'arm64'],
  }
@@ -23,7 +24,7 @@
  
  def GetDsoName(target_os, dso_name, dso_version):
 -    if target_os in ('linux', 'linux-noasm', 'android'):
-+    if target_os in ('linux', 'linux-noasm', 'android', 'openbsd', 'freebsd'):
++    if target_os in ('linux', 'linux-noasm', 'android', 'openbsd', 'freebsd', 'midnightbsd'):
          return 'lib%s.so.%s' % (dso_name, dso_version)
      elif target_os == 'mac':
          return 'lib%s.%s.dylib' % (dso_name, dso_version)
@@ -32,7 +33,7 @@
      # #warning which will be converted to an error via -Werror.
      # There is also no prctl.h
 -    if target_os in ['linux', 'linux-noasm']:
-+    if target_os in ['linux', 'linux-noasm', 'openbsd', 'freebsd']:
++    if target_os in ['linux', 'linux-noasm', 'openbsd', 'freebsd', 'midnightbsd']:
          pre_make_rewrites += [
              (r'(#define HAVE_SYSCTL [01])',
               r'#define HAVE_SYSCTL 0 /* \1 -- forced to 0 for Fuchsia */'),
@@ -41,7 +42,7 @@
  
      if target_os not in ('android', 'linux', 'linux-noasm', 'mac', 'win',
 -                         'all'):
-+                         'all', 'openbsd', 'freebsd'):
++                         'all', 'openbsd', 'freebsd', 'midnightbsd'):
          parser.print_help()
          return 1
  
@@ -50,7 +51,7 @@
          ])
  
 -    if target_os in ('linux', 'linux-noasm', 'android'):
-+    if target_os in ('linux', 'linux-noasm', 'android', 'openbsd', 'freebsd'):
++    if target_os in ('linux', 'linux-noasm', 'android', 'openbsd', 'freebsd', 'midnightbsd'):
          if target_arch == 'x64':
              if target_os == 'android':
                  configure_flags['Common'].extend([

@@ -5,11 +5,11 @@ CATEGORIES=	net
 MASTER_SITES=	FREEBSD_LOCAL/cy
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The traditional 4.4BSD rdist
+COMMENT=	Traditional 4.4BSD rdist
 
-LICENSE=        bsd3
+LICENSE=	bsd3
 
-EXTRACT_DEPENDS=    rcs:devel/rcs57
+EXTRACT_DEPENDS=	rcs:devel/rcs57
 
 USES=		tar:bzip2
 

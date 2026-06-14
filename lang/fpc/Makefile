@@ -66,8 +66,7 @@ MAKE_ARGS+=	FPCMAKE=${NEWFPCMAKE} \
 		INSTALLEXE="${INSTALL_PROGRAM}" \
 		INSTALLSCR="${INSTALL_SCRIPT}" \
 		INSTALL_PREFIX=${PREFIX} \
-		FPC_LDPATH=${FPC_LDPATH} \
-		BSDs=midnightbsd freebsd netbsd openbsd darwin dragonfly
+		FPC_LDPATH=${FPC_LDPATH}
 NEWPPC=		PP=${WRKSRC}/compiler/${PPNAME}
 NEWFPC=		FPC=${WRKSRC}/compiler/${PPNAME}
 BOOTDIR=	${PPNAME}-${BOOTVER}-freebsd
@@ -105,50 +104,49 @@ post-patch:
 		${WRKDIR}/${FPCSRCDIR}/packages/fpmkunit/src/fpmkunit.pp
 
 # enable units
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/a52/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/dbus/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/dts/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|freebsd,||g' \
 		${WRKSRC}/packages/fpgtk/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|iphonesim|midnightbsd,freebsd,iphonesim|g' \
+	@${REINPLACE_CMD} -i "" -e 's|iphonesim|freebsd,iphonesim|g' \
 		${WRKSRC}/packages/gnome1/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|iphonesim|midnightbsd,freebsd,iphonesim|g' \
+	@${REINPLACE_CMD} -i "" -e 's|iphonesim|freebsd,iphonesim|g' \
 		${WRKSRC}/packages/gtk1/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|iphonesim|midnightbsd,freebsd,iphonesim|g' \
+	@${REINPLACE_CMD} -i "" -e 's|iphonesim|freebsd,iphonesim|g' \
 		${WRKSRC}/packages/imlib/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/ldap/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/libsee/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/lua/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/mad/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/modplug/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|Linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|Linux|freebsd,linux|g' \
 		${WRKSRC}/packages/newt/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/oggvorbis/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/openal/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/opencl/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/proj4/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/ptc/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|os2|midnightbsd,freebsd,os2|g' \
+	@${REINPLACE_CMD} -i "" -e 's|os2|freebsd,os2|g' \
 		${WRKSRC}/packages/rexx/fpmake.pp
-	@${REINPLACE_CMD} -i "" -e 's|linux|midnightbsd,freebsd,linux|g' \
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/zorba/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|FreeBSD|FreeBSD,MidnightBSD|g' \
 		${WRKSRC}/utils/fpcm/fpcmake.ini
-	@${REINPLACE_CMD} -i "" -e 's|FreeBSD|MidnightBSD,FreeBSD|g' \
-		${WRKSRC}/rtl/fpmake.pp
+
 
 do-build:
 # build fpc compiler
@@ -177,11 +175,14 @@ do-install:
 	${SH} "${PREFIX}/lib/fpc/${PORTVERSION}/samplecfg" \
 		"${PREFIX}/lib/fpc/${PORTVERSION}" \
 		"${PREFIX}/etc"
-	@${REINPLACE_CMD} -i "" -e 's|||' \
+	@${SED} -i '' \
 		-e 's|^#-Fl/lib;/usr/lib|-Fl${LOCALBASE}/lib;${LOCALBASE}/lib/qt5;${LOCALBASE}/lib/qt6|g' \
 			${PREFIX}/etc/fpc.cfg.sample \
 			${PREFIX}/etc/fppkg.cfg.sample \
-			${PREFIX}/etc/fppkg/default \
-			${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg
+			${PREFIX}/etc/fppkg/default
+	@if [ -f "${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg" ]; then \
+		${SED} -i '' \
+		-e 's|^#-Fl/lib;/usr/lib|-Fl${LOCALBASE}/lib;${LOCALBASE}/lib/qt5;${LOCALBASE}/lib/qt6|g' \
+		${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg ; fi
 
 .include <bsd.port.post.mk>

@@ -1,5 +1,6 @@
 PORTNAME=	qgpgme
 PORTVERSION=	2.0.0
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 PKGNAMESUFFIX=	-${FLAVOR}
@@ -18,7 +19,7 @@ LIB_DEPENDS=	libgpg-error.so:security/libgpg-error \
 FLAVORS=	qt6 qt5
 FLAVOR?=	${FLAVORS:[1]}
 
-USES=		cmake:testing compiler:c++17-lang pkgconfig \
+USES=		cmake compiler:c++17-lang pkgconfig \
 		qt:${FLAVOR:S|qt||} tar:xz
 USE_LDCONFIG=	yes
 _USE_QT_qt5=	core buildtools:build qmake:build testlib:test

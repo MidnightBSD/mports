@@ -20,7 +20,7 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 RUN_DEPENDS=	noto-emoji>0:x11-fonts/noto-emoji \
 		xdg-user-dir:devel/xdg-user-dirs
 
-USES=		cmake gettext gl gnome kde:6 pkgconfig python qt:6 tar:xz xorg
+USES=		cmake desktop-file-utils gettext gl gnome kde:6 pkgconfig python qt:6 tar:xz xorg
 USE_GL=		gl opengl
 USE_GNOME=	intltool
 USE_KDE=	activities activities-stats attica auth baloo bookmarks \

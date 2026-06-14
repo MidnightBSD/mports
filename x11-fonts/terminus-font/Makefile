@@ -1,7 +1,7 @@
 # Created by: Michael Hsin <mhsin@mhsin.org>
 
 PORTNAME=	terminus-font
-PORTVERSION=	4.48
+PORTVERSION=	4.49.1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME}-${PORTVERSION}
 

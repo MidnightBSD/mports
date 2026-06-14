@@ -11,9 +11,10 @@ WWW=		https://hashcat.net/hashcat/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/docs/license.txt
 
-BUILD_DEPENDS=	minizip:archivers/minizip
+USES=		compiler:c11 gmake iconv localbase python:build,run shebangfix
 
-USES=		compiler:c11 gmake iconv localbase python shebangfix
+USE_LDCONFIG=	yes
+FAKE_OPTS=	trueprefix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup:opencl Cyan4973:xxhash
@@ -26,9 +27,11 @@ SHEBANG_FILES=	extra/tab_completion/install tools/*.py
 
 MAKE_ARGS+=	SHARED=1 \
 		CC="${CC}" \
-		LFLAGS_NATIVE="${LDFLAGS} -lpthread -lm" \
-		CFLAGS_NATIVE="${CFLAGS} -Iinclude -IOpenCL -Ideps/LZMA-SDK/C \
-						-Ideps/git/OpenCL-Headers"
+		UNAME=FreeBSD \
+		USE_SYSTEM_ZLIB=0 \
+		LFLAGS_NATIVE="${LDFLAGS} -L${LOCALBASE}/lib -lpthread -lm ${ICONV_LIB}" \
+		CFLAGS_NATIVE="${CFLAGS} -I${LOCALBASE}/include -Iinclude -IOpenCL -Ideps/LZMA-SDK/C \
+						-Ideps/git/OpenCL-Headers -Ideps/zlib -Ideps/zlib/contrib"
 ALL_TARGET=	default
 CFLAGS_aarch64+=	-march=armv8-a+crc+crypto
 

@@ -10,6 +10,7 @@ WWW=		https://github.com/topfunky/gruff
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal>=3.0:math/rubygem-bigdecimal \
 		rubygem-histogram>=0:graphics/rubygem-histogram \
 		rubygem-rmagick>=5.5:graphics/rubygem-rmagick

@@ -1,6 +1,5 @@
 PORTNAME=	webcamoid
-DISTVERSION=	9.1.1
-PORTREVISION=	0
+DISTVERSION=	9.3.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org

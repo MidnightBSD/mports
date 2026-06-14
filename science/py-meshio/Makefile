@@ -1,0 +1,29 @@
+PORTNAME=	meshio
+PORTVERSION=	5.3.5
+PORTREVISION=	1
+CATEGORIES=	science cad python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	I/O for many mesh formats
+WWW=		https://github.com/nschloe/meshio
+
+LICENSE=	mit
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
+		${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}h5py>0:science/py-h5py@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
+		${PYTHON_PKGNAMEPREFIX}h5py>0:science/py-h5py@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}rich>0:textproc/py-rich@${PY_FLAVOR}\
+		${PYTHON_PKGNAMEPREFIX}netCDF4>0:science/py-netCDF4@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	pep517 pytest
+PLIST_SUB=	VER=${PORTVERSION}
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

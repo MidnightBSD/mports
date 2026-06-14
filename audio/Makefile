@@ -4,6 +4,7 @@
     SUBDIR += alsa-plugins
     SUBDIR += alsa-utils
     SUBDIR += audacity
+    SUBDIR += audio-editing
     SUBDIR += audiocd-kio
     SUBDIR += cddb-bundle
     SUBDIR += cdparanoia
@@ -87,7 +88,7 @@
     SUBDIR += libcoverart
     SUBDIR += libdiscid
     SUBDIR += libdssialsacompat
-    SUBDIR += libeburl128
+    SUBDIR += libebur128
     SUBDIR += libechonest
     SUBDIR += libgig
     SUBDIR += libgme
@@ -184,6 +185,7 @@
     SUBDIR += sdl_audiolib
     SUBDIR += sdl_mixer
     SUBDIR += sdl_sound
+    SUBDIR += shairplay
     SUBDIR += shortwave
     SUBDIR += sndio
     SUBDIR += sonata
@@ -205,9 +207,12 @@
     SUBDIR += timemachine
     SUBDIR += timidity
     SUBDIR += timidity++
+    SUBDIR += timidity++-emacs
     SUBDIR += timidity++-gtk
+    SUBDIR += timidity++-motif
     SUBDIR += timidity++-slang
     SUBDIR += timidity++-xaw
+    SUBDIR += timidity++-xskin
     SUBDIR += twolame
     SUBDIR += vamp-plugin-sdk
     SUBDIR += vorbis-tools

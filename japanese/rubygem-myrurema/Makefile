@@ -8,6 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool which helps searching/browsing/writing the Japanese Ruby docs
 WWW=		https://github.com/yhara/myrurema
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-launchy2>=2.3<3:devel/rubygem-launchy2
 
 USES=		gem

@@ -41,9 +41,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/CMakeLists.txt
 
 post-install:
-	${SED} -e '/cafile/s,/usr/local,${LOCALBASE},' \
+	${SED} -e '/cafile/s,/usr/local,${TRUE_PREFIX},' \
 		${ETCDIR}/mosquitto.conf > \
 		${ETCDIR}/mosquitto.conf.sample
+	${RM} ${ETCDIR}/mosquitto.conf
 	${MV} ${ETCDIR}/pwfile.example \
 		${ETCDIR}/pwfile.sample
 	${MV} ${ETCDIR}/pskfile.example \

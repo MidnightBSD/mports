@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 
 To actually turn on the automatic snapshots you have to do the following:
 
@@ -7,3 +10,6 @@ To actually turn on the automatic snapshots you have to do the following:
 
 See zfs-snapshot-mgmt(8) manpage for more details.
 
+EOM
+}
+]

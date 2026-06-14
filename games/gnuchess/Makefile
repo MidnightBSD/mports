@@ -1,5 +1,5 @@
 PORTNAME=	gnuchess
-DISTVERSION=	6.2.11
+DISTVERSION=	6.3.0
 CATEGORIES=	games
 MASTER_SITES=	GNU/chess
 # The DISTFILES here is explicitly needed because it can be extended later.
@@ -11,6 +11,8 @@ WWW=		https://savannah.gnu.org/projects/chess
 
 LICENSE=	gpl3+
 
+USE_GCC=	yes
+
 USES=		cpe shebangfix
 CPE_VENDOR=	gnu
 CPE_PRODUCT=	chess
@@ -20,6 +22,10 @@ SHEBANG_FILES=	doc/quotes.rb
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
+
+LDFLAGS+=		-lpthread
+
+NO_TEST=	yes
 
 INFO=		gnuchess
 
@@ -36,8 +42,8 @@ OPENING_BOOK_EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 post-build-OPENING_BOOK-on:
 	zcat ${DISTDIR}/book_1.02.pgn.gz > ${WRKSRC}/src/book.pgn
-	cd ${WRKSRC}/src && ( ${ECHO} book add book.pgn; sleep 1; ${ECHO} quit ) | ./gnuchess
-	@${REINPLACE_CMD} -e '/Book =/s/false/true/' ${WRKSRC}/src/gnuchess.ini
+	cd ${WRKSRC}/src && ./gnuchess --addbook book.pgn < /dev/null
+	@${REINPLACE_CMD} -e '/Book =/s/false/true/' ${WRKSRC}/doc/gnuchess.ini
 
 post-install:
 	cd ${PREFIX}/bin && ${LN} -f gnuchess gnuchessx

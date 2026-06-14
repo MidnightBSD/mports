@@ -1,12 +1,11 @@
-
-
 PORTNAME=	speexdsp
-DISTVERSION=	1.2rc3
+DISTVERSION=	1.2.1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/speex/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio compression format designed for speech
+WWW=		https://www.speex.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING

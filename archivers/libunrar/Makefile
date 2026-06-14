@@ -5,7 +5,7 @@ CATEGORIES=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/
 DISTNAME=	unrarsrc-${PORTVERSION}
 
-MAINTAINER=	jhale@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RAR archive extraction library
 WWW=		https://www.rarlab.com/
 

@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	19.1.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION}/
 #MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/
@@ -456,6 +456,7 @@ COMPILER_RT_ARCHS=	x86_64
 COMPILER_RT_ARCHS+=	i386
 .endif
 .elif ${ARCH} == "i386"
+MAKE_JOBS_UNSAFE=	yes
 COMPILER_RT_ARCHS=	i386
 .elif ${ARCH} == "powerpc"
 COMPILER_RT_ARCHS=	powerpc

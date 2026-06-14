@@ -1,0 +1,2 @@
+check-manifest verifies that a Python package's MANIFEST.in includes the
+files needed for a complete source distribution.

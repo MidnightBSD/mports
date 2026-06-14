@@ -13,7 +13,7 @@ WWW=		https://classic.yarnpkg.com/
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES?=		nodejs:24,run
+USES?=		nodejs:24,run sqlite3:port
 USES+=		cpe
 CPE_VENDOR=	${PORTNAME}pkg
 
@@ -34,7 +34,7 @@ post-patch:
 	@${REINPLACE_CMD} -i '' \
 		-e 's|"installationMethod": "tar"|"installationMethod": "pkg"|g' \
 		${WRKSRC}/package.json
-	@${REINPLACE_CMD} -i '' -e 's%Linux)%Linux|FreeBSD)%g' \
+	@${REINPLACE_CMD} -i '' -e 's%Linux)%Linux|FreeBSD|MidnightBSD)%g' \
 		${WRKSRC}/bin/yarn
 
 do-install:

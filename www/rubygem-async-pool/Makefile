@@ -1,0 +1,21 @@
+PORTNAME=	async-pool
+PORTVERSION=	0.11.2
+CATEGORIES=	www rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Redis client library
+WWW=		https://socketry.github.io/async-pool/ \
+		https://github.com/socketry/async-pool
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/license.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-async>=2.0:devel/rubygem-async
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

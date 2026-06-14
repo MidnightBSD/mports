@@ -1,5 +1,5 @@
 PORTNAME=	libthai
-DISTVERSION=	0.1.29
+DISTVERSION=	0.1.30
 CATEGORIES=	devel
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/ \
 		https://github.com/tlwg/${PORTNAME}/releases/download/v${DISTVERSION}/

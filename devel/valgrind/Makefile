@@ -1,6 +1,7 @@
 PORTNAME=	valgrind
 PORTVERSION=	3.22.0
 PORTEPOCH=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/valgrind
 
@@ -11,9 +12,12 @@ WWW=		https://www.valgrind.org/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf cpe gmake pathfix perl5 pkgconfig shebangfix tar:bz2
+USES=		autoreconf cpe gmake pathfix perl5 pkgconfig shebangfix \
+		python:run tar:bz2
 USE_PERL5=	build
-SHEBANG_FILES=	callgrind/callgrind_annotate.in callgrind/callgrind_control.in
+SHEBANG_FILES=	callgrind/callgrind_annotate.in callgrind/callgrind_control.in \
+		cachegrind/cg_annotate.in cachegrind/cg_diff.in \
+		cachegrind/cg_merge.in
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL}
 
@@ -42,7 +46,9 @@ MPI_LIB_DEPENDS=	libmpich.so:net/mpich
 
 .include <bsd.mport.options.mk>
 
-.if ${OSVERSION} > 300000
+.if ${OSVERSION} >= 400000
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd13.2
+.elif ${OSVERSION} > 300000
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd12.4
 .else
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd11.4

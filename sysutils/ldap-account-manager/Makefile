@@ -1,6 +1,5 @@
 PORTNAME=	ldap-account-manager
-PORTVERSION=	7.3
-PORTREVISION=	1
+PORTVERSION=	9.5.2
 CATEGORIES=	sysutils www
 MASTER_SITES=	SF/${SHORTNAME}/LAM/${PORTVERSION}
 
@@ -24,19 +23,22 @@ SHORTNAME=	lam
 PORTDOCS=	docs HISTORY README copyright
 LAMDATA=	config graphics help lib locale sess style templates tmp VERSION index.html .htaccess
 WWWDIR=		${PREFIX}/www/${SHORTNAME}
-CONFIGS=	config.cfg addressbook.conf samba3.conf unix.conf windows_samba4.conf
+CONFIGS_CFG=	config.cfg
+CONFIGS_CONF=	addressbook samba3
 WRITEABLES=	config sess tmp
 
 OPTIONS_DEFINE=	DOCS
 
 do-install:
 	@${ECHO_CMD} '@preexec if [ -f %D/${WWWDIR_REL}/config/shells ]; then ${RM} %D/${WWWDIR_REL}/config/shells; fi' >> ${TMPPLIST}
-.for CONFIG in ${CONFIGS}
+.for CONFIG in ${CONFIGS_CFG}
 	@${ECHO_CMD} '@sample ${WWWDIR_REL}/config/${CONFIG}.sample' >> ${TMPPLIST}
-	@${ECHO_CMD} '@postexec if [ -f %D/${WWWDIR_REL}/config/${CONFIG}_sample ]; then ${RM} %D/${WWWDIR_REL}/config/${CONFIG}_sample; fi' >> ${TMPPLIST}
+.endfor
+.for CONFIG in ${CONFIGS_CONF}
+	@${ECHO_CMD} '@sample ${WWWDIR_REL}/config/${CONFIG}.sample.conf ${WWWDIR_REL}/config/${CONFIG}.conf' >> ${TMPPLIST}
 .endfor
 .for I in ${LAMDATA}
-	@${FIND} -s ${WRKSRC}/${I} -type f -not -name '*.sample' | ${SED} -e 's,^${WRKSRC},${WWWDIR_REL},' >> ${TMPPLIST}
+	@${FIND} -s ${WRKSRC}/${I} -type f -not -name '*sample*' | ${SED} -e 's,^${WRKSRC},${WWWDIR_REL},' >> ${TMPPLIST}
 	@${FIND} -ds ${WRKSRC}/${I} -type d | ${SED} -e 's,^${WRKSRC},@dir ${WWWDIR_REL},' >> ${TMPPLIST}
 .endfor
 	@${ECHO_CMD} '@dir ${WWWDIR_REL}' >> ${TMPPLIST}

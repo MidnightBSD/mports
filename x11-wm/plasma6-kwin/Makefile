@@ -1,6 +1,6 @@
 PORTNAME=	kwin
 DISTVERSION=	${KDE_PLASMA_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-wm kde kde-plasma
 PATCH_SITES=	https://invent.kde.org/plasma/kwin/-/commit/
 PATCHFILES=	ef4504320de2c3a7c7aebcf083d75db361f802ae.patch:-p1
@@ -27,9 +27,10 @@ LIB_DEPENDS=	libdisplay-info.so:sysutils/libdisplay-info \
 		libxcvt.so:x11/libxcvt \
 		libxkbcommon.so:x11/libxkbcommon
 RUN_DEPENDS=	hwdata>0:misc/hwdata \
+		plasma6-breeze>0:x11-themes/plasma6-breeze@qt6 \
 		Xwayland:x11-servers/xwayland
 
-USES=		cmake gettext gl kde:6 pkgconfig python qt:6 shebangfix tar:xz \
+USES=		cmake desktop-file-utils gettext gl kde:6 pkgconfig python qt:6 shebangfix tar:xz \
 		xorg
 USE_GL=		egl gbm gl opengl
 USE_KDE=	auth colorscheme config \
@@ -39,7 +40,7 @@ USE_KDE=	auth colorscheme config \
 		notifications package runner service svg wayland widgetsaddons \
 		windowsystem xmlgui \
 		ecm:build plasma-wayland-protocols:build \
-		aurorae:run breeze:run
+		aurorae:run
 USE_QT=		base declarative multimedia sensors tools wayland
 USE_XORG=	ice sm x11 xcb xext xi
 

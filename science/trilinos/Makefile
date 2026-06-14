@@ -12,7 +12,6 @@ LICENSE_COMB=	multi
 
 BROKEN_armv6=	kokkos assumes a 64-bit build; i.e., 8-byte pointers, but found 4-byte
 BROKEN_armv7=	kokkos assumes a 64-bit build; i.e., 8-byte pointers, but found 4-byte
-BROKEN_i386=	kokkos assumes a 64-bit build; i.e., 8-byte pointers, but found 4-byte
 
 BUILD_DEPENDS=	bash:shells/bash \
 		boost-libs>0:devel/boost-libs \
@@ -35,6 +34,7 @@ SHEBANG_FILES=	packages/kokkos/bin/kokkos_launch_compiler \
 		packages/phalanx/scripts/phalanx_create_evaluator.py
 
 CXXFLAGS+=	-DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED # fails otherwise with backtrace-related symbol error explicitly printed by Boost
+CXXFLAGS+=	-DTEUCHOS_NO_ZERO_ITERATOR_CONVERSION # Iter(0) calls private libc++ __wrap_iter constructor; use Iter() instead
 LDFLAGS+=	-lexecinfo # only for kokkos (?), to prevent missing symbols
 
 CMAKE_OFF=		Trilinos_ENABLE_TESTS
@@ -94,5 +94,16 @@ post-install:
 	@${RM} ${PREFIX}/include/mpi*.h
 
 # Tests fail to compile, see https://github.com/trilinos/Trilinos/issues/14748
+
+# On 32-bit (i386), sizeof(size_t)=4 < sizeof(long long)=8, which trips a
+# static_assert in Tpetra_Distributor.hpp; disable long long ETI to work around it.
+.if "${ARCH}" == "i386"
+CMAKE_ARGS+=	-DTpetra_INST_INT_INT:BOOL=ON \
+		-DTpetra_INST_INT_LONG_LONG:BOOL=OFF \
+		-DTrilinos_ENABLE_ThyraEpetraAdapters:BOOL=ON
+PLIST_SUB+=	I386=""
+.else
+PLIST_SUB+=	I386="@comment "
+.endif
 
 .include <bsd.port.mk>

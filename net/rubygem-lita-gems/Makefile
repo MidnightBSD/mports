@@ -1,0 +1,22 @@
+PORTNAME=	lita-gems
+PORTVERSION=	1.1.0
+PORTREVISION=	2
+CATEGORIES=	net rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Lita handler for rubygems.org querying
+WWW=		https://github.com/marsz/lita-gems
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-gems>=0.8.0:devel/rubygem-gems \
+		rubygem-lita>=2.6:net-im/rubygem-lita
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

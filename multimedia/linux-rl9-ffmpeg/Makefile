@@ -1,9 +1,9 @@
 PORTNAME=	ffmpeg
-PORTVERSION=	5.1.7
-DISTVERSIONSUFFIX=	-2.el9
+PORTVERSION=	5.1.8
+DISTVERSIONSUFFIX=	-1.el9
+CATEGORIES=	multimedia linux
 MASTER_SITES=	RPMFUSION9
 PKGNAMESUFFIX=	-libs
-CATEGORIES=	multimedia linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FFMpeg library (Rocky Linux ${LINUX_DIST_VER})
@@ -12,7 +12,7 @@ WWW=		https://ffmpeg.org/
 LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		linux:rl9
 USE_LDCONFIG=	yes

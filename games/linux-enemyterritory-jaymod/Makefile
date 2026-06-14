@@ -14,7 +14,10 @@ LICENSE=	other
 
 RUN_DEPENDS=	et:games/linux-enemyterritory
 
-USES=		linux
+USES=		linux shebangfix
+SKIP_FAKE_ALL=	yes
+SKIP_FAKE_CHECK=	lib/enemyterritory/jaymod/qagame.mp.i386.so
+SHEBANG_FILES=	linux/convert_shrub
 
 OPTIONS_DEFINE=	DOCS OMNIBOT
 OMNIBOT_DESC=	Install Omni-Bot for bot support

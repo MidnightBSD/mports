@@ -1,12 +1,12 @@
 PORTNAME=	lumina-core
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.6.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lumina Desktop Environment
-WWW=		https://lumina-desktop.org/
+WWW=		https://github.com/lumina-desktop/lumina/tree/master/src-qt5/core
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/../../LICENSE
@@ -34,6 +34,8 @@ USE_QT=		buildtools:build concurrent core dbus declarative gui \
 USE_GITHUB=	yes
 GH_ACCOUNT=	lumina-desktop
 GH_PROJECT=	lumina
+
+QMAKE_ARGS=	L_MANDIR=${PREFIX}/share/man
 
 OPTIONS_DEFINE=		MULTIMEDIA TRUEOS NLS
 OPTIONS_DEFAULT=	MULTIMEDIA

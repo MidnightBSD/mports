@@ -1,5 +1,5 @@
 PORTNAME=	gemini-cli
-DISTVERSION=	0.40.1
+DISTVERSION=	0.45.0
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +20,7 @@ PACKAGE_NAME=	@google/gemini-cli
 
 do-fetch:
 	@if ! [ -f ${DISTDIR}/${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} ]; then ( \
+		${RM} -rf ${WRKDIR}/${PORTNAME}-${DISTVERSION} && \
 		${MKDIR} -p ${WRKDIR}/${PORTNAME}-${DISTVERSION} && \
 		cd ${WRKDIR}/${PORTNAME}-${DISTVERSION} && \
 		if [ -f ${FILESDIR}/package-lock.json ]; then \

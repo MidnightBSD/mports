@@ -42,7 +42,8 @@ post-patch:
 
 do-install:
 	@(cd ${WRKSRC} \
-		&& ${RM} README.md changes.txt include/.gitignore)
+		&& ${RM} README.md changes.txt .gitattributes .gitignore \
+			include/.gitignore include/distconfig.php.bak)
 	@${MKDIR} ${WWWDIR}
 	@(cd ${WRKSRC} \
 		&& ${COPYTREE_SHARE} . ${WWWDIR})

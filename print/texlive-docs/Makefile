@@ -6,7 +6,7 @@ PKGNAMESUFFIX=	-docs
 DISTNAME=	${PORTNAME}-${PORTVERSION}-texmf
 DIST_SUBDIR=	TeX
 
-MAINTAINER=	tex@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeX Live Typesetting System, documentation
 WWW=		https://tug.org/texlive/
 

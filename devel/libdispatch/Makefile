@@ -13,6 +13,8 @@ USES=		cmake:testing compiler:c++17-lang
 USE_LDCONFIG=	yes
 USE_CXXSTD=	c++17
 
+TESTING_UNSAFE=	upstream dispatch tests fail and timeout on MidnightBSD
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	swiftlang
 GH_PROJECT=	swift-corelibs-libdispatch

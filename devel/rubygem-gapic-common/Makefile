@@ -10,6 +10,7 @@ WWW=		https://github.com/googleapis/ruby-core-libraries/tree/main/gapic-common \
 
 LICENSE=	Apache-2.0
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=1.9<3:www/rubygem-faraday \
 		rubygem-faraday-retry>=1.0<3:www/rubygem-faraday-retry \
 		rubygem-google-cloud-env>=2.2<3:net/rubygem-google-cloud-env \

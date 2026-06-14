@@ -1,5 +1,6 @@
 PORTNAME=	vscode
 DISTVERSION=	1.88.1
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	https://github.com/tagattie/FreeBSD-VSCode/releases/download/${DISTVERSION}/:yarn_cache
 DISTFILES=	yarn-offline-cache-${DISTVERSION}${EXTRACT_SUFX}:yarn_cache \
@@ -78,8 +79,8 @@ USE_GNOME=	atk cairo pango gdkpixbuf gtk30 libxml2 libxslt
 
 USE_LDCONFIG=	${DATADIR}
 
-# Keep NODE_VER in sync with www/node18 DISTVERSION
-NODE_VER=	18.20.6
+# Keep NODE_VER in sync with www/node22 DISTVERSION
+NODE_VER=	22.16.0
 NODE_VER_MAJOR=	${NODE_VER:C/\..*$//}
 
 SHEBANG_REGEX=	./(extensions|resources|scripts|src)/.*\.sh$$
@@ -102,7 +103,7 @@ OPTIONS_DEFINE=	REH
 OPTIONS_DEFAULT=# none
 REH_DESC=	Build remote extension host
 
-ELECTRON_DIR=	${.CURDIR}/../../devel/electron28
+ELECTRON_DIR=	${.CURDIR}/../../devel/electron39
 .include	"${ELECTRON_DIR}/Makefile.version"
 
 ELECTRON_DOWNLOAD_URL=	https://github.com/electron/electron/releases/download/v${ELECTRON_VER}

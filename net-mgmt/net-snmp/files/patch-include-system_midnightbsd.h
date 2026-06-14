@@ -1,7 +1,10 @@
 --- /dev/null	2019-10-04 11:11:00.000000000 -0400
 +++ include/net-snmp/system/midnightbsd.h	2019-10-04 11:11:10.246069000 -0400
-@@ -0,0 +1,27 @@
+@@ -0,0 +1,29 @@
 +#include "bsd.h"
++
++/* midnightbsd is FreeBSD 13-compatible */
++#define midnightbsd midnightbsd
 +
 +#define CHECK_RT_FLAGS 1
 +

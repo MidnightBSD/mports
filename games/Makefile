@@ -75,6 +75,12 @@
     SUBDIR += knavalbattle
     SUBDIR += knetwalk
     SUBDIR += knights
+    SUBDIR += kodi-addon-game.libretro
+    SUBDIR += kodi-addon-game.libretro.beetle-psx
+    SUBDIR += kodi-addon-game.libretro.fceumm
+    SUBDIR += kodi-addon-game.libretro.genplus
+    SUBDIR += kodi-addon-game.libretro.pcsx-rearmed
+    SUBDIR += kodi-addon-game.libretro.picodrive
     SUBDIR += kolf
     SUBDIR += kollision
     SUBDIR += konquest
@@ -93,6 +99,11 @@
     SUBDIR += libgnome-games-support
     SUBDIR += libkdegames
     SUBDIR += libkmahjongg
+    SUBDIR += libretro-beetle_psx
+    SUBDIR += libretro-fceumm
+    SUBDIR += libretro-genesis_plus_gx
+    SUBDIR += libretro-pcsx_rearmed
+    SUBDIR += libretro-picodrive
     SUBDIR += lightsoff
     SUBDIR += lincity
     SUBDIR += linux-enemyterritory
@@ -128,6 +139,7 @@
     SUBDIR += py-pychess
     SUBDIR += py-pysol-cards
     SUBDIR += py-sgflib
+    SUBDIR += py-sgfsummary
     SUBDIR += qqwing
     SUBDIR += qstat
     SUBDIR += quadra

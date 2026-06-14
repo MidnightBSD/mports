@@ -13,19 +13,21 @@ WWW=		http://www.planetwolfenstein.com/shrub/
 LICENSE=	other
 
 BUILD_DEPENDS=	et:games/linux-enemyterritory
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS=	et:games/linux-enemyterritory
 
 RESTRICTED=	not redistributable
 
 USES=		linux zip
+SKIP_FAKE_ALL=	yes
+SKIP_FAKE_CHECK=	lib/enemyterritory/shrub/qagame.mp.i386.so
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
 
 PLIST_FILES=	bin/et-${PORTNAME} \
 		bin/etded-${PORTNAME} \
-		%%DATADIR%%/qagame.mp.i386.so
-PLIST_DIRS=	%%DATADIR%%
+		${DATADIR:S|${PREFIX}/||}/qagame.mp.i386.so
+PLIST_DIRS=	${DATADIR:S|${PREFIX}/||}
 
 do-build:
 .for f in et etded

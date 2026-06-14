@@ -9,10 +9,12 @@ WWW=		https://cran.r-project.org/web/packages/crosstalk/
 
 LICENSE=	mit
 
-RUN_DEPENDS=	R-cran-htmltools>=0.3.6:textproc/R-cran-htmltools \
+CRAN_DEPENDS=	R-cran-htmltools>=0.3.6:textproc/R-cran-htmltools \
 		R-cran-jsonlite>0:converters/R-cran-jsonlite \
 		R-cran-lazyeval>0:math/R-cran-lazyeval \
 		R-cran-R6>0:devel/R-cran-R6
+BUILD_DEPENDS=	${CRAN_DEPENDS}
+RUN_DEPENDS=	${CRAN_DEPENDS}
 
 USES=		cran:auto-plist
 

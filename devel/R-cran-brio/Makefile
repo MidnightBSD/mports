@@ -10,9 +10,9 @@ WWW=		https://brio.r-lib.org
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	R-cran-covr>0:devel/R-cran-covr \
-		R-cran-testthat>=2.1.0:devel/R-cran-testthat
-
 USES=		cran:auto-plist,compiles
+
+# circular depend on test
+NO_TEST=	yes
 
 .include <bsd.port.mk>

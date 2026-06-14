@@ -17,7 +17,7 @@ WWW=		http://minnie.tuhs.org/UnixTree/V7/
 
 LICENSE=	unknown
 
-USES=		uidfix
+USES=		sbrk uidfix
 EXTRACT_CMD=	${CP}
 EXTRACT_BEFORE_ARGS=
 EXTRACT_AFTER_ARGS=	${WRKSRC}

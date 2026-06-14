@@ -22,7 +22,7 @@ CONFLICTS=		heimdal krb5 krb5-11* krb5-120
 CONFLICTS_BUILD=	boringssl
 
 KERBEROSV_URL=		http://web.mit.edu/kerberos/
-USES=			autoreconf compiler:c++11-lang cpe gmake gettext-runtime \
+USES=			autoreconf:2.69 compiler:c++11-lang cpe gmake gettext-runtime \
 			gssapi:bootstrap,mit libtool:build localbase \
 			perl5 pkgconfig ssl
 USE_CSTD=		gnu99
@@ -82,7 +82,8 @@ KRB5_LOCALSTATEDIR=	"${PREFIX}/var"
 .if !defined(KRB5_RUNSTATEDIR)
 KRB5_RUNSTATEDIR=	"${PREFIX}/var/run"
 .endif
-CONFIGURE_ARGS+=	--runstatedir="${KRB5_RUNSTATEDIR}"
+# krb5 1.21 derives runstatedir from localstatedir but does not accept
+# --runstatedir as a configure option.
 CONFIGURE_ARGS+=	--localstatedir="${KRB5_LOCALSTATEDIR}"
 PLIST_SUB+=		KRB5_LOCALSTATEDIR=${KRB5_LOCALSTATEDIR}
 PLIST_SUB+=		KRB5_RUNSTATEDIR=${KRB5_RUNSTATEDIR}

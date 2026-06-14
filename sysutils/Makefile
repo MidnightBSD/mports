@@ -4,6 +4,7 @@
     SUBDIR += LPRng
     SUBDIR += R-cran-processx
     SUBDIR += R-cran-ps
+    SUBDIR += R-cran-xopen
     SUBDIR += accounts-qml-module
     SUBDIR += accountsservice
     SUBDIR += alloy
@@ -11,7 +12,6 @@
     SUBDIR += ansible
     SUBDIR += apachetop
     SUBDIR += atf-fvp
-    SUBDIR += atf-master
     SUBDIR += atf-rk3328
     SUBDIR += atf-rk3399
     SUBDIR += atf-sun50i_a64
@@ -19,10 +19,12 @@
     SUBDIR += b43-fwcutter
     SUBDIR += backuppc
     SUBDIR += bacula9-client
+    SUBDIR += bacula9-client-static
     SUBDIR += bacula9-docs
     SUBDIR += bacula9-server
     SUBDIR += baloo-widgets
     SUBDIR += bamf
+    SUBDIR += bastille
     SUBDIR += batmon
     SUBDIR += battmond
     SUBDIR += beadm
@@ -81,6 +83,7 @@
     SUBDIR += firstboot-midnightbsd-update
     SUBDIR += firstboot-pkgs
     SUBDIR += flashback
+    SUBDIR += fluent-bit
     SUBDIR += flock
     SUBDIR += framework-system
     SUBDIR += freebsd-shar
@@ -234,6 +237,7 @@
     SUBDIR += py-pkginfo
     SUBDIR += py-psutil
     SUBDIR += py-ptyprocess
+    SUBDIR += py-puremagic
     SUBDIR += py-py-cpuinfo
     SUBDIR += py-scandir
     SUBDIR += py-uptime
@@ -246,6 +250,8 @@
     SUBDIR += rpi-firmware
     SUBDIR += rsyslog8
     SUBDIR += rubygem-bundler
+    SUBDIR += rubygem-chef-config
+    SUBDIR += rubygem-chef-utils
     SUBDIR += rubygem-chef-winrm
     SUBDIR += rubygem-chef-winrm-elevated
     SUBDIR += rubygem-fluent-mixin-plaintextformatter
@@ -253,6 +259,10 @@
     SUBDIR += rubygem-fluent-plugin-file-alternative
     SUBDIR += rubygem-fluent-plugin-tail-asis
     SUBDIR += rubygem-fluentd
+    SUBDIR += rubygem-ohai
+    SUBDIR += rubygem-parallel
+    SUBDIR += rubygem-sys-filesystem14
+    SUBDIR += rubygem-vmstat
     SUBDIR += rubygem-winrm
     SUBDIR += rust-coreutils
     SUBDIR += screen
@@ -291,7 +301,6 @@
     SUBDIR += u-boot-cubox-hummingboard
     SUBDIR += u-boot-firefly-rk3399
     SUBDIR += u-boot-imx-serial-loader
-    SUBDIR += u-boot-master
     SUBDIR += u-boot-nanopi-a64
     SUBDIR += u-boot-nanopi-m1plus
     SUBDIR += u-boot-nanopi-neo
@@ -356,6 +365,7 @@
     SUBDIR += wmbsdbatt
     SUBDIR += wuzzah
     SUBDIR += xe
+    SUBDIR += xen-guest-tools
     SUBDIR += xen-tools
     SUBDIR += xfburn
     SUBDIR += xfce4-battery-plugin

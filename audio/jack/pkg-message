@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 The new JACK server comes with a DBUS control interface:
 
 $ jack_control help
@@ -27,3 +30,6 @@ Official JACK example clients and tools are available as jack-example-tools.
 
 JACK 1.9.22 introduces a latency correction fix.
 Latency correction parameters have to be measured again after an update.
+EOM
+}
+]

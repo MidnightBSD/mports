@@ -10,6 +10,7 @@ WWW=		https://github.com/whitequark/parser
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-ast>=2.4.1<2.5:devel/rubygem-ast \
 		rubygem-racc>=0:devel/rubygem-racc
 

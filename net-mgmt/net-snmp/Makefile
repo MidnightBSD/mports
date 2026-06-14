@@ -1,6 +1,5 @@
 PORTNAME=	snmp
-PORTVERSION=	5.9.1
-PORTREVISION=	1
+PORTVERSION=	5.9.5.2
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/net-${PORTNAME}/net-${PORTNAME}/${PORTVERSION} \
@@ -39,7 +38,14 @@ PORTSCOUT=	skipv:5.7.2.1
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	snmpd snmptrapd
 USE_LDCONFIG=	yes
-USES=		cpe libtool perl5 ssl
+LIB_DEPENDS=	libpcre.so:devel/pcre \
+		libpcap.so:net/libpcap \
+		libelf.so:devel/elfutils
+
+USES=		cpe libtool perl5 shebangfix ssl
+SHEBANG_FILES=	local/checkbandwidth local/mib2c local/net-snmp-cert \
+		local/traptoemail local/snmpconf.in local/fixproc \
+		local/tkmib local/ipf-mod.pl local/snmp-bridge-mib
 CPE_VENDOR=	net-snmp
 USE_PERL5=	build run
 USE_CSTD=	c99
@@ -150,7 +156,13 @@ NET_SNMP_SYS_CONTACT?=	nobody@nowhere.invalid
 NET_SNMP_SYS_LOCATION?=	somewhere
 NET_SNMP_LOGFILE?=	/var/log/snmpd.log
 NET_SNMP_PERSISTENTDIR?=/var/net-snmp
-NET_SNMP_WITH_MIB_MODULE_LIST+=	host disman/event-mib mibII/mta_sendmail mibII/tcpTable ucd-snmp/diskio sctp-mib
+NET_SNMP_WITH_MIB_MODULE_LIST+=	host disman/event-mib mibII/mta_sendmail mibII/tcpTable ucd-snmp/diskio
+
+.if ${ARCH} == amd64
+NET_SNMP_WITH_MIB_MODULE_LIST+=	sctp-mib
+.else
+NET_SNMP_WITHOUT_MIB_MODULE_LIST+=	sctp-mib
+.endif
 
 .if ${OPSYS} == FreeBSD
 NET_SNMP_WITHOUT_MIB_MODULE_LIST+=	mibII/ipv6

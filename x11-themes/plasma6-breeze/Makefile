@@ -1,4 +1,5 @@
 PORTNAME=	breeze
+PKGNAMEPREFIX=	plasma6-
 DISTVERSION=	${KDE_PLASMA_VERSION}
 CATEGORIES=	x11-themes kde kde-plasma
 
@@ -9,7 +10,7 @@ COMMENT=	Artwork, styles and assets for the Breeze visual style for the Plasma D
 FLAVORS=	qt6 qt5
 FLAVOR?=	qt6
 
-USES=		cmake gettext gl tar:xz xorg
+USES=		cmake desktop-file-utils gettext gl tar:xz xorg
 USES+=		${${FLAVOR}_USES}
 USE_GL=		gl opengl
 USE_KDE=	${${FLAVOR}_USE_KDE}

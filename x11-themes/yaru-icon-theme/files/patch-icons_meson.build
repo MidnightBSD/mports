@@ -1,0 +1,24 @@
+--- icons/meson.build.orig	2022-10-03 12:24:28 UTC
++++ icons/meson.build
+@@ -227,11 +227,16 @@
+       if local_links.length() > 0
+-        links_targets = run_command(
+-          'realpath', '-e',
+-          '--relative-to=' + meson.current_source_dir() / icon_dir,
+-          local_links,
+-          check: true,
+-        ).stdout().strip().split('\n')
+-        assert(local_links.length() == links_targets.length())
++        links_targets = []
++        foreach local_link: local_links
++          link_target = run_command(
++            'realpath', '-e',
++            '--relative-to=' + meson.current_source_dir() / icon_dir,
++            local_link,
++            check: true,
++          ).stdout().strip()
++          links_targets += link_target
++        endforeach
++      else
++        links_targets = []
+       endif

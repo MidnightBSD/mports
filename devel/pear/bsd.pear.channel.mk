@@ -28,9 +28,9 @@ IGNORE=		Cannot find registry file: ${PEAR_CHANNEL_REG}
 .endif
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${LPEARDIR}/.channels/.alias
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${LPEARDIR}/.registry/.channel.${PEAR_CHANNEL_HOST}
+	@${MKDIR} ${PREFIX}/${LPEARDIR}/.channels/.alias
+	@${MKDIR} ${PREFIX}/${LPEARDIR}/.registry/.channel.${PEAR_CHANNEL_HOST}
 	@${INSTALL_DATA} ${PEAR_CHANNEL_REG} \
-		${STAGEDIR}${PREFIX}/${LPEARDIR}/.channels
+		${PREFIX}/${LPEARDIR}/.channels
 	@${ECHO_CMD} -n ${PEAR_CHANNEL_HOST} > \
-		${STAGEDIR}${PREFIX}/${LPEARDIR}/.channels/.alias/${PEAR_CHANNEL_ALIAS}.txt
+		${PREFIX}/${LPEARDIR}/.channels/.alias/${PEAR_CHANNEL_ALIAS}.txt

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case "$0" in
+/*|*/*)
+	prog=$0
+	;;
+*)
+	prog=$(command -v "$0")
+	;;
+esac
+
+prefix=$(dirname "$(dirname "$prog")")
+exec "${prefix}/libexec/geekbench6/geekbench6" "$@"

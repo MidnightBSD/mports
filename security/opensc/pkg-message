@@ -1,2 +1,8 @@
+[
+{ type: install
+  message: <<EOM
 Before using OpenSC, you should create the configuration
 file, by copying the installed sample.
+EOM
+}
+]

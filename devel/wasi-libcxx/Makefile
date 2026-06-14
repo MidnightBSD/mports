@@ -9,7 +9,7 @@ PKGNAMESUFFIX=	${LLVM_VERSION}
 DISTNAME=	llvm-project-${DISTVERSION}.src
 DISTFILES=	llvm-project-${DISTVERSION}.src${EXTRACT_SUFX}
 
-MAINTAINER=	vishwin@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ standard library for WebAssembly System Interface
 WWW=		https://llvm.org/
 

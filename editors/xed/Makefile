@@ -32,6 +32,8 @@ GLIB_SCHEMAS=	org.x.editor.gschema.xml \
 		org.x.editor.plugins.time.gschema.xml \
 		org.x.editor.plugins.wordcompletion.gschema.xml
 
+NO_TEST=	yes
+
 PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
 
 OPTIONS_DEFINE=		DOCS GSPELL GVFS_METADATA

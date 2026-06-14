@@ -1,7 +1,7 @@
 
 
 PORTNAME=	POSIX-strftime-Compiler
-PORTVERSION=	0.41
+PORTVERSION=	0.46
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,8 +13,7 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 USES=		perl5
-USE_PERL5=	modbuild
+USE_PERL5=	modbuildtiny
 NO_ARCH=	YES
-PERL_MODBUILD=	yes
 
 .include <bsd.port.mk>

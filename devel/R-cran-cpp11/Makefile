@@ -9,15 +9,10 @@ WWW=		https://cran.r-project.org/web/packages/cpp11/
 
 LICENSE=	mit
 
-TEST_DEPENDS=	R-cran-decor>0:devel/R-cran-decor \
-		R-cran-knitr>0:print/R-cran-knitr \
-		R-cran-mockery>0:devel/R-cran-mockery \
-		R-cran-progress>0:devel/R-cran-progress \
-		R-cran-testthat>0:devel/R-cran-testthat
-
-TESTING_UNSAFE=	https://github.com/r-lib/cpp11/issues/419
-
 USES=		cran:auto-plist
+
+# circular dep plus test harness issue
+NO_TEST=	yes
 
 pre-test:
 # R-cran-bench package does not exist yet

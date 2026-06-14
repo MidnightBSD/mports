@@ -269,10 +269,10 @@ post-install:
 		${PREFIX}/bin/mariadb-access \
 		${PREFIX}/bin/mariadb-find-rows \
 		${PREFIX}/bin/mariadb-hotcopy \
-		${PREFIX}/bin/mariadb-multi \
 		${PREFIX}/bin/mariadb-fix-extensions \
 		${PREFIX}/bin/mariadb-convert-table-format \
-		${PREFIX}/bin/mariadb-dumpslow
+		${PREFIX}/bin/mariadb-dumpslow \
+		${PREFIX}/bin/mariadbd-multi
 	${INSTALL_DATA} ${WRKDIR}/server.cnf.sample \
 		${ETCDIR}/conf.d/server.cnf.sample
 	${MV} ${PREFIX}/share/user_map.conf \

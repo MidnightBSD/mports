@@ -1,6 +1,6 @@
 CATEGORIES=	japanese
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 
 WEBALIZER_LANG=	japanese
 MASTERDIR?=	${.CURDIR}/../../www/webalizer

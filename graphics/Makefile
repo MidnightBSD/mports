@@ -1,5 +1,6 @@
     COMMENT = Graphics tools and libraries
 
+    SUBDIR += Coin
     SUBDIR += GraphicsMagick
     SUBDIR += Hermes
     SUBDIR += ImageMagick6
@@ -29,6 +30,7 @@
     SUBDIR += R-cran-qcc
     SUBDIR += R-cran-qpdf
     SUBDIR += R-cran-ragg
+    SUBDIR += R-cran-rgl
     SUBDIR += R-cran-s2
     SUBDIR += R-cran-scales
     SUBDIR += R-cran-shape
@@ -95,6 +97,7 @@
     SUBDIR += gimp-data-extras
     SUBDIR += gle
     SUBDIR += glew
+    SUBDIR += glew-wayland
     SUBDIR += glfw
     SUBDIR += glitz
     SUBDIR += glslang
@@ -104,6 +107,7 @@
     SUBDIR += gnustep-slideshow
     SUBDIR += gnustep-slideshowkit
     SUBDIR += gocr
+    SUBDIR += goocanvas2
     SUBDIR += goom
     SUBDIR += gpu-firmware-amd-kmod
     SUBDIR += gpu-firmware-intel-kmod
@@ -135,6 +139,7 @@
     SUBDIR += hyprland-protocols
     SUBDIR += icc-profiles-adobe-cs4
     SUBDIR += icoutils
+    SUBDIR += image-editing
     SUBDIR += image-editor
     SUBDIR += imageviewer
     SUBDIR += imlib2
@@ -170,6 +175,7 @@
     SUBDIR += lcms2
     SUBDIR += leptonica
     SUBDIR += lerc
+    SUBDIR += lib3ds
     SUBDIR += libGLU
     SUBDIR += libart_lgpl
     SUBDIR += libavif
@@ -181,7 +187,9 @@
     SUBDIR += libemf
     SUBDIR += libepoxy
     SUBDIR += libertiff
+    SUBDIR += libetonyek01
     SUBDIR += libexif
+    SUBDIR += libfreehand
     SUBDIR += libfpx
     SUBDIR += libgeotiff
     SUBDIR += libglvnd
@@ -206,19 +214,22 @@
     SUBDIR += libosmesa
     SUBDIR += libplacebo
     SUBDIR += libpotrace
+    SUBDIR += libprojectm
+    SUBDIR += libQGLViewer
     SUBDIR += libqrencode
     SUBDIR += libraw
-    SUBDIR += librsvg2
     SUBDIR += librsvg2-rust
     SUBDIR += libskiasharp
     SUBDIR += libspiro
     SUBDIR += libspng
     SUBDIR += libsvg
+    SUBDIR += libultrahdr
     SUBDIR += libvisual04
     SUBDIR += libwmf
     SUBDIR += libwmf-nox11
     SUBDIR += libwpg03
     SUBDIR += libyuv
+    SUBDIR += libzmf
     SUBDIR += linux-c7-cairo
     SUBDIR += linux-c7-cairo-gobject
     SUBDIR += linux-c7-dri
@@ -235,6 +246,7 @@
     SUBDIR += linux-rl9-cairo-gobject
     SUBDIR += linux-rl9-dri
     SUBDIR += linux-rl9-gdk-pixbuf2
+    SUBDIR += linux-rl9-glx-utils
     SUBDIR += linux-rl9-graphene
     SUBDIR += linux-rl9-graphite2
     SUBDIR += linux-rl9-imageformats-libs
@@ -271,6 +283,7 @@
     SUBDIR += nvidia-texture-tools
     SUBDIR += ocrad
     SUBDIR += okular
+    SUBDIR += opencsg
     SUBDIR += opencv
     SUBDIR += openexr
     SUBDIR += openjpeg
@@ -286,6 +299,7 @@
     SUBDIR += p5-GD-Graph
     SUBDIR += p5-GD-TextUtil
     SUBDIR += p5-GraphViz
+    SUBDIR += p5-Image-ExifTool
     SUBDIR += p5-Image-Info
     SUBDIR += p5-Image-Magick-Iterator
     SUBDIR += p5-Image-PBMlib
@@ -300,7 +314,9 @@
     SUBDIR += plasma6-spectacle
     SUBDIR += plotutils
     SUBDIR += png
+    SUBDIR += pnglite
     SUBDIR += podofo
+    SUBDIR += podofo09
     SUBDIR += polyclipping
     SUBDIR += poppler
     SUBDIR += poppler-data
@@ -311,6 +327,7 @@
     SUBDIR += preview
     SUBDIR += price
     SUBDIR += proj
+    SUBDIR += py-OWSLib
     SUBDIR += py-PyOpenGL
     SUBDIR += py-beziers
     SUBDIR += py-cairo
@@ -318,11 +335,15 @@
     SUBDIR += py-cairosvg
     SUBDIR += py-fiona
     SUBDIR += py-gdal
+    SUBDIR += py-geomdl
     SUBDIR += py-geopandas
     SUBDIR += py-graphviz
     SUBDIR += py-imageio
+    SUBDIR += py-imageio-ffmpeg
     SUBDIR += py-imagesize
     SUBDIR += py-pillow
+    SUBDIR += py-pivy
+    SUBDIR += py-plotly
     SUBDIR += py-png
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
@@ -330,7 +351,9 @@
     SUBDIR += py-pyglet1
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyproj
+    SUBDIR += py-pyrsgis
     SUBDIR += py-pyqrcode
+    SUBDIR += py-rasterio
     SUBDIR += py-qt5-3d
     SUBDIR += py-scikit-image
     SUBDIR += py-svg.path
@@ -375,6 +398,7 @@
     SUBDIR += rubygem-image_processing
     SUBDIR += rubygem-image_science
     SUBDIR += rubygem-imagesize
+    SUBDIR += rubygem-invisible_captcha
     SUBDIR += rubygem-mini_magick
     SUBDIR += rubygem-mini_magick4
     SUBDIR += rubygem-opengl
@@ -396,20 +420,25 @@
     SUBDIR += sdl2_gfx
     SUBDIR += sdl2_image
     SUBDIR += sdl2_ttf
+    SUBDIR += sdl3_image
+    SUBDIR += sdl3_ttf
     SUBDIR += sdl_gfx
     SUBDIR += sdl_image
     SUBDIR += sdl_ttf
     SUBDIR += sekrit-twc-zimg
     SUBDIR += shaderc
     SUBDIR += silgraphite
+    SUBDIR += simage
     SUBDIR += skanlite
     SUBDIR += spirv-tools
     SUBDIR += svgalib
+    SUBDIR += svgpp
     SUBDIR += sxiv
     SUBDIR += tesseract
     SUBDIR += tesseract-data
     SUBDIR += tgif
     SUBDIR += tiff
+    SUBDIR += tkpng
     SUBDIR += viewnior
     SUBDIR += vigra
     SUBDIR += vips
@@ -420,6 +449,7 @@
     SUBDIR += waifu2x-ncnn-vulkan
     SUBDIR += wayland
     SUBDIR += wayland-protocols
+    SUBDIR += waylandpp
     SUBDIR += wayland-utils
     SUBDIR += webp
     SUBDIR += webp-pixbuf-loader

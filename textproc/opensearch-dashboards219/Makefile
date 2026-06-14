@@ -60,8 +60,8 @@ do-install:
 
 post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/opensearch_dashboards.yml.sample" >> ${TMPPLIST}
-	${FIND} -s ${WWWDIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${FAKE_DESTDIR}${WWWDIR} -not -type d | ${SORT} | \
+		${SED} -e 's#^${FAKE_DESTDIR}${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(www,www) ${WWWDIR}/data" >> ${TMPPLIST}
 	${ECHO} "@dir ${WWWDIR}/plugins/reportsDashboards/node_modules/set-interval-async/test/resources/legacy" >> ${TMPPLIST}
 	${ECHO} "@dir ${WWWDIR}/plugins/reportsDashboards/node_modules/set-interval-async/test/resources/fixed" >> ${TMPPLIST}

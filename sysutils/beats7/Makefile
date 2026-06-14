@@ -13,7 +13,7 @@ LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/mage:devel/mage
 
-USES=		go:1.22,modules
+USES=		go:1.23,modules
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	elastic

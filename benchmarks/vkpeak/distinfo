@@ -1,7 +1,7 @@
-TIMESTAMP = 1650378547
-SHA256 (nihui-vkpeak-20220419_GH0.tar.gz) = 9c580e91050329301725de800d6ce40990808d97d94d291b7e1725f290adadf2
-SIZE (nihui-vkpeak-20220419_GH0.tar.gz) = 7426
-SHA256 (KhronosGroup-glslang-11.1.0-44-g4afd6917_GH0.tar.gz) = 5ec414384bafcac14d096ca20205f811b61caf287ea1f7c30745735e7f483ae6
-SIZE (KhronosGroup-glslang-11.1.0-44-g4afd6917_GH0.tar.gz) = 3296291
-SHA256 (Tencent-ncnn-20220419_GH0.tar.gz) = d3d0568654555625f1093a4ea7cd9a4edab0808b45a4ec00dd4efdfbd57df90e
-SIZE (Tencent-ncnn-20220419_GH0.tar.gz) = 12158924
+TIMESTAMP = 1779563417
+SHA256 (nihui-vkpeak-20260112_GH0.tar.gz) = bb931a63c8abffe8f766763d18d7bfc26a69d732569bf7fd949b2e46a2e30564
+SIZE (nihui-vkpeak-20260112_GH0.tar.gz) = 12315
+SHA256 (nihui-glslang-fe88f421038e1bb0a25cd5c1b2dfe505db82d08f_GH0.tar.gz) = dc78c7f2c479779db66c60582bf8c4173b75b89f689b7edaff3a97d8820dbecd
+SIZE (nihui-glslang-fe88f421038e1bb0a25cd5c1b2dfe505db82d08f_GH0.tar.gz) = 4293800
+SHA256 (Tencent-ncnn-20260113_GH0.tar.gz) = 2fdc5c6e37f8552921a9daad498a1be54a6fa6edd32c1a9e3030b27fab253b47
+SIZE (Tencent-ncnn-20260113_GH0.tar.gz) = 13233848

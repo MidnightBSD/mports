@@ -11,7 +11,8 @@ LICENSE=	gpl3
 
 SKIP_FAKE_ALL=  yes
 
-USES=		linux:c7
+USES=		linux:c7 cpe
+CPE_VENDOR=	gnu
 USE_LINUX_RPM=	nolib
 
 DESCR=		${.CURDIR}/../gmake/pkg-descr

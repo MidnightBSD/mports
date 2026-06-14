@@ -1,0 +1,4 @@
+WWW::Mechanize::Cached is a subclass of WWW::Mechanize that caches
+HTTP responses. This is useful to reduce network requests when
+scraping or testing web applications, and to be polite to web servers
+by avoiding repeated identical requests.

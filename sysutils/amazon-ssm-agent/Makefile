@@ -19,11 +19,11 @@ GH_SUBDIR=	src/github.com/aws/amazon-ssm-agent
 
 GO_BUILDFLAGS=	-ldflags "-s -w"
 GO_ENV+=	GOOS=freebsd
-GO_TARGET=	./agent:${PREFIX}/sbin/amazon-ssm-agent \
-		./agent/framework/processor/executer/outofproc/worker:${PREFIX}/sbin/ssm-document-worker \
-		./agent/framework/processor/executer/outofproc/sessionworker:${PREFIX}/sbin/ssm-session-worker \
-		./agent/session/logging:${PREFIX}/sbin/ssm-session-logger \
-		./agent/cli-main:${PREFIX}/sbin/ssm-cli
+GO_TARGET=	./agent:${TRUE_PREFIX}/sbin/amazon-ssm-agent \
+		./agent/framework/processor/executer/outofproc/worker:${TRUE_PREFIX}/sbin/ssm-document-worker \
+		./agent/framework/processor/executer/outofproc/sessionworker:${TRUE_PREFIX}/sbin/ssm-session-worker \
+		./agent/session/logging:${TRUE_PREFIX}/sbin/ssm-session-logger \
+		./agent/cli-main:${TRUE_PREFIX}/sbin/ssm-cli
 #		./agent/setupcli:${PREFIX}/sbin/ssm-setup-cli
 
 USE_RC_SUBR=	amazon-ssm-agent

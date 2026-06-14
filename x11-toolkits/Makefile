@@ -19,7 +19,9 @@
     SUBDIR += gtk20
     SUBDIR += gtk30
     SUBDIR += gtk40
+    SUBDIR += gtkextra
     SUBDIR += gtkglext
+    SUBDIR += gtkglextmm
     SUBDIR += gtkmm24
     SUBDIR += gtkmm30
     SUBDIR += gtkmm40
@@ -96,6 +98,7 @@
     SUBDIR += py-qt5-charts
     SUBDIR += py-qt5-datavis3d
     SUBDIR += py-tkinter
+    SUBDIR += py-wxPython4
     SUBDIR += qt5-charts
     SUBDIR += qt5-datavis3d
     SUBDIR += qt5-declarative
@@ -110,7 +113,6 @@
     SUBDIR += qt5-virtualkeyboard
     SUBDIR += qt5-widgets
     SUBDIR += qt5pas
-    SUBDIR += qwt6
     SUBDIR += qt6-charts
     SUBDIR += qt6-datavis3d
     SUBDIR += qt6-declarative
@@ -120,6 +122,7 @@
     SUBDIR += qt6-shadertools
     SUBDIR += qt6-virtualkeyboard
     SUBDIR += qt6pas
+    SUBDIR += qwt6
     SUBDIR += rubygem-gdk3
     SUBDIR += rubygem-gdk4
     SUBDIR += rubygem-gtk2
@@ -136,6 +139,7 @@
     SUBDIR += sdl2_pango
     SUBDIR += sdl_pango
     SUBDIR += shared-desktop-ontologies
+    SUBDIR += soqt
     SUBDIR += tepl6
     SUBDIR += tk-wrapper
     SUBDIR += tk86
@@ -148,6 +152,7 @@
     SUBDIR += wlroots015
     SUBDIR += wlroots016
     SUBDIR += wlroots018
+    SUBDIR += wlroots019
     SUBDIR += wxgtk30
     SUBDIR += wxgtk32
     SUBDIR += xbae

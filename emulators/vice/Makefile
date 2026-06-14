@@ -1,6 +1,5 @@
 PORTNAME=	vice
-PORTVERSION=	3.7.1
-PORTREVISION=	1
+PORTVERSION=	3.10
 CATEGORIES=	emulators
 MASTER_SITES=	SF/vice-emu/releases
 
@@ -45,6 +44,7 @@ CONFIGURE_ARGS+=	--enable-ipv6 \
 			--disable-pdf-docs \
 			--localedir="${LOCALBASE}/share/locale" \
 			--disable-dependency-tracking \
+			--without-libcurl \
 			--host=${ARCH}-portbld-freebsd11.4 \
 			--build=${ARCH}-portbld-freebsd11.4 \
 			DOS2UNIX=true

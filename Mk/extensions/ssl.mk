@@ -87,7 +87,7 @@ OPENSSL_PORT=		security/${SSL_DEFAULT}
 # Get OPENSSL_SHLIBVER from the port
 .sinclude <${PORTSDIR}/${OPENSSL_PORT}/version.mk>
 
-.    if !defined(OPENSSL_SHLIBVER) && "aws-lc" != SSL_DEFAULT
+.    if !defined(OPENSSL_SHLIBVER) && ${SSL_DEFAULT} != "aws-lc"
 .error You are using an unsupported SSL provider ${SSL_DEFAULT}
 .    endif
 

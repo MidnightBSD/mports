@@ -11,6 +11,7 @@ WWW=		https://sferik.github.io/t-ruby/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-geokit>=1.14<2:graphics/rubygem-geokit \
 		rubygem-htmlentities>=4.3<5:textproc/rubygem-htmlentities \
 		rubygem-launchy>=3.0<4:devel/rubygem-launchy \

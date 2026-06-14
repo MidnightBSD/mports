@@ -1,6 +1,6 @@
 PORTNAME=	${_MLT_PORTNAME}
 DISTVERSION=	${_MLT_VERSION}
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	multimedia
 MASTER_SITES=	https://github.com/mltframework/mlt/releases/download/v${DISTVERSION}/
 DISTFILES=	mlt-${DISTVERSION}${EXTRACT_SUFX}
@@ -12,7 +12,7 @@ WWW=		https://www.mltframework.org/
 LICENSE?=	gpl2 gpl3 lgpl2.1
 LICENSE_COMB?=	multi
 
-USES+=		alias cmake compiler:c++11-lang eigen:3 localbase \
+USES+=		cmake compiler:c++11-lang eigen:3 localbase \
 		pathfix pkgconfig
 USE_LDCONFIG=	yes
 

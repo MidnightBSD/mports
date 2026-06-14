@@ -1,9 +1,9 @@
 # Created by: meka
 
 PORTNAME=	serd
-PORTVERSION=	0.30.12
+PORTVERSION=	0.32.8
 CATEGORIES=	devel
-MASTER_SITES=	http://download.drobilla.net/
+MASTER_SITES=	https://download.drobilla.net/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library for RDF syntax
@@ -11,9 +11,10 @@ COMMENT=	C library for RDF syntax
 LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		pkgconfig tar:bzip2 waf
-USE_CSTD=	c99
+USES=		meson pkgconfig python:build tar:xz
 USE_LDCONFIG=	yes
+MESON_ARGS=	-Ddocs=disabled
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 NO_TEST=	yes
 

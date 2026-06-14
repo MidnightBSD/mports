@@ -1,5 +1,5 @@
 PORTNAME=	freeciv
-PORTVERSION=	3.1.0
+PORTVERSION=	3.2.4
 CATEGORIES=	games
 MASTER_SITES=	SF/freeciv/Freeciv%20${PORTVERSION:R}/${PORTVERSION} \
 		http://files.freeciv.org/stable/
@@ -57,7 +57,7 @@ GTK3_VARS=	_FREECIV_CLIENT+=gtk3 \
 
 GTK4_IMPLIES=	GTK3
 GTK4_USES=	gnome sdl
-GTK4_USE=	GNOME=cairo,gdkpixbuf2,glib20,gtk40,pango \
+GTK4_USE=	GNOME=cairo,gdkpixbuf,glib20,gtk40,pango \
 		SDL=mixer2
 GTK4_VARS=	_FREECIV_CLIENT+=gtk4 \
 		_FREECIV_MP+=gtk4

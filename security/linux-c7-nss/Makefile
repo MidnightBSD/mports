@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	nss
 PORTVERSION=	3.53.1
 DISTVERSIONSUFFIX=	-3.el7_9
@@ -10,7 +8,10 @@ COMMENT=	Network Security Services (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	MPL20
 
-USES=		linux:c7
+SKIP_FAKE_ALL=  yes
+
+USES=		linux:c7 cpe
+CPE_VENDOR=	mozilla
 USE_LDCONFIG=	yes
 USE_LINUX=	nspr sqlite3
 USE_LINUX_RPM=	yes

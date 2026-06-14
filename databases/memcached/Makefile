@@ -1,6 +1,5 @@
 PORTNAME=	memcached
-PORTVERSION=	1.6.36
-PORTREVISION=	1
+PORTVERSION=	1.6.42
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/
 
@@ -11,15 +10,15 @@ WWW=		https://memcached.org/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USES=		autoreconf cpe pkgconfig shebangfix ssl
+SHEBANG_FILES=	scripts/memcached-tool
+
 BUILD_DEPENDS=	as:devel/binutils
 LIB_DEPENDS=	libevent.so:devel/libevent
 
 NO_TEST=	yes
 
 CONFLICTS=	memcached-1.2*
-
-USES=		autoreconf cpe pkgconfig shebangfix
-SHEBANG_FILES=	scripts/memcached-tool
 
 USE_RC_SUBR=	memcached
 SUB_LIST+=	RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
@@ -60,7 +59,6 @@ MAKE_JOBS_UNSAFE=	yes
 .include <bsd.port.pre.mk>
 
 CONFIGURE_ARGS+=	--enable-tls
-USES+=			ssl
 
 .if ${ARCH} == amd64
 CONFIGURE_ARGS+=	--enable-64bit

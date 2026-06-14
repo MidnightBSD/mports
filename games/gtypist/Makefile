@@ -1,16 +1,11 @@
-# New ports collection makefile for:   gtypist
-# Date created:	2001-05-18
-# Whom:		Christian Weisgerber <naddy@mips.inka.de>
-#
-
-
 PORTNAME=	gtypist
-PORTVERSION=	2.9.5
+PORTVERSION=	2.10.1
 CATEGORIES=	games
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interactive typing tutor
+WWW=		https://www.gnu.org/software/gtypist/
 
 LICENSE=	gpl3
 

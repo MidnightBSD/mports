@@ -4,7 +4,7 @@ PORTNAME=	postgresql
 PORTREVISION=	1
 CATEGORIES=	databases
 
-MAINTAINER=	pgsql@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The contrib utilities from the PostgreSQL distribution
 
 MASTERDIR=	${.CURDIR}/../postgresql13-server

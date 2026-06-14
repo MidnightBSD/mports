@@ -11,7 +11,7 @@ LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
 RUN_DEPENDS=	xdg-desktop-portal>0:deskutils/xdg-desktop-portal
 
-USES=		cmake gettext gl kde:6 pkgconfig qt:6 tar:xz xorg
+USES=		cmake desktop-file-utils gettext gl kde:6 pkgconfig qt:6 tar:xz xorg
 USE_KDE=	bookmarks completion config coreaddons globalaccel guiaddons \
 		i18n iconthemes itemviews jobwidgets kio kirigami2 \
 		notifications service solid statusnotifieritem wayland \

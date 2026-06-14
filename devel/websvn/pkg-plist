@@ -13,7 +13,7 @@
 %%WWWDIR%%/include/configclass.php
 %%WWWDIR%%/include/diff_inc.php
 %%WWWDIR%%/include/diff_util.php
-@sample(,%%WWWGRP%%,640) %%WWWDIR%%/include/distconfig.php %%WWWDIR%%/include/config.php
+%%WWWDIR%%/include/distconfig.php
 %%WWWDIR%%/include/header
 %%WWWDIR%%/include/setup.php
 %%WWWDIR%%/include/svnlook.php
@@ -155,7 +155,7 @@
 %%WWWDIR%%/templates/Elegant/revision-popup.js
 %%WWWDIR%%/templates/Elegant/revision.tmpl
 %%WWWDIR%%/templates/Elegant/styles.css
-@sample %%WWWDIR%%/templates/Elegant/user_greeting.tmpl %%WWWDIR%%/templates/Elegant/user_greeting.tmpl.sample
+%%WWWDIR%%/templates/Elegant/user_greeting.tmpl
 %%WWWDIR%%/templates/calm/README.txt
 %%WWWDIR%%/templates/calm/blame.tmpl
 %%WWWDIR%%/templates/calm/compare.tmpl
@@ -214,6 +214,6 @@
 %%WWWDIR%%/templates/calm/log.tmpl
 %%WWWDIR%%/templates/calm/revision.tmpl
 %%WWWDIR%%/templates/calm/styles.css
-@sample %%WWWDIR%%/templates/calm/user_greeting.tmpl %%WWWDIR%%/templates/calm/user_greeting.tmpl.sample
+%%WWWDIR%%/templates/calm/user_greeting.tmpl
 @dir(%%WWWOWN%%,%%WWWGRP%%,) %%ETCDIR%%/subversion
 @dir %%ETCDIR%%

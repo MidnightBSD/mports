@@ -1,5 +1,5 @@
 PORTNAME=	libsoup
-PORTVERSION=	3.2.2
+PORTVERSION=	3.6.6
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -27,7 +27,7 @@ LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 
 RUN_DEPENDS=	glib-networking>0:net/glib-networking
 
-USES=		cpe gettext gnome meson pkgconfig python:build sqlite \
+USES=		cpe gettext gnome meson pkgconfig python:build sqlite:port \
 		ssl tar:xz
 USE_GNOME=	glib20 intlhack introspection:build libxml2
 USE_LDCONFIG=	yes
@@ -38,6 +38,7 @@ OPTIONS_SINGLE_GSSAPI=		GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 OPTIONS_DEFAULT=		GSSAPI_${${SSL_DEFAULT} == base :?BASE :NONE}
 
 MESON_ARGS=	-Dtests=false \
+		-Ddocs=disabled \
 		-Dinstalled_tests=false \
 		-Dsysprof=disabled \
 		-Dpkcs11_tests=disabled \
@@ -48,17 +49,16 @@ MESON_ARGS=	-Dtests=false \
 		-Dntlm=disabled
 
 GSSAPI_BASE_USES=		gssapi
-GSSAPI_BASE_MESON_ON=		-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_BASE_MESON_ON=		-Dgssapi=enabled
 
 GSSAPI_HEIMDAL_USES=		gssapi:heimdal
-GSSAPI_HEIMDAL_MESON_ON=	-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_HEIMDAL_MESON_ON=	-Dgssapi=enabled
 
 GSSAPI_MIT_USES=		gssapi:mit
-GSSAPI_MIT_MESON_ON=		-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_MIT_MESON_ON=		-Dgssapi=enabled
 
 GSSAPI_NONE_MESON_DISABLED=	gssapi
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 .include <bsd.port.mk>
-

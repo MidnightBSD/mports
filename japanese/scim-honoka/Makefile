@@ -1,6 +1,6 @@
 PORTNAME=	scim-honoka
 PORTVERSION=	0.9.1
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	japanese
 MASTER_SITES=	http://nop.net-p.org/files/honoka/
 DISTNAME=	honoka-${PORTVERSION}
@@ -19,7 +19,7 @@ USES=		gettext gmake iconv libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include -D__STDC_ISO_10646__
-LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS+=	-L${LOCALBASE}/lib -Wl,-z,notext
 
 post-patch:
 	@${REINPLACE_CMD} '/^LIBTOOL_EXPORT_OPTIONS=/s/=.*/=/' \

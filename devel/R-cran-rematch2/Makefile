@@ -11,10 +11,12 @@ WWW=		https://github.com/r-lib/rematch2 #readme
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	R-cran-tibble>0:devel/R-cran-tibble
-TEST_DEPENDS=	R-cran-covr>0:devel/R-cran-covr \
-		R-cran-testthat>0:devel/R-cran-testthat
 
 USES=		cran:auto-plist
+
+# circular dep
+NO_TEST=	yes
 
 .include <bsd.port.mk>

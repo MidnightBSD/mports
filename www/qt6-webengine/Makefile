@@ -14,7 +14,7 @@ PORTNAME?=	webengine
 DISTVERSION=	${QT6_VERSION}
 # This is the parent port of print/qt6-pdf. Please always keep 'PORTREVISION?='
 # and reset the value to '0' only after increasing QT6_VERSION in Mk/Uses/qt.mk.
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	www
 PKGNAMEPREFIX=	qt6-
 
@@ -47,6 +47,7 @@ CMAKE_ON+=	QT_FEATURE_qtpdf_build
 CMAKE_OFF+=	QT_FEATURE_qtwebengine_build
 
 SYS_LIBS=	freetype
+CXXFLAGS+=	-I${LOCALBASE}/include/freetype2
 .else
 BUILD_DEPENDS+=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
 		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR}
@@ -81,7 +82,12 @@ USE_XORG+=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 CMAKE_ON+=	QT_FEATURE_qtwebengine_build
 CMAKE_OFF+=	QT_FEATURE_qtpdf_build
 
-CXXFLAGS+=	-I${LOCALBASE}/include/libepoll-shim
+CXXFLAGS+=	-I${LOCALBASE}/include/freetype2 \
+		-I${LOCALBASE}/include/harfbuzz \
+		-I${LOCALBASE}/include/libepoll-shim \
+		-I${LOCALBASE}/include/libdrm \
+		-I${LOCALBASE}/include/nss \
+		-I${LOCALBASE}/include/nspr
 
 SYS_LIBS=	freetype harfbuzz-ng libdrm libpng libxml libxslt openh264 opus
 .endif

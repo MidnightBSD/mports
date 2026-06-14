@@ -1,7 +1,7 @@
 PORTNAME=	systemd
 PORTVERSION=	252
-DISTVERSIONSUFFIX=	-46.el9_5.3
-PORTREVISION=	8
+DISTVERSIONSUFFIX=	-55.el9_7.7.rocky.0.1
+PORTREVISION=	12
 CATEGORIES=	devel linux
 PKGNAMESUFFIX=	-libs
 
@@ -11,7 +11,7 @@ WWW=		https://www.freedesktop.org/wiki/Software/systemd/
 
 LICENSE=	lgpl2.1+
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	systemd_project

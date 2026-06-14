@@ -1,5 +1,5 @@
 PORTNAME=	logstash
-PORTVERSION=	8.11.3
+PORTVERSION=	8.19.15
 DISTVERSIONSUFFIX=	-darwin-x86_64
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://artifacts.elastic.co/downloads/logstash/
@@ -15,7 +15,7 @@ ONLY_FOR_ARCHS=	aarch64 amd64
 
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
-USES=		cpe java shebangfix
+USES=		cpe java:run shebangfix
 CPE_VENDOR=	elastic
 JAVA_VERSION=	17+
 USE_RC_SUBR=	logstash

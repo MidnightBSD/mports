@@ -68,8 +68,6 @@ lib/mh/slocal
 lib/mh/spost
 lib/mh/tmac.h
 lib/mh/viamail
-lib/libmh.so
-lib/libmh.so.3
 share/man/ja/man1/ali.1.gz
 share/man/ja/man1/anno.1.gz
 share/man/ja/man1/bbc.1.gz

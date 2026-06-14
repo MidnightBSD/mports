@@ -1,0 +1,11 @@
+--- lldb/source/Plugins/Process/FreeBSDKernel/CMakeLists.txt.orig	2025-01-14 04:41:02.000000000 -0500
++++ lldb/source/Plugins/Process/FreeBSDKernel/CMakeLists.txt	2026-05-04 00:00:00.000000000 -0400
+@@ -2,7 +2,7 @@
+ if(FBSDVMCore_FOUND)
+   list(APPEND FBSDKERNEL_LIBS fbsdvmcore)
+ endif()
+-if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
++if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD|MidnightBSD")
+   list(APPEND FBSDKERNEL_LIBS kvm)
+ endif()
+ 

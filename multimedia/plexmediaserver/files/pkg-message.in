@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 multimedia/%%PORTNAME%% includes an RC script:
@@ -13,3 +16,6 @@ Once started, visit the following to configure:
 http://localhost:32400/web
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+EOM
+}
+]

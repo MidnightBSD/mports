@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2026-05-06 12:50:32 UTC
++++ CMakeLists.txt
+@@ -74,7 +74,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+     )
+ endif()
+ 
+-if (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
++if (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD|MidnightBSD")
+     find_package(Devinfo)
+     set_package_properties(Devinfo PROPERTIES
+             TYPE REQUIRED

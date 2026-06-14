@@ -7,6 +7,7 @@ COMMENT=	OpenGL hardware acceleration drivers for DRI2+
 WWW=		https://www.mesa3d.org/
 
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}ply>0:devel/py-ply@${PY_FLAVOR}
+RUN_DEPENDS+=	gcc14:lang/gcc14
 
 LIB_DEPENDS+=	libglapi.so:graphics/mesa-libs
 

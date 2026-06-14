@@ -28,6 +28,7 @@ post-install:
 	${MV} ${PREFIX}/bin/tidy ${PREFIX}/bin/tidy5
 	${MV} ${PREFIX}/lib/libtidy.a ${PREFIX}/lib/libtidys.a
 	${MV} ${PREFIX}/lib/libtidy.so ${PREFIX}/lib/libtidy5.so
+	${LN} -s libtidy.so.${PORTVERSION} ${PREFIX}/lib/libtidy.so
 	${MV} ${PREFIX}/share/man/man1/tidy.1 ${PREFIX}/share/man/man1/tidy5.1
 
 .include <bsd.port.mk>

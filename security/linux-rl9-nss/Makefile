@@ -1,7 +1,6 @@
 PORTNAME=	nss
-PORTVERSION=	3.101.0
-DISTVERSIONSUFFIX=	-10.el9_5
-PORTREVISION=	2
+PORTVERSION=	3.112.0
+DISTVERSIONSUFFIX=	-4.el9_4
 CATEGORIES=	security linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +9,7 @@ WWW=		https://developer.mozilla.org/docs/Mozilla/Projects/NSS
 
 LICENSE=	MPL20
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	mozilla

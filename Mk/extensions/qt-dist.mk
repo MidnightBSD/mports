@@ -508,18 +508,18 @@ qt-post-install:
 	# Drop all leading spaces in the script, to minify
 	@${REINPLACE_CMD} 's/^  *//' ${PKGINSTALL} ${PKGDEINSTALL}
 .    if ${QT_DEFINES:N-*}
-	@${MKDIR} ${STAGEDIR}${QT_INCDIR}/QtCore/modules
+	@${MKDIR} ${QT_INCDIR}/QtCore/modules
 	@${ECHO_CMD} -n \
-		> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		> ${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 .      for def in ${QT_DEFINES:N-*:O:u:C/=.*$//}
 	@${ECHO_CMD} "#if !defined(QT_${def}) && !defined(QT_NO_${def})" \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 	${ECHO_CMD} "# define QT_${def}" \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 	@${ECHO_CMD} "#endif" \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 	@${ECHO_CMD} \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 .      endfor
 	@${ECHO_CMD} "${QT_INCDIR_REL}/QtCore/modules/qconfig-${QT_MODNAME}.h" \
 		>> ${TMPPLIST}
@@ -527,9 +527,9 @@ qt-post-install:
 		>> ${TMPPLIST}
 .    endif # ${QT_DEFINES:N-*}
 .    if ${QT_CONFIG:N-*}
-	@${MKDIR} ${STAGEDIR}${QT_MKSPECDIR}/modules
+	@${MKDIR} ${QT_MKSPECDIR}/modules
 	${ECHO_CMD} "QT_CONFIG += ${QT_CONFIG:N-*:O:u}" \
-		> ${STAGEDIR}${QT_MKSPECDIR}/modules/qt_config_${QT_MODNAME}.pri
+		> ${QT_MKSPECDIR}/modules/qt_config_${QT_MODNAME}.pri
 	@${ECHO_CMD} "${QT_MKSPECDIR_REL}/modules/qt_config_${QT_MODNAME}.pri" \
 		>> ${TMPPLIST}
 .    endif # ${QT_CONFIG:N-*}

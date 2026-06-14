@@ -7634,22 +7634,9 @@
 %%DATADIR%%/ob-cache/openbenchmarking.org/system.index
 %%DATADIR%%/ob-cache/openbenchmarking.org/git.index
 %%DATADIR%%/ob-cache/openbenchmarking.org/pts.index
-share/applications/phoronix-test-suite.desktop
-share/applications/phoronix-test-suite-launcher.desktop
-share/mime/treemagic
-share/mime/XMLnamespaces
-share/mime/types
-share/mime/icons
-share/mime/mime.cache
-share/mime/globs
-share/mime/aliases
-share/mime/subclasses
-share/mime/packages/openbenchmarking-mime.xml
-share/mime/globs2
-share/mime/generic-icons
-share/mime/magic
-share/mime/application/x-openbenchmarking.xml
-share/mime/version
+%%X11%%share/applications/phoronix-test-suite.desktop
+%%X11%%share/applications/phoronix-test-suite-launcher.desktop
+%%X11%%share/mime/packages/openbenchmarking-mime.xml
 %%DOCSDIR%%/AUTHORS
 %%DOCSDIR%%/ChangeLog
 %%DOCSDIR%%/COPYING
@@ -7678,9 +7665,10 @@ share/mime/version
 %%DOCSDIR%%/stubs/downloads.html
 %%DOCSDIR%%/stubs/00_user_options.html
 share/man/man1/phoronix-test-suite.1.gz
-share/appdata/phoronix-test-suite.appdata.xml
-share/icons/hicolor/48x48/apps/phoronix-test-suite.png
-share/icons/hicolor/64x64/mimetypes/application-x-openbenchmarking.png
+%%X11%%share/appdata/phoronix-test-suite.appdata.xml
+%%X11%%share/icons/hicolor/48x48/apps/phoronix-test-suite.png
+%%X11%%share/icons/hicolor/64x64/mimetypes/application-x-openbenchmarking.png
+%%BASH_COMPLETIONS%%etc/bash_completion.d/phoronix-test-suite
 bin/phoronix-test-suite
 @dir %%DATADIR%%/pts-core/web-interface/html
 @dir %%DATADIR%%/pts-core/web-interface/assets
@@ -9039,15 +9027,6 @@ bin/phoronix-test-suite
 @dir %%DATADIR%%/ob-cache/openbenchmarking.org
 @dir %%DATADIR%%/ob-cache
 @dir %%DATADIR%%
-@dir share/mime/packages
-@dir share/mime/application
-@dir share/mime
 @dir %%DOCSDIR%%/includes
 @dir %%DOCSDIR%%/stubs
 @dir %%DOCSDIR%%
-@dir share/appdata
-@dir share/icons/hicolor/48x48/apps
-@dir share/icons/hicolor/48x48
-@dir share/icons/hicolor/64x64/mimetypes
-@dir share/icons/hicolor/64x64
-@dir share/icons/hicolor

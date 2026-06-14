@@ -1,7 +1,7 @@
 PORTNAME=	libtasn1
 PORTVERSION=	4.16.0
-DISTVERSIONSUFFIX=	-8.el9_1
-PORTREVISION=	1
+DISTVERSIONSUFFIX=	-9.el9
+PORTREVISION=	2
 CATEGORIES=	security linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ WWW=		https://www.gnu.org/software/libtasn1/
 
 LICENSE=	lgpl2.1+
 
-SKIP_FAKE_ALL=  yes
+SKIP_FAKE_ALL=	yes
 
 USES=		cpe linux:rl9
 USE_LDCONFIG=	yes

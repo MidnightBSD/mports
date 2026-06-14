@@ -1,10 +1,10 @@
 PORTNAME=	Test-Warnings
-PORTVERSION=	0.033
+PORTVERSION=	0.038
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ports@MidightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test for warnings and the lack of them
 WWW=		https://metacpan.org/release/Test-Warnings
 

@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 ==========================================================================
   Bugzilla has now been installed.  To quick setup you have to:
 
@@ -36,3 +39,6 @@ For upgrades:
      will save you from a number of troubles.
 
 ==========================================================================
+EOM
+}
+]

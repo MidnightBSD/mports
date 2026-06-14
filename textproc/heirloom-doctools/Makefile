@@ -1,6 +1,5 @@
 PORTNAME=	heirloom-doctools
-PORTVERSION=	160308
-PORTREVISION=	1
+PORTVERSION=	191015
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -43,7 +42,7 @@ LIBDIR?=	${PREFIX}/libexec/${PORTNAME}
 PSTDIR?=	${DATADIR}/font/devpost/postscript
 MANDIR?=	${PREFIX}/man
 
-PORTDOCS=	 *
+PORTDOCS=	*
 
 MAKE_JOBS_UNSAFE=	yes
 

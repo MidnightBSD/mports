@@ -1,0 +1,6 @@
+bin/geekbench6
+libexec/geekbench6/geekbench-workload.plar
+libexec/geekbench6/geekbench.plar
+libexec/geekbench6/geekbench6
+libexec/geekbench6/geekbench_avx2
+libexec/geekbench6/geekbench_x86_64

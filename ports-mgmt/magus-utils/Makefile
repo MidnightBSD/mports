@@ -15,6 +15,7 @@ RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
 		p5-Class-Accessor>=0:devel/p5-Class-Accessor \
 		p5-BSD-Resource>=0:devel/p5-BSD-Resource \
 		p5-Module-CoreList>=0:devel/p5-Module-CoreList \
+		clamscan:security/clamav \
 		git:devel/git
 
 USES=		perl5 pgsql:14

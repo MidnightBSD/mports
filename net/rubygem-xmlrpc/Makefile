@@ -11,6 +11,7 @@ LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 LICENSE_FILE_RUBY=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-webrick>=0:www/rubygem-webrick
 
 USES=		gem

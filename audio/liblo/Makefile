@@ -1,12 +1,11 @@
-
-
 PORTNAME=	liblo
-PORTVERSION=	0.28
+PORTVERSION=	0.34
 CATEGORIES=	audio
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight Open Sound Control implementation
+WWW=		https://liblo.sourceforge.net/
 
 LICENSE=	lgpl2.1
 
@@ -23,6 +22,8 @@ OPTIONS_DEFINE=	DOXYGEN DOCS EXAMPLES
 OPTIONS_SUB=	yes
 
 DOXYGEN_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+DOXYGEN_CONFIGURE_ENABLE=	doc
+DOXYGEN_IMPLIES=	DOCS
 
 .include <bsd.mport.options.mk>
 

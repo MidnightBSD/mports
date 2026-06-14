@@ -45,9 +45,11 @@ CREATE TABLE  "events" (
    "name"   varchar(128), 
    "msg"   text, 
    "machine"   int NOT NULL, 
+   "time" timestamp NOT NULL default CURRENT_TIMESTAMP,
    primary key ("id")
 )  ;
 CREATE INDEX "events_port_idx" ON "events" USING btree ("port");
+CREATE INDEX "events_port_phase_idx" ON "events" USING btree ("port", "phase");
 
 --
 -- Table structure for table locks
@@ -61,9 +63,10 @@ CREATE SEQUENCE "locks_id_seq" ;
 CREATE TABLE  "locks" (
    "id" integer DEFAULT nextval('"locks_id_seq"') NOT NULL,
    "port"   int NOT NULL, 
+   "phase"   varchar(16) NOT NULL default 'build',
    "machine"   int NOT NULL, 
    primary key ("id"),
- unique ("port") 
+ unique ("port", "phase")
 )  ;
 
 --
@@ -82,6 +85,25 @@ CREATE TABLE  "logs" (
    primary key ("id"),
    "unique"   KEY (port) 
 )  ;
+
+--
+-- Table structure for table phase_logs
+--
+
+DROP TABLE "phase_logs" CASCADE\g
+DROP SEQUENCE "phase_logs_id_seq" CASCADE ;
+
+CREATE SEQUENCE "phase_logs_id_seq" ;
+
+CREATE TABLE  "phase_logs" (
+   "id" integer DEFAULT nextval('"phase_logs_id_seq"') NOT NULL,
+   "port"   int NOT NULL,
+   "phase"   varchar(16) NOT NULL,
+   "data"   text,
+   primary key ("id"),
+ unique ("port", "phase")
+)  ;
+CREATE INDEX "phase_logs_port_phase_idx" ON "phase_logs" USING btree ("port", "phase");
 
 --
 -- Table structure for table machines
@@ -165,6 +187,32 @@ update_ports();
 /*!50001 DROP VIEW IF EXISTS ready_ports*/;
 CREATE INDEX "ports_run_idx" ON "ports" USING btree ("run");
 CREATE INDEX "ports_name_idx" ON "ports" USING btree ("name");
+CREATE INDEX ports_run_status_pkgname_version_idx ON ports (run, status, pkgname, version);
+
+--
+-- Table structure for table port_phase_results
+--
+
+DROP TABLE "port_phase_results" CASCADE\g
+DROP SEQUENCE "port_phase_results_id_seq" CASCADE ;
+
+CREATE SEQUENCE "port_phase_results_id_seq" ;
+
+CREATE TABLE "port_phase_results"
+(
+    "id"       integer DEFAULT nextval('"port_phase_results_id_seq"') NOT NULL,
+    "port"     int                                                   NOT NULL,
+    "phase"    varchar(16)                                           NOT NULL,
+    "status"   varchar(32)                                           NOT NULL default 'untested',
+    "machine"  int,
+    "started"  timestamp,
+    "finished" timestamp,
+    "updated"  timestamp NOT NULL default CURRENT_TIMESTAMP,
+    primary key ("id"),
+ unique ("port", "phase")
+);
+CREATE INDEX "phase_results_phase_status_idx" ON "port_phase_results" USING btree ("phase", "status");
+CREATE INDEX "phase_results_port_phase_idx" ON "port_phase_results" USING btree ("port", "phase");
 
 --
 -- Temporary table structure for view ready_ports
@@ -182,7 +230,8 @@ DROP TABLE "ready_ports" CASCADE\g
    "www"   text, 
    "status"   varchar(32), 
    "updated"   timestamp, 
-   "priority"   bigint 
+   "priority"   bigint,
+   "flavor" character varying(128)
 ) */;
 
 --
@@ -295,20 +344,23 @@ create VIEW ready_ports AS
            ports.updated AS updated,
           (SELECT count(0) AS COUNT
            FROM depends
-           WHERE depends.dependency = ports.id) AS priority
+           WHERE depends.dependency = ports.id) AS priority,
+           ports.flavor AS flavor
     FROM ports
-    LEFT JOIN locks on locks.port = ports.id
-    LEFT JOIN depends on depends.port = ports.id
+    INNER JOIN port_phase_results fetch_phase
+        ON fetch_phase.port = ports.id
+       AND fetch_phase.phase = 'fetch'
+       AND (fetch_phase.status = 'pass' OR fetch_phase.status = 'warn')
+    LEFT JOIN locks on locks.port = ports.id and locks.phase = 'build'
     WHERE ports.status = 'untested' and locks.id is null and
-          (depends.port is null or
-             not exists
-                  (SELECT depends.port AS port
-                   FROM depends WHERE ports.id = depends.port and not exists  
-                     (SELECT ports.id as dep_id
-                      FROM ports
-                      WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
-                      or
-    depends.dependency = locks.port))
+          not exists
+              (SELECT depends.port AS port
+               FROM depends WHERE ports.id = depends.port and (not exists
+                 (SELECT ports.id as dep_id
+                  FROM ports
+                  WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
+                  or
+    exists (select 1 from locks dep_locks where dep_locks.port = depends.dependency and dep_locks.phase = 'build')))
 ORDER BY priority desc, ports.name asc;
 
 DROP TABLE "critical_ports" CASCADE\g
@@ -326,6 +378,7 @@ CREATE TABLE  "critical_ports" (
 alter table ports add foreign key (run) references runs(id);
 alter table port_categories add foreign key (category) references categories(id);
 alter table locks add foreign key (port) references ports(id);
+alter table locks add foreign key ("machine") references machines("id");
 alter table distfiles add foreign key (port) references ports(id);
 alter table restricted_distfiles add foreign key (port) references ports(id);
 alter table master_sites add foreign key (port) references ports(id);
@@ -336,6 +389,9 @@ ALTER TABLE "depends" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
 ALTER TABLE "depends" ADD FOREIGN KEY ("dependency") REFERENCES "ports"("id");
 ALTER TABLE "port_license_perms" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
 ALTER TABLE "logs" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
+ALTER TABLE "phase_logs" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
+ALTER TABLE "port_phase_results" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");
+ALTER TABLE "port_phase_results" ADD FOREIGN KEY ("machine") REFERENCES machines("id");
 
 create table mirrors
 (

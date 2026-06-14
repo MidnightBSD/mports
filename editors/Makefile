@@ -23,7 +23,6 @@
     SUBDIR += linux-sublime
     SUBDIR += linux-sublime-text4
     SUBDIR += linux-sublime3
-    SUBDIR += linux-vscode
     SUBDIR += linux-wps-office
     SUBDIR += mg
     SUBDIR += mousepad
@@ -31,7 +30,6 @@
     SUBDIR += neovim
     SUBDIR += neovim-gtk
     SUBDIR += neovim-qt
-    SUBDIR += nvi-devel
     SUBDIR += nvi2
     SUBDIR += openoffice-4
     SUBDIR += pico-alpine

@@ -7,7 +7,7 @@ DISTNAME=	morisawa-biz-ud-mincho-fonts
 EXTRACT_SUFX=	.zip
 DIST_SUBDIR=	${PORTNAME}/${DISTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Morisawa BIZ UD Mincho fonts
 WWW=		https://github.com/googlefonts/morisawa-biz-ud-mincho
 

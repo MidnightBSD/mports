@@ -33,9 +33,10 @@ package Magus::Lock;
 use base qw(Magus::DBI);
 use strict;
 use warnings;
+use Magus::Phase ();
 
 __PACKAGE__->table('locks');
-__PACKAGE__->columns(Essential => qw(id port machine));
+__PACKAGE__->columns(Essential => qw(id port phase machine));
 __PACKAGE__->sequence('locks_id_seq');
 
 __PACKAGE__->has_a(machine => "Magus::Machine");
@@ -45,20 +46,33 @@ __PACKAGE__->set_sql(by_run => <<'END_OF_SQL');
 SELECT locks.* FROM locks,ports WHERE port=ports.id AND ports.run=?
 END_OF_SQL
 
+__PACKAGE__->set_sql(by_run_and_phase => <<'END_OF_SQL');
+SELECT locks.* FROM locks,ports WHERE port=ports.id AND ports.run=? AND locks.phase=?
+END_OF_SQL
+
 sub get_ready_lock {
   my ($class, $run) = @_;
 
+  my @phases = $class->_worker_phases;
+
   my $lock;
-  my $port;
   
   while (!defined $lock) {
-    my $port = Magus::Port->get_ready_port($run);
+    my ($port, $phase);
+
+    foreach my $candidate_phase (@phases) {
+      $port = Magus::Port->get_ready_port($run, $candidate_phase);
+      if ($port) {
+        $phase = $candidate_phase;
+        last;
+      }
+    }
    
     if (!$port) { # we ran thru all the ports...
       return;
     }
     
-    $lock = $class->_get_lock($port);
+    $lock = $class->_get_lock($port, $phase);
   }
   
   return $lock;
@@ -66,12 +80,14 @@ sub get_ready_lock {
 
 
 sub _get_lock {
-  my ($class, $port) = @_;
+  my ($class, $port, $phase) = @_;
   my $lock;
+  $phase ||= 'build';
   
   eval {
     $lock = $class->insert({
       port    => $port,
+      phase   => $phase,
       machine => $Magus::Machine,
     });
   };
@@ -87,6 +103,24 @@ sub _get_lock {
   return $lock;
 }
 
+sub _worker_phases {
+  my ($class) = @_;
+
+  my $configured = $Magus::Config{WorkerPhases};
+  my @phases;
+
+  if (ref($configured) eq 'ARRAY') {
+    @phases = @$configured;
+  } elsif (defined $configured && length $configured) {
+    @phases = split(/\s*,\s*|\s+/, $configured);
+  } else {
+    @phases = Magus::Phase->default_worker_order;
+  }
+
+  @phases = grep { Magus::Phase->is_valid($_) } @phases;
+  return @phases ? @phases : qw(build);
+}
+
 #
 # depreacted method
 #
@@ -99,4 +133,3 @@ sub arch {
 
 1;
 __END__
-

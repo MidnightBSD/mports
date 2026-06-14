@@ -151,23 +151,23 @@ do-build:
 
 post-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/saslauthd/saslcache \
-		${STAGEDIR}${PREFIX}/sbin/saslcache
+		${FAKE_DESTDIR}${TRUE_PREFIX}/sbin/saslcache
 	@${INSTALL_PROGRAM} ${WRKSRC}/saslauthd/testsaslauthd \
-		${STAGEDIR}${PREFIX}/sbin/testsaslauthd
+		${FAKE_DESTDIR}${TRUE_PREFIX}/sbin/testsaslauthd
 .if ${SASLAUTHD_RUNPATH} != /var/run/saslauthd
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "SASLAUTHD_RUNPATH was specified."
 	@${ECHO_MSG} "Make sure you create ${SASLAUTHD_RUNPATH}."
 	@${ECHO_MSG} ""
 .else
-	@${MKDIR} ${STAGEDIR}/var/run/saslauthd
+	@${MKDIR} ${FAKE_DESTDIR}/var/run/saslauthd
 .endif
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/saslauthd
+	@${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${DOCSDIR_REL}/saslauthd
 .for file in ${DOCS}
 	@${INSTALL_DATA} ${WRKSRC}/saslauthd/${file} \
-		${STAGEDIR}${DOCSDIR}/saslauthd
+		${FAKE_DESTDIR}${TRUE_PREFIX}/${DOCSDIR_REL}/saslauthd
 .endfor
 
 .else		# plugin

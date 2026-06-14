@@ -3,14 +3,17 @@
     SUBDIR += alisp
     SUBDIR += bcc
     SUBDIR += bsh
+    SUBDIR += bun
     SUBDIR += chaiscript
     SUBDIR += cjs
     SUBDIR += clover
     SUBDIR += cython
+    SUBDIR += cython0
+    SUBDIR += dotnet
+    SUBDIR += dotnet-host 
+    SUBDIR += dotnet8
     SUBDIR += duktape
     SUBDIR += duktape-lib
-    SUBDIR += dotnet-host 
-
     SUBDIR += elixir
     SUBDIR += erlang
     SUBDIR += erlang-man
@@ -46,6 +49,7 @@
     SUBDIR += gscheme
     SUBDIR += guile
     SUBDIR += guile-aclocal
+    SUBDIR += guile1
     SUBDIR += guile2
     SUBDIR += guile3
     SUBDIR += jruby
@@ -93,10 +97,12 @@
     SUBDIR += pcc
     SUBDIR += perl5.38
     SUBDIR += perl5.40
+    SUBDIR += perl5.42
     SUBDIR += php82
     SUBDIR += php82-extensions
     SUBDIR += php83
     SUBDIR += php83-extensions
+    SUBDIR += py-textX
     SUBDIR += python
     SUBDIR += python2
     SUBDIR += python27
@@ -108,12 +114,15 @@
     SUBDIR += python313t
     SUBDIR += python314
     SUBDIR += referenceassemblies-pcl
+    SUBDIR += rubygem-rb_sys
     SUBDIR += ruby32
+    SUBDIR += ruby33
     SUBDIR += rust
     SUBDIR += rust-bin
     SUBDIR += rust-bootstrap
     SUBDIR += rust188
     SUBDIR += scala
+    SUBDIR += smalltalk
     SUBDIR += spidermonkey102
     SUBDIR += spidermonkey128
     SUBDIR += spidermonkey78

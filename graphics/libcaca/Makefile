@@ -10,7 +10,8 @@ COMMENT=	Graphics library that outputs text instead of pixels
 LICENSE=	unknown
 # this guy has his own license, gpl and lgpl stuff... ?
 
-USES=		libtool ncurses pathfix pkgconfig
+USES=		libtool ncurses pathfix pkgconfig cpe
+CPE_VENDOR=	libcaca_project
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-doc \

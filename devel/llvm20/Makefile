@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	20.1.8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION}/
 #MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/
@@ -30,6 +30,9 @@ LICENSE_PERMS_REGEX=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 # TODO: fix this
 NO_TEST=	yes
+
+# These .inc files are legitimately empty in LLVM 20 (tablegen-generated with no content)
+SKIP_FAKE_CHECK=	.*(Diagnostic.*Enums|ArmSMEOpsConversions)\.inc$$
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
@@ -509,6 +512,9 @@ COMPILER_RT_IGNORELISTS:=	${COMPILER_RT_IGNORELISTS} ${RT}_ignorelist.txt
 # Strip empty element
 COMPILER_RT_IGNORELISTS:=${COMPILER_RT_IGNORELISTS:N^$$}
 
+PLIST_SUB+=	CRT_TRIPLE=${COMPILER_RT_ARCHS:Unone}-portbld-${OPSYS:tl}${OSREL} \
+		ARCH_TRIPLE=${ARCH}-portbld-${OPSYS:tl}${OSREL}
+
 .if ${ARCH} == "armv6"
 BUILD_DEPENDS+=	${LOCALBASE}/bin/ld:devel/binutils
 CONFIGURE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
@@ -605,6 +611,9 @@ post-install-CLANG-on:
 	-${RM} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
 	-${MKDIR} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
 	-${CP} -R "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${FTARGET}/"* "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}/"
+.for CRT_ARCH in ${COMPILER_RT_ARCHS}
+	-${RM} -r "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${FTARGET}"
+.endfor
 
 
 post-install-EXTRAS-on:

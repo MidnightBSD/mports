@@ -1,6 +1,6 @@
 PORTNAME=	gdb
 DISTVERSION=	15.1
-PORTREVISION=	4
+PORTREVISION=	8
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -128,9 +128,8 @@ PLIST_SUB+=	LIBCXX="@comment "
 EXCLUDE+=	zlib
 .endif
 
-.if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd13.4
-.endif
+CONFIGURE_TARGET=	${ARCH:S/amd64/x86_64/}-portbld-freebsd13.4
+CONFIGURE_ARGS+=	--host=${CONFIGURE_TARGET}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$$| [GDB v${PORTVERSION} for MidnightBSD]|' \
@@ -170,23 +169,24 @@ do-install-PYTHON-on:
 		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
 	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; ${SETENVI} ${WRK_ENV} \
 		${MAKE_ENV} ${MAKE_CMD} ${FAKE_MAKEARGS} install-python )
-	@(cd ${PREFIX}/share/gdb/python && \
+	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/python && \
 		${PYTHON_CMD} -m compileall .)
 . for f in gdb gdb/command gdb/function gdb/printer
-	@(cd ${PREFIX}/share/gdb/python/${f} ; ${CHMOD} 644 *.py* )
+	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/python/${f} ; ${CHMOD} 644 *.py* )
 . endfor
 .if exists(/usr/lib/libc++.so.1) || exists(/lib/libc++.so.1)
 	@(cd ${WRKSRC_libcxx} ; ${SETENVI} ${WRK_ENV} \
 		${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} \
-		    LIBCXX_DIR="${LIBCXX_DIR}" install )
-	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/auto-load/${LIBCXX_DIR} && \
+		    DESTDIR="${FAKE_DESTDIR}" LIBCXX_DIR="${LIBCXX_DIR}" install )
+	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb/auto-load${LIBCXX_DIR} && \
 		${PYTHON_CMD} -m compileall .)
 	@(cd ${FAKE_DESTDIR}${PREFIX}/share/libcxx-gdbpy/libcxx && \
 		${PYTHON_CMD} -m compileall .)
 .endif
 
 do-install-GUILE-on:
-	(cd ${INSTALL_WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
+	(cd ${INSTALL_WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
 	(cd ${INSTALL_WRKSRC}/gdb/data-directory ; \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
 

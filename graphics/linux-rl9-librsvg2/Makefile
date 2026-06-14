@@ -21,8 +21,6 @@ USE_LINUX=	cairo cairo-gobject fontconfig freetype gdkpixbuf2 libxml2 \
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 
-DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
-
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>

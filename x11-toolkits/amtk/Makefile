@@ -1,5 +1,6 @@
 PORTNAME=	amtk
 DISTVERSION=	5.9.2
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 DISTNAME=	libgedit-${PORTNAME}-${DISTVERSIONFULL}
 
@@ -10,6 +11,8 @@ WWW=		https://gitlab.gnome.org/World/gedit/libgedit-amtk
 LICENSE=	lgpl3
 
 USES=		gettext-tools gnome meson pkgconfig tar:bz2
+
+USE_LDCONFIG=	yes
 USE_GNOME=	glib20 gtk30 introspection:build
 
 USE_GITLAB=	yes

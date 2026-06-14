@@ -1,7 +1,7 @@
 
 
 PORTNAME=	PAR-Dist
-PORTVERSION=	0.49
+PORTVERSION=	0.53
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,6 +15,5 @@ LICENSE_COMB=	dual
 USES=		perl5
 USE_PERL5=	configure
 
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

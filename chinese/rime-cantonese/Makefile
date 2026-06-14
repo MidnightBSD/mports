@@ -11,6 +11,8 @@ LICENSE=		CC-BY-4.0 ODbL
 LICENSE_COMB=		multi
 LICENSE_FILE_CC-BY-4.0=	${WRKSRC}/LICENSE-CC-BY
 LICENSE_FILE_ODbL=	${WRKSRC}/LICENSE-ODbL
+LICENSE_NAME_ODbL=	Open Database License v1.0
+LICENSE_PERMS_ODbL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	\
 		rime_deployer:chinese/librime \
@@ -54,11 +56,11 @@ do-install:
 	(cd ${MY_OUTDIR} && ${COPYTREE_SHARE} build ${PREFIX}/share/rime-data)
 
 do-install-DOCS-on:
-	@${MKDIR} ${DOCSDIR}
-	@${MKDIR} ${DOCSDIR}/demo
-	${INSTALL_DATA} ${WRKSRC}/demo/* ${DOCSDIR}/demo
-	${INSTALL_MAN} ${WRKSRC}/README.md /${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/README-cmn.md /${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/README-en.md /${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/demo
+	${INSTALL_DATA} ${WRKSRC}/demo/* ${FAKE_DESTDIR}${DOCSDIR}/demo
+	${INSTALL_MAN} ${WRKSRC}/README.md ${FAKE_DESTDIR}/${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/README-cmn.md ${FAKE_DESTDIR}/${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/README-en.md ${FAKE_DESTDIR}/${DOCSDIR}
 
 .include <bsd.port.mk>

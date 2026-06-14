@@ -1,0 +1,8 @@
+--- lldb/source/Initialization/CMakeLists.txt.orig	2025-01-14 04:41:02.000000000 -0500
++++ lldb/source/Initialization/CMakeLists.txt	2026-05-04 00:00:00.000000000 -0400
+@@ -1,4 +1,4 @@
+-if ( CMAKE_SYSTEM_NAME MATCHES "Linux|Android|FreeBSD|NetBSD|OpenBSD" )
++if ( CMAKE_SYSTEM_NAME MATCHES "Linux|Android|MidnightBSD|FreeBSD|NetBSD|OpenBSD" )
+   list(APPEND EXTRA_PLUGINS lldbPluginProcessPOSIX)
+ endif()
+ 

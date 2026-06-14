@@ -11,6 +11,7 @@ WWW=		https://github.com/tweetstream/tweetstream
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-daemons>=1.1<2:devel/rubygem-daemons \
 		rubygem-em-http-request>=1.1.1:www/rubygem-em-http-request \
 		rubygem-em-twitter>=0.3<1:www/rubygem-em-twitter \

@@ -10,6 +10,7 @@ WWW=		https://github.com/Gargron/blurhash
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-ffi>0:devel/rubygem-ffi
 
 USES=		gem

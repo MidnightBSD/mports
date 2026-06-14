@@ -1,7 +1,6 @@
 PORTNAME=	nginx
 PORTVERSION=	${NGINX_VERSION}
 .include "version.mk"
-PORTREVISION=	12
 PORTEPOCH=	3
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/ \
@@ -17,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	nginx-devel
 
-PORTSCOUT=	limit:^1\.2[6-7]\.[0-9]*
+PORTSCOUT=	limit:^1\.30\.[0-9]*
 
 USES=		cpe
 

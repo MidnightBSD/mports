@@ -5,7 +5,7 @@ CATEGORIES=	www kde kde-plasma
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Components necessary to integrate browsers into the Plasma Desktop
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake desktop-file-utils gettext gl kde:6 qt:6 tar:xz
 USE_KDE=	activities config coreaddons crash dbusaddons filemetadata \
 		i18n itemmodels jobwidgets kio notifications plasma-workspace \
 		purpose runner service statusnotifieritem \

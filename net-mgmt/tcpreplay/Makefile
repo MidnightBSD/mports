@@ -1,5 +1,5 @@
 PORTNAME=	tcpreplay
-DISTVERSION=	4.5.1
+DISTVERSION=	4.5.2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://github.com/appneta/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -10,19 +10,14 @@ WWW=		https://github.com/appneta/tcpreplay
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/docs/LICENSE
 
-BUILD_DEPENDS=	pcapnav-config:net/libpcapnav
-LIB_DEPENDS=	libdnet.so:net/libdnet \
-		libopts.so:devel/autogen
+LIB_DEPENDS=	libdnet.so:net/libdnet
 
 USES=		cpe gmake libtool pkgconfig tar:xz
 CPE_VENDOR=	broadcom
 
 GNU_CONFIGURE=	yes
-# libopts options are required when using autogen
 CONFIGURE_ARGS=	--disable-libopts-install \
-		--disable-local-libopts \
-		--program-transform-name='s|.*\(tcp.*\)|\1|' \
-		--with-pcapnav-config=${LOCALBASE}/bin/pcapnav-config
+		--program-transform-name='s|.*\(tcp.*\)|\1|'
 
 TEST_TARGET=	test
 

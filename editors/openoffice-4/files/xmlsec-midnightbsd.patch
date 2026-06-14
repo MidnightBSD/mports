@@ -1,7 +1,7 @@
 diff -ruN misc/xmlsec1-1.2.14/config.guess misc/build/xmlsec1-1.2.14/config.guess
 --- misc/xmlsec1-1.2.14/config.guess	2010-04-15 09:29:35.000000000 +0000
 +++ misc/build/xmlsec1-1.2.14/config.guess	2026-05-01 00:00:00.000000000 +0000
-@@ -787,6 +787,17 @@
+@@ -793,7 +793,17 @@
  	    *)
  		echo ${UNAME_MACHINE}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
  	esac

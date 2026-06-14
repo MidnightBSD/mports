@@ -1,6 +1,6 @@
 --- src/x11vnc.c.orig	2019-01-05 13:22:11 UTC
 +++ src/x11vnc.c
-@@ -186,6 +186,10 @@ static void tsdo_timeout (int sig) {
+@@ -184,6 +184,10 @@ static pid_t ts_tasks[TASKMAX];
  static pid_t ts_tasks[TASKMAX];
  static int ts_taskn = -1;
  

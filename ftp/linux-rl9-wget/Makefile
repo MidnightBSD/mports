@@ -10,6 +10,7 @@ WWW=		https://www.gnu.org/s/wget/
 LICENSE=	gpl3+
 
 USES=		cpe linux:rl9
+USE_LINUX=	nettle
 USE_LINUX_RPM=	nolib
 
 CPE_VENDOR=	gnu

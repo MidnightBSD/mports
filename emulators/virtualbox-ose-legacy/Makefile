@@ -193,6 +193,8 @@ MAKE_ENV+=	FREEBSD=12 _FreeBSD_version=1204500
 
 .include <bsd.port.pre.mk>
 
+CONFIGURE_ENV+=	LD_LIBRARY_PATH="${_GCC_RUNTIME}"
+
 .if ${PYTHON_MAJOR_VER} >= 3
 PLIST_SUB+=	PYTHON_PYCDIR=/__pycache__/ \
 		PYTHON_PYCEXT=.cpython-${PYTHON_SUFFIX}.pyc

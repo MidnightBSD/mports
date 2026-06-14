@@ -1,8 +1,6 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-
-
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
 #
@@ -614,3 +612,5 @@ www/npm-node18|www/npm-node22|2026-03-01|Has expired: Depeneds on expired www/no
 www/node18|www/node22|2026-03-01|Has expired: Node.js 18.* has reached its EoL on 2025-04-30. Use Node.js 22.* (www/node22) instead
 lang/go121|lang/go125|2026-03-14|Has reached EOL. Use lang/go125 instead.
 textproc/mdocml|textproc/mandoc|2026-03-17|Upstream reanamed
+graphics/librsvg2|graphics/librsvg2-rust|2026-05-16|Superseded by Rust-based librsvg2; LIBRSVG2_DEFAULT=rust
+editors/linux-vscode||2026-05-30|Does not work

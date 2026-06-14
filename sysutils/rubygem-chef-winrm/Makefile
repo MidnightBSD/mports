@@ -10,6 +10,7 @@ WWW=		https://github.com/chef/chef-winrm
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-builder>=2.1.2:devel/rubygem-builder \
 		rubygem-chef-gyoku>=1.5<2:textproc/rubygem-chef-gyoku \
 		rubygem-erubi>=1.8:www/rubygem-erubi \

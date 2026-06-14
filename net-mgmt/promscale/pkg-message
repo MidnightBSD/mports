@@ -1,3 +1,9 @@
+[
+{ type: install
+  message: <<EOM
 Please see:
 https://github.com/timescale/promscale/blob/master/docs/binary.md#building-from-source
 for configuration and required periodic jobs.
+EOM
+}
+]

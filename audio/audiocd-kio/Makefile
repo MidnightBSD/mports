@@ -1,5 +1,6 @@
 PORTNAME=	audiocd-kio
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	audio kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -25,6 +26,8 @@ USE_KDE=	auth bookmarks codecs completion config configwidgets \
 USE_QT=		base
 
 USE_LDCONFIG=	yes
+
+PLIST_SUB+=	AUDIOCD_SOVERSION=5.1.${KDE_APPS_MAJOR}${KDE_APPS_MINOR}${KDE_APPLICATIONS_VERSION:E}
 
 OPTIONS_DEFINE=	LAME DOCS
 LAME_DESC=	Install LAME MP3 audio encoder

@@ -1,11 +1,14 @@
     COMMENT = Ports to support the X window system
 
+    SUBDIR += alacritty
     SUBDIR += appmenu-registrar
     SUBDIR += appres
     SUBDIR += babl
     SUBDIR += beforelight
+    SUBDIR += bemenu
     SUBDIR += bgs
     SUBDIR += bitmap
+    SUBDIR += cde
     SUBDIR += cinnamon
     SUBDIR += cinnamon-desktop
     SUBDIR += cinnamon-menus
@@ -16,7 +19,9 @@
     SUBDIR += emwm-utils
     SUBDIR += eterm
     SUBDIR += evilvte
+    SUBDIR += foot
     SUBDIR += fstobdf
+    SUBDIR += fuzzel
     SUBDIR += gdm
     SUBDIR += gnome
     SUBDIR += gnome-console
@@ -61,6 +66,7 @@
     SUBDIR += kf6-kglobalaccel
     SUBDIR += kf6-krunner
     SUBDIR += kf6-kwindowsystem
+    SUBDIR += kitty
     SUBDIR += konsole
     SUBDIR += libICE
     SUBDIR += libSM
@@ -186,14 +192,18 @@
     SUBDIR += slurp
     SUBDIR += smproxy
     SUBDIR += startup-notification
+    SUBDIR += swaybg
     SUBDIR += tecla
     SUBDIR += terminal.app
     SUBDIR += tint
     SUBDIR += viewres
     SUBDIR += virtualgl
+    SUBDIR += waybar
     SUBDIR += wdm
     SUBDIR += windowmaker-desktop
+    SUBDIR += wl-clipboard
     SUBDIR += wmctrl-fork
+    SUBDIR += wofi
     SUBDIR += x11perf
     SUBDIR += xapp
     SUBDIR += xauth
@@ -224,6 +234,7 @@
     SUBDIR += xdg-desktop-portal-gtk
     SUBDIR += xdg-desktop-portal-hyprland
     SUBDIR += xdg-desktop-portal-luminous
+    SUBDIR += xdg-desktop-portal-wlr
     SUBDIR += xdg-user-dirs-gtk
     SUBDIR += xditview
     SUBDIR += xdm

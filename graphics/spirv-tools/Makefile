@@ -9,6 +9,8 @@ WWW=		https://github.com/KhronosGroup/SPIRV-Tools
 
 LICENSE=	Apache-2.0
 
+RUN_DEPENDS=	gcc14:lang/gcc14
+
 USES=		cmake:testing compiler:c++11-lib python:build shebangfix
 
 USE_GITHUB=	yes

@@ -7,7 +7,7 @@ COMMENT=	Monitors S.M.A.R.T. capable devices for imminent failure
 
 RUN_DEPENDS=	smartmontools>0:sysutils/smartmontools
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz
+USES=		cmake desktop-file-utils gettext gl kde:6 qt:6 tar:xz
 USE_KDE=	auth config coreaddons dbusaddons i18n kcmutils kio \
 		notifications package service solid \
 		ecm:build

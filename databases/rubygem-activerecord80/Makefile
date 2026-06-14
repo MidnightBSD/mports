@@ -1,5 +1,5 @@
 PORTNAME=	activerecord
-PORTVERSION=	8.0.2
+PORTVERSION=	8.0.5
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	80
@@ -12,8 +12,9 @@ WWW=		https://github.com/rails/rails/tree/main/activerecord \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-activemodel80>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel80 \
-		rubygem-activesupport80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport80 \
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-activemodel80>=${PORTVERSION}:databases/rubygem-activemodel80 \
+		rubygem-activesupport80>=${PORTVERSION}:devel/rubygem-activesupport80 \
 		rubygem-timeout>=0.4.0:devel/rubygem-timeout
 
 USES=		gem

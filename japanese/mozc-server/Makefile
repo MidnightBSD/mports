@@ -1,7 +1,7 @@
 PORTNAME=	mozc
 PORTVERSION=	2.23.2815.102.01
 DISTVERSIONPREFIX=	v
-PORTREVISION?=	30
+PORTREVISION?=	31
 CATEGORIES=	japanese
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -98,6 +98,9 @@ post-extract:	# XXX: do not activate fcitx5
 post-patch:
 	${FIND} ${BUILD_WRKSRC} \( -name '*.gyp' -o -name '*.gypi' \) -exec \
 	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g" {} \;
+	${REINPLACE_CMD} -e \
+	    "s|sys.platform.startswith('freebsd')|sys.platform.startswith('freebsd') or sys.platform.startswith('midnightbsd')|" \
+	    ${BUILD_WRKSRC}/build_mozc.py
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
 	    ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh

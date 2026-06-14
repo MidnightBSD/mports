@@ -3,7 +3,7 @@ PORTVERSION=	0.14.5
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
-MAINTAINER=	cmt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GObject-based wrapper around Exiv2 library
 WWW=		https://wiki.gnome.org/Projects/gexiv2
 

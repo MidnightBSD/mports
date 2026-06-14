@@ -5,10 +5,10 @@
      'fuchsia': ['fuchsia'],
      'chrome.win': ['win'],
 -    'chrome.linux': ['linux'],
-+    'chrome.linux': ['linux', 'openbsd', 'freebsd'],
++    'chrome.linux': ['linux', 'openbsd', 'freebsd', 'midnightbsd'],
      'chrome.mac': ['mac'],
 -    'chrome.*': ['win', 'mac', 'linux'],
-+    'chrome.*': ['win', 'mac', 'linux', 'openbsd', 'freebsd'],
++    'chrome.*': ['win', 'mac', 'linux', 'openbsd', 'freebsd', 'midnightbsd'],
      'chrome.win7': ['win'],
  }
  

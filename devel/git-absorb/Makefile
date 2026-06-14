@@ -1,8 +1,8 @@
 PORTNAME=	git-absorb
-DISTVERSION=	0.6.10
+DISTVERSION=	0.9.0
 CATEGORIES=	devel
 
-MAINTAINER=	ports@MidightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Git command for automating fixup/autosquash commits
 WWW=		https://github.com/tummychow/git-absorb
 

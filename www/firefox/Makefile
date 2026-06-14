@@ -1,5 +1,5 @@
 PORTNAME=     firefox
-DISTVERSION=  145.0.1
+DISTVERSION=  151.0.3
 PORTEPOCH=    2
 CATEGORIES=   www wayland
 MASTER_SITES= MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -14,7 +14,7 @@ LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.108:security/nss \
+		nss>=3.124:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
@@ -36,7 +36,6 @@ LIB_DEPENDS+=   libvpx.so:multimedia/libvpx \
                 libstartup-notification-1.so:x11/startup-notification \
                 libnspr4.so:devel/nspr \
                 libnss3.so:security/nss \
-                libicui18n.so:devel/icu \
                 libharfbuzz.so:print/harfbuzz \
                 libgraphite2.so.3:graphics/graphite2 \
                 libpng16.so:graphics/png \
@@ -75,7 +74,6 @@ QMAKE_ARGS=		--enable-application=browser \
 			--disable-alsa \
 			--disable-debug \
 			--disable-debug-symbols \
-			--disable-dtrace \
 			--disable-jack \
 			--disable-profiling \
 			--disable-pulseaudio \
@@ -86,7 +84,6 @@ QMAKE_ARGS=		--enable-application=browser \
 			--disable-hardening \
 			--prefix=${PREFIX} \
 			--with-intl-api \
-			--with-system-icu \
 			--with-system-libevent \
 			--with-system-nspr \
 			--with-system-nss \
@@ -97,8 +94,9 @@ QMAKE_ARGS=		--enable-application=browser \
 # --with-system-jpeg
 
 LLVM_VERSION=	19
-MBSD64_TARGET=	x86_64-mports-freebsd13.4
-CONFIGURE_TARGET=	${MBSD64_TARGET}
+MBSD_TARGET_ARCH=	${ARCH:S/amd64/x86_64/:S/i386/i686/}
+MBSD_TARGET=	${MBSD_TARGET_ARCH}-mports-freebsd13.4
+CONFIGURE_TARGET=	${MBSD_TARGET}
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV+= BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
 CONFIGURE_OUTSOURCE=    yes
@@ -138,7 +136,7 @@ post-patch:
 		${WRKSRC}/third_party/rust/libc/.cargo-checksum.json \
 		${WRKSRC}/third_party/rust/quinn-udp/.cargo-checksum.json
 	# Fix midnight
-	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD64_TARGET}|" \
+	${REINPLACE_CMD} -e "s|%%MBSD64_TGT%%|${MBSD_TARGET}|" \
 		${WRKSRC}/build/autoconf/config.guess
 	# Set mozilla options
 	@${ECHO_CMD} "--=> Setting configuration <=--"

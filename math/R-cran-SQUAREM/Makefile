@@ -1,0 +1,14 @@
+PORTNAME=	SQUAREM
+DISTVERSION=	2026.1
+CATEGORIES=	math
+DISTNAME=	${PORTNAME}_${DISTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Squared Extrapolation Methods for Accelerating EM-Like Algorithms
+WWW=		https://cran.r-project.org/web/packages/SQUAREM/
+
+LICENSE=	gpl2+
+
+USES=		cran:auto-plist
+
+.include <bsd.port.mk>

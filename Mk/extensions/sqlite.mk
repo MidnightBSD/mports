@@ -49,6 +49,7 @@ SQLITE_PREFIX?=	/usr
 .  else
 BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 LIB_DEPENDS+=	libsqlite3.so:databases/sqlite3
+RUN_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 SQLITE_PREFIX?=	${LOCALBASE}
 .  endif
 .elif ${SQLITE_VER} == 2

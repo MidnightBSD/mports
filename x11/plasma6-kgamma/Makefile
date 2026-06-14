@@ -5,7 +5,7 @@ CATEGORIES=	x11 kde kde-plasma
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adjust gamma settings
 
-USES=		cmake gettext gl kde:6 qt:6 tar:xz xorg
+USES=		cmake desktop-file-utils gettext gl kde:6 qt:6 tar:xz xorg
 USE_GL=		gl opengl
 USE_KDE=	colorscheme config configwidgets coreaddons doctools i18n \
 		kcmutils kdeclarative widgetsaddons \

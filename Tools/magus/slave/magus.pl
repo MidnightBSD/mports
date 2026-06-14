@@ -176,7 +176,7 @@ sub main {
       if (!$run || !($lock = Magus::Lock->get_ready_lock($run))) {
         # there's no more ports to test, sleep for a while and check again.
         X();
-        $Logger->debug("No ports to build, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
+        $Logger->debug("No Magus phase work available, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
         sleep($Magus::Config{DoneWaitPeriod});
         next MAIN;
       }
@@ -215,7 +215,7 @@ sub start_child {
   my $pid = fork;
   
   if ($pid) {
-    $Logger->info("Forked child worker $pid");
+    $Logger->info("Forked child worker $pid for %s phase", $lock->phase);
   
     # parent return
     $Children{$pid} = { lock => $lock, worker_id => $worker_id };
@@ -273,8 +273,13 @@ sub process_dead_children {
     my $corpse = $DeadChildren[0];
 
     if ($corpse->{exitcode} == 6) {
-      $Logger->info("Child $corpse->{pid} lost database connection.  Reseting %s", $corpse->{lock}->port);
-      $corpse->{lock}->port->reset;
+      my $phase = $corpse->{lock}->phase || 'build';
+      $Logger->info("Child $corpse->{pid} lost database connection.  Reseting %s phase for %s", $phase, $corpse->{lock}->port);
+      if ($phase eq 'build') {
+        $corpse->{lock}->port->reset;
+      } else {
+        $corpse->{lock}->port->set_phase_status($phase, 'untested');
+      }
     } 
     
     $corpse->{lock}->delete;

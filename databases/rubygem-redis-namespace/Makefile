@@ -10,6 +10,7 @@ WWW=		https://github.com/resque/redis-namespace
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	rubygem-redis>=4:databases/rubygem-redis
 RUN_DEPENDS=	rubygem-redis>=4:databases/rubygem-redis
 
 USES=		gem

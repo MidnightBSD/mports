@@ -1,0 +1,17 @@
+--- cargo-crates/v8-149.2.0/build/config/sanitizers/sanitizers.gni.orig	2026-06-11 12:00:00.000000000 -0400
++++ cargo-crates/v8-149.2.0/build/config/sanitizers/sanitizers.gni	2026-06-11 12:00:00.000000000 -0400
+@@ -540,8 +540,10 @@
+         # Prevents `__has_feature(undefined_behavior_sanitizer)`
+         # from evaluating true. Configs defined here are intended to
+         # be usable even in release builds, i.e. as widely as possible.
+         # It's important not to have full-on UBSan workarounds activate
+         # just because we built support for a specific sanitizer.
+-        "-fsanitize-ignore-for-ubsan-feature=${invoker.sanitizer}",
+       ]
++      if (!is_bsd) {
++        cflags += [ "-fsanitize-ignore-for-ubsan-feature=${invoker.sanitizer}" ]
++      }
+       if (defined(invoker.cflags)) {
+         cflags += invoker.cflags
+       }
+     }

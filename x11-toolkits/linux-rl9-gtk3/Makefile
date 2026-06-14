@@ -1,7 +1,7 @@
 PORTNAME=	gtk3
 PORTVERSION=	3.24.31
-DISTVERSIONSUFFIX=	-5.el9
-PORTREVISION=	5
+DISTVERSIONSUFFIX=	-8.el9
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +9,8 @@ COMMENT=	GTK+ library, version 3.X (Rocky Linux ${LINUX_DIST_VER})
 WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl2.1+
+
+SKIP_FAKE_ALL=	yes
 
 RUN_DEPENDS=	hicolor-icon-theme>0:misc/hicolor-icon-theme \
 		adwaita-icon-theme>0:x11-themes/adwaita-icon-theme

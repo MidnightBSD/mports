@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 Note: The location of the cdrtools `defaults' files has been set to
 
 	%%PREFIX%%/etc
@@ -7,3 +10,6 @@ standard location, which is /etc/default.
 
 The reason for this is that MidnightBSD mports and packages should not use
 configuration files outside of %%PREFIX%%.
+EOM
+}
+]

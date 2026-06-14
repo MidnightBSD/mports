@@ -1,0 +1,21 @@
+PORTNAME=	fog-json
+PORTVERSION=	1.3.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Extraction of the JSON parsing tools between providers
+WWW=		https://github.com/fog/fog-json
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-fog-core>=0:devel/rubygem-fog-core \
+		rubygem-multi_json>=1.10<2:devel/rubygem-multi_json
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

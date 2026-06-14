@@ -502,7 +502,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux xorg fortran \
 		fmake gmake bison local perl5 \
 		ada ansible apache bdb cabal cargo cmake cpe cran display dos2unix \
-		eburl128 efl eigen elixir emacs erlang execinfo fakeroot fam fonts fuse \
+		eburl128 efl eigen electron electronfix elixir emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
 		gl gnome gnustep go grantlee groff gssapi gstreamer iconv imake jpeg kde \
 		ldap libarchive libedit libtool llvm localbase lua \
@@ -3859,6 +3859,7 @@ describe-yaml:
 			license_name   => q(${LICENSE_NAME}), \
 			license_text   => q(${LICENSE_TEXT}), \
 			categories     => [qw(${CATEGORIES})], \
+			ignore         => qq(${IGNORE:S/'/\x27/g}), \
 			is_interactive => q(${IS_INTERACTIVE}) ? 1 : 0, \
 			restricted     => q(${RESTRICTED}) ? 1 : 0, \
 			flavor         => q(${FLAVOR}), \

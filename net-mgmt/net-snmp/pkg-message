@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 **** This port installs snmp daemon, header files and libraries but don't
      invokes snmpd by default.
      If you want to invoke snmpd and/or snmptrapd at startup, put these
@@ -25,3 +28,6 @@
 	BATCH="yes"
 
      to avoid interactive configuration.
+EOM
+}
+]

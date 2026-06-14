@@ -8,7 +8,7 @@ COMMENT=	V8 JavaScript for client and server (meta port)
 WWW=		https://nodejs.org/ \
 		https://github.com/nodejs/node
 
-USES=		metaport nodejs:run
+USES=		metaport nodejs:run sqlite:port
 
 .include <bsd.port.pre.mk>
 .include "${.CURDIR}/../node${NODEJS_VERSION}/Makefile.version"

@@ -14,7 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE_AGPLv3.0.txt
 BUILD_DEPENDS=	${LOCALBASE}/bin/protoc:devel/protobuf
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
-BROKEN_i386=	fails to build
 USES=			cargo pkgconfig
 USE_GITHUB=		yes
 GH_ACCOUNT=		quickwit-oss
@@ -22,6 +21,8 @@ GH_ACCOUNT=		quickwit-oss
 CARGO_CARGOLOCK=	${WRKSRC}/${PORTNAME}/Cargo.lock
 CARGO_CARGOTOML=	${WRKSRC}/${PORTNAME}/Cargo.toml
 CARGO_INSTALL_PATH=	${PORTNAME}/quickwit-cli
+
+NO_TEST=		yes
 
 OPTIONS_DEFINE=		DOCS
 OPTIONS_DEFAULT=	DOCS

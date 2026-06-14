@@ -1,0 +1,22 @@
+PORTNAME=	hoe
+PORTVERSION=	4.7.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Simple rake/rubygems helper for project Rakefiles
+WWW=		https://docs.seattlerb.org/hoe/ \
+		https://github.com/seattlerb/hoe
+
+LICENSE=	mit
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-rake>=13.0<14:devel/rubygem-rake
+
+USES=		gem
+
+NO_ARCH=	yes
+
+PLIST_FILES=	bin/sow
+
+.include <bsd.port.mk>

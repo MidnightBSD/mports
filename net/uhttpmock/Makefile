@@ -1,6 +1,5 @@
 PORTNAME=	uhttpmock
-PORTVERSION=	0.5.3
-PORTREVISION=	1
+PORTVERSION=	0.11.0
 CATEGORIES=	net gnome
 MASTER_SITES=	http://tecnocode.co.uk/downloads/uhttpmock/
 DIST_SUBDIR=	gnome3

@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 ==============================================================================
 
 Yasr requires a text-to-speech engine to work. FreeBSD offers two: Festival
@@ -24,3 +27,6 @@ FLite
 See man page for more information.
 
 ==============================================================================
+EOM
+}
+]

@@ -1,14 +1,15 @@
 PORTNAME=	tinysparql
 PORTVERSION=	3.10.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
-MAINTAINER= 	ports@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF triple store library with SPARQL 1.1 interface
 WWW=		https://gitlab.gnome.org/GNOME/tinysparql
 
-LICENSE= 	lgpl2.1 gpl2 bsd3
+LICENSE=	lgpl2.1 gpl2 bsd3
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	a2x:textproc/asciidoc
@@ -16,10 +17,11 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libsoup-3.0.so:devel/libsoup3 \
 		libstemmer.so:textproc/snowballstemmer \
 		libicutu.so:devel/icu \
-		libjson-glib-1.0.so:devel/json-glib \
+		libjson-glib-1.0.so:devel/json-glib
 
-USES=		gettext gnome localbase:ldflags meson pkgconfig python:build sqlite tar:xz
+USES=		gettext gnome localbase:ldflags meson pkgconfig python:build sqlite:port tar:xz
 USE_GNOME=	glib20 introspection:build libxml2 pygobject3
+USE_LDCONFIG=	yes
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 MESON_ARGS=	-Dsystemd_user_services=false \
@@ -46,7 +48,10 @@ VAPI_USES=		vala:build
 VAPI_MESON_ENABLED=	vapi
 
 post-install:
-	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libtracker-sparql-3.0.so.0.1001.0 \
-		libtracker-sparql-3.0.so)
+	@(cd ${PREFIX}/lib && \
+		${LN} -sf libtinysparql-3.0.so.0.1001.0 \
+			libtracker-sparql-3.0.so.0.1001.0 && \
+		${LN} -sf libtracker-sparql-3.0.so.0.1001.0 \
+			libtracker-sparql-3.0.so)
 
 .include <bsd.port.mk>

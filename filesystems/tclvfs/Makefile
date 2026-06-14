@@ -8,6 +8,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tcl VirtualFileSystem layer
 WWW=		https://sourceforge.net/projects/tclvfs/
 
+LICENSE=	bsd
+LICENSE_FILE=	${WRKSRC}/license.terms
+
 LIB_DEPENDS=	libTrf2.1.4.so:devel/tcl-trf
 
 USES+=		gmake tcl:tea

@@ -1,0 +1,30 @@
+PORTNAME=	actionview
+PORTVERSION=	8.0.5
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	80
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Simple, battle-tested conventions and helpers for building web pages
+WWW=		https://github.com/rails/rails/tree/main/actionview \
+		https://rubyonrails.org/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-activesupport80>=${PORTVERSION}:devel/rubygem-activesupport80 \
+		rubygem-builder>=3.1<4:devel/rubygem-builder \
+		rubygem-erubi>=1.11<2:www/rubygem-erubi \
+		rubygem-rails-dom-testing-rails80>=2.2<3:textproc/rubygem-rails-dom-testing-rails80 \
+		rubygem-rails-html-sanitizer>=1.6<2:textproc/rubygem-rails-html-sanitizer
+
+USES=		cpe gem
+
+NO_ARCH=	yes
+
+CPE_VENDOR=	rubyonrails
+
+PORTSCOUT=	limit:^8\.0\.
+
+.include <bsd.port.mk>

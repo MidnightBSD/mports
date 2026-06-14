@@ -1,6 +1,6 @@
 PORTNAME=	gnome-games
 PORTVERSION=	3.24.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games gnome
 MASTER_SITES=   # empty
 DISTFILES=      # empty
@@ -29,9 +29,12 @@ RUN_DEPENDS=	five-or-more:games/five-or-more \
 		hitori:games/hitori \
 		lightsoff:games/lightsoff \
 		quadrapassel:games/quadrapassel \
-		aisleriot>=0:games/aisleriot \
 		swell-foop:games/swell-foop \
 		tali:games/tali
+
+.if ${ARCH} == amd64
+RUN_DEPENDS+=	aisleriot>=0:games/aisleriot
+.endif
 
 do-install:
 	${MKDIR} ${WRKSRC}

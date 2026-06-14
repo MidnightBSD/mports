@@ -1,5 +1,5 @@
 PORTNAME=	rust-coreutils
-DISTVERSION=	0.7.0
+DISTVERSION=	0.8.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -26,7 +26,7 @@ post-build:
 	${INSTALL_SCRIPT} ${FILESDIR}/symlink-install-helper.sh.in ${CARGO_TARGET_DIR}/symlink-install-helper.sh
 	@${REINPLACE_CMD} -e 's|%%GREP%%|${GREP}|g' \
 		${CARGO_TARGET_DIR}/symlink-install-helper.sh
-	@${REINPLACE_CMD} -e 's|%%CARGO_TARGET_DIR%%|${CARGO_TARGET_DIR}/x86_64-unknown-freebsd/|g' \
+	@${REINPLACE_CMD} -e 's|%%CARGO_TARGET_DIR%%|${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/|g' \
 		${CARGO_TARGET_DIR}/symlink-install-helper.sh
 	@${REINPLACE_CMD} -e 's|%%SED%%|${SED}|g' \
 		${CARGO_TARGET_DIR}/symlink-install-helper.sh
@@ -42,7 +42,7 @@ post-build:
 		${CARGO_TARGET_DIR}/symlink-install-helper.sh
 
 do-install:
-	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/x86_64-unknown-freebsd/release/coreutils \
+	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/coreutils \
 		${PREFIX}/bin/${BINPREFIX}coreutils
 	${CARGO_TARGET_DIR}/symlink-install-helper.sh
 

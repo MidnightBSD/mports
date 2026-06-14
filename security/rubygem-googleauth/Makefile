@@ -10,6 +10,7 @@ WWW=		https://github.com/googleapis/google-auth-library-ruby
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday>=1.0<3.0:www/rubygem-faraday \
 		rubygem-google-cloud-env>=2.2<3:net/rubygem-google-cloud-env \
 		rubygem-google-logging-utils>=0.1<1:devel/rubygem-google-logging-utils \

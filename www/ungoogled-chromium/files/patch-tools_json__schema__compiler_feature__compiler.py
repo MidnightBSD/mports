@@ -6,6 +6,7 @@
                  'win': 'Feature::WIN_PLATFORM',
 +                'openbsd': 'Feature::LINUX_PLATFORM',
 +                'freebsd': 'Feature::LINUX_PLATFORM',
++                'midnightbsd': 'Feature::LINUX_PLATFORM',
              }
          }
      },

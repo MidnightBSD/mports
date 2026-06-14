@@ -1,6 +1,6 @@
 --- ./src/llvm-project/llvm/lib/Support/Unix/Path.inc.orig	2025-11-28 16:49:15.298802000 -0500
 +++ ./src/llvm-project/llvm/lib/Support/Unix/Path.inc	2025-11-28 16:49:35.347530000 -0500
-@@ -35,27 +35,8 @@
+@@ -35,27 +35,11 @@
  #include <pwd.h>
  #include <sys/file.h>
  
@@ -19,6 +19,9 @@
 -#include <machine/elf.h>
 -extern char **environ;
 -#endif
++#if __FreeBSD_version < 1300057
++extern char **environ;
++#endif
 -#elif defined(__DragonFly__)
 -#include <sys/mount.h>
 -#elif defined(__MVS__)

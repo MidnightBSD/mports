@@ -1,0 +1,63 @@
+bin/leonardo
+@sample etc/leonardo/api-keys.yaml.sample
+@sample etc/leonardo/leonardo.yaml.sample
+share/java/leonardo/lib/jackson-annotations-2.18.2.jar
+share/java/leonardo/lib/jackson-core-2.18.2.jar
+share/java/leonardo/lib/jackson-databind-2.18.2.jar
+share/java/leonardo/lib/jackson-dataformat-xml-2.18.2.jar
+share/java/leonardo/lib/jackson-dataformat-yaml-2.18.2.jar
+share/java/leonardo/lib/jackson-datatype-jsr310-2.18.2.jar
+share/java/leonardo/lib/jakarta.annotation-api-2.1.1.jar
+share/java/leonardo/lib/jakarta.inject-api-2.0.1.jar
+share/java/leonardo/lib/jakarta.validation-api-3.1.0.jar
+share/java/leonardo/lib/leonardo-admin-0.1.0.jar
+share/java/leonardo/lib/leonardo-api-0.1.0.jar
+share/java/leonardo/lib/leonardo-app-0.1.0.jar
+share/java/leonardo/lib/leonardo-auth-0.1.0.jar
+share/java/leonardo/lib/leonardo-core-0.1.0.jar
+share/java/leonardo/lib/leonardo-storage-0.1.0.jar
+share/java/leonardo/lib/leonardo-xml-0.1.0.jar
+share/java/leonardo/lib/leonardo-yaml-0.1.0.jar
+share/java/leonardo/lib/logback-classic-1.5.15.jar
+share/java/leonardo/lib/logback-core-1.5.15.jar
+share/java/leonardo/lib/micronaut-aop-4.7.14.jar
+share/java/leonardo/lib/micronaut-buffer-netty-4.7.14.jar
+share/java/leonardo/lib/micronaut-context-4.7.14.jar
+share/java/leonardo/lib/micronaut-context-propagation-4.7.14.jar
+share/java/leonardo/lib/micronaut-core-4.7.14.jar
+share/java/leonardo/lib/micronaut-core-reactive-4.7.14.jar
+share/java/leonardo/lib/micronaut-discovery-core-4.7.14.jar
+share/java/leonardo/lib/micronaut-http-4.7.14.jar
+share/java/leonardo/lib/micronaut-http-netty-4.7.14.jar
+share/java/leonardo/lib/micronaut-http-server-4.7.14.jar
+share/java/leonardo/lib/micronaut-http-server-netty-4.7.14.jar
+share/java/leonardo/lib/micronaut-inject-4.7.14.jar
+share/java/leonardo/lib/micronaut-jackson-core-4.7.14.jar
+share/java/leonardo/lib/micronaut-json-core-4.7.14.jar
+share/java/leonardo/lib/micronaut-management-4.7.14.jar
+share/java/leonardo/lib/micronaut-reactor-3.6.0.jar
+share/java/leonardo/lib/micronaut-retry-4.7.14.jar
+share/java/leonardo/lib/micronaut-router-4.7.14.jar
+share/java/leonardo/lib/micronaut-runtime-4.7.14.jar
+share/java/leonardo/lib/micronaut-serde-api-2.12.1.jar
+share/java/leonardo/lib/micronaut-serde-jackson-2.12.1.jar
+share/java/leonardo/lib/micronaut-serde-support-2.12.1.jar
+share/java/leonardo/lib/micronaut-validation-4.8.1.jar
+share/java/leonardo/lib/netty-buffer-4.1.118.Final.jar
+share/java/leonardo/lib/netty-codec-4.1.118.Final.jar
+share/java/leonardo/lib/netty-codec-http-4.1.118.Final.jar
+share/java/leonardo/lib/netty-codec-http2-4.1.118.Final.jar
+share/java/leonardo/lib/netty-common-4.1.118.Final.jar
+share/java/leonardo/lib/netty-handler-4.1.118.Final.jar
+share/java/leonardo/lib/netty-resolver-4.1.118.Final.jar
+share/java/leonardo/lib/netty-transport-4.1.118.Final.jar
+share/java/leonardo/lib/netty-transport-native-unix-common-4.1.118.Final.jar
+share/java/leonardo/lib/reactive-streams-1.0.4.jar
+share/java/leonardo/lib/reactor-core-3.6.10.jar
+share/java/leonardo/lib/slf4j-api-2.0.16.jar
+share/java/leonardo/lib/snakeyaml-2.3.jar
+share/java/leonardo/lib/stax2-api-4.2.2.jar
+share/java/leonardo/lib/woodstox-core-7.0.0.jar
+@dir share/java/leonardo/lib
+@dir share/java/leonardo
+@dir etc/leonardo

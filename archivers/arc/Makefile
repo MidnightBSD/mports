@@ -7,7 +7,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create & extract files from DOS .ARC files
 
 LICENSE=	gpl2
+
 WWW=		https://github.com/ani6al/arc
+
+USES=		cpe
+CPE_VENDOR=	arc_project
 
 CONFLICTS_INSTALL= arcanist-php[0-9][0-9]
 

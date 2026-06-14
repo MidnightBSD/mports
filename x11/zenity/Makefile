@@ -24,4 +24,7 @@ OPTIONS_DEFAULT=NOTIFY
 NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 NOTIFY_MESON_TRUE=	libnotify
 
+post-patch:
+	${REINPLACE_CMD} -e "s|perl.path()|'${PERL}'|" ${WRKSRC}/meson.build
+
 .include <bsd.port.mk>

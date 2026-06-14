@@ -1,6 +1,6 @@
 PORTNAME=	bindgraph
 PORTVERSION=	0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	http://www.linux.it/~md/software/
 
@@ -15,7 +15,8 @@ RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:databases/rrdtool	\
 		${SITE_PERL}/File/Tail.pm:devel/p5-File-Tail
 
 NO_BUILD=	yes
-USES=		perl5 tar:tgz
+USES=		perl5 shebangfix tar:tgz
+SHEBANG_FILES=	bindgraph.pl bindgraph.cgi
 
 CGIDIR?=	${PREFIX}/www/cgi-bin
 DATADIR?=	/var/db/bindgraph

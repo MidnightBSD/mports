@@ -1,6 +1,5 @@
 PORTNAME=	libgeotiff
-PORTVERSION=	1.7.1
-PORTREVISION=	1
+PORTVERSION=	1.7.4
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.osgeo.org/geotiff/libgeotiff/ \
 		FREEBSD_LOCAL/sunpoet
@@ -17,7 +16,7 @@ LIB_DEPENDS=	libjbig.so:graphics/jbigkit \
 		libproj.so:graphics/proj \
 		libtiff.so:graphics/tiff
 
-USES=		jpeg libtool
+USES=		jpeg libtool pathfix
 
 CONFIGURE_ARGS=	--datadir=${DATADIR} \
 		--disable-doxygen-chi \

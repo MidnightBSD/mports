@@ -1,0 +1,66 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Pull request number to review"
+        required: true
+        type: number
+      focus:
+        description: "Optional focus area (e.g. 'security', 'correctness', 'Makefile conventions')"
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  claude-review:
+    name: Claude Code Review
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Review (automatic)
+        if: github.event_name == 'pull_request'
+        uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          direct_prompt: |
+            You are reviewing a pull request for the MidnightBSD mports ports tree.
+
+            Review the diff for:
+            1. Correctness — Makefile syntax, correct DISTVERSION/DISTNAME, valid USES keywords, proper patch file naming (patch-* convention), correct LICENSE identifiers (e.g. bsd3, mit, Apache-2.0), no WWW line in pkg-descr.
+            2. PORTREVISION bumps — required when shared library versions change in dependencies.
+            3. pkg-plist completeness — staged files match plist entries; @dir for new directories; @sample for .sample files; fc-cache postexec for x11-fonts ports.
+            4. Security — no embedded credentials, safe fetch URLs, no command injection in scripts.
+            5. Compatibility — patches must not drop ARM, RISC-V, MIPS, or WebAssembly support; no sparc64/powerpc-only code added.
+
+            Post inline comments on specific lines where issues are found. Summarize overall verdict at the end.
+
+      - name: Claude Code Review (manual)
+        if: github.event_name == 'workflow_dispatch'
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          pr_number: ${{ github.event.inputs.pr_number }}
+          direct_prompt: |
+            You are reviewing a pull request for the MidnightBSD mports ports tree.
+            ${{ github.event.inputs.focus != '' && format('Focus especially on: {0}', github.event.inputs.focus) || '' }}
+
+            Review the diff for:
+            1. Correctness — Makefile syntax, correct DISTVERSION/DISTNAME, valid USES keywords, proper patch file naming (patch-* convention), correct LICENSE identifiers (e.g. bsd3, mit, Apache-2.0), no WWW line in pkg-descr.
+            2. PORTREVISION bumps — required when shared library versions change in dependencies.
+            3. pkg-plist completeness — staged files match plist entries; @dir for new directories; @sample for .sample files; fc-cache postexec for x11-fonts ports.
+            4. Security — no embedded credentials, safe fetch URLs, no command injection in scripts.
+            5. Compatibility — patches must not drop ARM, RISC-V, MIPS, or WebAssembly support; no sparc64/powerpc-only code added.
+
+            Post inline comments on specific lines where issues are found. Summarize overall verdict at the end.

@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	18.1.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/
 PKGNAMESUFFIX=	${LLVM_SUFFIX}
@@ -517,9 +517,6 @@ post-patch-LLD-on:
 	    ${WRKSRC}/lld/docs/conf.py
 
 post-install:
-.for CRT_ARCH in ${COMPILER_RT_ARCHS}
-	-cd ${PREFIX}/${_CRTLIBDIR} && ${LN} -sf ${CRT_ARCH}-portbld-${FTARGET} ${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}
-.endfor
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
 	    ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
 .for command in ${COMMANDS:C/^/XXXX/1:NXXXX*}
@@ -565,6 +562,14 @@ post-install-CLANG-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/toolchains/
 	${INSTALL_DATA} ${WRKDIR}/xtoolchain.mk \
 	    ${FAKE_DESTDIR}${PREFIX}/share/toolchains/llvm${LLVM_SUFFIX}.mk
+.for CRT_ARCH in ${COMPILER_RT_ARCHS}
+	-${RM} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	${MKDIR} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	-${CP} -R "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${FTARGET}/"* "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}/"
+.endfor
+	-${RM} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	-${MKDIR} "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}"
+	-${CP} -R "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${FTARGET}/"* "${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}/${ARCH}-portbld-${OPSYS:tl}${OSREL}/"
 
 post-install-EXTRAS-on:
 	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/clang-tidy/misc/ConfusableTable

@@ -97,7 +97,7 @@ post-patch:
 	${REINPLACE_CMD} \
 		-e '/^INSTALL_PACKAGE_TARGETS/d' \
 		-e '/^CONFIG_INSTALL_DIR/s|= .*$$|= $${SCRIPT_INSTALL_DIR}|' \
-		-e 's|$$(LIB_INSTALL_DIR)/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
+		-e 's|$$(LIB_INSTALL_DIR)/pkgconfig|$$(INSTALL_ROOT)${PREFIX}/libdata/pkgconfig|g' \
 		-e 's|pkgconfig/tcl.pc|pkgconfig/tcl${SHORT_TCL_VER}.pc|' \
 		-e 's|strip -x|strip --strip-unneeded|' \
 		${WRKSRC}/Makefile.in
@@ -112,6 +112,5 @@ post-configure:
 	${REINPLACE_CMD} \
 		-e 's,-DNO_MEMMOVE=1,,' -e 's,-DNO_STRING_H=1,,' \
 		-e 's,^COMPAT_OBJS.*,,' ${WRKSRC}/Makefile
-
 
 .include <bsd.port.mk>

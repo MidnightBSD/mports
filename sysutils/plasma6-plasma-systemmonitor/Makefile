@@ -5,7 +5,7 @@ CATEGORIES=	sysutils kde kde-plasma
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface for monitoring system sensors, process information and other system resources
 
-USES=		cmake gettext gl kde:6 python:run qt:6 shebangfix tar:xz xorg
+USES=		cmake desktop-file-utils gettext gl kde:6 python:run qt:6 shebangfix tar:xz xorg
 USE_KDE=	attica config coreaddons dbusaddons globalaccel i18n \
 		itemmodels kio kirigami-addons kcmutils kquickcharts libksysguard \
 		newstuff package service windowsystem \

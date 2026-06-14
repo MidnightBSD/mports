@@ -12,7 +12,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-install-root="${FAKE_DESTDIR}"
-USES=		gmake
+USES=		gmake cpe
+CPE_VENDOR=	fossies
 
 PORTDATA=	*
 

@@ -1,0 +1,24 @@
+PORTNAME=	cvss-suite
+PORTVERSION=	4.1.2
+CATEGORIES=	security rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Ruby binding to process CVSS entries
+WWW=		https://github.com/0llirocks/cvss-suite
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+RUN_DEPENDS=	bash:shells/bash \
+		rubygem-bigdecimal-gitlab>=3.1<4:math/rubygem-bigdecimal-gitlab
+
+BUILD_DEPENDS=	rubygem-bigdecimal-gitlab>=3.1<4:math/rubygem-bigdecimal-gitlab
+
+USES=		gem shebangfix
+
+NO_ARCH=	yes
+
+SHEBANG_FILES=	bin/setup
+
+.include <bsd.port.mk>

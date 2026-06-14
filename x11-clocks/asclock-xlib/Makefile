@@ -4,7 +4,7 @@ CATEGORIES=	x11-clocks
 MASTER_SITES=	http://gentoo.osuosl.org/distfiles/
 DISTFILES=	asclock-${PORTVERSION}.tar.gz
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	New flavor of asclock
 
 LICENSE=	gpl2

@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Private YouTube Client (Linux version)
 WWW=		https://freetubeapp.io/
 
-LICENSE=	agpl3 bsd3 lgpl2.1 mit MPL11
+LICENSE=	agpl bsd3 lgpl2.1 mit MPL11
 LICENSE_COMB=	multi
 
 ONLY_FOR_ARCHS=	amd64
@@ -34,18 +34,16 @@ SUB_LIST=	LINUXBASE=${LINUXBASE}
 
 NO_WRKSUBDIR=	yes
 
-STRIP_CMD=	${LINUXBASE}/usr/bin/strip
-
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	(cd ${WRKSRC} && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
+		${COPYTREE_SHARE} . ${DATADIR} \
 			"-not ( -regex \./LICENSE.* -or -regex \./icons.* )")
 	(cd ${WRKSRC}/icons && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${LOCALBASE}/share/icons)
-	${INSTALL_DATA} ${WRKDIR}/${PKGBASE}.desktop ${STAGEDIR}${DESKTOPDIR}/
-	${INSTALL_SCRIPT} ${WRKDIR}/${PKGBASE} ${STAGEDIR}${LOCALBASE}/bin/${PKGBASE}
-	(cd ${STAGEDIR}${DATADIR} && \
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${LOCALBASE}/share/icons)
+	${INSTALL_DATA} ${WRKDIR}/${PKGBASE}.desktop ${DESKTOPDIR}/
+	${INSTALL_SCRIPT} ${WRKDIR}/${PKGBASE} ${FAKE_DESTDIR}${LOCALBASE}/bin/${PKGBASE}
+	(cd ${DATADIR} && \
 		${STRIP_CMD} chrome-sandbox libvulkan.so.1)
 
 .include <bsd.port.mk>

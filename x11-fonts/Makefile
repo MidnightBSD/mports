@@ -51,6 +51,7 @@
     SUBDIR += fantasque-sans-mono
     SUBDIR += fanwood
     SUBDIR += farsifonts
+    SUBDIR += fcft
     SUBDIR += fifteen
     SUBDIR += fira
     SUBDIR += firacode
@@ -165,6 +166,7 @@
     SUBDIR += mourier
     SUBDIR += moveable-type-fonts
     SUBDIR += nerd-fonts
+    SUBDIR += nerd-fonts-symbols
     SUBDIR += nexfontsel
     SUBDIR += noto
     SUBDIR += noto-basic

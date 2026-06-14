@@ -1,6 +1,5 @@
 PORTNAME=	libimagequant
-PORTVERSION=	4.2.1
-PORTREVISION=	1
+PORTVERSION=	4.4.1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,10 +18,11 @@ GH_ACCOUNT=	ImageOptim
 CARGO_BUILD_ARGS=	--package imagequant-sys
 CARGO_INSTALL_ARGS:=	${CARGO_BUILD_ARGS}
 PLIST_FILES=	include/libimagequant.h \
-		lib/libimagequant.a \
-		lib/libimagequant.so \
-		lib/libimagequant.so.0.0.0 \
-		libdata/pkgconfig/imagequant.pc
+	lib/libimagequant.a \
+	lib/libimagequant.so \
+	lib/libimagequant.so.0.4 \
+	lib/libimagequant.so.0.4.1 \
+	libdata/pkgconfig/imagequant.pc
 
 do-build:
 	@${CARGO_CARGO_RUN} cbuild \

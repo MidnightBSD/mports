@@ -1,13 +1,9 @@
 PORTNAME=	znc
-PORTVERSION=	1.8.2
-PORTREVISION=	1
+PORTVERSION=	1.10.1
 CATEGORIES=	irc
 MASTER_SITES=	https://znc.in/releases/ \
 		https://znc.in/releases/archive/
 
-# Fix build with libressl
-PATCH_SITES=	https://github.com/znc/znc/commit/
-PATCHFILES=	dcb5f3df82fcfec48aab356252067dc897fb98cf.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced IRC bouncer
@@ -16,7 +12,7 @@ WWW=		https://wiki.znc.in/ZNC
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler:c++11-lib cpe cmake:run iconv:wchar_t pathfix pkgconfig python:3.5+
+USES=		compiler:c++17-lang cpe cmake:run iconv:wchar_t pathfix pkgconfig python:3.5+
 
 USE_RC_SUBR=	znc
 
@@ -67,6 +63,10 @@ TCL_USES=	tcl
 post-patch:
 	@${REINPLACE_CMD} -e 's|python3|python${PYTHON_VER}|g' \
 		${WRKSRC}/znc-buildmod.cmake.in
+	@${REINPLACE_CMD} -e 's|set(CMAKE_CXX_STANDARD 11)|set(CMAKE_CXX_STANDARD 17)|' \
+		${WRKSRC}/CMakeLists.txt
+
+# codegen.pl Python3 fix is applied via patch-modules_modpython_codegen.pl
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

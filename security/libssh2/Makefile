@@ -1,5 +1,5 @@
 PORTNAME=	libssh2
-PORTVERSION=	1.11.0
+PORTVERSION=	1.11.1
 PORTEPOCH=	3
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.libssh2.org/download/ \
@@ -13,7 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		compiler:c11 libtool pathfix
+USES=		compiler:c11 libtool pathfix cpe
+CPE_VENDOR=	libssh2
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	GCRYPT TRACE ZLIB

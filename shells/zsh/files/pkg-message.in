@@ -1,6 +1,6 @@
 [
-{
-	message: <<EOD
+{ type: install
+  message: <<EOM
 ==========================================================
 
 By default, zsh looks for system-wide defaults in
@@ -11,7 +11,6 @@ either move them to %%PREFIX%%/etc or rebuild zsh with the
 ETCDIR option enabled.
 
 ==========================================================
-EOD,
-	type : install
+EOM
 }
 ]

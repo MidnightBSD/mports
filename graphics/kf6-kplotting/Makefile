@@ -3,7 +3,7 @@ DISTVERSION=	${KDE_FRAMEWORKS_VERSION}
 CATEGORIES=	graphics kde kde-frameworks
 
 COMMENT=	Provides a virtual base class for easy data-plotting
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 
 USES=		cmake gl kde:6 kfhack qt:6 tar:xz
 USE_GL=		gl opengl

@@ -1,5 +1,5 @@
 PORTNAME=	mutt
-DISTVERSION=	2.2.13
+DISTVERSION=	2.3.2
 CATEGORIES+=	mail
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
 		https://bitbucket.org/mutt/mutt/downloads/ \
@@ -219,8 +219,10 @@ pre-configure::
 
 # Undo some dist. installed files
 post-fake::
-	@${MV} ${FAKE_DESTDIR}/${LOCALBASE}/etc/Muttrc.dist \
-	    	${FAKE_DESTDIR}/${LOCALBASE}/etc/Muttrc.sample
+	@if [ -f ${FAKE_DESTDIR}/${LOCALBASE}/etc/Muttrc.dist ]; then \
+		${MV} ${FAKE_DESTDIR}/${LOCALBASE}/etc/Muttrc.dist \
+			${FAKE_DESTDIR}/${LOCALBASE}/etc/Muttrc.sample; \
+	fi
 	@${RM} ${FAKE_DESTDIR}/${LOCALBASE}/etc/mime.types*
 
 .include <bsd.port.mk>

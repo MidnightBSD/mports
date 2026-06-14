@@ -8,6 +8,7 @@
     SUBDIR += fhourstones
     SUBDIR += fio
     SUBDIR += flops
+    SUBDIR += geekbench-dev
     SUBDIR += gtkperf
     SUBDIR += hey
     SUBDIR += httperf
@@ -24,6 +25,7 @@
     SUBDIR += netperf
     SUBDIR += netpipe
     SUBDIR += nttcp
+    SUBDIR += p5-Dumbbench
     SUBDIR += pathrate
     SUBDIR += perftest
     SUBDIR += phoronix-test-suite

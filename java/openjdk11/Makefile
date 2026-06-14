@@ -1,7 +1,7 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
@@ -92,9 +92,6 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--disable-hotspot-gtest \
 		--with-jvm-features=shenandoahgc \
 		--with-alsa=${LOCALBASE} \
-		--with-extra-cflags="${CFLAGS}" \
-		--with-extra-cxxflags="${CXXFLAGS}" \
-		--with-extra-ldflags="${LDFLAGS}" \
 		--with-fontconfig=${LOCALBASE} \
 		--with-freetype=system \
 		--with-freetype-include=${LOCALBASE}/include/freetype2 \
@@ -112,12 +109,17 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--with-version-string=${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION} \
 		--with-native-debug-symbols=none \
 		--with-debug-level=release \
+		--disable-precompiled-headers \
 		--with-vendor-name="OpenJDK BSD Porting Team" \
 		--with-vendor-url="https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/" \
 		--with-vendor-bug-url="${JDK_BUG_URL}" \
 		--with-vendor-vm-bug-url="${JDK_BUG_URL}"
 
 JAVAVMS_COMMENT=	OpenJDK${JDK_MAJOR_VERSION}
+
+CONFIGURE_ARGS+=	--with-extra-cflags="${CFLAGS}" \
+			--with-extra-cxxflags="${CXXFLAGS}" \
+			--with-extra-ldflags="${LDFLAGS}"
 
 .if defined(BUILD_JRE)
 ALL_TARGET=		legacy-images
@@ -169,17 +171,13 @@ USE_GCC=	yes
 LDFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT} -L${LOCALBASE}/lib/gcc${GCC_DEFAULT}
 CFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}
 CXXFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}
-CONFIGURE_ARGS+=--disable-precompiled-headers
 .else
 # it is up to upstream project to fix these or not
 CFLAGS+=	-Wno-deprecated-builtins -Wno-inline-asm -Wno-unknown-attributes
+CFLAGS+=	-fno-delete-null-pointer-checks -Wno-register
+CXXFLAGS+=	-fno-delete-null-pointer-checks -Wno-register
+LDFLAGS+=	-Wl,--undefined-version -lthread_db
 MAKE_ENV+=	USE_CLANG=true
-.if ${ARCH:Mpowerpc64*}
-LLVM_VER=	12
-BUILD_DEPENDS+=	clang${LLVM_VER}:devel/llvm${LLVM_VER}
-CC=		${LOCALBASE}/bin/clang${LLVM_VER}
-CXX=		${LOCALBASE}/bin/clang++${LLVM_VER}
-.endif
 .endif
 
 .if ${ARCH} == aarch64 || ${ARCH:Marmv*}
@@ -231,7 +229,9 @@ do-install:
 	@cd ${INSTALLDIR} && \
 		${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \;
 	@${CHMOD} ${BINMODE} ${INSTALLDIR}/lib/jspawnhelper
-	@${ECHO} "@javavm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
+	@${ECHO} "@javavm ${PKGBASE}/bin/java" >> ${TMPPLIST}
+	@-${FIND} ${INSTALLDIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
+	@-${FIND} ${INSTALLDIR} -type f -perm +111 -exec ${STRIP_CMD} {} +
 	@${FIND} ${INSTALLDIR} -not -type d | ${SORT} | \
 		${SED} -e 's|^${PREFIX}/||' >> ${TMPPLIST}
 

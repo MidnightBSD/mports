@@ -10,6 +10,8 @@ COMMENT=	Base set of packages needed in Linux mode (Linux CentOS ${LINUX_DIST_VE
 
 LICENSE=	agg
 
+CONFLICTS=	linux_base-rl9-*
+
 SKIP_FAKE_ALL=	yes
 
 USES=		linux:c7

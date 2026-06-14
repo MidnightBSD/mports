@@ -1,10 +1,11 @@
 PORTNAME=	gsl
-PORTVERSION=	2.5
+PORTVERSION=	2.8
 CATEGORIES=	math
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GNU Scientific Library - mathematical libs
+COMMENT=	GNU Scientific Library - mathematical libs
+WWW=		https://www.gnu.org/software/gsl/
 
 LICENSE=	gpl3
 

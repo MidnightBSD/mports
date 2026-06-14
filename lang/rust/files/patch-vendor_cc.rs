@@ -86,19 +86,6 @@ https://reviews.llvm.org/D77776
                  (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
                  (false, false, false, false, false) => {
                      cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
---- vendor/cc-1.2.26/src/tool.rs.orig	2025-04-01 18:22:03 UTC
-+++ vendor/cc-1.2.26/src/tool.rs
-@@ -141,9 +141,7 @@ impl Tool {
-
-             match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
-                 (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
--                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
--                    zig_cc: is_zig_cc(path, cargo_output),
--                }),
-+                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Gnu),
-                 (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
-                 (false, false, false, false, false) => {
-                     cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
 --- vendor/cc-1.2.28/src/tool.rs.orig	2025-10-28 12:34:00 UTC
 +++ vendor/cc-1.2.28/src/tool.rs
 @@ -141,9 +141,7 @@ impl Tool {
@@ -112,9 +99,9 @@ https://reviews.llvm.org/D77776
                  (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
                  (false, false, false, false, false) => {
                      cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
---- vendor/cc-1.2.33/src/tool.rs.orig	2025-10-28 12:34:00 UTC
-+++ vendor/cc-1.2.33/src/tool.rs
-@@ -141,9 +141,7 @@ impl Tool {
+--- vendor/cc-1.2.38/src/tool.rs.orig	2025-11-05 21:59:07 UTC
++++ vendor/cc-1.2.38/src/tool.rs
+@@ -158,9 +158,7 @@ impl Tool {
 
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
@@ -125,8 +112,21 @@ https://reviews.llvm.org/D77776
                  (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
                  (false, false, false, false, false) => {
                      cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
---- vendor/cc-1.2.35/src/tool.rs.orig	2025-10-28 12:34:00 UTC
-+++ vendor/cc-1.2.35/src/tool.rs
+--- vendor/cc-1.2.45/src/tool.rs.orig	2026-03-17 17:56:14 UTC
++++ vendor/cc-1.2.45/src/tool.rs
+@@ -159,9 +159,7 @@ impl Tool {
+
+             match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
+                 (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
+-                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Clang {
+-                    zig_cc: is_zig_cc(path, cargo_output),
+-                }),
++                (true, _, _, _, false) | (_, _, _, true, false) => Ok(ToolFamily::Gnu),
+                 (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
+                 (false, false, false, false, false) => {
+                     cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
+--- vendor/cc-1.2.50/src/tool.rs.orig	2026-04-22 17:39:24 UTC
++++ vendor/cc-1.2.50/src/tool.rs
 @@ -158,9 +158,7 @@ impl Tool {
 
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {

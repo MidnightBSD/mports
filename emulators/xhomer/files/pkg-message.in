@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 *****************************************************************************
 Please see %%DOCSDIR%%/README for instructions.  Copy
 the example config file from %%PREFIX%%/share/examples/xhomer/xhomer.cfg
@@ -5,3 +8,6 @@ to your home directory as '.xhomerrc' and set 'rd_dir' line to point
 to the directory containing disk images downloaded from
 http://xhomer.isani.org/xhomer/.
 *****************************************************************************
+EOM
+}
+]

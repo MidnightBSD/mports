@@ -1,8 +1,7 @@
 # Created by: Sergei Vyshenski <svysh.fbsd@gmail.com>
 
 PORTNAME=	Opcodes
-PORTVERSION=	0.14
-PORTREVISION=	1
+PORTVERSION=	0.16
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:RURBAN

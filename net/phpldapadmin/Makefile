@@ -31,7 +31,6 @@ CFGDIR=		config
 CFGFILE=	config.php
 
 PLIST=		${WRKDIR}/plist
-PLIST_FILES=	'@sample(,${GROUPS},640) ${WWWDIR_REL}/config/config.php.example ${WWWDIR_REL}/config/config.php'
 
 SUB_LIST+=	PKGNAME=${PKGNAME}
 SUB_FILES+=	pkg-message
@@ -42,8 +41,8 @@ SUB_FILES+=	pkg-message
 
 post-patch:
 	cd ${WRKSRC} ;							    \
-	${FIND} . ! -type d ! -name ${CFGFILE}.example ! -name .cvsignore   \
-	    ! -name .gitignore ! -name *.orig | ${SORT} |		    \
+	${FIND} . ! -type d ! -name .cvsignore ! -name .gitignore	    \
+	    ! -name *.orig | ${SORT} |				    \
 	    ${SED} -e "s!^\.!${WWWDIR_REL}!"			>${PLIST} ;
 
 do-install:

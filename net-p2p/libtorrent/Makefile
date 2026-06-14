@@ -3,7 +3,7 @@ DISTVERSION=	0.16.5
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/rakshasa/rtorrent/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	eduardo@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BitTorrent Library written in C++
 WWW=		https://github.com/rakshasa/libtorrent
 

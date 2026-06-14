@@ -29,7 +29,7 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc.a:devel/wasi-libc@${LLVM_VERSION} \
 		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
 
-USES+=		perl
+USES+=		perl5
 USE_GECKO=	gecko
 USE_GITHUB=	yes
 GH_ACCOUNT=	BrowserWorks
@@ -70,9 +70,9 @@ MOZ_OPTIONS=	--enable-application=browser \
 
 .include "${.CURDIR}/Makefile.options"
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
-.if ${ARCH} == i386 && ${MACHINE_CPU:Msse2}
+.if ${ARCH} == i386 && !empty(MACHINE_CPU:Msse2)
 # is not enabled on i386 by default
 # Fix for error: always_inline function '_mm_setzero_si64' requires target feature 'sse2'
 CFLAGS_i386+=	-msse2
@@ -92,8 +92,8 @@ post-patch:
 		${WRKSRC}/build/moz.configure/toolchain.configure
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/${MOZILLA_EXEC_NAME}.desktop ${STAGEDIR}${DESKTOPDIR}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
-	${LN} -sf ${FIREFOX_ICON_SRC} ${STAGEDIR}${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+	${INSTALL_DATA} ${WRKDIR}/${MOZILLA_EXEC_NAME}.desktop ${DESKTOPDIR}
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

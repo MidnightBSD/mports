@@ -297,7 +297,7 @@ do-install:
 		src=$$(${BASENAME} $${dst}); \
 		case $${dst} in \
 			/*) dst=${STAGEDIR}$${dst}; ${MKDIR} $$(${DIRNAME} $${dst}) ;; \
-			 *) dst=${STAGEDIR}${PREFIX}/bin/$${src} ;; \
+			 *) dst=${PREFIX}/bin/$${src} ;; \
 		esac; \
 		${ECHO_MSG} "===>  Installing $${src} as $${dst}"; \
 		${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/$${src} $${dst}; \

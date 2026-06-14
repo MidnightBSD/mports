@@ -23,19 +23,19 @@ MAN5FILES=	metazone
 
 do-install:
 .for bin in ${EXEFILES}
-		${INSTALL_PROGRAM} ${WRKSRC}/${bin} ${STAGEDIR}${PREFIX}/bin
+		${INSTALL_PROGRAM} ${WRKSRC}/${bin} ${PREFIX}/bin
 .endfor
 
 .for bin in ${BINFILES}
-		${INSTALL_SCRIPT} ${WRKSRC}/${bin} ${STAGEDIR}${PREFIX}/bin
+		${INSTALL_SCRIPT} ${WRKSRC}/${bin} ${PREFIX}/bin
 .endfor
 
 .for man in ${MAN1FILES}
-		${INSTALL_MAN} ${WRKSRC}/${man}.1 ${STAGEDIR}${PREFIX}/share/man/man1
+		${INSTALL_MAN} ${WRKSRC}/${man}.1 ${PREFIX}/share/man/man1
 .endfor
 
 .for man in ${MAN5FILES}
-		${INSTALL_MAN} ${WRKSRC}/${man}.5 ${STAGEDIR}${PREFIX}/share/man/man5
+		${INSTALL_MAN} ${WRKSRC}/${man}.5 ${PREFIX}/share/man/man5
 .endfor
 
 .include <bsd.port.mk>

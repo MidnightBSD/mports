@@ -1,0 +1,13 @@
+    try to enable gamepad interface on FreeBSD
+
+--- hal/moz.build.orig	2025-06-01 18:00:00 UTC
++++ hal/moz.build
+@@ -22,7 +22,7 @@ EXPORTS.mozilla += [
+     "HalWakeLockInformation.h",
+ ]
+
+-if CONFIG["OS_TARGET"] == "Linux":
++if CONFIG["OS_TARGET"] == "Linux" or CONFIG["OS_TARGET"] == "FreeBSD":
+     EXPORTS.mozilla += [
+         "linux/UdevLib.h",
+     ]

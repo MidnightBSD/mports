@@ -2,7 +2,7 @@ PORTNAME=	Horde_Auth
 PORTVERSION=	2.2.2
 CATEGORIES=	security www pear
 
-MAINTAINER=	horde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde Authentication API
 WWW=		https://pear.horde.org
 

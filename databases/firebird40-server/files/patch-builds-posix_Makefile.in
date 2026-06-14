@@ -1,5 +1,14 @@
 --- builds/posix/Makefile.in	2021-05-29 10:05:05.000000000 -0500
 +++ builds/posix/Makefile.in	2021-06-25 22:10:51.733207000 -0500
+@@ -183,7 +183,7 @@
+ endif
+ 
+ ifeq ($(RE2_BUILD_FLG),Y)
+-	CXXFLAGS="-O3 -g -fPIC" $(MAKE) -C $(ROOT)/extern/re2
++	CXXFLAGS="$(CXXFLAGS) -O3 -g -fPIC" $(MAKE) -C $(ROOT)/extern/re2
+ 	ln -sf $(ROOT)/extern/re2/obj/libre2.a $(LIB)
+ endif
+ 
 @@ -277,11 +277,13 @@
  	$(MAKE) boot
  	$(MAKE) yvalve

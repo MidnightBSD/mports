@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 *************************************************************************
 
 The custom rulesets are installed in %%DATADIR%%
@@ -13,3 +16,6 @@ Before running these rules please do the following:
    determine if the scoring is right for you.
 
 *************************************************************************
+EOM
+}
+]

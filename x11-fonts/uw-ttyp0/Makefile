@@ -1,6 +1,5 @@
 PORTNAME=	uw-ttyp0
-PORTVERSION=	1.3
-PORTREVISION=	2
+PORTVERSION=	2.1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/
 
@@ -14,6 +13,7 @@ LICENSE_FILE_TTYP0=	${WRKSRC}/LICENSE
 LICENSE_PERMS_TTYP0=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	bdftopcf:x11-fonts/bdftopcf \
+		fonttosfnt:x11-fonts/fonttosfnt \
 		mkfontscale:x11-fonts/mkfontscale
 
 HAS_CONFIGURE=	yes

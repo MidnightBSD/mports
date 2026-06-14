@@ -8,6 +8,7 @@ COMMENT=	Provide reliable messaging using the stomp protocol
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-daemons>=1.0.2:devel/rubygem-daemons \
 		rubygem-eventmachine>=0.7.2:devel/rubygem-eventmachine \
 		rubygem-hoe>=1.3.0:devel/rubygem-hoe

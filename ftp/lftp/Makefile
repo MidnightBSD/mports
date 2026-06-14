@@ -1,6 +1,5 @@
 PORTNAME=	lftp
-PORTVERSION=	4.9.2
-PORTREVISION=	1
+PORTVERSION=	4.9.3
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.cs.tu-berlin.de/pub/net/ftp/lftp/ \
 		http://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/ \

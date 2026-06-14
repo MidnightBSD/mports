@@ -10,6 +10,7 @@ WWW=		https://github.com/winton/captcha
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-rmagick>=2.9.2:graphics/rubygem-rmagick
 
 USES=		gem

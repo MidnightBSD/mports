@@ -2,7 +2,7 @@ PORTNAME=	opencl
 PORTVERSION=	3.0.12
 CATEGORIES=	devel
 
-MAINTAINER=	poprts@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Computing Language (OpenCL) specifications V3.0 (header files)
 
 LICENSE=	Apache-2.0

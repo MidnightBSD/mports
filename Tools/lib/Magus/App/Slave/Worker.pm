@@ -3,6 +3,15 @@ package Magus::App::Slave::Worker;
 use strict;
 use warnings;
 
+use File::Basename qw(dirname);
+use File::Path qw(mkpath);
+use IO::Select;
+use IPC::Open3 qw(open3);
+use Symbol qw(gensym);
+use Text::ParseWords qw(shellwords);
+use Mport::Globals qw($MAKE);
+use Magus::Run ();
+
 sub run {
   my ($class, %args) = @_;
   
@@ -14,13 +23,13 @@ sub run {
   
   eval {
     $self->{port} = $self->{lock}->port;
-    $self->log->info("Starting test run for $self->{port}");
-    $self->{port}->note_event(info => "Test Started");
-    $self->prep_chroot();
-    $self->inject_depends();
-    $self->inject_distfiles();
-    $self->run_test();
-    $self->{port}->note_event($self->{port}->status => "Test complete.");
+    $self->{phase} = $self->{lock}->phase || 'build';
+    $self->log->info("Starting $self->{phase} phase for $self->{port}");
+    $self->{port}->set_phase_status($self->{phase}, 'running');
+    $self->{port}->note_event(info => ucfirst($self->{phase}) . " Started", $self->{phase}, 'PhaseStarted');
+    $self->run_phase();
+    $self->{port}->refresh;
+    $self->{port}->note_event($self->{port}->phase_status($self->{phase}) => ucfirst($self->{phase}) . " complete.", $self->{phase}, 'PhaseComplete');
   }; 
   
   if ($@) {
@@ -35,8 +44,14 @@ sub run {
 	my $error = $@;
 	eval { 
 	  my $port = $self->port;
-	  $self->log->err("Exception thrown building $port: $error");
-	  $port->set_result_internal("Exception thrown: $error");
+	  my $phase = $self->{phase} || 'build';
+	  $self->log->err("Exception thrown during $phase phase for $port: $error");
+	  if ($phase eq 'build') {
+	    $port->set_result_internal("Exception thrown: $error");
+	  } else {
+	    $port->set_phase_status($phase, 'internal');
+	    $port->note_event(internal => "Exception thrown: $error", $phase, 'Exception');
+	  }
         };
         
         if ($@ && $@ =~ m/DBI/) {
@@ -44,6 +59,51 @@ sub run {
           exit 6;
         }
   }
+}
+
+sub run_phase {
+  my ($self) = @_;
+
+  my $phase = $self->{phase};
+
+  if ($phase eq 'scan') {
+    $self->run_scan_phase();
+    return;
+  }
+
+  $self->prep_chroot();
+
+  if ($phase eq 'build') {
+    $self->inject_depends();
+    $self->inject_distfiles();
+    $self->run_make_phase('build');
+    $self->{port}->refresh;
+    if ($self->{port}->status eq 'pass' || $self->{port}->status eq 'warn') {
+      $self->upload_pkgfile();
+      $self->upload_distfiles();
+    }
+    return;
+  }
+
+  if ($phase eq 'fetch') {
+    $self->inject_distfiles();
+    $self->run_make_phase('fetch');
+    $self->{port}->refresh;
+    if ($self->{port}->phase_status('fetch') eq 'pass' || $self->{port}->phase_status('fetch') eq 'warn') {
+      $self->upload_distfiles();
+    }
+    return;
+  }
+
+  if ($phase eq 'test') {
+    $self->inject_depends();
+    $self->inject_pkgfile($self->{port});
+    $self->inject_distfiles();
+    $self->run_make_phase('test');
+    return;
+  }
+
+  die "Unknown Magus phase: $phase\n";
 }
 
 sub prep_chroot {
@@ -80,14 +140,14 @@ sub inject_pkgfile {
   my $run  = $port->run->id;
   my $dest = join('/', $chroot->root, $chroot->packages, 'All');
   
-  my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$run/$file $dest";
+  my $src = "$Magus::Config{'PkgfilesRoot'}/$run/$file";
   
   $self->log->debug("downloading: $run/$file");
   
-  my $out = `$cmd 2>&1`;
+  my ($exit, $out) = $self->run_command('/usr/bin/scp', $src, $dest);
   
-  if ($? != 0) {
-    die "$cmd returned non-zero: $out\n";
+  if ($exit != 0) {
+    die "scp returned non-zero: $out\n";
   }
 }
 
@@ -99,23 +159,73 @@ sub inject_distfiles {
   my $run  = $port->run->id;
 
   foreach my $distfile ($port->distfiles) {
-    my $file = $distfile->filename;
-    my $dest = join('/', $chroot->root, $chroot->distfiles);
-    my $cmd = "/usr/bin/scp $Magus::Config{'DistfilesRoot'}/$run/$file $dest";
+    my $file = $self->distfile_cache_path($distfile->filename) or next;
+    my $dest = join('/', $chroot->root, $chroot->distfiles, $file);
+    if (-e $dest) {
+      $self->log->debug("download skipped, already present: $run/$file");
+      next;
+    }
+    $self->ensure_parent_dir($dest);
+
+    my $src = "$Magus::Config{'DistfilesRoot'}/$run/$file";
 
     $self->log->debug("downloading: $run/$file");
 
-    my $out = `$cmd 2>&1`;
+    my ($exit, $out) = $self->run_command('/usr/bin/scp', $src, $dest);
 
-    if ($? != 0) {
+    if ($exit != 0) {
       $self->log->debug("download failed: $run/$file $out");
+      $self->inject_previous_run_distfile($file, $dest);
     }
   }
 }
 
+sub inject_previous_run_distfile {
+  my ($self, $file, $dest) = @_;
 
-sub run_test {
+  my $previous_run = $self->previous_run or return;
+  my $run = $previous_run->id;
+  my $src = "$Magus::Config{'DistfilesRoot'}/$run/$file";
+
+  $self->log->debug("downloading from previous run: $run/$file");
+
+  my ($exit, $out) = $self->run_command('/usr/bin/scp', $src, $dest);
+
+  if ($exit != 0) {
+    $self->log->debug("previous run download failed: $run/$file $out");
+  } else {
+    $self->log->debug("downloaded from previous run: $run/$file");
+  }
+}
+
+sub previous_run {
   my ($self) = @_;
+
+  return $self->{previous_run} if exists $self->{previous_run};
+
+  my $run = $self->{port}->run;
+  my $run_id = Magus::Run->db_Main->selectrow_array(
+    q{
+      SELECT id
+        FROM runs
+       WHERE arch = ?
+         AND osversion = ?
+         AND id < ?
+       ORDER BY id DESC
+       LIMIT 1
+    },
+    undef,
+    $run->arch,
+    $run->osversion,
+    $run->id,
+  );
+
+  return $self->{previous_run} = $run_id ? Magus::Run->retrieve($run_id) : undef;
+}
+
+
+sub run_make_phase {
+  my ($self, $phase) = @_;
   
   my $port = $self->{port};
   my $chroot = $self->{chroot};
@@ -140,11 +250,11 @@ sub run_test {
     
       my $test = Magus::PortTest->new(port => $port, chroot => $chroot);
 
-      $self->log->info("Building $port");
+      $self->log->info("Running $phase phase for $port");
 
-      my $results = $test->run;
+      my $results = $test->run($phase);
   
-      $self->insert_results($results);
+      $self->insert_results($phase, $results);
     };
     
     if ($@) {
@@ -153,8 +263,15 @@ sub run_test {
       }
       # make sure we get to that exit() down there. 
       my $error = $@;
-      $self->log->err("Exception thrown building $port: $error");
-      eval { $port->set_result_internal("Exception thrown: $error"); };
+      $self->log->err("Exception thrown during $phase phase for $port: $error");
+      eval {
+        if ($phase eq 'build') {
+          $port->set_result_internal("Exception thrown: $error");
+        } else {
+          $port->set_phase_status($phase, 'internal');
+          $port->note_event(internal => "Exception thrown: $error", $phase, 'Exception');
+        }
+      };
     }
     
     exit(0);
@@ -167,24 +284,22 @@ sub run_test {
     # update our port object with new data from the database, as the child
     # process probably changed stuff
     $port->refresh;
-    
-    
-    if ($port->status eq 'pass' || $port->status eq 'warn') {
-        $self->upload_pkgfile();
-        $self->upload_distfiles();
-    }
   } else {
     die "Child exited unexpectedly: $?\n";
   }
 }  
 
 sub insert_results {
-  my ($self, $results) = @_;
+  my ($self, $phase, $results) = @_;
   
-  $self->log->info("Inserting results for %s; summary: $results->{summary}", $self->port);
-      
-  $self->port->status($results->{'summary'});
-  $self->port->update;  
+  $self->log->info("Inserting $phase results for %s; summary: $results->{summary}", $self->port);
+
+  if ($phase eq 'build') {
+    $self->port->status($results->{'summary'});
+    $self->port->update;
+  }
+
+  $self->port->set_phase_status($phase, $results->{'summary'});
             
   my %type_conversion = (skip => 'skip', warning => 'warn', error => 'fail');
                 
@@ -192,12 +307,50 @@ sub insert_results {
     next unless $results->{$type . 's'};
                           
     foreach my $sr (@{$results->{$type . 's'}}) {
-      $self->port->note_event($type_conversion{$type} => $sr->{msg});
+      $self->port->note_event($type_conversion{$type} => $sr->{msg}, $phase, $sr->{name});
     }
   }  
                                             
   if ($results->{log}) {
-    Magus::Log->insert({ port => $self->port, data => $results->{log}->{data}});
+    $self->replace_phase_log($phase, $results->{log}->{data});
+    if ($phase eq 'build') {
+      Magus::Log->search(port => $self->port)->delete_all;
+      Magus::Log->insert({ port => $self->port, data => $results->{log}->{data}});
+    }
+  }
+}
+
+sub run_scan_phase {
+  my ($self) = @_;
+
+  my $port = $self->{port};
+  my $run = $port->run->id;
+  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
+  my $pkgfile = "$Magus::Config{'PkgfilesRoot'}/$run/$file";
+
+  if (!-f $pkgfile) {
+    my $msg = "Package file is missing: $pkgfile";
+    $port->set_phase_status(scan => 'internal');
+    $port->note_event(internal => $msg, scan => 'PackageMissing');
+    $self->replace_phase_log(scan => $msg);
+    return;
+  }
+
+  my $scanner = $Magus::Config{ClamAVScanner} || 'clamscan';
+  my @options = $self->scanner_options;
+  my ($exit, $out) = $self->run_command($scanner, @options, $pkgfile);
+
+  $self->replace_phase_log(scan => $out);
+
+  if ($exit == 0) {
+    $port->set_phase_status(scan => 'pass');
+    $port->note_event(info => "Virus scan passed.", scan => 'VirusScanClean');
+  } elsif ($exit == 1) {
+    $port->set_phase_status(scan => 'fail');
+    $port->note_event(fail => "Virus scan found a problem.", scan => 'VirusScanFailed');
+  } else {
+    $port->set_phase_status(scan => 'internal');
+    $port->note_event(internal => "Virus scanner exited with $exit.", scan => 'VirusScanError');
   }
 }
     
@@ -209,14 +362,14 @@ sub upload_pkgfile {
   my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
   my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
   
-  my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$run/$file";
+  my $dest = "$Magus::Config{'PkgfilesRoot'}/$run/$file";
 
   $self->log->debug("uploading: $run/$file");
   
-  my $out = `$cmd 2>&1`;
+  my ($exit, $out) = $self->run_command('/usr/bin/scp', $from, $dest);
 
-  if ($? != 0 ) {
-     die "$cmd returned non-zero: $out\n";
+  if ($exit != 0 ) {
+     die "scp returned non-zero: $out\n";
   }
 }
 
@@ -226,21 +379,133 @@ sub upload_distfiles {
   my $run  = $port->run->id;
 
   foreach my $distfile ($port->distfiles) {
-    my $file = $distfile->filename;
+    my $file = $self->distfile_cache_path($distfile->filename) or next;
     my $from = join('/', $chroot->root, $chroot->distfiles, $file);
-
-    my $cmd = "/usr/bin/scp $from $Magus::Config{'DistfilesRoot'}/$run/$file";
+    my $dest = "$Magus::Config{'DistfilesRoot'}/$run/$file";
+    if (-e $dest) {
+      $self->log->debug("upload skipped, already present: $run/$file");
+      next;
+    }
+    $self->ensure_parent_dir($dest);
 
     $self->log->debug("uploading: $run/$file");
 
-    my $out = `$cmd 2>&1`;
+    my ($exit, $out) = $self->run_command('/usr/bin/scp', $from, $dest);
 
-    if ($? != 0 ) {
+    if ($exit != 0 ) {
       $self->log->debug("upload failed: $run/$file $out");
     }
   }
 }
 
+sub ensure_parent_dir {
+  my ($self, $path) = @_;
+
+  my $dir = dirname($path);
+  mkpath($dir) unless -d $dir;
+  die "Couldn't create $dir: $!\n" unless -d $dir;
+}
+
+sub replace_phase_log {
+  my ($self, $phase, $data) = @_;
+
+  Magus::PhaseLog->search(port => $self->port, phase => $phase)->delete_all;
+  Magus::PhaseLog->insert({ port => $self->port, phase => $phase, data => $data });
+}
+
+sub distfile_cache_path {
+  my ($self, $file) = @_;
+
+  return unless defined $file;
+
+  $file =~ s/:[A-Za-z0-9_,]+$//;
+  $file =~ s/\?.*$//;
+
+  if ($file =~ m{(?:^|/)\.\.(?:/|$)} || $file =~ m{^/}) {
+    $self->log->err("Unsafe distfile path ignored: $file");
+    return;
+  }
+
+  my $subdir = $self->distfile_subdir;
+  return join('/', $subdir, $file) if length $subdir && $file !~ m{^\Q$subdir\E/};
+  return $file;
+}
+
+sub distfile_subdir {
+  my ($self) = @_;
+
+  return $self->{distfile_subdir} if defined $self->{distfile_subdir};
+
+  my @cmd = ($MAKE, '-C', $self->{port}->origin, '-V', 'DIST_SUBDIR');
+  my $flavor = $self->{port}->flavor;
+  push @cmd, "FLAVOR=$flavor" if defined $flavor && length $flavor;
+
+  my ($exit, $out) = $self->run_command(@cmd);
+  chomp($out);
+
+  if ($exit != 0) {
+    $self->log->debug("Unable to determine DIST_SUBDIR for $self->{port}: $out");
+    return $self->{distfile_subdir} = '';
+  }
+
+  if ($out =~ /[[:cntrl:]]/) {
+    $self->log->err("Unsafe DIST_SUBDIR ignored for $self->{port}: $out");
+    return $self->{distfile_subdir} = '';
+  }
+
+  if ($out =~ m{(?:^|/)\.\.(?:/|$)} || $out =~ m{^/}) {
+    $self->log->err("Unsafe DIST_SUBDIR ignored for $self->{port}: $out");
+    return $self->{distfile_subdir} = '';
+  }
+
+  return $self->{distfile_subdir} = $out;
+}
+
+sub scanner_options {
+  my ($self) = @_;
+
+  my $options = $Magus::Config{ClamAVOptions};
+  return unless defined $options && length $options;
+
+  my @args = ref($options) eq 'ARRAY' ? @$options : shellwords($options);
+  foreach my $arg (@args) {
+    die "Invalid ClamAV option contains a control character.\n"
+      if !defined($arg) || $arg =~ /[[:cntrl:]]/;
+  }
+
+  return @args;
+}
+
+sub run_command {
+  my ($self, @cmd) = @_;
+
+  foreach my $arg (@cmd) {
+    die "Invalid command argument contains a control character.\n"
+      if !defined($arg) || $arg =~ /[[:cntrl:]]/;
+  }
+
+  my $err = gensym;
+  my $pid = open3(undef, my $out_fh, $err, @cmd);
+  my $selector = IO::Select->new($out_fh, $err);
+  my $out = '';
+
+  while (my @ready = $selector->can_read) {
+    foreach my $fh (@ready) {
+      my $buf = '';
+      my $read = sysread($fh, $buf, 8192);
+      if ($read) {
+        $out .= $buf;
+      } else {
+        $selector->remove($fh);
+        close($fh);
+      }
+    }
+  }
+
+  waitpid($pid, 0);
+
+  return ($? >> 8, $out);
+}
 
 sub log {
   return $_[0]->{logger};

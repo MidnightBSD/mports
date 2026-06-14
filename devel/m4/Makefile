@@ -1,5 +1,5 @@
 PORTNAME=	m4
-PORTVERSION=	1.4.19
+PORTVERSION=	1.4.21
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
@@ -10,7 +10,8 @@ COMMENT=	GNU M4
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		makeinfo tar:xz
+USES=		makeinfo tar:xz cpe
+CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man \
 		--program-prefix=g

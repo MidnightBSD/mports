@@ -1,6 +1,6 @@
 PORTNAME=	libsass
 DISTVERSION=	0.23.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,9 +17,9 @@ LIB_DEPENDS=	libsass.so:textproc/libsass
 USES=		compiler:c++11-lang localbase python
 USE_PYTHON=	distutils autoplist pytest
 
+# Keep the Python extension on the base C++ runtime to match textproc/libsass.
 MAKE_ENV=	SYSTEM_SASS=1
 
-USE_GCC=	yes
 NO_TEST=	yes
 
 post-install:

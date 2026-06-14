@@ -107,7 +107,8 @@ $results = {
 =cut
 
 sub run {
-  my ($self) = @_;
+  my ($self, $phase) = @_;
+  $phase ||= 'build';
   
   $self->_set_env;
   $self->{chroot}->mark_dirty;
@@ -115,9 +116,9 @@ sub run {
   my %results = (summary => 'pass');
   
   $self->check_for_skip(\%results) && return \%results;
+  $self->check_master_sites(\%results) if $phase eq 'build';
 
-  
-  foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall test)) {
+  foreach my $target ($self->targets_for_phase($phase)) {
     if (!$self->_run_make($target)) {
       my $error_code = $? >> 8;
       push(@{$results{errors}}, {
@@ -168,13 +169,25 @@ sub run {
   return \%results;
 }
 
+sub targets_for_phase {
+  my ($self, $phase) = @_;
+
+  return qw(fetch) if $phase eq 'fetch';
+  return qw(fetch extract patch configure build fake package) if $phase eq 'build';
+  return qw(test) if $phase eq 'test';
+
+  die "Unknown Magus phase: $phase\n";
+}
+
 
 sub check_for_skip {
   my ($self, $results) = @_;
+  my $flavor =  $self->{port}->flavor;
   
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
   
-  chomp(my $ignore = make_var('IGNORE'));
+  my $ignore = length $flavor ? `$MAKE -V IGNORE FLAVOR=$flavor` : make_var('IGNORE');
+  chomp($ignore);
   
   if ($ignore) {
     $results->{skips} = [{
@@ -190,6 +203,27 @@ sub check_for_skip {
   
   return;
 }    
+
+sub check_master_sites {
+  my ($self, $results) = @_;
+  my %seen;
+  my @insecure = grep { !$seen{$_}++ }
+                 grep { m{^(?:http|ftp)://}i }
+                 map  { $_->url } $self->{port}->master_sites;
+
+  return unless @insecure;
+
+  my @shown = @insecure > 5 ? @insecure[0..4] : @insecure;
+  my $extra = @insecure > @shown ? sprintf(" and %d more", scalar(@insecure) - scalar(@shown)) : "";
+
+  push(@{$results->{warnings}}, {
+    phase => 'prerun',
+    msg   => "MASTER_SITES contains non-HTTPS URLs: " . join(", ", @shown) . $extra,
+    name  => 'InsecureMasterSites',
+  });
+
+  $results->{summary} = 'warn' if $results->{summary} eq 'pass';
+}
 
 
 sub _run_make {
@@ -226,6 +260,3 @@ sub _set_env {
 
 1;
 __END__
-
-
-

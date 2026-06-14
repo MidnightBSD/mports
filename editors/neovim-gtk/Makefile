@@ -14,14 +14,16 @@ LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene
 RUN_DEPENDS=	neovim>=0:editors/neovim
 
 USES=		cargo pkgconfig gnome desktop-file-utils
-USE_GNOME=	atk pango gtk40 glib20
+USE_GNOME=	pango gtk40 glib20 gdkpixbuf
 USE_GITHUB=	yes
 GH_ACCOUNT=	Lyude
+
+CARGO_ENV+=	PREFIX=${LOCALBASE}
 
 post-install:
 	( cd ${WRKSRC} && ${COPYTREE_SHARE} runtime ${PREFIX}/share/nvim-gtk )
 	${MKDIR} ${PREFIX}/share/applications
-	${SED} -e "s|Exec=nvim-gtk|Exec=${PREFIX}/bin/nvim-gtk|" ${WRKSRC}/desktop/org.daa.NeovimGtk.desktop >${PREFIX}/share/applications/org.daa.NeovimGtk.desktop
+	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk.desktop ${PREFIX}/share/applications/
 	${MKDIR} ${PREFIX}/share/icons/hicolor/128x128/apps/
 	${INSTALL_DATA} ${WRKSRC}/desktop/org.daa.NeovimGtk_128.png ${PREFIX}/share/icons/hicolor/128x128/apps/org.daa.NeovimGtk.png
 	${MKDIR} ${PREFIX}/share/icons/hicolor/48x48/apps/

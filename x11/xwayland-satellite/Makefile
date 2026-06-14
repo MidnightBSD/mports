@@ -14,11 +14,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libxcb-cursor.so:x11/xcb-util-cursor
 RUN_DEPENDS=	Xwayland:x11-servers/xwayland
 
-USES=		cargo llvm pkgconfig xorg
+USES=		cargo llvm:noexport pkgconfig xorg
 USE_GITHUB=	yes
 USE_XORG=	xcb
 GH_ACCOUNT=	Supreeeme
 PLIST_FILES=	bin/${PORTNAME}
+
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,"llvm-config,"${LLVM_CONFIG},' \

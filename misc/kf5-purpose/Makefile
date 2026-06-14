@@ -6,6 +6,8 @@ CATEGORIES=	misc kde kde-frameworks
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Offers available actions for a specific purpose
 
+LICENSE=	lgpl
+
 DEPRECATED=	has its functionality stripped for coinstallability with Plasma 6
 
 LIB_DEPENDS=	libaccounts-qt5.so:net-im/libaccounts-qt@qt5
@@ -13,7 +15,7 @@ LIB_DEPENDS=	libaccounts-qt5.so:net-im/libaccounts-qt@qt5
 #RUN_DEPENDS=	accounts-qml-module>=0:sysutils/accounts-qml-module
 
 USES=		cmake compiler:c++11-lang gettext gnome \
-		kde:5 pkgconfig qt:5 tar:xz xorg
+		kde:5 kfhack pkgconfig qt:5 tar:xz xorg
 USE_GNOME=	intltool
 USE_KDE=	config completion coreaddons i18n kio \
 		kirigami2 notifications jobwidgets prison service solid \

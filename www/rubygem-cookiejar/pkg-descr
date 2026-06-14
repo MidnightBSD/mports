@@ -1,0 +1,2 @@
+CookieJar allows parsing, storing, and returning cookies from Ruby HTTP
+client code.

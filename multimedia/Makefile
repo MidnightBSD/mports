@@ -68,6 +68,18 @@
     SUBDIR += kdemultimedia-ffmpegthumbs
     SUBDIR += kdenlive
     SUBDIR += kf5-kmediaplayer
+    SUBDIR += kodi
+    SUBDIR += kodi-addon-inputstream.adaptive
+    SUBDIR += kodi-addon-peripheral.joystick
+    SUBDIR += kodi-addon-pvr.hts
+    SUBDIR += kodi-addon-pvr.iptvsimple
+    SUBDIR += kodi-addon-screensaver.biogenesis
+    SUBDIR += kodi-addon-screensaver.matrixtrails
+    SUBDIR += kodi-addon-screensaver.stars
+    SUBDIR += kodi-addon-visualization.fishbmc
+    SUBDIR += kodi-addon-visualization.projectm
+    SUBDIR += kodi-addon-visualization.shadertoy
+    SUBDIR += kodi-addon-visualization.spectrum
     SUBDIR += l-smash
     SUBDIR += libaacs
     SUBDIR += libass
@@ -91,6 +103,7 @@
     SUBDIR += librespot
     SUBDIR += librist
     SUBDIR += libtheora
+    SUBDIR += libudfread
     SUBDIR += libuvc
     SUBDIR += libv4l
     SUBDIR += libva
@@ -132,6 +145,7 @@
     SUBDIR += phonon
     SUBDIR += phonon-mpv
     SUBDIR += pipewire
+    SUBDIR += playerctl
     SUBDIR += plexmediaserver
     SUBDIR += plexmediaserver-plexpass
     SUBDIR += plexwatch
@@ -159,6 +173,8 @@
     SUBDIR += vmaf
     SUBDIR += webcamd
     SUBDIR += webcamoid
+    SUBDIR += wf-recorder
+    SUBDIR += wireplumber
     SUBDIR += x264
     SUBDIR += x265
     SUBDIR += xanim
