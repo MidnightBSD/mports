@@ -20,3 +20,8 @@ ClamAVOptions: --no-summary
 YaraScanner: yara
 YaraRules: /usr/magus/slave-data/mports/Tools/magus/yara/mports-shell.yar
 YaraOptions:
+SourceDomainAllowlist: /usr/magus/slave-data/mports/Tools/magus/domain-allowlist.txt
+SourceDomainQuad9Check: 0
+SourceDomainQuad9Resolver: 9.9.9.9
+SourceDomainUnfilteredResolver: 9.9.9.10
+SourceDomainDNSTimeout: 2

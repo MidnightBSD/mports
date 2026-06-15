@@ -64,6 +64,10 @@ sub load_config {
         ClamAVOptions   => '--no-summary',
         YaraScanner    => 'yara',
         YaraOptions    => '',
+        SourceDomainQuad9Check => 0,
+        SourceDomainQuad9Resolver => '9.9.9.9',
+        SourceDomainUnfilteredResolver => '9.9.9.10',
+        SourceDomainDNSTimeout => 2,
         MasterDataDir  => 'ftp://stargazer.midnightbsd.org/pub/magus',
         MportsSnapDir  => 'runs',
         VcsRoot        => 'https://github.com/midnightbsd/',
@@ -81,6 +85,7 @@ sub load_config {
     $Config{SlaveMportsDir} ||= "$Config{SlaveDataDir}/mports";
     $Config{SlaveChrootsDir} ||= "$Config{SlaveDataDir}/chroots";
     $Config{YaraRules} ||= "$Config{SlaveMportsDir}/Tools/magus/yara/mports-shell.yar";
+    $Config{SourceDomainAllowlist} ||= "$Config{SlaveMportsDir}/Tools/magus/domain-allowlist.txt";
     $Config{LostDBWaitPeriod} ||= 120;
 }
 

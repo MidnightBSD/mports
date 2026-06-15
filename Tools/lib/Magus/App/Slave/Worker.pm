@@ -5,6 +5,7 @@ use warnings;
 
 use File::Basename qw(basename dirname);
 use File::Path qw(mkpath);
+use IO::Socket::INET;
 use IO::Select;
 use IPC::Open3 qw(open3);
 use Symbol qw(gensym);
@@ -441,6 +442,8 @@ sub run_source_integrity_scan {
     };
   }
 
+  push @warnings, @{$self->source_domain_warnings};
+
   if (grep { $_ eq "$origin_rel/distinfo" } @changed_files) {
     if (!$version_changed) {
       push @warnings, {
@@ -558,6 +561,156 @@ sub looks_immutable_git_ref {
 
   return unless defined $ref;
   return $ref =~ /\A[0-9a-f]{40}\z/i || $ref =~ /\A[0-9a-f]{64}\z/i;
+}
+
+sub source_domain_warnings {
+  my ($self) = @_;
+
+  my @domains = $self->master_site_domains;
+  return [] unless @domains;
+
+  my @warnings;
+  my $allowlist = $self->source_domain_allowlist;
+  if ($allowlist) {
+    foreach my $domain (@domains) {
+      next if $self->domain_is_allowlisted($domain, $allowlist);
+      push @warnings, {
+        name => 'SourceIntegrityUnknownMasterSiteDomain',
+        msg  => "MASTER_SITES contains domain not in source allowlist: $domain",
+      };
+    }
+  }
+
+  if ($Magus::Config{SourceDomainQuad9Check}) {
+    foreach my $domain (@domains) {
+      my $blocked = $self->quad9_blocks_domain($domain);
+      next unless defined $blocked && $blocked;
+      push @warnings, {
+        name => 'SourceIntegrityQuad9BlockedDomain',
+        msg  => "Quad9 malware-blocking resolver blocks MASTER_SITES domain: $domain",
+      };
+    }
+  }
+
+  return \@warnings;
+}
+
+sub master_site_domains {
+  my ($self) = @_;
+
+  my $master_sites = $self->make_var('MASTER_SITES');
+  return unless length $master_sites;
+
+  my %seen;
+  my @domains;
+  while ($master_sites =~ m{(?:https?|ftp)://([^/\s:]+)}ig) {
+    my $domain = lc $1;
+    $domain =~ s/\.$//;
+    next unless $domain =~ /\A[A-Za-z0-9.-]+\z/;
+    next if $seen{$domain}++;
+    push @domains, $domain;
+  }
+
+  return sort @domains;
+}
+
+sub source_domain_allowlist {
+  my ($self) = @_;
+
+  return $self->{source_domain_allowlist} if exists $self->{source_domain_allowlist};
+
+  my $path = $Magus::Config{SourceDomainAllowlist};
+  return $self->{source_domain_allowlist} = undef unless defined $path && length $path && -f $path;
+
+  open(my $fh, '<', $path) or return $self->{source_domain_allowlist} = undef;
+  my %allow;
+  while (my $line = <$fh>) {
+    chomp($line);
+    $line =~ s/#.*//;
+    $line =~ s/^\s+//;
+    $line =~ s/\s+$//;
+    next unless length $line;
+    $line = lc $line;
+    $line =~ s/^\.+//;
+    $line =~ s/\.+$//;
+    next unless $line =~ /\A[A-Za-z0-9.-]+\z/;
+    $allow{$line} = 1;
+  }
+  close($fh);
+
+  return $self->{source_domain_allowlist} = \%allow;
+}
+
+sub domain_is_allowlisted {
+  my ($self, $domain, $allowlist) = @_;
+
+  return unless defined $domain && $allowlist;
+  $domain = lc $domain;
+
+  foreach my $entry (keys %$allowlist) {
+    return 1 if $domain eq $entry || $domain =~ /\.\Q$entry\E\z/;
+  }
+
+  return;
+}
+
+sub quad9_blocks_domain {
+  my ($self, $domain) = @_;
+
+  my $secured = $Magus::Config{SourceDomainQuad9Resolver} || '9.9.9.9';
+  my $unfiltered = $Magus::Config{SourceDomainUnfilteredResolver} || '9.9.9.10';
+
+  my $secured_result = $self->dns_query_a($domain, $secured);
+  my $unfiltered_result = $self->dns_query_a($domain, $unfiltered);
+
+  return unless $secured_result->{ok} && $unfiltered_result->{ok};
+  return 1 if $secured_result->{rcode} == 3
+           && $unfiltered_result->{rcode} == 0
+           && $unfiltered_result->{ancount} > 0;
+
+  return;
+}
+
+sub dns_query_a {
+  my ($self, $domain, $resolver) = @_;
+
+  return { ok => 0 } unless defined $domain && $domain =~ /\A[A-Za-z0-9.-]+\z/;
+  return { ok => 0 } unless defined $resolver && $resolver =~ /\A[0-9.]+\z/;
+
+  my $timeout = $Magus::Config{SourceDomainDNSTimeout} || 2;
+  my $id = int(rand(65536));
+  my $packet = pack('n n n n n n', $id, 0x0100, 1, 0, 0, 0);
+  foreach my $label (split(/\./, $domain)) {
+    return { ok => 0 } if length($label) > 63;
+    $packet .= pack('C', length($label)) . $label;
+  }
+  $packet .= "\0" . pack('n n', 1, 1);
+
+  my $sock = IO::Socket::INET->new(
+    PeerAddr => $resolver,
+    PeerPort => 53,
+    Proto    => 'udp',
+    Timeout  => $timeout,
+  ) or return { ok => 0 };
+
+  $sock->send($packet) or return { ok => 0 };
+
+  my $rin = '';
+  vec($rin, fileno($sock), 1) = 1;
+  return { ok => 0 } unless select($rin, undef, undef, $timeout) > 0;
+
+  my $response = '';
+  $sock->recv($response, 512);
+  return { ok => 0 } unless length($response) >= 12;
+
+  my ($rid, $flags, $qdcount, $ancount) = unpack('n n n n', substr($response, 0, 8));
+  return { ok => 0 } unless $rid == $id;
+
+  return {
+    ok      => 1,
+    rcode   => $flags & 0x000f,
+    ancount => $ancount,
+  };
 }
 
 sub yara_scan_targets {
