@@ -424,6 +424,7 @@ sub is_yara_scan_candidate {
 
   return 1 if $relative =~ m{^(?:Makefile|pkg-install|pkg-deinstall|pkg-message)$};
   return 1 if $relative =~ m{^files/(?:pkg-install|pkg-deinstall|pkg-message)(?:\..*)?$};
+  return 1 if $relative =~ m{^(?:files/)?[^/]+\.(?:pl|pm|py|js|mjs|cjs)$};
   return 1 if $relative =~ m{^files/patch-};
   return 1 if $base =~ m{^patch-};
 
