@@ -9,7 +9,7 @@ use IO::Select;
 use IPC::Open3 qw(open3);
 use Symbol qw(gensym);
 use Text::ParseWords qw(shellwords);
-use Mport::Globals qw($MAKE);
+use Mport::Globals qw($MAKE $ROOT);
 use Magus::Run ();
 
 sub run {
@@ -365,6 +365,23 @@ sub run_scan_phase {
     $port->note_event(internal => "YARA scanner exited with $yara_exit.", scan => 'YaraScanError');
   }
 
+  my ($integrity_exit, $integrity_out, $integrity_warnings) = $self->run_source_integrity_scan;
+  $log .= "\n== Source integrity scan ==\n$integrity_out";
+
+  if ($integrity_exit == 0) {
+    if (@$integrity_warnings) {
+      $status = 'warn' if $status eq 'pass';
+      foreach my $warning (@$integrity_warnings) {
+        $port->note_event(warn => $warning->{msg}, scan => $warning->{name});
+      }
+    } else {
+      $port->note_event(info => "Source integrity scan passed.", scan => 'SourceIntegrityClean');
+    }
+  } else {
+    $status = 'internal' if $status eq 'pass' || $status eq 'warn';
+    $port->note_event(internal => "Source integrity scanner exited with $integrity_exit.", scan => 'SourceIntegrityError');
+  }
+
   $port->set_phase_status(scan => $status);
   $self->replace_phase_log(scan => $log);
 }
@@ -386,6 +403,161 @@ sub run_yara_scan {
   my ($exit, $out) = $self->run_command($scanner, @options, $rules, @targets);
   return ($exit, $out) if $exit != 0;
   return length($out) ? (1, $out) : (0, "No YARA matches.\n");
+}
+
+sub run_source_integrity_scan {
+  my ($self) = @_;
+
+  my $origin = $self->{port}->origin;
+  my $origin_rel = $self->port_origin_relative($origin)
+    or return (0, "Port origin is outside the ports tree: $origin\n", []);
+
+  my ($history_base, $history_head, $history_msg) = $self->source_integrity_history_range($origin_rel);
+  return (0, $history_msg, []) unless defined $history_base && defined $history_head;
+
+  my ($changed_exit, $changed_out) = $self->run_command(
+    'git', '-C', $ROOT, 'diff', '--name-only', $history_base, $history_head, '--', $origin_rel,
+  );
+  return (0, "Unable to read git history for $origin_rel: $changed_out\n", [])
+    if $changed_exit != 0;
+
+  my @changed_files = grep { length } split(/\n/, $changed_out);
+  return (0, "No port-local changes in git history.\n", []) unless @changed_files;
+
+  my ($diff_exit, $makefile_diff) = $self->run_command(
+    'git', '-C', $ROOT, 'diff', '-U0', $history_base, $history_head, '--', "$origin_rel/Makefile",
+  );
+  $makefile_diff = '' if $diff_exit != 0;
+
+  my $version_changed = $self->makefile_diff_changes_vars(
+    $makefile_diff, qw(PORTVERSION DISTVERSION PORTREVISION)
+  );
+  my @warnings;
+
+  if ($self->makefile_diff_changes_var_prefixes($makefile_diff, 'MASTER_SITES')) {
+    push @warnings, {
+      name => 'SourceIntegrityMasterSitesChanged',
+      msg  => 'MASTER_SITES changed in git history; review upstream source location.',
+    };
+  }
+
+  if (grep { $_ eq "$origin_rel/distinfo" } @changed_files) {
+    if (!$version_changed) {
+      push @warnings, {
+        name => 'SourceIntegrityDistinfoWithoutVersionChange',
+        msg  => 'distinfo changed without a PORTVERSION, DISTVERSION, or PORTREVISION change.',
+      };
+    }
+  }
+
+  if ($self->makefile_diff_changes_vars($makefile_diff, 'DIST_SUBDIR')) {
+    push @warnings, {
+      name => 'SourceIntegrityDistSubdirChanged',
+      msg  => $version_changed
+        ? 'DIST_SUBDIR changed in git history; review distfile namespace change.'
+        : 'DIST_SUBDIR changed without a PORTVERSION, DISTVERSION, or PORTREVISION change.',
+    };
+  }
+
+  my $use_github = $self->make_var('USE_GITHUB');
+  if (length $use_github) {
+    my $gh_tagname = $self->make_var('GH_TAGNAME');
+    if (length $gh_tagname && !$self->looks_immutable_git_ref($gh_tagname)) {
+      push @warnings, {
+        name => 'SourceIntegrityMutableGithubTag',
+        msg  => "USE_GITHUB resolves to non-immutable-looking GH_TAGNAME: $gh_tagname",
+      };
+    }
+  }
+
+  if ($self->makefile_diff_changes_var_prefixes($makefile_diff, 'GH_TAGNAME')) {
+    push @warnings, {
+      name => 'SourceIntegrityGithubTagChanged',
+      msg  => 'GH_TAGNAME changed in git history; verify the referenced GitHub source did not move unexpectedly.',
+    };
+  }
+
+  my $out = "Compared $origin_rel between $history_base and $history_head.\n";
+  $out .= "Changed files:\n" . join('', map { "  $_\n" } @changed_files);
+  if (@warnings) {
+    $out .= "Warnings:\n" . join('', map { "  $_->{name}: $_->{msg}\n" } @warnings);
+  } else {
+    $out .= "No source integrity warnings.\n";
+  }
+
+  return (0, $out, \@warnings);
+}
+
+sub source_integrity_history_range {
+  my ($self, $origin_rel) = @_;
+
+  my ($log_exit, $log_out) = $self->run_command(
+    'git', '-C', $ROOT, 'log', '--format=%H', '-n', '2', '--', $origin_rel,
+  );
+  return (undef, undef, "Unable to read git history for $origin_rel: $log_out\n")
+    if $log_exit != 0;
+
+  my @commits = grep { /\A[0-9a-f]{40}\z/i } split(/\n/, $log_out);
+  return (undef, undef, "No git history available for $origin_rel; source integrity checks skipped.\n")
+    unless @commits;
+
+  my $head = $commits[0];
+  my $base = $commits[1];
+
+  if (!$base) {
+    my ($parent_exit, $parent_out) = $self->run_command(
+      'git', '-C', $ROOT, 'rev-parse', '--verify', "$head^",
+    );
+    return (undef, undef, "No parent commit available for $origin_rel; source integrity checks skipped.\n")
+      if $parent_exit != 0;
+    chomp($parent_out);
+    $base = $parent_out if $parent_out =~ /\A[0-9a-f]{40}\z/i;
+  }
+
+  return ($base, $head, undef) if defined $base;
+  return (undef, undef, "No comparison commit available for $origin_rel; source integrity checks skipped.\n");
+}
+
+sub port_origin_relative {
+  my ($self, $origin) = @_;
+
+  return unless defined $origin && index($origin, "$ROOT/") == 0;
+  return substr($origin, length($ROOT) + 1);
+}
+
+sub makefile_diff_changes_vars {
+  my ($self, $diff, @vars) = @_;
+
+  return unless defined $diff && length $diff;
+
+  my $var_re = join('|', map { quotemeta } @vars);
+  foreach my $line (split(/\n/, $diff)) {
+    next unless $line =~ /^[+-](?![+-])/;
+    return 1 if $line =~ /^[+-][ \t]*(?:$var_re)(?:[+?:!]?=|\b)/;
+  }
+
+  return;
+}
+
+sub makefile_diff_changes_var_prefixes {
+  my ($self, $diff, @prefixes) = @_;
+
+  return unless defined $diff && length $diff;
+
+  my $prefix_re = join('|', map { quotemeta } @prefixes);
+  foreach my $line (split(/\n/, $diff)) {
+    next unless $line =~ /^[+-](?![+-])/;
+    return 1 if $line =~ /^[+-][ \t]*(?:$prefix_re)(?:_[A-Za-z0-9_]+)?(?:[+?:!]?=|\b)/;
+  }
+
+  return;
+}
+
+sub looks_immutable_git_ref {
+  my ($self, $ref) = @_;
+
+  return unless defined $ref;
+  return $ref =~ /\A[0-9a-f]{40}\z/i || $ref =~ /\A[0-9a-f]{64}\z/i;
 }
 
 sub yara_scan_targets {
@@ -536,6 +708,23 @@ sub distfile_subdir {
   }
 
   return $self->{distfile_subdir} = $out;
+}
+
+sub make_var {
+  my ($self, $var) = @_;
+
+  die "Invalid make variable name: $var\n" unless defined($var) && $var =~ /\A[A-Za-z0-9_]+\z/;
+
+  my @cmd = ($MAKE, '-C', $self->{port}->origin, '-V', $var);
+  my $flavor = $self->{port}->flavor;
+  push @cmd, "FLAVOR=$flavor" if defined $flavor && length $flavor;
+
+  my ($exit, $out) = $self->run_command(@cmd);
+  return '' if $exit != 0;
+
+  chomp($out);
+  return '' if $out =~ /[[:cntrl:]]/;
+  return $out;
 }
 
 sub scanner_options {
