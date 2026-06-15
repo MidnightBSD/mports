@@ -3,7 +3,7 @@ package Magus::App::Slave::Worker;
 use strict;
 use warnings;
 
-use File::Basename qw(dirname);
+use File::Basename qw(basename dirname);
 use File::Path qw(mkpath);
 use IO::Select;
 use IPC::Open3 qw(open3);
@@ -337,21 +337,97 @@ sub run_scan_phase {
   }
 
   my $scanner = $Magus::Config{ClamAVScanner} || 'clamscan';
-  my @options = $self->scanner_options;
+  my @options = $self->command_options(ClamAVOptions => 'ClamAV');
   my ($exit, $out) = $self->run_command($scanner, @options, $pkgfile);
-
-  $self->replace_phase_log(scan => $out);
+  my $log = "== ClamAV package scan ==\n$out";
+  my $status = 'pass';
 
   if ($exit == 0) {
-    $port->set_phase_status(scan => 'pass');
     $port->note_event(info => "Virus scan passed.", scan => 'VirusScanClean');
   } elsif ($exit == 1) {
-    $port->set_phase_status(scan => 'fail');
+    $status = 'fail';
     $port->note_event(fail => "Virus scan found a problem.", scan => 'VirusScanFailed');
   } else {
-    $port->set_phase_status(scan => 'internal');
+    $status = 'internal';
     $port->note_event(internal => "Virus scanner exited with $exit.", scan => 'VirusScanError');
   }
+
+  my ($yara_exit, $yara_out) = $self->run_yara_scan;
+  $log .= "\n== YARA port-file scan ==\n$yara_out";
+
+  if ($yara_exit == 0) {
+    $port->note_event(info => "YARA scan passed.", scan => 'YaraScanClean');
+  } elsif ($yara_exit == 1) {
+    $status = 'warn' if $status eq 'pass';
+    $port->note_event(warn => "YARA found suspicious port shell content.", scan => 'YaraSuspiciousShell');
+  } else {
+    $status = 'internal' if $status eq 'pass' || $status eq 'warn';
+    $port->note_event(internal => "YARA scanner exited with $yara_exit.", scan => 'YaraScanError');
+  }
+
+  $port->set_phase_status(scan => $status);
+  $self->replace_phase_log(scan => $log);
+}
+
+sub run_yara_scan {
+  my ($self) = @_;
+
+  my @targets = $self->yara_scan_targets;
+  return (0, "No matching port files to scan.\n") unless @targets;
+
+  my $rules = $Magus::Config{YaraRules}
+    || "$Magus::Config{SlaveMportsDir}/Tools/magus/yara/mports-shell.yar";
+
+  return (2, "YARA rules file is missing: $rules\n") unless -f $rules;
+
+  my $scanner = $Magus::Config{YaraScanner} || 'yara';
+  my @options = $self->command_options(YaraOptions => 'YARA');
+
+  my ($exit, $out) = $self->run_command($scanner, @options, $rules, @targets);
+  return ($exit, $out) if $exit != 0;
+  return length($out) ? (1, $out) : (0, "No YARA matches.\n");
+}
+
+sub yara_scan_targets {
+  my ($self) = @_;
+
+  my $origin = $self->{port}->origin;
+  return unless -d $origin;
+
+  my %seen;
+  my @targets;
+
+  foreach my $dir ($origin, "$origin/files") {
+    next unless -d $dir;
+
+    opendir(my $dh, $dir) or next;
+    while (defined(my $entry = readdir($dh))) {
+      next if $entry eq '.' || $entry eq '..';
+      my $path = "$dir/$entry";
+      next unless -f $path;
+      next unless $self->is_yara_scan_candidate($origin, $path);
+      push @targets, $path unless $seen{$path}++;
+    }
+    closedir($dh);
+  }
+
+  return sort @targets;
+}
+
+sub is_yara_scan_candidate {
+  my ($self, $origin, $path) = @_;
+
+  return unless index($path, "$origin/") == 0;
+
+  my $relative = substr($path, length($origin) + 1);
+  my $base = basename($path);
+
+  return 1 if $relative =~ m{^(?:Makefile|pkg-install|pkg-deinstall|pkg-message)$};
+  return 1 if $relative =~ m{^files/(?:pkg-install|pkg-deinstall|pkg-message)(?:\..*)?$};
+  return 1 if $relative =~ m{^files/patch-};
+  return 1 if $base =~ m{^patch-};
+
+  return;
 }
     
 sub upload_pkgfile {
@@ -464,12 +540,18 @@ sub distfile_subdir {
 sub scanner_options {
   my ($self) = @_;
 
-  my $options = $Magus::Config{ClamAVOptions};
+  return $self->command_options(ClamAVOptions => 'ClamAV');
+}
+
+sub command_options {
+  my ($self, $config_key, $label) = @_;
+
+  my $options = $Magus::Config{$config_key};
   return unless defined $options && length $options;
 
   my @args = ref($options) eq 'ARRAY' ? @$options : shellwords($options);
   foreach my $arg (@args) {
-    die "Invalid ClamAV option contains a control character.\n"
+    die "Invalid $label option contains a control character.\n"
       if !defined($arg) || $arg =~ /[[:cntrl:]]/;
   }
 

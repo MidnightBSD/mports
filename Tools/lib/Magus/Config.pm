@@ -62,6 +62,8 @@ sub load_config {
         WorkerPhases   => [Magus::Phase->default_worker_order],
         ClamAVScanner   => 'clamscan',
         ClamAVOptions   => '--no-summary',
+        YaraScanner    => 'yara',
+        YaraOptions    => '',
         MasterDataDir  => 'ftp://stargazer.midnightbsd.org/pub/magus',
         MportsSnapDir  => 'runs',
         VcsRoot        => 'https://github.com/midnightbsd/',
@@ -78,6 +80,7 @@ sub load_config {
     $Config{SlaveDataDir} ||= "$Magus::Root/slave-data";
     $Config{SlaveMportsDir} ||= "$Config{SlaveDataDir}/mports";
     $Config{SlaveChrootsDir} ||= "$Config{SlaveDataDir}/chroots";
+    $Config{YaraRules} ||= "$Config{SlaveMportsDir}/Tools/magus/yara/mports-shell.yar";
     $Config{LostDBWaitPeriod} ||= 120;
 }
 

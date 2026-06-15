@@ -17,3 +17,6 @@ WorkerPhases:
   - test
 ClamAVScanner: clamscan
 ClamAVOptions: --no-summary
+YaraScanner: yara
+YaraRules: /usr/magus/slave-data/mports/Tools/magus/yara/mports-shell.yar
+YaraOptions:
