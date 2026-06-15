@@ -375,6 +375,7 @@
     SUBDIR += xinetd
     SUBDIR += xmlsec1
     SUBDIR += yafic
+    SUBDIR += yara
     SUBDIR += ykclient
     SUBDIR += ykpers
     SUBDIR += yubico-piv-tool
