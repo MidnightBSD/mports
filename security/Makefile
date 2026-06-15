@@ -280,6 +280,7 @@
     SUBDIR += py-scramp
     SUBDIR += py-service-identity
     SUBDIR += py-trustme
+    SUBDIR += py-yara
     SUBDIR += qgpgme
     SUBDIR += qtkeychain
     SUBDIR += rhash
