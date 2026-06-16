@@ -118,6 +118,7 @@
     SUBDIR += py-litellm-proxy-extras
     SUBDIR += py-llm
     SUBDIR += py-mcp
+    SUBDIR += py-mistral-common
     SUBDIR += py-openai
     SUBDIR += py-openai-whisper
     SUBDIR += py-pexpect
