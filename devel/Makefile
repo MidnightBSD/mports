@@ -1618,6 +1618,7 @@
     SUBDIR += py-pycparser
     SUBDIR += py-pydantic
     SUBDIR += py-pydantic-core
+    SUBDIR += py-pydantic-extra-types
     SUBDIR += py-pydantic2
     SUBDIR += py-pyelftools
     SUBDIR += py-pyflakes
