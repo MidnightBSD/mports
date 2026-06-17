@@ -14,7 +14,7 @@ WWW=		https://protobuf.dev/ \
 LICENSE=	bsd3
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 CPE_VENDOR=	google
 

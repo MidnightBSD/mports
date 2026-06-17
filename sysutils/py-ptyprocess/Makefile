@@ -11,6 +11,6 @@ WWW=		https://github.com/pexpect/ptyprocess
 LICENSE=	iscl
 
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	allflavors distutils autoplist
 
 .include <bsd.port.mk>

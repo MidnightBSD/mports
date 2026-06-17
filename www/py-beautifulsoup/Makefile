@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}soupsieve>=1.2:www/py-soupsieve@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}html5lib>=0:www/py-html5lib@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	concurrent pep517
+USE_PYTHON=	allflavors concurrent pep517
 NO_ARCH=	yes
 NO_TEST=	yes
 

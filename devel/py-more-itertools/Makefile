@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 
 USES=		python
-USE_PYTHON=	distutils concurrent autoplist
+USE_PYTHON=	allflavors distutils concurrent autoplist
 
 NO_TEST=	yes
 

@@ -338,6 +338,7 @@
     SUBDIR += py-jiter
     SUBDIR += py-junit-xml
     SUBDIR += py-latexcodec
+    SUBDIR += py-linkify-it-py
     SUBDIR += py-license-expression
     SUBDIR += py-m2r
     SUBDIR += py-mako
@@ -345,6 +346,7 @@
     SUBDIR += py-markdown-callouts
     SUBDIR += py-markdown-it-py
     SUBDIR += py-markdown2
+    SUBDIR += py-markdownify
     SUBDIR += py-markupsafe
     SUBDIR += py-mdit-py-plugins
     SUBDIR += py-mdurl
@@ -404,6 +406,8 @@
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-textual
+    SUBDIR += py-textual-speedups
     SUBDIR += py-sphinx-argparse
     SUBDIR += py-sphinx-autoapi
     SUBDIR += py-sphinx-autodoc-typehints
@@ -448,6 +452,7 @@
     SUBDIR += py-tomlkit
     SUBDIR += py-towncrier
     SUBDIR += py-typogrify
+    SUBDIR += py-uc-micro-py
     SUBDIR += py-ucl
     SUBDIR += py-wcmatch
     SUBDIR += py-xlrd

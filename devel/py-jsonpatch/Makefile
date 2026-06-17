@@ -13,7 +13,7 @@ LICENSE=	bsd3
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jsonpointer>0:devel/py-jsonpointer@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 CONFLICTS_INSTALL=	py*-jsondiff # bin/jsondiff
 

@@ -11,7 +11,7 @@ WWW=		https://pypi.org/project/h11/
 LICENSE=	mit
 
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	allflavors autoplist distutils
 
 NO_ARCH=	yes
 NO_TEST=	yes

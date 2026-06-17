@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11<4:devel/py-flit-core@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 unittest
+USE_PYTHON=	allflavors autoplist concurrent pep517 unittest
 
 NO_ARCH=	yes
 

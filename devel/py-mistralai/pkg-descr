@@ -1,0 +1,3 @@
+mistralai is the Python client SDK for the Mistral AI API, including typed
+request and response models for chat, embeddings, files, agents, and related
+resources.

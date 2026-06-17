@@ -12,7 +12,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 CONFLICTS_INSTALL=	rubygem-dotenv # bin/dotenv
 

@@ -21,7 +21,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}annotated-types>=0.6.0:devel/py-annotated-ty
 		${PYTHON_PKGNAMEPREFIX}typing-inspection>=0.4.2:devel/py-typing-inspection@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 

@@ -18,4 +18,11 @@ USE_PYTHON=	allflavors autoplist concurrent pep517
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 NO_ARCH=	yes
 
+fake-post-install:
+	@if [ ! -e ${FAKE_DESTDIR}${PREFIX}/bin/wheel ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/wheel-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/wheel-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/wheel; \
+	fi
+
 .include <bsd.port.mk>

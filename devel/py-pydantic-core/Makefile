@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.10<2:devel/py-maturin@${PY_FLAV
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.14.1:devel/py-typing-extensions@${PY_FLAVOR}
 
 USES=		cargo python
-USE_PYTHON=	autoplist concurrent pep517
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 CARGO_BUILD=	no

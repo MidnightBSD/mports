@@ -1301,6 +1301,7 @@
     SUBDIR += py-aiofiles
     SUBDIR += py-aioitertools
     SUBDIR += py-aiosignal
+    SUBDIR += py-agent-client-protocol
     SUBDIR += py-amalgamate
     SUBDIR += py-aniso8601
     SUBDIR += py-annotated-doc
@@ -1417,6 +1418,7 @@
     SUBDIR += py-editables
     SUBDIR += py-entrypoints
     SUBDIR += py-enum34
+    SUBDIR += py-eval-type-backport
     SUBDIR += py-evdev
     SUBDIR += py-exceptiongroup
     SUBDIR += py-executing
@@ -1451,6 +1453,7 @@
     SUBDIR += py-geventhttpclient
     SUBDIR += py-gitdb
     SUBDIR += py-gitpython
+    SUBDIR += py-giturlparse
     SUBDIR += py-google-i18n-address
     SUBDIR += py-googleapis-common-protos
     SUBDIR += py-gql
@@ -1466,6 +1469,7 @@
     SUBDIR += py-hatch-requirements-txt
     SUBDIR += py-hatch-vcs
     SUBDIR += py-hatchling
+    SUBDIR += py-humanize
     SUBDIR += py-hgtools
     SUBDIR += py-hypothesis
     SUBDIR += py-id
@@ -1502,6 +1506,7 @@
     SUBDIR += py-jsonform
     SUBDIR += py-jsonpatch
     SUBDIR += py-jsonpath-ng
+    SUBDIR += py-jsonpath-python
     SUBDIR += py-jsonpickle
     SUBDIR += py-jsonpointer
     SUBDIR += py-jsonref
@@ -1536,6 +1541,7 @@
     SUBDIR += py-mccabe
     SUBDIR += py-memory-profiler
     SUBDIR += py-mergedeep
+    SUBDIR += py-mistralai
     SUBDIR += py-mock
     SUBDIR += py-molecule
     SUBDIR += py-monotonic
@@ -1619,6 +1625,7 @@
     SUBDIR += py-pydantic
     SUBDIR += py-pydantic-core
     SUBDIR += py-pydantic-extra-types
+    SUBDIR += py-pydantic-settings
     SUBDIR += py-pydantic2
     SUBDIR += py-pyelftools
     SUBDIR += py-pyflakes
@@ -1628,6 +1635,7 @@
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
     SUBDIR += py-pyinstaller-hooks-contrib
+    SUBDIR += py-pyperclip
     SUBDIR += py-pynest2d
     SUBDIR += py-pyparsing
     SUBDIR += py-pyproject-api
@@ -1779,6 +1787,8 @@
     SUBDIR += py-tox
     SUBDIR += py-traceback2
     SUBDIR += py-traitlets
+    SUBDIR += py-tree-sitter
+    SUBDIR += py-tree-sitter-bash
     SUBDIR += py-treelib
     SUBDIR += py-trimesh
     SUBDIR += py-trove-classifiers
@@ -1820,6 +1830,7 @@
     SUBDIR += py-virtualenv
     SUBDIR += py-wadllib
     SUBDIR += py-watchdog
+    SUBDIR += py-watchfiles
     SUBDIR += py-wcwidth
     SUBDIR += py-websockets
     SUBDIR += py-wheel

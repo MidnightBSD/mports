@@ -17,7 +17,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}certifi>=2017.4.17:security/py-certifi@${PY_
 		${PYTHON_PKGNAMEPREFIX}urllib3>=1.21.1,1<1.27,1:net/py-urllib3@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 NO_ARCH=	yes
 NO_TEST=	yes

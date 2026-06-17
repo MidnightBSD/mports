@@ -119,6 +119,7 @@
     SUBDIR += py-llm
     SUBDIR += py-mcp
     SUBDIR += py-mistral-common
+    SUBDIR += py-mistral-vibe
     SUBDIR += py-openai
     SUBDIR += py-openai-whisper
     SUBDIR += py-pexpect

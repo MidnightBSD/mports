@@ -178,6 +178,7 @@
     SUBDIR += py-mpd
     SUBDIR += py-mutagen
     SUBDIR += py-python-mpd2
+    SUBDIR += py-sounddevice
     SUBDIR += rhythmbox
     SUBDIR += rnnoise
     SUBDIR += sdl2_mixer

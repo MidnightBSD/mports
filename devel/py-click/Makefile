@@ -12,7 +12,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	allflavors distutils autoplist
 
 NO_ARCH=	yes
 NO_TEST=	yes

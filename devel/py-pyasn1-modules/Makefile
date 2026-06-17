@@ -17,7 +17,7 @@ OPTIONS_DEFINE=	DOCS
 NO_ARCH=	yes
 USES=		python shebangfix
 SHEBANG_FILES=	tools/*.py
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 PORTDOCS=	CHANGES.txt README.md
 TOOLS=		cmcdump.py cmpdump.py crldump.py crmfdump.py ocspclient.py \

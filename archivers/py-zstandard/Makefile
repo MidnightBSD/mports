@@ -18,7 +18,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>0:devel/py-hypothesis@${PY_FLAVOR}
 
 USES=		localbase python
-USE_PYTHON=	pep517 autoplist
+USE_PYTHON=	allflavors pep517 autoplist
 #PYDISTUTILS_BUILDARGS=	--system-zstd # breaks in runtime due to version mismatch, keep disabled until this is fixed: https://github.com/indygreg/python-zstandard/issues/132
 
 post-install:

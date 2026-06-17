@@ -300,6 +300,7 @@
     SUBDIR += py-httpcore
     SUBDIR += py-httplib2
     SUBDIR += py-httpx
+    SUBDIR += py-httpx-sse
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
     SUBDIR += py-libsass
@@ -313,6 +314,7 @@
     SUBDIR += py-pyjwt
     SUBDIR += py-pylsqpack
     SUBDIR += py-python-dotenv
+    SUBDIR += py-python-multipart
     SUBDIR += py-starlette
     SUBDIR += py-qt5-webengine
     SUBDIR += py-qt6-webengine
@@ -330,6 +332,7 @@
     SUBDIR += py-rfc3986
     SUBDIR += py-rfc3987
     SUBDIR += py-soupsieve
+    SUBDIR += py-sse-starlette
     SUBDIR += py-tornado
     SUBDIR += py-treq
     SUBDIR += py-uvicorn

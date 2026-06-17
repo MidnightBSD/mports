@@ -24,6 +24,13 @@ NO_ARCH=	yes
 PEP517_BUILD_CMD=	${PYTHON_CMD} -m flit_core.wheel
 PEP517_BUILD_DEPEND=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11:devel/py-flit-core@${PY_FLAVOR}
 
+fake-post-install:
+	@if [ ! -e ${FAKE_DESTDIR}${PREFIX}/bin/pyproject-build ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/pyproject-build-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/pyproject-build-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/pyproject-build; \
+	fi
+
 #OPTIONS_DEFINE=	VIRTUALENV
 #VIRTUALENV_DESC=	Use virtualenv for isolation
 

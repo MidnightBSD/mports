@@ -20,6 +20,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ddt>=1.1.1:devel/py-ddt@${PY_FLAVOR} \
 NO_ARCH=	yes
 NO_TEST=	yes
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 .include <bsd.port.mk>

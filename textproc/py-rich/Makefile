@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markdown-it-py>=2.2.0:textproc/py-markdown-i
 NO_ARCH=	yes
 NO_TEST=	yes
 USES=		python
-USE_PYTHON=	autoplist pep517 pytest
+USE_PYTHON=	allflavors autoplist pep517 pytest
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	Textualize

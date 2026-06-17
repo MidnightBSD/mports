@@ -13,7 +13,7 @@ LICENSE=	Apache-2.0
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=4.21.6,1<5.0.0,1:devel/py-protobuf@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 NO_ARCH=	yes
 

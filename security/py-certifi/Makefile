@@ -11,7 +11,7 @@ WWW=		https://github.com/certifi/python-certifi
 LICENSE=	MPL20
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 NO_ARCH=	yes
 

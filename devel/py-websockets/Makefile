@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=39.2.0:devel/py-setuptools@${P
 
 USES=		cpe python
 CPE_VENDOR=	${PORTNAME}_project
-USE_PYTHON=	autoplist pep517
+USE_PYTHON=	allflavors autoplist pep517
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/websockets/speedups*.so

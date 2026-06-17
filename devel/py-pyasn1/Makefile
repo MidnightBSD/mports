@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 NO_ARCH=	yes
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	allflavors autoplist distutils
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test

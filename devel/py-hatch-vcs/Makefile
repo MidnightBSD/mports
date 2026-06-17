@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=1.1.0:devel/py-hatchling@${PY_FLA
 TEST_DEPENDS=	git:devel/git
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	allflavors autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
 TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHON_SITELIBDIR}

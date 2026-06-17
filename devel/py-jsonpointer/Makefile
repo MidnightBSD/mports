@@ -12,7 +12,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 NO_ARCH=	yes
 
