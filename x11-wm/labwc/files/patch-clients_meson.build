@@ -1,0 +1,11 @@
+--- clients/meson.build.orig
++++ clients/meson.build
+@@ -30,7 +30,7 @@
+   )
+ endforeach
+
+-if host_machine.system() in ['freebsd', 'openbsd']
++if host_machine.system() in ['freebsd', 'midnightbsd', 'openbsd']
+   # For signalfd()
+   epoll_dep = dependency('epoll-shim')
+ else
