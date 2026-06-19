@@ -8,19 +8,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP web service mocking library for GNOME
 WWW=		https://gitlab.freedesktop.org/pwithnall/uhttpmock
 
-LICENSE=      lgpl2.1                                                         
-LICENSE_FILE= ${WRKSRC}/COPYING  
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gnome-autogen.sh:devel/gnome-common
-LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
+LIB_DEPENDS=	libsoup-3.0.so:devel/libsoup3
 
-USES=		gettext gmake gnome libtool pathfix pkgconfig tar:xz vala:build
-USE_GNOME=	gnomeprefix gtk20 introspection:build
+USES=		gettext gnome meson pkgconfig tar:xz vala:build
+USE_GNOME=	introspection:build
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--disable-Werror
-
-INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
