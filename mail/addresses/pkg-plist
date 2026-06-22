@@ -106,7 +106,4 @@ GNUstep/System/Library/Libraries/libAddresses.so
 GNUstep/System/Library/Libraries/libAddresses.so.%%MAJORLIBVERSION%%
 GNUstep/System/Library/Libraries/libAddresses.so.%%LIBVERSION%%
 GNUstep/System/Tools/AddressManager
-GNUstep/System/Applications/AddressManager.app/Resources/Dutch.lproj/AddressManager.gorm/data.info
-GNUstep/System/Applications/AddressManager.app/Resources/English.lproj/AddressManager.gorm/data.info
-GNUstep/System/Applications/AddressManager.app/Resources/French.lproj/AddressManager.gorm/data.info
 GNUstep/System/Library/Headers/AddressBook/AddressBook.h
