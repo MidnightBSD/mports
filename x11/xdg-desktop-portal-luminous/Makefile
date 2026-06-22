@@ -1,6 +1,7 @@
 PORTNAME=	xdg-desktop-portal-luminous
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.1.10
+PORTREVISION=	1
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -32,13 +33,11 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,"llvm-config,"${LLVM_CONFIG},' \
 		${WRKSRC_crate_clang-sys}/build/common.rs \
 		${WRKSRC_crate_clang-sys}/src/support.rs
-# Make each cargo subcommand very verbose
-# Adjust for CARGO_TARGET_DIR outside of meson.global_source_root()
-# Insert CARGO_BUILD_TARGET triple into the release output path: cargo puts
-# the binary in target/<triple>/release/ when building for a specific target.
+# Make each cargo subcommand very verbose.
+# Fix CARGO_TARGET_DIR (outside source root) and insert CARGO_BUILD_TARGET
+# triple: cargo writes to target/<triple>/release/ when a target is set.
 	@${REINPLACE_CMD} -e "s/'build',/ & '--verbose', '--verbose',/" \
-		-e "s,'target','..' / & ," \
-		-e "s|'target' / 'release'|'target' / '${CARGO_BUILD_TARGET}' / 'release'|" \
+		-e "s|meson.global_source_root() / 'target' / 'release'|meson.global_source_root() / '..' / 'target' / '${CARGO_BUILD_TARGET}' / 'release'|" \
 		${WRKSRC}/meson.build
 
 .include <bsd.port.mk>
