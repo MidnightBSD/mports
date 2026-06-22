@@ -13,7 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	rubygem-native-package-installer>=1.0.3:devel/rubygem-native-package-installer \
 		rubygem-rake>=0:devel/rubygem-rake \
-		rubygem-pkg-config>=0:devel/rubygem-pkg-config
+		rubygem-pkg-config>=0:devel/rubygem-pkg-config \
+		${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-glib2>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-glib2
 
 USES=		gem gnome
