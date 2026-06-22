@@ -34,8 +34,11 @@ post-patch:
 		${WRKSRC_crate_clang-sys}/src/support.rs
 # Make each cargo subcommand very verbose
 # Adjust for CARGO_TARGET_DIR outside of meson.global_source_root()
+# Insert CARGO_BUILD_TARGET triple into the release output path: cargo puts
+# the binary in target/<triple>/release/ when building for a specific target.
 	@${REINPLACE_CMD} -e "s/'build',/ & '--verbose', '--verbose',/" \
 		-e "s,'target','..' / & ," \
+		-e "s|'target' / 'release'|'target' / '${CARGO_BUILD_TARGET}' / 'release'|" \
 		${WRKSRC}/meson.build
 
 .include <bsd.port.mk>
