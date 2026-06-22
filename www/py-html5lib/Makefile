@@ -16,6 +16,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
 
 NO_ARCH=	yes
 USES=		cpe python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 .include <bsd.port.mk>

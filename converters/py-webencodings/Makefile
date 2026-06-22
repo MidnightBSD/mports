@@ -10,7 +10,7 @@ COMMENT=	Character encoding aliases for legacy web content
 LICENSE=	bsd3
 
 USES=		python:2.7+
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	allflavors autoplist concurrent distutils
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

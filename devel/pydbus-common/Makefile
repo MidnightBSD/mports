@@ -20,6 +20,7 @@ LIB_DEPENDS+=    libdbus-1.so:devel/dbus
 SLAVE_PORT?=	no
 
 USES=		gettext gmake libtool pathfix pkgconfig
+USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${PYTHON_INCLUDEDIR}
 CONFIGURE_ARGS=	--docdir=${DOCSDIR} \
@@ -70,7 +71,7 @@ LIB_DEPENDS+=	libdbus-glib-1.so:devel/dbus-glib
 RUN_DEPENDS+=	pydbus-common>=0:devel/pydbus-common
 USE_LDCONFIG=	yes
 USES+=		python
-USE_PYTHON=	flavors py3kplist
+USE_PYTHON=	allflavors flavors py3kplist
 
 post-install:
 	-${RM} -r ${PREFIX}/include/dbus-1.0 \

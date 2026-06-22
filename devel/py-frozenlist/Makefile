@@ -12,7 +12,7 @@ LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gettext-runtime python
-USE_PYTHON=	autoplist cython distutils
+USE_PYTHON=	allflavors autoplist concurrent cython distutils
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +

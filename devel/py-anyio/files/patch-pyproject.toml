@@ -1,10 +1,18 @@
---- pyproject.toml.orig	2023-05-27 11:12:17 UTC
+--- pyproject.toml.orig	2026-04-07 20:00:24 UTC
 +++ pyproject.toml
 @@ -1,6 +1,6 @@
  [build-system]
  requires = [
--    "setuptools >= 64",
+-    "setuptools >= 77",
 +    "setuptools >= 61",
      "setuptools_scm >= 6.4"
  ]
  build-backend = "setuptools.build_meta"
+@@ -10,7 +10,7 @@ description = "High-level concurrency and networking f
+ readme = "README.rst"
+ authors = [{name = "Alex Grönholm", email = "alex.gronholm@nextday.fi"}]
+-license = "MIT"
++license = {text = "MIT"}
+ classifiers = [
+     "Development Status :: 5 - Production/Stable",
+     "Intended Audience :: Developers",

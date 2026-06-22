@@ -23,7 +23,7 @@ LIB_DEPENDS=	libzstd.so:archivers/zstd
 RUN_DEPENDS=	${PY_TOMLI}
 
 USES=		cargo python
-USE_PYTHON=	autoplist pep517
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
@@ -45,7 +45,11 @@ CARGO_BUILD_ARGS=	--no-default-features \
 post-patch:
 	${REINPLACE_CMD} 's|%%PYTHON_VER%%|${PYTHON_VER}|' ${WRKSRC}/maturin/__init__.py
 
-post-install:
-	${REINPLACE_CMD} 's|^bin/maturin$$|bin/maturin-${PYTHON_VER}|' ${WRKDIR}/.PLIST.pymodtmp
+fake-post-install:
+	@if [ ! -e ${FAKE_DESTDIR}${PREFIX}/bin/maturin ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/maturin-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/maturin-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/maturin; \
+	fi
 
 .include <bsd.port.mk>

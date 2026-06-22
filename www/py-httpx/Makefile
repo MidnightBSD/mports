@@ -38,4 +38,11 @@ HTTP2_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}h2>=3<5:www/py-h2@${PY_FLAVOR}
 SOCKS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}socksio>=1<2:net/py-socksio@${PY_FLAVOR}
 ZSTD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zstandard>=0.18.0:archivers/py-zstandard@${PY_FLAVOR}
 
+fake-post-install:
+	@if [ ! -e ${FAKE_DESTDIR}${PREFIX}/bin/httpx ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/httpx-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/httpx-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/httpx; \
+	fi
+
 .include <bsd.port.mk>

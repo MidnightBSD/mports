@@ -11,7 +11,7 @@ WWW=		https://hyper.rtfd.org/
 LICENSE=	mit
 
 USES?=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 NO_ARCH=	yes
 

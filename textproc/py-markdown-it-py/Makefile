@@ -19,4 +19,11 @@ USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 
+fake-post-install:
+	@if [ ! -e ${FAKE_DESTDIR}${PREFIX}/bin/markdown-it ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/markdown-it-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/markdown-it-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/markdown-it; \
+	fi
+
 .include <bsd.port.mk>

@@ -13,7 +13,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils nose2
+USE_PYTHON=	allflavors autoplist concurrent distutils nose2
 
 NO_ARCH=	yes
 NO_TEST=	yes

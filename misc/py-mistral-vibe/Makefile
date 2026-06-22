@@ -28,7 +28,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}agent-client-protocol>=0.10.1:devel/py-agent
 		${PYTHON_PKGNAMEPREFIX}cryptography>=0:security/py-cryptography@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}eval-type-backport>=0.3.1:devel/py-eval-type-backport@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}gitdb>=0:devel/py-gitdb@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}GitPython>=0:devel/py-gitpython@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}gitpython>=0:devel/py-gitpython@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}giturlparse>=0.14.0:devel/py-giturlparse@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}google-auth>=0:security/py-google-auth@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}googleapis-common-protos>=0:devel/py-googleapis-common-protos@${PY_FLAVOR} \

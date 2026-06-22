@@ -24,4 +24,13 @@ CONFLICTS_INSTALL=	py*-cython py*-cython0 py*-cython3 # bin/cygdb bin/cython bin
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Cython -name '*.so' -exec ${STRIP_CMD} {} +
 
+fake-post-install:
+.for script in cygdb cython cythonize
+	@if [ ! -e ${FAKE_DESTDIR}${PREFIX}/bin/${script} ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/${script}-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/${script}-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/${script}; \
+	fi
+.endfor
+
 .include <bsd.port.mk>

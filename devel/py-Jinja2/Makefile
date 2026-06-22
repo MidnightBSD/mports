@@ -24,7 +24,7 @@ NO_TEST=	yes
 .if empty(PKGNAMESUFFIX)
 USES=		cpe python
 CPE_VENDOR=	pocoo
-USE_PYTHON=	autoplist pep517
+USE_PYTHON=	allflavors autoplist pep517
 PEP517_INSTALL_CMD=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} \
 			--prefix ${TRUE_PREFIX} \
 			${BUILD_WRKSRC}/dist/${PYWHEEL_NAME}-${DISTVERSION}*.whl

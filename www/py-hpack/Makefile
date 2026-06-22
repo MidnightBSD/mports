@@ -12,7 +12,7 @@ LICENSE=	mit
 
 USES?=		cpe python
 CPE_VENDOR=	python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	allflavors autoplist concurrent distutils
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}multidict>=4.0:www/py-multidict@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}idna>=2.0:dns/py-idna@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist pep517 cython
+USE_PYTHON=	allflavors autoplist concurrent cython pep517
 
 NO_TEST=	yes
 

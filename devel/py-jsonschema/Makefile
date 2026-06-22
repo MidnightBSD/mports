@@ -31,4 +31,11 @@ CONFLICTS_INSTALL=	py*-jsonschema3 # bin/jsonschema
 
 NO_ARCH=	yes
 
+fake-post-install:
+	@if [ ! -e ${FAKE_DESTDIR}${PREFIX}/bin/jsonschema ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/jsonschema-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/jsonschema-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/jsonschema; \
+	fi
+
 .include <bsd.port.mk>

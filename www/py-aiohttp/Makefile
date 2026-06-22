@@ -22,7 +22,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiosignal>=1.1.2:devel/py-aiosignal@${PY_FLA
 
 NO_TEST=	yes
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent cython pep517
+USE_PYTHON=	allflavors autoplist concurrent cython pep517
 
 CPE_VENDOR=	aiohttp_project
 
