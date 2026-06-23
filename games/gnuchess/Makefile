@@ -52,5 +52,6 @@ post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/doc/* ${FAKE_DESTDIR}${DOCSDIR}
 	${RM} ${FAKE_DESTDIR}${DOCSDIR}/gnuchess.info
+	${RM} -f ${FAKE_DESTDIR}${DOCSDIR}/*.bak
 
 .include <bsd.port.mk>
