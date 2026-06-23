@@ -93,8 +93,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}agent-client-protocol>=0.10.1:devel/py-agent
 		${PYTHON_PKGNAMEPREFIX}textual>=0:textproc/py-textual@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}textual-speedups>=0:textproc/py-textual-speedups@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tomli-w>=0:textproc/py-tomli-w@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}tree-sitter>=0:devel/py-tree-sitter@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}tree-sitter-bash>=0:devel/py-tree-sitter-bash@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tree-sitter>=0.25.2:devel/py-tree-sitter@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tree-sitter-bash>=0.25.1:devel/py-tree-sitter-bash@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}truststore>=0:security/py-truststore@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=0:devel/py-typing-extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-inspection>=0:devel/py-typing-inspection@${PY_FLAVOR} \
