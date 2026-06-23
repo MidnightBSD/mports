@@ -1,5 +1,5 @@
 PORTNAME=	pygments
-DISTVERSION=	2.17.2
+DISTVERSION=	2.20.0
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,5 +19,14 @@ CONFLICTS_INSTALL=	py??-pygments-25
 
 NO_ARCH=	yes
 NO_TEST=	yes
+
+_USES_fake+=	774:fix-pygments-script
+
+fix-pygments-script:
+	@if [ "${PYTHON_VER}" != "${PYTHON_DEFAULT}" ] && \
+		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/pygmentize-${PYTHON_DEFAULT} ]; then \
+		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/pygmentize-${PYTHON_DEFAULT} \
+			${FAKE_DESTDIR}${PREFIX}/bin/pygmentize; \
+	fi
 
 .include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	grpcio
-PORTVERSION=	1.72.0
+PORTVERSION=	1.78.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=3:devel/py-protobuf@${PY_FLAVOR} \
 LIB_DEPENDS=	libcares.so:dns/c-ares
 
 USES=		compiler:c++11-lib localbase:ldflags python ssl
-USE_PYTHON=	autoplist cython distutils
+USE_PYTHON=	allflavors autoplist cython distutils
 MAKE_ENV+=	GRPC_PYTHON_BUILD_SYSTEM_CARES=true \
 		GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=true \
 		GRPC_PYTHON_BUILD_SYSTEM_ZLIB=true

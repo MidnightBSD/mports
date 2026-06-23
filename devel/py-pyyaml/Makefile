@@ -12,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		localbase python
-USE_PYTHON=	autoplist concurrent cython distutils
+USE_PYTHON=	allflavors autoplist concurrent cython distutils
 
 OPTIONS_DEFINE=	LIBYAML EXAMPLES
 OPTIONS_DEFAULT=LIBYAML

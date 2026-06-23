@@ -16,10 +16,19 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		ninja:run python shebangfix
-USE_PYTHON=	autoplist pep517
+USE_PYTHON=	allflavors autoplist concurrent pep517
 SHEBANG_FILES=	mesonbuild/rewriter.py \
 		mesonbuild/scripts/cmake_run_ctgt.py
 NO_ARCH=	yes
+
+_USES_fake+=	774:fix-meson-flavor
+
+fix-meson-flavor:
+	@if [ "${PYTHON_VER}" != "${PYTHON_DEFAULT}" ]; then \
+		${RM} ${FAKE_DESTDIR}${PREFIX}/share/polkit-1/actions/com.mesonbuild.install.policy; \
+		${REINPLACE_CMD} -e '/share\/polkit-1\/actions\/com.mesonbuild.install.policy/d' \
+			${_PYTHONPKGLIST}; \
+	fi
 
 .include <bsd.port.pre.mk>
 

@@ -11,7 +11,6 @@ COMMENT=	Optional Rust speedups for Textual
 WWW=		https://github.com/willmcgugan/textual-speedups
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.8<2.0:devel/py-maturin@${PY_FLAVOR}
 

@@ -23,8 +23,10 @@ RUN_DEPENDS=	meson:devel/meson@${PY_FLAVOR} \
 		${PY_TOMLI}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
+# tarball has UTF-8 filenames
+EXTRACT_CMD=	env LANG=C.UTF-8 LC_ALL=C.UTF-8 ${TAR}
 NO_ARCH=	yes
 NO_TEST=	yes
 
