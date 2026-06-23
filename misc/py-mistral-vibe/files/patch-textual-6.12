@@ -1,0 +1,53 @@
+--- vibe/cli/textual_ui/widgets/diff_rendering.py.orig	2026-06-17 05:51:03 UTC
++++ vibe/cli/textual_ui/widgets/diff_rendering.py
+@@ -6,8 +6,6 @@ import re
+ 
+ from textual.content import Content
+ from textual.highlight import (
+-    ANSIDarkHighlightTheme,
+-    ANSILightHighlightTheme,
+     HighlightTheme,
+     highlight as highlight_code,
+ )
+@@ -43,7 +41,7 @@ def _pick_theme(*, ansi: bool, dark: bool) -> type[Hig
+ def _pick_theme(*, ansi: bool, dark: bool) -> type[HighlightTheme]:
+     if not ansi:
+         return HighlightTheme
+-    return ANSIDarkHighlightTheme if dark else ANSILightHighlightTheme
++    return HighlightTheme
+ 
+ 
+ def _highlight_line(code: str, language: str, theme: type[HighlightTheme]) -> Content:
+--- vibe/core/config/_settings.py.orig	2026-06-17 05:51:03 UTC
++++ vibe/core/config/_settings.py
+@@ -583,7 +583,7 @@ DEFAULT_TTS_MODELS = [DEFAULT_ACTIVE_TTS_MODEL_CONFIG]
+ 
+ DEFAULT_TTS_MODELS = [DEFAULT_ACTIVE_TTS_MODEL_CONFIG]
+ 
+-DEFAULT_THEME = "ansi-dark"
++DEFAULT_THEME = "textual-ansi"
+ 
+ 
+ class VibeConfig(BaseSettings):
+--- vibe/setup/onboarding/__init__.py.orig	2026-06-17 05:51:03 UTC
++++ vibe/setup/onboarding/__init__.py
+@@ -59,7 +59,7 @@ class OnboardingWizard(App[OnboardingResult]):
+         )
+ 
+     def on_mount(self) -> None:
+-        self.theme = "ansi-dark"
++        self.theme = "textual-ansi"
+ 
+         theme_next = "auth_method" if self.supports_browser_sign_in else "api_key"
+         welcome_screen = WelcomeScreen(next_screen="theme_selection")
+--- vibe/setup/trusted_folders/trust_folder_dialog.py.orig	2026-06-17 05:51:03 UTC
++++ vibe/setup/trusted_folders/trust_folder_dialog.py
+@@ -258,7 +258,7 @@ class TrustFolderApp(App[TrustDecision]):
+         self._quit_without_saving = False
+ 
+     def on_mount(self) -> None:
+-        self.theme = "ansi-dark"
++        self.theme = "textual-ansi"
+ 
+     def compose(self) -> ComposeResult:
+         yield TrustFolderDialog(

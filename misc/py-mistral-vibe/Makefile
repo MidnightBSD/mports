@@ -111,4 +111,22 @@ USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
+_USES_fake+=	774:fix-vibe-scripts
+
+post-patch:
+	@${FIND} ${WRKSRC} -name '*.orig' -exec ${RM} {} +
+
+fix-vibe-scripts:
+	@if [ "${PYTHON_VER}" != "${PYTHON_DEFAULT}" ]; then \
+		for script in vibe vibe-acp; do \
+			for suffix in ${PYTHON_VER} ${PYTHON_DEFAULT}; do \
+				if [ -e ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} ]; then \
+					${MV} ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} \
+						${FAKE_DESTDIR}${PREFIX}/bin/$${script}; \
+					break; \
+				fi; \
+			done; \
+		done; \
+	fi
+
 .include <bsd.port.mk>
