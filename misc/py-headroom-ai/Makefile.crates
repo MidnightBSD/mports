@@ -30,6 +30,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		aws-lc-rs-1.16.3 \
 		aws-lc-sys-0.40.0 \
 		aws-runtime-1.7.3 \
+		aws-sdk-sso-1.98.0 \
+		aws-sdk-ssooidc-1.100.0 \
 		aws-sdk-sts-1.103.0 \
 		aws-sigv4-1.4.3 \
 		aws-smithy-async-1.2.14 \
@@ -307,11 +309,11 @@ CARGO_CRATES=	adler2-2.0.1 \
 		prometheus-0.13.4 \
 		proptest-1.11.0 \
 		pxfm-0.1.29 \
-		pyo3-0.22.6 \
-		pyo3-build-config-0.22.6 \
-		pyo3-ffi-0.22.6 \
-		pyo3-macros-0.22.6 \
-		pyo3-macros-backend-0.22.6 \
+		pyo3-0.24.2 \
+		pyo3-build-config-0.24.2 \
+		pyo3-ffi-0.24.2 \
+		pyo3-macros-0.24.2 \
+		pyo3-macros-backend-0.24.2 \
 		qoi-0.4.1 \
 		quick-error-1.2.3 \
 		quick-error-2.0.1 \
@@ -390,7 +392,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		syn-2.0.117 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.13.2 \
-		target-lexicon-0.12.16 \
+		target-lexicon-0.13.5 \
 		tempfile-3.27.0 \
 		thiserror-1.0.69 \
 		thiserror-2.0.18 \

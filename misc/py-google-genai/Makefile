@@ -1,6 +1,6 @@
 PORTNAME=	google-genai
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.1
+DISTVERSION=	2.9.0
 CATEGORIES=	misc python # machine-learning
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,14 +16,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=24.2:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pkginfo>=1.12.0:sysutils/py-pkginfo@${PY_FLAVOR} \
 		${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}twine>=6.1.0:devel/py-twine@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 #from pyproject.toml
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}anyio>=4.8.0:devel/py-anyio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}distro>=1.7.0:sysutils/py-distro@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}google-auth>0:security/py-google-auth@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}google-auth>=2.48.1:security/py-google-auth@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}httpx>=0.28.1:www/py-httpx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.9.0:devel/py-pydantic2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.12.5:devel/py-pydantic2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.28.1:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sniffio>0:devel/py-sniffio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tenacity>=8.2.3:devel/py-tenacity@${PY_FLAVOR} \
@@ -38,7 +37,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}absl-py>=2.1.0:devel/py-absl-py@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}charset-normalizer>=3.4.0:textproc/py-charset-normalizer@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}coverage>=7.6.9:devel/py-coverage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}distro>=1.9.0:sysutils/py-distro@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}google-auth>=2.47.0:security/py-google-auth@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}google-auth>=2.48.1:security/py-google-auth@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}httpx>=0.28.1:www/py-httpx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}idna>=3.10:dns/py-idna@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}iniconfig>=2.0.0:devel/py-iniconfig@${PY_FLAVOR} \
@@ -50,9 +49,9 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}absl-py>=2.1.0:devel/py-absl-py@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}py>=1.11.0:devel/py-py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyasn1>0:devel/py-pyasn1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyasn1-modules>=0.4.1:devel/py-pyasn1-modules@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.12.0:devel/py-pydantic2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.12.5:devel/py-pydantic2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic-core>=2.41.1:devel/py-pydantic-core@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyopenssl>=24.2.1:security/py-pyopenssl@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}openssl>=24.2.1,1:security/py-openssl@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0.25.0:devel/py-pytest-asyncio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>0:devel/py-pytest-cov@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=3.8.0:devel/py-pytest-xdist@${PY_FLAVOR} \
@@ -63,7 +62,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}absl-py>=2.1.0:devel/py-absl-py@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}tenacity>=8.2.3:devel/py-tenacity@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.14.1:devel/py-typing-extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}urllib3>=2.5.0:net/py-urllib3@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}websockets>=16.0:devel/py-websockets@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}websockets>=13.0:devel/py-websockets@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	pep517 autoplist pytest

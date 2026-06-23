@@ -1,5 +1,5 @@
 PORTNAME=	fastapi
-PORTVERSION=	0.135.1
+PORTVERSION=	0.138.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,10 +13,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pdm-backend>=0:devel/py-pdm-backend@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pydantic2>=1.7.4:devel/py-pydantic2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}starlette>=0.26.1:www/py-starlette@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pydantic2>=2.9.0:devel/py-pydantic2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}starlette>=0.46.0:www/py-starlette@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}uvicorn>=0:www/py-uvicorn@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}annotated-doc>=0:devel/py-annotated-doc@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}annotated-doc>=0.0.2:devel/py-annotated-doc@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}typing-inspection>=0.4.2:devel/py-typing-inspection@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}inline-snapshot>=0:devel/py-inline-snapshot@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typer>=0:devel/py-typer@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ujson>=0:devel/py-ujson@${PY_FLAVOR} \

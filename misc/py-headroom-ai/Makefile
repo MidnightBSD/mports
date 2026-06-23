@@ -1,5 +1,5 @@
 PORTNAME=	headroom-ai
-DISTVERSION=	0.22.4
+DISTVERSION=	0.27.0
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.5<2.0:devel/py-maturin@${PY_FLA
 LIB_DEPENDS=	libonig.so:devel/oniguruma
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ast-grep-cli>=0.30.0:devel/py-ast-grep-cli@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}click>=8.1.0:devel/py-click@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}litellm>=1.82.3:misc/py-litellm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}litellm>=1.86.2:misc/py-litellm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}openai>=2.14.0:misc/py-openai@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=1.24.0:devel/py-opentelemetry-api@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.0.0:devel/py-pydantic2@${PY_FLAVOR} \

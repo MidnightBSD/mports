@@ -1822,6 +1822,7 @@
     SUBDIR += py-unidiff
     SUBDIR += py-unittest2
     SUBDIR += py-usb
+    SUBDIR += py-uv-build
     SUBDIR += py-uvloop
     SUBDIR += py-validators
     SUBDIR += py-vcrpy
