@@ -18,6 +18,32 @@
  
  
  def _highlight_line(code: str, language: str, theme: type[HighlightTheme]) -> Content:
+--- vibe/cli/textual_ui/app.tcss.orig	2026-06-17 05:51:03 UTC
++++ vibe/cli/textual_ui/app.tcss
+@@ -378,7 +378,6 @@
+ .reasoning-message-header {
+     width: 100%;
+     height: auto;
+-    pointer: pointer;
+ }
+ 
+ .reasoning-indicator {
+@@ -621,7 +620,6 @@
+     width: auto;
+     height: auto;
+     margin-top: 0;
+-    pointer: pointer;
+ }
+ 
+ .collapsible-triangle {
+@@ -949,7 +947,6 @@
+     border: none;
+     color: $warning;
+     text-style: bold;
+-    pointer: pointer;
+     padding: 1;
+ }
+ 
 --- vibe/core/config/_settings.py.orig	2026-06-17 05:51:03 UTC
 +++ vibe/core/config/_settings.py
 @@ -583,7 +583,7 @@ DEFAULT_TTS_MODELS = [DEFAULT_ACTIVE_TTS_MODEL_CONFIG]
@@ -40,6 +66,24 @@
  
          theme_next = "auth_method" if self.supports_browser_sign_in else "api_key"
          welcome_screen = WelcomeScreen(next_screen="theme_selection")
+--- vibe/setup/onboarding/onboarding.tcss.orig	2026-06-17 05:51:03 UTC
++++ vibe/setup/onboarding/onboarding.tcss
+@@ -377,7 +377,6 @@
+     margin-bottom: 2;
+     color: $primary;
+     text-style: underline;
+-    pointer: pointer;
+ 
+     &:hover {
+         color: $secondary;
+@@ -445,7 +444,6 @@
+     margin-left: 2;
+     text-style: dim;
+ 
+-    pointer: pointer;
+     &:hover {
+         color: $primary;
+         text-style: bold underline;
 --- vibe/setup/trusted_folders/trust_folder_dialog.py.orig	2026-06-17 05:51:03 UTC
 +++ vibe/setup/trusted_folders/trust_folder_dialog.py
 @@ -258,7 +258,7 @@ class TrustFolderApp(App[TrustDecision]):
