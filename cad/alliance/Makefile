@@ -33,7 +33,7 @@ CONFIGURE_ARGS+=--mandir=${PREFIX}/share/man \
 		--prefix=${ALLIANCE_TOP} \
 		--enable-alc-shared \
 		--enable-shared
-USE_LDCONFIG=	${ALLIANCE_TOP}/lib
+USE_LDCONFIG=	yes
 
 MAKE_JOBS_UNSAFE=	yes
 INSTALL_TARGET=	install-strip
