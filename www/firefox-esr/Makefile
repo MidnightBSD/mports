@@ -1,6 +1,5 @@
 PORTNAME=	firefox
-DISTVERSION=	128.14.0
-PORTREVISION=	1
+DISTVERSION=	140.12.0
 PORTEPOCH=	1
 CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
@@ -18,12 +17,12 @@ LICENSE_COMB=	dual
 CONFLICTS_INSTALL=	firefox
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.101:security/nss \
-		icu>=73.1,1:devel/icu \
+		nss>=3.112:security/nss \
+		icu>=76.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
-		harfbuzz>=8.5.0:print/harfbuzz \
+		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
-		png>=1.6.43:graphics/png \
+		png>=1.6.45:graphics/png \
 		dav1d>=1.0.0:multimedia/dav1d \
 		libvpx>=1.14.0:multimedia/libvpx \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
@@ -32,7 +31,7 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip \
-		clang15:devel/llvm15 \
+		clang19:devel/llvm19 \
 		cargo:lang/rust \
 		cbindgen:devel/rust-cbindgen
 
@@ -87,6 +86,7 @@ QMAKE_ARGS=	--enable-application=browser \
 		--disable-profiling \
 		--disable-pulseaudio \
 		--disable-tests \
+		--disable-necko-wifi \
 		--disable-updater \
 		--disable-webrtc \
 		--disable-hardening \
@@ -100,7 +100,7 @@ QMAKE_ARGS=	--enable-application=browser \
 		--with-system-zlib \
 		--without-wasm-sandboxed-libraries
 
-LLVM_VERSION=	15
+LLVM_VERSION=	19
 MBSD_TARGET_ARCH=	${ARCH:S/amd64/x86_64/:S/i386/i686/}
 MBSD_TARGET=	${MBSD_TARGET_ARCH}-mports-freebsd13.4
 CONFIGURE_TARGET=	${MBSD_TARGET}
