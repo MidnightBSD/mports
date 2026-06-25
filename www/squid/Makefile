@@ -1,5 +1,5 @@
 PORTNAME=	squid
-DISTVERSION=	7.4
+DISTVERSION=	7.6
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/${PORTNAME}-cache/${PORTNAME}/releases/download/${PORTNAME:tu}_${DISTVERSION:S|.|_|g}/
 
@@ -12,9 +12,11 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		compiler:c++17-lang cpe gmake localbase:ldflags perl5 \
-		shebangfix tar:xz
+		pkgconfig shebangfix tar:xz
 CPE_VENDOR=	squid-cache
 USE_RC_SUBR=	squid
+
+LIB_DEPENDS=	libmd5.so:www/libwww
 
 SHEBANG_FILES=	contrib/*.pl scripts/*.pl tools/*.pl
 
@@ -122,7 +124,6 @@ AUTH_SQL_VARS=			EXTERNAL_ACL+=SQL_session
 CACHE_DIGESTS_CONFIGURE_ENABLE=	cache-digests
 DELAY_POOLS_CONFIGURE_ENABLE=	delay-pools
 ECAP_LIB_DEPENDS=		libecap.so:www/libecap
-ECAP_USES=			pkgconfig:build
 ECAP_CONFIGURE_ENABLE=		ecap
 FOLLOW_XFF_CONFIGURE_ENABLE=	follow-x-forwarded-for
 FS_AUFS_CONFIGURE_WITH=		pthreads
@@ -135,25 +136,25 @@ FS_DISKD_VARS=			DISKIO_MODULES+=DiskDaemon \
 				STORAGE_SCHEMES+=diskd
 FS_ROCK_VARS=			STORAGE_SCHEMES+=rock
 GSSAPI_BASE_USES=		gssapi
-GSSAPI_BASE_CONFIGURE_ON=	${GSSAPI_CONFIGURE_ARGS} \
-				krb5_config=${GSSAPIBASEDIR}/bin/krb5-config
 .if exists(/usr/libdata/pkgconfig/mit-krb5.pc)
-GSSAPI_BASE_CONFIGURE_ON+=	--with-mit-krb5=${GSSAPIBASEDIR}
+GSSAPI_BASE_CONFIGURE_ON=	--with-mit-krb5=${GSSAPIBASEDIR} \
+				--without-heimdal-krb5
+GSSAPI_BASE_CONFIGURE_ENV=	LIBMIT_KRB5_CFLAGS="${GSSAPICPPFLAGS}" \
+				LIBMIT_KRB5_LIBS="${GSSAPILIBS}"
 .else
-GSSAPI_BASE_CONFIGURE_ON+=	--with-heimdal-krb5=${GSSAPIBASEDIR} \
+GSSAPI_BASE_CONFIGURE_ON=	--with-heimdal-krb5=${GSSAPIBASEDIR} \
 				--without-mit-krb5
+GSSAPI_BASE_CONFIGURE_ENV=	LIBHEIMDAL_KRB5_CFLAGS="${GSSAPICPPFLAGS}" \
+				LIBHEIMDAL_KRB5_LIBS="${GSSAPILIBS}"
 .endif
 GSSAPI_BASE_PLIST_SUB=		AUTH_KERB=""
 GSSAPI_HEIMDAL_USES=		gssapi:heimdal
-GSSAPI_HEIMDAL_CONFIGURE_ON=	${GSSAPI_CONFIGURE_ARGS} \
-				--with-heimdal-krb5=${GSSAPIBASEDIR} \
-				--without-mit-krb5 \
-				krb5_config=${GSSAPIBASEDIR}/bin/krb5-config
+GSSAPI_HEIMDAL_CONFIGURE_ON=	--with-heimdal-krb5=yes \
+				--without-mit-krb5
 GSSAPI_HEIMDAL_PLIST_SUB=	AUTH_KERB=""
 GSSAPI_MIT_USES=		gssapi:mit
-GSSAPI_MIT_CONFIGURE_ON=	${GSSAPI_CONFIGURE_ARGS} \
-				--with-mit-krb5=${GSSAPIBASEDIR} \
-				krb5_config=${GSSAPIBASEDIR}/bin/krb5-config
+GSSAPI_MIT_CONFIGURE_ON=	--with-mit-krb5=yes \
+				--without-heimdal-krb5
 GSSAPI_MIT_PLIST_SUB=		AUTH_KERB=""
 GSSAPI_NONE_CONFIGURE_ON=	--without-gss \
 				--without-heimdal-krb5 \
