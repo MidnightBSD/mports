@@ -1,6 +1,6 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
-DISTVERSION=	0.139.0
+DISTVERSION=	0.142.0
 CATEGORIES=	misc devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -98,7 +98,8 @@ post-patch:
 		${BUILD_WRKSRC}/core/tests/suite/exec.rs \
 		${BUILD_WRKSRC}/core/tests/suite/unified_exec.rs \
 		${BUILD_WRKSRC}/core/tests/suite/user_notification.rs \
-		${BUILD_WRKSRC}/exec-server/tests/file_system.rs \
+		${BUILD_WRKSRC}/exec-server/src/process_sandbox_tests.rs \
+		${BUILD_WRKSRC}/exec-server/tests/file_system_unix.rs \
 		${BUILD_WRKSRC}/shell-command/src/parse_command.rs \
 		${BUILD_WRKSRC}/shell-escalation/src/unix/escalate_server.rs \
 		${BUILD_WRKSRC}/tui/src/exec_command.rs
