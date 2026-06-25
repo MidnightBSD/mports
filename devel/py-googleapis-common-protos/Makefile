@@ -1,19 +1,24 @@
 PORTNAME=	googleapis-common-protos
-PORTVERSION=	1.61.0
+PORTVERSION=	1.75.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	googleapis_common_protos-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common protobufs used in Google APIs
-WWW=		https://github.com/googleapis/python-api-common-protos
+WWW=		https://github.com/googleapis/google-cloud-python/tree/main/packages/googleapis-common-protos \
+		https://github.com/googleapis/google-cloud-python
 
 LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=4.21.6,1<5.0.0,1:devel/py-protobuf@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=4.25.8,1<8.0.0,1:devel/py-protobuf@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	allflavors autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 
