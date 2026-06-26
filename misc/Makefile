@@ -37,6 +37,7 @@
     SUBDIR += findutils
     SUBDIR += gemini-cli
     SUBDIR += getopt
+    SUBDIR += github-copilot-cli
     SUBDIR += gnome-getting-started-docs
     SUBDIR += gnome-icon-theme
     SUBDIR += gnome-icon-theme-extras
