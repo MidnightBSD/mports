@@ -12,7 +12,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	40 gigabit FreeBSD Base Driver for Intel(R) Network Connections
 WWW=		https://downloadcenter.intel.com
 
-LICENSE=	bsd2
+LICENSE?=	bsd2
 
 USES=		kmod
 

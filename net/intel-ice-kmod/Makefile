@@ -1,10 +1,12 @@
 PORTNAME=	ice
-PORTVERSION=	1.38.16
+PORTVERSION=	2.1.8
 PORTEPOCH=	0
-MASTER_SITES?=	https://downloadmirror.intel.com/786082/
+MASTER_SITES?=	https://downloadmirror.intel.com/921607/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intel® Network Adapter Driver for E810 Series Devices
+
+LICENSE=	bsd3
 
 MANPAGENAME=	ice
 MANPAGELINKS=	if_ice
