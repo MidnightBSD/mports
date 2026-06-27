@@ -55,6 +55,29 @@
  
  
  class VibeConfig(BaseSettings):
+--- vibe/cli/textual_ui/widgets/tool_widgets.py.orig	2026-06-17 05:51:03 UTC
++++ vibe/cli/textual_ui/widgets/tool_widgets.py
+@@ -225,9 +225,9 @@ class EditApprovalWidget(ToolApprovalWidget[EditArgs])
+         yield from render_edit_diff(
+             self.args.old_string,
+             self.args.new_string,
+             language_for_path(self.args.file_path),
+             start_line,
+-            ansi=self.app.native_ansi_color,
++            ansi=self.app.ansi_color,
+             dark=self.app.current_theme.dark,
+         )
+ 
+@@ -250,8 +250,8 @@ class EditResultWidget(ToolResultWidget[EditResult]):
+                 self.result.old_string,
+                 self.result.new_string,
+                 language_for_path(self.result.file),
+                 self.result.ui_start_line,
+-                ansi=self.app.native_ansi_color,
++                ansi=self.app.ansi_color,
+                 dark=self.app.current_theme.dark,
+             )
+         )
 --- vibe/setup/onboarding/__init__.py.orig	2026-06-17 05:51:03 UTC
 +++ vibe/setup/onboarding/__init__.py
 @@ -59,7 +59,7 @@ class OnboardingWizard(App[OnboardingResult]):
