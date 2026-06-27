@@ -2,6 +2,7 @@
 
 PORTNAME=	sord
 PORTVERSION=	0.16.22
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://download.drobilla.net/
 

@@ -1,6 +1,7 @@
 PORTNAME=	llama-cpp
 DISTVERSIONPREFIX=	b
 DISTVERSION=	7134
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	ports@MidnightBSD.org

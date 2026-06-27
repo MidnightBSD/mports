@@ -1,5 +1,6 @@
 PORTNAME=	yaru-icon-theme
 DISTVERSION=	22.10.3
+PORTREVISION=	1
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@MidnightBSD.org

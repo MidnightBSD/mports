@@ -1,5 +1,6 @@
 PORTNAME=	typogrify
 DISTVERSION=	2.1.0
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	PYPI \
 		https://github.com/justinmayer/typogrify/releases/download/${PORTVERSION}/

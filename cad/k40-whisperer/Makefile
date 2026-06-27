@@ -1,5 +1,6 @@
 PORTNAME=	k40-whisperer
 DISTVERSION=	0.71
+PORTREVISION=	1
 CATEGORIES=	cad python
 MASTER_SITES=	https://www.scorchworks.com/K40whisperer/
 DISTNAME=	K40_Whisperer-${DISTVERSION}_src

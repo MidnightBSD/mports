@@ -1,5 +1,6 @@
 PORTNAME=	zix
 DISTVERSION=	0.8.0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://download.drobilla.net/
 

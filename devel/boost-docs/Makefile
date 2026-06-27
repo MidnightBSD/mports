@@ -1,4 +1,5 @@
 PORTNAME=	boost-docs
+PORTREVISION=	1
 COMMENT=	Documentation for libraries from boost.org
 WWW=		https://www.boost.org/
 

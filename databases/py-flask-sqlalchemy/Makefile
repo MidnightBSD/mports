@@ -1,5 +1,6 @@
 PORTNAME=	flask-sqlalchemy
 PORTVERSION=	3.1.1
+PORTREVISION=	1
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI \
 		https://github.com/pallets-eco/flask-sqlalchemy/releases/download/${PORTVERSION}/

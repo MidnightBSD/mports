@@ -1,5 +1,6 @@
 PORTNAME=	pytest-sugar
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/Teemu/pytest-sugar/releases/download/v${PORTVERSION}/

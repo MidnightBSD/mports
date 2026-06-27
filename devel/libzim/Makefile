@@ -1,6 +1,6 @@
 PORTNAME=	libzim
 DISTVERSION=	9.2.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	https://download.openzim.org/release/libzim/
 

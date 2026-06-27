@@ -1,5 +1,6 @@
 PORTNAME=	shtab
 PORTVERSION=	1.7.1
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/iterative/shtab/releases/download/v${PORTVERSION}/

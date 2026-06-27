@@ -1,5 +1,6 @@
 PORTNAME=	libspeechprovider
 DISTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	accessibility
 
 MAINTAINER=	ports@MidnightBSD.org

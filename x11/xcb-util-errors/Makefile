@@ -1,5 +1,6 @@
 PORTNAME=	xcb-util-errors
 PORTVERSION=	1.0.1
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 

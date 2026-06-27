@@ -1,6 +1,7 @@
 PORTNAME=	vulkan-loader
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.4.336
+PORTREVISION=	1
 CATEGORIES=	graphics devel
 
 MAINTAINER=	ports@MidnightBSD.org

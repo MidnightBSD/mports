@@ -1,5 +1,6 @@
 PORTNAME=	h5py
 PORTVERSION=	3.16.0
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI \
 		https://github.com/h5py/h5py/releases/download/${PORTVERSION}/

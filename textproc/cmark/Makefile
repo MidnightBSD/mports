@@ -1,5 +1,6 @@
 PORTNAME=	cmark
 DISTVERSION=	0.30.3
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org

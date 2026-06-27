@@ -1,5 +1,6 @@
 PORTNAME=	libwacom
 DISTVERSION=	2.12.1
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/linuxwacom/${PORTNAME}/releases/download/${PORTNAME}-${DISTVERSION}/
 

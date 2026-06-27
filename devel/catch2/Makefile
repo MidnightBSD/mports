@@ -1,6 +1,7 @@
 PORTNAME=	catch2 # 2.x series is under devel/catch, the project is called catch2
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.14.0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org

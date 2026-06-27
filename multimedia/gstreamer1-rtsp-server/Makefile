@@ -1,5 +1,6 @@
 PORTNAME=	gstreamer1-rtsp-server
 PORTVERSION=	1.22.4
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gst-rtsp-server/
 DISTNAME=	gst-rtsp-server-${PORTVERSION}

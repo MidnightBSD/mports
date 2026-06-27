@@ -1,5 +1,6 @@
 PORTNAME=	borgbackup
 DISTVERSION=	1.4.3
+PORTREVISION=	1
 CATEGORIES=	archivers python
 MASTER_SITES=	https://github.com/borgbackup/borg/releases/download/${DISTVERSION}/ \
 		PYPI

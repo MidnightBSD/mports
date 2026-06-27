@@ -1,7 +1,7 @@
 PORTNAME=	libskiasharp
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.88.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	FREEBSD_LOCAL/bapt:libjpeg_turbo
 DISTFILES=	libjpeg_turbo-${LIBJPEG_TURBO_REV}.tar.gz:libjpeg_turbo

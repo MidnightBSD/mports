@@ -1,5 +1,6 @@
 PORTNAME=	trilinos
 DISTVERSION=	16.2.0
+PORTREVISION=	1
 CATEGORIES=	science # physics
 
 MAINTAINER=	ports@MidnightBSD.org

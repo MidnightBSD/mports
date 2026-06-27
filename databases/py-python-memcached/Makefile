@@ -1,6 +1,6 @@
 PORTNAME=	python-memcached
 PORTVERSION=	1.62
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI \
 		https://github.com/linsomniac/python-memcached/releases/download/${PORTVERSION}/

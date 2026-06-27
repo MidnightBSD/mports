@@ -1,5 +1,6 @@
 PORTNAME=	efivar
 PORTVERSION=	0.15
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org

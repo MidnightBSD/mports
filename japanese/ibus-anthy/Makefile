@@ -1,5 +1,6 @@
 PORTNAME=	ibus-anthy
 DISTVERSION=	1.5.17
+PORTREVISION=	1
 CATEGORIES=	japanese
 MASTER_SITES=	https://github.com/ibus/ibus-anthy/releases/download/${DISTVERSION}/
 PKGNAMEPREFIX=	ja-

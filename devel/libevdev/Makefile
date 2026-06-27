@@ -1,5 +1,6 @@
 PORTNAME=	libevdev
 PORTVERSION=	1.13.2
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 

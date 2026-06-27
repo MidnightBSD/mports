@@ -1,6 +1,7 @@
 PORTNAME=	spirv-tools
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2026.1 # please always bump all dependencies when updated because at least graphics/shaderc links in static libraries
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org

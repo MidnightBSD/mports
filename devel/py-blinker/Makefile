@@ -1,5 +1,6 @@
 PORTNAME=	blinker
 PORTVERSION=	1.9.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/pallets-eco/blinker/releases/download/${PORTVERSION}/

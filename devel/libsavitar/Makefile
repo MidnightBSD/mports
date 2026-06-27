@@ -1,5 +1,6 @@
 PORTNAME=	libSavitar
 DISTVERSION=	5.3.0
+PORTREVISION=	1
 CATEGORIES=	devel cad
 DIST_SUBDIR=	Ultimaker
 

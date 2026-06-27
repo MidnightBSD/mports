@@ -1,5 +1,6 @@
 PORTNAME=	certbot-dns-ovh
 PORTVERSION=	${ACME_VERSION}
+PORTREVISION=	1
 CATEGORIES=	security python
 MASTER_SITES=	PYPI \
 		https://github.com/certbot/certbot/releases/download/v${PORTVERSION}/

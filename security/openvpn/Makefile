@@ -1,6 +1,6 @@
 PORTNAME=		openvpn
 DISTVERSION=		2.6.14
-PORTREVISION?=		0
+PORTREVISION?=		1
 CATEGORIES=		security net
 MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
 			https://build.openvpn.net/downloads/releases/ \

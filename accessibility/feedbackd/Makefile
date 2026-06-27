@@ -1,6 +1,7 @@
 PORTNAME=	feedbackd
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7.0
+PORTREVISION=	1
 CATEGORIES=	accessibility
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -1,6 +1,6 @@
 PORTNAME=	icu
 DISTVERSION=	76_1
-PORTREVISION?=	4 # keep for icu-lx
+PORTREVISION?=	5 # keep for icu-lx
 PORTEPOCH?=	1
 CATEGORIES?=	devel
 MASTER_SITES=	https://github.com/unicode-org/${PORTNAME}/releases/download/release-${DISTVERSION:S/rc/-&/:S/_/-/g}/

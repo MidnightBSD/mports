@@ -1,5 +1,6 @@
 PORTNAME=	black-hole-solver
 DISTVERSION=	1.12.0
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	https://fc-solve.shlomifish.org/downloads/fc-solve/
 

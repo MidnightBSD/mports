@@ -1,5 +1,6 @@
 PORTNAME=	jsoncpp
 DISTVERSION=	1.9.5
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org

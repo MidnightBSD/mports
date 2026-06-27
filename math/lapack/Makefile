@@ -1,7 +1,7 @@
 PORTNAME?=	lapack
 PORTVERSION=	3.12.0
 .if !(defined(BLAS_SLAVEPORT) || defined(CBLAS_SLAVEPORT) || defined(XLAPACK_SLAVEPORT) || defined(LAPACKE_SLAVEPORT))
-PORTREVISION=	2
+PORTREVISION=	3
 .else
 PORTREVISION?=	0	# Never remove this line, keep PORTREVISION?=0 in case.
 .endif

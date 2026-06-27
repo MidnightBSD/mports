@@ -1,5 +1,6 @@
 PORTNAME=	mc
 PORTVERSION=	4.8.31
+PORTREVISION=	1
 CATEGORIES=	misc shells
 MASTER_SITES=	http://ftp.midnight-commander.org/ \
 		https://ftp.osuosl.org/pub/midnightcommander/

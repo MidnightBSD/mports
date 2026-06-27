@@ -1,5 +1,6 @@
 PORTNAME=	glslang
 DISTVERSION=	16.2.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -1,6 +1,6 @@
 PORTNAME=	shared-mime-info
 DISTVERSION=	2.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc gnome
 
 MAINTAINER=	ports@MidnightBSD.org

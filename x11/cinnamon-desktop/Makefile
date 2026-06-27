@@ -1,5 +1,6 @@
 PORTNAME=	cinnamon-desktop
 DISTVERSION=	6.4.2
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 DIST_SUBDIR=	gnome
 

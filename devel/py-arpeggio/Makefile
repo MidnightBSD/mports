@@ -1,5 +1,6 @@
 PORTNAME=	arpeggio
 PORTVERSION=	2.0.3
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/textX/Arpeggio/releases/download/${PORTVERSION}/

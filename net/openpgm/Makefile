@@ -1,6 +1,7 @@
 PORTNAME=	openpgm
 DISTVERSIONPREFIX=	release-
 DISTVERSION=	5-2-122
+PORTREVISION=	1
 CATEGORIES=	net devel
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/

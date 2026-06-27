@@ -2,6 +2,7 @@
 
 PORTNAME=	serd
 PORTVERSION=	0.32.8
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://download.drobilla.net/
 

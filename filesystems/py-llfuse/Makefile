@@ -1,5 +1,6 @@
 PORTNAME=	llfuse
 PORTVERSION=	1.5.1
+PORTREVISION=	1
 CATEGORIES=	filesystems devel python
 MASTER_SITES=	PYPI \
 		https://github.com/python-llfuse/python-llfuse/releases/download/release-${PORTVERSION}/

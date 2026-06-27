@@ -1,6 +1,6 @@
 PORTNAME=	libcaes
 DISTVERSION=	alpha-20231120
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/libyal/libcaes/releases/download/${PORTVERSION:E}/ \
 		LOCAL/antoine

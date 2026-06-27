@@ -1,6 +1,6 @@
 PORTNAME=	reportlab
 DISTVERSION=	4.4.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print python
 MASTER_SITES=	PYPI:python \
 	FREEBSD_LOCAL/bofh/print/py-${PORTNAME}:pfbfer

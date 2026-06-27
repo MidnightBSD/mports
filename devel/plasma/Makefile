@@ -1,5 +1,6 @@
 PORTNAME=	plasma
 DISTVERSION=	g20180708
+PORTREVISION=	1
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -2,7 +2,7 @@
 
 PORTNAME=	sgflib
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games python
 MASTER_SITES=	http://gotools.sourceforge.net/sgflib/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}

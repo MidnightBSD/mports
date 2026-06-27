@@ -1,6 +1,6 @@
 PORTNAME=	homard
 DISTVERSION=	11.12-aster2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	french cad linux
 
 MAINTAINER=	ports@MidnightBSD.org

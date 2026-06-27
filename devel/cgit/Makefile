@@ -1,5 +1,6 @@
 PORTNAME=	cgit
 PORTVERSION=	1.2.3
+PORTREVISION=	1
 CATEGORIES=	devel www
 MASTER_SITES=	http://git.zx2c4.com/cgit/snapshot/:cgit \
 		${MASTER_SITES_KERNEL_ORG}:git

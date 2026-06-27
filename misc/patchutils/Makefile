@@ -1,5 +1,6 @@
 PORTNAME=	patchutils
 PORTVERSION=	0.4.5
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://cyberelk.net/tim/data/patchutils/stable/
 

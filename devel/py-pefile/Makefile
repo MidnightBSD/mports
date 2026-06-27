@@ -1,6 +1,6 @@
 PORTNAME=	pefile
 PORTVERSION=	2024.8.26
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	https://github.com/erocarrera/pefile/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}

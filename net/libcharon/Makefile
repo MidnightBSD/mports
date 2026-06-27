@@ -1,5 +1,6 @@
 PORTNAME=	libCharon
 DISTVERSION=	5.0.0
+PORTREVISION=	1
 CATEGORIES=	net devel cad
 DIST_SUBDIR=	Ultimaker
 

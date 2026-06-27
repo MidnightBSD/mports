@@ -1,5 +1,6 @@
 PORTNAME=	sphinxcontrib-towncrier
 PORTVERSION=	0.5.0a0
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI \
 		https://github.com/sphinx-contrib/sphinxcontrib-towncrier/releases/download/v${PORTVERSION}/

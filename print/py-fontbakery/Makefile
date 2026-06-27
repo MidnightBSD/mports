@@ -1,5 +1,6 @@
 PORTNAME=	fontbakery
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	print python
 MASTER_SITES=	PYPI \
 		https://github.com/fonttools/fontbakery/releases/download/v${PORTVERSION}/

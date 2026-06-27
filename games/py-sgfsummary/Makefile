@@ -2,6 +2,7 @@
 
 PORTNAME=	sgfsummary
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	games python
 MASTER_SITES=	http://gotools.sourceforge.net/sgfsummary/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}

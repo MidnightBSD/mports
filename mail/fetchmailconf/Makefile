@@ -1,5 +1,5 @@
 PORTNAME=	fetchmailconf
-PORTREVISION=	0
+PORTREVISION=	1
 DISTNAME=	fetchmail-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 # NOTE: MASTER_SITES in ../fetchmail must NOT use the $PORTNAME variable,
 # else _this_ port (fetchmailconf) becomes unfetchable

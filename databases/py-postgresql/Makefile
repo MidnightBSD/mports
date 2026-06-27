@@ -1,6 +1,6 @@
 PORTNAME=	postgresql
 PORTVERSION=	1.1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI \
 		http://python.projects.postgresql.org/files/

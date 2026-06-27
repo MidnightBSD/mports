@@ -1,5 +1,6 @@
 PORTNAME=	idna
 PORTVERSION=	3.11
+PORTREVISION=	1
 CATEGORIES=	dns python
 MASTER_SITES=	PYPI \
 		https://github.com/kjd/idna/releases/download/v${PORTVERSION}/

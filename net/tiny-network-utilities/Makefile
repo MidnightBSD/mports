@@ -1,5 +1,6 @@
 PORTNAME=	tiny-network-utilities
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	net
 
 MAINTAINER=	ports@MidnightBSD.org

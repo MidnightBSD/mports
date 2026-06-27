@@ -1,5 +1,6 @@
 PORTNAME=	xen-guest-tools
 PORTVERSION=	4.20.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://downloads.xenproject.org/release/xen/${PORTVERSION}/
 DISTNAME=	xen-${PORTVERSION}

@@ -1,5 +1,6 @@
 PORTNAME=	libspiel
 DISTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	accessibility
 
 MAINTAINER=	ports@MidnightBSD.org

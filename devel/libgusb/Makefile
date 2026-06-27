@@ -1,6 +1,6 @@
 PORTNAME=	libgusb
 DISTVERSION=	0.4.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/hughsie/${PORTNAME}/releases/download/${DISTVERSION}/
 

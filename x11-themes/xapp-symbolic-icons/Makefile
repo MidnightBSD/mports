@@ -1,5 +1,6 @@
 PORTNAME=	xapp-symbolic-icons
 DISTVERSION=	1.0.9
+PORTREVISION=	1
 CATEGORIES=	x11-themes gnome
 
 MAINTAINER=	ports@MidnightBSD.org

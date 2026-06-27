@@ -1,5 +1,6 @@
 PORTNAME=	zn_poly
 DISTVERSION=	0.9.2
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	ports@MidnightBSD.org

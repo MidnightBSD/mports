@@ -1,5 +1,6 @@
 PORTNAME=	spice-protocol
 PORTVERSION=	0.14.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.spice-space.org/download/releases/
 
