@@ -10,7 +10,7 @@ WWW=		https://www.modwsgi.org/
 
 LICENSE=	Apache-2.0
 
-USES=		apache:2.4+ cpe gettext python:3.8-3.11
+USES=		apache:2.4+ cpe gettext python:3.8-3.12
 USE_PYTHON=	flavors
 CPE_VENDOR=	modwsgi
 

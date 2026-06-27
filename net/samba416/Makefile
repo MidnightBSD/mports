@@ -287,7 +287,7 @@ SAMBA4_BUNDLED_LIBS+=		replace
 # Don't use external libcom_err
 SAMBA4_BUNDLED_LIBS+=		com_err
 # Set the test environment variables
-TEST_USES=			python:-3.11
+TEST_USES=			python:-3.12
 TEST_ENV=			PYTHON="${PYTHON_CMD}" \
 				SHA1SUM=/sbin/sha1 \
 				SHA256SUM=/sbin/sha256 \
@@ -463,10 +463,10 @@ SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry \
 .endif
 # Python bindings
 .if ! ${PORT_OPTIONS:MPYTHON3} || defined(NO_PYTHON)
-USES+=				python:build,test,-3.11
+USES+=				python:build,test,-3.12
 CONFIGURE_ARGS+=		--disable-python
 .else
-USES+=				python:-3.11
+USES+=				python:-3.12
 PLIST+=				${PKGDIR}/pkg-plist.python
 # Don't cache Python modules
 CONFIGURE_ARGS+=		--nopycache
