@@ -1,5 +1,5 @@
 PORTNAME=	mistral-vibe
-PORTVERSION=	2.16.0
+PORTVERSION=	2.16.1
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -117,16 +117,14 @@ post-patch:
 	@${FIND} ${WRKSRC} -name '*.orig' -exec ${RM} {} +
 
 fix-vibe-scripts:
-	@if [ "${PYTHON_VER}" != "${PYTHON_DEFAULT}" ]; then \
-		for script in vibe vibe-acp; do \
-			for suffix in ${PYTHON_VER} ${PYTHON_DEFAULT}; do \
-				if [ -e ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} ]; then \
-					${MV} ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} \
-						${FAKE_DESTDIR}${PREFIX}/bin/$${script}; \
-					break; \
-				fi; \
-			done; \
+	@for script in vibe vibe-acp; do \
+		for suffix in ${PYTHON_VER} ${PYTHON_DEFAULT}; do \
+			if [ -e ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} ]; then \
+				${MV} ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} \
+					${FAKE_DESTDIR}${PREFIX}/bin/$${script}; \
+				break; \
+			fi; \
 		done; \
-	fi
+	done
 
 .include <bsd.port.mk>

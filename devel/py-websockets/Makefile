@@ -1,6 +1,5 @@
 PORTNAME=	websockets
-PORTVERSION=	15.0
-PORTREVISION=	1
+PORTVERSION=	16.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,6 +19,6 @@ CPE_VENDOR=	${PORTNAME}_project
 USE_PYTHON=	allflavors autoplist pep517
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/websockets/speedups*.so
+	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/websockets/speedups*.so
 
 .include <bsd.port.mk>

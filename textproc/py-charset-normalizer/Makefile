@@ -1,9 +1,10 @@
 PORTNAME=	charset-normalizer
-PORTVERSION=	3.0.1
-PORTREVISION=	1
+PORTVERSION=	3.4.7
+PORTREVISION=	0
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	charset_normalizer-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Real First Universal Charset Detector

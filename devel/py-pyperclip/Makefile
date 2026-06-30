@@ -1,6 +1,5 @@
 PORTNAME=	pyperclip
-PORTVERSION=	1.7.0
-PORTREVISION=	2
+PORTVERSION=	1.9.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,9 +9,13 @@ COMMENT=	Cross-platform clipboard module for Python
 WWW=		https://github.com/asweigart/pyperclip
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
-USE_PYTHON=	allflavors distutils autoplist
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		dos2unix python
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 
