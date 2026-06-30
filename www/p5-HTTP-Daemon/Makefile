@@ -1,5 +1,5 @@
 PORTNAME=	HTTP-Daemon
-PORTVERSION=	6.16
+PORTVERSION=	6.17
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -20,6 +20,6 @@ TEST_DEPENDS=	p5-Test-Needs>=0:devel/p5-Test-Needs
 
 NO_ARCH=	yes
 USES=		perl5
-USE_PERL5=	configure
+USE_PERL5=	modbuildtiny
 
 .include <bsd.port.mk>
