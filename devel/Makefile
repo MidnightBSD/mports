@@ -1417,6 +1417,7 @@
     SUBDIR += py-domdf-python-tools
     SUBDIR += py-dpcontracts
     SUBDIR += py-dulwich
+    SUBDIR += py-dunamai
     SUBDIR += py-editables
     SUBDIR += py-entrypoints
     SUBDIR += py-enum34
@@ -1825,6 +1826,7 @@
     SUBDIR += py-unittest2
     SUBDIR += py-usb
     SUBDIR += py-uv-build
+    SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
     SUBDIR += py-validators
     SUBDIR += py-vcrpy
@@ -2358,6 +2360,7 @@
     SUBDIR += rubygem-oj-gitlab
     SUBDIR += rubygem-oj-introspect
     SUBDIR += rubygem-open4
+    SUBDIR += rubygem-optimist
     SUBDIR += rubygem-opentelemetry-api
     SUBDIR += rubygem-opentelemetry-api-gitlab
     SUBDIR += rubygem-opentelemetry-common
