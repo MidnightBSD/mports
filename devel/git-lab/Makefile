@@ -10,7 +10,7 @@ WWW=		https://invent.kde.org/sdk/git-lab
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}appdirs>0:devel/py-appdirs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}gitpython>=2.1.8:devel/py-gitpython@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}GitPython>=2.1.8:devel/py-gitpython@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-gitlab>=2.7.1:devel/py-python-gitlab@${PY_FLAVOR}
 
 USES=		python
