@@ -116,7 +116,6 @@ USE_CABAL=	Glob-0.10.2_3 \
 		network-3.1.2.8 \
 		network-uri-2.6.4.2 \
 		old-locale-1.0.0.7_2 \
-		pandoc-3.1.1 \
 		pandoc-lua-engine-0.1.1 \
 		pandoc-lua-marshal-0.2.1 \
 		pandoc-types-1.23 \
@@ -179,7 +178,6 @@ USE_CABAL=	Glob-0.10.2_3 \
 		zip-archive-0.4.3 \
 		zlib-0.6.3.0_1
 
-HACKAGE_DISTNAME=	pandoc-cli-0.1
 CABAL_WRAPPER_SCRIPTS=	${CABAL_EXECUTABLES}
 
 OPTIONS_SUB=	yes
@@ -199,8 +197,8 @@ BUILD_ARGS+=   --disable-optimization
 .endif
 
 post-install-EMBED_DATA-off:
-	cd ${CABAL_DEPSDIR}/${PORTNAME}-${PORTVERSION} && ${COPYTREE_SHARE} data ${FAKE_DESTDIR}${DATADIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} data ${FAKE_DESTDIR}${DATADIR}
 post-install:
-	${INSTALL_MAN} ${CABAL_DEPSDIR}/${PORTNAME}-${PORTVERSION}/man/pandoc.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/pandoc.1 ${MAN1PREFIX}/man/man1
 
 .include <bsd.port.post.mk>
