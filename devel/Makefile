@@ -888,6 +888,7 @@
     SUBDIR += p5-Getopt-ArgvFile
     SUBDIR += p5-Getopt-Long
     SUBDIR += p5-Getopt-Long-Descriptive
+    SUBDIR += p5-Getopt-Yath
     SUBDIR += p5-Glib
     SUBDIR += p5-Glib-Object-Introspection
     SUBDIR += p5-Hash-FieldHash
