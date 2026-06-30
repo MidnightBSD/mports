@@ -1,6 +1,6 @@
-TIMESTAMP = 1678630985
-SHA256 (cabal/pandoc-cli-0.1/pandoc-cli-0.1.tar.gz) = c5d6ac5fecfcbc0c2a69c696dc543e60bcf9685fc3db3ae5d9929abe6c28cb05
-SIZE (cabal/pandoc-cli-0.1/pandoc-cli-0.1.tar.gz) = 10520
+TIMESTAMP = 1782778639
+SHA256 (cabal/pandoc-3.1.1.tar.gz) = d8bf5ca02a54b10bc0980848eb10697fa5c83d0c452a9afcea2ec823a9168537
+SIZE (cabal/pandoc-3.1.1.tar.gz) = 7261712
 SHA256 (cabal/Glob-0.10.2/Glob-0.10.2.tar.gz) = 6af672ac8427d35cbd42d64142dc288feab266f0be92dae3c696e8860d8173c0
 SIZE (cabal/Glob-0.10.2/Glob-0.10.2.tar.gz) = 30226
 SHA256 (cabal/Glob-0.10.2/revision/3.cabal) = dd2ddbecae8f84e8f4cacb5b856901a19c25ceaa11f2525d3ee88d034acb0081

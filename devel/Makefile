@@ -233,6 +233,7 @@
     SUBDIR += catch2
     SUBDIR += cbang
     SUBDIR += ccache
+    SUBDIR += ccache4
     SUBDIR += cereal
     SUBDIR += cgit
     SUBDIR += check
