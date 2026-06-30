@@ -713,6 +713,7 @@
     SUBDIR += p5-Any-Moose
     SUBDIR += p5-AnyEvent
     SUBDIR += p5-AnyEvent-I3
+    SUBDIR += p5-App-Yath-Script
     SUBDIR += p5-App-cpanminus
     SUBDIR += p5-AppConfig
     SUBDIR += p5-B-C
