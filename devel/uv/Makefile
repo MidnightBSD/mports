@@ -1,5 +1,5 @@
 PORTNAME=	uv
-DISTVERSION=	0.11.15
+DISTVERSION=	0.11.16
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ LICENSE_COMB=	dual
 LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
-BROKEN_i386=	compilation of the libopenssl_sys-abc7d27a34743709 crate fails: ld: error: undefined symbol: __atomic_is_lock_free, etc
+BROKEN_i386=	compilation of the libopenssl_sys crate fails
 
 LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 		libssh2.so:security/libssh2 \
@@ -55,10 +55,11 @@ post-patch:
 
 do-install:
 # workaround for error: found a virtual manifest at `xx` instead of a package manifest
+	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
 .for p in ${PROGS}
 	${INSTALL_PROGRAM} \
-		${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${p} \
-		${PREFIX}/bin
+		${WRKDIR}/target/release/${p} \
+		${STAGEDIR}${PREFIX}/bin
 .endfor
 
 .include <bsd.port.post.mk>
