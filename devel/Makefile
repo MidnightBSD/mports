@@ -670,7 +670,6 @@
     SUBDIR += lua-lpeg
     SUBDIR += lutok
     SUBDIR += luv
-    SUBDIR += uv
     SUBDIR += m17n-db
     SUBDIR += m17n-docs
     SUBDIR += m17n-lib
@@ -2653,6 +2652,7 @@
     SUBDIR += upnp
     SUBDIR += utf8cpp
     SUBDIR += uthash
+    SUBDIR += uv
     SUBDIR += valgrind
     SUBDIR += vcglib
     SUBDIR += viewvc-devel
