@@ -12,7 +12,7 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	p5-Test2-Suite>=0:devel/p5-Test2-Suite
+TEST_DEPENDS=	p5-Test-Simple>=1.302200:devel/p5-Test-Simple
 
 NO_ARCH=	yes
 USE_PERL5=	modbuild

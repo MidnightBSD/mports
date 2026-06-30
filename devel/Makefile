@@ -1164,7 +1164,6 @@
     SUBDIR += p5-Test2-Plugin-MemUsage
     SUBDIR += p5-Test2-Plugin-NoWarnings
     SUBDIR += p5-Test2-Plugin-UUID
-    SUBDIR += p5-Test2-Suite
     SUBDIR += p5-Throwable
     SUBDIR += p5-Tie-IxHash
     SUBDIR += p5-Tie-Simple

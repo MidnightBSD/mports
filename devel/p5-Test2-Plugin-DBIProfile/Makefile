@@ -17,7 +17,7 @@ USES=		perl5
 USE_PERL5=	configure
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-Test2-Suite>=0.000126:devel/p5-Test2-Suite
+RUN_DEPENDS=	p5-Test-Simple>=1.302200:devel/p5-Test-Simple
 TEST_DEPENDS=	p5-DBD-SQLite>=1.44:databases/p5-DBD-SQLite
 
 NO_ARCH=	yes
