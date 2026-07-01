@@ -1,5 +1,5 @@
 PORTNAME=	Rcpp
-DISTVERSION=	1.0.14
+DISTVERSION=	1.1.1
 CATEGORIES=	devel
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
@@ -8,6 +8,8 @@ COMMENT=	Seamless R and C++ Integration
 WWW=		https://cran.r-project.org/web/packages/Rcpp/
 
 LICENSE=	gpl2+
+
+MAKE_ENV+=	PKG_LIBS=-lexecinfo
 
 USES=		cran:auto-plist,compiles shebangfix
 SHEBANG_FILES=	inst/examples/*/*.r inst/examples/*/*.R inst/examples/*/*.sh

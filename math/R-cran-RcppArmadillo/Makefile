@@ -9,6 +9,8 @@ WWW=		https://cran.r-project.org/package=RcppArmadillo
 
 LICENSE=	gpl2+
 
+MAKE_ENV+=	PKG_LIBS=-lexecinfo
+
 CRAN_DEPENDS=	R-cran-Rcpp>=1.1.1:devel/R-cran-Rcpp
 BUILD_DEPENDS=	${CRAN_DEPENDS}
 RUN_DEPENDS=	${CRAN_DEPENDS}
