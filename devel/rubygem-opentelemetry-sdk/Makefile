@@ -20,6 +20,8 @@ RUN_DEPENDS=	rubygem-logger>=0:devel/rubygem-logger \
 
 USES=		gem
 
+RUBY_VER=	3.3
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

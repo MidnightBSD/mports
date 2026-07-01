@@ -16,6 +16,8 @@ RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-active_support>=0.7<1:devel/r
 
 USES=		gem
 
+RUBY_VER=	3.3
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

@@ -22,6 +22,8 @@ RUN_DEPENDS=	rubygem-googleapis-common-protos-types-gitlab>=1.3<2:devel/rubygem-
 
 USES=		gem
 
+RUBY_VER=	3.3
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

@@ -23,6 +23,8 @@ RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-action_mailer>=0.4<1:devel/ru
 
 USES=		gem
 
+RUBY_VER=	3.3
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

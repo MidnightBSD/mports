@@ -18,6 +18,8 @@ RUN_DEPENDS=	rubygem-opentelemetry-helpers-sql>=0:devel/rubygem-opentelemetry-he
 
 USES=		gem
 
+RUBY_VER=	3.3
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>
