@@ -10,8 +10,8 @@ USES+=		compiler:c++11-lang
 
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
 
-PLIST=  ${.CURDIR}/pkg-plist
+PLIST=		${.CURDIR}/pkg-plist
 
-LIB_DEPENDS=  libwebrtc_audio_processing.so:audio/webrtc-audio-processing0
+LIB_DEPENDS=	libwebrtc-audio-processing-1.so:audio/webrtc-audio-processing
 
 .include "${MASTERDIR}/Makefile"
