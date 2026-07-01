@@ -2,6 +2,7 @@
 
 PORTNAME=	xcoral
 PORTVERSION=	3.47
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://xcoral.free.fr/
 
@@ -28,8 +29,7 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's| regex\.[co] | |g ; \
-		 s| -g | |g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's| -g | |g' ${WRKSRC}/Makefile.in
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/xcoral ${PREFIX}/bin
