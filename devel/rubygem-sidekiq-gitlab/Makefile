@@ -17,6 +17,7 @@ WWW=		https://sidekiq.org/ \
 
 LICENSE=	lgpl3
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-connection_pool>=2.3.0:net/rubygem-connection_pool \
 		rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
@@ -31,6 +32,5 @@ PORTSCOUT=	limit:^7\.3\.
 
 PLIST_FILES=	bin/sidekiq \
 		bin/sidekiqmon
-
 
 .include <bsd.port.mk>
