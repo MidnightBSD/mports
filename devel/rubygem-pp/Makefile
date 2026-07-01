@@ -7,10 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide a PrettyPrinter for Ruby objects
 WWW=		https://github.com/ruby/pp
 
-LICENSE=	BSD2CLAUSE RUBY
+LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
-LICENSE_FILE_BSD2CLAUSE=${WRKSRC}/BSDL
-LICENSE_FILE_RUBY=	${WRKSRC}/COPYING
+LICENSE_FILE_bsd2=${WRKSRC}/BSDL
+LICENSE_FILE_ruby=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	rubygem-prettyprint>=0:devel/rubygem-prettyprint
 

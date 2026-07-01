@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interactive Ruby
 WWW=		https://github.com/ruby/irb
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-pp>=0.6.0:devel/rubygem-pp \

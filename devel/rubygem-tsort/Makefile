@@ -7,9 +7,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Topological sorting using Tarjan's algorithm
 WWW=		https://github.com/ruby/tsort
 
-LICENSE=	BSD2CLAUSE RUBY
+LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
-LICENSE_FILE_BSD2CLAUSE=${WRKSRC}/LICENSE.txt
+LICENSE_FILE_bsd2=${WRKSRC}/LICENSE.txt
 
 USES=		gem
 

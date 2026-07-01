@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse JSON texts and generate them from ruby data structures in Ruby
 WWW=		https://flori.github.io/json/
 
-LICENSE=	BSD2CLAUSE RUBY
+LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 
 USES=		gem
