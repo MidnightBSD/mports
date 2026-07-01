@@ -95,14 +95,13 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|s<>'c'|(s<>'c') and (s<>'iconv')|" \
 			-e "s|%%FPC_LDPATH%%|${FPC_LDPATH}|g" \
 				${WRKDIR}/${FPCSRCDIR}/compiler/systems/t_bsd.pas
-	@${REINPLACE_CMD} -e 's|defined(bsd) and not ||' \
+	@${REINPLACE_CMD} -e '/defined(bsd) and not /s#defined(bsd) and not ##' \
 		${WRKDIR}/${FPCSRCDIR}/rtl/unix/cwstring.pp
 .endif
 	@${REINPLACE_CMD} -e '/samplecfg/ {s/INSTALLEXE/INSTALLSCR/;}' \
 		${WRKDIR}/${FPCSRCDIR}/compiler/Makefile
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' \
 		${WRKDIR}/${FPCSRCDIR}/packages/fpmkunit/src/fpmkunit.pp
-
 # enable units
 	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/a52/fpmake.pp
@@ -147,7 +146,6 @@ post-patch:
 	@${REINPLACE_CMD} -i "" -e 's|FreeBSD|FreeBSD,MidnightBSD|g' \
 		${WRKSRC}/utils/fpcm/fpcmake.ini
 
-
 do-build:
 # build fpc compiler
 	@${ECHO_MSG} "##### STARTING COMPILER #####"
@@ -177,12 +175,14 @@ do-install:
 		"${PREFIX}/etc"
 	@${SED} -i '' \
 		-e 's|^#-Fl/lib;/usr/lib|-Fl${LOCALBASE}/lib;${LOCALBASE}/lib/qt5;${LOCALBASE}/lib/qt6|g' \
+		-e 's|${FAKE_DESTDIR}||g' \
 			${PREFIX}/etc/fpc.cfg.sample \
 			${PREFIX}/etc/fppkg.cfg.sample \
 			${PREFIX}/etc/fppkg/default
 	@if [ -f "${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg" ]; then \
 		${SED} -i '' \
 		-e 's|^#-Fl/lib;/usr/lib|-Fl${LOCALBASE}/lib;${LOCALBASE}/lib/qt5;${LOCALBASE}/lib/qt6|g' \
+		-e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/lib/fpc/${PORTVERSION}/ide/text/fp.cfg ; fi
 
 .include <bsd.port.post.mk>
