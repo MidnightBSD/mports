@@ -1,5 +1,3 @@
-
-
 PORTNAME=	ldouble
 PORTVERSION=	0.1
 CATEGORIES=	math
@@ -10,8 +8,11 @@ DISTFILES=	${LDOUBLE_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Long double math precision functions
+WWW=		http://www.moshier.net/
 
 LICENSE=	unknown
+
+BUILD_DEPENDS=	as:devel/binutils
 
 NO_WRKSUBDIR=	yes
 MAKEFILE=	makefile
