@@ -13,7 +13,7 @@ WWW=		https://opentelemetry.io/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-opentelemetry-api-gitlab>=1.h<2:devel/rubygem-opentelemetry-api-gitlab \
+RUN_DEPENDS=	rubygem-opentelemetry-api-gitlab>=1.7<2:devel/rubygem-opentelemetry-api-gitlab \
 		rubygem-opentelemetry-common-gitlab>=0.21<1:devel/rubygem-opentelemetry-common-gitlab \
 		rubygem-opentelemetry-registry-gitlab>=0.1<1:devel/rubygem-opentelemetry-registry-gitlab
 
