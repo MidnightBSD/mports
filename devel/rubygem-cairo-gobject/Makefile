@@ -1,5 +1,5 @@
 PORTNAME=	cairo-gobject
-PORTVERSION=	4.2.9
+PORTVERSION=	4.3.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-cairo>=1.16.2:graphics/rubygem-cairo \
-		rubygem-glib2>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-glib2
+		rubygem-glib2>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-glib2
 
 USES=		gem gnome
 USE_GNOME=	cairo glib20

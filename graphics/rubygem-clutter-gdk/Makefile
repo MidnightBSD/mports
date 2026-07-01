@@ -1,5 +1,5 @@
 PORTNAME=	clutter-gdk
-PORTVERSION=	4.2.9
+PORTVERSION=	4.3.4
 CATEGORIES=	graphics rubygems
 MASTER_SITES=	RG
 
@@ -12,8 +12,8 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-clutter>=${PORTVERSION}<${PORTVERSION}_99:graphics/rubygem-clutter \
-		rubygem-gdk3>=${PORTVERSION}<${PORTVERSION}_99:x11-toolkits/rubygem-gdk3
+RUN_DEPENDS=	rubygem-clutter>=${PORTVERSION}<${PORTVERSION:R}.99:graphics/rubygem-clutter \
+		rubygem-gdk3>=${PORTVERSION}<${PORTVERSION:R}.99:x11-toolkits/rubygem-gdk3
 
 USES=		gem
 

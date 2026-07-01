@@ -1,5 +1,5 @@
 PORTNAME=	gobject-introspection
-PORTVERSION=	4.2.9
+PORTVERSION=	4.3.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -12,7 +12,7 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-glib2>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-glib2
+RUN_DEPENDS=	rubygem-glib2>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-glib2
 
 USES=		gem gnome
 USE_GNOME=	introspection

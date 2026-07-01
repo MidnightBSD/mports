@@ -1,5 +1,5 @@
 PORTNAME=	gdk3
-PORTVERSION=	4.2.9
+PORTVERSION=	4.3.4
 CATEGORIES=	x11-toolkits rubygems
 MASTER_SITES=	RG
 
@@ -12,9 +12,9 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	rubygem-rake>=0:devel/rubygem-rake
-RUN_DEPENDS=	rubygem-cairo-gobject>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-cairo-gobject \
-		rubygem-gdk_pixbuf2>=${PORTVERSION}<${PORTVERSION}_99:graphics/rubygem-gdk_pixbuf2 \
-		rubygem-pango>=${PORTVERSION}<${PORTVERSION}_99:x11-toolkits/rubygem-pango
+RUN_DEPENDS=	rubygem-cairo-gobject>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-cairo-gobject \
+		rubygem-gdk_pixbuf2>=${PORTVERSION}<${PORTVERSION:R}.99:graphics/rubygem-gdk_pixbuf2 \
+		rubygem-pango>=${PORTVERSION}<${PORTVERSION:R}.99:x11-toolkits/rubygem-pango
 
 USES=		gem gnome
 USE_GNOME=	gtk30

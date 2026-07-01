@@ -1,5 +1,5 @@
 PORTNAME=	pango
-PORTVERSION=	4.2.9
+PORTVERSION=	4.3.4
 CATEGORIES=	x11-toolkits rubygems
 MASTER_SITES=	RG
 
@@ -12,10 +12,14 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-cairo-gobject>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-cairo-gobject \
-		rubygem-gobject-introspection>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-gobject-introspection
+RUN_DEPENDS=	rubygem-cairo-gobject>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-cairo-gobject \
+		rubygem-gobject-introspection>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-gobject-introspection
 
 USES=		gem gnome
-USE_GNOME=	pango
+
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2
+
+USE_GNOME=	cairo introspection pango
 
 .include <bsd.port.mk>

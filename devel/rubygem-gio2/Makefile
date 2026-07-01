@@ -1,5 +1,5 @@
 PORTNAME=	gio2
-PORTVERSION=	4.2.9
+PORTVERSION=	4.3.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-fiddle>=0:devel/rubygem-fiddle \
-		rubygem-gobject-introspection>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-gobject-introspection
+		rubygem-gobject-introspection>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-gobject-introspection
 
 USES=		gem gnome
 USE_GNOME=	glib20
