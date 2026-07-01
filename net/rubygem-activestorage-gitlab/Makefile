@@ -13,10 +13,10 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack-gitlab \
-		rubygem-activejob-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activejob-gitlab \
-		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activerecord-gitlab \
-		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab \
+RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actionpack-gitlab \
+		rubygem-activejob-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activejob-gitlab \
+		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:databases/rubygem-activerecord-gitlab \
+		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activesupport-gitlab \
 		rubygem-marcel-gitlab>=1.0<2:devel/rubygem-marcel-gitlab
 
 USES=		gem

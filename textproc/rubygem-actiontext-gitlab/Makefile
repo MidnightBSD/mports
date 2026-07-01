@@ -12,10 +12,10 @@ WWW=		https://github.com/rails/rails/tree/main/actiontext \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
-RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack-gitlab \
-		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activerecord-gitlab \
-		rubygem-activestorage-gitlab>=${PORTVERSION}<${PORTVERSION}_99:net/rubygem-activestorage-gitlab \
-		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab \
+RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actionpack-gitlab \
+		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:databases/rubygem-activerecord-gitlab \
+		rubygem-activestorage-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:net/rubygem-activestorage-gitlab \
+		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activesupport-gitlab \
 		rubygem-globalid-rails-gitlab>=0.6.0:databases/rubygem-globalid-rails-gitlab \
 		rubygem-nokogiri>=1.8.5:textproc/rubygem-nokogiri
 

@@ -12,19 +12,19 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
-RUN_DEPENDS=	rubygem-actioncable-gitlab>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actioncable-gitlab \
-		rubygem-actionmailbox-gitlab>=${PORTVERSION}<${PORTVERSION}_99:mail/rubygem-actionmailbox-gitlab \
-		rubygem-actionmailer-gitlab>=${PORTVERSION}<${PORTVERSION}_99:mail/rubygem-actionmailer-gitlab \
-		rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack-gitlab \
-		rubygem-actiontext-gitlab>=${PORTVERSION}<${PORTVERSION}_99:textproc/rubygem-actiontext-gitlab \
-		rubygem-actionview-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-actionview-gitlab \
-		rubygem-activejob-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activejob-gitlab \
-		rubygem-activemodel-gitlab>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel-gitlab \
-		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activerecord-gitlab \
-		rubygem-activestorage-gitlab>=${PORTVERSION}<${PORTVERSION}_99:net/rubygem-activestorage-gitlab \
-		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab \
+RUN_DEPENDS=	rubygem-actioncable-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actioncable-gitlab \
+		rubygem-actionmailbox-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:mail/rubygem-actionmailbox-gitlab \
+		rubygem-actionmailer-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:mail/rubygem-actionmailer-gitlab \
+		rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actionpack-gitlab \
+		rubygem-actiontext-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:textproc/rubygem-actiontext-gitlab \
+		rubygem-actionview-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-actionview-gitlab \
+		rubygem-activejob-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activejob-gitlab \
+		rubygem-activemodel-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:databases/rubygem-activemodel-gitlab \
+		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:databases/rubygem-activerecord-gitlab \
+		rubygem-activestorage-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:net/rubygem-activestorage-gitlab \
+		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activesupport-gitlab \
 		rubygem-bundler>=1.15.0:sysutils/rubygem-bundler \
-		rubygem-railties-gitlab>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-railties-gitlab
+		rubygem-railties-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-railties-gitlab
 
 USES=		cpe gem
 
