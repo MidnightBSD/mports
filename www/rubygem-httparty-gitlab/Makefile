@@ -12,6 +12,7 @@ WWW=		https://www.johnnunemaker.com/httparty/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-csv>=0:devel/rubygem-csv \
 		rubygem-mini_mime>=1.0.0:mail/rubygem-mini_mime \
 		rubygem-multi_xml>=0.5.2:textproc/rubygem-multi_xml
