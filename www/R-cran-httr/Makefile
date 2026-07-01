@@ -9,6 +9,11 @@ WWW=		https://cran.r-project.org/web/packages/httr/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	R-cran-curl>=5.0.2:ftp/R-cran-curl \
+		R-cran-jsonlite>0:converters/R-cran-jsonlite \
+		R-cran-mime>0:misc/R-cran-mime \
+		R-cran-openssl>=0.8:security/R-cran-openssl \
+		R-cran-R6>0:devel/R-cran-R6
 RUN_DEPENDS=	R-cran-curl>=5.0.2:ftp/R-cran-curl \
 		R-cran-jsonlite>0:converters/R-cran-jsonlite \
 		R-cran-mime>0:misc/R-cran-mime \
