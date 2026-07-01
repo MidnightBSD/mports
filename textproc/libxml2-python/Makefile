@@ -7,7 +7,7 @@ COMMENT=	Python interface for XML parser library for GNOME
 MASTERDIR=	${.CURDIR}/../libxml2
 
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
-BUILD_DEPENDS+=	doxygen:textproc/doxygen
+BUILD_DEPENDS+=	doxygen:devel/doxygen
 
 USES+=		gettext-runtime gnome python shebangfix
 USE_GNOME=	libxml2
