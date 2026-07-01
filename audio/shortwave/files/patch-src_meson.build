@@ -1,0 +1,10 @@
+--- src/meson.build.orig	2025-02-05 10:44:30 UTC
++++ src/meson.build
+@@ -52,6 +52,6 @@ cargo_release = custom_target(
+     cargo, 'build',
+     cargo_options,
+     '&&',
+-    'cp', 'target' / rust_target / meson.project_name(), '@OUTPUT@',
++    'cp', meson.project_build_root() / 'target' / '%%CARGO_BUILD_TARGET%%' / rust_target / meson.project_name(), '@OUTPUT@',
+   ]
+ )

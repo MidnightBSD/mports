@@ -34,5 +34,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/gstreamer.*bad/d' \
 		-e "/vcs_tag/s/=.*/= '${DISTVERSIONFULL}'/" \
 		${WRKSRC}/meson.build
+	@${REINPLACE_CMD} -e 's|%%CARGO_BUILD_TARGET%%|${CARGO_BUILD_TARGET}|g' \
+		${WRKSRC}/src/meson.build
 
 .include <bsd.port.mk>
