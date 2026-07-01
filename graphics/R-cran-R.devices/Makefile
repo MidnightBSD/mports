@@ -10,6 +10,10 @@ WWW=		https://cran.r-project.org/package=R.devices
 LICENSE=	lgpl2.1 lgpl3
 LICENSE_COMB=	multi
 
+BUILD_DEPENDS=	R-cran-base64enc>=0.1.2:converters/R-cran-base64enc \
+		R-cran-R.methodsS3>=1.8.1:devel/R-cran-R.methodsS3 \
+		R-cran-R.oo>=1.24.0:devel/R-cran-R.oo \
+		R-cran-R.utils>=2.0.1:devel/R-cran-R.utils
 RUN_DEPENDS=	R-cran-base64enc>=0.1.2:converters/R-cran-base64enc \
 		R-cran-R.methodsS3>=1.8.1:devel/R-cran-R.methodsS3 \
 		R-cran-R.oo>=1.24.0:devel/R-cran-R.oo \

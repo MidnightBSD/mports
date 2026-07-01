@@ -8,6 +8,8 @@ COMMENT=	Update and Manipulate Rd Documentation Objects
 WWW=		https://cran.r-project.org/web/packages/Rdpack/
 
 LICENSE=	gpl2+
+
+BUILD_DEPENDS=	R-cran-rbibutils>=1.3:textproc/R-cran-rbibutils
 RUN_DEPENDS=	R-cran-rbibutils>=1.3:textproc/R-cran-rbibutils
 
 USES=		cran:auto-plist

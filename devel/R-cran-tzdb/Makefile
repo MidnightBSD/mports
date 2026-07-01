@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/tzdb/
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	R-cran-cpp11>=0.5.2:devel/R-cran-cpp11
 RUN_DEPENDS=	R-cran-cpp11>=0.5.2:devel/R-cran-cpp11
 
 USES=		compiler:c++11-lang cran:auto-plist,compiles shebangfix

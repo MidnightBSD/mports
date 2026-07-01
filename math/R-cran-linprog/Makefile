@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/linprog/
 
 LICENSE=	gpl2+
 
+BUILD_DEPENDS=	R-cran-lpSolve>0:math/R-cran-lpSolve
 RUN_DEPENDS=	R-cran-lpSolve>0:math/R-cran-lpSolve
 
 USES=		cran:auto-plist

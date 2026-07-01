@@ -8,6 +8,8 @@ COMMENT=	Tools: moving window statistics, GIF, Base64, ROC AUC, etc
 WWW=		https://cran.r-project.org/web/packages/caTools/
 
 LICENSE=	gpl3
+
+BUILD_DEPENDS=	R-cran-bitops>0:devel/R-cran-bitops
 RUN_DEPENDS=	R-cran-bitops>0:devel/R-cran-bitops
 
 USES=		cran:auto-plist,compiles

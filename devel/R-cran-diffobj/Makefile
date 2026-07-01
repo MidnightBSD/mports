@@ -10,7 +10,8 @@ WWW=		https://cran.r-project.org/package=diffobj
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	R-cran-knitr>0:print/R-cran-knitr
+BUILD_DEPENDS=	R-cran-crayon>=1.3.2:devel/R-cran-crayon \
+		R-cran-knitr>0:print/R-cran-knitr
 RUN_DEPENDS=	R-cran-crayon>=1.3.2:devel/R-cran-crayon
 
 USES=		cran:auto-plist,compiles

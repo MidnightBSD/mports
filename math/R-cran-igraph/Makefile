@@ -9,6 +9,13 @@ WWW=		https://cran.r-project.org/web/packages/igraph/
 
 LICENSE=	gpl2+
 
+BUILD_DEPENDS=	R-cran-cli>0:devel/R-cran-cli \
+		R-cran-cpp11>=0.5.0:devel/R-cran-cpp11 \
+		R-cran-lifecycle>0:devel/R-cran-lifecycle \
+		R-cran-magrittr>0:devel/R-cran-magrittr \
+		R-cran-pkgconfig>=2.0.0:devel/R-cran-pkgconfig \
+		R-cran-rlang>0:devel/R-cran-rlang \
+		R-cran-vctrs>0:devel/R-cran-vctrs
 LIB_DEPENDS=	libglpk.so:math/glpk
 RUN_DEPENDS=	R-cran-cli>0:devel/R-cran-cli \
 		R-cran-cpp11>=0.5.0:devel/R-cran-cpp11 \

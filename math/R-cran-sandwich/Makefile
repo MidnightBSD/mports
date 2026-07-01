@@ -9,6 +9,7 @@ WWW=		https://cran.r-project.org/web/packages/sandwich/
 
 LICENSE=	gpl2+
 
+BUILD_DEPENDS=	R-cran-zoo>0:math/R-cran-zoo
 RUN_DEPENDS=	R-cran-zoo>0:math/R-cran-zoo
 
 USES=		cran:auto-plist
