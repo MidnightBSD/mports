@@ -13,7 +13,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activesupport72>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport72 \
+RUN_DEPENDS=	rubygem-activesupport72>=${PORTVERSION}<${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.99:devel/rubygem-activesupport72 \
 		rubygem-globalid-rails72>=0.3.6:databases/rubygem-globalid-rails72
 
 USES=		cpe gem

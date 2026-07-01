@@ -13,10 +13,10 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-actionpack72>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack72 \
-		rubygem-activejob72>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activejob72 \
-		rubygem-activerecord72>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activerecord72 \
-		rubygem-activesupport72>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport72 \
+RUN_DEPENDS=	rubygem-actionpack72>=${PORTVERSION}<${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.99:www/rubygem-actionpack72 \
+		rubygem-activejob72>=${PORTVERSION}<${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.99:devel/rubygem-activejob72 \
+		rubygem-activerecord72>=${PORTVERSION}<${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.99:databases/rubygem-activerecord72 \
+		rubygem-activesupport72>=${PORTVERSION}<${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.99:devel/rubygem-activesupport72 \
 		rubygem-marcel>=1.0<2:devel/rubygem-marcel
 
 USES=		gem

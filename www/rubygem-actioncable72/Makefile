@@ -12,8 +12,8 @@ WWW=		https://github.com/rails/rails/tree/main/actioncable \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-actionpack72>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack72 \
-		rubygem-activesupport72>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport72 \
+RUN_DEPENDS=	rubygem-actionpack72>=${PORTVERSION}<${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.99:www/rubygem-actionpack72 \
+		rubygem-activesupport72>=${PORTVERSION}<${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}.99:devel/rubygem-activesupport72 \
 		rubygem-nio4r>=2.0<3:devel/rubygem-nio4r \
 		rubygem-websocket-driver>=0.6.1:www/rubygem-websocket-driver \
 		rubygem-zeitwerk>=2.6<3:devel/rubygem-zeitwerk
