@@ -15,7 +15,7 @@ BUILD_DEPENDS=	rubygem-native-package-installer>=1.0.3:devel/rubygem-native-pack
 		rubygem-rake>=0:devel/rubygem-rake \
 		rubygem-pkg-config>=0:devel/rubygem-pkg-config \
 		${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-glib2>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-glib2
+RUN_DEPENDS=	rubygem-glib2>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-glib2
 
 USES=		gem gnome
 USE_GNOME=	atk
