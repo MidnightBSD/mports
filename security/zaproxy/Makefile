@@ -9,7 +9,7 @@ WWW=		https://www.zaproxy.org/
 
 LICENSE=	Apache-2.0
 
-BUILD_DEPENDS=	gradle:devel/gradle8
+BUILD_DEPENDS=	gradle8:devel/gradle8
 
 USES=		gettext-runtime java
 
