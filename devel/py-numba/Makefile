@@ -28,7 +28,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}llvmlite>=0.46.0:devel/py-llvmlite@${PY_FLAV
 USES=		compiler:c++11-lang python fortran localbase
 USE_PYTHON=	pep517 concurrent autoplist unittest
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/numba/tests
 
 post-install:

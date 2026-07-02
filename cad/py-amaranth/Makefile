@@ -28,7 +28,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	amaranth-lang
 
 MAKE_ENV=	PDM_BUILD_SCM_VERSION=${DISTVERSION} # this allows to build from a tarball (otherwise PDM wouldn't be able to determine the version)
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes
 
@@ -38,10 +38,10 @@ PORTEXAMPLES=	*
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install: # workaround for https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=272771
-	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PEP517_INSTALL_CMD}
 	@${PYTHON_CMD} -B ${PORTSDIR}/Mk/Scripts/strip_RECORD.py \
-		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION:S/-/.post/}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION:S/-/.post/}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
 	@${REINPLACE_CMD} \
 		-e '/\.pyc$$/d' \
 		-e 's|^|${PYTHONPREFIX_SITELIBDIR}/|' \
@@ -55,13 +55,13 @@ do-install: # workaround for https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=2
 		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../sbin/|sbin/|' \
 		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../share/|share/|' \
 			${_PYTHONPKGLIST}
-	@cd ${STAGEDIR}${PREFIX} && ${FIND} lib -name '*.pyc' >> ${_PYTHONPKGLIST}
+	@cd ${FAKE_DESTDIR}${PREFIX} && ${FIND} lib -name '*.pyc' >> ${_PYTHONPKGLIST}
 
 do-install-DOCS-on:
-	@cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
+	@cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
 
 do-install-EXAMPLES-on:
-	@cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+	@cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 # tests as of 0.5.6: 1187 passed, 4 warnings in 46.66s
 

@@ -39,7 +39,9 @@ do-install:
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/libjbig/jbig.txt ${DOCSDIR}
 
-regression-test test:
+regression-test: do-test
+
+do-test:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/libjbig ${MAKE} test
 
 .include <bsd.port.mk>

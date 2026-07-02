@@ -113,6 +113,10 @@ INSTALL_WRKSRC=		${WRKSRC}/${MESON_BUILD_DIR}
 TEST_ENV+=		MESON_TESTTHREADS=${MAKE_JOBS_NUMBER}
 TEST_WRKSRC=		${WRKSRC}/${MESON_BUILD_DIR}
 TEST_TARGET=		test
+.  if !empty(meson_ARGS:Mmuon) && !target(do-test)
+do-test:
+	@cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} muon -C ${MESON_BUILD_DIR} test
+.  endif
 
 MESON_BUILD_DIR?=	_build
 

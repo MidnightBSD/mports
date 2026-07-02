@@ -46,6 +46,7 @@ IGNORE=	Incorrect 'USES+=pytest:${pytest_ARGS}' expecting 'USES+=pytest[:4]'
 PYTEST_IGNORED_TESTS?=	# empty
 PYTEST_BROKEN_TESTS?=	# empty
 PYTEST_ARGS?=		# empty
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}:${TEST_WRKSRC}
 
 _PYTEST_ALL_IGNORED_TESTS?=	# empty
 .  if !defined(PYTEST_ENABLE_IGNORED_TESTS) && !defined(PYTEST_ENABLE_ALL_TESTS)
@@ -59,7 +60,7 @@ _PYTEST_FILTER_EXPRESSION=	${_PYTEST_ALL_IGNORED_TESTS:C/^(.)/and not \1/:tW:C/^
 
 .  if !target(do-test)
 do-test:
-	@cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest \
+	@cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest \
 		-k '${_PYTEST_FILTER_EXPRESSION}' \
 		-v -rs -o addopts= \
 		${PYTEST_ARGS}

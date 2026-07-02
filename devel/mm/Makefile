@@ -20,7 +20,7 @@ post-build:
 post-install:
 	${STRIP_CMD} ${PREFIX}/lib/libmm.so
 
-test:
+do-test:
 	@cd ${WRKSRC} && ${MAKE} test
 
 .include <bsd.port.mk>

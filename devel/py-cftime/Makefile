@@ -20,9 +20,9 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR} \
 USES=		python
 USE_PYTHON=	autoplist cython distutils pytest
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/cftime/_cftime${PYTHON_TAG}.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cftime/_cftime${PYTHON_TAG}.so
 
 .include <bsd.port.mk>

@@ -41,7 +41,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-identity>0:devel/py-azure-identity@${
 USES=		python
 USE_PYTHON=	pep517 concurrent autoplist pytest # tests fail because api_key needs to be set
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes
 

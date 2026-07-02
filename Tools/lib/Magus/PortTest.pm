@@ -116,6 +116,7 @@ sub run {
   my %results = (summary => 'pass');
   
   $self->check_for_skip(\%results) && return \%results;
+  $self->check_for_test_skip(\%results) && return \%results if $phase eq 'test';
   $self->check_master_sites(\%results) if $phase eq 'build';
 
   foreach my $target ($self->targets_for_phase($phase)) {
@@ -203,6 +204,30 @@ sub check_for_skip {
   
   return;
 }    
+
+sub check_for_test_skip {
+  my ($self, $results) = @_;
+  my $flavor = $self->{port}->flavor;
+
+  chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
+
+  my $no_test = length $flavor ? `$MAKE -V NO_TEST FLAVOR=$flavor` : make_var('NO_TEST');
+  my $testing_unsafe = length $flavor ? `$MAKE -V TESTING_UNSAFE FLAVOR=$flavor` : make_var('TESTING_UNSAFE');
+  chomp($no_test, $testing_unsafe);
+
+  return unless $no_test || $testing_unsafe;
+
+  my $reason = $no_test ? 'NO_TEST is set' : "TESTING_UNSAFE is set: $testing_unsafe";
+  $results->{skips} = [{
+    phase => 'prerun',
+    msg   => "$self->{port} test phase skipped: $reason",
+    name  => 'TestSkipped',
+  }];
+
+  $results->{summary} = 'skip';
+
+  return 1;
+}
 
 sub check_master_sites {
   my ($self, $results) = @_;

@@ -1,6 +1,6 @@
 PORTNAME=	installer
 PORTVERSION=	1.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,5 +22,8 @@ NO_ARCH=	yes
 PEP517_BUILD_CMD=	${PYTHON_CMD} -m flit_core.wheel
 PEP517_BUILD_DEPEND=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.2.0<4:devel/py-flit-core@${PY_FLAVOR}
 PEP517_INSTALL_DEPEND=	# empty
+
+post-patch:
+	@${RM} ${WRKSRC}/src/installer/destinations.py.orig
 
 .include <bsd.port.mk>

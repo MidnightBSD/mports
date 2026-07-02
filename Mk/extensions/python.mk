@@ -1007,37 +1007,42 @@ do-install:
 .  endif # defined(_PYTHON_FEATURE_PEP517)
 
 .  if defined(_PYTHON_FEATURE_NOSE)
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}:${TEST_WRKSRC}
 .    if !target(do-test)
 do-test:
-	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_CMD} -m nose ${TEST_ARGS:NDESTDIR=*} -v
+	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} ${PYTHON_CMD} -m nose ${TEST_ARGS:NDESTDIR=*} -v
 .    endif
 .  endif # defined(_PYTHON_FEATURE_NOSE)
 
 .  if defined(_PYTHON_FEATURE_NOSE2)
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}:${TEST_WRKSRC}
 .    if !target(do-test)
 do-test:
-	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_CMD} -m nose2 ${TEST_ARGS:NDESTDIR=*} -v
+	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} ${PYTHON_CMD} -m nose2 ${TEST_ARGS:NDESTDIR=*} -v
 .    endif
 .  endif # defined(_PYTHON_FEATURE_NOSE2)
 
 .  if defined(_PYTHON_FEATURE_PYTEST)
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}:${TEST_WRKSRC}
 .    if !target(do-test)
 do-test:
-	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest -k '${_PYTEST_FILTER_EXPRESSION}' -rs -v -o addopts= ${TEST_ARGS:NDESTDIR=*}
+	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest -k '${_PYTEST_FILTER_EXPRESSION}' -rs -v -o addopts= ${TEST_ARGS:NDESTDIR=*}
 .    endif
 .  endif # defined(_PYTHON_FEATURE_PYTEST)
 
 .  if defined(_PYTHON_FEATURE_UNITTEST)
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}:${TEST_WRKSRC}
 .    if !target(do-test)
 do-test:
-	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_CMD} -m unittest ${TEST_ARGS:NDESTDIR=*} -v
+	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} ${PYTHON_CMD} -m unittest ${TEST_ARGS:NDESTDIR=*} -v
 .    endif
 .  endif # defined(_PYTHON_FEATURE_UNITTEST)
 
 .  if defined(_PYTHON_FEATURE_UNITTEST2)
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}:${TEST_WRKSRC}
 .    if !target(do-test)
 do-test:
-	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_CMD} -m unittest2 ${TEST_ARGS:NDESTDIR=*} -v
+	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} ${PYTHON_CMD} -m unittest2 ${TEST_ARGS:NDESTDIR=*} -v
 .    endif
 .  endif # defined(_PYTHON_FEATURE_UNITTEST2)
 

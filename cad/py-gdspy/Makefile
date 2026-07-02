@@ -23,21 +23,21 @@ USE_PYTHON=	autoplist distutils
 OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
-	cd ${STAGEDIR}${PYTHON_SITELIBDIR}/${PORTNAME} && \
+	cd ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/${PORTNAME} && \
 	    ${STRIP_CMD} clipper*.so
 
 post-install-EXAMPLES-on:
 	cd ${WRKSRC}/tests && \
-	    ${MKDIR} ${STAGEDIR}${EXAMPLESDIR} && \
-	    ${INSTALL_SCRIPT} *.py ${STAGEDIR}${EXAMPLESDIR} && \
-	    ${INSTALL_DATA} *.gds ${STAGEDIR}${EXAMPLESDIR}
+	    ${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR} && \
+	    ${INSTALL_SCRIPT} *.py ${FAKE_DESTDIR}${EXAMPLESDIR} && \
+	    ${INSTALL_DATA} *.gds ${FAKE_DESTDIR}${EXAMPLESDIR}
 	cd ${WRKSRC}/tools && \
-	    ${MKDIR} ${STAGEDIR}${EXAMPLESDIR} && \
-	    ${INSTALL_SCRIPT} maketestgds.py ${STAGEDIR}${EXAMPLESDIR}
+	    ${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR} && \
+	    ${INSTALL_SCRIPT} maketestgds.py ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 do-test:
 	cd ${WRKSRC} && \
-	    ${SETENV} PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR} \
+	    ${SETENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHON_SITELIBDIR} \
 	    ${LOCALBASE}/bin/pytest
 
 .include <bsd.port.mk>
