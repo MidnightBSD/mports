@@ -1,6 +1,6 @@
 include/NTL/ALL_FEATURES.h
 include/NTL/BasicThreadPool.h
-include/NTL/ConfigLog.h
+include/NTL/CONFIG_LOG.txt
 include/NTL/FFT.h
 include/NTL/FFT_impl.h
 include/NTL/FacVec.h
@@ -86,8 +86,12 @@ include/NTL/pair_lzz_pX_long.h
 include/NTL/pd_FFT.h
 include/NTL/quad_float.h
 include/NTL/sp_arith.h
+include/NTL/simde_avx.h
+include/NTL/simde_fma.h
+include/NTL/simde_pclmul.h
 include/NTL/thread.h
 include/NTL/tools.h
+include/NTL/USER_MAKEFILE.txt
 include/NTL/vec_GF2.h
 include/NTL/vec_GF2E.h
 include/NTL/vec_GF2XVec.h
@@ -118,8 +122,9 @@ include/NTL/version.h
 include/NTL/xdouble.h
 lib/libntl.a
 lib/libntl.so
-lib/libntl.so.44
-lib/libntl.so.44.0.1
+lib/libntl.so.45
+lib/libntl.so.45.0.0
+libdata/pkgconfig/ntl.pc
 %%NTLDOCS%%/BasicThreadPool.cpp.html
 %%NTLDOCS%%/BasicThreadPool.txt
 %%NTLDOCS%%/GF2.cpp.html
