@@ -1,9 +1,3 @@
-# Ports collection makefile for:	ulxmlrpcpp
-# Date created:			Feb 26, 2008
-# Whom:				Lucas Holt <luke@midnightbsd.org>
-#
-
-
 PORTNAME=	ulxmlrpcpp
 PORTVERSION=	1.7.5
 PORTREVISION=	2
@@ -13,18 +7,21 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ultra lightweight xml-rpc library written in C++
+WWW=		http://ulxmlrpcpp.sourceforge.net/
 
 LICENSE=	lgpl
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+USES=		compiler:c++14-lang iconv libtool pathfix ssl tar:bzip2
+USE_CXXSTD=	c++14
+USE_LDCONFIG=	yes
 
-USES=		tar:bzip2 pathfix iconv libtool ssl
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PTHREAD_LIBS="-lpthread"
 INSTALL_TARGET=	install-strip
-USE_LDCONFIG=	yes
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
