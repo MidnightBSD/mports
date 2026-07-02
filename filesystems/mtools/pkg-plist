@@ -14,6 +14,7 @@ bin/mdir
 bin/mdu
 bin/mformat
 bin/minfo
+bin/mdoctorfat
 bin/mkmanifest
 bin/mlabel
 bin/mmd
@@ -27,6 +28,9 @@ bin/mtools
 bin/mtoolstest
 bin/mtype
 bin/mxtar
+bin/lz
+bin/tgz
+bin/uz
 bin/mzip
 bin/mshortname
 %%X11%%share/man/man1/floppyd.1.gz
@@ -42,6 +46,7 @@ share/man/man1/mdir.1.gz
 share/man/man1/mdu.1.gz
 share/man/man1/mformat.1.gz
 share/man/man1/minfo.1.gz
+share/man/man1/mdoctorfat.1.gz
 share/man/man1/mkmanifest.1.gz
 share/man/man1/mlabel.1.gz
 share/man/man1/mmd.1.gz

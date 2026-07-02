@@ -9,9 +9,10 @@ WWW=		https://www.gnu.org/software/mtools/intro.html
 
 LICENSE=	gpl3
 
+USES=		gmake makeinfo tar:lz
+
 CONFLICTS_INSTALL=	multimarkdown
 
-USES=		gmake makeinfo tar:lz
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_malloc_h=no
 CONFIGURE_ARGS=	--enable-xdf
