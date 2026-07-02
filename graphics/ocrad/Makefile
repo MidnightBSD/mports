@@ -11,8 +11,13 @@ WWW=		https://www.gnu.org/software/ocrad/ocrad.html
 
 LICENSE=	gpl2
 
+EXTRACT_DEPENDS=	lzip:archivers/lzip
+LIB_DEPENDS=	libpng.so:graphics/png
+
+USES=		localbase
 HAS_CONFIGURE=	yes
-CONFIGURE_ARGS=	--prefix=${PREFIX} CXXFLAGS="${CXXFLAGS}" CXX="${CXX}"
+CONFIGURE_ARGS=	--prefix=${PREFIX} CXXFLAGS="${CXXFLAGS}" CXX="${CXX}" \
+		LIBS="${LIBS}"
 CXXFLAGS+=	-Wall -W
 MAKE_ARGS=	-j`${SYSCTL} -n hw.ncpu`
 
@@ -25,7 +30,6 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.mport.options.mk>
 
-EXTRACT_DEPENDS=lzip:${PORTSDIR}/archivers/lzip
 EXTRACT_CMD=	${LOCALBASE}/bin/lzip
 EXTRACT_BEFORE_ARGS=	-cd
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
