@@ -1,5 +1,6 @@
 PORTNAME=	x11vnc
 PORTVERSION=	0.9.17
+PORTREVISION=	1
 CATEGORIES=	net
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,16 +10,18 @@ WWW=		https://github.com/LibVNC/x11vnc
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
-LIB_DEPENDS=	libvncserver.so:net/libvncserver
+LIB_DEPENDS=	libdrm.so:graphics/libdrm \
+		libvncserver.so:net/libvncserver
 
-USE_XORG=	x11 xcb xdamage xfixes xrandr xinerama xext xtst xau xrender \
-		xdmcp xi xorgproto
 # Sets LDFLAGS and adds to CONFIGURE_ENV, therefore we set LDFLAGS
 LDFLAGS+=	-L${LOCALBASE}/lib
-USES=		cpe iconv pkgconfig jpeg ssl gmake autoreconf xorg
+USES=		autoreconf cpe gmake gnome iconv jpeg pkgconfig ssl xorg
+USE_GNOME=	cairo
+USE_XORG=	x11 xcb xcomposite xcursor xdamage xfixes xrandr xinerama xext xtst \
+		xau xrender xdmcp xi xorgproto
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ssl=${OPENSSLBASE}
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libdrm
 USE_GITHUB=	yes
 GH_ACCOUNT=	LibVNC
 #DEFAULT_VERSIONS=	ssl=openssl
