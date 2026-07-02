@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sophisticated and secure hash algorithm for passwords
 WWW=		https://github.com/codahale/bcrypt-ruby
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	rubygem-bcrypt>=3.1.3:security/rubygem-bcrypt
