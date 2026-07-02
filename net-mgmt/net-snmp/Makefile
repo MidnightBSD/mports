@@ -1,6 +1,6 @@
 PORTNAME=	snmp
 PORTVERSION=	5.9.5.2
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/net-${PORTNAME}/net-${PORTNAME}/${PORTVERSION} \
@@ -147,8 +147,8 @@ PLIST_SUB+=	WITH_IPV6="@comment "
 CONFIGURE_ARGS+=--without-root-access
 .endif
 
-SHLIB_VERSION=	40
-SHLIB_VERSION2=	.1.0
+SHLIB_VERSION=	45
+SHLIB_VERSION2=	.0.0
 PLIST_SUB+=	SHLIB_VERSION=${SHLIB_VERSION} SHLIB_VERSION2=${SHLIB_VERSION2}
 SCRIPTS_SUB=	PREFIX=${PREFIX} PERL=${PERL}
 
@@ -248,6 +248,10 @@ pre-everything::
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|return pci_lookup_name|disabled broken|g' \
 		${WRKSRC}/configure
+	@${CP} ${WRKSRC}/snmplib/transports/snmpIPBaseDomain.h \
+		${WRKSRC}/include/net-snmp/library/snmpIPBaseDomain.h
+	@${CP} ${WRKSRC}/snmplib/factory.h \
+		${WRKSRC}/include/net-snmp/library/factory.h
 .if ${SSL_DEFAULT:Mopenssl}
 	@${REINPLACE_CMD} -E -e 's|SSL_library_init|OPENSSL_init_ssl|g' \
 		${WRKSRC}/configure
