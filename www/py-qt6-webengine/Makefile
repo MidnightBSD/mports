@@ -12,6 +12,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for the Qt6 toolkit, QtWebEngine module
 WWW=		https://riverbankcomputing.com/software/pyqt
 
+LICENSE=	gpl3
+
 USES=		gl python pyqt:6 qt:6
 USE_GL=		gl
 USE_LOCALE=	C.UTF-8

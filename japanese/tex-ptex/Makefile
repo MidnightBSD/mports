@@ -13,6 +13,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASCII Japanese pTeX
 WWW=		https://ctan.org/pkg/ptex
 
+LICENSE=	bsd3
+
 USES=			localbase perl5 pkgconfig tar:xz tex
 USE_TEX=		fmtutil formats kpathsea ptexenc web2c
 
