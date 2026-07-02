@@ -11,5 +11,3 @@ UNIX kernels.
 Zebra is intended to be used as a Route Server and a Route Reflector.
 Zebra is not a toolkit, it provides full routing power under a new
 architecture.
-
-WWW: http://www.zebra.org/

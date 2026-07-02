@@ -1,6 +1,6 @@
 PORTNAME=	zebra
 PORTVERSION=	0.95a
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.pop-pr.rnp.br/pub/GNU/ftp.zebra.org/zebra/ \
 		ftp://ftp.ripe.net/mirrors/sites/ftp.zebra.org/pub/zebra/ \
@@ -8,6 +8,7 @@ MASTER_SITES=	ftp://ftp.pop-pr.rnp.br/pub/GNU/ftp.zebra.org/zebra/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free RIPv1, RIPv2, OSPFv2, BGP4 route software (server/reflector)
+WWW=		http://www.zebra.org/
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
@@ -21,9 +22,9 @@ SUB_LIST=	BGPDARGS=${BGPDARGS} \
 		RIPDARGS=${RIPDARGS} \
 		RIPNGDARGS=${RIPNGDARGS} \
 		ZEBRAARGS=${ZEBRAARGS}
+USES=		ncurses readline
 USE_SUBMAKE=	yes
 GNU_CONFIGURE=	yes
-USES=		readline
 CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/etc/zebra
 
 PORTSCOUT=	ignore:1
