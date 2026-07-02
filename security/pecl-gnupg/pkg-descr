@@ -1,3 +1,2 @@
-This extension provides methods to PHP interact with gnupg.
-
-WWW: https://pecl.php.net/package/gnupg
+This extension provides methods for PHP to interact with gnupg.
+It wraps the gpgme library for encryption, decryption, and key handling.

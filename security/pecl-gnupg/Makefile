@@ -1,9 +1,11 @@
 PORTNAME=	gnupg
 PORTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PECL wrapper around the gpgme library
+WWW=		https://pecl.php.net/package/gnupg
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
