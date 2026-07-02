@@ -4,6 +4,6 @@
 -#pragma once
 +#ifndef	_SYS_QUEUE_H_
 +#define	_SYS_QUEUE_H_
-@@ -506,0 +508,2 @@
+@@ -508,0 +510,2 @@
 +
 +#endif /* !_SYS_QUEUE_H_ */
