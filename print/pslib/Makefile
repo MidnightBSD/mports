@@ -46,6 +46,6 @@ post-patch-NLS-off:
 
 post-install-EXAMPLES-on:
 	cd ${EX_WRKSRC} && ${RM} Makefile.unix ChangeLog CMakeLists.txt && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
