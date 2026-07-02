@@ -20,6 +20,7 @@ USES=		java
 USE_GITHUB=	yes
 GH_ACCOUNT=	jeremylong
 GH_PROJECT=	DependencyCheck
+MAKE_ENV+=	JAVA_HOME=${JAVA_HOME}
 
 NO_ARCH=	yes
 
@@ -31,7 +32,8 @@ PLIST_FILES=	bin/owasp-dependency-check \
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/mvn \
-		--batch-mode -Dmaven.repo.local=${WRKDIR}/repository -DskipTests --offline package
+		--batch-mode -Dmaven.repo.local=${WRKDIR}/repository -DskipTests \
+		--offline -pl dependency-check-cli -am package
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/dependency-check-cli/target/dependency-check-${PORTVERSION}-jar-with-dependencies.jar \
