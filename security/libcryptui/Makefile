@@ -1,6 +1,6 @@
 PORTNAME=	libcryptui
 PORTVERSION=	3.12.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,6 +14,9 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	seahorse>=3.0.0:security/seahorse \
 		gpg:security/gnupg
 LIB_DEPENDS=	libgpgme.so:security/gpgme \
+		libassuan.so:security/libassuan \
+		libgpg-error.so:security/libgpg-error \
+		libdbus-1.so:devel/dbus \
 		libdbus-glib-1.so:devel/dbus-glib \
 		libgnome-keyring.so:security/libgnome-keyring
 RUN_DEPENDS=	seahorse>=3.0.0:security/seahorse \
