@@ -574,13 +574,15 @@ sub run_page {
   my $status_stats = $sth->fetchall_arrayref({});
   $sth->finish;
 
-  # Count ports whose dependencies are all satisfied and are waiting to build,
-  # regardless of whether the fetch phase has completed yet.  The ready_ports
-  # view gates on fetch='pass' for the build worker, but the UI count should
-  # reflect the full build queue so users can see what is pending.
+  # Count ports whose dependencies are all satisfied and have completed a
+  # pre-fetch attempt.  Build retries fetch even if the pre-fetch failed.
   my ($ready_count) = $dbh->selectrow_array(q{
     SELECT COUNT(DISTINCT p.id)
       FROM ports p
+      JOIN port_phase_results fetch_phase
+        ON fetch_phase.port = p.id
+       AND fetch_phase.phase = 'fetch'
+       AND fetch_phase.status <> 'untested'
       LEFT JOIN locks l ON l.port = p.id AND l.phase = 'build'
       LEFT JOIN depends d ON d.port = p.id
      WHERE p.run = ?

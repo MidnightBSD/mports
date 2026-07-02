@@ -17,7 +17,7 @@ CREATE OR REPLACE VIEW ready_ports AS
     INNER JOIN port_phase_results fetch_phase
         ON fetch_phase.port = ports.id
        AND fetch_phase.phase = 'fetch'
-       AND (fetch_phase.status = 'pass' OR fetch_phase.status = 'warn')
+       AND fetch_phase.status <> 'untested'
     LEFT JOIN locks on locks.port = ports.id and locks.phase = 'build'
     WHERE ports.status = 'untested' and locks.id is null and
           not exists

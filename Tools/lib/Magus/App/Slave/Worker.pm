@@ -87,6 +87,7 @@ sub run_phase {
   }
 
   if ($phase eq 'fetch') {
+    $self->inject_fetch_depends();
     $self->inject_distfiles();
     $self->run_make_phase('fetch');
     $self->{port}->refresh;
@@ -116,6 +117,19 @@ sub prep_chroot {
     workerid => $self->{worker_id},
     tarball  => $Magus::Config{ChrootTarBall},
   );
+}
+
+sub inject_fetch_depends {
+  my ($self) = @_;
+
+  foreach my $depend ($self->{port}->fetch_depends_closure) {
+    if ($depend->status eq 'pass' || $depend->status eq 'warn') {
+      $self->inject_pkgfile($depend);
+      next;
+    }
+
+    die "Port was scheduled as ready to fetch, but fetch dependency $depend had not been built successfully.\n";
+  }
 }
 
 

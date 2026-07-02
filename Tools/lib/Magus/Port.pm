@@ -68,6 +68,22 @@ __PACKAGE__->set_sql(ready_fetch_ports => qq{
           SELECT 1 FROM locks
           WHERE locks.port=__TABLE__.id AND locks.phase='fetch'
         )
+        AND NOT EXISTS (
+          SELECT 1
+          FROM depends fetch_dep
+          JOIN ports dep ON dep.id=fetch_dep.dependency
+          WHERE fetch_dep.port=__TABLE__.id
+            AND fetch_dep.type='fetch'
+            AND dep.status NOT IN ('pass', 'warn')
+        )
+        AND NOT EXISTS (
+          SELECT 1
+          FROM depends fetch_dep
+          JOIN locks dep_locks ON dep_locks.port=fetch_dep.dependency
+                            AND dep_locks.phase='build'
+          WHERE fetch_dep.port=__TABLE__.id
+            AND fetch_dep.type='fetch'
+        )
       ORDER BY __TABLE__.name ASC
   });
 __PACKAGE__->set_sql(ready_test_ports => qq{
@@ -192,6 +208,27 @@ sub _walk {
     }
   }
   
+}
+
+sub fetch_depends {
+  my ($self) = @_;
+
+  return map { $_->dependency } Magus::Depend->search(
+    port => $self,
+    type => 'fetch',
+  );
+}
+
+sub fetch_depends_closure {
+  my ($self) = @_;
+
+  my %depends;
+  foreach my $depend ($self->fetch_depends) {
+    $depends{$depend} = $depend;
+    _walk($depend, \%depends);
+  }
+  delete $depends{$self};
+  return sort values %depends;
 }
 
 =head2 $port->bundle_name
