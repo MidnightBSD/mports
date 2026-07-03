@@ -18,7 +18,7 @@ GH_TAGNAME=	7fad08e5522e5396a1196055fc106be9b5d5de77
 PLIST_FILES=	lib/libretro/fceumm_libretro.so
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
-	${INSTALL_LIB} ${WRKSRC}/fceumm_libretro.so ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
+	${MKDIR} ${PREFIX}/lib/libretro
+	${INSTALL_LIB} ${WRKSRC}/fceumm_libretro.so ${PREFIX}/lib/libretro
 
 .include <bsd.port.mk>
