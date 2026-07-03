@@ -879,12 +879,6 @@ share/licenses/opencv4/SoftFloat-COPYING.txt
 share/licenses/opencv4/ade-LICENSE
 share/licenses/opencv4/dlpack-LICENSE
 share/licenses/opencv4/flatbuffers-LICENSE.txt
-share/licenses/opencv4/ippicv-EULA.txt
-share/licenses/opencv4/ippicv-readme.htm
-share/licenses/opencv4/ippicv-third-party-programs.txt
-share/licenses/opencv4/ippiw-EULA.txt
-share/licenses/opencv4/ippiw-support.txt
-share/licenses/opencv4/ippiw-third-party-programs.txt
 share/licenses/opencv4/ittnotify-BSD-3-Clause.txt
 share/licenses/opencv4/ittnotify-GPL-2.0-only.txt
 share/licenses/opencv4/mscr-chi_table_LICENSE.txt
