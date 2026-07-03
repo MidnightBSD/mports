@@ -36,7 +36,7 @@ GH_TUPLE=	bazil:fuse:${FUSE_GH_TAGNAME}:bazil_fuse/vendor/bazil.org/fuse \
 		golang:net:${NET_GH_TAGNAME}:golang_net/vendor/golang.org/x/net \
 		pborman:getopt:${GETOPT_GH_TAGNAME}:pborman_getopt/vendor/github.com/pborman/getopt
 
-GO_TARGET=	:${PREFIX}/sbin/mount.webdavfs
+GO_TARGET=	:${TRUE_PREFIX}/sbin/mount.webdavfs
 
 PLIST_FILES=	sbin/mount.webdavfs sbin/mount_webdavfs
 
