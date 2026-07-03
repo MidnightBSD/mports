@@ -31,7 +31,7 @@ CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 .endif
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
-	${INSTALL_LIB} ${WRKSRC}/pcsx_rearmed_libretro.so ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
+	${MKDIR} ${PREFIX}/lib/libretro
+	${INSTALL_LIB} ${WRKSRC}/pcsx_rearmed_libretro.so ${PREFIX}/lib/libretro
 
 .include <bsd.port.post.mk>

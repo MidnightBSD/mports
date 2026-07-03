@@ -24,7 +24,7 @@ USE_GCC=	yes:build
 .endif
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
-	${INSTALL_LIB} ${WRKSRC}/mednafen_psx_libretro.so ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
+	${MKDIR} ${PREFIX}/lib/libretro
+	${INSTALL_LIB} ${WRKSRC}/mednafen_psx_libretro.so ${PREFIX}/lib/libretro
 
 .include <bsd.port.post.mk>
