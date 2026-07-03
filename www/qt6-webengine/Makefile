@@ -24,6 +24,10 @@ COMMENT?=	Qt 6 library to render web content
 # 32-bit platforms are not supported by upstream, but we're limping them along.
 ONLY_FOR_ARCHS=	aarch64 amd64 armv7 i386
 
+.if ${ARCH:U:Mi386}
+MAKE_JOBS_NUMBER_LIMIT=	1
+.endif
+
 BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libnss3.so:security/nss \
