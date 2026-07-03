@@ -17,4 +17,9 @@ USES=		gem
 
 NO_ARCH=	yes
 
+post-patch:
+	${REINPLACE_CMD} -e 's|"~> 0.15.0"|">= 0.15.0", "< 0.16.0"|' \
+		-e 's|"~> 1.1"|">= 1.1", "< 2"|' \
+		${WRKSRC}/${PORTNAME}.gemspec
+
 .include <bsd.port.mk>
