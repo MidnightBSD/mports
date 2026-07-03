@@ -20,7 +20,7 @@ PLIST_FILES=	bin/${PORTNAME}
 do-install:
 	# workaround for error: found a virtual manifest at `xx` instead of a package manifest
 	${INSTALL_PROGRAM} \
-		${WRKDIR}/target/release/${PORTNAME} \
-		${FAKE_DESTDIR}${PREFIX}/bin/${PORTNAME}
+		${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${PORTNAME} \
+		${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>
