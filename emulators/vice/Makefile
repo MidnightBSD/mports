@@ -31,9 +31,10 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libharfbuzz.so:print/harfbuzz
 
 USES=		compiler:c++11-lang pkgconfig perl5 localbase:ldflags \
-		gmake iconv:wchar_t jpeg readline gettext xorg
+		gmake iconv:wchar_t jpeg readline gettext sdl xorg
 USE_XORG=	xpm ice sm xext xv xt x11 xmu xxf86vm
 USE_XORG+=	xrender xinerama xi xrandr xcursor xcomposite xdamage xfixes
+USE_SDL=	sdl
 HAS_CONFIGURE=	yes
 MAKE_ENV+=	 XDG_DATA_DIRS=${FAKE_DESTDIR}${PREFIX}/share
 CFLAGS+=	-fcommon
@@ -59,6 +60,27 @@ OPTIONS_SUB=	yes
 GTK3UI_DESC=	use GTK3 user interface
 SDLUI2_DESC=	use SDL2 user interface
 SDLSOUND_DESC=	build with SDL2 sound system support
+
+PORTDOCS=	CIA-README.txt \
+		Documentation-Howto.txt \
+		Doxygen-Howto.txt \
+		FreeBSD-GTK3-Howto.txt \
+		GTK3-Fedora-cross-build-setup.md \
+		Linux-GTK3-Howto.txt \
+		NetBSD-GTK3-Howto.txt \
+		NetBSD-howto.txt \
+		OpenBSD-GTK3-Howto.txt \
+		Readme-SDL.txt \
+		Readme-SDL2.txt \
+		Release-Howto.txt \
+		SDL-Howto.txt \
+		Windows-MinGW-GTK3-Howto.txt \
+		coding-guidelines.txt \
+		iec-bus.txt \
+		macOS-Distribution-Howto.txt \
+		macOS-Howto.txt \
+		macOS-Xcode-Howto.txt \
+		vice.texi
 
 GTK3UI_USES=			desktop-file-utils
 GTK3UI_CONFIGURE_ENABLE=	gtk3ui desktop-files
@@ -96,8 +118,35 @@ pre-configure:
 	${REINPLACE_CMD} -e 's| doc||' ${WRKSRC}/Makefile.in
 .endif
 
-# workaround for xdg-desktop-menu
-post-build:
-	${MKDIR} ${FAKE_DESTDIR}/${TRUE_PREFIX}/share/desktop-directories
+# workaround for xdg-desktop-menu and xdg-icon-resource
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/desktop-directories \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor
+
+post-install:
+	@${RM} ${PREFIX}/share/applications/mimeinfo.cache
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/CIA-README.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/Documentation-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/Doxygen-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/Release-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/coding-guidelines.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/iec-bus.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/vice.texi ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/FreeBSD-GTK3-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/GTK3-Fedora-cross-build-setup.md ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/Linux-GTK3-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/NetBSD-GTK3-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/NetBSD-howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/OpenBSD-GTK3-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/SDL-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/Windows-MinGW-GTK3-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/macOS-Distribution-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/macOS-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/building/macOS-Xcode-Howto.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/readmes/Readme-SDL.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/readmes/Readme-SDL2.txt ${DOCSDIR}
+.endif
 
 .include <bsd.port.mk>
