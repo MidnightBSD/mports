@@ -10,7 +10,7 @@ COMMENT=	Ruby parser for the MediaWiki markup language
 WWW=		https://github.com/nricciar/wikicloth
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-builder>=0:devel/rubygem-builder \
 		rubygem-expression_parser>=0:math/rubygem-expression_parser \

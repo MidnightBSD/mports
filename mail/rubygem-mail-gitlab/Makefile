@@ -9,7 +9,7 @@ COMMENT=	Ruby email handler
 WWW=		https://github.com/mikel/mail
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
