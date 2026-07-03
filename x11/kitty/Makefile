@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	roboto-fonts-ttf>=2.134:x11-fonts/roboto-fonts-ttf \
 		nerd-fonts-symbols>0:x11-fonts/nerd-fonts-symbols \
 		simde>=0.7.6:devel/simde \
+		tic:devel/ncurses \
 		urw-base35-fonts>=20200910:x11-fonts/urw-base35-fonts \
 		wayland-protocols>=0:graphics/wayland-protocols
 LIB_DEPENDS=	libcairo.so:graphics/cairo \
