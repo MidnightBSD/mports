@@ -1,6 +1,6 @@
 PORTNAME=	yarn
-DISTVERSIONPREFIX=	v
 PORTVERSION=	1.22.19
+DISTVERSIONPREFIX=	v
 PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://yarnpkg.com/downloads/${PORTVERSION}/
@@ -13,7 +13,7 @@ WWW=		https://classic.yarnpkg.com/
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES?=		nodejs:24,run sqlite3:port
+USES?=		nodejs:24,run sqlite:port
 USES+=		cpe
 CPE_VENDOR=	${PORTNAME}pkg
 
