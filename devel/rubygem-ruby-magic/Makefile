@@ -17,6 +17,6 @@ USES=		gem
 CONFIGURE_ARGS+=	--use-system-libraries
 
 post-install:
-	${RMDIR} ${STAGEDIR}${PREFIX}/${GEM_LIB_DIR}/ports
+	${RMDIR} ${PREFIX}/${GEM_LIB_DIR}/ports
 
 .include <bsd.port.mk>
