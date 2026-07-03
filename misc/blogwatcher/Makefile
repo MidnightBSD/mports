@@ -15,6 +15,8 @@ USES=		go:1.24+,modules
 GO_MODULE=	github.com/Hyaxia/blogwatcher
 GO_TARGET=	./cmd/${PORTNAME}
 
+BROKEN_i386=	fails to build: vendored modernc.org/libc has 32-bit size_t type mismatches
+
 PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.port.mk>
