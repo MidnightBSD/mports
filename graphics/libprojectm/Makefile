@@ -77,7 +77,7 @@ pre-configure:
 	@cd ${WRKSRC}/ && ${SH} autogen.sh
 
 post-install:
-	@${MV} ${FAKE_DESTDIR}${PREFIX}/share/projectM/config.inp ${FAKE_DESTDIR}${PREFIX}/share/projectM/config.inp.sample
-	${INSTALL_DATA} ${WRKSRC}/fonts/Vera.ttf ${FAKE_DESTDIR}${PREFIX}/share/projectM/fonts/
+	@${MV} ${PREFIX}/share/projectM/config.inp ${PREFIX}/share/projectM/config.inp.sample
+	${INSTALL_DATA} ${WRKSRC}/fonts/Vera.ttf ${PREFIX}/share/projectM/fonts/
 
 .include <bsd.port.mk>
