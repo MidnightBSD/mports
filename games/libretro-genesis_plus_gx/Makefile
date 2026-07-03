@@ -25,7 +25,7 @@ PLIST_FILES=	lib/libretro/genesis_plus_gx_libretro.so
 MAKEFILE=	Makefile.libretro
 
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
-	${INSTALL_LIB} ${WRKSRC}/genesis_plus_gx_libretro.so ${FAKE_DESTDIR}/${PREFIX}/lib/libretro
+	${MKDIR} ${PREFIX}/lib/libretro
+	${INSTALL_LIB} ${WRKSRC}/genesis_plus_gx_libretro.so ${PREFIX}/lib/libretro
 
 .include <bsd.port.mk>
