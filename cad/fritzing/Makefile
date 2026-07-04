@@ -42,12 +42,12 @@ post-patch:
 	${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${FILESDIR}/pri_clipper1detect.pri > ${WRKSRC}/pri/clipper1detect.pri
 
 post-install:
-	cd ${WRKSRC_parts}; ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
-	${RM} -r ${STAGEDIR}${DATADIR}/.github
-	${STAGEDIR}${PREFIX}/bin/Fritzing \
-		-db ${STAGEDIR}${DATADIR}/parts/parts.db \
-		-pp ${STAGEDIR}${DATADIR}/parts \
-		-f  ${STAGEDIR}${DATADIR} \
+	cd ${WRKSRC_parts}; ${COPYTREE_SHARE} . ${DATADIR}
+	${RM} -r ${DATADIR}/.github
+	${PREFIX}/bin/Fritzing \
+		-db ${DATADIR}/parts/parts.db \
+		-pp ${DATADIR}/parts \
+		-f  ${DATADIR} \
 		-platform offscreen
 
 .include <bsd.port.pre.mk>
