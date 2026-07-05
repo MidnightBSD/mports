@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-faraday-gitlab>=1.0<3:www/rubygem-faraday-gitlab \
 		rubygem-multi_json-gitlab>=1.0:devel/rubygem-multi_json-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
