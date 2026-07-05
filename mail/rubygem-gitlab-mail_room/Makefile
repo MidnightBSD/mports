@@ -15,6 +15,7 @@ RUN_DEPENDS=	rubygem-jwt>=2.0:www/rubygem-jwt \
 		rubygem-oauth2-gitlab>=1.4.4<3:net/rubygem-oauth2-gitlab \
 		rubygem-redis-gitlab>=5<6:databases/rubygem-redis-gitlab \
 		rubygem-redis-namespace-gitlab>=1.8.2:databases/rubygem-redis-namespace-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
