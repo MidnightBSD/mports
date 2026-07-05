@@ -11,6 +11,7 @@ WWW=		https://bitbucket.org/atlassian/atlassian-jwt-ruby
 LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	rubygem-jwt2>=2.1<3:www/rubygem-jwt2
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
