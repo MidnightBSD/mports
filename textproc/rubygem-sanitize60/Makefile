@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-crass>=1.0.2<1.1:www/rubygem-crass \
 		rubygem-nokogiri>=1.12.0:textproc/rubygem-nokogiri
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		cpe gem
 
