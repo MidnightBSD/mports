@@ -415,6 +415,10 @@ sub run_yara_scan {
   my $scanner = $Magus::Config{YaraScanner} || 'yara';
   my @options = $self->command_options(YaraOptions => 'YARA');
 
+  if (my $limit = $Magus::Config{YaraSkipLarger}) {
+    push @options, "--skip-larger=$limit";
+  }
+
   my ($exit, $out) = $self->run_command($scanner, @options, $rules, @targets);
   return ($exit, $out) if $exit != 0;
   return length($out) ? (1, $out) : (0, "No YARA matches.\n");
