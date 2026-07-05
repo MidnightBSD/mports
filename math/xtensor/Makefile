@@ -4,6 +4,7 @@ CATEGORIES=	math
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-dimensional arrays with broadcasting and lazy computing
+WWW=		https://github.com/xtensor-stack/xtensor
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE

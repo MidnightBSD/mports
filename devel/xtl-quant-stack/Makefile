@@ -1,10 +1,11 @@
 PORTNAME=	xtl
-DISTVERSION=	0.7.6
+DISTVERSION=	0.8.2
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-quant-stack
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Template library that supports other quantstack projects
+WWW=		https://github.com/xtensor-stack/xtl
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
