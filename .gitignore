@@ -22,3 +22,4 @@ gen-plist.stage.filtered
 gen-plist.tmp
 security/vuxml/vuln.xml.tidy
 .claude/settings.local.json
+.claude/skills
