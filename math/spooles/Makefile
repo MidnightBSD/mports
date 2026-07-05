@@ -78,35 +78,36 @@ do-build:
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/spooles
-	${INSTALL_DATA} ${WRKSRC}/spooles.a ${STAGEDIR}${PREFIX}/lib/libspooles.a
-	${INSTALL_DATA} ${WRKSRC}_SHARED/libspooles.so.1 ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf libspooles.so.1 ${STAGEDIR}${PREFIX}/lib/libspooles.so
+	${MKDIR} ${PREFIX}/include/spooles
+	${INSTALL_DATA} ${WRKSRC}/spooles.a ${PREFIX}/lib/libspooles.a
+	${INSTALL_DATA} ${WRKSRC}_SHARED/libspooles.so.1 ${PREFIX}/lib
+	${LN} -sf libspooles.so.1 ${PREFIX}/lib/libspooles.so
 
 .if defined(WITH_MPI)
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/spooles/MPI
-	${INSTALL_DATA} ${WRKSRC}/MPI/*.h ${STAGEDIR}${PREFIX}/include/spooles/MPI
+	${MKDIR} ${PREFIX}/include/spooles/MPI
+	${INSTALL_DATA} ${WRKSRC}/MPI/*.h ${PREFIX}/include/spooles/MPI
 .else
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/spooles/MT
-	${INSTALL_DATA} ${WRKSRC}/MT/*.h ${STAGEDIR}${PREFIX}/include/spooles/MT
+	${MKDIR} ${PREFIX}/include/spooles/MT
+	${INSTALL_DATA} ${WRKSRC}/MT/*.h ${PREFIX}/include/spooles/MT
 .endif
-	${INSTALL_DATA} ${WRKSRC}/*.h ${STAGEDIR}${PREFIX}/include/spooles/
+	${INSTALL_DATA} ${WRKSRC}/*.h ${PREFIX}/include/spooles/
 .for i in A2 BPG Chv ChvList ChvManager Coords DenseMtx DSTree Drand \
 	DV ETree FrontMtx GPart Graph I2Ohash IIheap IV IVL Ideq InpMtx \
 	Lock MSMD PatchAndGoInfo Pencil SolveMap SubMtx SubMtxList SubMtxManager \
 	SymbFac Tree Utilities ZV misc
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/spooles/${i}
-	${INSTALL_DATA} ${WRKSRC}/${i}/*.h ${STAGEDIR}${PREFIX}/include/spooles/${i}
+	${MKDIR} ${PREFIX}/include/spooles/${i}
+	${INSTALL_DATA} ${WRKSRC}/${i}/*.h ${PREFIX}/include/spooles/${i}
 .endfor
 
-do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/AllInOne.ps.gz	${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Eigen.ps.gz		${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Install.ps.gz		${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/LinSol.ps.gz		${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Ordering.ps.gz	${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/PP99.ps.gz		${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/ReferenceManual.ps.gz	${STAGEDIR}${DOCSDIR}
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/AllInOne.ps.gz	${DOCSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Eigen.ps.gz		${DOCSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Install.ps.gz		${DOCSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/LinSol.ps.gz		${DOCSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Ordering.ps.gz	${DOCSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/PP99.ps.gz		${DOCSDIR}
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/ReferenceManual.ps.gz	${DOCSDIR}
+.endif
 
 .include <bsd.port.post.mk>
