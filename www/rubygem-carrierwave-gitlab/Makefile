@@ -14,6 +14,7 @@ RUN_DEPENDS=	rubygem-activemodel-gitlab>=4.0.0:databases/rubygem-activemodel-git
 		rubygem-activesupport-gitlab>=4.0.0:devel/rubygem-activesupport-gitlab \
 		rubygem-mime-types-gitlab>=1.16:misc/rubygem-mime-types-gitlab \
 		rubygem-ssrf_filter10>=1.0<1.1.0:security/rubygem-ssrf_filter10
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		cpe gem
 
