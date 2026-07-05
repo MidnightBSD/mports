@@ -1,1 +1,2 @@
-Hamlit is a high performance Haml implementation.
+Hamlit is a high performance Haml implementation for Ruby applications. It aims
+to provide faster template rendering while remaining compatible with Haml usage.
