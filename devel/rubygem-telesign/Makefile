@@ -10,6 +10,7 @@ WWW=		http://rubygems.org/gems/telesign
 LICENSE=	mit
 
 RUN_DEPENDS=	rubygem-net-http-persistent>=3.0.0<5.0:www/rubygem-net-http-persistent
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
