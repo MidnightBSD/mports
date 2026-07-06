@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-activerecord-gitlab>=7.2:databases/rubygem-activerecord-gitlab \
 		rubygem-state_machines-activemodel-gitlab>=0.100.0:databases/rubygem-state_machines-activemodel-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
