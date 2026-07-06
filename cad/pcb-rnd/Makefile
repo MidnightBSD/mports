@@ -40,9 +40,9 @@ OPTIONS_DEFINE=	DOCS
 
 post-install:
 .for f in bxl2txt gsch2pcb-rnd pcb-rnd rect-union-rnd txt2bxl
-	${STRIP_CMD} ${PREFIX}/bin/$f
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/$f
 .endfor
-	${STRIP_CMD} ${PREFIX}/lib/pcb-rnd/plugins/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/pcb-rnd/plugins/*.so
 
 post-install-DOCS-off:
 	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
