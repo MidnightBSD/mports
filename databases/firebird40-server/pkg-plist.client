@@ -1,6 +1,5 @@
 bin/gpre
 bin/isql-fb
-bin/qli
 %%ETCDIR%%/firebird.conf.sample
 include/firebird/FirebirdInterface.idl
 include/firebird/IdlFbInterfaces.h

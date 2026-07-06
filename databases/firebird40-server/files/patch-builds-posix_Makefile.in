@@ -1,5 +1,5 @@
---- builds/posix/Makefile.in	2021-05-29 10:05:05.000000000 -0500
-+++ builds/posix/Makefile.in	2021-06-25 22:10:51.733207000 -0500
+--- builds/posix/Makefile.in.orig	2023-11-08 07:07:47.000000000 -0500
++++ builds/posix/Makefile.in	2026-07-06 11:18:07.432942000 -0400
 @@ -183,7 +183,7 @@
  endif
  
@@ -9,7 +9,7 @@
  	ln -sf $(ROOT)/extern/re2/obj/libre2.a $(LIB)
  endif
  
-@@ -277,11 +277,13 @@
+@@ -291,11 +291,17 @@
  	$(MAKE) boot
  	$(MAKE) yvalve
  	$(MAKE) engine
@@ -20,11 +20,15 @@
  # Now having ready such useful tools as gbak and isql, we may restore / create
  # required databases and switch to full-featured gpre
 -	$(MAKE) gpre
++ifeq ($(IsServer), Y)
 +	$(MAKE) gbak gfix gpre
++else
++	$(MAKE) gfix isql gpre
++endif
  # Pay attention - after build force gpre_current to point to gpre
  # even if gpre itself was not rebuilt
  	-$(RM) $(GPRE_CURRENT)
-@@ -290,8 +292,10 @@
+@@ -304,8 +310,10 @@
  # In developer mode we must regenerate various files in include/gen
  	$(MAKE) codes
  endif
@@ -35,3 +39,36 @@
  	$(MAKE) rest
  
  
+@@ -423,7 +431,11 @@
+ 
+ .PHONY:	databases
+ 
++ifeq ($(IsServer), Y)
+ gpre: $(GPRE) databases
++else
++gpre: $(GPRE)
++endif
+ 
+ $(GPRE):	$(GPRE_Objects) $(COMMON_LIB)
+ 	$(EXE_LINK) $(EXE_LINK_OPTIONS) $^ -o $@ $(FIREBIRD_LIBRARY_LINK) $(LINK_LIBS)
+@@ -658,7 +670,11 @@
+ GBAK_FILES := $(FDB_FILES:.fdb=.gbak) $(FIREBIRD)/msg.gbak
+ GBAK_FILES := $(subst Native,$(TARGET),$(GBAK_FILES))
+ 
++ifeq ($(IsServer), Y)
+ rest:	qli message_file tzdata
++else
++rest:	message_file tzdata
++endif
+ 
+ cross_rest:	qli gbak_files
+ 	$(MAKE) $(BUILD_FILE)
+@@ -684,7 +700,7 @@
+ 	mkdir -p $(FIREBIRD)/tzdata
+ 	unzip -o $(ROOT)/extern/icu/tzdata/$(TZDATA_ZIP) -d $(FIREBIRD)/tzdata
+ 
+-$(BUILD_FILE):	$(BUILD_Objects) $(COMMON_LIB)
++$(BUILD_FILE):	$(BUILD_Objects) $(COMMON_LIB) | msg.timestamp
+ 	$(EXE_LINK) $(EXE_LINK_OPTIONS) $(LSB_UNDEF) $^ -o $@ $(FIREBIRD_LIBRARY_LINK) $(LINK_LIBS)
+ 
+ gbak_files: $(GBAK_FILES)
