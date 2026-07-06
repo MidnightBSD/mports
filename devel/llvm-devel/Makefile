@@ -394,9 +394,9 @@ post-install-DOCS-on:
 
 .if ${PORT_OPTIONS:MCLANG}
 post-install-DOCS-off:
-	${RM} ${LLVM_PREFIX}/share/man/man1/scan-build.1
-	${RMDIR} ${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${LLVM_PREFIX}/share/man/
+	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 .endif
 
 post-install-CLANG-on:
