@@ -13,8 +13,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activemodel81>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel81 \
-		rubygem-activesupport81>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport81 \
+RUN_DEPENDS=	rubygem-activemodel81=${PORTVERSION}:databases/rubygem-activemodel81 \
+		rubygem-activesupport81=${PORTVERSION}:devel/rubygem-activesupport81 \
 		rubygem-timeout>=0.4.0:devel/rubygem-timeout
 
 USES=		gem

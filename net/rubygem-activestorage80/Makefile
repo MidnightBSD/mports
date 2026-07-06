@@ -13,10 +13,10 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-actionpack80>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack80 \
-		rubygem-activejob80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activejob80 \
-		rubygem-activerecord80>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activerecord80 \
-		rubygem-activesupport80>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport80 \
+RUN_DEPENDS=	rubygem-actionpack80=${PORTVERSION}:www/rubygem-actionpack80 \
+		rubygem-activejob80=${PORTVERSION}:devel/rubygem-activejob80 \
+		rubygem-activerecord80=${PORTVERSION}:databases/rubygem-activerecord80 \
+		rubygem-activesupport80=${PORTVERSION}:devel/rubygem-activesupport80 \
 		rubygem-marcel>=1.0<2:devel/rubygem-marcel
 
 USES=		gem
