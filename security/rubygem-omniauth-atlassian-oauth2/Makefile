@@ -12,6 +12,7 @@ LICENSE=	mit
 
 RUN_DEPENDS=	rubygem-omniauth-gl>=1.1.1:security/rubygem-omniauth-gl \
 		rubygem-omniauth-oauth2-gitlab>=1.5:net/rubygem-omniauth-oauth2-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
