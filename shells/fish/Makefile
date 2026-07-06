@@ -63,6 +63,6 @@ post-install-MANPAGES-off:
 	for dir in ${MANDIRS:S/^/${FAKE_DESTDIR}/} ; do \
 		${FIND} $$dir -type f -delete ; \
 	done
-	@${RM} -r ${FAKE_DESTEDIR}${DATADIR}/man
+	@${RM} -r ${FAKE_DESTDIR}${DATADIR}/man
 
 .include <bsd.port.post.mk>
