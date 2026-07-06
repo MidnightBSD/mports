@@ -47,7 +47,7 @@ LIB_DEPENDS=	libaacs.so:multimedia/libaacs \
 		libtinyxml.so:textproc/tinyxml \
 		libtinyxml2.so:textproc/tinyxml2 \
 		libudfread.so:multimedia/libudfread \
-		libuuid.so:misc/libuuid
+		libuuid.so:misc/e2fsprogs-libuuid
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 USES=		autoreconf:build cmake:noninja compiler:c++17-lang cpe \
