@@ -14,6 +14,7 @@ RUN_DEPENDS=	rubygem-addressable>=2.8<3:www/rubygem-addressable \
 		rubygem-faraday>=0.17.5<3.0:www/rubygem-faraday \
 		rubygem-jwt>=1.5<4.0:www/rubygem-jwt \
 		rubygem-multi_json>=1.10<2:devel/rubygem-multi_json
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
