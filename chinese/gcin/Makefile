@@ -1,6 +1,6 @@
 PORTNAME=	gcin
 PORTVERSION=	2.9.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	chinese textproc gnome
 MASTER_SITES=	http://hyperrate.com/gcin-source/
 EXTRACT_ONLY=	gcin-${PORTVERSION}.tar.xz
