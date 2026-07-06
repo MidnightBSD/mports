@@ -32,6 +32,6 @@ do-install:
 		${JAVAJARDIR}/${jarfile}.jar
 .endfor
 	${RLN} ${JAVAJARDIR}/slf4j-api.jar \
-		${JAVALIBDIR}/slf4j-api.jar
+		${FAKE_DESTDIR}${JAVALIBDIR}/slf4j-api.jar
 
 .include <bsd.port.mk>
