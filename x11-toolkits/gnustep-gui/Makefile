@@ -1,7 +1,7 @@
 PORTNAME=	gnustep-gui
 DISTVERSIONPREFIX=	gui-
 DISTVERSION=	0_31_1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnustep
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -69,6 +69,6 @@ do-build:
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 
 post-install-DOCS-off:
-	@${FIND} -d ${PREFIX}/GNUstep/System/Library/Documentation -type d -empty -delete
+	@${FIND} -d ${FAKE_DESTDIR}${PREFIX}/GNUstep/System/Library/Documentation -type d -empty -delete
 
 .include <bsd.port.mk>
