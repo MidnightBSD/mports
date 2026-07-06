@@ -15,7 +15,7 @@ LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-json>=2:devel/rubygem-json \
-		rubygem-rake-compiler-dock>=1.11.0<1.11.0_99:devel/rubygem-rake-compiler-dock
+		rubygem-rake-compiler-dock=1.11.0:devel/rubygem-rake-compiler-dock
 
 USES=		gem
 
