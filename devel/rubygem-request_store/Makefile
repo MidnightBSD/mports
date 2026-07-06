@@ -11,7 +11,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-rack>=1.4:www/rubygem-rack
+RUN_DEPENDS=	rubygem-rack>=1.4,3:www/rubygem-rack
 
 USES=		gem
 
