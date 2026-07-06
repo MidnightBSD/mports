@@ -1,6 +1,6 @@
 PORTNAME=	scim
 PORTVERSION=	3.1.1
-PORTREVISION=	9
+PORTREVISION=	11
 CATEGORIES=	chinese
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-fcitx/${PORTVERSION}
 PKGNAMESUFFIX=	-fcitx
@@ -19,6 +19,7 @@ RUN_DEPENDS=	scim:textproc/scim
 USES=		compiler:c++11-lang tar:bzip2 gmake libtool:keepla pkgconfig \
 		localbase:ldflags
 USE_CXXSTD=	c++14
+CPPFLAGS+=	-D__STDC_ISO_10646__
 
 GNU_CONFIGURE=	yes
 
