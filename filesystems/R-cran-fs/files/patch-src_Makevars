@@ -1,0 +1,11 @@
+--- src/Makevars.orig	2025-04-11 05:46:20 UTC
++++ src/Makevars
+@@ -2,7 +2,7 @@ UNAME := $(shell uname)
+ 
+ LIBUV := libuv-1.44.2
+ 
+-PKG_LIBS = ./$(LIBUV)/.libs/libuv.pa -pthread
++PKG_LIBS = -Wl,--whole-archive ./$(LIBUV)/.libs/libuv.pa -Wl,--no-whole-archive -pthread
+ 
+ SOURCES = $(wildcard *.cc unix/*.cc)
+ OBJECTS = $(SOURCES:.cc=.o)
