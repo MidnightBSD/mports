@@ -11,6 +11,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-unicode-display_width>=1.1.1<4:devel/rubygem-unicode-display_width
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem shebangfix
 
