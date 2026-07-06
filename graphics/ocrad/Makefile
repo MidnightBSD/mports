@@ -17,7 +17,7 @@ LIB_DEPENDS=	libpng.so:graphics/png
 USES=		localbase
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX} CXXFLAGS="${CXXFLAGS}" CXX="${CXX}" \
-		LIBS="${LIBS}"
+		CPPFLAGS="${CPPFLAGS}" LIBS="${LIBS}"
 CXXFLAGS+=	-Wall -W
 MAKE_ARGS=	-j`${SYSCTL} -n hw.ncpu`
 
