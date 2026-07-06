@@ -17,6 +17,7 @@ RUN_DEPENDS=	rubygem-opentelemetry-api-gitlab>=1.1<2:devel/rubygem-opentelemetry
 		rubygem-opentelemetry-common-gitlab>=0.20<1:devel/rubygem-opentelemetry-common-gitlab \
 		rubygem-opentelemetry-registry-gitlab>=0.2<1:devel/rubygem-opentelemetry-registry-gitlab \
 		rubygem-opentelemetry-semantic_conventions-gitlab>=0:devel/rubygem-opentelemetry-semantic_conventions-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
