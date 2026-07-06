@@ -1,1 +1,2 @@
 ChefConfig is the default configuration and config loading library for Chef.
+It provides shared configuration handling used by Chef components.
