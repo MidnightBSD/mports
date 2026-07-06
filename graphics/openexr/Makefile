@@ -51,7 +51,7 @@ post-install-DOCS-on:
 
 post-install-DOCS-off:
 	-${RM} ${FAKE_DESTDIR}${DOCSDIR:H}/OpenEXR/*.pdf
-	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME} 2>/dev/null || :
+	@${RMDIR} ${FAKE_DESTDIR}${DOCSDIR:H}/OpenEXR 2>/dev/null || :
 
 post-install-EXAMPLES-on:
 	${MV} \
