@@ -1,7 +1,7 @@
 # $MidnightBSD: mports/Tools/magus/bless/Makefile,v 1.1 2011/02/26 00:35:59 laffer1 Exp $
 CC=c++
 CFLAGS= -Wall -O2 -I/usr/local/include -I/usr/include/private/ucl -std=c++17
-LDFLAGS=-L/usr/lib/private -L/usr/local/lib/  -lpqxx -lpq -lsqlite3 -lucl -lmd -pthread
+LDFLAGS=-L/usr/lib/private -L/usr/local/lib/ -Wl,-rpath,/usr/lib/private -lpqxx -lpq -lsqlite3 -lucl -lmd -pthread
 DESTDIR=
 PREFIX=	/usr/local
 
