@@ -1,6 +1,6 @@
 PORTNAME=	pcb-rnd
 DISTVERSION=	3.1.7b
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad
 MASTER_SITES=	http://www.repo.hu/projects/${PORTNAME}/releases/
 
@@ -40,11 +40,11 @@ OPTIONS_DEFINE=	DOCS
 
 post-install:
 .for f in bxl2txt gsch2pcb-rnd pcb-rnd rect-union-rnd txt2bxl
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/$f
+	${STRIP_CMD} ${PREFIX}/bin/$f
 .endfor
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/pcb-rnd/plugins/*.so
+	${STRIP_CMD} ${PREFIX}/lib/pcb-rnd/plugins/*.so
 
 post-install-DOCS-off:
-	${RM} -r ${STAGEDIR}${DOCSDIR}
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
