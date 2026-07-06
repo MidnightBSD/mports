@@ -1,6 +1,6 @@
 PORTNAME=	cbang
 PORTVERSION=	1.8.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -32,11 +32,7 @@ OPTIONS_DEFINE=		DEBUG DOCS
 DEBUG_BUILD_DEPENDS=	gnulibiberty>0:devel/gnulibiberty
 DEBUG_LIB_DEPENDS=	libbfd.so:devel/binutils
 
-MAKE_ARGS+=	cc="${CC}"	\
-		cxx="${CXX}"	\
-		ccflags="${CCFLAGS}"	\
-		cxxflags="${CXXFLAGS}"	\
-		cxxstd="c++17"	\
+MAKE_ARGS+=	cxxstd="c++17"	\
 		libpath="/lib"	\
 		sharedlib=1	\
 		prefix="${STAGEDIR}${PREFIX}"	\

@@ -1,7 +1,7 @@
 PORTNAME=	meshlab
 DISTVERSIONPREFIX=	Meshlab-
 DISTVERSION=	2020.05
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -35,14 +35,14 @@ post-patch:
 	${REINPLACE_CMD} 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/src/general.pri
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/meshlab/plugins
-	cd ${BUILD_WRKSRC}/distrib/plugins && ${INSTALL_LIB} *.so ${STAGEDIR}${PREFIX}/lib/meshlab/plugins
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/meshlab/shaders
-	cd ${WRKSRC}/distrib/shaders && ${COPYTREE_SHARE} \* ${STAGEDIR}${PREFIX}/lib/meshlab/shaders
-	${INSTALL_LIB} ${BUILD_WRKSRC}/distrib/lib/* ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/distrib/meshlab ${STAGEDIR}${PREFIX}/lib/meshlab
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/distrib/meshlabserver ${STAGEDIR}${PREFIX}/lib/meshlab
-	${RLN} ${STAGEDIR}${PREFIX}/lib/meshlab/meshlab ${STAGEDIR}${PREFIX}/bin
-	${RLN} ${STAGEDIR}${PREFIX}/lib/meshlab/meshlabserver ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${PREFIX}/lib/meshlab/plugins
+	cd ${BUILD_WRKSRC}/distrib/plugins && ${INSTALL_LIB} *.so ${PREFIX}/lib/meshlab/plugins
+	${MKDIR} ${PREFIX}/lib/meshlab/shaders
+	cd ${WRKSRC}/distrib/shaders && ${COPYTREE_SHARE} \* ${PREFIX}/lib/meshlab/shaders
+	${INSTALL_LIB} ${BUILD_WRKSRC}/distrib/lib/* ${PREFIX}/lib
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/distrib/meshlab ${PREFIX}/lib/meshlab
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/distrib/meshlabserver ${PREFIX}/lib/meshlab
+	${RLN} ${PREFIX}/lib/meshlab/meshlab ${PREFIX}/bin
+	${RLN} ${PREFIX}/lib/meshlab/meshlabserver ${PREFIX}/bin
 
 .include <bsd.port.mk>

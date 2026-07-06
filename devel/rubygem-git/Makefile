@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby-git/ruby-git
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	git>=1.6:devel/git \
 		rubygem-addressable>=2.8<3:www/rubygem-addressable \
 		rubygem-rchardet>=1.8<2:textproc/rubygem-rchardet

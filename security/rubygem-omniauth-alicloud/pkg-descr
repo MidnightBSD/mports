@@ -1,1 +1,2 @@
-Wrapper the AliCloud Oauth2 API
+omniauth-alicloud is an OmniAuth strategy for the AliCloud OAuth2 API. It lets
+Ruby applications authenticate users through AliCloud OAuth providers.

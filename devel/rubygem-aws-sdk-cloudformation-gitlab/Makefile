@@ -12,6 +12,7 @@ LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	rubygem-aws-sdk-core-gitlab>=3.225.0<4:devel/rubygem-aws-sdk-core-gitlab \
 		rubygem-aws-sigv4>=1.5<2:devel/rubygem-aws-sigv4
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

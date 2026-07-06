@@ -1,1 +1,2 @@
-Adds typed jsonb backed fields to your ActiveRecord models.
+jsonb_accessor adds typed jsonb-backed fields to ActiveRecord models, allowing
+applications to expose structured PostgreSQL jsonb data through model accessors.

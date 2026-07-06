@@ -1,1 +1,2 @@
-Terser minifies JavaScript files by wrapping TerserJS to be accessible in Ruby
+Terser minifies JavaScript files by wrapping TerserJS for Ruby.
+It provides a Ruby API for compressing JavaScript assets.

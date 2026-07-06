@@ -8,7 +8,7 @@ COMMENT=	PDF parser conforming as much as possible to the PDF specification
 WWW=		https://github.com/yob/pdf-reader
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-afm>=0.2.1<2:print/rubygem-afm \

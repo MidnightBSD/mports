@@ -1,6 +1,6 @@
 PORTNAME=	ffmpeg
 PORTVERSION=	4.4.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia audio net
 MASTER_SITES=	https://ffmpeg.org/releases/
 PKGNAMESUFFIX=	4
@@ -20,6 +20,8 @@ BUILD_DEPENDS_armv7=	as:devel/binutils
 BUILD_DEPENDS_i386=	nasm:devel/nasm
 
 FAKE_OPTS=	trueprefix
+NO_MTREE=	yes
+POST_PLIST=	fix-ldconfig-plist
 
 HAS_CONFIGURE=	yes
 CONFIGURE_LOG=	ffbuild/config.log
@@ -657,11 +659,14 @@ post-patch:
 pre-install:
 	${MKDIR} ${TRUE_PREFIX}
 	${MKDIR} ${PREFIX}
-	${MKDIR} ${PREFIX}/libdata/ldconfig/
-	touch ${PREFIX}/libdata/ldconfig/ffmpeg4
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \
 		"${DOC_FILES}" ${DOCSDIR})
 	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} \
 		"${DOC_DOCFILES}" ${DOCSDIR})
+
+fix-ldconfig-plist:
+	@${REINPLACE_CMD} -e \
+		's|^libdata/ldconfig/ffmpeg4$$|${LOCALBASE}/libdata/ldconfig/ffmpeg4|' \
+		${TMPPLIST}
 
 .include <bsd.port.post.mk>

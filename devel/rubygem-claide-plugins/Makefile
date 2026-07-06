@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	rubygem-cork>=0:devel/rubygem-cork \
 		rubygem-nap>=0:devel/rubygem-nap \
 		rubygem-open4>=1.3<2:devel/rubygem-open4
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

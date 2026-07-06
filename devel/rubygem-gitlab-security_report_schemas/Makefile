@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=6<8.1:devel/rubygem-activesupport-gitlab \
 		rubygem-json_schemer>=2.4.0<2.5:devel/rubygem-json_schemer \
 		rubygem-mutex_m>=0.3.0<0.4:devel/rubygem-mutex_m
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	rubygem-activemodel-gitlab>=0:databases/rubygem-activemodel-gitlab \
 		rubygem-mail>=2.6.1:mail/rubygem-mail \
 		rubygem-simpleidn>=0:dns/rubygem-simpleidn
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

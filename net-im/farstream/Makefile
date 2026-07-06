@@ -1,5 +1,6 @@
 PORTNAME=	farstream
 PORTVERSION=	0.2.9
+PORTREVISION=	1
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://freedesktop.org/software/farstream/releases/farstream/
 

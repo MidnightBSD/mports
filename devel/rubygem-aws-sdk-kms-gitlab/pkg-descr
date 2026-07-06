@@ -1,1 +1,2 @@
-Official AWS Ruby gem for AWS Key Management Service (KMS).
+This is the official AWS SDK for Ruby gem for AWS Key Management Service. It
+provides client support for KMS APIs through the AWS Ruby SDK.

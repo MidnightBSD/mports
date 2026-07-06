@@ -28,7 +28,8 @@ CONFIGURE_ARGS=	--skip-deps \
 		--rebar ${LOCALBASE}/bin/rebar \
 		--spidermonkey-version 91
 
-MAKE_ENV=	PATH=${LOCALBASE}/lib/erlang${_ERLVER}/bin:${PATH}
+MAKE_ENV=	PATH=${LOCALBASE}/lib/erlang${_ERLVER}/bin:${PATH} \
+		REBAR=${LOCALBASE}/bin/rebar
 ALL_TARGET=	release
 
 CONFLICTS=	couchdb[24]*
@@ -114,10 +115,10 @@ post-install:
 		-exec ${STRIP_CMD} {} +
 	@${MKDIR} \
 		${FAKE_DESTDIR}${_DBDIR} \
-		${FAKE_DESTIR}${_LOGDIR} \
+		${FAKE_DESTDIR}${_LOGDIR} \
 		${FAKE_DESTDIR}${_RUNDIR}
 # fauxton UI is a required component
-	(cd ${WRKSRC}/share/www && ${COPYTREE_SHARE} . ${WWWDIR})
+	(cd ${WRKSRC}/share/www && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${WWWDIR})
 
 post-install-DOCS-on:
 	(cd ${WRKSRC}/share/docs/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${WWWDIR}/docs)

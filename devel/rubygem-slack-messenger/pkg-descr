@@ -1,1 +1,2 @@
-A slim ruby wrapper for posting to slack webhooks
+slack-messenger is a slim Ruby wrapper for posting messages to Slack webhooks.
+It provides a small API for formatting and sending webhook payloads.

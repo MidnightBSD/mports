@@ -17,6 +17,7 @@ RUN_DEPENDS=	rubygem-activesupport50>=${PORTVERSION}:devel/rubygem-activesupport
 		rubygem-erubis>=2.7.0<2.8:www/rubygem-erubis \
 		rubygem-rails-dom-testing-rails50>=2.0<3:textproc/rubygem-rails-dom-testing-rails50 \
 		rubygem-rails-html-sanitizer>=1.0.3<2:textproc/rubygem-rails-html-sanitizer
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		cpe gem
 

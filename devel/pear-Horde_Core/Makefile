@@ -1,5 +1,6 @@
 PORTNAME=	Horde_Core
 DISTVERSION=	2.31.18
+PORTREVISION=	1
 CATEGORIES=	devel www pear
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -59,6 +60,11 @@ USE_PHP=	session
 CONFLICTS=	horde-3*
 
 NO_ARCH=	yes
+
+post-patch:
+	@${REINPLACE_CMD} -e \
+		's|d41d8cd98f00b204e9800998ecf8427e|583871edc61a5f01357b9d3a105522ae|' \
+		${WRKDIR}/package.xml
 
 OPTIONS_DEFINE=	KOLAB LZF SOCKETS
 KOLAB_DESC=	Enable Kolab server support

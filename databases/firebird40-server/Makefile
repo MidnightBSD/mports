@@ -98,7 +98,7 @@ CONFIGURE_ARGS+=	--with-system-editline
 CONFIGURE_ENV+=	ac_cv_lib_edit_readline="yes"
 
 USE_LDCONFIG=	yes
-CLIENT_BIN=	gpre isql-fb qli
+CLIENT_BIN=	gpre isql-fb
 CLIENT_HEADER=	extlib/ib_util.h include/ibase.h include/iberror.h yvalve/perf.h
 
 OPTIONS_DEFINE=	DOCS

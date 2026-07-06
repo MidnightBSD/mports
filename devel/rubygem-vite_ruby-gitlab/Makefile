@@ -16,6 +16,7 @@ RUN_DEPENDS=	rubygem-dry-cli>=0.7<2:devel/rubygem-dry-cli \
 		rubygem-mutex_m>=0:devel/rubygem-mutex_m \
 		rubygem-rack-proxy>=0.6.1<1.0:www/rubygem-rack-proxy \
 		rubygem-zeitwerk>=2.2<3:devel/rubygem-zeitwerk
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

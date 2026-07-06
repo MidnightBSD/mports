@@ -1,1 +1,2 @@
-dry-logic predicates logic with rule composition.
+dry-logic provides predicate logic with rule composition for Ruby applications.
+It is part of the dry-rb family of libraries.

@@ -259,7 +259,7 @@ post-install-DOCS-off:
 # to pass WITH_HADDOCK=no to the build.mk to skip their generation.
 # However, we don't want to do that because this would cause Haddock itself not
 # to be built.
-	${RM} -r ${DOCSDIR}/html
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/html
 
 .if exists(${BOOT_INSTALL_DIR}/bin/runhaskell)
 RUNHASKELL?=	${BOOT_INSTALL_DIR}/bin/runhaskell

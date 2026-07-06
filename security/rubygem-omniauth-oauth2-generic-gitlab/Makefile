@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 RUN_DEPENDS=	rubygem-omniauth-oauth2-gitlab>=1.0<2:net/rubygem-omniauth-oauth2-gitlab \
 		rubygem-rake>=0:devel/rubygem-rake
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

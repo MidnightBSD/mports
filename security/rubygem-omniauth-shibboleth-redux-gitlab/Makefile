@@ -11,6 +11,7 @@ WWW=		https://www.rubydoc.info/gems/omniauth-shibboleth-redux/2.0.0
 LICENSE=	mit
 
 RUN_DEPENDS=	rubygem-omniauth-gl>=2.0:security/rubygem-omniauth-gl
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

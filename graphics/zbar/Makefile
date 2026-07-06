@@ -84,4 +84,7 @@ X11_USE=		XORG=ice,sm,x11,xau,xcb,xdmcp,xext,xv
 X11_CONFIGURE_ON=	--with-x --with-xv --with-xshm
 X11_CONFIGURE_OFF=	--without-x --without-xshm --without-xv
 
+post-install-DOCS-off:
+	@${RM} -r ${FAKE_DESTDIR}${DOCSDIR}
+
 .include <bsd.port.mk>

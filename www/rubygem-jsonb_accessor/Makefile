@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 RUN_DEPENDS=	rubygem-activerecord-gitlab>=6.1:databases/rubygem-activerecord-gitlab \
 		rubygem-activesupport-gitlab>=6.1:devel/rubygem-activesupport-gitlab \
 		rubygem-pg-gitlab>=0.18.1:databases/rubygem-pg-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem shebangfix
 

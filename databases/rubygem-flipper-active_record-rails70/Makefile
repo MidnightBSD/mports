@@ -1,5 +1,5 @@
 PORTNAME=	flipper-active_record
-PORTVERSION=	0.28.3
+PORTVERSION=	1.3.6
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-rails70
@@ -12,7 +12,7 @@ LICENSE=	mit
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord70>=4.2<8:databases/rubygem-activerecord70 \
-		rubygem-flipper-gitlab>=${PORTVERSION}<0.29:devel/rubygem-flipper-gitlab
+		rubygem-flipper-gitlab>=${PORTVERSION}<1.4:devel/rubygem-flipper-gitlab
 
 USES=		gem
 

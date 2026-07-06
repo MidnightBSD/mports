@@ -40,6 +40,6 @@ pre-build:
 		git tag v${PORTVERSION}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/gitlab-zoekt ${STAGEDIR}${PREFIX}/bin/gitlab-zoekt
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/gitlab-zoekt ${PREFIX}/bin/gitlab-zoekt
 
 .include <bsd.port.mk>

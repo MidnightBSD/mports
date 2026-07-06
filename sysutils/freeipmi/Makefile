@@ -58,6 +58,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|\($$(LN_S) -f \)$$(sbindir)/|\1|' ${WRKSRC}/*/Makefile.in
 
 post-install:
-	${MKDIR} -m 0700 -p ${FAKE_DESTDIR}${CACHE_DIR}/ipmimonitoringsdrcache/ ${FAKE_DEStDIR}${CACHE_DIR}/ipmiseld/ ${FAKE_DESTEDIR}/var/lib/freeipmi/ ${FAKE_DESTDIR}/var/run/freeipmi/
+	${MKDIR} -m 0700 -p ${FAKE_DESTDIR}${CACHE_DIR}/ipmimonitoringsdrcache/ ${FAKE_DESTDIR}${CACHE_DIR}/ipmiseld/ ${FAKE_DESTDIR}/var/lib/freeipmi/ ${FAKE_DESTDIR}/var/run/freeipmi/
 
 .include <bsd.port.mk>

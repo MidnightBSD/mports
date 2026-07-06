@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-redis-gitlab>=3.0:databases/rubygem-redis-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem shebangfix
 

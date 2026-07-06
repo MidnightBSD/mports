@@ -1,1 +1,2 @@
-TeleSign Ruby SDK.
+The TeleSign Ruby SDK provides client helpers for working with TeleSign APIs.
+It supports authentication and request handling for Ruby applications.

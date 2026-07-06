@@ -2,7 +2,7 @@ PORTNAME=	libcrossguid
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.2.2-52
 DISTVERSIONSUFFIX=	-gca1bf4b
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	devel
 
@@ -16,7 +16,7 @@ WWW=		https://github.com/graeme-hill/crossguid
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libuuid.so:misc/libuuid
+LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid
 
 USES=		cmake compiler:c++17-lang pkgconfig
 USE_LDCONFIG=	yes

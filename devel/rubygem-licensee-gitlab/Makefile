@@ -16,6 +16,7 @@ RUN_DEPENDS=	rubygem-dotenv>=2.0<4:misc/rubygem-dotenv \
 		rubygem-reverse_markdown>=1.0<3:textproc/rubygem-reverse_markdown \
 		rubygem-rugged>=0.24<2.0:devel/rubygem-rugged \
 		rubygem-thor>=0.19<2.0:devel/rubygem-thor
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

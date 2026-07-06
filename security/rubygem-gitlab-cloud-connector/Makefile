@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=7.0<8:devel/rubygem-activesupport-gitlab \
 		rubygem-jwt2>=2.9<3:www/rubygem-jwt2
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 

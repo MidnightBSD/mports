@@ -1,1 +1,2 @@
-Ruby gem for GitLab security report JSON schemas
+This gem packages GitLab security report JSON schemas for Ruby applications. It
+provides schema files and helpers used to validate security report documents.
