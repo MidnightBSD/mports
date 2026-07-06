@@ -2,6 +2,7 @@
 
 PORTNAME=	geany
 PORTVERSION=	2.1
+PORTREVISION=	2
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.geany.org/ SF
 
@@ -22,7 +23,7 @@ gtk2_PKGNAMESUFFIX=	-gtk2
 gtk3_CONFLICTS_INSTALL=	geany-gtk2
 
 USES=		compiler:c++11-lang desktop-file-utils gettext-tools gmake \
-		gnome libtool localbase pathfix pkgconfig python:build \
+		gnome iconv libtool localbase pathfix pkgconfig python:build \
 		shebangfix tar:bzip2
 USE_GNOME=	cairo intltool
 USE_LDCONFIG=	yes
