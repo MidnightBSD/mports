@@ -15,6 +15,7 @@ RUN_DEPENDS=	rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
 		rubygem-concurrent-ruby>=1.0<2:devel/rubygem-concurrent-ruby \
 		rubygem-dry-core-gitlab>=1.1<2:devel/rubygem-dry-core-gitlab \
 		rubygem-zeitwerk>=2.6<3:devel/rubygem-zeitwerk
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
