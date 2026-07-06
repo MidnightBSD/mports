@@ -12,6 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-omniauth-oauth2-gitlab>=1.8<2:net/rubygem-omniauth-oauth2-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
