@@ -1,0 +1,28 @@
+PORTNAME=	pyarrow
+PORTVERSION=	24.0.0
+CATEGORIES=	databases python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python library for Apache Arrow
+WWW=		https://arrow.apache.org/ \
+		https://github.com/apache/arrow/tree/main/python
+
+LICENSE=	Apache-2.0
+
+BUILD_DEPENDS=	arrow>=${PORTVERSION}<${PORTVERSION}_99:databases/arrow \
+		${PYTHON_PKGNAMEPREFIX}libcst>=1.8.6:devel/py-libcst@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.25,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}scikit-build-core>=0:devel/py-scikit-build-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=8:devel/py-setuptools-scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+LIB_DEPENDS=	libarrow.so:databases/arrow
+
+USES=		cmake:indirect python
+USE_PYTHON=	autoplist concurrent cython pep517
+
+post-install:
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+
+.include <bsd.port.mk>

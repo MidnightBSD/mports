@@ -1,0 +1,27 @@
+PORTNAME=	ml-dtypes
+PORTVERSION=	0.5.1
+PORTREVISION=	2
+CATEGORIES=	math python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	ml_dtypes-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Stand-alone implementation of several NumPy dtype extensions
+WWW=		https://github.com/jax-ml/ml_dtypes
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=2.0,1<3,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=2.1.0,1:math/py-numpy@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent pep517
+
+post-install:
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+
+.include <bsd.port.mk>

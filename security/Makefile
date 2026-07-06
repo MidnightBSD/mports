@@ -268,6 +268,7 @@
     SUBDIR += py-passlib
     SUBDIR += py-potr
     SUBDIR += py-pyclamd
+    SUBDIR += py-pyopenssl
     SUBDIR += py-truststore
     SUBDIR += py-pycryptodome
     SUBDIR += py-pycryptodome-test-vectors

@@ -319,6 +319,7 @@
     SUBDIR += py-chardet
     SUBDIR += py-charset-normalizer
     SUBDIR += py-cmarkgfm
+    SUBDIR += py-commonmark
     SUBDIR += py-cssselect2
     SUBDIR += py-docstring-parser
     SUBDIR += py-docstring_parser
@@ -584,6 +585,7 @@
     SUBDIR += scim-table-imengine
     SUBDIR += scr2txt
     SUBDIR += sdocbook-xml
+    SUBDIR += sentencepiece
     SUBDIR += sgmlformat
     SUBDIR += sgmls
     SUBDIR += snowballstemmer

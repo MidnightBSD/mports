@@ -255,10 +255,12 @@
     SUBDIR += plasma6-plasma-browser-integration
     SUBDIR += pmwiki
     SUBDIR += privoxy
+    SUBDIR += py-a2wsgi
     SUBDIR += py-aiohttp
     SUBDIR += py-aioquic
     SUBDIR += py-asgiref
     SUBDIR += py-autobahn
+    SUBDIR += py-baize
     SUBDIR += py-beaker
     SUBDIR += py-beautifulsoup
     SUBDIR += py-bleach
@@ -267,6 +269,7 @@
     SUBDIR += py-cachecontrol
     SUBDIR += py-cheroot
     SUBDIR += py-cherrypy
+    SUBDIR += py-cross-web
     SUBDIR += py-css-parser
     SUBDIR += py-csscompressor
     SUBDIR += py-cssselect
@@ -296,11 +299,13 @@
     SUBDIR += py-hstspreload
     SUBDIR += py-html5-parser
     SUBDIR += py-html5lib
+    SUBDIR += py-htmltools
     SUBDIR += py-httpbin
     SUBDIR += py-httpcore
     SUBDIR += py-httplib2
     SUBDIR += py-httpx
     SUBDIR += py-httpx-sse
+    SUBDIR += py-hypercorn
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
     SUBDIR += py-libsass
@@ -315,6 +320,8 @@
     SUBDIR += py-pylsqpack
     SUBDIR += py-python-dotenv
     SUBDIR += py-python-multipart
+    SUBDIR += py-quart
+    SUBDIR += py-quart-trio
     SUBDIR += py-starlette
     SUBDIR += py-qt5-webengine
     SUBDIR += py-qt6-webengine

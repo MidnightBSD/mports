@@ -329,6 +329,7 @@
     SUBDIR += proj
     SUBDIR += py-OWSLib
     SUBDIR += py-PyOpenGL
+    SUBDIR += py-altair
     SUBDIR += py-beziers
     SUBDIR += py-cairo
     SUBDIR += py-cairocffi

@@ -1,0 +1,24 @@
+PORTNAME=	taskflow
+DISTVERSIONPREFIX=	v
+DISTVERSION=	4.1.0
+CATEGORIES=	devel
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Header-only library for parallel tasks in modern C++
+WWW=		https://taskflow.github.io/ \
+		https://github.com/taskflow/taskflow
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		cmake:testing compiler:c++17-lang
+USE_GITHUB=	yes
+
+CMAKE_OFF=	TF_BUILD_CUDA TF_BUILD_TESTS TF_BUILD_EXAMPLES
+CMAKE_TESTING_ON=	BUILD_TESTING TF_BUILD_TESTS
+
+NO_ARCH=	yes
+
+# tests as of 4.1.0: 100% tests passed, 0 tests failed out of 2909
+
+.include <bsd.port.mk>
