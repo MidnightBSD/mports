@@ -11,10 +11,14 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-rack>=1.4,3:www/rubygem-rack
+RUN_DEPENDS=	rubygem-rack>=3.2<3.3,3:www/rubygem-rack
 
 USES=		gem
 
 NO_ARCH=	yes
+
+post-patch:
+	${REINPLACE_CMD} -e 's/\[">= 1.4".freeze\]/["~> 3.2".freeze]/' \
+		${WRKSRC}/${PORTNAME}.gemspec
 
 .include <bsd.port.mk>
