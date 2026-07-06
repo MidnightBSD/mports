@@ -15,6 +15,7 @@ RUN_DEPENDS+=	htop:sysutils/htop
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	BastilleBSD
+GH_TAGNAME=	663260c40f57a9a31ffacc4dc25a226f89e3ed8c
 
 NO_ARCH=	yes
 NO_BUILD=	yes
