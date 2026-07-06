@@ -21,6 +21,7 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 USES=		gettext gnome localbase meson pkgconfig tar:xz vala:build
 USE_GNOME=	glib20 introspection:build libxml2
 USE_LDCONFIG=	yes
+MESON_ARGS=	-Dalways_build_tests=false
 
 # magus
 NO_TEST=	yes
