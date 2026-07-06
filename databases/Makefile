@@ -180,6 +180,7 @@
     SUBDIR += py-psycopg-c
     SUBDIR += py-psycopg-pool
     SUBDIR += py-psycopg2
+    SUBDIR += py-pyarrow
     SUBDIR += py-pymongo
     SUBDIR += py-pymysql
     SUBDIR += py-python-memcached
@@ -194,6 +195,7 @@
     SUBDIR += py-sqlite-migrate
     SUBDIR += py-sqlite-utils
     SUBDIR += py-sqlite3
+    SUBDIR += py-sqlmodel
     SUBDIR += py-sqlobject
     SUBDIR += py-sqlparse
     SUBDIR += py-xapian

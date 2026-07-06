@@ -152,6 +152,7 @@
     SUBDIR += poe
     SUBDIR += pwcview
     SUBDIR += py-gstreamer1
+    SUBDIR += py-torchcodec
     SUBDIR += qt5-multimedia
     SUBDIR += qt6-multimedia
     SUBDIR += rav1e

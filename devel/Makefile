@@ -1318,6 +1318,7 @@
     SUBDIR += py-argcomplete
     SUBDIR += py-arpeggio
     SUBDIR += py-arrow
+    SUBDIR += py-asgi-lifespan
     SUBDIR += py-asn1crypto
     SUBDIR += py-aspectlib
     SUBDIR += py-ast-grep-cli
@@ -1338,11 +1339,14 @@
     SUBDIR += py-aws-xray-sdk
     SUBDIR += py-awscli
     SUBDIR += py-awscrt
+    SUBDIR += py-azure-core
+    SUBDIR += py-azure-identity
     SUBDIR += py-b2sdk
     SUBDIR += py-babel
     SUBDIR += py-backoff
     SUBDIR += py-backports
     SUBDIR += py-backports.tarfile
+    SUBDIR += py-backports.zstd
     SUBDIR += py-bcdoc
     SUBDIR += py-beartype
     SUBDIR += py-beniget
@@ -1350,6 +1354,7 @@
     SUBDIR += py-black
     SUBDIR += py-blessings
     SUBDIR += py-blinker
+    SUBDIR += py-blockbuster
     SUBDIR += py-boolean.py
     SUBDIR += py-boto
     SUBDIR += py-botocore
@@ -1379,6 +1384,7 @@
     SUBDIR += py-click-default-group
     SUBDIR += py-click-help-colors
     SUBDIR += py-click-plugins
+    SUBDIR += py-cloudpickle
     SUBDIR += py-condense-json
     SUBDIR += py-cligj
     SUBDIR += py-cmdtest
@@ -1402,6 +1408,7 @@
     SUBDIR += py-cycler
     SUBDIR += py-cython-test-exception-raiser
     SUBDIR += py-daemon
+    SUBDIR += py-dataclasses-json
     SUBDIR += py-datadog
     SUBDIR += py-dbus
     SUBDIR += py-ddt
@@ -1428,6 +1435,7 @@
     SUBDIR += py-expandvars
     SUBDIR += py-extras
     SUBDIR += py-factory-boy
+    SUBDIR += py-faicons
     SUBDIR += py-fasteners
     SUBDIR += py-fastimport
     SUBDIR += py-fastjsonschema
@@ -1444,6 +1452,7 @@
     SUBDIR += py-flit-scm
     SUBDIR += py-flufl.i18n
     SUBDIR += py-flufl.lock
+    SUBDIR += py-forbiddenfruit
     SUBDIR += py-freezegun
     SUBDIR += py-frozenlist
     SUBDIR += py-funcsigs
@@ -1461,6 +1470,7 @@
     SUBDIR += py-googleapis-common-protos
     SUBDIR += py-gql
     SUBDIR += py-graphql-core
+    SUBDIR += py-great-tables
     SUBDIR += py-greenlet
     SUBDIR += py-grpcio
     SUBDIR += py-grpcio-gcp
@@ -1482,6 +1492,7 @@
     SUBDIR += py-incremental
     SUBDIR += py-inflect
     SUBDIR += py-iniconfig
+    SUBDIR += py-inline-snapshot
     SUBDIR += py-installer
     SUBDIR += py-intervaltree
     SUBDIR += py-invoke
@@ -1527,6 +1538,7 @@
     SUBDIR += py-lazr.delegates
     SUBDIR += py-lazr.restfulclient
     SUBDIR += py-lazr.uri
+    SUBDIR += py-libcst
     SUBDIR += py-libevdev
     SUBDIR += py-libpeas
     SUBDIR += py-libpeas1
@@ -1550,8 +1562,11 @@
     SUBDIR += py-monotonic
     SUBDIR += py-more-itertools
     SUBDIR += py-moto
+    SUBDIR += py-msal
+    SUBDIR += py-msal-extensions
     SUBDIR += py-msgpack
     SUBDIR += py-multipart
+    SUBDIR += py-multiprocess
     SUBDIR += py-munch
     SUBDIR += py-mypy
     SUBDIR += py-mypy_extensions
@@ -1605,8 +1620,10 @@
     SUBDIR += py-ply
     SUBDIR += py-pockets
     SUBDIR += py-poetry-core
+    SUBDIR += py-poetry-dynamic-versioning
     SUBDIR += py-polib
     SUBDIR += py-pooch
+    SUBDIR += py-portalocker
     SUBDIR += py-poyo
     SUBDIR += py-prance
     SUBDIR += py-pre-commit
@@ -1662,8 +1679,10 @@
     SUBDIR += py-pytest-drop-dup-tests
     SUBDIR += py-pytest-enabler
     SUBDIR += py-pytest-env
+    SUBDIR += py-pytest-examples
     SUBDIR += py-pytest-flake8
     SUBDIR += py-pytest-forked
+    SUBDIR += py-pytest-freezer
     SUBDIR += py-pytest-html
     SUBDIR += py-pytest-httpbin
     SUBDIR += py-pytest-httpserver
@@ -1673,6 +1692,7 @@
     SUBDIR += py-pytest-mock
     SUBDIR += py-pytest-mypy
     SUBDIR += py-pytest-plus
+    SUBDIR += py-pytest-pretty
     SUBDIR += py-pytest-randomly
     SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-relaxed
@@ -1684,6 +1704,7 @@
     SUBDIR += py-pytest-sugar
     SUBDIR += py-pytest-timeout
     SUBDIR += py-pytest-trio
+    SUBDIR += py-pytest-watcher
     SUBDIR += py-pytest-xdist
     SUBDIR += py-pytest4
     SUBDIR += py-pytest4-asyncio
@@ -1717,6 +1738,8 @@
     SUBDIR += py-qt6-sip
     SUBDIR += py-qtbuilder
     SUBDIR += py-ramlfications
+    SUBDIR += py-rapidfuzz
+    SUBDIR += py-rapidfuzz-capi
     SUBDIR += py-raven
     SUBDIR += py-re-assert
     SUBDIR += py-readme-renderer
@@ -1733,7 +1756,9 @@
     SUBDIR += py-rtree
     SUBDIR += py-ruamel.yaml
     SUBDIR += py-ruamel.yaml.clib
+    SUBDIR += py-ruff
     SUBDIR += py-sarif-om
+    SUBDIR += py-scikit-build
     SUBDIR += py-scikit-build-core
     SUBDIR += py-scripttest
     SUBDIR += py-semantic-version
@@ -1764,6 +1789,7 @@
     SUBDIR += py-stack-data
     SUBDIR += py-stdnum
     SUBDIR += py-stone
+    SUBDIR += py-strawberry-graphql
     SUBDIR += py-strenum
     SUBDIR += py-strict-rfc3339
     SUBDIR += py-strictyaml
@@ -1800,6 +1826,7 @@
     SUBDIR += py-twine1
     SUBDIR += py-twisted
     SUBDIR += py-txaio
+    SUBDIR += py-ty
     SUBDIR += py-typeguard
     SUBDIR += py-typer
     SUBDIR += py-types-Jinja2
@@ -1808,6 +1835,7 @@
     SUBDIR += py-types-docutils
     SUBDIR += py-types-jsonschema
     SUBDIR += py-types-psutil
+    SUBDIR += py-types-pytz
     SUBDIR += py-types-pyyaml
     SUBDIR += py-types-python-dateutil
     SUBDIR += py-types-requests
@@ -1825,6 +1853,7 @@
     SUBDIR += py-unidiff
     SUBDIR += py-unittest2
     SUBDIR += py-usb
+    SUBDIR += py-uuid7
     SUBDIR += py-uv-build
     SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
@@ -1904,6 +1933,7 @@
     SUBDIR += qtcreator
     SUBDIR += ragel
     SUBDIR += range-v3
+    SUBDIR += rapidfuzz-cpp
     SUBDIR += rapidjson
     SUBDIR += rclint
     SUBDIR += rcs57
@@ -2627,6 +2657,7 @@
     SUBDIR += t1lib
     SUBDIR += talloc
     SUBDIR += talloc1
+    SUBDIR += taskflow
     SUBDIR += tbb
     SUBDIR += tcl-memchan
     SUBDIR += tcl-trf

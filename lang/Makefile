@@ -120,6 +120,7 @@
     SUBDIR += rust
     SUBDIR += rust-bin
     SUBDIR += rust-bootstrap
+    SUBDIR += rust-nightly
     SUBDIR += rust188
     SUBDIR += scala
     SUBDIR += smalltalk
