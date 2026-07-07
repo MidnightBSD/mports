@@ -14,6 +14,7 @@ SUBDIR += fish
 SUBDIR += ibsh
 SUBDIR += ksh93
 SUBDIR += ksh93-devel
+SUBDIR += libpowershell-native
 SUBDIR += mksh
 SUBDIR += nologinmsg
 SUBDIR += nushell
