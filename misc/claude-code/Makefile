@@ -1,4 +1,4 @@
-PORTNAME=	linux-claude
+PORTNAME=	claude-code
 DISTVERSION=	2.1.203
 CATEGORIES=	misc linux
 MASTER_SITES=	https://registry.npmjs.org/@anthropic-ai/claude-code-linux-x64/-/
