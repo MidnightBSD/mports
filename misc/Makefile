@@ -12,7 +12,7 @@
     SUBDIR += chef
     SUBDIR += chmlib
     SUBDIR += cinnamon-translations
-    SUBDIR += claude-code
+    SUBDIR += claude-code-legacy
     SUBDIR += clawhub
     SUBDIR += cldr-emoji-annotation
     SUBDIR += codex

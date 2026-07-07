@@ -2,6 +2,7 @@ PORTNAME=	claude-code
 DISTVERSION=	2.1.112
 CATEGORIES=	misc # machine-learning
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
+PKGNAMESUFFIX=	-legacy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Agentic coding tool from Anthropic that lives in your terminal
