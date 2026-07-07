@@ -653,6 +653,7 @@
     SUBDIR += linux-rl9-strace
     SUBDIR += linux-rl9-systemd-libs
     SUBDIR += linux_libusb
+    SUBDIR += llvm
     SUBDIR += llvm-devel
     SUBDIR += llvm12
     SUBDIR += llvm15
