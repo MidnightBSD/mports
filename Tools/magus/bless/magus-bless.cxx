@@ -92,6 +92,8 @@ main(int argc, char *argv[])
 
     MagusConfig config = load_config(CONFIG_FILE);
 
+    try {
+
     string connect_string = "dbname=" + config.db_name +
         " user=" + config.db_user +
         " host=" + config.db_host +
@@ -137,8 +139,11 @@ main(int argc, char *argv[])
             errx(1, "Could not prepare statement");
         }
 
-	for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
+	for (result::const_iterator row = R.begin(); row != R.end(); ++row)
         {
+	    filePath = NULL;
+	    fileHash = NULL;
+	    try {
 
 		string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
 		if (asprintf(&filePath, "%s/%s", argv[2], row[4].as(string()).c_str()) == -1)
@@ -148,6 +153,7 @@ main(int argc, char *argv[])
 		{
 			fprintf(stderr, "Could not locate file %s\n", filePath);
 			free(filePath);
+			filePath = NULL;
 			continue;
 		}
 
@@ -157,6 +163,8 @@ main(int argc, char *argv[])
 			unlink(filePath);
 			free(fileHash);
 			free(filePath);
+			fileHash = NULL;
+			filePath = NULL;
 			continue;
 		}
 
@@ -181,6 +189,8 @@ main(int argc, char *argv[])
                sqlite3_finalize(stmt);
                free(filePath);
                free(fileHash);
+               filePath = NULL;
+               fileHash = NULL;
 
                if (sqlite3_prepare_v2(db, "INSERT INTO aliases (alias, pkg) VALUES(?,?)", -1, &stmt, 0) != SQLITE_OK)
                {
@@ -199,6 +209,13 @@ main(int argc, char *argv[])
 
                load_depends(depends_stmt, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
            }
+	    } catch (const std::exception &e) {
+		fprintf(stderr, "Skipping port %s: %s\n",
+		    row[0].as(string()).c_str(), e.what());
+		free(filePath);
+		free(fileHash);
+		continue;
+	    }
         }
         printf("\n");
     } else {
@@ -293,6 +310,11 @@ main(int argc, char *argv[])
         "SET blessed = true, status = 'complete' "
         "WHERE id = " +
         pqxx::to_string(runid));
+
+    } catch (const std::exception &e) {
+        fprintf(stderr, "magus-bless failed: %s\n", e.what());
+        return 1;
+    }
 
     return 0;
 }
@@ -418,17 +440,21 @@ create_indexdb(sqlite3 *db)
 void
 load_depends(sqlite3_stmt *stmt, connection & C, int runid, const char *pkg_name, const char *version)
 {
-	char query_def[2048];
-
 	printf("---->\tProcessing dependencies for %s - %s\n", pkg_name, version);
-
-	snprintf(query_def, sizeof(query_def), "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s' and d.type in ('run','lib', 'pkg')",
-		runid, runid, pkg_name, version);
 
     if (C.is_open())
     {
 	    nontransaction N(C);
-	    result R(N.exec(string(query_def)));
+	    result R(N.exec(
+		"SELECT distinct p2.pkgname, p2.version from ports as p1 "
+		"left join depends d on p1.id = d.port "
+		"left join ports p2 on d.dependency = p2.id "
+		"where p2.run = $1 and p1.run = $2 "
+		"and ((p1.status = 'pass' or p1.status = 'warn') "
+		"and (p2.status = 'pass' or p2.status = 'warn')) "
+		"and p1.pkgname = $3 and p1.version = $4 "
+		"and d.type in ('run','lib','pkg')",
+		pqxx::params{runid, runid, pkg_name, version}));
 
 		if (!R.empty()) 
 		{
