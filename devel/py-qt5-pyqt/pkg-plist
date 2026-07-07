@@ -1,6 +1,9 @@
 bin/pylupdate5
 bin/pyrcc5
 bin/pyuic5
+%%PYTHON_SITELIBDIR%%/PyQt5-%%PYQT_PYQTVERSION%%.dist-info/INSTALLER
+%%PYTHON_SITELIBDIR%%/PyQt5-%%PYQT_PYQTVERSION%%.dist-info/METADATA
+%%PYTHON_SITELIBDIR%%/PyQt5-%%PYQT_PYQTVERSION%%.dist-info/RECORD
 %%PYQT_APIDIR%%/PyQt5.api
 %%PYQT_DESIGNERDIR%%/libpyqt5.so
 %%PYQT_QMLDIR%%/libpyqt5qmlplugin.so
