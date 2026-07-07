@@ -176,6 +176,7 @@
     SUBDIR += xfce4-weather-plugin
     SUBDIR += xfce4-wm-themes
     SUBDIR += xtail
+    SUBDIR += zeroclaw
     SUBDIR += zine
     SUBDIR += zoneinfo
 
