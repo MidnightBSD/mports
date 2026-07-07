@@ -26,7 +26,6 @@ BROKEN_i386=	fails to build: rustc-LLVM ERROR: out of memory
 
 NO_TEST=	yes
 
-#MAKE_JOBS_UNSAFE=	yes
 WITHOUT_LTO=	yes
 
 USE_GITHUB=	yes
@@ -78,6 +77,10 @@ COMPLETIONS_DESC=	Build and/or install shell completions
 COMPLETIONS_PLIST_FILES=etc/bash_completion.d/${PORTNAME} \
 			share/fish/completions/${PORTNAME}.fish \
 			share/zsh/site-functions/_${PORTNAME}
+
+.if defined(MAGUS)
+MAKE_JOBS_UNSAFE=	yes
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/bin/bash|${LOCALBASE}&|' \
