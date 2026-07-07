@@ -1,7 +1,6 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
-DISTVERSION=	0.142.0
-PORTREVISION=	1
+DISTVERSION=	0.142.5
 CATEGORIES=	misc devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,7 +26,7 @@ BROKEN_i386=	fails to build: rustc-LLVM ERROR: out of memory
 
 NO_TEST=	yes
 
-MAKE_JOBS_UNSAFE=	yes
+#MAKE_JOBS_UNSAFE=	yes
 WITHOUT_LTO=	yes
 
 USE_GITHUB=	yes
@@ -85,25 +84,29 @@ post-patch:
 		${BUILD_WRKSRC}/cli/src/debug_sandbox/pid_tracker.rs \
 		${BUILD_WRKSRC}/core/src/command_canonicalization.rs \
 		${BUILD_WRKSRC}/core/src/command_canonicalization_tests.rs \
-		${BUILD_WRKSRC}/core/src/context/environment_context_tests.rs \
+		${BUILD_WRKSRC}/core/src/context/world_state/environment_render_tests.rs \
 		${BUILD_WRKSRC}/core/src/exec_policy.rs \
 		${BUILD_WRKSRC}/core/src/exec_policy_tests.rs \
 		${BUILD_WRKSRC}/core/src/exec_tests.rs \
-		${BUILD_WRKSRC}/core/src/shell.rs \
 		${BUILD_WRKSRC}/core/src/shell_snapshot_tests.rs \
 		${BUILD_WRKSRC}/core/src/shell_tests.rs \
+		${BUILD_WRKSRC}/core/src/tasks/user_shell_tests.rs \
 		${BUILD_WRKSRC}/core/src/tools/handlers/shell_tests.rs \
 		${BUILD_WRKSRC}/core/src/tools/handlers/unified_exec_tests.rs \
 		${BUILD_WRKSRC}/core/src/tools/runtimes/mod.rs \
 		${BUILD_WRKSRC}/core/src/tools/runtimes/mod_tests.rs \
+		${BUILD_WRKSRC}/core/src/tools/sandboxing_tests.rs \
 		${BUILD_WRKSRC}/core/tests/suite/exec.rs \
+		${BUILD_WRKSRC}/core/tests/suite/guardian_review.rs \
 		${BUILD_WRKSRC}/core/tests/suite/unified_exec.rs \
 		${BUILD_WRKSRC}/core/tests/suite/user_notification.rs \
 		${BUILD_WRKSRC}/exec-server/src/process_sandbox_tests.rs \
 		${BUILD_WRKSRC}/exec-server/tests/file_system_unix.rs \
 		${BUILD_WRKSRC}/shell-command/src/parse_command.rs \
+		${BUILD_WRKSRC}/shell-command/src/shell_detect.rs \
 		${BUILD_WRKSRC}/shell-escalation/src/unix/escalate_server.rs \
-		${BUILD_WRKSRC}/tui/src/exec_command.rs
+		${BUILD_WRKSRC}/tui/src/exec_command.rs \
+		${BUILD_WRKSRC}/utils/path-uri/src/tests.rs
 	@${REINPLACE_CMD} -e 's|python3|${PYTHON_VERSION}|' \
 		${BUILD_WRKSRC}/app-server/tests/suite/v2/command_exec.rs \
 		${BUILD_WRKSRC}/app-server/tests/suite/v2/hooks_list.rs \
