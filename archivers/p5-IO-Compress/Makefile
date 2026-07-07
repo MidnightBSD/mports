@@ -1,7 +1,8 @@
 PORTNAME=	IO-Compress
-PORTVERSION=	2.213
+PORTVERSION=	2.223
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=     CPAN:PMQS
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,8 +13,8 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-Compress-Raw-Bzip2>=${PORTVERSION}:archivers/p5-Compress-Raw-Bzip2 \
-		p5-Compress-Raw-Zlib>=${PORTVERSION}:archivers/p5-Compress-Raw-Zlib
+RUN_DEPENDS=	p5-Compress-Raw-Bzip2>=2.218:archivers/p5-Compress-Raw-Bzip2 \
+		p5-Compress-Raw-Zlib>=2.213:archivers/p5-Compress-Raw-Zlib
 
 NO_ARCH=	yes
 USE_PERL5=	configure
