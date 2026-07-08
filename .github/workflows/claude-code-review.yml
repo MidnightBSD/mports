@@ -31,10 +31,14 @@ jobs:
 
       - name: Claude Code Review (automatic)
         if: github.event_name == 'pull_request'
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
+          track_progress: true
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          direct_prompt: |
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
             You are reviewing a pull request for the MidnightBSD mports ports tree.
 
             Review the diff for:
@@ -48,11 +52,15 @@ jobs:
 
       - name: Claude Code Review (manual)
         if: github.event_name == 'workflow_dispatch'
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
-          anthropic_api_key: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          track_progress: true
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_number: ${{ github.event.inputs.pr_number }}
-          direct_prompt: |
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
             You are reviewing a pull request for the MidnightBSD mports ports tree.
             ${{ github.event.inputs.focus != '' && format('Focus especially on: {0}', github.event.inputs.focus) || '' }}
 
