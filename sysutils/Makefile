@@ -269,6 +269,7 @@
     SUBDIR += screenie
     SUBDIR += seatd
     SUBDIR += sg3_utils
+    SUBDIR += shuf
     SUBDIR += signon-plugin-oauth2
     SUBDIR += signond
     SUBDIR += slurm-wlm
