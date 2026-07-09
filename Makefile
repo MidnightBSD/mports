@@ -1,4 +1,5 @@
 SUBDIR += accessibility
+SUBDIR += ai
 SUBDIR += archivers
 SUBDIR += astro
 SUBDIR += audio

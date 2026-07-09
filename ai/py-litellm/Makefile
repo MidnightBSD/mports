@@ -1,0 +1,50 @@
+PORTNAME=	litellm
+DISTVERSION=	1.89.3
+PORTREVISION=	1
+CATEGORIES=	ai python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Call all LLM APIs using the OpenAI format
+WWW=		https://github.com/BerriAI/litellm
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.11.8:devel/py-uv-build@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fastuuid>=0.14.0<1.0:devel/py-fastuuid@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}httpx>=0.28.0<1.0.0:www/py-httpx@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}openai>=2.20.0<3.0.0:ai/py-openai@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}python-dotenv>=1.0.0<2.0:www/py-python-dotenv@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tiktoken>=0.8.0<1.0:textproc/py-tiktoken@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}importlib-metadata>=8.0.0<9.0.0:devel/py-importlib-metadata@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tokenizers>=0.21.0<1.0:textproc/py-tokenizers@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}click>=8.0.0<9.0:devel/py-click@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}Jinja2>=3.1.6<4.0.0:devel/py-Jinja2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}aiohttp>=3.10:www/py-aiohttp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.10.0<3.0.0:devel/py-pydantic2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}jsonschema>=4.0.0<5.0.0:devel/py-jsonschema@${PY_FLAVOR}
+
+USES=		python shebangfix
+USE_PYTHON=	autoplist concurrent pep517
+
+SHEBANG_FILES=	litellm/proxy/start.sh
+bash_CMD=	${SH}
+
+REINPLACE_ARGS=	-i ''
+NO_ARCH=	yes
+
+PORTDOCS=	README.md
+
+OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|python3|${PYTHON_CMD}|' \
+		${WRKSRC}/litellm/proxy/start.sh
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

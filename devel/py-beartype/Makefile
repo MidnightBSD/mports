@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR
 RUN_DEPENDS=	${PYNUMPY}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mypy>0:devel/py-mypy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyright>0:devel/py-pyright@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
 
 USES=		python

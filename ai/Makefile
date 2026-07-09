@@ -1,0 +1,46 @@
+    COMMENT = Artificial intelligence and machine learning
+
+    SUBDIR += chatgpt-shell-cli
+    SUBDIR += claude-code
+    SUBDIR += claude-code-legacy
+    SUBDIR += clawhub
+    SUBDIR += codex
+    SUBDIR += gemini-cli
+    SUBDIR += github-copilot-cli
+    SUBDIR += grok-cli
+    SUBDIR += lean-ctx
+    SUBDIR += llama-cpp
+    SUBDIR += ollama
+    SUBDIR += onnx
+    SUBDIR += openclaw
+    SUBDIR += py-anthropic
+    SUBDIR += py-datasets
+    SUBDIR += py-google-genai
+    SUBDIR += py-headroom-ai
+    SUBDIR += py-huggingface-hub
+    SUBDIR += py-langchain
+    SUBDIR += py-langchain-anthropic
+    SUBDIR += py-langchain-core
+    SUBDIR += py-langchain-google-genai
+    SUBDIR += py-langchain-openai
+    SUBDIR += py-langchain-tests
+    SUBDIR += py-langchain-text-splitters
+    SUBDIR += py-langgraph
+    SUBDIR += py-langgraph-checkpoint
+    SUBDIR += py-langgraph-prebuilt
+    SUBDIR += py-langgraph-sdk
+    SUBDIR += py-langsmith
+    SUBDIR += py-litellm
+    SUBDIR += py-litellm-proxy-extras
+    SUBDIR += py-llm
+    SUBDIR += py-mistral-common
+    SUBDIR += py-mistral-vibe
+    SUBDIR += py-onnxruntime
+    SUBDIR += py-openai
+    SUBDIR += py-openai-whisper
+    SUBDIR += py-pytorch
+    SUBDIR += py-torchvision
+    SUBDIR += pytorch
+    SUBDIR += zeroclaw
+
+.include <bsd.port.subdir.mk>

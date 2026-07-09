@@ -12,15 +12,15 @@ WWW=		https://github.com/pytorch/torchcodec
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR} \
 		${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
 		pybind11>0:devel/pybind11
 LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libavformat.so:multimedia/ffmpeg \
  		libprotobuf.so:devel/protobuf
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}torchvision>0:misc/py-torchvision@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}torchvision>0:ai/py-torchvision@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pillow>=0:graphics/py-pillow@${PY_FLAVOR}
 

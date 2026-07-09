@@ -19,7 +19,7 @@ BUILD_DEPENDS=	swig:devel/swig \
 		${PY_DEPENDS}
 LIB_DEPENDS=	libfaiss.so:math/faiss
 RUN_DEPENDS=	${PY_DEPENDS}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR}
 
 USES=		cmake compiler:c++11-lang localbase python
 USE_PYTHON=	flavors pytest # tests fail to run, see https://github.com/facebookresearch/faiss/issues/3914

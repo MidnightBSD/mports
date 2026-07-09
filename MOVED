@@ -616,3 +616,45 @@ graphics/librsvg2|graphics/librsvg2-rust|2026-05-16|Superseded by Rust-based lib
 editors/linux-vscode||2026-05-30|Does not work
 devel/p5-Test2-Suite|devel/p5-Test-Simple|2026-06-29|Remove obsoleted port, merged into devel/p5-Test-Simple
 misc/linux-claude|misc/claude-code|2026-07-07|Make it easier to find despite breaking conventions
+misc/chatgpt-shell-cli|ai/chatgpt-shell-cli|2026-07-09|Move to new ai category
+misc/claude-code|ai/claude-code|2026-07-09|Move to new ai category
+misc/claude-code-legacy|ai/claude-code-legacy|2026-07-09|Move to new ai category
+misc/clawhub|ai/clawhub|2026-07-09|Move to new ai category
+misc/codex|ai/codex|2026-07-09|Move to new ai category
+misc/gemini-cli|ai/gemini-cli|2026-07-09|Move to new ai category
+misc/github-copilot-cli|ai/github-copilot-cli|2026-07-09|Move to new ai category
+misc/grok-cli|ai/grok-cli|2026-07-09|Move to new ai category
+misc/lean-ctx|ai/lean-ctx|2026-07-09|Move to new ai category
+misc/llama-cpp|ai/llama-cpp|2026-07-09|Move to new ai category
+misc/ollama|ai/ollama|2026-07-09|Move to new ai category
+misc/onnx|ai/onnx|2026-07-09|Move to new ai category
+misc/openclaw|ai/openclaw|2026-07-09|Move to new ai category
+misc/py-anthropic|ai/py-anthropic|2026-07-09|Move to new ai category
+misc/py-datasets|ai/py-datasets|2026-07-09|Move to new ai category
+misc/py-google-genai|ai/py-google-genai|2026-07-09|Move to new ai category
+misc/py-headroom-ai|ai/py-headroom-ai|2026-07-09|Move to new ai category
+misc/py-huggingface-hub|ai/py-huggingface-hub|2026-07-09|Move to new ai category
+misc/py-langchain|ai/py-langchain|2026-07-09|Move to new ai category
+misc/py-langchain-anthropic|ai/py-langchain-anthropic|2026-07-09|Move to new ai category
+misc/py-langchain-core|ai/py-langchain-core|2026-07-09|Move to new ai category
+misc/py-langchain-google-genai|ai/py-langchain-google-genai|2026-07-09|Move to new ai category
+misc/py-langchain-openai|ai/py-langchain-openai|2026-07-09|Move to new ai category
+misc/py-langchain-tests|ai/py-langchain-tests|2026-07-09|Move to new ai category
+misc/py-langchain-text-splitters|ai/py-langchain-text-splitters|2026-07-09|Move to new ai category
+misc/py-langgraph|ai/py-langgraph|2026-07-09|Move to new ai category
+misc/py-langgraph-checkpoint|ai/py-langgraph-checkpoint|2026-07-09|Move to new ai category
+misc/py-langgraph-prebuilt|ai/py-langgraph-prebuilt|2026-07-09|Move to new ai category
+misc/py-langgraph-sdk|ai/py-langgraph-sdk|2026-07-09|Move to new ai category
+misc/py-langsmith|ai/py-langsmith|2026-07-09|Move to new ai category
+misc/py-litellm|ai/py-litellm|2026-07-09|Move to new ai category
+misc/py-litellm-proxy-extras|ai/py-litellm-proxy-extras|2026-07-09|Move to new ai category
+misc/py-llm|ai/py-llm|2026-07-09|Move to new ai category
+misc/py-mistral-common|ai/py-mistral-common|2026-07-09|Move to new ai category
+misc/py-mistral-vibe|ai/py-mistral-vibe|2026-07-09|Move to new ai category
+misc/py-onnxruntime|ai/py-onnxruntime|2026-07-09|Move to new ai category
+misc/py-openai|ai/py-openai|2026-07-09|Move to new ai category
+misc/py-openai-whisper|ai/py-openai-whisper|2026-07-09|Move to new ai category
+misc/py-pytorch|ai/py-pytorch|2026-07-09|Move to new ai category
+misc/py-torchvision|ai/py-torchvision|2026-07-09|Move to new ai category
+misc/pytorch|ai/pytorch|2026-07-09|Move to new ai category
+misc/zeroclaw|ai/zeroclaw|2026-07-09|Move to new ai category
