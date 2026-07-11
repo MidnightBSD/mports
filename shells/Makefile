@@ -21,6 +21,7 @@
     SUBDIR += osh
     SUBDIR += p5-Term-ShellUI
     SUBDIR += pdksh
+    SUBDIR += powershell
     SUBDIR += psh
     SUBDIR += rc
     SUBDIR += rssh
