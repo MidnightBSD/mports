@@ -43,6 +43,18 @@ SHEBANG_FILES+=	src/diagnostics/src/Tools/dotnet-trace/*.sh
 
 BINARY_ALIAS=	grep=${LOCALBASE}/bin/ggrep
 DOTNET_ENV+=	PYTHON=${PYTHON_CMD}
+# Steer the runtime's native compiler discovery (eng/common/native/init-compiler.sh)
+# to the LLVM we depend on.  Otherwise it searches /usr/local/bin for the highest
+# clangNN and picks up a broken clang->bugpoint symlink, failing with
+# "clangNN -dumpversion didn't provide a version".  CLR_CC/CLR_CXX bypass the search.
+DOTNET_ENV+=	CLR_CC=${LLVM_PREFIX}/bin/clang \
+		CLR_CXX=${LLVM_PREFIX}/bin/clang++
+# The CoreCLR native build (configuretools.cmake) locates the toolchain binaries
+# (llvm-ar, llvm-nm, llvm-ranlib, llvm-strings, llvm-link, llvm-objdump,
+# llvm-readelf, llvm-objcopy) and lld via PATH.  They live in ${LLVM_PREFIX}/bin,
+# which is not on the default PATH; the versioned copies in ${LOCALBASE}/bin are
+# broken symlinks to bugpoint.  Prepend the LLVM bindir so the real tools win.
+DOTNET_ENV+=	PATH=${LLVM_PREFIX}/bin:${PATH}
 
 BOOTSTRAP_DOTNETVERSION?=			9.0
 BOOTSTRAP_SDKVERSION?=				${BOOTSTRAP_DOTNETVERSION}.110
@@ -103,6 +115,31 @@ PLIST_SUB+=	VXSORT="@comment "
 post-patch:
 	${CP} ${PATCHDIR}/0002-Fix-assembly-version-calculation-in-2026.patch \
 		${WRKSRC}/src/source-build-externals/patches/azure-activedirectory-identitymodel-extensions-for-dotnet/
+# The VMR vendors a per-repo copy of eng/common/native/init-os-and-arch.sh and
+# init-distro-rid.sh in every src/<repo>.  Our patches only fix the top-level
+# copy, so native-building repos (runtime, aspnetcore) still fail with
+# "Unsupported OS midnightbsd detected!" and cannot locate freebsd-version.
+# Apply the same MidnightBSD handling to every vendored copy (skip the
+# already-patched top-level ones, which contain "midnightbsd").
+	@${FIND} ${WRKSRC} -name init-os-and-arch.sh | while read f; do \
+		${GREP} -q midnightbsd "$$f" || \
+		${REINPLACE_CMD} -e '/^OSName=$$(uname -s/s/$$/; [ "$$OSName" = midnightbsd ] \&\& OSName=freebsd/' "$$f"; \
+	done
+	@${FIND} ${WRKSRC} -name init-distro-rid.sh | while read f; do \
+		${GREP} -q midnightbsd "$$f" || \
+		${REINPLACE_CMD} -e 's#/bin/freebsd-version#/bin/midnightbsd-version#g' "$$f"; \
+	done
+# The CoreCLR native build derives the OS from CMAKE_SYSTEM_NAME, which is
+# "MidnightBSD" (uname -s).  configureplatform.cmake does not recognize it, so
+# host arch detection never runs and the build dies with
+# "'amd64' is an unsupported architecture".  Normalize CLR_CMAKE_HOST_OS
+# midnightbsd -> freebsd right after it is lowercased (clang defines
+# __FreeBSD__, so the C/C++ sources build unchanged).
+	@${FIND} ${WRKSRC} -name configureplatform.cmake | while read f; do \
+		${GREP} -q 'REPLACE midnightbsd freebsd' "$$f" || { \
+			${AWK} '/string\(TOLOWER .* CLR_CMAKE_HOST_OS\)/ { print; print "string(REPLACE midnightbsd freebsd CLR_CMAKE_HOST_OS \"$${CLR_CMAKE_HOST_OS}\")"; next } { print }' "$$f" > "$$f.tmp" && ${MV} "$$f.tmp" "$$f"; \
+		}; \
+	done
 .endif
 
 post-extract:
