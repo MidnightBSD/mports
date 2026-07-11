@@ -95,7 +95,6 @@
     SUBDIR += p5-Try-Tiny
     SUBDIR += p5-ePerl
     SUBDIR += pcc
-    SUBDIR += perl5.38
     SUBDIR += perl5.40
     SUBDIR += perl5.42
     SUBDIR += php82
