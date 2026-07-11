@@ -248,10 +248,6 @@ pre-everything::
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|return pci_lookup_name|disabled broken|g' \
 		${WRKSRC}/configure
-	@${CP} ${WRKSRC}/snmplib/transports/snmpIPBaseDomain.h \
-		${WRKSRC}/include/net-snmp/library/snmpIPBaseDomain.h
-	@${CP} ${WRKSRC}/snmplib/factory.h \
-		${WRKSRC}/include/net-snmp/library/factory.h
 .if ${SSL_DEFAULT:Mopenssl}
 	@${REINPLACE_CMD} -E -e 's|SSL_library_init|OPENSSL_init_ssl|g' \
 		${WRKSRC}/configure
@@ -278,6 +274,8 @@ post-configure:
 		s!^.*#undef.*(HAVE_${hdr:tu:S/./_/g:S/\//_/g}).*$$!#define \1 1!g' \
 			${WRKSRC}/include/net-snmp/net-snmp-config.h
 .endfor
+	@${REINPLACE_CMD} -e 's|snmpIPv6BaseDomain.h snmpIPBaseDomain.h|snmpIPv6BaseDomain.h|g' \
+		${WRKSRC}/snmplib/Makefile
 .if ${PORT_OPTIONS:MPYTHON}
 	@(cd ${WRKSRC}/python; \
 	${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} setopt -c bdist_egg \
