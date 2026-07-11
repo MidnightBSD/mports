@@ -1,5 +1,5 @@
 PORTNAME=	junit
-PORTVERSION=	4.12
+PORTVERSION=	4.13.2
 CATEGORIES=	java devel
 MASTER_SITES=	https://repo1.maven.org/maven2/${PORTNAME}/${PORTNAME}/${PORTVERSION}/
 DISTFILES=	${DISTNAME}.jar ${DISTNAME}-sources.jar
