@@ -275,6 +275,8 @@ sub _set_env {
   $ENV{WRKDIRPREFIX}  		= $self->{chroot}->workdir;
   $ENV{DEPENDS_TARGET} 		= 'magus-install-depend';
   $ENV{DISTDIR}        		= $self->{chroot}->distfiles;
+  $ENV{LANG}           		= 'C.UTF-8';
+  $ENV{LC_ALL}         		= 'C.UTF-8';
   $ENV{MAGUS}          		= 1;
   $ENV{BATCH}	       		= 1;
   $ENV{MPORT_MAINTAINER_MODE} 	= 1;
