@@ -6,7 +6,6 @@
          "linux": download_file_types_pb2.DownloadFileType.PLATFORM_TYPE_LINUX,
 +        "openbsd": download_file_types_pb2.DownloadFileType.PLATFORM_TYPE_LINUX,
 +        "freebsd": download_file_types_pb2.DownloadFileType.PLATFORM_TYPE_LINUX,
-+        "midnightbsd": download_file_types_pb2.DownloadFileType.PLATFORM_TYPE_LINUX,
          "mac": download_file_types_pb2.DownloadFileType.PLATFORM_TYPE_MAC,
          "win": download_file_types_pb2.DownloadFileType.PLATFORM_TYPE_WINDOWS,
          # LINT.ThenChange(BUILD.gn:PlatformTypes)
@@ -15,7 +14,7 @@
              '--type',
              help='The platform type. One of android, chromeos, ' +
 -            'linux, mac, win')
-+            'linux, mac, win, openbsd, freebsd, midnightbsd')
++            'linux, mac, win, openbsd, freebsd')
  
      def AddExtraCommandLineArgsForVirtualEnvRun(self, opts, command):
          if opts.type is not None:

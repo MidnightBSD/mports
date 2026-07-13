@@ -1,6 +1,6 @@
---- components/safe_browsing/core/browser/realtime/url_lookup_service_base.cc.orig	2024-10-27 06:40:35 UTC
+--- components/safe_browsing/core/browser/realtime/url_lookup_service_base.cc.orig	2026-05-09 18:09:27 UTC
 +++ components/safe_browsing/core/browser/realtime/url_lookup_service_base.cc
-@@ -109,7 +109,7 @@ RTLookupRequest::OSType GetRTLookupRequestOSType() {
+@@ -114,7 +114,7 @@ RTLookupRequest::OSType GetRTLookupRequestOSType() {
    return RTLookupRequest::OS_TYPE_CHROME_OS;
  #elif BUILDFLAG(IS_IOS)
    return RTLookupRequest::OS_TYPE_IOS;

@@ -1,8 +1,8 @@
---- ui/gfx/native_pixmap_handle.h.orig	2025-01-25 09:34:31 UTC
+--- ui/gfx/native_pixmap_handle.h.orig	2026-06-05 13:45:06 UTC
 +++ ui/gfx/native_pixmap_handle.h
 @@ -14,7 +14,7 @@
  #include "build/build_config.h"
- #include "ui/gfx/buffer_types.h"
+ #include "components/viz/common/resources/shared_image_format.h"
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
@@ -10,8 +10,8 @@
  #endif
  
 @@ -34,7 +34,7 @@ struct COMPONENT_EXPORT(GFX) NativePixmapPlane {
-   NativePixmapPlane(int stride,
-                     int offset,
+   NativePixmapPlane(uint32_t stride,
+                     uint64_t offset,
                      uint64_t size
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)

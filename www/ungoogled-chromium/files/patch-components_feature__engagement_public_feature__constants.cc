@@ -1,7 +1,7 @@
---- components/feature_engagement/public/feature_constants.cc.orig	2025-03-09 21:38:10 UTC
+--- components/feature_engagement/public/feature_constants.cc.orig	2026-06-05 13:45:06 UTC
 +++ components/feature_engagement/public/feature_constants.cc
-@@ -19,7 +19,7 @@ BASE_FEATURE(kIPHDemoMode, "IPH_DemoMode", base::FEATU
- BASE_FEATURE(kIPHDummyFeature, "IPH_Dummy", base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -32,7 +32,7 @@ bool IsOnDeviceStorageEnabled() {
+ }
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
@@ -9,17 +9,18 @@
  #if BUILDFLAG(GOOGLE_CHROME_BRANDING)
  BASE_FEATURE(kEsbDownloadRowPromoFeature,
               "EsbDownloadRowPromo",
-@@ -667,7 +667,7 @@ BASE_FEATURE(kDefaultBrowserTriggerCriteriaExperiment,
- 
+@@ -896,7 +896,8 @@ BASE_FEATURE(kIPHiOSActiveDaysTrackingFeature,
  #endif  // BUILDFLAG(IS_IOS)
  
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD) || \
-     BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
- BASE_FEATURE(kIPHAutofillCardInfoRetrievalSuggestionFeature,
-              "IPH_AutofillCardInfoRetrievalSuggestion",
-@@ -811,7 +811,7 @@ BASE_FEATURE(kIPHScalableIphGamingFeature,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA) || \
++    BUILDFLAG(IS_BSD)
+ BASE_FEATURE(kIPHAutofillAtMemoryFeature,
+              "IPH_AutofillAtMemory",
               base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -966,7 +967,7 @@ BASE_FEATURE(kIPHLauncherSearchHelpUiFeature,
+              base::FEATURE_ENABLED_BY_DEFAULT);
  #endif
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)

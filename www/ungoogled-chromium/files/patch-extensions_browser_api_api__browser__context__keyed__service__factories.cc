@@ -1,8 +1,8 @@
---- extensions/browser/api/api_browser_context_keyed_service_factories.cc.orig	2025-02-20 09:59:21 UTC
+--- extensions/browser/api/api_browser_context_keyed_service_factories.cc.orig	2026-06-05 13:45:06 UTC
 +++ extensions/browser/api/api_browser_context_keyed_service_factories.cc
-@@ -120,7 +120,7 @@ void EnsureApiBrowserContextKeyedServiceFactoriesBuilt
+@@ -133,7 +133,7 @@ void EnsureApiBrowserContextKeyedServiceFactoriesBuilt
+   MediaPerceptionAPIManager::GetFactoryInstance();
  #endif
-   MessageService::GetFactoryInstance();
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN) || \
 -    BUILDFLAG(IS_MAC)
 +    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)

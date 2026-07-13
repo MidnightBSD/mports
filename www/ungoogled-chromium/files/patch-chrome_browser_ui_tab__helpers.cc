@@ -1,15 +1,15 @@
---- chrome/browser/ui/tab_helpers.cc.orig	2025-03-09 21:38:10 UTC
+--- chrome/browser/ui/tab_helpers.cc.orig	2026-06-05 13:45:06 UTC
 +++ chrome/browser/ui/tab_helpers.cc
-@@ -222,7 +222,7 @@
+@@ -220,7 +220,7 @@
  #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "chrome/browser/ui/blocked_content/framebust_block_tab_helper.h"
- #include "chrome/browser/ui/browser_finder.h"
  #include "chrome/browser/ui/hats/hats_helper.h"
-@@ -646,12 +646,12 @@ void TabHelpers::AttachTabHelpers(WebContents* web_con
+ #include "chrome/browser/ui/performance_controls/performance_controls_hats_service_factory.h"
+@@ -755,12 +755,12 @@ void TabHelpers::AttachTabHelpers(WebContents* web_con
    webapps::PreRedirectionURLObserver::CreateForWebContents(web_contents);
  #endif
  

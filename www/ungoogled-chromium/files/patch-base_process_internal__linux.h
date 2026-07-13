@@ -1,6 +1,6 @@
---- base/process/internal_linux.h.orig	2025-03-09 21:38:10 UTC
+--- base/process/internal_linux.h.orig	2026-02-15 10:01:45 UTC
 +++ base/process/internal_linux.h
-@@ -144,6 +144,9 @@ TimeDelta ClockTicksToTimeDelta(int64_t clock_ticks);
+@@ -142,6 +142,9 @@ TimeDelta ClockTicksToTimeDelta(int64_t clock_ticks);
  // arguments to the lambda.
  template <typename Lambda>
  void ForEachProcessTask(base::ProcessHandle process, Lambda&& lambda) {

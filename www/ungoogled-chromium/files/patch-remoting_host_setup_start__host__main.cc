@@ -1,26 +1,44 @@
---- remoting/host/setup/start_host_main.cc.orig	2025-03-09 21:38:10 UTC
+--- remoting/host/setup/start_host_main.cc.orig	2026-06-05 13:45:06 UTC
 +++ remoting/host/setup/start_host_main.cc
-@@ -43,7 +43,7 @@
+@@ -44,7 +44,7 @@
  #include <unistd.h>
  #endif  // BUILDFLAG(IS_POSIX)
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- #include "remoting/host/setup/daemon_controller_delegate_linux.h"
- #include "remoting/host/setup/start_host_as_root.h"
- #endif  // BUILDFLAG(IS_LINUX)
-@@ -374,7 +374,7 @@ bool InitializeCloudMachineParams(HostStarter::Params&
- }  // namespace
+ #include "remoting/base/crash/crash_reporting_crashpad.h"
+ #include "remoting/host/linux/host_types.h"
+ #include "remoting/host/setup/daemon_controller_delegate_linux_single_process.h"
+@@ -91,7 +91,7 @@ constexpr char kDisableCrashReportingSwitchName[] = "d
+ constexpr char kInvalidPinErrorMessage[] =
+     "Please provide a numeric PIN consisting of at least six digits.\n";
  
- int StartHostMain(int argc, char** argv) {
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   // Minimize the amount of code that runs as root on Posix systems.
-   if (getuid() == 0) {
-     return remoting::StartHostAsRoot(argc, argv);
-@@ -399,7 +399,7 @@ int StartHostMain(int argc, char** argv) {
+ // The host type to use.
+ constexpr char kHostTypeSwitchName[] = "host-type";
+ #endif
+@@ -118,7 +118,7 @@ void PrintDefaultHelpMessage(const char* process_name)
+       process_name, kAuthCodeSwitchName, kRedirectUrlSwitchName,
+       kDisplayNameSwitchName, kPinSwitchName, kDisableCrashReportingSwitchName);
  
-   mojo::core::Init();
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   std::cerr << base::StringPrintf(" [--%s=<host type>]", kHostTypeSwitchName)
+             << "\n\n";
+   HostType::PrintHostTypeHelp();
+@@ -424,7 +424,7 @@ int StartHostMain(int argc, char** argv) {
+   }
+ #endif  // defined(REMOTING_ENABLE_CRASH_REPORTING)
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   const HostType* host_type = nullptr;
+   if (command_line->HasSwitch(kHostTypeSwitchName)) {
+     std::string host_type_name =
+@@ -473,7 +473,7 @@ int StartHostMain(int argc, char** argv) {
+   }
+ #endif  // BUILDFLAG(IS_LINUX)
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

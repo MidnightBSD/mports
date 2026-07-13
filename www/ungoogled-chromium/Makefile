@@ -1,13 +1,12 @@
 PORTNAME=	ungoogled-chromium
-PORTVERSION=	134.0.6998.165
-PORTREVISION=	3
+PORTVERSION=	149.0.7827.200
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 UGVERSION=	${DISTVERSION}-1
 CATEGORIES=	www wayland
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/:goo \
 		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio
-DISTFILES=	chromium-${DISTVERSION}${EXTRACT_SUFX}:goo \
+DISTFILES=	chromium-${DISTVERSION}-lite${EXTRACT_SUFX}:goo \
 		pulseaudio-${PULSEV}.tar.gz:pulseaudio
 
 USE_GITHUB=	yes
@@ -22,6 +21,13 @@ LICENSE=	bsd3 lgpl2.1 MPL11
 LICENSE_COMB=	multi
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386
+
+# The chromium tarball contains UTF-8 filenames; MidnightBSD's framework does
+# not default to a UTF-8 locale, so bsdtar fails extraction ("Pathname can't be
+# converted from UTF-8 to current locale"). USE_LOCALE covers the build/configure
+# stages (WRK_ENV); do-extract does not use WRK_ENV, so wrap EXTRACT_CMD too.
+USE_LOCALE=	C.UTF-8
+EXTRACT_CMD=	/usr/bin/env LC_ALL=C.UTF-8 LANG=C.UTF-8 /usr/bin/tar
 
 PATCH_DEPENDS=	gpatch:devel/patch \
 		${PYTHON_VERSION}:lang/python${PYTHON_SUFFIX}
@@ -132,15 +138,12 @@ GN_ARGS+=	enable_widevine=true \
 		ffmpeg_branding="${FFMPEG_BRAND}"
 
 # sync with flags.gni
-GN_ARGS+=	build_with_tflite_lib=false \
-		chrome_pgo_phase=0 \
+GN_ARGS+=	chrome_pgo_phase=0 \
 		clang_use_chrome_plugins=false \
 		disable_fieldtrial_testing_config=true \
 		enable_backup_ref_ptr_support=false \
 		enable_hangout_services_extension=false \
 		enable_mdns=false \
-		enable_nacl=false \
-		enable_reading_list=false \
 		enable_remoting=false \
 		enable_reporting=false \
 		enable_service_discovery=false \
@@ -195,13 +198,15 @@ DEBUG_VARS=		BUILDTYPE=Debug \
 			GN_ARGS+=is_component_build=false \
 			GN_ARGS+=symbol_level=1 \
 			GN_BOOTSTRAP_FLAGS+=--debug \
-			WANTSPACE="21 GB"
+			WANTSPACE="60 GB" \
+			WANTMEM="8 GB"
 DEBUG_VARS_OFF=		BUILDTYPE=Release \
 			GN_ARGS+=blink_symbol_level=0 \
 			GN_ARGS+=is_debug=false \
 			GN_ARGS+=is_official_build=true \
 			GN_ARGS+=symbol_level=0 \
-			WANTSPACE="14 GB"
+			WANTSPACE="35 GB" \
+			WANTMEM="8 GB"
 
 DRIVER_MAKE_ARGS=	chromedriver
 
@@ -211,7 +216,8 @@ KERBEROS_VARS_OFF=	GN_ARGS+=use_kerberos=false
 
 LTO_VARS=		GN_ARGS+=use_thin_lto=true \
 			GN_ARGS+=thin_lto_enable_optimizations=true \
-			WANTSPACE="14 GB"
+			WANTSPACE="40 GB" \
+			WANTMEM="16 GB"
 LTO_VARS_OFF=		GN_ARGS+=use_thin_lto=false
 
 MIT_LIB_DEPENDS=	libkrb.so.3:security/krb5
@@ -245,7 +251,7 @@ TEST_ALL_TARGET=	${TEST_TARGETS}
 IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in base
 .endif
 
-LLVM_DEFAULT=		19
+LLVM_DEFAULT=		21
 BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
 			cc=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang \
@@ -253,6 +259,13 @@ BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
 			ar=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-ar \
 			nm=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-nm \
 			ld=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/ld.lld
+
+# BINARY_ALIAS routes cc/c++ through a symlink in ${WRKDIR}/.bin. Combined with
+# chromium's -no-canonical-prefixes, clang computes its resource directory
+# relative to that symlink dir and fails to find its bundled headers
+# (e.g. emmintrin.h). Point clang at the real resource dir explicitly.
+# extra_cppflags is applied to both C and C++ compiles by the toolchain rules.
+GN_ARGS+=		extra_cppflags="-resource-dir=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/clang/${LLVM_DEFAULT}"
 
 # - swiftshader/lib/{libEGL.so,libGLESv2.so} is x86 only
 # - map ffmpeg target to ${ARCH}
@@ -296,8 +309,10 @@ GN_ARGS+=	enable_rust=true \
 
 pre-everything::
 	@${ECHO_MSG}
-	@${ECHO_MSG} "To build Ungoogled Chromium, you should have around 2GB of memory"
-	@${ECHO_MSG} "and around ${WANTSPACE} of free disk space."
+	@${ECHO_MSG} "To build ${PORTNAME}, you should have at least:"
+	@${ECHO_MSG} "- ${WANTMEM} of memory"
+	@${ECHO_MSG} "- ${WANTSPACE} of free disk space"
+	@${ECHO_MSG} "- 1.5 million free inodes"
 	@${ECHO_MSG}
 
 pre-patch:
@@ -316,7 +331,7 @@ pre-configure:
 	#./build/linux/unbundle/remove_bundled_libraries.py [list of preserved]
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
 		./build/linux/unbundle/replace_gn_files.py --system-libraries \
-		dav1d flac fontconfig harfbuzz-ng libdrm libpng \
+		dav1d flac fontconfig harfbuzz libdrm libpng \
 		libusb libwebp libxml libxslt openh264 opus || ${FALSE}
 	# Chromium uses an unreleased version of FFmpeg, so configure it
 	cd ${WRKSRC}/media/ffmpeg && \
@@ -324,11 +339,12 @@ pre-configure:
 		--config-only --branding=${FFMPEG_BRAND}
 	cd ${FFMPEG_BDIR} && ${GMAKE} ffversion.h
 	${MKDIR} ${FFMPEG_CDIR}
-.for _e in config.h config.asm config_components.h libavcodec libavformat libavutil
+.for _e in config.h config.asm config_components.asm config_components.h libavcodec libavformat libavutil
 	-${CP} -pR ${FFMPEG_BDIR}/${_e} ${FFMPEG_CDIR}
 .endfor
 	touch ${WRKDIR}/pulseaudio-${PULSEV}/src/pulse/version.h
 	@${REINPLACE_CMD} -e 's|$${LOCALBASE}|${LOCALBASE}|;s|$${MODCLANG_VERSION}|${LLVM_DEFAULT}|' \
+		${WRKSRC}/build/linux/strip_binary.gni \
 		${WRKSRC}/build/rust/rust_bindgen.gni \
 		${WRKSRC}/build/rust/rust_bindgen_generator.gni
 
@@ -344,6 +360,14 @@ do-configure:
 	@${MKDIR} ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin
 	${LN} -sf ${LOCALBASE}/bin/node ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin/node
 
+	# Setup rustc dependency
+	@${MKDIR} ${WRKSRC}/third_party/rust-toolchain/bin
+	${LN} -sf ${LOCALBASE}/bin/rustc ${WRKSRC}/third_party/rust-toolchain/bin/rustc
+
+	# Setup gperf dependency
+	@${MKDIR} ${WRKSRC}/third_party/gperf/cipd/bin
+	${LN} -sf ${LOCALBASE}/bin/gperf ${WRKSRC}/third_party/gperf/cipd/bin/gperf
+
 	# Setup buildtools/freebsd
 	@${MKDIR} ${WRKSRC}/buildtools/freebsd
 	${LN} -sf ${WRKSRC}/buildtools/linux64/clang-format ${WRKSRC}/buildtools/freebsd
@@ -352,65 +376,65 @@ do-configure:
 	@${LN} -sf freebsd ${WRKSRC}/buildtools/midnightbsd
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${MKDIR} ${DATADIR}
 	${INSTALL_MAN} ${WRKSRC}/chrome/app/resources/manpage.1.in \
-		${STAGEDIR}${PREFIX}/share/man/man1/ungoogled-chromium.1
+		${PREFIX}/share/man/man1/ungoogled-chromium.1
 	@${SED} -i "" -e 's,\@\@PACKAGE\@\@,chromium,g;s,\@\@MENUNAME\@\@,Chromium Web Browser,g' \
-		${STAGEDIR}${PREFIX}/share/man/man1/ungoogled-chromium.1
+		${PREFIX}/share/man/man1/ungoogled-chromium.1
 	${CP} ${WRKSRC}/chrome/app/theme/chromium/product_logo_22_mono.png ${WRKSRC}/chrome/app/theme/chromium/product_logo_22.png
 .for s in 22 24 48 64 128 256
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/${s}x${s}/apps
 	${INSTALL_DATA} ${WRKSRC}/chrome/app/theme/chromium/product_logo_${s}.png \
-		${STAGEDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps/ungoogled-chromium.png
+		${PREFIX}/share/icons/hicolor/${s}x${s}/apps/ungoogled-chromium.png
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*.png ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*.pak ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*.png ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*.pak ${DATADIR}
 .for d in protoc mksnapshot
-	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${d} ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${d} ${DATADIR}
 .endfor
 .for d in snapshot_blob.bin v8_context_snapshot.bin
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${d} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${d} ${DATADIR}
 .endfor
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chrome \
-		${STAGEDIR}${DATADIR}/ungoogled-chromium
+		${DATADIR}/ungoogled-chromium
 	cd ${WRKSRC}/out/${BUILDTYPE} && \
-		${COPYTREE_SHARE} "locales resources" ${STAGEDIR}${DATADIR}
-	@${MKDIR} ${STAGEDIR}${DESKTOPDIR}
+		${COPYTREE_SHARE} "locales resources" ${DATADIR}
+	@${MKDIR} ${DESKTOPDIR}
 	${INSTALL_DATA} ${WRKDIR}/ungoogled-chromium.desktop \
-		${STAGEDIR}${DESKTOPDIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/ungoogled-chromium ${STAGEDIR}${PREFIX}/bin
+		${DESKTOPDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/ungoogled-chromium ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/chrome/tools/build/linux/chrome-wrapper \
-		${STAGEDIR}${DATADIR}
+		${DATADIR}
 
 	# ANGLE, EGL, Vk
 .for f in libEGL.so libGLESv2.so libVkICD_mock_icd.so
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 \
-		${STAGEDIR}${DATADIR}/libvulkan.so
+		${DATADIR}/libvulkan.so
 .if ${BUILDTYPE} == Debug
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libVkLayer_khronos_validation.so ${STAGEDIR}${DATADIR}
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libVkLayer_khronos_validation.so ${DATADIR}
 .endif
 
 	# SwiftShader
 .if ${ARCH} != aarch64
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvk_swiftshader.so ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/vk_swiftshader_icd.json ${STAGEDIR}${DATADIR}
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvk_swiftshader.so ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/vk_swiftshader_icd.json ${DATADIR}
 .endif
 
 post-install-DEBUG-on:
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/*.so \
-		${STAGEDIR}${DATADIR}
+		${FAKE_DESTDIR}${DATADIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/character_data_generator \
-		${STAGEDIR}${DATADIR}
+		${FAKE_DESTDIR}${DATADIR}
 
 post-install-DRIVER-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver \
-		${STAGEDIR}${PREFIX}/bin/ungoogled-chromedriver
+		${FAKE_DESTDIR}${PREFIX}/bin/ungoogled-chromedriver
 
 do-test-TEST-on:
 .for t in ${TEST_TARGETS}
-	cd ${WRKSRC}/out/${BUILDTYPE} && ${SETENV} LC_ALL=en_US.UTF-8 \
+	cd ${WRKSRC}/out/${BUILDTYPE} && \
 		./${t} --gtest_filter=-${EXCLUDE_${t}:ts:} || ${TRUE}
 .endfor
 

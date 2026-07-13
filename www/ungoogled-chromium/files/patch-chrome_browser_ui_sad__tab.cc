@@ -1,4 +1,4 @@
---- chrome/browser/ui/sad_tab.cc.orig	2025-02-20 09:59:21 UTC
+--- chrome/browser/ui/sad_tab.cc.orig	2026-06-05 13:45:06 UTC
 +++ chrome/browser/ui/sad_tab.cc
 @@ -179,7 +179,7 @@ std::vector<int> SadTab::GetSubMessages() {
        if (!web_contents_->GetBrowserContext()->IsOffTheRecord()) {

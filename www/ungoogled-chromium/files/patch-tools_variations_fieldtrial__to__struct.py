@@ -1,12 +1,11 @@
---- tools/variations/fieldtrial_to_struct.py.orig	2022-10-01 07:40:07 UTC
+--- tools/variations/fieldtrial_to_struct.py.orig	2026-04-15 11:25:12 UTC
 +++ tools/variations/fieldtrial_to_struct.py
-@@ -41,6 +41,8 @@ _platforms = [
+@@ -31,6 +31,8 @@ _platforms = [
      'linux',
      'mac',
      'windows',
 +    'openbsd',
 +    'freebsd',
-+    'midnightbsd',
  ]
  
  _form_factors = [

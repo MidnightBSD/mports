@@ -1,7 +1,7 @@
---- components/device_signals/core/common/signals_features.h.orig	2025-03-09 21:38:10 UTC
+--- components/device_signals/core/common/signals_features.h.orig	2026-06-05 13:45:06 UTC
 +++ components/device_signals/core/common/signals_features.h
-@@ -14,7 +14,7 @@ namespace enterprise_signals::features {
- BASE_DECLARE_FEATURE(kAllowClientCertificateReportingForUsers);
+@@ -42,7 +42,7 @@ bool IsCertificateCollectionEnabled();
+ bool IsContentBindingVersioningEnabled();
  
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || \
 -    BUILDFLAG(IS_CHROMEOS)

@@ -1,6 +1,6 @@
---- base/linux_util.cc.orig	2025-03-09 21:38:10 UTC
+--- base/linux_util.cc.orig	2026-02-15 10:01:45 UTC
 +++ base/linux_util.cc
-@@ -164,10 +164,14 @@ void SetLinuxDistro(const std::string& distro) {
+@@ -159,10 +159,14 @@ void SetLinuxDistro(const std::string& distro) {
  }
  
  bool GetThreadsForProcess(pid_t pid, std::vector<pid_t>* tids) {

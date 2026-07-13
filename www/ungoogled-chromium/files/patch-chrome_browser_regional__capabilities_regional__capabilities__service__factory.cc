@@ -1,20 +1,29 @@
---- chrome/browser/regional_capabilities/regional_capabilities_service_factory.cc.orig	2025-03-09 21:38:10 UTC
+--- chrome/browser/regional_capabilities/regional_capabilities_service_factory.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/regional_capabilities/regional_capabilities_service_factory.cc
-@@ -12,7 +12,7 @@
- #include "chrome/browser/regional_capabilities/regional_capabilities_service_client.h"
- #include "components/regional_capabilities/regional_capabilities_service.h"
- 
--#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- #include "components/variations/service/variations_service.h"
+@@ -21,7 +21,7 @@
+ #include "chrome/browser/regional_capabilities/regional_capabilities_service_client_chromeos.h"
  #endif
  
-@@ -57,7 +57,7 @@ RegionalCapabilitiesServiceFactory::BuildServiceInstan
-   Profile* profile = Profile::FromBrowserContext(context);
-   auto regional_capabilities_service_client =
-       std::make_unique<RegionalCapabilitiesServiceClient>(
--#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-           g_browser_process->variations_service()
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/regional_capabilities/regional_capabilities_service_client_linux.h"
  #endif
-       );
+ 
+@@ -36,7 +36,7 @@ CreateRegionalCapabilitiesServiceClient() {
+ #elif BUILDFLAG(IS_CHROMEOS)
+   return std::make_unique<RegionalCapabilitiesServiceClientChromeOS>(
+       g_browser_process->variations_service());
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   return std::make_unique<RegionalCapabilitiesServiceClientLinux>(
+       g_browser_process->variations_service());
+ #else
+@@ -61,7 +61,7 @@ RegionalCapabilitiesServiceFactory::GetInstance() {
+   return instance.get();
+ }
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ // static
+ bool RegionalCapabilitiesServiceFactory::
+     IsInSearchEngineChoiceScreenRegionForSystemProfile(Profile* profile) {
