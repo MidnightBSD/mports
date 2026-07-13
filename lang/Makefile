@@ -117,7 +117,6 @@
     SUBDIR += ruby32
     SUBDIR += ruby33
     SUBDIR += rust
-    SUBDIR += rust-bin
     SUBDIR += rust-bootstrap
     SUBDIR += rust-nightly
     SUBDIR += rust188
