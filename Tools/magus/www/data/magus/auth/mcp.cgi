@@ -37,13 +37,19 @@ my @collected_responses;
 # Allowed LLM models for analyze_build_log
 my %OLLAMA_MODELS = map { $_ => 1 } qw(
     phi4
-    deepseek-coder:6.7b
-    llama3.2:3b
-    qwen2.5-coder:14b
     gemma4:latest
-    mistral-nemo:latest
-    mistral:7b
     gemma3:latest
+    gpt-oss-safeguard:20b
+    gpt-oss:20b
+    codestral:latest
+    mistral:7b
+    mistral-nemo:latest
+    mistral-small:latest
+    llama3.2:3b
+    deepseek-coder:6.7b
+    qwen2.5-coder:14b
+    qwen2.5-coder:7b
+    qwen3.6:latest
 );
 
 my %MISTRAL_MODELS = map { $_ => 1 } qw(
