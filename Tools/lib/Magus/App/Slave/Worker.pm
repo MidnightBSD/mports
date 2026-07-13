@@ -36,6 +36,7 @@ sub run {
   if ($@) {
 	if ($@ =~ m/DBI/) {
 	  # we want to let the parent know that we lost the DB connection.
+	  $self->log->err("Database exception during $self->{phase} phase for $self->{port}: $@");
 	  exit 6;
 	} elsif ($@ =~ m/SIGINT/ || $@ =~ /SIGTERM/) {
 	  return;
