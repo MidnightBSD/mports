@@ -9,7 +9,7 @@ COMMENT=	Rails internals: application bootup, plugins, generators, and rake task
 WWW=		https://github.com/rails/rails/tree/master/railties \
 		https://rubyonrails.org/
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-actionpack80>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack80 \
