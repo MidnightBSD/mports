@@ -1,5 +1,5 @@
 PORTNAME=	valkey
-DISTVERSION=	8.1.1
+DISTVERSION=	9.1.0
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,10 +11,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 FAKE_OPTS=	trueprefix
 
-USES=		gmake pkgconfig tcl:test
+USES=		cpe gmake pkgconfig tcl:test
 USE_GITHUB=	yes
 GH_ACCOUNT=	valkey-io
 USE_RC_SUBR=	valkey valkeysentinel
+
+CPE_VENDOR=	lfprojects
 
 MAKE_ENV=	OPTIMIZATION= \
 		V=1
@@ -38,7 +40,7 @@ PLIST_SUB+=	VALKEY_DBDIR=${VALKEY_DBDIR} \
 		VALKEY_USER=${USERS}
 
 OPTIONS_DEFINE=		JEMALLOC TLS
-OPTIONS_DEFAULT=	
+OPTIONS_DEFAULT=	TLS
 OPTIONS_SUB=		yes
 
 JEMALLOC_DESC=	Use jemalloc
@@ -66,6 +68,9 @@ post-install:
 	${MKDIR} ${FAKE_DESTDIR}${VALKEY_LOGDIR} \
 		${FAKE_DESTDIR}${VALKEY_DBDIR} \
 		${FAKE_DESTDIR}${VALKEY_RUNDIR}
+	${STRIP_CMD} ${PREFIX}/bin/valkey-benchmark
+	${STRIP_CMD} ${PREFIX}/bin/valkey-cli
+	${STRIP_CMD} ${PREFIX}/bin/valkey-server
 
 #do-test:
 #	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
