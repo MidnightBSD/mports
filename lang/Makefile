@@ -137,4 +137,6 @@
     SUBDIR += vala
     SUBDIR += yabasic
 
+    SUBDIR += py-lupa
+
 .include <bsd.port.subdir.mk>

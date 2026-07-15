@@ -1,0 +1,43 @@
+PORTNAME=	einops
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.8.2
+CATEGORIES=	ai # machine-learning
+#MASTER_SITES=	PYPI # some test files are missing in the PYPI tarball
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	New flavour of deep learning operations
+WWW=		https://einops.rocks/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=1.10.0:devel/py-hatchling@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nbconvert>0:devel/py-nbconvert@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}parameterized>0:devel/py-parameterized@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	pep517 autoplist pytest
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	arogozhnikov
+
+NO_ARCH=	yes
+
+BINARY_ALIAS=	python=${PYTHON_CMD}
+
+TEST_ENV=	${MAKE_ENV} \
+		PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} \
+		EINOPS_TEST_BACKENDS="numpy,torch"
+
+xdo-test:
+	@cd ${TEST_WRKSRC} && \
+		${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m einops.tests.run_tests numpy pytorch jax --pip-install
+
+do-test-via-script:
+	@cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} test.py numpy pytorch
+
+# tests as of 0.8.2: 68 passed, 4 skipped, 58 warnings in 38.37s
+
+.include <bsd.port.mk>

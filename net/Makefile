@@ -548,6 +548,10 @@
     SUBDIR += zillion
     SUBDIR += zmap
     SUBDIR += zsync
+    SUBDIR += py-blobfile
+    SUBDIR += py-pyzmq
+    SUBDIR += py-terminado
+    SUBDIR += py-uri-template
     SUBDIR += zyre
 
 .include <bsd.port.subdir.mk>

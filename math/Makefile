@@ -233,4 +233,8 @@
     SUBDIR += zarray
     SUBDIR += zn_poly
 
+    SUBDIR += py-cmaes
+
+    SUBDIR += py-pyprobables
+
 .include <bsd.port.subdir.mk>

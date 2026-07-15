@@ -467,4 +467,6 @@
     SUBDIR += zint
     SUBDIR += zphoto
 
+    SUBDIR += py-webcolors
+
 .include <bsd.port.subdir.mk>

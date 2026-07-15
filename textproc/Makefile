@@ -621,6 +621,9 @@
     SUBDIR += yelp-tools
     SUBDIR += yelp-xsl
     SUBDIR += yq
+    SUBDIR += py-ftfy
+    SUBDIR += py-jupyterlab-pygments
+    SUBDIR += py-pandocfilters
     SUBDIR += zxing-cpp
 
 .include <bsd.port.subdir.mk>

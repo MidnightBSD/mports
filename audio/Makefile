@@ -226,5 +226,13 @@
     SUBDIR += wmsmixer
     SUBDIR += xfce4-mpc-plugin
     SUBDIR += xfce4-pulseaudio-plugin
+    SUBDIR += py-librosa
+    SUBDIR += py-SoundFile
+    SUBDIR += py-audioread
+    SUBDIR += py-resampy
+    SUBDIR += py-samplerate
+    SUBDIR += py-soxr
+
+    SUBDIR += py-pymad
 
 .include <bsd.port.subdir.mk>

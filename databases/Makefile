@@ -398,4 +398,10 @@
     SUBDIR += xapian-bindings
     SUBDIR += xapian-core
 
+    SUBDIR += py-fakeredis
+
+    SUBDIR += py-pyiceberg
+    SUBDIR += py-valkey
+    SUBDIR += libvalkey
+
 .include <bsd.port.subdir.mk>

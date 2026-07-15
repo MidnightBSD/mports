@@ -293,6 +293,16 @@
     SUBDIR += py-ghp-import
     SUBDIR += py-google-api-core
     SUBDIR += py-google-api-python-client
+    SUBDIR += py-google-cloud-bigquery
+    SUBDIR += py-google-cloud-core
+    SUBDIR += py-google-cloud-discoveryengine
+    SUBDIR += py-google-cloud-documentai
+    SUBDIR += py-google-cloud-modelarmor
+    SUBDIR += py-google-cloud-testutils
+    SUBDIR += py-google-cloud-storage
+    SUBDIR += py-google-resumable-media
+    SUBDIR += py-fqdn
+    SUBDIR += py-rfc3987-syntax
     SUBDIR += py-gunicorn
     SUBDIR += py-h2
     SUBDIR += py-hpack

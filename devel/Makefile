@@ -1474,6 +1474,7 @@
     SUBDIR += py-great-tables
     SUBDIR += py-greenlet
     SUBDIR += py-grpcio
+    SUBDIR += py-grpc-google-iam-v1
     SUBDIR += py-grpcio-gcp
     SUBDIR += py-grpcio-status
     SUBDIR += py-grpcio-tools
@@ -1630,6 +1631,7 @@
     SUBDIR += py-pre-commit
     SUBDIR += py-pretend
     SUBDIR += py-prompt-toolkit
+    SUBDIR += py-proto-plus
     SUBDIR += py-proselint
     SUBDIR += py-protobuf
     SUBDIR += py-pure-eval
@@ -1695,6 +1697,7 @@
     SUBDIR += py-pytest-plus
     SUBDIR += py-pytest-pretty
     SUBDIR += py-pytest-randomly
+    SUBDIR += py-pytest-retry
     SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-rerunfailures
@@ -2724,5 +2727,48 @@
     SUBDIR += zookeeper
     SUBDIR += zthread
     SUBDIR += zziplib
+
+    SUBDIR += py-expecttest
+    SUBDIR += py-google-crc32c
+    SUBDIR += py-pytest-mpl
+    SUBDIR += py-pynvml
+    SUBDIR += py-questionary
+    SUBDIR += py-test-utils
+    SUBDIR += py-types-decorator
+    SUBDIR += py-cachebox
+    SUBDIR += py-databricks-sdk
+    SUBDIR += py-google-re2
+    SUBDIR += py-graphql-relay
+    SUBDIR += py-json5
+    SUBDIR += py-mmh3
+    SUBDIR += py-mypy-protobuf
+    SUBDIR += py-nvidia-ml-py
+    SUBDIR += py-orderly-set
+    SUBDIR += py-pyroaring
+    SUBDIR += py-nbconvert
+    SUBDIR += py-nbclient
+    SUBDIR += py-hatch-jupyter-builder
+    SUBDIR += py-jupyter-client
+    SUBDIR += py-comm
+    SUBDIR += py-debugpy
+    SUBDIR += py-jupyter-server
+    SUBDIR += py-jupyter-events
+    SUBDIR += py-jupyter-server-terminals
+    SUBDIR += py-isoduration
+    SUBDIR += py-python-json-logger
+    SUBDIR += py-rfc3986-validator
+    SUBDIR += py-overrides
+    SUBDIR += py-nest-asyncio2
+    SUBDIR += py-ipykernel
+    SUBDIR += py-pytest-jupyter
+    SUBDIR += py-python-rapidjson
+    SUBDIR += py-types-protobuf
+
+    SUBDIR += py-deepdiff
+    SUBDIR += py-graphene
+    SUBDIR += py-nanobind
+    SUBDIR += py-nest-asyncio
+    SUBDIR += py-omegaconf
+    SUBDIR += py-schema
 
 .include <bsd.port.subdir.mk>
