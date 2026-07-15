@@ -81,8 +81,7 @@ post-patch:
 	     ${WRKSRC}/tkConfig.sh.in
 	${REINPLACE_CMD} \
 		-e '/^CONFIG_INSTALL_DIR/s|= .*$$|= $${SCRIPT_INSTALL_DIR}|' \
-		-e 's|$$(LIB_INSTALL_DIR)/pkgconfig|$$(INSTALL_ROOT)${PREFIX}/libdata/pkgconfig|g' \
-		-e 's|pkgconfig/tk.pc|pkgconfig/tk${SHORT_TCL_VER}.pc|' \
+		-e 's|$$(LIB_INSTALL_DIR)/pkgconfig|$$(DESTDIR)$$(prefix)/libdata/pkgconfig|g' \
 		-e 's|strip -x|strip --strip-unneeded|' \
 		-e 's|TCL_BUILD_LIB_SPEC|TCL_LIB_SPEC|' \
 		${WRKSRC}/Makefile.in
