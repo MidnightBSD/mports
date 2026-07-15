@@ -1,5 +1,5 @@
 PORTNAME=	redis
-DISTVERSION=	8.0.1
+DISTVERSION=	8.8.0
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
@@ -7,34 +7,67 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
 WWW=		https://redis.io/
 
-LICENSE=        RSALv2 SSPLv1
-LICENSE_COMB=   dual
-LICENSE_NAME_RSALv2=    Redis Source Available License v2
-LICENSE_NAME_SSPLv1=    Server Side Public License v1
-LICENSE_FILE=   ${WRKSRC}/LICENSE.txt
-LICENSE_PERMS_RSALv2=   dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-LICENSE_PERMS_SSPLv1=   dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE=	AGPLv3 RSALv2 SSPLv1
+LICENSE_COMB=	dual
+LICENSE_NAME_AGPLv3=	GNU Affero General Public License version 3
+LICENSE_NAME_RSALv2=	Redis Source Available License v2
+LICENSE_NAME_SSPLv1=	Server Side Public License v1
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+LICENSE_PERMS_AGPLv3=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_RSALv2=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_SSPLv1=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES+=		compiler:c11 cpe gmake
-CPE_VENDOR=	redislabs
+USES=		compiler:c11 cpe gmake localbase:ldflags pkgconfig tcl:test
+CPE_VENDOR=	redis
 USE_RC_SUBR=	redis sentinel
 
-CONFLICTS_INSTALL=    redis-devel redis6 redis72 redis74 # etc/rc.d/redis
+MAKE_ENV=	OPTIMIZATION= \
+		V=yo
 
-OPTIONS_DEFINE=	JEMALLOC TESTS TLS
-OPTIONS_SUB=	yes
+CONFLICTS_INSTALL=	redis-devel redis[0-9]*
+
+BINARY_ALIAS=	gmd5sum=md5sum
+PORTSCOUT=	limit:^[0-9\.]*$$
+SUB_FILES=	pkg-message
+SUB_LIST=	PORTNAME=${PORTNAME} \
+		REDIS_DBDIR=${REDIS_DBDIR} \
+		REDIS_GROUP=${GROUPS} \
+		REDIS_LOGDIR=${REDIS_LOGDIR} \
+		REDIS_RUNDIR=${REDIS_RUNDIR} \
+		REDIS_USER=${USERS}
+
+USERS=		redis
+GROUPS=		redis
+
+PLIST_SUB=	REDIS_DBDIR=${REDIS_DBDIR} \
+		REDIS_GROUP=${GROUPS} \
+		REDIS_LOGDIR=${REDIS_LOGDIR} \
+		REDIS_RUNDIR=${REDIS_RUNDIR} \
+		REDIS_USER=${USERS}
+
+OPTIONS_DEFINE=		JEMALLOC TLS
+OPTIONS_DEFAULT=	TLS
+OPTIONS_GROUP=		MODULES
+OPTIONS_GROUP_MODULES=	REDISBLOOM REDISJSON
+OPTIONS_SUB=		yes
+
 JEMALLOC_DESC=	Use jemalloc
+REDISBLOOM_DESC=	RedisBLOOM module
+REDISJSON_DESC=	RedisJSON module
 TLS_DESC=	Use TLS (openssl req.)
-TESTS_DESC=	Install lang/tcl for redis unit tests
-
-MAKE_ENV=	V=yo OPTIMIZATION=
 
 JEMALLOC_MAKE_ENV=	USE_JEMALLOC=yes
+REDISBLOOM_LIB_DEPENDS=	redisbloom.so>=0:databases/redisbloom
+REDISJSON_LIB_DEPENDS=	librejson.so>=0:databases/redisjson
+TLS_USES=		ssl
+TLS_MAKE_ENV=		BUILD_TLS=yes
 
-TESTS_USES=	tcl:build
+BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb redis-cli \
+		redis-sentinel redis-server
 
-TLS_USES=	ssl
-TLS_MAKE_ENV=	BUILD_TLS=yes
+REDIS_DBDIR?=	/var/db/redis
+REDIS_RUNDIR?=	/var/run/redis
+REDIS_LOGDIR?=	/var/log/redis
 
 .include <bsd.port.pre.mk>
 
@@ -55,34 +88,8 @@ NO_TEST=	yes
 
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
-CONFLICTS_INSTALL=	redis-devel redis6 redis62 redis70 # etc/rc.d/redis
-
-USE_RC_SUBR=	redis sentinel
-BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \
-		redis-cli redis-sentinel redis-server
-
-USERS=	redis
-GROUPS=	redis
-
-REDIS_DBDIR?=	/var/db/redis
-REDIS_RUNDIR?=	/var/run/redis
-REDIS_LOGDIR?=	/var/log/redis
-
-SUB_FILES=	pkg-message
-SUB_LIST+=	PORTNAME=${PORTNAME} \
-	REDIS_USER=${USERS} \
-	REDIS_DBDIR=${REDIS_DBDIR} \
-	REDIS_LOGDIR=${REDIS_LOGDIR} \
-	REDIS_RUNDIR=${REDIS_RUNDIR}
-
-PLIST_SUB+=	REDIS_USER=${USERS} \
-	REDIS_GROUP=${GROUPS} \
-	REDIS_LOGDIR=${REDIS_LOGDIR} \
-	REDIS_DBDIR=${REDIS_DBDIR} \
-	REDIS_RUNDIR=${REDIS_RUNDIR}
-
 post-patch-JEMALLOC-on:
-	@${REINPLACE_CMD} '35s!Linux!MidnightBSD!g' ${WRKSRC}/src/Makefile
+	@${REINPLACE_CMD} '83s!Linux!MidnightBSD!g' ${WRKSRC}/src/Makefile
 
 post-build:
 	${SED} ${SUB_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
