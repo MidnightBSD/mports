@@ -393,6 +393,7 @@
     SUBDIR += tuning-primer
     SUBDIR += unixODBC
     SUBDIR += valkey
+    SUBDIR += valkey8
     SUBDIR += virtualpg
     SUBDIR += vsqlite
     SUBDIR += xapian-bindings
