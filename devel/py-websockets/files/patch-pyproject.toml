@@ -1,0 +1,9 @@
+--- pyproject.toml.orig	2026-07-10 00:00:00 UTC
++++ pyproject.toml
+@@ -6,7 +6,7 @@
+ name = "websockets"
+ description = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
+ requires-python = ">=3.10"
+-license = "BSD-3-Clause"
++license = { text = "BSD-3-Clause" }
+ authors = [
