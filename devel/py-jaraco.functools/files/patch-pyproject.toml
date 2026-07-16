@@ -1,0 +1,11 @@
+--- pyproject.toml.orig	2025-01-01 00:00:00 UTC
++++ pyproject.toml
+@@ -17,7 +17,7 @@
+ 	"Programming Language :: Python :: 3 :: Only",
+ ]
+ requires-python = ">=3.10"
+-license = "MIT"
++license = {text = "MIT"}
+ dependencies = [
+ 	"more_itertools",
+ ]
