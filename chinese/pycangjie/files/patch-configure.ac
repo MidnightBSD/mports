@@ -1,0 +1,9 @@
+--- configure.ac.orig	2024-06-09 00:00:00 UTC
++++ configure.ac
+@@ -38,7 +38,7 @@
+ AC_MSG_CHECKING(for cython version)
+ CYTHON_VERSION=`$CYTHON --version 2>&1 | cut -d" " -f3`
+ AC_MSG_RESULT($CYTHON_VERSION)
+-$PYTHON -c "from distutils.version import StrictVersion as ver; import sys; sys.exit(0 if ver(\"$CYTHON_VERSION\") >= ver(\"$CYTHON_MIN_VERSION\") else 1)"
++$PYTHON -c "from packaging.version import Version as ver; import sys; sys.exit(0 if ver(\"$CYTHON_VERSION\") >= ver(\"$CYTHON_MIN_VERSION\") else 1)"
+ AS_IF([test $? = 1], [AC_MSG_ERROR([Please use cython >= $CYTHON_MIN_VERSION])])
