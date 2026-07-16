@@ -52,19 +52,19 @@ pre-build:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${CCX_VER} \
-	  ${STAGEDIR}${PREFIX}/bin/ccx
+	  ${PREFIX}/bin/ccx
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	@(cd ${WRKDIR}/CalculiX/${CCX_VER}/doc/ccx && ${COPYTREE_SHARE} . \
-		${STAGEDIR}${DOCSDIR}/ccx)
+		${FAKE_DESTDIR}${DOCSDIR}/ccx)
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${DIST_PDF} \
-		${STAGEDIR}${DOCSDIR}
+		${FAKE_DESTDIR}${DOCSDIR}
 
 do-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	@(cd ${WRKDIR}/CalculiX/${CCX_VER}/test && ${COPYTREE_SHARE} . \
-	  ${STAGEDIR}${EXAMPLESDIR})
+	  ${FAKE_DESTDIR}${EXAMPLESDIR})
 
 do-test:
 	@cd ${TEST_WRKSRC} && ( \
