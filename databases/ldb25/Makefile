@@ -14,7 +14,8 @@ LICENSE=	gpl3+
 IGNORE_NONTHREAD_PYTHON=	needs port lang/python${PYTHON_SUFFIX} to be \
 				build with THREADS support
 
-BUILD_DEPENDS=	${LDB_DEPENDS}
+BUILD_DEPENDS=	${LDB_DEPENDS} \
+		${PY_SETUPTOOLS}
 RUN_DEPENDS=	${LDB_DEPENDS}
 
 LDB_DEPENDS=	talloc>=2.2.0:devel/talloc \
@@ -111,6 +112,7 @@ USES+=			python:build,test
 CONFIGURE_ARGS+=	--disable-python
 .else
 USES+=			gettext-runtime python
+PYTHON_EXT_SUFFIX?=	.cpython-${PYTHON_SUFFIX}
 
 PLIST_FILES+=	${PKGCONFIGDIR}/pyldb-util${PYTHON_EXT_SUFFIX}.pc \
 		${PYTHON_SITELIBDIR}/_ldb_text.py \
@@ -163,8 +165,8 @@ post-install:
 	${STRIP_CMD} ${PREFIX}/${lib}
 .endfor
 .if ${PORT_OPTIONS:MPYTHON3} && !defined(NO_PYTHON)
-	${STRIP_CMD} ${PREFIX}/lib/libpyldb-util.so
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ldb.so
+	${STRIP_CMD} ${PREFIX}/lib/libpyldb-util${PYTHON_EXT_SUFFIX}.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ldb${PYTHON_EXT_SUFFIX}.so
 .endif
 
 .include <bsd.port.post.mk>
