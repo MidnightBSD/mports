@@ -42,7 +42,8 @@ share/applications/org.freeciv.server.desktop
 %%PORTDOCS%%%%DOCSDIR%%/INSTALL.Cygwin
 %%PORTDOCS%%%%DOCSDIR%%/INSTALL.meson
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
-%%PORTDOCS%%%%DOCSDIR%%/NEWS-3.1
+%%PORTDOCS%%%%DOCSDIR%%/NEWS-3.2
+%%PORTDOCS%%%%DOCSDIR%%/doxygen.md
 %%PORTDOCS%%%%DOCSDIR%%/README.AI
 %%PORTDOCS%%%%DOCSDIR%%/README.AI_modules
 %%PORTDOCS%%%%DOCSDIR%%/README.achievements
@@ -118,6 +119,9 @@ share/icons/hicolor/64x64/apps/freeciv-server.png
 %%NLS%%share/locale/es_419/LC_MESSAGES/freeciv-nations.mo
 %%QT5%%%%NLS%%share/locale/es_419/LC_MESSAGES/freeciv-ruledit.mo
 %%NLS%%share/locale/es_419/LC_MESSAGES/freeciv-core.mo
+%%NLS%%share/locale/gl_ES/LC_MESSAGES/freeciv-nations.mo
+%%QT5%%%%NLS%%share/locale/gl_ES/LC_MESSAGES/freeciv-ruledit.mo
+%%NLS%%share/locale/gl_ES/LC_MESSAGES/freeciv-core.mo
 %%NLS%%share/locale/et/LC_MESSAGES/freeciv-nations.mo
 %%QT5%%%%NLS%%share/locale/et/LC_MESSAGES/freeciv-ruledit.mo
 %%NLS%%share/locale/et/LC_MESSAGES/freeciv-core.mo
@@ -181,6 +185,9 @@ share/icons/hicolor/64x64/apps/freeciv-server.png
 %%NLS%%share/locale/sr/LC_MESSAGES/freeciv-nations.mo
 %%QT5%%%%NLS%%share/locale/sr/LC_MESSAGES/freeciv-ruledit.mo
 %%NLS%%share/locale/sr/LC_MESSAGES/freeciv-core.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/freeciv-nations.mo
+%%QT5%%%%NLS%%share/locale/sk/LC_MESSAGES/freeciv-ruledit.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/freeciv-core.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/freeciv-nations.mo
 %%QT5%%%%NLS%%share/locale/sv/LC_MESSAGES/freeciv-ruledit.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/freeciv-core.mo
@@ -222,6 +229,7 @@ share/man/man6/freeciv-mp-cli.6.gz
 %%QT5%%share/man/man6/freeciv-ruleup.6.gz
 @comment share/man/man6/freeciv-sdl.6.gz
 %%SDL%%share/man/man6/freeciv-sdl2.6.gz
+share/man/man6/freeciv-sdl3.6.gz
 share/man/man6/freeciv-server.6.gz
 @comment share/man/man6/freeciv-xaw.6.gz
 %%CLIENT%%share/pixmaps/freeciv-client.png
