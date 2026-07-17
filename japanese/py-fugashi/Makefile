@@ -24,7 +24,10 @@ USE_PYTHON=	autoplist cython distutils pytest # many tests fail, see https://git
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/fugashi/tests
 
+post-patch:
+	@${REINPLACE_CMD} -e 's/Cython~=3.0.11/Cython>=3.0.11/' ${WRKSRC}/setup.py
+
 post-install:
-	@${STRIP_CMD} ${PYTHON_SITELIBDIR}/fugashi/fugashi${PYTHON_EXT_SUFFIX}.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/fugashi/fugashi${PYTHON_TAG}.so
 
 .include <bsd.port.mk>
