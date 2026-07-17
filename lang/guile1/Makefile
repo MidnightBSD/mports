@@ -71,15 +71,15 @@ post-patch:
 		${REINPLACE_FILES_3}
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/share/aclocal/guile.m4
+	${RM} ${PREFIX}/share/aclocal/guile.m4
 	for p in guile guile-tools guile-config guile-snarf; do \
-	  ${LN} -s $${p}-${GUILE_VER} ${STAGEDIR}${PREFIX}/bin/$${p}${GUILE_SFX}; \
+	  ${LN} -s $${p}-${GUILE_VER} ${PREFIX}/bin/$${p}${GUILE_SFX}; \
 	done
-	${INSTALL_MAN} ${WRKSRC}/doc/guile${GUILE_SFX}.1 ${STAGEDIR}${PREFIX}/share/man/man1/
-	${MKDIR} ${STAGEDIR}${PREFIX}/${GUILE_INFO_PATH}
-	${INSTALL_DATA} ${WRKSRC}/doc/goops/goops.info ${STAGEDIR}${PREFIX}/${GUILE_INFO_PATH}/
-	${INSTALL_DATA} ${WRKSRC}/doc/tutorial/guile-tut.info ${STAGEDIR}${PREFIX}/${GUILE_INFO_PATH}/
-	${INSTALL_DATA} ${WRKSRC}/doc/ref/guile.info ${STAGEDIR}${PREFIX}/${GUILE_INFO_PATH}/
-	${INSTALL_DATA} ${WRKSRC}/doc/r5rs/r5rs.info ${STAGEDIR}${PREFIX}/${GUILE_INFO_PATH}/
+	${INSTALL_MAN} ${WRKSRC}/doc/guile${GUILE_SFX}.1 ${PREFIX}/share/man/man1/
+	${MKDIR} ${PREFIX}/${GUILE_INFO_PATH}
+	${INSTALL_DATA} ${WRKSRC}/doc/goops/goops.info ${PREFIX}/${GUILE_INFO_PATH}/
+	${INSTALL_DATA} ${WRKSRC}/doc/tutorial/guile-tut.info ${PREFIX}/${GUILE_INFO_PATH}/
+	${INSTALL_DATA} ${WRKSRC}/doc/ref/guile.info ${PREFIX}/${GUILE_INFO_PATH}/
+	${INSTALL_DATA} ${WRKSRC}/doc/r5rs/r5rs.info ${PREFIX}/${GUILE_INFO_PATH}/
 
 .include <bsd.port.mk>
