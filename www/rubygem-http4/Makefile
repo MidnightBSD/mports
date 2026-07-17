@@ -1,6 +1,6 @@
 PORTNAME=	http
 PORTVERSION=	4.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	4
@@ -16,7 +16,10 @@ RUN_DEPENDS=	rubygem-addressable>=2.3<3:www/rubygem-addressable \
 		rubygem-http-cookie>=1.0<2:www/rubygem-http-cookie \
 		rubygem-http-form_data2>=2.2<3:www/rubygem-http-form_data2 \
 		rubygem-http-parser>=1.2.0<1.3:net/rubygem-http-parser
-BUILD_DEPENDS=	${RUN_DEPENDS}
+BUILD_DEPENDS=	rubygem-addressable>=2.3<3:www/rubygem-addressable \
+		rubygem-http-cookie>=1.0<2:www/rubygem-http-cookie \
+		rubygem-http-form_data2>=2.2<3:www/rubygem-http-form_data2 \
+		rubygem-http-parser>=1.2.0<1.3:net/rubygem-http-parser
 
 USES=		gem
 
