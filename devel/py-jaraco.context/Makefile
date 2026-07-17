@@ -14,6 +14,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=56:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}coherent.licensed>0:devel/py-coherent.licensed@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4.1:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
@@ -22,5 +23,8 @@ USE_PYTHON=	allflavors autoplist concurrent pep517
 NO_TEST=	yes 
 
 NO_ARCH=	yes
+
+post-patch:
+	@${REINPLACE_CMD} 's|setuptools>=77|setuptools>=63|' ${WRKSRC}/pyproject.toml
 
 .include <bsd.port.mk>

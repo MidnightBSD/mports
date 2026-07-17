@@ -1,0 +1,5 @@
+--- pyproject.toml.orig
++++ pyproject.toml
+@@ -25 +25 @@
+-license = "MIT"
++license = { text = "MIT" }
