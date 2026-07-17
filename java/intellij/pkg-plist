@@ -20,6 +20,10 @@ share/applications/idea.desktop
 %%DATADIR%%/lib/HdrHistogram-2.1.4.jar
 %%DATADIR%%/lib/aapt2-proto-0.3.1.jar
 %%DATADIR%%/lib/annotations.jar
+%%DATADIR%%/lib/jstun-0.7.5.20200723.jar
+%%DATADIR%%/lib/quiche-jna-stubs-15.jar
+%%DATADIR%%/lib/jnaerator-runtime-0.12.jar
+%%DATADIR%%/lib/tls-channel-0.3.2.jar
 %%DATADIR%%/lib/ant/CONTRIBUTORS
 %%DATADIR%%/lib/ant/INSTALL
 %%DATADIR%%/lib/ant/KEYS
@@ -1422,7 +1426,6 @@ share/applications/idea.desktop
 %%DATADIR%%/plugins/android/lib/templates/gradle-projects/NewJavaOrKotlinLibrary/root/src/library_package/Placeholder.java.ftl
 %%DATADIR%%/plugins/android/lib/templates/gradle-projects/NewJavaOrKotlinLibrary/root/src/library_package/Placeholder.kt.ftl
 %%DATADIR%%/plugins/android/lib/templates/gradle-projects/NewJavaOrKotlinLibrary/template.xml
-%%DATADIR%%/plugins/android/lib/templates/gradle-projects/common/consumer-rules.pro.ftl
 %%DATADIR%%/plugins/android/lib/templates/gradle-projects/common/gitignore
 %%DATADIR%%/plugins/android/lib/templates/gradle-projects/common/globals.xml.ftl
 %%DATADIR%%/plugins/android/lib/templates/gradle-projects/common/globals_android_module.xml.ftl
@@ -2272,6 +2275,3 @@ share/applications/idea.desktop
 %%DATADIR%%/product-info.json
 %%DATADIR%%/redist/annotations-java8.jar
 share/man/man1/idea.1.gz
-@dir %%DATADIR%%/plugins/webp/lib/libwebp/linux
-@dir %%DATADIR%%/plugins/webp/lib/libwebp/mac
-@dir %%DATADIR%%/plugins/webp/lib/libwebp/win

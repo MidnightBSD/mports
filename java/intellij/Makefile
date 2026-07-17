@@ -48,6 +48,10 @@ do-install:
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR} \
 		"! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh")
 	@(cd ${WRKSRC} && ${COPYTREE_BIN} . ${DATADIR} "-name *\.sh")
+	@${RM} -f ${DATADIR}/plugins/android/lib/templates/gradle-projects/common/consumer-rules.pro.ftl
+	@${RMDIR} ${DATADIR}/plugins/webp/lib/libwebp/linux \
+		${DATADIR}/plugins/webp/lib/libwebp/mac \
+		${DATADIR}/plugins/webp/lib/libwebp/win 2>/dev/null || ${TRUE}
 	${INSTALL_LIB} ${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/freebsd32/libjansi.so \
 		${DATADIR}/plugins/maven/lib/maven3/lib/jansi-native/freebsd32/
 	${INSTALL_LIB} ${WRKSRC}/plugins/maven/lib/maven3/lib/jansi-native/freebsd64/libjansi.so \
@@ -56,7 +60,7 @@ do-install:
 	${INSTALL_MAN} ${FILESDIR}/idea.1 ${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKDIR}/idea.desktop ${PREFIX}/share/applications/
 # Use fsnotifier replacement provided by java/intellij-fsnotifier
-	${ECHO} "idea.filewatcher.executable.path=${PREFIX}/intellij/bin/fsnotifier" >> ${DATADIR}/bin/idea.properties
+	${ECHO} "idea.filewatcher.executable.path=${TRUE_PREFIX}/intellij/bin/fsnotifier" >> ${DATADIR}/bin/idea.properties
 # Fix "Typeahead timeout is exceeded" error
 	${ECHO} "action.aware.typeAhead=false" >> ${DATADIR}/bin/idea.properties
 # Fix slow render
