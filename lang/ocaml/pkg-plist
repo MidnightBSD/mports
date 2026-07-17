@@ -171,8 +171,8 @@ man/man3/Ast_helper.Ctf.3o.gz
 man/man3/Pprintast.3o.gz
 man/man3/MoreLabels.Hashtbl.MakeSeeded.3o.gz
 man/man3/Ast_helper.Incl.3o.gz
-%%DOCSDIR%%/ocaml-%%OSREL%%5-refman.pdf
-%%DOCSDIR%%/ocaml-%%OSREL%%5-refman.ps.gz
+%%DOCSDIR%%/%%DOCSDISTNAME%%-refman.pdf
+%%DOCSDIR%%/%%DOCSDISTNAME%%-refman.ps.gz
 %%DOCSDIR%%/htmlman/modtypes.html
 %%DOCSDIR%%/htmlman/coreexamples.html
 %%DOCSDIR%%/htmlman/comp.html

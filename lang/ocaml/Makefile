@@ -64,9 +64,11 @@ DISTFILES:=	${DISTNAME}${EXTRACT_SUFX} \
 EXTRACT_ONLY:=	${DISTNAME}${EXTRACT_SUFX} \
 		${DOCSDISTNAME}-refman-html.tar.gz
 PLIST_SUB+=	DOC=""
+PLIST_SUB+=	DOCSDISTNAME=${DOCSDISTNAME}
 PORTDOCS=	htmlman ${DOCSDISTNAME}-refman.ps.gz ${DOCSDISTNAME}-refman.pdf
 .else
 PLIST_SUB+=	DOC="@comment "
+PLIST_SUB+=	DOCSDISTNAME=${DOCSDISTNAME}
 .endif
 
 .if ${ARCH} == armv6 || ${ARCH} == armv7
