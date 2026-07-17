@@ -14,7 +14,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 RUN_DEPENDS=	rubygem-temple>=0.8.2:devel/rubygem-temple \
 		rubygem-thor>=0:devel/rubygem-thor \
 		rubygem-tilt>=0:devel/rubygem-tilt
-BUILD_DEPENDS=	${RUN_DEPENDS}
+BUILD_DEPENDS=	rubygem-temple>=0.8.2:devel/rubygem-temple \
+		rubygem-thor>=0:devel/rubygem-thor \
+		rubygem-tilt>=0:devel/rubygem-tilt
 
 USES=		gem shebangfix
 
