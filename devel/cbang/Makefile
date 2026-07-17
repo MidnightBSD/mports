@@ -33,6 +33,10 @@ DEBUG_BUILD_DEPENDS=	gnulibiberty>0:devel/gnulibiberty
 DEBUG_LIB_DEPENDS=	libbfd.so:devel/binutils
 
 MAKE_ARGS+=	cxxstd="c++17"	\
+		cc="${CC}"	\
+		cxx="${CXX}"	\
+		ccflags="${CCFLAGS}"	\
+		cxxflags="${CXXFLAGS}"	\
 		libpath="/lib"	\
 		sharedlib=1	\
 		prefix="${STAGEDIR}${PREFIX}"	\
