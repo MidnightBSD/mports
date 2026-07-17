@@ -1,5 +1,6 @@
 PORTNAME=	ttfautohint
 PORTVERSION=	1.8.4
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	SAVANNAH/freetype \
 		SF/freetype/ttfautohint/${PORTVERSION}
