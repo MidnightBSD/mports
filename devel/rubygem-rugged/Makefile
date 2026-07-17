@@ -2,6 +2,7 @@
 
 PORTNAME=	rugged
 PORTVERSION=	1.9.0
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -24,6 +25,6 @@ CONFIGURE_ARGS=	--with-ssh
 USES=		cmake:indirect gem pkgconfig ssl
 
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/${GEM_LIB_DIR}/vendor/libgit2/build
+	${RM} -r ${STAGEDIR}${TRUE_PREFIX}/${GEM_LIB_DIR}/vendor/libgit2/build
 
 .include <bsd.port.mk>
