@@ -14,6 +14,7 @@ LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}coherent.licensed>0:devel/py-coherent.licensed@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zipp>=3.20:devel/py-zipp@${PY_FLAVOR}
@@ -23,5 +24,9 @@ USE_PYTHON=	allflavors autoplist pep517
 
 NO_ARCH=	yes
 NO_TEST=	yes
+
+post-patch:
+	@${REINPLACE_CMD} '/license-files/d; s|^license = "Apache-2.0"|license = { text = "Apache-2.0" }|; s|77|63|g' \
+		${WRKSRC}/pyproject.toml
 
 .include <bsd.port.mk>
