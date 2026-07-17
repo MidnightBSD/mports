@@ -1,9 +1,9 @@
 PORTNAME=	bouncycastle
-PORTVERSION=	1.71
+DISTVERSION=	1.83
 CATEGORIES=	java security
-MASTER_SITES=	http://www.bouncycastle.org/download/ \
-		http://polydistortion.net/bc/download/
-DISTNAME=	crypto-${DVERSION}
+MASTER_SITES=	https://github.com/bcgit/bc-java/archive/refs/tags/
+DISTNAME=	r${DVERSION1}rv${DVERSION2}
+DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cleanroom build of Java Cryptography Extensions
@@ -38,11 +38,13 @@ OPTIONS_SUB=		yes
 ZIPSRC_DESC=		Install bundled ZIP source files
 ZIPSRC_ALL_TARGET=	zip-src
 
+DVERSION1=	${PORTVERSION:R}
+DVERSION2=	${PORTVERSION:E}
+WRKSRC=		${WRKDIR}/bc-java-${DISTNAME}
 ARTIFACTSDIR=	${WRKSRC}/build/artifacts/jdk${JDKMVERSION}
-DVERSION=	${PORTVERSION:S/.//}
-JDKMVERSION=	1.5
-JDKNVERSION=	15
-JARSUFFIX=	-jdk${JDKNVERSION}to18-${DVERSION}.jar
+JDKMVERSION=	1.8
+JDKNVERSION=	18
+JARSUFFIX=	-jdk${JDKNVERSION}on-${PORTVERSION}.jar
 
 .include <bsd.mport.options.mk>
 
@@ -59,7 +61,7 @@ do-install:
 	done
 # Install the bundlded version of bcprov.jar because we need a signed JAR.
 # See bfca5d2c6e01d757f1f37c141c22645c2835104b for details.
-	${INSTALL_DATA} ${WRKSRC}/jars/bcprov${JARSUFFIX} \
+	${INSTALL_DATA} ${ARTIFACTSDIR}/jars/bcprov${JARSUFFIX} \
 		${JAVAJARDIR}/bcprov.jar
 
 do-install-DOCS-on:
