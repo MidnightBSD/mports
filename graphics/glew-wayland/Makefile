@@ -28,13 +28,13 @@ slave-post-patch:
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/glewinfo \
-		${STAGEDIR}${PREFIX}/bin/glewinfo${PKGNAMESUFFIX}
+		${PREFIX}/bin/glewinfo${PKGNAMESUFFIX}
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/visualinfo \
-		${STAGEDIR}${PREFIX}/bin/visualinfo${PKGNAMESUFFIX}
-	${MKDIR} ${STAGEDIR}${PREFIX}/include/GL
+		${PREFIX}/bin/visualinfo${PKGNAMESUFFIX}
+	${MKDIR} ${PREFIX}/include/GL
 	${INSTALL_DATA} ${WRKSRC}/include/GL/eglew.h \
-		${STAGEDIR}${PREFIX}/include/GL
+		${PREFIX}/include/GL
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/${PKGBASE}.pc
+		${PREFIX}/libdata/pkgconfig/${PKGBASE}.pc
 
 .include "${MASTERDIR}/Makefile"
