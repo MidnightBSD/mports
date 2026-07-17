@@ -16,6 +16,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	CyberShadow
 
 ALL_TARGET=	clientbuffer.so
+MAKE_JOBS_UNSAFE=	yes
 
 PLIST_FILES=	lib/znc/clientbuffer.so
 

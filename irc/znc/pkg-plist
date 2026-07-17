@@ -85,11 +85,13 @@ libdata/pkgconfig/znc.pc
 share/man/man1/znc-buildmod.1.gz
 share/man/man1/znc.1.gz
 %%CYRUS%%lib/znc/cyrusauth.so
+%%DATADIR%%/cmake/CMakeFindDependencyMacroPC.cmake
 %%DATADIR%%/cmake/ZNCConfig.cmake
 %%DATADIR%%/cmake/ZNCConfigVersion.cmake
 %%DATADIR%%/cmake/znc_internal-%%CMAKE_BUILD_TYPE%%.cmake
 %%DATADIR%%/cmake/znc_internal.cmake
 %%DATADIR%%/cmake/znc_public.cmake
+%%DATADIR%%/cmake/use_homebrew.cmake
 %%DATADIR%%/modules/blockuser/tmpl/blockuser_WebadminUser.tmpl
 %%DATADIR%%/modules/cert/tmpl/index.tmpl
 %%DATADIR%%/modules/certauth/tmpl/index.tmpl
