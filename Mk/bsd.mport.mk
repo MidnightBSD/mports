@@ -20,8 +20,8 @@
 
 MidnightBSD_MAINTAINER=	luke@MidnightBSD.org
 
-LANG=		C
-LC_ALL=		C
+LANG=		C.UTF-8
+LC_ALL=		C.UTF-8
 .export		LANG LC_ALL
 
 # These need to be absolute since we don't know how deep in the ports
