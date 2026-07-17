@@ -14,17 +14,19 @@ WWW=		https://github.com/mesonbuild/meson-python
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	meson:devel/meson@${PY_FLAVOR} \
+BUILD_DEPENDS=	meson-${PYTHON_VER}:devel/meson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=0.19.0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR} \
 		${PY_TOMLI}
-RUN_DEPENDS=	meson:devel/meson@${PY_FLAVOR} \
+RUN_DEPENDS=	meson-${PYTHON_VER}:devel/meson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=0.19.0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR} \
 		${PY_TOMLI}
 
 USES=		python
 USE_PYTHON=	allflavors autoplist concurrent pep517
+
+MAKE_ENV+=	MESON=meson-${PYTHON_VER}
 
 # tarball has UTF-8 filenames
 EXTRACT_CMD=	env LANG=C.UTF-8 LC_ALL=C.UTF-8 ${TAR}
