@@ -138,7 +138,7 @@ pre-build-MLX-on:
 		${MAKE_CMD} mlx mlxc
 
 post-install: # pending https://github.com/ollama/ollama/issues/6407
-	${INSTALL_SCRIPT} ${FILESDIR}/ollama-limit-gpu-layers ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/ollama-limit-gpu-layers ${PREFIX}/bin
 
 post-install-CPU-on:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/ollama
