@@ -76,6 +76,7 @@ MAKE_ARGS=	CFLAGS="${CXXFLAGS} ${CPPFLAGS} -std=c11"
 FFMPEG_ARCH=		${ARCH:Maarch64:S/^$/x86/}
 FFMPEG_CONFIGURE_ARGS=	--prefix=${LINUXSYSROOT} --pkg-config=pkg-config \
 			--disable-shared --enable-static --enable-pic \
+			--disable-indev=bktr \
 			--target-os=linux --cc=${CC} \
 			${"${PORT_OPTIONS:MFDK_AAC}":?--enable-libfdk-aac:}
 FFMPEG_CONFIGURE_ENV=	${CONFIGURE_ENV} CFLAGS="${CPPFLAGS} ${CFLAGS}"
