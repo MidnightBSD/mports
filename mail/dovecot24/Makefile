@@ -18,6 +18,7 @@ CONFLICTS_INSTALL=	dovecot-[0-9]*
 DATADIR=	${TRUE_PREFIX}/share/dovecot
 DOCSDIR=	${TRUE_PREFIX}/share/doc/dovecot
 EXAMPLESDIR=	${TRUE_PREFIX}/share/examples/${PORTNAME}
+ETCDIR=		${TRUE_PREFIX}/etc/dovecot
 
 FLAVORS=	default mysql pgsql
 FLAVOR?=	${FLAVORS[1]}
