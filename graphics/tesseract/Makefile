@@ -1,5 +1,6 @@
 PORTNAME=	tesseract
 PORTVERSION=	5.5.2
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
