@@ -11,7 +11,8 @@ WWW=		https://ruby-gnome.github.io/ \
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-BUILD_DEPENDS=	rubygem-rake>=0:devel/rubygem-rake
+BUILD_DEPENDS=	rubygem-pkg-config>=1.3.5:devel/rubygem-pkg-config \
+		rubygem-rake>=0:devel/rubygem-rake
 RUN_DEPENDS=	rubygem-gio2>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-gio2
 
 USES=		gem gnome
