@@ -16,9 +16,11 @@ USES=		pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	allanjude
 
+MAKE_ARGS+=	DESTDIR= PREFIX=${PREFIX}
+
 PLIST_FILES=	bin/uclcmd
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	@${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>
