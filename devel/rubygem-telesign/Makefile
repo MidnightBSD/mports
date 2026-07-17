@@ -1,5 +1,6 @@
 PORTNAME=	telesign
 PORTVERSION=	2.4.0
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -10,7 +11,7 @@ WWW=		http://rubygems.org/gems/telesign
 LICENSE=	mit
 
 RUN_DEPENDS=	rubygem-net-http-persistent>=3.0.0<5.0:www/rubygem-net-http-persistent
-BUILD_DEPENDS=	${RUN_DEPENDS}
+BUILD_DEPENDS=	rubygem-net-http-persistent>=3.0.0<5.0:www/rubygem-net-http-persistent
 
 USES=		gem
 
