@@ -259,11 +259,11 @@ sub _run_make {
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
 
   if (length $flavor) {
-    return system("$MAKE $target >$self->{logdir}/$target FLAVOR=$flavor 2>&1") == 0;
+    return system("$MAKE LANG=C.UTF-8 LC_ALL=C.UTF-8 $target >$self->{logdir}/$target FLAVOR=$flavor 2>&1") == 0;
   } else {
-    return system("$MAKE $target >$self->{logdir}/$target 2>&1") == 0;
+    return system("$MAKE LANG=C.UTF-8 LC_ALL=C.UTF-8 $target >$self->{logdir}/$target 2>&1") == 0;
   }
-}  
+}
 
 
 
