@@ -25,4 +25,9 @@ post-patch:
 	@${REINPLACE_CMD} '/^LIBTOOL_EXPORT_OPTIONS=/s/=.*/=/' \
 		${WRKSRC}/configure
 
+post-configure:
+	@${REINPLACE_CMD} -e 's|${LOCALBASE}/lib/libintl.a|-lintl|g' \
+		-e 's|${LOCALBASE}/lib/libiconv.a|-liconv|g' \
+		${WRKSRC}/libhonoka/Makefile ${WRKSRC}/src/Makefile
+
 .include <bsd.port.mk>
