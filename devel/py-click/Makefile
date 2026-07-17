@@ -10,10 +10,12 @@ COMMENT=	Python package for creating command line interfaces
 WWW=		https://github.com/pallets/click
 
 LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11<4:devel/py-flit-core@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	allflavors distutils autoplist
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 NO_TEST=	yes
