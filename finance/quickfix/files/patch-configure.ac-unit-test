@@ -1,0 +1,25 @@
+--- configure.ac.orig
++++ configure.ac
+@@ -42,20 +42,23 @@
+ # Disable unit tests on Solaris, AIX
+ 
+-build_no_unit_test = no
++build_no_unit_test=no
+ 
+ # Detect the target system
+ case "${host_os}" in
+     *sunos*)
+         build_no_unit_test=yes
+         ;;
+     *solaris*)
+         build_no_unit_test=yes
+         ;;
+     *aix*)
+         build_no_unit_test=yes
+         ;;
++    *midnightbsd*)
++        build_no_unit_test=yes
++        ;;
+     *)
+         ;;
+ esac

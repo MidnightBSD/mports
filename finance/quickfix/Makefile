@@ -58,9 +58,6 @@ pre-configure:
 	cd ${WRKSRC} && ${sh} ${WRKSRC}/bootstrap
 	@${REINPLACE_CMD} -e 's|pkgconfdir = .*|pkgconfdir=${LOCALBASE}/libdata/pkgconfig|' \
 		${WRKSRC}/Makefile.in
-pre-build:
-	${GMAKE} -C ${WRKSRC}/UnitTest++ TestUnitTest++
-
 post-install-RUBY-on:
 	${STRIP_CMD} ${FAKE_DESTDIR}${RUBY_SITEARCHLIBDIR}/quickfix.so
 

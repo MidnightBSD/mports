@@ -1,0 +1,10 @@
+--- configure.ac.orig
++++ configure.ac
+@@ -146,7 +146,7 @@ AC_MSG_CHECKING([which threading environment to use])
+ # each host OS needs special threading flags
+ case $build_os in
+-	freebsd*|netbsd*)
++	freebsd*|netbsd*|midnightbsd*)
+		LIBS="-pthread $LIBS"
+		AC_MSG_RESULT([-pthread])
+		;;
