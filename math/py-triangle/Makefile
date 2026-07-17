@@ -1,7 +1,7 @@
 PORTNAME=	triangle
 DISTVERSIONPREFIX=	v
 DISTVERSION=	20230923
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -23,6 +23,6 @@ USE_PYTHON=	distutils autoplist
 BUILD_DEPENDS=	triangle>0:math/triangle
 
 post-install:
-	${STRIP_CMD} ${PYTHON_SITELIBDIR}/triangle/core*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/triangle/core*.so
 
 .include <bsd.port.mk>
