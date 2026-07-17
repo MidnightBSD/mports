@@ -11,6 +11,8 @@ WWW=		https://github.com/tree-sitter/py-tree-sitter
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=43:devel/py-setuptools@${PY_FLAVOR}
+
 USES=		python
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
