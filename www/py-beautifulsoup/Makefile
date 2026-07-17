@@ -24,6 +24,8 @@ USE_PYTHON=	allflavors concurrent pep517
 NO_ARCH=	yes
 NO_TEST=	yes
 
+PLIST_SUB=	BS_VER=${PORTVERSION}
+
 do-build:
 	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m build --wheel --no-isolation --outdir ${WRKDIR}
 
