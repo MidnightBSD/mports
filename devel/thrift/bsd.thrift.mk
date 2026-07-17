@@ -4,7 +4,7 @@
 # see $PORTSDIR/devel/thrift for examples 
 THRIFT_PORTVERSION=	0.22.0
 
-LICENSE=		APACHE20
+LICENSE=		Apache-2.0
 
 MASTER_SITE_APACHE+=	https://archive.apache.org/dist/%SUBDIR%/ 
 CONFIGURE_ARGS+=	\
