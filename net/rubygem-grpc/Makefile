@@ -27,4 +27,8 @@ post-patch:
 	@${REINPLACE_CMD} -Ee '/s\.files = /s;, "(Makefile|etc|include|third_party|src/boringssl|src/core)[^"]*"\.freeze;;g' ${WRKSRC}/${GEMSPEC}
 	@${REINPLACE_CMD} -e '/s\.files = /s|"\.yardopts"\.freeze, ||' ${WRKSRC}/${GEMSPEC}
 
+post-install:
+	@${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEM_LIB_DIR}/src/ruby/ext
+	@${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${EXT_DIR} -type f -name gem.build_complete -delete
+
 .include <bsd.port.mk>
