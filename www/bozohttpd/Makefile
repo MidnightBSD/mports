@@ -64,6 +64,8 @@ USER_CFLAGS_OFF=	-DNO_USER_SUPPORT
 
 MAKE_ARGS=	LDADD="${LIBS}"
 
+CFLAGS+=	-Wno-error=deprecated-declarations
+
 USE_RC_SUBR=	bozohttpd
 
 PLIST_FILES=	bin/bozohttpd \
