@@ -34,7 +34,6 @@ post-patch:
 		"/if \[ -d/ s,LIB_CUPS,PREFIX," ${WRKSRC}/Makefile.in
 
 post-install:
-	cpdup -i0 ${FAKE_DESTDIR}/usr/lib ${PREFIX}/lib
 .for file in foomatic-combo-xml foomatic-perl-data
 	@${STRIP_CMD} ${PREFIX}/bin/${file}
 .endfor
