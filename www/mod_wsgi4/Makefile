@@ -1,6 +1,5 @@
 PORTNAME=	mod_wsgi
-DISTVERSION=	4.9.4
-PORTREVISION=	1
+DISTVERSION=	5.0.2
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +10,7 @@ WWW=		https://www.modwsgi.org/
 
 LICENSE=	Apache-2.0
 
-USES=		apache:2.4+ cpe gettext python:3.8-3.12
+USES=		apache cpe gettext python
 USE_PYTHON=	flavors
 CPE_VENDOR=	modwsgi
 
