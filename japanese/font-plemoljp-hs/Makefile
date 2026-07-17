@@ -50,7 +50,7 @@ do-install:
 		SemiBold SemiBoldItalic Text TextItalic Thin ThinItalic
 	${INSTALL_DATA} ${WRKSRC}/${FAMILY}/${FAMILY:S/_//}-${STYLE}.ttf \
 		${FONTSDIR}
-	@${ECHO_CMD} ${FONTSDIR}/${FAMILY:S/_//}-${STYLE}.ttf >> ${TMPPLIST}
+	@${ECHO_CMD} ${TRUE_PREFIX}/share/fonts/plemoljp-hs/${FAMILY:S/_//}-${STYLE}.ttf >> ${TMPPLIST}
 .  endfor
 .endfor
 
