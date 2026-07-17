@@ -3290,7 +3290,7 @@ bin/phplist
 %%WWWDIR%%/lists/base/vendor/symfony/symfony/.github/SECURITY.md
 %%WWWDIR%%/lists/base/vendor/symfony/symfony/CODE_OF_CONDUCT.md
 %%WWWDIR%%/lists/base/vendor/symfony/symfony/CHANGELOG-3.3.md
-%%WWWDIR%%/lists/base/vendor/symfony/symfony/UPGRADE-%%OSREL%%.md
+%%WWWDIR%%/lists/base/vendor/symfony/symfony/UPGRADE-4.0.md
 %%WWWDIR%%/lists/base/vendor/symfony/symfony/CONTRIBUTING.md
 %%WWWDIR%%/lists/base/vendor/symfony/symfony/CHANGELOG-3.4.md
 %%WWWDIR%%/lists/base/vendor/symfony/symfony/.gitignore
