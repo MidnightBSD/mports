@@ -16,6 +16,8 @@ NO_ARCH=	yes
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}six>=1.9:devel/py-six@${PY_FLAVOR}
+
 CONFLICTS_INSTALL=	p5-Net-Amazon-Route53-[0-9]*
 
 .include <bsd.port.mk>
