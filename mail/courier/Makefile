@@ -1,6 +1,6 @@
 PORTNAME=	courier
 PORTVERSION=	1.1.11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	mail
 MASTER_SITES=	SF
 
@@ -98,6 +98,7 @@ CONFIGURE_ARGS=	--disable-root-check \
 		--with-notice=unicode
 
 CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-DUNICODE_LB_OPT_SYBREAK=0
 LIBS+=		-L${LOCALBASE}/lib
 
 INSTALL_TARGET=	install-strip install-perms
