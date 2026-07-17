@@ -52,7 +52,7 @@ do-install:
 .for FAMILY in ${FONT_FAMILY}
 .  for STYLE in Bold BoldItalic Italic Regular
 	${INSTALL_DATA} ${WRKSRC}/${FONTNAME}${FAMILY}${VARIATION}-${STYLE}.ttf ${FONTSDIR}
-	@${ECHO_CMD} ${FONTSDIR}/${FONTNAME}${FAMILY}${VARIATION}-${STYLE}.ttf >> ${TMPPLIST}
+	@${ECHO_CMD} ${TRUE_PREFIX}/share/fonts/Moralerspace/${FONTNAME}${FAMILY}${VARIATION}-${STYLE}.ttf >> ${TMPPLIST}
 .  endfor
 .endfor
 
