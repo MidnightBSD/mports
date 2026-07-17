@@ -54,9 +54,9 @@
 -	cp src/$(GAME) $(GAMEDIR)
 -	cp util/recover $(GAMEDIR)
 -	-rm -f $(SHELLDIR)/$(GAME)
-+	${BSD_INSTALL_PROGRAM} src/$(GAME) ${DESTDIR}$(GAMEDIR)
-+	${BSD_INSTALL_PROGRAM} util/recover ${DESTDIR}$(GAMEDIR)
-+	-rm -f ${DESTDIR}$(SHELLDIR)/$(GAME)
++	${BSD_INSTALL_PROGRAM} src/$(GAME) $(GAMEDIR)
++	${BSD_INSTALL_PROGRAM} util/recover $(GAMEDIR)
++	-rm -f $(SHELLDIR)/$(GAME)
  	sed -e 's;/usr/games/lib/nethackdir;$(GAMEDIR);' \
  		-e 's;HACKDIR/nethack;HACKDIR/$(GAME);' \
  		< sys/unix/nethack.sh \
@@ -69,11 +69,11 @@
 -	-$(CHOWN) $(GAMEUID) $(SHELLDIR)/$(GAME)
 -	$(CHGRP) $(GAMEGRP) $(SHELLDIR)/$(GAME)
 -	chmod $(EXEPERM) $(SHELLDIR)/$(GAME)
-+		> ${DESTDIR}$(SHELLDIR)/$(GAME)
++		> $(SHELLDIR)/$(GAME)
  
  dofiles-dlb: check-dlb
 -	( cd dat ; cp nhdat $(DATNODLB) $(GAMEDIR) )
-+	( cd dat ; cp nhdat $(DATNODLB) ${DESTDIR}$(GAMEDIR) )
++	( cd dat ; cp nhdat $(DATNODLB) $(GAMEDIR) )
  #	( cd win/X11 ; cp JNetHack.ad $(GAMEDIR)/JNetHack )
  #	( cd win/gtk ; cp GTKRC $(GAMEDIR)/gtkrc )
  #	( bdftopcf win/X11/nh10.bdf > $(GAMEDIR)/nh10.pcf ; mkfontdir $(GAMEDIR))
@@ -85,7 +85,7 @@
  dofiles-nodlb:
  # copy over the game files
 -	( cd dat ; cp $(DAT) $(GAMEDIR) )
-+	( cd dat ; cp $(DAT) ${DESTDIR}$(GAMEDIR) )
++	( cd dat ; cp $(DAT) $(GAMEDIR) )
  #	( cd win/X11 ; cp JNetHack.ad $(GAMEDIR)/JNetHack )
  #	( cd win/gtk ; cp GTKRC $(GAMEDIR)/gtkrc )
  #	( bdftopcf win/X11/nh10.bdf > $(GAMEDIR)/nh10.pcf ; mkfontdir $(GAMEDIR))
@@ -97,13 +97,13 @@
  update: $(GAME) recover $(VARDAT) dungeon spec_levs
  #	(don't yank the old version out from under people who're playing it)
 -	-mv $(GAMEDIR)/$(GAME) $(GAMEDIR)/$(GAME).old
-+	-mv ${DESTDIR}$(GAMEDIR)/$(GAME) ${DESTDIR}$(GAMEDIR)/$(GAME).old
++	-mv $(GAMEDIR)/$(GAME) $(GAMEDIR)/$(GAME).old
  #	quest.dat is also kept open and has the same problems over NFS
  #	(quest.dat may be inside nhdat if dlb is in use)
 -	-mv $(GAMEDIR)/quest.dat $(GAMEDIR)/quest.dat.old
 -	-mv $(GAMEDIR)/nhdat $(GAMEDIR)/nhdat.old
-+	-mv ${DESTDIR}$(GAMEDIR)/quest.dat ${DESTDIR}$(GAMEDIR)/quest.dat.old
-+	-mv ${DESTDIR}$(GAMEDIR)/nhdat ${DESTDIR}$(GAMEDIR)/nhdat.old
++	-mv $(GAMEDIR)/quest.dat $(GAMEDIR)/quest.dat.old
++	-mv $(GAMEDIR)/nhdat $(GAMEDIR)/nhdat.old
  # set up new versions of the game files
  	( $(MAKE) dofiles )
  # touch time-sensitive files
@@ -119,9 +119,9 @@
 -	-mkdir -p $(SHELLDIR)
 -	-rm -rf $(GAMEDIR) $(VARDIR)
 -	-mkdir -p $(SHELLDIR)/lib $(GAMEDIR) $(VARDIR) $(VARDIR)/save
-+	-mkdir -p ${DESTDIR}$(SHELLDIR)
-+	-rm -rf ${DESTDIR}$(GAMEDIR) ${DESTDIR}$(VARDIR)
-+	-mkdir -p ${DESTDIR}$(GAMEDIR) ${DESTDIR}$(VARDIR) ${DESTDIR}$(VARDIR)/save
++	-mkdir -p $(SHELLDIR)
++	-rm -rf $(GAMEDIR) $(VARDIR)
++	-mkdir -p $(GAMEDIR) $(VARDIR) $(VARDIR)/save
  	-rmdir ./-p
 -	-$(CHOWN) $(GAMEUID) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
 -	$(CHGRP) $(GAMEGRP) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
@@ -133,7 +133,7 @@
 -	-( cd $(VARDIR) ; $(CHOWN) $(GAMEUID) perm record logfile ; \
 -			$(CHGRP) $(GAMEGRP) perm record logfile ; \
 -			chmod $(FILEPERM) perm record logfile )
-+	touch ${DESTDIR}$(VARDIR)/perm ${DESTDIR}$(VARDIR)/record ${DESTDIR}$(VARDIR)/logfile
++	touch $(VARDIR)/perm $(VARDIR)/record $(VARDIR)/logfile
  # and a reminder
  	@echo You may also want to reinstall the man pages via the doc Makefile.
  
