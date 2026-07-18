@@ -14,7 +14,7 @@ PATCH_DEPENDS=	gsed:textproc/gsed
 xBUILD_DEPENDS=	benchmark>0:devel/benchmark \
 		googletest>0:devel/googletest
 LIB_DEPENDS=	libabsl_base.so:devel/abseil \
-		libbzip2.so:misc/vxl \
+		libbzip2.so:archivers/bzip2 \
 		libCbc.so:math/cbc \
 		libCgl.so:math/cgl \
 		libcoinasl.so:math/asl \
