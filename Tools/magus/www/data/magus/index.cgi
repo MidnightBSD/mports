@@ -400,6 +400,11 @@ sub compare_runs {
 sub summary_page {
   my ($p) = @_;
 
+  my %crit;
+  foreach my $c (Magus::CriticalPorts->retrieve_all) {
+    $crit{$c->arch}{$c->pkgname} = 1;
+  }
+
   my @results = map {{
     summary   => $_->status // '',
     port      => $_->name // '',
@@ -408,7 +413,7 @@ sub summary_page {
     flavor    => $_->flavor // '',
     osversion => $_->run ? ($_->run->osversion // '') : '',
     arch      => $_->run ? ($_->run->arch // '') : '', 
-    critical  => $_->critical // 0,
+    critical  => ($_->run && $crit{$_->run->arch}{$_->pkgname}) ? 1 : 0,
   }} Magus::Port->search_last_twenty;
   
   print $p->header;
