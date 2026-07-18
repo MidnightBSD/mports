@@ -91,7 +91,7 @@ ul.depends li {
   background: var(--primary-color);
   color: #fff;
   margin: 0;
-  padding: 4px 4px 8px;
+  padding: 16px 24px;
 }
 
 #topsearch {
