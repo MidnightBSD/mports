@@ -38,7 +38,7 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}django[0-9][0-9]
 CPE_VENDOR=	djangoproject
 
 # Upstream archive contains files with UTF-8 names
-# EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
+EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 
 OPTIONS_DEFINE=	DOCS HTMLDOCS
 OPTIONS_GROUP=	DATABASE
