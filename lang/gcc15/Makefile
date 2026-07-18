@@ -3,6 +3,8 @@ PORTVERSION=	15.2.0
 PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	GCC
+# Upstream archive contains files with UTF-8 names
+EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
