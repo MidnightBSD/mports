@@ -10,7 +10,7 @@ WWW=		https://clawhub.ai/ \
 
 LICENSE=	mit
 
-FETCH_DEPENDS=	npm:www/npm \
+FETCH_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node24 \
 		jq:textproc/jq \
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
