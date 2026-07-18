@@ -738,7 +738,7 @@ sub tool_analyze_build_log($id, $args) {
         return tool_result($id, "Error: 'port_id' must be a valid integer.", 1);
     }
 
-    my $model = "qwen2.5-coder:14b";
+    my $model = "mistral-small-latest";
     if (defined $args->{model}) {
         my $requested_model = lc $args->{model};
         # some loose matching since model names are exact in ollama usually
