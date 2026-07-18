@@ -11,8 +11,8 @@ WWW=		https://geminicli.com/ \
 
 LICENSE=	Apache-2.0
 
-BUILD_DEPENDS=	npm:www/npm
-FETCH_DEPENDS=	npm:www/npm
+BUILD_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node24
+FETCH_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node24
 RUN_DEPENDS=	bash:shells/bash
 
 USES=		nodejs:build,run python:build
