@@ -32,6 +32,8 @@ ONLY_FOR_ARCHS_REASON?=	requires prebuilt bootstrap compiler
 
 FAKE_OPTS=	trueprefix
 NO_TEST=	yes
+# The bootstrap compiler can crash while building rustfmt in parallel.
+MAKE_JOBS_UNSAFE=	yes
 
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
