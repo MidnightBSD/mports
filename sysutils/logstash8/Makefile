@@ -72,9 +72,11 @@ do-install:
 	${RM} -rf ${LOGSTASH_HOME}/vendor/jruby/lib/jni
 	${RM} -rf ${LOGSTASH_HOME}/vendor/jruby/tmp
 	${MKDIR} ${LOGSTASH_HOME}/vendor/jruby/lib/jni
-	(cd ${WRKSRC}/vendor/jruby/tmp/lib/jni && \
-	 ${COPYTREE_SHARE} ${ARCH:S/amd64/x86_64/}-FreeBSD \
-	 ${LOGSTASH_HOME}/vendor/jruby/lib/jni)
+	@if [ -d ${WRKSRC}/vendor/jruby/tmp/lib/jni ]; then \
+		(cd ${WRKSRC}/vendor/jruby/tmp/lib/jni && \
+		 ${COPYTREE_SHARE} ${ARCH:S/amd64/x86_64/}-FreeBSD \
+		 ${LOGSTASH_HOME}/vendor/jruby/lib/jni); \
+	fi
 
 post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/logstash.conf.sample" >> ${TMPPLIST}
