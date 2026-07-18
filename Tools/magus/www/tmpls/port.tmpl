@@ -161,7 +161,7 @@
         <option value="mistral-medium-latest">mistral-medium-latest</option>
         <option value="mistral-large-latest">mistral-large-latest</option>
     </select>
-    <button class="btn btn-info" onclick="javascript:llmcheck()">Analyze</button>
+    <button id="llm_button" class="btn btn-info" onclick="javascript:llmcheck()">Analyze</button>
 </div>
 <div id="llmlog" class="llmlogs">
 </div>
@@ -201,6 +201,10 @@ $(document).ready(function() {
     });
 
     window.llmcheck = function() {
+        var $button = $('#llm_button');
+        if ($button.prop('disabled')) return;
+        $button.prop('disabled', true);
+
         var port = $('h2').text();
         var logdata = $('pre.log').text().slice(-500);
         var logmsg = "Analyze the MidnightBSD package build error for " + port + " and suggest a fix:\n\n" + logdata;
@@ -210,31 +214,34 @@ $(document).ready(function() {
         $('#llmlog').html('<p>Analyzing build log with ' + selectedModel + '...</p>');
 
         $.ajax({
-        url: llmAPI,
-        method: 'POST',
-        timeout: 300000,
-        data: { content: logmsg, model: selectedModel },
-        dataType: 'json',
-	xhrFields: {
-       	 withCredentials: true
-	},
-        success: function(data) {
-            var $llm = $('#llmlog');
-            $llm.empty();
+            url: llmAPI,
+            method: 'POST',
+            timeout: 300000,
+            data: { content: logmsg, model: selectedModel },
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(data) {
+                var $llm = $('#llmlog');
+                $llm.empty();
 
-            if (data.error) {
-                $llm.append('<p>Error: ' + data.error + '</p>');
-            } else if (data.length === 0) {
-                $llm.append('<p>No LLM analysis.</p>');
-            } else {
-                $.each(data, function(index, llmresp) {
-                    $llm.append(marked.parse(llmresp));
-                });
+                if (data.error) {
+                    $llm.append('<p>Error: ' + data.error + '</p>');
+                } else if (data.length === 0) {
+                    $llm.append('<p>No LLM analysis.</p>');
+                } else {
+                    $.each(data, function(index, llmresp) {
+                        $llm.append(marked.parse(llmresp));
+                    });
+                }
+            },
+            error: function() {
+                $('#llmlog').html('<p>Error loading LLM analysis.</p>');
+            },
+            complete: function() {
+                $button.prop('disabled', false);
             }
-        },
-        error: function() {
-            $('#llmlog').html('<p>Error loading LLM analysis.</p>');
-        }
         });
     }
 });
