@@ -101,7 +101,7 @@ do-install:
 	   ${FIND} . -not -type d | ${SORT} | \
 	   ${SED} -e 's,^\.,${EXAMPLESDIR_REL}/${BEATMOD}.modules.d,' >> ${TMPPLIST}; \
 	   ${MKDIR} ${ETCDIR}/${BEATMOD}.modules.d && \
-	   ${ECHO_CMD} "The modules.d files are now in ${EXAMPLESDIR}/${BEATMOD}.modules.d" > \
+	   ${ECHO_CMD} "The modules.d files are now in ${EXAMPLESDIR_REL}/${BEATMOD}.modules.d" > \
 	     ${ETCDIR}/${BEATMOD}.modules.d/README; \
 	   ${ECHO_CMD} ${ETCDIR_REL}/${BEATMOD}.modules.d/README >> ${TMPPLIST}; \
 	 fi) && \
@@ -116,7 +116,7 @@ do-install:
 	   ${FIND} . -not -type d | ${SORT} | \
 	   ${SED} -e 's,^\.,${EXAMPLESDIR_REL}/${BEATMOD}.monitors.d,' >> ${TMPPLIST}; \
 	   ${MKDIR} ${ETCDIR}/${BEATMOD}.monitors.d && \
-	   ${ECHO_CMD} "The monitors.d files are now in ${EXAMPLESDIR}/${BEATMOD}.monitors.d" > \
+	   ${ECHO_CMD} "The monitors.d files are now in ${EXAMPLESDIR_REL}/${BEATMOD}.monitors.d" > \
 	     ${ETCDIR}/${BEATMOD}.monitors.d/README; \
 	   ${ECHO_CMD} ${ETCDIR_REL}/${BEATMOD}.monitors.d/README >> ${TMPPLIST}; \
 	 fi) && \
