@@ -27,6 +27,10 @@ do-install:
 		-C ${PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner
 
+post-fake:
+	@${FIND} ${FAKE_DESTDIR}${PREFIX}/${TEXMFVARDIR} -type f -name '*.log' -delete
+	@${REINPLACE_CMD} -i '' -e '/share\/texmf-var\/web2c\/pdftex\/.*\.log/d' ${TMPPLIST}
+
 .if defined(MAINTAINER_MODE)
 _EXTRACT_FILES= \
 	texmf-dist/tex/xmltex \
