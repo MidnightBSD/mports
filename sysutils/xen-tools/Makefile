@@ -48,6 +48,8 @@ USE_GNOME=	glib20 libxml2
 USE_LDCONFIG=	yes
 USE_PYTHON=	py3kplist
 HAS_CONFIGURE=	yes
+# The bundled QEMU sources remove files scanned by the generic FreeBSD 10 fixup.
+WITHOUT_FBSD10_FIX=	yes
 # Set ARCH=x86_64 in order to overwrite the environment ARCH=amd64
 MAKE_ARGS=	clang=y ARCH=x86_64
 
