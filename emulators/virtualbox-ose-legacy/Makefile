@@ -32,6 +32,7 @@ RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod-legacy
 USE_GCC=12	
 USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 USE_GNOME=	libxml2
+CXXFLAGS+=	-std=c++14
 
 CPE_VENDOR=	oracle
 CPE_PRODUCT=	vm_virtualbox
@@ -309,6 +310,8 @@ post-patch:
 	@${REINPLACE_CMD} \
 	    -e 's|^versions =.*|versions = ["${PYTHON_VER}${PYTHON_ABIVER}"]|' \
 	    ${WRKSRC}/src/libs/xpcom18a4/python/gen_python_deps.py
+	@${REINPLACE_CMD} -e 's|curl_proxytype|long|g' \
+	    ${WRKSRC}/src/VBox/Runtime/generic/http-curl.cpp
 
 do-build:
 	cd ${WRKSRC} && ${SH} -c '. ${WRKSRC}/env.sh && \
