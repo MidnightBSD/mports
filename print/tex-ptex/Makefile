@@ -62,4 +62,8 @@ post-install:
 	${FIND} -s ${PREFIX}/share -type d -empty | ${SORT} -r | \
 		${SED} -e 's#^${PREFIX}/#@dir #' >> ${TMPPLIST}
 
+post-fake:
+	@${FIND} ${FAKE_DESTDIR}${PREFIX}/${TEXMFVARDIR} -type f -name '*.log' -delete
+	@${REINPLACE_CMD} -i '' -e '/share\/texmf-var\/web2c\/.*\.log/d' ${TMPPLIST}
+
 .include <bsd.port.mk>

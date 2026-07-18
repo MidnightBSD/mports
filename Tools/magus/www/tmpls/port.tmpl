@@ -1,7 +1,7 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<div class="row-fluid">
-  <div class="col-md-offset-1 col-md-6">
+<div class="row">
+  <div class="col-md-6 offset-md-1">
   <section>
     <h2><TMPL_VAR name="port"></h2>
     <p class="lead"><TMPL_VAR NAME="desc"></p>
@@ -46,7 +46,7 @@
 
     <p>License Permissions:  <TMPL_LOOP NAME="perms">
                             	<TMPL_VAR NAME="perm">
-                               </TMPL_LOOP>
+                               </TMPL_LOOP></p>
   </section>
 
 <section>
@@ -89,12 +89,11 @@
       <pre class="log"><TMPL_VAR NAME="data"></pre>
       </TMPL_LOOP>
       </TMPL_IF>
-    </section>
+  </section>
 </div>
 
-
+<div class="col-md-3 offset-md-1">
 <section>
-<div class="col-md-3 col-md-offset-1">
 <h3>Links</h3>
 <ul class="depends">
 <li><a href="https://github.com/midnightbsd/mports/tree/master/<TMPL_VAR NAME=port>/" target="_blank">GitHub</a></li>
@@ -149,12 +148,16 @@
     <label for="llm_model">Model:</label>
     <select id="llm_model" class="form-control" style="width: auto; display: inline-block;">
         <option value="gpt-oss:20b">gpt-oss:20b</option>
+        <option value="gpt-oss-safeguard:20b">gpt-oss-safeguard:20b</option>
+        <option value="qwen3.6:latest">qwen3.6:latest</option>
         <option value="qwen2.5-coder:14b">qwen2.5-coder:14b</option>
+        <option value="qwen2.5-coder:7b">qwen2.5-coder:7b</option>
         <option value="phi4">phi4</option>
         <option value="deepseek-coder:6.7b">deepseek-coder:6.7b</option>
         <option value="llama3.2:3b">llama3.2:3b</option>
         <option value="gemma4:latest">gemma4:latest</option>
         <option value="mistral-nemo:latest">mistral-nemo:latest</option>
+        <option value="mistral-small:latest">mistral-small:latest</option>
         <option value="codestral:latest">codestral:latest</option>
         <option value="mistral:7b">mistral:7b</option>
         <option value="gemma3:latest">gemma3:latest</option>
@@ -162,7 +165,7 @@
         <option value="mistral-medium-latest">mistral-medium-latest</option>
         <option value="mistral-large-latest">mistral-large-latest</option>
     </select>
-    <button class="btn btn-info" onclick="javascript:llmcheck()">Analyze</button>
+    <button id="llm_button" class="btn btn-info" onclick="javascript:llmcheck()">Analyze</button>
 </div>
 <div id="llmlog" class="llmlogs">
 </div>
@@ -202,8 +205,12 @@ $(document).ready(function() {
     });
 
     window.llmcheck = function() {
+        var $button = $('#llm_button');
+        if ($button.prop('disabled')) return;
+        $button.prop('disabled', true);
+
         var port = $('h2').text();
-        var logdata = $('pre.log').text().slice(-500);
+        var logdata = $('pre.log').text().slice(-750);
         var logmsg = "Analyze the MidnightBSD package build error for " + port + " and suggest a fix:\n\n" + logdata;
         var llmAPI = '/magus/auth/llm.cgi';
         var selectedModel = $('#llm_model').val();
@@ -211,39 +218,41 @@ $(document).ready(function() {
         $('#llmlog').html('<p>Analyzing build log with ' + selectedModel + '...</p>');
 
         $.ajax({
-        url: llmAPI,
-        method: 'POST',
-        timeout: 300000,
-        data: { content: logmsg, model: selectedModel },
-        dataType: 'json',
-	xhrFields: {
-       	 withCredentials: true
-	},
-        success: function(data) {
-            var $llm = $('#llmlog');
-            $llm.empty();
+            url: llmAPI,
+            method: 'POST',
+            timeout: 300000,
+            data: { content: logmsg, model: selectedModel },
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(data) {
+                var $llm = $('#llmlog');
+                $llm.empty();
 
-            if (data.error) {
-                $llm.append('<p>Error: ' + data.error + '</p>');
-            } else if (data.length === 0) {
-                $llm.append('<p>No LLM analysis.</p>');
-            } else {
-                $.each(data, function(index, llmresp) {
-                    $llm.append(marked.parse(llmresp));
-                });
+                if (data.error) {
+                    $llm.append('<p>Error: ' + data.error + '</p>');
+                } else if (data.length === 0) {
+                    $llm.append('<p>No LLM analysis.</p>');
+                } else {
+                    $.each(data, function(index, llmresp) {
+                        $llm.append(marked.parse(llmresp));
+                    });
+                }
+            },
+            error: function() {
+                $('#llmlog').html('<p>Error loading LLM analysis.</p>');
+            },
+            complete: function() {
+                $button.prop('disabled', false);
             }
-        },
-        error: function() {
-            $('#llmlog').html('<p>Error loading LLM analysis.</p>');
-        }
         });
     }
 });
 </script>
 
-</div>
 </section>
-
+</div>
 </div>
 
 <TMPL_INCLUDE NAME="footer.tmpl">

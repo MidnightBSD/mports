@@ -322,8 +322,15 @@ sub reset {
     $log->delete;
   }
 
-  $self->phase_logs->delete_all if $self->phase_logs;
+  if ($self->phase_logs) {
+    foreach my $log ($self->phase_logs) {
+      next if $log->phase eq 'fetch' && $self->phase_status('fetch') eq 'pass';
+      $log->delete;
+    }
+  }
+
   foreach my $phase_result ($self->phase_results) {
+    next if $phase_result->phase eq 'fetch' && $phase_result->status eq 'pass';
     $phase_result->set_status('untested');
   }
 

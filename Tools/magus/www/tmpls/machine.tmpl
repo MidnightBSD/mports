@@ -1,8 +1,8 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
 <section>
-	<div class="row-fluid">
-		<div class="col-md-10 col-md-offset-1">
+	<div class="row">
+		<div class="col-md-10 offset-md-1">
 			<h2>
 				Machine <TMPL_VAR name="name">
 			</h2>
@@ -42,7 +42,7 @@
 							<a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run">
 						</td>
 						<td>
-							<select id="run-selector">
+							<select id="run-selector" class="form-select w-auto d-inline-block">
 								<option value="">Show Events</option>
 								<TMPL_LOOP NAME="runs">
 									<option value="<TMPL_VAR NAME="run">">

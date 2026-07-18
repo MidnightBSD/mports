@@ -1,7 +1,7 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<div class="row-fluid">
-     <div class="col-md-10 col-md-offset-1">
+<div class="row">
+     <div class="col-md-10 offset-md-1">
        <h2>Run <TMPL_VAR NAME="run_id1"> vs Run <TMPL_VAR NAME="run_id2"></h2>
 
  <table class="table table-striped table-bordered">
@@ -25,9 +25,9 @@
         <td class="<TMPL_VAR NAME=status2>"><TMPL_VAR NAME="status2"></td>
         <td>
               <TMPL_IF NAME="critical">
-                    <span class="label label-success">Critical</span>
+                    <span class="badge bg-success">Critical</span>
               <TMPL_ELSE>
-                   <span class="label label-primary">Normal</span>
+                   <span class="badge bg-primary">Normal</span>
               </TMPL_IF>
         </td>
     </tr>

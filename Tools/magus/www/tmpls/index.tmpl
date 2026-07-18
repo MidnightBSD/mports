@@ -2,17 +2,15 @@
 
 <div class="row">
 
-<section>
-<div class="col-md-6 col-md-offset-1">
-  <div class="jumbotron">
-    <div class="media">
-      <span class="media-left" style="padding:10px">
+<section class="col-md-6 offset-md-1">
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="d-flex align-items-center">
+      <div class="flex-shrink-0" style="padding:10px">
         <img src="/art/logo/MidnightBSDLogo64x64.png" width="64" height="64">
-      </span>
-      <div class="media-body">
-        <p class="lead">Magus, the MidnightBSD package cluster, is responsible for building software packages.</p>
-	<p>You can view current or past runs, or search for specific ports
-	to see if they are available.
+      </div>
+      <div class="flex-grow-1 ms-3">
+        <p class="lead mb-0">Magus, the MidnightBSD package cluster, is responsible for building software packages.</p>
+	<p class="mt-2 mb-0">You can view current or past runs, or search for specific ports to see if they are available.</p>
       </div>
     </div>
   </div>
@@ -41,22 +39,18 @@
                 <td><TMPL_VAR NAME=arch></td>
 		<td>
               <TMPL_IF NAME="critical">
-                    <span class="label label-success">Critical</span>
+                    <span class="badge bg-success">Critical</span>
               <TMPL_ELSE>
-                   <span class="label label-primary">Normal</span>
+                   <span class="badge bg-primary">Normal</span>
               </TMPL_IF>
 		</td>
-        </td>
-
         </tr>
         </TMPL_LOOP>
         </tbody>
 </table>
-</div>
 </section>
 
-<section>
-<div class="col-md-3 col-md-offset-1">
+<section class="col-md-3 offset-md-1">
 
 <img src="/images/magus2.png" width=300 height=202>
 
@@ -131,27 +125,20 @@
 <h3>Compare Runs</h3>
 <form class="form" id="compareruns" action="<TMPL_VAR NAME=root>/compare/" method="get">
 	<fieldset>
-	<div class="form-group">
+	<div class="mb-3">
 	<label for="run1">Run 1 ID</label>
         <input class="form-control" placeholder="Run ID 1" type="number" name="run1" value="">
 	</div>
 
-	<div class="form-group">
+	<div class="mb-3">
 	<label for="run2">Run 2 ID</label>
         <input class="form-control" placeholder="Run ID 2" type="number" name="run2" value="">
 	</div>
-        <input class="btn btn-default" type="submit" value="Compare">
+        <input class="btn btn-secondary" type="submit" value="Compare">
 	</fieldset>
 </form>
 
-<h3>Repology Stats</h3>
-<p>
-<a href="https://repology.org/repository/mports">
-    <img src="https://repology.org/badge/repository-big/mports.svg" alt="Repository status">
-</a>
-</p>
 
-</div>
 </section>
 
 </div>
