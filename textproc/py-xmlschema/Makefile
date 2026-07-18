@@ -3,6 +3,8 @@ DISTVERSION=	3.3.1
 PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
+# Upstream archive contains files with UTF-8 names
+EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
