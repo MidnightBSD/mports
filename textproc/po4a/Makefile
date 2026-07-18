@@ -22,7 +22,7 @@ RUN_DEPENDS=	p5-Term-ReadKey>=2.30:devel/p5-Term-ReadKey \
 		p5-Syntax-Keyword-Try>=0:devel/p5-Syntax-Keyword-Try \
 		xsltproc:textproc/libxslt \
 		docbook-xsl>0:textproc/docbook-xsl \
-		OpenSP>0:textproc/opensp \
+		opensp>0:textproc/opensp \
 		msgmerge:devel/gettext-tools
 TEST_DEPENDS=	p5-Test-Pod>=0:devel/p5-Test-Pod
 
