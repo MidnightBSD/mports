@@ -88,7 +88,8 @@ do-configure:
 		"! ( -name \.* -or -path *\/test\/* -or -name test )")
 	(cd ${_RE2DIR} && \
 		${SETENV} HOME=${WRKDIR} \
-		${LOCALBASE}/lib/node_modules/npm/node_modules/.bin/node-gyp configure \
+		${LOCALBASE}/bin/node \
+		${LOCALBASE}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js configure \
 		--python=${PYTHON_CMD} \
 		--nodedir=${LOCALBASE} \
 		--devdir=${_DEVDIR})
@@ -96,7 +97,8 @@ do-configure:
 do-build:
 	(cd ${_RE2DIR} && \
 		${SETENV} HOME=${WRKDIR} \
-		${LOCALBASE}/lib/node_modules/npm/node_modules/.bin/node-gyp build \
+		${LOCALBASE}/bin/node \
+		${LOCALBASE}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build \
 		--devdir=${_DEVDIR})
 
 do-install:
