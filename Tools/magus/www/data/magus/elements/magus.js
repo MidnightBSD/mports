@@ -11,25 +11,31 @@ const state = {
 // Setup a proxy to trigger custom events on state object manipulation
 const stateProxy = new Proxy(state, {
   set: function (target, key, active) {
-    if (key === "isLoading") {
-      statusMessageEl.textContent = "Loading...";
-      if (active) {
-        console.log(key, active);
-        eventDisplayAreaEl.appendChild(statusMessageEl);
-      } else {
-        console.log(key, active);
-        eventDisplayAreaEl.removeChild(statusMessageEl);
+    if (eventDisplayAreaEl) {
+      if (key === "isLoading") {
+        statusMessageEl.textContent = "Loading...";
+        if (active) {
+          console.log(key, active);
+          eventDisplayAreaEl.appendChild(statusMessageEl);
+        } else {
+          console.log(key, active);
+          if (eventDisplayAreaEl.contains(statusMessageEl)) {
+            eventDisplayAreaEl.removeChild(statusMessageEl);
+          }
+        }
       }
-    }
 
-    if (key === "hasError") {
-      statusMessageEl.textContent = "Error!";
-      if (active) {
-        console.log(key, active);
-        eventDisplayAreaEl.appendChild(statusMessageEl);
-      } else {
-        console.log(key, active);
-        eventDisplayAreaEl.removeChild(statusMessageEl);
+      if (key === "hasError") {
+        statusMessageEl.textContent = "Error!";
+        if (active) {
+          console.log(key, active);
+          eventDisplayAreaEl.appendChild(statusMessageEl);
+        } else {
+          console.log(key, active);
+          if (eventDisplayAreaEl.contains(statusMessageEl)) {
+            eventDisplayAreaEl.removeChild(statusMessageEl);
+          }
+        }
       }
     }
     console.log(`${key} set from ${stateProxy[key]} to ${active}`);
@@ -111,14 +117,16 @@ async function serializeEvents(data) {
 
   // Finally append our in-memory elements to the DOM
   // (replace existing table so we don't get a huge list of appended tables)
-  const existingDisplayTableEl = eventDisplayAreaEl.querySelector("table");
-  if (
-    typeof existingDisplayTableEl === "undefined" ||
-    existingDisplayTableEl === null
-  ) {
-    eventDisplayAreaEl.appendChild(eventTableEl);
-  } else {
-    existingDisplayTableEl.replaceWith(eventTableEl);
+  if (eventDisplayAreaEl) {
+    const existingDisplayTableEl = eventDisplayAreaEl.querySelector("table");
+    if (
+      typeof existingDisplayTableEl === "undefined" ||
+      existingDisplayTableEl === null
+    ) {
+      eventDisplayAreaEl.appendChild(eventTableEl);
+    } else {
+      existingDisplayTableEl.replaceWith(eventTableEl);
+    }
   }
 
   stateProxy.isLoading = false;
