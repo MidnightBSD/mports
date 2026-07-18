@@ -1,8 +1,7 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
 <div class="row">
-  <div class="col-md-6 offset-md-1">
-  <section>
+  <section class="col-md-6 offset-md-1">
     <h2><TMPL_VAR name="port"></h2>
     <p class="lead"><TMPL_VAR NAME="desc"></p>
 
@@ -89,12 +88,10 @@
       <pre class="log"><TMPL_VAR NAME="data"></pre>
       </TMPL_LOOP>
       </TMPL_IF>
-    </section>
-</div>
+  </section>
 
 
-<section>
-<div class="col-md-3 offset-md-1">
+<section class="col-md-3 offset-md-1">
 <h3>Links</h3>
 <ul class="depends">
 <li><a href="https://github.com/midnightbsd/mports/tree/master/<TMPL_VAR NAME=port>/" target="_blank">GitHub</a></li>
@@ -241,7 +238,6 @@ $(document).ready(function() {
 });
 </script>
 
-</div>
 </section>
 
 </div>
