@@ -313,6 +313,10 @@ strip-files:
 	(cd ${PREFIX}/bin; ${STRIP_CMD} ${BIN_FILES})
 	(cd ${PREFIX}/lib; ${STRIP_CMD} ${LIB_FILES})
 	(cd ${PREFIX}/sbin; ${STRIP_CMD} ${SBIN_FILES})
+.if ${PORT_OPTIONS:MPERL}
+	(cd ${PREFIX}/lib/perl5/site_perl/mach/${PERL_VER} && \
+		${FIND} . -type f -name '*.so' -exec ${STRIP_CMD} {} +)
+.endif
 
 install-config-files:
 	${INSTALL_DATA} ${WRKSRC}/EXAMPLE.conf ${DATADIR}/snmpd.conf.example
