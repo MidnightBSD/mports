@@ -4,6 +4,8 @@ PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/pylint-dev/pylint/releases/download/v${PORTVERSION}/
+# Upstream archive contains files with UTF-8 names
+EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
