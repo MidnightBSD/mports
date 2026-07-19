@@ -10,7 +10,6 @@ COMMENT=	GLib based implimentation of the GData protocol
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	uhttpmock>0:net/uhttpmock
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libjson-glib-1.0.so:devel/json-glib \
 		libp11-kit.so:security/p11-kit \
