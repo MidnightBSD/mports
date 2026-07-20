@@ -1,7 +1,10 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<h1><TMPL_VAR name="port"></h1>
-
-<pre><TMPL_VAR name="log"></pre>
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <h2><TMPL_VAR name="port"></h2>
+    <pre class="log"><TMPL_VAR name="log"></pre>
+  </div>
+</div>
 
 <TMPL_INCLUDE NAME="footer.tmpl">
