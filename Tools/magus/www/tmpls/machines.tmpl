@@ -15,7 +15,7 @@
 	<th>OS</th>
 </tr>
 </thead>
-
+<tbody>
 <TMPL_LOOP NAME="machines">
 <tr>
 	<td><a href="/magus/machines/<TMPL_VAR NAME="id">"><TMPL_VAR NAME="id"></a></td>
@@ -25,6 +25,7 @@
 	<td><TMPL_VAR NAME="osversion"></td>
 </tr>
 </TMPL_LOOP>
+</tbody>
 </table>
     </div>
   </div>
