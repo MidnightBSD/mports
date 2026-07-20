@@ -9,6 +9,44 @@ use lib qw(/home/mbsd/magus/mports/Tools/lib);
 
 use Magus;
 use CGI::Fast;
+
+#
+# Global HTTP Header Middleware Wrapper
+# Inject security headers, cache-control, and API CORS headers into all CGI responses.
+#
+{
+    no warnings 'redefine';
+    my $orig_header = \&CGI::header;
+    *CGI::header = sub {
+        my ($self, @args) = @_;
+        
+        my %headers;
+        if (@args == 1 && ref($args[0]) eq 'HASH') {
+            %headers = %{$args[0]};
+        } elsif (@args % 2 == 0) {
+            %headers = @args;
+        } else {
+            $headers{'-type'} = $args[0] if @args;
+        }
+        
+        # Add Security Headers
+        $headers{'-X-Content-Type-Options'} //= 'nosniff';
+        $headers{'-X-Frame-Options'}        //= 'SAMEORIGIN';
+        $headers{'-X-XSS-Protection'}       //= '1; mode=block';
+        
+        # Add Cache-Control for dynamic pages
+        $headers{'-Cache-Control'}          //= 'no-cache, no-store, must-revalidate';
+        $headers{'-Pragma'}                 //= 'no-cache';
+        $headers{'-Expires'}                //= '0';
+        
+        # Enable CORS for public API endpoints
+        if (($ENV{PATH_INFO} && $ENV{PATH_INFO} =~ m:^/api/:) || ($ENV{REQUEST_URI} && $ENV{REQUEST_URI} =~ m:/api/:)) {
+            $headers{'-Access-Control-Allow-Origin'} //= '*';
+        }
+        
+        return $self->$orig_header(\%headers);
+    };
+}
 use Scalar::Util 'looks_like_number';
 use String::Clean::XSS;
 use HTML::Template;
