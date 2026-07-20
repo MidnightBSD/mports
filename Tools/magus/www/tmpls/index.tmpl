@@ -6,7 +6,7 @@
   <div class="p-5 mb-4 bg-light rounded-3">
     <div class="d-flex align-items-center">
       <div class="flex-shrink-0" style="padding:10px">
-        <img src="/art/logo/MidnightBSDLogo64x64.png" width="64" height="64">
+        <img src="/art/logo/MidnightBSDLogo64x64.png" width="64" height="64" alt="">
       </div>
       <div class="flex-grow-1 ms-3">
         <p class="lead mb-0">Magus, the MidnightBSD package cluster, is responsible for building software packages.</p>
@@ -52,7 +52,7 @@
 
 <section class="col-md-3 offset-md-1">
 
-<img src="/images/magus2.png" width=300 height=202>
+<img src="/images/magus2.png" width=300 height=202 alt="Magus package building diagram">
 
 <TMPL_IF NAME="locks">
 <h3>Currently Building</h3>
@@ -71,7 +71,7 @@
 <tbody>
 <TMPL_LOOP NAME="locks">
 <tr>
-	<td>(<a onclick="return confirm_reset()" href="/magus/auth/delete_lock.cgi?id=<TMPL_VAR NAME=id>">X</a>)
+	<td>(<a onclick="return confirm_reset()" href="/magus/auth/delete_lock.cgi?id=<TMPL_VAR NAME=id>" aria-label="Delete build lock for <TMPL_VAR NAME=port>">X</a>)
 	     <a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
 	<td><TMPL_VAR NAME="phase"></td>
 	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
