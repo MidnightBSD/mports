@@ -584,6 +584,7 @@
     SUBDIR += scim-openvanilla
     SUBDIR += scim-table-imengine
     SUBDIR += scr2txt
+    SUBDIR += scws
     SUBDIR += sdocbook-xml
     SUBDIR += sentencepiece
     SUBDIR += sgmlformat
