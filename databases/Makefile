@@ -170,6 +170,7 @@
     SUBDIR += postgresql-tds_fdw
     SUBDIR += postgresql-wal2json
     SUBDIR += postgresql-zhparser
+    SUBDIR += timescaledb
     SUBDIR += postgresql15-client
     SUBDIR += postgresql15-contrib
     SUBDIR += postgresql15-docs
