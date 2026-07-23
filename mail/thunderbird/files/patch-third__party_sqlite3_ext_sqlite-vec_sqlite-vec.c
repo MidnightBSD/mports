@@ -5,11 +5,11 @@ index 96612e26d385..c43c46136bef 100644
 @@ -11,6 +11,10 @@
  #include <stdlib.h>
  #include <string.h>
- 
+
 +#ifdef __FreeBSD__
 +#include <sys/types.h>
 +#endif
 +
- #ifndef SQLITE_VEC_OMIT_FS
+ #ifdef SQLITE_VEC_DEBUG
  #include <stdio.h>
  #endif

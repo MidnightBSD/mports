@@ -1,6 +1,6 @@
 PORTNAME=	thunderbird
-DISTVERSION=	152.0.1
-PORTREVISION=	1
+DISTVERSION=	153.0
+PORTREVISION=	0
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
@@ -15,7 +15,7 @@ LICENSE=	MPL20
 CONFLICTS_INSTALL=	thunderbird-esr
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.124:security/nss \
+		nss>=3.125:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
@@ -105,6 +105,7 @@ HAS_CONFIGURE=	yes
 CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include" CBINDGEN=${LOCALBASE}/bin/cbindgen
 CONFIGURE_OUTSOURCE=	yes
 LDFLAGS+=	-Wl,--as-needed -Wl,--undefined-version -L/usr/local/lib
+CXXFLAGS+=	-D__XSI_VISIBLE
 BINARY_ALIAS+=	python3=${PYTHON_CMD}
 MAKE_ENV+=	__FreeBSD__=13 __FreeBSD__version=1303501
 

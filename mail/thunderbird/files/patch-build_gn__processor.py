@@ -7,7 +7,7 @@ diff --git build/gn_processor.py build/gn_processor.py
 index 36cc6bdfe492..ed0fb2b7aa45 100644
 --- build/gn_processor.py
 +++ build/gn_processor.py
-@@ -186,6 +186,7 @@ def filter_gn_config(path, gn_result, sandbox_vars, input_vars, gn_target):
+@@ -215,6 +215,7 @@
      }
      oses = {
          "android": "Android",
@@ -15,8 +15,8 @@ index 36cc6bdfe492..ed0fb2b7aa45 100644
          "linux": "Linux",
          "mac": "Darwin",
          "openbsd": "OpenBSD",
-@@ -801,17 +802,17 @@ def main():
- 
+@@ -1035,17 +1036,17 @@
+
      vars_set = []
      for is_debug in (True, False):
 -        for target_os in ("android", "linux", "mac", "openbsd", "win"):
@@ -28,9 +28,10 @@ index 36cc6bdfe492..ed0fb2b7aa45 100644
              if target_os in ("android", "linux"):
                  target_cpus.append("arm")
 -            if target_os in ("android", "linux", "win"):
-+            if target_os in ("android", "freebsd", "linux", "win"):
-                 target_cpus.append("x86")
+-                target_cpus.append("x86")
 -            if target_os in ("linux", "openbsd"):
++            if target_os in ("android", "freebsd", "linux", "win"):
++                target_cpus.append("x86")
 +            if target_os in ("freebsd", "linux", "openbsd"):
                  target_cpus.append("riscv64")
 -            if target_os == "linux":
@@ -38,10 +39,10 @@ index 36cc6bdfe492..ed0fb2b7aa45 100644
                  target_cpus.extend(["loong64", "ppc64", "mipsel", "mips64el"])
              for target_cpu in target_cpus:
                  vars = {
-@@ -820,7 +821,7 @@ def main():
-                     "target_cpu": target_cpu,
-                     "target_os": target_os,
-                 }
+@@ -1059,7 +1060,7 @@
+                 vars.update(config_args.get("*", {}))
+                 vars.update(config_args.get(target_os, {}))
+
 -                if target_os == "linux":
 +                if target_os in ("freebsd", "linux"):
                      for enable_x11 in (True, False):
