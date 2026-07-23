@@ -1386,6 +1386,7 @@
     SUBDIR += py-click-help-colors
     SUBDIR += py-click-plugins
     SUBDIR += py-cloudpickle
+    SUBDIR += py-coherent.licensed
     SUBDIR += py-condense-json
     SUBDIR += py-cligj
     SUBDIR += py-cmdtest
