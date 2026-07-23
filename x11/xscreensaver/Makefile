@@ -1,5 +1,5 @@
 PORTNAME=	xscreensaver
-DISTVERSION=	6.13
+DISTVERSION=	6.15
 CATEGORIES=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 
@@ -11,10 +11,12 @@ LICENSE=	mit
 
 EXTRACT_DEPENDS=	gtar:archivers/gtar
 LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
+			libavformat.so:multimedia/ffmpeg \
 			libfreetype.so:print/freetype2 \
 			libgle.so:graphics/gle \
 			libharfbuzz.so:print/harfbuzz
 RUN_DEPENDS=		giftopnm:graphics/netpbm \
+			bash:shells/bash \
 			p5-libwww>0:www/p5-libwww \
 			p5-LWP-Protocol-https>0:www/p5-LWP-Protocol-https \
 			unix-selfauth-helper>0:security/unix-selfauth-helper
@@ -26,7 +28,7 @@ USE_GL=		gl glu
 USE_GNOME=	cairo gdkpixbuf gtk30 intltool libxml2
 USE_XORG=	ice sm x11 xext xft xi xinerama xmu xrandr xrender xt xxf86vm
 
-SHEBANG_FILES=	hacks/check-configs.pl
+SHEBANG_FILES=	hacks/check-configs.pl hacks/glx/*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-locking \
@@ -42,8 +44,6 @@ CONFIGURE_ARGS=	--enable-locking \
 		--with-pixbuf \
 		--with-randr-ext \
 		--with-xdbe-ext \
-		--with-xf86gamma-ext \
-		--with-xf86vmode-ext \
 		--with-xft \
 		--with-xinerama-ext \
 		--with-xshm-ext \
@@ -91,6 +91,11 @@ post-patch:
 	${REINPLACE_CMD} -e "s|/etc/pam.d|${PREFIX}/etc/pam.d|g" \
 		${WRKSRC}/driver/passwd-pam.c \
 		${WRKSRC}/driver/xscreensaver.man
+
+post-build:
+	@for f in `${FIND} ${WRKSRC}/hacks/glx -type f -exec ${GREP} -l '^#!/bin/bash$$' {} +`; do \
+		${REINPLACE_CMD} -e '1s|^#!/bin/bash$$|#!${LOCALBASE}/bin/bash|' $$f; \
+	done
 
 post-patch-NSFW-off:
 	${REINPLACE_CMD} -e 's|Dick Pix|Cat Pix|; s|dick pics|cat pics|' \
