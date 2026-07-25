@@ -17,8 +17,8 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}einops>=0.8.0:misc/py-einops@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}lion-pytorch>=0.2.3:misc/py-lion-pytorch@${PY_FLAVOR} \
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}einops>=0.8.0:ai/py-einops@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lion-pytorch>=0.2.3:ai/py-lion-pytorch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.11.4:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}transformers>=4.30.1<5:ai/py-transformers@${PY_FLAVOR}
 
