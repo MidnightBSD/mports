@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Wrapper script for the OpenCode CLI.  Disabling Bun's BBQ JIT is required
+# because JavaScriptCore's BBQ JIT is not supported under MidnightBSD Linux
+# emulation.
+#
+BUN_JSC_useBBQJIT=0
+export BUN_JSC_useBBQJIT
+exec %%PREFIX%%/lib/linux-opencode/opencode "$@"

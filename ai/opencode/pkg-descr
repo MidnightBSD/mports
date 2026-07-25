@@ -1,0 +1,6 @@
+OpenCode is an AI coding agent that runs in the terminal.  It can work with
+multiple AI providers to help inspect codebases, edit files, and run commands.
+
+This port installs the official Linux x86_64 baseline binary through
+MidnightBSD's Rocky Linux 9 emulation layer.  The wrapper disables Bun's BBQ
+JIT, which is not supported by MidnightBSD Linux emulation.
