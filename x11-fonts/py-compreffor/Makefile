@@ -12,7 +12,7 @@ WWW=		https://github.com/googlefonts/compreffor
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython>=0.29.30:devel/py-cython@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython>=0.29.30:lang/cython@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools_git_ls_files>=0:devel/py-setuptools_git_ls_files@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=4:print/py-fonttools@${PY_FLAVOR}
