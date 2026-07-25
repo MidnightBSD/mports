@@ -14,7 +14,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	valkey-io
 
 MAKE_ARGS=	DEBUG_FLAGS= \
-		OPTIMIZATION=
+		OPTIMIZATION= \
+		PREFIX=${TRUE_PREFIX}
 
 ALL_TARGET=	dynamic
 
@@ -26,9 +27,10 @@ TLS_USES=	ssl
 TLS_MAKE_ARGS=	USE_TLS=1
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libvalkey.so.${DISTVERSION}
+	${STRIP_CMD} ${PREFIX}/lib/libvalkey.so.${DISTVERSION}
 
-post-install-TLS-on:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libvalkey_tls.so.${DISTVERSION}
+	@if [ -e ${PREFIX}/lib/libvalkey_tls.so.${DISTVERSION} ]; then \
+		${STRIP_CMD} ${PREFIX}/lib/libvalkey_tls.so.${DISTVERSION}; \
+	fi
 
 .include <bsd.port.mk>
