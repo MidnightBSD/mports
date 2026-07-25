@@ -1,6 +1,6 @@
 PORTNAME=	github-copilot-cli
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.72
+DISTVERSION=	1.0.75
 CATEGORIES=	ai linux
 MASTER_SITES=	https://github.com/github/copilot-cli/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 DISTFILES=	copilot-linux-x64.tar.gz
