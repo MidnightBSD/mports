@@ -9,6 +9,10 @@ WWW=		https://github.com/FrauBSD/colormeter
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
+
 USES=		localbase pkgconfig xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	FrauBSD
@@ -18,6 +22,6 @@ PLIST_FILES=	bin/colormeter \
 		share/man/man1/colormeter.1.gz
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/colormeter
+	${STRIP_CMD} ${PREFIX}/bin/colormeter
 
 .include <bsd.port.mk>
