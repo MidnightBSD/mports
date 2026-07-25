@@ -30,7 +30,7 @@ post-extract:
 		gengo.tbl hist??.tbl history.tbl holiday.tbl magazine.tbl \
 		monthly.tbl schedule.tbl suffix.tbl week.tbl; \
 	do \
-		nkf -Se $$i | ${TR} -d '\015' > $$i.tmp ;\
+		nkf -Se $$i | LC_ALL=C ${TR} -d '\015' > $$i.tmp ;\
 		${MV} -f $$i.tmp $$i ; \
 	done)
 
