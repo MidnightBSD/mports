@@ -7,6 +7,7 @@
     SUBDIR += codex
     SUBDIR += gemini-cli
     SUBDIR += github-copilot-cli
+    SUBDIR += github-copilot-cli-legacy
     SUBDIR += grok-cli
     SUBDIR += lean-ctx
     SUBDIR += llama-cpp
