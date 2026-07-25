@@ -14,7 +14,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	FrauBSD
 USE_XORG=	x11 xft
 
-PLIST_FILES=	bin/colormeter
+PLIST_FILES=	bin/colormeter \
+		share/man/man1/colormeter.1.gz
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/colormeter
