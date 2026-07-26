@@ -21,6 +21,7 @@
     SUBDIR += py-datasets
     SUBDIR += py-diffusers
     SUBDIR += py-einops
+    SUBDIR += py-evaluate
     SUBDIR += py-google-genai
     SUBDIR += py-groq
     SUBDIR += py-headroom-ai

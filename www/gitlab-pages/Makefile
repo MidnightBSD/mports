@@ -29,16 +29,16 @@ post-patch:
 	${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|" ${WRKSRC}/gitlab-pages.conf.sample
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${MKDIR} ${STAGEDIR}${DATADIR}/bin
-	(cd ${WRKDIR}/bin/ && ${COPYTREE_BIN} .  ${STAGEDIR}${DATADIR}/bin)
+	@${MKDIR} ${DATADIR}
+	${MKDIR} ${DATADIR}/bin
+	(cd ${WRKDIR}/bin/ && ${COPYTREE_BIN} .  ${DATADIR}/bin)
 .for x in gitlab-pages.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/${x} ${STAGEDIR}${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/${x} ${DATADIR}/
 .endfor
 
 post-install:
-	${FIND} -s ${STAGEDIR}${DATADIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
+	${FIND} -s ${DATADIR} -not -type d | ${SORT} | \
+		${SED} -e 's#^${PREFIX}/##' | \
 		${SED} -E -e '/sample$$/ s#^#@sample #; \
 		s#${DATADIR_REL}/bin#@(,,555) ${DATADIR_REL}/bin#; ' >> ${TMPPLIST}
 	cat ${TMPPLIST}
