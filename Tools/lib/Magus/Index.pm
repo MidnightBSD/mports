@@ -72,6 +72,8 @@ sub sync {
   }
   
   $root ||= "$Magus::Config{MasterDataDir}/$Magus::Config{MportsVcsDir}";
+
+  $class->sync_default_versions($root, $run, $arch, $osrel, $osversion);
   
   local $| = 1;
   
@@ -287,6 +289,54 @@ sub sync {
   moved_list($run, $root);
   
   print "done.\n";
+}
+
+sub sync_default_versions {
+  my ($class, $root, $run, $arch, $osrel, $osversion) = @_;
+  my @defaults = (
+    [ python => 'PYTHON_DEFAULT' ],
+    [ perl5  => 'PERL5_DEFAULT' ],
+    [ ruby   => 'RUBY_DEFAULT' ],
+    [ php    => 'PHP_DEFAULT' ],
+  );
+  my $makefile = "$root/Mk/components/default-versions.mk";
+
+  die "Default versions makefile $makefile does not exist\n" unless -f $makefile;
+
+  local %ENV = %ENV;
+  $ENV{__MAKE_CONF} = '/dev/null';
+  $ENV{SSL_DEFAULT} = 'base';
+  $ENV{INDEXING} = 1;
+  $ENV{ARCH} = $arch;
+  $ENV{OSREL} = $osrel;
+  $ENV{OSVERSION} = $osversion;
+  $ENV{PORTSDIR} = $root;
+  $ENV{BATCH} = 1;
+  $ENV{PACKAGE_BUILDING} = 1;
+  $ENV{MAGUS} = 1;
+
+  my @args = ('make', '-f', $makefile);
+  push @args, map { ('-V', $_->[1]) } @defaults;
+
+  open(my $make, '-|', @args) ||
+    die "Unable to evaluate default versions: $!\n";
+  my @values = <$make>;
+  close($make) ||
+    die "Unable to evaluate default versions from $makefile\n";
+
+  die "Expected " . scalar(@defaults) . " default versions, got " . scalar(@values) . "\n"
+    unless @values == @defaults;
+
+  for my $i (0 .. $#defaults) {
+    chomp $values[$i];
+    die "$defaults[$i]->[1] is empty\n" unless length $values[$i];
+
+    Magus::DefaultVersion->insert({
+      run     => $run,
+      name    => $defaults[$i]->[0],
+      version => $values[$i],
+    });
+  }
 }
 
 sub moved_list {
