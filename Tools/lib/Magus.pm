@@ -20,6 +20,7 @@ use Magus::PortTest ();
 use Magus::Chroot ();
 use Magus::Index ();
 use Magus::Run ();
+use Magus::DefaultVersion ();
 use Magus::Log ();
 use Magus::PhaseLog ();
 use Magus::PhaseResult ();

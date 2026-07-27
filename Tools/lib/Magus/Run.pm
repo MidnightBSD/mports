@@ -38,6 +38,7 @@ __PACKAGE__->table('runs');
 __PACKAGE__->columns(Essential => qw/id osversion arch status created blessed/);
 
 __PACKAGE__->has_many(ports => 'Magus::Port');
+__PACKAGE__->has_many(default_versions => 'Magus::DefaultVersion');
 
 =head2 Magus::Run->latest($machine)
 
