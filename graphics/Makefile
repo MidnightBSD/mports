@@ -435,6 +435,7 @@
     SUBDIR += silgraphite
     SUBDIR += simage
     SUBDIR += skanlite
+    SUBDIR += spirv-headers
     SUBDIR += spirv-tools
     SUBDIR += svgalib
     SUBDIR += svgpp
