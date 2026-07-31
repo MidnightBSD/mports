@@ -1,5 +1,5 @@
 PORTNAME=	libffi
-DISTVERSION=	3.5.1
+DISTVERSION=	3.7.1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -9,8 +9,6 @@ WWW=		https://sourceware.org/libffi/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-TEST_DEPENDS=	runtest:misc/dejagnu
 
 USES=		compiler:c11 cpe libtool pathfix
 CPE_VENDOR=	libffi_project
