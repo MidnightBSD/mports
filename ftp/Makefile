@@ -23,6 +23,8 @@
     SUBDIR += php83-ftp
     SUBDIR += php84-curl
     SUBDIR += php84-ftp
+    SUBDIR += php85-curl
+    SUBDIR += php85-ftp
     SUBDIR += proftpd
     SUBDIR += py-aioftp
     SUBDIR += py-ftputil

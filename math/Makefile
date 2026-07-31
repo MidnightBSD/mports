@@ -162,6 +162,8 @@
     SUBDIR += php83-gmp
     SUBDIR += php84-bcmath
     SUBDIR += php84-gmp
+    SUBDIR += php85-bcmath
+    SUBDIR += php85-gmp
     SUBDIR += py-affine
     SUBDIR += py-altgraph
     SUBDIR += py-bottleneck
