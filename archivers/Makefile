@@ -72,6 +72,10 @@
     SUBDIR += php83-phar
     SUBDIR += php83-zip
     SUBDIR += php83-zlib
+    SUBDIR += php84-bz2
+    SUBDIR += php84-phar
+    SUBDIR += php84-zip
+    SUBDIR += php84-zlib
     SUBDIR += pigz
     SUBDIR += py-borgbackup
     SUBDIR += py-brotli
