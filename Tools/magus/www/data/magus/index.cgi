@@ -349,7 +349,7 @@ sub run_index {
   my ($p) = @_;
   my $tmpl = template($p, 'runlist.tmpl');
 
-  my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
+  my @runs = sort { $b->id <=> $a->id } Magus::Run->retrieve_all;
 
   $tmpl->param(
     runs       => \@runs,
