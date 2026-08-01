@@ -1,7 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
-PORTREVISION=	2
+PORTREVISION=	3
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
@@ -26,11 +26,11 @@ LICENSE_FILE=	${WRKSRC}/electron/LICENSE
 BROKEN_i386=	fetch fails: node process stalls during fetch phase and eats up all CPUs
 ONLY_FOR_ARCHS=	aarch64 amd64 i386
 
+# node is needed at fetch time too: pre-fetch runs corepack to drive yarn
 FETCH_DEPENDS=	git:devel/git \
-		${NULL}
+		node:www/node${NODEJS_VERSION}
 PATCH_DEPENDS=	git:devel/git \
 		jq:textproc/jq
-# NOTE: devel/esbuild must be added to mports before electron40 can build
 BUILD_DEPENDS=	esbuild:devel/esbuild \
 		gperf:devel/gperf \
 		bindgen:devel/rust-bindgen-cli \
@@ -120,7 +120,25 @@ NODE_MODULES_TARBALL=	${DISTDIR}/${DIST_SUBDIR}/${_DISTFILE_NODE_MODULES}
 
 YARN_NPM_URL=	https://registry.npmjs.org/@yarnpkg/cli-dist/-/cli-dist-${NPM_VER}.tgz
 
-pre-fetch: electron-fetch-node-package-manager electron-fetch-node-modules electron-archive-node-modules
+# The Electron source tarball as USE_GITHUB names it. electron-fetch-node-modules
+# needs it to read package.json/yarn.lock, but pre-fetch runs before do-fetch, so
+# it has to be fetched explicitly here rather than assumed present.
+ELECTRON_SRC_TGZ=	${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.gz
+ELECTRON_SRC_URL=	https://codeload.github.com/${GH_ACCOUNT}/${GH_PROJECT}/tar.gz/${DISTVERSIONFULL}?dummy=/${DISTNAME}.tar.gz
+
+pre-fetch: electron-fetch-node-package-manager electron-fetch-source \
+	electron-fetch-node-modules electron-archive-node-modules
+
+electron-fetch-source:
+	@if [ -f ${ELECTRON_SRC_TGZ} ]; then \
+		${ECHO_MSG} "===>  Using prefetched ${DISTNAME}.tar.gz"; \
+	else \
+		${ECHO_MSG} "===>  Fetching ${DISTNAME}.tar.gz"; \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} \
+			-o ${ELECTRON_SRC_TGZ} "${ELECTRON_SRC_URL}" \
+			${FETCH_AFTER_ARGS}; \
+	fi
 
 electron-fetch-node-package-manager:
 	@if [ -f ${YARN_TGZ} ]; then \
@@ -170,7 +188,11 @@ electron-archive-node-modules:
 		exit 0; \
 	fi; \
 	${ECHO_MSG} "===>  Archiving node modules offline cache"; \
-	cd ${NPM_EXTRACT_WRKSRC} && ${TAR} -cJf ${NODE_MODULES_TARBALL} ${NPM_MODULE_CACHE}
+	cd ${NPM_EXTRACT_WRKSRC} && \
+		${FIND} ${NPM_MODULE_CACHE} -exec ${TOUCH} -h -d 1970-01-01T00:00:00Z {} + && \
+		${FIND} ${NPM_MODULE_CACHE} -print0 | LC_ALL=C ${SORT} -z | \
+		${TAR} -cJf ${NODE_MODULES_TARBALL} --format=bsdtar --gid 0 --uid 0 \
+			--no-recursion --null -T -
 
 SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper buildtools/linux64/clang-format
 
@@ -314,7 +336,7 @@ MANTLE_VER=			78d3966b3c331292ea29ec38661b25df0a245948
 # See ${WRKSRC}/electron/DEPS for ENGFLOW_RECLIENT_CONFIGS_VER
 ENGFLOW_RECLIENT_CONFIGS_VER=	955335c30a752e9ef7bff375baab5e0819b6c00d
 # Keep in sync with devel/esbuild
-ESBUILD_VER=			0.27.1
+ESBUILD_VER=			0.28.1
 
 .include "Makefile.version"
 .include <bsd.port.pre.mk>
