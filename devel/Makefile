@@ -295,6 +295,7 @@
     SUBDIR += electron28
     SUBDIR += electron39
     SUBDIR += electron40
+    SUBDIR += electron41
     SUBDIR += elfutils
     SUBDIR += epm
     SUBDIR += eric6
