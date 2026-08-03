@@ -40,10 +40,6 @@ using namespace pqxx;
 #include <sha256.h>
 
 #include <ucl.h>
-#ifdef ucl_object_find_key
-#undef ucl_object_find_key
-#endif
-extern "C" const ucl_object_t *ucl_object_find_key(const ucl_object_t *, const char *);
 
 #include "sqlite3.h"
 
@@ -275,6 +271,36 @@ main(int argc, char *argv[])
         }
     }
 
+    printf("Load default versions\n");
+    snprintf(query_def, sizeof(query_def),
+      "SELECT name, version FROM default_versions WHERE run=%d ORDER BY name", runid);
+    result R5(N.exec(string(query_def)));
+    unsigned int default_count = 0;
+    for (result::const_iterator c = R5.begin(); c != R5.end(); ++c)
+    {
+        if (sqlite3_prepare_v2(db,
+            "INSERT INTO default_versions (name, version) VALUES(?,?)",
+            -1, &stmt, 0) != SQLITE_OK)
+        {
+            errx(1, "Could not prepare default version statement");
+        }
+
+        string name = c[0].as(string());
+        string version = c[1].as(string());
+        sqlite3_bind_text(stmt, 1, name.c_str(), name.length(), SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, version.c_str(), version.length(), SQLITE_TRANSIENT);
+
+        if (sqlite3_step(stmt) != SQLITE_DONE)
+            errx(1, "Could not insert default version");
+        sqlite3_finalize(stmt);
+        default_count++;
+    }
+    if (default_count != 4) {
+        fprintf(stderr,
+            "Warning: run %d has %u default versions; expected 4\n",
+            runid, default_count);
+    }
+
 	printf("Load ALIASES not included in current run\n");
 	snprintf(query_def, sizeof(query_def), "select distinct(pkgname, name, moved_to), pkgname, name, moved.moved_to from ports inner join runs on ports.run = runs.id left join moved on moved.port = ports.name where moved.run = %d and ports.run < %d and moved.port not in (SELECT name from ports where run = %d) and runs.arch = (select arch from runs where id = %d) group by pkgname, name, moved_to order by pkgname, name, moved_to;", runid, runid, runid, runid);
 	result R4(N.exec(string(query_def)));
@@ -354,7 +380,7 @@ config_string(const ucl_object_t *root, const char *key, const char *default_val
     const ucl_object_t *obj;
     const char *value;
 
-    obj = ucl_object_find_key(root, key);
+    obj = ucl_object_lookup(root, key);
     if (obj == NULL)
         return string(default_value);
 
@@ -410,14 +436,14 @@ exec_indexdb(sqlite3 *db, const char *fmt, ...)
 
   sqlcode = sqlite3_exec(db, sql, 0, 0, 0);
   /* if we get an error code, we want to run it again in some cases */
-  if (sqlcode == SQLITE_BUSY || sqlcode == SQLITE_LOCKED) {
+    if (sqlcode == SQLITE_BUSY || sqlcode == SQLITE_LOCKED) {
     if (sqlite3_exec(db, sql, 0, 0, 0) != SQLITE_OK) {
       sqlite3_free(sql);
-      errx(1, sqlite3_errmsg(db));
+      errx(1, "%s", sqlite3_errmsg(db));
     }
   } else if (sqlcode != SQLITE_OK) {
     sqlite3_free(sql);
-    errx(1, sqlite3_errmsg(db));
+    errx(1, "%s", sqlite3_errmsg(db));
   }
 
   sqlite3_free(sql);
@@ -435,6 +461,7 @@ create_indexdb(sqlite3 *db)
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
 	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS moved (port text NOT NULL, moved_to text, why text, date text)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS default_versions (name text PRIMARY KEY, version text NOT NULL)");
 }
 
 void

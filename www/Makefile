@@ -252,6 +252,11 @@
     SUBDIR += php83-opcache
     SUBDIR += php83-session
     SUBDIR += php83-tidy
+    SUBDIR += php84-opcache
+    SUBDIR += php84-session
+    SUBDIR += php84-tidy
+    SUBDIR += php85-session
+    SUBDIR += php85-tidy
     SUBDIR += phpbb3
     SUBDIR += plasma6-plasma-browser-integration
     SUBDIR += pmwiki

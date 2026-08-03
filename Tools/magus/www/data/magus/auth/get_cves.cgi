@@ -26,6 +26,11 @@ if ($cpe =~ /^\s*$/) {
     exit;
 }
 
+if (length($cpe) > 500 || $cpe !~ /^cpe:(?:2\.3:[a-z0-9_.~:\-*%]+|\/[a-z0-9_.~:\-*%]+)$/i) {
+    print encode_json({ error => "Invalid CPE format" });
+    exit;
+}
+
 my $ua = LWP::UserAgent->new;
 my $response = $ua->get("https://sec.midnightbsd.org/api/cpe/partial-match?includeVersion=true&cpe=$encoded_cpe");
 
