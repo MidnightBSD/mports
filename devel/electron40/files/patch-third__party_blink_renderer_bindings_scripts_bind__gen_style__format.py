@@ -5,7 +5,7 @@
      # Determine //buildtools/<platform>/ directory
      new_path_platform_suffix = ""
 -    if sys.platform.startswith("linux"):
-+    if sys.platform.startswith(("linux","openbsd","freebsd")):
++    if sys.platform.startswith(("linux","openbsd","freebsd","midnightbsd")):
          platform = "linux64"
          exe_suffix = ""
      elif sys.platform.startswith("darwin"):

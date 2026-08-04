@@ -1,7 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
-PORTREVISION=	3
+PORTREVISION=	4
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
@@ -213,6 +213,7 @@ WRKSRC=		${WRKDIR}/${PKGNAME}
 WRKSRC_SUBDIR=	src
 
 GN_ARGS+=	clang_use_chrome_plugins=false \
+		enable_backup_ref_ptr_support=false \
 		enable_hangout_services_extension=true \
 		enable_remoting=false \
 		fatal_linker_warnings=false \
@@ -222,10 +223,13 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		optimize_webui=true \
 		toolkit_views=true \
 		treat_warnings_as_errors=false \
+		use_allocator_shim=false \
 		use_aura=true \
 		use_custom_libcxx=true \
 		use_custom_libunwind=true \
 		use_lld=true \
+		use_partition_alloc=true \
+		use_partition_alloc_as_malloc=false \
 		use_qt5=true \
 		use_sysroot=false \
 		use_system_freetype=false \
@@ -347,18 +351,29 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in bas
 
 LLVM_DEFAULT=		21
 BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
-BINARY_ALIAS+=		ar=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-ar \
+BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
+			cc=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang \
+			c++=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++ \
+			ar=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-ar \
 			nm=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-nm \
 			ld=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/ld.lld
 
-# GN's default toolchain uses `cc`/`c++` from PATH. Do not use BINARY_ALIAS
-# symlinks for those: clang's resource-dir resolution uses argv[0] and breaks
-# when invoked via a symlink in `${WRKDIR}/.bin`, causing missing intrinsics
-# headers like `xmmintrin.h`.
+# GN's clang_toolchain template hardcodes cc/c++ from PATH and ignores
+# clang_base_path, so BINARY_ALIAS is the only way to select the compiler;
+# setting CC/CXX alone only affects the GN bootstrap. Without the aliases the
+# build silently uses base clang instead of devel/llvm${LLVM_DEFAULT}.
+#
+# Chromium compiles with -no-canonical-prefixes, which makes clang derive its
+# resource directory from argv[0]; through the BINARY_ALIAS symlink in
+# ${WRKDIR}/.bin that resolves to a path which does not exist, so intrinsics
+# headers like xmmintrin.h go missing. Pass the real directory explicitly.
+CLANG_RESOURCE_DIR=	${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/clang/${LLVM_DEFAULT}
 CC=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang
 CXX=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++
 CPP=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp
-CFLAGS+=		-Wno-error=implicit-function-declaration
+CFLAGS+=		-Wno-error=implicit-function-declaration \
+			-resource-dir=${CLANG_RESOURCE_DIR}
+CXXFLAGS+=		-resource-dir=${CLANG_RESOURCE_DIR}
 
 .if ${ARCH} == "aarch64"
 PLIST_SUB+=	AARCH64="" \
@@ -540,39 +555,39 @@ post-build-DIST-on:
 		${SHA256} -r *-v${ELECTRON_VER}-freebsd-*.zip | ${SED} -e 's/ / */' > SHASUMS256.txt
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 .for f in electron mksnapshot v8_context_snapshot_generator
-	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
 .for f in libEGL.so libGLESv2.so libffmpeg.so libvk_swiftshader.so
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 ${STAGEDIR}${DATADIR}/libvulkan.so
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 ${DATADIR}/libvulkan.so
 .for f in LICENSE LICENSES.chromium.html snapshot_blob.bin v8_context_snapshot.bin version vk_swiftshader_icd.json
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
 .for f in chrome_100_percent.pak chrome_200_percent.pak resources.pak
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
-	${MKDIR} ${STAGEDIR}${DATADIR}/locales
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/locales/*.pak ${STAGEDIR}${DATADIR}/locales
-	${MKDIR} ${STAGEDIR}${DATADIR}/resources
+	${MKDIR} ${DATADIR}/locales
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/locales/*.pak ${DATADIR}/locales
+	${MKDIR} ${DATADIR}/resources
 .for f in default_app.asar
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/resources/${f} ${STAGEDIR}${DATADIR}/resources
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/resources/${f} ${DATADIR}/resources
 .endfor
-	cd ${WRKSRC}/out/${BUILDTYPE}/gen && ${COPYTREE_SHARE} node_headers ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/electron/buildflags ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/v8/embedded.S ${STAGEDIR}${DATADIR}
-	${RLN} ${STAGEDIR}${DATADIR}/electron ${STAGEDIR}${PREFIX}/bin/electron${PKGNAMESUFFIX}
+	cd ${WRKSRC}/out/${BUILDTYPE}/gen && ${COPYTREE_SHARE} node_headers ${DATADIR}
+	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/electron/buildflags ${DATADIR}
+	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/v8/embedded.S ${DATADIR}
+	${RLN} ${DATADIR}/electron ${PREFIX}/bin/electron${PKGNAMESUFFIX}
 
 post-install-DIST-on:
-	${MKDIR} ${STAGEDIR}${DATADIR}/releases
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/SHASUMS256.txt ${STAGEDIR}${DATADIR}/releases
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*-v${ELECTRON_VER}-freebsd-*.zip ${STAGEDIR}${DATADIR}/releases
+	${MKDIR} ${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/SHASUMS256.txt ${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*-v${ELECTRON_VER}-freebsd-*.zip ${DATADIR}/releases
 
 post-install-DRIVER-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver.unstripped \
-		${STAGEDIR}${DATADIR}/chromedriver
+		${DATADIR}/chromedriver
 
 do-test:
 	cd ${WRKSRC}/electron && \
