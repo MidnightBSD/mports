@@ -11,7 +11,7 @@
 PORTNAME?=	nvidia-driver
 DISTVERSION?=	${NVIDIA_DISTVERSION}
 # Always try to set PORTREVISION as it can be overridden by the slave ports
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11
 MASTER_SITES=	NVIDIA/XFree86/FreeBSD-${ARCH_SUFX}/${DISTVERSION}
 DISTNAME=	NVIDIA-FreeBSD-${ARCH_SUFX}-${DISTVERSION}
@@ -53,7 +53,11 @@ LIB_DEPENDS+=	libnvidia-egl-wayland.so:graphics/egl-wayland
 LIB_DEPENDS+=	libnvidia-egl-xcb.so:graphics/egl-x11
 .endif
 
-USES=		uidfix xorg
+USES=		cpe uidfix xorg
+# NVD files the driver as nvidia:gpu_driver, not by the port name. The slave
+# ports for the legacy branches inherit this and supply their own version.
+CPE_VENDOR=	nvidia
+CPE_PRODUCT=	gpu_driver
 .if ${NVVERSION} >= 470.04201
 USES+=		tar:xz
 .endif
