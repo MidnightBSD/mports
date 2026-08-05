@@ -1,7 +1,7 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.21.21
+DISTVERSION=	9.21.24
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
 PORTREVISION=	0
@@ -200,7 +200,7 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 
 	(for dir in ${WRKSRC}/lib/*/include; do \
-		cd $$dir && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include '-name *.h'; \
+		cd $$dir && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/include '-name *.h'; \
 	done)
 
 post-install-DOCS-on:

@@ -2,7 +2,7 @@ bin/named-checkconf
 bin/named-checkzone
 bin/named-compilezone
 bin/named-journalprint
-%%LMDB%%bin/named-nzd2nzf
+bin/named-nzd2nzf
 @sample etc/mtree/BIND.chroot.dist.sample
 @sample etc/mtree/BIND.chroot.local.dist.sample
 @sample %%ETCDIR%%/named.conf.sample
@@ -12,6 +12,22 @@ bin/named-journalprint
 %%ETCDIR%%/primary/localhost-reverse.db
 include/dns/acl.h
 include/dns/adb.h
+include/dns/stats.h
+include/dns/catz.h
+include/dns/ds.h
+include/dns/secproto.h
+include/dns/ipkeylist.h
+include/dns/rdatavec.h
+include/dns/bit.h
+include/dns/rdataclass.h
+include/dns/keydata.h
+include/dns/peer.h
+include/dns/opcode.h
+include/dns/clientinfo.h
+include/dns/transport.h
+include/dns/iptable.h
+include/dst/dst.h
+include/dst/gssapi.h
 include/dns/badcache.h
 include/dns/bit.h
 include/dns/byaddr.h
@@ -234,15 +250,16 @@ include/ns/update.h
 include/ns/xfrout.h
 lib/bind/filter-a.so
 lib/bind/filter-aaaa.so
-lib/libdns-9.21.8.so
+lib/bind/synthrecord.so
+lib/libdns-9.21.24.so
 lib/libdns.so
-lib/libisc-9.21.8.so
+lib/libisc-9.21.24.so
 lib/libisc.so
-lib/libisccc-9.21.8.so
+lib/libisccc-9.21.24.so
 lib/libisccc.so
-lib/libisccfg-9.21.8.so
+lib/libisccfg-9.21.24.so
 lib/libisccfg.so
-lib/libns-9.21.8.so
+lib/libns-9.21.24.so
 lib/libns.so
 @comment share/man/man1/arpaname.1.gz
 @comment share/man/man1/delv.1.gz
@@ -264,7 +281,8 @@ share/man/man1/named-checkconf.1.gz
 share/man/man1/named-checkzone.1.gz
 share/man/man1/named-compilezone.1.gz
 share/man/man1/named-journalprint.1.gz
-%%LMDB%%share/man/man1/named-nzd2nzf.1.gz
+share/man/man1/named-makejournal.1.gz
+share/man/man1/named-nzd2nzf.1.gz
 @comment share/man/man1/named-rrchecker.1.gz
 @comment share/man/man1/nsec3hash.1.gz
 @comment share/man/man1/nslookup.1.gz
@@ -274,6 +292,7 @@ share/man/man5/rndc.conf.5.gz
 share/man/man8/ddns-confgen.8.gz
 share/man/man8/filter-a.8.gz
 share/man/man8/filter-aaaa.8.gz
+share/man/man8/synthrecord.8.gz
 share/man/man8/named.8.gz
 share/man/man8/rndc-confgen.8.gz
 share/man/man8/rndc.8.gz
