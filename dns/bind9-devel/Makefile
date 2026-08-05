@@ -1,7 +1,7 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.21.21
+DISTVERSION=	9.21.24
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
 PORTREVISION=	0
@@ -199,8 +199,10 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 
+	# In MidnightBSD fake mode STAGEDIR is not populated for this explicit
+	# header copy; FAKE_DESTDIR is the staging root used by the mport framework.
 	(for dir in ${WRKSRC}/lib/*/include; do \
-		cd $$dir && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include '-name *.h'; \
+		cd $$dir && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/include '-name *.h'; \
 	done)
 
 post-install-DOCS-on:
