@@ -199,6 +199,8 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 
+	# In MidnightBSD fake mode STAGEDIR is not populated for this explicit
+	# header copy; FAKE_DESTDIR is the staging root used by the mport framework.
 	(for dir in ${WRKSRC}/lib/*/include; do \
 		cd $$dir && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/include '-name *.h'; \
 	done)
