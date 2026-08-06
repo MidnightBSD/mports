@@ -1,5 +1,6 @@
 PORTNAME=	gtk
 PORTVERSION=	2.24.33
+PORTREVISION=	1
 PORTREVISION?=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -16,6 +17,7 @@ LICENSE=	lgpl
 USES=		cpe tar:xz
 PORTSCOUT=	limitw:0,even
 CPE_VENDOR=	gnome
+CPE_PRODUCT=	gtk
 
 RUN_DEPENDS+=	update-mime-database:misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme

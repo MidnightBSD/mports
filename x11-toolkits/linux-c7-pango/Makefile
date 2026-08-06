@@ -1,7 +1,7 @@
 PORTNAME=	pango
 PORTVERSION=	1.42.4
 DISTVERSIONSUFFIX=	-4.el7_7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,6 +12,7 @@ LICENSE=	lgpl
 
 USES=		cpe linux:c7
 CPE_VENDOR=	gnome
+CPE_PRODUCT=	pango
 USE_LDCONFIG=	yes
 USE_LINUX=	cairo fontconfig freetype fribidi harfbuzz libthai xorglibs
 USE_LINUX_RPM=	yes

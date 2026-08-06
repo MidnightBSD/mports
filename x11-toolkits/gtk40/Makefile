@@ -1,5 +1,6 @@
 PORTNAME=	gtk
 PORTVERSION=	4.18.6
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
@@ -29,6 +30,7 @@ RUN_DEPENDS=	hicolor-icon-theme>=0:misc/hicolor-icon-theme \
 USES=		compiler:c11 cpe gettext gnome jpeg localbase meson \
 		ninja pathfix perl5 python pkgconfig tar:xz
 CPE_VENDOR=	gnome
+CPE_PRODUCT=	gtk
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_GNOME=	atk cairo gdkpixbuf introspection:build pango \

@@ -1,5 +1,6 @@
 PORTNAME=	fontconfig
 PORTVERSION=	2.14.0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-2.el9_1
 CATEGORIES=	x11-fonts linux
 
@@ -18,6 +19,7 @@ USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes
 
 CPE_VENDOR=	fontconfig_project
+CPE_PRODUCT=	fontconfig
 
 CONFLICTS=	linux-c7-${PORTNAME}
 DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
