@@ -1,5 +1,6 @@
 PORTNAME=	chrome
 PORTVERSION=	${CHROME_VER}
+PORTREVISION=	1
 CATEGORIES=	www linux
 MASTER_SITES=	https://dl.google.com/linux/chrome/rpm/stable/x86_64/
 DISTNAME=	google-${PORTNAME}-stable-${CHROME_VER}-${CHROME_BUILD}.x86_64
@@ -16,6 +17,8 @@ RUN_DEPENDS=	linux-rl9-wget>0:ftp/linux-rl9-wget \
 		update-mime-database:misc/shared-mime-info
 
 USES=		cpe desktop-file-utils gnome linux:rl9 shared-mime-info shebangfix
+CPE_VENDOR=	google
+CPE_PRODUCT=	chrome
 USE_LINUX=	alsalib alsa-plugins-oss alsa-plugins-pulseaudio at-spi2-atk \
 		ca-certificates cairo cups-libs curl dbuslibs dri expat \
 		ffmpeg-libs gnupg gstreamer1-libav gtk3 libxkbcommon \

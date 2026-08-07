@@ -1,5 +1,6 @@
 PORTNAME=	a2ps
 PORTVERSION=	4.15.8
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	GNU FREEBSD_LOCAL/hrs/a2ps/:i18n
 
@@ -13,6 +14,8 @@ LIB_DEPENDS=	libgc.so:devel/boehm-gc \
 		libpaper.so:print/libpaper
 
 USES=		cpe perl5 gperf pkgconfig localbase gmake
+CPE_VENDOR=	gnu
+CPE_PRODUCT=	a2ps
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share

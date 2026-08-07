@@ -1,5 +1,6 @@
 PORTNAME=	kate
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	editors kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +15,8 @@ SKIP_FAKE_ALL=  yes
 
 USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext kde:6 \
 		pkgconfig qt:6 tar:xz xorg
+CPE_VENDOR=	kde
+CPE_PRODUCT=	kate
 USE_KDE=	activities attica auth bookmarks codecs completion config \
 		configwidgets coreaddons crash dbusaddons guiaddons i18n \
 		iconthemes itemmodels itemviews jobwidgets kio libplasma \

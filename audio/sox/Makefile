@@ -1,6 +1,6 @@
 PORTNAME=	sox
 DISTVERSION=	14.4.2.20210509
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://dev.gentoo.org/~fordfrog/distfiles/
 DISTNAME=	sox-code-42b3557e13e0fe01a83465b672d89faddbe65f49
@@ -18,6 +18,8 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl
 CONFLICTS=	play
 
 USES=		autoreconf cpe libtool localbase:ldflags pkgconfig zip
+CPE_VENDOR=	sox_project
+CPE_PRODUCT=	sox
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_LDCONFIG=	yes

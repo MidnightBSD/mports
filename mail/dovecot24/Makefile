@@ -1,5 +1,6 @@
 PORTNAME=	dovecot24
 PORTVERSION=	2.4.4
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.4/
 DISTNAME=	dovecot-${PORTVERSION}
@@ -28,6 +29,7 @@ pgsql_PKGNAMESUFFIX=	-pgsql
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 USES=		cpe iconv libtool pkgconfig ssl
+CPE_PRODUCT=	dovecot
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes

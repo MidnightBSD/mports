@@ -1,5 +1,6 @@
 PORTNAME=	okular
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	graphics kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,6 +25,8 @@ LIB_DEPENDS=	libchm.so:misc/chmlib \
 
 USES=		cmake compiler:c++11-lib cpe desktop-file-utils gettext jpeg \
 		kde:6 pkgconfig qt:6 tar:xz xorg
+CPE_VENDOR=	kde
+CPE_PRODUCT=	okular
 USE_KDE=	activities archive auth bookmarks codecs completion config \
 		iconthemes itemmodels itemviews jobwidgets kio libkexiv2 parts \
 		phonon pty service solid sonnet textwidgets threadweaver \

@@ -1,6 +1,6 @@
 PORTNAME=	wpa_supplicant
 PORTVERSION=	2.9
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	security net
 MASTER_SITES=	https://w1.fi/releases/
 PKGNAMESUFFIX=	29
@@ -20,6 +20,8 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/README
 
 USES=		cpe gmake pkgconfig:build readline ssl
+CPE_VENDOR=	w1.fi
+CPE_PRODUCT=	wpa_supplicant
 BUILD_WRKSRC=	${WRKSRC}/wpa_supplicant
 INSTALL_WRKSRC=	${WRKSRC}/src
 CFLAGS+=	${CPPFLAGS} # USES=readline only augments CPPFLAGS and LDFLAGS
