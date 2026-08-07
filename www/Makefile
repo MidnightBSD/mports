@@ -114,6 +114,7 @@
     SUBDIR += mod_perl2
     SUBDIR += mod_php82
     SUBDIR += mod_php83
+    SUBDIR += mod_php85
     SUBDIR += mod_security
     SUBDIR += mod_tls
     SUBDIR += mod_webauth

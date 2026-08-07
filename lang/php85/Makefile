@@ -132,7 +132,8 @@ PLIST_SUB+=	SAPI_INC=""
 PLIST_SUB+=	SAPI_INC="@comment "
 .  endif
 
-.  if ((${OSVERSION} >= 1500059 && ${SSL_DEFAULT} == base) || (${SSL_DEFAULT:Mopenssl*} && ${OPENSSL_SHLIBVER} >= 15)) && empty(PORT_OPTIONS:MZTS)
+.  if (${SSL_DEFAULT:Mopenssl*} && ${OPENSSL_SHLIBVER:U0} >= 15) && \
+	empty(PORT_OPTIONS:MZTS)
 CONFIGURE_ARGS+=	--with-openssl-argon2
 .  else
 LIB_DEPENDS+=		libargon2.so:security/libargon2

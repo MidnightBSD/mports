@@ -90,7 +90,7 @@ PERL5_DEFAULT:=         ${_PERL5_FROM_BIN:R}
 .  endif
 # Possible values: 14, 15, 16, 17, 18
 PGSQL_DEFAULT?=		15
-# Possible values: 8.1, 8.2, 8.3
+# Possible values: 8.1, 8.2, 8.3, 8.4, 8.5
 PHP_DEFAULT?=		8.3
 # Possible values: rust, legacy
 .  if empty(ARCH:Naarch64:Namd64:Narmv7:Ni386:Npowerpc64:Npowerpc64le:Npowerpc:Nriscv64)
