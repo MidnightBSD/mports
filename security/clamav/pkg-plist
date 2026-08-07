@@ -45,11 +45,11 @@ share/man/man8/clamd.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/html/ayu-highlight-3fdfc3ac.css
 %%PORTDOCS%%%%DOCSDIR%%/html/theme-tomorrow_night-9dbe62a9.js
 %%PORTDOCS%%%%DOCSDIR%%/html/mark-09e88c2c.min.js
-%%PORTDOCS%%%%DOCSDIR%%/html/searcher-c2a407aa.js
+%%PORTDOCS%%%%DOCSDIR%%/html/searcher-09f2665d.js
 %%PORTDOCS%%%%DOCSDIR%%/html/ace-2a3cd908.js
 %%PORTDOCS%%%%DOCSDIR%%/html/editor-16ca416c.js
 %%PORTDOCS%%%%DOCSDIR%%/html/tomorrow-night-4c0ae647.css
-%%PORTDOCS%%%%DOCSDIR%%/html/toc-cbaddea7.js
+%%PORTDOCS%%%%DOCSDIR%%/html/toc-0c194aa2.js
 %%PORTDOCS%%%%DOCSDIR%%/html/clipboard-1626706a.min.js
 %%PORTDOCS%%%%DOCSDIR%%/html/css/variables-6d03f665.css
 %%PORTDOCS%%%%DOCSDIR%%/html/css/general-8eed8816.css
@@ -59,10 +59,12 @@ share/man/man8/clamd.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/html/highlight-abc7f01d.js
 %%PORTDOCS%%%%DOCSDIR%%/html/elasticlunr-ef4e11c1.min.js
 %%PORTDOCS%%%%DOCSDIR%%/html/book-a0b12cfe.js
-%%PORTDOCS%%%%DOCSDIR%%/html/searchindex-1b5ba28b.js
+%%PORTDOCS%%%%DOCSDIR%%/html/searchindex-f120d447.js
 %%PORTDOCS%%%%DOCSDIR%%/html/highlight-493f70e1.css
 %%PORTDOCS%%%%DOCSDIR%%/html/theme-dawn-4493f9c8.js
 %%PORTDOCS%%%%DOCSDIR%%/html/mode-rust-2c9d5c9a.js
+%%PORTDOCS%%%%DOCSDIR%%/html/mermaid-eefea253.min.js
+%%PORTDOCS%%%%DOCSDIR%%/html/mermaid-init-ccf746f1.js
 %%PORTDOCS%%%%DOCSDIR%%/html/fonts/open-sans-v17-all-charsets-300italic-2c7b95c0.woff2
 %%PORTDOCS%%%%DOCSDIR%%/html/fonts/open-sans-v17-all-charsets-300-7736aa35.woff2
 %%PORTDOCS%%%%DOCSDIR%%/html/fonts/open-sans-v17-all-charsets-italic-6c9463f7.woff2
@@ -151,6 +153,7 @@ share/man/man8/clamd.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/html/manual/Signatures/SignatureNames.html
 %%PORTDOCS%%%%DOCSDIR%%/html/manual/Signatures/YaraRules.html
 %%PORTDOCS%%%%DOCSDIR%%/html/manual/Usage.html
+%%PORTDOCS%%%%DOCSDIR%%/html/manual/Usage/ClamdProtocol.html
 %%PORTDOCS%%%%DOCSDIR%%/html/manual/Usage/Configuration.html
 %%PORTDOCS%%%%DOCSDIR%%/html/manual/Usage/ReportABug.html
 %%PORTDOCS%%%%DOCSDIR%%/html/manual/Usage/Scanning.html
