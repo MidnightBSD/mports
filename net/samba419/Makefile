@@ -1,6 +1,6 @@
 PORTNAME=			${SAMBA4_BASENAME}419
 PORTVERSION=			${SAMBA4_VERSION}
-PORTREVISION=			1
+PORTREVISION=			2
 CATEGORIES?=			net
 MASTER_SITES=			SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=			${SAMBA4_DISTNAME}
@@ -97,7 +97,7 @@ CONFIGURE_ENV=			PTHREAD_LDFLAGS="-lpthread" \
 				PYTHONHASHSEED=1
 MAKE_ENV=			PYTHONHASHSEED=1
 
-USES=				compiler:c++11-lang iconv localbase:ldflags \
+USES+=				compiler:c++11-lang iconv localbase:ldflags \
 				perl5 pkgconfig shebangfix waf gettext-runtime
 USE_PERL5=			build
 USE_LDCONFIG=			${SAMBA4_LIBDIR}
