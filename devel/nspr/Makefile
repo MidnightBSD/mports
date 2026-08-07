@@ -1,5 +1,5 @@
 PORTNAME=	nspr
-DISTVERSION=	4.38.2
+DISTVERSION=	4.39
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/v${PORTVERSION}/src
 
@@ -31,7 +31,7 @@ post-patch:
 post-build-TEST-on:
 	@${DO_MAKE_BUILD} -C ${BUILD_WRKSRC}/lib/tests
 	@${DO_MAKE_BUILD} -C ${BUILD_WRKSRC}/pr/tests
-	@${LN} -fs libmy.so.1 ${BUILD_WRKSRC}/pr/tests/dll/libmy.so
+	@${LN} -fs ${BUILD_WRKSRC}/pr/tests/dll/libmy.so ${BUILD_WRKSRC}/pr/tests/dll/libmy.so.1
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/*.so
@@ -39,7 +39,7 @@ post-install:
 do-test-TEST-on:
 	${TEST_WRKSRC}/lib/tests/string
 	${TEST_WRKSRC}/lib/tests/base64t
-	cd ${TEST_WRKSRC}/pr/tests && ${WRKSRC}/pr/tests/runtests.sh
+	(cd ${TEST_WRKSRC}/pr/tests && ${WRKSRC}/pr/tests/runtests.sh ${TEST_WRKSRC}/dist)
 	# The test below is commented out, because arena requires
 	# command-line arguments. If you can provide reasonable values
 	# for it, please contact ${MAINTAINER}. Thank you.
