@@ -157,13 +157,21 @@ RUBY_DISTVERSION=	3.3.11
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
 
+.      elif ${RUBY_VER} == 3.4
+#
+# Ruby 3.4
+#
+RUBY_DISTVERSION=	3.4.9
+RUBY_PORTREVISION=	0
+RUBY_PORTEPOCH=		1
+
 # When adding a version, please keep the comment in
 # Mk/components/default-versions.mk in sync.
 . else
 #
 # Other versions
 #
-IGNORE=	Only ruby 3.2 and 3.3 are supported
+IGNORE=	Only ruby 3.2, 3.3 and 3.4 are supported
 _INVALID_RUBY_VER=	1
 .      endif
 RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
@@ -173,6 +181,7 @@ RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
 
 RUBY32?=		"@comment "
 RUBY33?=		"@comment "
+RUBY34?=		"@comment "
 
 .      if defined(BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E})
 .        if ${BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E}} == "yes"
@@ -273,6 +282,7 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_ARCH="${RUBY_ARCH}" \
 			RUBY_SUFFIX="${RUBY_SUFFIX}" \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
+			RUBY34=${RUBY34} \
 			RUBY33=${RUBY33} \
 			RUBY32=${RUBY32}
 

@@ -121,6 +121,7 @@
     SUBDIR += rubygem-rb_sys
     SUBDIR += ruby32
     SUBDIR += ruby33
+    SUBDIR += ruby34
     SUBDIR += rust
     SUBDIR += rust-bootstrap
     SUBDIR += rust-nightly
