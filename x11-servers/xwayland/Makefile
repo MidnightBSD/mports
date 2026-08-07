@@ -1,6 +1,6 @@
 PORTNAME=	xwayland
 PORTVERSION=	24.1.13
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -25,7 +25,9 @@ RUN_DEPENDS=	xkbcomp:x11/xkbcomp \
 
 CONFLICTS_INSTALL=	${PORTNAME}-devel
 
-USES=		compiler:c11 gl meson pathfix pkgconfig xorg tar:xz
+USES=		compiler:c11 cpe gl meson pathfix pkgconfig xorg tar:xz
+CPE_VENDOR=	x.org
+CPE_PRODUCT=	xwayland
 USE_GL=		egl gbm gl
 USE_XORG=	pixman xau xdmcp xfont2 xkbfile xshmfence xtrans
 

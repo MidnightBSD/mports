@@ -82,6 +82,7 @@ ${VUXML_FLAT_FILE}: ${VUXML_FILE} vuln/*.xml
 	xmllint -noent ${.ALLSRC:[1]} > ${.TARGET}
 
 validate: tidy
+	@${PYTHON_CMD} ${FILESDIR}/check-shards.py "${VUXML_FILE}" "${PKGDIR}/vuln"
 	@${SH} ${FILESDIR}/validate.sh "${VUXML_FLAT_FILE}"
 	@${ECHO_MSG} Checking if tidy differs...
 	@if ${DIFF} -u "${VUXML_FLAT_FILE}" "${VUXML_FILE}.tidy"; \
@@ -114,6 +115,14 @@ tidy: ${VUXML_FLAT_FILE}
 
 newentry:
 	@${SH} ${FILESDIR}/newentry.sh "${VUXML_CURRENT_FILE}" "CVE_ID=${CVE_ID}" "SA_ID=${SA_ID}"
+
+candidates:
+.if empty(ORIGIN)
+	@${ECHO_MSG} "Set ORIGIN to one or more port origins, for example ORIGIN=dns/bind918"
+	@${FALSE}
+.else
+	@${PYTHON_CMD} ${FILESDIR}/vuxml-candidates.py --portsdir ${PORTSDIR} ${ORIGIN}
+.endif
 
 .if defined(VID) && !empty(VID)
 html: work/${VID}.html

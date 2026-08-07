@@ -1,7 +1,7 @@
 PORTNAME=	libxkbcommon
 PORTVERSION=	1.0.3
 DISTVERSIONSUFFIX=	-4.el9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +14,7 @@ SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:rl9
 CPE_VENDOR=	xkbcommon
+CPE_PRODUCT=	libxkbcommon
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes

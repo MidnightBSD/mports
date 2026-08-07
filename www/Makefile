@@ -49,6 +49,7 @@
     SUBDIR += gitlab-workhorse
     SUBDIR += glassfish
     SUBDIR += gnome-user-share
+    SUBDIR += go-anubis
     SUBDIR += google-sitemapgen
     SUBDIR += googler
     SUBDIR += gophernicus
