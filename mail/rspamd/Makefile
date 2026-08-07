@@ -1,6 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	4.0.1
-PORTREVISION=	0
+PORTVERSION=	4.1.0
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -77,6 +76,12 @@ HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
 LUAJIT_USES=		luajit
 LUAJIT_USES_OFF=	lua:51+
 LUAJIT_CMAKE_OFF=	-DENABLE_LUAJIT=OFF
+
+.include <bsd.mport.options.mk>
+
+.if ${OPTIONS_DEFINE:NHYPERSCAN}
+PLIST_SUB+=	HYPERSCAN="@comment "
+.endif
 
 post-install:
 	@${MKDIR} \
