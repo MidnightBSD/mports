@@ -18,10 +18,10 @@ PLIST_FILES=	bin/postgresql-relay etc/postgresql-relay.conf-sample \
 		share/man/man8/postgresql-relay.8.gz
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/postgresql-relay ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/postgresql-relay ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/postgresql-relay.conf-sample \
-		${STAGEDIR}${PREFIX}/etc/postgresql-relay.conf-sample
+		${PREFIX}/etc/postgresql-relay.conf-sample
 	${INSTALL_MAN} ${WRKSRC}/postgresql-relay.8 \
-		${STAGEDIR}${PREFIX}/share/man/man8
+		${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

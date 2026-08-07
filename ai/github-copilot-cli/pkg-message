@@ -1,0 +1,23 @@
+[
+{
+  type: install
+  message: <<EOM
+The copilot(1) binary shipped upstream cannot be executed directly under
+MidnightBSD: its ELF program header table sits far past the first page of
+the file, which the kernel image activator rejects with ENOEXEC.  This port
+relocates that table at build time.
+
+Consequently, self-update will break the installed copy: the downloaded
+binary is unpatched and will fail to run.  Update through mports instead,
+and disable upstream updates with either
+
+    copilot --no-auto-update
+
+or by setting COPILOT_AUTO_UPDATE=0 in the environment.
+
+If you are installing linux emulation for this port,
+    sysrc linux_enable=YES
+    service linux start
+EOM
+}
+]

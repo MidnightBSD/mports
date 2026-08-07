@@ -256,6 +256,19 @@ CREATE INDEX idx_runs_arch_osversion_status
 ON runs (arch, osversion, status);
 
 --
+-- Table structure for table default_versions
+--
+
+DROP TABLE "default_versions" CASCADE\g
+
+CREATE TABLE "default_versions" (
+   "run" integer NOT NULL,
+   "name" varchar(32) NOT NULL,
+   "version" varchar(32) NOT NULL,
+   primary key ("run", "name")
+);
+
+--
 -- Table structure for table distfiles
 --
 
@@ -383,6 +396,7 @@ alter table distfiles add foreign key (port) references ports(id);
 alter table restricted_distfiles add foreign key (port) references ports(id);
 alter table master_sites add foreign key (port) references ports(id);
 alter table moved add foreign key (run) references runs(id);
+alter table default_versions add foreign key (run) references runs(id) on delete cascade;
 alter table events add foreign key ("machine") references machines("id");
 alter table events add foreign key ("port") references ports("id");
 ALTER TABLE "depends" ADD FOREIGN KEY ("port") REFERENCES "ports"("id");

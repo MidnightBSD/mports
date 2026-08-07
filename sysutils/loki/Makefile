@@ -84,8 +84,6 @@ GH_TUPLE=	\
 		envoyproxy:protoc-gen-validate:v1.0.2:envoyproxy_protoc_gen_validate/vendor/github.com/envoyproxy/protoc-gen-validate \
 		etcd-io:bbolt:v1.3.10:etcd_io_bbolt/vendor/go.etcd.io/bbolt \
 		etcd-io:etcd:v3.5.4:etcd_io_etcd/vendor/go.etcd.io/etcd/api/v3 \
-		etcd-io:etcd:v3.5.4:etcd_io_etcd_1/vendor/go.etcd.io/etcd/client/pkg/v3 \
-		etcd-io:etcd:v3.5.4:etcd_io_etcd_2/vendor/go.etcd.io/etcd/client/v3 \
 		facette:natsort:2cd4dd1e2dcb:facette_natsort/vendor/github.com/facette/natsort \
 		fatih:color:v1.16.0:fatih_color/vendor/github.com/fatih/color \
 		felixge:fgprof:v0.9.3:felixge_fgprof/vendor/github.com/felixge/fgprof \
@@ -335,6 +333,10 @@ PLIST_SUB=	${SUB_LIST}
 NO_TEST=	yes
 
 post-extract:
+	@${RM} -r ${WRKSRC}/vendor/go.etcd.io/etcd/client/pkg/v3
+	@${RLN} ${WRKSRC_etcd_io_etcd}/client/pkg ${WRKSRC}/vendor/go.etcd.io/etcd/client/pkg/v3
+	@${RM} -r ${WRKSRC}/vendor/go.etcd.io/etcd/client/v3
+	@${RLN} ${WRKSRC_etcd_io_etcd}/client/v3 ${WRKSRC}/vendor/go.etcd.io/etcd/client/v3
 	@${RM} -r ${WRKSRC}/vendor/github.com/Azure/go-autorest/autorest
 	@${RLN} ${WRKSRC_azure_go_autorest_autorest}/autorest ${WRKSRC}/vendor/github.com/Azure/go-autorest/autorest
 	@${RM} -r ${WRKSRC}/vendor/github.com/Azure/go-autorest/autorest/adal

@@ -7,6 +7,7 @@
     SUBDIR += codex
     SUBDIR += gemini-cli
     SUBDIR += github-copilot-cli
+    SUBDIR += github-copilot-cli-legacy
     SUBDIR += grok-cli
     SUBDIR += lean-ctx
     SUBDIR += llama-cpp
@@ -20,6 +21,7 @@
     SUBDIR += py-datasets
     SUBDIR += py-diffusers
     SUBDIR += py-einops
+    SUBDIR += py-evaluate
     SUBDIR += py-google-genai
     SUBDIR += py-groq
     SUBDIR += py-headroom-ai

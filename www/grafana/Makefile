@@ -33,7 +33,7 @@ WWW=		https://grafana.com/grafana/ \
 LICENSE=	agpl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
+ONLY_FOR_ARCHS=	aarch64 amd64 riscv64
 
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 

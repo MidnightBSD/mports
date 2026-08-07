@@ -1,5 +1,6 @@
 PORTNAME=	fontconfig
 PORTVERSION=	2.13.0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-4.3.el7
 CATEGORIES=	x11-fonts linux
 
@@ -17,6 +18,7 @@ USE_LINUX=	expat freetype
 USE_LINUX_RPM=	yes
 
 CPE_VENDOR=	fontconfig_project
+CPE_PRODUCT=	fontconfig
 
 CONFLICTS=	linux-c6-${PORTNAME}
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr

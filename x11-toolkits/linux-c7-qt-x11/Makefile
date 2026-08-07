@@ -1,7 +1,7 @@
 PORTNAME=	qt
 PORTVERSION=	4.8.7
 DISTVERSIONSUFFIX=	-9.el7_9
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits linux
 PKGNAMESUFFIX=	-x11
 
@@ -14,6 +14,8 @@ LICENSE=	gpl2
 SKIP_FAKE_ALL=  yes
 
 USES=		cpe linux:c7
+CPE_VENDOR=	qt
+CPE_PRODUCT=	qt
 USE_LDCONFIG=	yes
 USE_LINUX=	alsalib dri fontconfig imageformats-libs qt xorglibs
 USE_LINUX_RPM=	yes

@@ -26,6 +26,8 @@
     SUBDIR += p5-SNMP_Session
     SUBDIR += php82-snmp
     SUBDIR += php83-snmp
+    SUBDIR += php84-snmp
+    SUBDIR += php85-snmp
     SUBDIR += prometheus-collectd-exporter
     SUBDIR += prometheus1
     SUBDIR += prometheus2

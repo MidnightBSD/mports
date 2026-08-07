@@ -1,11 +1,12 @@
 PORTNAME=	magus-utils
 PORTVERSION=	2.1
+PORTREVISION=	1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
 
-MAINTAINER=     luke@MidnightBSD.org
-COMMENT=        Magus runtime utilities for build cluster
+MAINTAINER=	luke@MidnightBSD.org
+COMMENT=	Magus runtime utilities for build cluster
 
 LICENSE=	agg
 
@@ -19,7 +20,7 @@ RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
 		yara:security/yara \
 		git:devel/git
 
-USES=		perl5 pgsql:14
+USES=		perl5 pgsql:15
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES

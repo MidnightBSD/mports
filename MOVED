@@ -667,3 +667,4 @@ databases/postgresql13-plperl|databases/postgresql14-plperl|2026-07-15|PostgreSQ
 databases/postgresql13-plpython|databases/postgresql14-plpython|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
 databases/postgresql13-pltcl|databases/postgresql14-pltcl|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
 databases/postgresql13-server|databases/postgresql14-server|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+mail/thunderbird-freebsd|mail/thunderbird|2026-07-30|Use native thunderbird

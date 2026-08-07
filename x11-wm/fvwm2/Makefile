@@ -1,6 +1,6 @@
 PORTNAME=	fvwm
 PORTVERSION=	2.6.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	https://github.com/fvwmorg/fvwm/releases/download/${PORTVERSION}/ \
 		http://fvwm.sourceforge.net/generated/icon_download/ \
@@ -31,6 +31,8 @@ CONFIGURE_ARGS=	--disable-mandoc --without-gnome --disable-gtk \
 		--without-rplay-library \
 		ac_cv_path_PYTHON=${PYTHON_CMD}
 USES=		cpe gmake gnome perl5 pkgconfig python gettext readline xorg
+CPE_VENDOR=	fvwm
+CPE_PRODUCT=	fvwm
 USE_XORG=	xcursor xft xinerama xpm xrender x11 ice xext
 USE_GNOME=	cairo
 CFLAGS=		-Wno-int-conversion

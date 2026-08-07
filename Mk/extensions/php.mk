@@ -379,6 +379,8 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 # version specific components
 _USE_PHP_VER82=	${_USE_PHP_ALL}
 _USE_PHP_VER83=	${_USE_PHP_ALL}
+_USE_PHP_VER84=	${_USE_PHP_ALL}
+_USE_PHP_VER85=	${_USE_PHP_ALL}
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
 bitset_DEPENDS=	math/pecl-bitset@${PHP_FLAVOR}
@@ -446,7 +448,7 @@ zephir_parser_DEPENDS=	textproc/pecl-zephir_parser@${PHP_FLAVOR}
 zip_DEPENDS=	archivers/php${PHP_VER}-zip
 zlib_DEPENDS=	archivers/php${PHP_VER}-zlib
 
-PHP_EXT_INC+=	openssl
+PHP_EXT_INC+=	opcache openssl
 
 .    for extension in ${USE_PHP}
 ext=		${extension}

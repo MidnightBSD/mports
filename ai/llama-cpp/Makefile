@@ -1,80 +1,115 @@
 PORTNAME=	llama-cpp
 DISTVERSIONPREFIX=	b
-DISTVERSION=	7134
-PORTREVISION=	1
+DISTVERSION=	9426
 CATEGORIES=	ai # machine-learning
+DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Facebook's LLaMA model in C/C++ # '
-WWW=		https://github.com/ggerganov/llama.cpp
+WWW=		https://github.com/ggml-org/llama.cpp
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_armv7=	clang crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=278810
-BROKEN_i386=	compilation fails, see https://github.com/ggerganov/llama.cpp/issues/9545
+BROKEN_i386=	compilation fails, see https://github.com/ggml-org/llama.cpp/issues/9545
 
-USES=		cmake:testing compiler:c++11-lang python:run shebangfix
+BUILD_DEPENDS=	npm:www/npm
+FETCH_DEPENDS=	npm:www/npm \
+		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+
+# the CURL option is gone: upstream dropped libcurl for model downloads in
+# favour of the vendored cpp-httplib, which needs OpenSSL for HTTPS
+USES=		cmake:testing compiler:c++11-lang localbase python:run shebangfix ssl
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	ggerganov
+GH_ACCOUNT=	ggml-org
 GH_PROJECT=	llama.cpp
-GH_TUPLE=	nomic-ai:kompute:4565194:kompute/kompute
+
+DISTFILES+=	llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX}
 
 SHEBANG_GLOB=	*.py
 
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	GGML_NATIVE \
 		FREEBSD_ALLOW_ADVANCED_CPU_FEATURES \
-		LLAMA_BUILD_TESTS
+		LLAMA_BUILD_TESTS \
+		LLAMA_USE_PREBUILT_UI
 CMAKE_TESTING_ON=	LLAMA_BUILD_TESTS
 
-# user for llama-server, only used when EXAMPLES=ON
+# user that the llama-server rc script runs as
 USER=		nobody
 SUB_LIST=	USER=${USER}
 
-OPTIONS_DEFINE=		CURL EXAMPLES VULKAN
-OPTIONS_DEFAULT=	CURL VULKAN
-OPTIONS_SUB=		yes
+# soversion of the ggml copy bundled in this llama.cpp release; taken from
+# ggml/CMakeLists.txt in WRKSRC, re-check it on every update
+GGML_VERSION=	0.13.1
 
-CURL_DESCR=		Use libcurl to download model from an URL
-CURL_CMAKE_BOOL=	LLAMA_CURL
-CURL_USES=		localbase
-CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
+PLIST_SUB+=	DISTVERSION=${DISTVERSION} \
+		GGML_VERSION=${GGML_VERSION}
+
+OPTIONS_DEFINE=		EXAMPLES VULKAN
+OPTIONS_DEFAULT=	EXAMPLES VULKAN
+OPTIONS_SUB=		yes
 
 EXAMPLES_CMAKE_BOOL=	LLAMA_BUILD_EXAMPLES
 
 VULKAN_DESC=		Vulkan GPU offload support
 VULKAN_CMAKE_BOOL=	GGML_VULKAN
 VULKAN_BUILD_DEPENDS=	glslc:graphics/shaderc \
+			spirv-headers>0:graphics/spirv-headers \
 			vulkan-headers>0:graphics/vulkan-headers
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 
 BINARY_ALIAS=	git=false \
 		python=${PYTHON_CMD} # for tests
 
+do-fetch:
+	# Fetch the main GH source tarball
+	@if ! [ -f ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} ]; then \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		cd ${DISTDIR}/${DIST_SUBDIR} && \
+			${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} \
+				https://codeload.github.com/${GH_ACCOUNT}/${GH_PROJECT}/tar.gz/${DISTVERSIONPREFIX}${DISTVERSION}?dummy=/${DISTNAME}${EXTRACT_SUFX} \
+				${FETCH_AFTER_ARGS}; \
+	fi
+	# Download npm dependencies for the WebUI
+	@if ! [ -f ${DISTDIR}/${DIST_SUBDIR}/llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX} ]; then \
+		${SETENV} TMPDIR=${WRKDIR} LOCALBASE=${LOCALBASE} \
+			${SH} ${FILESDIR}/fetch-ui.sh \
+			${DISTVERSION} \
+			${DISTDIR}/${DIST_SUBDIR} \
+			${DISTNAME}${EXTRACT_SUFX} \
+				${FILESDIR}; \
+	fi
+
+post-extract:
+	@${MKDIR} ${WRKSRC}/tools/ui/node_modules
+	@${TAR} -xzf ${DISTDIR}/${DIST_SUBDIR}/llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX} -C ${WRKSRC}/tools/ui/node_modules --strip-components 1
+	@cd ${WRKSRC}/tools/ui && \
+		${SETENV} HOME=${WRKSRC} npm run build
+
 post-patch: # set version in the code
 	@${REINPLACE_CMD} \
 		-e "s|set(BUILD_NUMBER 0)|set(BUILD_NUMBER ${DISTVERSION})|" \
 		${WRKSRC}/cmake/build-info.cmake
 
-do-test-ci: # build of tests fails, see https://github.com/ggerganov/llama.cpp/issues/10955
+do-test-ci: # build of tests fails, see https://github.com/ggml-org/llama.cpp/issues/10955
 	@cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} bash ci/run.sh ./tmp/results ./tmp/mnt
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MEXAMPLES}
+# llama-server moved from examples/ to tools/ upstream, so it is built
+# regardless of the EXAMPLES option
 USE_RC_SUBR=	llama-server
-.endif
 
-# tests as of 4458: 97% tests passed, 1 tests failed out of 31, see https://github.com/ggerganov/llama.cpp/issues/11036
+# tests as of 4458: 97% tests passed, 1 tests failed out of 31, see https://github.com/ggml-org/llama.cpp/issues/11036
 
 # tests as of 4649:
 # 88% tests passed, 4 tests failed out of 32
 # The following tests FAILED:
-#         18 - test-chat (Subprocess aborted)                    main   # see https://github.com/ggerganov/llama.cpp/issues/11705
+#         18 - test-chat (Subprocess aborted)                    main   # see https://github.com/ggml-org/llama.cpp/issues/11705
 #         24 - test-gguf (SEGFAULT)                              main
 #         25 - test-backend-ops (SEGFAULT)                       main
 #         32 - test-eval-callback (SEGFAULT)                     curl eval-callback

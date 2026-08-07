@@ -1,7 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
-PORTREVISION=	2
+PORTREVISION=	4
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
@@ -26,11 +26,11 @@ LICENSE_FILE=	${WRKSRC}/electron/LICENSE
 BROKEN_i386=	fetch fails: node process stalls during fetch phase and eats up all CPUs
 ONLY_FOR_ARCHS=	aarch64 amd64 i386
 
+# node is needed at fetch time too: pre-fetch runs corepack to drive yarn
 FETCH_DEPENDS=	git:devel/git \
-		${NULL}
+		node:www/node${NODEJS_VERSION}
 PATCH_DEPENDS=	git:devel/git \
 		jq:textproc/jq
-# NOTE: devel/esbuild must be added to mports before electron40 can build
 BUILD_DEPENDS=	esbuild:devel/esbuild \
 		gperf:devel/gperf \
 		bindgen:devel/rust-bindgen-cli \
@@ -120,7 +120,25 @@ NODE_MODULES_TARBALL=	${DISTDIR}/${DIST_SUBDIR}/${_DISTFILE_NODE_MODULES}
 
 YARN_NPM_URL=	https://registry.npmjs.org/@yarnpkg/cli-dist/-/cli-dist-${NPM_VER}.tgz
 
-pre-fetch: electron-fetch-node-package-manager electron-fetch-node-modules electron-archive-node-modules
+# The Electron source tarball as USE_GITHUB names it. electron-fetch-node-modules
+# needs it to read package.json/yarn.lock, but pre-fetch runs before do-fetch, so
+# it has to be fetched explicitly here rather than assumed present.
+ELECTRON_SRC_TGZ=	${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.gz
+ELECTRON_SRC_URL=	https://codeload.github.com/${GH_ACCOUNT}/${GH_PROJECT}/tar.gz/${DISTVERSIONFULL}?dummy=/${DISTNAME}.tar.gz
+
+pre-fetch: electron-fetch-node-package-manager electron-fetch-source \
+	electron-fetch-node-modules electron-archive-node-modules
+
+electron-fetch-source:
+	@if [ -f ${ELECTRON_SRC_TGZ} ]; then \
+		${ECHO_MSG} "===>  Using prefetched ${DISTNAME}.tar.gz"; \
+	else \
+		${ECHO_MSG} "===>  Fetching ${DISTNAME}.tar.gz"; \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} \
+			-o ${ELECTRON_SRC_TGZ} "${ELECTRON_SRC_URL}" \
+			${FETCH_AFTER_ARGS}; \
+	fi
 
 electron-fetch-node-package-manager:
 	@if [ -f ${YARN_TGZ} ]; then \
@@ -170,7 +188,11 @@ electron-archive-node-modules:
 		exit 0; \
 	fi; \
 	${ECHO_MSG} "===>  Archiving node modules offline cache"; \
-	cd ${NPM_EXTRACT_WRKSRC} && ${TAR} -cJf ${NODE_MODULES_TARBALL} ${NPM_MODULE_CACHE}
+	cd ${NPM_EXTRACT_WRKSRC} && \
+		${FIND} ${NPM_MODULE_CACHE} -exec ${TOUCH} -h -d 1970-01-01T00:00:00Z {} + && \
+		${FIND} ${NPM_MODULE_CACHE} -print0 | LC_ALL=C ${SORT} -z | \
+		${TAR} -cJf ${NODE_MODULES_TARBALL} --format=bsdtar --gid 0 --uid 0 \
+			--no-recursion --null -T -
 
 SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper buildtools/linux64/clang-format
 
@@ -191,6 +213,7 @@ WRKSRC=		${WRKDIR}/${PKGNAME}
 WRKSRC_SUBDIR=	src
 
 GN_ARGS+=	clang_use_chrome_plugins=false \
+		enable_backup_ref_ptr_support=false \
 		enable_hangout_services_extension=true \
 		enable_remoting=false \
 		fatal_linker_warnings=false \
@@ -200,10 +223,13 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		optimize_webui=true \
 		toolkit_views=true \
 		treat_warnings_as_errors=false \
+		use_allocator_shim=false \
 		use_aura=true \
 		use_custom_libcxx=true \
 		use_custom_libunwind=true \
 		use_lld=true \
+		use_partition_alloc=true \
+		use_partition_alloc_as_malloc=false \
 		use_qt5=true \
 		use_sysroot=false \
 		use_system_freetype=false \
@@ -314,7 +340,7 @@ MANTLE_VER=			78d3966b3c331292ea29ec38661b25df0a245948
 # See ${WRKSRC}/electron/DEPS for ENGFLOW_RECLIENT_CONFIGS_VER
 ENGFLOW_RECLIENT_CONFIGS_VER=	955335c30a752e9ef7bff375baab5e0819b6c00d
 # Keep in sync with devel/esbuild
-ESBUILD_VER=			0.27.1
+ESBUILD_VER=			0.28.1
 
 .include "Makefile.version"
 .include <bsd.port.pre.mk>
@@ -325,18 +351,29 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in bas
 
 LLVM_DEFAULT=		21
 BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
-BINARY_ALIAS+=		ar=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-ar \
+BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
+			cc=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang \
+			c++=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++ \
+			ar=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-ar \
 			nm=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-nm \
 			ld=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/ld.lld
 
-# GN's default toolchain uses `cc`/`c++` from PATH. Do not use BINARY_ALIAS
-# symlinks for those: clang's resource-dir resolution uses argv[0] and breaks
-# when invoked via a symlink in `${WRKDIR}/.bin`, causing missing intrinsics
-# headers like `xmmintrin.h`.
+# GN's clang_toolchain template hardcodes cc/c++ from PATH and ignores
+# clang_base_path, so BINARY_ALIAS is the only way to select the compiler;
+# setting CC/CXX alone only affects the GN bootstrap. Without the aliases the
+# build silently uses base clang instead of devel/llvm${LLVM_DEFAULT}.
+#
+# Chromium compiles with -no-canonical-prefixes, which makes clang derive its
+# resource directory from argv[0]; through the BINARY_ALIAS symlink in
+# ${WRKDIR}/.bin that resolves to a path which does not exist, so intrinsics
+# headers like xmmintrin.h go missing. Pass the real directory explicitly.
+CLANG_RESOURCE_DIR=	${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/clang/${LLVM_DEFAULT}
 CC=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang
 CXX=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++
 CPP=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp
-CFLAGS+=		-Wno-error=implicit-function-declaration
+CFLAGS+=		-Wno-error=implicit-function-declaration \
+			-resource-dir=${CLANG_RESOURCE_DIR}
+CXXFLAGS+=		-resource-dir=${CLANG_RESOURCE_DIR}
 
 .if ${ARCH} == "aarch64"
 PLIST_SUB+=	AARCH64="" \
@@ -518,39 +555,39 @@ post-build-DIST-on:
 		${SHA256} -r *-v${ELECTRON_VER}-freebsd-*.zip | ${SED} -e 's/ / */' > SHASUMS256.txt
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${DATADIR}
 .for f in electron mksnapshot v8_context_snapshot_generator
-	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
 .for f in libEGL.so libGLESv2.so libffmpeg.so libvk_swiftshader.so
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 ${STAGEDIR}${DATADIR}/libvulkan.so
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 ${DATADIR}/libvulkan.so
 .for f in LICENSE LICENSES.chromium.html snapshot_blob.bin v8_context_snapshot.bin version vk_swiftshader_icd.json
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
 .for f in chrome_100_percent.pak chrome_200_percent.pak resources.pak
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
 .endfor
-	${MKDIR} ${STAGEDIR}${DATADIR}/locales
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/locales/*.pak ${STAGEDIR}${DATADIR}/locales
-	${MKDIR} ${STAGEDIR}${DATADIR}/resources
+	${MKDIR} ${DATADIR}/locales
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/locales/*.pak ${DATADIR}/locales
+	${MKDIR} ${DATADIR}/resources
 .for f in default_app.asar
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/resources/${f} ${STAGEDIR}${DATADIR}/resources
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/resources/${f} ${DATADIR}/resources
 .endfor
-	cd ${WRKSRC}/out/${BUILDTYPE}/gen && ${COPYTREE_SHARE} node_headers ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/electron/buildflags ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/v8/embedded.S ${STAGEDIR}${DATADIR}
-	${RLN} ${STAGEDIR}${DATADIR}/electron ${STAGEDIR}${PREFIX}/bin/electron${PKGNAMESUFFIX}
+	cd ${WRKSRC}/out/${BUILDTYPE}/gen && ${COPYTREE_SHARE} node_headers ${DATADIR}
+	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/electron/buildflags ${DATADIR}
+	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/v8/embedded.S ${DATADIR}
+	${RLN} ${DATADIR}/electron ${PREFIX}/bin/electron${PKGNAMESUFFIX}
 
 post-install-DIST-on:
-	${MKDIR} ${STAGEDIR}${DATADIR}/releases
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/SHASUMS256.txt ${STAGEDIR}${DATADIR}/releases
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*-v${ELECTRON_VER}-freebsd-*.zip ${STAGEDIR}${DATADIR}/releases
+	${MKDIR} ${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/SHASUMS256.txt ${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*-v${ELECTRON_VER}-freebsd-*.zip ${DATADIR}/releases
 
 post-install-DRIVER-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver.unstripped \
-		${STAGEDIR}${DATADIR}/chromedriver
+		${DATADIR}/chromedriver
 
 do-test:
 	cd ${WRKSRC}/electron && \

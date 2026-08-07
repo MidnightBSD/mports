@@ -38,7 +38,7 @@
              self._host_operating_system = "win"
 +        elif platform.system() == "OpenBSD":
 +            self._host_operating_system = "openbsd"
-+        elif platform.system() == "FreeBSD":
++        elif platform.system() == "FreeBSD" or platform.system() == "MidnightBSD":
 +            self._host_operating_system = "freebsd"
          else:
              raise ValueError(f"Unsupported platform: {platform.system()}")

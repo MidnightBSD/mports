@@ -141,29 +141,29 @@ post-install: # pending https://github.com/ollama/ollama/issues/6407
 	${INSTALL_SCRIPT} ${FILESDIR}/ollama-limit-gpu-layers ${PREFIX}/bin
 
 post-install-CPU-on:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/ollama
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/ollama
 	${INSTALL_LIB} ${WRKSRC}/build/lib/ollama/libggml-base.so \
-		${STAGEDIR}${PREFIX}/lib/ollama/
+		${FAKE_DESTDIR}${PREFIX}/lib/ollama/
 	# Create the SONAME symlink so that libggml-vulkan.so and libggml-cpu-*.so
 	# can resolve their NEEDED libggml-base.so.0 dependency via dlopen
-	${LN} -sf libggml-base.so ${STAGEDIR}${PREFIX}/lib/ollama/libggml-base.so.0
+	${LN} -sf libggml-base.so ${FAKE_DESTDIR}${PREFIX}/lib/ollama/libggml-base.so.0
 	@for f in ${WRKSRC}/build/lib/ollama/libggml-cpu*.so; do \
-		${INSTALL_LIB} $$f ${STAGEDIR}${PREFIX}/lib/ollama/; \
+		${INSTALL_LIB} $$f ${FAKE_DESTDIR}${PREFIX}/lib/ollama/; \
 	done
 
 post-install-VULKAN-on:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/ollama/vulkan
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/ollama/vulkan
 	${INSTALL_LIB} ${WRKSRC}/build/lib/ollama/libggml-vulkan.so \
-		${STAGEDIR}${PREFIX}/lib/ollama/vulkan/
+		${FAKE_DESTDIR}${PREFIX}/lib/ollama/vulkan/
 
 post-install-MLX-on:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/ollama
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/ollama
 	${INSTALL_LIB} ${WRKSRC}/build/lib/ollama/libmlx.so \
-		${STAGEDIR}${PREFIX}/lib/ollama/
+		${FAKE_DESTDIR}${PREFIX}/lib/ollama/
 	${INSTALL_LIB} ${WRKSRC}/build/lib/ollama/libmlxc.so \
-		${STAGEDIR}${PREFIX}/lib/ollama/
-	patchelf --set-rpath '$$ORIGIN' ${STAGEDIR}${PREFIX}/lib/ollama/libmlx.so
-	patchelf --set-rpath '$$ORIGIN' ${STAGEDIR}${PREFIX}/lib/ollama/libmlxc.so
+		${FAKE_DESTDIR}${PREFIX}/lib/ollama/
+	patchelf --set-rpath '$$ORIGIN' ${FAKE_DESTDIR}${PREFIX}/lib/ollama/libmlx.so
+	patchelf --set-rpath '$$ORIGIN' ${FAKE_DESTDIR}${PREFIX}/lib/ollama/libmlxc.so
 
 do-test:
 	@cd ${WRKSRC} && \

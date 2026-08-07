@@ -1,5 +1,6 @@
 PORTNAME=	konqueror
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11-fm www kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -8,6 +9,7 @@ WWW=		https://konqueror.org/
 
 USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext kde:6 \
 		localbase:ldflags pkgconfig qt:6 tar:xz xorg
+CPE_VENDOR=	kde
 USE_KDE=	activities archive auth bookmarks codecs completion config \
 		configwidgets coreaddons crash dbusaddons guiaddons i18n \
 		iconthemes itemviews jobwidgets kcmutils kdesu kio \

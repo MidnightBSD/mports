@@ -309,6 +309,10 @@
     SUBDIR += php82-gd
     SUBDIR += php83-exif
     SUBDIR += php83-gd
+    SUBDIR += php84-exif
+    SUBDIR += php84-gd
+    SUBDIR += php85-exif
+    SUBDIR += php85-gd
     SUBDIR += pikopixel
     SUBDIR += pixd
     SUBDIR += plasma6-spectacle
@@ -431,6 +435,7 @@
     SUBDIR += silgraphite
     SUBDIR += simage
     SUBDIR += skanlite
+    SUBDIR += spirv-headers
     SUBDIR += spirv-tools
     SUBDIR += svgalib
     SUBDIR += svgpp

@@ -52,6 +52,10 @@
     SUBDIR += php82-mbstring
     SUBDIR += php83-iconv
     SUBDIR += php83-mbstring
+    SUBDIR += php84-iconv
+    SUBDIR += php84-mbstring
+    SUBDIR += php85-iconv
+    SUBDIR += php85-mbstring
     SUBDIR += psiconv
     SUBDIR += py-text-unidecode
     SUBDIR += py-unidecode

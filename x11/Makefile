@@ -14,6 +14,7 @@
     SUBDIR += cinnamon-menus
     SUBDIR += cinnamon-screensaver
     SUBDIR += cinnamon-session
+    SUBDIR += colormeter
     SUBDIR += dmenu
     SUBDIR += editres
     SUBDIR += emwm-utils
