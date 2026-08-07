@@ -1,5 +1,6 @@
 PORTNAME=	time
 PORTVERSION=	0.4.2
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -16,6 +17,8 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-date>=0:devel/rubygem-date
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	ruby-lang
 
 NO_ARCH=	yes
 

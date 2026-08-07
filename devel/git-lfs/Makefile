@@ -1,6 +1,7 @@
 PORTNAME=	git-lfs
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.6.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -14,6 +15,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 RUN_DEPENDS=	git:devel/git
 
 USES=		go:modules
+USES+=	cpe
+CPE_PRODUCT=	git_large_file_storage
+CPE_VENDOR=	git_large_file_storage_project
 GO_MODULE=	github.com/git-lfs/git-lfs/v3
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}

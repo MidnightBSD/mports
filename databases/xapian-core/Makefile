@@ -1,5 +1,6 @@
 PORTNAME=	xapian-core
 PORTVERSION=	2.0.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
@@ -13,6 +14,8 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		compiler:c++17-lang libtool tar:xz
+USES+=	cpe
+CPE_VENDOR=	xapian
 
 CONFIGURE_ARGS=	ac_cv_func_snprintf=snprintf
 GNU_CONFIGURE=	yes

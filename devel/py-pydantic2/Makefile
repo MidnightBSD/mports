@@ -1,6 +1,6 @@
 PORTNAME=	pydantic
 PORTVERSION=	2.13.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,6 +22,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}annotated-types>=0.6.0:devel/py-annotated-ty
 		${PYTHON_PKGNAMEPREFIX}typing-inspection>=0.4.2:devel/py-typing-inspection@${PY_FLAVOR}
 
 USES=		python
+USES+=	cpe
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes

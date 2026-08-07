@@ -1,6 +1,6 @@
 PORTNAME=	kicad
 DISTVERSION=	r${GIT_SRC_DATE}
-PORTREVISION=	3
+PORTREVISION=	4
 #PORTREVISION=	1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-devel
@@ -45,6 +45,9 @@ PLIST_SUB=	OPSYS=${OPSYS}	\
 USES=		cmake:noninja compiler:c++20-lang desktop-file-utils gl \
 		gettext gnome pkgconfig python shared-mime-info shebangfix ssl \
 		tar:bzip2 xorg 
+USES+=	cpe
+CPE_VENDOR=	kicad
+CPE_PRODUCT=	eda
 USE_GITLAB=	yes
 GL_ACCOUNT=	kicad/code
 GL_PROJECT=	kicad

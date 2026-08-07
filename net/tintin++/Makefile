@@ -1,5 +1,6 @@
 PORTNAME=	tintin++
 PORTVERSION=	2.02.42
+PORTREVISION=	1
 CATEGORIES+=	net games
 MASTER_SITES=	SF/tintin/TinTin%2B%2B%20Source%20Code/${PORTVERSION:C|.$||}/ \
 		https://github.com/scandum/tintin/releases/download/${PORTVERSION}/
@@ -16,6 +17,8 @@ LICENSE_FILE=	${WRKSRC}/../COPYING
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
 USES=		gmake localbase
+USES+=	cpe
+CPE_VENDOR=	tintin++_project
 
 CONFIGURE_ARGS=	--includedir=${LOCALBASE}/include \
 		--libdir=${LOCALBASE}/lib \

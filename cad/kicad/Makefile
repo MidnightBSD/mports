@@ -1,6 +1,6 @@
 PORTNAME=	kicad
 DISTVERSION=	10.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	cad
 
@@ -34,6 +34,9 @@ LIB_DEPENDS=	libboost_locale.so:devel/boost-libs	\
 USES=		cmake:noninja compiler:c++20-lang desktop-file-utils \
 		gnome pkgconfig python shared-mime-info shebangfix \
 		tar:bz2 xorg
+USES+=	cpe
+CPE_VENDOR=	kicad
+CPE_PRODUCT=	eda
 SHEBANG_FILES=	pcbnew/python/plugins/touch_slider_wizard.py
 
 USE_XORG=	ice x11 xext

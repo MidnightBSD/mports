@@ -1,6 +1,6 @@
 PORTNAME=	calibre
 PORTVERSION=	8.16.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils python
 MASTER_SITES=	https://download.calibre-ebook.com/${PORTVERSION}/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -66,6 +66,8 @@ RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}apsw>=3.50.4.0:databases/py-apsw@${PY_FLAVO
 USES=		desktop-file-utils gettext-runtime:build gl localbase:ldflags \
 		pkgconfig pyqt:6 python:3.11+ qt:6 shared-mime-info shebangfix sqlite ssl \
 		tar:xz xorg
+USES+=	cpe
+CPE_VENDOR=	calibre-ebook
 USE_GITHUB=	nodefault
 GH_TUPLE=	kovidgoyal:calibre-translations:94d8062:translations \
 		LibreOffice:dictionaries:fe49c66:hypenation

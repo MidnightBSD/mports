@@ -1,11 +1,15 @@
 PORTNAME=	opencl
 PORTVERSION=	3.0.12
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Computing Language (OpenCL) specifications V3.0 (header files)
 
 LICENSE=	Apache-2.0
+
+USES=	cpe
+CPE_VENDOR=	khronos
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup

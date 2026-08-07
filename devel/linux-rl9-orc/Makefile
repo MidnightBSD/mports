@@ -1,7 +1,7 @@
 PORTNAME=	orc
 PORTVERSION=	0.4.31
 DISTVERSIONSUFFIX=	-8.el9
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +14,8 @@ LICENSE_COMB=	multi
 SKIP_FAKE_ALL=  yes
 
 USES=		linux:rl9
+USES+=	cpe
+CPE_VENDOR=	gstreamer
 USE_LDCONFIG=	yes
 USE_LINUX=	libgcrypt
 USE_LINUX_RPM=	yes

@@ -1,7 +1,7 @@
 PORTNAME=	spdlog
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.15.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libfmt.so:devel/libfmt
 
 USES=		cmake compiler:c++11-lib pathfix
+USES+=	cpe
+CPE_VENDOR=	gabime
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gabime

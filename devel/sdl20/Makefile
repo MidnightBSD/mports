@@ -1,5 +1,6 @@
 PORTNAME=	sdl2
 DISTVERSION=	2.32.10
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://www.libsdl.org/release/
 DISTNAME=	SDL2-${PORTVERSION}
@@ -14,6 +15,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 GNU_CONFIGURE=	yes
 USES=		gmake iconv libtool localbase:ldflags pathfix pkgconfig
+USES+=	cpe
+CPE_PRODUCT=	simple_directmedia_layer
+CPE_VENDOR=	libsdl
 USE_CSTD=	c99
 USE_LDCONFIG=	yes
 

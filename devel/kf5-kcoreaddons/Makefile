@@ -1,5 +1,6 @@
 PORTNAME=	kcoreaddons
 DISTVERSION=	${KDE_FRAMEWORKS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel kde kde-frameworks
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +10,8 @@ LICENSE=	lgpl2.1+ bsd3
 LICENSE_COMB=	multi
 
 USES=		cmake compiler:c++11-lib kde:5 kfhack qt:5 shared-mime-info tar:xz
+USES+=	cpe
+CPE_VENDOR=	kde
 USE_KDE=	ecm:build
 USE_QT=		core dbus linguisttools \
 		buildtools:build qmake:build

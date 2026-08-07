@@ -1,6 +1,6 @@
 PORTNAME=	allegro
 DISTVERSION=	4.4.3.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/liballeg/allegro5/releases/download/${DISTVERSION}/
 
@@ -18,6 +18,8 @@ LIB_DEPENDS=	libogg.so:audio/libogg \
 		libvorbis.so:audio/libvorbis
 
 USES=		cmake gl localbase:ldflags makeinfo pkgconfig xorg
+USES+=	cpe
+CPE_VENDOR=	liballeg
 USE_GL=		gl glu
 USE_LDCONFIG=	yes
 USE_XORG=	ice sm x11 xcursor xext xpm xxf86dga xxf86vm

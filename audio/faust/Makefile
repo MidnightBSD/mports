@@ -1,6 +1,6 @@
 PORTNAME=	faust
 DISTVERSION=	2.85.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio devel
 MASTER_SITES=	https://github.com/grame-cncm/faust/releases/download/${DISTVERSION}/
 
@@ -21,6 +21,8 @@ LIB_DEPENDS=	libLLVM-${LLVM_VERSION}.so:devel/llvm${LLVM_VERSION} \
 RUN_DEPENDS=	bash:shells/bash
 
 USES=		compiler:c++17-lang cmake localbase:ldflags llvm:min=${LLVM_VER},lib ncurses python pkgconfig shebangfix # llvm: versions <11 lacked dump() function(s) that cause unresolved symbols in libfaust.so
+USES+=	cpe
+CPE_VENDOR=		grame
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	nodefault

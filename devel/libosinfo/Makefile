@@ -1,6 +1,6 @@
 PORTNAME=	libosinfo
 DISTVERSION=	1.12.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	https://releases.pagure.org/${PORTNAME}/
 
@@ -22,6 +22,7 @@ RUN_DEPENDS=	${BUILD_DEPENDS} \
 		${LOCALBASE}/share/osinfo/VERSION:misc/osinfo-db
 
 USES=		gettext gnome meson perl5 pkgconfig tar:xz
+USES+=	cpe
 USE_GNOME=	glib20 introspection:build libxml2 libxslt introspection:build
 USE_PERL5=	build
 USE_LDCONFIG=	yes

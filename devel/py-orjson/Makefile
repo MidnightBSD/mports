@@ -1,6 +1,6 @@
 PORTNAME=	orjson
 PORTVERSION=	3.8.0
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -18,6 +18,8 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=0.8.3:devel/py-maturin@${PY_FLAVO
 		${PYTHON_PKGNAMEPREFIX}pip>=20.2.3:devel/py-pip@${PY_FLAVOR}
 
 USES=		cargo python
+USES+=	cpe
+CPE_VENDOR=	ijl
 USE_PYTHON=	autoplist concurrent cython distutils
 USE_GITHUB=	yes
 GH_ACCOUNT=	ijl

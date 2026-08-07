@@ -1,5 +1,6 @@
 PORTNAME=	zchunk
 DISTVERSION=	1.5.1
+PORTREVISION=	1
 CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +14,7 @@ LIB_DEPENDS=	libargp.so:devel/argp-standalone \
 		libcurl.so:ftp/curl
 
 USES=		localbase:ldflags meson pkgconfig
+USES+=	cpe
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 

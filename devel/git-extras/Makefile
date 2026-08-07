@@ -1,5 +1,6 @@
 PORTNAME=	git-extras
 PORTVERSION=	7.4.0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,6 +17,8 @@ RUN_DEPENDS=	bash:shells/bash \
 		git:devel/git
 
 USES=		gmake
+USES+=	cpe
+CPE_VENDOR=	${PORTNAME}_project
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	tj

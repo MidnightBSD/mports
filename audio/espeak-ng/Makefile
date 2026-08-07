@@ -1,5 +1,6 @@
 PORTNAME=	espeak-ng
 PORTVERSION=	1.52.0
+PORTREVISION=	1
 CATEGORIES=	audio
 #MASTER_SITES=	https://github.com/espeak-ng/${PORTNAME}/releases/download/${PORTVERSION}/
 
@@ -13,6 +14,7 @@ BUILD_DEPENDS=	ronn:textproc/rubygem-ronn
 LIB_DEPENDS=	libpcaudio.so:audio/pcaudiolib
 
 USES=		autoreconf gmake libtool localbase
+USES+=	cpe
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 

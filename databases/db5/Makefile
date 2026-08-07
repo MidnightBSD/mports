@@ -1,6 +1,6 @@
 PORTNAME=	db5
 PORTVERSION=	5.3.28
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	databases java
 MASTER_SITES=	https://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
@@ -33,6 +33,9 @@ CONFIGURE_ARGS=	--enable-cxx --enable-stl --enable-dbm \
 CONFIGURE_SCRIPT=	../dist/configure
 GNU_CONFIGURE=	yes
 USES=		gmake libtool
+USES+=	cpe
+CPE_PRODUCT=	berkeley_db
+CPE_VENDOR=	oracle
 INSTALL_TARGET=	install_include install_lib install_utilities
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 PATCH_WRKSRC=	${WRKDIR}/${DISTNAME}

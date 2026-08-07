@@ -1,5 +1,6 @@
 PORTNAME=	kdeconnect-kde
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	deskutils kde kde-applications
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +21,9 @@ RUN_DEPENDS=	sshpass:security/sshpass \
 
 USES=		cmake compiler:c++17-lang desktop-file-utils gettext-tools \
 		gl kde:6 localbase:ldflags pkgconfig qt:6 ssl tar:xz xorg
+USES+=	cpe
+CPE_PRODUCT=	kdeconnect
+CPE_VENDOR=	kde
 USE_GL=		gl opengl # GLX
 USE_KDE=	bookmarks colorscheme completion config configwidgets \
 		coreaddons crash dbusaddons doctools guiaddons i18n iconthemes \

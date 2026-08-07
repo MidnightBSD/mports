@@ -1,5 +1,6 @@
 PORTNAME=	activerecord
 PORTVERSION=	${RAILS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -18,6 +19,8 @@ RUN_DEPENDS=	rubygem-activemodel-gitlab>=${PORTVERSION}:databases/rubygem-active
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	activerecord_project
 
 NO_ARCH=	yes
 

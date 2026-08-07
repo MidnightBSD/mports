@@ -1,5 +1,6 @@
 PORTNAME=	gtkwave
 DISTVERSION=	3.3.124
+PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/${DISTNAME}
 DISTNAME=	${PORTNAME}-gtk3-${DISTVERSION}
@@ -17,6 +18,8 @@ LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 
 USES=		desktop-file-utils gettext-runtime gmake gnome gperf pkgconfig \
 		shared-mime-info
+USES+=	cpe
+CPE_VENDOR=		tonybybell
 USE_GNOME=	cairo gdkpixbuf gtk30
 
 GNU_CONFIGURE=	yes

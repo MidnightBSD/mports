@@ -1,5 +1,6 @@
 PORTNAME=	db18
 PORTVERSION=	18.1.40
+PORTREVISION=	1
 CATEGORIES=	databases java
 MASTER_SITES=	https://github.com/yasuhirokimura/${PORTNAME}/releases/download/${PORTVERSION}/
 PKGNAMEPREFIX?=
@@ -31,6 +32,9 @@ CONFIGURE_ARGS=	--enable-cxx --enable-stl --enable-dbm \
 CONFIGURE_SCRIPT=	../dist/configure
 GNU_CONFIGURE=	yes
 USES=		gmake libtool ssl
+USES+=	cpe
+CPE_PRODUCT=	berkeley_db
+CPE_VENDOR=	oracle
 INSTALL_TARGET=	install_include install_lib install_utilities
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 PATCH_WRKSRC=	${WRKDIR}/${DISTNAME}

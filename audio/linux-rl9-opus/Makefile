@@ -1,7 +1,7 @@
 PORTNAME=	opus
 PORTVERSION=	1.3.1
 DISTVERSIONSUFFIX=	-10.el9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +11,8 @@ WWW=		https://opus-codec.org/
 SKIP_FAKE_ALL=  yes
 
 USES=		linux:rl9
+USES+=	cpe
+CPE_VENDOR=	opus-codec
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes

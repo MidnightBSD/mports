@@ -1,5 +1,6 @@
 PORTNAME=	globalid
 PORTVERSION=	0.4.2
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
@@ -14,6 +15,8 @@ BUILD_DEPENDS=  ${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport4>=4.2.0:devel/rubygem-activesupport4
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	rubyonrails
 
 NO_ARCH=	yes
 

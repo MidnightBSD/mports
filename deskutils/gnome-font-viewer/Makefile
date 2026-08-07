@@ -1,5 +1,6 @@
 PORTNAME=	gnome-font-viewer
 PORTVERSION=	47.0
+PORTREVISION=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -20,6 +21,8 @@ PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 desktop-file-utils gettext gnome localbase meson \
 		pkgconfig tar:xz
+USES+=	cpe
+CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 USE_GNOME=	gtk40 libadwaita
 INSTALLS_ICONS=	yes

@@ -1,6 +1,6 @@
 PORTNAME=	libgdata
 PORTVERSION=	0.18.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -18,6 +18,8 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		liboauth.so:net/liboauth
 
 USES=		gettext gnome localbase meson pkgconfig tar:xz vala:build
+USES+=	cpe
+CPE_VENDOR=	gnome
 USE_GNOME=	glib20 introspection:build libxml2
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dalways_build_tests=false

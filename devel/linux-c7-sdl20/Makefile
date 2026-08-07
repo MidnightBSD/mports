@@ -1,5 +1,6 @@
 PORTNAME=	sdl20
 PORTVERSION=	2.0.14
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-2.el7
 CATEGORIES=	devel linux
 MASTER_SITES=	EPEL7/s
@@ -15,6 +16,9 @@ SKIP_FAKE_ALL=  yes
 ONLY_FOR_ARCHS=	amd64
 
 USES=		linux:c7
+USES+=	cpe
+CPE_PRODUCT=	simple_directmedia_layer
+CPE_VENDOR=	libsdl
 USE_LDCONFIG=	yes
 USE_LINUX=	xorglibs
 USE_LINUX_RPM=	nolib

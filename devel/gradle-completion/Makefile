@@ -1,6 +1,7 @@
 PORTNAME=	gradle-completion
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.4.1
+PORTREVISION=	1
 CATEGORIES=	devel java
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +10,9 @@ WWW=		https://github.com/gradle/gradle-completion
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=	cpe
+CPE_VENDOR=	gradle
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gradle

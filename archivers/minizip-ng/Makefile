@@ -1,5 +1,6 @@
 PORTNAME=	minizip-ng
 DISTVERSION=	4.0.10
+PORTREVISION=	1
 CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +14,8 @@ LIB_DEPENDS=	libz-ng.so:archivers/zlib-ng \
 		libzstd.so:archivers/zstd
 
 USES=		cmake:testing iconv pathfix pkgconfig ssl
+USES+=	cpe
+CPE_VENDOR=	zlib-ng
 USE_GITHUB=	yes
 GH_ACCOUNT=	zlib-ng
 USE_LDCONFIG=	yes

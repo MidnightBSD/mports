@@ -1,6 +1,6 @@
 PORTNAME=	click
 PORTVERSION=	8.3.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11<4:devel/py-flit-core@${PY_FLAVOR}
 
 USES=		python
+USES+=	cpe
+CPE_VENDOR=	palletsprojects
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes

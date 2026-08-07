@@ -1,6 +1,6 @@
 PORTNAME=	hyperscan
 PORTVERSION=	5.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel textproc
 MASTER_SITES=	SF/boost/boost/${BOOST_VERSION}:boost
@@ -17,6 +17,8 @@ BUILD_DEPENDS=	ragel:devel/ragel
 USE_GITHUB=	yes
 GH_ACCOUNT=	intel
 USES=	compiler:c++11-lib cmake pathfix python:build
+USES+=	cpe
+CPE_VENDOR=	intel
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	SSSE3 is required for work
 

@@ -1,7 +1,7 @@
 PORTNAME=	jackit
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.9.22
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,6 +15,9 @@ LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate \
 		libsysinfo.so:devel/libsysinfo
 
 USES=		compiler:c11 pkgconfig python shebangfix waf
+USES+=	cpe
+CPE_VENDOR=	jackaudio
+CPE_PRODUCT=	jack2
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	jackd
 

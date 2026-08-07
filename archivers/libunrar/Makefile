@@ -1,5 +1,6 @@
 PORTNAME=	libunrar
 PORTVERSION=	7.0.9
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/
@@ -15,6 +16,9 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		compiler:c++11-lang gmake
+USES+=	cpe
+CPE_VENDOR=	rarlab
+CPE_PRODUCT=	unrar
 USE_LDCONFIG=	yes
 
 ALL_TARGET=	lib

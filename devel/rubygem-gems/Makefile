@@ -1,5 +1,6 @@
 PORTNAME=	gems
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -11,6 +12,9 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 USES=		gem
+USES+=	cpe
+CPE_PRODUCT=	rubygems
+CPE_VENDOR=	rubygems
 
 NO_ARCH=	yes
 

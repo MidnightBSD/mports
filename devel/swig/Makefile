@@ -1,5 +1,6 @@
 PORTNAME=	swig
 PORTVERSION=	4.2.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/swig/swig/swig-${PORTVERSION}
 
@@ -14,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE-GPL
 LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 
 USES=		lua:build
+USES+=	cpe
+CPE_VENDOR=	swig_project
 
 ALL_TARGET=	# empty
 CFLAGS+=	-fPIC -DPIC

@@ -1,6 +1,6 @@
 PORTNAME=	wheel
 PORTVERSION=	0.45.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,6 +14,8 @@ LICENSE=	mit
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.8:devel/py-flit-core@${PY_FLAVOR}
 
 USES=		python
+USES+=	cpe
+CPE_VENDOR=	wheel_project
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar

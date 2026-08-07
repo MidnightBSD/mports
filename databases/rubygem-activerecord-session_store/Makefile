@@ -1,5 +1,6 @@
 PORTNAME=	activerecord-session_store
 PORTVERSION=	2.2.0
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
@@ -18,6 +19,9 @@ RUN_DEPENDS=	rubygem-actionpack80>=7.0:www/rubygem-actionpack80 \
 		rubygem-railties80>=7.0:www/rubygem-railties80
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	rubyonrails
+CPE_PRODUCT=	active_record_session_store
 
 NO_ARCH=	yes
 

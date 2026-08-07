@@ -1,6 +1,6 @@
 PORTNAME=	cbor2
 PORTVERSION=	5.4.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=1.7.0:devel/py-setuptools-scm@${PY_FLAVOR}
 
 USES=		python
+USES+=	cpe
+CPE_VENDOR=	agronholm
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_TEST=	yes

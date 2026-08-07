@@ -1,5 +1,6 @@
 PORTNAME=	lib3mf
 DISTVERSION=	2.5.0
+PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	https://github.com/3MFConsortium/${PORTNAME}/releases/download/v${DISTVERSION}/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-source-with-submodules
@@ -17,6 +18,8 @@ TEST_DEPENDS=	googletest>0:devel/googletest
 
 USES=		compiler:c++17-lang cmake:testing localbase:ldflags pathfix \
 		pkgconfig python
+USES+=	cpe
+CPE_VENDOR=	3mf
 USE_LDCONFIG=	yes
 
 EXTRACT_SUFX=	.zip

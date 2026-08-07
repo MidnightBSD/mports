@@ -1,5 +1,6 @@
 PORTNAME=	activerecord
 PORTVERSION=	7.0.10
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	70
@@ -17,6 +18,8 @@ RUN_DEPENDS=	rubygem-activemodel70>=${PORTVERSION}<7.1:databases/rubygem-activem
 		rubygem-activesupport70>=${PORTVERSION}<7.1:devel/rubygem-activesupport70
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	activerecord_project
 
 NO_ARCH=	yes
 

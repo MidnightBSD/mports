@@ -1,5 +1,6 @@
 PORTNAME=	libmemcached
 PORTVERSION=	1.1.4
+PORTREVISION=	1
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,6 +16,8 @@ TEST_DEPENDS=	memcached:databases/memcached \
 		onetbb>=0:devel/onetbb
 
 USES=		bison compiler:c++11-lang pathfix pkgconfig ssl
+USES+=	cpe
+CPE_VENDOR=		awesome
 
 CMAKE_OFF=	BUILD_DOCSONLY \
 		BUILD_DOCS_MANGZ \

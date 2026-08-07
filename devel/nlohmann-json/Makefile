@@ -1,6 +1,7 @@
 PORTNAME=	json
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.11.3
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	nlohmann-
 
@@ -12,6 +13,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.MIT
 
 USES=		cmake compiler:c++11-lib
+USES+=	cpe
+CPE_VENDOR=	nlohmann
 USE_GITHUB=	yes
 GH_ACCOUNT=	nlohmann
 

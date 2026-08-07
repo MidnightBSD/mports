@@ -1,5 +1,6 @@
 PORTNAME=	sbt
 PORTVERSION=	1.10.11
+PORTREVISION=	1
 CATEGORIES=	devel java
 MASTER_SITES=	https://github.com/sbt/sbt/releases/download/v${PORTVERSION}/
 
@@ -12,6 +13,8 @@ LICENSE=	Apache-2.0
 RUN_DEPENDS=	infocmp:devel/ncurses
 
 USES=		java tar:tgz
+USES+=	cpe
+CPE_VENDOR=	scala.epfl
 
 OPTIONS_DEFINE=	ADVANCED # PRELOADED
 OPTIONS_DEFAULT=ADVANCED

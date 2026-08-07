@@ -1,5 +1,6 @@
 PORTNAME=	rtl-433
 PORTVERSION=	25.12
+PORTREVISION=	1
 CATEGORIES=	comms hamradio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +14,9 @@ LIB_DEPENDS=	librtlsdr.so:comms/rtl-sdr \
 		libSoapySDR.so:misc/soapysdr
 
 USES=		cmake pkgconfig ssl
+USES+=	cpe
+CPE_PRODUCT=	rtl_433
+CPE_VENDOR=	rtl_433_project
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	merbanan

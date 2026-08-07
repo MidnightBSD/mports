@@ -1,5 +1,6 @@
 PORTNAME=	activerecord
 PORTVERSION=	5.1.7
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	5
@@ -18,6 +19,8 @@ RUN_DEPENDS=	rubygem-activemodel5>=${PORTVERSION}:databases/rubygem-activemodel5
 		rubygem-arel8>=8.0,1:databases/rubygem-arel8
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	activerecord_project
 
 NO_ARCH=	yes
 

@@ -1,5 +1,6 @@
 PORTNAME=	postgresql
 PORTVERSION=	42.7.12
+PORTREVISION=	1
 CATEGORIES=	databases java
 MASTER_SITES=	http://jdbc.postgresql.org/download/
 PKGNAMESUFFIX=	-jdbc
@@ -13,6 +14,9 @@ WWW=		https://jdbc.postgresql.org/
 LICENSE=	bsd3
 
 USES=		java
+USES+=	cpe
+CPE_PRODUCT=	postgresql_jdbc_driver
+CPE_VENDOR=	postgresql
 NO_ARCH=	yes
 PLIST_FILES=	%%JAVAJARDIR%%/postgresql.jar
 

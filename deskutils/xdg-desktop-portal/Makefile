@@ -1,5 +1,6 @@
 PORTNAME=	xdg-desktop-portal
 DISTVERSION=	1.20.3
+PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +19,8 @@ LIB_DEPENDS=	libfuse3.so:filesystems/fusefs-libs3 \
 
 USES=		gettext-tools gmake gnome gstreamer meson pkgconfig \
 		python:build shebangfix
+USES+=	cpe
+CPE_VENDOR=	flatpak
 USE_GITHUB=	yes
 GH_ACCOUNT=	flatpak
 USE_GNOME=	gdkpixbuf glib20

@@ -1,6 +1,6 @@
 PORTNAME=	cbang
 PORTVERSION=	1.8.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -25,6 +25,8 @@ GH_ACCOUNT=	CauldronDevelopmentLLC
 
 USES=		compiler:c++17-lang localbase mysql:client python:test scons	\
 		sqlite ssl
+USES+=	cpe
+CPE_VENDOR=	cauldrondevelopment
 USE_CXXSTD=	gnu++17
 USE_LDCONFIG=	yes
 

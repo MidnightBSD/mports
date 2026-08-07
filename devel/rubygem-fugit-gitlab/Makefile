@@ -1,5 +1,6 @@
 PORTNAME=	fugit
 PORTVERSION=	1.11.2
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -16,6 +17,8 @@ RUN_DEPENDS=	rubygem-et-orbi>=1.2.11<2:devel/rubygem-et-orbi \
 		rubygem-raabro>=1.4<2:textproc/rubygem-raabro
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	floraison
 
 NO_ARCH=	yes
 

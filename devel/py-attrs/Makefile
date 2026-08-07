@@ -1,6 +1,6 @@
 PORTNAME=	attrs
 PORTVERSION=	26.1.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,6 +18,8 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-fancy-pypi-readme>=23.2.0:devel/py-h
 		${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 
 USES=		python
+USES+=	cpe
+CPE_VENDOR=	attrs_project
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 # circurlar loop.  Tests depend on pytest, which depends on this.

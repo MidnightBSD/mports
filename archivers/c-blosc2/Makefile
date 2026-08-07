@@ -1,5 +1,6 @@
 PORTNAME=	c-blosc2
 PORTVERSION=	2.23.1
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	archivers
 
@@ -15,6 +16,8 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 		libzstd.so:archivers/zstd
 
 USES=		cmake:testing
+USES+=	cpe
+CPE_VENDOR=	blosc
 
 CMAKE_OFF=	BUILD_LITE \
 		DEACTIVATE_AVX2 \

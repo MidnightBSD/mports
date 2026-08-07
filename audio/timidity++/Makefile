@@ -1,6 +1,6 @@
 PORTNAME=	timidity++
 PORTVERSION=	2.15.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES+=	audio
 MASTER_SITES=	SF/timidity/TiMidity%2B%2B/TiMidity%2B%2B-${PORTVERSION}
 DISTNAME=	TiMidity++-${PORTVERSION}
@@ -19,6 +19,8 @@ RUN_DEPENDS=	eawpats>0:audio/eawpats
 .endif
 
 USES=		gmake localbase tar:bzip2
+USES+=	cpe
+CPE_VENDOR=	timidity++_project
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ENV+=	SHLD="${CC} -shared"

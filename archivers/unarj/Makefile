@@ -1,6 +1,6 @@
 PORTNAME=	unarj
 PORTVERSION=	2.65
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers
 MASTER_SITES=	https://aklv.github.io/distfiles/
 
@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/unarj.txt
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
 USES=	tar:tgz
+USES+=	cpe
+CPE_VENDOR=	arjsoftware
 
 PLIST_FILES=	bin/unarj
 PORTDOCS=	unarj.txt technote.txt

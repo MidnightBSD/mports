@@ -1,5 +1,6 @@
 PORTNAME=	icalendar
 PORTVERSION=	2.10.3
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -16,6 +17,8 @@ RUN_DEPENDS=	rubygem-ice_cube>=0.16<1:devel/rubygem-ice_cube \
 		rubygem-ostruct>=0:devel/rubygem-ostruct
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	icalendar_project
 
 NO_ARCH=	yes
 

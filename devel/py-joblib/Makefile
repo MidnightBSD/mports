@@ -1,6 +1,6 @@
 PORTNAME=	joblib
 PORTVERSION=	1.3.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,6 +17,8 @@ TEST_DEPENDS=	${PYNUMPY}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tomli>=0:textproc/py-tomli@${PY_FLAVOR}
 
 USES=		python
+USES+=	cpe
+CPE_VENDOR=	joblib_project
 USE_PYTHON=	distutils autoplist
 #pytest
 

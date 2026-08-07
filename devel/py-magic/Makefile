@@ -1,6 +1,6 @@
 PORTNAME=	magic
 PORTVERSION=	5.45
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	https://astron.com/pub/file/ \
 		ftp://ftp.astron.com/pub/file/ \
@@ -17,6 +17,9 @@ WWW=		https://www.darwinsys.com/file/
 LICENSE=	bsd2
 
 USES=		python
+USES+=	cpe
+CPE_PRODUCT=	file
+CPE_VENDOR=	file_project
 USE_PYTHON=	autoplist distutils
 
 # both install module as magic.py

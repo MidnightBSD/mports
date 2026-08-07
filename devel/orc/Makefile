@@ -1,5 +1,6 @@
 PORTNAME=	orc
 DISTVERSION=	0.4.42
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://gstreamer.freedesktop.org/data/src/orc/
 
@@ -12,6 +13,8 @@ LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		meson pkgconfig tar:xz
+USES+=	cpe
+CPE_VENDOR=	gstreamer
 
 MESON_ARGS=	--default-library=both \
 		-Dbenchmarks=auto \

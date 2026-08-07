@@ -1,6 +1,6 @@
 PORTNAME=	opusfile
 PORTVERSION=	0.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	https://downloads.xiph.org/releases/opus/ \
 		https://ftp.osuosl.org/pub/xiph/releases/opus/
@@ -16,6 +16,8 @@ LIB_DEPENDS=	libogg.so:audio/libogg \
 		libopus.so:audio/opus
 
 USES=		autoreconf libtool pathfix pkgconfig ssl
+USES+=	cpe
+CPE_VENDOR=	xiph
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes

@@ -1,5 +1,6 @@
 PORTNAME=	caribou
 DISTVERSION=	0.4.21-78
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-g9c900f0
 CATEGORIES=	accessibility gnome
 DIST_SUBDIR=	gnome
@@ -23,6 +24,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}atspi>=2.1.91:accessibility/py-atspi@${PY_FL
 
 USES=		autoreconf:2.69 gettext gl gmake gnome libtool localbase pathfix \
 		pkgconfig python shebangfix vala:build xorg
+USES+=	cpe
+CPE_VENDOR=	gnome
 
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.gnome.org/

@@ -1,6 +1,6 @@
 PORTNAME=	pymongo
 PORTVERSION=	3.13.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +12,8 @@ WWW=		https://github.com/mongodb/mongo-python-driver
 LICENSE=	Apache-2.0
 
 USES=		python
+USES+=	cpe
+CPE_VENDOR=	mongodb
 USE_PYTHON=	autoplist concurrent distutils
 
 CONFLICTS_INSTALL=	py[0-9][0-9]-pymongo28

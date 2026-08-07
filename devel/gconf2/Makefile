@@ -1,6 +1,6 @@
 PORTNAME=	gconf2
 PORTVERSION=	3.2.6
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME/sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	GConf-${PORTVERSION}
@@ -14,6 +14,9 @@ LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:xz
+USES+=	cpe
+CPE_PRODUCT=	gconf
+CPE_VENDOR=	gnome
 
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib
 

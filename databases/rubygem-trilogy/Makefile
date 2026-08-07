@@ -1,5 +1,6 @@
 PORTNAME=	trilogy
 PORTVERSION=	2.9.0
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
@@ -11,5 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gem ssl
+USES+=	cpe
+CPE_VENDOR=	trilogy_project
 
 .include <bsd.port.mk>

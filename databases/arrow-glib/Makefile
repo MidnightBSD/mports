@@ -1,6 +1,6 @@
 PORTNAME=	arrow
 PORTVERSION=	21.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	APACHE/arrow/arrow-${PORTVERSION}/
 PKGNAMESUFFIX=	-glib
@@ -18,6 +18,8 @@ BUILD_DEPENDS=	arrow>=${PORTVERSION}<${PORTVERSION}_99:databases/arrow
 LIB_DEPENDS=	libarrow.so:databases/arrow
 
 USES=		compiler:c++17-lang gnome meson pkgconfig python:build
+USES+=	cpe
+CPE_VENDOR=	apache
 USE_GNOME=	introspection
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}

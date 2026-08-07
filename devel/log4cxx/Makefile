@@ -1,5 +1,6 @@
 PORTNAME=	log4cxx
 PORTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://archive.apache.org/dist/logging/log4cxx/${PORTVERSION}/
 DISTNAME=	apache-log4cxx-${PORTVERSION}
@@ -18,6 +19,8 @@ LIB_DEPENDS=	libapr-1.so:devel/apr1 \
 TEST_DEPENDS=	zip:archivers/zip
 
 USES=		cmake:testing compiler:c++17-lang pathfix
+USES+=	cpe
+CPE_VENDOR=	apache
 
 CMAKE_OFF=	APACHE_MAINTAINER \
 		APR_STATIC \

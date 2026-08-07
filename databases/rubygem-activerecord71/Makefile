@@ -1,5 +1,6 @@
 PORTNAME=	activerecord
 PORTVERSION=	7.1.6
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	71
@@ -18,6 +19,8 @@ RUN_DEPENDS=	rubygem-activemodel71>=${PORTVERSION}<${PORTVERSION}_99:databases/r
 		rubygem-timeout>=0.4.0:devel/rubygem-timeout
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	activerecord_project
 
 NO_ARCH=	yes
 

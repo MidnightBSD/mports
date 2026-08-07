@@ -1,6 +1,7 @@
 PORTNAME=	openfpgaloader
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1.1
+PORTREVISION=	1
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,6 +16,8 @@ LIB_DEPENDS=	libftdi1.so:devel/libftdi1 \
 		libudev.so:devel/libudev-devd
 
 USES=		cmake compiler:c++11-lang localbase:ldflags pkgconfig
+USES+=	cpe
+CPE_VENDOR=	trabucayre
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	trabucayre

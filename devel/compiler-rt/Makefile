@@ -1,6 +1,6 @@
 PORTNAME=	compiler-rt
 DISTVERSION=	0.r${SVN_REV}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	FREEBSD_LOCAL/brooks
 
@@ -24,6 +24,8 @@ TEST_TARGET=		test
 CMAKE_SOURCE_PATH=	${WRKSRC}
 
 USES=		cmake:insource tar:bzip2
+USES+=	cpe
+CPE_VENDOR=	llvm
 USE_LDCONFIG=	yes
 
 LLVM_SVN=	http://llvm.org/svn/llvm-project

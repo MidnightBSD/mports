@@ -1,5 +1,6 @@
 PORTNAME=	globalid
 PORTVERSION=	1.2.1
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-rails72
@@ -15,6 +16,8 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport72>=6.1:devel/rubygem-activesupport72
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	rubyonrails
 
 NO_ARCH=	yes
 

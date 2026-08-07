@@ -1,5 +1,6 @@
 PORTNAME=	view_component
 PORTVERSION=	3.23.2
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-rails-gitlab
@@ -17,6 +18,8 @@ RUN_DEPENDS=	rubygem-activesupport-gitlab>=5.2.0<8.1:devel/rubygem-activesupport
 		rubygem-method_source>=1.0<2:devel/rubygem-method_source
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	viewcomponent
 
 NO_ARCH=	yes
 

@@ -1,5 +1,6 @@
 PORTNAME=	cppcheck
 DISTVERSION=	2.20.0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +15,8 @@ LIB_DEPENDS=	libtinyxml2.so:textproc/tinyxml2
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs
 
 USES=		compiler:c++11-lib shebangfix tar:bzip2
+USES+=	cpe
+CPE_VENDOR=	cppchecksolutions
 USE_GITHUB=	yes
 GH_ACCOUNT=	danmar
 SHEBANG_FILES=	htmlreport/cppcheck-htmlreport

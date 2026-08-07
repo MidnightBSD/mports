@@ -1,5 +1,6 @@
 PORTNAME=	nspr
 PORTVERSION=	4.35.0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-1.el7_9
 CATEGORIES=	devel linux
 
@@ -13,6 +14,9 @@ LICENSE_COMB=	dual
 SKIP_FAKE_ALL=  yes
 
 USES=		linux:c7
+USES+=	cpe
+CPE_PRODUCT=	netscape_portable_runtime
+CPE_VENDOR=	mozilla
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 

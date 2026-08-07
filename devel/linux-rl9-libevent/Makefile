@@ -1,7 +1,7 @@
 PORTNAME=	libevent
 PORTVERSION=	2.1.12
 DISTVERSIONSUFFIX=	-8.el9_4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +13,8 @@ LICENSE=	bsd3
 SKIP_FAKE_ALL=  yes
 
 USES=		linux:rl9
+USES+=	cpe
+CPE_VENDOR=	libevent_project
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
 WANT_LINUX32=	yes

@@ -3,7 +3,7 @@ DISTVERSION=	3.50.4
 # SECURITY WARNING: when updating this port, also file vuxml entry
 # for ports/databases/linux-c7-sqlite3 (but mind it has a different EPOCH)
 # and coordinate with ports/emulators/linux_base which also ships sqlite3.
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://www.sqlite.org/${_YEAR}/ https://www2.sqlite.org/${_YEAR}/ https://www3.sqlite.org/${_YEAR}/
@@ -35,6 +35,7 @@ tcl_PKGNAMESUFFIX=	-${FLAVOR}	# lang/tcl* support
 .endif
 
 USES=	libtool ncurses zip
+USES+=	cpe
 USE_LDCONFIG=	yes
 
 HAS_CONFIGURE=	yes

@@ -1,5 +1,6 @@
 PORTNAME=	gnome-maps
 DISTVERSION=	47.9
+PORTREVISION=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -26,6 +27,8 @@ LIB_DEPENDS=	libgeocode-glib-2.so:net/geocode-glib2 \
 RUN_DEPENDS=	geoclue>=0:net/geoclue
 
 USES=		desktop-file-utils gettext gnome meson pkgconfig tar:xz
+USES+=	cpe
+CPE_VENDOR=	gnome
 USE_GNOME=	cairo glib20 gtk40 introspection:build libadwaita \
 		libxml2 librsvg2
 USE_LDCONFIG=	yes

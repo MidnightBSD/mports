@@ -2,6 +2,7 @@
 
 PORTNAME=	nethack36
 PORTVERSION=	3.6.7
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	https://nethack.org/download/${PORTVERSION}/
 DISTNAME=	${TRUEPORTNAME}-${PORTVERSION:S/.//g}-src
@@ -16,6 +17,9 @@ LICENSE_FILE=	${WRKSRC}/dat/license
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		compiler:c11 gmake ncurses tar:tgz
+USES+=	cpe
+CPE_PRODUCT=	nethack
+CPE_VENDOR=	nethack
 
 FAKE_OPTS=	trueprefix
 

@@ -1,5 +1,6 @@
 PORTNAME=	json
 PORTVERSION=	1.8.6
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	1
@@ -12,6 +13,8 @@ LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	ruby-lang
 
 PORTSCOUT=	limit:^1\.
 

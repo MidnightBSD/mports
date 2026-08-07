@@ -1,5 +1,6 @@
 PORTNAME=	fossology
 PORTVERSION=	4.2.1
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-nomos-standalone
 
@@ -16,6 +17,8 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c
 USE_GITHUB=	yes
 
 USES=		gnome gmake gettext pkgconfig
+USES+=	cpe
+CPE_VENDOR=	linuxfoundation
 USE_GNOME=	glib20
 
 BUILD_WRKSRC=	${WRKSRC}/src/nomos/agent

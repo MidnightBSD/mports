@@ -1,5 +1,6 @@
 PORTNAME=	json
 PORTVERSION=	2.12.2
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -14,5 +15,7 @@ LICENSE_FILE_bsd2=${WRKSRC}/BSDL
 LICENSE_FILE_ruby=	${WRKSRC}/COPYING
 
 USES=		gem
+USES+=	cpe
+CPE_VENDOR=	ruby-lang
 
 .include <bsd.port.mk>

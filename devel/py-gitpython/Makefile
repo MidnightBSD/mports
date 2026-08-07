@@ -1,6 +1,6 @@
 PORTNAME=	GitPython
 PORTVERSION=	3.1.50
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,6 +22,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ddt>=1.1.1:devel/py-ddt@${PY_FLAVOR} \
 NO_ARCH=	yes
 NO_TEST=	yes
 USES=		python
+USES+=	cpe
+CPE_VENDOR=	gitpython_project
 USE_PYTHON=	allflavors autoplist concurrent distutils
 
 .include <bsd.port.mk>
