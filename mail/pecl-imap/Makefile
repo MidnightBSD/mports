@@ -9,7 +9,7 @@ WWW=		https://github.com/php/pecl-mail-imap
 LICENSE=	PHP301
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libc-client.so.2010:mail/panda-cclient
+LIB_DEPENDS=	libc-client4.so.10:mail/panda-cclient
 
 USES=		localbase php:pecl ssl
 IGNORE_WITH_PHP=	82 83 86
