@@ -48,6 +48,7 @@
     SUBDIR += p5-Unicode-MapUTF8
     SUBDIR += p5-Unicode-RecursiveDowngrade
     SUBDIR += p5-Unicode-String
+    SUBDIR += p5-Unicode-UTF8
     SUBDIR += php82-iconv
     SUBDIR += php82-mbstring
     SUBDIR += php83-iconv
