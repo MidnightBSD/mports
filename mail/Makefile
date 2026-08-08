@@ -113,6 +113,7 @@
     SUBDIR += pear-Horde_Mime_Viewer
     SUBDIR += pear-Horde_Smtp
     SUBDIR += pear-MIME_Type
+    SUBDIR += pecl-imap
     SUBDIR += php82-imap
     SUBDIR += php83-imap
     SUBDIR += phplist

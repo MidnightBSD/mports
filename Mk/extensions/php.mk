@@ -407,7 +407,11 @@ gettext_DEPENDS=devel/php${PHP_VER}-gettext
 gmp_DEPENDS=	math/php${PHP_VER}-gmp
 iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 igbinary_DEPENDS=	converters/pecl-igbinary@${PHP_FLAVOR}
+.    if ${PHP_VER} <= 83
 imap_DEPENDS=	mail/php${PHP_VER}-imap
+.    else
+imap_DEPENDS=	mail/pecl-imap@${PHP_FLAVOR}
+.    endif
 intl_DEPENDS=	devel/php${PHP_VER}-intl
 ldap_DEPENDS=	net/php${PHP_VER}-ldap
 mbstring_DEPENDS=	converters/php${PHP_VER}-mbstring
