@@ -87,7 +87,7 @@ EXTRA_DOCS=	AUTHORS INSTALL NEWS \
 .endif
 
 #
-# Variable avilable for further customization:
+# Variables available for further customization:
 #
 # WITH_SYSLOG_FACILITY:         The syslogfacility to use
 #
