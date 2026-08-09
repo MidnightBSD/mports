@@ -1,5 +1,5 @@
 PORTNAME=	mailutils
-PORTVERSION=	3.16
+PORTVERSION=	3.21
 CATEGORIES=	mail
 MASTER_SITES=	GNU GNU_ALPHA
 
@@ -97,10 +97,6 @@ CONFIGURE_ARGS+=	--enable-debug
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e '/MU_AUTHLIBS=/s,-lldap,-llber &,' \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e '/need_charset_alias=/s|true|false|' \
-		${WRKSRC}/lib/gnu/Makefile.in
 	@${REINPLACE_CMD} -e '/chown/,+1s|ch|#&|' \
 		${WRKSRC}/dotlock/Makefile.in ${WRKSRC}/mda/mda/Makefile.in
 	@${REINPLACE_CMD} -e 's,-E,& -P,' ${WRKSRC}/libmu_scm/Makefile.in
