@@ -1,5 +1,5 @@
 PORTNAME=	gitlab-mail_room
-PORTVERSION=	1.0.0
+PORTVERSION=	1.1.0
 CATEGORIES=	mail rubygems
 MASTER_SITES=	RG
 
@@ -10,11 +10,11 @@ WWW=		https://gitlab.com/gitlab-org/ruby/gems/gitlab-mail_room
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	rubygem-jwt>=2.0:www/rubygem-jwt \
-		rubygem-net-imap>=0.2.1:mail/rubygem-net-imap \
-		rubygem-oauth2-gitlab>=1.4.4<3:net/rubygem-oauth2-gitlab \
+RUN_DEPENDS=	rubygem-jwt>=2.0<4:www/rubygem-jwt \
+		rubygem-net-imap>=0.5<0.7:mail/rubygem-net-imap \
+		rubygem-oauth2-gitlab>=2.0.9<3:net/rubygem-oauth2-gitlab \
 		rubygem-redis-gitlab>=5<6:databases/rubygem-redis-gitlab \
-		rubygem-redis-namespace-gitlab>=1.8.2:databases/rubygem-redis-namespace-gitlab
+		rubygem-redis-namespace-gitlab>=1.8.2<2:databases/rubygem-redis-namespace-gitlab
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
