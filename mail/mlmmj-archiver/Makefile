@@ -1,22 +1,26 @@
 PORTNAME=	mlmmj-archiver
-DISTVERSION=	0.4
+DISTVERSION=	0.7.1
 CATEGORIES=	mail www
-MASTER_SITES=	https://fossil.nours.eu/${PORTNAME}/tarball/?r=${DISTVERSION}&name=./
+MASTER_SITES=	https://codeberg.org/bapt/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple mailing archiver designed for mlmmj
-WWW=		https://fossil.nours.eu/mlmmj-archiver
+WWW=		https://codeberg.org/bapt/mlmmj-archiver
 
-LICENSE=	bsd2
-BUILD_DEPENDS=	${LOCALBASE}/lib/libneo_cs.a:www/clearsilver
+LICENSE=	mit
 
-USES=		sqlite:3 uidfix pkgconfig
+LIB_DEPENDS=	libucl.so:textproc/libucl
 
-MAKE_ARGS=	MAN= LOCALBASE=${LOCALBASE}
+USES=		sqlite:3 uidfix pkgconfig iconv
 
-PLIST_FILES=	bin/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
-do-install:
-	${INSTALL_PROGRAM}  ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS=	--mandir=${PREFIX}/share/man
+
+PLIST_FILES=	bin/cs2tpl \
+		bin/${PORTNAME} \
+		share/man/man1/cs2tpl.1.gz \
+		share/man/man1/${PORTNAME}.1.gz
 
 .include <bsd.port.mk>
