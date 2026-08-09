@@ -1,5 +1,5 @@
 PORTNAME=	mutt
-DISTVERSION=	2.3.2
+DISTVERSION=	2.4.1
 CATEGORIES+=	mail
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
 		https://bitbucket.org/mutt/mutt/downloads/ \
@@ -106,7 +106,9 @@ AUTOCRYPT_DEPENDS=		gnupg>=2.1:security/gnupg \
 
 DEBUG_LOGS_CONFIGURE_ON=	--enable-debug
 
-DOCS_BUILD_DEPENDS=	lynx:www/lynx
+DOCS_BUILD_DEPENDS=	docbook-xsl>0:textproc/docbook-xsl \
+			lynx:www/lynx \
+			xsltproc:textproc/libxslt
 DOCS_CONFIGURE_OFF=	--disable-doc
 
 FLOCK_CONFIGURE_ENABLE=	flock
