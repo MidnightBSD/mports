@@ -252,8 +252,10 @@ share/man/man1/mlmmj-unsub.1.gz
 %%PHP%%%%WWWDIR%%/php-admin/htdocs/dot.htaccess
 %%PHP%%%%WWWDIR%%/php-admin/htdocs/edit.php
 %%PHP%%%%WWWDIR%%/php-admin/htdocs/index.php
+%%PHP%%%%WWWDIR%%/php-admin/htdocs/logs.php
 %%PHP%%%%WWWDIR%%/php-admin/htdocs/save.php
 %%PHP%%%%WWWDIR%%/php-admin/htdocs/subscribers.php
+%%PHP%%%%WWWDIR%%/php-admin/htdocs/texts.php
 %%PHP%%%%WWWDIR%%/php-admin/templates/edit.html
 %%PHP%%%%WWWDIR%%/php-admin/templates/edit_boolean.html
 %%PHP%%%%WWWDIR%%/php-admin/templates/edit_list.html
