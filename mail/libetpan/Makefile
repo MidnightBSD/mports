@@ -1,5 +1,5 @@
 PORTNAME=	libetpan
-PORTVERSION=	1.9.4
+PORTVERSION=	1.10.1
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
