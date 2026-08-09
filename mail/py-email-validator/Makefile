@@ -1,6 +1,5 @@
 PORTNAME=	email-validator
-DISTVERSION=	2.1.0
-PORTREVISION=	1
+DISTVERSION=	2.3.0
 CATEGORIES=	mail python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Robust email address syntax and deliverability validation library
 WWW=		https://github.com/JoshData/python-email-validator
 
-LICENSE=	CC0-1.0
+LICENSE=	unlicense
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dnspython>=1.15.0:dns/py-dnspython@${PY_FLAVOR} \
