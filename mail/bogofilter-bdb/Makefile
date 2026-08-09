@@ -1,8 +1,8 @@
 PORTNAME=	bogofilter
-DISTVERSION=	1.2.5
-PORTREVISION?=	5
+DISTVERSION=	1.3.0.rc1
 CATEGORIES?=	mail
-MASTER_SITES=	SF/bogofilter/bogofilter-stable/
+MASTER_SITES=	SF/bogofilter/bogofilter-current/bogofilter-1.3.0.beta/ \
+		https://gitlab.com/-/project/12408342/uploads/647db3bd2f28a1f91bdd3bb1945d91fe/
 PKGNAMESUFFIX?=	-bdb
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -14,6 +14,8 @@ LICENSE=	gpl2
 .if !defined(MASTERDIR) || ${MASTERDIR} == ${.CURDIR}
 # building master port
 USES+=		bdb:5
+# bogofilter 1.3.0 defaults to sqlite3, so request Berkeley DB explicitly
+CONFIGURE_ARGS+=	--with-database=db
 DEPRECATED=	The Berkeley DB database interface is obsolescent.
 EXPIRATION_DATE=2025-06-30
 .endif
@@ -80,7 +82,6 @@ post-install:
 .for i in README.randomtrain README.contrib
 	${INSTALL_DATA} ${WRKSRC}/contrib/${i} ${DOCSDIR}/contrib/${i}
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/trio/AUTHORS ${DOCSDIR}/AUTHORS.trio
 	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}/html
 	${INSTALL_DATA} ${WRKSRC}/doc/*.xml ${DOCSDIR}/xml
 	${INSTALL_DATA} ${WRKSRC}/doc/programmer/README.freebsd ${DOCSDIR}/programmer
@@ -92,7 +93,7 @@ post-install:
 	  ${INSTALL_SCRIPT} ${WRKSRC}/contrib/${i} ${DOCSDIR}/contrib/${i}
 .endfor
 .for i in dot-qmail-bogofilter-default \
-	mailfilter.example procmailrc.example vm-bogofilter.el
+	mailfilter.example vm-bogofilter.el
 	${INSTALL_DATA} ${WRKSRC}/contrib/${i} ${DOCSDIR}/contrib/${i}
 .endfor
 
