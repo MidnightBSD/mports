@@ -1,5 +1,5 @@
 PORTNAME=	mail
-PORTVERSION=	2.8.1
+PORTVERSION=	2.9.1
 PORTEPOCH=	2
 CATEGORIES=	mail rubygems
 MASTER_SITES=	RG
@@ -12,7 +12,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-mini_mime>=0.1.1:mail/rubygem-mini_mime \
+RUN_DEPENDS=	rubygem-logger>=0:devel/rubygem-logger \
+		rubygem-mini_mime>=0.1.1:mail/rubygem-mini_mime \
 		rubygem-net-imap>=0:mail/rubygem-net-imap \
 		rubygem-net-pop>=0:mail/rubygem-net-pop \
 		rubygem-net-smtp>=0:mail/rubygem-net-smtp
