@@ -1,5 +1,5 @@
 PORTNAME=	mlmmj-webview
-PORTVERSION=	0.0.6
+PORTVERSION=	0.1.0
 CATEGORIES=	mail www
 MASTER_SITES=	https://codeberg.org/bapt/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
@@ -9,13 +9,12 @@ WWW=		https://codeberg.org/bapt/mlmmj-webview
 
 LICENSE=	bsd2
 
-LIB_DEPENDS=	libkcgi.so:www/kcgi
+LIB_DEPENDS=	libkcgi.so:www/kcgi \
+		libucl.so:textproc/libucl
 
 USES=		pkgconfig
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 HAS_CONFIGURE=	yes
-
-PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.port.mk>
