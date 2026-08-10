@@ -80,12 +80,18 @@ do-install-DOCS-on:
 	${INSTALL_DATA} ${WRKSRC}/docs/INSTALL.md ${FAKE_DESTDIR}${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/docs/UPGRADING.md ${FAKE_DESTDIR}${DOCSDIR}/
 
+# Lines appended to TMPPLIST below bypass the @-keyword expansion in
+# Mk/scripts/functions.sh, which has already run by this point.  A raw
+# "@sample src target" would therefore survive into the packing list and be
+# treated as a single filename, so emit the expanded form directly instead.
 do-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKDIR}/newsyslog.conf ${FAKE_DESTDIR}${EXAMPLESDIR}
 	@${ECHO_CMD} '@dir etc/newsyslog.conf.d' \
 		>> ${TMPPLIST}
-	@${ECHO_CMD} '@sample ${EXAMPLESDIR}/newsyslog.conf etc/newsyslog.conf.d/roundcube.conf' \
+	@${ECHO_CMD} '@comment ${TRUE_PREFIX}/etc/newsyslog.conf.d/roundcube.conf' \
+		>> ${TMPPLIST}
+	@${ECHO_CMD} '${EXAMPLESDIR}/newsyslog.conf' \
 		>> ${TMPPLIST}
 
 .include <bsd.port.mk>
