@@ -663,6 +663,7 @@
     SUBDIR += llvm19
     SUBDIR += llvm20
     SUBDIR += llvm21
+    SUBDIR += llvm22
     SUBDIR += lndir
     SUBDIR += log4cplus
     SUBDIR += log4cxx
