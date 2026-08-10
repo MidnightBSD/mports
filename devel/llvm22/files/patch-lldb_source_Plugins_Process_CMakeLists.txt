@@ -1,0 +1,11 @@
+--- lldb/source/Plugins/Process/CMakeLists.txt.orig	2025-01-14 04:41:02.000000000 -0500
++++ lldb/source/Plugins/Process/CMakeLists.txt	2026-05-04 00:00:00.000000000 -0400
+@@ -1,7 +1,7 @@
+ if (CMAKE_SYSTEM_NAME MATCHES "Linux|Android")
+   add_subdirectory(Linux)
+   add_subdirectory(POSIX)
+-elseif (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++elseif (CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   add_subdirectory(FreeBSD)
+   add_subdirectory(POSIX)
+ elseif (CMAKE_SYSTEM_NAME MATCHES "NetBSD")
