@@ -22,7 +22,11 @@
 --- toolkit/components/protobuf/src/google/protobuf/arena.cc.orig
 +++ toolkit/components/protobuf/src/google/protobuf/arena.cc
 @@ -539,7 +539,7 @@
+ }
+
 
 -alignas(kCacheAlignment) ABSL_CONST_INIT
 +alignas(alignof(std::atomic<uint64_t>)) ABSL_CONST_INIT
      std::atomic<ThreadSafeArena::LifecycleId> ThreadSafeArena::lifecycle_id_{0};
+ #if defined(PROTOBUF_NO_THREADLOCAL)
+ ThreadSafeArena::ThreadCache& ThreadSafeArena::thread_cache() {
