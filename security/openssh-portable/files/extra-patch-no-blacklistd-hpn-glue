@@ -6,7 +6,7 @@
  #endif
 +
 +/*
-+ * This is compiled WITHOUT blocklistd support. This is done for patch
++ * This is compiled WITHOUT blacklistd support. This is done for patch
 + * glue in ports.
 + */
 +#define BLACKLIST_NOTIFY(...)

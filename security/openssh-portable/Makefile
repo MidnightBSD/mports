@@ -101,7 +101,7 @@ PATCH_SITES+=	http://mirror.shatow.net/freebsd/${PORTNAME}/:DEFAULT,hpn,gsskex
 .if !${PORT_OPTIONS:MBLACKLISTD}
 .  if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
 # Needed glue for applying HPN patch without conflict
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-no-blocklistd-hpn-glue
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-no-blacklistd-hpn-glue
 .  endif
 .endif
 
