@@ -80,8 +80,8 @@ disconnected.
  	__progname = ssh_get_progname(av[0]);
  	seed_rng();
  
--	while ((ch = getopt(ac, av, "cDdksTuUE:a:O:P:t:")) != -1) {
-+	while ((ch = getopt(ac, av, "cDdksTuUE:a:O:P:t:x")) != -1) {
+-	while ((ch = getopt(ac, av, "cDdksTuUVE:a:O:P:t:")) != -1) {
++	while ((ch = getopt(ac, av, "cDdksTuUVE:a:O:P:t:x")) != -1) {
  		switch (ch) {
  		case 'E':
  			fingerprint_hash = ssh_digest_alg_by_name(optarg);
