@@ -432,7 +432,11 @@ pdo_sqlite_DEPENDS=	databases/php${PHP_VER}-pdo_sqlite
 pgsql_DEPENDS=	databases/php${PHP_VER}-pgsql
 phar_DEPENDS=	archivers/php${PHP_VER}-phar
 posix_DEPENDS=	sysutils/php${PHP_VER}-posix
+.    if ${PHP_VER} <= 83
 pspell_DEPENDS=	textproc/php${PHP_VER}-pspell
+.    else
+pspell_DEPENDS=	textproc/php-pspell@${PHP_FLAVOR}
+.    endif
 radius_DEPENDS=	net/pecl-radius@${PHP_FLAVOR}
 readline_DEPENDS=	devel/php${PHP_VER}-readline
 redis_DEPENDS=	databases/pecl-redis@${PHP_FLAVOR}
