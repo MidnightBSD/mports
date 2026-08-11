@@ -1,5 +1,5 @@
 PORTNAME=	openssh
-DISTVERSION=	10.3p1
+DISTVERSION=	10.5p1
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -107,7 +107,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-no-blocklistd-hpn-glue
 
 # Must add this patch before HPN due to conflicts
 .if ${PORT_OPTIONS:MKERB_GSSAPI} || ${FLAVOR:U} == gssapi
-# BROKEN=	KERB_GSSAPI No patch for ${DISTVERSION} yet.
+BROKEN=		KERB_GSSAPI patch is not yet updated for ${DISTVERSION}
 .  if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
 # Needed glue for applying HPN patch without conflict
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-hpn-gss-glue
@@ -131,8 +131,8 @@ CONFIGURE_LIBS+=	-lblacklist
 .endif
 
 # https://www.psc.edu/hpn-ssh https://github.com/rapier1/openssh-portable/tree/hpn-openssl1.1-7_7_P1
-.if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
-#BROKEN=			HPN: Not yet updated for ${DISTVERSION} yet.
+.if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER} || ${FLAVOR:U} == hpn
+BROKEN=		HPN patch is not yet updated for ${DISTVERSION}
 PORTDOCS+=		HPN-README
 HPN_VERSION=		14v15
 HPN_DISTVERSION=	7.7p1
