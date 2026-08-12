@@ -748,7 +748,7 @@ stirlingpdf:*:785:785::0:0:Stirling PDF Daemon:/usr/local/stirlingpdf:/usr/sbin/
 # free: 798
 # free: 799
 clickhouse:*:800:800::0:0:ClickHouse Daemon:/var/db/clickhouse:/usr/sbin/nologin
-# free: 801
+librefs:*:801:801::0:0:libreFS Daemon:/var/db/librefs:/usr/sbin/nologin
 # free: 802
 # free: 803
 # free: 804
