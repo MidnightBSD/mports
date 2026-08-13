@@ -1,6 +1,5 @@
 PORTNAME=	openssl
-DISTVERSION=	3.0.20
-PORTREVISION=	1
+DISTVERSION=	3.0.21
 CATEGORIES=	security devel
 
 MAINTAINER=	ports@MidnightBSD.org
