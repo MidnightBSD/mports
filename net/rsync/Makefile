@@ -1,6 +1,5 @@
 PORTNAME=	rsync
-DISTVERSION=	3.4.4
-PORTREVISION=	1
+DISTVERSION=	3.5.0
 CATEGORIES=	net
 MASTER_SITES=	https://www.mirrorservice.org/sites/rsync.samba.org/src/ \
 		http://rsync.mirror.garr.it/src/ \
@@ -26,14 +25,16 @@ USE_RC_SUBR=	rsyncd
 
 SHEBANG_FILES=	runtests.py support/rrsync
 
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
-USE_RC_SUBR=	rsyncd
-SUB_LIST=	NAME=rsyncd
+USE_RC_SUBR=		rsyncd
+SUB_LIST=		NAME=rsyncd
 
 INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
-CONFIGURE_ARGS=	--disable-debug --enable-ipv6 \
+CONFIGURE_ARGS=	--disable-debug \
+		--enable-ipv6 \
 		--with-rsyncd-conf=${ETCDIR}/rsyncd.conf
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
