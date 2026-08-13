@@ -1,0 +1,8 @@
+libreFS is a community maintained, full featured S3 compatible object storage
+server forked from MinIO at RELEASE.2025-04-22T22-12-26Z, the last release
+before the embedded web console, LDAP and OIDC login and distributed mode were
+moved into a proprietary product.
+
+It keeps the full embedded web console, external identity provider support,
+distributed erasure coding across multiple nodes and compatibility with
+existing MinIO client tooling such as mc.

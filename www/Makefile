@@ -75,6 +75,7 @@
     SUBDIR += libmicrohttpd
     SUBDIR += libnghttp2
     SUBDIR += libnghttp3
+    SUBDIR += librefs
     SUBDIR += libwpe
     SUBDIR += libwww
     SUBDIR += lighttpd
