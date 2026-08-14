@@ -153,6 +153,7 @@
     SUBDIR += openssh-portable
     SUBDIR += openssl
     SUBDIR += openssl111
+    SUBDIR += openssl35
     SUBDIR += openssl36
     SUBDIR += openvas
     SUBDIR += openvpn
