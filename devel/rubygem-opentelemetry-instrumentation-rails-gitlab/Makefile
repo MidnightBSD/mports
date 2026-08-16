@@ -13,6 +13,7 @@ WWW=		https://opentelemetry.io/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-action_mailer-gitlab>=0.6<1:devel/rubygem-opentelemetry-instrumentation-action_mailer-gitlab \
 		rubygem-opentelemetry-instrumentation-action_pack-gitlab>=0.15<1:devel/rubygem-opentelemetry-instrumentation-action_pack-gitlab \
 		rubygem-opentelemetry-instrumentation-action_view-gitlab>=0.11<1:devel/rubygem-opentelemetry-instrumentation-action_view-gitlab \
