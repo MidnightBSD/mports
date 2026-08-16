@@ -10,6 +10,7 @@ WWW=		https://github.com/getsentry/sentry-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-sentry-ruby>=5.23.0<5.24:devel/rubygem-sentry-ruby \
 		rubygem-sidekiq-gitlab>=3.0:devel/rubygem-sidekiq-gitlab
 
