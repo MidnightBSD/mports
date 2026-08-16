@@ -9,6 +9,7 @@ WWW=		https://rubygems.org/gems/telesignenterprise
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-telesign>=2.4.0<2.5:devel/rubygem-telesign
 
 USES=		gem
