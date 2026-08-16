@@ -1,5 +1,6 @@
 PORTNAME=	postgresql
 PORTVERSION=	16.00.0000
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	PGSQL/odbc/versions/src
 PKGNAMESUFFIX=	-odbc
@@ -36,11 +37,11 @@ PLIST_FILES=	lib/psqlodbcw.so lib/psqlodbca.so
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/*.html ${STAGEDIR}${DOCSDIR}/
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/*.html ${FAKE_DESTDIR}${DOCSDIR}/
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.sql ${STAGEDIR}${EXAMPLESDIR}/
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.sql ${FAKE_DESTDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.mk>
