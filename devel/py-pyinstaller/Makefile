@@ -1,6 +1,6 @@
 PORTNAME=	pyinstaller
 DISTVERSION=	6.19.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -54,9 +54,9 @@ post-build:
 		${SETENV} sphinx-build-${PYTHON_VER} -b man . _build/man)
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc/_build/html && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} "-not -name .buildinfo -not -regex ^./.doctrees.* -not -regex ^./_sources.*")
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR} "-not -name .buildinfo -not -regex ^./.doctrees.* -not -regex ^./_sources.*")
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/_build/man/*.1 \
