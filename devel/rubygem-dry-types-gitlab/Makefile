@@ -12,6 +12,7 @@ WWW=		https://github.com/dry-rb/dry-types
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bigdecimal-gitlab>=3.0<4:math/rubygem-bigdecimal-gitlab \
 		rubygem-concurrent-ruby>=1.0<2:devel/rubygem-concurrent-ruby \
 		rubygem-dry-core-gitlab>=1.0<2:devel/rubygem-dry-core-gitlab \
