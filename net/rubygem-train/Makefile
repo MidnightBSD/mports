@@ -28,7 +28,7 @@ RUN_DEPENDS=	rubygem-activesupport72>=7.2.2.1<8:devel/rubygem-activesupport72 \
 		rubygem-googleauth>=0.16.2<2:security/rubygem-googleauth \
 		rubygem-inifile>=3.0<4:textproc/rubygem-inifile \
 		rubygem-ostruct>=0.1.0<1:devel/rubygem-ostruct \
-		rubygem-train-core>=${PORTVERSION}<${PORTVERSION}_99:net/rubygem-train-core \
+		rubygem-train-core>=${PORTVERSION}<${PORTVERSION}.99:net/rubygem-train-core \
 		rubygem-train-winrm>=0.4.0<0.5:net/rubygem-train-winrm
 
 USES=		gem
