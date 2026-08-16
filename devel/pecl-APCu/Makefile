@@ -1,7 +1,7 @@
 # Created by: John Chen <johnpupu@gmail.com>
 
 PORTNAME=	APCu
-PORTVERSION=	5.1.18
+PORTVERSION=	5.1.28
 CATEGORIES=	devel
 DISTNAME=	${PORTNAME:tl}-${PORTVERSION}
 
