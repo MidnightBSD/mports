@@ -1,7 +1,7 @@
 PORTNAME=	CAMotics
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.3.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -107,7 +107,7 @@ post-install:
 		${STAGEDIR}${EXAMPLESDIR}
 
 post-install-EXAMPLES-on:
-	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 do-test:
 	(cd ${TEST_WRKSRC} && ./testHarness)
