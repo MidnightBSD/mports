@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/actionmailbox \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actionpack-gitlab \
 		rubygem-activejob-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activejob-gitlab \
 		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:databases/rubygem-activerecord-gitlab \
