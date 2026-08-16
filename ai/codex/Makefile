@@ -1,6 +1,6 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
-DISTVERSION=	0.146.0
+DISTVERSION=	0.147.0
 CATEGORIES=	ai devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -82,6 +82,9 @@ COMPLETIONS_PLIST_FILES=etc/bash_completion.d/${PORTNAME} \
 MAKE_JOBS_UNSAFE=	yes
 .endif
 
+pre-patch:
+	@${LN} -sf v8-150.4.0 ${WRKSRC}/cargo-crates/v8-149.2.0
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|/bin/bash|${LOCALBASE}&|' \
 		${BUILD_WRKSRC}/cli/src/debug_sandbox/pid_tracker.rs \
@@ -124,7 +127,6 @@ post-patch:
 		${BUILD_WRKSRC}/core-plugins/src/script_attribution.rs \
 		${BUILD_WRKSRC}/core-plugins/src/script_attribution_tests.rs \
 		${BUILD_WRKSRC}/core-skills/src/invocation_utils.rs \
-		${BUILD_WRKSRC}/core-skills/src/invocation_utils_tests.rs \
 		${BUILD_WRKSRC}/core/src/command_canonicalization_tests.rs \
 		${BUILD_WRKSRC}/core/src/config/config_loader_tests.rs \
 		${BUILD_WRKSRC}/core/src/exec_policy.rs \
