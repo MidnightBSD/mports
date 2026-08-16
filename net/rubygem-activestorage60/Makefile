@@ -13,9 +13,9 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-actionpack60>=${PORTVERSION}<${PORTVERSION}_99:www/rubygem-actionpack60 \
-		rubygem-activejob60>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activejob60 \
-		rubygem-activerecord60>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activerecord60 \
+RUN_DEPENDS=	rubygem-actionpack60>=${PORTVERSION}<${PORTVERSION}.99:www/rubygem-actionpack60 \
+		rubygem-activejob60>=${PORTVERSION}<${PORTVERSION}.99:devel/rubygem-activejob60 \
+		rubygem-activerecord60>=${PORTVERSION}<${PORTVERSION}.99:databases/rubygem-activerecord60 \
 		rubygem-marcel>=1.0<2:devel/rubygem-marcel
 
 USES=		gem
