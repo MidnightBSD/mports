@@ -11,6 +11,7 @@ WWW=		https://premailer.github.io/premailer/ \
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-addressable>=0:www/rubygem-addressable \
 		rubygem-css_parser>=1.19.0:textproc/rubygem-css_parser \
 		rubygem-htmlentities>=4.0.0:textproc/rubygem-htmlentities
