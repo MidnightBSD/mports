@@ -1,5 +1,6 @@
 PORTNAME=	calculix
 DISTVERSION=	2.22
+PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	http://www.dhondt.de/
 DISTFILES=	${DIST_SOURCES}
@@ -70,12 +71,12 @@ do-install:
 	  ${STAGEDIR}${PREFIX}/bin/cgx
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/cgx
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/cgx
 	@(cd ${WRKSRC}/${CGX_VER}/doc/cgx && ${RM} *.old *~)
 	@(cd ${WRKSRC}/${CGX_VER}/doc/cgx && ${COPYTREE_SHARE} . \
-	  ${STAGEDIR}${DOCSDIR}/cgx)
+	  ${FAKE_DESTDIR}${DOCSDIR}/cgx)
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${DIST_PDF} \
-	  ${STAGEDIR}${DOCSDIR}
+	  ${FAKE_DESTDIR}${DOCSDIR}
 
 do-install-EXAMPLES-on:
 	# Some garbage crept in
@@ -83,8 +84,8 @@ do-install-EXAMPLES-on:
 	@${RM} ${WRKSRC}/${CGX_VER}/examples/OpenFOAM/couette/constant/*~
 	@${RM} ${WRKSRC}/${CGX_VER}/examples/OpenFOAM/couette/system/*~
 	@${RM} ${WRKSRC}/${CGX_VER}/examples/ifwhiledemo/*.*~
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	@(cd ${WRKSRC}/${CGX_VER}/examples && ${COPYTREE_SHARE} . \
-	  ${STAGEDIR}${EXAMPLESDIR})
+	  ${FAKE_DESTDIR}${EXAMPLESDIR})
 
 .include <bsd.port.post.mk>
