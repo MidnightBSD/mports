@@ -25,6 +25,14 @@ NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
+# cffi 2.1.0 explicitly refuses the free-threaded build of CPython 3.13; upstream
+# supports free-threading from 3.14 on.  A USES=python version range cannot
+# express this because python.mk strips the "t" suffix before comparing.  The
+# flavor is kept so dependent ports still resolve @py313t.
+.if ${FLAVOR:U} == py313t
+BROKEN=		cffi does not support the free-threaded build of CPython 3.13
+.endif
+
 .if ${CHOSEN_COMPILER_TYPE} == clang
 CFLAGS+=	-Wno-shift-negative-value
 .endif
