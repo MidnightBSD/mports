@@ -11,6 +11,7 @@ WWW=		https://github.com/codahale/bcrypt-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bcrypt>=3.1.3:security/rubygem-bcrypt
 
 NO_ARCH=	yes
