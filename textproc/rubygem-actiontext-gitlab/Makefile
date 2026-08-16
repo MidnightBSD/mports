@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/actiontext \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actionpack-gitlab \
 		rubygem-activerecord-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:databases/rubygem-activerecord-gitlab \
 		rubygem-activestorage-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:net/rubygem-activestorage-gitlab \
