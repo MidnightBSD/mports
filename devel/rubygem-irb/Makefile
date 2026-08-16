@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby/irb
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-pp>=0.6.0:devel/rubygem-pp \
 		rubygem-prism>=1.3.0:textproc/rubygem-prism \
 		rubygem-rdoc>=4.0.0:devel/rubygem-rdoc \
@@ -23,6 +24,6 @@ PLIST_FILES=	bin/irb \
 		share/man/man1/irb.1.gz
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/man/irb.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_DATA} ${WRKSRC}/man/irb.1 ${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
