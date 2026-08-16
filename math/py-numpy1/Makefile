@@ -1,6 +1,6 @@
 PORTNAME=	numpy
 DISTVERSION=	1.26.4
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	math python
 MASTER_SITES=	PYPI \
 		https://numpy.org/doc/${DISTVERSION:R}/:doc
@@ -69,8 +69,8 @@ post-install:
 	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${UNZIP_NATIVE_CMD} -qo ${DISTDIR}/${DIST_SUBDIR}/numpy-html.zip -d ${STAGEDIR}${DOCSDIR}
-	@${RM} ${STAGEDIR}${DOCSDIR}/.buildinfo
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${UNZIP_NATIVE_CMD} -qo ${DISTDIR}/${DIST_SUBDIR}/numpy-html.zip -d ${FAKE_DESTDIR}${DOCSDIR}
+	@${RM} ${FAKE_DESTDIR}${DOCSDIR}/.buildinfo
 
 .include <bsd.port.post.mk>
