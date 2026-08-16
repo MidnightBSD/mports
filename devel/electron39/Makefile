@@ -1,7 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
-PORTREVISION=	1
+PORTREVISION=	2
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
@@ -552,13 +552,13 @@ do-install:
 	${RLN} ${STAGEDIR}${DATADIR}/electron ${STAGEDIR}${PREFIX}/bin/electron${PKGNAMESUFFIX}
 
 post-install-DIST-on:
-	${MKDIR} ${STAGEDIR}${DATADIR}/releases
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/SHASUMS256.txt ${STAGEDIR}${DATADIR}/releases
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*-v${ELECTRON_VER}-freebsd-*.zip ${STAGEDIR}${DATADIR}/releases
+	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/SHASUMS256.txt ${FAKE_DESTDIR}${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*-v${ELECTRON_VER}-freebsd-*.zip ${FAKE_DESTDIR}${DATADIR}/releases
 
 post-install-DRIVER-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver.unstripped \
-		${STAGEDIR}${DATADIR}/chromedriver
+		${FAKE_DESTDIR}${DATADIR}/chromedriver
 
 do-test:
 	cd ${WRKSRC}/electron && \
