@@ -12,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-redis-gitlab>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-redis-gitlab \
+RUN_DEPENDS=	rubygem-redis-gitlab>=${PORTVERSION}<${PORTVERSION}.99:databases/rubygem-redis-gitlab \
 		rubygem-redis-cluster-client>=0.10.0:databases/rubygem-redis-cluster-client
 
 USES=		gem
