@@ -4,7 +4,7 @@ PORTNAME=	bind
 DISTVERSION=	9.21.24
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
-PORTREVISION=	0
+PORTREVISION=	1
 .else
 # XXX: correct version
 # dns/bind9xx here
@@ -206,9 +206,9 @@ post-install:
 	done)
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/_build/arm && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/arm
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/_build/arm && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}/arm
 .endif # BIND_TOOLS_SLAVE
 
 .include <bsd.port.post.mk>
