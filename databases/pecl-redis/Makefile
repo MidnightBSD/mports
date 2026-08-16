@@ -1,23 +1,34 @@
 PORTNAME=	redis
-PORTVERSION=	5.3.5
-PORTREVISION=	0
+DISTVERSION=	6.3.0
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extension to access Redis
+WWW=		https://pecl.php.net/package/redis
 
 LICENSE=	PHP301
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		php:pecl
-USE_PHP=	hash:build json:build session:build
+USES=		php:build,pecl
+USE_PHP=	session:build
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+OPTIONS_DEFINE=		IGBINARY LZ4 ZSTD
+OPTIONS_DEFAULT=	LZ4 ZSTD
 
-OPTIONS_DEFINE=	IGBINARY
 IGBINARY_DESC=	Build with Igbinary serializer
+LZ4_DESC=	Build with lz4 support
+ZSTD_DESC=	Build with zstd support
 
+# converters/pecl-igbinary does not exist in mports yet, so this option only
+# passes the configure flag; it needs the extension installed by hand.
 IGBINARY_CONFIGURE_ENABLE=	redis-igbinary
-IGBINARY_USE=			PHP=igbinary:build
+
+LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
+LZ4_CONFIGURE_ON=	--enable-redis-lz4 \
+			--with-liblz4=${LOCALBASE}
+
+ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
+ZSTD_CONFIGURE_ON=	--enable-redis-zstd \
+			--with-libzstd=${LOCALBASE}
 
 .include <bsd.port.mk>
