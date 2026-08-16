@@ -11,6 +11,7 @@ WWW=		https://github.com/aws/aws-sdk-ruby/tree/version-3/gems/aws-sdk-s3
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-aws-sdk-core-gitlab>=3.241.4<4:devel/rubygem-aws-sdk-core-gitlab \
 		rubygem-aws-sdk-kms-gitlab>=1<2:devel/rubygem-aws-sdk-kms-gitlab \
 		rubygem-aws-sigv4>=1.5<2:devel/rubygem-aws-sigv4
