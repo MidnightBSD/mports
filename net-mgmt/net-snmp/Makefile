@@ -1,6 +1,6 @@
 PORTNAME=	snmp
 PORTVERSION=	5.9.5.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/net-${PORTNAME}/net-${PORTNAME}/${PORTVERSION} \
@@ -40,8 +40,7 @@ GNU_CONFIGURE=	yes
 USE_RC_SUBR=	snmpd snmptrapd
 USE_LDCONFIG=	yes
 LIB_DEPENDS=	libpcre.so:devel/pcre \
-		libpcap.so:net/libpcap \
-		libelf.so:devel/elfutils
+		libpcap.so:net/libpcap
 
 USES=		cpe libtool perl5 shebangfix ssl
 SHEBANG_FILES=	local/checkbandwidth local/mib2c local/net-snmp-cert \
