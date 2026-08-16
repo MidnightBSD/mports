@@ -1,7 +1,7 @@
 PORTNAME=	admesh
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.98.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -32,6 +32,6 @@ PLIST_FILES=	bin/admesh \
 		share/man/man1/admesh.1.gz
 
 do-install-DOCS-on:
-	@${RM} ${STAGEDIR}${DOCSDIR}/COPYING
+	@${RM} ${FAKE_DESTDIR}${DOCSDIR}/COPYING
 
 .include <bsd.port.mk>
