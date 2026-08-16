@@ -1,6 +1,6 @@
 PORTNAME=	php84
 DISTVERSION=	8.4.24
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${DISTVERSION}
@@ -638,4 +638,19 @@ post-extract:
 	@${CP} ${WRKSRC}/expat_compat.h ${WRKSRC}/ext/xml
 .  endif
 .endif
+
+# libtool only knows freebsd* and dragonfly* as targets that can build shared
+# libraries.  On MidnightBSD host_os is midnightbsd4, so without this the
+# generated libtool sets build_libtool_libs=no and every extension links to a
+# .la with no .so behind it.
+post-fake:
+	-${REINPLACE_CMD} -e 's/DragonFly/MidnightBSD/g' \
+		-e 's/dragonfly/midnightbsd/g' \
+		${FAKE_DESTDIR}${PREFIX}/lib/php/build/libtool.m4
+
+pre-build:
+	-${REINPLACE_CMD} -e 's/DragonFly/MidnightBSD/g' \
+		-e 's/dragonfly/midnightbsd/g' \
+		${WRKSRC}/ext/${PHP_MODNAME}/libtool
+
 .include <bsd.port.post.mk>
