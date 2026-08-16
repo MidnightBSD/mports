@@ -10,6 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/ruby/gems/gitlab-experiment
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=3.0:devel/rubygem-activesupport-gitlab \
 		rubygem-request_store>=1.0:devel/rubygem-request_store
 
