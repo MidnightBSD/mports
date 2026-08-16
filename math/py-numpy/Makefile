@@ -24,6 +24,8 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 USES=		compiler:c11 cpe fortran pkgconfig python shebangfix
 USE_PYTHON=	allflavors autoplist concurrent cython pep517
 
+BINARY_ALIAS=	cython=cython-${PYTHON_VER}
+
 # circular ref
 NO_TEST=yes
 
