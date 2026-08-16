@@ -13,6 +13,7 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionview50>=${PORTVERSION}:devel/rubygem-actionview50 \
 		rubygem-activesupport50>=${PORTVERSION}:devel/rubygem-activesupport50 \
 		rubygem-rack22>=2.0,3<3,3:www/rubygem-rack22 \
