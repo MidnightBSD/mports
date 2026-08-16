@@ -11,6 +11,7 @@ WWW=		https://github.com/sumoheavy/jira-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=0:devel/rubygem-activesupport-gitlab \
 		rubygem-atlassian-jwt>=0:www/rubygem-atlassian-jwt \
 		rubygem-multipart-post>=0:www/rubygem-multipart-post \
