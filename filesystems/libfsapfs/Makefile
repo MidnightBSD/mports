@@ -1,7 +1,7 @@
 PORTNAME=	libfsapfs
 # If/When moving from experimental to alpha, switch to DISTVERSIONPREFIX to prevent PORTEPOCH
 DISTVERSION=	experimental-20231122
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	filesystems devel
 MASTER_SITES=	https://github.com/libyal/libfsapfs/releases/download/${PORTVERSION:E}/ \
 		FREEBSD_LOCAL/antoine
@@ -14,6 +14,8 @@ LICENSE=	lgpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcaes.so:security/libcaes
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS}
 
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
