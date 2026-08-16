@@ -1,5 +1,6 @@
 PORTNAME=	prefix
 PORTVERSION=	1.2.10
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	databases
 PKGNAMEPREFIX=	postgresql${PGSQL_VER:S/.//}-
@@ -21,7 +22,7 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/prefix.so
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} ;	${INSTALL_DATA} README.md TESTS.md ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} ;	${INSTALL_DATA} README.md TESTS.md ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
