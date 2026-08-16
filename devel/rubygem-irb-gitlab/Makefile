@@ -11,6 +11,7 @@ WWW=		https://github.com/ruby/irb
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-pp>=0.6.0:devel/rubygem-pp \
 		rubygem-rdoc-gitlab>=4.0.0:devel/rubygem-rdoc-gitlab \
 		rubygem-reline>=0.4.2:devel/rubygem-reline
