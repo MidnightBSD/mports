@@ -11,6 +11,7 @@ WWW=		https://github.com/NARKOZ/gitlab
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-httparty-gitlab>=0.20<1:www/rubygem-httparty-gitlab \
 		rubygem-terminal-table>=1.5.1:textproc/rubygem-terminal-table
 
