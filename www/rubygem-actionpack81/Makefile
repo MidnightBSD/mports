@@ -13,8 +13,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-actionview81>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-actionview81 \
-		rubygem-activesupport81>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport81 \
+RUN_DEPENDS=	rubygem-actionview81>=${PORTVERSION}<${PORTVERSION}.99:devel/rubygem-actionview81 \
+		rubygem-activesupport81>=${PORTVERSION}<${PORTVERSION}.99:devel/rubygem-activesupport81 \
 		rubygem-nokogiri>=1.8.5:textproc/rubygem-nokogiri \
 		rubygem-rack>=2.2.4,3:www/rubygem-rack \
 		rubygem-rack-session>=1.0.1:www/rubygem-rack-session \
