@@ -1,5 +1,6 @@
 PORTNAME=	gpsim
 DISTVERSION=	0.32.1
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	https://download.sourceforge.net/project/gpsim/gpsim/0.32.0/ # SF
 
@@ -42,22 +43,22 @@ post-patch:
 .endfor
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for i in AUTHORS ChangeLog PROCESSORS README* doc/gpsim.pdf
 	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} \
-		${STAGEDIR}${DOCSDIR})
+		${FAKE_DESTDIR}${DOCSDIR})
 .endfor
 
 post-install-EXAMPLES-on:
 .for i in led_test logic_test mod_test usart_gui usart_test
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/modules/${i}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/modules/${i}
 	(cd ${WRKSRC}/examples/modules/${i} && ${INSTALL_DATA} *.asm *.stc \
-		${STAGEDIR}${EXAMPLESDIR}/modules/${i})
+		${FAKE_DESTDIR}${EXAMPLESDIR}/modules/${i})
 .endfor
 .for i in digital_stim p16f628_test stack_test
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/projects/${i}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/projects/${i}
 	(cd ${WRKSRC}/examples/projects/${i} && ${INSTALL_DATA} *.asm *.stc \
-		${STAGEDIR}${EXAMPLESDIR}/projects/${i})
+		${FAKE_DESTDIR}${EXAMPLESDIR}/projects/${i})
 .endfor
 
 .include <bsd.port.mk>
