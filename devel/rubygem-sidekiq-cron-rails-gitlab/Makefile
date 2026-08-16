@@ -11,6 +11,7 @@ WWW=		https://github.com/sidekiq-cron/sidekiq-cron
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-cronex>=0.13.0:textproc/rubygem-cronex \
 		rubygem-fugit-gitlab>=1.11.1<2:devel/rubygem-fugit-gitlab \
 		rubygem-globalid-rails-gitlab>=1.0.1:databases/rubygem-globalid-rails-gitlab \
