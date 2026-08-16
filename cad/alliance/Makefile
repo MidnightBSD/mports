@@ -1,6 +1,6 @@
 PORTNAME=	alliance
 DISTVERSION=	5.1.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -63,13 +63,13 @@ pre-configure:
 	cd ${WRKSRC} && ./autostuff
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${ALLIANCE_TOP}/tutorials
+	@${MKDIR} ${FAKE_DESTDIR}${ALLIANCE_TOP}/tutorials
 	(cd ${WRKSRC}/documentation/tutorials &&	\
-		${COPYTREE_SHARE} . ${STAGEDIR}${ALLIANCE_TOP}/tutorials)
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${ALLIANCE_TOP}/tutorials)
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${ALLIANCE_TOP}/examples
+	@${MKDIR} ${FAKE_DESTDIR}${ALLIANCE_TOP}/examples
 	(cd ${WRKSRC}/documentation/alliance-examples &&	\
-		${COPYTREE_SHARE} . ${STAGEDIR}${ALLIANCE_TOP}/examples)
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${ALLIANCE_TOP}/examples)
 
 .include <bsd.port.mk>
