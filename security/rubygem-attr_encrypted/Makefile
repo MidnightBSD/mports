@@ -10,6 +10,7 @@ WWW=		https://github.com/attr-encrypted/attr_encrypted
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-encryptor>=3.0.0<3.1:security/rubygem-encryptor
 
 USES=		gem
