@@ -1,6 +1,6 @@
 PORTNAME=	shiboken6
 DISTVERSION=	6.10.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/QtForPython/pyside6/PySide6-${DISTVERSION}-src
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -62,7 +62,7 @@ post-install:
 		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/html
-	(cd ${BUILD_WRKSRC}/doc/html; ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/html)
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/html
+	(cd ${BUILD_WRKSRC}/doc/html; ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}/html)
 
 .include <bsd.port.mk>
