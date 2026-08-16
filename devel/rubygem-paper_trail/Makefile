@@ -10,6 +10,7 @@ WWW=		https://github.com/paper-trail-gem/paper_trail
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord-gitlab>=5<8:databases/rubygem-activerecord-gitlab \
 		rubygem-request_store>=1.4<2:devel/rubygem-request_store
 
