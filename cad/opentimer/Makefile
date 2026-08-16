@@ -1,6 +1,6 @@
 PORTNAME=	opentimer
 DISTVERSION=	2.1.0-20250707
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -41,14 +41,14 @@ do-install: # see https://github.com/OpenTimer/OpenTimer/issues/47
 
 post-install-DOCS-on:
 	cd ${WRKSRC} && \
-		${COPYTREE_SHARE} "doc wiki" ${STAGEDIR}${DOCSDIR}
+		${COPYTREE_SHARE} "doc wiki" ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	cd ${WRKSRC}/example && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 .for e in fcpc26 incremental optimizer simple sizer unit
-	${STRIP_CMD} ${STAGEDIR}${EXAMPLESDIR}/${e}/${e}
+	${STRIP_CMD} ${FAKE_DESTDIR}${EXAMPLESDIR}/${e}/${e}
 .endfor
 
 quick-test: # runs the script suggested in https://github.com/OpenTimer/OpenTimer
