@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/actioncable \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actionpack-gitlab \
 		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activesupport-gitlab \
 		rubygem-nio4r>=2.0<3:devel/rubygem-nio4r \
