@@ -10,6 +10,7 @@ WWW=		https://github.com/abonas/kubeclient
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-http4>=3.0<6.0:www/rubygem-http4 \
 		rubygem-jsonpath>=1.0<2:devel/rubygem-jsonpath \
 		rubygem-recursive-open-struct1>=1.1.1<2.0:devel/rubygem-recursive-open-struct1 \
