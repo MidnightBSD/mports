@@ -1,6 +1,6 @@
 PORTNAME=	opencascade
 PORTVERSION=	7.4.0 # resurrected because science/chrono only builds with opencascade-7.4.0, see https://github.com/projectchrono/chrono/issues/359#issuecomment-1023478083
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	cad science
 PKGNAMESUFFIX=	740
 
@@ -128,9 +128,9 @@ post-install:
 		${FIND} * -type f -or -type l >> ${TMPPLIST}
 
 post-install-DOXYGEN-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC}/doc/overview && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
-	${RM} -r ${STAGEDIR}${DOCSDIR}/latex
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/doc/overview && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR})
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/latex
 
 .if defined(MAINTAINER_MODE)
 regression-test:	install
