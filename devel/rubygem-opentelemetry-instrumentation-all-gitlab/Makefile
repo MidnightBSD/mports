@@ -13,6 +13,7 @@ WWW=		https://opentelemetry.io/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-active_model_serializers-gitlab>=0.24.0<0.25:devel/rubygem-opentelemetry-instrumentation-active_model_serializers-gitlab \
 		rubygem-opentelemetry-instrumentation-anthropic-gitlab>=0.3.0<0.4:devel/rubygem-opentelemetry-instrumentation-anthropic-gitlab \
 		rubygem-opentelemetry-instrumentation-aws_lambda-gitlab>=0.6.0<0.7:devel/rubygem-opentelemetry-instrumentation-aws_lambda-gitlab \
