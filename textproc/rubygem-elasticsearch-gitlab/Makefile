@@ -11,8 +11,9 @@ WWW=		https://github.com/elastic/elasticsearch-ruby
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-elasticsearch-api-gitlab>=${PORTVERSION}<${PORTVERSION}_99:textproc/rubygem-elasticsearch-api-gitlab \
-		rubygem-elasticsearch-transport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:textproc/rubygem-elasticsearch-transport-gitlab
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-elasticsearch-api-gitlab>=${PORTVERSION}<${PORTVERSION}.99:textproc/rubygem-elasticsearch-api-gitlab \
+		rubygem-elasticsearch-transport-gitlab>=${PORTVERSION}<${PORTVERSION}.99:textproc/rubygem-elasticsearch-transport-gitlab
 
 USES=		gem
 
