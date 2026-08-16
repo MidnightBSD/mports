@@ -9,6 +9,7 @@ WWW=		https://gitlab.com/gitlab-org/ruby/gems/semver_dialects
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-deb_version>=1.0.1<1.1:devel/rubygem-deb_version \
 		rubygem-pastel>=0.8.0<0.9:devel/rubygem-pastel \
 		rubygem-thor>=1.3<2:devel/rubygem-thor \
