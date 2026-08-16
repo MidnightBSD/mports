@@ -12,6 +12,7 @@ WWW=		https://github.com/alexrudall/ruby-openai
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-httparty-gitlab>=0.18.1:www/rubygem-httparty-gitlab
 
 NO_ARCH=	yes
