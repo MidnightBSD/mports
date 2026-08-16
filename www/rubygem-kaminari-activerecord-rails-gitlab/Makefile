@@ -11,6 +11,7 @@ WWW=		https://github.com/kaminari/kaminari/tree/master/kaminari-activerecord
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord-gitlab>=0:databases/rubygem-activerecord-gitlab \
 		rubygem-kaminari-core>=${PORTVERSION}:www/rubygem-kaminari-core
 
