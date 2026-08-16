@@ -10,6 +10,7 @@ WWW=		https://github.com/cedarcode/webauthn-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-android_key_attestation>=0.3.0<0.4:security/rubygem-android_key_attestation \
 		rubygem-bindata>=2.4<3:devel/rubygem-bindata \
 		rubygem-cbor>=0.5.9<0.6:devel/rubygem-cbor \
