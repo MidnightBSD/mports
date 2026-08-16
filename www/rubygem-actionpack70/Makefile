@@ -13,8 +13,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-actionview70>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-actionview70 \
-		rubygem-activesupport70>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport70 \
+RUN_DEPENDS=	rubygem-actionview70>=${PORTVERSION}<${PORTVERSION}.99:devel/rubygem-actionview70 \
+		rubygem-activesupport70>=${PORTVERSION}<${PORTVERSION}.99:devel/rubygem-activesupport70 \
 		rubygem-racc>=0:devel/rubygem-racc \
 		rubygem-rack22>=2.2.4,3<3,3:www/rubygem-rack22 \
 		rubygem-rack-test>=0.6.3:www/rubygem-rack-test \
