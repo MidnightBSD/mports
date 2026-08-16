@@ -11,6 +11,7 @@ WWW=		https://github.com/kaminari/kaminari/tree/master/kaminari-actionview
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/mit-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionview-gitlab>=0:devel/rubygem-actionview-gitlab \
 		rubygem-kaminari-core>=${PORTVERSION}:www/rubygem-kaminari-core
 
