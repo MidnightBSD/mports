@@ -1,5 +1,6 @@
 PORTNAME=	muparser
 PORTVERSION=	2.3.5
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	math devel
 
@@ -30,6 +31,6 @@ post-patch:
 	${SED} -i.bak -e 's/%%MUPARSER_VERSION%%/${MUPARSER_VERSION}/' ${WRKSRC}/docs/Doxyfile
 
 post-install-EXAMPLES-on:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} samples ${STAGEDIR}${EXAMPLESDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} samples ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
