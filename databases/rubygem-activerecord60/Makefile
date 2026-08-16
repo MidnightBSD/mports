@@ -14,8 +14,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activemodel60>=${PORTVERSION}<${PORTVERSION}_99:databases/rubygem-activemodel60 \
-		rubygem-activesupport60>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport60
+RUN_DEPENDS=	rubygem-activemodel60>=${PORTVERSION}<${PORTVERSION}.99:databases/rubygem-activemodel60 \
+		rubygem-activesupport60>=${PORTVERSION}<${PORTVERSION}.99:devel/rubygem-activesupport60
 
 USES=		gem
 USES+=	cpe
