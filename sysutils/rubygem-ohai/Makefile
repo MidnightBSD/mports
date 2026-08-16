@@ -10,6 +10,7 @@ WWW=		https://github.com/chef/ohai
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base6402>=0:converters/rubygem-base6402 \
 		rubygem-chef-config>=14.12<20:sysutils/rubygem-chef-config \
 		rubygem-chef-utils>=16.0<20:sysutils/rubygem-chef-utils \
