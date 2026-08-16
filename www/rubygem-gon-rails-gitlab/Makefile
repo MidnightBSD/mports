@@ -11,6 +11,7 @@ WWW=		https://github.com/gazay/gon
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack-gitlab>=3.0.20:www/rubygem-actionpack-gitlab \
 		rubygem-i18n>=0.7:devel/rubygem-i18n \
 		rubygem-multi_json-gitlab>=0:devel/rubygem-multi_json-gitlab \
