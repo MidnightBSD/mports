@@ -14,7 +14,7 @@ WWW=		https://arrow.apache.org/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/../LICENSE.txt
 
-BUILD_DEPENDS=	arrow>=${PORTVERSION}<${PORTVERSION}_99:databases/arrow
+BUILD_DEPENDS=	arrow>=${PORTVERSION}<${PORTVERSION}.99:databases/arrow
 LIB_DEPENDS=	libarrow.so:databases/arrow
 
 USES=		compiler:c++17-lang gnome meson pkgconfig python:build
