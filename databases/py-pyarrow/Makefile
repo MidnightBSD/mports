@@ -11,7 +11,7 @@ WWW=		https://arrow.apache.org/ \
 
 LICENSE=	Apache-2.0
 
-BUILD_DEPENDS=	arrow>=${PORTVERSION}<${PORTVERSION}_99:databases/arrow \
+BUILD_DEPENDS=	arrow>=${PORTVERSION}<${PORTVERSION}.99:databases/arrow \
 		${PYTHON_PKGNAMEPREFIX}libcst>=1.8.6:devel/py-libcst@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numpy>=1.25,1:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-build-core>=0:devel/py-scikit-build-core@${PY_FLAVOR} \
