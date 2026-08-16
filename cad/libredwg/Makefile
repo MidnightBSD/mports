@@ -1,5 +1,6 @@
 PORTNAME=	libredwg
 PORTVERSION=	0.13.3
+PORTREVISION=	1
 CATEGORIES=	cad devel
 MASTER_SITES=	GNU
 
@@ -51,14 +52,14 @@ post-patch:
 	@${REINPLACE_CMD} -e '/GPERF_VER/s,:2:1,##*.,' ${WRKSRC}/configure
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install-PYTHON-on:
-	${CHMOD} +x ${STAGEDIR}${PREFIX}/share/load_dwg.py
+	${CHMOD} +x ${FAKE_DESTDIR}${PREFIX}/share/load_dwg.py
 
 post-install-PYTHON-off:
-	${RM} ${STAGEDIR}${PREFIX}/share/load_dwg.py
+	${RM} ${FAKE_DESTDIR}${PREFIX}/share/load_dwg.py
 
 post-stage:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
