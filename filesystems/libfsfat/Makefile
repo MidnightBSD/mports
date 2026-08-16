@@ -1,7 +1,7 @@
 PORTNAME=	libfsfat
 # If/When moving from experimental to alpha, switch to DISTVERSIONPREFIX to prevent PORTEPOCH
 DISTVERSION=	experimental-20231122
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	filesystems devel
 MASTER_SITES=	https://github.com/libyal/libfsfat/releases/download/${PORTVERSION:E}/ \
 		FREEBSD_LOCAL/antoine
@@ -12,6 +12,8 @@ WWW=		https://github.com/libyal/libfsfat
 
 LICENSE=	lgpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS}
 
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
