@@ -1,0 +1,18 @@
+The test suite pulls in the "unity" subproject through a wrap that meson
+resolves by cloning it with git.  Ports must not fetch anything at build
+time, and git is not a build dependency, so configure dies with:
+
+  ERROR: Subproject unity is buildable: NO
+  tests/meson.build:5:12: ERROR: Git program not found, cannot download
+  unity.wrap via git.
+
+Do not descend into tests.
+
+--- meson.build.orig	2025-01-14 00:00:00 UTC
++++ meson.build
+@@ -96,5 +96,3 @@ run_target('format',
+
+ run_target('doxygen',
+   command : 'scripts/doxygen.sh')
+-
+-subdir('tests')
