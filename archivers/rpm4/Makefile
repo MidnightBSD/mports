@@ -1,6 +1,6 @@
 PORTNAME=	rpm
 PORTVERSION=	4.18.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers
 MASTER_SITES=	http://ftp.rpm.org/releases/rpm-${PORTVERSION:R}.x/
 PKGNAMESUFFIX=	4
@@ -61,10 +61,10 @@ CONFLICTS_INSTALL=	rpm2cpio rpm4 rpm4-noopenmp
 
 BINARY_ALIAS=	sed=${LOCALBASE}/bin/gsed
 
-RPM_OPSYS=	${OPSYS:tl}
-.if "${OSREL}" == "4.1"
+# rpm derives its platform directory names from the configure host triplet,
+# which carries the OS major version (midnightbsd4).  This has to track that
+# for every 4.x release, not just 4.1.
 RPM_OPSYS=	${OPSYS:tl}${OSREL:R}
-.endif
 
 PLIST_SUB=	OPSYS=${RPM_OPSYS} \
 		VERSION=${PORTVERSION}
