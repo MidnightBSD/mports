@@ -1,5 +1,6 @@
 PORTNAME=	sagemaker-schema-inference-artifacts
 DISTVERSION=	0.0.5
+PORTREVISION=	1
 CATEGORIES=	ai python
 MASTER_SITES=	${MASTER_SITE_PYPI}
 MASTER_SITE_SUBDIR=	51/b3/b39099f265041678c03798c636d8460f8cc6a398deb299b05441f1aaa812
@@ -28,7 +29,9 @@ EXTRACT_AFTER_ARGS=	-d ${WRKDIR}
 WRKSRC=		${WRKDIR}
 
 PEP517_BUILD_DEPEND=	# wheel-only, no build from source
-PEP517_INSTALL_CMD=	${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --prefix ${PREFIX} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
+# Matches the default in Mk/extensions/python.mk: do-install runs with PREFIX
+# already stage-prefixed, so ${STAGEDIR}${PREFIX} would double it.
+PEP517_INSTALL_CMD=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
 
 do-build:
 	@${DO_NADA}
