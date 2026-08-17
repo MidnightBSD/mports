@@ -2,7 +2,7 @@ PORTNAME=	znc-push
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.0.0-173
 DISTVERSIONSUFFIX=	-g78d0385
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	irc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	znc:irc/znc
 LIB_DEPENDS=	libicudata.so:devel/icu
 RUN_DEPENDS=	znc:irc/znc
 
-USES=		compiler:c++11-lang gmake localbase:ldflags ssl
+USES=		compiler:c++11-lang gmake localbase:ldflags pkgconfig ssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jreese
