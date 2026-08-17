@@ -2,8 +2,7 @@
 
 PORTNAME=	gn
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1962
-PORTREVISION=	1
+DISTVERSION=	2345
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +13,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_riscv64=		fails to build: ../src/util/build_config.h:168:2: Please add support for your architecture in build_config.h
 
-USES=		alias compiler:c++17-lang ninja python:build shebangfix
+# No USES=alias: gn only uses __FreeBSD__ to select OS_FREEBSD, and forcing
+# -D__FreeBSD__=11 collides with the compiler's own definition under -Werror.
+USES=		compiler:c++20-lang ninja python:build shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	cglogic # mirror
 SHEBANG_FILES=	${CONFIGURE_SCRIPT}

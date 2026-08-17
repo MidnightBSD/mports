@@ -1,6 +1,6 @@
---- src/gn/args.cc.orig	2021-04-06 17:41:35 UTC
+--- src/gn/args.cc.orig	2026-03-12 15:29:33 UTC
 +++ src/gn/args.cc
-@@ -357,7 +357,7 @@ void Args::SetSystemVarsLocked(Scope* dest) const {
+@@ -396,7 +396,7 @@ void Args::SetSystemVarsLocked(Scope* dest) const {
      arch = kMips64;
    else if (os_arch == "s390x")
      arch = kS390X;
