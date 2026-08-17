@@ -1,6 +1,7 @@
 PORTNAME=	znc-clientbuffer
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.0.48
+PORTREVISION=	1
 CATEGORIES=	irc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,9 @@ LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	znc:irc/znc
 RUN_DEPENDS=	znc:irc/znc
+
+# znc-buildmod drives cmake, and znc's own ZNCConfig.cmake requires PkgConfig.
+USES=		pkgconfig
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	CyberShadow
