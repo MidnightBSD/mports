@@ -60,6 +60,7 @@ include/dovecot/array-decl.h
 include/dovecot/array.h
 include/dovecot/askpass.h
 include/dovecot/auth-cache.h
+include/dovecot/auth-sasl.h
 include/dovecot/auth-client-connection.h
 include/dovecot/auth-client-interface.h
 include/dovecot/auth-client-private.h
@@ -629,6 +630,7 @@ include/dovecot/sha3.h
 include/dovecot/shared-storage.h
 include/dovecot/sleep.h
 include/dovecot/smtp-address.h
+include/dovecot/smtp-dovecot.h
 include/dovecot/smtp-client-command.h
 include/dovecot/smtp-client-connection.h
 include/dovecot/smtp-client-private.h

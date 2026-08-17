@@ -1,6 +1,6 @@
 PORTNAME=	dovecot24
 PORTVERSION=	2.4.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.4/
 DISTNAME=	dovecot-${PORTVERSION}
@@ -28,8 +28,9 @@ pgsql_PKGNAMESUFFIX=	-pgsql
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
-USES=		cpe iconv libtool pkgconfig ssl
+USES=		cpe iconv libtool pkgconfig shebangfix ssl
 CPE_PRODUCT=	dovecot
+SHEBANG_FILES=	src/lib-settings/settings-history.py
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
@@ -143,6 +144,12 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,/etc/dovecot,${PREFIX}/etc/dovecot,g; \
 		s,sysconfdir=/etc,sysconfdir=${PREFIX}/etc,g' \
 		${WRKSRC}/doc/dovecot.conf.in
+# settings-history-core.h ships pre-generated.  Rewriting the shebang of
+# settings-history.py makes the script newer, which fires the regeneration rule
+# in src/lib-settings/Makefile -- and that rule uses the GNU make $< variable,
+# which is empty under BSD make, so the script is run without its input file.
+# Restore the header's mtime so the rule stays satisfied.
+	@${TOUCH} ${WRKSRC}/src/lib-settings/settings-history-core.h
 
 post-configure:
 	${REINPLACE_CMD} 's|#define HAVE_CLEARENV 1||g' ${WRKSRC}/config.h
