@@ -19,7 +19,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 DEPRECATED=	Legacy version. Does not work with newer Python versions. Use lang/cython instead
 EXPIRATION_DATE=2026-06-30
 
-USES=		compiler:c11 python:2.7-3.12
+USES=		compiler:c11 python:3.7-3.12
 USE_PYTHON=	allflavors autoplist concurrent distutils
 
 CONFLICTS_INSTALL=	py*-cython py*-cython3 # bin/cygdb bin/cython bin/cythonize
