@@ -1,6 +1,7 @@
 PORTNAME=	or-tools
 DISTVERSIONPREFIX=	v
 DISTVERSION=	9.14
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +15,7 @@ PATCH_DEPENDS=	gsed:textproc/gsed
 xBUILD_DEPENDS=	benchmark>0:devel/benchmark \
 		googletest>0:devel/googletest
 LIB_DEPENDS=	libabsl_base.so:devel/abseil \
-		libbzip2.so:archivers/bzip2 \
+		libbzip2.so:misc/vxl \
 		libCbc.so:math/cbc \
 		libCgl.so:math/cgl \
 		libcoinasl.so:math/asl \
