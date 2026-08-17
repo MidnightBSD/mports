@@ -1,20 +1,19 @@
 PORTNAME=	pyproject-metadata
-PORTVERSION=	0.7.1
-PORTREVISION=	1
+PORTVERSION=	0.12.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	pyproject_metadata-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PEP 621 metadata parsing
-WWW=		https://github.com/FFY00/python-pyproject-metadata
+WWW=		https://github.com/pypa/pyproject-metadata
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=19.0:devel/py-packaging@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=0:devel/py-flit-core@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=23.2:devel/py-packaging@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	allflavors autoplist concurrent pep517
