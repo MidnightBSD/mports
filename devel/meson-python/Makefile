@@ -1,6 +1,5 @@
 PORTNAME=	meson-python
-DISTVERSION=	0.16.0
-PORTREVISION=	1
+DISTVERSION=	0.18.0
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
@@ -15,12 +14,13 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	meson-${PYTHON_VER}:devel/meson@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}packaging>=0.19.0:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=23.2:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.9.0:devel/py-pyproject-metadata@${PY_FLAVOR} \
 		${PY_TOMLI}
 RUN_DEPENDS=	meson-${PYTHON_VER}:devel/meson@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}packaging>=0.19.0:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.7.1:devel/py-pyproject-metadata@${PY_FLAVOR} \
+		patchelf>0:sysutils/patchelf \
+		${PYTHON_PKGNAMEPREFIX}packaging>=23.2:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.9.0:devel/py-pyproject-metadata@${PY_FLAVOR} \
 		${PY_TOMLI}
 
 USES=		python
