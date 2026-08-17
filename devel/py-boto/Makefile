@@ -2,7 +2,7 @@
 
 PORTNAME=	boto
 PORTVERSION=	2.49.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,6 +16,8 @@ NO_ARCH=	yes
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
+# setup.py imports boto, which imports six, so it is needed at build time too.
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}six>=1.9:devel/py-six@${PY_FLAVOR}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}six>=1.9:devel/py-six@${PY_FLAVOR}
 
 CONFLICTS_INSTALL=	p5-Net-Amazon-Route53-[0-9]*
