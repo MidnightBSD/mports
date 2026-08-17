@@ -1,6 +1,7 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
 DISTVERSION=	0.147.0
+PORTREVISION=	1
 CATEGORIES=	ai devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,7 +21,7 @@ RUN_DEPENDS=	bash:shells/bash \
 		rg:textproc/ripgrep
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cargo gnome llvm:min=19 ninja:build python:test shebangfix ssl
+USES=		cargo gnome llvm:min=21 ninja:build python:test shebangfix ssl
 
 BROKEN_i386=	fails to build: rustc-LLVM ERROR: out of memory
 
@@ -51,7 +52,7 @@ SHEBANG_FILES=	codex-rs/skills/src/assets/samples/imagegen/scripts/image_gen.py 
 
 CARGO_CARGOTOML=	${BUILD_WRKSRC}/Cargo.toml
 CARGO_CARGOLOCK=	${BUILD_WRKSRC}/Cargo.lock
-CARGO_BUILD_ARGS=	--bin ${PORTNAME}
+CARGO_BUILD_ARGS=	--bin ${PORTNAME} --bin ${PORTNAME}-code-mode-host
 CARGO_INSTALL_PATH=	codex-rs
 CODEX_TEST_ARGS=	--workspace --exclude codex-v8-poc --no-fail-fast
 CARGO_ENV=		OPENSSL_NO_VENDOR=1 \
@@ -59,14 +60,25 @@ CARGO_ENV=		OPENSSL_NO_VENDOR=1 \
 			CARGO_PROFILE_RELEASE_LTO=false \
 			V8_FROM_SOURCE=1 \
 			GN=${LOCALBASE}/bin/gn \
+			EXTRA_GN_ARGS="enable_pkeys=false use_allocator_shim=false" \
 			NINJA=${NINJA_CMD} \
-			CLANG_BASE_PATH=/usr
+			CLANG_BASE_PATH=${LLVM_PREFIX}
 
-BINARY_ALIAS=	python3=${PYTHON_CMD}
+# Reference the real tools under ${LLVM_PREFIX}/bin rather than the
+# ${LOCALBASE}/bin/<tool><ver> multi-call wrapper, which dispatches on $0 and
+# cannot be reached through an alias under a different name.
+BINARY_ALIAS=	python3=${PYTHON_CMD} \
+		cpp=${LLVM_PREFIX}/bin/clang-cpp \
+		cc=${LLVM_PREFIX}/bin/clang \
+		c++=${LLVM_PREFIX}/bin/clang++ \
+		ar=${LLVM_PREFIX}/bin/llvm-ar \
+		nm=${LLVM_PREFIX}/bin/llvm-nm \
+		ld=${LLVM_PREFIX}/bin/ld.lld \
+		readelf=${LLVM_PREFIX}/bin/llvm-readelf
 
 BUILD_WRKSRC=	${WRKSRC}/codex-rs
 
-PLIST_FILES=	bin/${PORTNAME}
+PLIST_FILES=	bin/${PORTNAME} bin/codex-code-mode-host
 PORTDOCS=	README.md config.md
 
 OPTIONS_DEFINE=		COMPLETIONS DOCS
@@ -173,6 +185,7 @@ post-build-COMPLETIONS-on:
 
 do-install:
 	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/*/*/${PORTNAME} \
+		${CARGO_TARGET_DIR}/*/*/${PORTNAME}-code-mode-host \
 		${PREFIX}/bin
 
 do-install-COMPLETIONS-on:
