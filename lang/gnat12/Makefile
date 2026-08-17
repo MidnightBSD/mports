@@ -1,5 +1,6 @@
 PORTNAME=	gnat12
 DISTVERSION=	12.3.0
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	http://gcc.gnu.org/pub/gcc/releases/gcc-${DISTVERSION}/:gcc \
 		FREEBSD_LOCAL/thierry:gnat
@@ -105,7 +106,11 @@ _GNAT_ARCH=		${ARCH:S/amd64/x86_64/}
 _OS_LABEL4VERS=		[${OPSYS}${_GNAT_ARCH:S/amd//:S/x86_//:S/aarch/\/ARM/:S/i386/32/}]
 _PHASE_FILE=		${WRKSRC}/gcc/DEV-PHASE
 _PKG_PREFIX=		${PREFIX}/${PORTNAME}
-_PLATFORM=		${OPSYS:tl}${OSREL}
+# gcc's configure has no midnightbsd case and stops with "Configuration
+# x86_64-portbld-midnightbsd4 not supported".  Build as FreeBSD, which is what
+# lang/gcc12 does and what the bootstrap assets (gnat-*-freebsd.13-*) already
+# are.
+_PLATFORM=		freebsd13.0
 _PREV_ASSET_FILE=	gnat-${_GNAT_ARCH}-freebsd.13-${_PREV_ASSET_VER}${_PREV_ASSET_REV}
 _PREV_ASSET_GCC=	${PREV_ASSET_VER:R:R}
 _PREV_ASSET_OSREL?=	${OSREL:R}
@@ -126,25 +131,25 @@ LIB_DIR_32=	""
 PLIST_SUB+=	LIB32="@comment "
 .  else
 LIB_DIR_32=	"" 32
-PLIST_SUB+=	LIB32=" "
+PLIST_SUB+=	LIB32=""
 .  endif
 .endif
 
 .if ${ARCH} == amd64
-PLIST_SUB+=	AMD64=" " \
+PLIST_SUB+=	AMD64="" \
 		AARCH64="@comment " \
-		X86=" " \
-		64BIT=" "
+		X86="" \
+		64BIT=""
 .elif ${ARCH} == i386
 PLIST_SUB+=	AMD64="@comment " \
 		AARCH64="@comment " \
-		X86=" " \
+		X86="" \
 		64BIT="@comment "
 .elif ${ARCH} == aarch64
 PLIST_SUB+=	X86="@comment " \
 		AMD64="@comment " \
-		AARCH64=" " \
-		64BIT=" "
+		AARCH64="" \
+		64BIT=""
 .endif
 
 pre-configure:
