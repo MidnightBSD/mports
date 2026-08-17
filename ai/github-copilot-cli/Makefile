@@ -22,7 +22,7 @@ LICENSE_PERMS=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
 ONLY_FOR_ARCHS=		amd64
 ONLY_FOR_ARCHS_REASON=	is a Linux binary with a limited platform support
 
-USES=		linux:rl9 python:build
+USES=		linux:rl9 python:patch
 USE_LINUX=	base
 
 NO_BUILD=	yes
@@ -49,7 +49,7 @@ EXTRACT_ONLY=	copilot-linux-x64.tar.gz
 # into the binary.  The kernel image activator only reads program headers from
 # the first page (sys/kern/imgact_elf.c), so exec(2) fails with ENOEXEC.  Move
 # the table back into the first page before installing.
-post-extract:
+post-patch:
 	@${PYTHON_CMD} ${FILESDIR}/relocate-phdrs.py ${WRKSRC}/copilot
 
 # INSTALL_SCRIPT, not INSTALL_PROGRAM: the latter passes -s to install(1),
