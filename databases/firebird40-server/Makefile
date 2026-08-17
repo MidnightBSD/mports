@@ -1,10 +1,10 @@
 PORTNAME=	firebird
-PORTVERSION=	4.0.4
-PORTREVISION=	1
+PORTVERSION=	4.0.5
+PORTREVISION=	0
 CATEGORIES?=	databases
 MASTER_SITES=	https://github.com/FirebirdSQL/${PORTNAME}/releases/download/v${PORTVERSION}/
 PKGNAMESUFFIX?=	${PORTVERSION:R:S/.//}-server
-DISTNAME=	${PORTNAME:S/f/F/}-${PORTVERSION}.3010-0
+DISTNAME=	${PORTNAME:S/f/F/}-${PORTVERSION}.3140-0
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -122,9 +122,14 @@ CFLAGS+=	-DAMD64
 .if !defined(CLIENT_ONLY)
 USERS=	${PORTNAME}
 GROUPS=	${USERS}
-
-MAKE_ENV+=	IsServer=Y
 .endif
+
+# gen/Makefile only makes "databases" -- which creates gen/msg.fdb -- a
+# prerequisite of gpre when IsServer=Y, but "rest" depends on message_file in
+# both cases, and the client package installs the compiled .msg files.  Without
+# this the client build dies in build_file.epp:
+#   I/O error during "open" operation for file "msg.fdb"
+MAKE_ENV+=	IsServer=Y
 
 post-patch:
 	${FIND} ${WRKSRC} -name "*.sh" -exec ${CHMOD} +x {} \+
