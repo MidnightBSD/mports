@@ -1,108 +1,73 @@
 PORTNAME=	numpy
-PORTVERSION=	1.26.4
-PORTREVISION=	12
+DISTVERSION=	2.4.6
 PORTEPOCH=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI \
-		https://numpy.org/doc/1.26/:doc
+		https://numpy.org/doc/${DISTVERSION:R}/:doc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTFILES=	numpy-${PORTVERSION}${EXTRACT_SUFX} \
-		numpy-html.zip:doc
-DIST_SUBDIR=	numpy-${PORTVERSION:R}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		${PORTNAME}-html.zip:doc
+DIST_SUBDIR=	${PORTNAME}-${DISTVERSION:R}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The New Numeric Extension to Python
+COMMENT=	Fundamental package for array computing in Python
 WWW=		https://www.numpy.org/
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}meson-python>=0:devel/meson-python@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}meson-python>=0.18.0,1:devel/meson-python@${PY_FLAVOR}
 
-USES=		compiler:c11 cpe fortran pkgconfig python shebangfix
+USES=		compiler:c++17-lang cpe fortran pkgconfig python:3.11+ shebangfix
 USE_PYTHON=	allflavors autoplist concurrent cython pep517
 
+PEP517_BUILD_CONFIG_SETTING=	-Csetup-args=-Dallow-noblas=false \
+				-Csetup-args=-Dcpu-baseline-detect=disabled
+
+SHEBANG_GLOB=	*.py
 BINARY_ALIAS=	cython=cython-${PYTHON_VER}
-
-# circular ref
-NO_TEST=yes
-
-GCCLIBDIR_CMDS=	${FC} -print-file-name=libgfortran.so | ${SED} -e \
-		s/libgfortran.so//
-PYDISTUTILS_CONFIGUREARGS=	--fcompiler=gnu95
-PYDISTUTILS_BUILDARGS=	--fcompiler=gnu95
-
-LDFLAGS+=	-s
-PIE_UNSAFE=	yes
-
-PORTSCOUT=	limit:^1\.
-
 PORTDOCS=	*
 
-_USES_fake+=	774:fix-numpy-script
+CONFLICTS_INSTALL=	py*-numpy1
 
-fix-numpy-script:
-	@if [ "${PYTHON_VER}" != "${PYTHON_DEFAULT}" ] && \
-		[ -e ${FAKE_DESTDIR}${PREFIX}/bin/f2py-${PYTHON_DEFAULT} ]; then \
-		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/f2py-${PYTHON_DEFAULT} \
-			${FAKE_DESTDIR}${PREFIX}/bin/f2py; \
-	fi
+# circular ref
+NO_TEST=	yes
 
-OPTIONS_DEFINE=		DOCS SUITESPARSE
-OPTIONS_DEFAULT=	OPENBLAS SUITESPARSE
-OPTIONS_SINGLE=		BLASLIB
+OPTIONS_DEFINE=		DOCS
+OPTIONS_SINGLE=		BLASLIB SIMD
+# mports' blaslapack extension knows atlas, gotoblas, netlib and openblas
+# only; there is no flexiblas or blis port to select here.
 OPTIONS_SINGLE_BLASLIB=	ATLAS NETLIB OPENBLAS
-SUITESPARSE_DESC=	Use AMD and UMFPACK in SuiteSparse
+OPTIONS_SINGLE_SIMD=	MIN NATIVE NONE
+OPTIONS_DEFAULT=	MIN OPENBLAS
 
-ATLAS_USES=			blaslapack:atlas
-ATLAS_VARS=			BLASLIBS="ptf77blas, ptcblas" \
-				BLASNAME=atlas \
-				LAPACKLIBS=alapack \
-				LIBRARIES=atlas_libs
-NETLIB_LIB_DEPENDS=		libcblas.so:math/cblas
-NETLIB_USES=			blaslapack:netlib
-NETLIB_VARS=			BLASLIBS="blas, cblas" \
-				BLASNAME=atlas \
-				LAPACKLIBS=lapack \
-				LIBRARIES=atlas_libs
-OPENBLAS_USES=			blaslapack:openblas
-OPENBLAS_VARS=			BLASLIBS="openblas, gfortran" \
-				BLASNAME=openblas \
-				LAPACKLIBS="openblas, gfortran" \
-				LIBRARIES=libraries
-SUITESPARSE_LIB_DEPENDS=	libumfpack.so:math/suitesparse-umfpack
+MIN_DESC=		Minimum recommended CPU features ${MIN_DESC_${ARCH}}
+MIN_DESC_amd64=		(x86-64-v2 microarchitecture)
+MIN_DESC_i386=		(x86-64-v2 microarchitecture)
+NONE_DESC=		Dispatched optimizations only (not recommended except old CPUs)
 
-SHEBANG_FILES=	numpy/f2py/crackfortran.py numpy/f2py/f2py2e.py \
-		numpy/f2py/rules.py numpy/testing/print_coercion_tables.py \
-		numpy/testing/setup.py
+MIN_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dcpu-baseline=min"
+NATIVE_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dcpu-baseline=native"
+NONE_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dcpu-baseline=none"
 
-post-extract:
-	@${TOUCH} ${WRKSRC}/numpy/f2py/tests/src/temp
-	@${TOUCH} ${WRKSRC}/numpy/random/_examples/temp
-	@${TOUCH} ${WRKSRC}/numpy/core/tests/examples/temp
-
-pre-configure:
-	@${REINPLACE_CMD} -e 's|%%FC%%|${FC}|' ${WRKSRC}/numpy/distutils/fcompiler/gnu.py
-	@${CP} ${FILESDIR}/site.cfg ${WRKSRC}/site.cfg
-	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
-		-e 's|%%BLASLIBS%%|${BLASLIBS}|; s|%%BLASNAME%%|${BLASNAME}|' \
-		-e 's|%%LAPACKLIBS%%|${LAPACKLIBS}|; s|%%LIBRARIES%%|${LIBRARIES}|' \
-			${WRKSRC}/site.cfg
-	@${REINPLACE_CMD} -e "s|%%GCCLIBDIR%%|$$(${GCCLIBDIR_CMDS})|" ${WRKSRC}/site.cfg ${WRKSRC}/numpy/distutils/system_info.py
-
-pre-configure-SUITESPARSE-off:
-	@${REINPLACE_CMD} -e 's|:%%LOCALBASE%%/include/suitesparse||' ${WRKSRC}/site.cfg
-
-do-configure:
+ATLAS_USES=		blaslapack:atlas
+ATLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=blas -Csetup-args=-Dlapack=lapack"
+NETLIB_LIB_DEPENDS=	libcblas.so:math/cblas
+NETLIB_USES=		blaslapack:netlib
+NETLIB_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=blas -Csetup-args=-Dlapack=lapack"
+OPENBLAS_USES=		blaslapack:openblas
+OPENBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=openblas -Csetup-args=-Dlapack=openblas"
 
 post-install:
-	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' | ${XARGS} ${STRIP_CMD}
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
+# Option helper targets run in the main make, where PREFIX is not
+# stage-prefixed and STAGEDIR is empty, so FAKE_DESTDIR has to be explicit.
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${UNZIP_NATIVE_CMD} -qo ${DISTDIR}/${DIST_SUBDIR}/numpy-html.zip -d ${FAKE_DESTDIR}${DOCSDIR}
+	${UNZIP_NATIVE_CMD} -qo ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-html.zip \
+		-d ${FAKE_DESTDIR}${DOCSDIR}
 	@${RM} ${FAKE_DESTDIR}${DOCSDIR}/.buildinfo
 
 .include <bsd.port.mk>
