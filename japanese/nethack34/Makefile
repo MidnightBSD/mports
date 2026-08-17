@@ -1,6 +1,6 @@
 PORTNAME=	nethack
 PORTVERSION=	3.4.3
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	japanese games
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//g}-src
@@ -69,6 +69,11 @@ post-install:
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} manpages)
 	${INSTALL_DATA} ${WRKSRC}/win/X11/JNetHack.ad \
 		${PREFIX}/lib/X11/app-defaults/JNetHack
+# sys/unix/Makefile.top generates the launcher by substituting GAMEDIR, which
+# is ${PREFIX}/share/${HACKNAME}.  PREFIX is stage-prefixed during install, so
+# the script ends up with HACKDIR pointing into the stage directory.  Strip it
+# back to the runtime path.
+	@${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/${HACKNAME}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
