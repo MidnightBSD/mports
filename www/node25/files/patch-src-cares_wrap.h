@@ -9,3 +9,12 @@
  
  namespace node {
  namespace cares_wrap {
+@@ -337,7 +337,7 @@
+   static void Callback(
+       void* arg,
+       int status,
+       int timeouts,
+-      struct hostent* host) {
++      const struct hostent* host) {
+     QueryWrap<Traits>* wrap = FromCallbackPointer(arg);
+     if (wrap == nullptr) return;

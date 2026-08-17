@@ -5,6 +5,7 @@ use warnings;
 
 use File::Basename qw(basename dirname);
 use File::Path qw(mkpath);
+use File::Temp qw(tempfile);
 use IO::Socket::INET;
 use IO::Select;
 use IPC::Open3 qw(open3);
@@ -378,7 +379,7 @@ sub run_scan_phase {
     $port->note_event(warn => "YARA found suspicious port shell content.", scan => 'YaraSuspiciousShell');
   } else {
     $status = 'internal' if $status eq 'pass' || $status eq 'warn';
-    $port->note_event(internal => "YARA scanner exited with $yara_exit.", scan => 'YaraScanError');
+    $port->note_event(internal => "YARA scanner failed; see scan log.", scan => 'YaraScanError');
   }
 
   my ($integrity_exit, $integrity_out, $integrity_warnings) = $self->run_source_integrity_scan;
@@ -420,8 +421,22 @@ sub run_yara_scan {
     push @options, "--skip-larger=$limit";
   }
 
-  my ($exit, $out) = $self->run_command($scanner, @options, $rules, @targets);
-  return ($exit, $out) if $exit != 0;
+  my ($targets_fh, $targets_file) = tempfile(
+    'magus-yara-XXXXXX', TMPDIR => 1, UNLINK => 1,
+  );
+  foreach my $target (@targets) {
+    return (2, "Invalid YARA target path contains a control character.\n")
+      if $target =~ /[[:cntrl:]]/;
+    print {$targets_fh} "$target\n"
+      or return (2, "Unable to write YARA target list: $!\n");
+  }
+  close($targets_fh)
+    or return (2, "Unable to close YARA target list: $!\n");
+
+  my ($exit, $out) = $self->run_command(
+    $scanner, @options, '--scan-list', $rules, $targets_file,
+  );
+  return (2, "YARA scanner exited with $exit.\n$out") if $exit != 0;
   return length($out) ? (1, $out) : (0, "No YARA matches.\n");
 }
 
