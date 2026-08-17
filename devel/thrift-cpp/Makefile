@@ -1,6 +1,6 @@
 PORTNAME=	thrift
 PORTVERSION=	${THRIFT_PORTVERSION} # to keep in sync with thrift
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	APACHE/thrift/${PORTVERSION}
@@ -39,10 +39,10 @@ CFLAGS+=	-I${OPENSSLINC}
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so
-	${LN} -sf libthrift-${PORTVERSION}.so ${STAGEDIR}${PREFIX}/lib/libthrift.so.0
-	${LN} -sf libthriftnb-${PORTVERSION}.so ${STAGEDIR}${PREFIX}/lib/libthriftnb.so.0
-	${LN} -sf libthriftz-${PORTVERSION}.so ${STAGEDIR}${PREFIX}/lib/libthriftz.so.0
+	${STRIP_CMD} ${PREFIX}/lib/lib*.so
+	${LN} -sf libthrift-${PORTVERSION}.so ${PREFIX}/lib/libthrift.so.0
+	${LN} -sf libthriftnb-${PORTVERSION}.so ${PREFIX}/lib/libthriftnb.so.0
+	${LN} -sf libthriftz-${PORTVERSION}.so ${PREFIX}/lib/libthriftz.so.0
 
 .include "../thrift/bsd.thrift.mk"
 .include <bsd.port.post.mk>
