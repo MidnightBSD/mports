@@ -1,52 +1,40 @@
-
-
 PORTNAME=	libsamplerate
-PORTVERSION=	0.1.9
+DISTVERSION=	0.2.2
 CATEGORIES=	audio
-MASTER_SITES=	http://www.mega-nerd.com/SRC/
+MASTER_SITES=	https://github.com/libsndfile/${PORTNAME}/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secret Rabbit Code: a Sample Rate Converter for audio
+WWW=		http://www.mega-nerd.com/SRC/
 
-LICENSE=	gpl2
+# Upstream relicensed from GPLv2 to BSD 2-clause in 0.2.0.
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cpe libtool pathfix pkgconfig
-USE_LDCONFIG=	yes
+USES=		cmake cpe pkgconfig tar:xz
+
 CPE_VENDOR=	${CPE_PRODUCT}_project
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	CPU_CLIP DOCS EXAMPLES
-CPU_CLIP_DESC=	Allow machine-dependent clipping
+USE_LDCONFIG=	yes
 
-.include <bsd.mport.options.mk>
+TEST_TARGET=	test
 
-MAKE_ARGS+=	htmldocdir=${PREFIX}/share/doc/libsamplerate
+CMAKE_ON=	BUILD_SHARED_LIBS LIBSAMPLERATE_INSTALL
 
-.if ${PORT_OPTIONS:MCPU_CLIP}
-MANUAL_PACKAGE_BUILD=	CPU_CLIP may customize the package for the build machine
-.else
-CONFIGURE_ARGS+=	--disable-cpu-clip
-.endif
+OPTIONS_DEFINE=	DOCS EXAMPLES TEST
 
-.if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS +=	${LOCALBASE}/lib/libfftw3.so:math/fftw3
-.else
-CONFIGURE_ARGS+=	--disable-fftw
-.endif
+EXAMPLES_LIB_DEPENDS=		libsndfile.so:audio/libsndfile
+EXAMPLES_CMAKE_BOOL=		LIBSAMPLERATE_EXAMPLES
 
-.if ${PORT_OPTIONS:MEXAMPLES}
-LIB_DEPENDS+=	libsndfile.so:audio/libsndfile
-.elif defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS +=	libsndfile>=0:audio/libsndfile
-.else
-CONFIGURE_ARGS+=	--disable-sndfile
-.endif
+TEST_LIB_DEPENDS=		libfftw3.so:math/fftw3 \
+				libsndfile.so:audio/libsndfile
+TEST_CMAKE_BOOL=		BUILD_TESTING
 
-.if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
-check regression-test test: build
-	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS} ${MAKE_ARGS} \
-	check
-.endif
+# Option helper targets run in the main make, where PREFIX is not
+# stage-prefixed and STAGEDIR is empty, so FAKE_DESTDIR has to be explicit.
+do-install-EXAMPLES-on:
+	${INSTALL_PROGRAM} ${WRKDIR}/.build/examples/timewarp-file \
+		${FAKE_DESTDIR}${PREFIX}/bin/
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/timewarp-file
 
 .include <bsd.port.mk>
