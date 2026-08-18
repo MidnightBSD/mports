@@ -125,9 +125,9 @@ https://reviews.llvm.org/D77776
                  (false, false, true, _, false) | (_, _, _, _, true) => Ok(ToolFamily::Gnu),
                  (false, false, false, false, false) => {
                      cargo_output.print_warning(&"Compiler family detection failed since it does not define `__clang__`, `__GNUC__`, `__EMSCRIPTEN__` or `__VXWORKS__`, also does not accept cl style flag `-?`, fallback to treating it as GNU");
---- vendor/cc-1.2.50/src/tool.rs.orig	2026-04-22 17:39:24 UTC
-+++ vendor/cc-1.2.50/src/tool.rs
-@@ -158,9 +158,7 @@ impl Tool {
+--- vendor/cc-1.2.55/src/tool.rs.orig	2026-04-14 11:23:49 UTC
++++ vendor/cc-1.2.55/src/tool.rs
+@@ -157,9 +157,7 @@ impl Tool {
 
              match (clang, accepts_cl_style_flags, gcc, emscripten, vxworks) {
                  (clang_cl, true, _, false, false) => Ok(ToolFamily::Msvc { clang_cl }),
