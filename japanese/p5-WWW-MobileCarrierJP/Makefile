@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scrape Japanese mobile carrier information
 WWW=		https://metacpan.org/release/WWW-MobileCarrierJP
 
-LICENSE=	artitistic gpl+
+LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
