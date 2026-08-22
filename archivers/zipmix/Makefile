@@ -1,5 +1,5 @@
 PORTNAME=	zipmix
-DISTVERSION=	20070221
+DISTVERSION=	20160430
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.advsys.net/ken/util/ \
 		https://BSDforge.com/projects/source/archivers/zipmix/
