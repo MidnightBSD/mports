@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Slicing application for 3D printers
 WWW=		https://github.com/Ultimaker/Cura/wiki
 
-LICENSE=	apgl
+LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	Uranium>0,1:cad/uranium
