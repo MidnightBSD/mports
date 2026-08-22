@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rust-based code parser used by GitLab
 WWW=		https://gitlab.com/gitlab-org/rust/gitlab-code-parser
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BROKEN_i386=	compilation fails: error: undefined symbol: __atomic_load

@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Elasticsearch indexer for GitLab
 WWW=		https://gitlab.com/gitlab-org/gitlab-elasticsearch-indexer
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	git>=2.38.1:devel/git \

@@ -75,7 +75,10 @@ do-configure:
 	@${ECHO_CMD} '[build]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'build-dir="${WRKDIR}/_build"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'vendor=true' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'extended=false' >> ${WRKSRC}/config.toml
+# lang/rust bootstraps from rustc, rust-std and cargo, so cargo has to be
+# part of the dist run.
+	@${ECHO_CMD} 'tools=["cargo"]' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'extended=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'python="${PYTHON_CMD}"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'docs=false' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'verbose=2' >> ${WRKSRC}/config.toml
@@ -125,6 +128,8 @@ do-configure:
 #	@${ECHO_CMD} 'linker="${CC}"' >> ${WRKSRC}/config.toml
 #.endif
 	@${ECHO_CMD} '[dist]' >> ${WRKSRC}/config.toml
+# Only the xz tarballs are installed, so do not spend time on gzip ones.
+	@${ECHO_CMD} 'compression-formats=["xz"]' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'src-tarball=false' >> ${WRKSRC}/config.toml
 
 do-build:
@@ -135,6 +140,9 @@ do-install:
 	@${MKDIR} ${PREFIX}/rust-bootstrap/${FLAVOR}
 	${INSTALL_DATA} ${WRKDIR}/_build/dist/*-${_RUST_ARCH_${FLAVOR}:U${FLAVOR}}-unknown-${OPSYS:tl}${EXTRACT_SUFX} \
 		${PREFIX}/rust-bootstrap/${FLAVOR}
+# we only need rustc, std and cargo
+	${RM} ${PREFIX}/rust-bootstrap/${FLAVOR}/rust-${PORTVERSION}-* \
+		${PREFIX}/rust-bootstrap/${FLAVOR}/rust*dev*
 	@cd ${PREFIX} && \
 		${FIND} rust-bootstrap -type f >> ${TMPPLIST}
 

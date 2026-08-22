@@ -141,6 +141,20 @@ for _file in "${@}"; do
 		args="${early_args:+${early_args} }${site}${file}"
 		_fetch_cmd="${dp_FETCH_CMD} ${dp_FETCH_BEFORE_ARGS}"
 		if [ -z "${dp_DISABLE_SIZE}" -a -n "${CKSIZE}" ]; then
+			# CKSIZE is interpolated unquoted below, so it has to be a
+			# single integer.  distinfo_data prints one line per matching
+			# entry, so a distfile listed twice in distinfo yields two
+			# values here, which would word-split into fetch(1)'s argument
+			# list and be taken as an extra URL.  That fails on every site
+			# with a misleading error, so diagnose it instead.
+			case "${CKSIZE}" in
+			*[!0-9]*)
+				${dp_ECHO_MSG} "=> Invalid SIZE for ${dp_DIST_SUBDIR:+$dp_DIST_SUBDIR/}$file in ${dp_DISTINFO_FILE}."
+				${dp_ECHO_MSG} "=> Expected a single integer, got: $(echo ${CKSIZE})"
+				${dp_ECHO_MSG} "=> The entry is most likely present more than once."
+				exit 1
+				;;
+			esac
 			_fetch_cmd="${_fetch_cmd} -S ${CKSIZE}"
 		fi
 		_fetch_cmd="${_fetch_cmd} ${args} ${dp_FETCH_AFTER_ARGS}"
