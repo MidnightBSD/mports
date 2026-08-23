@@ -111,7 +111,6 @@ sub run {
   $phase ||= 'build';
   
   $self->_set_env;
-  $self->{chroot}->mark_dirty;
  
   my %results = (summary => 'pass');
   

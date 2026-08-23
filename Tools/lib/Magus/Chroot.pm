@@ -28,6 +28,7 @@ package Magus::Chroot;
 
 use strict;
 use warnings;
+use Digest::SHA ();
 use File::Path qw(mkpath rmtree);
 
 # load Carp::Heavy so it's in memory before we chroot.
@@ -64,6 +65,10 @@ an old cleaned up directory.
 =cut
 
 my $Branch;
+my %TarballChecksums;
+
+my $ZfsOwnershipProperty = 'org.midnightbsd:magus-chroot';
+my $ZfsSnapshotName      = 'magus-clean';
 
 sub new {
   my ($class, %args) = @_;
@@ -87,6 +92,9 @@ sub new {
     logs        => '/magus/logs',
     memoryDisk  => $Magus::Config{MemoryDiskEnabled},
     memoryDiskSize => $Magus::Config{MemoryDiskSize},
+    zfs         => $Magus::Config{ZfsChrootEnabled},
+    zfsDatasetRoot => $Magus::Config{ZfsChrootDataset},
+    refresh_snapshot => 0,
     loopbacks   => {
       "$Magus::Config{SlaveMportsDir}" => "/usr/mports",
       "$Magus::Config{SlaveSrcDir}"    => "/usr/src",
@@ -95,6 +103,8 @@ sub new {
   }, $class;
 
   die __PACKAGE__ . "->new(): No tarball given.\n" unless $self->{'tarball'};
+
+  $self->_validate_zfs_config;
   
   $self->_init;
   
@@ -109,14 +119,30 @@ sub _init {
   
   $self->{root} = "$self->{prefix}/$self->{branch}/$self->{workerid}";
 
+  return $self->_init_zfs if $self->{zfs};
+
+  $self->_init_cpdup;
+}
+
+
+sub _init_cpdup {
+  my ($self) = @_;
+
   # check to make sure that things are working properly in the chroot, a restart
   # or deleting /usr/mports can break the loopback.
   if (-d $self->{root} && !-e "$self->{root}/usr/mports/Makefile") {
     $self->delete;
   }
   
-  # if the chroot dir exists and is clean, then we're done.
-  return if -e "$self->{root}/.clean";
+  # if the chroot dir exists and is clean and matches the current reference,
+  # then we're done.
+  return if -e "$self->{root}/.clean" && $self->_root_matches_reference;
+
+  # A clean chroot from an older bootstrap still needs to be refreshed.
+  if (-e "$self->{root}/.clean") {
+    unlink("$self->{root}/.clean");
+    $self->_touchfile('/.dirty');
+  }
   
   # clean things up if the dir exists and is dirty
   return $self->_clean if -e "$self->{root}/.dirty";
@@ -127,13 +153,13 @@ sub _init {
   mkpath($self->{root});
 
   if ($self->{memoryDisk}) {
-    system("/sbin/mdconfig -a -t swap -s $self->{memoryDiskSize} -u $self->{workerid}") == 0
+    $self->_run_command('/sbin/mdconfig', '-a', '-t', 'swap', '-s', $self->{memoryDiskSize}, '-u', $self->{workerid})
       or die "Couldn't create memory disk: $?\n";
 
-    system("/sbin/newfs /dev/md$self->{workerid}") == 0
+    $self->_run_command('/sbin/newfs', "/dev/md$self->{workerid}")
       or die "Couldn't newfs memory disk: $?\n";
 
-    system("/sbin/mount /dev/md$self->{workerid} $self->{root}") == 0
+    $self->_run_command('/sbin/mount', "/dev/md$self->{workerid}", $self->{root})
       or die "Couldn't mount memory disk: $?\n";
   }
    
@@ -147,17 +173,11 @@ sub _create_reference_dir {
   
   $self->{refdir} = "$self->{prefix}/$self->{branch}/reference";
   
-  # get the tarball checksum, caching it if needed.
-  my $tarballsum;
-  if (open(my $fh, '<', "$self->{tarball}.md5")) {
-    chomp($tarballsum = <$fh>);
-    close($fh) || die "Couldn't close $self->{tarball}.md5: $!\n";
-  } else {
-    chomp($tarballsum = `md5 -q $self->{tarball}`);
-    open(my $fh, '>', "$self->{tarball}.md5") || die "Couldn't open $self->{tarball}.md5: $!\n";
-    print $fh "$tarballsum\n";
-    close($fh) || die "Couldn't close $self->{tarball}.md5: $!\n";
-  }
+  # Calculate the actual tarball checksum once per daemon process.  Do not
+  # trust the old cached .md5 sidecar when the tarball may have been replaced
+  # at the same path between Magus starts.
+  my $tarballsum = $self->_tarball_checksum;
+  $self->{referenceChecksum} = $tarballsum;
 
   # get the refdir checksum and check if it matches the tarball sum.
   if (open(my $fh, '<', "$self->{refdir}/.checksum")) {
@@ -176,7 +196,7 @@ sub _create_reference_dir {
   
   mkpath($self->{refdir});
   
-  system(qq(/usr/bin/tar xf $self->{tarball} -C $self->{refdir})) == 0 
+  $self->_run_command('/usr/bin/tar', 'xf', $self->{tarball}, '-C', $self->{refdir})
     or die "Couldn't untar root tarball: $?\n";
   
   # for the rest of this scope, override root to the refdir, that will make these
@@ -209,10 +229,327 @@ sub _create_reference_dir {
 }
 
 
+sub _tarball_checksum {
+  my ($self) = @_;
+
+  my @stat = stat($self->{tarball});
+  die "Couldn't stat $self->{tarball}: $!\n" unless @stat;
+
+  my $identity = join(':', @stat[0, 1, 7, 9]);
+  my $cached = $TarballChecksums{$self->{tarball}};
+  return $cached->{checksum} if $cached && $cached->{identity} eq $identity;
+
+  open(my $fh, '<', $self->{tarball})
+    or die "Couldn't open $self->{tarball}: $!\n";
+  binmode($fh);
+  my $sha = Digest::SHA->new(256);
+  $sha->addfile($fh);
+  close($fh) || die "Couldn't close $self->{tarball}: $!\n";
+
+  my $checksum = $sha->hexdigest;
+  $TarballChecksums{$self->{tarball}} = {
+    identity => $identity,
+    checksum => $checksum,
+  };
+
+  return $checksum;
+}
+
+
+sub _root_matches_reference {
+  my ($self) = @_;
+
+  open(my $fh, '<', "$self->{root}/.checksum") || return;
+  chomp(my $checksum = <$fh>);
+  close($fh) || die "Couldn't close $self->{root}/.checksum: $!\n";
+
+  return $checksum eq $self->{referenceChecksum};
+}
+
+
+sub _validate_zfs_config {
+  my ($self) = @_;
+
+  return unless $self->{zfs};
+
+  die "ZFS chroots and memory disk chroots cannot both be enabled.\n"
+    if $self->{memoryDisk};
+  die "ZfsChrootDataset must be set when ZfsChrootEnabled is enabled.\n"
+    unless defined($self->{zfsDatasetRoot}) && length($self->{zfsDatasetRoot});
+  die "Invalid ZFS dataset name: $self->{zfsDatasetRoot}\n"
+    unless $self->{zfsDatasetRoot} =~
+      m{\A[A-Za-z0-9][A-Za-z0-9_.:-]*(?:/[A-Za-z0-9][A-Za-z0-9_.:-]*)*\z};
+  die "Invalid OS release component for ZFS dataset: $self->{branch}\n"
+    unless $self->{branch} =~ m{\A[A-Za-z0-9][A-Za-z0-9_.:-]*\z};
+  die "Invalid worker ID for ZFS dataset: $self->{workerid}\n"
+    unless defined($self->{workerid}) && $self->{workerid} =~ m{\A[1-9][0-9]*\z};
+  die "Invalid chroot prefix for ZFS mountpoints: $self->{prefix}\n"
+    unless defined($self->{prefix}) && $self->{prefix} =~
+      m{\A/(?:[A-Za-z0-9_.:-]+/)*[A-Za-z0-9_.:-]+\z};
+  die "ZFS chroot prefix cannot contain dot path components.\n"
+    if grep { $_ eq '.' || $_ eq '..' } split(m{/}, $self->{prefix});
+
+  $self->{zfsBranchDataset} = "$self->{zfsDatasetRoot}/$self->{branch}";
+  $self->{zfsWorkerDataset} = "$self->{zfsBranchDataset}/$self->{workerid}";
+}
+
+
+sub _init_zfs {
+  my ($self) = @_;
+
+  $self->_ensure_zfs_hierarchy;
+
+  if ($self->{refresh_snapshot}) {
+    $self->_refresh_zfs_baseline;
+    return;
+  }
+
+  my $created = $self->_ensure_zfs_worker_dataset;
+  if ($created) {
+    $self->_sync_reference_dir;
+    $self->_create_zfs_snapshot;
+    $self->_mount_loopbacks;
+    return;
+  }
+
+  $self->_assert_zfs_worker_dataset;
+  die "Missing ZFS baseline snapshot " . $self->_zfs_snapshot . "\n"
+    unless $self->_zfs_dataset_exists($self->_zfs_snapshot);
+
+  if (-e "$self->{root}/.dirty") {
+    $self->_clean_zfs;
+    return;
+  }
+
+  if (-e "$self->{root}/.dead") {
+    $self->_refresh_zfs_baseline;
+    return;
+  }
+
+  die "ZFS chroot $self->{root} does not match the current bootstrap.\n"
+    unless -e "$self->{root}/.clean" && $self->_root_matches_reference;
+
+  # A restart can leave the dataset mounted without its auxiliary mounts.
+  unless (-e "$self->{root}/usr/mports/Makefile") {
+    $self->_unmount_loopbacks(1);
+    $self->_mount_loopbacks;
+  }
+}
+
+
+sub _ensure_zfs_hierarchy {
+  my ($self) = @_;
+
+  die "Configured ZFS parent dataset $self->{zfsDatasetRoot} does not exist.\n"
+    unless $self->_zfs_dataset_exists($self->{zfsDatasetRoot});
+
+  if ($self->_zfs_dataset_exists($self->{zfsBranchDataset})) {
+    $self->_assert_zfs_branch_dataset;
+  } else {
+    $self->_must_run(
+      '/sbin/zfs', 'create',
+      '-o', 'canmount=off',
+      '-o', 'mountpoint=none',
+      '-o', "$ZfsOwnershipProperty=1",
+      $self->{zfsBranchDataset},
+    );
+  }
+
+  mkpath("$self->{prefix}/$self->{branch}");
+}
+
+
+sub _assert_zfs_branch_dataset {
+  my ($self) = @_;
+
+  $self->_assert_zfs_owned($self->{zfsBranchDataset});
+  my $mountpoint = $self->_zfs_get('mountpoint', $self->{zfsBranchDataset});
+  my $canmount = $self->_zfs_get('canmount', $self->{zfsBranchDataset});
+  die "ZFS branch dataset $self->{zfsBranchDataset} must have mountpoint=none and canmount=off.\n"
+    unless $mountpoint eq 'none' && $canmount eq 'off';
+}
+
+
+sub _ensure_zfs_worker_dataset {
+  my ($self) = @_;
+
+  return 0 if $self->_zfs_dataset_exists($self->{zfsWorkerDataset});
+
+  if (-d $self->{root}) {
+    opendir(my $dh, $self->{root})
+      or die "Couldn't open $self->{root}: $!\n";
+    my @entries = grep { $_ ne '.' && $_ ne '..' } readdir($dh);
+    closedir($dh) || die "Couldn't close $self->{root}: $!\n";
+    die "Refusing to mount a ZFS chroot over non-empty $self->{root}.\n"
+      if @entries;
+  }
+
+  $self->_must_run(
+    '/sbin/zfs', 'create',
+    '-o', 'canmount=on',
+    '-o', "mountpoint=$self->{root}",
+    '-o', "$ZfsOwnershipProperty=1",
+    $self->{zfsWorkerDataset},
+  );
+
+  $self->_assert_zfs_worker_dataset;
+  return 1;
+}
+
+
+sub _refresh_zfs_baseline {
+  my ($self) = @_;
+
+  if ($self->_zfs_dataset_exists($self->{zfsWorkerDataset})) {
+    $self->_assert_zfs_worker_dataset;
+    $self->_unmount_loopbacks(1);
+    $self->_assert_zfs_worker_contents;
+
+    my $snapshot = $self->_zfs_snapshot;
+    $self->_must_run('/sbin/zfs', 'destroy', $snapshot)
+      if $self->_zfs_dataset_exists($snapshot);
+    $self->_must_run('/sbin/zfs', 'destroy', $self->{zfsWorkerDataset});
+  }
+
+  $self->_ensure_zfs_worker_dataset;
+  $self->_sync_reference_dir;
+  $self->_create_zfs_snapshot;
+  $self->_mount_loopbacks;
+}
+
+
+sub _clean_zfs {
+  my ($self) = @_;
+
+  $self->_unmount_loopbacks(1);
+  $self->_assert_zfs_worker_contents;
+  $self->_must_run('/sbin/zfs', 'rollback', $self->_zfs_snapshot);
+  $self->_mount_loopbacks;
+}
+
+
+sub _create_zfs_snapshot {
+  my ($self) = @_;
+
+  my $snapshot = $self->_zfs_snapshot;
+  die "Refusing to replace unexpected existing snapshot $snapshot.\n"
+    if $self->_zfs_dataset_exists($snapshot);
+  $self->_must_run('/sbin/zfs', 'snapshot', $snapshot);
+}
+
+
+sub _zfs_snapshot {
+  my ($self) = @_;
+  return "$self->{zfsWorkerDataset}\@$ZfsSnapshotName";
+}
+
+
+sub _assert_zfs_worker_dataset {
+  my ($self) = @_;
+
+  $self->_assert_zfs_owned($self->{zfsWorkerDataset});
+  my $mountpoint = $self->_zfs_get('mountpoint', $self->{zfsWorkerDataset});
+  die "ZFS dataset $self->{zfsWorkerDataset} has unexpected mountpoint $mountpoint.\n"
+    unless $mountpoint eq $self->{root};
+
+  my $mounted = $self->_zfs_get('mounted', $self->{zfsWorkerDataset});
+  $self->_must_run('/sbin/zfs', 'mount', $self->{zfsWorkerDataset})
+    unless $mounted eq 'yes';
+}
+
+
+sub _assert_zfs_owned {
+  my ($self, $dataset) = @_;
+
+  my ($exit, $output) = $self->_capture_command(
+    '/sbin/zfs', 'get', '-H', '-o', 'value,source',
+    $ZfsOwnershipProperty, $dataset,
+  );
+  die "Couldn't verify Magus ownership of ZFS dataset $dataset.\n" if $exit;
+  chomp($output);
+  my ($value, $source) = split(/\t/, $output, 2);
+  die "Refusing to manage unowned ZFS dataset $dataset.\n"
+    unless defined($value) && $value eq '1' && defined($source) && $source eq 'local';
+}
+
+
+sub _assert_zfs_worker_contents {
+  my ($self) = @_;
+
+  my ($exit, $output) = $self->_capture_command(
+    '/sbin/zfs', 'list', '-H', '-r', '-o', 'name',
+    '-t', 'filesystem,snapshot', $self->{zfsWorkerDataset},
+  );
+  die "Couldn't inspect ZFS dataset $self->{zfsWorkerDataset}.\n" if $exit;
+
+  my %allowed = map { $_ => 1 } ($self->{zfsWorkerDataset}, $self->_zfs_snapshot);
+  for my $name (grep { length } split(/\n/, $output)) {
+    die "Refusing to destroy unexpected ZFS child or snapshot $name.\n"
+      unless $allowed{$name};
+  }
+}
+
+
+sub _zfs_get {
+  my ($self, $property, $dataset) = @_;
+
+  my ($exit, $output) = $self->_capture_command(
+    '/sbin/zfs', 'get', '-H', '-o', 'value', $property, $dataset,
+  );
+  die "Couldn't read ZFS property $property from $dataset.\n" if $exit;
+  chomp($output);
+  return $output;
+}
+
+
+sub _zfs_dataset_exists {
+  my ($self, $dataset) = @_;
+
+  my ($exit, $output) = $self->_capture_command(
+    '/sbin/zfs', 'list', '-H', '-o', 'name', $dataset,
+  );
+  return 0 if $exit;
+  chomp($output);
+  return $output eq $dataset;
+}
+
+
+sub _capture_command {
+  my ($self, @command) = @_;
+
+  open(my $fh, '-|', @command)
+    or die "Couldn't run $command[0]: $!\n";
+  local $/;
+  my $output = <$fh>;
+  $output = '' unless defined $output;
+  close($fh);
+  my $status = $?;
+  my $exit = $status == -1 ? 255
+           : ($status & 127) ? 128 + ($status & 127)
+           : $status >> 8;
+
+  return ($exit, $output);
+}
+
+
+sub _run_command {
+  my ($self, @command) = @_;
+  return (system { $command[0] } @command) == 0;
+}
+
+
+sub _must_run {
+  my ($self, @command) = @_;
+  $self->_run_command(@command)
+    or die "$command[0] returned non-zero: $?\n";
+}
+
+
 sub _sync_reference_dir {
   my ($self) = @_;
   
-  system("/bin/cpdup -i0 -s0 $self->{refdir} $self->{root}") == 0 or die "cpdup returned non-zero: $?\n";
+  $self->_run_command('/bin/cpdup', '-i0', '-s0', $self->{refdir}, $self->{root})
+    or die "cpdup returned non-zero: $?\n";
 }
 
 
@@ -221,41 +558,54 @@ sub _mount_loopbacks {
   
   while (my ($src, $dst) = each %{$self->{loopbacks}}) {  
     $self->_mkdir($dst);
-    system("/sbin/mount -t nullfs -o ro $src $self->{root}/$dst") == 0
+    $self->_run_command('/sbin/mount', '-t', 'nullfs', '-o', 'ro', $src, "$self->{root}/$dst")
       or die "mount returned non-zero: $?\n";
   }
   
   $self->_mkdir('dev');
-  system("/sbin/mount -t devfs devfs $self->{root}/dev");
+  $self->_run_command('/sbin/mount', '-t', 'devfs', 'devfs', "$self->{root}/dev");
 
   $self->_mkdir('proc');
-  system("/sbin/mount -t procfs procfs $self->{root}/proc");
+  $self->_run_command('/sbin/mount', '-t', 'procfs', 'procfs', "$self->{root}/proc");
 
   $self->_mkdir('compat/linux/proc');
-  system("/sbin/mount -t linprocfs linprocfs $self->{root}/compat/linux/proc");
+  $self->_run_command('/sbin/mount', '-t', 'linprocfs', 'linprocfs', "$self->{root}/compat/linux/proc");
 
   $self->_mkdir('compat/linux/sys');
-  system("/sbin/mount -t linsysfs linsysfs $self->{root}/compat/linux/sys");
+  $self->_run_command('/sbin/mount', '-t', 'linsysfs', 'linsysfs', "$self->{root}/compat/linux/sys");
 
   $self->_mkdir('compat/linux/dev');
-  system("/sbin/mount -t devfs devfs $self->{root}/compat/linux/dev");
+  $self->_run_command('/sbin/mount', '-t', 'devfs', 'devfs', "$self->{root}/compat/linux/dev");
 
   $self->_mkdir('compat/linux/dev/fd');
-  system("/sbin/mount -t fdescfs fdescfs $self->{root}/compat/linux/dev/fd");
+  $self->_run_command('/sbin/mount', '-t', 'fdescfs', 'fdescfs', "$self->{root}/compat/linux/dev/fd");
 } 
 
 sub _unmount_loopbacks {
-  my ($self) = @_;
+  my ($self, $strict) = @_;
 
   for ("/dev", "/proc", "/compat/linux/proc", "/compat/linux/sys", "/compat/linux/dev/fd", "/compat/linux/dev", values %{$self->{loopbacks}}) {
     # if umount failed it is probably because nothing was mounted.
     # therefore we ignore the error code here 
-    system("/sbin/umount $self->{root}$_"); 
+    $self->_run_command('/sbin/umount', "$self->{root}$_");
+  }
+
+  return unless $strict;
+
+  my ($exit, $output) = $self->_capture_command('/sbin/mount', '-p');
+  die "Couldn't verify mounts below $self->{root}.\n" if $exit;
+  for my $line (split(/\n/, $output)) {
+    my (undef, $mountpoint) = split(/\s+/, $line, 3);
+    next unless defined $mountpoint;
+    die "Refusing ZFS operation while $mountpoint remains mounted.\n"
+      if index($mountpoint, "$self->{root}/") == 0;
   }
 }
 
 sub _clean {
   my ($self) = @_;
+
+  return $self->_clean_zfs if $self->{zfs};
 
   $self->_unmount_loopbacks;
   
@@ -268,11 +618,9 @@ sub _clean {
 
 sub _clear_flags {
   my ($self, $dir) = @_;
-  
-  my $cmd = "/bin/chflags -R 0 $self->{root}$dir";
-  
-  (system($cmd) == 0)
-      or die qq/"$cmd" returned non-zero: $?\n/;  
+
+  $self->_run_command('/bin/chflags', '-R', '0', "$self->{root}$dir")
+    or die "/bin/chflags returned non-zero: $?\n";
 }
   
 
@@ -378,14 +726,28 @@ Deletes the chroot dir.
 
 sub delete {
   my ($self) = @_;
+
+  if ($self->{zfs}) {
+    return unless $self->_zfs_dataset_exists($self->{zfsWorkerDataset});
+
+    $self->_assert_zfs_worker_dataset;
+    $self->_unmount_loopbacks(1);
+    $self->_assert_zfs_worker_contents;
+
+    my $snapshot = $self->_zfs_snapshot;
+    $self->_must_run('/sbin/zfs', 'destroy', $snapshot)
+      if $self->_zfs_dataset_exists($snapshot);
+    $self->_must_run('/sbin/zfs', 'destroy', $self->{zfsWorkerDataset});
+    return;
+  }
   
   $self->_unmount_loopbacks;
 
   if ($self->{memoryDisk}) {
-    system("/sbin/umount $self->{root}") == 0
+    $self->_run_command('/sbin/umount', $self->{root})
       or die "Couldn't unmount memory disk: $?\n";
 
-    system("/sbin/mdconfig -d -u $self->{workerid}") == 0
+    $self->_run_command('/sbin/mdconfig', '-d', '-u', $self->{workerid})
       or die "Couldn't destroy memory disk: $?\n";
   } else {
     $self->_clear_flags("/");
@@ -425,6 +787,3 @@ sub mark_dead {
 
 1;
 __END__
-
-
-
