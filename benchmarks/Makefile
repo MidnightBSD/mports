@@ -25,6 +25,8 @@
     SUBDIR += netperf
     SUBDIR += netpipe
     SUBDIR += nttcp
+    SUBDIR += p5-Benchmark-Forking
+    SUBDIR += p5-Benchmark-Stopwatch
     SUBDIR += p5-Dumbbench
     SUBDIR += pathrate
     SUBDIR += perftest
