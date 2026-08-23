@@ -235,7 +235,9 @@ sub _tarball_checksum {
   my @stat = stat($self->{tarball});
   die "Couldn't stat $self->{tarball}: $!\n" unless @stat;
 
-  my $identity = join(':', @stat[0, 1, 7, 9]);
+  # Include ctime so same-sized replacements that restore the old mtime still
+  # invalidate the per-daemon checksum cache.
+  my $identity = join(':', @stat[0, 1, 7, 9, 10]);
   my $cached = $TarballChecksums{$self->{tarball}};
   return $cached->{checksum} if $cached && $cached->{identity} eq $identity;
 

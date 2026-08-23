@@ -10,18 +10,34 @@ use Magus::Chroot;
 
 {
   my ($fh, $tarball) = tempfile();
-  print $fh "first bootstrap\n";
+  my $original = "first bootstrap\n";
+  my $replacement = "other bootstrap\n";
+  is(length($replacement), length($original),
+    'checksum regression test uses same-sized bootstrap contents');
+
+  print $fh $original;
   close($fh) || die "Couldn't close temporary bootstrap: $!";
+  my @original_stat = stat($tarball);
 
   my $chroot = bless {tarball => $tarball}, 'Magus::Chroot';
   my $first = $chroot->_tarball_checksum;
 
-  open($fh, '>>', $tarball) || die "Couldn't update temporary bootstrap: $!";
-  print $fh "changed\n";
+  sleep(1);
+  open($fh, '>', $tarball) || die "Couldn't update temporary bootstrap: $!";
+  print $fh $replacement;
   close($fh) || die "Couldn't close temporary bootstrap: $!";
+  utime($original_stat[8], $original_stat[9], $tarball)
+    || die "Couldn't restore temporary bootstrap timestamps: $!";
+  my @replacement_stat = stat($tarball);
+
+  is($replacement_stat[7], $original_stat[7], 'replacement preserves bootstrap size');
+  is($replacement_stat[9], $original_stat[9], 'replacement restores bootstrap mtime');
+  isnt($replacement_stat[10], $original_stat[10], 'replacement changes bootstrap ctime');
+
   my $second = $chroot->_tarball_checksum;
 
-  isnt($second, $first, 'bootstrap checksum is recalculated when the tarball changes');
+  isnt($second, $first,
+    'bootstrap checksum is recalculated when only ctime identifies the change');
   like($second, qr/\A[0-9a-f]{64}\z/, 'bootstrap uses a SHA-256 checksum');
 }
 
